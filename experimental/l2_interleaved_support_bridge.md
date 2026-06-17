@@ -244,6 +244,58 @@ L2 theorem, because adversarial received rows may align their full supports.
 It is the benchmark a worst-case certificate should try to recover after
 quotient-core and other structured support packets are separated.
 
+## Repeated-Row and Quotient-Core Diagonalization
+
+There is one exact case where no interleaving exponent can appear.  For any
+received word `V:H -> F`,
+
+```text
+|Lambda(Int(C,mu),1-a/n,(V,...,V))|
+ =
+ |Lambda(C,1-a/n,V)|.
+```
+
+Indeed, any interleaved tuple listed against the repeated row has a common
+agreement set `S` of size at least `a`; all row codewords agree with `V` on
+`S`, hence agree with one another on at least `k` points and are equal.
+
+This matters for the quotient-core obstruction.  In the notation of
+`tex/slackMCA_v3.tex`, let `K <= H` have order `M`, put `N=n/M`, assume
+`M | k`, write `ell=k/M`, and choose a slack set `T` of size `sigma<M` inside
+one omitted `K`-coset `C_0`.  The quotient-core packet has one support
+
+```text
+S_A = T union U_A
+```
+
+for each `ell`-subset `A` of `H/K \ {C_0}`, where `U_A` is the union of the
+`K`-cosets in `A`.  Thus the base packet size is
+
+```text
+L = binom(N-1,ell).
+```
+
+For a `mu`-tuple from this packet,
+
+```text
+|S_{A_1} cap ... cap S_{A_mu}|
+  = sigma + M |A_1 cap ... cap A_mu|.
+```
+
+At the quotient-core agreement threshold `a=k+sigma`, this is at least `a`
+iff `A_1=...=A_mu`.  Therefore the aligned quotient-core packet contributes
+exactly
+
+```text
+L
+```
+
+interleaved tuples, not `L^mu`.  If the rows use slack sets `T_i` in the same
+omitted coset and `|T_1 cap ... cap T_mu|<sigma`, then this exact-threshold
+packet contributes zero tuples.  The known quotient-core lower-bound packet
+therefore shares its support parameter under column interleaving; it does not
+itself force the Cartesian-product exponent.
+
 ## Proof
 
 Take an interleaved listed codeword
@@ -324,6 +376,22 @@ expectation.  Finally, the event of at least `a` successes is contained in the
 union over `a`-subsets on which all coordinates match, giving
 `Pr[Bin(n,theta)>=a] <= binom(n,a)theta^a`.
 
+For repeated rows, let `(c_1,...,c_mu)` be an interleaved listed codeword
+against `(V,...,V)`, and let `S` be a common agreement set with `|S|>=a`.  Then
+each `c_i` agrees with `V` on `S`.  Since `a>=k`, the codewords `c_i` are all
+equal.  The diagonal map from the base list to the repeated-row interleaved
+list is therefore a bijection.
+
+For the quotient-core packet, the support formula follows from the construction
+itself.  Each packet codeword has full agreement support `S_A=T union U_A`,
+because the difference from the received word is `L_T L_A`, whose zeros on
+`H` are exactly `T union U_A`.  Intersecting `mu` such supports leaves the
+common slack set plus the common quotient cosets, so the size is
+`sigma + M |A_1 cap ... cap A_mu|`.  Since each `A_i` has size `ell=k/M`, this
+reaches `k+sigma=M ell+sigma` exactly when all `A_i` are equal.  If the row
+slack sets have common intersection smaller than `sigma`, even equal quotient
+choices give fewer than `k+sigma` common points.
+
 ## Ledger Consequence
 
 This bridge does not say that a base-code list-size bound transfers without a
@@ -369,6 +437,15 @@ quantity is not the product of row list sizes; it is the number of row-support
 tuples with common intersection at least `a`.  Exact-support and near-exact
 support packets can therefore be certified by small overlap neighborhoods.
 
+The quotient-core packet calculation answers one of the concrete L2 questions
+from `agents.md`: the standard aligned quotient-core lower-bound packet does
+not multiply under interleaving.  It remains an essential base-list obstruction
+and quotient-reserve floor, but its shared support parameter means the L2
+ledger should not automatically raise that particular packet size to the
+`mu`th power.  A worst-case interleaved theorem still has to rule out other
+row alignments, but the known quotient-core packet is a diagonal rather than a
+Cartesian source.
+
 ## Follow-Up Checks
 
 - Match the manuscript's locator local-limit assumption to `Fib_U(a)` rather
@@ -382,3 +459,6 @@ support packets can therefore be certified by small overlap neighborhoods.
 - Decide how certificate emitters should print both values: the conservative
   product bound and the sharper support-fiber bridge when its hypothesis is
   available.
+- Feed active rows from `experimental/quotient_profile.py` into
+  `experimental/quotient_core_interleaving.py` so protocol ledgers can display
+  both the base quotient-core packet and its aligned L2 packet count.

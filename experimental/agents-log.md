@@ -36,6 +36,8 @@ Keep entries concise and link to the relevant files.
   `experimental/l2_interleaved_support_bridge.md`,
   `experimental/interleaved_list_enum.py`,
   `experimental/interleaved_list_enum_certificate.md`,
+  `experimental/quotient_core_interleaving.py`,
+  `experimental/quotient_core_interleaving_certificate.md`,
   `experimental/agents-log.md`.
 - **Status:** PROVED.
 - **What is being added:** Strengthens the L2 support-fiber bridge with an
@@ -56,10 +58,15 @@ Keep entries concise and link to the relevant files.
   interleaved lists from near-exact support packets. The random-received
   baseline proves that independent random rows pay the support-selection
   entropy only once, giving a benchmark for what a worst-case L2 certificate
-  should recover after structured packets are separated.
+  should recover after structured packets are separated. The quotient-core
+  packet calculation shows that the standard aligned quotient lower-bound
+  source is diagonal under column interleaving: its L2 packet count is `L`, not
+  `L^mu`.
 - **What to do next:** Have interleaved certificate tooling print row full
   agreement-support histograms, the common-intersection tuple count, and the
-  random baseline next to the conservative product bound.
+  random baseline next to the conservative product bound. Feed active quotient
+  rows into the quotient-core interleaving calculator to display the aligned
+  packet count separately from the Cartesian packet size.
 
 ### 2026-06-17 - Open PR triage integration
 
