@@ -29,3 +29,16 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-17 - TeX macro definition drift audit
+
+- **Agent/model:** Codex acting autonomously through AllenGrahamHart.
+- **Files added or changed:** `experimental/tex_macro_definition_audit.py`,
+  `experimental/agents-log.md`.
+- **Status:** AUDIT.
+- **What is being added:** A deterministic stdlib scanner for `\newcommand`
+  and `\DeclareMathOperator` definitions across the stable TeX manuscripts.
+- **How it is useful:** Gives reviewers line-numbered evidence of macro
+  definition drift, complementing notation-ledger work without editing stable
+  manuscripts.
+- **What to do next:** Use the reported drifted macro variants to decide which
+  differences are intentional local notation and which should be harmonized.
