@@ -133,6 +133,20 @@ implies `|Bad_t(f,g)|/q -> 1` in probability. In particular, for fixed `t`
 and `s(n-s)/q -> 0`, the transition is sharp at the entropy scale
 `binom(n,k+t) ~ q^t`.
 
+In logarithmic form, when the high-overlap correction is negligible,
+
+```text
+t log q - log binom(n,k+t) -> +infinity
+```
+
+is the random-line safe side, while
+
+```text
+log binom(n,k+t) - t log q -> +infinity
+```
+
+is the random-line failure side.
+
 If `Bad_t(f,g)` is the set of distinct support-wise MCA-bad slopes at radius
 `delta = 1 - (k+t)/n`, then
 
@@ -539,6 +553,55 @@ This is the random analogue of the M1 entropy ledger. A worst-case theorem
 cannot hope to follow from random-line heuristics alone; it must separately
 control tangent, quotient-periodic, and high-overlap structured line data.
 
+## Entropy-Reserve Reading
+
+The phase diagram can be read in exactly the reserve language used in Paper B.
+Ignoring high-overlap corrections, the random-line transition occurs when
+
+```text
+q^t ~= binom(n,k+t).
+```
+
+Equivalently, using any fixed logarithm base,
+
+```text
+t log q ~= log binom(n,k+t).
+```
+
+Thus the random-line entropy reserve is
+
+```text
+t log q - log binom(n,k+t).
+```
+
+On the positive random side,
+
+```text
+t log q - log binom(n,k+t) -> +infinity
+```
+
+forces the bad-slope density to vanish. On the failure random side, provided
+the high-overlap correction `R_t` is negligible,
+
+```text
+log binom(n,k+t) - t log q -> +infinity
+```
+
+forces the bad-slope density to tend to one.
+
+For fixed rate `rho = k/n` and slack fraction `eta = t/n`, Stirling's formula
+turns the threshold into
+
+```text
+eta log q ~= H(rho + eta),
+```
+
+up to lower-order terms after dividing by `n`, with `H` measured in the same
+logarithm base. This is only a random-line statement, but it explains why the
+worst-case M1 conjecture has to be calibrated against the same generated-field
+entropy ledger as the locator-fiber problem, with tangent, quotient-periodic,
+and high-overlap families accounted for separately.
+
 ## Support-Overlap Second Moment
 
 Let `X = |Inc_t(f,g)|`, and for each support `S` of size `s = k+t` let `I_S`
@@ -766,6 +829,9 @@ if the fixed-slope relative variance tends to zero, then
 
 random-line slope density transitions at binom(n,k+t) ~= q^t
 when high-overlap corrections are negligible.
+
+entropy reserve:
+  t log q - log binom(n,k+t).
 ```
 
 Together these formulas justify treating the aperiodic part of residue-line

@@ -60,12 +60,12 @@ Keep entries concise and link to the relevant files.
   in at least `k` points, the high-overlap contribution has an explicit
   exchanged-points variance criterion, fixed-slope support indicators have an
   exact second moment, the random-line bad-slope density has a two-sided phase
-  diagram, and base-word support-list mass contributes only to the zero slope
-  `z = 0`.
+  diagram with entropy-reserve interpretation, and base-word support-list mass
+  contributes only to the zero slope `z = 0`.
 - **How it is useful:** Turns the first-moment random-line estimate into an
   overlap, concentration, slope-density, and basepoint-slope ledger for the M1
   residue-line packing problem, isolating the high-overlap correction to the
-  entropy-scale transition after zero-slope, tangent-floor, and
+  entropy-reserve transition after zero-slope, tangent-floor, and
   quotient-periodic families are separated.
 - **What to do next:** Build a tiny-field `Pi_S` collinearity scanner and
   compare tangent, quotient-periodic, and aperiodic support sources against
