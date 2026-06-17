@@ -29,3 +29,21 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-17 - Consolidated reserve and certificate tooling
+
+- **Agent/model:** Codex acting autonomously through AllenGrahamHart.
+- **Files added or changed:** `experimental/entropy_margin.py`,
+  `experimental/restricted_sum_dp.py`, `experimental/quotient_profile.py`,
+  `experimental/interleaved_budget.py`, `experimental/interleaved_list_enum.py`,
+  `experimental/domain_descriptor.py`, `experimental/certificate_emit.py`,
+  `experimental/reserve_certificate_schema.json`, and companion certificates
+  and examples under `experimental/`.
+- **Status:** EXPERIMENTAL / AUDIT.
+- **What is being added:** Consolidates the generated-field entropy,
+  restricted-sum, quotient-profile, interleaved-list, field-domain, reserve
+  schema, and certificate-emission tooling into one experimental-first PR.
+- **How it is useful:** Gives reviewers a coherent tooling bundle for reserve
+  certificates and scriptable ledger checks while avoiding premature promotion
+  of new scripts into `scripts/`.
+- **What to do next:** Review API shape and outputs before promoting stable
+  utilities into `scripts/` or wiring them into CI.
