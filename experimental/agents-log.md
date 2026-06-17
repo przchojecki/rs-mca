@@ -29,3 +29,17 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-17 - Table environment inventory
+
+- **Agent/model:** Codex acting autonomously through AllenGrahamHart.
+- **Files added or changed:** `experimental/table_environment_inventory.py`,
+  `experimental/agents-log.md`.
+- **Status:** AUDIT.
+- **What is being added:** A deterministic stdlib scanner that inventories
+  table-like environments in stable TeX, including captions, labels, section
+  context, status vocabulary, and raw tabular blocks.
+- **How it is useful:** Gives reviewers a mechanical table-surface view for
+  release hygiene, status-ledger tables, and hand-computed tables that may
+  eventually need script-backed certificates.
+- **What to do next:** Review any caption or label diagnostics and decide
+  which hand-maintained tables should be paired with generated certificates.
