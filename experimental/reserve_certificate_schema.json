@@ -1,0 +1,838 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/przchojecki/rs-mca/experimental/reserve_certificate_schema.json",
+  "title": "Field-separated Reed-Solomon reserve certificate",
+  "description": "Machine-readable schema mirroring Paper C def:cert and rule:reserve.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "certificate_kind",
+    "status",
+    "source_labels",
+    "parameters",
+    "evidence",
+    "reserve_checks"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "const": "0.1.0"
+    },
+    "certificate_kind": {
+      "type": "string",
+      "enum": [
+        "theorem_backed_certificate",
+        "conditional_certificate",
+        "obstruction_audit"
+      ]
+    },
+    "status": {
+      "$ref": "#/$defs/status"
+    },
+    "source_labels": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/source_label"
+      },
+      "minItems": 1
+    },
+    "parameters": {
+      "$ref": "#/$defs/parameters"
+    },
+    "evidence": {
+      "$ref": "#/$defs/evidence"
+    },
+    "reserve_checks": {
+      "$ref": "#/$defs/reserve_checks"
+    },
+    "protocol_reduction": {
+      "$ref": "#/$defs/protocol_reduction"
+    },
+    "artifacts": {
+      "$ref": "#/$defs/artifacts"
+    },
+    "notes": {
+      "type": "string"
+    }
+  },
+  "$defs": {
+    "status": {
+      "type": "string",
+      "enum": [
+        "PROVED",
+        "CONDITIONAL",
+        "CONJECTURAL",
+        "EXPERIMENTAL",
+        "AUDIT",
+        "COUNTEREXAMPLE"
+      ]
+    },
+    "positive_integer": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "nonnegative_integer": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "nonnegative_number": {
+      "type": "number",
+      "minimum": 0
+    },
+    "number_or_expression": {
+      "oneOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "string",
+          "minLength": 1
+        }
+      ]
+    },
+    "bits": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "value"
+      ],
+      "properties": {
+        "value": {
+          "$ref": "#/$defs/number_or_expression"
+        },
+        "exact": {
+          "type": "boolean"
+        },
+        "lower_bound": {
+          "$ref": "#/$defs/number_or_expression"
+        },
+        "upper_bound": {
+          "$ref": "#/$defs/number_or_expression"
+        },
+        "expression": {
+          "type": "string"
+        }
+      }
+    },
+    "source_label": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "file",
+        "label"
+      ],
+      "properties": {
+        "file": {
+          "type": "string",
+          "pattern": "^(tex|experimental|scripts)/"
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1
+        },
+        "status": {
+          "$ref": "#/$defs/status"
+        },
+        "role": {
+          "type": "string"
+        }
+      }
+    },
+    "proof_reference": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "status",
+        "source_labels"
+      ],
+      "properties": {
+        "status": {
+          "$ref": "#/$defs/status"
+        },
+        "source_labels": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/source_label"
+          }
+        },
+        "claim": {
+          "type": "string"
+        },
+        "proof": {
+          "type": "string"
+        },
+        "assumptions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "parameters": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "q_arith",
+        "q_gen",
+        "q_line",
+        "domain",
+        "n",
+        "k",
+        "rho",
+        "delta",
+        "a",
+        "sigma",
+        "mu",
+        "nu",
+        "extension_degree",
+        "B_L",
+        "A_M",
+        "Gamma_ent",
+        "Gamma_Q",
+        "Gamma_M",
+        "C_loc",
+        "lambda_list",
+        "lambda_mca"
+      ],
+      "properties": {
+        "q_arith": {
+          "$ref": "#/$defs/positive_integer"
+        },
+        "q_gen": {
+          "$ref": "#/$defs/positive_integer"
+        },
+        "q_line": {
+          "$ref": "#/$defs/positive_integer"
+        },
+        "q_chal": {
+          "$ref": "#/$defs/positive_integer"
+        },
+        "domain": {
+          "$ref": "#/$defs/domain"
+        },
+        "n": {
+          "$ref": "#/$defs/positive_integer"
+        },
+        "k": {
+          "$ref": "#/$defs/positive_integer"
+        },
+        "rho": {
+          "$ref": "#/$defs/number_or_expression"
+        },
+        "delta": {
+          "$ref": "#/$defs/number_or_expression"
+        },
+        "a": {
+          "$ref": "#/$defs/positive_integer"
+        },
+        "sigma": {
+          "$ref": "#/$defs/nonnegative_integer"
+        },
+        "eta": {
+          "$ref": "#/$defs/number_or_expression"
+        },
+        "mu": {
+          "$ref": "#/$defs/positive_integer"
+        },
+        "nu": {
+          "$ref": "#/$defs/positive_integer"
+        },
+        "extension_degree": {
+          "$ref": "#/$defs/positive_integer"
+        },
+        "B_L": {
+          "$ref": "#/$defs/nonnegative_number"
+        },
+        "A_M": {
+          "$ref": "#/$defs/nonnegative_number"
+        },
+        "Gamma_ent": {
+          "$ref": "#/$defs/number_or_expression"
+        },
+        "Gamma_Q": {
+          "$ref": "#/$defs/number_or_expression"
+        },
+        "Gamma_M": {
+          "$ref": "#/$defs/number_or_expression"
+        },
+        "C_loc": {
+          "$ref": "#/$defs/nonnegative_number"
+        },
+        "lambda_list": {
+          "$ref": "#/$defs/nonnegative_number"
+        },
+        "lambda_mca": {
+          "$ref": "#/$defs/nonnegative_number"
+        }
+      }
+    },
+    "domain": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "description"
+      ],
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "multiplicative_subgroup",
+            "multiplicative_coset",
+            "extension_code",
+            "circle_x_coordinate",
+            "mixed_radix",
+            "other"
+          ]
+        },
+        "description": {
+          "type": "string"
+        },
+        "generator": {
+          "type": "string"
+        },
+        "order_factorization": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/$defs/nonnegative_integer"
+          }
+        },
+        "smoothness": {
+          "type": "string"
+        }
+      }
+    },
+    "evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "generated_field_ledger",
+        "quotient_profile",
+        "locator_list_bound",
+        "interleaved_list_bound",
+        "list_over_field_budget",
+        "mca_or_line_decoding_budget",
+        "failure_ladder_audit",
+        "extension_status"
+      ],
+      "properties": {
+        "generated_field_ledger": {
+          "$ref": "#/$defs/generated_field_ledger"
+        },
+        "quotient_profile": {
+          "$ref": "#/$defs/quotient_profile"
+        },
+        "locator_list_bound": {
+          "$ref": "#/$defs/named_bound"
+        },
+        "interleaved_list_bound": {
+          "$ref": "#/$defs/interleaved_list_bound"
+        },
+        "list_over_field_budget": {
+          "$ref": "#/$defs/field_budget"
+        },
+        "mca_or_line_decoding_budget": {
+          "$ref": "#/$defs/mca_budget"
+        },
+        "failure_ladder_audit": {
+          "$ref": "#/$defs/failure_ladder_audit"
+        },
+        "extension_status": {
+          "$ref": "#/$defs/extension_status"
+        }
+      }
+    },
+    "generated_field_ledger": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "status",
+        "entres_bits",
+        "entropy_margin_bits",
+        "source_labels"
+      ],
+      "properties": {
+        "status": {
+          "$ref": "#/$defs/status"
+        },
+        "entres_bits": {
+          "$ref": "#/$defs/bits"
+        },
+        "entropy_margin_bits": {
+          "$ref": "#/$defs/bits"
+        },
+        "binomial_log2": {
+          "$ref": "#/$defs/bits"
+        },
+        "sigma_log2_q_gen": {
+          "$ref": "#/$defs/bits"
+        },
+        "source_labels": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/source_label"
+          }
+        },
+        "command": {
+          "type": "string"
+        }
+      }
+    },
+    "quotient_profile": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "status",
+        "qprofile_bits",
+        "active_divisors",
+        "source_labels"
+      ],
+      "properties": {
+        "status": {
+          "$ref": "#/$defs/status"
+        },
+        "qprofile_bits": {
+          "$ref": "#/$defs/bits"
+        },
+        "budget_bits": {
+          "$ref": "#/$defs/bits"
+        },
+        "budget_decision": {
+          "type": "string",
+          "enum": [
+            "clears_budget",
+            "fails_budget",
+            "inconclusive",
+            "not_checked"
+          ]
+        },
+        "active_divisors": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/quotient_divisor"
+          }
+        },
+        "source_labels": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/source_label"
+          }
+        },
+        "command": {
+          "type": "string"
+        }
+      }
+    },
+    "quotient_divisor": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "M",
+        "n_over_M",
+        "k_over_M"
+      ],
+      "properties": {
+        "M": {
+          "$ref": "#/$defs/positive_integer"
+        },
+        "n_over_M": {
+          "$ref": "#/$defs/positive_integer"
+        },
+        "k_over_M": {
+          "$ref": "#/$defs/nonnegative_integer"
+        },
+        "log2_binomial": {
+          "$ref": "#/$defs/bits"
+        },
+        "witness": {
+          "type": "string"
+        }
+      }
+    },
+    "named_bound": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "status",
+        "bound",
+        "source_labels"
+      ],
+      "properties": {
+        "status": {
+          "$ref": "#/$defs/status"
+        },
+        "bound": {
+          "$ref": "#/$defs/bits"
+        },
+        "bound_name": {
+          "type": "string"
+        },
+        "source_labels": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/source_label"
+          }
+        },
+        "proof": {
+          "type": "string"
+        }
+      }
+    },
+    "interleaved_list_bound": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "status",
+        "mu",
+        "method",
+        "bound",
+        "source_labels"
+      ],
+      "properties": {
+        "status": {
+          "$ref": "#/$defs/status"
+        },
+        "mu": {
+          "$ref": "#/$defs/positive_integer"
+        },
+        "method": {
+          "type": "string",
+          "enum": [
+            "trivial_product",
+            "extension_identity",
+            "ggr",
+            "direct_enumeration",
+            "other"
+          ]
+        },
+        "bound": {
+          "$ref": "#/$defs/bits"
+        },
+        "source_labels": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/source_label"
+          }
+        },
+        "hypotheses": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "field_budget": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "status",
+        "numerator_bits",
+        "denominator_bits",
+        "target_lambda",
+        "clears"
+      ],
+      "properties": {
+        "status": {
+          "$ref": "#/$defs/status"
+        },
+        "numerator_bits": {
+          "$ref": "#/$defs/bits"
+        },
+        "denominator_bits": {
+          "$ref": "#/$defs/bits"
+        },
+        "target_lambda": {
+          "$ref": "#/$defs/nonnegative_number"
+        },
+        "margin_bits": {
+          "$ref": "#/$defs/bits"
+        },
+        "clears": {
+          "type": "boolean"
+        },
+        "source_labels": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/source_label"
+          }
+        },
+        "proof": {
+          "type": "string"
+        }
+      }
+    },
+    "mca_budget": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "status",
+        "object",
+        "line_field",
+        "numerator_bits",
+        "target_lambda",
+        "clears",
+        "source_labels"
+      ],
+      "properties": {
+        "status": {
+          "$ref": "#/$defs/status"
+        },
+        "object": {
+          "type": "string",
+          "enum": [
+            "mca",
+            "ca",
+            "line_decoding",
+            "curve_mca",
+            "not_used"
+          ]
+        },
+        "line_field": {
+          "$ref": "#/$defs/positive_integer"
+        },
+        "numerator_bits": {
+          "$ref": "#/$defs/bits"
+        },
+        "target_lambda": {
+          "$ref": "#/$defs/nonnegative_number"
+        },
+        "margin_bits": {
+          "$ref": "#/$defs/bits"
+        },
+        "clears": {
+          "type": "boolean"
+        },
+        "source_labels": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/source_label"
+          }
+        },
+        "proof": {
+          "type": "string"
+        }
+      }
+    },
+    "failure_ladder_audit": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "status",
+        "largest_ruled_out_gap",
+        "rungs"
+      ],
+      "properties": {
+        "status": {
+          "$ref": "#/$defs/status"
+        },
+        "largest_ruled_out_gap": {
+          "$ref": "#/$defs/number_or_expression"
+        },
+        "rungs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/failure_rung"
+          }
+        },
+        "notes": {
+          "type": "string"
+        }
+      }
+    },
+    "failure_rung": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "name",
+        "status",
+        "active"
+      ],
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "status": {
+          "$ref": "#/$defs/status"
+        },
+        "active": {
+          "type": "boolean"
+        },
+        "gap": {
+          "$ref": "#/$defs/number_or_expression"
+        },
+        "source_labels": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/source_label"
+          }
+        },
+        "details": {
+          "type": "string"
+        }
+      }
+    },
+    "extension_status": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "status",
+        "mode"
+      ],
+      "properties": {
+        "status": {
+          "$ref": "#/$defs/status"
+        },
+        "mode": {
+          "type": "string",
+          "enum": [
+            "base_code",
+            "extension_code",
+            "interleaved_base_code",
+            "curve_generated",
+            "other"
+          ]
+        },
+        "extension_list_derivation": {
+          "$ref": "#/$defs/proof_reference"
+        },
+        "extension_mca_derivation": {
+          "$ref": "#/$defs/proof_reference"
+        },
+        "notes": {
+          "type": "string"
+        }
+      }
+    },
+    "reserve_checks": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "entropy_margin",
+        "local_slack",
+        "quotient_profile_budget",
+        "distance_and_failure_gap",
+        "list_field_budget",
+        "mca_or_line_decoding_budget"
+      ],
+      "properties": {
+        "entropy_margin": {
+          "$ref": "#/$defs/reserve_check"
+        },
+        "local_slack": {
+          "$ref": "#/$defs/reserve_check"
+        },
+        "quotient_profile_budget": {
+          "$ref": "#/$defs/reserve_check"
+        },
+        "distance_and_failure_gap": {
+          "$ref": "#/$defs/reserve_check"
+        },
+        "list_field_budget": {
+          "$ref": "#/$defs/reserve_check"
+        },
+        "mca_or_line_decoding_budget": {
+          "$ref": "#/$defs/reserve_check"
+        }
+      }
+    },
+    "reserve_check": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "status",
+        "clears"
+      ],
+      "properties": {
+        "status": {
+          "$ref": "#/$defs/status"
+        },
+        "clears": {
+          "type": "boolean"
+        },
+        "lhs": {
+          "$ref": "#/$defs/number_or_expression"
+        },
+        "relation": {
+          "type": "string",
+          "enum": [
+            "<",
+            "<=",
+            "=",
+            ">=",
+            ">"
+          ]
+        },
+        "rhs": {
+          "$ref": "#/$defs/number_or_expression"
+        },
+        "margin_bits": {
+          "$ref": "#/$defs/bits"
+        },
+        "proof": {
+          "type": "string"
+        }
+      }
+    },
+    "protocol_reduction": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "adv_fold": {
+          "$ref": "#/$defs/number_or_expression"
+        },
+        "adv_curve": {
+          "$ref": "#/$defs/number_or_expression"
+        },
+        "adv_query": {
+          "$ref": "#/$defs/number_or_expression"
+        },
+        "list_term_present": {
+          "type": "boolean"
+        },
+        "mca_term_present": {
+          "type": "boolean"
+        },
+        "source_labels": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/source_label"
+          }
+        },
+        "notes": {
+          "type": "string"
+        }
+      }
+    },
+    "artifacts": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "repo_commit": {
+          "type": "string"
+        },
+        "generated_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "generated_by": {
+          "type": "string"
+        },
+        "commands": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "input_files": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

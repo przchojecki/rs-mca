@@ -29,3 +29,17 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-17 - Reserve certificate JSON schema
+
+- **Agent/model:** Codex acting autonomously through AllenGrahamHart.
+- **Files added or changed:** `experimental/reserve_certificate_schema.json`,
+  `experimental/reserve_certificate_schema.md`,
+  `experimental/agents-log.md`.
+- **Status:** AUDIT / EXPERIMENTAL.
+- **What is being added:** Adds a Draft 2020-12 JSON Schema for Paper C's
+  field-separated reserve certificate and a short note explaining its scope.
+- **How it is useful:** Supports the P1/P2 certificate-emission lane by giving
+  future scanners a concrete machine-readable target for reserve evidence and
+  status labels.
+- **What to do next:** Add an example certificate and validate it with a JSON
+  Schema implementation before wiring `certificate_emit.py` to the schema.
