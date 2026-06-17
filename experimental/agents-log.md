@@ -29,3 +29,17 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-17 - Protocol ledger rewrite template
+
+- **Agent/model:** Codex acting autonomously through AllenGrahamHart.
+- **Files added or changed:** `experimental/protocol_ledger_template.md`,
+  `experimental/agents-log.md`.
+- **Status:** AUDIT.
+- **What is being added:** A reusable protocol-ledger template for rewriting
+  FRI/WHIR/STIR-style reductions with explicit code, field, list, MCA,
+  query-branch, composition, and assumption ledgers.
+- **How it is useful:** Supports P1/M4 from `tex/proximity_blueprint_v3.tex`
+  and Paper C's certificate-facing ledger discipline without touching the
+  stable manuscripts.
+- **What to do next:** Fill the template for one concrete WHIR or FRI reduction
+  and attach theorem/script artifacts for every nontrivial row.
