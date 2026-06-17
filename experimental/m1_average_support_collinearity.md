@@ -149,8 +149,22 @@ Let `X_z(A)` count supports in `A` contributing the fixed slope `z`, and let
 `Bad_t(A;f,g)` be the set of slopes witnessed by supports in `A`. Then
 
 ```text
-E X_z(A) = M p_z,
+E X_z(A) = M p_z
+```
 
+and the strict high-overlap profile gives the exact variance identity
+
+```text
+Var X_z(A)
+  = M p_z(1 - p_z)
+    + sum_{j=1}^{t-1} Delta_j(A) K_j,
+
+K_j = q^(-t-j)(1 - 2q^(-t) + q^(-t-j)) - p_z^2.
+```
+
+In particular,
+
+```text
 Var X_z(A) / (M p_z)^2
   <= (1 - p_z)/(M p_z)
      + (4/M^2) * sum_{j=1}^{t-1} Delta_j(A) q^(t-j).
@@ -652,6 +666,21 @@ Pr[S,T both contribute to X_z(A)]
   = q^(-t-j)(1 - 2q^(-t) + q^(-t-j)).
 ```
 
+Thus the strict high-overlap profile is the complete fixed-slope covariance
+ledger. If
+
+```text
+K_j = q^(-t-j)(1 - 2q^(-t) + q^(-t-j)) - p_z^2,
+```
+
+then
+
+```text
+Var X_z(A)
+  = M p_z(1 - p_z)
+    + sum_{j=1}^{t-1} Delta_j(A) K_j.
+```
+
 Since `q >= 2`,
 
 ```text
@@ -1132,6 +1161,9 @@ expected missing-slope density is at most the fixed-slope relative variance
 bound B_t.
 
 fixed-slope covariance starts only at |S cap T| > k.
+
+for any fixed support family A, Delta_j(A) exactly determines the fixed-slope
+variance contribution from strict high-overlap pairs.
 
 at slack t = 1, fixed-slope indicators are pairwise independent for every
 fixed support family, so the random-line transition is M ~= q.
