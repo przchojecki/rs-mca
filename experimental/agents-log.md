@@ -29,3 +29,20 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-17 - Result environment inventory
+
+- **Agent/model:** Codex acting autonomously through AllenGrahamHart.
+- **Files added or changed:** `experimental/result_environment_inventory.py`,
+  `experimental/agents-log.md`.
+- **Status:** AUDIT.
+- **What is being added:** A deterministic stdlib scanner that inventories
+  theorem-like environments in the stable TeX manuscripts. It reports line
+  ranges, labels, optional titles, section context, duplicate labels, repeated
+  titles, and unlabeled entries without modifying stable TeX.
+- **How it is useful:** Complements the frontier problem inventory and theorem
+  label map by giving a mechanical coverage view for proof/result environments
+  such as theorems, lemmas, propositions, corollaries, definitions, facts,
+  tasks, and milestones.
+- **What to do next:** Review unlabeled and repeated-title diagnostics before
+  deciding whether any stable TeX label cleanup or theorem-map promotion is
+  warranted.
