@@ -192,6 +192,24 @@ The first-moment side also restricts:
 E |Bad_t(A;f,g)|/q <= M / q^t.
 ```
 
+In the slack-one case `t = 1`, the strict-overlap profile is empty. Therefore,
+for every deterministic support family `A` of `k+1` point supports and every
+fixed slope `z`,
+
+```text
+Var X_z(A) = M p_z(1 - p_z),        p_z = (q - 1)/q^2.
+```
+
+Consequently,
+
+```text
+E[1 - |Bad_1(A;f,g)|/q] <= (1 - p_z)/(M p_z) <= 2q/M.
+```
+
+Thus slack-one random-line slope density is governed only by the number of
+available supports: `M/q -> 0` gives zero density in probability, while
+`M/q -> infinity` gives density one in probability.
+
 Thus a fixed support family has the same random-line phase diagram with
 `binom(n,k+t)` replaced by its size and with the full Johnson-sphere correction
 replaced by its measured strict high-overlap profile. This is the natural
@@ -719,6 +737,31 @@ M / ( q^t + sum_{j=1}^{t-1} Gamma_j(A) q^(t-j) ) -> infinity
 
 also forces `|Bad_t(A;f,g)|/q -> 1` in probability.
 
+At slack one this becomes exact. If `t = 1`, then two distinct supports of size
+`k+1` intersect in at most `k` points, so all distinct fixed-slope indicators
+are pairwise independent. Hence
+
+```text
+Var X_z(A) = M p_z(1 - p_z),        p_z = (q - 1)/q^2.
+```
+
+Chebyshev gives
+
+```text
+Pr[X_z(A) = 0] <= (1 - p_z)/(M p_z).
+```
+
+For `q >= 2`, this is at most `2q/M`. Averaging over slopes gives
+
+```text
+E[1 - |Bad_1(A;f,g)|/q] <= 2q/M.
+```
+
+Together with the first-moment bound `E |Bad_1(A;f,g)|/q <= M/q`, this gives
+the slack-one phase diagram for every fixed support family: `M/q -> 0` forces
+zero bad-slope density in probability, while `M/q -> infinity` forces density
+one in probability.
+
 For the full support family `A = binom(D,s)`, one has `M = N_s` and
 
 ```text
@@ -1089,6 +1132,9 @@ expected missing-slope density is at most the fixed-slope relative variance
 bound B_t.
 
 fixed-slope covariance starts only at |S cap T| > k.
+
+at slack t = 1, fixed-slope indicators are pairwise independent for every
+fixed support family, so the random-line transition is M ~= q.
 
 random-line slope density transitions at binom(n,k+t) ~= q^t
 when strict high-overlap corrections are negligible.
