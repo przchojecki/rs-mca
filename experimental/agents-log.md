@@ -29,3 +29,17 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-17 - Backmatter structure inventory
+
+- **Agent/model:** Codex acting autonomously through AllenGrahamHart.
+- **Files added or changed:** `experimental/backmatter_structure_inventory.py`,
+  `experimental/agents-log.md`.
+- **Status:** AUDIT.
+- **What is being added:** A deterministic stdlib scanner that inventories
+  appendix markers, appendix headings, bibliography environments, bibitems, and
+  end-document markers across the stable TeX manuscripts.
+- **How it is useful:** Gives reviewers a release-hygiene view of manuscript
+  backmatter ordering without editing stable TeX or overlapping with citation,
+  reference, section, table, package, topmatter, display-math, or script audits.
+- **What to do next:** Review any ordering or closure diagnostics before
+  release tagging or bibliography cleanup.
