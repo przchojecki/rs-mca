@@ -66,11 +66,15 @@ Keep entries concise and link to the relevant files.
   given by incidences between locator readouts modulo
   `hatE = lcm(E,E^tau)` and an affine slope target. Extends the same
   reduction to arbitrary finite extensions `F/B` by replacing `hatE` with the
-  lcm of the full Frobenius orbit of `E`, giving degree at most `e sigma`.
+  lcm of the full Frobenius orbit of `E`, giving degree at most `e sigma`;
+  adds an exact orbit-degree budget charging each Frobenius factor orbit by
+  its maximum multiplicity.
 - **How it is useful:** Sharpens the repaired F1 path after the fixed-rate
   counterexample: extension denominators increase the base readout degree by
-  at most the extension degree in this stratum, while the arbitrary-anchor
-  balanced gap remains explicitly open.
+  at most the extension degree in this stratum, and factors with smaller
+  coefficient field pay their actual orbit length rather than the coarse
+  `e sigma` bound, while the arbitrary-anchor balanced gap remains explicitly
+  open.
 - **What to do next:** Attack the arbitrary-anchor balanced F1 gap in the full
   residue-line normal form, or prove no-rich-line bounds for the base-core
   incidence set above the corrected reserve.

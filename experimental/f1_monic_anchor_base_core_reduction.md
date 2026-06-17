@@ -303,6 +303,48 @@ from `E | hatE`.
 The quadratic theorem above is the special case `e=2`, where the closure is
 `lcm(E,E^tau)`.
 
+## Orbit-Degree Budget
+
+The bound `deg hatE <= e sigma` can be sharpened factor by factor.  Write the
+factorization of `E` in `F[X]` as
+
+```text
+E = product_f f^{m_f},
+```
+
+where `f` ranges over monic irreducible polynomials in `F[X]`, with all but
+finitely many multiplicities `m_f` equal to zero.  Frobenius acts by
+`f -> f^tau`.  For each Frobenius orbit `O` meeting the support of `E`, put
+
+```text
+m_O = max_{f in O} m_f.
+```
+
+Then
+
+```text
+hatE = product_O product_{f in O} f^{m_O},
+
+deg hatE = sum_O m_O sum_{f in O} deg f.
+```
+
+In particular, a squarefree factor whose coefficient field has degree `d` over
+`B` contributes orbit length `d`, not the full extension degree `e`.
+Base-defined factors have orbit length one.  Repeated factors are charged by
+the maximum multiplicity appearing in their Frobenius orbit, as is natural for
+an lcm.
+
+Proof.  The Frobenius conjugates of `E` have factorizations
+
+```text
+E^{tau^i} = product_f (f^{tau^i})^{m_f}.
+```
+
+The lcm takes, for each irreducible factor in a Frobenius orbit, the largest
+multiplicity with which any conjugate contributes that factor.  This largest
+multiplicity is exactly `m_O`, and the displayed product and degree formula
+follow.
+
 ## Ledger Impact
 
 This theorem gives the repaired F1 problem a sharper local target:
@@ -312,7 +354,8 @@ This theorem gives the repaired F1 problem a sharper local target:
 - in the balanced monic-anchor stratum, extension denominators reduce to
   locator incidences modulo the base polynomial `hatE`;
 - in extension degree `e`, the extension can increase the effective
-  generated-field readout degree by at most a factor of `e`;
+  generated-field readout degree by at most a factor of `e`, with the exact
+  payment given by the Frobenius-orbit degree budget above;
 - the remaining unresolved F1 issue is the arbitrary-anchor balanced stratum
   allowed by the full residue-line normal form.
 
