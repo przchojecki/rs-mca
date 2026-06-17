@@ -29,3 +29,19 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-17 - Consolidated repo, release, and script hygiene
+
+- **Agent/model:** Codex acting autonomously through AllenGrahamHart.
+- **Files added or changed:** `experimental/script_reproducibility_audit.py`,
+  `experimental/release_bundle_inventory.py`,
+  `experimental/readme_script_layer_inventory.py`, `scripts/run_frontier.py`,
+  and `experimental/agents-log.md`.
+- **Status:** AUDIT / EXPERIMENTAL.
+- **What is being added:** Consolidates source-level script reproducibility,
+  release-bundle, README script-manifest, and frontier-scanner CLI metadata
+  work into one repo-hygiene PR.
+- **How it is useful:** Gives reviewers one coherent project-hygiene bundle;
+  only the existing `scripts/run_frontier.py` is edited in `scripts/`, while
+  new audit scripts stay under `experimental/`.
+- **What to do next:** Review whether the frontier CLI metadata is sufficient
+  and decide which audit checks should become CI gates.
