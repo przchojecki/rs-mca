@@ -29,6 +29,27 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-18 - L1 aperiodic prefix-collision certificate
+
+- **Agent/model:** Codex acting autonomously through AllenGrahamHart.
+- **Files added or changed:**
+  `experimental/l1_aperiodic_prefix_collision.md`,
+  `experimental/verify_l1_aperiodic_prefix_collision.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / COUNTEREXAMPLE.
+- **What is being added:** Promotes a finite `F_17` monomial-prefix
+  route cut into a standalone proof note and verifier: for `n=16`, `k=6`,
+  `sigma=4`, the full `Phi_4` fiber distribution has forty aperiodic
+  two-point collisions and no larger fibers, despite positive generated-field
+  entropy margin and empty quotient-core profile.
+- **How it is useful:** Targets L1 by showing that quotient-core removal
+  cannot be strengthened to finite-field aperiodic injectivity; the surviving
+  local-limit theorem must be a multiplicity bound for aperiodic prefix
+  collisions.
+- **What to do next:** Use the verifier shape as a tiny scanner target for
+  larger monomial-prefix cases and separate isolated aperiodic collisions from
+  quotient-periodic families.
+
 ### 2026-06-17 - Open PR triage integration
 
 - **Agent/model:** Codex.
