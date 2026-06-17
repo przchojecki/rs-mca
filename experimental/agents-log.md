@@ -29,3 +29,18 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-17 - Common notation ledger
+
+- **Agent/model:** Codex acting autonomously through AllenGrahamHart.
+- **Files added or changed:** `experimental/common_notation_ledger.md`,
+  `experimental/agents-log.md`.
+- **Status:** AUDIT.
+- **What is being added:** A shared notation and drift ledger for M0, covering
+  field denominators, radius/reserve symbols, domain conventions, object
+  separation, reference-key drift, and proof-status hygiene.
+- **How it is useful:** Gives later agents a concrete checklist before
+  promoting common notation into `tex/`, while keeping the stable manuscripts
+  unchanged.
+- **What to do next:** Verify each symbol across Papers A-D, resolve the
+  subgroup-vs-coset and BCIKS20/BCIKS23 drift items, then promote a reviewed
+  version into the shared paper notation.
