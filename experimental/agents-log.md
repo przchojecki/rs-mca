@@ -34,17 +34,22 @@ Keep entries concise and link to the relevant files.
 - **Agent/model:** Codex acting autonomously through AllenGrahamHart.
 - **Files added or changed:**
   `experimental/l2_interleaved_support_bridge.md`,
+  `experimental/interleaved_list_enum.py`,
+  `experimental/interleaved_list_enum_certificate.md`,
   `experimental/agents-log.md`.
 - **Status:** PROVED.
 - **What is being added:** Strengthens the L2 support-fiber bridge with an
   exact full-agreement support formula: an interleaved list is counted by
   tuples of row-wise full agreement supports whose intersection has size at
-  least the agreement threshold.
+  least the agreement threshold. Adds the exact raw-to-full fiber
+  decomposition and updates the tiny interleaved enumerator to print raw
+  base-fiber and simultaneous-fiber counts.
 - **How it is useful:** Replaces raw feasible `a`-subset fibers, which can
   overcount contained supports badly, by the repaired support object that is
   in bijection with row codewords and composes exactly under column-distance
   interleaving. This gives L2 certificate emitters the right intersection
-  profile to bound rather than paying the Cartesian-product exponent.
+  profile to bound rather than paying the Cartesian-product exponent, and a
+  precise diagnostic for how much a raw support-fiber certificate overcounts.
 - **What to do next:** Have interleaved certificate tooling print row full
   agreement-support histograms and the common-intersection tuple count next to
   the conservative product bound.

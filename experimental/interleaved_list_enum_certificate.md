@@ -23,6 +23,23 @@ The direct interleaved count is the number of polynomial tuples
 This exactly matches the column-wise interleaved agreement condition for the
 tiny instances enumerated by the script.
 
+The script also reports the raw feasible `a`-subset fiber counts:
+
+```text
+sum_A m(A) binom(|A|,a)
+```
+
+for each row support-mask histogram, and
+
+```text
+sum_{A_1,...,A_mu}
+  m_1(A_1)...m_mu(A_mu) binom(|A_1 cap ... cap A_mu|,a)
+```
+
+for the simultaneous raw fiber.  For Reed-Solomon instances with `a >= k`,
+these are the exact raw-to-full support decompositions from
+`experimental/l2_interleaved_support_bridge.md`.
+
 The trivial product bound is the product of the base list counts.  Comparing
 the direct count with that product gives a finite sanity check for the
 interleaved-list overcharge discussed in the L2/Paper C ledger.

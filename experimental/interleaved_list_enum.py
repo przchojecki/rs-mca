@@ -35,7 +35,9 @@ def parse_int_list(text: str) -> list[int]:
     try:
         values = [int(part.strip()) for part in text.split(",") if part.strip()]
     except ValueError as exc:
-        raise argparse.ArgumentTypeError("expected a comma-separated integer list") from exc
+        raise argparse.ArgumentTypeError(
+            "expected a comma-separated integer list"
+        ) from exc
     if not values:
         raise argparse.ArgumentTypeError("expected a nonempty integer list")
     return values
@@ -66,12 +68,17 @@ def eval_received_polys(
     coeff_rows: list[list[int]], domain: list[int], prime: int
 ) -> list[list[int]]:
     return [
-        [eval_poly([coeff % prime for coeff in coeffs], x_value, prime) for x_value in domain]
+        [
+            eval_poly([coeff % prime for coeff in coeffs], x_value, prime)
+            for x_value in domain
+        ]
         for coeffs in coeff_rows
     ]
 
 
-def normalize_value_rows(rows: list[list[int]], domain_size: int, prime: int) -> list[list[int]]:
+def normalize_value_rows(
+    rows: list[list[int]], domain_size: int, prime: int
+) -> list[list[int]]:
     normalized = []
     for row in rows:
         if len(row) != domain_size:
@@ -94,7 +101,8 @@ def agreement_histograms(
     total = codeword_count(prime, dimension)
     if total > max_codewords:
         raise ValueError(
-            f"refusing to enumerate {total} codewords; raise --max-codewords if intended"
+            f"refusing to enumerate {total} codewords; "
+            "raise --max-codewords if intended"
         )
 
     histograms = [Counter() for _ in received_rows]
@@ -112,7 +120,17 @@ def agreement_histograms(
 
 
 def count_base_list(histogram: Counter[int], agreement: int) -> int:
-    return sum(count for mask, count in histogram.items() if mask.bit_count() >= agreement)
+    return sum(
+        count for mask, count in histogram.items() if mask.bit_count() >= agreement
+    )
+
+
+def count_raw_base_fiber(histogram: Counter[int], agreement: int) -> int:
+    return sum(
+        count * math.comb(mask.bit_count(), agreement)
+        for mask, count in histogram.items()
+        if mask.bit_count() >= agreement
+    )
 
 
 def count_interleaved(
@@ -125,7 +143,26 @@ def count_interleaved(
             for row_mask, row_count in histogram.items():
                 next_combined[current_mask & row_mask] += current_count * row_count
         combined = next_combined
-    return sum(count for mask, count in combined.items() if mask.bit_count() >= agreement)
+    return sum(
+        count for mask, count in combined.items() if mask.bit_count() >= agreement
+    )
+
+
+def count_raw_simultaneous_fiber(
+    histograms: list[Counter[int]], agreement: int, domain_size: int
+) -> int:
+    combined: Counter[int] = Counter({(1 << domain_size) - 1: 1})
+    for histogram in histograms:
+        next_combined: Counter[int] = Counter()
+        for current_mask, current_count in combined.items():
+            for row_mask, row_count in histogram.items():
+                next_combined[current_mask & row_mask] += current_count * row_count
+        combined = next_combined
+    return sum(
+        count * math.comb(mask.bit_count(), agreement)
+        for mask, count in combined.items()
+        if mask.bit_count() >= agreement
+    )
 
 
 def top_masks(histogram: Counter[int], limit: int) -> list[dict[str, int]]:
@@ -154,7 +191,9 @@ def compute_report(args: argparse.Namespace) -> dict[str, Any]:
     else:
         if args.subgroup_order is None:
             raise ValueError("--subgroup-generator requires --subgroup-order")
-        domain = subgroup_domain(args.subgroup_generator % args.p, args.subgroup_order, args.p)
+        domain = subgroup_domain(
+            args.subgroup_generator % args.p, args.subgroup_order, args.p
+        )
 
     if len(set(domain)) != len(domain):
         raise ValueError("domain values must be distinct modulo p")
@@ -175,10 +214,21 @@ def compute_report(args: argparse.Namespace) -> dict[str, Any]:
         received_rows=received_rows,
         max_codewords=args.max_codewords,
     )
-    base_counts = [count_base_list(histogram, args.agreement) for histogram in histograms]
+    base_counts = [
+        count_base_list(histogram, args.agreement) for histogram in histograms
+    ]
+    raw_base_counts = [
+        count_raw_base_fiber(histogram, args.agreement) for histogram in histograms
+    ]
     product_bound = math.prod(base_counts)
     direct_count = count_interleaved(histograms, args.agreement, len(domain))
+    raw_simultaneous_count = count_raw_simultaneous_fiber(
+        histograms, args.agreement, len(domain)
+    )
     ratio = None if product_bound == 0 else direct_count / product_bound
+    raw_to_direct_ratio = (
+        None if direct_count == 0 else raw_simultaneous_count / direct_count
+    )
 
     return {
         "p": args.p,
@@ -190,9 +240,12 @@ def compute_report(args: argparse.Namespace) -> dict[str, Any]:
         "row_source": row_source,
         "codeword_count_per_row": codeword_count(args.p, args.k),
         "base_list_counts": base_counts,
+        "raw_base_fiber_counts": raw_base_counts,
         "trivial_product_bound": product_bound,
         "direct_interleaved_count": direct_count,
+        "raw_simultaneous_fiber_count": raw_simultaneous_count,
         "direct_to_product_ratio": ratio,
+        "raw_to_direct_ratio": raw_to_direct_ratio,
         "support_mask_counts": [len(histogram) for histogram in histograms],
         "top_masks": [
             top_masks(histogram, args.show_masks) for histogram in histograms
@@ -214,10 +267,17 @@ def print_report(report: dict[str, Any]) -> None:
     )
     print(f"codewords per row: {report['codeword_count_per_row']}")
     print(f"base list counts: {report['base_list_counts']}")
+    print(f"raw base fiber counts: {report['raw_base_fiber_counts']}")
     print(f"trivial product bound: {report['trivial_product_bound']}")
     print(f"direct interleaved count: {report['direct_interleaved_count']}")
+    print(f"raw simultaneous fiber count: {report['raw_simultaneous_fiber_count']}")
     ratio = report["direct_to_product_ratio"]
     print("direct/product ratio: " + ("undefined" if ratio is None else f"{ratio:.6g}"))
+    raw_ratio = report["raw_to_direct_ratio"]
+    print(
+        "raw/direct ratio: "
+        + ("undefined" if raw_ratio is None else f"{raw_ratio:.6g}")
+    )
     print(f"support masks per row: {report['support_mask_counts']}")
 
     if report["top_masks"]:

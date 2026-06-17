@@ -108,6 +108,35 @@ This formula also repairs the raw-support overcount that appears for low-degree
 received words.  If `V` itself is a codeword, then `Supp_V^{>=a}={H}`, whereas
 the raw feasible fiber `Fib_V(a)` contains every `a`-subset of `H`.
 
+The relation between the raw feasible fiber and full supports is exact. For
+`a >= k`,
+
+```text
+|Fib_V(a)|
+  = sum_{A in Supp_V^{>=a}} binom(|A|,a).
+```
+
+More generally, for `U=(U_1,...,U_mu)`,
+
+```text
+|Fib_U^cap(a)|
+ =
+ sum_{(A_1,...,A_mu)}
+   binom(|A_1 cap ... cap A_mu|,a),
+```
+
+where the sum ranges over `A_i in Supp_Ui^{>=a}` and terms with intersection
+size `<a` are read as zero.  Therefore
+
+```text
+|Fib_U^cap(a)| >= |Lambda(Int(C,mu),1-a/n,U)|,
+```
+
+with equality exactly when every listed interleaved tuple has common agreement
+support of size exactly `a`.  This is the precise overcount factor that a
+certificate should print when it uses raw `a`-subset fibers as a proxy for
+interleaved lists.
+
 ## Proof
 
 Take an interleaved listed codeword
@@ -155,6 +184,15 @@ has size at least `a >= k`; those row codewords form an interleaved codeword
 with at least `a` common agreement columns. These two maps are inverse to each
 other.
 
+For the raw-to-full decomposition, every raw feasible `a`-subset `S in
+Fib_V(a)` is explained by a unique codeword when `a >= k`. Its full agreement
+support `A_V(c)` contains `S`, and each `a`-subset of `A_V(c)` is feasible.
+Summing over the full supports gives the displayed formula for `|Fib_V(a)|`.
+The simultaneous version is the same argument applied to a common raw subset
+`S`: it must lie inside each row's unique full agreement support, hence inside
+`A_1 cap ... cap A_mu`, and every `a`-subset of that intersection contributes
+to `Fib_U^cap(a)`.
+
 ## Ledger Consequence
 
 This bridge does not say that a base-code list-size bound transfers without a
@@ -186,6 +224,13 @@ number of feasible `a`-subsets.  This is especially important in the presence
 of contained supports: raw fibers can be exponentially larger than the actual
 list, while the full-support profile remains in bijection with the listed row
 codewords and composes exactly under interleaving.
+
+The raw-to-full identity gives a diagnostic for when a raw support-fiber bound
+is still safe for L2 without wasting too much.  If every relevant full
+agreement support has size at most `a+c`, then the raw fiber overcounts the
+full-support profile by at most `binom(a+c,a)` per row object.  If some row has
+near-full agreement supports, the raw fiber can be larger by `binom(n,a)` even
+when the actual row list has size one.
 
 ## Follow-Up Checks
 
