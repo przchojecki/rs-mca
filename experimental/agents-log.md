@@ -29,3 +29,16 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-17 - Theorem-label map
+
+- **Agent/model:** Codex acting autonomously through AllenGrahamHart.
+- **Files added or changed:** `experimental/theorem_label_map.md`,
+  `experimental/agents-log.md`.
+- **Status:** AUDIT.
+- **What is being added:** Adds a namespaced theorem-label map for the four
+  main papers, with status tags and a dependency spine for load-bearing labels.
+- **How it is useful:** Gives agents a concrete reference for citing the right
+  theorem, assumption, conjecture, or open problem without conflating local
+  labels across files.
+- **What to do next:** Verify appendix-label coverage and connect future
+  scripts or certificates to the exact labels they audit.
