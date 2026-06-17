@@ -40,10 +40,13 @@ Keep entries concise and link to the relevant files.
   lines: support/slope MCA incidences have expectation
   `binom(n,k+t) * (q^t - 1) / q^(2t - 1)`, expected bad-slope density is at
   most `binom(n,k+t) / q^t`, and support-pair covariance can begin only when
-  the two supports intersect in at least `k` points.
+  the two supports intersect in at least `k` points. The note also includes a
+  fixed-base/random-direction formula showing that base-word support-list mass
+  contributes only to the zero slope `z = 0`.
 - **How it is useful:** Gives a rigorous random-line baseline for the M1
   residue-line packing problem, matching the entropy-scale density heuristic
-  while isolating the codimension `t-1` support-collinearity cost.
+  while isolating the codimension `t-1` support-collinearity cost and the
+  basepoint slope contribution.
 - **What to do next:** Build a tiny-field `Pi_S` collinearity scanner and
   compare tangent, quotient-periodic, and aperiodic support sources against
   the expectation and high-overlap covariance baseline.
