@@ -46,8 +46,8 @@ Keep entries concise and link to the relevant files.
   whole-fiber scale `m <= k0` fails the exact-support divisibility test, and
   more generally surviving dyadic scales are counted by `v2(t-r)`. Adds the
   exact one-remainder-fiber exchange enumerator, the large-fiber strict
-  remainder truncation, the stable large-scale dither hierarchy, and a verifier
-  for the formulas.
+  remainder truncation, the stable large-scale dither hierarchy, the
+  maximal-dither all-scale strict profile, and a verifier for the formulas.
 - **How it is useful:** Supplies the quotient-periodic input to the M1
   support-family ledger, so this structured exception can be separated
   quantitatively before attacking the aperiodic residue-line local-limit
@@ -56,7 +56,9 @@ Keep entries concise and link to the relevant files.
   are absent. The large-fiber truncation shows that maximal dyadic dither
   leaves only a linear one-remainder strict codegree at scales `m>t`; the
   hierarchy formula shows that nonmaximal dither with `d=t-r0` retains
-  unweighted mass `((n-k0)/m)binom(m,d)-1` at stable large scales.
+  unweighted mass `((n-k0)/m)binom(m,d)-1` at stable large scales. The
+  maximal-dither all-scale formula gives the exact strict profile at every
+  nontrivial dyadic quotient scale when `s=k0+1`.
 - **What to do next:** Have a tiny M1 scanner emit `|A|`, `Delta_j(A)`, and
   `Gamma_j(A)` by labelled support class, verifying that the quotient-periodic
   class matches the closed formulas here.

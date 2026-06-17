@@ -360,6 +360,39 @@ large-scale one-remainder strict codegree linear in the ambient codimension
 degree-`d` binomial factor `binom(m,d)` and therefore can still be a genuinely
 larger quotient-profile term.
 
+Finally, the maximal-dither remainder case has an exact all-scale formula, so
+small scales need not be handled as a black-box enumeration. Suppose
+
+```text
+s = Lm + 1,        A = N-L-1.
+```
+
+Then the full strict profile of the one-remainder family in the range
+`1 <= j <= t-1` is
+
+```text
+H_REM,1^{<t}(y)
+ =
+  sum_{h>=0, hm+1<t}
+    binom(L,h) binom(A,h) (m(A-h+1)-1) y^(hm+1)
+
+  + sum_{h>=1, hm<t}
+      binom(L,h) binom(A,h) (1+2mh) y^(hm)
+
+  + sum_{h>=1, hm-1<t}
+      mh binom(L,h) binom(A,h-1) y^(hm-1),
+```
+
+again using `binom(a,b)=0` for infeasible `b`. Therefore the exact weighted
+strict correction is obtained by multiplying each coefficient of `y^j` above
+by `q^(t-j)`.
+
+In the dyadic maximal-dither setting `s=k0+1`, every nontrivial scale
+`m | k0` has remainder one, so this formula applies at every dyadic quotient
+scale. The large-scale corollary above is exactly its `h=0` first-band term
+when `m>t`, and the boundary case `m=t` is obtained by adding the final-band
+term at `h=1`.
+
 ## Status
 
 PROVED.
@@ -541,6 +574,34 @@ by Vandermonde, because `m-d >= d`. Hence the same-remainder contribution at
 H_REM^{<t}(1) = ((n-k0)/m) binom(m,d) - 1.
 ```
 
+For the maximal-dither all-scale formula, specialize the one-remainder
+enumerator to `b=1` and put `A=N-L-1`. The same-remainder-fiber factor is
+`1+(m-1)y`. The terms with new remainder fiber outside `I union {p}` simplify
+using
+
+```text
+A binom(A-1,h-1) = h binom(A,h),
+A binom(A-1,h)   = (A-h) binom(A,h).
+```
+
+The terms with new remainder fiber in an old whole fiber simplify using
+
+```text
+L binom(L-1,h-1) = h binom(L,h).
+```
+
+After collecting equal exponents, the coefficients are:
+
+```text
+y^(hm+1):  binom(L,h) binom(A,h) (m(A-h+1)-1),
+y^(hm):    binom(L,h) binom(A,h) (1+2mh)          for h>=1,
+y^(hm-1):  mh binom(L,h) binom(A,h-1)             for h>=1.
+```
+
+Keeping exactly those exponents below `t` gives the displayed strict profile.
+The dyadic maximal-dither reading follows because `m | k0` implies
+`k0+1 = Lm+1` at every nontrivial dyadic scale.
+
 ## M1 Impact
 
 This note turns one of the main structured exceptions in the M1 program into an
@@ -594,6 +655,10 @@ Two immediate readings are useful.
    strict remainder mass is exactly `((n-k0)/m)binom(m,d)-1`. Thus `d=1` is the
    only stable dither class with a uniformly linear large-scale remainder
    budget.
+8. In the maximal-dither case, the one-remainder profile is explicit at every
+   scale, not only at `m>=t`: the full strict profile is the three-band formula
+   at exchange sizes `hm-1`, `hm`, and `hm+1`. This gives a closed-form
+   all-scale quotient ledger for the dithered dimension `s=k0+1`.
 
 This makes the quotient-periodic exception quantitatively separable from the
 aperiodic local-limit problem targeted by M1.

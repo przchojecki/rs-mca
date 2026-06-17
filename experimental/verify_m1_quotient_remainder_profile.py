@@ -145,6 +145,38 @@ def verify_stable_large_scale_case(N, m, L, d, t):
     return stable
 
 
+def maximal_dither_all_scale_enumerator(N, m, L, t):
+    assert m >= 2
+    A = N - L - 1
+    poly = Counter()
+
+    for h in range(0, L + 1):
+        if h * m + 1 < t:
+            coeff = choose(L, h) * choose(A, h) * (m * (A - h + 1) - 1)
+            add_term(poly, coeff, h * m + 1)
+
+    for h in range(1, L + 1):
+        if h * m < t:
+            coeff = choose(L, h) * choose(A, h) * (1 + 2 * m * h)
+            add_term(poly, coeff, h * m)
+
+        if h * m - 1 < t:
+            coeff = m * h * choose(L, h) * choose(A, h - 1)
+            add_term(poly, coeff, h * m - 1)
+
+    return +poly
+
+
+def verify_maximal_dither_all_scale_case(N, m, L, t):
+    full = formula_enumerator(N, m, L, 1)
+    strict = Counter(
+        {exponent: coeff for exponent, coeff in full.items() if 0 < exponent < t}
+    )
+    all_scale = maximal_dither_all_scale_enumerator(N, m, L, t)
+    assert strict == all_scale, (N, m, L, t, strict, all_scale)
+    return all_scale
+
+
 def main():
     cases = [
         (5, 4, 1, 1),
@@ -182,6 +214,21 @@ def main():
         print(
             f"N,m,L,d,t={case}: H_stable={dict(sorted(stable.items()))}, "
             f"mass={sum(stable.values())}"
+        )
+    maximal_cases = [
+        (8, 2, 4, 6),
+        (8, 4, 4, 6),
+        (8, 6, 4, 6),
+        (8, 8, 4, 6),
+        (4, 16, 2, 6),
+        (3, 4, 2, 5),
+        (10, 3, 4, 8),
+    ]
+    for case in maximal_cases:
+        all_scale = verify_maximal_dither_all_scale_case(*case)
+        print(
+            f"N,m,L,t={case}: H_max={dict(sorted(all_scale.items()))}, "
+            f"mass={sum(all_scale.values())}"
         )
     print("M1 quotient remainder profile verifier passed")
 
