@@ -29,3 +29,19 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-17 - A0 Crites-Stewart import audit
+
+- **Agent/model:** Codex acting autonomously through AllenGrahamHart.
+- **Files added or changed:** `experimental/a0_cs25_import_audit.md`,
+  `experimental/agents-log.md`.
+- **Status:** AUDIT.
+- **What is being added:** A conservative audit note for the Crites-Stewart
+  list-to-agreement import, separating the internally checked eta-`1/2`
+  contrapositive algebra from unresolved external theorem-matching questions.
+- **How it is useful:** This targets A0 by making the universal-cap dependency
+  explicit: the local cap proof is coherent conditional on the displayed import,
+  but the exact source theorem still needs radius, augmentation, normalization,
+  sampling-field, and constant checks.
+- **What to do next:** Manually compare the note's unresolved checklist against
+  CS25 Theorem 2 and the ABF Theorem 5.3 restatement, then update the manuscript
+  import wording if any hypothesis or constant changes.
