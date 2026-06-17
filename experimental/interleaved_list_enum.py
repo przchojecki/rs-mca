@@ -14,6 +14,7 @@ import itertools
 import json
 import math
 from collections import Counter
+from fractions import Fraction
 from typing import Any
 
 
@@ -213,6 +214,56 @@ def max_two_row_codegrees(
     }
 
 
+def binomial_tail_probability(
+    trials: int, success_denominator: int, threshold: int
+) -> Fraction:
+    total = Fraction(0, 1)
+    failure = success_denominator - 1
+    denominator = success_denominator**trials
+    for hits in range(threshold, trials + 1):
+        numerator = math.comb(trials, hits) * failure ** (trials - hits)
+        total += Fraction(numerator, denominator)
+    return total
+
+
+def fraction_payload(value: Fraction) -> dict[str, int | str | float | None]:
+    try:
+        decimal: float | None = float(value)
+    except OverflowError:
+        decimal = None
+    return {
+        "exact": str(value),
+        "numerator": value.numerator,
+        "denominator": value.denominator,
+        "decimal": decimal,
+    }
+
+
+def random_received_baseline(
+    prime: int, dimension: int, domain_size: int, agreement: int, row_count: int
+) -> dict[str, Any]:
+    base_tail = binomial_tail_probability(domain_size, prime, agreement)
+    direct_tail = binomial_tail_probability(
+        domain_size, prime**row_count, agreement
+    )
+    expected_base = Fraction(prime**dimension, 1) * base_tail
+    expected_direct = Fraction(prime ** (dimension * row_count), 1) * direct_tail
+    expected_product = expected_base**row_count
+    product_to_direct = (
+        None if expected_direct == 0 else expected_product / expected_direct
+    )
+
+    return {
+        "model": "uniform_independent_received_rows",
+        "expected_base_list": fraction_payload(expected_base),
+        "expected_direct_interleaved_list": fraction_payload(expected_direct),
+        "expected_product_bound": fraction_payload(expected_product),
+        "expected_product_to_direct_ratio": None
+        if product_to_direct is None
+        else fraction_payload(product_to_direct),
+    }
+
+
 def top_masks(histogram: Counter[int], limit: int) -> list[dict[str, int]]:
     return [
         {
@@ -275,6 +326,9 @@ def compute_report(args: argparse.Namespace) -> dict[str, Any]:
     )
     intersection_histogram = common_intersection_histogram(histograms, len(domain))
     two_row_codegrees = max_two_row_codegrees(histograms, args.agreement)
+    random_baseline = random_received_baseline(
+        args.p, args.k, len(domain), args.agreement, len(received_rows)
+    )
     ratio = None if product_bound == 0 else direct_count / product_bound
     raw_to_direct_ratio = (
         None if direct_count == 0 else raw_simultaneous_count / direct_count
@@ -298,6 +352,7 @@ def compute_report(args: argparse.Namespace) -> dict[str, Any]:
         "raw_to_direct_ratio": raw_to_direct_ratio,
         "common_intersection_histogram": dict(sorted(intersection_histogram.items())),
         "two_row_max_codegrees": two_row_codegrees,
+        "random_received_baseline": random_baseline,
         "support_mask_counts": [len(histogram) for histogram in histograms],
         "top_masks": [
             top_masks(histogram, args.show_masks) for histogram in histograms
@@ -333,6 +388,30 @@ def print_report(report: dict[str, Any]) -> None:
     print(f"common intersection histogram: {report['common_intersection_histogram']}")
     if report["two_row_max_codegrees"] is not None:
         print(f"two-row max codegrees: {report['two_row_max_codegrees']}")
+
+    def decimal_text(item: dict[str, Any]) -> str:
+        decimal = item["decimal"]
+        return "overflow" if decimal is None else f"{decimal:.6g}"
+
+    random_baseline = report["random_received_baseline"]
+    print(
+        "random expected base list: "
+        + decimal_text(random_baseline["expected_base_list"])
+    )
+    print(
+        "random expected direct interleaved list: "
+        + decimal_text(random_baseline["expected_direct_interleaved_list"])
+    )
+    print(
+        "random expected product bound: "
+        + decimal_text(random_baseline["expected_product_bound"])
+    )
+    product_ratio = random_baseline["expected_product_to_direct_ratio"]
+    if product_ratio is not None:
+        print(
+            "random expected product/direct ratio: "
+            + decimal_text(product_ratio)
+        )
     print(f"support masks per row: {report['support_mask_counts']}")
 
     if report["top_masks"]:

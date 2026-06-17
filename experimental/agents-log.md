@@ -53,10 +53,13 @@ Keep entries concise and link to the relevant files.
   profile to bound rather than paying the Cartesian-product exponent, and a
   precise diagnostic for how much a raw support-fiber certificate overcounts.
   The codegree form gives a compact proof target for ruling out product-size
-  interleaved lists from near-exact support packets.
+  interleaved lists from near-exact support packets. The random-received
+  baseline proves that independent random rows pay the support-selection
+  entropy only once, giving a benchmark for what a worst-case L2 certificate
+  should recover after structured packets are separated.
 - **What to do next:** Have interleaved certificate tooling print row full
-  agreement-support histograms and the common-intersection tuple count next to
-  the conservative product bound.
+  agreement-support histograms, the common-intersection tuple count, and the
+  random baseline next to the conservative product bound.
 
 ### 2026-06-17 - Open PR triage integration
 

@@ -197,6 +197,53 @@ Thus a small near-exact-support neighborhood already rules out product growth.
 The exact-support diagonalization lemma is the case `c=0`: intersection size
 at least `a` forces equal supports.
 
+## Random-Received Baseline
+
+The exact support formula has a clean average-case shadow.  Let `|F|=q`, and
+sample the `mu` received rows `U_1,...,U_mu` independently and uniformly from
+`F^H`.  Then
+
+```text
+E |Lambda(Int(C,mu),1-a/n,U)|
+ =
+ q^(mu k) Pr[Bin(n,q^(-mu)) >= a].
+```
+
+For one row,
+
+```text
+E |Lambda(C,1-a/n,V)|
+ =
+ q^k Pr[Bin(n,q^(-1)) >= a],
+```
+
+and independent rows give
+
+```text
+E prod_i |Lambda(C,1-a/n,U_i)|
+ =
+ (q^k Pr[Bin(n,q^(-1)) >= a])^mu.
+```
+
+The simple union bound over `a`-subsets gives the comparison
+
+```text
+E |Lambda(Int(C,mu),1-a/n,U)|
+  <= binom(n,a) q^(-mu(a-k)),
+```
+
+whereas the corresponding product-of-base-lists baseline is bounded by
+
+```text
+binom(n,a)^mu q^(-mu(a-k)).
+```
+
+Thus random interleaving pays the polynomial-choice factor `q^k` in each row,
+but it pays the support-selection entropy only once.  This is not a worst-case
+L2 theorem, because adversarial received rows may align their full supports.
+It is the benchmark a worst-case certificate should try to recover after
+quotient-core and other structured support packets are separated.
+
 ## Proof
 
 Take an interleaved listed codeword
@@ -260,6 +307,22 @@ over `r>=a` gives the exact list count.  Bounding each row `A in P` by at most
 bound; reversing the roles gives the symmetric bound.  If `|A|,|B| <= a+c`
 and `|A cap B| >= a`, then `|A\B|=|A|-|A cap B| <= c` and similarly
 `|B\A| <= c`.
+
+For the random-received baseline, fix an interleaved codeword
+
+```text
+c = (c_1,...,c_mu).
+```
+
+At each coordinate `x in H`, the random column `U(x)` equals `c(x)` with
+probability `q^(-mu)`, independently over coordinates.  Hence the number of
+common agreement columns has distribution `Bin(n,q^(-mu))`.  Linearity of
+expectation over the `q^(mu k)` interleaved codewords gives the displayed
+expectation.  The one-row formula is the same argument with success
+probability `q^(-1)`, and independence of the received rows gives the product
+expectation.  Finally, the event of at least `a` successes is contained in the
+union over `a`-subsets on which all coordinates match, giving
+`Pr[Bin(n,theta)>=a] <= binom(n,a)theta^a`.
 
 ## Ledger Consequence
 

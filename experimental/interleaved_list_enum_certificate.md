@@ -60,6 +60,26 @@ The trivial product bound is the product of the base list counts.  Comparing
 the direct count with that product gives a finite sanity check for the
 interleaved-list overcharge discussed in the L2/Paper C ledger.
 
+The script also emits a proved random-received-word baseline.  If the received
+rows are sampled independently and uniformly, then
+
+```text
+E |Lambda(Int(C,mu),1-a/n,U)|
+ =
+ p^(mu k) Pr[Bin(n,p^(-mu)) >= a].
+```
+
+For comparison it prints the one-row expectation
+
+```text
+p^k Pr[Bin(n,p^(-1)) >= a]
+```
+
+and the expected product bound for independent rows.  These exact rational
+values are not claims about the adversarial row instance being enumerated; they
+are a baseline showing how much support entropy is saved when common columns,
+rather than independent row supports, drive the interleaved list.
+
 ## Reproducible Check
 
 The following enumerates two high-degree received rows on the order-8 subgroup
