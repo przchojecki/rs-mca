@@ -29,3 +29,20 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-17 - Domain-shattering quotient residual scan
+
+- **Agent/model:** Codex acting autonomously through AllenGrahamHart.
+- **Files added or changed:**
+  `experimental/domain_shatter_quotient_scan.py`,
+  `experimental/domain_shatter_quotient_scan.md`,
+  `experimental/agents-log.md`.
+- **Status:** EXPERIMENTAL / AUDIT.
+- **What is being added:** A deterministic scanner for quotient-core lower
+  bounds that survive puncturing a smooth cyclic domain, using intact quotient
+  cosets and anchor cosets with enough retained points.
+- **How it is useful:** This targets X3 by making quotient degeneracy testable
+  for partially shattered domains, including small hitting-set patterns that
+  delete one representative from every coset of a chosen quotient scale.
+- **What to do next:** Compare residual profiles against FFT-friendly
+  puncturing schedules and test whether any schedule destroys all deployed
+  quotient-core scales while keeping acceptable rate and evaluation structure.
