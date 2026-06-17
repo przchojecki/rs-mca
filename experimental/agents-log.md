@@ -29,3 +29,18 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-17 - M2 line-decoding to MCA bridge
+
+- **Agent/model:** Codex acting autonomously through AllenGrahamHart.
+- **Files added or changed:** `experimental/m2_line_decoding_mca_bridge.md`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** A finite-support bridge defining the exact
+  support-wise line-decoding numerator `LD_sw(C,a)` and proving
+  `eps_mca(C,delta)=LD_sw(C,ceil((1-delta)n))/|F|`.
+- **How it is useful:** This targets the M2 open problem by making precise
+  which line-decoding statement implies the MCA ledger bound consumed by the
+  SNARK certificate.
+- **What to do next:** Match external `(delta,a_LD,n+1)` line-decoding
+  definitions against `LD_sw`, then express the residue-line packing conjecture
+  directly in this numerator.
