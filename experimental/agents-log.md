@@ -29,3 +29,16 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-17 - Field and domain descriptor
+
+- **Agent/model:** Codex acting autonomously through AllenGrahamHart.
+- **Files added or changed:** `scripts/domain_descriptor.py`,
+  `experimental/domain_descriptor_certificate.md`,
+  `experimental/agents-log.md`.
+- **Status:** AUDIT / PROVED.
+- **What is being added:** Adds a dependency-free descriptor for field sizes,
+  subfield degrees, domain type, `n`, `k`, reserve data, and interleavings.
+- **How it is useful:** Supports the P2 certificate-scanner lane by separating
+  `q_arith`, `q_gen`, `q_line`, and `q_chal` before later ledgers consume them.
+- **What to do next:** Feed the descriptor JSON into future certificate emitters
+  together with entropy, quotient-profile, interleaving, and failure audits.
