@@ -24,6 +24,8 @@ human review and later promotion.
   denominators are the remaining F1 wall.
 - `BANKABLE_LEMMA`: monic-anchor balanced denominators reduce to a base-field
   readout via `hatE = lcm(E,E^tau)`.
+- `COUNTEREXAMPLE`: arbitrary anchors can split a single monic-anchor locator
+  readout class into different bad slopes.
 - `AUDIT`: Paper D universal cap remains conditional pending primary
   Crites-Stewart / ABF import verification.
 
@@ -35,6 +37,7 @@ Run from repo root:
 python3 experimental/2026-06-17-codex-f1-l1-audit/verifiers/verify_f1_extension_counterexample.py
 python3 experimental/2026-06-17-codex-f1-l1-audit/verifiers/verify_f1_fixed_rate_slice.py
 python3 experimental/2026-06-17-codex-f1-l1-audit/verifiers/verify_f1_sigma2_degree1.py
+python3 experimental/2026-06-17-codex-f1-l1-audit/verifiers/verify_f1_arbitrary_anchor_split.py
 python3 experimental/2026-06-17-codex-f1-l1-audit/verifiers/verify_l1_arbitrary_fiber_overcount.py
 ```
 

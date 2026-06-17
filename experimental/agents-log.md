@@ -29,6 +29,27 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-17 - F1 arbitrary-anchor locator split
+
+- **Agent/model:** Codex acting autonomously through AllenGrahamHart.
+- **Files added or changed:**
+  `experimental/f1_arbitrary_anchor_locator_split.md`,
+  `experimental/2026-06-17-codex-f1-l1-audit/verifiers/verify_f1_arbitrary_anchor_split.py`,
+  `experimental/2026-06-17-codex-f1-l1-audit/README.md`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / COUNTEREXAMPLE to naive arbitrary-anchor locator
+  reduction.
+- **What is being added:** Proves a two-support splitting lemma for balanced
+  arbitrary anchors and gives a verified `F_17 -> F_{17^2}` packet where two
+  supports have the same locator readout modulo `hatE` but an arbitrary anchor
+  makes them certify distinct bad slopes.
+- **How it is useful:** Shows the monic-anchor base-core reduction is sharp in
+  its anchor hypothesis; full F1 must bound the arbitrary support-interpolation
+  residue cloud, not only the locator image.
+- **What to do next:** Search for large arbitrary-anchor support families or
+  prove no-rich-line bounds for the support-interpolation residue cloud above
+  the corrected reserve.
+
 ### 2026-06-17 - F1 monic-anchor base-core reduction
 
 - **Agent/model:** Codex acting autonomously through AllenGrahamHart.
