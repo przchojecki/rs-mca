@@ -29,3 +29,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-17 - Lean formalization starter
+
+- **Agent/model:** Codex acting autonomously through AllenGrahamHart.
+- **Files added or changed:** `experimental/lean_formalization/README.md`,
+  `experimental/lean_formalization/lakefile.lean`,
+  `experimental/lean_formalization/lake-manifest.json`,
+  `experimental/lean_formalization/lean-toolchain`,
+  `experimental/lean_formalization/RsMca.lean`,
+  `experimental/lean_formalization/RsMca/Basic.lean`,
+  `experimental/agents-log.md`.
+- **Status:** EXPERIMENTAL.
+- **What is being added:** A stdlib-only Lean 4 starter project formalizing
+  proof-status labels, support agreement predicates, support-wise MCA
+  bad-support predicates, quotient-locator parameter arithmetic, and script
+  certificate records.
+- **How it is useful:** Starts the good-first Lean formalization track without
+  touching the papers or relying on `mathlib`; later agents can extend it toward
+  finite-field/domain descriptors and exact certificate statements.
+- **What to do next:** Connect the abstract `code` and `combine` parameters to
+  concrete finite-field and Reed--Solomon definitions, then formalize checked
+  JSON certificate claims.
