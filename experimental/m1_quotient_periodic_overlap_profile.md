@@ -170,6 +170,79 @@ divisibility test. Thus any dither with `t-r` odd kills every nontrivial dyadic
 whole-fiber strict-overlap scale, while `v2(|t-r|)`, capped by `Mmax`, gives
 the exact number of dyadic scales that can remain when `t != r`.
 
+## One-Remainder-Fiber Profile
+
+The exact-support divisibility guardrail above only treats supports that are
+unions of whole fibers. If
+
+```text
+s = Lm + r,        1 <= r < m,
+```
+
+there is a natural one-remainder-fiber family
+
+```text
+A_REM = {
+  union_{i in I} B_i  union  R :
+  |I|=L, p notin I, R subset B_p, |R|=r
+}.
+```
+
+Its size is
+
+```text
+|A_REM| = binom(N,L) (N-L) binom(m,r).
+```
+
+For a fixed support `S in A_REM`, let
+
+```text
+H_REM(y) = sum_{T in A_REM} y^|S \ T|.
+```
+
+With the convention `binom(a,b)=0` for infeasible `b`, the exact fixed-support
+exchange enumerator is
+
+```text
+H_REM(y)
+ =
+  (sum_h binom(L,h) binom(N-L-1,h) y^(hm))
+  (sum_l binom(r,l) binom(m-r,l) y^l)
+
+  + L binom(m,r) sum_h binom(L-1,h) binom(N-L-1,h) y^(hm+m-r)
+  + L binom(m,r) sum_h binom(L-1,h) binom(N-L-1,h+1) y^((h+1)m)
+
+  + (N-L-1) binom(m,r) sum_{h>=1}
+      binom(L,h) binom(N-L-2,h-1) y^(hm)
+  + (N-L-1) binom(m,r) sum_h
+      binom(L,h) binom(N-L-2,h) y^(hm+r).
+```
+
+Therefore
+
+```text
+Gamma_j(A_REM) = [y^j] H_REM(y),
+Delta_j(A_REM) = |A_REM| [y^j] H_REM(y)       for j >= 1.
+```
+
+The strict-overlap weighted correction is consequently
+
+```text
+R_REM(t,q) = sum_{1 <= j <= t-1} Gamma_j(A_REM) q^(t-j).
+```
+
+This remainder family has a qualitatively different first strict-overlap term
+from the whole-fiber family. Even when `t <= m`, same-remainder-fiber exchanges
+contribute at point exchange sizes
+
+```text
+1 <= j <= min(r,m-r,t-1)
+```
+
+through the first product in `H_REM`. Thus dimension dither can remove exact
+whole-fiber quotient-periodic supports while still leaving a smaller
+one-remainder-fiber profile that must be budgeted separately.
+
 ## Status
 
 PROVED.
@@ -259,6 +332,42 @@ for nonzero `d=t-r`, a dyadic scale `m=2^u` divides `d` exactly when
 `u <= floor(log2 Mmax)`. If `d=0`, every dyadic scale divides `d`, so only the
 cap remains.
 
+For the one-remainder-fiber profile, fix
+
+```text
+S = (I,p,R),
+```
+
+where `I` is the set of whole fibers, `p` is the remainder fiber, and
+`R subset B_p` has size `r`. Count a second support `T=(J,q,R')` by the
+location of its remainder fiber `q`.
+
+If `q=p`, then `J` is obtained from `I` by exchanging `h` whole fibers inside
+the `N-1` fibers other than `p`, and `R'` differs from `R` by `l` points inside
+`B_p`. This gives the product term
+
+```text
+binom(L,h) binom(N-L-1,h) binom(r,l) binom(m-r,l) y^(hm+l).
+```
+
+If `q in I`, choose the old whole fiber `q` in `L` ways. Either `p in J`, in
+which case `q` contributes `m-r` points to `S\T` and the other whole-fiber
+exchange contributes `hm`; or `p notin J`, in which case the old remainder
+fiber `p` contributes `r` more points and the exponent becomes `(h+1)m`. These
+are the two middle sums. In both cases the `r` points of `T` inside `B_q` may
+be chosen arbitrarily, giving the factor `binom(m,r)`.
+
+If `q` is outside `I union {p}`, choose it in `N-L-1` ways. If `p in J`, then
+one added whole fiber has been spent on `p`, so at least one original whole
+fiber is removed and the exponent is `hm`. If `p notin J`, the old remainder
+fiber contributes `r` points, giving exponent `hm+r`. These are the final two
+sums. Again the subset `R' subset B_q` is arbitrary and contributes
+`binom(m,r)`. The six disjoint cases exhaust all possible remainder-fiber
+positions, so the displayed `H_REM` is exact. Transitivity of the fiber and
+within-fiber permutation action makes the fixed-support enumerator independent
+of `S`; hence `Gamma_j` is the coefficient of `H_REM`, and multiplying by
+`|A_REM|` gives the ordered-pair count `Delta_j`.
+
 ## M1 Impact
 
 This note turns one of the main structured exceptions in the M1 program into an
@@ -297,6 +406,10 @@ Two immediate readings are useful.
    nontrivial fiber scale `m <= k0` fails the divisibility test `m | s`.
    More generally, the surviving dyadic scales are counted by the 2-adic
    valuation of `t-r`, capped at `min(k0,t-1)`.
+5. If exact support has a nonzero remainder modulo a quotient fiber size, the
+   one-remainder-fiber family has its own exchange profile `H_REM`. This
+   smaller profile can create strict point exchanges below one full fiber and
+   therefore must be budgeted separately from the whole-fiber quotient term.
 
 This makes the quotient-periodic exception quantitatively separable from the
 aperiodic local-limit problem targeted by M1.

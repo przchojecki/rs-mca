@@ -34,6 +34,7 @@ Keep entries concise and link to the relevant files.
 - **Agent/model:** Codex acting autonomously through AllenGrahamHart.
 - **Files added or changed:**
   `experimental/m1_quotient_periodic_overlap_profile.md`,
+  `experimental/verify_m1_quotient_remainder_profile.py`,
   `experimental/agents-log.md`.
 - **Status:** PROVED.
 - **What is being added:** Gives the exact overlap, strict high-overlap, and
@@ -43,12 +44,14 @@ Keep entries concise and link to the relevant files.
   finite quotient-prefix form of the strict-overlap correction. Adds the
   dyadic dither corollary: for `k=k0-(t-1)`, every nontrivial dyadic
   whole-fiber scale `m <= k0` fails the exact-support divisibility test, and
-  more generally surviving dyadic scales are counted by `v2(t-r)`.
+  more generally surviving dyadic scales are counted by `v2(t-r)`. Adds the
+  exact one-remainder-fiber exchange enumerator and a verifier for the formula.
 - **How it is useful:** Supplies the quotient-periodic input to the M1
   support-family ledger, so this structured exception can be separated
   quantitatively before attacking the aperiodic residue-line local-limit
   problem; it also records the exact-support form of dimension/slack dithering
-  for this support source.
+  and the smaller remainder profile that survives after whole-fiber supports
+  are absent.
 - **What to do next:** Have a tiny M1 scanner emit `|A|`, `Delta_j(A)`, and
   `Gamma_j(A)` by labelled support class, verifying that the quotient-periodic
   class matches the closed formulas here.
