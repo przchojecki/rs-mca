@@ -29,3 +29,19 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-17 - A0 Crites-Stewart rational constant derivation
+
+- **Agent/model:** Codex acting autonomously through AllenGrahamHart.
+- **Files added or changed:**
+  `experimental/a0_cs25_rational_constant_derivation.md`,
+  `experimental/agents-log.md`.
+- **Status:** AUDIT / CONDITIONAL.
+- **What is being added:** A short algebra note deriving Paper D's relaxed
+  `q * epsilon / (1 - theta)` list bound from the exact rational
+  Crites-Stewart-style formula, including the `theta = 1/2` contrapositive.
+- **How it is useful:** Advances A0 by isolating the constant manipulation in
+  the universal-cap import; if the primary theorem has the displayed rational
+  interface, the local `1/(2k) * (1 - n/q)` threshold follows exactly.
+- **What to do next:** Check the primary Crites-Stewart theorem for radius
+  range, augmented-code definition, CA normalization, field generality, and
+  strictness conventions before treating the cap import as source-certified.
