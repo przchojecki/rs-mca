@@ -159,7 +159,7 @@ E |Bad_t(f,g)|/q
 Consequently, for the radius `delta = 1 - (k+t)/n`,
 
 ```text
-Pr[ f + z g has any support-wise MCA-bad slope at radius delta ]
+Pr[ Bad_t(f,g) is nonempty at radius delta ]
   <= binom(n,k+t) * (q^t - 1) / q^(2t - 1).
 ```
 
