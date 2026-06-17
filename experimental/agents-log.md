@@ -29,3 +29,18 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-17 - Deployed-field DSH divisor certificate
+
+- **Agent/model:** Codex acting autonomously through AllenGrahamHart.
+- **Files added or changed:** `experimental/deployed_dsh_certificate.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED.
+- **What is being added:** A stdlib-only exact integer certificate for the
+  deployed-field DSH divisor claims in Paper A, checking `N | p-1`,
+  `rho*N in Z`, and the bound
+  `(rho*N+1)*((1-rho)*N-1)+1 >= p`.
+- **How it is useful:** Replaces one hand arithmetic step in
+  `tex/RS_disproof_v3.tex` `thm:main(a)` with reproducible output for
+  BabyBear, KoalaBear, and `3*2^30+1`.
+- **What to do next:** Link this certificate from a future Paper A audit table,
+  and add separate certificates for the Fermat and extension-tower rows.
