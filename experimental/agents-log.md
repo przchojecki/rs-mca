@@ -29,6 +29,22 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-18 - M2 exact-support residue-line equivalence
+
+- **Agent/model:** Codex acting autonomously through AllenGrahamHart.
+- **Files added or changed:**
+  `experimental/m2_line_decoding_mca_bridge.md`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED.
+- **What is being added:** Defines the exact-support residue-line packing
+  number `RL_NC^=(D,k,a)` and records the equality
+  `LD_sw(RS[F,D,k],a)=RL_NC^=(D,k,a)=RL_NC(D,k,a)` for `a >= k+1`.
+- **How it is useful:** This pins the M2 target to the exact-support object
+  consumed by M1 support-overlap ledgers and avoids a separate larger-support
+  accounting layer in future scanners.
+- **What to do next:** Use `RL_NC^=` as the default residue-line object in
+  exact-support line-decoding/MCA certificate tooling.
+
 ### 2026-06-18 - M2 exact-support witness reduction
 
 - **Agent/model:** Codex acting autonomously through AllenGrahamHart.

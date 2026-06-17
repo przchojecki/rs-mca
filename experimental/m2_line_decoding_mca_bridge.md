@@ -188,9 +188,18 @@ data, of the number of slopes with noncontained witnesses.  Then
 LD_sw(RS[F,D,k],a) = RL_NC(D,k,a).
 ```
 
+If `a >= k+1`, define `RL_NC^=(D,k,a)` by the same maximum but requiring every
+witness support to have exact size `|S|=a`.  The exact-support reduction above
+gives the sharper agreement-coordinate identity
+
+```text
+LD_sw(RS[F,D,k],a) = RL_NC^=(D,k,a) = RL_NC(D,k,a).
+```
+
 Consequently, the corrected M2 target can be stated equivalently as a bound on
-`RL_NC(D,k,a(delta))`; dividing by `|F|` gives the MCA bound by the exact bridge
-above.
+the exact-support residue-line packing number `RL_NC^=(D,k,a(delta))` whenever
+`a(delta) >= k+1`; dividing by `|F|` gives the MCA bound by the exact bridge
+above.  This is the form aligned with the M1 exact-support overlap ledgers.
 
 Proof.  First fix a line `f+z g` and a set of support-wise noncontained slopes.
 Choose a degree-`r` polynomial `E` nonzero on `D`.  By interpolation and
