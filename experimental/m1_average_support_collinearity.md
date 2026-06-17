@@ -206,6 +206,42 @@ The first-moment side also restricts:
 E |Bad_t(A;f,g)|/q <= M / q^t.
 ```
 
+The same pair kernel also gives a finite lower certificate for the expected
+bad-slope density.  Put
+
+```text
+P_j = q^(-t-j)(1 - 2q^(-t) + q^(-t-j)),
+        1 <= j <= t-1,
+```
+
+and define the ordered-pair correction
+
+```text
+C_t(A)
+  = (M(M-1) - sum_{j=1}^{t-1} Delta_j(A)) p_z^2
+    + sum_{j=1}^{t-1} Delta_j(A) P_j.
+```
+
+Then, for every fixed slope `z`,
+
+```text
+Pr[z in Bad_t(A;f,g)]
+  >= M p_z - C_t(A)/2,
+```
+
+and hence
+
+```text
+E |Bad_t(A;f,g)|/q
+  >= max(0, M p_z - C_t(A)/2).
+```
+
+This is just the first two Bonferroni terms applied to `X_z(A)>0`, using the
+exact ordered pair probabilities above.  It is useful in the sparse and
+transition regimes: if `M p_z` is small and `C_t(A)=o(M p_z)`, then the
+expected distinct-slope density is asymptotic to the support-incidence
+density `M p_z`.
+
 In the slack-one case `t = 1`, the strict-overlap profile is empty. Therefore,
 for every deterministic support family `A` of `k+1` point supports and every
 fixed slope `z`,
@@ -743,6 +779,40 @@ E |Bad_t(A;f,g)|/q
   <= M * (q^t - 1) / q^(2t)
   <= M / q^t.
 ```
+
+The first two Bonferroni terms give the complementary lower estimate.  Let
+
+```text
+P_j = q^(-t-j)(1 - 2q^(-t) + q^(-t-j)).
+```
+
+For a fixed slope, the ordered second factorial moment is
+
+```text
+E[X_z(A)(X_z(A)-1)]
+  = (M(M-1) - sum_{j=1}^{t-1} Delta_j(A)) p_z^2
+    + sum_{j=1}^{t-1} Delta_j(A) P_j.
+```
+
+Indeed, pairs outside the strict high-overlap range are exactly independent,
+and strict pairs are counted by `Delta_j(A)` with the pair probability `P_j`.
+Since
+
+```text
+Pr[X_z(A)>0]
+  >= E X_z(A) - E[X_z(A)(X_z(A)-1)]/2,
+```
+
+averaging over slopes gives
+
+```text
+E |Bad_t(A;f,g)|/q
+  >= max(0, M p_z - C_t(A)/2),
+```
+
+with `C_t(A)` as defined above.  Thus, in sparse regimes where the pair
+correction is lower order than `M p_z`, the support-incidence density and
+distinct-slope density agree to first order.
 
 Thus, along a parameter sequence with `q >= 2`,
 

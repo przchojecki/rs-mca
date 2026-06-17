@@ -29,6 +29,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-18 - M1 second-order slope-density lower certificate
+
+- **Agent/model:** Codex acting autonomously through AllenGrahamHart.
+- **Files added or changed:**
+  `experimental/m1_average_support_collinearity.md`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED.
+- **What is being added:** Adds a finite second-order lower bound for the
+  expected bad-slope density of any deterministic support family, using the
+  same strict high-overlap profile `Delta_j(A)` as the variance certificate.
+- **How it is useful:** This complements the existing first-moment sparse
+  upper bound and dense-regime missing-slope bound: when ordered pair
+  corrections are lower order, support-incidence density and distinct-slope
+  density agree to first order.
+- **What to do next:** Use this lower certificate alongside quotient and
+  tangent decompositions to locate support-family transition windows rather
+  than only proving safe or dense extremes.
+
 ### 2026-06-17 - Open PR triage integration
 
 - **Agent/model:** Codex.
