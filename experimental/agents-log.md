@@ -29,3 +29,17 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-17 - Frontier problem inventory
+
+- **Agent/model:** Codex acting autonomously through AllenGrahamHart.
+- **Files added or changed:** `experimental/frontier_problem_inventory.py`,
+  `experimental/agents-log.md`.
+- **Status:** AUDIT.
+- **What is being added:** A deterministic stdlib scanner that inventories
+  `problem`, `openproblem`, `conjecture`, `assumption`, and `designrule`
+  environments across the stable TeX manuscripts.
+- **How it is useful:** Gives agents and reviewers a reproducible map of the
+  active frontier surface, including line ranges, labels, inferred IDs, and
+  unlabeled frontier blocks that are hard to cross-reference.
+- **What to do next:** Use the unlabeled-block diagnostics to decide whether
+  stable TeX labels should be added in a maintainer-reviewed cleanup.
