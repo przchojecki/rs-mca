@@ -81,6 +81,21 @@ this is a constant-density counterexample. For `e>2` the density is diluted by
 the larger challenge field, but it is still a factor `Theta(p)` larger than
 the numerator `p` supplied by a base-field MCA bound.
 
+The construction is also local to the evaluation domain. Let `D subset F_p`
+have size `n`, let `C_F=RS[F,D,k]`, and keep `a=k+1`. For any `2 <= a <= n`
+and any `alpha in F\F_p`, the same line on `D` has
+
+```text
+emca(C_F, 1-a/n)
+  >= binom(n-a+2, 2) / |F|
+  = binom(n-k+1, 2) / |F|.
+```
+
+Thus an unrestricted same-numerator extension transfer from a base numerator
+`p` already fails whenever `(n-k)^2` is asymptotically larger than `p`. The
+full-subgroup case `D=F_p^*` is the fixed-rate endpoint `n=p-1`, where the
+forced extension numerator is `Theta(p^2)`.
+
 ## Status
 
 PROVED / COUNTEREXAMPLE.
@@ -91,6 +106,8 @@ refute a repaired extension-line theorem in the corrected-reserve regime
 extension-line MCA by taking a base-field numerator and dividing by the larger
 extension challenge field. The extension-degree corollary shows that the issue
 is numerator preservation, not merely constant density in quadratic extensions.
+The domain-local corollary shows that the obstruction is controlled by
+`(n-k)^2`, not by any special multiplicative-subgroup identity.
 
 ## Proof
 
@@ -176,24 +193,28 @@ The same injectivity proof only used the `B`-linear independence of `1` and
 `alpha`; it did not use that `F` is quadratic. Therefore it applies verbatim in
 any finite extension `F/F_p` with `alpha notin F_p`.
 
-The number of available points outside `T` is
+The same argument is local to the domain. If `D subset B` has size `n`, choose
+any `(a-2)`-subset `T subset D`; then the same pair-injectivity proof applies
+to unordered pairs in `D\T`. The number of available points outside `T` is
 
 ```text
-|H \ T| = (p-1) - (a-2) = p-a+1.
+|D \ T| = n - (a-2) = n-a+2.
 ```
 
 Therefore there are at least
 
 ```text
-binom(p-a+1, 2)
+binom(n-a+2, 2)
 ```
 
-distinct bad slopes in `F`. If `|F|=p^e`, this gives the extension-degree
-lower bound
+distinct bad slopes in `F`, and
 
 ```text
-emca(C_F, delta) >= binom(p-a+1, 2) / p^e.
+emca(C_F, 1-a/n) >= binom(n-a+2, 2) / |F|.
 ```
+
+For `D=H=F_p^*`, this becomes `binom(p-a+1,2)/|F|`. If `|F|=p^e`, this gives
+the extension-degree lower bound displayed in the claim.
 
 For fixed rate `k=floor(rho(p-1))`, the numerator ratio
 

@@ -88,11 +88,14 @@ Keep entries concise and link to the relevant files.
   corollary: over any finite extension `F/F_p` with `alpha notin F_p`, the
   same Vieta slice forces extension-line numerator at least
   `binom(p-a+1,2)`, so the obstruction is a `Theta(p^2)` numerator rather
-  than a quadratic-density artifact.
+  than a quadratic-density artifact. Adds the domain-local corollary
+  `binom(n-k+1,2)/|F|` for arbitrary base-field domains `D subset F_p`.
 - **How it is useful:** Resolves the unrestricted F1 lift direction negatively
   at fixed rate and identifies the needed repair: prove over the actual
   extension line field, add an extension-valued numerator term of the right
-  scale, or impose a corrected-reserve restriction.
+  scale, or impose a corrected-reserve restriction. The domain-local form
+  shows that same-numerator transfer already fails whenever `(n-k)^2` exceeds
+  the base numerator scale.
 - **What to do next:** Attack the repaired F1 problem above the corrected
   reserve, where this sigma-one construction is excluded, or reformulate these
   extension-valued lines as structured interleaved-base objects over `B`.

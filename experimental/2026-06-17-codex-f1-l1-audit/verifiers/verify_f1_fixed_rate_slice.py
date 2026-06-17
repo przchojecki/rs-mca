@@ -82,16 +82,19 @@ def first_nonsquare(p):
     raise ValueError("no nonsquare found")
 
 
-def slice_slopes(p, k, d=None):
+def slice_slopes(p, k, d=None, domain=None):
     if d is None:
         d = first_nonsquare(p)
     F = make_field(p, d)
     alpha = F(0, 1)
     a = k + 1
-    if a < 2 or a > p - 1:
-        raise ValueError("need 2 <= a <= p-1")
+    if domain is None:
+        domain = list(range(1, p))
+    if len(set(domain)) != len(domain):
+        raise ValueError("domain entries must be distinct")
+    if a < 2 or a > len(domain):
+        raise ValueError("need 2 <= a <= len(domain)")
 
-    domain = list(range(1, p))
     fixed_tail = domain[: a - 2]
     pool = domain[a - 2 :]
 
@@ -107,6 +110,30 @@ def slice_slopes(p, k, d=None):
         slopes[z] = (x, y)
 
     return len(slopes), len(pool) * (len(pool) - 1) // 2, d
+
+
+def domain_slice_rows():
+    cases = [
+        (17, 5, [0, 1, 2, 4, 8, 9, 13, 15]),
+        (19, 6, [1, 2, 3, 5, 8, 13, 18, 17, 16, 14]),
+        (31, 8, [1, 3, 4, 9, 10, 12, 16, 19, 23, 25, 27, 30]),
+    ]
+    rows = []
+    for p, k, domain in cases:
+        distinct, expected, d = slice_slopes(p, k, domain=domain)
+        assert distinct == expected
+        n = len(domain)
+        rows.append(
+            {
+                "p": p,
+                "k": k,
+                "n": n,
+                "bad_slopes": distinct,
+                "expected": (n - k + 1) * (n - k) // 2,
+                "nonsquare": d,
+            }
+        )
+    return rows
 
 
 def extension_degree_numerator_rows(p, k, degrees):
@@ -154,6 +181,12 @@ def main():
             "forced numerator/base numerator >= {numerator_ratio_lower:.6f}".format(
                 **row
             )
+        )
+    for row in domain_slice_rows():
+        assert row["bad_slopes"] == row["expected"]
+        print(
+            "domain-local p={p}, n={n}, k={k}, d={nonsquare}: "
+            "slice slopes {bad_slopes}".format(**row)
         )
     print("F1 fixed-rate slice verifier passed")
 
