@@ -171,7 +171,7 @@ E[1 - |Bad_t(A;f,g)|/q] <= B_t(A),
 Pr[ |Bad_t(A;f,g)|/q <= 1 - epsilon ] <= B_t(A) / epsilon.
 ```
 
-Equivalently, if
+A coarser sufficient form uses the maximum exchange codegree. If
 
 ```text
 Gamma_j(A)
@@ -212,9 +212,9 @@ available supports: `M/q -> 0` gives zero density in probability, while
 
 Thus a fixed support family has the same random-line phase diagram with
 `binom(n,k+t)` replaced by its size and with the full Johnson-sphere correction
-replaced by its measured strict high-overlap profile. This is the natural
-certificate format for separating tangent, quotient-periodic, and aperiodic
-support families.
+replaced by its measured strict high-overlap profile, or more coarsely by its
+maximum exchange codegrees. This is the natural certificate format for
+separating tangent, quotient-periodic, and aperiodic support families.
 
 Combining this with the first-moment upper bound gives the random-line
 slope-density phase diagram. Along any parameter sequence with `q >= 2`,
