@@ -114,6 +114,21 @@ N_s / ( q^t
 
 then `|Bad_t(f,g)|/q -> 1` in probability.
 
+Quantitatively, for `q >= 2`, put
+
+```text
+B_t = (1 - p_z)/(N_s p_z)
+      + (4/N_s) * sum_{j=1}^t binom(k+t,j) binom(n-k-t,j) q^(t-j).
+```
+
+Then the missing-slope density satisfies
+
+```text
+E[1 - |Bad_t(f,g)|/q] <= B_t,
+
+Pr[ |Bad_t(f,g)|/q <= 1 - epsilon ] <= B_t / epsilon.
+```
+
 Combining this with the first-moment upper bound gives the random-line
 slope-density phase diagram. Along any parameter sequence with `q >= 2`,
 
@@ -465,15 +480,34 @@ N_s / ( q^t
 
 then `Var X_z / mu_z^2 -> 0`, uniformly in `z`.
 
+The same calculation gives a useful finite-parameter missing-density bound.
+Let
+
+```text
+B_t = (1 - p_z)/(N_s p_z)
+      + (4/N_s) * sum_{j=1}^t binom(k+t,j) binom(n-k-t,j) q^(t-j).
+```
+
 Finally, the exact-support reduction above gives `z in Bad_t(f,g)` whenever
 `X_z > 0`. Chebyshev's inequality gives
 
 ```text
-Pr[X_z = 0] <= Var X_z / mu_z^2.
+Pr[X_z = 0] <= Var X_z / mu_z^2 <= B_t.
 ```
 
-Averaging over `z` and then applying Markov to the missing-slope density shows
-that the same condition implies
+Averaging over `z` gives
+
+```text
+E[1 - |Bad_t(f,g)|/q] <= B_t.
+```
+
+Applying Markov to the missing-slope density gives, for every `epsilon > 0`,
+
+```text
+Pr[ |Bad_t(f,g)|/q <= 1 - epsilon ] <= B_t / epsilon.
+```
+
+In particular, the same asymptotic condition above implies
 
 ```text
 |Bad_t(f,g)| / q -> 1
@@ -833,6 +867,9 @@ The slope-resolved ledger adds the failure-side threshold:
 ```text
 if the fixed-slope relative variance tends to zero, then
   |Bad_t(f,g)| / q -> 1 in probability.
+
+expected missing-slope density is at most the fixed-slope relative variance
+bound B_t.
 
 random-line slope density transitions at binom(n,k+t) ~= q^t
 when high-overlap corrections are negligible.
