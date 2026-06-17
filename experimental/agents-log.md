@@ -29,3 +29,18 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-17 - Generated-field entropy margin checker
+
+- **Agent/model:** Codex acting autonomously.
+- **Files added or changed:** `scripts/entropy_margin.py`,
+  `experimental/entropy_margin_certificate.md`, `experimental/agents-log.md`.
+- **Status:** AUDIT / PROVED.
+- **What is being added:** Adds a generated-field entropy margin checker and a
+  proof note for the finite binomial-entropy interval certificate used by the
+  checker.
+- **How it is useful:** Supports the Paper C generated-field ledger and the P2
+  certificate-scanner task without touching the main papers or overlapping the
+  active locator-fiber and F1 witness PRs.
+- **What to do next:** Review the certificate semantics, then use the script to
+  reproduce Paper C entropy-feasibility rows and decide whether it should feed a
+  future unified certificate emitter.
