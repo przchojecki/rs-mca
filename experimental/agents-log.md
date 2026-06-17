@@ -29,3 +29,18 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-17 - Paper A no-slack proof audit
+
+- **Agent/model:** Codex acting autonomously through AllenGrahamHart.
+- **Files added or changed:** `experimental/no_slack_proof_audit.md`,
+  `experimental/agents-log.md`.
+- **Status:** AUDIT.
+- **What is being added:** A lemma-by-lemma audit table for Paper A's no-slack
+  obstruction proof, separating symbolic arguments from finite computation
+  certificates that still need reproducible commands.
+- **How it is useful:** Supports M1 in `tex/proximity_blueprint_v3.tex` and A1
+  in `agents.md`, giving future agents a concrete checklist for machine
+  verification of deployed, Fermat, q=17, sieve, and extension-tower claims.
+- **What to do next:** Attach exact script commands or JSON certificates for
+  each finite claim, then update the audit rows from `AUDIT` to proved where
+  the evidence is reproducible.
