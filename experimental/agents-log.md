@@ -41,13 +41,17 @@ Keep entries concise and link to the relevant files.
   Reed-Solomon spike-line separation: at agreement `a=n-1`, ordinary
   close-point line-decoding can see all `|F|` slopes on a line not contained
   in the code, while the support-wise noncontained numerator for the same
-  line is exactly one. Adds a tiny enumerator that verifies the separation.
+  line is exactly one. Adds the agreement-coordinate residue-line equivalence
+  `LD_sw(RS[F,D,k],a)=RL_NC(D,k,a)` under the same denominator hypothesis used
+  in Paper B's normal form. Adds a tiny enumerator that verifies the
+  separation.
 - **How it is useful:** Shows that close-point line-decoding with only a
   contained-line exception is strictly stronger than the support-wise MCA
   numerator consumed by the Paper C ledger. The corrected M2 target should
   therefore be stated in the support-wise/common-support form unless an
   external line-decoding theorem has a stronger exception that rules out this
-  spike-line phenomenon.
+  spike-line phenomenon. The residue-line equivalence identifies that
+  support-wise form exactly with the corrected M1 residue-line packing object.
 - **What to do next:** Match protocol line-decoding imports against this
   support-wise predicate and record whether their exceptional case is strong
   enough for the corrected reserve certificate.

@@ -90,6 +90,94 @@ condition that the direction is not explained on that support by a degree `< k`
 polynomial.  This is the local algebra behind both the one-bad-parameter
 support bound and the residue-line packing formulation.
 
+## Residue-Line Equivalence for Reed-Solomon Codes
+
+The support-wise numerator is exactly the residue-line packing number from
+`tex/slackMCA_v3.tex`, after translating radius into agreement size.  This is
+the finite M2 bridge in agreement coordinates.
+
+Let `C=RS[F,D,k]`, `|D|=n`, and `r=n-k`.  Assume there is a degree-`r`
+polynomial nonzero on `D`; this holds for multiplicative domains by taking
+`X^r`.  For `1 <= t <= r`, define a degree-`t` residue-line datum to be
+
+```text
+E in F[X], deg E=t, E(x) != 0 on D,
+B in F[X], deg B<t,
+w:D -> F.
+```
+
+For agreement size `a`, a slope `z` is witnessed by this datum if there are
+`S subset D` and `Q_z in F[X]` such that
+
+```text
+|S| >= a,
+deg Q_z < k+t,
+Q_z == zB mod E,
+Q_z = w on S,
+```
+
+and the witness is noncontained if no `A,G in F[X]_{<k}` satisfy
+
+```text
+A = w/E on S,        G = -B/E on S.
+```
+
+Let `RL_NC(D,k,a)` be the maximum, over all degrees `1 <= t <= r` and all such
+data, of the number of slopes with noncontained witnesses.  Then
+
+```text
+LD_sw(RS[F,D,k],a) = RL_NC(D,k,a).
+```
+
+Consequently, the corrected M2 target can be stated equivalently as a bound on
+`RL_NC(D,k,a(delta))`; dividing by `|F|` gives the MCA bound by the exact bridge
+above.
+
+Proof.  First fix a line `f+z g` and a set of support-wise noncontained slopes.
+Choose a degree-`r` polynomial `E` nonzero on `D`.  By interpolation and
+Euclidean division, write on `D`
+
+```text
+g = R - B/E,        deg R<k,        deg B<r.
+```
+
+For a bad slope `z`, let `P_z in F[X]_{<k}` explain `f+z g` on a witness
+support `S_z`.  Put
+
+```text
+w = E f,        Q_z = E(P_z - zR) + zB.
+```
+
+Then `deg Q_z<k+r`, `Q_z == zB mod E`, and on `S_z`,
+
+```text
+Q_z = E(f+z g-zR)+zB = E f = w.
+```
+
+If the residue witness were contained, then `A=w/E` and `G=-B/E` on `S_z`
+would give degree-`<k` explanations of `f` and `g=R+G` on the same support,
+contradicting support-wise noncontainment.  Thus every line contributes no
+more slopes than one residue-line datum, so `LD_sw <= RL_NC`.
+
+Conversely, given a residue-line datum and noncontained witnessed slopes,
+define words on `D` by
+
+```text
+f = w/E,        g = -B/E.
+```
+
+For each witnessed slope, `Q_z-zB` is divisible by `E`; set
+
+```text
+P_z = (Q_z-zB)/E.
+```
+
+The degree bound gives `deg P_z<k`, and on the witness support
+`P_z=(w-zB)/E=f+z g`.  Noncontainedness of the datum is exactly failure of
+simultaneous degree-`<k` explanations for `f` and `g` on that support.  Hence
+every residue-line packing instance gives a support-wise line-decoding
+instance with the same slope set, proving `RL_NC <= LD_sw`.
+
 ## What an External Line-Decoding Theorem Must Prove
 
 A close-point line-decoding bound with a contained-line exception,
@@ -180,18 +268,18 @@ LD_sw(C_n,a_n)
 ```
 
 under the same entropy and quotient-profile hypotheses as the corrected MCA
-conjecture.  The MCA statement is then the immediate corollary obtained by
-dividing this numerator by `q_n`.  The spike-line separation shows why this
-support-wise numerator is the right expected object: a stronger close-point
-line-decoding theorem is welcome when available, but it should not be assumed
-to follow from the residue-line packing conjecture.
+conjecture.  Equivalently, by the residue-line bridge above, the same bound is
+the agreement-coordinate form of the companion's noncontained residue-line
+packing conjecture.  The MCA statement is then the immediate corollary
+obtained by dividing this numerator by `q_n`.  The spike-line separation shows
+why this support-wise numerator is the right expected object: a stronger
+close-point line-decoding theorem is welcome when available, but it should not
+be assumed to follow from the residue-line packing conjecture.
 
 ## Follow-Up Checks
 
 - Match the external `(delta,a_LD,n+1)` line-decoding definition used in
   protocol papers against `LD_sw(C,a)`.
-- Express the residue-line packing number in `tex/slackMCA_v3.tex` as this
-  `LD_sw` numerator.
 - Decide whether the `n+1` parameter is only a codeword-uniqueness threshold or
   whether it hides an additional proximity-loss convention.
 - Check whether protocol line-decoding imports have a common-support or
