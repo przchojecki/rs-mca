@@ -121,6 +121,38 @@ or
 t <= m.
 ```
 
+For dyadic dimensions this gives a useful dither rule. Suppose
+
+```text
+n = 2^nu,        rho = 2^(-b),        k0 = rho n,
+k = k0 - r,      s = k + t = k0 + (t-r),
+```
+
+and consider a dyadic fiber size `m=2^u` with
+
+```text
+2 <= m <= k0.
+```
+
+Then `m | k0`, so this exact whole-fiber quotient-periodic family can occur at
+agreement size `s` only if
+
+```text
+m | (t-r).
+```
+
+Its strict-overlap contribution further requires `m <= t-1`. Thus the
+surviving dyadic whole-fiber strict-overlap scales are exactly the nontrivial
+dyadic scales `m <= min(k0,t-1)` satisfying `m | (t-r)`. In particular, the
+dither
+
+```text
+r = t-1
+```
+
+gives `t-r=1`, so every nontrivial dyadic whole-fiber quotient-periodic support
+family at scales `2 <= m <= k0` is absent at exact agreement size `s`.
+
 ## Status
 
 PROVED.
@@ -197,6 +229,13 @@ unless `m | s`; when it exists, `L = s/m`. The strict-overlap assertion is then
 the preceding `hm < t` condition. If `t <= m`, no positive multiple of `m` is
 less than `t`, so the strict-overlap profile is empty.
 
+For the dyadic dither rule, `m=2^u <= k0=2^(nu-b)` implies `m | k0`. Since
+`s=k0+(t-r)`, the condition `m | s` is therefore equivalent to `m | (t-r)`.
+The strict-overlap condition is still `m <= t-1` for the first possible
+one-fiber exchange. If `r=t-1`, then `t-r=1`, which has no nontrivial dyadic
+divisor. Hence no nontrivial dyadic whole-fiber family at scale `m <= k0`
+exists at the exact support size.
+
 ## M1 Impact
 
 This note turns one of the main structured exceptions in the M1 program into an
@@ -230,6 +269,9 @@ Two immediate readings are useful.
    Johnson-sphere sum over point exchanges. The first active band
    `m < t <= 2m` has only the one-fiber exchange contribution
    `L(N-L)q^(t-m)`.
+4. At dyadic rates, dimension dither can eliminate all exact whole-fiber
+   quotient-periodic scales in one step: for `k=k0-(t-1)`, every dyadic
+   nontrivial fiber scale `m <= k0` fails the divisibility test `m | s`.
 
 This makes the quotient-periodic exception quantitatively separable from the
 aperiodic local-limit problem targeted by M1.
