@@ -243,6 +243,93 @@ through the first product in `H_REM`. Thus dimension dither can remove exact
 whole-fiber quotient-periodic supports while still leaving a smaller
 one-remainder-fiber profile that must be budgeted separately.
 
+## Large-Fiber Remainder Truncation
+
+The preceding formula becomes especially useful in the large-fiber range
+`t <= m`. To avoid overloading notation, write the support remainder as `b`:
+
+```text
+s = Lm + b,        1 <= b < m.
+```
+
+If `t <= m`, then the whole strict range `1 <= j <= t-1` of the
+one-remainder-fiber profile is
+
+```text
+H_REM^{<t}(y)
+ =
+  sum_{ell=1}^{min(b,m-b,t-1)}
+    binom(b,ell) binom(m-b,ell) y^ell
+
+  + 1_{b<t} (N-L-1) binom(m,b) y^b
+  + 1_{m-b<t} L binom(m,b) y^(m-b).
+```
+
+Equivalently, in the same range
+
+```text
+R_REM^{<t}(t,q)
+ =
+  sum_{ell=1}^{min(b,m-b,t-1)}
+    binom(b,ell) binom(m-b,ell) q^(t-ell)
+
+  + 1_{b<t} (N-L-1) binom(m,b) q^(t-b)
+  + 1_{m-b<t} L binom(m,b) q^(t-m+b),
+```
+
+with terms of the same exponent combined in the evident way.
+
+This is the exact large-fiber remainder budget: below one full fiber exchange,
+only three events survive.
+
+1. The remainder fiber is the same and `ell` remainder points are swapped.
+2. The remainder fiber moves to an unused nonwhole fiber, contributing `b`
+   old points.
+3. The remainder fiber moves onto an old whole fiber while the old remainder
+   fiber is promoted to a whole fiber, contributing `m-b` old points.
+
+All other cases in `H_REM` contain at least one whole-fiber exchange and have
+exponent at least `m`, hence are outside the strict range when `t <= m`.
+
+For dyadic dimension dithering this gives a concrete maximal-remainder
+corollary. Suppose
+
+```text
+n = 2^nu,        rho = 2^(-a),        k0 = rho n,
+k = k0 - r0,     s = k + t = k0 + d,
+d = t - r0,      1 <= d < t.
+```
+
+At any nontrivial dyadic fiber size `m | k0` with `m > d`, the exact support
+remainder is `b=d`. If also `t <= m`, then the large-fiber formula above is
+the complete strict one-remainder profile at that scale.
+
+In the maximal-dither case `r0=t-1`, one has `d=1` and `s=k0+1`. Therefore,
+for every dyadic scale `m | k0` with `m > t`,
+
+```text
+H_REM^{<t}(y) = (n-k0-1)y,
+R_REM^{<t}(t,q) = (n-k0-1) q^(t-1).
+```
+
+Indeed `L=k0/m` and `N=n/m`, so
+
+```text
+(m-1) + (N-L-1)m = (N-L)m - 1 = n-k0-1.
+```
+
+If `m=t`, the same one-point term remains and there is one boundary term
+
+```text
+L m y^(t-1) = k0 y^(t-1),
+```
+
+coming from moving the one-point remainder onto an old whole fiber and
+promoting the old remainder fiber. Thus maximal dither converts every large
+dyadic one-remainder quotient packet into a linear strict codegree. The only
+scales not covered by this corollary are the small scales `m < t`, where the
+full `H_REM` formula or a finite scanner should be used.
+
 ## Status
 
 PROVED.
@@ -368,6 +455,43 @@ within-fiber permutation action makes the fixed-support enumerator independent
 of `S`; hence `Gamma_j` is the coefficient of `H_REM`, and multiplying by
 `|A_REM|` gives the ordered-pair count `Delta_j`.
 
+For the large-fiber truncation, write the remainder size as `b` and assume
+`t <= m`. In the strict range `j<t`, every term of `H_REM` with a positive
+whole-fiber exchange is absent, because its exponent is at least `m`.
+
+In the same-remainder-fiber product, this leaves only `h=0` and
+`1 <= ell <= min(b,m-b,t-1)`, giving
+
+```text
+binom(b,ell) binom(m-b,ell) y^ell.
+```
+
+In the two cases where the new remainder fiber lies in an old whole fiber,
+only the subcase that promotes the old remainder fiber can contribute below
+`m`; its exponent is `m-b` and its multiplicity is `L binom(m,b)`. This term
+is strict exactly when `m-b<t`. The other subcase has exponent at least `m`.
+
+In the two cases where the new remainder fiber lies outside `I union {p}`, only
+the subcase with no whole-fiber exchange contributes below `m`; its exponent is
+`b` and its multiplicity is `(N-L-1)binom(m,b)`. This term is strict exactly
+when `b<t`. The remaining subcase has exponent at least `m`.
+
+These are precisely the three displayed terms in `H_REM^{<t}`. Multiplying
+each coefficient at exchange size `j` by `q^(t-j)` gives the displayed
+weighted profile.
+
+For the dyadic corollary, every dyadic `m | k0` also divides `s-d=k0`. Thus
+`s=k0+d` has remainder `b=d` modulo `m` whenever `m>d`. The large-fiber formula
+then applies for `t <= m`. If `d=1` and `m>t`, the only strict terms are
+
+```text
+(m-1)y      and      (N-L-1)m y.
+```
+
+Since `L=k0/m` and `N=n/m`, their coefficient sum is
+`(N-L)m-1=n-k0-1`. If `m=t`, the boundary term
+`L m y^(t-1)=k0 y^(t-1)` also enters.
+
 ## M1 Impact
 
 This note turns one of the main structured exceptions in the M1 program into an
@@ -410,6 +534,12 @@ Two immediate readings are useful.
    one-remainder-fiber family has its own exchange profile `H_REM`. This
    smaller profile can create strict point exchanges below one full fiber and
    therefore must be budgeted separately from the whole-fiber quotient term.
+6. In the large-fiber range `t <= m`, that remainder budget is itself explicit:
+   only same-remainder swaps, moves to unused nonwhole fibers, and one boundary
+   promotion term survive. Under maximal dyadic dither `k=k0-(t-1)`, every
+   scale `m>t` has the same linear strict codegree `n-k0-1`, so the large
+   quotient remainder packet becomes a tangent-sized term rather than a
+   quotient-profile-sized term.
 
 This makes the quotient-periodic exception quantitatively separable from the
 aperiodic local-limit problem targeted by M1.

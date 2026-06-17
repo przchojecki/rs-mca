@@ -53,6 +53,23 @@ def formula_enumerator(N, m, L, r):
     return +poly
 
 
+def large_fiber_strict_enumerator(N, m, L, b, t):
+    assert t <= m
+    poly = Counter()
+
+    for ell in range(1, min(b, m - b, t - 1) + 1):
+        coeff = choose(b, ell) * choose(m - b, ell)
+        add_term(poly, coeff, ell)
+
+    if b < t:
+        add_term(poly, (N - L - 1) * choose(m, b), b)
+
+    if m - b < t:
+        add_term(poly, L * choose(m, b), m - b)
+
+    return +poly
+
+
 def support(fibers, whole_indices, partial_index, partial_points):
     out = set()
     for index in whole_indices:
@@ -94,6 +111,16 @@ def verify_case(N, m, L, r):
     return family_size, formula
 
 
+def verify_large_fiber_case(N, m, L, b, t):
+    full = formula_enumerator(N, m, L, b)
+    strict = Counter(
+        {exponent: coeff for exponent, coeff in full.items() if 0 < exponent < t}
+    )
+    truncation = large_fiber_strict_enumerator(N, m, L, b, t)
+    assert strict == truncation, (N, m, L, b, t, strict, truncation)
+    return truncation
+
+
 def main():
     cases = [
         (5, 4, 1, 1),
@@ -104,7 +131,19 @@ def main():
     ]
     for case in cases:
         family_size, enumerator = verify_case(*case)
-        print(f"N,m,L,r={case}: |A_REM|={family_size}, H={dict(sorted(enumerator.items()))}")
+        print(
+            f"N,m,L,r={case}: |A_REM|={family_size}, "
+            f"H={dict(sorted(enumerator.items()))}"
+        )
+    large_fiber_cases = [
+        (7, 5, 2, 1, 3),
+        (8, 6, 3, 2, 4),
+        (9, 7, 2, 3, 5),
+        (8, 4, 3, 1, 4),
+    ]
+    for case in large_fiber_cases:
+        strict = verify_large_fiber_case(*case)
+        print(f"N,m,L,b,t={case}: H_<t={dict(sorted(strict.items()))}")
     print("M1 quotient remainder profile verifier passed")
 
 

@@ -45,13 +45,15 @@ Keep entries concise and link to the relevant files.
   dyadic dither corollary: for `k=k0-(t-1)`, every nontrivial dyadic
   whole-fiber scale `m <= k0` fails the exact-support divisibility test, and
   more generally surviving dyadic scales are counted by `v2(t-r)`. Adds the
-  exact one-remainder-fiber exchange enumerator and a verifier for the formula.
+  exact one-remainder-fiber exchange enumerator, the large-fiber strict
+  remainder truncation, and a verifier for the formulas.
 - **How it is useful:** Supplies the quotient-periodic input to the M1
   support-family ledger, so this structured exception can be separated
   quantitatively before attacking the aperiodic residue-line local-limit
   problem; it also records the exact-support form of dimension/slack dithering
   and the smaller remainder profile that survives after whole-fiber supports
-  are absent.
+  are absent. The large-fiber truncation shows that maximal dyadic dither
+  leaves only a linear one-remainder strict codegree at scales `m>t`.
 - **What to do next:** Have a tiny M1 scanner emit `|A|`, `Delta_j(A)`, and
   `Gamma_j(A)` by labelled support class, verifying that the quotient-periodic
   class matches the closed formulas here.
