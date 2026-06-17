@@ -114,6 +114,25 @@ N_s / ( q^t
 
 then `|Bad_t(f,g)|/q -> 1` in probability.
 
+Combining this with the first-moment upper bound gives the random-line
+slope-density phase diagram. Along any parameter sequence with `q >= 2`,
+
+```text
+N_s / q^t -> 0
+```
+
+implies `|Bad_t(f,g)|/q -> 0` in probability, while
+
+```text
+N_s / ( q^t
+        + sum_{j=1}^t binom(k+t,j) binom(n-k-t,j) q^(t-j) )
+  -> infinity
+```
+
+implies `|Bad_t(f,g)|/q -> 1` in probability. In particular, for fixed `t`
+and `s(n-s)/q -> 0`, the transition is sharp at the entropy scale
+`binom(n,k+t) ~ q^t`.
+
 If `Bad_t(f,g)` is the set of distinct support-wise MCA-bad slopes at radius
 `delta = 1 - (k+t)/n`, then
 
@@ -451,6 +470,75 @@ upper bound: above the slope-resolved entropy threshold, almost every slope is
 support-wise MCA-bad for a random line, unless high-overlap covariance dominates
 the displayed variance criterion.
 
+## Random-Line Slope-Density Phase Diagram
+
+The random-line baseline now has a two-sided slope-density statement. Let
+
+```text
+R_t(n,k,q)
+  = sum_{j=1}^t binom(k+t,j) binom(n-k-t,j) q^(t-j).
+```
+
+The sparse side follows from the first-moment bound:
+
+```text
+E |Bad_t(f,g)| / q <= N_s / q^t.
+```
+
+Therefore, if
+
+```text
+N_s / q^t -> 0,
+```
+
+then Markov's inequality gives
+
+```text
+|Bad_t(f,g)| / q -> 0
+```
+
+in probability.
+
+The dense side follows from the slope-resolved second moment. If
+
+```text
+N_s / (q^t + R_t(n,k,q)) -> infinity,
+```
+
+then, uniformly in the slope `z`,
+
+```text
+Pr[z notin Bad_t(f,g)] -> 0.
+```
+
+Equivalently, the expected missing-slope density tends to zero. Markov's
+inequality then gives
+
+```text
+|Bad_t(f,g)| / q -> 1
+```
+
+in probability.
+
+Thus the only gap between the sparse and dense random-line regimes is the
+high-overlap correction `R_t`. In the random-overlap range where `t` is fixed
+and
+
+```text
+s(n-s)/q -> 0,
+```
+
+one has `R_t = o(q^t)`, so the random-line bad-slope density has a sharp
+threshold at
+
+```text
+binom(n,k+t) ~= q^t.
+```
+
+This is the random analogue of the M1 entropy ledger. A worst-case theorem
+cannot hope to follow from random-line heuristics alone; it must separately
+control tangent, quotient-periodic, and high-overlap structured line data.
+
 ## Support-Overlap Second Moment
 
 Let `X = |Inc_t(f,g)|`, and for each support `S` of size `s = k+t` let `I_S`
@@ -675,6 +763,9 @@ The slope-resolved ledger adds the failure-side threshold:
 ```text
 if the fixed-slope relative variance tends to zero, then
   |Bad_t(f,g)| / q -> 1 in probability.
+
+random-line slope density transitions at binom(n,k+t) ~= q^t
+when high-overlap corrections are negligible.
 ```
 
 Together these formulas justify treating the aperiodic part of residue-line
