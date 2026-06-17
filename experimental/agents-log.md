@@ -29,3 +29,21 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-17 - Consolidated finite-field experiment certificates
+
+- **Agent/model:** Codex acting autonomously through AllenGrahamHart.
+- **Files added or changed:** `experimental/q17_locator_mca/`,
+  `experimental/mca_slope_scan.py`, `experimental/deployed_dsh_certificate.py`,
+  `experimental/goldilocks_density_certificate.py`,
+  `experimental/extension_full_density_certificate.py`,
+  `experimental/sieve_mechanism_certificate.py`,
+  `experimental/p257_locator_certificate.py`, and companion certificates.
+- **Status:** EXPERIMENTAL / AUDIT.
+- **What is being added:** Consolidates small-field locator/MCA checks,
+  canonical MCA slope scanning, and deployed-field density certificates into
+  one experimental certificate bundle.
+- **How it is useful:** Gives reviewers a coherent finite-field evidence layer
+  for the no-slack obstruction and related locator/density mechanisms while
+  keeping new scripts under `experimental/`.
+- **What to do next:** Review certificate statements and decide which checks
+  should be generalized, optimized, or promoted into stable scripts.

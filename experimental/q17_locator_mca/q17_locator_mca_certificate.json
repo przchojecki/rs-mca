@@ -1,0 +1,1515 @@
+{
+  "field": {
+    "domain": [
+      1,
+      3,
+      9,
+      10,
+      13,
+      5,
+      15,
+      11,
+      16,
+      14,
+      8,
+      7,
+      4,
+      12,
+      2,
+      6
+    ],
+    "domain_order": 16,
+    "p": 17,
+    "primitive_generator": 3
+  },
+  "method": {
+    "list_check": "Parity checks test degree-<d agreement on each support.",
+    "mca_check": "All target-or-larger supports and all 17 slopes are exhausted.",
+    "rs_code": "RS[F_17,D,k] uses degree < k polynomials.",
+    "slack_one": "Slack-one locator slopes are direct support-wise MCA witnesses.",
+    "slack_two": "Slack-two locator slopes are C+ list-fiber inputs."
+  },
+  "rates": [
+    {
+      "cases": [
+        {
+          "N": 2,
+          "a": 8,
+          "anchor_exponent": 16,
+          "direction_exponent": 8,
+          "ell": 2,
+          "exhaustive_list_slope_count": 1,
+          "exhaustive_list_slopes": [
+            0
+          ],
+          "exhaustive_mca_slope_count": 1,
+          "exhaustive_mca_slopes": [
+            0
+          ],
+          "extra_list_slopes_beyond_locator": [],
+          "extra_mca_slopes_beyond_locator": [],
+          "list_supports_examined": 1,
+          "locator_counts_by_slope": [
+            [
+              0,
+              1
+            ]
+          ],
+          "locator_list_code_dimension": 8,
+          "locator_slope_count": 1,
+          "locator_slope_count_histogram": {
+            "1": 1
+          },
+          "locator_slopes_equal_exhaustive_list": true,
+          "locator_slopes_equal_exhaustive_mca": true,
+          "locator_slopes_subset_exhaustive_list": true,
+          "locator_slopes_subset_exhaustive_mca": true,
+          "locator_subset_count": 1,
+          "mca_code_dimension": 8,
+          "mca_noncontained_supports": 1,
+          "mca_supports_examined": 1,
+          "quotient_values": [
+            1,
+            16
+          ],
+          "radius": "0",
+          "slack_t": 1,
+          "support_size": 16
+        },
+        {
+          "N": 4,
+          "a": 4,
+          "anchor_exponent": 12,
+          "direction_exponent": 8,
+          "ell": 3,
+          "exhaustive_list_slope_count": 4,
+          "exhaustive_list_slopes": [
+            1,
+            4,
+            13,
+            16
+          ],
+          "exhaustive_mca_slope_count": 4,
+          "exhaustive_mca_slopes": [
+            1,
+            4,
+            13,
+            16
+          ],
+          "extra_list_slopes_beyond_locator": [],
+          "extra_mca_slopes_beyond_locator": [],
+          "list_supports_examined": 1820,
+          "locator_counts_by_slope": [
+            [
+              1,
+              1
+            ],
+            [
+              4,
+              1
+            ],
+            [
+              13,
+              1
+            ],
+            [
+              16,
+              1
+            ]
+          ],
+          "locator_list_code_dimension": 8,
+          "locator_slope_count": 4,
+          "locator_slope_count_histogram": {
+            "1": 4
+          },
+          "locator_slopes_equal_exhaustive_list": true,
+          "locator_slopes_equal_exhaustive_mca": true,
+          "locator_slopes_subset_exhaustive_list": true,
+          "locator_slopes_subset_exhaustive_mca": true,
+          "locator_subset_count": 4,
+          "mca_code_dimension": 8,
+          "mca_noncontained_supports": 2517,
+          "mca_supports_examined": 2517,
+          "quotient_values": [
+            1,
+            4,
+            13,
+            16
+          ],
+          "radius": "1/4",
+          "slack_t": 1,
+          "support_size": 12
+        },
+        {
+          "N": 4,
+          "a": 4,
+          "anchor_exponent": 16,
+          "direction_exponent": 12,
+          "ell": 4,
+          "exhaustive_list_slope_count": 1,
+          "exhaustive_list_slopes": [
+            0
+          ],
+          "exhaustive_mca_slope_count": 1,
+          "exhaustive_mca_slopes": [
+            0
+          ],
+          "extra_list_slopes_beyond_locator": [],
+          "extra_mca_slopes_beyond_locator": [],
+          "list_supports_examined": 1,
+          "locator_counts_by_slope": [
+            [
+              0,
+              1
+            ]
+          ],
+          "locator_list_code_dimension": 9,
+          "locator_slope_count": 1,
+          "locator_slope_count_histogram": {
+            "1": 1
+          },
+          "locator_slopes_equal_exhaustive_list": true,
+          "locator_slopes_equal_exhaustive_mca": true,
+          "locator_slopes_subset_exhaustive_list": true,
+          "locator_slopes_subset_exhaustive_mca": true,
+          "locator_subset_count": 1,
+          "mca_code_dimension": 8,
+          "mca_noncontained_supports": 1,
+          "mca_supports_examined": 1,
+          "quotient_values": [
+            1,
+            4,
+            13,
+            16
+          ],
+          "radius": "0",
+          "slack_t": 2,
+          "support_size": 16
+        },
+        {
+          "N": 8,
+          "a": 2,
+          "anchor_exponent": 10,
+          "direction_exponent": 8,
+          "ell": 5,
+          "exhaustive_list_slope_count": 17,
+          "exhaustive_list_slopes": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16
+          ],
+          "exhaustive_mca_slope_count": 17,
+          "exhaustive_mca_slopes": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16
+          ],
+          "extra_list_slopes_beyond_locator": [
+            0
+          ],
+          "extra_mca_slopes_beyond_locator": [
+            0
+          ],
+          "list_supports_examined": 8008,
+          "locator_counts_by_slope": [
+            [
+              1,
+              4
+            ],
+            [
+              2,
+              4
+            ],
+            [
+              3,
+              3
+            ],
+            [
+              4,
+              4
+            ],
+            [
+              5,
+              3
+            ],
+            [
+              6,
+              3
+            ],
+            [
+              7,
+              3
+            ],
+            [
+              8,
+              4
+            ],
+            [
+              9,
+              4
+            ],
+            [
+              10,
+              3
+            ],
+            [
+              11,
+              3
+            ],
+            [
+              12,
+              3
+            ],
+            [
+              13,
+              4
+            ],
+            [
+              14,
+              3
+            ],
+            [
+              15,
+              4
+            ],
+            [
+              16,
+              4
+            ]
+          ],
+          "locator_list_code_dimension": 8,
+          "locator_slope_count": 16,
+          "locator_slope_count_histogram": {
+            "3": 8,
+            "4": 8
+          },
+          "locator_slopes_equal_exhaustive_list": false,
+          "locator_slopes_equal_exhaustive_mca": false,
+          "locator_slopes_subset_exhaustive_list": true,
+          "locator_slopes_subset_exhaustive_mca": true,
+          "locator_subset_count": 56,
+          "mca_code_dimension": 8,
+          "mca_noncontained_supports": 14893,
+          "mca_supports_examined": 14893,
+          "quotient_values": [
+            1,
+            2,
+            4,
+            8,
+            9,
+            13,
+            15,
+            16
+          ],
+          "radius": "3/8",
+          "slack_t": 1,
+          "support_size": 10
+        },
+        {
+          "N": 8,
+          "a": 2,
+          "anchor_exponent": 12,
+          "direction_exponent": 10,
+          "ell": 6,
+          "exhaustive_list_slope_count": 17,
+          "exhaustive_list_slopes": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16
+          ],
+          "exhaustive_mca_slope_count": 0,
+          "exhaustive_mca_slopes": [],
+          "extra_list_slopes_beyond_locator": [],
+          "extra_mca_slopes_beyond_locator": [],
+          "list_supports_examined": 1820,
+          "locator_counts_by_slope": [
+            [
+              0,
+              4
+            ],
+            [
+              1,
+              1
+            ],
+            [
+              2,
+              1
+            ],
+            [
+              3,
+              2
+            ],
+            [
+              4,
+              1
+            ],
+            [
+              5,
+              2
+            ],
+            [
+              6,
+              2
+            ],
+            [
+              7,
+              2
+            ],
+            [
+              8,
+              1
+            ],
+            [
+              9,
+              1
+            ],
+            [
+              10,
+              2
+            ],
+            [
+              11,
+              2
+            ],
+            [
+              12,
+              2
+            ],
+            [
+              13,
+              1
+            ],
+            [
+              14,
+              2
+            ],
+            [
+              15,
+              1
+            ],
+            [
+              16,
+              1
+            ]
+          ],
+          "locator_list_code_dimension": 9,
+          "locator_slope_count": 17,
+          "locator_slope_count_histogram": {
+            "1": 8,
+            "2": 8,
+            "4": 1
+          },
+          "locator_slopes_equal_exhaustive_list": true,
+          "locator_slopes_equal_exhaustive_mca": false,
+          "locator_slopes_subset_exhaustive_list": true,
+          "locator_slopes_subset_exhaustive_mca": false,
+          "locator_subset_count": 28,
+          "mca_code_dimension": 8,
+          "mca_noncontained_supports": 2517,
+          "mca_supports_examined": 2517,
+          "quotient_values": [
+            1,
+            2,
+            4,
+            8,
+            9,
+            13,
+            15,
+            16
+          ],
+          "radius": "1/4",
+          "slack_t": 2,
+          "support_size": 12
+        },
+        {
+          "N": 16,
+          "a": 1,
+          "anchor_exponent": 9,
+          "direction_exponent": 8,
+          "ell": 9,
+          "exhaustive_list_slope_count": 17,
+          "exhaustive_list_slopes": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16
+          ],
+          "exhaustive_mca_slope_count": 17,
+          "exhaustive_mca_slopes": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16
+          ],
+          "extra_list_slopes_beyond_locator": [],
+          "extra_mca_slopes_beyond_locator": [],
+          "list_supports_examined": 11440,
+          "locator_counts_by_slope": [
+            [
+              0,
+              672
+            ],
+            [
+              1,
+              673
+            ],
+            [
+              2,
+              673
+            ],
+            [
+              3,
+              673
+            ],
+            [
+              4,
+              673
+            ],
+            [
+              5,
+              673
+            ],
+            [
+              6,
+              673
+            ],
+            [
+              7,
+              673
+            ],
+            [
+              8,
+              673
+            ],
+            [
+              9,
+              673
+            ],
+            [
+              10,
+              673
+            ],
+            [
+              11,
+              673
+            ],
+            [
+              12,
+              673
+            ],
+            [
+              13,
+              673
+            ],
+            [
+              14,
+              673
+            ],
+            [
+              15,
+              673
+            ],
+            [
+              16,
+              673
+            ]
+          ],
+          "locator_list_code_dimension": 8,
+          "locator_slope_count": 17,
+          "locator_slope_count_histogram": {
+            "672": 1,
+            "673": 16
+          },
+          "locator_slopes_equal_exhaustive_list": true,
+          "locator_slopes_equal_exhaustive_mca": true,
+          "locator_slopes_subset_exhaustive_list": true,
+          "locator_slopes_subset_exhaustive_mca": true,
+          "locator_subset_count": 11440,
+          "mca_code_dimension": 8,
+          "mca_noncontained_supports": 26333,
+          "mca_supports_examined": 26333,
+          "quotient_values": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16
+          ],
+          "radius": "7/16",
+          "slack_t": 1,
+          "support_size": 9
+        },
+        {
+          "N": 16,
+          "a": 1,
+          "anchor_exponent": 10,
+          "direction_exponent": 9,
+          "ell": 10,
+          "exhaustive_list_slope_count": 17,
+          "exhaustive_list_slopes": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16
+          ],
+          "exhaustive_mca_slope_count": 17,
+          "exhaustive_mca_slopes": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16
+          ],
+          "extra_list_slopes_beyond_locator": [],
+          "extra_mca_slopes_beyond_locator": [],
+          "list_supports_examined": 8008,
+          "locator_counts_by_slope": [
+            [
+              0,
+              472
+            ],
+            [
+              1,
+              471
+            ],
+            [
+              2,
+              471
+            ],
+            [
+              3,
+              471
+            ],
+            [
+              4,
+              471
+            ],
+            [
+              5,
+              471
+            ],
+            [
+              6,
+              471
+            ],
+            [
+              7,
+              471
+            ],
+            [
+              8,
+              471
+            ],
+            [
+              9,
+              471
+            ],
+            [
+              10,
+              471
+            ],
+            [
+              11,
+              471
+            ],
+            [
+              12,
+              471
+            ],
+            [
+              13,
+              471
+            ],
+            [
+              14,
+              471
+            ],
+            [
+              15,
+              471
+            ],
+            [
+              16,
+              471
+            ]
+          ],
+          "locator_list_code_dimension": 9,
+          "locator_slope_count": 17,
+          "locator_slope_count_histogram": {
+            "471": 16,
+            "472": 1
+          },
+          "locator_slopes_equal_exhaustive_list": true,
+          "locator_slopes_equal_exhaustive_mca": true,
+          "locator_slopes_subset_exhaustive_list": true,
+          "locator_slopes_subset_exhaustive_mca": true,
+          "locator_subset_count": 8008,
+          "mca_code_dimension": 8,
+          "mca_noncontained_supports": 14893,
+          "mca_supports_examined": 14893,
+          "quotient_values": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16
+          ],
+          "radius": "3/8",
+          "slack_t": 2,
+          "support_size": 10
+        }
+      ],
+      "k": 8,
+      "rho": "1/2"
+    },
+    {
+      "cases": [
+        {
+          "N": 4,
+          "a": 4,
+          "anchor_exponent": 8,
+          "direction_exponent": 4,
+          "ell": 2,
+          "exhaustive_list_slope_count": 5,
+          "exhaustive_list_slopes": [
+            0,
+            3,
+            5,
+            12,
+            14
+          ],
+          "exhaustive_mca_slope_count": 5,
+          "exhaustive_mca_slopes": [
+            0,
+            3,
+            5,
+            12,
+            14
+          ],
+          "extra_list_slopes_beyond_locator": [],
+          "extra_mca_slopes_beyond_locator": [],
+          "list_supports_examined": 12870,
+          "locator_counts_by_slope": [
+            [
+              0,
+              2
+            ],
+            [
+              3,
+              1
+            ],
+            [
+              5,
+              1
+            ],
+            [
+              12,
+              1
+            ],
+            [
+              14,
+              1
+            ]
+          ],
+          "locator_list_code_dimension": 4,
+          "locator_slope_count": 5,
+          "locator_slope_count_histogram": {
+            "1": 4,
+            "2": 1
+          },
+          "locator_slopes_equal_exhaustive_list": true,
+          "locator_slopes_equal_exhaustive_mca": true,
+          "locator_slopes_subset_exhaustive_list": true,
+          "locator_slopes_subset_exhaustive_mca": true,
+          "locator_subset_count": 6,
+          "mca_code_dimension": 4,
+          "mca_noncontained_supports": 39203,
+          "mca_supports_examined": 39203,
+          "quotient_values": [
+            1,
+            4,
+            13,
+            16
+          ],
+          "radius": "1/2",
+          "slack_t": 1,
+          "support_size": 8
+        },
+        {
+          "N": 4,
+          "a": 4,
+          "anchor_exponent": 12,
+          "direction_exponent": 8,
+          "ell": 3,
+          "exhaustive_list_slope_count": 4,
+          "exhaustive_list_slopes": [
+            1,
+            4,
+            13,
+            16
+          ],
+          "exhaustive_mca_slope_count": 0,
+          "exhaustive_mca_slopes": [],
+          "extra_list_slopes_beyond_locator": [],
+          "extra_mca_slopes_beyond_locator": [],
+          "list_supports_examined": 1820,
+          "locator_counts_by_slope": [
+            [
+              1,
+              1
+            ],
+            [
+              4,
+              1
+            ],
+            [
+              13,
+              1
+            ],
+            [
+              16,
+              1
+            ]
+          ],
+          "locator_list_code_dimension": 5,
+          "locator_slope_count": 4,
+          "locator_slope_count_histogram": {
+            "1": 4
+          },
+          "locator_slopes_equal_exhaustive_list": true,
+          "locator_slopes_equal_exhaustive_mca": false,
+          "locator_slopes_subset_exhaustive_list": true,
+          "locator_slopes_subset_exhaustive_mca": false,
+          "locator_subset_count": 4,
+          "mca_code_dimension": 4,
+          "mca_noncontained_supports": 2517,
+          "mca_supports_examined": 2517,
+          "quotient_values": [
+            1,
+            4,
+            13,
+            16
+          ],
+          "radius": "1/4",
+          "slack_t": 2,
+          "support_size": 12
+        },
+        {
+          "N": 8,
+          "a": 2,
+          "anchor_exponent": 6,
+          "direction_exponent": 4,
+          "ell": 3,
+          "exhaustive_list_slope_count": 17,
+          "exhaustive_list_slopes": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16
+          ],
+          "exhaustive_mca_slope_count": 17,
+          "exhaustive_mca_slopes": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16
+          ],
+          "extra_list_slopes_beyond_locator": [
+            0
+          ],
+          "extra_mca_slopes_beyond_locator": [
+            0
+          ],
+          "list_supports_examined": 8008,
+          "locator_counts_by_slope": [
+            [
+              1,
+              4
+            ],
+            [
+              2,
+              4
+            ],
+            [
+              3,
+              3
+            ],
+            [
+              4,
+              4
+            ],
+            [
+              5,
+              3
+            ],
+            [
+              6,
+              3
+            ],
+            [
+              7,
+              3
+            ],
+            [
+              8,
+              4
+            ],
+            [
+              9,
+              4
+            ],
+            [
+              10,
+              3
+            ],
+            [
+              11,
+              3
+            ],
+            [
+              12,
+              3
+            ],
+            [
+              13,
+              4
+            ],
+            [
+              14,
+              3
+            ],
+            [
+              15,
+              4
+            ],
+            [
+              16,
+              4
+            ]
+          ],
+          "locator_list_code_dimension": 4,
+          "locator_slope_count": 16,
+          "locator_slope_count_histogram": {
+            "3": 8,
+            "4": 8
+          },
+          "locator_slopes_equal_exhaustive_list": false,
+          "locator_slopes_equal_exhaustive_mca": false,
+          "locator_slopes_subset_exhaustive_list": true,
+          "locator_slopes_subset_exhaustive_mca": true,
+          "locator_subset_count": 56,
+          "mca_code_dimension": 4,
+          "mca_noncontained_supports": 58651,
+          "mca_supports_examined": 58651,
+          "quotient_values": [
+            1,
+            2,
+            4,
+            8,
+            9,
+            13,
+            15,
+            16
+          ],
+          "radius": "5/8",
+          "slack_t": 1,
+          "support_size": 6
+        },
+        {
+          "N": 8,
+          "a": 2,
+          "anchor_exponent": 8,
+          "direction_exponent": 6,
+          "ell": 4,
+          "exhaustive_list_slope_count": 17,
+          "exhaustive_list_slopes": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16
+          ],
+          "exhaustive_mca_slope_count": 9,
+          "exhaustive_mca_slopes": [
+            0,
+            3,
+            5,
+            6,
+            7,
+            10,
+            11,
+            12,
+            14
+          ],
+          "extra_list_slopes_beyond_locator": [],
+          "extra_mca_slopes_beyond_locator": [],
+          "list_supports_examined": 12870,
+          "locator_counts_by_slope": [
+            [
+              0,
+              6
+            ],
+            [
+              1,
+              3
+            ],
+            [
+              2,
+              3
+            ],
+            [
+              3,
+              5
+            ],
+            [
+              4,
+              3
+            ],
+            [
+              5,
+              5
+            ],
+            [
+              6,
+              5
+            ],
+            [
+              7,
+              5
+            ],
+            [
+              8,
+              3
+            ],
+            [
+              9,
+              3
+            ],
+            [
+              10,
+              5
+            ],
+            [
+              11,
+              5
+            ],
+            [
+              12,
+              5
+            ],
+            [
+              13,
+              3
+            ],
+            [
+              14,
+              5
+            ],
+            [
+              15,
+              3
+            ],
+            [
+              16,
+              3
+            ]
+          ],
+          "locator_list_code_dimension": 5,
+          "locator_slope_count": 17,
+          "locator_slope_count_histogram": {
+            "3": 8,
+            "5": 8,
+            "6": 1
+          },
+          "locator_slopes_equal_exhaustive_list": true,
+          "locator_slopes_equal_exhaustive_mca": false,
+          "locator_slopes_subset_exhaustive_list": true,
+          "locator_slopes_subset_exhaustive_mca": false,
+          "locator_subset_count": 70,
+          "mca_code_dimension": 4,
+          "mca_noncontained_supports": 39203,
+          "mca_supports_examined": 39203,
+          "quotient_values": [
+            1,
+            2,
+            4,
+            8,
+            9,
+            13,
+            15,
+            16
+          ],
+          "radius": "1/2",
+          "slack_t": 2,
+          "support_size": 8
+        },
+        {
+          "N": 16,
+          "a": 1,
+          "anchor_exponent": 5,
+          "direction_exponent": 4,
+          "ell": 5,
+          "exhaustive_list_slope_count": 17,
+          "exhaustive_list_slopes": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16
+          ],
+          "exhaustive_mca_slope_count": 17,
+          "exhaustive_mca_slopes": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16
+          ],
+          "extra_list_slopes_beyond_locator": [],
+          "extra_mca_slopes_beyond_locator": [],
+          "list_supports_examined": 4368,
+          "locator_counts_by_slope": [
+            [
+              0,
+              256
+            ],
+            [
+              1,
+              257
+            ],
+            [
+              2,
+              257
+            ],
+            [
+              3,
+              257
+            ],
+            [
+              4,
+              257
+            ],
+            [
+              5,
+              257
+            ],
+            [
+              6,
+              257
+            ],
+            [
+              7,
+              257
+            ],
+            [
+              8,
+              257
+            ],
+            [
+              9,
+              257
+            ],
+            [
+              10,
+              257
+            ],
+            [
+              11,
+              257
+            ],
+            [
+              12,
+              257
+            ],
+            [
+              13,
+              257
+            ],
+            [
+              14,
+              257
+            ],
+            [
+              15,
+              257
+            ],
+            [
+              16,
+              257
+            ]
+          ],
+          "locator_list_code_dimension": 4,
+          "locator_slope_count": 17,
+          "locator_slope_count_histogram": {
+            "256": 1,
+            "257": 16
+          },
+          "locator_slopes_equal_exhaustive_list": true,
+          "locator_slopes_equal_exhaustive_mca": true,
+          "locator_slopes_subset_exhaustive_list": true,
+          "locator_slopes_subset_exhaustive_mca": true,
+          "locator_subset_count": 4368,
+          "mca_code_dimension": 4,
+          "mca_noncontained_supports": 63019,
+          "mca_supports_examined": 63019,
+          "quotient_values": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16
+          ],
+          "radius": "11/16",
+          "slack_t": 1,
+          "support_size": 5
+        },
+        {
+          "N": 16,
+          "a": 1,
+          "anchor_exponent": 6,
+          "direction_exponent": 5,
+          "ell": 6,
+          "exhaustive_list_slope_count": 17,
+          "exhaustive_list_slopes": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16
+          ],
+          "exhaustive_mca_slope_count": 17,
+          "exhaustive_mca_slopes": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16
+          ],
+          "extra_list_slopes_beyond_locator": [],
+          "extra_mca_slopes_beyond_locator": [],
+          "list_supports_examined": 8008,
+          "locator_counts_by_slope": [
+            [
+              0,
+              472
+            ],
+            [
+              1,
+              471
+            ],
+            [
+              2,
+              471
+            ],
+            [
+              3,
+              471
+            ],
+            [
+              4,
+              471
+            ],
+            [
+              5,
+              471
+            ],
+            [
+              6,
+              471
+            ],
+            [
+              7,
+              471
+            ],
+            [
+              8,
+              471
+            ],
+            [
+              9,
+              471
+            ],
+            [
+              10,
+              471
+            ],
+            [
+              11,
+              471
+            ],
+            [
+              12,
+              471
+            ],
+            [
+              13,
+              471
+            ],
+            [
+              14,
+              471
+            ],
+            [
+              15,
+              471
+            ],
+            [
+              16,
+              471
+            ]
+          ],
+          "locator_list_code_dimension": 5,
+          "locator_slope_count": 17,
+          "locator_slope_count_histogram": {
+            "471": 16,
+            "472": 1
+          },
+          "locator_slopes_equal_exhaustive_list": true,
+          "locator_slopes_equal_exhaustive_mca": true,
+          "locator_slopes_subset_exhaustive_list": true,
+          "locator_slopes_subset_exhaustive_mca": true,
+          "locator_subset_count": 8008,
+          "mca_code_dimension": 4,
+          "mca_noncontained_supports": 58651,
+          "mca_supports_examined": 58651,
+          "quotient_values": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16
+          ],
+          "radius": "5/8",
+          "slack_t": 2,
+          "support_size": 6
+        }
+      ],
+      "k": 4,
+      "rho": "1/4"
+    }
+  ],
+  "status": "PROVED"
+}
