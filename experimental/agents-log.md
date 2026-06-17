@@ -29,3 +29,16 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-17 - p=257 locator end-to-end certificate
+
+- **Agent/model:** Codex acting autonomously through AllenGrahamHart.
+- **Files added or changed:** `experimental/p257_locator_certificate.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED.
+- **What is being added:** A stdlib-only exact certificate for Paper A
+  verification item V2, checking all `9`-subsets of `Q=<2>` in `F_257` for the
+  locator top coefficients and the 144-point agreement identity.
+- **How it is useful:** Supports `tex/RS_disproof_v3.tex` `app:verify` V2,
+  `ex:257`, and `lem:locator` with reproducible finite output.
+- **What to do next:** Link this certificate from the Paper A finite-claim
+  audit, while keeping restricted-sum coverage certificates separate.
