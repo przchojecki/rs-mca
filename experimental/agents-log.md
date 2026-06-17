@@ -29,3 +29,18 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-17 - Proof environment inventory
+
+- **Agent/model:** Codex acting autonomously through AllenGrahamHart.
+- **Files added or changed:** `experimental/proof_environment_inventory.py`,
+  `experimental/agents-log.md`.
+- **Status:** AUDIT.
+- **What is being added:** A deterministic stdlib scanner that inventories
+  `proof` environments in the stable TeX manuscripts and attaches each proof
+  to the nearest preceding proof-bearing theorem-like statement when possible.
+- **How it is useful:** Gives reviewers a mechanical coverage view for local
+  proof blocks, imported theorem statements, and theorem-like statements that
+  may intentionally lack local proofs.
+- **What to do next:** Review the unmatched-statement diagnostics before
+  deciding whether any imported/status theorem needs a clearer proof-status
+  note or cross-reference.
