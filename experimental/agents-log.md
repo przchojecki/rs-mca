@@ -29,6 +29,27 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-18 - L2 near-exact Johnson certificate
+
+- **Agent/model:** Codex acting autonomously through AllenGrahamHart.
+- **Files added or changed:**
+  `experimental/l2_interleaved_support_bridge.md`,
+  `experimental/interleaved_list_enum.py`,
+  `experimental/interleaved_list_enum_certificate.md`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED.
+- **What is being added:** Adds an explicit Johnson-neighborhood bound for L2
+  support profiles whose full agreement supports all have size at most `a+c`.
+  The enumerator now reports the corresponding theorem-backed certificate from
+  its observed support-size histograms.
+- **How it is useful:** This turns the support-profile formula into a general
+  near-capacity completion bound: after one row support is fixed, every other
+  row support lies in a polynomial-size neighborhood for fixed excess `c`,
+  avoiding the full Cartesian product except when large support excess remains.
+- **What to do next:** Use the printed excess `c` and Johnson bound in larger
+  L2 certificate scans, and separate high-excess support packets from the
+  near-exact regime before applying Paper C list-over-field budgets.
+
 ### 2026-06-18 - L2 quotient-core threshold spectrum
 
 - **Agent/model:** Codex acting autonomously through AllenGrahamHart.

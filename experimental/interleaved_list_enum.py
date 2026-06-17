@@ -214,6 +214,127 @@ def max_two_row_codegrees(
     }
 
 
+def support_size_histogram(
+    histogram: Counter[int], agreement: int
+) -> Counter[int]:
+    sizes: Counter[int] = Counter()
+    for mask, count in histogram.items():
+        support_size = mask.bit_count()
+        if support_size >= agreement:
+            sizes[support_size] += count
+    return sizes
+
+
+def johnson_neighborhood_size(
+    domain_size: int, agreement: int, support_size: int, max_excess: int
+) -> int:
+    if support_size < agreement:
+        return 0
+    if support_size > agreement + max_excess:
+        raise ValueError("support_size exceeds agreement + max_excess")
+
+    excess = support_size - agreement
+    outside_size = domain_size - support_size
+    total = 0
+    for removed in range(excess + 1):
+        max_added = max_excess - excess + removed
+        for added in range(min(outside_size, max_added) + 1):
+            total += (
+                math.comb(support_size, removed)
+                * math.comb(outside_size, added)
+            )
+    return total
+
+
+def near_exact_johnson_bound(
+    histograms: list[Counter[int]],
+    agreement: int,
+    dimension: int,
+    domain_size: int,
+) -> dict[str, Any]:
+    support_sizes = [
+        support_size_histogram(histogram, agreement) for histogram in histograms
+    ]
+    listed_supports = [sum(histogram.values()) for histogram in support_sizes]
+
+    if any(count == 0 for count in listed_supports):
+        return {
+            "status": "proved",
+            "reason": "some row has no listed supports",
+            "max_excess": None,
+            "support_size_histograms": [
+                dict(sorted(histogram.items())) for histogram in support_sizes
+            ],
+            "bound": 0,
+            "row_bounds": [],
+            "neighborhood_sizes": {},
+        }
+
+    if agreement < dimension:
+        return {
+            "status": "not_applicable",
+            "reason": "requires agreement >= k for support injectivity",
+            "max_excess": None,
+            "support_size_histograms": [
+                dict(sorted(histogram.items())) for histogram in support_sizes
+            ],
+            "bound": None,
+            "row_bounds": [],
+            "neighborhood_sizes": {},
+        }
+
+    if any(
+        count != 1
+        for histogram in histograms
+        for mask, count in histogram.items()
+        if mask.bit_count() >= agreement
+    ):
+        return {
+            "status": "not_applicable",
+            "reason": "listed agreement supports are not injective",
+            "max_excess": None,
+            "support_size_histograms": [
+                dict(sorted(histogram.items())) for histogram in support_sizes
+            ],
+            "bound": None,
+            "row_bounds": [],
+            "neighborhood_sizes": {},
+        }
+
+    max_excess = max(
+        support_size - agreement
+        for histogram in support_sizes
+        for support_size in histogram
+    )
+    neighborhood_sizes = {
+        support_size: johnson_neighborhood_size(
+            domain_size, agreement, support_size, max_excess
+        )
+        for support_size in range(agreement, agreement + max_excess + 1)
+    }
+    row_bounds = []
+    row_count = len(histograms)
+    for histogram in support_sizes:
+        row_bounds.append(
+            sum(
+                count * neighborhood_sizes[support_size] ** (row_count - 1)
+                for support_size, count in histogram.items()
+            )
+        )
+
+    return {
+        "status": "proved",
+        "reason": "all listed supports have size in [a,a+c]",
+        "max_excess": max_excess,
+        "support_size_histograms": [
+            dict(sorted(histogram.items())) for histogram in support_sizes
+        ],
+        "bound": min(row_bounds),
+        "row_bounds": row_bounds,
+        "neighborhood_sizes": dict(sorted(neighborhood_sizes.items())),
+    }
+
+
 def binomial_tail_probability(
     trials: int, success_denominator: int, threshold: int
 ) -> Fraction:
@@ -326,6 +447,9 @@ def compute_report(args: argparse.Namespace) -> dict[str, Any]:
     )
     intersection_histogram = common_intersection_histogram(histograms, len(domain))
     two_row_codegrees = max_two_row_codegrees(histograms, args.agreement)
+    johnson_bound = near_exact_johnson_bound(
+        histograms, args.agreement, args.k, len(domain)
+    )
     random_baseline = random_received_baseline(
         args.p, args.k, len(domain), args.agreement, len(received_rows)
     )
@@ -352,6 +476,7 @@ def compute_report(args: argparse.Namespace) -> dict[str, Any]:
         "raw_to_direct_ratio": raw_to_direct_ratio,
         "common_intersection_histogram": dict(sorted(intersection_histogram.items())),
         "two_row_max_codegrees": two_row_codegrees,
+        "near_exact_johnson_bound": johnson_bound,
         "random_received_baseline": random_baseline,
         "support_mask_counts": [len(histogram) for histogram in histograms],
         "top_masks": [
@@ -388,6 +513,17 @@ def print_report(report: dict[str, Any]) -> None:
     print(f"common intersection histogram: {report['common_intersection_histogram']}")
     if report["two_row_max_codegrees"] is not None:
         print(f"two-row max codegrees: {report['two_row_max_codegrees']}")
+    johnson_bound = report["near_exact_johnson_bound"]
+    print(f"near-exact Johnson status: {johnson_bound['status']}")
+    if johnson_bound["bound"] is not None:
+        print(f"near-exact Johnson bound: {johnson_bound['bound']}")
+    if johnson_bound["max_excess"] is not None:
+        print(f"near-exact max excess: {johnson_bound['max_excess']}")
+    if johnson_bound["neighborhood_sizes"]:
+        print(
+            "Johnson neighborhood sizes: "
+            f"{johnson_bound['neighborhood_sizes']}"
+        )
 
     def decimal_text(item: dict[str, Any]) -> str:
         decimal = item["decimal"]

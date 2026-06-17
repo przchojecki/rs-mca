@@ -56,6 +56,30 @@ two max common-intersection codegrees, which certify the bound
   <= min(|P| Gamma_{>=a}(P,Q), |Q| Gamma_{>=a}(Q,P)).
 ```
 
+The script also emits a near-exact Johnson-neighborhood certificate when
+`a >= k`.  If all listed row supports have size between `a` and `a+c`, then
+for a fixed support `A` of size `s` the number of possible supports `B` with
+`|B| <= a+c` and `|A cap B| >= a` is
+
+```text
+J_{n,a,c}(s)
+  = sum_{i=0}^{s-a} binom(s,i)
+      sum_{j=0}^{c-(s-a)+i} binom(n-s,j).
+```
+
+Fixing one row support forces every other row support into this neighborhood,
+so the script reports
+
+```text
+min_i sum_{A in P_i} J_{n,a,c}(|A|)^(mu-1).
+```
+
+This is a proved upper bound on the direct interleaved count for the
+enumerated Reed-Solomon instance, and it becomes the exact diagonal bound when
+`c=0`.  The crude estimate `J_{n,a,c}(s) <= (c+1)^2 n^(2c)` shows that fixed
+support excess gives only a polynomial completion factor after one row support
+is fixed.
+
 The trivial product bound is the product of the base list counts.  Comparing
 the direct count with that product gives a finite sanity check for the
 interleaved-list overcharge discussed in the L2/Paper C ledger.

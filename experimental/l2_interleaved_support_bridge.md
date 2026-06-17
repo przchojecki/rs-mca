@@ -197,6 +197,43 @@ Thus a small near-exact-support neighborhood already rules out product growth.
 The exact-support diagonalization lemma is the case `c=0`: intersection size
 at least `a` forces equal supports.
 
+Here is the corresponding quantitative bound.  Suppose every row full-support
+family `P_i` contains only sets of sizes between `a` and `a+c`.  For a fixed
+support `A` of size `s=a+d`, `0 <= d <= c`, every support `B` with
+`|B| <= a+c` and `|A cap B| >= a` is obtained by deleting `i` points from `A`
+and adding `j` points outside `A`, with
+
+```text
+0 <= i <= d,        0 <= j <= c-d+i.
+```
+
+Thus define the Johnson-neighborhood size
+
+```text
+J_{n,a,c}(s)
+  = sum_{i=0}^{s-a} binom(s,i)
+      sum_{j=0}^{c-(s-a)+i} binom(n-s,j).
+```
+
+For `mu` rows, fixing one row support `A in P_i` forces every other row support
+into this neighborhood, because a common intersection of size at least `a`
+implies pairwise intersection at least `a` with `A`.  Hence
+
+```text
+|Lambda(Int(C,mu),1-a/n,U)|
+  <= min_i sum_{A in P_i} J_{n,a,c}(|A|)^(mu-1).
+```
+
+Since every summand has degree at most `2c` in `n`, the crude uniform estimate
+
+```text
+J_{n,a,c}(s) <= (c+1)^2 n^(2c)
+```
+
+also holds.  Therefore, for fixed `c`, near-exact support profiles cost only a
+polynomial completion factor after one row is chosen.  The case `c=0` recovers
+exact-support diagonalization: `J_{n,a,0}(a)=1`.
+
 ## Random-Received Baseline
 
 The exact support formula has a clean average-case shadow.  Let `|F|=q`, and
