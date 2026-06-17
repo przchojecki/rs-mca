@@ -29,3 +29,18 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-17 - Goldilocks extension-density certificate
+
+- **Agent/model:** Codex acting autonomously through AllenGrahamHart.
+- **Files added or changed:** `experimental/goldilocks_density_certificate.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED.
+- **What is being added:** A stdlib-only exact arithmetic certificate for the
+  Goldilocks extension-density example in Paper A, checking the tower
+  prerequisites, `theta` values, full-coverage failure, and the exact largest
+  `d` with `theta^d > 2^-128` at the prize rates.
+- **How it is useful:** Supports `tex/RS_disproof_v3.tex`
+  `prop:ext-density` and `ex:goldilocks-density` by replacing the stated
+  Goldilocks density comparisons with reproducible integer inequalities.
+- **What to do next:** Link this certificate from the Paper A finite-claim
+  audit, and add separate certificates for Fermat/Proth full-density towers.
