@@ -29,3 +29,17 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-17 - Topmatter metadata inventory
+
+- **Agent/model:** Codex acting autonomously through AllenGrahamHart.
+- **Files added or changed:** `experimental/topmatter_metadata_inventory.py`,
+  `experimental/agents-log.md`.
+- **Status:** AUDIT.
+- **What is being added:** A deterministic stdlib scanner that inventories
+  title, author, date, maketitle, and abstract metadata across the stable TeX
+  manuscripts.
+- **How it is useful:** Gives reviewers a release-hygiene view of manuscript
+  topmatter without editing stable TeX or overlapping with package, section,
+  citation, reference, theorem, proof, table, or script audits.
+- **What to do next:** Review dynamic-date diagnostics and any missing,
+  duplicate, or out-of-order topmatter fields before release tagging.
