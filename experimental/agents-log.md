@@ -29,3 +29,16 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-17 - Section structure inventory
+
+- **Agent/model:** Codex acting autonomously through AllenGrahamHart.
+- **Files added or changed:** `experimental/section_structure_inventory.py`,
+  `experimental/agents-log.md`.
+- **Status:** AUDIT.
+- **What is being added:** A deterministic stdlib scanner that inventories
+  structural headings and nearby labels across the stable TeX manuscripts.
+- **How it is useful:** Gives reviewers a line-numbered outline hygiene view
+  without changing stable TeX or overlapping with reference, citation, theorem,
+  proof, table, package, release-bundle, or script audits.
+- **What to do next:** Review unlabeled-heading and duplicate-label diagnostics
+  before deciding whether any stable manuscript labels should be normalized.
