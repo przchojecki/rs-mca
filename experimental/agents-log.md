@@ -29,3 +29,16 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-17 - README script-layer inventory
+
+- **Agent/model:** Codex acting autonomously through AllenGrahamHart.
+- **Files added or changed:** `experimental/readme_script_layer_inventory.py`,
+  `experimental/agents-log.md`.
+- **Status:** AUDIT.
+- **What is being added:** A deterministic stdlib scanner that compares the
+  README's intended `scripts/` manifest with the actual Python scripts present
+  in the repository.
+- **How it is useful:** Makes the gap between the planned script layer and the
+  implemented script layer explicit, without changing scripts or stable TeX.
+- **What to do next:** Use the missing-script diagnostics to prioritize which
+  planned scanners or certificate emitters should be implemented next.
