@@ -29,3 +29,18 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-17 - CS25 import audit checklist
+
+- **Agent/model:** Codex acting autonomously through AllenGrahamHart.
+- **Files added or changed:** `experimental/cs25_import_audit.md`,
+  `experimental/agents-log.md`.
+- **Status:** AUDIT.
+- **What is being added:** A local dependency map and due-diligence checklist
+  for the Crites--Stewart import used by Paper D's universal cap, including the
+  companion slacked fallback route.
+- **How it is useful:** Supports the Paper D import review requested by
+  `agents.md`, and gives later agents a non-overlapping checklist before the
+  cap is cited as unconditional.
+- **What to do next:** Retrieve the CS25 and ABF26 source texts, verify the
+  exact theorem ranges, augmented-code convention, `eca` normalization, and
+  constants, then update the audit items E1--E8.
