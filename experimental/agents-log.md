@@ -29,3 +29,21 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-17 - Chebyshev circle-domain fiber verifier
+
+- **Agent/model:** Codex acting autonomously through AllenGrahamHart.
+- **Files added or changed:**
+  `experimental/chebyshev_circle_fiber_verify.py`,
+  `experimental/chebyshev_circle_fiber_verify.md`,
+  `experimental/agents-log.md`.
+- **Status:** EXPERIMENTAL / AUDIT.
+- **What is being added:** A finite-field verifier for the Dickson--Chebyshev
+  identities `D_m(X_N)=X_{N/m}` and
+  `locator(D_m^{-1}(w) cap X_N)=D_m(X)-w` on small circle `x`-coordinate
+  domains.
+- **How it is useful:** This targets the circle/Chebyshev analogue direction by
+  making the fiber-locator transfer mechanism reproducible before using it in
+  quotient-core or slack-one experiments.
+- **What to do next:** Extend the verifier to enumerate the corresponding
+  quotient-core and slack-one bad-slope counts over circle-domain toy
+  instances.
