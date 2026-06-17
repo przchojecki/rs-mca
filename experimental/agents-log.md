@@ -36,13 +36,14 @@ Keep entries concise and link to the relevant files.
   `experimental/m1_average_support_collinearity.md`,
   `experimental/agents-log.md`.
 - **Status:** PROVED.
-- **What is being added:** An exact average-case lemma for random lines:
-  support/slope MCA incidences have expectation
-  `binom(n,k+t) * (q^t - 1) / q^(2t - 1)`, and expected bad-slope density is
-  at most `binom(n,k+t) / q^t`.
+- **What is being added:** Exact average-case and overlap bounds for random
+  lines: support/slope MCA incidences have expectation
+  `binom(n,k+t) * (q^t - 1) / q^(2t - 1)`, expected bad-slope density is at
+  most `binom(n,k+t) / q^t`, and support-pair covariance can begin only when
+  the two supports intersect in at least `k` points.
 - **How it is useful:** Gives a rigorous random-line baseline for the M1
   residue-line packing problem, matching the entropy-scale density heuristic
   while isolating the codimension `t-1` support-collinearity cost.
 - **What to do next:** Build a tiny-field `Pi_S` collinearity scanner and
   compare tangent, quotient-periodic, and aperiodic support sources against
-  this average-case baseline.
+  the expectation and high-overlap covariance baseline.

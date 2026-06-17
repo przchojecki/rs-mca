@@ -33,6 +33,25 @@ E |Inc_t(f,g)|
   <= binom(n,k+t) / q^(t - 1).
 ```
 
+Let `X = |Inc_t(f,g)|`, let `N_s = binom(n,k+t)`, and put
+
+```text
+p_t = (q^t - 1) / q^(2t - 1).
+```
+
+Then support pairs with intersection `< k` contribute exactly independently,
+and the second moment obeys
+
+```text
+Var X
+  <= N_s p_t(1 - p_t)
+     + N_s * sum_{r=k}^{k+t-1} binom(k+t,r) binom(n-k-t,k+t-r)
+         q^(r-k-2t+2).
+```
+
+Thus all possible random-line covariance is confined to pairs of supports
+intersecting in at least `k` points.
+
 If `Bad_t(f,g)` is the set of distinct support-wise MCA-bad slopes at radius
 `delta = 1 - (k+t)/n`, then
 
@@ -153,6 +172,103 @@ E |Bad_t(f,g)|/q
   = binom(n,k+t) * (q^t - 1) / q^(2t).
 ```
 
+## Support-Overlap Second Moment
+
+Let `X = |Inc_t(f,g)|`, and for each support `S` of size `s = k+t` let `I_S`
+be the indicator that `S` contributes an exact-support incidence. The preceding
+calculation gives
+
+```text
+Pr[I_S = 1] = p_t = (q^t - 1) / q^(2t - 1).
+```
+
+For two supports `S,T` of size `s`, put `r = |S cap T|`.
+
+First suppose `r < k`. The combined linear map
+
+```text
+v -> (Pi_S(v), Pi_T(v))
+```
+
+is surjective onto `F^t x F^t`. Indeed, the kernel consists of words whose
+restrictions to `S` and `T` are both degree-`< k`. On `S union T`, such a word
+is specified by a pair of degree-`< k` polynomials that agree on the `r` common
+points. Since `r < k`, there are `q^k q^(k-r)` such pairs. The union has size
+`2s-r = 2k+2t-r`, so the kernel dimension is `2k-r` and the rank is `2t`.
+Thus the two top-coefficient vectors are independent uniform vectors in
+`F^t`, and the same holds separately for `f` and `g`. Consequently,
+
+```text
+Pr[I_S = I_T = 1] = p_t^2        when |S cap T| < k.
+```
+
+Now suppose `r >= k`, and write `h = r-k`. The same kernel count shows that
+the rank of `v -> (Pi_S(v),Pi_T(v))` is `2t-h`: the two degree-`< k`
+interpolants must be identical once they agree on at least `k` points.
+
+For fixed `g`, write
+
+```text
+B = (Pi_S(g), Pi_T(g))
+```
+
+in the image subspace `V` of dimension `2t-h`. For `S` and `T` both to
+contribute incidences, the corresponding vector
+
+```text
+A = (Pi_S(f), Pi_T(f))
+```
+
+must lie in
+
+```text
+span(Pi_S(g)) x span(Pi_T(g)).
+```
+
+Intersecting this two-parameter set with `V` gives at most `q^2` choices for
+`A`. Since `B` ranges over at most `q^(2t-h)` image values and `A` is uniform
+in the same image subspace, this gives the crude but explicit high-overlap
+bound
+
+```text
+Pr[I_S = I_T = 1] <= q^(h - 2t + 2)
+                  = q^(r - k - 2t + 2)
+```
+
+for distinct supports with `k <= r <= k+t-1`.
+
+For each fixed `S`, the number of supports `T` with `|S cap T| = r` is
+
+```text
+binom(k+t,r) binom(n-k-t,k+t-r).
+```
+
+Combining the exact independence below `k` with the high-overlap bound gives
+the variance estimate stated in the claim:
+
+```text
+Var X
+  <= N_s p_t(1 - p_t)
+     + N_s * sum_{r=k}^{k+t-1} binom(k+t,r) binom(n-k-t,k+t-r)
+         q^(r-k-2t+2).
+```
+
+Equivalently,
+
+```text
+Var X / (E X)^2
+  <= (1 - p_t)/(N_s p_t)
+     + (1/(N_s p_t^2))
+       * sum_{r=k}^{k+t-1} binom(k+t,r) binom(n-k-t,k+t-r)
+           q^(r-k-2t+2).
+```
+
+Whenever this relative variance tends to zero, `X / E X -> 1` in probability.
+The criterion isolates the same threshold that appears throughout the
+Reed-Solomon theory: support overlaps below `k` behave randomly, while
+overlaps of size at least `k` are the only possible source of structured
+covariance.
+
 ## Constants and Interpretation
 
 The bound has three useful regimes.
@@ -194,12 +310,18 @@ expected bad-slope density
   <= binom(n,k+t) / q^t.
 ```
 
-It justifies treating the aperiodic part of residue-line packing as an
-incidence problem rather than as an arbitrary list-size problem. It also
-identifies the exact obstruction to promoting the estimate to a worst-case
-theorem: one must rule out line data for which many supports have aligned
-top-coefficient vectors `Pi_S(f)` and `Pi_S(g)` after the known tangent and
-quotient-periodic families are separated.
+The second-moment bound adds the overlap ledger:
+
+```text
+random support covariance starts only at |S cap T| >= k.
+```
+
+Together these formulas justify treating the aperiodic part of residue-line
+packing as an incidence problem rather than as an arbitrary list-size problem.
+They also identify the exact obstruction to promoting the estimate to a
+worst-case theorem: one must rule out line data for which many high-overlap
+supports have aligned top-coefficient vectors `Pi_S(f)` and `Pi_S(g)` after the
+known tangent and quotient-periodic families are separated.
 
 ## Suggested Next Step
 
