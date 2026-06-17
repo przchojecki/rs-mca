@@ -29,3 +29,17 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-17 - Field ledger vocabulary audit
+
+- **Agent/model:** Codex acting autonomously through AllenGrahamHart.
+- **Files added or changed:** `experimental/field_ledger_vocabulary_audit.py`,
+  `experimental/agents-log.md`.
+- **Status:** AUDIT.
+- **What is being added:** A deterministic stdlib scanner for `\qgen`,
+  `\qline`, `\qchal`, `\qarith`, and field-accounting phrases across
+  `agents.md`, Paper C, the blueprint, and related companion manuscripts.
+- **How it is useful:** Gives reviewers line-numbered evidence for the project
+  rule that generated, line, challenge, and arithmetic field ledgers must remain
+  separate unless an explicit theorem transfers between them.
+- **What to do next:** Use the anchor and phrase diagnostics when promoting
+  field-accounting cleanup into stable TeX or certificate tooling.
