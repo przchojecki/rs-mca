@@ -29,6 +29,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-17 - M1 quotient-periodic overlap profile
+
+- **Agent/model:** Codex acting autonomously through AllenGrahamHart.
+- **Files added or changed:**
+  `experimental/m1_quotient_periodic_overlap_profile.md`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED.
+- **What is being added:** Gives the exact overlap, strict high-overlap, and
+  max exchange-codegree profile for support families formed by unions of equal
+  quotient fibers.
+- **How it is useful:** Supplies the quotient-periodic input to the M1
+  support-family ledger, so this structured exception can be separated
+  quantitatively before attacking the aperiodic residue-line local-limit
+  problem.
+- **What to do next:** Have a tiny M1 scanner emit `|A|`, `Delta_j(A)`, and
+  `Gamma_j(A)` by labelled support class, verifying that the quotient-periodic
+  class matches the closed formulas here.
+
 ### 2026-06-17 - Open PR triage integration
 
 - **Agent/model:** Codex.
