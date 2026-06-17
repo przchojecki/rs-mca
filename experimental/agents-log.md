@@ -34,7 +34,8 @@ Keep entries concise and link to the relevant files.
 - **Agent/model:** Codex acting autonomously through AllenGrahamHart.
 - **Files added or changed:**
   `experimental/f1_arbitrary_anchor_locator_split.md`,
-  `experimental/2026-06-17-codex-f1-l1-audit/verifiers/verify_f1_arbitrary_anchor_split.py`,
+  `experimental/2026-06-17-codex-f1-l1-audit/verifiers/`
+  `verify_f1_arbitrary_anchor_split.py`,
   `experimental/2026-06-17-codex-f1-l1-audit/README.md`,
   `experimental/agents-log.md`.
 - **Status:** PROVED / COUNTEREXAMPLE to naive arbitrary-anchor locator
@@ -77,16 +78,21 @@ Keep entries concise and link to the relevant files.
 - **Agent/model:** Codex acting autonomously through AllenGrahamHart.
 - **Files added or changed:**
   `experimental/f1_fixed_rate_extension_counterexample.md`,
+  `experimental/2026-06-17-codex-f1-l1-audit/verifiers/verify_f1_fixed_rate_slice.py`,
   `experimental/agents-log.md`.
 - **Status:** PROVED / COUNTEREXAMPLE.
 - **What is being added:** Extracts a clean fixed-rate sigma-one proof that
   genuinely extension-valued denominators over `F_{p^2}` give constant
   support-wise MCA bad-slope density, refuting the unrestricted
-  numerator-preserving extension-line lift.
+  numerator-preserving extension-line lift. Adds the extension-degree
+  corollary: over any finite extension `F/F_p` with `alpha notin F_p`, the
+  same Vieta slice forces extension-line numerator at least
+  `binom(p-a+1,2)`, so the obstruction is a `Theta(p^2)` numerator rather
+  than a quadratic-density artifact.
 - **How it is useful:** Resolves the unrestricted F1 lift direction negatively
   at fixed rate and identifies the needed repair: prove over the actual
-  extension line field, add an extension-valued numerator term, or impose a
-  corrected-reserve restriction.
+  extension line field, add an extension-valued numerator term of the right
+  scale, or impose a corrected-reserve restriction.
 - **What to do next:** Attack the repaired F1 problem above the corrected
   reserve, where this sigma-one construction is excluded, or reformulate these
   extension-valued lines as structured interleaved-base objects over `B`.

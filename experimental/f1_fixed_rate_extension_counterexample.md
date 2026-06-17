@@ -63,6 +63,24 @@ numerator-preserving extension-line lift: the base-field MCA numerator can be
 taken trivially as `p`, while the extension-valued line over `F_{p^2}` has
 constant bad-slope density, not `p^{1+o(1)}/p^2`.
 
+More generally, the same construction works over any finite extension
+`F/F_p` containing an element `alpha notin F_p`. If `|F|=p^e` with `e >= 2`,
+then
+
+```text
+emca(C_F, delta)
+  >= binom(p-a+1, 2) / p^e,
+
+|F| * emca(C_F, delta)
+  >= binom(p-a+1, 2).
+```
+
+Thus the extension-line numerator forced by this sigma-one family is
+`Theta(p^2)` at fixed rate, independent of the extension degree. For `e=2`
+this is a constant-density counterexample. For `e>2` the density is diluted by
+the larger challenge field, but it is still a factor `Theta(p)` larger than
+the numerator `p` supplied by a base-field MCA bound.
+
 ## Status
 
 PROVED / COUNTEREXAMPLE.
@@ -71,7 +89,8 @@ This is a sigma-one counterexample, with agreement size `k+1`. It does not
 refute a repaired extension-line theorem in the corrected-reserve regime
 `sigma >= C n/log n`. It does refute any unrestricted route that bounds
 extension-line MCA by taking a base-field numerator and dividing by the larger
-extension challenge field.
+extension challenge field. The extension-degree corollary shows that the issue
+is numerator preservation, not merely constant density in quadratic extensions.
 
 ## Proof
 
@@ -153,6 +172,10 @@ x+y = x'+y',        xy = x'y'.
 The unordered pair is determined by its sum and product, so
 `{x,y} = {x',y'}`. This proves injectivity on the slice through `T`.
 
+The same injectivity proof only used the `B`-linear independence of `1` and
+`alpha`; it did not use that `F` is quadratic. Therefore it applies verbatim in
+any finite extension `F/F_p` with `alpha notin F_p`.
+
 The number of available points outside `T` is
 
 ```text
@@ -165,15 +188,22 @@ Therefore there are at least
 binom(p-a+1, 2)
 ```
 
-distinct bad slopes in `F`, and `|F|=p^2` gives the displayed lower bound.
+distinct bad slopes in `F`. If `|F|=p^e`, this gives the extension-degree
+lower bound
 
-For fixed rate `k=floor(rho(p-1))`, the ratio
+```text
+emca(C_F, delta) >= binom(p-a+1, 2) / p^e.
+```
+
+For fixed rate `k=floor(rho(p-1))`, the numerator ratio
 
 ```text
 binom(p-a+1, 2) / p^2
 ```
 
-tends to `(1-rho)^2/2`, since `a=k+1`.
+tends to `(1-rho)^2/2`, since `a=k+1`. Equivalently,
+`|F|*emca(C_F,delta)` is at least `((1-rho)^2/2-o(1))p^2` for every fixed
+extension degree `e>=2`.
 
 Finally, over the base field `B`, the trivial bound
 
@@ -182,8 +212,10 @@ emca(C_B, delta) <= 1 = p/p
 ```
 
 is a numerator-`p` bound. An unrestricted numerator-preserving lift would turn
-that into an extension-field estimate of size `p^{1+o(1)}/p^2`, which tends to
-zero. The lower bound above is a positive constant, giving the counterexample.
+that into an extension-field estimate of size `p^{1+o(1)}/p^e`. The lower
+bound above has numerator `Theta(p^2)`, so even in higher extensions the
+unrestricted same-numerator lift undercounts the forced extension-valued
+residue-line numerator by a factor `Theta(p)`.
 
 ## Ledger Impact
 
@@ -194,7 +226,9 @@ slopes record base-field pair sums and products through evaluation at `alpha`.
 
 Consequently a protocol ledger cannot safely take an MCA numerator proved over
 `q_line = |B|` and divide it by an extension challenge field `|F|` for arbitrary
-`F`-valued lines. A repaired F1 theorem must either:
+`F`-valued lines. The sigma-one extension numerator is already quadratic in
+`|B|`, even when `|F|` is a higher extension. A repaired F1 theorem must
+either:
 
 - prove MCA directly over the actual extension line field;
 - add an extension-valued residue-line numerator term;

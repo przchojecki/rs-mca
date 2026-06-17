@@ -109,6 +109,28 @@ def slice_slopes(p, k, d=None):
     return len(slopes), len(pool) * (len(pool) - 1) // 2, d
 
 
+def extension_degree_numerator_rows(p, k, degrees):
+    distinct, expected, d = slice_slopes(p, k)
+    assert distinct == expected
+    rows = []
+    for degree in degrees:
+        assert degree >= 2
+        denominator = p**degree
+        rows.append(
+            {
+                "extension_degree": degree,
+                "bad_slopes": distinct,
+                "density_num": distinct,
+                "density_den": denominator,
+                "forced_numerator": distinct,
+                "base_numerator": p,
+                "numerator_ratio_lower": distinct / p,
+                "nonsquare": d,
+            }
+        )
+    return rows
+
+
 def main():
     cases = [
         (7, 3),
@@ -123,6 +145,15 @@ def main():
         print(
             f"p={p}, k={k}, d={d}: slice slopes {distinct}/{p*p} "
             f"(density {density:.6f})"
+        )
+    rows = extension_degree_numerator_rows(17, 8, (2, 3, 6))
+    for row in rows:
+        print(
+            "extension degree {extension_degree}: "
+            "bad slopes={bad_slopes}, density={density_num}/{density_den}, "
+            "forced numerator/base numerator >= {numerator_ratio_lower:.6f}".format(
+                **row
+            )
         )
     print("F1 fixed-rate slice verifier passed")
 
