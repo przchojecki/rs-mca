@@ -132,6 +132,23 @@ slope-fiber multiplicity in the projection.  This is useful because the
 support-family machinery often naturally bounds witness supports, while
 line-decoding consumes distinct slopes.
 
+For Reed-Solomon codes, this certificate may be reduced to exact-size
+supports.  Suppose `C=RS[F,D,k]` and `a >= k+1`.  If a slope has a
+support-wise noncontained witness on some support `T` with `|T| >= a`, then it
+has one on a support `S subset T` with `|S|=a`.  Indeed, the line point remains
+code-explained on every subset of `T`.  Since the witness on `T` is
+noncontained, at least one of `f|T` or `g|T` is not the restriction of a
+degree-`<k` polynomial.  That failure is already visible on some
+`(k+1)`-subset of `T`; otherwise every `(k+1)`-subset would force the same
+degree-`<k` interpolation one point at a time.  Extend this bad `(k+1)`-subset
+inside `T` to size `a`.  The resulting support still explains the line point
+but does not explain both `f` and `g`.
+
+Thus for Reed-Solomon codes and `a >= k+1`, `LD_sw(C,a)` is unchanged if
+`W_a(f,g)` is restricted to exact supports `|S|=a`.  This is the form most
+useful for finite support-family scanners and for comparison with the M1
+exact-support ledgers.
+
 ## Residue-Line Equivalence for Reed-Solomon Codes
 
 The support-wise numerator is exactly the residue-line packing number from

@@ -29,6 +29,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-18 - M2 exact-support witness reduction
+
+- **Agent/model:** Codex acting autonomously through AllenGrahamHart.
+- **Files added or changed:**
+  `experimental/m2_line_decoding_mca_bridge.md`,
+  `experimental/m2_line_decoding_separation.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED.
+- **What is being added:** Proves that for Reed-Solomon codes and
+  `a >= k+1`, every support-wise noncontained witness on a support of size at
+  least `a` contains an exact-size `a` witness.  The verifier now compares
+  exact-size witness projection with all large-support projection.
+- **How it is useful:** This lets M2 certificates work with exact support
+  families, matching the M1 support-profile and residue-line ledgers instead
+  of having to scan every larger support size separately.
+- **What to do next:** Use exact-size support families in future
+  line-decoding/residue-line scanners and reserve ledgers.
+
 ### 2026-06-18 - M2 support-witness projection certificate
 
 - **Agent/model:** Codex acting autonomously through AllenGrahamHart.

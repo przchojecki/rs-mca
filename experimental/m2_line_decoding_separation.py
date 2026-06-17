@@ -51,32 +51,19 @@ def restriction_tables(
     return tables
 
 
-def compute_report(args: argparse.Namespace) -> dict[str, Any]:
-    if args.n >= args.p:
-        raise ValueError("use n < p for the default distinct domain 0,...,n-1")
-    if args.k > args.n - 2:
-        raise ValueError("the spike separation requires k <= n-2")
-    if args.spike_index >= args.n:
-        raise ValueError("--spike-index must be less than n")
-
-    domain = list(range(args.n))
-    agreement = args.n - 1
-    supports = list(itertools.combinations(range(args.n), agreement))
-    words = codewords(args.p, args.k, domain)
-    full_code = words
-    support_codes = restriction_tables(words, supports)
-
-    spike = [0] * args.n
-    spike[args.spike_index] = 1
-    h = tuple(spike)
-    f = tuple((args.base_slope * value) % args.p for value in h)
-    g = h
-
+def scan_supports(
+    f: tuple[int, ...],
+    g: tuple[int, ...],
+    prime: int,
+    supports: list[tuple[int, ...]],
+    support_codes: list[set[tuple[int, ...]]],
+) -> tuple[list[int], list[int], list[tuple[tuple[int, ...], int]]]:
     close_slopes: list[int] = []
     noncontained_slopes: list[int] = []
     witness_pairs: list[tuple[tuple[int, ...], int]] = []
-    for slope in range(args.p):
-        line_word = tuple((fv + slope * gv) % args.p for fv, gv in zip(f, g))
+
+    for slope in range(prime):
+        line_word = tuple((fv + slope * gv) % prime for fv, gv in zip(f, g))
         close = False
         noncontained = False
         for support, code_restrictions in zip(supports, support_codes):
@@ -95,9 +82,19 @@ def compute_report(args: argparse.Namespace) -> dict[str, Any]:
         if noncontained:
             noncontained_slopes.append(slope)
 
+    return close_slopes, noncontained_slopes, witness_pairs
+
+
+def witness_summary(
+    witness_pairs: list[tuple[tuple[int, ...], int]]
+) -> dict[str, Any]:
     witness_fibers = Counter(slope for _, slope in witness_pairs)
     witness_supports_by_slope = {
-        slope: [list(support) for support, item_slope in witness_pairs if item_slope == slope]
+        slope: [
+            list(support)
+            for support, item_slope in witness_pairs
+            if item_slope == slope
+        ]
         for slope in sorted(witness_fibers)
     }
     witness_pair_count = len(witness_pairs)
@@ -105,12 +102,58 @@ def compute_report(args: argparse.Namespace) -> dict[str, Any]:
     minimum_witness_multiplicity = (
         min(witness_fibers.values()) if witness_fibers else 0
     )
-    projection_bound = witness_pair_count
     multiplicity_bound = (
         None
         if minimum_witness_multiplicity == 0
         else witness_pair_count // minimum_witness_multiplicity
     )
+
+    return {
+        "witness_pair_count": witness_pair_count,
+        "projected_witness_slopes": projected_witness_slopes,
+        "witness_support_count_by_slope": dict(sorted(witness_fibers.items())),
+        "witness_supports_by_slope": witness_supports_by_slope,
+        "minimum_witness_multiplicity": minimum_witness_multiplicity,
+        "projection_bound": witness_pair_count,
+        "multiplicity_bound": multiplicity_bound,
+    }
+
+
+def compute_report(args: argparse.Namespace) -> dict[str, Any]:
+    if args.n >= args.p:
+        raise ValueError("use n < p for the default distinct domain 0,...,n-1")
+    if args.k > args.n - 2:
+        raise ValueError("the spike separation requires k <= n-2")
+    if args.spike_index >= args.n:
+        raise ValueError("--spike-index must be less than n")
+
+    domain = list(range(args.n))
+    agreement = args.n - 1
+    exact_supports = list(itertools.combinations(range(args.n), agreement))
+    large_supports = [
+        support
+        for size in range(agreement, args.n + 1)
+        for support in itertools.combinations(range(args.n), size)
+    ]
+    words = codewords(args.p, args.k, domain)
+    full_code = words
+    exact_support_codes = restriction_tables(words, exact_supports)
+    large_support_codes = restriction_tables(words, large_supports)
+
+    spike = [0] * args.n
+    spike[args.spike_index] = 1
+    h = tuple(spike)
+    f = tuple((args.base_slope * value) % args.p for value in h)
+    g = h
+
+    close_slopes, exact_noncontained_slopes, exact_witness_pairs = scan_supports(
+        f, g, args.p, exact_supports, exact_support_codes
+    )
+    _, noncontained_slopes, witness_pairs = scan_supports(
+        f, g, args.p, large_supports, large_support_codes
+    )
+    exact_summary = witness_summary(exact_witness_pairs)
+    large_summary = witness_summary(witness_pairs)
 
     line_contained = all(
         tuple((fv + slope * gv) % args.p for fv, gv in zip(f, g)) in full_code
@@ -144,24 +187,52 @@ def compute_report(args: argparse.Namespace) -> dict[str, Any]:
         "residual_bound": residual_bound,
         "close_point_slope_count": len(close_slopes),
         "supportwise_noncontained_slope_count": len(noncontained_slopes),
-        "supportwise_witness_pair_count": witness_pair_count,
-        "projected_witness_slopes": projected_witness_slopes,
-        "witness_support_count_by_slope": dict(sorted(witness_fibers.items())),
-        "witness_supports_by_slope": witness_supports_by_slope,
-        "minimum_witness_multiplicity": minimum_witness_multiplicity,
-        "projection_bound": projection_bound,
-        "multiplicity_bound": multiplicity_bound,
+        "exact_supportwise_noncontained_slope_count": len(
+            exact_noncontained_slopes
+        ),
+        "supportwise_witness_pair_count": large_summary["witness_pair_count"],
+        "exact_supportwise_witness_pair_count": exact_summary[
+            "witness_pair_count"
+        ],
+        "projected_witness_slopes": large_summary["projected_witness_slopes"],
+        "exact_projected_witness_slopes": exact_summary[
+            "projected_witness_slopes"
+        ],
+        "witness_support_count_by_slope": large_summary[
+            "witness_support_count_by_slope"
+        ],
+        "exact_witness_support_count_by_slope": exact_summary[
+            "witness_support_count_by_slope"
+        ],
+        "witness_supports_by_slope": large_summary["witness_supports_by_slope"],
+        "exact_witness_supports_by_slope": exact_summary[
+            "witness_supports_by_slope"
+        ],
+        "minimum_witness_multiplicity": large_summary[
+            "minimum_witness_multiplicity"
+        ],
+        "exact_minimum_witness_multiplicity": exact_summary[
+            "minimum_witness_multiplicity"
+        ],
+        "projection_bound": large_summary["projection_bound"],
+        "exact_projection_bound": exact_summary["projection_bound"],
+        "multiplicity_bound": large_summary["multiplicity_bound"],
+        "exact_multiplicity_bound": exact_summary["multiplicity_bound"],
         "close_point_slopes": close_slopes,
         "supportwise_noncontained_slopes": noncontained_slopes,
+        "exact_supportwise_noncontained_slopes": exact_noncontained_slopes,
         "expected_close_point_slope_count": args.p,
         "expected_supportwise_noncontained_slopes": [exceptional_slope],
         "matches_claim": (
             close_slopes == list(range(args.p))
             and noncontained_slopes == [exceptional_slope]
-            and projected_witness_slopes == [exceptional_slope]
-            and witness_pair_count == args.n - 1
-            and minimum_witness_multiplicity == args.n - 1
-            and multiplicity_bound == 1
+            and exact_noncontained_slopes == [exceptional_slope]
+            and large_summary["projected_witness_slopes"] == [exceptional_slope]
+            and exact_summary["projected_witness_slopes"] == [exceptional_slope]
+            and large_summary["witness_pair_count"] == args.n
+            and exact_summary["witness_pair_count"] == args.n - 1
+            and large_summary["multiplicity_bound"] == 1
+            and exact_summary["multiplicity_bound"] == 1
             and not line_contained
             and residual_bound == len(noncontained_slopes)
         ),
@@ -180,9 +251,19 @@ def print_report(report: dict[str, Any]) -> None:
         "support-wise noncontained slopes: "
         f"{report['supportwise_noncontained_slope_count']}"
     )
+    print(
+        "exact-support noncontained slopes: "
+        f"{report['exact_supportwise_noncontained_slope_count']}"
+    )
     print(f"support-wise witness pairs: {report['supportwise_witness_pair_count']}")
+    print(
+        "exact-support witness pairs: "
+        f"{report['exact_supportwise_witness_pair_count']}"
+    )
     print(f"projection bound: {report['projection_bound']}")
+    print(f"exact projection bound: {report['exact_projection_bound']}")
     print(f"multiplicity bound: {report['multiplicity_bound']}")
+    print(f"exact multiplicity bound: {report['exact_multiplicity_bound']}")
     print(f"residual bound from code-line exception: {report['residual_bound']}")
     print(f"exceptional slope: {report['exceptional_slope']}")
     print(f"matches claim: {report['matches_claim']}")
