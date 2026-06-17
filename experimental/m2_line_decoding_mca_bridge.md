@@ -102,6 +102,65 @@ is sufficient, since support-wise noncontained slopes are a subset of close
 line points, and a line contained in `C` has no support-wise noncontained
 slopes.  This sufficient condition is usually stronger than necessary.
 
+## Close-Point Line-Decoding Is Strictly Stronger
+
+The sufficient close-point predicate above is not equivalent to the
+support-wise numerator.  This matters when importing external line-decoding
+theorems: a theorem that bounds all close line points with only a "line
+contained in the code" exception may be much stronger than what MCA needs.
+
+Here is an explicit Reed-Solomon separation.  Let `C=RS[F,D,k]`, `|D|=n`, and
+assume
+
+```text
+k <= n-2,        a=n-1.
+```
+
+Choose `x0 in D` and let `h` be the one-point spike supported at `x0`, with
+`h(x0)=1`.  Fix `lambda in F`, and take
+
+```text
+f = lambda h,        g = h.
+```
+
+Then the affine line `f+F g` is not contained in `C`, but every slope is a
+close point:
+
+```text
+#{z in F : dist(f+z g,C) <= 1/n} = |F|.
+```
+
+By contrast, the support-wise noncontained slopes at agreement `a=n-1` are
+exactly
+
+```text
+{-lambda}.
+```
+
+Thus ordinary close-point line-decoding can count `|F|` slopes on a line whose
+support-wise numerator is only `1`.  The gap is entirely a common-support
+issue: for every `z != -lambda`, the line point is explained by the zero
+codeword on the punctured support `D \ {x0}`, and that same support also
+explains both `f` and `g`.
+
+Proof.  A nonzero degree-`<k` polynomial cannot agree with `h` on any support
+of size `n-1` containing `x0`: it would have at least `n-2 >= k` roots and
+also be nonzero at `x0`.  Hence `h` is not in `C`, so the line is not contained
+in `C`.
+
+For every `z`, the word `f+z g=(lambda+z)h` agrees with the zero codeword on
+`D \ {x0}`, so every slope is close at radius `1/n`.  If `z != -lambda`, this
+is the only size-`n-1` explaining support.  Any size-`n-1` support containing
+`x0` would force a degree-`<k` polynomial to have `n-2` zeros and a nonzero
+value at `x0`, impossible.  The unique explaining support therefore also
+explains `f` and `g`, so the slope is not support-wise noncontained.
+
+For `z=-lambda`, the line point is the zero codeword on every support.  Choose
+a size-`n-1` support containing `x0`.  The line point is explained there, but
+the same root-counting argument shows that `g` is not explained by a
+degree-`<k` codeword on that support.  Therefore no pair of codewords can
+explain both `f` and `g` there, so this slope is support-wise noncontained.
+
 For a theorem with an exceptional "the line is explained" alternative, the
 exception must be checked in the support-wise sense: for every close slope and
 every large explaining support consumed by the protocol, the same support must
@@ -122,7 +181,10 @@ LD_sw(C_n,a_n)
 
 under the same entropy and quotient-profile hypotheses as the corrected MCA
 conjecture.  The MCA statement is then the immediate corollary obtained by
-dividing this numerator by `q_n`.
+dividing this numerator by `q_n`.  The spike-line separation shows why this
+support-wise numerator is the right expected object: a stronger close-point
+line-decoding theorem is welcome when available, but it should not be assumed
+to follow from the residue-line packing conjecture.
 
 ## Follow-Up Checks
 
@@ -132,3 +194,17 @@ dividing this numerator by `q_n`.
   `LD_sw` numerator.
 - Decide whether the `n+1` parameter is only a codeword-uniqueness threshold or
   whether it hides an additional proximity-loss convention.
+- Check whether protocol line-decoding imports have a common-support or
+  code-line-proximity exception strong enough to avoid the spike-line
+  close-point separation.
+
+## Verifier
+
+The script `experimental/m2_line_decoding_separation.py` verifies the spike
+line on a tiny prime-field RS code by enumerating all degree-`<k` codewords and
+all supports of size `n-1`:
+
+```bash
+python3 experimental/m2_line_decoding_separation.py
+python3 experimental/m2_line_decoding_separation.py --format json
+```

@@ -29,6 +29,29 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-17 - M2 close-point line-decoding separation
+
+- **Agent/model:** Codex acting autonomously through AllenGrahamHart.
+- **Files added or changed:**
+  `experimental/m2_line_decoding_mca_bridge.md`,
+  `experimental/m2_line_decoding_separation.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED.
+- **What is being added:** Strengthens the M2 bridge note with an explicit
+  Reed-Solomon spike-line separation: at agreement `a=n-1`, ordinary
+  close-point line-decoding can see all `|F|` slopes on a line not contained
+  in the code, while the support-wise noncontained numerator for the same
+  line is exactly one. Adds a tiny enumerator that verifies the separation.
+- **How it is useful:** Shows that close-point line-decoding with only a
+  contained-line exception is strictly stronger than the support-wise MCA
+  numerator consumed by the Paper C ledger. The corrected M2 target should
+  therefore be stated in the support-wise/common-support form unless an
+  external line-decoding theorem has a stronger exception that rules out this
+  spike-line phenomenon.
+- **What to do next:** Match protocol line-decoding imports against this
+  support-wise predicate and record whether their exceptional case is strong
+  enough for the corrected reserve certificate.
+
 ### 2026-06-17 - Open PR triage integration
 
 - **Agent/model:** Codex.
