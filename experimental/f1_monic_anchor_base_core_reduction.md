@@ -240,6 +240,69 @@ If `[W-L_S-A]_E = z[N]_E`, then equality of representatives gives
 charged against the larger denominator `|F|` without an explicit transfer
 theorem.
 
+## Arbitrary Finite-Extension Frobenius Closure
+
+The same monic-anchor reduction is not specific to quadratic extensions.  Let
+`F/B` be any finite extension of degree `e`, and let `tau(x)=x^|B|` be the
+Frobenius generator of `Gal(F/B)`.  For a monic denominator
+
+```text
+E in F[X],        deg E = sigma,
+```
+
+define its Frobenius closure
+
+```text
+hatE = lcm(E, E^tau, E^{tau^2}, ..., E^{tau^{e-1}}).
+```
+
+Then `hatE in B[X]`, `deg hatE <= e sigma`, and the natural map
+
+```text
+iota: B[X]/(hatE) -> F[X]/(E)
+```
+
+is injective.  With the same monic-anchor hypotheses as above, but now over
+the extension `F/B`, the bad slopes are again in bijection with
+
+```text
+I_hat cap P_{A,N},
+```
+
+where
+
+```text
+I_hat = { [L_S]_{hatE} : S subset D, |S| = a },
+
+P_{A,N}
+  = { y in B[X]/(hatE) :
+        [W - A]_E - iota(y) lies in F * [N]_E }.
+```
+
+Moreover, two supporting subsets give the same slope if and only if their
+locator residues agree modulo `hatE`.  Thus in extension degree `e`, the
+balanced monic-anchor stratum increases the base locator-readout degree by at
+most a factor of `e`, not by an uncontrolled field-size term.
+
+Proof.  The polynomial `hatE` is fixed by Frobenius because the lcm ranges over
+the whole Frobenius orbit of `E`; hence `hatE` has coefficients in `B`.  The
+degree bound is immediate from the lcm of `e` degree-`sigma` polynomials.
+
+If `H in B[X]` maps to zero in `F[X]/(E)`, then `E | H` in `F[X]`.  Applying
+`tau^i` for every `i` gives `E^{tau^i} | H`, so `hatE | H`; this proves
+injectivity of `iota`.
+
+The support and noncontainment proof is identical to the quadratic case:
+monicity forces any agreement support of size `a` to have locator `L_S`, and
+the direction `-N/E` cannot be explained on an `a`-set by a degree-`<k`
+polynomial because `[N]_E != 0`.  If two supporting sets yield the same slope,
+then `E | (L_S-L_T)`.  Since `L_S-L_T in B[X]`, all Frobenius conjugates of
+`E` divide this difference, hence `hatE | (L_S-L_T)`.  The converse follows
+from `E | hatE`.
+
+The quadratic theorem above is the special case `e=2`, where the closure is
+`lcm(E,E^tau)`.
+
 ## Ledger Impact
 
 This theorem gives the repaired F1 problem a sharper local target:
@@ -248,8 +311,8 @@ This theorem gives the repaired F1 problem a sharper local target:
   `sigma=1` counterexample;
 - in the balanced monic-anchor stratum, extension denominators reduce to
   locator incidences modulo the base polynomial `hatE`;
-- the extension can increase the effective generated-field readout degree by
-  at most a factor of two;
+- in extension degree `e`, the extension can increase the effective
+  generated-field readout degree by at most a factor of `e`;
 - the remaining unresolved F1 issue is the arbitrary-anchor balanced stratum
   allowed by the full residue-line normal form.
 
