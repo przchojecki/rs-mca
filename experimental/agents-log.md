@@ -42,7 +42,8 @@ Keep entries concise and link to the relevant files.
   whole-fiber family is absent unless the fiber size divides `s = k+t` and the
   finite quotient-prefix form of the strict-overlap correction. Adds the
   dyadic dither corollary: for `k=k0-(t-1)`, every nontrivial dyadic
-  whole-fiber scale `m <= k0` fails the exact-support divisibility test.
+  whole-fiber scale `m <= k0` fails the exact-support divisibility test, and
+  more generally surviving dyadic scales are counted by `v2(t-r)`.
 - **How it is useful:** Supplies the quotient-periodic input to the M1
   support-family ledger, so this structured exception can be separated
   quantitatively before attacking the aperiodic residue-line local-limit

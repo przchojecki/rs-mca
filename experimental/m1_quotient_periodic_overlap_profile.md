@@ -153,6 +153,23 @@ r = t-1
 gives `t-r=1`, so every nontrivial dyadic whole-fiber quotient-periodic support
 family at scales `2 <= m <= k0` is absent at exact agreement size `s`.
 
+More generally, put `d=t-r` and
+
+```text
+Mmax = min(k0, t-1).
+```
+
+If `d != 0`, the surviving nontrivial dyadic strict-overlap scales are exactly
+
+```text
+m = 2^u,        1 <= u <= min(v2(|d|), floor(log2 Mmax)).
+```
+
+If `d=0`, all nontrivial dyadic scales `m <= Mmax` survive the exact-support
+divisibility test. Thus any dither with `t-r` odd kills every nontrivial dyadic
+whole-fiber strict-overlap scale, while `v2(|t-r|)`, capped by `Mmax`, gives
+the exact number of dyadic scales that can remain when `t != r`.
+
 ## Status
 
 PROVED.
@@ -236,6 +253,12 @@ one-fiber exchange. If `r=t-1`, then `t-r=1`, which has no nontrivial dyadic
 divisor. Hence no nontrivial dyadic whole-fiber family at scale `m <= k0`
 exists at the exact support size.
 
+The valuation refinement is the same divisibility condition written explicitly:
+for nonzero `d=t-r`, a dyadic scale `m=2^u` divides `d` exactly when
+`u <= v2(|d|)`. The strict-overlap and size restrictions add the cap
+`u <= floor(log2 Mmax)`. If `d=0`, every dyadic scale divides `d`, so only the
+cap remains.
+
 ## M1 Impact
 
 This note turns one of the main structured exceptions in the M1 program into an
@@ -272,6 +295,8 @@ Two immediate readings are useful.
 4. At dyadic rates, dimension dither can eliminate all exact whole-fiber
    quotient-periodic scales in one step: for `k=k0-(t-1)`, every dyadic
    nontrivial fiber scale `m <= k0` fails the divisibility test `m | s`.
+   More generally, the surviving dyadic scales are counted by the 2-adic
+   valuation of `t-r`, capped at `min(k0,t-1)`.
 
 This makes the quotient-periodic exception quantitatively separable from the
 aperiodic local-limit problem targeted by M1.
