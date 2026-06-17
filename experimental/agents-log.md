@@ -119,12 +119,17 @@ Keep entries concise and link to the relevant files.
   `binom(p-a+1,2)`, so the obstruction is a `Theta(p^2)` numerator rather
   than a quadratic-density artifact. Adds the domain-local corollary
   `binom(n-k+1,2)/|F|` for arbitrary base-field domains `D subset F_p`.
+  Adds a proved sigma-two degree-one slice over `F_p^*`: imposing `e1(S)=0`
+  and averaging zero-sum supports gives a tail with
+  `((1-rho)^3/6-o(1))p^2` distinct bad slopes.
 - **How it is useful:** Resolves the unrestricted F1 lift direction negatively
   at fixed rate and identifies the needed repair: prove over the actual
   extension line field, add an extension-valued numerator term of the right
   scale, or impose a corrected-reserve restriction. The domain-local form
   shows that same-numerator transfer already fails whenever `(n-k)^2` exceeds
-  the base numerator scale.
+  the base numerator scale. The sigma-two slice shows fixed positive residual
+  slack is still sub-reserve-dangerous; the residual slack must clear the
+  list/entropy ledger.
 - **What to do next:** Attack the repaired F1 problem above the corrected
   reserve, where this sigma-one construction is excluded, or reformulate these
   extension-valued lines as structured interleaved-base objects over `B`.

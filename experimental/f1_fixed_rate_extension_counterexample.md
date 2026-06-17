@@ -96,18 +96,61 @@ Thus an unrestricted same-numerator extension transfer from a base numerator
 full-subgroup case `D=F_p^*` is the fixed-rate endpoint `n=p-1`, where the
 forced extension numerator is `Theta(p^2)`.
 
+The sigma-one case is not the only fixed-slack degree-one obstruction. In the
+quadratic case over `H=F_p^*`, set
+
+```text
+sigma = 2,        a = k + 2.
+```
+
+For any `a`-subset `S subset H` with
+
+```text
+e1(S) = sum_{s in S} s = 0,
+```
+
+the same degree-one denominator `E=X-alpha`, numerator `N=1`, and monic anchor
+`X^a` give a support-wise bad slope. More quantitatively, there is a
+`(k-1)`-subset `T subset H` such that the slopes from supports
+
+```text
+S = T union U,        |U|=3,        e1(U) = -e1(T),
+```
+
+are all distinct and their number is at least
+
+```text
+M_{p,k}
+  = binom(k+2,3) / binom(p-1,k-1)
+      * (binom(p-1,k+2) + (p-1)(-1)^(k+2)) / p.
+```
+
+Consequently, for every fixed-rate sequence with `k=floor(rho(p-1))` and
+`0<rho<1`,
+
+```text
+emca(C_F, 1-(k+2)/(p-1))
+  >= ((1-rho)^3/6 - o(1)).
+```
+
+This remains a sub-reserve counterexample: `sigma=2` gives
+`eta=2/(p-1)`, far below the corrected `C/log n` reserve.
+
 ## Status
 
 PROVED / COUNTEREXAMPLE.
 
-This is a sigma-one counterexample, with agreement size `k+1`. It does not
-refute a repaired extension-line theorem in the corrected-reserve regime
-`sigma >= C n/log n`. It does refute any unrestricted route that bounds
+This starts with a sigma-one counterexample, with agreement size `k+1`, and
+adds a proved sigma-two degree-one family. These do not refute a repaired
+extension-line theorem in the corrected-reserve regime
+`sigma >= C n/log n`. They do refute any unrestricted route that bounds
 extension-line MCA by taking a base-field numerator and dividing by the larger
 extension challenge field. The extension-degree corollary shows that the issue
 is numerator preservation, not merely constant density in quadratic extensions.
 The domain-local corollary shows that the obstruction is controlled by
-`(n-k)^2`, not by any special multiplicative-subgroup identity.
+`(n-k)^2`, not by any special multiplicative-subgroup identity. The sigma-two
+slice shows that merely making the residual slack positive is not enough; it
+must clear the list/entropy reserve.
 
 ## Proof
 
@@ -216,6 +259,89 @@ emca(C_F, 1-a/n) >= binom(n-a+2, 2) / |F|.
 For `D=H=F_p^*`, this becomes `binom(p-a+1,2)/|F|`. If `|F|=p^e`, this gives
 the extension-degree lower bound displayed in the claim.
 
+## Proof Of The Sigma-Two Degree-One Slice
+
+Now take `F=F_p[alpha]` with `alpha^2=d`, `d` a nonsquare, and
+`H=F_p^*`. Set `sigma=2` and `a=k+2`. For an `a`-subset `S subset H`, write
+
+```text
+L_S(X) = product_{s in S} (X-s),
+Q_S(X) = X^a - L_S(X).
+```
+
+If `e1(S)=0`, then the `X^(a-1)` coefficient of `Q_S` vanishes, so
+`deg Q_S <= a-2 = k`. Put `z_S=Q_S(alpha)`. Then `Q_S-z_S` is divisible by
+`X-alpha`, and
+
+```text
+P_S(X) = (Q_S(X)-z_S)/(X-alpha)
+```
+
+has degree `< k`. Since `Q_S(x)=x^a` on `S`, this polynomial explains the line
+point `(x^a-z_S)/(x-alpha)` on `S`. The same noncontainment argument as above
+applies because `|S|=k+2>k`.
+
+It remains to count many distinct slopes. First count zero-sum `a`-subsets of
+`H`. For a nontrivial additive character `psi` of `F_p`,
+
+```text
+product_{x in F_p^*} (1 + Y psi(rx)) = 1 - Y + Y^2 - ... + Y^(p-1)
+```
+
+for every `r != 0`. Therefore the coefficient of `Y^a` is `(-1)^a`.
+Fourier inversion gives the exact count
+
+```text
+N_0(a)
+  = #{ S subset H : |S|=a, e1(S)=0 }
+  = (binom(p-1,a) + (p-1)(-1)^a) / p.
+```
+
+Each zero-sum support `S` gives `binom(a,3)` decompositions
+
+```text
+S = T union U,        |T|=k-1,        |U|=3.
+```
+
+Averaging over the `binom(p-1,k-1)` possible tails, some tail `T` has at least
+`M_{p,k}` triples `U` satisfying `e1(T)+e1(U)=0`.
+
+Fix such a tail. Let
+
+```text
+C_T = product_{t in T} (alpha-t).
+```
+
+For a triple `U={x,y,w}` with fixed sum `c=e1(U)`, the locator value is
+
+```text
+L_{T union U}(alpha)
+  = C_T (alpha-x)(alpha-y)(alpha-w)
+  = C_T (alpha^3 - c alpha^2 + e2(U) alpha - e3(U)).
+```
+
+Using `alpha^2=d` and `alpha^3=d alpha`, this equals
+
+```text
+C_T ( -c d - e3(U) + (d+e2(U)) alpha ).
+```
+
+Since `C_T != 0` and `1,alpha` are linearly independent over `F_p`, the slope
+records `e2(U)` and `e3(U)`. With `e1(U)=c` fixed, the elementary symmetric
+triple `(e1,e2,e3)` determines the unordered triple `U`. Thus the slopes from
+the chosen tail are distinct.
+
+Finally,
+
+```text
+M_{p,k}
+  = binom(p-k,3)/p - o(p^2)
+  = ((1-rho)^3/6 - o(1)) p^2
+```
+
+along fixed-rate sequences. Dividing by `|F|=p^2` gives the displayed
+constant-density sigma-two lower bound.
+
 For fixed rate `k=floor(rho(p-1))`, the numerator ratio
 
 ```text
@@ -248,8 +374,10 @@ slopes record base-field pair sums and products through evaluation at `alpha`.
 Consequently a protocol ledger cannot safely take an MCA numerator proved over
 `q_line = |B|` and divide it by an extension challenge field `|F|` for arbitrary
 `F`-valued lines. The sigma-one extension numerator is already quadratic in
-`|B|`, even when `|F|` is a higher extension. A repaired F1 theorem must
-either:
+`|B|`, even when `|F|` is a higher extension. The sigma-two slice shows that
+fixed positive residual slack still leaves constant-density degree-one
+families; the repaired theorem needs residual slack large enough for the list
+ledger, not merely nonzero slack. A repaired F1 theorem must either:
 
 - prove MCA directly over the actual extension line field;
 - add an extension-valued residue-line numerator term;
@@ -269,3 +397,10 @@ experimental/2026-06-17-codex-f1-l1-audit/verifiers/verify_f1_fixed_rate_slice.p
 
 checks finite instances of the injective slice used above. The theorem here is
 the general finite-field proof of that slice mechanism.
+
+The sigma-two slice is checked by
+
+```text
+experimental/2026-06-17-codex-f1-l1-audit/verifiers/\
+verify_f1_sigma2_degree1.py
+```

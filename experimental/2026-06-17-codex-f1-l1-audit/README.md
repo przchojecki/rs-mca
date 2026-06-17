@@ -19,7 +19,8 @@ human review and later promotion.
 - `COUNTEREXAMPLE`: unrestricted same-numerator extension-line MCA lift is false.
 - `COUNTEREXAMPLE`: raw arbitrary `Fib_U` locator local limit overcounts supports.
 - `BANKABLE_LEMMA`: fixed-rate `sigma=1` F1 counterexample family over
-  `F_p -> F_{p^2}`.
+  `F_p -> F_{p^2}`, plus a proved `sigma=2` degree-one tail-slice family
+  showing fixed positive residual slack is still sub-reserve-dangerous.
 - `BANKABLE_LEMMA / EXACT_NEW_WALL`: residual-slack reduction; balanced
   denominators are the remaining F1 wall.
 - `BANKABLE_LEMMA`: monic-anchor balanced denominators reduce to a base-field
