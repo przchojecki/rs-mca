@@ -38,6 +38,22 @@ that could be charged as `M > sigma` quotient-periodic exceptions, namely
 `S symmetric-diff T` has size `12` and is not a union of cosets of either
 subgroup.
 
+These forty collisions have a small structural certificate. Passing to
+complements `A = H \ S` and `B = H \ T`, the collisions form exactly three
+dilation orbits of unordered complement pairs:
+
+```text
+orbit size 16:
+  A={1,2,3,4,6,9}, B={5,8,10,11,12,13}, L_A-L_B = 3X+13
+orbit size 16:
+  A={1,2,4,11,14,15}, B={6,8,9,12,13,16}, L_A-L_B = 16X+5
+orbit size 8:
+  A={1,2,5,6,7,13}, B={4,10,11,12,15,16}, L_A-L_B = 13X
+```
+
+The last orbit has the antipodal stabilizer: multiplication by `-1` swaps the
+two complements. Thus the full collision packet is `16 + 16 + 8 = 40`.
+
 The generated-field entropy margin is already positive:
 
 ```text
@@ -46,6 +62,35 @@ The generated-field entropy margin is already positive:
 
 The Paper B list quotient-core profile is empty: `gcd(n,k)=2`, and the only
 nontrivial divisor `M=2` fails the active condition `sigma < M`.
+
+## Complement-Locator Compression
+
+The orbit certificate is not just a presentation choice. Since
+
+```text
+prod_{h in F_17^*} (1 + hZ) = 1 - Z^16,
+```
+
+the support elementary series and complement elementary series are inverse to
+each other modulo `Z^5`. Therefore two `10`-supports have the same
+`Phi_4` value if and only if their `6`-point complements have the same first
+four elementary symmetric coefficients.
+
+For complements of size `6`,
+
+```text
+L_A(X) = X^6 - e_1(A)X^5 + e_2(A)X^4 - ... + e_6(A).
+```
+
+Thus equal first four elementary coefficients are equivalent to
+
+```text
+L_A(X) - L_B(X) = alpha X + beta.
+```
+
+In this toy case, every aperiodic prefix collision is exactly one of the three
+linear locator-gap orbits listed above. This turns the finite counterexample to
+aperiodic injectivity into a small divisor-pair problem inside `X^16 - 1`.
 
 ## Example Collision
 
@@ -103,5 +148,6 @@ python3 experimental/verify_l1_aperiodic_prefix_collision.py --format json
 
 The verifier enumerates all `8008` supports, recomputes the fiber histogram,
 checks the example codewords, verifies the entropy and quotient-core ledgers,
-and checks that all forty nonsingleton fibers are not `M=8` or `M=16`
-coset-union collisions.
+checks that all forty nonsingleton fibers are not `M=8` or `M=16`
+coset-union collisions, and certifies the three complement-locator dilation
+orbits.

@@ -29,6 +29,33 @@ EXAMPLE_PREFIX = (8, 12, 13, 7)
 EXAMPLE_S = (1, 2, 3, 4, 5, 6, 7, 9, 10, 12)
 EXAMPLE_T = (1, 2, 3, 8, 10, 11, 13, 14, 15, 16)
 EXPECTED_HISTOGRAM = {1: 7928, 2: 40}
+EXPECTED_ORBIT_SIZES = (8, 16, 16)
+EXPECTED_ORBIT_REPRESENTATIVES = (
+    {
+        "orbit_size": 16,
+        "complements": (
+            (1, 2, 3, 4, 6, 9),
+            (5, 8, 10, 11, 12, 13),
+        ),
+        "linear_gap": {"alpha": 3, "beta": 13},
+    },
+    {
+        "orbit_size": 16,
+        "complements": (
+            (1, 2, 4, 11, 14, 15),
+            (6, 8, 9, 12, 13, 16),
+        ),
+        "linear_gap": {"alpha": 16, "beta": 5},
+    },
+    {
+        "orbit_size": 8,
+        "complements": (
+            (1, 2, 5, 6, 7, 13),
+            (4, 10, 11, 12, 15, 16),
+        ),
+        "linear_gap": {"alpha": 13, "beta": 0},
+    },
+)
 
 
 def positive_divisors(value: int) -> list[int]:
@@ -147,6 +174,73 @@ def is_union_of_cosets(values: set[int], order: int) -> bool:
     )
 
 
+def support_complement(support: Iterable[int]) -> tuple[int, ...]:
+    return tuple(sorted(set(domain()) - set(support)))
+
+
+def scale_support(support: Iterable[int], scalar: int) -> tuple[int, ...]:
+    return tuple(sorted((scalar * value) % P for value in support))
+
+
+def normalize_pair(
+    first: Iterable[int],
+    second: Iterable[int],
+) -> tuple[tuple[int, ...], tuple[int, ...]]:
+    first_tuple = tuple(sorted(first))
+    second_tuple = tuple(sorted(second))
+    ordered = sorted((first_tuple, second_tuple))
+    return ordered[0], ordered[1]
+
+
+def orbit_key(
+    first: Iterable[int],
+    second: Iterable[int],
+) -> tuple[tuple[int, ...], tuple[int, ...]]:
+    return min(
+        normalize_pair(
+            scale_support(first, scalar),
+            scale_support(second, scalar),
+        )
+        for scalar in domain()
+    )
+
+
+def linear_locator_gap(
+    first: Iterable[int],
+    second: Iterable[int],
+) -> dict[str, int]:
+    first_locator = locator_polynomial(first)
+    second_locator = locator_polynomial(second)
+    size = max(len(first_locator), len(second_locator))
+    difference = []
+    for index in range(size):
+        first_coeff = first_locator[index] if index < len(first_locator) else 0
+        second_coeff = second_locator[index] if index < len(second_locator) else 0
+        difference.append((first_coeff - second_coeff) % P)
+    if any(difference[index] for index in range(2, len(difference))):
+        raise AssertionError("locator gap is not linear")
+    return {
+        "alpha": difference[1] if len(difference) > 1 else 0,
+        "beta": difference[0] if difference else 0,
+    }
+
+
+def pair_stabilizer(
+    first: Iterable[int],
+    second: Iterable[int],
+) -> list[int]:
+    normalized = normalize_pair(first, second)
+    return [
+        scalar
+        for scalar in domain()
+        if normalize_pair(
+            scale_support(first, scalar),
+            scale_support(second, scalar),
+        )
+        == normalized
+    ]
+
+
 def active_quotient_cores() -> list[int]:
     out: list[int] = []
     for order in positive_divisors(gcd(N, K)):
@@ -233,6 +327,82 @@ def collision_report(
     }
 
 
+def complement_orbit_report(
+    fibers: dict[tuple[int, ...], list[tuple[int, ...]]],
+) -> dict[str, Any]:
+    orbit_members: dict[
+        tuple[tuple[int, ...], tuple[int, ...]],
+        list[dict[str, Any]],
+    ] = defaultdict(list)
+    all_gaps_linear = True
+
+    for prefix, supports in sorted(fibers.items()):
+        if len(supports) == 1:
+            continue
+        first_support, second_support = supports
+        first_complement = support_complement(first_support)
+        second_complement = support_complement(second_support)
+        if elementary_prefix(first_complement) != elementary_prefix(
+            second_complement
+        ):
+            raise AssertionError("complement prefixes do not match")
+        try:
+            gap = linear_locator_gap(first_complement, second_complement)
+        except AssertionError:
+            all_gaps_linear = False
+            raise
+        orbit_members[orbit_key(first_complement, second_complement)].append(
+            {
+                "prefix": prefix,
+                "linear_gap": gap,
+            }
+        )
+
+    representatives = []
+    for key in sorted(orbit_members):
+        first, second = key
+        representatives.append(
+            {
+                "orbit_size": len(orbit_members[key]),
+                "complements": [list(first), list(second)],
+                "linear_gap": linear_locator_gap(first, second),
+                "stabilizer": pair_stabilizer(first, second),
+            }
+        )
+
+    orbit_sizes = tuple(sorted(row["orbit_size"] for row in representatives))
+    expected_representatives = [
+        {
+            "orbit_size": row["orbit_size"],
+            "complements": [list(part) for part in row["complements"]],
+            "linear_gap": row["linear_gap"],
+        }
+        for row in EXPECTED_ORBIT_REPRESENTATIVES
+    ]
+    observed_representatives = [
+        {
+            "orbit_size": row["orbit_size"],
+            "complements": row["complements"],
+            "linear_gap": row["linear_gap"],
+        }
+        for row in representatives
+    ]
+    if orbit_sizes != EXPECTED_ORBIT_SIZES:
+        raise AssertionError("unexpected complement orbit sizes")
+    if observed_representatives != expected_representatives:
+        raise AssertionError("unexpected complement orbit representatives")
+
+    return {
+        "complement_prefix_equivalence_checked": True,
+        "all_locator_gaps_linear": all_gaps_linear,
+        "dilation_orbits": len(representatives),
+        "orbit_size_histogram": dict(
+            sorted(Counter(row["orbit_size"] for row in representatives).items())
+        ),
+        "representatives": representatives,
+    }
+
+
 def build_certificate() -> dict[str, Any]:
     fibers = prefix_fibers()
     histogram = Counter(len(values) for values in fibers.values())
@@ -248,6 +418,7 @@ def build_certificate() -> dict[str, Any]:
     collisions = collision_report(fibers)
     if not collisions["all_collision_fibers_aperiodic"]:
         raise AssertionError("found quotient-periodic collision")
+    complement_orbits = complement_orbit_report(fibers)
 
     return {
         "status": STATUS,
@@ -277,6 +448,7 @@ def build_certificate() -> dict[str, Any]:
             "maximum_fiber_size": max(histogram),
         },
         "collision_report": collisions,
+        "complement_orbit_report": complement_orbits,
         "example": verify_example(fibers),
         "passed": True,
     }
@@ -286,6 +458,7 @@ def print_text(cert: dict[str, Any]) -> None:
     inputs = cert["inputs"]
     distribution = cert["prefix_distribution"]
     collisions = cert["collision_report"]
+    complement_orbits = cert["complement_orbit_report"]
     print("L1 aperiodic prefix-collision certificate")
     print(f"Status: {cert['status']}")
     print(
@@ -314,6 +487,15 @@ def print_text(cert: dict[str, Any]) -> None:
     print(
         "symmetric-difference histogram: "
         f"{collisions['symmetric_difference_histogram']}"
+    )
+    print(
+        "complement dilation orbits: "
+        f"{complement_orbits['dilation_orbits']} with size histogram "
+        f"{complement_orbits['orbit_size_histogram']}"
+    )
+    print(
+        "all complement locator gaps linear: "
+        f"{complement_orbits['all_locator_gaps_linear']}"
     )
     print(f"example prefix: {cert['example']['prefix']}")
     print("passed: True")

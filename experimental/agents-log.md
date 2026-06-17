@@ -41,7 +41,9 @@ Keep entries concise and link to the relevant files.
   route cut into a standalone proof note and verifier: for `n=16`, `k=6`,
   `sigma=4`, the full `Phi_4` fiber distribution has forty aperiodic
   two-point collisions and no larger fibers, despite positive generated-field
-  entropy margin and empty quotient-core profile.
+  entropy margin and empty quotient-core profile.  The verifier also compresses
+  the collisions into three dilation orbits of complement locator pairs with
+  linear gaps `L_A-L_B`.
 - **How it is useful:** Targets L1 by showing that quotient-core removal
   cannot be strengthened to finite-field aperiodic injectivity; the surviving
   local-limit theorem must be a multiplicity bound for aperiodic prefix
