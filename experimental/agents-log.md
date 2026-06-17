@@ -29,6 +29,26 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-18 - M1 maximal-dither scale confinement
+
+- **Agent/model:** Codex acting autonomously through AllenGrahamHart.
+- **Files added or changed:**
+  `experimental/m1_quotient_periodic_overlap_profile.md`,
+  `experimental/verify_m1_quotient_remainder_profile.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED.
+- **What is being added:** Extracts a finite-prefix theorem from the maximal
+  dither all-scale formula: at dyadic maximal dither, every quotient scale
+  `m>t` has the same linear strict one-remainder profile, `m=t` has one
+  boundary term, and all nonlinear terms are confined to dyadic scales `m<t`.
+- **How it is useful:** This turns the remaining maximal-dither M1 quotient
+  hierarchy into a uniform large-scale tail plus an explicitly bounded
+  small-scale prefix, making the quotient-periodic exception finite and
+  explicit at fixed slack.
+- **What to do next:** Combine this scale confinement with finite small-scale
+  scanners and the random-line certificate ledger to budget maximal-dither
+  quotient packets before attacking the aperiodic residue-line contribution.
+
 ### 2026-06-17 - M1 quotient-periodic overlap profile
 
 - **Agent/model:** Codex acting autonomously through AllenGrahamHart.

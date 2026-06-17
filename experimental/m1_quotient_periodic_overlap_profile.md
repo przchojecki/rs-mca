@@ -393,6 +393,41 @@ scale. The large-scale corollary above is exactly its `h=0` first-band term
 when `m>t`, and the boundary case `m=t` is obtained by adding the final-band
 term at `h=1`.
 
+Thus maximal dither confines the nonlinear quotient-remainder work to a finite
+small-scale prefix.  Let
+
+```text
+S_small(t,k0)
+  = { m=2^u : 2 <= m < t and m | k0 }.
+```
+
+Then
+
+```text
+|S_small(t,k0)| <= 0                         if t <= 2,
+|S_small(t,k0)| <= floor(log2(t-1))          if t >= 3.
+```
+
+For every dyadic quotient scale `m | k0` with `m>t`, the complete strict
+profile is the same linear tail
+
+```text
+H_REM,1^{<t}(y) = (n-k0-1)y.
+```
+
+If `t` is itself a dyadic divisor of `k0`, there is exactly one boundary scale
+`m=t`, where
+
+```text
+H_REM,1^{<t}(y) = (n-k0-1)y + k0 y^(t-1).
+```
+
+All other nonlinear terms in the all-scale formula occur only for
+`m in S_small(t,k0)`.  Consequently, for fixed slack `t`, maximal dither turns
+the entire growing dyadic quotient hierarchy into a uniform linear large-scale
+tail plus an explicitly enumerable small-scale prefix of size at most the
+displayed bound.
+
 ## Random-Line Certificate Corollaries
 
 The overlap profiles above plug directly into the support-family random-line
