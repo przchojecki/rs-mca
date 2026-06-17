@@ -45,6 +45,29 @@ between the interleaved and Cartesian packet counts.  Small integers are
 printed exactly; deployed-scale binomial coefficients are reported by digit and
 bit length to keep JSON output bounded.
 
+The script also supports arbitrary agreement thresholds through
+`--agreement`.  If the common intersection of the row slack sets has size
+`tau`, then the packet count at threshold `a` is determined by
+
+```text
+h = ceil((a-tau)/M).
+```
+
+If `h <= 0`, every Cartesian tuple contributes.  If `h > ell`, no tuple
+contributes.  Otherwise the exact count is
+
+```text
+sum_{c=h}^ell binom(N-1,c) E_empty(N-1-c,ell-c,mu),
+
+E_empty(R,b,mu)
+  = sum_{j=0}^b (-1)^j binom(R,j) binom(R-j,b-j)^mu.
+```
+
+This is the common-intersection spectrum of `mu` ordered `ell`-subsets of the
+`N-1` available quotient cosets.  It specializes to `L` at `a=k+sigma` with
+aligned slack sets, and to `L^mu` once the threshold is low enough that no
+common quotient coset is required.
+
 ## Reproducible Checks
 
 Tiny dyadic quotient packet:
@@ -68,6 +91,18 @@ python3 experimental/quotient_core_interleaving.py \
   --M 2 \
   --rows 2 \
   --slack-intersection 0
+```
+
+One step below the exact quotient-core threshold:
+
+```bash
+python3 experimental/quotient_core_interleaving.py \
+  --n 8 \
+  --k 4 \
+  --sigma 1 \
+  --M 2 \
+  --rows 2 \
+  --agreement 3
 ```
 
 JSON mode is intended for later connection to the quotient-profile scanner:

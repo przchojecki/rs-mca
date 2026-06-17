@@ -296,6 +296,47 @@ packet contributes zero tuples.  The known quotient-core lower-bound packet
 therefore shares its support parameter under column interleaving; it does not
 itself force the Cartesian-product exponent.
 
+The same packet has an exact threshold spectrum below `k+sigma`.  Let
+
+```text
+tau = |T_1 cap ... cap T_mu|,        Q = N-1,
+h(a,tau) = ceil((a-tau)/M).
+```
+
+Interpret `h(a,tau) <= 0` as `0`, and if `h(a,tau)>ell` the count below is
+zero.  For `0 <= c <= ell`, put
+
+```text
+E_empty(R,b,mu)
+  = sum_{j=0}^b (-1)^j binom(R,j) binom(R-j,b-j)^mu.
+```
+
+This is the number of `mu` ordered `b`-subsets of an `R`-element quotient
+universe with empty common intersection.  Therefore the exact packet count at
+agreement threshold `a` is
+
+```text
+L_mu(a,tau)
+  = sum_{c=h(a,tau)}^ell
+      binom(Q,c) E_empty(Q-c,ell-c,mu).
+```
+
+Indeed, `c` is the exact size of the common quotient intersection
+`A_1 cap ... cap A_mu`; choose that common intersection, then remove it from
+each row and require the remaining quotient choices to have no common point.
+
+This formula interpolates between the diagonal and Cartesian extremes:
+
+```text
+h=ell      gives L_mu = binom(Q,ell) = L,
+h=0        gives L_mu = binom(Q,ell)^mu = L^mu.
+```
+
+Thus the aligned quotient-core packet is exactly diagonal at the endpoint
+`a=k+sigma`, but as the agreement threshold drops, the growth is controlled by
+the common-intersection tail of `mu` quotient subsets rather than by an
+unstructured product bound.
+
 ## Extension-Coordinate Support Formula
 
 Let `B <= F` be finite fields with `[F:B]=e`, let `H subset B`, and set

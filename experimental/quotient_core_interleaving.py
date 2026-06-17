@@ -61,6 +61,49 @@ def fraction_payload(value: Fraction) -> dict[str, Any]:
     }
 
 
+def ceil_div(numerator: int, denominator: int) -> int:
+    return -((-numerator) // denominator)
+
+
+def common_intersection_empty_count(
+    universe_size: int, subset_size: int, rows: int
+) -> int:
+    total = 0
+    for forced_common in range(subset_size + 1):
+        total += (
+            (-1) ** forced_common
+            * math.comb(universe_size, forced_common)
+            * math.comb(universe_size - forced_common, subset_size - forced_common)
+            ** rows
+        )
+    return total
+
+
+def quotient_tuple_count_at_threshold(
+    quotient_universe_size: int,
+    quotient_subset_size: int,
+    rows: int,
+    common_intersection_threshold: int,
+) -> int:
+    if common_intersection_threshold <= 0:
+        return math.comb(quotient_universe_size, quotient_subset_size) ** rows
+    if common_intersection_threshold > quotient_subset_size:
+        return 0
+
+    total = 0
+    for exact_common in range(common_intersection_threshold, quotient_subset_size + 1):
+        remaining_universe = quotient_universe_size - exact_common
+        remaining_size = quotient_subset_size - exact_common
+        total += math.comb(quotient_universe_size, exact_common) * (
+            common_intersection_empty_count(
+                remaining_universe,
+                remaining_size,
+                rows,
+            )
+        )
+    return total
+
+
 def compute_report(args: argparse.Namespace) -> dict[str, Any]:
     if args.k > args.n:
         raise ValueError("expected k <= n")
@@ -72,18 +115,28 @@ def compute_report(args: argparse.Namespace) -> dict[str, Any]:
         raise ValueError("M must divide k")
     if args.slack_intersection > args.sigma:
         raise ValueError("--slack-intersection cannot exceed sigma")
+    if args.agreement is None:
+        args.agreement = args.k + args.sigma
+    if args.agreement < 0:
+        raise ValueError("--agreement must be nonnegative")
+    if args.agreement > args.n:
+        raise ValueError("--agreement cannot exceed n")
 
     quotient_order = args.n // args.m
     quotient_dimension = args.k // args.m
     if quotient_dimension > quotient_order - 1:
         raise ValueError("quotient construction requires k/M <= n/M - 1")
 
+    quotient_universe_size = quotient_order - 1
+    threshold = ceil_div(args.agreement - args.slack_intersection, args.m)
     base_packet_size = math.comb(quotient_order - 1, quotient_dimension)
     cartesian_packet_size = base_packet_size**args.rows
-    if args.slack_intersection == args.sigma:
-        interleaved_packet_size = base_packet_size
-    else:
-        interleaved_packet_size = 0
+    interleaved_packet_size = quotient_tuple_count_at_threshold(
+        quotient_universe_size,
+        quotient_dimension,
+        args.rows,
+        threshold,
+    )
 
     ratio = (
         None
@@ -95,12 +148,15 @@ def compute_report(args: argparse.Namespace) -> dict[str, Any]:
         "n": args.n,
         "k": args.k,
         "sigma": args.sigma,
-        "agreement": args.k + args.sigma,
+        "agreement": args.agreement,
+        "exact_quotient_core_agreement": args.k + args.sigma,
         "M": args.m,
         "N": quotient_order,
         "ell": quotient_dimension,
+        "quotient_universe_size": quotient_universe_size,
         "row_count": args.rows,
         "slack_intersection": args.slack_intersection,
+        "common_quotient_intersection_threshold": threshold,
         "base_packet_size": integer_payload(base_packet_size),
         "cartesian_packet_size": integer_payload(cartesian_packet_size),
         "interleaved_packet_size": integer_payload(interleaved_packet_size),
@@ -140,7 +196,12 @@ def print_report(report: dict[str, Any]) -> None:
         )
     )
     print(f"agreement: {report['agreement']}")
+    print(f"exact quotient-core agreement: {report['exact_quotient_core_agreement']}")
     print(f"slack intersection: {report['slack_intersection']}")
+    print(
+        "common quotient-intersection threshold: "
+        f"{report['common_quotient_intersection_threshold']}"
+    )
     print(
         "base quotient-core packet: "
         + integer_text(report["base_packet_size"])
@@ -185,6 +246,11 @@ def build_parser() -> argparse.ArgumentParser:
         "--slack-intersection",
         type=nonnegative_int,
         help="common size of the row slack sets; defaults to sigma",
+    )
+    parser.add_argument(
+        "--agreement",
+        type=nonnegative_int,
+        help="agreement threshold; defaults to k+sigma",
     )
     parser.add_argument(
         "--format",

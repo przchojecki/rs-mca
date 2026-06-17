@@ -29,6 +29,28 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-18 - L2 quotient-core threshold spectrum
+
+- **Agent/model:** Codex acting autonomously through AllenGrahamHart.
+- **Files added or changed:**
+  `experimental/l2_interleaved_support_bridge.md`,
+  `experimental/quotient_core_interleaving.py`,
+  `experimental/quotient_core_interleaving_certificate.md`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED.
+- **What is being added:** Computes the exact common-intersection spectrum for
+  interleaved quotient-core packets at arbitrary agreement threshold `a`.  With
+  slack intersection `tau`, the required common quotient intersection is
+  `ceil((a-tau)/M)`, and the packet count is the corresponding
+  inclusion-exclusion tail for ordered quotient subsets.
+- **How it is useful:** This sharpens the L2 quotient-core obstruction from a
+  single endpoint statement into a full threshold profile.  It shows exactly
+  when the aligned lower-bound packet is diagonal, when it becomes Cartesian,
+  and how it transitions between those extremes.
+- **What to do next:** Compare this spectrum against active interleaved
+  agreement-support certificates and use it to separate genuinely dangerous L2
+  packets from product bounds that are only artifacts of coarse counting.
+
 ### 2026-06-17 - L2 full-agreement support profile
 
 - **Agent/model:** Codex acting autonomously through AllenGrahamHart.
@@ -61,9 +83,11 @@ Keep entries concise and link to the relevant files.
   should recover after structured packets are separated. The quotient-core
   packet calculation shows that the standard aligned quotient lower-bound
   source is diagonal under column interleaving: its L2 packet count is `L`, not
-  `L^mu`. The extension-coordinate support formula turns the manuscript's
-  extension-list identity into the same common-intersection support certificate
-  after choosing a base-field basis.
+  `L^mu`. The threshold-spectrum refinement computes exactly how this packet
+  grows below `k+sigma` from the diagonal count toward the Cartesian count via
+  a common quotient-intersection tail. The extension-coordinate support formula
+  turns the manuscript's extension-list identity into the same
+  common-intersection support certificate after choosing a base-field basis.
 - **What to do next:** Have interleaved certificate tooling print row full
   agreement-support histograms, the common-intersection tuple count, and the
   random baseline next to the conservative product bound. Feed active quotient
