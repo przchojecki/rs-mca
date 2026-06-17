@@ -68,6 +68,34 @@ Pr[ f + z g has any support-wise MCA-bad slope at radius delta ]
   <= binom(n,k+t) * (q^t - 1) / q^(2t - 1).
 ```
 
+There is also a fixed-base version that separates the zero slope. For fixed
+`f`, define
+
+```text
+A_t(f) = |{S subset D: |S| = k+t and Pi_S(f) = 0}|.
+```
+
+If `g` is uniform in `F^D`, then
+
+```text
+E_g |Inc_t(f,g)|
+  = A_t(f)(1 - q^(-t)) + (N_s - A_t(f))(q - 1)/q^t.
+```
+
+If `Inc_t^*(f,g)` denotes the same incidence set with the zero slope removed,
+then
+
+```text
+E_g |Inc_t^*(f,g)|
+  = (N_s - A_t(f))(q - 1)/q^t
+  <= N_s / q^(t - 1).
+```
+
+Thus the base-word support-list mass contributes only to the zero slope
+`z = 0`; after that slope is removed, a random direction pays the same
+codimension `t-1` support-collinearity cost uniformly for every fixed base
+word `f`.
+
 This is an average-case statement for random lines. It is not a worst-case M1
 local-limit theorem.
 
@@ -171,6 +199,65 @@ E |Bad_t(f,g)|/q
   <= E |Inc_t(f,g)|/q
   = binom(n,k+t) * (q^t - 1) / q^(2t).
 ```
+
+## Fixed-Base Random Direction and Zero-Slope Separation
+
+The random-line formula can be conditioned on one endpoint of the line. Fix
+`f in F^D` and choose only `g` uniformly at random. Let
+
+```text
+A_t(f) = |{S subset D: |S| = k+t and Pi_S(f) = 0}|.
+```
+
+For a fixed support `S`, put `A = Pi_S(f)` and `B = Pi_S(g)`. As `g` varies,
+`B` is uniform in `F^t`.
+
+If `A = 0`, then `A + zB = 0` contributes only at the zero slope `z = 0`.
+It contributes exactly when `B != 0`; when `B = 0`, both `f` and `g` are
+degree-`< k` on `S`, so the noncontainment condition fails. Therefore
+
+```text
+Pr_g[S contributes | Pi_S(f) = 0] = 1 - q^(-t).
+```
+
+If `A != 0`, then a slope exists exactly when `B` is a nonzero scalar multiple
+of `A`. There are `q-1` such vectors `B`, each giving one nonzero slope. Hence
+
+```text
+Pr_g[S contributes | Pi_S(f) != 0] = (q - 1)/q^t.
+```
+
+Summing over supports gives the exact conditional incidence formula
+
+```text
+E_g |Inc_t(f,g)|
+  = A_t(f)(1 - q^(-t)) + (N_s - A_t(f))(q - 1)/q^t.
+```
+
+Removing the zero slope removes the entire `Pi_S(f)=0` contribution, so
+
+```text
+E_g |Inc_t^*(f,g)|
+  = (N_s - A_t(f))(q - 1)/q^t
+  <= N_s / q^(t - 1).
+```
+
+For distinct bad slopes this gives the sharper fixed-base density ledger
+
+```text
+E_g |Bad_t(f,g) \ {0}| / q
+  <= (N_s - A_t(f))(q - 1) / q^(t+1),
+
+E_g |Bad_t(f,g)| / q
+  <= 1/q + (N_s - A_t(f))(q - 1) / q^(t+1).
+```
+
+Thus a base word with a large support-list fiber can create many
+support/slope incidences, but all of that base-dependent excess is parked at
+the single slope `z = 0`. The nonzero-slope random-direction baseline is
+uniform in `f`. This is not a classification of the worst-case tangent-floor
+construction; it only says that fixed basepoint list mass does not create
+extra nonzero slopes for a random direction.
 
 ## Support-Overlap Second Moment
 
@@ -310,6 +397,16 @@ expected bad-slope density
   <= binom(n,k+t) / q^t.
 ```
 
+The fixed-base refinement separates the zero slope:
+
+```text
+nonzero random-direction incidence mass
+  <= binom(n,k+t) / q^(t-1)  for every fixed base word.
+
+nonzero random-direction bad-slope density
+  <= binom(n,k+t) / q^t      for every fixed base word.
+```
+
 The second-moment bound adds the overlap ledger:
 
 ```text
@@ -319,9 +416,10 @@ random support covariance starts only at |S cap T| >= k.
 Together these formulas justify treating the aperiodic part of residue-line
 packing as an incidence problem rather than as an arbitrary list-size problem.
 They also identify the exact obstruction to promoting the estimate to a
-worst-case theorem: one must rule out line data for which many high-overlap
-supports have aligned top-coefficient vectors `Pi_S(f)` and `Pi_S(g)` after the
-known tangent and quotient-periodic families are separated.
+worst-case theorem: after the zero-slope basepoint term, the known
+tangent-floor constructions, and quotient-periodic families are separated, one
+must rule out line data for which many high-overlap supports have aligned
+top-coefficient vectors `Pi_S(f)` and `Pi_S(g)`.
 
 ## Suggested Next Step
 

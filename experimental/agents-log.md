@@ -55,12 +55,14 @@ Keep entries concise and link to the relevant files.
   `experimental/agents-log.md`.
 - **Status:** PROVED.
 - **What is being added:** Strengthens the integrated M1 average baseline with
-  a support-overlap second-moment bound: support-pair covariance can begin only
-  when two supports intersect in at least `k` points.
+  a support-overlap second-moment bound and a fixed-base/random-direction
+  formula. Support-pair covariance can begin only when two supports intersect
+  in at least `k` points, and base-word support-list mass contributes only to
+  the zero slope `z = 0`.
 - **How it is useful:** Turns the first-moment random-line estimate into an
-  overlap ledger for the M1 residue-line packing problem, isolating the
-  high-overlap obstruction that remains after tangent and quotient-periodic
-  families are separated.
+  overlap and basepoint-slope ledger for the M1 residue-line packing problem,
+  isolating the high-overlap obstruction that remains after zero-slope,
+  tangent-floor, and quotient-periodic families are separated.
 - **What to do next:** Build a tiny-field `Pi_S` collinearity scanner and
   compare tangent, quotient-periodic, and aperiodic support sources against
   the expectation and high-overlap covariance baseline.
