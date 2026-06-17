@@ -43,10 +43,12 @@ Keep entries concise and link to the relevant files.
   residue-cloud normal form, then proves a two-support splitting lemma and
   gives a verified `F_17 -> F_{17^2}` packet where two supports have the same
   locator readout modulo `hatE` but an arbitrary anchor makes them certify
-  distinct bad slopes.
+  distinct bad slopes. It also records the sunflower lower floor
+  `floor((|D|-k)/sigma)` for arbitrary balanced anchors.
 - **How it is useful:** Shows the monic-anchor base-core reduction is sharp in
   its anchor hypothesis; full F1 must bound the arbitrary support-interpolation
-  residue cloud, not only the locator image.
+  residue cloud, not only the locator image, while allowing the sunflower
+  floor.
 - **What to do next:** Search for large arbitrary-anchor support families or
   prove no-rich-line bounds for the support-interpolation residue cloud above
   the corrected reserve.

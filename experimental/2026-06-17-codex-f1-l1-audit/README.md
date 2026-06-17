@@ -26,7 +26,8 @@ human review and later promotion.
   readout via `hatE = lcm(E,E^tau)`.
 - `BANKABLE_LEMMA / COUNTEREXAMPLE`: arbitrary balanced anchors are governed by
   the support-interpolation residue cloud, and can split a single monic-anchor
-  locator readout class into different bad slopes.
+  locator readout class into different bad slopes; they also have a sunflower
+  lower floor `floor((n-k)/sigma)`.
 - `AUDIT`: Paper D universal cap remains conditional pending primary
   Crites-Stewart / ABF import verification.
 

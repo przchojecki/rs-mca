@@ -66,6 +66,36 @@ monic-anchor locator readout `S -> [L_S]`. Even if two supports have the same
 locator residue modulo the base-core polynomial `hatE = lcm(E,E^tau)`, an
 arbitrary anchor can split that single locator class into different bad slopes.
 
+## Sunflower Floor Claim
+
+Let `c <= k`, and suppose `I subset D` has size `c`. If
+
+```text
+m <= floor((|D|-c)/(a-c)),
+```
+
+then there are `m` supports
+
+```text
+S_j = I union P_j,        |S_j| = a,
+```
+
+with pairwise disjoint petals `P_j subset D \ I`. For any distinct slopes
+`z_1,...,z_m in F`, there is an anchor word `w:D->F` such that the same
+balanced datum `(E,N,w)` has support-wise noncontained witnesses for all
+`z_j` on the supports `S_j`.
+
+Taking `c=k` gives the explicit floor
+
+```text
+Lambda_NC >= floor((|D|-k)/sigma)
+```
+
+for arbitrary balanced anchors whenever the field has at least that many
+distinct slopes. This is not an above-reserve counterexample: at
+`sigma >= C |D|/log |D|` the floor is only `O(log |D|)` at fixed rate. It is,
+however, a structural lower term that any sharp repaired F1 theorem must allow.
+
 ## Status
 
 PROVED / COUNTEREXAMPLE to the naive promotion of the monic-anchor base-core
@@ -163,6 +193,37 @@ has degree `< k+t = a` and vanishes on the `a` points of `U`, so it is the
 zero polynomial. This would imply `E | N`, contradicting `[N]_E != 0` and
 `deg N < deg E`. Thus both witnessed slopes are support-wise noncontained.
 
+## Proof Of The Sunflower Floor
+
+Choose disjoint petals `P_j subset D\I` of size `a-c`, and set
+
+```text
+S_j = I union P_j.
+```
+
+Fix common target values `h:I->F` on the core, for instance `h=0`. For each
+`j`, interpolate a polynomial `R_j` of degree `< k` satisfying
+
+```text
+E(x) R_j(x) + z_j N(x) = h(x)
+```
+
+for every `x in I`. This is possible because `|I|=c<=k` and `E` is nonzero
+on `D`. Put
+
+```text
+Q_j = z_j N + E R_j.
+```
+
+Then `deg Q_j < k+t = a`, and all `Q_j` agree with `h` on the common core.
+Define `w=Q_j` on each `S_j`; this is consistent because the petals are
+pairwise disjoint and all overlaps are exactly the core. Define `w`
+arbitrarily outside the union of the supports.
+
+Each `Q_j` is a witness for slope `z_j` on `S_j`, since `Q_j=w` on `S_j` and
+`Q_j == z_j N mod E`. The same noncontainment argument used above applies on
+each support, so all `m` slopes are support-wise bad.
+
 ## Explicit Quadratic-Extension Packet
 
 Take
@@ -245,6 +306,24 @@ same locator readout modulo hatE,
 different support-wise bad slopes under an arbitrary anchor.
 ```
 
+The same parameters also give a sunflower-floor packet. Taking core
+
+```text
+I = {1,2,3}
+```
+
+and six disjoint two-point petals inside `D\I` realizes the six slopes
+
+```text
+0,1,2,3,4,5
+```
+
+because
+
+```text
+floor((16-3)/(5-3)) = 6.
+```
+
 ## Ledger Impact
 
 The previous monic-anchor base-core reduction is sharp in its anchor
@@ -260,7 +339,9 @@ S |-> [Q_S^w]_E,
 
 where `Q_S^w` is the unique degree-`<a` interpolant of the arbitrary anchor
 word `w` on `S`. Bounding rich intersections of this cloud with residue lines
-is the actual arbitrary-anchor problem.
+is the actual arbitrary-anchor problem. The sunflower floor shows that even a
+successful upper bound should include at least a
+`floor((|D|-k)/sigma)` arbitrary-anchor term.
 
 ## Reproducibility
 
