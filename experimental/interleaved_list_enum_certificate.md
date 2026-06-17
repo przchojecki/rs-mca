@@ -80,6 +80,32 @@ enumerated Reed-Solomon instance, and it becomes the exact diagonal bound when
 support excess gives only a polynomial completion factor after one row support
 is fixed.
 
+The layered Johnson certificate sharpens this further using the actual
+support-size histograms
+
+```text
+B_i(s) = |{A in P_i : |A|=s}|.
+```
+
+For a fixed anchor support of size `r`, the number of all `s`-subsets that
+intersect it in at least `a` positions is
+
+```text
+K_{n,a}(r,s)
+  = sum_{u=a}^{min(r,s)} binom(r,u) binom(n-r,s-u).
+```
+
+The script therefore also reports
+
+```text
+min_i sum_r B_i(r)
+  prod_{j != i} sum_s min(B_j(s), K_{n,a}(r,s)).
+```
+
+This bound detects when high-excess support layers are sparse.  For example,
+a single full-domain support has large excess but layer count one, so it does
+not force product growth.
+
 The trivial product bound is the product of the base list counts.  Comparing
 the direct count with that product gives a finite sanity check for the
 interleaved-list overcharge discussed in the L2/Paper C ledger.

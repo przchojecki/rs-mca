@@ -335,6 +335,127 @@ def near_exact_johnson_bound(
     }
 
 
+def johnson_layer_kernel(
+    domain_size: int, agreement: int, anchor_size: int, support_size: int
+) -> int:
+    if agreement > min(anchor_size, support_size):
+        return 0
+
+    outside_anchor = domain_size - anchor_size
+    total = 0
+    for intersection_size in range(agreement, min(anchor_size, support_size) + 1):
+        outside_size = support_size - intersection_size
+        if outside_size <= outside_anchor:
+            total += (
+                math.comb(anchor_size, intersection_size)
+                * math.comb(outside_anchor, outside_size)
+            )
+    return total
+
+
+def layered_johnson_bound(
+    histograms: list[Counter[int]],
+    agreement: int,
+    dimension: int,
+    domain_size: int,
+) -> dict[str, Any]:
+    support_layers = [
+        support_size_histogram(histogram, agreement) for histogram in histograms
+    ]
+    listed_supports = [sum(histogram.values()) for histogram in support_layers]
+
+    if any(count == 0 for count in listed_supports):
+        return {
+            "status": "proved",
+            "reason": "some row has no listed supports",
+            "support_size_histograms": [
+                dict(sorted(histogram.items())) for histogram in support_layers
+            ],
+            "bound": 0,
+            "row_bounds": [],
+            "kernel_by_anchor_size": {},
+        }
+
+    if agreement < dimension:
+        return {
+            "status": "not_applicable",
+            "reason": "requires agreement >= k for support injectivity",
+            "support_size_histograms": [
+                dict(sorted(histogram.items())) for histogram in support_layers
+            ],
+            "bound": None,
+            "row_bounds": [],
+            "kernel_by_anchor_size": {},
+        }
+
+    if any(
+        count != 1
+        for histogram in histograms
+        for mask, count in histogram.items()
+        if mask.bit_count() >= agreement
+    ):
+        return {
+            "status": "not_applicable",
+            "reason": "listed agreement supports are not injective",
+            "support_size_histograms": [
+                dict(sorted(histogram.items())) for histogram in support_layers
+            ],
+            "bound": None,
+            "row_bounds": [],
+            "kernel_by_anchor_size": {},
+        }
+
+    all_sizes = sorted(
+        {
+            support_size
+            for histogram in support_layers
+            for support_size in histogram
+        }
+    )
+    kernel_by_anchor_size = {
+        anchor_size: {
+            support_size: johnson_layer_kernel(
+                domain_size, agreement, anchor_size, support_size
+            )
+            for support_size in all_sizes
+        }
+        for anchor_size in all_sizes
+    }
+
+    row_bounds = []
+    for anchor_index, anchor_layers in enumerate(support_layers):
+        row_total = 0
+        for anchor_size, anchor_count in anchor_layers.items():
+            completion_bound = 1
+            for other_index, other_layers in enumerate(support_layers):
+                if other_index == anchor_index:
+                    continue
+                layer_sum = sum(
+                    min(
+                        support_count,
+                        kernel_by_anchor_size[anchor_size][support_size],
+                    )
+                    for support_size, support_count in other_layers.items()
+                )
+                completion_bound *= layer_sum
+            row_total += anchor_count * completion_bound
+        row_bounds.append(row_total)
+
+    return {
+        "status": "proved",
+        "reason": "bounded by support-size layer counts",
+        "support_size_histograms": [
+            dict(sorted(histogram.items())) for histogram in support_layers
+        ],
+        "bound": min(row_bounds),
+        "row_bounds": row_bounds,
+        "kernel_by_anchor_size": {
+            anchor_size: dict(sorted(kernel.items()))
+            for anchor_size, kernel in sorted(kernel_by_anchor_size.items())
+        },
+    }
+
+
 def binomial_tail_probability(
     trials: int, success_denominator: int, threshold: int
 ) -> Fraction:
@@ -450,6 +571,9 @@ def compute_report(args: argparse.Namespace) -> dict[str, Any]:
     johnson_bound = near_exact_johnson_bound(
         histograms, args.agreement, args.k, len(domain)
     )
+    layered_bound = layered_johnson_bound(
+        histograms, args.agreement, args.k, len(domain)
+    )
     random_baseline = random_received_baseline(
         args.p, args.k, len(domain), args.agreement, len(received_rows)
     )
@@ -477,6 +601,7 @@ def compute_report(args: argparse.Namespace) -> dict[str, Any]:
         "common_intersection_histogram": dict(sorted(intersection_histogram.items())),
         "two_row_max_codegrees": two_row_codegrees,
         "near_exact_johnson_bound": johnson_bound,
+        "layered_johnson_bound": layered_bound,
         "random_received_baseline": random_baseline,
         "support_mask_counts": [len(histogram) for histogram in histograms],
         "top_masks": [
@@ -523,6 +648,15 @@ def print_report(report: dict[str, Any]) -> None:
         print(
             "Johnson neighborhood sizes: "
             f"{johnson_bound['neighborhood_sizes']}"
+        )
+    layered_bound = report["layered_johnson_bound"]
+    print(f"layered Johnson status: {layered_bound['status']}")
+    if layered_bound["bound"] is not None:
+        print(f"layered Johnson bound: {layered_bound['bound']}")
+    if layered_bound["kernel_by_anchor_size"]:
+        print(
+            "layered Johnson kernels: "
+            f"{layered_bound['kernel_by_anchor_size']}"
         )
 
     def decimal_text(item: dict[str, Any]) -> str:

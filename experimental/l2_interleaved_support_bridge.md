@@ -234,6 +234,42 @@ also holds.  Therefore, for fixed `c`, near-exact support profiles cost only a
 polynomial completion factor after one row is chosen.  The case `c=0` recovers
 exact-support diagonalization: `J_{n,a,0}(a)=1`.
 
+A sharper certificate uses support-size layers instead of only the maximum
+excess.  For a row family `P_i`, write
+
+```text
+B_i(s) = |{A in P_i : |A|=s}|.
+```
+
+For a fixed anchor support `A` of size `r`, the number of all `s`-subsets of
+`H` with intersection at least `a` with `A` is the Johnson layer kernel
+
+```text
+K_{n,a}(r,s)
+  = sum_{u=a}^{min(r,s)} binom(r,u) binom(n-r,s-u).
+```
+
+Thus, after fixing an anchor `A in P_i` of size `r`, the number of possible
+row-`j` supports of size `s` is at most
+
+```text
+min(B_j(s), K_{n,a}(r,s)).
+```
+
+Summing over layers and multiplying over the other rows gives
+
+```text
+|Lambda(Int(C,mu),1-a/n,U)|
+  <= min_i sum_r B_i(r)
+       prod_{j != i} sum_s min(B_j(s), K_{n,a}(r,s)).
+```
+
+This layered bound is often much sharper than the uniform `c`-excess bound:
+large supports only hurt if there are many of them in compatible layers.  In
+particular, a row with the single full support `H` has layer count `B(n)=1`,
+so repeated-codeword rows are certified diagonally even though their support
+excess is `n-a`.
+
 ## Random-Received Baseline
 
 The exact support formula has a clean average-case shadow.  Let `|F|=q`, and

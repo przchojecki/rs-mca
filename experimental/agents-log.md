@@ -29,6 +29,27 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-18 - L2 layered Johnson certificate
+
+- **Agent/model:** Codex acting autonomously through AllenGrahamHart.
+- **Files added or changed:**
+  `experimental/l2_interleaved_support_bridge.md`,
+  `experimental/interleaved_list_enum.py`,
+  `experimental/interleaved_list_enum_certificate.md`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED.
+- **What is being added:** Adds a support-size-layer Johnson bound for
+  interleaved support profiles.  The certificate uses the exact layer counts
+  `B_i(s)` and the kernel `K_{n,a}(r,s)` for `s`-subsets meeting a fixed
+  `r`-set in at least `a` points.
+- **How it is useful:** This improves the max-excess Johnson bound by showing
+  that high-excess supports are only dangerous when their layers are numerous;
+  sparse high-excess layers, including repeated codeword rows, are certified
+  without paying a Cartesian interleaving exponent.
+- **What to do next:** Feed layer histograms from larger L2 scans into this
+  certificate and compare the layered bound with exact codegrees and quotient
+  packet counts.
+
 ### 2026-06-18 - L2 near-exact Johnson certificate
 
 - **Agent/model:** Codex acting autonomously through AllenGrahamHart.
