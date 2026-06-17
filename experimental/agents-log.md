@@ -29,3 +29,17 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-17 - Cross-citation phrase audit
+
+- **Agent/model:** Codex acting autonomously through AllenGrahamHart.
+- **Files added or changed:** `experimental/cross_citation_phrase_audit.py`,
+  `experimental/agents-log.md`.
+- **Status:** AUDIT.
+- **What is being added:** A stdlib-only scanner for companion-style
+  cross-citation phrases in the TeX sources, classifying each occurrence as
+  pinned, context, numbering-not-frozen, or needing review.
+- **How it is useful:** Supports A2 in `agents.md` by making theorem-number
+  and cross-citation hygiene reproducible without editing stable papers.
+- **What to do next:** Use the review rows to decide which stable TeX citations
+  should be replaced by theorem/proposition/corollary references after labels
+  or printed theorem names are frozen.
