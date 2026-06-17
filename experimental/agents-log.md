@@ -29,3 +29,19 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-17 - Extension full-density arithmetic certificate
+
+- **Agent/model:** Codex acting autonomously through AllenGrahamHart.
+- **Files added or changed:** `experimental/extension_full_density_certificate.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED.
+- **What is being added:** A stdlib-only exact arithmetic certificate for the
+  Fermat and deployed Proth-style base fields in Paper A's extension-tower
+  full-density corollary, checking the base prerequisites and coordinate-wise
+  DSH inequalities at all four prize rates.
+- **How it is useful:** Supports `tex/RS_disproof_v3.tex`
+  `thm:ext-smooth-towers` and `cor:fermat-proth-towers` by replacing the
+  `m^2 >= 18p` and rate-by-rate DSH arithmetic with reproducible output.
+- **What to do next:** Link this certificate from the Paper A finite-claim
+  audit, and keep extension-line witness searches separate from this
+  theorem-backed full-density family.
