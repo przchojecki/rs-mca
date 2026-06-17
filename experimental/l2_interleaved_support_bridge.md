@@ -137,6 +137,66 @@ support of size exactly `a`.  This is the precise overcount factor that a
 certificate should print when it uses raw `a`-subset fibers as a proxy for
 interleaved lists.
 
+## Intersection-Codegree Certificate
+
+The full-support formula also gives a compact certificate that is sharper than
+the Cartesian product.  For two row support families
+
+```text
+P = Supp_U1^{>=a},        Q = Supp_U2^{>=a},
+```
+
+define the ordered common-intersection profile
+
+```text
+C_r(P,Q) = |{(A,B) in P x Q : |A cap B| = r}|.
+```
+
+Then the two-row interleaved list size is exactly
+
+```text
+sum_{r>=a} C_r(P,Q).
+```
+
+Equivalently, with the max common-intersection codegrees
+
+```text
+Gamma_{>=a}(P,Q)
+  = max_{A in P} |{B in Q : |A cap B| >= a}|,
+
+Gamma_{>=a}(Q,P)
+  = max_{B in Q} |{A in P : |A cap B| >= a}|,
+```
+
+one has
+
+```text
+|Lambda(Int(C,2),1-a/n,U)|
+  <= min(|P| Gamma_{>=a}(P,Q), |Q| Gamma_{>=a}(Q,P)).
+```
+
+More generally, for `mu` rows the exact count is the number of tuples
+
+```text
+(A_1,...,A_mu),        A_i in Supp_Ui^{>=a},
+```
+
+whose common intersection has size at least `a`; the corresponding certificate
+is any upper bound on the maximum number of completions after fixing one row's
+full support.  Thus L2 certificate emitters can record full-support sizes plus
+common-intersection codegrees, rather than only row list sizes.
+
+If all full supports in two rows have size at most `a+c`, then every listed
+pair satisfies
+
+```text
+|A \ B| <= c,        |B \ A| <= c.
+```
+
+Thus a small near-exact-support neighborhood already rules out product growth.
+The exact-support diagonalization lemma is the case `c=0`: intersection size
+at least `a` forces equal supports.
+
 ## Proof
 
 Take an interleaved listed codeword
@@ -193,6 +253,14 @@ The simultaneous version is the same argument applied to a common raw subset
 `A_1 cap ... cap A_mu`, and every `a`-subset of that intersection contributes
 to `Fib_U^cap(a)`.
 
+The intersection-codegree certificate is just the full-support formula grouped
+by the common intersection size.  For two rows, summing the profile `C_r(P,Q)`
+over `r>=a` gives the exact list count.  Bounding each row `A in P` by at most
+`Gamma_{>=a}(P,Q)` compatible supports in `Q` gives the first max-codegree
+bound; reversing the roles gives the symmetric bound.  If `|A|,|B| <= a+c`
+and `|A cap B| >= a`, then `|A\B|=|A|-|A cap B| <= c` and similarly
+`|B\A| <= c`.
+
 ## Ledger Consequence
 
 This bridge does not say that a base-code list-size bound transfers without a
@@ -232,6 +300,12 @@ full-support profile by at most `binom(a+c,a)` per row object.  If some row has
 near-full agreement supports, the raw fiber can be larger by `binom(n,a)` even
 when the actual row list has size one.
 
+The intersection-codegree certificate is the L2 analogue of the strict-overlap
+ledgers used in M1.  Once full agreement supports are known, the expensive
+quantity is not the product of row list sizes; it is the number of row-support
+tuples with common intersection at least `a`.  Exact-support and near-exact
+support packets can therefore be certified by small overlap neighborhoods.
+
 ## Follow-Up Checks
 
 - Match the manuscript's locator local-limit assumption to `Fib_U(a)` rather
@@ -241,6 +315,7 @@ when the actual row list has size one.
   interleaved intersection profile.
 - Test tiny `mu=2` examples where product list bounds are loose but
   simultaneous support fibers are small.
+- Record common-intersection histograms and max codegrees for those examples.
 - Decide how certificate emitters should print both values: the conservative
   product bound and the sharper support-fiber bridge when its hypothesis is
   available.

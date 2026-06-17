@@ -40,6 +40,22 @@ for the simultaneous raw fiber.  For Reed-Solomon instances with `a >= k`,
 these are the exact raw-to-full support decompositions from
 `experimental/l2_interleaved_support_bridge.md`.
 
+For every run the script also emits the common-intersection histogram
+
+```text
+C_r = |{(A_1,...,A_mu): |A_1 cap ... cap A_mu| = r}|,
+```
+
+with multiplicity from the row support-mask histograms.  The direct
+interleaved count is `sum_{r>=a} C_r`, and the raw simultaneous fiber is
+`sum_{r>=a} C_r binom(r,a)`.  For two rows, the script additionally emits the
+two max common-intersection codegrees, which certify the bound
+
+```text
+|Lambda(Int(C,2),1-a/n,U)|
+  <= min(|P| Gamma_{>=a}(P,Q), |Q| Gamma_{>=a}(Q,P)).
+```
+
 The trivial product bound is the product of the base list counts.  Comparing
 the direct count with that product gives a finite sanity check for the
 interleaved-list overcharge discussed in the L2/Paper C ledger.

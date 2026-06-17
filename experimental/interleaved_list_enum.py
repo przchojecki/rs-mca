@@ -165,6 +165,54 @@ def count_raw_simultaneous_fiber(
     )
 
 
+def common_intersection_histogram(
+    histograms: list[Counter[int]], domain_size: int
+) -> Counter[int]:
+    combined: Counter[int] = Counter({(1 << domain_size) - 1: 1})
+    for histogram in histograms:
+        next_combined: Counter[int] = Counter()
+        for current_mask, current_count in combined.items():
+            for row_mask, row_count in histogram.items():
+                next_combined[current_mask & row_mask] += current_count * row_count
+        combined = next_combined
+    histogram: Counter[int] = Counter()
+    for mask, count in combined.items():
+        if count:
+            histogram[mask.bit_count()] += count
+    return histogram
+
+
+def max_two_row_codegrees(
+    histograms: list[Counter[int]], agreement: int
+) -> dict[str, int] | None:
+    if len(histograms) != 2:
+        return None
+
+    left, right = histograms
+    left_max = 0
+    for left_mask in left:
+        compatible = sum(
+            count
+            for right_mask, count in right.items()
+            if (left_mask & right_mask).bit_count() >= agreement
+        )
+        left_max = max(left_max, compatible)
+
+    right_max = 0
+    for right_mask in right:
+        compatible = sum(
+            count
+            for left_mask, count in left.items()
+            if (left_mask & right_mask).bit_count() >= agreement
+        )
+        right_max = max(right_max, compatible)
+
+    return {
+        "left_to_right": left_max,
+        "right_to_left": right_max,
+    }
+
+
 def top_masks(histogram: Counter[int], limit: int) -> list[dict[str, int]]:
     return [
         {
@@ -225,6 +273,8 @@ def compute_report(args: argparse.Namespace) -> dict[str, Any]:
     raw_simultaneous_count = count_raw_simultaneous_fiber(
         histograms, args.agreement, len(domain)
     )
+    intersection_histogram = common_intersection_histogram(histograms, len(domain))
+    two_row_codegrees = max_two_row_codegrees(histograms, args.agreement)
     ratio = None if product_bound == 0 else direct_count / product_bound
     raw_to_direct_ratio = (
         None if direct_count == 0 else raw_simultaneous_count / direct_count
@@ -246,6 +296,8 @@ def compute_report(args: argparse.Namespace) -> dict[str, Any]:
         "raw_simultaneous_fiber_count": raw_simultaneous_count,
         "direct_to_product_ratio": ratio,
         "raw_to_direct_ratio": raw_to_direct_ratio,
+        "common_intersection_histogram": dict(sorted(intersection_histogram.items())),
+        "two_row_max_codegrees": two_row_codegrees,
         "support_mask_counts": [len(histogram) for histogram in histograms],
         "top_masks": [
             top_masks(histogram, args.show_masks) for histogram in histograms
@@ -278,6 +330,9 @@ def print_report(report: dict[str, Any]) -> None:
         "raw/direct ratio: "
         + ("undefined" if raw_ratio is None else f"{raw_ratio:.6g}")
     )
+    print(f"common intersection histogram: {report['common_intersection_histogram']}")
+    if report["two_row_max_codegrees"] is not None:
+        print(f"two-row max codegrees: {report['two_row_max_codegrees']}")
     print(f"support masks per row: {report['support_mask_counts']}")
 
     if report["top_masks"]:
