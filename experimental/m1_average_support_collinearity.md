@@ -602,6 +602,13 @@ worst-case M1 conjecture has to be calibrated against the same generated-field
 entropy ledger as the locator-fiber problem, with tangent, quotient-periodic,
 and high-overlap families accounted for separately.
 
+Field-ledger warning: in this note `q` is the field from which the random line
+data `f,g` are sampled. Thus the displayed reserve is a `q_line` reserve. It
+matches the generated-field entropy ledger only in setups where the line field
+and generated field have been explicitly identified. It should not be used to
+pay a `q_gen` entropy bill with a larger extension challenge field unless a
+separate transfer theorem justifies that replacement.
+
 ## Support-Overlap Second Moment
 
 Let `X = |Inc_t(f,g)|`, and for each support `S` of size `s = k+t` let `I_S`
@@ -832,6 +839,10 @@ when high-overlap corrections are negligible.
 
 entropy reserve:
   t log q - log binom(n,k+t).
+
+field ledger:
+  q is q_line here; do not replace q_gen by an extension q_line without a
+  transfer theorem.
 ```
 
 Together these formulas justify treating the aperiodic part of residue-line
