@@ -121,6 +121,30 @@ def verify_large_fiber_case(N, m, L, b, t):
     return truncation
 
 
+def stable_large_scale_enumerator(N, m, L, d, t):
+    assert 1 <= d < t
+    assert m >= t + d
+    poly = Counter()
+
+    for ell in range(1, d + 1):
+        coeff = choose(d, ell) * choose(m - d, ell)
+        add_term(poly, coeff, ell)
+
+    add_term(poly, (N - L - 1) * choose(m, d), d)
+    return +poly
+
+
+def verify_stable_large_scale_case(N, m, L, d, t):
+    full = formula_enumerator(N, m, L, d)
+    strict = Counter(
+        {exponent: coeff for exponent, coeff in full.items() if 0 < exponent < t}
+    )
+    stable = stable_large_scale_enumerator(N, m, L, d, t)
+    assert strict == stable, (N, m, L, d, t, strict, stable)
+    assert sum(stable.values()) == (N - L) * choose(m, d) - 1
+    return stable
+
+
 def main():
     cases = [
         (5, 4, 1, 1),
@@ -144,6 +168,21 @@ def main():
     for case in large_fiber_cases:
         strict = verify_large_fiber_case(*case)
         print(f"N,m,L,b,t={case}: H_<t={dict(sorted(strict.items()))}")
+    stable_cases = [
+        (8, 8, 4, 1, 5),
+        (4, 16, 2, 1, 5),
+        (2, 32, 1, 1, 5),
+        (8, 8, 4, 2, 5),
+        (4, 16, 2, 2, 5),
+        (2, 32, 1, 2, 5),
+        (10, 10, 4, 3, 6),
+    ]
+    for case in stable_cases:
+        stable = verify_stable_large_scale_case(*case)
+        print(
+            f"N,m,L,d,t={case}: H_stable={dict(sorted(stable.items()))}, "
+            f"mass={sum(stable.values())}"
+        )
     print("M1 quotient remainder profile verifier passed")
 
 

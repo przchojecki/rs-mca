@@ -295,7 +295,7 @@ For dyadic dimension dithering this gives a concrete maximal-remainder
 corollary. Suppose
 
 ```text
-n = 2^nu,        rho = 2^(-a),        k0 = rho n,
+n = 2^nu,        rho = 2^(-alpha),    k0 = rho n,
 k = k0 - r0,     s = k + t = k0 + d,
 d = t - r0,      1 <= d < t.
 ```
@@ -329,6 +329,36 @@ promoting the old remainder fiber. Thus maximal dither converts every large
 dyadic one-remainder quotient packet into a linear strict codegree. The only
 scales not covered by this corollary are the small scales `m < t`, where the
 full `H_REM` formula or a finite scanner should be used.
+
+There is also a stable large-scale hierarchy for nonmaximal dither. Keep the
+same dyadic setup, and assume
+
+```text
+1 <= d < t,        m | k0,        m >= t+d.
+```
+
+Then `b=d`, the boundary promotion term is absent, and the complete strict
+one-remainder profile is
+
+```text
+H_REM^{<t}(y)
+ =
+  sum_{ell=1}^d binom(d,ell) binom(m-d,ell) y^ell
+  + ((n-k0)/m - 1) binom(m,d) y^d.
+```
+
+Consequently its unweighted strict codegree mass is
+
+```text
+H_REM^{<t}(1) = ((n-k0)/m) binom(m,d) - 1.
+```
+
+Thus the maximal dither `d=1` is not just sufficient to remove whole-fiber
+quotient cores; it is the unique dither in this stable range that makes the
+large-scale one-remainder strict codegree linear in the ambient codimension
+`n-k0`, uniformly over all dyadic scales. For `d>=2`, large scales retain the
+degree-`d` binomial factor `binom(m,d)` and therefore can still be a genuinely
+larger quotient-profile term.
 
 ## Status
 
@@ -492,6 +522,25 @@ Since `L=k0/m` and `N=n/m`, their coefficient sum is
 `(N-L)m-1=n-k0-1`. If `m=t`, the boundary term
 `L m y^(t-1)=k0 y^(t-1)` also enters.
 
+For the stable large-scale hierarchy, the assumptions `m | k0` and `m>d` again
+give remainder `b=d`. The stronger bound `m >= t+d` implies `m-d >= t`, so the
+boundary promotion term with exponent `m-d` is not strict. It also implies
+`m-d >= d`, so all same-remainder swaps with `1 <= ell <= d` appear. Substituting
+`L=k0/m` and `N=n/m` into the large-fiber truncation gives the displayed
+polynomial. Finally,
+
+```text
+sum_{ell=0}^d binom(d,ell) binom(m-d,ell) = binom(m,d)
+```
+
+by Vandermonde, because `m-d >= d`. Hence the same-remainder contribution at
+`ell>=1` has total `binom(m,d)-1`, and adding the move-to-unused contribution
+`((n-k0)/m-1)binom(m,d)` gives
+
+```text
+H_REM^{<t}(1) = ((n-k0)/m) binom(m,d) - 1.
+```
+
 ## M1 Impact
 
 This note turns one of the main structured exceptions in the M1 program into an
@@ -540,6 +589,11 @@ Two immediate readings are useful.
    scale `m>t` has the same linear strict codegree `n-k0-1`, so the large
    quotient remainder packet becomes a tangent-sized term rather than a
    quotient-profile-sized term.
+7. The stable large-scale hierarchy explains why maximal dither is the
+   distinguished choice: if `d=t-r0` and `m >= t+d`, then the unweighted
+   strict remainder mass is exactly `((n-k0)/m)binom(m,d)-1`. Thus `d=1` is the
+   only stable dither class with a uniformly linear large-scale remainder
+   budget.
 
 This makes the quotient-periodic exception quantitatively separable from the
 aperiodic local-limit problem targeted by M1.
