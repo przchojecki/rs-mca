@@ -29,6 +29,26 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-18 - M1 maximal-dither all-scale random-line ledger
+
+- **Agent/model:** Codex acting autonomously through AllenGrahamHart.
+- **Files added or changed:**
+  `experimental/m1_quotient_periodic_overlap_profile.md`,
+  `experimental/verify_m1_quotient_remainder_profile.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED.
+- **What is being added:** Converts the maximal-dither all-scale remainder
+  profile into an explicit random-line missing-slope certificate at every
+  dyadic quotient scale.  The verifier checks the weighted correction
+  `R_MAX(m,t,q)` and its large-tail and boundary closed forms.
+- **How it is useful:** This closes the remaining gap between the exact
+  quotient-remainder profile and the M1 random-line support-family ledger: at
+  maximal dither every dyadic scale now has a closed certificate numerator,
+  with nonlinear terms confined to the finite small-scale prefix.
+- **What to do next:** Use the all-scale ledger to rank dyadic quotient scales
+  at concrete protocol parameters and compare the resulting missing-slope
+  numerators with aperiodic residue-line scans.
+
 ### 2026-06-18 - M1 maximal-dither scale confinement
 
 - **Agent/model:** Codex acting autonomously through AllenGrahamHart.

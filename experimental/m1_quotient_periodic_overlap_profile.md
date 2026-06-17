@@ -517,6 +517,39 @@ promotion contributes `k0 q`, giving
 R_REM(t,q) = (n-k0-1)q^(t-1) + k0 q.
 ```
 
+The maximal-dither all-scale formula gives the exact certificate at every
+dyadic scale, not only in the large-scale tail.  For `m | k0`, let
+
+```text
+N=n/m,        L=k0/m,
+R_MAX(m,t,q) = sum_{1 <= j <= t-1}
+  [y^j] H_REM,1^{<t}(y) q^(t-j),
+```
+
+where `H_REM,1^{<t}` is the three-band formula above with these `N,L,m`.
+Then
+
+```text
+E[1 - |Bad_t(A_REM;f,g)|/q]
+  <= (2 q^t + 4 R_MAX(m,t,q))
+      / (binom(n/m,k0/m)(n-k0)).
+```
+
+The scale-confinement corollary makes this a finite-prefix ledger:
+
+```text
+m>t:   R_MAX(m,t,q) = (n-k0-1)q^(t-1),
+
+m=t:   R_MAX(m,t,q) = (n-k0-1)q^(t-1) + k0 q,
+
+m<t:   use the explicit three-band prefix, for at most
+       floor(log2(t-1)) dyadic scales when t>=3.
+```
+
+Thus maximal dither has a closed random-line certificate at every dyadic
+quotient-remainder scale.  The only scale-dependent nonlinear accounting left
+is the finite small-scale prefix `m<t`.
+
 These are random-line baselines, not worst-case M1 bounds. Their purpose is to
 turn the quotient/remainder support-profile formulas into certificate-sized
 quantities: once quotient-periodic and one-remainder packets are isolated, a

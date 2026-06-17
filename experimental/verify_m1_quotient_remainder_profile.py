@@ -215,6 +215,27 @@ def verify_maximal_dither_scale_confinement(n, k0, t):
     return small_scales
 
 
+def weighted_strict_correction(poly, t, q):
+    return sum(coeff * q ** (t - exponent) for exponent, coeff in poly.items())
+
+
+def verify_maximal_dither_random_line_ledger(n, k0, t, q):
+    rows = []
+    for m in dyadic_divisors(k0):
+        N = n // m
+        L = k0 // m
+        profile = maximal_dither_all_scale_enumerator(N, m, L, t)
+        correction = weighted_strict_correction(profile, t, q)
+        if m > t:
+            expected = (n - k0 - 1) * q ** (t - 1)
+            assert correction == expected, (n, k0, t, q, m, correction, expected)
+        elif m == t:
+            expected = (n - k0 - 1) * q ** (t - 1) + k0 * q
+            assert correction == expected, (n, k0, t, q, m, correction, expected)
+        rows.append((m, correction))
+    return rows
+
+
 def main():
     cases = [
         (5, 4, 1, 1),
@@ -277,6 +298,15 @@ def main():
     for case in confinement_cases:
         small_scales = verify_maximal_dither_scale_confinement(*case)
         print(f"n,k0,t={case}: small_scales={small_scales}")
+    random_line_cases = [
+        (256, 128, 5, 17),
+        (256, 64, 8, 17),
+        (1024, 256, 9, 257),
+        (1024, 128, 17, 257),
+    ]
+    for case in random_line_cases:
+        rows = verify_maximal_dither_random_line_ledger(*case)
+        print(f"n,k0,t,q={case}: R_MAX={rows}")
     print("M1 quotient remainder profile verifier passed")
 
 
