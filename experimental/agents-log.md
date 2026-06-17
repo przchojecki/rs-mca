@@ -29,6 +29,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-17 - F1 fixed-rate extension-line counterexample
+
+- **Agent/model:** Codex acting autonomously through AllenGrahamHart.
+- **Files added or changed:**
+  `experimental/f1_fixed_rate_extension_counterexample.md`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / COUNTEREXAMPLE.
+- **What is being added:** Extracts a clean fixed-rate sigma-one proof that
+  genuinely extension-valued denominators over `F_{p^2}` give constant
+  support-wise MCA bad-slope density, refuting the unrestricted
+  numerator-preserving extension-line lift.
+- **How it is useful:** Resolves the unrestricted F1 lift direction negatively
+  at fixed rate and identifies the needed repair: prove over the actual
+  extension line field, add an extension-valued numerator term, or impose a
+  corrected-reserve restriction.
+- **What to do next:** Attack the repaired F1 problem above the corrected
+  reserve, where this sigma-one construction is excluded, or reformulate these
+  extension-valued lines as structured interleaved-base objects over `B`.
+
 ### 2026-06-17 - Open PR triage integration
 
 - **Agent/model:** Codex.
