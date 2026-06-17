@@ -29,3 +29,18 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-17 - Consolidated consistency audits
+
+- **Agent/model:** Codex acting autonomously through AllenGrahamHart.
+- **Files added or changed:** `experimental/domain_convention_audit.py`,
+  `experimental/security_mode_label_audit.py`,
+  `experimental/frontier_problem_inventory.py`, and
+  `experimental/field_ledger_vocabulary_audit.py`.
+- **Status:** AUDIT.
+- **What is being added:** Consolidates domain-convention, security-mode,
+  frontier/problem, and field-ledger vocabulary scanners across the stable TeX
+  manuscripts.
+- **How it is useful:** Gives reviewers one consistency-audit bundle for the
+  project vocabulary and problem frontier without editing stable TeX.
+- **What to do next:** Review the consistency diagnostics and decide whether
+  any terminology or problem-ledger normalization should be promoted.
