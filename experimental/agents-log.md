@@ -29,6 +29,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-17 - F1 monic-anchor base-core reduction
+
+- **Agent/model:** Codex acting autonomously through AllenGrahamHart.
+- **Files added or changed:**
+  `experimental/f1_monic_anchor_base_core_reduction.md`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED for the monic-anchor balanced stratum.
+- **What is being added:** Extracts a clean finite theorem showing that
+  balanced extension-valued monic-anchor F1 lines have bad slopes exactly
+  given by incidences between locator readouts modulo
+  `hatE = lcm(E,E^tau)` and an affine slope target.
+- **How it is useful:** Sharpens the repaired F1 path after the fixed-rate
+  counterexample: extension denominators increase the base readout degree by
+  at most a factor of two in this stratum, while the arbitrary-anchor balanced
+  gap remains explicitly open.
+- **What to do next:** Attack the arbitrary-anchor balanced F1 gap in the full
+  residue-line normal form, or prove no-rich-line bounds for the base-core
+  incidence set above the corrected reserve.
+
 ### 2026-06-17 - F1 fixed-rate extension-line counterexample
 
 - **Agent/model:** Codex acting autonomously through AllenGrahamHart.
