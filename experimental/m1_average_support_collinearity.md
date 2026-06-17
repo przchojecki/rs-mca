@@ -171,6 +171,21 @@ E[1 - |Bad_t(A;f,g)|/q] <= B_t(A),
 Pr[ |Bad_t(A;f,g)|/q <= 1 - epsilon ] <= B_t(A) / epsilon.
 ```
 
+Equivalently, if
+
+```text
+Gamma_j(A)
+  = max_{S in A} |{T in A : |S \ T| = |T \ S| = j}|,
+      1 <= j <= t-1,
+```
+
+then `Delta_j(A) <= M Gamma_j(A)`, so the same conclusion holds with
+
+```text
+B_t^max(A) = (1 - p_z)/(M p_z)
+             + (4/M) * sum_{j=1}^{t-1} Gamma_j(A) q^(t-j).
+```
+
 The first-moment side also restricts:
 
 ```text
@@ -656,6 +671,23 @@ E[1 - |Bad_t(A;f,g)|/q] <= B_t(A),
 Pr[ |Bad_t(A;f,g)|/q <= 1 - epsilon ] <= B_t(A) / epsilon.
 ```
 
+Sometimes the ordered profile is more detail than a proof needs. Define the
+maximum `j`-exchange codegree
+
+```text
+Gamma_j(A)
+  = max_{S in A} |{T in A : |S \ T| = |T \ S| = j}|,
+      1 <= j <= t-1.
+```
+
+Then `Delta_j(A) <= M Gamma_j(A)`, and hence the same missing-density
+conclusion holds with
+
+```text
+B_t^max(A) = (1 - p_z)/(M p_z)
+             + (4/M) * sum_{j=1}^{t-1} Gamma_j(A) q^(t-j).
+```
+
 The sparse side is just as important. Every slope witnessed by `A` has at least
 one incidence from `A`, so
 
@@ -679,10 +711,20 @@ M / ( q^t + M^(-1) * sum_{j=1}^{t-1} Delta_j(A) q^(t-j) ) -> infinity
 
 forces `|Bad_t(A;f,g)|/q -> 1` in probability.
 
+The max-codegree version is the cleaner proof target:
+
+```text
+M / ( q^t + sum_{j=1}^{t-1} Gamma_j(A) q^(t-j) ) -> infinity
+```
+
+also forces `|Bad_t(A;f,g)|/q -> 1` in probability.
+
 For the full support family `A = binom(D,s)`, one has `M = N_s` and
 
 ```text
 Delta_j(A) = N_s binom(s,j) binom(n-s,j),
+
+Gamma_j(A) = binom(s,j) binom(n-s,j),
 ```
 
 so this certificate recovers the all-support slope-density criterion. For a
@@ -1064,6 +1106,8 @@ The restricted-family certificate makes this ledger reusable:
 ```text
 for a fixed support family A, replace binom(n,k+t) by |A|
 and replace the full Johnson correction by Delta_j(A), j = 1,...,t-1.
+
+The coarser proof target is the max exchange codegree Gamma_j(A).
 ```
 
 Together these formulas justify treating the aperiodic part of residue-line
@@ -1080,7 +1124,8 @@ The natural follow-up is a scanner that, for tiny fields, computes the vectors
 `Pi_S(f), Pi_S(g)` over all supports of size `k+t`, records the distinct slopes
 arising from collinearity, and labels whether each support is tangent,
 quotient-periodic, or aperiodic. For each labelled support family it should
-also report `Delta_j(A)` for `1 <= j <= t-1`. The average formula above gives
-an exact baseline for interpreting those scans, while the restricted-family
-certificate says when the labelled aperiodic part is behaving like the random
-model and when it is carrying a genuine strict-overlap obstruction.
+also report `Delta_j(A)` and `Gamma_j(A)` for `1 <= j <= t-1`. The average
+formula above gives an exact baseline for interpreting those scans, while the
+restricted-family certificate says when the labelled aperiodic part is behaving
+like the random model and when it is carrying a genuine strict-overlap
+obstruction.

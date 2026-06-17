@@ -62,9 +62,9 @@ Keep entries concise and link to the relevant files.
   exact second moment with covariance only above intersection `k`, the
   random-line bad-slope density has a two-sided phase diagram with a
   quantitative missing-slope bound, arbitrary fixed support subfamilies have a
-  strict high-overlap profile certificate, entropy-reserve interpretation, and
-  field-ledger warning, and base-word support-list mass contributes only to the
-  zero slope `z = 0`.
+  strict high-overlap profile and max-codegree certificate, entropy-reserve
+  interpretation, and field-ledger warning, and base-word support-list mass
+  contributes only to the zero slope `z = 0`.
 - **How it is useful:** Turns the first-moment random-line estimate into an
   overlap, concentration, slope-density, and basepoint-slope ledger for the M1
   residue-line packing problem, isolating the strict high-overlap correction to
@@ -73,4 +73,5 @@ Keep entries concise and link to the relevant files.
   `q_gen`.
 - **What to do next:** Build a tiny-field `Pi_S` collinearity scanner and
   compare tangent, quotient-periodic, and aperiodic support sources against
-  the expectation, strict high-overlap profiles, and covariance baseline.
+  the expectation, strict high-overlap profiles, max codegrees, and covariance
+  baseline.
