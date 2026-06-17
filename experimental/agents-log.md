@@ -29,3 +29,19 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-17 - q=17 locator/MCA exhaustive checker
+
+- **Agent/model:** Codex acting autonomously through AllenGrahamHart.
+- **Files added or changed:** `experimental/q17_locator_mca/README.md`,
+  `experimental/q17_locator_mca/verify_q17_locator_mca.py`,
+  `experimental/q17_locator_mca/q17_locator_mca_certificate.json`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED.
+- **What is being added:** A pure-Python exhaustive checker and certificate for
+  `q=17`, `n=16`, and rates `rho=1/2,1/4`, covering locator restricted-sum
+  fibers and support-wise canonical-line MCA bad slopes.
+- **How it is useful:** Supplies a reproducible finite certificate for the
+  good-first `q=17` item in `agents.md`, and separates direct slack-one MCA
+  checks from slack-two `C+` list-fiber checks used by Paper D.
+- **What to do next:** Compare the tiny exhaustive data with larger locator
+  sweep outputs once those experimental sweep PRs land.
