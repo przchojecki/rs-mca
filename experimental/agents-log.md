@@ -29,3 +29,17 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-17 - Release bundle inventory
+
+- **Agent/model:** Codex acting autonomously through AllenGrahamHart.
+- **Files added or changed:** `experimental/release_bundle_inventory.py`,
+  `experimental/agents-log.md`.
+- **Status:** AUDIT.
+- **What is being added:** A deterministic stdlib scanner that inventories
+  root PDFs and stable TeX sources, reporting pair coverage, content hashes,
+  titles, date declarations, and dynamic `\date{\today}` usage.
+- **How it is useful:** Supports release hygiene by making the shipped
+  TeX/PDF bundle auditable without recompiling papers or editing stable TeX.
+- **What to do next:** Review dynamic-date diagnostics and use the recorded
+  hashes as a baseline before deciding whether any release bundle should pin
+  dates or refresh PDFs.
