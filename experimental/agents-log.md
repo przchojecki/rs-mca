@@ -29,3 +29,17 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-17 - Display math inventory
+
+- **Agent/model:** Codex acting autonomously through AllenGrahamHart.
+- **Files added or changed:** `experimental/display_math_inventory.py`,
+  `experimental/agents-log.md`.
+- **Status:** AUDIT.
+- **What is being added:** A deterministic stdlib scanner that inventories
+  bracket displays and named display-math environments across the stable TeX
+  manuscripts, including local equation labels.
+- **How it is useful:** Gives reviewers a display-equation hygiene view without
+  editing stable TeX or overlapping with section, citation, reference,
+  theorem, proof, table, package, topmatter, or script audits.
+- **What to do next:** Review unlabeled numbered display environments before
+  deciding whether any stable equation labels should be added or normalized.
