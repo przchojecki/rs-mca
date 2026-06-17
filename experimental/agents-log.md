@@ -29,3 +29,19 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-17 - Interleaved support-fiber bridge
+
+- **Agent/model:** Codex acting autonomously through AllenGrahamHart.
+- **Files added or changed:** `experimental/l2_interleaved_support_bridge.md`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / CONDITIONAL.
+- **What is being added:** A finite support-fiber injection showing that
+  interleaved lists at column agreement `a>=k` inject into simultaneous
+  feasible agreement supports, so a uniform support-fiber bound transfers to
+  `Int(C,mu)` without a Cartesian-product `mu` exponent.
+- **How it is useful:** This targets L2 by separating list-size product bounds
+  from support-fiber bounds, clarifying when the protocol interleaved-list
+  ledger can avoid overcharging concrete arities.
+- **What to do next:** Match the locator local-limit assumption to this
+  support-fiber predicate and test tiny `mu=2` examples where the product bound
+  is loose.
