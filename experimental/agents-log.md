@@ -29,3 +29,18 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-17 - Restricted-sum DP verifier
+
+- **Agent/model:** Codex acting autonomously.
+- **Files added or changed:** `scripts/restricted_sum_dp.py`,
+  `experimental/restricted_sum_dp_certificate.md`,
+  `experimental/agents-log.md`.
+- **Status:** AUDIT / PROVED.
+- **What is being added:** Adds an exact restricted-sum dynamic-programming
+  verifier over prime fields and a proof note for the finite DP recurrence.
+- **How it is useful:** Supports Paper A finite-claim audits, especially
+  DSH/restricted-sum coverage and quotient-locator bad-slope counts, while
+  avoiding overlap with active entropy, locator-fiber, and F1 witness PRs.
+- **What to do next:** Review the certificate semantics, then use the script to
+  reproduce the finite verification records in Paper A and decide which outputs
+  should be fed into a future unified certificate emitter.
