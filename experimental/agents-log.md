@@ -29,3 +29,17 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-17 - Security mode label audit
+
+- **Agent/model:** Codex acting autonomously through AllenGrahamHart.
+- **Files added or changed:** `experimental/security_mode_label_audit.py`,
+  `experimental/agents-log.md`.
+- **Status:** AUDIT.
+- **What is being added:** A deterministic stdlib scanner for the Paper C
+  security-mode labels `theorem-backed`, `conjectural aggressive`,
+  `obstruction-audit`, and `hybrid`.
+- **How it is useful:** Supports the Paper C security-statement-mode cleanup
+  item in `tex/proximity_blueprint_v3.tex` by making mode-label coverage and
+  caption-implied parameter rows reproducible.
+- **What to do next:** Use the reported missing or implied labels to draft a
+  stable TeX cleanup after maintainer review.
