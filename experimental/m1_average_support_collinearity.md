@@ -52,6 +52,29 @@ Var X
 Thus all possible random-line covariance is confined to pairs of supports
 intersecting in at least `k` points.
 
+Equivalently, writing `s = k+t`,
+
+```text
+H_t(n,k,q)
+  = sum_{j=1}^t binom(s,j) binom(n-s,j) q^(2-t-j),
+```
+
+one has
+
+```text
+Var X / (E X)^2
+  <= (1 - p_t)/(N_s p_t) + H_t(n,k,q)/(N_s p_t^2).
+```
+
+For `q >= 2`, if along a parameter sequence
+
+```text
+N_s / ( q^(t-1)
+        + q^t * sum_{j=1}^t (s(n-s)/q)^j / (j!)^2 ) -> infinity,
+```
+
+then `X / E X -> 1` in probability.
+
 If `Bad_t(f,g)` is the set of distinct support-wise MCA-bad slopes at radius
 `delta = 1 - (k+t)/n`, then
 
@@ -356,6 +379,68 @@ Reed-Solomon theory: support overlaps below `k` behave randomly, while
 overlaps of size at least `k` are the only possible source of structured
 covariance.
 
+It is useful to rewrite the high-overlap sum by the number of points exchanged
+between the two supports. Put `s = k+t` and let
+
+```text
+j = s - r.
+```
+
+Then `k <= r <= k+t-1` is the same as `1 <= j <= t`, and
+
+```text
+r - k - 2t + 2 = 2 - t - j.
+```
+
+Therefore the high-overlap part is exactly
+
+```text
+H_t(n,k,q)
+  = sum_{j=1}^t binom(s,j) binom(n-s,j) q^(2-t-j).
+```
+
+The relative-variance estimate becomes
+
+```text
+Var X / (E X)^2
+  <= (1 - p_t)/(N_s p_t) + H_t(n,k,q)/(N_s p_t^2).
+```
+
+For a rough closed sufficient condition, use
+
+```text
+binom(s,j) binom(n-s,j)
+  <= (s(n-s))^j / (j!)^2
+```
+
+and, for `q >= 2`,
+
+```text
+p_t = q^(1-t)(1 - q^(-t)) >= 1/(2 q^(t-1)).
+```
+
+Then
+
+```text
+Var X / (E X)^2
+  <= 2 q^(t-1)/N_s
+     + (4 q^t/N_s)
+       * sum_{j=1}^t (s(n-s)/q)^j / (j!)^2.
+```
+
+Consequently, along any parameter sequence satisfying
+
+```text
+N_s / ( q^(t-1)
+        + q^t * sum_{j=1}^t (s(n-s)/q)^j / (j!)^2 ) -> infinity,
+```
+
+the random-line support-incidence count concentrates:
+
+```text
+X / E X -> 1 in probability.
+```
+
 ## Constants and Interpretation
 
 The bound has three useful regimes.
@@ -411,6 +496,9 @@ The second-moment bound adds the overlap ledger:
 
 ```text
 random support covariance starts only at |S cap T| >= k.
+
+relative variance is controlled by exchanged points
+  j = 1,...,t with weights binom(k+t,j) binom(n-k-t,j) q^(2-t-j).
 ```
 
 Together these formulas justify treating the aperiodic part of residue-line
