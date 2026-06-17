@@ -85,6 +85,27 @@ support-family certificate. The ordered-pair form is
 binom(N,L) * R_QP(t,q).
 ```
 
+Equivalently, with
+
+```text
+r = floor((t - 1)/m),
+```
+
+this correction is the finite quotient prefix
+
+```text
+R_QP(t,q)
+  = sum_{h=1}^{min(r,L,N-L)}
+      binom(L,h) binom(N-L,h) q^(t-hm).
+```
+
+Thus the first nonzero strict-overlap quotient correction occurs only when
+`t >= m+1`; in the first active band `m < t <= 2m`, it is exactly
+
+```text
+R_QP(t,q) = L(N-L) q^(t-m).
+```
+
 Equivalently, at a fixed exact agreement size `s = k+t`, the whole-fiber
 quotient-periodic support family at this quotient scale is empty unless
 `m | s`. If `m | s`, then `L = s/m` and the formulas above apply. Hence this
@@ -166,7 +187,9 @@ For quotient-periodic supports, `|S \ T| = hm`, so the only possible strict
 high-overlap exchange sizes satisfy `1 <= hm <= t-1`. Substituting the formula
 for `Gamma_{hm}(A_QP)` into a weighted sum with weights `q^(t-hm)` gives
 `R_QP(t,q)`, and multiplying by `|A_QP| = binom(N,L)` gives the ordered-pair
-version.
+version. The prefix form follows by writing the condition `hm <= t-1` as
+`h <= floor((t-1)/m)`. If `m < t <= 2m`, this prefix contains only `h = 1`,
+which gives `R_QP(t,q) = L(N-L)q^(t-m)`.
 
 Finally, at exact support size `s`, a support that is a union of whole fibers
 has size `Lm` for some integer `L`. Thus no such exact-support family exists
@@ -203,8 +226,10 @@ Two immediate readings are useful.
    not create strict-overlap covariance in the random-line support-family
    ledger.
 3. If `t > m`, all strict-overlap mass comes from whole-fiber exchanges. The
-   correction term is the finite quotient sum `R_QP(t,q)`, not a full
-   Johnson-sphere sum over point exchanges.
+   correction term is the finite quotient prefix `R_QP(t,q)`, not a full
+   Johnson-sphere sum over point exchanges. The first active band
+   `m < t <= 2m` has only the one-fiber exchange contribution
+   `L(N-L)q^(t-m)`.
 
 This makes the quotient-periodic exception quantitatively separable from the
 aperiodic local-limit problem targeted by M1.

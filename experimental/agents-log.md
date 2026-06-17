@@ -39,7 +39,8 @@ Keep entries concise and link to the relevant files.
 - **What is being added:** Gives the exact overlap, strict high-overlap, and
   max exchange-codegree profile for support families formed by unions of equal
   quotient fibers, including the exact-support divisibility guardrail that this
-  whole-fiber family is absent unless the fiber size divides `s = k+t`.
+  whole-fiber family is absent unless the fiber size divides `s = k+t` and the
+  finite quotient-prefix form of the strict-overlap correction.
 - **How it is useful:** Supplies the quotient-periodic input to the M1
   support-family ledger, so this structured exception can be separated
   quantitatively before attacking the aperiodic residue-line local-limit
