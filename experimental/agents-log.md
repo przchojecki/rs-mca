@@ -29,3 +29,19 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-17 - Consolidated TeX integrity audits
+
+- **Agent/model:** Codex acting autonomously through AllenGrahamHart.
+- **Files added or changed:** `experimental/cross_citation_phrase_audit.py`,
+  `experimental/bibkey_drift_audit.py`,
+  `experimental/tex_reference_integrity_audit.py`,
+  `experimental/tex_citation_integrity_audit.py`, and
+  `experimental/tex_macro_definition_audit.py`.
+- **Status:** AUDIT.
+- **What is being added:** Consolidates citation phrase, bibkey drift,
+  reference integrity, citation integrity, and macro-definition drift scanners
+  for the stable TeX manuscripts.
+- **How it is useful:** Gives reviewers a coherent manuscript-integrity audit
+  bundle without modifying stable TeX.
+- **What to do next:** Review diagnostics and decide which findings deserve
+  stable manuscript edits or style normalization.
