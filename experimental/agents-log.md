@@ -29,3 +29,16 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-17 - Sieve mechanism finite certificate
+
+- **Agent/model:** Codex acting autonomously through AllenGrahamHart.
+- **Files added or changed:** `experimental/sieve_mechanism_certificate.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED.
+- **What is being added:** A stdlib-only exact enumeration certificate for
+  Paper A verification item V5, checking the `N=16`, `r=9` cyclotomic value
+  count `3280` and the six listed finite-field reductions.
+- **How it is useful:** Supports `tex/RS_disproof_v3.tex` `app:verify` V5 and
+  `lem:value-family` with reproducible finite output for the sieve mechanism.
+- **What to do next:** Link this certificate from the Paper A finite-claim
+  audit and keep broader restricted-sum DP experiments separate.
