@@ -104,11 +104,14 @@ E X_z^2
       alpha_r(1 - 2q^(-t) + alpha_r).
 ```
 
+In particular, fixed-slope covariance vanishes for support pairs intersecting
+in at most `k` points.
+
 In particular, if
 
 ```text
 N_s / ( q^t
-        + sum_{j=1}^t binom(k+t,j) binom(n-k-t,j) q^(t-j) )
+        + sum_{j=1}^{t-1} binom(k+t,j) binom(n-k-t,j) q^(t-j) )
   -> infinity,
 ```
 
@@ -118,7 +121,8 @@ Quantitatively, for `q >= 2`, put
 
 ```text
 B_t = (1 - p_z)/(N_s p_z)
-      + (4/N_s) * sum_{j=1}^t binom(k+t,j) binom(n-k-t,j) q^(t-j).
+      + (4/N_s) * sum_{j=1}^{t-1}
+          binom(k+t,j) binom(n-k-t,j) q^(t-j).
 ```
 
 Then the missing-slope density satisfies
@@ -128,6 +132,56 @@ E[1 - |Bad_t(f,g)|/q] <= B_t,
 
 Pr[ |Bad_t(f,g)|/q <= 1 - epsilon ] <= B_t / epsilon.
 ```
+
+More generally, the same slope-resolved estimate holds for any fixed support
+subfamily. Let `A` be a deterministic family of `M >= 1` supports of size
+`s = k+t`, and define the ordered strict high-overlap profile
+
+```text
+Delta_j(A)
+  = |{(S,T) in A^2 : S != T and |S \ T| = |T \ S| = j}|,
+      1 <= j <= t-1.
+```
+
+When `t = 1`, these strict-overlap sums are empty and are read as zero.
+
+Let `X_z(A)` count supports in `A` contributing the fixed slope `z`, and let
+`Bad_t(A;f,g)` be the set of slopes witnessed by supports in `A`. Then
+
+```text
+E X_z(A) = M p_z,
+
+Var X_z(A) / (M p_z)^2
+  <= (1 - p_z)/(M p_z)
+     + (4/M^2) * sum_{j=1}^{t-1} Delta_j(A) q^(t-j).
+```
+
+Consequently, with
+
+```text
+B_t(A) = (1 - p_z)/(M p_z)
+         + (4/M^2) * sum_{j=1}^{t-1} Delta_j(A) q^(t-j),
+```
+
+one has
+
+```text
+E[1 - |Bad_t(A;f,g)|/q] <= B_t(A),
+
+Pr[ |Bad_t(A;f,g)|/q <= 1 - epsilon ] <= B_t(A) / epsilon.
+```
+
+The first-moment side also restricts:
+
+```text
+E |Bad_t(A;f,g)|/q <= M / q^t.
+```
+
+Thus a fixed support family has the same random-line phase diagram with
+`binom(n,k+t)` replaced by its size and with the full Johnson-sphere correction
+replaced by its measured strict high-overlap profile. This is the natural
+certificate format for separating tangent, quotient-periodic, and aperiodic
+support families.
 
 Combining this with the first-moment upper bound gives the random-line
 slope-density phase diagram. Along any parameter sequence with `q >= 2`,
@@ -140,7 +194,7 @@ implies `|Bad_t(f,g)|/q -> 0` in probability, while
 
 ```text
 N_s / ( q^t
-        + sum_{j=1}^t binom(k+t,j) binom(n-k-t,j) q^(t-j) )
+        + sum_{j=1}^{t-1} binom(k+t,j) binom(n-k-t,j) q^(t-j) )
   -> infinity
 ```
 
@@ -148,7 +202,7 @@ implies `|Bad_t(f,g)|/q -> 1` in probability. In particular, for fixed `t`
 and `s(n-s)/q -> 0`, the transition is sharp at the entropy scale
 `binom(n,k+t) ~ q^t`.
 
-In logarithmic form, when the high-overlap correction is negligible,
+In logarithmic form, when the strict high-overlap correction is negligible,
 
 ```text
 t log q - log binom(n,k+t) -> +infinity
@@ -442,8 +496,8 @@ When `r < k`, `alpha_r = q^(-2t)`, so the pair probability is exactly
 q^(-2t)(1 - q^(-t))^2 = Pr[S contributes]^2.
 ```
 
-Thus fixed-slope support indicators are also exactly independent below
-intersection `k`.
+Thus fixed-slope support indicators are also exactly independent through
+intersection `k`: covariance can only start when `|S cap T| > k`.
 
 Let
 
@@ -456,17 +510,20 @@ For `q >= 2`, the relative variance is bounded by
 ```text
 Var X_z / mu_z^2
   <= (1 - p_z)/(N_s p_z)
-     + (4/N_s) * sum_{j=1}^t binom(k+t,j) binom(n-k-t,j) q^(t-j).
+     + (4/N_s) * sum_{j=1}^{t-1}
+         binom(k+t,j) binom(n-k-t,j) q^(t-j).
 ```
 
-To see this, write `j = k+t-r` for the high-overlap terms. Then
-`alpha_r = q^(-t-j)`, while
+To see this, write `j = k+t-r` for the strict-overlap terms. The case `j = t`
+is `r = k`, where `alpha_r = q^(-2t)` and the pair probability is exactly the
+independent product. Thus only `1 <= j <= t-1` can contribute covariance. In
+that range `alpha_r = q^(-t-j)`, while
 
 ```text
 p_z^2 = q^(-2t)(1 - q^(-t))^2.
 ```
 
-Since `1 - q^(-t) >= 1/2`, each high-overlap pair contributes at most
+Since `1 - q^(-t) >= 1/2`, each strict high-overlap pair contributes at most
 `4q^(t-j)` times the independent product probability. The diagonal term gives
 `(1-p_z)/(N_s p_z)`.
 
@@ -474,7 +531,7 @@ Consequently, if
 
 ```text
 N_s / ( q^t
-        + sum_{j=1}^t binom(k+t,j) binom(n-k-t,j) q^(t-j) )
+        + sum_{j=1}^{t-1} binom(k+t,j) binom(n-k-t,j) q^(t-j) )
   -> infinity,
 ```
 
@@ -485,7 +542,8 @@ Let
 
 ```text
 B_t = (1 - p_z)/(N_s p_z)
-      + (4/N_s) * sum_{j=1}^t binom(k+t,j) binom(n-k-t,j) q^(t-j).
+      + (4/N_s) * sum_{j=1}^{t-1}
+          binom(k+t,j) binom(n-k-t,j) q^(t-j).
 ```
 
 Finally, the exact-support reduction above gives `z in Bad_t(f,g)` whenever
@@ -515,8 +573,124 @@ In particular, the same asymptotic condition above implies
 
 in probability. This is the random-line failure-side complement to the Markov
 upper bound: above the slope-resolved entropy threshold, almost every slope is
-support-wise MCA-bad for a random line, unless high-overlap covariance dominates
-the displayed variance criterion.
+support-wise MCA-bad for a random line, unless strict high-overlap covariance
+dominates the displayed variance criterion.
+
+## Restricted Support-Family Certificate
+
+The fixed-slope argument did not use that all supports of size `s` are present.
+This gives a reusable certificate for support families that arise after
+separating tangent, quotient-periodic, or other structured sources.
+
+Let `A` be a deterministic family of `M >= 1` supports of size `s = k+t`. For
+`1 <= j <= t-1`, define
+
+```text
+Delta_j(A)
+  = |{(S,T) in A^2 : S != T and |S \ T| = |T \ S| = j}|.
+```
+
+For `t = 1`, there are no such strict-overlap indices and the sums below are
+empty.
+
+Equivalently, `Delta_j(A)` counts ordered pairs of supports whose intersection
+has size `s-j`. The range `1 <= j <= t-1` is exactly the strict high-overlap
+range `|S cap T| > k`; intersections of size at most `k` have zero covariance
+for fixed slope.
+
+For a fixed `z`, let
+
+```text
+X_z(A) = |{S in A : (S,z) in Inc_t(f,g)}|.
+```
+
+The one-support calculation gives
+
+```text
+E X_z(A) = M p_z,        p_z = q^(-t)(1 - q^(-t)).
+```
+
+For two distinct supports with `j = s - |S cap T|`, the slope-resolved second
+moment above gives exact independence when `j >= t`. When `1 <= j <= t-1`, it
+gives
+
+```text
+Pr[S,T both contribute to X_z(A)]
+  = q^(-t-j)(1 - 2q^(-t) + q^(-t-j)).
+```
+
+Since `q >= 2`,
+
+```text
+q^(-t-j)(1 - 2q^(-t) + q^(-t-j))
+  <= 4 q^(t-j) p_z^2.
+```
+
+Summing the diagonal variance and these strict high-overlap pair bounds yields
+
+```text
+Var X_z(A) / (M p_z)^2
+  <= (1 - p_z)/(M p_z)
+     + (4/M^2) * sum_{j=1}^{t-1} Delta_j(A) q^(t-j).
+```
+
+Therefore the finite-parameter missing-density bound also restricts to `A`.
+With
+
+```text
+B_t(A) = (1 - p_z)/(M p_z)
+         + (4/M^2) * sum_{j=1}^{t-1} Delta_j(A) q^(t-j),
+```
+
+Chebyshev gives
+
+```text
+Pr[X_z(A) = 0] <= B_t(A).
+```
+
+Averaging over `z` and applying Markov to the missing-slope density gives
+
+```text
+E[1 - |Bad_t(A;f,g)|/q] <= B_t(A),
+
+Pr[ |Bad_t(A;f,g)|/q <= 1 - epsilon ] <= B_t(A) / epsilon.
+```
+
+The sparse side is just as important. Every slope witnessed by `A` has at least
+one incidence from `A`, so
+
+```text
+E |Bad_t(A;f,g)|/q
+  <= M * (q^t - 1) / q^(2t)
+  <= M / q^t.
+```
+
+Thus, along a parameter sequence with `q >= 2`,
+
+```text
+M / q^t -> 0
+```
+
+forces `|Bad_t(A;f,g)|/q -> 0` in probability, while
+
+```text
+M / ( q^t + M^(-1) * sum_{j=1}^{t-1} Delta_j(A) q^(t-j) ) -> infinity
+```
+
+forces `|Bad_t(A;f,g)|/q -> 1` in probability.
+
+For the full support family `A = binom(D,s)`, one has `M = N_s` and
+
+```text
+Delta_j(A) = N_s binom(s,j) binom(n-s,j),
+```
+
+so this certificate recovers the all-support slope-density criterion. For a
+proper subfamily, the full Johnson-sphere correction is replaced by the actual
+strict high-overlap profile of that family. This is a concrete object a scanner
+or a future inverse theorem can target: after the known tangent and quotient
+floors are removed, an aperiodic family must either be sparse relative to
+`q^t` or exhibit a large certified strict high-overlap profile.
 
 ## Random-Line Slope-Density Phase Diagram
 
@@ -524,7 +698,7 @@ The random-line baseline now has a two-sided slope-density statement. Let
 
 ```text
 R_t(n,k,q)
-  = sum_{j=1}^t binom(k+t,j) binom(n-k-t,j) q^(t-j).
+  = sum_{j=1}^{t-1} binom(k+t,j) binom(n-k-t,j) q^(t-j).
 ```
 
 The sparse side follows from the first-moment bound:
@@ -569,8 +743,8 @@ inequality then gives
 in probability.
 
 Thus the only gap between the sparse and dense random-line regimes is the
-high-overlap correction `R_t`. In the random-overlap range where `t` is fixed
-and
+strict high-overlap correction `R_t`. In the random-overlap range where `t` is
+fixed and
 
 ```text
 s(n-s)/q -> 0,
@@ -585,12 +759,13 @@ binom(n,k+t) ~= q^t.
 
 This is the random analogue of the M1 entropy ledger. A worst-case theorem
 cannot hope to follow from random-line heuristics alone; it must separately
-control tangent, quotient-periodic, and high-overlap structured line data.
+control tangent, quotient-periodic, and strict high-overlap structured line
+data.
 
 ## Entropy-Reserve Reading
 
 The phase diagram can be read in exactly the reserve language used in Paper B.
-Ignoring high-overlap corrections, the random-line transition occurs when
+Ignoring strict high-overlap corrections, the random-line transition occurs when
 
 ```text
 q^t ~= binom(n,k+t).
@@ -615,7 +790,7 @@ t log q - log binom(n,k+t) -> +infinity
 ```
 
 forces the bad-slope density to vanish. On the failure random side, provided
-the high-overlap correction `R_t` is negligible,
+the strict high-overlap correction `R_t` is negligible,
 
 ```text
 log binom(n,k+t) - t log q -> +infinity
@@ -634,7 +809,7 @@ up to lower-order terms after dividing by `n`, with `H` measured in the same
 logarithm base. This is only a random-line statement, but it explains why the
 worst-case M1 conjecture has to be calibrated against the same generated-field
 entropy ledger as the locator-fiber problem, with tangent, quotient-periodic,
-and high-overlap families accounted for separately.
+and strict high-overlap families accounted for separately.
 
 Field-ledger warning: in this note `q` is the field from which the random line
 data `f,g` are sampled. Thus the displayed reserve is a `q_line` reserve. It
@@ -853,7 +1028,7 @@ nonzero random-direction bad-slope density
   <= binom(n,k+t) / q^t      for every fixed base word.
 ```
 
-The second-moment bound adds the overlap ledger:
+The all-slope second-moment bound adds the overlap ledger:
 
 ```text
 random support covariance starts only at |S cap T| >= k.
@@ -871,8 +1046,10 @@ if the fixed-slope relative variance tends to zero, then
 expected missing-slope density is at most the fixed-slope relative variance
 bound B_t.
 
+fixed-slope covariance starts only at |S cap T| > k.
+
 random-line slope density transitions at binom(n,k+t) ~= q^t
-when high-overlap corrections are negligible.
+when strict high-overlap corrections are negligible.
 
 entropy reserve:
   t log q - log binom(n,k+t).
@@ -882,12 +1059,19 @@ field ledger:
   transfer theorem.
 ```
 
+The restricted-family certificate makes this ledger reusable:
+
+```text
+for a fixed support family A, replace binom(n,k+t) by |A|
+and replace the full Johnson correction by Delta_j(A), j = 1,...,t-1.
+```
+
 Together these formulas justify treating the aperiodic part of residue-line
 packing as an incidence problem rather than as an arbitrary list-size problem.
 They also identify the exact obstruction to promoting the estimate to a
 worst-case theorem: after the zero-slope basepoint term, the known
 tangent-floor constructions, and quotient-periodic families are separated, one
-must rule out line data for which many high-overlap supports have aligned
+must rule out line data for which many strict high-overlap supports have aligned
 top-coefficient vectors `Pi_S(f)` and `Pi_S(g)`.
 
 ## Suggested Next Step
@@ -895,5 +1079,8 @@ top-coefficient vectors `Pi_S(f)` and `Pi_S(g)`.
 The natural follow-up is a scanner that, for tiny fields, computes the vectors
 `Pi_S(f), Pi_S(g)` over all supports of size `k+t`, records the distinct slopes
 arising from collinearity, and labels whether each support is tangent,
-quotient-periodic, or aperiodic. The average formula above gives an exact
-baseline for interpreting those scans.
+quotient-periodic, or aperiodic. For each labelled support family it should
+also report `Delta_j(A)` for `1 <= j <= t-1`. The average formula above gives
+an exact baseline for interpreting those scans, while the restricted-family
+certificate says when the labelled aperiodic part is behaving like the random
+model and when it is carrying a genuine strict-overlap obstruction.
