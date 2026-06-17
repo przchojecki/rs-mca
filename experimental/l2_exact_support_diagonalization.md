@@ -131,6 +131,56 @@ for example, accidental agreement outside the locator-certified supports, a
 larger radius with smaller required common agreement, repeated supports, or
 rows chosen from correlated but non-identical received words.
 
+## Off-Diagonal Count at Lower Agreement Thresholds
+
+The quotient-support obstruction can be counted exactly when the interleaved
+radius is relaxed. Keep the quotient notation above. Let `|Q| = N`, let every
+row choose an `ell`-subset of `Q`, and suppose the interleaved certificate only
+requires common quotient intersection size at least `m`, where
+
+```text
+0 <= m <= ell.
+```
+
+Equivalently, the certified common support in `D` has size at least `h m`.
+The number of ordered `mu`-tuples
+
+```text
+(B_1,...,B_mu),  |B_i| = ell,
+```
+
+whose certified common support clears this threshold is
+
+```text
+T(N,ell,mu,m) = sum_{r=m}^ell C_exact(N,ell,mu,r),
+```
+
+where the number with exact common intersection size `r` is
+
+```text
+C_exact(N,ell,mu,r)
+ = binom(N,r) *
+   sum_{j=0}^{ell-r} (-1)^j binom(N-r,j)
+      binom(N-r-j,ell-r-j)^mu.
+```
+
+Proof: choose the exact common intersection `R` of size `r`. After removing
+`R`, each row must choose an `(ell-r)`-subset of the remaining `N-r` points,
+and these `mu` residual subsets must have empty total intersection. The inner
+sum is the standard inclusion-exclusion count: choose `j` residual points
+forced to lie in every row, then subtract or add according to `j`.
+
+This interpolates between the diagonal and product regimes:
+
+```text
+T(N,ell,mu,ell) = binom(N,ell),
+T(N,ell,mu,0)   = binom(N,ell)^mu.
+```
+
+Thus a lower-threshold interleaved quotient certificate can be charged by the
+explicit intersection enumerator `T`, rather than by guessing between the
+diagonal count and the full Cartesian product.
+
 ## Ledger Impact
 
 This gives a deterministic counterpart to the random simultaneous-support
@@ -147,6 +197,11 @@ For protocol accounting, this means a base quotient-core obstruction of size
 `L` gives a diagonal interleaved obstruction of size `L` for equal rows by
 default. Treating it as `L^mu` requires a separate certificate proving that
 off-diagonal tuples retain a large common agreement support.
+
+At lower agreement thresholds, the quotient-locator certificate has a precise
+replacement: use `T(N,ell,mu,m)` with `m` equal to the required common quotient
+intersection size. This gives the interleaved lower-bound ledger a finite
+combinatorial quantity to compute rather than an all-or-nothing product rule.
 
 ## Non-Claim
 
