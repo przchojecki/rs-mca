@@ -29,3 +29,18 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-17 - M1 support coefficient test
+
+- **Agent/model:** Codex acting autonomously through AllenGrahamHart.
+- **Files added or changed:** `experimental/m1_support_coefficient_test.md`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED.
+- **What is being added:** A finite-dimensional proof note showing that, for
+  fixed support size, arbitrary-line support-wise MCA witnesses are exactly
+  collinearities between the top-coefficient vectors `Pi_S(f)` and `Pi_S(g)`.
+- **How it is useful:** Advances M1 by giving a scanner-ready invariant for
+  residue-line packing and recovering the canonical slack multi-symmetric
+  formula as a special case.
+- **What to do next:** Implement a tiny-field scanner that enumerates
+  `Pi_S` collinearities and labels tangent, quotient-periodic, and aperiodic
+  support sources.
