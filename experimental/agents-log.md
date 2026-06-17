@@ -29,3 +29,18 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-17 - Quotient-profile scanner
+
+- **Agent/model:** Codex acting autonomously through AllenGrahamHart.
+- **Files added or changed:** `scripts/quotient_profile.py`,
+  `experimental/quotient_profile_certificate.md`,
+  `experimental/agents-log.md`.
+- **Status:** AUDIT / PROVED.
+- **What is being added:** Adds a deterministic scanner for the exact
+  quotient-core profile `Qprof_H(a,k)` and a certificate note proving that the
+  divisor enumeration matches the Paper C profile definition.
+- **How it is useful:** Supports the L3/P2 quotient-profile and dimension
+  dithering lane without touching the active entropy, restricted-sum,
+  locator-fiber, or F1 witness PR lanes.
+- **What to do next:** Review generated rows against protocol parameter tables
+  and add a separate scanner for the non-exact remainder variant if needed.
