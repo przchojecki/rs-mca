@@ -75,6 +75,45 @@ N_s / ( q^(t-1)
 
 then `X / E X -> 1` in probability.
 
+There is also a slope-resolved second moment. For fixed `z in F`, let
+`X_z` be the number of supports contributing the slope `z`, and put
+
+```text
+a_t = q^(-t),        p_z = a_t(1 - a_t).
+```
+
+Then
+
+```text
+E X_z = N_s p_z.
+```
+
+For two supports with intersection `r`, define
+
+```text
+alpha_r =
+  q^(-2t)             if r < k,
+  q^(r-k-2t)          if k <= r <= k+t.
+```
+
+The exact second moment is
+
+```text
+E X_z^2
+  = N_s * sum_{r=0}^{k+t} binom(k+t,r) binom(n-k-t,k+t-r)
+      alpha_r(1 - 2q^(-t) + alpha_r).
+```
+
+In particular, if
+
+```text
+N_s / ( q^t
+        + sum_{j=1}^t binom(k+t,j) binom(n-k-t,j) q^(t-j) )
+  -> infinity,
+```
+
+then `|Bad_t(f,g)|/q -> 1` in probability.
+
 If `Bad_t(f,g)` is the set of distinct support-wise MCA-bad slopes at radius
 `delta = 1 - (k+t)/n`, then
 
@@ -281,6 +320,136 @@ the single slope `z = 0`. The nonzero-slope random-direction baseline is
 uniform in `f`. This is not a classification of the worst-case tangent-floor
 construction; it only says that fixed basepoint list mass does not create
 extra nonzero slopes for a random direction.
+
+## Slope-Resolved Second Moment
+
+The incidence count `X = |Inc_t(f,g)|` is the sum over all slopes. To understand
+bad-slope density, fix one slope `z in F` and let
+
+```text
+X_z = |{S : (S,z) in Inc_t(f,g)}|.
+```
+
+Make the invertible linear change of random variables
+
+```text
+U = f + z g,       V = g.
+```
+
+Then `U,V` are independent uniform words in `F^D`. For a support `S`, let
+
+```text
+K_S = {v in F^D : Pi_S(v) = 0}.
+```
+
+The support `S` contributes to `X_z` exactly when
+
+```text
+U in K_S,       V notin K_S.
+```
+
+Indeed, `Pi_S(f) + z Pi_S(g) = Pi_S(U)`, and under this equation the
+noncontainment condition fails exactly when `Pi_S(V)=0`.
+
+For one support, `Pr[U in K_S] = q^(-t)` and `Pr[V notin K_S] = 1 - q^(-t)`,
+so
+
+```text
+E X_z = N_s q^(-t)(1 - q^(-t)).
+```
+
+For two supports `S,T`, put `r = |S cap T|` and
+
+```text
+alpha_r = Pr[U in K_S cap K_T].
+```
+
+The same rank calculation as above gives
+
+```text
+alpha_r =
+  q^(-2t)             if r < k,
+  q^(r-k-2t)          if k <= r <= k+t.
+```
+
+Since `U` and `V` are independent, the pair probability is
+
+```text
+Pr[S,T both contribute to X_z]
+  = alpha_r * Pr[V notin K_S union K_T]
+  = alpha_r(1 - 2q^(-t) + alpha_r).
+```
+
+Thus the exact slope-resolved second moment is
+
+```text
+E X_z^2
+  = N_s * sum_{r=0}^{k+t} binom(k+t,r) binom(n-k-t,k+t-r)
+      alpha_r(1 - 2q^(-t) + alpha_r).
+```
+
+When `r < k`, `alpha_r = q^(-2t)`, so the pair probability is exactly
+
+```text
+q^(-2t)(1 - q^(-t))^2 = Pr[S contributes]^2.
+```
+
+Thus fixed-slope support indicators are also exactly independent below
+intersection `k`.
+
+Let
+
+```text
+mu_z = E X_z,       p_z = q^(-t)(1 - q^(-t)).
+```
+
+For `q >= 2`, the relative variance is bounded by
+
+```text
+Var X_z / mu_z^2
+  <= (1 - p_z)/(N_s p_z)
+     + (4/N_s) * sum_{j=1}^t binom(k+t,j) binom(n-k-t,j) q^(t-j).
+```
+
+To see this, write `j = k+t-r` for the high-overlap terms. Then
+`alpha_r = q^(-t-j)`, while
+
+```text
+p_z^2 = q^(-2t)(1 - q^(-t))^2.
+```
+
+Since `1 - q^(-t) >= 1/2`, each high-overlap pair contributes at most
+`4q^(t-j)` times the independent product probability. The diagonal term gives
+`(1-p_z)/(N_s p_z)`.
+
+Consequently, if
+
+```text
+N_s / ( q^t
+        + sum_{j=1}^t binom(k+t,j) binom(n-k-t,j) q^(t-j) )
+  -> infinity,
+```
+
+then `Var X_z / mu_z^2 -> 0`, uniformly in `z`.
+
+Finally, the exact-support reduction above gives `z in Bad_t(f,g)` whenever
+`X_z > 0`. Chebyshev's inequality gives
+
+```text
+Pr[X_z = 0] <= Var X_z / mu_z^2.
+```
+
+Averaging over `z` and then applying Markov to the missing-slope density shows
+that the same condition implies
+
+```text
+|Bad_t(f,g)| / q -> 1
+```
+
+in probability. This is the random-line failure-side complement to the Markov
+upper bound: above the slope-resolved entropy threshold, almost every slope is
+support-wise MCA-bad for a random line, unless high-overlap covariance dominates
+the displayed variance criterion.
 
 ## Support-Overlap Second Moment
 
@@ -499,6 +668,13 @@ random support covariance starts only at |S cap T| >= k.
 
 relative variance is controlled by exchanged points
   j = 1,...,t with weights binom(k+t,j) binom(n-k-t,j) q^(2-t-j).
+```
+
+The slope-resolved ledger adds the failure-side threshold:
+
+```text
+if the fixed-slope relative variance tends to zero, then
+  |Bad_t(f,g)| / q -> 1 in probability.
 ```
 
 Together these formulas justify treating the aperiodic part of residue-line
