@@ -68,6 +68,46 @@ for every received word `V`, then
 
 No `mu B` exponent is lost.
 
+## Full-Agreement Support Formula
+
+The feasible `a`-subset fiber above is a useful upper-bound object, but it can
+overcount badly when a row agrees with a codeword on many more than `a`
+positions.  The exact repaired object is the full agreement-support profile.
+
+For a received word `V:H -> F`, define
+
+```text
+Supp_V^{>=a}
+  = { A_V(c) : c in C, |A_V(c)| >= a },
+
+A_V(c) = { x in H : c(x)=V(x) }.
+```
+
+For `a >= k`, the map from listed codewords to `Supp_V^{>=a}` is injective for
+Reed-Solomon codes, because the full agreement support has size at least `k`.
+
+For a `mu`-row received word `U=(U_1,...,U_mu)`, the interleaved list size is
+exactly
+
+```text
+|Lambda(Int(C,mu),1-a/n,U)|
+ =
+ |{ (A_1,...,A_mu) :
+      A_i in Supp_Ui^{>=a} for every i,
+      |A_1 cap ... cap A_mu| >= a }|.
+```
+
+Thus L2 is not intrinsically controlled by the Cartesian product of row list
+sizes; it is controlled by the intersection profile of the full agreement
+supports.  In particular, if the row support families are `a`-wise disjoint in
+the sense that no off-diagonal tuple has intersection of size at least `a`,
+then the interleaved list contains only the diagonal or otherwise matched
+tuples, even when every row list is large.
+
+This formula also repairs the raw-support overcount that appears for low-degree
+received words.  If `V` itself is a codeword, then `Supp_V^{>=a}={H}`, whereas
+the raw feasible fiber `Fib_V(a)` contains every `a`-subset of `H`.
+
 ## Proof
 
 Take an interleaved listed codeword
@@ -89,6 +129,31 @@ interleaved codewords are equal.
 
 Thus the interleaved list injects into the simultaneous feasible-support fiber.
 The `min_i` bound follows from `Fib_U^cap(a) subset Fib_Ui(a)` for every row.
+
+For the full-agreement formula, send an interleaved listed codeword
+
+```text
+c = (c_1,...,c_mu)
+```
+
+to the tuple
+
+```text
+(A_U1(c_1),...,A_Umu(c_mu)).
+```
+
+The tuple lies in the displayed set because the common agreement columns of
+`c` with `U` are exactly
+
+```text
+A_U1(c_1) cap ... cap A_Umu(c_mu),
+```
+
+and listing means this intersection has size at least `a`. Conversely, any
+tuple in the displayed set comes from unique row codewords, since each support
+has size at least `a >= k`; those row codewords form an interleaved codeword
+with at least `a` common agreement columns. These two maps are inverse to each
+other.
 
 ## Ledger Consequence
 
@@ -114,10 +179,21 @@ generated-field entropy ledger is unchanged, but the list-size-over-field term
 need not pay a Cartesian-product support exponent if the locator theorem is
 available in support-fiber form.
 
+The full-agreement formula is the sharper finite object for certificate
+emitters.  It says that a future L1 theorem should ideally output or bound the
+number and intersection profile of full agreement supports, not just the raw
+number of feasible `a`-subsets.  This is especially important in the presence
+of contained supports: raw fibers can be exponentially larger than the actual
+list, while the full-support profile remains in bijection with the listed row
+codewords and composes exactly under interleaving.
+
 ## Follow-Up Checks
 
 - Match the manuscript's locator local-limit assumption to `Fib_U(a)` rather
   than only to `|Lambda(C,delta,U)|`.
+- Prefer a maximal/full-support version of that assumption when using it for
+  L2, because it avoids contained-support overcount and gives the exact
+  interleaved intersection profile.
 - Test tiny `mu=2` examples where product list bounds are loose but
   simultaneous support fibers are small.
 - Decide how certificate emitters should print both values: the conservative
