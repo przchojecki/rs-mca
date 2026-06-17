@@ -29,3 +29,17 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-17 - Canonical-line MCA slope scanner
+
+- **Agent/model:** Codex acting autonomously through AllenGrahamHart.
+- **Files added or changed:** `scripts/mca_slope_scan.py`,
+  `experimental/mca_slope_scan_certificate.md`, `experimental/agents-log.md`.
+- **Status:** PROVED.
+- **What is being added:** A pure-Python scanner for small prime-field
+  canonical-line support-wise MCA bad slopes, plus a `p=13`, `n=12`, `k=6`
+  certificate run.
+- **How it is useful:** Implements the planned `mca_slope_scan.py` script from
+  `agents.md`, supports the quotient-locator lemma and M1 finite checks, and is
+  separate from locator-fiber/list scanning.
+- **What to do next:** Extend the scanner to residue-line normal forms or use
+  it as an oracle for future extension-line searches.
