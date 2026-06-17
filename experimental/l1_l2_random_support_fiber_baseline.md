@@ -28,6 +28,22 @@ If the rows `U_1,...,U_mu` are independent and uniformly random in `F^D`, then
 E |Fib_U^cap(a)| = binom(n,a) / q^(mu sigma).
 ```
 
+Let `X = |Fib_U^cap(a)|`. Its exact second moment is
+
+```text
+E X^2 = binom(n,a) * sum_r binom(a,r) binom(n-a,a-r) p_r^mu,
+```
+
+where the sum runs over `0 <= r <= a` and
+
+```text
+p_r = q^(-2 sigma)              if r < k,
+p_r = q^(r - k - 2 sigma)       if k <= r <= a.
+```
+
+Equivalently, all covariance comes from pairs of supports whose intersection
+has size at least `k`.
+
 In particular, for `mu = 1`,
 
 ```text
@@ -92,6 +108,81 @@ E |Fib_U^cap(a)| = binom(n,a) q^(-mu sigma).
 
 No independence between different supports is needed; this is just linearity of
 expectation.
+
+## Exact Second Moment
+
+Put
+
+```text
+X = |Fib_U^cap(a)|,     N_a = binom(n,a).
+```
+
+For two supports `S,T` of size `a`, write `r = |S cap T|`. For one row, let
+`E_S` be the event that `S in Fib_U(a)` and similarly for `T`.
+
+If `r < k`, choose the degree-`< k` interpolant on `S` and the degree-`< k`
+interpolant on `T`. They must agree on the `r` common points. There are
+
+```text
+q^k * q^(k-r) = q^(2k-r)
+```
+
+compatible pairs of polynomials, and each compatible pair determines one word
+on `S union T`. Since `|S union T| = 2a-r`,
+
+```text
+Pr[E_S and E_T] = q^(2k-r) / q^(2a-r) = q^(-2 sigma).
+```
+
+If `r >= k`, the two degree-`< k` interpolants agree on at least `k` points,
+so they are the same polynomial. There are `q^k` choices, hence
+
+```text
+Pr[E_S and E_T] = q^k / q^(2a-r) = q^(r - k - 2 sigma).
+```
+
+For `mu` independent rows, raise these probabilities to the `mu`th power.
+For a fixed `S`, the number of supports `T` with `|S cap T| = r` is
+
+```text
+binom(a,r) binom(n-a,a-r).
+```
+
+Summing over `S` and `r` gives the stated second moment:
+
+```text
+E X^2 = N_a * sum_r binom(a,r) binom(n-a,a-r) p_r^mu.
+```
+
+The variance form is often clearer. Since
+
+```text
+(E X)^2 = N_a^2 q^(-2 mu sigma),
+```
+
+all terms with `r < k` cancel against the product expectation. Therefore
+
+```text
+Var X
+ = N_a * (q^(-mu sigma) - q^(-2 mu sigma))
+   + N_a * sum_{r=k}^{a-1} binom(a,r) binom(n-a,a-r)
+       q^(-2 mu sigma) * (q^(mu(r-k)) - 1).
+```
+
+Equivalently,
+
+```text
+Var X / (E X)^2
+ = (q^(mu sigma) - 1) / N_a
+   + (1 / N_a) * sum_{r=k}^{a-1} binom(a,r) binom(n-a,a-r)
+       (q^(mu(r-k)) - 1).
+```
+
+Thus `X / E X -> 1` in probability whenever the displayed relative variance
+tends to zero. This criterion identifies the exact overlap range responsible
+for random support-fiber correlations: intersections smaller than `k` are
+independent, while intersections of size at least `k` are coupled by
+Reed-Solomon uniqueness.
 
 ## Interleaved List Consequence
 
