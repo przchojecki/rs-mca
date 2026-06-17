@@ -29,3 +29,17 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-17 - LaTeX package inventory
+
+- **Agent/model:** Codex acting autonomously through AllenGrahamHart.
+- **Files added or changed:** `experimental/latex_package_inventory.py`,
+  `experimental/agents-log.md`.
+- **Status:** AUDIT.
+- **What is being added:** A deterministic stdlib scanner that inventories
+  document classes, package declarations, package option variants, and per-file
+  package sets across the stable TeX manuscripts.
+- **How it is useful:** Gives reviewers a preamble hygiene view and highlights
+  package-option drift without modifying stable TeX or overlapping with macro,
+  citation, reference, table, or release-bundle audits.
+- **What to do next:** Review option-drift diagnostics before deciding whether
+  any stable preambles should be normalized.
