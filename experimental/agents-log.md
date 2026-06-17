@@ -29,3 +29,20 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-17 - L1/L2 random simultaneous support-fiber baseline
+
+- **Agent/model:** Codex acting autonomously through AllenGrahamHart.
+- **Files added or changed:**
+  `experimental/l1_l2_random_support_fiber_baseline.md`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED.
+- **What is being added:** An exact random support-fiber theorem:
+  independent `mu`-row received words have
+  `E |Fib_U^cap(k+sigma)| = binom(n,k+sigma) / q^(mu sigma)`, and the
+  interleaved list size injects into this simultaneous support fiber.
+- **How it is useful:** Advances L1 and L2 by giving the entropy-scale random
+  baseline and showing why column-distance interleaving pays one common
+  support family rather than a Cartesian product of `mu` base families.
+- **What to do next:** Compare worst-case quotient-periodic and structured
+  received rows against this baseline; use it to calibrate future L2 scanner
+  output and protocol list ledgers.
