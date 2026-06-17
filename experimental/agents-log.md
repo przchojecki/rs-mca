@@ -38,18 +38,21 @@ Keep entries concise and link to the relevant files.
   `verify_f1_arbitrary_anchor_split.py`,
   `experimental/2026-06-17-codex-f1-l1-audit/README.md`,
   `experimental/agents-log.md`.
-- **Status:** PROVED / COUNTEREXAMPLE to naive arbitrary-anchor locator
-  reduction.
-- **What is being added:** Proves the exact balanced arbitrary-anchor
-  residue-cloud normal form, then proves a two-support splitting lemma and
-  gives a verified `F_17 -> F_{17^2}` packet where two supports have the same
-  locator readout modulo `hatE` but an arbitrary anchor makes them certify
+- **Status:** PROVED residual-slack reduction; PROVED / COUNTEREXAMPLE to
+  naive arbitrary-anchor locator reduction.
+- **What is being added:** Proves that degree-`t` residue-line data with
+  `t <= sigma` inject bad slopes into the list of the anchor word for
+  `RS[F,D,k+t]` with residual slack `sigma-t`. It then proves the exact
+  balanced arbitrary-anchor residue-cloud normal form, a two-support splitting
+  lemma, and a verified `F_17 -> F_{17^2}` packet where two supports have the
+  same locator readout modulo `hatE` but an arbitrary anchor makes them certify
   distinct bad slopes. It also records the sunflower lower floor
   `floor((|D|-k)/sigma)` for arbitrary balanced anchors.
-- **How it is useful:** Shows the monic-anchor base-core reduction is sharp in
-  its anchor hypothesis; full F1 must bound the arbitrary support-interpolation
-  residue cloud, not only the locator image, while allowing the sunflower
-  floor.
+- **How it is useful:** Routes unbalanced F1 data to the extension list ledger
+  and isolates the genuinely new wall at small residual slack, especially
+  `t=sigma`. Shows the monic-anchor base-core reduction is sharp in its anchor
+  hypothesis; full F1 must bound the arbitrary support-interpolation residue
+  cloud, not only the locator image, while allowing the sunflower floor.
 - **What to do next:** Search for large arbitrary-anchor support families or
   prove no-rich-line bounds for the support-interpolation residue cloud above
   the corrected reserve.

@@ -1,5 +1,66 @@
 # F1 Arbitrary-Anchor Residue Cloud And Locator Split
 
+## Residual-Slack List Reduction
+
+Let `F` be a finite field, let `D subset F` have size `n`, and let
+`C = RS[F,D,k]`. Fix integers
+
+```text
+1 <= t <= sigma,        a = k + sigma <= n.
+```
+
+A degree-`t` residue-line datum consists of a denominator `E in F[X]` of
+degree `t`, nonzero on `D`, a numerator `N in F[X]` with `deg N < t` and
+`[N]_E != 0`, and an anchor word `w:D->F`. A slope `z` has a witness at
+agreement `a` if there are a polynomial `Q in F[X]` and a set `S subset D`
+such that
+
+```text
+deg Q < k+t,        |S| >= a,
+Q = w on S,        [Q]_E = z [N]_E.
+```
+
+Define the residual list set
+
+```text
+List_{t,sigma}(w)
+  = { Q in F[X] : deg Q < k+t,
+        |{ x in D : Q(x)=w(x) }| >= k+sigma }.
+```
+
+Then the number of support-wise MCA-bad slopes contributed by this datum at
+radius `delta = 1-a/n` is at most `|List_{t,sigma}(w)|`.
+
+Equivalently, unbalanced residue-line data inject into the ordinary list of
+the anchor word `w` for the larger code `RS[F,D,k+t]` at agreement
+
+```text
+k + sigma = (k+t) + (sigma-t).
+```
+
+The relevant list slack is therefore the residual slack `sigma-t`, not the
+original MCA slack `sigma`.
+
+Proof.  Every support-wise bad slope is, in particular, witnessed by some
+pair `(Q,S)` satisfying the displayed conditions, so `Q` lies in
+`List_{t,sigma}(w)`. Choose one such polynomial `Q_z` for each bad slope `z`.
+If the same polynomial were chosen for two slopes `z` and `z'`, then
+
+```text
+(z-z') [N]_E = 0
+```
+
+in the `F`-vector space `F[X]/(E)`. Since `[N]_E != 0`, this forces `z=z'`.
+Thus `z -> Q_z` is injective.
+
+The consequence is structural rather than a new unconditional list theorem:
+any proven bound for the above list size immediately bounds the unbalanced F1
+datum. In particular, degree-one denominators are above-reserve safe exactly
+to the extent that the extension/list local limit is available for residual
+slack `sigma-1`. When `t=sigma`, the residual slack is zero and this reduction
+can be as large as the family of all `a`-subset interpolants; that is why the
+balanced residue-cloud problem below is the live F1 wall.
+
 ## Exact Balanced Residue-Cloud Form
 
 Let `F` be a finite field, let `D subset F`, and let `C = RS[F,D,k]`.
@@ -98,12 +159,14 @@ however, a structural lower term that any sharp repaired F1 theorem must allow.
 
 ## Status
 
-PROVED / COUNTEREXAMPLE to the naive promotion of the monic-anchor base-core
-reduction to arbitrary anchors.
+PROVED residual-slack reduction for `t <= sigma`; PROVED / COUNTEREXAMPLE to
+the naive promotion of the monic-anchor base-core reduction to arbitrary
+balanced anchors.
 
 This does not refute the repaired F1 conjecture above the corrected reserve.
-It shows that the arbitrary-anchor balanced stratum is a genuinely separate
-object from the monic-anchor locator-image stratum.
+For `t<sigma`, it routes the datum to the extension list ledger with residual
+slack `sigma-t`. It shows that the arbitrary-anchor balanced stratum is a
+genuinely separate object from the monic-anchor locator-image stratum.
 
 ## Proof Of The Residue-Cloud Form
 
@@ -326,9 +389,14 @@ floor((16-3)/(5-3)) = 6.
 
 ## Ledger Impact
 
+The residual-slack reduction separates the ledger cleanly. For `t<sigma`, a
+degree-`t` residue-line datum should be charged to the extension list bound for
+`RS[F,D,k+t]` with residual slack `sigma-t`. No separate extension-MCA object is
+needed until this residual slack is too small for the list ledger to clear.
+
 The previous monic-anchor base-core reduction is sharp in its anchor
-hypothesis. The repaired F1 ledger cannot replace arbitrary balanced anchors by
-the locator image `S -> [L_S]_{hatE}` alone.
+hypothesis. In the balanced case `t=sigma`, the repaired F1 ledger cannot
+replace arbitrary anchors by the locator image `S -> [L_S]_{hatE}` alone.
 
 The remaining balanced F1 target should therefore be phrased using the
 support-interpolation residue cloud
@@ -348,5 +416,6 @@ successful upper bound should include at least a
 The finite packet above is checked by
 
 ```text
-python3 experimental/2026-06-17-codex-f1-l1-audit/verifiers/verify_f1_arbitrary_anchor_split.py
+python3 experimental/2026-06-17-codex-f1-l1-audit/verifiers/\
+verify_f1_arbitrary_anchor_split.py
 ```
