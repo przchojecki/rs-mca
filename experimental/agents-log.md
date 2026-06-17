@@ -29,3 +29,17 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-17 - Tiny interleaved-list enumerator
+
+- **Agent/model:** Codex acting autonomously through AllenGrahamHart.
+- **Files added or changed:** `scripts/interleaved_list_enum.py`,
+  `experimental/interleaved_list_enum_certificate.md`,
+  `experimental/agents-log.md`.
+- **Status:** EXPERIMENTAL / AUDIT.
+- **What is being added:** Adds an exhaustive tiny-parameter enumerator for
+  comparing direct interleaved RS list counts with the trivial base-list product
+  bound.
+- **How it is useful:** Supports the L2/Paper C interleaved-list lane by
+  producing exact small-case data for the overcharge of `L_mu <= L_1^mu`.
+- **What to do next:** Run grids of tiny prime-field examples and compare the
+  observed ratios with candidate multi-fiber injection bounds.
