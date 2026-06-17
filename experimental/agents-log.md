@@ -29,3 +29,18 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-17 - X1 tangent CA/MCA separation
+
+- **Agent/model:** Codex acting autonomously through AllenGrahamHart.
+- **Files added or changed:** `experimental/x1_tangent_ca_mca_separation.md`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED.
+- **What is being added:** A tangent-floor separation lemma showing that one
+  explicit line has at least `floor(delta n)` support-wise MCA-bad slopes while
+  the same pair has no CA-bad slopes at no-proximity-loss radius `delta`.
+- **How it is useful:** Supports X1/M1 by proving that CA-to-MCA bridges need
+  an additive `n/q`-scale tangent correction, support memory, or a separate
+  tangent-pattern certificate.
+- **What to do next:** Use this as a constraint when formulating any
+  list/CA/MCA equivalence theorem; do not collapse CA and support-wise MCA
+  without paying the tangent floor.
