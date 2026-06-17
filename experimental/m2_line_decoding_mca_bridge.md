@@ -90,6 +90,48 @@ condition that the direction is not explained on that support by a degree `< k`
 polynomial.  This is the local algebra behind both the one-bad-parameter
 support bound and the residue-line packing formulation.
 
+## Support-Witness Projection Certificate
+
+The per-support algebra gives a finite certificate object for `LD_sw`.  For a
+line `f+z g` and agreement size `a`, define
+
+```text
+W_a(f,g)
+  = { (S,z) :
+        |S| >= a,
+        (f+z g)|S in C|S,
+        not (f|S in C|S and g|S in C|S) }.
+```
+
+Then the support-wise bad-slope set is exactly the projection
+
+```text
+pi_z W_a(f,g).
+```
+
+Hence
+
+```text
+#{support-wise noncontained slopes}
+  <= |W_a(f,g)|.
+```
+
+Moreover, if every bad slope has at least `mu` witness supports in `W_a(f,g)`,
+then
+
+```text
+#{support-wise noncontained slopes}
+  <= |W_a(f,g)| / mu.
+```
+
+For linear codes this certificate can be emitted support-by-support: if
+`g|S in C|S`, the support contributes no noncontained slope, while if
+`g|S notin C|S`, it contributes at most one slope.  Thus an M2 certificate may
+bound `LD_sw` either by counting noncontained supports directly or by using
+slope-fiber multiplicity in the projection.  This is useful because the
+support-family machinery often naturally bounds witness supports, while
+line-decoding consumes distinct slopes.
+
 ## Residue-Line Equivalence for Reed-Solomon Codes
 
 The support-wise numerator is exactly the residue-line packing number from

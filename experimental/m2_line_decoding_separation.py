@@ -6,6 +6,7 @@ from __future__ import annotations
 import argparse
 import itertools
 import json
+from collections import Counter
 from typing import Any
 
 
@@ -73,6 +74,7 @@ def compute_report(args: argparse.Namespace) -> dict[str, Any]:
 
     close_slopes: list[int] = []
     noncontained_slopes: list[int] = []
+    witness_pairs: list[tuple[tuple[int, ...], int]] = []
     for slope in range(args.p):
         line_word = tuple((fv + slope * gv) % args.p for fv, gv in zip(f, g))
         close = False
@@ -87,10 +89,28 @@ def compute_report(args: argparse.Namespace) -> dict[str, Any]:
             )
             if not contained:
                 noncontained = True
+                witness_pairs.append((support, slope))
         if close:
             close_slopes.append(slope)
         if noncontained:
             noncontained_slopes.append(slope)
+
+    witness_fibers = Counter(slope for _, slope in witness_pairs)
+    witness_supports_by_slope = {
+        slope: [list(support) for support, item_slope in witness_pairs if item_slope == slope]
+        for slope in sorted(witness_fibers)
+    }
+    witness_pair_count = len(witness_pairs)
+    projected_witness_slopes = sorted(witness_fibers)
+    minimum_witness_multiplicity = (
+        min(witness_fibers.values()) if witness_fibers else 0
+    )
+    projection_bound = witness_pair_count
+    multiplicity_bound = (
+        None
+        if minimum_witness_multiplicity == 0
+        else witness_pair_count // minimum_witness_multiplicity
+    )
 
     line_contained = all(
         tuple((fv + slope * gv) % args.p for fv, gv in zip(f, g)) in full_code
@@ -124,6 +144,13 @@ def compute_report(args: argparse.Namespace) -> dict[str, Any]:
         "residual_bound": residual_bound,
         "close_point_slope_count": len(close_slopes),
         "supportwise_noncontained_slope_count": len(noncontained_slopes),
+        "supportwise_witness_pair_count": witness_pair_count,
+        "projected_witness_slopes": projected_witness_slopes,
+        "witness_support_count_by_slope": dict(sorted(witness_fibers.items())),
+        "witness_supports_by_slope": witness_supports_by_slope,
+        "minimum_witness_multiplicity": minimum_witness_multiplicity,
+        "projection_bound": projection_bound,
+        "multiplicity_bound": multiplicity_bound,
         "close_point_slopes": close_slopes,
         "supportwise_noncontained_slopes": noncontained_slopes,
         "expected_close_point_slope_count": args.p,
@@ -131,6 +158,10 @@ def compute_report(args: argparse.Namespace) -> dict[str, Any]:
         "matches_claim": (
             close_slopes == list(range(args.p))
             and noncontained_slopes == [exceptional_slope]
+            and projected_witness_slopes == [exceptional_slope]
+            and witness_pair_count == args.n - 1
+            and minimum_witness_multiplicity == args.n - 1
+            and multiplicity_bound == 1
             and not line_contained
             and residual_bound == len(noncontained_slopes)
         ),
@@ -149,6 +180,9 @@ def print_report(report: dict[str, Any]) -> None:
         "support-wise noncontained slopes: "
         f"{report['supportwise_noncontained_slope_count']}"
     )
+    print(f"support-wise witness pairs: {report['supportwise_witness_pair_count']}")
+    print(f"projection bound: {report['projection_bound']}")
+    print(f"multiplicity bound: {report['multiplicity_bound']}")
     print(f"residual bound from code-line exception: {report['residual_bound']}")
     print(f"exceptional slope: {report['exceptional_slope']}")
     print(f"matches claim: {report['matches_claim']}")

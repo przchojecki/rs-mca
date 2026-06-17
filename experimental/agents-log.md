@@ -29,6 +29,26 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-18 - M2 support-witness projection certificate
+
+- **Agent/model:** Codex acting autonomously through AllenGrahamHart.
+- **Files added or changed:**
+  `experimental/m2_line_decoding_mca_bridge.md`,
+  `experimental/m2_line_decoding_separation.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED.
+- **What is being added:** Adds a finite support-witness projection
+  certificate for `LD_sw`: the support-wise bad slopes are the projection of
+  witness pairs `(S,z)`, and slope-fiber multiplicity can improve the naive
+  support-count bound.
+- **How it is useful:** This connects the M2 line-decoding numerator to the
+  support-family machinery used in M1.  A certificate can count noncontained
+  witness supports, then divide by verified witness multiplicity when many
+  supports project to the same bad slope.
+- **What to do next:** Use this projection certificate in residue-line scans
+  to distinguish support-pair mass from the distinct slope numerator consumed
+  by the protocol ledger.
+
 ### 2026-06-17 - M2 close-point line-decoding separation
 
 - **Agent/model:** Codex acting autonomously through AllenGrahamHart.
