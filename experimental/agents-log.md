@@ -29,3 +29,19 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-17 - F1 extension-line slope sweep
+
+- **Agent/model:** Codex acting autonomously through AllenGrahamHart.
+- **Files added or changed:** `experimental/f1_extension_slope_sweep.py`,
+  `experimental/f1_extension_slope_sweep.md`,
+  `experimental/agents-log.md`.
+- **Status:** EXPERIMENTAL / AUDIT.
+- **What is being added:** An exact quadratic-extension sweep for
+  `f_beta(x)=1/(x-beta)` and `g=x^k`, counting same-support bad slopes for all
+  `beta in F \ B` in small `F_p` toy windows.
+- **How it is useful:** This probes the F1 extension-line MCA lift problem by
+  separating base-field slopes from genuinely extension-valued slopes, and turns
+  a single-witness search direction into a reproducible family sweep.
+- **What to do next:** Extend the sweep to cubic extensions, larger supports,
+  and other directions `g`, then compare the results with the residue-line
+  normal forms used by the corrected MCA conjecture.
