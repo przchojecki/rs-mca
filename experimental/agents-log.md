@@ -29,3 +29,18 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-17 - Domain convention drift audit
+
+- **Agent/model:** Codex acting autonomously through AllenGrahamHart.
+- **Files added or changed:** `experimental/domain_convention_audit.py`,
+  `experimental/agents-log.md`.
+- **Status:** AUDIT.
+- **What is being added:** A stdlib-only scanner for subgroup and coset
+  convention language across the TeX sources, highlighting likely
+  convention-setting lines.
+- **How it is useful:** Supports the M0 cleanup item in
+  `tex/proximity_blueprint_v3.tex` by making the subgroup-versus-coset domain
+  convention drift reproducible without editing stable papers.
+- **What to do next:** Decide whether the coset convention should become the
+  stable default, then update definitions and theorem statements in a
+  maintainer-led TeX cleanup.
