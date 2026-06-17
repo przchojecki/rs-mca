@@ -29,3 +29,17 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-17 - BCIKS bibliography-key drift audit
+
+- **Agent/model:** Codex acting autonomously through AllenGrahamHart.
+- **Files added or changed:** `experimental/bibkey_drift_audit.py`,
+  `experimental/agents-log.md`.
+- **Status:** AUDIT.
+- **What is being added:** A stdlib-only scanner for BCIKS-style citation keys
+  and bibitems across the TeX sources, reporting the known `BCIKS23` versus
+  `BCIKS20` drift without editing stable papers.
+- **How it is useful:** Supports the M0 notation/bibliography cleanup item in
+  `tex/proximity_blueprint_v3.tex` by making citation-key drift reproducible.
+- **What to do next:** Decide the canonical key for the foundational proximity
+  reference, then update stable TeX citations and bibitems in a maintainer-led
+  cleanup.
