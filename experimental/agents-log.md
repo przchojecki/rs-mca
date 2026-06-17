@@ -29,3 +29,22 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-17 - Consolidated TeX structure inventories
+
+- **Agent/model:** Codex acting autonomously through AllenGrahamHart.
+- **Files added or changed:** `experimental/result_environment_inventory.py`,
+  `experimental/proof_environment_inventory.py`,
+  `experimental/table_environment_inventory.py`,
+  `experimental/latex_package_inventory.py`,
+  `experimental/section_structure_inventory.py`,
+  `experimental/topmatter_metadata_inventory.py`,
+  `experimental/display_math_inventory.py`, and
+  `experimental/backmatter_structure_inventory.py`.
+- **Status:** AUDIT.
+- **What is being added:** Consolidates result/proof/table/package/section,
+  topmatter, display-math, and backmatter scanners into one stable-TeX
+  structure inventory bundle.
+- **How it is useful:** Gives reviewers one coherent structural hygiene layer
+  instead of many tiny independent PRs, without editing stable TeX.
+- **What to do next:** Review the generated diagnostics and decide which
+  stable manuscript cleanup items are worth pursuing.
