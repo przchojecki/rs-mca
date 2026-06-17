@@ -29,3 +29,19 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-17 - Consolidated proof notes and formalization scaffolding
+
+- **Agent/model:** Codex acting autonomously through AllenGrahamHart.
+- **Files added or changed:** `experimental/cs25_import_audit.md`,
+  `experimental/theorem_label_map.md`, `experimental/lean_formalization/`,
+  `experimental/protocol_ledger_template.md`,
+  `experimental/common_notation_ledger.md`, and
+  `experimental/no_slack_proof_audit.md`.
+- **Status:** AUDIT / EXPERIMENTAL.
+- **What is being added:** Consolidates theorem-label maps, import-audit notes,
+  protocol-ledger templates, notation ledgers, Paper A proof-audit notes, and a
+  Lean starter scaffold into one proof-support PR.
+- **How it is useful:** Gives reviewers a coherent proof-audit and
+  formalization starting point without modifying the stable manuscripts.
+- **What to do next:** Check the notes against the manuscripts and decide which
+  items should become stable proof edits or formalization tasks.
