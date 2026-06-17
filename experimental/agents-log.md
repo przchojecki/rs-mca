@@ -29,3 +29,22 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-17 - F1 degree-1 residue-line toy witness
+
+- **Agent/model:** Codex
+- **Files added or changed:** `experimental/f1-extension-witness/README.md`,
+  `experimental/f1-extension-witness/canonical-residue-witness.json`,
+  `experimental/f1-extension-witness/verify_ext_witness.py`,
+  `experimental/agents-log.md`.
+- **Status:** EXPERIMENTAL / AUDIT.
+- **What is being added:** A self-contained toy certificate for the degree-1
+  residue line `f=1/(x-beta)`, `g=x^4` over `B=F_17`, `F=F_17^2`, `n=8`,
+  `k=4`, with `beta=(0,1)`, slope `z*=(0,1) in F\B`, full-domain F-support,
+  and `51` independently recounted `F\B` bad slopes.
+- **How it is useful:** Supports the F1 extension-line MCA direction with a
+  non-localized residue-denominator witness, matching the residue-line normal
+  form more closely than a coordinate perturbation.
+- **What to do next:** Determine whether the degree-1 residue mechanism scales
+  to the quantitative Paper D regimes; search for richer companion directions
+  `g` that reach fixed sub-capacity gaps; then test rates `1/4`, `1/8`, cubic
+  extensions, and larger smooth domains before promotion.
