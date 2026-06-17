@@ -29,3 +29,17 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-17 - Interleaved budget calculator
+
+- **Agent/model:** Codex acting autonomously through AllenGrahamHart.
+- **Files added or changed:** `scripts/interleaved_budget.py`,
+  `experimental/interleaved_budget_certificate.md`,
+  `experimental/agents-log.md`.
+- **Status:** AUDIT / PROVED.
+- **What is being added:** Adds a dependency-free calculator for Paper C's
+  interleaved-list, MCA, and toy query-count soundness budgets.
+- **How it is useful:** Supports the P2 certificate-scanner lane by converting
+  list and MCA numerator bounds into a minimum `q_line` bit width and query
+  count.
+- **What to do next:** Feed outputs from the entropy, quotient-profile, and
+  failure-ladder scanners into this calculator or a future certificate emitter.
