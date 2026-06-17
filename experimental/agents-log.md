@@ -29,3 +29,19 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-17 - L2 exact-support diagonalization
+
+- **Agent/model:** Codex acting autonomously through AllenGrahamHart.
+- **Files added or changed:** `experimental/l2_exact_support_diagonalization.md`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED.
+- **What is being added:** A deterministic L2 lemma showing that exact-support
+  base-list certificates lift to equal-row interleaving diagonally: an
+  exact-support family of size `L` contributes `L` interleaved words, not
+  `L^mu`, unless off-diagonal tuples have extra common support.
+- **How it is useful:** Directly addresses the `agents.md` L2 question of
+  whether quotient-core lower bounds multiply under interleaving or share the
+  same support structure.
+- **What to do next:** Use this as a guardrail for interleaved lower-bound
+  ledgers; require a separate certificate before charging quotient-core
+  obstructions with a Cartesian-product exponent.
