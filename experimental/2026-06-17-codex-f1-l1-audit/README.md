@@ -24,6 +24,9 @@ human review and later promotion.
   denominators are the remaining F1 wall.
 - `BANKABLE_LEMMA`: monic-anchor balanced denominators reduce to a base-field
   readout via `hatE = lcm(E,E^tau)`.
+- `BANKABLE_LEMMA`: extension-line MCA over `F/B` is exactly a
+  multiplication-slice MCA problem for the `e`-interleaved base code, after
+  choosing a `B`-basis of `F`.
 - `BANKABLE_LEMMA / COUNTEREXAMPLE`: arbitrary balanced anchors are governed by
   the support-interpolation residue cloud, and can split a single monic-anchor
   locator readout class into different bad slopes; they also have a sunflower
@@ -36,11 +39,16 @@ human review and later promotion.
 Run from repo root:
 
 ```bash
-python3 experimental/2026-06-17-codex-f1-l1-audit/verifiers/verify_f1_extension_counterexample.py
-python3 experimental/2026-06-17-codex-f1-l1-audit/verifiers/verify_f1_fixed_rate_slice.py
-python3 experimental/2026-06-17-codex-f1-l1-audit/verifiers/verify_f1_sigma2_degree1.py
-python3 experimental/2026-06-17-codex-f1-l1-audit/verifiers/verify_f1_arbitrary_anchor_split.py
-python3 experimental/2026-06-17-codex-f1-l1-audit/verifiers/verify_l1_arbitrary_fiber_overcount.py
+python3 experimental/2026-06-17-codex-f1-l1-audit/verifiers/\
+verify_f1_extension_counterexample.py
+python3 experimental/2026-06-17-codex-f1-l1-audit/verifiers/\
+verify_f1_fixed_rate_slice.py
+python3 experimental/2026-06-17-codex-f1-l1-audit/verifiers/\
+verify_f1_sigma2_degree1.py
+python3 experimental/2026-06-17-codex-f1-l1-audit/verifiers/\
+verify_f1_arbitrary_anchor_split.py
+python3 experimental/2026-06-17-codex-f1-l1-audit/verifiers/\
+verify_l1_arbitrary_fiber_overcount.py
 ```
 
 ## Most Important Next Step

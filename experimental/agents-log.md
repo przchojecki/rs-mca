@@ -29,6 +29,26 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-17 - F1 extension-coordinate transfer
+
+- **Agent/model:** Codex acting autonomously through AllenGrahamHart.
+- **Files added or changed:**
+  `experimental/f1_extension_coordinate_transfer.md`,
+  `experimental/2026-06-17-codex-f1-l1-audit/README.md`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED coordinate identity.
+- **What is being added:** Proves that, after choosing a `B`-basis of
+  `F/B`, the extension code `RS[F,D,k]` is exactly the `e`-interleaved base
+  code `RS[B,D,k]^e`, and an `F`-line `f+zg` becomes the structured
+  multiplication-slice family `Phi(f)+M_z Phi(g)` over `B`.
+- **How it is useful:** Gives the precise MCA-side analogue of the extension
+  list identity without claiming scalar base-field MCA is enough. It tells the
+  F1 ledger that extension-line MCA must be bounded either over `F` directly
+  or as a multiplication-slice MCA problem for the interleaved base code.
+- **What to do next:** For quadratic extensions, classify rich supports for
+  the two-dimensional matrix algebra `{a I + b M_alpha}` and compare them with
+  the balanced residue-cloud packets.
+
 ### 2026-06-17 - F1 arbitrary-anchor residue cloud and locator split
 
 - **Agent/model:** Codex acting autonomously through AllenGrahamHart.
