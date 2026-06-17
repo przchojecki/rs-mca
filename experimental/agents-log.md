@@ -29,3 +29,19 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-17 - Quotient-profile dither scanner
+
+- **Agent/model:** Codex acting autonomously through AllenGrahamHart.
+- **Files added or changed:** `experimental/quotient_profile.py`,
+  `experimental/quotient_profile.md`, `experimental/agents-log.md`.
+- **Status:** AUDIT / EXPERIMENTAL.
+- **What is being added:** A finite-length dyadic divisor scanner for the exact
+  quotient-core profile `Qprof_H(a,k)` and a separate remainder-variant
+  diagnostic for dimensions `k=rho*n-r`.
+- **How it is useful:** This targets L3 by making quotient hygiene and
+  dimension dithering checkable at actual finite parameters, including the
+  deployed-rate comparison between exact `k=rho*n` and one-step dithered
+  `k=rho*n-1`.
+- **What to do next:** Compare the scanner output with concrete AIR/R1CS or
+  Plonkish degree bounds, and promote the script to `scripts/` after review if
+  maintainers want it as stable certificate tooling.
