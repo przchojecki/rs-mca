@@ -393,6 +393,101 @@ scale. The large-scale corollary above is exactly its `h=0` first-band term
 when `m>t`, and the boundary case `m=t` is obtained by adding the final-band
 term at `h=1`.
 
+## Random-Line Certificate Corollaries
+
+The overlap profiles above plug directly into the support-family random-line
+certificate. Let `A` be any deterministic support family of exact size
+`s=k+t`, put
+
+```text
+M = |A|,
+R_A(t,q) = sum_{1 <= j <= t-1} Gamma_j(A) q^(t-j),
+```
+
+and let `Bad_t(A;f,g)` denote the slopes witnessed by supports in `A` for
+uniform random words `f,g in F^D`, where `|F|=q`. For each fixed slope, the
+support-family certificate gives
+
+```text
+E[1 - |Bad_t(A;f,g)|/q]
+  <= (1-p_z)/(M p_z) + 4 R_A(t,q)/M,
+
+p_z = q^(-t)(1-q^(-t)).
+```
+
+Since `q >= 2`, this implies the simpler finite bound
+
+```text
+E[1 - |Bad_t(A;f,g)|/q]
+  <= (2 q^t + 4 R_A(t,q)) / M.
+```
+
+For the whole-fiber quotient-periodic family, `M=binom(N,L)` and
+`R_A=R_QP`. Hence
+
+```text
+E[1 - |Bad_t(A_QP;f,g)|/q]
+  <= (2 q^t + 4 R_QP(t,q)) / binom(N,L).
+```
+
+In particular, if `m | s` and `t <= m`, then `R_QP=0`, so the whole-fiber
+quotient family behaves like an independent support family in the fixed-slope
+random-line certificate:
+
+```text
+E[1 - |Bad_t(A_QP;f,g)|/q]
+  <= 2 q^t / binom(N,L).
+```
+
+In the first active band `m < t <= 2m`,
+
+```text
+E[1 - |Bad_t(A_QP;f,g)|/q]
+  <= (2 q^t + 4 L(N-L) q^(t-m)) / binom(N,L).
+```
+
+For the one-remainder family, with `s=Lm+b` and `1 <= b < m`,
+
+```text
+M_REM = binom(N,L)(N-L)binom(m,b),
+```
+
+and the corresponding certificate is
+
+```text
+E[1 - |Bad_t(A_REM;f,g)|/q]
+  <= (2 q^t + 4 R_REM(t,q)) / M_REM.
+```
+
+Under dyadic maximal dither, `s=k0+1`, and at every dyadic scale `m | k0`
+with `m>t`, the one-remainder packet has `b=1`,
+
+```text
+M_REM = binom(n/m,k0/m)(n-k0),
+R_REM(t,q) = (n-k0-1) q^(t-1).
+```
+
+Therefore
+
+```text
+E[1 - |Bad_t(A_REM;f,g)|/q]
+  <= (2 q^t + 4(n-k0-1)q^(t-1))
+      / (binom(n/m,k0/m)(n-k0)).
+```
+
+At the boundary scale `m=t`, the one-point term remains and the boundary
+promotion contributes `k0 q`, giving
+
+```text
+R_REM(t,q) = (n-k0-1)q^(t-1) + k0 q.
+```
+
+These are random-line baselines, not worst-case M1 bounds. Their purpose is to
+turn the quotient/remainder support-profile formulas into certificate-sized
+quantities: once quotient-periodic and one-remainder packets are isolated, a
+future M1 proof or scanner can charge their missing-slope contribution through
+`M` and `R_A(t,q)` instead of the full Johnson-sphere high-overlap term.
+
 ## Status
 
 PROVED.

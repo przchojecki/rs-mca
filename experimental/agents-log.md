@@ -48,6 +48,9 @@ Keep entries concise and link to the relevant files.
   exact one-remainder-fiber exchange enumerator, the large-fiber strict
   remainder truncation, the stable large-scale dither hierarchy, the
   maximal-dither all-scale strict profile, and a verifier for the formulas.
+  Adds random-line certificate corollaries obtained by substituting `R_QP` and
+  `R_REM` into the support-family variance ledger, including an explicit
+  maximal-dither large-scale missing-slope bound.
 - **How it is useful:** Supplies the quotient-periodic input to the M1
   support-family ledger, so this structured exception can be separated
   quantitatively before attacking the aperiodic residue-line local-limit
@@ -58,7 +61,9 @@ Keep entries concise and link to the relevant files.
   hierarchy formula shows that nonmaximal dither with `d=t-r0` retains
   unweighted mass `((n-k0)/m)binom(m,d)-1` at stable large scales. The
   maximal-dither all-scale formula gives the exact strict profile at every
-  nontrivial dyadic quotient scale when `s=k0+1`.
+  nontrivial dyadic quotient scale when `s=k0+1`. The certificate corollaries
+  turn these profiles into the actual random-line missing-slope quantities
+  consumed by the M1 support-family framework.
 - **What to do next:** Have a tiny M1 scanner emit `|A|`, `Delta_j(A)`, and
   `Gamma_j(A)` by labelled support class, verifying that the quotient-periodic
   class matches the closed formulas here.
