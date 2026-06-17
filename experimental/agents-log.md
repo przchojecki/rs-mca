@@ -38,11 +38,13 @@ Keep entries concise and link to the relevant files.
 - **Status:** PROVED.
 - **What is being added:** Gives the exact overlap, strict high-overlap, and
   max exchange-codegree profile for support families formed by unions of equal
-  quotient fibers.
+  quotient fibers, including the exact-support divisibility guardrail that this
+  whole-fiber family is absent unless the fiber size divides `s = k+t`.
 - **How it is useful:** Supplies the quotient-periodic input to the M1
   support-family ledger, so this structured exception can be separated
   quantitatively before attacking the aperiodic residue-line local-limit
-  problem.
+  problem; it also records the exact-support form of dimension/slack dithering
+  for this support source.
 - **What to do next:** Have a tiny M1 scanner emit `|A|`, `Delta_j(A)`, and
   `Gamma_j(A)` by labelled support class, verifying that the quotient-periodic
   class matches the closed formulas here.

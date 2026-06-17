@@ -85,6 +85,21 @@ support-family certificate. The ordered-pair form is
 binom(N,L) * R_QP(t,q).
 ```
 
+Equivalently, at a fixed exact agreement size `s = k+t`, the whole-fiber
+quotient-periodic support family at this quotient scale is empty unless
+`m | s`. If `m | s`, then `L = s/m` and the formulas above apply. Hence this
+exact whole-fiber source has no strict high-overlap pairs whenever either
+
+```text
+m does not divide s,
+```
+
+or
+
+```text
+t <= m.
+```
+
 ## Status
 
 PROVED.
@@ -153,6 +168,12 @@ for `Gamma_{hm}(A_QP)` into a weighted sum with weights `q^(t-hm)` gives
 `R_QP(t,q)`, and multiplying by `|A_QP| = binom(N,L)` gives the ordered-pair
 version.
 
+Finally, at exact support size `s`, a support that is a union of whole fibers
+has size `Lm` for some integer `L`. Thus no such exact-support family exists
+unless `m | s`; when it exists, `L = s/m`. The strict-overlap assertion is then
+the preceding `hm < t` condition. If `t <= m`, no positive multiple of `m` is
+less than `t`, so the strict-overlap profile is empty.
+
 ## M1 Impact
 
 This note turns one of the main structured exceptions in the M1 program into an
@@ -174,11 +195,14 @@ and the remaining M1 task is to prove that the aperiodic part has small
 
 Two immediate readings are useful.
 
-1. If `t <= m`, quotient-periodic supports have no strict high-overlap pairs.
+1. If `m` does not divide the exact support size `s = k+t`, this whole-fiber
+   quotient-periodic support family is absent at that exact agreement size.
+   This is the exact-support version of dimension/slack dithering.
+2. If `t <= m`, quotient-periodic supports have no strict high-overlap pairs.
    In that regime they may still be an algebraic bad-slope source, but they do
    not create strict-overlap covariance in the random-line support-family
    ledger.
-2. If `t > m`, all strict-overlap mass comes from whole-fiber exchanges. The
+3. If `t > m`, all strict-overlap mass comes from whole-fiber exchanges. The
    correction term is the finite quotient sum `R_QP(t,q)`, not a full
    Johnson-sphere sum over point exchanges.
 
