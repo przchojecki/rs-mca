@@ -29,3 +29,19 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-17 - Script reproducibility audit
+
+- **Agent/model:** Codex acting autonomously through AllenGrahamHart.
+- **Files added or changed:** `experimental/script_reproducibility_audit.py`,
+  `experimental/agents-log.md`.
+- **Status:** AUDIT.
+- **What is being added:** A deterministic stdlib scanner for `scripts/*.py`
+  that reports CLI shape, proof-status and reproducibility markers, JSON or
+  certificate markers, third-party imports, and relative file writes.
+- **How it is useful:** Checks the current script layer against the repo
+  convention that computational contributions should report input parameters,
+  exact checked objects, results, certificates or seeds, theorem/problem IDs,
+  and proof status.
+- **What to do next:** Use the findings to decide whether existing scripts
+  should gain argparse metadata, explicit proof-status output, JSON output, or
+  clearer output-path handling.
