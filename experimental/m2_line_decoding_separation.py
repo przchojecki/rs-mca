@@ -97,6 +97,14 @@ def compute_report(args: argparse.Namespace) -> dict[str, Any]:
         for slope in range(args.p)
     )
     exceptional_slope = (-args.base_slope) % args.p
+    code_line_support_size = args.n - 1
+    outside_size = args.n - code_line_support_size
+    residual_threshold = max(1, agreement - code_line_support_size)
+    common_residual_zero_count = 0
+    residual_bound = (
+        (outside_size - common_residual_zero_count)
+        // (residual_threshold - common_residual_zero_count)
+    )
 
     return {
         "p": args.p,
@@ -109,6 +117,11 @@ def compute_report(args: argparse.Namespace) -> dict[str, Any]:
         "base_slope": args.base_slope,
         "exceptional_slope": exceptional_slope,
         "line_contained_in_code": line_contained,
+        "code_line_exception_support_size": code_line_support_size,
+        "residual_outside_size": outside_size,
+        "residual_threshold": residual_threshold,
+        "common_residual_zero_count": common_residual_zero_count,
+        "residual_bound": residual_bound,
         "close_point_slope_count": len(close_slopes),
         "supportwise_noncontained_slope_count": len(noncontained_slopes),
         "close_point_slopes": close_slopes,
@@ -119,6 +132,7 @@ def compute_report(args: argparse.Namespace) -> dict[str, Any]:
             close_slopes == list(range(args.p))
             and noncontained_slopes == [exceptional_slope]
             and not line_contained
+            and residual_bound == len(noncontained_slopes)
         ),
     }
 
@@ -135,6 +149,7 @@ def print_report(report: dict[str, Any]) -> None:
         "support-wise noncontained slopes: "
         f"{report['supportwise_noncontained_slope_count']}"
     )
+    print(f"residual bound from code-line exception: {report['residual_bound']}")
     print(f"exceptional slope: {report['exceptional_slope']}")
     print(f"matches claim: {report['matches_claim']}")
 

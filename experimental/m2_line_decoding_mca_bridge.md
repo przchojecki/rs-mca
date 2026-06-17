@@ -249,12 +249,71 @@ the same root-counting argument shows that `g` is not explained by a
 degree-`<k` codeword on that support.  Therefore no pair of codewords can
 explain both `f` and `g` there, so this slope is support-wise noncontained.
 
+## Common Code-Line Exception Residual Bound
+
+The spike example is also a useful diagnostic for stronger external
+line-decoding theorems.  If the exceptional case says not merely "the line has
+many close points", but that the received line is close to a genuine code-line
+on a common support, then the support-wise numerator is controlled by the
+residual outside that support.
+
+Let `C=RS[F,D,k]`, fix agreement size `a`, and suppose there are codewords
+`c_f,c_g in C` and a support `S0 subset D` of size `b` such that
+
+```text
+f=c_f on S0,        g=c_g on S0,
+```
+
+with
+
+```text
+a+b-n >= k.
+```
+
+Put `Omega=D \ S0`, `f'=f-c_f`, and `g'=g-c_g`; then `f'` and `g'` vanish on
+`S0`.  Set
+
+```text
+h = max(1,a-b),
+c0 = |{x in Omega : f'(x)=g'(x)=0}|.
+```
+
+Every support-wise noncontained slope must satisfy
+
+```text
+|{x in Omega : f'(x)+z g'(x)=0}| >= h.
+```
+
+Consequently, if `h>c0`, then
+
+```text
+#{support-wise noncontained slopes}
+  <= floor((|Omega|-c0)/(h-c0)).
+```
+
+The proof is a direct puncturing argument.  Let `z` have a witness support
+`T`, and subtract the code-line `c_f+z c_g` from the explaining codeword on
+`T`.  The residual degree-`<k` codeword vanishes on `T cap S0`, whose size is
+at least `a+b-n >= k`; hence the residual codeword is zero.  Thus
+`f'+z g'` vanishes on all of `T`, so it has at least `h` zeros in `Omega`.
+If `h>c0`, the common residual-zero positions contribute to every slope, while
+each remaining outside coordinate contributes to at most one slope.  Counting
+coordinate-slope incidences gives the displayed bound.
+
+For the spike line, take `S0=D \ {x0}` and the zero code-line.  Then
+`b=a=n-1`, `h=1`, `c0=0`, and `|Omega|=1`, so the residual bound gives exactly
+one possible support-wise noncontained slope.  This explains why a
+code-line-proximity exception can absorb the `|F|` close-point count while
+still leaving a small support-wise numerator to budget.
+
 For a theorem with an exceptional "the line is explained" alternative, the
 exception must be checked in the support-wise sense: for every close slope and
 every large explaining support consumed by the protocol, the same support must
 also explain both `f` and `g`.  A theorem that only says many line points are
 close to `C` is not enough by itself, because MCA is sensitive to the common
-support.
+support.  A common code-line exception is usable only after the residual
+support-wise budget above, or a sharper replacement, is included in the
+certificate.
 
 Therefore the corrected M2 target can be stated as:
 
