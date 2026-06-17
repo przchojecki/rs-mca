@@ -61,12 +61,16 @@ Keep entries concise and link to the relevant files.
   should recover after structured packets are separated. The quotient-core
   packet calculation shows that the standard aligned quotient lower-bound
   source is diagonal under column interleaving: its L2 packet count is `L`, not
-  `L^mu`.
+  `L^mu`. The extension-coordinate support formula turns the manuscript's
+  extension-list identity into the same common-intersection support certificate
+  after choosing a base-field basis.
 - **What to do next:** Have interleaved certificate tooling print row full
   agreement-support histograms, the common-intersection tuple count, and the
   random baseline next to the conservative product bound. Feed active quotient
   rows into the quotient-core interleaving calculator to display the aligned
-  packet count separately from the Cartesian packet size.
+  packet count separately from the Cartesian packet size. For extension-code
+  list ledgers, print the chosen base-field basis and coordinate support
+  profile before applying the L2 certificate.
 
 ### 2026-06-17 - Open PR triage integration
 

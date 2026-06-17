@@ -296,6 +296,37 @@ packet contributes zero tuples.  The known quotient-core lower-bound packet
 therefore shares its support parameter under column interleaving; it does not
 itself force the Cartesian-product exponent.
 
+## Extension-Coordinate Support Formula
+
+Let `B <= F` be finite fields with `[F:B]=e`, let `H subset B`, and set
+
+```text
+C_B = RS[B,H,k],        C_F = RS[F,H,k].
+```
+
+Fix a `B`-basis of `F` and write `pi_j:F -> B` for its coordinate maps.  For
+an extension-valued received word `U:H -> F`, put `U_j=pi_j(U)`.  Then the
+extension-code list is exactly the coordinate-interleaved base list:
+
+```text
+|Lambda(C_F,1-a/n,U)|
+ =
+ |{ (A_1,...,A_e) :
+      A_j in Supp_Uj^{>=a} for every j,
+      |A_1 cap ... cap A_e| >= a }|.
+```
+
+Equivalently, this is the full-support version of the manuscript identity
+
+```text
+|Lambda(C_F,delta)| = |Lambda(Int(C_B,e),delta)|.
+```
+
+Thus an extension-code list certificate may use the same common-intersection
+profile as L2 after expanding in any `B`-basis.  The formula is basis-invariant
+as a list count, although the individual coordinate support families printed
+by a certificate depend on the chosen basis.
+
 ## Proof
 
 Take an interleaved listed codeword
@@ -392,6 +423,23 @@ reaches `k+sigma=M ell+sigma` exactly when all `A_i` are equal.  If the row
 slack sets have common intersection smaller than `sigma`, even equal quotient
 choices give fewer than `k+sigma` common points.
 
+For the extension-coordinate formula, every `P in F[X]_{<k}` has coordinate
+polynomials `P_j=pi_j(P) in B[X]_{<k}`, and the map
+
+```text
+P <-> (P_1,...,P_e)
+```
+
+is a bijection between `C_F` and `Int(C_B,e)` once a basis is fixed.  For each
+`x in H`, equality `P(x)=U(x)` in `F` is equivalent to the coordinate
+equalities `P_j(x)=U_j(x)` for every `j`.  Hence the extension agreement
+support of `P` is exactly the intersection of the coordinate-row agreement
+supports.  Applying the full-agreement support formula to the `e` coordinate
+rows gives the displayed identity.  Changing the basis composes the coordinate
+rows by an invertible `B`-linear transformation and changes the printed
+support families, but not the underlying extension codewords or their
+agreement sets.
+
 ## Ledger Consequence
 
 This bridge does not say that a base-code list-size bound transfers without a
@@ -415,6 +463,15 @@ can therefore consume a base-field simultaneous-support bound directly.  The
 generated-field entropy ledger is unchanged, but the list-size-over-field term
 need not pay a Cartesian-product support exponent if the locator theorem is
 available in support-fiber form.
+
+The extension-coordinate formula makes that statement certificate-facing.  A
+certificate for an extension-code list can expand the received word in a chosen
+`B`-basis, print the coordinate full-support families, and then apply the same
+common-intersection or codegree ledger used for ordinary interleaving.  This is
+not permission to pay the generated-field entropy bill with `|F|`: the support
+families are still base-field locator objects over `B`; only the final
+list-size-over-field denominator changes when the protocol really consumes the
+extension code.
 
 The full-agreement formula is the sharper finite object for certificate
 emitters.  It says that a future L1 theorem should ideally output or bound the
