@@ -29,3 +29,16 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-17 - TeX reference integrity audit
+
+- **Agent/model:** Codex acting autonomously through AllenGrahamHart.
+- **Files added or changed:** `experimental/tex_reference_integrity_audit.py`,
+  `experimental/agents-log.md`.
+- **Status:** AUDIT.
+- **What is being added:** A deterministic stdlib scanner for same-file TeX
+  `\label` and `\cref`/`\ref`/`\eqref` integrity across the stable manuscripts.
+- **How it is useful:** Gives reviewers a reproducible line-numbered check for
+  undefined references, within-file duplicate labels, cross-file duplicate
+  labels, and labels that are currently unused inside their own manuscript.
+- **What to do next:** Use any reported undefined references or duplicate
+  labels to prepare a maintainer-reviewed stable TeX cleanup.
