@@ -24,8 +24,9 @@ human review and later promotion.
   denominators are the remaining F1 wall.
 - `BANKABLE_LEMMA`: monic-anchor balanced denominators reduce to a base-field
   readout via `hatE = lcm(E,E^tau)`.
-- `COUNTEREXAMPLE`: arbitrary anchors can split a single monic-anchor locator
-  readout class into different bad slopes.
+- `BANKABLE_LEMMA / COUNTEREXAMPLE`: arbitrary balanced anchors are governed by
+  the support-interpolation residue cloud, and can split a single monic-anchor
+  locator readout class into different bad slopes.
 - `AUDIT`: Paper D universal cap remains conditional pending primary
   Crites-Stewart / ABF import verification.
 

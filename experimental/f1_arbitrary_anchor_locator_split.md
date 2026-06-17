@@ -1,6 +1,6 @@
-# F1 Arbitrary-Anchor Locator Split
+# F1 Arbitrary-Anchor Residue Cloud And Locator Split
 
-## Claim
+## Exact Balanced Residue-Cloud Form
 
 Let `F` be a finite field, let `D subset F`, and let `C = RS[F,D,k]`.
 Fix a balanced residue-line datum degree
@@ -10,7 +10,42 @@ t = sigma,        a = k + t,
 ```
 
 with denominator `E in F[X]` of degree `t`, nonzero on `D`, and numerator
-`N in F[X]` with `deg N < t` and `[N]_E != 0`.
+`N in F[X]` with `deg N < t` and `[N]_E != 0`. Let `w:D->F` be an arbitrary
+anchor word, and put
+
+```text
+delta = 1 - a/|D|.
+```
+
+For every `a`-subset `S subset D`, let `Q_S^w` be the unique polynomial of
+degree `< a` interpolating `w` on `S`. Define the balanced residue cloud
+
+```text
+Cloud_E(w,a) = { [Q_S^w]_E : S subset D, |S| = a }
+```
+
+inside `F[X]/(E)`. Then the support-wise MCA-bad slopes of the datum
+`(E,N,w)` at radius `delta` are in bijection with
+
+```text
+Cloud_E(w,a) cap F * [N]_E,
+```
+
+via
+
+```text
+z |-> z [N]_E.
+```
+
+Equivalently, a slope `z` is bad if and only if some `a`-subset `S` satisfies
+
+```text
+[Q_S^w]_E = z [N]_E.
+```
+
+Whenever this holds, the same support is automatically noncontained.
+
+## Locator-Split Claim
 
 Let `S,T subset D` be two `a`-subsets with
 
@@ -40,7 +75,38 @@ This does not refute the repaired F1 conjecture above the corrected reserve.
 It shows that the arbitrary-anchor balanced stratum is a genuinely separate
 object from the monic-anchor locator-image stratum.
 
-## Proof
+## Proof Of The Residue-Cloud Form
+
+First fix an `a`-subset `S`. If `Q_S^w` satisfies
+
+```text
+[Q_S^w]_E = z [N]_E,
+```
+
+then `Q_S^w` is a witness for slope `z` on `S`: it has degree `< a = k+t`,
+it agrees with `w` on `S`, and it has the required residue modulo `E`.
+
+Conversely, suppose a slope `z` has a witness `(Q,T)` with `|T| >= a`,
+`deg Q < a`, `Q=w` on `T`, and `Q == zN mod E`. Choose any `a`-subset
+`S subset T`. By uniqueness of interpolation on `S`, one has `Q=Q_S^w`.
+Thus `[Q_S^w]_E=z[N]_E`, so every witnessed slope appears in the residue
+cloud intersection.
+
+The map `z |-> z[N]_E` is injective because `[N]_E` is a nonzero vector in the
+`F`-vector space `F[X]/(E)`. It remains only to check noncontainment. Suppose
+the direction `-N/E` were explained on an `a`-subset `S` by a degree-`<k`
+polynomial `G`. Then
+
+```text
+E G + N
+```
+
+has degree `< k+t = a` and vanishes on the `a` points of `S`, so it is the
+zero polynomial. This would imply `E | N`, contradicting `[N]_E != 0` and
+`deg N < deg E`. Hence the direction is not explained on any active support,
+and every cloud-intersection slope is support-wise noncontained.
+
+## Proof Of The Locator-Split Claim
 
 Put
 
@@ -203,4 +269,3 @@ The finite packet above is checked by
 ```text
 python3 experimental/2026-06-17-codex-f1-l1-audit/verifiers/verify_f1_arbitrary_anchor_split.py
 ```
-
