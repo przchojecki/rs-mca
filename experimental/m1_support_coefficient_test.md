@@ -317,6 +317,27 @@ an arbitrary support family. It is a finite quotient-level menu of power-kernel
 cosets together with ordinary whole-fiber choices disjoint from the touched
 fibers.
 
+There is also a useful residue-floor corollary. Let
+
+```text
+b = s mod m,        s=k+T,        0 <= b < m,
+```
+
+and keep `T<m`. Since `|R(S)| == b mod m`, the low-weight cutoff implies:
+
+- if `0 < b < T`, then every canonical support has
+  `|R(S)| >= m+b`;
+- if `b=T`, then the only residual supports below `m+T` are exactly the
+  boundary cosets counted above;
+- if `b=1`, as in maximal one-step dimension dither at large dyadic scales,
+  every canonical residual support has at least `m+1` residual points.
+
+Thus a dithered support residue in the range `1,...,T-1` removes all
+canonical small-residual packets. Any remaining canonical incidence at that
+scale must involve a residual set larger than one full quotient fiber, so it
+belongs to the genuinely residual/aperiodic part rather than to the
+one-remainder quotient exception.
+
 The slope image of this boundary family is exact as well. For `T<m`, the
 boundary residual coset has vanishing polynomial `X^T-c`, hence slope `z=-c`.
 As the residual coset varies through `D`, the values of `c` are exactly
@@ -381,6 +402,10 @@ case into a finite quotient-level object rather than an aperiodic family.
 Its slope image is the equally explicit set `-D^T`, and every boundary slope
 has the same whole-fiber multiplicity. Hence the canonical boundary source can
 be charged by exact slope count and multiplicity, not just by support count.
+Finally, if the support residue satisfies `0<s mod m<T`, then even the
+boundary source is absent and canonical residual incidences must have at least
+`m+(s mod m)` residual points. This is the precise small-residual payoff of
+dimension dither.
 
 ## Suggested Next Step
 
@@ -402,4 +427,5 @@ formula and the quotient-core invisibility identity `e_d(S)=e_d(R(S))` for
 classification on every scanned support, and verifies the residual-only and
 boundary quotient-core slope decompositions. In cyclic-domain scans it also
 checks the exact boundary-coset count above and the associated boundary slope
-image/multiplicity.
+image/multiplicity, and reports the subboundary residual-size floor in the
+dithered residue range.

@@ -231,6 +231,17 @@ def expected_boundary_slope_data(
     return (domain_order // slack, multiplicity)
 
 
+def subboundary_residual_floor(
+    support_size: int,
+    fiber_size: int,
+    slack: int,
+) -> Optional[int]:
+    residue = support_size % fiber_size
+    if 0 < residue < slack < fiber_size:
+        return fiber_size + residue
+    return None
+
+
 def occupancy_histogram(
     support: Sequence[int],
     quotient_order: int,
@@ -369,9 +380,16 @@ def scan_supports(
     canonical_boundary_residual_coset_count = 0
     canonical_boundary_residual_coset_mismatches = 0
     canonical_boundary_touched_fiber_mismatches = 0
+    canonical_subboundary_floor_violations = 0
     canonical_residual_slope_mismatches = 0
     canonical_boundary_slope_mismatches = 0
     residual_size_histogram: Counter[int] = Counter()
+    support_residue = support_size % fiber_size
+    subboundary_floor = subboundary_residual_floor(
+        support_size=support_size,
+        fiber_size=fiber_size,
+        slack=slack,
+    )
     expected_boundary_count = expected_boundary_residual_coset_count(
         domain_order=n,
         quotient_order=quotient_order,
@@ -463,6 +481,12 @@ def scan_supports(
                 residual_zero_prefix_mismatches += 1
             if slope != canonical_slope:
                 canonical_formula_mismatches += 1
+            if (
+                subboundary_floor is not None
+                and canonical_slope is not None
+                and residual_size < subboundary_floor
+            ):
+                canonical_subboundary_floor_violations += 1
             if canonical_slope is not None and slack < fiber_size:
                 residual_slope = canonical_slope_from_symmetric_prefix(
                     residual_values,
@@ -724,6 +748,22 @@ def scan_supports(
             if canonical_line and slack <= fiber_size
             else None
         ),
+        "canonical_support_residue_mod_fiber": (
+            support_residue if canonical_line and slack < fiber_size else None
+        ),
+        "canonical_subboundary_residual_floor": (
+            subboundary_floor if canonical_line and slack < fiber_size else None
+        ),
+        "canonical_subboundary_residual_floor_check": (
+            canonical_subboundary_floor_violations == 0
+            if canonical_line and slack < fiber_size
+            else None
+        ),
+        "canonical_subboundary_residual_floor_violation_count": (
+            canonical_subboundary_floor_violations
+            if canonical_line and slack < fiber_size
+            else None
+        ),
         "canonical_boundary_touched_fiber_count": (
             expected_boundary_touched_fibers
             if canonical_line and slack < fiber_size
@@ -824,6 +864,7 @@ def print_text(result: Dict[str, object]) -> None:
             "boundary_coset_check={coset} "
             "boundary_count_check={count} "
             "boundary_slope_count_check={slope_count} "
+            "subboundary_floor_check={floor} "
             "residual_slope_check={slope} "
             "boundary_slope_check={boundary}".format(
                 formula=result["canonical_symmetric_formula_check"],
@@ -833,6 +874,7 @@ def print_text(result: Dict[str, object]) -> None:
                 coset=result["canonical_boundary_residual_coset_check"],
                 count=result["canonical_boundary_residual_count_check"],
                 slope_count=result["canonical_boundary_slope_count_check"],
+                floor=result["canonical_subboundary_residual_floor_check"],
                 slope=result["canonical_residual_slope_check"],
                 boundary=result["canonical_boundary_slope_decomposition_check"],
             )

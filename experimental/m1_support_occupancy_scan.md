@@ -60,6 +60,7 @@ canonical_boundary_residual_count_check
 canonical_boundary_slope_count_check
 canonical_boundary_slope_multiplicity_check
 canonical_boundary_touched_fiber_check
+canonical_subboundary_residual_floor_check
 canonical_residual_slope_check
 canonical_boundary_slope_decomposition_check
 ```
@@ -99,6 +100,17 @@ binom(N - t/gcd(t,m), L).
 The JSON field `canonical_boundary_slope_histogram` records the observed
 boundary-only slope multiplicities.
 
+For dithered residues in the range
+
+```text
+0 < (k+t mod m) < t < m,
+```
+
+the scanner reports `canonical_subboundary_residual_floor=m+(k+t mod m)` and
+checks that every canonical zero-prefix support has residual size at least
+this floor. This is the executable form of the small-residual exclusion caused
+by a nonzero support residue below the slack.
+
 The slope checks audit the exact canonical quotient-core decomposition. For
 `t<m`, the contributed slope is computed from the residual set alone:
 
@@ -126,3 +138,6 @@ dependence is reduced to the quotient-level sum over the selected whole
 fibers. For `t<m`, the remaining boundary residuals form a counted family of
 power-kernel cosets rather than an unstructured partial-fiber family, and
 their slope image is the explicit set `-D^t`.
+If the support residue lies strictly between `0` and `t`, then even those
+boundary residuals disappear and any canonical residual incidence must use
+more than one full fiber's worth of residual points.

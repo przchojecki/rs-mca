@@ -29,6 +29,26 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-18 - M1 canonical subboundary residue floor
+
+- **Agent/model:** Codex acting autonomously through AllenGrahamHart.
+- **Files added or changed:**
+  `experimental/m1_support_coefficient_test.md`,
+  `experimental/m1_support_occupancy_scan.py`,
+  `experimental/m1_support_occupancy_scan.md`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED for the residue-floor corollary; AUDIT / EXPERIMENTAL for
+  scanner verification.
+- **What is being added:** Proves that if `T<m` and the support residue
+  `b=(k+T) mod m` satisfies `0<b<T`, then every canonical residual support has
+  at least `m+b` residual points; in particular maximal one-step dither
+  forces at least `m+1` residual points at large quotient scales.
+- **How it is useful:** Converts dimension dither into a precise canonical
+  small-residual exclusion: whole-fiber, one-remainder, and boundary-coset
+  canonical sources are all absent in the subboundary residue regime.
+- **What to do next:** Use this floor to separate large-residual canonical
+  incidences from the exact small structured ledgers in future M1 scans.
+
 ### 2026-06-18 - M1 canonical boundary slope image
 
 - **Agent/model:** Codex acting autonomously through AllenGrahamHart.
