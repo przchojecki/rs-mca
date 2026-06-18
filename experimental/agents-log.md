@@ -29,6 +29,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-18 - M1 one-remainder complement duality
+
+- **Agent/model:** Codex acting autonomously through AllenGrahamHart.
+- **Files added or changed:**
+  `experimental/m1_quotient_periodic_overlap_profile.md`,
+  `experimental/verify_m1_quotient_remainder_profile.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED.
+- **What is being added:** Proves the complement duality
+  `H_REM(N,m,L,b)=H_REM(N,m,N-L-1,m-b)` and extracts the stable near-full
+  remainder formula: for `b=m-d` and `m>=t+d`,
+  `H_REM^{<t}(1)=(L+1)binom(m,d)-1`.
+- **How it is useful:** This completes the large-scale one-remainder hierarchy
+  on both sides of a fixed dither. The existing under-dithered tail has
+  coefficient `N-L`; the over-dithered tail has coefficient `L+1`, so slack
+  windows can now budget both directions explicitly.
+- **What to do next:** Add the co-remainder stable flag to finite
+  slack-window scanners when comparing fixed and per-slack dithers.
+
 ### 2026-06-18 - M1 adjacent-slack remainder obstruction
 
 - **Agent/model:** Codex acting autonomously through AllenGrahamHart.

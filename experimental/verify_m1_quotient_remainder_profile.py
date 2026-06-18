@@ -145,6 +145,30 @@ def verify_stable_large_scale_case(N, m, L, d, t):
     return stable
 
 
+def stable_co_remainder_enumerator(N, m, L, d, t):
+    assert 1 <= d < t
+    assert m >= t + d
+    return stable_large_scale_enumerator(N, m, N - L - 1, d, t)
+
+
+def verify_complement_duality_case(N, m, L, b):
+    left = formula_enumerator(N, m, L, b)
+    right = formula_enumerator(N, m, N - L - 1, m - b)
+    assert left == right, (N, m, L, b, left, right)
+    return left
+
+
+def verify_stable_co_remainder_case(N, m, L, d, t):
+    full = formula_enumerator(N, m, L, m - d)
+    strict = Counter(
+        {exponent: coeff for exponent, coeff in full.items() if 0 < exponent < t}
+    )
+    stable = stable_co_remainder_enumerator(N, m, L, d, t)
+    assert strict == stable, (N, m, L, d, t, strict, stable)
+    assert sum(stable.values()) == (L + 1) * choose(m, d) - 1
+    return stable
+
+
 def verify_adjacent_slack_remainder_obstruction(n, k0, t0, m):
     assert m >= t0 + 3
     assert k0 % m == 0
@@ -393,6 +417,31 @@ def main():
         stable = verify_stable_large_scale_case(*case)
         print(
             f"N,m,L,d,t={case}: H_stable={dict(sorted(stable.items()))}, "
+            f"mass={sum(stable.values())}"
+        )
+    duality_cases = [
+        (6, 5, 2, 1),
+        (7, 4, 3, 2),
+        (8, 6, 2, 5),
+        (9, 7, 4, 3),
+    ]
+    for case in duality_cases:
+        dual = verify_complement_duality_case(*case)
+        print(
+            f"N,m,L,b={case}: H_dual={dict(sorted(dual.items()))}, "
+            f"mass={sum(dual.values())}"
+        )
+    co_remainder_cases = [
+        (8, 8, 3, 1, 5),
+        (4, 16, 1, 1, 5),
+        (8, 8, 3, 2, 5),
+        (4, 16, 1, 2, 5),
+        (10, 10, 4, 3, 6),
+    ]
+    for case in co_remainder_cases:
+        stable = verify_stable_co_remainder_case(*case)
+        print(
+            f"N,m,L,d,t={case}: H_costable={dict(sorted(stable.items()))}, "
             f"mass={sum(stable.values())}"
         )
     adjacent_remainder_cases = [

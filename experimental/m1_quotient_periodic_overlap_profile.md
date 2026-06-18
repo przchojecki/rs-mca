@@ -539,6 +539,48 @@ factor is pulled out. Consequently, fixed-window dithering cannot be analyzed
 only by asking which whole-fiber quotient scales survive; the one-remainder
 ledger is a separate large-scale obstruction.
 
+There is a complementary stable formula for near-full remainders. Taking
+set-complements sends a one-remainder family with parameters `(N,m,L,b)` to
+one with parameters
+
+```text
+(N,m,N-L-1,m-b),
+```
+
+and preserves the exchange size `|S\T|`. Therefore
+
+```text
+H_REM(N,m,L,b;y) = H_REM(N,m,N-L-1,m-b;y).
+```
+
+In particular, if `1 <= d < t` and
+
+```text
+b = m-d,        m >= t+d,
+```
+
+then the complete strict profile is
+
+```text
+H_REM^{<t}(y)
+ =
+  sum_{ell=1}^d binom(d,ell) binom(m-d,ell) y^ell
+  + L binom(m,d) y^d.
+```
+
+The unweighted strict codegree mass is
+
+```text
+H_REM^{<t}(1) = (L+1) binom(m,d) - 1.
+```
+
+This is the over-dithered counterpart of the previous hierarchy. In a dyadic
+window, if `t-r0=-d` and `m | k0` with `m>d`, the support size has remainder
+`m-d`; for stable large scales the strict remainder packet is governed by the
+displayed co-remainder mass. Thus fixed-window dithering has two large-scale
+one-remainder tails: the under-dithered tail with coefficient `(N-L)` and the
+over-dithered tail with coefficient `L+1`.
+
 Finally, the maximal-dither remainder case has an exact all-scale formula, so
 small scales need not be handled as a black-box enumeration. Suppose
 
