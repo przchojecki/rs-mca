@@ -386,15 +386,26 @@ def co_large_bound_report(
 ) -> dict[str, Any]:
     complement_size = N - AGREEMENT
     gap_dimension = max(complement_size - SIGMA, 0)
-    upper_bound = P**gap_dimension
+    field_bound = P**gap_dimension
+    if gap_dimension == 0:
+        packing_numerator = 1
+        packing_denominator = 1
+    else:
+        packing_numerator = comb(N, gap_dimension)
+        packing_denominator = comb(complement_size, gap_dimension)
     maximum_fiber_size = max(len(values) for values in fibers.values())
-    if maximum_fiber_size > upper_bound:
-        raise AssertionError("co-large prefix bound failed")
+    if maximum_fiber_size > field_bound:
+        raise AssertionError("co-large field-size bound failed")
+    if maximum_fiber_size * packing_denominator > packing_numerator:
+        raise AssertionError("co-large packing bound failed")
     return {
         "checked": True,
         "complement_size": complement_size,
         "gap_dimension": gap_dimension,
-        "field_bound": upper_bound,
+        "field_bound": field_bound,
+        "packing_bound_numerator": packing_numerator,
+        "packing_bound_denominator": packing_denominator,
+        "packing_bound_floor": packing_numerator // packing_denominator,
         "maximum_fiber_size": maximum_fiber_size,
         "holds": True,
     }
@@ -660,7 +671,14 @@ def print_text(cert: dict[str, Any]) -> None:
         f"{divisor_graph['edge_count']} edges"
     )
     print(
-        "co-large field bound: "
+        "co-large packing bound: "
+        f"max fiber {co_large_bound['maximum_fiber_size']} <= "
+        f"{co_large_bound['packing_bound_numerator']}/"
+        f"{co_large_bound['packing_bound_denominator']} "
+        f"= {co_large_bound['packing_bound_floor']}"
+    )
+    print(
+        "co-large field-size bound: "
         f"max fiber {co_large_bound['maximum_fiber_size']} <= "
         f"{co_large_bound['field_bound']}"
     )

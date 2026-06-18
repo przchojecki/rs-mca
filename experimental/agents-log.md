@@ -45,8 +45,9 @@ Keep entries concise and link to the relevant files.
   the collisions into three dilation orbits of complement locator pairs with
   linear gaps `L_A-L_B`, using the general complement-prefix lemma for
   multiplicative subgroups, records the exact divisor-gap parametrization, and
-  records the equivalent divisor-gap graph formulation and co-large prefix bound
-  `|Phi_sigma^{-1}(c)| <= q^max(n-k-2sigma,0)`.
+  records the equivalent divisor-gap graph formulation and co-large packing
+  bound `|Phi_sigma^{-1}(c)| <= binom(n,r)/binom(m,r)` for
+  `r=n-k-2sigma`.
 - **How it is useful:** Targets L1 by showing that quotient-core removal
   cannot be strengthened to finite-field aperiodic injectivity; the surviving
   local-limit theorem must be a multiplicity bound for aperiodic prefix

@@ -151,35 +151,40 @@ of `X^n-1`.
 
 ## Co-Large Prefix Bound
 
-Counting the possible perturbation polynomials gives a finite-field upper bound
-in the co-large support range. Let `F = F_q`, let `s = k + sigma`, and set
+The divisor-gap formulation also gives a field-independent packing bound in the
+co-large support range. Let `F = F_q`, let `s = k + sigma`, and set
 
 ```text
 m = n - s = n - k - sigma.
+d = m - sigma - 1.
 ```
 
-For every prefix target `c in F_q^sigma`,
+If `d < 0`, every fiber is a singleton. If `d >= 0`, then for every prefix
+target `c in F_q^sigma`,
+
+```text
+|Phi_sigma^{-1}(c)| <= binom(n,d+1) / binom(m,d+1).
+```
+
+Indeed, for two distinct complements `A,B` in one fiber, `L_A-L_B` has degree
+at most `d`. Every point of `A cap B` is a root of `L_A-L_B`; hence
+`|A cap B| <= d`, since otherwise `L_A=L_B` and `A=B`. Thus any fixed
+`(d+1)`-subset of `H` lies in at most one complement in the fiber. Counting
+`(d+1)`-subsets inside the complements gives the displayed packing bound.
+
+Counting perturbation polynomials gives the cruder field-size bound
 
 ```text
 |Phi_sigma^{-1}(c)| <= q^max(m - sigma, 0)
-                    = q^max(n - k - 2 sigma, 0).
+                    = q^max(n - k - 2 sigma, 0),
 ```
 
-Indeed, fix one support `S0` in the fiber and let `A0=H\S0`. For any other
-support `S` in the same fiber, with complement `A=H\S`, the complement-prefix
-lemma gives
+because `A -> L_A-L_A0` is injective and there are only `q^(m-sigma)`
+polynomials of degree at most `m-sigma-1`.
 
-```text
-deg(L_A - L_A0) <= m - sigma - 1
-```
-
-when `sigma < m`, and `A=A0` when `sigma >= m`. The map
-`A -> L_A-L_A0` is injective because `L_A` determines `A`, while there are
-only `q^(m-sigma)` polynomials of degree at most `m-sigma-1`.
-
-Consequently, for generated-field size `q=poly(n)`, monomial-prefix locator
-fibers are polynomially bounded throughout the co-large strip
-`n-k-2sigma=O(1)`, without any quotient hypothesis. This strip is much
+Consequently, monomial-prefix locator fibers are polynomially bounded
+throughout the co-large strip `n-k-2sigma=O(1)`, without any quotient
+hypothesis and without paying a generated-field factor. This strip is much
 narrower than the desired final L1 reserve at fixed rate, but it is a proved
 anchor and a useful model for low-degree complement-locator scanners.
 
@@ -187,6 +192,12 @@ anchor and a useful model for low-degree complement-locator scanners.
 
 The orbit certificate is an instance of this lemma. Here `H=F_17^*`,
 `n=16`, `m=6`, `sigma=4`, and the co-large bound is `17^(6-4)=289`.
+The sharper packing bound is
+
+```text
+binom(16,2) / binom(6,2) = 8.
+```
+
 Since
 
 ```text
@@ -274,5 +285,5 @@ checks that all forty nonsingleton fibers are not `M=8` or `M=16`
 coset-union collisions, verifies that support-prefix and complement-prefix
 partitions agree for all supports, checks the exact divisor-gap
 parametrization, certifies the divisor-gap graph component profile, checks the
-co-large upper bound, and certifies the three complement-locator dilation
-orbits.
+co-large packing and field-size upper bounds, and certifies the three
+complement-locator dilation orbits.
