@@ -168,6 +168,7 @@ python3 experimental/verify_m1_depth_two_elementary_open_set_lemma.py
 python3 experimental/verify_m1_depth_two_quadratic_one_coordinate_lemma.py
 python3 experimental/verify_m1_depth_two_nonquadratic_one_coordinate_lemma.py
 python3 experimental/verify_m1_depth_two_kummer_constant_audit.py
+python3 experimental/verify_m1_depth_two_two_coordinate_sharp_target.py
 ```
 
 checks the finite geometry behind the elementary open-set correction and
@@ -178,6 +179,9 @@ open-set correction is isolated in
 nonquadratic mixed slices are isolated in
 `experimental/m1_depth_two_quadratic_one_coordinate_lemma.md` and
 `experimental/m1_depth_two_nonquadratic_one_coordinate_lemma.md`.
+The two-coordinate sharp-target verifier is only finite evidence for a
+possible future `4p` replacement of the current conditional `9p` import; it
+is not used by the present certificates.
 
 ## Audited Hypotheses
 

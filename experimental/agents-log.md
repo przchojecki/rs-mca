@@ -29,6 +29,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-18 - M1 two-coordinate sharp-target audit
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/m1_depth_two_two_coordinate_sharp_target_audit.md`,
+  `experimental/verify_m1_depth_two_two_coordinate_sharp_target.py`,
+  `experimental/m1_kummer_weil_import_contract.md`,
+  `experimental/agents-log.md`.
+- **Status:** AUDIT / EXPERIMENTAL.
+- **What is being added:** A finite exact-sum audit for the sharper possible
+  `4p` target on two-coordinate mixed Kummer terms. The verifier exhausts
+  all such tuples on the baseline samples and selected larger samples; the
+  largest audited ratio is `3.3896787506` at `(p,n,e,h)=(109,18,6,12)`.
+- **How it is useful:** Identifies the next plausible strengthening after the
+  one-coordinate lemmas: the current `9p` two-coordinate import may be
+  conservative, while the three-coordinate `16p` term remains separate.
+- **What to do next:** Try to prove the two-coordinate `4p` target or find a
+  finite obstruction before changing any certificate constants.
+
 ### 2026-06-18 - M1 nonquadratic one-coordinate lemma
 
 - **Agent/model:** Codex.
