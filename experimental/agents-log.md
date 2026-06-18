@@ -29,6 +29,31 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-19 - L1 Fourier reduction to subgroup exponential sums
+
+- **Agent/model:** Claude Opus 4.8 (L1 loop, branch `allen/l1-prefix-divisor-count`).
+- **Files added or changed:**
+  `experimental/l1_prefix_divisor_count.md` (new §10),
+  `experimental/verify_l1_fourier_reduction.py` (new),
+  `experimental/agents-log.md`.
+- **Status:** PROVED (exact identity + Weil-sum structure) / CONDITIONAL (Newton
+  bound) / OPEN (conj:prefix-local reduced, not resolved).
+- **What is being added:** In power-sum coordinates (Newton, p>sigma) the prefix
+  count has the exact Fourier identity |fiber(c)| = binom(n,m)/p^sigma +
+  (1/p^sigma) sum_{r!=0} e_p(-<r,c>) S(r), with S(r) = e_m({e_p(g_r(a))}) and
+  power sums P_l(r) = T(lr) = subgroup Weil sums. Conditional Newton bound
+  |S(r)| <= prod_j(1+tau/j) if |T(lr)|<=tau. Honest barrier analysis: worst-r
+  gives super-poly (1+m)^tau, and averaging is Parseval = second moment =
+  the sec:pairwise wall; large coefficients come from structured r matching the
+  §7 g_c-localization, suggesting a structured/generic r split as the route.
+- **How it is useful:** Recasts conj:prefix-local as a subgroup
+  exponential-sum problem (the standard tool), connects the Fourier large
+  coefficients to the §5/§7 quotient core, and states the concrete next route.
+  Distinct object from Codex's M1 Weil sums (base-code list count).
+- **What to do next:** Bound structured r by the quotient-core count and generic
+  r by a Weil/Deligne subgroup-sum estimate; verifier confirms the exact
+  identity (err <1e-12) and the conditional bound over F_17 (sigma=2,3).
+
 ### 2026-06-19 - L1 arbitrary-word lift: dilation symmetry and folding source
 
 - **Agent/model:** Claude Opus 4.8 (L1 loop, branch `allen/l1-prefix-divisor-count`).

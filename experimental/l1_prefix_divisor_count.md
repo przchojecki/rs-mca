@@ -425,6 +425,76 @@ lower bound, not the whole list. Verified by
 `verify_l1_arbitrary_word_lift.py`: dilation list-size invariance at
 `F_17, n=16, k=6, s=8`, and the folding lift for `d = 2, 4`.
 
+## 10. Fourier reduction to subgroup exponential sums
+
+This section recasts the *open* aperiodic bound as an exponential-sum problem. It
+proves an exact identity and a conditional bound, and states honestly where the
+barrier of `sec:pairwise` reappears. (List/locator side; the exponential sums
+here are over the base code and are a different object from the M1 residue-line
+Weil sums.)
+
+**Power-sum coordinates.** For `p > sigma`, Newton's identities make
+`(e_1,...,e_sigma)` and the power sums `(p_1,...,p_sigma)`,
+`p_j(A) = sum_{a in A} a^j`, a polynomial bijection; the fiber count is the same
+in either coordinate. Power sums are *additive over* `A`, which is the whole
+point: with `g_r(w) = sum_{j=1}^sigma r_j w^j`,
+```text
+<r, p(A)> = sum_{a in A} g_r(a).
+```
+
+**Exact Fourier identity (PROVED).** With `e_p(x) = exp(2 pi i x / p)`,
+```text
+|{A : |A|=m, p(A)=c}|
+   = (1/p^sigma) sum_{r in F_p^sigma} e_p(-<r,c>) S(r),
+S(r) := sum_{|A|=m} e_p(<r,p(A)>)
+      = sum_{|A|=m} prod_{a in A} e_p(g_r(a))
+      = e_m( { e_p(g_r(a)) : a in mu_n } ),
+```
+with main term `S(0) = binom(n,m)`, so the fiber equals
+`binom(n,m)/p^sigma` plus `(1/p^sigma) sum_{r != 0} e_p(-<r,c>) S(r)`. The factor
+`binom(n,m) = binom(n,s)` is exactly the `conj:prefix-local` main term.
+
+**Weil-sum structure (PROVED).** The values `w_a = e_p(g_r(a))` have power sums
+```text
+P_l(r) = sum_{a in mu_n} w_a^l = sum_{a in mu_n} e_p(l g_r(a)) = T(l r),
+```
+the **subgroup exponential (Weil) sums** of the degree-`<= sigma` polynomials
+`l g_r` over `mu_n`. By Newton's identities `S(r) = e_m` is a fixed polynomial in
+`{T(l r) : 1 <= l <= m}`. So the entire prefix count is governed by subgroup
+exponential sums.
+
+**Conditional bound (PROVED, conditional).** If `|T(l r)| <= tau` for
+`1 <= l <= m`, the Newton recurrence `m e_m = sum_l (-1)^{l-1} P_l e_{m-l}` gives
+```text
+|S(r)| <= prod_{j=1}^m (1 + tau/j)   (<= (1+m)^tau).
+```
+Hence `|fiber(c) - binom(n,m)/p^sigma| <= max_{r != 0} prod_j (1 + tau_r/j)`.
+
+**Honest assessment of the barrier.** A worst-case subgroup sum has
+`tau ~ sqrt(n)` (or larger), and then `(1+m)^tau` is super-polynomial: the
+worst-`r` bound does *not* reach `n^B`. The saving must come from *averaging*
+`|S(r)|` over `r`, but `sum_r |S(r)|^2 = p^sigma sum_c |fiber(c)|^2` (Parseval) is
+exactly the second moment --- the `sec:pairwise` wall in Fourier dress. So this
+reduction does **not** resolve `conj:prefix-local`; its value is to pin the open
+problem to a precise, standard object (uniform-in-`l` subgroup exponential-sum
+control) and to expose the structure of the large coefficients.
+
+**The promising link to §7.** `T(l r) = sum_{a in mu_n} e_p(l g_r(a))` is large
+exactly when `g_r` is close to constant on cosets of some `K_d` --- i.e. when `r`
+is *structured* (supported on indices with a common factor `d`). That is the same
+`g_c`-localization that §7 proved on the prefix side: the large Fourier
+coefficients come from the quotient-core prefixes. This suggests the workable
+split --- bound the structured `r` by the §5/§7 quotient-core count, and the
+generic `r` (full-degree `g_r`) by a Weil/Deligne subgroup-sum estimate --- as
+the concrete route past the barrier, recorded here as the next target.
+
+**Status.** Exact identity and Weil-sum structure: PROVED. Newton bound:
+PROVED-conditional. `conj:prefix-local`: still OPEN; reduced, not resolved.
+Verified by `verify_l1_fourier_reduction.py` over `F_17, n=16` (`sigma=2,3`):
+`S(r)` enumeration equals the product formula, the Fourier inversion reconstructs
+the brute histogram to `< 1e-12`, and the conditional Newton bound holds for
+every `r`.
+
 ## Ledger impact
 
 - **Quotient (worsens, now explicit):** gives an exact, field-independent
@@ -456,8 +526,11 @@ python3 experimental/verify_l1_prefix_divisor_count.py --dp-summary --p 257 --n 
 ## What to do next
 
 1. **Aperiodic remainder bound.** Prove `binom(n,s)/q^sigma + O(n^B)` for the
-   *aperiodic* divisor count (coset-unions removed) in a region beyond the
-   Johnson anchor `a^2 > n(k-1)` of `l1_aperiodic_prefix_collision.md`.
+   *aperiodic* count beyond the Johnson anchor. §10 reduces this to subgroup
+   exponential sums; the concrete route is to split the Fourier sum into
+   *structured* `r` (bounded by the §5/§7 quotient-core count) and *generic*
+   `r` (full-degree `g_r`, bounded by a Weil/Deligne subgroup-sum estimate),
+   avoiding the worst-case `(1+m)^tau` blow-up.
 2. **Scale up.** DONE (§8): a DP counter `(size, e_1..e_eff)` reaches `n=32` over
    `F_257`/`F_97` (and `n=64` for `sigma <= 2`), giving the first sub-Johnson,
    entropy-cleared data point. Extend with a coset-folded DP (quotient `Y=X^d`)
