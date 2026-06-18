@@ -437,6 +437,33 @@ number of such fibers is forced to be `a=(s-|P|)/m`. Conversely, adjoining
 any such `a` whole fibers gives an exact support of size `s` with residual
 packet `P`. This proves both the binomial lift count and the common slope.
 
+Consequently the small-residual superboundary depths have an exact dither
+gate. Write a small residual size as
+
+```text
+|P| = T+d,        1 <= d < m-T.
+```
+
+Since `s=k+T`, this depth can lift at quotient scale `m` only if
+
+```text
+m | (s-|P|) = k-d.
+```
+
+Equivalently, when the quotient-scale hierarchy has `m | k0` and dimension
+dither `k=k0-r`, depth `d` is active only if
+
+```text
+m | (r+d).
+```
+
+Thus all depths `1<=d<=D` are absent at every scale `m>r+D` dividing `k0`.
+In particular, for any positive dither `1<=r<=T-1`, all small-residual
+superboundary layers are absent at every scale `m>T` dividing `k0`; the
+support residue is then `T-r`, which lies below the boundary size `T`. The
+maximal dither `r=T-1` gives residue `1`, hence the residual-size floor is
+`m+1` rather than any size below one full quotient fiber.
+
 This does not classify the first superboundary packets `T<|P|<m`. It proves
 that they are the only new object left: once such a packet is known, the
 quotient-core lift and slope multiplicity are completely deterministic.
@@ -926,6 +953,10 @@ the nonzero coefficients of `D`-split sparse trinomials `X^(T+1)+zX-c`.
 The exact-support dither gate adds that this whole layer is inactive unless
 `m | k-1`; for dyadic quotient scales dividing an exact dimension `k0`, a
 dither `k=k0-r` leaves only scales dividing `r+1`.
+The small-residual depth gate extends this to every depth below one quotient
+fiber: depth `d` can survive only when `m | k-d`. Hence positive dithers
+`1<=r<=T-1` remove all small-residual superboundary layers at all quotient
+scales `m>T` dividing the exact dimension `k0`.
 For `T=2`, even that nonzero catalog is no longer a support-enumeration
 problem: it is exactly the unit-equation shape set `C_2(D)`, with slope image
 given by the square cosets `alpha(u)D^2` and quotient-lift weight
@@ -984,6 +1015,8 @@ power-coset classification and the corresponding lifted support count.
 For small scanned slack, it also checks the full normalized shape-coset
 formula, its `D^T` coset-compressed slope count, and the exact-support
 dither gate `m | k-1` for first-superboundary activity.
+It also reports the active small-residual superboundary depth, if any, using
+the general gate `m | k-d`.
 When `T=2`, it also checks the complete unit-equation shape ledger and its
 weighted slope histogram.
 The same scanner reports the associated square-coset slope-count bound.

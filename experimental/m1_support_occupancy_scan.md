@@ -61,6 +61,10 @@ canonical_boundary_slope_count_check
 canonical_boundary_slope_multiplicity_check
 canonical_boundary_touched_fiber_check
 canonical_small_residual_regime
+canonical_small_residual_active_size
+canonical_superboundary_active_depth
+canonical_superboundary_active_depth_remainder_check
+canonical_small_residual_depth_gate_check
 canonical_small_residual_support_count_check
 canonical_small_residual_slope_count_check
 canonical_small_residual_slope_multiplicity_check
@@ -168,6 +172,20 @@ In these regimes the scanner checks the exact small-residual support count,
 slope count, and uniform slope multiplicity. Residues `b>t` are reported as
 `superboundary_unclassified`, because they are the first genuinely partial
 small-residual regime not decided by the quotient-core theorem.
+
+More generally, it reports the small-residual depth gate. If a residual packet
+has size `t+d<m`, then it can lift only when
+
+```text
+m | k-d.
+```
+
+Equivalently, with `k=k0-r` and `m | k0`, depth `d` can survive only when
+`m | r+d`. The field `canonical_superboundary_active_depth` is the unique
+small-superboundary depth allowed by the support residue, when it exists, and
+`canonical_small_residual_depth_gate_check` verifies that every scanned
+canonical zero-prefix support with residual size below one fiber has exactly
+that residue size.
 
 For every canonical scan with `t<m`, the scanner also aggregates supports by
 their residual partial-fiber packet `P`. A packet touching `tau(P)` quotient

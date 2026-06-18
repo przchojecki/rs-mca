@@ -51,16 +51,17 @@ Keep entries concise and link to the relevant files.
   character expansion and a conditional small-index saturation criterion. The
   first-superboundary layer now has an all-slack shape-coset reduction through
   normalized sets `C_T(D)` and slope cosets `a_T(C_T(D))D^T`, plus the
-  exact-support dither gate `m | k-1`. For `T=3`, this specializes further to
-  a split-cubic beta ledger, equivalently a conic shape set, and the
-  cube-coset image `beta D^3`.
+  exact-support dither gates `m | k-d` for small-residual depth `d`. For
+  `T=3`, this specializes further to a split-cubic beta ledger, equivalently
+  a conic shape set, and the cube-coset image `beta D^3`.
 - **How it is useful:** Turns the first nonzero superboundary catalog from
   support enumeration into a finite multiplicative unit-equation problem plus
   the image of `alpha(C_2(D))` in `F_p^*/D^2`, and extends the same
   shape-ledger method to every first-superboundary slack with concrete
-  low-dimensional specializations at `T=2` and `T=3`. The gate links this
-  catalog to dimension dither by deleting the whole `|P|=T+1` layer at
-  quotient scales not dividing `k-1`.
+  low-dimensional specializations at `T=2` and `T=3`. The depth gate links
+  this catalog to dimension dither by deleting all small-residual
+  superboundary layers at large quotient scales for positive dithers
+  `1<=r<=T-1`.
 - **What to do next:** Narrow the gap between the small-index coset-saturation
   criterion and the large-index cyclotomic non-field-filling threshold for
   smooth proper subgroups, and seek comparable bounds for the slack-three

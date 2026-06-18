@@ -928,8 +928,14 @@ def scan_supports(
     canonical_subboundary_floor_violations = 0
     canonical_residual_slope_mismatches = 0
     canonical_boundary_slope_mismatches = 0
+    canonical_small_residual_depth_gate_mismatches = 0
     residual_size_histogram: Counter[int] = Counter()
     support_residue = support_size % fiber_size
+    superboundary_active_depth = (
+        support_residue - slack
+        if 0 < slack < support_residue < fiber_size
+        else None
+    )
     (
         small_residual_regime,
         expected_small_residual_support_count,
@@ -1049,6 +1055,8 @@ def scan_supports(
                 record["canonical_zero_prefix_support_count"] = (
                     int(record["canonical_zero_prefix_support_count"]) + 1
                 )
+                if residual_size < fiber_size and residual_size != support_residue:
+                    canonical_small_residual_depth_gate_mismatches += 1
                 if slack < fiber_size:
                     packet = residual_packet_records.setdefault(
                         residual,
@@ -1485,6 +1493,33 @@ def scan_supports(
         ),
         "canonical_support_residue_mod_fiber": (
             support_residue if canonical_line and slack < fiber_size else None
+        ),
+        "canonical_small_residual_active_size": (
+            support_residue if canonical_line and slack < fiber_size else None
+        ),
+        "canonical_superboundary_active_depth": (
+            superboundary_active_depth
+            if canonical_line and slack < fiber_size
+            else None
+        ),
+        "canonical_superboundary_active_depth_remainder_check": (
+            (k - superboundary_active_depth) % fiber_size == 0
+            if (
+                canonical_line
+                and slack < fiber_size
+                and superboundary_active_depth is not None
+            )
+            else None
+        ),
+        "canonical_small_residual_depth_gate_check": (
+            canonical_small_residual_depth_gate_mismatches == 0
+            if canonical_line and slack < fiber_size
+            else None
+        ),
+        "canonical_small_residual_depth_gate_mismatch_count": (
+            canonical_small_residual_depth_gate_mismatches
+            if canonical_line and slack < fiber_size
+            else None
         ),
         "canonical_small_residual_regime": (
             small_residual_regime
@@ -2330,6 +2365,8 @@ def print_text(result: Dict[str, object]) -> None:
             "boundary_count_check={count} "
             "boundary_slope_count_check={slope_count} "
             "small_residual_regime={small} "
+            "small_residual_depth_gate={depth_gate} "
+            "active_superboundary_depth={active_depth} "
             "residual_packet_lift_check={packet} "
             "first_superboundary_lift_gate={gate} "
             "first_superboundary_lift_gate_check={gate_check} "
@@ -2348,6 +2385,8 @@ def print_text(result: Dict[str, object]) -> None:
                 count=result["canonical_boundary_residual_count_check"],
                 slope_count=result["canonical_boundary_slope_count_check"],
                 small=result["canonical_small_residual_regime"],
+                depth_gate=result["canonical_small_residual_depth_gate_check"],
+                active_depth=result["canonical_superboundary_active_depth"],
                 packet=result["canonical_residual_packet_lift_count_check"],
                 gate=result["canonical_first_superboundary_lift_gate_active"],
                 gate_check=result["canonical_first_superboundary_lift_gate_check"],
