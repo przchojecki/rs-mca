@@ -464,6 +464,24 @@ support residue is then `T-r`, which lies below the boundary size `T`. The
 maximal dither `r=T-1` gives residue `1`, hence the residual-size floor is
 `m+1` rather than any size below one full quotient fiber.
 
+Equivalently, the local quotient-scale condition
+
+```text
+b=(k+T) mod m,        0<b<T,
+```
+
+is an immediate certificate that the canonical small-residual catalog is
+empty below one quotient fiber. Every canonical zero-prefix support then has
+
+```text
+|R(S)| >= m+b.
+```
+
+This is the large-scale positive-dither clearance statement used by the M1
+strategy: for such scales the boundary, first-superboundary, and every other
+small-residual superboundary depth are already deleted by exact support
+congruence, so no shape-count or sparse-trinomial estimate is needed there.
+
 This does not classify the first superboundary packets `T<|P|<m`. It proves
 that they are the only new object left: once such a packet is known, the
 quotient-core lift and slope multiplicity are completely deterministic.
@@ -988,6 +1006,8 @@ The small-residual depth gate extends this to every depth below one quotient
 fiber: depth `d` can survive only when `m | k-d`. Hence positive dithers
 `1<=r<=T-1` remove all small-residual superboundary layers at all quotient
 scales `m>T` dividing the exact dimension `k0`.
+Equivalently, the local residue certificate `0<(k+T mod m)<T` clears the
+entire canonical catalog below one quotient fiber at that scale.
 For `T=2`, even that nonzero catalog is no longer a support-enumeration
 problem: it is exactly the unit-equation shape set `C_2(D)`, with slope image
 given by the square cosets `alpha(u)D^2` and quotient-lift weight

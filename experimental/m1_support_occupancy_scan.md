@@ -65,6 +65,10 @@ canonical_small_residual_active_size
 canonical_superboundary_active_depth
 canonical_superboundary_active_depth_remainder_check
 canonical_small_residual_depth_gate_check
+canonical_positive_dither_clearance_applies
+canonical_positive_dither_inferred_r
+canonical_positive_dither_residual_floor
+canonical_positive_dither_clearance_check
 canonical_small_residual_support_count_check
 canonical_small_residual_slope_count_check
 canonical_small_residual_slope_multiplicity_check
@@ -189,6 +193,12 @@ small-superboundary depth allowed by the support residue, when it exists, and
 `canonical_small_residual_depth_gate_check` verifies that every scanned
 canonical zero-prefix support with residual size below one fiber has exactly
 that residue size.
+
+When `0 < (k+t mod m) < t`, the fields
+`canonical_positive_dither_clearance_*` record the local positive-dither
+certificate. Writing `b=(k+t mod m)` and `r=t-b`, the scanner checks that no
+canonical zero-prefix support has residual size below one quotient fiber and
+that the residual-size floor is exactly `m+b`.
 
 For every canonical scan with `t<m`, the scanner also aggregates supports by
 their residual partial-fiber packet `P`. A packet touching `tau(P)` quotient

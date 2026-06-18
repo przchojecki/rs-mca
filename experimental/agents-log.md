@@ -62,7 +62,7 @@ Keep entries concise and link to the relevant files.
   low-dimensional specializations at `T=2` and `T=3`. The depth gate links
   this catalog to dimension dither by deleting all small-residual
   superboundary layers at large quotient scales for positive dithers
-  `1<=r<=T-1`.
+  `1<=r<=T-1`; locally this is certified by `0<(k+T mod m)<T`.
 - **What to do next:** Narrow the gap between the small-index coset-saturation
   criterion and the large-index cyclotomic non-field-filling threshold for
   smooth proper subgroups, and seek comparable bounds for the slack-three

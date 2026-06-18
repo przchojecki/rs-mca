@@ -955,6 +955,10 @@ def scan_supports(
         if 0 < slack < support_residue < fiber_size
         else None
     )
+    positive_dither_clearance_applies = 0 < support_residue < slack < fiber_size
+    positive_dither_inferred_r = (
+        slack - support_residue if positive_dither_clearance_applies else None
+    )
     (
         small_residual_regime,
         expected_small_residual_support_count,
@@ -1538,6 +1542,36 @@ def scan_supports(
         "canonical_small_residual_depth_gate_mismatch_count": (
             canonical_small_residual_depth_gate_mismatches
             if canonical_line and slack < fiber_size
+            else None
+        ),
+        "canonical_positive_dither_clearance_applies": (
+            positive_dither_clearance_applies
+            if canonical_line and slack < fiber_size
+            else None
+        ),
+        "canonical_positive_dither_inferred_r": (
+            positive_dither_inferred_r
+            if canonical_line and slack < fiber_size
+            else None
+        ),
+        "canonical_positive_dither_residual_floor": (
+            subboundary_floor
+            if (
+                canonical_line
+                and slack < fiber_size
+                and positive_dither_clearance_applies
+            )
+            else None
+        ),
+        "canonical_positive_dither_clearance_check": (
+            canonical_small_residual_support_count == 0
+            and subboundary_floor == fiber_size + support_residue
+            and canonical_subboundary_floor_violations == 0
+            if (
+                canonical_line
+                and slack < fiber_size
+                and positive_dither_clearance_applies
+            )
             else None
         ),
         "canonical_small_residual_regime": (
@@ -2406,6 +2440,7 @@ def print_text(result: Dict[str, object]) -> None:
             "small_residual_regime={small} "
             "small_residual_depth_gate={depth_gate} "
             "active_superboundary_depth={active_depth} "
+            "positive_dither_clearance={positive_clearance} "
             "residual_packet_lift_check={packet} "
             "first_superboundary_lift_gate={gate} "
             "first_superboundary_lift_gate_check={gate_check} "
@@ -2427,6 +2462,9 @@ def print_text(result: Dict[str, object]) -> None:
                 small=result["canonical_small_residual_regime"],
                 depth_gate=result["canonical_small_residual_depth_gate_check"],
                 active_depth=result["canonical_superboundary_active_depth"],
+                positive_clearance=result[
+                    "canonical_positive_dither_clearance_check"
+                ],
                 packet=result["canonical_residual_packet_lift_count_check"],
                 gate=result["canonical_first_superboundary_lift_gate_active"],
                 gate_check=result["canonical_first_superboundary_lift_gate_check"],
