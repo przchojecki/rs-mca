@@ -303,6 +303,34 @@ every monomial-prefix fiber satisfies the Plotkin-type bound
 |Phi_sigma^{-1}(c)| <= n(m-r+1) / (m^2 - n(r-1)).
 ```
 
+Writing `a=k+sigma` for the original support agreement size, this becomes the
+finite Johnson-threshold form
+
+```text
+m^2 - n(r-1) = a^2 - n(k-1),
+m-r+1 = a-k+1,
+```
+
+so, whenever
+
+```text
+a^2 > n(k-1),
+```
+
+one has
+
+```text
+|Phi_sigma^{-1}(c)| <= n(a-k+1) / (a^2 - n(k-1)).
+```
+
+Thus the co-large Plotkin theorem is exactly a Johnson-region locator-fiber
+anchor, expressed in monomial-prefix language. If `k/n -> rho` and
+`a/n -> beta > sqrt(rho)`, then
+
+```text
+|Phi_sigma^{-1}(c)| <= (beta-rho)/(beta^2-rho) + o(1).
+```
+
 This improves the raw packing count from an exponential-in-`r` statement to a
 constant bound throughout a linear-width high-slack region. In particular, if
 `k/n -> rho` and `r/n -> theta` with
@@ -526,9 +554,9 @@ partitions agree for all supports, checks the exact divisor-gap
 parametrization, certifies the divisor-gap graph component profile, checks the
 co-large packing, recursive Johnson packing, and field-size upper bounds,
 checks the growing-width co-large envelope, rational Plotkin bounds, and
-integer Plotkin refinements on deterministic parameter grids, checks the
-affine Reed-Solomon list reduction by enumerating all `17^2` low-degree
-perturbations for every prefix fiber, verifies the co-large fiber separation,
-records the internal ordered exchange and maximum codegree profiles, verifies
-zero internal M1 high-overlap correction, and certifies the three
-complement-locator dilation orbits.
+their exact support-side Johnson-threshold form on deterministic parameter
+grids, checks the affine Reed-Solomon list reduction by enumerating all `17^2`
+low-degree perturbations for every prefix fiber, verifies the co-large fiber
+separation, records the internal ordered exchange and maximum codegree
+profiles, verifies zero internal M1 high-overlap correction, and certifies the
+three complement-locator dilation orbits.

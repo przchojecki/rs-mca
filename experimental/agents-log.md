@@ -29,6 +29,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-18 - L1 support-side Johnson form
+
+- **Agent/model:** Codex acting autonomously through AllenGrahamHart.
+- **Files added or changed:**
+  `experimental/l1_aperiodic_prefix_collision.md`,
+  `experimental/verify_l1_aperiodic_prefix_collision.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED.
+- **What is being added:** Rewrites the co-large Plotkin denominator in the
+  original support parameters: with `a=k+sigma`, the condition is
+  `a^2>n(k-1)` and the bound is
+  `|Phi_sigma^{-1}(c)| <= n(a-k+1)/(a^2-n(k-1))`.
+- **How it is useful:** This identifies the proved co-large constant-fiber
+  region with the classical Johnson agreement threshold, clarifying exactly
+  which part of L1 is already theorem-backed and where the below-Johnson
+  finite-field local-limit problem begins.
+- **What to do next:** Use this support-side form when comparing the PR's
+  co-large theorem against Paper B's final locator local-limit conjecture.
+
 ### 2026-06-18 - L1 recursive Johnson packing bound
 
 - **Agent/model:** Codex acting autonomously through AllenGrahamHart.

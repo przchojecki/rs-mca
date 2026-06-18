@@ -529,6 +529,63 @@ def plotkin_bound_case(n: int, k: int, sigma: int) -> dict[str, Any]:
     }
 
 
+def support_johnson_threshold_case(
+    n: int,
+    k: int,
+    sigma: int,
+) -> dict[str, Any]:
+    agreement = k + sigma
+    complement_size = n - agreement
+    gap_dimension = n - k - 2 * sigma
+    if gap_dimension <= 0:
+        return {
+            "n": n,
+            "k": k,
+            "sigma": sigma,
+            "agreement": agreement,
+            "johnson_margin": agreement * agreement - n * (k - 1),
+            "available": True,
+            "singleton_range": True,
+            "support_numerator": 1,
+            "support_denominator": 1,
+            "support_bound_floor": 1,
+        }
+
+    plotkin_case = plotkin_bound_case(n, k, sigma)
+    support_numerator = n * (agreement - k + 1)
+    support_denominator = agreement * agreement - n * (k - 1)
+    complement_denominator = (
+        complement_size * complement_size
+        - n * (gap_dimension - 1)
+    )
+    if support_numerator != plotkin_case["numerator"]:
+        raise AssertionError("support numerator does not match Plotkin numerator")
+    if support_denominator != complement_denominator:
+        raise AssertionError("support denominator does not match complement form")
+    if support_denominator != plotkin_case["denominator"]:
+        raise AssertionError("support denominator does not match Plotkin case")
+
+    available = support_denominator > 0
+    return {
+        "n": n,
+        "k": k,
+        "sigma": sigma,
+        "agreement": agreement,
+        "johnson_margin": support_denominator,
+        "available": available,
+        "singleton_range": False,
+        "support_numerator": support_numerator,
+        "support_denominator": support_denominator,
+        "support_bound_floor": (
+            support_numerator // support_denominator
+            if available
+            else None
+        ),
+        "agreement_square": agreement * agreement,
+        "threshold_square": n * (k - 1),
+    }
+
+
 def minimum_square_sum(total: int, boxes: int) -> int:
     quotient, remainder = divmod(total, boxes)
     return (
@@ -626,6 +683,19 @@ def co_large_plotkin_report(
     if not all(case["available"] for case in cases):
         raise AssertionError("deterministic Plotkin grid left the safe range")
 
+    support_johnson_cases = [
+        support_johnson_threshold_case(*case)
+        for case in grid_cases
+    ]
+    for plotkin_case, support_case in zip(cases, support_johnson_cases):
+        if plotkin_case["available"] != support_case["available"]:
+            raise AssertionError("support Johnson availability mismatch")
+        if (
+            plotkin_case["upper_bound_floor"]
+            != support_case["support_bound_floor"]
+        ):
+            raise AssertionError("support Johnson bound mismatch")
+
     integer_cases = [integer_plotkin_bound_case(*case) for case in grid_cases]
     if not all(case["available"] for case in integer_cases):
         raise AssertionError("integer Plotkin grid left the safe range")
@@ -637,7 +707,9 @@ def co_large_plotkin_report(
         "checked": True,
         "finite_instance": finite_instance,
         "finite_integer_instance": finite_integer,
+        "finite_support_johnson_instance": support_johnson_cases[0],
         "deterministic_cases": cases,
+        "support_johnson_cases": support_johnson_cases,
         "integer_deterministic_cases": integer_cases,
         "maximum_fiber_size": maximum_fiber_size,
         "holds": True,
@@ -1153,6 +1225,13 @@ def print_text(cert: dict[str, Any]) -> None:
         f"max fiber {co_large_plotkin['maximum_fiber_size']} <= "
         f"{integer_plotkin['integer_upper_bound']} "
         f"(first excluded {integer_plotkin['first_excluded_size']})"
+    )
+    support_johnson = co_large_plotkin["finite_support_johnson_instance"]
+    print(
+        "support Johnson margin: "
+        f"{support_johnson['agreement_square']} > "
+        f"{support_johnson['threshold_square']}, "
+        f"bound {support_johnson['support_bound_floor']}"
     )
     print(
         "affine RS list reduction: "
