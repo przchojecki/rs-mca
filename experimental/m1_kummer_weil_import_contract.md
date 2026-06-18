@@ -232,6 +232,9 @@ two-unit saving beyond the standard local conductor count.
 The pullback deck involution `tau(s)=-s/(s+1)` swaps the two `B(s)=0`
 points, but the twist changes by `rho((s+1)^(-2))`, so the needed saving is
 not an immediate deck-symmetry consequence.
+In the quotient coordinate `z=s/(s+2)`, the paired sum introduces the
+auxiliary trace `sum_{z^2=q} alpha^(-2)(1-z)`; this is the concrete object
+that must supply any additional cancellation.
 
 Thus the fixed-window, quotient-window, and two-fiber certificates still use
 the conservative common ledger:

@@ -500,6 +500,43 @@ multiplier, probably through a functional equation of the pulled-back
 hypergeometric sheaf or through cancellation after adding the regular
 deleted/infinity pair.
 
+The quotient coordinate makes the same obstruction explicit.  Put
+
+```text
+z = s/(s+2),        q=z^2.
+```
+
+Then `tau` is `z -> -z`, and
+
+```text
+s = 2z/(1-z),
+B(s) = (1+3q)/(1-z)^2,
+C(s) = 4(1+2q)/(1-z)^2,
+lambda = q/(1+3q).
+```
+
+After pairing the two `z`-points over a generic `q`, the pullback main is
+
+```text
+chi_2(-4) sum_q H(q/(1+3q)) rho(1+3q)
+  sum_{z^2=q} alpha^(-2)(1-z)
+```
+
+plus the fixed ramification contribution at `z=infinity` (`s=-2`).  The
+excluded pair `z=1,-1` is exactly the point at infinity on the `s`-line
+together with the deleted regular point `s=-1`, and the exceptional
+`B(s)=0` pair is the single quotient point `q=-1/3`.
+
+Thus the deck quotient does combine the two `B(s)=0` points into one point,
+but it introduces the auxiliary two-point trace
+
+```text
+sum_{z^2=q} alpha^(-2)(1-z).
+```
+
+This is the precise object that a future cancellation argument must exploit;
+the quotient alone does not lower the conductor.
+
 ## Pullback Branch Checklist
 
 The rational pullback

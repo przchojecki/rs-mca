@@ -32,7 +32,8 @@ should be revised as the project learns more.
    save two units beyond the generic `dim H^1 <= 5` count, most likely at
    the two `B(s)=0` points or by pairing their contributions. The deck
    involution swaps those points but introduces the multiplier
-   `rho((s+1)^(-2))`, so the pairing must use more than bare symmetry.
+   `rho((s+1)^(-2))`; in quotient coordinate this becomes the auxiliary
+   trace `sum_{z^2=q} alpha^(-2)(1-z)`.
 4. After the trace-family wall is closed, generalize to fixed low-slack
    templates, then separate tangent, quotient-periodic, finite-template, and
    genuinely aperiodic packing.

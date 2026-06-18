@@ -44,12 +44,13 @@ Keep entries concise and link to the relevant files.
   `B(s)=0` points have local characters `alpha chi_2` and `alpha^(-1)`,
   hence no inertia invariants in the remaining equal-line wall. The same
   note records the deck involution `tau(s)=-s/(s+1)` and its Kummer-twist
-  multiplier.
+  multiplier, then rewrites the paired sum in the quotient coordinate
+  `z=s/(s+2)`.
 - **How it is useful:** Shows that the standard local conductor calculation
   still gives the generic `dim H^1 <= 5` route, not the desired `3`.
   This pinpoints the missing saving: two conductor units must be recovered
   beyond the generic count, and bare deck symmetry is not enough because the
-  twist changes by `rho((s+1)^(-2))`.
+  twist becomes the auxiliary trace `sum_{z^2=q} alpha^(-2)(1-z)`.
 - **What to do next:** Prove a cancellation or identification that saves the
   two `B(s)=0` conductor units, or find finite evidence showing that such a
   saving is impossible.

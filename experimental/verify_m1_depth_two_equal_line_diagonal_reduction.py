@@ -128,6 +128,18 @@ def deck_involution(s: int, p: int) -> int:
     return (-s * pow(s + 1, -1, p)) % p
 
 
+def z_coordinate(s: int, p: int) -> int:
+    if s == p - 2:
+        raise ZeroDivisionError((s, p))
+    return (s * pow(s + 2, -1, p)) % p
+
+
+def s_from_z(z: int, p: int) -> int:
+    if z == 1:
+        raise ZeroDivisionError((z, p))
+    return (2 * z * pow(1 - z, -1, p)) % p
+
+
 def line_monodromies(e: int, h: int, a: int, d: int) -> Tuple[int, int, int]:
     lift = h // e
     first = (lift * a) % h
@@ -248,6 +260,39 @@ def single_character_pullback_main(
                 * quadratic_character(shape_d(s, x, p), p)
             )
     return quadratic_character(-1, p) * total
+
+
+def quotient_paired_pullback_main(
+    p: int,
+    mu: List[complex],
+    eta: List[complex],
+    alpha: List[complex],
+    rho: List[complex],
+) -> complex:
+    total = 0j
+    for q_value in range(p):
+        if q_value == 1 or (1 + 3 * q_value) % p == 0:
+            continue
+        roots = [z for z in range(p) if z * z % p == q_value]
+        if not roots:
+            continue
+        lam = (q_value * pow(1 + 3 * q_value, -1, p)) % p
+        weight = 0j
+        for z in roots:
+            s = s_from_z(z, p)
+            weight += rho[shape_b(s, p)]
+            expected_weight = (
+                rho[(1 + 3 * q_value) % p]
+                * alpha[(1 - z) % p].conjugate()
+                * alpha[(1 - z) % p].conjugate()
+            )
+            if abs(rho[shape_b(s, p)] - expected_weight) > 1e-8:
+                raise AssertionError(("quotient weight", p, q_value, z))
+        total += weight * hypergeometric_trace(p, mu, eta, lam)
+
+    fixed_lambda = pow(3, -1, p)
+    total += rho[3 % p] * hypergeometric_trace(p, mu, eta, fixed_lambda)
+    return quadratic_character(-4, p) * total
 
 
 def verify_pullback_branch_geometry(p: int) -> Dict[str, object]:
@@ -457,15 +502,36 @@ def verify_pullback_deck_involution(p: int) -> Dict[str, object]:
         raise AssertionError(("tau B roots", p, roots_b))
     if sorted(deck_involution(s, p) for s in roots_c) != sorted(roots_c):
         raise AssertionError(("tau C roots", p, roots_c))
+    for s in range(p):
+        if s in (p - 1, p - 2):
+            continue
+        z = z_coordinate(s, p)
+        q_value = z * z % p
+        if s_from_z(z, p) != s:
+            raise AssertionError(("z inverse", p, s, z))
+        if z_coordinate(deck_involution(s, p), p) != (-z) % p:
+            raise AssertionError(("tau on z", p, s, z))
+        if shape_b(s, p) * (1 - z) * (1 - z) % p != (1 + 3 * q_value) % p:
+            raise AssertionError(("B z formula", p, s, z))
+        if shape_c(s, p) * (1 - z) * (1 - z) % p != (
+            4 * (1 + 2 * q_value)
+        ) % p:
+            raise AssertionError(("C z formula", p, s, z))
+        if shape_b(s, p) != 0:
+            expected_lambda = q_value * pow(1 + 3 * q_value, -1, p) % p
+            if lambda_value(s, p) != expected_lambda:
+                raise AssertionError(("lambda q formula", p, s, z))
 
     return {
         "p": p,
         "deck_involution": "tau(s)=-s/(s+1)",
+        "quotient_coordinate": "z=s/(s+2), q=z^2",
         "fixed_points": (0, p - 2),
         "b_root_orbit_count": len(roots_b) // 2,
         "c_root_orbit_count": len(roots_c) // 2,
         "infinity_partner": "s=-1",
         "b_transform": "B(tau)=B/(s+1)^2",
+        "lambda_quotient": "lambda=q/(1+3q)",
         "twist_multiplier": "rho((s+1)^(-2))",
     }
 
@@ -524,6 +590,15 @@ def audit_case(case: Dict[str, int]) -> Dict[str, object]:
         raise AssertionError((case, residual, pullback_main, exceptional))
     if abs(pullback_main - single_character_main) > 1e-8:
         raise AssertionError((case, pullback_main, single_character_main))
+    quotient_paired_main = quotient_paired_pullback_main(
+        p,
+        mu,
+        eta,
+        alpha,
+        rho_chi,
+    )
+    if abs(pullback_main - quotient_paired_main) > 1e-8:
+        raise AssertionError((case, pullback_main, quotient_paired_main))
     if abs(exceptional) > 2 * math.sqrt(p) + 1e-8:
         raise AssertionError((case, exceptional))
     jacobi_bound = p + math.sqrt(p)
@@ -546,6 +621,7 @@ def audit_case(case: Dict[str, int]) -> Dict[str, object]:
         "identity_error": f"{abs(direct - (jacobi_part + residual)):.2e}",
         "pullback_error": f"{abs(residual - (pullback_main + exceptional)):.2e}",
         "single_character_error": f"{abs(pullback_main - single_character_main):.2e}",
+        "quotient_pair_error": f"{abs(pullback_main - quotient_paired_main):.2e}",
     }
 
 
