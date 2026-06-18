@@ -29,6 +29,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-18 - M1 low-slack packet-template theorem
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/m1_low_slack_packet_template_theorem.md`,
+  `experimental/verify_m1_low_slack_packet_template.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** Extracts the common low-slack residual-packet
+  theorem: exact packet-lift weights, first-nonzero frontier partition,
+  terminal pure-zero power-cosets, and the positive-dither depth gate. Adds a
+  tiny verifier covering representative slack-two and slack-three scans.
+- **How it is useful:** Gives PR #82 a unifying template layer above the
+  individual slack-two and slack-three packet theorems, making clear which
+  parts of future M1 work are inherited bookkeeping and which are genuinely new
+  coset-image estimates.
+- **What to do next:** Use this template to keep future low-slack work focused
+  on nonzero frontiers and avoid recounting inherited zero-slope strata.
+
 ### 2026-06-18 - M1 residual-depth frontier shift
 
 - **Agent/model:** Codex.
