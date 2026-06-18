@@ -143,23 +143,40 @@ def two_fiber_divisor_power_failure_count(
     return failures
 
 
-def raw_two_coordinate_infinity_unramified_l1_bound(
+def raw_two_coordinate_projective_l1_split(
     character_order: int,
     square_coset_index: int,
-) -> int:
+) -> dict[str, int]:
     if square_coset_index % character_order:
         raise AssertionError((character_order, square_coset_index))
     lift = square_coset_index // character_order
-    count = 0
+    infinity_unramified = 0
+    projective_reciprocal = 0
+    ramified_nonreciprocal = 0
     for first_exponent in range(1, character_order):
         for second_exponent in range(1, character_order):
             for conic_exponent in range(1, square_coset_index):
-                if (
-                    lift * (first_exponent + second_exponent)
-                    + 2 * conic_exponent
-                ) % square_coset_index == 0:
-                    count += 1
-    return 3 * count
+                first = lift * first_exponent
+                second = lift * second_exponent
+                infinity = (-(first + second + 2 * conic_exponent)) % (
+                    square_coset_index
+                )
+                if infinity == 0:
+                    infinity_unramified += 1
+                elif (
+                    (first + second) % square_coset_index == 0
+                    or (first + infinity) % square_coset_index == 0
+                    or (second + infinity) % square_coset_index == 0
+                ):
+                    projective_reciprocal += 1
+                else:
+                    ramified_nonreciprocal += 1
+    active_pair_count = 3
+    return {
+        "infinity_unramified": active_pair_count * infinity_unramified,
+        "projective_reciprocal": active_pair_count * projective_reciprocal,
+        "ramified_nonreciprocal": active_pair_count * ramified_nonreciprocal,
+    }
 
 
 def principal_open_count(p: int) -> int:
@@ -522,11 +539,18 @@ def main() -> None:
         two_coordinate_kummer_l1_bound = (
             coordinate_two_l1_bound * (square_coset_index - 1)
         )
-        two_coordinate_infinity_unramified_l1_bound = (
-            raw_two_coordinate_infinity_unramified_l1_bound(
-                int(certificate["character_order"]),
-                square_coset_index,
-            )
+        two_coordinate_projective_split = raw_two_coordinate_projective_l1_split(
+            int(certificate["character_order"]),
+            square_coset_index,
+        )
+        two_coordinate_infinity_unramified_l1_bound = int(
+            two_coordinate_projective_split["infinity_unramified"]
+        )
+        two_coordinate_projective_reciprocal_l1_bound = int(
+            two_coordinate_projective_split["projective_reciprocal"]
+        )
+        two_coordinate_ramified_nonreciprocal_l1_bound = int(
+            two_coordinate_projective_split["ramified_nonreciprocal"]
         )
         two_coordinate_ramified_l1_bound = (
             two_coordinate_kummer_l1_bound
@@ -553,8 +577,14 @@ def main() -> None:
                 ]
             )
             * two_coordinate_infinity_unramified_l1_bound
+            + int(
+                certificate[
+                    "two_coordinate_projective_reciprocal_error_constant"
+                ]
+            )
+            * two_coordinate_projective_reciprocal_l1_bound
             + int(certificate["two_coordinate_kummer_error_constant"])
-            * two_coordinate_ramified_l1_bound
+            * two_coordinate_ramified_nonreciprocal_l1_bound
             + int(certificate["three_coordinate_kummer_error_constant"])
             * three_coordinate_kummer_l1_bound
         )
@@ -601,6 +631,28 @@ def main() -> None:
             raise AssertionError(
                 (p, n, two_coordinate_ramified_l1_bound, certificate)
             )
+        if two_coordinate_projective_reciprocal_l1_bound != int(
+            certificate["two_coordinate_projective_reciprocal_l1_bound"]
+        ):
+            raise AssertionError(
+                (
+                    p,
+                    n,
+                    two_coordinate_projective_reciprocal_l1_bound,
+                    certificate,
+                )
+            )
+        if two_coordinate_ramified_nonreciprocal_l1_bound != int(
+            certificate["two_coordinate_ramified_nonreciprocal_l1_bound"]
+        ):
+            raise AssertionError(
+                (
+                    p,
+                    n,
+                    two_coordinate_ramified_nonreciprocal_l1_bound,
+                    certificate,
+                )
+            )
         if three_coordinate_kummer_l1_bound != int(
             certificate["three_coordinate_kummer_l1_bound"]
         ):
@@ -623,6 +675,16 @@ def main() -> None:
             != 5
         ):
             raise AssertionError((p, n, certificate))
+        if (
+            int(certificate["two_coordinate_projective_reciprocal_error_constant"])
+            != 4
+        ):
+            raise AssertionError((p, n, certificate))
+        if (
+            int(certificate["two_coordinate_projective_reciprocal_sqrt_constant"])
+            != 3
+        ):
+            raise AssertionError((p, n, certificate))
         if int(certificate["two_coordinate_kummer_error_constant"]) != 9:
             raise AssertionError((p, n, certificate))
         if int(certificate["three_coordinate_kummer_error_constant"]) != int(
@@ -641,6 +703,11 @@ def main() -> None:
             * ceil_sqrt(p)
             * two_coordinate_infinity_unramified_l1_bound
         )
+        projective_reciprocal_sqrt_error_bound = (
+            3
+            * ceil_sqrt(p)
+            * two_coordinate_projective_reciprocal_l1_bound
+        )
         if elementary_open_sqrt_error_bound != int(
             certificate["elementary_open_sqrt_error_bound"]
         ):
@@ -658,9 +725,21 @@ def main() -> None:
             raise AssertionError(
                 (p, n, infinity_unramified_sqrt_error_bound, certificate)
             )
+        if projective_reciprocal_sqrt_error_bound != (
+            ceil_sqrt(p)
+            * int(
+                certificate[
+                    "two_coordinate_projective_reciprocal_sqrt_l1_bound"
+                ]
+            )
+        ):
+            raise AssertionError(
+                (p, n, projective_reciprocal_sqrt_error_bound, certificate)
+            )
         sqrt_error_bound = (
             elementary_open_sqrt_error_bound
             + infinity_unramified_sqrt_error_bound
+            + projective_reciprocal_sqrt_error_bound
         )
         if sqrt_error_bound != int(certificate["sqrt_error_bound"]):
             raise AssertionError((p, n, sqrt_error_bound, certificate))

@@ -1906,6 +1906,9 @@ def depth_two_kummer_error_l1_split(
     two_coordinate_infinity_unramified_l1_bound: int = 0,
     two_coordinate_infinity_unramified_constant: int = 2,
     two_coordinate_infinity_unramified_sqrt_constant: int = 5,
+    two_coordinate_projective_reciprocal_l1_bound: int = 0,
+    two_coordinate_projective_reciprocal_constant: int = 4,
+    two_coordinate_projective_reciprocal_sqrt_constant: int = 3,
 ) -> Dict[str, int]:
     """Split depth-two character error into proved and imported masses."""
 
@@ -1942,6 +1945,14 @@ def depth_two_kummer_error_l1_split(
         two_coordinate_kummer_l1_bound
         - two_coordinate_infinity_unramified_l1_bound
     )
+    if not 0 <= two_coordinate_projective_reciprocal_l1_bound <= (
+        two_coordinate_ramified_l1_bound
+    ):
+        raise ValueError("invalid projective-reciprocal two-coordinate L1 split")
+    two_coordinate_ramified_nonreciprocal_l1_bound = (
+        two_coordinate_ramified_l1_bound
+        - two_coordinate_projective_reciprocal_l1_bound
+    )
     three_coordinate_kummer_l1_bound = (
         coordinate_three_nonprincipal_l1_bound * (square_coset_index - 1)
     )
@@ -1957,12 +1968,19 @@ def depth_two_kummer_error_l1_split(
         + one_coordinate_kummer_constant * one_coordinate_kummer_l1_bound
         + two_coordinate_infinity_unramified_constant
         * two_coordinate_infinity_unramified_l1_bound
-        + two_coordinate_kummer_constant * two_coordinate_ramified_l1_bound
+        + two_coordinate_projective_reciprocal_constant
+        * two_coordinate_projective_reciprocal_l1_bound
+        + two_coordinate_kummer_constant
+        * two_coordinate_ramified_nonreciprocal_l1_bound
         + nonprincipal_constant * three_coordinate_kummer_l1_bound
     )
     two_coordinate_infinity_unramified_sqrt_l1_bound = (
         two_coordinate_infinity_unramified_sqrt_constant
         * two_coordinate_infinity_unramified_l1_bound
+    )
+    two_coordinate_projective_reciprocal_sqrt_l1_bound = (
+        two_coordinate_projective_reciprocal_sqrt_constant
+        * two_coordinate_projective_reciprocal_l1_bound
     )
     return {
         "jacobi_l1_bound": jacobi_l1_bound,
@@ -1994,6 +2012,21 @@ def depth_two_kummer_error_l1_split(
             two_coordinate_infinity_unramified_sqrt_l1_bound
         ),
         "two_coordinate_ramified_l1_bound": two_coordinate_ramified_l1_bound,
+        "two_coordinate_projective_reciprocal_l1_bound": (
+            two_coordinate_projective_reciprocal_l1_bound
+        ),
+        "two_coordinate_projective_reciprocal_error_constant": (
+            two_coordinate_projective_reciprocal_constant
+        ),
+        "two_coordinate_projective_reciprocal_sqrt_constant": (
+            two_coordinate_projective_reciprocal_sqrt_constant
+        ),
+        "two_coordinate_projective_reciprocal_sqrt_l1_bound": (
+            two_coordinate_projective_reciprocal_sqrt_l1_bound
+        ),
+        "two_coordinate_ramified_nonreciprocal_l1_bound": (
+            two_coordinate_ramified_nonreciprocal_l1_bound
+        ),
         "three_coordinate_kummer_l1_bound": three_coordinate_kummer_l1_bound,
         "three_coordinate_kummer_error_constant": nonprincipal_constant,
         "kummer_l1_bound": kummer_l1_bound,
@@ -2014,10 +2047,58 @@ def depth_two_open_sqrt_error_bound(
     infinity_unramified_sqrt_l1_bound = int(
         error_split.get("two_coordinate_infinity_unramified_sqrt_l1_bound", 0)
     )
+    projective_reciprocal_sqrt_l1_bound = int(
+        error_split.get("two_coordinate_projective_reciprocal_sqrt_l1_bound", 0)
+    )
     return ceil_sqrt(p) * (
         6 * elementary_open_l1_bound
         + infinity_unramified_sqrt_l1_bound
+        + projective_reciprocal_sqrt_l1_bound
     )
+
+
+def raw_two_coordinate_projective_l1_split(
+    character_order: int,
+    square_coset_index: int,
+) -> Dict[str, int]:
+    """Split raw two-coordinate terms by projective line monodromy."""
+
+    if character_order < 1 or square_coset_index % character_order:
+        raise ValueError((character_order, square_coset_index))
+    lift = square_coset_index // character_order
+    infinity_unramified = 0
+    projective_reciprocal = 0
+    ramified_nonreciprocal = 0
+    for first_exponent in range(1, character_order):
+        for second_exponent in range(1, character_order):
+            for conic_exponent in range(1, square_coset_index):
+                first = lift * first_exponent
+                second = lift * second_exponent
+                infinity = (-(first + second + 2 * conic_exponent)) % (
+                    square_coset_index
+                )
+                if infinity == 0:
+                    infinity_unramified += 1
+                elif (
+                    (first + second) % square_coset_index == 0
+                    or (first + infinity) % square_coset_index == 0
+                    or (second + infinity) % square_coset_index == 0
+                ):
+                    projective_reciprocal += 1
+                else:
+                    ramified_nonreciprocal += 1
+    active_pair_count = 3
+    return {
+        "two_coordinate_infinity_unramified_l1_bound": (
+            active_pair_count * infinity_unramified
+        ),
+        "two_coordinate_projective_reciprocal_l1_bound": (
+            active_pair_count * projective_reciprocal
+        ),
+        "two_coordinate_ramified_nonreciprocal_l1_bound": (
+            active_pair_count * ramified_nonreciprocal
+        ),
+    }
 
 
 def raw_two_coordinate_infinity_unramified_l1_bound(
@@ -2026,19 +2107,10 @@ def raw_two_coordinate_infinity_unramified_l1_bound(
 ) -> int:
     """Count raw two-coordinate terms with trivial infinity monodromy."""
 
-    if character_order < 1 or square_coset_index % character_order:
-        raise ValueError((character_order, square_coset_index))
-    lift = square_coset_index // character_order
-    per_active_pair = 0
-    for first_exponent in range(1, character_order):
-        for second_exponent in range(1, character_order):
-            for conic_exponent in range(1, square_coset_index):
-                if (
-                    lift * (first_exponent + second_exponent)
-                    + 2 * conic_exponent
-                ) % square_coset_index == 0:
-                    per_active_pair += 1
-    return 3 * per_active_pair
+    return raw_two_coordinate_projective_l1_split(
+        character_order,
+        square_coset_index,
+    )["two_coordinate_infinity_unramified_l1_bound"]
 
 
 def slack_two_second_kummer_saturation_data(
@@ -2062,6 +2134,10 @@ def slack_two_second_kummer_saturation_data(
     radical_total_degree = sum(radical_component_degrees)
     deligne_constant = (radical_total_degree - 1) ** 2
     coefficient_l1_bound = nonprincipal_tuple_count
+    two_coordinate_projective_split = raw_two_coordinate_projective_l1_split(
+        character_order,
+        square_coset_index,
+    )
     error_split = depth_two_kummer_error_l1_split(
         coordinate_principal_weight=1,
         coordinate_nonprincipal_l1_bound=character_order ** 3 - 1,
@@ -2074,11 +2150,15 @@ def slack_two_second_kummer_saturation_data(
         coordinate_three_nonprincipal_l1_bound=(
             (character_order - 1) ** 3
         ),
-        two_coordinate_infinity_unramified_l1_bound=(
-            raw_two_coordinate_infinity_unramified_l1_bound(
-                character_order,
-                square_coset_index,
-            )
+        two_coordinate_infinity_unramified_l1_bound=int(
+            two_coordinate_projective_split[
+                "two_coordinate_infinity_unramified_l1_bound"
+            ]
+        ),
+        two_coordinate_projective_reciprocal_l1_bound=int(
+            two_coordinate_projective_split[
+                "two_coordinate_projective_reciprocal_l1_bound"
+            ]
         ),
     )
     open_sqrt_error_bound = depth_two_open_sqrt_error_bound(
@@ -2092,6 +2172,7 @@ def slack_two_second_kummer_saturation_data(
     total_sqrt_weight = (
         elementary_open_sqrt_weight
         + int(error_split["two_coordinate_infinity_unramified_sqrt_l1_bound"])
+        + int(error_split["two_coordinate_projective_reciprocal_sqrt_l1_bound"])
     )
     uniform_prime_threshold = kummer_quadratic_uniform_prime_threshold(
         principal_weight=1,
@@ -6353,6 +6434,30 @@ def scan_supports(
             int(
                 slack_two_second_kummer_saturation[
                     "two_coordinate_ramified_l1_bound"
+                ]
+            )
+            if slack_two_second_kummer_saturation is not None
+            else None
+        ),
+        (
+            "canonical_slack_two_second_kummer_two_coordinate_"
+            "projective_reciprocal_l1_bound"
+        ): (
+            int(
+                slack_two_second_kummer_saturation[
+                    "two_coordinate_projective_reciprocal_l1_bound"
+                ]
+            )
+            if slack_two_second_kummer_saturation is not None
+            else None
+        ),
+        (
+            "canonical_slack_two_second_kummer_two_coordinate_"
+            "ramified_nonreciprocal_l1_bound"
+        ): (
+            int(
+                slack_two_second_kummer_saturation[
+                    "two_coordinate_ramified_nonreciprocal_l1_bound"
                 ]
             )
             if slack_two_second_kummer_saturation is not None

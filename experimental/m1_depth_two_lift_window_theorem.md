@@ -185,25 +185,37 @@ C_2^0 =
   3 # {a,b,d : 1<=a,b<e, 1<=d<q, g(a+b)+2d == 0 mod q}.
 ```
 
+Let `C_2^rec` be the exact remaining two-coordinate L1 mass where infinity
+is ramified but two projective line monodromies are reciprocal:
+
+```text
+C_2^rec =
+  3 # {a,b,d : 1<=a,b<e, 1<=d<q,
+        g(a+b)+2d != 0 mod q,
+        a+b == 0 mod e or ga+2d == 0 mod q or gb+2d == 0 mod q}.
+```
+
 The raw weighted error is therefore
 
 ```text
 (e^3-1) + (q-1) + 12(e-1)
-  + 4C_1 + 2C_2^0 + 9(C_2-C_2^0) + 16C_3.
+  + 4C_1 + 2C_2^0 + 4C_2^rec
+  + 9(C_2-C_2^0-C_2^rec) + 16C_3.
 ```
 
 Its square-root correction has L1 mass
 
 ```text
-6J + 5C_2^0,        J = (e^3-1) + (q-1).
+6J + 5C_2^0 + 3C_2^rec,        J = (e^3-1) + (q-1).
 ```
 
 Here `6J` is the elementary open-set correction isolated in
 `experimental/m1_depth_two_elementary_open_set_lemma.md`, while `5C_2^0`
 comes from the proved infinity-unramified two-coordinate bound
-`2p+5 sqrt(p)` on the Kummer open set. The fixed-window and quotient-union
-ledgers below remain conservative and do not yet split their two-coordinate
-L1 masses by infinity monodromy.
+`2p+5 sqrt(p)` on the Kummer open set, and `3C_2^rec` comes from the
+projective reciprocal open-set bound `4p+3 sqrt(p)`. The fixed-window and
+quotient-union ledgers below remain conservative and do not yet split their
+two-coordinate L1 masses by projective line monodromy.
 
 For a fixed quotient window `W` of size `R`, let
 

@@ -40,16 +40,22 @@ Keep entries concise and link to the relevant files.
   `experimental/m1_kummer_weil_import_contract.md`,
   `experimental/m1_depth_two_lift_window_theorem.md`,
   `experimental/m1_depth_two_kummer_constant_audit.md`,
+  `experimental/m1_support_occupancy_scan.py`,
+  `experimental/verify_m1_slack_two_depth_two_kummer_saturation.py`,
+  `experimental/m1_support_occupancy_scan.md`,
   `experimental/m1_residue_line_roadmap.md`,
   `experimental/agents-log.md`.
 - **Status:** CONDITIONAL / AUDIT.
 - **What is being added:** The reciprocal two-coordinate lemma is extended
   projectively: if any two of the three line monodromies `mu`, `nu`, and
   `(mu nu eta^2)^(-1)` are reciprocal, an affine chart reduces the core to
-  the proved reciprocal slice.
+  the proved reciprocal slice. The raw scanner now also splits this exact
+  ramified projective-reciprocal L1 mass and charges it by
+  `4p+3 sqrt(p)`.
 - **How it is useful:** Removes the ramified slices `nu eta^2=1` and
   `mu eta^2=1` from the unresolved two-coordinate wall, in addition to the
-  original `mu nu=1` slice.
+  original `mu nu=1` slice, and improves the raw slack-two Kummer certificate
+  arithmetic.
 - **What to do next:** Prove the normal-crossing trace bound for the
   remaining ramified-infinity case with no reciprocal projective line pair.
 

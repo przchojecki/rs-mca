@@ -2,8 +2,9 @@
 
 **Status:** CONJECTURAL / AUDIT.
 
-This is a compact working plan for the M1 residue-line packing program. It is
-not a proof-status authority and should be revised as the project learns more.
+This is a compact working plan for the M1 residue-line packing program. The
+current narrow focus is item 2. This is not a proof-status authority and
+should be revised as the project learns more.
 
 1. Keep PR #82 as the first deep low-slack packet theorem: the slack-two
    depth-two canonical frontier should stay in one focused experimental packet.

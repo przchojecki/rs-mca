@@ -927,13 +927,18 @@ pays the proved one-coordinate quadratic-conic bound on mass `3(e-1)`. The
 remaining mixed Kummer terms are charged by active coordinate count:
 one-coordinate radicals pay the degree-three constant `4`. Two-coordinate
 radicals with trivial infinity monodromy `mu nu eta^2=1` pay the proved
-open-set bound `2p+5 ceil(sqrt(p))`; the remaining two-coordinate radicals
-pay the imported degree-four constant `9`, and only three-coordinate
-radicals pay the full degree-five constant `16`. These are recorded as
+open-set bound `2p+5 ceil(sqrt(p))`; remaining two-coordinate radicals with
+a reciprocal projective line-monodromy pair pay
+`4p+3 ceil(sqrt(p))`; the final ramified nonreciprocal two-coordinate
+radicals pay the imported degree-four constant `9`, and only
+three-coordinate radicals pay the full degree-five constant `16`. These are
+recorded as
 `*_jacobi_l1_bound`,
 `*_conic_l1_bound`, `*_quadratic_one_coordinate_l1_bound`,
 `*_one_coordinate_l1_bound`, `*_two_coordinate_l1_bound`,
 `*_two_coordinate_infinity_unramified_l1_bound`,
+`*_two_coordinate_projective_reciprocal_l1_bound`,
+`*_two_coordinate_ramified_nonreciprocal_l1_bound`,
 `*_two_coordinate_ramified_l1_bound`, `*_three_coordinate_l1_bound`, and
 `*_kummer_l1_bound`, while `*_weighted_error_l1_bound` is the linear error
 term and `*_sqrt_error_bound` is the square-root correction used in the

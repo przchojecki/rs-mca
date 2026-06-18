@@ -13,7 +13,8 @@ d!=0, coordinate principal:                 p + 6 ceil(sqrt(p))
 d quadratic, exactly one coordinate active: 4p
 d nonquadratic, exactly one coordinate:     4p
 d!=0, two coordinate, mu nu eta^2=1:        2p + 5 ceil(sqrt(p))
-d!=0, two coordinate, ramified infinity:    9p
+d!=0, two coordinate, reciprocal line pair: 4p + 3 ceil(sqrt(p))
+d!=0, two coordinate, remaining ramified:   9p
 d!=0, three coordinate active:             16p
 ```
 
@@ -37,10 +38,10 @@ which proves the full `mu nu eta^2=1` slice with a
 `2p+2 sqrt(p)` core bound and the usual `3 sqrt(p)` line correction.
 The reciprocal two-coordinate note also removes the projective line-pair
 reciprocal slices `mu nu=1`, `nu eta^2=1`, and `mu eta^2=1`.
-The raw saturation certificate now separates the exact `mu nu eta^2=1` L1
-mass and charges only the remaining ramified-infinity two-coordinate mass by
-the imported `9p` constant; it does not yet split out the projective
-reciprocal line-pair mass.
+The raw saturation certificate now separates both the exact
+`mu nu eta^2=1` L1 mass and the exact ramified projective-reciprocal L1 mass,
+charging only the remaining ramified nonreciprocal two-coordinate mass by the
+imported `9p` constant.
 
 ## Parameters
 

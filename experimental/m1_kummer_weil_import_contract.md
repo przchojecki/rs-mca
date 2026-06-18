@@ -212,9 +212,10 @@ d!=0, three coordinates active:            16p   (degree 5 Kummer)
 ```
 
 The raw full-domain certificate additionally splits the two-coordinate mass
-by infinity monodromy. The exact `mu nu eta^2=1` mass pays the proved
-open-set bound `2p+5 sqrt(p)`, and only the ramified-infinity remainder pays
-the imported `9p` constant.
+by projective line monodromy. The exact `mu nu eta^2=1` mass pays the proved
+open-set bound `2p+5 sqrt(p)`, the ramified projective-reciprocal mass pays
+`4p+3 sqrt(p)`, and only the ramified nonreciprocal remainder pays the
+imported `9p` constant.
 
 The finite audit
 
