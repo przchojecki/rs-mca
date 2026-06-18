@@ -361,6 +361,25 @@ def complement_prefix_partition_report(
     }
 
 
+def co_large_bound_report(
+    fibers: dict[tuple[int, ...], list[tuple[int, ...]]],
+) -> dict[str, Any]:
+    complement_size = N - AGREEMENT
+    gap_dimension = max(complement_size - SIGMA, 0)
+    upper_bound = P**gap_dimension
+    maximum_fiber_size = max(len(values) for values in fibers.values())
+    if maximum_fiber_size > upper_bound:
+        raise AssertionError("co-large prefix bound failed")
+    return {
+        "checked": True,
+        "complement_size": complement_size,
+        "gap_dimension": gap_dimension,
+        "field_bound": upper_bound,
+        "maximum_fiber_size": maximum_fiber_size,
+        "holds": True,
+    }
+
+
 def complement_orbit_report(
     fibers: dict[tuple[int, ...], list[tuple[int, ...]]],
 ) -> dict[str, Any]:
@@ -453,6 +472,7 @@ def build_certificate() -> dict[str, Any]:
     if not collisions["all_collision_fibers_aperiodic"]:
         raise AssertionError("found quotient-periodic collision")
     complement_partition = complement_prefix_partition_report(fibers)
+    co_large_bound = co_large_bound_report(fibers)
     complement_orbits = complement_orbit_report(fibers)
 
     return {
@@ -484,6 +504,7 @@ def build_certificate() -> dict[str, Any]:
         },
         "collision_report": collisions,
         "complement_prefix_lemma_report": complement_partition,
+        "co_large_bound_report": co_large_bound,
         "complement_orbit_report": complement_orbits,
         "example": verify_example(fibers),
         "passed": True,
@@ -495,6 +516,7 @@ def print_text(cert: dict[str, Any]) -> None:
     distribution = cert["prefix_distribution"]
     collisions = cert["collision_report"]
     complement_partition = cert["complement_prefix_lemma_report"]
+    co_large_bound = cert["co_large_bound_report"]
     complement_orbits = cert["complement_orbit_report"]
     print("L1 aperiodic prefix-collision certificate")
     print(f"Status: {cert['status']}")
@@ -529,6 +551,11 @@ def print_text(cert: dict[str, Any]) -> None:
         "support/complement prefix partitions agree: "
         f"{complement_partition['partitions_agree']} "
         f"({complement_partition['support_prefix_values']} values)"
+    )
+    print(
+        "co-large field bound: "
+        f"max fiber {co_large_bound['maximum_fiber_size']} <= "
+        f"{co_large_bound['field_bound']}"
     )
     print(
         "complement dilation orbits: "

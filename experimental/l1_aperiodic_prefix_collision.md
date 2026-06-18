@@ -109,10 +109,45 @@ deg(L_A - L_B) <= m - sigma - 1.
 
 For `sigma >= m`, it forces `A=B`.
 
+## Co-Large Prefix Bound
+
+The same argument gives a finite-field upper bound in the co-large support
+range. Let `F = F_q`, let `s = k + sigma`, and set
+
+```text
+m = n - s = n - k - sigma.
+```
+
+For every prefix target `c in F_q^sigma`,
+
+```text
+|Phi_sigma^{-1}(c)| <= q^max(m - sigma, 0)
+                    = q^max(n - k - 2 sigma, 0).
+```
+
+Indeed, fix one support `S0` in the fiber and let `A0=H\S0`. For any other
+support `S` in the same fiber, with complement `A=H\S`, the complement-prefix
+lemma gives
+
+```text
+deg(L_A - L_A0) <= m - sigma - 1
+```
+
+when `sigma < m`, and `A=A0` when `sigma >= m`. The map
+`A -> L_A-L_A0` is injective because `L_A` determines `A`, while there are
+only `q^(m-sigma)` polynomials of degree at most `m-sigma-1`.
+
+Consequently, for generated-field size `q=poly(n)`, monomial-prefix locator
+fibers are polynomially bounded throughout the co-large strip
+`n-k-2sigma=O(1)`, without any quotient hypothesis. This strip is much
+narrower than the desired final L1 reserve at fixed rate, but it is a proved
+anchor and a useful model for low-degree complement-locator scanners.
+
 ## Complement-Locator Compression
 
 The orbit certificate is an instance of this lemma. Here `H=F_17^*`,
-`n=16`, `m=6`, and `sigma=4`. Since
+`n=16`, `m=6`, `sigma=4`, and the co-large bound is `17^(6-4)=289`.
+Since
 
 ```text
 prod_{h in F_17^*} (1 + hZ) = 1 - Z^16,
@@ -197,5 +232,5 @@ The verifier enumerates all `8008` supports, recomputes the fiber histogram,
 checks the example codewords, verifies the entropy and quotient-core ledgers,
 checks that all forty nonsingleton fibers are not `M=8` or `M=16`
 coset-union collisions, verifies that support-prefix and complement-prefix
-partitions agree for all supports, and certifies the three complement-locator
-dilation orbits.
+partitions agree for all supports, checks the co-large upper bound, and
+certifies the three complement-locator dilation orbits.
