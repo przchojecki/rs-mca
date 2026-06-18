@@ -126,7 +126,9 @@ Keep entries concise and link to the relevant files.
   distributions, giving exact quotient L1 terms. The verifier audits exact
   threshold improvements at `R=2` (`p=181,N=3`) and `R=3` (`p=113,N=4`),
   where the previous numerator is still negative but the sharpened active
-  union is certified saturated.
+  union is certified saturated. The reported fixed-window, two-fiber, and
+  union uniform thresholds now use the exact quadratic implication
+  `ceil(linear_error/principal_weight)+4`.
   This leaves a narrower intermediate/lift-limited window for M1 slope-image
   bounds.
 - **What to do next:** Prove or replace the imported Kummer-Weil constant in

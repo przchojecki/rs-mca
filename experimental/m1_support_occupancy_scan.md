@@ -716,6 +716,12 @@ T_R(N) (p^2 - 4p + 6 + 4 chi(-3))
   - 16p E_R - (6p - 11) h^3 q.
 ```
 
+The reported uniform prime threshold uses the quadratic implication
+
+```text
+p >= ceil((16E_R + 6h^3q)/T_R(N)) + 4.
+```
+
 When this is positive, the active quotient-window union itself hits every
 nonzero `D^2`-coset. The scanner also reports the crude numerator obtained by
 using the support-size bound for every nonprincipal coefficient, so strict

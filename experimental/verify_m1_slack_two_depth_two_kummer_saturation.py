@@ -9,6 +9,7 @@ from typing import Sequence, Tuple
 
 from m1_support_occupancy_scan import (
     all_residual_packets_lift_active,
+    kummer_quadratic_uniform_prime_threshold,
     quotient_limited_pair_parameter_bound,
     quotient_window_label_nonprincipal_bound,
     quotient_window_label_l1_data,
@@ -406,6 +407,16 @@ def main() -> None:
         degeneracy_count = degeneracy_line_union_count(p)
         if degeneracy_count != int(certificate["degeneracy_line_union_count"]):
             raise AssertionError((p, n, degeneracy_count, certificate))
+        expected_threshold = kummer_quadratic_uniform_prime_threshold(
+            1,
+            (
+                int(certificate["nonprincipal_constant"])
+                + int(certificate["degeneracy_line_count"])
+            )
+            * int(certificate["denominator"]),
+        )
+        if expected_threshold != int(certificate["uniform_prime_threshold"]):
+            raise AssertionError((p, n, expected_threshold, certificate))
         nonzero_coset_count, total_coset_count = square_coset_counts(p, domain)
         saturates = nonzero_coset_count == total_coset_count
         certificate_positive = bool(certificate["saturation_certificate"])
@@ -605,6 +616,17 @@ def main() -> None:
         )
         if lower_numerator != int(certificate["lower_numerator"]):
             raise AssertionError((p, n, lower_numerator, certificate))
+        expected_threshold = kummer_quadratic_uniform_prime_threshold(
+            int(certificate["principal_weight"]),
+            (
+                int(certificate["coefficient_abs_bound"])
+                * int(certificate["nonprincipal_constant"])
+                + int(certificate["degeneracy_line_count"])
+            )
+            * int(certificate["denominator"]),
+        )
+        if expected_threshold != int(certificate["uniform_prime_threshold"]):
+            raise AssertionError((p, n, expected_threshold, certificate))
         certificate_positive = bool(certificate["saturation_certificate"])
         if certificate_positive != expected_certificate:
             raise AssertionError((p, n, certificate))
@@ -793,6 +815,17 @@ def main() -> None:
         )
         if lower_numerator != int(certificate["lower_numerator"]):
             raise AssertionError((p, n, lower_numerator, certificate))
+        expected_threshold = kummer_quadratic_uniform_prime_threshold(
+            int(certificate["principal_weight"]),
+            (
+                int(certificate["coefficient_abs_bound"])
+                * int(certificate["nonprincipal_constant"])
+                + 6
+            )
+            * int(certificate["denominator"]),
+        )
+        if expected_threshold != int(certificate["uniform_prime_threshold"]):
+            raise AssertionError((p, n, expected_threshold, certificate))
         certificate_positive = bool(certificate["saturation_certificate"])
         if certificate_positive != expected_certificate:
             raise AssertionError((p, n, certificate))
@@ -992,6 +1025,14 @@ def main() -> None:
         )
         if lower_numerator != int(certificate["lower_numerator"]):
             raise AssertionError((p, n, lower_numerator, certificate))
+        expected_threshold = kummer_quadratic_uniform_prime_threshold(
+            int(certificate["principal_weight"]),
+            int(certificate["nonprincipal_constant"])
+            * int(certificate["coefficient_l1_bound"])
+            + 6 * int(certificate["denominator"]),
+        )
+        if expected_threshold != int(certificate["uniform_prime_threshold"]):
+            raise AssertionError((p, n, expected_threshold, certificate))
         direct_lower_numerator = (
             int(certificate["principal_weight"]) * principal_count
             - int(certificate["nonprincipal_constant"])

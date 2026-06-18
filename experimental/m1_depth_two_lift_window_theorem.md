@@ -149,6 +149,12 @@ R^3 (p^2 - 4p + 6 + 4 chi(-3))
   - (R^3*16p + 6p - 11) h^3 q.
 ```
 
+The uniform sufficient threshold for this fixed-window numerator is
+
+```text
+p >= ceil(((16R^3+6)h^3q)/R^3) + 4.
+```
+
 When this numerator is positive, that fixed `R`-window already hits every
 nonzero `D^2`-coset. If the exact-support complement has at least those `R`
 remaining quotient fibers, this is an exact-support saturation certificate.
@@ -273,6 +279,12 @@ Thus the conservative lower numerator for the whole active union is
 ```text
 T_R(N) (p^2 - 4p + 6 + 4 chi(-3))
   - 16p E_R - (6p - 11) h^3 q.
+```
+
+The corresponding uniform sufficient threshold is
+
+```text
+p >= ceil((16E_R + 6h^3q)/T_R(N)) + 4.
 ```
 
 When this is positive and `R<min(4,N)`, the exact-support active

@@ -1877,7 +1877,10 @@ def slack_two_second_kummer_saturation_data(
     radical_component_degrees = (1, 1, 1, 2)
     radical_total_degree = sum(radical_component_degrees)
     deligne_constant = (radical_total_degree - 1) ** 2
-    uniform_prime_threshold = 22 * denominator + 4
+    uniform_prime_threshold = kummer_quadratic_uniform_prime_threshold(
+        principal_weight=1,
+        linear_error_weight=(nonprincipal_constant + 6) * denominator,
+    )
     chi_minus_three = quadratic_character(-3, p)
     principal_exact_count = p * p - 4 * p + 6 + 4 * chi_minus_three
     degeneracy_line_count = 6
@@ -1919,6 +1922,15 @@ def slack_two_second_kummer_saturation_data(
     }
 
 
+def kummer_quadratic_uniform_prime_threshold(
+    principal_weight: int,
+    linear_error_weight: int,
+) -> int:
+    """Return a uniform positive threshold for a quadratic Kummer numerator."""
+
+    return (linear_error_weight + principal_weight - 1) // principal_weight + 4
+
+
 def slack_two_second_two_fiber_kummer_saturation_data(
     p: int,
     domain_order: int,
@@ -1949,7 +1961,10 @@ def slack_two_second_two_fiber_kummer_saturation_data(
     principal_exact_count = p * p - 4 * p + 6 + 4 * chi_minus_three
     degeneracy_line_count = 6
     degeneracy_line_union_count = 6 * p - 11
-    uniform_prime_threshold = 17 * denominator + 5
+    uniform_prime_threshold = kummer_quadratic_uniform_prime_threshold(
+        principal_weight,
+        (coefficient_abs_bound * nonprincipal_constant + 6) * denominator,
+    )
     lower_numerator = principal_weight * principal_exact_count - (
         coefficient_abs_bound * nonprincipal_constant * p
         + degeneracy_line_union_count
@@ -2026,10 +2041,10 @@ def slack_two_second_fixed_window_kummer_saturation_data(
     chi_minus_three = quadratic_character(-3, p)
     principal_exact_count = p * p - 4 * p + 6 + 4 * chi_minus_three
     degeneracy_line_union_count = 6 * p - 11
-    threshold_coefficient = (
-        16 * coefficient_abs_bound + 6 + principal_weight - 1
-    ) // principal_weight
-    uniform_prime_threshold = threshold_coefficient * denominator + 5
+    uniform_prime_threshold = kummer_quadratic_uniform_prime_threshold(
+        principal_weight,
+        (coefficient_abs_bound * nonprincipal_constant + 6) * denominator,
+    )
     lower_numerator = principal_weight * principal_exact_count - (
         coefficient_abs_bound * nonprincipal_constant * p
         + degeneracy_line_union_count
@@ -2273,13 +2288,10 @@ def slack_two_second_quotient_window_union_kummer_saturation_data(
     chi_minus_three = quadratic_character(-3, p)
     principal_exact_count = p * p - 4 * p + 6 + 4 * chi_minus_three
     degeneracy_line_union_count = 6 * p - 11
-    threshold_coefficient = (
-        16 * coefficient_l1_bound
-        + 6 * denominator
-        + principal_weight
-        - 1
-    ) // principal_weight
-    uniform_prime_threshold = threshold_coefficient + 5
+    uniform_prime_threshold = kummer_quadratic_uniform_prime_threshold(
+        principal_weight,
+        nonprincipal_constant * coefficient_l1_bound + 6 * denominator,
+    )
     crude_lower_numerator = principal_weight * principal_exact_count - (
         nonprincipal_constant * p * crude_coefficient_l1_bound
         + degeneracy_line_union_count * denominator
