@@ -233,11 +233,71 @@ binom(n,r)/binom(m,r)
   <= (2/(1-rho-r/n))^r.
 ```
 
-Consequently the co-large strip gives polynomial prefix fibers whenever
+Consequently the packing bound alone gives polynomial prefix fibers whenever
 `r=O(log n)`, and quasipolynomial fibers whenever `r=polylog(n)`, without any
-quotient-periodic hypothesis. This is still only a co-large strip, but it is a
-theorem-level L1 anchor: a future local-limit proof only needs new ideas once
-the excess width `n-k-2sigma` is larger than the logarithmic regime.
+quotient-periodic hypothesis.
+
+There is a stronger second-moment bound in the same co-large strip. Let
+`L` be the size of one monomial-prefix fiber, let its complements be
+`A_1,...,A_L`, and put
+
+```text
+r = n-k-2sigma,     m = n-k-sigma.
+```
+
+When `r<=0`, the fiber is a singleton. When `r>0`, the intersection bound
+above gives
+
+```text
+|A_i cap A_j| <= r-1       for i != j.
+```
+
+Write `d_x = #{i : x in A_i}`. Then
+
+```text
+sum_x d_x = Lm,
+sum_x d_x(d_x-1) = sum_{i != j} |A_i cap A_j| <= L(L-1)(r-1).
+```
+
+Cauchy's inequality gives
+
+```text
+(Lm)^2 <= n sum_x d_x^2
+       <= n(L(L-1)(r-1) + Lm).
+```
+
+Thus, whenever
+
+```text
+m^2 > n(r-1),
+```
+
+every monomial-prefix fiber satisfies the Plotkin-type bound
+
+```text
+|Phi_sigma^{-1}(c)| <= n(m-r+1) / (m^2 - n(r-1)).
+```
+
+This improves the raw packing count from an exponential-in-`r` statement to a
+constant bound throughout a linear-width high-slack region. In particular, if
+`k/n -> rho` and `r/n -> theta` with
+
+```text
+0 <= theta < (1 - sqrt(rho))^2,
+```
+
+then the denominator is positive and
+
+```text
+|Phi_sigma^{-1}(c)|
+  <= 2(1-rho-theta) / ((1-rho+theta)^2 - 4theta) + o(1).
+```
+
+For the finite `F_17` certificate this gives the explicit universal bound
+`|Phi_4^{-1}(c)| <= 80/20 = 4`, while the actual maximum fiber size is `2`.
+This is still a high-slack theorem, not the final `sigma=Theta(n/log n)`
+local-limit range, but it sharply enlarges the theorem-backed L1 region where
+large aperiodic monomial-prefix fibers cannot occur.
 
 The same proof gives a stronger overlap statement. If `r<=0`, every fiber is a
 singleton. If `r>0` and `S,T` are distinct supports in the same
@@ -387,7 +447,7 @@ coset-union collisions, verifies that support-prefix and complement-prefix
 partitions agree for all supports, checks the exact divisor-gap
 parametrization, certifies the divisor-gap graph component profile, checks the
 co-large packing and field-size upper bounds, checks the growing-width
-co-large envelope on a deterministic parameter grid, verifies the co-large
-fiber separation, records the internal ordered exchange and maximum codegree
-profiles, verifies zero internal M1 high-overlap correction, and certifies the
-three complement-locator dilation orbits.
+co-large envelope and second-moment Plotkin bounds on deterministic parameter
+grids, verifies the co-large fiber separation, records the internal ordered
+exchange and maximum codegree profiles, verifies zero internal M1 high-overlap
+correction, and certifies the three complement-locator dilation orbits.

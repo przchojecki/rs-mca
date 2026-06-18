@@ -420,6 +420,74 @@ def co_large_bound_report(
     }
 
 
+def plotkin_bound_case(n: int, k: int, sigma: int) -> dict[str, Any]:
+    complement_size = n - k - sigma
+    gap_dimension = n - k - 2 * sigma
+    if gap_dimension <= 0:
+        return {
+            "n": n,
+            "k": k,
+            "sigma": sigma,
+            "complement_size": complement_size,
+            "gap_dimension": gap_dimension,
+            "available": True,
+            "singleton_range": True,
+            "numerator": 1,
+            "denominator": 1,
+            "upper_bound_floor": 1,
+        }
+
+    numerator = n * (complement_size - gap_dimension + 1)
+    denominator = (
+        complement_size * complement_size
+        - n * (gap_dimension - 1)
+    )
+    available = denominator > 0
+    return {
+        "n": n,
+        "k": k,
+        "sigma": sigma,
+        "complement_size": complement_size,
+        "gap_dimension": gap_dimension,
+        "available": available,
+        "singleton_range": False,
+        "numerator": numerator,
+        "denominator": denominator,
+        "upper_bound_floor": numerator // denominator if available else None,
+    }
+
+
+def co_large_plotkin_report(
+    fibers: dict[tuple[int, ...], list[tuple[int, ...]]],
+) -> dict[str, Any]:
+    maximum_fiber_size = max(len(values) for values in fibers.values())
+    finite_instance = plotkin_bound_case(N, K, SIGMA)
+    if not finite_instance["available"]:
+        raise AssertionError("F_17 Plotkin bound should be available")
+    if maximum_fiber_size > finite_instance["upper_bound_floor"]:
+        raise AssertionError("co-large Plotkin bound failed")
+
+    grid_cases = [
+        (N, K, SIGMA),
+        (64, 28, 15),
+        (128, 56, 31),
+        (256, 96, 76),
+        (512, 192, 150),
+        (1024, 384, 304),
+    ]
+    cases = [plotkin_bound_case(*case) for case in grid_cases]
+    if not all(case["available"] for case in cases):
+        raise AssertionError("deterministic Plotkin grid left the safe range")
+
+    return {
+        "checked": True,
+        "finite_instance": finite_instance,
+        "deterministic_cases": cases,
+        "maximum_fiber_size": maximum_fiber_size,
+        "holds": True,
+    }
+
+
 def co_large_separation_report(
     fibers: dict[tuple[int, ...], list[tuple[int, ...]]],
 ) -> dict[str, Any]:
@@ -717,6 +785,7 @@ def build_certificate() -> dict[str, Any]:
     divisor_gaps = divisor_gap_report(fibers)
     divisor_graph = divisor_gap_graph_report(fibers)
     co_large_bound = co_large_bound_report(fibers)
+    co_large_plotkin = co_large_plotkin_report(fibers)
     co_large_separation = co_large_separation_report(fibers)
     growing_width = growing_width_report()
     complement_orbits = complement_orbit_report(fibers)
@@ -753,6 +822,7 @@ def build_certificate() -> dict[str, Any]:
         "divisor_gap_report": divisor_gaps,
         "divisor_gap_graph_report": divisor_graph,
         "co_large_bound_report": co_large_bound,
+        "co_large_plotkin_report": co_large_plotkin,
         "co_large_separation_report": co_large_separation,
         "growing_width_report": growing_width,
         "complement_orbit_report": complement_orbits,
@@ -769,6 +839,7 @@ def print_text(cert: dict[str, Any]) -> None:
     divisor_gaps = cert["divisor_gap_report"]
     divisor_graph = cert["divisor_gap_graph_report"]
     co_large_bound = cert["co_large_bound_report"]
+    co_large_plotkin = cert["co_large_plotkin_report"]
     co_large_separation = cert["co_large_separation_report"]
     growing_width = cert["growing_width_report"]
     complement_orbits = cert["complement_orbit_report"]
@@ -835,6 +906,14 @@ def print_text(cert: dict[str, Any]) -> None:
         f"max fiber {co_large_bound['maximum_fiber_size']} <= "
         f"{co_large_bound['field_bound']}"
     )
+    plotkin_instance = co_large_plotkin["finite_instance"]
+    print(
+        "co-large Plotkin bound: "
+        f"max fiber {co_large_plotkin['maximum_fiber_size']} <= "
+        f"{plotkin_instance['numerator']}/"
+        f"{plotkin_instance['denominator']} "
+        f"= {plotkin_instance['upper_bound_floor']}"
+    )
     print(
         "co-large separation: "
         f"min exchange {co_large_separation['minimum_exchange']}, "
@@ -850,6 +929,10 @@ def print_text(cert: dict[str, Any]) -> None:
     print(
         "growing-width envelope cases checked: "
         f"{len(growing_width['cases'])}"
+    )
+    print(
+        "Plotkin grid cases checked: "
+        f"{len(co_large_plotkin['deterministic_cases'])}"
     )
     print(
         "complement dilation orbits: "

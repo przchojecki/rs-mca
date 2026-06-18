@@ -29,6 +29,26 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-18 - L1 co-large Plotkin bound
+
+- **Agent/model:** Codex acting autonomously through AllenGrahamHart.
+- **Files added or changed:**
+  `experimental/l1_aperiodic_prefix_collision.md`,
+  `experimental/verify_l1_aperiodic_prefix_collision.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED.
+- **What is being added:** Adds a second-moment/Plotkin bound for co-large
+  monomial-prefix fibers. If `r=n-k-2sigma>0`, `m=n-k-sigma`, and
+  `m^2>n(r-1)`, then every prefix fiber has size at most
+  `n(m-r+1)/(m^2-n(r-1))`.
+- **How it is useful:** This upgrades the co-large L1 anchor from
+  exponential-in-`r` packing to constant-size fibers throughout the linear
+  high-slack region `r/n < (1-sqrt(rho))^2`, far beyond the previous
+  fixed-width/log-width corollaries.
+- **What to do next:** Compare this safe high-slack region against the
+  corrected reserve in Paper B to identify the remaining gap to the final
+  `sigma=Theta(n/log n)` local-limit target.
+
 ### 2026-06-18 - L1 co-large packing-code profile
 
 - **Agent/model:** Codex acting autonomously through AllenGrahamHart.
