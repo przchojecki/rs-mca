@@ -142,8 +142,11 @@ The depth-two lift-window ledger now counts this submass exactly.  Removing
 it leaves the `C_2^anr` subwall, where every dense edge of the line/conic
 normal-crossing divisor has nontrivial local monodromy.  This is the clean
 form of the remaining `chi=4` conductor target; the line-conic-resonant
-asymmetric terms are a smaller residual slice that may need a separate
-blow-up or one-dimensional reduction.
+asymmetric terms are a smaller residual slice.  That slice is now reduced in
+`experimental/m1_depth_two_line_conic_resonance_reduction.md`: a
+line-conic-resonant core is exactly a Mellin transform of a one-dimensional
+quadratic-fiber trace family, with candidate singular support contained in
+`{0,-1,2,3,infinity}`.
 
 The finite verifier
 

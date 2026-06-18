@@ -199,6 +199,22 @@ The remaining two-coordinate dependency is therefore the projective
 line/conic case where all three line monodromies are nonprincipal and no pair
 among them is reciprocal.
 
+The line-conic-resonant part of that dependency is now separated as
+`C_2^lc`.  In a chart where `mu eta=1`, the core has the exact transform
+
+```text
+sum_{u,v} eta^(-1)(u) nu(v) eta(A(u,v))
+  = sum_y eta(-y) sum_v nu(v)
+      chi_2(y^2 - 2(v+1)y - 3v^2 - 2v - 3).
+```
+
+This is recorded in
+`experimental/m1_depth_two_line_conic_resonance_reduction.md`.  Its
+quadratic-fiber discriminant is `16(y-2)(y+1)`, and the candidate singular
+support on the `y`-line is `{0,-1,2,3,infinity}`.  Thus the resonant
+asymmetric slice is also a one-dimensional conductor problem; the clean
+two-variable normal-crossing target is the nonresonant complement `C_2^anr`.
+
 The finite stress scan in
 `experimental/m1_remaining_two_coordinate_wall_experiment.md` suggests that
 the near-sharp part of this remaining wall concentrates in the equal-line
@@ -326,6 +342,9 @@ reported residual two-coordinate wall is the asymmetric mass
 nonzero, pairwise distinct, and have no reciprocal pair, so the projective
 line-permutation action is free and the verifier records
 `O_2^asym=C_2^asym/6`.
+The later line-conic split writes
+`C_2^asym=C_2^lc+C_2^anr`, where `C_2^lc` is the resonant transform family
+above and `C_2^anr` is the clean nonresonant normal-crossing wall.
 
 ### `2F1` Local-Monodromy Import Consumed by the Equal-Line Audit
 

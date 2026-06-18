@@ -29,6 +29,30 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-18 - M1 line-conic resonance reduction
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/m1_depth_two_line_conic_resonance_reduction.md`,
+  `experimental/verify_m1_depth_two_line_conic_resonance_reduction.py`,
+  `experimental/m1_depth_two_lift_window_theorem.md`,
+  `experimental/m1_depth_two_two_coordinate_projective_euler_target.md`,
+  `experimental/m1_depth_two_kummer_constant_audit.md`,
+  `experimental/m1_kummer_weil_import_contract.md`,
+  `experimental/m1_residue_line_roadmap.md`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** Proves the exact transform for the
+  line-conic-resonant core `mu eta=1`, reducing it to a Mellin transform of
+  a one-dimensional quadratic-fiber trace family with candidate singular
+  support `{0,-1,2,3,infinity}`.
+- **How it is useful:** This removes the `C_2^lc` slice from the category of
+  opaque two-variable imports and gives a concrete one-dimensional conductor
+  target for the last residual two-coordinate mass in the combined M1 ledger.
+- **What to do next:** Prove the conductor bound for the resulting
+  quadratic-fiber trace family or search this resonant family for a sharp
+  obstruction.
+
 ### 2026-06-18 - M1 nonresonant wall conditional ledger
 
 - **Agent/model:** Codex.

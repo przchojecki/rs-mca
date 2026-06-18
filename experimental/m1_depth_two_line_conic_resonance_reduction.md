@@ -1,0 +1,148 @@
+# M1 Depth-Two Line-Conic Resonance Reduction
+
+**Status:** PROVED / AUDIT.
+
+## Claim
+
+Let `p>3`, put
+
+```text
+w=-1-u-v,
+A(u,v)=-(u^2+v^2+uv+u+v+1),
+B(v)=v^2+v+1.
+```
+
+Extend multiplicative characters by zero at zero.  In the line-conic
+resonant two-coordinate core with `mu eta=1`, write `mu=eta^(-1)` and define
+
+```text
+C_{eta,nu} =
+  sum_{u,v in F_p} eta^(-1)(u) nu(v) eta(A(u,v)).
+```
+
+Then
+
+```text
+C_{eta,nu} =
+  sum_{y in F_p} eta(-y) G_nu(y),
+
+G_nu(y) =
+  sum_{v in F_p} nu(v)
+    chi_2(y^2 - 2(v+1)y - 3v^2 - 2v - 3).
+```
+
+Thus the line-conic-resonant slice is not a generic two-variable Kummer
+problem.  It is a Mellin transform of a one-dimensional quadratic-fiber trace
+family.
+
+## Proof
+
+For fixed `v`, the summand is zero unless `u` and `A(u,v)` are nonzero.  For
+`u != 0`,
+
+```text
+eta^(-1)(u) eta(A(u,v))
+  = eta(A(u,v)/u)
+  = eta(-(u+v+1+B(v)/u)).
+```
+
+Use the degree-two map
+
+```text
+x = u + B(v)/u.
+```
+
+If `B(v) != 0`, the number of nonzero `u` mapping to `x` is
+`1+chi_2(x^2-4B(v))`.  The contribution of the `1` term is
+
+```text
+sum_x eta(-(x+v+1)) = 0
+```
+
+because `eta` is nonprincipal.  Hence
+
+```text
+sum_u eta^(-1)(u) eta(A(u,v))
+  = sum_x chi_2(x^2-4B(v)) eta(-(x+v+1)).
+```
+
+The same identity holds when `B(v)=0`: both sides are
+`-eta(-(v+1))`.  Replacing `y=x+v+1` gives
+
+```text
+x^2-4B(v)
+  = y^2 - 2(v+1)y - 3v^2 - 2v - 3,
+```
+
+and interchanging the `v` and `y` sums proves the claim.
+
+## Singular-Value Checklist
+
+For fixed `y`, the quadratic in `v` is
+
+```text
+Q_y(v) = -3v^2 - 2(y+1)v + y^2 - 2y - 3.
+```
+
+Its discriminant is
+
+```text
+disc_v(Q_y) = 16(y-2)(y+1).
+```
+
+The root collision values are therefore `y=-1` and `y=2`.  The collision of
+a quadratic root with the coordinate line `v=0` is controlled by
+
+```text
+Q_y(0) = y^2 - 2y - 3 = (y-3)(y+1),
+```
+
+so it adds `y=3` and repeats `y=-1`.  The outer Mellin character adds
+`y=0`, and infinity is the remaining projective point.  For `p>3`, the
+candidate singular support is contained in
+
+```text
+y=0,        y=-1,        y=2,        y=3,        infinity.
+```
+
+This is the finite conductor target for the line-conic-resonant asymmetric
+mass `C_2^lc`.  The active M1 certificate remains conservative: this note
+does not prove the required conductor bound, but it replaces the residual
+two-variable resonant slice by an explicit one-dimensional trace-family
+problem.
+
+## Open-Set Line Correction
+
+For the actual two-coordinate open sum, the principal coordinate line
+`w=0`, i.e. `v=-1-u`, must be removed.  The correction is
+
+```text
+L_{eta,nu} =
+  sum_u eta^(-1)(u) nu(-1-u) eta(-(u^2+u+1)).
+```
+
+This is a genus-zero Kummer sum on `P^1_u` with support contained in
+
+```text
+u=0,        u=-1,        u^2+u+1=0,        infinity.
+```
+
+Since `eta` is nonprincipal, the local monodromy at `u=0` is nontrivial, so
+the standard genus-zero bound gives `|L_{eta,nu}| <= 3 sqrt(p)`.  Thus the
+remaining conductor issue for the open line-conic-resonant slice is exactly
+the one-dimensional `y`-family above, plus this already understood
+line correction.
+
+## Relation to the M1 Wall
+
+The line-conic-resonant mass was isolated in
+`experimental/m1_depth_two_lift_window_theorem.md` as `C_2^lc`.  Combining
+this reduction with a future conductor bound for `G_nu(y)` would remove the
+last two-coordinate slice still charged at the old `9p` import after the
+conditional projective-equal and nonresonant ledgers.
+
+The finite verifier is
+
+```bash
+python3 experimental/verify_m1_depth_two_line_conic_resonance_reduction.py
+```

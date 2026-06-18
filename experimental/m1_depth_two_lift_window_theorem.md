@@ -396,6 +396,14 @@ ramified nonreciprocal remainder, the leading L1 weight drops by
 `3(C_2^peq+C_2^anr)`. The saturation verifier reports this combined
 conditional ledger, but it is not consumed by the active certificate.
 
+The resonant slice `C_2^lc` is no longer a black-box two-variable term:
+`experimental/m1_depth_two_line_conic_resonance_reduction.md` proves that
+each line-conic-resonant core is a Mellin transform of a one-dimensional
+quadratic-fiber trace family with candidate singular support
+`{0,-1,2,3,infinity}`.  A conductor bound for that trace family would remove
+the last two-coordinate mass left at the old `9p` import in the combined
+conditional ledger.
+
 The currently consumed square-root correction has L1 mass
 
 ```text

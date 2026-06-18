@@ -150,6 +150,10 @@ largest observed asymmetric obstruction is already in the clean
 normal-crossing nonresonant subwall `C_2^anr`; the line-conic resonant slice
 is important for theorem hypotheses, but it does not currently explain the
 largest asymmetric examples.
+The resonant slice is now algebraically reduced in
+`experimental/m1_depth_two_line_conic_resonance_reduction.md`, so future
+numerical searches can treat resonant and nonresonant families as distinct
+one-dimensional and normal-crossing conductor targets.
 
 ## Limitations
 

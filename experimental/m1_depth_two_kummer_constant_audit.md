@@ -131,3 +131,6 @@ also reports the conditional ledger obtained by combining the projective
 equal-pair import with a future nonresonant `4p+3 sqrt(p)` theorem.  Under
 that combined import, the only remaining two-coordinate terms still charged
 at `9p` are the line-conic-resonant asymmetric terms.
+Those terms have now been reduced to a one-dimensional trace-family problem
+in `experimental/m1_depth_two_line_conic_resonance_reduction.md`, whose
+singular-value checklist is `{0,-1,2,3,infinity}`.
