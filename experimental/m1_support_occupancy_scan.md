@@ -102,6 +102,10 @@ canonical_second_superboundary_lift_gate_check
 canonical_second_superboundary_shape_packet_count_check
 canonical_second_superboundary_shape_support_slope_histogram_check
 canonical_second_superboundary_shape_zero_next_slack_parameter_count
+canonical_second_superboundary_next_slack_parameter_check
+canonical_second_superboundary_next_slack_active_parameter_check
+canonical_second_superboundary_next_slack_packet_count_check
+canonical_second_superboundary_next_slack_support_count_check
 canonical_second_superboundary_shape_active_nonzero_orbit_check
 canonical_second_superboundary_shape_nonzero_power_coset_count
 canonical_second_superboundary_shape_active_nonzero_power_coset_count
@@ -370,6 +374,9 @@ the `(t+2)!` quotient check, reconstructed packet/support histograms, and the
 coset-compressed `D^t` slope count. The zero-slope parameter count is the
 first-superboundary shape catalog for slack `t+1`, making the scanner check
 the depth-two/next-slack transition explicitly.
+The `canonical_second_superboundary_next_slack_*_check` fields compare this
+zero-slope subcatalog with the first-superboundary ledger at fixed support
+size, equivalently after the dimension shift `(t,k) -> (t+1,k-1)`.
 
 For slack `t=2`, the scanner also verifies the complete first-superboundary
 shape ledger. It enumerates

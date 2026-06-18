@@ -668,6 +668,25 @@ m | (s-(T+2)) = k-2.
 If the gate is closed, the whole second-superboundary catalog is absent at
 that quotient scale before any shape-count estimate is needed.
 
+There is a fixed-support way to read the same statement. Since
+
+```text
+k+T = (k-1)+(T+1),
+```
+
+the zero-slope second-superboundary residual packets for `(T,k)` at exact
+support size `s=k+T` are exactly the first-superboundary residual packets for
+`(T+1,k-1)` at the same exact support size. The lift congruence is the same
+in both views:
+
+```text
+m | k-2.
+```
+
+Only the slope label changes: the family contributes slope `0` to the
+slack-`T` depth-two catalog, while in the slack-`T+1` first-superboundary
+catalog its slope is governed by `(-1)^(T+1)e_(T+1)`.
+
 This formula has an immediate dither gate. Since the residual packet has size
 `T+1` but the exact support size is `s=k+T`, a first-superboundary packet can
 lift only if

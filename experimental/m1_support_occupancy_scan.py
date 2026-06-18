@@ -747,7 +747,9 @@ def second_superboundary_shape_coset_ledger(
     active_zero_parameter_count = 0
     packet_count_numerator = 0
     active_nonzero_packet_count_numerator = 0
+    zero_packet_count_numerator = 0
     support_count_numerator = 0
+    zero_support_count_numerator = 0
     packet_slope_histogram_numerator: Counter[int] = Counter()
     support_slope_histogram_numerator: Counter[int] = Counter()
     zero_slope = False
@@ -812,6 +814,9 @@ def second_superboundary_shape_coset_ledger(
             packet_count_numerator += 1
             if shape_slope != 0:
                 active_nonzero_packet_count_numerator += 1
+            else:
+                zero_packet_count_numerator += 1
+                zero_support_count_numerator += lift_count
             support_count_numerator += lift_count
             packet_slope_histogram_numerator[slope] += 1
             support_slope_histogram_numerator[slope] += lift_count
@@ -857,6 +862,16 @@ def second_superboundary_shape_coset_ledger(
         (1 if active_zero_slope else 0)
         + active_nonzero_packet_orbit_count * len(power_image)
     )
+    next_slack_first_ledger = first_superboundary_shape_coset_ledger(
+        p=p,
+        domain=domain,
+        slack=slack + 1,
+        support_size=support_size,
+        quotient_order=quotient_order,
+        fiber_size=fiber_size,
+    )
+    zero_packet_count = zero_packet_count_numerator // orbit_factor
+    zero_weighted_support_count = zero_support_count_numerator // orbit_factor
     return {
         "residual_size": residual_size,
         "orbit_factor": orbit_factor,
@@ -875,9 +890,37 @@ def second_superboundary_shape_coset_ledger(
         "power_coset_slope_bound": min(p, power_coset_slope_bound),
         "orbit_quotient_check": orbit_check,
         "packet_count": packet_count_numerator // orbit_factor,
+        "zero_packet_count": zero_packet_count,
         "weighted_support_count": support_count_numerator // orbit_factor,
+        "zero_weighted_support_count": zero_weighted_support_count,
         "packet_slope_histogram": packet_slope_histogram,
         "support_slope_histogram": support_slope_histogram,
+        "next_slack_first_parameter_count": int(
+            next_slack_first_ledger["parameter_count"]
+        ),
+        "next_slack_first_active_parameter_count": int(
+            next_slack_first_ledger["active_parameter_count"]
+        ),
+        "next_slack_first_packet_count": int(
+            next_slack_first_ledger["packet_count"]
+        ),
+        "next_slack_first_weighted_support_count": int(
+            next_slack_first_ledger["weighted_support_count"]
+        ),
+        "next_slack_transition_parameter_check": (
+            zero_parameter_count == int(next_slack_first_ledger["parameter_count"])
+        ),
+        "next_slack_transition_active_parameter_check": (
+            active_zero_parameter_count
+            == int(next_slack_first_ledger["active_parameter_count"])
+        ),
+        "next_slack_transition_packet_count_check": (
+            zero_packet_count == int(next_slack_first_ledger["packet_count"])
+        ),
+        "next_slack_transition_support_count_check": (
+            zero_weighted_support_count
+            == int(next_slack_first_ledger["weighted_support_count"])
+        ),
     }
 
 
@@ -2658,6 +2701,80 @@ def scan_supports(
             if second_superboundary_shape_ledger is not None
             else None
         ),
+        "canonical_second_superboundary_shape_zero_packet_count": (
+            int(second_superboundary_shape_ledger["zero_packet_count"])
+            if second_superboundary_shape_ledger is not None
+            else None
+        ),
+        "canonical_second_superboundary_shape_zero_support_count": (
+            int(second_superboundary_shape_ledger["zero_weighted_support_count"])
+            if second_superboundary_shape_ledger is not None
+            else None
+        ),
+        "canonical_second_superboundary_next_slack_first_parameter_count": (
+            int(second_superboundary_shape_ledger["next_slack_first_parameter_count"])
+            if second_superboundary_shape_ledger is not None
+            else None
+        ),
+        "canonical_second_superboundary_next_slack_first_active_parameter_count": (
+            int(
+                second_superboundary_shape_ledger[
+                    "next_slack_first_active_parameter_count"
+                ]
+            )
+            if second_superboundary_shape_ledger is not None
+            else None
+        ),
+        "canonical_second_superboundary_next_slack_first_packet_count": (
+            int(second_superboundary_shape_ledger["next_slack_first_packet_count"])
+            if second_superboundary_shape_ledger is not None
+            else None
+        ),
+        "canonical_second_superboundary_next_slack_first_support_count": (
+            int(
+                second_superboundary_shape_ledger[
+                    "next_slack_first_weighted_support_count"
+                ]
+            )
+            if second_superboundary_shape_ledger is not None
+            else None
+        ),
+        "canonical_second_superboundary_next_slack_parameter_check": (
+            bool(
+                second_superboundary_shape_ledger[
+                    "next_slack_transition_parameter_check"
+                ]
+            )
+            if second_superboundary_shape_ledger is not None
+            else None
+        ),
+        "canonical_second_superboundary_next_slack_active_parameter_check": (
+            bool(
+                second_superboundary_shape_ledger[
+                    "next_slack_transition_active_parameter_check"
+                ]
+            )
+            if second_superboundary_shape_ledger is not None
+            else None
+        ),
+        "canonical_second_superboundary_next_slack_packet_count_check": (
+            bool(
+                second_superboundary_shape_ledger[
+                    "next_slack_transition_packet_count_check"
+                ]
+            )
+            if second_superboundary_shape_ledger is not None
+            else None
+        ),
+        "canonical_second_superboundary_next_slack_support_count_check": (
+            bool(
+                second_superboundary_shape_ledger[
+                    "next_slack_transition_support_count_check"
+                ]
+            )
+            if second_superboundary_shape_ledger is not None
+            else None
+        ),
         "canonical_second_superboundary_shape_active_nonzero_orbit_check": (
             bool(
                 second_superboundary_shape_ledger[
@@ -3924,6 +4041,7 @@ def print_text(result: Dict[str, object]) -> None:
             "first_superboundary_shape_check={first_shape} "
             "first_superboundary_shape_bound={first_shape_bound} "
             "second_superboundary_shape_check={second_shape} "
+            "second_superboundary_transition={second_transition} "
             "slack_two_shape_check={shape} "
             "slack_two_second_shape_check={shape2} "
             "slack_three_shape_check={shape3} "
@@ -3960,6 +4078,9 @@ def print_text(result: Dict[str, object]) -> None:
                 ],
                 second_shape=result[
                     "canonical_second_superboundary_shape_support_count_check"
+                ],
+                second_transition=result[
+                    "canonical_second_superboundary_next_slack_support_count_check"
                 ],
                 shape=result["canonical_slack_two_shape_support_count_check"],
                 shape2=result[
