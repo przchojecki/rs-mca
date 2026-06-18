@@ -1,0 +1,123 @@
+# M1 Depth-Two Two-Coordinate Fiber Reduction
+
+**Status:** CONDITIONAL / AUDIT.
+
+## Claim
+
+Assume the standard genus-zero multiplicative Weil bound on `P^1`. Let
+`p>3`, put
+
+```text
+w=-1-u-v,
+A(u,v)=-(u^2+v^2+uv+u+v+1),
+```
+
+and extend all multiplicative characters by zero at zero. Let `mu`, `nu`,
+and `eta` be nonprincipal multiplicative characters. The two-coordinate
+mixed term with active coordinates `u,v` and principal coordinate `w` is
+
+```text
+S_open = sum_{u,v} mu(u) nu(v) 1_{w!=0} eta(A(u,v)).
+```
+
+It decomposes as
+
+```text
+S_open = sum_u mu(u) F_{nu,eta}(u) - L_{mu,nu,eta},
+
+F_{nu,eta}(u) = sum_v nu(v) eta(A(u,v)),
+L_{mu,nu,eta} = sum_u mu(u) nu(-1-u) eta(-(u^2+u+1)).
+```
+
+The line correction satisfies
+
+```text
+|L_{mu,nu,eta}| <= 3 sqrt(p).
+```
+
+The cases with active coordinate pairs `(u,w)` and `(v,w)` follow by the
+symmetry of `A=uv+uw+vw-1` on the plane `u+v+w=-1`.
+
+## Fiber Geometry
+
+For fixed `u`, the fiber trace is a one-variable Kummer sum
+
+```text
+F_{nu,eta}(u)=sum_v nu(v) eta(A(u,v)).
+```
+
+On `P^1_v`, the zero-pole support is contained in
+
+```text
+v=0,        A(u,v)=0,        infinity.
+```
+
+The quadratic polynomial `A(u,v)` has discriminant
+
+```text
+Delta(u)=-3u^2-2u-3.
+```
+
+Thus a generic fiber has at most four support points. The degenerate fibers
+with `Delta(u)=0`, and the collision fibers where `A(u,0)=0`, only reduce
+the support or merge coefficients; they do not make the summand a character
+power because `nu` and `eta` are both nonprincipal. Hence every fixed fiber
+has the genus-zero bound
+
+```text
+|F_{nu,eta}(u)| <= 2 sqrt(p).
+```
+
+This bound alone gives only `O(p^(3/2))` after summing over `u`. The missing
+degree-four estimate is exactly cancellation in the outer sum
+
+```text
+sum_u mu(u) F_{nu,eta}(u).
+```
+
+## Line Correction
+
+The principal-coordinate exclusion is the line `w=0`, i.e. `v=-1-u`. On this
+line,
+
+```text
+A(u,-1-u)=-(u^2+u+1).
+```
+
+Therefore the line correction is a genus-zero Kummer sum on `P^1_u` with
+support contained in
+
+```text
+u=0,        u=-1,        u^2+u+1=0,        infinity.
+```
+
+The two roots of `u^2+u+1` are distinct over the algebraic closure for
+`p>3`, and neither root is `0` or `-1`. Since `mu` is nonprincipal, the
+rational function is not a character-order power. The support size is at
+most `5`, so the standard genus-zero bound gives `(5-2)sqrt(p)`.
+
+## Remaining Target
+
+This reduction replaces the two-coordinate part of the two-variable Kummer
+import by a sharper one-dimensional trace-family target:
+
+```text
+|sum_u mu(u) F_{nu,eta}(u)| <= 9p - 3 sqrt(p)
+```
+
+would imply the ledger's current `9p` two-coordinate bound. Any smaller
+uniform conductor bound for this trace family would directly sharpen the M1
+depth-two saturation constants. In particular, the finite `4p` target audit
+in `experimental/m1_depth_two_two_coordinate_sharp_target_audit.md` becomes
+the question of proving a correspondingly sharper conductor bound for this
+same one-dimensional trace family.
+
+The finite verifier
+
+```bash
+python3 experimental/verify_m1_depth_two_two_coordinate_fiber_reduction.py
+```
+
+checks the exact decomposition for every two-coordinate tuple in the
+representative Kummer-audit samples, verifies the genus-zero line-correction
+bound numerically, and reports the largest observed two-coordinate ratios.

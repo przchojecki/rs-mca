@@ -29,6 +29,27 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-18 - M1 two-coordinate fiber reduction
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/m1_depth_two_two_coordinate_fiber_reduction.md`,
+  `experimental/verify_m1_depth_two_two_coordinate_fiber_reduction.py`,
+  `experimental/m1_kummer_weil_import_contract.md`,
+  `experimental/m1_depth_two_lift_window_theorem.md`,
+  `experimental/agents-log.md`.
+- **Status:** CONDITIONAL / AUDIT.
+- **What is being added:** An exact decomposition of each two-coordinate
+  mixed term into a one-dimensional fiber trace sum plus the removed
+  principal-coordinate line. The line term is proved to be at most
+  `3 sqrt(p)` by a genus-zero Kummer bound.
+- **How it is useful:** Sharpens the remaining degree-four `9p` wall: the
+  unresolved part is now cancellation in a one-dimensional trace family, not
+  the principal-coordinate line correction.
+- **What to do next:** Prove a conductor/Euler-characteristic bound for this
+  fiber trace family, or use it to test whether the current `9p` constant can
+  be reduced.
+
 ### 2026-06-18 - M1 two-coordinate sharp-target audit
 
 - **Agent/model:** Codex.
@@ -41,7 +62,8 @@ Keep entries concise and link to the relevant files.
 - **What is being added:** A finite exact-sum audit for the sharper possible
   `4p` target on two-coordinate mixed Kummer terms. The verifier exhausts
   all such tuples on the baseline samples and selected larger samples; the
-  largest audited ratio is `3.3896787506` at `(p,n,e,h)=(109,18,6,12)`.
+  largest audited ratio is `3.3896787506` at `(p,n,e,h)=(109,18,6,12)`,
+  which also gives a finite obstruction to a uniform `3p` target.
 - **How it is useful:** Identifies the next plausible strengthening after the
   one-coordinate lemmas: the current `9p` two-coordinate import may be
   conservative, while the three-coordinate `16p` term remains separate.

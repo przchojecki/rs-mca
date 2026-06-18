@@ -142,6 +142,10 @@ discriminant Kummer sum; this is isolated in
 conditional Kummer import is now charged only from two active coordinate
 characters onward: two-coordinate mixed terms have degree `1+1+2` and pay
 `9p`, and three-coordinate mixed terms have degree `1+1+1+2` and pay `16p`.
+The two-coordinate term is further reduced in
+`experimental/m1_depth_two_two_coordinate_fiber_reduction.md` to cancellation
+in a one-dimensional fiber trace family plus a genus-zero line correction of
+size at most `3 sqrt(p)`.
 
 For the raw normalized catalog on `D`, the verifier audits the character
 expansion, the divisor nontriviality, the exact principal open-set count

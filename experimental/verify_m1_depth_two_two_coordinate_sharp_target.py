@@ -30,6 +30,7 @@ GLOBAL_EXPECTED = {
     "h": 12,
     "max_tuple": (0, 5, 5, 3),
     "ratio": 3.3896787506,
+    "exceeds_multiplier": 3,
 }
 
 
@@ -153,8 +154,14 @@ def main() -> None:
     for key, value in GLOBAL_EXPECTED.items():
         if key == "ratio":
             actual = float(best["max_ratio_to_p"])
+        elif key == "exceeds_multiplier":
+            actual = float(best["max_abs"]) > value * int(best["p"])
         else:
             actual = best[key]
+        if key == "exceeds_multiplier":
+            if not actual:
+                raise AssertionError((key, best["max_abs"], value, best))
+            continue
         if actual != value:
             raise AssertionError((key, actual, value))
     print("M1 depth-two two-coordinate sharp-target verifier passed")

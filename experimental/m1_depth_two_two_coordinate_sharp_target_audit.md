@@ -67,6 +67,19 @@ The largest audited ratio is
 
 at `(p,n,e,h)=(109,18,6,12)`.
 
+## Finite Obstruction to a `3p` Target
+
+The same sample rules out the stronger uniform target `3p`: the exact tuple
+
+```text
+(p,n,e,h)=(109,18,6,12),        (a,b,c,d)=(0,5,5,3)
+```
+
+has absolute value `369.4749838169`, which is larger than `3p=327`.
+Thus a future two-coordinate theorem, if it improves the present `9p`
+import, still needs a constant strictly larger than `3.3896787506` in this
+normalization.
+
 ## Contribution to M1
 
 The one-coordinate mixed terms are now reduced to one-dimensional input in

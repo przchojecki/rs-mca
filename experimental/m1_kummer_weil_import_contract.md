@@ -150,6 +150,20 @@ most `2p-1`. Thus the nonquadratic one-coordinate mixed terms also satisfy
 the `4p` bound. The proof-level statement is isolated in
 `experimental/m1_depth_two_nonquadratic_one_coordinate_lemma.md`.
 
+The two-coordinate mixed terms have an exact one-dimensional fiber
+decomposition. For example, when `u` and `v` are active and `w` is principal,
+
+```text
+S_open = sum_u mu(u) F_{nu,eta}(u) - L_{mu,nu,eta},
+F_{nu,eta}(u) = sum_v nu(v) eta(A(u,v)).
+```
+
+The line correction `L_{mu,nu,eta}` is a genus-zero Kummer sum on the removed
+line `w=0`, with absolute value at most `3 sqrt(p)`. The unresolved
+degree-four input is therefore cancellation in the one-dimensional trace
+family `sum_u mu(u)F_{nu,eta}(u)`, not the line correction. This reduction is
+isolated in `experimental/m1_depth_two_two_coordinate_fiber_reduction.md`.
+
 Thus the additive raw, fixed-window, and two-fiber certificates now pay:
 
 ```text
@@ -168,20 +182,23 @@ python3 experimental/verify_m1_depth_two_elementary_open_set_lemma.py
 python3 experimental/verify_m1_depth_two_quadratic_one_coordinate_lemma.py
 python3 experimental/verify_m1_depth_two_nonquadratic_one_coordinate_lemma.py
 python3 experimental/verify_m1_depth_two_kummer_constant_audit.py
+python3 experimental/verify_m1_depth_two_two_coordinate_fiber_reduction.py
 python3 experimental/verify_m1_depth_two_two_coordinate_sharp_target.py
 ```
 
 checks the finite geometry behind the elementary open-set correction and
-the one-coordinate slice lemmas, and exhausts representative small prime/index
-cases against the exact character sums. The proof-level statement of the
-open-set correction is isolated in
+the one-coordinate slice lemmas, verifies the two-coordinate fiber reduction,
+and exhausts representative small prime/index cases against the exact
+character sums. The proof-level statement of the open-set correction is isolated in
 `experimental/m1_depth_two_elementary_open_set_lemma.md`; the quadratic and
 nonquadratic mixed slices are isolated in
 `experimental/m1_depth_two_quadratic_one_coordinate_lemma.md` and
 `experimental/m1_depth_two_nonquadratic_one_coordinate_lemma.md`.
-The two-coordinate sharp-target verifier is only finite evidence for a
-possible future `4p` replacement of the current conditional `9p` import; it
-is not used by the present certificates.
+The two-coordinate fiber reduction and finite sharp-target audit are isolated
+in `experimental/m1_depth_two_two_coordinate_fiber_reduction.md` and
+`experimental/m1_depth_two_two_coordinate_sharp_target_audit.md`; the latter
+is only finite evidence for a possible future `4p` replacement of the current
+conditional `9p` import and is not used by the present certificates.
 
 ## Audited Hypotheses
 
