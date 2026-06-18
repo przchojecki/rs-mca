@@ -420,6 +420,54 @@ def co_large_bound_report(
     }
 
 
+def co_large_separation_report(
+    fibers: dict[tuple[int, ...], list[tuple[int, ...]]],
+) -> dict[str, Any]:
+    exchange_histogram: Counter[int] = Counter()
+    overlap_histogram: Counter[int] = Counter()
+    strict_high_overlap_pairs = 0
+    pair_count = 0
+
+    for supports in fibers.values():
+        if len(supports) < 2:
+            continue
+        for first, second in itertools.combinations(supports, 2):
+            first_set = set(first)
+            second_set = set(second)
+            exchange = len(first_set - second_set)
+            overlap = len(first_set & second_set)
+            pair_count += 1
+            exchange_histogram[exchange] += 1
+            overlap_histogram[overlap] += 1
+            if exchange < SIGMA:
+                strict_high_overlap_pairs += 1
+
+    if pair_count:
+        min_exchange = min(exchange_histogram)
+        max_overlap = max(overlap_histogram)
+        if min_exchange < SIGMA + 1:
+            raise AssertionError("co-large exchange separation failed")
+        if max_overlap > K - 1:
+            raise AssertionError("co-large overlap separation failed")
+    else:
+        min_exchange = None
+        max_overlap = None
+
+    if strict_high_overlap_pairs:
+        raise AssertionError("found strict high-overlap pair inside a prefix fiber")
+
+    return {
+        "checked": True,
+        "unordered_pair_count": pair_count,
+        "minimum_exchange": min_exchange,
+        "maximum_overlap": max_overlap,
+        "exchange_histogram": dict(sorted(exchange_histogram.items())),
+        "overlap_histogram": dict(sorted(overlap_histogram.items())),
+        "strict_high_overlap_pairs_at_slack_sigma": strict_high_overlap_pairs,
+        "internal_m1_correction_vanishes": True,
+    }
+
+
 def verify_growing_width_envelope(
     n: int,
     k: int,
@@ -644,6 +692,7 @@ def build_certificate() -> dict[str, Any]:
     divisor_gaps = divisor_gap_report(fibers)
     divisor_graph = divisor_gap_graph_report(fibers)
     co_large_bound = co_large_bound_report(fibers)
+    co_large_separation = co_large_separation_report(fibers)
     growing_width = growing_width_report()
     complement_orbits = complement_orbit_report(fibers)
 
@@ -679,6 +728,7 @@ def build_certificate() -> dict[str, Any]:
         "divisor_gap_report": divisor_gaps,
         "divisor_gap_graph_report": divisor_graph,
         "co_large_bound_report": co_large_bound,
+        "co_large_separation_report": co_large_separation,
         "growing_width_report": growing_width,
         "complement_orbit_report": complement_orbits,
         "example": verify_example(fibers),
@@ -694,6 +744,7 @@ def print_text(cert: dict[str, Any]) -> None:
     divisor_gaps = cert["divisor_gap_report"]
     divisor_graph = cert["divisor_gap_graph_report"]
     co_large_bound = cert["co_large_bound_report"]
+    co_large_separation = cert["co_large_separation_report"]
     growing_width = cert["growing_width_report"]
     complement_orbits = cert["complement_orbit_report"]
     print("L1 aperiodic prefix-collision certificate")
@@ -758,6 +809,13 @@ def print_text(cert: dict[str, Any]) -> None:
         "co-large field-size bound: "
         f"max fiber {co_large_bound['maximum_fiber_size']} <= "
         f"{co_large_bound['field_bound']}"
+    )
+    print(
+        "co-large separation: "
+        f"min exchange {co_large_separation['minimum_exchange']}, "
+        f"max overlap {co_large_separation['maximum_overlap']}, "
+        "strict high-overlap pairs "
+        f"{co_large_separation['strict_high_overlap_pairs_at_slack_sigma']}"
     )
     print(
         "growing-width envelope cases checked: "

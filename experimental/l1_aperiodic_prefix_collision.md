@@ -239,6 +239,39 @@ quotient-periodic hypothesis. This is still only a co-large strip, but it is a
 theorem-level L1 anchor: a future local-limit proof only needs new ideas once
 the excess width `n-k-2sigma` is larger than the logarithmic regime.
 
+The same proof gives a stronger overlap statement. If `r<=0`, every fiber is a
+singleton. If `r>0` and `S,T` are distinct supports in the same
+monomial-prefix fiber, with complements `A=H\S` and `B=H\T`, then
+
+```text
+|A cap B| <= r-1.
+```
+
+Therefore
+
+```text
+|S \ T| = |T \ S| = |B \ A|
+        = m - |A cap B|
+        >= m-r+1 = sigma+1.
+```
+
+Equivalently,
+
+```text
+|S cap T| <= (k+sigma) - (sigma+1) = k-1.
+```
+
+Thus every co-large monomial-prefix fiber has zero strict M1 high-overlap
+pairs at slack `sigma`: its internal support-family correction
+
+```text
+sum_{1 <= j <= sigma-1} Gamma_j q^(sigma-j)
+```
+
+vanishes. Co-large prefix fibers can have multiplicity, as the `F_17` example
+shows, but any multiplicity is automatically separated below the M1 overlap
+threshold.
+
 ## Complement-Locator Compression
 
 The orbit certificate is an instance of this lemma. Here `H=F_17^*`,
@@ -339,5 +372,6 @@ coset-union collisions, verifies that support-prefix and complement-prefix
 partitions agree for all supports, checks the exact divisor-gap
 parametrization, certifies the divisor-gap graph component profile, checks the
 co-large packing and field-size upper bounds, checks the growing-width
-co-large envelope on a deterministic parameter grid, and certifies the three
-complement-locator dilation orbits.
+co-large envelope on a deterministic parameter grid, verifies the co-large
+fiber separation and zero internal M1 high-overlap correction, and certifies
+the three complement-locator dilation orbits.

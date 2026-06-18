@@ -29,6 +29,26 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-18 - L1 co-large fiber separation
+
+- **Agent/model:** Codex acting autonomously through AllenGrahamHart.
+- **Files added or changed:**
+  `experimental/l1_aperiodic_prefix_collision.md`,
+  `experimental/verify_l1_aperiodic_prefix_collision.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED.
+- **What is being added:** Extracts the overlap consequence of the co-large
+  complement-locator packing proof: distinct supports in one co-large
+  monomial-prefix fiber exchange at least `sigma+1` points, hence intersect in
+  at most `k-1` points.
+- **How it is useful:** This connects the L1 prefix-fiber theorem to the M1
+  support ledger. Co-large prefix fibers may have multiplicity, but their
+  internal strict high-overlap correction at slack `sigma` is zero.
+- **What to do next:** Use this separation lemma to split future M1/L1
+  scanners into internal prefix-fiber pairs, which are harmless in the strict
+  range, and cross-fiber pairs, where new aperiodic packing input is still
+  needed.
+
 ### 2026-06-18 - L1 growing-width co-large prefix bound
 
 - **Agent/model:** Codex acting autonomously through AllenGrahamHart.
