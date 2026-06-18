@@ -110,6 +110,26 @@ def poly_sub(left: list[int], right: list[int]) -> list[int]:
     return trim_poly(out)
 
 
+def poly_remainder(poly: list[int], divisor: list[int]) -> list[int]:
+    rem = trim_poly(poly[:])
+    div = trim_poly(divisor[:])
+    if not div:
+        raise ValueError("divisor must be nonzero")
+    inverse_lead = pow(div[-1], -1, P)
+    while rem and len(rem) >= len(div):
+        shift = len(rem) - len(div)
+        scale = (rem[-1] * inverse_lead) % P
+        for index, coeff in enumerate(div):
+            rem[index + shift] = (rem[index + shift] - scale * coeff) % P
+        trim_poly(rem)
+    return rem
+
+
+def divides_xn_minus_one(poly: list[int]) -> bool:
+    xn_minus_one = [P - 1] + [0] * (N - 1) + [1]
+    return not poly_remainder(xn_minus_one, poly)
+
+
 def poly_eval(poly: list[int], value: int) -> int:
     total = 0
     for coeff in reversed(poly):
@@ -380,6 +400,46 @@ def co_large_bound_report(
     }
 
 
+def divisor_gap_report(
+    fibers: dict[tuple[int, ...], list[tuple[int, ...]]],
+) -> dict[str, Any]:
+    gap_degree_bound = N - AGREEMENT - SIGMA - 1
+    gap_degrees: Counter[int] = Counter()
+    nonzero_gaps: set[tuple[int, ...]] = set()
+    total_parameters = 0
+
+    for supports in fibers.values():
+        base_locator = locator_polynomial(support_complement(supports[0]))
+        seen_gaps: set[tuple[int, ...]] = set()
+        for support in supports:
+            locator = locator_polynomial(support_complement(support))
+            if not divides_xn_minus_one(locator):
+                raise AssertionError("complement locator does not divide X^n-1")
+            gap = tuple(poly_sub(locator, base_locator))
+            if gap in seen_gaps:
+                raise AssertionError("divisor-gap parametrization is not injective")
+            seen_gaps.add(gap)
+            degree = poly_degree(list(gap))
+            if degree > gap_degree_bound:
+                raise AssertionError("divisor gap exceeds degree bound")
+            gap_degrees[degree] += 1
+            if gap:
+                nonzero_gaps.add(gap)
+            total_parameters += 1
+        if len(seen_gaps) != len(supports):
+            raise AssertionError("divisor-gap count mismatch")
+
+    return {
+        "checked": True,
+        "gap_degree_bound": gap_degree_bound,
+        "parameterized_supports": total_parameters,
+        "zero_gap_count": gap_degrees[-1],
+        "nonzero_gap_count": total_parameters - gap_degrees[-1],
+        "distinct_nonzero_gaps": len(nonzero_gaps),
+        "gap_degree_histogram": dict(sorted(gap_degrees.items())),
+    }
+
+
 def complement_orbit_report(
     fibers: dict[tuple[int, ...], list[tuple[int, ...]]],
 ) -> dict[str, Any]:
@@ -472,6 +532,7 @@ def build_certificate() -> dict[str, Any]:
     if not collisions["all_collision_fibers_aperiodic"]:
         raise AssertionError("found quotient-periodic collision")
     complement_partition = complement_prefix_partition_report(fibers)
+    divisor_gaps = divisor_gap_report(fibers)
     co_large_bound = co_large_bound_report(fibers)
     complement_orbits = complement_orbit_report(fibers)
 
@@ -504,6 +565,7 @@ def build_certificate() -> dict[str, Any]:
         },
         "collision_report": collisions,
         "complement_prefix_lemma_report": complement_partition,
+        "divisor_gap_report": divisor_gaps,
         "co_large_bound_report": co_large_bound,
         "complement_orbit_report": complement_orbits,
         "example": verify_example(fibers),
@@ -516,6 +578,7 @@ def print_text(cert: dict[str, Any]) -> None:
     distribution = cert["prefix_distribution"]
     collisions = cert["collision_report"]
     complement_partition = cert["complement_prefix_lemma_report"]
+    divisor_gaps = cert["divisor_gap_report"]
     co_large_bound = cert["co_large_bound_report"]
     complement_orbits = cert["complement_orbit_report"]
     print("L1 aperiodic prefix-collision certificate")
@@ -551,6 +614,12 @@ def print_text(cert: dict[str, Any]) -> None:
         "support/complement prefix partitions agree: "
         f"{complement_partition['partitions_agree']} "
         f"({complement_partition['support_prefix_values']} values)"
+    )
+    print(
+        "divisor-gap parametrization: "
+        f"{divisor_gaps['parameterized_supports']} supports, "
+        f"{divisor_gaps['nonzero_gap_count']} nonzero gaps, "
+        f"degree bound {divisor_gaps['gap_degree_bound']}"
     )
     print(
         "co-large field bound: "

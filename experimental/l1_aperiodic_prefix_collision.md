@@ -109,10 +109,31 @@ deg(L_A - L_B) <= m - sigma - 1.
 
 For `sigma >= m`, it forces `A=B`.
 
+## Exact Divisor-Gap Parametrization
+
+The complement-locator compression gives an exact scanner target. Fix a support
+`S0` in a prefix fiber, put `A0=H\S0`, and let `m=|A0|`. Then the fiber of
+`S0` is in bijection with
+
+```text
+{ Q in F[X] : deg Q <= m-sigma-1 and L_A0 + Q divides X^n - 1 }.
+```
+
+The bijection sends `Q` to the support `H\A`, where
+`L_A = L_A0 + Q`. Indeed, every complement locator `L_A` is a monic
+degree-`m` divisor of `X^n-1`, and the complement-prefix lemma says that
+same-prefix supports are exactly those with `deg(L_A-L_A0) <= m-sigma-1`.
+Conversely, any monic degree-`m` divisor of `X^n-1` has its roots in `H`, so
+it is the locator of a unique complement `A`.
+
+When `sigma >= m`, the set above contains only `Q=0`; this recovers injectivity
+in the very co-large range. When `sigma < m`, it reduces finite-field
+collisions to a concrete low-degree divisor perturbation problem.
+
 ## Co-Large Prefix Bound
 
-The same argument gives a finite-field upper bound in the co-large support
-range. Let `F = F_q`, let `s = k + sigma`, and set
+Counting the possible perturbation polynomials gives a finite-field upper bound
+in the co-large support range. Let `F = F_q`, let `s = k + sigma`, and set
 
 ```text
 m = n - s = n - k - sigma.
@@ -232,5 +253,6 @@ The verifier enumerates all `8008` supports, recomputes the fiber histogram,
 checks the example codewords, verifies the entropy and quotient-core ledgers,
 checks that all forty nonsingleton fibers are not `M=8` or `M=16`
 coset-union collisions, verifies that support-prefix and complement-prefix
-partitions agree for all supports, checks the co-large upper bound, and
-certifies the three complement-locator dilation orbits.
+partitions agree for all supports, checks the exact divisor-gap
+parametrization and the co-large upper bound, and certifies the three
+complement-locator dilation orbits.
