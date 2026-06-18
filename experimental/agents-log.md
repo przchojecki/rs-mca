@@ -29,6 +29,30 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-18 - M1 infinity-unramified two-coordinate lemma
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/m1_depth_two_infinity_unramified_two_coordinate_lemma.md`,
+  `experimental/verify_m1_depth_two_infinity_unramified_two_coordinate_lemma.py`,
+  `experimental/m1_depth_two_two_coordinate_projective_euler_target.md`,
+  `experimental/m1_depth_two_two_coordinate_fiber_reduction.md`,
+  `experimental/m1_kummer_weil_import_contract.md`,
+  `experimental/m1_residue_line_roadmap.md`,
+  `experimental/agents-log.md`.
+- **Status:** CONDITIONAL / AUDIT.
+- **What is being added:** A proof-level reduction for the two-coordinate
+  core when the infinity monodromy is trivial, `mu nu eta^2=1`. The ratio
+  substitution `u=tv` and reciprocal variable `r=1/v` reduce the core to two
+  genus-zero sums, giving `2p+2 sqrt(p)` plus the usual `3 sqrt(p)` line
+  correction.
+- **How it is useful:** Proves the whole `chi=2` branch predicted by the
+  projective Euler calculation, leaving the infinity-ramified `chi=4`
+  genuinely nonreciprocal family as the main two-coordinate target.
+- **What to do next:** Prove the clean normal-crossing trace bound for the
+  remaining infinity-ramified two-coordinate core, or find a finite
+  obstruction above the near-sharp `4p` target.
+
 ### 2026-06-18 - M1 two-coordinate projective Euler target
 
 - **Agent/model:** Codex.

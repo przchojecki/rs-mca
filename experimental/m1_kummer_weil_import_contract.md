@@ -184,6 +184,13 @@ the complement Euler characteristic is `2`. This calculation is isolated in
 not yet used in the certificates because it still needs the appropriate clean
 normal-crossing Kummer cohomology theorem.
 
+The infinity-unramified subfamily `mu nu eta^2=1` no longer needs that
+import. The ratio substitution `u=tv`, followed by `r=1/v`, reduces its core
+to two genus-zero sums on `P^1_t`; the resulting bound is
+`2p+2 sqrt(p)` for the core plus the same `3 sqrt(p)` removed-line
+correction. This proof is isolated in
+`experimental/m1_depth_two_infinity_unramified_two_coordinate_lemma.md`.
+
 Thus the additive raw, fixed-window, and two-fiber certificates now pay:
 
 ```text
@@ -202,6 +209,7 @@ python3 experimental/verify_m1_depth_two_elementary_open_set_lemma.py
 python3 experimental/verify_m1_depth_two_quadratic_one_coordinate_lemma.py
 python3 experimental/verify_m1_depth_two_nonquadratic_one_coordinate_lemma.py
 python3 experimental/verify_m1_depth_two_reciprocal_two_coordinate_lemma.py
+python3 experimental/verify_m1_depth_two_infinity_unramified_two_coordinate_lemma.py
 python3 experimental/verify_m1_depth_two_kummer_constant_audit.py
 python3 experimental/verify_m1_kummer_divisor_geometry.py
 python3 experimental/verify_m1_depth_two_two_coordinate_fiber_reduction.py
@@ -225,6 +233,8 @@ The reciprocal two-coordinate slice is isolated in
 `experimental/m1_depth_two_reciprocal_two_coordinate_lemma.md`.
 The projective Euler target for the two-coordinate core is isolated in
 `experimental/m1_depth_two_two_coordinate_projective_euler_target.md`.
+The infinity-unramified two-coordinate slice is isolated in
+`experimental/m1_depth_two_infinity_unramified_two_coordinate_lemma.md`.
 
 ## Audited Hypotheses
 

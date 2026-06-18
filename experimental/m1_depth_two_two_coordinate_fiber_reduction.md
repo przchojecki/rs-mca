@@ -156,6 +156,9 @@ The projective Euler-characteristic target for the core sum is isolated in
 explains the `4p` target as the ramified-infinity case of the compactified
 line/conic arrangement, and predicts a `2p` top-dimensional coefficient when
 `mu nu eta^2` is principal.
+That infinity-unramified subfamily is proved by the ratio reduction in
+`experimental/m1_depth_two_infinity_unramified_two_coordinate_lemma.md`; the
+remaining trace-family target is the infinity-ramified case.
 
 The finite verifier
 

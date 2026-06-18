@@ -116,6 +116,11 @@ unramified-infinity class: `nu=mu^{-1}` and `eta^2=1`, so
 `mu nu eta^2=1`. Its proved core bound `2p+2 sqrt(p)` matches the
 Euler target up to the lower-order genus-zero term.
 
+The whole infinity-unramified class is now isolated in
+`experimental/m1_depth_two_infinity_unramified_two_coordinate_lemma.md`. It
+proves the same `2p+2 sqrt(p)` core bound whenever `mu nu eta^2=1`, using a
+ratio substitution and a reciprocal-variable quadratic sum.
+
 For nonquadratic reciprocal slices, infinity is usually ramified and the
 same ratio-variable note proves the generic `4p` core bound directly. The
 open problem is to turn the above `chi=4` calculation into a uniform trace
