@@ -170,6 +170,9 @@ Its elementary open-set correction has L1 mass
 J = (e^3-1) + (q-1).
 ```
 
+The proof of this correction is isolated in
+`experimental/m1_depth_two_elementary_open_set_lemma.md`.
+
 For a fixed quotient window `W` of size `R`, let
 
 ```text

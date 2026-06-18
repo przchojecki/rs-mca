@@ -24,6 +24,10 @@ two-variable normal-crossing Kummer estimate; it checks that the exact sums
 satisfy the ledger in representative small prime and subgroup-index regimes,
 including nonquadratic square-coset characters.
 
+The proof-level open-set correction is isolated in
+`experimental/m1_depth_two_elementary_open_set_lemma.md`; this note is the
+finite exact-sum regression audit for that corrected ledger.
+
 ## Parameters
 
 Let `p>3` be prime, let `D <= F_p^*` have order `n`, and put

@@ -29,6 +29,28 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-18 - M1 depth-two elementary open-set lemma
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/m1_depth_two_elementary_open_set_lemma.md`,
+  `experimental/verify_m1_depth_two_elementary_open_set_lemma.py`,
+  `experimental/m1_kummer_weil_import_contract.md`,
+  `experimental/m1_depth_two_lift_window_theorem.md`,
+  `experimental/m1_depth_two_kummer_constant_audit.md`,
+  `experimental/agents-log.md`.
+- **Status:** CONDITIONAL / AUDIT.
+- **What is being added:** Isolates the proof of the elementary open-set
+  correction in the slack-two depth-two Kummer ledger: the `d=0` Jacobi and
+  conic-only masses each have a `p + 6 sqrt(p)` bound on the Kummer open set.
+  Adds a finite verifier for the conic and coordinate-line correction terms.
+- **How it is useful:** Makes the previous open-set ledger repair reviewable
+  as a named lemma rather than only as scanner arithmetic, while keeping the
+  genuinely mixed two-variable Kummer estimate separate.
+- **What to do next:** Use this lemma as the elementary base case while
+  looking for a uniform proof or citation of the remaining mixed
+  normal-crossing line/conic Kummer estimate.
+
 ### 2026-06-18 - M1 depth-two Kummer open-set correction
 
 - **Agent/model:** Codex.

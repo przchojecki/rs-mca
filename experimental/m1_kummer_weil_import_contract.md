@@ -132,11 +132,14 @@ d!=0, three coordinates active:            16p   (degree 5 Kummer)
 The finite audit
 
 ```bash
+python3 experimental/verify_m1_depth_two_elementary_open_set_lemma.py
 python3 experimental/verify_m1_depth_two_kummer_constant_audit.py
 ```
 
-exhausts representative small prime/index cases and checks this repaired
-open-set ledger directly against the exact character sums.
+checks the finite geometry behind the elementary open-set correction and
+exhausts representative small prime/index cases against the exact character
+sums. The proof-level statement of the correction is isolated in
+`experimental/m1_depth_two_elementary_open_set_lemma.md`.
 
 ## Audited Hypotheses
 
