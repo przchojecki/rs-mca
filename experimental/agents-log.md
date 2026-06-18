@@ -128,7 +128,10 @@ Keep entries concise and link to the relevant files.
   where the previous numerator is still negative but the sharpened active
   union is certified saturated. The reported fixed-window, two-fiber, and
   union uniform thresholds now use the exact quadratic implication
-  `ceil(linear_error/principal_weight)+4`.
+  `ceil(linear_error/principal_weight)+4`. The raw, two-fiber, and
+  fixed-window certificates now also pay the Kummer error over the exact
+  nonprincipal L1 count, excluding the principal character from the error
+  budget.
   This leaves a narrower intermediate/lift-limited window for M1 slope-image
   bounds.
 - **What to do next:** Prove or replace the imported Kummer-Weil constant in

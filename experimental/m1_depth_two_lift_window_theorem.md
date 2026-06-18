@@ -131,7 +131,9 @@ expansion, the divisor nontriviality, the exact principal open-set count
 p^2 - 4p + 6 + 4 chi(-3),
 ```
 
-and the exact six-line distinctness loss `6p-11`.
+and the exact six-line distinctness loss `6p-11`. With
+`e=[F_p^*:D]` and `q=[F_p^*:D^2]`, it also pays the Kummer error over the
+exact nonprincipal L1 count `e^3q-1`, not over the principal character.
 
 For a fixed quotient window `W` of size `R`, let
 
@@ -146,13 +148,13 @@ bound are `R^3`. Hence the conservative lower numerator for a fixed
 
 ```text
 R^3 (p^2 - 4p + 6 + 4 chi(-3))
-  - (R^3*16p + 6p - 11) h^3 q.
+  - 16p R^3(h^3q - 1) - (6p - 11) h^3 q.
 ```
 
 The uniform sufficient threshold for this fixed-window numerator is
 
 ```text
-p >= ceil(((16R^3+6)h^3q)/R^3) + 4.
+p >= ceil((16R^3(h^3q - 1) + 6h^3q)/R^3) + 4.
 ```
 
 When this numerator is positive, that fixed `R`-window already hits every

@@ -197,6 +197,7 @@ canonical_slack_two_second_r_window_kummer_square_coset_index
 canonical_slack_two_second_r_window_kummer_denominator
 canonical_slack_two_second_r_window_kummer_principal_weight
 canonical_slack_two_second_r_window_kummer_coefficient_bound
+canonical_slack_two_second_r_window_kummer_coefficient_l1_bound
 canonical_slack_two_second_r_window_kummer_prime_threshold
 canonical_slack_two_second_r_window_kummer_threshold_applies
 canonical_slack_two_second_r_window_kummer_lower_numerator
@@ -229,6 +230,7 @@ canonical_slack_two_second_r_window_union_kummer_exact_support_certificate
 canonical_slack_two_second_full_domain_saturates_nonzero_slopes
 canonical_slack_two_second_full_domain_nonzero_slope_image
 canonical_slack_two_second_full_domain_coset_count_check
+canonical_slack_two_second_kummer_coefficient_l1_bound
 canonical_slack_two_second_kummer_exact_support_saturation_certificate
 canonical_slack_two_second_kummer_exact_support_certificate_check
 canonical_slack_two_second_two_fiber_kummer_character_order
@@ -236,6 +238,7 @@ canonical_slack_two_second_two_fiber_kummer_square_coset_index
 canonical_slack_two_second_two_fiber_kummer_denominator
 canonical_slack_two_second_two_fiber_kummer_principal_weight
 canonical_slack_two_second_two_fiber_kummer_coefficient_bound
+canonical_slack_two_second_two_fiber_kummer_coefficient_l1_bound
 canonical_slack_two_second_two_fiber_kummer_uniform_prime_threshold
 canonical_slack_two_second_two_fiber_kummer_threshold_applies
 canonical_slack_two_second_two_fiber_kummer_lower_numerator
@@ -622,11 +625,12 @@ a quotient window `W` of size `R`, the indicator of `W` has principal weight
 `R/h`, so the principal term for `u,v,-1-u-v in W` has weight `R^3/(h^3 q)`,
 where `h=[F_p^*:K]` and `q=[F_p^*:D^2]`. The nonprincipal coefficients are
 bounded by `R^3`, and the same degree-five divisor gives the imported `16p`
-Kummer error. The conservative lower numerator is
+Kummer error. Paying only the `h^3q-1` nonprincipal character tuples gives
+the conservative lower numerator
 
 ```text
 R^3 (p^2 - 4p + 6 + 4 chi(-3))
-  - (R^3*16*p + 6p - 11) h^3 q.
+  - 16p R^3(h^3q - 1) - (6p - 11) h^3 q.
 ```
 
 When this is positive, one fixed `R`-window already hits every nonzero
@@ -797,6 +801,10 @@ The `*_radical_total_degree` and `*_deligne_constant` fields make the
 imported constant explicit: the squarefree support divisor has component
 degrees `1,1,1,2`, total degree `5`, and the standard two-variable
 Kummer-Weil estimate contributes `(5-1)^2=16`.
+For the raw catalog, with `e=[F_p^*:D]` and `q=[F_p^*:D^2]`, the certificate
+pays this error only over the exact nonprincipal L1 count `e^3q-1`, recorded
+as `*_coefficient_l1_bound`, rather than over the principal character as
+well.
 The `*_principal_exact_count` field records the exact principal open-set
 count
 
@@ -821,12 +829,13 @@ the indicator `1_U` has principal weight `2/h`, where
 `h=[F_p^*:K]`. Hence the principal term for `u,v,-1-u-v in U` has weight
 `8/(h^3 q)`, with `q=[F_p^*:D^2]`. The same squarefree divisor
 `u v (-1-u-v) A(u,v)` has total degree `5`, so the same imported
-Kummer-Weil constant `16` applies. Paying the coefficient bound `8` for the
-three two-fiber indicators gives the conservative lower numerator
+Kummer-Weil constant `16` applies. Paying the coefficient bound `8` only for
+the `h^3q-1` nonprincipal character tuples gives the conservative lower
+numerator
 
 ```text
 8 (p^2 - 4p + 6 + 4 chi(-3))
-  - (8*16*p + 6p - 11) h^3 q.
+  - 16p * 8(h^3q - 1) - (6p - 11) h^3 q.
 ```
 
 When this is positive, every nonzero `D^2`-coset already occurs inside a

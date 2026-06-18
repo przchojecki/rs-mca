@@ -1877,17 +1877,22 @@ def slack_two_second_kummer_saturation_data(
     radical_component_degrees = (1, 1, 1, 2)
     radical_total_degree = sum(radical_component_degrees)
     deligne_constant = (radical_total_degree - 1) ** 2
+    coefficient_l1_bound = nonprincipal_tuple_count
     uniform_prime_threshold = kummer_quadratic_uniform_prime_threshold(
         principal_weight=1,
-        linear_error_weight=(nonprincipal_constant + 6) * denominator,
+        linear_error_weight=(
+            nonprincipal_constant * coefficient_l1_bound
+            + 6 * denominator
+        ),
     )
     chi_minus_three = quadratic_character(-3, p)
     principal_exact_count = p * p - 4 * p + 6 + 4 * chi_minus_three
     degeneracy_line_count = 6
     degeneracy_line_union_count = 6 * p - 11
     lower_numerator = principal_exact_count - (
-        nonprincipal_constant * p + degeneracy_line_union_count
-    ) * denominator
+        nonprincipal_constant * p * coefficient_l1_bound
+        + degeneracy_line_union_count * denominator
+    )
     admissible_per_coset_lower_bound = (
         (lower_numerator + denominator - 1) // denominator
         if lower_numerator > 0
@@ -1899,6 +1904,7 @@ def slack_two_second_kummer_saturation_data(
         "square_coset_index": square_coset_index,
         "denominator": denominator,
         "nonprincipal_tuple_count": nonprincipal_tuple_count,
+        "coefficient_l1_bound": coefficient_l1_bound,
         "divisor_power_failure_count": 0,
         "divisor_nontriviality_check": True,
         "radical_component_degrees": radical_component_degrees,
@@ -1961,14 +1967,16 @@ def slack_two_second_two_fiber_kummer_saturation_data(
     principal_exact_count = p * p - 4 * p + 6 + 4 * chi_minus_three
     degeneracy_line_count = 6
     degeneracy_line_union_count = 6 * p - 11
+    coefficient_l1_bound = coefficient_abs_bound * (denominator - 1)
     uniform_prime_threshold = kummer_quadratic_uniform_prime_threshold(
         principal_weight,
-        (coefficient_abs_bound * nonprincipal_constant + 6) * denominator,
+        nonprincipal_constant * coefficient_l1_bound
+        + 6 * denominator,
     )
     lower_numerator = principal_weight * principal_exact_count - (
-        coefficient_abs_bound * nonprincipal_constant * p
-        + degeneracy_line_union_count
-    ) * denominator
+        nonprincipal_constant * p * coefficient_l1_bound
+        + degeneracy_line_union_count * denominator
+    )
     admissible_per_coset_lower_bound = (
         (lower_numerator + denominator - 1) // denominator
         if lower_numerator > 0
@@ -1991,6 +1999,7 @@ def slack_two_second_two_fiber_kummer_saturation_data(
         "deligne_constant_check": nonprincipal_constant == deligne_constant,
         "principal_weight": principal_weight,
         "coefficient_abs_bound": coefficient_abs_bound,
+        "coefficient_l1_bound": coefficient_l1_bound,
         "uniform_prime_threshold": uniform_prime_threshold,
         "uniform_threshold_applies": p >= uniform_prime_threshold,
         "nonprincipal_constant": nonprincipal_constant,
@@ -2041,14 +2050,16 @@ def slack_two_second_fixed_window_kummer_saturation_data(
     chi_minus_three = quadratic_character(-3, p)
     principal_exact_count = p * p - 4 * p + 6 + 4 * chi_minus_three
     degeneracy_line_union_count = 6 * p - 11
+    coefficient_l1_bound = coefficient_abs_bound * (denominator - 1)
     uniform_prime_threshold = kummer_quadratic_uniform_prime_threshold(
         principal_weight,
-        (coefficient_abs_bound * nonprincipal_constant + 6) * denominator,
+        nonprincipal_constant * coefficient_l1_bound
+        + 6 * denominator,
     )
     lower_numerator = principal_weight * principal_exact_count - (
-        coefficient_abs_bound * nonprincipal_constant * p
-        + degeneracy_line_union_count
-    ) * denominator
+        nonprincipal_constant * p * coefficient_l1_bound
+        + degeneracy_line_union_count * denominator
+    )
     admissible_per_coset_lower_bound = (
         (lower_numerator + denominator - 1) // denominator
         if lower_numerator > 0
@@ -2072,6 +2083,7 @@ def slack_two_second_fixed_window_kummer_saturation_data(
         "deligne_constant_check": nonprincipal_constant == deligne_constant,
         "principal_weight": principal_weight,
         "coefficient_abs_bound": coefficient_abs_bound,
+        "coefficient_l1_bound": coefficient_l1_bound,
         "uniform_prime_threshold": uniform_prime_threshold,
         "uniform_threshold_applies": p >= uniform_prime_threshold,
         "nonprincipal_constant": nonprincipal_constant,
@@ -5177,6 +5189,15 @@ def scan_supports(
             if slack_two_second_r_window_kummer_saturation is not None
             else None
         ),
+        "canonical_slack_two_second_r_window_kummer_coefficient_l1_bound": (
+            int(
+                slack_two_second_r_window_kummer_saturation[
+                    "coefficient_l1_bound"
+                ]
+            )
+            if slack_two_second_r_window_kummer_saturation is not None
+            else None
+        ),
         "canonical_slack_two_second_r_window_kummer_prime_threshold": (
             int(
                 slack_two_second_r_window_kummer_saturation[
@@ -5461,6 +5482,11 @@ def scan_supports(
             if slack_two_second_kummer_saturation is not None
             else None
         ),
+        "canonical_slack_two_second_kummer_coefficient_l1_bound": (
+            int(slack_two_second_kummer_saturation["coefficient_l1_bound"])
+            if slack_two_second_kummer_saturation is not None
+            else None
+        ),
         "canonical_slack_two_second_kummer_divisor_power_failure_count": (
             int(
                 slack_two_second_kummer_saturation[
@@ -5656,6 +5682,15 @@ def scan_supports(
             int(
                 slack_two_second_two_fiber_kummer_saturation[
                     "coefficient_abs_bound"
+                ]
+            )
+            if slack_two_second_two_fiber_kummer_saturation is not None
+            else None
+        ),
+        "canonical_slack_two_second_two_fiber_kummer_coefficient_l1_bound": (
+            int(
+                slack_two_second_two_fiber_kummer_saturation[
+                    "coefficient_l1_bound"
                 ]
             )
             if slack_two_second_two_fiber_kummer_saturation is not None
