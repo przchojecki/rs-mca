@@ -167,6 +167,12 @@ exactly when its forced safe gap is one; otherwise a forced gap at least two
 eventually creates a finite-menu tail above the adaptive maximal-dither
 baseline. The field `adaptive_competitive_construction_dithers` gives an
 explicit gap-one menu attaining this threshold.
+For a queried menu, `large_scale_menu_regime` records the dichotomy:
+`finite_prefix_linear` means all nonlinear large-scale dyadic tails are
+confined to `M <= slack_window.end`, while `forced_superlinear_tail` means the
+forced gap is at least two and a super-linear stable tail appears at large
+dyadic scales. The field `forced_tail_binomial_degree` records that forced
+stable-tail degree.
 
 Adding a menu size turns this into a per-parameter stable-tail lower-bound
 certificate:

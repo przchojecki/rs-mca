@@ -408,6 +408,14 @@ def dither_menu_covering_summary(
         summary["queried_menu_asymptotically_adaptive_competitive"] = (
             forced_gap == 1
         )
+        if forced_gap == 1:
+            summary["large_scale_menu_regime"] = "finite_prefix_linear"
+            summary["nonlinear_prefix_max_scale"] = end
+            summary["forced_tail_binomial_degree"] = 1
+        else:
+            summary["large_scale_menu_regime"] = "forced_superlinear_tail"
+            summary["nonlinear_prefix_max_scale"] = None
+            summary["forced_tail_binomial_degree"] = forced_gap
         summary["asymptotic_adaptive_menu_size_deficit"] = max(
             0,
             adaptive_competitive_menu_size - dither_menu_size,
@@ -1363,7 +1371,7 @@ def print_text(result: Dict[str, object]) -> None:
                 (
                     "dither-menu covering: gap<={gap} exactly needs {exact} "
                     "dithers; adaptive-competitive menu needs {adaptive}; "
-                    "coarse lower bound {lower}"
+                    "coarse lower bound {lower}; regime={regime}"
                 ).format(
                     gap=menu_covering["target_stable_gap"],
                     exact=menu_covering["exact_min_menu_size_for_target_gap"],
@@ -1371,6 +1379,7 @@ def print_text(result: Dict[str, object]) -> None:
                         "exact_min_menu_size_for_asymptotic_adaptive_competitiveness"
                     ],
                     lower=menu_covering["coarse_menu_size_lower_bound"],
+                    regime=menu_covering.get("large_scale_menu_regime", "-"),
                 )
             )
     if result.get("line_field_size") is not None:

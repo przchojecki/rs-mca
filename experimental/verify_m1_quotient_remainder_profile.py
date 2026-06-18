@@ -608,6 +608,27 @@ def verify_adaptive_competitive_menu_size(max_window_length, max_menu_size):
     return tuple(rows)
 
 
+def verify_finite_menu_large_scale_dichotomy(max_window_length, max_menu_size):
+    rows = []
+    for window_length in range(1, max_window_length + 1):
+        adaptive_size = adaptive_competitive_menu_size_formula(window_length)
+        for menu_size in range(1, max_menu_size + 1):
+            forced_gap = exact_min_safe_gap_for_menu_size(
+                window_length,
+                menu_size,
+            )
+            if menu_size >= adaptive_size:
+                assert forced_gap == 1
+                regime = "finite_prefix_linear"
+                degree = 1
+            else:
+                assert forced_gap >= 2
+                regime = "forced_superlinear_tail"
+                degree = forced_gap
+            rows.append((window_length, menu_size, forced_gap, regime, degree))
+    return tuple(rows)
+
+
 def verify_gap_one_menu_linear_tail(n, k0, t_start, t_end, q):
     assert k0 <= n - k0
     window_length = t_end - t_start + 1
@@ -1180,6 +1201,11 @@ def main():
         max_menu_size=12,
     )
     print(f"adaptive-competitive menu sizes={adaptive_menu_rows}")
+    dichotomy_rows = verify_finite_menu_large_scale_dichotomy(
+        max_window_length=12,
+        max_menu_size=8,
+    )
+    print(f"finite-menu large-scale dichotomy cases={len(dichotomy_rows)}")
     gap_one_menu_cases = [
         (256, 128, 5, 12, 17),
         (1024, 256, 9, 15, 257),

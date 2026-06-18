@@ -1122,6 +1122,24 @@ one-remainder or co-remainder prefixes above. Thus a gap-one menu does not
 remove all small quotient-remainder bookkeeping, but it prevents any nonlinear
 large-scale tail from surviving beyond the window endpoint.
 
+Putting the preceding pieces together gives an exact finite-menu dichotomy.
+For a window of length `L_W` and a `C`-value dither menu that avoids the
+exact-`k0` slack, let
+
+```text
+D_C = min { D >= 1 : L_W <= Cap(C,D) }.
+```
+
+If `D_C=1`, equivalently `C >= C_ad(L_W)`, then there is an explicit gap-one
+menu and every dyadic quotient-remainder scale `m>t_+` has a linear all-scale
+profile on both adjacent sides. If `D_C>=2`, then every such menu has some
+served slack whose stable large-scale one-remainder mass has binomial degree
+`D_C`; over an unbounded dyadic quotient hierarchy this eventually exceeds the
+adaptive linear baseline, and with line field size `q` it crosses the same-slack
+or whole-window weighted thresholds exactly when the displayed binomial
+inequalities above hold. Thus finite menus have only two large-scale regimes:
+gap-one finite-prefix linearity, or a forced super-linear stable tail.
+
 ## Random-Line Certificate Corollaries
 
 The overlap profiles above plug directly into the support-family random-line
@@ -1617,7 +1635,9 @@ Two immediate readings are useful.
    over-dithered dimension `s=k0-1` has the complement-dual all-scale ledger,
    so a gap-one menu has exact quotient-remainder certificates on both sides
    of each served slack. Over an entire slack window, all nonlinear terms for
-   such a menu are confined to the dyadic prefix `m <= t_+`.
+   such a menu are confined to the dyadic prefix `m <= t_+`. Equivalently, a
+   finite menu is either in the gap-one finite-prefix regime or it forces a
+   super-linear stable tail of degree `D_C>=2`.
 
 This makes the quotient-periodic exception quantitatively separable from the
 aperiodic local-limit problem targeted by M1.

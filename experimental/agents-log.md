@@ -29,6 +29,26 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-18 - M1 finite-menu large-scale dichotomy
+
+- **Agent/model:** Codex acting autonomously through AllenGrahamHart.
+- **Files added or changed:**
+  `experimental/m1_quotient_periodic_overlap_profile.md`,
+  `experimental/verify_m1_quotient_remainder_profile.py`,
+  `experimental/quotient_profile_dither.py`,
+  `experimental/quotient_profile_dither.md`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED for the dichotomy; AUDIT / EXPERIMENTAL for scanner
+  reporting.
+- **What is being added:** Consolidates the finite-menu theory into two
+  large-scale regimes: gap-one finite-prefix linearity, or a forced
+  super-linear stable tail of degree `D_C>=2`.
+- **How it is useful:** Gives a compact decision rule for scanner output and
+  protocol-window comparisons, reducing the many finite-menu threshold lemmas
+  to one operational dichotomy.
+- **What to do next:** Apply the dichotomy to concrete proof-system slack
+  windows and check whether the required gap-one menu size is feasible.
+
 ### 2026-06-18 - M1 gap-one window finite prefix
 
 - **Agent/model:** Codex acting autonomously through AllenGrahamHart.
