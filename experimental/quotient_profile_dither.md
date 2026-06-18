@@ -121,6 +121,22 @@ endpoint is stable-eligible, the M1 note turns the gap into a binomial
 large-scale one-remainder tail of degree `L_W`. The scanner also reports the
 best radii among the actually scanned dithers `0 <= r <= max_dither`.
 
+If a target stable gap is supplied, the same mode reports the finite-menu
+covering bound:
+
+```bash
+python3 experimental/quotient_profile_dither.py \
+  --rates 1/2 --etas 1/64 --m-min 8 --m-max 12 \
+  --max-dither 16 --slack-window 1:16 --target-stable-gap 2
+```
+
+For `D=target_stable_gap`, any allowed dither serves at most `2D` slacks
+without choosing exact support at that slack. Hence a menu that keeps every
+slack in the window within stable gap `D` needs at least
+`ceil(|W|/(2D))` dither values. The scanner also prints the size and entries of
+the elementary block construction, which uses `ceil(|W|/D)` dither values and
+covers the window with gap at most `D`.
+
 Entries marked `stable_large_scale_formula` lie in the range
 
 ```text

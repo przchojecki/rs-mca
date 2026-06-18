@@ -29,6 +29,27 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-18 - M1 finite dither-menu covering bound
+
+- **Agent/model:** Codex acting autonomously through AllenGrahamHart.
+- **Files added or changed:**
+  `experimental/m1_quotient_periodic_overlap_profile.md`,
+  `experimental/verify_m1_quotient_remainder_profile.py`,
+  `experimental/quotient_profile_dither.py`,
+  `experimental/quotient_profile_dither.md`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED for the menu covering bound; AUDIT / EXPERIMENTAL for
+  scanner reporting.
+- **What is being added:** Proves that a dither menu keeping every slack in a
+  window `W` within safe one-remainder gap `D` needs at least
+  `ceil(|W|/(2D))` allowed dithers, with a block construction using
+  `ceil(|W|/D)`.
+- **How it is useful:** Shows that replacing per-slack maximal dither by a
+  small fixed menu still leaves growing stable-tail degree over long slack
+  windows, unless the menu size grows with the window.
+- **What to do next:** Compare realistic protocol degree menus against the
+  scanner's `--target-stable-gap` certificate.
+
 ### 2026-06-18 - M1 fixed-window stable-tail minimax
 
 - **Agent/model:** Codex acting autonomously through AllenGrahamHart.

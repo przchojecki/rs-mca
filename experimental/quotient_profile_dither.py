@@ -32,6 +32,11 @@ The same window mode reports the theorem-backed minimax gap certificate for
 fixed dither over the slack interval.  Over integer dithers the smallest
 possible max |t-r| is the interval-center radius, while avoiding an exact
 k0-support slack forces max |t-r| to be the full window length.
+
+If --target-stable-gap D is supplied, the same report includes the finite-menu
+covering bound: keeping every slack within one-remainder gap D needs at least
+ceil(|W|/(2D)) allowed dithers, and a simple block construction uses at most
+ceil(|W|/D).
 """
 
 from __future__ import annotations
@@ -224,6 +229,43 @@ def fixed_window_minimax_summary(
         "scanned_best_dithers": scanned_best,
         "scanned_zero_gap_free_min_radius": scanned_zero_gap_min_radius,
         "scanned_zero_gap_free_best_dithers": scanned_zero_gap_best,
+    }
+
+
+def ceil_div(numerator: int, denominator: int) -> int:
+    return (numerator + denominator - 1) // denominator
+
+
+def dither_menu_block_construction(
+    slack_window: Tuple[int, int],
+    target_stable_gap: int,
+) -> List[int]:
+    start, end = slack_window
+    return [
+        block_start - 1
+        for block_start in range(start, end + 1, target_stable_gap)
+    ]
+
+
+def dither_menu_covering_summary(
+    slack_window: Tuple[int, int],
+    target_stable_gap: int,
+) -> Dict[str, object]:
+    start, end = slack_window
+    window_length = end - start + 1
+    construction = dither_menu_block_construction(
+        slack_window,
+        target_stable_gap,
+    )
+    return {
+        "target_stable_gap": target_stable_gap,
+        "window_length": window_length,
+        "minimum_menu_size_lower_bound": ceil_div(
+            window_length,
+            2 * target_stable_gap,
+        ),
+        "block_construction_menu_size": len(construction),
+        "block_construction_dithers": construction,
     }
 
 
@@ -760,6 +802,7 @@ def scan(
     top_scales: int,
     slack_window: Optional[Tuple[int, int]],
     line_field_size: Optional[int],
+    target_stable_gap: Optional[int],
 ) -> Dict[str, object]:
     cases = []
     for m in range(m_min, m_max + 1):
@@ -785,7 +828,8 @@ def scan(
             "exact Qprof_H(a,k) from snarks_v4.tex plus a separate "
             "small-remainder quotient-core diagnostic, optionally including "
             "the proved fixed-dither slack-window first-exchange ledger and "
-            "the exact one-remainder strict codegree ledger"
+            "the exact one-remainder strict codegree ledger, plus optional "
+            "fixed-window and finite-menu dither covering certificates"
         ),
         "slack_window": (
             None
@@ -796,6 +840,11 @@ def scan(
             None
             if slack_window is None
             else fixed_window_minimax_summary(slack_window, max_dither)
+        ),
+        "dither_menu_covering": (
+            None
+            if slack_window is None or target_stable_gap is None
+            else dither_menu_covering_summary(slack_window, target_stable_gap)
         ),
         "line_field_size": line_field_size,
         "cases": cases,
@@ -907,6 +956,19 @@ def print_text(result: Dict[str, object]) -> None:
                 ),
             )
         )
+        menu_covering = result.get("dither_menu_covering")
+        if menu_covering is not None:
+            assert isinstance(menu_covering, dict)
+            print(
+                (
+                    "dither-menu covering: gap<={gap} needs >={lower} dithers; "
+                    "block construction uses {upper}"
+                ).format(
+                    gap=menu_covering["target_stable_gap"],
+                    lower=menu_covering["minimum_menu_size_lower_bound"],
+                    upper=menu_covering["block_construction_menu_size"],
+                )
+            )
     if result.get("line_field_size") is not None:
         print(f"line field size for weighted stable tails: {result['line_field_size']}")
     print()
@@ -1051,6 +1113,15 @@ def main() -> None:
         help="optional q_line used to report weighted stable one-remainder tails",
     )
     parser.add_argument(
+        "--target-stable-gap",
+        type=int,
+        default=None,
+        help=(
+            "optional D for the theorem-backed finite-menu covering bound; "
+            "requires --slack-window"
+        ),
+    )
+    parser.add_argument(
         "--format",
         choices=("text", "json"),
         default="text",
@@ -1064,6 +1135,10 @@ def main() -> None:
         raise SystemExit("--max-dither must be nonnegative")
     if args.line_field_size is not None and args.line_field_size <= 1:
         raise SystemExit("--line-field-size must be greater than one")
+    if args.target_stable_gap is not None and args.target_stable_gap < 1:
+        raise SystemExit("--target-stable-gap must be positive")
+    if args.target_stable_gap is not None and args.slack_window is None:
+        raise SystemExit("--target-stable-gap requires --slack-window")
     result = scan(
         m_min=args.m_min,
         m_max=args.m_max,
@@ -1073,6 +1148,7 @@ def main() -> None:
         top_scales=args.top_scales,
         slack_window=args.slack_window,
         line_field_size=args.line_field_size,
+        target_stable_gap=args.target_stable_gap,
     )
     if args.format == "json":
         print(json.dumps(result, indent=2, sort_keys=True))

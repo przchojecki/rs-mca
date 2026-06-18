@@ -678,6 +678,46 @@ slack by moving the dither outside the window makes the far endpoint carry a
 large-scale one-remainder tail whose binomial degree is the full window
 length.
 
+There is also a finite-menu version. Let `R` be a set of allowed integer
+dithers, and suppose that at each slack `t in W` the proof system may choose
+some `r in R` with `r != t`, so exact support `k0` is not used at that slack.
+For a target gap `D >= 1`, one dither `r` can serve at most
+
+```text
+2D
+```
+
+slack values in `W`, namely those in
+
+```text
+[r-D,r-1] union [r+1,r+D].
+```
+
+Therefore, if every slack in `W` is served with `|t-r| <= D`, then
+
+```text
+|R| >= ceil(L_W/(2D)).
+```
+
+Equivalently, every menu of `C` fixed dithers has some slack whose safe
+one-remainder gap is at least
+
+```text
+ceil(L_W/(2C)).
+```
+
+This lower bound is within a factor of two of the elementary block
+construction: the menu
+
+```text
+R_D = {t_- - 1 + jD : 0 <= j < ceil(L_W/D)}
+```
+
+covers the window with gap at most `D`. Hence keeping stable one-remainder
+degree bounded across a growing slack window requires a growing dither menu,
+unless one allows the exact-`k0` slack or switches to genuinely per-slack
+dimension choices.
+
 Finally, the maximal-dither remainder case has an exact all-scale formula, so
 small scales need not be handled as a black-box enumeration. Suppose
 
@@ -1201,7 +1241,10 @@ Two immediate readings are useful.
    obstruction even when whole-fiber scales are controlled. More generally,
    a fixed dither avoiding exact support `k0` over a slack window of length
    `L_W` has an endpoint stable tail of binomial degree at least `L_W` whenever
-   the endpoint lies in the stable range.
+   the endpoint lies in the stable range. If one instead allows a finite menu
+   of `C` dithers and chooses among them per slack without using exact support,
+   some slack still has safe gap at least `ceil(L_W/(2C))`; bounded stable
+   degree over long windows therefore requires a growing dither menu.
 9. In the maximal-dither case, the one-remainder profile is explicit at every
    scale, not only at `m>=t`: the full strict profile is the three-band formula
    at exchange sizes `hm-1`, `hm`, and `hm+1`. This gives a closed-form
@@ -1232,4 +1275,6 @@ remainder in the window. Supplying `--line-field-size q` additionally reports
 the two-sided stable weighted correction `R_stable(t,r0,m,q)` for stable
 large-scale one-remainder entries. The scanner also emits the fixed-window
 minimax gap certificate, distinguishing the unconstrained center radius from
-the larger no-exact-`k0` radius.
+the larger no-exact-`k0` radius. Supplying `--target-stable-gap D` additionally
+reports the finite-menu lower bound `ceil(|W|/(2D))` and a block-construction
+upper bound for covering the window with stable gap at most `D`.

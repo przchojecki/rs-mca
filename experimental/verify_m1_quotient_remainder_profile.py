@@ -226,6 +226,61 @@ def fixed_window_radius(t_start, t_end, r):
     return max(abs(t_start - r), abs(t_end - r))
 
 
+def ceil_div(numerator, denominator):
+    return (numerator + denominator - 1) // denominator
+
+
+def safe_gap_for_menu(t, menu):
+    gaps = [abs(t - r) for r in menu if r != t]
+    if not gaps:
+        return None
+    return min(gaps)
+
+
+def menu_covers_window(t_start, t_end, menu, max_gap):
+    for t in range(t_start, t_end + 1):
+        gap = safe_gap_for_menu(t, menu)
+        if gap is None or gap > max_gap:
+            return False
+    return True
+
+
+def dither_menu_block_construction(t_start, t_end, max_gap):
+    return tuple(range(t_start - 1, t_end, max_gap))
+
+
+def verify_dither_menu_covering_bound(t_start, t_end, max_gap):
+    assert 1 <= t_start <= t_end
+    assert max_gap >= 1
+    window_length = t_end - t_start + 1
+    lower_bound = ceil_div(window_length, 2 * max_gap)
+    upper_bound = ceil_div(window_length, max_gap)
+
+    construction = dither_menu_block_construction(t_start, t_end, max_gap)
+    assert len(construction) == upper_bound
+    assert menu_covers_window(t_start, t_end, construction, max_gap)
+
+    candidates = range(t_start - max_gap, t_end + max_gap + 1)
+    for size in range(lower_bound):
+        for menu in combinations(candidates, size):
+            assert not menu_covers_window(t_start, t_end, menu, max_gap), (
+                t_start,
+                t_end,
+                max_gap,
+                menu,
+            )
+
+    for r in candidates:
+        covered = [
+            t
+            for t in range(t_start, t_end + 1)
+            if t != r and abs(t - r) <= max_gap
+        ]
+        assert len(covered) <= 2 * max_gap
+
+    return lower_bound, upper_bound, construction
+
+
 def verify_fixed_window_stable_tail_minimax(n, k0, t_start, t_end):
     assert 1 <= t_start <= t_end
     window_length = t_end - t_start + 1
@@ -597,6 +652,20 @@ def main():
         print(
             f"n,k0,t0,t1={case}: center_radius={center_radius}, "
             f"zero_gap_radius={zero_gap_radius}, witnesses={witnesses}"
+        )
+    menu_covering_cases = [
+        (5, 9, 1),
+        (5, 12, 2),
+        (8, 16, 2),
+        (10, 19, 3),
+    ]
+    for case in menu_covering_cases:
+        lower_bound, upper_bound, construction = (
+            verify_dither_menu_covering_bound(*case)
+        )
+        print(
+            f"t0,t1,D={case}: menu_lower={lower_bound}, "
+            f"block_upper={upper_bound}, construction={construction}"
         )
     adjacent_remainder_cases = [
         (256, 128, 5, 8),
