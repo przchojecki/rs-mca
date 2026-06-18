@@ -5,14 +5,13 @@
 This is a compact working plan for the M1 residue-line packing program. It is
 not a proof-status authority and should be revised as the project learns more.
 
-1. Keep PR #82 as the first deep low-slack packet theorem: classify the
-   slack-two depth-two canonical frontier into lift-limited sparse regimes and
-   Kummer-certified saturated regimes.
-2. Close the main conditional dependency: isolate elementary open-set terms,
-   remove one-coordinate mixed terms, record finite obstructions, and prove or
-   cite the remaining degree-stratified normal-crossing Kummer-Weil estimate.
-3. Generalize from this packet to a fixed low-slack template theorem separating
-   tangent, quotient-periodic, finite-template, and aperiodic families.
-4. Attack the main aperiodic packing theorem: after tangent and quotient-periodic
-   families are removed, prove that genuinely aperiodic residue-line data have
-   only `n^{1+o(1)}` noncontained slopes.
+1. Keep PR #82 as the first deep low-slack packet theorem: the slack-two
+   depth-two canonical frontier should stay in one focused experimental packet.
+2. Close the two-coordinate residue-line wall: prove the trace-family conductor
+   bound using the bad parameters `u=0`, `u^2+u+1=0`,
+   `-3u^2-2u-3=0`, and infinity.
+3. Use exact finite audits as guardrails: the current evidence supports a
+   possible `4p` target and already obstructs a uniform `3p` target.
+4. After the trace-family wall is closed, generalize to fixed low-slack
+   templates, then separate tangent, quotient-periodic, finite-template, and
+   genuinely aperiodic packing.

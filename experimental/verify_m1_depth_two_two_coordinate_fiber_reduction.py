@@ -60,6 +60,14 @@ def shape_a(u: int, v: int, p: int) -> int:
     return (-(u * u + v * v + u * v + u + v + 1)) % p
 
 
+def delta(value: int, p: int) -> int:
+    return (-3 * value * value - 2 * value - 3) % p
+
+
+def b_collision(value: int, p: int) -> int:
+    return (value * value + value + 1) % p
+
+
 def coordinates(u: int, v: int, p: int) -> Tuple[int, int, int]:
     return u % p, v % p, (-1 - u - v) % p
 
@@ -161,6 +169,28 @@ def category(e: int, h: int, exponents: Tuple[int, int, int, int]) -> str:
     return "other"
 
 
+def bad_parameter_summary(p: int) -> Dict[str, object]:
+    if p <= 3:
+        raise AssertionError(p)
+    delta_roots = [value for value in range(p) if delta(value, p) == 0]
+    collision_roots = [
+        value for value in range(p) if b_collision(value, p) == 0
+    ]
+    if (-3) % p == 0:
+        raise AssertionError((p, "outer meets discriminant"))
+    if b_collision(0, p) == 0:
+        raise AssertionError((p, "outer meets collision"))
+    if set(delta_roots) & set(collision_roots):
+        raise AssertionError((p, delta_roots, collision_roots))
+    if (-3) % p == 0 or (-32) % p == 0:
+        raise AssertionError((p, "inseparable"))
+    return {
+        "delta_root_count": len(delta_roots),
+        "collision_root_count": len(collision_roots),
+        "geometric_bad_parameter_bound": 6,
+    }
+
+
 def audit_sample(p: int, n: int) -> Dict[str, object]:
     if (p - 1) % n != 0:
         raise ValueError("n must divide p-1")
@@ -207,6 +237,7 @@ def audit_sample(p: int, n: int) -> Dict[str, object]:
         "e": e,
         "h": h,
         "checked": checked,
+        **bad_parameter_summary(p),
         "max_open_ratio_to_p": round(max_open_ratio, 10),
         "max_core_ratio_to_p": round(max_core_ratio, 10),
         "max_line_ratio_to_sqrt_p": round(max_line_ratio, 10),

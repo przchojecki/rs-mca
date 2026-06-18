@@ -75,6 +75,37 @@ degree-four estimate is exactly cancellation in the outer sum
 sum_u mu(u) F_{nu,eta}(u).
 ```
 
+## Outer Bad-Parameter Set
+
+The fiber support can change only when two support points collide. Besides
+the outer Kummer twist at `u=0` and the point at infinity on `P^1_u`, the
+finite bad parameters are exactly contained in
+
+```text
+B(u)=u^2+u+1=0,          Delta(u)=-3u^2-2u-3=0.
+```
+
+Here `B(u)=0` is the collision `v=0` with an `A(u,v)=0` root, and
+`Delta(u)=0` is the collision of the two `A(u,v)=0` roots. For `p>3`, both
+quadratics are separable. They are disjoint: if `B(u)=Delta(u)=0`, then
+
+```text
+Delta(u)+3B(u)=u
+```
+
+forces `u=0`, but `B(0)=1`. Also `Delta(0)=-3`, so the outer Kummer point
+`u=0` is separate from the discriminant roots.
+
+Thus the sheaf-theoretic proof target for the core sum has bad-parameter
+support contained in at most six geometric points:
+
+```text
+u=0,        B(u)=0,        Delta(u)=0,        infinity.
+```
+
+This is the exact conductor inventory that a proof of the current `9p`
+constant, or of a sharper `4p` target, should exploit.
+
 ## Line Correction
 
 The principal-coordinate exclusion is the line `w=0`, i.e. `v=-1-u`. On this

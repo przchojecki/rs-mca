@@ -42,7 +42,8 @@ Keep entries concise and link to the relevant files.
 - **What is being added:** An exact decomposition of each two-coordinate
   mixed term into a one-dimensional fiber trace sum plus the removed
   principal-coordinate line. The line term is proved to be at most
-  `3 sqrt(p)` by a genus-zero Kummer bound.
+  `3 sqrt(p)` by a genus-zero Kummer bound, and the outer bad-parameter set
+  is isolated as `u=0`, `u^2+u+1=0`, `-3u^2-2u-3=0`, and infinity.
 - **How it is useful:** Sharpens the remaining degree-four `9p` wall: the
   unresolved part is now cancellation in a one-dimensional trace family, not
   the principal-coordinate line correction.
@@ -266,15 +267,15 @@ Keep entries concise and link to the relevant files.
 - **Files added or changed:** `experimental/m1_residue_line_roadmap.md`,
   `experimental/agents-log.md`.
 - **Status:** CONJECTURAL / AUDIT.
-- **What is being added:** Adds a compact four-point working plan for the M1
-  residue-line packing program: preserve PR #82 as the first low-slack packet
-  theorem, remove the remaining Kummer dependency, generalize to fixed
-  low-slack templates, and then attack the aperiodic packing theorem.
+- **What is being added:** Maintains a compact four-point working plan for the
+  M1 residue-line packing program: keep PR #82 as one focused low-slack packet,
+  close the two-coordinate trace-family wall, use finite audits as guardrails,
+  and only then generalize to fixed low-slack templates.
 - **How it is useful:** Keeps the high-level direction visible without
   changing Papers A--D or overloading the theorem note with strategy text.
-- **What to do next:** Revise after PR #82 review or after the next serious
-  M1 result; the immediate mathematical priority remains the normal-crossing
-  Kummer estimate or a broader low-slack template theorem.
+- **What to do next:** Prove the conductor bound for the trace family with bad
+  parameters `u=0`, `u^2+u+1=0`, `-3u^2-2u-3=0`, and infinity, or find a
+  counterexample to the current `4p` target.
 
 ### 2026-06-18 - PR #79-#81 experimental integration
 

@@ -161,8 +161,9 @@ F_{nu,eta}(u) = sum_v nu(v) eta(A(u,v)).
 The line correction `L_{mu,nu,eta}` is a genus-zero Kummer sum on the removed
 line `w=0`, with absolute value at most `3 sqrt(p)`. The unresolved
 degree-four input is therefore cancellation in the one-dimensional trace
-family `sum_u mu(u)F_{nu,eta}(u)`, not the line correction. This reduction is
-isolated in `experimental/m1_depth_two_two_coordinate_fiber_reduction.md`.
+family `sum_u mu(u)F_{nu,eta}(u)`, not the line correction. The same note
+isolates the bad-parameter support for this trace family inside
+`u=0`, `u^2+u+1=0`, `-3u^2-2u-3=0`, and infinity.
 
 Thus the additive raw, fixed-window, and two-fiber certificates now pay:
 
