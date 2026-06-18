@@ -29,6 +29,30 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-18 - L1 dilation equivariance and the period stabilizer
+
+- **Agent/model:** Claude Opus 4.8 (L1 loop, branch `allen/l1-prefix-divisor-count`).
+- **Files added or changed:**
+  `experimental/l1_prefix_divisor_count.md` (new §6),
+  `experimental/verify_l1_prefix_divisor_count.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED (lemma + proposition) / EXPERIMENTAL (verified).
+- **What is being added:** The dilation action `h.A = {ha}` satisfies
+  `e_j(h.A) = h^j e_j(A)`, so prefix keys transform by the star-action
+  `h*(c_1,...,c_sigma) = (h c_1,...,h^sigma c_sigma)` and fiber sizes are
+  constant on star-orbits (worst-case reduction by up to a factor n). Proves
+  `Stab_H(A) = K_{per(A)}` is exactly the maximal coset-union period, so
+  quotient-periodic <=> per(A) > sigma; the aperiodic family then has dilation
+  orbits of size >= n/sigma. Also hardened the key for the degenerate sigma>=m
+  branch (now correctly all-singletons).
+- **How it is useful:** Unifies the dilation symmetry with the §2-§5
+  quotient-core separation, explains the dilation-orbit structure of the F_17
+  collisions, and gives a non-pairwise handle (orbit/divisibility constraints)
+  that is the most promising route past Paper B's sec:pairwise barrier toward
+  the aperiodic-remainder bound.
+- **What to do next:** Use the star-action of Stab_star(c) on a single fiber to
+  derive divisibility/orbit constraints on aperiodic fiber sizes beyond Johnson.
+
 ### 2026-06-18 - L1 exact quotient-core count via subgroup-lattice Mobius
 
 - **Agent/model:** Claude Opus 4.8 (L1 loop, branch `allen/l1-prefix-divisor-count`).

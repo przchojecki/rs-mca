@@ -102,13 +102,18 @@ def poly_from_roots(roots, p):
 
 
 def top_sigma_key(coeffs, sigma):
-    """Top ``sigma`` coefficients (below the monic leading term) of a locator.
+    """Top ``min(sigma, m)`` coefficients (below the monic leading term).
 
     ``coeffs`` is low-degree-first with ``coeffs[-1] == 1``.  The coefficient of
     ``X^{m-1}`` is ``coeffs[m-1]``, of ``X^{m-2}`` is ``coeffs[m-2]``, ...
+    A degree-``m`` monic locator has only ``m`` coefficients below the leading
+    term, so for ``sigma >= m`` the key is the full non-leading coefficient
+    vector --- which uniquely determines the divisor (every fiber a singleton),
+    exactly as in the complement-prefix lemma's ``sigma >= m`` branch.
     """
     m = len(coeffs) - 1
-    return tuple(coeffs[m - 1 - j] for j in range(sigma))
+    eff = min(sigma, m)
+    return tuple(coeffs[m - 1 - j] for j in range(eff))
 
 
 # ---------------------------------------------------------------------------
@@ -263,6 +268,42 @@ def scan(p, n, k, sigma, max_examples=3):
         max_aperiodic_fiber = max(max_aperiodic_fiber, ap)
     aperiodic_divisors = total - structured_direct
 
+    # --- Dilation equivariance and the period stabilizer. ---
+    # h.A = {h*a} acts on divisors; e_j(h.A) = h^j e_j(A), so the top-sigma key
+    # transforms by the star-action  h*(c_1,...,c_sigma) = (h c_1, h^2 c_2, ...).
+    def dilate_key(key, h):
+        return tuple((pow(h, j + 1, p) * key[j]) % p for j in range(len(key)))
+
+    # (i) key-equivariance on a sample of divisors.
+    sample_As = [frozenset(c)
+                 for c in itertools.islice(itertools.combinations(H, m), 256)]
+    equivariant = True
+    for A in sample_As:
+        kA = top_sigma_key(poly_from_roots(sorted(A), p), sigma)
+        for h in H:
+            hA = sorted((h * a) % p for a in A)
+            if top_sigma_key(poly_from_roots(hA, p), sigma) != dilate_key(kA, h):
+                equivariant = False
+                break
+        if not equivariant:
+            break
+
+    # (ii) dilation stabilizer order == maximal coset-union period, for all A.
+    stab_eq_period = True
+    for A in cu_flags:
+        stab = sum(1 for h in H if frozenset((h * a) % p for a in A) == A)
+        period = max(cu_flags[A] | {1})
+        if stab != period:
+            stab_eq_period = False
+            break
+
+    # (iii) fiber sizes are constant on star-orbits of the prefix space.
+    sizes = {key: len(members) for key, members in buckets.items()}
+    fiber_const_on_orbits = all(
+        (dilate_key(key, h) in sizes and sizes[dilate_key(key, h)] == sz)
+        for key, sz in sizes.items() for h in H
+    )
+
     entropy_margin_bits = sigma * _log2(p) - _log2_binom(n, s)
     result = {
         "status": "EXPERIMENTAL/AUDIT",
@@ -289,6 +330,9 @@ def scan(p, n, k, sigma, max_examples=3):
         "aperiodic_divisors": aperiodic_divisors,
         "max_aperiodic_fiber_size": max_aperiodic_fiber,
         "random_baseline": total / (p ** sigma),
+        "dilation_equivariant": equivariant,
+        "stab_equals_period": stab_eq_period,
+        "fiber_const_on_dilation_orbits": fiber_const_on_orbits,
         "nonsingleton_members": nonsingleton_members,
         "nonsingleton_aperiodic_members": nonsingleton_aperiodic_members,
         "nonsingleton_all_aperiodic": (
@@ -347,12 +391,16 @@ def self_check():
     sweep = [(17, 16, k, sg) for k in range(2, 9) for sg in range(1, 6)
              if 0 < k + sg <= 15]
     id_ok = floor_ok = struct_ok = collapse_ok = True
+    equiv_ok = stab_ok = orbit_ok = True
     for (pp, nn, kk, ss) in sweep:
         rr = scan(pp, nn, kk, ss)
         id_ok &= rr["coset_union_identity_ok"]
         floor_ok &= rr["quotient_core_floor_respected"]
         struct_ok &= rr["structured_count_match"]
         collapse_ok &= rr["dyadic_collapse_ok"]
+        equiv_ok &= rr["dilation_equivariant"]
+        stab_ok &= rr["stab_equals_period"]
+        orbit_ok &= rr["fiber_const_on_dilation_orbits"]
     flag = "OK " if id_ok else "FAIL"
     if not id_ok:
         ok = False
@@ -369,6 +417,18 @@ def self_check():
     if not collapse_ok:
         ok = False
     print(f"  [{flag}] dyadic collapse to CU_dmin across {len(sweep)} cases: {collapse_ok}")
+    flag = "OK " if equiv_ok else "FAIL"
+    if not equiv_ok:
+        ok = False
+    print(f"  [{flag}] dilation key-equivariance across {len(sweep)} cases: {equiv_ok}")
+    flag = "OK " if stab_ok else "FAIL"
+    if not stab_ok:
+        ok = False
+    print(f"  [{flag}] dilation stabilizer == coset-union period across {len(sweep)} cases: {stab_ok}")
+    flag = "OK " if orbit_ok else "FAIL"
+    if not orbit_ok:
+        ok = False
+    print(f"  [{flag}] fiber sizes constant on dilation orbits across {len(sweep)} cases: {orbit_ok}")
     return ok
 
 
@@ -399,6 +459,9 @@ def human_table(r):
     lines.append(f"  aperiodic divisors         : {r['aperiodic_divisors']}  "
                  f"(max aperiodic fiber: {r['max_aperiodic_fiber_size']})")
     lines.append(f"  random baseline binom/q^s  : {r['random_baseline']:.4f}")
+    lines.append(f"  dilation-equivariant keys  : {r['dilation_equivariant']}")
+    lines.append(f"  stab order == period       : {r['stab_equals_period']}")
+    lines.append(f"  fiber const on dil. orbits : {r['fiber_const_on_dilation_orbits']}")
     lines.append(f"  nonsingleton members       : {r['nonsingleton_members']}")
     lines.append(f"  ... of which aperiodic     : {r['nonsingleton_aperiodic_members']}")
     lines.append(f"  all nonsingleton aperiodic : {r['nonsingleton_all_aperiodic']}")

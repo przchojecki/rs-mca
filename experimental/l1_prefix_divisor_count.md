@@ -229,6 +229,62 @@ count is exactly `2 = binom(2,1)` (`d_*=8`), the `12868` aperiodic divisors have
 maximal aperiodic fiber `2`, and the random baseline `binom(16,8)/17^4 = 0.154`
 --- i.e. the aperiodic remainder is already at the predicted scale.
 
+## 6. Dilation equivariance and the period stabilizer
+
+The group `H` acts on divisors by dilation `h \cdot A = \{ha : a \in A\}`
+(`h \in H`), which permutes the degree-`m` divisors of `X^n-1`. Since a
+`j`-subset product scales by `h^j`,
+```text
+e_j(h \cdot A) = h^j e_j(A),    so    L_{h\cdot A}(X) = h^m L_A(X/h).
+```
+Hence the top-`sigma` key transforms by the **star-action**
+```text
+h \star (c_1, ..., c_sigma) = (h c_1, h^2 c_2, ..., h^sigma c_sigma).
+```
+
+**Lemma (dilation equivariance).** `Phi_sigma(h \cdot A) = h \star Phi_sigma(A)`.
+Dilation by `h` is therefore a bijection
+`Phi_sigma^{-1}(c) -> Phi_sigma^{-1}(h \star c)`, so the prefix-fiber size is
+constant on each `H`-orbit of the star-action on `F_q^sigma`:
+```text
+|Phi_sigma^{-1}(c)| = |Phi_sigma^{-1}(h \star c)|   for all h in H.
+```
+*Proof.* `e_j(h\cdot A) = sum_{T in binom(A,j)} prod_{a in T} (ha)
+= h^j e_j(A)`; the key is `((-1)^{j+1} e_{j+1}(A))_j`, which scales coordinatewise
+by `h^{j+1}`. Dilation is invertible, giving the bijection. ∎
+
+**Consequence (worst-case reduction).** The worst-case prefix fiber is attained
+on a set of star-orbit representatives:
+```text
+max_c |Phi_sigma^{-1}(c)| = max over star-orbit representatives,
+```
+cutting the worst-case search by up to a factor `n`, and the number of distinct
+fiber sizes is at most the number of star-orbits.
+
+**Proposition (period = stabilizer).** For a divisor `A`, the dilation
+stabilizer `Stab_H(A) = \{h in H : h \cdot A = A\}` is the unique subgroup
+`K_d <= H` of largest order `d` for which `A` is a `K_d`-coset-union. Writing
+`per(A) := |Stab_H(A)|`,
+```text
+A is quotient-periodic (coset-union for some active d > sigma)
+   <=>  per(A) > sigma.
+```
+*Proof.* `Stab_H(A)` is a subgroup of the cyclic group `H`, hence equals `K_d`
+for `d = per(A)`. `h \cdot A = A` for all `h in K_d` says exactly that `A` is a
+union of `K_d`-cosets; maximality of `d` is maximality of the stabilizer. ∎
+
+This unifies the symmetry with §2--§5: the structured (quotient-core) mass of §5
+is *precisely* the divisors with super-`sigma` dilation stabilizer, and the
+aperiodic remainder is `\{A : per(A) <= sigma\}` --- divisors with small
+stabilizer, hence dilation orbits of size `n/per(A) >= n/sigma`. So the aperiodic
+family is forced to spread into large dilation orbits, a structural handle the
+purely pairwise (Johnson) bound does not see. All three statements are verified
+by the scanner (`dilation_equivariant`, `stab_equals_period`,
+`fiber_const_on_dilation_orbits`) across the 35-case sweep, and they explain the
+dilation-orbit structure of the `F_17` collisions reported in
+`l1_aperiodic_prefix_collision.md` (its three "dilation orbits" are exactly
+star-orbits under this action).
+
 ## Ledger impact
 
 - **Quotient (worsens, now explicit):** gives an exact, field-independent
@@ -272,3 +328,8 @@ python3 experimental/verify_l1_prefix_divisor_count.py --p 17 --n 16 --k 4 --sig
    the random scale `binom(n,s)/q^sigma`; target a worst-case second-moment /
    Plotkin bound on the *aperiodic* sub-family that beats the generic Johnson
    anchor by using that coset-union mass has been removed.
+6. **Exploit the dilation symmetry (§6).** Aperiodic divisors have dilation
+   orbits of size `>= n/sigma`. Use the star-action of `Stab_star(c)` on a single
+   fiber to get divisibility/orbit constraints on aperiodic fiber sizes that
+   pairwise (Johnson) data misses --- the most promising route past the
+   `sec:pairwise` barrier of Paper B.
