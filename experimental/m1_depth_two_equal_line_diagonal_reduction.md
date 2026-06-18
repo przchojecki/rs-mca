@@ -828,6 +828,37 @@ show that, after the Mellin twist by `rho=alpha chi_2`, the total conductor
 of this pushforward is small enough to save two units relative to the generic
 `dim H^1 <= 5` ledger found on the original `s`- and `z`-lines.
 
+The local pushforward conductor audit gives the following standard tame
+ledger for the generic equal-line wall.  The sheaf `G` has generic rank `4`.
+At `y=0`, the two branches go to `lambda=infinity`; after the Mellin twist
+they contribute four nontrivial local characters.  At `y=1`, the singular
+branch has quadratic contact with `lambda=0`, while the other branch is the
+regular `lambda=1/4` fiber, so the standard local cost is one.  The two
+roots of `9y^2+2y+1` give the two `lambda=1` costs.  The branch value
+`y=3/4` lies over the regular fiber `lambda=1/12` and costs two units as a
+quadratic pushforward branch.  Finally, `y=infinity` is a regular
+`lambda=1/4` branch, but the Mellin twist makes the rank-four local
+representation nontrivial.
+
+Thus the generic pushforward ledger is
+
+```text
+y=0:                 4
+y=1:                 1
+9y^2+2y+1=0:          2
+y=3/4:               2
+y=infinity:          4
+total conductor:    13
+rank:                4
+dim H^1 target:      13 - 2*4 = 5.
+```
+
+This matches the conservative `s`- and `z`-line obstruction.  In particular,
+the desired `3p+O(sqrt(p))` leading term is not obtained merely by passing to
+the y-pushforward: it still requires a two-unit saving beyond this local
+ledger, presumably from a non-generic relation among the boundary
+contributions or from a sharper middle-extension identification.
+
 ## Pullback Branch Checklist
 
 The rational pullback

@@ -29,6 +29,28 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-18 - M1 y-pushforward local conductor audit
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/m1_depth_two_equal_line_diagonal_reduction.md`,
+  `experimental/verify_m1_depth_two_equal_line_diagonal_reduction.py`,
+  `experimental/m1_kummer_weil_import_contract.md`,
+  `experimental/m1_residue_line_roadmap.md`,
+  `experimental/agents-log.md`.
+- **Status:** CONDITIONAL / AUDIT.
+- **What is being added:** The six singular values of the degree-two
+  y-pushforward are refined to a local tame conductor ledger:
+  `4+1+2+2+4=13` for rank `4`, hence the standard
+  `dim H^1 <= 5` target remains.
+- **How it is useful:** Shows that the y-pushforward reduction localizes the
+  obstruction but does not itself supply the desired `3p+O(sqrt(p))` leading
+  term; the missing two units must come from a non-generic cancellation or
+  sharper middle-extension identification.
+- **What to do next:** Look for a two-unit saving beyond the local ledger,
+  especially involving the paired boundary contributions at `y=0` and
+  `y=infinity` after the Mellin twist.
+
 ### 2026-06-18 - M1 y-pushforward singular values
 
 - **Agent/model:** Codex.

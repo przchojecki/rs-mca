@@ -266,6 +266,10 @@ The sharper one-dimensional pushforward support is generically the six
 geometric values `y=0`, `y=1`, the two roots of `9y^2+2y+1`, `y=3/4`, and
 `y=infinity`; `y=3` is an ordinary projective fiber except in the small
 collision characteristic `p=11`.
+The standard local pushforward ledger after the Mellin twist is still
+`4+1+2+2+4=13` for rank `4`, hence the same generic
+`dim H^1 <= 5` obstruction.  The needed `3p+O(sqrt(p))` leading term
+therefore requires a two-unit saving beyond this local count.
 
 Thus the fixed-window, quotient-window, and two-fiber certificates still use
 the conservative common ledger:

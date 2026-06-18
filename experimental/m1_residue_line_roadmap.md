@@ -51,7 +51,10 @@ should be revised as the project learns more.
    structure, not a naive two-variable Kummer estimate, remains the object to
    exploit. Generically the pushforward has only six candidate singular
    values on the `y`-line: `0`, `1`, the two roots of `9y^2+2y+1`, `3/4`,
-   and infinity.
+   and infinity. The standard local pushforward conductor ledger is still
+   `4+1+2+2+4=13` for rank `4`, so the same `dim H^1 <= 5` obstruction
+   remains; the desired `3p+O(sqrt(p))` leading term needs a two-unit saving
+   beyond this local count.
 4. After the trace-family wall is closed, generalize to fixed low-slack
    templates, then separate tangent, quotient-periodic, finite-template, and
    genuinely aperiodic packing.

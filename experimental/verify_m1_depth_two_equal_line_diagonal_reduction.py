@@ -214,6 +214,42 @@ def lambda_one_y_polynomial(y_value: int, p: int) -> int:
     return (9 * y_value * y_value + 2 * y_value + 1) % p
 
 
+def lambda_y_relation_value(y_value: int, lam: int, p: int) -> int:
+    return (
+        16 * y_value * y_value * lam * lam
+        + (-8 * y_value * y_value + 4 * y_value) * lam
+        + (y_value - 1) * (y_value - 1)
+    ) % p
+
+
+def lambda_y_relation_dlambda(y_value: int, lam: int, p: int) -> int:
+    return (32 * y_value * y_value * lam - 8 * y_value * y_value + 4 * y_value) % p
+
+
+def lambda_y_relation_dy(y_value: int, lam: int, p: int) -> int:
+    return (
+        32 * y_value * lam * lam
+        + (-16 * y_value + 4) * lam
+        + 2 * (y_value - 1)
+    ) % p
+
+
+def lambda_y_relation_at_infinity(r_value: int, lam: int, p: int) -> int:
+    return (
+        16 * lam * lam
+        + (-8 + 4 * r_value) * lam
+        + (1 - r_value) * (1 - r_value)
+    ) % p
+
+
+def lambda_y_relation_at_infinity_dlambda(r_value: int, lam: int, p: int) -> int:
+    return (32 * lam - 8 + 4 * r_value) % p
+
+
+def lambda_y_relation_at_infinity_dr(r_value: int, lam: int, p: int) -> int:
+    return (4 * lam - 2 * (1 - r_value)) % p
+
+
 def line_monodromies(e: int, h: int, a: int, d: int) -> Tuple[int, int, int]:
     lift = h // e
     first = (lift * a) % h
@@ -1173,6 +1209,106 @@ def verify_pushforward_singular_values(p: int) -> Dict[str, object]:
     }
 
 
+def verify_pushforward_local_conductor_budget(p: int) -> Dict[str, object]:
+    if p <= 3 or p == 11:
+        raise AssertionError(("generic pushforward conductor excludes p", p))
+    one_fourth = pow(4, -1, p)
+    one_twelfth = pow(12, -1, p)
+    one_third = pow(3, -1, p)
+    branch_y = 3 * one_fourth % p
+
+    # y=0, lambda=infinity: in w=1/lambda the tangent cone is
+    # w^2+4yw+16y^2, which has two geometric branches for p>3.
+    if (-48) % p == 0:
+        raise AssertionError(("lambda infinity tangent collision", p))
+
+    # y=1: one branch has lambda=0 with quadratic contact; the other is
+    # the regular lambda=1/4 branch.
+    if lambda_y_relation_value(1, 0, p) != 0:
+        raise AssertionError(("y=1 lambda=0", p))
+    if lambda_y_relation_dlambda(1, 0, p) == 0:
+        raise AssertionError(("y=1 lambda=0 not implicit", p))
+    if lambda_y_relation_dy(1, 0, p) != 0:
+        raise AssertionError(("y=1 lambda=0 not double", p))
+    if lambda_y_relation_value(1, one_fourth, p) != 0:
+        raise AssertionError(("y=1 lambda=1/4", p))
+    if lambda_y_relation_dlambda(1, one_fourth, p) == 0:
+        raise AssertionError(("y=1 regular branch", p))
+
+    # lambda=1: the two roots of 9y^2+2y+1 are simple and separated from
+    # the ordinary/branch fibers in the generic characteristics.
+    lambda_one_roots = [
+        y_value for y_value in range(p) if lambda_one_y_polynomial(y_value, p) == 0
+    ]
+    for y_value in lambda_one_roots:
+        if lambda_y_relation_value(y_value, 1, p) != 0:
+            raise AssertionError(("lambda=1 relation", p, y_value))
+        if (18 * y_value + 2) % p == 0:
+            raise AssertionError(("lambda=1 double y-root", p, y_value))
+        if lambda_y_relation_dlambda(y_value, 1, p) == 0:
+            raise AssertionError(("lambda=1 branch collision", p, y_value))
+
+    # y=3/4 is a simple branch point over the regular lambda=1/12 value.
+    if lambda_y_relation_value(branch_y, one_twelfth, p) != 0:
+        raise AssertionError(("regular branch relation", p))
+    if lambda_y_relation_dlambda(branch_y, one_twelfth, p) != 0:
+        raise AssertionError(("regular branch dlambda", p))
+    if lambda_y_relation_dy(branch_y, one_twelfth, p) == 0:
+        raise AssertionError(("regular branch dy", p))
+
+    # y=infinity: with r=1/y, the two branches coalesce at lambda=1/4 and
+    # the projection to the y-line is simply ramified over a regular fiber.
+    if lambda_y_relation_at_infinity(0, one_fourth, p) != 0:
+        raise AssertionError(("infinity branch relation", p))
+    if lambda_y_relation_at_infinity_dlambda(0, one_fourth, p) != 0:
+        raise AssertionError(("infinity branch dlambda", p))
+    if lambda_y_relation_at_infinity_dr(0, one_fourth, p) == 0:
+        raise AssertionError(("infinity branch dr", p))
+
+    # y=3 is an ordinary projective fiber, not part of the generic conductor.
+    if lambda_y_relation_value(3, one_twelfth, p) != 0:
+        raise AssertionError(("y=3 finite lambda", p))
+    if lambda_y_relation_value(3, one_third, p) != 0:
+        raise AssertionError(("y=3 infinity lambda", p))
+    if lambda_y_relation_dlambda(3, one_twelfth, p) == 0:
+        raise AssertionError(("y=3 finite branch", p))
+    if lambda_y_relation_dlambda(3, one_third, p) == 0:
+        raise AssertionError(("y=3 infinity branch", p))
+
+    rank = 4
+    conductor_budget = {
+        "y_zero_lambda_infinity_after_mellin": 4,
+        "y_one_lambda_zero_double_pullback": 1,
+        "lambda_one_roots": 2,
+        "y_three_quarters_regular_branch": 2,
+        "y_infinity_regular_branch_after_mellin": 4,
+    }
+    total_conductor = sum(conductor_budget.values())
+    h1_budget = total_conductor - 2 * rank
+    if total_conductor != 13 or h1_budget != 5:
+        raise AssertionError(("pushforward conductor budget", p, total_conductor))
+
+    return {
+        "p": p,
+        "rank": rank,
+        "generic_local_profile": {
+            "y=0": "two unramified lambda=infinity branches",
+            "y=1": "lambda=0 has quadratic contact; lambda=1/4 is regular",
+            "lambda=1": "two simple roots of 9y^2+2y+1",
+            "y=3/4": "simple branch over regular lambda=1/12",
+            "y=infinity": "simple branch over regular lambda=1/4",
+            "y=3": "ordinary lambda=1/12,1/3 fiber",
+        },
+        "conductor_budget": {
+            **conductor_budget,
+            "total": total_conductor,
+            "generic_h1_target": h1_budget,
+            "desired_h1_target": 3,
+            "missing_conductor_saving": h1_budget - 3,
+        },
+    }
+
+
 def audit_case(case: Dict[str, int]) -> Dict[str, object]:
     p = int(case["p"])
     n = int(case["n"])
@@ -1360,6 +1496,12 @@ def main() -> None:
         for case in CASES
     ]
     for row in pushforward_rows:
+        print(row)
+    pushforward_conductor_rows = [
+        verify_pushforward_local_conductor_budget(int(case["p"]))
+        for case in CASES
+    ]
+    for row in pushforward_conductor_rows:
         print(row)
     top = max(rows, key=lambda row: float(row["sum_ratio"]))
     for key, value in EXPECTED_TOP.items():
