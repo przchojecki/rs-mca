@@ -130,12 +130,17 @@ python3 experimental/quotient_profile_dither.py \
   --max-dither 16 --slack-window 1:16 --target-stable-gap 2
 ```
 
-For `D=target_stable_gap`, any allowed dither serves at most `2D` slacks
-without choosing exact support at that slack. Hence a menu that keeps every
-slack in the window within stable gap `D` needs at least
-`ceil(|W|/(2D))` dither values. The scanner also prints the size and entries of
-the elementary block construction, which uses `ceil(|W|/D)` dither values and
-covers the window with gap at most `D`.
+For `D=target_stable_gap`, the exact safe covering capacity of a `C`-value
+dither menu is
+
+```text
+Cap(C,D) = floor(C/2)(3D+1) + (C mod 2)D.
+```
+
+This accounts for the forbidden exact-support point `t=r`: a pair of dithers
+can safely cover `3D+1` consecutive slacks, while a leftover single dither can
+cover `D`. The scanner reports the exact minimum menu size needed for
+`Cap(C,D) >= |W|`, plus an explicit capacity-achieving construction.
 
 Adding a menu size turns this into a per-parameter stable-tail lower-bound
 certificate:
@@ -144,11 +149,11 @@ certificate:
 python3 experimental/quotient_profile_dither.py \
   --rates 1/2 --etas 1/64 --m-min 8 --m-max 12 \
   --max-dither 16 --slack-window 5:12 \
-  --target-stable-gap 2 --dither-menu-size 2
+  --target-stable-gap 3 --dither-menu-size 2
 ```
 
 For a menu of size `C`, the forced safe gap is
-`E=ceil(|W|/(2C))`. When `D<t_-`, every dyadic scale
+`E=min{D': |W| <= Cap(C,D')}`. When `D<t_-`, every dyadic scale
 `M >= t_+ + D` has a theorem-backed lower bound
 
 ```text

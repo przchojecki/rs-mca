@@ -34,9 +34,9 @@ possible max |t-r| is the interval-center radius, while avoiding an exact
 k0-support slack forces max |t-r| to be the full window length.
 
 If --target-stable-gap D is supplied, the same report includes the finite-menu
-covering bound: keeping every slack within one-remainder gap D needs at least
-ceil(|W|/(2D)) allowed dithers, and a simple block construction uses at most
-ceil(|W|/D).
+covering certificate: a C-value menu safely covers at most
+floor(C/2)(3D+1)+(C mod 2)D consecutive slacks, and the scanner emits the exact
+capacity threshold and a capacity-achieving construction.
 """
 
 from __future__ import annotations
@@ -273,15 +273,47 @@ def ceil_div(numerator: int, denominator: int) -> int:
     return (numerator + denominator - 1) // denominator
 
 
-def dither_menu_block_construction(
+def dither_menu_capacity(menu_size: int, safe_gap: int) -> int:
+    pairs = menu_size // 2
+    singleton = menu_size % 2
+    return pairs * (3 * safe_gap + 1) + singleton * safe_gap
+
+
+def exact_min_menu_size_for_gap(window_length: int, safe_gap: int) -> int:
+    even_pairs = ceil_div(window_length, 3 * safe_gap + 1)
+    even_size = 2 * even_pairs
+    if window_length <= safe_gap:
+        odd_size = 1
+    else:
+        odd_pairs = ceil_div(window_length - safe_gap, 3 * safe_gap + 1)
+        odd_size = 2 * odd_pairs + 1
+    return min(even_size, odd_size)
+
+
+def exact_min_safe_gap_for_menu_size(window_length: int, menu_size: int) -> int:
+    pairs = menu_size // 2
+    singleton = menu_size % 2
+    coefficient = 3 * pairs + singleton
+    offset = pairs
+    return max(1, ceil_div(max(0, window_length - offset), coefficient))
+
+
+def exact_dither_menu_construction(
     slack_window: Tuple[int, int],
-    target_stable_gap: int,
+    menu_size: int,
+    safe_gap: int,
 ) -> List[int]:
     start, end = slack_window
-    return [
-        block_start - 1
-        for block_start in range(start, end + 1, target_stable_gap)
-    ]
+    cursor = start
+    menu = []
+    for _ in range(menu_size // 2):
+        if cursor > end:
+            break
+        menu.extend([cursor + safe_gap, cursor + 2 * safe_gap])
+        cursor += 3 * safe_gap + 1
+    if menu_size % 2 and cursor <= end:
+        menu.append(cursor + safe_gap)
+    return menu
 
 
 def dither_menu_covering_summary(
@@ -291,27 +323,50 @@ def dither_menu_covering_summary(
 ) -> Dict[str, object]:
     start, end = slack_window
     window_length = end - start + 1
-    construction = dither_menu_block_construction(
+    exact_min_menu_size = exact_min_menu_size_for_gap(
+        window_length,
+        target_stable_gap,
+    )
+    exact_construction = exact_dither_menu_construction(
         slack_window,
+        exact_min_menu_size,
         target_stable_gap,
     )
     summary = {
         "target_stable_gap": target_stable_gap,
         "window_length": window_length,
-        "minimum_menu_size_lower_bound": ceil_div(
+        "coarse_menu_size_lower_bound": ceil_div(
             window_length,
             2 * target_stable_gap,
         ),
-        "block_construction_menu_size": len(construction),
-        "block_construction_dithers": construction,
+        "exact_min_menu_size_for_target_gap": exact_min_menu_size,
+        "exact_capacity_for_target_gap": dither_menu_capacity(
+            exact_min_menu_size,
+            target_stable_gap,
+        ),
+        "exact_capacity_construction_dithers": exact_construction,
     }
     if dither_menu_size is not None:
-        forced_gap = ceil_div(window_length, 2 * dither_menu_size)
-        summary["queried_menu_size"] = dither_menu_size
-        summary["coverage_possible_by_count"] = (
-            dither_menu_size >= summary["minimum_menu_size_lower_bound"]
+        forced_gap = exact_min_safe_gap_for_menu_size(
+            window_length,
+            dither_menu_size,
         )
-        summary["forced_safe_gap_lower_bound"] = forced_gap
+        summary["queried_menu_size"] = dither_menu_size
+        summary["coverage_possible_by_exact_capacity"] = (
+            target_stable_gap >= forced_gap
+        )
+        summary["capacity_at_target_gap"] = dither_menu_capacity(
+            dither_menu_size,
+            target_stable_gap,
+        )
+        summary["exact_forced_safe_gap_lower_bound"] = forced_gap
+        summary["exact_forced_gap_construction_dithers"] = (
+            exact_dither_menu_construction(
+                slack_window,
+                dither_menu_size,
+                forced_gap,
+            )
+        )
         summary["stable_tail_condition_D_lt_t_start"] = target_stable_gap < start
     return summary
 
@@ -336,9 +391,8 @@ def dither_menu_tail_lower_bound_summary(
 ) -> Dict[str, object]:
     start, end = slack_window
     window_length = end - start + 1
-    minimum_menu_size = ceil_div(window_length, 2 * target_stable_gap)
-    forced_gap = ceil_div(window_length, 2 * dither_menu_size)
-    coverage_possible = dither_menu_size >= minimum_menu_size
+    forced_gap = exact_min_safe_gap_for_menu_size(window_length, dither_menu_size)
+    coverage_possible = target_stable_gap >= forced_gap
     stable_eligible = coverage_possible and target_stable_gap < start
 
     records = []
@@ -394,8 +448,12 @@ def dither_menu_tail_lower_bound_summary(
         "target_stable_gap": target_stable_gap,
         "queried_menu_size": dither_menu_size,
         "line_field_size": line_field_size,
-        "forced_safe_gap_lower_bound": forced_gap,
-        "coverage_possible_by_count": coverage_possible,
+        "exact_forced_safe_gap_lower_bound": forced_gap,
+        "coverage_possible_by_exact_capacity": coverage_possible,
+        "capacity_at_target_gap": dither_menu_capacity(
+            dither_menu_size,
+            target_stable_gap,
+        ),
         "stable_tail_lower_bound_applicable": stable_eligible,
         "stable_eligible_scale_count": len(records),
         "max_log2_stable_tail_mass_lower_bound": (
@@ -1126,12 +1184,12 @@ def print_text(result: Dict[str, object]) -> None:
             assert isinstance(menu_covering, dict)
             print(
                 (
-                    "dither-menu covering: gap<={gap} needs >={lower} dithers; "
-                    "block construction uses {upper}"
+                    "dither-menu covering: gap<={gap} exactly needs {exact} "
+                    "dithers; coarse lower bound {lower}"
                 ).format(
                     gap=menu_covering["target_stable_gap"],
-                    lower=menu_covering["minimum_menu_size_lower_bound"],
-                    upper=menu_covering["block_construction_menu_size"],
+                    exact=menu_covering["exact_min_menu_size_for_target_gap"],
+                    lower=menu_covering["coarse_menu_size_lower_bound"],
                 )
             )
     if result.get("line_field_size") is not None:
@@ -1221,7 +1279,7 @@ def print_text(result: Dict[str, object]) -> None:
                     "max_logMass>={value} max_logR>={weighted} scales={scales}"
                 ).format(
                     menu=menu_tail_bound["queried_menu_size"],
-                    gap=menu_tail_bound["forced_safe_gap_lower_bound"],
+                    gap=menu_tail_bound["exact_forced_safe_gap_lower_bound"],
                     value=format_value(
                         menu_tail_bound["max_log2_stable_tail_mass_lower_bound"]
                     ),

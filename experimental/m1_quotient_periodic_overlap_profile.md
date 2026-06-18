@@ -678,52 +678,54 @@ slack by moving the dither outside the window makes the far endpoint carry a
 large-scale one-remainder tail whose binomial degree is the full window
 length.
 
-There is also a finite-menu version. Let `R` be a set of allowed integer
-dithers, and suppose that at each slack `t in W` the proof system may choose
-some `r in R` with `r != t`, so exact support `k0` is not used at that slack.
-For a target gap `D >= 1`, one dither `r` can serve at most
+There is also an exact finite-menu version. Let `R` be a set of allowed
+integer dithers, and suppose that at each slack `t in W` the proof system may
+choose some `r in R` with `r != t`, so exact support `k0` is not used at that
+slack. For a target safe gap `D >= 1`, a single dither covers at most `D`
+consecutive slacks, because the forbidden point `t=r` separates its two arms.
+Two dithers cover at most
 
 ```text
-2D
+3D+1
 ```
 
-slack values in `W`, namely those in
+consecutive slacks: if their centers are farther than `D` apart they cannot
+cover each other's forbidden points without a gap, while if their centers are
+within distance `D` their union lies in an interval of length at most `3D+1`.
+Pairing dithers from left to right gives the exact capacity
 
 ```text
-[r-D,r-1] union [r+1,r+D].
+Cap(C,D) = floor(C/2)(3D+1) + (C mod 2)D.
 ```
 
-Therefore, if every slack in `W` is served with `|t-r| <= D`, then
+This bound is sharp. A pair of dithers at `a+D` and `a+2D` safely covers the
+block `{a,...,a+3D}`, and a leftover single dither at `a+D` safely covers the
+block `{a,...,a+D-1}`. Hence a `C`-value menu can safely cover `W` with gap at
+most `D` if and only if
 
 ```text
-|R| >= ceil(L_W/(2D)).
+L_W <= Cap(C,D).
 ```
 
-Equivalently, every menu of `C` fixed dithers has some slack whose safe
-one-remainder gap is at least
+Equivalently, every menu of `C` fixed dithers has some slack whose safe gap is
+at least
 
 ```text
-ceil(L_W/(2C)).
+D_C = min { D >= 1 : L_W <= Cap(C,D) }.
 ```
 
-This lower bound is within a factor of two of the elementary block
-construction: the menu
-
-```text
-R_D = {t_- - 1 + jD : 0 <= j < ceil(L_W/D)}
-```
-
-covers the window with gap at most `D`. Hence keeping stable one-remainder
-degree bounded across a growing slack window requires a growing dither menu,
-unless one allows the exact-`k0` slack or switches to genuinely per-slack
-dimension choices.
+The earlier counting lower bound `ceil(L_W/(2D))` is only a coarse corollary;
+the puncture at `t=r` is what makes the exact capacity smaller than `2CD`.
+Thus keeping stable one-remainder degree bounded across a growing slack window
+requires a growing dither menu, unless one allows the exact-`k0` slack or
+switches to genuinely per-slack dimension choices.
 
 Combining this covering lemma with the two-sided stable-tail formula gives a
 direct mass lower bound. Suppose a menu `R` of size `C` serves every slack in
 `W` with a nonzero gap at most `D`, and set
 
 ```text
-E = ceil(L_W/(2C)).
+E = D_C = min { D' >= 1 : L_W <= Cap(C,D') }.
 ```
 
 Assume
@@ -1286,12 +1288,13 @@ Two immediate readings are useful.
    `L_W` has an endpoint stable tail of binomial degree at least `L_W` whenever
    the endpoint lies in the stable range. If one instead allows a finite menu
    of `C` dithers and chooses among them per slack without using exact support,
-   some slack still has safe gap at least `ceil(L_W/(2C))`; bounded stable
-   degree over long windows therefore requires a growing dither menu.
+   some slack still has safe gap at least
+   `D_C=min{D: L_W<=Cap(C,D)}`; bounded stable degree over long windows
+   therefore requires a growing dither menu.
    Quantitatively, if a `C`-value menu keeps every slack within gap `D`, then
    at large dyadic scales it forces a stable one-remainder mass at least
-   `min(k0/m,(n-k0)/m)binom(m,ceil(L_W/(2C)))-1`, and a random-line weighted
-   correction at least this mass times `q^(t_- - D)`.
+   `min(k0/m,(n-k0)/m)binom(m,D_C)-1`, and a random-line weighted correction
+   at least this mass times `q^(t_- - D)`.
 9. In the maximal-dither case, the one-remainder profile is explicit at every
    scale, not only at `m>=t`: the full strict profile is the three-band formula
    at exchange sizes `hm-1`, `hm`, and `hm+1`. This gives a closed-form
@@ -1323,8 +1326,7 @@ the two-sided stable weighted correction `R_stable(t,r0,m,q)` for stable
 large-scale one-remainder entries. The scanner also emits the fixed-window
 minimax gap certificate, distinguishing the unconstrained center radius from
 the larger no-exact-`k0` radius. Supplying `--target-stable-gap D` additionally
-reports the finite-menu lower bound `ceil(|W|/(2D))` and a block-construction
-upper bound for covering the window with stable gap at most `D`. Supplying
-`--dither-menu-size C` turns this into a per-scale stable-tail mass lower
-bound for a `C`-value menu; with `--line-field-size q`, it also reports the
+reports the exact finite-menu capacity threshold `Cap(C,D)`. Supplying
+`--dither-menu-size C` turns this into a per-scale stable-tail mass lower bound
+for a `C`-value menu; with `--line-field-size q`, it also reports the
 corresponding weighted lower bound.

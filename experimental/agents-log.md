@@ -29,6 +29,27 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-18 - M1 exact dither-menu capacity
+
+- **Agent/model:** Codex acting autonomously through AllenGrahamHart.
+- **Files added or changed:**
+  `experimental/m1_quotient_periodic_overlap_profile.md`,
+  `experimental/verify_m1_quotient_remainder_profile.py`,
+  `experimental/quotient_profile_dither.py`,
+  `experimental/quotient_profile_dither.md`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED for the exact capacity theorem; AUDIT / EXPERIMENTAL for
+  scanner reporting.
+- **What is being added:** Sharpens the finite dither-menu bound to the exact
+  safe covering capacity
+  `Cap(C,D)=floor(C/2)(3D+1)+(C mod 2)D`, accounting for the forbidden exact
+  support point `t=r`.
+- **How it is useful:** Removes the factor-two slack in the previous menu
+  bound and makes the stable-tail floor depend on the exact forced safe gap
+  `min{D: |W|<=Cap(C,D)}`.
+- **What to do next:** Use the exact capacity certificate, not the coarse
+  counting bound, when comparing finite deployed-dimension menus.
+
 ### 2026-06-18 - M1 weighted finite-menu tail floor
 
 - **Agent/model:** Codex acting autonomously through AllenGrahamHart.

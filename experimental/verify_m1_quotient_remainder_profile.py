@@ -230,6 +230,31 @@ def ceil_div(numerator, denominator):
     return (numerator + denominator - 1) // denominator
 
 
+def dither_menu_capacity(menu_size, safe_gap):
+    pairs = menu_size // 2
+    singleton = menu_size % 2
+    return pairs * (3 * safe_gap + 1) + singleton * safe_gap
+
+
+def exact_min_menu_size_for_gap(window_length, safe_gap):
+    even_pairs = ceil_div(window_length, 3 * safe_gap + 1)
+    even_size = 2 * even_pairs
+    if window_length <= safe_gap:
+        odd_size = 1
+    else:
+        odd_pairs = ceil_div(window_length - safe_gap, 3 * safe_gap + 1)
+        odd_size = 2 * odd_pairs + 1
+    return min(even_size, odd_size)
+
+
+def exact_min_safe_gap_for_menu_size(window_length, menu_size):
+    pairs = menu_size // 2
+    singleton = menu_size % 2
+    coefficient = 3 * pairs + singleton
+    offset = pairs
+    return max(1, ceil_div(max(0, window_length - offset), coefficient))
+
+
 def safe_gap_for_menu(t, menu):
     gaps = [abs(t - r) for r in menu if r != t]
     if not gaps:
@@ -245,23 +270,41 @@ def menu_covers_window(t_start, t_end, menu, max_gap):
     return True
 
 
-def dither_menu_block_construction(t_start, t_end, max_gap):
-    return tuple(range(t_start - 1, t_end, max_gap))
+def exact_dither_menu_construction(t_start, t_end, menu_size, max_gap):
+    cursor = t_start
+    menu = []
+    for _ in range(menu_size // 2):
+        if cursor > t_end:
+            break
+        menu.extend([cursor + max_gap, cursor + 2 * max_gap])
+        cursor += 3 * max_gap + 1
+    if menu_size % 2 and cursor <= t_end:
+        menu.append(cursor + max_gap)
+    return tuple(menu)
 
 
 def verify_dither_menu_covering_bound(t_start, t_end, max_gap):
     assert 1 <= t_start <= t_end
     assert max_gap >= 1
     window_length = t_end - t_start + 1
-    lower_bound = ceil_div(window_length, 2 * max_gap)
-    upper_bound = ceil_div(window_length, max_gap)
+    exact_minimum = exact_min_menu_size_for_gap(window_length, max_gap)
+    coarse_lower_bound = ceil_div(window_length, 2 * max_gap)
+    assert coarse_lower_bound <= exact_minimum
 
-    construction = dither_menu_block_construction(t_start, t_end, max_gap)
-    assert len(construction) == upper_bound
+    construction = exact_dither_menu_construction(
+        t_start,
+        t_end,
+        exact_minimum,
+        max_gap,
+    )
+    assert len(construction) <= exact_minimum
     assert menu_covers_window(t_start, t_end, construction, max_gap)
+    assert dither_menu_capacity(exact_minimum, max_gap) >= window_length
+    if exact_minimum > 1:
+        assert dither_menu_capacity(exact_minimum - 1, max_gap) < window_length
 
     candidates = range(t_start - max_gap, t_end + max_gap + 1)
-    for size in range(lower_bound):
+    for size in range(exact_minimum):
         for menu in combinations(candidates, size):
             assert not menu_covers_window(t_start, t_end, menu, max_gap), (
                 t_start,
@@ -278,7 +321,7 @@ def verify_dither_menu_covering_bound(t_start, t_end, max_gap):
         ]
         assert len(covered) <= 2 * max_gap
 
-    return lower_bound, upper_bound, construction
+    return exact_minimum, coarse_lower_bound, construction
 
 
 def verify_dither_menu_stable_tail_lower_bound(
@@ -293,10 +336,11 @@ def verify_dither_menu_stable_tail_lower_bound(
     assert max_gap < t_start
     assert q > 1
     window_length = t_end - t_start + 1
-    minimum_menu_size = ceil_div(window_length, 2 * max_gap)
-    assert menu_size >= minimum_menu_size
-    forced_gap = ceil_div(window_length, 2 * menu_size)
+    forced_gap = exact_min_safe_gap_for_menu_size(window_length, menu_size)
     assert 1 <= forced_gap <= max_gap
+    assert dither_menu_capacity(menu_size, max_gap) >= window_length
+    if forced_gap > 1:
+        assert dither_menu_capacity(menu_size, forced_gap - 1) < window_length
 
     candidates = range(t_start - max_gap, t_end + max_gap + 1)
     valid_menus = [
@@ -746,12 +790,12 @@ def main():
         (10, 19, 3),
     ]
     for case in menu_covering_cases:
-        lower_bound, upper_bound, construction = (
+        exact_minimum, coarse_lower_bound, construction = (
             verify_dither_menu_covering_bound(*case)
         )
         print(
-            f"t0,t1,D={case}: menu_lower={lower_bound}, "
-            f"block_upper={upper_bound}, construction={construction}"
+            f"t0,t1,D={case}: exact_menu={exact_minimum}, "
+            f"coarse_lower={coarse_lower_bound}, construction={construction}"
         )
     menu_tail_cases = [
         (256, 128, 5, 8, 2, 2, 17),
