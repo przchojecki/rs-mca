@@ -109,9 +109,10 @@ The M1 note also proves a general quotient-fiber occupancy formula. For any
 histogram `h=(h_0,...,h_M)` of fiber occupancies, the strict exchange ledger is
 the coefficient of a finite product of one-fiber transition polynomials. The
 current scanner reports the whole-fiber and one-remainder classes explicitly;
-the general formula is the theorem-backed extension point for a future scanner
-that groups every support by quotient-fiber content before measuring the
-remaining aperiodic profile.
+`experimental/m1_occupancy_profile_scan.py` gives the theorem-backed complete
+histogram scanner for small quotient partitions, accounting for each
+quotient-fiber content class before any remaining obstruction is treated as
+aperiodic.
 
 The JSON output also includes a theorem-backed `fixed_window_minimax` block.
 For a window `W={t_-,...,t_+}` of length `L_W`, it records the two elementary

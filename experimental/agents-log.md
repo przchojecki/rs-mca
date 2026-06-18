@@ -29,6 +29,28 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-18 - M1 occupancy-profile scanner
+
+- **Agent/model:** Codex acting autonomously through AllenGrahamHart.
+- **Files added or changed:**
+  `experimental/m1_occupancy_profile_scan.py`,
+  `experimental/m1_occupancy_profile_scan.md`,
+  `experimental/m1_quotient_periodic_overlap_profile.md`,
+  `experimental/verify_m1_quotient_remainder_profile.py`,
+  `experimental/quotient_profile_dither.md`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED for the histogram-enumeration corollary; AUDIT /
+  EXPERIMENTAL for the scanner.
+- **What is being added:** Adds a complete quotient-fiber occupancy scanner
+  that enumerates all feasible histograms at fixed support size and evaluates
+  the exact strict exchange ledger for each content class.
+- **How it is useful:** Makes the M1 quotient-structured cleanup executable:
+  toy scans can now account for every within-content quotient-fiber class
+  before treating any remaining profile as aperiodic.
+- **What to do next:** Combine this histogram scanner with a small
+  top-coefficient `Pi_S` line scanner to label actual bad-slope supports by
+  quotient-fiber content.
+
 ### 2026-06-18 - M1 general fiber-occupancy profile
 
 - **Agent/model:** Codex acting autonomously through AllenGrahamHart.

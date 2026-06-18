@@ -451,6 +451,26 @@ content class.  The whole-fiber quotient-periodic profile is the specialization
 `h_0=N-L-1`, `h_b=1`, `h_m=L`; expanding the coefficient formula by the
 location of the new remainder fiber gives the displayed `H_REM` formula above.
 
+There is a complete histogram-enumeration corollary.  For fixed support size
+`s`, the families `A_h` over all histograms satisfying
+
+```text
+sum_a h_a=N,        sum_a a h_a=s
+```
+
+partition the full support layer `{S subset D : |S|=s}`. Hence
+
+```text
+sum_h |A_h| = binom(Nm,s).
+```
+
+A finite M1 scanner can therefore enumerate histograms rather than supports:
+for each content class it emits `|A_h|`, `[y^j]H_h(y)`, and `R_h(t,q)` for
+`1 <= j < t`. This is complete for within-content quotient-fiber covariance.
+Any later union-level certificate that merges content classes must still handle
+cross-histogram pairs separately, but no support enumeration is needed to audit
+each structured content class.
+
 ## Large-Fiber Remainder Truncation
 
 The one-remainder formula becomes especially useful in the large-fiber range
@@ -1515,6 +1535,12 @@ the `N` fibers and then choosing an `a`-subset inside each occupancy-`a` fiber.
 The `Gamma_j`, `Delta_j`, and `R_h(t,q)` formulas then follow exactly as in
 the whole-fiber case.
 
+The histogram-enumeration corollary follows because every support has exactly
+one occupancy histogram relative to the fixed quotient partition. Thus the
+families `A_h` are disjoint and their union is the full support layer
+`|S|=s`; summing the already proved formula for `|A_h|` over all feasible
+histograms gives `binom(Nm,s)`.
+
 For the one-remainder-fiber profile, fix
 
 ```text
@@ -1765,7 +1791,15 @@ emit three statistics for each support class:
 The general fiber-occupancy formula gives these statistics exactly for every
 fixed quotient-fiber content histogram. Any excess strict-overlap profile after
 these structured classes are isolated is then a direct witness for the
-aperiodic obstruction that a future local-limit proof must control.  For
+aperiodic obstruction that a future local-limit proof must control. The command
+
+```bash
+python3 experimental/m1_occupancy_profile_scan.py \
+  --quotient-order 4 --fiber-size 3 --support-size 4 --slack 3 \
+  --line-field-size 17
+```
+
+is the current experimental hook for this complete histogram-level report. For
 dimension dithering across more than one target slack, the scanner should also
 emit `L_win(r)` for each allowed dither and rank the surviving dyadic
 first-exchange ledger terms.  The command

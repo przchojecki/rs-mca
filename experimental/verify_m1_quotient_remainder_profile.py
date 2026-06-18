@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
-"""Verify the one-remainder-fiber M1 quotient exchange profile.
+"""Verify M1 quotient-fiber exchange profiles.
 
-This checks the closed fixed-support enumerator in
+This checks the closed fixed-support enumerators in
 experimental/m1_quotient_periodic_overlap_profile.md against brute-force
 enumeration for small quotient partitions.
 """
@@ -93,6 +93,32 @@ def occupancy_family_size(N, m, histogram):
         remaining -= count
         subset_count *= choose(m, occupancy) ** count
     return assignment_count * subset_count
+
+
+def occupancy_histograms(N, m, support_size):
+    rows = []
+
+    def visit(occupancy, remaining_fibers, remaining_support, prefix):
+        if occupancy == m + 1:
+            if remaining_fibers == 0 and remaining_support == 0:
+                rows.append(tuple(prefix))
+            return
+
+        max_count = remaining_fibers
+        if occupancy:
+            max_count = min(max_count, remaining_support // occupancy)
+        for count in range(max_count + 1):
+            prefix.append(count)
+            visit(
+                occupancy + 1,
+                remaining_fibers - count,
+                remaining_support - occupancy * count,
+                prefix,
+            )
+            prefix.pop()
+
+    visit(0, N, support_size, [])
+    return tuple(rows)
 
 
 def whole_fiber_histogram(N, m, L):
@@ -227,6 +253,40 @@ def verify_occupancy_profile_specializations():
         formula = verify_occupancy_profile_case(*case)
         rows.append(("brute",) + case + (dict(sorted(formula.items())),))
 
+    return tuple(rows)
+
+
+def verify_occupancy_histogram_exhaustion():
+    rows = []
+    cases = [
+        (4, 3, 4),
+        (5, 2, 5),
+        (5, 4, 6),
+        (6, 3, 7),
+    ]
+    for N, m, support_size in cases:
+        histograms = occupancy_histograms(N, m, support_size)
+        assert histograms
+        total = 0
+        for histogram in histograms:
+            assert len(histogram) == m + 1
+            assert sum(histogram) == N
+            assert sum(
+                occupancy * count
+                for occupancy, count in enumerate(histogram)
+            ) == support_size
+            family_size = occupancy_family_size(N, m, histogram)
+            profile = occupancy_profile_enumerator(N, m, histogram)
+            assert sum(profile.values()) == family_size
+            total += family_size
+        assert total == choose(N * m, support_size), (
+            N,
+            m,
+            support_size,
+            total,
+            choose(N * m, support_size),
+        )
+        rows.append((N, m, support_size, len(histograms), total))
     return tuple(rows)
 
 
@@ -1253,6 +1313,8 @@ def verify_maximal_dither_random_line_ledger(n, k0, t, q):
 def main():
     occupancy_rows = verify_occupancy_profile_specializations()
     print(f"fiber occupancy profile cases={occupancy_rows}")
+    occupancy_exhaustion = verify_occupancy_histogram_exhaustion()
+    print(f"fiber occupancy histogram exhaustion={occupancy_exhaustion}")
 
     cases = [
         (5, 4, 1, 1),
