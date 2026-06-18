@@ -76,12 +76,17 @@ Keep entries concise and link to the relevant files.
   depending on `R=N-L`, so cases with too few remaining quotient fibers can
   be certified sparse even when the raw shape catalog is large. In the
   extreme `R=1` case, the active layer is reduced exactly to the depth-two
-  shape catalog on the quotient kernel, expanded by ambient `D^2`. This
-  leaves a narrower intermediate/lift-limited window for M1 slope-image
-  bounds.
+  shape catalog on the quotient kernel, expanded by ambient `D^2`. A
+  further two-fiber Kummer certificate shows that, under the same imported
+  degree-five character-sum estimate, one fixed window `K union cK` already
+  hits every nonzero `D^2`-coset once the conservative lower numerator is
+  positive; whenever `R>=2`, this promotes directly to exact-support
+  saturation. This leaves a narrower intermediate/lift-limited window for
+  M1 slope-image bounds.
 - **What to do next:** Prove or replace the imported Kummer-Weil constant in
-  a standalone algebraic-geometry note, then attack the intermediate-index
-  coset-image window where neither saturation nor high-index sparsity fires.
+  a standalone algebraic-geometry note, then attack the residual `R=1`
+  kernel catalog and the finite cases where the conservative two-fiber lower
+  bound is negative but exact enumeration still saturates.
 
 ### 2026-06-18 - PR #78 M1 residual-depth hierarchy
 

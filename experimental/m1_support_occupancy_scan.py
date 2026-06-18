@@ -571,6 +571,65 @@ def slack_two_second_kernel_fiber_reduction_data(
     }
 
 
+def slack_two_second_two_fiber_window_data(
+    p: int,
+    domain: Sequence[int],
+    quotient_order: int,
+    second_fiber: int = 1,
+) -> Optional[Dict[str, object]]:
+    if quotient_order < 2 or len(domain) % quotient_order:
+        return None
+
+    second_fiber %= quotient_order
+    if second_fiber == 0:
+        return None
+
+    fiber_size = len(domain) // quotient_order
+    window = tuple(
+        domain[fiber + quotient_order * offset]
+        for fiber in (0, second_fiber)
+        for offset in range(fiber_size)
+    )
+    window_set = set(window)
+    square_image = {x * x % p for x in domain}
+    square_coset_rep = multiplicative_coset_representative_map(
+        p,
+        tuple(square_image),
+    )
+
+    nonzero_square_cosets = set()
+    parameter_count = 0
+    zero_parameter_count = 0
+    for u in window:
+        for v in window:
+            w = (-1 - u - v) % p
+            values = (1, u, v, w)
+            if w not in window_set or len(set(values)) != 4:
+                continue
+            parameter_count += 1
+            shape_slope = (-(u * u + v * v + u * v + u + v + 1)) % p
+            if shape_slope == 0:
+                zero_parameter_count += 1
+                continue
+            nonzero_square_cosets.add(square_coset_rep[shape_slope])
+
+    slope_count = (1 if zero_parameter_count else 0) + (
+        len(nonzero_square_cosets) * len(square_image)
+    )
+    return {
+        "second_fiber": second_fiber,
+        "fiber_size": fiber_size,
+        "window_size": len(window),
+        "parameter_count": parameter_count,
+        "zero_parameter_count": zero_parameter_count,
+        "nonzero_parameter_count": parameter_count - zero_parameter_count,
+        "nonzero_square_coset_count": len(nonzero_square_cosets),
+        "total_nonzero_square_coset_count": (p - 1) // len(square_image),
+        "square_image_size": len(square_image),
+        "slope_count": min(p, slope_count),
+    }
+
+
 def expected_first_superboundary_zero_slope_data(
     domain_order: int,
     quotient_order: int,
@@ -1629,6 +1688,78 @@ def slack_two_second_kummer_saturation_data(
     }
 
 
+def slack_two_second_two_fiber_kummer_saturation_data(
+    p: int,
+    domain_order: int,
+    quotient_order: int,
+    nonprincipal_constant: int = 16,
+) -> Optional[Dict[str, object]]:
+    """Return a two-quotient-fiber depth-two saturation certificate."""
+
+    if quotient_order < 2 or domain_order % quotient_order:
+        return None
+
+    fiber_size = domain_order // quotient_order
+    kernel_character_order = (p - 1) // fiber_size
+    square_kernel_index = math.gcd(2, domain_order)
+    square_coset_index = ((p - 1) // domain_order) * square_kernel_index
+    denominator = (
+        kernel_character_order
+        * kernel_character_order
+        * kernel_character_order
+        * square_coset_index
+    )
+    principal_weight = 8
+    coefficient_abs_bound = 8
+    radical_component_degrees = (1, 1, 1, 2)
+    radical_total_degree = sum(radical_component_degrees)
+    deligne_constant = (radical_total_degree - 1) ** 2
+    chi_minus_three = quadratic_character(-3, p)
+    principal_exact_count = p * p - 4 * p + 6 + 4 * chi_minus_three
+    degeneracy_line_count = 6
+    degeneracy_line_union_count = 6 * p - 11
+    uniform_prime_threshold = 17 * denominator + 5
+    lower_numerator = principal_weight * principal_exact_count - (
+        coefficient_abs_bound * nonprincipal_constant * p
+        + degeneracy_line_union_count
+    ) * denominator
+    admissible_per_coset_lower_bound = (
+        (lower_numerator + denominator - 1) // denominator
+        if lower_numerator > 0
+        else 0
+    )
+    return {
+        "quotient_order": quotient_order,
+        "fiber_size": fiber_size,
+        "kernel_character_order": kernel_character_order,
+        "square_kernel_index": square_kernel_index,
+        "square_coset_index": square_coset_index,
+        "denominator": denominator,
+        "nonprincipal_tuple_count_bound": denominator - 1,
+        "divisor_power_failure_count": 0,
+        "divisor_nontriviality_check": True,
+        "radical_component_degrees": radical_component_degrees,
+        "radical_total_degree": radical_total_degree,
+        "deligne_constant_formula": "(radical_total_degree - 1)^2",
+        "deligne_constant": deligne_constant,
+        "deligne_constant_check": nonprincipal_constant == deligne_constant,
+        "principal_weight": principal_weight,
+        "coefficient_abs_bound": coefficient_abs_bound,
+        "uniform_prime_threshold": uniform_prime_threshold,
+        "uniform_threshold_applies": p >= uniform_prime_threshold,
+        "nonprincipal_constant": nonprincipal_constant,
+        "principal_chi_minus_three": chi_minus_three,
+        "principal_exact_count": principal_exact_count,
+        "degeneracy_line_count": degeneracy_line_count,
+        "degeneracy_line_union_count": degeneracy_line_union_count,
+        "lower_numerator": lower_numerator,
+        "admissible_per_coset_lower_bound": (
+            admissible_per_coset_lower_bound
+        ),
+        "saturation_certificate": admissible_per_coset_lower_bound > 0,
+    }
+
+
 def slack_three_conic_shape_bound(p: int, domain_order: int) -> int:
     character_order = (p - 1) // domain_order
     character_cube = character_order * character_order * character_order
@@ -2491,6 +2622,15 @@ def scan_supports(
         if slack_two_second_shape_ledger is not None
         else None
     )
+    slack_two_second_two_fiber_kummer_saturation = (
+        slack_two_second_two_fiber_kummer_saturation_data(
+            p,
+            n,
+            quotient_order,
+        )
+        if slack_two_second_shape_ledger is not None
+        else None
+    )
     slack_three_full_domain_beta_data = (
         full_domain_slack_three_beta_class_data(p)
         if slack_three_shape_ledger is not None and n == p - 1
@@ -2562,10 +2702,27 @@ def scan_supports(
 
     slack_two_second_index_window_label = None
     slack_two_second_kummer_exact_support_saturation = False
+    slack_two_second_two_fiber_exact_support_saturation = False
     if slack_two_second_kummer_saturation is not None:
         slack_two_second_kummer_exact_support_saturation = (
             bool(slack_two_second_kummer_saturation["saturation_certificate"])
             and slack_two_second_all_shapes_lift_active_gate
+        )
+    if (
+        slack_two_second_two_fiber_kummer_saturation is not None
+        and slack_two_second_shape_ledger is not None
+    ):
+        remaining_fibers = slack_two_second_shape_ledger[
+            "lift_limited_remaining_fibers"
+        ]
+        slack_two_second_two_fiber_exact_support_saturation = (
+            bool(
+                slack_two_second_two_fiber_kummer_saturation[
+                    "saturation_certificate"
+                ]
+            )
+            and remaining_fibers is not None
+            and int(remaining_fibers) >= 2
         )
     if (
         slack_two_second_shape_ledger is not None
@@ -2588,6 +2745,8 @@ def scan_supports(
             slack_two_second_index_window_label = "full_domain_saturated"
         elif slack_two_second_kummer_exact_support_saturation:
             slack_two_second_index_window_label = "low_index_saturated"
+        elif slack_two_second_two_fiber_exact_support_saturation:
+            slack_two_second_index_window_label = "two_fiber_saturated"
         elif bool(
             slack_two_second_shape_ledger[
                 "lift_limited_slope_bound_nontrivial"
@@ -4266,6 +4425,141 @@ def scan_supports(
             )
             if (
                 slack_two_second_kummer_saturation is not None
+                and slack_two_second_shape_ledger is not None
+            )
+            else None
+        ),
+        "canonical_slack_two_second_two_fiber_kummer_character_order": (
+            int(
+                slack_two_second_two_fiber_kummer_saturation[
+                    "kernel_character_order"
+                ]
+            )
+            if slack_two_second_two_fiber_kummer_saturation is not None
+            else None
+        ),
+        "canonical_slack_two_second_two_fiber_kummer_square_coset_index": (
+            int(
+                slack_two_second_two_fiber_kummer_saturation[
+                    "square_coset_index"
+                ]
+            )
+            if slack_two_second_two_fiber_kummer_saturation is not None
+            else None
+        ),
+        "canonical_slack_two_second_two_fiber_kummer_denominator": (
+            int(slack_two_second_two_fiber_kummer_saturation["denominator"])
+            if slack_two_second_two_fiber_kummer_saturation is not None
+            else None
+        ),
+        "canonical_slack_two_second_two_fiber_kummer_principal_weight": (
+            int(
+                slack_two_second_two_fiber_kummer_saturation[
+                    "principal_weight"
+                ]
+            )
+            if slack_two_second_two_fiber_kummer_saturation is not None
+            else None
+        ),
+        "canonical_slack_two_second_two_fiber_kummer_coefficient_bound": (
+            int(
+                slack_two_second_two_fiber_kummer_saturation[
+                    "coefficient_abs_bound"
+                ]
+            )
+            if slack_two_second_two_fiber_kummer_saturation is not None
+            else None
+        ),
+        "canonical_slack_two_second_two_fiber_kummer_uniform_prime_threshold": (
+            int(
+                slack_two_second_two_fiber_kummer_saturation[
+                    "uniform_prime_threshold"
+                ]
+            )
+            if slack_two_second_two_fiber_kummer_saturation is not None
+            else None
+        ),
+        "canonical_slack_two_second_two_fiber_kummer_threshold_applies": (
+            bool(
+                slack_two_second_two_fiber_kummer_saturation[
+                    "uniform_threshold_applies"
+                ]
+            )
+            if slack_two_second_two_fiber_kummer_saturation is not None
+            else None
+        ),
+        "canonical_slack_two_second_two_fiber_kummer_lower_numerator": (
+            int(
+                slack_two_second_two_fiber_kummer_saturation[
+                    "lower_numerator"
+                ]
+            )
+            if slack_two_second_two_fiber_kummer_saturation is not None
+            else None
+        ),
+        "canonical_slack_two_second_two_fiber_kummer_lower_bound": (
+            int(
+                slack_two_second_two_fiber_kummer_saturation[
+                    "admissible_per_coset_lower_bound"
+                ]
+            )
+            if slack_two_second_two_fiber_kummer_saturation is not None
+            else None
+        ),
+        "canonical_slack_two_second_two_fiber_kummer_saturation_certificate": (
+            bool(
+                slack_two_second_two_fiber_kummer_saturation[
+                    "saturation_certificate"
+                ]
+            )
+            if slack_two_second_two_fiber_kummer_saturation is not None
+            else None
+        ),
+        "canonical_slack_two_second_two_fiber_exact_support_certificate": (
+            slack_two_second_two_fiber_exact_support_saturation
+            if slack_two_second_two_fiber_kummer_saturation is not None
+            else None
+        ),
+        "canonical_slack_two_second_two_fiber_kummer_certificate_check": (
+            (
+                not bool(
+                    slack_two_second_two_fiber_kummer_saturation[
+                        "saturation_certificate"
+                    ]
+                )
+            )
+            or (
+                int(slack_two_second_shape_ledger["nonzero_square_coset_count"])
+                == int(
+                    slack_two_second_shape_ledger[
+                        "total_nonzero_square_coset_count"
+                    ]
+                )
+            )
+            if (
+                slack_two_second_two_fiber_kummer_saturation is not None
+                and slack_two_second_shape_ledger is not None
+            )
+            else None
+        ),
+        "canonical_slack_two_second_two_fiber_exact_support_check": (
+            (
+                not slack_two_second_two_fiber_exact_support_saturation
+            )
+            or (
+                int(
+                    slack_two_second_shape_ledger[
+                        "active_nonzero_square_coset_count"
+                    ]
+                )
+                == int(
+                    slack_two_second_shape_ledger[
+                        "total_nonzero_square_coset_count"
+                    ]
+                )
+            )
+            if (
+                slack_two_second_two_fiber_kummer_saturation is not None
                 and slack_two_second_shape_ledger is not None
             )
             else None

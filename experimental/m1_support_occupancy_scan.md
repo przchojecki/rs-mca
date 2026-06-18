@@ -175,6 +175,19 @@ canonical_slack_two_second_full_domain_nonzero_slope_image
 canonical_slack_two_second_full_domain_coset_count_check
 canonical_slack_two_second_kummer_exact_support_saturation_certificate
 canonical_slack_two_second_kummer_exact_support_certificate_check
+canonical_slack_two_second_two_fiber_kummer_character_order
+canonical_slack_two_second_two_fiber_kummer_square_coset_index
+canonical_slack_two_second_two_fiber_kummer_denominator
+canonical_slack_two_second_two_fiber_kummer_principal_weight
+canonical_slack_two_second_two_fiber_kummer_coefficient_bound
+canonical_slack_two_second_two_fiber_kummer_uniform_prime_threshold
+canonical_slack_two_second_two_fiber_kummer_threshold_applies
+canonical_slack_two_second_two_fiber_kummer_lower_numerator
+canonical_slack_two_second_two_fiber_kummer_lower_bound
+canonical_slack_two_second_two_fiber_kummer_saturation_certificate
+canonical_slack_two_second_two_fiber_exact_support_certificate
+canonical_slack_two_second_two_fiber_kummer_certificate_check
+canonical_slack_two_second_two_fiber_exact_support_check
 canonical_slack_two_full_domain_alpha_square_count
 canonical_slack_two_full_domain_alpha_nonsquare_count
 canonical_slack_two_full_domain_alpha_zero_count
@@ -595,14 +608,41 @@ obtained by inclusion-exclusion for the three lines `u=0`, `v=0`,
 The `*_degeneracy_line_union_count` field records the exact size `6p-11` of
 the six residual distinctness-failure lines
 `u=1`, `v=1`, `-1-u-v=1`, `u=v`, `u=-1-u-v`, and `v=-1-u-v`.
+The `canonical_slack_two_second_two_fiber_kummer_*` fields record a sharper
+lift-limited certificate. Let `K` be the quotient kernel and let `cK` be any
+second quotient fiber. On the two-fiber window
+
+```text
+U = K union cK
+```
+
+the indicator `1_U` has principal weight `2/h`, where
+`h=[F_p^*:K]`. Hence the principal term for `u,v,-1-u-v in U` has weight
+`8/(h^3 q)`, with `q=[F_p^*:D^2]`. The same squarefree divisor
+`u v (-1-u-v) A(u,v)` has total degree `5`, so the same imported
+Kummer-Weil constant `16` applies. Paying the coefficient bound `8` for the
+three two-fiber indicators gives the conservative lower numerator
+
+```text
+8 (p^2 - 4p + 6 + 4 chi(-3))
+  - (8*16*p + 6p - 11) h^3 q.
+```
+
+When this is positive, every nonzero `D^2`-coset already occurs inside a
+fixed two-fiber window. Therefore, if the exact-support complement has
+`R=N-L>=2` remaining quotient fibers, this is an exact-support saturation
+certificate even though the all-shapes lift gate `R>=min(4,N)` may fail.
+The corresponding `*_exact_support_check` compares the certified conclusion
+against the active exact-support catalog in the queried finite instance.
 The field `canonical_slack_two_second_index_window_label` combines the lift
-gate, this low-index saturation certificate, and the high-index sparsity
+gate, these saturation certificates, and the high-index sparsity
 ceiling. Its values are:
 
 ```text
 inactive_lift_gate
 full_domain_saturated
 low_index_saturated
+two_fiber_saturated
 lift_limited_sparse
 raw_saturated_lift_limited
 high_index_sparse

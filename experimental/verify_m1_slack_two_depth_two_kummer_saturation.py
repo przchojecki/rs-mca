@@ -11,6 +11,8 @@ from m1_support_occupancy_scan import (
     quotient_limited_pair_parameter_bound,
     slack_two_second_kummer_saturation_data,
     slack_two_second_superboundary_shape_ledger,
+    slack_two_second_two_fiber_kummer_saturation_data,
+    slack_two_second_two_fiber_window_data,
 )
 from mca_slope_scan import make_domain
 
@@ -44,6 +46,15 @@ KERNEL_REDUCTION_CASES = (
     (97, 48, 6, 8, 44),
 )
 
+TWO_FIBER_KUMMER_CASES = (
+    # Small lift-limited sample: a fixed two-fiber window is not saturated.
+    (97, 48, 6, False),
+    # Full-domain N=3 sample where the two-fiber certificate is positive.
+    (919, 918, 3, True),
+    # Proper index-two N=3 sample above the uniform two-fiber threshold.
+    (7351, 3675, 3, True),
+)
+
 
 def divisor_power_failure_count(character_order: int, square_kernel_index: int) -> int:
     square_coset_index = character_order * square_kernel_index
@@ -64,6 +75,23 @@ def divisor_power_failure_count(character_order: int, square_kernel_index: int) 
                         exponent % square_coset_index == 0
                         for exponent in divisor_exponents
                     ):
+                        failures += 1
+    return failures
+
+
+def two_fiber_divisor_power_failure_count(
+    kernel_character_order: int,
+    square_coset_index: int,
+) -> int:
+    failures = 0
+    for a in range(kernel_character_order):
+        for b in range(kernel_character_order):
+            for c in range(kernel_character_order):
+                for d in range(square_coset_index):
+                    if (a, b, c, d) == (0, 0, 0, 0):
+                        continue
+                    divisor_exponents = (a, b, c, d)
+                    if all(exponent == 0 for exponent in divisor_exponents):
                         failures += 1
     return failures
 
@@ -346,11 +374,87 @@ def main() -> None:
         kernel_checked.append(
             (p, n, quotient_order, fiber_size, support_size, *observed)
         )
+    two_fiber_checked = []
+    for p, n, quotient_order, expected_certificate in TWO_FIBER_KUMMER_CASES:
+        _, domain = make_domain(p, n, None)
+        certificate = slack_two_second_two_fiber_kummer_saturation_data(
+            p,
+            n,
+            quotient_order,
+        )
+        if certificate is None:
+            raise AssertionError((p, n, quotient_order))
+        failures = two_fiber_divisor_power_failure_count(
+            int(certificate["kernel_character_order"]),
+            int(certificate["square_coset_index"]),
+        )
+        if failures != int(certificate["divisor_power_failure_count"]):
+            raise AssertionError((p, n, failures, certificate))
+        radical_degrees = tuple(certificate["radical_component_degrees"])
+        if radical_degrees != (1, 1, 1, 2):
+            raise AssertionError((p, n, radical_degrees, certificate))
+        radical_total = sum(radical_degrees)
+        if radical_total != int(certificate["radical_total_degree"]):
+            raise AssertionError((p, n, radical_total, certificate))
+        deligne_constant = (radical_total - 1) ** 2
+        if deligne_constant != int(certificate["deligne_constant"]):
+            raise AssertionError((p, n, deligne_constant, certificate))
+        principal_count = principal_open_count(p)
+        degeneracy_count = degeneracy_line_union_count(p)
+        lower_numerator = (
+            int(certificate["principal_weight"]) * principal_count
+            - (
+                int(certificate["coefficient_abs_bound"])
+                * int(certificate["nonprincipal_constant"])
+                * p
+                + degeneracy_count
+            )
+            * int(certificate["denominator"])
+        )
+        if lower_numerator != int(certificate["lower_numerator"]):
+            raise AssertionError((p, n, lower_numerator, certificate))
+        certificate_positive = bool(certificate["saturation_certificate"])
+        if certificate_positive != expected_certificate:
+            raise AssertionError((p, n, certificate))
+        if (
+            bool(certificate["uniform_threshold_applies"])
+            and not certificate_positive
+        ):
+            raise AssertionError((p, n, certificate))
+        window = slack_two_second_two_fiber_window_data(
+            p,
+            domain,
+            quotient_order,
+        )
+        if window is None:
+            raise AssertionError((p, n, quotient_order))
+        window_saturates = int(window["nonzero_square_coset_count"]) == int(
+            window["total_nonzero_square_coset_count"]
+        )
+        if certificate_positive and not window_saturates:
+            raise AssertionError((p, n, certificate, window))
+        two_fiber_checked.append(
+            (
+                p,
+                n,
+                quotient_order,
+                certificate_positive,
+                certificate["kernel_character_order"],
+                certificate["square_coset_index"],
+                certificate["denominator"],
+                certificate["uniform_prime_threshold"],
+                window["parameter_count"],
+                window["zero_parameter_count"],
+                window["nonzero_square_coset_count"],
+                window["total_nonzero_square_coset_count"],
+            )
+        )
     print(
         "verify_m1_slack_two_depth_two_kummer_saturation: "
         f"PASS checked={checked} lift_checked={lift_checked} "
         f"lift_bound_checked={lift_bound_checked} "
-        f"kernel_checked={kernel_checked}"
+        f"kernel_checked={kernel_checked} "
+        f"two_fiber_checked={two_fiber_checked}"
     )
 
 
