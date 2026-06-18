@@ -1275,6 +1275,30 @@ def scan_supports(
     first_superboundary_support_count = sum(
         first_superboundary_slope_histogram.values()
     )
+    first_superboundary_residual_size = slack + 1
+    first_superboundary_lift_dividend = support_size - first_superboundary_residual_size
+    first_superboundary_lift_remainder = (
+        first_superboundary_lift_dividend % fiber_size
+        if first_superboundary_lift_dividend >= 0
+        else None
+    )
+    first_superboundary_lift_gate_active = (
+        first_superboundary_lift_remainder == 0
+        if first_superboundary_lift_remainder is not None
+        else False
+    )
+    first_superboundary_lift_whole_fibers = (
+        first_superboundary_lift_dividend // fiber_size
+        if first_superboundary_lift_gate_active
+        else None
+    )
+    first_superboundary_lift_gate_check = (
+        first_superboundary_lift_gate_active
+        or (
+            first_superboundary_packet_count == 0
+            and first_superboundary_support_count == 0
+        )
+    )
     first_superboundary_shape_ledger = (
         first_superboundary_shape_coset_ledger(
             p=p,
@@ -1600,6 +1624,26 @@ def scan_supports(
         ),
         "canonical_first_superboundary_residual_size": (
             slack + 1 if canonical_line and slack + 1 < fiber_size else None
+        ),
+        "canonical_first_superboundary_lift_gate_remainder": (
+            first_superboundary_lift_remainder
+            if canonical_line and slack + 1 < fiber_size
+            else None
+        ),
+        "canonical_first_superboundary_lift_gate_active": (
+            first_superboundary_lift_gate_active
+            if canonical_line and slack + 1 < fiber_size
+            else None
+        ),
+        "canonical_first_superboundary_lift_gate_whole_fibers": (
+            first_superboundary_lift_whole_fibers
+            if canonical_line and slack + 1 < fiber_size
+            else None
+        ),
+        "canonical_first_superboundary_lift_gate_check": (
+            first_superboundary_lift_gate_check
+            if canonical_line and slack + 1 < fiber_size
+            else None
         ),
         "canonical_first_superboundary_packet_count": (
             first_superboundary_packet_count
@@ -2287,6 +2331,8 @@ def print_text(result: Dict[str, object]) -> None:
             "boundary_slope_count_check={slope_count} "
             "small_residual_regime={small} "
             "residual_packet_lift_check={packet} "
+            "first_superboundary_lift_gate={gate} "
+            "first_superboundary_lift_gate_check={gate_check} "
             "first_superboundary_zero_check={first} "
             "first_superboundary_shape_check={first_shape} "
             "slack_two_shape_check={shape} "
@@ -2303,6 +2349,8 @@ def print_text(result: Dict[str, object]) -> None:
                 slope_count=result["canonical_boundary_slope_count_check"],
                 small=result["canonical_small_residual_regime"],
                 packet=result["canonical_residual_packet_lift_count_check"],
+                gate=result["canonical_first_superboundary_lift_gate_active"],
+                gate_check=result["canonical_first_superboundary_lift_gate_check"],
                 first=result[
                     "canonical_first_superboundary_zero_slope_packet_count_check"
                 ],

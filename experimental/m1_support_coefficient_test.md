@@ -523,6 +523,30 @@ whole-fiber lift count is again determined only by the touched quotient
 fibers. Hence the nonzero slope image is a union of cosets `a_T(u)D^T`, with
 the zero-slope subcatalog equal to the power-coset family above.
 
+This formula has an immediate dither gate. Since the residual packet has size
+`T+1` but the exact support size is `s=k+T`, a first-superboundary packet can
+lift only if
+
+```text
+m | (s-(T+1)) = k-1.
+```
+
+If this divisibility fails, the whole first-superboundary shape catalog is
+inactive at quotient scale `m`, regardless of how large `C_T(D)` is. If it
+holds, then `L=(k-1)/m` in the displayed formula. Thus for a quotient-scale
+hierarchy with base dimension `k0` divisible by `m` and dither
+`k=k0-r`, the first-superboundary layer is active only at scales
+
+```text
+m | (r+1).
+```
+
+In particular, the maximal slack-`T` dither `k=k0-(T-1)` removes the
+first-superboundary layer at every quotient scale `m>T` dividing `k0`. This
+is the first low-superboundary analogue of the quotient-periodic dither
+ledger: a dimension choice can delete the entire `|P|=T+1` residual catalog
+from all growing quotient scales before any shape-count estimate is needed.
+
 For slack `T=2`, this first-superboundary catalog has an exact unit-equation
 normal form. Assume `3<m`. Put
 
@@ -899,6 +923,9 @@ normalization has size `(T+1)!`, and the slope image is a union of cosets
 `a_T(C_T(D))D^T`. The zero-slope subcatalog is the counted
 `(T+1)`-power-coset family, while the remaining nonzero slopes are exactly
 the nonzero coefficients of `D`-split sparse trinomials `X^(T+1)+zX-c`.
+The exact-support dither gate adds that this whole layer is inactive unless
+`m | k-1`; for dyadic quotient scales dividing an exact dimension `k0`, a
+dither `k=k0-r` leaves only scales dividing `r+1`.
 For `T=2`, even that nonzero catalog is no longer a support-enumeration
 problem: it is exactly the unit-equation shape set `C_2(D)`, with slope image
 given by the square cosets `alpha(u)D^2` and quotient-lift weight
@@ -955,7 +982,8 @@ packet catalog from the already solved quotient-core lifting multiplicity.
 For residual packets of size `T+1`, it additionally checks the zero-slope
 power-coset classification and the corresponding lifted support count.
 For small scanned slack, it also checks the full normalized shape-coset
-formula and its `D^T` coset-compressed slope count.
+formula, its `D^T` coset-compressed slope count, and the exact-support
+dither gate `m | k-1` for first-superboundary activity.
 When `T=2`, it also checks the complete unit-equation shape ledger and its
 weighted slope histogram.
 The same scanner reports the associated square-coset slope-count bound.

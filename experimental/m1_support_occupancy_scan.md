@@ -69,6 +69,10 @@ canonical_residual_packet_slope_consistency_check
 canonical_first_superboundary_zero_slope_packet_count_check
 canonical_first_superboundary_zero_slope_support_count_check
 canonical_first_superboundary_zero_slope_coset_check
+canonical_first_superboundary_lift_gate_active
+canonical_first_superboundary_lift_gate_remainder
+canonical_first_superboundary_lift_gate_whole_fibers
+canonical_first_superboundary_lift_gate_check
 canonical_first_superboundary_shape_orbit_factor
 canonical_first_superboundary_shape_orbit_quotient_check
 canonical_first_superboundary_shape_packet_count_check
@@ -196,6 +200,19 @@ otherwise. The corresponding lifted support count is
 The fields `canonical_first_superboundary_zero_slope_*` compare these exact
 counts with the scan and verify the power-coset condition. Nonzero first
 superboundary slopes are left as the sparse-trinomial residual catalog.
+
+The same layer has an exact-support dither gate. Since the residual size is
+`t+1` and the support size is `k+t`, the first-superboundary catalog can lift
+only when
+
+```text
+m | (k-1).
+```
+
+The `canonical_first_superboundary_lift_gate_*` fields report this remainder,
+the whole-fiber count `(k-1)/m` when the gate is active, and check that the
+directly enumerated first-superboundary packet/support counts are zero when
+the gate is closed.
 
 For small scanned slack, the scanner also audits the general
 first-superboundary shape-coset theorem. It enumerates
