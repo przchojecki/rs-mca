@@ -130,6 +130,13 @@ def residual_support_indices(
     return tuple(residual)
 
 
+def residual_touched_fiber_count(
+    residual: Sequence[int],
+    quotient_order: int,
+) -> int:
+    return len({index % quotient_order for index in residual})
+
+
 def quotient_core_value_sum(
     support: Sequence[int],
     quotient_order: int,
@@ -177,6 +184,27 @@ def signed_symmetric_coefficient(
     sym = elementary_symmetric_prefix(values, degree, p)
     sign = -1 if degree % 2 else 1
     return (sign * sym[degree]) % p
+
+
+def expected_boundary_residual_coset_count(
+    domain_order: int,
+    quotient_order: int,
+    fiber_size: int,
+    support_size: int,
+    slack: int,
+) -> int:
+    if slack >= fiber_size:
+        return 0
+    if domain_order % slack:
+        return 0
+    if (support_size - slack) % fiber_size:
+        return 0
+    whole_fibers = (support_size - slack) // fiber_size
+    touched_fibers = slack // math.gcd(slack, fiber_size)
+    remaining_fibers = quotient_order - touched_fibers
+    if whole_fibers < 0 or whole_fibers > remaining_fibers:
+        return 0
+    return (domain_order // slack) * math.comb(remaining_fibers, whole_fibers)
 
 
 def occupancy_histogram(
@@ -232,6 +260,7 @@ def empty_histogram_record(histogram: Sequence[int]) -> Dict[str, object]:
         "canonical_low_residual_zero_prefix_count": 0,
         "canonical_boundary_residual_coset_count": 0,
         "canonical_boundary_residual_coset_mismatch_count": 0,
+        "canonical_boundary_touched_fiber_mismatch_count": 0,
         "canonical_residual_slope_mismatch_count": 0,
         "canonical_boundary_slope_mismatch_count": 0,
         "residual_size_histogram": Counter(),
@@ -315,9 +344,22 @@ def scan_supports(
     canonical_low_residual_zero_prefix_count = 0
     canonical_boundary_residual_coset_count = 0
     canonical_boundary_residual_coset_mismatches = 0
+    canonical_boundary_touched_fiber_mismatches = 0
     canonical_residual_slope_mismatches = 0
     canonical_boundary_slope_mismatches = 0
     residual_size_histogram: Counter[int] = Counter()
+    expected_boundary_count = expected_boundary_residual_coset_count(
+        domain_order=n,
+        quotient_order=quotient_order,
+        fiber_size=fiber_size,
+        support_size=support_size,
+        slack=slack,
+    )
+    expected_boundary_touched_fibers = (
+        slack // math.gcd(slack, fiber_size)
+        if slack < fiber_size and n % slack == 0
+        else None
+    )
 
     records: Dict[Tuple[int, ...], Dict[str, object]] = {}
     bad_slopes = set()
@@ -442,6 +484,25 @@ def scan_supports(
                         int(
                             record[
                                 "canonical_boundary_residual_coset_mismatch_count"
+                            ]
+                        )
+                        + 1
+                    )
+                touched_fibers = residual_touched_fiber_count(
+                    residual,
+                    quotient_order,
+                )
+                if (
+                    expected_boundary_touched_fibers is not None
+                    and touched_fibers != expected_boundary_touched_fibers
+                ):
+                    canonical_boundary_touched_fiber_mismatches += 1
+                    record[
+                        "canonical_boundary_touched_fiber_mismatch_count"
+                    ] = (
+                        int(
+                            record[
+                                "canonical_boundary_touched_fiber_mismatch_count"
                             ]
                         )
                         + 1
@@ -580,6 +641,31 @@ def scan_supports(
             if canonical_line and slack <= fiber_size
             else None
         ),
+        "canonical_boundary_residual_expected_count": (
+            expected_boundary_count
+            if canonical_line and slack <= fiber_size
+            else None
+        ),
+        "canonical_boundary_residual_count_check": (
+            canonical_boundary_residual_coset_count == expected_boundary_count
+            if canonical_line and slack <= fiber_size
+            else None
+        ),
+        "canonical_boundary_touched_fiber_count": (
+            expected_boundary_touched_fibers
+            if canonical_line and slack < fiber_size
+            else None
+        ),
+        "canonical_boundary_touched_fiber_check": (
+            canonical_boundary_touched_fiber_mismatches == 0
+            if canonical_line and slack < fiber_size
+            else None
+        ),
+        "canonical_boundary_touched_fiber_mismatch_count": (
+            canonical_boundary_touched_fiber_mismatches
+            if canonical_line and slack < fiber_size
+            else None
+        ),
         "canonical_residual_slope_check": (
             canonical_residual_slope_mismatches == 0
             if canonical_line and slack < fiber_size
@@ -663,6 +749,7 @@ def print_text(result: Dict[str, object]) -> None:
             "residual_zero_prefix_match={residual} "
             "low_residual_exclusion={low} "
             "boundary_coset_check={coset} "
+            "boundary_count_check={count} "
             "residual_slope_check={slope} "
             "boundary_slope_check={boundary}".format(
                 formula=result["canonical_symmetric_formula_check"],
@@ -670,6 +757,7 @@ def print_text(result: Dict[str, object]) -> None:
                 residual=result["canonical_residual_zero_prefix_match"],
                 low=result["canonical_low_residual_exclusion_check"],
                 coset=result["canonical_boundary_residual_coset_check"],
+                count=result["canonical_boundary_residual_count_check"],
                 slope=result["canonical_residual_slope_check"],
                 boundary=result["canonical_boundary_slope_decomposition_check"],
             )

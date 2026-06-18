@@ -279,6 +279,44 @@ multiplicative domain, and for `T<m` its slope is `z=-c`. If `T=m`, such a
 residual set would be a whole quotient fiber and hence is absorbed into
 `W(S)`, so no nonempty residual boundary case remains.
 
+In a cyclic multiplicative domain `D` of order `n`, the boundary case has an
+exact quotient-fiber count. The map
+
+```text
+x -> x^T
+```
+
+has fibers of size `gcd(T,n)`. Therefore a residual boundary set of size `T`
+exists if and only if `T | n`, and then it is one of the `n/T` cosets of the
+unique subgroup of `D` of size `T`. Relative to the quotient fibers of size
+`m`, such a coset touches exactly
+
+```text
+T / gcd(T,m)
+```
+
+quotient fibers, with `gcd(T,m)` points in each touched fiber. Hence, for
+`T<m` and exact support size
+
+```text
+s = Lm + T,
+```
+
+the number of exact supports whose residual partial-fiber set is a canonical
+boundary coset is
+
+```text
+1_{T | n} * (n/T) * binom(N - T/gcd(T,m), L),
+```
+
+where `N=n/m`. If `s` is not congruent to `T` modulo `m`, or if `T=m`, this
+boundary residual count is zero.
+
+Thus the first residual canonical obstruction after low-residual dither is not
+an arbitrary support family. It is a finite quotient-level menu of power-kernel
+cosets together with ordinary whole-fiber choices disjoint from the touched
+fibers.
+
 ## M1 Impact
 
 This turns the positive M1 problem into a precise incidence question:
@@ -317,6 +355,10 @@ The slope decomposition adds that, below the boundary `T<m`, even the slope
 value is residual-only. At `T=m`, all whole-fiber dependence is compressed to
 the additive quotient-core sum `sum y_i`, which is a much smaller
 quotient-level object than the original support.
+In cyclic domains the boundary residual obstruction is also exactly counted:
+it exists only when `T|n`, then there are `n/T` residual cosets, each touching
+`T/gcd(T,m)` quotient fibers. This turns the remaining canonical boundary
+case into a finite quotient-level object rather than an aperiodic family.
 
 ## Suggested Next Step
 
@@ -336,4 +378,5 @@ canonical line, the scanner also verifies the elementary-symmetric slope
 formula and the quotient-core invisibility identity `e_d(S)=e_d(R(S))` for
 `d<m`. It also checks the low-residual exclusion and the boundary coset
 classification on every scanned support, and verifies the residual-only and
-boundary quotient-core slope decompositions.
+boundary quotient-core slope decompositions. In cyclic-domain scans it also
+checks the exact boundary-coset count above.

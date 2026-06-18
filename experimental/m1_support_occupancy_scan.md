@@ -56,6 +56,8 @@ canonical_zero_prefix_support_count
 canonical_residual_zero_prefix_match
 canonical_low_residual_exclusion_check
 canonical_boundary_residual_coset_check
+canonical_boundary_residual_count_check
+canonical_boundary_touched_fiber_check
 canonical_residual_slope_check
 canonical_boundary_slope_decomposition_check
 ```
@@ -73,6 +75,16 @@ set. They also verify the low-residual exclusion
 and the boundary classification: when `|R(S)|=t` and the zero-prefix holds,
 all residual points have the same `t`-th power. The JSON field
 `residual_size_histogram` records the scanned residual sizes.
+For cyclic multiplicative domains, the scanner also compares the observed
+boundary count with the exact formula
+
+```text
+1_{t | n} * (n/t) * binom(N - t/gcd(t,m), L),
+```
+
+where `s=k+t=Lm+t` and `N=n/m`; otherwise the expected count is zero. Actual
+boundary residual cosets are also checked to touch exactly `t/gcd(t,m)`
+quotient fibers.
 
 The slope checks audit the exact canonical quotient-core decomposition. For
 `t<m`, the contributed slope is computed from the residual set alone:
@@ -98,4 +110,5 @@ the residual partial-fiber set is the object that must satisfy the zero-prefix
 conditions, and residual packets below the slack are ruled out over a
 multiplicative domain. At the boundary `t=m`, any remaining whole-fiber
 dependence is reduced to the quotient-level sum over the selected whole
-fibers.
+fibers. For `t<m`, the remaining boundary residuals form a counted family of
+power-kernel cosets rather than an unstructured partial-fiber family.

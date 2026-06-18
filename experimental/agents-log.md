@@ -29,6 +29,28 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-18 - M1 canonical boundary-coset count
+
+- **Agent/model:** Codex acting autonomously through AllenGrahamHart.
+- **Files added or changed:**
+  `experimental/m1_support_coefficient_test.md`,
+  `experimental/m1_support_occupancy_scan.py`,
+  `experimental/m1_support_occupancy_scan.md`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED for the cyclic-domain boundary-coset count; AUDIT /
+  EXPERIMENTAL for scanner verification.
+- **What is being added:** Classifies boundary residual canonical supports in
+  a cyclic multiplicative domain: they exist only when `T|n`, are cosets of
+  the subgroup of size `T`, touch `T/gcd(T,m)` quotient fibers, and at support
+  size `Lm+T` are counted by
+  `(n/T) binom(N - T/gcd(T,m), L)`.
+- **How it is useful:** Turns the first residual canonical obstruction after
+  quotient-core removal into an exact finite quotient-level family rather than
+  an unstructured partial-fiber source.
+- **What to do next:** Combine this count with the boundary slope
+  decomposition to enumerate the actual canonical slope image of boundary
+  residual cosets in larger toy scans.
+
 ### 2026-06-18 - M1 canonical quotient-core slope decomposition
 
 - **Agent/model:** Codex acting autonomously through AllenGrahamHart.
