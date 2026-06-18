@@ -27,6 +27,11 @@ window are exactly the residue class t == r mod M, subject to the strict and
 endpoint eligibility checks.  It also reports the exact one-remainder strict
 codegree mass obtained by truncating the proved H_REM formula to exponents
 below the target slack.
+
+The same window mode reports the theorem-backed minimax gap certificate for
+fixed dither over the slack interval.  Over integer dithers the smallest
+possible max |t-r| is the interval-center radius, while avoiding an exact
+k0-support slack forces max |t-r| to be the full window length.
 """
 
 from __future__ import annotations
@@ -164,6 +169,62 @@ def parse_slack_window(raw: str) -> Tuple[int, int]:
     if start < 0 or end < start:
         raise argparse.ArgumentTypeError("require 0 <= START <= END")
     return start, end
+
+
+def fixed_window_radius(slack_window: Tuple[int, int], dither: int) -> int:
+    start, end = slack_window
+    return max(abs(start - dither), abs(end - dither))
+
+
+def fixed_window_minimax_summary(
+    slack_window: Tuple[int, int],
+    max_dither: int,
+) -> Dict[str, object]:
+    start, end = slack_window
+    window_length = end - start + 1
+    scanned_dithers = list(range(max_dither + 1))
+
+    scanned_radius = {
+        dither: fixed_window_radius(slack_window, dither)
+        for dither in scanned_dithers
+    }
+    scanned_min_radius = min(scanned_radius.values())
+    scanned_best = [
+        dither
+        for dither, radius in scanned_radius.items()
+        if radius == scanned_min_radius
+    ]
+
+    zero_gap_free = [
+        dither for dither in scanned_dithers if not (start <= dither <= end)
+    ]
+    if zero_gap_free:
+        zero_gap_radius = {
+            dither: scanned_radius[dither] for dither in zero_gap_free
+        }
+        scanned_zero_gap_min_radius: Optional[int] = min(zero_gap_radius.values())
+        scanned_zero_gap_best: Optional[List[int]] = [
+            dither
+            for dither, radius in zero_gap_radius.items()
+            if radius == scanned_zero_gap_min_radius
+        ]
+    else:
+        scanned_zero_gap_min_radius = None
+        scanned_zero_gap_best = None
+
+    return {
+        "window_length": window_length,
+        "unconstrained_integer_min_radius": window_length // 2,
+        "zero_gap_free_integer_min_radius": window_length,
+        "left_zero_gap_free_dither": start - 1,
+        "right_zero_gap_free_dither": end + 1,
+        "left_zero_gap_free_stable_endpoint_eligible": start > 1,
+        "right_zero_gap_free_stable_endpoint_eligible": window_length < start,
+        "scanned_min_radius": scanned_min_radius,
+        "scanned_best_dithers": scanned_best,
+        "scanned_zero_gap_free_min_radius": scanned_zero_gap_min_radius,
+        "scanned_zero_gap_free_best_dithers": scanned_zero_gap_best,
+    }
 
 
 def fraction_label(value: Fraction) -> str:
@@ -731,6 +792,11 @@ def scan(
             if slack_window is None
             else {"start": slack_window[0], "end": slack_window[1]}
         ),
+        "fixed_window_minimax": (
+            None
+            if slack_window is None
+            else fixed_window_minimax_summary(slack_window, max_dither)
+        ),
         "line_field_size": line_field_size,
         "cases": cases,
     }
@@ -815,6 +881,30 @@ def print_text(result: Dict[str, object]) -> None:
             "slack-window object: L_win(r) for t={start}..{end}".format(
                 start=window["start"],
                 end=window["end"],
+            )
+        )
+        minimax = result["fixed_window_minimax"]
+        assert isinstance(minimax, dict)
+        print(
+            (
+                "fixed-window minimax: center radius {center}, "
+                "no-exact-k0 radius {free}, scanned no-exact-k0 {scan} at r={best}"
+            ).format(
+                center=minimax["unconstrained_integer_min_radius"],
+                free=minimax["zero_gap_free_integer_min_radius"],
+                scan=(
+                    "none"
+                    if minimax["scanned_zero_gap_free_min_radius"] is None
+                    else minimax["scanned_zero_gap_free_min_radius"]
+                ),
+                best=(
+                    "-"
+                    if minimax["scanned_zero_gap_free_best_dithers"] is None
+                    else ",".join(
+                        str(item)
+                        for item in minimax["scanned_zero_gap_free_best_dithers"]
+                    )
+                ),
             )
         )
     if result.get("line_field_size") is not None:

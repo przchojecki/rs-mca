@@ -222,6 +222,69 @@ def verify_two_sided_fixed_dither_weighted_tail(n, k0, r0, t, m, q):
     return correction
 
 
+def fixed_window_radius(t_start, t_end, r):
+    return max(abs(t_start - r), abs(t_end - r))
+
+
+def verify_fixed_window_stable_tail_minimax(n, k0, t_start, t_end):
+    assert 1 <= t_start <= t_end
+    window_length = t_end - t_start + 1
+    search_start = t_start - window_length - 3
+    search_end = t_end + window_length + 3
+    candidates = range(search_start, search_end + 1)
+
+    radii = {
+        r: fixed_window_radius(t_start, t_end, r)
+        for r in candidates
+    }
+    center_radius = min(radii.values())
+    assert center_radius == window_length // 2
+
+    center_dithers = tuple(r for r, radius in radii.items() if radius == center_radius)
+    assert all(t_start <= r <= t_end for r in center_dithers)
+
+    zero_gap_free_radii = {
+        r: radius
+        for r, radius in radii.items()
+        if not (t_start <= r <= t_end)
+    }
+    zero_gap_radius = min(zero_gap_free_radii.values())
+    assert zero_gap_radius == window_length
+    assert t_start - 1 in zero_gap_free_radii
+    assert t_end + 1 in zero_gap_free_radii
+
+    witnesses = []
+    endpoint_cases = (
+        (t_start - 1, t_end, "upper"),
+        (t_end + 1, t_start, "lower"),
+    )
+    for r0, endpoint, side in endpoint_cases:
+        gap = abs(endpoint - r0)
+        assert gap == window_length
+        if gap >= endpoint:
+            continue
+        for m in dyadic_divisors(k0):
+            if m < endpoint + gap:
+                continue
+            strict = verify_two_sided_fixed_dither_stable_tail(
+                n,
+                k0,
+                r0,
+                endpoint,
+                m,
+            )
+            if side == "upper":
+                expected = ((n - k0) // m) * choose(m, gap) - 1
+            else:
+                expected = (k0 // m) * choose(m, gap) - 1
+            assert sum(strict.values()) == expected
+            assert max(strict) == gap
+            witnesses.append((r0, endpoint, m, gap, sum(strict.values())))
+
+    assert witnesses
+    return center_radius, zero_gap_radius, tuple(witnesses)
+
+
 def verify_adjacent_slack_remainder_obstruction(n, k0, t0, m):
     assert m >= t0 + 3
     assert k0 % m == 0
@@ -522,6 +585,19 @@ def main():
     for case in two_sided_weighted_cases:
         correction = verify_two_sided_fixed_dither_weighted_tail(*case)
         print(f"n,k0,r0,t,m,q={case}: R_twosided={correction}")
+    minimax_cases = [
+        (256, 128, 5, 8),
+        (256, 64, 8, 13),
+        (1024, 256, 9, 15),
+    ]
+    for case in minimax_cases:
+        center_radius, zero_gap_radius, witnesses = (
+            verify_fixed_window_stable_tail_minimax(*case)
+        )
+        print(
+            f"n,k0,t0,t1={case}: center_radius={center_radius}, "
+            f"zero_gap_radius={zero_gap_radius}, witnesses={witnesses}"
+        )
     adjacent_remainder_cases = [
         (256, 128, 5, 8),
         (256, 128, 5, 16),

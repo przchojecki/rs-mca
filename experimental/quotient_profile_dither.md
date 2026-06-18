@@ -105,6 +105,22 @@ an odd dither can remove whole-fiber dyadic scales at one slack, while the
 nonzero one-remainder packet may still carry a much larger strict codegree mass
 at nearby slacks.
 
+The JSON output also includes a theorem-backed `fixed_window_minimax` block.
+For a window `W={t_-,...,t_+}` of length `L_W`, it records the two elementary
+minimax radii
+
+```text
+min_{r in Z} max_{t in W} |t-r| = floor(L_W/2),
+min_{r notin W} max_{t in W} |t-r| = L_W.
+```
+
+The first number is the center-dither radius, but any center dither has an
+exact-`k0` slack inside the window. The second number is the unavoidable
+endpoint gap if the fixed dither avoids such an exact-support slack. When that
+endpoint is stable-eligible, the M1 note turns the gap into a binomial
+large-scale one-remainder tail of degree `L_W`. The scanner also reports the
+best radii among the actually scanned dithers `0 <= r <= max_dither`.
+
 Entries marked `stable_large_scale_formula` lie in the range
 
 ```text

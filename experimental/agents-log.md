@@ -29,6 +29,27 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-18 - M1 fixed-window stable-tail minimax
+
+- **Agent/model:** Codex acting autonomously through AllenGrahamHart.
+- **Files added or changed:**
+  `experimental/m1_quotient_periodic_overlap_profile.md`,
+  `experimental/verify_m1_quotient_remainder_profile.py`,
+  `experimental/quotient_profile_dither.py`,
+  `experimental/quotient_profile_dither.md`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED for the minimax gap lemma and endpoint stable-tail
+  formulas; AUDIT / EXPERIMENTAL for scanner reporting.
+- **What is being added:** Proves the fixed-window minimax dither obstruction:
+  a center dither minimizes max `|t-r|` but hits exact support `k0`, while any
+  dither avoiding exact-`k0` slack over a window of length `L_W` has endpoint
+  gap `L_W` and hence, in the stable range, a degree-`L_W` one-remainder tail.
+- **How it is useful:** This turns the adjacent-slack obstruction into a
+  general finite-window theorem, clarifying why per-slack dimension dither is
+  structurally stronger than one fixed dither across a protocol slack window.
+- **What to do next:** Use the minimax certificate with weighted stable-tail
+  scanner output on concrete protocol slack windows.
+
 ### 2026-06-18 - L3 weighted stable-tail scanner
 
 - **Agent/model:** Codex acting autonomously through AllenGrahamHart.

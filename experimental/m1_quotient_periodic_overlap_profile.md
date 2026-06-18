@@ -630,6 +630,54 @@ one-remainder packet in the M1 support-family variance ledger. The unweighted
 formula above is recovered by setting `q=1` after combining the Vandermonde
 sum with the side coefficient.
 
+The same two-sided formula gives a minimax obstruction for fixed slack-window
+dither.  Let
+
+```text
+W = {t_-, t_-+1, ..., t_+},        L_W = t_+ - t_- + 1,
+E_W(r0) = max_{t in W} |t-r0|.
+```
+
+For unrestricted integer `r0`, the smallest possible endpoint gap is the
+center radius
+
+```text
+min_{r0 in Z} E_W(r0) = floor(L_W/2).
+```
+
+This center choice is not a quotient cure: any integer minimizer lies inside
+the slack interval, and at slack `t=r0` the support size is exactly `k0`, so
+the exact whole-fiber support family reappears at every dyadic scale dividing
+`k0`; its strict activity is then governed by the whole-fiber ledger above.
+If one requires no exact-`k0` slack in the window, i.e. `r0 notin W`, then
+
+```text
+min_{r0 notin W} E_W(r0) = L_W,
+```
+
+with the two extremal choices `r0=t_- - 1` and `r0=t_+ + 1`.  Consequently, a
+single fixed dither that avoids the exact-`k0` slack over a window of length
+`L_W` must have an endpoint with one-remainder gap at least `L_W`.  Whenever
+that endpoint is in the stable range `L_W < t` and `m >= t+L_W`, the
+two-sided formula above gives an explicit stable tail of binomial degree
+`L_W`:
+
+```text
+((n-k0)/m) binom(m,L_W) - 1
+```
+
+on the upper side, or
+
+```text
+(k0/m) binom(m,L_W) - 1
+```
+
+on the lower side.  Thus the adjacent-slack obstruction is the first case
+`L_W=2` of a general fixed-window phenomenon: avoiding an exact support
+slack by moving the dither outside the window makes the far endpoint carry a
+large-scale one-remainder tail whose binomial degree is the full window
+length.
+
 Finally, the maximal-dither remainder case has an exact all-scale formula, so
 small scales need not be handled as a black-box enumeration. Suppose
 
@@ -1150,7 +1198,10 @@ Two immediate readings are useful.
    budget. If a fixed dither is maximal at slack `t0`, the adjacent slack
    `t0+1` has `d=2` and large-scale mass `(n-k0)(m-1)/2-1`; fixed-window
    dithering therefore reintroduces a scale-dependent one-remainder
-   obstruction even when whole-fiber scales are controlled.
+   obstruction even when whole-fiber scales are controlled. More generally,
+   a fixed dither avoiding exact support `k0` over a slack window of length
+   `L_W` has an endpoint stable tail of binomial degree at least `L_W` whenever
+   the endpoint lies in the stable range.
 9. In the maximal-dither case, the one-remainder profile is explicit at every
    scale, not only at `m>=t`: the full strict profile is the three-band formula
    at exchange sizes `hm-1`, `hm`, and `hm+1`. This gives a closed-form
@@ -1179,4 +1230,6 @@ current experimental hook for this finite-window report; it also evaluates the
 one-remainder strict codegree mass from `H_REM` for each nonzero support
 remainder in the window. Supplying `--line-field-size q` additionally reports
 the two-sided stable weighted correction `R_stable(t,r0,m,q)` for stable
-large-scale one-remainder entries.
+large-scale one-remainder entries. The scanner also emits the fixed-window
+minimax gap certificate, distinguishing the unconstrained center radius from
+the larger no-exact-`k0` radius.
