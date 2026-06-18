@@ -194,6 +194,34 @@ def verify_two_sided_fixed_dither_stable_tail(n, k0, r0, t, m):
     return strict
 
 
+def two_sided_weighted_formula(n, k0, r0, t, m, q):
+    d = t - r0
+    e = abs(d)
+    assert 1 <= e < t
+    assert m >= t + e
+    assert k0 % m == 0
+
+    if d > 0:
+        side_coeff = (n - k0) // m - 1
+    else:
+        side_coeff = k0 // m - 1
+
+    correction = sum(
+        choose(e, ell) * choose(m - e, ell) * q ** (t - ell)
+        for ell in range(1, e + 1)
+    )
+    correction += side_coeff * choose(m, e) * q ** (t - e)
+    return correction
+
+
+def verify_two_sided_fixed_dither_weighted_tail(n, k0, r0, t, m, q):
+    strict = verify_two_sided_fixed_dither_stable_tail(n, k0, r0, t, m)
+    correction = weighted_strict_correction(strict, t, q)
+    expected = two_sided_weighted_formula(n, k0, r0, t, m, q)
+    assert correction == expected, (n, k0, r0, t, m, q, correction, expected)
+    return correction
+
+
 def verify_adjacent_slack_remainder_obstruction(n, k0, t0, m):
     assert m >= t0 + 3
     assert k0 % m == 0
@@ -483,6 +511,17 @@ def main():
             f"n,k0,r0,t,m={case}: H_twosided={dict(sorted(stable.items()))}, "
             f"mass={sum(stable.values())}"
         )
+    two_sided_weighted_cases = [
+        (256, 128, 5, 8, 16, 17),
+        (256, 128, 8, 5, 16, 17),
+        (1024, 256, 8, 12, 32, 17),
+        (1024, 256, 12, 8, 32, 17),
+        (1024, 512, 9, 14, 32, 257),
+        (1024, 512, 14, 9, 32, 257),
+    ]
+    for case in two_sided_weighted_cases:
+        correction = verify_two_sided_fixed_dither_weighted_tail(*case)
+        print(f"n,k0,r0,t,m,q={case}: R_twosided={correction}")
     adjacent_remainder_cases = [
         (256, 128, 5, 8),
         (256, 128, 5, 16),

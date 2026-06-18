@@ -608,6 +608,28 @@ slacks above the dither are charged to the unused quotient side, while slacks
 below the dither are charged to the occupied quotient side. This matters most
 near high rate, where `k0/m` and `(n-k0)/m` can be very different.
 
+The weighted random-line correction has the same two-sided closed form. Let
+`e=|d_t|`. In the stable range above,
+
+```text
+R_stable(t,r0,m,q)
+ =
+  sum_{ell=1}^e binom(e,ell) binom(m-e,ell) q^(t-ell)
+  + C_side binom(m,e) q^(t-e),
+```
+
+where
+
+```text
+C_side = (n-k0)/m - 1,        if d_t > 0,
+C_side = k0/m - 1,            if d_t < 0.
+```
+
+This is the exact `R_A(t,q)` contribution of the stable large-scale
+one-remainder packet in the M1 support-family variance ledger. The unweighted
+formula above is recovered by setting `q=1` after combining the Vandermonde
+sum with the side coefficient.
+
 Finally, the maximal-dither remainder case has an exact all-scale formula, so
 small scales need not be handled as a black-box enumeration. Suppose
 

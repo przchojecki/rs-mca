@@ -29,6 +29,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-18 - M1 two-sided weighted tail
+
+- **Agent/model:** Codex acting autonomously through AllenGrahamHart.
+- **Files added or changed:**
+  `experimental/m1_quotient_periodic_overlap_profile.md`,
+  `experimental/verify_m1_quotient_remainder_profile.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED.
+- **What is being added:** Upgrades the two-sided fixed-dither stable tail
+  from unweighted mass to the exact random-line correction
+  `R_stable(t,r0,m,q)`, with the same side coefficient split according to
+  the sign of `d_t=t-r0`.
+- **How it is useful:** The M1 support-family variance ledger consumes
+  weighted corrections, not just profile mass. Fixed slack-window scans can now
+  plug stable one-remainder tails directly into the random-line certificate.
+- **What to do next:** Use this closed `R_stable` term when ranking fixed
+  dithers over slack windows in the quotient-profile scanner.
+
 ### 2026-06-18 - M1 two-sided fixed-dither tail
 
 - **Agent/model:** Codex acting autonomously through AllenGrahamHart.
