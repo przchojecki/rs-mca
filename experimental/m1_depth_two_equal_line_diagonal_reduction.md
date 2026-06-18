@@ -48,6 +48,28 @@ The first term is already one-dimensional and satisfies
 Thus, in the equal-line-monodromy subfamily, the remaining analytic work is
 concentrated in the residual trace `R(mu,eta)`.
 
+The residual trace has a further one-parameter form. Let
+
+```text
+rho = mu eta chi_2,
+lambda(s) = s^2 / (4B(s)),
+H(lambda) = sum_x mu(x) eta(x-1) chi_2(x-lambda).
+```
+
+Then
+
+```text
+R(mu,eta) =
+  chi_2(-4) sum_{s!=-1, B(s)!=0} rho(B(s)) H(lambda(s))
+  + E_B(mu,eta),
+```
+
+where `E_B` is supported on the at most two roots of `B(s)=0`, and
+
+```text
+|E_B(mu,eta)| <= 2 sqrt(p).
+```
+
 ## Equal-Line Monodromy
 
 For the canonical active pair `(a,b,c)=(a,b,0)`, use a common character order
@@ -161,6 +183,55 @@ For the two largest rows, the reduction gives:
 This suggests the next proof target should be a sharp bound for the residual
 quadratic-discriminant trace `R(mu,eta)`, ideally explaining a `3p`
 top-dimensional coefficient in the equal-line case.
+
+## Hypergeometric Pullback for `R`
+
+For `B(s)!=0`, scale `t=B(s)x`. Then
+
+```text
+chi_2(s^2-4t) mu(t) eta(t-B(s))
+  = chi_2(-4) rho(B(s))
+    mu(x) eta(x-1) chi_2(x-lambda(s)).
+```
+
+This gives the displayed pullback formula. The trace `H(lambda)` is the
+three-point hypergeometric trace with moving branch point `lambda`; the
+outer variable only sees its pullback along
+
+```text
+lambda = s^2 / (4(s^2+s+1)).
+```
+
+If `B(s)=0`, then `s!=0` and the inner residual fiber is
+
+```text
+sum_t chi_2(s^2-4t) (mu eta)(t)
+  = (mu eta)(s^2/4) J(mu eta, chi_2).
+```
+
+In the equal-line remaining-wall case, both `mu eta` and `mu eta chi_2` are
+nonprincipal. Hence each exceptional fiber has size `sqrt(p)`, giving the
+`2 sqrt(p)` bound above.
+
+For the two largest rows, the residual pullback decomposition gives:
+
+```text
+(421,20,21,42),  (5,5,0,6):
+  residual R = 2.9290031282p,
+  pullback main = 2.9043632895p,
+  exceptional contribution = 1.0000000000 sqrt(p).
+
+(461,20,23,46),  (18,18,0,15):
+  residual R = 2.9412840316p,
+  pullback main = 2.9412840316p,
+  exceptional contribution = 0.
+```
+
+Thus the next geometric target is not the original two-variable surface sum,
+but the middle cohomology of this pulled-back three-point hypergeometric
+sheaf. A `3p` bound for the pullback main term, plus the exceptional
+`2 sqrt(p)` correction, would explain the observed near-`4p` diagonal
+examples.
 
 The finite verifier is
 

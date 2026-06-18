@@ -23,6 +23,8 @@ EXPECTED_TOP = {
     "sum_ratio": 3.9771715522,
     "jacobi_ratio": 1.0485702499,
     "residual_ratio": 2.9290031282,
+    "pullback_main_ratio": 2.9043632895,
+    "exceptional_sqrt_ratio": 1.0,
 }
 
 
@@ -135,6 +137,47 @@ def diagonal_reduction_parts(
     return jacobi_part, first_direct, residual
 
 
+def hypergeometric_trace(
+    p: int,
+    mu: List[complex],
+    eta: List[complex],
+    lam: int,
+) -> complex:
+    return sum(
+        mu[x] * eta[(x - 1) % p] * quadratic_character(x - lam, p)
+        for x in range(p)
+    )
+
+
+def residual_pullback_parts(
+    p: int,
+    mu: List[complex],
+    eta: List[complex],
+    rho: List[complex],
+) -> Tuple[complex, complex]:
+    pullback_main = 0j
+    exceptional = 0j
+    for s in range(p):
+        if s == p - 1:
+            continue
+        b_value = shape_b(s, p)
+        if b_value == 0:
+            exceptional += sum(
+                quadratic_character(s * s - 4 * t, p)
+                * mu[t]
+                * eta[t]
+                for t in range(p)
+            )
+            continue
+        lam = (s * s * pow(4 * b_value, -1, p)) % p
+        pullback_main += (
+            quadratic_character(-4, p)
+            * rho[b_value]
+            * hypergeometric_trace(p, mu, eta, lam)
+        )
+    return pullback_main, exceptional
+
+
 def audit_case(case: Dict[str, int]) -> Dict[str, object]:
     p = int(case["p"])
     n = int(case["n"])
@@ -156,8 +199,11 @@ def audit_case(case: Dict[str, int]) -> Dict[str, object]:
     mu = characters[(lift * a) % h]
     eta = characters[d % h]
     rho = characters[(lift * a + d) % h]
+    rho_chi = characters[(lift * a + d + h // 2) % h]
     if (lift * a + d) % h == 0:
         raise AssertionError(("mu eta unexpectedly principal", case))
+    if (lift * a + d + h // 2) % h == 0:
+        raise AssertionError(("mu eta chi_2 unexpectedly principal", case))
 
     direct = direct_open_sum(p, mu, eta)
     jacobi_part, first_direct, residual = diagonal_reduction_parts(
@@ -166,10 +212,20 @@ def audit_case(case: Dict[str, int]) -> Dict[str, object]:
         eta,
         rho,
     )
+    pullback_main, exceptional = residual_pullback_parts(
+        p,
+        mu,
+        eta,
+        rho_chi,
+    )
     if abs(jacobi_part - first_direct) > 1e-8:
         raise AssertionError((case, jacobi_part, first_direct))
     if abs(direct - (jacobi_part + residual)) > 1e-8:
         raise AssertionError((case, direct, jacobi_part, residual))
+    if abs(residual - (pullback_main + exceptional)) > 1e-8:
+        raise AssertionError((case, residual, pullback_main, exceptional))
+    if abs(exceptional) > 2 * math.sqrt(p) + 1e-8:
+        raise AssertionError((case, exceptional))
     jacobi_bound = p + math.sqrt(p)
     if abs(jacobi_part) > jacobi_bound + 1e-8:
         raise AssertionError((case, abs(jacobi_part), jacobi_bound))
@@ -185,7 +241,10 @@ def audit_case(case: Dict[str, int]) -> Dict[str, object]:
         "sum_ratio": round(abs(direct) / p, 10),
         "jacobi_ratio": round(abs(jacobi_part) / p, 10),
         "residual_ratio": round(abs(residual) / p, 10),
+        "pullback_main_ratio": round(abs(pullback_main) / p, 10),
+        "exceptional_sqrt_ratio": round(abs(exceptional) / math.sqrt(p), 10),
         "identity_error": f"{abs(direct - (jacobi_part + residual)):.2e}",
+        "pullback_error": f"{abs(residual - (pullback_main + exceptional)):.2e}",
     }
 
 

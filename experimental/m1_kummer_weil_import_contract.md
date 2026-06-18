@@ -205,7 +205,9 @@ the near-sharp part of this remaining wall concentrates in the equal-line
 diagonal subfamily. The symmetric-coordinate reduction in
 `experimental/m1_depth_two_equal_line_diagonal_reduction.md` splits that
 subfamily into a bounded one-dimensional Jacobi part and a residual
-quadratic-discriminant trace; this is a proof-guidance reduction, not yet a
+quadratic-discriminant trace, then rewrites the residual as a pullback of a
+three-point hypergeometric trace along
+`lambda=s^2/(4(s^2+s+1))`; this is a proof-guidance reduction, not yet a
 replacement for the `9p` import.
 
 Thus the fixed-window, quotient-window, and two-fiber certificates still use
