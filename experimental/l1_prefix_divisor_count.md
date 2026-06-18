@@ -31,6 +31,7 @@ a subgroup exponential-sum estimate.
 | 8 | Non-enumerative DP counter; first entropy-cleared **sub-Johnson** data (`F_257,n=32`) | EXPERIMENTAL | evidence for `conj:prefix-local` beyond Johnson |
 | 9 | Arbitrary-word lift to `ImgFib_U`: dilation symmetry + folding source `W|->W(X^d)` | PROVED | `conj:arbitrary-local`, `thm:conditional-list` |
 | 10 | Fourier reduction: `S(r)=e_m({e_p(g_r(a))})`, power sums = subgroup Weil sums `T(lr)` | PROVED (identity) / CONDITIONAL (bound) | reduces `conj:prefix-local` to exp-sums |
+| 11 | Structured/generic `r` split: classified + measured; necessary but NOT sufficient (needs phase cancellation) | PROVED (classification) / EXPERIMENTAL / route-refinement | sharpens the §10 open step |
 
 **What is proved.** The structured (quotient-periodic) contribution to the list
 is *completely characterized*: it is an exact, field-independent count
@@ -42,9 +43,11 @@ the dimension dither `gcd(n, k+sigma) <= sigma`.
 **What remains open.** The upper bound on the *aperiodic* (generic, `g_c=1`,
 trivial-stabilizer) list above the corrected reserve --- the genuine content of
 `conj:prefix-local`. §10 reduces it to a uniform-in-`l` subgroup
-exponential-sum estimate; the worst-case bound is super-polynomial and averaging
-runs into Parseval = the second-moment `sec:pairwise` barrier of Paper B. The
-concrete proposed route is the structured/generic-`r` split of §10.
+exponential-sum estimate; §11 then shows the natural structured/generic-`r` split
+is *necessary but not sufficient* (the generic bulk dominates the `L1` bound,
+which itself overestimates the truth by `4-10x` due to phase cancellation). So
+the essential difficulty is pinned to *cancellation across `r`* --- the
+second-moment `sec:pairwise` barrier of Paper B, in Fourier form.
 
 All PROVED/EXPERIMENTAL claims are machine-verified:
 `verify_l1_prefix_divisor_count.py` (§§1-8, reproduces the `F_17` certificate),
@@ -507,6 +510,57 @@ Verified by `verify_l1_fourier_reduction.py` over `F_17, n=16` (`sigma=2,3`):
 `S(r)` enumeration equals the product formula, the Fourier inversion reconstructs
 the brute histogram to `< 1e-12`, and the conditional Newton bound holds for
 every `r`.
+
+## 11. The structured/generic split: necessary but not sufficient
+
+§10 proposed splitting the Fourier sum into *structured* and *generic* `r`. This
+section proves the classification and measures the split --- and finds, honestly,
+that the split alone does **not** give the bound.
+
+**Classification (PROVED).** Call `r` *structured at level `e`* if
+`e = gcd\{j : r_j != 0\} > 1`; then `g_r(w) = h(w^e)` is a polynomial in `w^e`,
+the `e`-power map folds `mu_n` onto `mu_{n/e}` (`e`-to-`1`), and
+```text
+{ e_p(g_r(a)) : a in mu_n } = e copies of { e_p(h(y)) : y in mu_{n/e} },
+```
+so `S(r)` is the elementary symmetric of an `e`-fold repeated multiset --- the
+folded object of §9, and the source of the large Weil sums `|T(l r)|` (a factor
+`e` from the fold). The structured set is `union_{prime d <= sigma} L_d` with
+`L_d = \{ r : r_j = 0 unless d | j \}`, `|L_d| = p^{floor(sigma/d)}`, so the
+structured `r` are a `p^{-ceil(sigma/2)}` fraction of `F_p^sigma` --- the same
+thin slice as the §7 `g_c`-localization. Generic `r` (`e = 1`) have `g_r` of full
+degree and, by Weil over the (generated) field, small sums `|T(l r)| <= sigma
+sqrt(p)`.
+
+**Measurement (EXPERIMENTAL, `F_17, n=16`,
+`verify_l1_fourier_reduction.py`).**
+
+| case | struct `r` (frac) | gen `r` | L1 mass struct | L1 mass gen | max gen `|T|` vs `sigma√p` | actual max dev |
+|---|---|---|---|---|---|---|
+| `k=8, sigma=2` | 16 (0.056) | 272 | 3.54 | **15.82** | 5.1 vs 8.2 | 4.29 |
+| `k=4, sigma=3` | 32 (0.0065) | 4880 | 0.26 | **27.77** | 8.3 vs 12.4 | 2.67 |
+
+Three honest readings:
+1. Generic Weil sums are indeed small (`max|T| <= sigma sqrt(p)`), confirming the
+   Weil heuristic for the generic part.
+2. **The structured `r` are not the L1 bottleneck.** They carry the largest
+   *individual* coefficients (`max|S|` struct `124` vs generic `36` at
+   `sigma=2`), but there are too few of them; the `L1` error mass
+   `sum_r |S(r)| / p^sigma` is dominated by the *generic bulk*.
+3. **The `L1` bound is far from the truth.** It overestimates the actual maximal
+   fiber deviation by `4-10x` (e.g. `19` vs `4.3`). The gap is exactly the phase
+   cancellation in `sum_r e_p(-<r,c>) S(r)` that the triangle inequality discards.
+
+**Conclusion (route refinement, not a resolution).** The structured/generic split
+is *necessary* --- it isolates the few genuinely large coefficients as the §5/§7
+quotient core --- but it is *not sufficient*: bounding the generic bulk by `|S(r)|`
+termwise (even with sharp Weil input) loses to the trivial count, because the
+crude Newton bound from `tau ~ sqrt(n)` is loose and the generic coefficients are
+many. A polynomial list bound must exploit the **phase cancellation** across `r`,
+which is the second-moment / `sec:pairwise` barrier of Paper B in Fourier form.
+So this records, with explicit constants, *why* the natural split does not by
+itself crack `conj:prefix-local`, and pins the essential difficulty to cancellation
+rather than to the size of any individual exponential sum.
 
 ## Ledger impact
 

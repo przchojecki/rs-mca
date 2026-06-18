@@ -154,6 +154,33 @@ def run(p=17, n=16, k=8, sigma=2, tol=1e-6):
             newton_ok = False
         worst_ratio = max(worst_ratio, sval / bound if bound > 0 else 0.0)
 
+    # (4) Structured / generic split (§11).  r is STRUCTURED iff g_r is a
+    # polynomial in w^e with e = gcd{j : r_j != 0} > 1 (then it folds to mu_{n/e}
+    # and carries large Weil sums); GENERIC iff e = 1.
+    from math import gcd as _gcd, sqrt
+    def support_gcd(r):
+        e = 0
+        for j in range(sigma):
+            if r[j] % p != 0:
+                e = (j + 1) if e == 0 else _gcd(e, j + 1)
+        return e
+    struct_sum = gen_sum = 0.0
+    struct_cnt = gen_cnt = 0
+    max_gen_S = max_gen_T = max_struct_S = 0.0
+    for r in rvecs:
+        if not any(r):
+            continue
+        aS = abs(Svals[r])
+        if support_gcd(r) > 1:
+            struct_sum += aS; struct_cnt += 1
+            max_struct_S = max(max_struct_S, aS)
+        else:
+            gen_sum += aS; gen_cnt += 1
+            max_gen_S = max(max_gen_S, aS)
+            max_gen_T = max(max_gen_T, abs(weil_sum(r, H, p)))
+    main = total / (p ** sigma)
+    max_dev = max(abs(cnt - main) for cnt in brute.values())
+
     return {
         "status": "EXPERIMENTAL/AUDIT",
         "params": {"p": p, "n": n, "k": k, "sigma": sigma, "m": m},
@@ -166,6 +193,18 @@ def run(p=17, n=16, k=8, sigma=2, tol=1e-6):
         "fourier_max_abs_err": max_err,
         "newton_bound_ok": newton_ok,
         "newton_worst_ratio": round(worst_ratio, 4),
+        "split": {
+            "structured_count": struct_cnt,
+            "generic_count": gen_cnt,
+            "structured_frac": round(struct_cnt / (p ** sigma - 1), 4),
+            "err_bound_structured": round(struct_sum / p ** sigma, 4),
+            "err_bound_generic": round(gen_sum / p ** sigma, 4),
+            "max_struct_S": round(max_struct_S, 3),
+            "max_generic_S": round(max_gen_S, 3),
+            "max_generic_T": round(max_gen_T, 3),
+            "weil_pred_sigma_sqrt_p": round(sigma * (p ** 0.5), 3),
+            "actual_max_fiber_deviation": round(max_dev, 3),
+        },
     }
 
 
@@ -194,6 +233,14 @@ def main(argv=None):
               f"inversion reconstructs brute histogram (max err {r['fourier_max_abs_err']:.2e})")
         print(f"  [{'OK ' if r['newton_bound_ok'] else 'FAIL'}] conditional Newton bound "
               f"|S(r)| <= prod(1+tau/j)  (worst ratio {r['newton_worst_ratio']})")
+        sp = r["split"]
+        print(f"  -- structured/generic split (§11) --")
+        print(f"     structured r: {sp['structured_count']} ({sp['structured_frac']} frac), "
+              f"generic r: {sp['generic_count']}")
+        print(f"     error-bound mass: structured {sp['err_bound_structured']}, "
+              f"generic {sp['err_bound_generic']}  (actual max dev {sp['actual_max_fiber_deviation']})")
+        print(f"     max |S|: struct {sp['max_struct_S']}, generic {sp['max_generic_S']}; "
+              f"max generic |T|={sp['max_generic_T']} vs Weil sigma*sqrt(p)={sp['weil_pred_sigma_sqrt_p']}")
         ok = (r["S_enum_eq_product"] and r["fourier_inversion_ok"] and r["newton_bound_ok"])
         print(f"RESULT: {'PASS' if ok else 'FAIL'}")
         return 0 if ok else 1

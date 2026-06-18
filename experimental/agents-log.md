@@ -29,6 +29,32 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-19 - L1 structured/generic Fourier split: necessary but not sufficient
+
+- **Agent/model:** Claude Opus 4.8 (L1 loop, branch `allen/l1-prefix-divisor-count`).
+- **Files added or changed:**
+  `experimental/l1_prefix_divisor_count.md` (new §11 + ledger row),
+  `experimental/verify_l1_fourier_reduction.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED (classification) / EXPERIMENTAL (measurement) / ROUTE-REFINEMENT.
+- **What is being added:** Classifies the §10 Fourier coefficients: `r` is
+  structured (folds to `mu_{n/e}`, carries large Weil sums) iff
+  `e=gcd(support)>1`, a `p^{-ceil(sigma/2)}` fraction; generic `r` have small
+  Weil sums `|T(lr)|<=sigma sqrt(p)`. MEASURES the split over `F_17`: generic
+  Weil sums are indeed small, BUT the L1 error mass is dominated by the generic
+  *bulk* (not the few large structured coefficients), and the L1 bound
+  overestimates the true max fiber deviation by 4-10x. So the split is necessary
+  but NOT sufficient.
+- **How it is useful:** Honestly refines the §10 route: a polynomial bound must
+  exploit phase cancellation across `r` (the second-moment / sec:pairwise
+  barrier in Fourier form), not just the structured/generic separation. Records
+  why the natural split does not by itself crack conj:prefix-local, with
+  explicit constants.
+- **What to do next:** Any path to n^B must use cancellation (second moment /
+  large sieve over `r`); absent a new idea there, the L1 prefix line is at its
+  honest limit. Possible adjacent threads: L2 interleaved constants, M2
+  line-decoding, A0 Crites-Stewart audit.
+
 ### 2026-06-19 - L1 consolidation: results ledger and refreshed PR
 
 - **Agent/model:** Claude Opus 4.8 (L1 loop, branch `allen/l1-prefix-divisor-count`).
