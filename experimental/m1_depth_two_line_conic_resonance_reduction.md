@@ -325,6 +325,31 @@ therefore the eight-point checklist recorded above.  Over a finite field the
 two outer-Mellin points are rational precisely when `chi_2(-2)=1`, so the
 verifier reports either six or eight rational projective support points.
 
+## Nontriviality on the Admissible Range
+
+In the actual `C_2^lc` character range, none of the twist-divisor characters
+above is accidentally principal.  With the notation of the admissible filter,
+
+```text
+eta = chi^{-a},        nu = chi^b,        eta nu = chi^{b-a}.
+```
+
+The filter has `a,b != 0` and `b != a`, so `eta`, `nu`, and `eta nu` are all
+nonprincipal.  Therefore:
+
+```text
+lambda=-1 and infinity:              nu is nonprincipal,
+lambda=-3 and -1/3:                  (eta nu)^(-1) is nonprincipal,
+roots of 9lambda^2+14lambda+9:       eta is nonprincipal.
+```
+
+Thus every support point introduced by the pulled-back Kummer twist is a
+genuine ramified point for every admissible line-conic-resonant character
+pair.  The conductor proof cannot discard any of these twist points by a
+character-specialization shortcut; the only possible savings must come from
+the hypergeometric local table, the quadratic pushforward structure, or
+global cancellation.
+
 ## Open-Set Line Correction
 
 For the actual two-coordinate open sum, the principal coordinate line

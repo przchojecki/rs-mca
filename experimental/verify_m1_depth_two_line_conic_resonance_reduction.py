@@ -598,6 +598,42 @@ def direct_admissible_filter_count(e: int) -> int:
     return count
 
 
+def verify_admissible_twist_nontriviality() -> List[Tuple[int, int]]:
+    checked: List[Tuple[int, int]] = []
+    for e in FILTER_ORDERS:
+        count = 0
+        for a in range(1, e):
+            eta_exponent = (-a) % e
+            for b in range(1, e):
+                direct_filter = (
+                    b % e != a % e
+                    and b % e != (-a) % e
+                    and b % e != (2 * a) % e
+                    and (2 * b) % e != a % e
+                )
+                if not direct_filter:
+                    continue
+                nu_exponent = b % e
+                eta_nu_exponent = (b - a) % e
+                if eta_exponent == 0 or nu_exponent == 0 or eta_nu_exponent == 0:
+                    raise AssertionError(
+                        (
+                            e,
+                            a,
+                            b,
+                            eta_exponent,
+                            nu_exponent,
+                            eta_nu_exponent,
+                        )
+                    )
+                count += 1
+        expected_count = admissible_filter_formula(e)
+        if count != expected_count:
+            raise AssertionError((e, count, expected_count))
+        checked.append((e, count))
+    return checked
+
+
 def verify_admissible_filter_counts() -> List[Tuple[int, int]]:
     checked: List[Tuple[int, int]] = []
     for e in FILTER_ORDERS:
@@ -742,6 +778,7 @@ def main() -> None:
     lambda_twist_checked: List[Tuple[int, int, int]] = []
     split_hypergeometric_checked = 0
     filter_checked = verify_admissible_filter_counts()
+    twist_nontrivial_checked = verify_admissible_twist_nontriviality()
     moment_checked = verify_second_moments()
     for p, eta_exponent, nu_exponent in case_iterator():
         if p not in tables:
@@ -814,6 +851,8 @@ def main() -> None:
         f"lambda_twist_checked={lambda_twist_checked}",
         f"split_hypergeometric_checked={split_hypergeometric_checked}",
         f"filter_checked={filter_checked[0]}..{filter_checked[-1]}",
+        f"twist_nontrivial_checked={twist_nontrivial_checked[0]}.."
+        f"{twist_nontrivial_checked[-1]}",
         f"moment_checked={moment_checked}",
     )
 

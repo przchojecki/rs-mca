@@ -29,6 +29,23 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-19 - M1 line-conic twist nontriviality
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/m1_depth_two_line_conic_resonance_reduction.md`,
+  `experimental/verify_m1_depth_two_line_conic_resonance_reduction.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** Proves that all Kummer twist characters in the
+  pulled-back `lambda`-line divisor are nonprincipal on the admissible
+  `C_2^lc` character range.
+- **How it is useful:** Shows that none of the eight-point conductor
+  checklist disappears by a character-specialization shortcut; any saving
+  must come from the hypergeometric local table or pushforward structure.
+- **What to do next:** Combine the nontrivial twist ledger with the
+  hypergeometric local table to estimate the final conductor.
+
 ### 2026-06-19 - M1 line-conic twist divisor
 
 - **Agent/model:** Codex.
