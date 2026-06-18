@@ -1474,10 +1474,11 @@ def slack_two_second_kummer_saturation_data(
         * square_coset_index
     )
     nonprincipal_tuple_count = denominator - 1
-    uniform_prime_threshold = 22 * denominator + 5
-    principal_lower = p * p - 4 * p - 1
+    uniform_prime_threshold = 22 * denominator + 4
+    chi_minus_three = quadratic_character(-3, p)
+    principal_exact_count = p * p - 4 * p + 6 + 4 * chi_minus_three
     degeneracy_line_count = 6
-    lower_numerator = principal_lower - (
+    lower_numerator = principal_exact_count - (
         nonprincipal_constant + degeneracy_line_count
     ) * p * denominator
     admissible_per_coset_lower_bound = (
@@ -1496,7 +1497,9 @@ def slack_two_second_kummer_saturation_data(
         "uniform_prime_threshold": uniform_prime_threshold,
         "uniform_threshold_applies": p >= uniform_prime_threshold,
         "nonprincipal_constant": nonprincipal_constant,
-        "principal_lower_bound": principal_lower,
+        "principal_chi_minus_three": chi_minus_three,
+        "principal_exact_count": principal_exact_count,
+        "principal_lower_bound": principal_exact_count,
         "degeneracy_line_count": degeneracy_line_count,
         "lower_numerator": lower_numerator,
         "admissible_per_coset_lower_bound": (
@@ -3847,6 +3850,16 @@ def scan_supports(
         ),
         "canonical_slack_two_second_kummer_nonprincipal_constant": (
             int(slack_two_second_kummer_saturation["nonprincipal_constant"])
+            if slack_two_second_kummer_saturation is not None
+            else None
+        ),
+        "canonical_slack_two_second_kummer_principal_chi_minus_three": (
+            int(slack_two_second_kummer_saturation["principal_chi_minus_three"])
+            if slack_two_second_kummer_saturation is not None
+            else None
+        ),
+        "canonical_slack_two_second_kummer_principal_exact_count": (
+            int(slack_two_second_kummer_saturation["principal_exact_count"])
             if slack_two_second_kummer_saturation is not None
             else None
         ),

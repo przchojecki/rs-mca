@@ -1394,8 +1394,18 @@ Kummer sheaves; the scanner reports this as
 `canonical_slack_two_second_kummer_divisor_nontriviality_check`.
 
 The principal term counts the complement of the divisor
-`u v (-1-u-v) A(u,v)=0`, so it is at least `p^2-4p-1`. Assume the standard
-degree-five two-variable Kummer-Weil estimate
+`u v (-1-u-v) A(u,v)=0`, and this count is exact. The three lines
+`u=0`, `v=0`, and `w=0` have union size `3p-3`. The affine conic `A=0`
+has `p-chi(-3)` points. On each of the three lines it cuts
+`1+chi(-3)` points, and these intersection sets are disjoint because the
+line-line intersections are not on the conic. Hence the principal count is
+
+```text
+p^2 - (3p-3) - (p-chi(-3)) + 3(1+chi(-3))
+  = p^2 - 4p + 6 + 4 chi(-3).
+```
+
+Assume the standard degree-five two-variable Kummer-Weil estimate
 
 ```text
 |S_{a,b,c,d}| <= 16 p
@@ -1407,13 +1417,13 @@ any fixed coset count. Therefore every nonzero `H`-coset is hit by an
 admissible depth-two shape whenever
 
 ```text
-p^2 - 4p - 1 > 22 p e^3 h.
+p^2 - 4p + 6 + 4 chi(-3) > 22 p e^3 h.
 ```
 
 Equivalently, the scanner's integer certificate
 
 ```text
-ceil((p^2 - 4p - 1 - 22 p e^3 h)/(e^3 h)) > 0
+ceil((p^2 - 4p + 6 + 4 chi(-3) - 22 p e^3 h)/(e^3 h)) > 0
 ```
 
 forces the nonzero depth-two slack-two frontier to saturate every nonzero
@@ -1427,7 +1437,7 @@ The same inequality gives an exact integer threshold for fixed subgroup
 index data:
 
 ```text
-p >= 22 e^3 h + 5 = 22 e^4 g + 5.
+p >= 22 e^3 h + 4 = 22 e^4 g + 4.
 ```
 
 At and above this threshold, the Kummer certificate forces low-index

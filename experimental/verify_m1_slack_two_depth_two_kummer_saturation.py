@@ -41,6 +41,17 @@ def divisor_power_failure_count(character_order: int, square_kernel_index: int) 
     return failures
 
 
+def principal_open_count(p: int) -> int:
+    count = 0
+    for u in range(p):
+        for v in range(p):
+            w = (-1 - u - v) % p
+            shape_slope = (-(u * u + v * v + u * v + u + v + 1)) % p
+            if u and v and w and shape_slope:
+                count += 1
+    return count
+
+
 def square_coset_counts(p: int, domain: Sequence[int]) -> Tuple[int, int]:
     domain_set = set(domain)
     square_image = {x * x % p for x in domain}
@@ -71,6 +82,9 @@ def main() -> None:
         )
         if failures != int(certificate["divisor_power_failure_count"]):
             raise AssertionError((p, n, failures, certificate))
+        principal_count = principal_open_count(p)
+        if principal_count != int(certificate["principal_exact_count"]):
+            raise AssertionError((p, n, principal_count, certificate))
         nonzero_coset_count, total_coset_count = square_coset_counts(p, domain)
         saturates = nonzero_coset_count == total_coset_count
         certificate_positive = bool(certificate["saturation_certificate"])
@@ -87,6 +101,7 @@ def main() -> None:
                 certificate_positive,
                 certificate["uniform_prime_threshold"],
                 failures,
+                principal_count,
                 nonzero_coset_count,
                 total_coset_count,
             )

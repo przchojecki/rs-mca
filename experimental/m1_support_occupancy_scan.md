@@ -501,6 +501,15 @@ psi(u^(ga) v^(gb) (-1-u-v)^(gc) A(u,v)^d),
 with divisor exponents `(ga,gb,gc,d)` modulo `h=eg`. These are all zero only
 for the principal tuple, so no nonprincipal term is an `h`-th power in the
 Kummer open set.
+The `*_principal_exact_count` field records the exact principal open-set
+count
+
+```text
+p^2 - 4p + 6 + 4 chi(-3),
+```
+
+obtained by inclusion-exclusion for the three lines `u=0`, `v=0`,
+`-1-u-v=0` and the conic `A(u,v)=0`.
 The field `canonical_slack_two_second_index_window_label` combines the lift
 gate, this low-index saturation certificate, and the high-index sparsity
 ceiling. Its values are:
