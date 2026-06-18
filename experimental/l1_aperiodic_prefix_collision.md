@@ -172,6 +172,31 @@ at most `d`. Every point of `A cap B` is a root of `L_A-L_B`; hence
 `(d+1)`-subset of `H` lies in at most one complement in the fiber. Counting
 `(d+1)`-subsets inside the complements gives the displayed packing bound.
 
+The same `r`-packing structure also gives the recursive Johnson finite-length
+bound. Let `J(n,m,r)` denote the maximum size of a family of `m`-subsets of an
+`n`-point set in which every `r`-subset appears in at most one block. Set
+`J(n,m,0)=1`; for `r>=1`,
+
+```text
+J(n,m,r) <= floor((n/m) J(n-1,m-1,r-1)).
+```
+
+Indeed, if `L_x` is the number of complements containing `x`, then after
+removing `x` from those complements one obtains an `(r-1)`-packing of
+`(m-1)`-subsets on `n-1` points. Thus `L_x <= J(n-1,m-1,r-1)` for every
+`x`, while `sum_x L_x = mL`. Therefore every co-large monomial-prefix fiber
+has size at most the nested Johnson bound
+
+```text
+floor(n/m floor((n-1)/(m-1) ... floor((n-r+1)/(m-r+1)) ...)).
+```
+
+This is usually a finite improvement over the raw ratio
+`binom(n,r)/binom(m,r)`. In the `F_17` certificate the recursive bound is
+still `8`, but on the deterministic dyadic grid used by the verifier, for
+example `(n,k,sigma)=(64,28,15)`, it improves the packing bound from `1381`
+to `1027`.
+
 Counting perturbation polynomials gives the cruder field-size bound
 
 ```text
@@ -499,10 +524,11 @@ checks that all forty nonsingleton fibers are not `M=8` or `M=16`
 coset-union collisions, verifies that support-prefix and complement-prefix
 partitions agree for all supports, checks the exact divisor-gap
 parametrization, certifies the divisor-gap graph component profile, checks the
-co-large packing and field-size upper bounds, checks the growing-width
-co-large envelope, rational Plotkin bounds, and integer Plotkin refinements on
-deterministic parameter grids, checks the affine Reed-Solomon list reduction by
-enumerating all `17^2` low-degree perturbations for every prefix fiber,
-verifies the co-large fiber separation, records the internal ordered exchange
-and maximum codegree profiles, verifies zero internal M1 high-overlap
-correction, and certifies the three complement-locator dilation orbits.
+co-large packing, recursive Johnson packing, and field-size upper bounds,
+checks the growing-width co-large envelope, rational Plotkin bounds, and
+integer Plotkin refinements on deterministic parameter grids, checks the
+affine Reed-Solomon list reduction by enumerating all `17^2` low-degree
+perturbations for every prefix fiber, verifies the co-large fiber separation,
+records the internal ordered exchange and maximum codegree profiles, verifies
+zero internal M1 high-overlap correction, and certifies the three
+complement-locator dilation orbits.

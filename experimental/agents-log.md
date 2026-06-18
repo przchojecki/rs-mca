@@ -29,6 +29,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-18 - L1 recursive Johnson packing bound
+
+- **Agent/model:** Codex acting autonomously through AllenGrahamHart.
+- **Files added or changed:**
+  `experimental/l1_aperiodic_prefix_collision.md`,
+  `experimental/verify_l1_aperiodic_prefix_collision.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED.
+- **What is being added:** Applies the recursive Johnson bound to the
+  complement `r`-packings inside co-large monomial-prefix fibers:
+  `J(n,m,r) <= floor((n/m)J(n-1,m-1,r-1))`.
+- **How it is useful:** This gives a standard finite-design scanner bound
+  sharper than the raw `binom(n,r)/binom(m,r)` ratio in many finite regimes.
+  The verifier records deterministic dyadic cases, including the improvement
+  from `1381` to `1027` at `(n,k,sigma)=(64,28,15)`.
+- **What to do next:** Use the Johnson recursion as the default finite
+  baseline before searching for actual low-degree divisor-gap components.
+
 ### 2026-06-18 - L1 integer Plotkin refinement
 
 - **Agent/model:** Codex acting autonomously through AllenGrahamHart.

@@ -391,6 +391,45 @@ def complement_prefix_partition_report(
     }
 
 
+def johnson_packing_bound(n: int, m: int, r: int) -> int:
+    if r <= 0:
+        return 1
+    if r > m:
+        return comb(n, m)
+    bound = 1
+    for offset in range(r - 1, -1, -1):
+        bound = ((n - offset) * bound) // (m - offset)
+    return bound
+
+
+def johnson_packing_bound_case(n: int, k: int, sigma: int) -> dict[str, Any]:
+    complement_size = n - k - sigma
+    gap_dimension = max(n - k - 2 * sigma, 0)
+    if gap_dimension == 0:
+        packing_bound_floor = 1
+    else:
+        packing_bound_floor = (
+            comb(n, gap_dimension) // comb(complement_size, gap_dimension)
+        )
+    johnson_bound_floor = johnson_packing_bound(
+        n,
+        complement_size,
+        gap_dimension,
+    )
+    if johnson_bound_floor > packing_bound_floor:
+        raise AssertionError("Johnson recursion exceeded packing ratio")
+    return {
+        "n": n,
+        "k": k,
+        "sigma": sigma,
+        "complement_size": complement_size,
+        "gap_dimension": gap_dimension,
+        "packing_bound_floor": packing_bound_floor,
+        "johnson_bound_floor": johnson_bound_floor,
+        "improves_ratio_floor": johnson_bound_floor < packing_bound_floor,
+    }
+
+
 def co_large_bound_report(
     fibers: dict[tuple[int, ...], list[tuple[int, ...]]],
 ) -> dict[str, Any]:
@@ -408,6 +447,9 @@ def co_large_bound_report(
         raise AssertionError("co-large field-size bound failed")
     if maximum_fiber_size * packing_denominator > packing_numerator:
         raise AssertionError("co-large packing bound failed")
+    johnson_instance = johnson_packing_bound_case(N, K, SIGMA)
+    if maximum_fiber_size > johnson_instance["johnson_bound_floor"]:
+        raise AssertionError("co-large Johnson bound failed")
     return {
         "checked": True,
         "complement_size": complement_size,
@@ -416,6 +458,7 @@ def co_large_bound_report(
         "packing_bound_numerator": packing_numerator,
         "packing_bound_denominator": packing_denominator,
         "packing_bound_floor": packing_numerator // packing_denominator,
+        "johnson_bound_floor": johnson_instance["johnson_bound_floor"],
         "maximum_fiber_size": maximum_fiber_size,
         "fixed_width_instance": {
             "r": gap_dimension,
@@ -427,6 +470,25 @@ def co_large_bound_report(
             "asymptotic_base_at_rate": 2 / (1 - (K / N)),
         },
         "holds": True,
+    }
+
+
+def johnson_packing_report() -> dict[str, Any]:
+    cases = [
+        (N, K, SIGMA),
+        (64, 28, 15),
+        (128, 56, 31),
+        (256, 96, 76),
+        (512, 192, 150),
+        (1024, 384, 304),
+    ]
+    checked_cases = [johnson_packing_bound_case(*case) for case in cases]
+    return {
+        "checked": True,
+        "cases": checked_cases,
+        "improved_cases": sum(
+            1 for case in checked_cases if case["improves_ratio_floor"]
+        ),
     }
 
 
@@ -945,6 +1007,7 @@ def build_certificate() -> dict[str, Any]:
     divisor_gaps = divisor_gap_report(fibers)
     divisor_graph = divisor_gap_graph_report(fibers)
     co_large_bound = co_large_bound_report(fibers)
+    johnson_packing = johnson_packing_report()
     co_large_plotkin = co_large_plotkin_report(fibers)
     affine_rs_list = affine_rs_list_report(fibers)
     co_large_separation = co_large_separation_report(fibers)
@@ -983,6 +1046,7 @@ def build_certificate() -> dict[str, Any]:
         "divisor_gap_report": divisor_gaps,
         "divisor_gap_graph_report": divisor_graph,
         "co_large_bound_report": co_large_bound,
+        "johnson_packing_report": johnson_packing,
         "co_large_plotkin_report": co_large_plotkin,
         "affine_rs_list_report": affine_rs_list,
         "co_large_separation_report": co_large_separation,
@@ -1001,6 +1065,7 @@ def print_text(cert: dict[str, Any]) -> None:
     divisor_gaps = cert["divisor_gap_report"]
     divisor_graph = cert["divisor_gap_graph_report"]
     co_large_bound = cert["co_large_bound_report"]
+    johnson_packing = cert["johnson_packing_report"]
     co_large_plotkin = cert["co_large_plotkin_report"]
     affine_rs_list = cert["affine_rs_list_report"]
     co_large_separation = cert["co_large_separation_report"]
@@ -1060,6 +1125,11 @@ def print_text(cert: dict[str, Any]) -> None:
         f"= {co_large_bound['packing_bound_floor']}"
     )
     print(
+        "co-large Johnson bound: "
+        f"max fiber {co_large_bound['maximum_fiber_size']} <= "
+        f"{co_large_bound['johnson_bound_floor']}"
+    )
+    print(
         "fixed-width instance: "
         f"r={co_large_bound['fixed_width_instance']['r']}, "
         f"finite ratio={co_large_bound['fixed_width_instance']['finite_ratio']:.3f}"
@@ -1109,6 +1179,11 @@ def print_text(cert: dict[str, Any]) -> None:
     print(
         "Plotkin grid cases checked: "
         f"{len(co_large_plotkin['deterministic_cases'])}"
+    )
+    print(
+        "Johnson grid cases checked: "
+        f"{len(johnson_packing['cases'])}, "
+        f"improved {johnson_packing['improved_cases']}"
     )
     print(
         "complement dilation orbits: "
