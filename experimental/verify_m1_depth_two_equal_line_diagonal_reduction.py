@@ -89,6 +89,32 @@ def shape_d(s: int, x: int, p: int) -> int:
     return (4 * shape_b(s, p) * x - s * s) % p
 
 
+def projective_points(p: int) -> List[Tuple[int, int, int]]:
+    points = [(s, x, 1) for s in range(p) for x in range(p)]
+    points.extend((s, 1, 0) for s in range(p))
+    points.append((1, 0, 0))
+    return points
+
+
+def projective_b(s: int, z: int, p: int) -> int:
+    return (s * s + s * z + z * z) % p
+
+
+def projective_c(s: int, z: int, p: int) -> int:
+    return (3 * s * s + 4 * s * z + 4 * z * z) % p
+
+
+def projective_d(s: int, x: int, z: int, p: int) -> int:
+    return (4 * projective_b(s, z, p) * x - s * s * z) % p
+
+
+def projective_d_partials(s: int, x: int, z: int, p: int) -> Tuple[int, int, int]:
+    d_s = (4 * (2 * s + z) * x - 2 * s * z) % p
+    d_x = (4 * projective_b(s, z, p)) % p
+    d_z = (4 * (s + 2 * z) * x - s * s) % p
+    return d_s, d_x, d_z
+
+
 def lambda_value(s: int, p: int) -> int:
     denominator = (4 * shape_b(s, p)) % p
     if denominator == 0:
@@ -252,6 +278,100 @@ def verify_pullback_branch_geometry(p: int) -> Dict[str, object]:
     }
 
 
+def verify_plane_divisor_geometry(p: int) -> Dict[str, object]:
+    if p <= 3:
+        raise AssertionError(p)
+    points = projective_points(p)
+    point_p = (0, 1, 0)
+    point_q = (1, 0, 0)
+    point_r = (0, 0, 1)
+    roots_b = [s for s in range(p) if shape_b(s, p) == 0]
+    roots_c = [s for s in range(p) if shape_c(s, p) == 0]
+
+    d_singular = [
+        point
+        for point in points
+        if projective_d(*point, p) == 0
+        and projective_d_partials(*point, p) == (0, 0, 0)
+    ]
+    if d_singular != [point_p]:
+        raise AssertionError(("D singular", p, d_singular))
+    if projective_b(point_p[0], point_p[2], p) != 0:
+        raise AssertionError(("P not on B", p))
+    if projective_b(point_q[0], point_q[2], p) == 0:
+        raise AssertionError(("Q on B", p))
+    if projective_b(point_r[0], point_r[2], p) == 0:
+        raise AssertionError(("R on B", p))
+
+    b_d = [
+        point
+        for point in points
+        if projective_b(point[0], point[2], p) == 0
+        and projective_d(*point, p) == 0
+    ]
+    if b_d != [point_p]:
+        raise AssertionError(("B and D meet", p, b_d))
+
+    l0_d = [
+        point
+        for point in points
+        if point[1] == 0 and projective_d(*point, p) == 0
+    ]
+    if sorted(l0_d) != sorted([point_q, point_r]):
+        raise AssertionError(("L0 and D meet", p, l0_d))
+
+    l1_d = [
+        point
+        for point in points
+        if point[1] == point[2] and projective_d(*point, p) == 0
+    ]
+    if len(l1_d) != 1 + len(roots_c) or point_q not in l1_d:
+        raise AssertionError(("L1 and D meet", p, l1_d, roots_c))
+    for point in l1_d:
+        if point == point_q:
+            continue
+        if point[2] != 1 or projective_c(point[0], point[2], p) != 0:
+            raise AssertionError(("bad L1/D affine point", p, point))
+
+    b_l0 = [
+        point
+        for point in points
+        if projective_b(point[0], point[2], p) == 0 and point[1] == 0
+    ]
+    b_l1 = [
+        point
+        for point in points
+        if projective_b(point[0], point[2], p) == 0
+        and point[1] == point[2]
+    ]
+    if len(b_l0) != len(roots_b) or len(b_l1) != len(roots_b):
+        raise AssertionError(("B-line counts", p, b_l0, b_l1, roots_b))
+
+    infinity_divisor = [
+        point
+        for point in points
+        if point[2] == 0
+        and (
+            projective_b(point[0], point[2], p) == 0
+            or point[1] == 0
+            or point[1] == point[2]
+            or projective_d(*point, p) == 0
+        )
+    ]
+    if sorted(infinity_divisor) != sorted([point_p, point_q]):
+        raise AssertionError(("infinity divisor", p, infinity_divisor))
+
+    return {
+        "p": p,
+        "d_singular_point": point_p,
+        "b_d_rational_intersection_count": len(b_d),
+        "l0_d_rational_intersection_count": len(l0_d),
+        "l1_d_rational_intersection_count": len(l1_d),
+        "infinity_rational_intersection_count": len(infinity_divisor),
+        "naive_plane_euler_target": 5,
+    }
+
+
 def audit_case(case: Dict[str, int]) -> Dict[str, object]:
     p = int(case["p"])
     n = int(case["n"])
@@ -340,6 +460,12 @@ def main() -> None:
         for case in CASES
     ]
     for row in branch_rows:
+        print(row)
+    plane_rows = [
+        verify_plane_divisor_geometry(int(case["p"]))
+        for case in CASES
+    ]
+    for row in plane_rows:
         print(row)
     top = max(rows, key=lambda row: float(row["sum_ratio"]))
     for key, value in EXPECTED_TOP.items():

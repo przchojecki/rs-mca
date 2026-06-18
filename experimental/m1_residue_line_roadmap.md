@@ -25,7 +25,9 @@ should be revised as the project learns more.
    explicit branch divisor. A full character-spectrum audit shows that the
    unrestricted all-character exact `3p` pullback bound is false, and the
    equal-line character filter points instead to a `3p+O(sqrt(p))`
-   top-dimensional target with domain-size arithmetic kept explicit.
+   top-dimensional target with domain-size arithmetic kept explicit. A
+   compactified plane-divisor audit gives only a generic `5p` route, so the
+   `3p` leading term must come from the hypergeometric pullback structure.
 4. After the trace-family wall is closed, generalize to fixed low-slack
    templates, then separate tangent, quotient-periodic, finite-template, and
    genuinely aperiodic packing.

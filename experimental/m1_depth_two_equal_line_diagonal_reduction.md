@@ -304,6 +304,85 @@ The scanner now also audits the exact equal-line character filter: if
 bound `3p+O(sqrt(p))`, not a literal exact `3p` inequality.  The report is
 recorded in `experimental/m1_equal_line_pullback_spectrum_experiment.md`.
 
+## Plane Divisor Audit
+
+The normalized two-variable Kummer presentation is still too crude if used as
+a generic surface estimate.  Compactify the affine variables by
+
+```text
+s=S/Z,        x=X/Z
+```
+
+in `P^2`, and put
+
+```text
+B_h=S^2+SZ+Z^2,
+D_h=4B_h X-S^2Z.
+```
+
+The `alpha`-part of the divisor is
+
+```text
+B_h (X-Z)^3 / (X^2 Z^3),
+```
+
+while the quadratic part is
+
+```text
+D_h / Z^3.
+```
+
+Thus the line at infinity has monodromy `alpha^(-3) chi_2`; it is unramified
+only in the special case `alpha^3=chi_2`.  The affine deleted line `s=-1` is
+not part of this ramification divisor and is a separate regular-fiber
+correction.
+
+Over an algebraic closure, `B_h=0` splits into two lines meeting at
+
+```text
+P=[0:1:0].
+```
+
+The cubic `D_h=0` is nodal at the same point, with tangent cone `B_h`.  The
+remaining special intersection points are
+
+```text
+Q=[1:0:0],        R=[0:0:1],
+```
+
+and the two affine roots of `C(S,Z)=3S^2+4SZ+4Z^2` on `X=Z`.
+
+Without the infinity line, the component Euler sum is
+
+```text
+2 + 2 + 2 + 2 + 1 = 9
+```
+
+for the two `B_h` lines, `X=0`, `X=Z`, and the nodal cubic `D_h`.
+The intersection correction is
+
+```text
+2 at P,        2 at Q,        1 at R,
+4 B/L points, 2 C-points,
+```
+
+for total correction `11`.  Hence the divisor union has Euler characteristic
+`-2`, and
+
+```text
+chi(P^2 - divisor) = 3 - (-2) = 5.
+```
+
+If the infinity line is ramified, its component Euler `2` is exactly canceled
+by the extra correction at `P` and `Q`, so the complement Euler
+characteristic is still `5`.
+
+Consequently a naive rank-one Kummer estimate on the compactified plane
+suggests a `5p+O(sqrt(p))` top-dimensional bound, not the observed
+`3p+O(sqrt(p))` target.  The proof must therefore exploit the pulled-back
+hypergeometric middle-extension structure, or another cancellation beyond the
+generic plane-divisor complement.
+
 ## Pullback Branch Checklist
 
 The rational pullback

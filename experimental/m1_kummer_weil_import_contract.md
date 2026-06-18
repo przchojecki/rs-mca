@@ -221,6 +221,9 @@ false. It also gives the fixed-domain character filter
 violations can occur with only square-root-sized excess. Any proof should
 therefore target a `3p+O(sqrt(p))` top-dimensional bound while keeping the
 M1 domain-size arithmetic or the hypergeometric pullback structure visible.
+A compactified plane-divisor audit for the same single-character presentation
+gives the generic complement-Euler target `5`, so the desired `3p` leading
+constant cannot come from a naive surface Kummer estimate.
 
 Thus the fixed-window, quotient-window, and two-fiber certificates still use
 the conservative common ledger:

@@ -29,6 +29,27 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-18 - M1 equal-line plane-divisor audit
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/m1_depth_two_equal_line_diagonal_reduction.md`,
+  `experimental/verify_m1_depth_two_equal_line_diagonal_reduction.py`,
+  `experimental/m1_kummer_weil_import_contract.md`,
+  `experimental/m1_residue_line_roadmap.md`,
+  `experimental/agents-log.md`.
+- **Status:** AUDIT.
+- **What is being added:** The normalized equal-line pullback is compactified
+  in `P^2`, with divisor
+  `B_h`, `X=0`, `X=Z`, `D_h=4B_hX-S^2Z`, and sometimes infinity.
+  The resulting plane-divisor complement has Euler target `5`, with or
+  without the infinity line.
+- **How it is useful:** Rules out the naive rank-one surface Kummer route for
+  the desired `3p+O(sqrt(p))` leading term, forcing the proof to use the
+  hypergeometric pullback or another sharper cancellation mechanism.
+- **What to do next:** Prove the pulled-back hypergeometric conductor bound
+  that explains the missing two top-dimensional units.
+
 ### 2026-06-18 - M1 equal-line pullback spectrum audit
 
 - **Agent/model:** Codex.
