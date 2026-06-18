@@ -126,15 +126,18 @@ recorded as `(1+1+1+2-1)^2 = 16`.
 The exact external dependency and its audited hypotheses are separated in
 `m1_kummer_weil_import_contract.md`; the present note remains conditional on
 that import.
-The same contract also proves two elementary `p`-bound subcases: the `d=0`
-Jacobi part and the `d!=0` conic-only part with coordinate characters
-principal. In the additive raw, fixed-window, and two-fiber ledgers, it also
-proves a `4p` bound for the subcase where the conic character is quadratic
-and exactly one coordinate character is nonprincipal. The conditional Kummer
-import is now charged by the actual radical degree: remaining one-coordinate
-mixed terms have degree `1+2` and pay `4p`, two-coordinate mixed terms have
-degree `1+1+2` and pay `9p`, and only three-coordinate mixed terms have
-degree `1+1+1+2` and pay `16p`.
+The same contract proves elementary linear `p` bounds for the unrestricted
+`d=0` Jacobi part and the unrestricted `d!=0` conic-only part with coordinate
+characters principal. Because all principal characters are extended by zero
+on the Kummer open set, these elementary parts also pay a genus-zero
+open-set correction `6 ceil(sqrt(p))` times their L1 mass. In the additive
+raw, fixed-window, and two-fiber ledgers, the contract also proves a `4p`
+bound for the subcase where the conic character is quadratic and exactly one
+coordinate character is nonprincipal. The conditional Kummer import is now
+charged by the actual radical degree: remaining one-coordinate mixed terms
+have degree `1+2` and pay `4p`, two-coordinate mixed terms have degree
+`1+1+2` and pay `9p`, and only three-coordinate mixed terms have degree
+`1+1+1+2` and pay `16p`.
 
 For the raw normalized catalog on `D`, the verifier audits the character
 expansion, the divisor nontriviality, the exact principal open-set count
@@ -159,6 +162,12 @@ The raw weighted error is therefore
 
 ```text
 (e^3-1) + (q-1) + 12(e-1) + 4C_1 + 9C_2 + 16C_3.
+```
+
+Its elementary open-set correction has L1 mass
+
+```text
+J = (e^3-1) + (q-1).
 ```
 
 For a fixed quotient window `W` of size `R`, let
@@ -207,17 +216,26 @@ M_{R,h,q} = ((R+A_R)^3-R^3) + R^3(q-1)
             + 16A_R^3(q-1).
 ```
 
+The elementary open-set mass in this fixed-window numerator is
+
+```text
+J_{R,h,q} = ((R+A_R)^3-R^3) + R^3(q-1).
+```
+
 It is
 
 ```text
 R^3 (p^2 - 4p + 6 + 4 chi(-3))
-  - p M_{R,h,q} - (6p - 11) h^3 q.
+  - p M_{R,h,q}
+  - 6 ceil(sqrt(p)) J_{R,h,q}
+  - (6p - 11) h^3 q.
 ```
 
-The uniform sufficient threshold for this fixed-window numerator is
+The conservative uniform sufficient threshold for this fixed-window numerator
+uses `ceil(sqrt(p))<=p`:
 
 ```text
-p >= ceil((M_{R,h,q} + 6h^3q)/R^3) + 4.
+p >= ceil((M_{R,h,q} + 6J_{R,h,q} + 6h^3q)/R^3) + 4.
 ```
 
 When this numerator is positive, that fixed `R`-window already hits every
@@ -372,17 +390,25 @@ W_R = (S_R-T_R(N)) + (q-1)T_R(N)
       + (q-1)(4O_{R,1} + 9O_{R,2} + 16O_{R,3}).
 ```
 
+The elementary open-set mass is
+
+```text
+J_R = (S_R-T_R(N)) + (q-1)T_R(N).
+```
+
 Thus the conservative lower numerator for the whole active union is
 
 ```text
 T_R(N) (p^2 - 4p + 6 + 4 chi(-3))
-  - p W_R - (6p - 11) h^3 q.
+  - p W_R
+  - 6 ceil(sqrt(p)) J_R
+  - (6p - 11) h^3 q.
 ```
 
-The corresponding uniform sufficient threshold is
+The conservative uniform sufficient threshold is
 
 ```text
-p >= ceil((W_R + 6h^3q)/T_R(N)) + 4.
+p >= ceil((W_R + 6J_R + 6h^3q)/T_R(N)) + 4.
 ```
 
 When this is positive and `R<min(4,N)`, the exact-support active

@@ -1422,12 +1422,14 @@ degree `r` gives constant `(r-1)^2`. The coarse full-radical constant is
 
 when all three coordinate divisors and the conic divisor are active. The
 current scanner uses the sharper radical-degree ledger. The `d=0` Jacobi
-part pays `p`; the `d!=0` coordinate-principal conic part pays `p`; the
-quadratic one-coordinate subcase pays the elementary `4p`; and the remaining
-mixed Kummer terms pay `4p`, `9p`, or `16p` according as exactly one, two, or
+part and the `d!=0` coordinate-principal conic part each pay a linear `p`
+term plus the open-set correction `6 ceil(sqrt(p))`; the quadratic
+one-coordinate subcase pays the elementary `4p`; and the remaining mixed
+Kummer terms pay `4p`, `9p`, or `16p` according as exactly one, two, or
 three coordinate divisors are active. With `h=[F_p^*:D^2]`, put
 
 ```text
+J = (e^3-1) + (h-1),
 C_1 = 3(e-1)(h-2),
 C_2 = 3(e-1)^2(h-1),
 C_3 = (e-1)^3(h-1),
@@ -1441,7 +1443,8 @@ Therefore every nonzero `H`-coset is hit by a raw admissible depth-two shape
 whenever
 
 ```text
-p^2 - 4p + 6 + 4 chi(-3) > p E + (6p-11)e^3 h.
+p^2 - 4p + 6 + 4 chi(-3)
+  > p E + 6 ceil(sqrt(p)) J + (6p-11)e^3 h.
 ```
 
 Equivalently, the scanner's integer certificate with this weighted error

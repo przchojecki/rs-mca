@@ -685,11 +685,13 @@ uses the exact value `A_R=(2e-1)R`.
 
 The `d=0` part is a three-character Jacobi sum, and the
 coordinate-principal `d!=0` part is a nontrivial character sum of the affine
-quadratic `A(u,v)`; both only cost `p`. Since `q=[F_p^*:D^2]` is even, the
-unique quadratic conic character with exactly one active coordinate character
-costs `4p`. The remaining mixed Kummer terms are charged by radical degree:
-one-coordinate terms cost `4p`, two-coordinate terms cost `9p`, and
-three-coordinate terms cost `16p`. Put
+quadratic `A(u,v)`. Their unrestricted sums have linear `p` bounds, but the
+Kummer open set removes the conic or coordinate lines, so the scanner adds an
+elementary open-set correction `6 ceil(sqrt(p))` times their L1 mass. Since
+`q=[F_p^*:D^2]` is even, the unique quadratic conic character with exactly
+one active coordinate character costs `4p`. The remaining mixed Kummer terms
+are charged by radical degree: one-coordinate terms cost `4p`, two-coordinate
+terms cost `9p`, and three-coordinate terms cost `16p`. Put
 
 ```text
 M_{R,h,q} = ((R+A_R)^3-R^3) + R^3(q-1)
@@ -698,11 +700,19 @@ M_{R,h,q} = ((R+A_R)^3-R^3) + R^3(q-1)
             + 16A_R^3(q-1).
 ```
 
+The elementary open-set mass is
+
+```text
+J_{R,h,q}=((R+A_R)^3-R^3) + R^3(q-1).
+```
+
 The conservative lower numerator is
 
 ```text
 R^3 (p^2 - 4p + 6 + 4 chi(-3))
-  - p M_{R,h,q} - (6p - 11) h^3 q.
+  - p M_{R,h,q}
+  - 6 ceil(sqrt(p)) J_{R,h,q}
+  - (6p - 11) h^3 q.
 ```
 
 When this is positive, one fixed `R`-window already hits every nonzero
@@ -802,26 +812,36 @@ O_{3,1} = 3((e-1)T_3(N) + e(N-1)(N-2)(N-3)).
 
 The scanner computes `O_{R,2}` and `O_{R,3}` by exact ambient quotient-Fourier
 enumeration and checks that the three active-coordinate terms sum to
-`S_R-T_R(N)`. The reported numerator uses proved `p` bounds for the `d=0`
-Jacobi part and the coordinate-principal `d!=0` conic-only part, then charges
-mixed coordinate/conic terms by radical degree. Its weighted error term is
+`S_R-T_R(N)`. The reported numerator uses proved linear `p` bounds for the
+`d=0` Jacobi part and the coordinate-principal `d!=0` conic-only part, adds
+the elementary open-set square-root correction for those two masses, then
+charges mixed coordinate/conic terms by radical degree. Its linear weighted
+error term is
 
 ```text
 W_R = (S_R - T_R(N)) + (q-1)T_R(N)
       + (q-1)(4O_{R,1} + 9O_{R,2} + 16O_{R,3}).
 ```
 
+The elementary open-set mass is
+
+```text
+J_R = (S_R - T_R(N)) + (q-1)T_R(N).
+```
+
 Thus the sharpened lower numerator is
 
 ```text
 T_R(N) (p^2 - 4p + 6 + 4 chi(-3))
-  - p W_R - (6p - 11) h^3 q.
+  - p W_R
+  - 6 ceil(sqrt(p)) J_R
+  - (6p - 11) h^3 q.
 ```
 
 The reported uniform prime threshold uses the quadratic implication
 
 ```text
-p >= ceil((W_R + 6h^3q)/T_R(N)) + 4.
+p >= ceil((W_R + 6J_R + 6h^3q)/T_R(N)) + 4.
 ```
 
 When this is positive, the active quotient-window union itself hits every
@@ -900,18 +920,21 @@ imported constant explicit: the squarefree support divisor has component
 degrees `1,1,1,2`, total degree `5`, and the standard two-variable
 Kummer-Weil estimate contributes `(5-1)^2=16`.
 For the raw catalog, with `e=[F_p^*:D]` and `q=[F_p^*:D^2]`, the certificate
-pays the proved Jacobi bound on the `d=0` mass `e^3-1`, the proved affine
-conic bound on the coordinate-principal `d!=0` mass `q-1`, and the proved
-one-coordinate quadratic-conic bound on mass `3(e-1)`. The remaining mixed
-Kummer terms are charged by active coordinate count: one-coordinate radicals
-pay the degree-three constant `4`, two-coordinate radicals pay the
-degree-four constant `9`, and only three-coordinate radicals pay the full
-degree-five constant `16`. These are recorded as `*_jacobi_l1_bound`,
+pays the proved linear Jacobi bound on the `d=0` mass `e^3-1`, the proved
+linear affine-conic bound on the coordinate-principal `d!=0` mass `q-1`, and
+the elementary open-set correction on the sum of those two masses. It also
+pays the proved one-coordinate quadratic-conic bound on mass `3(e-1)`. The
+remaining mixed Kummer terms are charged by active coordinate count:
+one-coordinate radicals pay the degree-three constant `4`, two-coordinate
+radicals pay the degree-four constant `9`, and only three-coordinate radicals
+pay the full degree-five constant `16`. These are recorded as
+`*_jacobi_l1_bound`,
 `*_conic_l1_bound`, `*_quadratic_one_coordinate_l1_bound`,
 `*_one_coordinate_l1_bound`, `*_two_coordinate_l1_bound`,
 `*_three_coordinate_l1_bound`, and `*_kummer_l1_bound`, while
-`*_weighted_error_l1_bound` is the linear error term used in the certificate
-numerator.
+`*_weighted_error_l1_bound` is the linear error term and
+`*_elementary_open_sqrt_error_bound` is the square-root correction used in the
+certificate numerator.
 The `*_principal_exact_count` field records the exact principal open-set
 count
 
@@ -935,16 +958,19 @@ U = K union cK
 the indicator `1_U` has principal weight `2/h`, where
 `h=[F_p^*:K]`. Hence the principal term for `u,v,-1-u-v in U` has weight
 `8/(h^3 q)`, with `q=[F_p^*:D^2]`. The coordinate-principal `d!=0` terms are
-conic-only and cost `p`; the one-coordinate quadratic-conic terms cost `4p`;
-and the remaining mixed Kummer terms are charged by active radical degree
-with constants `4`, `9`, and `16`. This is the `R=2` specialization of the
-fixed-window certificate above, with the complement exact value
+conic-only and pay their linear `p` part plus the same open-set correction;
+the one-coordinate quadratic-conic terms cost `4p`; and the remaining mixed
+Kummer terms are charged by active radical degree with constants `4`, `9`,
+and `16`. This is the `R=2` specialization of the fixed-window certificate
+above, with the complement exact value
 `A_2=2(2e-1)` when `N=3`.
 The Jacobi/conic/quadratic/Kummer split gives the conservative lower numerator
 
 ```text
 8 (p^2 - 4p + 6 + 4 chi(-3))
-  - p M_{2,h,q} - (6p - 11) h^3 q.
+  - p M_{2,h,q}
+  - 6 ceil(sqrt(p)) J_{2,h,q}
+  - (6p - 11) h^3 q.
 ```
 
 When this is positive, every nonzero `D^2`-coset already occurs inside a

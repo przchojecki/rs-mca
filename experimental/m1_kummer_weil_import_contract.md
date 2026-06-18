@@ -44,8 +44,8 @@ two-coordinate mixed terms pay `9p`, and only three-coordinate mixed terms
 pay the full `16p`. All later coefficients are finite Fourier bookkeeping
 around this same input.
 
-When `d=0`, the conic factor is absent and the sum is a three-character
-Jacobi sum:
+When `d=0`, the unrestricted conic factor is absent and the main term is a
+three-character Jacobi sum:
 
 ```text
 sum_{u+v+w=-1} psi^a(u) psi^b(v) psi^c(w).
@@ -57,7 +57,15 @@ constant of modulus at most one times `J(psi^a,psi^b,psi^c)`, and the usual
 two-character Jacobi bounds give absolute value at most `p`, including the
 cases where one character or the product character is trivial.
 
-When `d != 0` but `(a,b,c)=(0,0,0)`, the sum is conic-only:
+In the actual nonzero square-coset expansion, the principal square-coset
+character is extended by zero at `A=0`. Thus the `d=0` term is the Jacobi
+sum with the conic `A=0` removed. On that smooth conic, the rational
+function `u^a v^b w^c` has zero-pole support contained in the three
+coordinate line sections and the two points at infinity, so the genus-zero
+Kummer bound contributes at most `6 sqrt(p)`. The open-set `d=0` terms are
+therefore bounded by `p + 6 sqrt(p)`.
+
+When `d != 0` but `(a,b,c)=(0,0,0)`, the unrestricted sum is conic-only:
 
 ```text
 sum_{u,v in F_p} psi^d(A(u,v)).
@@ -85,7 +93,12 @@ Therefore every nontrivial multiplicative character `eta` satisfies
 sum_{u,v} eta(A(u,v)) = epsilon p eta(-2/3),
 ```
 
-so the conic-only terms have absolute value exactly `p`.
+so the unrestricted conic-only terms have absolute value exactly `p`. The
+Kummer open set also removes the three coordinate lines. On each removed line
+`A` restricts to a separable quadratic for `p>3`, and the three pairwise line
+intersections contribute only bounded point terms; this is absorbed by
+another `6 sqrt(p)` correction. Hence the coordinate-principal `d!=0`
+open-set terms are bounded by `p + 6 sqrt(p)`.
 
 There is one more elementary mixed subcase. Suppose `d` is the quadratic
 character and exactly one coordinate character is nonprincipal, say
@@ -108,13 +121,22 @@ by symmetry.
 Thus the additive raw, fixed-window, and two-fiber certificates now pay:
 
 ```text
-d=0, coordinate nonprincipal:               p    (Jacobi)
-d!=0, coordinate principal:                 p    (affine conic)
+d=0, coordinate nonprincipal:               p + 6 sqrt(p)
+d!=0, coordinate principal:                 p + 6 sqrt(p)
 d quadratic, exactly one coordinate active: 4p   (elementary)
 d!=0, one coordinate active, remaining:     4p   (degree 3 Kummer)
 d!=0, two coordinates active:               9p   (degree 4 Kummer)
 d!=0, three coordinates active:            16p   (degree 5 Kummer)
 ```
+
+The finite audit
+
+```bash
+python3 experimental/verify_m1_depth_two_kummer_constant_audit.py
+```
+
+exhausts representative small prime/index cases and checks this repaired
+open-set ledger directly against the exact character sums.
 
 ## Audited Hypotheses
 

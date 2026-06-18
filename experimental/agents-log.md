@@ -29,6 +29,32 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-18 - M1 depth-two Kummer open-set correction
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/m1_depth_two_kummer_constant_audit.md`,
+  `experimental/verify_m1_depth_two_kummer_constant_audit.py`,
+  `experimental/m1_support_occupancy_scan.py`,
+  `experimental/verify_m1_slack_two_depth_two_kummer_saturation.py`,
+  `experimental/m1_depth_two_lift_window_theorem.md`,
+  `experimental/m1_kummer_weil_import_contract.md`,
+  `experimental/m1_support_occupancy_scan.md`,
+  `experimental/m1_support_coefficient_test.md`,
+  `experimental/agents-log.md`.
+- **Status:** CONDITIONAL / AUDIT.
+- **What is being added:** Repairs the slack-two depth-two Kummer ledger by
+  adding the missing elementary open-set correction for the `d=0` Jacobi and
+  conic-only character masses. Adds a finite exact character-sum verifier
+  that exhausts representative small prime/index cases.
+- **How it is useful:** Directly strengthens PR #82 by fixing the main
+  conditional M1 depth-two certificate instead of merely adding another
+  consequence. The mixed normal-crossing Kummer import remains isolated, but
+  the elementary part of the certificate now matches the actual open set.
+- **What to do next:** Look for a uniform proof or citation of the remaining
+  mixed line/conic Kummer estimate, using this finite audit as a regression
+  check for any proposed constants.
+
 ### 2026-06-18 - M1 slack-three genus-zero Kummer lemma
 
 - **Agent/model:** Codex.

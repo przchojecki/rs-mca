@@ -1971,6 +1971,19 @@ def depth_two_kummer_error_l1_split(
     }
 
 
+def depth_two_open_sqrt_error_bound(
+    p: int,
+    error_split: Dict[str, int],
+) -> int:
+    """Return the extra open-set removal term for elementary depth-two masses."""
+
+    elementary_open_l1_bound = (
+        int(error_split["jacobi_l1_bound"])
+        + int(error_split["conic_l1_bound"])
+    )
+    return 6 * ceil_sqrt(p) * elementary_open_l1_bound
+
+
 def slack_two_second_kummer_saturation_data(
     p: int,
     domain_order: int,
@@ -2005,10 +2018,19 @@ def slack_two_second_kummer_saturation_data(
             (character_order - 1) ** 3
         ),
     )
+    open_sqrt_error_bound = depth_two_open_sqrt_error_bound(
+        p,
+        error_split,
+    )
     uniform_prime_threshold = kummer_quadratic_uniform_prime_threshold(
         principal_weight=1,
         linear_error_weight=(
             int(error_split["weighted_error_l1_bound"]) + 6 * denominator
+        ),
+        sqrt_error_weight=6
+        * (
+            int(error_split["jacobi_l1_bound"])
+            + int(error_split["conic_l1_bound"])
         ),
     )
     chi_minus_three = quadratic_character(-3, p)
@@ -2017,6 +2039,7 @@ def slack_two_second_kummer_saturation_data(
     degeneracy_line_union_count = 6 * p - 11
     lower_numerator = principal_exact_count - (
         p * int(error_split["weighted_error_l1_bound"])
+        + open_sqrt_error_bound
         + degeneracy_line_union_count * denominator
     )
     admissible_per_coset_lower_bound = (
@@ -2033,6 +2056,12 @@ def slack_two_second_kummer_saturation_data(
         "coefficient_l1_bound": coefficient_l1_bound,
         **error_split,
         "jacobi_error_constant": 1,
+        "elementary_open_sqrt_constant": 6,
+        "elementary_open_sqrt_error_bound": open_sqrt_error_bound,
+        "weighted_error_total_bound": (
+            p * int(error_split["weighted_error_l1_bound"])
+            + open_sqrt_error_bound
+        ),
         "conic_error_constant": 1,
         "divisor_power_failure_count": 0,
         "divisor_nontriviality_check": True,
@@ -2060,10 +2089,12 @@ def slack_two_second_kummer_saturation_data(
 def kummer_quadratic_uniform_prime_threshold(
     principal_weight: int,
     linear_error_weight: int,
+    sqrt_error_weight: int = 0,
 ) -> int:
     """Return a uniform positive threshold for a quadratic Kummer numerator."""
 
-    return (linear_error_weight + principal_weight - 1) // principal_weight + 4
+    total_weight = linear_error_weight + sqrt_error_weight
+    return (total_weight + principal_weight - 1) // principal_weight + 4
 
 
 def slack_two_second_two_fiber_kummer_saturation_data(
@@ -2131,12 +2162,22 @@ def slack_two_second_two_fiber_kummer_saturation_data(
             coordinate_three_nonprincipal_l1_bound
         ),
     )
+    open_sqrt_error_bound = depth_two_open_sqrt_error_bound(
+        p,
+        error_split,
+    )
     uniform_prime_threshold = kummer_quadratic_uniform_prime_threshold(
         principal_weight,
         int(error_split["weighted_error_l1_bound"]) + 6 * denominator,
+        sqrt_error_weight=6
+        * (
+            int(error_split["jacobi_l1_bound"])
+            + int(error_split["conic_l1_bound"])
+        ),
     )
     lower_numerator = principal_weight * principal_exact_count - (
         p * int(error_split["weighted_error_l1_bound"])
+        + open_sqrt_error_bound
         + degeneracy_line_union_count * denominator
     )
     admissible_per_coset_lower_bound = (
@@ -2166,6 +2207,12 @@ def slack_two_second_two_fiber_kummer_saturation_data(
         "coefficient_l1_bound": coefficient_l1_bound,
         **error_split,
         "jacobi_error_constant": 1,
+        "elementary_open_sqrt_constant": 6,
+        "elementary_open_sqrt_error_bound": open_sqrt_error_bound,
+        "weighted_error_total_bound": (
+            p * int(error_split["weighted_error_l1_bound"])
+            + open_sqrt_error_bound
+        ),
         "conic_error_constant": 1,
         "uniform_prime_threshold": uniform_prime_threshold,
         "uniform_threshold_applies": p >= uniform_prime_threshold,
@@ -2251,12 +2298,22 @@ def slack_two_second_fixed_window_kummer_saturation_data(
             coordinate_three_nonprincipal_l1_bound
         ),
     )
+    open_sqrt_error_bound = depth_two_open_sqrt_error_bound(
+        p,
+        error_split,
+    )
     uniform_prime_threshold = kummer_quadratic_uniform_prime_threshold(
         principal_weight,
         int(error_split["weighted_error_l1_bound"]) + 6 * denominator,
+        sqrt_error_weight=6
+        * (
+            int(error_split["jacobi_l1_bound"])
+            + int(error_split["conic_l1_bound"])
+        ),
     )
     lower_numerator = principal_weight * principal_exact_count - (
         p * int(error_split["weighted_error_l1_bound"])
+        + open_sqrt_error_bound
         + degeneracy_line_union_count * denominator
     )
     admissible_per_coset_lower_bound = (
@@ -2287,6 +2344,12 @@ def slack_two_second_fixed_window_kummer_saturation_data(
         "coefficient_l1_bound": coefficient_l1_bound,
         **error_split,
         "jacobi_error_constant": 1,
+        "elementary_open_sqrt_constant": 6,
+        "elementary_open_sqrt_error_bound": open_sqrt_error_bound,
+        "weighted_error_total_bound": (
+            p * int(error_split["weighted_error_l1_bound"])
+            + open_sqrt_error_bound
+        ),
         "conic_error_constant": 1,
         "uniform_prime_threshold": uniform_prime_threshold,
         "uniform_threshold_applies": p >= uniform_prime_threshold,
@@ -2694,16 +2757,30 @@ def slack_two_second_quotient_window_union_kummer_saturation_data(
     chi_minus_three = quadratic_character(-3, p)
     principal_exact_count = p * p - 4 * p + 6 + 4 * chi_minus_three
     degeneracy_line_union_count = 6 * p - 11
+    open_sqrt_error_bound = depth_two_open_sqrt_error_bound(
+        p,
+        error_split,
+    )
+    crude_open_sqrt_error_bound = (
+        depth_two_open_sqrt_error_bound(p, crude_error_split)
+    )
     uniform_prime_threshold = kummer_quadratic_uniform_prime_threshold(
         principal_weight,
         int(error_split["weighted_error_l1_bound"]) + 6 * denominator,
+        sqrt_error_weight=6
+        * (
+            int(error_split["jacobi_l1_bound"])
+            + int(error_split["conic_l1_bound"])
+        ),
     )
     crude_lower_numerator = principal_weight * principal_exact_count - (
         p * int(crude_error_split["weighted_error_l1_bound"])
+        + crude_open_sqrt_error_bound
         + degeneracy_line_union_count * denominator
     )
     lower_numerator = principal_weight * principal_exact_count - (
         p * int(error_split["weighted_error_l1_bound"])
+        + open_sqrt_error_bound
         + degeneracy_line_union_count * denominator
     )
     admissible_per_coset_lower_bound = (
@@ -2750,6 +2827,12 @@ def slack_two_second_quotient_window_union_kummer_saturation_data(
         "coefficient_l1_bound": coefficient_l1_bound,
         **error_split,
         "jacobi_error_constant": 1,
+        "elementary_open_sqrt_constant": 6,
+        "elementary_open_sqrt_error_bound": open_sqrt_error_bound,
+        "weighted_error_total_bound": (
+            p * int(error_split["weighted_error_l1_bound"])
+            + open_sqrt_error_bound
+        ),
         "conic_error_constant": 1,
         "crude_coefficient_l1_bound": crude_coefficient_l1_bound,
         "crude_jacobi_l1_bound": crude_error_split["jacobi_l1_bound"],
@@ -2769,6 +2852,13 @@ def slack_two_second_quotient_window_union_kummer_saturation_data(
         "crude_kummer_l1_bound": crude_error_split["kummer_l1_bound"],
         "crude_weighted_error_l1_bound": (
             crude_error_split["weighted_error_l1_bound"]
+        ),
+        "crude_elementary_open_sqrt_error_bound": (
+            crude_open_sqrt_error_bound
+        ),
+        "crude_weighted_error_total_bound": (
+            p * int(crude_error_split["weighted_error_l1_bound"])
+            + crude_open_sqrt_error_bound
         ),
         "uniform_prime_threshold": uniform_prime_threshold,
         "uniform_threshold_applies": p >= uniform_prime_threshold,

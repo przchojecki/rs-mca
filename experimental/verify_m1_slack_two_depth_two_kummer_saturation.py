@@ -9,6 +9,7 @@ from typing import Sequence, Tuple
 
 from m1_support_occupancy_scan import (
     all_residual_packets_lift_active,
+    ceil_sqrt,
     kummer_quadratic_uniform_prime_threshold,
     quotient_limited_pair_parameter_bound,
     quotient_window_label_nonprincipal_bound,
@@ -570,8 +571,27 @@ def main() -> None:
             certificate["weighted_error_l1_bound"]
         ):
             raise AssertionError((p, n, weighted_error_l1_bound, certificate))
+        elementary_open_sqrt_error_bound = (
+            6 * ceil_sqrt(p) * (jacobi_l1_bound + conic_l1_bound)
+        )
+        if elementary_open_sqrt_error_bound != int(
+            certificate["elementary_open_sqrt_error_bound"]
+        ):
+            raise AssertionError(
+                (p, n, elementary_open_sqrt_error_bound, certificate)
+            )
+        weighted_error_total_bound = (
+            p * weighted_error_l1_bound + elementary_open_sqrt_error_bound
+        )
+        if weighted_error_total_bound != int(
+            certificate["weighted_error_total_bound"]
+        ):
+            raise AssertionError(
+                (p, n, weighted_error_total_bound, certificate)
+            )
         lower_numerator = principal_count - (
             p * weighted_error_l1_bound
+            + elementary_open_sqrt_error_bound
             + degeneracy_count * int(certificate["denominator"])
         )
         if lower_numerator != int(certificate["lower_numerator"]):
@@ -583,6 +603,7 @@ def main() -> None:
                 + int(certificate["degeneracy_line_count"])
                 * int(certificate["denominator"])
             ),
+            sqrt_error_weight=6 * (jacobi_l1_bound + conic_l1_bound),
         )
         if expected_threshold != int(certificate["uniform_prime_threshold"]):
             raise AssertionError((p, n, expected_threshold, certificate))
@@ -889,9 +910,28 @@ def main() -> None:
             certificate["weighted_error_l1_bound"]
         ):
             raise AssertionError((p, n, weighted_error_l1_bound, certificate))
+        elementary_open_sqrt_error_bound = (
+            6 * ceil_sqrt(p) * (jacobi_l1_bound + conic_l1_bound)
+        )
+        if elementary_open_sqrt_error_bound != int(
+            certificate["elementary_open_sqrt_error_bound"]
+        ):
+            raise AssertionError(
+                (p, n, elementary_open_sqrt_error_bound, certificate)
+            )
+        weighted_error_total_bound = (
+            p * weighted_error_l1_bound + elementary_open_sqrt_error_bound
+        )
+        if weighted_error_total_bound != int(
+            certificate["weighted_error_total_bound"]
+        ):
+            raise AssertionError(
+                (p, n, weighted_error_total_bound, certificate)
+            )
         lower_numerator = (
             int(certificate["principal_weight"]) * principal_count
             - p * weighted_error_l1_bound
+            - elementary_open_sqrt_error_bound
             - degeneracy_count * int(certificate["denominator"])
         )
         if lower_numerator != int(certificate["lower_numerator"]):
@@ -903,6 +943,7 @@ def main() -> None:
                 + int(certificate["degeneracy_line_count"])
                 * int(certificate["denominator"])
             ),
+            sqrt_error_weight=6 * (jacobi_l1_bound + conic_l1_bound),
         )
         if expected_threshold != int(certificate["uniform_prime_threshold"]):
             raise AssertionError((p, n, expected_threshold, certificate))
@@ -1197,9 +1238,28 @@ def main() -> None:
             certificate["weighted_error_l1_bound"]
         ):
             raise AssertionError((p, n, weighted_error_l1_bound, certificate))
+        elementary_open_sqrt_error_bound = (
+            6 * ceil_sqrt(p) * (jacobi_l1_bound + conic_l1_bound)
+        )
+        if elementary_open_sqrt_error_bound != int(
+            certificate["elementary_open_sqrt_error_bound"]
+        ):
+            raise AssertionError(
+                (p, n, elementary_open_sqrt_error_bound, certificate)
+            )
+        weighted_error_total_bound = (
+            p * weighted_error_l1_bound + elementary_open_sqrt_error_bound
+        )
+        if weighted_error_total_bound != int(
+            certificate["weighted_error_total_bound"]
+        ):
+            raise AssertionError(
+                (p, n, weighted_error_total_bound, certificate)
+            )
         lower_numerator = (
             int(certificate["principal_weight"]) * principal_count
             - p * weighted_error_l1_bound
+            - elementary_open_sqrt_error_bound
             - degeneracy_count * int(certificate["denominator"])
         )
         if lower_numerator != int(certificate["lower_numerator"]):
@@ -1210,6 +1270,7 @@ def main() -> None:
                 weighted_error_l1_bound
                 + 6 * int(certificate["denominator"])
             ),
+            sqrt_error_weight=6 * (jacobi_l1_bound + conic_l1_bound),
         )
         if expected_threshold != int(certificate["uniform_prime_threshold"]):
             raise AssertionError((p, n, expected_threshold, certificate))
@@ -1515,6 +1576,24 @@ def main() -> None:
             certificate["weighted_error_l1_bound"]
         ):
             raise AssertionError((p, n, weighted_error_l1_bound, certificate))
+        elementary_open_sqrt_error_bound = (
+            6 * ceil_sqrt(p) * (jacobi_l1_bound + conic_l1_bound)
+        )
+        if elementary_open_sqrt_error_bound != int(
+            certificate["elementary_open_sqrt_error_bound"]
+        ):
+            raise AssertionError(
+                (p, n, elementary_open_sqrt_error_bound, certificate)
+            )
+        weighted_error_total_bound = (
+            p * weighted_error_l1_bound + elementary_open_sqrt_error_bound
+        )
+        if weighted_error_total_bound != int(
+            certificate["weighted_error_total_bound"]
+        ):
+            raise AssertionError(
+                (p, n, weighted_error_total_bound, certificate)
+            )
         crude_jacobi_l1_bound = int(
             certificate["crude_coefficient_abs_bound"]
         ) * (int(certificate["kernel_character_order"]) ** 3 - 1)
@@ -1600,6 +1679,30 @@ def main() -> None:
             raise AssertionError(
                 (p, n, crude_weighted_error_l1_bound, certificate)
             )
+        crude_elementary_open_sqrt_error_bound = (
+            6 * ceil_sqrt(p) * (crude_jacobi_l1_bound + crude_conic_l1_bound)
+        )
+        if crude_elementary_open_sqrt_error_bound != int(
+            certificate["crude_elementary_open_sqrt_error_bound"]
+        ):
+            raise AssertionError(
+                (
+                    p,
+                    n,
+                    crude_elementary_open_sqrt_error_bound,
+                    certificate,
+                )
+            )
+        crude_weighted_error_total_bound = (
+            p * crude_weighted_error_l1_bound
+            + crude_elementary_open_sqrt_error_bound
+        )
+        if crude_weighted_error_total_bound != int(
+            certificate["crude_weighted_error_total_bound"]
+        ):
+            raise AssertionError(
+                (p, n, crude_weighted_error_total_bound, certificate)
+            )
         failures = two_fiber_divisor_power_failure_count(
             int(certificate["kernel_character_order"]),
             int(certificate["square_coset_index"]),
@@ -1617,6 +1720,7 @@ def main() -> None:
         lower_numerator = (
             int(certificate["principal_weight"]) * principal_count
             - p * weighted_error_l1_bound
+            - elementary_open_sqrt_error_bound
             - degeneracy_count * int(certificate["denominator"])
         )
         if lower_numerator != int(certificate["lower_numerator"]):
@@ -1624,6 +1728,7 @@ def main() -> None:
         expected_threshold = kummer_quadratic_uniform_prime_threshold(
             int(certificate["principal_weight"]),
             weighted_error_l1_bound + 6 * int(certificate["denominator"]),
+            sqrt_error_weight=6 * (jacobi_l1_bound + conic_l1_bound),
         )
         if expected_threshold != int(certificate["uniform_prime_threshold"]):
             raise AssertionError((p, n, expected_threshold, certificate))
@@ -1660,6 +1765,7 @@ def main() -> None:
         direct_lower_numerator = (
             int(certificate["principal_weight"]) * principal_count
             - p * direct_weighted_error_l1_bound
+            - elementary_open_sqrt_error_bound
             - degeneracy_count * int(certificate["denominator"])
         )
         if direct_lower_numerator < lower_numerator:
@@ -1667,6 +1773,7 @@ def main() -> None:
         crude_lower_numerator = (
             int(certificate["principal_weight"]) * principal_count
             - p * crude_weighted_error_l1_bound
+            - crude_elementary_open_sqrt_error_bound
             - degeneracy_count * int(certificate["denominator"])
         )
         if crude_lower_numerator != int(certificate["crude_lower_numerator"]):
