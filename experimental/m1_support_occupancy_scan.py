@@ -2788,9 +2788,23 @@ def scan_supports(
         else:
             slack_three_exact_min_cube_coset_parameter_count = 0
 
+    slack_two_second_two_fiber_union_reduction = (
+        slack_two_second_two_fiber_union_reduction_data(
+            p,
+            domain,
+            quotient_order,
+        )
+        if (
+            slack_two_second_shape_ledger is not None
+            and slack_two_second_shape_ledger["lift_limited_remaining_fibers"]
+            == 2
+        )
+        else None
+    )
     slack_two_second_index_window_label = None
     slack_two_second_kummer_exact_support_saturation = False
     slack_two_second_two_fiber_exact_support_saturation = False
+    slack_two_second_r2_union_exact_support_saturation = False
     if slack_two_second_kummer_saturation is not None:
         slack_two_second_kummer_exact_support_saturation = (
             bool(slack_two_second_kummer_saturation["saturation_certificate"])
@@ -2811,6 +2825,12 @@ def scan_supports(
             )
             and remaining_fibers is not None
             and int(remaining_fibers) >= 2
+        )
+    if slack_two_second_two_fiber_union_reduction is not None:
+        slack_two_second_r2_union_exact_support_saturation = bool(
+            slack_two_second_two_fiber_union_reduction[
+                "saturates_nonzero_square_cosets"
+            ]
         )
     if (
         slack_two_second_shape_ledger is not None
@@ -2835,6 +2855,8 @@ def scan_supports(
             slack_two_second_index_window_label = "low_index_saturated"
         elif slack_two_second_two_fiber_exact_support_saturation:
             slack_two_second_index_window_label = "two_fiber_saturated"
+        elif slack_two_second_r2_union_exact_support_saturation:
+            slack_two_second_index_window_label = "r2_union_saturated"
         elif bool(
             slack_two_second_shape_ledger[
                 "lift_limited_slope_bound_nontrivial"
@@ -2858,19 +2880,6 @@ def scan_supports(
         if (
             slack_two_second_shape_ledger is not None
             and bool(slack_two_second_shape_ledger["kernel_fiber_reduction_active"])
-        )
-        else None
-    )
-    slack_two_second_two_fiber_union_reduction = (
-        slack_two_second_two_fiber_union_reduction_data(
-            p,
-            domain,
-            quotient_order,
-        )
-        if (
-            slack_two_second_shape_ledger is not None
-            and slack_two_second_shape_ledger["lift_limited_remaining_fibers"]
-            == 2
         )
         else None
     )
@@ -4383,6 +4392,11 @@ def scan_supports(
                     "saturates_nonzero_square_cosets"
                 ]
             )
+            if slack_two_second_two_fiber_union_reduction is not None
+            else None
+        ),
+        "canonical_slack_two_second_r2_union_exact_support_certificate": (
+            slack_two_second_r2_union_exact_support_saturation
             if slack_two_second_two_fiber_union_reduction is not None
             else None
         ),

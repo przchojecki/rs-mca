@@ -84,8 +84,10 @@ Keep entries concise and link to the relevant files.
   saturation. The scanner also records the exact `R=2` union reduction:
   active shapes are the union of the two-fiber windows `C_2^(2)(K union cK)`,
   and the verifier checks a finite case where no single fixed window
-  saturates but the union does. This leaves a narrower
-  intermediate/lift-limited window for M1 slope-image bounds.
+  saturates but the union does. The scanner label now promotes such cases to
+  `r2_union_saturated` instead of leaving them in a raw-only or intermediate
+  bucket. This leaves a narrower intermediate/lift-limited window for M1
+  slope-image bounds.
 - **What to do next:** Prove or replace the imported Kummer-Weil constant in
   a standalone algebraic-geometry note, then attack the residual `R=1`
   kernel catalog and sharpen the conservative two-fiber lower bound so it

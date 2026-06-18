@@ -9,6 +9,7 @@ from typing import Sequence, Tuple
 from m1_support_occupancy_scan import (
     all_residual_packets_lift_active,
     quotient_limited_pair_parameter_bound,
+    scan_supports,
     slack_two_second_kummer_saturation_data,
     slack_two_second_superboundary_shape_ledger,
     slack_two_second_two_fiber_kummer_saturation_data,
@@ -59,6 +60,11 @@ TWO_FIBER_KUMMER_CASES = (
 TWO_FIBER_UNION_CASES = (
     # R=2: no fixed two-fiber certificate, but the union saturates.
     (97, 48, 6, 8, 36),
+)
+
+SCAN_LABEL_CASES = (
+    # Public scanner regression for the R=2 union-saturated label.
+    (19, 18, 8, 2, 3, "r2_union_saturated"),
 )
 
 
@@ -510,13 +516,38 @@ def main() -> None:
                 per_window_cosets,
             )
         )
+    scan_label_checked = []
+    for p, n, k, slack, quotient_order, expected_label in SCAN_LABEL_CASES:
+        result = scan_supports(
+            p=p,
+            n=n,
+            k=k,
+            slack=slack,
+            quotient_order=quotient_order,
+            primitive=None,
+            anchor_exp=None,
+            direction_exp=None,
+            max_supports=50_000,
+            top_histograms=3,
+        )
+        label = result["canonical_slack_two_second_index_window_label"]
+        if label != expected_label:
+            raise AssertionError((p, n, k, quotient_order, label, result))
+        if not bool(
+            result["canonical_slack_two_second_r2_union_exact_support_certificate"]
+        ):
+            raise AssertionError((p, n, k, quotient_order, result))
+        if not bool(result["canonical_slack_two_second_r2_union_reduction_check"]):
+            raise AssertionError((p, n, k, quotient_order, result))
+        scan_label_checked.append((p, n, k, quotient_order, label))
     print(
         "verify_m1_slack_two_depth_two_kummer_saturation: "
         f"PASS checked={checked} lift_checked={lift_checked} "
         f"lift_bound_checked={lift_bound_checked} "
         f"kernel_checked={kernel_checked} "
         f"two_fiber_checked={two_fiber_checked} "
-        f"two_fiber_union_checked={two_fiber_union_checked}"
+        f"two_fiber_union_checked={two_fiber_union_checked} "
+        f"scan_label_checked={scan_label_checked}"
     )
 
 

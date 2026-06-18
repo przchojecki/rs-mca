@@ -176,6 +176,7 @@ canonical_slack_two_second_r2_union_parameter_count
 canonical_slack_two_second_r2_union_zero_parameter_count
 canonical_slack_two_second_r2_union_nonzero_square_coset_count
 canonical_slack_two_second_r2_union_saturates
+canonical_slack_two_second_r2_union_exact_support_certificate
 canonical_slack_two_second_r2_union_slope_count
 canonical_slack_two_second_r2_union_per_window_profiles
 canonical_slack_two_second_r2_union_reduction_check
@@ -588,6 +589,9 @@ union against the active depth-two parameter count, zero count, nonzero
 two-fiber window is not saturated but the union over all second fibers is
 saturated; those cases are genuine exact-support saturation, not artifacts of
 the coarse lift-limited slope ceiling.
+When this exact `R=2` union saturates all nonzero `D^2`-cosets, the index
+window label records `r2_union_saturated` rather than the weaker
+`raw_saturated_lift_limited` or `intermediate_index_window` labels.
 The `canonical_slack_two_second_kummer_*` fields record the opposite
 low-index certificate. They use the rank-two Kummer character-sum expansion
 for the depth-two shape map
@@ -668,6 +672,7 @@ inactive_lift_gate
 full_domain_saturated
 low_index_saturated
 two_fiber_saturated
+r2_union_saturated
 lift_limited_sparse
 raw_saturated_lift_limited
 high_index_sparse
