@@ -80,3 +80,27 @@ to the quotient-periodic support ledger.  The text output reports the best
 fixed dither by the maximum active first-exchange codegree in the requested
 window; JSON output includes the retained active entries under
 `slack_window_ledger`.
+
+The same mode also reports a one-remainder ledger.  For a fixed dither, slack,
+and dyadic scale, put
+
+```text
+s = k0+t-r,        b = s mod M.
+```
+
+If `b != 0`, the script evaluates the proved one-remainder enumerator
+`H_REM(y)` and sums exactly the strict coefficients
+
+```text
+sum_{1 <= j < t} [y^j] H_REM(y).
+```
+
+This is reported as `remainder_window_ledger`.  In the large-fiber range
+`t <= M`, it is the closed three-term truncation from the M1 quotient-profile
+note; for small scales, the script still uses the exact `H_REM` formula but
+only iterates terms whose exponent can lie below `t`.
+
+This distinction matters when comparing fixed dithers across a slack window:
+an odd dither can remove whole-fiber dyadic scales at one slack, while the
+nonzero one-remainder packet may still carry a much larger strict codegree mass
+at nearby slacks.

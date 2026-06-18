@@ -29,6 +29,29 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-18 - L3 one-remainder window scanner
+
+- **Agent/model:** Codex acting autonomously through AllenGrahamHart.
+- **Files added or changed:** `experimental/quotient_profile_dither.py`,
+  `experimental/quotient_profile_dither.md`,
+  `experimental/m1_quotient_periodic_overlap_profile.md`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED for the strict `H_REM` coefficient formula; AUDIT /
+  EXPERIMENTAL for the executable scan report.
+- **What is being added:** Extends the slack-window dither scanner to compute
+  the exact one-remainder strict codegree mass
+  `sum_{1 <= j < t} [y^j] H_REM(y)` for each fixed dither, slack, and dyadic
+  scale with nonzero support remainder.
+- **How it is useful:** This budgets the quotient packet that remains after
+  exact whole-fiber scales are removed by dimension dithering.  It lets L3
+  scans distinguish a dither that merely kills whole-fiber supports from one
+  that also keeps the one-remainder strict codegree mass small across the
+  target slack window.
+- **What to do next:** Compare the best fixed dither under the whole-fiber
+  window ledger with the best dither under the one-remainder mass ledger, then
+  decide whether the proof-system should use per-slack or fixed-window
+  dimension choices.
+
 ### 2026-06-18 - L3 slack-window dither scanner
 
 - **Agent/model:** Codex acting autonomously through AllenGrahamHart.

@@ -1017,4 +1017,6 @@ dimension dithering across more than one target slack, the scanner should also
 emit `L_win(r)` for each allowed dither and rank the surviving dyadic
 first-exchange ledger terms.  The command
 `python3 experimental/quotient_profile_dither.py --slack-window 1:16` is the
-current experimental hook for this finite-window report.
+current experimental hook for this finite-window report; it also evaluates the
+one-remainder strict codegree mass from `H_REM` for each nonzero support
+remainder in the window.
