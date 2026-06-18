@@ -1857,6 +1857,36 @@ def slack_two_cyclotomic_shape_bound(p: int, domain_order: int) -> int:
     )
 
 
+def fixed_window_active_character_l1_bound(
+    quotient_order: int,
+    window_size: int,
+    ambient_restriction_kernel_count: int,
+) -> int:
+    """Bound one-dimensional nonprincipal L1 for a fixed quotient window."""
+
+    if (
+        quotient_order < 1
+        or window_size < 1
+        or ambient_restriction_kernel_count < 1
+    ):
+        return 0
+    quotient_l1_bound = ceil_sqrt(quotient_order * quotient_order * window_size)
+    return ambient_restriction_kernel_count * quotient_l1_bound - window_size
+
+
+def fixed_window_active_coordinate_l1_bounds(
+    window_size: int,
+    active_character_l1_bound: int,
+) -> Tuple[int, int, int]:
+    """Split a fixed-window tensor L1 bound by active coordinate count."""
+
+    return (
+        3 * window_size * window_size * active_character_l1_bound,
+        3 * window_size * active_character_l1_bound * active_character_l1_bound,
+        active_character_l1_bound ** 3,
+    )
+
+
 def depth_two_kummer_error_l1_split(
     coordinate_principal_weight: int,
     coordinate_nonprincipal_l1_bound: int,
@@ -2053,7 +2083,26 @@ def slack_two_second_two_fiber_kummer_saturation_data(
         * square_coset_index
     )
     principal_weight = 8
+    window_size = 2
     coefficient_abs_bound = 8
+    ambient_restriction_kernel_count = kernel_character_order // quotient_order
+    active_character_l1_bound = fixed_window_active_character_l1_bound(
+        quotient_order,
+        window_size,
+        ambient_restriction_kernel_count,
+    )
+    (
+        coordinate_one_nonprincipal_l1_bound,
+        coordinate_two_nonprincipal_l1_bound,
+        coordinate_three_nonprincipal_l1_bound,
+    ) = fixed_window_active_coordinate_l1_bounds(
+        window_size,
+        active_character_l1_bound,
+    )
+    coordinate_nonprincipal_l1_bound = (
+        (window_size + active_character_l1_bound) ** 3
+        - principal_weight
+    )
     radical_component_degrees = (1, 1, 1, 2)
     radical_total_degree = sum(radical_component_degrees)
     deligne_constant = (radical_total_degree - 1) ** 2
@@ -2061,25 +2110,20 @@ def slack_two_second_two_fiber_kummer_saturation_data(
     principal_exact_count = p * p - 4 * p + 6 + 4 * chi_minus_three
     degeneracy_line_count = 6
     degeneracy_line_union_count = 6 * p - 11
-    coefficient_l1_bound = coefficient_abs_bound * (denominator - 1)
-    character_triple_count = kernel_character_order ** 3
+    coefficient_l1_bound = (
+        square_coset_index
+        * (principal_weight + coordinate_nonprincipal_l1_bound)
+        - principal_weight
+    )
     error_split = depth_two_kummer_error_l1_split(
         coordinate_principal_weight=principal_weight,
-        coordinate_nonprincipal_l1_bound=(
-            coefficient_abs_bound * (character_triple_count - 1)
-        ),
+        coordinate_nonprincipal_l1_bound=coordinate_nonprincipal_l1_bound,
         square_coset_index=square_coset_index,
         nonprincipal_constant=nonprincipal_constant,
-        coordinate_one_nonprincipal_l1_bound=(
-            coefficient_abs_bound * 3 * (kernel_character_order - 1)
-        ),
-        coordinate_two_nonprincipal_l1_bound=(
-            coefficient_abs_bound
-            * 3
-            * (kernel_character_order - 1) ** 2
-        ),
+        coordinate_one_nonprincipal_l1_bound=coordinate_one_nonprincipal_l1_bound,
+        coordinate_two_nonprincipal_l1_bound=coordinate_two_nonprincipal_l1_bound,
         coordinate_three_nonprincipal_l1_bound=(
-            coefficient_abs_bound * (kernel_character_order - 1) ** 3
+            coordinate_three_nonprincipal_l1_bound
         ),
     )
     uniform_prime_threshold = kummer_quadratic_uniform_prime_threshold(
@@ -2112,6 +2156,8 @@ def slack_two_second_two_fiber_kummer_saturation_data(
         "deligne_constant_check": nonprincipal_constant == deligne_constant,
         "principal_weight": principal_weight,
         "coefficient_abs_bound": coefficient_abs_bound,
+        "ambient_restriction_kernel_count": ambient_restriction_kernel_count,
+        "window_one_dimensional_l1_bound": active_character_l1_bound,
         "coefficient_l1_bound": coefficient_l1_bound,
         **error_split,
         "jacobi_error_constant": 1,
@@ -2160,31 +2206,44 @@ def slack_two_second_fixed_window_kummer_saturation_data(
     )
     principal_weight = window_size ** 3
     coefficient_abs_bound = window_size ** 3
+    ambient_restriction_kernel_count = kernel_character_order // quotient_order
+    active_character_l1_bound = fixed_window_active_character_l1_bound(
+        quotient_order,
+        window_size,
+        ambient_restriction_kernel_count,
+    )
+    (
+        coordinate_one_nonprincipal_l1_bound,
+        coordinate_two_nonprincipal_l1_bound,
+        coordinate_three_nonprincipal_l1_bound,
+    ) = fixed_window_active_coordinate_l1_bounds(
+        window_size,
+        active_character_l1_bound,
+    )
+    coordinate_nonprincipal_l1_bound = (
+        (window_size + active_character_l1_bound) ** 3
+        - principal_weight
+    )
     radical_component_degrees = (1, 1, 1, 2)
     radical_total_degree = sum(radical_component_degrees)
     deligne_constant = (radical_total_degree - 1) ** 2
     chi_minus_three = quadratic_character(-3, p)
     principal_exact_count = p * p - 4 * p + 6 + 4 * chi_minus_three
     degeneracy_line_union_count = 6 * p - 11
-    coefficient_l1_bound = coefficient_abs_bound * (denominator - 1)
-    character_triple_count = kernel_character_order ** 3
+    coefficient_l1_bound = (
+        square_coset_index
+        * (principal_weight + coordinate_nonprincipal_l1_bound)
+        - principal_weight
+    )
     error_split = depth_two_kummer_error_l1_split(
         coordinate_principal_weight=principal_weight,
-        coordinate_nonprincipal_l1_bound=(
-            coefficient_abs_bound * (character_triple_count - 1)
-        ),
+        coordinate_nonprincipal_l1_bound=coordinate_nonprincipal_l1_bound,
         square_coset_index=square_coset_index,
         nonprincipal_constant=nonprincipal_constant,
-        coordinate_one_nonprincipal_l1_bound=(
-            coefficient_abs_bound * 3 * (kernel_character_order - 1)
-        ),
-        coordinate_two_nonprincipal_l1_bound=(
-            coefficient_abs_bound
-            * 3
-            * (kernel_character_order - 1) ** 2
-        ),
+        coordinate_one_nonprincipal_l1_bound=coordinate_one_nonprincipal_l1_bound,
+        coordinate_two_nonprincipal_l1_bound=coordinate_two_nonprincipal_l1_bound,
         coordinate_three_nonprincipal_l1_bound=(
-            coefficient_abs_bound * (kernel_character_order - 1) ** 3
+            coordinate_three_nonprincipal_l1_bound
         ),
     )
     uniform_prime_threshold = kummer_quadratic_uniform_prime_threshold(
@@ -2218,6 +2277,8 @@ def slack_two_second_fixed_window_kummer_saturation_data(
         "deligne_constant_check": nonprincipal_constant == deligne_constant,
         "principal_weight": principal_weight,
         "coefficient_abs_bound": coefficient_abs_bound,
+        "ambient_restriction_kernel_count": ambient_restriction_kernel_count,
+        "window_one_dimensional_l1_bound": active_character_l1_bound,
         "coefficient_l1_bound": coefficient_l1_bound,
         **error_split,
         "jacobi_error_constant": 1,
@@ -5541,6 +5602,24 @@ def scan_supports(
             if slack_two_second_r_window_kummer_saturation is not None
             else None
         ),
+        "canonical_slack_two_second_r_window_kummer_ambient_kernel_count": (
+            int(
+                slack_two_second_r_window_kummer_saturation[
+                    "ambient_restriction_kernel_count"
+                ]
+            )
+            if slack_two_second_r_window_kummer_saturation is not None
+            else None
+        ),
+        "canonical_slack_two_second_r_window_kummer_window_l1_bound": (
+            int(
+                slack_two_second_r_window_kummer_saturation[
+                    "window_one_dimensional_l1_bound"
+                ]
+            )
+            if slack_two_second_r_window_kummer_saturation is not None
+            else None
+        ),
         "canonical_slack_two_second_r_window_kummer_coefficient_l1_bound": (
             int(
                 slack_two_second_r_window_kummer_saturation[
@@ -6306,6 +6385,24 @@ def scan_supports(
             int(
                 slack_two_second_two_fiber_kummer_saturation[
                     "coefficient_abs_bound"
+                ]
+            )
+            if slack_two_second_two_fiber_kummer_saturation is not None
+            else None
+        ),
+        "canonical_slack_two_second_two_fiber_kummer_ambient_kernel_count": (
+            int(
+                slack_two_second_two_fiber_kummer_saturation[
+                    "ambient_restriction_kernel_count"
+                ]
+            )
+            if slack_two_second_two_fiber_kummer_saturation is not None
+            else None
+        ),
+        "canonical_slack_two_second_two_fiber_kummer_window_l1_bound": (
+            int(
+                slack_two_second_two_fiber_kummer_saturation[
+                    "window_one_dimensional_l1_bound"
                 ]
             )
             if slack_two_second_two_fiber_kummer_saturation is not None

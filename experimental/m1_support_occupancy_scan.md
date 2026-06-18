@@ -197,6 +197,8 @@ canonical_slack_two_second_r_window_kummer_square_coset_index
 canonical_slack_two_second_r_window_kummer_denominator
 canonical_slack_two_second_r_window_kummer_principal_weight
 canonical_slack_two_second_r_window_kummer_coefficient_bound
+canonical_slack_two_second_r_window_kummer_ambient_kernel_count
+canonical_slack_two_second_r_window_kummer_window_l1_bound
 canonical_slack_two_second_r_window_kummer_coefficient_l1_bound
 canonical_slack_two_second_r_window_kummer_jacobi_l1_bound
 canonical_slack_two_second_r_window_kummer_conic_l1_bound
@@ -271,6 +273,8 @@ canonical_slack_two_second_two_fiber_kummer_square_coset_index
 canonical_slack_two_second_two_fiber_kummer_denominator
 canonical_slack_two_second_two_fiber_kummer_principal_weight
 canonical_slack_two_second_two_fiber_kummer_coefficient_bound
+canonical_slack_two_second_two_fiber_kummer_ambient_kernel_count
+canonical_slack_two_second_two_fiber_kummer_window_l1_bound
 canonical_slack_two_second_two_fiber_kummer_coefficient_l1_bound
 canonical_slack_two_second_two_fiber_kummer_jacobi_l1_bound
 canonical_slack_two_second_two_fiber_kummer_conic_l1_bound
@@ -665,7 +669,16 @@ There is also a fixed-window Kummer certificate for this same reduction. For
 a quotient window `W` of size `R`, the indicator of `W` has principal weight
 `R/h`, so the principal term for `u,v,-1-u-v in W` has weight `R^3/(h^3 q)`,
 where `h=[F_p^*:K]` and `q=[F_p^*:D^2]`. The nonprincipal coefficients are
-bounded by `R^3`. The `d=0` part is a three-character Jacobi sum, and the
+controlled by a one-dimensional Parseval bound. Writing `N` for the quotient
+order and `e=h/N`, the quotient Fourier coefficients of a size-`R` window
+satisfy `sum |c_W(a)| <= N sqrt(R)`, so the ambient nonprincipal
+one-dimensional L1 is bounded by
+
+```text
+A_R = e ceil(N sqrt(R)) - R.
+```
+
+The `d=0` part is a three-character Jacobi sum, and the
 coordinate-principal `d!=0` part is a nontrivial character sum of the affine
 quadratic `A(u,v)`; both only cost `p`. Since `q=[F_p^*:D^2]` is even, the
 unique quadratic conic character with exactly one active coordinate character
@@ -674,17 +687,17 @@ one-coordinate terms cost `4p`, two-coordinate terms cost `9p`, and
 three-coordinate terms cost `16p`. Put
 
 ```text
-M_{h,q} = (h^3-1) + (q-1)
-          + 12(h-1)(q-1)
-          + 27(h-1)^2(q-1)
-          + 16(h-1)^3(q-1).
+M_{R,h,q} = ((R+A_R)^3-R^3) + R^3(q-1)
+            + 12R^2 A_R(q-1)
+            + 27R A_R^2(q-1)
+            + 16A_R^3(q-1).
 ```
 
 The conservative lower numerator is
 
 ```text
 R^3 (p^2 - 4p + 6 + 4 chi(-3))
-  - p R^3 M_{h,q} - (6p - 11) h^3 q.
+  - p M_{R,h,q} - (6p - 11) h^3 q.
 ```
 
 When this is positive, one fixed `R`-window already hits every nonzero
@@ -919,12 +932,13 @@ the indicator `1_U` has principal weight `2/h`, where
 `8/(h^3 q)`, with `q=[F_p^*:D^2]`. The coordinate-principal `d!=0` terms are
 conic-only and cost `p`; the one-coordinate quadratic-conic terms cost `4p`;
 and the remaining mixed Kummer terms are charged by active radical degree
-with constants `4`, `9`, and `16`. Paying the coefficient bound `8`, the
-Jacobi/conic/quadratic/Kummer split gives the conservative lower numerator
+with constants `4`, `9`, and `16`. This is the `R=2` specialization of the
+Parseval fixed-window certificate above, with `A_2=e ceil(N sqrt(2))-2`.
+The Jacobi/conic/quadratic/Kummer split gives the conservative lower numerator
 
 ```text
 8 (p^2 - 4p + 6 + 4 chi(-3))
-  - p * 8 M_{h,q} - (6p - 11) h^3 q.
+  - p M_{2,h,q} - (6p - 11) h^3 q.
 ```
 
 When this is positive, every nonzero `D^2`-coset already occurs inside a

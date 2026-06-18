@@ -164,36 +164,50 @@ The raw weighted error is therefore
 For a fixed quotient window `W` of size `R`, let
 
 ```text
-h = [F_p^*:K],        q = [F_p^*:D^2].
+h = [F_p^*:K],        e = h/N,        q = [F_p^*:D^2].
 ```
 
 Here `q` is even because `D^2` is contained in the square subgroup of
 `F_p^*`, so there is a unique quadratic conic character in the `D^2`-coset
 expansion.
 
-The indicator of `W` has principal coefficient `R`; after the three conditions
-`u,v,-1-u-v in W`, both the principal weight and the nonprincipal coefficient
-bound are `R^3`. Hence the conservative lower numerator for a fixed
-`D^2`-coset is obtained by putting
+The indicator of `W` has principal coefficient `R`. For its one-dimensional
+quotient Fourier coefficients `c_W(a)`, Parseval gives
 
 ```text
-M_{h,q} = (h^3-1) + (q-1)
-          + 12(h-1)(q-1)
-          + 27(h-1)^2(q-1)
-          + 16(h-1)^3(q-1).
+sum_{a in D/K} |c_W(a)| <= N sqrt(R).
+```
+
+After lifting from quotient characters to ambient characters modulo `K`, the
+one-dimensional nonprincipal L1 is bounded by
+
+```text
+A_R = e ceil(N sqrt(R)) - R.
+```
+
+Thus the three-coordinate window tensor has nonprincipal L1 at most
+`(R+A_R)^3-R^3`, split by active coordinate count as
+`3R^2 A_R`, `3R A_R^2`, and `A_R^3`. Hence the conservative lower numerator
+for a fixed `D^2`-coset is obtained by putting
+
+```text
+M_{R,h,q} = ((R+A_R)^3-R^3) + R^3(q-1)
+            + 12R^2 A_R(q-1)
+            + 27R A_R^2(q-1)
+            + 16A_R^3(q-1).
 ```
 
 It is
 
 ```text
 R^3 (p^2 - 4p + 6 + 4 chi(-3))
-  - p R^3 M_{h,q} - (6p - 11) h^3 q.
+  - p M_{R,h,q} - (6p - 11) h^3 q.
 ```
 
 The uniform sufficient threshold for this fixed-window numerator is
 
 ```text
-p >= ceil((R^3 M_{h,q} + 6h^3q)/R^3) + 4.
+p >= ceil((M_{R,h,q} + 6h^3q)/R^3) + 4.
 ```
 
 When this numerator is positive, that fixed `R`-window already hits every

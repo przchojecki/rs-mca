@@ -392,6 +392,17 @@ def direct_ambient_window_label_coordinate_active_l1_bounds(
     return (totals[1], totals[2], totals[3])
 
 
+def fixed_window_parseval_active_l1_bound(
+    quotient_order: int,
+    window_size: int,
+    ambient_restriction_kernel_count: int,
+) -> int:
+    root = math.isqrt(quotient_order * quotient_order * window_size)
+    if root * root < quotient_order * quotient_order * window_size:
+        root += 1
+    return ambient_restriction_kernel_count * root - window_size
+
+
 def kernel_fiber_reduction_counts(
     p: int,
     domain: Sequence[int],
@@ -756,18 +767,32 @@ def main() -> None:
             raise AssertionError((p, n, deligne_constant, certificate))
         principal_count = principal_open_count(p)
         degeneracy_count = degeneracy_line_union_count(p)
-        coefficient_l1_bound = int(certificate["coefficient_abs_bound"]) * (
-            int(certificate["denominator"]) - 1
+        square_coset_index = int(certificate["square_coset_index"])
+        window_size = 2
+        active_character_l1_bound = fixed_window_parseval_active_l1_bound(
+            quotient_order,
+            window_size,
+            int(certificate["ambient_restriction_kernel_count"]),
+        )
+        if active_character_l1_bound != int(
+            certificate["window_one_dimensional_l1_bound"]
+        ):
+            raise AssertionError((p, n, active_character_l1_bound, certificate))
+        coordinate_nonprincipal_l1_bound = (
+            (window_size + active_character_l1_bound) ** 3
+            - int(certificate["principal_weight"])
+        )
+        coefficient_l1_bound = (
+            square_coset_index
+            * (
+                int(certificate["principal_weight"])
+                + coordinate_nonprincipal_l1_bound
+            )
+            - int(certificate["principal_weight"])
         )
         if coefficient_l1_bound != int(certificate["coefficient_l1_bound"]):
             raise AssertionError((p, n, coefficient_l1_bound, certificate))
-        character_triple_count = (
-            int(certificate["kernel_character_order"]) ** 3
-        )
-        square_coset_index = int(certificate["square_coset_index"])
-        jacobi_l1_bound = int(certificate["coefficient_abs_bound"]) * (
-            character_triple_count - 1
-        )
+        jacobi_l1_bound = coordinate_nonprincipal_l1_bound
         conic_l1_bound = int(certificate["principal_weight"]) * (
             square_coset_index - 1
         )
@@ -775,19 +800,12 @@ def main() -> None:
             1 if square_coset_index > 1 and square_coset_index % 2 == 0 else 0
         )
         coordinate_one_l1_bound = (
-            int(certificate["coefficient_abs_bound"])
-            * 3
-            * (int(certificate["kernel_character_order"]) - 1)
+            3 * window_size * window_size * active_character_l1_bound
         )
         coordinate_two_l1_bound = (
-            int(certificate["coefficient_abs_bound"])
-            * 3
-            * (int(certificate["kernel_character_order"]) - 1) ** 2
+            3 * window_size * active_character_l1_bound ** 2
         )
-        coordinate_three_l1_bound = (
-            int(certificate["coefficient_abs_bound"])
-            * (int(certificate["kernel_character_order"]) - 1) ** 3
-        )
+        coordinate_three_l1_bound = active_character_l1_bound ** 3
         quadratic_one_coordinate_l1_bound = (
             coordinate_one_l1_bound * quadratic_conic_character_count
         )
@@ -1058,18 +1076,31 @@ def main() -> None:
             raise AssertionError((p, n, radical_total, certificate))
         principal_count = principal_open_count(p)
         degeneracy_count = degeneracy_line_union_count(p)
-        coefficient_l1_bound = int(certificate["coefficient_abs_bound"]) * (
-            int(certificate["denominator"]) - 1
+        square_coset_index = int(certificate["square_coset_index"])
+        active_character_l1_bound = fixed_window_parseval_active_l1_bound(
+            quotient_order,
+            window_size,
+            int(certificate["ambient_restriction_kernel_count"]),
+        )
+        if active_character_l1_bound != int(
+            certificate["window_one_dimensional_l1_bound"]
+        ):
+            raise AssertionError((p, n, active_character_l1_bound, certificate))
+        coordinate_nonprincipal_l1_bound = (
+            (window_size + active_character_l1_bound) ** 3
+            - int(certificate["principal_weight"])
+        )
+        coefficient_l1_bound = (
+            square_coset_index
+            * (
+                int(certificate["principal_weight"])
+                + coordinate_nonprincipal_l1_bound
+            )
+            - int(certificate["principal_weight"])
         )
         if coefficient_l1_bound != int(certificate["coefficient_l1_bound"]):
             raise AssertionError((p, n, coefficient_l1_bound, certificate))
-        character_triple_count = (
-            int(certificate["kernel_character_order"]) ** 3
-        )
-        square_coset_index = int(certificate["square_coset_index"])
-        jacobi_l1_bound = int(certificate["coefficient_abs_bound"]) * (
-            character_triple_count - 1
-        )
+        jacobi_l1_bound = coordinate_nonprincipal_l1_bound
         conic_l1_bound = int(certificate["principal_weight"]) * (
             square_coset_index - 1
         )
@@ -1077,19 +1108,12 @@ def main() -> None:
             1 if square_coset_index > 1 and square_coset_index % 2 == 0 else 0
         )
         coordinate_one_l1_bound = (
-            int(certificate["coefficient_abs_bound"])
-            * 3
-            * (int(certificate["kernel_character_order"]) - 1)
+            3 * window_size * window_size * active_character_l1_bound
         )
         coordinate_two_l1_bound = (
-            int(certificate["coefficient_abs_bound"])
-            * 3
-            * (int(certificate["kernel_character_order"]) - 1) ** 2
+            3 * window_size * active_character_l1_bound ** 2
         )
-        coordinate_three_l1_bound = (
-            int(certificate["coefficient_abs_bound"])
-            * (int(certificate["kernel_character_order"]) - 1) ** 3
-        )
+        coordinate_three_l1_bound = active_character_l1_bound ** 3
         quadratic_one_coordinate_l1_bound = (
             coordinate_one_l1_bound * quadratic_conic_character_count
         )

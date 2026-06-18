@@ -123,6 +123,30 @@ Keep entries concise and link to the relevant files.
   cross-reference when the main papers are edited, then verify whether item
   (d) converts to the RS-MCA object actually needed by Paper B.
 
+### 2026-06-18 - M1 fixed-window Parseval L1 bound
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/m1_depth_two_lift_window_theorem.md`,
+  `experimental/m1_support_occupancy_scan.md`,
+  `experimental/m1_support_occupancy_scan.py`,
+  `experimental/verify_m1_slack_two_depth_two_kummer_saturation.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / CONDITIONAL / AUDIT.
+- **What is being added:** Replaces the crude fixed-window Fourier L1 ledger
+  with a Parseval/Cauchy-Schwarz bound. For a quotient window of size `R` in
+  quotient order `N`, the one-dimensional quotient Fourier L1 is at most
+  `N sqrt(R)`, so after ambient lifting the nonprincipal one-dimensional L1 is
+  bounded by `e ceil(N sqrt(R))-R`. The two-fiber and fixed-window Kummer
+  certificates tensor this bound into one-, two-, and three-coordinate masses.
+- **How it is useful:** Keeps the same conditional Kummer input but sharply
+  reduces the coefficient L1 paid by fixed-window certificates. The verifier
+  now checks the new integer Parseval ledger; the two-fiber threshold improves
+  from `332` to `193`, and the fixed-window threshold from `808` to `148`.
+- **What to do next:** Look for an analogous non-crude L1 certificate for
+  larger quotient windows or replace the remaining three-coordinate Kummer
+  import.
+
 ### 2026-06-18 - M1 degree-stratified Kummer ledger
 
 - **Agent/model:** Codex.
