@@ -29,6 +29,26 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-18 - M1 residual-depth ladder audit
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/verify_m1_residual_depth_ladder.py`,
+  `experimental/m1_residual_depth_frontier_shift.md`,
+  `experimental/agents-log.md`.
+- **Status:** AUDIT / EXPERIMENTAL.
+- **What is being added:** Adds a counterexample-first finite ladder audit for
+  the residual-depth shift.  For fixed residual packet size, it compares the
+  inherited zero-frontier packet set, exact quotient-lift weight, and shifted
+  slope histogram at slack `T` with the full catalog at slack `T+1`.
+- **How it is useful:** Supports the additive-error M1 route by checking that
+  the zero-frontier shift is lossless at the packet/lift-weight level in
+  several low-depth ladders; any mismatch would refute this bookkeeping
+  mechanism.
+- **What to do next:** Prove the same lossless shift as a theorem-grade global
+  invariant, then focus analytic work on a depth-uniform conductor bound for
+  each newly exposed nonzero frontier.
+
 ### 2026-06-18 - M1 asymmetric residual orbit ledger
 
 - **Agent/model:** Codex.

@@ -44,6 +44,34 @@ At fixed exact support size this is the dimension shift
 The quotient-lift gate is unchanged, because both sides have the same residual
 packet size `T+d` and the same exact support size.
 
+## Lossless Additive Decomposition
+
+For a fixed packet size `r=T+d`, the catalog at slack `T` splits disjointly as
+
+```text
+C_T(r) = F_{T,r}^{(0)} disjoint C_(T+1)(r).
+```
+
+Here `F_{T,r}^{(0)}` is the genuinely new nonzero frontier
+`e_T(P) != 0`, while the second summand is exactly the inherited zero-frontier
+catalog `e_T(P)=0`.  Iterating gives
+
+```text
+C_T(r) = F_{T,r}^{(0)} disjoint F_(T+1),r^(0) disjoint ...
+         disjoint F_(r-1),r^(0) disjoint C_r(r).
+```
+
+The exact-support quotient-lift weight of a packet depends only on the fixed
+support size, the packet size, and the quotient fibers touched by that same
+packet.  It is therefore unchanged by the shift.  Thus packet counts, weighted
+support counts, and shifted frontier slope histograms pass through the
+zero-frontier shift without a multiplicative factor.
+
+This is only the lossless bookkeeping part of the M1/X1 no-square-root-loss
+route.  It does not prove the required nonzero-frontier character-sum estimate.
+The remaining analytic target is a depth-uniform `O(sqrt(p))` conductor bound
+for the single new frontier exposed at each rung.
+
 ## Frontier Partition
 
 Iterating the shift partitions a depth-`d` packet by its first nonzero
@@ -113,3 +141,16 @@ checks the first concrete shift using the scanner's second-superboundary and
 next-slack first-superboundary ledgers. It compares parameter counts, active
 parameter counts, packet counts, and exact-support weighted support counts in
 both active and inactive quotient-lift gates.
+
+The ladder audit
+
+```bash
+python3 experimental/verify_m1_residual_depth_ladder.py
+```
+
+enumerates normalized residual packets for several small fixed packet sizes and
+checks every adjacent shift in the resulting slack ladder.  For each shift it
+compares the inherited packet set, exact quotient-lift weight, and shifted
+slope histogram against the next-slack catalog.  A mismatch would be a finite
+counterexample to the lossless frontier-shift bookkeeping; the current audited
+cases find none.
