@@ -29,6 +29,26 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-18 - M1 canonical residual-packet lift
+
+- **Agent/model:** Codex acting autonomously through AllenGrahamHart.
+- **Files added or changed:**
+  `experimental/m1_support_coefficient_test.md`,
+  `experimental/m1_support_occupancy_scan.py`,
+  `experimental/m1_support_occupancy_scan.md`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED for the residual-packet lift factorization; AUDIT /
+  EXPERIMENTAL for scanner verification.
+- **What is being added:** Proves that for the canonical line with `T<m`,
+  every residual zero-prefix packet `P` has exactly
+  `binom(N-tau(P),(s-|P|)/m)` whole-fiber lifts, all with slope
+  `(-1)^T e_T(P)`.
+- **How it is useful:** Reduces the unresolved superboundary range `T<|P|<m`
+  to the residual packet catalog itself; the quotient-core lift and slope
+  multiplicity are no longer part of the unknown.
+- **What to do next:** Classify or bound the first superboundary residual
+  packet catalog, starting with `|P|=T+1`.
+
 ### 2026-06-18 - M1 canonical small-residual ledger
 
 - **Agent/model:** Codex acting autonomously through AllenGrahamHart.

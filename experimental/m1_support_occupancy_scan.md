@@ -64,6 +64,8 @@ canonical_small_residual_regime
 canonical_small_residual_support_count_check
 canonical_small_residual_slope_count_check
 canonical_small_residual_slope_multiplicity_check
+canonical_residual_packet_lift_count_check
+canonical_residual_packet_slope_consistency_check
 canonical_subboundary_residual_floor_check
 canonical_residual_slope_check
 canonical_boundary_slope_decomposition_check
@@ -118,6 +120,23 @@ slope count, and uniform slope multiplicity. Residues `b>t` are reported as
 `superboundary_unclassified`, because they are the first genuinely partial
 small-residual regime not decided by the quotient-core theorem.
 
+For every canonical scan with `t<m`, the scanner also aggregates supports by
+their residual partial-fiber packet `P`. A packet touching `tau(P)` quotient
+fibers and having size `r` has expected lift multiplicity
+
+```text
+binom(N-tau(P), (k+t-r)/m),
+```
+
+when `k+t-r` is divisible by `m`, and zero otherwise. The fields
+`canonical_residual_packet_lift_count_check` and
+`canonical_residual_packet_slope_consistency_check` verify that these packet
+weights reconstruct both the observed canonical zero-prefix support count and
+the weighted slope histogram. The size and touched-fiber histograms of the
+residual packet catalog are reported as
+`canonical_residual_packet_size_histogram` and
+`canonical_residual_packet_touched_fiber_histogram`.
+
 For dithered residues in the range
 
 ```text
@@ -159,3 +178,6 @@ their slope image is the explicit set `-D^t`.
 If the support residue lies strictly between `0` and `t`, then even those
 boundary residuals disappear and any canonical residual incidence must use
 more than one full fiber's worth of residual points.
+In the remaining `b>t` superboundary range, the residual-packet lift check
+separates the additive residual zero-prefix catalog from the already solved
+quotient-core choice of whole fibers.

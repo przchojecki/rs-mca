@@ -381,6 +381,66 @@ solutions. This is the point at which the canonical problem stops being a
 quotient-core or boundary-coset ledger and becomes a residual local-limit
 question.
 
+The remaining canonical problem has an exact residual-packet lift
+factorization. Keep `T<m` and fix support size `s`. Let `P` be any subset of
+`D` which contains no whole quotient fiber. Write
+
+```text
+r=|P|,        tau(P)=#{quotient fibers touched by P}.
+```
+
+If `P` satisfies
+
+```text
+e_1(P)=...=e_(T-1)(P)=0
+```
+
+and `s-r` is divisible by `m`, then the exact supports whose residual
+partial-fiber set is exactly `P` are obtained by adjoining
+
+```text
+a=(s-r)/m
+```
+
+whole quotient fibers disjoint from the `tau(P)` fibers already touched by
+`P`. Hence this packet has exactly
+
+```text
+binom(N-tau(P), a)
+```
+
+canonical support lifts, with the convention that the binomial is zero if
+`a<0` or `a>N-tau(P)`. Every one of these lifts has the same canonical slope
+
+```text
+z=(-1)^T e_T(P).
+```
+
+Thus, for `T<m`, the canonical bad-slope multiset at exact support size `s`
+is the weighted image of the residual packet catalog
+
+```text
+{ P subset D : P has no whole quotient fiber,
+               e_1(P)=...=e_(T-1)(P)=0,
+               |P| congruent s mod m }
+```
+
+under the map `P -> (-1)^T e_T(P)`, with packet weight
+`binom(N-tau(P), (s-|P|)/m)`.
+
+The proof is the quotient-core factorization applied in reverse. Because
+`T<m`, adjoining or deleting whole quotient fibers does not change
+`e_1,...,e_T`; hence the zero-prefix test and slope are determined by `P`
+alone. If a support has residual packet `P`, all remaining selected points
+must be whole quotient fibers outside the fibers touched by `P`, and the
+number of such fibers is forced to be `a=(s-|P|)/m`. Conversely, adjoining
+any such `a` whole fibers gives an exact support of size `s` with residual
+packet `P`. This proves both the binomial lift count and the common slope.
+
+This does not classify the first superboundary packets `T<|P|<m`. It proves
+that they are the only new object left: once such a packet is known, the
+quotient-core lift and slope multiplicity are completely deterministic.
+
 ## M1 Impact
 
 This turns the positive M1 problem into a precise incidence question:
@@ -433,6 +493,11 @@ dimension dither.
 For residues `b<=T`, the small-residual canonical ledger is now exact: slope
 `0` in the whole-fiber case, no slopes in the subboundary case, and the
 `-D^T` boundary image at `b=T`.
+Beyond this range, the residual-packet lift factorization prevents the
+superboundary problem from spreading back into full support enumeration: each
+residual packet carries only the explicit quotient multiplier
+`binom(N-tau(P),(s-|P|)/m)`. The unresolved M1 content is therefore the size,
+structure, and slope image of the residual zero-prefix packet catalog itself.
 
 ## Suggested Next Step
 
@@ -456,4 +521,6 @@ boundary quotient-core slope decompositions. In cyclic-domain scans it also
 checks the exact boundary-coset count above and the associated boundary slope
 image/multiplicity, and reports the subboundary residual-size floor in the
 dithered residue range. It also reports the closed small-residual regime for
-support residues `b<=T`.
+support residues `b<=T`. In the first superboundary range it now also checks
+the residual-packet lift formula, so scans can distinguish the new residual
+packet catalog from the already solved quotient-core lifting multiplicity.

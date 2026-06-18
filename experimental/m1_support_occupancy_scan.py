@@ -286,6 +286,24 @@ def expected_small_residual_ledger(
     return ("superboundary_unclassified", None, None, None)
 
 
+def expected_residual_packet_lift_count(
+    support_size: int,
+    quotient_order: int,
+    fiber_size: int,
+    residual_size: int,
+    touched_fibers: int,
+) -> int:
+    if residual_size > support_size:
+        return 0
+    if (support_size - residual_size) % fiber_size:
+        return 0
+    whole_fibers = (support_size - residual_size) // fiber_size
+    available_fibers = quotient_order - touched_fibers
+    if whole_fibers < 0 or whole_fibers > available_fibers:
+        return 0
+    return math.comb(available_fibers, whole_fibers)
+
+
 def occupancy_histogram(
     support: Sequence[int],
     quotient_order: int,
@@ -473,6 +491,8 @@ def scan_supports(
     bad_slopes = set()
     boundary_slope_histogram: Counter[int] = Counter()
     small_residual_slope_histogram: Counter[int] = Counter()
+    canonical_slope_histogram: Counter[int] = Counter()
+    residual_packet_records: Dict[Tuple[int, ...], Dict[str, object]] = {}
     canonical_small_residual_support_count = 0
     incidence_count = 0
     contained_count = 0
@@ -530,9 +550,29 @@ def scan_supports(
             )
             if canonical_slope is not None:
                 canonical_zero_prefix_count += 1
+                canonical_slope_histogram[canonical_slope] += 1
                 record["canonical_zero_prefix_support_count"] = (
                     int(record["canonical_zero_prefix_support_count"]) + 1
                 )
+                if slack < fiber_size:
+                    packet = residual_packet_records.setdefault(
+                        residual,
+                        {
+                            "residual_size": residual_size,
+                            "touched_fibers": residual_touched_fiber_count(
+                                residual,
+                                quotient_order,
+                            ),
+                            "observed_support_count": 0,
+                            "slope_histogram": Counter(),
+                        },
+                    )
+                    packet["observed_support_count"] = (
+                        int(packet["observed_support_count"]) + 1
+                    )
+                    packet_slope_histogram = packet["slope_histogram"]
+                    assert isinstance(packet_slope_histogram, Counter)
+                    packet_slope_histogram[canonical_slope] += 1
                 if residual_size < fiber_size:
                     canonical_small_residual_support_count += 1
                     small_residual_slope_histogram[canonical_slope] += 1
@@ -689,6 +729,36 @@ def scan_supports(
     )
     outcome_count_sum = contained_count + no_slope_count + incidence_count
     outcome_partition = outcome_count_sum == total_supports and record_outcomes_match
+    residual_packet_lift_mismatches = 0
+    residual_packet_slope_mismatches = 0
+    residual_packet_weighted_support_count = 0
+    residual_packet_size_histogram: Counter[int] = Counter()
+    residual_packet_touched_fiber_histogram: Counter[int] = Counter()
+    residual_packet_slope_histogram: Counter[int] = Counter()
+
+    for packet in residual_packet_records.values():
+        residual_size = int(packet["residual_size"])
+        touched_fibers = int(packet["touched_fibers"])
+        expected_lift_count = expected_residual_packet_lift_count(
+            support_size=support_size,
+            quotient_order=quotient_order,
+            fiber_size=fiber_size,
+            residual_size=residual_size,
+            touched_fibers=touched_fibers,
+        )
+        packet["expected_lift_count"] = expected_lift_count
+        residual_packet_weighted_support_count += expected_lift_count
+        residual_packet_size_histogram[residual_size] += 1
+        residual_packet_touched_fiber_histogram[touched_fibers] += 1
+        if int(packet["observed_support_count"]) != expected_lift_count:
+            residual_packet_lift_mismatches += 1
+        slope_histogram = packet["slope_histogram"]
+        assert isinstance(slope_histogram, Counter)
+        if len(slope_histogram) != 1:
+            residual_packet_slope_mismatches += 1
+            continue
+        slope = next(iter(slope_histogram))
+        residual_packet_slope_histogram[slope] += expected_lift_count
 
     return {
         "proof_status": "AUDIT / EXPERIMENTAL",
@@ -723,6 +793,14 @@ def scan_supports(
         ),
         "canonical_zero_prefix_support_count": (
             canonical_zero_prefix_count if canonical_line else None
+        ),
+        "canonical_zero_prefix_slope_histogram": (
+            {
+                str(slope): count
+                for slope, count in sorted(canonical_slope_histogram.items())
+            }
+            if canonical_line
+            else None
         ),
         "canonical_residual_zero_prefix_support_count": (
             canonical_residual_zero_prefix_count if canonical_line else None
@@ -885,6 +963,69 @@ def scan_supports(
             if canonical_line and slack < fiber_size
             else None
         ),
+        "canonical_residual_packet_count": (
+            len(residual_packet_records)
+            if canonical_line and slack < fiber_size
+            else None
+        ),
+        "canonical_residual_packet_weighted_support_count": (
+            residual_packet_weighted_support_count
+            if canonical_line and slack < fiber_size
+            else None
+        ),
+        "canonical_residual_packet_lift_count_check": (
+            residual_packet_lift_mismatches == 0
+            and residual_packet_weighted_support_count == canonical_zero_prefix_count
+            if canonical_line and slack < fiber_size
+            else None
+        ),
+        "canonical_residual_packet_lift_mismatch_count": (
+            residual_packet_lift_mismatches
+            if canonical_line and slack < fiber_size
+            else None
+        ),
+        "canonical_residual_packet_slope_consistency_check": (
+            residual_packet_slope_mismatches == 0
+            and residual_packet_slope_histogram == canonical_slope_histogram
+            if canonical_line and slack < fiber_size
+            else None
+        ),
+        "canonical_residual_packet_slope_mismatch_count": (
+            residual_packet_slope_mismatches
+            if canonical_line and slack < fiber_size
+            else None
+        ),
+        "canonical_residual_packet_slope_count": (
+            len(residual_packet_slope_histogram)
+            if canonical_line and slack < fiber_size
+            else None
+        ),
+        "canonical_residual_packet_slope_histogram": (
+            {
+                str(slope): count
+                for slope, count in sorted(residual_packet_slope_histogram.items())
+            }
+            if canonical_line and slack < fiber_size
+            else None
+        ),
+        "canonical_residual_packet_size_histogram": (
+            {
+                str(size): count
+                for size, count in sorted(residual_packet_size_histogram.items())
+            }
+            if canonical_line and slack < fiber_size
+            else None
+        ),
+        "canonical_residual_packet_touched_fiber_histogram": (
+            {
+                str(size): count
+                for size, count in sorted(
+                    residual_packet_touched_fiber_histogram.items()
+                )
+            }
+            if canonical_line and slack < fiber_size
+            else None
+        ),
         "canonical_subboundary_residual_floor": (
             subboundary_floor if canonical_line and slack < fiber_size else None
         ),
@@ -999,6 +1140,7 @@ def print_text(result: Dict[str, object]) -> None:
             "boundary_count_check={count} "
             "boundary_slope_count_check={slope_count} "
             "small_residual_regime={small} "
+            "residual_packet_lift_check={packet} "
             "subboundary_floor_check={floor} "
             "residual_slope_check={slope} "
             "boundary_slope_check={boundary}".format(
@@ -1010,6 +1152,7 @@ def print_text(result: Dict[str, object]) -> None:
                 count=result["canonical_boundary_residual_count_check"],
                 slope_count=result["canonical_boundary_slope_count_check"],
                 small=result["canonical_small_residual_regime"],
+                packet=result["canonical_residual_packet_lift_count_check"],
                 floor=result["canonical_subboundary_residual_floor_check"],
                 slope=result["canonical_residual_slope_check"],
                 boundary=result["canonical_boundary_slope_decomposition_check"],
