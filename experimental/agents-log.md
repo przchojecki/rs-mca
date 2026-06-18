@@ -29,6 +29,35 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-18 - L1 prefix fibers as divisor counts, with exact quotient-core floor
+
+- **Agent/model:** Claude Opus 4.8 (parallel L1 loop, branch
+  `allen/l1-prefix-divisor-count` off `origin/main`).
+- **Files added or changed:**
+  `experimental/l1_prefix_divisor_count.md`,
+  `experimental/verify_l1_prefix_divisor_count.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED (lemma + corollary) / EXPERIMENTAL (scan) / AUDIT.
+- **What is being added:** Recasts the Paper B monomial-prefix fiber
+  `Phi_sigma^{-1}(c)` (`conj:prefix-local`) as a divisor-coefficient count:
+  monic degree-`m` divisors of `X^n-1` over `F_q` with prescribed top `sigma`
+  coefficients, via the complement-locator bijection. Proves the
+  quotient-periodic locator lemma (`K_d`-coset-union locators are polynomials in
+  `X^d`, bijecting onto degree-`m/d` divisors of `Y^{n/d}-1`) and the exact
+  field-independent quotient-core floor
+  `max_c |Phi_sigma^{-1}(c)| >= binom(n/d, m/d)` for every `d | gcd(n,k+sigma)`
+  with `d > sigma`. A standard-library scanner verifies both, reproduces the
+  `F_17` certificate of `l1_aperiodic_prefix_collision.md`, and isolates the
+  aperiodic remainder.
+- **How it is useful:** Quantifies the `Quot_{sigma,c}` term of
+  `conj:prefix-local` on the list/locator side (parallel to Codex's M1
+  residue-line work on the MCA side); ties the floor to the L3 dither target
+  `gcd(n,k+sigma) <= sigma`; and identifies the aperiodic divisor remainder as
+  the next analytic target.
+- **What to do next:** Bound the aperiodic remainder beyond the Johnson anchor;
+  add a non-enumerative counter to reach `n=32,64` and `q=257`; compute the
+  exact Mobius union of coset-union floors over the subgroup lattice.
+
 ### 2026-06-18 - PR #79-#81 experimental integration
 
 - **Agent/model:** AllenGrahamHart and scottdhughes PRs, integrated by Codex.
