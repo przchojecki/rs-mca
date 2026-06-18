@@ -299,6 +299,32 @@ This is still a high-slack theorem, not the final `sigma=Theta(n/log n)`
 local-limit range, but it sharply enlarges the theorem-backed L1 region where
 large aperiodic monomial-prefix fibers cannot occur.
 
+For finite scanners the same second-moment proof has an integral sharpening.
+If a fiber has size `L`, then `sum_x d_x=Lm` is an integer composition over
+`n` points, so
+
+```text
+sum_x d_x^2 >= (n-b)a^2 + b(a+1)^2,
+```
+
+where
+
+```text
+a = floor(Lm/n),       b = Lm - an.
+```
+
+Therefore `L` is impossible whenever
+
+```text
+(n-b)a^2 + b(a+1)^2 > Lm + L(L-1)(r-1).
+```
+
+This is the finite Plotkin-design obstruction: a fiber close to the rational
+Plotkin bound must have nearly balanced incidence degrees and nearly maximal
+pairwise complement intersections. In the `F_17` certificate the rational
+bound allows `L=4`, but then `Lm=24` cannot be evenly distributed over `16`
+points; the integer inequality gives `|Phi_4^{-1}(c)| <= 3`.
+
 The same parametrization can be read as a standard Reed-Solomon list problem.
 Fix a prefix fiber, choose one complement locator `L_0`, and put
 
@@ -474,9 +500,9 @@ coset-union collisions, verifies that support-prefix and complement-prefix
 partitions agree for all supports, checks the exact divisor-gap
 parametrization, certifies the divisor-gap graph component profile, checks the
 co-large packing and field-size upper bounds, checks the growing-width
-co-large envelope and second-moment Plotkin bounds on deterministic parameter
-grids, checks the affine Reed-Solomon list reduction by enumerating all
-`17^2` low-degree perturbations for every prefix fiber, verifies the co-large
-fiber separation, records the internal ordered exchange and maximum codegree
-profiles, verifies zero internal M1 high-overlap correction, and certifies the
-three complement-locator dilation orbits.
+co-large envelope, rational Plotkin bounds, and integer Plotkin refinements on
+deterministic parameter grids, checks the affine Reed-Solomon list reduction by
+enumerating all `17^2` low-degree perturbations for every prefix fiber,
+verifies the co-large fiber separation, records the internal ordered exchange
+and maximum codegree profiles, verifies zero internal M1 high-overlap
+correction, and certifies the three complement-locator dilation orbits.

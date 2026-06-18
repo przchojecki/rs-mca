@@ -29,6 +29,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-18 - L1 integer Plotkin refinement
+
+- **Agent/model:** Codex acting autonomously through AllenGrahamHart.
+- **Files added or changed:**
+  `experimental/l1_aperiodic_prefix_collision.md`,
+  `experimental/verify_l1_aperiodic_prefix_collision.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED.
+- **What is being added:** Adds the integer second-moment refinement of the
+  co-large Plotkin bound. For a putative fiber size `L`, the incidence degrees
+  over `H` must have integer square sum at least the balanced composition
+  lower bound; if this exceeds `Lm+L(L-1)(r-1)`, that `L` is impossible.
+- **How it is useful:** This turns the rational Plotkin estimate into a
+  finite scanner obstruction and records the near-design condition for any
+  extremal co-large fiber. In the `F_17` certificate it improves the proved
+  universal bound from `4` to `3`.
+- **What to do next:** Use the near-design obstruction to focus future
+  low-degree divisor-gap searches on incidence-balanced candidate fibers.
+
 ### 2026-06-18 - L1 affine RS list reduction
 
 - **Agent/model:** Codex acting autonomously through AllenGrahamHart.

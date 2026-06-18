@@ -467,6 +467,81 @@ def plotkin_bound_case(n: int, k: int, sigma: int) -> dict[str, Any]:
     }
 
 
+def minimum_square_sum(total: int, boxes: int) -> int:
+    quotient, remainder = divmod(total, boxes)
+    return (
+        (boxes - remainder) * quotient * quotient
+        + remainder * (quotient + 1) * (quotient + 1)
+    )
+
+
+def integer_plotkin_bound_case(n: int, k: int, sigma: int) -> dict[str, Any]:
+    complement_size = n - k - sigma
+    gap_dimension = n - k - 2 * sigma
+    rational_case = plotkin_bound_case(n, k, sigma)
+    if gap_dimension <= 0:
+        return {
+            "n": n,
+            "k": k,
+            "sigma": sigma,
+            "complement_size": complement_size,
+            "gap_dimension": gap_dimension,
+            "available": True,
+            "rational_floor": rational_case["upper_bound_floor"],
+            "integer_upper_bound": 1,
+            "first_excluded_size": 2,
+            "first_excluded_witness": None,
+        }
+    if not rational_case["available"]:
+        return {
+            "n": n,
+            "k": k,
+            "sigma": sigma,
+            "complement_size": complement_size,
+            "gap_dimension": gap_dimension,
+            "available": False,
+            "rational_floor": None,
+            "integer_upper_bound": None,
+            "first_excluded_size": None,
+            "first_excluded_witness": None,
+        }
+
+    integer_upper_bound = 1
+    first_excluded_size = None
+    first_excluded_witness = None
+    rational_floor = rational_case["upper_bound_floor"]
+    for list_size in range(1, rational_floor + 1):
+        total_incidence = list_size * complement_size
+        min_squares = minimum_square_sum(total_incidence, n)
+        max_squares = (
+            total_incidence
+            + list_size * (list_size - 1) * (gap_dimension - 1)
+        )
+        if min_squares <= max_squares:
+            integer_upper_bound = list_size
+            continue
+        first_excluded_size = list_size
+        first_excluded_witness = {
+            "total_incidence": total_incidence,
+            "minimum_square_sum": min_squares,
+            "maximum_allowed_square_sum": max_squares,
+        }
+        break
+
+    return {
+        "n": n,
+        "k": k,
+        "sigma": sigma,
+        "complement_size": complement_size,
+        "gap_dimension": gap_dimension,
+        "available": True,
+        "rational_floor": rational_floor,
+        "integer_upper_bound": integer_upper_bound,
+        "first_excluded_size": first_excluded_size,
+        "first_excluded_witness": first_excluded_witness,
+    }
+
+
 def co_large_plotkin_report(
     fibers: dict[tuple[int, ...], list[tuple[int, ...]]],
 ) -> dict[str, Any]:
@@ -489,10 +564,19 @@ def co_large_plotkin_report(
     if not all(case["available"] for case in cases):
         raise AssertionError("deterministic Plotkin grid left the safe range")
 
+    integer_cases = [integer_plotkin_bound_case(*case) for case in grid_cases]
+    if not all(case["available"] for case in integer_cases):
+        raise AssertionError("integer Plotkin grid left the safe range")
+    finite_integer = integer_cases[0]
+    if maximum_fiber_size > finite_integer["integer_upper_bound"]:
+        raise AssertionError("integer Plotkin bound failed")
+
     return {
         "checked": True,
         "finite_instance": finite_instance,
+        "finite_integer_instance": finite_integer,
         "deterministic_cases": cases,
+        "integer_deterministic_cases": integer_cases,
         "maximum_fiber_size": maximum_fiber_size,
         "holds": True,
     }
@@ -992,6 +1076,13 @@ def print_text(cert: dict[str, Any]) -> None:
         f"{plotkin_instance['numerator']}/"
         f"{plotkin_instance['denominator']} "
         f"= {plotkin_instance['upper_bound_floor']}"
+    )
+    integer_plotkin = co_large_plotkin["finite_integer_instance"]
+    print(
+        "integer Plotkin bound: "
+        f"max fiber {co_large_plotkin['maximum_fiber_size']} <= "
+        f"{integer_plotkin['integer_upper_bound']} "
+        f"(first excluded {integer_plotkin['first_excluded_size']})"
     )
     print(
         "affine RS list reduction: "
