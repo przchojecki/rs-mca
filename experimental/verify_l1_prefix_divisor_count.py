@@ -388,6 +388,103 @@ def _log2_binom(n, s):
     return val / 0.6931471805599453  # /ln(2)
 
 
+# ---------------------------------------------------------------------------
+# Non-enumerative path: DP over elements + closed-form structured count.
+# ---------------------------------------------------------------------------
+def structured_count_formula(n, m, sigma):
+    """Closed-form structured (quotient-periodic) count and floor (no enumeration).
+
+    Uses §5: |CU_d| = binom(n/d, m/d), CU_d ∩ CU_e = CU_{lcm(d,e)}, over the
+    active orders d > sigma dividing gcd(n, m).  Returns (count, floor, active).
+    """
+    divisors = [d for d in range(2, n + 1) if n % d == 0]
+    active = sorted(d for d in divisors if d > sigma and m % d == 0)
+
+    def cu(e):
+        return comb(n // e, m // e) if (n % e == 0 and m % e == 0) else 0
+
+    incl, L = 0, len(active)
+    for mask in range(1, 1 << L):
+        e = 0
+        for i in range(L):
+            if mask & (1 << i):
+                e = active[i] if e == 0 else e * active[i] // gcd(e, active[i])
+        incl += (1 if bin(mask).count("1") % 2 else -1) * cu(e)
+    floor = max([cu(d) for d in active], default=0)
+    return incl, floor, active
+
+
+def count_histogram_dp(p, n, k, sigma):
+    """Prefix-fiber histogram WITHOUT enumerating divisors.
+
+    DP over the elements of H tracking (chosen size, e_1..e_eff mod p), using the
+    elementary-symmetric recurrence e'_i = e_i + h e_{i-1}.  State space is
+    (m+1) * p^eff, eff = min(sigma, m), so this reaches n far beyond brute force
+    for small sigma.  Returns {key: count} in the same top-sigma-coeff convention
+    as ``scan``.
+    """
+    s = k + sigma
+    m = n - s
+    eff = min(sigma, m)
+    H = subgroup(p, n)
+    dp = {(0, (0,) * eff): 1}
+    for h in H:
+        ndp = defaultdict(int)
+        for (size, e), cnt in dp.items():
+            ndp[(size, e)] += cnt          # skip h
+            if size + 1 <= m:              # include h
+                ne = list(e)
+                for i in range(eff, 0, -1):
+                    e_im1 = e[i - 2] if i - 1 >= 1 else 1
+                    ne[i - 1] = (e[i - 1] + h * e_im1) % p
+                ndp[(size + 1, tuple(ne))] += cnt
+        dp = ndp
+    hist = defaultdict(int)
+    for (size, e), cnt in dp.items():
+        if size == m:
+            key = tuple(((-1) ** (j + 1) * e[j]) % p for j in range(eff))
+            hist[key] += cnt
+    return dict(hist)
+
+
+def dp_summary(p, n, k, sigma):
+    """n-scalable summary: DP histogram + closed-form structured count.
+
+    By §7 the generic prefixes (first coordinate != 0) are purely aperiodic, so
+    ``max_generic_fiber`` is the maximal *aperiodic* fiber.
+    """
+    s, m = k + sigma, n - (k + sigma)
+    hist = count_histogram_dp(p, n, k, sigma)
+    total = comb(n, m)
+    max_fiber = max(hist.values())
+
+    # Honest aperiodic max: by §7 a fiber is purely aperiodic iff g_c = 1, where
+    # g_c = gcd(n, {j : c_j != 0}) and coordinate j (1-based) carries e_j.
+    def g_c_of_key(key):
+        g = n
+        for j in range(len(key)):
+            if key[j] % p != 0:
+                g = gcd(g, j + 1)
+        return g
+
+    max_generic = max((v for key, v in hist.items() if g_c_of_key(key) == 1),
+                      default=0)
+    struct, floor, active = structured_count_formula(n, m, sigma)
+    return {
+        "params": {"p": p, "n": n, "k": k, "sigma": sigma, "s": s, "m": m},
+        "total_divisors": total,
+        "distinct_prefixes": len(hist),
+        "max_fiber_size": max_fiber,
+        "max_generic_aperiodic_fiber": max_generic,
+        "structured_count": struct,
+        "quotient_core_floor": floor,
+        "active_orders": active,
+        "random_baseline": total / (p ** sigma),
+        "entropy_margin_bits": round(sigma * _log2(p) - _log2_binom(n, s), 4),
+        "dp_histogram_sum": sum(hist.values()),
+    }
+
+
 def self_check():
     """Reproduce the F_17 certificate numbers from l1_aperiodic_prefix_collision.md."""
     r = scan(p=17, n=16, k=6, sigma=4)
@@ -478,6 +575,29 @@ def self_check():
     if not porbit_ok:
         ok = False
     print(f"  [{flag}] prefix-stabilizer orbit sizes g_c/gcd(g_c,per) across {len(sweep)} cases: {porbit_ok}")
+    # Non-enumerative DP counter must reproduce the brute-force size distribution.
+    from collections import Counter
+    dp_ok = True
+    for (kk, ss) in [(6, 4), (4, 4), (6, 2), (7, 1), (5, 3)]:
+        size_dist_dp = dict(Counter(count_histogram_dp(17, 16, kk, ss).values()))
+        size_dist_brute = scan(17, 16, kk, ss)["fiber_size_histogram"]
+        if size_dist_dp != size_dist_brute:
+            dp_ok = False
+    flag = "OK " if dp_ok else "FAIL"
+    if not dp_ok:
+        ok = False
+    print(f"  [{flag}] DP counter == brute-force size distribution (5 cases): {dp_ok}")
+    # Closed-form structured count must match the enumerated one.
+    sf_ok = True
+    for (pp, nn, kk, ss) in sweep:
+        r2 = scan(pp, nn, kk, ss)
+        sc, fl, _ = structured_count_formula(nn, nn - kk - ss, ss)
+        if sc != r2["structured_count_direct"] or fl != r2["quotient_core_floor"]:
+            sf_ok = False
+    flag = "OK " if sf_ok else "FAIL"
+    if not sf_ok:
+        ok = False
+    print(f"  [{flag}] closed-form structured count == enumerated across {len(sweep)} cases: {sf_ok}")
     return ok
 
 
@@ -530,7 +650,29 @@ def main(argv=None):
     ap.add_argument("--format", choices=["human", "json"], default="human")
     ap.add_argument("--self-check", action="store_true",
                     help="reproduce the F_17 certificate from the L1 aperiodic note")
+    ap.add_argument("--dp-summary", action="store_true",
+                    help="non-enumerative DP summary (scales past brute force)")
     args = ap.parse_args(argv)
+
+    if args.dp_summary:
+        r = dp_summary(args.p, args.n, args.k, args.sigma)
+        if args.format == "json":
+            print(json.dumps(r, indent=2, default=list))
+        else:
+            pr = r["params"]
+            print(f"DP prefix-fiber summary  F_{pr['p']}, n={pr['n']}, k={pr['k']}, "
+                  f"sigma={pr['sigma']}, s={pr['s']}, m={pr['m']}")
+            print(f"  total divisors             : {r['total_divisors']}")
+            print(f"  distinct prefixes          : {r['distinct_prefixes']}")
+            print(f"  max fiber size             : {r['max_fiber_size']}")
+            print(f"  max GENERIC aperiodic fiber: {r['max_generic_aperiodic_fiber']}")
+            print(f"  structured count (formula) : {r['structured_count']}")
+            print(f"  quotient-core floor        : {r['quotient_core_floor']}  "
+                  f"(active orders {r['active_orders']})")
+            print(f"  random baseline binom/q^s  : {r['random_baseline']:.4f}")
+            print(f"  entropy margin (bits)      : {r['entropy_margin_bits']}")
+            print(f"  DP histogram sum == total  : {r['dp_histogram_sum'] == r['total_divisors']}")
+        return 0
 
     if args.self_check:
         print("Self-check against l1_aperiodic_prefix_collision.md (F_17, k=6, sigma=4):")

@@ -29,6 +29,29 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-18 - L1 non-enumerative DP counter and first sub-Johnson evidence
+
+- **Agent/model:** Claude Opus 4.8 (L1 loop, branch `allen/l1-prefix-divisor-count`).
+- **Files added or changed:**
+  `experimental/l1_prefix_divisor_count.md` (new §8),
+  `experimental/verify_l1_prefix_divisor_count.py`,
+  `experimental/agents-log.md`.
+- **Status:** EXPERIMENTAL (tool + data) / AUDIT (closed-form cross-check).
+- **What is being added:** A non-enumerative DP counter carrying
+  `(size, e_1..e_eff mod q)` via `e'_i = e_i + h e_{i-1}`, reaching `n=32`
+  (and `n=64` for sigma<=2) far beyond brute force, plus a closed-form
+  structured-count function. Verified to reproduce the brute-force size
+  distribution at `n=16` and to sum to `binom(n,m)`. Over `F_257, n=32, k=2,
+  sigma=2` (entropy +0.88 bits AND sub-Johnson `a^2=16 < n(k-1)=32`): global
+  max fiber `8 = binom(8,7)` = the quotient-core floor, while the max APERIODIC
+  (`g_c=1`) fiber is only `5`.
+- **How it is useful:** First direct evidence that conj:prefix-local holds
+  beyond the Johnson radius, with the quotient core as the sole large-fiber
+  source --- a regime `n=16` cannot reach. Validates §2-§7 at new parameters.
+- **What to do next:** Coset-folded DP (`Y=X^d`) or character-sum evaluation to
+  push sigma higher; the asymptotic `sigma=Theta(n/log n)` regime still needs
+  the analytic aperiodic bound (out of exact-computation reach).
+
 ### 2026-06-18 - L1 prefix-space localization of the quotient core
 
 - **Agent/model:** Claude Opus 4.8 (L1 loop, branch `allen/l1-prefix-divisor-count`).

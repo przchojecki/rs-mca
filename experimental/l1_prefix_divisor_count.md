@@ -335,6 +335,47 @@ aperiodic upper bound) to exactly the generic, quotient-free fibers. All three
 parts are verified by the scanner (`per_divides_gc`, `gc1_fibers_all_aperiodic`,
 `prefix_orbit_size_ok`) across the 35-case sweep.
 
+## 8. Non-enumerative counter and the first sub-Johnson evidence
+
+`F_17, n=16` cannot host the regime that matters: entropy-cleared *and*
+sub-Johnson cannot coexist at `n=16` (Johnson needs `a^2 > n(k-1)`, which at
+fixed rate forces `a` near `n`). To probe further we count without enumerating
+the `binom(n,m)` divisors.
+
+**DP counter.** Process the elements of `H` one at a time, carrying the state
+`(chosen size, e_1, ..., e_eff mod q)` with `eff = min(sigma, m)`, using the
+elementary-symmetric recurrence `e'_i = e_i + h e_{i-1}` on inclusion. The
+prefix-fiber histogram is read off at `size = m`. State space is
+`(m+1) q^{eff}`, so for small `sigma` this reaches `n` far beyond brute force.
+Verified (`--self-check`) to reproduce the brute-force size distribution at
+`n=16` and to sum to `binom(n,m)`; the closed-form structured count of §5 is
+checked against the enumerated one across the 35-case sweep.
+
+**First sub-Johnson data point.** Over the Fermat prime `F_257` (which carries
+all dyadic `n <= 256`), take `n=32, k=2, sigma=2` (`rho=1/16`). Here `a=4`, so
+`a^2 = 16 < n(k-1) = 32` (**sub-Johnson**, where the Johnson anchor is silent),
+while the entropy margin is `+0.88` bits (**cleared**):
+
+| field | n | k | sigma | entropy (bits) | Johnson? | global max fiber | quotient floor | max aperiodic (g_c=1) | random baseline |
+|---|---|---|---|---:|---|---:|---:|---:|---:|
+| F_257 | 32 | 2 | 2 | +0.88 | sub-Johnson | 8 | 8 = binom(8,7) | **5** | 0.54 |
+| F_97  | 32 | 8 | 2 | -12.74 | --- | 7344 | 0 | 7190 | 6856 |
+
+Reading: in the cleared, sub-Johnson row the global maximum fiber is exactly the
+**quotient-core floor** `binom(n/4, m/4) = binom(8,7) = 8` (pure period-4
+coset-unions, §5/§7), and once the quotient core is removed the largest
+**aperiodic** fiber is only `5` --- polynomially small, near the random baseline,
+in a regime where Johnson gives nothing. This is the first direct evidence that
+`conj:prefix-local` holds beyond the Johnson radius with the quotient core as the
+*sole* source of large fibers. The second row is the control: with the entropy
+margin negative, fibers sit at the random scale `binom(n,m)/q^sigma`.
+
+**Honest reach.** The DP scales in `q^{sigma}`, so it cannot reach the asymptotic
+target `sigma = Theta(n/log n)`; that regime stays out of all exact computation
+and requires the analytic aperiodic bound. The DP's role is to validate the
+structural theory (§2--§7) at parameters brute force cannot touch and to confirm
+the quotient-core/aperiodic split survives into the sub-Johnson window.
+
 ## Ledger impact
 
 - **Quotient (worsens, now explicit):** gives an exact, field-independent
@@ -359,6 +400,8 @@ is `binom(n/d*, m/d*)` with `d* = ` smallest power of two `> sigma` dividing
 python3 experimental/verify_l1_prefix_divisor_count.py --self-check
 python3 experimental/verify_l1_prefix_divisor_count.py --p 17 --n 16 --k 4 --sigma 4
 python3 experimental/verify_l1_prefix_divisor_count.py --p 17 --n 16 --k 4 --sigma 4 --format json
+# non-enumerative DP, beyond brute force (§8):
+python3 experimental/verify_l1_prefix_divisor_count.py --dp-summary --p 257 --n 32 --k 2 --sigma 2
 ```
 
 ## What to do next
@@ -366,10 +409,10 @@ python3 experimental/verify_l1_prefix_divisor_count.py --p 17 --n 16 --k 4 --sig
 1. **Aperiodic remainder bound.** Prove `binom(n,s)/q^sigma + O(n^B)` for the
    *aperiodic* divisor count (coset-unions removed) in a region beyond the
    Johnson anchor `a^2 > n(k-1)` of `l1_aperiodic_prefix_collision.md`.
-2. **Scale up.** Add a non-enumerative divisor-coefficient counter (transfer over
-   the factorization of `X^n-1`, or coset-DP) to reach `n=32,64` and the
-   `q=257` toy case, where a cleared entropy margin can coexist with a large
-   quotient floor.
+2. **Scale up.** DONE (§8): a DP counter `(size, e_1..e_eff)` reaches `n=32` over
+   `F_257`/`F_97` (and `n=64` for `sigma <= 2`), giving the first sub-Johnson,
+   entropy-cleared data point. Extend with a coset-folded DP (quotient `Y=X^d`)
+   to push `sigma` higher, or a character-sum evaluation for the per-`c` count.
 3. **Inclusion-exclusion over orders.** DONE (§5): exact structured count via
    subgroup-lattice Möbius, with the dyadic collapse `binom(n/d_*, m/d_*)`.
 4. **Lift to arbitrary words.** Connect the prefix (monomial) floor to the
