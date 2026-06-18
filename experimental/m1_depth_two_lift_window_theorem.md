@@ -123,6 +123,9 @@ u v (-1-u-v) A(u,v)
 
 of component degrees `1,1,1,2`. The imported error constant is therefore
 recorded as `(1+1+1+2-1)^2 = 16`.
+The exact external dependency and its audited hypotheses are separated in
+`m1_kummer_weil_import_contract.md`; the present note remains conditional on
+that import.
 
 For the raw normalized catalog on `D`, the verifier audits the character
 expansion, the divisor nontriviality, the exact principal open-set count
