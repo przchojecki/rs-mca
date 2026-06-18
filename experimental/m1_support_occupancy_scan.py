@@ -433,6 +433,17 @@ def slack_two_first_superboundary_shape_ledger(
     }
 
 
+def slack_two_cyclotomic_shape_bound(p: int, domain_order: int) -> int:
+    character_order = (p - 1) // domain_order
+    ceil_sqrt_p = math.isqrt(p)
+    if ceil_sqrt_p * ceil_sqrt_p < p:
+        ceil_sqrt_p += 1
+    numerator = p - 2 + (character_order * character_order - 1) * ceil_sqrt_p
+    return (numerator + character_order * character_order - 1) // (
+        character_order * character_order
+    )
+
+
 def occupancy_histogram(
     support: Sequence[int],
     quotient_order: int,
@@ -932,6 +943,23 @@ def scan_supports(
         if canonical_line and slack == 2 and slack + 1 < fiber_size
         else None
     )
+    slack_two_cyclotomic_bound = (
+        slack_two_cyclotomic_shape_bound(p, n)
+        if slack_two_shape_ledger is not None
+        else None
+    )
+    slack_two_cyclotomic_slope_bound = (
+        min(
+            p,
+            1
+            + (
+                (slack_two_cyclotomic_bound + 5) // 6
+            )
+            * (n // math.gcd(2, n)),
+        )
+        if slack_two_cyclotomic_bound is not None
+        else None
+    )
 
     return {
         "proof_status": "AUDIT / EXPERIMENTAL",
@@ -1352,6 +1380,31 @@ def scan_supports(
             len(first_superboundary_slope_histogram)
             <= int(slack_two_shape_ledger["square_coset_slope_bound"])
             if slack_two_shape_ledger is not None
+            else None
+        ),
+        "canonical_slack_two_cyclotomic_shape_count_bound": (
+            slack_two_cyclotomic_bound
+            if slack_two_cyclotomic_bound is not None
+            else None
+        ),
+        "canonical_slack_two_cyclotomic_shape_count_bound_check": (
+            int(slack_two_shape_ledger["parameter_count"])
+            <= slack_two_cyclotomic_bound
+            if (
+                slack_two_shape_ledger is not None
+                and slack_two_cyclotomic_bound is not None
+            )
+            else None
+        ),
+        "canonical_slack_two_cyclotomic_slope_bound": (
+            slack_two_cyclotomic_slope_bound
+            if slack_two_cyclotomic_slope_bound is not None
+            else None
+        ),
+        "canonical_slack_two_cyclotomic_slope_bound_check": (
+            len(first_superboundary_slope_histogram)
+            <= slack_two_cyclotomic_slope_bound
+            if slack_two_cyclotomic_slope_bound is not None
             else None
         ),
         "canonical_slack_two_shape_expected_packet_slope_histogram": (

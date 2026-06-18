@@ -547,6 +547,51 @@ it converts the first nonzero canonical superboundary slope problem into two
 explicit inputs: a unit-equation shape count and the square-coset overlap of
 the values `alpha(u)`.
 
+For prime fields this unit-equation shape count is a cyclotomic number. Let
+`D <= F_p^*` have order `n`, index `e=(p-1)/n`, and let `chi` be a
+multiplicative character of order `e`, extended by `chi(0)=0`. The raw shape
+equation count
+
+```text
+U_2(D) = #{ u in D : -1-u in D }
+```
+
+has the exact character expansion
+
+```text
+U_2(D) =
+  (1/e^2) sum_{a,b=0}^{e-1}
+    chi^(a+b)(-1) J(chi^a, chi^b),
+```
+
+where `J(A,B)=sum_x A(x)B(1-x)` is the Jacobi sum. The shape set `C_2(D)` is
+obtained from `U_2(D)` by deleting the degenerate cases
+`u=1`, `-1-u=1`, and `u=-1-u`.
+
+Using the standard Jacobi-sum bound for nontrivial pairs gives the immediate
+conditional estimate
+
+```text
+|U_2(D) - (p-2)/e^2| <= ((e^2-1)/e^2) sqrt(p).
+```
+
+Consequently
+
+```text
+|C_2(D)| <= ceil((p-2 + (e^2-1)sqrt(p))/e^2),
+```
+
+and the first-superboundary slack-two slope count is bounded by
+
+```text
+min(|F_p|,
+    1 + ceil(|C_2(D)|/6) * n/gcd(2,n)).
+```
+
+The exact scanner keeps the sharper active-shape and square-coset count; this
+character estimate is the asymptotic bridge from the unit-equation ledger to a
+field-size bad-slope budget.
+
 ## M1 Impact
 
 This turns the positive M1 problem into a precise incidence question:
@@ -615,6 +660,9 @@ given by the square cosets `alpha(u)D^2` and quotient-lift weight
 The resulting square-coset slope bound is the first direct bad-slope-count
 payoff inside the superboundary range: improving M1 here reduces to bounding
 `C_2(D)` and overlaps among the square cosets `alpha(u)D^2`.
+The cyclotomic expansion gives the first analytic route to such a bound: once
+standard Jacobi-sum estimates apply, the shape count is roughly `p/e^2` with
+square-root error, where `e=(p-1)/|D|`.
 
 ## Suggested Next Step
 
@@ -646,3 +694,5 @@ power-coset classification and the corresponding lifted support count.
 When `T=2`, it also checks the complete unit-equation shape ledger and its
 weighted slope histogram.
 The same scanner reports the associated square-coset slope-count bound.
+For prime fields it also reports the cyclotomic/Jacobi shape-count bound and
+the induced slope-count bound.

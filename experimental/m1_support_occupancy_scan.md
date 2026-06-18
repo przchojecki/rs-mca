@@ -72,6 +72,8 @@ canonical_first_superboundary_zero_slope_coset_check
 canonical_slack_two_shape_packet_count_check
 canonical_slack_two_shape_support_slope_histogram_check
 canonical_slack_two_shape_square_coset_slope_bound_check
+canonical_slack_two_cyclotomic_shape_count_bound_check
+canonical_slack_two_cyclotomic_slope_bound_check
 canonical_subboundary_residual_floor_check
 canonical_residual_slope_check
 canonical_boundary_slope_decomposition_check
@@ -181,6 +183,17 @@ They also report `canonical_slack_two_shape_square_coset_slope_bound`, the
 field-capped bound obtained from the union of square cosets
 `alpha(u)D^2`, and check that the observed first-superboundary slope count is
 below it.
+
+For prime fields, `canonical_slack_two_cyclotomic_*` reports the coarser
+character-sum bound obtained from the index `e=(p-1)/|D|`:
+
+```text
+|C_2(D)| <= ceil((p-2 + (e^2-1)sqrt(p))/e^2).
+```
+
+The scanner uses an integer ceiling for `sqrt(p)`, checks the shape count
+against this bound, and reports the induced field-capped slope bound
+`1+ceil(|C_2(D)|/6)|D|/gcd(2,|D|)`.
 
 For dithered residues in the range
 
