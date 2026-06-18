@@ -1,41 +1,54 @@
 # L1 Prefix Fibers as Divisor-Coefficient Counts, with an Exact Quotient-Core Floor
 
-- **Status:** PROVED (lemma + corollary) / EXPERIMENTAL (scan) / AUDIT (cross-check).
+- **Status:** PROVED (quotient-core theory) / CONDITIONAL (Fourier bound) /
+  EXPERIMENTAL (scans) / AUDIT (cross-checks). `conj:prefix-local` itself: OPEN,
+  reduced.
 - **Agent/model:** Claude Opus 4.8.
-- **Date:** 2026-06-18.
-- **Scope:** Paper B `conj:prefix-local` (`tex/slackMCA_v3.tex`) and the L1 target
-  in `agents.md`. This note does not edit Papers A--D and does not assert
+- **Date:** 2026-06-18 / 2026-06-19.
+- **Scope:** Paper B `conj:prefix-local`, `conj:arbitrary-local`,
+  `thm:conditional-list` (`tex/slackMCA_v3.tex`) and the L1 target in
+  `agents.md`. This note does not edit Papers A--D and does not assert
   Reed--Solomon list decoding, MCA, or protocol safety. It is the list/locator
   side of the program; it does not touch the M1 residue-line work.
 
-## Claim
+## Claim and results ledger
 
-Two results about the monomial-prefix fiber
-`Phi_sigma^{-1}(c)` of Paper B (`def:locator-fiber`, `prop:monomial-fiber`),
-recast through the complement-locator bijection of
-`l1_aperiodic_prefix_collision.md`:
+The object is the Paper B monomial-prefix fiber `Phi_sigma^{-1}(c)`
+(`def:locator-fiber`, `prop:monomial-fiber`), recast through the
+complement-locator bijection of `l1_aperiodic_prefix_collision.md` as a count of
+monic degree-`m` divisors of `X^n-1` over `F_q` with prescribed top `sigma`
+coefficients. The note builds a complete theory of the **quotient-core
+(structured) part** of this count and reduces the remaining **aperiodic** part to
+a subgroup exponential-sum estimate.
 
-1. **Divisor-coefficient form (reframing, PROVED).** For `H = mu_n <= F_q^*`,
-   `s = k+sigma`, `m = n-s`, the prefix fiber is in canonical bijection with the
-   set of monic degree-`m` divisors of `X^n-1` over `F_q` whose top `sigma`
-   coefficients are prescribed. So `conj:prefix-local` is exactly a
-   *divisor-coefficient counting* statement on `X^n-1`.
+| § | Result | Status | Supports |
+|---|--------|--------|----------|
+| 1 | Prefix fiber = prescribed-top-coefficient divisor count of `X^n-1` | PROVED | recasts `conj:prefix-local` |
+| 2 | `K_d`-coset-union locator lemma; quotient-core floor `max_c |fiber| >= binom(n/d,m/d)` | PROVED | `conj:prefix-local` `Quot` term (lower bd) |
+| 5 | Exact structured count = subgroup-lattice Möbius sum; dyadic collapse `binom(n/d*,m/d*)` | PROVED | `conj:prefix-local` `Quot` term (exact) |
+| 6 | Dilation equivariance `Phi_sigma(h.A)=h*Phi_sigma(A)`; `Stab_H(A)=K_{per(A)}` | PROVED | worst-case reduction |
+| 7 | Prefix-space localization `per(A) | g_c`: generic fibers (`c_1!=0`) purely aperiodic | PROVED | `conj:prefix-local` quotient/aperiodic split |
+| 8 | Non-enumerative DP counter; first entropy-cleared **sub-Johnson** data (`F_257,n=32`) | EXPERIMENTAL | evidence for `conj:prefix-local` beyond Johnson |
+| 9 | Arbitrary-word lift to `ImgFib_U`: dilation symmetry + folding source `W|->W(X^d)` | PROVED | `conj:arbitrary-local`, `thm:conditional-list` |
+| 10 | Fourier reduction: `S(r)=e_m({e_p(g_r(a))})`, power sums = subgroup Weil sums `T(lr)` | PROVED (identity) / CONDITIONAL (bound) | reduces `conj:prefix-local` to exp-sums |
 
-2. **Quotient-core floor (PROVED).** For every subgroup order `d` with
-   `d \mid \gcd(n, s)` and `d > sigma`,
-   ```text
-   max_c |Phi_sigma^{-1}(c)|  >=  binom(n/d, m/d).
-   ```
-   This is the exact list/locator-side image of the quotient-core obstruction.
-   It is *forced by coset-union locators alone*, independently of field size, and
-   it is removed by dimension dithering whenever `gcd(n, s) <= sigma`.
+**What is proved.** The structured (quotient-periodic) contribution to the list
+is *completely characterized*: it is an exact, field-independent count
+(`binom(n/d*, m/d*)` at dyadic rates, Möbius in general), it is localized
+identically in divisor space (§2,§5), prefix space (§7), arbitrary-word/list
+space (§9), and Fourier space (§10, the large coefficients), and it is removed by
+the dimension dither `gcd(n, k+sigma) <= sigma`.
 
-Both are verified by `verify_l1_prefix_divisor_count.py`, which also reproduces
-the `F_17` certificate of `l1_aperiodic_prefix_collision.md`.
+**What remains open.** The upper bound on the *aperiodic* (generic, `g_c=1`,
+trivial-stabilizer) list above the corrected reserve --- the genuine content of
+`conj:prefix-local`. §10 reduces it to a uniform-in-`l` subgroup
+exponential-sum estimate; the worst-case bound is super-polynomial and averaging
+runs into Parseval = the second-moment `sec:pairwise` barrier of Paper B. The
+concrete proposed route is the structured/generic-`r` split of §10.
 
-## Status
-
-PROVED / EXPERIMENTAL / AUDIT.
+All PROVED/EXPERIMENTAL claims are machine-verified:
+`verify_l1_prefix_divisor_count.py` (§§1-8, reproduces the `F_17` certificate),
+`verify_l1_arbitrary_word_lift.py` (§9), `verify_l1_fourier_reduction.py` (§10).
 
 ## Parameters
 

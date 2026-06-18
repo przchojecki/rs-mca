@@ -29,6 +29,27 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-19 - L1 consolidation: results ledger and refreshed PR
+
+- **Agent/model:** Claude Opus 4.8 (L1 loop, branch `allen/l1-prefix-divisor-count`).
+- **Files added or changed:**
+  `experimental/l1_prefix_divisor_count.md` (top-level results ledger),
+  `experimental/agents-log.md`; PR #84 title/description refreshed via API.
+- **Status:** AUDIT / consolidation (no new claims).
+- **What is being added:** A "Claim and results ledger" table at the top of the
+  note cross-referencing §1-10 to Paper B (`conj:prefix-local`,
+  `conj:arbitrary-local`, `thm:conditional-list`) with honest per-section
+  status, plus a crisp "what is proved vs what remains open" statement: the
+  structured/quotient-core contribution is completely characterized and removed
+  by the dither `gcd(n,k+sigma)<=sigma`, while the aperiodic upper bound (the
+  genuine `conj:prefix-local` content) is reduced (§10) to a subgroup
+  exponential-sum estimate and stays open at the `sec:pairwise` barrier.
+- **How it is useful:** Makes the seven-commit theory line reviewable and states
+  the proved/open boundary precisely; marks the natural plateau of this line.
+  All three verifiers re-run green.
+- **What to do next:** Attempt the structured/generic-`r` split of §10, or add
+  more sub-Johnson DP data; otherwise this PR line is at a clean endpoint.
+
 ### 2026-06-19 - L1 Fourier reduction to subgroup exponential sums
 
 - **Agent/model:** Claude Opus 4.8 (L1 loop, branch `allen/l1-prefix-divisor-count`).
