@@ -163,6 +163,13 @@ canonical_slack_two_second_shape_lift_limited_nonzero_orbit_bound
 canonical_slack_two_second_shape_lift_limited_slope_bound
 canonical_slack_two_second_shape_lift_limited_nontrivial
 canonical_slack_two_second_shape_lift_limited_bound_check
+canonical_slack_two_second_kernel_fiber_reduction_active
+canonical_slack_two_second_kernel_fiber_order
+canonical_slack_two_second_kernel_fiber_parameter_count
+canonical_slack_two_second_kernel_fiber_zero_parameter_count
+canonical_slack_two_second_kernel_fiber_nonzero_square_coset_count
+canonical_slack_two_second_kernel_fiber_slope_count
+canonical_slack_two_second_kernel_fiber_reduction_check
 canonical_slack_two_second_full_domain_saturates_nonzero_slopes
 canonical_slack_two_second_full_domain_nonzero_slope_image
 canonical_slack_two_second_full_domain_coset_count_check
@@ -525,6 +532,24 @@ The scanner reports this bound and checks it against the exact active slope
 histogram. This is independent of the Kummer estimate: it is a quotient-lift
 restriction and is most useful precisely when the raw shape catalog saturates
 but too few quotient fibers remain for all shapes to lift.
+At the extreme `R=1`, the lift-limited layer has an exact quotient-kernel
+reduction. Let
+
+```text
+K = {x in D : x lies in the quotient fiber of 1}.
+```
+
+Then an active normalized shape has `1,u,v,-1-u-v in K`, and every such
+kernel shape lifts exactly once. Therefore the active exact-support slope
+image is exactly
+
+```text
+{0 if A=0 occurs} union A(C_2^(2)(K)) D^2.
+```
+
+The `canonical_slack_two_second_kernel_fiber_*` fields report this kernel
+catalog and check it against the active depth-two parameter count, zero count,
+nonzero square-coset count, and exact active slope count.
 The `canonical_slack_two_second_kummer_*` fields record the opposite
 low-index certificate. They use the rank-two Kummer character-sum expansion
 for the depth-two shape map

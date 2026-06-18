@@ -74,8 +74,11 @@ Keep entries concise and link to the relevant files.
   identifies the exact elementary gate needed to transfer that statement to
   exact supports. It also adds a lift-limited exact-support slope ceiling
   depending on `R=N-L`, so cases with too few remaining quotient fibers can
-  be certified sparse even when the raw shape catalog is large. This leaves a
-  narrower intermediate/lift-limited window for M1 slope-image bounds.
+  be certified sparse even when the raw shape catalog is large. In the
+  extreme `R=1` case, the active layer is reduced exactly to the depth-two
+  shape catalog on the quotient kernel, expanded by ambient `D^2`. This
+  leaves a narrower intermediate/lift-limited window for M1 slope-image
+  bounds.
 - **What to do next:** Prove or replace the imported Kummer-Weil constant in
   a standalone algebraic-geometry note, then attack the intermediate-index
   coset-image window where neither saturation nor high-index sparsity fires.

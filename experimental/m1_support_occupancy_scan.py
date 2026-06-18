@@ -532,6 +532,45 @@ def quotient_limited_pair_parameter_bound(
     return total
 
 
+def slack_two_second_kernel_fiber_reduction_data(
+    p: int,
+    domain: Sequence[int],
+    quotient_order: int,
+) -> Dict[str, object]:
+    kernel = tuple(domain[index] for index in range(0, len(domain), quotient_order))
+    kernel_set = set(kernel)
+    square_image = {x * x % p for x in domain}
+    nonzero_square_cosets = set()
+    parameter_count = 0
+    zero_parameter_count = 0
+    for u in kernel:
+        for v in kernel:
+            w = (-1 - u - v) % p
+            values = (1, u, v, w)
+            if w not in kernel_set or len(set(values)) != 4:
+                continue
+            parameter_count += 1
+            shape_slope = (-(u * u + v * v + u * v + u + v + 1)) % p
+            if shape_slope == 0:
+                zero_parameter_count += 1
+                continue
+            nonzero_square_cosets.add(
+                min((shape_slope * square) % p for square in square_image)
+            )
+
+    slope_count = (1 if zero_parameter_count else 0) + (
+        len(nonzero_square_cosets) * len(square_image)
+    )
+    return {
+        "kernel_order": len(kernel),
+        "parameter_count": parameter_count,
+        "zero_parameter_count": zero_parameter_count,
+        "nonzero_parameter_count": parameter_count - zero_parameter_count,
+        "nonzero_square_coset_count": len(nonzero_square_cosets),
+        "slope_count": min(p, slope_count),
+    }
+
+
 def expected_first_superboundary_zero_slope_data(
     domain_order: int,
     quotient_order: int,
@@ -1126,6 +1165,15 @@ def slack_two_second_superboundary_shape_ledger(
         (1 if lift_limited_parameter_bound else 0)
         + lift_limited_nonzero_packet_orbit_bound * len(square_image),
     )
+    kernel_fiber_reduction = (
+        slack_two_second_kernel_fiber_reduction_data(
+            p=p,
+            domain=domain,
+            quotient_order=quotient_order,
+        )
+        if remaining_fibers == 1
+        else None
+    )
 
     for u in domain:
         for v in domain:
@@ -1247,6 +1295,8 @@ def slack_two_second_superboundary_shape_ledger(
         ),
         "lift_limited_slope_bound": lift_limited_slope_bound,
         "lift_limited_slope_bound_nontrivial": lift_limited_slope_bound < p,
+        "kernel_fiber_reduction_active": kernel_fiber_reduction is not None,
+        "kernel_fiber_reduction": kernel_fiber_reduction,
         "twentyfourfold_quotient_check": quotient_check,
         "packet_count": packet_count_numerator // orbit_factor,
         "weighted_support_count": support_count_numerator // orbit_factor,
@@ -2555,6 +2605,15 @@ def scan_supports(
             slack_two_second_index_window_label = "high_index_sparse"
         else:
             slack_two_second_index_window_label = "intermediate_index_window"
+
+    slack_two_second_kernel_reduction = (
+        slack_two_second_shape_ledger["kernel_fiber_reduction"]
+        if (
+            slack_two_second_shape_ledger is not None
+            and bool(slack_two_second_shape_ledger["kernel_fiber_reduction_active"])
+        )
+        else None
+    )
 
     return {
         "proof_status": "AUDIT / EXPERIMENTAL",
@@ -3964,6 +4023,67 @@ def scan_supports(
             len(slack_two_second_superboundary_slope_histogram)
             <= int(slack_two_second_shape_ledger["lift_limited_slope_bound"])
             if slack_two_second_shape_ledger is not None
+            else None
+        ),
+        "canonical_slack_two_second_kernel_fiber_reduction_active": (
+            bool(slack_two_second_shape_ledger["kernel_fiber_reduction_active"])
+            if slack_two_second_shape_ledger is not None
+            else None
+        ),
+        "canonical_slack_two_second_kernel_fiber_order": (
+            int(slack_two_second_kernel_reduction["kernel_order"])
+            if slack_two_second_kernel_reduction is not None
+            else None
+        ),
+        "canonical_slack_two_second_kernel_fiber_parameter_count": (
+            int(slack_two_second_kernel_reduction["parameter_count"])
+            if slack_two_second_kernel_reduction is not None
+            else None
+        ),
+        "canonical_slack_two_second_kernel_fiber_zero_parameter_count": (
+            int(slack_two_second_kernel_reduction["zero_parameter_count"])
+            if slack_two_second_kernel_reduction is not None
+            else None
+        ),
+        "canonical_slack_two_second_kernel_fiber_nonzero_square_coset_count": (
+            int(slack_two_second_kernel_reduction["nonzero_square_coset_count"])
+            if slack_two_second_kernel_reduction is not None
+            else None
+        ),
+        "canonical_slack_two_second_kernel_fiber_slope_count": (
+            int(slack_two_second_kernel_reduction["slope_count"])
+            if slack_two_second_kernel_reduction is not None
+            else None
+        ),
+        "canonical_slack_two_second_kernel_fiber_reduction_check": (
+            (
+                int(slack_two_second_kernel_reduction["parameter_count"])
+                == int(slack_two_second_shape_ledger["active_parameter_count"])
+            )
+            and (
+                int(slack_two_second_kernel_reduction["zero_parameter_count"])
+                == int(slack_two_second_shape_ledger["active_zero_parameter_count"])
+            )
+            and (
+                int(
+                    slack_two_second_kernel_reduction[
+                        "nonzero_square_coset_count"
+                    ]
+                )
+                == int(
+                    slack_two_second_shape_ledger[
+                        "active_nonzero_square_coset_count"
+                    ]
+                )
+            )
+            and (
+                int(slack_two_second_kernel_reduction["slope_count"])
+                == len(slack_two_second_superboundary_slope_histogram)
+            )
+            if (
+                slack_two_second_kernel_reduction is not None
+                and slack_two_second_shape_ledger is not None
+            )
             else None
         ),
         "canonical_slack_two_second_kummer_character_order": (

@@ -39,6 +39,11 @@ LIFT_BOUND_CASES = (
     (97, 48, 6, 8, 28, False),
 )
 
+KERNEL_REDUCTION_CASES = (
+    # R=1: active normalized shapes are exactly the quotient-kernel catalog.
+    (97, 48, 6, 8, 44),
+)
+
 
 def divisor_power_failure_count(character_order: int, square_kernel_index: int) -> int:
     square_coset_index = character_order * square_kernel_index
@@ -113,6 +118,43 @@ def lift_limited_bound_formula(
         math.comb(quotient_order - 1, touched - 1)
         * (touched * fiber_size) ** 2
         for touched in range(1, max_touched + 1)
+    )
+
+
+def kernel_fiber_reduction_counts(
+    p: int,
+    domain: Sequence[int],
+    quotient_order: int,
+) -> Tuple[int, int, int, int, int]:
+    kernel = tuple(domain[index] for index in range(0, len(domain), quotient_order))
+    kernel_set = set(kernel)
+    square_image = {x * x % p for x in domain}
+    nonzero_cosets = set()
+    parameter_count = 0
+    zero_parameter_count = 0
+    for u in kernel:
+        for v in kernel:
+            w = (-1 - u - v) % p
+            values = (1, u, v, w)
+            if w not in kernel_set or len(set(values)) != 4:
+                continue
+            parameter_count += 1
+            shape_slope = (-(u * u + v * v + u * v + u + v + 1)) % p
+            if shape_slope == 0:
+                zero_parameter_count += 1
+                continue
+            nonzero_cosets.add(
+                min((shape_slope * square) % p for square in square_image)
+            )
+    slope_count = (1 if zero_parameter_count else 0) + (
+        len(nonzero_cosets) * len(square_image)
+    )
+    return (
+        len(kernel),
+        parameter_count,
+        zero_parameter_count,
+        len(nonzero_cosets),
+        min(p, slope_count),
     )
 
 
@@ -264,10 +306,51 @@ def main() -> None:
                 slope_bound,
             )
         )
+    kernel_checked = []
+    for p, n, quotient_order, fiber_size, support_size in KERNEL_REDUCTION_CASES:
+        _, domain = make_domain(p, n, None)
+        ledger = slack_two_second_superboundary_shape_ledger(
+            p=p,
+            domain=domain,
+            support_size=support_size,
+            quotient_order=quotient_order,
+            fiber_size=fiber_size,
+        )
+        reduction = ledger["kernel_fiber_reduction"]
+        if reduction is None:
+            raise AssertionError((p, n, support_size, ledger))
+        expected = kernel_fiber_reduction_counts(p, domain, quotient_order)
+        observed = (
+            int(reduction["kernel_order"]),
+            int(reduction["parameter_count"]),
+            int(reduction["zero_parameter_count"]),
+            int(reduction["nonzero_square_coset_count"]),
+            int(reduction["slope_count"]),
+        )
+        if observed != expected:
+            raise AssertionError((p, n, support_size, observed, expected))
+        if int(reduction["parameter_count"]) != int(
+            ledger["active_parameter_count"]
+        ):
+            raise AssertionError((p, n, support_size, ledger))
+        if int(reduction["zero_parameter_count"]) != int(
+            ledger["active_zero_parameter_count"]
+        ):
+            raise AssertionError((p, n, support_size, ledger))
+        if int(reduction["nonzero_square_coset_count"]) != int(
+            ledger["active_nonzero_square_coset_count"]
+        ):
+            raise AssertionError((p, n, support_size, ledger))
+        if int(reduction["slope_count"]) != len(ledger["support_slope_histogram"]):
+            raise AssertionError((p, n, support_size, ledger))
+        kernel_checked.append(
+            (p, n, quotient_order, fiber_size, support_size, *observed)
+        )
     print(
         "verify_m1_slack_two_depth_two_kummer_saturation: "
         f"PASS checked={checked} lift_checked={lift_checked} "
-        f"lift_bound_checked={lift_bound_checked}"
+        f"lift_bound_checked={lift_bound_checked} "
+        f"kernel_checked={kernel_checked}"
     )
 
 

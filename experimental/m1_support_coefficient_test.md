@@ -1495,6 +1495,35 @@ new `raw_saturated_lift_limited` regime: even if the raw shape map is
 surjective onto `F_p^*/D^2`, exact supports are non-field-filling whenever
 the displayed lift-limited bound is below `p`.
 
+At the extreme `R=1`, this quotient-limited bound becomes an exact reduction.
+Let
+
+```text
+K = {x in D : x is in the quotient fiber of 1};
+```
+
+equivalently `K` is the subgroup of `D` of order `m`. A normalized active
+shape touches only one quotient fiber if and only if
+
+```text
+u,v,-1-u-v in K.
+```
+
+It then has lift multiplicity `1`, because the remaining `N-1` quotient
+fibers are forced to be the whole-fiber part of the support. Hence the
+`R=1` exact-support slope image is
+
+```text
+{0 : A(u,v)=0 for some kernel shape}
+  union
+{ A(u,v) D^2 :
+    u,v,-1-u-v in K, 1,u,v,-1-u-v distinct, A(u,v) != 0 }.
+```
+
+Thus the most lift-limited depth-two layer is not an ambient support problem
+at all: it is the depth-two shape map on the quotient kernel, expanded by the
+ambient square image `D^2`.
+
 This does not give a positive M1 bound; it is the complementary wall to the
 high-index ceiling above. Low-index proper subgroups are saturated only when
 the lift gate and complement-fiber gate transfer raw shapes to exact supports,
@@ -1946,6 +1975,8 @@ The exact-support lift-limited bound gives the complementary finite-support
 route: when only `R=N-L` quotient fibers remain, the active depth-two image is
 bounded by `1+floor(B_R/24)|D^2|` even if the raw character-sum image
 saturates all square cosets.
+At `R=1`, this finite-support route is exact: the active catalog is just the
+kernel-fiber depth-two catalog, followed by multiplication by `D^2`.
 For the full multiplicative domain this image is already both quadratic
 classes for every `p>=17`, with zero added exactly when `p==1 mod 3`; this
 proves that full-domain slack-two examples saturate all nonzero slopes rather
