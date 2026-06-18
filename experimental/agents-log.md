@@ -49,6 +49,26 @@ Keep entries concise and link to the relevant files.
   cross-reference when the main papers are edited, then verify whether item
   (d) converts to the RS-MCA object actually needed by Paper B.
 
+### 2026-06-18 - M1 depth-two lift-window theorem note
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/m1_depth_two_lift_window_theorem.md`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / CONDITIONAL / AUDIT.
+- **What is being added:** A compact theorem-level note extracting the
+  slack-two depth-two lift-window theory from the scanner: the exact
+  quotient-window reduction for `R=N-L`, the lift-limited slope ceiling, and
+  the conditional fixed-window Kummer saturation certificate with `R^3`
+  weights.
+- **How it is useful:** Gives reviewers a single mathematical statement for
+  the M1 contribution in PR #79, separating proved quotient-fiber algebra
+  from the imported Kummer-Weil estimate and showing how the `R=1`, `R=2`,
+  `R=3`, and fixed-window examples fit one mechanism.
+- **What to do next:** Prove or cite the Kummer-Weil estimate as a standalone
+  algebraic-geometry input, then extend the quotient-window method beyond the
+  canonical slack-two depth-two frontier.
+
 ### 2026-06-18 - M1 depth-two Kummer-Weil saturation wall
 
 - **Agent/model:** Codex.
