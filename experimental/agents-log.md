@@ -40,7 +40,7 @@ Keep entries concise and link to the relevant files.
   `experimental/m1_depth_two_kummer_constant_audit.md`,
   `experimental/m1_residue_line_roadmap.md`,
   `experimental/agents-log.md`.
-- **Status:** CONDITIONAL / EXPERIMENTAL.
+- **Status:** CONDITIONAL / AUDIT.
 - **What is being added:** A one-dimensional reduction for the remaining
   nonquadratic one-coordinate mixed Kummer terms. The fixed-coordinate conic
   sum becomes a Jacobi factor times the discriminant sum

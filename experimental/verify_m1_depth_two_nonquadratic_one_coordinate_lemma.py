@@ -55,11 +55,8 @@ def character_table(p: int, order: int, logs: Dict[int, int]) -> List[List[compl
     return table
 
 
-def ceil_sqrt(value: int) -> int:
-    root = math.isqrt(value)
-    if root * root < value:
-        root += 1
-    return root
+def inv(value: int, p: int) -> int:
+    return pow(value % p, p - 2, p)
 
 
 def shape_a(u: int, v: int, p: int) -> int:
@@ -81,14 +78,51 @@ def legendre(value: int, p: int) -> int:
     return residue
 
 
-def jacobi_constant(p: int, eta: List[complex]) -> complex:
-    return sum(eta[(t * (t - 1)) % p] for t in range(p))
+def jacobi_eta_quadratic(p: int, eta: List[complex]) -> complex:
+    return sum(eta[t] * legendre(1 - t, p) for t in range(p))
+
+
+def inner_sum(
+    p: int,
+    eta: List[complex],
+    active: int,
+    fixed_value: int,
+) -> complex:
+    total = 0j
+    if active == 0:
+        for v in range(p):
+            total += eta[shape_a(fixed_value, v, p)]
+    elif active == 1:
+        for u in range(p):
+            total += eta[shape_a(u, fixed_value, p)]
+    else:
+        for u in range(p):
+            v = (-1 - u - fixed_value) % p
+            total += eta[shape_a(u, v, p)]
+    return total
+
+
+def expected_inner_sum(p: int, eta: List[complex], fixed_value: int) -> complex:
+    return (
+        eta[inv(4, p)]
+        * jacobi_eta_quadratic(p, eta)
+        * eta[delta(fixed_value, p)]
+        * legendre(delta(fixed_value, p), p)
+    )
 
 
 def discriminant_sum(p: int, mu: List[complex], eta: List[complex]) -> complex:
     return sum(
         mu[u] * legendre(delta(u, p), p) * eta[delta(u, p)]
         for u in range(p)
+    )
+
+
+def expected_full_sum(p: int, mu: List[complex], eta: List[complex]) -> complex:
+    return eta[inv(4, p)] * jacobi_eta_quadratic(p, eta) * discriminant_sum(
+        p,
+        mu,
+        eta,
     )
 
 
@@ -147,13 +181,21 @@ def audit_sample(p: int, n: int) -> Dict[str, object]:
             if is_quadratic_exponent(h, conic_exponent):
                 continue
             eta = char_h[conic_exponent]
-            jacobi = jacobi_constant(p, eta)
+            jacobi = jacobi_eta_quadratic(p, eta)
             disc = discriminant_sum(p, mu, eta)
-            predicted = eta[p - 1] * jacobi * disc
+            predicted = expected_full_sum(p, mu, eta)
             if abs(jacobi) > sqrt_p + 1e-8:
                 raise AssertionError((p, n, conic_exponent, "jacobi", jacobi))
             if abs(disc) > 2 * sqrt_p + 1e-8:
                 raise AssertionError((p, n, coordinate_exponent, disc))
+            for fixed_value in range(p):
+                expected_inner = expected_inner_sum(p, eta, fixed_value)
+                for active in range(3):
+                    actual_inner = inner_sum(p, eta, active, fixed_value)
+                    if abs(actual_inner - expected_inner) > 1e-8:
+                        raise AssertionError(
+                            (p, n, conic_exponent, active, fixed_value)
+                        )
             for active in range(3):
                 full = full_sum(p, mu, eta, active)
                 opened = open_sum(p, mu, eta, active)
@@ -184,7 +226,6 @@ def audit_sample(p: int, n: int) -> Dict[str, object]:
         "disc_over_sqrt_p": round(max_disc_ratio, 10),
         "full_over_p": round(max_full_ratio, 10),
         "open_over_p": round(max_open_ratio, 10),
-        "ceil_sqrt_bound": ceil_sqrt(p),
     }
 
 

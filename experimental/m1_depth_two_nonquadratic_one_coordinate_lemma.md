@@ -1,6 +1,6 @@
 # M1 Depth-Two Nonquadratic One-Coordinate Lemma
 
-**Status:** CONDITIONAL / EXPERIMENTAL.
+**Status:** CONDITIONAL / AUDIT.
 
 ## Claim
 
@@ -23,71 +23,50 @@ and let `mu` be a nonprincipal multiplicative character. Then
 The same bound holds with the nonprincipal coordinate character on `v` or
 `w`.
 
-## Quadratic-Fiber Reduction
+## Fixed-Coordinate Reduction
 
 First ignore the two principal-coordinate exclusions `v!=0` and `w!=0`. For
-fixed `u`, write
+fixed `u`, complete the square:
 
 ```text
-T(u)=sum_v eta(-(v^2+(u+1)v+(u^2+u+1))).
+A(u,v) = Delta(u)/4 - (v+(u+1)/2)^2,
+Delta(u) = -3u^2 - 2u - 3.
 ```
 
-The discriminant is
+For every `c in F_p`,
 
 ```text
-Delta(u)=-3u^2-2u-3.
+sum_x eta(c-x^2) = eta(c) chi_2(c) J(eta,chi_2),
 ```
 
-For any nontrivial nonquadratic `eta` and any split quadratic polynomial
-`a(x-r1)(x-r2)`, the change of variables
+where `chi_2` is the quadratic character and the right side is also zero
+when `c=0`. Indeed, if `c!=0`, then
 
 ```text
-x = r1 + (r2-r1)t
+sum_x eta(c-x^2)
+  = sum_y eta(y) chi_2(c-y)
+  = eta(c) chi_2(c) sum_t eta(t) chi_2(1-t).
 ```
 
-gives, when `r1!=r2`,
+If `c=0`, the left side is `eta(-1) sum_x eta^2(x)`, which is zero because
+`eta^2` is nonprincipal. Therefore
 
 ```text
-sum_x eta(a(x-r1)(x-r2))
-  = eta(a) eta((r2-r1)^2) sum_t eta(t(t-1)).
-```
-
-When `r1=r2`, the same identity remains true with the right side interpreted
-as zero: the left side is `eta(a) sum_x eta^2(x-r1)=0`, because `eta^2` is
-nonprincipal, and the discriminant character value is also zero.
-
-For nonsplit quadratics, the same identity picks up the quadratic character
-of the discriminant. Equivalently, for all nontrivial nonquadratic `eta`,
-
-```text
-sum_x eta(ax^2+bx+c)
-  = eta(a) chi_2(b^2-4ac) eta(b^2-4ac) J_eta,
-```
-
-where `chi_2` is extended by zero at zero and
-`J_eta=sum_t eta(t(t-1))`.
-
-In the present family `a=-1`, so for all `u`
-
-```text
-T(u)=eta(-1) chi_2(Delta(u)) eta(Delta(u)) J_eta.
+sum_v eta(A(u,v))
+  = eta(1/4) J(eta,chi_2) eta(Delta(u)) chi_2(Delta(u)).
 ```
 
 Hence the unrestricted two-variable sum is
 
 ```text
-eta(-1) J_eta sum_u mu(u) chi_2(Delta(u)) eta(Delta(u)).
+eta(1/4) J(eta,chi_2)
+  sum_u mu(u) chi_2(Delta(u)) eta(Delta(u)).
 ```
 
 ## Bounds
 
-The constant `J_eta` is a two-character Jacobi sum, so
-
-```text
-|J_eta| <= sqrt(p),
-```
-
-because `eta`, `eta`, and `eta^2` are nonprincipal.
+The constant `J(eta,chi_2)` has absolute value `sqrt(p)`, because `eta`,
+`chi_2`, and `eta chi_2` are nonprincipal.
 
 The one-variable discriminant sum has zero-pole support contained in
 
@@ -134,6 +113,6 @@ The finite verifier
 python3 experimental/verify_m1_depth_two_nonquadratic_one_coordinate_lemma.py
 ```
 
-checks the exact quadratic-fiber identity, the Jacobi/discriminant factor
+checks the exact fixed-coordinate identity, the Jacobi/discriminant factor
 bounds, the `2p` unrestricted bound, and the final `4p` open-set bound on the
 representative prime/index samples used by the Kummer constant audit.

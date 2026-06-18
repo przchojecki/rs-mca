@@ -2,8 +2,8 @@
 
 **Status:** CONDITIONAL / AUDIT.
 
-This note isolates the single non-elementary character-sum input used by the
-M1 slack-two depth-two certificates in
+This note isolates the remaining non-elementary two-variable character-sum
+input used by the M1 slack-two depth-two certificates in
 `m1_depth_two_lift_window_theorem.md`. It is not a proof of the imported
 estimate; it states the exact import and records which hypotheses are already
 checked by the scanner/verifier.
@@ -18,11 +18,15 @@ w = -1-u-v,
 A(u,v) = -(u^2 + v^2 + uv + u + v + 1).
 ```
 
-For exponents `(a,b,c,d)` modulo the order of `psi`, with `d != 0` and
-`(a,b,c) != (0,0,0)`, the imported estimate is
+For exponents `(a,b,c,d)` modulo the order of `psi`, with `d != 0` and at
+least two of `a,b,c` nonzero, the imported degree-stratified estimates are
 
 ```text
-| sum_{u,v in F_p} psi(u^a v^b w^c A(u,v)^d) | <= 16p.        (KW_2)
+| sum_{u,v in F_p} psi(u^a v^b w^c A(u,v)^d) | <=  9p
+    if exactly two coordinate exponents are nonzero,
+
+| sum_{u,v in F_p} psi(u^a v^b w^c A(u,v)^d) | <= 16p
+    if all three coordinate exponents are nonzero.              (KW_2)
 ```
 
 Equivalently, on the Kummer open set
@@ -32,7 +36,7 @@ U = A^2 - V(u v (-1-u-v) A(u,v)),
 ```
 
 the rank-one Kummer sheaf with local monodromy vector `(a,b,c,d)` has total
-Frobenius trace bounded by `16p`.
+Frobenius trace bounded by the corresponding active radical-degree constant.
 
 After the one-coordinate reductions below, this is the only non-elementary
 estimate still used by the raw, two-fiber, fixed-window, and quotient-window
@@ -125,17 +129,17 @@ If `d` is nonquadratic, the fixed-`u` inner sum is still explicit. For a
 nontrivial nonquadratic character `eta`,
 
 ```text
-sum_v eta(A(u,v)) = eta(-1) chi_2(Delta(u)) eta(Delta(u)) J_eta,
-J_eta = sum_t eta(t(t-1)),
+sum_v eta(A(u,v))
+  = eta(1/4) J(eta,chi_2) eta(Delta(u)) chi_2(Delta(u)),
 ```
 
-with the same discriminant `Delta(u)=-3u^2-2u-3`; the quadratic character
-`chi_2` accounts for the split/nonsplit discriminant, and the double-root
-case gives zero because `eta^2` is nonprincipal. Hence the unrestricted sum
-factors as
+with the same discriminant `Delta(u)=-3u^2-2u-3`; the right side is also zero
+when `Delta(u)=0`, because `eta^2` is nonprincipal. Hence the unrestricted
+sum factors as
 
 ```text
-eta(-1) J_eta sum_u mu(u) chi_2(Delta(u)) eta(Delta(u)).
+eta(1/4) J(eta,chi_2)
+  sum_u mu(u) chi_2(Delta(u)) eta(Delta(u)).
 ```
 
 The Jacobi factor has size at most `sqrt(p)`, and the discriminant sum is a
@@ -227,8 +231,9 @@ on representative primes. It also checks the affine value distribution of
 `A`, which is the finite audit behind the conic-only `p` bound. The symbolic
 proof above is what matters for the uniform `p>3` statement.
 
-For every imported mixed character tuple, at least two component exponents
-are nonzero: the conic exponent and at least one coordinate-line exponent.
+For every imported two-variable mixed character tuple, at least three
+component exponents are nonzero: the conic exponent and at least two
+coordinate-line exponents.
 For every such tuple, at least one component exponent among
 
 ```text
