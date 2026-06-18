@@ -955,6 +955,70 @@ slope image is exactly a union of cosets `beta(u,v)D^3`; since `D^3` is a
 subgroup, the same disjoint-or-equal coset compression applies. The zero
 slope slice is the already classified four-power-coset family.
 
+There is also a prime-field character-sum route for the slack-three conic
+count. Let `D <= F_p^*` have order `n`, index `e=(p-1)/n`, and let `chi` be
+a multiplicative character of order `e`, extended by zero at zero. Put
+
+```text
+w=-1-u-v,        Q(u,v)=u^2+v^2+uv+u+v+1.
+```
+
+The raw ordered conic count
+
+```text
+U_3^raw(D)=#{(u,v) in F_p^2 : Q(u,v)=0, u,v,w in D}
+```
+
+has the exact expansion
+
+```text
+U_3^raw(D) =
+  (1/e^3) sum_{a,b,c=0}^{e-1} S_{a,b,c},
+
+S_{a,b,c} =
+  sum_{Q(u,v)=0} chi^a(u) chi^b(v) chi^c(w).
+```
+
+For `p>3`, the projective conic attached to `Q=0` is nonsingular. Its affine
+point count is `p-chi_2(-3)`, where `chi_2` is the quadratic character. The
+principal term in the displayed expansion counts affine conic points with
+`uvw != 0`; the three zero-line intersections are disjoint and each has
+`1+chi_2(-3)` points, so
+
+```text
+S_{0,0,0}=p-3-4 chi_2(-3).
+```
+
+The admissible shape count `|C_3(D)|` is at most this raw conic count, after
+removing the finite degeneracies where one of `u,v,w` equals `1` or two of
+`1,u,v,w` coincide.
+
+Conditionally on the standard genus-zero multiplicative character-sum bound
+
+```text
+|S_{a,b,c}| <= 12 sqrt(p)        for nonprincipal (a,b,c),
+```
+
+one obtains the conservative ordered-shape estimate
+
+```text
+|C_3(D)| <= ceil((p+1 + 12(e^3-1)sqrt(p))/e^3).
+```
+
+Therefore the slack-three first-superboundary slope set satisfies
+
+```text
+|Bad_{T=3, |P|=4}|
+  <= min(p,
+         1 + ceil(|C_3(D)|/24) * n/gcd(3,n)).
+```
+
+Combining the previous two displays gives an explicit conditional
+non-field-filling certificate. Its leading term is on the order of
+`p^2/(24 gcd(3,n) e^4)`, so the conic-count route starts to help in the
+large-index regime `e^4 >> p`, complementing the slack-two unit-equation
+threshold `e^3 >> p`.
+
 ## M1 Impact
 
 This turns the positive M1 problem into a precise incidence question:
@@ -1060,6 +1124,10 @@ For `T=3`, the first-superboundary catalog is also no longer a raw support
 enumeration: it is a split-cubic beta ledger, equivalently a conic shape set
 `C_3(D)`, and a cube-coset image. This extends the low-slack template
 classification one step beyond the unit equation case.
+The prime-field conic character expansion gives the matching analytic route:
+under a standard genus-zero character-sum estimate, the slack-three ordered
+shape count is roughly `p/e^3`, and the resulting cube-coset slope budget has
+leading size `p^2/(24 gcd(3,n) e^4)`.
 
 ## Suggested Next Step
 

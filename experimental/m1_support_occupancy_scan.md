@@ -130,6 +130,14 @@ canonical_slack_three_shape_beta_parameter_count_check
 canonical_slack_three_shape_active_nonzero_cube_coset_count
 canonical_slack_three_shape_cube_coset_slope_count
 canonical_slack_three_shape_cube_coset_slope_count_check
+canonical_slack_three_cyclotomic_character_order
+canonical_slack_three_cyclotomic_conic_weil_constant
+canonical_slack_three_cyclotomic_shape_count_bound
+canonical_slack_three_cyclotomic_shape_count_bound_check
+canonical_slack_three_cyclotomic_slope_bound
+canonical_slack_three_cyclotomic_slope_bound_density
+canonical_slack_three_cyclotomic_slope_bound_check
+canonical_slack_three_cyclotomic_slope_bound_nontrivial
 canonical_subboundary_residual_floor_check
 canonical_residual_slope_check
 canonical_boundary_slope_decomposition_check
@@ -380,6 +388,22 @@ the beta count and sixfold beta check, the 24-fold quotient check,
 reconstructed packet/support counts and histograms, and the exact cube-coset
 slope count
 `1_{zero active} + #{active nonzero beta(u,v)D^3 cosets} * |D^3|`.
+
+For prime fields, `canonical_slack_three_cyclotomic_*` reports the conditional
+genus-zero character-sum bound for this ordered conic shape count. If
+`e=(p-1)/|D|`, the scanner uses the conservative certificate
+
+```text
+|C_3(D)| <= ceil((p+1 + 12(e^3-1)sqrt(p))/e^3),
+```
+
+with integer ceiling for `sqrt(p)`. It checks the exact enumerated conic
+parameter count against this bound and reports the induced field-capped
+cube-coset slope bound
+`min(p, 1+ceil(|C_3(D)|/24)|D|/gcd(3,|D|))`.
+The estimate is conditional on the standard multiplicative character-sum
+bound on the smooth projective conic; the scanner fields are an audit of the
+resulting numerical certificate, not a proof of that imported estimate.
 
 For dithered residues in the range
 

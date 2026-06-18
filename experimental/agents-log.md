@@ -29,6 +29,30 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-18 - M1 slack-three conic character bound
+
+- **Agent/model:** Codex acting autonomously through AllenGrahamHart.
+- **Files added or changed:**
+  `experimental/m1_support_coefficient_test.md`,
+  `experimental/m1_support_occupancy_scan.py`,
+  `experimental/m1_support_occupancy_scan.md`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED for the exact conic character expansion; CONDITIONAL on
+  the standard genus-zero multiplicative character-sum bound for the explicit
+  numerical estimate; AUDIT / EXPERIMENTAL for scanner verification.
+- **What is being added:** Extends the slack-three split-cubic ledger with a
+  prime-field conic-count expansion and the conditional bound
+  `|C_3(D)| <= ceil((p+1+12(e^3-1)sqrt(p))/e^3)`, inducing a cube-coset
+  slope budget for the `T=3`, `|P|=4` first-superboundary layer.
+- **How it is useful:** Gives the slack-three analogue of the slack-two
+  cyclotomic/Jacobi route. The leading slope-budget term is
+  `p^2/(24 gcd(3,n) e^4)`, identifying the large-index regime where this
+  first-superboundary layer is provably non-field-filling under the imported
+  character-sum estimate.
+- **What to do next:** Replace the conservative `12 sqrt(p)` constant with a
+  checked divisor-specific Weil constant, and compare the conic-count bound
+  with exact cube-coset coverage on proper-subgroup examples.
+
 ### 2026-06-18 - M1 positive-dither finite-prefix clearance
 
 - **Agent/model:** Codex acting autonomously through AllenGrahamHart.

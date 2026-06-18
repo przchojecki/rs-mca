@@ -795,15 +795,32 @@ def slack_three_first_superboundary_shape_ledger(
     }
 
 
+def ceil_sqrt(value: int) -> int:
+    root = math.isqrt(value)
+    if root * root < value:
+        root += 1
+    return root
+
+
 def slack_two_cyclotomic_shape_bound(p: int, domain_order: int) -> int:
     character_order = (p - 1) // domain_order
-    ceil_sqrt_p = math.isqrt(p)
-    if ceil_sqrt_p * ceil_sqrt_p < p:
-        ceil_sqrt_p += 1
+    ceil_sqrt_p = ceil_sqrt(p)
     numerator = p - 2 + (character_order * character_order - 1) * ceil_sqrt_p
     return (numerator + character_order * character_order - 1) // (
         character_order * character_order
     )
+
+
+def slack_three_conic_shape_bound(p: int, domain_order: int) -> int:
+    character_order = (p - 1) // domain_order
+    character_cube = character_order * character_order * character_order
+    conic_weil_constant = 12
+    numerator = (
+        p
+        + 1
+        + (character_cube - 1) * conic_weil_constant * ceil_sqrt(p)
+    )
+    return (numerator + character_cube - 1) // character_cube
 
 
 def occupancy_histogram(
@@ -1392,6 +1409,23 @@ def scan_supports(
             * (n // math.gcd(2, n)),
         )
         if slack_two_cyclotomic_bound is not None
+        else None
+    )
+    slack_three_cyclotomic_bound = (
+        slack_three_conic_shape_bound(p, n)
+        if slack_three_shape_ledger is not None
+        else None
+    )
+    slack_three_cyclotomic_slope_bound = (
+        min(
+            p,
+            1
+            + (
+                (slack_three_cyclotomic_bound + 23) // 24
+            )
+            * (n // math.gcd(3, n)),
+        )
+        if slack_three_cyclotomic_bound is not None
         else None
     )
 
@@ -2323,6 +2357,47 @@ def scan_supports(
             len(first_superboundary_slope_histogram)
             <= slack_two_cyclotomic_slope_bound
             if slack_two_cyclotomic_slope_bound is not None
+            else None
+        ),
+        "canonical_slack_three_cyclotomic_shape_count_bound": (
+            slack_three_cyclotomic_bound
+            if slack_three_cyclotomic_bound is not None
+            else None
+        ),
+        "canonical_slack_three_cyclotomic_character_order": (
+            (p - 1) // n if slack_three_cyclotomic_bound is not None else None
+        ),
+        "canonical_slack_three_cyclotomic_conic_weil_constant": (
+            12 if slack_three_cyclotomic_bound is not None else None
+        ),
+        "canonical_slack_three_cyclotomic_shape_count_bound_check": (
+            int(slack_three_shape_ledger["parameter_count"])
+            <= slack_three_cyclotomic_bound
+            if (
+                slack_three_shape_ledger is not None
+                and slack_three_cyclotomic_bound is not None
+            )
+            else None
+        ),
+        "canonical_slack_three_cyclotomic_slope_bound": (
+            slack_three_cyclotomic_slope_bound
+            if slack_three_cyclotomic_slope_bound is not None
+            else None
+        ),
+        "canonical_slack_three_cyclotomic_slope_bound_density": (
+            fraction_string(slack_three_cyclotomic_slope_bound, p)
+            if slack_three_cyclotomic_slope_bound is not None
+            else None
+        ),
+        "canonical_slack_three_cyclotomic_slope_bound_nontrivial": (
+            slack_three_cyclotomic_slope_bound < p
+            if slack_three_cyclotomic_slope_bound is not None
+            else None
+        ),
+        "canonical_slack_three_cyclotomic_slope_bound_check": (
+            len(first_superboundary_slope_histogram)
+            <= slack_three_cyclotomic_slope_bound
+            if slack_three_cyclotomic_slope_bound is not None
             else None
         ),
         "canonical_slack_two_shape_expected_packet_slope_histogram": (
