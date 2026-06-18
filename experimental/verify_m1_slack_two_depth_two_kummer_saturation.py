@@ -143,6 +143,25 @@ def two_fiber_divisor_power_failure_count(
     return failures
 
 
+def raw_two_coordinate_infinity_unramified_l1_bound(
+    character_order: int,
+    square_coset_index: int,
+) -> int:
+    if square_coset_index % character_order:
+        raise AssertionError((character_order, square_coset_index))
+    lift = square_coset_index // character_order
+    count = 0
+    for first_exponent in range(1, character_order):
+        for second_exponent in range(1, character_order):
+            for conic_exponent in range(1, square_coset_index):
+                if (
+                    lift * (first_exponent + second_exponent)
+                    + 2 * conic_exponent
+                ) % square_coset_index == 0:
+                    count += 1
+    return 3 * count
+
+
 def principal_open_count(p: int) -> int:
     count = 0
     for u in range(p):
@@ -503,6 +522,16 @@ def main() -> None:
         two_coordinate_kummer_l1_bound = (
             coordinate_two_l1_bound * (square_coset_index - 1)
         )
+        two_coordinate_infinity_unramified_l1_bound = (
+            raw_two_coordinate_infinity_unramified_l1_bound(
+                int(certificate["character_order"]),
+                square_coset_index,
+            )
+        )
+        two_coordinate_ramified_l1_bound = (
+            two_coordinate_kummer_l1_bound
+            - two_coordinate_infinity_unramified_l1_bound
+        )
         three_coordinate_kummer_l1_bound = (
             coordinate_three_l1_bound * (square_coset_index - 1)
         )
@@ -518,8 +547,14 @@ def main() -> None:
             * quadratic_one_coordinate_l1_bound
             + int(certificate["one_coordinate_kummer_error_constant"])
             * one_coordinate_kummer_l1_bound
+            + int(
+                certificate[
+                    "two_coordinate_infinity_unramified_error_constant"
+                ]
+            )
+            * two_coordinate_infinity_unramified_l1_bound
             + int(certificate["two_coordinate_kummer_error_constant"])
-            * two_coordinate_kummer_l1_bound
+            * two_coordinate_ramified_l1_bound
             + int(certificate["three_coordinate_kummer_error_constant"])
             * three_coordinate_kummer_l1_bound
         )
@@ -549,6 +584,23 @@ def main() -> None:
             certificate["two_coordinate_kummer_l1_bound"]
         ):
             raise AssertionError((p, n, two_coordinate_kummer_l1_bound))
+        if two_coordinate_infinity_unramified_l1_bound != int(
+            certificate["two_coordinate_infinity_unramified_l1_bound"]
+        ):
+            raise AssertionError(
+                (
+                    p,
+                    n,
+                    two_coordinate_infinity_unramified_l1_bound,
+                    certificate,
+                )
+            )
+        if two_coordinate_ramified_l1_bound != int(
+            certificate["two_coordinate_ramified_l1_bound"]
+        ):
+            raise AssertionError(
+                (p, n, two_coordinate_ramified_l1_bound, certificate)
+            )
         if three_coordinate_kummer_l1_bound != int(
             certificate["three_coordinate_kummer_l1_bound"]
         ):
@@ -560,6 +612,16 @@ def main() -> None:
         if int(certificate["quadratic_one_coordinate_error_constant"]) != 4:
             raise AssertionError((p, n, certificate))
         if int(certificate["one_coordinate_kummer_error_constant"]) != 4:
+            raise AssertionError((p, n, certificate))
+        if (
+            int(certificate["two_coordinate_infinity_unramified_error_constant"])
+            != 2
+        ):
+            raise AssertionError((p, n, certificate))
+        if (
+            int(certificate["two_coordinate_infinity_unramified_sqrt_constant"])
+            != 5
+        ):
             raise AssertionError((p, n, certificate))
         if int(certificate["two_coordinate_kummer_error_constant"]) != 9:
             raise AssertionError((p, n, certificate))
@@ -574,14 +636,36 @@ def main() -> None:
         elementary_open_sqrt_error_bound = (
             6 * ceil_sqrt(p) * (jacobi_l1_bound + conic_l1_bound)
         )
+        infinity_unramified_sqrt_error_bound = (
+            5
+            * ceil_sqrt(p)
+            * two_coordinate_infinity_unramified_l1_bound
+        )
         if elementary_open_sqrt_error_bound != int(
             certificate["elementary_open_sqrt_error_bound"]
         ):
             raise AssertionError(
                 (p, n, elementary_open_sqrt_error_bound, certificate)
             )
+        if infinity_unramified_sqrt_error_bound != (
+            ceil_sqrt(p)
+            * int(
+                certificate[
+                    "two_coordinate_infinity_unramified_sqrt_l1_bound"
+                ]
+            )
+        ):
+            raise AssertionError(
+                (p, n, infinity_unramified_sqrt_error_bound, certificate)
+            )
+        sqrt_error_bound = (
+            elementary_open_sqrt_error_bound
+            + infinity_unramified_sqrt_error_bound
+        )
+        if sqrt_error_bound != int(certificate["sqrt_error_bound"]):
+            raise AssertionError((p, n, sqrt_error_bound, certificate))
         weighted_error_total_bound = (
-            p * weighted_error_l1_bound + elementary_open_sqrt_error_bound
+            p * weighted_error_l1_bound + sqrt_error_bound
         )
         if weighted_error_total_bound != int(
             certificate["weighted_error_total_bound"]
@@ -591,7 +675,7 @@ def main() -> None:
             )
         lower_numerator = principal_count - (
             p * weighted_error_l1_bound
-            + elementary_open_sqrt_error_bound
+            + sqrt_error_bound
             + degeneracy_count * int(certificate["denominator"])
         )
         if lower_numerator != int(certificate["lower_numerator"]):
@@ -603,7 +687,7 @@ def main() -> None:
                 + int(certificate["degeneracy_line_count"])
                 * int(certificate["denominator"])
             ),
-            sqrt_error_weight=6 * (jacobi_l1_bound + conic_l1_bound),
+            sqrt_error_weight=int(certificate["sqrt_error_weight"]),
         )
         if expected_threshold != int(certificate["uniform_prime_threshold"]):
             raise AssertionError((p, n, expected_threshold, certificate))

@@ -221,6 +221,45 @@ def expected_core_quadratic(p: int, mu_inv: List[complex]) -> complex:
     return -smooth + p * exceptional
 
 
+def common_exponent(e: int, h: int, exponent: int) -> int:
+    return (h // e) * exponent
+
+
+def infinity_exponent(e: int, h: int, a: int, b: int, d: int) -> int:
+    return (-(common_exponent(e, h, a) + common_exponent(e, h, b) + 2 * d)) % h
+
+
+def reciprocal_chart_exponents(
+    e: int,
+    h: int,
+    a: int,
+    b: int,
+    d: int,
+) -> List[int]:
+    first = common_exponent(e, h, a)
+    second = common_exponent(e, h, b)
+    infinity = infinity_exponent(e, h, a, b, d)
+    chart_exponents: List[int] = []
+    if (first + infinity) % h == 0:
+        chart_exponents.append(a)
+    if (second + infinity) % h == 0:
+        chart_exponents.append(b)
+    return chart_exponents
+
+
+def expected_reciprocal_core(
+    p: int,
+    mu_inv: List[complex],
+    eta: List[complex],
+    eta_inv: List[complex],
+    quadratic: List[complex],
+    eta_is_quadratic: bool,
+) -> complex:
+    if eta_is_quadratic:
+        return expected_core_quadratic(p, mu_inv)
+    return expected_core_nonquadratic(p, mu_inv, eta, eta_inv, quadratic)
+
+
 def audit_sample(p: int, n: int) -> Dict[str, object]:
     if (p - 1) % n != 0:
         raise ValueError("n must divide p-1")
@@ -235,6 +274,7 @@ def audit_sample(p: int, n: int) -> Dict[str, object]:
     checked = 0
     nonquadratic_checked = 0
     quadratic_checked = 0
+    projective_checked = 0
     max_core_ratio = 0.0
     max_open_ratio = 0.0
     max_line_ratio = 0.0
@@ -322,12 +362,159 @@ def audit_sample(p: int, n: int) -> Dict[str, object]:
                 max_open_ratio = max(max_open_ratio, abs(opened) / p)
                 max_line_ratio = max(max_line_ratio, abs(line) / math.sqrt(p))
 
+        for first_exponent in range(1, e):
+            first_char = char_e[first_exponent]
+            for second_exponent in range(1, e):
+                second_char = char_e[second_exponent]
+                for eta_exponent in range(1, h):
+                    eta = char_h[eta_exponent]
+                    eta_inv = char_h[(-eta_exponent) % h]
+                    eta_is_quadratic = h % 2 == 0 and eta_exponent == h // 2
+                    for chart_exponent in reciprocal_chart_exponents(
+                        e,
+                        h,
+                        first_exponent,
+                        second_exponent,
+                        eta_exponent,
+                    ):
+                        chart_char = char_e[chart_exponent]
+                        chart_inv = char_e[(-chart_exponent) % e]
+                        core = direct_core(
+                            p,
+                            active_pair,
+                            first_char,
+                            second_char,
+                            eta,
+                        )
+                        chart_core = direct_core(
+                            p,
+                            (0, 1),
+                            chart_char,
+                            chart_inv,
+                            eta,
+                        )
+                        line = direct_line(
+                            p,
+                            active_pair,
+                            first_char,
+                            second_char,
+                            eta,
+                        )
+                        opened = direct_open(
+                            p,
+                            active_pair,
+                            first_char,
+                            second_char,
+                            eta,
+                        )
+                        expected = expected_reciprocal_core(
+                            p,
+                            chart_inv,
+                            eta,
+                            eta_inv,
+                            quadratic,
+                            eta_is_quadratic,
+                        )
+                        max_identity_error = max(
+                            max_identity_error,
+                            abs(core - chart_core),
+                            abs(chart_core - expected),
+                            abs(opened - (core - line)),
+                        )
+                        if abs(core - chart_core) > 1e-8:
+                            raise AssertionError(
+                                (
+                                    p,
+                                    n,
+                                    active_pair,
+                                    first_exponent,
+                                    second_exponent,
+                                    eta_exponent,
+                                    chart_exponent,
+                                    core,
+                                    chart_core,
+                                )
+                            )
+                        if abs(chart_core - expected) > 1e-8:
+                            raise AssertionError(
+                                (
+                                    p,
+                                    n,
+                                    active_pair,
+                                    first_exponent,
+                                    second_exponent,
+                                    eta_exponent,
+                                    chart_exponent,
+                                    chart_core,
+                                    expected,
+                                )
+                            )
+                        if abs(opened - (core - line)) > 1e-8:
+                            raise AssertionError(
+                                (
+                                    p,
+                                    n,
+                                    active_pair,
+                                    first_exponent,
+                                    second_exponent,
+                                    eta_exponent,
+                                    opened,
+                                    core,
+                                    line,
+                                )
+                            )
+                        if abs(line) > 3 * math.sqrt(p) + 1e-8:
+                            raise AssertionError(
+                                (
+                                    p,
+                                    n,
+                                    active_pair,
+                                    first_exponent,
+                                    second_exponent,
+                                    eta_exponent,
+                                    "line",
+                                )
+                            )
+                        if eta_is_quadratic:
+                            if abs(core) > 2 * p + 2 * math.sqrt(p) + 1e-8:
+                                raise AssertionError(
+                                    (
+                                        p,
+                                        n,
+                                        active_pair,
+                                        first_exponent,
+                                        second_exponent,
+                                        eta_exponent,
+                                        "quadratic bound",
+                                    )
+                                )
+                        elif abs(core) > 4 * p + 1e-8:
+                            raise AssertionError(
+                                (
+                                    p,
+                                    n,
+                                    active_pair,
+                                    first_exponent,
+                                    second_exponent,
+                                    eta_exponent,
+                                    "nonquadratic bound",
+                                )
+                            )
+                        projective_checked += 1
+                        max_core_ratio = max(max_core_ratio, abs(core) / p)
+                        max_open_ratio = max(max_open_ratio, abs(opened) / p)
+                        max_line_ratio = max(
+                            max_line_ratio,
+                            abs(line) / math.sqrt(p),
+                        )
+
     return {
         "p": p,
         "n": n,
         "e": e,
         "h": h,
         "checked": checked,
+        "projective_checked": projective_checked,
         "quadratic_checked": quadratic_checked,
         "nonquadratic_checked": nonquadratic_checked,
         "max_core_ratio_to_p": round(max_core_ratio, 10),

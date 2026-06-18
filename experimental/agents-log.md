@@ -29,6 +29,53 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-18 - M1 projective reciprocal line-pair slices
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/m1_depth_two_reciprocal_two_coordinate_lemma.md`,
+  `experimental/verify_m1_depth_two_reciprocal_two_coordinate_lemma.py`,
+  `experimental/m1_depth_two_two_coordinate_projective_euler_target.md`,
+  `experimental/m1_depth_two_two_coordinate_fiber_reduction.md`,
+  `experimental/m1_kummer_weil_import_contract.md`,
+  `experimental/m1_depth_two_lift_window_theorem.md`,
+  `experimental/m1_depth_two_kummer_constant_audit.md`,
+  `experimental/m1_residue_line_roadmap.md`,
+  `experimental/agents-log.md`.
+- **Status:** CONDITIONAL / AUDIT.
+- **What is being added:** The reciprocal two-coordinate lemma is extended
+  projectively: if any two of the three line monodromies `mu`, `nu`, and
+  `(mu nu eta^2)^(-1)` are reciprocal, an affine chart reduces the core to
+  the proved reciprocal slice.
+- **How it is useful:** Removes the ramified slices `nu eta^2=1` and
+  `mu eta^2=1` from the unresolved two-coordinate wall, in addition to the
+  original `mu nu=1` slice.
+- **What to do next:** Prove the normal-crossing trace bound for the
+  remaining ramified-infinity case with no reciprocal projective line pair.
+
+### 2026-06-18 - M1 raw infinity-unramified ledger split
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/m1_support_occupancy_scan.py`,
+  `experimental/verify_m1_slack_two_depth_two_kummer_saturation.py`,
+  `experimental/m1_depth_two_lift_window_theorem.md`,
+  `experimental/m1_depth_two_kummer_constant_audit.md`,
+  `experimental/m1_support_occupancy_scan.md`,
+  `experimental/agents-log.md`.
+- **Status:** CONDITIONAL / AUDIT.
+- **What is being added:** The raw slack-two depth-two Kummer ledger now
+  separates the exact two-coordinate L1 mass with trivial infinity monodromy
+  `mu nu eta^2=1`. That mass is charged by the proved open-set bound
+  `2p+5 sqrt(p)`, while only the ramified-infinity remainder still pays `9p`.
+- **How it is useful:** Feeds the new infinity-unramified theorem into the
+  actual full-domain certificate arithmetic, improving the raw uniform
+  thresholds while leaving fixed-window and quotient-union ledgers
+  conservative.
+- **What to do next:** Derive safe fixed-window or quotient-window L1 splits
+  by infinity monodromy, or prove the remaining ramified-infinity `4p`
+  normal-crossing trace bound.
+
 ### 2026-06-18 - M1 infinity-unramified two-coordinate lemma
 
 - **Agent/model:** Codex.

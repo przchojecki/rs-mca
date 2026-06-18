@@ -173,6 +173,11 @@ in `t`. The proof-level statement is isolated in
 bound for the quadratic conic character, and the same `3 sqrt(p)` removed-line
 correction. This does not close the general two-coordinate wall, but it
 removes a structured diagonal slice from the unresolved trace family.
+The same note also records the projective form of this reduction: if any two
+of the three line monodromies `mu`, `nu`, and `(mu nu eta^2)^(-1)` are
+reciprocal, an affine chart turns the core into the reciprocal slice. Thus
+the ramified slices `nu eta^2=1` and `mu eta^2=1` are also removed from the
+unresolved two-coordinate import.
 
 The projective Euler-characteristic target for the two-coordinate core is
 smaller than the crude degree-four `9p` ledger suggests. After compactifying,
@@ -185,13 +190,17 @@ not yet used in the certificates because it still needs the appropriate clean
 normal-crossing Kummer cohomology theorem.
 
 The infinity-unramified subfamily `mu nu eta^2=1` no longer needs that
-import. The ratio substitution `u=tv`, followed by `r=1/v`, reduces its core
+import. The ratio substitution `v=tu`, followed by `s=1/u`, reduces its core
 to two genus-zero sums on `P^1_t`; the resulting bound is
 `2p+2 sqrt(p)` for the core plus the same `3 sqrt(p)` removed-line
 correction. This proof is isolated in
 `experimental/m1_depth_two_infinity_unramified_two_coordinate_lemma.md`.
+The remaining two-coordinate dependency is therefore the projective
+line/conic case where all three line monodromies are nonprincipal and no pair
+among them is reciprocal.
 
-Thus the additive raw, fixed-window, and two-fiber certificates now pay:
+Thus the fixed-window, quotient-window, and two-fiber certificates still use
+the conservative common ledger:
 
 ```text
 d=0, coordinate nonprincipal:               p + 6 sqrt(p)
@@ -201,6 +210,11 @@ d nonquadratic, exactly one coordinate:     4p   (one-dimensional)
 d!=0, two coordinates active:               9p   (degree 4 Kummer)
 d!=0, three coordinates active:            16p   (degree 5 Kummer)
 ```
+
+The raw full-domain certificate additionally splits the two-coordinate mass
+by infinity monodromy. The exact `mu nu eta^2=1` mass pays the proved
+open-set bound `2p+5 sqrt(p)`, and only the ramified-infinity remainder pays
+the imported `9p` constant.
 
 The finite audit
 

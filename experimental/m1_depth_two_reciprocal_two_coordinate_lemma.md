@@ -161,11 +161,41 @@ not require the unresolved two-variable import: after the ratio substitution
 `v=tu`, it becomes a one-dimensional genus-zero Kummer sum. The remaining
 open two-coordinate target is therefore the genuinely nonreciprocal family.
 
+## Projective Reciprocal Line Pairs
+
+The reciprocal reduction is projective, not tied to the original affine
+choice of active coordinates. The compactified two-coordinate core has line
+monodromies
+
+```text
+mu,        nu,        lambda=(mu nu eta^2)^(-1)
+```
+
+on the two active coordinate lines and the line at infinity. If any two of
+these three line monodromies are reciprocal, choose those two lines as the
+affine coordinate axes. The conic remains projectively equivalent to the same
+line/conic arrangement, so the core is one of the reciprocal sums handled
+above.
+
+Besides the original `mu nu=1` slice, this proves the ramified-infinity
+slices
+
+```text
+nu eta^2 = 1,        mu eta^2 = 1.
+```
+
+In these two slices `eta` is necessarily nonquadratic for a true
+two-coordinate term, and the core bound is `4p`; the removed principal line
+still costs at most `3 sqrt(p)`. Thus the unresolved two-coordinate wall can
+be restricted further to the case where all three projective line monodromies
+are nonprincipal and no pair among them is reciprocal.
+
 The finite verifier
 
 ```bash
 python3 experimental/verify_m1_depth_two_reciprocal_two_coordinate_lemma.py
 ```
 
-checks the exact ratio identities, the line decomposition, and the claimed
-finite bounds on representative Kummer-audit samples.
+checks the exact ratio identities, the projective reciprocal chart changes,
+the line decomposition, and the claimed finite bounds on representative
+Kummer-audit samples.

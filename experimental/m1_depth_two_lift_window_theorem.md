@@ -149,6 +149,9 @@ size at most `3 sqrt(p)`. Within that family, the reciprocal slice where the
 two active coordinate characters are `mu` and `mu^{-1}` collapses further by
 the ratio substitution `v=tu`; this is isolated in
 `experimental/m1_depth_two_reciprocal_two_coordinate_lemma.md`.
+The same reciprocal note applies projectively, removing the ramified slices
+where one active coordinate monodromy is reciprocal to the infinity
+monodromy.
 The larger infinity-unramified slice `mu nu eta^2=1` also reduces to
 one-dimensional genus-zero sums after the substitution `u=tv`, `r=1/v`,
 giving a `2p+2 sqrt(p)` core bound plus the same line correction. This is
@@ -174,20 +177,33 @@ C_2 = 3(e-1)^2(q-1),
 C_3 = (e-1)^3(q-1).
 ```
 
+Let `g=q/e`, and let `C_2^0` be the exact two-coordinate L1 mass with
+trivial infinity monodromy:
+
+```text
+C_2^0 =
+  3 # {a,b,d : 1<=a,b<e, 1<=d<q, g(a+b)+2d == 0 mod q}.
+```
+
 The raw weighted error is therefore
 
 ```text
-(e^3-1) + (q-1) + 12(e-1) + 4C_1 + 9C_2 + 16C_3.
+(e^3-1) + (q-1) + 12(e-1)
+  + 4C_1 + 2C_2^0 + 9(C_2-C_2^0) + 16C_3.
 ```
 
-Its elementary open-set correction has L1 mass
+Its square-root correction has L1 mass
 
 ```text
-J = (e^3-1) + (q-1).
+6J + 5C_2^0,        J = (e^3-1) + (q-1).
 ```
 
-The proof of this correction is isolated in
-`experimental/m1_depth_two_elementary_open_set_lemma.md`.
+Here `6J` is the elementary open-set correction isolated in
+`experimental/m1_depth_two_elementary_open_set_lemma.md`, while `5C_2^0`
+comes from the proved infinity-unramified two-coordinate bound
+`2p+5 sqrt(p)` on the Kummer open set. The fixed-window and quotient-union
+ledgers below remain conservative and do not yet split their two-coordinate
+L1 masses by infinity monodromy.
 
 For a fixed quotient window `W` of size `R`, let
 

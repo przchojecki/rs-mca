@@ -12,7 +12,8 @@ d=0, coordinate nonprincipal:               p + 6 ceil(sqrt(p))
 d!=0, coordinate principal:                 p + 6 ceil(sqrt(p))
 d quadratic, exactly one coordinate active: 4p
 d nonquadratic, exactly one coordinate:     4p
-d!=0, two coordinate active:                9p
+d!=0, two coordinate, mu nu eta^2=1:        2p + 5 ceil(sqrt(p))
+d!=0, two coordinate, ramified infinity:    9p
 d!=0, three coordinate active:             16p
 ```
 
@@ -34,6 +35,12 @@ The two-coordinate proof boundary is sharpened further in
 `experimental/m1_depth_two_infinity_unramified_two_coordinate_lemma.md`,
 which proves the full `mu nu eta^2=1` slice with a
 `2p+2 sqrt(p)` core bound and the usual `3 sqrt(p)` line correction.
+The reciprocal two-coordinate note also removes the projective line-pair
+reciprocal slices `mu nu=1`, `nu eta^2=1`, and `mu eta^2=1`.
+The raw saturation certificate now separates the exact `mu nu eta^2=1` L1
+mass and charges only the remaining ramified-infinity two-coordinate mass by
+the imported `9p` constant; it does not yet split out the projective
+reciprocal line-pair mass.
 
 ## Parameters
 
@@ -110,5 +117,6 @@ active radical degree responsible for the breakdown.
 Second, it separates finite computational evidence from the uniform theorem.
 The finite audit supports the repaired ledger but leaves one proof-status
 boundary: after the one-coordinate and infinity-unramified two-coordinate
-reductions, the remaining mathematical task is a uniform normal-crossing
-Kummer estimate for the ramified-infinity line/conic arrangement.
+reductions, plus the projective reciprocal line-pair reductions, the
+remaining mathematical task is a uniform normal-crossing Kummer estimate for
+the ramified-infinity line/conic arrangement with no reciprocal line pair.

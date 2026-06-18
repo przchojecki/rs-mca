@@ -159,6 +159,9 @@ line/conic arrangement, and predicts a `2p` top-dimensional coefficient when
 That infinity-unramified subfamily is proved by the ratio reduction in
 `experimental/m1_depth_two_infinity_unramified_two_coordinate_lemma.md`; the
 remaining trace-family target is the infinity-ramified case.
+The reciprocal lemma also removes the projective line-pair reciprocal slices
+`mu nu=1`, `nu eta^2=1`, and `mu eta^2=1`, leaving only the ramified case
+with no reciprocal pair among the three projective line monodromies.
 
 The finite verifier
 

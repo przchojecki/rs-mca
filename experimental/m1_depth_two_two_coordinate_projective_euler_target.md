@@ -122,9 +122,12 @@ proves the same `2p+2 sqrt(p)` core bound whenever `mu nu eta^2=1`, using a
 ratio substitution and a reciprocal-variable quadratic sum.
 
 For nonquadratic reciprocal slices, infinity is usually ramified and the
-same ratio-variable note proves the generic `4p` core bound directly. The
-open problem is to turn the above `chi=4` calculation into a uniform trace
-bound for genuinely nonreciprocal two-coordinate characters.
+same ratio-variable note proves the generic `4p` core bound directly. More
+projectively, if any two of the three line monodromies
+`mu`, `nu`, `(mu nu eta^2)^(-1)` are reciprocal, an affine chart reduces the
+core to that reciprocal lemma. Hence the remaining `chi=4` problem is the
+case where all three line monodromies are nonprincipal and no pair is
+reciprocal.
 
 The finite verifier
 

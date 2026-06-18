@@ -1903,6 +1903,9 @@ def depth_two_kummer_error_l1_split(
     quadratic_one_coordinate_constant: int = 4,
     one_coordinate_kummer_constant: int = 4,
     two_coordinate_kummer_constant: int = 9,
+    two_coordinate_infinity_unramified_l1_bound: int = 0,
+    two_coordinate_infinity_unramified_constant: int = 2,
+    two_coordinate_infinity_unramified_sqrt_constant: int = 5,
 ) -> Dict[str, int]:
     """Split depth-two character error into proved and imported masses."""
 
@@ -1931,6 +1934,14 @@ def depth_two_kummer_error_l1_split(
     two_coordinate_kummer_l1_bound = (
         coordinate_two_nonprincipal_l1_bound * (square_coset_index - 1)
     )
+    if not 0 <= two_coordinate_infinity_unramified_l1_bound <= (
+        two_coordinate_kummer_l1_bound
+    ):
+        raise ValueError("invalid infinity-unramified two-coordinate L1 split")
+    two_coordinate_ramified_l1_bound = (
+        two_coordinate_kummer_l1_bound
+        - two_coordinate_infinity_unramified_l1_bound
+    )
     three_coordinate_kummer_l1_bound = (
         coordinate_three_nonprincipal_l1_bound * (square_coset_index - 1)
     )
@@ -1944,8 +1955,14 @@ def depth_two_kummer_error_l1_split(
         + conic_l1_bound
         + quadratic_one_coordinate_constant * quadratic_one_coordinate_l1_bound
         + one_coordinate_kummer_constant * one_coordinate_kummer_l1_bound
-        + two_coordinate_kummer_constant * two_coordinate_kummer_l1_bound
+        + two_coordinate_infinity_unramified_constant
+        * two_coordinate_infinity_unramified_l1_bound
+        + two_coordinate_kummer_constant * two_coordinate_ramified_l1_bound
         + nonprincipal_constant * three_coordinate_kummer_l1_bound
+    )
+    two_coordinate_infinity_unramified_sqrt_l1_bound = (
+        two_coordinate_infinity_unramified_sqrt_constant
+        * two_coordinate_infinity_unramified_l1_bound
     )
     return {
         "jacobi_l1_bound": jacobi_l1_bound,
@@ -1964,6 +1981,19 @@ def depth_two_kummer_error_l1_split(
         "two_coordinate_kummer_error_constant": (
             two_coordinate_kummer_constant
         ),
+        "two_coordinate_infinity_unramified_l1_bound": (
+            two_coordinate_infinity_unramified_l1_bound
+        ),
+        "two_coordinate_infinity_unramified_error_constant": (
+            two_coordinate_infinity_unramified_constant
+        ),
+        "two_coordinate_infinity_unramified_sqrt_constant": (
+            two_coordinate_infinity_unramified_sqrt_constant
+        ),
+        "two_coordinate_infinity_unramified_sqrt_l1_bound": (
+            two_coordinate_infinity_unramified_sqrt_l1_bound
+        ),
+        "two_coordinate_ramified_l1_bound": two_coordinate_ramified_l1_bound,
         "three_coordinate_kummer_l1_bound": three_coordinate_kummer_l1_bound,
         "three_coordinate_kummer_error_constant": nonprincipal_constant,
         "kummer_l1_bound": kummer_l1_bound,
@@ -1981,7 +2011,34 @@ def depth_two_open_sqrt_error_bound(
         int(error_split["jacobi_l1_bound"])
         + int(error_split["conic_l1_bound"])
     )
-    return 6 * ceil_sqrt(p) * elementary_open_l1_bound
+    infinity_unramified_sqrt_l1_bound = int(
+        error_split.get("two_coordinate_infinity_unramified_sqrt_l1_bound", 0)
+    )
+    return ceil_sqrt(p) * (
+        6 * elementary_open_l1_bound
+        + infinity_unramified_sqrt_l1_bound
+    )
+
+
+def raw_two_coordinate_infinity_unramified_l1_bound(
+    character_order: int,
+    square_coset_index: int,
+) -> int:
+    """Count raw two-coordinate terms with trivial infinity monodromy."""
+
+    if character_order < 1 or square_coset_index % character_order:
+        raise ValueError((character_order, square_coset_index))
+    lift = square_coset_index // character_order
+    per_active_pair = 0
+    for first_exponent in range(1, character_order):
+        for second_exponent in range(1, character_order):
+            for conic_exponent in range(1, square_coset_index):
+                if (
+                    lift * (first_exponent + second_exponent)
+                    + 2 * conic_exponent
+                ) % square_coset_index == 0:
+                    per_active_pair += 1
+    return 3 * per_active_pair
 
 
 def slack_two_second_kummer_saturation_data(
@@ -2017,21 +2074,31 @@ def slack_two_second_kummer_saturation_data(
         coordinate_three_nonprincipal_l1_bound=(
             (character_order - 1) ** 3
         ),
+        two_coordinate_infinity_unramified_l1_bound=(
+            raw_two_coordinate_infinity_unramified_l1_bound(
+                character_order,
+                square_coset_index,
+            )
+        ),
     )
     open_sqrt_error_bound = depth_two_open_sqrt_error_bound(
         p,
         error_split,
+    )
+    elementary_open_sqrt_weight = 6 * (
+        int(error_split["jacobi_l1_bound"])
+        + int(error_split["conic_l1_bound"])
+    )
+    total_sqrt_weight = (
+        elementary_open_sqrt_weight
+        + int(error_split["two_coordinate_infinity_unramified_sqrt_l1_bound"])
     )
     uniform_prime_threshold = kummer_quadratic_uniform_prime_threshold(
         principal_weight=1,
         linear_error_weight=(
             int(error_split["weighted_error_l1_bound"]) + 6 * denominator
         ),
-        sqrt_error_weight=6
-        * (
-            int(error_split["jacobi_l1_bound"])
-            + int(error_split["conic_l1_bound"])
-        ),
+        sqrt_error_weight=total_sqrt_weight,
     )
     chi_minus_three = quadratic_character(-3, p)
     principal_exact_count = p * p - 4 * p + 6 + 4 * chi_minus_three
@@ -2057,7 +2124,11 @@ def slack_two_second_kummer_saturation_data(
         **error_split,
         "jacobi_error_constant": 1,
         "elementary_open_sqrt_constant": 6,
-        "elementary_open_sqrt_error_bound": open_sqrt_error_bound,
+        "elementary_open_sqrt_error_bound": (
+            ceil_sqrt(p) * elementary_open_sqrt_weight
+        ),
+        "sqrt_error_weight": total_sqrt_weight,
+        "sqrt_error_bound": open_sqrt_error_bound,
         "weighted_error_total_bound": (
             p * int(error_split["weighted_error_l1_bound"])
             + open_sqrt_error_bound
@@ -6266,6 +6337,27 @@ def scan_supports(
             if slack_two_second_kummer_saturation is not None
             else None
         ),
+        (
+            "canonical_slack_two_second_kummer_two_coordinate_"
+            "infinity_unramified_l1_bound"
+        ): (
+            int(
+                slack_two_second_kummer_saturation[
+                    "two_coordinate_infinity_unramified_l1_bound"
+                ]
+            )
+            if slack_two_second_kummer_saturation is not None
+            else None
+        ),
+        "canonical_slack_two_second_kummer_two_coordinate_ramified_l1_bound": (
+            int(
+                slack_two_second_kummer_saturation[
+                    "two_coordinate_ramified_l1_bound"
+                ]
+            )
+            if slack_two_second_kummer_saturation is not None
+            else None
+        ),
         "canonical_slack_two_second_kummer_three_coordinate_l1_bound": (
             int(
                 slack_two_second_kummer_saturation[
@@ -6282,6 +6374,11 @@ def scan_supports(
         ),
         "canonical_slack_two_second_kummer_weighted_error_l1_bound": (
             int(slack_two_second_kummer_saturation["weighted_error_l1_bound"])
+            if slack_two_second_kummer_saturation is not None
+            else None
+        ),
+        "canonical_slack_two_second_kummer_sqrt_error_bound": (
+            int(slack_two_second_kummer_saturation["sqrt_error_bound"])
             if slack_two_second_kummer_saturation is not None
             else None
         ),
