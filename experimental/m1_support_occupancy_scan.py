@@ -1474,6 +1474,9 @@ def slack_two_second_kummer_saturation_data(
         * square_coset_index
     )
     nonprincipal_tuple_count = denominator - 1
+    radical_component_degrees = (1, 1, 1, 2)
+    radical_total_degree = sum(radical_component_degrees)
+    deligne_constant = (radical_total_degree - 1) ** 2
     uniform_prime_threshold = 22 * denominator + 4
     chi_minus_three = quadratic_character(-3, p)
     principal_exact_count = p * p - 4 * p + 6 + 4 * chi_minus_three
@@ -1495,6 +1498,11 @@ def slack_two_second_kummer_saturation_data(
         "nonprincipal_tuple_count": nonprincipal_tuple_count,
         "divisor_power_failure_count": 0,
         "divisor_nontriviality_check": True,
+        "radical_component_degrees": radical_component_degrees,
+        "radical_total_degree": radical_total_degree,
+        "deligne_constant_formula": "(radical_total_degree - 1)^2",
+        "deligne_constant": deligne_constant,
+        "deligne_constant_check": nonprincipal_constant == deligne_constant,
         "uniform_prime_threshold": uniform_prime_threshold,
         "uniform_threshold_applies": p >= uniform_prime_threshold,
         "nonprincipal_constant": nonprincipal_constant,
@@ -3837,6 +3845,35 @@ def scan_supports(
                     "divisor_nontriviality_check"
                 ]
             )
+            if slack_two_second_kummer_saturation is not None
+            else None
+        ),
+        "canonical_slack_two_second_kummer_radical_component_degrees": (
+            list(
+                slack_two_second_kummer_saturation[
+                    "radical_component_degrees"
+                ]
+            )
+            if slack_two_second_kummer_saturation is not None
+            else None
+        ),
+        "canonical_slack_two_second_kummer_radical_total_degree": (
+            int(slack_two_second_kummer_saturation["radical_total_degree"])
+            if slack_two_second_kummer_saturation is not None
+            else None
+        ),
+        "canonical_slack_two_second_kummer_deligne_constant_formula": (
+            str(slack_two_second_kummer_saturation["deligne_constant_formula"])
+            if slack_two_second_kummer_saturation is not None
+            else None
+        ),
+        "canonical_slack_two_second_kummer_deligne_constant": (
+            int(slack_two_second_kummer_saturation["deligne_constant"])
+            if slack_two_second_kummer_saturation is not None
+            else None
+        ),
+        "canonical_slack_two_second_kummer_deligne_constant_check": (
+            bool(slack_two_second_kummer_saturation["deligne_constant_check"])
             if slack_two_second_kummer_saturation is not None
             else None
         ),

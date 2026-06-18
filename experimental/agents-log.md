@@ -64,6 +64,8 @@ Keep entries concise and link to the relevant files.
   low-index proper subgroups hit every nonzero `D^2`-coset; the scanner
   combines this with the lift gate and high-index ceiling. A divisor-exponent
   audit proves that no nonprincipal character tuple is a hidden Kummer power,
+  the imported `16p` constant is traced to the squarefree radical divisor
+  degree `1+1+1+2=5`,
   the principal open-set count and admissibility-line loss are computed
   exactly, and a verifier checks these plus low-index proper-subgroup samples
   against exact enumeration.

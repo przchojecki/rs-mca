@@ -1405,7 +1405,16 @@ p^2 - (3p-3) - (p-chi(-3)) + 3(1+chi(-3))
   = p^2 - 4p + 6 + 4 chi(-3).
 ```
 
-Assume the standard degree-five two-variable Kummer-Weil estimate
+The imported constant is attached to the radical divisor, not to the possibly
+large character orders. The squarefree support divisor has component degrees
+
+```text
+deg(u=0), deg(v=0), deg(w=0), deg(A=0) = 1,1,1,2,
+```
+
+so its total degree is `5`. The standard two-variable Kummer-Weil estimate
+for a nontrivial rank-one Kummer sheaf with squarefree divisor of total
+degree `r` gives constant `(r-1)^2`; here this is `(5-1)^2=16`. Thus we use
 
 ```text
 |S_{a,b,c,d}| <= 16 p

@@ -501,6 +501,10 @@ psi(u^(ga) v^(gb) (-1-u-v)^(gc) A(u,v)^d),
 with divisor exponents `(ga,gb,gc,d)` modulo `h=eg`. These are all zero only
 for the principal tuple, so no nonprincipal term is an `h`-th power in the
 Kummer open set.
+The `*_radical_total_degree` and `*_deligne_constant` fields make the
+imported constant explicit: the squarefree support divisor has component
+degrees `1,1,1,2`, total degree `5`, and the standard two-variable
+Kummer-Weil estimate contributes `(5-1)^2=16`.
 The `*_principal_exact_count` field records the exact principal open-set
 count
 

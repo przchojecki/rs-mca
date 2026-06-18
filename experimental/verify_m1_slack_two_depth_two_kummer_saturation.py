@@ -92,6 +92,17 @@ def main() -> None:
         )
         if failures != int(certificate["divisor_power_failure_count"]):
             raise AssertionError((p, n, failures, certificate))
+        radical_degrees = tuple(certificate["radical_component_degrees"])
+        if radical_degrees != (1, 1, 1, 2):
+            raise AssertionError((p, n, radical_degrees, certificate))
+        radical_total = sum(radical_degrees)
+        if radical_total != int(certificate["radical_total_degree"]):
+            raise AssertionError((p, n, radical_total, certificate))
+        deligne_constant = (radical_total - 1) ** 2
+        if deligne_constant != int(certificate["deligne_constant"]):
+            raise AssertionError((p, n, deligne_constant, certificate))
+        if not bool(certificate["deligne_constant_check"]):
+            raise AssertionError((p, n, certificate))
         principal_count = principal_open_count(p)
         if principal_count != int(certificate["principal_exact_count"]):
             raise AssertionError((p, n, principal_count, certificate))
@@ -114,6 +125,8 @@ def main() -> None:
                 certificate_positive,
                 certificate["uniform_prime_threshold"],
                 failures,
+                radical_total,
+                deligne_constant,
                 principal_count,
                 degeneracy_count,
                 nonzero_coset_count,
