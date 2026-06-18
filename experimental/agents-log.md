@@ -29,6 +29,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-18 - M1 y-line kernel resultant
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/m1_depth_two_equal_line_diagonal_reduction.md`,
+  `experimental/verify_m1_depth_two_equal_line_diagonal_reduction.py`,
+  `experimental/m1_kummer_weil_import_contract.md`,
+  `experimental/m1_residue_line_roadmap.md`,
+  `experimental/agents-log.md`.
+- **Status:** CONDITIONAL / AUDIT.
+- **What is being added:** The `y`-pushforward is rewritten as an explicit
+  finite kernel sum. The outer quadratic character cancels, leaving the
+  radical `x+(3x-1)z^2`, whose split-fiber product has resultant
+  `16x^2y^2-8xy^2+4xy+y^2-2y+1`.
+- **How it is useful:** Gives a concrete divisor for the next conductor
+  calculation of the degree-two pushforward trace `G(y)`.
+- **What to do next:** Compute or bound the conductor contribution of this
+  resultant divisor together with `x=0`, `x=1`, `y=0`, and `4y-3=0`.
+
 ### 2026-06-18 - M1 balanced y-line pushforward
 
 - **Agent/model:** Codex.

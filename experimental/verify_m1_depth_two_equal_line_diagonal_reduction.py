@@ -162,6 +162,21 @@ def twist_map_deck_involution(z: int, p: int) -> int:
     return (z + 1) * pow(denominator, -1, p) % p
 
 
+def y_kernel_argument(x: int, z: int, p: int) -> int:
+    return (x + (3 * x - 1) * z * z) % p
+
+
+def lambda_y_resultant(x: int, y_value: int, p: int) -> int:
+    return (
+        16 * x * x * y_value * y_value
+        - 8 * x * y_value * y_value
+        + 4 * x * y_value
+        + y_value * y_value
+        - 2 * y_value
+        + 1
+    ) % p
+
+
 def line_monodromies(e: int, h: int, a: int, d: int) -> Tuple[int, int, int]:
     lift = h // e
     first = (lift * a) % h
@@ -400,6 +415,29 @@ def balanced_y_pushforward_sum(
         if y_value == 3 % p:
             fiber_trace += hypergeometric_trace(p, mu, eta, infinity_lambda)
         total += rho[y_value] * fiber_trace
+    return total
+
+
+def balanced_y_kernel_sum(
+    p: int,
+    mu: List[complex],
+    eta: List[complex],
+    alpha: List[complex],
+    rho: List[complex],
+) -> complex:
+    total = 0j
+    for z in range(p):
+        if z == 1 or (1 + 3 * z * z) % p == 0:
+            continue
+        y_value = twist_y_value(z, p)
+        for x in range(p):
+            total += (
+                alpha[y_value]
+                * mu[x]
+                * eta[(x - 1) % p]
+                * quadratic_character(y_kernel_argument(x, z, p), p)
+            )
+    total += rho[3 % p] * hypergeometric_trace(p, mu, eta, pow(3, -1, p))
     return total
 
 
@@ -805,6 +843,67 @@ def verify_balanced_y_pushforward_geometry(p: int) -> Dict[str, object]:
     }
 
 
+def verify_balanced_y_kernel_resultant(p: int) -> Dict[str, object]:
+    if p <= 3:
+        raise AssertionError(p)
+    one_third = pow(3, -1, p)
+    checked_pairs = 0
+    product_checks = 0
+
+    for z in range(p):
+        if z == 1 or (1 + 3 * z * z) % p == 0:
+            continue
+        y_value = twist_y_value(z, p)
+        chi_y = quadratic_character(y_value, p)
+        for x in range(p):
+            left = quadratic_character((x - lambda_z_value(z, p)) % p, p)
+            right = chi_y * quadratic_character(y_kernel_argument(x, z, p), p)
+            if left != right:
+                raise AssertionError(("kernel character", p, x, z))
+        checked_pairs += 1
+
+    for y_value in range(1, p):
+        if y_value == 3 % p:
+            continue
+        roots = [
+            z
+            for z in range(p)
+            if z != 1
+            and (1 + 3 * z * z) % p != 0
+            and twist_y_value(z, p) == y_value
+        ]
+        if len(roots) != 2:
+            continue
+        denominator = (y_value - 3) * (y_value - 3) % p
+        denominator_inverse = pow(denominator, -1, p)
+        for x in range(p):
+            product = 1
+            for z in roots:
+                product = product * y_kernel_argument(x, z, p) % p
+            expected = lambda_y_resultant(x, y_value, p)
+            expected = expected * denominator_inverse % p
+            if product != expected:
+                raise AssertionError(("kernel resultant", p, x, y_value))
+            product_checks += 1
+
+    special_z = one_third
+    if twist_y_value(special_z, p) != 3 % p:
+        raise AssertionError(("kernel y=3 finite point", p))
+    if lambda_z_value(special_z, p) != pow(12, -1, p):
+        raise AssertionError(("kernel y=3 lambda", p))
+
+    return {
+        "p": p,
+        "kernel_argument": "x+(3x-1)z^2",
+        "finite_kernel_identity": "chi_2(x-Lambda(z))=chi_2(y)chi_2(x+(3x-1)z^2)",
+        "resultant": "16x^2y^2-8xy^2+4xy+y^2-2y+1",
+        "resultant_meaning": "product over a split finite y-fiber",
+        "checked_finite_z": checked_pairs,
+        "product_checks": product_checks,
+        "projective_y_three": "finite lambda=1/12 plus infinity lambda=1/3",
+    }
+
+
 def audit_case(case: Dict[str, int]) -> Dict[str, object]:
     p = int(case["p"])
     n = int(case["n"])
@@ -891,6 +990,15 @@ def audit_case(case: Dict[str, int]) -> Dict[str, object]:
     projective_z_main = balanced_complete + fixed_infinity
     if abs(projective_y_main - projective_z_main) > 1e-8:
         raise AssertionError((case, projective_y_main, projective_z_main))
+    kernel_main = balanced_y_kernel_sum(
+        p,
+        mu,
+        eta,
+        alpha,
+        rho_chi,
+    )
+    if abs(projective_y_main - kernel_main) > 1e-8:
+        raise AssertionError((case, projective_y_main, kernel_main))
     balanced_main = quadratic_character(-4, p) * (
         balanced_complete - deleted_regular + fixed_infinity
     )
@@ -922,6 +1030,7 @@ def audit_case(case: Dict[str, int]) -> Dict[str, object]:
         "quotient_pair_error": f"{abs(pullback_main - quotient_paired_main):.2e}",
         "balanced_z_error": f"{abs(pullback_main - balanced_main):.2e}",
         "y_pushforward_error": f"{abs(projective_y_main - projective_z_main):.2e}",
+        "y_kernel_error": f"{abs(projective_y_main - kernel_main):.2e}",
     }
 
 
@@ -964,6 +1073,12 @@ def main() -> None:
         for case in CASES
     ]
     for row in y_rows:
+        print(row)
+    kernel_rows = [
+        verify_balanced_y_kernel_resultant(int(case["p"]))
+        for case in CASES
+    ]
+    for row in kernel_rows:
         print(row)
     top = max(rows, key=lambda row: float(row["sum_ratio"]))
     for key, value in EXPECTED_TOP.items():

@@ -253,6 +253,10 @@ There is also a useful pushforward form: with
 `sum_{y in F_p^*} (alpha chi_2)(y) G(y)`, where the two lambda-values in a
 generic fiber satisfy
 `16y^2 lambda^2 + (-8y^2+4y)lambda + (y-1)^2=0`.
+After interchanging the hypergeometric sum with the finite `y`-fiber, the
+outer quadratic character cancels and the finite kernel has the single
+quadratic factor `x+(3x-1)z^2`; the fiber resultant is
+`16x^2y^2-8xy^2+4xy+y^2-2y+1`.
 
 Thus the fixed-window, quotient-window, and two-fiber certificates still use
 the conservative common ledger:

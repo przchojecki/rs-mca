@@ -44,7 +44,9 @@ should be revised as the project learns more.
    saving. The latest reduction pushes the balanced kernel through
    `y=(1+3z^2)/(1-z)^2`, turning the projective completed trace into a
    Mellin transform `sum_y (alpha chi_2)(y) G(y)`. The next concrete target
-   is the conductor of this degree-two hypergeometric pushforward `G`.
+   is the conductor of this degree-two hypergeometric pushforward `G`; after
+   interchanging sums, its explicit kernel radical is `x+(3x-1)z^2` and its
+   fiber resultant is `16x^2y^2-8xy^2+4xy+y^2-2y+1`.
 4. After the trace-family wall is closed, generalize to fixed low-slack
    templates, then separate tangent, quotient-periodic, finite-template, and
    genuinely aperiodic packing.

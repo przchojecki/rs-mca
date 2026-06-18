@@ -694,6 +694,58 @@ standard `y=infinity`/`y=0` boundary of the outer Kummer character, while the
 nontrivial hypergeometric pairing is concentrated in the quadratic relation
 for `lambda`.
 
+One can also remove the remaining denominator inside the quadratic character.
+For finite `z`, write
+
+```text
+A_y(x,z) = x + (3x-1)z^2.
+```
+
+Since
+
+```text
+1+3z^2 = y(1-z)^2,
+```
+
+we have
+
+```text
+chi_2(x-Lambda(z)) = chi_2(y) chi_2(A_y(x,z)).
+```
+
+Multiplying by the outer character `rho(y)=alpha(y)chi_2(y)` cancels the
+quadratic factor and leaves the finite part of the projective trace as
+
+```text
+sum_z sum_x
+  alpha(y(z)) alpha^(-2)(x) alpha^3(x-1)
+  chi_2(x+(3x-1)z^2),
+```
+
+with the separate projective contribution over `y=3` equal to
+`rho(3)H(1/3)`.  Thus the y-pushforward can be studied either as the
+degree-two Mellin transform above or as an explicit two-variable kernel sum
+with a single quadratic radical.
+
+For a split finite `y`-fiber, the product of the two quadratic arguments is
+
+```text
+prod_{z: y(z)=y} (x+(3x-1)z^2)
+  = (16x^2y^2 - 8xy^2 + 4xy + y^2 - 2y + 1)/(y-3)^2.
+```
+
+Equivalently the numerator is the resultant of
+`y(1-z)^2-(1+3z^2)` and `x(1+3z^2)-z^2` in `z`.  This gives a concrete
+kernel divisor for the next conductor calculation:
+
+```text
+x=0,        x=1,        y=0,        y=infinity,
+4y-3=0,    16x^2y^2 - 8xy^2 + 4xy + y^2 - 2y + 1=0,
+```
+
+with `y=3` only marking the ordinary projective fiber
+`lambda=1/12,1/3`.
+
 ## Pullback Branch Checklist
 
 The rational pullback
