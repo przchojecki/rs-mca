@@ -9,6 +9,7 @@ from typing import Dict, Iterable, List, Tuple
 
 
 EXHAUSTIVE_PRIMES = (17, 31)
+MOMENT_PRIMES = (5, 7, 11, 17, 31)
 TARGETED_CASES = (
     (37, 2, 5),
     (37, 7, 11),
@@ -190,6 +191,82 @@ def verify_discriminant_values(p: int) -> None:
             raise AssertionError((p, y, q_at_zero, expected_zero))
 
 
+def core_collision_formula(p: int) -> int:
+    return (
+        2 * p * p
+        - 8 * p
+        + 13
+        - legendre(-3, p) * p
+        + 9 * legendre(-3, p)
+        + legendre(-2, p)
+    )
+
+
+def line_support_formula(p: int) -> int:
+    return p - 3 - legendre(-3, p)
+
+
+def direct_core_collision_count(p: int) -> int:
+    total = 0
+    for v in range(1, p):
+        values: Dict[int, int] = {}
+        for u in range(1, p):
+            a_value = shape_a(u, v, p)
+            if a_value == 0:
+                continue
+            key = a_value * pow(u, -1, p) % p
+            values[key] = values.get(key, 0) + 1
+        total += sum(count * count for count in values.values())
+    return total
+
+
+def direct_line_support_count(p: int) -> int:
+    count = 0
+    for u in range(p):
+        v = (-1 - u) % p
+        if u == 0 or v == 0 or shape_a(u, v, p) == 0:
+            continue
+        count += 1
+    return count
+
+
+def direct_full_character_moments(p: int) -> Tuple[int, int]:
+    logs = log_table(p)
+    table = character_table(p, logs)
+    core_moment = 0.0
+    line_moment = 0.0
+    for eta_exponent in range(p - 1):
+        eta = table[eta_exponent]
+        eta_inv = table[(-eta_exponent) % (p - 1)]
+        for nu_exponent in range(p - 1):
+            nu = table[nu_exponent]
+            core_moment += abs(direct_core(p, eta_inv, nu, eta)) ** 2
+            line_moment += abs(line_correction(p, eta_inv, nu, eta)) ** 2
+    return round(core_moment), round(line_moment)
+
+
+def verify_second_moments() -> List[Tuple[int, int, int]]:
+    checked: List[Tuple[int, int, int]] = []
+    for p in MOMENT_PRIMES:
+        collision_count = direct_core_collision_count(p)
+        expected_collision_count = core_collision_formula(p)
+        if collision_count != expected_collision_count:
+            raise AssertionError((p, collision_count, expected_collision_count))
+        line_support_count = direct_line_support_count(p)
+        expected_line_support_count = line_support_formula(p)
+        if line_support_count != expected_line_support_count:
+            raise AssertionError((p, line_support_count, expected_line_support_count))
+        core_moment, line_moment = direct_full_character_moments(p)
+        expected_core_moment = (p - 1) * (p - 1) * expected_collision_count
+        expected_line_moment = (p - 1) * (p - 1) * expected_line_support_count
+        if core_moment != expected_core_moment:
+            raise AssertionError((p, core_moment, expected_core_moment))
+        if line_moment != expected_line_moment:
+            raise AssertionError((p, line_moment, expected_line_moment))
+        checked.append((p, expected_collision_count, expected_line_support_count))
+    return checked
+
+
 def main() -> None:
     tables: Dict[int, List[List[complex]]] = {}
     checked_cases = 0
@@ -202,6 +279,7 @@ def main() -> None:
     max_core_label: Tuple[object, ...] = ()
     max_open_label: Tuple[object, ...] = ()
     max_line_label: Tuple[object, ...] = ()
+    moment_checked = verify_second_moments()
     for p, eta_exponent, nu_exponent in case_iterator():
         if p not in tables:
             logs = log_table(p)
@@ -259,6 +337,7 @@ def main() -> None:
         f"max_core_ratio={max_core_ratio:.10f}@{max_core_label}",
         f"max_open_ratio={max_open_ratio:.10f}@{max_open_label}",
         f"max_line_ratio={max_line_ratio:.10f}@{max_line_label}",
+        f"moment_checked={moment_checked}",
     )
 
 

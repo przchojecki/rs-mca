@@ -183,6 +183,72 @@ target.  It exhausts all nonprincipal `(eta,nu)` for `p=17,31` and checks
 targeted larger cases; in the current audit it reports no `4p` violation for
 the core or open sums and no `3 sqrt(p)` violation for the line correction.
 
+## Full-Character Second Moment
+
+The transformed core also has an exact orthogonality check.  Sum over all
+multiplicative characters `eta,nu` of `F_p^*`, including the principal
+character extended by zero.  Then
+
+```text
+sum_{eta,nu} |C_{eta,nu}|^2 = (p-1)^2 S_p,
+
+S_p = 2p^2 - 8p + 13 - chi_2(-3)p + 9chi_2(-3) + chi_2(-2).
+```
+
+Indeed, character orthogonality gives `(p-1)^2` times the number of
+collisions
+
+```text
+v=v' != 0,        A(u,v)/u = A(u',v)/u' != 0.
+```
+
+For fixed `v`, this is the collision count of
+
+```text
+u |-> -(u+v+1+B(v)/u),        u in F_p^*.
+```
+
+If `B(v) != 0`, the only collisions are
+
+```text
+u=u'        or        uu'=B(v).
+```
+
+Thus the count for that `v` is
+
+```text
+2(p-1) - (1+chi_2(B(v))) - (1+chi_2(Delta(v)))^2,
+Delta(v) = -3v^2 - 2v - 3,
+```
+
+where the first subtraction removes the double-counted branch points and the
+second removes the zero value `A=0`.  If `B(v)=0`, the map is linear on
+`F_p^*` and the nonzero-value count is `p-2`.
+
+Summing over `v in F_p^*` uses
+
+```text
+sum_{v in F_p^*} chi_2(B(v)) = -2,
+sum_{B(v)!=0} chi_2(Delta(v)) = -1 - 3chi_2(-3),
+#{v in F_p^*: B(v)!=0, Delta(v)!=0}
+  = p - 3 - chi_2(-3) - chi_2(-2),
+```
+
+which gives the displayed formula for `S_p`.  In particular the full-family
+root-mean-square core size is `sqrt(S_p) < sqrt(2)p`.  This does not prove
+the pointwise `4p` target, but it rules out any hidden large average behind
+the line-conic resonant family.
+
+The removed line has an even simpler full-character moment:
+
+```text
+sum_{eta,nu} |L_{eta,nu}|^2
+  = (p-1)^2 (p - 3 - chi_2(-3)).
+```
+
+Here orthogonality forces `-1-u=-1-u'` and then `u=u'`; the support excludes
+`u=0`, `u=-1`, and the `1+chi_2(-3)` roots of `u^2+u+1`.
+
 The finite verifier is
 
 ```bash

@@ -29,6 +29,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-19 - M1 line-conic second moment
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/m1_depth_two_line_conic_resonance_reduction.md`,
+  `experimental/verify_m1_depth_two_line_conic_resonance_reduction.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** Proves and verifies an exact full-character
+  second moment for the line-conic-resonant core:
+  `(p-1)^2(2p^2-8p+13-chi_2(-3)p+9chi_2(-3)+chi_2(-2))`.
+- **How it is useful:** This gives structural evidence for the transformed
+  `C_2^lc` conductor target: the full-family RMS core size is below
+  `sqrt(2)p`, so a `4p` counterexample would be exceptional rather than
+  average-driven.
+- **What to do next:** Use the collision geometry behind the moment formula
+  to pursue the rank-two middle-extension conductor bound.
+
 ### 2026-06-18 - M1 line-conic resonant conditional ledger
 
 - **Agent/model:** Codex.
