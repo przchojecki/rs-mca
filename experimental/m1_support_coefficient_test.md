@@ -550,6 +550,35 @@ whole-fiber lift count is again determined only by the touched quotient
 fibers. Hence the nonzero slope image is a union of cosets `a_T(u)D^T`, with
 the zero-slope subcatalog equal to the power-coset family above.
 
+This gives a direct bad-slope budget at every first-superboundary slack. Let
+`C_T^act(D)` be the normalized shapes with nonzero exact-support lift count,
+and let `Z_T^act` be the active shapes with `a_T(u)=0`. Then the exact
+coset-compressed slope count is
+
+```text
+1_{Z_T^act nonempty}
+  + #{nonzero cosets hit by a_T(C_T^act) in F^*/D^T} * |D^T|.
+```
+
+In particular,
+
+```text
+|Bad_{|P|=T+1}|
+  <= min(|F|,
+         1_{Z_T^act nonempty}
+         + ((|C_T^act|-|Z_T^act|)/(T+1)!) * |D^T|).
+```
+
+The quotient by `(T+1)!` is legitimate because the active condition,
+nonzero slope status, and the coset `a_T(u)D^T` are invariant under choosing
+a different base point and ordering of the same residual packet. Moreover a
+nonzero-slope normalized packet has trivial multiplicative stabilizer: if
+`lambda P=P`, then its sparse polynomial
+`X^(T+1)+zX-c` satisfies `lambda^(T+1)=1` from the constant term and
+`z lambda=z` from the `X` term, so `z!=0` forces `lambda=1`. Zero-slope
+shapes may have stabilizer, but they contribute only the single slope `0`.
+For `T=2` this recovers the square-coset slope bound below.
+
 This formula has an immediate dither gate. Since the residual packet has size
 `T+1` but the exact support size is `s=k+T`, a first-superboundary packet can
 lift only if
@@ -950,6 +979,8 @@ normalization has size `(T+1)!`, and the slope image is a union of cosets
 `a_T(C_T(D))D^T`. The zero-slope subcatalog is the counted
 `(T+1)`-power-coset family, while the remaining nonzero slopes are exactly
 the nonzero coefficients of `D`-split sparse trinomials `X^(T+1)+zX-c`.
+The resulting slope budget is the generic power-coset bound
+`1_zero + (active nonzero shape orbits)|D^T|`, capped by the field size.
 The exact-support dither gate adds that this whole layer is inactive unless
 `m | k-1`; for dyadic quotient scales dividing an exact dimension `k0`, a
 dither `k=k0-r` leaves only scales dividing `r+1`.

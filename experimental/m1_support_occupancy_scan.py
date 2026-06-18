@@ -495,18 +495,37 @@ def first_superboundary_shape_coset_ledger(
     abstract_power_coset_slope_count = (
         (1 if zero_slope else 0) + len(nonzero_power_cosets) * len(power_image)
     )
+    active_nonzero_parameter_count = (
+        active_parameter_count - active_zero_parameter_count
+    )
+    active_nonzero_parameter_orbit_check = (
+        active_nonzero_parameter_count % orbit_factor == 0
+    )
+    active_nonzero_orbit_bound = (
+        active_nonzero_parameter_count // orbit_factor
+        if active_nonzero_parameter_orbit_check
+        else active_parameter_count
+    )
+    power_coset_slope_bound = (
+        (1 if active_zero_slope else 0)
+        + active_nonzero_orbit_bound * len(power_image)
+    )
     return {
         "residual_size": residual_size,
         "orbit_factor": orbit_factor,
         "parameter_count": parameter_count,
         "active_parameter_count": active_parameter_count,
         "active_zero_parameter_count": active_zero_parameter_count,
+        "active_nonzero_parameter_orbit_check": (
+            active_nonzero_parameter_orbit_check
+        ),
         "nonzero_power_coset_count": len(nonzero_power_cosets),
         "active_nonzero_power_coset_count": len(active_nonzero_power_cosets),
         "total_nonzero_power_coset_count": total_nonzero_power_cosets,
         "power_image_size": len(power_image),
         "abstract_power_coset_slope_count": abstract_power_coset_slope_count,
         "power_coset_slope_count": power_coset_slope_count,
+        "power_coset_slope_bound": min(p, power_coset_slope_bound),
         "orbit_quotient_check": orbit_check,
         "packet_count": packet_count_numerator // orbit_factor,
         "weighted_support_count": support_count_numerator // orbit_factor,
@@ -1787,6 +1806,15 @@ def scan_supports(
             if first_superboundary_shape_ledger is not None
             else None
         ),
+        "canonical_first_superboundary_shape_active_nonzero_orbit_check": (
+            bool(
+                first_superboundary_shape_ledger[
+                    "active_nonzero_parameter_orbit_check"
+                ]
+            )
+            if first_superboundary_shape_ledger is not None
+            else None
+        ),
         "canonical_first_superboundary_shape_nonzero_power_coset_count": (
             int(first_superboundary_shape_ledger["nonzero_power_coset_count"])
             if first_superboundary_shape_ledger is not None
@@ -1863,6 +1891,17 @@ def scan_supports(
         "canonical_first_superboundary_shape_power_coset_slope_count_check": (
             len(first_superboundary_slope_histogram)
             == int(first_superboundary_shape_ledger["power_coset_slope_count"])
+            if first_superboundary_shape_ledger is not None
+            else None
+        ),
+        "canonical_first_superboundary_shape_power_coset_slope_bound": (
+            int(first_superboundary_shape_ledger["power_coset_slope_bound"])
+            if first_superboundary_shape_ledger is not None
+            else None
+        ),
+        "canonical_first_superboundary_shape_power_coset_slope_bound_check": (
+            len(first_superboundary_slope_histogram)
+            <= int(first_superboundary_shape_ledger["power_coset_slope_bound"])
             if first_superboundary_shape_ledger is not None
             else None
         ),
@@ -2372,6 +2411,7 @@ def print_text(result: Dict[str, object]) -> None:
             "first_superboundary_lift_gate_check={gate_check} "
             "first_superboundary_zero_check={first} "
             "first_superboundary_shape_check={first_shape} "
+            "first_superboundary_shape_bound={first_shape_bound} "
             "slack_two_shape_check={shape} "
             "slack_three_shape_check={shape3} "
             "subboundary_floor_check={floor} "
@@ -2395,6 +2435,9 @@ def print_text(result: Dict[str, object]) -> None:
                 ],
                 first_shape=result[
                     "canonical_first_superboundary_shape_support_count_check"
+                ],
+                first_shape_bound=result[
+                    "canonical_first_superboundary_shape_power_coset_slope_bound_check"
                 ],
                 shape=result["canonical_slack_two_shape_support_count_check"],
                 shape3=result["canonical_slack_three_shape_support_count_check"],

@@ -50,10 +50,11 @@ Keep entries concise and link to the relevant files.
   saturation formula. The proper-subgroup coset image also has an exact
   character expansion and a conditional small-index saturation criterion. The
   first-superboundary layer now has an all-slack shape-coset reduction through
-  normalized sets `C_T(D)` and slope cosets `a_T(C_T(D))D^T`, plus the
-  exact-support dither gates `m | k-d` for small-residual depth `d`. For
-  `T=3`, this specializes further to a split-cubic beta ledger, equivalently
-  a conic shape set, and the cube-coset image `beta D^3`.
+  normalized sets `C_T(D)`, slope cosets `a_T(C_T(D))D^T`, and the associated
+  field-capped power-coset slope bound, plus the exact-support dither gates
+  `m | k-d` for small-residual depth `d`. For `T=3`, this specializes further
+  to a split-cubic beta ledger, equivalently a conic shape set, and the
+  cube-coset image `beta D^3`.
 - **How it is useful:** Turns the first nonzero superboundary catalog from
   support enumeration into a finite multiplicative unit-equation problem plus
   the image of `alpha(C_2(D))` in `F_p^*/D^2`, and extends the same

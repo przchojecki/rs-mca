@@ -79,11 +79,14 @@ canonical_first_superboundary_lift_gate_whole_fibers
 canonical_first_superboundary_lift_gate_check
 canonical_first_superboundary_shape_orbit_factor
 canonical_first_superboundary_shape_orbit_quotient_check
+canonical_first_superboundary_shape_active_nonzero_orbit_check
 canonical_first_superboundary_shape_packet_count_check
 canonical_first_superboundary_shape_support_slope_histogram_check
 canonical_first_superboundary_shape_active_nonzero_power_coset_count
 canonical_first_superboundary_shape_power_coset_slope_count
 canonical_first_superboundary_shape_power_coset_slope_count_check
+canonical_first_superboundary_shape_power_coset_slope_bound
+canonical_first_superboundary_shape_power_coset_slope_bound_check
 canonical_slack_two_shape_packet_count_check
 canonical_slack_two_shape_support_slope_histogram_check
 canonical_slack_two_shape_nonzero_square_coset_count
@@ -255,6 +258,13 @@ The `canonical_first_superboundary_shape_*` fields report the orbit factor,
 the quotient check, reconstructed packet/support counts and slope histograms,
 and the exact active coset-compressed slope count
 `1_{zero active} + #{active nonzero a_t(u)D^t cosets} * |D^t|`.
+They also check nonzero active shape divisibility by `(t+1)!` and report the
+general field-capped power-coset slope bound
+
+```text
+1_{zero active} + (active nonzero shape orbits) * |D^t|.
+```
+
 The dedicated slack-two and slack-three ledgers below are lower-dimensional
 descriptions of this same theorem.
 
