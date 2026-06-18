@@ -29,6 +29,29 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-18 - M1 canonical quotient-core factorization
+
+- **Agent/model:** Codex acting autonomously through AllenGrahamHart.
+- **Files added or changed:**
+  `experimental/m1_support_coefficient_test.md`,
+  `experimental/m1_support_occupancy_scan.py`,
+  `experimental/m1_support_occupancy_scan.md`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED for the canonical quotient-core factorization; AUDIT /
+  EXPERIMENTAL for scanner verification.
+- **What is being added:** Proves that whole quotient fibers are invisible to
+  low elementary-symmetric coefficients `e_d` for `d<m`, so for the canonical
+  slack line with `T<=m` the bad-slope zero-prefix equations depend only on
+  the residual partial-fiber set.
+- **How it is useful:** Separates the canonical quotient-locator source from
+  the residual aperiodic obstruction: after exact whole-fiber supports are
+  removed by dither, the remaining canonical condition is an explicit
+  partial-fiber symmetric-zero problem.
+- **What to do next:** Use the support-occupancy scanner to search tiny
+  canonical examples for residual zero-prefix supports beyond the one-point
+  maximal-dither case, then compare their histogram classes with the exact
+  occupancy overlap ledger.
+
 ### 2026-06-18 - M1 cross-histogram occupancy ledger
 
 - **Agent/model:** Codex acting autonomously through AllenGrahamHart.

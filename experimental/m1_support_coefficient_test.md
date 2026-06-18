@@ -170,6 +170,64 @@ Thus the support coefficient test recovers the exact multi-symmetric image
 case replaces this special elementary-symmetric vector by the pair
 `Pi_S(f), Pi_S(g)`.
 
+## Canonical Quotient-Core Factorization
+
+The canonical elementary-symmetric test interacts cleanly with quotient
+fibers. Suppose the domain is partitioned into fibers
+
+```text
+B_i = {x in D : x^m = y_i},
+```
+
+so each whole fiber has vanishing polynomial `X^m-y_i`.  For a support `S`,
+let `W(S)` be the union of the whole fibers contained in `S`, and let
+
+```text
+R(S) = S \ W(S)
+```
+
+be the residual partial-fiber set. Then
+
+```text
+L_S(X) = L_{W(S)}(X) L_{R(S)}(X),
+L_{W(S)}(X) = product_{B_i subset S} (X^m-y_i) in F[X^m].
+```
+
+Since `L_{W(S)}` has no terms whose degree deficit is strictly between `1`
+and `m-1`, the low elementary-symmetric coefficients are invisible to the
+whole quotient core:
+
+```text
+e_d(S) = e_d(R(S))        for 1 <= d < m.
+```
+
+Consequently, for the canonical slack line `X^(k+T)+zX^k` with `T <= m`, an
+exact support `S` contributes a bad slope if and only if
+
+```text
+e_1(R(S)) = ... = e_(T-1)(R(S)) = 0.
+```
+
+The slope is still
+
+```text
+z = (-1)^T e_T(S).
+```
+
+If `T < m`, the slope is also `z=(-1)^T e_T(R(S))`; at the boundary `T=m`,
+the slope may additionally see the quotient-core coefficient from
+`L_{W(S)}`.
+
+This is a useful separation. Whole-fiber quotient structure automatically
+satisfies the canonical zero-prefix equations, while dimension dither that
+prevents exact whole-fiber supports leaves a residual partial-fiber
+zero-prefix problem. For example, in the multiplicative-domain setting a
+one-point residual set never satisfies `e_1(R)=0`, so maximal dither removes
+the canonical quotient-locator incidence at every slack `T>=2` with `T<=m`;
+the one-remainder overlap ledger remains relevant for arbitrary or random
+line data, but it is not itself a canonical quotient-locator source in this
+range.
+
 ## M1 Impact
 
 This turns the positive M1 problem into a precise incidence question:
@@ -195,6 +253,10 @@ The quotient-occupancy decomposition adds a second label to the same incidence
 problem: after supports are grouped by fiber content, the quotient-structured
 part can be compared against the exact `H_h` ledger before any remaining
 support-collinearity is called aperiodic.
+The canonical quotient-core factorization sharpens this in the monomial
+slack line: for `T<=m`, whole quotient fibers can be stripped away before
+checking the zero-prefix equations, leaving a concrete residual
+partial-fiber symmetric-zero problem.
 
 ## Suggested Next Step
 
@@ -209,4 +271,7 @@ python3 experimental/m1_support_occupancy_scan.py \
 
 The next step is to run this on more tiny fields and line families, then compare
 the observed histogram incidence counts with the occupancy-profile random-line
-ledger before attacking the genuinely aperiodic packing number.
+ledger before attacking the genuinely aperiodic packing number. For the default
+canonical line, the scanner also verifies the elementary-symmetric slope
+formula and the quotient-core invisibility identity `e_d(S)=e_d(R(S))` for
+`d<m`.

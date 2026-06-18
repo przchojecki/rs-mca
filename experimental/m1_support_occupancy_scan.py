@@ -95,6 +95,53 @@ def slope_from_top_coefficients(
     return (-scalar) % p
 
 
+def elementary_symmetric_prefix(
+    values: Sequence[int],
+    max_degree: int,
+    p: int,
+) -> Tuple[int, ...]:
+    """Return e_0,...,e_max_degree for the supplied field values."""
+
+    coeffs = [0] * (max_degree + 1)
+    coeffs[0] = 1
+    for value in values:
+        for degree in range(max_degree, 0, -1):
+            coeffs[degree] += value * coeffs[degree - 1]
+            coeffs[degree] %= p
+    return tuple(coeffs)
+
+
+def residual_support_indices(
+    support: Sequence[int],
+    quotient_order: int,
+    fiber_size: int,
+) -> Tuple[int, ...]:
+    support_set = set(support)
+    residual = []
+    for fiber in range(quotient_order):
+        fiber_indices = [
+            fiber + quotient_order * offset
+            for offset in range(fiber_size)
+        ]
+        occupied = [index for index in fiber_indices if index in support_set]
+        if len(occupied) == fiber_size:
+            continue
+        residual.extend(occupied)
+    return tuple(residual)
+
+
+def canonical_slope_from_symmetric_prefix(
+    values: Sequence[int],
+    slack: int,
+    p: int,
+) -> Optional[int]:
+    sym = elementary_symmetric_prefix(values, slack, p)
+    if any(sym[degree] % p for degree in range(1, slack)):
+        return None
+    sign = -1 if slack % 2 else 1
+    return (sign * sym[slack]) % p
+
+
 def occupancy_histogram(
     support: Sequence[int],
     quotient_order: int,
@@ -143,6 +190,8 @@ def empty_histogram_record(histogram: Sequence[int]) -> Dict[str, object]:
         "contained_support_count": 0,
         "no_slope_support_count": 0,
         "incidence_count": 0,
+        "canonical_zero_prefix_support_count": 0,
+        "canonical_residual_zero_prefix_support_count": 0,
         "bad_slopes": set(),
         "slope_histogram": Counter(),
     }
@@ -203,6 +252,13 @@ def scan_supports(
     direction_exp = k if direction_exp is None else direction_exp
     anchor = monomial_word(domain, anchor_exp, p)
     direction = monomial_word(domain, direction_exp, p)
+    canonical_line = anchor_exp == k + slack and direction_exp == k
+    low_deficit_limit = min(slack - 1, fiber_size - 1)
+    canonical_formula_mismatches = 0
+    low_deficit_mismatches = 0
+    residual_zero_prefix_mismatches = 0
+    canonical_zero_prefix_count = 0
+    canonical_residual_zero_prefix_count = 0
 
     records: Dict[Tuple[int, ...], Dict[str, object]] = {}
     bad_slopes = set()
@@ -217,8 +273,49 @@ def scan_supports(
         record = records[histogram]
         record["support_count"] = int(record["support_count"]) + 1
 
+        support_values = [domain[index] for index in support]
+        residual = residual_support_indices(
+            support,
+            quotient_order,
+            fiber_size,
+        )
+        residual_values = [domain[index] for index in residual]
+        support_sym = elementary_symmetric_prefix(support_values, slack, p)
+        residual_sym = elementary_symmetric_prefix(residual_values, slack, p)
+        for degree in range(1, low_deficit_limit + 1):
+            if support_sym[degree] != residual_sym[degree]:
+                low_deficit_mismatches += 1
+        residual_zero_prefix = all(
+            residual_sym[degree] % p == 0 for degree in range(1, slack)
+        )
+        if residual_zero_prefix:
+            canonical_residual_zero_prefix_count += 1
+            record["canonical_residual_zero_prefix_support_count"] = (
+                int(record["canonical_residual_zero_prefix_support_count"]) + 1
+            )
+
         anchor_top = top_coefficients(anchor, domain, support, k, slack, p)
         direction_top = top_coefficients(direction, domain, support, k, slack, p)
+        slope = slope_from_top_coefficients(anchor_top, direction_top, p)
+
+        if canonical_line:
+            canonical_slope = canonical_slope_from_symmetric_prefix(
+                support_values,
+                slack,
+                p,
+            )
+            if canonical_slope is not None:
+                canonical_zero_prefix_count += 1
+                record["canonical_zero_prefix_support_count"] = (
+                    int(record["canonical_zero_prefix_support_count"]) + 1
+                )
+            if slack <= fiber_size and (canonical_slope is not None) != (
+                residual_zero_prefix
+            ):
+                residual_zero_prefix_mismatches += 1
+            if slope != canonical_slope:
+                canonical_formula_mismatches += 1
+
         contained = all(entry == 0 for entry in anchor_top) and all(
             entry == 0 for entry in direction_top
         )
@@ -229,7 +326,6 @@ def scan_supports(
             )
             continue
 
-        slope = slope_from_top_coefficients(anchor_top, direction_top, p)
         if slope is None:
             no_slope_count += 1
             record["no_slope_support_count"] = (
@@ -305,6 +401,32 @@ def scan_supports(
         "histogram_counts_match_binomial": support_count_sum == total_supports,
         "histogram_counts_match_formula": predictions_match,
         "support_outcome_partition": outcome_partition,
+        "canonical_line": canonical_line,
+        "canonical_symmetric_formula_check": (
+            canonical_formula_mismatches == 0 if canonical_line else None
+        ),
+        "canonical_symmetric_formula_mismatch_count": (
+            canonical_formula_mismatches if canonical_line else None
+        ),
+        "canonical_zero_prefix_support_count": (
+            canonical_zero_prefix_count if canonical_line else None
+        ),
+        "canonical_residual_zero_prefix_support_count": (
+            canonical_residual_zero_prefix_count if canonical_line else None
+        ),
+        "canonical_residual_zero_prefix_match": (
+            residual_zero_prefix_mismatches == 0
+            if canonical_line and slack <= fiber_size
+            else None
+        ),
+        "canonical_residual_zero_prefix_mismatch_count": (
+            residual_zero_prefix_mismatches
+            if canonical_line and slack <= fiber_size
+            else None
+        ),
+        "low_deficit_whole_fiber_invisibility": low_deficit_mismatches == 0,
+        "low_deficit_checked_degrees": list(range(1, low_deficit_limit + 1)),
+        "low_deficit_mismatch_count": low_deficit_mismatches,
         "contained_support_count": contained_count,
         "no_slope_support_count": no_slope_count,
         "incidence_count": incidence_count,
@@ -349,6 +471,22 @@ def print_text(result: Dict[str, object]) -> None:
             partition=result["support_outcome_partition"],
         )
     )
+    print(
+        "low_deficit_whole_fiber_invisibility={ok} degrees={degrees}".format(
+            ok=result["low_deficit_whole_fiber_invisibility"],
+            degrees=result["low_deficit_checked_degrees"],
+        )
+    )
+    if result["canonical_line"]:
+        print(
+            "canonical_symmetric_formula_check={formula} "
+            "zero_prefix_supports={zero} "
+            "residual_zero_prefix_match={residual}".format(
+                formula=result["canonical_symmetric_formula_check"],
+                zero=result["canonical_zero_prefix_support_count"],
+                residual=result["canonical_residual_zero_prefix_match"],
+            )
+        )
     print()
 
     for record in result["top_histograms"]:

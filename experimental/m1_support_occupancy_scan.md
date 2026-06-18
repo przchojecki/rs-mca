@@ -30,20 +30,42 @@ By default the line is the canonical monomial line
 f = X^(k+t),        g = X^k.
 ```
 
-The output checks two consistency conditions:
+The output checks four consistency conditions:
 
 ```text
 histogram_counts_match_binomial
 histogram_counts_match_formula
 support_outcome_partition
+low_deficit_whole_fiber_invisibility
 ```
 
 The first says the scanned histogram counts exhaust `binom(n,k+t)`. The second
 says each histogram count matches the closed quotient-occupancy formula. The
 third says every exact support is classified as contained, no-slope, or
 incidence-producing, both globally and inside each retained histogram.
+The fourth verifies the quotient-core factorization from
+`experimental/m1_support_coefficient_test.md`: after deleting all whole
+quotient fibers from a support `S`, the elementary symmetric coefficients
+`e_d(S)` with `d<m` agree with those of the residual partial-fiber set.
+
+For the default canonical line, the scanner additionally reports
+
+```text
+canonical_symmetric_formula_check
+canonical_zero_prefix_support_count
+canonical_residual_zero_prefix_match
+```
+
+These check that the interpolated `Pi_S` slope agrees with the canonical
+formula `z=(-1)^t e_t(S)`, count supports with
+`e_1(S)=...=e_(t-1)(S)=0`, and, when `t<=m`, verify that this zero-prefix
+condition is equivalent to the same condition on the residual partial-fiber
+set.
 
 This scanner does not prove the M1 local limit. It makes the quotient-content
 label visible on actual support-collinearity incidences, so tiny examples can
 separate whole-fiber, one-remainder, mixed-partial, and candidate aperiodic
-support patterns.
+support patterns. The canonical symmetric checks make the monomial
+quotient-locator case more transparent: once whole fibers are stripped away,
+the residual partial-fiber set is the object that must satisfy the zero-prefix
+conditions.
