@@ -44,6 +44,109 @@ Keep entries concise and link to the relevant files.
   whether any source-valid growing-prime family has two-dimensional slope-map
   image.
 
+### 2026-06-18 - M1 slack-two depth-two high-index ceiling
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/m1_support_coefficient_test.md`,
+  `experimental/m1_support_occupancy_scan.py`,
+  `experimental/m1_support_occupancy_scan.md`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** An unconditional high-index ceiling for the
+  slack-two depth-two frontier: for a subgroup `D` of size `n`, the nonzero
+  frontier is contained in at most `n^2` square cosets, hence has slope count
+  at most `min(p,1+n^3/gcd(2,n))`. The scanner now reports and checks this
+  bound.
+- **How it is useful:** Complements the full-domain saturation theorem by
+  identifying the subgroup-size regime where this first nonzero frontier is
+  automatically non-field-filling.
+- **What to do next:** Replace the coarse `n^2` shape bound by character-sum
+  coset-image estimates for intermediate subgroup index.
+
+### 2026-06-18 - M1 slack-two depth-two full-domain saturation
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/m1_support_coefficient_test.md`,
+  `experimental/m1_support_occupancy_scan.py`,
+  `experimental/m1_support_occupancy_scan.md`,
+  `experimental/verify_m1_slack_two_depth_two_full_domain.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT / EXPERIMENTAL.
+- **What is being added:** A full-domain theorem for the first nonzero
+  slack-two depth-two frontier: for `D=F_p^*` and `p>=11`, the polynomial
+  `-(u^2+v^2+uv+u+v+1)` hits both quadratic classes on admissible shapes, so
+  the nonzero slope image is all of `F_p^*`. The proof uses a character-sum
+  margin for `p>=23` and a finite verifier for `p=11,13,17,19`.
+- **How it is useful:** Gives the first explicit nonzero-frontier image result
+  after the residual-depth partition, showing that the full-domain toy case
+  saturates nonzero slopes rather than giving a small M1 bound.
+- **What to do next:** Move from full domains to proper multiplicative
+  subgroups, where nontrivial coset-image bounds may still reduce M1 packing.
+
+### 2026-06-18 - M1 first-nonzero residual frontier partition
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/m1_support_coefficient_test.md`,
+  `experimental/m1_support_occupancy_scan.py`,
+  `experimental/m1_support_occupancy_scan.md`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT / EXPERIMENTAL.
+- **What is being added:** An exact disjoint partition of the depth-`d`
+  residual-packet catalog into first-nonzero coefficient frontiers
+  `e_(T+j) != 0` and the terminal pure-zero stratum. The scanner now records
+  this partition and checks that only the `j=0` frontier contributes nonzero
+  slopes at the original slack.
+- **How it is useful:** Converts the residual-depth hierarchy into separate
+  coset-image targets, so future M1 work can attack each nonzero frontier
+  without mixing it with inherited zero strata.
+- **What to do next:** Bound the nonzero frontier images, starting with the
+  depth-two surfaces already exposed by the PR.
+
+### 2026-06-18 - M1 terminal pure-zero residual-depth ledger
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/m1_support_coefficient_test.md`,
+  `experimental/m1_support_occupancy_scan.py`,
+  `experimental/m1_support_occupancy_scan.md`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT / EXPERIMENTAL.
+- **What is being added:** An explicit formula for the terminal pure-zero
+  residual-depth stratum: depth `d` with `h=T+d<m` contributes only
+  `h`-power cosets, with lift gate `m | k-d`, touched-fiber count
+  `h/gcd(h,m)`, and exact support multiplicity. The scanner now checks this
+  ledger on small canonical M1 scans.
+- **How it is useful:** Closes the inherited-zero side of the residual-depth
+  hierarchy from the M1 PR, so later work can focus on first-nonzero
+  coefficient images rather than recounting terminal zero strata.
+- **What to do next:** Use the terminal-zero check as a gate before attacking
+  the nonzero frontier images at depth `d>=2`.
+
+### 2026-06-18 - M1 residual-depth transition theorem
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/m1_support_coefficient_test.md`,
+  `experimental/m1_support_occupancy_scan.py`,
+  `experimental/m1_support_occupancy_scan.md`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** A general residual-depth transition theorem:
+  second-superboundary packets at slack `T` have a normalized `(T+2)!` shape
+  quotient, slope cosets `b_T(u)D^T`, and lift gate `m | k-2`; its zero-slope
+  slice is exactly the first-superboundary shape catalog for slack `T+1`.
+  The `T=2` case gives the conic
+  `u^2+v^2+uv+u+v+1=0`. The note also records the general residual-depth
+  shift: zero slope at `(T,k,d)` is the depth-`d-1` catalog at
+  `(T+1,k-1,d-1)`. The scanner audits the `d=2` instance and the specialized
+  slack-two 24-fold square-coset ledger against direct support histograms.
+- **How it is useful:** Deepens the M1 low-slack residual-packet theory by
+  showing that next-slack first-superboundary catalogs are transition loci for
+  depth-two residual packets, rather than isolated toy equations. Iterating
+  the shift separates inherited zero strata from the genuinely new
+  first-nonzero-coefficient frontier.
+- **What to do next:** Use this depth-link pattern to study higher
+  superboundary layers and sharper coset counts for the slack-three
+  depth-two packet surface.
+
 ### 2026-06-18 - Cycle 18 resonance slope-map reconstruction
 
 - **Agent/model:** Codex.

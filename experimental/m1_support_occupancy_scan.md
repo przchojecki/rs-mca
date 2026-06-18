@@ -109,6 +109,22 @@ canonical_slack_two_shape_abstract_square_coset_slope_count
 canonical_slack_two_shape_square_coset_slope_count
 canonical_slack_two_shape_square_coset_slope_count_check
 canonical_slack_two_shape_square_coset_slope_bound_check
+canonical_slack_two_second_superboundary_lift_gate_active
+canonical_slack_two_second_superboundary_lift_gate_remainder
+canonical_slack_two_second_superboundary_lift_gate_whole_fibers
+canonical_slack_two_second_superboundary_lift_gate_check
+canonical_slack_two_second_superboundary_packet_count
+canonical_slack_two_second_superboundary_support_count
+canonical_slack_two_second_superboundary_slope_count
+canonical_slack_two_second_shape_packet_count_check
+canonical_slack_two_second_shape_support_slope_histogram_check
+canonical_slack_two_second_shape_zero_conic_parameter_count
+canonical_slack_two_second_shape_nonzero_square_coset_count
+canonical_slack_two_second_shape_active_nonzero_square_coset_count
+canonical_slack_two_second_shape_square_image_size
+canonical_slack_two_second_shape_square_coset_slope_count
+canonical_slack_two_second_shape_square_coset_slope_count_check
+canonical_slack_two_second_shape_square_coset_slope_bound_check
 canonical_slack_two_full_domain_alpha_square_count
 canonical_slack_two_full_domain_alpha_nonsquare_count
 canonical_slack_two_full_domain_alpha_zero_count
@@ -354,6 +370,27 @@ The companion non-active fields report the abstract coset coverage of
 the abstract slack-two catalog hits every nonzero `D^2`-coset, while
 `canonical_slack_two_shape_active_saturates_nonzero_square_cosets` applies the
 same test after the exact-support lift filter.
+
+For slack `t=2`, the scanner also verifies the second-superboundary layer
+when the residual packet size four is below one quotient fiber. It enumerates
+
+```text
+P=x{1,u,v,-1-u-v}
+```
+
+and checks the twenty-four-to-one lifted slope formula
+
+```text
+M_2^(2)(z) = (1/24) sum_{u,v}
+             binom(N-tau(u,v), (k+2-4)/m)
+             * #{x in D : -x^2(u^2+v^2+uv+u+v+1)=z}.
+```
+
+The `canonical_slack_two_second_*` fields report the depth-two lift gate
+`m | k-2`, reconstructed packet/support counts and slope histograms, and the
+exact square-coset compressed slope count. The zero-slope parameter count is
+the slack-three conic catalog, so this audit checks the first concrete link
+between the slack-two depth-two layer and the slack-three depth-one layer.
 
 When `D=F_p^*`, the `canonical_slack_two_full_domain_*` fields also check the
 quadratic-character formula for the classes of `alpha(u)=-(1+u+u^2)`. For

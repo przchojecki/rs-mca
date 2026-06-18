@@ -982,6 +982,61 @@ slope image is exactly a union of cosets `beta(u,v)D^3`; since `D^3` is a
 subgroup, the same disjoint-or-equal coset compression applies. The zero
 slope slice is the already classified four-power-coset family.
 
+The same conic is also the exact zero-slope slice of the next residual layer
+for slack two. Keep `T=2`, assume `4<m`, and consider second-superboundary
+residual packets of size four. The only zero-prefix equation is `e_1(P)=0`.
+After scaling one packet point to `1`, every such residual packet has the
+form
+
+```text
+P = x {1,u,v,w},        w=-1-u-v,
+```
+
+with `u,v,w in D` and `1,u,v,w` distinct. Conversely every such pair
+`(u,v)` gives a packet with `e_1(P)=0`. The next canonical coefficient is
+
+```text
+e_2(x{1,u,v,w})
+  = -x^2 (u^2+v^2+uv+u+v+1).
+```
+
+Thus, putting
+
+```text
+A(u,v)=-(u^2+v^2+uv+u+v+1),
+tau(u,v)=#{quotient fibers met by {1,u,v,w}},
+```
+
+the full lifted slope multiset at exact support size `s=Lm+4` is
+
+```text
+M_2^(2)(z) = (1/24) sum_{u,v}
+             binom(N-tau(u,v), L) * #{x in D : x^2 A(u,v)=z},
+```
+
+where the sum is over the displayed admissible ordered pairs. The factor
+`24` is the number of choices of base point and ordered pair among the three
+remaining points of the same four-point packet.
+
+In particular the nonzero depth-two slack-two slope image is a union of
+square cosets `A(u,v)D^2`, while the zero-slope subcatalog is exactly
+
+```text
+u^2+v^2+uv+u+v+1=0.
+```
+
+This is precisely the slack-three first-superboundary conic shape equation.
+So the conic found above is not an isolated slack-three accident: it is the
+interface between slack-two depth two and slack-three depth one. The
+exact-support lift gate is the depth-two congruence
+
+```text
+m | (s-4) = k-2.
+```
+
+If this fails, the whole depth-two slack-two small-residual layer is inactive
+at that quotient scale before any conic or square-coset counting is needed.
+
 For the full multiplicative domain this conic ledger has an exact elementary
 count. Take `D=F_p^*`, `p>3`, and write `chi` for the quadratic character.
 The affine conic `Q(u,v)=0` has `p-chi(-3)` points. The three sections
