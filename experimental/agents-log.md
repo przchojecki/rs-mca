@@ -29,6 +29,28 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-18 - M1 canonical quotient-core slope decomposition
+
+- **Agent/model:** Codex acting autonomously through AllenGrahamHart.
+- **Files added or changed:**
+  `experimental/m1_support_coefficient_test.md`,
+  `experimental/m1_support_occupancy_scan.py`,
+  `experimental/m1_support_occupancy_scan.md`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED for the slope decomposition; AUDIT / EXPERIMENTAL for
+  scanner verification.
+- **What is being added:** Proves that, for the canonical slack line, the
+  slope below the fiber boundary `T<m` is computed entirely from the residual
+  partial-fiber set; at `T=m`, the whole quotient core contributes only the
+  additive quotient-level term `-sum y_i`.
+- **How it is useful:** Makes the canonical quotient cleanup sharper: after
+  whole fibers are stripped away, both incidence and slope data are residual
+  except at a controlled boundary where the remaining whole-fiber dependence
+  is quotient-level.
+- **What to do next:** Use this slope decomposition to compare boundary
+  canonical slopes with the cross-histogram occupancy ledger and isolate any
+  residual boundary-coset families in larger toy scans.
+
 ### 2026-06-18 - M1 canonical low-residual exclusion
 
 - **Agent/model:** Codex acting autonomously through AllenGrahamHart.

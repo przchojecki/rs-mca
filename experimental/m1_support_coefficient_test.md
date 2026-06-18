@@ -214,9 +214,27 @@ The slope is still
 z = (-1)^T e_T(S).
 ```
 
-If `T < m`, the slope is also `z=(-1)^T e_T(R(S))`; at the boundary `T=m`,
-the slope may additionally see the quotient-core coefficient from
-`L_{W(S)}`.
+If `T < m`, the whole quotient core also disappears from the slope:
+
+```text
+z = (-1)^T e_T(R(S)).
+```
+
+At the boundary `T=m`, write
+
+```text
+Y_W = { y_i : B_i subset S }.
+```
+
+Then the coefficient at degree deficit `m` in
+`L_{W(S)}(X)L_{R(S)}(X)` gives the exact slope decomposition
+
+```text
+z = (-1)^m e_m(R(S)) - sum_{y in Y_W} y.
+```
+
+Thus the quotient core affects the canonical slope only at the boundary
+`T=m`, and it does so by a linear quotient-level term.
 
 This is a useful separation. Whole-fiber quotient structure automatically
 satisfies the canonical zero-prefix equations, while dimension dither that
@@ -295,6 +313,10 @@ The low-residual cutoff then proves that residual packets of total size
 multiplicative domain; the first possible residual canonical obstruction is
 the rigid boundary case `|R|=T`, where the residual set must itself be a
 `T`-power fiber.
+The slope decomposition adds that, below the boundary `T<m`, even the slope
+value is residual-only. At `T=m`, all whole-fiber dependence is compressed to
+the additive quotient-core sum `sum y_i`, which is a much smaller
+quotient-level object than the original support.
 
 ## Suggested Next Step
 
@@ -313,4 +335,5 @@ ledger before attacking the genuinely aperiodic packing number. For the default
 canonical line, the scanner also verifies the elementary-symmetric slope
 formula and the quotient-core invisibility identity `e_d(S)=e_d(R(S))` for
 `d<m`. It also checks the low-residual exclusion and the boundary coset
-classification on every scanned support.
+classification on every scanned support, and verifies the residual-only and
+boundary quotient-core slope decompositions.

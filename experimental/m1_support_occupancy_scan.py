@@ -130,6 +130,26 @@ def residual_support_indices(
     return tuple(residual)
 
 
+def quotient_core_value_sum(
+    support: Sequence[int],
+    quotient_order: int,
+    fiber_size: int,
+    domain: Sequence[int],
+    p: int,
+) -> int:
+    support_set = set(support)
+    total = 0
+    for fiber in range(quotient_order):
+        fiber_indices = [
+            fiber + quotient_order * offset
+            for offset in range(fiber_size)
+        ]
+        if all(index in support_set for index in fiber_indices):
+            total += pow(domain[fiber], fiber_size, p)
+            total %= p
+    return total
+
+
 def canonical_slope_from_symmetric_prefix(
     values: Sequence[int],
     slack: int,
@@ -147,6 +167,16 @@ def is_power_coset(values: Sequence[int], exponent: int, p: int) -> bool:
         return False
     target = pow(values[0], exponent, p)
     return all(pow(value, exponent, p) == target for value in values)
+
+
+def signed_symmetric_coefficient(
+    values: Sequence[int],
+    degree: int,
+    p: int,
+) -> int:
+    sym = elementary_symmetric_prefix(values, degree, p)
+    sign = -1 if degree % 2 else 1
+    return (sign * sym[degree]) % p
 
 
 def occupancy_histogram(
@@ -202,6 +232,8 @@ def empty_histogram_record(histogram: Sequence[int]) -> Dict[str, object]:
         "canonical_low_residual_zero_prefix_count": 0,
         "canonical_boundary_residual_coset_count": 0,
         "canonical_boundary_residual_coset_mismatch_count": 0,
+        "canonical_residual_slope_mismatch_count": 0,
+        "canonical_boundary_slope_mismatch_count": 0,
         "residual_size_histogram": Counter(),
         "bad_slopes": set(),
         "slope_histogram": Counter(),
@@ -283,6 +315,8 @@ def scan_supports(
     canonical_low_residual_zero_prefix_count = 0
     canonical_boundary_residual_coset_count = 0
     canonical_boundary_residual_coset_mismatches = 0
+    canonical_residual_slope_mismatches = 0
+    canonical_boundary_slope_mismatches = 0
     residual_size_histogram: Counter[int] = Counter()
 
     records: Dict[Tuple[int, ...], Dict[str, object]] = {}
@@ -305,6 +339,13 @@ def scan_supports(
             fiber_size,
         )
         residual_values = [domain[index] for index in residual]
+        quotient_core_sum = quotient_core_value_sum(
+            support,
+            quotient_order,
+            fiber_size,
+            domain,
+            p,
+        )
         residual_size = len(residual)
         residual_size_histogram[residual_size] += 1
         record_residual_sizes = record["residual_size_histogram"]
@@ -345,6 +386,36 @@ def scan_supports(
                 residual_zero_prefix_mismatches += 1
             if slope != canonical_slope:
                 canonical_formula_mismatches += 1
+            if canonical_slope is not None and slack < fiber_size:
+                residual_slope = canonical_slope_from_symmetric_prefix(
+                    residual_values,
+                    slack,
+                    p,
+                )
+                if residual_slope != canonical_slope:
+                    canonical_residual_slope_mismatches += 1
+                    record["canonical_residual_slope_mismatch_count"] = (
+                        int(record["canonical_residual_slope_mismatch_count"])
+                        + 1
+                    )
+            if slack == fiber_size:
+                support_slope_value = signed_symmetric_coefficient(
+                    support_values,
+                    slack,
+                    p,
+                )
+                residual_slope_value = signed_symmetric_coefficient(
+                    residual_values,
+                    slack,
+                    p,
+                )
+                boundary_value = (residual_slope_value - quotient_core_sum) % p
+                if support_slope_value != boundary_value:
+                    canonical_boundary_slope_mismatches += 1
+                    record["canonical_boundary_slope_mismatch_count"] = (
+                        int(record["canonical_boundary_slope_mismatch_count"])
+                        + 1
+                    )
             if (
                 slack <= fiber_size
                 and canonical_slope is not None
@@ -509,6 +580,26 @@ def scan_supports(
             if canonical_line and slack <= fiber_size
             else None
         ),
+        "canonical_residual_slope_check": (
+            canonical_residual_slope_mismatches == 0
+            if canonical_line and slack < fiber_size
+            else None
+        ),
+        "canonical_residual_slope_mismatch_count": (
+            canonical_residual_slope_mismatches
+            if canonical_line and slack < fiber_size
+            else None
+        ),
+        "canonical_boundary_slope_decomposition_check": (
+            canonical_boundary_slope_mismatches == 0
+            if canonical_line and slack == fiber_size
+            else None
+        ),
+        "canonical_boundary_slope_mismatch_count": (
+            canonical_boundary_slope_mismatches
+            if canonical_line and slack == fiber_size
+            else None
+        ),
         "low_deficit_whole_fiber_invisibility": low_deficit_mismatches == 0,
         "low_deficit_checked_degrees": list(range(1, low_deficit_limit + 1)),
         "low_deficit_mismatch_count": low_deficit_mismatches,
@@ -571,12 +662,16 @@ def print_text(result: Dict[str, object]) -> None:
             "zero_prefix_supports={zero} "
             "residual_zero_prefix_match={residual} "
             "low_residual_exclusion={low} "
-            "boundary_coset_check={coset}".format(
+            "boundary_coset_check={coset} "
+            "residual_slope_check={slope} "
+            "boundary_slope_check={boundary}".format(
                 formula=result["canonical_symmetric_formula_check"],
                 zero=result["canonical_zero_prefix_support_count"],
                 residual=result["canonical_residual_zero_prefix_match"],
                 low=result["canonical_low_residual_exclusion_check"],
                 coset=result["canonical_boundary_residual_coset_check"],
+                slope=result["canonical_residual_slope_check"],
+                boundary=result["canonical_boundary_slope_decomposition_check"],
             )
         )
     print()
