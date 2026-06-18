@@ -310,9 +310,12 @@ The same symmetric-coordinate reduction covers the larger coordinate-diagonal
 submass where the two active coordinate-line monodromies are equal, but the
 line at infinity is not necessarily equal to them.  The verifier now reports
 this diagonal mass and the non-equal remainder separately.  This broader
-diagonal slice is not yet a certificate improvement: it still needs a
-global-invariant audit for the general pulled-back `2F1` sheaf.  The consumed
-conditional ledger remains the exact `C_2^eq` equal-line submass above.
+diagonal slice is not yet a certificate improvement, but the first obstruction
+audit is now clean: in the ramified diagonal remainder, `alpha^2=1` would
+force trivial infinity monodromy, and the possible `2F1` cancellations
+`alpha=mu` or `alpha=chi_2` are also excluded.  The consumed conditional
+ledger remains the exact `C_2^eq` equal-line submass above until the remaining
+local conductor entries are accepted for the full diagonal slice.
 
 ### `2F1` Local-Monodromy Import Consumed by the Equal-Line Audit
 

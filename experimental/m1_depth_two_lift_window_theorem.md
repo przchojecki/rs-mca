@@ -220,8 +220,11 @@ C_2^diag =
 
 The symmetric-coordinate reduction applies to this full diagonal mass, not
 only to `C_2^eq`; however, only the equal-line submass currently has a
-complete conditional certificate ledger.  Promoting `C_2^diag-C_2^eq` would
-require the same global-invariant audit for the general diagonal pullback.
+complete conditional certificate ledger.  The verifier now checks the first
+general-diagonal obstruction audit: `alpha^2=1` and `2F1` parameter
+cancellation have zero mass in `C_2^diag`.  Promoting `C_2^diag-C_2^eq`
+still requires the remaining local conductor entries to be accepted for the
+general diagonal pullback.
 
 Since `g` is either `1` or `2`, the `C_2^0` and `C_2^rec` counts have closed
 forms per active coordinate pair. If `g=1`, then

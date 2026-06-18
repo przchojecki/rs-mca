@@ -499,11 +499,23 @@ alpha,        1.
 ```
 
 Thus the two-unit local saving at `lambda=infinity` is not confined to the
-equal-line sub-slice.  What remains before using the larger diagonal mass in
-certificates is a global-invariant and degenerate-parameter audit for the
-general diagonal pullback.  The current certificate tooling therefore reports
-the full coordinate-diagonal L1 mass separately, but consumes only the
-equal-line conditional ledger.
+equal-line sub-slice.  The first global-invariant audit is also elementary:
+on the diagonal, `alpha=mu eta`, and the infinity monodromy is
+`-(2mu+2eta)` in exponent notation, i.e. `-2alpha`.  Therefore
+`alpha^2=1` would force the infinity monodromy to be trivial, placing the
+term in the already removed infinity-unramified slice.  In the ramified
+nonreciprocal diagonal remainder, the scalar Kummer twist at `s=infinity`
+has nontrivial character `alpha^(-2)`, so it has no inertia invariants and
+rules out global invariants for the rank-two pullback.
+
+The same congruence audit removes the obvious degenerate `2F1` parameters:
+`alpha=mu` would mean `eta=1`, excluded by `d!=0`, and
+`alpha=chi_2` would again force `alpha^2=1`.  Thus the diagonal remainder
+has no numerator-denominator cancellation in the imported
+`2F1(chi_2,mu;alpha;t)` table.  The current certificate tooling reports
+these zero failure counts together with the full coordinate-diagonal L1 mass,
+but still consumes only the equal-line conditional ledger until the remaining
+local conductor entries are promoted for the whole diagonal slice.
 
 ## Deck Involution Audit
 

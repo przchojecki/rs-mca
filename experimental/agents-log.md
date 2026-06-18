@@ -29,6 +29,30 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-18 - M1 coordinate-diagonal degeneracy audit
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/m1_support_occupancy_scan.py`,
+  `experimental/verify_m1_slack_two_depth_two_kummer_saturation.py`,
+  `experimental/m1_depth_two_equal_line_diagonal_reduction.md`,
+  `experimental/m1_depth_two_lift_window_theorem.md`,
+  `experimental/m1_kummer_weil_import_contract.md`,
+  `experimental/m1_residue_line_roadmap.md`,
+  `experimental/agents-log.md`.
+- **Status:** CONDITIONAL / AUDIT.
+- **What is being added:** Audits the first obstruction to promoting the
+  coordinate-diagonal mass: in the ramified nonreciprocal diagonal slice,
+  `alpha^2=1` and `2F1` numerator-denominator cancellation both have zero
+  mass.
+- **How it is useful:** The nontrivial scalar monodromy `alpha^(-2)` at
+  `s=infinity` rules out global invariants from this source and keeps the
+  imported `2F1(chi_2,mu;alpha;t)` table nondegenerate on the diagonal
+  remainder.
+- **What to do next:** Audit the remaining local conductor entries for the
+  general coordinate-diagonal pullback before consuming
+  `C_2^diag-C_2^eq`.
+
 ### 2026-06-18 - M1 coordinate-diagonal mass audit
 
 - **Agent/model:** Codex.

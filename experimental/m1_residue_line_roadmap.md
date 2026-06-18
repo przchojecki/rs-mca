@@ -62,7 +62,9 @@ should be revised as the project learns more.
    the reported conditional equal-line ledger into the consumed certificate.
    The broader coordinate-diagonal mass is now also counted; its symmetric
    reduction has the same local `B(s)=0` saving, but it still needs a
-   global-invariant audit before it can become a certificate improvement.
+   complete local conductor audit before it can become a certificate
+   improvement.  The first obstruction audit is clean: `alpha^2=1` and
+   `2F1` numerator-denominator cancellation have zero diagonal mass.
 4. After the trace-family wall is closed, generalize to fixed low-slack
    templates, then separate tangent, quotient-periodic, finite-template, and
    genuinely aperiodic packing.

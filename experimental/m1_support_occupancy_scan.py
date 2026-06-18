@@ -2132,9 +2132,17 @@ def raw_two_coordinate_projective_l1_split_formula(
         character_order,
         square_coset_index,
     )
+    diagonal_failures = coordinate_diagonal_parameter_failure_counts(
+        character_order,
+        square_coset_index,
+    )
     if equal_line_diagonal > coordinate_diagonal:
         raise ValueError(
             (character_order, square_coset_index, equal_line_diagonal)
+        )
+    if any(diagonal_failures.values()):
+        raise ValueError(
+            (character_order, square_coset_index, diagonal_failures)
         )
     active_pair_count = 3
     return {
@@ -2156,6 +2164,42 @@ def raw_two_coordinate_projective_l1_split_formula(
         "two_coordinate_coordinate_diagonal_non_equal_l1_bound": (
             active_pair_count * (coordinate_diagonal - equal_line_diagonal)
         ),
+        "two_coordinate_coordinate_diagonal_alpha_square_trivial_count": 0,
+        "two_coordinate_coordinate_diagonal_2f1_cancellation_count": 0,
+    }
+
+
+def coordinate_diagonal_parameter_failure_counts(
+    character_order: int,
+    square_coset_index: int,
+) -> Dict[str, int]:
+    """Return forbidden parameter counts in the diagonal ramified slice."""
+
+    if character_order < 1 or square_coset_index % character_order:
+        raise ValueError((character_order, square_coset_index))
+    e = character_order
+    q = square_coset_index
+    lift = q // e
+    alpha_square_trivial = 0
+    twof1_cancellation = 0
+    for exponent in range(1, e):
+        first = lift * exponent % q
+        for conic_exponent in range(1, q):
+            infinity = (-(2 * first + 2 * conic_exponent)) % q
+            if infinity == 0:
+                continue
+            if (2 * first) % q == 0:
+                continue
+            if (first + infinity) % q == 0:
+                continue
+            alpha = (first + conic_exponent) % q
+            if (2 * alpha) % q == 0:
+                alpha_square_trivial += 1
+            if alpha == first or (q % 2 == 0 and alpha == q // 2):
+                twof1_cancellation += 1
+    return {
+        "alpha_square_trivial": alpha_square_trivial,
+        "twof1_cancellation": twof1_cancellation,
     }
 
 
@@ -2394,6 +2438,16 @@ def slack_two_second_kummer_saturation_data(
         "two_coordinate_coordinate_diagonal_non_equal_l1_bound": int(
             two_coordinate_projective_split[
                 "two_coordinate_coordinate_diagonal_non_equal_l1_bound"
+            ]
+        ),
+        "two_coordinate_coordinate_diagonal_alpha_square_trivial_count": int(
+            two_coordinate_projective_split[
+                "two_coordinate_coordinate_diagonal_alpha_square_trivial_count"
+            ]
+        ),
+        "two_coordinate_coordinate_diagonal_2f1_cancellation_count": int(
+            two_coordinate_projective_split[
+                "two_coordinate_coordinate_diagonal_2f1_cancellation_count"
             ]
         ),
         "divisor_power_failure_count": 0,
@@ -6706,6 +6760,32 @@ def scan_supports(
             int(
                 slack_two_second_kummer_saturation[
                     "two_coordinate_coordinate_diagonal_non_equal_l1_bound"
+                ]
+            )
+            if slack_two_second_kummer_saturation is not None
+            else None
+        ),
+        (
+            "canonical_slack_two_second_kummer_"
+            "coordinate_diagonal_alpha_square_trivial_count"
+        ): (
+            int(
+                slack_two_second_kummer_saturation[
+                    "two_coordinate_coordinate_diagonal_"
+                    "alpha_square_trivial_count"
+                ]
+            )
+            if slack_two_second_kummer_saturation is not None
+            else None
+        ),
+        (
+            "canonical_slack_two_second_kummer_"
+            "coordinate_diagonal_2f1_cancellation_count"
+        ): (
+            int(
+                slack_two_second_kummer_saturation[
+                    "two_coordinate_coordinate_diagonal_"
+                    "2f1_cancellation_count"
                 ]
             )
             if slack_two_second_kummer_saturation is not None
