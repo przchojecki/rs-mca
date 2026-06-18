@@ -149,6 +149,31 @@ class RemainderWindowEntry:
         return result
 
 
+@dataclass(frozen=True)
+class MenuTailLowerBoundEntry:
+    """One stable-tail lower-bound scale forced by a finite dither menu."""
+
+    M: int
+    N: int
+    forced_gap: int
+    side_coefficient_floor: int
+    stable_tail_mass_lower_bound: int
+    log2_stable_tail_mass_lower_bound: float
+
+    def to_json(self) -> Dict[str, object]:
+        return {
+            "M_coset_size": self.M,
+            "N_quotient_order": self.N,
+            "forced_gap": self.forced_gap,
+            "side_coefficient_floor": self.side_coefficient_floor,
+            "stable_tail_mass_lower_bound": self.stable_tail_mass_lower_bound,
+            "log2_stable_tail_mass_lower_bound": round(
+                self.log2_stable_tail_mass_lower_bound,
+                6,
+            ),
+        }
+
+
 def parse_fraction(raw: str) -> Fraction:
     try:
         return Fraction(raw)
@@ -250,6 +275,7 @@ def dither_menu_block_construction(
 def dither_menu_covering_summary(
     slack_window: Tuple[int, int],
     target_stable_gap: int,
+    dither_menu_size: Optional[int],
 ) -> Dict[str, object]:
     start, end = slack_window
     window_length = end - start + 1
@@ -257,7 +283,7 @@ def dither_menu_covering_summary(
         slack_window,
         target_stable_gap,
     )
-    return {
+    summary = {
         "target_stable_gap": target_stable_gap,
         "window_length": window_length,
         "minimum_menu_size_lower_bound": ceil_div(
@@ -266,6 +292,83 @@ def dither_menu_covering_summary(
         ),
         "block_construction_menu_size": len(construction),
         "block_construction_dithers": construction,
+    }
+    if dither_menu_size is not None:
+        forced_gap = ceil_div(window_length, 2 * dither_menu_size)
+        summary["queried_menu_size"] = dither_menu_size
+        summary["coverage_possible_by_count"] = (
+            dither_menu_size >= summary["minimum_menu_size_lower_bound"]
+        )
+        summary["forced_safe_gap_lower_bound"] = forced_gap
+        summary["stable_tail_condition_D_lt_t_start"] = target_stable_gap < start
+    return summary
+
+
+def retained_menu_tail_entries(
+    records: Sequence[MenuTailLowerBoundEntry],
+    top_scales: int,
+) -> List[Dict[str, object]]:
+    if top_scales < 0:
+        return [item.to_json() for item in records]
+    return [item.to_json() for item in records[:top_scales]]
+
+
+def dither_menu_tail_lower_bound_summary(
+    n: int,
+    k0: int,
+    slack_window: Tuple[int, int],
+    target_stable_gap: int,
+    dither_menu_size: int,
+    top_scales: int,
+) -> Dict[str, object]:
+    start, end = slack_window
+    window_length = end - start + 1
+    minimum_menu_size = ceil_div(window_length, 2 * target_stable_gap)
+    forced_gap = ceil_div(window_length, 2 * dither_menu_size)
+    coverage_possible = dither_menu_size >= minimum_menu_size
+    stable_eligible = coverage_possible and target_stable_gap < start
+
+    records = []
+    if stable_eligible:
+        for M in divisors_of_power_of_two(n):
+            if M <= 1 or M > k0 or k0 % M:
+                continue
+            if M < end + target_stable_gap:
+                continue
+            side_floor = min(k0 // M, (n - k0) // M)
+            mass_lower_bound = side_floor * choose(M, forced_gap) - 1
+            if mass_lower_bound <= 0:
+                continue
+            records.append(
+                MenuTailLowerBoundEntry(
+                    M=M,
+                    N=n // M,
+                    forced_gap=forced_gap,
+                    side_coefficient_floor=side_floor,
+                    stable_tail_mass_lower_bound=mass_lower_bound,
+                    log2_stable_tail_mass_lower_bound=math.log2(mass_lower_bound),
+                )
+            )
+
+    records.sort(
+        key=lambda item: (-item.log2_stable_tail_mass_lower_bound, item.M)
+    )
+    return {
+        "target_stable_gap": target_stable_gap,
+        "queried_menu_size": dither_menu_size,
+        "forced_safe_gap_lower_bound": forced_gap,
+        "coverage_possible_by_count": coverage_possible,
+        "stable_tail_lower_bound_applicable": stable_eligible,
+        "stable_eligible_scale_count": len(records),
+        "max_log2_stable_tail_mass_lower_bound": (
+            None
+            if not records
+            else round(
+                max(item.log2_stable_tail_mass_lower_bound for item in records),
+                6,
+            )
+        ),
+        "entries": retained_menu_tail_entries(records, top_scales),
     }
 
 
@@ -710,6 +813,8 @@ def scan_case(
     top_scales: int,
     slack_window: Optional[Tuple[int, int]],
     line_field_size: Optional[int],
+    target_stable_gap: Optional[int],
+    dither_menu_size: Optional[int],
 ) -> Dict[str, object]:
     n = 1 << m
     if (rate * n).denominator != 1:
@@ -790,6 +895,17 @@ def scan_case(
             result["best_weighted_stable_tail_dither"] = (
                 best_remainder_window_record(dither_records, weighted=True)
             )
+        if target_stable_gap is not None and dither_menu_size is not None:
+            result["dither_menu_tail_lower_bound"] = (
+                dither_menu_tail_lower_bound_summary(
+                    n,
+                    k0,
+                    slack_window,
+                    target_stable_gap,
+                    dither_menu_size,
+                    top_scales,
+                )
+            )
     return result
 
 
@@ -803,6 +919,7 @@ def scan(
     slack_window: Optional[Tuple[int, int]],
     line_field_size: Optional[int],
     target_stable_gap: Optional[int],
+    dither_menu_size: Optional[int],
 ) -> Dict[str, object]:
     cases = []
     for m in range(m_min, m_max + 1):
@@ -818,6 +935,8 @@ def scan(
                             top_scales,
                             slack_window,
                             line_field_size,
+                            target_stable_gap,
+                            dither_menu_size,
                         )
                     )
     return {
@@ -844,7 +963,11 @@ def scan(
         "dither_menu_covering": (
             None
             if slack_window is None or target_stable_gap is None
-            else dither_menu_covering_summary(slack_window, target_stable_gap)
+            else dither_menu_covering_summary(
+                slack_window,
+                target_stable_gap,
+                dither_menu_size,
+            )
         ),
         "line_field_size": line_field_size,
         "cases": cases,
@@ -981,6 +1104,7 @@ def print_text(result: Dict[str, object]) -> None:
         best_window = case.get("best_window_dither")
         best_rem_window = case.get("best_remainder_window_dither")
         best_weighted_tail = case.get("best_weighted_stable_tail_dither")
+        menu_tail_bound = case.get("dither_menu_tail_lower_bound")
         print(
             "m={m:>2} n=2^{m:<2} rho={rho:<4} eta={eta:<5} sigma={sigma:<6} "
             "k0={k0}".format(
@@ -1045,6 +1169,21 @@ def print_text(result: Dict[str, object]) -> None:
                     r=best_weighted_tail["dither"],
                     value=format_value(ledger["max_log2_stable_weighted_correction"]),
                     entries=ledger["stable_entry_count"],
+                )
+            )
+        if menu_tail_bound is not None:
+            assert isinstance(menu_tail_bound, dict)
+            print(
+                (
+                    "  menu tail lower bound C={menu} forced_gap>={gap} "
+                    "max_logMass>={value} scales={scales}"
+                ).format(
+                    menu=menu_tail_bound["queried_menu_size"],
+                    gap=menu_tail_bound["forced_safe_gap_lower_bound"],
+                    value=format_value(
+                        menu_tail_bound["max_log2_stable_tail_mass_lower_bound"]
+                    ),
+                    scales=menu_tail_bound["stable_eligible_scale_count"],
                 )
             )
         print("  active exact scales: " + format_scales(exact["exact_active_scales"]))
@@ -1122,6 +1261,15 @@ def main() -> None:
         ),
     )
     parser.add_argument(
+        "--dither-menu-size",
+        type=int,
+        default=None,
+        help=(
+            "optional C for stable-tail lower bounds from a C-value dither menu; "
+            "requires --target-stable-gap"
+        ),
+    )
+    parser.add_argument(
         "--format",
         choices=("text", "json"),
         default="text",
@@ -1137,8 +1285,12 @@ def main() -> None:
         raise SystemExit("--line-field-size must be greater than one")
     if args.target_stable_gap is not None and args.target_stable_gap < 1:
         raise SystemExit("--target-stable-gap must be positive")
+    if args.dither_menu_size is not None and args.dither_menu_size < 1:
+        raise SystemExit("--dither-menu-size must be positive")
     if args.target_stable_gap is not None and args.slack_window is None:
         raise SystemExit("--target-stable-gap requires --slack-window")
+    if args.dither_menu_size is not None and args.target_stable_gap is None:
+        raise SystemExit("--dither-menu-size requires --target-stable-gap")
     result = scan(
         m_min=args.m_min,
         m_max=args.m_max,
@@ -1149,6 +1301,7 @@ def main() -> None:
         slack_window=args.slack_window,
         line_field_size=args.line_field_size,
         target_stable_gap=args.target_stable_gap,
+        dither_menu_size=args.dither_menu_size,
     )
     if args.format == "json":
         print(json.dumps(result, indent=2, sort_keys=True))

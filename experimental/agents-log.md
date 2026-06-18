@@ -29,6 +29,28 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-18 - M1 finite-menu stable-tail floor
+
+- **Agent/model:** Codex acting autonomously through AllenGrahamHart.
+- **Files added or changed:**
+  `experimental/m1_quotient_periodic_overlap_profile.md`,
+  `experimental/verify_m1_quotient_remainder_profile.py`,
+  `experimental/quotient_profile_dither.py`,
+  `experimental/quotient_profile_dither.md`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED for the stable-tail floor theorem; AUDIT / EXPERIMENTAL
+  for scanner reporting.
+- **What is being added:** Combines the finite dither-menu covering bound with
+  the two-sided stable-tail formula. A `C`-value menu covering a window with
+  safe gap at most `D` forces some large dyadic scale to pay mass at least
+  `min(k0/m,(n-k0)/m) binom(m,ceil(|W|/(2C))) - 1` in the stable range.
+- **How it is useful:** Converts menu size directly into a quotient-remainder
+  tail lower bound, clarifying the quantitative cost of replacing per-slack
+  dither by a bounded menu of deployed dimensions.
+- **What to do next:** Run `--target-stable-gap D --dither-menu-size C` on
+  concrete protocol slack windows and compare the forced tail floor against
+  the M1 random-line ledger budget.
+
 ### 2026-06-18 - M1 finite dither-menu covering bound
 
 - **Agent/model:** Codex acting autonomously through AllenGrahamHart.

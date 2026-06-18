@@ -281,6 +281,74 @@ def verify_dither_menu_covering_bound(t_start, t_end, max_gap):
     return lower_bound, upper_bound, construction
 
 
+def verify_dither_menu_stable_tail_lower_bound(
+    n,
+    k0,
+    t_start,
+    t_end,
+    max_gap,
+    menu_size,
+):
+    assert max_gap < t_start
+    window_length = t_end - t_start + 1
+    minimum_menu_size = ceil_div(window_length, 2 * max_gap)
+    assert menu_size >= minimum_menu_size
+    forced_gap = ceil_div(window_length, 2 * menu_size)
+    assert 1 <= forced_gap <= max_gap
+
+    candidates = range(t_start - max_gap, t_end + max_gap + 1)
+    valid_menus = [
+        menu
+        for menu in combinations(candidates, menu_size)
+        if menu_covers_window(t_start, t_end, menu, max_gap)
+    ]
+    assert valid_menus
+
+    scale_thresholds = []
+    for m in dyadic_divisors(k0):
+        if m < t_end + max_gap:
+            continue
+        side_floor = min(k0 // m, (n - k0) // m)
+        threshold = side_floor * choose(m, forced_gap) - 1
+        assert threshold > 0
+        scale_thresholds.append((m, threshold))
+    assert scale_thresholds
+
+    for menu in valid_menus:
+        witness = None
+        for t in range(t_start, t_end + 1):
+            safe_choices = [
+                (abs(t - r), r)
+                for r in menu
+                if r != t and abs(t - r) <= max_gap
+            ]
+            assert safe_choices
+            gap, r = min(safe_choices)
+            if gap >= forced_gap:
+                witness = (t, r, gap)
+                break
+        assert witness is not None, (t_start, t_end, max_gap, menu_size, menu)
+
+        t, r, gap = witness
+        for m, threshold in scale_thresholds:
+            strict = verify_two_sided_fixed_dither_stable_tail(n, k0, r, t, m)
+            assert sum(strict.values()) >= threshold, (
+                n,
+                k0,
+                t_start,
+                t_end,
+                max_gap,
+                menu_size,
+                menu,
+                witness,
+                m,
+                strict,
+                threshold,
+            )
+
+    return forced_gap, tuple(scale_thresholds), len(valid_menus)
+
+
 def verify_fixed_window_stable_tail_minimax(n, k0, t_start, t_end):
     assert 1 <= t_start <= t_end
     window_length = t_end - t_start + 1
@@ -666,6 +734,19 @@ def main():
         print(
             f"t0,t1,D={case}: menu_lower={lower_bound}, "
             f"block_upper={upper_bound}, construction={construction}"
+        )
+    menu_tail_cases = [
+        (256, 128, 5, 8, 2, 2),
+        (256, 64, 8, 13, 2, 2),
+        (1024, 256, 9, 15, 3, 2),
+    ]
+    for case in menu_tail_cases:
+        forced_gap, thresholds, valid_menu_count = (
+            verify_dither_menu_stable_tail_lower_bound(*case)
+        )
+        print(
+            f"n,k0,t0,t1,D,C={case}: forced_gap={forced_gap}, "
+            f"valid_menus={valid_menu_count}, tail_thresholds={thresholds}"
         )
     adjacent_remainder_cases = [
         (256, 128, 5, 8),

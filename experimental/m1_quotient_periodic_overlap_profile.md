@@ -718,6 +718,34 @@ degree bounded across a growing slack window requires a growing dither menu,
 unless one allows the exact-`k0` slack or switches to genuinely per-slack
 dimension choices.
 
+Combining this covering lemma with the two-sided stable-tail formula gives a
+direct mass lower bound. Suppose a menu `R` of size `C` serves every slack in
+`W` with a nonzero gap at most `D`, and set
+
+```text
+E = ceil(L_W/(2C)).
+```
+
+Assume
+
+```text
+D < t_-,        m | k0,        m >= t_+ + D.
+```
+
+Then there is some served slack `t in W` whose chosen dither has gap
+`e=|t-r| >= E`.  Since `e <= D < t` and `m >= t+D >= t+e`, this slack is in
+the stable range.  Moreover `e <= D < m/2`, so `binom(m,e) >= binom(m,E)`.
+The stable one-remainder mass at that slack and scale is therefore at least
+
+```text
+min(k0/m, (n-k0)/m) binom(m,E) - 1.
+```
+
+Thus a bounded dither menu does not merely force a large gap somewhere; at
+every sufficiently large dyadic quotient scale it forces a quantitative
+one-remainder tail. This is the scale-level obstruction that a fixed menu must
+pay before the remaining aperiodic M1 local-limit problem is reached.
+
 Finally, the maximal-dither remainder case has an exact all-scale formula, so
 small scales need not be handled as a black-box enumeration. Suppose
 
@@ -1245,6 +1273,9 @@ Two immediate readings are useful.
    of `C` dithers and chooses among them per slack without using exact support,
    some slack still has safe gap at least `ceil(L_W/(2C))`; bounded stable
    degree over long windows therefore requires a growing dither menu.
+   Quantitatively, if a `C`-value menu keeps every slack within gap `D`, then
+   at large dyadic scales it forces a stable one-remainder mass at least
+   `min(k0/m,(n-k0)/m)binom(m,ceil(L_W/(2C)))-1`.
 9. In the maximal-dither case, the one-remainder profile is explicit at every
    scale, not only at `m>=t`: the full strict profile is the three-band formula
    at exchange sizes `hm-1`, `hm`, and `hm+1`. This gives a closed-form
@@ -1277,4 +1308,6 @@ large-scale one-remainder entries. The scanner also emits the fixed-window
 minimax gap certificate, distinguishing the unconstrained center radius from
 the larger no-exact-`k0` radius. Supplying `--target-stable-gap D` additionally
 reports the finite-menu lower bound `ceil(|W|/(2D))` and a block-construction
-upper bound for covering the window with stable gap at most `D`.
+upper bound for covering the window with stable gap at most `D`. Supplying
+`--dither-menu-size C` turns this into a per-scale stable-tail mass lower
+bound for a `C`-value menu.

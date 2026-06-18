@@ -137,6 +137,27 @@ slack in the window within stable gap `D` needs at least
 the elementary block construction, which uses `ceil(|W|/D)` dither values and
 covers the window with gap at most `D`.
 
+Adding a menu size turns this into a per-parameter stable-tail lower-bound
+certificate:
+
+```bash
+python3 experimental/quotient_profile_dither.py \
+  --rates 1/2 --etas 1/64 --m-min 8 --m-max 12 \
+  --max-dither 16 --slack-window 5:12 \
+  --target-stable-gap 2 --dither-menu-size 2
+```
+
+For a menu of size `C`, the forced safe gap is
+`E=ceil(|W|/(2C))`. When `D<t_-`, every dyadic scale
+`M >= t_+ + D` has a theorem-backed lower bound
+
+```text
+min(k0/M,(n-k0)/M) binom(M,E) - 1
+```
+
+for some slack served by the menu. JSON output stores this as
+`dither_menu_tail_lower_bound` on each scanned case.
+
 Entries marked `stable_large_scale_formula` lie in the range
 
 ```text
