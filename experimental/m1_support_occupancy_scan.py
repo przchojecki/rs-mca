@@ -176,6 +176,57 @@ def is_power_coset(values: Sequence[int], exponent: int, p: int) -> bool:
     return all(pow(value, exponent, p) == target for value in values)
 
 
+def quadratic_character(value: int, p: int) -> int:
+    value %= p
+    if value == 0:
+        return 0
+    return 1 if pow(value, (p - 1) // 2, p) == 1 else -1
+
+
+def full_domain_slack_two_alpha_class_data(p: int) -> Optional[Dict[str, object]]:
+    if p <= 5:
+        return None
+
+    chi_minus_one = quadratic_character(-1, p)
+    chi_minus_three = quadratic_character(-3, p)
+    admissible_count = p - 5
+    zero_count = 1 + chi_minus_three
+    signed_nonzero_sum = -3 * (chi_minus_one + chi_minus_three)
+    nonzero_count = admissible_count - zero_count
+    square_count = (nonzero_count + signed_nonzero_sum) // 2
+    nonsquare_count = (nonzero_count - signed_nonzero_sum) // 2
+    nonzero_slope_classes = (1 if square_count else 0) + (
+        1 if nonsquare_count else 0
+    )
+    slope_count = (1 if zero_count else 0) + nonzero_slope_classes * (
+        (p - 1) // 2
+    )
+
+    if square_count and nonsquare_count:
+        slope_image = "full_field" if zero_count else "nonzero_field"
+    elif zero_count and square_count:
+        slope_image = "zero_plus_squares"
+    elif zero_count and nonsquare_count:
+        slope_image = "zero_plus_nonsquares"
+    elif square_count:
+        slope_image = "squares"
+    elif nonsquare_count:
+        slope_image = "nonsquares"
+    elif zero_count:
+        slope_image = "zero_only"
+    else:
+        slope_image = "empty"
+
+    return {
+        "alpha_square_count": square_count,
+        "alpha_nonsquare_count": nonsquare_count,
+        "alpha_zero_count": zero_count,
+        "alpha_character_sum": signed_nonzero_sum,
+        "slope_count": slope_count,
+        "slope_image": slope_image,
+    }
+
+
 def signed_symmetric_coefficient(
     values: Sequence[int],
     degree: int,
@@ -352,6 +403,8 @@ def slack_two_first_superboundary_shape_ledger(
     packet_slope_histogram_numerator: Counter[int] = Counter()
     support_slope_histogram_numerator: Counter[int] = Counter()
     active_zero_slope = False
+    square_image = {x * x % p for x in domain}
+    active_nonzero_square_cosets = set()
     whole_fibers = (
         (support_size - 3) // fiber_size
         if support_size >= 3 and (support_size - 3) % fiber_size == 0
@@ -386,6 +439,10 @@ def slack_two_first_superboundary_shape_ledger(
         if shape_slope == 0:
             active_zero_parameter_count += 1
             active_zero_slope = True
+        else:
+            active_nonzero_square_cosets.add(
+                min((shape_slope * square) % p for square in square_image)
+            )
 
         for x in domain:
             slope = (x * x * shape_slope) % p
@@ -420,10 +477,17 @@ def slack_two_first_superboundary_shape_ledger(
         (1 if active_zero_slope else 0)
         + nonzero_shape_orbit_count * (len(domain) // math.gcd(2, len(domain)))
     )
+    square_coset_slope_count = (
+        (1 if active_zero_slope else 0)
+        + len(active_nonzero_square_cosets) * len(square_image)
+    )
     return {
         "parameter_count": parameter_count,
         "active_parameter_count": active_parameter_count,
         "active_zero_parameter_count": active_zero_parameter_count,
+        "active_nonzero_square_coset_count": len(active_nonzero_square_cosets),
+        "square_image_size": len(square_image),
+        "square_coset_slope_count": square_coset_slope_count,
         "sixfold_quotient_check": quotient_check,
         "packet_count": packet_count_numerator // 6,
         "weighted_support_count": support_count_numerator // 6,
@@ -943,6 +1007,11 @@ def scan_supports(
         if canonical_line and slack == 2 and slack + 1 < fiber_size
         else None
     )
+    slack_two_full_domain_alpha_data = (
+        full_domain_slack_two_alpha_class_data(p)
+        if slack_two_shape_ledger is not None and n == p - 1
+        else None
+    )
     slack_two_cyclotomic_bound = (
         slack_two_cyclotomic_shape_bound(p, n)
         if slack_two_shape_ledger is not None
@@ -1332,6 +1401,16 @@ def scan_supports(
             if slack_two_shape_ledger is not None
             else None
         ),
+        "canonical_slack_two_shape_active_nonzero_square_coset_count": (
+            int(slack_two_shape_ledger["active_nonzero_square_coset_count"])
+            if slack_two_shape_ledger is not None
+            else None
+        ),
+        "canonical_slack_two_shape_square_image_size": (
+            int(slack_two_shape_ledger["square_image_size"])
+            if slack_two_shape_ledger is not None
+            else None
+        ),
         "canonical_slack_two_shape_sixfold_quotient_check": (
             bool(slack_two_shape_ledger["sixfold_quotient_check"])
             if slack_two_shape_ledger is not None
@@ -1371,6 +1450,17 @@ def scan_supports(
             if slack_two_shape_ledger is not None
             else None
         ),
+        "canonical_slack_two_shape_square_coset_slope_count": (
+            int(slack_two_shape_ledger["square_coset_slope_count"])
+            if slack_two_shape_ledger is not None
+            else None
+        ),
+        "canonical_slack_two_shape_square_coset_slope_count_check": (
+            len(first_superboundary_slope_histogram)
+            == int(slack_two_shape_ledger["square_coset_slope_count"])
+            if slack_two_shape_ledger is not None
+            else None
+        ),
         "canonical_slack_two_shape_square_coset_slope_bound": (
             int(slack_two_shape_ledger["square_coset_slope_bound"])
             if slack_two_shape_ledger is not None
@@ -1380,6 +1470,46 @@ def scan_supports(
             len(first_superboundary_slope_histogram)
             <= int(slack_two_shape_ledger["square_coset_slope_bound"])
             if slack_two_shape_ledger is not None
+            else None
+        ),
+        "canonical_slack_two_full_domain_alpha_square_count": (
+            int(slack_two_full_domain_alpha_data["alpha_square_count"])
+            if slack_two_full_domain_alpha_data is not None
+            else None
+        ),
+        "canonical_slack_two_full_domain_alpha_nonsquare_count": (
+            int(slack_two_full_domain_alpha_data["alpha_nonsquare_count"])
+            if slack_two_full_domain_alpha_data is not None
+            else None
+        ),
+        "canonical_slack_two_full_domain_alpha_zero_count": (
+            int(slack_two_full_domain_alpha_data["alpha_zero_count"])
+            if slack_two_full_domain_alpha_data is not None
+            else None
+        ),
+        "canonical_slack_two_full_domain_alpha_character_sum": (
+            int(slack_two_full_domain_alpha_data["alpha_character_sum"])
+            if slack_two_full_domain_alpha_data is not None
+            else None
+        ),
+        "canonical_slack_two_full_domain_slope_image": (
+            str(slack_two_full_domain_alpha_data["slope_image"])
+            if slack_two_full_domain_alpha_data is not None
+            else None
+        ),
+        "canonical_slack_two_full_domain_slope_count": (
+            int(slack_two_full_domain_alpha_data["slope_count"])
+            if slack_two_full_domain_alpha_data is not None
+            else None
+        ),
+        "canonical_slack_two_full_domain_slope_count_check": (
+            len(first_superboundary_slope_histogram)
+            == int(slack_two_full_domain_alpha_data["slope_count"])
+            if (
+                slack_two_full_domain_alpha_data is not None
+                and int(slack_two_shape_ledger["active_parameter_count"])
+                == int(slack_two_shape_ledger["parameter_count"])
+            )
             else None
         ),
         "canonical_slack_two_cyclotomic_shape_count_bound": (

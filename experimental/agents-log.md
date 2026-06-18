@@ -45,12 +45,15 @@ Keep entries concise and link to the relevant files.
   slope multiplier `alpha(u)=-(1+u+u^2)`, exact quotient-lift weight, and a
   square-coset slope-count bound. It also records the cyclotomic/Jacobi
   estimate for the unit-equation shape count over prime fields and the
-  resulting non-field-filling threshold.
+  resulting non-field-filling threshold. The square-coset compression is now
+  exact, and the full-domain case has an explicit quadratic-character
+  saturation formula.
 - **How it is useful:** Turns the first nonzero superboundary catalog from
   support enumeration into a finite multiplicative unit-equation problem plus
-  the square-image map on `D`.
+  the image of `alpha(C_2(D))` in `F_p^*/D^2`.
 - **What to do next:** Bound the unit-equation shape set `C_2(D)` for smooth
-  domains and compare its slope image against the corrected M1 reserve.
+  proper subgroups and compare its slope image against the corrected M1
+  reserve.
 
 ### 2026-06-18 - M1 first-superboundary zero-slope packets
 

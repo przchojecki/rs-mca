@@ -71,7 +71,18 @@ canonical_first_superboundary_zero_slope_support_count_check
 canonical_first_superboundary_zero_slope_coset_check
 canonical_slack_two_shape_packet_count_check
 canonical_slack_two_shape_support_slope_histogram_check
+canonical_slack_two_shape_active_nonzero_square_coset_count
+canonical_slack_two_shape_square_image_size
+canonical_slack_two_shape_square_coset_slope_count
+canonical_slack_two_shape_square_coset_slope_count_check
 canonical_slack_two_shape_square_coset_slope_bound_check
+canonical_slack_two_full_domain_alpha_square_count
+canonical_slack_two_full_domain_alpha_nonsquare_count
+canonical_slack_two_full_domain_alpha_zero_count
+canonical_slack_two_full_domain_alpha_character_sum
+canonical_slack_two_full_domain_slope_image
+canonical_slack_two_full_domain_slope_count
+canonical_slack_two_full_domain_slope_count_check
 canonical_slack_two_cyclotomic_character_order
 canonical_slack_two_cyclotomic_shape_count_bound
 canonical_slack_two_cyclotomic_shape_count_bound_check
@@ -188,6 +199,21 @@ They also report `canonical_slack_two_shape_square_coset_slope_bound`, the
 field-capped bound obtained from the union of square cosets
 `alpha(u)D^2`, and check that the observed first-superboundary slope count is
 below it.
+The sharper field `canonical_slack_two_shape_square_coset_slope_count`
+records the exact coset-compressed count
+
+```text
+1_{zero active} + #{active nonzero alpha(u)D^2 cosets} * |D^2|,
+```
+
+and checks equality against the observed first-superboundary slope count.
+
+When `D=F_p^*`, the `canonical_slack_two_full_domain_*` fields also check the
+quadratic-character formula for the classes of `alpha(u)=-(1+u+u^2)`. For
+`p>=17`, this predicts slope image `F_p` when `p==1 mod 3` and `F_p^*` when
+`p==2 mod 3`; the same formula records the small exceptional primes. The
+slope-count equality check is only asserted when every full-domain shape has
+an active quotient lift at the queried support size.
 
 For prime fields, `canonical_slack_two_cyclotomic_*` reports the coarser
 character-sum bound obtained from the index `e=(p-1)/|D|`:

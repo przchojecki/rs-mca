@@ -547,6 +547,75 @@ it converts the first nonzero canonical superboundary slope problem into two
 explicit inputs: a unit-equation shape count and the square-coset overlap of
 the values `alpha(u)`.
 
+The square-coset overlap is itself exact, not merely a union bound. Put
+
+```text
+Q = D^2 = {x^2 : x in D},
+A_2^act = { alpha(u)Q : u in C_2^act(D), alpha(u) != 0 }.
+```
+
+Because `Q` is a multiplicative subgroup, two nonzero sets
+`alpha(u)Q` and `alpha(u')Q` are either equal or disjoint. Hence the
+first-superboundary slack-two slope image has exact size
+
+```text
+1_{Z_2^act nonempty} + |A_2^act| |Q|.
+```
+
+Thus the only remaining loss in the square-coset step is the number of
+distinct cosets hit by `alpha(C_2^act(D))`, not any uncontrolled overlap
+inside those cosets.
+
+This exact compression also explains why the full multiplicative domain is a
+saturated obstruction rather than a promising non-field-filling case. Take
+`D=F_p^*`, `p>5`, and write `chi` for the quadratic character. On the
+admissible shape set `C_2(F_p^*)`, let
+
+```text
+A_+ = #{u in C_2 : chi(alpha(u))= 1},
+A_- = #{u in C_2 : chi(alpha(u))=-1},
+A_0 = #{u in C_2 : alpha(u)=0}.
+```
+
+Then
+
+```text
+A_0 = 1 + chi(-3),
+A_+ + A_- = p - 6 - chi(-3),
+A_+ - A_- = -3(chi(-1)+chi(-3)).
+```
+
+Indeed, the excluded parameters are
+
+```text
+u in {0, -1, 1, -2, -1/2},
+```
+
+and for `alpha(u)=-(u^2+u+1)` the standard quadratic character sum gives
+
+```text
+sum_{u in F_p} chi(alpha(u)) = -chi(-1).
+```
+
+The excluded contribution is `2chi(-1)+3chi(-3)`, and the zeros of
+`alpha` are exactly the nontrivial cube roots, counted by `1+chi(-3)`.
+This gives the displayed formulas.
+
+Consequently, for every prime `p>=17`, the full-domain slack-two residual
+slope image is
+
+```text
+F_p        if p == 1 mod 3,
+F_p^*      if p == 2 mod 3.
+```
+
+The small exceptional primes are visible from the same formulas: `p=7` gives
+only the zero slope, `p=11` gives one nonzero square class, and `p=13` gives
+zero plus one nonzero square class. Thus full-domain low-index examples are
+guaranteed to saturate all nonzero slopes, and sometimes the zero slope too;
+non-field-filling slack-two progress must come from proper subgroup index,
+inactive quotient lifts, or a sharper reserve argument.
+
 For prime fields this unit-equation shape count is a cyclotomic number. Let
 `D <= F_p^*` have order `n`, index `e=(p-1)/n`, and let `chi` be a
 multiplicative character of order `e`, extended by `chi(0)=0`. The raw shape
@@ -687,6 +756,13 @@ given by the square cosets `alpha(u)D^2` and quotient-lift weight
 The resulting square-coset slope bound is the first direct bad-slope-count
 payoff inside the superboundary range: improving M1 here reduces to bounding
 `C_2(D)` and overlaps among the square cosets `alpha(u)D^2`.
+The exact square-coset compression removes one ambiguity: those overlaps are
+only equality of cosets, so the M1-relevant object is the image of
+`alpha(C_2(D))` in `F_p^*/D^2`.
+For the full multiplicative domain this image is already both quadratic
+classes for every `p>=17`, with zero added exactly when `p==1 mod 3`; this
+proves that full-domain slack-two examples saturate all nonzero slopes rather
+than giving a route to non-field-filling.
 The cyclotomic expansion gives the first analytic route to such a bound: once
 standard Jacobi-sum estimates apply, the shape count is roughly `p/e^2` with
 square-root error, where `e=(p-1)/|D|`.
