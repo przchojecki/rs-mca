@@ -10,6 +10,7 @@ from typing import Dict, Iterable, List, Tuple
 
 EXHAUSTIVE_PRIMES = (17, 31)
 MOMENT_PRIMES = (5, 7, 11, 17, 31)
+FILTER_ORDERS = tuple(range(2, 41))
 TARGETED_CASES = (
     (37, 2, 5),
     (37, 7, 11),
@@ -372,6 +373,59 @@ def verify_principal_rows(p: int) -> None:
     )
 
 
+def admissible_filter_formula(e: int) -> int:
+    return (
+        (e - 1) * (e - 5)
+        + (3 if e % 2 == 0 else 0)
+        + 2 * (math.gcd(e, 3) - 1)
+    )
+
+
+def direct_admissible_filter_count(e: int) -> int:
+    count = 0
+    for a in range(1, e):
+        eta_exponent = (-a) % e
+        if eta_exponent == 0:
+            raise AssertionError((e, a, "eta principal"))
+        for b in range(1, e):
+            line_exponents = (a % e, b % e, (a - b) % e)
+            if any(exponent == 0 for exponent in line_exponents):
+                continue
+            has_equal_pair = len(set(line_exponents)) != 3
+            has_reciprocal_pair = any(
+                (line_exponents[i] + line_exponents[j]) % e == 0
+                for i in range(3)
+                for j in range(i + 1, 3)
+            )
+            direct_filter = (
+                b % e != a % e
+                and b % e != (-a) % e
+                and b % e != (2 * a) % e
+                and (2 * b) % e != a % e
+            )
+            if direct_filter != (not has_equal_pair and not has_reciprocal_pair):
+                raise AssertionError((e, a, b, line_exponents, direct_filter))
+            other_resonances = (
+                (b - a) % e == 0
+                or ((a - b) - a) % e == 0
+            )
+            if direct_filter and other_resonances:
+                raise AssertionError((e, a, b, "extra resonance"))
+            count += int(direct_filter)
+    return count
+
+
+def verify_admissible_filter_counts() -> List[Tuple[int, int]]:
+    checked: List[Tuple[int, int]] = []
+    for e in FILTER_ORDERS:
+        direct_count = direct_admissible_filter_count(e)
+        expected_count = admissible_filter_formula(e)
+        if direct_count != expected_count:
+            raise AssertionError((e, direct_count, expected_count))
+        checked.append((e, expected_count))
+    return checked
+
+
 def direct_core_collision_count(p: int) -> int:
     total = 0
     for v in range(1, p):
@@ -501,6 +555,7 @@ def main() -> None:
     max_open_label: Tuple[object, ...] = ()
     max_line_label: Tuple[object, ...] = ()
     singular_checked: List[int] = []
+    filter_checked = verify_admissible_filter_counts()
     moment_checked = verify_second_moments()
     for p, eta_exponent, nu_exponent in case_iterator():
         if p not in tables:
@@ -562,6 +617,7 @@ def main() -> None:
         f"max_open_ratio={max_open_ratio:.10f}@{max_open_label}",
         f"max_line_ratio={max_line_ratio:.10f}@{max_line_label}",
         f"singular_checked={singular_checked}",
+        f"filter_checked={filter_checked[0]}..{filter_checked[-1]}",
         f"moment_checked={moment_checked}",
     )
 

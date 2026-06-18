@@ -29,6 +29,23 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-19 - M1 line-conic character filter
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/m1_depth_two_line_conic_resonance_reduction.md`,
+  `experimental/verify_m1_depth_two_line_conic_resonance_reduction.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** Records the exact transformed character filter
+  for actual asymmetric line-conic-resonant terms:
+  `a,b != 0`, `b != a`, `b != -a`, `b != 2a`, and `2b != a`.
+- **How it is useful:** Identifies the precise `(eta,nu)` range that a
+  theorem-grade `4p` conductor bound must cover and rederives the
+  `C_2^lc=9R(e)` count from the character relations.
+- **What to do next:** Prove the pointwise conductor estimate on this
+  filtered nonprincipal range.
+
 ### 2026-06-19 - M1 line-conic principal rows
 
 - **Agent/model:** Codex.

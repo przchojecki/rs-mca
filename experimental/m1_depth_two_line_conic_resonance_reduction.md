@@ -209,6 +209,62 @@ this reduction with a future conductor bound for `G_nu(y)` would remove the
 last two-coordinate slice still charged at the old `9p` import after the
 conditional projective-equal and nonresonant ledgers.
 
+## Admissible Character Filter
+
+The transformed pair `(eta,nu)` is not arbitrary in the actual asymmetric
+`C_2^lc` ledger.  Fix one projective line-conic resonance and divide the
+common character order by the coordinate-character lift.  Write the resonant
+line exponent as `a` and the second active line exponent as `b`, with
+`a,b in Z/eZ` nonzero.  The conic exponent is then `-a`, so in the notation
+of this note
+
+```text
+eta = chi^{-a},        nu = chi^b.
+```
+
+The three projective line exponents are
+
+```text
+a,        b,        a-b.
+```
+
+The already removed equal-line and reciprocal-line slices are exactly the
+four forbidden relations
+
+```text
+b = a,        b = -a,        b = 2a,        2b = a        mod e.
+```
+
+Thus the actual character range for the transformed `C_2^lc` conductor
+target is
+
+```text
+a,b != 0,        b != a,        b != -a,
+b != 2a,         2b != a        mod e.
+```
+
+In this range the other two possible line-conic resonances are also absent:
+`nu eta=1` would give `b=a`, and `lambda eta=1` would give `b=0`, where
+`lambda=(nu eta)^(-1)` is the infinity-line monodromy.
+
+Inclusion-exclusion over the four forbidden relations gives the per-fixed
+resonant-line count
+
+```text
+R(e) = (e-1)(e-5) + 3 1_{2|e} + 2(gcd(e,3)-1).
+```
+
+This is the character-side form of the `C_2^lc` split:
+
+```text
+C_2^lc = 9R(e).
+```
+
+The factor `9` is the product of the three active coordinate pairs and the
+three possible resonant projective lines.  The finite verifier checks the
+filter, its equivalence with "no equal or reciprocal projective line pair",
+and the displayed count directly for character orders `2 <= e <= 40`.
+
 ## Conditional Ledger Target
 
 The precise conductor target is now the following one-dimensional statement:
