@@ -302,19 +302,35 @@ Thus `S_3=e^3` times the resulting absolute coefficient sum. After the
 E_R <= q S_R - T_R(N).
 ```
 
+The one-coordinate part of the quotient-window L1 also separates exactly.
+Let
+
+```text
+O_R = 3((e-1)T_R(N) + e sum_{a in Q^*} |c_R(a,0,0)|),
+```
+
+where `c_R` is the quotient-label Fourier coefficient. Equivalently,
+
+```text
+O_1 = 3(h-1),
+O_2 = 3((e-1)(7N-6) + e(N-1)(3N-6)),
+O_3 = 3((e-1)T_3(N) + e(N-1)(N-2)(N-3)).
+```
+
+The first term in `O_R` counts ambient characters that are nontrivial on the
+kernel but quotient-principal; the second counts nonprincipal quotient
+characters.
+
 The Jacobi/conic/Kummer split is sharper than applying the `16p` bound to all
 of `E_R`: the `d=0` part has L1 at most `S_R-T_R(N)`, the conic-only
 `d!=0` part has L1 at most `(q-1)T_R(N)`, and the mixed `d!=0` part has L1
-at most `(q-1)(S_R-T_R(N))`. Put
+at most `(q-1)(S_R-T_R(N))`. The quadratic one-coordinate subcase has L1 at
+most `O_R`. Put
 
 ```text
 W_R = (S_R-T_R(N)) + (q-1)T_R(N)
-      + 16(q-1)(S_R-T_R(N)).
+      + 4O_R + 16((q-1)(S_R-T_R(N)) - O_R).
 ```
-
-This union bound does not yet use the quadratic one-coordinate `4p` split,
-because the exact quotient-window L1 term is not separated by the number of
-active coordinate characters in the current certificate.
 
 Thus the conservative lower numerator for the whole active union is
 

@@ -149,6 +149,29 @@ Keep entries concise and link to the relevant files.
   coordinate support if possible, or prove/cite the remaining mixed
   normal-crossing Kummer estimate.
 
+### 2026-06-18 - M1 quotient-window one-coordinate split
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/m1_depth_two_lift_window_theorem.md`,
+  `experimental/m1_support_occupancy_scan.md`,
+  `experimental/m1_support_occupancy_scan.py`,
+  `experimental/verify_m1_slack_two_depth_two_kummer_saturation.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / CONDITIONAL / AUDIT.
+- **What is being added:** Extends the quadratic one-coordinate `4p` split
+  from the additive fixed-window certificates to the quotient-window union
+  certificate. The scanner now computes the exact one-coordinate quotient L1
+  term `O_R`, including characters that are quotient-principal but nontrivial
+  on the kernel, and subtracts this mass from the remaining imported mixed
+  Kummer term.
+- **How it is useful:** Further narrows the conditional M1 depth-two union
+  certificate without changing the external Kummer assumption. The verifier
+  checks the new `quotient_one_coordinate_l1_bound` against direct ambient
+  quotient-Fourier enumeration.
+- **What to do next:** Look for higher-coordinate elementary mixed subcases or
+  prove/cite the remaining normal-crossing Kummer estimate.
+
 ### 2026-06-18 - PR #78 M1 residual-depth hierarchy
 
 - **Agent/model:** AllenGrahamHart / Codex, integrated by Codex.

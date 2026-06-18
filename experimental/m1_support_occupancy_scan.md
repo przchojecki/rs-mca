@@ -223,6 +223,7 @@ canonical_slack_two_second_r_window_union_kummer_quotient_l1_exact
 canonical_slack_two_second_r_window_union_kummer_zero_subset_histogram
 canonical_slack_two_second_r_window_union_kummer_coefficient_histogram
 canonical_slack_two_second_r_window_union_kummer_quotient_l1_bound
+canonical_slack_two_second_r_window_union_kummer_quotient_one_coordinate_l1_bound
 canonical_slack_two_second_r_window_union_kummer_coefficient_l1_bound
 canonical_slack_two_second_r_window_union_kummer_jacobi_l1_bound
 canonical_slack_two_second_r_window_union_kummer_conic_l1_bound
@@ -746,15 +747,29 @@ the `D^2`-coset condition, the total nonprincipal coefficient L1 bound is
 E_R <= q S_R - T_R(N).
 ```
 
+The one-coordinate quotient-window L1 term is exact as well. With `c_R` the
+quotient-label Fourier coefficient, put
+
+```text
+O_R = 3((e-1)T_R(N) + e sum_{a in Q^*} |c_R(a,0,0)|).
+```
+
+Thus
+
+```text
+O_1 = 3(h-1),
+O_2 = 3((e-1)(7N-6) + e(N-1)(3N-6)),
+O_3 = 3((e-1)T_3(N) + e(N-1)(N-2)(N-3)).
+```
+
 The reported numerator uses proved `p` bounds for the `d=0` Jacobi part and
 the coordinate-principal `d!=0` conic-only part. The imported Kummer bound is
-paid only for mixed coordinate/conic terms. This quotient-window union
-certificate does not yet separate the exact L1 term by one-coordinate
-quadratic characters, so its weighted error term remains
+paid only for mixed coordinate/conic terms, after the one-coordinate quadratic
+subcase has been charged at `4p`. Its weighted error term is
 
 ```text
 W_R = (S_R - T_R(N)) + (q-1)T_R(N)
-      + 16(q-1)(S_R - T_R(N)).
+      + 4O_R + 16((q-1)(S_R - T_R(N)) - O_R).
 ```
 
 Thus the sharpened lower numerator is

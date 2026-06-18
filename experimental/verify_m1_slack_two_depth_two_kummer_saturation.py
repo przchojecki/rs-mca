@@ -342,6 +342,30 @@ def direct_ambient_window_label_l1_bound(
     return square_coset_index * quotient_l1_bound - label_triples
 
 
+def direct_ambient_window_label_one_coordinate_l1_bound(
+    ambient_character_order: int,
+    quotient_order: int,
+    window_size: int,
+) -> int:
+    total = 0
+    for coordinate in range(3):
+        for frequency in range(1, ambient_character_order):
+            triple = [0, 0, 0]
+            triple[coordinate] = frequency
+            total += abs(
+                quotient_window_label_coefficient(
+                    quotient_order,
+                    window_size,
+                    (
+                        triple[0] % quotient_order,
+                        triple[1] % quotient_order,
+                        triple[2] % quotient_order,
+                    ),
+                )
+            )
+    return total
+
+
 def kernel_fiber_reduction_counts(
     p: int,
     domain: Sequence[int],
@@ -1153,6 +1177,19 @@ def main() -> None:
             certificate["quotient_coefficient_l1_bound"]
         ):
             raise AssertionError((p, n, quotient_l1_bound, certificate))
+        quotient_one_coordinate_l1_bound = (
+            direct_ambient_window_label_one_coordinate_l1_bound(
+                int(certificate["kernel_character_order"]),
+                quotient_order,
+                remaining_fibers,
+            )
+        )
+        if quotient_one_coordinate_l1_bound != int(
+            certificate["quotient_one_coordinate_l1_bound"]
+        ):
+            raise AssertionError(
+                (p, n, quotient_one_coordinate_l1_bound, certificate)
+            )
         if bool(certificate["quotient_l1_exact"]) != bool(quotient_l1["exact"]):
             raise AssertionError((p, n, quotient_l1, certificate))
         coefficient_l1_bound = direct_ambient_window_label_l1_bound(
@@ -1182,10 +1219,18 @@ def main() -> None:
         conic_l1_bound = int(certificate["principal_weight"]) * (
             int(certificate["square_coset_index"]) - 1
         )
-        quadratic_one_coordinate_l1_bound = 0
+        quadratic_conic_character_count = (
+            1
+            if int(certificate["square_coset_index"]) > 1
+            and int(certificate["square_coset_index"]) % 2 == 0
+            else 0
+        )
+        quadratic_one_coordinate_l1_bound = (
+            quotient_one_coordinate_l1_bound * quadratic_conic_character_count
+        )
         kummer_l1_bound = jacobi_l1_bound * (
             int(certificate["square_coset_index"]) - 1
-        )
+        ) - quadratic_one_coordinate_l1_bound
         weighted_error_l1_bound = (
             jacobi_l1_bound
             + conic_l1_bound
@@ -1227,9 +1272,16 @@ def main() -> None:
         crude_conic_l1_bound = int(certificate["principal_weight"]) * (
             int(certificate["square_coset_index"]) - 1
         )
-        crude_quadratic_one_coordinate_l1_bound = 0
-        crude_kummer_l1_bound = crude_jacobi_l1_bound * (
-            int(certificate["square_coset_index"]) - 1
+        crude_quadratic_one_coordinate_l1_bound = (
+            int(certificate["crude_coefficient_abs_bound"])
+            * 3
+            * (int(certificate["kernel_character_order"]) - 1)
+            * quadratic_conic_character_count
+        )
+        crude_kummer_l1_bound = (
+            crude_jacobi_l1_bound
+            * (int(certificate["square_coset_index"]) - 1)
+            - crude_quadratic_one_coordinate_l1_bound
         )
         crude_weighted_error_l1_bound = (
             crude_jacobi_l1_bound
@@ -1308,11 +1360,16 @@ def main() -> None:
             - int(certificate["principal_weight"])
             + int(certificate["principal_weight"])
             * (int(certificate["square_coset_index"]) - 1)
+            + int(certificate["quadratic_one_coordinate_error_constant"])
+            * quadratic_one_coordinate_l1_bound
             + int(certificate["nonprincipal_constant"])
-            * (int(certificate["square_coset_index"]) - 1)
             * (
-                direct_quotient_l1_bound
-                - int(certificate["principal_weight"])
+                (int(certificate["square_coset_index"]) - 1)
+                * (
+                    direct_quotient_l1_bound
+                    - int(certificate["principal_weight"])
+                )
+                - quadratic_one_coordinate_l1_bound
             )
         )
         direct_lower_numerator = (
