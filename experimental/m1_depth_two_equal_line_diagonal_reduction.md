@@ -436,6 +436,15 @@ Thus each of the two geometric roots of `B(s)=0` has one inertia invariant
 and contributes only one conductor unit.  This is the two-unit saving missing
 from the earlier conservative audit.
 
+This is the standard Gauss `2F1` local table, translated from exponents
+`0` and `1-C` at `t=0` to tame characters.  It is compatible with Katz's
+hypergeometric-sheaf convention in which the semisimplified tame local
+monodromy at `0` of `Hyp_psi(chi_i;rho_j)` is the direct sum of the
+`chi_i`, as restated from Katz, *Exponential Sums and Differential
+Equations*, 8.4.2(5), by Katz--Tiep.  In the present normalization the
+corresponding `chi_i` are `1` and `alpha^(-1)`.  This local table is the
+only sheaf-theoretic import in the corrected equal-line conductor ledger.
+
 The generic tame conductor ledger on `P^1_s` is therefore
 
 ```text

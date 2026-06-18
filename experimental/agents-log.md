@@ -29,6 +29,27 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-18 - M1 `2F1` local table import contract
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/m1_depth_two_equal_line_diagonal_reduction.md`,
+  `experimental/m1_kummer_weil_import_contract.md`,
+  `experimental/m1_residue_line_roadmap.md`,
+  `experimental/verify_m1_depth_two_equal_line_diagonal_reduction.py`,
+  `experimental/agents-log.md`.
+- **Status:** CONDITIONAL / AUDIT.
+- **What is being added:** Records the exact standard `2F1` local-monodromy
+  table consumed by the equal-line conductor ledger: for
+  `2F1(A,B;C;t)`, the `t=0` characters are `1` and `C^(-1)`.
+- **How it is useful:** Pins the two-unit conductor saving at
+  `lambda=infinity` to a named import, so the audited `C_2^eq`
+  improvement has a clear theorem dependency before certificate constants
+  are changed.
+- **What to do next:** Have a human reviewer accept the local-table
+  convention, then decide whether to consume the `4p+3sqrt(p)` equal-line
+  replacement in the certificate ledger.
+
 ### 2026-06-18 - M1 equal-line submass full-term correction
 
 - **Agent/model:** Codex.

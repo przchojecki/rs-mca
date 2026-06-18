@@ -275,6 +275,18 @@ def balanced_z_local_exponents(h: int, alpha_exponent: int) -> Dict[str, object]
     }
 
 
+def twof1_local_table_import() -> Dict[str, object]:
+    return {
+        "status": "CONDITIONAL_IMPORT",
+        "normalization": "Gauss 2F1(A,B;C;t)",
+        "t_zero_characters": ("1", "C^(-1)"),
+        "m1_instance": "2F1(chi_2,mu;alpha;t)",
+        "after_visible_twists": ("alpha", "1"),
+        "invariant_count_per_lambda_infinity_branch": 1,
+        "source_pointer": "Katz ESDE 8.4.2(5), via Katz-Tiep GAFA 2021 Sec. 1B",
+    }
+
+
 def direct_open_sum(
     p: int,
     mu: List[complex],
@@ -681,6 +693,7 @@ def verify_pullback_line_conductor_budget(p: int) -> Dict[str, object]:
             "b_roots": len(roots_b),
             "c_roots": len(roots_c),
         },
+        "twof1_local_table_import": twof1_local_table_import(),
         "conductor_budget": {
             "s_zero": s_zero_cond,
             "c_roots": c_root_cond,
@@ -817,6 +830,7 @@ def verify_balanced_z_completion_geometry(p: int) -> Dict[str, object]:
         "lambda_one_root_count": len(lambda_one_roots),
         "lambda_infinity_root_count": len(lambda_infinity_roots),
         "infinity_kummer_ramification": 0,
+        "twof1_local_table_import": twof1_local_table_import(),
         "conductor_budget": {
             "z_zero": z_zero_cond,
             "lambda_one_roots": lambda_one_cond,
@@ -1302,6 +1316,7 @@ def verify_pushforward_local_conductor_budget(p: int) -> Dict[str, object]:
             "y=infinity": "simple branch over regular lambda=1/4",
             "y=3": "ordinary lambda=1/12,1/3 fiber",
         },
+        "twof1_local_table_import": twof1_local_table_import(),
         "conductor_budget": {
             **conductor_budget,
             "total": total_conductor,

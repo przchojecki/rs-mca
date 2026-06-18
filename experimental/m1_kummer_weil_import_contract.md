@@ -302,8 +302,59 @@ submass by `3p`, but the full two-coordinate open sum also contains the
 Jacobi term.  Thus the certificate-facing replacement is `4p+3sqrt(p)`
 instead of `9p`, dropping the leading L1 weight by `5C_2^eq` and adding
 square-root L1 mass `3C_2^eq`.  The present certificates still leave the
-constants unchanged until the standard `2F1` local-monodromy import is
-recorded cleanly.
+constants unchanged until this standard `2F1` local-monodromy import is
+accepted as theorem-grade.
+
+### `2F1` Local-Monodromy Import Consumed by the Equal-Line Audit
+
+The equal-line conductor saving uses the following narrow standard input.
+For the Gauss normalization
+
+```text
+2F1(A,B;C;t),
+```
+
+the tame local characters at `t=0` are
+
+```text
+1,        C^(-1).
+```
+
+Equivalently, the local exponents are `0` and `1-C`.  Katz's finite-field
+hypergeometric-sheaf convention gives the same table after translating this
+Gauss normalization to a `Hyp_psi(chi_i;rho_j)` sheaf: the semisimplified
+tame local monodromy at `0` is the direct sum of the numerator characters
+`chi_i`.  Katz, *Exponential Sums and Differential Equations*, 8.4.2(5), is
+the underlying source; Katz--Tiep restate the convention in their
+hypergeometric-sheaf monodromy paper.
+
+In the present M1 equal-line normalization,
+
+```text
+H(lambda) = const * chi_2(-lambda)
+  * 2F1(chi_2, mu; alpha; 1/lambda),
+```
+
+so at a root of `B(s)=0`, with `t=1/lambda` a local parameter, the imported
+characters are
+
+```text
+1,        alpha^(-1).
+```
+
+After the visible factor `chi_2(t)` and the outer twist
+`rho(B(s))=alpha chi_2(B(s))`, the two characters become
+
+```text
+alpha,        1.
+```
+
+Thus each `lambda=infinity` branch has exactly one inertia invariant and
+costs one tame conductor unit.  This is the sole imported fact behind the
+corrected rank-two ledgers `1+2+2+2=7` and `1+2+2+2+0=7`, and the
+rank-four pushforward ledger `2+1+2+2+4=11`.  It does not by itself change
+the active certificate constants; it records the exact theorem that must be
+accepted before the audited `C_2^eq` improvement is consumed.
 
 The finite audit
 
@@ -469,6 +520,13 @@ coefficient accounting.
 
 ## Source Pointers
 
+- Nicholas M. Katz, *Exponential Sums and Differential Equations*, Annals of
+  Mathematics Studies 124, Princeton University Press, 1990, especially
+  8.4.2 for the hypergeometric sheaf local-monodromy table.
+- Nicholas M. Katz and Pham Huu Tiep, *Monodromy groups of Kloosterman and
+  hypergeometric sheaves*, Geometric and Functional Analysis 31 (2021),
+  562-660, Section 1B, restating the `Hyp_psi(chi_i;rho_j)` local
+  monodromy convention from Katz 8.4.2.
 - Nicholas M. Katz, *Estimates for nonsingular multiplicative character
   sums*, International Mathematics Research Notices 2002, no. 7, 333-349,
   DOI `10.1155/S1073792802106088`.
