@@ -34,14 +34,15 @@ U = A^2 - V(u v (-1-u-v) A(u,v)),
 the rank-one Kummer sheaf with local monodromy vector `(a,b,c,d)` has total
 Frobenius trace bounded by `16p`.
 
-This is the only non-elementary estimate still used by the raw, two-fiber,
-fixed-window, and quotient-window union saturation certificates. The current
-ledger applies it with the actual squarefree radical support of each term:
-if exactly `r` coordinate exponents among `a,b,c` are nonzero and `d!=0`,
-then the active radical degree is `r+2` and the corresponding conditional
-constant is `(r+1)^2`. Thus one-coordinate mixed terms pay `4p`,
-two-coordinate mixed terms pay `9p`, and only three-coordinate mixed terms
-pay the full `16p`. All later coefficients are finite Fourier bookkeeping
+After the one-coordinate reductions below, this is the only non-elementary
+estimate still used by the raw, two-fiber, fixed-window, and quotient-window
+union saturation certificates. The current ledger applies it with the actual
+squarefree radical support of each remaining mixed term: if exactly `r`
+coordinate exponents among `a,b,c` are nonzero and `d!=0`, then the active
+radical degree is `r+2` and the corresponding conditional constant is
+`(r+1)^2`. The external two-variable import is now needed only for
+two-coordinate mixed terms, charged by `9p`, and three-coordinate mixed terms,
+charged by `16p`. All later coefficients are finite Fourier bookkeeping
 around this same input.
 
 When `d=0`, the unrestricted conic factor is absent and the main term is a
@@ -100,7 +101,8 @@ intersections contribute only bounded point terms; this is absorbed by
 another `6 sqrt(p)` correction. Hence the coordinate-principal `d!=0`
 open-set terms are bounded by `p + 6 sqrt(p)`.
 
-There is one more elementary mixed subcase. Suppose `d` is the quadratic
+The one-coordinate mixed terms also reduce to one-dimensional input. Suppose
+first that `d` is the quadratic
 character and exactly one coordinate character is nonprincipal, say
 `mu(u)`, with the other two coordinate characters principal. First ignore the
 two principal-coordinate exclusions `v=0` and `w=0`. For fixed `u`, the
@@ -119,13 +121,38 @@ most `4p`; the cases with the nonprincipal character on `v` or `w` follow by
 symmetry. The proof-level statement is isolated in
 `experimental/m1_depth_two_quadratic_one_coordinate_lemma.md`.
 
+If `d` is nonquadratic, the fixed-`u` inner sum is still explicit. For a
+nontrivial nonquadratic character `eta`,
+
+```text
+sum_v eta(A(u,v)) = eta(-1) chi_2(Delta(u)) eta(Delta(u)) J_eta,
+J_eta = sum_t eta(t(t-1)),
+```
+
+with the same discriminant `Delta(u)=-3u^2-2u-3`; the quadratic character
+`chi_2` accounts for the split/nonsplit discriminant, and the double-root
+case gives zero because `eta^2` is nonprincipal. Hence the unrestricted sum
+factors as
+
+```text
+eta(-1) J_eta sum_u mu(u) chi_2(Delta(u)) eta(Delta(u)).
+```
+
+The Jacobi factor has size at most `sqrt(p)`, and the discriminant sum is a
+genus-zero Kummer sum with support `u=0`, the two roots of `Delta`, and
+infinity, so it has size at most `2 sqrt(p)`. The unrestricted part is
+therefore bounded by `2p`, and the principal-coordinate exclusions cost at
+most `2p-1`. Thus the nonquadratic one-coordinate mixed terms also satisfy
+the `4p` bound. The proof-level statement is isolated in
+`experimental/m1_depth_two_nonquadratic_one_coordinate_lemma.md`.
+
 Thus the additive raw, fixed-window, and two-fiber certificates now pay:
 
 ```text
 d=0, coordinate nonprincipal:               p + 6 sqrt(p)
 d!=0, coordinate principal:                 p + 6 sqrt(p)
 d quadratic, exactly one coordinate active: 4p   (elementary)
-d!=0, one coordinate active, remaining:     4p   (degree 3 Kummer)
+d nonquadratic, exactly one coordinate:     4p   (one-dimensional)
 d!=0, two coordinates active:               9p   (degree 4 Kummer)
 d!=0, three coordinates active:            16p   (degree 5 Kummer)
 ```
@@ -135,16 +162,18 @@ The finite audit
 ```bash
 python3 experimental/verify_m1_depth_two_elementary_open_set_lemma.py
 python3 experimental/verify_m1_depth_two_quadratic_one_coordinate_lemma.py
+python3 experimental/verify_m1_depth_two_nonquadratic_one_coordinate_lemma.py
 python3 experimental/verify_m1_depth_two_kummer_constant_audit.py
 ```
 
 checks the finite geometry behind the elementary open-set correction and
-the quadratic one-coordinate slice lemma, and exhausts representative small
-prime/index cases against the exact character sums. The proof-level statement
-of the open-set correction is isolated in
-`experimental/m1_depth_two_elementary_open_set_lemma.md`, and the quadratic
-mixed slice is isolated in
-`experimental/m1_depth_two_quadratic_one_coordinate_lemma.md`.
+the one-coordinate slice lemmas, and exhausts representative small prime/index
+cases against the exact character sums. The proof-level statement of the
+open-set correction is isolated in
+`experimental/m1_depth_two_elementary_open_set_lemma.md`; the quadratic and
+nonquadratic mixed slices are isolated in
+`experimental/m1_depth_two_quadratic_one_coordinate_lemma.md` and
+`experimental/m1_depth_two_nonquadratic_one_coordinate_lemma.md`.
 
 ## Audited Hypotheses
 

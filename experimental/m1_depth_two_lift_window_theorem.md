@@ -135,10 +135,13 @@ raw, fixed-window, and two-fiber ledgers, the contract also proves a `4p`
 bound for the subcase where the conic character is quadratic and exactly one
 coordinate character is nonprincipal; this elementary slice calculation is
 isolated in `experimental/m1_depth_two_quadratic_one_coordinate_lemma.md`.
-The conditional Kummer import is now charged by the actual radical degree:
-remaining one-coordinate mixed terms have degree `1+2` and pay `4p`,
-two-coordinate mixed terms have degree `1+1+2` and pay `9p`, and only
-three-coordinate mixed terms have degree `1+1+1+2` and pay `16p`.
+It also proves the nonquadratic one-coordinate `4p` bound by reducing the
+fixed-coordinate conic sum to a Jacobi factor times a one-variable
+discriminant Kummer sum; this is isolated in
+`experimental/m1_depth_two_nonquadratic_one_coordinate_lemma.md`. The
+conditional Kummer import is now charged only from two active coordinate
+characters onward: two-coordinate mixed terms have degree `1+1+2` and pay
+`9p`, and three-coordinate mixed terms have degree `1+1+1+2` and pay `16p`.
 
 For the raw normalized catalog on `D`, the verifier audits the character
 expansion, the divisor nontriviality, the exact principal open-set count
@@ -150,8 +153,8 @@ p^2 - 4p + 6 + 4 chi(-3),
 and the exact six-line distinctness loss `6p-11`. With
 `e=[F_p^*:D]` and `q=[F_p^*:D^2]`, the nonprincipal expansion splits into
 the proved Jacobi part `e^3-1`, the proved conic-only part `q-1`, and the
-proved quadratic one-coordinate part `3(e-1)`. The remaining mixed Kummer
-L1 is stratified by active coordinate count:
+proved one-coordinate mixed part `3(e-1)(q-1)`. For bookkeeping, write the
+nonquadratic one-coordinate and higher-coordinate masses as:
 
 ```text
 C_1 = 3(e-1)(q-2),

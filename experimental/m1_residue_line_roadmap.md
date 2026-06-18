@@ -9,8 +9,8 @@ not a proof-status authority and should be revised as the project learns more.
    slack-two depth-two canonical frontier into lift-limited sparse regimes and
    Kummer-certified saturated regimes.
 2. Close the main conditional dependency: isolate elementary open-set terms,
-   record finite obstructions, and prove or cite the degree-stratified
-   normal-crossing Kummer-Weil estimate.
+   remove one-coordinate mixed terms, record finite obstructions, and prove or
+   cite the remaining degree-stratified normal-crossing Kummer-Weil estimate.
 3. Generalize from this packet to a fixed low-slack template theorem separating
    tangent, quotient-periodic, finite-template, and aperiodic families.
 4. Attack the main aperiodic packing theorem: after tangent and quotient-periodic

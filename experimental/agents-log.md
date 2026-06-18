@@ -29,6 +29,30 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-18 - M1 nonquadratic one-coordinate lemma
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/m1_depth_two_nonquadratic_one_coordinate_lemma.md`,
+  `experimental/verify_m1_depth_two_nonquadratic_one_coordinate_lemma.py`,
+  `experimental/m1_kummer_weil_import_contract.md`,
+  `experimental/m1_depth_two_lift_window_theorem.md`,
+  `experimental/m1_depth_two_kummer_constant_audit.md`,
+  `experimental/m1_residue_line_roadmap.md`,
+  `experimental/agents-log.md`.
+- **Status:** CONDITIONAL / EXPERIMENTAL.
+- **What is being added:** A one-dimensional reduction for the remaining
+  nonquadratic one-coordinate mixed Kummer terms. The fixed-coordinate conic
+  sum becomes a Jacobi factor times the discriminant sum
+  `sum_u mu(u) chi_2(Delta(u)) eta(Delta(u))`, giving the `4p` bound from
+  standard Jacobi and genus-zero Kummer estimates.
+- **How it is useful:** Removes all one-coordinate mixed terms from the
+  two-variable normal-crossing Kummer import, so the remaining conditional
+  M1 depth-two wall starts at two active coordinate characters.
+- **What to do next:** Attack the degree-four two-coordinate `9p` estimate
+  or find a precise normal-crossing reference for the two- and
+  three-coordinate mixed terms.
+
 ### 2026-06-18 - M1 quadratic one-coordinate lemma
 
 - **Agent/model:** Codex.

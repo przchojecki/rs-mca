@@ -11,7 +11,7 @@ bounds
 d=0, coordinate nonprincipal:               p + 6 ceil(sqrt(p))
 d!=0, coordinate principal:                 p + 6 ceil(sqrt(p))
 d quadratic, exactly one coordinate active: 4p
-d!=0, one coordinate active, remaining:     4p
+d nonquadratic, exactly one coordinate:     4p
 d!=0, two coordinate active:                9p
 d!=0, three coordinate active:             16p
 ```
@@ -27,6 +27,9 @@ including nonquadratic square-coset characters.
 The proof-level open-set correction is isolated in
 `experimental/m1_depth_two_elementary_open_set_lemma.md`; this note is the
 finite exact-sum regression audit for that corrected ledger.
+The proof-level one-coordinate mixed reductions are isolated in
+`experimental/m1_depth_two_quadratic_one_coordinate_lemma.md` and
+`experimental/m1_depth_two_nonquadratic_one_coordinate_lemma.md`.
 
 ## Parameters
 
