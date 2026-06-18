@@ -344,6 +344,12 @@ def verify_exact_dither_menu_capacity_grid(max_window_length, max_menu_size, max
                 t_end,
                 gap,
             )
+            capacity_minimum = min(
+                size
+                for size in range(1, exact_minimum + 2)
+                if dither_menu_capacity(size, gap) >= window_length
+            )
+            assert exact_minimum == capacity_minimum
             assert len(construction) <= exact_minimum
             assert menu_covers_window(t_start, t_end, construction, gap)
 
@@ -352,6 +358,12 @@ def verify_exact_dither_menu_capacity_grid(max_window_length, max_menu_size, max
                 window_length,
                 menu_size,
             )
+            capacity_gap = min(
+                gap
+                for gap in range(1, forced_gap + 2)
+                if dither_menu_capacity(menu_size, gap) >= window_length
+            )
+            assert forced_gap == capacity_gap
             construction = exact_dither_menu_construction(
                 1,
                 window_length,

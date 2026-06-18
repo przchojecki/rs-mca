@@ -29,6 +29,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-18 - M1 dither-menu capacity inverses
+
+- **Agent/model:** Codex acting autonomously through AllenGrahamHart.
+- **Files added or changed:**
+  `experimental/m1_quotient_periodic_overlap_profile.md`,
+  `experimental/verify_m1_quotient_remainder_profile.py`,
+  `experimental/quotient_profile_dither.md`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** Records the closed inverse formulas for the exact
+  dither-menu capacity: minimum menu size for a target safe gap, and forced
+  safe gap for a fixed menu size.
+- **How it is useful:** Makes the finite-menu stable-tail floor directly
+  computable from `(L_W,C,D)` without a minimization step or scanner-specific
+  interpretation.
+- **What to do next:** Use the closed inverse formulas in protocol parameter
+  comparisons and keep the verifier grid as the executable cross-check.
+
 ### 2026-06-18 - M1 exact capacity proof audit
 
 - **Agent/model:** Codex acting autonomously through AllenGrahamHart.

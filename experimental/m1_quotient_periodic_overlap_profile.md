@@ -716,11 +716,35 @@ most `D` if and only if
 L_W <= Cap(C,D).
 ```
 
+This gives closed inverse formulas. For a target gap `D`, the exact minimum
+menu size is
+
+```text
+C_D
+ = min(
+     2 ceil(L_W/(3D+1)),
+     2 ceil(max(0,L_W-D)/(3D+1)) + 1
+   ).
+```
+
+The first term uses only paired dithers, while the second uses one leftover
+single dither plus paired dithers. Conversely, for a fixed menu size `C`, put
+
+```text
+p=floor(C/2),        eps=C mod 2.
+```
+
+The exact forced safe gap is
+
+```text
+D_C = max(1, ceil((L_W-p)/(3p+eps))).
+```
+
 Equivalently, every menu of `C` fixed dithers has some slack whose safe gap is
 at least
 
 ```text
-D_C = min { D >= 1 : L_W <= Cap(C,D) }.
+D_C.
 ```
 
 The earlier counting lower bound `ceil(L_W/(2D))` is only a coarse corollary;

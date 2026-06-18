@@ -142,6 +142,22 @@ can safely cover `3D+1` consecutive slacks, while a leftover single dither can
 cover `D`. The scanner reports the exact minimum menu size needed for
 `Cap(C,D) >= |W|`, plus an explicit capacity-achieving construction.
 
+Equivalently, for a target gap `D`, the exact minimum menu size is
+
+```text
+min(
+  2 ceil(|W|/(3D+1)),
+  2 ceil(max(0,|W|-D)/(3D+1)) + 1
+).
+```
+
+For a fixed menu size `C`, with `p=floor(C/2)` and `eps=C mod 2`, the exact
+forced safe gap is
+
+```text
+max(1, ceil((|W|-p)/(3p+eps))).
+```
+
 Adding a menu size turns this into a per-parameter stable-tail lower-bound
 certificate:
 
