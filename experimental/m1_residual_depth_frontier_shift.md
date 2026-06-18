@@ -104,6 +104,45 @@ route.  It does not prove the required nonzero-frontier character-sum estimate.
 The remaining analytic target is a depth-uniform `O(sqrt(p))` conductor bound
 for the single new frontier exposed at each rung.
 
+## Additive Error Criterion
+
+Let `E` be any nonnegative certificate functional on weighted packet families
+which is subadditive on disjoint unions.  Examples include a triangle-inequality
+bound for a character-sum error term, a weighted L1 coefficient mass, or a
+union-bound slope-image certificate.  Applying `E` to the weighted ladder
+identity gives
+
+```text
+E(C_T(r)) <= E(F_T(r)) + E(C_(T+1)(r)).
+```
+
+Iterating,
+
+```text
+E(C_T(r)) <= sum_{a=T}^{r-1} E(F_a(r)) + E(C_r(r)).
+```
+
+Thus a uniform nonzero-frontier estimate
+
+```text
+E(F_a(r)) <= K_r sqrt(p)       for all T <= a < r
+```
+
+implies the additive ladder bound
+
+```text
+E(C_T(r)) <= (r-T) K_r sqrt(p) + E(C_r(r)).
+```
+
+The terminal term `C_r(r)` is the pure-zero power-coset ledger described in
+`experimental/m1_low_slack_packet_template_theorem.md`; it is explicit and
+does not require a new character-sum estimate.  Hence the M1/X1 no-loss
+question for this packet ladder is reduced to the uniformity of the
+nonzero-frontier conductor constants `K_r`.  If such constants are independent
+of residual depth, the recursion pays one square-root error per newly exposed
+frontier.  A multiplicative blowup can only enter if the analytic
+nonzero-frontier estimates themselves deteriorate with the shift.
+
 ## Frontier Partition
 
 Iterating the shift partitions a depth-`d` packet by its first nonzero

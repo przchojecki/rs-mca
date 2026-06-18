@@ -76,7 +76,9 @@ The weighted ladder identity in
 zero-frontier catalog at slack `T` is the next-slack catalog at `T+1` with the
 same binomial quotient-lift weight.  Thus the template exposes one genuinely
 new frontier per rung rather than multiplying the inherited packet weight
-through the ladder.
+through the ladder.  The additive criterion there shows that any subadditive
+certificate with a depth-uniform `K sqrt(p)` bound on each new frontier pays
+`K sqrt(p)` once per rung, plus the explicit terminal power-coset ledger.
 
 ## Dither Gate
 

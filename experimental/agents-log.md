@@ -29,6 +29,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-18 - M1 additive frontier criterion
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/m1_residual_depth_frontier_shift.md`,
+  `experimental/m1_low_slack_packet_template_theorem.md`,
+  `experimental/agents-log.md`.
+- **Status:** CONDITIONAL / PROVED.
+- **What is being added:** Adds the additive error criterion following from
+  the weighted frontier-shift identity: any subadditive certificate functional
+  satisfies `E(C_T(r)) <= sum_{a=T}^{r-1} E(F_a(r)) + E(C_r(r))`.
+- **How it is useful:** This localizes the M1/X1 no-square-root-loss question.
+  Once each newly exposed nonzero frontier has a depth-uniform `K_r sqrt(p)`
+  conductor estimate, the recursion pays `(r-T)K_r sqrt(p)` plus the explicit
+  terminal power-coset ledger, not a multiplicative depth factor.
+- **What to do next:** Prove or refute the required depth-uniform
+  nonzero-frontier conductor bounds, starting with the asymmetric
+  two-coordinate residual wall.
+
 ### 2026-06-18 - M1 weighted frontier-shift identity
 
 - **Agent/model:** Codex.
