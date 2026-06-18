@@ -345,10 +345,13 @@ def slack_two_first_superboundary_shape_ledger(
     domain_set = set(domain)
     value_to_index = {value: index for index, value in enumerate(domain)}
     parameter_count = 0
+    active_parameter_count = 0
+    active_zero_parameter_count = 0
     packet_count_numerator = 0
     support_count_numerator = 0
     packet_slope_histogram_numerator: Counter[int] = Counter()
     support_slope_histogram_numerator: Counter[int] = Counter()
+    active_zero_slope = False
     whole_fibers = (
         (support_size - 3) // fiber_size
         if support_size >= 3 and (support_size - 3) % fiber_size == 0
@@ -376,7 +379,13 @@ def slack_two_first_superboundary_shape_ledger(
             lift_count = 0
         else:
             lift_count = math.comb(quotient_order - touched_fibers, whole_fibers)
+        if lift_count == 0:
+            continue
+        active_parameter_count += 1
         shape_slope = (-1 - u - u * u) % p
+        if shape_slope == 0:
+            active_zero_parameter_count += 1
+            active_zero_slope = True
 
         for x in domain:
             slope = (x * x * shape_slope) % p
@@ -404,11 +413,21 @@ def slack_two_first_superboundary_shape_ledger(
             for slope, count in support_slope_histogram_numerator.items()
         }
     )
+    nonzero_shape_orbit_count = (
+        (active_parameter_count - active_zero_parameter_count) // 6
+    )
+    square_coset_slope_bound = (
+        (1 if active_zero_slope else 0)
+        + nonzero_shape_orbit_count * (len(domain) // math.gcd(2, len(domain)))
+    )
     return {
         "parameter_count": parameter_count,
+        "active_parameter_count": active_parameter_count,
+        "active_zero_parameter_count": active_zero_parameter_count,
         "sixfold_quotient_check": quotient_check,
         "packet_count": packet_count_numerator // 6,
         "weighted_support_count": support_count_numerator // 6,
+        "square_coset_slope_bound": min(p, square_coset_slope_bound),
         "packet_slope_histogram": packet_slope_histogram,
         "support_slope_histogram": support_slope_histogram,
     }
@@ -1275,6 +1294,16 @@ def scan_supports(
             if slack_two_shape_ledger is not None
             else None
         ),
+        "canonical_slack_two_shape_active_parameter_count": (
+            int(slack_two_shape_ledger["active_parameter_count"])
+            if slack_two_shape_ledger is not None
+            else None
+        ),
+        "canonical_slack_two_shape_active_zero_parameter_count": (
+            int(slack_two_shape_ledger["active_zero_parameter_count"])
+            if slack_two_shape_ledger is not None
+            else None
+        ),
         "canonical_slack_two_shape_sixfold_quotient_check": (
             bool(slack_two_shape_ledger["sixfold_quotient_check"])
             if slack_two_shape_ledger is not None
@@ -1311,6 +1340,17 @@ def scan_supports(
         "canonical_slack_two_shape_support_slope_histogram_check": (
             slack_two_shape_ledger["support_slope_histogram"]
             == first_superboundary_slope_histogram
+            if slack_two_shape_ledger is not None
+            else None
+        ),
+        "canonical_slack_two_shape_square_coset_slope_bound": (
+            int(slack_two_shape_ledger["square_coset_slope_bound"])
+            if slack_two_shape_ledger is not None
+            else None
+        ),
+        "canonical_slack_two_shape_square_coset_slope_bound_check": (
+            len(first_superboundary_slope_histogram)
+            <= int(slack_two_shape_ledger["square_coset_slope_bound"])
             if slack_two_shape_ledger is not None
             else None
         ),

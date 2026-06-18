@@ -530,6 +530,23 @@ when `u` is a nontrivial cube root of unity. Thus the entire `T=2`, `|P|=3`
 canonical residual source is reduced to the multiplicative unit equation
 `u in D` and `-1-u in D`, plus the square-image map `x -> x^2` on `D`.
 
+It also gives a direct slope-count bound. Let `C_2^act(D)` be the shapes in
+`C_2(D)` with enough disjoint quotient fibers to lift to the target exact
+support size, and let `Z_2^act` be the active shapes with `alpha(u)=0`. Since
+the nonzero shapes occur in sixfold orbits and `D^2` has size
+`|D|/gcd(2,|D|)`, the number of first-superboundary slack-two slopes is at
+most
+
+```text
+1_{Z_2^act nonempty}
+  + ((|C_2^act(D)|-|Z_2^act|)/6) * |D|/gcd(2,|D|),
+```
+
+capped by `|F|`. This is not an aperiodic local-limit theorem by itself, but
+it converts the first nonzero canonical superboundary slope problem into two
+explicit inputs: a unit-equation shape count and the square-coset overlap of
+the values `alpha(u)`.
+
 ## M1 Impact
 
 This turns the positive M1 problem into a precise incidence question:
@@ -595,6 +612,9 @@ For `T=2`, even that nonzero catalog is no longer a support-enumeration
 problem: it is exactly the unit-equation shape set `C_2(D)`, with slope image
 given by the square cosets `alpha(u)D^2` and quotient-lift weight
 `binom(N-tau(u),L)`.
+The resulting square-coset slope bound is the first direct bad-slope-count
+payoff inside the superboundary range: improving M1 here reduces to bounding
+`C_2(D)` and overlaps among the square cosets `alpha(u)D^2`.
 
 ## Suggested Next Step
 
@@ -625,3 +645,4 @@ For residual packets of size `T+1`, it additionally checks the zero-slope
 power-coset classification and the corresponding lifted support count.
 When `T=2`, it also checks the complete unit-equation shape ledger and its
 weighted slope histogram.
+The same scanner reports the associated square-coset slope-count bound.

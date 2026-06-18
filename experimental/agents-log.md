@@ -41,7 +41,8 @@ Keep entries concise and link to the relevant files.
   EXPERIMENTAL for scanner verification.
 - **What is being added:** Shows that all `T=2`, `|P|=3` residual packets are
   the six-to-one image of unit-equation shapes `u in D`, `-1-u in D`, with
-  slope multiplier `alpha(u)=-(1+u+u^2)` and exact quotient-lift weight.
+  slope multiplier `alpha(u)=-(1+u+u^2)`, exact quotient-lift weight, and a
+  square-coset slope-count bound.
 - **How it is useful:** Turns the first nonzero superboundary catalog from
   support enumeration into a finite multiplicative unit-equation problem plus
   the square-image map on `D`.

@@ -71,6 +71,7 @@ canonical_first_superboundary_zero_slope_support_count_check
 canonical_first_superboundary_zero_slope_coset_check
 canonical_slack_two_shape_packet_count_check
 canonical_slack_two_shape_support_slope_histogram_check
+canonical_slack_two_shape_square_coset_slope_bound_check
 canonical_subboundary_residual_floor_check
 canonical_residual_slope_check
 canonical_boundary_slope_decomposition_check
@@ -176,6 +177,10 @@ alpha(u)=-(1+u+u^2).
 The `canonical_slack_two_shape_*` fields report the shape-parameter count and
 check that this formula reconstructs the first-superboundary packet count,
 lifted support count, packet slope histogram, and support slope histogram.
+They also report `canonical_slack_two_shape_square_coset_slope_bound`, the
+field-capped bound obtained from the union of square cosets
+`alpha(u)D^2`, and check that the observed first-superboundary slope count is
+below it.
 
 For dithered residues in the range
 
