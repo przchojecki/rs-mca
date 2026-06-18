@@ -63,9 +63,56 @@ The generated-field entropy margin is already positive:
 The Paper B list quotient-core profile is empty: `gcd(n,k)=2`, and the only
 nontrivial divisor `M=2` fails the active condition `sigma < M`.
 
+## General Complement-Prefix Lemma
+
+Let `H <= F^*` be a multiplicative subgroup of order `n`, let
+`1 <= sigma < n`, and define
+
+```text
+E_A(Z) = prod_{a in A} (1 + aZ)
+       = sum_j e_j(A) Z^j.
+```
+
+For any support `S subset H` and complement `A = H \ S`,
+
+```text
+E_S(Z) E_A(Z) = prod_{h in H} (1 + hZ) = 1 - (-Z)^n.
+```
+
+Hence
+
+```text
+E_S(Z) E_A(Z) = 1 mod Z^(sigma+1).
+```
+
+Since both truncated series have constant term `1`, inversion modulo
+`Z^(sigma+1)` is unique. Therefore, for equal-size supports `S,T subset H`
+with complements `A=H\S` and `B=H\T`,
+
+```text
+(e_1(S),...,e_sigma(S)) = (e_1(T),...,e_sigma(T))
+iff
+(e_1(A),...,e_sigma(A)) = (e_1(B),...,e_sigma(B)).
+```
+
+If the complements have size `m`, then
+
+```text
+L_A(X) = X^m - e_1(A)X^(m-1) + e_2(A)X^(m-2) - ... + (-1)^m e_m(A).
+```
+
+Thus, for `sigma < m`, complement-prefix equality is equivalent to
+
+```text
+deg(L_A - L_B) <= m - sigma - 1.
+```
+
+For `sigma >= m`, it forces `A=B`.
+
 ## Complement-Locator Compression
 
-The orbit certificate is not just a presentation choice. Since
+The orbit certificate is an instance of this lemma. Here `H=F_17^*`,
+`n=16`, `m=6`, and `sigma=4`. Since
 
 ```text
 prod_{h in F_17^*} (1 + hZ) = 1 - Z^16,
@@ -82,7 +129,7 @@ For complements of size `6`,
 L_A(X) = X^6 - e_1(A)X^5 + e_2(A)X^4 - ... + e_6(A).
 ```
 
-Thus equal first four elementary coefficients are equivalent to
+Equal first four elementary coefficients are equivalent to
 
 ```text
 L_A(X) - L_B(X) = alpha X + beta.
@@ -149,5 +196,6 @@ python3 experimental/verify_l1_aperiodic_prefix_collision.py --format json
 The verifier enumerates all `8008` supports, recomputes the fiber histogram,
 checks the example codewords, verifies the entropy and quotient-core ledgers,
 checks that all forty nonsingleton fibers are not `M=8` or `M=16`
-coset-union collisions, and certifies the three complement-locator dilation
-orbits.
+coset-union collisions, verifies that support-prefix and complement-prefix
+partitions agree for all supports, and certifies the three complement-locator
+dilation orbits.

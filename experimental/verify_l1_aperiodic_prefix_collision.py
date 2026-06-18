@@ -327,6 +327,40 @@ def collision_report(
     }
 
 
+def complement_prefix_partition_report(
+    fibers: dict[tuple[int, ...], list[tuple[int, ...]]],
+) -> dict[str, Any]:
+    support_to_complement: dict[tuple[int, ...], set[tuple[int, ...]]] = (
+        defaultdict(set)
+    )
+    complement_to_support: dict[tuple[int, ...], set[tuple[int, ...]]] = (
+        defaultdict(set)
+    )
+    for support_prefix, supports in fibers.items():
+        for support in supports:
+            complement_prefix = elementary_prefix(support_complement(support))
+            support_to_complement[support_prefix].add(complement_prefix)
+            complement_to_support[complement_prefix].add(support_prefix)
+
+    support_partition_ok = all(
+        len(values) == 1 for values in support_to_complement.values()
+    )
+    complement_partition_ok = all(
+        len(values) == 1 for values in complement_to_support.values()
+    )
+    if not support_partition_ok or not complement_partition_ok:
+        raise AssertionError("support/complement prefix partitions differ")
+
+    return {
+        "checked": True,
+        "support_prefix_values": len(support_to_complement),
+        "complement_prefix_values": len(complement_to_support),
+        "partitions_agree": True,
+        "complement_size": N - AGREEMENT,
+        "locator_gap_degree_bound": N - AGREEMENT - SIGMA - 1,
+    }
+
+
 def complement_orbit_report(
     fibers: dict[tuple[int, ...], list[tuple[int, ...]]],
 ) -> dict[str, Any]:
@@ -418,6 +452,7 @@ def build_certificate() -> dict[str, Any]:
     collisions = collision_report(fibers)
     if not collisions["all_collision_fibers_aperiodic"]:
         raise AssertionError("found quotient-periodic collision")
+    complement_partition = complement_prefix_partition_report(fibers)
     complement_orbits = complement_orbit_report(fibers)
 
     return {
@@ -448,6 +483,7 @@ def build_certificate() -> dict[str, Any]:
             "maximum_fiber_size": max(histogram),
         },
         "collision_report": collisions,
+        "complement_prefix_lemma_report": complement_partition,
         "complement_orbit_report": complement_orbits,
         "example": verify_example(fibers),
         "passed": True,
@@ -458,6 +494,7 @@ def print_text(cert: dict[str, Any]) -> None:
     inputs = cert["inputs"]
     distribution = cert["prefix_distribution"]
     collisions = cert["collision_report"]
+    complement_partition = cert["complement_prefix_lemma_report"]
     complement_orbits = cert["complement_orbit_report"]
     print("L1 aperiodic prefix-collision certificate")
     print(f"Status: {cert['status']}")
@@ -487,6 +524,11 @@ def print_text(cert: dict[str, Any]) -> None:
     print(
         "symmetric-difference histogram: "
         f"{collisions['symmetric_difference_histogram']}"
+    )
+    print(
+        "support/complement prefix partitions agree: "
+        f"{complement_partition['partitions_agree']} "
+        f"({complement_partition['support_prefix_values']} values)"
     )
     print(
         "complement dilation orbits: "

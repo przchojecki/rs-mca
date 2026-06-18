@@ -43,7 +43,8 @@ Keep entries concise and link to the relevant files.
   two-point collisions and no larger fibers, despite positive generated-field
   entropy margin and empty quotient-core profile.  The verifier also compresses
   the collisions into three dilation orbits of complement locator pairs with
-  linear gaps `L_A-L_B`.
+  linear gaps `L_A-L_B`, using the general complement-prefix lemma for
+  multiplicative subgroups.
 - **How it is useful:** Targets L1 by showing that quotient-core removal
   cannot be strengthened to finite-field aperiodic injectivity; the surviving
   local-limit theorem must be a multiplicity bound for aperiodic prefix
