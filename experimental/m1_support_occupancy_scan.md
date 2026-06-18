@@ -381,6 +381,8 @@ The accompanying proof note states the same hierarchy for every residual
 depth `d`: zero slope at `(t,k,d)` is the depth-`d-1` catalog at
 `(t+1,k-1,d-1)`. The scanner currently audits the first nontrivial case
 `d=2`.
+Iterating this shift leaves only a finite first-nonzero-coefficient frontier;
+pure zero chains terminate in the counted power-coset ledger.
 
 For slack `t=2`, the scanner also verifies the complete first-superboundary
 shape ledger. It enumerates

@@ -734,6 +734,32 @@ Thus every zero-slope layer is not a new shape problem: it is the previous
 residual-depth problem one slack higher. The genuinely new part at depth `d`
 is the nonzero image of `c_T,d` modulo the power cosets `D^T`.
 
+Iterating the shift gives a finite frontier description. A residual packet of
+size `T+d` can have a chain of inherited zero slopes
+
+```text
+e_T=e_(T+1)=...=e_(T+j-1)=0
+```
+
+for `0<=j<d`. After `j` such zero steps, the same packet is viewed as a
+depth-`d-j` packet at slack `T+j` and dimension `k-j`. If the zero chain
+continues all the way to `j=d-1`, the packet lands in the first-superboundary
+catalog at slack `T+d-1` and dimension `k-d+1`; its remaining zero-slope
+subcatalog is the already counted `(T+d)`-power-coset family.
+
+Therefore a residual-depth analysis can be organized by first nonzero
+coefficient. The new frontier at depth `d` is not the whole catalog
+`C_T^(d)(D)`, but the first nonzero image
+
+```text
+(-1)^(T+j) e_(T+j)
+```
+
+on the inherited zero stratum for some `0<=j<d`, modulo the corresponding
+power cosets `D^(T+j)`. Pure zero chains contribute only the terminal
+power-coset ledger. This is useful for M1 because it prevents lower-depth
+zero strata from being counted again as new aperiodic residual structure.
+
 This formula has an immediate dither gate. Since the residual packet has size
 `T+1` but the exact support size is `s=k+T`, a first-superboundary packet can
 lift only if
