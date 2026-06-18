@@ -461,6 +461,32 @@ the standard multiplicative character-sum bound on genus-zero curves; the
 scanner fields are an audit of the resulting numerical certificate, not a
 proof of that imported estimate.
 
+The fields `canonical_slack_three_cube_coset_coverage_*` report the
+complementary low-index cube-coset coverage certificate. With
+`e=(p-1)/|D|`, `g=gcd(3,|D|)`, and `h=eg=[F_p^*:D^3]`, the scanner uses the
+conditional lower bound
+
+```text
+ceil((p - 9 - 4 chi_2(-3) - (12 sqrt(p)+12)e^3 h)/(e^3 h))
+```
+
+for the number of admissible ordered slack-three shape parameters in each
+nonzero `D^3` coset. The constant `12` in the square-root term comes from
+the fourteen-point zero/pole support of `u^a v^b w^c beta^d` on the conic;
+the second `12` is the worst-case cost of the six degeneracy sections. If
+this lower bound is positive, the abstract slack-three first-superboundary
+catalog hits every nonzero `D^3` coset. The scanner checks that certificate
+against the exact enumerated cube-coset coverage and also reports the exact
+minimum ordered parameter count across all nonzero `D^3` cosets.
+Run
+
+```bash
+python3 experimental/verify_m1_slack_three_cube_coset_coverage.py
+```
+
+for a split-cubic exact audit of one proper-subgroup sample where this
+certificate fires, one full-domain sample, and one small noncertified control.
+
 For dithered residues in the range
 
 ```text

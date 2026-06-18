@@ -1,0 +1,121 @@
+#!/usr/bin/env python3
+"""Verify slack-three cube-coset coverage certificate samples.
+
+Proof status: AUDIT / EXPERIMENTAL.
+
+This audits the conditional proper-subgroup cube-coset coverage certificate
+from experimental/m1_support_coefficient_test.md. It uses the split-cubic
+beta ledger, so exact beta-coset counts are computed in one pass through D
+rather than by enumerating conic pairs.
+"""
+
+from __future__ import annotations
+
+from collections import Counter
+from typing import Dict, List, Sequence
+
+from mca_slope_scan import make_domain
+from m1_support_occupancy_scan import slack_three_cube_coset_coverage_data
+
+
+SAMPLES = (
+    {
+        "name": "proper-subgroup-index-two-certificate",
+        "p": 38039,
+        "n": 19019,
+        "expect_certificate": True,
+        "expect_coset_beta_counts": (404, 416),
+        "expect_lower_bound": 14,
+    },
+    {
+        "name": "full-domain-index-three-certificate",
+        "p": 2017,
+        "n": 2016,
+        "expect_certificate": True,
+        "expect_coset_beta_counts": (100, 116, 116),
+        "expect_lower_bound": 116,
+    },
+    {
+        "name": "proper-subgroup-small-control",
+        "p": 71,
+        "n": 35,
+        "expect_certificate": False,
+        "expect_coset_beta_counts": (4,),
+        "expect_lower_bound": 0,
+    },
+)
+
+
+def split_cubic_beta_coset_row(p: int, n: int) -> Dict[str, object]:
+    _, domain = make_domain(p, n, None)
+    beta_root_counts: Counter[int] = Counter()
+    for y in domain:
+        if y == 1:
+            continue
+        beta = (-(pow(y, 3, p) + pow(y, 2, p) + y + 1)) % p
+        beta_root_counts[beta] += 1
+
+    admissible_beta_values = {
+        beta
+        for beta, root_count in beta_root_counts.items()
+        if root_count == 3
+    }
+    cube_image = {pow(x, 3, p) for x in domain}
+    coset_beta_counts: Dict[int, int] = {}
+    for beta in admissible_beta_values:
+        if beta == 0:
+            continue
+        representative = min((beta * cube) % p for cube in cube_image)
+        coset_beta_counts[representative] = (
+            coset_beta_counts.get(representative, 0) + 1
+        )
+
+    beta_counts = tuple(sorted(coset_beta_counts.values()))
+    total_cosets = (p - 1) // len(cube_image)
+    exact_min_ordered = 0
+    if len(beta_counts) == total_cosets and beta_counts:
+        exact_min_ordered = 6 * min(beta_counts)
+
+    certificate = slack_three_cube_coset_coverage_data(p, n)
+    lower_bound = int(certificate["admissible_parameter_lower_bound"])
+    return {
+        "p": p,
+        "n": n,
+        "domain_index": (p - 1) // n,
+        "cube_cosets_hit": len(beta_counts),
+        "total_cube_cosets": total_cosets,
+        "zero_beta": 0 in admissible_beta_values,
+        "beta_count": len(admissible_beta_values),
+        "coset_beta_counts": beta_counts,
+        "coverage_lower_bound": lower_bound,
+        "coverage_certificate": bool(certificate["saturation_certificate"]),
+        "exact_min_ordered_parameter_count": exact_min_ordered,
+        "lower_bound_check": exact_min_ordered >= lower_bound,
+    }
+
+
+def verify_sample(sample: Dict[str, object]) -> Dict[str, object]:
+    row = split_cubic_beta_coset_row(int(sample["p"]), int(sample["n"]))
+    expected_counts: Sequence[int] = sample["expect_coset_beta_counts"]
+    assert row["coverage_certificate"] == sample["expect_certificate"]
+    assert row["coverage_lower_bound"] == sample["expect_lower_bound"]
+    assert row["coset_beta_counts"] == tuple(expected_counts)
+    assert row["lower_bound_check"]
+    if sample["expect_certificate"]:
+        assert row["cube_cosets_hit"] == row["total_cube_cosets"]
+        assert row["coverage_lower_bound"] > 0
+    return {"name": sample["name"], **row}
+
+
+def main() -> None:
+    rows: List[Dict[str, object]] = [
+        verify_sample(sample)
+        for sample in SAMPLES
+    ]
+    for row in rows:
+        print(row)
+    print("M1 slack-three cube-coset coverage verifier passed")
+
+
+if __name__ == "__main__":
+    main()

@@ -895,6 +895,46 @@ def slack_three_conic_shape_bound(p: int, domain_order: int) -> int:
     return (numerator + character_cube - 1) // character_cube
 
 
+def slack_three_cube_coset_coverage_data(
+    p: int,
+    domain_order: int,
+) -> Dict[str, object]:
+    character_order = (p - 1) // domain_order
+    cube_kernel_index = math.gcd(3, domain_order)
+    cube_coset_index = character_order * cube_kernel_index
+    denominator = (
+        character_order
+        * character_order
+        * character_order
+        * cube_coset_index
+    )
+    conic_weil_constant = 12
+    degeneracy_cost = 12
+    principal_lower = p - 9 - 4 * quadratic_character(-3, p)
+    numerator = principal_lower - (
+        conic_weil_constant * ceil_sqrt(p) + degeneracy_cost
+    ) * denominator
+    admissible_parameter_lower_bound = (
+        (numerator + denominator - 1) // denominator
+        if numerator > 0
+        else 0
+    )
+    return {
+        "character_order": character_order,
+        "cube_kernel_index": cube_kernel_index,
+        "cube_coset_index": cube_coset_index,
+        "denominator": denominator,
+        "principal_lower": principal_lower,
+        "conic_weil_constant": conic_weil_constant,
+        "degeneracy_cost": degeneracy_cost,
+        "lower_numerator": numerator,
+        "admissible_parameter_lower_bound": (
+            admissible_parameter_lower_bound
+        ),
+        "saturation_certificate": admissible_parameter_lower_bound > 0,
+    }
+
+
 def occupancy_histogram(
     support: Sequence[int],
     quotient_order: int,
@@ -1505,6 +1545,35 @@ def scan_supports(
         if slack_three_cyclotomic_bound is not None
         else None
     )
+    slack_three_cube_coset_coverage = (
+        slack_three_cube_coset_coverage_data(p, n)
+        if slack_three_shape_ledger is not None
+        else None
+    )
+    slack_three_cube_coset_parameter_lower_bound = (
+        int(
+            slack_three_cube_coset_coverage[
+                "admissible_parameter_lower_bound"
+            ]
+        )
+        if slack_three_cube_coset_coverage is not None
+        else None
+    )
+    slack_three_exact_min_cube_coset_parameter_count = None
+    if slack_three_shape_ledger is not None:
+        exact_beta_counts = list(
+            slack_three_shape_ledger["nonzero_cube_coset_beta_counts"]
+        )
+        if int(slack_three_shape_ledger["nonzero_cube_coset_count"]) < int(
+            slack_three_shape_ledger["total_nonzero_cube_coset_count"]
+        ):
+            slack_three_exact_min_cube_coset_parameter_count = 0
+        elif exact_beta_counts:
+            slack_three_exact_min_cube_coset_parameter_count = (
+                6 * min(exact_beta_counts)
+            )
+        else:
+            slack_three_exact_min_cube_coset_parameter_count = 0
 
     return {
         "proof_status": "AUDIT / EXPERIMENTAL",
@@ -2588,6 +2657,80 @@ def scan_supports(
             len(first_superboundary_slope_histogram)
             <= slack_three_cyclotomic_slope_bound
             if slack_three_cyclotomic_slope_bound is not None
+            else None
+        ),
+        "canonical_slack_three_cube_coset_coverage_character_order": (
+            int(slack_three_cube_coset_coverage["character_order"])
+            if slack_three_cube_coset_coverage is not None
+            else None
+        ),
+        "canonical_slack_three_cube_coset_coverage_cube_kernel_index": (
+            int(slack_three_cube_coset_coverage["cube_kernel_index"])
+            if slack_three_cube_coset_coverage is not None
+            else None
+        ),
+        "canonical_slack_three_cube_coset_coverage_cube_coset_index": (
+            int(slack_three_cube_coset_coverage["cube_coset_index"])
+            if slack_three_cube_coset_coverage is not None
+            else None
+        ),
+        "canonical_slack_three_cube_coset_coverage_denominator": (
+            int(slack_three_cube_coset_coverage["denominator"])
+            if slack_three_cube_coset_coverage is not None
+            else None
+        ),
+        "canonical_slack_three_cube_coset_coverage_principal_lower": (
+            int(slack_three_cube_coset_coverage["principal_lower"])
+            if slack_three_cube_coset_coverage is not None
+            else None
+        ),
+        "canonical_slack_three_cube_coset_coverage_weil_constant": (
+            int(slack_three_cube_coset_coverage["conic_weil_constant"])
+            if slack_three_cube_coset_coverage is not None
+            else None
+        ),
+        "canonical_slack_three_cube_coset_coverage_degeneracy_cost": (
+            int(slack_three_cube_coset_coverage["degeneracy_cost"])
+            if slack_three_cube_coset_coverage is not None
+            else None
+        ),
+        "canonical_slack_three_cube_coset_coverage_lower_numerator": (
+            int(slack_three_cube_coset_coverage["lower_numerator"])
+            if slack_three_cube_coset_coverage is not None
+            else None
+        ),
+        "canonical_slack_three_cube_coset_coverage_parameter_lower_bound": (
+            slack_three_cube_coset_parameter_lower_bound
+        ),
+        "canonical_slack_three_cube_coset_coverage_certificate": (
+            bool(slack_three_cube_coset_coverage["saturation_certificate"])
+            if slack_three_cube_coset_coverage is not None
+            else None
+        ),
+        "canonical_slack_three_cube_coset_coverage_certificate_check": (
+            int(slack_three_shape_ledger["nonzero_cube_coset_count"])
+            == int(slack_three_shape_ledger["total_nonzero_cube_coset_count"])
+            if (
+                slack_three_shape_ledger is not None
+                and slack_three_cube_coset_coverage is not None
+                and bool(
+                    slack_three_cube_coset_coverage[
+                        "saturation_certificate"
+                    ]
+                )
+            )
+            else None
+        ),
+        "canonical_slack_three_cube_coset_coverage_exact_min_parameter_count": (
+            slack_three_exact_min_cube_coset_parameter_count
+        ),
+        "canonical_slack_three_cube_coset_coverage_lower_bound_check": (
+            slack_three_exact_min_cube_coset_parameter_count
+            >= slack_three_cube_coset_parameter_lower_bound
+            if (
+                slack_three_exact_min_cube_coset_parameter_count is not None
+                and slack_three_cube_coset_parameter_lower_bound is not None
+            )
             else None
         ),
         "canonical_slack_two_shape_expected_packet_slope_histogram": (

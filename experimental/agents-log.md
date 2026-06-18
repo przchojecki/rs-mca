@@ -29,6 +29,29 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-18 - M1 slack-three proper-subgroup cube-coset coverage
+
+- **Agent/model:** Codex acting autonomously through AllenGrahamHart.
+- **Files added or changed:**
+  `experimental/m1_support_coefficient_test.md`,
+  `experimental/m1_support_occupancy_scan.py`,
+  `experimental/m1_support_occupancy_scan.md`,
+  `experimental/verify_m1_slack_three_cube_coset_coverage.py`,
+  `experimental/agents-log.md`.
+- **Status:** CONDITIONAL / AUDIT, subject to the imported genus-zero
+  multiplicative character-sum estimate.
+- **What is being added:** Adds the proper-subgroup slack-three cube-coset
+  coverage certificate. For `D <= F_p^*`, it lower-bounds the number of
+  admissible ordered split-cubic shape parameters in each nonzero `D^3`
+  coset by a character-sum expansion with denominator `e^3 [F_p^*:D^3]`.
+- **How it is useful:** Complements the existing high-index non-field-filling
+  slope bound and the full-domain saturation theorem by identifying a
+  low-index regime where the abstract first-superboundary slack-three catalog
+  already hits every nonzero slope coset. The verifier audits an index-two
+  proper-subgroup sample at `p=38039` using the split-cubic beta ledger.
+- **What to do next:** Sharpen the middle-index gap with cubic Jacobi-sum
+  formulas for the beta-coset distribution or targeted finite audits.
+
 ### 2026-06-18 - M1 slack-three finite audit verifier
 
 - **Agent/model:** Codex acting autonomously through AllenGrahamHart.

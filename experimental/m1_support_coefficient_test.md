@@ -1147,6 +1147,67 @@ non-field-filling certificate. Its leading term is on the order of
 large-index regime `e^4 >> p`, complementing the slack-two unit-equation
 threshold `e^3 >> p`.
 
+There is also a complementary low-index saturation certificate for proper
+subgroups. Keep the same notation, put `g=gcd(3,n)`, `H=D^3`, and
+`h=[F_p^*:H]=eg`. For a nonzero coset `gamma H`, define
+
+```text
+V_gamma^raw =
+  #{(u,v) in F_p^2 : Q(u,v)=0,
+                       u,v,w in D,
+                       beta(u,v) in gamma H}.
+```
+
+Let `psi` have kernel `H`. With characters extended by zero,
+
+```text
+V_gamma^raw =
+  (1/(e^3 h)) sum_{a,b,c=0}^{e-1} sum_{d=0}^{h-1}
+    psi^{-d}(gamma) S_{a,b,c,d},
+
+S_{a,b,c,d} =
+  sum_{Q(u,v)=0}
+    chi^a(u) chi^b(v) chi^c(w) psi^d(beta(u,v)).
+```
+
+The principal term counts affine conic points with `uvw beta != 0`, and is
+at least `p-9-4 chi_2(-3)`. For a nonprincipal tuple, the rational function
+`u^a v^b w^c beta^d` on the smooth projective conic has geometric zero/pole
+support contained in the six points from `u,v,w`, at most six zeros of
+`beta`, and the two points at infinity. The standard genus-zero
+multiplicative character-sum estimate therefore gives
+
+```text
+|S_{a,b,c,d}| <= 12 sqrt(p)       for nonprincipal (a,b,c,d).
+```
+
+Removing the six degeneracy sections where one of `1,u,v,w` coincides with
+another point costs at most `12` additional ordered parameters. Hence every
+nonzero `H=D^3` coset contains at least
+
+```text
+ceil((p - 9 - 4 chi_2(-3) - (12 sqrt(p)+12)e^3 h)/(e^3 h))
+```
+
+admissible ordered slack-three shape parameters, whenever the displayed
+quantity is positive. In that case the abstract first-superboundary
+slack-three catalog hits every nonzero `D^3` slope coset; in the exact
+support layer `s=4`, where there is no quotient-lift filter, it contains
+all nonzero field slopes. This is the low-index counterpart to the
+high-index non-field-filling bound above. Its leading condition is
+`e^4 g << sqrt(p)`, while the upper-bound route begins to help around
+`e^4 >> p`; the broad middle range is where sharper beta-coset Jacobi sums
+or exact finite audits are most valuable.
+
+The split-cubic exact audit
+
+```bash
+python3 experimental/verify_m1_slack_three_cube_coset_coverage.py
+```
+
+checks this certificate on an index-two proper subgroup at `p=38039`,
+where the lower bound is positive and both nonzero `D^3` cosets are hit.
+
 ## M1 Impact
 
 This turns the positive M1 problem into a precise incidence question:
