@@ -636,6 +636,64 @@ proof of the leading `3p` target must exploit a further finite cancellation
 or a sharper middle-extension identification among the points
 `z=1` and `1+3z^2=0`.
 
+The same finite cluster has a more useful pushforward form.  Put
+
+```text
+y = (1+3z^2)/(1-z)^2.
+```
+
+This map has deck involution
+
+```text
+sigma(z) = (z+1)/(3z-1),
+```
+
+fixing `z=1` and `z=-1/3`.  It sends `z=1` to `y=infinity`, sends the two
+points `1+3z^2=0` to `y=0`, has finite branch value `y=3/4` at `z=-1/3`,
+and pairs `z=1/3` with `z=infinity` over `y=3`.
+
+For `z` away from `z=1` and `1+3z^2=0`, the balanced kernel collapses to a
+single ordinary multiplicative character in `y`:
+
+```text
+K_alpha(z)
+  = chi_2(1+3z^2) alpha((1+3z^2)/(1-z)^2)
+  = (alpha chi_2)(y).
+```
+
+Let `rho=alpha chi_2`, and define the projective completed trace
+
+```text
+P_alpha = C_alpha + rho(3) H(1/3).
+```
+
+Then
+
+```text
+P_alpha = sum_{y in F_p^*} rho(y) G(y),
+```
+
+where `G(y)` is the sum of `H(Lambda(z))` over the projective fiber
+`(1+3z^2)/(1-z)^2=y`.  Equivalently the two hypergeometric parameters in a
+generic fiber are the two roots of
+
+```text
+16 y^2 lambda^2 + (-8y^2+4y)lambda + (y-1)^2 = 0.
+```
+
+The pullback main is therefore
+
+```text
+M_alpha = chi_2(-4) (sum_{y in F_p^*} rho(y) G(y) - H(1/4)).
+```
+
+This does not change the theorem to be proved, but it turns the completed
+`z`-line problem into a Mellin transform of an explicit degree-two
+pushforward trace.  The singular cluster `z=1` and `1+3z^2=0` is now the
+standard `y=infinity`/`y=0` boundary of the outer Kummer character, while the
+nontrivial hypergeometric pairing is concentrated in the quadratic relation
+for `lambda`.
+
 ## Pullback Branch Checklist
 
 The rational pullback

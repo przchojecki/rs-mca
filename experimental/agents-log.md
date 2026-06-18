@@ -29,6 +29,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-18 - M1 balanced y-line pushforward
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/m1_depth_two_equal_line_diagonal_reduction.md`,
+  `experimental/verify_m1_depth_two_equal_line_diagonal_reduction.py`,
+  `experimental/m1_kummer_weil_import_contract.md`,
+  `experimental/m1_residue_line_roadmap.md`,
+  `experimental/agents-log.md`.
+- **Status:** CONDITIONAL / AUDIT.
+- **What is being added:** The completed `z`-line trace is pushed through
+  `y=(1+3z^2)/(1-z)^2`. The balanced kernel becomes the ordinary character
+  `(alpha chi_2)(y)`, and the paired hypergeometric parameters satisfy an
+  explicit quadratic relation in `lambda` and `y`.
+- **How it is useful:** Converts the remaining finite-cluster problem into a
+  Mellin transform of a degree-two hypergeometric pushforward trace `G(y)`.
+- **What to do next:** Analyze the conductor and possible quadratic-transform
+  cancellation of `G(y)`.
+
 ### 2026-06-18 - M1 balanced z-line conductor audit
 
 - **Agent/model:** Codex.

@@ -140,6 +140,28 @@ def s_from_z(z: int, p: int) -> int:
     return (2 * z * pow(1 - z, -1, p)) % p
 
 
+def lambda_z_value(z: int, p: int) -> int:
+    denominator = (1 + 3 * z * z) % p
+    if denominator == 0:
+        raise ZeroDivisionError((z, p))
+    return (z * z * pow(denominator, -1, p)) % p
+
+
+def twist_y_value(z: int, p: int) -> int:
+    if z == 1:
+        raise ZeroDivisionError((z, p))
+    numerator = (1 + 3 * z * z) % p
+    denominator = (1 - z) * (1 - z) % p
+    return numerator * pow(denominator, -1, p) % p
+
+
+def twist_map_deck_involution(z: int, p: int) -> int:
+    denominator = (3 * z - 1) % p
+    if denominator == 0:
+        raise ZeroDivisionError((z, p))
+    return (z + 1) * pow(denominator, -1, p) % p
+
+
 def line_monodromies(e: int, h: int, a: int, d: int) -> Tuple[int, int, int]:
     lift = h // e
     first = (lift * a) % h
@@ -351,6 +373,33 @@ def balanced_z_complete_sum(
             balanced_z_kernel_value(p, alpha, rho, z)
             * hypergeometric_trace(p, mu, eta, lam)
         )
+    return total
+
+
+def balanced_y_pushforward_sum(
+    p: int,
+    mu: List[complex],
+    eta: List[complex],
+    rho: List[complex],
+) -> complex:
+    total = 0j
+    infinity_lambda = pow(3, -1, p)
+    for y_value in range(1, p):
+        fiber_trace = 0j
+        for z in range(p):
+            if z == 1:
+                continue
+            if twist_y_value(z, p) != y_value:
+                continue
+            fiber_trace += hypergeometric_trace(
+                p,
+                mu,
+                eta,
+                lambda_z_value(z, p),
+            )
+        if y_value == 3 % p:
+            fiber_trace += hypergeometric_trace(p, mu, eta, infinity_lambda)
+        total += rho[y_value] * fiber_trace
     return total
 
 
@@ -670,6 +719,92 @@ def verify_balanced_z_completion_geometry(p: int) -> Dict[str, object]:
     }
 
 
+def verify_balanced_y_pushforward_geometry(p: int) -> Dict[str, object]:
+    if p <= 3:
+        raise AssertionError(p)
+    one_third = pow(3, -1, p)
+    minus_one_third = (-one_third) % p
+    three_quarters = 3 * pow(4, -1, p) % p
+    one_twelfth = pow(12, -1, p)
+    if twist_y_value(minus_one_third, p) != three_quarters:
+        raise AssertionError(("twist branch value", p))
+    if lambda_z_value(minus_one_third, p) != one_twelfth:
+        raise AssertionError(("twist branch lambda", p))
+    if twist_y_value(one_third, p) != 3 % p:
+        raise AssertionError(("infinity partner y", p))
+    if lambda_z_value(one_third, p) != one_twelfth:
+        raise AssertionError(("infinity partner lambda", p))
+
+    roots_infinity = [z for z in range(p) if (1 + 3 * z * z) % p == 0]
+    if roots_infinity:
+        if sorted(twist_map_deck_involution(z, p) for z in roots_infinity) != sorted(
+            roots_infinity
+        ):
+            raise AssertionError(("twist deck infinity roots", p, roots_infinity))
+        if any(twist_y_value(z, p) != 0 for z in roots_infinity):
+            raise AssertionError(("twist infinity maps to zero", p, roots_infinity))
+
+    finite_fiber_sizes: Dict[int, int] = {}
+    for y_value in range(1, p):
+        finite_fiber_sizes[y_value] = 0
+    for z in range(p):
+        if z == 1:
+            continue
+        y_value = twist_y_value(z, p)
+        if y_value == 0:
+            continue
+        finite_fiber_sizes[y_value] += 1
+        if quadratic_character((1 + 3 * z * z) % p, p) != quadratic_character(
+            y_value,
+            p,
+        ):
+            raise AssertionError(("twist quadratic pullback", p, z, y_value))
+        lam = lambda_z_value(z, p)
+        relation = (
+            16 * y_value * y_value * lam * lam
+            - 8 * lam * y_value * y_value
+            + 4 * lam * y_value
+            + (y_value - 1) * (y_value - 1)
+        ) % p
+        if relation != 0:
+            raise AssertionError(("lambda y relation", p, z, y_value, lam))
+        if z not in (1, one_third):
+            sigma = twist_map_deck_involution(z, p)
+            if sigma != 1 and twist_y_value(sigma, p) != y_value:
+                raise AssertionError(("twist deck y", p, z, sigma))
+            if sigma not in (1, one_third) and twist_map_deck_involution(
+                sigma,
+                p,
+            ) != z:
+                raise AssertionError(("twist deck square", p, z, sigma))
+
+    if finite_fiber_sizes[3 % p] != 1:
+        raise AssertionError(("finite y=3 fiber", p, finite_fiber_sizes[3 % p]))
+    branch_fiber_size = finite_fiber_sizes[three_quarters]
+    if branch_fiber_size != 1:
+        raise AssertionError(("finite branch fiber", p, branch_fiber_size))
+    ordinary_sizes = {
+        size
+        for y_value, size in finite_fiber_sizes.items()
+        if y_value not in (3 % p, three_quarters)
+    }
+    if ordinary_sizes - {0, 2}:
+        raise AssertionError(("ordinary twist fiber sizes", p, ordinary_sizes))
+
+    return {
+        "p": p,
+        "twist_map": "y=(1+3z^2)/(1-z)^2",
+        "twist_deck": "sigma(z)=(z+1)/(3z-1)",
+        "deck_fixed_points": ("z=1", "z=-1/3"),
+        "finite_branch": "z=-1/3 maps to y=3/4, lambda=1/12",
+        "infinity_partner": "z=1/3 pairs with z=infinity over y=3",
+        "lambda_y_relation": (
+            "16 y^2 lambda^2 + (-8y^2+4y)lambda + (y-1)^2=0"
+        ),
+        "boundary_values": {"y_zero": "1+3z^2=0", "y_infinity": "z=1"},
+    }
+
+
 def audit_case(case: Dict[str, int]) -> Dict[str, object]:
     p = int(case["p"])
     n = int(case["n"])
@@ -747,6 +882,15 @@ def audit_case(case: Dict[str, int]) -> Dict[str, object]:
         rho_chi[3 % p]
         * hypergeometric_trace(p, mu, eta, pow(3, -1, p))
     )
+    projective_y_main = balanced_y_pushforward_sum(
+        p,
+        mu,
+        eta,
+        rho_chi,
+    )
+    projective_z_main = balanced_complete + fixed_infinity
+    if abs(projective_y_main - projective_z_main) > 1e-8:
+        raise AssertionError((case, projective_y_main, projective_z_main))
     balanced_main = quadratic_character(-4, p) * (
         balanced_complete - deleted_regular + fixed_infinity
     )
@@ -777,6 +921,7 @@ def audit_case(case: Dict[str, int]) -> Dict[str, object]:
         "single_character_error": f"{abs(pullback_main - single_character_main):.2e}",
         "quotient_pair_error": f"{abs(pullback_main - quotient_paired_main):.2e}",
         "balanced_z_error": f"{abs(pullback_main - balanced_main):.2e}",
+        "y_pushforward_error": f"{abs(projective_y_main - projective_z_main):.2e}",
     }
 
 
@@ -813,6 +958,12 @@ def main() -> None:
         for case in CASES
     ]
     for row in z_rows:
+        print(row)
+    y_rows = [
+        verify_balanced_y_pushforward_geometry(int(case["p"]))
+        for case in CASES
+    ]
+    for row in y_rows:
         print(row)
     top = max(rows, key=lambda row: float(row["sum_ratio"]))
     for key, value in EXPECTED_TOP.items():

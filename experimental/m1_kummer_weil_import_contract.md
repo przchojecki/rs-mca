@@ -247,6 +247,12 @@ The conservative completed-line conductor ledger is nevertheless still
 `1+3z^2=0` points still have local characters `alpha chi_2` and
 `alpha^(-1)`. Thus the complete `z`-line form localizes, but does not
 solve, the missing two-unit saving.
+There is also a useful pushforward form: with
+`y=(1+3z^2)/(1-z)^2`, the balanced kernel is simply
+`(alpha chi_2)(y)`, and the projective completed trace is
+`sum_{y in F_p^*} (alpha chi_2)(y) G(y)`, where the two lambda-values in a
+generic fiber satisfy
+`16y^2 lambda^2 + (-8y^2+4y)lambda + (y-1)^2=0`.
 
 Thus the fixed-window, quotient-window, and two-fiber certificates still use
 the conservative common ledger:
