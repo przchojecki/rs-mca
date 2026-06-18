@@ -10,9 +10,10 @@ not a proof-status authority and should be revised as the project learns more.
 2. Close the two-coordinate residue-line wall: prove the trace-family conductor
    bound using the bad parameters `u=0`, `u^2+u+1=0`,
    `-3u^2-2u-3=0`, and infinity; carve out ratio-reducible slices such as
-   `nu=mu^{-1}` when they collapse to genus-zero sums.
+   `nu=mu^{-1}` when they collapse to genus-zero sums, and use the
+   two-coordinate projective Euler split `chi=4/2` as the conductor target.
 3. Use exact finite audits as guardrails: the current evidence supports a
-   possible `4p` target and already obstructs constants below `3.831p`.
+   possible `4p` target and already obstructs constants below `3.977p`.
 4. After the trace-family wall is closed, generalize to fixed low-slack
    templates, then separate tangent, quotient-periodic, finite-template, and
    genuinely aperiodic packing.

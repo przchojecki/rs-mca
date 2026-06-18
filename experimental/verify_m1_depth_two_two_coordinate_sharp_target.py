@@ -24,20 +24,20 @@ SAMPLES = (
 )
 
 GLOBAL_EXPECTED = {
-    "p": 599,
-    "n": 26,
-    "e": 23,
-    "h": 46,
-    "max_tuple": (20, 20, 0, 9),
-    "ratio": 3.831739215,
-    "exceeds_multiplier": 3.8,
+    "p": 421,
+    "n": 20,
+    "e": 21,
+    "h": 42,
+    "max_tuple": (5, 5, 0, 6),
+    "ratio": 3.9771715522,
+    "exceeds_multiplier": 3.97,
 }
 
 TARGETED_CASES = (
     {
-        "p": 599,
-        "n": 26,
-        "exponents": (20, 20, 0, 9),
+        "p": 421,
+        "n": 20,
+        "exponents": (5, 5, 0, 6),
     },
 )
 

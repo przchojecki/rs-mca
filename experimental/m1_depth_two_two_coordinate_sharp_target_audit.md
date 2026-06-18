@@ -70,17 +70,17 @@ at `(p,n,e,h)=(109,18,6,12)`.
 The verifier also includes one targeted near-sharp obstruction:
 
 ```text
-(p,n,e,h)=(599,26,23,46),        (a,b,c,d)=(20,20,0,9).
+(p,n,e,h)=(421,20,21,42),        (a,b,c,d)=(5,5,0,6).
 ```
 
 This targeted tuple has
 
 ```text
-|S_{20,20,0,9}| / p = 3.8317392150,
+|S_{5,5,0,6}| / p = 3.9771715522,
 ```
 
 still below `4p` but much closer to it. This row is not an exhaustive
-all-tuple audit for `(p,n)=(599,26)`; it is included to make the near-sharp
+all-tuple audit for `(p,n)=(421,20)`; it is included to make the near-sharp
 finite obstruction reproducible without making the verifier expensive.
 
 ## Finite Obstruction Below `4p`
@@ -93,11 +93,11 @@ The older exhaustive sample already rules out the stronger uniform target
 ```
 
 has absolute value `369.4749838169`, which is larger than `3p=327`.
-The targeted `(599,26)` tuple strengthens the obstruction: any future
+The targeted `(421,20)` tuple strengthens the obstruction: any future
 two-coordinate theorem of the form `|S| <= C p` needs
 
 ```text
-C >= 3.8317392150
+C >= 3.9771715522
 ```
 
 in this normalization. Thus the plausible `4p` target, if true, is nearly

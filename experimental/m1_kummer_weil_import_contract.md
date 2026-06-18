@@ -174,6 +174,16 @@ bound for the quadratic conic character, and the same `3 sqrt(p)` removed-line
 correction. This does not close the general two-coordinate wall, but it
 removes a structured diagonal slice from the unresolved trace family.
 
+The projective Euler-characteristic target for the two-coordinate core is
+smaller than the crude degree-four `9p` ledger suggests. After compactifying,
+the line at infinity has monodromy `(mu nu eta^2)^{-1}`. If this monodromy is
+nonprincipal, the active two lines, the conic, and infinity have complement
+Euler characteristic `4`; if it is principal, the infinity line drops out and
+the complement Euler characteristic is `2`. This calculation is isolated in
+`experimental/m1_depth_two_two_coordinate_projective_euler_target.md`. It is
+not yet used in the certificates because it still needs the appropriate clean
+normal-crossing Kummer cohomology theorem.
+
 Thus the additive raw, fixed-window, and two-fiber certificates now pay:
 
 ```text
@@ -193,6 +203,7 @@ python3 experimental/verify_m1_depth_two_quadratic_one_coordinate_lemma.py
 python3 experimental/verify_m1_depth_two_nonquadratic_one_coordinate_lemma.py
 python3 experimental/verify_m1_depth_two_reciprocal_two_coordinate_lemma.py
 python3 experimental/verify_m1_depth_two_kummer_constant_audit.py
+python3 experimental/verify_m1_kummer_divisor_geometry.py
 python3 experimental/verify_m1_depth_two_two_coordinate_fiber_reduction.py
 python3 experimental/verify_m1_depth_two_two_coordinate_sharp_target.py
 ```
@@ -212,6 +223,8 @@ is only finite evidence for a possible future `4p` replacement of the current
 conditional `9p` import and is not used by the present certificates.
 The reciprocal two-coordinate slice is isolated in
 `experimental/m1_depth_two_reciprocal_two_coordinate_lemma.md`.
+The projective Euler target for the two-coordinate core is isolated in
+`experimental/m1_depth_two_two_coordinate_projective_euler_target.md`.
 
 ## Audited Hypotheses
 

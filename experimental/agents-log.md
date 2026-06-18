@@ -29,6 +29,47 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-18 - M1 two-coordinate projective Euler target
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/m1_depth_two_two_coordinate_projective_euler_target.md`,
+  `experimental/verify_m1_kummer_divisor_geometry.py`,
+  `experimental/m1_depth_two_two_coordinate_fiber_reduction.md`,
+  `experimental/m1_kummer_weil_import_contract.md`,
+  `experimental/m1_residue_line_roadmap.md`,
+  `experimental/agents-log.md`.
+- **Status:** CONDITIONAL / AUDIT.
+- **What is being added:** A projective Euler-characteristic calculation for
+  the two-coordinate Kummer core. The infinity monodromy is
+  `(mu nu eta^2)^{-1}`, giving expected top-dimensional coefficients `4`
+  when infinity is ramified and `2` when `mu nu eta^2=1`.
+- **How it is useful:** Explains why the audited `4p` target is the natural
+  conductor target for the two-coordinate wall, and isolates a sharper
+  infinity-unramified subtarget that contains the reciprocal quadratic slice.
+- **What to do next:** Supply or prove the clean normal-crossing Kummer
+  cohomology theorem that turns these Euler coefficients into uniform trace
+  bounds for the genuinely nonreciprocal family.
+
+### 2026-06-18 - M1 two-coordinate near-4p audit sharpening
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/m1_depth_two_two_coordinate_sharp_target_audit.md`,
+  `experimental/verify_m1_depth_two_two_coordinate_sharp_target.py`,
+  `experimental/m1_depth_two_two_coordinate_fiber_reduction.md`,
+  `experimental/m1_residue_line_roadmap.md`,
+  `experimental/agents-log.md`.
+- **Status:** AUDIT / EXPERIMENTAL.
+- **What is being added:** The targeted near-`4p` audit row is sharpened to
+  `(p,n,e,h)=(421,20,21,42)`, where `(a,b,c,d)=(5,5,0,6)` has open
+  two-coordinate ratio `3.9771715522` to `p`.
+- **How it is useful:** This makes the proposed `4p` target almost sharp in
+  finite evidence: any future two-coordinate constant below `3.9771715522p`
+  is already ruled out.
+- **What to do next:** Use this as a guardrail for the two-coordinate
+  conductor proof; it is not an exhaustive `p=421` scan.
+
 ### 2026-06-18 - M1 two-coordinate near-4p audit correction
 
 - **Agent/model:** Codex.
@@ -106,7 +147,7 @@ Keep entries concise and link to the relevant files.
   all such tuples on the baseline samples and selected larger samples; the
   largest exhaustive-sample ratio is `3.3896787506` at
   `(p,n,e,h)=(109,18,6,12)`. It also records a targeted near-sharp tuple at
-  `(p,n,e,h)=(599,26,23,46)` with ratio `3.8317392150`, obstructing any
+  `(p,n,e,h)=(421,20,21,42)` with ratio `3.9771715522`, obstructing any
   future two-coordinate constant below this value.
 - **How it is useful:** Identifies the next plausible strengthening after the
   one-coordinate lemmas: the current `9p` two-coordinate import may be

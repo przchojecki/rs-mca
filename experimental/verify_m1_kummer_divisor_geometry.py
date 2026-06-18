@@ -4,9 +4,11 @@
 from __future__ import annotations
 
 from collections import Counter
+from itertools import combinations
 
 
 PRIMES = (5, 7, 11, 13, 17, 19, 23, 29, 31, 37)
+LINE_NAMES = ("u", "v", "w", "inf")
 
 
 def inv(value: int, p: int) -> int:
@@ -75,10 +77,9 @@ def projective_points(p: int) -> list[tuple[int, int, int]]:
 
 
 def line_intersections(p: int) -> set[tuple[int, int, int]]:
-    names = ("u", "v", "w", "inf")
     points = set()
-    for left_index, left in enumerate(names):
-        for right in names[left_index + 1 :]:
+    for left_index, left in enumerate(LINE_NAMES):
+        for right in LINE_NAMES[left_index + 1 :]:
             pair_points = [
                 point
                 for point in projective_points(p)
@@ -91,9 +92,8 @@ def line_intersections(p: int) -> set[tuple[int, int, int]]:
 
 
 def conic_line_intersections(p: int) -> set[tuple[int, int, int]]:
-    names = ("u", "v", "w", "inf")
     points = set()
-    for name in names:
+    for name in LINE_NAMES:
         intersection = [
             point
             for point in projective_points(p)
@@ -152,6 +152,71 @@ def line_tangent_parallel_to_gradient(
     return all(gradient[index] % p == scale * target[index] % p for index in range(3))
 
 
+def selected_line_intersections(
+    names: tuple[str, ...],
+    p: int,
+) -> set[tuple[int, int, int]]:
+    points = set()
+    for left, right in combinations(names, 2):
+        pair_points = [
+            point
+            for point in projective_points(p)
+            if line(point, left, p) == 0 and line(point, right, p) == 0
+        ]
+        if len(pair_points) != 1:
+            raise AssertionError((p, left, right, pair_points))
+        point = pair_points[0]
+        if qform(point, p) == 0:
+            raise AssertionError((p, "line-line point on conic", left, right, point))
+        points.add(point)
+    expected = len(names) * (len(names) - 1) // 2
+    if len(points) != expected:
+        raise AssertionError((p, names, points, expected))
+    return points
+
+
+def check_line_conic_transversality(names: tuple[str, ...], p: int) -> None:
+    for name in names:
+        intersection = [
+            point
+            for point in projective_points(p)
+            if line(point, name, p) == 0 and qform(point, p) == 0
+        ]
+        expected_rational = 1 + legendre(-3, p)
+        if len(intersection) != expected_rational:
+            raise AssertionError((p, name, expected_rational, intersection))
+        for point in intersection:
+            grad = qgradient(point, p)
+            if line_tangent_parallel_to_gradient(name, grad, p):
+                raise AssertionError((p, "tangent", name, point, grad))
+
+
+def two_coordinate_euler_targets(p: int) -> list[tuple[tuple[str, str], int, int]]:
+    rows = []
+    for active_lines in combinations(("u", "v", "w"), 2):
+        selected_line_intersections(active_lines, p)
+        check_line_conic_transversality(active_lines, p)
+        finite_pair_intersections = 1 + 2 * len(active_lines)
+        finite_component_chi = 2 * (len(active_lines) + 1)
+        finite_divisor_chi = finite_component_chi - finite_pair_intersections
+        finite_complement_chi = 3 - finite_divisor_chi
+        if finite_complement_chi != 2:
+            raise AssertionError((p, active_lines, finite_complement_chi))
+
+        infinity_lines = active_lines + ("inf",)
+        selected_line_intersections(infinity_lines, p)
+        check_line_conic_transversality(infinity_lines, p)
+        infinity_pair_intersections = 3 + 2 * len(infinity_lines)
+        infinity_component_chi = 2 * (len(infinity_lines) + 1)
+        infinity_divisor_chi = infinity_component_chi - infinity_pair_intersections
+        infinity_complement_chi = 3 - infinity_divisor_chi
+        if infinity_complement_chi != 4:
+            raise AssertionError((p, active_lines, infinity_complement_chi))
+
+        rows.append((active_lines, finite_complement_chi, infinity_complement_chi))
+    return rows
+
+
 def legendre(value: int, p: int) -> int:
     residue = pow(value % p, (p - 1) // 2, p)
     if residue == p - 1:
@@ -192,6 +257,7 @@ def main() -> None:
                 special_value,
                 special_count,
                 generic_count,
+                two_coordinate_euler_targets(p),
             )
         )
     print(f"verify_m1_kummer_divisor_geometry: PASS checked={checked}")
