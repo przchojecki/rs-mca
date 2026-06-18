@@ -18,7 +18,7 @@ w = -1-u-v,
 A(u,v) = -(u^2 + v^2 + uv + u + v + 1).
 ```
 
-For exponents `(a,b,c,d)` modulo the order of `psi`, not all zero, the
+For exponents `(a,b,c,d)` modulo the order of `psi`, with `d != 0`, the
 imported estimate is
 
 ```text
@@ -34,9 +34,24 @@ U = A^2 - V(u v (-1-u-v) A(u,v)),
 the rank-one Kummer sheaf with local monodromy vector `(a,b,c,d)` has total
 Frobenius trace bounded by `16p`.
 
-This is the only non-elementary estimate used by the raw, two-fiber,
+This is the only non-elementary estimate still used by the raw, two-fiber,
 fixed-window, and quotient-window union saturation certificates. All later
 coefficients are finite Fourier bookkeeping around this same input.
+
+When `d=0`, the conic factor is absent and the sum is a three-character
+Jacobi sum:
+
+```text
+sum_{u+v+w=-1} psi^a(u) psi^b(v) psi^c(w).
+```
+
+If `(a,b,c)` is not the zero triple, the standard Jacobi-sum recursion bounds
+this by `p`. Indeed, after scaling the right side from `-1` to `1`, it is a
+constant of modulus at most one times `J(psi^a,psi^b,psi^c)`, and the usual
+two-character Jacobi bounds give absolute value at most `p`, including the
+cases where one character or the product character is trivial. Thus the
+certificates now pay the imported `16p` estimate only on the `d != 0` part
+and pay the proved Jacobi `p` bound on the `d=0` part.
 
 ## Audited Hypotheses
 

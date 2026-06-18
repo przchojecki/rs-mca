@@ -410,10 +410,25 @@ def main() -> None:
         coefficient_l1_bound = int(certificate["denominator"]) - 1
         if coefficient_l1_bound != int(certificate["coefficient_l1_bound"]):
             raise AssertionError((p, n, coefficient_l1_bound, certificate))
+        character_triple_count = int(certificate["character_order"]) ** 3
+        jacobi_l1_bound = character_triple_count - 1
+        kummer_l1_bound = character_triple_count * (
+            int(certificate["square_coset_index"]) - 1
+        )
+        weighted_error_l1_bound = (
+            jacobi_l1_bound
+            + int(certificate["nonprincipal_constant"]) * kummer_l1_bound
+        )
+        if jacobi_l1_bound != int(certificate["jacobi_l1_bound"]):
+            raise AssertionError((p, n, jacobi_l1_bound, certificate))
+        if kummer_l1_bound != int(certificate["kummer_l1_bound"]):
+            raise AssertionError((p, n, kummer_l1_bound, certificate))
+        if weighted_error_l1_bound != int(
+            certificate["weighted_error_l1_bound"]
+        ):
+            raise AssertionError((p, n, weighted_error_l1_bound, certificate))
         lower_numerator = principal_count - (
-            int(certificate["nonprincipal_constant"])
-            * p
-            * coefficient_l1_bound
+            p * weighted_error_l1_bound
             + degeneracy_count * int(certificate["denominator"])
         )
         if lower_numerator != int(certificate["lower_numerator"]):
@@ -421,8 +436,7 @@ def main() -> None:
         expected_threshold = kummer_quadratic_uniform_prime_threshold(
             1,
             (
-                int(certificate["nonprincipal_constant"])
-                * coefficient_l1_bound
+                weighted_error_l1_bound
                 + int(certificate["degeneracy_line_count"])
                 * int(certificate["denominator"])
             ),
@@ -621,11 +635,32 @@ def main() -> None:
         )
         if coefficient_l1_bound != int(certificate["coefficient_l1_bound"]):
             raise AssertionError((p, n, coefficient_l1_bound, certificate))
+        character_triple_count = (
+            int(certificate["kernel_character_order"]) ** 3
+        )
+        jacobi_l1_bound = int(certificate["coefficient_abs_bound"]) * (
+            character_triple_count - 1
+        )
+        kummer_l1_bound = (
+            int(certificate["coefficient_abs_bound"])
+            * character_triple_count
+            * (int(certificate["square_coset_index"]) - 1)
+        )
+        weighted_error_l1_bound = (
+            jacobi_l1_bound
+            + int(certificate["nonprincipal_constant"]) * kummer_l1_bound
+        )
+        if jacobi_l1_bound != int(certificate["jacobi_l1_bound"]):
+            raise AssertionError((p, n, jacobi_l1_bound, certificate))
+        if kummer_l1_bound != int(certificate["kummer_l1_bound"]):
+            raise AssertionError((p, n, kummer_l1_bound, certificate))
+        if weighted_error_l1_bound != int(
+            certificate["weighted_error_l1_bound"]
+        ):
+            raise AssertionError((p, n, weighted_error_l1_bound, certificate))
         lower_numerator = (
             int(certificate["principal_weight"]) * principal_count
-            - int(certificate["nonprincipal_constant"])
-            * p
-            * coefficient_l1_bound
+            - p * weighted_error_l1_bound
             - degeneracy_count * int(certificate["denominator"])
         )
         if lower_numerator != int(certificate["lower_numerator"]):
@@ -633,8 +668,7 @@ def main() -> None:
         expected_threshold = kummer_quadratic_uniform_prime_threshold(
             int(certificate["principal_weight"]),
             (
-                int(certificate["nonprincipal_constant"])
-                * coefficient_l1_bound
+                weighted_error_l1_bound
                 + int(certificate["degeneracy_line_count"])
                 * int(certificate["denominator"])
             ),
@@ -822,11 +856,32 @@ def main() -> None:
         )
         if coefficient_l1_bound != int(certificate["coefficient_l1_bound"]):
             raise AssertionError((p, n, coefficient_l1_bound, certificate))
+        character_triple_count = (
+            int(certificate["kernel_character_order"]) ** 3
+        )
+        jacobi_l1_bound = int(certificate["coefficient_abs_bound"]) * (
+            character_triple_count - 1
+        )
+        kummer_l1_bound = (
+            int(certificate["coefficient_abs_bound"])
+            * character_triple_count
+            * (int(certificate["square_coset_index"]) - 1)
+        )
+        weighted_error_l1_bound = (
+            jacobi_l1_bound
+            + int(certificate["nonprincipal_constant"]) * kummer_l1_bound
+        )
+        if jacobi_l1_bound != int(certificate["jacobi_l1_bound"]):
+            raise AssertionError((p, n, jacobi_l1_bound, certificate))
+        if kummer_l1_bound != int(certificate["kummer_l1_bound"]):
+            raise AssertionError((p, n, kummer_l1_bound, certificate))
+        if weighted_error_l1_bound != int(
+            certificate["weighted_error_l1_bound"]
+        ):
+            raise AssertionError((p, n, weighted_error_l1_bound, certificate))
         lower_numerator = (
             int(certificate["principal_weight"]) * principal_count
-            - int(certificate["nonprincipal_constant"])
-            * p
-            * coefficient_l1_bound
+            - p * weighted_error_l1_bound
             - degeneracy_count * int(certificate["denominator"])
         )
         if lower_numerator != int(certificate["lower_numerator"]):
@@ -834,8 +889,7 @@ def main() -> None:
         expected_threshold = kummer_quadratic_uniform_prime_threshold(
             int(certificate["principal_weight"]),
             (
-                int(certificate["nonprincipal_constant"])
-                * coefficient_l1_bound
+                weighted_error_l1_bound
                 + 6 * int(certificate["denominator"])
             ),
         )
@@ -1017,6 +1071,48 @@ def main() -> None:
             certificate["crude_coefficient_l1_bound"]
         ):
             raise AssertionError((p, n, crude_coefficient_l1_bound, certificate))
+        jacobi_l1_bound = (
+            int(certificate["quotient_coefficient_l1_bound"])
+            - int(certificate["principal_weight"])
+        )
+        kummer_l1_bound = (
+            int(certificate["square_coset_index"]) - 1
+        ) * int(certificate["quotient_coefficient_l1_bound"])
+        weighted_error_l1_bound = (
+            jacobi_l1_bound
+            + int(certificate["nonprincipal_constant"]) * kummer_l1_bound
+        )
+        if jacobi_l1_bound != int(certificate["jacobi_l1_bound"]):
+            raise AssertionError((p, n, jacobi_l1_bound, certificate))
+        if kummer_l1_bound != int(certificate["kummer_l1_bound"]):
+            raise AssertionError((p, n, kummer_l1_bound, certificate))
+        if weighted_error_l1_bound != int(
+            certificate["weighted_error_l1_bound"]
+        ):
+            raise AssertionError((p, n, weighted_error_l1_bound, certificate))
+        crude_jacobi_l1_bound = int(
+            certificate["crude_coefficient_abs_bound"]
+        ) * (int(certificate["kernel_character_order"]) ** 3 - 1)
+        crude_kummer_l1_bound = (
+            int(certificate["crude_coefficient_abs_bound"])
+            * int(certificate["kernel_character_order"]) ** 3
+            * (int(certificate["square_coset_index"]) - 1)
+        )
+        crude_weighted_error_l1_bound = (
+            crude_jacobi_l1_bound
+            + int(certificate["nonprincipal_constant"])
+            * crude_kummer_l1_bound
+        )
+        if crude_jacobi_l1_bound != int(certificate["crude_jacobi_l1_bound"]):
+            raise AssertionError((p, n, crude_jacobi_l1_bound, certificate))
+        if crude_kummer_l1_bound != int(certificate["crude_kummer_l1_bound"]):
+            raise AssertionError((p, n, crude_kummer_l1_bound, certificate))
+        if crude_weighted_error_l1_bound != int(
+            certificate["crude_weighted_error_l1_bound"]
+        ):
+            raise AssertionError(
+                (p, n, crude_weighted_error_l1_bound, certificate)
+            )
         failures = two_fiber_divisor_power_failure_count(
             int(certificate["kernel_character_order"]),
             int(certificate["square_coset_index"]),
@@ -1033,35 +1129,48 @@ def main() -> None:
         degeneracy_count = degeneracy_line_union_count(p)
         lower_numerator = (
             int(certificate["principal_weight"]) * principal_count
-            - int(certificate["nonprincipal_constant"])
-            * p
-            * int(certificate["coefficient_l1_bound"])
+            - p * weighted_error_l1_bound
             - degeneracy_count * int(certificate["denominator"])
         )
         if lower_numerator != int(certificate["lower_numerator"]):
             raise AssertionError((p, n, lower_numerator, certificate))
         expected_threshold = kummer_quadratic_uniform_prime_threshold(
             int(certificate["principal_weight"]),
-            int(certificate["nonprincipal_constant"])
-            * int(certificate["coefficient_l1_bound"])
-            + 6 * int(certificate["denominator"]),
+            weighted_error_l1_bound + 6 * int(certificate["denominator"]),
         )
         if expected_threshold != int(certificate["uniform_prime_threshold"]):
             raise AssertionError((p, n, expected_threshold, certificate))
+        direct_quotient_l1_bound_numerator = (
+            coefficient_l1_bound + int(certificate["principal_weight"])
+        )
+        if (
+            direct_quotient_l1_bound_numerator
+            % int(certificate["square_coset_index"])
+        ):
+            raise AssertionError(
+                (p, n, direct_quotient_l1_bound_numerator, certificate)
+            )
+        direct_quotient_l1_bound = (
+            direct_quotient_l1_bound_numerator
+            // int(certificate["square_coset_index"])
+        )
+        direct_weighted_error_l1_bound = (
+            direct_quotient_l1_bound
+            - int(certificate["principal_weight"])
+            + int(certificate["nonprincipal_constant"])
+            * (int(certificate["square_coset_index"]) - 1)
+            * direct_quotient_l1_bound
+        )
         direct_lower_numerator = (
             int(certificate["principal_weight"]) * principal_count
-            - int(certificate["nonprincipal_constant"])
-            * p
-            * coefficient_l1_bound
+            - p * direct_weighted_error_l1_bound
             - degeneracy_count * int(certificate["denominator"])
         )
         if direct_lower_numerator < lower_numerator:
             raise AssertionError((p, n, direct_lower_numerator, certificate))
         crude_lower_numerator = (
             int(certificate["principal_weight"]) * principal_count
-            - int(certificate["nonprincipal_constant"])
-            * p
-            * crude_coefficient_l1_bound
+            - p * crude_weighted_error_l1_bound
             - degeneracy_count * int(certificate["denominator"])
         )
         if crude_lower_numerator != int(certificate["crude_lower_numerator"]):

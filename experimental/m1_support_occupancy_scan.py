@@ -1878,19 +1878,21 @@ def slack_two_second_kummer_saturation_data(
     radical_total_degree = sum(radical_component_degrees)
     deligne_constant = (radical_total_degree - 1) ** 2
     coefficient_l1_bound = nonprincipal_tuple_count
+    jacobi_l1_bound = character_order ** 3 - 1
+    kummer_l1_bound = character_order ** 3 * (square_coset_index - 1)
+    weighted_error_l1_bound = (
+        jacobi_l1_bound + nonprincipal_constant * kummer_l1_bound
+    )
     uniform_prime_threshold = kummer_quadratic_uniform_prime_threshold(
         principal_weight=1,
-        linear_error_weight=(
-            nonprincipal_constant * coefficient_l1_bound
-            + 6 * denominator
-        ),
+        linear_error_weight=weighted_error_l1_bound + 6 * denominator,
     )
     chi_minus_three = quadratic_character(-3, p)
     principal_exact_count = p * p - 4 * p + 6 + 4 * chi_minus_three
     degeneracy_line_count = 6
     degeneracy_line_union_count = 6 * p - 11
     lower_numerator = principal_exact_count - (
-        nonprincipal_constant * p * coefficient_l1_bound
+        p * weighted_error_l1_bound
         + degeneracy_line_union_count * denominator
     )
     admissible_per_coset_lower_bound = (
@@ -1905,6 +1907,10 @@ def slack_two_second_kummer_saturation_data(
         "denominator": denominator,
         "nonprincipal_tuple_count": nonprincipal_tuple_count,
         "coefficient_l1_bound": coefficient_l1_bound,
+        "jacobi_l1_bound": jacobi_l1_bound,
+        "kummer_l1_bound": kummer_l1_bound,
+        "jacobi_error_constant": 1,
+        "weighted_error_l1_bound": weighted_error_l1_bound,
         "divisor_power_failure_count": 0,
         "divisor_nontriviality_check": True,
         "radical_component_degrees": radical_component_degrees,
@@ -1968,13 +1974,22 @@ def slack_two_second_two_fiber_kummer_saturation_data(
     degeneracy_line_count = 6
     degeneracy_line_union_count = 6 * p - 11
     coefficient_l1_bound = coefficient_abs_bound * (denominator - 1)
+    character_triple_count = kernel_character_order ** 3
+    jacobi_l1_bound = coefficient_abs_bound * (character_triple_count - 1)
+    kummer_l1_bound = (
+        coefficient_abs_bound
+        * character_triple_count
+        * (square_coset_index - 1)
+    )
+    weighted_error_l1_bound = (
+        jacobi_l1_bound + nonprincipal_constant * kummer_l1_bound
+    )
     uniform_prime_threshold = kummer_quadratic_uniform_prime_threshold(
         principal_weight,
-        nonprincipal_constant * coefficient_l1_bound
-        + 6 * denominator,
+        weighted_error_l1_bound + 6 * denominator,
     )
     lower_numerator = principal_weight * principal_exact_count - (
-        nonprincipal_constant * p * coefficient_l1_bound
+        p * weighted_error_l1_bound
         + degeneracy_line_union_count * denominator
     )
     admissible_per_coset_lower_bound = (
@@ -2000,6 +2015,10 @@ def slack_two_second_two_fiber_kummer_saturation_data(
         "principal_weight": principal_weight,
         "coefficient_abs_bound": coefficient_abs_bound,
         "coefficient_l1_bound": coefficient_l1_bound,
+        "jacobi_l1_bound": jacobi_l1_bound,
+        "kummer_l1_bound": kummer_l1_bound,
+        "jacobi_error_constant": 1,
+        "weighted_error_l1_bound": weighted_error_l1_bound,
         "uniform_prime_threshold": uniform_prime_threshold,
         "uniform_threshold_applies": p >= uniform_prime_threshold,
         "nonprincipal_constant": nonprincipal_constant,
@@ -2051,13 +2070,22 @@ def slack_two_second_fixed_window_kummer_saturation_data(
     principal_exact_count = p * p - 4 * p + 6 + 4 * chi_minus_three
     degeneracy_line_union_count = 6 * p - 11
     coefficient_l1_bound = coefficient_abs_bound * (denominator - 1)
+    character_triple_count = kernel_character_order ** 3
+    jacobi_l1_bound = coefficient_abs_bound * (character_triple_count - 1)
+    kummer_l1_bound = (
+        coefficient_abs_bound
+        * character_triple_count
+        * (square_coset_index - 1)
+    )
+    weighted_error_l1_bound = (
+        jacobi_l1_bound + nonprincipal_constant * kummer_l1_bound
+    )
     uniform_prime_threshold = kummer_quadratic_uniform_prime_threshold(
         principal_weight,
-        nonprincipal_constant * coefficient_l1_bound
-        + 6 * denominator,
+        weighted_error_l1_bound + 6 * denominator,
     )
     lower_numerator = principal_weight * principal_exact_count - (
-        nonprincipal_constant * p * coefficient_l1_bound
+        p * weighted_error_l1_bound
         + degeneracy_line_union_count * denominator
     )
     admissible_per_coset_lower_bound = (
@@ -2084,6 +2112,10 @@ def slack_two_second_fixed_window_kummer_saturation_data(
         "principal_weight": principal_weight,
         "coefficient_abs_bound": coefficient_abs_bound,
         "coefficient_l1_bound": coefficient_l1_bound,
+        "jacobi_l1_bound": jacobi_l1_bound,
+        "kummer_l1_bound": kummer_l1_bound,
+        "jacobi_error_constant": 1,
+        "weighted_error_l1_bound": weighted_error_l1_bound,
         "uniform_prime_threshold": uniform_prime_threshold,
         "uniform_threshold_applies": p >= uniform_prime_threshold,
         "nonprincipal_constant": nonprincipal_constant,
@@ -2291,8 +2323,26 @@ def slack_two_second_quotient_window_union_kummer_saturation_data(
         square_coset_index * quotient_coefficient_l1_bound
         - label_triple_count
     )
+    jacobi_l1_bound = quotient_coefficient_l1_bound - label_triple_count
+    kummer_l1_bound = (
+        (square_coset_index - 1) * quotient_coefficient_l1_bound
+    )
+    weighted_error_l1_bound = (
+        jacobi_l1_bound + nonprincipal_constant * kummer_l1_bound
+    )
     crude_coefficient_l1_bound = (
         label_triple_count * denominator - label_triple_count
+    )
+    crude_jacobi_l1_bound = label_triple_count * (
+        kernel_character_order ** 3 - 1
+    )
+    crude_kummer_l1_bound = (
+        label_triple_count
+        * kernel_character_order ** 3
+        * (square_coset_index - 1)
+    )
+    crude_weighted_error_l1_bound = (
+        crude_jacobi_l1_bound + nonprincipal_constant * crude_kummer_l1_bound
     )
     radical_component_degrees = (1, 1, 1, 2)
     radical_total_degree = sum(radical_component_degrees)
@@ -2302,14 +2352,14 @@ def slack_two_second_quotient_window_union_kummer_saturation_data(
     degeneracy_line_union_count = 6 * p - 11
     uniform_prime_threshold = kummer_quadratic_uniform_prime_threshold(
         principal_weight,
-        nonprincipal_constant * coefficient_l1_bound + 6 * denominator,
+        weighted_error_l1_bound + 6 * denominator,
     )
     crude_lower_numerator = principal_weight * principal_exact_count - (
-        nonprincipal_constant * p * crude_coefficient_l1_bound
+        p * crude_weighted_error_l1_bound
         + degeneracy_line_union_count * denominator
     )
     lower_numerator = principal_weight * principal_exact_count - (
-        nonprincipal_constant * p * coefficient_l1_bound
+        p * weighted_error_l1_bound
         + degeneracy_line_union_count * denominator
     )
     admissible_per_coset_lower_bound = (
@@ -2351,7 +2401,14 @@ def slack_two_second_quotient_window_union_kummer_saturation_data(
         ),
         "quotient_coefficient_l1_bound": quotient_coefficient_l1_bound,
         "coefficient_l1_bound": coefficient_l1_bound,
+        "jacobi_l1_bound": jacobi_l1_bound,
+        "kummer_l1_bound": kummer_l1_bound,
+        "jacobi_error_constant": 1,
+        "weighted_error_l1_bound": weighted_error_l1_bound,
         "crude_coefficient_l1_bound": crude_coefficient_l1_bound,
+        "crude_jacobi_l1_bound": crude_jacobi_l1_bound,
+        "crude_kummer_l1_bound": crude_kummer_l1_bound,
+        "crude_weighted_error_l1_bound": crude_weighted_error_l1_bound,
         "uniform_prime_threshold": uniform_prime_threshold,
         "uniform_threshold_applies": p >= uniform_prime_threshold,
         "nonprincipal_constant": nonprincipal_constant,
@@ -5198,6 +5255,25 @@ def scan_supports(
             if slack_two_second_r_window_kummer_saturation is not None
             else None
         ),
+        "canonical_slack_two_second_r_window_kummer_jacobi_l1_bound": (
+            int(slack_two_second_r_window_kummer_saturation["jacobi_l1_bound"])
+            if slack_two_second_r_window_kummer_saturation is not None
+            else None
+        ),
+        "canonical_slack_two_second_r_window_kummer_kummer_l1_bound": (
+            int(slack_two_second_r_window_kummer_saturation["kummer_l1_bound"])
+            if slack_two_second_r_window_kummer_saturation is not None
+            else None
+        ),
+        "canonical_slack_two_second_r_window_kummer_weighted_error_l1_bound": (
+            int(
+                slack_two_second_r_window_kummer_saturation[
+                    "weighted_error_l1_bound"
+                ]
+            )
+            if slack_two_second_r_window_kummer_saturation is not None
+            else None
+        ),
         "canonical_slack_two_second_r_window_kummer_prime_threshold": (
             int(
                 slack_two_second_r_window_kummer_saturation[
@@ -5389,10 +5465,46 @@ def scan_supports(
             if slack_two_second_r_window_union_kummer_saturation is not None
             else None
         ),
+        "canonical_slack_two_second_r_window_union_kummer_jacobi_l1_bound": (
+            int(
+                slack_two_second_r_window_union_kummer_saturation[
+                    "jacobi_l1_bound"
+                ]
+            )
+            if slack_two_second_r_window_union_kummer_saturation is not None
+            else None
+        ),
+        "canonical_slack_two_second_r_window_union_kummer_kummer_l1_bound": (
+            int(
+                slack_two_second_r_window_union_kummer_saturation[
+                    "kummer_l1_bound"
+                ]
+            )
+            if slack_two_second_r_window_union_kummer_saturation is not None
+            else None
+        ),
+        "canonical_slack_two_second_r_window_union_kummer_weighted_error_l1_bound": (
+            int(
+                slack_two_second_r_window_union_kummer_saturation[
+                    "weighted_error_l1_bound"
+                ]
+            )
+            if slack_two_second_r_window_union_kummer_saturation is not None
+            else None
+        ),
         "canonical_slack_two_second_r_window_union_kummer_crude_l1_bound": (
             int(
                 slack_two_second_r_window_union_kummer_saturation[
                     "crude_coefficient_l1_bound"
+                ]
+            )
+            if slack_two_second_r_window_union_kummer_saturation is not None
+            else None
+        ),
+        "canonical_slack_two_second_r_window_union_kummer_crude_weighted_error_l1_bound": (
+            int(
+                slack_two_second_r_window_union_kummer_saturation[
+                    "crude_weighted_error_l1_bound"
                 ]
             )
             if slack_two_second_r_window_union_kummer_saturation is not None
@@ -5484,6 +5596,21 @@ def scan_supports(
         ),
         "canonical_slack_two_second_kummer_coefficient_l1_bound": (
             int(slack_two_second_kummer_saturation["coefficient_l1_bound"])
+            if slack_two_second_kummer_saturation is not None
+            else None
+        ),
+        "canonical_slack_two_second_kummer_jacobi_l1_bound": (
+            int(slack_two_second_kummer_saturation["jacobi_l1_bound"])
+            if slack_two_second_kummer_saturation is not None
+            else None
+        ),
+        "canonical_slack_two_second_kummer_kummer_l1_bound": (
+            int(slack_two_second_kummer_saturation["kummer_l1_bound"])
+            if slack_two_second_kummer_saturation is not None
+            else None
+        ),
+        "canonical_slack_two_second_kummer_weighted_error_l1_bound": (
+            int(slack_two_second_kummer_saturation["weighted_error_l1_bound"])
             if slack_two_second_kummer_saturation is not None
             else None
         ),
@@ -5691,6 +5818,33 @@ def scan_supports(
             int(
                 slack_two_second_two_fiber_kummer_saturation[
                     "coefficient_l1_bound"
+                ]
+            )
+            if slack_two_second_two_fiber_kummer_saturation is not None
+            else None
+        ),
+        "canonical_slack_two_second_two_fiber_kummer_jacobi_l1_bound": (
+            int(
+                slack_two_second_two_fiber_kummer_saturation[
+                    "jacobi_l1_bound"
+                ]
+            )
+            if slack_two_second_two_fiber_kummer_saturation is not None
+            else None
+        ),
+        "canonical_slack_two_second_two_fiber_kummer_kummer_l1_bound": (
+            int(
+                slack_two_second_two_fiber_kummer_saturation[
+                    "kummer_l1_bound"
+                ]
+            )
+            if slack_two_second_two_fiber_kummer_saturation is not None
+            else None
+        ),
+        "canonical_slack_two_second_two_fiber_kummer_weighted_error_l1_bound": (
+            int(
+                slack_two_second_two_fiber_kummer_saturation[
+                    "weighted_error_l1_bound"
                 ]
             )
             if slack_two_second_two_fiber_kummer_saturation is not None

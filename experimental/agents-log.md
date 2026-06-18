@@ -72,7 +72,13 @@ Keep entries concise and link to the relevant files.
   multiplicative-sum theorem is background rather than a direct discharge;
   after the new audit, the remaining import is narrowed to a tame
   normal-crossing Kummer estimate, or a direct cohomology calculation, for
-  this exact compactified divisor.
+  this exact compactified divisor. The Kummer expansion is now split by conic
+  exponent: the `d=0` terms are discharged by the standard three-character
+  Jacobi-sum bound `<=p`, while the imported `16p` Kummer estimate is paid
+  only on the `d!=0` terms. The verifier audits the resulting
+  `jacobi_l1_bound`, `kummer_l1_bound`, and `weighted_error_l1_bound` fields;
+  this sharply lowers the reported raw, two-fiber, fixed-window, and
+  quotient-window union thresholds.
 - **What to do next:** Verify the exact `16p` constant against a singular
   multiplicative character-sum theorem or replace it with the proved constant
   supplied by that theorem.

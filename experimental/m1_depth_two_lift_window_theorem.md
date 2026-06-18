@@ -126,6 +126,9 @@ recorded as `(1+1+1+2-1)^2 = 16`.
 The exact external dependency and its audited hypotheses are separated in
 `m1_kummer_weil_import_contract.md`; the present note remains conditional on
 that import.
+The same contract also proves the `d=0` subcase by a three-character Jacobi
+sum bound `<= p`, so the imported `16p` Kummer estimate is paid only for
+terms with nonzero conic exponent.
 
 For the raw normalized catalog on `D`, the verifier audits the character
 expansion, the divisor nontriviality, the exact principal open-set count
@@ -135,8 +138,9 @@ p^2 - 4p + 6 + 4 chi(-3),
 ```
 
 and the exact six-line distinctness loss `6p-11`. With
-`e=[F_p^*:D]` and `q=[F_p^*:D^2]`, it also pays the Kummer error over the
-exact nonprincipal L1 count `e^3q-1`, not over the principal character.
+`e=[F_p^*:D]` and `q=[F_p^*:D^2]`, the nonprincipal expansion splits into
+the proved Jacobi part `e^3-1` and the remaining Kummer part
+`e^3(q-1)`.
 
 For a fixed quotient window `W` of size `R`, let
 
@@ -151,13 +155,13 @@ bound are `R^3`. Hence the conservative lower numerator for a fixed
 
 ```text
 R^3 (p^2 - 4p + 6 + 4 chi(-3))
-  - 16p R^3(h^3q - 1) - (6p - 11) h^3 q.
+  - p R^3((h^3-1) + 16h^3(q-1)) - (6p - 11) h^3 q.
 ```
 
 The uniform sufficient threshold for this fixed-window numerator is
 
 ```text
-p >= ceil((16R^3(h^3q - 1) + 6h^3q)/R^3) + 4.
+p >= ceil((R^3((h^3-1)+16h^3(q-1)) + 6h^3q)/R^3) + 4.
 ```
 
 When this numerator is positive, that fixed `R`-window already hits every
@@ -273,23 +277,31 @@ For even `N`, they are
 ```
 
 Thus `S_3=e^3` times the resulting absolute coefficient sum. After the
-`D^2`-coset expansion, the nonprincipal coefficient L1 bound is
+`D^2`-coset expansion, the total nonprincipal coefficient L1 bound is
 
 ```text
 E_R <= q S_R - T_R(N).
+```
+
+The Jacobi/Kummer split is sharper than applying the `16p` bound to all of
+`E_R`: the `d=0` part has L1 at most `S_R-T_R(N)` and the `d!=0` part has
+L1 at most `(q-1)S_R`. Put
+
+```text
+W_R = (S_R-T_R(N)) + 16(q-1)S_R.
 ```
 
 Thus the conservative lower numerator for the whole active union is
 
 ```text
 T_R(N) (p^2 - 4p + 6 + 4 chi(-3))
-  - 16p E_R - (6p - 11) h^3 q.
+  - p W_R - (6p - 11) h^3 q.
 ```
 
 The corresponding uniform sufficient threshold is
 
 ```text
-p >= ceil((16E_R + 6h^3q)/T_R(N)) + 4.
+p >= ceil((W_R + 6h^3q)/T_R(N)) + 4.
 ```
 
 When this is positive and `R<min(4,N)`, the exact-support active

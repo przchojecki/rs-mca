@@ -198,6 +198,9 @@ canonical_slack_two_second_r_window_kummer_denominator
 canonical_slack_two_second_r_window_kummer_principal_weight
 canonical_slack_two_second_r_window_kummer_coefficient_bound
 canonical_slack_two_second_r_window_kummer_coefficient_l1_bound
+canonical_slack_two_second_r_window_kummer_jacobi_l1_bound
+canonical_slack_two_second_r_window_kummer_kummer_l1_bound
+canonical_slack_two_second_r_window_kummer_weighted_error_l1_bound
 canonical_slack_two_second_r_window_kummer_prime_threshold
 canonical_slack_two_second_r_window_kummer_threshold_applies
 canonical_slack_two_second_r_window_kummer_lower_numerator
@@ -219,7 +222,11 @@ canonical_slack_two_second_r_window_union_kummer_zero_subset_histogram
 canonical_slack_two_second_r_window_union_kummer_coefficient_histogram
 canonical_slack_two_second_r_window_union_kummer_quotient_l1_bound
 canonical_slack_two_second_r_window_union_kummer_coefficient_l1_bound
+canonical_slack_two_second_r_window_union_kummer_jacobi_l1_bound
+canonical_slack_two_second_r_window_union_kummer_kummer_l1_bound
+canonical_slack_two_second_r_window_union_kummer_weighted_error_l1_bound
 canonical_slack_two_second_r_window_union_kummer_crude_l1_bound
+canonical_slack_two_second_r_window_union_kummer_crude_weighted_error_l1_bound
 canonical_slack_two_second_r_window_union_kummer_prime_threshold
 canonical_slack_two_second_r_window_union_kummer_threshold_applies
 canonical_slack_two_second_r_window_union_kummer_lower_numerator
@@ -231,6 +238,9 @@ canonical_slack_two_second_full_domain_saturates_nonzero_slopes
 canonical_slack_two_second_full_domain_nonzero_slope_image
 canonical_slack_two_second_full_domain_coset_count_check
 canonical_slack_two_second_kummer_coefficient_l1_bound
+canonical_slack_two_second_kummer_jacobi_l1_bound
+canonical_slack_two_second_kummer_kummer_l1_bound
+canonical_slack_two_second_kummer_weighted_error_l1_bound
 canonical_slack_two_second_kummer_exact_support_saturation_certificate
 canonical_slack_two_second_kummer_exact_support_certificate_check
 canonical_slack_two_second_two_fiber_kummer_character_order
@@ -239,6 +249,9 @@ canonical_slack_two_second_two_fiber_kummer_denominator
 canonical_slack_two_second_two_fiber_kummer_principal_weight
 canonical_slack_two_second_two_fiber_kummer_coefficient_bound
 canonical_slack_two_second_two_fiber_kummer_coefficient_l1_bound
+canonical_slack_two_second_two_fiber_kummer_jacobi_l1_bound
+canonical_slack_two_second_two_fiber_kummer_kummer_l1_bound
+canonical_slack_two_second_two_fiber_kummer_weighted_error_l1_bound
 canonical_slack_two_second_two_fiber_kummer_uniform_prime_threshold
 canonical_slack_two_second_two_fiber_kummer_threshold_applies
 canonical_slack_two_second_two_fiber_kummer_lower_numerator
@@ -625,12 +638,12 @@ a quotient window `W` of size `R`, the indicator of `W` has principal weight
 `R/h`, so the principal term for `u,v,-1-u-v in W` has weight `R^3/(h^3 q)`,
 where `h=[F_p^*:K]` and `q=[F_p^*:D^2]`. The nonprincipal coefficients are
 bounded by `R^3`, and the same degree-five divisor gives the imported `16p`
-Kummer error. Paying only the `h^3q-1` nonprincipal character tuples gives
-the conservative lower numerator
+Kummer error on the `d!=0` part. The `d=0` part is a three-character Jacobi
+sum and only costs `p`. The conservative lower numerator is
 
 ```text
 R^3 (p^2 - 4p + 6 + 4 chi(-3))
-  - 16p R^3(h^3q - 1) - (6p - 11) h^3 q.
+  - p R^3((h^3-1) + 16h^3(q-1)) - (6p - 11) h^3 q.
 ```
 
 When this is positive, one fixed `R`-window already hits every nonzero
@@ -707,23 +720,30 @@ For even `N`, they are
 ```
 
 Thus the quotient L1 term is exact for `R=2` and `R=3`. After also expanding
-the `D^2`-coset condition, the nonprincipal coefficient L1 bound is
+the `D^2`-coset condition, the total nonprincipal coefficient L1 bound is
 
 ```text
 E_R <= q S_R - T_R(N).
+```
+
+The reported numerator uses the proved Jacobi bound for the `d=0` part and
+the imported Kummer bound only for `d!=0`. Thus the weighted error term is
+
+```text
+W_R = (S_R - T_R(N)) + 16(q-1)S_R.
 ```
 
 Thus the sharpened lower numerator is
 
 ```text
 T_R(N) (p^2 - 4p + 6 + 4 chi(-3))
-  - 16p E_R - (6p - 11) h^3 q.
+  - p W_R - (6p - 11) h^3 q.
 ```
 
 The reported uniform prime threshold uses the quadratic implication
 
 ```text
-p >= ceil((16E_R + 6h^3q)/T_R(N)) + 4.
+p >= ceil((W_R + 6h^3q)/T_R(N)) + 4.
 ```
 
 When this is positive, the active quotient-window union itself hits every
@@ -802,9 +822,11 @@ imported constant explicit: the squarefree support divisor has component
 degrees `1,1,1,2`, total degree `5`, and the standard two-variable
 Kummer-Weil estimate contributes `(5-1)^2=16`.
 For the raw catalog, with `e=[F_p^*:D]` and `q=[F_p^*:D^2]`, the certificate
-pays this error only over the exact nonprincipal L1 count `e^3q-1`, recorded
-as `*_coefficient_l1_bound`, rather than over the principal character as
-well.
+pays the proved Jacobi bound on the `d=0` mass `e^3-1` and the imported
+Kummer error only on the `d!=0` mass `e^3(q-1)`. These are recorded as
+`*_jacobi_l1_bound` and `*_kummer_l1_bound`, while
+`*_weighted_error_l1_bound` is the linear error term used in the certificate
+numerator.
 The `*_principal_exact_count` field records the exact principal open-set
 count
 
@@ -829,13 +851,13 @@ the indicator `1_U` has principal weight `2/h`, where
 `h=[F_p^*:K]`. Hence the principal term for `u,v,-1-u-v in U` has weight
 `8/(h^3 q)`, with `q=[F_p^*:D^2]`. The same squarefree divisor
 `u v (-1-u-v) A(u,v)` has total degree `5`, so the same imported
-Kummer-Weil constant `16` applies. Paying the coefficient bound `8` only for
-the `h^3q-1` nonprincipal character tuples gives the conservative lower
+Kummer-Weil constant `16` applies only to the `d!=0` terms. Paying the
+coefficient bound `8`, the Jacobi/Kummer split gives the conservative lower
 numerator
 
 ```text
 8 (p^2 - 4p + 6 + 4 chi(-3))
-  - 16p * 8(h^3q - 1) - (6p - 11) h^3 q.
+  - p * 8((h^3-1) + 16h^3(q-1)) - (6p - 11) h^3 q.
 ```
 
 When this is positive, every nonzero `D^2`-coset already occurs inside a
