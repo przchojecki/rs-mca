@@ -163,6 +163,20 @@ def transformed_core(
     return total
 
 
+def transformed_inner(p: int, y: int, nu: List[complex]) -> complex:
+    total = 0j
+    for v in range(p):
+        total += nu[v] * legendre(q_y_v(y, v, p), p)
+    return total
+
+
+def jacobi_sum(p: int, alpha: List[complex], beta: List[complex]) -> complex:
+    total = 0j
+    for t in range(p):
+        total += alpha[t] * beta[(1 - t) % p]
+    return total
+
+
 def assert_close(label: Tuple[object, ...], actual: complex, expected: complex) -> None:
     if abs(actual - expected) > TOLERANCE:
         raise AssertionError((label, actual, expected, abs(actual - expected)))
@@ -189,6 +203,45 @@ def verify_discriminant_values(p: int) -> None:
         expected_zero = ((y - 3) * (y + 1)) % p
         if q_at_zero != expected_zero:
             raise AssertionError((p, y, q_at_zero, expected_zero))
+
+
+def verify_singular_fiber_values(p: int, table: List[List[complex]]) -> None:
+    quadratic_exponent = (p - 1) // 2
+    quadratic_character = table[quadratic_exponent]
+    singular_values = {0, (-1) % p, 2 % p, 3 % p}
+    for y in singular_values:
+        if y == (-1) % p:
+            for nu_exponent in range(1, p - 1):
+                actual = transformed_inner(p, y, table[nu_exponent])
+                assert_close((p, nu_exponent, "G(-1)"), actual, 0j)
+        elif y == 2 % p:
+            for nu_exponent in range(1, p - 1):
+                nu = table[nu_exponent]
+                expected = -legendre(-3, p) * nu[(-1) % p]
+                actual = transformed_inner(p, y, nu)
+                assert_close((p, nu_exponent, "G(2)"), actual, expected)
+        elif y == 3 % p:
+            minus_eight_over_three = (-8 * pow(3, -1, p)) % p
+            for nu_exponent in range(1, p - 1):
+                nu = table[nu_exponent]
+                alpha = table[(nu_exponent + quadratic_exponent) % (p - 1)]
+                expected = (
+                    legendre(3, p)
+                    * nu[minus_eight_over_three]
+                    * jacobi_sum(p, alpha, quadratic_character)
+                )
+                actual = transformed_inner(p, y, nu)
+                assert_close((p, nu_exponent, "G(3)"), actual, expected)
+                if nu_exponent == quadratic_exponent:
+                    if abs(actual) > 1 + TOLERANCE:
+                        raise AssertionError((p, nu_exponent, "G(3)-quadratic"))
+                elif abs(actual) > math.sqrt(p) + TOLERANCE:
+                    raise AssertionError((p, nu_exponent, "G(3)-jacobi-bound"))
+        else:
+            for eta_exponent in range(1, p - 1):
+                eta = table[eta_exponent]
+                if eta[0] != 0j:
+                    raise AssertionError((p, eta_exponent, "eta(0)"))
 
 
 def core_collision_formula(p: int) -> int:
@@ -408,12 +461,15 @@ def main() -> None:
     max_core_label: Tuple[object, ...] = ()
     max_open_label: Tuple[object, ...] = ()
     max_line_label: Tuple[object, ...] = ()
+    singular_checked: List[int] = []
     moment_checked = verify_second_moments()
     for p, eta_exponent, nu_exponent in case_iterator():
         if p not in tables:
             logs = log_table(p)
             tables[p] = character_table(p, logs)
             verify_discriminant_values(p)
+            verify_singular_fiber_values(p, tables[p])
+            singular_checked.append(p)
         table = tables[p]
         eta = table[eta_exponent]
         eta_inv = table[(-eta_exponent) % (p - 1)]
@@ -466,6 +522,7 @@ def main() -> None:
         f"max_core_ratio={max_core_ratio:.10f}@{max_core_label}",
         f"max_open_ratio={max_open_ratio:.10f}@{max_open_label}",
         f"max_line_ratio={max_line_ratio:.10f}@{max_line_label}",
+        f"singular_checked={singular_checked}",
         f"moment_checked={moment_checked}",
     )
 

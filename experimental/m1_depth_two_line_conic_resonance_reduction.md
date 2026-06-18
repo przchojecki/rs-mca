@@ -111,6 +111,74 @@ does not prove the required conductor bound, but it replaces the residual
 two-variable resonant slice by an explicit one-dimensional trace-family
 problem.
 
+## Finite Singular-Fiber Values
+
+The finite singular values above do not hide a `p`-sized exceptional
+contribution.  Write
+
+```text
+G_nu(y) = sum_v nu(v) chi_2(Q_y(v)).
+```
+
+For every nonprincipal `nu`,
+
+```text
+G_nu(-1) = 0,
+G_nu(2)  = -chi_2(-3) nu(-1),
+```
+
+and
+
+```text
+G_nu(3)
+  = chi_2(3) nu(-8/3) J(nu chi_2, chi_2),
+```
+
+where
+
+```text
+J(alpha,beta) = sum_t alpha(t) beta(1-t)
+```
+
+is the usual Jacobi sum with characters extended by zero.  Hence
+`|G_nu(3)| = sqrt(p)` unless `nu=chi_2`, in which case
+`G_nu(3)=-chi_2(-2)`.
+
+The `y=0` term contributes nothing to `C_{eta,nu}` because `eta(0)=0`.
+Therefore the whole finite singular contribution to the Mellin transform is
+bounded by
+
+```text
+|eta(-2)G_nu(2) + eta(-3)G_nu(3)| <= 1 + sqrt(p).
+```
+
+Thus any `p`-scale obstruction to the desired `|C_{eta,nu}|<=4p` target
+must come from the lisse open trace over
+
+```text
+P^1_y \ {0,-1,2,3,infinity},
+```
+
+not from a bad finite fiber.
+
+Indeed, the identities follow by direct specialization:
+
+```text
+Q_{-1}(v) = -3v^2,        Q_2(v) = -3(v+1)^2,
+Q_3(v)   = -v(3v+8).
+```
+
+The first gives `chi_2(-3) sum_{v!=0} nu(v)=0`.  The second gives
+`chi_2(-3) sum_{v!=-1} nu(v)=-chi_2(-3)nu(-1)`.  For the third, write
+`a=8/3`; then
+
+```text
+G_nu(3) = chi_2(-3) sum_v (nu chi_2)(v) chi_2(v+a).
+```
+
+Substituting `v=-at` gives the displayed Jacobi sum and the factor
+`chi_2(3)nu(-a)`.
+
 ## Open-Set Line Correction
 
 For the actual two-coordinate open sum, the principal coordinate line

@@ -29,6 +29,23 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-19 - M1 line-conic singular fibers
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/m1_depth_two_line_conic_resonance_reduction.md`,
+  `experimental/verify_m1_depth_two_line_conic_resonance_reduction.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** Evaluates the finite singular fibers of the
+  transformed line-conic trace family: `G_nu(-1)=0`, `G_nu(2)` has size
+  one, and `G_nu(3)` is a single Jacobi sum.
+- **How it is useful:** Shows that no finite singular value carries a
+  `p`-sized exceptional contribution; the `4p` target is genuinely a lisse
+  open-trace conductor problem on the punctured `y`-line.
+- **What to do next:** Prove the middle-extension conductor bound on
+  `P^1_y \ {0,-1,2,3,infinity}`.
+
 ### 2026-06-19 - M1 line-conic nonprincipal moment
 
 - **Agent/model:** Codex.
