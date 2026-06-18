@@ -67,6 +67,10 @@ canonical_superboundary_active_depth_remainder_check
 canonical_small_residual_depth_gate_check
 canonical_positive_dither_clearance_applies
 canonical_positive_dither_inferred_r
+canonical_positive_dither_exact_dimension
+canonical_positive_dither_prefix_max_fiber_size
+canonical_positive_dither_dyadic_prefix_scale_count
+canonical_positive_dither_finite_prefix_check
 canonical_positive_dither_residual_floor
 canonical_positive_dither_clearance_check
 canonical_small_residual_support_count_check
@@ -199,6 +203,12 @@ When `0 < (k+t mod m) < t`, the fields
 certificate. Writing `b=(k+t mod m)` and `r=t-b`, the scanner checks that no
 canonical zero-prefix support has residual size below one quotient fiber and
 that the residual-size floor is exactly `m+b`.
+It also records the inferred exact dimension `k0=k+r`, the finite-prefix
+bound `m<=t`, and the number `floor(log2(t))` of possible nontrivial dyadic
+fiber sizes in that prefix. The field
+`canonical_positive_dither_finite_prefix_check` verifies the local instance
+of the hierarchy statement: the scanned scale divides the inferred exact
+dimension and is already beyond the prefix.
 
 For every canonical scan with `t<m`, the scanner also aggregates supports by
 their residual partial-fiber packet `P`. A packet touching `tau(P)` quotient
@@ -380,7 +390,11 @@ For dithered residues in the range
 the scanner reports `canonical_subboundary_residual_floor=m+(k+t mod m)` and
 checks that every canonical zero-prefix support has residual size at least
 this floor. This is the executable form of the small-residual exclusion caused
-by a nonzero support residue below the slack.
+by a nonzero support residue below the slack. In a quotient hierarchy with
+`k=k0-r`, `1<=r<t`, and `m | k0`, every scale `m>t` falls in this range with
+residue `t-r`. Thus positive dither reduces the canonical small-residual work
+to the finite prefix `m<=t`; for dyadic fiber sizes this prefix has at most
+`floor(log2(t))` nontrivial scales.
 
 The slope checks audit the exact canonical quotient-core decomposition. For
 `t<m`, the contributed slope is computed from the residual set alone:

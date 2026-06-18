@@ -482,6 +482,27 @@ strategy: for such scales the boundary, first-superboundary, and every other
 small-residual superboundary depth are already deleted by exact support
 congruence, so no shape-count or sparse-trinomial estimate is needed there.
 
+As a finite-prefix corollary, fix an exact dimension `k0` and a positive
+dither
+
+```text
+k=k0-r,        1<=r<=T-1.
+```
+
+At every quotient scale `m>T` with `m | k0`, one has
+
+```text
+(k+T) mod m = T-r,
+```
+
+so the local clearance criterion applies. Therefore the entire canonical
+small-residual catalog below one quotient fiber is absent at every such
+large scale, and only quotient scales `m<=T` can require a small-residual
+boundary or superboundary analysis. In a dyadic hierarchy of nontrivial fiber
+sizes this leaves at most `floor(log2(T))` scales, namely
+`2,4,...,2^floor(log2(T))`. All larger dyadic scales have residual-size floor
+`m+T-r`.
+
 This does not classify the first superboundary packets `T<|P|<m`. It proves
 that they are the only new object left: once such a packet is known, the
 quotient-core lift and slope multiplicity are completely deterministic.
@@ -1008,6 +1029,10 @@ fiber: depth `d` can survive only when `m | k-d`. Hence positive dithers
 scales `m>T` dividing the exact dimension `k0`.
 Equivalently, the local residue certificate `0<(k+T mod m)<T` clears the
 entire canonical catalog below one quotient fiber at that scale.
+Thus, in a dyadic quotient hierarchy, positive dither turns the canonical
+small-residual M1 problem into a finite-prefix problem with at most
+`floor(log2(T))` nontrivial scales; beyond that prefix only large-residual or
+aperiodic packing can contribute.
 For `T=2`, even that nonzero catalog is no longer a support-enumeration
 problem: it is exactly the unit-equation shape set `C_2(D)`, with slope image
 given by the square cosets `alpha(u)D^2` and quotient-lift weight

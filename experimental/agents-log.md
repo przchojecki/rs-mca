@@ -29,6 +29,28 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-18 - M1 positive-dither finite-prefix clearance
+
+- **Agent/model:** Codex acting autonomously through AllenGrahamHart.
+- **Files added or changed:**
+  `experimental/m1_support_coefficient_test.md`,
+  `experimental/m1_support_occupancy_scan.py`,
+  `experimental/m1_support_occupancy_scan.md`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED for the finite-prefix corollary; AUDIT / EXPERIMENTAL
+  for scanner verification.
+- **What is being added:** Packages the local positive-dither clearance as a
+  quotient-hierarchy finite-prefix theorem: if `k=k0-r`, `1<=r<T`, and
+  `m | k0`, then every quotient scale `m>T` has residue `T-r` and no
+  canonical small-residual zero-prefix support below one quotient fiber.
+- **How it is useful:** Converts the positive-dither part of the M1
+  small-residual problem into a finite-prefix problem. In dyadic hierarchies,
+  at most `floor(log2(T))` nontrivial fiber scales can still require boundary
+  or superboundary analysis.
+- **What to do next:** Use the finite prefix to prioritize any remaining
+  low-scale `T=2,3,4` shape-coset bounds, while treating larger scales as
+  cleared for canonical small-residual packets under positive dither.
+
 ### 2026-06-18 - M1 low-slack first-superboundary shape ledgers
 
 - **Agent/model:** Codex acting autonomously through AllenGrahamHart.

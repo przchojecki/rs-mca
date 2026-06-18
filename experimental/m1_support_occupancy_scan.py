@@ -959,6 +959,14 @@ def scan_supports(
     positive_dither_inferred_r = (
         slack - support_residue if positive_dither_clearance_applies else None
     )
+    positive_dither_exact_dimension = (
+        k + positive_dither_inferred_r
+        if positive_dither_inferred_r is not None
+        else None
+    )
+    positive_dither_dyadic_prefix_scale_count = (
+        slack.bit_length() - 1 if positive_dither_clearance_applies else None
+    )
     (
         small_residual_regime,
         expected_small_residual_support_count,
@@ -1552,6 +1560,39 @@ def scan_supports(
         "canonical_positive_dither_inferred_r": (
             positive_dither_inferred_r
             if canonical_line and slack < fiber_size
+            else None
+        ),
+        "canonical_positive_dither_exact_dimension": (
+            positive_dither_exact_dimension
+            if canonical_line and slack < fiber_size
+            else None
+        ),
+        "canonical_positive_dither_prefix_max_fiber_size": (
+            slack
+            if (
+                canonical_line
+                and slack < fiber_size
+                and positive_dither_clearance_applies
+            )
+            else None
+        ),
+        "canonical_positive_dither_dyadic_prefix_scale_count": (
+            positive_dither_dyadic_prefix_scale_count
+            if (
+                canonical_line
+                and slack < fiber_size
+                and positive_dither_clearance_applies
+            )
+            else None
+        ),
+        "canonical_positive_dither_finite_prefix_check": (
+            positive_dither_exact_dimension % fiber_size == 0
+            and slack < fiber_size
+            if (
+                canonical_line
+                and slack < fiber_size
+                and positive_dither_clearance_applies
+            )
             else None
         ),
         "canonical_positive_dither_residual_floor": (
@@ -2441,6 +2482,7 @@ def print_text(result: Dict[str, object]) -> None:
             "small_residual_depth_gate={depth_gate} "
             "active_superboundary_depth={active_depth} "
             "positive_dither_clearance={positive_clearance} "
+            "positive_dither_finite_prefix={positive_prefix} "
             "residual_packet_lift_check={packet} "
             "first_superboundary_lift_gate={gate} "
             "first_superboundary_lift_gate_check={gate_check} "
@@ -2464,6 +2506,9 @@ def print_text(result: Dict[str, object]) -> None:
                 active_depth=result["canonical_superboundary_active_depth"],
                 positive_clearance=result[
                     "canonical_positive_dither_clearance_check"
+                ],
+                positive_prefix=result[
+                    "canonical_positive_dither_finite_prefix_check"
                 ],
                 packet=result["canonical_residual_packet_lift_count_check"],
                 gate=result["canonical_first_superboundary_lift_gate_active"],
