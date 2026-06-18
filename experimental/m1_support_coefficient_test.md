@@ -760,6 +760,44 @@ power cosets `D^(T+j)`. Pure zero chains contribute only the terminal
 power-coset ledger. This is useful for M1 because it prevents lower-depth
 zero strata from being counted again as new aperiodic residual structure.
 
+Equivalently, there is an exact disjoint frontier partition. Put `h=T+d`.
+For `0<=j<d`, define
+
+```text
+F_T,d^(j) = { P subset D : |P|=h,
+              e_1(P)=...=e_(T+j-1)(P)=0,
+              e_(T+j)(P) != 0 }.
+```
+
+Also define the terminal stratum
+
+```text
+F_T,d^(infty) = { P subset D : |P|=h,
+                  e_1(P)=...=e_(h-1)(P)=0 }.
+```
+
+Then the residual-packet catalog `C_T^(d)(D)` is the disjoint union of the
+`F_T,d^(j)` and `F_T,d^(infty)`. On `F_T,d^(j)`, after `j` residual-depth
+shifts, the first nonzero slope is
+
+```text
+z_j(P)=(-1)^(T+j) e_(T+j)(P),
+```
+
+and scaling `P` by `x in D` sends `z_j` to `x^(T+j) z_j(P)`. Thus the
+`j`-th frontier slope image is a union of `D^(T+j)`-cosets. At the original
+slack `T`, only the `j=0` frontier contributes nonzero slopes; all
+`j>0` frontiers and the terminal stratum are inherited zero-slope packets.
+The lift gate is independent of `j`:
+
+```text
+m | s-h = k-d.
+```
+
+This partition is the useful bookkeeping for a depth-`d` attack: prove
+coset-image bounds separately on the nonzero frontiers, then add the
+terminal power-coset count below.
+
 The terminal pure-zero ledger is explicit. Let `h=T+d<m`. A packet of size
 `h` whose inherited zero chain reaches the terminal first-superboundary
 zero-slope stratum satisfies

@@ -169,6 +169,19 @@ def canonical_slope_from_symmetric_prefix(
     return (sign * sym[slack]) % p
 
 
+def first_nonzero_frontier(
+    values: Sequence[int],
+    slack: int,
+    p: int,
+) -> Tuple[Optional[int], int]:
+    sym = elementary_symmetric_prefix(values, len(values), p)
+    for degree in range(slack, len(values)):
+        if sym[degree] % p:
+            sign = -1 if degree % 2 else 1
+            return degree, (sign * sym[degree]) % p
+    return None, 0
+
+
 def is_power_coset(values: Sequence[int], exponent: int, p: int) -> bool:
     if not values:
         return False
@@ -1943,6 +1956,12 @@ def scan_supports(
     terminal_pure_zero_support_counts: Counter[int] = Counter()
     terminal_pure_zero_slope_mismatches = 0
     terminal_pure_zero_touched_fiber_mismatches = 0
+    first_nonzero_frontier_packet_counts: Counter[str] = Counter()
+    first_nonzero_frontier_support_counts: Counter[str] = Counter()
+    first_nonzero_frontier_slope_histograms: Dict[str, Counter[int]] = {}
+    first_nonzero_frontier_packet_count = 0
+    first_nonzero_frontier_support_count = 0
+    first_nonzero_frontier_original_slope_mismatches = 0
 
     for residual, packet in residual_packet_records.items():
         residual_size = int(packet["residual_size"])
@@ -1967,8 +1986,32 @@ def scan_supports(
             continue
         slope = next(iter(slope_histogram))
         residual_packet_slope_histogram[slope] += expected_lift_count
+        residual_values = [domain[index] for index in residual]
+        if slack < residual_size < fiber_size:
+            first_nonzero_frontier_packet_count += 1
+            first_nonzero_frontier_support_count += expected_lift_count
+            frontier_degree, frontier_slope = first_nonzero_frontier(
+                residual_values,
+                slack,
+                p,
+            )
+            frontier_key = (
+                "terminal" if frontier_degree is None else str(frontier_degree)
+            )
+            first_nonzero_frontier_packet_counts[frontier_key] += 1
+            first_nonzero_frontier_support_counts[frontier_key] += (
+                expected_lift_count
+            )
+            first_nonzero_frontier_slope_histograms.setdefault(
+                frontier_key,
+                Counter(),
+            )[frontier_slope] += expected_lift_count
+            expected_original_slope = (
+                frontier_slope if frontier_degree == slack else 0
+            )
+            if slope != expected_original_slope:
+                first_nonzero_frontier_original_slope_mismatches += 1
         if residual_size in expected_terminal_pure_zero_data:
-            residual_values = [domain[index] for index in residual]
             if is_power_coset(residual_values, residual_size, p):
                 terminal_pure_zero_packet_counts[residual_size] += 1
                 terminal_pure_zero_support_counts[residual_size] += (
@@ -2038,6 +2081,19 @@ def scan_supports(
         and terminal_pure_zero_support_count_check
         and terminal_pure_zero_slope_mismatches == 0
         and terminal_pure_zero_touched_fiber_mismatches == 0
+    )
+    first_nonzero_frontier_partition_check = (
+        sum(first_nonzero_frontier_packet_counts.values())
+        == first_nonzero_frontier_packet_count
+        and sum(first_nonzero_frontier_support_counts.values())
+        == first_nonzero_frontier_support_count
+    )
+    first_nonzero_frontier_original_slope_check = (
+        first_nonzero_frontier_original_slope_mismatches == 0
+    )
+    first_nonzero_frontier_check = (
+        first_nonzero_frontier_partition_check
+        and first_nonzero_frontier_original_slope_check
     )
     first_superboundary_residual_size = slack + 1
     first_superboundary_lift_dividend = support_size - first_superboundary_residual_size
@@ -2663,6 +2719,65 @@ def scan_supports(
             {
                 str(size): values
                 for size, values in sorted(expected_terminal_pure_zero_data.items())
+            }
+            if canonical_line and slack + 1 < fiber_size
+            else None
+        ),
+        "canonical_first_nonzero_frontier_check": (
+            first_nonzero_frontier_check
+            if canonical_line and slack + 1 < fiber_size
+            else None
+        ),
+        "canonical_first_nonzero_frontier_partition_check": (
+            first_nonzero_frontier_partition_check
+            if canonical_line and slack + 1 < fiber_size
+            else None
+        ),
+        "canonical_first_nonzero_frontier_original_slope_check": (
+            first_nonzero_frontier_original_slope_check
+            if canonical_line and slack + 1 < fiber_size
+            else None
+        ),
+        "canonical_first_nonzero_frontier_original_slope_mismatch_count": (
+            first_nonzero_frontier_original_slope_mismatches
+            if canonical_line and slack + 1 < fiber_size
+            else None
+        ),
+        "canonical_first_nonzero_frontier_packet_count": (
+            first_nonzero_frontier_packet_count
+            if canonical_line and slack + 1 < fiber_size
+            else None
+        ),
+        "canonical_first_nonzero_frontier_support_count": (
+            first_nonzero_frontier_support_count
+            if canonical_line and slack + 1 < fiber_size
+            else None
+        ),
+        "canonical_first_nonzero_frontier_packet_counts": (
+            {
+                key: first_nonzero_frontier_packet_counts[key]
+                for key in sorted(first_nonzero_frontier_packet_counts)
+            }
+            if canonical_line and slack + 1 < fiber_size
+            else None
+        ),
+        "canonical_first_nonzero_frontier_support_counts": (
+            {
+                key: first_nonzero_frontier_support_counts[key]
+                for key in sorted(first_nonzero_frontier_support_counts)
+            }
+            if canonical_line and slack + 1 < fiber_size
+            else None
+        ),
+        "canonical_first_nonzero_frontier_slope_histograms": (
+            {
+                key: {
+                    str(slope): count
+                    for slope, count in sorted(
+                        first_nonzero_frontier_slope_histograms[key].items()
+                    )
+                }
+                for key in sorted(first_nonzero_frontier_slope_histograms)
             }
             if canonical_line and slack + 1 < fiber_size
             else None
@@ -4197,6 +4312,7 @@ def print_text(result: Dict[str, object]) -> None:
             "positive_dither_finite_prefix={positive_prefix} "
             "residual_packet_lift_check={packet} "
             "terminal_pure_zero_check={terminal} "
+            "first_nonzero_frontier_check={frontier} "
             "first_superboundary_lift_gate={gate} "
             "first_superboundary_lift_gate_check={gate_check} "
             "first_superboundary_zero_check={first} "
@@ -4228,6 +4344,7 @@ def print_text(result: Dict[str, object]) -> None:
                 ],
                 packet=result["canonical_residual_packet_lift_count_check"],
                 terminal=result["canonical_terminal_pure_zero_chain_check"],
+                frontier=result["canonical_first_nonzero_frontier_check"],
                 gate=result["canonical_first_superboundary_lift_gate_active"],
                 gate_check=result["canonical_first_superboundary_lift_gate_check"],
                 first=result[

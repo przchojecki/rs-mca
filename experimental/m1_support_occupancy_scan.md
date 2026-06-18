@@ -81,6 +81,9 @@ canonical_residual_packet_slope_consistency_check
 canonical_terminal_pure_zero_chain_check
 canonical_terminal_pure_zero_packet_count_check
 canonical_terminal_pure_zero_support_count_check
+canonical_first_nonzero_frontier_check
+canonical_first_nonzero_frontier_partition_check
+canonical_first_nonzero_frontier_original_slope_check
 canonical_first_superboundary_zero_slope_packet_count_check
 canonical_first_superboundary_zero_slope_support_count_check
 canonical_first_superboundary_zero_slope_coset_check
@@ -297,6 +300,11 @@ The terminal pure-zero fields additionally check every active residual size
 the observed packets must be exactly the `h`-power cosets, have slope zero,
 touch `h/gcd(h,m)` quotient fibers, and lift with the theorem's binomial
 multiplicity.
+The first-nonzero frontier fields partition every superboundary residual
+packet by the first nonzero coefficient `e_(t+j)`. They check that this
+partition exhausts the packet/support weights and that, at the original
+slack `t`, only the `j=0` frontier contributes nonzero slopes; later
+frontiers are inherited zero-slope packets for the original slack.
 
 The first superboundary layer has residual size `t+1`. In this layer the
 scanner checks the zero-slope classification: a zero-slope packet is exactly a
@@ -390,7 +398,8 @@ depth `d`: zero slope at `(t,k,d)` is the depth-`d-1` catalog at
 `(t+1,k-1,d-1)`. The scanner currently audits the first nontrivial case
 `d=2`.
 Iterating this shift leaves only a finite first-nonzero-coefficient frontier;
-pure zero chains terminate in the counted power-coset ledger.
+the scanner now records the exact frontier partition, while pure zero chains
+terminate in the counted power-coset ledger.
 
 For slack `t=2`, the scanner also verifies the complete first-superboundary
 shape ledger. It enumerates
@@ -678,6 +687,9 @@ quotient-core choice of whole fibers.
 Inherited zero chains in that catalog terminate in the same power-coset
 ledger at residual size `h=t+d`; the scanner checks this terminal piece
 separately so it is not recounted as new aperiodic structure.
+The first-nonzero frontier check gives the complementary partition of the
+nonterminal packets by the coefficient that first survives the residual-depth
+shift.
 At residual size `t+1`, the zero-slope slice is also separated as a counted
 power-coset source.
 For `t=2`, the whole residual size-three catalog is separated further into
