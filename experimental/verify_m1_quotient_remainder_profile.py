@@ -410,6 +410,7 @@ def verify_dither_menu_stable_tail_lower_bound(
     assert valid_menus
 
     scale_thresholds = []
+    adaptive_mass = n - k0 - 1
     for m in dyadic_divisors(k0):
         if m < t_end + max_gap:
             continue
@@ -417,7 +418,11 @@ def verify_dither_menu_stable_tail_lower_bound(
         mass_threshold = side_floor * choose(m, forced_gap) - 1
         assert mass_threshold > 0
         weighted_threshold = mass_threshold * q ** (t_start - max_gap)
-        scale_thresholds.append((m, mass_threshold, weighted_threshold))
+        mass_dominates = mass_threshold > adaptive_mass
+        weighted_dominates = mass_threshold > adaptive_mass * q ** (max_gap - 1)
+        scale_thresholds.append(
+            (m, mass_threshold, weighted_threshold, mass_dominates, weighted_dominates)
+        )
     assert scale_thresholds
 
     for menu in valid_menus:
@@ -436,9 +441,16 @@ def verify_dither_menu_stable_tail_lower_bound(
         assert witness is not None, (t_start, t_end, max_gap, menu_size, menu)
 
         t, r, gap = witness
-        for m, mass_threshold, weighted_threshold in scale_thresholds:
+        for (
+            m,
+            mass_threshold,
+            weighted_threshold,
+            mass_dominates,
+            weighted_dominates,
+        ) in scale_thresholds:
             strict = verify_two_sided_fixed_dither_stable_tail(n, k0, r, t, m)
             correction = weighted_strict_correction(strict, t, q)
+            adaptive_correction = adaptive_mass * q ** (t - 1)
             assert sum(strict.values()) >= mass_threshold, (
                 n,
                 k0,
@@ -466,6 +478,11 @@ def verify_dither_menu_stable_tail_lower_bound(
                 correction,
                 weighted_threshold,
             )
+            assert (mass_threshold > adaptive_mass) == mass_dominates
+            if mass_dominates:
+                assert sum(strict.values()) > adaptive_mass
+            if weighted_dominates:
+                assert correction > adaptive_correction
 
     return forced_gap, tuple(scale_thresholds), len(valid_menus)
 

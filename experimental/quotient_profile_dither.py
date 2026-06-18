@@ -157,10 +157,13 @@ class MenuTailLowerBoundEntry:
     N: int
     forced_gap: int
     side_coefficient_floor: int
+    adaptive_linear_mass: int
     stable_tail_mass_lower_bound: int
     log2_stable_tail_mass_lower_bound: float
+    log2_mass_over_adaptive_linear: float
     stable_tail_weighted_lower_bound: Optional[int]
     log2_stable_tail_weighted_lower_bound: Optional[float]
+    log2_same_slack_weighted_over_adaptive: Optional[float]
 
     def to_json(self) -> Dict[str, object]:
         result: Dict[str, object] = {
@@ -168,9 +171,14 @@ class MenuTailLowerBoundEntry:
             "N_quotient_order": self.N,
             "forced_gap": self.forced_gap,
             "side_coefficient_floor": self.side_coefficient_floor,
+            "adaptive_linear_mass": self.adaptive_linear_mass,
             "stable_tail_mass_lower_bound": self.stable_tail_mass_lower_bound,
             "log2_stable_tail_mass_lower_bound": round(
                 self.log2_stable_tail_mass_lower_bound,
+                6,
+            ),
+            "log2_mass_over_adaptive_linear": round(
+                self.log2_mass_over_adaptive_linear,
                 6,
             ),
         }
@@ -181,6 +189,11 @@ class MenuTailLowerBoundEntry:
             assert self.log2_stable_tail_weighted_lower_bound is not None
             result["log2_stable_tail_weighted_lower_bound"] = round(
                 self.log2_stable_tail_weighted_lower_bound,
+                6,
+            )
+            assert self.log2_same_slack_weighted_over_adaptive is not None
+            result["log2_same_slack_weighted_over_adaptive"] = round(
+                self.log2_same_slack_weighted_over_adaptive,
                 6,
             )
         return result
@@ -394,6 +407,7 @@ def dither_menu_tail_lower_bound_summary(
     forced_gap = exact_min_safe_gap_for_menu_size(window_length, dither_menu_size)
     coverage_possible = target_stable_gap >= forced_gap
     stable_eligible = coverage_possible and target_stable_gap < start
+    adaptive_linear_mass = n - k0 - 1
 
     records = []
     if stable_eligible:
@@ -406,25 +420,38 @@ def dither_menu_tail_lower_bound_summary(
             mass_lower_bound = side_floor * choose(M, forced_gap) - 1
             if mass_lower_bound <= 0:
                 continue
+            log2_mass_ratio = math.log2(mass_lower_bound) - math.log2(
+                adaptive_linear_mass
+            )
             weighted_lower_bound = None
             log2_weighted_lower_bound = None
+            log2_same_slack_weighted_ratio = None
             if line_field_size is not None:
                 weighted_lower_bound = (
                     mass_lower_bound
                     * line_field_size ** (start - target_stable_gap)
                 )
                 log2_weighted_lower_bound = math.log2(weighted_lower_bound)
+                log2_same_slack_weighted_ratio = (
+                    log2_mass_ratio
+                    - (target_stable_gap - 1) * math.log2(line_field_size)
+                )
             records.append(
                 MenuTailLowerBoundEntry(
                     M=M,
                     N=n // M,
                     forced_gap=forced_gap,
                     side_coefficient_floor=side_floor,
+                    adaptive_linear_mass=adaptive_linear_mass,
                     stable_tail_mass_lower_bound=mass_lower_bound,
                     log2_stable_tail_mass_lower_bound=math.log2(mass_lower_bound),
+                    log2_mass_over_adaptive_linear=log2_mass_ratio,
                     stable_tail_weighted_lower_bound=weighted_lower_bound,
                     log2_stable_tail_weighted_lower_bound=(
                         log2_weighted_lower_bound
+                    ),
+                    log2_same_slack_weighted_over_adaptive=(
+                        log2_same_slack_weighted_ratio
                     ),
                 )
             )
@@ -444,6 +471,11 @@ def dither_menu_tail_lower_bound_summary(
         for item in records
         if item.log2_stable_tail_weighted_lower_bound is not None
     ]
+    weighted_ratio_values = [
+        item.log2_same_slack_weighted_over_adaptive
+        for item in records
+        if item.log2_same_slack_weighted_over_adaptive is not None
+    ]
     return {
         "target_stable_gap": target_stable_gap,
         "queried_menu_size": dither_menu_size,
@@ -456,6 +488,10 @@ def dither_menu_tail_lower_bound_summary(
         ),
         "stable_tail_lower_bound_applicable": stable_eligible,
         "stable_eligible_scale_count": len(records),
+        "adaptive_linear_mass_per_stable_scale": adaptive_linear_mass,
+        "menu_mass_dominates_adaptive_scale_count": sum(
+            1 for item in records if item.log2_mass_over_adaptive_linear > 0
+        ),
         "max_log2_stable_tail_mass_lower_bound": (
             None
             if not records
@@ -464,8 +500,29 @@ def dither_menu_tail_lower_bound_summary(
                 6,
             )
         ),
+        "max_log2_mass_over_adaptive_linear": (
+            None
+            if not records
+            else round(
+                max(item.log2_mass_over_adaptive_linear for item in records),
+                6,
+            )
+        ),
         "max_log2_stable_tail_weighted_lower_bound": (
             None if not weighted_values else round(max(weighted_values), 6)
+        ),
+        "max_log2_same_slack_weighted_over_adaptive": (
+            None
+            if not weighted_ratio_values
+            else round(max(weighted_ratio_values), 6)
+        ),
+        "same_slack_weighted_dominates_adaptive_scale_count": sum(
+            1
+            for item in records
+            if (
+                item.log2_same_slack_weighted_over_adaptive is not None
+                and item.log2_same_slack_weighted_over_adaptive > 0
+            )
         ),
         "entries": retained_menu_tail_entries(records, top_scales),
     }
@@ -1317,7 +1374,8 @@ def print_text(result: Dict[str, object]) -> None:
             print(
                 (
                     "  menu tail lower bound C={menu} forced_gap>={gap} "
-                    "max_logMass>={value} max_logR>={weighted} scales={scales}"
+                    "max_logMass>={value} max_logR>={weighted} "
+                    "max_log_vs_adapt={ratio} scales={scales}"
                 ).format(
                     menu=menu_tail_bound["queried_menu_size"],
                     gap=menu_tail_bound["exact_forced_safe_gap_lower_bound"],
@@ -1328,6 +1386,9 @@ def print_text(result: Dict[str, object]) -> None:
                         menu_tail_bound[
                             "max_log2_stable_tail_weighted_lower_bound"
                         ]
+                    ),
+                    ratio=format_value(
+                        menu_tail_bound["max_log2_mass_over_adaptive_linear"]
                     ),
                     scales=menu_tail_bound["stable_eligible_scale_count"],
                 )

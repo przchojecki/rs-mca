@@ -194,6 +194,11 @@ R_REM(t,q) = (n-k0-1)q^(t-1),
 so the maximum weighted correction across the window is
 `(n-k0-1)q^(t_+-1)`. This baseline is the reference point for comparing a
 bounded dither menu against genuinely adaptive dimension choices.
+The menu-tail entries also include `log2_mass_over_adaptive_linear`; positive
+values identify stable scales where the finite-menu floor is already larger
+than the adaptive linear mass. With `--line-field-size q`, the
+`log2_same_slack_weighted_over_adaptive` field gives the conservative
+same-slack weighted comparison.
 
 Entries marked `stable_large_scale_formula` lie in the range
 

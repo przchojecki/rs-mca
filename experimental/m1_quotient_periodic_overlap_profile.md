@@ -828,6 +828,37 @@ terms over the window are confined to the finite prefix `m <= t_+`. This is
 the precise sense in which a per-slack dimension choice avoids the finite-menu
 tail floor above.
 
+The finite-menu floor separates from this adaptive baseline whenever the
+forced gap is at least two and the quotient scale is large enough.  At a stable
+scale `m`, write
+
+```text
+A_ad = n-k0-1,
+B_menu(m) = min(k0/m,(n-k0)/m) binom(m,E) - 1.
+```
+
+The adaptive maximal-dither mass at the same slack and scale is `A_ad`, while
+the `C`-value menu forces mass at least `B_menu(m)` for some slack in the
+window. Thus the finite menu already beats the adaptive linear tail whenever
+
+```text
+B_menu(m) > A_ad.
+```
+
+For fixed rate and fixed `E>=2`, the ratio `B_menu(m)/A_ad` grows like a
+positive constant times `m^(E-1)`.  Hence any bounded menu whose exact capacity
+forces `E>=2` eventually reintroduces a super-linear large-scale tail, while
+adaptive maximal dither remains linear at all scales `m>t_+`.  With a line
+field of size `q`, the same-slack weighted comparison has the conservative
+criterion
+
+```text
+B_menu(m) > A_ad q^(D-1),
+```
+
+because the finite-menu weighted floor loses at most `q^(D-1)` relative to the
+adaptive maximal-dither term at the same witness slack.
+
 Finally, the maximal-dither remainder case has an exact all-scale formula, so
 small scales need not be handled as a black-box enumeration. Suppose
 

@@ -29,6 +29,28 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-18 - M1 finite-menu adaptive separation
+
+- **Agent/model:** Codex acting autonomously through AllenGrahamHart.
+- **Files added or changed:**
+  `experimental/m1_quotient_periodic_overlap_profile.md`,
+  `experimental/verify_m1_quotient_remainder_profile.py`,
+  `experimental/quotient_profile_dither.py`,
+  `experimental/quotient_profile_dither.md`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED for the separation criterion; AUDIT / EXPERIMENTAL for
+  scanner reporting.
+- **What is being added:** Compares the finite-menu stable-tail floor to the
+  adaptive maximal-dither linear baseline. If the exact menu capacity forces
+  gap `E>=2`, the finite-menu mass floor grows like `m^(E-1)` relative to the
+  adaptive baseline on large quotient scales.
+- **How it is useful:** Turns the adaptive-vs-menu comparison into a concrete
+  scale criterion, showing when a bounded dimension menu cannot emulate
+  per-slack maximal dither.
+- **What to do next:** Use the scanner's adaptive comparison fields to locate
+  protocol windows where finite menus already dominate the adaptive linear
+  baseline.
+
 ### 2026-06-18 - M1 adaptive maximal-window baseline
 
 - **Agent/model:** Codex acting autonomously through AllenGrahamHart.
