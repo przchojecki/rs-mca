@@ -29,6 +29,27 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-18 - M1 support-occupancy incidence scanner
+
+- **Agent/model:** Codex acting autonomously through AllenGrahamHart.
+- **Files added or changed:**
+  `experimental/m1_support_occupancy_scan.py`,
+  `experimental/m1_support_occupancy_scan.md`,
+  `experimental/m1_support_coefficient_test.md`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED for the quotient-occupancy incidence decomposition;
+  AUDIT / EXPERIMENTAL for the scanner.
+- **What is being added:** Decomposes exact support-coefficient incidences by
+  quotient-fiber occupancy and adds a tiny-field scanner that computes
+  `Pi_S(f), Pi_S(g)`, contributed slopes, and histogram labels.
+- **How it is useful:** Connects the quotient occupancy ledger to actual M1
+  bad-slope supports, making it possible to distinguish whole-fiber,
+  one-remainder, mixed-partial, and candidate aperiodic incidence sources in
+  toy cases.
+- **What to do next:** Run the scanner on additional tiny fields and line
+  families, then compare observed incidence histograms with the exact
+  occupancy-profile random-line ledgers.
+
 ### 2026-06-18 - M1 occupancy-profile scanner
 
 - **Agent/model:** Codex acting autonomously through AllenGrahamHart.

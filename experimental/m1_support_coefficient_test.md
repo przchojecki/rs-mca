@@ -99,6 +99,50 @@ Union over |S| = s_delta of
 
 This gives a finite scanner target with no larger-support ambiguity.
 
+## Quotient-Occupancy Incidence Decomposition
+
+Suppose now that the domain is partitioned into quotient fibers
+
+```text
+D = B_1 disjoint union ... disjoint union B_N,        |B_i|=m.
+```
+
+For exact support size `s`, let `A_h` be the supports with quotient-fiber
+occupancy histogram `h=(h_0,...,h_m)`, as in
+`experimental/m1_quotient_periodic_overlap_profile.md`.  For fixed line data
+`f,g`, define
+
+```text
+Inc_h(f,g) = {
+  (S,z) : S in A_h, Pi_S(f)+z Pi_S(g)=0,
+          Pi_S(f),Pi_S(g) not both zero
+}.
+```
+
+Then the exact-support incidence set decomposes as the disjoint union
+
+```text
+Inc_s(f,g) = disjoint union_h Inc_h(f,g),
+```
+
+where `h` ranges over all histograms with
+
+```text
+sum_a h_a=N,        sum_a a h_a=s.
+```
+
+Moreover each support contributes to at most one slope, namely
+`z=-lambda` when `Pi_S(f)=lambda Pi_S(g)` and `Pi_S(g) != 0`. Thus a finite
+scanner can label every exact-support incidence by quotient-fiber occupancy,
+compare the observed support count in each class with the closed formula for
+`|A_h|`, and pair the incidence data with the structured overlap ledger
+`H_h(y)` from the quotient-profile note.
+
+The proof is only bookkeeping. Every exact support has a unique occupancy
+histogram, so the sets `A_h` partition the layer `|S|=s`. Applying the
+support-coefficient criterion support by support gives the displayed incidence
+partition and the one-slope-per-support assertion.
+
 ## Recovery of the Canonical Slack Formula
 
 Take the canonical slack line from Paper B,
@@ -147,16 +191,22 @@ support-wise MCA and the residue-line normal form: denominator closure
 parameterizes structured ways in which these top-coefficient vectors can align,
 while this test is the exact finite support criterion that a proof or
 experiment can check directly.
+The quotient-occupancy decomposition adds a second label to the same incidence
+problem: after supports are grouped by fiber content, the quotient-structured
+part can be compared against the exact `H_h` ledger before any remaining
+support-collinearity is called aperiodic.
 
 ## Suggested Next Step
 
-Build a small M1 scanner around `Pi_S` rather than around guessed residue-line
-denominators:
+The script `experimental/m1_support_occupancy_scan.py` is the current small M1
+scanner around `Pi_S` and quotient-fiber occupancy. It can be run, for example,
+as
 
-1. fix `q,n,k,delta` and enumerate supports of size `s_delta`;
-2. compute `Pi_S(f), Pi_S(g)` for chosen line families;
-3. record the distinct slopes produced by collinear supports;
-4. label supports by tangent, quotient-periodic, or aperiodic source.
+```bash
+python3 experimental/m1_support_occupancy_scan.py \
+  --prime 17 --n 8 --k 4 --slack 2 --quotient-order 4
+```
 
-This would make the conjectural aperiodic packing number directly measurable
-in tiny fields without first choosing a denominator normal form.
+The next step is to run this on more tiny fields and line families, then compare
+the observed histogram incidence counts with the occupancy-profile random-line
+ledger before attacking the genuinely aperiodic packing number.
