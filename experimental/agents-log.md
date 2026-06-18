@@ -123,6 +123,32 @@ Keep entries concise and link to the relevant files.
   cross-reference when the main papers are edited, then verify whether item
   (d) converts to the RS-MCA object actually needed by Paper B.
 
+### 2026-06-18 - M1 quadratic one-coordinate split
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/m1_kummer_weil_import_contract.md`,
+  `experimental/m1_depth_two_lift_window_theorem.md`,
+  `experimental/m1_support_occupancy_scan.md`,
+  `experimental/m1_support_occupancy_scan.py`,
+  `experimental/verify_m1_slack_two_depth_two_kummer_saturation.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / CONDITIONAL / AUDIT.
+- **What is being added:** A further split of the M1 depth-two Kummer error:
+  when the conic character is quadratic and exactly one coordinate character
+  is nonprincipal, the term is bounded elementarily by `4p` instead of the
+  imported `16p` normal-crossing estimate. The scanner/verifier now reports
+  `quadratic_one_coordinate_l1_bound` and subtracts that mass from the
+  remaining imported `kummer_l1_bound` in the additive raw, two-fiber, and
+  fixed-window certificates.
+- **How it is useful:** Narrows the conditional part of the integrated M1
+  Kummer ledger without changing the quotient-window union claim. The
+  remaining external import is now focused on genuinely mixed terms not
+  covered by the Jacobi, conic-only, or quadratic one-coordinate arguments.
+- **What to do next:** Separate the quotient-window union L1 term by
+  coordinate support if possible, or prove/cite the remaining mixed
+  normal-crossing Kummer estimate.
+
 ### 2026-06-18 - PR #78 M1 residual-depth hierarchy
 
 - **Agent/model:** AllenGrahamHart / Codex, integrated by Codex.
@@ -163,7 +189,8 @@ Keep entries concise and link to the relevant files.
 
 - **Agent/model:** Codex.
 - **Files added or changed:**
-  `experimental/2026-06-18-fable-loop/audits/20260618_CYCLE18_RESONANCE_SLOPE_MAP_COLLAPSE_AUDIT.md`,
+  `experimental/2026-06-18-fable-loop/audits/`
+  `20260618_CYCLE18_RESONANCE_SLOPE_MAP_COLLAPSE_AUDIT.md`,
   `experimental/2026-06-18-fable-loop/local_checks/20260618_cycle18_resonance_slope_symbolic.py`,
   `experimental/2026-06-18-fable-loop/README.md`,
   `experimental/agents-log.md`.

@@ -1862,22 +1862,39 @@ def depth_two_kummer_error_l1_split(
     coordinate_nonprincipal_l1_bound: int,
     square_coset_index: int,
     nonprincipal_constant: int,
+    coordinate_one_nonprincipal_l1_bound: int = 0,
+    quadratic_one_coordinate_constant: int = 4,
 ) -> Dict[str, int]:
     """Split depth-two character error into proved and imported masses."""
 
     jacobi_l1_bound = coordinate_nonprincipal_l1_bound
     conic_l1_bound = coordinate_principal_weight * (square_coset_index - 1)
+    quadratic_conic_character_count = (
+        1 if square_coset_index > 1 and square_coset_index % 2 == 0 else 0
+    )
+    quadratic_one_coordinate_l1_bound = (
+        coordinate_one_nonprincipal_l1_bound
+        * quadratic_conic_character_count
+    )
     kummer_l1_bound = (
         coordinate_nonprincipal_l1_bound * (square_coset_index - 1)
+        - quadratic_one_coordinate_l1_bound
     )
     weighted_error_l1_bound = (
         jacobi_l1_bound
         + conic_l1_bound
+        + quadratic_one_coordinate_constant * quadratic_one_coordinate_l1_bound
         + nonprincipal_constant * kummer_l1_bound
     )
     return {
         "jacobi_l1_bound": jacobi_l1_bound,
         "conic_l1_bound": conic_l1_bound,
+        "quadratic_one_coordinate_l1_bound": (
+            quadratic_one_coordinate_l1_bound
+        ),
+        "quadratic_one_coordinate_error_constant": (
+            quadratic_one_coordinate_constant
+        ),
         "kummer_l1_bound": kummer_l1_bound,
         "weighted_error_l1_bound": weighted_error_l1_bound,
     }
@@ -1909,6 +1926,7 @@ def slack_two_second_kummer_saturation_data(
         coordinate_nonprincipal_l1_bound=character_order ** 3 - 1,
         square_coset_index=square_coset_index,
         nonprincipal_constant=nonprincipal_constant,
+        coordinate_one_nonprincipal_l1_bound=3 * (character_order - 1),
     )
     uniform_prime_threshold = kummer_quadratic_uniform_prime_threshold(
         principal_weight=1,
@@ -2010,6 +2028,9 @@ def slack_two_second_two_fiber_kummer_saturation_data(
         ),
         square_coset_index=square_coset_index,
         nonprincipal_constant=nonprincipal_constant,
+        coordinate_one_nonprincipal_l1_bound=(
+            coefficient_abs_bound * 3 * (kernel_character_order - 1)
+        ),
     )
     uniform_prime_threshold = kummer_quadratic_uniform_prime_threshold(
         principal_weight,
@@ -2104,6 +2125,9 @@ def slack_two_second_fixed_window_kummer_saturation_data(
         ),
         square_coset_index=square_coset_index,
         nonprincipal_constant=nonprincipal_constant,
+        coordinate_one_nonprincipal_l1_bound=(
+            coefficient_abs_bound * 3 * (kernel_character_order - 1)
+        ),
     )
     uniform_prime_threshold = kummer_quadratic_uniform_prime_threshold(
         principal_weight,
@@ -2430,6 +2454,9 @@ def slack_two_second_quotient_window_union_kummer_saturation_data(
         "crude_coefficient_l1_bound": crude_coefficient_l1_bound,
         "crude_jacobi_l1_bound": crude_error_split["jacobi_l1_bound"],
         "crude_conic_l1_bound": crude_error_split["conic_l1_bound"],
+        "crude_quadratic_one_coordinate_l1_bound": (
+            crude_error_split["quadratic_one_coordinate_l1_bound"]
+        ),
         "crude_kummer_l1_bound": crude_error_split["kummer_l1_bound"],
         "crude_weighted_error_l1_bound": (
             crude_error_split["weighted_error_l1_bound"]
@@ -5290,6 +5317,15 @@ def scan_supports(
             if slack_two_second_r_window_kummer_saturation is not None
             else None
         ),
+        "canonical_slack_two_second_r_window_kummer_quadratic_one_coordinate_l1_bound": (
+            int(
+                slack_two_second_r_window_kummer_saturation[
+                    "quadratic_one_coordinate_l1_bound"
+                ]
+            )
+            if slack_two_second_r_window_kummer_saturation is not None
+            else None
+        ),
         "canonical_slack_two_second_r_window_kummer_kummer_l1_bound": (
             int(slack_two_second_r_window_kummer_saturation["kummer_l1_bound"])
             if slack_two_second_r_window_kummer_saturation is not None
@@ -5513,6 +5549,15 @@ def scan_supports(
             if slack_two_second_r_window_union_kummer_saturation is not None
             else None
         ),
+        "canonical_slack_two_second_r_window_union_kummer_quadratic_one_coordinate_l1_bound": (
+            int(
+                slack_two_second_r_window_union_kummer_saturation[
+                    "quadratic_one_coordinate_l1_bound"
+                ]
+            )
+            if slack_two_second_r_window_union_kummer_saturation is not None
+            else None
+        ),
         "canonical_slack_two_second_r_window_union_kummer_kummer_l1_bound": (
             int(
                 slack_two_second_r_window_union_kummer_saturation[
@@ -5544,6 +5589,18 @@ def scan_supports(
             int(
                 slack_two_second_r_window_union_kummer_saturation[
                     "crude_conic_l1_bound"
+                ]
+            )
+            if slack_two_second_r_window_union_kummer_saturation is not None
+            else None
+        ),
+        (
+            "canonical_slack_two_second_r_window_union_kummer_crude_"
+            "quadratic_one_coordinate_l1_bound"
+        ): (
+            int(
+                slack_two_second_r_window_union_kummer_saturation[
+                    "crude_quadratic_one_coordinate_l1_bound"
                 ]
             )
             if slack_two_second_r_window_union_kummer_saturation is not None
@@ -5654,6 +5711,15 @@ def scan_supports(
         ),
         "canonical_slack_two_second_kummer_conic_l1_bound": (
             int(slack_two_second_kummer_saturation["conic_l1_bound"])
+            if slack_two_second_kummer_saturation is not None
+            else None
+        ),
+        "canonical_slack_two_second_kummer_quadratic_one_coordinate_l1_bound": (
+            int(
+                slack_two_second_kummer_saturation[
+                    "quadratic_one_coordinate_l1_bound"
+                ]
+            )
             if slack_two_second_kummer_saturation is not None
             else None
         ),
@@ -5889,6 +5955,15 @@ def scan_supports(
             int(
                 slack_two_second_two_fiber_kummer_saturation[
                     "conic_l1_bound"
+                ]
+            )
+            if slack_two_second_two_fiber_kummer_saturation is not None
+            else None
+        ),
+        "canonical_slack_two_second_two_fiber_kummer_quadratic_one_coordinate_l1_bound": (
+            int(
+                slack_two_second_two_fiber_kummer_saturation[
+                    "quadratic_one_coordinate_l1_bound"
                 ]
             )
             if slack_two_second_two_fiber_kummer_saturation is not None

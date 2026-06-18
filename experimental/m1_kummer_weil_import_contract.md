@@ -81,13 +81,33 @@ Therefore every nontrivial multiplicative character `eta` satisfies
 sum_{u,v} eta(A(u,v)) = epsilon p eta(-2/3),
 ```
 
-so the conic-only terms have absolute value exactly `p`. Thus the
-certificates now pay:
+so the conic-only terms have absolute value exactly `p`.
+
+There is one more elementary mixed subcase. Suppose `d` is the quadratic
+character and exactly one coordinate character is nonprincipal, say
+`mu(u)`, with the other two coordinate characters principal. First ignore the
+two principal-coordinate exclusions `v=0` and `w=0`. For fixed `u`, the
+inner sum is a quadratic-character sum in `v` with discriminant
+
+```text
+Delta(u) = -3u^2 - 2u - 3.
+```
+
+It is constant except at the at most two roots of `Delta`. Since
+`sum_u mu(u)=0`, the full unrestricted sum is supported only on those roots
+and has absolute value at most `2p`. Restoring the principal-coordinate
+exclusions removes two one-variable line sums, each trivially bounded by
+`p`. Hence every one-coordinate/quadratic-conic mixed term has absolute value
+at most `4p`; the cases with the nonprincipal character on `v` or `w` follow
+by symmetry.
+
+Thus the additive raw, fixed-window, and two-fiber certificates now pay:
 
 ```text
 d=0, coordinate nonprincipal:              p     (Jacobi)
 d!=0, coordinate principal:                p     (affine conic)
-d!=0, coordinate nonprincipal mixed terms: 16p   (imported KW_2)
+d quadratic, exactly one coordinate active: 4p   (elementary)
+remaining mixed terms:                     16p   (imported KW_2)
 ```
 
 ## Audited Hypotheses

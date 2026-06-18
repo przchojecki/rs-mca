@@ -128,9 +128,10 @@ The exact external dependency and its audited hypotheses are separated in
 that import.
 The same contract also proves two elementary `p`-bound subcases: the `d=0`
 Jacobi part and the `d!=0` conic-only part with coordinate characters
-principal. The imported `16p` Kummer estimate is paid only for mixed terms
-with nonzero conic exponent and at least one nonprincipal coordinate
-character.
+principal. In the additive raw, fixed-window, and two-fiber ledgers, it also
+proves a `4p` bound for the subcase where the conic character is quadratic
+and exactly one coordinate character is nonprincipal. The imported `16p`
+Kummer estimate is paid only for the remaining mixed terms.
 
 For the raw normalized catalog on `D`, the verifier audits the character
 expansion, the divisor nontriviality, the exact principal open-set count
@@ -142,7 +143,12 @@ p^2 - 4p + 6 + 4 chi(-3),
 and the exact six-line distinctness loss `6p-11`. With
 `e=[F_p^*:D]` and `q=[F_p^*:D^2]`, the nonprincipal expansion splits into
 the proved Jacobi part `e^3-1`, the proved conic-only part `q-1`, and the
-remaining mixed Kummer part `(e^3-1)(q-1)`.
+proved quadratic one-coordinate part `3(e-1)`. The remaining mixed Kummer
+part has L1
+
+```text
+(e^3-1)(q-1) - 3(e-1).
+```
 
 For a fixed quotient window `W` of size `R`, let
 
@@ -150,21 +156,31 @@ For a fixed quotient window `W` of size `R`, let
 h = [F_p^*:K],        q = [F_p^*:D^2].
 ```
 
+Here `q` is even because `D^2` is contained in the square subgroup of
+`F_p^*`, so there is a unique quadratic conic character in the `D^2`-coset
+expansion.
+
 The indicator of `W` has principal coefficient `R`; after the three conditions
 `u,v,-1-u-v in W`, both the principal weight and the nonprincipal coefficient
 bound are `R^3`. Hence the conservative lower numerator for a fixed
-`D^2`-coset is
+`D^2`-coset is obtained by putting
+
+```text
+M_{h,q} = (h^3-1) + (q-1) + 12(h-1)
+          + 16((h^3-1)(q-1) - 3(h-1)).
+```
+
+It is
 
 ```text
 R^3 (p^2 - 4p + 6 + 4 chi(-3))
-  - p R^3((h^3-1) + (q-1) + 16(h^3-1)(q-1))
-  - (6p - 11) h^3 q.
+  - p R^3 M_{h,q} - (6p - 11) h^3 q.
 ```
 
 The uniform sufficient threshold for this fixed-window numerator is
 
 ```text
-p >= ceil((R^3((h^3-1)+(q-1)+16(h^3-1)(q-1)) + 6h^3q)/R^3) + 4.
+p >= ceil((R^3 M_{h,q} + 6h^3q)/R^3) + 4.
 ```
 
 When this numerator is positive, that fixed `R`-window already hits every
@@ -295,6 +311,10 @@ at most `(q-1)(S_R-T_R(N))`. Put
 W_R = (S_R-T_R(N)) + (q-1)T_R(N)
       + 16(q-1)(S_R-T_R(N)).
 ```
+
+This union bound does not yet use the quadratic one-coordinate `4p` split,
+because the exact quotient-window L1 term is not separated by the number of
+active coordinate characters in the current certificate.
 
 Thus the conservative lower numerator for the whole active union is
 

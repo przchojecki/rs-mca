@@ -200,6 +200,7 @@ canonical_slack_two_second_r_window_kummer_coefficient_bound
 canonical_slack_two_second_r_window_kummer_coefficient_l1_bound
 canonical_slack_two_second_r_window_kummer_jacobi_l1_bound
 canonical_slack_two_second_r_window_kummer_conic_l1_bound
+canonical_slack_two_second_r_window_kummer_quadratic_one_coordinate_l1_bound
 canonical_slack_two_second_r_window_kummer_kummer_l1_bound
 canonical_slack_two_second_r_window_kummer_weighted_error_l1_bound
 canonical_slack_two_second_r_window_kummer_prime_threshold
@@ -225,10 +226,12 @@ canonical_slack_two_second_r_window_union_kummer_quotient_l1_bound
 canonical_slack_two_second_r_window_union_kummer_coefficient_l1_bound
 canonical_slack_two_second_r_window_union_kummer_jacobi_l1_bound
 canonical_slack_two_second_r_window_union_kummer_conic_l1_bound
+canonical_slack_two_second_r_window_union_kummer_quadratic_one_coordinate_l1_bound
 canonical_slack_two_second_r_window_union_kummer_kummer_l1_bound
 canonical_slack_two_second_r_window_union_kummer_weighted_error_l1_bound
 canonical_slack_two_second_r_window_union_kummer_crude_l1_bound
 canonical_slack_two_second_r_window_union_kummer_crude_conic_l1_bound
+canonical_slack_two_second_r_window_union_kummer_crude_quadratic_one_coordinate_l1_bound
 canonical_slack_two_second_r_window_union_kummer_crude_weighted_error_l1_bound
 canonical_slack_two_second_r_window_union_kummer_prime_threshold
 canonical_slack_two_second_r_window_union_kummer_threshold_applies
@@ -243,6 +246,7 @@ canonical_slack_two_second_full_domain_coset_count_check
 canonical_slack_two_second_kummer_coefficient_l1_bound
 canonical_slack_two_second_kummer_jacobi_l1_bound
 canonical_slack_two_second_kummer_conic_l1_bound
+canonical_slack_two_second_kummer_quadratic_one_coordinate_l1_bound
 canonical_slack_two_second_kummer_kummer_l1_bound
 canonical_slack_two_second_kummer_weighted_error_l1_bound
 canonical_slack_two_second_kummer_exact_support_saturation_certificate
@@ -255,6 +259,7 @@ canonical_slack_two_second_two_fiber_kummer_coefficient_bound
 canonical_slack_two_second_two_fiber_kummer_coefficient_l1_bound
 canonical_slack_two_second_two_fiber_kummer_jacobi_l1_bound
 canonical_slack_two_second_two_fiber_kummer_conic_l1_bound
+canonical_slack_two_second_two_fiber_kummer_quadratic_one_coordinate_l1_bound
 canonical_slack_two_second_two_fiber_kummer_kummer_l1_bound
 canonical_slack_two_second_two_fiber_kummer_weighted_error_l1_bound
 canonical_slack_two_second_two_fiber_kummer_uniform_prime_threshold
@@ -644,14 +649,21 @@ a quotient window `W` of size `R`, the indicator of `W` has principal weight
 where `h=[F_p^*:K]` and `q=[F_p^*:D^2]`. The nonprincipal coefficients are
 bounded by `R^3`. The `d=0` part is a three-character Jacobi sum, and the
 coordinate-principal `d!=0` part is a nontrivial character sum of the affine
-quadratic `A(u,v)`; both only cost `p`. The imported `16p` Kummer error is
-paid only for mixed coordinate/conic terms. The conservative lower numerator
-is
+quadratic `A(u,v)`; both only cost `p`. Since `q=[F_p^*:D^2]` is even, the
+unique quadratic conic character with exactly one active coordinate character
+costs `4p`. The imported `16p` Kummer error is paid only for the remaining
+mixed coordinate/conic terms. Put
+
+```text
+M_{h,q} = (h^3-1) + (q-1) + 12(h-1)
+          + 16((h^3-1)(q-1) - 3(h-1)).
+```
+
+The conservative lower numerator is
 
 ```text
 R^3 (p^2 - 4p + 6 + 4 chi(-3))
-  - p R^3((h^3-1) + (q-1) + 16(h^3-1)(q-1))
-  - (6p - 11) h^3 q.
+  - p R^3 M_{h,q} - (6p - 11) h^3 q.
 ```
 
 When this is positive, one fixed `R`-window already hits every nonzero
@@ -736,7 +748,9 @@ E_R <= q S_R - T_R(N).
 
 The reported numerator uses proved `p` bounds for the `d=0` Jacobi part and
 the coordinate-principal `d!=0` conic-only part. The imported Kummer bound is
-paid only for mixed coordinate/conic terms. Thus the weighted error term is
+paid only for mixed coordinate/conic terms. This quotient-window union
+certificate does not yet separate the exact L1 term by one-coordinate
+quadratic characters, so its weighted error term remains
 
 ```text
 W_R = (S_R - T_R(N)) + (q-1)T_R(N)
@@ -833,9 +847,11 @@ degrees `1,1,1,2`, total degree `5`, and the standard two-variable
 Kummer-Weil estimate contributes `(5-1)^2=16`.
 For the raw catalog, with `e=[F_p^*:D]` and `q=[F_p^*:D^2]`, the certificate
 pays the proved Jacobi bound on the `d=0` mass `e^3-1`, the proved affine
-conic bound on the coordinate-principal `d!=0` mass `q-1`, and the imported
-Kummer error only on the mixed mass `(e^3-1)(q-1)`. These are recorded as
-`*_jacobi_l1_bound`, `*_conic_l1_bound`, and `*_kummer_l1_bound`, while
+conic bound on the coordinate-principal `d!=0` mass `q-1`, and the proved
+one-coordinate quadratic-conic bound on mass `3(e-1)`. The imported Kummer
+error is paid only on the remaining mixed mass `(e^3-1)(q-1)-3(e-1)`. These
+are recorded as `*_jacobi_l1_bound`, `*_conic_l1_bound`,
+`*_quadratic_one_coordinate_l1_bound`, and `*_kummer_l1_bound`, while
 `*_weighted_error_l1_bound` is the linear error term used in the certificate
 numerator.
 The `*_principal_exact_count` field records the exact principal open-set
@@ -861,14 +877,14 @@ U = K union cK
 the indicator `1_U` has principal weight `2/h`, where
 `h=[F_p^*:K]`. Hence the principal term for `u,v,-1-u-v in U` has weight
 `8/(h^3 q)`, with `q=[F_p^*:D^2]`. The coordinate-principal `d!=0` terms are
-conic-only and cost `p`; the same imported Kummer-Weil constant `16` is paid
-only for mixed coordinate/conic terms. Paying the coefficient bound `8`, the
-Jacobi/conic/Kummer split gives the conservative lower numerator
+conic-only and cost `p`; the one-coordinate quadratic-conic terms cost `4p`;
+and the same imported Kummer-Weil constant `16` is paid only for the
+remaining mixed coordinate/conic terms. Paying the coefficient bound `8`, the
+Jacobi/conic/quadratic/Kummer split gives the conservative lower numerator
 
 ```text
 8 (p^2 - 4p + 6 + 4 chi(-3))
-  - p * 8((h^3-1) + (q-1) + 16(h^3-1)(q-1))
-  - (6p - 11) h^3 q.
+  - p * 8 M_{h,q} - (6p - 11) h^3 q.
 ```
 
 When this is positive, every nonzero `D^2`-coset already occurs inside a
