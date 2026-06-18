@@ -54,6 +54,7 @@ Keep entries concise and link to the relevant files.
 - **Agent/model:** Codex.
 - **Files added or changed:**
   `experimental/m1_kummer_weil_import_contract.md`,
+  `experimental/verify_m1_kummer_divisor_geometry.py`,
   `experimental/m1_depth_two_lift_window_theorem.md`,
   `experimental/agents-log.md`.
 - **Status:** CONDITIONAL / AUDIT.
@@ -62,14 +63,16 @@ Keep entries concise and link to the relevant files.
   estimate for the four-component divisor
   `u v (-1-u-v) A(u,v)` with component degrees `1,1,1,2`.
   The note records exactly which hypotheses are already audited by the
-  scanner/verifier and separates them from the unresolved external
-  algebraic-geometry estimate.
+  scanner/verifier, adds the projective normal-crossing line/conic
+  arrangement calculation, and separates these checks from the unresolved
+  external algebraic-geometry estimate.
 - **How it is useful:** Makes the conditional boundary of the M1 depth-two
   theory reviewable. It also prevents an overstrong citation: the divisor is
   a reducible line/conic arrangement with crossings, so Katz's nonsingular
   multiplicative-sum theorem is background rather than a direct discharge;
-  a singular or normal-crossing Kummer estimate, or a direct cohomology
-  calculation, is still needed to upgrade the PR from conditional to proved.
+  after the new audit, the remaining import is narrowed to a tame
+  normal-crossing Kummer estimate, or a direct cohomology calculation, for
+  this exact compactified divisor.
 - **What to do next:** Verify the exact `16p` constant against a singular
   multiplicative character-sum theorem or replace it with the proved constant
   supplied by that theorem.

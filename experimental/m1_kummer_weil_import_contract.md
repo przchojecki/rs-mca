@@ -58,6 +58,37 @@ so its total degree is `5`. The constant used in the certificates is
 The three linear factors are distinct for `p>3`, and the conic `A=0` is a
 nonzero smooth conic. The conic shares no component with the three lines.
 
+The projective compactification is also elementary. Homogenize with
+coordinates `[U:V:Z]`:
+
+```text
+Q(U,V,Z) = U^2 + V^2 + UV + UZ + VZ + Z^2.
+```
+
+The compactified boundary consists of
+
+```text
+U=0,        V=0,        U+V+Z=0,        Z=0,        Q=0.
+```
+
+The conic is smooth because its gradient matrix has determinant `4`, which is
+nonzero for `p>3`. The four lines are distinct and have six pairwise
+intersection points. At all six of these line-line intersections, `Q=1`, so
+there is no triple point involving the conic. Restricting `Q` to each of the
+four lines gives a binary quadratic with discriminant `-3`; since `p>3`, the
+geometric intersections are simple. Thus the compactified divisor is a simple
+normal-crossing line/conic arrangement over the algebraic closure.
+
+The finite verifier
+
+```bash
+python3 experimental/verify_m1_kummer_divisor_geometry.py
+```
+
+checks these line-line, line-conic, smoothness, and transversality identities
+on representative primes. The symbolic proof above is what matters for the
+uniform `p>3` statement.
+
 For every nonprincipal character tuple, at least one component exponent among
 
 ```text
@@ -97,12 +128,13 @@ a union of three lines and a conic. It is singular at its crossings. Therefore
 one should not cite the nonsingular single-hypersurface theorem as if it
 directly applied to this product divisor.
 
-The correct route is either:
+The normal-crossing audit narrows the correct route to either:
 
-1. a singular or normal-crossing multiplicative character-sum theorem whose
-   conductor/Euler-characteristic bound gives `16p` for this divisor, or
+1. a tame normal-crossing multiplicative character-sum theorem whose
+   conductor/Euler-characteristic bound gives `16p` for this line/conic
+   arrangement, or
 2. a direct cohomology calculation for the rank-one Kummer sheaf on the above
-   four-component complement.
+   five-component compactified complement.
 
 Rojas-Leon's singular multiplicative character-sum estimates are a plausible
 reference class for this step, but the exact constant must still be checked
