@@ -678,6 +678,10 @@ one-dimensional L1 is bounded by
 A_R = e ceil(N sqrt(R)) - R.
 ```
 
+If `R=N-1`, the window is missing one quotient label; all nonprincipal
+quotient Fourier coefficients then have absolute value `1`, so the scanner
+uses the exact value `A_R=(2e-1)R`.
+
 The `d=0` part is a three-character Jacobi sum, and the
 coordinate-principal `d!=0` part is a nontrivial character sum of the affine
 quadratic `A(u,v)`; both only cost `p`. Since `q=[F_p^*:D^2]` is even, the
@@ -933,7 +937,8 @@ the indicator `1_U` has principal weight `2/h`, where
 conic-only and cost `p`; the one-coordinate quadratic-conic terms cost `4p`;
 and the remaining mixed Kummer terms are charged by active radical degree
 with constants `4`, `9`, and `16`. This is the `R=2` specialization of the
-Parseval fixed-window certificate above, with `A_2=e ceil(N sqrt(2))-2`.
+fixed-window certificate above, with the complement exact value
+`A_2=2(2e-1)` when `N=3`.
 The Jacobi/conic/quadratic/Kummer split gives the conservative lower numerator
 
 ```text

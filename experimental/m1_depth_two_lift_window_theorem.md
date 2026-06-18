@@ -185,6 +185,15 @@ one-dimensional nonprincipal L1 is bounded by
 A_R = e ceil(N sqrt(R)) - R.
 ```
 
+In the complement-window case `R=N-1`, this improves to the exact value
+
+```text
+A_R = (2e-1)R,
+```
+
+because the nonprincipal quotient Fourier coefficients of a window missing
+one label all have absolute value `1`.
+
 Thus the three-coordinate window tensor has nonprincipal L1 at most
 `(R+A_R)^3-R^3`, split by active coordinate count as
 `3R^2 A_R`, `3R A_R^2`, and `A_R^3`. Hence the conservative lower numerator
@@ -217,6 +226,7 @@ remaining quotient fibers, this is an exact-support saturation certificate.
 The verifier audits:
 
 ```text
+R=2, p=919, n=918, N=3: positive two-fiber certificate.
 R=2, p=7351, n=3675, N=3: positive fixed-window certificate.
 R=3, p=2213, n=2212, N=4: positive fixed-window certificate.
 ```
@@ -376,12 +386,13 @@ p >= ceil((W_R + 6h^3q)/T_R(N)) + 4.
 
 When this is positive and `R<min(4,N)`, the exact-support active
 quotient-window catalog itself hits every nonzero `D^2`-coset. This can prove
-saturation in cases where no single fixed window is Kummer-certified. The
-verifier audits two such strict improvements:
+saturation by using all active quotient labels at once. After the
+complement-window refinement above, the small positive union samples are also
+fixed-window certified:
 
 ```text
-R=2, p=181, n=180, N=3: exact L1 positive, bounded L1 negative.
-R=3, p=113, n=112, N=4: exact L1 positive, bounded L1 negative.
+R=2, p=181, n=180, N=3: union and complement-window positive.
+R=3, p=113, n=112, N=4: union and complement-window positive.
 ```
 
 ## Contribution to M1

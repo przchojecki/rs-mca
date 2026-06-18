@@ -137,12 +137,15 @@ Keep entries concise and link to the relevant files.
   with a Parseval/Cauchy-Schwarz bound. For a quotient window of size `R` in
   quotient order `N`, the one-dimensional quotient Fourier L1 is at most
   `N sqrt(R)`, so after ambient lifting the nonprincipal one-dimensional L1 is
-  bounded by `e ceil(N sqrt(R))-R`. The two-fiber and fixed-window Kummer
-  certificates tensor this bound into one-, two-, and three-coordinate masses.
+  bounded by `e ceil(N sqrt(R))-R`. In the complement-window case `R=N-1`,
+  this improves to the exact value `(2e-1)R`. The two-fiber and fixed-window
+  Kummer certificates tensor this bound into one-, two-, and three-coordinate
+  masses.
 - **How it is useful:** Keeps the same conditional Kummer input but sharply
   reduces the coefficient L1 paid by fixed-window certificates. The verifier
-  now checks the new integer Parseval ledger; the two-fiber threshold improves
-  from `332` to `193`, and the fixed-window threshold from `808` to `148`.
+  now checks the new integer Parseval/complement ledger; the two-fiber
+  threshold improves from `332` to `108`, and the fixed-window threshold from
+  `808` to `96`.
 - **What to do next:** Look for an analogous non-crude L1 certificate for
   larger quotient windows or replace the remaining three-coordinate Kummer
   import.

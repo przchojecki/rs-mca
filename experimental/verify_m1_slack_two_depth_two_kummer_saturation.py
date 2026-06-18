@@ -90,10 +90,10 @@ FIXED_WINDOW_KUMMER_CASES = (
 R_WINDOW_UNION_KUMMER_CASES = (
     # Exact R=2 union saturation, but below the union Kummer threshold.
     (97, 48, 6, 2, False, False),
-    # The exact R=2 L1 certificate succeeds while the L1 bound fails.
-    (181, 180, 3, 2, True, False),
-    # The exact R=3 coefficient histogram improves the bounded L1 threshold.
-    (113, 112, 4, 3, True, False),
+    # Both union L1 and complement-window L1 certify this R=2 case.
+    (181, 180, 3, 2, True, True),
+    # Both union L1 and complement-window L1 certify this R=3 case.
+    (113, 112, 4, 3, True, True),
 )
 
 SCAN_LABEL_CASES = (
@@ -397,6 +397,8 @@ def fixed_window_parseval_active_l1_bound(
     window_size: int,
     ambient_restriction_kernel_count: int,
 ) -> int:
+    if window_size == quotient_order - 1:
+        return (2 * ambient_restriction_kernel_count - 1) * window_size
     root = math.isqrt(quotient_order * quotient_order * window_size)
     if root * root < quotient_order * quotient_order * window_size:
         root += 1
