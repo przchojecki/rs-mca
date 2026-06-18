@@ -195,8 +195,23 @@ C_2^rec =
         a+b == 0 mod e or ga+2d == 0 mod q or gb+2d == 0 mod q}.
 ```
 
-Since `g` is either `1` or `2`, these counts have closed forms per active
-coordinate pair. If `g=1`, then
+The corrected equal-line diagonal conductor audit isolates one further
+submass of the ramified nonreciprocal remainder:
+
+```text
+C_2^eq =
+  3 # {a,d : 1<=a<e, 1<=d<q,
+        3ga+2d == 0 mod q,
+        2ga != 0 mod q}.
+```
+
+Here the three choices are the active coordinate pair.  The congruence
+`3ga+2d=0` says that the two active line monodromies and the line at infinity
+are all equal; the condition `2ga != 0` removes the order-two common
+monodromy already counted in `C_2^rec`.
+
+Since `g` is either `1` or `2`, the `C_2^0` and `C_2^rec` counts have closed
+forms per active coordinate pair. If `g=1`, then
 
 ```text
 C_2^0/3 =
@@ -222,6 +237,18 @@ The raw weighted error is therefore
   + 4C_1 + 2C_2^0 + 4C_2^rec
   + 9(C_2-C_2^0-C_2^rec) + 16C_3.
 ```
+
+If the conditional equal-line diagonal `3p+O(sqrt(p))` conductor import is
+used, the linear part can instead replace the last two-coordinate term by
+
+```text
+3C_2^eq + 9(C_2-C_2^0-C_2^rec-C_2^eq).
+```
+
+Equivalently, the leading L1 weight drops by `6C_2^eq`.  The current
+certificate code does not yet consume this improvement because the
+corresponding square-root correction and local-monodromy citation still need
+to be recorded as a clean import.
 
 Its square-root correction has L1 mass
 

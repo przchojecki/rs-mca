@@ -29,6 +29,28 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-18 - M1 equal-line L1 submass split
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/verify_m1_slack_two_depth_two_kummer_saturation.py`,
+  `experimental/m1_depth_two_lift_window_theorem.md`,
+  `experimental/m1_kummer_weil_import_contract.md`,
+  `experimental/m1_residue_line_roadmap.md`,
+  `experimental/agents-log.md`.
+- **Status:** CONDITIONAL / AUDIT.
+- **What is being added:** The raw two-coordinate full-domain ledger now
+  isolates the equal-line diagonal submass
+  `C_2^eq = 3 #{a,d : 3ga+2d=0, 2ga != 0}` inside the ramified
+  nonreciprocal remainder.
+- **How it is useful:** This is the exact L1 mass to which the corrected
+  equal-line `3p+O(sqrt(p))` conductor import applies.  Replacing the current
+  `9p` charge on this submass would lower the leading L1 weight by
+  `6C_2^eq`.
+- **What to do next:** Record the square-root correction and a clean
+  standard-`2F1` local-monodromy citation before changing certificate
+  constants.
+
 ### 2026-06-18 - M1 equal-line conductor correction
 
 - **Agent/model:** Codex.

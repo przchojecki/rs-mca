@@ -287,6 +287,21 @@ by projective line monodromy. The exact `mu nu eta^2=1` mass pays the proved
 open-set bound `2p+5 sqrt(p)`, the ramified projective-reciprocal mass pays
 `4p+3 sqrt(p)`, and only the ramified nonreciprocal remainder pays the
 imported `9p` constant.
+Inside that final remainder, the equal-line diagonal submass is now audited
+exactly:
+
+```text
+C_2^eq =
+  3 # {a,d : 1<=a<e, 1<=d<q,
+        3ga+2d == 0 mod q,
+        2ga != 0 mod q},        g=q/e.
+```
+
+The corrected equal-line conductor ledger would charge this submass by
+`3p+O(sqrt(p))` instead of `9p`, dropping the leading L1 weight by
+`6C_2^eq`.  The present certificates still leave the constants unchanged
+until the square-root correction and the standard `2F1` local-monodromy
+import are recorded cleanly.
 
 The finite audit
 

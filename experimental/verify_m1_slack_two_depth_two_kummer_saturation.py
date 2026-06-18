@@ -97,6 +97,18 @@ R_WINDOW_UNION_KUMMER_CASES = (
     (113, 112, 4, 3, True, True),
 )
 
+EQUAL_LINE_SPLIT_CASES = (
+    (3, 3),
+    (4, 4),
+    (6, 6),
+    (12, 12),
+    (5, 10),
+    (6, 12),
+    (9, 18),
+    (12, 24),
+    (32, 64),
+)
+
 SCAN_LABEL_CASES = (
     # Public scanner regression for the R=2 union-saturated label.
     (19, 18, 8, 2, 3, "r2_union_saturated"),
@@ -153,6 +165,7 @@ def raw_two_coordinate_projective_l1_split(
     infinity_unramified = 0
     projective_reciprocal = 0
     ramified_nonreciprocal = 0
+    equal_line_diagonal = 0
     for first_exponent in range(1, character_order):
         for second_exponent in range(1, character_order):
             for conic_exponent in range(1, square_coset_index):
@@ -171,12 +184,38 @@ def raw_two_coordinate_projective_l1_split(
                     projective_reciprocal += 1
                 else:
                     ramified_nonreciprocal += 1
+                    if first == second == infinity:
+                        equal_line_diagonal += 1
     active_pair_count = 3
     return {
         "infinity_unramified": active_pair_count * infinity_unramified,
         "projective_reciprocal": active_pair_count * projective_reciprocal,
         "ramified_nonreciprocal": active_pair_count * ramified_nonreciprocal,
+        "equal_line_diagonal": active_pair_count * equal_line_diagonal,
     }
+
+
+def equal_line_diagonal_pair_count_formula(
+    character_order: int,
+    square_coset_index: int,
+) -> int:
+    if square_coset_index % character_order:
+        raise AssertionError((character_order, square_coset_index))
+    e = character_order
+    q = square_coset_index
+    lift = q // e
+    solution_count = 0
+    divisor = math.gcd(2, q)
+    for exponent in range(1, e):
+        if e % 2 == 0 and exponent == e // 2:
+            continue
+        right_hand_side = 3 * lift * exponent
+        if right_hand_side % divisor != 0:
+            continue
+        solution_count += divisor
+        if right_hand_side % q == 0:
+            solution_count -= 1
+    return solution_count
 
 
 def raw_two_coordinate_projective_l1_split_formula(
@@ -210,6 +249,13 @@ def raw_two_coordinate_projective_l1_split_formula(
         "projective_reciprocal": 3 * projective_reciprocal,
         "ramified_nonreciprocal": (
             3 * (total - infinity_unramified - projective_reciprocal)
+        ),
+        "equal_line_diagonal": (
+            3
+            * equal_line_diagonal_pair_count_formula(
+                character_order,
+                square_coset_index,
+            )
         ),
     }
 
@@ -842,6 +888,30 @@ def main() -> None:
                 degeneracy_count,
                 nonzero_coset_count,
                 total_coset_count,
+            )
+        )
+    equal_line_checked = []
+    for character_order, square_coset_index in EQUAL_LINE_SPLIT_CASES:
+        direct_split = raw_two_coordinate_projective_l1_split(
+            character_order,
+            square_coset_index,
+        )
+        formula_split = raw_two_coordinate_projective_l1_split_formula(
+            character_order,
+            square_coset_index,
+        )
+        if direct_split != formula_split:
+            raise AssertionError((character_order, square_coset_index, direct_split))
+        equal_line_l1 = int(direct_split["equal_line_diagonal"])
+        ramified_l1 = int(direct_split["ramified_nonreciprocal"])
+        if equal_line_l1 > ramified_l1:
+            raise AssertionError((character_order, square_coset_index, direct_split))
+        equal_line_checked.append(
+            (
+                character_order,
+                square_coset_index,
+                equal_line_l1,
+                ramified_l1,
             )
         )
     lift_checked = []
@@ -2065,7 +2135,8 @@ def main() -> None:
         scan_label_checked.append((p, n, k, quotient_order, label))
     print(
         "verify_m1_slack_two_depth_two_kummer_saturation: "
-        f"PASS checked={checked} lift_checked={lift_checked} "
+        f"PASS checked={checked} equal_line_checked={equal_line_checked} "
+        f"lift_checked={lift_checked} "
         f"lift_bound_checked={lift_bound_checked} "
         f"kernel_checked={kernel_checked} "
         f"two_fiber_checked={two_fiber_checked} "

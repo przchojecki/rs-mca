@@ -56,7 +56,10 @@ should be revised as the project learns more.
    y-pushforward form. This conditionally closes the equal-line diagonal
    top-dimensional estimate; the broader ramified nonreciprocal
    two-coordinate wall still has to be reduced to this or another tractable
-   slice.
+   slice. The raw certificate now has an audited equal-line diagonal submass
+   `C_2^eq = 3 #{a,d : 3ga+2d=0, 2ga != 0}`, so the next certificate step is
+   to attach the equal-line `3p+O(sqrt(p))` import, including its square-root
+   correction, and subtract `6C_2^eq` from the current leading `9p` ledger.
 4. After the trace-family wall is closed, generalize to fixed low-slack
    templates, then separate tangent, quotient-periodic, finite-template, and
    genuinely aperiodic packing.
