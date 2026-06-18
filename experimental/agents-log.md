@@ -62,7 +62,7 @@ Keep entries concise and link to the relevant files.
   the conditional fixed-window Kummer saturation certificate with `R^3`
   weights, plus the quotient-window union Kummer certificate with exact
   quotient-label triple count `T_R(N)` and sharpened nonprincipal
-  quotient-Fourier bound `C_R(N)`.
+  ambient-character L1 bound built from `C_R(N)`.
 - **How it is useful:** Gives reviewers a single mathematical statement for
   the M1 contribution in PR #79, separating proved quotient-fiber algebra
   from the imported Kummer-Weil estimate and showing how the `R=1`, `R=2`,
@@ -119,10 +119,11 @@ Keep entries concise and link to the relevant files.
   the exact number `T_R(N)` of quotient-label triples touching at most `R`
   fibers, then sharpens the nonprincipal coefficient from the crude
   support-size bound `T_R(N)` to `C_2(N)=3N-6` and
-  `C_3(N)=max(6,(N-2)(N-3))`. The verifier audits strict Fourier-threshold
-  improvements at `R=2` (`p=199,N=3`) and `R=3` (`p=229,N=4`) where the
-  crude union numerator is still negative but the sharpened active union is
-  certified saturated.
+  `C_3(N)=max(6,(N-2)(N-3))`, while still accounting for the ambient
+  character triples that restrict trivially to `D/K`. The verifier audits
+  strict Fourier-L1 threshold improvements at `R=2` (`p=211,N=3`) and
+  `R=3` (`p=257,N=4`) where the crude union numerator is still negative but
+  the sharpened active union is certified saturated.
   This leaves a narrower intermediate/lift-limited window for M1 slope-image
   bounds.
 - **What to do next:** Prove or replace the imported Kummer-Weil constant in

@@ -88,10 +88,10 @@ FIXED_WINDOW_KUMMER_CASES = (
 R_WINDOW_UNION_KUMMER_CASES = (
     # Exact R=2 union saturation, but below the union Kummer threshold.
     (97, 48, 6, 2, False, False),
-    # The sharpened R=2 certificate succeeds while the crude one fails.
-    (199, 198, 3, 2, True, False),
-    # The same strict Fourier improvement at R=3.
-    (229, 228, 4, 3, True, False),
+    # The sharpened ambient L1 certificate succeeds while the crude one fails.
+    (211, 210, 3, 2, True, False),
+    # The same strict Fourier-L1 improvement at R=3.
+    (257, 256, 4, 3, True, False),
 )
 
 SCAN_LABEL_CASES = (
@@ -263,6 +263,35 @@ def direct_quotient_window_label_nonprincipal_bound(
         for t in range(quotient_order)
         if (r, s, t) != (0, 0, 0)
     )
+
+
+def direct_ambient_window_label_l1_bound(
+    ambient_character_order: int,
+    quotient_order: int,
+    window_size: int,
+    square_coset_index: int,
+) -> int:
+    label_triples = direct_quotient_window_label_triple_count(
+        quotient_order,
+        window_size,
+    )
+    quotient_l1_bound = sum(
+        abs(
+            quotient_window_label_coefficient(
+                quotient_order,
+                window_size,
+                (
+                    r % quotient_order,
+                    s % quotient_order,
+                    t % quotient_order,
+                ),
+            )
+        )
+        for r in range(ambient_character_order)
+        for s in range(ambient_character_order)
+        for t in range(ambient_character_order)
+    )
+    return square_coset_index * quotient_l1_bound - label_triples
 
 
 def kernel_fiber_reduction_counts(
@@ -811,6 +840,36 @@ def main() -> None:
             raise AssertionError((p, n, label_triples, certificate))
         if coefficient_bound != int(certificate["coefficient_abs_bound"]):
             raise AssertionError((p, n, coefficient_bound, certificate))
+        ambient_kernel_count = (p - 1) // n
+        quotient_l1_bound = (
+            ambient_kernel_count ** 3 * label_triples
+            + (
+                int(certificate["kernel_character_order"]) ** 3
+                - ambient_kernel_count ** 3
+            )
+            * coefficient_bound
+        )
+        if quotient_l1_bound != int(
+            certificate["quotient_coefficient_l1_bound"]
+        ):
+            raise AssertionError((p, n, quotient_l1_bound, certificate))
+        coefficient_l1_bound = direct_ambient_window_label_l1_bound(
+            int(certificate["kernel_character_order"]),
+            quotient_order,
+            remaining_fibers,
+            int(certificate["square_coset_index"]),
+        )
+        if coefficient_l1_bound > int(certificate["coefficient_l1_bound"]):
+            raise AssertionError((p, n, coefficient_l1_bound, certificate))
+        crude_coefficient_l1_bound = (
+            int(certificate["crude_coefficient_abs_bound"])
+            * int(certificate["denominator"])
+            - int(certificate["principal_weight"])
+        )
+        if crude_coefficient_l1_bound != int(
+            certificate["crude_coefficient_l1_bound"]
+        ):
+            raise AssertionError((p, n, crude_coefficient_l1_bound, certificate))
         failures = two_fiber_divisor_power_failure_count(
             int(certificate["kernel_character_order"]),
             int(certificate["square_coset_index"]),
@@ -827,25 +886,28 @@ def main() -> None:
         degeneracy_count = degeneracy_line_union_count(p)
         lower_numerator = (
             int(certificate["principal_weight"]) * principal_count
-            - (
-                int(certificate["coefficient_abs_bound"])
-                * int(certificate["nonprincipal_constant"])
-                * p
-                + degeneracy_count
-            )
-            * int(certificate["denominator"])
+            - int(certificate["nonprincipal_constant"])
+            * p
+            * int(certificate["coefficient_l1_bound"])
+            - degeneracy_count * int(certificate["denominator"])
         )
         if lower_numerator != int(certificate["lower_numerator"]):
             raise AssertionError((p, n, lower_numerator, certificate))
+        direct_lower_numerator = (
+            int(certificate["principal_weight"]) * principal_count
+            - int(certificate["nonprincipal_constant"])
+            * p
+            * coefficient_l1_bound
+            - degeneracy_count * int(certificate["denominator"])
+        )
+        if direct_lower_numerator < lower_numerator:
+            raise AssertionError((p, n, direct_lower_numerator, certificate))
         crude_lower_numerator = (
             int(certificate["principal_weight"]) * principal_count
-            - (
-                int(certificate["crude_coefficient_abs_bound"])
-                * int(certificate["nonprincipal_constant"])
-                * p
-                + degeneracy_count
-            )
-            * int(certificate["denominator"])
+            - int(certificate["nonprincipal_constant"])
+            * p
+            * crude_coefficient_l1_bound
+            - degeneracy_count * int(certificate["denominator"])
         )
         if crude_lower_numerator != int(certificate["crude_lower_numerator"]):
             raise AssertionError((p, n, crude_lower_numerator, certificate))
@@ -888,6 +950,7 @@ def main() -> None:
                 label_triples,
                 coefficient_bound,
                 certificate["denominator"],
+                certificate["coefficient_l1_bound"],
                 certificate["crude_lower_numerator"],
                 certificate["lower_numerator"],
                 union_certificate_positive,

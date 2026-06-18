@@ -212,6 +212,10 @@ canonical_slack_two_second_r_window_union_kummer_denominator
 canonical_slack_two_second_r_window_union_kummer_principal_weight
 canonical_slack_two_second_r_window_union_kummer_coefficient_bound
 canonical_slack_two_second_r_window_union_kummer_crude_coefficient_bound
+canonical_slack_two_second_r_window_union_kummer_ambient_kernel_count
+canonical_slack_two_second_r_window_union_kummer_quotient_l1_bound
+canonical_slack_two_second_r_window_union_kummer_coefficient_l1_bound
+canonical_slack_two_second_r_window_union_kummer_crude_l1_bound
 canonical_slack_two_second_r_window_union_kummer_prime_threshold
 canonical_slack_two_second_r_window_union_kummer_threshold_applies
 canonical_slack_two_second_r_window_union_kummer_lower_numerator
@@ -650,17 +654,39 @@ C_3(N)=max(6,(N-2)(N-3)),
 ```
 
 where `C_R(N)` bounds every nonprincipal coefficient. The sharpened union
-certificate has lower numerator
+certificate uses the full ambient character L1 bound. Put
+
+```text
+e = [F_p^*:D],        h = [F_p^*:K] = eN,
+q = [F_p^*:D^2].
+```
+
+The quotient-label L1 bound is
+
+```text
+S_R <= e^3 T_R(N) + (h^3-e^3) C_R(N),
+```
+
+because `e^3` ambient character triples restrict trivially to `D/K`. After
+also expanding the `D^2`-coset condition, the nonprincipal coefficient L1
+bound is
+
+```text
+E_R <= q S_R - T_R(N).
+```
+
+Thus the sharpened lower numerator is
 
 ```text
 T_R(N) (p^2 - 4p + 6 + 4 chi(-3))
-  - (C_R(N)*16*p + 6p - 11) h^3 q.
+  - 16p E_R - (6p - 11) h^3 q.
 ```
 
 When this is positive, the active quotient-window union itself hits every
 nonzero `D^2`-coset. The scanner also reports the crude numerator obtained by
-replacing `C_R(N)` with `T_R(N)`, so strict Fourier-threshold improvements are
-auditable. The verifier checks such improvements at `R=2` and `R=3`.
+using the support-size bound for every nonprincipal coefficient, so strict
+Fourier-L1 threshold improvements are auditable. The verifier checks such
+improvements at `R=2` and `R=3`.
 At the extreme `R=1`, the lift-limited layer has an exact quotient-kernel
 reduction. Let
 

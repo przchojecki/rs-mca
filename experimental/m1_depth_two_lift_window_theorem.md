@@ -207,12 +207,35 @@ U(r)U(s)U(t) - U(r+s)U(t) - U(r+t)U(s) - U(s+t)U(r)
 ```
 
 where `U(a)=N-1` if `a=0` and `U(a)=-1` otherwise. The displayed bound is the
-maximum absolute nonprincipal value of that expression. Thus the conservative
-lower numerator for the whole active union is
+maximum absolute nonprincipal value of that expression.
+
+The Kummer expansion is over ambient characters modulo `K`, not only over
+characters of `D/K`. Put
+
+```text
+e = [F_p^*:D],        h = [F_p^*:K] = eN,
+q = [F_p^*:D^2].
+```
+
+The `e^3` ambient character triples that restrict trivially to `D/K` still
+have coefficient `T_R(N)`. All other ambient triples have coefficient bounded
+by `C_R(N)`. Hence the quotient-label L1 bound is
+
+```text
+S_R <= e^3 T_R(N) + (h^3-e^3) C_R(N),
+```
+
+and, after the `D^2`-coset expansion, the nonprincipal coefficient L1 bound is
+
+```text
+E_R <= q S_R - T_R(N).
+```
+
+Thus the conservative lower numerator for the whole active union is
 
 ```text
 T_R(N) (p^2 - 4p + 6 + 4 chi(-3))
-  - (C_R(N)*16p + 6p - 11) h^3 q.
+  - 16p E_R - (6p - 11) h^3 q.
 ```
 
 When this is positive and `R<min(4,N)`, the exact-support active
@@ -221,8 +244,8 @@ saturation in cases where no single fixed window is Kummer-certified. The
 verifier audits two such strict improvements:
 
 ```text
-R=2, p=199, n=198, N=3: sharp union positive, crude union negative.
-R=3, p=229, n=228, N=4: sharp union positive, crude union negative.
+R=2, p=211, n=210, N=3: sharp L1 positive, crude L1 negative.
+R=3, p=257, n=256, N=4: sharp L1 positive, crude L1 negative.
 ```
 
 ## Contribution to M1

@@ -2150,6 +2150,22 @@ def slack_two_second_quotient_window_union_kummer_saturation_data(
         quotient_order,
         effective_window_size,
     )
+    ambient_restriction_kernel_count = kernel_character_order // quotient_order
+    quotient_coefficient_l1_bound = (
+        ambient_restriction_kernel_count ** 3 * label_triple_count
+        + (
+            kernel_character_order ** 3
+            - ambient_restriction_kernel_count ** 3
+        )
+        * coefficient_abs_bound
+    )
+    coefficient_l1_bound = (
+        square_coset_index * quotient_coefficient_l1_bound
+        - label_triple_count
+    )
+    crude_coefficient_l1_bound = (
+        label_triple_count * denominator - label_triple_count
+    )
     radical_component_degrees = (1, 1, 1, 2)
     radical_total_degree = sum(radical_component_degrees)
     deligne_constant = (radical_total_degree - 1) ** 2
@@ -2157,17 +2173,20 @@ def slack_two_second_quotient_window_union_kummer_saturation_data(
     principal_exact_count = p * p - 4 * p + 6 + 4 * chi_minus_three
     degeneracy_line_union_count = 6 * p - 11
     threshold_coefficient = (
-        16 * coefficient_abs_bound + 6 + principal_weight - 1
+        16 * coefficient_l1_bound
+        + 6 * denominator
+        + principal_weight
+        - 1
     ) // principal_weight
-    uniform_prime_threshold = threshold_coefficient * denominator + 5
+    uniform_prime_threshold = threshold_coefficient + 5
     crude_lower_numerator = principal_weight * principal_exact_count - (
-        label_triple_count * nonprincipal_constant * p
-        + degeneracy_line_union_count
-    ) * denominator
+        nonprincipal_constant * p * crude_coefficient_l1_bound
+        + degeneracy_line_union_count * denominator
+    )
     lower_numerator = principal_weight * principal_exact_count - (
-        coefficient_abs_bound * nonprincipal_constant * p
-        + degeneracy_line_union_count
-    ) * denominator
+        nonprincipal_constant * p * coefficient_l1_bound
+        + degeneracy_line_union_count * denominator
+    )
     admissible_per_coset_lower_bound = (
         (lower_numerator + denominator - 1) // denominator
         if lower_numerator > 0
@@ -2197,6 +2216,10 @@ def slack_two_second_quotient_window_union_kummer_saturation_data(
         "principal_weight": principal_weight,
         "coefficient_abs_bound": coefficient_abs_bound,
         "crude_coefficient_abs_bound": label_triple_count,
+        "ambient_restriction_kernel_count": ambient_restriction_kernel_count,
+        "quotient_coefficient_l1_bound": quotient_coefficient_l1_bound,
+        "coefficient_l1_bound": coefficient_l1_bound,
+        "crude_coefficient_l1_bound": crude_coefficient_l1_bound,
         "uniform_prime_threshold": uniform_prime_threshold,
         "uniform_threshold_applies": p >= uniform_prime_threshold,
         "nonprincipal_constant": nonprincipal_constant,
@@ -5156,6 +5179,42 @@ def scan_supports(
             int(
                 slack_two_second_r_window_union_kummer_saturation[
                     "crude_coefficient_abs_bound"
+                ]
+            )
+            if slack_two_second_r_window_union_kummer_saturation is not None
+            else None
+        ),
+        "canonical_slack_two_second_r_window_union_kummer_ambient_kernel_count": (
+            int(
+                slack_two_second_r_window_union_kummer_saturation[
+                    "ambient_restriction_kernel_count"
+                ]
+            )
+            if slack_two_second_r_window_union_kummer_saturation is not None
+            else None
+        ),
+        "canonical_slack_two_second_r_window_union_kummer_quotient_l1_bound": (
+            int(
+                slack_two_second_r_window_union_kummer_saturation[
+                    "quotient_coefficient_l1_bound"
+                ]
+            )
+            if slack_two_second_r_window_union_kummer_saturation is not None
+            else None
+        ),
+        "canonical_slack_two_second_r_window_union_kummer_coefficient_l1_bound": (
+            int(
+                slack_two_second_r_window_union_kummer_saturation[
+                    "coefficient_l1_bound"
+                ]
+            )
+            if slack_two_second_r_window_union_kummer_saturation is not None
+            else None
+        ),
+        "canonical_slack_two_second_r_window_union_kummer_crude_l1_bound": (
+            int(
+                slack_two_second_r_window_union_kummer_saturation[
+                    "crude_coefficient_l1_bound"
                 ]
             )
             if slack_two_second_r_window_union_kummer_saturation is not None
