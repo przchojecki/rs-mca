@@ -29,6 +29,26 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-18 - M1 residual-depth frontier shift
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/m1_residual_depth_frontier_shift.md`,
+  `experimental/verify_m1_residual_depth_frontier_shift.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** Extracts the residual-depth frontier shift theorem:
+  zero-slope packets at `(T,k,d)` are exactly depth-`d-1` packets at
+  `(T+1,k-1,d-1)`, with the same exact-support lift gate. Adds a verifier for
+  the implemented `d=2` cases, including the slack-two/slack-three conic
+  interface.
+- **How it is useful:** Turns the low-slack packet work into a hierarchy: the
+  slack-two depth-two theorem and slack-three first-superboundary theorem are
+  adjacent frontiers, not isolated computations.
+- **What to do next:** Use this shift as the organizing principle for a common
+  low-slack template statement, then reserve new character-sum work for the
+  genuinely nonzero frontiers.
+
 ### 2026-06-18 - M1 slack-three first-superboundary theorem
 
 - **Agent/model:** Codex.
