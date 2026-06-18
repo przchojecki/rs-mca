@@ -42,12 +42,14 @@ Keep entries concise and link to the relevant files.
 - **What is being added:** A rank-two line-sheaf conductor ledger for the
   pulled-back hypergeometric trace.  After the visible twists, the two
   `B(s)=0` points have local characters `alpha chi_2` and `alpha^(-1)`,
-  hence no inertia invariants in the remaining equal-line wall.
+  hence no inertia invariants in the remaining equal-line wall. The same
+  note records the deck involution `tau(s)=-s/(s+1)` and its Kummer-twist
+  multiplier.
 - **How it is useful:** Shows that the standard local conductor calculation
   still gives the generic `dim H^1 <= 5` route, not the desired `3`.
   This pinpoints the missing saving: two conductor units must be recovered
-  beyond the generic count, probably at the `B(s)=0` pair or by pairing their
-  contributions.
+  beyond the generic count, and bare deck symmetry is not enough because the
+  twist changes by `rho((s+1)^(-2))`.
 - **What to do next:** Prove a cancellation or identification that saves the
   two `B(s)=0` conductor units, or find finite evidence showing that such a
   saving is impossible.

@@ -122,6 +122,12 @@ def lambda_value(s: int, p: int) -> int:
     return (s * s * pow(denominator, -1, p)) % p
 
 
+def deck_involution(s: int, p: int) -> int:
+    if s == p - 1:
+        raise ZeroDivisionError((s, p))
+    return (-s * pow(s + 1, -1, p)) % p
+
+
 def line_monodromies(e: int, h: int, a: int, d: int) -> Tuple[int, int, int]:
     lift = h // e
     first = (lift * a) % h
@@ -423,6 +429,47 @@ def verify_pullback_line_conductor_budget(p: int) -> Dict[str, object]:
     }
 
 
+def verify_pullback_deck_involution(p: int) -> Dict[str, object]:
+    if p <= 3:
+        raise AssertionError(p)
+    roots_b = [s for s in range(p) if shape_b(s, p) == 0]
+    roots_c = [s for s in range(p) if shape_c(s, p) == 0]
+
+    for s in range(p):
+        if s == p - 1:
+            continue
+        tau = deck_involution(s, p)
+        denominator_square = ((s + 1) * (s + 1)) % p
+        if deck_involution(tau, p) != s:
+            raise AssertionError(("tau^2", p, s, tau))
+        if shape_b(tau, p) * denominator_square % p != shape_b(s, p):
+            raise AssertionError(("B transform", p, s, tau))
+        if shape_c(tau, p) * denominator_square % p != shape_c(s, p):
+            raise AssertionError(("C transform", p, s, tau))
+        if shape_b(s, p) != 0 and lambda_value(tau, p) != lambda_value(s, p):
+            raise AssertionError(("lambda invariant", p, s, tau))
+
+    if deck_involution(0, p) != 0:
+        raise AssertionError(("tau fixes zero", p))
+    if deck_involution(p - 2, p) != p - 2:
+        raise AssertionError(("tau fixes minus two", p))
+    if sorted(deck_involution(s, p) for s in roots_b) != sorted(roots_b):
+        raise AssertionError(("tau B roots", p, roots_b))
+    if sorted(deck_involution(s, p) for s in roots_c) != sorted(roots_c):
+        raise AssertionError(("tau C roots", p, roots_c))
+
+    return {
+        "p": p,
+        "deck_involution": "tau(s)=-s/(s+1)",
+        "fixed_points": (0, p - 2),
+        "b_root_orbit_count": len(roots_b) // 2,
+        "c_root_orbit_count": len(roots_c) // 2,
+        "infinity_partner": "s=-1",
+        "b_transform": "B(tau)=B/(s+1)^2",
+        "twist_multiplier": "rho((s+1)^(-2))",
+    }
+
+
 def audit_case(case: Dict[str, int]) -> Dict[str, object]:
     p = int(case["p"])
     n = int(case["n"])
@@ -523,6 +570,12 @@ def main() -> None:
         for case in CASES
     ]
     for row in conductor_rows:
+        print(row)
+    deck_rows = [
+        verify_pullback_deck_involution(int(case["p"]))
+        for case in CASES
+    ]
+    for row in deck_rows:
         print(row)
     top = max(rows, key=lambda row: float(row["sum_ratio"]))
     for key, value in EXPECTED_TOP.items():

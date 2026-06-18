@@ -229,6 +229,9 @@ after the visible twists, the two `B(s)=0` points each have no local
 invariants and cost two conductor units, giving generic `dim H^1 <= 5`.
 The desired `3p` leading constant therefore requires an additional
 two-unit saving beyond the standard local conductor count.
+The pullback deck involution `tau(s)=-s/(s+1)` swaps the two `B(s)=0`
+points, but the twist changes by `rho((s+1)^(-2))`, so the needed saving is
+not an immediate deck-symmetry consequence.
 
 Thus the fixed-window, quotient-window, and two-fiber certificates still use
 the conservative common ledger:

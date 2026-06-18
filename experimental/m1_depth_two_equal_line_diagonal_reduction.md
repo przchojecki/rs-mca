@@ -465,6 +465,41 @@ units beyond this generic line-sheaf calculation, most naturally at the two
 verifier checks the algebraic support and this conductor ledger; it does not
 certify the imported hypergeometric local-monodromy table.
 
+## Deck Involution Audit
+
+The degree-two map `lambda=s^2/(4B(s))` has deck involution
+
+```text
+tau(s) = -s/(s+1).
+```
+
+It satisfies
+
+```text
+lambda(tau(s)) = lambda(s),
+tau^2(s)=s,
+B(tau(s)) = B(s)/(s+1)^2,
+C(tau(s)) = C(s)/(s+1)^2.
+```
+
+Thus `tau` fixes the two ramification points `s=0` and `s=-2`, swaps the two
+geometric points above `lambda=infinity` (`B(s)=0`), swaps the two geometric
+points above `lambda=1` (`C(s)=0`), and swaps the point at infinity with the
+deleted regular point `s=-1`.
+
+This confirms that the two `B(s)=0` conductor contributions are naturally a
+single deck orbit.  However, the Kummer twist is not deck-invariant:
+
+```text
+rho(B(tau(s))) = rho(B(s)) rho((s+1)^(-2)).
+```
+
+Therefore a two-unit saving cannot follow merely by pairing the two
+`B(s)=0` points under `tau`; any successful proof must account for this
+multiplier, probably through a functional equation of the pulled-back
+hypergeometric sheaf or through cancellation after adding the regular
+deleted/infinity pair.
+
 ## Pullback Branch Checklist
 
 The rational pullback

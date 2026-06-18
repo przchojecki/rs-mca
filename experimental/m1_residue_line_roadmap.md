@@ -30,7 +30,9 @@ should be revised as the project learns more.
    `3p` leading term must come from the hypergeometric pullback structure.
    The current narrow import is a rank-two line-sheaf conductor calculation:
    save two units beyond the generic `dim H^1 <= 5` count, most likely at
-   the two `B(s)=0` points or by pairing their contributions.
+   the two `B(s)=0` points or by pairing their contributions. The deck
+   involution swaps those points but introduces the multiplier
+   `rho((s+1)^(-2))`, so the pairing must use more than bare symmetry.
 4. After the trace-family wall is closed, generalize to fixed low-slack
    templates, then separate tangent, quotient-periodic, finite-template, and
    genuinely aperiodic packing.
