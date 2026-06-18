@@ -113,10 +113,11 @@ Delta(u) = -3u^2 - 2u - 3.
 It is constant except at the at most two roots of `Delta`. Since
 `sum_u mu(u)=0`, the full unrestricted sum is supported only on those roots
 and has absolute value at most `2p`. Restoring the principal-coordinate
-exclusions removes two one-variable line sums, each trivially bounded by
-`p`. Hence every one-coordinate/quadratic-conic mixed term has absolute value
-at most `4p`; the cases with the nonprincipal character on `v` or `w` follow
-by symmetry.
+exclusions removes the union of two affine lines, which has `2p-1` points.
+Hence every one-coordinate/quadratic-conic mixed term has absolute value at
+most `4p`; the cases with the nonprincipal character on `v` or `w` follow by
+symmetry. The proof-level statement is isolated in
+`experimental/m1_depth_two_quadratic_one_coordinate_lemma.md`.
 
 Thus the additive raw, fixed-window, and two-fiber certificates now pay:
 
@@ -133,13 +134,17 @@ The finite audit
 
 ```bash
 python3 experimental/verify_m1_depth_two_elementary_open_set_lemma.py
+python3 experimental/verify_m1_depth_two_quadratic_one_coordinate_lemma.py
 python3 experimental/verify_m1_depth_two_kummer_constant_audit.py
 ```
 
 checks the finite geometry behind the elementary open-set correction and
-exhausts representative small prime/index cases against the exact character
-sums. The proof-level statement of the correction is isolated in
-`experimental/m1_depth_two_elementary_open_set_lemma.md`.
+the quadratic one-coordinate slice lemma, and exhausts representative small
+prime/index cases against the exact character sums. The proof-level statement
+of the open-set correction is isolated in
+`experimental/m1_depth_two_elementary_open_set_lemma.md`, and the quadratic
+mixed slice is isolated in
+`experimental/m1_depth_two_quadratic_one_coordinate_lemma.md`.
 
 ## Audited Hypotheses
 

@@ -29,6 +29,28 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-18 - M1 quadratic one-coordinate lemma
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/m1_depth_two_quadratic_one_coordinate_lemma.md`,
+  `experimental/verify_m1_depth_two_quadratic_one_coordinate_lemma.py`,
+  `experimental/m1_kummer_weil_import_contract.md`,
+  `experimental/m1_depth_two_lift_window_theorem.md`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / EXPERIMENTAL.
+- **What is being added:** A proof-level slice lemma for the slack-two
+  depth-two mixed family where the conic character is quadratic and exactly
+  one coordinate character is nonprincipal. The verifier checks the exact
+  quadratic-fiber identity and the `4p` open-set bound on representative
+  prime/index samples.
+- **How it is useful:** Removes this mixed family from the external
+  two-variable Kummer import, leaving only nonquadratic one-coordinate,
+  two-coordinate, and three-coordinate mixed normal-crossing estimates.
+- **What to do next:** Use the same proof/import boundary to attack the
+  remaining one-coordinate nonquadratic `4p` term or the degree-four
+  two-coordinate `9p` term.
+
 ### 2026-06-18 - M1 mixed Kummer finite obstruction
 
 - **Agent/model:** Codex.

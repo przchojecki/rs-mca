@@ -133,11 +133,12 @@ on the Kummer open set, these elementary parts also pay a genus-zero
 open-set correction `6 ceil(sqrt(p))` times their L1 mass. In the additive
 raw, fixed-window, and two-fiber ledgers, the contract also proves a `4p`
 bound for the subcase where the conic character is quadratic and exactly one
-coordinate character is nonprincipal. The conditional Kummer import is now
-charged by the actual radical degree: remaining one-coordinate mixed terms
-have degree `1+2` and pay `4p`, two-coordinate mixed terms have degree
-`1+1+2` and pay `9p`, and only three-coordinate mixed terms have degree
-`1+1+1+2` and pay `16p`.
+coordinate character is nonprincipal; this elementary slice calculation is
+isolated in `experimental/m1_depth_two_quadratic_one_coordinate_lemma.md`.
+The conditional Kummer import is now charged by the actual radical degree:
+remaining one-coordinate mixed terms have degree `1+2` and pay `4p`,
+two-coordinate mixed terms have degree `1+1+2` and pay `9p`, and only
+three-coordinate mixed terms have degree `1+1+1+2` and pay `16p`.
 
 For the raw normalized catalog on `D`, the verifier audits the character
 expansion, the divisor nontriviality, the exact principal open-set count
