@@ -223,15 +223,17 @@ therefore target a `3p+O(sqrt(p))` top-dimensional bound while keeping the
 M1 domain-size arithmetic or the hypergeometric pullback structure visible.
 A compactified plane-divisor audit for the same single-character presentation
 gives the generic complement-Euler target `5`, so the desired `3p` leading
-constant cannot come from a naive surface Kummer estimate.
-The corresponding line-sheaf audit shows the same generic obstruction:
-after the visible twists, the two `B(s)=0` points each have no local
-invariants and cost two conductor units, giving generic `dim H^1 <= 5`.
-The desired `3p` leading constant therefore requires an additional
-two-unit saving beyond the standard local conductor count.
+constant cannot come from a naive surface Kummer estimate.  The
+hypergeometric line-sheaf audit supplies the missing structure: in the
+standard `2F1(chi_2,mu;alpha;t)` normalization, the `t=0` local characters
+are `1` and `alpha^(-1)`, not the numerator characters.  After the visible
+twists, each `B(s)=0` point has local characters `alpha` and `1`, so it has
+one inertia invariant and costs only one conductor unit.  The corrected
+line-sheaf ledger is `1+2+2+2=7` for rank `2`, hence
+`dim H^1 <= 3`.
 The pullback deck involution `tau(s)=-s/(s+1)` swaps the two `B(s)=0`
-points, but the twist changes by `rho((s+1)^(-2))`, so the needed saving is
-not an immediate deck-symmetry consequence.
+points, but the twist changes by `rho((s+1)^(-2))`; the conductor saving
+comes from the local `2F1` table, not from bare deck symmetry.
 In the quotient coordinate `z=s/(s+2)`, the paired sum introduces the
 auxiliary trace `sum_{z^2=q} alpha^(-2)(1-z)`; this is the concrete object
 that must supply any additional cancellation.
@@ -241,12 +243,10 @@ to the balanced kernel
 `z=infinity`, and the pullback main differs from the complete `z`-line sum
 only by the regular fibers `H(1/4)` and
 `alpha(3) chi_2(3) H(1/3)`.
-The conservative completed-line conductor ledger is nevertheless still
-`1+2+4+2+0=9`: the old infinity twist is moved to the finite regular point
-`z=1`, where the scalar twist is `alpha^(-2)`, and the two
-`1+3z^2=0` points still have local characters `alpha chi_2` and
-`alpha^(-1)`. Thus the complete `z`-line form localizes, but does not
-solve, the missing two-unit saving.
+The corrected completed-line conductor ledger is `1+2+2+2+0=7`: the old
+infinity twist is moved to the finite regular point `z=1`, where the scalar
+twist is `alpha^(-2)`, and the two `1+3z^2=0` points now each have one
+invariant after the visible twists.
 There is also a useful pushforward form: with
 `y=(1+3z^2)/(1-z)^2`, the balanced kernel is simply
 `(alpha chi_2)(y)`, and the projective completed trace is
@@ -266,10 +266,9 @@ The sharper one-dimensional pushforward support is generically the six
 geometric values `y=0`, `y=1`, the two roots of `9y^2+2y+1`, `y=3/4`, and
 `y=infinity`; `y=3` is an ordinary projective fiber except in the small
 collision characteristic `p=11`.
-The standard local pushforward ledger after the Mellin twist is still
-`4+1+2+2+4=13` for rank `4`, hence the same generic
-`dim H^1 <= 5` obstruction.  The needed `3p+O(sqrt(p))` leading term
-therefore requires a two-unit saving beyond this local count.
+The corrected local pushforward ledger after the Mellin twist is
+`2+1+2+2+4=11` for rank `4`, hence `dim H^1 <= 3`.  This is the same
+top-dimensional `3p` target in y-pushforward form.
 
 Thus the fixed-window, quotient-window, and two-fiber certificates still use
 the conservative common ledger:

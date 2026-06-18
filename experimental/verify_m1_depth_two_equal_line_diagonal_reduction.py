@@ -262,14 +262,15 @@ def balanced_z_local_exponents(h: int, alpha_exponent: int) -> Dict[str, object]
     if h % 2 != 0:
         raise AssertionError(("h must contain the quadratic character", h))
     lambda_infinity = (
-        (alpha_exponent + h // 2) % h,
-        (-alpha_exponent) % h,
+        alpha_exponent % h,
+        0,
     )
     z_one_twist = (-2 * alpha_exponent) % h
-    if 0 in lambda_infinity or z_one_twist == 0:
+    if alpha_exponent % h == 0 or z_one_twist == 0:
         raise AssertionError(("trivial balanced local character", h, alpha_exponent))
     return {
-        "lambda_infinity_characters": lambda_infinity,
+        "lambda_infinity_characters_after_twist": lambda_infinity,
+        "lambda_infinity_invariant_count": 1,
         "z_one_regular_twist": z_one_twist,
     }
 
@@ -658,13 +659,13 @@ def verify_pullback_line_conductor_budget(p: int) -> Dict[str, object]:
 
     s_zero_cond = 1
     c_root_cond = 2
-    b_root_cond = 4
+    b_root_cond = 2
     infinity_twist_cond = 2
     rank = 2
     total_conductor = s_zero_cond + c_root_cond + b_root_cond
     total_conductor += infinity_twist_cond
     h1_budget = total_conductor - 2 * rank
-    if h1_budget != 5:
+    if h1_budget != 3:
         raise AssertionError((p, h1_budget))
 
     return {
@@ -683,7 +684,7 @@ def verify_pullback_line_conductor_budget(p: int) -> Dict[str, object]:
         "conductor_budget": {
             "s_zero": s_zero_cond,
             "c_roots": c_root_cond,
-            "b_roots_after_twist": b_root_cond,
+            "b_roots_after_corrected_twist": b_root_cond,
             "infinity_twist": infinity_twist_cond,
             "total": total_conductor,
             "generic_h1_target": h1_budget,
@@ -791,7 +792,7 @@ def verify_balanced_z_completion_geometry(p: int) -> Dict[str, object]:
 
     z_zero_cond = 1
     lambda_one_cond = 2
-    lambda_infinity_cond = 4
+    lambda_infinity_cond = 2
     z_one_twist_cond = 2
     infinity_cond = 0
     rank = 2
@@ -803,7 +804,7 @@ def verify_balanced_z_completion_geometry(p: int) -> Dict[str, object]:
         + infinity_cond
     )
     h1_budget = total_conductor - 2 * rank
-    if h1_budget != 5:
+    if h1_budget != 3:
         raise AssertionError((p, h1_budget))
 
     return {
@@ -819,7 +820,7 @@ def verify_balanced_z_completion_geometry(p: int) -> Dict[str, object]:
         "conductor_budget": {
             "z_zero": z_zero_cond,
             "lambda_one_roots": lambda_one_cond,
-            "lambda_infinity_roots_after_twist": lambda_infinity_cond,
+            "lambda_infinity_roots_after_corrected_twist": lambda_infinity_cond,
             "z_one_regular_twist": z_one_twist_cond,
             "infinity": infinity_cond,
             "total": total_conductor,
@@ -1218,7 +1219,9 @@ def verify_pushforward_local_conductor_budget(p: int) -> Dict[str, object]:
     branch_y = 3 * one_fourth % p
 
     # y=0, lambda=infinity: in w=1/lambda the tangent cone is
-    # w^2+4yw+16y^2, which has two geometric branches for p>3.
+    # w^2+4yw+16y^2, which has two geometric branches for p>3.  The
+    # corrected 2F1 local table leaves one invariant on each branch after
+    # the Mellin twist.
     if (-48) % p == 0:
         raise AssertionError(("lambda infinity tangent collision", p))
 
@@ -1277,7 +1280,7 @@ def verify_pushforward_local_conductor_budget(p: int) -> Dict[str, object]:
 
     rank = 4
     conductor_budget = {
-        "y_zero_lambda_infinity_after_mellin": 4,
+        "y_zero_lambda_infinity_after_corrected_mellin": 2,
         "y_one_lambda_zero_double_pullback": 1,
         "lambda_one_roots": 2,
         "y_three_quarters_regular_branch": 2,
@@ -1285,14 +1288,14 @@ def verify_pushforward_local_conductor_budget(p: int) -> Dict[str, object]:
     }
     total_conductor = sum(conductor_budget.values())
     h1_budget = total_conductor - 2 * rank
-    if total_conductor != 13 or h1_budget != 5:
+    if total_conductor != 11 or h1_budget != 3:
         raise AssertionError(("pushforward conductor budget", p, total_conductor))
 
     return {
         "p": p,
         "rank": rank,
         "generic_local_profile": {
-            "y=0": "two unramified lambda=infinity branches",
+            "y=0": "two lambda=infinity branches, one invariant on each",
             "y=1": "lambda=0 has quadratic contact; lambda=1/4 is regular",
             "lambda=1": "two simple roots of 9y^2+2y+1",
             "y=3/4": "simple branch over regular lambda=1/12",

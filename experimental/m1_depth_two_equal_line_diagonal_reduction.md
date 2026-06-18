@@ -424,46 +424,46 @@ H(lambda) = const * chi_2(-lambda)
 ```
 
 Near a root of `B(s)`, the parameter `t=1/lambda` is a local parameter.
-The `t=0` local characters of the hypergeometric sheaf are `chi_2` and
-`mu`.  After the visible twist by `chi_2(t)` and then by
-`rho(B(s))`, the two local characters become
+For `2F1(A,B;C;t)`, the `t=0` local characters are `1` and `C^(-1)`.
+Here `C=alpha`.  After the visible twist by `chi_2(t)` and then by
+`rho(B(s))=alpha chi_2(B(s))`, the two local characters become
 
 ```text
-alpha chi_2,        alpha^(-1).
+alpha,        1.
 ```
 
-Neither is trivial in the remaining equal-line wall.  Thus each of the two
-geometric roots of `B(s)=0` contributes two conductor units, not one.
+Thus each of the two geometric roots of `B(s)=0` has one inertia invariant
+and contributes only one conductor unit.  This is the two-unit saving missing
+from the earlier conservative audit.
 
 The generic tame conductor ledger on `P^1_s` is therefore
 
 ```text
 s=0:        at most 1 unit,
 C(s)=0:     2 geometric points, one unit each,
-B(s)=0:     2 geometric points, two units each,
+B(s)=0:     2 geometric points, one unit each,
 infinity:   2 units from rho(B(s)) with monodromy alpha^(-2).
 ```
 
 The total is
 
 ```text
-1 + 2 + 4 + 2 = 9.
+1 + 2 + 2 + 2 = 7.
 ```
 
 For a geometrically nonconstant rank-two middle extension with no global
 invariants, Euler-Poincare then gives the generic estimate
 
 ```text
-dim H^1 <= 9 - 2*2 = 5.
+dim H^1 <= 7 - 2*2 = 3.
 ```
 
-This matches the plane-divisor obstruction rather than the desired
-`3p+O(sqrt(p))` target.  The useful information is the location of the
-missing saving: a proof of the `3p` leading constant must save two conductor
-units beyond this generic line-sheaf calculation, most naturally at the two
-`B(s)=0` points or through a cancellation pairing between them.  The finite
-verifier checks the algebraic support and this conductor ledger; it does not
-certify the imported hypergeometric local-monodromy table.
+This supplies the desired top-dimensional `3p` target for the equal-line
+pullback main term, up to the already separated regular-fiber and
+`B(s)=0` exceptional terms of size `O(sqrt(p))`.  The finite verifier checks
+the algebraic support and this corrected conductor ledger; the
+hypergeometric local-monodromy table remains an imported standard `2F1`
+input.
 
 ## Deck Involution Audit
 
@@ -487,20 +487,19 @@ geometric points above `lambda=infinity` (`B(s)=0`), swaps the two geometric
 points above `lambda=1` (`C(s)=0`), and swaps the point at infinity with the
 deleted regular point `s=-1`.
 
-This confirms that the two `B(s)=0` conductor contributions are naturally a
-single deck orbit.  However, the Kummer twist is not deck-invariant:
+This confirms that the two `B(s)=0` points are naturally a single deck
+orbit.  However, the Kummer twist is not deck-invariant:
 
 ```text
 rho(B(tau(s))) = rho(B(s)) rho((s+1)^(-2)).
 ```
 
-Therefore a two-unit saving cannot follow merely by pairing the two
-`B(s)=0` points under `tau`; any successful proof must account for this
-multiplier, probably through a functional equation of the pulled-back
-hypergeometric sheaf or through cancellation after adding the regular
-deleted/infinity pair.
+Thus the deck symmetry is not the source of the conductor saving above; the
+saving comes from the corrected `2F1` local characters at `t=0`.  The deck
+formula is still useful for checking exact identities and for relating the
+deleted regular point to the point at infinity.
 
-The quotient coordinate makes the same obstruction explicit.  Put
+The quotient coordinate makes the same auxiliary structure explicit.  Put
 
 ```text
 z = s/(s+2),        q=z^2.
@@ -534,8 +533,9 @@ but it introduces the auxiliary two-point trace
 sum_{z^2=q} alpha^(-2)(1-z).
 ```
 
-This is the precise object that a future cancellation argument must exploit;
-the quotient alone does not lower the conductor.
+This is the precise auxiliary trace introduced by quotienting.  The quotient
+alone is therefore not the cleanest way to see the conductor saving; the
+unquotiented `2F1` local table already gives it.
 
 There is, however, a cleaner complete-sum form before taking the quotient by
 `z -> -z`.  Let `rho=alpha chi_2` and put
@@ -585,13 +585,9 @@ contained in
 z=0,        1+2z^2=0,        1+3z^2=0,        z=1,
 ```
 
-with `z=infinity` regular.  This does not by itself prove the missing
-two-unit saving, but it moves the problem to a complete rank-two line trace
-with no infinity Kummer ramification and only explicit regular-fiber
-corrections.
+with `z=infinity` regular.
 
-The corresponding conservative conductor ledger is still not enough to prove
-the target.  On the completed `z`-line, the visible Kummer divisor is
+On the completed `z`-line, the visible Kummer divisor is
 
 ```text
 div((1+3z^2)/(1-z)^2) = [1+3z^2=0] - 2[1],
@@ -599,13 +595,15 @@ div((1+3z^2)/(1-z)^2) = [1+3z^2=0] - 2[1],
 
 with no degree at infinity.  The quadratic factor `chi_2(1+3z^2)` also has no
 infinity ramification, since its pole at infinity has even order.  The
-imported local characters at the two points above `lambda=infinity` remain
+corrected imported local characters at the two points above
+`lambda=infinity`, after the visible twists, are
 
 ```text
-alpha chi_2,        alpha^(-1),
+alpha,        1,
 ```
 
-and the regular point `z=1` carries the nontrivial scalar twist
+so each point contributes only one conductor unit.  The regular point `z=1`
+carries the nontrivial scalar twist
 
 ```text
 alpha^(-2).
@@ -618,23 +616,20 @@ tame conductor ledger becomes
 ```text
 z=0:              at most 1 unit,
 1+2z^2=0:         2 geometric points, one unit each,
-1+3z^2=0:         2 geometric points, two units each,
+1+3z^2=0:         2 geometric points, one unit each,
 z=1:              2 units from the regular-fiber scalar twist,
 z=infinity:       0 units.
 ```
 
-The total is again
+The total is
 
 ```text
-1 + 2 + 4 + 2 + 0 = 9,
+1 + 2 + 2 + 2 + 0 = 7,
 ```
 
-so Euler-Poincare still gives only the generic `dim H^1 <= 5` route.  The
-completion therefore relocates the old infinity twist to the finite point
-`z=1`; it does not by itself supply the two missing conductor units.  Any
-proof of the leading `3p` target must exploit a further finite cancellation
-or a sharper middle-extension identification among the points
-`z=1` and `1+3z^2=0`.
+so Euler-Poincare gives the desired `dim H^1 <= 3` route for the complete
+rank-two `z`-line trace, again up to the regular-fiber corrections already
+separated above.
 
 The same finite cluster has a more useful pushforward form.  Put
 
@@ -824,40 +819,39 @@ generic conductor statement.
 
 This six-point checklist is the current sharp target for the degree-two
 pushforward sheaf.  A proof of the desired leading constant would need to
-show that, after the Mellin twist by `rho=alpha chi_2`, the total conductor
-of this pushforward is small enough to save two units relative to the generic
-`dim H^1 <= 5` ledger found on the original `s`- and `z`-lines.
+show that, after the Mellin twist by `rho=alpha chi_2`, the corrected
+lambda-infinity local table lowers the total conductor by two units.
 
 The local pushforward conductor audit gives the following standard tame
 ledger for the generic equal-line wall.  The sheaf `G` has generic rank `4`.
 At `y=0`, the two branches go to `lambda=infinity`; after the Mellin twist
-they contribute four nontrivial local characters.  At `y=1`, the singular
-branch has quadratic contact with `lambda=0`, while the other branch is the
-regular `lambda=1/4` fiber, so the standard local cost is one.  The two
-roots of `9y^2+2y+1` give the two `lambda=1` costs.  The branch value
-`y=3/4` lies over the regular fiber `lambda=1/12` and costs two units as a
-quadratic pushforward branch.  Finally, `y=infinity` is a regular
+each branch has one invariant and contributes one conductor unit.  At `y=1`,
+the singular branch has quadratic contact with `lambda=0`, while the other
+branch is the regular `lambda=1/4` fiber, so the standard local cost is one.
+The two roots of `9y^2+2y+1` give the two `lambda=1` costs.  The branch
+value `y=3/4` lies over the regular fiber `lambda=1/12` and costs two units
+as a quadratic pushforward branch.  Finally, `y=infinity` is a regular
 `lambda=1/4` branch, but the Mellin twist makes the rank-four local
 representation nontrivial.
 
 Thus the generic pushforward ledger is
 
 ```text
-y=0:                 4
+y=0:                 2
 y=1:                 1
 9y^2+2y+1=0:          2
 y=3/4:               2
 y=infinity:          4
-total conductor:    13
+total conductor:    11
 rank:                4
-dim H^1 target:      13 - 2*4 = 5.
+dim H^1 target:      11 - 2*4 = 3.
 ```
 
-This matches the conservative `s`- and `z`-line obstruction.  In particular,
-the desired `3p+O(sqrt(p))` leading term is not obtained merely by passing to
-the y-pushforward: it still requires a two-unit saving beyond this local
-ledger, presumably from a non-generic relation among the boundary
-contributions or from a sharper middle-extension identification.
+This is the y-pushforward form of the same two-unit saving seen on the
+`s`- and `z`-lines.  Subject to the imported standard `2F1` local monodromy
+table, it gives the desired top-dimensional `3p` ledger for the equal-line
+pullback main term; the already separated regular fibers and exceptional
+`B(s)=0` fibers contribute only `O(sqrt(p))`.
 
 ## Pullback Branch Checklist
 

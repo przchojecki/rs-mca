@@ -29,6 +29,30 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-18 - M1 equal-line conductor correction
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/m1_depth_two_equal_line_diagonal_reduction.md`,
+  `experimental/verify_m1_depth_two_equal_line_diagonal_reduction.py`,
+  `experimental/m1_kummer_weil_import_contract.md`,
+  `experimental/m1_residue_line_roadmap.md`,
+  `experimental/agents-log.md`.
+- **Status:** CONDITIONAL / AUDIT.
+- **What is being added:** Corrects the local `2F1` cusp used in the
+  equal-line conductor audit.  For `2F1(chi_2,mu;alpha;t)`, the `t=0`
+  local characters are `1` and `alpha^(-1)`.  After the visible twists,
+  each `B(s)=0` point has local characters `alpha` and `1`, so it contributes
+  one conductor unit, not two.
+- **How it is useful:** Supersedes the previous conservative `dim H^1 <= 5`
+  obstruction for this equal-line diagonal subtarget.  The corrected ledgers
+  are `1+2+2+2=7` on the rank-two `s`/`z` line and `2+1+2+2+4=11` on the
+  rank-four y-pushforward, giving `dim H^1 <= 3` in both forms.
+- **What to do next:** Turn this conditional local-monodromy audit into a
+  clean proof citation/import, then propagate the equal-line diagonal
+  `3p+O(sqrt(p))` estimate back into the remaining two-coordinate wall
+  certificate.
+
 ### 2026-06-18 - M1 y-pushforward local conductor audit
 
 - **Agent/model:** Codex.

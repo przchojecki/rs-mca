@@ -26,22 +26,22 @@ should be revised as the project learns more.
    unrestricted all-character exact `3p` pullback bound is false, and the
    equal-line character filter points instead to a `3p+O(sqrt(p))`
    top-dimensional target with domain-size arithmetic kept explicit. A
-   compactified plane-divisor audit gives only a generic `5p` route, so the
-   `3p` leading term must come from the hypergeometric pullback structure.
-   The current narrow import is a rank-two line-sheaf conductor calculation:
-   save two units beyond the generic `dim H^1 <= 5` count, most likely at
-   the two `B(s)=0` points or by pairing their contributions. The deck
-   involution swaps those points but introduces the multiplier
-   `rho((s+1)^(-2))`; in quotient coordinate this becomes the auxiliary
-   trace `sum_{z^2=q} alpha^(-2)(1-z)`. Before quotienting, the same
+   compactified plane-divisor audit gives only a generic `5p` route, but the
+   hypergeometric pullback structure supplies the missing two-unit saving:
+   the corrected `2F1` local table at `t=1/lambda=0` gives one invariant at
+   each `B(s)=0` point, so the rank-two line-sheaf conductor ledger is
+   `1+2+2+2=7` and `dim H^1 <= 3`. The deck involution swaps the two
+   `B(s)=0` points but introduces the multiplier `rho((s+1)^(-2))`; this is
+   useful for exact identities but is not the source of the conductor saving.
+   In quotient coordinate this becomes the auxiliary trace
+   `sum_{z^2=q} alpha^(-2)(1-z)`. Before quotienting, the same
    calculation gives a complete balanced `z`-line trace with kernel
    `chi_2(1+3z^2) alpha((1+3z^2)/(1-z)^2)` and only two regular-fiber
    corrections, so the next conductor target can ignore infinity Kummer
    ramification and focus on the four finite singular loci. The completed
-   conductor ledger still totals `9`, since the old infinity twist moves to
-   the finite regular point `z=1`; a proof of the `3p` leading constant must
-   therefore find a finite two-unit saving rather than a projective-infinity
-   saving. The latest reduction pushes the balanced kernel through
+   conductor ledger now totals `7`, since the old infinity twist moves to
+   the finite regular point `z=1` while each `1+3z^2=0` point has one
+   invariant. The latest reduction pushes the balanced kernel through
    `y=(1+3z^2)/(1-z)^2`, turning the projective completed trace into a
    Mellin transform `sum_y (alpha chi_2)(y) G(y)`. The next concrete target
    is the conductor of this degree-two hypergeometric pushforward `G`; after
@@ -51,10 +51,12 @@ should be revised as the project learns more.
    structure, not a naive two-variable Kummer estimate, remains the object to
    exploit. Generically the pushforward has only six candidate singular
    values on the `y`-line: `0`, `1`, the two roots of `9y^2+2y+1`, `3/4`,
-   and infinity. The standard local pushforward conductor ledger is still
-   `4+1+2+2+4=13` for rank `4`, so the same `dim H^1 <= 5` obstruction
-   remains; the desired `3p+O(sqrt(p))` leading term needs a two-unit saving
-   beyond this local count.
+   and infinity. The corrected local pushforward conductor ledger is
+   `2+1+2+2+4=11` for rank `4`, hence the same `dim H^1 <= 3` target in
+   y-pushforward form. This conditionally closes the equal-line diagonal
+   top-dimensional estimate; the broader ramified nonreciprocal
+   two-coordinate wall still has to be reduced to this or another tractable
+   slice.
 4. After the trace-family wall is closed, generalize to fixed low-slack
    templates, then separate tangent, quotient-periodic, finite-template, and
    genuinely aperiodic packing.
