@@ -171,21 +171,22 @@ Here `q` is even because `D^2` is contained in the square subgroup of
 `F_p^*`, so there is a unique quadratic conic character in the `D^2`-coset
 expansion.
 
-The indicator of `W` has principal coefficient `R`. For its one-dimensional
-quotient Fourier coefficients `c_W(a)`, Parseval gives
+The indicator of `W` has principal coefficient `R`. For its nonprincipal
+one-dimensional quotient Fourier coefficients `c_W(a)`, Parseval and
+Cauchy-Schwarz give
 
 ```text
-sum_{a in D/K} |c_W(a)| <= N sqrt(R).
+sum_{a != 0 in D/K} |c_W(a)| <= sqrt((N-1)R(N-R)).
 ```
 
 After lifting from quotient characters to ambient characters modulo `K`, the
 one-dimensional nonprincipal L1 is bounded by
 
 ```text
-A_R = e ceil(N sqrt(R)) - R.
+A_R = (e-1)R + e ceil(sqrt((N-1)R(N-R))).
 ```
 
-In the complement-window case `R=N-1`, this improves to the exact value
+In the complement-window case `R=N-1`, this is the exact value
 
 ```text
 A_R = (2e-1)R,

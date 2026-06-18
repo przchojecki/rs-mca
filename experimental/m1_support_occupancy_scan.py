@@ -1870,10 +1870,13 @@ def fixed_window_active_character_l1_bound(
         or ambient_restriction_kernel_count < 1
     ):
         return 0
-    if window_size == quotient_order - 1:
-        return (2 * ambient_restriction_kernel_count - 1) * window_size
-    quotient_l1_bound = ceil_sqrt(quotient_order * quotient_order * window_size)
-    return ambient_restriction_kernel_count * quotient_l1_bound - window_size
+    quotient_nonprincipal_l1_bound = ceil_sqrt(
+        (quotient_order - 1) * window_size * (quotient_order - window_size)
+    )
+    return (
+        (ambient_restriction_kernel_count - 1) * window_size
+        + ambient_restriction_kernel_count * quotient_nonprincipal_l1_bound
+    )
 
 
 def fixed_window_active_coordinate_l1_bounds(

@@ -397,12 +397,16 @@ def fixed_window_parseval_active_l1_bound(
     window_size: int,
     ambient_restriction_kernel_count: int,
 ) -> int:
-    if window_size == quotient_order - 1:
-        return (2 * ambient_restriction_kernel_count - 1) * window_size
-    root = math.isqrt(quotient_order * quotient_order * window_size)
-    if root * root < quotient_order * quotient_order * window_size:
+    radicand = (quotient_order - 1) * window_size * (
+        quotient_order - window_size
+    )
+    root = math.isqrt(radicand)
+    if root * root < radicand:
         root += 1
-    return ambient_restriction_kernel_count * root - window_size
+    return (
+        (ambient_restriction_kernel_count - 1) * window_size
+        + ambient_restriction_kernel_count * root
+    )
 
 
 def kernel_fiber_reduction_counts(

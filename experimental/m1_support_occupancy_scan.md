@@ -670,12 +670,13 @@ a quotient window `W` of size `R`, the indicator of `W` has principal weight
 `R/h`, so the principal term for `u,v,-1-u-v in W` has weight `R^3/(h^3 q)`,
 where `h=[F_p^*:K]` and `q=[F_p^*:D^2]`. The nonprincipal coefficients are
 controlled by a one-dimensional Parseval bound. Writing `N` for the quotient
-order and `e=h/N`, the quotient Fourier coefficients of a size-`R` window
-satisfy `sum |c_W(a)| <= N sqrt(R)`, so the ambient nonprincipal
+order and `e=h/N`, the nonprincipal quotient Fourier coefficients of a
+size-`R` window satisfy
+`sum_{a!=0} |c_W(a)| <= sqrt((N-1)R(N-R))`, so the ambient nonprincipal
 one-dimensional L1 is bounded by
 
 ```text
-A_R = e ceil(N sqrt(R)) - R.
+A_R = (e-1)R + e ceil(sqrt((N-1)R(N-R))).
 ```
 
 If `R=N-1`, the window is missing one quotient label; all nonprincipal

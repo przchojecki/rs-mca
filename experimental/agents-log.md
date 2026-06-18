@@ -123,7 +123,7 @@ Keep entries concise and link to the relevant files.
   cross-reference when the main papers are edited, then verify whether item
   (d) converts to the RS-MCA object actually needed by Paper B.
 
-### 2026-06-18 - M1 fixed-window Parseval L1 bound
+### 2026-06-18 - M1 fixed-window principal-removed Parseval L1 bound
 
 - **Agent/model:** Codex.
 - **Files added or changed:**
@@ -134,18 +134,20 @@ Keep entries concise and link to the relevant files.
   `experimental/agents-log.md`.
 - **Status:** PROVED / CONDITIONAL / AUDIT.
 - **What is being added:** Replaces the crude fixed-window Fourier L1 ledger
-  with a Parseval/Cauchy-Schwarz bound. For a quotient window of size `R` in
-  quotient order `N`, the one-dimensional quotient Fourier L1 is at most
-  `N sqrt(R)`, so after ambient lifting the nonprincipal one-dimensional L1 is
-  bounded by `e ceil(N sqrt(R))-R`. In the complement-window case `R=N-1`,
-  this improves to the exact value `(2e-1)R`. The two-fiber and fixed-window
-  Kummer certificates tensor this bound into one-, two-, and three-coordinate
-  masses.
+  with a principal-removed Parseval/Cauchy-Schwarz bound. For a quotient
+  window of size `R` in quotient order `N`, the nonprincipal quotient Fourier
+  L1 is at most `sqrt((N-1)R(N-R))`, so after ambient lifting the active
+  one-dimensional L1 is bounded by
+  `(e-1)R + e ceil(sqrt((N-1)R(N-R)))`. In the complement-window case
+  `R=N-1`, this specializes to the exact value `(2e-1)R`. The two-fiber and
+  fixed-window Kummer certificates tensor this bound into one-, two-, and
+  three-coordinate masses.
 - **How it is useful:** Keeps the same conditional Kummer input but sharply
   reduces the coefficient L1 paid by fixed-window certificates. The verifier
   now checks the new integer Parseval/complement ledger; the two-fiber
   threshold improves from `332` to `108`, and the fixed-window threshold from
-  `808` to `96`.
+  `808` to `96`. The remaining failed fixed-window audit at `p=97, N=6, R=3`
+  tightens from `17608` to `13378`.
 - **What to do next:** Look for an analogous non-crude L1 certificate for
   larger quotient windows or replace the remaining three-coordinate Kummer
   import.
