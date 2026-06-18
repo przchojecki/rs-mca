@@ -49,7 +49,9 @@ should be revised as the project learns more.
    fiber resultant is `16x^2y^2-8xy^2+4xy+y^2-2y+1`. The compactified
    resultant surface has complement-Euler target `6`, so the pushforward
    structure, not a naive two-variable Kummer estimate, remains the object to
-   exploit.
+   exploit. Generically the pushforward has only six candidate singular
+   values on the `y`-line: `0`, `1`, the two roots of `9y^2+2y+1`, `3/4`,
+   and infinity.
 4. After the trace-family wall is closed, generalize to fixed low-slack
    templates, then separate tangent, quotient-periodic, finite-template, and
    genuinely aperiodic packing.

@@ -262,6 +262,10 @@ Compactifying that resultant in `P^1_x times P^1_y` gives a nodal bidegree
 boundary lines `x=0,1,infinity`, `y=0,infinity,3/4` gives complement Euler
 target `6`, so the explicit two-variable kernel surface still does not
 replace the imported line-sheaf/pushforward input.
+The sharper one-dimensional pushforward support is generically the six
+geometric values `y=0`, `y=1`, the two roots of `9y^2+2y+1`, `y=3/4`, and
+`y=infinity`; `y=3` is an ordinary projective fiber except in the small
+collision characteristic `p=11`.
 
 Thus the fixed-window, quotient-window, and two-fiber certificates still use
 the conservative common ledger:

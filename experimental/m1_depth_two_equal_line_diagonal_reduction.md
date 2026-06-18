@@ -798,6 +798,36 @@ is negative but sharp: the next proof must exploit the degree-two
 pushforward/Mellin structure of `G(y)`, not just the compactified
 two-variable divisor.
 
+The one-dimensional pushforward has a much smaller singular-value checklist.
+For `p>3`, away from the small collision `p=11`, the candidate singular
+values of `G(y)` are
+
+```text
+y=0,                 from lambda=infinity,
+y=1,                 from lambda=0,
+9y^2+2y+1=0,          from lambda=1,
+y=3/4,               from the branch point z=-1/3,
+y=infinity,          from the branch point z=1.
+```
+
+Thus the generic support has six geometric points on `P^1_y`.  The projective
+fiber over `y=3` is ordinary:
+
+```text
+z=1/3 gives lambda=1/12,        z=infinity gives lambda=1/3.
+```
+
+It is not a singular value in the generic calculation.  In characteristic
+`11`, however, `1/12=1`, and the two roots of `9y^2+2y+1` collide with
+`y=3/4` and `y=3`; this is a small-prime degeneration to keep out of any
+generic conductor statement.
+
+This six-point checklist is the current sharp target for the degree-two
+pushforward sheaf.  A proof of the desired leading constant would need to
+show that, after the Mellin twist by `rho=alpha chi_2`, the total conductor
+of this pushforward is small enough to save two units relative to the generic
+`dim H^1 <= 5` ledger found on the original `s`- and `z`-lines.
+
 ## Pullback Branch Checklist
 
 The rational pullback

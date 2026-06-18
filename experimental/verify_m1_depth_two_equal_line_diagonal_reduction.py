@@ -210,6 +210,10 @@ def lambda_y_resultant_both_infinity(u: int, v: int, p: int) -> int:
     ) % p
 
 
+def lambda_one_y_polynomial(y_value: int, p: int) -> int:
+    return (9 * y_value * y_value + 2 * y_value + 1) % p
+
+
 def line_monodromies(e: int, h: int, a: int, d: int) -> Tuple[int, int, int]:
     lift = h // e
     first = (lift * a) % h
@@ -1082,6 +1086,93 @@ def verify_resultant_surface_divisor_geometry(p: int) -> Dict[str, object]:
     }
 
 
+def verify_pushforward_singular_values(p: int) -> Dict[str, object]:
+    if p <= 3:
+        raise AssertionError(p)
+    one_third = pow(3, -1, p)
+    one_fourth = pow(4, -1, p)
+    one_twelfth = pow(12, -1, p)
+    branch_y = 3 * one_fourth % p
+
+    y_one_fiber = [
+        z
+        for z in range(p)
+        if z != 1
+        and (1 + 3 * z * z) % p != 0
+        and twist_y_value(z, p) == 1
+    ]
+    if sorted(y_one_fiber) != [0, p - 1]:
+        raise AssertionError(("y=1 fiber", p, y_one_fiber))
+    if lambda_z_value(0, p) != 0:
+        raise AssertionError(("lambda z=0", p))
+    if lambda_z_value(p - 1, p) != one_fourth:
+        raise AssertionError(("lambda z=-1", p))
+
+    y_three_fiber = [
+        z
+        for z in range(p)
+        if z != 1
+        and (1 + 3 * z * z) % p != 0
+        and twist_y_value(z, p) == 3 % p
+    ]
+    if y_three_fiber != [one_third]:
+        raise AssertionError(("y=3 finite fiber", p, y_three_fiber))
+    if lambda_z_value(one_third, p) != one_twelfth:
+        raise AssertionError(("lambda z=1/3", p))
+
+    branch_z = (-one_third) % p
+    if twist_y_value(branch_z, p) != branch_y:
+        raise AssertionError(("branch y", p))
+    if lambda_z_value(branch_z, p) != one_twelfth:
+        raise AssertionError(("branch lambda", p))
+
+    lambda_infinity_z_roots = [z for z in range(p) if (1 + 3 * z * z) % p == 0]
+    for z in lambda_infinity_z_roots:
+        if z == 1 or twist_y_value(z, p) != 0:
+            raise AssertionError(("lambda infinity maps to y=0", p, z))
+
+    lambda_one_y_roots = [
+        y_value for y_value in range(p) if lambda_one_y_polynomial(y_value, p) == 0
+    ]
+    if lambda_one_y_polynomial(0, p) == 0:
+        raise AssertionError(("lambda=1 collides with y=0", p))
+    if lambda_one_y_polynomial(1, p) == 0:
+        raise AssertionError(("lambda=1 collides with y=1", p))
+
+    exceptional_p11 = p == 11
+    if not exceptional_p11:
+        if lambda_one_y_polynomial(branch_y, p) == 0:
+            raise AssertionError(("lambda=1 collides with branch", p))
+        if lambda_one_y_polynomial(3, p) == 0:
+            raise AssertionError(("lambda=1 collides with y=3", p))
+    else:
+        if lambda_one_y_polynomial(branch_y, p) != 0:
+            raise AssertionError(("missing p=11 branch collision", p))
+        if lambda_one_y_polynomial(3, p) != 0:
+            raise AssertionError(("missing p=11 y=3 collision", p))
+
+    singular_values = {
+        "lambda_infinity": "y=0",
+        "lambda_zero": "y=1",
+        "lambda_one": "9y^2+2y+1=0",
+        "cover_branch_regular": "y=3/4",
+        "cover_infinity": "y=infinity",
+    }
+    ordinary_projective_fiber = {
+        "y": "3",
+        "finite_lambda": "1/12",
+        "infinity_lambda": "1/3",
+    }
+    return {
+        "p": p,
+        "generic_singular_value_count": 6,
+        "singular_values": singular_values,
+        "lambda_one_y_roots": lambda_one_y_roots,
+        "ordinary_projective_fiber": ordinary_projective_fiber,
+        "exceptional_p11_collision": exceptional_p11,
+    }
+
+
 def audit_case(case: Dict[str, int]) -> Dict[str, object]:
     p = int(case["p"])
     n = int(case["n"])
@@ -1263,6 +1354,12 @@ def main() -> None:
         for case in CASES
     ]
     for row in resultant_rows:
+        print(row)
+    pushforward_rows = [
+        verify_pushforward_singular_values(int(case["p"]))
+        for case in CASES
+    ]
+    for row in pushforward_rows:
         print(row)
     top = max(rows, key=lambda row: float(row["sum_ratio"]))
     for key, value in EXPECTED_TOP.items():

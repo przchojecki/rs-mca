@@ -29,6 +29,26 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-18 - M1 y-pushforward singular values
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/m1_depth_two_equal_line_diagonal_reduction.md`,
+  `experimental/verify_m1_depth_two_equal_line_diagonal_reduction.py`,
+  `experimental/m1_kummer_weil_import_contract.md`,
+  `experimental/m1_residue_line_roadmap.md`,
+  `experimental/agents-log.md`.
+- **Status:** CONDITIONAL / AUDIT.
+- **What is being added:** The degree-two pushforward trace `G(y)` now has a
+  verified singular-value checklist: generically `y=0`, `y=1`, the roots of
+  `9y^2+2y+1`, `y=3/4`, and `y=infinity`; `y=3` is an ordinary projective
+  fiber except in characteristic `11`.
+- **How it is useful:** Refines the next conductor target from a
+  two-variable surface divisor to a six-point one-dimensional pushforward
+  problem.
+- **What to do next:** Compute the local conductor contribution of `G(y)` at
+  these six values after the Mellin twist by `alpha chi_2`.
+
 ### 2026-06-18 - M1 resultant surface divisor audit
 
 - **Agent/model:** Codex.
