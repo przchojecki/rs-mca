@@ -1412,18 +1412,19 @@ Assume the standard degree-five two-variable Kummer-Weil estimate
 ```
 
 for every nonprincipal tuple `(a,b,c,d)`. The remaining admissibility cuts
-`u=1`, `v=1`, `w=1`, `u=v`, `u=w`, and `v=w` remove at most `6p` points from
-any fixed coset count. Therefore every nonzero `H`-coset is hit by an
-admissible depth-two shape whenever
+`u=1`, `v=1`, `w=1`, `u=v`, `u=w`, and `v=w` form six affine lines. For
+`p>3`, these lines have exact union size `6p-11`, so they remove at most
+`6p-11` points from any fixed coset count. Therefore every nonzero `H`-coset
+is hit by an admissible depth-two shape whenever
 
 ```text
-p^2 - 4p + 6 + 4 chi(-3) > 22 p e^3 h.
+p^2 - 4p + 6 + 4 chi(-3) > (22p-11) e^3 h.
 ```
 
 Equivalently, the scanner's integer certificate
 
 ```text
-ceil((p^2 - 4p + 6 + 4 chi(-3) - 22 p e^3 h)/(e^3 h)) > 0
+ceil((p^2 - 4p + 6 + 4 chi(-3) - (22p-11)e^3 h)/(e^3 h)) > 0
 ```
 
 forces the nonzero depth-two slack-two frontier to saturate every nonzero
@@ -1453,7 +1454,7 @@ frontier has only one unresolved proper-subgroup index window in this
 catalog:
 
 ```text
-p < 22 e^4 g + 5
+p < 22 e^4 g + 4
 and
 1 + (p-1)^3/(e^3 g) >= p.
 ```

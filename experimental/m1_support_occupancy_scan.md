@@ -510,6 +510,9 @@ p^2 - 4p + 6 + 4 chi(-3),
 
 obtained by inclusion-exclusion for the three lines `u=0`, `v=0`,
 `-1-u-v=0` and the conic `A(u,v)=0`.
+The `*_degeneracy_line_union_count` field records the exact size `6p-11` of
+the six residual distinctness-failure lines
+`u=1`, `v=1`, `-1-u-v=1`, `u=v`, `u=-1-u-v`, and `v=-1-u-v`.
 The field `canonical_slack_two_second_index_window_label` combines the lift
 gate, this low-index saturation certificate, and the high-index sparsity
 ceiling. Its values are:

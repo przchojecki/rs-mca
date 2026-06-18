@@ -64,8 +64,9 @@ Keep entries concise and link to the relevant files.
   low-index proper subgroups hit every nonzero `D^2`-coset; the scanner
   combines this with the lift gate and high-index ceiling. A divisor-exponent
   audit proves that no nonprincipal character tuple is a hidden Kummer power,
-  the principal open-set count is computed exactly, and a verifier checks
-  these plus low-index proper-subgroup samples against exact enumeration.
+  the principal open-set count and admissibility-line loss are computed
+  exactly, and a verifier checks these plus low-index proper-subgroup samples
+  against exact enumeration.
 - **How it is useful:** Complements PR #78's high-index ceiling by showing
   that small-index proper subgroups are saturated rather than sparse, leaving
   a narrower intermediate-index window for M1 slope-image bounds.

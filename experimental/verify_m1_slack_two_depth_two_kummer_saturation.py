@@ -52,6 +52,16 @@ def principal_open_count(p: int) -> int:
     return count
 
 
+def degeneracy_line_union_count(p: int) -> int:
+    count = 0
+    for u in range(p):
+        for v in range(p):
+            w = (-1 - u - v) % p
+            if u == 1 or v == 1 or w == 1 or u == v or u == w or v == w:
+                count += 1
+    return count
+
+
 def square_coset_counts(p: int, domain: Sequence[int]) -> Tuple[int, int]:
     domain_set = set(domain)
     square_image = {x * x % p for x in domain}
@@ -85,6 +95,9 @@ def main() -> None:
         principal_count = principal_open_count(p)
         if principal_count != int(certificate["principal_exact_count"]):
             raise AssertionError((p, n, principal_count, certificate))
+        degeneracy_count = degeneracy_line_union_count(p)
+        if degeneracy_count != int(certificate["degeneracy_line_union_count"]):
+            raise AssertionError((p, n, degeneracy_count, certificate))
         nonzero_coset_count, total_coset_count = square_coset_counts(p, domain)
         saturates = nonzero_coset_count == total_coset_count
         certificate_positive = bool(certificate["saturation_certificate"])
@@ -102,6 +115,7 @@ def main() -> None:
                 certificate["uniform_prime_threshold"],
                 failures,
                 principal_count,
+                degeneracy_count,
                 nonzero_coset_count,
                 total_coset_count,
             )
