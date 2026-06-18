@@ -179,6 +179,41 @@ def raw_two_coordinate_projective_l1_split(
     }
 
 
+def raw_two_coordinate_projective_l1_split_formula(
+    character_order: int,
+    square_coset_index: int,
+) -> dict[str, int]:
+    if square_coset_index % character_order:
+        raise AssertionError((character_order, square_coset_index))
+    e = character_order
+    q = square_coset_index
+    lift = q // e
+    if lift == 1:
+        if e % 2:
+            infinity_unramified = (e - 1) * (e - 2)
+            projective_reciprocal = 3 * (e - 1) * (e - 2)
+        else:
+            infinity_unramified = (e - 1) * (e - 2) + 1
+            projective_reciprocal = 3 * (e - 2) * (e - 2)
+            if e % 4 == 0:
+                projective_reciprocal += 2
+    elif lift == 2:
+        infinity_unramified = (e - 1) * (2 * e - 3)
+        projective_reciprocal = 6 * (e - 1) * (e - 2)
+        if e % 2 == 0:
+            projective_reciprocal += 2
+    else:
+        raise AssertionError((character_order, square_coset_index, lift))
+    total = (e - 1) * (e - 1) * (q - 1)
+    return {
+        "infinity_unramified": 3 * infinity_unramified,
+        "projective_reciprocal": 3 * projective_reciprocal,
+        "ramified_nonreciprocal": (
+            3 * (total - infinity_unramified - projective_reciprocal)
+        ),
+    }
+
+
 def principal_open_count(p: int) -> int:
     count = 0
     for u in range(p):
@@ -543,6 +578,21 @@ def main() -> None:
             int(certificate["character_order"]),
             square_coset_index,
         )
+        two_coordinate_projective_formula = (
+            raw_two_coordinate_projective_l1_split_formula(
+                int(certificate["character_order"]),
+                square_coset_index,
+            )
+        )
+        if two_coordinate_projective_split != two_coordinate_projective_formula:
+            raise AssertionError(
+                (
+                    p,
+                    n,
+                    two_coordinate_projective_split,
+                    two_coordinate_projective_formula,
+                )
+            )
         two_coordinate_infinity_unramified_l1_bound = int(
             two_coordinate_projective_split["infinity_unramified"]
         )

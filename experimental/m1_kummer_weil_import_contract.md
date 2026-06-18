@@ -190,7 +190,7 @@ not yet used in the certificates because it still needs the appropriate clean
 normal-crossing Kummer cohomology theorem.
 
 The infinity-unramified subfamily `mu nu eta^2=1` no longer needs that
-import. The ratio substitution `v=tu`, followed by `s=1/u`, reduces its core
+import. The ratio substitution `u=tv`, followed by `r=1/v`, reduces its core
 to two genus-zero sums on `P^1_t`; the resulting bound is
 `2p+2 sqrt(p)` for the core plus the same `3 sqrt(p)` removed-line
 correction. This proof is isolated in

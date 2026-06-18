@@ -2057,36 +2057,37 @@ def depth_two_open_sqrt_error_bound(
     )
 
 
-def raw_two_coordinate_projective_l1_split(
+def raw_two_coordinate_projective_l1_split_formula(
     character_order: int,
     square_coset_index: int,
 ) -> Dict[str, int]:
-    """Split raw two-coordinate terms by projective line monodromy."""
+    """Closed-form raw two-coordinate projective line-monodromy split."""
 
     if character_order < 1 or square_coset_index % character_order:
         raise ValueError((character_order, square_coset_index))
-    lift = square_coset_index // character_order
-    infinity_unramified = 0
-    projective_reciprocal = 0
-    ramified_nonreciprocal = 0
-    for first_exponent in range(1, character_order):
-        for second_exponent in range(1, character_order):
-            for conic_exponent in range(1, square_coset_index):
-                first = lift * first_exponent
-                second = lift * second_exponent
-                infinity = (-(first + second + 2 * conic_exponent)) % (
-                    square_coset_index
-                )
-                if infinity == 0:
-                    infinity_unramified += 1
-                elif (
-                    (first + second) % square_coset_index == 0
-                    or (first + infinity) % square_coset_index == 0
-                    or (second + infinity) % square_coset_index == 0
-                ):
-                    projective_reciprocal += 1
-                else:
-                    ramified_nonreciprocal += 1
+    e = character_order
+    q = square_coset_index
+    lift = q // e
+    if lift == 1:
+        if e % 2:
+            infinity_unramified = (e - 1) * (e - 2)
+            projective_reciprocal = 3 * (e - 1) * (e - 2)
+        else:
+            infinity_unramified = (e - 1) * (e - 2) + 1
+            projective_reciprocal = 3 * (e - 2) * (e - 2)
+            if e % 4 == 0:
+                projective_reciprocal += 2
+    elif lift == 2:
+        infinity_unramified = (e - 1) * (2 * e - 3)
+        projective_reciprocal = 6 * (e - 1) * (e - 2)
+        if e % 2 == 0:
+            projective_reciprocal += 2
+    else:
+        raise ValueError((character_order, square_coset_index, lift))
+    total = (e - 1) * (e - 1) * (q - 1)
+    ramified_nonreciprocal = (
+        total - infinity_unramified - projective_reciprocal
+    )
     active_pair_count = 3
     return {
         "two_coordinate_infinity_unramified_l1_bound": (
@@ -2099,6 +2100,18 @@ def raw_two_coordinate_projective_l1_split(
             active_pair_count * ramified_nonreciprocal
         ),
     }
+
+
+def raw_two_coordinate_projective_l1_split(
+    character_order: int,
+    square_coset_index: int,
+) -> Dict[str, int]:
+    """Split raw two-coordinate terms by projective line monodromy."""
+
+    return raw_two_coordinate_projective_l1_split_formula(
+        character_order,
+        square_coset_index,
+    )
 
 
 def raw_two_coordinate_infinity_unramified_l1_bound(

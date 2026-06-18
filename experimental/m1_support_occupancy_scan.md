@@ -943,6 +943,9 @@ recorded as
 `*_kummer_l1_bound`, while `*_weighted_error_l1_bound` is the linear error
 term and `*_sqrt_error_bound` is the square-root correction used in the
 certificate numerator.
+The raw split is computed by the closed forms recorded in
+`experimental/m1_depth_two_lift_window_theorem.md`, and the verifier compares
+those forms with direct exponent enumeration.
 The `*_principal_exact_count` field records the exact principal open-set
 count
 

@@ -195,6 +195,26 @@ C_2^rec =
         a+b == 0 mod e or ga+2d == 0 mod q or gb+2d == 0 mod q}.
 ```
 
+Since `g` is either `1` or `2`, these counts have closed forms per active
+coordinate pair. If `g=1`, then
+
+```text
+C_2^0/3 =
+  (e-1)(e-2)                  if e is odd,
+  (e-1)(e-2)+1                if e is even,
+
+C_2^rec/3 =
+  3(e-1)(e-2)                 if e is odd,
+  3(e-2)^2 + 2 1_{4|e}        if e is even.
+```
+
+If `g=2`, then
+
+```text
+C_2^0/3 = (e-1)(2e-3),
+C_2^rec/3 = 6(e-1)(e-2) + 2 1_{2|e}.
+```
+
 The raw weighted error is therefore
 
 ```text

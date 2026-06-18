@@ -69,7 +69,10 @@ Keep entries concise and link to the relevant files.
   `(mu nu eta^2)^(-1)` are reciprocal, an affine chart reduces the core to
   the proved reciprocal slice. The raw scanner now also splits this exact
   ramified projective-reciprocal L1 mass and charges it by
-  `4p+3 sqrt(p)`.
+  `4p+3 sqrt(p)`. The raw split is now recorded by closed forms for
+  `q/e=1` and `q/e=2`, with the verifier checking the formulas against direct
+  exponent enumeration. The roadmap records this as the active substep before
+  attacking the remaining ramified nonreciprocal family.
 - **How it is useful:** Removes the ramified slices `nu eta^2=1` and
   `mu eta^2=1` from the unresolved two-coordinate wall, in addition to the
   original `mu nu=1` slice, and improves the raw slack-two Kummer certificate

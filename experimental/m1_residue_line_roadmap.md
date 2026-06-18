@@ -14,7 +14,9 @@ should be revised as the project learns more.
    `nu=mu^{-1}` when they collapse to genus-zero sums, and use the
    two-coordinate projective Euler split `chi=4/2` as the conductor target.
    The `chi=2` infinity-unramified slice is now reduced to genus-zero sums.
-   Projective reciprocal line-pair slices are also reduced.
+   Projective reciprocal line-pair slices are also reduced, and the raw
+   projective L1 masses should stay in closed form so the remaining ramified
+   nonreciprocal target is visible.
 3. Use exact finite audits as guardrails: the current evidence supports a
    possible `4p` target and already obstructs constants below `3.977p`.
 4. After the trace-family wall is closed, generalize to fixed low-slack
