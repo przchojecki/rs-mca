@@ -99,6 +99,8 @@ canonical_slack_two_cyclotomic_slope_bound_check
 canonical_slack_two_cyclotomic_slope_bound_nontrivial
 canonical_slack_three_shape_packet_count_check
 canonical_slack_three_shape_support_slope_histogram_check
+canonical_slack_three_shape_beta_count
+canonical_slack_three_shape_beta_parameter_count_check
 canonical_slack_three_shape_active_nonzero_cube_coset_count
 canonical_slack_three_shape_cube_coset_slope_count
 canonical_slack_three_shape_cube_coset_slope_count_check
@@ -266,9 +268,19 @@ M_3(z) = (1/24) sum_{(u,v) in C_3(D)}
 beta(u,v)=-(1+uvw).
 ```
 
+Equivalently, it checks the one-parameter split-cubic ledger
+
+```text
+G_beta(Y)=Y^3+Y^2+Y+beta+1,
+```
+
+where each admissible `beta` gives three distinct roots in `D\{1}` and hence
+six ordered pairs `(u,v)`.
+
 The `canonical_slack_three_shape_*` fields report the conic parameter count,
-the 24-fold quotient check, reconstructed packet/support counts and
-histograms, and the exact cube-coset slope count
+the beta count and sixfold beta check, the 24-fold quotient check,
+reconstructed packet/support counts and histograms, and the exact cube-coset
+slope count
 `1_{zero active} + #{active nonzero beta(u,v)D^3 cosets} * |D^3|`.
 
 For dithered residues in the range

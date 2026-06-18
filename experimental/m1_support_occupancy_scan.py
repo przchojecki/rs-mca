@@ -529,6 +529,8 @@ def slack_three_first_superboundary_shape_ledger(
     packet_slope_histogram_numerator: Counter[int] = Counter()
     support_slope_histogram_numerator: Counter[int] = Counter()
     zero_slope = False
+    beta_values = set()
+    active_beta_values = set()
     nonzero_cube_cosets = set()
     active_zero_slope = False
     cube_image = {pow(x, 3, p) for x in domain}
@@ -551,6 +553,7 @@ def slack_three_first_superboundary_shape_ledger(
                 continue
             parameter_count += 1
             shape_slope = (-(1 + u * v * w)) % p
+            beta_values.add(shape_slope)
             if shape_slope == 0:
                 zero_slope = True
             else:
@@ -580,6 +583,7 @@ def slack_three_first_superboundary_shape_ledger(
             if lift_count == 0:
                 continue
             active_parameter_count += 1
+            active_beta_values.add(shape_slope)
             if shape_slope == 0:
                 active_zero_parameter_count += 1
                 active_zero_slope = True
@@ -623,6 +627,12 @@ def slack_three_first_superboundary_shape_ledger(
         "parameter_count": parameter_count,
         "active_parameter_count": active_parameter_count,
         "active_zero_parameter_count": active_zero_parameter_count,
+        "beta_count": len(beta_values),
+        "active_beta_count": len(active_beta_values),
+        "beta_parameter_count_check": parameter_count == 6 * len(beta_values),
+        "active_beta_parameter_count_check": (
+            active_parameter_count == 6 * len(active_beta_values)
+        ),
         "nonzero_cube_coset_count": len(nonzero_cube_cosets),
         "active_nonzero_cube_coset_count": len(active_nonzero_cube_cosets),
         "total_nonzero_cube_coset_count": total_nonzero_cube_cosets,
@@ -1718,6 +1728,26 @@ def scan_supports(
         ),
         "canonical_slack_three_shape_active_zero_parameter_count": (
             int(slack_three_shape_ledger["active_zero_parameter_count"])
+            if slack_three_shape_ledger is not None
+            else None
+        ),
+        "canonical_slack_three_shape_beta_count": (
+            int(slack_three_shape_ledger["beta_count"])
+            if slack_three_shape_ledger is not None
+            else None
+        ),
+        "canonical_slack_three_shape_active_beta_count": (
+            int(slack_three_shape_ledger["active_beta_count"])
+            if slack_three_shape_ledger is not None
+            else None
+        ),
+        "canonical_slack_three_shape_beta_parameter_count_check": (
+            bool(slack_three_shape_ledger["beta_parameter_count_check"])
+            if slack_three_shape_ledger is not None
+            else None
+        ),
+        "canonical_slack_three_shape_active_beta_parameter_count_check": (
+            bool(slack_three_shape_ledger["active_beta_parameter_count_check"])
             if slack_three_shape_ledger is not None
             else None
         ),

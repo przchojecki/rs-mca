@@ -775,6 +775,27 @@ M_3(z) = (1/24) sum_{(u,v) in C_3(D)}
          binom(N-tau(u,v), L) * #{x in D : x^3 beta(u,v)=z}.
 ```
 
+The conic ledger can be compressed one step further. For a fixed
+`beta in F`, the corresponding normalized shape points are exactly the three
+roots in `D\{1}` of
+
+```text
+G_beta(Y)=Y^3+Y^2+Y+beta+1.
+```
+
+Indeed, once `1` is one point of the packet, the other three roots have
+elementary sums
+
+```text
+u+v+w=-1,        uv+uw+vw=1,        uvw=-(beta+1).
+```
+
+Thus admissible nonordered shapes are indexed by the values `beta` for which
+`G_beta` has three distinct roots in `D\{1}`. Each such `beta` contributes
+exactly six ordered pairs `(u,v)` to `C_3(D)`. In particular the
+two-dimensional conic ledger reduces to a one-parameter split-cubic ledger,
+and the slope cosets are the cube cosets `beta D^3`.
+
 Thus the `T=3`, `|P|=4` residual catalog is reduced to a conic over the
 multiplicative domain plus the cube-image map `x -> x^3` on `D`. Its nonzero
 slope image is exactly a union of cosets `beta(u,v)D^3`; since `D^3` is a
@@ -866,9 +887,9 @@ The resulting non-field-filling test is explicit in `p,n,e`: it identifies
 which subgroup indices are already controlled by the cyclotomic method and
 which low-index cases require a sharper argument or different reserve.
 For `T=3`, the first-superboundary catalog is also no longer a raw support
-enumeration: it is a conic shape set `C_3(D)` and a cube-coset image. This
-extends the low-slack template classification one step beyond the unit
-equation case.
+enumeration: it is a split-cubic beta ledger, equivalently a conic shape set
+`C_3(D)`, and a cube-coset image. This extends the low-slack template
+classification one step beyond the unit equation case.
 
 ## Suggested Next Step
 

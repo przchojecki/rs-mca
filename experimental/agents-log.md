@@ -49,8 +49,9 @@ Keep entries concise and link to the relevant files.
   exact, and the full-domain case has an explicit quadratic-character
   saturation formula. The proper-subgroup coset image also has an exact
   character expansion and a conditional small-index saturation criterion. For
-  `T=3`, the first-superboundary catalog is reduced to a conic shape set and
-  the cube-coset image `beta(u,v)D^3`.
+  `T=3`, the first-superboundary catalog is reduced to a split-cubic beta
+  ledger, equivalently a conic shape set, and the cube-coset image
+  `beta D^3`.
 - **How it is useful:** Turns the first nonzero superboundary catalog from
   support enumeration into a finite multiplicative unit-equation problem plus
   the image of `alpha(C_2(D))` in `F_p^*/D^2`, and extends the same
