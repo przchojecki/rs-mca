@@ -299,6 +299,33 @@ This is still a high-slack theorem, not the final `sigma=Theta(n/log n)`
 local-limit range, but it sharply enlarges the theorem-backed L1 region where
 large aperiodic monomial-prefix fibers cannot occur.
 
+The same parametrization can be read as a standard Reed-Solomon list problem.
+Fix a prefix fiber, choose one complement locator `L_0`, and put
+
+```text
+V_r = {Q in F[X] : deg Q < r},       r = m - sigma.
+```
+
+For `r>0`, the fiber is exactly
+
+```text
+{ Q in V_r : L_0 + Q has exactly m roots in H }.
+```
+
+Equivalently, evaluating on `H`, it is the list of codewords
+`Q|_H` in the dimension-`r` Reed-Solomon code `RS[H,<r]` that agree with
+the received word `-L_0|_H` on exactly `m` positions. Since this code has
+minimum distance `n-r+1`, two listed codewords can agree on at most `r-1`
+positions; the second-moment bound above is precisely the resulting Johnson
+bound for this affine list.
+
+Thus the co-large L1 problem is not only a divisor scan: it is an affine
+low-rate RS list-size problem where the agreement threshold is the complement
+size `m`. The full final L1 conjecture lies outside this Johnson region, but
+the reduction identifies the missing input cleanly: one needs non-Johnson
+local limits for these affine locator cosets after quotient-periodic pieces
+have been budgeted.
+
 The same proof gives a stronger overlap statement. If `r<=0`, every fiber is a
 singleton. If `r>0` and `S,T` are distinct supports in the same
 monomial-prefix fiber, with complements `A=H\S` and `B=H\T`, then
@@ -448,6 +475,8 @@ partitions agree for all supports, checks the exact divisor-gap
 parametrization, certifies the divisor-gap graph component profile, checks the
 co-large packing and field-size upper bounds, checks the growing-width
 co-large envelope and second-moment Plotkin bounds on deterministic parameter
-grids, verifies the co-large fiber separation, records the internal ordered
-exchange and maximum codegree profiles, verifies zero internal M1 high-overlap
-correction, and certifies the three complement-locator dilation orbits.
+grids, checks the affine Reed-Solomon list reduction by enumerating all
+`17^2` low-degree perturbations for every prefix fiber, verifies the co-large
+fiber separation, records the internal ordered exchange and maximum codegree
+profiles, verifies zero internal M1 high-overlap correction, and certifies the
+three complement-locator dilation orbits.

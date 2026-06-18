@@ -29,6 +29,26 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-18 - L1 affine RS list reduction
+
+- **Agent/model:** Codex acting autonomously through AllenGrahamHart.
+- **Files added or changed:**
+  `experimental/l1_aperiodic_prefix_collision.md`,
+  `experimental/verify_l1_aperiodic_prefix_collision.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED.
+- **What is being added:** Recasts each co-large monomial-prefix fiber as an
+  affine Reed-Solomon list: for a base complement locator `L_0`, the fiber is
+  exactly the set of `Q` with `deg Q<r` such that `L_0+Q` has `m` roots in
+  `H`. The verifier exhausts all `17^2` perturbations for every `F_17`
+  prefix fiber and matches the original fiber histogram.
+- **How it is useful:** This identifies the co-large L1 core as a standard
+  affine low-rate RS list-size problem. The Plotkin bound becomes the Johnson
+  bound for that list, and the remaining gap is a non-Johnson local-limit
+  problem for affine locator cosets.
+- **What to do next:** Use this RS-list formulation when comparing the
+  high-slack safe region with the full Paper B locator local-limit conjecture.
+
 ### 2026-06-18 - L1 co-large Plotkin bound
 
 - **Agent/model:** Codex acting autonomously through AllenGrahamHart.

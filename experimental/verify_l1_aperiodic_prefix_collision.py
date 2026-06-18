@@ -110,6 +110,16 @@ def poly_sub(left: list[int], right: list[int]) -> list[int]:
     return trim_poly(out)
 
 
+def poly_add(left: list[int], right: list[int]) -> list[int]:
+    size = max(len(left), len(right))
+    out = [0] * size
+    for index in range(size):
+        left_coeff = left[index] if index < len(left) else 0
+        right_coeff = right[index] if index < len(right) else 0
+        out[index] = (left_coeff + right_coeff) % P
+    return trim_poly(out)
+
+
 def poly_remainder(poly: list[int], divisor: list[int]) -> list[int]:
     rem = trim_poly(poly[:])
     div = trim_poly(divisor[:])
@@ -488,6 +498,72 @@ def co_large_plotkin_report(
     }
 
 
+def affine_rs_list_report(
+    fibers: dict[tuple[int, ...], list[tuple[int, ...]]],
+) -> dict[str, Any]:
+    complement_size = N - AGREEMENT
+    rs_dimension = max(complement_size - SIGMA, 0)
+    if rs_dimension == 0:
+        low_degree_polys = [[]]
+    else:
+        low_degree_polys = [
+            list(coeffs)
+            for coeffs in itertools.product(range(P), repeat=rs_dimension)
+        ]
+
+    list_size_histogram: Counter[int] = Counter()
+    maximum_affine_list_size = 0
+    domain_values = domain()
+
+    for supports in fibers.values():
+        base_locator = locator_polynomial(support_complement(supports[0]))
+        observed_gaps: set[tuple[int, ...]] = set()
+        for support in supports:
+            locator = locator_polynomial(support_complement(support))
+            gap = tuple(poly_sub(locator, base_locator))
+            if poly_degree(list(gap)) >= rs_dimension:
+                raise AssertionError("observed gap is outside RS_r")
+            observed_gaps.add(gap)
+
+        affine_gaps: set[tuple[int, ...]] = set()
+        for gap_poly in low_degree_polys:
+            candidate = poly_add(base_locator, gap_poly)
+            zeros = tuple(
+                value for value in domain_values
+                if poly_eval(candidate, value) == 0
+            )
+            if len(zeros) != complement_size:
+                continue
+            if locator_polynomial(zeros) != candidate:
+                raise AssertionError("affine-list element is not a locator")
+            affine_gaps.add(tuple(trim_poly(gap_poly[:])))
+
+        if affine_gaps != observed_gaps:
+            raise AssertionError("affine RS list does not match prefix fiber")
+        list_size = len(affine_gaps)
+        list_size_histogram[list_size] += 1
+        maximum_affine_list_size = max(maximum_affine_list_size, list_size)
+
+    johnson_case = plotkin_bound_case(N, K, SIGMA)
+    return {
+        "checked": True,
+        "checked_fibers": len(fibers),
+        "rs_dimension": rs_dimension,
+        "agreement": complement_size,
+        "search_space_size": len(low_degree_polys),
+        "list_size_histogram": dict(sorted(list_size_histogram.items())),
+        "maximum_affine_list_size": maximum_affine_list_size,
+        "matches_prefix_fibers": True,
+        "rs_minimum_distance": N - rs_dimension + 1,
+        "johnson_region": {
+            "m_squared": complement_size * complement_size,
+            "n_times_r_minus_one": N * (rs_dimension - 1),
+            "inside": johnson_case["available"],
+            "plotkin_bound_floor": johnson_case["upper_bound_floor"],
+        },
+    }
+
+
 def co_large_separation_report(
     fibers: dict[tuple[int, ...], list[tuple[int, ...]]],
 ) -> dict[str, Any]:
@@ -786,6 +862,7 @@ def build_certificate() -> dict[str, Any]:
     divisor_graph = divisor_gap_graph_report(fibers)
     co_large_bound = co_large_bound_report(fibers)
     co_large_plotkin = co_large_plotkin_report(fibers)
+    affine_rs_list = affine_rs_list_report(fibers)
     co_large_separation = co_large_separation_report(fibers)
     growing_width = growing_width_report()
     complement_orbits = complement_orbit_report(fibers)
@@ -823,6 +900,7 @@ def build_certificate() -> dict[str, Any]:
         "divisor_gap_graph_report": divisor_graph,
         "co_large_bound_report": co_large_bound,
         "co_large_plotkin_report": co_large_plotkin,
+        "affine_rs_list_report": affine_rs_list,
         "co_large_separation_report": co_large_separation,
         "growing_width_report": growing_width,
         "complement_orbit_report": complement_orbits,
@@ -840,6 +918,7 @@ def print_text(cert: dict[str, Any]) -> None:
     divisor_graph = cert["divisor_gap_graph_report"]
     co_large_bound = cert["co_large_bound_report"]
     co_large_plotkin = cert["co_large_plotkin_report"]
+    affine_rs_list = cert["affine_rs_list_report"]
     co_large_separation = cert["co_large_separation_report"]
     growing_width = cert["growing_width_report"]
     complement_orbits = cert["complement_orbit_report"]
@@ -913,6 +992,12 @@ def print_text(cert: dict[str, Any]) -> None:
         f"{plotkin_instance['numerator']}/"
         f"{plotkin_instance['denominator']} "
         f"= {plotkin_instance['upper_bound_floor']}"
+    )
+    print(
+        "affine RS list reduction: "
+        f"dimension {affine_rs_list['rs_dimension']}, "
+        f"search {affine_rs_list['search_space_size']}, "
+        f"histogram {affine_rs_list['list_size_histogram']}"
     )
     print(
         "co-large separation: "
