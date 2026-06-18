@@ -1414,28 +1414,37 @@ deg(u=0), deg(v=0), deg(w=0), deg(A=0) = 1,1,1,2,
 
 so its total degree is `5`. The standard two-variable Kummer-Weil estimate
 for a nontrivial rank-one Kummer sheaf with squarefree divisor of total
-degree `r` gives constant `(r-1)^2`; here this is `(5-1)^2=16`. Thus we use
+degree `r` gives constant `(r-1)^2`. The coarse full-radical constant is
 
 ```text
 |S_{a,b,c,d}| <= 16 p
 ```
 
-for every nonprincipal tuple `(a,b,c,d)`. The remaining admissibility cuts
-`u=1`, `v=1`, `w=1`, `u=v`, `u=w`, and `v=w` form six affine lines. For
-`p>3`, these lines have exact union size `6p-11`, so they remove at most
-`6p-11` points from any fixed coset count. Therefore every nonzero `H`-coset
-is hit by a raw admissible depth-two shape whenever
+when all three coordinate divisors and the conic divisor are active. The
+current scanner uses the sharper radical-degree ledger. The `d=0` Jacobi
+part pays `p`; the `d!=0` coordinate-principal conic part pays `p`; the
+quadratic one-coordinate subcase pays the elementary `4p`; and the remaining
+mixed Kummer terms pay `4p`, `9p`, or `16p` according as exactly one, two, or
+three coordinate divisors are active. With `h=[F_p^*:D^2]`, put
 
 ```text
-p^2 - 4p + 6 + 4 chi(-3) > (22p-11) e^3 h.
+C_1 = 3(e-1)(h-2),
+C_2 = 3(e-1)^2(h-1),
+C_3 = (e-1)^3(h-1),
+E = (e^3-1) + (h-1) + 12(e-1) + 4C_1 + 9C_2 + 16C_3.
 ```
 
-Equivalently, the scanner's integer certificate
+The remaining admissibility cuts `u=1`, `v=1`, `w=1`, `u=v`, `u=w`, and
+`v=w` form six affine lines. For `p>3`, these lines have exact union size
+`6p-11`, so they remove at most `6p-11` points from any fixed coset count.
+Therefore every nonzero `H`-coset is hit by a raw admissible depth-two shape
+whenever
 
 ```text
-ceil((p^2 - 4p + 6 + 4 chi(-3) - (22p-11)e^3 h)/(e^3 h)) > 0
+p^2 - 4p + 6 + 4 chi(-3) > p E + (6p-11)e^3 h.
 ```
 
+Equivalently, the scanner's integer certificate with this weighted error
 forces the raw nonzero depth-two slack-two shape catalog to saturate every
 nonzero `D^2`-coset.
 

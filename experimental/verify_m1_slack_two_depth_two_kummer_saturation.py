@@ -366,6 +366,32 @@ def direct_ambient_window_label_one_coordinate_l1_bound(
     return total
 
 
+def direct_ambient_window_label_coordinate_active_l1_bounds(
+    ambient_character_order: int,
+    quotient_order: int,
+    window_size: int,
+) -> Tuple[int, int, int]:
+    totals = [0, 0, 0, 0]
+    for r in range(ambient_character_order):
+        for s in range(ambient_character_order):
+            for t in range(ambient_character_order):
+                active_count = int(r != 0) + int(s != 0) + int(t != 0)
+                if active_count == 0:
+                    continue
+                totals[active_count] += abs(
+                    quotient_window_label_coefficient(
+                        quotient_order,
+                        window_size,
+                        (
+                            r % quotient_order,
+                            s % quotient_order,
+                            t % quotient_order,
+                        ),
+                    )
+                )
+    return (totals[1], totals[2], totals[3])
+
+
 def kernel_fiber_reduction_counts(
     p: int,
     domain: Sequence[int],
@@ -441,21 +467,43 @@ def main() -> None:
         quadratic_conic_character_count = (
             1 if square_coset_index > 1 and square_coset_index % 2 == 0 else 0
         )
+        coordinate_one_l1_bound = (
+            3 * (int(certificate["character_order"]) - 1)
+        )
+        coordinate_two_l1_bound = (
+            3 * (int(certificate["character_order"]) - 1) ** 2
+        )
+        coordinate_three_l1_bound = (
+            (int(certificate["character_order"]) - 1) ** 3
+        )
         quadratic_one_coordinate_l1_bound = (
-            3
-            * (int(certificate["character_order"]) - 1)
-            * quadratic_conic_character_count
+            coordinate_one_l1_bound * quadratic_conic_character_count
+        )
+        one_coordinate_kummer_l1_bound = coordinate_one_l1_bound * (
+            square_coset_index - 1 - quadratic_conic_character_count
+        )
+        two_coordinate_kummer_l1_bound = (
+            coordinate_two_l1_bound * (square_coset_index - 1)
+        )
+        three_coordinate_kummer_l1_bound = (
+            coordinate_three_l1_bound * (square_coset_index - 1)
         )
         kummer_l1_bound = (
-            jacobi_l1_bound * (square_coset_index - 1)
-            - quadratic_one_coordinate_l1_bound
+            one_coordinate_kummer_l1_bound
+            + two_coordinate_kummer_l1_bound
+            + three_coordinate_kummer_l1_bound
         )
         weighted_error_l1_bound = (
             jacobi_l1_bound
             + conic_l1_bound
             + int(certificate["quadratic_one_coordinate_error_constant"])
             * quadratic_one_coordinate_l1_bound
-            + int(certificate["nonprincipal_constant"]) * kummer_l1_bound
+            + int(certificate["one_coordinate_kummer_error_constant"])
+            * one_coordinate_kummer_l1_bound
+            + int(certificate["two_coordinate_kummer_error_constant"])
+            * two_coordinate_kummer_l1_bound
+            + int(certificate["three_coordinate_kummer_error_constant"])
+            * three_coordinate_kummer_l1_bound
         )
         if (
             jacobi_l1_bound
@@ -475,11 +523,31 @@ def main() -> None:
             raise AssertionError(
                 (p, n, quadratic_one_coordinate_l1_bound, certificate)
             )
+        if one_coordinate_kummer_l1_bound != int(
+            certificate["one_coordinate_kummer_l1_bound"]
+        ):
+            raise AssertionError((p, n, one_coordinate_kummer_l1_bound))
+        if two_coordinate_kummer_l1_bound != int(
+            certificate["two_coordinate_kummer_l1_bound"]
+        ):
+            raise AssertionError((p, n, two_coordinate_kummer_l1_bound))
+        if three_coordinate_kummer_l1_bound != int(
+            certificate["three_coordinate_kummer_l1_bound"]
+        ):
+            raise AssertionError((p, n, three_coordinate_kummer_l1_bound))
         if kummer_l1_bound != int(certificate["kummer_l1_bound"]):
             raise AssertionError((p, n, kummer_l1_bound, certificate))
         if int(certificate["conic_error_constant"]) != 1:
             raise AssertionError((p, n, certificate))
         if int(certificate["quadratic_one_coordinate_error_constant"]) != 4:
+            raise AssertionError((p, n, certificate))
+        if int(certificate["one_coordinate_kummer_error_constant"]) != 4:
+            raise AssertionError((p, n, certificate))
+        if int(certificate["two_coordinate_kummer_error_constant"]) != 9:
+            raise AssertionError((p, n, certificate))
+        if int(certificate["three_coordinate_kummer_error_constant"]) != int(
+            certificate["nonprincipal_constant"]
+        ):
             raise AssertionError((p, n, certificate))
         if weighted_error_l1_bound != int(
             certificate["weighted_error_l1_bound"]
@@ -706,22 +774,48 @@ def main() -> None:
         quadratic_conic_character_count = (
             1 if square_coset_index > 1 and square_coset_index % 2 == 0 else 0
         )
-        quadratic_one_coordinate_l1_bound = (
+        coordinate_one_l1_bound = (
             int(certificate["coefficient_abs_bound"])
             * 3
             * (int(certificate["kernel_character_order"]) - 1)
-            * quadratic_conic_character_count
+        )
+        coordinate_two_l1_bound = (
+            int(certificate["coefficient_abs_bound"])
+            * 3
+            * (int(certificate["kernel_character_order"]) - 1) ** 2
+        )
+        coordinate_three_l1_bound = (
+            int(certificate["coefficient_abs_bound"])
+            * (int(certificate["kernel_character_order"]) - 1) ** 3
+        )
+        quadratic_one_coordinate_l1_bound = (
+            coordinate_one_l1_bound * quadratic_conic_character_count
+        )
+        one_coordinate_kummer_l1_bound = coordinate_one_l1_bound * (
+            square_coset_index - 1 - quadratic_conic_character_count
+        )
+        two_coordinate_kummer_l1_bound = (
+            coordinate_two_l1_bound * (square_coset_index - 1)
+        )
+        three_coordinate_kummer_l1_bound = (
+            coordinate_three_l1_bound * (square_coset_index - 1)
         )
         kummer_l1_bound = (
-            jacobi_l1_bound * (square_coset_index - 1)
-            - quadratic_one_coordinate_l1_bound
+            one_coordinate_kummer_l1_bound
+            + two_coordinate_kummer_l1_bound
+            + three_coordinate_kummer_l1_bound
         )
         weighted_error_l1_bound = (
             jacobi_l1_bound
             + conic_l1_bound
             + int(certificate["quadratic_one_coordinate_error_constant"])
             * quadratic_one_coordinate_l1_bound
-            + int(certificate["nonprincipal_constant"]) * kummer_l1_bound
+            + int(certificate["one_coordinate_kummer_error_constant"])
+            * one_coordinate_kummer_l1_bound
+            + int(certificate["two_coordinate_kummer_error_constant"])
+            * two_coordinate_kummer_l1_bound
+            + int(certificate["three_coordinate_kummer_error_constant"])
+            * three_coordinate_kummer_l1_bound
         )
         if (
             jacobi_l1_bound
@@ -741,11 +835,31 @@ def main() -> None:
             raise AssertionError(
                 (p, n, quadratic_one_coordinate_l1_bound, certificate)
             )
+        if one_coordinate_kummer_l1_bound != int(
+            certificate["one_coordinate_kummer_l1_bound"]
+        ):
+            raise AssertionError((p, n, one_coordinate_kummer_l1_bound))
+        if two_coordinate_kummer_l1_bound != int(
+            certificate["two_coordinate_kummer_l1_bound"]
+        ):
+            raise AssertionError((p, n, two_coordinate_kummer_l1_bound))
+        if three_coordinate_kummer_l1_bound != int(
+            certificate["three_coordinate_kummer_l1_bound"]
+        ):
+            raise AssertionError((p, n, three_coordinate_kummer_l1_bound))
         if kummer_l1_bound != int(certificate["kummer_l1_bound"]):
             raise AssertionError((p, n, kummer_l1_bound, certificate))
         if int(certificate["conic_error_constant"]) != 1:
             raise AssertionError((p, n, certificate))
         if int(certificate["quadratic_one_coordinate_error_constant"]) != 4:
+            raise AssertionError((p, n, certificate))
+        if int(certificate["one_coordinate_kummer_error_constant"]) != 4:
+            raise AssertionError((p, n, certificate))
+        if int(certificate["two_coordinate_kummer_error_constant"]) != 9:
+            raise AssertionError((p, n, certificate))
+        if int(certificate["three_coordinate_kummer_error_constant"]) != int(
+            certificate["nonprincipal_constant"]
+        ):
             raise AssertionError((p, n, certificate))
         if weighted_error_l1_bound != int(
             certificate["weighted_error_l1_bound"]
@@ -962,22 +1076,48 @@ def main() -> None:
         quadratic_conic_character_count = (
             1 if square_coset_index > 1 and square_coset_index % 2 == 0 else 0
         )
-        quadratic_one_coordinate_l1_bound = (
+        coordinate_one_l1_bound = (
             int(certificate["coefficient_abs_bound"])
             * 3
             * (int(certificate["kernel_character_order"]) - 1)
-            * quadratic_conic_character_count
+        )
+        coordinate_two_l1_bound = (
+            int(certificate["coefficient_abs_bound"])
+            * 3
+            * (int(certificate["kernel_character_order"]) - 1) ** 2
+        )
+        coordinate_three_l1_bound = (
+            int(certificate["coefficient_abs_bound"])
+            * (int(certificate["kernel_character_order"]) - 1) ** 3
+        )
+        quadratic_one_coordinate_l1_bound = (
+            coordinate_one_l1_bound * quadratic_conic_character_count
+        )
+        one_coordinate_kummer_l1_bound = coordinate_one_l1_bound * (
+            square_coset_index - 1 - quadratic_conic_character_count
+        )
+        two_coordinate_kummer_l1_bound = (
+            coordinate_two_l1_bound * (square_coset_index - 1)
+        )
+        three_coordinate_kummer_l1_bound = (
+            coordinate_three_l1_bound * (square_coset_index - 1)
         )
         kummer_l1_bound = (
-            jacobi_l1_bound * (square_coset_index - 1)
-            - quadratic_one_coordinate_l1_bound
+            one_coordinate_kummer_l1_bound
+            + two_coordinate_kummer_l1_bound
+            + three_coordinate_kummer_l1_bound
         )
         weighted_error_l1_bound = (
             jacobi_l1_bound
             + conic_l1_bound
             + int(certificate["quadratic_one_coordinate_error_constant"])
             * quadratic_one_coordinate_l1_bound
-            + int(certificate["nonprincipal_constant"]) * kummer_l1_bound
+            + int(certificate["one_coordinate_kummer_error_constant"])
+            * one_coordinate_kummer_l1_bound
+            + int(certificate["two_coordinate_kummer_error_constant"])
+            * two_coordinate_kummer_l1_bound
+            + int(certificate["three_coordinate_kummer_error_constant"])
+            * three_coordinate_kummer_l1_bound
         )
         if (
             jacobi_l1_bound
@@ -997,11 +1137,31 @@ def main() -> None:
             raise AssertionError(
                 (p, n, quadratic_one_coordinate_l1_bound, certificate)
             )
+        if one_coordinate_kummer_l1_bound != int(
+            certificate["one_coordinate_kummer_l1_bound"]
+        ):
+            raise AssertionError((p, n, one_coordinate_kummer_l1_bound))
+        if two_coordinate_kummer_l1_bound != int(
+            certificate["two_coordinate_kummer_l1_bound"]
+        ):
+            raise AssertionError((p, n, two_coordinate_kummer_l1_bound))
+        if three_coordinate_kummer_l1_bound != int(
+            certificate["three_coordinate_kummer_l1_bound"]
+        ):
+            raise AssertionError((p, n, three_coordinate_kummer_l1_bound))
         if kummer_l1_bound != int(certificate["kummer_l1_bound"]):
             raise AssertionError((p, n, kummer_l1_bound, certificate))
         if int(certificate["conic_error_constant"]) != 1:
             raise AssertionError((p, n, certificate))
         if int(certificate["quadratic_one_coordinate_error_constant"]) != 4:
+            raise AssertionError((p, n, certificate))
+        if int(certificate["one_coordinate_kummer_error_constant"]) != 4:
+            raise AssertionError((p, n, certificate))
+        if int(certificate["two_coordinate_kummer_error_constant"]) != 9:
+            raise AssertionError((p, n, certificate))
+        if int(certificate["three_coordinate_kummer_error_constant"]) != int(
+            certificate["nonprincipal_constant"]
+        ):
             raise AssertionError((p, n, certificate))
         if weighted_error_l1_bound != int(
             certificate["weighted_error_l1_bound"]
@@ -1184,12 +1344,33 @@ def main() -> None:
                 remaining_fibers,
             )
         )
+        (
+            quotient_active_one_l1_bound,
+            quotient_active_two_l1_bound,
+            quotient_active_three_l1_bound,
+        ) = direct_ambient_window_label_coordinate_active_l1_bounds(
+            int(certificate["kernel_character_order"]),
+            quotient_order,
+            remaining_fibers,
+        )
+        if quotient_active_one_l1_bound != quotient_one_coordinate_l1_bound:
+            raise AssertionError(
+                (p, n, quotient_active_one_l1_bound, certificate)
+            )
         if quotient_one_coordinate_l1_bound != int(
             certificate["quotient_one_coordinate_l1_bound"]
         ):
             raise AssertionError(
                 (p, n, quotient_one_coordinate_l1_bound, certificate)
             )
+        if quotient_active_two_l1_bound != int(
+            certificate["quotient_two_coordinate_l1_bound"]
+        ):
+            raise AssertionError((p, n, quotient_active_two_l1_bound))
+        if quotient_active_three_l1_bound != int(
+            certificate["quotient_three_coordinate_l1_bound"]
+        ):
+            raise AssertionError((p, n, quotient_active_three_l1_bound))
         if bool(certificate["quotient_l1_exact"]) != bool(quotient_l1["exact"]):
             raise AssertionError((p, n, quotient_l1, certificate))
         coefficient_l1_bound = direct_ambient_window_label_l1_bound(
@@ -1228,15 +1409,33 @@ def main() -> None:
         quadratic_one_coordinate_l1_bound = (
             quotient_one_coordinate_l1_bound * quadratic_conic_character_count
         )
-        kummer_l1_bound = jacobi_l1_bound * (
+        one_coordinate_kummer_l1_bound = quotient_active_one_l1_bound * (
+            int(certificate["square_coset_index"])
+            - 1
+            - quadratic_conic_character_count
+        )
+        two_coordinate_kummer_l1_bound = quotient_active_two_l1_bound * (
             int(certificate["square_coset_index"]) - 1
-        ) - quadratic_one_coordinate_l1_bound
+        )
+        three_coordinate_kummer_l1_bound = quotient_active_three_l1_bound * (
+            int(certificate["square_coset_index"]) - 1
+        )
+        kummer_l1_bound = (
+            one_coordinate_kummer_l1_bound
+            + two_coordinate_kummer_l1_bound
+            + three_coordinate_kummer_l1_bound
+        )
         weighted_error_l1_bound = (
             jacobi_l1_bound
             + conic_l1_bound
             + int(certificate["quadratic_one_coordinate_error_constant"])
             * quadratic_one_coordinate_l1_bound
-            + int(certificate["nonprincipal_constant"]) * kummer_l1_bound
+            + int(certificate["one_coordinate_kummer_error_constant"])
+            * one_coordinate_kummer_l1_bound
+            + int(certificate["two_coordinate_kummer_error_constant"])
+            * two_coordinate_kummer_l1_bound
+            + int(certificate["three_coordinate_kummer_error_constant"])
+            * three_coordinate_kummer_l1_bound
         )
         if (
             jacobi_l1_bound
@@ -1256,11 +1455,31 @@ def main() -> None:
             raise AssertionError(
                 (p, n, quadratic_one_coordinate_l1_bound, certificate)
             )
+        if one_coordinate_kummer_l1_bound != int(
+            certificate["one_coordinate_kummer_l1_bound"]
+        ):
+            raise AssertionError((p, n, one_coordinate_kummer_l1_bound))
+        if two_coordinate_kummer_l1_bound != int(
+            certificate["two_coordinate_kummer_l1_bound"]
+        ):
+            raise AssertionError((p, n, two_coordinate_kummer_l1_bound))
+        if three_coordinate_kummer_l1_bound != int(
+            certificate["three_coordinate_kummer_l1_bound"]
+        ):
+            raise AssertionError((p, n, three_coordinate_kummer_l1_bound))
         if kummer_l1_bound != int(certificate["kummer_l1_bound"]):
             raise AssertionError((p, n, kummer_l1_bound, certificate))
         if int(certificate["conic_error_constant"]) != 1:
             raise AssertionError((p, n, certificate))
         if int(certificate["quadratic_one_coordinate_error_constant"]) != 4:
+            raise AssertionError((p, n, certificate))
+        if int(certificate["one_coordinate_kummer_error_constant"]) != 4:
+            raise AssertionError((p, n, certificate))
+        if int(certificate["two_coordinate_kummer_error_constant"]) != 9:
+            raise AssertionError((p, n, certificate))
+        if int(certificate["three_coordinate_kummer_error_constant"]) != int(
+            certificate["nonprincipal_constant"]
+        ):
             raise AssertionError((p, n, certificate))
         if weighted_error_l1_bound != int(
             certificate["weighted_error_l1_bound"]
@@ -1278,18 +1497,43 @@ def main() -> None:
             * (int(certificate["kernel_character_order"]) - 1)
             * quadratic_conic_character_count
         )
-        crude_kummer_l1_bound = (
-            crude_jacobi_l1_bound
+        crude_one_coordinate_kummer_l1_bound = (
+            int(certificate["crude_coefficient_abs_bound"])
+            * 3
+            * (int(certificate["kernel_character_order"]) - 1)
+            * (
+                int(certificate["square_coset_index"])
+                - 1
+                - quadratic_conic_character_count
+            )
+        )
+        crude_two_coordinate_kummer_l1_bound = (
+            int(certificate["crude_coefficient_abs_bound"])
+            * 3
+            * (int(certificate["kernel_character_order"]) - 1) ** 2
             * (int(certificate["square_coset_index"]) - 1)
-            - crude_quadratic_one_coordinate_l1_bound
+        )
+        crude_three_coordinate_kummer_l1_bound = (
+            int(certificate["crude_coefficient_abs_bound"])
+            * (int(certificate["kernel_character_order"]) - 1) ** 3
+            * (int(certificate["square_coset_index"]) - 1)
+        )
+        crude_kummer_l1_bound = (
+            crude_one_coordinate_kummer_l1_bound
+            + crude_two_coordinate_kummer_l1_bound
+            + crude_three_coordinate_kummer_l1_bound
         )
         crude_weighted_error_l1_bound = (
             crude_jacobi_l1_bound
             + crude_conic_l1_bound
             + int(certificate["quadratic_one_coordinate_error_constant"])
             * crude_quadratic_one_coordinate_l1_bound
-            + int(certificate["nonprincipal_constant"])
-            * crude_kummer_l1_bound
+            + int(certificate["one_coordinate_kummer_error_constant"])
+            * crude_one_coordinate_kummer_l1_bound
+            + int(certificate["two_coordinate_kummer_error_constant"])
+            * crude_two_coordinate_kummer_l1_bound
+            + int(certificate["three_coordinate_kummer_error_constant"])
+            * crude_three_coordinate_kummer_l1_bound
         )
         if crude_jacobi_l1_bound != int(certificate["crude_jacobi_l1_bound"]):
             raise AssertionError((p, n, crude_jacobi_l1_bound, certificate))
@@ -1306,6 +1550,18 @@ def main() -> None:
                     certificate,
                 )
             )
+        if crude_one_coordinate_kummer_l1_bound != int(
+            certificate["crude_one_coordinate_kummer_l1_bound"]
+        ):
+            raise AssertionError((p, n, crude_one_coordinate_kummer_l1_bound))
+        if crude_two_coordinate_kummer_l1_bound != int(
+            certificate["crude_two_coordinate_kummer_l1_bound"]
+        ):
+            raise AssertionError((p, n, crude_two_coordinate_kummer_l1_bound))
+        if crude_three_coordinate_kummer_l1_bound != int(
+            certificate["crude_three_coordinate_kummer_l1_bound"]
+        ):
+            raise AssertionError((p, n, crude_three_coordinate_kummer_l1_bound))
         if crude_kummer_l1_bound != int(certificate["crude_kummer_l1_bound"]):
             raise AssertionError((p, n, crude_kummer_l1_bound, certificate))
         if crude_weighted_error_l1_bound != int(
@@ -1355,22 +1611,21 @@ def main() -> None:
             direct_quotient_l1_bound_numerator
             // int(certificate["square_coset_index"])
         )
+        direct_jacobi_l1_bound = (
+            direct_quotient_l1_bound - int(certificate["principal_weight"])
+        )
         direct_weighted_error_l1_bound = (
-            direct_quotient_l1_bound
-            - int(certificate["principal_weight"])
+            direct_jacobi_l1_bound
             + int(certificate["principal_weight"])
             * (int(certificate["square_coset_index"]) - 1)
             + int(certificate["quadratic_one_coordinate_error_constant"])
             * quadratic_one_coordinate_l1_bound
-            + int(certificate["nonprincipal_constant"])
-            * (
-                (int(certificate["square_coset_index"]) - 1)
-                * (
-                    direct_quotient_l1_bound
-                    - int(certificate["principal_weight"])
-                )
-                - quadratic_one_coordinate_l1_bound
-            )
+            + int(certificate["one_coordinate_kummer_error_constant"])
+            * one_coordinate_kummer_l1_bound
+            + int(certificate["two_coordinate_kummer_error_constant"])
+            * two_coordinate_kummer_l1_bound
+            + int(certificate["three_coordinate_kummer_error_constant"])
+            * three_coordinate_kummer_l1_bound
         )
         direct_lower_numerator = (
             int(certificate["principal_weight"]) * principal_count

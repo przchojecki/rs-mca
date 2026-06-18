@@ -35,10 +35,14 @@ the rank-one Kummer sheaf with local monodromy vector `(a,b,c,d)` has total
 Frobenius trace bounded by `16p`.
 
 This is the only non-elementary estimate still used by the raw, two-fiber,
-fixed-window, and quotient-window union saturation certificates. It is now
-paid only for mixed terms in which the conic exponent and at least one of the
-three coordinate exponents are nonzero. All later coefficients are finite
-Fourier bookkeeping around this same input.
+fixed-window, and quotient-window union saturation certificates. The current
+ledger applies it with the actual squarefree radical support of each term:
+if exactly `r` coordinate exponents among `a,b,c` are nonzero and `d!=0`,
+then the active radical degree is `r+2` and the corresponding conditional
+constant is `(r+1)^2`. Thus one-coordinate mixed terms pay `4p`,
+two-coordinate mixed terms pay `9p`, and only three-coordinate mixed terms
+pay the full `16p`. All later coefficients are finite Fourier bookkeeping
+around this same input.
 
 When `d=0`, the conic factor is absent and the sum is a three-character
 Jacobi sum:
@@ -104,10 +108,12 @@ by symmetry.
 Thus the additive raw, fixed-window, and two-fiber certificates now pay:
 
 ```text
-d=0, coordinate nonprincipal:              p     (Jacobi)
-d!=0, coordinate principal:                p     (affine conic)
+d=0, coordinate nonprincipal:               p    (Jacobi)
+d!=0, coordinate principal:                 p    (affine conic)
 d quadratic, exactly one coordinate active: 4p   (elementary)
-remaining mixed terms:                     16p   (imported KW_2)
+d!=0, one coordinate active, remaining:     4p   (degree 3 Kummer)
+d!=0, two coordinates active:               9p   (degree 4 Kummer)
+d!=0, three coordinates active:            16p   (degree 5 Kummer)
 ```
 
 ## Audited Hypotheses
@@ -224,10 +230,13 @@ If a later proof supplies
 ```
 
 instead of `16p`, all M1 depth-two certificates remain valid after replacing
-the scanner parameter `nonprincipal_constant=16` by `C`. The verifier already
-checks that the reported radical degree, nontriviality audit, L1 coefficient
+the scanner parameter `nonprincipal_constant=16` by `C` for the
+three-coordinate degree-five part. The one- and two-coordinate Kummer
+constants remain the degree-three and degree-four values `4` and `9` unless a
+future import ledger replaces those separately. The verifier already checks
+that the reported radical degree, nontriviality audit, active-coordinate L1
 ledger, lower numerators, and thresholds are internally consistent for the
-chosen constant.
+chosen constants.
 
 Thus the import dependency is narrow: the rest of PR #79 is finite
 character-expansion algebra, exact quotient-window reduction, and exact L1

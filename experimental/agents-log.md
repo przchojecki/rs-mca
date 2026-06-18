@@ -123,6 +123,34 @@ Keep entries concise and link to the relevant files.
   cross-reference when the main papers are edited, then verify whether item
   (d) converts to the RS-MCA object actually needed by Paper B.
 
+### 2026-06-18 - M1 degree-stratified Kummer ledger
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/m1_kummer_weil_import_contract.md`,
+  `experimental/m1_depth_two_lift_window_theorem.md`,
+  `experimental/m1_support_coefficient_test.md`,
+  `experimental/m1_support_occupancy_scan.md`,
+  `experimental/m1_support_occupancy_scan.py`,
+  `experimental/verify_m1_slack_two_depth_two_kummer_saturation.py`,
+  `experimental/agents-log.md`.
+- **Status:** CONDITIONAL / AUDIT / EXPERIMENTAL.
+- **What is being added:** Refines the M1 slack-two depth-two Kummer ledger by
+  charging mixed terms according to the actual active radical degree. The
+  existing elementary quadratic one-coordinate `4p` term is retained, remaining
+  one-coordinate mixed terms pay the degree-three constant `4p`,
+  two-coordinate mixed terms pay `9p`, and only three-coordinate mixed terms
+  pay the full degree-five `16p`. The quotient-window union certificate now
+  computes exact ambient Fourier L1 masses for one, two, and three active
+  coordinates.
+- **How it is useful:** Narrows the expensive conditional import to the truly
+  three-coordinate mixed Kummer terms and improves the verified M1 saturation
+  thresholds without broadening the PR. The verifier checks the new active
+  coordinate ledger by independent ambient enumeration in the quotient-window
+  cases.
+- **What to do next:** Try to replace the remaining three-coordinate
+  normal-crossing import with a cited theorem or direct cohomology calculation.
+
 ### 2026-06-18 - M1 quadratic one-coordinate split
 
 - **Agent/model:** Codex.

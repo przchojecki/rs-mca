@@ -1863,7 +1863,11 @@ def depth_two_kummer_error_l1_split(
     square_coset_index: int,
     nonprincipal_constant: int,
     coordinate_one_nonprincipal_l1_bound: int = 0,
+    coordinate_two_nonprincipal_l1_bound: int = 0,
+    coordinate_three_nonprincipal_l1_bound: int = 0,
     quadratic_one_coordinate_constant: int = 4,
+    one_coordinate_kummer_constant: int = 4,
+    two_coordinate_kummer_constant: int = 9,
 ) -> Dict[str, int]:
     """Split depth-two character error into proved and imported masses."""
 
@@ -1876,15 +1880,37 @@ def depth_two_kummer_error_l1_split(
         coordinate_one_nonprincipal_l1_bound
         * quadratic_conic_character_count
     )
+    active_coordinate_l1_bound = (
+        coordinate_one_nonprincipal_l1_bound
+        + coordinate_two_nonprincipal_l1_bound
+        + coordinate_three_nonprincipal_l1_bound
+    )
+    if active_coordinate_l1_bound != coordinate_nonprincipal_l1_bound:
+        raise ValueError(
+            "active-coordinate L1 masses must sum to the nonprincipal L1"
+        )
+    one_coordinate_kummer_l1_bound = (
+        coordinate_one_nonprincipal_l1_bound
+        * (square_coset_index - 1 - quadratic_conic_character_count)
+    )
+    two_coordinate_kummer_l1_bound = (
+        coordinate_two_nonprincipal_l1_bound * (square_coset_index - 1)
+    )
+    three_coordinate_kummer_l1_bound = (
+        coordinate_three_nonprincipal_l1_bound * (square_coset_index - 1)
+    )
     kummer_l1_bound = (
-        coordinate_nonprincipal_l1_bound * (square_coset_index - 1)
-        - quadratic_one_coordinate_l1_bound
+        one_coordinate_kummer_l1_bound
+        + two_coordinate_kummer_l1_bound
+        + three_coordinate_kummer_l1_bound
     )
     weighted_error_l1_bound = (
         jacobi_l1_bound
         + conic_l1_bound
         + quadratic_one_coordinate_constant * quadratic_one_coordinate_l1_bound
-        + nonprincipal_constant * kummer_l1_bound
+        + one_coordinate_kummer_constant * one_coordinate_kummer_l1_bound
+        + two_coordinate_kummer_constant * two_coordinate_kummer_l1_bound
+        + nonprincipal_constant * three_coordinate_kummer_l1_bound
     )
     return {
         "jacobi_l1_bound": jacobi_l1_bound,
@@ -1895,6 +1921,16 @@ def depth_two_kummer_error_l1_split(
         "quadratic_one_coordinate_error_constant": (
             quadratic_one_coordinate_constant
         ),
+        "one_coordinate_kummer_l1_bound": one_coordinate_kummer_l1_bound,
+        "one_coordinate_kummer_error_constant": (
+            one_coordinate_kummer_constant
+        ),
+        "two_coordinate_kummer_l1_bound": two_coordinate_kummer_l1_bound,
+        "two_coordinate_kummer_error_constant": (
+            two_coordinate_kummer_constant
+        ),
+        "three_coordinate_kummer_l1_bound": three_coordinate_kummer_l1_bound,
+        "three_coordinate_kummer_error_constant": nonprincipal_constant,
         "kummer_l1_bound": kummer_l1_bound,
         "weighted_error_l1_bound": weighted_error_l1_bound,
     }
@@ -1927,6 +1963,12 @@ def slack_two_second_kummer_saturation_data(
         square_coset_index=square_coset_index,
         nonprincipal_constant=nonprincipal_constant,
         coordinate_one_nonprincipal_l1_bound=3 * (character_order - 1),
+        coordinate_two_nonprincipal_l1_bound=(
+            3 * (character_order - 1) ** 2
+        ),
+        coordinate_three_nonprincipal_l1_bound=(
+            (character_order - 1) ** 3
+        ),
     )
     uniform_prime_threshold = kummer_quadratic_uniform_prime_threshold(
         principal_weight=1,
@@ -2031,6 +2073,14 @@ def slack_two_second_two_fiber_kummer_saturation_data(
         coordinate_one_nonprincipal_l1_bound=(
             coefficient_abs_bound * 3 * (kernel_character_order - 1)
         ),
+        coordinate_two_nonprincipal_l1_bound=(
+            coefficient_abs_bound
+            * 3
+            * (kernel_character_order - 1) ** 2
+        ),
+        coordinate_three_nonprincipal_l1_bound=(
+            coefficient_abs_bound * (kernel_character_order - 1) ** 3
+        ),
     )
     uniform_prime_threshold = kummer_quadratic_uniform_prime_threshold(
         principal_weight,
@@ -2128,6 +2178,14 @@ def slack_two_second_fixed_window_kummer_saturation_data(
         coordinate_one_nonprincipal_l1_bound=(
             coefficient_abs_bound * 3 * (kernel_character_order - 1)
         ),
+        coordinate_two_nonprincipal_l1_bound=(
+            coefficient_abs_bound
+            * 3
+            * (kernel_character_order - 1) ** 2
+        ),
+        coordinate_three_nonprincipal_l1_bound=(
+            coefficient_abs_bound * (kernel_character_order - 1) ** 3
+        ),
     )
     uniform_prime_threshold = kummer_quadratic_uniform_prime_threshold(
         principal_weight,
@@ -2215,6 +2273,50 @@ def quotient_window_label_nonprincipal_bound(
         return max(1, 3 * quotient_order - 6)
     if window_size == 3:
         return max(6, (quotient_order - 2) * (quotient_order - 3))
+    return 0
+
+
+def quotient_label_sum(value: int, quotient_order: int) -> int:
+    return quotient_order - 1 if value % quotient_order == 0 else -1
+
+
+def quotient_window_label_coefficient(
+    quotient_order: int,
+    window_size: int,
+    triple: Tuple[int, int, int],
+) -> int:
+    """Return the quotient-label Fourier coefficient for an R-window union."""
+
+    r, s, t = triple
+    if window_size == 1:
+        return 1
+    if window_size == 2:
+        zero_subset_count = 0
+        frequencies = (r, s, t)
+        for mask in range(1, 8):
+            subset_sum = sum(
+                frequencies[index]
+                for index in range(3)
+                if mask & (1 << index)
+            )
+            if subset_sum % quotient_order == 0:
+                zero_subset_count += 1
+        return zero_subset_count * quotient_order - 6
+    if window_size == 3:
+        full_cube = quotient_order ** 3 if (r, s, t) == (0, 0, 0) else 0
+        distinct_nonzero = (
+            quotient_label_sum(r, quotient_order)
+            * quotient_label_sum(s, quotient_order)
+            * quotient_label_sum(t, quotient_order)
+            - quotient_label_sum(r + s, quotient_order)
+            * quotient_label_sum(t, quotient_order)
+            - quotient_label_sum(r + t, quotient_order)
+            * quotient_label_sum(s, quotient_order)
+            - quotient_label_sum(s + t, quotient_order)
+            * quotient_label_sum(r, quotient_order)
+            + 2 * quotient_label_sum(r + s + t, quotient_order)
+        )
+        return full_cube - distinct_nonzero
     return 0
 
 
@@ -2354,6 +2456,56 @@ def quotient_window_one_coordinate_l1_bound(
     return 3 * (quotient_principal_lift + quotient_nonprincipal_lift)
 
 
+def quotient_window_coordinate_active_l1_bounds(
+    quotient_order: int,
+    window_size: int,
+    ambient_restriction_kernel_count: int,
+) -> Tuple[int, int, int]:
+    """Return exact ambient L1 masses by active coordinate count."""
+
+    if (
+        quotient_order < 1
+        or window_size < 1
+        or ambient_restriction_kernel_count < 1
+    ):
+        return (0, 0, 0)
+
+    totals = [0, 0, 0, 0]
+    for r, s, t in product(range(quotient_order), repeat=3):
+        coefficient_abs = abs(
+            quotient_window_label_coefficient(
+                quotient_order,
+                window_size,
+                (r, s, t),
+            )
+        )
+        if coefficient_abs == 0:
+            continue
+        active_count_weights = [1, 0, 0, 0]
+        for residue in (r, s, t):
+            if residue == 0:
+                zero_choices = 1
+                nonzero_choices = ambient_restriction_kernel_count - 1
+            else:
+                zero_choices = 0
+                nonzero_choices = ambient_restriction_kernel_count
+            next_weights = [0, 0, 0, 0]
+            for active_count, weight in enumerate(active_count_weights):
+                if weight == 0:
+                    continue
+                next_weights[active_count] += weight * zero_choices
+                if active_count < 3:
+                    next_weights[active_count + 1] += (
+                        weight * nonzero_choices
+                    )
+            active_count_weights = next_weights
+        for active_count in range(1, 4):
+            totals[active_count] += (
+                coefficient_abs * active_count_weights[active_count]
+            )
+    return (totals[1], totals[2], totals[3])
+
+
 def slack_two_second_quotient_window_union_kummer_saturation_data(
     p: int,
     domain_order: int,
@@ -2424,13 +2576,30 @@ def slack_two_second_quotient_window_union_kummer_saturation_data(
         effective_window_size,
         ambient_restriction_kernel_count,
     )
+    (
+        quotient_active_one_l1_bound,
+        quotient_active_two_l1_bound,
+        quotient_active_three_l1_bound,
+    ) = quotient_window_coordinate_active_l1_bounds(
+        quotient_order,
+        effective_window_size,
+        ambient_restriction_kernel_count,
+    )
+    if quotient_active_one_l1_bound != quotient_one_coordinate_l1_bound:
+        raise ValueError("quotient one-coordinate L1 formulas disagree")
     error_split = depth_two_kummer_error_l1_split(
         coordinate_principal_weight=label_triple_count,
         coordinate_nonprincipal_l1_bound=coordinate_nonprincipal_l1_bound,
         square_coset_index=square_coset_index,
         nonprincipal_constant=nonprincipal_constant,
         coordinate_one_nonprincipal_l1_bound=(
-            quotient_one_coordinate_l1_bound
+            quotient_active_one_l1_bound
+        ),
+        coordinate_two_nonprincipal_l1_bound=(
+            quotient_active_two_l1_bound
+        ),
+        coordinate_three_nonprincipal_l1_bound=(
+            quotient_active_three_l1_bound
         ),
     )
     crude_coefficient_l1_bound = (
@@ -2445,6 +2614,12 @@ def slack_two_second_quotient_window_union_kummer_saturation_data(
         nonprincipal_constant=nonprincipal_constant,
         coordinate_one_nonprincipal_l1_bound=(
             3 * label_triple_count * (kernel_character_order - 1)
+        ),
+        coordinate_two_nonprincipal_l1_bound=(
+            3 * label_triple_count * (kernel_character_order - 1) ** 2
+        ),
+        coordinate_three_nonprincipal_l1_bound=(
+            label_triple_count * (kernel_character_order - 1) ** 3
         ),
     )
     radical_component_degrees = (1, 1, 1, 2)
@@ -2503,6 +2678,8 @@ def slack_two_second_quotient_window_union_kummer_saturation_data(
             "coefficient_value_histogram"
         ),
         "quotient_one_coordinate_l1_bound": quotient_one_coordinate_l1_bound,
+        "quotient_two_coordinate_l1_bound": quotient_active_two_l1_bound,
+        "quotient_three_coordinate_l1_bound": quotient_active_three_l1_bound,
         "quotient_coefficient_l1_bound": quotient_coefficient_l1_bound,
         "coefficient_l1_bound": coefficient_l1_bound,
         **error_split,
@@ -2513,6 +2690,15 @@ def slack_two_second_quotient_window_union_kummer_saturation_data(
         "crude_conic_l1_bound": crude_error_split["conic_l1_bound"],
         "crude_quadratic_one_coordinate_l1_bound": (
             crude_error_split["quadratic_one_coordinate_l1_bound"]
+        ),
+        "crude_one_coordinate_kummer_l1_bound": (
+            crude_error_split["one_coordinate_kummer_l1_bound"]
+        ),
+        "crude_two_coordinate_kummer_l1_bound": (
+            crude_error_split["two_coordinate_kummer_l1_bound"]
+        ),
+        "crude_three_coordinate_kummer_l1_bound": (
+            crude_error_split["three_coordinate_kummer_l1_bound"]
         ),
         "crude_kummer_l1_bound": crude_error_split["kummer_l1_bound"],
         "crude_weighted_error_l1_bound": (
@@ -5383,6 +5569,33 @@ def scan_supports(
             if slack_two_second_r_window_kummer_saturation is not None
             else None
         ),
+        "canonical_slack_two_second_r_window_kummer_one_coordinate_l1_bound": (
+            int(
+                slack_two_second_r_window_kummer_saturation[
+                    "one_coordinate_kummer_l1_bound"
+                ]
+            )
+            if slack_two_second_r_window_kummer_saturation is not None
+            else None
+        ),
+        "canonical_slack_two_second_r_window_kummer_two_coordinate_l1_bound": (
+            int(
+                slack_two_second_r_window_kummer_saturation[
+                    "two_coordinate_kummer_l1_bound"
+                ]
+            )
+            if slack_two_second_r_window_kummer_saturation is not None
+            else None
+        ),
+        "canonical_slack_two_second_r_window_kummer_three_coordinate_l1_bound": (
+            int(
+                slack_two_second_r_window_kummer_saturation[
+                    "three_coordinate_kummer_l1_bound"
+                ]
+            )
+            if slack_two_second_r_window_kummer_saturation is not None
+            else None
+        ),
         "canonical_slack_two_second_r_window_kummer_kummer_l1_bound": (
             int(slack_two_second_r_window_kummer_saturation["kummer_l1_bound"])
             if slack_two_second_r_window_kummer_saturation is not None
@@ -5588,6 +5801,24 @@ def scan_supports(
             if slack_two_second_r_window_union_kummer_saturation is not None
             else None
         ),
+        "canonical_slack_two_second_r_window_union_kummer_quotient_two_coordinate_l1_bound": (
+            int(
+                slack_two_second_r_window_union_kummer_saturation[
+                    "quotient_two_coordinate_l1_bound"
+                ]
+            )
+            if slack_two_second_r_window_union_kummer_saturation is not None
+            else None
+        ),
+        "canonical_slack_two_second_r_window_union_kummer_quotient_three_coordinate_l1_bound": (
+            int(
+                slack_two_second_r_window_union_kummer_saturation[
+                    "quotient_three_coordinate_l1_bound"
+                ]
+            )
+            if slack_two_second_r_window_union_kummer_saturation is not None
+            else None
+        ),
         "canonical_slack_two_second_r_window_union_kummer_coefficient_l1_bound": (
             int(
                 slack_two_second_r_window_union_kummer_saturation[
@@ -5619,6 +5850,33 @@ def scan_supports(
             int(
                 slack_two_second_r_window_union_kummer_saturation[
                     "quadratic_one_coordinate_l1_bound"
+                ]
+            )
+            if slack_two_second_r_window_union_kummer_saturation is not None
+            else None
+        ),
+        "canonical_slack_two_second_r_window_union_kummer_one_coordinate_l1_bound": (
+            int(
+                slack_two_second_r_window_union_kummer_saturation[
+                    "one_coordinate_kummer_l1_bound"
+                ]
+            )
+            if slack_two_second_r_window_union_kummer_saturation is not None
+            else None
+        ),
+        "canonical_slack_two_second_r_window_union_kummer_two_coordinate_l1_bound": (
+            int(
+                slack_two_second_r_window_union_kummer_saturation[
+                    "two_coordinate_kummer_l1_bound"
+                ]
+            )
+            if slack_two_second_r_window_union_kummer_saturation is not None
+            else None
+        ),
+        "canonical_slack_two_second_r_window_union_kummer_three_coordinate_l1_bound": (
+            int(
+                slack_two_second_r_window_union_kummer_saturation[
+                    "three_coordinate_kummer_l1_bound"
                 ]
             )
             if slack_two_second_r_window_union_kummer_saturation is not None
@@ -5667,6 +5925,33 @@ def scan_supports(
             int(
                 slack_two_second_r_window_union_kummer_saturation[
                     "crude_quadratic_one_coordinate_l1_bound"
+                ]
+            )
+            if slack_two_second_r_window_union_kummer_saturation is not None
+            else None
+        ),
+        "canonical_slack_two_second_r_window_union_kummer_crude_one_coordinate_l1_bound": (
+            int(
+                slack_two_second_r_window_union_kummer_saturation[
+                    "crude_one_coordinate_kummer_l1_bound"
+                ]
+            )
+            if slack_two_second_r_window_union_kummer_saturation is not None
+            else None
+        ),
+        "canonical_slack_two_second_r_window_union_kummer_crude_two_coordinate_l1_bound": (
+            int(
+                slack_two_second_r_window_union_kummer_saturation[
+                    "crude_two_coordinate_kummer_l1_bound"
+                ]
+            )
+            if slack_two_second_r_window_union_kummer_saturation is not None
+            else None
+        ),
+        "canonical_slack_two_second_r_window_union_kummer_crude_three_coordinate_l1_bound": (
+            int(
+                slack_two_second_r_window_union_kummer_saturation[
+                    "crude_three_coordinate_kummer_l1_bound"
                 ]
             )
             if slack_two_second_r_window_union_kummer_saturation is not None
@@ -5784,6 +6069,33 @@ def scan_supports(
             int(
                 slack_two_second_kummer_saturation[
                     "quadratic_one_coordinate_l1_bound"
+                ]
+            )
+            if slack_two_second_kummer_saturation is not None
+            else None
+        ),
+        "canonical_slack_two_second_kummer_one_coordinate_l1_bound": (
+            int(
+                slack_two_second_kummer_saturation[
+                    "one_coordinate_kummer_l1_bound"
+                ]
+            )
+            if slack_two_second_kummer_saturation is not None
+            else None
+        ),
+        "canonical_slack_two_second_kummer_two_coordinate_l1_bound": (
+            int(
+                slack_two_second_kummer_saturation[
+                    "two_coordinate_kummer_l1_bound"
+                ]
+            )
+            if slack_two_second_kummer_saturation is not None
+            else None
+        ),
+        "canonical_slack_two_second_kummer_three_coordinate_l1_bound": (
+            int(
+                slack_two_second_kummer_saturation[
+                    "three_coordinate_kummer_l1_bound"
                 ]
             )
             if slack_two_second_kummer_saturation is not None
@@ -6030,6 +6342,33 @@ def scan_supports(
             int(
                 slack_two_second_two_fiber_kummer_saturation[
                     "quadratic_one_coordinate_l1_bound"
+                ]
+            )
+            if slack_two_second_two_fiber_kummer_saturation is not None
+            else None
+        ),
+        "canonical_slack_two_second_two_fiber_kummer_one_coordinate_l1_bound": (
+            int(
+                slack_two_second_two_fiber_kummer_saturation[
+                    "one_coordinate_kummer_l1_bound"
+                ]
+            )
+            if slack_two_second_two_fiber_kummer_saturation is not None
+            else None
+        ),
+        "canonical_slack_two_second_two_fiber_kummer_two_coordinate_l1_bound": (
+            int(
+                slack_two_second_two_fiber_kummer_saturation[
+                    "two_coordinate_kummer_l1_bound"
+                ]
+            )
+            if slack_two_second_two_fiber_kummer_saturation is not None
+            else None
+        ),
+        "canonical_slack_two_second_two_fiber_kummer_three_coordinate_l1_bound": (
+            int(
+                slack_two_second_two_fiber_kummer_saturation[
+                    "three_coordinate_kummer_l1_bound"
                 ]
             )
             if slack_two_second_two_fiber_kummer_saturation is not None

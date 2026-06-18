@@ -130,8 +130,11 @@ The same contract also proves two elementary `p`-bound subcases: the `d=0`
 Jacobi part and the `d!=0` conic-only part with coordinate characters
 principal. In the additive raw, fixed-window, and two-fiber ledgers, it also
 proves a `4p` bound for the subcase where the conic character is quadratic
-and exactly one coordinate character is nonprincipal. The imported `16p`
-Kummer estimate is paid only for the remaining mixed terms.
+and exactly one coordinate character is nonprincipal. The conditional Kummer
+import is now charged by the actual radical degree: remaining one-coordinate
+mixed terms have degree `1+2` and pay `4p`, two-coordinate mixed terms have
+degree `1+1+2` and pay `9p`, and only three-coordinate mixed terms have
+degree `1+1+1+2` and pay `16p`.
 
 For the raw normalized catalog on `D`, the verifier audits the character
 expansion, the divisor nontriviality, the exact principal open-set count
@@ -144,10 +147,18 @@ and the exact six-line distinctness loss `6p-11`. With
 `e=[F_p^*:D]` and `q=[F_p^*:D^2]`, the nonprincipal expansion splits into
 the proved Jacobi part `e^3-1`, the proved conic-only part `q-1`, and the
 proved quadratic one-coordinate part `3(e-1)`. The remaining mixed Kummer
-part has L1
+L1 is stratified by active coordinate count:
 
 ```text
-(e^3-1)(q-1) - 3(e-1).
+C_1 = 3(e-1)(q-2),
+C_2 = 3(e-1)^2(q-1),
+C_3 = (e-1)^3(q-1).
+```
+
+The raw weighted error is therefore
+
+```text
+(e^3-1) + (q-1) + 12(e-1) + 4C_1 + 9C_2 + 16C_3.
 ```
 
 For a fixed quotient window `W` of size `R`, let
@@ -166,8 +177,10 @@ bound are `R^3`. Hence the conservative lower numerator for a fixed
 `D^2`-coset is obtained by putting
 
 ```text
-M_{h,q} = (h^3-1) + (q-1) + 12(h-1)
-          + 16((h^3-1)(q-1) - 3(h-1)).
+M_{h,q} = (h^3-1) + (q-1)
+          + 12(h-1)(q-1)
+          + 27(h-1)^2(q-1)
+          + 16(h-1)^3(q-1).
 ```
 
 It is
@@ -302,34 +315,36 @@ Thus `S_3=e^3` times the resulting absolute coefficient sum. After the
 E_R <= q S_R - T_R(N).
 ```
 
-The one-coordinate part of the quotient-window L1 also separates exactly.
-Let
+The active-coordinate parts of the quotient-window L1 also separate exactly.
+Let `O_{R,j}` be the ambient L1 mass of quotient-label Fourier coefficients
+with exactly `j` nonprincipal coordinate characters. For `j=1`, this is
 
 ```text
-O_R = 3((e-1)T_R(N) + e sum_{a in Q^*} |c_R(a,0,0)|),
+O_{R,1} = 3((e-1)T_R(N) + e sum_{a in Q^*} |c_R(a,0,0)|),
 ```
 
 where `c_R` is the quotient-label Fourier coefficient. Equivalently,
 
 ```text
-O_1 = 3(h-1),
-O_2 = 3((e-1)(7N-6) + e(N-1)(3N-6)),
-O_3 = 3((e-1)T_3(N) + e(N-1)(N-2)(N-3)).
+O_{1,1} = 3(h-1),
+O_{2,1} = 3((e-1)(7N-6) + e(N-1)(3N-6)),
+O_{3,1} = 3((e-1)T_3(N) + e(N-1)(N-2)(N-3)).
 ```
 
-The first term in `O_R` counts ambient characters that are nontrivial on the
-kernel but quotient-principal; the second counts nonprincipal quotient
-characters.
+The first term in `O_{R,1}` counts ambient characters that are nontrivial on
+the kernel but quotient-principal; the second counts nonprincipal quotient
+characters. The verifier computes `O_{R,2}` and `O_{R,3}` by exact ambient
+quotient-Fourier enumeration, and checks
+`O_{R,1}+O_{R,2}+O_{R,3}=S_R-T_R(N)`.
 
 The Jacobi/conic/Kummer split is sharper than applying the `16p` bound to all
 of `E_R`: the `d=0` part has L1 at most `S_R-T_R(N)`, the conic-only
 `d!=0` part has L1 at most `(q-1)T_R(N)`, and the mixed `d!=0` part has L1
-at most `(q-1)(S_R-T_R(N))`. The quadratic one-coordinate subcase has L1 at
-most `O_R`. Put
+at most `(q-1)(S_R-T_R(N))`, split by active coordinate count. Put
 
 ```text
 W_R = (S_R-T_R(N)) + (q-1)T_R(N)
-      + 4O_R + 16((q-1)(S_R-T_R(N)) - O_R).
+      + (q-1)(4O_{R,1} + 9O_{R,2} + 16O_{R,3}).
 ```
 
 Thus the conservative lower numerator for the whole active union is
