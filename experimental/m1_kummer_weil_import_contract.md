@@ -301,9 +301,10 @@ The corrected equal-line conductor ledger charges the residual part of this
 submass by `3p`, but the full two-coordinate open sum also contains the
 Jacobi term.  Thus the certificate-facing replacement is `4p+3sqrt(p)`
 instead of `9p`, dropping the leading L1 weight by `5C_2^eq` and adding
-square-root L1 mass `3C_2^eq`.  The present certificates still leave the
-constants unchanged until this standard `2F1` local-monodromy import is
-accepted as theorem-grade.
+square-root L1 mass `3C_2^eq`.  The verifier reports this as a conditional
+alternative ledger, while the active certificate constants stay unchanged
+until this standard `2F1` local-monodromy import is accepted as
+theorem-grade.
 
 ### `2F1` Local-Monodromy Import Consumed by the Equal-Line Audit
 
@@ -354,7 +355,8 @@ costs one tame conductor unit.  This is the sole imported fact behind the
 corrected rank-two ledgers `1+2+2+2=7` and `1+2+2+2+0=7`, and the
 rank-four pushforward ledger `2+1+2+2+4=11`.  It does not by itself change
 the active certificate constants; it records the exact theorem that must be
-accepted before the audited `C_2^eq` improvement is consumed.
+accepted before the audited `C_2^eq` improvement is promoted from the
+conditional ledger into the consumed certificate.
 
 The finite audit
 

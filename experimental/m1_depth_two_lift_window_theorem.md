@@ -249,9 +249,10 @@ two-coordinate term by
 
 Equivalently, the leading L1 weight drops by `5C_2^eq`.  The corresponding
 square-root mass is `3C_2^eq`: one unit from the Jacobi part and two from
-the exceptional `B(s)=0` fibers.  The current certificate code does not yet
-consume this improvement because the local-monodromy citation still needs to
-be recorded as a clean import.
+the exceptional `B(s)=0` fibers.  The certificate code now reports this as a
+separate conditional ledger, but the active `saturation_certificate` remains
+the conservative one until the local-monodromy import is accepted as
+theorem-grade.
 
 The currently consumed square-root correction has L1 mass
 

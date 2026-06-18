@@ -29,6 +29,28 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-18 - M1 equal-line conditional certificate ledger
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/m1_support_occupancy_scan.py`,
+  `experimental/verify_m1_slack_two_depth_two_kummer_saturation.py`,
+  `experimental/m1_depth_two_lift_window_theorem.md`,
+  `experimental/m1_kummer_weil_import_contract.md`,
+  `experimental/m1_residue_line_roadmap.md`,
+  `experimental/agents-log.md`.
+- **Status:** CONDITIONAL / AUDIT.
+- **What is being added:** The raw slack-two depth-two certificate now reports
+  a separate conditional equal-line ledger: the audited `C_2^eq` submass
+  drops the leading L1 weight by `5C_2^eq` and adds square-root mass
+  `3C_2^eq`.
+- **How it is useful:** Quantifies the exact certificate impact of accepting
+  the equal-line `2F1` local-monodromy import without changing the active
+  conservative `saturation_certificate`.
+- **What to do next:** After review of the local-monodromy import, decide
+  whether to promote the conditional equal-line ledger into the consumed raw
+  certificate constants.
+
 ### 2026-06-18 - M1 `2F1` local table import contract
 
 - **Agent/model:** Codex.

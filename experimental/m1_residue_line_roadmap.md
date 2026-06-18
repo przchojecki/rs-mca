@@ -58,9 +58,8 @@ should be revised as the project learns more.
    two-coordinate wall still has to be reduced to this or another tractable
    slice. The raw certificate now has an audited equal-line diagonal submass
    `C_2^eq = 3 #{a,d : 3ga+2d=0, 2ga != 0}`, so the next certificate step is
-   to get reviewer acceptance of the recorded `2F1` local table, then attach
-   the equal-line full-open-sum import `4p+3sqrt(p)` and subtract `5C_2^eq`
-   from the current leading `9p` ledger.
+   to get reviewer acceptance of the recorded `2F1` local table, then promote
+   the reported conditional equal-line ledger into the consumed certificate.
 4. After the trace-family wall is closed, generalize to fixed low-slack
    templates, then separate tangent, quotient-periodic, finite-template, and
    genuinely aperiodic packing.
