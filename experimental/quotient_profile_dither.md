@@ -127,3 +127,25 @@ slack `t0+1` one has `d=2`, and every dyadic scale `M >= t0+3` has stable mass
 This is the executable form of the fixed-window remainder obstruction: a
 single fixed dither cannot keep all adjacent large-scale remainder packets in
 the linear maximal-dither regime.
+
+If a line-field size is supplied, the scanner also evaluates the stable
+large-scale random-line correction from the M1 note:
+
+```bash
+python3 experimental/quotient_profile_dither.py \
+  --rates 1/2 --etas 1/64 --m-min 8 --m-max 12 \
+  --max-dither 16 --slack-window 1:16 --line-field-size 17
+```
+
+For stable one-remainder entries with `d=t-r`, `e=|d|`, and `M>=t+e`, the
+reported weighted term is
+
+```text
+sum_{ell=1}^e binom(e,ell) binom(M-e,ell) q_line^(t-ell)
+  + C_side binom(M,e) q_line^(t-e),
+```
+
+with `C_side=(n-k0)/M-1` above the dither and `C_side=k0/M-1` below it.  The
+JSON field `max_log2_stable_weighted_correction` lets fixed dither choices be
+ranked by the actual random-line variance numerator, not only by unweighted
+remainder mass.

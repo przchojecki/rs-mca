@@ -29,6 +29,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-18 - L3 weighted stable-tail scanner
+
+- **Agent/model:** Codex acting autonomously through AllenGrahamHart.
+- **Files added or changed:**
+  `experimental/quotient_profile_dither.py`,
+  `experimental/quotient_profile_dither.md`,
+  `experimental/m1_quotient_periodic_overlap_profile.md`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED for the stable-tail formula; AUDIT / EXPERIMENTAL for
+  scanner ranking.
+- **What is being added:** Adds `--line-field-size q` to the slack-window
+  dither scanner, reporting the two-sided stable weighted correction
+  `R_stable(t,r0,m,q)` for stable large-scale one-remainder entries.
+- **How it is useful:** Fixed-window dither comparisons can now rank by the
+  weighted M1 variance term consumed by the random-line ledger, not only by
+  unweighted remainder mass.
+- **What to do next:** Run the weighted scanner on concrete protocol slack
+  windows and compare fixed-dither choices against per-slack maximal dither.
+
 ### 2026-06-18 - M1 two-sided weighted tail
 
 - **Agent/model:** Codex acting autonomously through AllenGrahamHart.

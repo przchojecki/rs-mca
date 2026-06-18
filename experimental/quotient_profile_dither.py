@@ -108,10 +108,13 @@ class RemainderWindowEntry:
     log2_strict_codegree_mass: float
     large_fiber_formula: bool
     stable_large_scale_formula: bool
+    stable_tail_side: Optional[str]
+    stable_weighted_correction: Optional[int]
+    log2_stable_weighted_correction: Optional[float]
     dither_gap: int
 
     def to_json(self) -> Dict[str, object]:
-        return {
+        result: Dict[str, object] = {
             "slack": self.slack,
             "M_coset_size": self.M,
             "N_quotient_order": self.N,
@@ -124,6 +127,16 @@ class RemainderWindowEntry:
             "stable_large_scale_formula": self.stable_large_scale_formula,
             "dither_gap": self.dither_gap,
         }
+        if self.stable_tail_side is not None:
+            result["stable_tail_side"] = self.stable_tail_side
+        if self.stable_weighted_correction is not None:
+            result["stable_weighted_correction"] = self.stable_weighted_correction
+            assert self.log2_stable_weighted_correction is not None
+            result["log2_stable_weighted_correction"] = round(
+                self.log2_stable_weighted_correction,
+                6,
+            )
+        return result
 
 
 def parse_fraction(raw: str) -> Fraction:
@@ -364,6 +377,43 @@ def remainder_strict_codegree_mass(N: int, M: int, L: int, b: int, slack: int) -
     return mass
 
 
+def two_sided_stable_tail(
+    n: int,
+    k0: int,
+    dither_gap: int,
+    M: int,
+    slack: int,
+) -> Optional[Tuple[str, int]]:
+    e = abs(dither_gap)
+    if not (1 <= e < slack and M >= slack + e):
+        return None
+    if dither_gap > 0:
+        return "above", ((n - k0) // M) * choose(M, e) - 1
+    return "below", (k0 // M) * choose(M, e) - 1
+
+
+def two_sided_stable_weighted_correction(
+    n: int,
+    k0: int,
+    dither_gap: int,
+    M: int,
+    slack: int,
+    q: int,
+) -> int:
+    e = abs(dither_gap)
+    if dither_gap > 0:
+        side_coeff = (n - k0) // M - 1
+    else:
+        side_coeff = k0 // M - 1
+
+    correction = sum(
+        choose(e, ell) * choose(M - e, ell) * q ** (slack - ell)
+        for ell in range(1, e + 1)
+    )
+    correction += side_coeff * choose(M, e) * q ** (slack - e)
+    return correction
+
+
 def retained_remainder_entries(
     records: Sequence[RemainderWindowEntry],
     top_scales: int,
@@ -378,6 +428,7 @@ def remainder_window_entries(
     k0: int,
     dither: int,
     slack_window: Tuple[int, int],
+    line_field_size: Optional[int],
 ) -> List[RemainderWindowEntry]:
     start, end = slack_window
     records = []
@@ -399,6 +450,37 @@ def remainder_window_entries(
             mass = remainder_strict_codegree_mass(N, M, L, b, slack)
             if not mass:
                 continue
+            stable_tail = None
+            if (
+                (dither_gap > 0 and b == dither_gap)
+                or (dither_gap < 0 and b == M + dither_gap)
+            ):
+                stable_tail = two_sided_stable_tail(
+                    n,
+                    k0,
+                    dither_gap,
+                    M,
+                    slack,
+                )
+            stable_side = None
+            stable_weighted = None
+            log2_stable_weighted = None
+            stable_mass_matches = False
+            if stable_tail is not None:
+                stable_side, stable_mass = stable_tail
+                stable_mass_matches = mass == stable_mass
+                if not stable_mass_matches:
+                    raise AssertionError("stable tail mass mismatch")
+                if line_field_size is not None:
+                    stable_weighted = two_sided_stable_weighted_correction(
+                        n,
+                        k0,
+                        dither_gap,
+                        M,
+                        slack,
+                        line_field_size,
+                    )
+                    log2_stable_weighted = math.log2(stable_weighted)
             records.append(
                 RemainderWindowEntry(
                     slack=slack,
@@ -410,10 +492,10 @@ def remainder_window_entries(
                     strict_codegree_mass=mass,
                     log2_strict_codegree_mass=math.log2(mass),
                     large_fiber_formula=slack <= M,
-                    stable_large_scale_formula=(
-                        b == dither_gap and 1 <= dither_gap < slack
-                        and M >= slack + dither_gap
-                    ),
+                    stable_large_scale_formula=stable_mass_matches,
+                    stable_tail_side=stable_side,
+                    stable_weighted_correction=stable_weighted,
+                    log2_stable_weighted_correction=log2_stable_weighted,
                     dither_gap=dither_gap,
                 )
             )
@@ -427,14 +509,27 @@ def remainder_window_summary(
     records: Sequence[RemainderWindowEntry],
     top_scales: int,
 ) -> Dict[str, object]:
+    stable_weighted_values = [
+        item.log2_stable_weighted_correction
+        for item in records
+        if item.log2_stable_weighted_correction is not None
+    ]
     return {
         "active_entry_count": len(records),
         "active_scale_count": len({item.M for item in records}),
         "active_slack_count": len({item.slack for item in records}),
+        "stable_entry_count": sum(
+            1 for item in records if item.stable_large_scale_formula
+        ),
         "max_log2_strict_codegree_mass": (
             None
             if not records
             else round(max(item.log2_strict_codegree_mass for item in records), 6)
+        ),
+        "max_log2_stable_weighted_correction": (
+            None
+            if not stable_weighted_values
+            else round(max(stable_weighted_values), 6)
         ),
         "entries": retained_remainder_entries(records, top_scales),
     }
@@ -466,15 +561,32 @@ def best_window_record(records: Sequence[Dict[str, object]]) -> Optional[Dict[st
 
 def best_remainder_window_record(
     records: Sequence[Dict[str, object]],
+    weighted: bool,
 ) -> Optional[Dict[str, object]]:
     candidates = [record for record in records if "remainder_window_ledger" in record]
     if not candidates:
         return None
+    if weighted:
+        candidates = [
+            record
+            for record in candidates
+            if record["remainder_window_ledger"][
+                "max_log2_stable_weighted_correction"
+            ]
+            is not None
+        ]
+        if not candidates:
+            return None
 
     def score(record: Dict[str, object]) -> tuple:
         ledger = record["remainder_window_ledger"]
         assert isinstance(ledger, dict)
-        value = ledger["max_log2_strict_codegree_mass"]
+        key = (
+            "max_log2_stable_weighted_correction"
+            if weighted
+            else "max_log2_strict_codegree_mass"
+        )
+        value = ledger[key]
         numeric = -1.0 if value is None else float(value)
         return (numeric, int(ledger["active_entry_count"]), int(record["dither"]))
 
@@ -494,6 +606,7 @@ def scan_case(
     max_dither: int,
     top_scales: int,
     slack_window: Optional[Tuple[int, int]],
+    line_field_size: Optional[int],
 ) -> Dict[str, object]:
     n = 1 << m
     if (rate * n).denominator != 1:
@@ -537,6 +650,7 @@ def scan_case(
                 k0,
                 dither,
                 slack_window,
+                line_field_size,
             )
             record["remainder_window_ledger"] = remainder_window_summary(
                 rem_window_entries,
@@ -565,8 +679,14 @@ def scan_case(
         result["slack_window"] = {"start": slack_window[0], "end": slack_window[1]}
         result["best_window_dither"] = best_window_record(dither_records)
         result["best_remainder_window_dither"] = best_remainder_window_record(
-            dither_records
+            dither_records,
+            weighted=False,
         )
+        if line_field_size is not None:
+            result["line_field_size"] = line_field_size
+            result["best_weighted_stable_tail_dither"] = (
+                best_remainder_window_record(dither_records, weighted=True)
+            )
     return result
 
 
@@ -578,6 +698,7 @@ def scan(
     max_dither: int,
     top_scales: int,
     slack_window: Optional[Tuple[int, int]],
+    line_field_size: Optional[int],
 ) -> Dict[str, object]:
     cases = []
     for m in range(m_min, m_max + 1):
@@ -592,6 +713,7 @@ def scan(
                             max_dither,
                             top_scales,
                             slack_window,
+                            line_field_size,
                         )
                     )
     return {
@@ -609,6 +731,7 @@ def scan(
             if slack_window is None
             else {"start": slack_window[0], "end": slack_window[1]}
         ),
+        "line_field_size": line_field_size,
         "cases": cases,
     }
 
@@ -656,14 +779,25 @@ def format_remainder_entries(entries: Sequence[Dict[str, object]]) -> str:
         return "-"
     pieces = []
     for entry in entries:
+        weighted = ""
+        if "log2_stable_weighted_correction" in entry:
+            weighted = ",logR={:.1f}".format(
+                float(entry["log2_stable_weighted_correction"])
+            )
         pieces.append(
-            "t={t},M={M},b={b},d={d},logMass={log:.1f}{stable}".format(
+            "t={t},M={M},b={b},d={d},logMass={log:.1f}{stable}{side}{weighted}".format(
                 t=entry["slack"],
                 M=entry["M_coset_size"],
                 b=entry["remainder"],
                 d=entry["dither_gap"],
                 log=float(entry["log2_strict_codegree_mass"]),
                 stable=",stable" if entry["stable_large_scale_formula"] else "",
+                side=(
+                    ",{}".format(entry["stable_tail_side"])
+                    if "stable_tail_side" in entry
+                    else ""
+                ),
+                weighted=weighted,
             )
         )
     return "; ".join(pieces)
@@ -683,6 +817,8 @@ def print_text(result: Dict[str, object]) -> None:
                 end=window["end"],
             )
         )
+    if result.get("line_field_size") is not None:
+        print(f"line field size for weighted stable tails: {result['line_field_size']}")
     print()
 
     for case in result["cases"]:
@@ -692,6 +828,7 @@ def print_text(result: Dict[str, object]) -> None:
         best_remainder = case["best_remainder_dither"]
         best_window = case.get("best_window_dither")
         best_rem_window = case.get("best_remainder_window_dither")
+        best_weighted_tail = case.get("best_weighted_stable_tail_dither")
         print(
             "m={m:>2} n=2^{m:<2} rho={rho:<4} eta={eta:<5} sigma={sigma:<6} "
             "k0={k0}".format(
@@ -743,6 +880,19 @@ def print_text(result: Dict[str, object]) -> None:
                     r=best_rem_window["dither"],
                     value=format_value(ledger["max_log2_strict_codegree_mass"]),
                     entries=ledger["active_entry_count"],
+                )
+            )
+        if best_weighted_tail is not None:
+            ledger = best_weighted_tail["remainder_window_ledger"]
+            assert isinstance(ledger, dict)
+            print(
+                (
+                    "  best weighted stable-tail r={r} "
+                    "max_logR={value} stable_entries={entries}"
+                ).format(
+                    r=best_weighted_tail["dither"],
+                    value=format_value(ledger["max_log2_stable_weighted_correction"]),
+                    entries=ledger["stable_entry_count"],
                 )
             )
         print("  active exact scales: " + format_scales(exact["exact_active_scales"]))
@@ -805,6 +955,12 @@ def main() -> None:
         help="optional inclusive slack window START:END for the proved L_win(r) ledger",
     )
     parser.add_argument(
+        "--line-field-size",
+        type=int,
+        default=None,
+        help="optional q_line used to report weighted stable one-remainder tails",
+    )
+    parser.add_argument(
         "--format",
         choices=("text", "json"),
         default="text",
@@ -816,6 +972,8 @@ def main() -> None:
         raise SystemExit("require 1 <= --m-min <= --m-max")
     if args.max_dither < 0:
         raise SystemExit("--max-dither must be nonnegative")
+    if args.line_field_size is not None and args.line_field_size <= 1:
+        raise SystemExit("--line-field-size must be greater than one")
     result = scan(
         m_min=args.m_min,
         m_max=args.m_max,
@@ -824,6 +982,7 @@ def main() -> None:
         max_dither=args.max_dither,
         top_scales=args.top_scales,
         slack_window=args.slack_window,
+        line_field_size=args.line_field_size,
     )
     if args.format == "json":
         print(json.dumps(result, indent=2, sort_keys=True))
