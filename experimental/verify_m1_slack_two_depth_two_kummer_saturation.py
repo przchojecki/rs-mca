@@ -760,6 +760,9 @@ def main() -> None:
         two_coordinate_equal_line_l1_bound = int(
             two_coordinate_projective_split["equal_line_diagonal"]
         )
+        two_coordinate_coordinate_diagonal_l1_bound = int(
+            two_coordinate_projective_split["coordinate_diagonal"]
+        )
         two_coordinate_ramified_l1_bound = (
             two_coordinate_kummer_l1_bound
             - two_coordinate_infinity_unramified_l1_bound
@@ -935,6 +938,10 @@ def main() -> None:
             raise AssertionError((p, n, certificate))
         if int(certificate["two_coordinate_equal_line_sqrt_constant"]) != 3:
             raise AssertionError((p, n, certificate))
+        if int(certificate["two_coordinate_coordinate_diagonal_error_constant"]) != 4:
+            raise AssertionError((p, n, certificate))
+        if int(certificate["two_coordinate_coordinate_diagonal_sqrt_constant"]) != 3:
+            raise AssertionError((p, n, certificate))
         if int(certificate["two_coordinate_kummer_error_constant"]) != 9:
             raise AssertionError((p, n, certificate))
         if int(certificate["three_coordinate_kummer_error_constant"]) != int(
@@ -948,6 +955,12 @@ def main() -> None:
         equal_line_leading_l1_drop = 5 * two_coordinate_equal_line_l1_bound
         equal_line_conditional_weighted_error_l1_bound = (
             weighted_error_l1_bound - equal_line_leading_l1_drop
+        )
+        coordinate_diagonal_leading_l1_drop = (
+            5 * two_coordinate_coordinate_diagonal_l1_bound
+        )
+        coordinate_diagonal_conditional_weighted_error_l1_bound = (
+            weighted_error_l1_bound - coordinate_diagonal_leading_l1_drop
         )
         if equal_line_leading_l1_drop != int(
             certificate["two_coordinate_equal_line_leading_l1_drop"]
@@ -963,6 +976,23 @@ def main() -> None:
                     p,
                     n,
                     equal_line_conditional_weighted_error_l1_bound,
+                    certificate,
+                )
+            )
+        if coordinate_diagonal_leading_l1_drop != int(
+            certificate["two_coordinate_coordinate_diagonal_leading_l1_drop"]
+        ):
+            raise AssertionError(
+                (p, n, coordinate_diagonal_leading_l1_drop, certificate)
+            )
+        if coordinate_diagonal_conditional_weighted_error_l1_bound != int(
+            certificate["coordinate_diagonal_conditional_weighted_error_l1_bound"]
+        ):
+            raise AssertionError(
+                (
+                    p,
+                    n,
+                    coordinate_diagonal_conditional_weighted_error_l1_bound,
                     certificate,
                 )
             )
@@ -1018,6 +1048,12 @@ def main() -> None:
         equal_line_conditional_sqrt_error_bound = (
             sqrt_error_bound + equal_line_sqrt_error_bound
         )
+        coordinate_diagonal_sqrt_error_bound = (
+            3 * ceil_sqrt(p) * two_coordinate_coordinate_diagonal_l1_bound
+        )
+        coordinate_diagonal_conditional_sqrt_error_bound = (
+            sqrt_error_bound + coordinate_diagonal_sqrt_error_bound
+        )
         if sqrt_error_bound != int(certificate["sqrt_error_bound"]):
             raise AssertionError((p, n, sqrt_error_bound, certificate))
         if equal_line_sqrt_error_bound != (
@@ -1025,11 +1061,33 @@ def main() -> None:
             * int(certificate["two_coordinate_equal_line_sqrt_l1_bound"])
         ):
             raise AssertionError((p, n, equal_line_sqrt_error_bound, certificate))
+        if coordinate_diagonal_sqrt_error_bound != (
+            ceil_sqrt(p)
+            * int(
+                certificate[
+                    "two_coordinate_coordinate_diagonal_sqrt_l1_bound"
+                ]
+            )
+        ):
+            raise AssertionError(
+                (p, n, coordinate_diagonal_sqrt_error_bound, certificate)
+            )
         if equal_line_conditional_sqrt_error_bound != int(
             certificate["equal_line_conditional_sqrt_error_bound"]
         ):
             raise AssertionError(
                 (p, n, equal_line_conditional_sqrt_error_bound, certificate)
+            )
+        if coordinate_diagonal_conditional_sqrt_error_bound != int(
+            certificate["coordinate_diagonal_conditional_sqrt_error_bound"]
+        ):
+            raise AssertionError(
+                (
+                    p,
+                    n,
+                    coordinate_diagonal_conditional_sqrt_error_bound,
+                    certificate,
+                )
             )
         weighted_error_total_bound = (
             p * weighted_error_l1_bound + sqrt_error_bound
@@ -1037,6 +1095,10 @@ def main() -> None:
         equal_line_conditional_weighted_error_total_bound = (
             p * equal_line_conditional_weighted_error_l1_bound
             + equal_line_conditional_sqrt_error_bound
+        )
+        coordinate_diagonal_conditional_weighted_error_total_bound = (
+            p * coordinate_diagonal_conditional_weighted_error_l1_bound
+            + coordinate_diagonal_conditional_sqrt_error_bound
         )
         if weighted_error_total_bound != int(
             certificate["weighted_error_total_bound"]
@@ -1055,6 +1117,19 @@ def main() -> None:
                     certificate,
                 )
             )
+        if coordinate_diagonal_conditional_weighted_error_total_bound != int(
+            certificate[
+                "coordinate_diagonal_conditional_weighted_error_total_bound"
+            ]
+        ):
+            raise AssertionError(
+                (
+                    p,
+                    n,
+                    coordinate_diagonal_conditional_weighted_error_total_bound,
+                    certificate,
+                )
+            )
         lower_numerator = principal_count - (
             p * weighted_error_l1_bound
             + sqrt_error_bound
@@ -1065,6 +1140,11 @@ def main() -> None:
             + equal_line_conditional_sqrt_error_bound
             + degeneracy_count * int(certificate["denominator"])
         )
+        coordinate_diagonal_conditional_lower_numerator = principal_count - (
+            p * coordinate_diagonal_conditional_weighted_error_l1_bound
+            + coordinate_diagonal_conditional_sqrt_error_bound
+            + degeneracy_count * int(certificate["denominator"])
+        )
         if lower_numerator != int(certificate["lower_numerator"]):
             raise AssertionError((p, n, lower_numerator, certificate))
         if equal_line_conditional_lower_numerator != int(
@@ -1072,6 +1152,17 @@ def main() -> None:
         ):
             raise AssertionError(
                 (p, n, equal_line_conditional_lower_numerator, certificate)
+            )
+        if coordinate_diagonal_conditional_lower_numerator != int(
+            certificate["coordinate_diagonal_conditional_lower_numerator"]
+        ):
+            raise AssertionError(
+                (
+                    p,
+                    n,
+                    coordinate_diagonal_conditional_lower_numerator,
+                    certificate,
+                )
             )
         expected_threshold = kummer_quadratic_uniform_prime_threshold(
             1,
@@ -1103,11 +1194,42 @@ def main() -> None:
             raise AssertionError(
                 (p, n, equal_line_conditional_expected_threshold, certificate)
             )
+        coordinate_diagonal_conditional_expected_threshold = (
+            kummer_quadratic_uniform_prime_threshold(
+                1,
+                (
+                    coordinate_diagonal_conditional_weighted_error_l1_bound
+                    + int(certificate["degeneracy_line_count"])
+                    * int(certificate["denominator"])
+                ),
+                sqrt_error_weight=int(
+                    certificate[
+                        "coordinate_diagonal_conditional_sqrt_error_weight"
+                    ]
+                ),
+            )
+        )
+        if coordinate_diagonal_conditional_expected_threshold != int(
+            certificate[
+                "coordinate_diagonal_conditional_uniform_prime_threshold"
+            ]
+        ):
+            raise AssertionError(
+                (
+                    p,
+                    n,
+                    coordinate_diagonal_conditional_expected_threshold,
+                    certificate,
+                )
+            )
         nonzero_coset_count, total_coset_count = square_coset_counts(p, domain)
         saturates = nonzero_coset_count == total_coset_count
         certificate_positive = bool(certificate["saturation_certificate"])
         equal_line_conditional_certificate_positive = bool(
             certificate["equal_line_conditional_saturation_certificate"]
+        )
+        coordinate_diagonal_conditional_certificate_positive = bool(
+            certificate["coordinate_diagonal_conditional_saturation_certificate"]
         )
         if certificate_positive != expected_certificate:
             raise AssertionError((p, n, certificate))
@@ -1117,7 +1239,18 @@ def main() -> None:
             certificate["equal_line_conditional_uniform_threshold_applies"]
         ) != equal_line_conditional_certificate_positive:
             raise AssertionError((p, n, certificate))
+        if bool(
+            certificate[
+                "coordinate_diagonal_conditional_uniform_threshold_applies"
+            ]
+        ) != coordinate_diagonal_conditional_certificate_positive:
+            raise AssertionError((p, n, certificate))
         if certificate_positive and not equal_line_conditional_certificate_positive:
+            raise AssertionError((p, n, certificate))
+        if (
+            equal_line_conditional_certificate_positive
+            and not coordinate_diagonal_conditional_certificate_positive
+        ):
             raise AssertionError((p, n, certificate))
         if certificate_positive and not saturates:
             raise AssertionError((p, n, nonzero_coset_count, total_coset_count))
@@ -1172,6 +1305,8 @@ def main() -> None:
                 ramified_l1,
                 5 * equal_line_l1,
                 3 * equal_line_l1,
+                5 * coordinate_diagonal_l1,
+                3 * coordinate_diagonal_l1,
             )
         )
     lift_checked = []

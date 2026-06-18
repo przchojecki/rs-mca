@@ -219,12 +219,14 @@ C_2^diag =
 ```
 
 The symmetric-coordinate reduction applies to this full diagonal mass, not
-only to `C_2^eq`; however, only the equal-line submass currently has a
-complete conditional certificate ledger.  The verifier now checks the first
-general-diagonal obstruction audit: `alpha^2=1` and `2F1` parameter
-cancellation have zero mass in `C_2^diag`.  Promoting `C_2^diag-C_2^eq`
-still requires the remaining local conductor entries to be accepted for the
-general diagonal pullback.
+only to `C_2^eq`.  The verifier checks the general-diagonal obstruction
+audit: `alpha^2=1` and `2F1` parameter cancellation have zero mass in
+`C_2^diag`.  The local conductor ledger has also been promoted for the whole
+ramified nonreciprocal coordinate-diagonal slice: `s=0` contributes one unit
+because the `mu^2=1` cases are exactly the already removed projective
+reciprocal diagonal terms; the two `C(s)=0` roots contribute at most one unit
+each; the two `B(s)=0` roots use the corrected `2F1` table; and infinity has
+the nontrivial scalar `alpha^(-2)`.
 
 Since `g` is either `1` or `2`, the `C_2^0` and `C_2^rec` counts have closed
 forms per active coordinate pair. If `g=1`, then
@@ -254,21 +256,21 @@ The raw weighted error is therefore
   + 9(C_2-C_2^0-C_2^rec) + 16C_3.
 ```
 
-If the conditional equal-line diagonal conductor import is used for the full
+If the conditional coordinate-diagonal conductor import is used for the full
 two-coordinate open sum, the residual contributes `3p` and the Jacobi part
-contributes one more `p`.  Thus the linear part can instead replace the last
-two-coordinate term by
+contributes one more `p` on `C_2^diag`.  Thus the linear part can instead
+replace the last two-coordinate term by
 
 ```text
-4C_2^eq + 9(C_2-C_2^0-C_2^rec-C_2^eq).
+4C_2^diag + 9(C_2-C_2^0-C_2^rec-C_2^diag).
 ```
 
-Equivalently, the leading L1 weight drops by `5C_2^eq`.  The corresponding
-square-root mass is `3C_2^eq`: one unit from the Jacobi part and two from
-the exceptional `B(s)=0` fibers.  The certificate code now reports this as a
-separate conditional ledger, but the active `saturation_certificate` remains
-the conservative one until the local-monodromy import is accepted as
-theorem-grade.
+Equivalently, the leading L1 weight drops by `5C_2^diag`.  The corresponding
+square-root mass is `3C_2^diag`: one unit from the Jacobi part and two from
+the exceptional `B(s)=0` fibers.  The certificate code reports both the older
+equal-line conditional ledger and this stronger coordinate-diagonal
+conditional ledger, but the active `saturation_certificate` remains the
+conservative one until the local-monodromy import is accepted as theorem-grade.
 
 The currently consumed square-root correction has L1 mass
 

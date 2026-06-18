@@ -29,6 +29,30 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-18 - M1 full coordinate-diagonal conditional ledger
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/m1_support_occupancy_scan.py`,
+  `experimental/verify_m1_slack_two_depth_two_kummer_saturation.py`,
+  `experimental/m1_depth_two_equal_line_diagonal_reduction.md`,
+  `experimental/m1_depth_two_lift_window_theorem.md`,
+  `experimental/m1_kummer_weil_import_contract.md`,
+  `experimental/m1_residue_line_roadmap.md`,
+  `experimental/agents-log.md`.
+- **Status:** CONDITIONAL / AUDIT.
+- **What is being added:** Promotes the ramified nonreciprocal
+  coordinate-diagonal mass `C_2^diag` into a separate conditional certificate
+  ledger with replacement `4p+3sqrt(p)` instead of `9p`.
+- **How it is useful:** The finite conductor entries are now audited for the
+  whole diagonal slice: `s=0` costs one unit because `mu^2=1` was already
+  removed as projective reciprocal, `C(s)=0` costs at most one unit per root,
+  `B(s)=0` uses the corrected `2F1` table, and infinity has nontrivial
+  `alpha^(-2)`.
+- **What to do next:** Attack the remaining non-diagonal ramified
+  nonreciprocal two-coordinate wall, or promote the imported `2F1` table from
+  conditional to theorem-grade if an accepted citation/proof is added.
+
 ### 2026-06-18 - M1 coordinate-diagonal degeneracy audit
 
 - **Agent/model:** Codex.

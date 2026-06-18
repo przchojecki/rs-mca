@@ -512,10 +512,41 @@ The same congruence audit removes the obvious degenerate `2F1` parameters:
 `alpha=mu` would mean `eta=1`, excluded by `d!=0`, and
 `alpha=chi_2` would again force `alpha^2=1`.  Thus the diagonal remainder
 has no numerator-denominator cancellation in the imported
-`2F1(chi_2,mu;alpha;t)` table.  The current certificate tooling reports
-these zero failure counts together with the full coordinate-diagonal L1 mass,
-but still consumes only the equal-line conditional ledger until the remaining
-local conductor entries are promoted for the whole diagonal slice.
+`2F1(chi_2,mu;alpha;t)` table.
+
+The remaining finite local conductor entries are also uniform on the whole
+coordinate-diagonal remainder.  At `s=0`, the point `lambda=0` has quadratic
+contact.  In the `t=1/lambda` normalization, the local characters at
+`t=infinity`, after the visible `chi_2(-lambda)` twist and the quadratic
+pullback, are
+
+```text
+1,        mu^2.
+```
+
+The diagonal terms with `mu^2=1` are exactly the projective-reciprocal terms
+already removed from this slice, so `s=0` contributes one conductor unit.
+At the two roots of `C(s)=0`, equivalently `lambda=1`, the standard `2F1`
+local monodromy is a tame pseudoreflection; each root contributes at most one
+unit, with possible extra cancellation only lowering the cost.  Together with
+the two one-unit `B(s)=0` roots and the two-unit nontrivial scalar twist
+`alpha^(-2)` at infinity, every ramified nonreciprocal coordinate-diagonal
+term has the same conductor upper ledger
+
+```text
+s=0:        1,
+C(s)=0:     2,
+B(s)=0:     2,
+infinity:   2,
+total:      7.
+```
+
+Thus, subject to the same standard `2F1` local-monodromy import used above,
+the full coordinate-diagonal mass has the conditional replacement
+`4p+3sqrt(p)` instead of `9p`.  The certificate tooling now reports this
+stronger coordinate-diagonal conditional ledger separately from the older
+equal-line ledger, while the active saturation certificate remains the
+conservative one.
 
 ## Deck Involution Audit
 

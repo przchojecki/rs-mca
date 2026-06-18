@@ -310,12 +310,15 @@ The same symmetric-coordinate reduction covers the larger coordinate-diagonal
 submass where the two active coordinate-line monodromies are equal, but the
 line at infinity is not necessarily equal to them.  The verifier now reports
 this diagonal mass and the non-equal remainder separately.  This broader
-diagonal slice is not yet a certificate improvement, but the first obstruction
-audit is now clean: in the ramified diagonal remainder, `alpha^2=1` would
-force trivial infinity monodromy, and the possible `2F1` cancellations
-`alpha=mu` or `alpha=chi_2` are also excluded.  The consumed conditional
-ledger remains the exact `C_2^eq` equal-line submass above until the remaining
-local conductor entries are accepted for the full diagonal slice.
+diagonal slice now has the same conditional `4p+3sqrt(p)` ledger: in the
+ramified diagonal remainder, `alpha^2=1` would force trivial infinity
+monodromy, and the possible `2F1` cancellations `alpha=mu` or
+`alpha=chi_2` are excluded.  The finite local conductor entries are uniform as
+well: the `s=0` character is `mu^2` after the quadratic pullback, and the
+`mu^2=1` cases are precisely the projective-reciprocal terms already removed;
+the two `C(s)=0` roots cost at most one each.  The active certificate remains
+conservative, but the reported conditional ledger now includes the full
+`C_2^diag` mass, not only `C_2^eq`.
 
 ### `2F1` Local-Monodromy Import Consumed by the Equal-Line Audit
 

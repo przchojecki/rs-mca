@@ -61,10 +61,12 @@ should be revised as the project learns more.
    to get reviewer acceptance of the recorded `2F1` local table, then promote
    the reported conditional equal-line ledger into the consumed certificate.
    The broader coordinate-diagonal mass is now also counted; its symmetric
-   reduction has the same local `B(s)=0` saving, but it still needs a
-   complete local conductor audit before it can become a certificate
-   improvement.  The first obstruction audit is clean: `alpha^2=1` and
-   `2F1` numerator-denominator cancellation have zero diagonal mass.
+   reduction has the same local `B(s)=0` saving, and the finite local
+   conductor audit now promotes the full coordinate-diagonal mass into a
+   separate conditional ledger.  The active certificate remains conservative
+   until the imported `2F1` local table is accepted as theorem-grade.  The
+   next two-coordinate target is therefore the non-diagonal ramified
+   nonreciprocal remainder.
 4. After the trace-family wall is closed, generalize to fixed low-slack
    templates, then separate tangent, quotient-periodic, finite-template, and
    genuinely aperiodic packing.
