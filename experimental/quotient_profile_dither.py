@@ -476,6 +476,17 @@ def dither_menu_tail_lower_bound_summary(
         for item in records
         if item.log2_same_slack_weighted_over_adaptive is not None
     ]
+    mass_dominating_scales = [
+        item.M for item in records if item.log2_mass_over_adaptive_linear > 0
+    ]
+    weighted_dominating_scales = [
+        item.M
+        for item in records
+        if (
+            item.log2_same_slack_weighted_over_adaptive is not None
+            and item.log2_same_slack_weighted_over_adaptive > 0
+        )
+    ]
     return {
         "target_stable_gap": target_stable_gap,
         "queried_menu_size": dither_menu_size,
@@ -489,8 +500,11 @@ def dither_menu_tail_lower_bound_summary(
         "stable_tail_lower_bound_applicable": stable_eligible,
         "stable_eligible_scale_count": len(records),
         "adaptive_linear_mass_per_stable_scale": adaptive_linear_mass,
-        "menu_mass_dominates_adaptive_scale_count": sum(
-            1 for item in records if item.log2_mass_over_adaptive_linear > 0
+        "menu_mass_dominates_adaptive_scale_count": len(
+            mass_dominating_scales
+        ),
+        "min_scale_mass_dominates_adaptive_linear": (
+            None if not mass_dominating_scales else min(mass_dominating_scales)
         ),
         "max_log2_stable_tail_mass_lower_bound": (
             None
@@ -516,13 +530,13 @@ def dither_menu_tail_lower_bound_summary(
             if not weighted_ratio_values
             else round(max(weighted_ratio_values), 6)
         ),
-        "same_slack_weighted_dominates_adaptive_scale_count": sum(
-            1
-            for item in records
-            if (
-                item.log2_same_slack_weighted_over_adaptive is not None
-                and item.log2_same_slack_weighted_over_adaptive > 0
-            )
+        "same_slack_weighted_dominates_adaptive_scale_count": len(
+            weighted_dominating_scales
+        ),
+        "min_scale_same_slack_weighted_dominates_adaptive": (
+            None
+            if not weighted_dominating_scales
+            else min(weighted_dominating_scales)
         ),
         "entries": retained_menu_tail_entries(records, top_scales),
     }
@@ -1375,7 +1389,8 @@ def print_text(result: Dict[str, object]) -> None:
                 (
                     "  menu tail lower bound C={menu} forced_gap>={gap} "
                     "max_logMass>={value} max_logR>={weighted} "
-                    "max_log_vs_adapt={ratio} scales={scales}"
+                    "max_log_vs_adapt={ratio} "
+                    "first_adapt_dom_scale={first_scale} scales={scales}"
                 ).format(
                     menu=menu_tail_bound["queried_menu_size"],
                     gap=menu_tail_bound["exact_forced_safe_gap_lower_bound"],
@@ -1389,6 +1404,11 @@ def print_text(result: Dict[str, object]) -> None:
                     ),
                     ratio=format_value(
                         menu_tail_bound["max_log2_mass_over_adaptive_linear"]
+                    ),
+                    first_scale=format_value(
+                        menu_tail_bound[
+                            "min_scale_mass_dominates_adaptive_linear"
+                        ]
                     ),
                     scales=menu_tail_bound["stable_eligible_scale_count"],
                 )

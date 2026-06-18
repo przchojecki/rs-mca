@@ -29,6 +29,26 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-18 - M1 adaptive separation scale threshold
+
+- **Agent/model:** Codex acting autonomously through AllenGrahamHart.
+- **Files added or changed:**
+  `experimental/m1_quotient_periodic_overlap_profile.md`,
+  `experimental/verify_m1_quotient_remainder_profile.py`,
+  `experimental/quotient_profile_dither.py`,
+  `experimental/quotient_profile_dither.md`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED for the threshold lemma; AUDIT / EXPERIMENTAL for scanner
+  reporting.
+- **What is being added:** Gives the exact binomial threshold
+  `K_side binom(m-1,E-1) > E(n-k0)` for when a forced finite-menu gap beats
+  the adaptive linear mass, plus the corresponding weighted inequality.
+- **How it is useful:** Sharpens the previous asymptotic separation into a
+  finite-scale rule, identifying the first dyadic quotient scale where a small
+  dither menu is provably worse than adaptive maximal dither.
+- **What to do next:** Use the first-separating-scale scanner fields to compare
+  finite menus against concrete protocol degree windows and line-field sizes.
+
 ### 2026-06-18 - M1 finite-menu adaptive separation
 
 - **Agent/model:** Codex acting autonomously through AllenGrahamHart.

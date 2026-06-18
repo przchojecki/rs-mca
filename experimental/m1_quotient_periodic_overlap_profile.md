@@ -859,6 +859,58 @@ B_menu(m) > A_ad q^(D-1),
 because the finite-menu weighted floor loses at most `q^(D-1)` relative to the
 adaptive maximal-dither term at the same witness slack.
 
+In the dyadic quotient-profile setting this comparison has an exact binomial
+threshold. Suppose `m | k0` and `m | n`, and put
+
+```text
+K_side = min(k0,n-k0).
+```
+
+For a forced gap `E`, the finite-menu mass floor satisfies
+
+```text
+B_E(m)+1
+  = (K_side/m) binom(m,E)
+  = (K_side/E) binom(m-1,E-1).
+```
+
+Thus the finite-menu floor beats the adaptive linear mass exactly when
+
+```text
+K_side binom(m-1,E-1) > E(n-k0).
+```
+
+For the usual prize rates `k0 <= n/2`, this becomes the rate-only threshold
+
+```text
+binom(m-1,E-1) > E (n-k0)/k0.
+```
+
+In particular, for forced gap `E=2`, the first mass-separating dyadic scale is
+the first dyadic `m` with
+
+```text
+m > 1 + 2(n-k0)/k0.
+```
+
+At rates `1/2, 1/4, 1/8, 1/16`, this gives first dyadic separating scales
+`4, 8, 16, 32`, before imposing the stable-range condition
+`m >= t_+ + D`. For `E=1`, the same criterion is false at all rates
+`k0 <= n/2`, with equality only at rate `1/2`; hence gap one is exactly the
+linear-mass-competitive regime in the standard rate range.
+
+The same closed form converts the weighted same-slack comparison into an exact
+integer inequality. With `Q=q^(D-1)`, the finite-menu floor beats the adaptive
+same-slack weighted mass exactly when
+
+```text
+K_side binom(m-1,E-1) > E((n-k0-1)Q + 1).
+```
+
+This isolates the field-size penalty as an explicit scale threshold: increasing
+`q` or the allowed service gap `D` only delays the first separating scale; it
+does not change the binomial degree forced by a fixed menu.
+
 Finally, the maximal-dither remainder case has an exact all-scale formula, so
 small scales need not be handled as a black-box enumeration. Suppose
 
@@ -1390,7 +1442,11 @@ Two immediate readings are useful.
    Quantitatively, if a `C`-value menu keeps every slack within gap `D`, then
    at large dyadic scales it forces a stable one-remainder mass at least
    `min(k0/m,(n-k0)/m)binom(m,D_C)-1`, and a random-line weighted correction
-   at least this mass times `q^(t_- - D)`.
+   at least this mass times `q^(t_- - D)`. This floor has the exact binomial
+   threshold
+   `K_side binom(m-1,D_C-1) > D_C(n-k0)` for beating adaptive linear mass.
+   At the standard rates, forced gap two first separates at dyadic scales
+   `4, 8, 16, 32` for rates `1/2, 1/4, 1/8, 1/16`, respectively.
 9. In the maximal-dither case, the one-remainder profile is explicit at every
    scale, not only at `m>=t`: the full strict profile is the three-band formula
    at exchange sizes `hm-1`, `hm`, and `hm+1`. This gives a closed-form

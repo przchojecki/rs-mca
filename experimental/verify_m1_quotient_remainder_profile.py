@@ -487,6 +487,43 @@ def verify_dither_menu_stable_tail_lower_bound(
     return forced_gap, tuple(scale_thresholds), len(valid_menus)
 
 
+def verify_adaptive_threshold_closed_form(n, k0, forced_gap, max_gap, q):
+    assert forced_gap >= 1
+    assert max_gap >= forced_gap
+    assert q > 1
+
+    side_total = min(k0, n - k0)
+    adaptive_mass = n - k0 - 1
+    weighted_factor = q ** (max_gap - 1)
+    rows = []
+    for m in dyadic_divisors(k0):
+        if m <= 1 or m < forced_gap or n % m:
+            continue
+        side_floor = min(k0 // m, (n - k0) // m)
+        assert side_floor == side_total // m
+
+        mass_floor = side_floor * choose(m, forced_gap) - 1
+        closed_numerator = side_total * choose(m - 1, forced_gap - 1)
+        assert closed_numerator % forced_gap == 0
+        closed_floor = closed_numerator // forced_gap - 1
+        assert mass_floor == closed_floor
+
+        mass_dominates = mass_floor > adaptive_mass
+        mass_threshold = closed_numerator > forced_gap * (n - k0)
+        assert mass_dominates == mass_threshold
+
+        weighted_dominates = mass_floor > adaptive_mass * weighted_factor
+        weighted_threshold = closed_numerator > forced_gap * (
+            adaptive_mass * weighted_factor + 1
+        )
+        assert weighted_dominates == weighted_threshold
+
+        rows.append((m, mass_floor, mass_dominates, weighted_dominates))
+
+    assert rows
+    return tuple(rows)
+
+
 def verify_fixed_window_stable_tail_minimax(n, k0, t_start, t_end):
     assert 1 <= t_start <= t_end
     window_length = t_end - t_start + 1
@@ -925,6 +962,16 @@ def main():
             f"n,k0,t0,t1,D,C,q={case}: forced_gap={forced_gap}, "
             f"valid_menus={valid_menu_count}, tail_thresholds={thresholds}"
         )
+    threshold_cases = [
+        (256, 128, 1, 3, 17),
+        (256, 128, 2, 3, 17),
+        (256, 64, 2, 3, 17),
+        (1024, 128, 2, 3, 257),
+        (1024, 256, 3, 3, 17),
+    ]
+    for case in threshold_cases:
+        rows = verify_adaptive_threshold_closed_form(*case)
+        print(f"n,k0,E,D,q={case}: adaptive_thresholds={rows}")
     adjacent_remainder_cases = [
         (256, 128, 5, 8),
         (256, 128, 5, 16),

@@ -199,6 +199,9 @@ values identify stable scales where the finite-menu floor is already larger
 than the adaptive linear mass. With `--line-field-size q`, the
 `log2_same_slack_weighted_over_adaptive` field gives the conservative
 same-slack weighted comparison.
+The summary fields `min_scale_mass_dominates_adaptive_linear` and
+`min_scale_same_slack_weighted_dominates_adaptive` report the first stable
+dyadic quotient scale where these comparisons become positive.
 
 Entries marked `stable_large_scale_formula` lie in the range
 
