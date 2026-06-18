@@ -471,6 +471,38 @@ def dither_menu_tail_lower_bound_summary(
     }
 
 
+def adaptive_maximal_window_summary(
+    n: int,
+    k0: int,
+    slack_window: Tuple[int, int],
+    line_field_size: Optional[int],
+) -> Dict[str, object]:
+    start, end = slack_window
+    stable_scales = [
+        M
+        for M in divisors_of_power_of_two(n)
+        if M > 1 and M <= k0 and k0 % M == 0 and M > end
+    ]
+    linear_mass = n - k0 - 1
+    result = {
+        "adaptive_dither_rule": "r(t)=t-1",
+        "large_scale_condition": "M_coset_size > slack_window.end",
+        "stable_scale_count": len(stable_scales),
+        "linear_mass_per_stable_scale": linear_mass,
+        "max_log2_linear_mass_per_stable_scale": round(math.log2(linear_mass), 6),
+        "stable_scales": stable_scales,
+    }
+    if line_field_size is not None:
+        max_weighted = linear_mass * line_field_size ** (end - 1)
+        result["line_field_size"] = line_field_size
+        result["max_weighted_correction_per_stable_scale"] = max_weighted
+        result["max_log2_weighted_correction_per_stable_scale"] = round(
+            math.log2(max_weighted),
+            6,
+        )
+    return result
+
+
 def fraction_label(value: Fraction) -> str:
     if value.denominator == 1:
         return str(value.numerator)
@@ -989,6 +1021,14 @@ def scan_case(
             dither_records,
             weighted=False,
         )
+        result["adaptive_maximal_window_baseline"] = (
+            adaptive_maximal_window_summary(
+                n,
+                k0,
+                slack_window,
+                line_field_size,
+            )
+        )
         if line_field_size is not None:
             result["line_field_size"] = line_field_size
             result["best_weighted_stable_tail_dither"] = (
@@ -1205,6 +1245,7 @@ def print_text(result: Dict[str, object]) -> None:
         best_rem_window = case.get("best_remainder_window_dither")
         best_weighted_tail = case.get("best_weighted_stable_tail_dither")
         menu_tail_bound = case.get("dither_menu_tail_lower_bound")
+        adaptive_baseline = case.get("adaptive_maximal_window_baseline")
         print(
             "m={m:>2} n=2^{m:<2} rho={rho:<4} eta={eta:<5} sigma={sigma:<6} "
             "k0={k0}".format(
@@ -1289,6 +1330,26 @@ def print_text(result: Dict[str, object]) -> None:
                         ]
                     ),
                     scales=menu_tail_bound["stable_eligible_scale_count"],
+                )
+            )
+        if adaptive_baseline is not None:
+            assert isinstance(adaptive_baseline, dict)
+            print(
+                (
+                    "  adaptive maximal baseline stable_scales={scales} "
+                    "logMass={mass} max_logR={weighted}"
+                ).format(
+                    scales=adaptive_baseline["stable_scale_count"],
+                    mass=format_value(
+                        adaptive_baseline[
+                            "max_log2_linear_mass_per_stable_scale"
+                        ]
+                    ),
+                    weighted=format_value(
+                        adaptive_baseline.get(
+                            "max_log2_weighted_correction_per_stable_scale"
+                        )
+                    ),
                 )
             )
         print("  active exact scales: " + format_scales(exact["exact_active_scales"]))

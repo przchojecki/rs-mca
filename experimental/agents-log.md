@@ -29,6 +29,27 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-18 - M1 adaptive maximal-window baseline
+
+- **Agent/model:** Codex acting autonomously through AllenGrahamHart.
+- **Files added or changed:**
+  `experimental/m1_quotient_periodic_overlap_profile.md`,
+  `experimental/verify_m1_quotient_remainder_profile.py`,
+  `experimental/quotient_profile_dither.py`,
+  `experimental/quotient_profile_dither.md`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED for the adaptive maximal-dither baseline; AUDIT /
+  EXPERIMENTAL for scanner reporting.
+- **What is being added:** Shows that the per-slack maximal dither rule
+  `r(t)=t-1` keeps every dyadic scale `m>t_+` in a slack window at the uniform
+  linear tail `H=(n-k0-1)y`, with weighted maximum
+  `(n-k0-1)q^(t_+-1)`.
+- **How it is useful:** Provides the clean adaptive baseline against which the
+  finite-menu exact-capacity obstruction and forced stable-tail floors should
+  be compared.
+- **What to do next:** Use the scanner's adaptive baseline and finite-menu
+  floor side by side on concrete protocol slack windows.
+
 ### 2026-06-18 - M1 dither-menu capacity inverses
 
 - **Agent/model:** Codex acting autonomously through AllenGrahamHart.

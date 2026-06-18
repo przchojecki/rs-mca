@@ -720,6 +720,36 @@ def verify_maximal_dither_scale_confinement(n, k0, t):
     return small_scales
 
 
+def verify_adaptive_maximal_dither_window_baseline(n, k0, t_start, t_end, q):
+    assert 1 <= t_start <= t_end
+    assert q > 1
+    stable_scales = [m for m in dyadic_divisors(k0) if m > t_end]
+    assert stable_scales
+    rows = []
+    for t in range(t_start, t_end + 1):
+        for m in stable_scales:
+            N = n // m
+            L = k0 // m
+            profile = maximal_dither_all_scale_enumerator(N, m, L, t)
+            expected = Counter({1: n - k0 - 1})
+            assert profile == expected, (n, k0, t_start, t_end, t, m, profile)
+            correction = weighted_strict_correction(profile, t, q)
+            expected_correction = (n - k0 - 1) * q ** (t - 1)
+            assert correction == expected_correction, (
+                n,
+                k0,
+                t,
+                m,
+                q,
+                correction,
+                expected_correction,
+            )
+            rows.append((t, m, correction))
+    max_correction = max(value for _, _, value in rows)
+    assert max_correction == (n - k0 - 1) * q ** (t_end - 1)
+    return stable_scales, max_correction
+
+
 def weighted_strict_correction(poly, t, q):
     return sum(coeff * q ** (t - exponent) for exponent, coeff in poly.items())
 
@@ -914,6 +944,19 @@ def main():
     for case in confinement_cases:
         small_scales = verify_maximal_dither_scale_confinement(*case)
         print(f"n,k0,t={case}: small_scales={small_scales}")
+    adaptive_window_cases = [
+        (256, 128, 5, 8, 17),
+        (256, 64, 8, 13, 17),
+        (1024, 256, 9, 15, 257),
+    ]
+    for case in adaptive_window_cases:
+        stable_scales, max_correction = (
+            verify_adaptive_maximal_dither_window_baseline(*case)
+        )
+        print(
+            f"n,k0,t0,t1,q={case}: adaptive_scales={stable_scales}, "
+            f"max_R={max_correction}"
+        )
     obstruction_cases = [
         (64, 16, 3, 9, 0, 4),
         (256, 128, 4, 12, -1, 3),

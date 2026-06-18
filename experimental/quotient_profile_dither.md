@@ -182,6 +182,19 @@ is also supplied, the scanner multiplies the mass floor by `q^(t_- - D)` and
 reports `stable_tail_weighted_lower_bound`; this is the conservative
 random-line variance numerator forced by the finite menu.
 
+For comparison, each slack-window case also reports
+`adaptive_maximal_window_baseline`. This is the per-slack rule `r(t)=t-1`.
+At every dyadic scale `M>t_+`, it gives the uniform large-scale profile
+
+```text
+H_REM^{<t}(y) = (n-k0-1)y,
+R_REM(t,q) = (n-k0-1)q^(t-1),
+```
+
+so the maximum weighted correction across the window is
+`(n-k0-1)q^(t_+-1)`. This baseline is the reference point for comparing a
+bounded dither menu against genuinely adaptive dimension choices.
+
 Entries marked `stable_large_scale_formula` lie in the range
 
 ```text

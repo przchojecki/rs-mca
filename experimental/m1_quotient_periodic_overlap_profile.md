@@ -796,6 +796,38 @@ ledger. It is weaker than evaluating the exact two-sided weighted formula at
 the witness slack, but it depends only on the menu size, window length, stable
 gap budget, quotient scale, and line-field size.
 
+The contrast with genuinely adaptive dither is sharp. If at each slack `t in W`
+one may choose the maximal dither
+
+```text
+r(t)=t-1,
+```
+
+then every slack has exact support size `s=k0+1`. For every dyadic quotient
+scale `m | k0` with
+
+```text
+m > t_+,
+```
+
+the maximal-dither large-scale formula gives, uniformly for all `t in W`,
+
+```text
+H_REM,max,t^{<t}(y) = (n-k0-1)y,
+R_REM,max,t(t,q) = (n-k0-1)q^(t-1).
+```
+
+Thus the whole slack window has a large-scale adaptive baseline
+
+```text
+max_{t in W} R_REM,max,t(t,q) = (n-k0-1)q^(t_+-1)
+```
+
+at every dyadic scale `m>t_+`. All nonlinear maximal-dither quotient-remainder
+terms over the window are confined to the finite prefix `m <= t_+`. This is
+the precise sense in which a per-slack dimension choice avoids the finite-menu
+tail floor above.
+
 Finally, the maximal-dither remainder case has an exact all-scale formula, so
 small scales need not be handled as a black-box enumeration. Suppose
 
