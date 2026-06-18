@@ -378,6 +378,28 @@ pairwise complement intersections. In the `F_17` certificate the rational
 bound allows `L=4`, but then `Lm=24` cannot be evenly distributed over `16`
 points; the integer inequality gives `|Phi_4^{-1}(c)| <= 3`.
 
+The exact slack in the Plotkin proof splits into two nonnegative defects.
+For a fiber of size `L`, let
+
+```text
+D_2 = n sum_x d_x^2 - (Lm)^2,
+P_2 = L(L-1)(r-1) - sum_x d_x(d_x-1).
+```
+
+Then
+
+```text
+n(Lm + L(L-1)(r-1)) - (Lm)^2 = D_2 + n P_2.
+```
+
+Thus equality in the rational Plotkin bound forces both defects to vanish:
+the incidence degrees must be perfectly regular, and every ordered pair of
+distinct complements must meet in exactly `r-1` points. Near-extremal fibers
+must therefore be near-designs in this precise sense. In the `F_17` certificate
+each two-point fiber is far from extremal: its complements are disjoint, and
+the verifier records defect tuple `(D_2,P_2,total)=(48,2,80)` for all forty
+colliding fibers.
+
 The same parametrization can be read as a standard Reed-Solomon list problem.
 Fix a prefix fiber, choose one complement locator `L_0`, and put
 
@@ -555,7 +577,8 @@ parametrization, certifies the divisor-gap graph component profile, checks the
 co-large packing, recursive Johnson packing, and field-size upper bounds,
 checks the growing-width co-large envelope, rational Plotkin bounds, and
 their exact support-side Johnson-threshold form on deterministic parameter
-grids, checks the affine Reed-Solomon list reduction by enumerating all `17^2`
+grids, records the Plotkin defect decomposition for nonsingleton fibers,
+checks the affine Reed-Solomon list reduction by enumerating all `17^2`
 low-degree perturbations for every prefix fiber, verifies the co-large fiber
 separation, records the internal ordered exchange and maximum codegree
 profiles, verifies zero internal M1 high-overlap correction, and certifies the

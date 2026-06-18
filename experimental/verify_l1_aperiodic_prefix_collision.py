@@ -716,6 +716,62 @@ def co_large_plotkin_report(
     }
 
 
+def plotkin_defect_report(
+    fibers: dict[tuple[int, ...], list[tuple[int, ...]]],
+) -> dict[str, Any]:
+    complement_size = N - AGREEMENT
+    gap_dimension = N - K - 2 * SIGMA
+    degree_variance_histogram: Counter[int] = Counter()
+    pair_slack_histogram: Counter[int] = Counter()
+    total_defect_histogram: Counter[int] = Counter()
+    checked_fibers = 0
+
+    for supports in fibers.values():
+        list_size = len(supports)
+        if list_size < 2:
+            continue
+        checked_fibers += 1
+        degrees: Counter[int] = Counter()
+        for support in supports:
+            for value in support_complement(support):
+                degrees[value] += 1
+
+        incidence_total = list_size * complement_size
+        square_sum = sum(count * count for count in degrees.values())
+        ordered_intersections = sum(
+            count * (count - 1)
+            for count in degrees.values()
+        )
+        max_ordered_intersections = (
+            list_size * (list_size - 1) * (gap_dimension - 1)
+        )
+        degree_variance = N * square_sum - incidence_total * incidence_total
+        pair_slack = max_ordered_intersections - ordered_intersections
+        total_defect = (
+            N * (incidence_total + max_ordered_intersections)
+            - incidence_total * incidence_total
+        )
+        if pair_slack < 0:
+            raise AssertionError("negative Plotkin pair slack")
+        if total_defect != degree_variance + N * pair_slack:
+            raise AssertionError("Plotkin defect identity failed")
+
+        degree_variance_histogram[degree_variance] += 1
+        pair_slack_histogram[pair_slack] += 1
+        total_defect_histogram[total_defect] += 1
+
+    return {
+        "checked": True,
+        "checked_nonsingleton_fibers": checked_fibers,
+        "degree_variance_histogram": dict(
+            sorted(degree_variance_histogram.items())
+        ),
+        "pair_slack_histogram": dict(sorted(pair_slack_histogram.items())),
+        "total_defect_histogram": dict(sorted(total_defect_histogram.items())),
+        "equality_requires_regular_max_intersecting": True,
+    }
+
+
 def affine_rs_list_report(
     fibers: dict[tuple[int, ...], list[tuple[int, ...]]],
 ) -> dict[str, Any]:
@@ -1081,6 +1137,7 @@ def build_certificate() -> dict[str, Any]:
     co_large_bound = co_large_bound_report(fibers)
     johnson_packing = johnson_packing_report()
     co_large_plotkin = co_large_plotkin_report(fibers)
+    plotkin_defects = plotkin_defect_report(fibers)
     affine_rs_list = affine_rs_list_report(fibers)
     co_large_separation = co_large_separation_report(fibers)
     growing_width = growing_width_report()
@@ -1120,6 +1177,7 @@ def build_certificate() -> dict[str, Any]:
         "co_large_bound_report": co_large_bound,
         "johnson_packing_report": johnson_packing,
         "co_large_plotkin_report": co_large_plotkin,
+        "plotkin_defect_report": plotkin_defects,
         "affine_rs_list_report": affine_rs_list,
         "co_large_separation_report": co_large_separation,
         "growing_width_report": growing_width,
@@ -1139,6 +1197,7 @@ def print_text(cert: dict[str, Any]) -> None:
     co_large_bound = cert["co_large_bound_report"]
     johnson_packing = cert["johnson_packing_report"]
     co_large_plotkin = cert["co_large_plotkin_report"]
+    plotkin_defects = cert["plotkin_defect_report"]
     affine_rs_list = cert["affine_rs_list_report"]
     co_large_separation = cert["co_large_separation_report"]
     growing_width = cert["growing_width_report"]
@@ -1232,6 +1291,12 @@ def print_text(cert: dict[str, Any]) -> None:
         f"{support_johnson['agreement_square']} > "
         f"{support_johnson['threshold_square']}, "
         f"bound {support_johnson['support_bound_floor']}"
+    )
+    print(
+        "Plotkin defects: "
+        f"D2={plotkin_defects['degree_variance_histogram']}, "
+        f"P2={plotkin_defects['pair_slack_histogram']}, "
+        f"total={plotkin_defects['total_defect_histogram']}"
     )
     print(
         "affine RS list reduction: "

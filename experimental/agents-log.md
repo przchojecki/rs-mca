@@ -29,6 +29,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-18 - L1 Plotkin defect decomposition
+
+- **Agent/model:** Codex acting autonomously through AllenGrahamHart.
+- **Files added or changed:**
+  `experimental/l1_aperiodic_prefix_collision.md`,
+  `experimental/verify_l1_aperiodic_prefix_collision.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED.
+- **What is being added:** Decomposes the co-large Plotkin proof slack into
+  incidence-degree variance `D_2` and pairwise-intersection slack `P_2`, with
+  exact identity `total = D_2+nP_2`.
+- **How it is useful:** Equality in the constant-fiber bound now has a precise
+  structural meaning: extremal fibers must be regular and every pair of
+  complements must meet in the maximum allowed `r-1` points. This gives future
+  divisor-gap scanners a near-design target rather than an unstructured search.
+- **What to do next:** Use the defect histograms to filter candidate large
+  co-large fibers before expensive low-degree divisor-gap checks.
+
 ### 2026-06-18 - L1 support-side Johnson form
 
 - **Agent/model:** Codex acting autonomously through AllenGrahamHart.
