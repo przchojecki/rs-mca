@@ -64,7 +64,11 @@ should be revised as the project learns more.
    next two-coordinate target is therefore the ramified nonreciprocal
    remainder with no equal or reciprocal projective line pair.  Its exact
    mass is `C_2^asym = C_2-C_2^0-C_2^rec-C_2^peq`, and the free projective
-   line-permutation action gives orbit count `O_2^asym=C_2^asym/6`.
+   line-permutation action gives orbit count `O_2^asym=C_2^asym/6`.  The
+   updated remaining-wall scan now reports this asymmetric wall separately:
+   in the current report grid the largest asymmetric ratio is
+   `3.2173609608p`, while every near-`4p` top row lies in the projective
+   equal-line slice already isolated by `C_2^peq`.
 4. After the trace-family wall is closed, generalize to fixed low-slack
    templates, then separate tangent, quotient-periodic, finite-template, and
    genuinely aperiodic packing.

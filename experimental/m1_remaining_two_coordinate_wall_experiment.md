@@ -28,11 +28,13 @@ python3 experimental/search_m1_remaining_two_coordinate_wall.py \
 ```
 
 The script uses NumPy for vectorized full finite-field summation with
-floating-point roots of unity.
+floating-point roots of unity. The current report also runs an
+`asymmetric_wall` pass, which removes the projective equal-pair tuples now
+isolated by the conditional `C_2^peq` ledger.
 
 ## Result
 
-The report preset ran two scans.
+The report preset ran three scans.
 
 ```text
 grid:
@@ -44,6 +46,13 @@ grid:
   tuples = 840700
   violations of 4p = 0
 
+asymmetric:
+  same prime/character grid
+  projective equal-pair tuples removed
+  cases = 453
+  tuples = 685152
+  violations of 4p = 0
+
 diagonal n=20:
   primes p <= 1601 with 20 | p-1
   only tuples (a,a,0,d) in the remaining class
@@ -53,7 +62,9 @@ diagonal n=20:
 ```
 
 The diagonal scan overlaps the bounded grid for small `p`, so the combined
-count is `946184` tuple evaluations rather than a deduplicated tuple set.
+old remaining-wall count is `946184` tuple evaluations rather than a
+deduplicated tuple set. The asymmetric count is reported separately because
+it is the post-`C_2^peq` residual wall.
 
 The largest observed ratios were:
 
@@ -70,7 +81,24 @@ The largest observed ratios were:
 | `3.8906714859` | `(1601,20,80,160)` | `(73,73,0,21)` | `(146,146,146)` |
 | `3.8896540276` | `(89,8,11,22)` | `(1,1,0,8)` | `(2,2,2)` |
 
-Every top-20 row in the report output had equal projective line monodromies.
+Every top-20 row in the combined remaining-wall report had equal projective
+line monodromies, hence lies in the `C_2^peq` slice now separated from the
+genuinely asymmetric residual wall.
+
+The largest observed asymmetric-only ratios in the same grid were:
+
+| ratio | `(p,n,e,h)` | tuple `(a,b,c,d)` | line monodromies |
+| --- | --- | --- | --- |
+| `3.2173609608` | `(197,14,14,28)` | `(6,1,0,17)` | `(12,2,8)` |
+| `3.0363644911` | `(241,15,16,16)` | `(7,4,0,4)` | `(7,4,13)` |
+| `2.8791555174` | `(443,26,17,34)` | `(11,7,0,7)` | `(22,14,18)` |
+| `2.8631382894` | `(199,9,22,22)` | `(15,14,0,16)` | `(15,14,5)` |
+| `2.8302231739` | `(409,24,17,34)` | `(14,10,0,12)` | `(28,20,30)` |
+| `2.8207562164` | `(241,12,20,40)` | `(19,2,0,23)` | `(38,4,32)` |
+| `2.8141899827` | `(379,18,21,42)` | `(8,14,0,29)` | `(16,28,24)` |
+| `2.8077205315` | `(461,46,10,20)` | `(5,9,0,9)` | `(10,18,14)` |
+| `2.8077205315` | `(461,23,20,20)` | `(18,10,0,9)` | `(18,10,14)` |
+| `2.7940447234` | `(463,22,21,42)` | `(1,11,0,25)` | `(2,22,10)` |
 
 ## Interpretation
 
@@ -93,13 +121,21 @@ diagonal subfamily, not a generic off-diagonal estimate. If that subfamily
 admits a clean `4p` trace bound, the remaining off-diagonal family may be
 easier to handle by a less sharp conductor argument.
 
+After the projective equal-pair ledger is carved out, the finite evidence
+changes the next target. The actual post-reduction asymmetric wall has no
+equal or reciprocal projective line pair, and the largest audited ratio drops
+from near `4p` to `3.2173609608p`. This is not a proof of a smaller constant,
+but it is useful counterexample-first evidence: a future conductor argument
+for `C_2^asym` may not need to explain the near-`4p` equal-line phenomenon,
+because that phenomenon has been isolated into `C_2^peq`.
+
 ## Limitations
 
-This is finite numerical evidence only. It neither proves the `4p` theorem
-nor rules out a larger counterexample outside the scanned ranges. The
-diagonal scan is deliberately biased toward the pattern seen in the bounded
-exhaustive grid, so it should be read as a proof-guidance experiment rather
-than a broad random search.
+This is finite numerical evidence only. It neither proves the `4p` theorem,
+nor a sharper asymmetric-wall theorem, nor rules out a larger counterexample
+outside the scanned ranges. The diagonal scan is deliberately biased toward
+the pattern seen in the bounded exhaustive grid, so it should be read as a
+proof-guidance experiment rather than a broad random search.
 
 ## Next Step
 
@@ -117,3 +153,8 @@ The first reduction for this subfamily is recorded in
 `experimental/m1_depth_two_equal_line_diagonal_reduction.md`.
 The focused pullback-main scanner is
 `experimental/search_m1_equal_line_pullback.py`.
+
+For the current PR after the conditional projective equal-pair reduction, the
+next numerical stress test should focus on the asymmetric wall itself: extend
+the `asymmetric_wall` scan beyond the present grid and look specifically for
+families that push the ratio above the current `3.2173609608` maximum.

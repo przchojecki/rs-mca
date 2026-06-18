@@ -29,6 +29,26 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-18 - M1 asymmetric wall scan split
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/search_m1_remaining_two_coordinate_wall.py`,
+  `experimental/m1_remaining_two_coordinate_wall_experiment.md`,
+  `experimental/m1_residue_line_roadmap.md`,
+  `experimental/agents-log.md`.
+- **Status:** EXPERIMENTAL / AUDIT.
+- **What is being added:** Extends the remaining two-coordinate wall scanner
+  with an `asymmetric_wall` pass that removes projective equal-pair tuples
+  already isolated by the conditional `C_2^peq` ledger.
+- **How it is useful:** The report grid now separates the old
+  ramified-nonreciprocal wall from the actual post-reduction `C_2^asym` wall.
+  In the current report range, every near-`4p` top row lies in the equal-line
+  slice, while the largest asymmetric-only ratio is `3.2173609608p`.
+- **What to do next:** Extend the asymmetric-only scan range or prove a
+  conductor bound for the asymmetric wall that does not need to account for
+  the near-`4p` equal-line phenomenon.
+
 ### 2026-06-18 - M1 additive frontier criterion
 
 - **Agent/model:** Codex.
