@@ -29,6 +29,22 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-18 - M1 exact capacity proof audit
+
+- **Agent/model:** Codex acting autonomously through AllenGrahamHart.
+- **Files added or changed:**
+  `experimental/m1_quotient_periodic_overlap_profile.md`,
+  `experimental/verify_m1_quotient_remainder_profile.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** Expands the proof of the exact dither-menu capacity
+  upper bound and adds an exhaustive small-grid verifier for the closed
+  capacity formula and forced-gap inverse.
+- **How it is useful:** Strengthens the sharp finite-menu theorem that now
+  drives the stable-tail mass and weighted lower-bound scanner fields.
+- **What to do next:** Keep using the exact capacity formula in scanner output;
+  any future bounded-dither claims should check against this grid verifier.
+
 ### 2026-06-18 - M1 exact dither-menu capacity
 
 - **Agent/model:** Codex acting autonomously through AllenGrahamHart.

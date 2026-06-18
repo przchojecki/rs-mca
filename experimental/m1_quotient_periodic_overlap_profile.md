@@ -698,6 +698,15 @@ Pairing dithers from left to right gives the exact capacity
 Cap(C,D) = floor(C/2)(3D+1) + (C mod 2)D.
 ```
 
+For the upper bound, look at a maximal consecutive block of slacks safely
+covered by a menu. Any dither whose center lies strictly inside the block has
+its own center as a puncture, so that puncture must be covered by another
+dither within distance `D`. Thus interior dithers can be charged in pairs. A
+paired pair contributes at most `3D+1` consecutive slacks as above. After all
+such pairs are removed, at most one unpaired dither can contribute to one
+endpoint of the block, and it contributes at most `D` consecutive slacks. This
+gives the displayed upper bound for every consecutive slack block.
+
 This bound is sharp. A pair of dithers at `a+D` and `a+2D` safely covers the
 block `{a,...,a+3D}`, and a leftover single dither at `a+D` safely covers the
 block `{a,...,a+D-1}`. Hence a `C`-value menu can safely cover `W` with gap at

@@ -270,6 +270,15 @@ def menu_covers_window(t_start, t_end, menu, max_gap):
     return True
 
 
+def exists_dither_menu_cover(t_start, t_end, max_menu_size, max_gap):
+    candidates = range(t_start - max_gap, t_end + max_gap + 1)
+    for size in range(1, max_menu_size + 1):
+        for menu in combinations(candidates, size):
+            if menu_covers_window(t_start, t_end, menu, max_gap):
+                return True, menu
+    return False, ()
+
+
 def exact_dither_menu_construction(t_start, t_end, menu_size, max_gap):
     cursor = t_start
     menu = []
@@ -322,6 +331,44 @@ def verify_dither_menu_covering_bound(t_start, t_end, max_gap):
         assert len(covered) <= 2 * max_gap
 
     return exact_minimum, coarse_lower_bound, construction
+
+
+def verify_exact_dither_menu_capacity_grid(max_window_length, max_menu_size, max_gap):
+    rows = []
+    for window_length in range(1, max_window_length + 1):
+        for gap in range(1, max_gap + 1):
+            t_start = 1
+            t_end = window_length
+            exact_minimum, _, construction = verify_dither_menu_covering_bound(
+                t_start,
+                t_end,
+                gap,
+            )
+            assert len(construction) <= exact_minimum
+            assert menu_covers_window(t_start, t_end, construction, gap)
+
+        for menu_size in range(1, max_menu_size + 1):
+            forced_gap = exact_min_safe_gap_for_menu_size(
+                window_length,
+                menu_size,
+            )
+            construction = exact_dither_menu_construction(
+                1,
+                window_length,
+                menu_size,
+                forced_gap,
+            )
+            assert menu_covers_window(1, window_length, construction, forced_gap)
+            if forced_gap > 1:
+                exists, menu = exists_dither_menu_cover(
+                    1,
+                    window_length,
+                    menu_size,
+                    forced_gap - 1,
+                )
+                assert not exists, (window_length, menu_size, forced_gap, menu)
+            rows.append((window_length, menu_size, forced_gap))
+    return rows
 
 
 def verify_dither_menu_stable_tail_lower_bound(
@@ -797,6 +844,15 @@ def main():
             f"t0,t1,D={case}: exact_menu={exact_minimum}, "
             f"coarse_lower={coarse_lower_bound}, construction={construction}"
         )
+    capacity_grid = verify_exact_dither_menu_capacity_grid(
+        max_window_length=10,
+        max_menu_size=4,
+        max_gap=3,
+    )
+    print(
+        "exact dither-menu capacity grid passed: "
+        f"{len(capacity_grid)} forced-gap cases"
+    )
     menu_tail_cases = [
         (256, 128, 5, 8, 2, 2, 17),
         (256, 64, 8, 13, 2, 2, 17),
