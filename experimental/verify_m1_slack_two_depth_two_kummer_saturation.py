@@ -5,7 +5,11 @@ from __future__ import annotations
 
 from typing import Sequence, Tuple
 
-from m1_support_occupancy_scan import slack_two_second_kummer_saturation_data
+from m1_support_occupancy_scan import (
+    all_residual_packets_lift_active,
+    slack_two_second_kummer_saturation_data,
+    slack_two_second_superboundary_shape_ledger,
+)
 from mca_slope_scan import make_domain
 
 
@@ -15,6 +19,15 @@ CASES = (
     (769, 384, True),
     # A high-index sample from the non-field-filling side of the existing PR.
     (193, 6, False),
+)
+
+LIFT_CASES = (
+    # The only quotient fiber is left unused, so every packet is active.
+    (17, 16, 1, 16, 4, True),
+    # Six quotient fibers, two whole fibers selected, four left for any packet.
+    (97, 48, 6, 8, 20, True),
+    # Only three quotient fibers remain, so four-fiber packets are not certified.
+    (97, 48, 6, 8, 28, False),
 )
 
 
@@ -133,9 +146,50 @@ def main() -> None:
                 total_coset_count,
             )
         )
+    lift_checked = []
+    for p, n, quotient_order, fiber_size, support_size, expected_gate in LIFT_CASES:
+        _, domain = make_domain(p, n, None)
+        gate, remaining_fibers, required_fibers = all_residual_packets_lift_active(
+            support_size=support_size,
+            quotient_order=quotient_order,
+            fiber_size=fiber_size,
+            residual_size=4,
+        )
+        if gate != expected_gate:
+            raise AssertionError(
+                (p, n, quotient_order, fiber_size, support_size, gate)
+            )
+        ledger = slack_two_second_superboundary_shape_ledger(
+            p=p,
+            domain=domain,
+            support_size=support_size,
+            quotient_order=quotient_order,
+            fiber_size=fiber_size,
+        )
+        if gate:
+            if int(ledger["active_parameter_count"]) != int(
+                ledger["parameter_count"]
+            ):
+                raise AssertionError((p, n, support_size, ledger))
+            if int(ledger["active_nonzero_square_coset_count"]) != int(
+                ledger["nonzero_square_coset_count"]
+            ):
+                raise AssertionError((p, n, support_size, ledger))
+        lift_checked.append(
+            (
+                p,
+                n,
+                quotient_order,
+                fiber_size,
+                support_size,
+                gate,
+                remaining_fibers,
+                required_fibers,
+            )
+        )
     print(
         "verify_m1_slack_two_depth_two_kummer_saturation: "
-        f"PASS checked={checked}"
+        f"PASS checked={checked} lift_checked={lift_checked}"
     )
 
 

@@ -61,17 +61,19 @@ Keep entries concise and link to the relevant files.
 - **What is being added:** A Kummer-Weil coset-saturation criterion and
   resulting index-window label for the slack-two depth-two first-nonzero
   frontier. Under the standard degree-five two-variable character-sum bound,
-  low-index proper subgroups hit every nonzero `D^2`-coset; the scanner
-  combines this with the lift gate and high-index ceiling. A divisor-exponent
-  audit proves that no nonprincipal character tuple is a hidden Kummer power,
-  the imported `16p` constant is traced to the squarefree radical divisor
-  degree `1+1+1+2=5`,
-  the principal open-set count and admissibility-line loss are computed
-  exactly, and a verifier checks these plus low-index proper-subgroup samples
-  against exact enumeration.
+  low-index proper subgroups hit every nonzero `D^2`-coset in the raw
+  normalized shape catalog; the scanner combines this with the lift gate,
+  the complement-fiber gate `N-L>=min(4,N)`, and the high-index ceiling. A
+  divisor-exponent audit proves that no nonprincipal character tuple is a
+  hidden Kummer power, the imported `16p` constant is traced to the
+  squarefree radical divisor degree `1+1+1+2=5`, the principal open-set count
+  and admissibility-line loss are computed exactly, and a verifier checks
+  these plus low-index proper-subgroup samples against exact enumeration.
 - **How it is useful:** Complements PR #78's high-index ceiling by showing
-  that small-index proper subgroups are saturated rather than sparse, leaving
-  a narrower intermediate-index window for M1 slope-image bounds.
+  that small-index proper subgroups are raw-saturated rather than sparse, and
+  identifies the exact elementary gate needed to transfer that statement to
+  exact supports. This leaves a narrower intermediate/lift-limited window for
+  M1 slope-image bounds.
 - **What to do next:** Prove or replace the imported Kummer-Weil constant in
   a standalone algebraic-geometry note, then attack the intermediate-index
   coset-image window where neither saturation nor high-index sparsity fires.
@@ -116,8 +118,10 @@ Keep entries concise and link to the relevant files.
 
 - **Agent/model:** Codex.
 - **Files added or changed:**
-  `experimental/2026-06-18-fable-loop/audits/20260618_CYCLE18_RESONANCE_SLOPE_MAP_COLLAPSE_AUDIT.md`,
-  `experimental/2026-06-18-fable-loop/local_checks/20260618_cycle18_resonance_slope_symbolic.py`,
+  `experimental/2026-06-18-fable-loop/audits/`
+  `20260618_CYCLE18_RESONANCE_SLOPE_MAP_COLLAPSE_AUDIT.md`,
+  `experimental/2026-06-18-fable-loop/local_checks/`
+  `20260618_cycle18_resonance_slope_symbolic.py`,
   `experimental/2026-06-18-fable-loop/README.md`,
   `experimental/agents-log.md`.
 - **Status:** BANKABLE_LEMMA / EXACT_NEW_WALL / AUDIT.

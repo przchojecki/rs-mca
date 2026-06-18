@@ -1424,7 +1424,7 @@ for every nonprincipal tuple `(a,b,c,d)`. The remaining admissibility cuts
 `u=1`, `v=1`, `w=1`, `u=v`, `u=w`, and `v=w` form six affine lines. For
 `p>3`, these lines have exact union size `6p-11`, so they remove at most
 `6p-11` points from any fixed coset count. Therefore every nonzero `H`-coset
-is hit by an admissible depth-two shape whenever
+is hit by a raw admissible depth-two shape whenever
 
 ```text
 p^2 - 4p + 6 + 4 chi(-3) > (22p-11) e^3 h.
@@ -1436,12 +1436,35 @@ Equivalently, the scanner's integer certificate
 ceil((p^2 - 4p + 6 + 4 chi(-3) - (22p-11)e^3 h)/(e^3 h)) > 0
 ```
 
-forces the nonzero depth-two slack-two frontier to saturate every nonzero
-`D^2`-coset. This does not give a positive M1 bound; it is the complementary
-wall to the high-index ceiling above. Low-index proper subgroups are still
-saturated, high-index subgroups are sparse by the elementary `n^3/g` bound,
-and the genuinely M1-relevant regime is the intermediate window where neither
-certificate fires or where exact-support lift gates deactivate the layer.
+forces the raw nonzero depth-two slack-two shape catalog to saturate every
+nonzero `D^2`-coset.
+
+There is one further exact-support transfer gate. At support size
+`s=k+2=Lm+4`, a normalized four-point residual packet touching `tau` quotient
+fibers has lift multiplicity
+
+```text
+binom(N-tau,L),        N=n/m.
+```
+
+Since always `tau <= min(4,N)`, every raw depth-two shape is lift-active if
+
+```text
+N-L >= min(4,N).
+```
+
+Under this complement-fiber gate, the raw Kummer saturation certificate
+therefore promotes to exact-support saturation: every nonzero `D^2`-coset
+occurs among actual slack-two depth-two supports. Without this gate, the
+Kummer estimate is still a raw shape theorem, but the exact-support image must
+be read from the active shape catalog or proved by an additional argument.
+
+This does not give a positive M1 bound; it is the complementary wall to the
+high-index ceiling above. Low-index proper subgroups are saturated only when
+the lift gate and complement-fiber gate transfer raw shapes to exact supports,
+high-index subgroups are sparse by the elementary `n^3/g` bound, and the
+genuinely M1-relevant regime is the intermediate window where neither
+certificate fires or where exact-support lift gates restrict the layer.
 
 The same inequality gives an exact integer threshold for fixed subgroup
 index data:
@@ -1450,17 +1473,18 @@ index data:
 p >= 22 e^3 h + 4 = 22 e^4 g + 4.
 ```
 
-At and above this threshold, the Kummer certificate forces low-index
-saturation. The high-index ceiling above gives sparse non-field-filling
-whenever
+At and above this threshold, the Kummer certificate forces raw low-index
+saturation, and it forces exact-support saturation when
+`N-L >= min(4,N)` also holds. The high-index ceiling above gives sparse
+non-field-filling whenever
 
 ```text
 1 + n^3/g < p,        n=(p-1)/e.
 ```
 
-Thus, after the lift gate `m | k-2` is checked, the slack-two depth-two
-frontier has only one unresolved proper-subgroup index window in this
-catalog:
+Thus, after the lift gate `m | k-2` and complement-fiber gate
+`N-L >= min(4,N)` are checked, the slack-two depth-two frontier has only one
+unresolved proper-subgroup index window in this catalog:
 
 ```text
 p < 22 e^4 g + 4

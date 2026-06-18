@@ -496,6 +496,23 @@ def expected_residual_packet_lift_count(
     return math.comb(available_fibers, whole_fibers)
 
 
+def all_residual_packets_lift_active(
+    support_size: int,
+    quotient_order: int,
+    fiber_size: int,
+    residual_size: int,
+) -> Tuple[bool, Optional[int], int]:
+    required_fibers = min(residual_size, quotient_order)
+    if residual_size > support_size:
+        return (False, None, required_fibers)
+    if (support_size - residual_size) % fiber_size:
+        return (False, None, required_fibers)
+
+    whole_fibers = (support_size - residual_size) // fiber_size
+    remaining_fibers = quotient_order - whole_fibers
+    return (remaining_fibers >= required_fibers, remaining_fibers, required_fibers)
+
+
 def expected_first_superboundary_zero_slope_data(
     domain_order: int,
     quotient_order: int,
@@ -2292,6 +2309,16 @@ def scan_supports(
         if slack_two_second_superboundary_lift_gate_active
         else None
     )
+    (
+        slack_two_second_all_shapes_lift_active_gate,
+        slack_two_second_lift_safety_remaining_fibers,
+        slack_two_second_lift_safety_required_fibers,
+    ) = all_residual_packets_lift_active(
+        support_size=support_size,
+        quotient_order=quotient_order,
+        fiber_size=fiber_size,
+        residual_size=slack_two_second_superboundary_residual_size,
+    )
     slack_two_second_superboundary_lift_gate_check = (
         slack_two_second_superboundary_lift_gate_active
         or (
@@ -2441,23 +2468,38 @@ def scan_supports(
             slack_three_exact_min_cube_coset_parameter_count = 0
 
     slack_two_second_index_window_label = None
+    slack_two_second_kummer_exact_support_saturation = False
+    if slack_two_second_kummer_saturation is not None:
+        slack_two_second_kummer_exact_support_saturation = (
+            bool(slack_two_second_kummer_saturation["saturation_certificate"])
+            and slack_two_second_all_shapes_lift_active_gate
+        )
     if (
         slack_two_second_shape_ledger is not None
         and slack_two_second_kummer_saturation is not None
     ):
-        if not slack_two_second_superboundary_lift_gate_active:
-            slack_two_second_index_window_label = "inactive_lift_gate"
-        elif (
+        full_domain_raw_saturation = (
             slack_two_depth_two_full_domain_A_data is not None
             and bool(
                 slack_two_depth_two_full_domain_A_data[
                     "saturates_nonzero_square_cosets"
                 ]
             )
+        )
+        if not slack_two_second_superboundary_lift_gate_active:
+            slack_two_second_index_window_label = "inactive_lift_gate"
+        elif (
+            full_domain_raw_saturation
+            and slack_two_second_all_shapes_lift_active_gate
         ):
             slack_two_second_index_window_label = "full_domain_saturated"
-        elif bool(slack_two_second_kummer_saturation["saturation_certificate"]):
+        elif slack_two_second_kummer_exact_support_saturation:
             slack_two_second_index_window_label = "low_index_saturated"
+        elif (
+            full_domain_raw_saturation
+            or bool(slack_two_second_kummer_saturation["saturation_certificate"])
+        ):
+            slack_two_second_index_window_label = "raw_saturated_lift_limited"
         elif bool(
             slack_two_second_shape_ledger["high_index_slope_bound_nontrivial"]
         ):
@@ -3332,6 +3374,21 @@ def scan_supports(
             if canonical_line and slack == 2 and slack + 2 < fiber_size
             else None
         ),
+        "canonical_slack_two_second_lift_safety_remaining_fibers": (
+            slack_two_second_lift_safety_remaining_fibers
+            if canonical_line and slack == 2 and slack + 2 < fiber_size
+            else None
+        ),
+        "canonical_slack_two_second_lift_safety_required_fibers": (
+            slack_two_second_lift_safety_required_fibers
+            if canonical_line and slack == 2 and slack + 2 < fiber_size
+            else None
+        ),
+        "canonical_slack_two_second_all_shapes_lift_active_gate": (
+            slack_two_second_all_shapes_lift_active_gate
+            if canonical_line and slack == 2 and slack + 2 < fiber_size
+            else None
+        ),
         "canonical_slack_two_second_superboundary_lift_gate_check": (
             slack_two_second_superboundary_lift_gate_check
             if canonical_line and slack == 2 and slack + 2 < fiber_size
@@ -3718,6 +3775,22 @@ def scan_supports(
             if slack_two_second_shape_ledger is not None
             else None
         ),
+        "canonical_slack_two_second_shape_saturates_nonzero_square_cosets": (
+            int(slack_two_second_shape_ledger["nonzero_square_coset_count"])
+            == int(slack_two_second_shape_ledger["total_nonzero_square_coset_count"])
+            if slack_two_second_shape_ledger is not None
+            else None
+        ),
+        "canonical_slack_two_second_shape_active_saturates_nonzero_square_cosets": (
+            int(
+                slack_two_second_shape_ledger[
+                    "active_nonzero_square_coset_count"
+                ]
+            )
+            == int(slack_two_second_shape_ledger["total_nonzero_square_coset_count"])
+            if slack_two_second_shape_ledger is not None
+            else None
+        ),
         "canonical_slack_two_second_shape_square_image_size": (
             int(slack_two_second_shape_ledger["square_image_size"])
             if slack_two_second_shape_ledger is not None
@@ -3940,6 +4013,11 @@ def scan_supports(
             if slack_two_second_kummer_saturation is not None
             else None
         ),
+        "canonical_slack_two_second_kummer_exact_support_saturation_certificate": (
+            slack_two_second_kummer_exact_support_saturation
+            if slack_two_second_kummer_saturation is not None
+            else None
+        ),
         "canonical_slack_two_second_kummer_saturation_certificate_check": (
             (
                 not bool(
@@ -3950,6 +4028,28 @@ def scan_supports(
             )
             or (
                 int(slack_two_second_shape_ledger["nonzero_square_coset_count"])
+                == int(
+                    slack_two_second_shape_ledger[
+                        "total_nonzero_square_coset_count"
+                    ]
+                )
+            )
+            if (
+                slack_two_second_kummer_saturation is not None
+                and slack_two_second_shape_ledger is not None
+            )
+            else None
+        ),
+        "canonical_slack_two_second_kummer_exact_support_certificate_check": (
+            (
+                not slack_two_second_kummer_exact_support_saturation
+            )
+            or (
+                int(
+                    slack_two_second_shape_ledger[
+                        "active_nonzero_square_coset_count"
+                    ]
+                )
                 == int(
                     slack_two_second_shape_ledger[
                         "total_nonzero_square_coset_count"

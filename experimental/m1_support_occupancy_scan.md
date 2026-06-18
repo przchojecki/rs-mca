@@ -136,6 +136,9 @@ canonical_slack_two_shape_square_coset_slope_bound_check
 canonical_slack_two_second_superboundary_lift_gate_active
 canonical_slack_two_second_superboundary_lift_gate_remainder
 canonical_slack_two_second_superboundary_lift_gate_whole_fibers
+canonical_slack_two_second_lift_safety_remaining_fibers
+canonical_slack_two_second_lift_safety_required_fibers
+canonical_slack_two_second_all_shapes_lift_active_gate
 canonical_slack_two_second_superboundary_lift_gate_check
 canonical_slack_two_second_superboundary_packet_count
 canonical_slack_two_second_superboundary_support_count
@@ -146,6 +149,8 @@ canonical_slack_two_second_shape_zero_conic_parameter_count
 canonical_slack_two_second_shape_nonzero_square_coset_count
 canonical_slack_two_second_shape_active_nonzero_square_coset_count
 canonical_slack_two_second_shape_square_image_size
+canonical_slack_two_second_shape_saturates_nonzero_square_cosets
+canonical_slack_two_second_shape_active_saturates_nonzero_square_cosets
 canonical_slack_two_second_shape_square_coset_slope_count
 canonical_slack_two_second_shape_square_coset_slope_count_check
 canonical_slack_two_second_shape_square_coset_slope_bound_check
@@ -155,6 +160,8 @@ canonical_slack_two_second_shape_high_index_bound_check
 canonical_slack_two_second_full_domain_saturates_nonzero_slopes
 canonical_slack_two_second_full_domain_nonzero_slope_image
 canonical_slack_two_second_full_domain_coset_count_check
+canonical_slack_two_second_kummer_exact_support_saturation_certificate
+canonical_slack_two_second_kummer_exact_support_certificate_check
 canonical_slack_two_full_domain_alpha_square_count
 canonical_slack_two_full_domain_alpha_nonsquare_count
 canonical_slack_two_full_domain_alpha_zero_count
@@ -462,9 +469,20 @@ M_2^(2)(z) = (1/24) sum_{u,v}
 
 The `canonical_slack_two_second_*` fields report the depth-two lift gate
 `m | k-2`, reconstructed packet/support counts and slope histograms, and the
-exact square-coset compressed slope count. The zero-slope parameter count is
-the slack-three conic catalog, so this audit checks the first concrete link
-between the slack-two depth-two layer and the slack-three depth-one layer.
+exact square-coset compressed slope count. They also distinguish raw
+normalized shapes from lift-active exact-support shapes. If
+`s=k+2=Lm+4`, every four-point residual packet is guaranteed to lift whenever
+
+```text
+N-L >= min(4,N).
+```
+
+The scanner records this as
+`canonical_slack_two_second_all_shapes_lift_active_gate`, together with the
+remaining and required quotient-fiber counts. The zero-slope parameter count
+is the slack-three conic catalog, so this audit checks the first concrete
+link between the slack-two depth-two layer and the slack-three depth-one
+layer.
 The `canonical_slack_two_second_shape_high_index_*` fields record the
 unconditional subgroup-size ceiling
 
@@ -484,12 +502,14 @@ for the depth-two shape map
 
 on triples `u,v,-1-u-v in D`. Under the standard degree-five
 two-variable Kummer-Weil bound with constant `16`, the certificate lower
-bounds the number of admissible shapes in each nonzero `D^2`-coset. When the
-reported lower bound is positive, every nonzero square coset is forced to
-occur, so the depth-two frontier saturates all nonzero slopes allowed by
-`D^2`. The matching `*_saturation_certificate_check` field compares this
-certificate against exact square-coset enumeration in the queried finite
-case.
+bounds the number of raw admissible shapes in each nonzero `D^2`-coset. When
+the reported lower bound is positive, every nonzero square coset is forced to
+occur in the raw shape catalog. This becomes an exact-support saturation
+certificate only when `canonical_slack_two_second_all_shapes_lift_active_gate`
+also holds. The matching `*_saturation_certificate_check` field compares the
+raw certificate against exact square-coset enumeration in the queried finite
+case, while `*_exact_support_certificate_check` compares the lift-safe
+certificate against the active exact-support catalog.
 The `*_divisor_nontriviality_check` field records the elementary divisor
 audit behind the Kummer step. Writing the order-`h` square-coset character as
 `psi`, every nonprincipal term is
@@ -525,6 +545,7 @@ ceiling. Its values are:
 inactive_lift_gate
 full_domain_saturated
 low_index_saturated
+raw_saturated_lift_limited
 high_index_sparse
 intermediate_index_window
 ```
@@ -532,6 +553,9 @@ intermediate_index_window
 The last case is the live proper-subgroup window for this catalog: neither
 the full-domain theorem, the Kummer saturation wall, nor the elementary
 high-index ceiling explains the observed depth-two square-coset image.
+The `raw_saturated_lift_limited` label means the raw shape catalog is known
+to saturate, but the complement-fiber gate above is not strong enough to
+promote that statement to exact-support saturation.
 When `D=F_p^*`, the
 `canonical_slack_two_second_full_domain_*` fields also record the full-domain
 frontier saturation certificate: for `p>=11`, the values
