@@ -240,6 +240,56 @@ object whose conductor must be bounded for the `4p` target; the previous
 finite singular-fiber calculation accounts for the points where this
 hypergeometric chart degenerates.
 
+## Lambda-Line Conductor Checklist
+
+The double cover above is rational.  In terms of `lambda=r_-/r_+`, one has
+
+```text
+y = (9lambda^2+14lambda+9)/(3lambda^2+10lambda+3),
+z = 6(1-lambda^2)/(3lambda^2+10lambda+3),
+r_+ = -8(1+lambda)/(3lambda^2+10lambda+3).
+```
+
+The deck involution is `lambda -> lambda^{-1}`.  The three basic special
+value identities are
+
+```text
+y-2 = 3(lambda-1)^2/((lambda+3)(3lambda+1)),
+y+1 = 12(lambda+1)^2/((lambda+3)(3lambda+1)),
+y-3 = -16lambda/((lambda+3)(3lambda+1)).
+```
+
+Thus the old finite singular values lift as follows:
+
+```text
+y=2:        lambda=1        (ramified),
+y=-1:       lambda=-1       (ramified),
+y=3:        lambda=0,infinity,
+y=infinity: lambda=-3,-1/3.
+```
+
+The outer Mellin point `y=0` pulls back to
+
+```text
+9lambda^2+14lambda+9 = 0.
+```
+
+Consequently, after the hypergeometric pullback, the finite conductor
+checklist on the `lambda`-line is contained in the eight geometric points
+
+```text
+lambda = 0, infinity, 1, -1, -3, -1/3,
+          roots of 9lambda^2+14lambda+9.
+```
+
+This ledger separates the remaining proof task cleanly.  The points
+`0,1,infinity` are the standard singular parameters of the three-point trace
+`H_nu(lambda)`.  The points `1,-1` are also the two ramification points of
+the discriminant double cover.  The points `-3,-1/3` are the two preimages
+of `y=infinity`, and the quadratic pair above is exactly the outer Mellin
+zero `eta(-y)`.  The verifier checks these identities and the absence of
+unexpected finite singular `y` values directly over the audited prime set.
+
 ## Open-Set Line Correction
 
 For the actual two-coordinate open sum, the principal coordinate line

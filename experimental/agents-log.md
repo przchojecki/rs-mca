@@ -29,6 +29,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-19 - M1 line-conic lambda conductor ledger
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/m1_depth_two_line_conic_resonance_reduction.md`,
+  `experimental/verify_m1_depth_two_line_conic_resonance_reduction.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** Computes the rational map from the discriminant
+  double cover to the hypergeometric `lambda`-line and records its special
+  points: `0`, `infinity`, `1`, `-1`, `-3`, `-1/3`, and the roots of
+  `9lambda^2+14lambda+9`.
+- **How it is useful:** Converts the remaining line-conic conductor target
+  into an explicit eight-point `lambda`-line checklist after the
+  hypergeometric pullback.
+- **What to do next:** Turn this checklist into a theorem-grade conductor
+  ledger for the quadratic pushforward with Mellin twist.
+
 ### 2026-06-19 - M1 line-conic hypergeometric pullback
 
 - **Agent/model:** Codex.

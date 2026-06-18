@@ -302,6 +302,77 @@ def verify_split_hypergeometric_pullback(
     return checked
 
 
+def verify_lambda_map_ledger(p: int) -> int:
+    checked = 0
+    for parameter in range(p):
+        denominator = (3 * parameter * parameter + 10 * parameter + 3) % p
+        numerator = (9 * parameter * parameter + 14 * parameter + 9) % p
+        if denominator == 0:
+            continue
+        y = numerator * pow(denominator, -1, p) % p
+        z = (
+            6
+            * (1 - parameter * parameter)
+            * pow(denominator, -1, p)
+        ) % p
+        root_plus = (-8 * (1 + parameter) * pow(denominator, -1, p)) % p
+        root_minus = (parameter * root_plus) % p
+        if z * z % p != (y - 2) * (y + 1) % p:
+            raise AssertionError((p, parameter, "double_cover", y, z))
+        if q_y_v(y, root_plus, p) != 0 or q_y_v(y, root_minus, p) != 0:
+            raise AssertionError((p, parameter, "root", y, root_plus, root_minus))
+        if parameter not in {(-1) % p, 0} and root_plus == 0:
+            raise AssertionError((p, parameter, "root_plus_zero"))
+        if root_plus != 0:
+            recovered = root_minus * pow(root_plus, -1, p) % p
+            if recovered != parameter:
+                raise AssertionError((p, parameter, recovered))
+
+        expected_y_minus_two = (
+            3
+            * (parameter - 1)
+            * (parameter - 1)
+            * pow(denominator, -1, p)
+        ) % p
+        expected_y_plus_one = (
+            12
+            * (parameter + 1)
+            * (parameter + 1)
+            * pow(denominator, -1, p)
+        ) % p
+        expected_y_minus_three = (
+            -16 * parameter * pow(denominator, -1, p)
+        ) % p
+        if (y - 2) % p != expected_y_minus_two:
+            raise AssertionError((p, parameter, "y-2"))
+        if (y + 1) % p != expected_y_plus_one:
+            raise AssertionError((p, parameter, "y+1"))
+        if (y - 3) % p != expected_y_minus_three:
+            raise AssertionError((p, parameter, "y-3"))
+
+        finite_singular = (
+            parameter in {0, 1, (-1) % p}
+            or denominator == 0
+            or numerator == 0
+        )
+        y_singular = y in {0, (-1) % p, 2 % p, 3 % p}
+        if y_singular and not finite_singular:
+            raise AssertionError((p, parameter, "unexpected singular y", y))
+        checked += 1
+
+    # The two finite poles of y(lambda) are lambda=-3 and lambda=-1/3.
+    if (3 * (-3) * (-3) + 10 * (-3) + 3) % p != 0:
+        raise AssertionError((p, "lambda=-3 pole"))
+    minus_inverse_three = (-pow(3, -1, p)) % p
+    if (
+        3 * minus_inverse_three * minus_inverse_three
+        + 10 * minus_inverse_three
+        + 3
+    ) % p != 0:
+        raise AssertionError((p, "lambda=-1/3 pole"))
+    return checked
+
+
 def core_collision_formula(p: int) -> int:
     return (
         2 * p * p
@@ -612,6 +683,7 @@ def main() -> None:
     max_open_label: Tuple[object, ...] = ()
     max_line_label: Tuple[object, ...] = ()
     singular_checked: List[int] = []
+    lambda_map_checked = 0
     split_hypergeometric_checked = 0
     filter_checked = verify_admissible_filter_counts()
     moment_checked = verify_second_moments()
@@ -621,6 +693,7 @@ def main() -> None:
             tables[p] = character_table(p, logs)
             verify_discriminant_values(p)
             verify_singular_fiber_values(p, tables[p])
+            lambda_map_checked += verify_lambda_map_ledger(p)
             split_hypergeometric_checked += verify_split_hypergeometric_pullback(
                 p,
                 tables[p],
@@ -679,6 +752,7 @@ def main() -> None:
         f"max_open_ratio={max_open_ratio:.10f}@{max_open_label}",
         f"max_line_ratio={max_line_ratio:.10f}@{max_line_label}",
         f"singular_checked={singular_checked}",
+        f"lambda_map_checked={lambda_map_checked}",
         f"split_hypergeometric_checked={split_hypergeometric_checked}",
         f"filter_checked={filter_checked[0]}..{filter_checked[-1]}",
         f"moment_checked={moment_checked}",
