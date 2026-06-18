@@ -81,12 +81,15 @@ Keep entries concise and link to the relevant files.
   degree-five character-sum estimate, one fixed window `K union cK` already
   hits every nonzero `D^2`-coset once the conservative lower numerator is
   positive; whenever `R>=2`, this promotes directly to exact-support
-  saturation. This leaves a narrower intermediate/lift-limited window for
-  M1 slope-image bounds.
+  saturation. The scanner also records the exact `R=2` union reduction:
+  active shapes are the union of the two-fiber windows `C_2^(2)(K union cK)`,
+  and the verifier checks a finite case where no single fixed window
+  saturates but the union does. This leaves a narrower
+  intermediate/lift-limited window for M1 slope-image bounds.
 - **What to do next:** Prove or replace the imported Kummer-Weil constant in
   a standalone algebraic-geometry note, then attack the residual `R=1`
-  kernel catalog and the finite cases where the conservative two-fiber lower
-  bound is negative but exact enumeration still saturates.
+  kernel catalog and sharpen the conservative two-fiber lower bound so it
+  explains more of the exact `R=2` union saturation cases analytically.
 
 ### 2026-06-18 - PR #78 M1 residual-depth hierarchy
 

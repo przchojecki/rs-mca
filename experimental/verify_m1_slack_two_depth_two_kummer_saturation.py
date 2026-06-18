@@ -12,6 +12,7 @@ from m1_support_occupancy_scan import (
     slack_two_second_kummer_saturation_data,
     slack_two_second_superboundary_shape_ledger,
     slack_two_second_two_fiber_kummer_saturation_data,
+    slack_two_second_two_fiber_union_reduction_data,
     slack_two_second_two_fiber_window_data,
 )
 from mca_slope_scan import make_domain
@@ -53,6 +54,11 @@ TWO_FIBER_KUMMER_CASES = (
     (919, 918, 3, True),
     # Proper index-two N=3 sample above the uniform two-fiber threshold.
     (7351, 3675, 3, True),
+)
+
+TWO_FIBER_UNION_CASES = (
+    # R=2: no fixed two-fiber certificate, but the union saturates.
+    (97, 48, 6, 8, 36),
 )
 
 
@@ -449,12 +455,68 @@ def main() -> None:
                 window["total_nonzero_square_coset_count"],
             )
         )
+    two_fiber_union_checked = []
+    for p, n, quotient_order, fiber_size, support_size in TWO_FIBER_UNION_CASES:
+        _, domain = make_domain(p, n, None)
+        ledger = slack_two_second_superboundary_shape_ledger(
+            p=p,
+            domain=domain,
+            support_size=support_size,
+            quotient_order=quotient_order,
+            fiber_size=fiber_size,
+        )
+        reduction = slack_two_second_two_fiber_union_reduction_data(
+            p,
+            domain,
+            quotient_order,
+        )
+        if reduction is None:
+            raise AssertionError((p, n, quotient_order))
+        remaining_fibers = int(ledger["lift_limited_remaining_fibers"])
+        if remaining_fibers != 2:
+            raise AssertionError((p, n, support_size, ledger))
+        observed = (
+            int(reduction["parameter_count"]),
+            int(reduction["zero_parameter_count"]),
+            int(reduction["nonzero_square_coset_count"]),
+            int(reduction["slope_count"]),
+        )
+        expected = (
+            int(ledger["active_parameter_count"]),
+            int(ledger["active_zero_parameter_count"]),
+            int(ledger["active_nonzero_square_coset_count"]),
+            len(ledger["support_slope_histogram"]),
+        )
+        if observed != expected:
+            raise AssertionError((p, n, support_size, observed, expected))
+        if not bool(reduction["saturates_nonzero_square_cosets"]):
+            raise AssertionError((p, n, support_size, reduction))
+        per_window_cosets = tuple(
+            int(profile["nonzero_square_coset_count"])
+            for profile in reduction["per_window_profiles"]
+        )
+        if max(per_window_cosets) >= int(
+            reduction["total_nonzero_square_coset_count"]
+        ):
+            raise AssertionError((p, n, support_size, reduction))
+        two_fiber_union_checked.append(
+            (
+                p,
+                n,
+                quotient_order,
+                support_size,
+                remaining_fibers,
+                *observed,
+                per_window_cosets,
+            )
+        )
     print(
         "verify_m1_slack_two_depth_two_kummer_saturation: "
         f"PASS checked={checked} lift_checked={lift_checked} "
         f"lift_bound_checked={lift_bound_checked} "
         f"kernel_checked={kernel_checked} "
-        f"two_fiber_checked={two_fiber_checked}"
+        f"two_fiber_checked={two_fiber_checked} "
+        f"two_fiber_union_checked={two_fiber_union_checked}"
     )
 
 

@@ -170,6 +170,15 @@ canonical_slack_two_second_kernel_fiber_zero_parameter_count
 canonical_slack_two_second_kernel_fiber_nonzero_square_coset_count
 canonical_slack_two_second_kernel_fiber_slope_count
 canonical_slack_two_second_kernel_fiber_reduction_check
+canonical_slack_two_second_r2_union_reduction_active
+canonical_slack_two_second_r2_union_window_count
+canonical_slack_two_second_r2_union_parameter_count
+canonical_slack_two_second_r2_union_zero_parameter_count
+canonical_slack_two_second_r2_union_nonzero_square_coset_count
+canonical_slack_two_second_r2_union_saturates
+canonical_slack_two_second_r2_union_slope_count
+canonical_slack_two_second_r2_union_per_window_profiles
+canonical_slack_two_second_r2_union_reduction_check
 canonical_slack_two_second_full_domain_saturates_nonzero_slopes
 canonical_slack_two_second_full_domain_nonzero_slope_image
 canonical_slack_two_second_full_domain_coset_count_check
@@ -563,6 +572,22 @@ image is exactly
 The `canonical_slack_two_second_kernel_fiber_*` fields report this kernel
 catalog and check it against the active depth-two parameter count, zero count,
 nonzero square-coset count, and exact active slope count.
+At the next lift-limited layer `R=2`, active normalized shapes have all four
+entries inside at most two quotient fibers, one of which is the kernel fiber
+containing the normalized entry `1`. Hence the active parameter set is exactly
+the union of the two-fiber windows
+
+```text
+C_2^(2)(K union cK),     cK != K.
+```
+
+The `canonical_slack_two_second_r2_union_*` fields enumerate this quotient
+window union directly, record the per-window profiles, and check the exact
+union against the active depth-two parameter count, zero count, nonzero
+`D^2`-coset count, and slope count. This explains finite cases where a single
+two-fiber window is not saturated but the union over all second fibers is
+saturated; those cases are genuine exact-support saturation, not artifacts of
+the coarse lift-limited slope ceiling.
 The `canonical_slack_two_second_kummer_*` fields record the opposite
 low-index certificate. They use the rank-two Kummer character-sum expansion
 for the depth-two shape map
