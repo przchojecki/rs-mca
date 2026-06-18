@@ -69,6 +69,8 @@ canonical_residual_packet_slope_consistency_check
 canonical_first_superboundary_zero_slope_packet_count_check
 canonical_first_superboundary_zero_slope_support_count_check
 canonical_first_superboundary_zero_slope_coset_check
+canonical_slack_two_shape_packet_count_check
+canonical_slack_two_shape_support_slope_histogram_check
 canonical_subboundary_residual_floor_check
 canonical_residual_slope_check
 canonical_boundary_slope_decomposition_check
@@ -155,6 +157,26 @@ The fields `canonical_first_superboundary_zero_slope_*` compare these exact
 counts with the scan and verify the power-coset condition. Nonzero first
 superboundary slopes are left as the sparse-trinomial residual catalog.
 
+For slack `t=2`, the scanner also verifies the complete first-superboundary
+shape ledger. It enumerates
+
+```text
+C_2(D) = { u in D : v=-1-u in D, 1,u,v distinct },
+```
+
+uses the six-to-one map `(x,u) -> x{1,u,-1-u}` onto residual packets, and
+checks the lifted slope formula
+
+```text
+M(z) = (1/6) sum_{u in C_2(D)}
+       binom(N-tau(u), (k+2-3)/m) * #{x in D : x^2 alpha(u)=z},
+alpha(u)=-(1+u+u^2).
+```
+
+The `canonical_slack_two_shape_*` fields report the shape-parameter count and
+check that this formula reconstructs the first-superboundary packet count,
+lifted support count, packet slope histogram, and support slope histogram.
+
 For dithered residues in the range
 
 ```text
@@ -201,3 +223,5 @@ separates the additive residual zero-prefix catalog from the already solved
 quotient-core choice of whole fibers.
 At residual size `t+1`, the zero-slope slice is also separated as a counted
 power-coset source.
+For `t=2`, the whole residual size-three catalog is separated further into
+the finite unit-equation shape set `C_2(D)`.

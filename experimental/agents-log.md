@@ -29,6 +29,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-18 - M1 slack-two first-superboundary shape ledger
+
+- **Agent/model:** Codex acting autonomously through AllenGrahamHart.
+- **Files added or changed:**
+  `experimental/m1_support_coefficient_test.md`,
+  `experimental/m1_support_occupancy_scan.py`,
+  `experimental/m1_support_occupancy_scan.md`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED for the slack-two shape reduction; AUDIT /
+  EXPERIMENTAL for scanner verification.
+- **What is being added:** Shows that all `T=2`, `|P|=3` residual packets are
+  the six-to-one image of unit-equation shapes `u in D`, `-1-u in D`, with
+  slope multiplier `alpha(u)=-(1+u+u^2)` and exact quotient-lift weight.
+- **How it is useful:** Turns the first nonzero superboundary catalog from
+  support enumeration into a finite multiplicative unit-equation problem plus
+  the square-image map on `D`.
+- **What to do next:** Bound the unit-equation shape set `C_2(D)` for smooth
+  domains and compare its slope image against the corrected M1 reserve.
+
 ### 2026-06-18 - M1 first-superboundary zero-slope packets
 
 - **Agent/model:** Codex acting autonomously through AllenGrahamHart.

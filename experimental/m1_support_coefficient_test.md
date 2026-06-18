@@ -489,6 +489,47 @@ fork in the superboundary problem: the zero-slope component remains a counted
 power-coset ledger, while the nonzero component is the genuinely new sparse
 trinomial/additive residual source.
 
+For slack `T=2`, this first-superboundary catalog has an exact unit-equation
+normal form. Assume `3<m`. Put
+
+```text
+C_2(D) = { u in D : v=-1-u in D, 1,u,v are distinct }.
+```
+
+Every residual packet `P` of size three with `e_1(P)=0` can be written as
+
+```text
+P = x {1,u,-1-u},        x in D, u in C_2(D),
+```
+
+and the map `(x,u) -> P` is six-to-one: the six choices are exactly the
+choice of a base point of `P` and an ordering of the two remaining points.
+Consequently the packet count is
+
+```text
+|D| |C_2(D)| / 6.
+```
+
+For exact support size `s=Lm+3`, define
+
+```text
+alpha(u)=-(1+u+u^2),
+tau(u)=#{quotient fibers met by {1,u,-1-u}}.
+```
+
+Then the full lifted slope multiset in the slack-two first superboundary has
+multiplicity
+
+```text
+M(z) = (1/6) sum_{u in C_2(D)}
+       binom(N-tau(u), L) * #{x in D : x^2 alpha(u)=z}.
+```
+
+This formula includes the zero-slope power-coset case: `alpha(u)=0` exactly
+when `u` is a nontrivial cube root of unity. Thus the entire `T=2`, `|P|=3`
+canonical residual source is reduced to the multiplicative unit equation
+`u in D` and `-1-u in D`, plus the square-image map `x -> x^2` on `D`.
+
 ## M1 Impact
 
 This turns the positive M1 problem into a precise incidence question:
@@ -550,6 +591,10 @@ In the first superboundary layer `|P|=T+1`, the zero-slope subcatalog is again
 closed and quotient-level: it is just the `(T+1)`-power coset family. The
 remaining unclassified first-superboundary slopes are exactly the nonzero
 coefficients of `D`-split sparse trinomials `X^(T+1)+zX-c`.
+For `T=2`, even that nonzero catalog is no longer a support-enumeration
+problem: it is exactly the unit-equation shape set `C_2(D)`, with slope image
+given by the square cosets `alpha(u)D^2` and quotient-lift weight
+`binom(N-tau(u),L)`.
 
 ## Suggested Next Step
 
@@ -578,3 +623,5 @@ the residual-packet lift formula, so scans can distinguish the new residual
 packet catalog from the already solved quotient-core lifting multiplicity.
 For residual packets of size `T+1`, it additionally checks the zero-slope
 power-coset classification and the corresponding lifted support count.
+When `T=2`, it also checks the complete unit-equation shape ledger and its
+weighted slope histogram.

@@ -335,6 +335,85 @@ def expected_first_superboundary_zero_slope_data(
     )
 
 
+def slack_two_first_superboundary_shape_ledger(
+    p: int,
+    domain: Sequence[int],
+    support_size: int,
+    quotient_order: int,
+    fiber_size: int,
+) -> Dict[str, object]:
+    domain_set = set(domain)
+    value_to_index = {value: index for index, value in enumerate(domain)}
+    parameter_count = 0
+    packet_count_numerator = 0
+    support_count_numerator = 0
+    packet_slope_histogram_numerator: Counter[int] = Counter()
+    support_slope_histogram_numerator: Counter[int] = Counter()
+    whole_fibers = (
+        (support_size - 3) // fiber_size
+        if support_size >= 3 and (support_size - 3) % fiber_size == 0
+        else None
+    )
+
+    for u in domain:
+        v = (-1 - u) % p
+        if v not in domain_set:
+            continue
+        if u == 1 or v == 1 or v == u:
+            continue
+        parameter_count += 1
+        if whole_fibers is None:
+            continue
+
+        touched_fibers = len(
+            {
+                0,
+                value_to_index[u] % quotient_order,
+                value_to_index[v] % quotient_order,
+            }
+        )
+        if whole_fibers > quotient_order - touched_fibers:
+            lift_count = 0
+        else:
+            lift_count = math.comb(quotient_order - touched_fibers, whole_fibers)
+        shape_slope = (-1 - u - u * u) % p
+
+        for x in domain:
+            slope = (x * x * shape_slope) % p
+            packet_count_numerator += 1
+            support_count_numerator += lift_count
+            packet_slope_histogram_numerator[slope] += 1
+            support_slope_histogram_numerator[slope] += lift_count
+
+    numerators = [
+        packet_count_numerator,
+        support_count_numerator,
+        *packet_slope_histogram_numerator.values(),
+        *support_slope_histogram_numerator.values(),
+    ]
+    quotient_check = all(numerator % 6 == 0 for numerator in numerators)
+    packet_slope_histogram = Counter(
+        {
+            slope: count // 6
+            for slope, count in packet_slope_histogram_numerator.items()
+        }
+    )
+    support_slope_histogram = Counter(
+        {
+            slope: count // 6
+            for slope, count in support_slope_histogram_numerator.items()
+        }
+    )
+    return {
+        "parameter_count": parameter_count,
+        "sixfold_quotient_check": quotient_check,
+        "packet_count": packet_count_numerator // 6,
+        "weighted_support_count": support_count_numerator // 6,
+        "packet_slope_histogram": packet_slope_histogram,
+        "support_slope_histogram": support_slope_histogram,
+    }
+
+
 def occupancy_histogram(
     support: Sequence[int],
     quotient_order: int,
@@ -820,6 +899,20 @@ def scan_supports(
                 residual_values = [domain[index] for index in residual]
                 if not is_power_coset(residual_values, slack + 1, p):
                     first_superboundary_zero_slope_coset_mismatches += 1
+    first_superboundary_support_count = sum(
+        first_superboundary_slope_histogram.values()
+    )
+    slack_two_shape_ledger = (
+        slack_two_first_superboundary_shape_ledger(
+            p=p,
+            domain=domain,
+            support_size=support_size,
+            quotient_order=quotient_order,
+            fiber_size=fiber_size,
+        )
+        if canonical_line and slack == 2 and slack + 1 < fiber_size
+        else None
+    )
 
     return {
         "proof_status": "AUDIT / EXPERIMENTAL",
@@ -1095,6 +1188,11 @@ def scan_supports(
             if canonical_line and slack + 1 < fiber_size
             else None
         ),
+        "canonical_first_superboundary_support_count": (
+            first_superboundary_support_count
+            if canonical_line and slack + 1 < fiber_size
+            else None
+        ),
         "canonical_first_superboundary_slope_count": (
             len(first_superboundary_slope_histogram)
             if canonical_line and slack + 1 < fiber_size
@@ -1170,6 +1268,70 @@ def scan_supports(
         "canonical_first_superboundary_zero_slope_coset_mismatch_count": (
             first_superboundary_zero_slope_coset_mismatches
             if canonical_line and slack + 1 < fiber_size
+            else None
+        ),
+        "canonical_slack_two_shape_parameter_count": (
+            int(slack_two_shape_ledger["parameter_count"])
+            if slack_two_shape_ledger is not None
+            else None
+        ),
+        "canonical_slack_two_shape_sixfold_quotient_check": (
+            bool(slack_two_shape_ledger["sixfold_quotient_check"])
+            if slack_two_shape_ledger is not None
+            else None
+        ),
+        "canonical_slack_two_shape_expected_packet_count": (
+            int(slack_two_shape_ledger["packet_count"])
+            if slack_two_shape_ledger is not None
+            else None
+        ),
+        "canonical_slack_two_shape_packet_count_check": (
+            int(slack_two_shape_ledger["packet_count"])
+            == first_superboundary_packet_count
+            if slack_two_shape_ledger is not None
+            else None
+        ),
+        "canonical_slack_two_shape_expected_support_count": (
+            int(slack_two_shape_ledger["weighted_support_count"])
+            if slack_two_shape_ledger is not None
+            else None
+        ),
+        "canonical_slack_two_shape_support_count_check": (
+            int(slack_two_shape_ledger["weighted_support_count"])
+            == first_superboundary_support_count
+            if slack_two_shape_ledger is not None
+            else None
+        ),
+        "canonical_slack_two_shape_packet_slope_histogram_check": (
+            slack_two_shape_ledger["packet_slope_histogram"]
+            == first_superboundary_packet_slope_histogram
+            if slack_two_shape_ledger is not None
+            else None
+        ),
+        "canonical_slack_two_shape_support_slope_histogram_check": (
+            slack_two_shape_ledger["support_slope_histogram"]
+            == first_superboundary_slope_histogram
+            if slack_two_shape_ledger is not None
+            else None
+        ),
+        "canonical_slack_two_shape_expected_packet_slope_histogram": (
+            {
+                str(slope): count
+                for slope, count in sorted(
+                    slack_two_shape_ledger["packet_slope_histogram"].items()
+                )
+            }
+            if slack_two_shape_ledger is not None
+            else None
+        ),
+        "canonical_slack_two_shape_expected_support_slope_histogram": (
+            {
+                str(slope): count
+                for slope, count in sorted(
+                    slack_two_shape_ledger["support_slope_histogram"].items()
+                )
+            }
+            if slack_two_shape_ledger is not None
             else None
         ),
         "canonical_subboundary_residual_floor": (
@@ -1288,6 +1450,7 @@ def print_text(result: Dict[str, object]) -> None:
             "small_residual_regime={small} "
             "residual_packet_lift_check={packet} "
             "first_superboundary_zero_check={first} "
+            "slack_two_shape_check={shape} "
             "subboundary_floor_check={floor} "
             "residual_slope_check={slope} "
             "boundary_slope_check={boundary}".format(
@@ -1303,6 +1466,7 @@ def print_text(result: Dict[str, object]) -> None:
                 first=result[
                     "canonical_first_superboundary_zero_slope_packet_count_check"
                 ],
+                shape=result["canonical_slack_two_shape_support_count_check"],
                 floor=result["canonical_subboundary_residual_floor_check"],
                 slope=result["canonical_residual_slope_check"],
                 boundary=result["canonical_boundary_slope_decomposition_check"],
