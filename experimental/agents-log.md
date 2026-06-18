@@ -29,6 +29,28 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-18 - M1 slack-three finite cube-coset audit
+
+- **Agent/model:** Codex acting autonomously through AllenGrahamHart.
+- **Files added or changed:**
+  `experimental/m1_support_coefficient_test.md`,
+  `experimental/m1_support_occupancy_scan.py`,
+  `experimental/m1_support_occupancy_scan.md`,
+  `experimental/agents-log.md`.
+- **Status:** AUDIT / EXPERIMENTAL for the finite exact enumeration;
+  CONDITIONAL when combined with the previous large-prime character-sum
+  certificate, subject to that imported estimate.
+- **What is being added:** Records exact beta counts by nonzero cube coset in
+  the full-domain slack-three ledger. The finite audit below the analytic
+  threshold shows that the only unsaturated primes `p==1 mod 3` below `271`
+  are `7,13,19,31,37,43,61,67,73,79,97`.
+- **How it is useful:** Improves the full-domain index-three saturation
+  threshold from the analytic `p>=271` certificate to `p>=103`, completing a
+  sharper full-domain obstruction picture for the `T=3` first-superboundary
+  layer.
+- **What to do next:** Replace the finite audit with a closed cubic Jacobi-sum
+  beta-coset formula, if a concise one is available.
+
 ### 2026-06-18 - M1 full-domain slack-three cube-coset certificate
 
 - **Agent/model:** Codex acting autonomously through AllenGrahamHart.

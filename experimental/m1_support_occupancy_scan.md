@@ -128,6 +128,8 @@ canonical_slack_three_shape_support_slope_histogram_check
 canonical_slack_three_shape_beta_count
 canonical_slack_three_shape_beta_parameter_count_check
 canonical_slack_three_shape_active_nonzero_cube_coset_count
+canonical_slack_three_shape_nonzero_cube_coset_beta_counts
+canonical_slack_three_shape_active_nonzero_cube_coset_beta_counts
 canonical_slack_three_shape_cube_coset_slope_count
 canonical_slack_three_shape_cube_coset_slope_count_check
 canonical_slack_three_full_domain_ordered_shape_count
@@ -139,6 +141,8 @@ canonical_slack_three_full_domain_nonzero_beta_count
 canonical_slack_three_full_domain_cube_surjective
 canonical_slack_three_full_domain_cube_coset_beta_lower_bound
 canonical_slack_three_full_domain_cube_coset_saturation_certificate
+canonical_slack_three_full_domain_exact_cube_coset_beta_counts
+canonical_slack_three_full_domain_exact_cube_coset_saturates
 canonical_slack_three_full_domain_slope_image
 canonical_slack_three_full_domain_slope_count
 canonical_slack_three_full_domain_slope_count_check
@@ -425,6 +429,11 @@ ceil((A_nonzero - 12 sqrt(p) - 36)/18),
 where `A_nonzero` is the ordered full-domain shape count with `beta != 0`.
 If this lower bound is positive, every cube coset is hit. The crude estimate
 `A_nonzero>=p-25` implies this for every prime `p>=271` with `p==1 mod 3`.
+The exact finite-audit fields report the sorted number of beta values in each
+hit nonzero cube coset and whether all three cube cosets are hit directly.
+This exact audit improves the full-domain `p==1 mod 3` saturation threshold
+to `p>=103`; the only unsaturated primes below the analytic threshold are
+`7,13,19,31,37,43,61,67,73,79,97`.
 
 For prime fields, `canonical_slack_three_cyclotomic_*` reports the conditional
 genus-zero character-sum bound for this ordered conic shape count. If

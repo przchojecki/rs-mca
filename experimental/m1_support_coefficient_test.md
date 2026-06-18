@@ -1051,6 +1051,20 @@ for every prime `p>=271` with `p==1 mod 3`. Thus for all such primes the
 full-domain slack-three first-superboundary slope image contains every
 nonzero field slope, and it contains zero exactly when `chi(-1)=1`.
 
+The remaining finite range is small enough to audit exactly from the
+split-cubic beta ledger. For primes `p==1 mod 3` below `271`, exact
+enumeration of admissible beta values by cube coset gives the unsaturated
+list
+
+```text
+7, 13, 19, 31, 37, 43, 61, 67, 73, 79, 97.
+```
+
+Every prime `p==1 mod 3` with `103<=p<271` hits all three nonzero cube
+cosets. Combining this finite audit with the character-sum certificate proves
+that the full-domain slack-three first-superboundary image contains every
+nonzero field slope for every prime `p==1 mod 3` with `p>=103`.
+
 There is also a prime-field character-sum route for the slack-three conic
 count. Let `D <= F_p^*` have order `n`, index `e=(p-1)/n`, and let `chi` be
 a multiplicative character of order `e`, extended by zero at zero. Put
@@ -1240,6 +1254,8 @@ For `p==1 mod 3`, the full-domain cubic-character refinement gives a
 large-prime saturation certificate as well: every cube coset is hit once
 `p>=271`, so the full-domain slack-three obstruction again fills all nonzero
 slopes.
+The exact finite audit improves the final threshold to `p>=103` in this
+index-three case.
 The prime-field conic character expansion gives the matching analytic route:
 under a standard genus-zero character-sum estimate, the slack-three ordered
 shape count is roughly `p/e^3`, and the resulting cube-coset slope budget has

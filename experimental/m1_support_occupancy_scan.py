@@ -732,9 +732,11 @@ def slack_three_first_superboundary_shape_ledger(
     beta_values = set()
     active_beta_values = set()
     nonzero_cube_cosets = set()
+    nonzero_cube_coset_beta_values: Dict[int, set[int]] = {}
     active_zero_slope = False
     cube_image = {pow(x, 3, p) for x in domain}
     active_nonzero_cube_cosets = set()
+    active_nonzero_cube_coset_beta_values: Dict[int, set[int]] = {}
     total_nonzero_cube_cosets = (p - 1) // len(cube_image)
     whole_fibers = (
         (support_size - 4) // fiber_size
@@ -761,6 +763,10 @@ def slack_three_first_superboundary_shape_ledger(
                     (shape_slope * cube) % p for cube in cube_image
                 )
                 nonzero_cube_cosets.add(coset_representative)
+                nonzero_cube_coset_beta_values.setdefault(
+                    coset_representative,
+                    set(),
+                ).add(shape_slope)
 
             if whole_fibers is None:
                 continue
@@ -789,6 +795,10 @@ def slack_three_first_superboundary_shape_ledger(
                 active_zero_slope = True
             else:
                 active_nonzero_cube_cosets.add(coset_representative)
+                active_nonzero_cube_coset_beta_values.setdefault(
+                    coset_representative,
+                    set(),
+                ).add(shape_slope)
 
             for x in domain:
                 slope = (pow(x, 3, p) * shape_slope) % p
@@ -823,6 +833,12 @@ def slack_three_first_superboundary_shape_ledger(
     abstract_cube_coset_slope_count = (
         (1 if zero_slope else 0) + len(nonzero_cube_cosets) * len(cube_image)
     )
+    nonzero_cube_coset_beta_counts = sorted(
+        len(values) for values in nonzero_cube_coset_beta_values.values()
+    )
+    active_nonzero_cube_coset_beta_counts = sorted(
+        len(values) for values in active_nonzero_cube_coset_beta_values.values()
+    )
     return {
         "parameter_count": parameter_count,
         "active_parameter_count": active_parameter_count,
@@ -835,6 +851,10 @@ def slack_three_first_superboundary_shape_ledger(
         ),
         "nonzero_cube_coset_count": len(nonzero_cube_cosets),
         "active_nonzero_cube_coset_count": len(active_nonzero_cube_cosets),
+        "nonzero_cube_coset_beta_counts": nonzero_cube_coset_beta_counts,
+        "active_nonzero_cube_coset_beta_counts": (
+            active_nonzero_cube_coset_beta_counts
+        ),
         "total_nonzero_cube_coset_count": total_nonzero_cube_cosets,
         "cube_image_size": len(cube_image),
         "abstract_cube_coset_slope_count": abstract_cube_coset_slope_count,
@@ -2285,6 +2305,20 @@ def scan_supports(
             if slack_three_shape_ledger is not None
             else None
         ),
+        "canonical_slack_three_shape_nonzero_cube_coset_beta_counts": (
+            list(slack_three_shape_ledger["nonzero_cube_coset_beta_counts"])
+            if slack_three_shape_ledger is not None
+            else None
+        ),
+        "canonical_slack_three_shape_active_nonzero_cube_coset_beta_counts": (
+            list(
+                slack_three_shape_ledger[
+                    "active_nonzero_cube_coset_beta_counts"
+                ]
+            )
+            if slack_three_shape_ledger is not None
+            else None
+        ),
         "canonical_slack_three_shape_total_nonzero_cube_coset_count": (
             int(slack_three_shape_ledger["total_nonzero_cube_coset_count"])
             if slack_three_shape_ledger is not None
@@ -2433,6 +2467,23 @@ def scan_supports(
                 ]
             )
             if slack_three_full_domain_beta_data is not None
+            else None
+        ),
+        "canonical_slack_three_full_domain_exact_cube_coset_beta_counts": (
+            list(slack_three_shape_ledger["nonzero_cube_coset_beta_counts"])
+            if (
+                slack_three_shape_ledger is not None
+                and slack_three_full_domain_beta_data is not None
+            )
+            else None
+        ),
+        "canonical_slack_three_full_domain_exact_cube_coset_saturates": (
+            int(slack_three_shape_ledger["nonzero_cube_coset_count"])
+            == int(slack_three_shape_ledger["total_nonzero_cube_coset_count"])
+            if (
+                slack_three_shape_ledger is not None
+                and slack_three_full_domain_beta_data is not None
+            )
             else None
         ),
         "canonical_slack_three_full_domain_slope_image": (
