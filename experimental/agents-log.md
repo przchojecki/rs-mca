@@ -29,6 +29,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-18 - M1 slack-three first-superboundary theorem
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/m1_slack_three_first_superboundary_theorem.md`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / CONDITIONAL / AUDIT.
+- **What is being added:** Extracts a standalone theorem note for the
+  slack-three first-superboundary packet: the conic shape reduction, the
+  one-variable split-cubic beta ledger, full-domain saturation thresholds, and
+  proper-subgroup cube-coset certificates.
+- **How it is useful:** Advances the roadmap's fixed low-slack template step
+  beyond the slack-two depth-two PR. It shows that the next low-slack frontier
+  also decomposes into explicit packet templates and coset coverage ledgers
+  before the aperiodic M1 packing problem is attacked.
+- **What to do next:** Keep the proper-subgroup character-sum estimates
+  clearly conditional, then look for a common low-slack template statement
+  unifying the slack-two depth-two and slack-three first-superboundary ledgers.
+
 ### 2026-06-18 - M1 residue-line roadmap
 
 - **Agent/model:** Codex.
