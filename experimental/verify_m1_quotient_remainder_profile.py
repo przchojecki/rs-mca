@@ -644,6 +644,41 @@ def verify_gap_one_menu_linear_tail(n, k0, t_start, t_end, q):
     return menu_size, tuple(menu), tuple(rows)
 
 
+def verify_gap_one_window_scale_confinement(n, k0, t_start, t_end):
+    assert 1 <= t_start <= t_end
+    menu_size = adaptive_competitive_menu_size_formula(t_end - t_start + 1)
+    menu = exact_dither_menu_construction(t_start, t_end, menu_size, 1)
+    assert menu_covers_window(t_start, t_end, menu, 1)
+
+    finite_prefix = [m for m in dyadic_divisors(k0) if m <= t_end]
+    expected_count = 0 if t_end < 2 else t_end.bit_length() - 1
+    expected_count = min(expected_count, len(dyadic_divisors(k0)))
+    assert len(finite_prefix) == expected_count
+
+    rows = []
+    for t in range(t_start, t_end + 1):
+        choices = [r for r in menu if r != t and abs(t - r) == 1]
+        assert choices
+        for r in choices:
+            for m in dyadic_divisors(k0):
+                if m <= t_end:
+                    continue
+                if r == t - 1:
+                    N = n // m
+                    L = k0 // m
+                    profile = maximal_dither_all_scale_enumerator(N, m, L, t)
+                    expected = Counter({1: n - k0 - 1})
+                else:
+                    N = n // m
+                    L = k0 // m - 1
+                    profile = co_maximal_dither_all_scale_enumerator(N, m, L, t)
+                    expected = Counter({1: k0 - 1})
+                assert profile == expected, (n, k0, t_start, t_end, t, r, m)
+            rows.append((t, r))
+
+    return tuple(finite_prefix), tuple(rows)
+
+
 def verify_fixed_window_stable_tail_minimax(n, k0, t_start, t_end):
     assert 1 <= t_start <= t_end
     window_length = t_end - t_start + 1
@@ -1154,6 +1189,17 @@ def main():
         print(
             f"n,k0,t0,t1,q={case}: gap_one_menu_size={menu_size}, "
             f"menu={menu}, linear_rows={rows}"
+        )
+    gap_one_confinement_cases = [
+        (256, 128, 5, 12),
+        (1024, 256, 9, 15),
+        (1024, 128, 13, 17),
+    ]
+    for case in gap_one_confinement_cases:
+        prefix, rows = verify_gap_one_window_scale_confinement(*case)
+        print(
+            f"n,k0,t0,t1={case}: gap_one_prefix={prefix}, "
+            f"served_rows={rows}"
         )
     adjacent_remainder_cases = [
         (256, 128, 5, 8),

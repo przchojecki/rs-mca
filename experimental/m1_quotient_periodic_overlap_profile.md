@@ -1093,6 +1093,35 @@ the under-dithered choice `r=t-1` uses the one-remainder formula above, while
 the over-dithered choice `r=t+1` uses this complement-dual co-remainder
 formula.
 
+Consequently a gap-one menu has the same finite-prefix confinement as fully
+adaptive maximal dither, but now uniformly over the whole window. For
+`W=[t_-,t_+]`, every served slack has an adjacent choice. At any dyadic scale
+`m | k0` with
+
+```text
+m > t_+,
+```
+
+both adjacent all-scale formulas are already in their linear large-scale
+regime. The possible nonlinear quotient-remainder scales over the entire
+window are therefore contained in the finite prefix
+
+```text
+S_win(W,k0) = { m=2^u : 2 <= m <= t_+ and m | k0 },
+```
+
+so
+
+```text
+|S_win(W,k0)| <= floor(log2 t_+).
+```
+
+Within this prefix, the boundary term can occur only at a slack with `m=t`,
+and the remaining nonlinear terms are exactly the explicit three-band
+one-remainder or co-remainder prefixes above. Thus a gap-one menu does not
+remove all small quotient-remainder bookkeeping, but it prevents any nonlinear
+large-scale tail from surviving beyond the window endpoint.
+
 ## Random-Line Certificate Corollaries
 
 The overlap profiles above plug directly into the support-family random-line
@@ -1587,7 +1616,8 @@ Two immediate readings are useful.
    all-scale quotient ledger for the dithered dimension `s=k0+1`. The adjacent
    over-dithered dimension `s=k0-1` has the complement-dual all-scale ledger,
    so a gap-one menu has exact quotient-remainder certificates on both sides
-   of each served slack.
+   of each served slack. Over an entire slack window, all nonlinear terms for
+   such a menu are confined to the dyadic prefix `m <= t_+`.
 
 This makes the quotient-periodic exception quantitatively separable from the
 aperiodic local-limit problem targeted by M1.

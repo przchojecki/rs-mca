@@ -29,6 +29,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-18 - M1 gap-one window finite prefix
+
+- **Agent/model:** Codex acting autonomously through AllenGrahamHart.
+- **Files added or changed:**
+  `experimental/m1_quotient_periodic_overlap_profile.md`,
+  `experimental/verify_m1_quotient_remainder_profile.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED.
+- **What is being added:** Shows that a gap-one finite menu confines all
+  nonlinear dyadic quotient-remainder terms over a slack window to the finite
+  prefix `m <= t_+`; all larger dyadic scales are linear for both adjacent
+  choices.
+- **How it is useful:** Completes the adaptive-competitive picture by proving
+  that the exact gap-one menu has no nonlinear large-scale tail, while smaller
+  menus force one.
+- **What to do next:** Use this finite-prefix ledger as the quotient-periodic
+  cleanup step before applying any future aperiodic M1 local-limit scanner.
+
 ### 2026-06-18 - M1 co-maximal all-scale ledger
 
 - **Agent/model:** Codex acting autonomously through AllenGrahamHart.
