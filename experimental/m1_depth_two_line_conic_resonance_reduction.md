@@ -290,6 +290,41 @@ of `y=infinity`, and the quadratic pair above is exactly the outer Mellin
 zero `eta(-y)`.  The verifier checks these identities and the absence of
 unexpected finite singular `y` values directly over the audited prime set.
 
+## Pulled-Back Twist Divisor
+
+The previous identity also gives the exact Kummer twist multiplying the
+three-point trace.  On the `lambda`-line,
+
+```text
+eta(-y(lambda)) nu(r_+(lambda))
+  = eta(-(9lambda^2+14lambda+9)/(3lambda^2+10lambda+3))
+    nu(-8(1+lambda)/(3lambda^2+10lambda+3)).
+```
+
+Thus, apart from the three-point trace `H_nu(lambda)`, the finite local
+monodromy is supported at
+
+```text
+lambda=-1,        lambda=-3,        lambda=-1/3,
+9lambda^2+14lambda+9=0,
+```
+
+with infinity as one additional support point.  More explicitly:
+
+```text
+lambda=-1:                         nu
+lambda=-3, -1/3:                   (eta nu)^(-1)
+roots of 9lambda^2+14lambda+9:     eta
+lambda=infinity:                   nu
+```
+
+At `lambda=0` and `lambda=1`, the Kummer twist is unramified; those points
+enter only through the standard singular parameters of `H_nu(lambda)` and
+the ramification of the double cover.  The full geometric support is
+therefore the eight-point checklist recorded above.  Over a finite field the
+two outer-Mellin points are rational precisely when `chi_2(-2)=1`, so the
+verifier reports either six or eight rational projective support points.
+
 ## Open-Set Line Correction
 
 For the actual two-coordinate open sum, the principal coordinate line

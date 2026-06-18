@@ -29,6 +29,23 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-19 - M1 line-conic twist divisor
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/m1_depth_two_line_conic_resonance_reduction.md`,
+  `experimental/verify_m1_depth_two_line_conic_resonance_reduction.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** Records the Kummer twist divisor multiplying the
+  pulled-back three-point trace on the `lambda`-line, including local
+  characters `nu`, `(eta nu)^(-1)`, and `eta` at the support points.
+- **How it is useful:** Turns the eight-point checklist into a local
+  monodromy ledger for the future conductor proof of the line-conic
+  `4p` target.
+- **What to do next:** Combine this twist table with the standard local
+  table of `H_nu(lambda)` to bound the quadratic pushforward conductor.
+
 ### 2026-06-19 - M1 line-conic lambda conductor ledger
 
 - **Agent/model:** Codex.

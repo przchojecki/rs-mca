@@ -373,6 +373,61 @@ def verify_lambda_map_ledger(p: int) -> int:
     return checked
 
 
+def lambda_denominator(parameter: int, p: int) -> int:
+    return (3 * parameter * parameter + 10 * parameter + 3) % p
+
+
+def lambda_outer_numerator(parameter: int, p: int) -> int:
+    return (9 * parameter * parameter + 14 * parameter + 9) % p
+
+
+def verify_lambda_twist_divisor(p: int) -> Tuple[int, int]:
+    finite_standard = {0, 1 % p, (-1) % p, (-3) % p, (-pow(3, -1, p)) % p}
+    outer_roots = {
+        parameter
+        for parameter in range(p)
+        if lambda_outer_numerator(parameter, p) == 0
+    }
+    expected_outer_root_count = 1 + legendre(-2, p)
+    if len(outer_roots) != expected_outer_root_count:
+        raise AssertionError((p, outer_roots, expected_outer_root_count))
+    if finite_standard & outer_roots:
+        raise AssertionError((p, "outer collision", finite_standard & outer_roots))
+
+    pole_roots = {
+        parameter for parameter in range(p) if lambda_denominator(parameter, p) == 0
+    }
+    expected_poles = {(-3) % p, (-pow(3, -1, p)) % p}
+    if pole_roots != expected_poles:
+        raise AssertionError((p, pole_roots, expected_poles))
+
+    for parameter in range(p):
+        denominator = lambda_denominator(parameter, p)
+        numerator = lambda_outer_numerator(parameter, p)
+        root_numerator = (-8 * (1 + parameter)) % p
+        in_support = (
+            parameter in {0, 1 % p, (-1) % p}
+            or parameter in pole_roots
+            or parameter in outer_roots
+        )
+        if not in_support:
+            if denominator == 0 or numerator == 0 or root_numerator == 0:
+                raise AssertionError((p, parameter, "unexpected twist support"))
+        if parameter == (-1) % p and root_numerator != 0:
+            raise AssertionError((p, parameter, "missing r_plus zero"))
+        if parameter in pole_roots and (numerator == 0 or root_numerator == 0):
+            raise AssertionError((p, parameter, "pole collision"))
+
+    # The derivative of y(lambda) vanishes only at lambda=+-1.
+    for parameter in range(p):
+        derivative_numerator = 48 * (parameter - 1) * (parameter + 1)
+        if derivative_numerator % p == 0 and parameter not in {1 % p, (-1) % p}:
+            raise AssertionError((p, parameter, "unexpected branch"))
+    finite_support_count = len({0, 1 % p, (-1) % p} | pole_roots | outer_roots)
+    # Infinity is the remaining support point: r_+(lambda) has a zero there.
+    return finite_support_count, finite_support_count + 1
+
+
 def core_collision_formula(p: int) -> int:
     return (
         2 * p * p
@@ -684,6 +739,7 @@ def main() -> None:
     max_line_label: Tuple[object, ...] = ()
     singular_checked: List[int] = []
     lambda_map_checked = 0
+    lambda_twist_checked: List[Tuple[int, int, int]] = []
     split_hypergeometric_checked = 0
     filter_checked = verify_admissible_filter_counts()
     moment_checked = verify_second_moments()
@@ -694,6 +750,8 @@ def main() -> None:
             verify_discriminant_values(p)
             verify_singular_fiber_values(p, tables[p])
             lambda_map_checked += verify_lambda_map_ledger(p)
+            finite_twist_count, projective_twist_count = verify_lambda_twist_divisor(p)
+            lambda_twist_checked.append((p, finite_twist_count, projective_twist_count))
             split_hypergeometric_checked += verify_split_hypergeometric_pullback(
                 p,
                 tables[p],
@@ -753,6 +811,7 @@ def main() -> None:
         f"max_line_ratio={max_line_ratio:.10f}@{max_line_label}",
         f"singular_checked={singular_checked}",
         f"lambda_map_checked={lambda_map_checked}",
+        f"lambda_twist_checked={lambda_twist_checked}",
         f"split_hypergeometric_checked={split_hypergeometric_checked}",
         f"filter_checked={filter_checked[0]}..{filter_checked[-1]}",
         f"moment_checked={moment_checked}",
