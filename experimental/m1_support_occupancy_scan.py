@@ -2223,6 +2223,10 @@ def raw_two_coordinate_projective_l1_split_formula(
         character_order,
         square_coset_index,
     )
+    line_conic_resonant = asymmetric_line_conic_resonant_pair_count_formula(
+        character_order,
+        square_coset_index,
+    )
     diagonal_failures = coordinate_diagonal_parameter_failure_counts(
         character_order,
         square_coset_index,
@@ -2245,6 +2249,11 @@ def raw_two_coordinate_projective_l1_split_formula(
         raise ValueError(
             (character_order, square_coset_index, projective_asymmetric)
         )
+    if line_conic_resonant > projective_asymmetric:
+        raise ValueError(
+            (character_order, square_coset_index, line_conic_resonant)
+        )
+    line_conic_nonresonant = projective_asymmetric - line_conic_resonant
     return {
         "two_coordinate_infinity_unramified_l1_bound": (
             active_pair_count * infinity_unramified
@@ -2276,6 +2285,22 @@ def raw_two_coordinate_projective_l1_split_formula(
         "two_coordinate_projective_asymmetric_orbit_count": (
             active_pair_count * projective_asymmetric // 6
         ),
+        (
+            "two_coordinate_projective_asymmetric_line_conic_"
+            "resonant_l1_bound"
+        ): active_pair_count * line_conic_resonant,
+        (
+            "two_coordinate_projective_asymmetric_line_conic_"
+            "nonresonant_l1_bound"
+        ): active_pair_count * line_conic_nonresonant,
+        (
+            "two_coordinate_projective_asymmetric_line_conic_"
+            "resonant_orbit_count"
+        ): active_pair_count * line_conic_resonant // 6,
+        (
+            "two_coordinate_projective_asymmetric_line_conic_"
+            "nonresonant_orbit_count"
+        ): active_pair_count * line_conic_nonresonant // 6,
         "two_coordinate_coordinate_diagonal_alpha_square_trivial_count": 0,
         "two_coordinate_coordinate_diagonal_2f1_cancellation_count": 0,
     }
@@ -2378,6 +2403,25 @@ def projective_equal_pair_count(
         square_coset_index,
     )
     return 3 * coordinate - 2 * equal_line
+
+
+def asymmetric_line_conic_resonant_pair_count_formula(
+    character_order: int,
+    square_coset_index: int,
+) -> int:
+    """Count asymmetric line-conic resonances for one active pair."""
+
+    if character_order < 1 or square_coset_index % character_order:
+        raise ValueError((character_order, square_coset_index))
+    e = character_order
+    lift = square_coset_index // e
+    if lift not in (1, 2):
+        raise ValueError((character_order, square_coset_index, lift))
+    single_line_count = (e - 1) * (e - 5)
+    if e % 2 == 0:
+        single_line_count += 3
+    single_line_count += 2 * (math.gcd(e, 3) - 1)
+    return 3 * single_line_count
 
 
 def equal_line_diagonal_pair_count_formula(
@@ -2755,6 +2799,42 @@ def slack_two_second_kummer_saturation_data(
         "two_coordinate_projective_asymmetric_orbit_count": int(
             two_coordinate_projective_split[
                 "two_coordinate_projective_asymmetric_orbit_count"
+            ]
+        ),
+        (
+            "two_coordinate_projective_asymmetric_line_conic_"
+            "resonant_l1_bound"
+        ): int(
+            two_coordinate_projective_split[
+                "two_coordinate_projective_asymmetric_line_conic_"
+                "resonant_l1_bound"
+            ]
+        ),
+        (
+            "two_coordinate_projective_asymmetric_line_conic_"
+            "nonresonant_l1_bound"
+        ): int(
+            two_coordinate_projective_split[
+                "two_coordinate_projective_asymmetric_line_conic_"
+                "nonresonant_l1_bound"
+            ]
+        ),
+        (
+            "two_coordinate_projective_asymmetric_line_conic_"
+            "resonant_orbit_count"
+        ): int(
+            two_coordinate_projective_split[
+                "two_coordinate_projective_asymmetric_line_conic_"
+                "resonant_orbit_count"
+            ]
+        ),
+        (
+            "two_coordinate_projective_asymmetric_line_conic_"
+            "nonresonant_orbit_count"
+        ): int(
+            two_coordinate_projective_split[
+                "two_coordinate_projective_asymmetric_line_conic_"
+                "nonresonant_orbit_count"
             ]
         ),
         "divisor_power_failure_count": 0,
@@ -7145,6 +7225,58 @@ def scan_supports(
             int(
                 slack_two_second_kummer_saturation[
                     "two_coordinate_projective_asymmetric_orbit_count"
+                ]
+            )
+            if slack_two_second_kummer_saturation is not None
+            else None
+        ),
+        (
+            "canonical_slack_two_second_kummer_"
+            "projective_asymmetric_line_conic_resonant_l1_bound"
+        ): (
+            int(
+                slack_two_second_kummer_saturation[
+                    "two_coordinate_projective_asymmetric_line_conic_"
+                    "resonant_l1_bound"
+                ]
+            )
+            if slack_two_second_kummer_saturation is not None
+            else None
+        ),
+        (
+            "canonical_slack_two_second_kummer_"
+            "projective_asymmetric_line_conic_nonresonant_l1_bound"
+        ): (
+            int(
+                slack_two_second_kummer_saturation[
+                    "two_coordinate_projective_asymmetric_line_conic_"
+                    "nonresonant_l1_bound"
+                ]
+            )
+            if slack_two_second_kummer_saturation is not None
+            else None
+        ),
+        (
+            "canonical_slack_two_second_kummer_"
+            "projective_asymmetric_line_conic_resonant_orbit_count"
+        ): (
+            int(
+                slack_two_second_kummer_saturation[
+                    "two_coordinate_projective_asymmetric_line_conic_"
+                    "resonant_orbit_count"
+                ]
+            )
+            if slack_two_second_kummer_saturation is not None
+            else None
+        ),
+        (
+            "canonical_slack_two_second_kummer_"
+            "projective_asymmetric_line_conic_nonresonant_orbit_count"
+        ): (
+            int(
+                slack_two_second_kummer_saturation[
+                    "two_coordinate_projective_asymmetric_line_conic_"
+                    "nonresonant_orbit_count"
                 ]
             )
             if slack_two_second_kummer_saturation is not None

@@ -67,8 +67,11 @@ should be revised as the project learns more.
    line-permutation action gives orbit count `O_2^asym=C_2^asym/6`.  The
    depth-two lift-window note now records closed forms for the
    coordinate-diagonal and equal-line pieces determining `C_2^peq`, so this
-   residual is an explicit ledger rather than a hidden enumeration.  The
-   updated remaining-wall scan reports this asymmetric wall separately:
+   residual is an explicit ledger rather than a hidden enumeration.  It also
+   splits the next dense-edge obstruction: the line-conic-resonant submass is
+   `C_2^lc=9((e-1)(e-5)+3 1_{2|e}+2(gcd(e,3)-1))`, and the complement
+   `C_2^anr=C_2^asym-C_2^lc` is the clean normal-crossing nonresonant wall.
+   The updated remaining-wall scan reports this asymmetric wall separately:
    in the current report grid the largest asymmetric ratio is
    `3.2173609608p`, while every near-`4p` top row lies in the projective
    equal-line slice already isolated by `C_2^peq`.

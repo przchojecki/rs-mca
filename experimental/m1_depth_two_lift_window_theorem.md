@@ -339,6 +339,49 @@ This is the exact remaining two-coordinate wall after the proved
 infinity-unramified and projective-reciprocal reductions and the conditional
 projective equal-pair ledger.
 
+The next dense-edge split inside `C_2^asym` is line-conic resonance.  For
+line monodromy exponents `(ell_1,ell_2,ell_infty)` and conic exponent `d`,
+this is the condition
+
+```text
+ell_i + d == 0 mod q
+```
+
+for one of the three projective lines.  Inside `C_2^asym` these three
+conditions are disjoint: two simultaneous line-conic resonances would force
+two projective line monodromies to be equal, already removed by `C_2^peq`.
+For one fixed projective line, the per-active-pair count is
+
+```text
+R(e) = (e-1)(e-5) + 3 1_{2|e} + 2(gcd(e,3)-1).
+```
+
+Indeed, after fixing `ell_1+d=0`, write the two active line exponents as
+`ga` and `gb`.  The asymmetric constraints reduce to
+
+```text
+b != a,        b != -a,        b != 2a,        2b != a        mod e.
+```
+
+Inclusion-exclusion over these four forbidden relations on
+`(Z/eZ)^* x (Z/eZ)^*` gives the displayed `R(e)`: the correction
+`3 1_{2|e}` comes from the order-two collision, and
+`2(gcd(e,3)-1)` comes from the nonzero 3-torsion collisions. The same count
+holds for each of the three projective lines.
+
+This count is independent of `g=q/e`.  Thus the total asymmetric
+line-conic-resonant mass and its complement are
+
+```text
+C_2^lc = 9R(e),          C_2^anr = C_2^asym - C_2^lc.
+```
+
+The corresponding free projective-line orbit counts are `C_2^lc/6` and
+`C_2^anr/6`.  Terms counted by `C_2^anr` have no line-line reciprocal or
+equal pair and no line-conic reciprocal pair, so they are the clean
+normal-crossing nonresonant subwall.  The active certificate remains
+conservative; this split only isolates the exact next conductor target.
+
 The currently consumed square-root correction has L1 mass
 
 ```text

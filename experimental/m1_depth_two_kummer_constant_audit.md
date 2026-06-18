@@ -121,3 +121,8 @@ boundary: after the one-coordinate and infinity-unramified two-coordinate
 reductions, plus the projective reciprocal line-pair reductions, the
 remaining mathematical task is a uniform normal-crossing Kummer estimate for
 the ramified-infinity line/conic arrangement with no reciprocal line pair.
+The projective equal-pair ledger and the subsequent line-conic-resonance
+split sharpen this boundary further: the clean nonresonant target has no
+equal or reciprocal projective line pair and no line-conic reciprocal dense
+edge, while the line-conic-resonant asymmetric slice is now counted
+separately by the `C_2^lc` ledger.

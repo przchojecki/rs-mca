@@ -30,11 +30,13 @@ python3 experimental/search_m1_remaining_two_coordinate_wall.py \
 The script uses NumPy for vectorized full finite-field summation with
 floating-point roots of unity. The current report also runs an
 `asymmetric_wall` pass, which removes the projective equal-pair tuples now
-isolated by the conditional `C_2^peq` ledger.
+isolated by the conditional `C_2^peq` ledger, and an
+`asymmetric_nonresonant_wall` pass, which also removes the exact line-conic
+resonant submass `C_2^lc`.
 
 ## Result
 
-The report preset ran three scans.
+The report preset ran four scans.
 
 ```text
 grid:
@@ -53,6 +55,13 @@ asymmetric:
   tuples = 685152
   violations of 4p = 0
 
+nonresonant:
+  same prime/character grid
+  projective equal-pair and line-conic resonant tuples removed
+  cases = 453
+  tuples = 596304
+  violations of 4p = 0
+
 diagonal n=20:
   primes p <= 1601 with 20 | p-1
   only tuples (a,a,0,d) in the remaining class
@@ -64,7 +73,8 @@ diagonal n=20:
 The diagonal scan overlaps the bounded grid for small `p`, so the combined
 old remaining-wall count is `946184` tuple evaluations rather than a
 deduplicated tuple set. The asymmetric count is reported separately because
-it is the post-`C_2^peq` residual wall.
+it is the post-`C_2^peq` residual wall. The nonresonant count is the
+post-`C_2^lc` subwall inside that asymmetric residual.
 
 The largest observed ratios were:
 
@@ -87,18 +97,23 @@ genuinely asymmetric residual wall.
 
 The largest observed asymmetric-only ratios in the same grid were:
 
-| ratio | `(p,n,e,h)` | tuple `(a,b,c,d)` | line monodromies |
-| --- | --- | --- | --- |
-| `3.2173609608` | `(197,14,14,28)` | `(6,1,0,17)` | `(12,2,8)` |
-| `3.0363644911` | `(241,15,16,16)` | `(7,4,0,4)` | `(7,4,13)` |
-| `2.8791555174` | `(443,26,17,34)` | `(11,7,0,7)` | `(22,14,18)` |
-| `2.8631382894` | `(199,9,22,22)` | `(15,14,0,16)` | `(15,14,5)` |
-| `2.8302231739` | `(409,24,17,34)` | `(14,10,0,12)` | `(28,20,30)` |
-| `2.8207562164` | `(241,12,20,40)` | `(19,2,0,23)` | `(38,4,32)` |
-| `2.8141899827` | `(379,18,21,42)` | `(8,14,0,29)` | `(16,28,24)` |
-| `2.8077205315` | `(461,46,10,20)` | `(5,9,0,9)` | `(10,18,14)` |
-| `2.8077205315` | `(461,23,20,20)` | `(18,10,0,9)` | `(18,10,14)` |
-| `2.7940447234` | `(463,22,21,42)` | `(1,11,0,25)` | `(2,22,10)` |
+| ratio | `(p,n,e,h)` | tuple `(a,b,c,d)` | line monodromies | line-conic resonant |
+| --- | --- | --- | --- | --- |
+| `3.2173609608` | `(197,14,14,28)` | `(6,1,0,17)` | `(12,2,8)` | no |
+| `3.0363644911` | `(241,15,16,16)` | `(7,4,0,4)` | `(7,4,13)` | no |
+| `2.8791555174` | `(443,26,17,34)` | `(11,7,0,7)` | `(22,14,18)` | no |
+| `2.8631382894` | `(199,9,22,22)` | `(15,14,0,16)` | `(15,14,5)` | no |
+| `2.8302231739` | `(409,24,17,34)` | `(14,10,0,12)` | `(28,20,30)` | no |
+| `2.8207562164` | `(241,12,20,40)` | `(19,2,0,23)` | `(38,4,32)` | no |
+| `2.8141899827` | `(379,18,21,42)` | `(8,14,0,29)` | `(16,28,24)` | no |
+| `2.8077205315` | `(461,46,10,20)` | `(5,9,0,9)` | `(10,18,14)` | no |
+| `2.8077205315` | `(461,23,20,20)` | `(18,10,0,9)` | `(18,10,14)` | no |
+| `2.7940447234` | `(463,22,21,42)` | `(1,11,0,25)` | `(2,22,10)` | no |
+
+The top ten nonresonant asymmetric rows are the same ten rows. The first
+line-conic-resonant asymmetric row in the report top-20 appears lower, at
+ratio `2.7649691518` for `(p,n,e,h)=(461,20,23,46)` and tuple
+`(1,10,0,44)`.
 
 ## Interpretation
 
@@ -129,6 +144,13 @@ but it is useful counterexample-first evidence: a future conductor argument
 for `C_2^asym` may not need to explain the near-`4p` equal-line phenomenon,
 because that phenomenon has been isolated into `C_2^peq`.
 
+After the line-conic-resonant ledger is also carved out, the current largest
+audited nonresonant asymmetric ratio is still `3.2173609608p`. Thus the
+largest observed asymmetric obstruction is already in the clean
+normal-crossing nonresonant subwall `C_2^anr`; the line-conic resonant slice
+is important for theorem hypotheses, but it does not currently explain the
+largest asymmetric examples.
+
 ## Limitations
 
 This is finite numerical evidence only. It neither proves the `4p` theorem,
@@ -155,6 +177,7 @@ The focused pullback-main scanner is
 `experimental/search_m1_equal_line_pullback.py`.
 
 For the current PR after the conditional projective equal-pair reduction, the
-next numerical stress test should focus on the asymmetric wall itself: extend
-the `asymmetric_wall` scan beyond the present grid and look specifically for
-families that push the ratio above the current `3.2173609608` maximum.
+next numerical stress test should focus on the nonresonant asymmetric wall
+itself: extend the `asymmetric_nonresonant_wall` scan beyond the present grid
+and look specifically for families that push the ratio above the current
+`3.2173609608` maximum.

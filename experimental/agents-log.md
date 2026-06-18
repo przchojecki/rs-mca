@@ -29,6 +29,29 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-18 - M1 asymmetric line-conic resonance split
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/m1_support_occupancy_scan.py`,
+  `experimental/verify_m1_slack_two_depth_two_kummer_saturation.py`,
+  `experimental/search_m1_remaining_two_coordinate_wall.py`,
+  `experimental/m1_depth_two_lift_window_theorem.md`,
+  `experimental/m1_depth_two_two_coordinate_projective_euler_target.md`,
+  `experimental/m1_depth_two_kummer_constant_audit.md`,
+  `experimental/m1_remaining_two_coordinate_wall_experiment.md`,
+  `experimental/m1_residue_line_roadmap.md`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT / EXPERIMENTAL.
+- **What is being added:** Splits the asymmetric M1 two-coordinate wall into
+  the exact line-conic-resonant mass `C_2^lc` and the nonresonant complement
+  `C_2^anr`, with closed-form counts and direct verifier checks.
+- **How it is useful:** The clean normal-crossing conductor target now has
+  explicit dense-edge nonresonance hypotheses, while the residual
+  line-conic-resonant slice is named and counted separately.
+- **What to do next:** Attack the `C_2^anr` conductor bound directly, and
+  separately look for a reduction of the smaller line-conic-resonant slice.
+
 ### 2026-06-18 - M1 asymmetric wall closed ledger
 
 - **Agent/model:** Codex.

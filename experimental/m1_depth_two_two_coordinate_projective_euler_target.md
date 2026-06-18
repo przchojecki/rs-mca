@@ -129,6 +129,22 @@ core to that reciprocal lemma. Hence the remaining `chi=4` problem is the
 case where all three line monodromies are nonprincipal and no pair is
 reciprocal.
 
+After the projective equal-pair ledger is also removed, the asymmetric wall
+has pairwise distinct line monodromies as well.  Its next normal-crossing
+dense-edge obstruction is line-conic resonance: one of
+
+```text
+mu eta = 1,        nu eta = 1,
+lambda eta = 1,        lambda=(mu nu eta^2)^(-1).
+```
+
+The depth-two lift-window ledger now counts this submass exactly.  Removing
+it leaves the `C_2^anr` subwall, where every dense edge of the line/conic
+normal-crossing divisor has nontrivial local monodromy.  This is the clean
+form of the remaining `chi=4` conductor target; the line-conic-resonant
+asymmetric terms are a smaller residual slice that may need a separate
+blow-up or one-dimensional reduction.
+
 The finite verifier
 
 ```bash

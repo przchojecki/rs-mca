@@ -170,6 +170,7 @@ def raw_two_coordinate_projective_l1_split(
     coordinate_diagonal_2f1_cancellation = 0
     projective_equal_pair = 0
     equal_line_diagonal = 0
+    projective_asymmetric_line_conic_resonant = 0
     for first_exponent in range(1, character_order):
         for second_exponent in range(1, character_order):
             for conic_exponent in range(1, square_coset_index):
@@ -205,6 +206,18 @@ def raw_two_coordinate_projective_l1_split(
                             coordinate_diagonal_2f1_cancellation += 1
                     if has_projective_equal_pair:
                         projective_equal_pair += 1
+                    else:
+                        has_line_conic_resonance = (
+                            (first + conic_exponent) % square_coset_index == 0
+                            or (second + conic_exponent)
+                            % square_coset_index
+                            == 0
+                            or (infinity + conic_exponent)
+                            % square_coset_index
+                            == 0
+                        )
+                        if has_line_conic_resonance:
+                            projective_asymmetric_line_conic_resonant += 1
                     if first == second == infinity:
                         equal_line_diagonal += 1
     active_pair_count = 3
@@ -212,6 +225,17 @@ def raw_two_coordinate_projective_l1_split(
     if projective_asymmetric < 0 or projective_asymmetric % 2:
         raise AssertionError(
             (character_order, square_coset_index, projective_asymmetric)
+        )
+    projective_asymmetric_line_conic_nonresonant = (
+        projective_asymmetric - projective_asymmetric_line_conic_resonant
+    )
+    if projective_asymmetric_line_conic_nonresonant < 0:
+        raise AssertionError(
+            (
+                character_order,
+                square_coset_index,
+                projective_asymmetric_line_conic_resonant,
+            )
         )
     return {
         "infinity_unramified": active_pair_count * infinity_unramified,
@@ -234,6 +258,20 @@ def raw_two_coordinate_projective_l1_split(
         "projective_asymmetric": active_pair_count * projective_asymmetric,
         "projective_asymmetric_orbit_count": (
             active_pair_count * projective_asymmetric // 6
+        ),
+        "projective_asymmetric_line_conic_resonant": (
+            active_pair_count * projective_asymmetric_line_conic_resonant
+        ),
+        "projective_asymmetric_line_conic_nonresonant": (
+            active_pair_count * projective_asymmetric_line_conic_nonresonant
+        ),
+        "projective_asymmetric_line_conic_resonant_orbit_count": (
+            active_pair_count * projective_asymmetric_line_conic_resonant // 6
+        ),
+        "projective_asymmetric_line_conic_nonresonant_orbit_count": (
+            active_pair_count
+            * projective_asymmetric_line_conic_nonresonant
+            // 6
         ),
         "equal_line_diagonal": active_pair_count * equal_line_diagonal,
     }
@@ -295,6 +333,23 @@ def projective_equal_pair_count_formula(
         square_coset_index,
     )
     return 3 * coordinate - 2 * equal_line
+
+
+def asymmetric_line_conic_resonant_pair_count_formula(
+    character_order: int,
+    square_coset_index: int,
+) -> int:
+    if square_coset_index % character_order:
+        raise AssertionError((character_order, square_coset_index))
+    e = character_order
+    lift = square_coset_index // e
+    if lift not in (1, 2):
+        raise AssertionError((character_order, square_coset_index, lift))
+    single_line_count = (e - 1) * (e - 5)
+    if e % 2 == 0:
+        single_line_count += 3
+    single_line_count += 2 * (math.gcd(e, 3) - 1)
+    return 3 * single_line_count
 
 
 def coordinate_diagonal_parameter_failure_counts(
@@ -363,6 +418,22 @@ def raw_two_coordinate_projective_l1_split_formula(
         raise AssertionError(
             (character_order, square_coset_index, diagonal_failures)
         )
+    projective_equal_pair = projective_equal_pair_count_formula(
+        character_order,
+        square_coset_index,
+    )
+    projective_asymmetric = (
+        total - infinity_unramified - projective_reciprocal - projective_equal_pair
+    )
+    line_conic_resonant = asymmetric_line_conic_resonant_pair_count_formula(
+        character_order,
+        square_coset_index,
+    )
+    line_conic_nonresonant = projective_asymmetric - line_conic_resonant
+    if line_conic_nonresonant < 0:
+        raise AssertionError(
+            (character_order, square_coset_index, line_conic_resonant)
+        )
     return {
         "infinity_unramified": 3 * infinity_unramified,
         "projective_reciprocal": 3 * projective_reciprocal,
@@ -393,47 +464,29 @@ def raw_two_coordinate_projective_l1_split_formula(
         "coordinate_diagonal_2f1_cancellation_count": 0,
         "projective_equal_pair": (
             3
-            * projective_equal_pair_count_formula(
-                character_order,
-                square_coset_index,
-            )
+            * projective_equal_pair
         ),
         "projective_equal_pair_non_coordinate": (
             3
             * (
-                projective_equal_pair_count_formula(
-                    character_order,
-                    square_coset_index,
-                )
+                projective_equal_pair
                 - coordinate_diagonal_pair_count_formula(
                     character_order,
                     square_coset_index,
                 )
             )
         ),
-        "projective_asymmetric": (
-            3
-            * (
-                total
-                - infinity_unramified
-                - projective_reciprocal
-                - projective_equal_pair_count_formula(
-                    character_order,
-                    square_coset_index,
-                )
-            )
+        "projective_asymmetric": 3 * projective_asymmetric,
+        "projective_asymmetric_orbit_count": projective_asymmetric // 2,
+        "projective_asymmetric_line_conic_resonant": 3 * line_conic_resonant,
+        "projective_asymmetric_line_conic_nonresonant": (
+            3 * line_conic_nonresonant
         ),
-        "projective_asymmetric_orbit_count": (
-            (
-                total
-                - infinity_unramified
-                - projective_reciprocal
-                - projective_equal_pair_count_formula(
-                    character_order,
-                    square_coset_index,
-                )
-            )
-            // 2
+        "projective_asymmetric_line_conic_resonant_orbit_count": (
+            line_conic_resonant // 2
+        ),
+        "projective_asymmetric_line_conic_nonresonant_orbit_count": (
+            line_conic_nonresonant // 2
         ),
         "equal_line_diagonal": (
             3
@@ -1007,6 +1060,50 @@ def main() -> None:
             certificate["two_coordinate_projective_asymmetric_orbit_count"]
         ):
             raise AssertionError((p, n, two_coordinate_projective_split, certificate))
+        if int(
+            two_coordinate_projective_split[
+                "projective_asymmetric_line_conic_resonant"
+            ]
+        ) != int(
+            certificate[
+                "two_coordinate_projective_asymmetric_line_conic_"
+                "resonant_l1_bound"
+            ]
+        ):
+            raise AssertionError((p, n, two_coordinate_projective_split, certificate))
+        if int(
+            two_coordinate_projective_split[
+                "projective_asymmetric_line_conic_nonresonant"
+            ]
+        ) != int(
+            certificate[
+                "two_coordinate_projective_asymmetric_line_conic_"
+                "nonresonant_l1_bound"
+            ]
+        ):
+            raise AssertionError((p, n, two_coordinate_projective_split, certificate))
+        if int(
+            two_coordinate_projective_split[
+                "projective_asymmetric_line_conic_resonant_orbit_count"
+            ]
+        ) != int(
+            certificate[
+                "two_coordinate_projective_asymmetric_line_conic_"
+                "resonant_orbit_count"
+            ]
+        ):
+            raise AssertionError((p, n, two_coordinate_projective_split, certificate))
+        if int(
+            two_coordinate_projective_split[
+                "projective_asymmetric_line_conic_nonresonant_orbit_count"
+            ]
+        ) != int(
+            certificate[
+                "two_coordinate_projective_asymmetric_line_conic_"
+                "nonresonant_orbit_count"
+            ]
+        ):
+            raise AssertionError((p, n, two_coordinate_projective_split, certificate))
         if int(certificate["two_coordinate_projective_asymmetric_l1_bound"]) % 6:
             raise AssertionError((p, n, certificate))
         if three_coordinate_kummer_l1_bound != int(
@@ -1531,6 +1628,22 @@ def main() -> None:
         projective_asymmetric_orbit_count = int(
             direct_split["projective_asymmetric_orbit_count"]
         )
+        line_conic_resonant_l1 = int(
+            direct_split["projective_asymmetric_line_conic_resonant"]
+        )
+        line_conic_nonresonant_l1 = int(
+            direct_split["projective_asymmetric_line_conic_nonresonant"]
+        )
+        line_conic_resonant_orbit_count = int(
+            direct_split[
+                "projective_asymmetric_line_conic_resonant_orbit_count"
+            ]
+        )
+        line_conic_nonresonant_orbit_count = int(
+            direct_split[
+                "projective_asymmetric_line_conic_nonresonant_orbit_count"
+            ]
+        )
         ramified_l1 = int(direct_split["ramified_nonreciprocal"])
         if equal_line_l1 > ramified_l1:
             raise AssertionError((character_order, square_coset_index, direct_split))
@@ -1550,6 +1663,14 @@ def main() -> None:
             raise AssertionError((character_order, square_coset_index, direct_split))
         if projective_asymmetric_l1 != 6 * projective_asymmetric_orbit_count:
             raise AssertionError((character_order, square_coset_index, direct_split))
+        if projective_asymmetric_l1 != (
+            line_conic_resonant_l1 + line_conic_nonresonant_l1
+        ):
+            raise AssertionError((character_order, square_coset_index, direct_split))
+        if line_conic_resonant_l1 != 6 * line_conic_resonant_orbit_count:
+            raise AssertionError((character_order, square_coset_index, direct_split))
+        if line_conic_nonresonant_l1 != 6 * line_conic_nonresonant_orbit_count:
+            raise AssertionError((character_order, square_coset_index, direct_split))
         equal_line_checked.append(
             (
                 character_order,
@@ -1560,6 +1681,10 @@ def main() -> None:
                 projective_equal_pair_non_coordinate_l1,
                 projective_asymmetric_l1,
                 projective_asymmetric_orbit_count,
+                line_conic_resonant_l1,
+                line_conic_nonresonant_l1,
+                line_conic_resonant_orbit_count,
+                line_conic_nonresonant_orbit_count,
                 equal_line_l1,
                 ramified_l1,
                 5 * equal_line_l1,
