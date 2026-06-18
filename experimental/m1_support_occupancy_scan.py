@@ -718,6 +718,86 @@ def slack_two_second_two_fiber_union_reduction_data(
     }
 
 
+def slack_two_second_quotient_window_reduction_data(
+    p: int,
+    domain: Sequence[int],
+    quotient_order: int,
+    remaining_fibers: Optional[int],
+) -> Optional[Dict[str, object]]:
+    if (
+        remaining_fibers is None
+        or remaining_fibers <= 0
+        or len(domain) % quotient_order
+    ):
+        return None
+
+    effective_window_size = min(remaining_fibers, 4, quotient_order)
+    domain_set = set(domain)
+    value_to_fiber = {
+        value: index % quotient_order for index, value in enumerate(domain)
+    }
+    square_image = {x * x % p for x in domain}
+    square_coset_rep = multiplicative_coset_representative_map(
+        p,
+        tuple(square_image),
+    )
+
+    parameter_count = 0
+    zero_parameter_count = 0
+    nonzero_square_cosets = set()
+    touched_fiber_histogram: Counter[int] = Counter()
+    for u in domain:
+        u_square = u * u
+        u_fiber = value_to_fiber[u]
+        for v in domain:
+            w = (-1 - u - v) % p
+            values = (1, u, v, w)
+            if w not in domain_set or len(set(values)) != 4:
+                continue
+            touched_fibers = {
+                0,
+                u_fiber,
+                value_to_fiber[v],
+                value_to_fiber[w],
+            }
+            touched_count = len(touched_fibers)
+            if touched_count > effective_window_size:
+                continue
+            parameter_count += 1
+            touched_fiber_histogram[touched_count] += 1
+            shape_slope = (-(u_square + v * v + u * v + u + v + 1)) % p
+            if shape_slope == 0:
+                zero_parameter_count += 1
+                continue
+            nonzero_square_cosets.add(square_coset_rep[shape_slope])
+
+    slope_count = (1 if zero_parameter_count else 0) + (
+        len(nonzero_square_cosets) * len(square_image)
+    )
+    total_nonzero_square_cosets = (p - 1) // len(square_image)
+    window_count = math.comb(quotient_order - 1, effective_window_size - 1)
+    return {
+        "remaining_fibers": remaining_fibers,
+        "effective_window_size": effective_window_size,
+        "quotient_order": quotient_order,
+        "fiber_size": len(domain) // quotient_order,
+        "window_count": window_count,
+        "parameter_count": parameter_count,
+        "zero_parameter_count": zero_parameter_count,
+        "nonzero_parameter_count": parameter_count - zero_parameter_count,
+        "nonzero_square_coset_count": len(nonzero_square_cosets),
+        "total_nonzero_square_coset_count": total_nonzero_square_cosets,
+        "square_image_size": len(square_image),
+        "slope_count": min(p, slope_count),
+        "saturates_nonzero_square_cosets": (
+            len(nonzero_square_cosets) == total_nonzero_square_cosets
+        ),
+        "touched_fiber_histogram": tuple(
+            sorted(touched_fiber_histogram.items())
+        ),
+    }
+
+
 def expected_first_superboundary_zero_slope_data(
     domain_order: int,
     quotient_order: int,
@@ -2801,10 +2881,27 @@ def scan_supports(
         )
         else None
     )
+    slack_two_second_r_window_reduction = (
+        slack_two_second_quotient_window_reduction_data(
+            p,
+            domain,
+            quotient_order,
+            slack_two_second_shape_ledger["lift_limited_remaining_fibers"],
+        )
+        if (
+            slack_two_second_shape_ledger is not None
+            and slack_two_second_shape_ledger["lift_limited_remaining_fibers"]
+            is not None
+            and int(slack_two_second_shape_ledger["lift_limited_remaining_fibers"])
+            < min(4, quotient_order)
+        )
+        else None
+    )
     slack_two_second_index_window_label = None
     slack_two_second_kummer_exact_support_saturation = False
     slack_two_second_two_fiber_exact_support_saturation = False
     slack_two_second_r2_union_exact_support_saturation = False
+    slack_two_second_r_window_exact_support_saturation = False
     if slack_two_second_kummer_saturation is not None:
         slack_two_second_kummer_exact_support_saturation = (
             bool(slack_two_second_kummer_saturation["saturation_certificate"])
@@ -2829,6 +2926,12 @@ def scan_supports(
     if slack_two_second_two_fiber_union_reduction is not None:
         slack_two_second_r2_union_exact_support_saturation = bool(
             slack_two_second_two_fiber_union_reduction[
+                "saturates_nonzero_square_cosets"
+            ]
+        )
+    if slack_two_second_r_window_reduction is not None:
+        slack_two_second_r_window_exact_support_saturation = bool(
+            slack_two_second_r_window_reduction[
                 "saturates_nonzero_square_cosets"
             ]
         )
@@ -2857,6 +2960,8 @@ def scan_supports(
             slack_two_second_index_window_label = "two_fiber_saturated"
         elif slack_two_second_r2_union_exact_support_saturation:
             slack_two_second_index_window_label = "r2_union_saturated"
+        elif slack_two_second_r_window_exact_support_saturation:
+            slack_two_second_index_window_label = "r_window_saturated"
         elif bool(
             slack_two_second_shape_ledger[
                 "lift_limited_slope_bound_nontrivial"
@@ -4449,6 +4554,98 @@ def scan_supports(
             )
             if (
                 slack_two_second_two_fiber_union_reduction is not None
+                and slack_two_second_shape_ledger is not None
+            )
+            else None
+        ),
+        "canonical_slack_two_second_r_window_reduction_active": (
+            slack_two_second_r_window_reduction is not None
+        ),
+        "canonical_slack_two_second_r_window_effective_size": (
+            int(slack_two_second_r_window_reduction["effective_window_size"])
+            if slack_two_second_r_window_reduction is not None
+            else None
+        ),
+        "canonical_slack_two_second_r_window_window_count": (
+            int(slack_two_second_r_window_reduction["window_count"])
+            if slack_two_second_r_window_reduction is not None
+            else None
+        ),
+        "canonical_slack_two_second_r_window_parameter_count": (
+            int(slack_two_second_r_window_reduction["parameter_count"])
+            if slack_two_second_r_window_reduction is not None
+            else None
+        ),
+        "canonical_slack_two_second_r_window_zero_parameter_count": (
+            int(slack_two_second_r_window_reduction["zero_parameter_count"])
+            if slack_two_second_r_window_reduction is not None
+            else None
+        ),
+        "canonical_slack_two_second_r_window_nonzero_square_coset_count": (
+            int(
+                slack_two_second_r_window_reduction[
+                    "nonzero_square_coset_count"
+                ]
+            )
+            if slack_two_second_r_window_reduction is not None
+            else None
+        ),
+        "canonical_slack_two_second_r_window_touched_fiber_histogram": (
+            {
+                str(touched): count
+                for touched, count in slack_two_second_r_window_reduction[
+                    "touched_fiber_histogram"
+                ]
+            }
+            if slack_two_second_r_window_reduction is not None
+            else None
+        ),
+        "canonical_slack_two_second_r_window_saturates": (
+            bool(
+                slack_two_second_r_window_reduction[
+                    "saturates_nonzero_square_cosets"
+                ]
+            )
+            if slack_two_second_r_window_reduction is not None
+            else None
+        ),
+        "canonical_slack_two_second_r_window_exact_support_certificate": (
+            slack_two_second_r_window_exact_support_saturation
+            if slack_two_second_r_window_reduction is not None
+            else None
+        ),
+        "canonical_slack_two_second_r_window_slope_count": (
+            int(slack_two_second_r_window_reduction["slope_count"])
+            if slack_two_second_r_window_reduction is not None
+            else None
+        ),
+        "canonical_slack_two_second_r_window_reduction_check": (
+            (
+                int(slack_two_second_r_window_reduction["parameter_count"])
+                == int(slack_two_second_shape_ledger["active_parameter_count"])
+            )
+            and (
+                int(slack_two_second_r_window_reduction["zero_parameter_count"])
+                == int(slack_two_second_shape_ledger["active_zero_parameter_count"])
+            )
+            and (
+                int(
+                    slack_two_second_r_window_reduction[
+                        "nonzero_square_coset_count"
+                    ]
+                )
+                == int(
+                    slack_two_second_shape_ledger[
+                        "active_nonzero_square_coset_count"
+                    ]
+                )
+            )
+            and (
+                int(slack_two_second_r_window_reduction["slope_count"])
+                == len(slack_two_second_superboundary_slope_histogram)
+            )
+            if (
+                slack_two_second_r_window_reduction is not None
                 and slack_two_second_shape_ledger is not None
             )
             else None

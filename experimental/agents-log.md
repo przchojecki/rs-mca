@@ -86,8 +86,12 @@ Keep entries concise and link to the relevant files.
   and the verifier checks a finite case where no single fixed window
   saturates but the union does. The scanner label now promotes such cases to
   `r2_union_saturated` instead of leaving them in a raw-only or intermediate
-  bucket. This leaves a narrower intermediate/lift-limited window for M1
-  slope-image bounds.
+  bucket. A general quotient-window reduction unifies the lift-limited layer:
+  for every `R<min(4,N)`, active shapes are exactly the union over quotient
+  windows of size `R` containing the kernel fiber, and the verifier checks
+  the `R=1,2,3` reductions on the running `p=97,n=48,N=6` sample. This
+  leaves a narrower intermediate/lift-limited window for M1 slope-image
+  bounds.
 - **What to do next:** Prove or replace the imported Kummer-Weil constant in
   a standalone algebraic-geometry note, then attack the residual `R=1`
   kernel catalog and sharpen the conservative two-fiber lower bound so it

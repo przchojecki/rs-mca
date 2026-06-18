@@ -10,6 +10,7 @@ from m1_support_occupancy_scan import (
     all_residual_packets_lift_active,
     quotient_limited_pair_parameter_bound,
     scan_supports,
+    slack_two_second_quotient_window_reduction_data,
     slack_two_second_kummer_saturation_data,
     slack_two_second_superboundary_shape_ledger,
     slack_two_second_two_fiber_kummer_saturation_data,
@@ -60,6 +61,15 @@ TWO_FIBER_KUMMER_CASES = (
 TWO_FIBER_UNION_CASES = (
     # R=2: no fixed two-fiber certificate, but the union saturates.
     (97, 48, 6, 8, 36),
+)
+
+R_WINDOW_CASES = (
+    # R=1: the general window reduction specializes to the kernel reduction.
+    (97, 48, 6, 8, 44, False),
+    # R=2: the general reduction agrees with the two-fiber union.
+    (97, 48, 6, 8, 36, True),
+    # R=3: exact-support saturation below the all-shapes R=4 gate.
+    (97, 48, 6, 8, 28, True),
 )
 
 SCAN_LABEL_CASES = (
@@ -516,6 +526,60 @@ def main() -> None:
                 per_window_cosets,
             )
         )
+    r_window_checked = []
+    for (
+        p,
+        n,
+        quotient_order,
+        fiber_size,
+        support_size,
+        expected_saturation,
+    ) in R_WINDOW_CASES:
+        _, domain = make_domain(p, n, None)
+        ledger = slack_two_second_superboundary_shape_ledger(
+            p=p,
+            domain=domain,
+            support_size=support_size,
+            quotient_order=quotient_order,
+            fiber_size=fiber_size,
+        )
+        reduction = slack_two_second_quotient_window_reduction_data(
+            p=p,
+            domain=domain,
+            quotient_order=quotient_order,
+            remaining_fibers=int(ledger["lift_limited_remaining_fibers"]),
+        )
+        if reduction is None:
+            raise AssertionError((p, n, support_size))
+        observed = (
+            int(reduction["parameter_count"]),
+            int(reduction["zero_parameter_count"]),
+            int(reduction["nonzero_square_coset_count"]),
+            int(reduction["slope_count"]),
+        )
+        expected = (
+            int(ledger["active_parameter_count"]),
+            int(ledger["active_zero_parameter_count"]),
+            int(ledger["active_nonzero_square_coset_count"]),
+            len(ledger["support_slope_histogram"]),
+        )
+        if observed != expected:
+            raise AssertionError((p, n, support_size, observed, expected))
+        saturates = bool(reduction["saturates_nonzero_square_cosets"])
+        if saturates != expected_saturation:
+            raise AssertionError((p, n, support_size, reduction))
+        r_window_checked.append(
+            (
+                p,
+                n,
+                quotient_order,
+                support_size,
+                reduction["remaining_fibers"],
+                reduction["effective_window_size"],
+                *observed,
+                tuple(reduction["touched_fiber_histogram"]),
+            )
+        )
     scan_label_checked = []
     for p, n, k, slack, quotient_order, expected_label in SCAN_LABEL_CASES:
         result = scan_supports(
@@ -547,6 +611,7 @@ def main() -> None:
         f"kernel_checked={kernel_checked} "
         f"two_fiber_checked={two_fiber_checked} "
         f"two_fiber_union_checked={two_fiber_union_checked} "
+        f"r_window_checked={r_window_checked} "
         f"scan_label_checked={scan_label_checked}"
     )
 

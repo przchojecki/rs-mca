@@ -180,6 +180,17 @@ canonical_slack_two_second_r2_union_exact_support_certificate
 canonical_slack_two_second_r2_union_slope_count
 canonical_slack_two_second_r2_union_per_window_profiles
 canonical_slack_two_second_r2_union_reduction_check
+canonical_slack_two_second_r_window_reduction_active
+canonical_slack_two_second_r_window_effective_size
+canonical_slack_two_second_r_window_window_count
+canonical_slack_two_second_r_window_parameter_count
+canonical_slack_two_second_r_window_zero_parameter_count
+canonical_slack_two_second_r_window_nonzero_square_coset_count
+canonical_slack_two_second_r_window_touched_fiber_histogram
+canonical_slack_two_second_r_window_saturates
+canonical_slack_two_second_r_window_exact_support_certificate
+canonical_slack_two_second_r_window_slope_count
+canonical_slack_two_second_r_window_reduction_check
 canonical_slack_two_second_full_domain_saturates_nonzero_slopes
 canonical_slack_two_second_full_domain_nonzero_slope_image
 canonical_slack_two_second_full_domain_coset_count_check
@@ -555,6 +566,22 @@ The scanner reports this bound and checks it against the exact active slope
 histogram. This is independent of the Kummer estimate: it is a quotient-lift
 restriction and is most useful precisely when the raw shape catalog saturates
 but too few quotient fibers remain for all shapes to lift.
+The exact object behind this ceiling is a quotient-window reduction. For
+`R<min(4,N)`, active normalized shapes are precisely the union over quotient
+windows `W` with `K subset W`, `|W|=R`, of
+
+```text
+C_2^(2)(W) = {(u,v): 1,u,v,-1-u-v in W and distinct}.
+```
+
+Equivalently, these are exactly the normalized shapes whose four entries
+touch at most `R` quotient fibers. The
+`canonical_slack_two_second_r_window_*` fields enumerate this union without
+enumerating exact supports, record the touched-fiber histogram, and check the
+result against the active depth-two parameter count, zero count, nonzero
+`D^2`-coset count, and slope count. If this union saturates all nonzero
+`D^2`-cosets below the all-shapes gate, the index-window label records
+`r_window_saturated`.
 At the extreme `R=1`, the lift-limited layer has an exact quotient-kernel
 reduction. Let
 
@@ -673,6 +700,7 @@ full_domain_saturated
 low_index_saturated
 two_fiber_saturated
 r2_union_saturated
+r_window_saturated
 lift_limited_sparse
 raw_saturated_lift_limited
 high_index_sparse
