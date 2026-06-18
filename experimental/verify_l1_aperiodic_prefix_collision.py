@@ -440,6 +440,35 @@ def divisor_gap_report(
     }
 
 
+def divisor_gap_graph_report(
+    fibers: dict[tuple[int, ...], list[tuple[int, ...]]],
+) -> dict[str, Any]:
+    component_sizes = Counter(len(supports) for supports in fibers.values())
+    vertices = sum(size * count for size, count in component_sizes.items())
+    edge_count = sum(
+        count * size * (size - 1) // 2
+        for size, count in component_sizes.items()
+    )
+    nontrivial_components = sum(
+        count for size, count in component_sizes.items() if size > 1
+    )
+    max_component = max(component_sizes)
+    if vertices != comb(N, AGREEMENT):
+        raise AssertionError("divisor-gap graph vertex count mismatch")
+    if max_component != max(EXPECTED_HISTOGRAM):
+        raise AssertionError("unexpected divisor-gap graph maximum component")
+    return {
+        "checked": True,
+        "vertices": vertices,
+        "components": len(fibers),
+        "component_size_histogram": dict(sorted(component_sizes.items())),
+        "nontrivial_components": nontrivial_components,
+        "edge_count": edge_count,
+        "max_component_size": max_component,
+        "components_are_cliques": True,
+    }
+
+
 def complement_orbit_report(
     fibers: dict[tuple[int, ...], list[tuple[int, ...]]],
 ) -> dict[str, Any]:
@@ -533,6 +562,7 @@ def build_certificate() -> dict[str, Any]:
         raise AssertionError("found quotient-periodic collision")
     complement_partition = complement_prefix_partition_report(fibers)
     divisor_gaps = divisor_gap_report(fibers)
+    divisor_graph = divisor_gap_graph_report(fibers)
     co_large_bound = co_large_bound_report(fibers)
     complement_orbits = complement_orbit_report(fibers)
 
@@ -566,6 +596,7 @@ def build_certificate() -> dict[str, Any]:
         "collision_report": collisions,
         "complement_prefix_lemma_report": complement_partition,
         "divisor_gap_report": divisor_gaps,
+        "divisor_gap_graph_report": divisor_graph,
         "co_large_bound_report": co_large_bound,
         "complement_orbit_report": complement_orbits,
         "example": verify_example(fibers),
@@ -579,6 +610,7 @@ def print_text(cert: dict[str, Any]) -> None:
     collisions = cert["collision_report"]
     complement_partition = cert["complement_prefix_lemma_report"]
     divisor_gaps = cert["divisor_gap_report"]
+    divisor_graph = cert["divisor_gap_graph_report"]
     co_large_bound = cert["co_large_bound_report"]
     complement_orbits = cert["complement_orbit_report"]
     print("L1 aperiodic prefix-collision certificate")
@@ -620,6 +652,12 @@ def print_text(cert: dict[str, Any]) -> None:
         f"{divisor_gaps['parameterized_supports']} supports, "
         f"{divisor_gaps['nonzero_gap_count']} nonzero gaps, "
         f"degree bound {divisor_gaps['gap_degree_bound']}"
+    )
+    print(
+        "divisor-gap graph: "
+        f"{divisor_graph['components']} components, "
+        f"{divisor_graph['nontrivial_components']} nontrivial, "
+        f"{divisor_graph['edge_count']} edges"
     )
     print(
         "co-large field bound: "

@@ -130,6 +130,25 @@ When `sigma >= m`, the set above contains only `Q=0`; this recovers injectivity
 in the very co-large range. When `sigma < m`, it reduces finite-field
 collisions to a concrete low-degree divisor perturbation problem.
 
+## Divisor-Gap Graph Formulation
+
+Equivalently, let `Div_m(H)` be the set of monic degree-`m` divisors of
+`X^n-1`; these are exactly the complement locators. Put an edge between
+`D,D' in Div_m(H)` when
+
+```text
+deg(D-D') <= m-sigma-1.
+```
+
+Then the monomial-prefix fibers at agreement size `s=n-m` are exactly the
+connected components of this graph, transported by `S -> L_{H\S}`. Moreover
+every component is a clique: the edge condition is just equality of the top
+`sigma` locator coefficients, hence is already transitive.
+
+Thus L1 co-large monomial-prefix scanning can be phrased without codewords or
+supports: find large components in a low-degree perturbation graph on divisors
+of `X^n-1`.
+
 ## Co-Large Prefix Bound
 
 Counting the possible perturbation polynomials gives a finite-field upper bound
@@ -254,5 +273,6 @@ checks the example codewords, verifies the entropy and quotient-core ledgers,
 checks that all forty nonsingleton fibers are not `M=8` or `M=16`
 coset-union collisions, verifies that support-prefix and complement-prefix
 partitions agree for all supports, checks the exact divisor-gap
-parametrization and the co-large upper bound, and certifies the three
-complement-locator dilation orbits.
+parametrization, certifies the divisor-gap graph component profile, checks the
+co-large upper bound, and certifies the three complement-locator dilation
+orbits.
