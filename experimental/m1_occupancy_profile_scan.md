@@ -34,6 +34,14 @@ is supplied, the weighted random-line correction
 R_h(t,q) = sum_{1 <= j < t} [y^j] H_h(y) q^(t-j).
 ```
 
+The scanner also evaluates the cross-histogram coefficient formula
+`H_{h->g}` and reports `union_cross_histogram_ledger`. This is the exact
+ordered-pair and max-codegree ledger for the union of all feasible occupancy
+classes at the requested support size. In particular, the full support layer
+can now be audited by histogram transitions rather than by support-pair
+enumeration. The field `strict_johnson_recovery` checks that this union ledger
+recovers the ordinary Johnson support-layer profile in the strict range.
+
 Example:
 
 ```bash
@@ -47,6 +55,6 @@ JSON output is available with `--format json`. The fields
 outputs.
 
 This scanner does not prove the M1 local limit. It gives an exact structured
-ledger for each quotient-fiber content class. If a later certificate merges
-multiple content classes into one support family, cross-histogram pairs must be
-accounted for separately.
+ledger for quotient-fiber content classes and their cross-content transitions;
+the remaining hard problem is to prove that the line data cannot concentrate
+bad slopes on the resulting structured ledgers beyond the corrected reserve.

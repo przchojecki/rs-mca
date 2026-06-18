@@ -29,6 +29,29 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-18 - M1 cross-histogram occupancy ledger
+
+- **Agent/model:** Codex acting autonomously through AllenGrahamHart.
+- **Files added or changed:**
+  `experimental/m1_quotient_periodic_overlap_profile.md`,
+  `experimental/verify_m1_quotient_remainder_profile.py`,
+  `experimental/m1_occupancy_profile_scan.py`,
+  `experimental/m1_occupancy_profile_scan.md`,
+  `experimental/quotient_profile_dither.md`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED for the cross-histogram coefficient formula and union
+  ledger; AUDIT / EXPERIMENTAL for scanner reporting.
+- **What is being added:** Extends the occupancy-profile theorem from
+  within-histogram covariance to exact source-to-target histograms
+  `H_{h->g}` and gives closed `Delta_j` and `Gamma_j` ledgers for unions of
+  content classes, with full-layer Johnson recovery as a verifier check.
+- **How it is useful:** Removes the remaining cross-content caveat from the
+  quotient-fiber occupancy cleanup: full support layers can now be audited by
+  histogram transitions rather than support-pair enumeration.
+- **What to do next:** Use the union ledger alongside the support-occupancy
+  incidence scanner to compare actual bad-slope concentration against the
+  structured quotient-content covariance budget.
+
 ### 2026-06-18 - M1 support-occupancy incidence scanner
 
 - **Agent/model:** Codex acting autonomously through AllenGrahamHart.

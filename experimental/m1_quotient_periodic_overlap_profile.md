@@ -467,9 +467,55 @@ sum_h |A_h| = binom(Nm,s).
 A finite M1 scanner can therefore enumerate histograms rather than supports:
 for each content class it emits `|A_h|`, `[y^j]H_h(y)`, and `R_h(t,q)` for
 `1 <= j < t`. This is complete for within-content quotient-fiber covariance.
-Any later union-level certificate that merges content classes must still handle
-cross-histogram pairs separately, but no support enumeration is needed to audit
-each structured content class.
+
+The same coefficient extraction handles cross-histogram pairs. For two
+histograms `h,g`, define
+
+```text
+H_{h->g}(y) = sum_{T in A_g} y^|S \ T|        for fixed S in A_h.
+```
+
+Then
+
+```text
+H_{h->g}(y)
+ =
+ [z_0^g_0 ... z_m^g_m]
+ prod_{a=0}^m
+   ( sum_{b=0}^m z_b P_{a,b}(y) )^h_a.
+```
+
+This gives the ordered cross-pair profile
+
+```text
+Delta_j(A_h,A_g) = |A_h| [y^j] H_{h->g}(y).
+```
+
+Consequently, for any union of content classes
+
+```text
+A_U = union_{h in U} A_h,
+```
+
+the exact ordered-pair profile and max-codegree profile are
+
+```text
+Delta_j(A_U) =
+  sum_{h in U} |A_h| sum_{g in U} [y^j]H_{h->g}(y),
+
+Gamma_j(A_U) =
+  max_{h in U} sum_{g in U} [y^j]H_{h->g}(y).
+```
+
+Thus quotient-fiber content unions also have an exact finite ledger; no support
+enumeration is needed for either within-content or cross-content covariance.
+When `U` is the set of all histograms at support size `s`, this union ledger
+recovers the ordinary Johnson layer:
+
+```text
+Gamma_j(A_U) = binom(s,j) binom(Nm-s,j),
+Delta_j(A_U) = binom(Nm,s) binom(s,j) binom(Nm-s,j).
+```
 
 ## Large-Fiber Remainder Truncation
 
@@ -1541,6 +1587,24 @@ families `A_h` are disjoint and their union is the full support layer
 `|S|=s`; summing the already proved formula for `|A_h|` over all feasible
 histograms gives `binom(Nm,s)`.
 
+The cross-histogram formula is the same argument with a different target
+histogram.  Starting from a fixed `S in A_h`, the old fibers still contribute
+
+```text
+(sum_b z_b P_{a,b}(y))^h_a
+```
+
+for old occupancy `a`, but now extracting
+`z_0^g_0 ... z_m^g_m` enforces that the target support lies in `A_g`. This
+proves `H_{h->g}` and the ordered cross-pair formula. For a union `A_U`, every
+target support lies in exactly one `A_g`, so fixed-source codegrees add over
+`g in U`; maximizing over the source histogram gives `Gamma_j(A_U)`, and
+summing source counts gives `Delta_j(A_U)`.
+If `U` contains all support-size-`s` histograms, then `A_U` is simply the full
+Johnson layer of `s`-subsets of `D`; the displayed Johnson formulas follow by
+choosing `j` points to delete from a fixed support and `j` points to insert
+from its complement.
+
 For the one-remainder-fiber profile, fix
 
 ```text
@@ -1791,7 +1855,9 @@ emit three statistics for each support class:
 The general fiber-occupancy formula gives these statistics exactly for every
 fixed quotient-fiber content histogram. Any excess strict-overlap profile after
 these structured classes are isolated is then a direct witness for the
-aperiodic obstruction that a future local-limit proof must control. The command
+aperiodic obstruction that a future local-limit proof must control. The
+cross-histogram formula also gives the exact union ledger for any chosen set of
+content classes. The command
 
 ```bash
 python3 experimental/m1_occupancy_profile_scan.py \

@@ -110,9 +110,10 @@ histogram `h=(h_0,...,h_M)` of fiber occupancies, the strict exchange ledger is
 the coefficient of a finite product of one-fiber transition polynomials. The
 current scanner reports the whole-fiber and one-remainder classes explicitly;
 `experimental/m1_occupancy_profile_scan.py` gives the theorem-backed complete
-histogram scanner for small quotient partitions, accounting for each
-quotient-fiber content class before any remaining obstruction is treated as
-aperiodic.
+histogram scanner for small quotient partitions, including the exact
+cross-histogram union ledger. This accounts for quotient-fiber content classes
+and their cross-content transitions before any remaining obstruction is treated
+as aperiodic.
 
 The JSON output also includes a theorem-backed `fixed_window_minimax` block.
 For a window `W={t_-,...,t_+}` of length `L_W`, it records the two elementary

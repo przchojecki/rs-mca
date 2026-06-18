@@ -49,16 +49,18 @@ def fiber_transition_enumerator(m, old_occupancy, new_occupancy):
     return +poly
 
 
-def occupancy_profile_enumerator(N, m, histogram):
-    """Fixed-support exchange enumerator for a fiber occupancy histogram."""
+def occupancy_cross_profile_enumerator(N, m, source_histogram, target_histogram):
+    """Fixed-source exchange enumerator between two occupancy histograms."""
 
-    assert len(histogram) == m + 1
-    assert sum(histogram) == N
-    target = tuple(histogram)
+    assert len(source_histogram) == m + 1
+    assert len(target_histogram) == m + 1
+    assert sum(source_histogram) == N
+    assert sum(target_histogram) == N
+    target = tuple(target_histogram)
     zero_counts = (0,) * (m + 1)
     dp = {zero_counts: Counter({0: 1})}
 
-    for old_occupancy, count in enumerate(histogram):
+    for old_occupancy, count in enumerate(source_histogram):
         for _ in range(count):
             next_dp = {}
             for counts, poly in dp.items():
@@ -80,6 +82,12 @@ def occupancy_profile_enumerator(N, m, histogram):
             dp = {counts: +poly for counts, poly in next_dp.items()}
 
     return +dp[target]
+
+
+def occupancy_profile_enumerator(N, m, histogram):
+    """Fixed-support exchange enumerator for one occupancy histogram."""
+
+    return occupancy_cross_profile_enumerator(N, m, histogram, histogram)
 
 
 def occupancy_family_size(N, m, histogram):
@@ -210,11 +218,52 @@ def brute_occupancy_profile_enumerator(N, m, histogram):
     return Counter(len(fixed - other) for other in family)
 
 
+def brute_occupancy_cross_profile_enumerator(
+    N,
+    m,
+    source_histogram,
+    target_histogram,
+):
+    source_family = occupancy_histogram_family(N, m, source_histogram)
+    target_family = occupancy_histogram_family(N, m, target_histogram)
+    fixed = source_family[0]
+    return Counter(len(fixed - other) for other in target_family)
+
+
 def verify_occupancy_profile_case(N, m, histogram):
     formula = occupancy_profile_enumerator(N, m, histogram)
     brute = brute_occupancy_profile_enumerator(N, m, histogram)
     assert formula == brute, (N, m, histogram, formula, brute)
     assert sum(formula.values()) == occupancy_family_size(N, m, histogram)
+    return formula
+
+
+def verify_occupancy_cross_profile_case(N, m, source_histogram, target_histogram):
+    formula = occupancy_cross_profile_enumerator(
+        N,
+        m,
+        source_histogram,
+        target_histogram,
+    )
+    brute = brute_occupancy_cross_profile_enumerator(
+        N,
+        m,
+        source_histogram,
+        target_histogram,
+    )
+    assert formula == brute, (
+        N,
+        m,
+        source_histogram,
+        target_histogram,
+        formula,
+        brute,
+    )
+    assert sum(formula.values()) == occupancy_family_size(
+        N,
+        m,
+        target_histogram,
+    )
     return formula
 
 
@@ -256,6 +305,35 @@ def verify_occupancy_profile_specializations():
     return tuple(rows)
 
 
+def verify_occupancy_cross_profile_specializations():
+    rows = []
+    cases = [
+        (4, 3, (1, 2, 1, 0), (1, 1, 1, 1)),
+        (4, 3, (1, 1, 1, 1), (1, 2, 1, 0)),
+        (5, 2, (1, 2, 2), (2, 1, 2)),
+        (5, 3, (1, 2, 1, 1), (0, 4, 0, 1)),
+    ]
+    for case in cases:
+        formula = verify_occupancy_cross_profile_case(*case)
+        rows.append(case + (dict(sorted(formula.items())),))
+
+    symmetric_cases = [
+        (4, 3, (1, 2, 1, 0), (0, 4, 0, 0)),
+        (5, 2, (2, 1, 2), (1, 3, 1)),
+    ]
+    for N, m, left, right in symmetric_cases:
+        left_to_right = occupancy_cross_profile_enumerator(N, m, left, right)
+        right_to_left = occupancy_cross_profile_enumerator(N, m, right, left)
+        left_size = occupancy_family_size(N, m, left)
+        right_size = occupancy_family_size(N, m, right)
+        for exponent in set(left_to_right) | set(right_to_left):
+            assert left_size * left_to_right[exponent] == (
+                right_size * right_to_left[exponent]
+            ), (N, m, left, right, exponent, left_to_right, right_to_left)
+
+    return tuple(rows)
+
+
 def verify_occupancy_histogram_exhaustion():
     rows = []
     cases = [
@@ -287,6 +365,56 @@ def verify_occupancy_histogram_exhaustion():
             choose(N * m, support_size),
         )
         rows.append((N, m, support_size, len(histograms), total))
+    return tuple(rows)
+
+
+def verify_occupancy_union_johnson_recovery():
+    rows = []
+    cases = [
+        (4, 3, 4),
+        (5, 2, 5),
+        (5, 3, 6),
+    ]
+    for N, m, support_size in cases:
+        histograms = occupancy_histograms(N, m, support_size)
+        domain_size = N * m
+        max_exchange = min(support_size, domain_size - support_size)
+        johnson = Counter(
+            {
+                exchange: choose(support_size, exchange)
+                * choose(domain_size - support_size, exchange)
+                for exchange in range(0, max_exchange + 1)
+            }
+        )
+        ordered = Counter()
+        for source in histograms:
+            fixed_source = Counter()
+            source_size = occupancy_family_size(N, m, source)
+            for target in histograms:
+                profile = occupancy_cross_profile_enumerator(N, m, source, target)
+                fixed_source.update(profile)
+                for exchange, count in profile.items():
+                    ordered[exchange] += source_size * count
+            assert fixed_source == johnson, (
+                N,
+                m,
+                support_size,
+                source,
+                fixed_source,
+                johnson,
+            )
+
+        support_layer_size = choose(domain_size, support_size)
+        for exchange, count in johnson.items():
+            assert ordered[exchange] == support_layer_size * count, (
+                N,
+                m,
+                support_size,
+                exchange,
+                ordered[exchange],
+                support_layer_size * count,
+            )
+        rows.append((N, m, support_size, len(histograms), dict(sorted(johnson.items()))))
     return tuple(rows)
 
 
@@ -1313,8 +1441,12 @@ def verify_maximal_dither_random_line_ledger(n, k0, t, q):
 def main():
     occupancy_rows = verify_occupancy_profile_specializations()
     print(f"fiber occupancy profile cases={occupancy_rows}")
+    occupancy_cross_rows = verify_occupancy_cross_profile_specializations()
+    print(f"fiber occupancy cross-profile cases={occupancy_cross_rows}")
     occupancy_exhaustion = verify_occupancy_histogram_exhaustion()
     print(f"fiber occupancy histogram exhaustion={occupancy_exhaustion}")
+    occupancy_johnson = verify_occupancy_union_johnson_recovery()
+    print(f"fiber occupancy Johnson recovery={occupancy_johnson}")
 
     cases = [
         (5, 4, 1, 1),

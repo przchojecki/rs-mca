@@ -19,6 +19,7 @@ from typing import Dict, List, Optional, Sequence
 from verify_m1_quotient_remainder_profile import (
     choose,
     occupancy_family_size,
+    occupancy_cross_profile_enumerator,
     occupancy_histograms,
     occupancy_profile_enumerator,
 )
@@ -79,12 +80,132 @@ def weighted_correction(
     )
 
 
+def union_weighted_correction(
+    max_codegrees: Dict[int, int],
+    slack: int,
+    line_field_size: int,
+) -> int:
+    return sum(
+        codegree * line_field_size ** (slack - exchange_size)
+        for exchange_size, codegree in max_codegrees.items()
+    )
+
+
 def histogram_text(histogram: Sequence[int]) -> str:
     return ",".join(
         f"{occupancy}:{count}"
         for occupancy, count in enumerate(histogram)
         if count
     )
+
+
+def union_ledger_summary(
+    quotient_order: int,
+    fiber_size: int,
+    support_size: int,
+    histograms: Sequence[Sequence[int]],
+    slack: int,
+    line_field_size: Optional[int],
+    top_terms: int,
+) -> Dict[str, object]:
+    delta_by_exchange: Dict[int, int] = {}
+    gamma_by_source: Dict[tuple, Dict[int, int]] = {
+        tuple(histogram): {} for histogram in histograms
+    }
+
+    for source in histograms:
+        source_key = tuple(source)
+        source_size = occupancy_family_size(
+            quotient_order,
+            fiber_size,
+            source_key,
+        )
+        for target in histograms:
+            target_key = tuple(target)
+            profile = occupancy_cross_profile_enumerator(
+                quotient_order,
+                fiber_size,
+                source_key,
+                target_key,
+            )
+            for exchange_size, codegree in profile.items():
+                if exchange_size == 0 or exchange_size >= slack:
+                    continue
+                delta_by_exchange[exchange_size] = (
+                    delta_by_exchange.get(exchange_size, 0)
+                    + source_size * codegree
+                )
+                gamma_by_source[source_key][exchange_size] = (
+                    gamma_by_source[source_key].get(exchange_size, 0)
+                    + codegree
+                )
+
+    gamma_by_exchange: Dict[int, int] = {}
+    gamma_witness: Dict[int, tuple] = {}
+    for source, profile in gamma_by_source.items():
+        for exchange_size, codegree in profile.items():
+            if codegree > gamma_by_exchange.get(exchange_size, 0):
+                gamma_by_exchange[exchange_size] = codegree
+                gamma_witness[exchange_size] = source
+
+    weighted = None
+    if line_field_size is not None:
+        weighted = union_weighted_correction(
+            gamma_by_exchange,
+            slack,
+            line_field_size,
+        )
+
+    domain_size = quotient_order * fiber_size
+    support_layer_size = choose(domain_size, support_size)
+    max_exchange = min(support_size, domain_size - support_size)
+    johnson_gamma = {
+        exchange_size: choose(support_size, exchange_size)
+        * choose(domain_size - support_size, exchange_size)
+        for exchange_size in range(1, min(slack, max_exchange + 1))
+    }
+    johnson_match = all(
+        gamma_by_exchange.get(exchange_size, 0) == gamma
+        and delta_by_exchange.get(exchange_size, 0) == support_layer_size * gamma
+        for exchange_size, gamma in johnson_gamma.items()
+    )
+
+    terms = [
+        {
+            "exchange_size": exchange_size,
+            "ordered_pair_count": delta_by_exchange[exchange_size],
+            "max_codegree": gamma_by_exchange[exchange_size],
+            "johnson_max_codegree": johnson_gamma.get(exchange_size),
+            "gamma_witness_histogram": list(gamma_witness[exchange_size]),
+            "gamma_witness_histogram_text": histogram_text(
+                gamma_witness[exchange_size]
+            ),
+        }
+        for exchange_size in sorted(
+            gamma_by_exchange,
+            key=lambda item: (-gamma_by_exchange[item], item),
+        )
+    ]
+    if top_terms >= 0:
+        terms = terms[:top_terms]
+
+    return {
+        "histogram_count": len(histograms),
+        "strict_exchange_count": len(gamma_by_exchange),
+        "strict_ordered_pair_count": sum(delta_by_exchange.values()),
+        "strict_max_codegree_mass": sum(gamma_by_exchange.values()),
+        "strict_johnson_recovery": johnson_match,
+        "max_log2_strict_max_codegree": (
+            None
+            if not gamma_by_exchange
+            else log2_or_none(max(gamma_by_exchange.values()))
+        ),
+        "weighted_gamma_correction": weighted,
+        "log2_weighted_gamma_correction": (
+            None if weighted is None else log2_or_none(weighted)
+        ),
+        "strict_exchange_terms": terms,
+    }
 
 
 def scan_histograms(
@@ -183,6 +304,15 @@ def scan_histograms(
         "max_log2_weighted_correction": (
             None if not weighted_values else log2_or_none(max(weighted_values))
         ),
+        "union_cross_histogram_ledger": union_ledger_summary(
+            quotient_order=quotient_order,
+            fiber_size=fiber_size,
+            support_size=support_size,
+            histograms=histograms,
+            slack=slack,
+            line_field_size=line_field_size,
+            top_terms=top_terms,
+        ),
         "top_histograms": retained,
     }
 
@@ -208,6 +338,18 @@ def print_text(result: Dict[str, object]) -> None:
     )
     if result["line_field_size"] is not None:
         print(f"line_field_size={result['line_field_size']}")
+    union = result["union_cross_histogram_ledger"]
+    assert isinstance(union, dict)
+    print(
+        "union ledger: strict_exchanges={count} strict_pairs={pairs} "
+        "johnson={johnson} logMaxGamma={gamma} logR={weighted}".format(
+            count=union["strict_exchange_count"],
+            pairs=union["strict_ordered_pair_count"],
+            johnson=union["strict_johnson_recovery"],
+            gamma=format_log(union["max_log2_strict_max_codegree"]),
+            weighted=format_log(union["log2_weighted_gamma_correction"]),
+        )
+    )
     print()
 
     for item in result["top_histograms"]:
