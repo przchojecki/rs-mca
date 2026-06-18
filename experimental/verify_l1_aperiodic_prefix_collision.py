@@ -420,6 +420,66 @@ def co_large_bound_report(
     }
 
 
+def verify_growing_width_envelope(
+    n: int,
+    k: int,
+    sigma: int,
+    rho_num: int,
+    rho_den: int,
+) -> dict[str, Any]:
+    if k * rho_den > rho_num * n:
+        raise AssertionError("k/n exceeds rho")
+    r = n - k - 2 * sigma
+    if r < 0:
+        raise AssertionError("not in the co-large strip")
+    denominator = (rho_den - rho_num) * n - rho_den * r
+    if denominator <= 0:
+        raise AssertionError("growth envelope denominator is not positive")
+
+    m = n - k - sigma
+    packing_numerator = comb(n, r)
+    packing_denominator = comb(m, r)
+    envelope_numerator = 2 * rho_den * n
+    envelope_denominator = denominator
+
+    if (
+        packing_numerator * envelope_denominator**r
+        > packing_denominator * envelope_numerator**r
+    ):
+        raise AssertionError("growing-width envelope failed")
+
+    return {
+        "n": n,
+        "k": k,
+        "sigma": sigma,
+        "rho": f"{rho_num}/{rho_den}",
+        "r": r,
+        "packing_bound_numerator": packing_numerator,
+        "packing_bound_denominator": packing_denominator,
+        "envelope_base_numerator": envelope_numerator,
+        "envelope_base_denominator": envelope_denominator,
+        "holds": True,
+    }
+
+
+def growing_width_report() -> dict[str, Any]:
+    cases = [
+        (N, K, SIGMA, 3, 8),
+        (64, 28, 15, 1, 2),
+        (128, 56, 31, 1, 2),
+        (256, 96, 76, 1, 2),
+        (512, 192, 150, 1, 2),
+        (1024, 384, 304, 1, 2),
+    ]
+    return {
+        "checked": True,
+        "cases": [
+            verify_growing_width_envelope(*case)
+            for case in cases
+        ],
+    }
+
+
 def divisor_gap_report(
     fibers: dict[tuple[int, ...], list[tuple[int, ...]]],
 ) -> dict[str, Any]:
@@ -584,6 +644,7 @@ def build_certificate() -> dict[str, Any]:
     divisor_gaps = divisor_gap_report(fibers)
     divisor_graph = divisor_gap_graph_report(fibers)
     co_large_bound = co_large_bound_report(fibers)
+    growing_width = growing_width_report()
     complement_orbits = complement_orbit_report(fibers)
 
     return {
@@ -618,6 +679,7 @@ def build_certificate() -> dict[str, Any]:
         "divisor_gap_report": divisor_gaps,
         "divisor_gap_graph_report": divisor_graph,
         "co_large_bound_report": co_large_bound,
+        "growing_width_report": growing_width,
         "complement_orbit_report": complement_orbits,
         "example": verify_example(fibers),
         "passed": True,
@@ -632,6 +694,7 @@ def print_text(cert: dict[str, Any]) -> None:
     divisor_gaps = cert["divisor_gap_report"]
     divisor_graph = cert["divisor_gap_graph_report"]
     co_large_bound = cert["co_large_bound_report"]
+    growing_width = cert["growing_width_report"]
     complement_orbits = cert["complement_orbit_report"]
     print("L1 aperiodic prefix-collision certificate")
     print(f"Status: {cert['status']}")
@@ -695,6 +758,10 @@ def print_text(cert: dict[str, Any]) -> None:
         "co-large field-size bound: "
         f"max fiber {co_large_bound['maximum_fiber_size']} <= "
         f"{co_large_bound['field_bound']}"
+    )
+    print(
+        "growing-width envelope cases checked: "
+        f"{len(growing_width['cases'])}"
     )
     print(
         "complement dilation orbits: "

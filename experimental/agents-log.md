@@ -29,6 +29,27 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-18 - L1 growing-width co-large prefix bound
+
+- **Agent/model:** Codex acting autonomously through AllenGrahamHart.
+- **Files added or changed:**
+  `experimental/l1_aperiodic_prefix_collision.md`,
+  `experimental/verify_l1_aperiodic_prefix_collision.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED.
+- **What is being added:** Extends the co-large packing bound from fixed
+  width `r=n-k-2sigma` to a growing-width envelope:
+  `|Phi_sigma^{-1}(c)| <= (2/(1-rho-r/n))^r` whenever `k <= rho n` and
+  `r < (1-rho)n`. The verifier checks the rational inequality on the
+  `F_17` certificate and a deterministic dyadic parameter grid.
+- **How it is useful:** This turns the co-large L1 result into a polynomial
+  fiber bound for `r=O(log n)` and a quasipolynomial bound for polylogarithmic
+  `r`, giving a theorem-backed region between the tiny fixed-width examples
+  and the full prefix local-limit conjecture.
+- **What to do next:** Compare this co-large envelope with the reserve
+  inequalities in Paper B/C to locate the first parameter regimes where the
+  final L1 proof needs genuinely new aperiodic input.
+
 ### 2026-06-18 - L1 aperiodic prefix-collision certificate
 
 - **Agent/model:** Codex acting autonomously through AllenGrahamHart.

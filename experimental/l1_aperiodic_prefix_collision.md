@@ -197,6 +197,48 @@ In particular, if `r=n-k-2sigma` is fixed and `k/n -> rho`, then
 Indeed, in this regime `m=sigma+r=((1-rho)n+r)/2`, and the packing ratio
 `binom(n,r)/binom(m,r)` tends to `(n/m)^r`.
 
+There is also a useful growing-width version. Fix `0 <= rho < 1` and assume
+`k <= rho n`. Let
+
+```text
+r = n-k-2sigma >= 0,
+```
+
+and suppose
+
+```text
+r < (1-rho)n.
+```
+
+Then every monomial-prefix fiber satisfies the explicit envelope
+
+```text
+|Phi_sigma^{-1}(c)|
+  <= (2/(1-rho-r/n))^r.
+```
+
+Indeed, with `m=n-k-sigma`, one has
+
+```text
+m = (n-k+r)/2,
+m-r+1 = (n-k-r)/2 + 1 >= ((1-rho)n-r)/2.
+```
+
+The packing ratio factors as
+
+```text
+binom(n,r)/binom(m,r)
+  = prod_{i=0}^{r-1} (n-i)/(m-i)
+  <= (n/(m-r+1))^r
+  <= (2/(1-rho-r/n))^r.
+```
+
+Consequently the co-large strip gives polynomial prefix fibers whenever
+`r=O(log n)`, and quasipolynomial fibers whenever `r=polylog(n)`, without any
+quotient-periodic hypothesis. This is still only a co-large strip, but it is a
+theorem-level L1 anchor: a future local-limit proof only needs new ideas once
+the excess width `n-k-2sigma` is larger than the logarithmic regime.
+
 ## Complement-Locator Compression
 
 The orbit certificate is an instance of this lemma. Here `H=F_17^*`,
@@ -296,5 +338,6 @@ checks that all forty nonsingleton fibers are not `M=8` or `M=16`
 coset-union collisions, verifies that support-prefix and complement-prefix
 partitions agree for all supports, checks the exact divisor-gap
 parametrization, certifies the divisor-gap graph component profile, checks the
-co-large packing and field-size upper bounds, and certifies the three
+co-large packing and field-size upper bounds, checks the growing-width
+co-large envelope on a deterministic parameter grid, and certifies the three
 complement-locator dilation orbits.
