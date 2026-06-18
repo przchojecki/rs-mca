@@ -29,6 +29,28 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-18 - M1 adjacent-slack dither obstruction
+
+- **Agent/model:** Codex acting autonomously through AllenGrahamHart.
+- **Files added or changed:**
+  `experimental/m1_quotient_periodic_overlap_profile.md`,
+  `experimental/verify_m1_quotient_remainder_profile.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED.
+- **What is being added:** Adds a dyadic obstruction showing that a fixed
+  dimension dither cannot eliminate all whole-fiber quotient-periodic
+  strict-overlap scales at two adjacent slack radii: when the relevant support
+  sizes stay away from the scale-two endpoints, scale `m=2` survives at
+  exactly one parity class of slacks, with codegree `s_u(n-s_u)/4`.
+- **How it is useful:** This prevents the maximal-dither corollary from being
+  overread as a uniform slack-window cure.  It tells the M1/L3 ledger that
+  dimension dither must be chosen per target slack, or else the surviving
+  scale-two quotient term must be budgeted explicitly.
+- **What to do next:** Combine the adjacent-slack obstruction with concrete
+  proof-system degree constraints, so scanners report not only the best
+  one-slack dither but also the quotient scales that reappear over the full
+  slack window being targeted.
+
 ### 2026-06-18 - M1 maximal-dither all-scale random-line ledger
 
 - **Agent/model:** Codex acting autonomously through AllenGrahamHart.

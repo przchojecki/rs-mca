@@ -187,6 +187,52 @@ def dyadic_divisors(value):
     return out
 
 
+def scale_two_codegree(n, k0, r, t):
+    assert n % 2 == 0
+    assert k0 % 2 == 0
+    support_size = k0 + t - r
+    if t < 3 or support_size % 2:
+        return 0
+    if support_size < 2 or support_size > n - 2:
+        return 0
+
+    quotient_order = n // 2
+    quotient_support = support_size // 2
+    return quotient_support * (quotient_order - quotient_support)
+
+
+def verify_adjacent_slack_dither_obstruction(n, k0, t_start, t_end, r_start, r_end):
+    assert 3 <= t_start <= t_end
+    assert n % 2 == 0
+    assert k0 % 2 == 0
+
+    rows = []
+    for r in range(r_start, r_end + 1):
+        active_slacks = []
+        for t in range(t_start, t_end + 1):
+            support_size = k0 + t - r
+            assert 2 <= support_size <= n - 2
+
+            codegree = scale_two_codegree(n, k0, r, t)
+            should_survive = (t - r) % 2 == 0
+            assert bool(codegree) == should_survive, (n, k0, t, r, codegree)
+            if should_survive:
+                expected = support_size * (n - support_size) // 4
+                assert codegree == expected, (n, k0, t, r, codegree, expected)
+                active_slacks.append(t)
+
+        window_size = t_end - t_start + 1
+        assert len(active_slacks) in {window_size // 2, (window_size + 1) // 2}
+
+        for t in range(t_start, t_end):
+            left = bool(scale_two_codegree(n, k0, r, t))
+            right = bool(scale_two_codegree(n, k0, r, t + 1))
+            assert left != right, (n, k0, r, t, left, right)
+
+        rows.append((r, tuple(active_slacks)))
+    return rows
+
+
 def expected_maximal_dither_profile(n, k0, m, t):
     expected = Counter({1: n - k0 - 1})
     if m == t:
@@ -298,6 +344,13 @@ def main():
     for case in confinement_cases:
         small_scales = verify_maximal_dither_scale_confinement(*case)
         print(f"n,k0,t={case}: small_scales={small_scales}")
+    obstruction_cases = [
+        (64, 16, 3, 9, 0, 4),
+        (256, 128, 4, 12, -1, 3),
+    ]
+    for case in obstruction_cases:
+        rows = verify_adjacent_slack_dither_obstruction(*case)
+        print(f"n,k0,t0,t1,r0,r1={case}: scale2_active={rows}")
     random_line_cases = [
         (256, 128, 5, 17),
         (256, 64, 8, 17),

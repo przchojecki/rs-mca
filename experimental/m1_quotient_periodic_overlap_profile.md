@@ -170,6 +170,62 @@ divisibility test. Thus any dither with `t-r` odd kills every nontrivial dyadic
 whole-fiber strict-overlap scale, while `v2(|t-r|)`, capped by `Mmax`, gives
 the exact number of dyadic scales that can remain when `t != r`.
 
+## Adjacent-Slack Dither Obstruction
+
+The dyadic dither rule above is intrinsically a one-slack rule. Keep the
+dyadic setup and fix one integer dither `r`. For a slack value `u`, write
+
+```text
+s_u = k0 + (u-r).
+```
+
+Assume `k0 >= 2`, and assume that the support size stays away from the
+scale-two quotient endpoints for the slacks being considered:
+
+```text
+2 <= s_u <= n-2.
+```
+
+Then, for every `u >= 3`, the nontrivial dyadic scale `m=2` has a strict
+whole-fiber quotient-periodic contribution exactly when
+
+```text
+u-r is even.
+```
+
+At such a slack, `L=s_u/2`, `N=n/2`, and the first exchange codegree is
+
+```text
+Gamma_2 = L(N-L) = s_u(n-s_u)/4,
+```
+
+so the scale-two contribution to the weighted whole-fiber ledger is
+
+```text
+Gamma_2 q^(u-2).
+```
+
+Consequently, for any adjacent slacks `t,t+1` with `t >= 3`, exactly one of
+`t-r` and `t+1-r` is even. Under the same interior assumption, one of those two
+slacks therefore has a nonzero scale-two strict-overlap quotient term. Hence
+no fixed dimension dither can eliminate all nontrivial dyadic whole-fiber
+quotient-periodic strict-overlap scales at two adjacent slack radii.
+
+More generally, on any integer slack interval `W subset {3,4,...}` where the
+support sizes remain in the displayed interior range, scale `m=2` survives at
+exactly the
+slacks
+
+```text
+u in W,        u == r mod 2.
+```
+
+Thus the number of slacks in the interval with a surviving scale-two
+whole-fiber term is either `floor(|W|/2)` or `ceil(|W|/2)`. Reusing the
+single-slack maximal dither `r=t-1` at the next slack is the smallest example:
+at slack `t+1`, the difference is `(t+1)-r=2`, so the dyadic scale `m=2`
+survives immediately.
+
 ## One-Remainder-Fiber Profile
 
 The exact-support divisibility guardrail above only treats supports that are
@@ -645,6 +701,21 @@ for nonzero `d=t-r`, a dyadic scale `m=2^u` divides `d` exactly when
 `u <= floor(log2 Mmax)`. If `d=0`, every dyadic scale divides `d`, so only the
 cap remains.
 
+For the adjacent-slack obstruction, specialize this divisibility test to
+`m=2`. Since `k0 >= 2`, the scale is present in the dyadic divisor ladder, and
+since `u >= 3`, the first exchange size `2` lies in the strict range
+`2 <= u-1`. The only remaining exact-support condition is parity:
+
+```text
+2 | s_u    <=>    2 | (u-r).
+```
+
+The interior hypothesis `2 <= s_u <= n-2` makes this a nondegenerate quotient
+family, with `1 <= L=s_u/2 <= N-1`; hence the `h=1` codegree is
+`L(N-L)=s_u(n-s_u)/4`. Consecutive integers have opposite parity, so exactly
+one of `t-r` and `t+1-r` is even. The interval count follows by counting one
+parity class in an integer interval.
+
 For the one-remainder-fiber profile, fix
 
 ```text
@@ -803,22 +874,27 @@ Two immediate readings are useful.
    nontrivial fiber scale `m <= k0` fails the divisibility test `m | s`.
    More generally, the surviving dyadic scales are counted by the 2-adic
    valuation of `t-r`, capped at `min(k0,t-1)`.
-5. If exact support has a nonzero remainder modulo a quotient fiber size, the
+5. This dither is necessarily a one-slack tool. For any fixed `r` and any
+   adjacent slacks `t,t+1 >= 3`, scale `m=2` survives at exactly one of the
+   two slacks, provided the scale-two support sizes are interior. Thus no
+   single fixed dimension dither can globally remove dyadic whole-fiber
+   quotient terms across a slack window.
+6. If exact support has a nonzero remainder modulo a quotient fiber size, the
    one-remainder-fiber family has its own exchange profile `H_REM`. This
    smaller profile can create strict point exchanges below one full fiber and
    therefore must be budgeted separately from the whole-fiber quotient term.
-6. In the large-fiber range `t <= m`, that remainder budget is itself explicit:
+7. In the large-fiber range `t <= m`, that remainder budget is itself explicit:
    only same-remainder swaps, moves to unused nonwhole fibers, and one boundary
    promotion term survive. Under maximal dyadic dither `k=k0-(t-1)`, every
    scale `m>t` has the same linear strict codegree `n-k0-1`, so the large
    quotient remainder packet becomes a tangent-sized term rather than a
    quotient-profile-sized term.
-7. The stable large-scale hierarchy explains why maximal dither is the
+8. The stable large-scale hierarchy explains why maximal dither is the
    distinguished choice: if `d=t-r0` and `m >= t+d`, then the unweighted
    strict remainder mass is exactly `((n-k0)/m)binom(m,d)-1`. Thus `d=1` is the
    only stable dither class with a uniformly linear large-scale remainder
    budget.
-8. In the maximal-dither case, the one-remainder profile is explicit at every
+9. In the maximal-dither case, the one-remainder profile is explicit at every
    scale, not only at `m>=t`: the full strict profile is the three-band formula
    at exchange sizes `hm-1`, `hm`, and `hm+1`. This gives a closed-form
    all-scale quotient ledger for the dithered dimension `s=k0+1`.
