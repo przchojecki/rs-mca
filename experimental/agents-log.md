@@ -29,6 +29,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-19 - M1 line-conic hypergeometric pullback
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/m1_depth_two_line_conic_resonance_reduction.md`,
+  `experimental/verify_m1_depth_two_line_conic_resonance_reduction.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** Proves that after the double cover
+  `z^2=(y-2)(y+1)`, every split nonsingular fiber satisfies
+  `G_nu(y)=chi_2(-3)nu(r_+)H_nu(r_-/r_+)` for the three-point trace
+  `H_nu(lambda)=sum_x nu(x)chi_2((x-1)(x-lambda))`.
+- **How it is useful:** Replaces the lisse part of the line-conic wall by an
+  explicit quadratic pushforward of a standard hypergeometric/Jacobi trace,
+  which is the object a theorem-grade conductor proof should bound.
+- **What to do next:** Prove the conductor bound for this quadratic
+  pushforward with the outer Mellin twist and the filtered character range.
+
 ### 2026-06-19 - M1 line-conic character filter
 
 - **Agent/model:** Codex.

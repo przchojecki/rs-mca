@@ -179,6 +179,67 @@ G_nu(3) = chi_2(-3) sum_v (nu chi_2)(v) chi_2(v+a).
 Substituting `v=-at` gives the displayed Jacobi sum and the factor
 `chi_2(3)nu(-a)`.
 
+## Split-Fiber Hypergeometric Pullback
+
+On the nonsingular part, the quadratic-fiber trace becomes a standard
+three-point trace after the discriminant double cover.  Put
+
+```text
+z^2 = (y-2)(y+1),
+```
+
+and, away from `y=-1,2,3`, set
+
+```text
+r_+ = -(y+1+2z)/3,
+r_- = -(y+1-2z)/3,
+lambda = r_-/r_+.
+```
+
+Then `r_+` and `r_-` are the two roots of `Q_y(v)`, neither root is zero,
+and `lambda` is distinct from `0` and `1`.  Define
+
+```text
+H_nu(lambda) = sum_x nu(x) chi_2((x-1)(x-lambda)).
+```
+
+On every split fiber over `F_p`, and geometrically after pulling back to the
+double cover, one has
+
+```text
+G_nu(y) = chi_2(-3) nu(r_+) H_nu(lambda).
+```
+
+Indeed,
+
+```text
+Q_y(v) = -3(v-r_+)(v-r_-).
+```
+
+Substitute `v=r_+ x`.  Since `r_+ != 0`, the character factor separates as
+
+```text
+nu(v) chi_2(Q_y(v))
+  = chi_2(-3) nu(r_+) nu(x) chi_2((x-1)(x-lambda)).
+```
+
+Summing over `x` proves the identity.
+
+Changing the sign of `z` interchanges `r_+` and `r_-` and sends
+`lambda` to `lambda^{-1}`.  The identity is independent of this choice
+because
+
+```text
+H_nu(lambda) = nu(lambda) H_nu(lambda^{-1}).
+```
+
+Thus the transformed line-conic family is a quadratic pushforward of the
+rank-two three-point trace `H_nu(lambda)`, with the outer Mellin twist
+`eta(-y)` and the explicit root prefactor `nu(r_+)`.  This is the geometric
+object whose conductor must be bounded for the `4p` target; the previous
+finite singular-fiber calculation accounts for the points where this
+hypergeometric chart degenerates.
+
 ## Open-Set Line Correction
 
 For the actual two-coordinate open sum, the principal coordinate line

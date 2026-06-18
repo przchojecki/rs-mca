@@ -178,6 +178,17 @@ def jacobi_sum(p: int, alpha: List[complex], beta: List[complex]) -> complex:
     return total
 
 
+def hypergeometric_fiber_trace(
+    p: int,
+    parameter: int,
+    nu: List[complex],
+) -> complex:
+    total = 0j
+    for x in range(p):
+        total += nu[x] * legendre((x - 1) * (x - parameter), p)
+    return total
+
+
 def assert_close(label: Tuple[object, ...], actual: complex, expected: complex) -> None:
     if abs(actual - expected) > TOLERANCE:
         raise AssertionError((label, actual, expected, abs(actual - expected)))
@@ -243,6 +254,52 @@ def verify_singular_fiber_values(p: int, table: List[List[complex]]) -> None:
                 eta = table[eta_exponent]
                 if eta[0] != 0j:
                     raise AssertionError((p, eta_exponent, "eta(0)"))
+
+
+def square_root_mod(value: int, p: int) -> int:
+    value %= p
+    for candidate in range(p):
+        if candidate * candidate % p == value:
+            return candidate
+    raise ValueError((p, value, "not a square"))
+
+
+def verify_split_hypergeometric_pullback(
+    p: int,
+    table: List[List[complex]],
+) -> int:
+    checked = 0
+    inverse_three = pow(3, -1, p)
+    singular_values = {(-1) % p, 2 % p, 3 % p}
+    for y in range(p):
+        if y in singular_values:
+            continue
+        discriminant_root_square = (y - 2) * (y + 1)
+        if legendre(discriminant_root_square, p) != 1:
+            continue
+        z = square_root_mod(discriminant_root_square, p)
+        root_plus = (-(y + 1 + 2 * z) * inverse_three) % p
+        root_minus = (-(y + 1 - 2 * z) * inverse_three) % p
+        if root_plus == 0 or root_minus == 0 or root_plus == root_minus:
+            raise AssertionError((p, y, z, root_plus, root_minus))
+        parameter = root_minus * pow(root_plus, -1, p) % p
+        if parameter in {0, 1}:
+            raise AssertionError((p, y, z, parameter))
+        for nu_exponent in range(1, p - 1):
+            nu = table[nu_exponent]
+            expected = (
+                legendre(-3, p)
+                * nu[root_plus]
+                * hypergeometric_fiber_trace(p, parameter, nu)
+            )
+            actual = transformed_inner(p, y, nu)
+            assert_close(
+                (p, y, z, nu_exponent, "split_hypergeometric"),
+                actual,
+                expected,
+            )
+            checked += 1
+    return checked
 
 
 def core_collision_formula(p: int) -> int:
@@ -555,6 +612,7 @@ def main() -> None:
     max_open_label: Tuple[object, ...] = ()
     max_line_label: Tuple[object, ...] = ()
     singular_checked: List[int] = []
+    split_hypergeometric_checked = 0
     filter_checked = verify_admissible_filter_counts()
     moment_checked = verify_second_moments()
     for p, eta_exponent, nu_exponent in case_iterator():
@@ -563,6 +621,10 @@ def main() -> None:
             tables[p] = character_table(p, logs)
             verify_discriminant_values(p)
             verify_singular_fiber_values(p, tables[p])
+            split_hypergeometric_checked += verify_split_hypergeometric_pullback(
+                p,
+                tables[p],
+            )
             singular_checked.append(p)
         table = tables[p]
         eta = table[eta_exponent]
@@ -617,6 +679,7 @@ def main() -> None:
         f"max_open_ratio={max_open_ratio:.10f}@{max_open_label}",
         f"max_line_ratio={max_line_ratio:.10f}@{max_line_label}",
         f"singular_checked={singular_checked}",
+        f"split_hypergeometric_checked={split_hypergeometric_checked}",
         f"filter_checked={filter_checked[0]}..{filter_checked[-1]}",
         f"moment_checked={moment_checked}",
     )
