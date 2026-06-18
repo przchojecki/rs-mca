@@ -949,6 +949,33 @@ exactly six ordered pairs `(u,v)` to `C_3(D)`. In particular the
 two-dimensional conic ledger reduces to a one-parameter split-cubic ledger,
 and the slope cosets are the cube cosets `beta D^3`.
 
+Equivalently, define the split-cubic root count
+
+```text
+r_D(beta)=#{ y in D\{1} : y^3+y^2+y+beta+1=0 }.
+```
+
+Then
+
+```text
+beta is admissible  <=>  r_D(beta)=3,
+|C_3(D)| = 6 * #{ beta : r_D(beta)=3 },
+#{admissible beta in gamma D^3}
+  = #{ beta in gamma D^3 : r_D(beta)=3 }.
+```
+
+This is an exact finite-audit route: all abstract slack-three beta counts and
+all nonzero `D^3` coset counts can be computed by one pass through
+`D\{1}`, grouping the values
+
+```text
+beta(y)=-(y^3+y^2+y+1).
+```
+
+The conic enumeration is still needed for quotient-lift weights depending on
+`tau(u,v)`, but the coset-coverage questions used by the character
+certificates reduce to this one-dimensional split-cubic ledger.
+
 Thus the `T=3`, `|P|=4` residual catalog is reduced to a conic over the
 multiplicative domain plus the cube-image map `x -> x^3` on `D`. Its nonzero
 slope image is exactly a union of cosets `beta(u,v)D^3`; since `D^3` is a

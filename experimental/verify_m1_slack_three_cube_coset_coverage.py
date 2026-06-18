@@ -11,13 +11,13 @@ rather than by enumerating conic pairs.
 
 from __future__ import annotations
 
-from collections import Counter
 from typing import Dict, List, Sequence
 
 from mca_slope_scan import make_domain
 from m1_support_occupancy_scan import (
     slack_three_cube_coset_coverage_data,
     slack_three_cube_coset_uniform_prime_threshold,
+    slack_three_split_cubic_beta_ledger,
 )
 
 
@@ -54,30 +54,9 @@ SAMPLES = (
 
 def split_cubic_beta_coset_row(p: int, n: int) -> Dict[str, object]:
     _, domain = make_domain(p, n, None)
-    beta_root_counts: Counter[int] = Counter()
-    for y in domain:
-        if y == 1:
-            continue
-        beta = (-(pow(y, 3, p) + pow(y, 2, p) + y + 1)) % p
-        beta_root_counts[beta] += 1
-
-    admissible_beta_values = {
-        beta
-        for beta, root_count in beta_root_counts.items()
-        if root_count == 3
-    }
-    cube_image = {pow(x, 3, p) for x in domain}
-    coset_beta_counts: Dict[int, int] = {}
-    for beta in admissible_beta_values:
-        if beta == 0:
-            continue
-        representative = min((beta * cube) % p for cube in cube_image)
-        coset_beta_counts[representative] = (
-            coset_beta_counts.get(representative, 0) + 1
-        )
-
-    beta_counts = tuple(sorted(coset_beta_counts.values()))
-    total_cosets = (p - 1) // len(cube_image)
+    beta_ledger = slack_three_split_cubic_beta_ledger(p, domain)
+    beta_counts = tuple(beta_ledger["nonzero_cube_coset_beta_counts"])
+    total_cosets = int(beta_ledger["total_nonzero_cube_coset_count"])
     exact_min_ordered = 0
     if len(beta_counts) == total_cosets and beta_counts:
         exact_min_ordered = 6 * min(beta_counts)
@@ -90,8 +69,10 @@ def split_cubic_beta_coset_row(p: int, n: int) -> Dict[str, object]:
         "domain_index": (p - 1) // n,
         "cube_cosets_hit": len(beta_counts),
         "total_cube_cosets": total_cosets,
-        "zero_beta": 0 in admissible_beta_values,
-        "beta_count": len(admissible_beta_values),
+        "zero_beta_count": int(beta_ledger["zero_beta_count"]),
+        "beta_count": int(beta_ledger["beta_count"]),
+        "candidate_beta_count": int(beta_ledger["candidate_beta_count"]),
+        "root_count_histogram": beta_ledger["root_count_histogram"],
         "coset_beta_counts": beta_counts,
         "coverage_lower_bound": lower_bound,
         "coverage_certificate": bool(certificate["saturation_certificate"]),

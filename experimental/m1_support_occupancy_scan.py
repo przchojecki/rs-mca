@@ -712,6 +712,55 @@ def slack_two_first_superboundary_shape_ledger(
     }
 
 
+def slack_three_split_cubic_beta_ledger(
+    p: int,
+    domain: Sequence[int],
+) -> Dict[str, object]:
+    beta_roots: Dict[int, set[int]] = {}
+    for y in domain:
+        if y == 1:
+            continue
+        beta = (-(pow(y, 3, p) + pow(y, 2, p) + y + 1)) % p
+        beta_roots.setdefault(beta, set()).add(y)
+
+    root_count_histogram: Counter[int] = Counter(
+        len(roots) for roots in beta_roots.values()
+    )
+    admissible_beta_values = {
+        beta
+        for beta, roots in beta_roots.items()
+        if len(roots) == 3
+    }
+    cube_image = {pow(x, 3, p) for x in domain}
+    nonzero_cube_coset_beta_values: Dict[int, set[int]] = {}
+    for beta in admissible_beta_values:
+        if beta == 0:
+            continue
+        representative = min((beta * cube) % p for cube in cube_image)
+        nonzero_cube_coset_beta_values.setdefault(
+            representative,
+            set(),
+        ).add(beta)
+
+    return {
+        "candidate_beta_count": len(beta_roots),
+        "beta_count": len(admissible_beta_values),
+        "zero_beta_count": 1 if 0 in admissible_beta_values else 0,
+        "parameter_count": 6 * len(admissible_beta_values),
+        "root_count_histogram": {
+            str(count): frequency
+            for count, frequency in sorted(root_count_histogram.items())
+        },
+        "nonzero_cube_coset_count": len(nonzero_cube_coset_beta_values),
+        "nonzero_cube_coset_beta_counts": sorted(
+            len(values)
+            for values in nonzero_cube_coset_beta_values.values()
+        ),
+        "total_nonzero_cube_coset_count": (p - 1) // len(cube_image),
+        "cube_image_size": len(cube_image),
+    }
+
+
 def slack_three_first_superboundary_shape_ledger(
     p: int,
     domain: Sequence[int],
@@ -721,6 +770,7 @@ def slack_three_first_superboundary_shape_ledger(
 ) -> Dict[str, object]:
     domain_set = set(domain)
     value_to_index = {value: index for index, value in enumerate(domain)}
+    split_cubic_ledger = slack_three_split_cubic_beta_ledger(p, domain)
     parameter_count = 0
     active_parameter_count = 0
     active_zero_parameter_count = 0
@@ -854,6 +904,43 @@ def slack_three_first_superboundary_shape_ledger(
         "nonzero_cube_coset_beta_counts": nonzero_cube_coset_beta_counts,
         "active_nonzero_cube_coset_beta_counts": (
             active_nonzero_cube_coset_beta_counts
+        ),
+        "split_cubic_candidate_beta_count": int(
+            split_cubic_ledger["candidate_beta_count"]
+        ),
+        "split_cubic_beta_count": int(split_cubic_ledger["beta_count"]),
+        "split_cubic_zero_beta_count": int(
+            split_cubic_ledger["zero_beta_count"]
+        ),
+        "split_cubic_parameter_count": int(
+            split_cubic_ledger["parameter_count"]
+        ),
+        "split_cubic_root_count_histogram": (
+            split_cubic_ledger["root_count_histogram"]
+        ),
+        "split_cubic_nonzero_cube_coset_count": int(
+            split_cubic_ledger["nonzero_cube_coset_count"]
+        ),
+        "split_cubic_nonzero_cube_coset_beta_counts": (
+            split_cubic_ledger["nonzero_cube_coset_beta_counts"]
+        ),
+        "split_cubic_parameter_count_check": (
+            parameter_count == int(split_cubic_ledger["parameter_count"])
+        ),
+        "split_cubic_beta_count_check": (
+            len(beta_values) == int(split_cubic_ledger["beta_count"])
+        ),
+        "split_cubic_zero_beta_count_check": (
+            (1 if zero_slope else 0)
+            == int(split_cubic_ledger["zero_beta_count"])
+        ),
+        "split_cubic_cube_coset_count_check": (
+            len(nonzero_cube_cosets)
+            == int(split_cubic_ledger["nonzero_cube_coset_count"])
+        ),
+        "split_cubic_cube_coset_beta_counts_check": (
+            nonzero_cube_coset_beta_counts
+            == split_cubic_ledger["nonzero_cube_coset_beta_counts"]
         ),
         "total_nonzero_cube_coset_count": total_nonzero_cube_cosets,
         "cube_image_size": len(cube_image),
@@ -2383,6 +2470,82 @@ def scan_supports(
         ),
         "canonical_slack_three_shape_beta_parameter_count_check": (
             bool(slack_three_shape_ledger["beta_parameter_count_check"])
+            if slack_three_shape_ledger is not None
+            else None
+        ),
+        "canonical_slack_three_split_cubic_candidate_beta_count": (
+            int(slack_three_shape_ledger["split_cubic_candidate_beta_count"])
+            if slack_three_shape_ledger is not None
+            else None
+        ),
+        "canonical_slack_three_split_cubic_beta_count": (
+            int(slack_three_shape_ledger["split_cubic_beta_count"])
+            if slack_three_shape_ledger is not None
+            else None
+        ),
+        "canonical_slack_three_split_cubic_zero_beta_count": (
+            int(slack_three_shape_ledger["split_cubic_zero_beta_count"])
+            if slack_three_shape_ledger is not None
+            else None
+        ),
+        "canonical_slack_three_split_cubic_parameter_count": (
+            int(slack_three_shape_ledger["split_cubic_parameter_count"])
+            if slack_three_shape_ledger is not None
+            else None
+        ),
+        "canonical_slack_three_split_cubic_root_count_histogram": (
+            slack_three_shape_ledger["split_cubic_root_count_histogram"]
+            if slack_three_shape_ledger is not None
+            else None
+        ),
+        "canonical_slack_three_split_cubic_nonzero_cube_coset_count": (
+            int(
+                slack_three_shape_ledger[
+                    "split_cubic_nonzero_cube_coset_count"
+                ]
+            )
+            if slack_three_shape_ledger is not None
+            else None
+        ),
+        "canonical_slack_three_split_cubic_nonzero_cube_coset_beta_counts": (
+            list(
+                slack_three_shape_ledger[
+                    "split_cubic_nonzero_cube_coset_beta_counts"
+                ]
+            )
+            if slack_three_shape_ledger is not None
+            else None
+        ),
+        "canonical_slack_three_split_cubic_parameter_count_check": (
+            bool(slack_three_shape_ledger["split_cubic_parameter_count_check"])
+            if slack_three_shape_ledger is not None
+            else None
+        ),
+        "canonical_slack_three_split_cubic_beta_count_check": (
+            bool(slack_three_shape_ledger["split_cubic_beta_count_check"])
+            if slack_three_shape_ledger is not None
+            else None
+        ),
+        "canonical_slack_three_split_cubic_zero_beta_count_check": (
+            bool(slack_three_shape_ledger["split_cubic_zero_beta_count_check"])
+            if slack_three_shape_ledger is not None
+            else None
+        ),
+        "canonical_slack_three_split_cubic_cube_coset_count_check": (
+            bool(
+                slack_three_shape_ledger[
+                    "split_cubic_cube_coset_count_check"
+                ]
+            )
+            if slack_three_shape_ledger is not None
+            else None
+        ),
+        "canonical_slack_three_split_cubic_cube_coset_beta_counts_check": (
+            bool(
+                slack_three_shape_ledger[
+                    "split_cubic_cube_coset_beta_counts_check"
+                ]
+            )
             if slack_three_shape_ledger is not None
             else None
         ),

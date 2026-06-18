@@ -127,6 +127,11 @@ canonical_slack_three_shape_packet_count_check
 canonical_slack_three_shape_support_slope_histogram_check
 canonical_slack_three_shape_beta_count
 canonical_slack_three_shape_beta_parameter_count_check
+canonical_slack_three_split_cubic_beta_count
+canonical_slack_three_split_cubic_parameter_count_check
+canonical_slack_three_split_cubic_root_count_histogram
+canonical_slack_three_split_cubic_nonzero_cube_coset_count
+canonical_slack_three_split_cubic_cube_coset_beta_counts_check
 canonical_slack_three_shape_active_nonzero_cube_coset_count
 canonical_slack_three_shape_nonzero_cube_coset_beta_counts
 canonical_slack_three_shape_active_nonzero_cube_coset_beta_counts
@@ -398,6 +403,19 @@ G_beta(Y)=Y^3+Y^2+Y+beta+1,
 
 where each admissible `beta` gives three distinct roots in `D\{1}` and hence
 six ordered pairs `(u,v)`.
+
+The `canonical_slack_three_split_cubic_*` fields audit this reduction by
+grouping the one-dimensional values
+
+```text
+beta(y)=-(y^3+y^2+y+1),        y in D\{1}.
+```
+
+A beta value is admissible exactly when it has three distinct roots in
+`D\{1}`. The scanner reports the root-count histogram, the resulting beta
+count, and the exact nonzero `D^3` coset counts, then checks them against the
+two-dimensional conic enumeration. This gives a fast finite-audit path for
+coset-coverage questions without full support-incidence enumeration.
 
 The `canonical_slack_three_shape_*` fields report the conic parameter count,
 the beta count and sixfold beta check, the 24-fold quotient check,
