@@ -478,6 +478,18 @@ this lower bound is positive, the abstract slack-three first-superboundary
 catalog hits every nonzero `D^3` coset. The scanner checks that certificate
 against the exact enumerated cube-coset coverage and also reports the exact
 minimum ordered parameter count across all nonzero `D^3` cosets.
+It also reports the fixed-denominator uniform threshold `P_M`, where
+`M=e^3h`, defined by the least bucket start
+
+```text
+P_M=(s_M-1)^2+1,
+(s_M-1)^2 + 1 - 13 > (12 s_M + 12)M.
+```
+
+For every prime `p>=P_M` with the same denominator `M`, the lower-bound
+numerator is positive regardless of `chi_2(-3)`. Thus the certificate fires
+uniformly for that fixed index/cube-kernel regime; for example `M=16` gives
+`P_M=38026`.
 Run
 
 ```bash

@@ -1199,6 +1199,46 @@ high-index non-field-filling bound above. Its leading condition is
 `e^4 >> p`; the broad middle range is where sharper beta-coset Jacobi sums
 or exact finite audits are most valuable.
 
+This criterion has an exact fixed-denominator threshold. Put
+
+```text
+M=e^3 h=e^3 [F_p^*:D^3].
+```
+
+Let `s_M` be the least positive integer such that
+
+```text
+(s_M-1)^2 + 1 - 13 > (12 s_M + 12) M,
+```
+
+and define
+
+```text
+P_M=(s_M-1)^2+1.
+```
+
+Then for every prime `p>=P_M`, independently of the value of `chi_2(-3)`,
+
+```text
+p - 9 - 4 chi_2(-3) > (12 ceil(sqrt(p)) + 12) M.
+```
+
+Indeed, on the bucket where `ceil(sqrt(p))=s`, the left side minus the right
+side is minimized at `p=(s-1)^2+1`; the displayed defining inequality for
+`s_M` is increasing for all larger buckets. Hence the proper-subgroup
+cube-coset certificate fires for every prime with this denominator once
+`p>=P_M`. For example,
+
+```text
+M=3      gives P_M=1522,
+M=16     gives P_M=38026,
+M=48     gives P_M=335242.
+```
+
+Thus quadratic-residue domains with `p==5 mod 6` have `M=16`, so this
+conditional certificate already proves full nonzero `D^3`-coset coverage for
+all such primes `p>=38026`.
+
 The split-cubic exact audit
 
 ```bash

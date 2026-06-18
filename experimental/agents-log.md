@@ -44,6 +44,8 @@ Keep entries concise and link to the relevant files.
   coverage certificate. For `D <= F_p^*`, it lower-bounds the number of
   admissible ordered split-cubic shape parameters in each nonzero `D^3`
   coset by a character-sum expansion with denominator `e^3 [F_p^*:D^3]`.
+  It also records the exact fixed-denominator threshold `P_M` after which the
+  lower bound is uniformly positive.
 - **How it is useful:** Complements the existing high-index non-field-filling
   slope bound and the full-domain saturation theorem by identifying a
   low-index regime where the abstract first-superboundary slack-three catalog

@@ -895,6 +895,28 @@ def slack_three_conic_shape_bound(p: int, domain_order: int) -> int:
     return (numerator + character_cube - 1) // character_cube
 
 
+def slack_three_cube_coset_uniform_prime_threshold(
+    denominator: int,
+) -> int:
+    """Return a prime-independent threshold for the cube-coset certificate."""
+
+    def bucket_min_positive(root_bucket: int) -> bool:
+        bucket_start = (root_bucket - 1) * (root_bucket - 1) + 1
+        return bucket_start - 13 > (12 * root_bucket + 12) * denominator
+
+    high = 1
+    while not bucket_min_positive(high):
+        high *= 2
+    low = high // 2
+    while low + 1 < high:
+        middle = (low + high) // 2
+        if bucket_min_positive(middle):
+            high = middle
+        else:
+            low = middle
+    return (high - 1) * (high - 1) + 1
+
+
 def slack_three_cube_coset_coverage_data(
     p: int,
     domain_order: int,
@@ -907,6 +929,9 @@ def slack_three_cube_coset_coverage_data(
         * character_order
         * character_order
         * cube_coset_index
+    )
+    uniform_prime_threshold = (
+        slack_three_cube_coset_uniform_prime_threshold(denominator)
     )
     conic_weil_constant = 12
     degeneracy_cost = 12
@@ -924,6 +949,8 @@ def slack_three_cube_coset_coverage_data(
         "cube_kernel_index": cube_kernel_index,
         "cube_coset_index": cube_coset_index,
         "denominator": denominator,
+        "uniform_prime_threshold": uniform_prime_threshold,
+        "uniform_threshold_applies": p >= uniform_prime_threshold,
         "principal_lower": principal_lower,
         "conic_weil_constant": conic_weil_constant,
         "degeneracy_cost": degeneracy_cost,
@@ -2677,6 +2704,28 @@ def scan_supports(
         "canonical_slack_three_cube_coset_coverage_denominator": (
             int(slack_three_cube_coset_coverage["denominator"])
             if slack_three_cube_coset_coverage is not None
+            else None
+        ),
+        "canonical_slack_three_cube_coset_coverage_uniform_prime_threshold": (
+            int(slack_three_cube_coset_coverage["uniform_prime_threshold"])
+            if slack_three_cube_coset_coverage is not None
+            else None
+        ),
+        "canonical_slack_three_cube_coset_coverage_uniform_threshold_applies": (
+            bool(slack_three_cube_coset_coverage["uniform_threshold_applies"])
+            if slack_three_cube_coset_coverage is not None
+            else None
+        ),
+        "canonical_slack_three_cube_coset_coverage_uniform_threshold_check": (
+            bool(slack_three_cube_coset_coverage["saturation_certificate"])
+            if (
+                slack_three_cube_coset_coverage is not None
+                and bool(
+                    slack_three_cube_coset_coverage[
+                        "uniform_threshold_applies"
+                    ]
+                )
+            )
             else None
         ),
         "canonical_slack_three_cube_coset_coverage_principal_lower": (
