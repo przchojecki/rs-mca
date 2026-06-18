@@ -29,6 +29,26 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-18 - M1 fixed-dither slack-window ledger
+
+- **Agent/model:** Codex acting autonomously through AllenGrahamHart.
+- **Files added or changed:**
+  `experimental/m1_quotient_periodic_overlap_profile.md`,
+  `experimental/verify_m1_quotient_remainder_profile.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED.
+- **What is being added:** Generalizes the adjacent-slack obstruction to every
+  dyadic scale `m`: for a fixed dither `r`, active whole-fiber quotient slacks
+  in an eligible window are exactly the residue class `u == r mod m`, with
+  first-exchange codegree `s_u(n-s_u)/m^2`.
+- **How it is useful:** This turns dimension dithering from a one-slack trick
+  into a finite slack-window ledger.  Any L3 scanner can now report the exact
+  set `L_win(r)` of dyadic quotient scales that reappear across a target slack
+  window, and budget their first-exchange random-line terms explicitly.
+- **What to do next:** Compare candidate proof-system dimensions by minimizing
+  the window ledger over allowed dithers `r`, then combine the surviving
+  whole-fiber terms with the one-remainder profile already proved in this PR.
+
 ### 2026-06-18 - M1 adjacent-slack dither obstruction
 
 - **Agent/model:** Codex acting autonomously through AllenGrahamHart.

@@ -187,18 +187,33 @@ def dyadic_divisors(value):
     return out
 
 
+def dyadic_scale_first_codegree(n, k0, r, t, m):
+    assert n % m == 0
+    assert k0 % m == 0
+    support_size = k0 + t - r
+    if t <= m or support_size % m:
+        return 0
+    if support_size < m or support_size > n - m:
+        return 0
+
+    quotient_order = n // m
+    quotient_support = support_size // m
+    return quotient_support * (quotient_order - quotient_support)
+
+
 def scale_two_codegree(n, k0, r, t):
     assert n % 2 == 0
     assert k0 % 2 == 0
-    support_size = k0 + t - r
-    if t < 3 or support_size % 2:
-        return 0
-    if support_size < 2 or support_size > n - 2:
-        return 0
+    return dyadic_scale_first_codegree(n, k0, r, t, 2)
 
-    quotient_order = n // 2
-    quotient_support = support_size // 2
-    return quotient_support * (quotient_order - quotient_support)
+
+def count_residue_interval(start, end, residue, modulus):
+    if start > end:
+        return 0
+    first = start + ((residue - start) % modulus)
+    if first > end:
+        return 0
+    return 1 + (end - first) // modulus
 
 
 def verify_adjacent_slack_dither_obstruction(n, k0, t_start, t_end, r_start, r_end):
@@ -230,6 +245,47 @@ def verify_adjacent_slack_dither_obstruction(n, k0, t_start, t_end, r_start, r_e
             assert left != right, (n, k0, r, t, left, right)
 
         rows.append((r, tuple(active_slacks)))
+    return rows
+
+
+def verify_fixed_dither_slack_window_ledger(n, k0, t_start, t_end, r_values, scales):
+    rows = []
+    for r in r_values:
+        for m in scales:
+            assert m in dyadic_divisors(k0)
+            eligible_start = max(t_start, m + 1)
+            active_slacks = []
+
+            for t in range(eligible_start, t_end + 1):
+                support_size = k0 + t - r
+                assert m <= support_size <= n - m
+
+                codegree = dyadic_scale_first_codegree(n, k0, r, t, m)
+                should_survive = (t - r) % m == 0
+                assert bool(codegree) == should_survive, (n, k0, t, r, m, codegree)
+
+                if should_survive:
+                    quotient_support = support_size // m
+                    quotient_order = n // m
+                    expected = quotient_support * (quotient_order - quotient_support)
+                    assert codegree == expected, (n, k0, t, r, m, codegree, expected)
+                    active_slacks.append(t)
+
+            expected_count = count_residue_interval(eligible_start, t_end, r, m)
+            assert len(active_slacks) == expected_count, (n, k0, r, m, active_slacks)
+
+            eligible_length = max(0, t_end - eligible_start + 1)
+            if eligible_length:
+                lower = eligible_length // m
+                upper = (eligible_length + m - 1) // m
+                assert lower <= len(active_slacks) <= upper
+
+            for block_start in range(eligible_start, t_end - m + 2):
+                block_end = block_start + m - 1
+                block_count = count_residue_interval(block_start, block_end, r, m)
+                assert block_count == 1, (n, k0, r, m, block_start, block_count)
+
+            rows.append((r, m, tuple(active_slacks)))
     return rows
 
 
@@ -351,6 +407,13 @@ def main():
     for case in obstruction_cases:
         rows = verify_adjacent_slack_dither_obstruction(*case)
         print(f"n,k0,t0,t1,r0,r1={case}: scale2_active={rows}")
+    window_ledger_cases = [
+        (128, 64, 3, 18, range(0, 4), [2, 4, 8]),
+        (256, 64, 5, 24, range(-1, 3), [2, 4, 8, 16]),
+    ]
+    for case in window_ledger_cases:
+        rows = verify_fixed_dither_slack_window_ledger(*case)
+        print(f"n,k0,t0,t1,rs,scales={case}: window_active={rows}")
     random_line_cases = [
         (256, 128, 5, 17),
         (256, 64, 8, 17),

@@ -213,8 +213,7 @@ quotient-periodic strict-overlap scales at two adjacent slack radii.
 
 More generally, on any integer slack interval `W subset {3,4,...}` where the
 support sizes remain in the displayed interior range, scale `m=2` survives at
-exactly the
-slacks
+exactly the slacks
 
 ```text
 u in W,        u == r mod 2.
@@ -225,6 +224,79 @@ whole-fiber term is either `floor(|W|/2)` or `ceil(|W|/2)`. Reusing the
 single-slack maximal dither `r=t-1` at the next slack is the smallest example:
 at slack `t+1`, the difference is `(t+1)-r=2`, so the dyadic scale `m=2`
 survives immediately.
+
+## Fixed-Dither Slack-Window Ledger
+
+The same residue-class obstruction holds at every dyadic scale. Keep the
+dyadic setup, fix one dither `r`, and fix a nontrivial dyadic scale
+
+```text
+m = 2^a,        2 <= m <= k0.
+```
+
+For an integer slack interval
+
+```text
+W = {T0, T0+1, ..., T1},
+```
+
+define the scale-`m` eligible sub-window by
+
+```text
+s_u = k0 + (u-r),
+
+W_m(r) = {u in W : u >= m+1 and m <= s_u <= n-m}.
+```
+
+Then the scale-`m` whole-fiber quotient family is active at slack `u in W`
+exactly when
+
+```text
+u in W_m(r)        and        u == r mod m.
+```
+
+At every such active slack, with `N=n/m` and `L=s_u/m`, the first exchange
+codegree and weighted first-exchange ledger term are
+
+```text
+Gamma_m(u) = L(N-L) = s_u(n-s_u)/m^2,
+
+Gamma_m(u) q^(u-m).
+```
+
+The active-slack count in the window is therefore the exact residue count
+
+```text
+C_m(W,r) = |{u in W_m(r) : u == r mod m}|.
+```
+
+In particular, if the endpoint condition `m <= s_u <= n-m` holds on every
+slack in an interval of eligible strict range, then every block of `m`
+consecutive slacks in that interval activates scale `m` exactly once. On such
+an eligible interval of length `ell`, the count is either `floor(ell/m)` or
+`ceil(ell/m)`.
+
+Equivalently, the whole first-exchange dyadic quotient ledger over a slack
+window is the finite set
+
+```text
+L_win(r) = {
+  (u,m) : u in W, m=2^a, 2 <= m <= k0,
+          u >= m+1, m <= s_u <= n-m, u == r mod m
+}.
+```
+
+For `(u,m) in L_win(r)`, the entry contributes
+
+```text
+(s_u/m)(n/m - s_u/m) q^(u-m)
+```
+
+to the scale-`m` first-exchange part of the quotient-periodic random-line
+ledger. When `m < u <= 2m`, this first-exchange term is the entire strict
+whole-fiber quotient contribution at that scale. For larger slack, higher
+quotient exchanges may also appear, but only at scales already listed in
+`L_win(r)`.
 
 ## One-Remainder-Fiber Profile
 
@@ -716,6 +788,29 @@ family, with `1 <= L=s_u/2 <= N-1`; hence the `h=1` codegree is
 one of `t-r` and `t+1-r` is even. The interval count follows by counting one
 parity class in an integer interval.
 
+The fixed-dither slack-window ledger is the same argument without specializing
+to `m=2`. Since `m | k0`, exact support at slack `u` is equivalent to
+
+```text
+m | s_u    <=>    m | (u-r)    <=>    u == r mod m.
+```
+
+The assumption `u >= m+1` puts the one-fiber exchange `h=1` inside the strict
+range, because `m <= u-1`. The endpoint condition `m <= s_u <= n-m` is exactly
+`1 <= L=s_u/m <= N-1`, so the quotient family has both selected and unselected
+fibers. Thus the `h=1` codegree is
+
+```text
+binom(L,1) binom(N-L,1) = L(N-L) = s_u(n-s_u)/m^2.
+```
+
+Counting active slacks is now just counting one residue class modulo `m` in an
+integer interval. Each complete block of `m` consecutive eligible slacks
+contains exactly one representative of that class, and an incomplete block
+contains either zero or one, giving the displayed `floor/ceil` count. The set
+`L_win(r)` is obtained by applying this criterion simultaneously over all
+dyadic divisors `m` of `k0`.
+
 For the one-remainder-fiber profile, fix
 
 ```text
@@ -878,7 +973,11 @@ Two immediate readings are useful.
    adjacent slacks `t,t+1 >= 3`, scale `m=2` survives at exactly one of the
    two slacks, provided the scale-two support sizes are interior. Thus no
    single fixed dimension dither can globally remove dyadic whole-fiber
-   quotient terms across a slack window.
+   quotient terms across a slack window. More generally, at dyadic scale `m`,
+   active slacks are exactly one residue class modulo `m`; every eligible
+   block of `m` consecutive slacks reactivates that quotient scale once. The
+   resulting finite set `L_win(r)` is the exact first-exchange quotient ledger
+   a parameter scanner must report for a fixed dither over a slack window.
 6. If exact support has a nonzero remainder modulo a quotient fiber size, the
    one-remainder-fiber family has its own exchange profile `H_REM`. This
    smaller profile can create strict point exchanges below one full fiber and
@@ -913,4 +1012,7 @@ emit three statistics for each support class:
 
 The quotient-periodic class should match the closed formulas above. Any excess
 strict-overlap profile in the remaining supports is then a direct witness for
-the aperiodic obstruction that a future local-limit proof must control.
+the aperiodic obstruction that a future local-limit proof must control.  For
+dimension dithering across more than one target slack, the scanner should also
+emit `L_win(r)` for each allowed dither and rank the surviving dyadic
+first-exchange ledger terms.
