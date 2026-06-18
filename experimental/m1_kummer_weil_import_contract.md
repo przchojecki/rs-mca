@@ -257,6 +257,11 @@ After interchanging the hypergeometric sum with the finite `y`-fiber, the
 outer quadratic character cancels and the finite kernel has the single
 quadratic factor `x+(3x-1)z^2`; the fiber resultant is
 `16x^2y^2-8xy^2+4xy+y^2-2y+1`.
+Compactifying that resultant in `P^1_x times P^1_y` gives a nodal bidegree
+`(2,2)` curve with an ordinary node at `(x,y)=(infinity,0)`. Including the
+boundary lines `x=0,1,infinity`, `y=0,infinity,3/4` gives complement Euler
+target `6`, so the explicit two-variable kernel surface still does not
+replace the imported line-sheaf/pushforward input.
 
 Thus the fixed-window, quotient-window, and two-fiber certificates still use
 the conservative common ledger:

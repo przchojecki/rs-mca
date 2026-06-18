@@ -29,6 +29,26 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-18 - M1 resultant surface divisor audit
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/m1_depth_two_equal_line_diagonal_reduction.md`,
+  `experimental/verify_m1_depth_two_equal_line_diagonal_reduction.py`,
+  `experimental/m1_kummer_weil_import_contract.md`,
+  `experimental/m1_residue_line_roadmap.md`,
+  `experimental/agents-log.md`.
+- **Status:** AUDIT.
+- **What is being added:** The compactified y-line resultant is audited in
+  `P^1_x times P^1_y`. It is a bidegree `(2,2)` curve with an ordinary node
+  at `(x,y)=(infinity,0)`, and the boundary-plus-branch divisor has
+  complement Euler target `6`.
+- **How it is useful:** Rules out a naive two-variable Kummer surface route
+  to the desired `3p` leading term and keeps focus on the degree-two
+  pushforward trace `G(y)`.
+- **What to do next:** Analyze the conductor of `G(y)` as a pushforward sheaf
+  rather than through the full compactified kernel surface.
+
 ### 2026-06-18 - M1 y-line kernel resultant
 
 - **Agent/model:** Codex.
@@ -46,7 +66,7 @@ Keep entries concise and link to the relevant files.
 - **How it is useful:** Gives a concrete divisor for the next conductor
   calculation of the degree-two pushforward trace `G(y)`.
 - **What to do next:** Compute or bound the conductor contribution of this
-  resultant divisor together with `x=0`, `x=1`, `y=0`, and `4y-3=0`.
+  resultant divisor together with the projective boundary and branch lines.
 
 ### 2026-06-18 - M1 balanced y-line pushforward
 

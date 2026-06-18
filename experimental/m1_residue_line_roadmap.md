@@ -46,7 +46,10 @@ should be revised as the project learns more.
    Mellin transform `sum_y (alpha chi_2)(y) G(y)`. The next concrete target
    is the conductor of this degree-two hypergeometric pushforward `G`; after
    interchanging sums, its explicit kernel radical is `x+(3x-1)z^2` and its
-   fiber resultant is `16x^2y^2-8xy^2+4xy+y^2-2y+1`.
+   fiber resultant is `16x^2y^2-8xy^2+4xy+y^2-2y+1`. The compactified
+   resultant surface has complement-Euler target `6`, so the pushforward
+   structure, not a naive two-variable Kummer estimate, remains the object to
+   exploit.
 4. After the trace-family wall is closed, generalize to fixed low-slack
    templates, then separate tangent, quotient-periodic, finite-template, and
    genuinely aperiodic packing.

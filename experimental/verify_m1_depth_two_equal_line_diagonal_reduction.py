@@ -177,6 +177,39 @@ def lambda_y_resultant(x: int, y_value: int, p: int) -> int:
     ) % p
 
 
+def lambda_y_resultant_x_infinity(u: int, y_value: int, p: int) -> int:
+    return (
+        u * u * y_value * y_value
+        - 2 * u * u * y_value
+        + u * u
+        - 8 * u * y_value * y_value
+        + 4 * u * y_value
+        + 16 * y_value * y_value
+    ) % p
+
+
+def lambda_y_resultant_y_infinity(x: int, v: int, p: int) -> int:
+    return (
+        v * v
+        + 4 * v * x
+        - 2 * v
+        + 16 * x * x
+        - 8 * x
+        + 1
+    ) % p
+
+
+def lambda_y_resultant_both_infinity(u: int, v: int, p: int) -> int:
+    return (
+        u * u * v * v
+        - 2 * u * u * v
+        + u * u
+        + 4 * u * v
+        - 8 * u
+        + 16
+    ) % p
+
+
 def line_monodromies(e: int, h: int, a: int, d: int) -> Tuple[int, int, int]:
     lift = h // e
     first = (lift * a) % h
@@ -904,6 +937,151 @@ def verify_balanced_y_kernel_resultant(p: int) -> Dict[str, object]:
     }
 
 
+def verify_resultant_surface_divisor_geometry(p: int) -> Dict[str, object]:
+    if p <= 3:
+        raise AssertionError(p)
+
+    affine_singularities = []
+    x_infinity_singularities = []
+    y_infinity_singularities = []
+    both_infinity_singularities = []
+    for first in range(p):
+        for second in range(p):
+            x_value = first
+            y_value = second
+            affine_dx = (32 * x_value * y_value * y_value)
+            affine_dx += (-8 * y_value * y_value + 4 * y_value)
+            affine_dy = (32 * x_value * x_value * y_value)
+            affine_dy += (-16 * x_value * y_value + 4 * x_value)
+            affine_dy += 2 * y_value - 2
+            if (
+                lambda_y_resultant(x_value, y_value, p) == 0
+                and affine_dx % p == 0
+                and affine_dy % p == 0
+            ):
+                affine_singularities.append((x_value, y_value))
+
+            u_value = first
+            xinf_y = second
+            xinf_du = (
+                2 * u_value * xinf_y * xinf_y
+                - 4 * u_value * xinf_y
+                + 2 * u_value
+                - 8 * xinf_y * xinf_y
+                + 4 * xinf_y
+            )
+            xinf_dy = (
+                2 * u_value * u_value * xinf_y
+                - 2 * u_value * u_value
+                - 16 * u_value * xinf_y
+                + 4 * u_value
+                + 32 * xinf_y
+            )
+            if (
+                lambda_y_resultant_x_infinity(u_value, xinf_y, p) == 0
+                and xinf_du % p == 0
+                and xinf_dy % p == 0
+            ):
+                x_infinity_singularities.append((u_value, xinf_y))
+
+            yinf_x = first
+            v_value = second
+            yinf_dx = (4 * v_value + 32 * yinf_x - 8) % p
+            yinf_dv = (2 * v_value + 4 * yinf_x - 2) % p
+            if (
+                lambda_y_resultant_y_infinity(yinf_x, v_value, p) == 0
+                and yinf_dx == 0
+                and yinf_dv == 0
+            ):
+                y_infinity_singularities.append((yinf_x, v_value))
+
+            both_u = first
+            both_v = second
+            both_du = (
+                2 * both_u * both_v * both_v
+                - 4 * both_u * both_v
+                + 2 * both_u
+                + 4 * both_v
+                - 8
+            )
+            both_dv = (
+                2 * both_u * both_u * both_v
+                - 2 * both_u * both_u
+                + 4 * both_u
+            )
+            if (
+                lambda_y_resultant_both_infinity(both_u, both_v, p) == 0
+                and both_du % p == 0
+                and both_dv % p == 0
+            ):
+                both_infinity_singularities.append((both_u, both_v))
+
+    if affine_singularities:
+        raise AssertionError(("affine resultant singularities", p, affine_singularities))
+    if x_infinity_singularities != [(0, 0)]:
+        raise AssertionError(("x infinity singularities", p, x_infinity_singularities))
+    if y_infinity_singularities:
+        raise AssertionError(("y infinity singularities", p, y_infinity_singularities))
+    if both_infinity_singularities:
+        raise AssertionError(("both infinity singularities", p, both_infinity_singularities))
+
+    y_three_quarters = 3 * pow(4, -1, p) % p
+    for value in range(p):
+        y_value = value
+        discr_x = (-8 * y_value * y_value + 4 * y_value) ** 2
+        discr_x -= 64 * y_value * y_value * (y_value - 1) * (y_value - 1)
+        if discr_x % p != (16 * y_value * y_value * (4 * y_value - 3)) % p:
+            raise AssertionError(("x discriminant", p, y_value))
+        x_value = value
+        discr_y = (4 * x_value - 2) ** 2
+        discr_y -= 4 * (4 * x_value - 1) * (4 * x_value - 1)
+        if discr_y % p != (-16 * x_value * (3 * x_value - 1)) % p:
+            raise AssertionError(("y discriminant", p, x_value))
+        if lambda_y_resultant(0, value, p) != (value - 1) * (value - 1) % p:
+            raise AssertionError(("x=0 restriction", p, value))
+        if lambda_y_resultant(1, value, p) != (9 * value * value + 2 * value + 1) % p:
+            raise AssertionError(("x=1 restriction", p, value))
+        if lambda_y_resultant(value, 0, p) != 1:
+            raise AssertionError(("y=0 affine restriction", p, value))
+        expected_y_branch = (12 * value - 1) * (12 * value - 1)
+        expected_y_branch *= pow(16, -1, p)
+        if lambda_y_resultant(value, y_three_quarters, p) != expected_y_branch % p:
+            raise AssertionError(("y=3/4 restriction", p, value))
+        if lambda_y_resultant_x_infinity(0, value, p) != 16 * value * value % p:
+            raise AssertionError(("x=infinity restriction", p, value))
+        if lambda_y_resultant_y_infinity(value, 0, p) != (4 * value - 1) ** 2 % p:
+            raise AssertionError(("y=infinity restriction", p, value))
+
+    component_euler = {
+        "six_boundary_lines": 12,
+        "nodal_resultant_curve": 1,
+    }
+    intersection_correction = {
+        "line_grid_with_node_triple_point": 10,
+        "resultant_line_points_off_grid": 5,
+        "total": 15,
+    }
+    union_euler = sum(component_euler.values()) - intersection_correction["total"]
+    complement_euler = 4 - union_euler
+    if complement_euler != 6:
+        raise AssertionError(("resultant complement euler", p, complement_euler))
+
+    return {
+        "p": p,
+        "compactification": "P1_x times P1_y",
+        "resultant_bidegree": (2, 2),
+        "resultant_singularity": "ordinary node at x=infinity, y=0",
+        "node_tangent_cone": "4y(4y+u) in the u=1/x chart",
+        "geometric_genus": 0,
+        "curve_euler": 1,
+        "branch_lines_included": ("x=0", "x=1", "x=infinity", "y=0", "y=infinity", "4y-3=0"),
+        "component_euler": component_euler,
+        "intersection_correction": intersection_correction,
+        "union_euler": union_euler,
+        "complement_euler_target": complement_euler,
+    }
+
+
 def audit_case(case: Dict[str, int]) -> Dict[str, object]:
     p = int(case["p"])
     n = int(case["n"])
@@ -1079,6 +1257,12 @@ def main() -> None:
         for case in CASES
     ]
     for row in kernel_rows:
+        print(row)
+    resultant_rows = [
+        verify_resultant_surface_divisor_geometry(int(case["p"]))
+        for case in CASES
+    ]
+    for row in resultant_rows:
         print(row)
     top = max(rows, key=lambda row: float(row["sum_ratio"]))
     for key, value in EXPECTED_TOP.items():

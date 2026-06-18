@@ -739,12 +739,64 @@ Equivalently the numerator is the resultant of
 kernel divisor for the next conductor calculation:
 
 ```text
-x=0,        x=1,        y=0,        y=infinity,
-4y-3=0,    16x^2y^2 - 8xy^2 + 4xy + y^2 - 2y + 1=0,
+x=0,        x=1,        x=infinity,
+y=0,        y=infinity, 4y-3=0,
+16x^2y^2 - 8xy^2 + 4xy + y^2 - 2y + 1=0,
 ```
 
 with `y=3` only marking the ordinary projective fiber
 `lambda=1/12,1/3`.
+
+The compactified resultant divisor gives another useful warning.  In
+`P^1_x times P^1_y`, the resultant curve has bidegree `(2,2)`, but it is not
+a smooth genus-one curve.  In the chart `u=1/x`, it is
+
+```text
+u^2y^2 - 2u^2y + u^2 - 8uy^2 + 4uy + 16y^2 = 0,
+```
+
+and has an ordinary node at `(u,y)=(0,0)`, i.e. at
+`(x,y)=(infinity,0)`, with tangent cone
+
+```text
+4y(4y+u).
+```
+
+Thus its normalization has genus zero and the singular curve has Euler
+characteristic `1`.  The special restrictions are
+
+```text
+R(0,y)       = (y-1)^2,
+R(1,y)       = 9y^2+2y+1,
+R(x,0)       = 1                 on the affine chart,
+R(x,3/4)     = (12x-1)^2/16,
+R(x,infty)  = (4x-1)^2,
+R(infty,y)  = 16y^2.
+```
+
+The discriminants are
+
+```text
+disc_x R = 16y^2(4y-3),
+disc_y R = -16x(3x-1).
+```
+
+If one includes the three `x`-boundary lines `0,1,infinity`, the three
+`y`-lines `0,infinity,3/4`, and the nodal resultant curve, the component
+Euler sum is `12+1=13`.  The line grid contributes correction `10`, because
+`(x,y)=(infinity,0)` is also the resultant node, and the remaining
+resultant-line intersections contribute `5`.  Hence
+
+```text
+chi(divisor union) = 13 - 15 = -2,
+chi(P^1 x P^1 - divisor) = 4 - (-2) = 6.
+```
+
+So the explicit kernel surface still gives only a generic `6p+O(sqrt(p))`
+route if treated as an ordinary rank-one Kummer surface.  The useful outcome
+is negative but sharp: the next proof must exploit the degree-two
+pushforward/Mellin structure of `G(y)`, not just the compactified
+two-variable divisor.
 
 ## Pullback Branch Checklist
 
