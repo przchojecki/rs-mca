@@ -29,6 +29,26 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-18 - M1 balanced z-line conductor audit
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/m1_depth_two_equal_line_diagonal_reduction.md`,
+  `experimental/verify_m1_depth_two_equal_line_diagonal_reduction.py`,
+  `experimental/m1_kummer_weil_import_contract.md`,
+  `experimental/m1_residue_line_roadmap.md`,
+  `experimental/agents-log.md`.
+- **Status:** CONDITIONAL / AUDIT.
+- **What is being added:** The complete `z`-line trace now has an explicit
+  conservative conductor ledger. Infinity has no Kummer ramification, but the
+  regular point `z=1` carries scalar twist `alpha^(-2)`, while the two
+  `1+3z^2=0` points retain local characters `alpha chi_2` and `alpha^(-1)`.
+- **How it is useful:** Shows that the `z`-completion localizes the remaining
+  obstruction but does not by itself reduce the generic `dim H^1 <= 5`
+  estimate; the missing two-unit saving must be finite.
+- **What to do next:** Look for a cancellation or middle-extension
+  identification involving `z=1` and the two `1+3z^2=0` points.
+
 ### 2026-06-18 - M1 equal-line balanced z-line completion
 
 - **Agent/model:** Codex.

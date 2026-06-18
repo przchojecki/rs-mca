@@ -590,6 +590,52 @@ two-unit saving, but it moves the problem to a complete rank-two line trace
 with no infinity Kummer ramification and only explicit regular-fiber
 corrections.
 
+The corresponding conservative conductor ledger is still not enough to prove
+the target.  On the completed `z`-line, the visible Kummer divisor is
+
+```text
+div((1+3z^2)/(1-z)^2) = [1+3z^2=0] - 2[1],
+```
+
+with no degree at infinity.  The quadratic factor `chi_2(1+3z^2)` also has no
+infinity ramification, since its pole at infinity has even order.  The
+imported local characters at the two points above `lambda=infinity` remain
+
+```text
+alpha chi_2,        alpha^(-1),
+```
+
+and the regular point `z=1` carries the nontrivial scalar twist
+
+```text
+alpha^(-2).
+```
+
+For the remaining equal-line wall, none of these three characters is
+principal: `ord(alpha)` is not `1`, `2`, or `3`.  Hence the conservative
+tame conductor ledger becomes
+
+```text
+z=0:              at most 1 unit,
+1+2z^2=0:         2 geometric points, one unit each,
+1+3z^2=0:         2 geometric points, two units each,
+z=1:              2 units from the regular-fiber scalar twist,
+z=infinity:       0 units.
+```
+
+The total is again
+
+```text
+1 + 2 + 4 + 2 + 0 = 9,
+```
+
+so Euler-Poincare still gives only the generic `dim H^1 <= 5` route.  The
+completion therefore relocates the old infinity twist to the finite point
+`z=1`; it does not by itself supply the two missing conductor units.  Any
+proof of the leading `3p` target must exploit a further finite cancellation
+or a sharper middle-extension identification among the points
+`z=1` and `1+3z^2=0`.
+
 ## Pullback Branch Checklist
 
 The rational pullback

@@ -37,7 +37,11 @@ should be revised as the project learns more.
    calculation gives a complete balanced `z`-line trace with kernel
    `chi_2(1+3z^2) alpha((1+3z^2)/(1-z)^2)` and only two regular-fiber
    corrections, so the next conductor target can ignore infinity Kummer
-   ramification and focus on the four finite singular loci.
+   ramification and focus on the four finite singular loci. The completed
+   conductor ledger still totals `9`, since the old infinity twist moves to
+   the finite regular point `z=1`; a proof of the `3p` leading constant must
+   therefore find a finite two-unit saving rather than a projective-infinity
+   saving.
 4. After the trace-family wall is closed, generalize to fixed low-slack
    templates, then separate tangent, quotient-periodic, finite-template, and
    genuinely aperiodic packing.

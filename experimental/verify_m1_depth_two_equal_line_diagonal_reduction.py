@@ -148,6 +148,22 @@ def line_monodromies(e: int, h: int, a: int, d: int) -> Tuple[int, int, int]:
     return first, second, infinity
 
 
+def balanced_z_local_exponents(h: int, alpha_exponent: int) -> Dict[str, object]:
+    if h % 2 != 0:
+        raise AssertionError(("h must contain the quadratic character", h))
+    lambda_infinity = (
+        (alpha_exponent + h // 2) % h,
+        (-alpha_exponent) % h,
+    )
+    z_one_twist = (-2 * alpha_exponent) % h
+    if 0 in lambda_infinity or z_one_twist == 0:
+        raise AssertionError(("trivial balanced local character", h, alpha_exponent))
+    return {
+        "lambda_infinity_characters": lambda_infinity,
+        "z_one_regular_twist": z_one_twist,
+    }
+
+
 def direct_open_sum(
     p: int,
     mu: List[complex],
@@ -582,8 +598,16 @@ def verify_pullback_deck_involution(p: int) -> Dict[str, object]:
 def verify_balanced_z_completion_geometry(p: int) -> Dict[str, object]:
     if p <= 3:
         raise AssertionError(p)
+    lambda_zero_roots = [0]
     lambda_one_roots = [z for z in range(p) if (1 + 2 * z * z) % p == 0]
     lambda_infinity_roots = [z for z in range(p) if (1 + 3 * z * z) % p == 0]
+    finite_special = set(lambda_zero_roots + lambda_one_roots)
+    finite_special.update(lambda_infinity_roots)
+    finite_special.add(1)
+    if len(finite_special) != (
+        1 + len(lambda_one_roots) + len(lambda_infinity_roots) + 1
+    ):
+        raise AssertionError(("balanced z collision", p, sorted(finite_special)))
     for z in range(p):
         numerator = (1 + 3 * z * z) % p
         if numerator == 0:
@@ -605,6 +629,23 @@ def verify_balanced_z_completion_geometry(p: int) -> Dict[str, object]:
     if lambda_minus_one != pow(4, -1, p):
         raise AssertionError(("lambda z=-1", p, lambda_minus_one))
 
+    z_zero_cond = 1
+    lambda_one_cond = 2
+    lambda_infinity_cond = 4
+    z_one_twist_cond = 2
+    infinity_cond = 0
+    rank = 2
+    total_conductor = (
+        z_zero_cond
+        + lambda_one_cond
+        + lambda_infinity_cond
+        + z_one_twist_cond
+        + infinity_cond
+    )
+    h1_budget = total_conductor - 2 * rank
+    if h1_budget != 5:
+        raise AssertionError((p, h1_budget))
+
     return {
         "p": p,
         "complete_coordinate": "z=s/(s+2)",
@@ -615,6 +656,17 @@ def verify_balanced_z_completion_geometry(p: int) -> Dict[str, object]:
         "lambda_one_root_count": len(lambda_one_roots),
         "lambda_infinity_root_count": len(lambda_infinity_roots),
         "infinity_kummer_ramification": 0,
+        "conductor_budget": {
+            "z_zero": z_zero_cond,
+            "lambda_one_roots": lambda_one_cond,
+            "lambda_infinity_roots_after_twist": lambda_infinity_cond,
+            "z_one_regular_twist": z_one_twist_cond,
+            "infinity": infinity_cond,
+            "total": total_conductor,
+            "generic_h1_target": h1_budget,
+            "desired_h1_target": 3,
+            "missing_conductor_saving": h1_budget - 3,
+        },
     }
 
 
@@ -638,9 +690,11 @@ def audit_case(case: Dict[str, int]) -> Dict[str, object]:
     characters = character_table(p, h, logs)
     mu = characters[(lift * a) % h]
     eta = characters[d % h]
-    rho = characters[(lift * a + d) % h]
-    rho_chi = characters[(lift * a + d + h // 2) % h]
+    alpha_exponent = (lift * a + d) % h
+    rho = characters[alpha_exponent]
+    rho_chi = characters[(alpha_exponent + h // 2) % h]
     alpha = rho
+    balanced_exponents = balanced_z_local_exponents(h, alpha_exponent)
     if (lift * a + d) % h == 0:
         raise AssertionError(("mu eta unexpectedly principal", case))
     if (lift * a + d + h // 2) % h == 0:
@@ -712,6 +766,7 @@ def audit_case(case: Dict[str, int]) -> Dict[str, object]:
         "a": a,
         "d": d,
         "line_monodromies": monodromies,
+        "balanced_z_local_exponents": balanced_exponents,
         "sum_ratio": round(abs(direct) / p, 10),
         "jacobi_ratio": round(abs(jacobi_part) / p, 10),
         "residual_ratio": round(abs(residual) / p, 10),

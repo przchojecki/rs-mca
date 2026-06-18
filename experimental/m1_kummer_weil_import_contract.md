@@ -241,6 +241,12 @@ to the balanced kernel
 `z=infinity`, and the pullback main differs from the complete `z`-line sum
 only by the regular fibers `H(1/4)` and
 `alpha(3) chi_2(3) H(1/3)`.
+The conservative completed-line conductor ledger is nevertheless still
+`1+2+4+2+0=9`: the old infinity twist is moved to the finite regular point
+`z=1`, where the scalar twist is `alpha^(-2)`, and the two
+`1+3z^2=0` points still have local characters `alpha chi_2` and
+`alpha^(-1)`. Thus the complete `z`-line form localizes, but does not
+solve, the missing two-unit saving.
 
 Thus the fixed-window, quotient-window, and two-fiber certificates still use
 the conservative common ledger:
