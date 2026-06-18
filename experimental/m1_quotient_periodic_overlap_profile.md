@@ -581,6 +581,33 @@ displayed co-remainder mass. Thus fixed-window dithering has two large-scale
 one-remainder tails: the under-dithered tail with coefficient `(N-L)` and the
 over-dithered tail with coefficient `L+1`.
 
+Equivalently, one can state the stable tail directly in fixed-dither
+coordinates. Keep the dyadic setup, fix a dither `r0`, and let
+
+```text
+d_t = t-r0,        e_t = |d_t|.
+```
+
+Assume
+
+```text
+1 <= e_t < t,        m | k0,        m >= t+e_t.
+```
+
+Then the stable large-scale one-remainder strict mass at slack `t` is exactly
+
+```text
+M_stable(t,r0,m)
+ =
+  ((n-k0)/m) binom(m,d_t) - 1,        if d_t > 0,
+  (k0/m) binom(m,e_t) - 1,            if d_t < 0.
+```
+
+Thus a fixed dither has two different large-scale tails across a slack window:
+slacks above the dither are charged to the unused quotient side, while slacks
+below the dither are charged to the occupied quotient side. This matters most
+near high rate, where `k0/m` and `(n-k0)/m` can be very different.
+
 Finally, the maximal-dither remainder case has an exact all-scale formula, so
 small scales need not be handled as a black-box enumeration. Suppose
 

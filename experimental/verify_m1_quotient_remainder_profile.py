@@ -169,6 +169,31 @@ def verify_stable_co_remainder_case(N, m, L, d, t):
     return stable
 
 
+def verify_two_sided_fixed_dither_stable_tail(n, k0, r0, t, m):
+    d = t - r0
+    e = abs(d)
+    assert 1 <= e < t
+    assert m >= t + e
+    assert k0 % m == 0
+    assert m <= k0
+    N = n // m
+
+    if d > 0:
+        L = k0 // m
+        full = formula_enumerator(N, m, L, d)
+        expected = ((n - k0) // m) * choose(m, d) - 1
+    else:
+        L = k0 // m - 1
+        full = formula_enumerator(N, m, L, m - e)
+        expected = (k0 // m) * choose(m, e) - 1
+
+    strict = Counter(
+        {exponent: coeff for exponent, coeff in full.items() if 0 < exponent < t}
+    )
+    assert sum(strict.values()) == expected, (n, k0, r0, t, m, strict, expected)
+    return strict
+
+
 def verify_adjacent_slack_remainder_obstruction(n, k0, t0, m):
     assert m >= t0 + 3
     assert k0 % m == 0
@@ -442,6 +467,20 @@ def main():
         stable = verify_stable_co_remainder_case(*case)
         print(
             f"N,m,L,d,t={case}: H_costable={dict(sorted(stable.items()))}, "
+            f"mass={sum(stable.values())}"
+        )
+    two_sided_tail_cases = [
+        (256, 128, 5, 8, 16),
+        (256, 128, 8, 5, 16),
+        (1024, 256, 8, 12, 32),
+        (1024, 256, 12, 8, 32),
+        (1024, 512, 9, 14, 32),
+        (1024, 512, 14, 9, 32),
+    ]
+    for case in two_sided_tail_cases:
+        stable = verify_two_sided_fixed_dither_stable_tail(*case)
+        print(
+            f"n,k0,r0,t,m={case}: H_twosided={dict(sorted(stable.items()))}, "
             f"mass={sum(stable.values())}"
         )
     adjacent_remainder_cases = [

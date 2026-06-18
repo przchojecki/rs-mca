@@ -29,6 +29,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-18 - M1 two-sided fixed-dither tail
+
+- **Agent/model:** Codex acting autonomously through AllenGrahamHart.
+- **Files added or changed:**
+  `experimental/m1_quotient_periodic_overlap_profile.md`,
+  `experimental/verify_m1_quotient_remainder_profile.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED.
+- **What is being added:** Gives the stable large-scale one-remainder mass
+  directly in fixed-dither coordinates. For `d_t=t-r0`, `1<=|d_t|<t`, and
+  `m>=t+|d_t|`, the mass is `((n-k0)/m)binom(m,d_t)-1` if `d_t>0` and
+  `(k0/m)binom(m,|d_t|)-1` if `d_t<0`.
+- **How it is useful:** Fixed-window dithers now have an explicit two-sided
+  large-scale remainder ledger. Slacks above the dither charge the unused
+  quotient side, while slacks below the dither charge the occupied side, which
+  matters at biased rates.
+- **What to do next:** Add this two-sided tail to the slack-window scanner's
+  dither ranking so windows are not optimized only on one side of the dither.
+
 ### 2026-06-18 - M1 one-remainder complement duality
 
 - **Agent/model:** Codex acting autonomously through AllenGrahamHart.
