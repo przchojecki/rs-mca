@@ -687,6 +687,53 @@ Only the slope label changes: the family contributes slope `0` to the
 slack-`T` depth-two catalog, while in the slack-`T+1` first-superboundary
 catalog its slope is governed by `(-1)^(T+1)e_(T+1)`.
 
+This is the first case of a general residual-depth shift. For any depth
+`d>=1` with `T+d<m`, define
+
+```text
+C_T^(d)(D) = { (u_1,...,u_(T+d-1)) in D^(T+d-1) :
+               1,u_1,...,u_(T+d-1) are distinct,
+               e_j(1,u_1,...,u_(T+d-1))=0 for 1<=j<T }.
+```
+
+For `u in C_T^(d)(D)` put
+
+```text
+c_T,d(u)=(-1)^T e_T(1,u_1,...,u_(T+d-1)),
+tau(u)=#{quotient fibers met by {1,u_1,...,u_(T+d-1)}}.
+```
+
+At exact support size `s=Lm+T+d`, the depth-`d` residual-packet slope
+multiset is
+
+```text
+M_T^(d)(z) = (1/(T+d)!) sum_{u in C_T^(d)(D)}
+             binom(N-tau(u), L) * #{x in D : x^T c_T,d(u)=z}.
+```
+
+For the canonical exact layer `s=k+T`, the lift gate is
+
+```text
+m | (s-(T+d)) = k-d.
+```
+
+Moreover, for `d>=2`, the zero-slope subcatalog satisfies
+
+```text
+c_T,d(u)=0
+  <=> u in C_(T+1)^(d-1)(D).
+```
+
+At fixed exact support this is the dimension shift
+
+```text
+(T,k,d)  ->  (T+1,k-1,d-1).
+```
+
+Thus every zero-slope layer is not a new shape problem: it is the previous
+residual-depth problem one slack higher. The genuinely new part at depth `d`
+is the nonzero image of `c_T,d` modulo the power cosets `D^T`.
+
 This formula has an immediate dither gate. Since the residual packet has size
 `T+1` but the exact support size is `s=k+T`, a first-superboundary packet can
 lift only if

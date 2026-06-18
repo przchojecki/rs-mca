@@ -377,6 +377,10 @@ the depth-two/next-slack transition explicitly.
 The `canonical_second_superboundary_next_slack_*_check` fields compare this
 zero-slope subcatalog with the first-superboundary ledger at fixed support
 size, equivalently after the dimension shift `(t,k) -> (t+1,k-1)`.
+The accompanying proof note states the same hierarchy for every residual
+depth `d`: zero slope at `(t,k,d)` is the depth-`d-1` catalog at
+`(t+1,k-1,d-1)`. The scanner currently audits the first nontrivial case
+`d=2`.
 
 For slack `t=2`, the scanner also verifies the complete first-superboundary
 shape ledger. It enumerates
