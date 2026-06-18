@@ -3,6 +3,8 @@
 
 from __future__ import annotations
 
+from collections import Counter
+
 
 PRIMES = (5, 7, 11, 13, 17, 19, 23, 29, 31, 37)
 
@@ -30,6 +32,10 @@ def qgradient(point: tuple[int, int, int], p: int) -> tuple[int, int, int]:
         (u + 2 * v + z) % p,
         (u + v + 2 * z) % p,
     )
+
+
+def affine_a(u: int, v: int, p: int) -> int:
+    return (-(u * u + v * v + u * v + u + v + 1)) % p
 
 
 def line(point: tuple[int, int, int], name: str, p: int) -> int:
@@ -106,6 +112,27 @@ def conic_line_intersections(p: int) -> set[tuple[int, int, int]]:
     return points
 
 
+def affine_conic_value_counts(p: int) -> Counter[int]:
+    counts: Counter[int] = Counter()
+    for u in range(p):
+        for v in range(p):
+            counts[affine_a(u, v, p)] += 1
+    return counts
+
+
+def check_affine_conic_distribution(p: int) -> tuple[int, int, int]:
+    counts = affine_conic_value_counts(p)
+    epsilon = legendre(-3, p)
+    special_value = (-2 * inv(3, p)) % p
+    special_count = p + epsilon * (p - 1)
+    generic_count = p - epsilon
+    for value in range(p):
+        expected = special_count if value == special_value else generic_count
+        if counts[value] != expected:
+            raise AssertionError((p, value, counts[value], expected))
+    return special_value, special_count, generic_count
+
+
 def line_tangent_parallel_to_gradient(
     name: str,
     gradient: tuple[int, int, int],
@@ -153,12 +180,18 @@ def main() -> None:
             raise AssertionError((p, pair_line_points))
         if len(conic_points) != 4 * (1 + legendre(-3, p)):
             raise AssertionError((p, conic_points))
+        special_value, special_count, generic_count = (
+            check_affine_conic_distribution(p)
+        )
         checked.append(
             (
                 p,
                 len(pair_line_points),
                 len(conic_points),
                 legendre(-3, p),
+                special_value,
+                special_count,
+                generic_count,
             )
         )
     print(f"verify_m1_kummer_divisor_geometry: PASS checked={checked}")

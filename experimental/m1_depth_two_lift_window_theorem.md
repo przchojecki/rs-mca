@@ -126,9 +126,11 @@ recorded as `(1+1+1+2-1)^2 = 16`.
 The exact external dependency and its audited hypotheses are separated in
 `m1_kummer_weil_import_contract.md`; the present note remains conditional on
 that import.
-The same contract also proves the `d=0` subcase by a three-character Jacobi
-sum bound `<= p`, so the imported `16p` Kummer estimate is paid only for
-terms with nonzero conic exponent.
+The same contract also proves two elementary `p`-bound subcases: the `d=0`
+Jacobi part and the `d!=0` conic-only part with coordinate characters
+principal. The imported `16p` Kummer estimate is paid only for mixed terms
+with nonzero conic exponent and at least one nonprincipal coordinate
+character.
 
 For the raw normalized catalog on `D`, the verifier audits the character
 expansion, the divisor nontriviality, the exact principal open-set count
@@ -139,8 +141,8 @@ p^2 - 4p + 6 + 4 chi(-3),
 
 and the exact six-line distinctness loss `6p-11`. With
 `e=[F_p^*:D]` and `q=[F_p^*:D^2]`, the nonprincipal expansion splits into
-the proved Jacobi part `e^3-1` and the remaining Kummer part
-`e^3(q-1)`.
+the proved Jacobi part `e^3-1`, the proved conic-only part `q-1`, and the
+remaining mixed Kummer part `(e^3-1)(q-1)`.
 
 For a fixed quotient window `W` of size `R`, let
 
@@ -155,13 +157,14 @@ bound are `R^3`. Hence the conservative lower numerator for a fixed
 
 ```text
 R^3 (p^2 - 4p + 6 + 4 chi(-3))
-  - p R^3((h^3-1) + 16h^3(q-1)) - (6p - 11) h^3 q.
+  - p R^3((h^3-1) + (q-1) + 16(h^3-1)(q-1))
+  - (6p - 11) h^3 q.
 ```
 
 The uniform sufficient threshold for this fixed-window numerator is
 
 ```text
-p >= ceil((R^3((h^3-1)+16h^3(q-1)) + 6h^3q)/R^3) + 4.
+p >= ceil((R^3((h^3-1)+(q-1)+16(h^3-1)(q-1)) + 6h^3q)/R^3) + 4.
 ```
 
 When this numerator is positive, that fixed `R`-window already hits every
@@ -283,12 +286,14 @@ Thus `S_3=e^3` times the resulting absolute coefficient sum. After the
 E_R <= q S_R - T_R(N).
 ```
 
-The Jacobi/Kummer split is sharper than applying the `16p` bound to all of
-`E_R`: the `d=0` part has L1 at most `S_R-T_R(N)` and the `d!=0` part has
-L1 at most `(q-1)S_R`. Put
+The Jacobi/conic/Kummer split is sharper than applying the `16p` bound to all
+of `E_R`: the `d=0` part has L1 at most `S_R-T_R(N)`, the conic-only
+`d!=0` part has L1 at most `(q-1)T_R(N)`, and the mixed `d!=0` part has L1
+at most `(q-1)(S_R-T_R(N))`. Put
 
 ```text
-W_R = (S_R-T_R(N)) + 16(q-1)S_R.
+W_R = (S_R-T_R(N)) + (q-1)T_R(N)
+      + 16(q-1)(S_R-T_R(N)).
 ```
 
 Thus the conservative lower numerator for the whole active union is

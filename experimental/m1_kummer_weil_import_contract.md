@@ -18,8 +18,8 @@ w = -1-u-v,
 A(u,v) = -(u^2 + v^2 + uv + u + v + 1).
 ```
 
-For exponents `(a,b,c,d)` modulo the order of `psi`, with `d != 0`, the
-imported estimate is
+For exponents `(a,b,c,d)` modulo the order of `psi`, with `d != 0` and
+`(a,b,c) != (0,0,0)`, the imported estimate is
 
 ```text
 | sum_{u,v in F_p} psi(u^a v^b w^c A(u,v)^d) | <= 16p.        (KW_2)
@@ -35,8 +35,10 @@ the rank-one Kummer sheaf with local monodromy vector `(a,b,c,d)` has total
 Frobenius trace bounded by `16p`.
 
 This is the only non-elementary estimate still used by the raw, two-fiber,
-fixed-window, and quotient-window union saturation certificates. All later
-coefficients are finite Fourier bookkeeping around this same input.
+fixed-window, and quotient-window union saturation certificates. It is now
+paid only for mixed terms in which the conic exponent and at least one of the
+three coordinate exponents are nonzero. All later coefficients are finite
+Fourier bookkeeping around this same input.
 
 When `d=0`, the conic factor is absent and the sum is a three-character
 Jacobi sum:
@@ -49,9 +51,44 @@ If `(a,b,c)` is not the zero triple, the standard Jacobi-sum recursion bounds
 this by `p`. Indeed, after scaling the right side from `-1` to `1`, it is a
 constant of modulus at most one times `J(psi^a,psi^b,psi^c)`, and the usual
 two-character Jacobi bounds give absolute value at most `p`, including the
-cases where one character or the product character is trivial. Thus the
-certificates now pay the imported `16p` estimate only on the `d != 0` part
-and pay the proved Jacobi `p` bound on the `d=0` part.
+cases where one character or the product character is trivial.
+
+When `d != 0` but `(a,b,c)=(0,0,0)`, the sum is conic-only:
+
+```text
+sum_{u,v in F_p} psi^d(A(u,v)).
+```
+
+This also has an elementary `p` bound. Completing the square at
+`u=v=-1/3` gives
+
+```text
+A(u,v) = -Q(U,V) - 2/3,
+Q(U,V) = U^2 + UV + V^2.
+```
+
+The form `Q` is nondegenerate, and with `epsilon=chi(-3)` its value
+distribution is
+
+```text
+#{(u,v): A(u,v)=-2/3} = p + epsilon(p-1),
+#{(u,v): A(u,v)=t}    = p - epsilon        for t != -2/3.
+```
+
+Therefore every nontrivial multiplicative character `eta` satisfies
+
+```text
+sum_{u,v} eta(A(u,v)) = epsilon p eta(-2/3),
+```
+
+so the conic-only terms have absolute value exactly `p`. Thus the
+certificates now pay:
+
+```text
+d=0, coordinate nonprincipal:              p     (Jacobi)
+d!=0, coordinate principal:                p     (affine conic)
+d!=0, coordinate nonprincipal mixed terms: 16p   (imported KW_2)
+```
 
 ## Audited Hypotheses
 
@@ -101,10 +138,13 @@ python3 experimental/verify_m1_kummer_divisor_geometry.py
 ```
 
 checks these line-line, line-conic, smoothness, and transversality identities
-on representative primes. The symbolic proof above is what matters for the
-uniform `p>3` statement.
+on representative primes. It also checks the affine value distribution of
+`A`, which is the finite audit behind the conic-only `p` bound. The symbolic
+proof above is what matters for the uniform `p>3` statement.
 
-For every nonprincipal character tuple, at least one component exponent among
+For every imported mixed character tuple, at least two component exponents
+are nonzero: the conic exponent and at least one coordinate-line exponent.
+For every such tuple, at least one component exponent among
 
 ```text
 u=0, v=0, -1-u-v=0, A=0

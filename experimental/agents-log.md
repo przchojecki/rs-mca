@@ -75,13 +75,16 @@ Keep entries concise and link to the relevant files.
   this exact compactified divisor. The Kummer expansion is now split by conic
   exponent: the `d=0` terms are discharged by the standard three-character
   Jacobi-sum bound `<=p`, while the imported `16p` Kummer estimate is paid
-  only on the `d!=0` terms. The verifier audits the resulting
-  `jacobi_l1_bound`, `kummer_l1_bound`, and `weighted_error_l1_bound` fields;
-  this sharply lowers the reported raw, two-fiber, fixed-window, and
-  quotient-window union thresholds.
+  only on the `d!=0` terms. It is now split once more: the coordinate-principal
+  `d!=0` terms are discharged by the exact affine quadratic value distribution
+  of `A(u,v)`, so the imported `16p` estimate is paid only for mixed
+  coordinate/conic terms. The verifier audits the resulting
+  `jacobi_l1_bound`, `conic_l1_bound`, `kummer_l1_bound`, and
+  `weighted_error_l1_bound` fields; this sharply lowers the reported raw,
+  two-fiber, fixed-window, and quotient-window union thresholds.
 - **What to do next:** Verify the exact `16p` constant against a singular
-  multiplicative character-sum theorem or replace it with the proved constant
-  supplied by that theorem.
+  multiplicative character-sum theorem for the remaining mixed terms, or
+  replace it with the proved constant supplied by that theorem.
 
 ### 2026-06-18 - M1 depth-two lift-window theorem note
 
