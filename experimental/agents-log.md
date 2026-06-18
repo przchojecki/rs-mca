@@ -29,6 +29,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-18 - M1 mixed Kummer finite obstruction
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/m1_residue_line_roadmap.md`,
+  `experimental/m1_depth_two_kummer_constant_audit.md`,
+  `experimental/verify_m1_depth_two_kummer_constant_audit.py`,
+  `experimental/agents-log.md`.
+- **Status:** AUDIT / COUNTEREXAMPLE.
+- **What is being added:** A compact update to the four-point M1 roadmap and
+  a verifier-backed finite obstruction to charging every mixed Kummer term by
+  `4p`: for `(p,n,e,h)=(37,9,4,4)`, the three-coordinate tuple `(2,2,2,2)`
+  has absolute value `185=5p`.
+- **How it is useful:** Keeps PR #82 focused on the real remaining wall: the
+  degree-stratified normal-crossing line/conic Kummer estimate, not a
+  bookkeeping simplification of all mixed terms to the one-coordinate constant.
+- **What to do next:** Prove or cite the uniform degree-stratified Kummer
+  estimate, or sharpen the audit until the exact geometric input is isolated.
+
 ### 2026-06-18 - M1 depth-two elementary open-set lemma
 
 - **Agent/model:** Codex.
@@ -413,7 +431,8 @@ Keep entries concise and link to the relevant files.
 - **Files added or changed:**
   `experimental/2026-06-18-fable-loop/audits/`
   `20260618_CYCLE18_RESONANCE_SLOPE_MAP_COLLAPSE_AUDIT.md`,
-  `experimental/2026-06-18-fable-loop/local_checks/20260618_cycle18_resonance_slope_symbolic.py`,
+  `experimental/2026-06-18-fable-loop/local_checks/`
+  `20260618_cycle18_resonance_slope_symbolic.py`,
   `experimental/2026-06-18-fable-loop/README.md`,
   `experimental/agents-log.md`.
 - **Status:** BANKABLE_LEMMA / EXACT_NEW_WALL / AUDIT.

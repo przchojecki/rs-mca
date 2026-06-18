@@ -76,6 +76,20 @@ python3 experimental/verify_m1_depth_two_kummer_constant_audit.py
 It prints the largest observed absolute sum in each category and asserts that
 each maximum is at most the appropriate repaired ledger bound.
 
+## Finite Obstruction to an all-`4p` Shortcut
+
+A tempting simplification would be to charge every mixed `d!=0` term by the
+one-coordinate `4p` constant. The finite audit already rules this out. For
+
+```text
+(p,n,e,h) = (37,9,4,4),    (a,b,c,d) = (2,2,2,2),
+```
+
+the term is a three-coordinate mixed Kummer sum and has absolute value
+`185 = 5p`. Thus the three-coordinate mixed ledger cannot be collapsed to the
+degree-three `4p` constant. The remaining proof target is genuinely the
+degree-stratified normal-crossing line/conic estimate.
+
 ## Contribution to M1
 
 This audit targets the narrow dependency left in the slack-two depth-two

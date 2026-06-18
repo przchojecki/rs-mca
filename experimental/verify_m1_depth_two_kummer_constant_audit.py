@@ -33,6 +33,20 @@ BOUND_LABELS = {
     "three_coordinate_kummer": "16p",
 }
 
+ObstructionCheck = Tuple[str, int, int, str, Tuple[int, int, int, int], int, float]
+
+OBSTRUCTION_CHECKS: Tuple[ObstructionCheck, ...] = (
+    (
+        "three-coordinate-not-4p",
+        37,
+        9,
+        "three_coordinate_kummer",
+        (2, 2, 2, 2),
+        4,
+        5.0,
+    ),
+)
+
 
 def prime_factors(value: int) -> List[int]:
     factors: List[int] = []
@@ -205,10 +219,48 @@ def audit_sample(p: int, n: int) -> Dict[str, object]:
     }
 
 
+def audit_obstruction(check: ObstructionCheck) -> Dict[str, object]:
+    (
+        name,
+        p,
+        n,
+        expected_kind,
+        exponents,
+        strict_multiplier,
+        expected_ratio,
+    ) = check
+    e = (p - 1) // n
+    h = e * math.gcd(2, n)
+    kind = category(e, h, *exponents)
+    if kind != expected_kind:
+        raise AssertionError((name, "category", kind, expected_kind))
+    logs = log_table(p)
+    char_e = character_table(p, e, logs)
+    char_h = character_table(p, h, logs)
+    magnitude = abs(sum_for_tuple(p, char_e, char_h, exponents))
+    if magnitude <= strict_multiplier * p + 1e-8:
+        raise AssertionError((name, "not an obstruction", magnitude))
+    ratio = magnitude / p
+    if not math.isclose(ratio, expected_ratio, rel_tol=0.0, abs_tol=1e-8):
+        raise AssertionError((name, "ratio", ratio, expected_ratio))
+    return {
+        "name": name,
+        "p": p,
+        "n": n,
+        "category": kind,
+        "tuple": exponents,
+        "max_abs": round(magnitude, 10),
+        "ratio_to_p": round(ratio, 10),
+        "exceeds": f"{strict_multiplier}p",
+    }
+
+
 def main() -> None:
     rows = [audit_sample(sample["p"], sample["n"]) for sample in SAMPLES]
     for row in rows:
         print(row)
+    for check in OBSTRUCTION_CHECKS:
+        print(audit_obstruction(check))
     print("M1 depth-two Kummer constant audit passed")
 
 
