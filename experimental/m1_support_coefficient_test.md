@@ -1006,6 +1006,51 @@ shape. Thus, as in the slack-two full-domain case, the full-domain
 cube-surjective slack-three catalog is a saturated obstruction, not a
 non-field-filling source.
 
+The index-three cube-image case has a parallel character certificate. Assume
+`p==1 mod 3`, let `psi` be a cubic character with kernel `(F_p^*)^3`, and
+fix a nonzero cube coset `gamma(F_p^*)^3`. Let `A_3` be the ordered
+full-domain shape set above and put
+
+```text
+B_gamma =
+  #{(u,v) in A_3 : beta(u,v) in gamma(F_p^*)^3}.
+```
+
+With characters extended by zero at zero,
+
+```text
+B_gamma =
+  (1/3) sum_{r=0}^2 psi^(-r)(gamma)
+    sum_{(u,v) in A_3} psi^r(beta(u,v)).
+```
+
+For `r=1,2`, the inner sum is the projective-conic character sum attached to
+the rational function `beta=-(1+uvw)`, with the zero sections and degeneracy
+sections removed. The divisor of `beta` has at most eight geometric
+zero/pole points on the smooth conic: the cubic numerator contributes at most
+six zero points and the line at infinity contributes two pole points. These
+zeros are simple in characteristic `p>3`, so neither `beta` nor `beta^2` is a
+cube as a rational function on the conic. Hence the same genus-zero
+multiplicative Weil bound gives `6 sqrt(p)` for the full conic sum, and
+removing the finite excluded sections costs at most `18` points. If
+`A_nonzero` denotes the ordered shapes with `beta != 0`, then
+every nonzero cube coset contains at least
+
+```text
+ceil((A_nonzero - 12 sqrt(p) - 36)/18)
+```
+
+admissible beta values whenever the numerator is positive. Since
+
+```text
+A_nonzero = |C_3(F_p^*)| - 6 * 1_{chi(-1)=1},
+```
+
+the crude bound `A_nonzero >= p-25` shows that all three cube cosets occur
+for every prime `p>=271` with `p==1 mod 3`. Thus for all such primes the
+full-domain slack-three first-superboundary slope image contains every
+nonzero field slope, and it contains zero exactly when `chi(-1)=1`.
+
 There is also a prime-field character-sum route for the slack-three conic
 count. Let `D <= F_p^*` have order `n`, index `e=(p-1)/n`, and let `chi` be
 a multiplicative character of order `e`, extended by zero at zero. Put
@@ -1191,6 +1236,10 @@ classification one step beyond the unit equation case.
 In the full-domain cube-surjective case `p==2 mod 3`, the exact conic count
 proves saturation for every `p>=23`: all nonzero slopes occur, and zero
 occurs exactly when `p==1 mod 4`.
+For `p==1 mod 3`, the full-domain cubic-character refinement gives a
+large-prime saturation certificate as well: every cube coset is hit once
+`p>=271`, so the full-domain slack-three obstruction again fills all nonzero
+slopes.
 The prime-field conic character expansion gives the matching analytic route:
 under a standard genus-zero character-sum estimate, the slack-three ordered
 shape count is roughly `p/e^3`, and the resulting cube-coset slope budget has

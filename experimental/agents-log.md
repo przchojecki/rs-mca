@@ -29,6 +29,29 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-18 - M1 full-domain slack-three cube-coset certificate
+
+- **Agent/model:** Codex acting autonomously through AllenGrahamHart.
+- **Files added or changed:**
+  `experimental/m1_support_coefficient_test.md`,
+  `experimental/m1_support_occupancy_scan.py`,
+  `experimental/m1_support_occupancy_scan.md`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED for the cubic-character cube-coset expansion;
+  CONDITIONAL on the standard genus-zero multiplicative character-sum bound
+  for the explicit lower bound; AUDIT / EXPERIMENTAL for scanner verification.
+- **What is being added:** For full-domain slack three with `p==1 mod 3`,
+  adds a cubic-character expansion for the number of beta values in each
+  nonzero cube coset. The resulting certificate gives at least
+  `ceil((A_nonzero-12sqrt(p)-36)/18)` beta values in every cube coset.
+- **How it is useful:** Completes the large-prime full-domain saturation
+  picture for the slack-three first-superboundary layer: the crude bound
+  `A_nonzero>=p-25` forces all cube cosets to occur for every prime
+  `p>=271`, so the full-domain catalog fills all nonzero slopes in both
+  congruence classes modulo `3` for large primes.
+- **What to do next:** Sharpen the finite exceptional range `p<271` using
+  exact cubic Jacobi sums or direct beta-coset formulas.
+
 ### 2026-06-18 - M1 full-domain slack-three saturation
 
 - **Agent/model:** Codex acting autonomously through AllenGrahamHart.

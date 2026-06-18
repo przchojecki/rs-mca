@@ -238,7 +238,17 @@ def full_domain_slack_three_beta_class_data(p: int) -> Optional[Dict[str, object
     beta_count = ordered_shape_count // 6
     zero_beta_count = 1 if chi_minus_one == 1 else 0
     nonzero_beta_count = beta_count - zero_beta_count
+    nonzero_ordered_shape_count = 6 * nonzero_beta_count
     cube_surjective = math.gcd(3, p - 1) == 1
+    cube_coset_lower_numerator = (
+        nonzero_ordered_shape_count - 12 * ceil_sqrt(p) - 36
+    )
+    cube_coset_beta_lower_bound = (
+        (cube_coset_lower_numerator + 17) // 18
+        if cube_coset_lower_numerator > 0
+        else 0
+    )
+    cube_coset_saturation_certificate = cube_coset_beta_lower_bound > 0
 
     if cube_surjective and nonzero_beta_count > 0:
         slope_count = (p - 1) + zero_beta_count
@@ -249,6 +259,9 @@ def full_domain_slack_three_beta_class_data(p: int) -> Optional[Dict[str, object
     elif cube_surjective:
         slope_count = 0
         slope_image = "empty"
+    elif cube_coset_saturation_certificate:
+        slope_count = (p - 1) + zero_beta_count
+        slope_image = "full_field" if zero_beta_count else "nonzero_field"
     else:
         slope_count = None
         slope_image = "cube_coset_dependent"
@@ -259,6 +272,8 @@ def full_domain_slack_three_beta_class_data(p: int) -> Optional[Dict[str, object
         "zero_beta_count": zero_beta_count,
         "nonzero_beta_count": nonzero_beta_count,
         "cube_surjective": cube_surjective,
+        "cube_coset_beta_lower_bound": cube_coset_beta_lower_bound,
+        "cube_coset_saturation_certificate": cube_coset_saturation_certificate,
         "slope_count": slope_count,
         "slope_image": slope_image,
     }
@@ -2403,6 +2418,20 @@ def scan_supports(
         ),
         "canonical_slack_three_full_domain_cube_surjective": (
             bool(slack_three_full_domain_beta_data["cube_surjective"])
+            if slack_three_full_domain_beta_data is not None
+            else None
+        ),
+        "canonical_slack_three_full_domain_cube_coset_beta_lower_bound": (
+            int(slack_three_full_domain_beta_data["cube_coset_beta_lower_bound"])
+            if slack_three_full_domain_beta_data is not None
+            else None
+        ),
+        "canonical_slack_three_full_domain_cube_coset_saturation_certificate": (
+            bool(
+                slack_three_full_domain_beta_data[
+                    "cube_coset_saturation_certificate"
+                ]
+            )
             if slack_three_full_domain_beta_data is not None
             else None
         ),

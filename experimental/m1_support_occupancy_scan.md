@@ -137,6 +137,8 @@ canonical_slack_three_full_domain_beta_count_check
 canonical_slack_three_full_domain_zero_beta_count
 canonical_slack_three_full_domain_nonzero_beta_count
 canonical_slack_three_full_domain_cube_surjective
+canonical_slack_three_full_domain_cube_coset_beta_lower_bound
+canonical_slack_three_full_domain_cube_coset_saturation_certificate
 canonical_slack_three_full_domain_slope_image
 canonical_slack_three_full_domain_slope_count
 canonical_slack_three_full_domain_slope_count_check
@@ -412,6 +414,17 @@ It also records the exact beta count, the zero-beta criterion
 catalog hits every nonzero slope; it hits zero too exactly when
 `p==1 mod 4`. The slope-count equality check is asserted only when every
 full-domain shape has an active quotient lift at the queried support size.
+When `p==1 mod 3`, the fields
+`canonical_slack_three_full_domain_cube_coset_*` report the cubic-character
+lower bound for each nonzero cube coset. The scanner uses the certificate
+
+```text
+ceil((A_nonzero - 12 sqrt(p) - 36)/18),
+```
+
+where `A_nonzero` is the ordered full-domain shape count with `beta != 0`.
+If this lower bound is positive, every cube coset is hit. The crude estimate
+`A_nonzero>=p-25` implies this for every prime `p>=271` with `p==1 mod 3`.
 
 For prime fields, `canonical_slack_three_cyclotomic_*` reports the conditional
 genus-zero character-sum bound for this ordered conic shape count. If
