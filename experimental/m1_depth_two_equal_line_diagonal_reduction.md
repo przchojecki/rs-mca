@@ -548,6 +548,44 @@ stronger coordinate-diagonal conditional ledger separately from the older
 equal-line ledger, while the active saturation certificate remains the
 conservative one.
 
+## Projective Equal-Pair Extension
+
+The same diagonal conductor ledger is projective, not tied to the original
+affine choice of the two active coordinate axes.  The compactified
+two-coordinate core has projective line monodromies
+
+```text
+mu,        nu,        lambda=(mu nu eta^2)^(-1)
+```
+
+on the two active coordinate lines and the line at infinity.  If any two of
+these three projective line monodromies are equal, a projective chart change
+chooses that equal pair as the two affine coordinate axes.  The conic-line
+arrangement is projectively equivalent to the diagonal arrangement above, and
+the open sum is carried exactly to a coordinate-diagonal open sum with the
+same conic character.  The verifier checks this identity for the two
+non-coordinate equal-pair cases `mu=lambda` and `nu=lambda`.
+
+Consequently, the conditional `4p+3sqrt(p)` replacement applies to the
+larger projective equal-pair mass, not only to the coordinate-diagonal mass.
+For one active coordinate chart, inclusion-exclusion gives
+
+```text
+#{some equal projective line pair}
+  = 3 #{first=second} - 2 #{first=second=infinity}.
+```
+
+In the full two-coordinate L1 ledger this is
+
+```text
+C_2^peq = 3 C_2^diag - 2 C_2^eq.
+```
+
+The new conditional ledger therefore drops the leading L1 weight by
+`5C_2^peq` and adds square-root mass `3C_2^peq`.  The active certificate still
+stays conservative until the imported `2F1` local table is promoted to an
+accepted theorem-grade input.
+
 ## Deck Involution Audit
 
 The degree-two map `lambda=s^2/(4B(s))` has deck involution

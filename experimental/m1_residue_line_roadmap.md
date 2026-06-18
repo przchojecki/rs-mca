@@ -54,19 +54,15 @@ should be revised as the project learns more.
    and infinity. The corrected local pushforward conductor ledger is
    `2+1+2+2+4=11` for rank `4`, hence the same `dim H^1 <= 3` target in
    y-pushforward form. This conditionally closes the equal-line diagonal
-   top-dimensional estimate; the broader ramified nonreciprocal
-   two-coordinate wall still has to be reduced to this or another tractable
-   slice. The raw certificate now has an audited equal-line diagonal submass
-   `C_2^eq = 3 #{a,d : 3ga+2d=0, 2ga != 0}`, so the next certificate step is
-   to get reviewer acceptance of the recorded `2F1` local table, then promote
-   the reported conditional equal-line ledger into the consumed certificate.
-   The broader coordinate-diagonal mass is now also counted; its symmetric
-   reduction has the same local `B(s)=0` saving, and the finite local
-   conductor audit now promotes the full coordinate-diagonal mass into a
-   separate conditional ledger.  The active certificate remains conservative
+   top-dimensional estimate and, by projective chart changes, the projective
+   equal-pair top-dimensional estimate. The next certificate step is to get
+   reviewer acceptance of the recorded `2F1` local table, then promote the
+   reported conditional projective-equal ledger into the consumed certificate.
+   Here `C_2^peq = 3C_2^diag - 2C_2^eq`, by inclusion-exclusion over the
+   three projective line pairs.  The active certificate remains conservative
    until the imported `2F1` local table is accepted as theorem-grade.  The
-   next two-coordinate target is therefore the non-diagonal ramified
-   nonreciprocal remainder.
+   next two-coordinate target is therefore the ramified nonreciprocal
+   remainder with no equal or reciprocal projective line pair.
 4. After the trace-family wall is closed, generalize to fixed low-slack
    templates, then separate tangent, quotient-periodic, finite-template, and
    genuinely aperiodic packing.

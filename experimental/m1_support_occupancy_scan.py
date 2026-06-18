@@ -1915,6 +1915,9 @@ def depth_two_kummer_error_l1_split(
     two_coordinate_coordinate_diagonal_l1_bound: int = 0,
     two_coordinate_coordinate_diagonal_constant: int = 4,
     two_coordinate_coordinate_diagonal_sqrt_constant: int = 3,
+    two_coordinate_projective_equal_pair_l1_bound: int = 0,
+    two_coordinate_projective_equal_pair_constant: int = 4,
+    two_coordinate_projective_equal_pair_sqrt_constant: int = 3,
 ) -> Dict[str, int]:
     """Split depth-two character error into proved and imported masses."""
 
@@ -1967,10 +1970,22 @@ def depth_two_kummer_error_l1_split(
         two_coordinate_ramified_nonreciprocal_l1_bound
     ):
         raise ValueError("invalid coordinate-diagonal two-coordinate L1 split")
+    if two_coordinate_projective_equal_pair_l1_bound == 0:
+        two_coordinate_projective_equal_pair_l1_bound = (
+            two_coordinate_coordinate_diagonal_l1_bound
+        )
+    if not 0 <= two_coordinate_projective_equal_pair_l1_bound <= (
+        two_coordinate_ramified_nonreciprocal_l1_bound
+    ):
+        raise ValueError("invalid projective-equal two-coordinate L1 split")
     if two_coordinate_equal_line_l1_bound > (
         two_coordinate_coordinate_diagonal_l1_bound
     ):
         raise ValueError("equal-line L1 mass cannot exceed coordinate diagonal")
+    if two_coordinate_coordinate_diagonal_l1_bound > (
+        two_coordinate_projective_equal_pair_l1_bound
+    ):
+        raise ValueError("coordinate diagonal cannot exceed projective-equal")
     three_coordinate_kummer_l1_bound = (
         coordinate_three_nonprincipal_l1_bound * (square_coset_index - 1)
     )
@@ -2009,6 +2024,13 @@ def depth_two_kummer_error_l1_split(
     coordinate_diagonal_conditional_weighted_error_l1_bound = (
         weighted_error_l1_bound - coordinate_diagonal_leading_l1_drop
     )
+    projective_equal_pair_leading_l1_drop = (
+        (two_coordinate_kummer_constant - two_coordinate_projective_equal_pair_constant)
+        * two_coordinate_projective_equal_pair_l1_bound
+    )
+    projective_equal_pair_conditional_weighted_error_l1_bound = (
+        weighted_error_l1_bound - projective_equal_pair_leading_l1_drop
+    )
     two_coordinate_infinity_unramified_sqrt_l1_bound = (
         two_coordinate_infinity_unramified_sqrt_constant
         * two_coordinate_infinity_unramified_l1_bound
@@ -2024,6 +2046,10 @@ def depth_two_kummer_error_l1_split(
     two_coordinate_coordinate_diagonal_sqrt_l1_bound = (
         two_coordinate_coordinate_diagonal_sqrt_constant
         * two_coordinate_coordinate_diagonal_l1_bound
+    )
+    two_coordinate_projective_equal_pair_sqrt_l1_bound = (
+        two_coordinate_projective_equal_pair_sqrt_constant
+        * two_coordinate_projective_equal_pair_l1_bound
     )
     return {
         "jacobi_l1_bound": jacobi_l1_bound,
@@ -2100,6 +2126,21 @@ def depth_two_kummer_error_l1_split(
         "two_coordinate_coordinate_diagonal_sqrt_l1_bound": (
             two_coordinate_coordinate_diagonal_sqrt_l1_bound
         ),
+        "two_coordinate_projective_equal_pair_l1_bound": (
+            two_coordinate_projective_equal_pair_l1_bound
+        ),
+        "two_coordinate_projective_equal_pair_error_constant": (
+            two_coordinate_projective_equal_pair_constant
+        ),
+        "two_coordinate_projective_equal_pair_sqrt_constant": (
+            two_coordinate_projective_equal_pair_sqrt_constant
+        ),
+        "two_coordinate_projective_equal_pair_leading_l1_drop": (
+            projective_equal_pair_leading_l1_drop
+        ),
+        "two_coordinate_projective_equal_pair_sqrt_l1_bound": (
+            two_coordinate_projective_equal_pair_sqrt_l1_bound
+        ),
         "three_coordinate_kummer_l1_bound": three_coordinate_kummer_l1_bound,
         "three_coordinate_kummer_error_constant": nonprincipal_constant,
         "kummer_l1_bound": kummer_l1_bound,
@@ -2109,6 +2150,9 @@ def depth_two_kummer_error_l1_split(
         ),
         "coordinate_diagonal_conditional_weighted_error_l1_bound": (
             coordinate_diagonal_conditional_weighted_error_l1_bound
+        ),
+        "projective_equal_pair_conditional_weighted_error_l1_bound": (
+            projective_equal_pair_conditional_weighted_error_l1_bound
         ),
     }
 
@@ -2175,6 +2219,10 @@ def raw_two_coordinate_projective_l1_split_formula(
         character_order,
         square_coset_index,
     )
+    projective_equal_pair = projective_equal_pair_count(
+        character_order,
+        square_coset_index,
+    )
     diagonal_failures = coordinate_diagonal_parameter_failure_counts(
         character_order,
         square_coset_index,
@@ -2182,6 +2230,10 @@ def raw_two_coordinate_projective_l1_split_formula(
     if equal_line_diagonal > coordinate_diagonal:
         raise ValueError(
             (character_order, square_coset_index, equal_line_diagonal)
+        )
+    if coordinate_diagonal > projective_equal_pair:
+        raise ValueError(
+            (character_order, square_coset_index, projective_equal_pair)
         )
     if any(diagonal_failures.values()):
         raise ValueError(
@@ -2206,6 +2258,12 @@ def raw_two_coordinate_projective_l1_split_formula(
         ),
         "two_coordinate_coordinate_diagonal_non_equal_l1_bound": (
             active_pair_count * (coordinate_diagonal - equal_line_diagonal)
+        ),
+        "two_coordinate_projective_equal_pair_l1_bound": (
+            active_pair_count * projective_equal_pair
+        ),
+        "two_coordinate_projective_equal_pair_non_coordinate_l1_bound": (
+            active_pair_count * (projective_equal_pair - coordinate_diagonal)
         ),
         "two_coordinate_coordinate_diagonal_alpha_square_trivial_count": 0,
         "two_coordinate_coordinate_diagonal_2f1_cancellation_count": 0,
@@ -2270,6 +2328,23 @@ def coordinate_diagonal_pair_count(
                 continue
             count += 1
     return count
+
+
+def projective_equal_pair_count(
+    character_order: int,
+    square_coset_index: int,
+) -> int:
+    """Count ramified terms with some equal projective line pair."""
+
+    coordinate = coordinate_diagonal_pair_count(
+        character_order,
+        square_coset_index,
+    )
+    equal_line = equal_line_diagonal_pair_count_formula(
+        character_order,
+        square_coset_index,
+    )
+    return 3 * coordinate - 2 * equal_line
 
 
 def equal_line_diagonal_pair_count_formula(
@@ -2378,6 +2453,11 @@ def slack_two_second_kummer_saturation_data(
                 "two_coordinate_coordinate_diagonal_l1_bound"
             ]
         ),
+        two_coordinate_projective_equal_pair_l1_bound=int(
+            two_coordinate_projective_split[
+                "two_coordinate_projective_equal_pair_l1_bound"
+            ]
+        ),
     )
     open_sqrt_error_bound = depth_two_open_sqrt_error_bound(
         p,
@@ -2410,6 +2490,17 @@ def slack_two_second_kummer_saturation_data(
     coordinate_diagonal_conditional_sqrt_error_bound = (
         ceil_sqrt(p) * coordinate_diagonal_conditional_sqrt_weight
     )
+    projective_equal_pair_conditional_sqrt_weight = (
+        total_sqrt_weight
+        + int(
+            error_split[
+                "two_coordinate_projective_equal_pair_sqrt_l1_bound"
+            ]
+        )
+    )
+    projective_equal_pair_conditional_sqrt_error_bound = (
+        ceil_sqrt(p) * projective_equal_pair_conditional_sqrt_weight
+    )
     uniform_prime_threshold = kummer_quadratic_uniform_prime_threshold(
         principal_weight=1,
         linear_error_weight=(
@@ -2441,6 +2532,20 @@ def slack_two_second_kummer_saturation_data(
             sqrt_error_weight=coordinate_diagonal_conditional_sqrt_weight,
         )
     )
+    projective_equal_pair_conditional_uniform_prime_threshold = (
+        kummer_quadratic_uniform_prime_threshold(
+            principal_weight=1,
+            linear_error_weight=(
+                int(
+                    error_split[
+                        "projective_equal_pair_conditional_weighted_error_l1_bound"
+                    ]
+                )
+                + 6 * denominator
+            ),
+            sqrt_error_weight=projective_equal_pair_conditional_sqrt_weight,
+        )
+    )
     chi_minus_three = quadratic_character(-3, p)
     principal_exact_count = p * p - 4 * p + 6 + 4 * chi_minus_three
     degeneracy_line_count = 6
@@ -2463,6 +2568,16 @@ def slack_two_second_kummer_saturation_data(
             ]
         )
         + coordinate_diagonal_conditional_sqrt_error_bound
+        + degeneracy_line_union_count * denominator
+    )
+    projective_equal_pair_conditional_lower_numerator = principal_exact_count - (
+        p
+        * int(
+            error_split[
+                "projective_equal_pair_conditional_weighted_error_l1_bound"
+            ]
+        )
+        + projective_equal_pair_conditional_sqrt_error_bound
         + degeneracy_line_union_count * denominator
     )
     admissible_per_coset_lower_bound = (
@@ -2490,6 +2605,16 @@ def slack_two_second_kummer_saturation_data(
         if coordinate_diagonal_conditional_lower_numerator > 0
         else 0
     )
+    projective_equal_pair_conditional_admissible_per_coset_lower_bound = (
+        (
+            projective_equal_pair_conditional_lower_numerator
+            + denominator
+            - 1
+        )
+        // denominator
+        if projective_equal_pair_conditional_lower_numerator > 0
+        else 0
+    )
     return {
         "character_order": character_order,
         "square_kernel_index": square_kernel_index,
@@ -2513,6 +2638,9 @@ def slack_two_second_kummer_saturation_data(
             "CONDITIONAL / not consumed by saturation_certificate"
         ),
         "coordinate_diagonal_conditional_import_status": (
+            "CONDITIONAL / not consumed by saturation_certificate"
+        ),
+        "projective_equal_pair_conditional_import_status": (
             "CONDITIONAL / not consumed by saturation_certificate"
         ),
         "equal_line_conditional_sqrt_error_weight": (
@@ -2540,6 +2668,21 @@ def slack_two_second_kummer_saturation_data(
             )
             + coordinate_diagonal_conditional_sqrt_error_bound
         ),
+        "projective_equal_pair_conditional_sqrt_error_weight": (
+            projective_equal_pair_conditional_sqrt_weight
+        ),
+        "projective_equal_pair_conditional_sqrt_error_bound": (
+            projective_equal_pair_conditional_sqrt_error_bound
+        ),
+        "projective_equal_pair_conditional_weighted_error_total_bound": (
+            p
+            * int(
+                error_split[
+                    "projective_equal_pair_conditional_weighted_error_l1_bound"
+                ]
+            )
+            + projective_equal_pair_conditional_sqrt_error_bound
+        ),
         "conic_error_constant": 1,
         "two_coordinate_coordinate_diagonal_l1_bound": int(
             two_coordinate_projective_split[
@@ -2559,6 +2702,16 @@ def slack_two_second_kummer_saturation_data(
         "two_coordinate_coordinate_diagonal_2f1_cancellation_count": int(
             two_coordinate_projective_split[
                 "two_coordinate_coordinate_diagonal_2f1_cancellation_count"
+            ]
+        ),
+        "two_coordinate_projective_equal_pair_l1_bound": int(
+            two_coordinate_projective_split[
+                "two_coordinate_projective_equal_pair_l1_bound"
+            ]
+        ),
+        "two_coordinate_projective_equal_pair_non_coordinate_l1_bound": int(
+            two_coordinate_projective_split[
+                "two_coordinate_projective_equal_pair_non_coordinate_l1_bound"
             ]
         ),
         "divisor_power_failure_count": 0,
@@ -2582,6 +2735,12 @@ def slack_two_second_kummer_saturation_data(
         "coordinate_diagonal_conditional_uniform_threshold_applies": (
             p >= coordinate_diagonal_conditional_uniform_prime_threshold
         ),
+        "projective_equal_pair_conditional_uniform_prime_threshold": (
+            projective_equal_pair_conditional_uniform_prime_threshold
+        ),
+        "projective_equal_pair_conditional_uniform_threshold_applies": (
+            p >= projective_equal_pair_conditional_uniform_prime_threshold
+        ),
         "nonprincipal_constant": nonprincipal_constant,
         "principal_chi_minus_three": chi_minus_three,
         "principal_exact_count": principal_exact_count,
@@ -2595,6 +2754,9 @@ def slack_two_second_kummer_saturation_data(
         "coordinate_diagonal_conditional_lower_numerator": (
             coordinate_diagonal_conditional_lower_numerator
         ),
+        "projective_equal_pair_conditional_lower_numerator": (
+            projective_equal_pair_conditional_lower_numerator
+        ),
         "admissible_per_coset_lower_bound": (
             admissible_per_coset_lower_bound
         ),
@@ -2604,12 +2766,18 @@ def slack_two_second_kummer_saturation_data(
         "coordinate_diagonal_conditional_admissible_per_coset_lower_bound": (
             coordinate_diagonal_conditional_admissible_per_coset_lower_bound
         ),
+        "projective_equal_pair_conditional_admissible_per_coset_lower_bound": (
+            projective_equal_pair_conditional_admissible_per_coset_lower_bound
+        ),
         "saturation_certificate": admissible_per_coset_lower_bound > 0,
         "equal_line_conditional_saturation_certificate": (
             equal_line_conditional_admissible_per_coset_lower_bound > 0
         ),
         "coordinate_diagonal_conditional_saturation_certificate": (
             coordinate_diagonal_conditional_admissible_per_coset_lower_bound > 0
+        ),
+        "projective_equal_pair_conditional_saturation_certificate": (
+            projective_equal_pair_conditional_admissible_per_coset_lower_bound > 0
         ),
     }
 
@@ -6893,6 +7061,30 @@ def scan_supports(
         ),
         (
             "canonical_slack_two_second_kummer_"
+            "projective_equal_pair_l1_bound"
+        ): (
+            int(
+                slack_two_second_kummer_saturation[
+                    "two_coordinate_projective_equal_pair_l1_bound"
+                ]
+            )
+            if slack_two_second_kummer_saturation is not None
+            else None
+        ),
+        (
+            "canonical_slack_two_second_kummer_"
+            "projective_equal_pair_non_coordinate_l1_bound"
+        ): (
+            int(
+                slack_two_second_kummer_saturation[
+                    "two_coordinate_projective_equal_pair_non_coordinate_l1_bound"
+                ]
+            )
+            if slack_two_second_kummer_saturation is not None
+            else None
+        ),
+        (
+            "canonical_slack_two_second_kummer_"
             "coordinate_diagonal_alpha_square_trivial_count"
         ): (
             int(
@@ -6939,6 +7131,18 @@ def scan_supports(
             else None
         ),
         (
+            "canonical_slack_two_second_kummer_"
+            "projective_equal_pair_leading_l1_drop"
+        ): (
+            int(
+                slack_two_second_kummer_saturation[
+                    "two_coordinate_projective_equal_pair_leading_l1_drop"
+                ]
+            )
+            if slack_two_second_kummer_saturation is not None
+            else None
+        ),
+        (
             "canonical_slack_two_second_kummer_equal_line_"
             "conditional_weighted_error_l1_bound"
         ): (
@@ -6957,6 +7161,18 @@ def scan_supports(
             int(
                 slack_two_second_kummer_saturation[
                     "coordinate_diagonal_conditional_weighted_error_l1_bound"
+                ]
+            )
+            if slack_two_second_kummer_saturation is not None
+            else None
+        ),
+        (
+            "canonical_slack_two_second_kummer_projective_equal_pair_"
+            "conditional_weighted_error_l1_bound"
+        ): (
+            int(
+                slack_two_second_kummer_saturation[
+                    "projective_equal_pair_conditional_weighted_error_l1_bound"
                 ]
             )
             if slack_two_second_kummer_saturation is not None
@@ -6992,12 +7208,36 @@ def scan_supports(
             else None
         ),
         (
+            "canonical_slack_two_second_kummer_projective_equal_pair_"
+            "conditional_sqrt_error_bound"
+        ): (
+            int(
+                slack_two_second_kummer_saturation[
+                    "projective_equal_pair_conditional_sqrt_error_bound"
+                ]
+            )
+            if slack_two_second_kummer_saturation is not None
+            else None
+        ),
+        (
             "canonical_slack_two_second_kummer_coordinate_diagonal_"
             "conditional_saturation_certificate"
         ): (
             bool(
                 slack_two_second_kummer_saturation[
                     "coordinate_diagonal_conditional_saturation_certificate"
+                ]
+            )
+            if slack_two_second_kummer_saturation is not None
+            else None
+        ),
+        (
+            "canonical_slack_two_second_kummer_projective_equal_pair_"
+            "conditional_saturation_certificate"
+        ): (
+            bool(
+                slack_two_second_kummer_saturation[
+                    "projective_equal_pair_conditional_saturation_certificate"
                 ]
             )
             if slack_two_second_kummer_saturation is not None

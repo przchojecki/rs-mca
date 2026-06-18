@@ -308,17 +308,18 @@ theorem-grade.
 
 The same symmetric-coordinate reduction covers the larger coordinate-diagonal
 submass where the two active coordinate-line monodromies are equal, but the
-line at infinity is not necessarily equal to them.  The verifier now reports
-this diagonal mass and the non-equal remainder separately.  This broader
-diagonal slice now has the same conditional `4p+3sqrt(p)` ledger: in the
-ramified diagonal remainder, `alpha^2=1` would force trivial infinity
-monodromy, and the possible `2F1` cancellations `alpha=mu` or
-`alpha=chi_2` are excluded.  The finite local conductor entries are uniform as
-well: the `s=0` character is `mu^2` after the quadratic pullback, and the
-`mu^2=1` cases are precisely the projective-reciprocal terms already removed;
-the two `C(s)=0` roots cost at most one each.  The active certificate remains
-conservative, but the reported conditional ledger now includes the full
-`C_2^diag` mass, not only `C_2^eq`.
+line at infinity is not necessarily equal to them.  A projective chart change
+extends this again to the mass `C_2^peq` where any two projective line
+monodromies are equal; inclusion-exclusion gives
+`C_2^peq = 3C_2^diag - 2C_2^eq`.  This broader slice now has the same
+conditional `4p+3sqrt(p)` ledger: in the ramified diagonal chart,
+`alpha^2=1` would force trivial infinity monodromy, and the possible `2F1`
+cancellations `alpha=mu` or `alpha=chi_2` are excluded.  The finite local
+conductor entries are uniform as well: the `s=0` character is `mu^2` after
+the quadratic pullback, and the `mu^2=1` cases are precisely the projective
+reciprocal terms already removed; the two `C(s)=0` roots cost at most one
+each.  The active certificate remains conservative, but the reported
+conditional ledger now includes the full `C_2^peq` mass, not only `C_2^eq`.
 
 ### `2F1` Local-Monodromy Import Consumed by the Equal-Line Audit
 
@@ -369,7 +370,7 @@ costs one tame conductor unit.  This is the sole imported fact behind the
 corrected rank-two ledgers `1+2+2+2=7` and `1+2+2+2+0=7`, and the
 rank-four pushforward ledger `2+1+2+2+4=11`.  It does not by itself change
 the active certificate constants; it records the exact theorem that must be
-accepted before the audited `C_2^eq` improvement is promoted from the
+accepted before the audited `C_2^peq` improvement is promoted from the
 conditional ledger into the consumed certificate.
 
 The finite audit

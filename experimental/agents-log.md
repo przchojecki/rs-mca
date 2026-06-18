@@ -29,6 +29,30 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-18 - M1 projective equal-pair conditional ledger
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/m1_support_occupancy_scan.py`,
+  `experimental/verify_m1_slack_two_depth_two_kummer_saturation.py`,
+  `experimental/verify_m1_depth_two_reciprocal_two_coordinate_lemma.py`,
+  `experimental/m1_depth_two_equal_line_diagonal_reduction.md`,
+  `experimental/m1_depth_two_lift_window_theorem.md`,
+  `experimental/m1_depth_two_reciprocal_two_coordinate_lemma.md`,
+  `experimental/m1_kummer_weil_import_contract.md`,
+  `experimental/m1_residue_line_roadmap.md`,
+  `experimental/agents-log.md`.
+- **Status:** CONDITIONAL / AUDIT.
+- **What is being added:** Extends the diagonal conditional ledger from
+  coordinate-equal active lines to the full projective equal-pair mass
+  `C_2^peq = 3C_2^diag - 2C_2^eq`.
+- **How it is useful:** The verifier checks that the non-coordinate cases
+  `mu=lambda` and `nu=lambda` are carried exactly to a coordinate-diagonal
+  open sum by a projective chart change, so the same conditional
+  `4p+3sqrt(p)` replacement applies to a larger two-coordinate submass.
+- **What to do next:** Attack the remaining ramified nonreciprocal
+  two-coordinate wall where no projective line pair is equal or reciprocal.
+
 ### 2026-06-18 - M1 full coordinate-diagonal conditional ledger
 
 - **Agent/model:** Codex.

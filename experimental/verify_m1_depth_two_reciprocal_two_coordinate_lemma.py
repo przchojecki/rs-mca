@@ -247,6 +247,24 @@ def reciprocal_chart_exponents(
     return chart_exponents
 
 
+def equal_pair_chart_exponents(
+    e: int,
+    h: int,
+    a: int,
+    b: int,
+    d: int,
+) -> List[int]:
+    first = common_exponent(e, h, a)
+    second = common_exponent(e, h, b)
+    infinity = infinity_exponent(e, h, a, b, d)
+    chart_exponents: List[int] = []
+    if first == infinity:
+        chart_exponents.append(a)
+    if second == infinity:
+        chart_exponents.append(b)
+    return chart_exponents
+
+
 def expected_reciprocal_core(
     p: int,
     mu_inv: List[complex],
@@ -275,6 +293,7 @@ def audit_sample(p: int, n: int) -> Dict[str, object]:
     nonquadratic_checked = 0
     quadratic_checked = 0
     projective_checked = 0
+    projective_equal_checked = 0
     max_core_ratio = 0.0
     max_open_ratio = 0.0
     max_line_ratio = 0.0
@@ -508,6 +527,79 @@ def audit_sample(p: int, n: int) -> Dict[str, object]:
                             abs(line) / math.sqrt(p),
                         )
 
+                    for chart_exponent in equal_pair_chart_exponents(
+                        e,
+                        h,
+                        first_exponent,
+                        second_exponent,
+                        eta_exponent,
+                    ):
+                        chart_char = char_e[chart_exponent]
+                        core = direct_core(
+                            p,
+                            active_pair,
+                            first_char,
+                            second_char,
+                            eta,
+                        )
+                        opened = direct_open(
+                            p,
+                            active_pair,
+                            first_char,
+                            second_char,
+                            eta,
+                        )
+                        chart_core = direct_core(
+                            p,
+                            (0, 1),
+                            chart_char,
+                            chart_char,
+                            eta,
+                        )
+                        chart_open = direct_open(
+                            p,
+                            (0, 1),
+                            chart_char,
+                            chart_char,
+                            eta,
+                        )
+                        max_identity_error = max(
+                            max_identity_error,
+                            abs(core - chart_core),
+                            abs(opened - chart_open),
+                        )
+                        if abs(core - chart_core) > 1e-8:
+                            raise AssertionError(
+                                (
+                                    p,
+                                    n,
+                                    active_pair,
+                                    first_exponent,
+                                    second_exponent,
+                                    eta_exponent,
+                                    chart_exponent,
+                                    core,
+                                    chart_core,
+                                )
+                            )
+                        if abs(opened - chart_open) > 1e-8:
+                            raise AssertionError(
+                                (
+                                    p,
+                                    n,
+                                    active_pair,
+                                    first_exponent,
+                                    second_exponent,
+                                    eta_exponent,
+                                    chart_exponent,
+                                    opened,
+                                    chart_open,
+                                )
+                            )
+                        projective_equal_checked += 1
+                        max_core_ratio = max(max_core_ratio, abs(core) / p)
+                        max_open_ratio = max(max_open_ratio, abs(opened) / p)
+
     return {
         "p": p,
         "n": n,
@@ -515,6 +607,7 @@ def audit_sample(p: int, n: int) -> Dict[str, object]:
         "h": h,
         "checked": checked,
         "projective_checked": projective_checked,
+        "projective_equal_checked": projective_equal_checked,
         "quadratic_checked": quadratic_checked,
         "nonquadratic_checked": nonquadratic_checked,
         "max_core_ratio_to_p": round(max_core_ratio, 10),

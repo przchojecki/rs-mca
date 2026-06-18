@@ -190,6 +190,32 @@ still costs at most `3 sqrt(p)`. Thus the unresolved two-coordinate wall can
 be restricted further to the case where all three projective line monodromies
 are nonprincipal and no pair among them is reciprocal.
 
+## Projective Equal Line Pairs
+
+The same projective chart bookkeeping applies to equal, rather than
+reciprocal, projective line monodromies.  If `mu=lambda` or `nu=lambda`, then
+choose the equal pair as the affine coordinate axes.  The open sum is carried
+exactly to a coordinate-diagonal open sum with the same conic character:
+
+```text
+S_{mu,nu,eta}^{open} = S_{theta,theta,eta}^{open}
+```
+
+for the common projective line character `theta`.  The case `mu=nu` is the
+original coordinate-diagonal chart.  Therefore the diagonal conductor audit in
+`experimental/m1_depth_two_equal_line_diagonal_reduction.md` applies to the
+whole projective equal-pair slice.
+
+For one active chart, the equal-pair union has the inclusion-exclusion count
+
+```text
+#{some equal projective line pair}
+  = 3 #{mu=nu} - 2 #{mu=nu=lambda}.
+```
+
+This is the `C_2^peq = 3C_2^diag - 2C_2^eq` mass reported by the saturation
+verifier.
+
 The finite verifier
 
 ```bash
@@ -197,5 +223,5 @@ python3 experimental/verify_m1_depth_two_reciprocal_two_coordinate_lemma.py
 ```
 
 checks the exact ratio identities, the projective reciprocal chart changes,
-the line decomposition, and the claimed finite bounds on representative
-Kummer-audit samples.
+the projective equal-pair chart changes, the line decomposition, and the
+claimed finite bounds on representative Kummer-audit samples.

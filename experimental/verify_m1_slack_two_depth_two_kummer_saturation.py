@@ -168,6 +168,7 @@ def raw_two_coordinate_projective_l1_split(
     coordinate_diagonal = 0
     coordinate_diagonal_alpha_square_trivial = 0
     coordinate_diagonal_2f1_cancellation = 0
+    projective_equal_pair = 0
     equal_line_diagonal = 0
     for first_exponent in range(1, character_order):
         for second_exponent in range(1, character_order):
@@ -187,6 +188,11 @@ def raw_two_coordinate_projective_l1_split(
                     projective_reciprocal += 1
                 else:
                     ramified_nonreciprocal += 1
+                    has_projective_equal_pair = (
+                        first == second
+                        or first == infinity
+                        or second == infinity
+                    )
                     if first == second:
                         coordinate_diagonal += 1
                         alpha = (first + conic_exponent) % square_coset_index
@@ -197,6 +203,8 @@ def raw_two_coordinate_projective_l1_split(
                             and alpha == square_coset_index // 2
                         ):
                             coordinate_diagonal_2f1_cancellation += 1
+                    if has_projective_equal_pair:
+                        projective_equal_pair += 1
                     if first == second == infinity:
                         equal_line_diagonal += 1
     active_pair_count = 3
@@ -213,6 +221,10 @@ def raw_two_coordinate_projective_l1_split(
         ),
         "coordinate_diagonal_2f1_cancellation_count": (
             active_pair_count * coordinate_diagonal_2f1_cancellation
+        ),
+        "projective_equal_pair": active_pair_count * projective_equal_pair,
+        "projective_equal_pair_non_coordinate": (
+            active_pair_count * (projective_equal_pair - coordinate_diagonal)
         ),
         "equal_line_diagonal": active_pair_count * equal_line_diagonal,
     }
@@ -263,6 +275,21 @@ def coordinate_diagonal_pair_count_formula(
                 continue
             count += 1
     return count
+
+
+def projective_equal_pair_count_formula(
+    character_order: int,
+    square_coset_index: int,
+) -> int:
+    coordinate = coordinate_diagonal_pair_count_formula(
+        character_order,
+        square_coset_index,
+    )
+    equal_line = equal_line_diagonal_pair_count_formula(
+        character_order,
+        square_coset_index,
+    )
+    return 3 * coordinate - 2 * equal_line
 
 
 def coordinate_diagonal_parameter_failure_counts(
@@ -359,6 +386,26 @@ def raw_two_coordinate_projective_l1_split_formula(
         ),
         "coordinate_diagonal_alpha_square_trivial_count": 0,
         "coordinate_diagonal_2f1_cancellation_count": 0,
+        "projective_equal_pair": (
+            3
+            * projective_equal_pair_count_formula(
+                character_order,
+                square_coset_index,
+            )
+        ),
+        "projective_equal_pair_non_coordinate": (
+            3
+            * (
+                projective_equal_pair_count_formula(
+                    character_order,
+                    square_coset_index,
+                )
+                - coordinate_diagonal_pair_count_formula(
+                    character_order,
+                    square_coset_index,
+                )
+            )
+        ),
         "equal_line_diagonal": (
             3
             * equal_line_diagonal_pair_count_formula(
@@ -763,6 +810,9 @@ def main() -> None:
         two_coordinate_coordinate_diagonal_l1_bound = int(
             two_coordinate_projective_split["coordinate_diagonal"]
         )
+        two_coordinate_projective_equal_pair_l1_bound = int(
+            two_coordinate_projective_split["projective_equal_pair"]
+        )
         two_coordinate_ramified_l1_bound = (
             two_coordinate_kummer_l1_bound
             - two_coordinate_infinity_unramified_l1_bound
@@ -902,6 +952,20 @@ def main() -> None:
             ]
         ):
             raise AssertionError((p, n, two_coordinate_projective_split, certificate))
+        if int(two_coordinate_projective_split["projective_equal_pair"]) != int(
+            certificate["two_coordinate_projective_equal_pair_l1_bound"]
+        ):
+            raise AssertionError((p, n, two_coordinate_projective_split, certificate))
+        if int(
+            two_coordinate_projective_split[
+                "projective_equal_pair_non_coordinate"
+            ]
+        ) != int(
+            certificate[
+                "two_coordinate_projective_equal_pair_non_coordinate_l1_bound"
+            ]
+        ):
+            raise AssertionError((p, n, two_coordinate_projective_split, certificate))
         if three_coordinate_kummer_l1_bound != int(
             certificate["three_coordinate_kummer_l1_bound"]
         ):
@@ -942,6 +1006,10 @@ def main() -> None:
             raise AssertionError((p, n, certificate))
         if int(certificate["two_coordinate_coordinate_diagonal_sqrt_constant"]) != 3:
             raise AssertionError((p, n, certificate))
+        if int(certificate["two_coordinate_projective_equal_pair_error_constant"]) != 4:
+            raise AssertionError((p, n, certificate))
+        if int(certificate["two_coordinate_projective_equal_pair_sqrt_constant"]) != 3:
+            raise AssertionError((p, n, certificate))
         if int(certificate["two_coordinate_kummer_error_constant"]) != 9:
             raise AssertionError((p, n, certificate))
         if int(certificate["three_coordinate_kummer_error_constant"]) != int(
@@ -961,6 +1029,12 @@ def main() -> None:
         )
         coordinate_diagonal_conditional_weighted_error_l1_bound = (
             weighted_error_l1_bound - coordinate_diagonal_leading_l1_drop
+        )
+        projective_equal_pair_leading_l1_drop = (
+            5 * two_coordinate_projective_equal_pair_l1_bound
+        )
+        projective_equal_pair_conditional_weighted_error_l1_bound = (
+            weighted_error_l1_bound - projective_equal_pair_leading_l1_drop
         )
         if equal_line_leading_l1_drop != int(
             certificate["two_coordinate_equal_line_leading_l1_drop"]
@@ -993,6 +1067,23 @@ def main() -> None:
                     p,
                     n,
                     coordinate_diagonal_conditional_weighted_error_l1_bound,
+                    certificate,
+                )
+            )
+        if projective_equal_pair_leading_l1_drop != int(
+            certificate["two_coordinate_projective_equal_pair_leading_l1_drop"]
+        ):
+            raise AssertionError(
+                (p, n, projective_equal_pair_leading_l1_drop, certificate)
+            )
+        if projective_equal_pair_conditional_weighted_error_l1_bound != int(
+            certificate["projective_equal_pair_conditional_weighted_error_l1_bound"]
+        ):
+            raise AssertionError(
+                (
+                    p,
+                    n,
+                    projective_equal_pair_conditional_weighted_error_l1_bound,
                     certificate,
                 )
             )
@@ -1054,6 +1145,12 @@ def main() -> None:
         coordinate_diagonal_conditional_sqrt_error_bound = (
             sqrt_error_bound + coordinate_diagonal_sqrt_error_bound
         )
+        projective_equal_pair_sqrt_error_bound = (
+            3 * ceil_sqrt(p) * two_coordinate_projective_equal_pair_l1_bound
+        )
+        projective_equal_pair_conditional_sqrt_error_bound = (
+            sqrt_error_bound + projective_equal_pair_sqrt_error_bound
+        )
         if sqrt_error_bound != int(certificate["sqrt_error_bound"]):
             raise AssertionError((p, n, sqrt_error_bound, certificate))
         if equal_line_sqrt_error_bound != (
@@ -1072,6 +1169,17 @@ def main() -> None:
             raise AssertionError(
                 (p, n, coordinate_diagonal_sqrt_error_bound, certificate)
             )
+        if projective_equal_pair_sqrt_error_bound != (
+            ceil_sqrt(p)
+            * int(
+                certificate[
+                    "two_coordinate_projective_equal_pair_sqrt_l1_bound"
+                ]
+            )
+        ):
+            raise AssertionError(
+                (p, n, projective_equal_pair_sqrt_error_bound, certificate)
+            )
         if equal_line_conditional_sqrt_error_bound != int(
             certificate["equal_line_conditional_sqrt_error_bound"]
         ):
@@ -1089,6 +1197,17 @@ def main() -> None:
                     certificate,
                 )
             )
+        if projective_equal_pair_conditional_sqrt_error_bound != int(
+            certificate["projective_equal_pair_conditional_sqrt_error_bound"]
+        ):
+            raise AssertionError(
+                (
+                    p,
+                    n,
+                    projective_equal_pair_conditional_sqrt_error_bound,
+                    certificate,
+                )
+            )
         weighted_error_total_bound = (
             p * weighted_error_l1_bound + sqrt_error_bound
         )
@@ -1099,6 +1218,10 @@ def main() -> None:
         coordinate_diagonal_conditional_weighted_error_total_bound = (
             p * coordinate_diagonal_conditional_weighted_error_l1_bound
             + coordinate_diagonal_conditional_sqrt_error_bound
+        )
+        projective_equal_pair_conditional_weighted_error_total_bound = (
+            p * projective_equal_pair_conditional_weighted_error_l1_bound
+            + projective_equal_pair_conditional_sqrt_error_bound
         )
         if weighted_error_total_bound != int(
             certificate["weighted_error_total_bound"]
@@ -1130,6 +1253,19 @@ def main() -> None:
                     certificate,
                 )
             )
+        if projective_equal_pair_conditional_weighted_error_total_bound != int(
+            certificate[
+                "projective_equal_pair_conditional_weighted_error_total_bound"
+            ]
+        ):
+            raise AssertionError(
+                (
+                    p,
+                    n,
+                    projective_equal_pair_conditional_weighted_error_total_bound,
+                    certificate,
+                )
+            )
         lower_numerator = principal_count - (
             p * weighted_error_l1_bound
             + sqrt_error_bound
@@ -1143,6 +1279,11 @@ def main() -> None:
         coordinate_diagonal_conditional_lower_numerator = principal_count - (
             p * coordinate_diagonal_conditional_weighted_error_l1_bound
             + coordinate_diagonal_conditional_sqrt_error_bound
+            + degeneracy_count * int(certificate["denominator"])
+        )
+        projective_equal_pair_conditional_lower_numerator = principal_count - (
+            p * projective_equal_pair_conditional_weighted_error_l1_bound
+            + projective_equal_pair_conditional_sqrt_error_bound
             + degeneracy_count * int(certificate["denominator"])
         )
         if lower_numerator != int(certificate["lower_numerator"]):
@@ -1161,6 +1302,17 @@ def main() -> None:
                     p,
                     n,
                     coordinate_diagonal_conditional_lower_numerator,
+                    certificate,
+                )
+            )
+        if projective_equal_pair_conditional_lower_numerator != int(
+            certificate["projective_equal_pair_conditional_lower_numerator"]
+        ):
+            raise AssertionError(
+                (
+                    p,
+                    n,
+                    projective_equal_pair_conditional_lower_numerator,
                     certificate,
                 )
             )
@@ -1222,6 +1374,34 @@ def main() -> None:
                     certificate,
                 )
             )
+        projective_equal_pair_conditional_expected_threshold = (
+            kummer_quadratic_uniform_prime_threshold(
+                1,
+                (
+                    projective_equal_pair_conditional_weighted_error_l1_bound
+                    + int(certificate["degeneracy_line_count"])
+                    * int(certificate["denominator"])
+                ),
+                sqrt_error_weight=int(
+                    certificate[
+                        "projective_equal_pair_conditional_sqrt_error_weight"
+                    ]
+                ),
+            )
+        )
+        if projective_equal_pair_conditional_expected_threshold != int(
+            certificate[
+                "projective_equal_pair_conditional_uniform_prime_threshold"
+            ]
+        ):
+            raise AssertionError(
+                (
+                    p,
+                    n,
+                    projective_equal_pair_conditional_expected_threshold,
+                    certificate,
+                )
+            )
         nonzero_coset_count, total_coset_count = square_coset_counts(p, domain)
         saturates = nonzero_coset_count == total_coset_count
         certificate_positive = bool(certificate["saturation_certificate"])
@@ -1230,6 +1410,9 @@ def main() -> None:
         )
         coordinate_diagonal_conditional_certificate_positive = bool(
             certificate["coordinate_diagonal_conditional_saturation_certificate"]
+        )
+        projective_equal_pair_conditional_certificate_positive = bool(
+            certificate["projective_equal_pair_conditional_saturation_certificate"]
         )
         if certificate_positive != expected_certificate:
             raise AssertionError((p, n, certificate))
@@ -1245,11 +1428,22 @@ def main() -> None:
             ]
         ) != coordinate_diagonal_conditional_certificate_positive:
             raise AssertionError((p, n, certificate))
+        if bool(
+            certificate[
+                "projective_equal_pair_conditional_uniform_threshold_applies"
+            ]
+        ) != projective_equal_pair_conditional_certificate_positive:
+            raise AssertionError((p, n, certificate))
         if certificate_positive and not equal_line_conditional_certificate_positive:
             raise AssertionError((p, n, certificate))
         if (
             equal_line_conditional_certificate_positive
             and not coordinate_diagonal_conditional_certificate_positive
+        ):
+            raise AssertionError((p, n, certificate))
+        if (
+            coordinate_diagonal_conditional_certificate_positive
+            and not projective_equal_pair_conditional_certificate_positive
         ):
             raise AssertionError((p, n, certificate))
         if certificate_positive and not saturates:
@@ -1286,6 +1480,10 @@ def main() -> None:
         coordinate_diagonal_non_equal_l1 = int(
             direct_split["coordinate_diagonal_non_equal"]
         )
+        projective_equal_pair_l1 = int(direct_split["projective_equal_pair"])
+        projective_equal_pair_non_coordinate_l1 = int(
+            direct_split["projective_equal_pair_non_coordinate"]
+        )
         ramified_l1 = int(direct_split["ramified_nonreciprocal"])
         if equal_line_l1 > ramified_l1:
             raise AssertionError((character_order, square_coset_index, direct_split))
@@ -1295,18 +1493,28 @@ def main() -> None:
             coordinate_diagonal_l1 - equal_line_l1
         ):
             raise AssertionError((character_order, square_coset_index, direct_split))
+        if not coordinate_diagonal_l1 <= projective_equal_pair_l1 <= ramified_l1:
+            raise AssertionError((character_order, square_coset_index, direct_split))
+        if projective_equal_pair_non_coordinate_l1 != (
+            projective_equal_pair_l1 - coordinate_diagonal_l1
+        ):
+            raise AssertionError((character_order, square_coset_index, direct_split))
         equal_line_checked.append(
             (
                 character_order,
                 square_coset_index,
                 coordinate_diagonal_l1,
                 coordinate_diagonal_non_equal_l1,
+                projective_equal_pair_l1,
+                projective_equal_pair_non_coordinate_l1,
                 equal_line_l1,
                 ramified_l1,
                 5 * equal_line_l1,
                 3 * equal_line_l1,
                 5 * coordinate_diagonal_l1,
                 3 * coordinate_diagonal_l1,
+                5 * projective_equal_pair_l1,
+                3 * projective_equal_pair_l1,
             )
         )
     lift_checked = []
