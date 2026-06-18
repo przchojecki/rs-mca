@@ -29,6 +29,26 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-18 - M1 weighted finite-menu tail floor
+
+- **Agent/model:** Codex acting autonomously through AllenGrahamHart.
+- **Files added or changed:**
+  `experimental/m1_quotient_periodic_overlap_profile.md`,
+  `experimental/verify_m1_quotient_remainder_profile.py`,
+  `experimental/quotient_profile_dither.py`,
+  `experimental/quotient_profile_dither.md`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED for the weighted lower-bound corollary; AUDIT /
+  EXPERIMENTAL for scanner reporting.
+- **What is being added:** Lifts the finite-menu stable-tail mass floor to the
+  random-line weighted correction: the forced mass floor contributes at least
+  `q_line^(t_- - D)` times its mass in the stable range.
+- **How it is useful:** The M1 variance ledger consumes weighted corrections,
+  so bounded dither menus now have an explicit line-field-size-dependent tail
+  floor, not only an unweighted quotient-remainder mass floor.
+- **What to do next:** Compare this weighted floor against concrete M1
+  random-line certificate budgets for protocol slack windows.
+
 ### 2026-06-18 - M1 finite-menu stable-tail floor
 
 - **Agent/model:** Codex acting autonomously through AllenGrahamHart.

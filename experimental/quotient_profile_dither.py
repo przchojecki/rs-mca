@@ -159,9 +159,11 @@ class MenuTailLowerBoundEntry:
     side_coefficient_floor: int
     stable_tail_mass_lower_bound: int
     log2_stable_tail_mass_lower_bound: float
+    stable_tail_weighted_lower_bound: Optional[int]
+    log2_stable_tail_weighted_lower_bound: Optional[float]
 
     def to_json(self) -> Dict[str, object]:
-        return {
+        result: Dict[str, object] = {
             "M_coset_size": self.M,
             "N_quotient_order": self.N,
             "forced_gap": self.forced_gap,
@@ -172,6 +174,16 @@ class MenuTailLowerBoundEntry:
                 6,
             ),
         }
+        if self.stable_tail_weighted_lower_bound is not None:
+            result["stable_tail_weighted_lower_bound"] = (
+                self.stable_tail_weighted_lower_bound
+            )
+            assert self.log2_stable_tail_weighted_lower_bound is not None
+            result["log2_stable_tail_weighted_lower_bound"] = round(
+                self.log2_stable_tail_weighted_lower_bound,
+                6,
+            )
+        return result
 
 
 def parse_fraction(raw: str) -> Fraction:
@@ -320,6 +332,7 @@ def dither_menu_tail_lower_bound_summary(
     target_stable_gap: int,
     dither_menu_size: int,
     top_scales: int,
+    line_field_size: Optional[int],
 ) -> Dict[str, object]:
     start, end = slack_window
     window_length = end - start + 1
@@ -339,6 +352,14 @@ def dither_menu_tail_lower_bound_summary(
             mass_lower_bound = side_floor * choose(M, forced_gap) - 1
             if mass_lower_bound <= 0:
                 continue
+            weighted_lower_bound = None
+            log2_weighted_lower_bound = None
+            if line_field_size is not None:
+                weighted_lower_bound = (
+                    mass_lower_bound
+                    * line_field_size ** (start - target_stable_gap)
+                )
+                log2_weighted_lower_bound = math.log2(weighted_lower_bound)
             records.append(
                 MenuTailLowerBoundEntry(
                     M=M,
@@ -347,15 +368,32 @@ def dither_menu_tail_lower_bound_summary(
                     side_coefficient_floor=side_floor,
                     stable_tail_mass_lower_bound=mass_lower_bound,
                     log2_stable_tail_mass_lower_bound=math.log2(mass_lower_bound),
+                    stable_tail_weighted_lower_bound=weighted_lower_bound,
+                    log2_stable_tail_weighted_lower_bound=(
+                        log2_weighted_lower_bound
+                    ),
                 )
             )
 
     records.sort(
-        key=lambda item: (-item.log2_stable_tail_mass_lower_bound, item.M)
+        key=lambda item: (
+            -(
+                item.log2_stable_tail_weighted_lower_bound
+                if item.log2_stable_tail_weighted_lower_bound is not None
+                else item.log2_stable_tail_mass_lower_bound
+            ),
+            item.M,
+        )
     )
+    weighted_values = [
+        item.log2_stable_tail_weighted_lower_bound
+        for item in records
+        if item.log2_stable_tail_weighted_lower_bound is not None
+    ]
     return {
         "target_stable_gap": target_stable_gap,
         "queried_menu_size": dither_menu_size,
+        "line_field_size": line_field_size,
         "forced_safe_gap_lower_bound": forced_gap,
         "coverage_possible_by_count": coverage_possible,
         "stable_tail_lower_bound_applicable": stable_eligible,
@@ -367,6 +405,9 @@ def dither_menu_tail_lower_bound_summary(
                 max(item.log2_stable_tail_mass_lower_bound for item in records),
                 6,
             )
+        ),
+        "max_log2_stable_tail_weighted_lower_bound": (
+            None if not weighted_values else round(max(weighted_values), 6)
         ),
         "entries": retained_menu_tail_entries(records, top_scales),
     }
@@ -904,6 +945,7 @@ def scan_case(
                     target_stable_gap,
                     dither_menu_size,
                     top_scales,
+                    line_field_size,
                 )
             )
     return result
@@ -1176,12 +1218,17 @@ def print_text(result: Dict[str, object]) -> None:
             print(
                 (
                     "  menu tail lower bound C={menu} forced_gap>={gap} "
-                    "max_logMass>={value} scales={scales}"
+                    "max_logMass>={value} max_logR>={weighted} scales={scales}"
                 ).format(
                     menu=menu_tail_bound["queried_menu_size"],
                     gap=menu_tail_bound["forced_safe_gap_lower_bound"],
                     value=format_value(
                         menu_tail_bound["max_log2_stable_tail_mass_lower_bound"]
+                    ),
+                    weighted=format_value(
+                        menu_tail_bound[
+                            "max_log2_stable_tail_weighted_lower_bound"
+                        ]
                     ),
                     scales=menu_tail_bound["stable_eligible_scale_count"],
                 )

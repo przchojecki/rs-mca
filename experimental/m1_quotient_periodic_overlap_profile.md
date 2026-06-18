@@ -746,6 +746,21 @@ every sufficiently large dyadic quotient scale it forces a quantitative
 one-remainder tail. This is the scale-level obstruction that a fixed menu must
 pay before the remaining aperiodic M1 local-limit problem is reached.
 
+The same argument gives the weighted random-line floor. In the stable profile
+at the witness slack, all strict exchange sizes are at most the chosen gap
+`e <= D`. Therefore every strict coefficient in `R_stable(t,r,m,q)` is
+multiplied by at least `q^(t-D)`, and since `t >= t_-`,
+
+```text
+R_stable(t,r,m,q)
+  >= (min(k0/m, (n-k0)/m) binom(m,E) - 1) q^(t_- - D).
+```
+
+This is the lower-bound form consumed directly by the M1 random-line variance
+ledger. It is weaker than evaluating the exact two-sided weighted formula at
+the witness slack, but it depends only on the menu size, window length, stable
+gap budget, quotient scale, and line-field size.
+
 Finally, the maximal-dither remainder case has an exact all-scale formula, so
 small scales need not be handled as a black-box enumeration. Suppose
 
@@ -1275,7 +1290,8 @@ Two immediate readings are useful.
    degree over long windows therefore requires a growing dither menu.
    Quantitatively, if a `C`-value menu keeps every slack within gap `D`, then
    at large dyadic scales it forces a stable one-remainder mass at least
-   `min(k0/m,(n-k0)/m)binom(m,ceil(L_W/(2C)))-1`.
+   `min(k0/m,(n-k0)/m)binom(m,ceil(L_W/(2C)))-1`, and a random-line weighted
+   correction at least this mass times `q^(t_- - D)`.
 9. In the maximal-dither case, the one-remainder profile is explicit at every
    scale, not only at `m>=t`: the full strict profile is the three-band formula
    at exchange sizes `hm-1`, `hm`, and `hm+1`. This gives a closed-form
@@ -1310,4 +1326,5 @@ the larger no-exact-`k0` radius. Supplying `--target-stable-gap D` additionally
 reports the finite-menu lower bound `ceil(|W|/(2D))` and a block-construction
 upper bound for covering the window with stable gap at most `D`. Supplying
 `--dither-menu-size C` turns this into a per-scale stable-tail mass lower
-bound for a `C`-value menu.
+bound for a `C`-value menu; with `--line-field-size q`, it also reports the
+corresponding weighted lower bound.

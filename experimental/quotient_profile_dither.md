@@ -156,7 +156,10 @@ min(k0/M,(n-k0)/M) binom(M,E) - 1
 ```
 
 for some slack served by the menu. JSON output stores this as
-`dither_menu_tail_lower_bound` on each scanned case.
+`dither_menu_tail_lower_bound` on each scanned case. If `--line-field-size q`
+is also supplied, the scanner multiplies the mass floor by `q^(t_- - D)` and
+reports `stable_tail_weighted_lower_bound`; this is the conservative
+random-line variance numerator forced by the finite menu.
 
 Entries marked `stable_large_scale_formula` lie in the range
 
