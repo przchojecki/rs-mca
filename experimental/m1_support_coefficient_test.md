@@ -760,6 +760,55 @@ power cosets `D^(T+j)`. Pure zero chains contribute only the terminal
 power-coset ledger. This is useful for M1 because it prevents lower-depth
 zero strata from being counted again as new aperiodic residual structure.
 
+The terminal pure-zero ledger is explicit. Let `h=T+d<m`. A packet of size
+`h` whose inherited zero chain reaches the terminal first-superboundary
+zero-slope stratum satisfies
+
+```text
+e_1(P)=e_2(P)=...=e_(h-1)(P)=0.
+```
+
+Equivalently its vanishing polynomial is
+
+```text
+L_P(X)=X^h-c,
+```
+
+so all elements of `P` have the same `h`-th power. In a cyclic
+multiplicative domain `D` of order `n`, such packets exist if and only if
+`h|n`; then they are exactly the `n/h` cosets of the subgroup of size `h`.
+At exact support size `s=k+T`, this terminal stratum is active only when
+
+```text
+m | s-h = k-d.
+```
+
+If active, each terminal packet touches
+
+```text
+h/gcd(h,m)
+```
+
+quotient fibers and has lift multiplicity
+
+```text
+binom(N - h/gcd(h,m), (k-d)/m).
+```
+
+Therefore the active terminal pure-zero support count at depth `d` is
+
+```text
+1_{h|n} * (n/h)
+  * binom(N - h/gcd(h,m), (k-d)/m),
+```
+
+with the convention that the binomial term is zero when the lift gate is
+closed or the requested number of whole fibers is outside
+`[0, N-h/gcd(h,m)]`. This formula closes the inherited-zero side of the
+residual-depth hierarchy: all remaining unclassified M1 content at depth
+`d` lies on a first nonzero coefficient frontier, not in another zero-slope
+subcatalog.
+
 This formula has an immediate dither gate. Since the residual packet has size
 `T+1` but the exact support size is `s=k+T`, a first-superboundary packet can
 lift only if

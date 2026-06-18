@@ -454,6 +454,48 @@ def expected_first_superboundary_zero_slope_data(
     )
 
 
+def expected_terminal_pure_zero_chain_data(
+    domain_order: int,
+    quotient_order: int,
+    fiber_size: int,
+    support_size: int,
+    slack: int,
+) -> Dict[int, Dict[str, Optional[int]]]:
+    data: Dict[int, Dict[str, Optional[int]]] = {}
+    largest_residual_size = min(fiber_size, support_size + 1)
+    for residual_size in range(slack + 1, largest_residual_size):
+        depth = residual_size - slack
+        lift_dividend = support_size - residual_size
+        lift_gate_active = (
+            lift_dividend >= 0 and lift_dividend % fiber_size == 0
+        )
+        whole_fibers = lift_dividend // fiber_size if lift_gate_active else None
+        touched_fibers = residual_size // math.gcd(residual_size, fiber_size)
+        abstract_packet_count = (
+            domain_order // residual_size
+            if domain_order % residual_size == 0
+            else 0
+        )
+        lift_multiplicity = 0
+        support_count = 0
+        if abstract_packet_count and whole_fibers is not None:
+            remaining_fibers = quotient_order - touched_fibers
+            if 0 <= whole_fibers <= remaining_fibers:
+                lift_multiplicity = math.comb(remaining_fibers, whole_fibers)
+                support_count = abstract_packet_count * lift_multiplicity
+        data[residual_size] = {
+            "depth": depth,
+            "lift_gate_active": int(lift_gate_active),
+            "whole_fibers": whole_fibers,
+            "touched_fibers": touched_fibers if abstract_packet_count else None,
+            "packet_count": abstract_packet_count if lift_multiplicity else 0,
+            "abstract_packet_count": abstract_packet_count,
+            "lift_multiplicity": lift_multiplicity,
+            "support_count": support_count,
+        }
+    return data
+
+
 def first_superboundary_shape_coset_ledger(
     p: int,
     domain: Sequence[int],
@@ -1627,6 +1669,13 @@ def scan_supports(
         support_size=support_size,
         slack=slack,
     )
+    expected_terminal_pure_zero_data = expected_terminal_pure_zero_chain_data(
+        domain_order=n,
+        quotient_order=quotient_order,
+        fiber_size=fiber_size,
+        support_size=support_size,
+        slack=slack,
+    )
 
     records: Dict[Tuple[int, ...], Dict[str, object]] = {}
     bad_slopes = set()
@@ -1890,6 +1939,10 @@ def scan_supports(
     slack_two_second_superboundary_packet_count = 0
     slack_two_second_superboundary_packet_slope_histogram: Counter[int] = Counter()
     slack_two_second_superboundary_slope_histogram: Counter[int] = Counter()
+    terminal_pure_zero_packet_counts: Counter[int] = Counter()
+    terminal_pure_zero_support_counts: Counter[int] = Counter()
+    terminal_pure_zero_slope_mismatches = 0
+    terminal_pure_zero_touched_fiber_mismatches = 0
 
     for residual, packet in residual_packet_records.items():
         residual_size = int(packet["residual_size"])
@@ -1914,6 +1967,23 @@ def scan_supports(
             continue
         slope = next(iter(slope_histogram))
         residual_packet_slope_histogram[slope] += expected_lift_count
+        if residual_size in expected_terminal_pure_zero_data:
+            residual_values = [domain[index] for index in residual]
+            if is_power_coset(residual_values, residual_size, p):
+                terminal_pure_zero_packet_counts[residual_size] += 1
+                terminal_pure_zero_support_counts[residual_size] += (
+                    expected_lift_count
+                )
+                if slope != 0:
+                    terminal_pure_zero_slope_mismatches += 1
+                expected_touched = expected_terminal_pure_zero_data[
+                    residual_size
+                ]["touched_fibers"]
+                if (
+                    expected_touched is not None
+                    and touched_fibers != expected_touched
+                ):
+                    terminal_pure_zero_touched_fiber_mismatches += 1
         if residual_size == slack + 1:
             first_superboundary_packet_count += 1
             first_superboundary_packet_slope_histogram[slope] += 1
@@ -1945,6 +2015,30 @@ def scan_supports(
     second_superboundary_support_count = sum(
         second_superboundary_slope_histogram.values()
     )
+    terminal_pure_zero_expected_packet_counts = {
+        size: int(item["packet_count"] or 0)
+        for size, item in expected_terminal_pure_zero_data.items()
+    }
+    terminal_pure_zero_expected_support_counts = {
+        size: int(item["support_count"] or 0)
+        for size, item in expected_terminal_pure_zero_data.items()
+    }
+    terminal_pure_zero_packet_count_check = all(
+        terminal_pure_zero_packet_counts[size]
+        == terminal_pure_zero_expected_packet_counts[size]
+        for size in expected_terminal_pure_zero_data
+    )
+    terminal_pure_zero_support_count_check = all(
+        terminal_pure_zero_support_counts[size]
+        == terminal_pure_zero_expected_support_counts[size]
+        for size in expected_terminal_pure_zero_data
+    )
+    terminal_pure_zero_chain_check = (
+        terminal_pure_zero_packet_count_check
+        and terminal_pure_zero_support_count_check
+        and terminal_pure_zero_slope_mismatches == 0
+        and terminal_pure_zero_touched_fiber_mismatches == 0
+    )
     first_superboundary_residual_size = slack + 1
     first_superboundary_lift_dividend = support_size - first_superboundary_residual_size
     first_superboundary_lift_remainder = (
@@ -1970,7 +2064,9 @@ def scan_supports(
         )
     )
     second_superboundary_residual_size = slack + 2
-    second_superboundary_lift_dividend = support_size - second_superboundary_residual_size
+    second_superboundary_lift_dividend = (
+        support_size - second_superboundary_residual_size
+    )
     second_superboundary_lift_remainder = (
         second_superboundary_lift_dividend % fiber_size
         if second_superboundary_lift_dividend >= 0
@@ -2504,6 +2600,71 @@ def scan_supports(
                 )
             }
             if canonical_line and slack < fiber_size
+            else None
+        ),
+        "canonical_terminal_pure_zero_chain_check": (
+            terminal_pure_zero_chain_check
+            if canonical_line and slack + 1 < fiber_size
+            else None
+        ),
+        "canonical_terminal_pure_zero_packet_count_check": (
+            terminal_pure_zero_packet_count_check
+            if canonical_line and slack + 1 < fiber_size
+            else None
+        ),
+        "canonical_terminal_pure_zero_support_count_check": (
+            terminal_pure_zero_support_count_check
+            if canonical_line and slack + 1 < fiber_size
+            else None
+        ),
+        "canonical_terminal_pure_zero_slope_mismatch_count": (
+            terminal_pure_zero_slope_mismatches
+            if canonical_line and slack + 1 < fiber_size
+            else None
+        ),
+        "canonical_terminal_pure_zero_touched_fiber_mismatch_count": (
+            terminal_pure_zero_touched_fiber_mismatches
+            if canonical_line and slack + 1 < fiber_size
+            else None
+        ),
+        "canonical_terminal_pure_zero_observed_packet_counts": (
+            {
+                str(size): terminal_pure_zero_packet_counts[size]
+                for size in sorted(expected_terminal_pure_zero_data)
+            }
+            if canonical_line and slack + 1 < fiber_size
+            else None
+        ),
+        "canonical_terminal_pure_zero_expected_packet_counts": (
+            {
+                str(size): terminal_pure_zero_expected_packet_counts[size]
+                for size in sorted(expected_terminal_pure_zero_data)
+            }
+            if canonical_line and slack + 1 < fiber_size
+            else None
+        ),
+        "canonical_terminal_pure_zero_observed_support_counts": (
+            {
+                str(size): terminal_pure_zero_support_counts[size]
+                for size in sorted(expected_terminal_pure_zero_data)
+            }
+            if canonical_line and slack + 1 < fiber_size
+            else None
+        ),
+        "canonical_terminal_pure_zero_expected_support_counts": (
+            {
+                str(size): terminal_pure_zero_expected_support_counts[size]
+                for size in sorted(expected_terminal_pure_zero_data)
+            }
+            if canonical_line and slack + 1 < fiber_size
+            else None
+        ),
+        "canonical_terminal_pure_zero_expected_data": (
+            {
+                str(size): values
+                for size, values in sorted(expected_terminal_pure_zero_data.items())
+            }
+            if canonical_line and slack + 1 < fiber_size
             else None
         ),
         "canonical_first_superboundary_residual_size": (
@@ -4035,6 +4196,7 @@ def print_text(result: Dict[str, object]) -> None:
             "positive_dither_clearance={positive_clearance} "
             "positive_dither_finite_prefix={positive_prefix} "
             "residual_packet_lift_check={packet} "
+            "terminal_pure_zero_check={terminal} "
             "first_superboundary_lift_gate={gate} "
             "first_superboundary_lift_gate_check={gate_check} "
             "first_superboundary_zero_check={first} "
@@ -4065,6 +4227,7 @@ def print_text(result: Dict[str, object]) -> None:
                     "canonical_positive_dither_finite_prefix_check"
                 ],
                 packet=result["canonical_residual_packet_lift_count_check"],
+                terminal=result["canonical_terminal_pure_zero_chain_check"],
                 gate=result["canonical_first_superboundary_lift_gate_active"],
                 gate_check=result["canonical_first_superboundary_lift_gate_check"],
                 first=result[

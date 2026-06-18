@@ -78,6 +78,9 @@ canonical_small_residual_slope_count_check
 canonical_small_residual_slope_multiplicity_check
 canonical_residual_packet_lift_count_check
 canonical_residual_packet_slope_consistency_check
+canonical_terminal_pure_zero_chain_check
+canonical_terminal_pure_zero_packet_count_check
+canonical_terminal_pure_zero_support_count_check
 canonical_first_superboundary_zero_slope_packet_count_check
 canonical_first_superboundary_zero_slope_support_count_check
 canonical_first_superboundary_zero_slope_coset_check
@@ -289,6 +292,11 @@ the weighted slope histogram. The size and touched-fiber histograms of the
 residual packet catalog are reported as
 `canonical_residual_packet_size_histogram` and
 `canonical_residual_packet_touched_fiber_histogram`.
+The terminal pure-zero fields additionally check every active residual size
+`h=t+d<m` whose inherited zero chain reaches the power-coset endpoint:
+the observed packets must be exactly the `h`-power cosets, have slope zero,
+touch `h/gcd(h,m)` quotient fibers, and lift with the theorem's binomial
+multiplicity.
 
 The first superboundary layer has residual size `t+1`. In this layer the
 scanner checks the zero-slope classification: a zero-slope packet is exactly a
@@ -667,6 +675,9 @@ more than one full fiber's worth of residual points.
 In the remaining `b>t` superboundary range, the residual-packet lift check
 separates the additive residual zero-prefix catalog from the already solved
 quotient-core choice of whole fibers.
+Inherited zero chains in that catalog terminate in the same power-coset
+ledger at residual size `h=t+d`; the scanner checks this terminal piece
+separately so it is not recounted as new aperiodic structure.
 At residual size `t+1`, the zero-slope slice is also separated as a counted
 power-coset source.
 For `t=2`, the whole residual size-three catalog is separated further into
