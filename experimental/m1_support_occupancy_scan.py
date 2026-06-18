@@ -1473,6 +1473,7 @@ def slack_two_second_kummer_saturation_data(
         * character_order
         * square_coset_index
     )
+    uniform_prime_threshold = 22 * denominator + 5
     principal_lower = p * p - 4 * p - 1
     degeneracy_line_count = 6
     lower_numerator = principal_lower - (
@@ -1488,6 +1489,8 @@ def slack_two_second_kummer_saturation_data(
         "square_kernel_index": square_kernel_index,
         "square_coset_index": square_coset_index,
         "denominator": denominator,
+        "uniform_prime_threshold": uniform_prime_threshold,
+        "uniform_threshold_applies": p >= uniform_prime_threshold,
         "nonprincipal_constant": nonprincipal_constant,
         "principal_lower_bound": principal_lower,
         "degeneracy_line_count": degeneracy_line_count,
@@ -2419,6 +2422,31 @@ def scan_supports(
             )
         else:
             slack_three_exact_min_cube_coset_parameter_count = 0
+
+    slack_two_second_index_window_label = None
+    if (
+        slack_two_second_shape_ledger is not None
+        and slack_two_second_kummer_saturation is not None
+    ):
+        if not slack_two_second_superboundary_lift_gate_active:
+            slack_two_second_index_window_label = "inactive_lift_gate"
+        elif (
+            slack_two_depth_two_full_domain_A_data is not None
+            and bool(
+                slack_two_depth_two_full_domain_A_data[
+                    "saturates_nonzero_square_cosets"
+                ]
+            )
+        ):
+            slack_two_second_index_window_label = "full_domain_saturated"
+        elif bool(slack_two_second_kummer_saturation["saturation_certificate"]):
+            slack_two_second_index_window_label = "low_index_saturated"
+        elif bool(
+            slack_two_second_shape_ledger["high_index_slope_bound_nontrivial"]
+        ):
+            slack_two_second_index_window_label = "high_index_sparse"
+        else:
+            slack_two_second_index_window_label = "intermediate_index_window"
 
     return {
         "proof_status": "AUDIT / EXPERIMENTAL",
@@ -3780,6 +3808,16 @@ def scan_supports(
             if slack_two_second_kummer_saturation is not None
             else None
         ),
+        "canonical_slack_two_second_kummer_uniform_prime_threshold": (
+            int(slack_two_second_kummer_saturation["uniform_prime_threshold"])
+            if slack_two_second_kummer_saturation is not None
+            else None
+        ),
+        "canonical_slack_two_second_kummer_uniform_threshold_applies": (
+            bool(slack_two_second_kummer_saturation["uniform_threshold_applies"])
+            if slack_two_second_kummer_saturation is not None
+            else None
+        ),
         "canonical_slack_two_second_kummer_nonprincipal_constant": (
             int(slack_two_second_kummer_saturation["nonprincipal_constant"])
             if slack_two_second_kummer_saturation is not None
@@ -3834,6 +3872,14 @@ def scan_supports(
                 slack_two_second_kummer_saturation is not None
                 and slack_two_second_shape_ledger is not None
             )
+            else None
+        ),
+        "canonical_slack_two_second_index_window_label": (
+            slack_two_second_index_window_label
+        ),
+        "canonical_slack_two_second_intermediate_index_window_candidate": (
+            slack_two_second_index_window_label == "intermediate_index_window"
+            if slack_two_second_index_window_label is not None
             else None
         ),
         "canonical_slack_two_second_full_domain_A_square_count": (

@@ -47,6 +47,8 @@ def main() -> None:
         certificate_positive = bool(certificate["saturation_certificate"])
         if certificate_positive != expected_certificate:
             raise AssertionError((p, n, certificate))
+        if bool(certificate["uniform_threshold_applies"]) != certificate_positive:
+            raise AssertionError((p, n, certificate))
         if certificate_positive and not saturates:
             raise AssertionError((p, n, nonzero_coset_count, total_coset_count))
         checked.append(
@@ -54,6 +56,7 @@ def main() -> None:
                 p,
                 n,
                 certificate_positive,
+                certificate["uniform_prime_threshold"],
                 nonzero_coset_count,
                 total_coset_count,
             )

@@ -490,6 +490,21 @@ occur, so the depth-two frontier saturates all nonzero slopes allowed by
 `D^2`. The matching `*_saturation_certificate_check` field compares this
 certificate against exact square-coset enumeration in the queried finite
 case.
+The field `canonical_slack_two_second_index_window_label` combines the lift
+gate, this low-index saturation certificate, and the high-index sparsity
+ceiling. Its values are:
+
+```text
+inactive_lift_gate
+full_domain_saturated
+low_index_saturated
+high_index_sparse
+intermediate_index_window
+```
+
+The last case is the live proper-subgroup window for this catalog: neither
+the full-domain theorem, the Kummer saturation wall, nor the elementary
+high-index ceiling explains the observed depth-two square-coset image.
 When `D=F_p^*`, the
 `canonical_slack_two_second_full_domain_*` fields also record the full-domain
 frontier saturation certificate: for `p>=11`, the values

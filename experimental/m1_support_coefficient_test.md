@@ -1400,6 +1400,37 @@ saturated, high-index subgroups are sparse by the elementary `n^3/g` bound,
 and the genuinely M1-relevant regime is the intermediate window where neither
 certificate fires or where exact-support lift gates deactivate the layer.
 
+The same inequality gives an exact integer threshold for fixed subgroup
+index data:
+
+```text
+p >= 22 e^3 h + 5 = 22 e^4 g + 5.
+```
+
+At and above this threshold, the Kummer certificate forces low-index
+saturation. The high-index ceiling above gives sparse non-field-filling
+whenever
+
+```text
+1 + n^3/g < p,        n=(p-1)/e.
+```
+
+Thus, after the lift gate `m | k-2` is checked, the slack-two depth-two
+frontier has only one unresolved proper-subgroup index window in this
+catalog:
+
+```text
+p < 22 e^4 g + 5
+and
+1 + (p-1)^3/(e^3 g) >= p.
+```
+
+Heuristically this is the interval
+`(p/(22g))^(1/4) lesssim e lesssim p^(2/3)/g^(1/3)`. The point is not that
+this window is small enough for the final M1 theorem, but that everything
+outside it is now explained by a precise reason: inactive lift gate,
+low-index saturation, or high-index sparsity.
+
 For the full multiplicative domain this conic ledger has an exact elementary
 count. Take `D=F_p^*`, `p>3`, and write `chi` for the quadratic character.
 The affine conic `Q(u,v)=0` has `p-chi(-3)` points. The three sections
