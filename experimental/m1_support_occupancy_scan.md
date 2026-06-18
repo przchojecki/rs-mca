@@ -474,6 +474,22 @@ unconditional subgroup-size ceiling
 
 This bound is intentionally coarse, but it gives a quick non-field-filling
 certificate whenever the right side is below `p`.
+The `canonical_slack_two_second_kummer_*` fields record the opposite
+low-index certificate. They use the rank-two Kummer character-sum expansion
+for the depth-two shape map
+
+```text
+(u,v) -> -(u^2+v^2+uv+u+v+1)
+```
+
+on triples `u,v,-1-u-v in D`. Under the standard degree-five
+two-variable Kummer-Weil bound with constant `16`, the certificate lower
+bounds the number of admissible shapes in each nonzero `D^2`-coset. When the
+reported lower bound is positive, every nonzero square coset is forced to
+occur, so the depth-two frontier saturates all nonzero slopes allowed by
+`D^2`. The matching `*_saturation_certificate_check` field compares this
+certificate against exact square-coset enumeration in the queried finite
+case.
 When `D=F_p^*`, the
 `canonical_slack_two_second_full_domain_*` fields also record the full-domain
 frontier saturation certificate: for `p>=11`, the values
@@ -481,6 +497,15 @@ frontier saturation certificate: for `p>=11`, the values
 the nonzero depth-two slope image is all of `F_p^*`. The analytic proof covers
 `p>=23`; `experimental/verify_m1_slack_two_depth_two_full_domain.py` checks
 `p=11,13,17,19` and records the tiny failures `p=5,7`.
+The companion verifier
+
+```bash
+python3 experimental/verify_m1_slack_two_depth_two_kummer_saturation.py
+```
+
+checks two index-two proper-subgroup cases where this low-index certificate is
+positive, and one high-index case where the certificate correctly stays
+silent.
 
 When `D=F_p^*`, the `canonical_slack_two_full_domain_*` fields also check the
 quadratic-character formula for the classes of `alpha(u)=-(1+u+u^2)`. For

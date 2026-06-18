@@ -1457,6 +1457,48 @@ def slack_two_cyclotomic_shape_bound(p: int, domain_order: int) -> int:
     )
 
 
+def slack_two_second_kummer_saturation_data(
+    p: int,
+    domain_order: int,
+    nonprincipal_constant: int = 16,
+) -> Dict[str, object]:
+    """Return the depth-two low-index square-coset saturation certificate."""
+
+    character_order = (p - 1) // domain_order
+    square_kernel_index = math.gcd(2, domain_order)
+    square_coset_index = character_order * square_kernel_index
+    denominator = (
+        character_order
+        * character_order
+        * character_order
+        * square_coset_index
+    )
+    principal_lower = p * p - 4 * p - 1
+    degeneracy_line_count = 6
+    lower_numerator = principal_lower - (
+        nonprincipal_constant + degeneracy_line_count
+    ) * p * denominator
+    admissible_per_coset_lower_bound = (
+        (lower_numerator + denominator - 1) // denominator
+        if lower_numerator > 0
+        else 0
+    )
+    return {
+        "character_order": character_order,
+        "square_kernel_index": square_kernel_index,
+        "square_coset_index": square_coset_index,
+        "denominator": denominator,
+        "nonprincipal_constant": nonprincipal_constant,
+        "principal_lower_bound": principal_lower,
+        "degeneracy_line_count": degeneracy_line_count,
+        "lower_numerator": lower_numerator,
+        "admissible_per_coset_lower_bound": (
+            admissible_per_coset_lower_bound
+        ),
+        "saturation_certificate": admissible_per_coset_lower_bound > 0,
+    }
+
+
 def slack_three_conic_shape_bound(p: int, domain_order: int) -> int:
     character_order = (p - 1) // domain_order
     character_cube = character_order * character_order * character_order
@@ -2302,6 +2344,11 @@ def scan_supports(
     slack_two_depth_two_full_domain_A_data = (
         full_domain_slack_two_depth_two_A_class_data(p)
         if slack_two_second_shape_ledger is not None and n == p - 1
+        else None
+    )
+    slack_two_second_kummer_saturation = (
+        slack_two_second_kummer_saturation_data(p, n)
+        if slack_two_second_shape_ledger is not None
         else None
     )
     slack_three_full_domain_beta_data = (
@@ -3711,6 +3758,82 @@ def scan_supports(
             len(slack_two_second_superboundary_slope_histogram)
             <= int(slack_two_second_shape_ledger["high_index_slope_bound"])
             if slack_two_second_shape_ledger is not None
+            else None
+        ),
+        "canonical_slack_two_second_kummer_character_order": (
+            int(slack_two_second_kummer_saturation["character_order"])
+            if slack_two_second_kummer_saturation is not None
+            else None
+        ),
+        "canonical_slack_two_second_kummer_square_kernel_index": (
+            int(slack_two_second_kummer_saturation["square_kernel_index"])
+            if slack_two_second_kummer_saturation is not None
+            else None
+        ),
+        "canonical_slack_two_second_kummer_square_coset_index": (
+            int(slack_two_second_kummer_saturation["square_coset_index"])
+            if slack_two_second_kummer_saturation is not None
+            else None
+        ),
+        "canonical_slack_two_second_kummer_denominator": (
+            int(slack_two_second_kummer_saturation["denominator"])
+            if slack_two_second_kummer_saturation is not None
+            else None
+        ),
+        "canonical_slack_two_second_kummer_nonprincipal_constant": (
+            int(slack_two_second_kummer_saturation["nonprincipal_constant"])
+            if slack_two_second_kummer_saturation is not None
+            else None
+        ),
+        "canonical_slack_two_second_kummer_principal_lower_bound": (
+            int(slack_two_second_kummer_saturation["principal_lower_bound"])
+            if slack_two_second_kummer_saturation is not None
+            else None
+        ),
+        "canonical_slack_two_second_kummer_degeneracy_line_count": (
+            int(slack_two_second_kummer_saturation["degeneracy_line_count"])
+            if slack_two_second_kummer_saturation is not None
+            else None
+        ),
+        "canonical_slack_two_second_kummer_lower_numerator": (
+            int(slack_two_second_kummer_saturation["lower_numerator"])
+            if slack_two_second_kummer_saturation is not None
+            else None
+        ),
+        "canonical_slack_two_second_kummer_admissible_per_coset_lower_bound": (
+            int(
+                slack_two_second_kummer_saturation[
+                    "admissible_per_coset_lower_bound"
+                ]
+            )
+            if slack_two_second_kummer_saturation is not None
+            else None
+        ),
+        "canonical_slack_two_second_kummer_saturation_certificate": (
+            bool(slack_two_second_kummer_saturation["saturation_certificate"])
+            if slack_two_second_kummer_saturation is not None
+            else None
+        ),
+        "canonical_slack_two_second_kummer_saturation_certificate_check": (
+            (
+                not bool(
+                    slack_two_second_kummer_saturation[
+                        "saturation_certificate"
+                    ]
+                )
+            )
+            or (
+                int(slack_two_second_shape_ledger["nonzero_square_coset_count"])
+                == int(
+                    slack_two_second_shape_ledger[
+                        "total_nonzero_square_coset_count"
+                    ]
+                )
+            )
+            if (
+                slack_two_second_kummer_saturation is not None
+                and slack_two_second_shape_ledger is not None
+            )
             else None
         ),
         "canonical_slack_two_second_full_domain_A_square_count": (

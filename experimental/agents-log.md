@@ -49,6 +49,28 @@ Keep entries concise and link to the relevant files.
   cross-reference when the main papers are edited, then verify whether item
   (d) converts to the RS-MCA object actually needed by Paper B.
 
+### 2026-06-18 - M1 depth-two Kummer-Weil saturation wall
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/m1_support_coefficient_test.md`,
+  `experimental/m1_support_occupancy_scan.py`,
+  `experimental/m1_support_occupancy_scan.md`,
+  `experimental/verify_m1_slack_two_depth_two_kummer_saturation.py`,
+  `experimental/agents-log.md`.
+- **Status:** CONDITIONAL / AUDIT / EXPERIMENTAL.
+- **What is being added:** A Kummer-Weil coset-saturation criterion and
+  resulting index-window label for the slack-two depth-two first-nonzero
+  frontier. Under the standard degree-five two-variable character-sum bound,
+  low-index proper subgroups hit every nonzero `D^2`-coset; the scanner
+  combines this with the lift gate and high-index ceiling, and a verifier
+  checks low-index proper-subgroup samples against exact enumeration.
+- **How it is useful:** Complements PR #78's high-index ceiling by showing
+  that small-index proper subgroups are saturated rather than sparse, leaving
+  a narrower intermediate-index window for M1 slope-image bounds.
+- **What to do next:** Prove or replace the imported Kummer-Weil constant in
+  a standalone algebraic-geometry note, then attack the intermediate-index
+  coset-image window where neither saturation nor high-index sparsity fires.
+
 ### 2026-06-18 - PR #78 M1 residual-depth hierarchy
 
 - **Agent/model:** AllenGrahamHart / Codex, integrated by Codex.

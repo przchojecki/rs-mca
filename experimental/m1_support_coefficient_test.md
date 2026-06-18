@@ -1340,6 +1340,66 @@ Thus the full-domain saturation theorem above and this high-index ceiling
 bracket the first nonzero frontier: low-index/full-domain cases saturate,
 while sufficiently high-index subgroup cases are automatically sparse.
 
+There is also a low-index saturation certificate for proper subgroups. Let
+`D <= F_p^*` have order `n`, index `e`, put `g=gcd(2,n)`, and put
+`H=D^2`, so `[F_p^*:H]=h=eg`. Fix a multiplicative character `chi` with
+kernel `D`, a character `psi` with kernel `H`, and a nonzero coset `gamma H`.
+For the depth-two shape map
+
+```text
+A(u,v)=-(u^2+v^2+uv+u+v+1),     w=-1-u-v,
+```
+
+define the raw coset count
+
+```text
+V_gamma^raw =
+  #{(u,v) in F_p^2 :
+      u,v,w in D, A(u,v) in gamma H }.
+```
+
+With all characters extended by zero at zero, this has the exact expansion
+
+```text
+V_gamma^raw =
+  (1/(e^3 h)) sum_{a,b,c,d}
+    psi^(-d)(gamma) S_{a,b,c,d},
+
+S_{a,b,c,d} =
+  sum_{u,v in F_p}
+    chi^a(u) chi^b(v) chi^c(-1-u-v) psi^d(A(u,v)).
+```
+
+The principal term counts the complement of the divisor
+`u v (-1-u-v) A(u,v)=0`, so it is at least `p^2-4p-1`. Assume the standard
+degree-five two-variable Kummer-Weil estimate
+
+```text
+|S_{a,b,c,d}| <= 16 p
+```
+
+for every nonprincipal tuple `(a,b,c,d)`. The remaining admissibility cuts
+`u=1`, `v=1`, `w=1`, `u=v`, `u=w`, and `v=w` remove at most `6p` points from
+any fixed coset count. Therefore every nonzero `H`-coset is hit by an
+admissible depth-two shape whenever
+
+```text
+p^2 - 4p - 1 > 22 p e^3 h.
+```
+
+Equivalently, the scanner's integer certificate
+
+```text
+ceil((p^2 - 4p - 1 - 22 p e^3 h)/(e^3 h)) > 0
+```
+
+forces the nonzero depth-two slack-two frontier to saturate every nonzero
+`D^2`-coset. This does not give a positive M1 bound; it is the complementary
+wall to the high-index ceiling above. Low-index proper subgroups are still
+saturated, high-index subgroups are sparse by the elementary `n^3/g` bound,
+and the genuinely M1-relevant regime is the intermediate window where neither
+certificate fires or where exact-support lift gates deactivate the layer.
+
 For the full multiplicative domain this conic ledger has an exact elementary
 count. Take `D=F_p^*`, `p>3`, and write `chi` for the quadratic character.
 The affine conic `Q(u,v)=0` has `p-chi(-3)` points. The three sections
