@@ -265,6 +265,29 @@ one nonquadratic character `alpha`, one quadratic factor, and the divisor
 B(s),        x,        x-1,        4B(s)x-s^2.
 ```
 
+The finite pullback scanner
+`experimental/search_m1_equal_line_pullback.py` directly stress-tests the
+target
+
+```text
+|M_alpha| <= 3p
+```
+
+for this single-character main term. Its report preset exhausts all
+equal-line canonical active-pair tuples with `p <= 500` and `e <= 24`.
+It tests `4804` tuples and finds no `3p` violation. The largest rows are:
+
+```text
+(461,20,23,46),  (18,18,0,15),  alpha=5:
+  |M_alpha|/p = 2.9412840316,
+
+(281,20,14,28),  (1,1,0,25),    alpha=27:
+  |M_alpha|/p = 2.9391353527,
+
+(397,44,9,18),   (1,1,0,15),    alpha=17:
+  |M_alpha|/p = 2.9357869704.
+```
+
 ## Pullback Branch Checklist
 
 The rational pullback

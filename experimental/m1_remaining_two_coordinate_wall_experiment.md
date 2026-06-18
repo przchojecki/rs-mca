@@ -115,3 +115,5 @@ proof would likely explain why the finite ratios can approach `4p` from
 below while still respecting the projective Euler-characteristic target.
 The first reduction for this subfamily is recorded in
 `experimental/m1_depth_two_equal_line_diagonal_reduction.md`.
+The focused pullback-main scanner is
+`experimental/search_m1_equal_line_pullback.py`.

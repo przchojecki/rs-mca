@@ -35,6 +35,7 @@ Keep entries concise and link to the relevant files.
 - **Files added or changed:**
   `experimental/m1_depth_two_equal_line_diagonal_reduction.md`,
   `experimental/verify_m1_depth_two_equal_line_diagonal_reduction.py`,
+  `experimental/search_m1_equal_line_pullback.py`,
   `experimental/m1_kummer_weil_import_contract.md`,
   `experimental/m1_remaining_two_coordinate_wall_experiment.md`,
   `experimental/m1_depth_two_two_coordinate_sharp_target_audit.md`,
