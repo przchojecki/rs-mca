@@ -143,6 +143,12 @@ in `experimental/m1_depth_two_two_coordinate_sharp_target_audit.md` becomes
 the question of proving a correspondingly sharper conductor bound for this
 same one-dimensional trace family.
 
+The reciprocal slice `nu=mu^{-1}` is already one-dimensional in a stronger
+sense: the substitution `v=tu` collapses the core sum to a genus-zero Kummer
+sum in the ratio variable `t`. This subcase is isolated in
+`experimental/m1_depth_two_reciprocal_two_coordinate_lemma.md`; the remaining
+trace-family target is the genuinely nonreciprocal case.
+
 The finite verifier
 
 ```bash

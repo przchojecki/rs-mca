@@ -165,6 +165,15 @@ family `sum_u mu(u)F_{nu,eta}(u)`, not the line correction. The same note
 isolates the bad-parameter support for this trace family inside
 `u=0`, `u^2+u+1=0`, `-3u^2-2u-3=0`, and infinity.
 
+The diagonal reciprocal subfamily `nu=mu^{-1}` reduces further. In this case
+the ratio substitution `v=tu` turns the core sum into a genus-zero Kummer sum
+in `t`. The proof-level statement is isolated in
+`experimental/m1_depth_two_reciprocal_two_coordinate_lemma.md`; it gives a
+`4p` core bound for nonquadratic conic characters, a `2p+2 sqrt(p)` core
+bound for the quadratic conic character, and the same `3 sqrt(p)` removed-line
+correction. This does not close the general two-coordinate wall, but it
+removes a structured diagonal slice from the unresolved trace family.
+
 Thus the additive raw, fixed-window, and two-fiber certificates now pay:
 
 ```text
@@ -182,6 +191,7 @@ The finite audit
 python3 experimental/verify_m1_depth_two_elementary_open_set_lemma.py
 python3 experimental/verify_m1_depth_two_quadratic_one_coordinate_lemma.py
 python3 experimental/verify_m1_depth_two_nonquadratic_one_coordinate_lemma.py
+python3 experimental/verify_m1_depth_two_reciprocal_two_coordinate_lemma.py
 python3 experimental/verify_m1_depth_two_kummer_constant_audit.py
 python3 experimental/verify_m1_depth_two_two_coordinate_fiber_reduction.py
 python3 experimental/verify_m1_depth_two_two_coordinate_sharp_target.py
@@ -200,6 +210,8 @@ in `experimental/m1_depth_two_two_coordinate_fiber_reduction.md` and
 `experimental/m1_depth_two_two_coordinate_sharp_target_audit.md`; the latter
 is only finite evidence for a possible future `4p` replacement of the current
 conditional `9p` import and is not used by the present certificates.
+The reciprocal two-coordinate slice is isolated in
+`experimental/m1_depth_two_reciprocal_two_coordinate_lemma.md`.
 
 ## Audited Hypotheses
 

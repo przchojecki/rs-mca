@@ -145,7 +145,10 @@ characters onward: two-coordinate mixed terms have degree `1+1+2` and pay
 The two-coordinate term is further reduced in
 `experimental/m1_depth_two_two_coordinate_fiber_reduction.md` to cancellation
 in a one-dimensional fiber trace family plus a genus-zero line correction of
-size at most `3 sqrt(p)`.
+size at most `3 sqrt(p)`. Within that family, the reciprocal slice where the
+two active coordinate characters are `mu` and `mu^{-1}` collapses further by
+the ratio substitution `v=tu`; this is isolated in
+`experimental/m1_depth_two_reciprocal_two_coordinate_lemma.md`.
 
 For the raw normalized catalog on `D`, the verifier audits the character
 expansion, the divisor nontriviality, the exact principal open-set count

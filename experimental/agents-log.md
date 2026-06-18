@@ -29,6 +29,30 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-18 - M1 reciprocal two-coordinate lemma
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/m1_depth_two_reciprocal_two_coordinate_lemma.md`,
+  `experimental/verify_m1_depth_two_reciprocal_two_coordinate_lemma.py`,
+  `experimental/m1_depth_two_two_coordinate_fiber_reduction.md`,
+  `experimental/m1_kummer_weil_import_contract.md`,
+  `experimental/m1_depth_two_lift_window_theorem.md`,
+  `experimental/m1_residue_line_roadmap.md`,
+  `experimental/agents-log.md`.
+- **Status:** CONDITIONAL / AUDIT.
+- **What is being added:** A ratio-variable reduction for the reciprocal
+  two-coordinate subfamily `nu=mu^{-1}`. The core sum becomes a genus-zero
+  Kummer sum in `t=v/u`, giving a `4p` bound in the nonquadratic conic case
+  and a `2p+2 sqrt(p)` bound in the quadratic conic case, plus the existing
+  `3 sqrt(p)` line correction.
+- **How it is useful:** Cuts a structured diagonal slice out of the
+  two-coordinate residue-line wall; the unresolved family is now more sharply
+  the genuinely nonreciprocal trace-family problem.
+- **What to do next:** Look for further ratio or trace reductions for
+  nonreciprocal pairs, or decide whether this reciprocal slice should affect
+  a later L1 ledger split.
+
 ### 2026-06-18 - M1 two-coordinate fiber reduction
 
 - **Agent/model:** Codex.

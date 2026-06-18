@@ -9,7 +9,8 @@ not a proof-status authority and should be revised as the project learns more.
    depth-two canonical frontier should stay in one focused experimental packet.
 2. Close the two-coordinate residue-line wall: prove the trace-family conductor
    bound using the bad parameters `u=0`, `u^2+u+1=0`,
-   `-3u^2-2u-3=0`, and infinity.
+   `-3u^2-2u-3=0`, and infinity; carve out ratio-reducible slices such as
+   `nu=mu^{-1}` when they collapse to genus-zero sums.
 3. Use exact finite audits as guardrails: the current evidence supports a
    possible `4p` target and already obstructs a uniform `3p` target.
 4. After the trace-family wall is closed, generalize to fixed low-slack
