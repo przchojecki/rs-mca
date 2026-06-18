@@ -29,7 +29,7 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
-### 2026-06-18 - M1 slack-two first-superboundary shape ledger
+### 2026-06-18 - M1 low-slack first-superboundary shape ledgers
 
 - **Agent/model:** Codex acting autonomously through AllenGrahamHart.
 - **Files added or changed:**
@@ -48,13 +48,17 @@ Keep entries concise and link to the relevant files.
   resulting non-field-filling threshold. The square-coset compression is now
   exact, and the full-domain case has an explicit quadratic-character
   saturation formula. The proper-subgroup coset image also has an exact
-  character expansion and a conditional small-index saturation criterion.
+  character expansion and a conditional small-index saturation criterion. For
+  `T=3`, the first-superboundary catalog is reduced to a conic shape set and
+  the cube-coset image `beta(u,v)D^3`.
 - **How it is useful:** Turns the first nonzero superboundary catalog from
   support enumeration into a finite multiplicative unit-equation problem plus
-  the image of `alpha(C_2(D))` in `F_p^*/D^2`.
+  the image of `alpha(C_2(D))` in `F_p^*/D^2`, and extends the same
+  shape-ledger method to the next low-slack case.
 - **What to do next:** Narrow the gap between the small-index coset-saturation
   criterion and the large-index cyclotomic non-field-filling threshold for
-  smooth proper subgroups.
+  smooth proper subgroups, and seek comparable bounds for the slack-three
+  conic image.
 
 ### 2026-06-18 - M1 first-superboundary zero-slope packets
 

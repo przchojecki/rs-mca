@@ -512,6 +512,131 @@ def slack_two_first_superboundary_shape_ledger(
     }
 
 
+def slack_three_first_superboundary_shape_ledger(
+    p: int,
+    domain: Sequence[int],
+    support_size: int,
+    quotient_order: int,
+    fiber_size: int,
+) -> Dict[str, object]:
+    domain_set = set(domain)
+    value_to_index = {value: index for index, value in enumerate(domain)}
+    parameter_count = 0
+    active_parameter_count = 0
+    active_zero_parameter_count = 0
+    packet_count_numerator = 0
+    support_count_numerator = 0
+    packet_slope_histogram_numerator: Counter[int] = Counter()
+    support_slope_histogram_numerator: Counter[int] = Counter()
+    zero_slope = False
+    nonzero_cube_cosets = set()
+    active_zero_slope = False
+    cube_image = {pow(x, 3, p) for x in domain}
+    active_nonzero_cube_cosets = set()
+    total_nonzero_cube_cosets = (p - 1) // len(cube_image)
+    whole_fibers = (
+        (support_size - 4) // fiber_size
+        if support_size >= 4 and (support_size - 4) % fiber_size == 0
+        else None
+    )
+
+    for u in domain:
+        for v in domain:
+            w = (-1 - u - v) % p
+            if w not in domain_set:
+                continue
+            if len({1, u, v, w}) != 4:
+                continue
+            if (u * u + v * v + u * v + u + v + 1) % p:
+                continue
+            parameter_count += 1
+            shape_slope = (-(1 + u * v * w)) % p
+            if shape_slope == 0:
+                zero_slope = True
+            else:
+                coset_representative = min(
+                    (shape_slope * cube) % p for cube in cube_image
+                )
+                nonzero_cube_cosets.add(coset_representative)
+
+            if whole_fibers is None:
+                continue
+
+            touched_fibers = len(
+                {
+                    0,
+                    value_to_index[u] % quotient_order,
+                    value_to_index[v] % quotient_order,
+                    value_to_index[w] % quotient_order,
+                }
+            )
+            if whole_fibers > quotient_order - touched_fibers:
+                lift_count = 0
+            else:
+                lift_count = math.comb(
+                    quotient_order - touched_fibers,
+                    whole_fibers,
+                )
+            if lift_count == 0:
+                continue
+            active_parameter_count += 1
+            if shape_slope == 0:
+                active_zero_parameter_count += 1
+                active_zero_slope = True
+            else:
+                active_nonzero_cube_cosets.add(coset_representative)
+
+            for x in domain:
+                slope = (pow(x, 3, p) * shape_slope) % p
+                packet_count_numerator += 1
+                support_count_numerator += lift_count
+                packet_slope_histogram_numerator[slope] += 1
+                support_slope_histogram_numerator[slope] += lift_count
+
+    numerators = [
+        packet_count_numerator,
+        support_count_numerator,
+        *packet_slope_histogram_numerator.values(),
+        *support_slope_histogram_numerator.values(),
+    ]
+    quotient_check = all(numerator % 24 == 0 for numerator in numerators)
+    packet_slope_histogram = Counter(
+        {
+            slope: count // 24
+            for slope, count in packet_slope_histogram_numerator.items()
+        }
+    )
+    support_slope_histogram = Counter(
+        {
+            slope: count // 24
+            for slope, count in support_slope_histogram_numerator.items()
+        }
+    )
+    cube_coset_slope_count = (
+        (1 if active_zero_slope else 0)
+        + len(active_nonzero_cube_cosets) * len(cube_image)
+    )
+    abstract_cube_coset_slope_count = (
+        (1 if zero_slope else 0) + len(nonzero_cube_cosets) * len(cube_image)
+    )
+    return {
+        "parameter_count": parameter_count,
+        "active_parameter_count": active_parameter_count,
+        "active_zero_parameter_count": active_zero_parameter_count,
+        "nonzero_cube_coset_count": len(nonzero_cube_cosets),
+        "active_nonzero_cube_coset_count": len(active_nonzero_cube_cosets),
+        "total_nonzero_cube_coset_count": total_nonzero_cube_cosets,
+        "cube_image_size": len(cube_image),
+        "abstract_cube_coset_slope_count": abstract_cube_coset_slope_count,
+        "cube_coset_slope_count": cube_coset_slope_count,
+        "twentyfourfold_quotient_check": quotient_check,
+        "packet_count": packet_count_numerator // 24,
+        "weighted_support_count": support_count_numerator // 24,
+        "packet_slope_histogram": packet_slope_histogram,
+        "support_slope_histogram": support_slope_histogram,
+    }
+
+
 def slack_two_cyclotomic_shape_bound(p: int, domain_order: int) -> int:
     character_order = (p - 1) // domain_order
     ceil_sqrt_p = math.isqrt(p)
@@ -1020,6 +1145,17 @@ def scan_supports(
             fiber_size=fiber_size,
         )
         if canonical_line and slack == 2 and slack + 1 < fiber_size
+        else None
+    )
+    slack_three_shape_ledger = (
+        slack_three_first_superboundary_shape_ledger(
+            p=p,
+            domain=domain,
+            support_size=support_size,
+            quotient_order=quotient_order,
+            fiber_size=fiber_size,
+        )
+        if canonical_line and slack == 3 and slack + 1 < fiber_size
         else None
     )
     slack_two_full_domain_alpha_data = (
@@ -1570,6 +1706,124 @@ def scan_supports(
             )
             else None
         ),
+        "canonical_slack_three_shape_parameter_count": (
+            int(slack_three_shape_ledger["parameter_count"])
+            if slack_three_shape_ledger is not None
+            else None
+        ),
+        "canonical_slack_three_shape_active_parameter_count": (
+            int(slack_three_shape_ledger["active_parameter_count"])
+            if slack_three_shape_ledger is not None
+            else None
+        ),
+        "canonical_slack_three_shape_active_zero_parameter_count": (
+            int(slack_three_shape_ledger["active_zero_parameter_count"])
+            if slack_three_shape_ledger is not None
+            else None
+        ),
+        "canonical_slack_three_shape_nonzero_cube_coset_count": (
+            int(slack_three_shape_ledger["nonzero_cube_coset_count"])
+            if slack_three_shape_ledger is not None
+            else None
+        ),
+        "canonical_slack_three_shape_active_nonzero_cube_coset_count": (
+            int(slack_three_shape_ledger["active_nonzero_cube_coset_count"])
+            if slack_three_shape_ledger is not None
+            else None
+        ),
+        "canonical_slack_three_shape_total_nonzero_cube_coset_count": (
+            int(slack_three_shape_ledger["total_nonzero_cube_coset_count"])
+            if slack_three_shape_ledger is not None
+            else None
+        ),
+        "canonical_slack_three_shape_nonzero_cube_coset_coverage_density": (
+            fraction_string(
+                int(slack_three_shape_ledger["nonzero_cube_coset_count"]),
+                int(slack_three_shape_ledger["total_nonzero_cube_coset_count"]),
+            )
+            if slack_three_shape_ledger is not None
+            else None
+        ),
+        "canonical_slack_three_shape_active_nonzero_cube_coset_coverage_density": (
+            fraction_string(
+                int(slack_three_shape_ledger["active_nonzero_cube_coset_count"]),
+                int(slack_three_shape_ledger["total_nonzero_cube_coset_count"]),
+            )
+            if slack_three_shape_ledger is not None
+            else None
+        ),
+        "canonical_slack_three_shape_saturates_nonzero_cube_cosets": (
+            int(slack_three_shape_ledger["nonzero_cube_coset_count"])
+            == int(slack_three_shape_ledger["total_nonzero_cube_coset_count"])
+            if slack_three_shape_ledger is not None
+            else None
+        ),
+        "canonical_slack_three_shape_active_saturates_nonzero_cube_cosets": (
+            int(slack_three_shape_ledger["active_nonzero_cube_coset_count"])
+            == int(slack_three_shape_ledger["total_nonzero_cube_coset_count"])
+            if slack_three_shape_ledger is not None
+            else None
+        ),
+        "canonical_slack_three_shape_cube_image_size": (
+            int(slack_three_shape_ledger["cube_image_size"])
+            if slack_three_shape_ledger is not None
+            else None
+        ),
+        "canonical_slack_three_shape_twentyfourfold_quotient_check": (
+            bool(slack_three_shape_ledger["twentyfourfold_quotient_check"])
+            if slack_three_shape_ledger is not None
+            else None
+        ),
+        "canonical_slack_three_shape_expected_packet_count": (
+            int(slack_three_shape_ledger["packet_count"])
+            if slack_three_shape_ledger is not None
+            else None
+        ),
+        "canonical_slack_three_shape_packet_count_check": (
+            int(slack_three_shape_ledger["packet_count"])
+            == first_superboundary_packet_count
+            if slack_three_shape_ledger is not None
+            else None
+        ),
+        "canonical_slack_three_shape_expected_support_count": (
+            int(slack_three_shape_ledger["weighted_support_count"])
+            if slack_three_shape_ledger is not None
+            else None
+        ),
+        "canonical_slack_three_shape_support_count_check": (
+            int(slack_three_shape_ledger["weighted_support_count"])
+            == first_superboundary_support_count
+            if slack_three_shape_ledger is not None
+            else None
+        ),
+        "canonical_slack_three_shape_packet_slope_histogram_check": (
+            slack_three_shape_ledger["packet_slope_histogram"]
+            == first_superboundary_packet_slope_histogram
+            if slack_three_shape_ledger is not None
+            else None
+        ),
+        "canonical_slack_three_shape_support_slope_histogram_check": (
+            slack_three_shape_ledger["support_slope_histogram"]
+            == first_superboundary_slope_histogram
+            if slack_three_shape_ledger is not None
+            else None
+        ),
+        "canonical_slack_three_shape_abstract_cube_coset_slope_count": (
+            int(slack_three_shape_ledger["abstract_cube_coset_slope_count"])
+            if slack_three_shape_ledger is not None
+            else None
+        ),
+        "canonical_slack_three_shape_cube_coset_slope_count": (
+            int(slack_three_shape_ledger["cube_coset_slope_count"])
+            if slack_three_shape_ledger is not None
+            else None
+        ),
+        "canonical_slack_three_shape_cube_coset_slope_count_check": (
+            len(first_superboundary_slope_histogram)
+            == int(slack_three_shape_ledger["cube_coset_slope_count"])
+            if slack_three_shape_ledger is not None
+            else None
+        ),
         "canonical_slack_two_cyclotomic_shape_count_bound": (
             slack_two_cyclotomic_bound
             if slack_two_cyclotomic_bound is not None
@@ -1626,6 +1880,26 @@ def scan_supports(
                 )
             }
             if slack_two_shape_ledger is not None
+            else None
+        ),
+        "canonical_slack_three_shape_expected_packet_slope_histogram": (
+            {
+                str(slope): count
+                for slope, count in sorted(
+                    slack_three_shape_ledger["packet_slope_histogram"].items()
+                )
+            }
+            if slack_three_shape_ledger is not None
+            else None
+        ),
+        "canonical_slack_three_shape_expected_support_slope_histogram": (
+            {
+                str(slope): count
+                for slope, count in sorted(
+                    slack_three_shape_ledger["support_slope_histogram"].items()
+                )
+            }
+            if slack_three_shape_ledger is not None
             else None
         ),
         "canonical_subboundary_residual_floor": (
@@ -1745,6 +2019,7 @@ def print_text(result: Dict[str, object]) -> None:
             "residual_packet_lift_check={packet} "
             "first_superboundary_zero_check={first} "
             "slack_two_shape_check={shape} "
+            "slack_three_shape_check={shape3} "
             "subboundary_floor_check={floor} "
             "residual_slope_check={slope} "
             "boundary_slope_check={boundary}".format(
@@ -1761,6 +2036,7 @@ def print_text(result: Dict[str, object]) -> None:
                     "canonical_first_superboundary_zero_slope_packet_count_check"
                 ],
                 shape=result["canonical_slack_two_shape_support_count_check"],
+                shape3=result["canonical_slack_three_shape_support_count_check"],
                 floor=result["canonical_subboundary_residual_floor_check"],
                 slope=result["canonical_residual_slope_check"],
                 boundary=result["canonical_boundary_slope_decomposition_check"],

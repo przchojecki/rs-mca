@@ -739,6 +739,48 @@ method starts to give a nontrivial slope budget around the regime
 `e^3 >> p`, while small-index domains can still saturate the whole slope
 field in the toy slack-two catalog.
 
+The next low-slack case has a similarly finite shape ledger. For slack
+`T=3`, assume `4<m` and put
+
+```text
+C_3(D) = { (u,v) in D^2 :
+           w=-1-u-v in D,
+           1,u,v,w distinct,
+           u^2+v^2+uv+u+v+1=0 }.
+```
+
+Every residual packet `P` of size four with `e_1(P)=e_2(P)=0` can be written
+as
+
+```text
+P = x {1,u,v,w},        x in D,        (u,v) in C_3(D),
+```
+
+and the map `(x,u,v) -> P` is twenty-four-to-one: choose the base point of
+`P`, then choose an ordered pair among the three remaining points. Indeed,
+after scaling one point to `1`, the equation `e_1=0` gives
+`w=-1-u-v`, while `e_2=0` becomes the displayed conic equation.
+
+For exact support size `s=Lm+4`, define
+
+```text
+beta(u,v)=-(1+uvw),
+tau(u,v)=#{quotient fibers met by {1,u,v,w}}.
+```
+
+The full lifted slope multiset in the slack-three first superboundary is
+
+```text
+M_3(z) = (1/24) sum_{(u,v) in C_3(D)}
+         binom(N-tau(u,v), L) * #{x in D : x^3 beta(u,v)=z}.
+```
+
+Thus the `T=3`, `|P|=4` residual catalog is reduced to a conic over the
+multiplicative domain plus the cube-image map `x -> x^3` on `D`. Its nonzero
+slope image is exactly a union of cosets `beta(u,v)D^3`; since `D^3` is a
+subgroup, the same disjoint-or-equal coset compression applies. The zero
+slope slice is the already classified four-power-coset family.
+
 ## M1 Impact
 
 This turns the positive M1 problem into a precise incidence question:
@@ -823,6 +865,10 @@ square-root error, where `e=(p-1)/|D|`.
 The resulting non-field-filling test is explicit in `p,n,e`: it identifies
 which subgroup indices are already controlled by the cyclotomic method and
 which low-index cases require a sharper argument or different reserve.
+For `T=3`, the first-superboundary catalog is also no longer a raw support
+enumeration: it is a conic shape set `C_3(D)` and a cube-coset image. This
+extends the low-slack template classification one step beyond the unit
+equation case.
 
 ## Suggested Next Step
 

@@ -97,6 +97,11 @@ canonical_slack_two_cyclotomic_slope_bound
 canonical_slack_two_cyclotomic_slope_bound_density
 canonical_slack_two_cyclotomic_slope_bound_check
 canonical_slack_two_cyclotomic_slope_bound_nontrivial
+canonical_slack_three_shape_packet_count_check
+canonical_slack_three_shape_support_slope_histogram_check
+canonical_slack_three_shape_active_nonzero_cube_coset_count
+canonical_slack_three_shape_cube_coset_slope_count
+canonical_slack_three_shape_cube_coset_slope_count_check
 canonical_subboundary_residual_floor_check
 canonical_residual_slope_check
 canonical_boundary_slope_decomposition_check
@@ -240,6 +245,31 @@ against this bound, and reports the induced field-capped slope bound
 `min(p, 1+ceil(|C_2(D)|/6)|D|/gcd(2,|D|))` and its density.
 The boolean `canonical_slack_two_cyclotomic_slope_bound_nontrivial` records
 whether this induced bound is strictly below the full field size.
+
+For slack `t=3`, the scanner verifies the next first-superboundary shape
+ledger. It enumerates the conic shape set
+
+```text
+C_3(D) = { (u,v) in D^2 :
+           w=-1-u-v in D,
+           1,u,v,w distinct,
+           u^2+v^2+uv+u+v+1=0 },
+```
+
+uses the twenty-four-to-one map `(x,u,v) -> x{1,u,v,w}` onto residual packets,
+and checks the lifted slope formula
+
+```text
+M_3(z) = (1/24) sum_{(u,v) in C_3(D)}
+         binom(N-tau(u,v), (k+3-4)/m)
+         * #{x in D : x^3 beta(u,v)=z},
+beta(u,v)=-(1+uvw).
+```
+
+The `canonical_slack_three_shape_*` fields report the conic parameter count,
+the 24-fold quotient check, reconstructed packet/support counts and
+histograms, and the exact cube-coset slope count
+`1_{zero active} + #{active nonzero beta(u,v)D^3 cosets} * |D^3|`.
 
 For dithered residues in the range
 
