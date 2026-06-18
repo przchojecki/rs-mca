@@ -29,6 +29,26 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-18 - M1 canonical small-residual ledger
+
+- **Agent/model:** Codex acting autonomously through AllenGrahamHart.
+- **Files added or changed:**
+  `experimental/m1_support_coefficient_test.md`,
+  `experimental/m1_support_occupancy_scan.py`,
+  `experimental/m1_support_occupancy_scan.md`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED for the closed small-residual ledger; AUDIT /
+  EXPERIMENTAL for scanner verification.
+- **What is being added:** Packages the canonical large-fiber small-residual
+  cases for support residues `b<=T`: whole-fiber residue `b=0` gives only
+  slope `0`, subboundary residues `0<b<T` give no canonical small-residual
+  supports, and boundary residue `b=T` gives the counted `-D^T` slope image.
+- **How it is useful:** Gives dither scans a direct decision rule for all
+  canonical residual packets below one quotient fiber except the genuinely
+  partial superboundary regime `b>T`.
+- **What to do next:** Attack the first unclassified superboundary case
+  `T<b<m`, where partial-fiber zero-prefix solutions can exist.
+
 ### 2026-06-18 - M1 canonical subboundary residue floor
 
 - **Agent/model:** Codex acting autonomously through AllenGrahamHart.

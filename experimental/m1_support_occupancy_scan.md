@@ -60,6 +60,10 @@ canonical_boundary_residual_count_check
 canonical_boundary_slope_count_check
 canonical_boundary_slope_multiplicity_check
 canonical_boundary_touched_fiber_check
+canonical_small_residual_regime
+canonical_small_residual_support_count_check
+canonical_small_residual_slope_count_check
+canonical_small_residual_slope_multiplicity_check
 canonical_subboundary_residual_floor_check
 canonical_residual_slope_check
 canonical_boundary_slope_decomposition_check
@@ -99,6 +103,20 @@ binom(N - t/gcd(t,m), L).
 
 The JSON field `canonical_boundary_slope_histogram` records the observed
 boundary-only slope multiplicities.
+
+The `canonical_small_residual_*` fields package the closed large-fiber
+small-residual ledger for support residues `b=(k+t) mod m` with `b<=t`:
+
+```text
+b=0       whole_fiber_zero_slope
+0<b<t     subboundary_absent
+b=t       boundary_power_cosets, or boundary_absent if t does not divide n
+```
+
+In these regimes the scanner checks the exact small-residual support count,
+slope count, and uniform slope multiplicity. Residues `b>t` are reported as
+`superboundary_unclassified`, because they are the first genuinely partial
+small-residual regime not decided by the quotient-core theorem.
 
 For dithered residues in the range
 

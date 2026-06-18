@@ -357,6 +357,30 @@ support witnesses: choose the `L` whole quotient fibers from those not touched
 by the residual coset. Thus both the support count and the bad-slope count of
 the boundary residual canonical source are closed quotient-level quantities.
 
+Combining the preceding statements gives an exact small-residual ledger for
+support residues `b <= T`. In the large-fiber range `T<m`, among supports with
+`|R(S)|<m`:
+
+```text
+b=0:
+  only whole-fiber supports occur; the canonical slope set is {0},
+  with support multiplicity binom(N,L).
+
+0<b<T:
+  no canonical small-residual supports occur.
+
+b=T:
+  the only canonical small-residual supports are the boundary power cosets;
+  the slope set is -D^T and each slope has multiplicity
+  binom(N - T/gcd(T,m), L), when T|n.
+```
+
+The first unclassified small-residual residue is therefore `b>T`, where the
+residual zero-prefix equations may still have genuinely partial-fiber
+solutions. This is the point at which the canonical problem stops being a
+quotient-core or boundary-coset ledger and becomes a residual local-limit
+question.
+
 ## M1 Impact
 
 This turns the positive M1 problem into a precise incidence question:
@@ -406,6 +430,9 @@ Finally, if the support residue satisfies `0<s mod m<T`, then even the
 boundary source is absent and canonical residual incidences must have at least
 `m+(s mod m)` residual points. This is the precise small-residual payoff of
 dimension dither.
+For residues `b<=T`, the small-residual canonical ledger is now exact: slope
+`0` in the whole-fiber case, no slopes in the subboundary case, and the
+`-D^T` boundary image at `b=T`.
 
 ## Suggested Next Step
 
@@ -428,4 +455,5 @@ classification on every scanned support, and verifies the residual-only and
 boundary quotient-core slope decompositions. In cyclic-domain scans it also
 checks the exact boundary-coset count above and the associated boundary slope
 image/multiplicity, and reports the subboundary residual-size floor in the
-dithered residue range.
+dithered residue range. It also reports the closed small-residual regime for
+support residues `b<=T`.

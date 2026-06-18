@@ -242,6 +242,50 @@ def subboundary_residual_floor(
     return None
 
 
+def expected_small_residual_ledger(
+    domain_order: int,
+    quotient_order: int,
+    fiber_size: int,
+    support_size: int,
+    slack: int,
+) -> Tuple[str, Optional[int], Optional[int], Optional[int]]:
+    if slack >= fiber_size:
+        return ("not_large_fiber", None, None, None)
+
+    residue = support_size % fiber_size
+    if residue == 0:
+        whole_fibers = support_size // fiber_size
+        if 0 <= whole_fibers <= quotient_order:
+            support_count = math.comb(quotient_order, whole_fibers)
+        else:
+            support_count = 0
+        slope_count = 1 if support_count else 0
+        return ("whole_fiber_zero_slope", support_count, slope_count, support_count)
+
+    if residue < slack:
+        return ("subboundary_absent", 0, 0, 0)
+
+    if residue == slack:
+        support_count = expected_boundary_residual_coset_count(
+            domain_order=domain_order,
+            quotient_order=quotient_order,
+            fiber_size=fiber_size,
+            support_size=support_size,
+            slack=slack,
+        )
+        slope_count, multiplicity = expected_boundary_slope_data(
+            domain_order=domain_order,
+            quotient_order=quotient_order,
+            fiber_size=fiber_size,
+            support_size=support_size,
+            slack=slack,
+        )
+        regime = "boundary_power_cosets" if support_count else "boundary_absent"
+        return (regime, support_count, slope_count, multiplicity)
+
+    return ("superboundary_unclassified", None, None, None)
+
+
 def occupancy_histogram(
     support: Sequence[int],
     quotient_order: int,
@@ -385,6 +429,18 @@ def scan_supports(
     canonical_boundary_slope_mismatches = 0
     residual_size_histogram: Counter[int] = Counter()
     support_residue = support_size % fiber_size
+    (
+        small_residual_regime,
+        expected_small_residual_support_count,
+        expected_small_residual_slope_count,
+        expected_small_residual_slope_multiplicity,
+    ) = expected_small_residual_ledger(
+        domain_order=n,
+        quotient_order=quotient_order,
+        fiber_size=fiber_size,
+        support_size=support_size,
+        slack=slack,
+    )
     subboundary_floor = subboundary_residual_floor(
         support_size=support_size,
         fiber_size=fiber_size,
@@ -416,6 +472,8 @@ def scan_supports(
     records: Dict[Tuple[int, ...], Dict[str, object]] = {}
     bad_slopes = set()
     boundary_slope_histogram: Counter[int] = Counter()
+    small_residual_slope_histogram: Counter[int] = Counter()
+    canonical_small_residual_support_count = 0
     incidence_count = 0
     contained_count = 0
     no_slope_count = 0
@@ -475,6 +533,9 @@ def scan_supports(
                 record["canonical_zero_prefix_support_count"] = (
                     int(record["canonical_zero_prefix_support_count"]) + 1
                 )
+                if residual_size < fiber_size:
+                    canonical_small_residual_support_count += 1
+                    small_residual_slope_histogram[canonical_slope] += 1
             if slack <= fiber_size and (canonical_slope is not None) != (
                 residual_zero_prefix
             ):
@@ -751,6 +812,79 @@ def scan_supports(
         "canonical_support_residue_mod_fiber": (
             support_residue if canonical_line and slack < fiber_size else None
         ),
+        "canonical_small_residual_regime": (
+            small_residual_regime
+            if canonical_line and slack < fiber_size
+            else None
+        ),
+        "canonical_small_residual_support_count": (
+            canonical_small_residual_support_count
+            if canonical_line and slack < fiber_size
+            else None
+        ),
+        "canonical_small_residual_expected_support_count": (
+            expected_small_residual_support_count
+            if canonical_line and slack < fiber_size
+            else None
+        ),
+        "canonical_small_residual_support_count_check": (
+            canonical_small_residual_support_count
+            == expected_small_residual_support_count
+            if (
+                canonical_line
+                and slack < fiber_size
+                and expected_small_residual_support_count is not None
+            )
+            else None
+        ),
+        "canonical_small_residual_slope_count": (
+            len(small_residual_slope_histogram)
+            if canonical_line and slack < fiber_size
+            else None
+        ),
+        "canonical_small_residual_expected_slope_count": (
+            expected_small_residual_slope_count
+            if canonical_line and slack < fiber_size
+            else None
+        ),
+        "canonical_small_residual_slope_count_check": (
+            len(small_residual_slope_histogram)
+            == expected_small_residual_slope_count
+            if (
+                canonical_line
+                and slack < fiber_size
+                and expected_small_residual_slope_count is not None
+            )
+            else None
+        ),
+        "canonical_small_residual_expected_slope_multiplicity": (
+            expected_small_residual_slope_multiplicity
+            if canonical_line and slack < fiber_size
+            else None
+        ),
+        "canonical_small_residual_slope_multiplicity_check": (
+            all(
+                count == expected_small_residual_slope_multiplicity
+                for count in small_residual_slope_histogram.values()
+            )
+            and len(small_residual_slope_histogram)
+            == expected_small_residual_slope_count
+            if (
+                canonical_line
+                and slack < fiber_size
+                and expected_small_residual_slope_multiplicity is not None
+                and expected_small_residual_slope_count is not None
+            )
+            else None
+        ),
+        "canonical_small_residual_slope_histogram": (
+            {
+                str(slope): count
+                for slope, count in sorted(small_residual_slope_histogram.items())
+            }
+            if canonical_line and slack < fiber_size
+            else None
+        ),
         "canonical_subboundary_residual_floor": (
             subboundary_floor if canonical_line and slack < fiber_size else None
         ),
@@ -864,6 +998,7 @@ def print_text(result: Dict[str, object]) -> None:
             "boundary_coset_check={coset} "
             "boundary_count_check={count} "
             "boundary_slope_count_check={slope_count} "
+            "small_residual_regime={small} "
             "subboundary_floor_check={floor} "
             "residual_slope_check={slope} "
             "boundary_slope_check={boundary}".format(
@@ -874,6 +1009,7 @@ def print_text(result: Dict[str, object]) -> None:
                 coset=result["canonical_boundary_residual_coset_check"],
                 count=result["canonical_boundary_residual_count_check"],
                 slope_count=result["canonical_boundary_slope_count_check"],
+                small=result["canonical_small_residual_regime"],
                 floor=result["canonical_subboundary_residual_floor_check"],
                 slope=result["canonical_residual_slope_check"],
                 boundary=result["canonical_boundary_slope_decomposition_check"],
