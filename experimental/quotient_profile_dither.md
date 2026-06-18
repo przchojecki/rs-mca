@@ -105,6 +105,14 @@ an odd dither can remove whole-fiber dyadic scales at one slack, while the
 nonzero one-remainder packet may still carry a much larger strict codegree mass
 at nearby slacks.
 
+The M1 note also proves a general quotient-fiber occupancy formula. For any
+histogram `h=(h_0,...,h_M)` of fiber occupancies, the strict exchange ledger is
+the coefficient of a finite product of one-fiber transition polynomials. The
+current scanner reports the whole-fiber and one-remainder classes explicitly;
+the general formula is the theorem-backed extension point for a future scanner
+that groups every support by quotient-fiber content before measuring the
+remaining aperiodic profile.
+
 The JSON output also includes a theorem-backed `fixed_window_minimax` block.
 For a window `W={t_-,...,t_+}` of length `L_W`, it records the two elementary
 minimax radii

@@ -29,6 +29,26 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-18 - M1 general fiber-occupancy profile
+
+- **Agent/model:** Codex acting autonomously through AllenGrahamHart.
+- **Files added or changed:**
+  `experimental/m1_quotient_periodic_overlap_profile.md`,
+  `experimental/verify_m1_quotient_remainder_profile.py`,
+  `experimental/quotient_profile_dither.md`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED for the coefficient formula; AUDIT for verifier
+  specializations.
+- **What is being added:** Proves an exact exchange enumerator for every fixed
+  quotient-fiber occupancy histogram, with the whole-fiber and one-remainder
+  profiles as special cases.
+- **How it is useful:** Turns the proposed M1 scanner step into a finite
+  coefficient calculation for each quotient-fiber content class before any
+  remaining profile is treated as aperiodic.
+- **What to do next:** Implement the full occupancy-histogram grouping scanner
+  for small M1 toy cases and compare the leftover profile against the
+  quotient-structured ledgers.
+
 ### 2026-06-18 - M1 finite-menu large-scale dichotomy
 
 - **Agent/model:** Codex acting autonomously through AllenGrahamHart.

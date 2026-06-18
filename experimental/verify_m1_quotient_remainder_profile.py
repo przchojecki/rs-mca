@@ -22,6 +22,214 @@ def add_term(poly, coeff, exponent):
         poly[exponent] += coeff
 
 
+def convolve(left, right):
+    product = Counter()
+    for left_exponent, left_coeff in left.items():
+        for right_exponent, right_coeff in right.items():
+            add_term(
+                product,
+                left_coeff * right_coeff,
+                left_exponent + right_exponent,
+            )
+    return +product
+
+
+def fiber_transition_enumerator(m, old_occupancy, new_occupancy):
+    """Return the one-fiber exchange enumerator for fixed occupancies."""
+
+    poly = Counter()
+    overlap_min = max(0, old_occupancy + new_occupancy - m)
+    overlap_max = min(old_occupancy, new_occupancy)
+    for overlap in range(overlap_min, overlap_max + 1):
+        coeff = (
+            choose(old_occupancy, overlap)
+            * choose(m - old_occupancy, new_occupancy - overlap)
+        )
+        add_term(poly, coeff, old_occupancy - overlap)
+    return +poly
+
+
+def occupancy_profile_enumerator(N, m, histogram):
+    """Fixed-support exchange enumerator for a fiber occupancy histogram."""
+
+    assert len(histogram) == m + 1
+    assert sum(histogram) == N
+    target = tuple(histogram)
+    zero_counts = (0,) * (m + 1)
+    dp = {zero_counts: Counter({0: 1})}
+
+    for old_occupancy, count in enumerate(histogram):
+        for _ in range(count):
+            next_dp = {}
+            for counts, poly in dp.items():
+                for new_occupancy in range(m + 1):
+                    if counts[new_occupancy] >= target[new_occupancy]:
+                        continue
+                    next_counts = list(counts)
+                    next_counts[new_occupancy] += 1
+                    next_counts = tuple(next_counts)
+                    transition = fiber_transition_enumerator(
+                        m,
+                        old_occupancy,
+                        new_occupancy,
+                    )
+                    updated = convolve(poly, transition)
+                    if next_counts not in next_dp:
+                        next_dp[next_counts] = Counter()
+                    next_dp[next_counts].update(updated)
+            dp = {counts: +poly for counts, poly in next_dp.items()}
+
+    return +dp[target]
+
+
+def occupancy_family_size(N, m, histogram):
+    assert len(histogram) == m + 1
+    assert sum(histogram) == N
+    remaining = N
+    assignment_count = 1
+    subset_count = 1
+    for occupancy, count in enumerate(histogram):
+        assignment_count *= choose(remaining, count)
+        remaining -= count
+        subset_count *= choose(m, occupancy) ** count
+    return assignment_count * subset_count
+
+
+def whole_fiber_histogram(N, m, L):
+    histogram = [0] * (m + 1)
+    histogram[0] = N - L
+    histogram[m] = L
+    return tuple(histogram)
+
+
+def one_remainder_histogram(N, m, L, b):
+    histogram = [0] * (m + 1)
+    histogram[0] = N - L - 1
+    histogram[b] = 1
+    histogram[m] = L
+    return tuple(histogram)
+
+
+def whole_fiber_formula_enumerator(N, m, L):
+    poly = Counter()
+    for h in range(0, min(L, N - L) + 1):
+        add_term(poly, choose(L, h) * choose(N - L, h), h * m)
+    return +poly
+
+
+def support_from_fiber_subsets(fiber_subsets):
+    out = set()
+    for subset in fiber_subsets:
+        out.update(subset)
+    return frozenset(out)
+
+
+def occupancy_histogram_family(N, m, histogram):
+    fibers = [
+        tuple((fiber_index, point_index) for point_index in range(m))
+        for fiber_index in range(N)
+    ]
+    choices_by_size = {
+        size: tuple(combinations(fibers[0], size))
+        for size in range(m + 1)
+    }
+    family = []
+
+    def visit_occupancies(index, remaining, occupancies):
+        if index == N:
+            if all(count == 0 for count in remaining):
+                fiber_choices = []
+                for fiber_index, occupancy in enumerate(occupancies):
+                    choices = []
+                    for local_choice in choices_by_size[occupancy]:
+                        choices.append(
+                            tuple(
+                                (fiber_index, point_index)
+                                for _, point_index in local_choice
+                            )
+                        )
+                    fiber_choices.append(tuple(choices))
+                for selected in product_tuples(fiber_choices):
+                    family.append(support_from_fiber_subsets(selected))
+            return
+
+        for occupancy, count in enumerate(remaining):
+            if count == 0:
+                continue
+            next_remaining = list(remaining)
+            next_remaining[occupancy] -= 1
+            visit_occupancies(
+                index + 1,
+                tuple(next_remaining),
+                occupancies + (occupancy,),
+            )
+
+    visit_occupancies(0, tuple(histogram), ())
+    return family
+
+
+def product_tuples(items):
+    if not items:
+        yield ()
+        return
+    first, *rest = items
+    for value in first:
+        for suffix in product_tuples(rest):
+            yield (value,) + suffix
+
+
+def brute_occupancy_profile_enumerator(N, m, histogram):
+    family = occupancy_histogram_family(N, m, histogram)
+    fixed = family[0]
+    return Counter(len(fixed - other) for other in family)
+
+
+def verify_occupancy_profile_case(N, m, histogram):
+    formula = occupancy_profile_enumerator(N, m, histogram)
+    brute = brute_occupancy_profile_enumerator(N, m, histogram)
+    assert formula == brute, (N, m, histogram, formula, brute)
+    assert sum(formula.values()) == occupancy_family_size(N, m, histogram)
+    return formula
+
+
+def verify_occupancy_profile_specializations():
+    rows = []
+    whole_cases = [
+        (5, 3, 2),
+        (6, 4, 2),
+        (7, 3, 3),
+    ]
+    for N, m, L in whole_cases:
+        histogram = whole_fiber_histogram(N, m, L)
+        general = occupancy_profile_enumerator(N, m, histogram)
+        expected = whole_fiber_formula_enumerator(N, m, L)
+        assert general == expected, (N, m, L, general, expected)
+        rows.append(("whole", N, m, L, dict(sorted(general.items()))))
+
+    remainder_cases = [
+        (5, 4, 1, 1),
+        (6, 3, 2, 1),
+        (7, 4, 3, 2),
+    ]
+    for N, m, L, b in remainder_cases:
+        histogram = one_remainder_histogram(N, m, L, b)
+        general = occupancy_profile_enumerator(N, m, histogram)
+        expected = formula_enumerator(N, m, L, b)
+        assert general == expected, (N, m, L, b, general, expected)
+        rows.append(("remainder", N, m, L, b, dict(sorted(general.items()))))
+
+    brute_cases = [
+        (4, 3, (1, 2, 1, 0)),
+        (4, 3, (1, 1, 1, 1)),
+        (5, 2, (1, 2, 2)),
+    ]
+    for case in brute_cases:
+        formula = verify_occupancy_profile_case(*case)
+        rows.append(("brute",) + case + (dict(sorted(formula.items())),))
+
+    return tuple(rows)
+
+
 def formula_enumerator(N, m, L, r):
     poly = Counter()
 
@@ -1043,6 +1251,9 @@ def verify_maximal_dither_random_line_ledger(n, k0, t, q):
 
 
 def main():
+    occupancy_rows = verify_occupancy_profile_specializations()
+    print(f"fiber occupancy profile cases={occupancy_rows}")
+
     cases = [
         (5, 4, 1, 1),
         (5, 4, 2, 1),

@@ -371,9 +371,89 @@ through the first product in `H_REM`. Thus dimension dither can remove exact
 whole-fiber quotient-periodic supports while still leaving a smaller
 one-remainder-fiber profile that must be budgeted separately.
 
+## General Fiber-Occupancy Profile
+
+The whole-fiber and one-remainder families are the first two cases of a more
+general quotient-fiber content ledger.  For a support `S`, record the
+occupancy histogram
+
+```text
+h_a(S) = |{ i : |S cap B_i| = a }|,        0 <= a <= m.
+```
+
+Fix a histogram
+
+```text
+h=(h_0,...,h_m),        sum_a h_a=N,        sum_a a h_a=s,
+```
+
+and let
+
+```text
+A_h = { S subset D : h_a(S)=h_a for every a }.
+```
+
+Then
+
+```text
+|A_h| =
+  N!/(prod_a h_a!) prod_{a=0}^m binom(m,a)^{h_a}.
+```
+
+For `0 <= a,b <= m`, define the one-fiber transition polynomial
+
+```text
+P_{a,b}(y)
+ =
+  sum_x binom(a,x) binom(m-a,b-x) y^(a-x),
+```
+
+where the sum ranges over
+
+```text
+max(0,a+b-m) <= x <= min(a,b).
+```
+
+Here `x` is the within-fiber overlap between an old occupancy-`a` fiber and a
+new occupancy-`b` fiber.  For any fixed `S in A_h`, the full exchange
+enumerator
+
+```text
+H_h(y) = sum_{T in A_h} y^|S \ T|
+```
+
+is independent of `S` and is given by the coefficient extraction
+
+```text
+H_h(y)
+ =
+ [z_0^h_0 ... z_m^h_m]
+ prod_{a=0}^m
+   ( sum_{b=0}^m z_b P_{a,b}(y) )^h_a.
+```
+
+Consequently
+
+```text
+Gamma_j(A_h) = [y^j] H_h(y),
+Delta_j(A_h) = |A_h| [y^j] H_h(y)        for j >= 1,
+```
+
+and the strict-overlap random-line ledger is
+
+```text
+R_h(t,q) = sum_{1 <= j <= t-1} [y^j] H_h(y) q^(t-j).
+```
+
+This gives an exact, finite coefficient formula for every quotient-fiber
+content class.  The whole-fiber quotient-periodic profile is the specialization
+`h_0=N-L`, `h_m=L`.  The one-remainder profile is the specialization
+`h_0=N-L-1`, `h_b=1`, `h_m=L`; expanding the coefficient formula by the
+location of the new remainder fiber gives the displayed `H_REM` formula above.
+
 ## Large-Fiber Remainder Truncation
 
-The preceding formula becomes especially useful in the large-fiber range
+The one-remainder formula becomes especially useful in the large-fiber range
 `t <= m`. To avoid overloading notation, write the support remainder as `b`:
 
 ```text
@@ -1408,6 +1488,33 @@ contains either zero or one, giving the displayed `floor/ceil` count. The set
 `L_win(r)` is obtained by applying this criterion simultaneously over all
 dyadic divisors `m` of `k0`.
 
+For the general fiber-occupancy profile, first note that the group permuting
+fibers and permuting points inside each fiber is transitive on `A_h`.  Thus the
+fixed-support enumerator is independent of the chosen `S in A_h`.  For one
+fiber with old occupancy `a` and new occupancy `b`, if the two within-fiber
+subsets overlap in `x` points, then the contribution to `|S\T|` is `a-x`, and
+the number of choices is
+
+```text
+binom(a,x) binom(m-a,b-x).
+```
+
+Summing over feasible `x` gives `P_{a,b}(y)`.  The auxiliary variable `z_b`
+records that the target support `T` uses occupancy `b` on that fiber.  For the
+`h_a` old fibers of occupancy `a`, the independent contribution is therefore
+
+```text
+(sum_b z_b P_{a,b}(y))^h_a.
+```
+
+Multiplying over all `a` and extracting the coefficient of
+`z_0^h_0 ... z_m^h_m` enforces that `T` has the same occupancy histogram as
+`S`.  This proves the displayed formula for `H_h(y)`.  The formula for
+`|A_h|` is obtained independently by first assigning the occupancy values to
+the `N` fibers and then choosing an `a`-subset inside each occupancy-`a` fiber.
+The `Gamma_j`, `Delta_j`, and `R_h(t,q)` formulas then follow exactly as in
+the whole-fiber case.
+
 For the one-remainder-fiber profile, fix
 
 ```text
@@ -1592,6 +1699,10 @@ Two immediate readings are useful.
    one-remainder-fiber family has its own exchange profile `H_REM`. This
    smaller profile can create strict point exchanges below one full fiber and
    therefore must be budgeted separately from the whole-fiber quotient term.
+   More generally, every fixed quotient-fiber occupancy histogram has an exact
+   coefficient-extraction ledger `H_h`, so a scanner can account for all
+   fiber-content classes before treating the residual obstruction as genuinely
+   aperiodic.
 7. In the large-fiber range `t <= m`, that remainder budget is itself explicit:
    only same-remainder swaps, moves to unused nonwhole fibers, and one boundary
    promotion term survive. Under maximal dyadic dither `k=k0-(t-1)`, every
@@ -1651,9 +1762,10 @@ emit three statistics for each support class:
 |A|,    Delta_j(A),    Gamma_j(A)    for 1 <= j < t.
 ```
 
-The quotient-periodic class should match the closed formulas above. Any excess
-strict-overlap profile in the remaining supports is then a direct witness for
-the aperiodic obstruction that a future local-limit proof must control.  For
+The general fiber-occupancy formula gives these statistics exactly for every
+fixed quotient-fiber content histogram. Any excess strict-overlap profile after
+these structured classes are isolated is then a direct witness for the
+aperiodic obstruction that a future local-limit proof must control.  For
 dimension dithering across more than one target slack, the scanner should also
 emit `L_win(r)` for each allowed dither and rank the surviving dyadic
 first-exchange ledger terms.  The command
