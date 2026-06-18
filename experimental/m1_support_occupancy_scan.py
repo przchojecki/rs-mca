@@ -142,6 +142,13 @@ def canonical_slope_from_symmetric_prefix(
     return (sign * sym[slack]) % p
 
 
+def is_power_coset(values: Sequence[int], exponent: int, p: int) -> bool:
+    if not values:
+        return False
+    target = pow(values[0], exponent, p)
+    return all(pow(value, exponent, p) == target for value in values)
+
+
 def occupancy_histogram(
     support: Sequence[int],
     quotient_order: int,
@@ -192,6 +199,10 @@ def empty_histogram_record(histogram: Sequence[int]) -> Dict[str, object]:
         "incidence_count": 0,
         "canonical_zero_prefix_support_count": 0,
         "canonical_residual_zero_prefix_support_count": 0,
+        "canonical_low_residual_zero_prefix_count": 0,
+        "canonical_boundary_residual_coset_count": 0,
+        "canonical_boundary_residual_coset_mismatch_count": 0,
+        "residual_size_histogram": Counter(),
         "bad_slopes": set(),
         "slope_histogram": Counter(),
     }
@@ -208,15 +219,25 @@ def retained_histograms(
         assert isinstance(slope_histogram, Counter)
         bad_slopes = record["bad_slopes"]
         assert isinstance(bad_slopes, set)
+        residual_size_histogram = record["residual_size_histogram"]
+        assert isinstance(residual_size_histogram, Counter)
         item = {
             key: value
             for key, value in record.items()
-            if key not in {"bad_slopes", "slope_histogram"}
+            if key not in {
+                "bad_slopes",
+                "slope_histogram",
+                "residual_size_histogram",
+            }
         }
         item["bad_slope_count"] = len(bad_slopes)
         item["bad_slopes"] = sorted(bad_slopes)
         item["slope_histogram"] = {
             str(slope): count for slope, count in sorted(slope_histogram.items())
+        }
+        item["residual_size_histogram"] = {
+            str(size): count
+            for size, count in sorted(residual_size_histogram.items())
         }
         output.append(item)
     return output
@@ -259,6 +280,10 @@ def scan_supports(
     residual_zero_prefix_mismatches = 0
     canonical_zero_prefix_count = 0
     canonical_residual_zero_prefix_count = 0
+    canonical_low_residual_zero_prefix_count = 0
+    canonical_boundary_residual_coset_count = 0
+    canonical_boundary_residual_coset_mismatches = 0
+    residual_size_histogram: Counter[int] = Counter()
 
     records: Dict[Tuple[int, ...], Dict[str, object]] = {}
     bad_slopes = set()
@@ -280,6 +305,11 @@ def scan_supports(
             fiber_size,
         )
         residual_values = [domain[index] for index in residual]
+        residual_size = len(residual)
+        residual_size_histogram[residual_size] += 1
+        record_residual_sizes = record["residual_size_histogram"]
+        assert isinstance(record_residual_sizes, Counter)
+        record_residual_sizes[residual_size] += 1
         support_sym = elementary_symmetric_prefix(support_values, slack, p)
         residual_sym = elementary_symmetric_prefix(residual_values, slack, p)
         for degree in range(1, low_deficit_limit + 1):
@@ -315,6 +345,36 @@ def scan_supports(
                 residual_zero_prefix_mismatches += 1
             if slope != canonical_slope:
                 canonical_formula_mismatches += 1
+            if (
+                slack <= fiber_size
+                and canonical_slope is not None
+                and 0 < residual_size < slack
+            ):
+                canonical_low_residual_zero_prefix_count += 1
+                record["canonical_low_residual_zero_prefix_count"] = (
+                    int(record["canonical_low_residual_zero_prefix_count"]) + 1
+                )
+            if (
+                slack <= fiber_size
+                and canonical_slope is not None
+                and residual_size == slack
+            ):
+                canonical_boundary_residual_coset_count += 1
+                record["canonical_boundary_residual_coset_count"] = (
+                    int(record["canonical_boundary_residual_coset_count"]) + 1
+                )
+                if not is_power_coset(residual_values, slack, p):
+                    canonical_boundary_residual_coset_mismatches += 1
+                    record[
+                        "canonical_boundary_residual_coset_mismatch_count"
+                    ] = (
+                        int(
+                            record[
+                                "canonical_boundary_residual_coset_mismatch_count"
+                            ]
+                        )
+                        + 1
+                    )
 
         contained = all(entry == 0 for entry in anchor_top) and all(
             entry == 0 for entry in direction_top
@@ -424,9 +484,37 @@ def scan_supports(
             if canonical_line and slack <= fiber_size
             else None
         ),
+        "canonical_low_residual_exclusion_check": (
+            canonical_low_residual_zero_prefix_count == 0
+            if canonical_line and slack <= fiber_size
+            else None
+        ),
+        "canonical_low_residual_zero_prefix_count": (
+            canonical_low_residual_zero_prefix_count
+            if canonical_line and slack <= fiber_size
+            else None
+        ),
+        "canonical_boundary_residual_coset_check": (
+            canonical_boundary_residual_coset_mismatches == 0
+            if canonical_line and slack <= fiber_size
+            else None
+        ),
+        "canonical_boundary_residual_coset_count": (
+            canonical_boundary_residual_coset_count
+            if canonical_line and slack <= fiber_size
+            else None
+        ),
+        "canonical_boundary_residual_coset_mismatch_count": (
+            canonical_boundary_residual_coset_mismatches
+            if canonical_line and slack <= fiber_size
+            else None
+        ),
         "low_deficit_whole_fiber_invisibility": low_deficit_mismatches == 0,
         "low_deficit_checked_degrees": list(range(1, low_deficit_limit + 1)),
         "low_deficit_mismatch_count": low_deficit_mismatches,
+        "residual_size_histogram": {
+            str(size): count for size, count in sorted(residual_size_histogram.items())
+        },
         "contained_support_count": contained_count,
         "no_slope_support_count": no_slope_count,
         "incidence_count": incidence_count,
@@ -481,10 +569,14 @@ def print_text(result: Dict[str, object]) -> None:
         print(
             "canonical_symmetric_formula_check={formula} "
             "zero_prefix_supports={zero} "
-            "residual_zero_prefix_match={residual}".format(
+            "residual_zero_prefix_match={residual} "
+            "low_residual_exclusion={low} "
+            "boundary_coset_check={coset}".format(
                 formula=result["canonical_symmetric_formula_check"],
                 zero=result["canonical_zero_prefix_support_count"],
                 residual=result["canonical_residual_zero_prefix_match"],
+                low=result["canonical_low_residual_exclusion_check"],
+                coset=result["canonical_boundary_residual_coset_check"],
             )
         )
     print()

@@ -228,6 +228,39 @@ the one-remainder overlap ledger remains relevant for arbitrary or random
 line data, but it is not itself a canonical quotient-locator source in this
 range.
 
+This residual problem has an exact low-weight cutoff. Assume `D subset F^*`,
+put `b=|R(S)|`, and keep `T<=m`. If
+
+```text
+0 < b < T,
+```
+
+then `S` cannot contribute to the canonical slack line. Indeed, the zero-prefix
+condition on `R(S)` would include `e_b(R(S))=0`, but
+
+```text
+e_b(R(S)) = product_{x in R(S)} x != 0.
+```
+
+At the boundary `b=T`, the residual zero-prefix condition is also completely
+rigid:
+
+```text
+e_1(R)=...=e_(T-1)(R)=0
+```
+
+if and only if the residual vanishing polynomial has the form
+
+```text
+L_R(X) = X^T - c,
+```
+
+equivalently all residual points have the same `T`-th power. Thus a boundary
+residual contribution is exactly a full root set of `X^T-c` inside the
+multiplicative domain, and for `T<m` its slope is `z=-c`. If `T=m`, such a
+residual set would be a whole quotient fiber and hence is absorbed into
+`W(S)`, so no nonempty residual boundary case remains.
+
 ## M1 Impact
 
 This turns the positive M1 problem into a precise incidence question:
@@ -257,6 +290,11 @@ The canonical quotient-core factorization sharpens this in the monomial
 slack line: for `T<=m`, whole quotient fibers can be stripped away before
 checking the zero-prefix equations, leaving a concrete residual
 partial-fiber symmetric-zero problem.
+The low-residual cutoff then proves that residual packets of total size
+`1,...,T-1` are harmless for the canonical quotient-locator line over a
+multiplicative domain; the first possible residual canonical obstruction is
+the rigid boundary case `|R|=T`, where the residual set must itself be a
+`T`-power fiber.
 
 ## Suggested Next Step
 
@@ -274,4 +312,5 @@ the observed histogram incidence counts with the occupancy-profile random-line
 ledger before attacking the genuinely aperiodic packing number. For the default
 canonical line, the scanner also verifies the elementary-symmetric slope
 formula and the quotient-core invisibility identity `e_d(S)=e_d(R(S))` for
-`d<m`.
+`d<m`. It also checks the low-residual exclusion and the boundary coset
+classification on every scanned support.

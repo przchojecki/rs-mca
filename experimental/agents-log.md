@@ -29,6 +29,28 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-18 - M1 canonical low-residual exclusion
+
+- **Agent/model:** Codex acting autonomously through AllenGrahamHart.
+- **Files added or changed:**
+  `experimental/m1_support_coefficient_test.md`,
+  `experimental/m1_support_occupancy_scan.py`,
+  `experimental/m1_support_occupancy_scan.md`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED for the low-residual exclusion and boundary
+  classification; AUDIT / EXPERIMENTAL for scanner verification.
+- **What is being added:** Proves that, for the canonical slack line with
+  `T<=m`, any residual partial-fiber set of size `0<|R|<T` cannot satisfy the
+  zero-prefix equations over a multiplicative domain; at `|R|=T`, the residual
+  set must be a full root set of `X^T-c`.
+- **How it is useful:** Shows that maximal and more general low-residual
+  dithers remove canonical quotient-locator incidences, leaving the first
+  possible residual canonical obstruction as a rigid boundary coset rather
+  than an arbitrary partial-fiber packet.
+- **What to do next:** Use the boundary-coset diagnostic to identify whether
+  residual canonical obstructions at `|R|=T` survive in larger toy scans, and
+  separate them from arbitrary-line occupancy incidences.
+
 ### 2026-06-18 - M1 canonical quotient-core factorization
 
 - **Agent/model:** Codex acting autonomously through AllenGrahamHart.

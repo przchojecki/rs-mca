@@ -54,13 +54,23 @@ For the default canonical line, the scanner additionally reports
 canonical_symmetric_formula_check
 canonical_zero_prefix_support_count
 canonical_residual_zero_prefix_match
+canonical_low_residual_exclusion_check
+canonical_boundary_residual_coset_check
 ```
 
 These check that the interpolated `Pi_S` slope agrees with the canonical
 formula `z=(-1)^t e_t(S)`, count supports with
 `e_1(S)=...=e_(t-1)(S)=0`, and, when `t<=m`, verify that this zero-prefix
 condition is equivalent to the same condition on the residual partial-fiber
-set.
+set. They also verify the low-residual exclusion
+
+```text
+0 < |R(S)| < t        =>        no canonical zero-prefix support,
+```
+
+and the boundary classification: when `|R(S)|=t` and the zero-prefix holds,
+all residual points have the same `t`-th power. The JSON field
+`residual_size_histogram` records the scanned residual sizes.
 
 This scanner does not prove the M1 local limit. It makes the quotient-content
 label visible on actual support-collinearity incidences, so tiny examples can
@@ -68,4 +78,5 @@ separate whole-fiber, one-remainder, mixed-partial, and candidate aperiodic
 support patterns. The canonical symmetric checks make the monomial
 quotient-locator case more transparent: once whole fibers are stripped away,
 the residual partial-fiber set is the object that must satisfy the zero-prefix
-conditions.
+conditions, and residual packets below the slack are ruled out over a
+multiplicative domain.
