@@ -44,7 +44,8 @@ Keep entries concise and link to the relevant files.
 - **What is being added:** The equal-line diagonal two-coordinate family is
   reduced by symmetric variables `s=u+v`, `t=uv` into a bounded Jacobi part
   and a residual trace, then the residual is rewritten as a pullback of a
-  three-point hypergeometric trace with explicit branch divisor.
+  three-point hypergeometric trace with explicit branch divisor and a
+  single-character normal form.
 - **How it is useful:** Turns the numerically near-sharp remaining-wall
   subfamily into a sharper analytic target: prove a `3p`-level bound for the
   hypergeometric pullback to explain the observed near-`4p` behavior.

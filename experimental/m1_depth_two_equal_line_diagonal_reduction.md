@@ -98,6 +98,22 @@ In character notation this says
 mu^3 eta^2 = 1.
 ```
 
+Let
+
+```text
+alpha = mu eta.
+```
+
+Then the equal-line relation gives the single-character normal form
+
+```text
+mu = alpha^(-2),        eta = alpha^3,        rho = alpha chi_2.
+```
+
+Thus `alpha` and `alpha chi_2` are nonprincipal in the remaining-wall case:
+if `alpha=1`, then `eta=mu^{-1}` is reciprocal; if `alpha=chi_2`, then
+`mu=1`.
+
 If also `mu eta=1`, then `eta=mu^{-1}` and the equality above forces
 `mu=1`, contradicting the two-coordinate hypothesis. Hence the Jacobi
 factor in the reduction is nondegenerate throughout the equal-line
@@ -232,6 +248,22 @@ but the middle cohomology of this pulled-back three-point hypergeometric
 sheaf. A `3p` bound for the pullback main term, plus the exceptional
 `2 sqrt(p)` correction, would explain the observed near-`4p` diagonal
 examples.
+
+Using the single-character notation `alpha=mu eta`, the pullback main is
+equivalently
+
+```text
+chi_2(-1) sum_{s!=-1, B(s)!=0} sum_x
+  alpha(B(s)) alpha^(-2)(x) alpha^3(x-1)
+  chi_2(4B(s)x-s^2).
+```
+
+This is the most concrete current form of the near-sharp diagonal problem:
+one nonquadratic character `alpha`, one quadratic factor, and the divisor
+
+```text
+B(s),        x,        x-1,        4B(s)x-s^2.
+```
 
 ## Pullback Branch Checklist
 

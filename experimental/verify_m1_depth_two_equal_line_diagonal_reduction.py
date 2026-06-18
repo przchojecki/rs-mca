@@ -85,6 +85,10 @@ def shape_c(s: int, p: int) -> int:
     return (3 * s * s + 4 * s + 4) % p
 
 
+def shape_d(s: int, x: int, p: int) -> int:
+    return (4 * shape_b(s, p) * x - s * s) % p
+
+
 def lambda_value(s: int, p: int) -> int:
     denominator = (4 * shape_b(s, p)) % p
     if denominator == 0:
@@ -189,6 +193,31 @@ def residual_pullback_parts(
     return pullback_main, exceptional
 
 
+def single_character_pullback_main(
+    p: int,
+    alpha: List[complex],
+) -> complex:
+    total = 0j
+    for s in range(p):
+        if s == p - 1:
+            continue
+        b_value = shape_b(s, p)
+        if b_value == 0:
+            continue
+        alpha_b = alpha[b_value]
+        for x in range(p):
+            total += (
+                alpha_b
+                * alpha[x].conjugate()
+                * alpha[x].conjugate()
+                * alpha[(x - 1) % p]
+                * alpha[(x - 1) % p]
+                * alpha[(x - 1) % p]
+                * quadratic_character(shape_d(s, x, p), p)
+            )
+    return quadratic_character(-1, p) * total
+
+
 def verify_pullback_branch_geometry(p: int) -> Dict[str, object]:
     if p <= 3:
         raise AssertionError(p)
@@ -245,10 +274,15 @@ def audit_case(case: Dict[str, int]) -> Dict[str, object]:
     eta = characters[d % h]
     rho = characters[(lift * a + d) % h]
     rho_chi = characters[(lift * a + d + h // 2) % h]
+    alpha = rho
     if (lift * a + d) % h == 0:
         raise AssertionError(("mu eta unexpectedly principal", case))
     if (lift * a + d + h // 2) % h == 0:
         raise AssertionError(("mu eta chi_2 unexpectedly principal", case))
+    if abs(mu[primitive_root(p)] - alpha[primitive_root(p)].conjugate() ** 2) > 1e-8:
+        raise AssertionError(("mu alpha relation", case))
+    if abs(eta[primitive_root(p)] - alpha[primitive_root(p)] ** 3) > 1e-8:
+        raise AssertionError(("eta alpha relation", case))
 
     direct = direct_open_sum(p, mu, eta)
     jacobi_part, first_direct, residual = diagonal_reduction_parts(
@@ -263,12 +297,15 @@ def audit_case(case: Dict[str, int]) -> Dict[str, object]:
         eta,
         rho_chi,
     )
+    single_character_main = single_character_pullback_main(p, alpha)
     if abs(jacobi_part - first_direct) > 1e-8:
         raise AssertionError((case, jacobi_part, first_direct))
     if abs(direct - (jacobi_part + residual)) > 1e-8:
         raise AssertionError((case, direct, jacobi_part, residual))
     if abs(residual - (pullback_main + exceptional)) > 1e-8:
         raise AssertionError((case, residual, pullback_main, exceptional))
+    if abs(pullback_main - single_character_main) > 1e-8:
+        raise AssertionError((case, pullback_main, single_character_main))
     if abs(exceptional) > 2 * math.sqrt(p) + 1e-8:
         raise AssertionError((case, exceptional))
     jacobi_bound = p + math.sqrt(p)
@@ -290,6 +327,7 @@ def audit_case(case: Dict[str, int]) -> Dict[str, object]:
         "exceptional_sqrt_ratio": round(abs(exceptional) / math.sqrt(p), 10),
         "identity_error": f"{abs(direct - (jacobi_part + residual)):.2e}",
         "pullback_error": f"{abs(residual - (pullback_main + exceptional)):.2e}",
+        "single_character_error": f"{abs(pullback_main - single_character_main):.2e}",
     }
 
 
