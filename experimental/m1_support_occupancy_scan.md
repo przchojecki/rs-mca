@@ -434,6 +434,14 @@ hit nonzero cube coset and whether all three cube cosets are hit directly.
 This exact audit improves the full-domain `p==1 mod 3` saturation threshold
 to `p>=103`; the only unsaturated primes below the analytic threshold are
 `7,13,19,31,37,43,61,67,73,79,97`.
+Run
+
+```bash
+python3 experimental/verify_m1_slack_three_full_domain_audit.py
+```
+
+to reproduce this finite range check without enumerating full support
+incidences.
 
 For prime fields, `canonical_slack_three_cyclotomic_*` reports the conditional
 genus-zero character-sum bound for this ordered conic shape count. If

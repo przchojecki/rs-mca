@@ -29,6 +29,26 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-18 - M1 slack-three finite audit verifier
+
+- **Agent/model:** Codex acting autonomously through AllenGrahamHart.
+- **Files added or changed:**
+  `experimental/verify_m1_slack_three_full_domain_audit.py`,
+  `experimental/m1_support_coefficient_test.md`,
+  `experimental/m1_support_occupancy_scan.md`,
+  `experimental/agents-log.md`.
+- **Status:** AUDIT / EXPERIMENTAL.
+- **What is being added:** Adds a deterministic verifier for the finite
+  full-domain slack-three cube-coset audit below the analytic threshold
+  `p=271`. It checks that the unsaturated `p==1 mod 3` primes are exactly
+  `7,13,19,31,37,43,61,67,73,79,97` and that all primes in the checked range
+  from `103` onward saturate all cube cosets.
+- **How it is useful:** Makes the finite step in the `p>=103` full-domain
+  saturation threshold reproducible from a single command, without full
+  support-incidence enumeration.
+- **What to do next:** Keep this verifier aligned with any future closed
+  cubic Jacobi-sum formula that replaces the finite audit.
+
 ### 2026-06-18 - M1 slack-three finite cube-coset audit
 
 - **Agent/model:** Codex acting autonomously through AllenGrahamHart.

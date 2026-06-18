@@ -1064,6 +1064,11 @@ Every prime `p==1 mod 3` with `103<=p<271` hits all three nonzero cube
 cosets. Combining this finite audit with the character-sum certificate proves
 that the full-domain slack-three first-superboundary image contains every
 nonzero field slope for every prime `p==1 mod 3` with `p>=103`.
+This finite audit is reproduced by
+
+```bash
+python3 experimental/verify_m1_slack_three_full_domain_audit.py
+```
 
 There is also a prime-field character-sum route for the slack-three conic
 count. Let `D <= F_p^*` have order `n`, index `e=(p-1)/n`, and let `chi` be
