@@ -42,15 +42,17 @@ Keep entries concise and link to the relevant files.
 - **Status:** EXPERIMENTAL / COUNTEREXAMPLE / AUDIT.
 - **What is being added:** An FFT-based spectrum scanner computes the
   normalized equal-line pullback main term for every multiplicative character
-  of `F_p^*` at once, then filters the same data back to the M1 equal-line
-  tuple families.
+  of `F_p^*` at once, records the maximum equal-line domain size for each
+  character, then filters the same data back to the M1 equal-line tuple
+  families.
 - **How it is useful:** The scan disproves the tempting unrestricted
-  all-character `3p` pullback conjecture, but finds no `3p` violation in the
-  tested M1-admissible filters. This narrows the proof target toward the
-  admissible character arithmetic or hypergeometric pullback structure.
-- **What to do next:** Determine which admissibility constraint prevents the
-  full-spectrum counterexamples, or replace the target by a proven ambient
-  bound plus a sharper M1-filtered estimate.
+  all-character exact `3p` pullback conjecture and shows that the corrected
+  target should be `3p+O(sqrt(p))` with equal-line domain-size arithmetic
+  kept explicit. This narrows the proof target toward the admissible
+  character arithmetic or hypergeometric pullback structure.
+- **What to do next:** Prove the `3p+O(sqrt(p))` pullback conductor bound
+  with the fixed-domain character filter visible, or identify the next
+  finite obstruction to that top-dimensional target.
 
 ### 2026-06-18 - M1 equal-line diagonal reduction
 

@@ -215,9 +215,12 @@ has a single-character Kummer normal form; this is a proof-guidance
 reduction, not yet a replacement for the `9p` import.
 The full-spectrum audit in
 `experimental/m1_equal_line_pullback_spectrum_experiment.md` shows that the
-unrestricted all-character `3p` version of this pullback target is false, so
-any proof must keep the M1-admissible character arithmetic or the
-hypergeometric pullback structure visible.
+unrestricted all-character exact `3p` version of this pullback target is
+false. It also gives the fixed-domain character filter
+`ord(alpha) | (p-1)n^{-1} gcd(2,n)` and shows that moderate-domain exact
+violations can occur with only square-root-sized excess. Any proof should
+therefore target a `3p+O(sqrt(p))` top-dimensional bound while keeping the
+M1 domain-size arithmetic or the hypergeometric pullback structure visible.
 
 Thus the fixed-window, quotient-window, and two-fiber certificates still use
 the conservative common ledger:

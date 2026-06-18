@@ -23,8 +23,9 @@ should be revised as the project learns more.
    the equal-line-monodromy diagonal subfamily; a symmetric-coordinate
    reduction now isolates a pulled-back three-point hypergeometric trace with
    explicit branch divisor. A full character-spectrum audit shows that the
-   unrestricted all-character `3p` pullback bound is false, while the tested
-   M1-admissible equal-line filters still have no `3p` violation.
+   unrestricted all-character exact `3p` pullback bound is false, and the
+   equal-line character filter points instead to a `3p+O(sqrt(p))`
+   top-dimensional target with domain-size arithmetic kept explicit.
 4. After the trace-family wall is closed, generalize to fixed low-slack
    templates, then separate tangent, quotient-periodic, finite-template, and
    genuinely aperiodic packing.

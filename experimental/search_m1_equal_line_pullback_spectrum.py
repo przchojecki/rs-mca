@@ -18,11 +18,16 @@ class SpectrumCase:
     p: int
     character_count: int
     violation_count: int
+    violation_domain_ge_counts: dict[str, int]
+    violation_max_domain_size: int
     near_295_count: int
+    near_295_domain_ge_counts: dict[str, int]
+    near_295_max_domain_size: int
     best_ratio_to_p: float
     best_abs: float
     best_exponent: int
     best_order: int
+    best_max_domain_size: int
     m1_grid_tuple_count: int
     m1_grid_violation_count: int
     m1_grid_near_295_count: int
@@ -71,6 +76,16 @@ def prime_factors(value: int) -> List[int]:
     if value > 1:
         factors.append(value)
     return factors
+
+
+def divisors(value: int) -> List[int]:
+    result: List[int] = []
+    for divisor in range(1, int(math.sqrt(value)) + 1):
+        if value % divisor == 0:
+            result.append(divisor)
+            if divisor * divisor != value:
+                result.append(value // divisor)
+    return sorted(result)
 
 
 def primitive_root(p: int) -> int:
@@ -187,6 +202,29 @@ def spectrum_values(p: int, histogram: np.ndarray, quadratic: np.ndarray) -> np.
     return int(quadratic[p - 1]) * np.fft.ifft(histogram) * (p - 1)
 
 
+def character_order(group_order: int, exponent: int) -> int:
+    return group_order // math.gcd(group_order, exponent)
+
+
+def max_equal_line_domain_size(group_order: int, exponent: int) -> int:
+    order = character_order(group_order, exponent)
+    if order <= 3:
+        return 0
+    if order % 2 == 0:
+        return 2 * group_order // order
+    return group_order // order
+
+
+def domain_size_array(group_order: int) -> np.ndarray:
+    return np.array(
+        [
+            max_equal_line_domain_size(group_order, exponent)
+            for exponent in range(group_order)
+        ],
+        dtype=np.int64,
+    )
+
+
 def equal_line_tuple_exponents(p: int, e: int) -> List[int]:
     """Return full character-group exponents from equal-line M1 tuples."""
     if (p - 1) % e != 0:
@@ -268,11 +306,49 @@ def validate_spectrum(p: int) -> None:
             raise AssertionError((p, exponent, direct, spectrum[exponent], error))
 
 
+def validate_equal_line_domain_filter(p: int) -> None:
+    group_order = p - 1
+    appearances: dict[int, List[int]] = {}
+    for n in divisors(group_order):
+        e = group_order // n
+        if e < 2:
+            continue
+        h = e * math.gcd(2, n)
+        enumerated = set(equal_line_tuple_exponents(p, e))
+        expected = {
+            exponent
+            for exponent in range(1, group_order)
+            if character_order(group_order, exponent) > 3
+            and h % character_order(group_order, exponent) == 0
+        }
+        if enumerated != expected:
+            raise AssertionError((p, n, e, sorted(enumerated ^ expected)[:10]))
+        for exponent in enumerated:
+            appearances.setdefault(exponent, []).append(n)
+    for exponent in range(1, group_order):
+        actual = max(appearances.get(exponent, [0]))
+        expected = max_equal_line_domain_size(group_order, exponent)
+        if actual != expected:
+            raise AssertionError((p, exponent, actual, expected))
+
+
+def threshold_counts(
+    mask: np.ndarray,
+    domain_sizes: np.ndarray,
+    thresholds: List[int],
+) -> dict[str, int]:
+    return {
+        str(threshold): int(np.count_nonzero(mask & (domain_sizes >= threshold)))
+        for threshold in thresholds
+    }
+
+
 def scan_prime(
     p: int,
     tolerance: float,
     m1_max_character_order: int,
     diagonal_n: int,
+    domain_thresholds: List[int],
 ) -> SpectrumCase:
     start = time.monotonic()
     logs = log_table(p)
@@ -288,6 +364,9 @@ def scan_prime(
     best_exponent = int(np.argmax(active_magnitudes))
     best_abs = float(magnitudes[best_exponent])
     character_count = int(np.count_nonzero(active))
+    domain_sizes = domain_size_array(p - 1)
+    violation_mask = (magnitudes > 3 * p + tolerance) & active
+    near_295_mask = (magnitudes > 2.95 * p) & active
     m1_grid = summarize_exponents(
         p,
         magnitudes,
@@ -304,14 +383,29 @@ def scan_prime(
     return SpectrumCase(
         p=p,
         character_count=character_count,
-        violation_count=int(
-            np.count_nonzero((magnitudes > 3 * p + tolerance) & active)
+        violation_count=int(np.count_nonzero(violation_mask)),
+        violation_domain_ge_counts=threshold_counts(
+            violation_mask,
+            domain_sizes,
+            domain_thresholds,
         ),
-        near_295_count=int(np.count_nonzero((magnitudes > 2.95 * p) & active)),
+        violation_max_domain_size=int(
+            np.max(domain_sizes[violation_mask]) if np.any(violation_mask) else 0
+        ),
+        near_295_count=int(np.count_nonzero(near_295_mask)),
+        near_295_domain_ge_counts=threshold_counts(
+            near_295_mask,
+            domain_sizes,
+            domain_thresholds,
+        ),
+        near_295_max_domain_size=int(
+            np.max(domain_sizes[near_295_mask]) if np.any(near_295_mask) else 0
+        ),
         best_ratio_to_p=round(best_abs / p, 10),
         best_abs=round(best_abs, 10),
         best_exponent=best_exponent,
         best_order=(p - 1) // math.gcd(p - 1, best_exponent),
+        best_max_domain_size=int(domain_sizes[best_exponent]),
         m1_grid_tuple_count=int(m1_grid["tuple_count"]),
         m1_grid_violation_count=int(m1_grid["violation_count"]),
         m1_grid_near_295_count=int(m1_grid["near_295_count"]),
@@ -335,9 +429,16 @@ def scan_primes(
     tolerance: float,
     m1_max_character_order: int,
     diagonal_n: int,
+    domain_thresholds: List[int],
 ) -> List[SpectrumCase]:
     return [
-        scan_prime(p, tolerance, m1_max_character_order, diagonal_n)
+        scan_prime(
+            p,
+            tolerance,
+            m1_max_character_order,
+            diagonal_n,
+            domain_thresholds,
+        )
         for p in primes_up_to(prime_limit)
     ]
 
@@ -353,12 +454,34 @@ def top_rows(rows: List[SpectrumCase], top_count: int) -> List[dict[str, object]
     ]
 
 
+def sum_count_dicts(rows: List[dict[str, int]]) -> dict[str, int]:
+    totals: dict[str, int] = {}
+    for row in rows:
+        for key, value in row.items():
+            totals[key] = totals.get(key, 0) + value
+    return totals
+
+
 def summarize(rows: List[SpectrumCase], top_count: int) -> dict[str, object]:
     return {
         "prime_count": len(rows),
         "character_count": sum(row.character_count for row in rows),
         "violation_count": sum(row.violation_count for row in rows),
+        "violation_domain_ge_counts": sum_count_dicts(
+            [row.violation_domain_ge_counts for row in rows]
+        ),
+        "violation_max_domain_size": max(
+            (row.violation_max_domain_size for row in rows),
+            default=0,
+        ),
         "near_295_count": sum(row.near_295_count for row in rows),
+        "near_295_domain_ge_counts": sum_count_dicts(
+            [row.near_295_domain_ge_counts for row in rows]
+        ),
+        "near_295_max_domain_size": max(
+            (row.near_295_max_domain_size for row in rows),
+            default=0,
+        ),
         "top": top_rows(rows, top_count),
         "m1_grid_case_count": sum(row.m1_grid_tuple_count > 0 for row in rows),
         "m1_grid_tuple_count": sum(row.m1_grid_tuple_count for row in rows),
@@ -398,6 +521,22 @@ def print_text_report(summary: dict[str, object]) -> None:
         f"violations={summary['violation_count']}",
         f"near_2.95p={summary['near_295_count']}",
     )
+    print(
+        "violation n_max thresholds:",
+        " ".join(
+            f">={key}:{value}"
+            for key, value in summary["violation_domain_ge_counts"].items()
+        ),
+        f"max={summary['violation_max_domain_size']}",
+    )
+    print(
+        "near_2.95p n_max thresholds:",
+        " ".join(
+            f">={key}:{value}"
+            for key, value in summary["near_295_domain_ge_counts"].items()
+        ),
+        f"max={summary['near_295_max_domain_size']}",
+    )
     print("top results:")
     for row in summary["top"]:
         print(
@@ -406,6 +545,7 @@ def print_text_report(summary: dict[str, object]) -> None:
             f"p={row['p']}",
             f"exponent={row['best_exponent']}",
             f"order={row['best_order']}",
+            f"n_max={row['best_max_domain_size']}",
             f"violations={row['violation_count']}",
             f"near_2.95p={row['near_295_count']}",
         )
@@ -449,6 +589,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--prime-limit", type=int, default=None)
     parser.add_argument("--m1-max-character-order", type=int, default=None)
     parser.add_argument("--diagonal-n", type=int, default=None)
+    parser.add_argument("--domain-thresholds", default="4,6,8,12,16,20,32")
     parser.add_argument("--top", type=int, default=10)
     parser.add_argument("--tolerance", type=float, default=1e-7)
     parser.add_argument("--json", action="store_true", help="emit JSON")
@@ -458,6 +599,13 @@ def parse_args() -> argparse.Namespace:
         help="compare the FFT spectrum against direct sums for small primes",
     )
     return parser.parse_args()
+
+
+def parse_domain_thresholds(raw: str) -> List[int]:
+    thresholds = [int(part) for part in raw.split(",") if part.strip()]
+    if any(threshold <= 0 for threshold in thresholds):
+        raise ValueError(raw)
+    return sorted(set(thresholds))
 
 
 def fill_preset(args: argparse.Namespace) -> argparse.Namespace:
@@ -489,11 +637,14 @@ def main() -> None:
     if args.validate:
         for p in (5, 7, 11, 17, 29):
             validate_spectrum(p)
+            validate_equal_line_domain_filter(p)
+    domain_thresholds = parse_domain_thresholds(str(args.domain_thresholds))
     rows = scan_primes(
         int(args.prime_limit),
         float(args.tolerance),
         int(args.m1_max_character_order),
         int(args.diagonal_n),
+        domain_thresholds,
     )
     summary = summarize(rows, int(args.top))
     summary["parameters"] = {
@@ -503,6 +654,7 @@ def main() -> None:
         "tolerance": args.tolerance,
         "m1_max_character_order": args.m1_max_character_order,
         "diagonal_n": args.diagonal_n,
+        "domain_thresholds": domain_thresholds,
         "validated": bool(args.validate),
     }
     if args.json:

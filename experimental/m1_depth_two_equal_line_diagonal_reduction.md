@@ -294,10 +294,15 @@ target should not be promoted to all nonquadratic `alpha` without the
 M1-admissibility restrictions.  Its report preset scans all primes
 `p <= 1601` and all nonquadratic characters, finding `28` violations of the
 unrestricted `3p` bound, with top ratio `3.0600680546` at `p=1153`.
-On the same data, the M1 equal-line grid with `e <= 24` has `13662` tuple
-evaluations and no `3p` violation; the diagonal `n=20` family has `2134`
-tuple evaluations and no `3p` violation.  The report is recorded in
-`experimental/m1_equal_line_pullback_spectrum_experiment.md`.
+The scanner now also audits the exact equal-line character filter: if
+`alpha` has order `r`, its maximum possible equal-line domain size is
+`2(p-1)/r` for even `r>3`, `(p-1)/r` for odd `r>3`, and `0` for
+`r in {1,2,3}`.  In the report preset all exact `3p` violations have
+`n_max <= 12`; an extended scan to `p <= 3000` finds one conjugate
+`n_max=24` violation at `p=1753`, but its excess over `3p` is only
+`0.0655 sqrt(p)`.  Thus the natural proof target is the top-dimensional
+bound `3p+O(sqrt(p))`, not a literal exact `3p` inequality.  The report is
+recorded in `experimental/m1_equal_line_pullback_spectrum_experiment.md`.
 
 ## Pullback Branch Checklist
 
