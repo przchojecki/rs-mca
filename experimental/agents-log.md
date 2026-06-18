@@ -42,16 +42,18 @@ Keep entries concise and link to the relevant files.
   numerical estimate; AUDIT / EXPERIMENTAL for scanner verification.
 - **What is being added:** Extends the slack-three split-cubic ledger with a
   prime-field conic-count expansion and the conditional bound
-  `|C_3(D)| <= ceil((p+1+12(e^3-1)sqrt(p))/e^3)`, inducing a cube-coset
-  slope budget for the `T=3`, `|P|=4` first-superboundary layer.
+  `|C_3(D)| <= ceil((p+1+6(e^3-1)sqrt(p))/e^3)`, inducing a cube-coset
+  slope budget for the `T=3`, `|P|=4` first-superboundary layer. The constant
+  `6` comes from the eight-point divisor support of `u^a v^b w^c` on the
+  smooth projective conic.
 - **How it is useful:** Gives the slack-three analogue of the slack-two
   cyclotomic/Jacobi route. The leading slope-budget term is
   `p^2/(24 gcd(3,n) e^4)`, identifying the large-index regime where this
   first-superboundary layer is provably non-field-filling under the imported
   character-sum estimate.
-- **What to do next:** Replace the conservative `12 sqrt(p)` constant with a
-  checked divisor-specific Weil constant, and compare the conic-count bound
-  with exact cube-coset coverage on proper-subgroup examples.
+- **What to do next:** Compare the conic-count bound with exact cube-coset
+  coverage on proper-subgroup examples and look for a coset-image expansion
+  that detects saturation before the coarse shape-count bound does.
 
 ### 2026-06-18 - M1 positive-dither finite-prefix clearance
 

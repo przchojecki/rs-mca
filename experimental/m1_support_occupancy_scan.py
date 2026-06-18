@@ -814,7 +814,7 @@ def slack_two_cyclotomic_shape_bound(p: int, domain_order: int) -> int:
 def slack_three_conic_shape_bound(p: int, domain_order: int) -> int:
     character_order = (p - 1) // domain_order
     character_cube = character_order * character_order * character_order
-    conic_weil_constant = 12
+    conic_weil_constant = 6
     numerator = (
         p
         + 1
@@ -2368,7 +2368,7 @@ def scan_supports(
             (p - 1) // n if slack_three_cyclotomic_bound is not None else None
         ),
         "canonical_slack_three_cyclotomic_conic_weil_constant": (
-            12 if slack_three_cyclotomic_bound is not None else None
+            6 if slack_three_cyclotomic_bound is not None else None
         ),
         "canonical_slack_three_cyclotomic_shape_count_bound_check": (
             int(slack_three_shape_ledger["parameter_count"])

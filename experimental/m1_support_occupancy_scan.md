@@ -394,16 +394,18 @@ genus-zero character-sum bound for this ordered conic shape count. If
 `e=(p-1)/|D|`, the scanner uses the conservative certificate
 
 ```text
-|C_3(D)| <= ceil((p+1 + 12(e^3-1)sqrt(p))/e^3),
+|C_3(D)| <= ceil((p+1 + 6(e^3-1)sqrt(p))/e^3),
 ```
 
 with integer ceiling for `sqrt(p)`. It checks the exact enumerated conic
 parameter count against this bound and reports the induced field-capped
 cube-coset slope bound
 `min(p, 1+ceil(|C_3(D)|/24)|D|/gcd(3,|D|))`.
-The estimate is conditional on the standard multiplicative character-sum
-bound on the smooth projective conic; the scanner fields are an audit of the
-resulting numerical certificate, not a proof of that imported estimate.
+The constant `6` comes from the eight-point geometric zero/pole support of
+`u^a v^b w^c` on the smooth projective conic. The estimate is conditional on
+the standard multiplicative character-sum bound on genus-zero curves; the
+scanner fields are an audit of the resulting numerical certificate, not a
+proof of that imported estimate.
 
 For dithered residues in the range
 

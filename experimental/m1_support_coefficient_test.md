@@ -993,16 +993,29 @@ The admissible shape count `|C_3(D)|` is at most this raw conic count, after
 removing the finite degeneracies where one of `u,v,w` equals `1` or two of
 `1,u,v,w` coincide.
 
-Conditionally on the standard genus-zero multiplicative character-sum bound
+The character-sum conductor is small in this case. On the smooth projective
+conic, the rational functions
 
 ```text
-|S_{a,b,c}| <= 12 sqrt(p)        for nonprincipal (a,b,c),
+u=U/Z,        v=V/Z,        w=(-U-V-Z)/Z
 ```
 
-one obtains the conservative ordered-shape estimate
+have zeros on the three lines `U=0`, `V=0`, and `U+V+Z=0`, and common poles
+on the line `Z=0`. Each line meets the conic in two geometric points, and
+for `p>3` these four intersection divisors are pairwise disjoint. Thus every
+nonprincipal product `u^a v^b w^c` has geometric zero/pole support of size at
+most `8`; it is not an `e`-th power unless `a=b=c=0`, since the three zero
+divisors have coefficients `a`, `b`, and `c`. The standard genus-zero
+multiplicative Weil bound therefore gives
 
 ```text
-|C_3(D)| <= ceil((p+1 + 12(e^3-1)sqrt(p))/e^3).
+|S_{a,b,c}| <= 6 sqrt(p)        for nonprincipal (a,b,c).
+```
+
+This gives the ordered-shape estimate
+
+```text
+|C_3(D)| <= ceil((p+1 + 6(e^3-1)sqrt(p))/e^3).
 ```
 
 Therefore the slack-three first-superboundary slope set satisfies
