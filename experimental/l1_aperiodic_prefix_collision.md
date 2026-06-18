@@ -188,6 +188,15 @@ hypothesis and without paying a generated-field factor. This strip is much
 narrower than the desired final L1 reserve at fixed rate, but it is a proved
 anchor and a useful model for low-degree complement-locator scanners.
 
+In particular, if `r=n-k-2sigma` is fixed and `k/n -> rho`, then
+
+```text
+|Phi_sigma^{-1}(c)| <= (2/(1-rho) + o(1))^r.
+```
+
+Indeed, in this regime `m=sigma+r=((1-rho)n+r)/2`, and the packing ratio
+`binom(n,r)/binom(m,r)` tends to `(n/m)^r`.
+
 ## Complement-Locator Compression
 
 The orbit certificate is an instance of this lemma. Here `H=F_17^*`,
@@ -197,6 +206,8 @@ The sharper packing bound is
 ```text
 binom(16,2) / binom(6,2) = 8.
 ```
+
+This is the fixed-width `r=2` case of the constant-fiber corollary.
 
 Since
 

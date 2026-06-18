@@ -407,6 +407,15 @@ def co_large_bound_report(
         "packing_bound_denominator": packing_denominator,
         "packing_bound_floor": packing_numerator // packing_denominator,
         "maximum_fiber_size": maximum_fiber_size,
+        "fixed_width_instance": {
+            "r": gap_dimension,
+            "finite_ratio": (
+                packing_numerator / packing_denominator
+                if packing_denominator
+                else 1.0
+            ),
+            "asymptotic_base_at_rate": 2 / (1 - (K / N)),
+        },
         "holds": True,
     }
 
@@ -676,6 +685,11 @@ def print_text(cert: dict[str, Any]) -> None:
         f"{co_large_bound['packing_bound_numerator']}/"
         f"{co_large_bound['packing_bound_denominator']} "
         f"= {co_large_bound['packing_bound_floor']}"
+    )
+    print(
+        "fixed-width instance: "
+        f"r={co_large_bound['fixed_width_instance']['r']}, "
+        f"finite ratio={co_large_bound['fixed_width_instance']['finite_ratio']:.3f}"
     )
     print(
         "co-large field-size bound: "

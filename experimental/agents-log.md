@@ -47,7 +47,7 @@ Keep entries concise and link to the relevant files.
   multiplicative subgroups, records the exact divisor-gap parametrization, and
   records the equivalent divisor-gap graph formulation and co-large packing
   bound `|Phi_sigma^{-1}(c)| <= binom(n,r)/binom(m,r)` for
-  `r=n-k-2sigma`.
+  `r=n-k-2sigma`, including the fixed-width constant-fiber corollary.
 - **How it is useful:** Targets L1 by showing that quotient-core removal
   cannot be strengthened to finite-field aperiodic injectivity; the surviving
   local-limit theorem must be a multiplicity bound for aperiodic prefix
