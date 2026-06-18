@@ -91,8 +91,8 @@ R_WINDOW_UNION_KUMMER_CASES = (
     (97, 48, 6, 2, False, False),
     # The exact R=2 L1 certificate succeeds while the L1 bound fails.
     (181, 180, 3, 2, True, False),
-    # The same strict Fourier-L1 improvement at R=3.
-    (257, 256, 4, 3, True, False),
+    # The exact R=3 coefficient histogram improves the bounded L1 threshold.
+    (113, 112, 4, 3, True, False),
 )
 
 SCAN_LABEL_CASES = (
@@ -269,9 +269,14 @@ def direct_quotient_window_label_nonprincipal_bound(
 def direct_quotient_window_label_l1_data(
     quotient_order: int,
     window_size: int,
-) -> Tuple[int, Tuple[Tuple[int, int], ...]]:
+) -> Tuple[
+    int,
+    Tuple[Tuple[int, int], ...],
+    Tuple[Tuple[int, int], ...],
+]:
     total = 0
     zero_subset_histogram = {}
+    coefficient_histogram = {}
     for r in range(quotient_order):
         for s in range(quotient_order):
             for t in range(quotient_order):
@@ -281,6 +286,9 @@ def direct_quotient_window_label_l1_data(
                     (r, s, t),
                 )
                 total += abs(coefficient)
+                coefficient_histogram[coefficient] = (
+                    coefficient_histogram.get(coefficient, 0) + 1
+                )
                 if window_size == 2:
                     zero_subset_count = sum(
                         (
@@ -297,7 +305,11 @@ def direct_quotient_window_label_l1_data(
                     zero_subset_histogram[zero_subset_count] = (
                         zero_subset_histogram.get(zero_subset_count, 0) + 1
                     )
-    return total, tuple(sorted(zero_subset_histogram.items()))
+    return (
+        total,
+        tuple(sorted(zero_subset_histogram.items())),
+        tuple(sorted(coefficient_histogram.items())),
+    )
 
 
 def direct_ambient_window_label_l1_bound(
@@ -865,7 +877,11 @@ def main() -> None:
             quotient_order,
             remaining_fibers,
         )
-        direct_quotient_l1, direct_zero_subset_histogram = (
+        (
+            direct_quotient_l1,
+            direct_zero_subset_histogram,
+            direct_coefficient_histogram,
+        ) = (
             direct_quotient_window_label_l1_data(
                 quotient_order,
                 remaining_fibers,
@@ -888,6 +904,14 @@ def main() -> None:
                 ):
                     raise AssertionError(
                         (p, n, quotient_l1, direct_zero_subset_histogram)
+                    )
+            if quotient_l1.get("coefficient_value_histogram") is not None:
+                if (
+                    tuple(quotient_l1["coefficient_value_histogram"])
+                    != direct_coefficient_histogram
+                ):
+                    raise AssertionError(
+                        (p, n, quotient_l1, direct_coefficient_histogram)
                     )
         elif int(quotient_l1["l1_bound"]) < direct_quotient_l1:
             raise AssertionError((p, n, quotient_l1, direct_quotient_l1))

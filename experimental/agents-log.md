@@ -63,7 +63,7 @@ Keep entries concise and link to the relevant files.
   weights, plus the quotient-window union Kummer certificate with exact
   quotient-label triple count `T_R(N)` and sharpened nonprincipal
   ambient-character L1 bound built from `C_R(N)`, with an exact `R=2`
-  quotient-L1 distribution.
+  and `R=3` quotient-L1 distribution.
 - **How it is useful:** Gives reviewers a single mathematical statement for
   the M1 contribution in PR #79, separating proved quotient-fiber algebra
   from the imported Kummer-Weil estimate and showing how the `R=1`, `R=2`,
@@ -121,12 +121,12 @@ Keep entries concise and link to the relevant files.
   fibers, then sharpens the nonprincipal coefficient from the crude
   support-size bound `T_R(N)` to `C_2(N)=3N-6` and
   `C_3(N)=max(6,(N-2)(N-3))`, while still accounting for the ambient
-  character triples that restrict trivially to `D/K`. For `R=2`, it replaces
-  the bound by the exact parity-dependent distribution of zero subset sums,
-  giving an exact quotient L1 term. The verifier audits an exact `R=2`
-  threshold improvement at `p=181,N=3` and the bounded `R=3` improvement at
-  `p=257,N=4`, where the previous numerator is still negative but the
-  sharpened active union is certified saturated.
+  character triples that restrict trivially to `D/K`. For `R=2` and `R=3`,
+  it replaces the bound by exact parity-dependent quotient coefficient
+  distributions, giving exact quotient L1 terms. The verifier audits exact
+  threshold improvements at `R=2` (`p=181,N=3`) and `R=3` (`p=113,N=4`),
+  where the previous numerator is still negative but the sharpened active
+  union is certified saturated.
   This leaves a narrower intermediate/lift-limited window for M1 slope-image
   bounds.
 - **What to do next:** Prove or replace the imported Kummer-Weil constant in

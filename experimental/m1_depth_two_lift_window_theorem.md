@@ -245,8 +245,24 @@ Thus
 S_2 = e^3 sum_z count_z |zN-6|.
 ```
 
-For `R=3`, the displayed `C_3(N)` bound is retained. After the `D^2`-coset
-expansion, the nonprincipal coefficient L1 bound is
+For `R=3`, the quotient L1 term is also exact. The principal coefficient is
+`T_3(N)`. For odd `N`, the remaining coefficient/count pairs are
+
+```text
+-(2N-6): (N-1)(4N-5),       -(N-6): 3(N-1)(N-3),
+6: N^3-7N^2+15N-9,          (N-2)(N-3): 6N-6.
+```
+
+For even `N`, they are
+
+```text
+-(3N-6): 1,                 -(2N-6): (N-2)(4N-1),
+-(N-6): 3(N-2)^2,           6: N^3-7N^2+15N-10,
+(N-2)(N-3): 6N-6.
+```
+
+Thus `S_3=e^3` times the resulting absolute coefficient sum. After the
+`D^2`-coset expansion, the nonprincipal coefficient L1 bound is
 
 ```text
 E_R <= q S_R - T_R(N).
@@ -266,7 +282,7 @@ verifier audits two such strict improvements:
 
 ```text
 R=2, p=181, n=180, N=3: exact L1 positive, bounded L1 negative.
-R=3, p=257, n=256, N=4: sharp L1 positive, crude L1 negative.
+R=3, p=113, n=112, N=4: exact L1 positive, bounded L1 negative.
 ```
 
 ## Contribution to M1

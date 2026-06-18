@@ -2152,6 +2152,41 @@ def quotient_window_label_l1_data(
                 (7, seven_count),
             ),
         }
+    if window_size == 3:
+        n = quotient_order
+        principal_value = quotient_window_label_triple_count(n, 3)
+        if n % 2:
+            entries = (
+                (principal_value, 1),
+                (-(2 * n - 6), (n - 1) * (4 * n - 5)),
+                (-(n - 6), 3 * (n - 1) * (n - 3)),
+                (6, n ** 3 - 7 * n ** 2 + 15 * n - 9),
+                ((n - 2) * (n - 3), 6 * n - 6),
+            )
+        else:
+            entries = (
+                (principal_value, 1),
+                (-(3 * n - 6), 1),
+                (-(2 * n - 6), (n - 2) * (4 * n - 1)),
+                (-(n - 6), 3 * (n - 2) ** 2),
+                (6, n ** 3 - 7 * n ** 2 + 15 * n - 10),
+                ((n - 2) * (n - 3), 6 * n - 6),
+            )
+        coefficient_histogram: Dict[int, int] = {}
+        for value, count in entries:
+            if count:
+                coefficient_histogram[value] = (
+                    coefficient_histogram.get(value, 0) + count
+                )
+        coefficient_value_histogram = tuple(sorted(coefficient_histogram.items()))
+        l1_bound = sum(
+            abs(value) * count for value, count in coefficient_value_histogram
+        )
+        return {
+            "l1_bound": l1_bound,
+            "exact": True,
+            "coefficient_value_histogram": coefficient_value_histogram,
+        }
 
     label_triple_count = quotient_window_label_triple_count(
         quotient_order,
@@ -2286,6 +2321,9 @@ def slack_two_second_quotient_window_union_kummer_saturation_data(
         "quotient_l1_exact": bool(quotient_l1_data["exact"]),
         "quotient_l1_zero_subset_histogram": quotient_l1_data.get(
             "zero_subset_count_histogram"
+        ),
+        "quotient_l1_coefficient_histogram": quotient_l1_data.get(
+            "coefficient_value_histogram"
         ),
         "quotient_coefficient_l1_bound": quotient_coefficient_l1_bound,
         "coefficient_l1_bound": coefficient_l1_bound,
@@ -5280,6 +5318,21 @@ def scan_supports(
                 slack_two_second_r_window_union_kummer_saturation is not None
                 and slack_two_second_r_window_union_kummer_saturation[
                     "quotient_l1_zero_subset_histogram"
+                ]
+                is not None
+            )
+            else None
+        ),
+        "canonical_slack_two_second_r_window_union_kummer_coefficient_histogram": (
+            dict(
+                slack_two_second_r_window_union_kummer_saturation[
+                    "quotient_l1_coefficient_histogram"
+                ]
+            )
+            if (
+                slack_two_second_r_window_union_kummer_saturation is not None
+                and slack_two_second_r_window_union_kummer_saturation[
+                    "quotient_l1_coefficient_histogram"
                 ]
                 is not None
             )

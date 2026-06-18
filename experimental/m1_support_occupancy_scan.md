@@ -215,6 +215,7 @@ canonical_slack_two_second_r_window_union_kummer_crude_coefficient_bound
 canonical_slack_two_second_r_window_union_kummer_ambient_kernel_count
 canonical_slack_two_second_r_window_union_kummer_quotient_l1_exact
 canonical_slack_two_second_r_window_union_kummer_zero_subset_histogram
+canonical_slack_two_second_r_window_union_kummer_coefficient_histogram
 canonical_slack_two_second_r_window_union_kummer_quotient_l1_bound
 canonical_slack_two_second_r_window_union_kummer_coefficient_l1_bound
 canonical_slack_two_second_r_window_union_kummer_crude_l1_bound
@@ -684,8 +685,25 @@ N even:
   z=2: 3N-6,            z=3: 6N-5,      z=7: 1.
 ```
 
-Thus `S_2=e^3 sum_z count_z |zN-6|` exactly. After also expanding the
-`D^2`-coset condition, the nonprincipal coefficient L1 bound is
+Thus `S_2=e^3 sum_z count_z |zN-6|` exactly. For `R=3`, the scanner also uses
+an exact coefficient-value histogram. The principal coefficient is `T_3(N)`.
+For odd `N`, the remaining coefficient/count pairs are
+
+```text
+-(2N-6): (N-1)(4N-5),       -(N-6): 3(N-1)(N-3),
+6: N^3-7N^2+15N-9,          (N-2)(N-3): 6N-6.
+```
+
+For even `N`, they are
+
+```text
+-(3N-6): 1,                 -(2N-6): (N-2)(4N-1),
+-(N-6): 3(N-2)^2,           6: N^3-7N^2+15N-10,
+(N-2)(N-3): 6N-6.
+```
+
+Thus the quotient L1 term is exact for `R=2` and `R=3`. After also expanding
+the `D^2`-coset condition, the nonprincipal coefficient L1 bound is
 
 ```text
 E_R <= q S_R - T_R(N).
@@ -702,7 +720,7 @@ When this is positive, the active quotient-window union itself hits every
 nonzero `D^2`-coset. The scanner also reports the crude numerator obtained by
 using the support-size bound for every nonprincipal coefficient, so strict
 Fourier-L1 threshold improvements are auditable. The verifier checks exact
-`R=2` and bounded `R=3` improvements.
+`R=2` and `R=3` improvements.
 At the extreme `R=1`, the lift-limited layer has an exact quotient-kernel
 reduction. Let
 
