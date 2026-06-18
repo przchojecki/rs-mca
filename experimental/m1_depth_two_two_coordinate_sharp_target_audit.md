@@ -66,6 +66,8 @@ sharper `4p` target. The largest exhaustive-sample ratio remains
 ```
 
 at `(p,n,e,h)=(109,18,6,12)`.
+This exhaustive-sample maximum is already in the `ramified_nonreciprocal`
+projective class.
 
 The verifier also includes one targeted near-sharp obstruction:
 
@@ -96,6 +98,8 @@ The older exhaustive sample already rules out the stronger uniform target
 ```
 
 has absolute value `369.4749838169`, which is larger than `3p=327`.
+It is also `ramified_nonreciprocal`, so the obstruction to a `3p` theorem
+survives the proved slice reductions.
 The targeted `(421,20)` tuple strengthens the obstruction: any future
 two-coordinate theorem of the form `|S| <= C p` needs
 
