@@ -10,6 +10,8 @@ from m1_support_occupancy_scan import (
     all_residual_packets_lift_active,
     quotient_limited_pair_parameter_bound,
     scan_supports,
+    slack_two_second_fixed_window_data,
+    slack_two_second_fixed_window_kummer_saturation_data,
     slack_two_second_quotient_window_reduction_data,
     slack_two_second_kummer_saturation_data,
     slack_two_second_superboundary_shape_ledger,
@@ -70,6 +72,13 @@ R_WINDOW_CASES = (
     (97, 48, 6, 8, 36, True),
     # R=3: exact-support saturation below the all-shapes R=4 gate.
     (97, 48, 6, 8, 28, True),
+)
+
+FIXED_WINDOW_KUMMER_CASES = (
+    # Small R=3 sample below the conservative fixed-window threshold.
+    (97, 48, 6, 3, False),
+    # Positive fixed R=3 certificate for a full-domain N=4 window.
+    (2213, 2212, 4, 3, True),
 )
 
 SCAN_LABEL_CASES = (
@@ -580,6 +589,87 @@ def main() -> None:
                 tuple(reduction["touched_fiber_histogram"]),
             )
         )
+    fixed_window_kummer_checked = []
+    for (
+        p,
+        n,
+        quotient_order,
+        window_size,
+        expected_certificate,
+    ) in FIXED_WINDOW_KUMMER_CASES:
+        _, domain = make_domain(p, n, None)
+        certificate = slack_two_second_fixed_window_kummer_saturation_data(
+            p=p,
+            domain_order=n,
+            quotient_order=quotient_order,
+            window_size=window_size,
+        )
+        if certificate is None:
+            raise AssertionError((p, n, quotient_order, window_size))
+        failures = two_fiber_divisor_power_failure_count(
+            int(certificate["kernel_character_order"]),
+            int(certificate["square_coset_index"]),
+        )
+        if failures != int(certificate["divisor_power_failure_count"]):
+            raise AssertionError((p, n, failures, certificate))
+        radical_degrees = tuple(certificate["radical_component_degrees"])
+        if radical_degrees != (1, 1, 1, 2):
+            raise AssertionError((p, n, radical_degrees, certificate))
+        radical_total = sum(radical_degrees)
+        if radical_total != int(certificate["radical_total_degree"]):
+            raise AssertionError((p, n, radical_total, certificate))
+        principal_count = principal_open_count(p)
+        degeneracy_count = degeneracy_line_union_count(p)
+        lower_numerator = (
+            int(certificate["principal_weight"]) * principal_count
+            - (
+                int(certificate["coefficient_abs_bound"])
+                * int(certificate["nonprincipal_constant"])
+                * p
+                + degeneracy_count
+            )
+            * int(certificate["denominator"])
+        )
+        if lower_numerator != int(certificate["lower_numerator"]):
+            raise AssertionError((p, n, lower_numerator, certificate))
+        certificate_positive = bool(certificate["saturation_certificate"])
+        if certificate_positive != expected_certificate:
+            raise AssertionError((p, n, certificate))
+        if (
+            bool(certificate["uniform_threshold_applies"])
+            and not certificate_positive
+        ):
+            raise AssertionError((p, n, certificate))
+        window = slack_two_second_fixed_window_data(
+            p=p,
+            domain=domain,
+            quotient_order=quotient_order,
+            window_fibers=tuple(range(window_size)),
+        )
+        if window is None:
+            raise AssertionError((p, n, quotient_order, window_size))
+        window_saturates = int(window["nonzero_square_coset_count"]) == int(
+            window["total_nonzero_square_coset_count"]
+        )
+        if certificate_positive and not window_saturates:
+            raise AssertionError((p, n, certificate, window))
+        fixed_window_kummer_checked.append(
+            (
+                p,
+                n,
+                quotient_order,
+                window_size,
+                certificate_positive,
+                certificate["kernel_character_order"],
+                certificate["square_coset_index"],
+                certificate["denominator"],
+                certificate["uniform_prime_threshold"],
+                window["parameter_count"],
+                window["zero_parameter_count"],
+                window["nonzero_square_coset_count"],
+                window["total_nonzero_square_coset_count"],
+            )
+        )
     scan_label_checked = []
     for p, n, k, slack, quotient_order, expected_label in SCAN_LABEL_CASES:
         result = scan_supports(
@@ -612,6 +702,7 @@ def main() -> None:
         f"two_fiber_checked={two_fiber_checked} "
         f"two_fiber_union_checked={two_fiber_union_checked} "
         f"r_window_checked={r_window_checked} "
+        f"fixed_window_kummer_checked={fixed_window_kummer_checked} "
         f"scan_label_checked={scan_label_checked}"
     )
 

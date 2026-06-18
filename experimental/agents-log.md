@@ -89,8 +89,11 @@ Keep entries concise and link to the relevant files.
   bucket. A general quotient-window reduction unifies the lift-limited layer:
   for every `R<min(4,N)`, active shapes are exactly the union over quotient
   windows of size `R` containing the kernel fiber, and the verifier checks
-  the `R=1,2,3` reductions on the running `p=97,n=48,N=6` sample. This
-  leaves a narrower intermediate/lift-limited window for M1 slope-image
+  the `R=1,2,3` reductions on the running `p=97,n=48,N=6` sample. The same
+  character-sum method now gives a fixed `R`-window Kummer certificate with
+  principal and error weights `R^3`; the verifier checks a positive `R=3`
+  full-domain `p=2213,N=4` instance against exact fixed-window enumeration.
+  This leaves a narrower intermediate/lift-limited window for M1 slope-image
   bounds.
 - **What to do next:** Prove or replace the imported Kummer-Weil constant in
   a standalone algebraic-geometry note, then attack the residual `R=1`

@@ -191,6 +191,18 @@ canonical_slack_two_second_r_window_saturates
 canonical_slack_two_second_r_window_exact_support_certificate
 canonical_slack_two_second_r_window_slope_count
 canonical_slack_two_second_r_window_reduction_check
+canonical_slack_two_second_r_window_kummer_window_size
+canonical_slack_two_second_r_window_kummer_character_order
+canonical_slack_two_second_r_window_kummer_square_coset_index
+canonical_slack_two_second_r_window_kummer_denominator
+canonical_slack_two_second_r_window_kummer_principal_weight
+canonical_slack_two_second_r_window_kummer_coefficient_bound
+canonical_slack_two_second_r_window_kummer_prime_threshold
+canonical_slack_two_second_r_window_kummer_threshold_applies
+canonical_slack_two_second_r_window_kummer_lower_numerator
+canonical_slack_two_second_r_window_kummer_lower_bound
+canonical_slack_two_second_r_window_kummer_certificate
+canonical_slack_two_second_r_window_kummer_exact_support_certificate
 canonical_slack_two_second_full_domain_saturates_nonzero_slopes
 canonical_slack_two_second_full_domain_nonzero_slope_image
 canonical_slack_two_second_full_domain_coset_count_check
@@ -582,6 +594,22 @@ result against the active depth-two parameter count, zero count, nonzero
 `D^2`-coset count, and slope count. If this union saturates all nonzero
 `D^2`-cosets below the all-shapes gate, the index-window label records
 `r_window_saturated`.
+There is also a fixed-window Kummer certificate for this same reduction. For
+a quotient window `W` of size `R`, the indicator of `W` has principal weight
+`R/h`, so the principal term for `u,v,-1-u-v in W` has weight `R^3/(h^3 q)`,
+where `h=[F_p^*:K]` and `q=[F_p^*:D^2]`. The nonprincipal coefficients are
+bounded by `R^3`, and the same degree-five divisor gives the imported `16p`
+Kummer error. The conservative lower numerator is
+
+```text
+R^3 (p^2 - 4p + 6 + 4 chi(-3))
+  - (R^3*16*p + 6p - 11) h^3 q.
+```
+
+When this is positive, one fixed `R`-window already hits every nonzero
+`D^2`-coset, hence exact-support saturation follows whenever the
+exact-support complement has at least those `R` quotient fibers. The scanner
+records this as `r_window_kummer_saturated`.
 At the extreme `R=1`, the lift-limited layer has an exact quotient-kernel
 reduction. Let
 
@@ -700,6 +728,7 @@ full_domain_saturated
 low_index_saturated
 two_fiber_saturated
 r2_union_saturated
+r_window_kummer_saturated
 r_window_saturated
 lift_limited_sparse
 raw_saturated_lift_limited
