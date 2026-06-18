@@ -233,6 +233,60 @@ sheaf. A `3p` bound for the pullback main term, plus the exceptional
 `2 sqrt(p)` correction, would explain the observed near-`4p` diagonal
 examples.
 
+## Pullback Branch Checklist
+
+The rational pullback
+
+```text
+lambda(s) = s^2 / (4B(s)),        B(s)=s^2+s+1,
+```
+
+has the following exact geometry for `p>3`:
+
+```text
+lambda=0:        s=0, with ramification index 2,
+lambda=infinity: B(s)=0, two simple geometric points,
+lambda=1:        C(s)=3s^2+4s+4=0, two simple geometric points.
+```
+
+The derivative is
+
+```text
+lambda'(s) = s(s+2) / (4B(s)^2).
+```
+
+Thus the second ramification point is `s=-2`, and it maps to the regular
+value `lambda=1/3`. The deleted open point `s=-1` maps to the regular value
+`lambda=1/4`. The finite branch and singular polynomials
+
+```text
+s,        B(s),        C(s),        s+1,        s+2
+```
+
+are pairwise separated in the ways needed above:
+
+```text
+B(0)=1,        C(0)=4,
+B(-1)=1,       C(-1)=3,
+B(-2)=3,       C(-2)=8.
+```
+
+Consequently, the remaining `3p` target can be phrased as a conductor
+problem for the middle extension of
+
+```text
+rho(B(s)) H(lambda(s))
+```
+
+on the `s`-line, with geometric singular support contained in
+
+```text
+s=0,        B(s)=0,        C(s)=0,        infinity,
+```
+
+and with the regular deleted point `s=-1` handled separately by the usual
+pointwise genus-zero bound for `H(1/4)`.
+
 The finite verifier is
 
 ```bash

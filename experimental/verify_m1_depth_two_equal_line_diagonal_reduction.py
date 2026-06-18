@@ -81,6 +81,17 @@ def shape_b(s: int, p: int) -> int:
     return (s * s + s + 1) % p
 
 
+def shape_c(s: int, p: int) -> int:
+    return (3 * s * s + 4 * s + 4) % p
+
+
+def lambda_value(s: int, p: int) -> int:
+    denominator = (4 * shape_b(s, p)) % p
+    if denominator == 0:
+        raise ZeroDivisionError((s, p))
+    return (s * s * pow(denominator, -1, p)) % p
+
+
 def line_monodromies(e: int, h: int, a: int, d: int) -> Tuple[int, int, int]:
     lift = h // e
     first = (lift * a) % h
@@ -178,6 +189,40 @@ def residual_pullback_parts(
     return pullback_main, exceptional
 
 
+def verify_pullback_branch_geometry(p: int) -> Dict[str, object]:
+    if p <= 3:
+        raise AssertionError(p)
+    roots_b = [s for s in range(p) if shape_b(s, p) == 0]
+    roots_c = [s for s in range(p) if shape_c(s, p) == 0]
+    if any(shape_c(s, p) == 0 for s in roots_b):
+        raise AssertionError(("B and C meet", p, roots_b, roots_c))
+    if shape_b(0, p) != 1 or shape_c(0, p) != 4 % p:
+        raise AssertionError(("bad zero fiber", p))
+    if shape_b(p - 1, p) != 1 or shape_c(p - 1, p) != 3 % p:
+        raise AssertionError(("bad deleted point", p))
+    if shape_b(p - 2, p) != 3 % p or shape_c(p - 2, p) != 8 % p:
+        raise AssertionError(("bad second critical point", p))
+    if lambda_value(p - 1, p) != pow(4, -1, p):
+        raise AssertionError(("lambda(-1)", p, lambda_value(p - 1, p)))
+    if lambda_value(p - 2, p) != pow(3, -1, p):
+        raise AssertionError(("lambda(-2)", p, lambda_value(p - 2, p)))
+    for s in range(p):
+        if shape_b(s, p) == 0:
+            continue
+        lam = lambda_value(s, p)
+        if (lam == 0) != (s == 0):
+            raise AssertionError(("lambda zero", p, s, lam))
+        if (lam == 1) != (shape_c(s, p) == 0):
+            raise AssertionError(("lambda one", p, s, lam))
+    return {
+        "p": p,
+        "b_root_count": len(roots_b),
+        "c_root_count": len(roots_c),
+        "lambda_minus_one": pow(4, -1, p),
+        "lambda_minus_two": pow(3, -1, p),
+    }
+
+
 def audit_case(case: Dict[str, int]) -> Dict[str, object]:
     p = int(case["p"])
     n = int(case["n"])
@@ -251,6 +296,12 @@ def audit_case(case: Dict[str, int]) -> Dict[str, object]:
 def main() -> None:
     rows = [audit_case(case) for case in CASES]
     for row in rows:
+        print(row)
+    branch_rows = [
+        verify_pullback_branch_geometry(int(case["p"]))
+        for case in CASES
+    ]
+    for row in branch_rows:
         print(row)
     top = max(rows, key=lambda row: float(row["sum_ratio"]))
     for key, value in EXPECTED_TOP.items():

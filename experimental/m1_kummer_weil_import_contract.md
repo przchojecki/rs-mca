@@ -207,7 +207,9 @@ diagonal subfamily. The symmetric-coordinate reduction in
 subfamily into a bounded one-dimensional Jacobi part and a residual
 quadratic-discriminant trace, then rewrites the residual as a pullback of a
 three-point hypergeometric trace along
-`lambda=s^2/(4(s^2+s+1))`; this is a proof-guidance reduction, not yet a
+`lambda=s^2/(4(s^2+s+1))`. The branch checklist for this pullback has
+singular support contained in `s=0`, `s^2+s+1=0`,
+`3s^2+4s+4=0`, and infinity; this is a proof-guidance reduction, not yet a
 replacement for the `9p` import.
 
 Thus the fixed-window, quotient-window, and two-fiber certificates still use
