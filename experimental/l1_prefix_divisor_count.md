@@ -376,6 +376,55 @@ and requires the analytic aperiodic bound. The DP's role is to validate the
 structural theory (§2--§7) at parameters brute force cannot touch and to confirm
 the quotient-core/aperiodic split survives into the sub-Johnson window.
 
+## 9. Lift to arbitrary words: dilation symmetry and the folding source
+
+§§2--8 treat the monomial-prefix fiber, which `prop:monomial-fiber` identifies
+with the list exactly. For an *arbitrary* received word `U : H -> F_q` the honest
+object is `ImgFib_U(s) = \{ P in F_{<k}[X] : |\{x : U(x)=P(x)\}| >= s \}`
+(`l1_arbitrary_fiber_repair.md`) --- the list at radius `1 - s/n`. The symmetry
+and quotient-core structure transfer.
+
+**Theorem (dilation symmetry of the list).** For `h in H` define
+`U^h(x) = U(h^{-1}x)` and `P^h(x) = P(h^{-1}x)`. Then `deg P^h = deg P`,
+`A_{P^h}(U^h) = h \cdot A_P(U)`, and `P |-> P^h` is a bijection
+`ImgFib_U(s) -> ImgFib_{U^h}(s)`. Hence
+```text
+|ImgFib_{U^h}(s)| = |ImgFib_U(s)|,
+```
+so the worst-case list `Lst(RS[F_q,H,k], 1-s/n)` is attained on dilation-orbit
+representatives of received words (search reduced by up to a factor `n`). If
+`h in Stab_H(U)` the map permutes `ImgFib_U(s)`, so the number of fully aperiodic
+codewords in the list is divisible by `per(U) := |Stab_H(U)|`.
+
+*Proof.* `P^h(h x) = P(x)`, so `U^h(hx) = U(x) = P(x) = P^h(hx)` exactly on
+`h \cdot A_P(U)`; dilation by `h` is invertible on `F_{<k}`. ∎
+
+**Theorem (folding is the arbitrary-word quotient-core source).** Suppose
+`U = V(X^d)` with `d \mid n`, `d \mid k`, `d \mid s`. Then
+```text
+W |-> W(X^d)   injects   ImgFib_V(s/d)  over RS[F_q, mu_{n/d}, k/d]
+                          into ImgFib_U(s)  over RS[F_q, mu_n, k].
+```
+Thus a `d`-periodic received word inherits the entire folded list.
+
+*Proof.* `deg W(X^d) = d \deg W < d (k/d) = k`, so `P = W(X^d)` is a codeword of
+`RS[F_q, H, k]`. The `d`-power map `x \mapsto x^d` is `d`-to-`1` from `mu_n` onto
+`mu_{n/d}`, and `P(x) = U(x) \iff W(x^d) = V(x^d)`. So each agreement point
+`y in mu_{n/d}` of `(W,V)` lifts to `d` agreement points of `(P,U)`, giving
+`|A_P(U)| = d\,|A_W(V)| >= d (s/d) = s`. Injectivity of `W \mapsto W(X^d)` is
+clear. ∎
+
+**Significance.** This is the arbitrary-word analogue of §§5--7: the
+field-independent quotient-core floor on the list comes from *periodic* received
+words `U = V(X^d)` inheriting folded lists (the §5 coset-union floor was the
+prefix shadow of this), the dilation symmetry organizes the worst case (§6), and
+the open target is again the *aperiodic* (trivial `Stab_H(U)`) regime. One
+caveat distinguishes it from the prefix case: arbitrary listed codewords need not
+be `d`-periodic, so the list can exceed the folded floor --- the folded copy is a
+lower bound, not the whole list. Verified by
+`verify_l1_arbitrary_word_lift.py`: dilation list-size invariance at
+`F_17, n=16, k=6, s=8`, and the folding lift for `d = 2, 4`.
+
 ## Ledger impact
 
 - **Quotient (worsens, now explicit):** gives an exact, field-independent
@@ -415,8 +464,9 @@ python3 experimental/verify_l1_prefix_divisor_count.py --dp-summary --p 257 --n 
    to push `sigma` higher, or a character-sum evaluation for the per-`c` count.
 3. **Inclusion-exclusion over orders.** DONE (§5): exact structured count via
    subgroup-lattice Möbius, with the dyadic collapse `binom(n/d_*, m/d_*)`.
-4. **Lift to arbitrary words.** Connect the prefix (monomial) floor to the
-   honest list `ImgFib_U` of `l1_arbitrary_fiber_repair.md` for non-prefix `U`.
+4. **Lift to arbitrary words.** DONE (§9): dilation symmetry of `ImgFib_U` and
+   the folding source `W |-> W(X^d)` for periodic `U=V(X^d)`. Remaining: bound
+   the *aperiodic* (trivial-stabilizer) arbitrary-word list above the reserve.
 5. **Aperiodic second moment.** The scan shows the aperiodic remainder sits at
    the random scale `binom(n,s)/q^sigma`; target a worst-case second-moment /
    Plotkin bound on the *aperiodic* sub-family that beats the generic Johnson

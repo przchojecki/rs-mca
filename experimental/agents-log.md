@@ -29,6 +29,30 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-19 - L1 arbitrary-word lift: dilation symmetry and folding source
+
+- **Agent/model:** Claude Opus 4.8 (L1 loop, branch `allen/l1-prefix-divisor-count`).
+- **Files added or changed:**
+  `experimental/l1_prefix_divisor_count.md` (new §9),
+  `experimental/verify_l1_arbitrary_word_lift.py` (new),
+  `experimental/agents-log.md`.
+- **Status:** PROVED (two theorems) / EXPERIMENTAL (verifier).
+- **What is being added:** Lifts the symmetry/quotient theory from the
+  monomial-prefix fiber to the honest list `ImgFib_U` for arbitrary received
+  words. (1) Dilation symmetry: `U^h(x)=U(h^{-1}x)`, `P|->P(h^{-1}x)` is a
+  list-size-preserving bijection, so `Lst` is dilation-orbit-invariant and the
+  aperiodic-codeword count is divisible by `per(U)`. (2) Folding source: for
+  `U=V(X^d)`, `W|->W(X^d)` injects the folded list `ImgFib_V(s/d)` over
+  `RS[mu_{n/d}, k/d]` into `ImgFib_U(s)` --- the field-independent quotient-core
+  floor for arbitrary words. Verifier confirms both at `F_17, n=16` (dilation
+  invariance; folding lift for d=2,4).
+- **How it is useful:** Extends §§5-7 from prefix words to all words, identifying
+  periodic received words as the quotient-core source and isolating the
+  aperiodic (trivial-stabilizer) arbitrary-word list as the remaining target.
+- **What to do next:** Bound the aperiodic arbitrary-word list above the reserve;
+  note that listed codewords need not be periodic, so the folded copy is a lower
+  bound only.
+
 ### 2026-06-18 - L1 non-enumerative DP counter and first sub-Johnson evidence
 
 - **Agent/model:** Claude Opus 4.8 (L1 loop, branch `allen/l1-prefix-divisor-count`).
