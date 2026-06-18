@@ -207,6 +207,30 @@ def expected_boundary_residual_coset_count(
     return (domain_order // slack) * math.comb(remaining_fibers, whole_fibers)
 
 
+def expected_boundary_slope_data(
+    domain_order: int,
+    quotient_order: int,
+    fiber_size: int,
+    support_size: int,
+    slack: int,
+) -> Tuple[int, int]:
+    if slack >= fiber_size:
+        return (0, 0)
+    if domain_order % slack:
+        return (0, 0)
+    if (support_size - slack) % fiber_size:
+        return (0, 0)
+    whole_fibers = (support_size - slack) // fiber_size
+    touched_fibers = slack // math.gcd(slack, fiber_size)
+    remaining_fibers = quotient_order - touched_fibers
+    if whole_fibers < 0 or whole_fibers > remaining_fibers:
+        return (0, 0)
+    multiplicity = math.comb(remaining_fibers, whole_fibers)
+    if multiplicity == 0:
+        return (0, 0)
+    return (domain_order // slack, multiplicity)
+
+
 def occupancy_histogram(
     support: Sequence[int],
     quotient_order: int,
@@ -355,6 +379,16 @@ def scan_supports(
         support_size=support_size,
         slack=slack,
     )
+    (
+        expected_boundary_slope_count,
+        expected_boundary_slope_multiplicity,
+    ) = expected_boundary_slope_data(
+        domain_order=n,
+        quotient_order=quotient_order,
+        fiber_size=fiber_size,
+        support_size=support_size,
+        slack=slack,
+    )
     expected_boundary_touched_fibers = (
         slack // math.gcd(slack, fiber_size)
         if slack < fiber_size and n % slack == 0
@@ -363,6 +397,7 @@ def scan_supports(
 
     records: Dict[Tuple[int, ...], Dict[str, object]] = {}
     bad_slopes = set()
+    boundary_slope_histogram: Counter[int] = Counter()
     incidence_count = 0
     contained_count = 0
     no_slope_count = 0
@@ -476,6 +511,7 @@ def scan_supports(
                 record["canonical_boundary_residual_coset_count"] = (
                     int(record["canonical_boundary_residual_coset_count"]) + 1
                 )
+                boundary_slope_histogram[canonical_slope] += 1
                 if not is_power_coset(residual_values, slack, p):
                     canonical_boundary_residual_coset_mismatches += 1
                     record[
@@ -651,6 +687,43 @@ def scan_supports(
             if canonical_line and slack <= fiber_size
             else None
         ),
+        "canonical_boundary_slope_expected_count": (
+            expected_boundary_slope_count
+            if canonical_line and slack <= fiber_size
+            else None
+        ),
+        "canonical_boundary_slope_count": (
+            len(boundary_slope_histogram)
+            if canonical_line and slack <= fiber_size
+            else None
+        ),
+        "canonical_boundary_slope_count_check": (
+            len(boundary_slope_histogram) == expected_boundary_slope_count
+            if canonical_line and slack <= fiber_size
+            else None
+        ),
+        "canonical_boundary_slope_expected_multiplicity": (
+            expected_boundary_slope_multiplicity
+            if canonical_line and slack <= fiber_size
+            else None
+        ),
+        "canonical_boundary_slope_multiplicity_check": (
+            all(
+                count == expected_boundary_slope_multiplicity
+                for count in boundary_slope_histogram.values()
+            )
+            and len(boundary_slope_histogram) == expected_boundary_slope_count
+            if canonical_line and slack <= fiber_size
+            else None
+        ),
+        "canonical_boundary_slope_histogram": (
+            {
+                str(slope): count
+                for slope, count in sorted(boundary_slope_histogram.items())
+            }
+            if canonical_line and slack <= fiber_size
+            else None
+        ),
         "canonical_boundary_touched_fiber_count": (
             expected_boundary_touched_fibers
             if canonical_line and slack < fiber_size
@@ -750,6 +823,7 @@ def print_text(result: Dict[str, object]) -> None:
             "low_residual_exclusion={low} "
             "boundary_coset_check={coset} "
             "boundary_count_check={count} "
+            "boundary_slope_count_check={slope_count} "
             "residual_slope_check={slope} "
             "boundary_slope_check={boundary}".format(
                 formula=result["canonical_symmetric_formula_check"],
@@ -758,6 +832,7 @@ def print_text(result: Dict[str, object]) -> None:
                 low=result["canonical_low_residual_exclusion_check"],
                 coset=result["canonical_boundary_residual_coset_check"],
                 count=result["canonical_boundary_residual_count_check"],
+                slope_count=result["canonical_boundary_slope_count_check"],
                 slope=result["canonical_residual_slope_check"],
                 boundary=result["canonical_boundary_slope_decomposition_check"],
             )

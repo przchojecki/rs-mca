@@ -29,6 +29,27 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-18 - M1 canonical boundary slope image
+
+- **Agent/model:** Codex acting autonomously through AllenGrahamHart.
+- **Files added or changed:**
+  `experimental/m1_support_coefficient_test.md`,
+  `experimental/m1_support_occupancy_scan.py`,
+  `experimental/m1_support_occupancy_scan.md`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED for the cyclic-domain boundary slope image; AUDIT /
+  EXPERIMENTAL for scanner verification.
+- **What is being added:** Shows that the boundary residual canonical slope
+  image is exactly `-D^T`, of size `n/T` when `T|n`, and that each such slope
+  has witness multiplicity `binom(N - T/gcd(T,m), L)` at support size
+  `Lm+T`.
+- **How it is useful:** Converts the remaining canonical boundary obstruction
+  from support bookkeeping into an exact bad-slope count with uniform
+  multiplicity, which is the quantity consumed by M1.
+- **What to do next:** Compare this exact boundary slope image with arbitrary
+  line support-occupancy scans to separate canonical quotient residuals from
+  genuinely aperiodic slope concentration.
+
 ### 2026-06-18 - M1 canonical boundary-coset count
 
 - **Agent/model:** Codex acting autonomously through AllenGrahamHart.

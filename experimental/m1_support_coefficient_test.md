@@ -317,6 +317,25 @@ an arbitrary support family. It is a finite quotient-level menu of power-kernel
 cosets together with ordinary whole-fiber choices disjoint from the touched
 fibers.
 
+The slope image of this boundary family is exact as well. For `T<m`, the
+boundary residual coset has vanishing polynomial `X^T-c`, hence slope `z=-c`.
+As the residual coset varies through `D`, the values of `c` are exactly
+
+```text
+D^T = {x^T : x in D},
+```
+
+so the boundary residual slope set is `-D^T` and has size `n/T` when `T|n`.
+Moreover, at support size `s=Lm+T`, each such boundary slope has exactly
+
+```text
+binom(N - T/gcd(T,m), L)
+```
+
+support witnesses: choose the `L` whole quotient fibers from those not touched
+by the residual coset. Thus both the support count and the bad-slope count of
+the boundary residual canonical source are closed quotient-level quantities.
+
 ## M1 Impact
 
 This turns the positive M1 problem into a precise incidence question:
@@ -359,6 +378,9 @@ In cyclic domains the boundary residual obstruction is also exactly counted:
 it exists only when `T|n`, then there are `n/T` residual cosets, each touching
 `T/gcd(T,m)` quotient fibers. This turns the remaining canonical boundary
 case into a finite quotient-level object rather than an aperiodic family.
+Its slope image is the equally explicit set `-D^T`, and every boundary slope
+has the same whole-fiber multiplicity. Hence the canonical boundary source can
+be charged by exact slope count and multiplicity, not just by support count.
 
 ## Suggested Next Step
 
@@ -379,4 +401,5 @@ formula and the quotient-core invisibility identity `e_d(S)=e_d(R(S))` for
 `d<m`. It also checks the low-residual exclusion and the boundary coset
 classification on every scanned support, and verifies the residual-only and
 boundary quotient-core slope decompositions. In cyclic-domain scans it also
-checks the exact boundary-coset count above.
+checks the exact boundary-coset count above and the associated boundary slope
+image/multiplicity.

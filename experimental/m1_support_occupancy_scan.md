@@ -57,6 +57,8 @@ canonical_residual_zero_prefix_match
 canonical_low_residual_exclusion_check
 canonical_boundary_residual_coset_check
 canonical_boundary_residual_count_check
+canonical_boundary_slope_count_check
+canonical_boundary_slope_multiplicity_check
 canonical_boundary_touched_fiber_check
 canonical_residual_slope_check
 canonical_boundary_slope_decomposition_check
@@ -86,6 +88,17 @@ where `s=k+t=Lm+t` and `N=n/m`; otherwise the expected count is zero. Actual
 boundary residual cosets are also checked to touch exactly `t/gcd(t,m)`
 quotient fibers.
 
+The corresponding slope image is checked too. When the boundary family is
+present, the expected slope set has size `n/t`, and every boundary slope has
+support multiplicity
+
+```text
+binom(N - t/gcd(t,m), L).
+```
+
+The JSON field `canonical_boundary_slope_histogram` records the observed
+boundary-only slope multiplicities.
+
 The slope checks audit the exact canonical quotient-core decomposition. For
 `t<m`, the contributed slope is computed from the residual set alone:
 
@@ -111,4 +124,5 @@ conditions, and residual packets below the slack are ruled out over a
 multiplicative domain. At the boundary `t=m`, any remaining whole-fiber
 dependence is reduced to the quotient-level sum over the selected whole
 fibers. For `t<m`, the remaining boundary residuals form a counted family of
-power-kernel cosets rather than an unstructured partial-fiber family.
+power-kernel cosets rather than an unstructured partial-fiber family, and
+their slope image is the explicit set `-D^t`.
