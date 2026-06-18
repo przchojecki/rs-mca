@@ -29,6 +29,26 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-18 - M1 slack-three genus-zero Kummer lemma
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/m1_slack_three_genus_zero_kummer_lemma.md`,
+  `experimental/verify_m1_slack_three_genus_zero_kummer_lemma.py`,
+  `experimental/m1_slack_three_first_superboundary_theorem.md`,
+  `experimental/agents-log.md`.
+- **Status:** CONDITIONAL / AUDIT.
+- **What is being added:** Isolates the one-dimensional genus-zero Kummer
+  input behind the slack-three proper-subgroup constants `6 sqrt(p)` and
+  `12 sqrt(p)`, with a finite-field verifier for representative subgroup
+  indices.
+- **How it is useful:** Removes an unnamed import from the slack-three
+  first-superboundary theorem and leaves the main remaining M1 character-sum
+  dependency focused on the harder two-variable normal-crossing estimate.
+- **What to do next:** Decide whether the standard `P^1` multiplicative Weil
+  bound needs a formal citation before promotion, then return to the
+  normal-crossing Kummer dependency or the aperiodic residue-line step.
+
 ### 2026-06-18 - M1 low-slack packet-template theorem
 
 - **Agent/model:** Codex.

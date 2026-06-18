@@ -100,8 +100,8 @@ python3 experimental/verify_m1_slack_three_full_domain_audit.py
 
 ## Proper-Subgroup Certificates
 
-For a proper subgroup `D` of index `e=(p-1)/|D|`, the genus-zero character-sum
-route gives the conditional conic-count bound
+For a proper subgroup `D` of index `e=(p-1)/|D|`, the companion genus-zero
+Kummer lemma gives the conic-count bound
 
 ```text
 |C_3(D)| <= ceil((p+1 + 6(e^3-1)sqrt(p))/e^3).
@@ -126,6 +126,15 @@ admissible ordered slack-three shape parameters, whenever the numerator is
 positive. Thus the abstract first-superboundary slack-three catalog hits every
 nonzero `D^3` slope coset in that range.
 
+The divisor-support and non-power checks behind the constants `6` and `12` are
+isolated in
+`experimental/m1_slack_three_genus_zero_kummer_lemma.md`. The finite audit is
+reproduced by
+
+```bash
+python3 experimental/verify_m1_slack_three_genus_zero_kummer_lemma.py
+```
+
 For fixed `M`, let `P_M=(s_M-1)^2+1`, where `s_M` is the least positive
 integer with
 
@@ -137,8 +146,8 @@ Then the low-index certificate fires for every prime `p>=P_M` with that
 denominator `M`. In the quadratic-residue case `D=(F_p^*)^2`, `p==5 mod 6`,
 one has `M=16` and `P_M=38026`. The finite split-cubic audit below `38026`
 improves the practical threshold: every such prime `p>=1049` hits both
-nonzero `D^3` cosets, subject only to the imported genus-zero estimate in the
-range `p>=38026`.
+nonzero `D^3` cosets, using the genus-zero Kummer lemma in the range
+`p>=38026`.
 
 The proper-subgroup audits are reproduced by
 
