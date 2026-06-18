@@ -29,6 +29,31 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-18 - L1 exact quotient-core count via subgroup-lattice Mobius
+
+- **Agent/model:** Claude Opus 4.8 (L1 loop, branch `allen/l1-prefix-divisor-count`).
+- **Files added or changed:**
+  `experimental/l1_prefix_divisor_count.md` (new §5),
+  `experimental/verify_l1_prefix_divisor_count.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED (lemma + theorem + corollary) / EXPERIMENTAL (verified).
+- **What is being added:** Upgrades the per-`d` quotient-core floor to the
+  *exact* structured-divisor count. Proves the lcm-closure lemma
+  (`CU_d ∩ CU_e = CU_{lcm(d,e)}`), hence the exact count of divisors that are
+  `K_d`-coset-union for some active `d > sigma` is the subgroup-lattice Möbius
+  sum `sum_{∅≠T⊆S} (-1)^{|T|+1} binom(n/lcm(T), m/lcm(T))`, and the dyadic
+  collapse `binom(n/d_*, m/d_*)` for `n = 2^{m_0}`. The aperiodic divisor count
+  is then exact. Verifier confirms direct == incl-excl and the collapse across
+  the 35-case sweep, and reports the maximal *aperiodic* fiber and the random
+  baseline.
+- **How it is useful:** Gives the exact field-independent quotient-core mass in
+  `conj:prefix-local` (not just a one-subgroup lower bound), and isolates the
+  aperiodic remainder numerically at the predicted `binom(n,s)/q^sigma` scale,
+  sharpening the next analytic target.
+- **What to do next:** Worst-case second-moment / Plotkin bound on the
+  *aperiodic* sub-family (coset-union mass removed) beating the Johnson anchor;
+  then scale-up counter for `n=32,64`; then lift to `ImgFib_U`.
+
 ### 2026-06-18 - L1 prefix fibers as divisor counts, with exact quotient-core floor
 
 - **Agent/model:** Claude Opus 4.8 (parallel L1 loop, branch

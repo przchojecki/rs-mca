@@ -175,6 +175,60 @@ floor *and* a cleared entropy margin simultaneously; that separation needs
 
 No discrepancy with the existing certificate.
 
+## 5. Exact structured count via subgroup-lattice Möbius
+
+The per-`d` floor of §2 is a lower bound from one subgroup. The *exact* number
+of structured (quotient-periodic) divisors --- those that are `K_d`-coset-union
+for at least one active order `d > sigma` --- follows from a lattice identity.
+
+**Lemma (lcm closure).** For `d, e \mid n`, a set `A <= H` is simultaneously a
+`K_d`- and `K_e`-coset-union iff it is a `K_{lcm(d,e)}`-coset-union.
+
+*Proof.* `K_d` and `K_e` are the order-`d`, order-`e` subgroups of the cyclic
+group `H`, so `K_d, K_e <= K_{lcm(d,e)}` and `K_d K_e = K_{lcm(d,e)}` (in an
+abelian group `|K_d K_e| = |K_d||K_e|/|K_d \cap K_e| = de/\gcd(d,e) = lcm(d,e)`,
+and `K_d K_e` is a subgroup of the cyclic group `H`, hence the unique one of that
+order). If `A K_d = A` and `A K_e = A` then `A K_{lcm} = A (K_d K_e) = A`;
+conversely `A K_{lcm} = A` forces closure under the subgroups `K_d, K_e`. ∎
+
+Write `CU_d` for the set of `K_d`-coset-union degree-`m` divisors, so
+`|CU_d| = binom(n/d, m/d)` (§2) and, by the Lemma,
+`CU_d \cap CU_e = CU_{lcm(d,e)}`. Let `S = \{ d \mid \gcd(n,m) : d > sigma \}` be
+the active orders.
+
+**Theorem (exact quotient-core count).**
+```text
+#{structured divisors}  =  | union_{d in S} CU_d |
+                        =  sum_{∅ != T ⊆ S} (-1)^{|T|+1} binom(n/L_T, m/L_T),
+                           where L_T = lcm(T).
+```
+Consequently the *aperiodic* divisor count is exactly
+`binom(n,m) - #{structured divisors}`, and `conj:prefix-local` predicts the
+maximal aperiodic prefix fiber to be `binom(n,s)/q^sigma + O(n^B)`.
+
+*Proof.* Inclusion-exclusion on the union, with
+`CU_{d_1} \cap ... \cap CU_{d_t} = CU_{lcm(d_1,...,d_t)}` by iterating the Lemma,
+and `|CU_e| = binom(n/e, m/e)` from §2 (`e = L_T \mid \gcd(n,m)`, so `e \mid m`
+and `e \mid n`). ∎
+
+**Corollary (dyadic collapse).** If `n = 2^{m_0}` then `\gcd(n,m)` is a power of
+two, so `S` is a chain under divisibility with least element `d_* = ` smallest
+power of two `> sigma` dividing `\gcd(n,m)`. Every `CU_d` (`d \in S`) satisfies
+`CU_d \subseteq CU_{d_*}` (as `d_* \mid d`), so the union collapses:
+```text
+#{structured divisors} = binom(n/d_*, m/d_*)        (n dyadic).
+```
+This is the exact field-independent quotient-core mass at dyadic rates --- the
+prize regime --- and it vanishes precisely when `\gcd(n, k+sigma) <= sigma`.
+
+Both the inclusion-exclusion total and the dyadic collapse are verified by
+`verify_l1_prefix_divisor_count.py` (fields `structured_count_direct`,
+`structured_count_incl_excl`, `dyadic_collapse_ok`) against direct enumeration
+across the 35-case sweep. For `F_17, n=16`: at `k=4, sigma=4` the structured
+count is exactly `2 = binom(2,1)` (`d_*=8`), the `12868` aperiodic divisors have
+maximal aperiodic fiber `2`, and the random baseline `binom(16,8)/17^4 = 0.154`
+--- i.e. the aperiodic remainder is already at the predicted scale.
+
 ## Ledger impact
 
 - **Quotient (worsens, now explicit):** gives an exact, field-independent
@@ -210,9 +264,11 @@ python3 experimental/verify_l1_prefix_divisor_count.py --p 17 --n 16 --k 4 --sig
    the factorization of `X^n-1`, or coset-DP) to reach `n=32,64` and the
    `q=257` toy case, where a cleared entropy margin can coexist with a large
    quotient floor.
-3. **Inclusion-exclusion over orders.** The floors for different `d` overlap
-   (a divisor can be coset-union for several `d`); compute the exact union via
-   Mobius over the subgroup lattice to get the sharp total quotient-core count,
-   not just the per-`d` lower bound.
+3. **Inclusion-exclusion over orders.** DONE (§5): exact structured count via
+   subgroup-lattice Möbius, with the dyadic collapse `binom(n/d_*, m/d_*)`.
 4. **Lift to arbitrary words.** Connect the prefix (monomial) floor to the
    honest list `ImgFib_U` of `l1_arbitrary_fiber_repair.md` for non-prefix `U`.
+5. **Aperiodic second moment.** The scan shows the aperiodic remainder sits at
+   the random scale `binom(n,s)/q^sigma`; target a worst-case second-moment /
+   Plotkin bound on the *aperiodic* sub-family that beats the generic Johnson
+   anchor by using that coset-union mass has been removed.

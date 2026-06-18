@@ -222,6 +222,47 @@ def scan(p, n, k, sigma, max_examples=3):
     )
     floor_respected = (max_fiber >= quot_floor)
 
+    # --- Exact structured (quotient-periodic) count over active orders d > sigma. ---
+    # CU_d = {K_d-coset-union degree-m divisors}, |CU_d| = binom(n/d, m/d).
+    # CU_d ∩ CU_e = CU_{lcm(d,e)} (closure under <K_d,K_e> = K_{lcm}), so the union
+    # over active orders is exact Mobius inclusion-exclusion over the subgroup lattice.
+    def _lcm(a, b):
+        return a * b // gcd(a, b)
+
+    def cu_count(e):
+        return comb(n // e, m // e) if (n % e == 0 and m % e == 0) else 0
+
+    active_set = sorted(d for d in divisors if d > sigma and m % d == 0)
+    structured_direct = sum(
+        1 for A in cu_flags if any(d in cu_flags[A] for d in active_set)
+    )
+    incl = 0
+    L = len(active_set)
+    for mask in range(1, 1 << L):
+        e = 0
+        for i in range(L):
+            if mask & (1 << i):
+                e = active_set[i] if e == 0 else _lcm(e, active_set[i])
+        sign = 1 if (bin(mask).count("1") % 2 == 1) else -1
+        incl += sign * cu_count(e)
+    structured_incl_excl = incl
+    structured_count_match = (structured_direct == structured_incl_excl)
+
+    # Dyadic collapse: for n a power of two the active orders are nested (powers of
+    # two), so the union is exactly CU_{d_min}, d_min = least active order.
+    is_dyadic = (n & (n - 1)) == 0
+    d_min = active_set[0] if active_set else None
+    dyadic_collapse_ok = (
+        (structured_direct == cu_count(d_min)) if (is_dyadic and active_set) else True
+    )
+
+    # Max APERIODIC fiber size: largest fiber after removing structured members.
+    max_aperiodic_fiber = 0
+    for members in buckets.values():
+        ap = sum(1 for A in members if not any(d in cu_flags[A] for d in active_set))
+        max_aperiodic_fiber = max(max_aperiodic_fiber, ap)
+    aperiodic_divisors = total - structured_direct
+
     entropy_margin_bits = sigma * _log2(p) - _log2_binom(n, s)
     result = {
         "status": "EXPERIMENTAL/AUDIT",
@@ -239,6 +280,15 @@ def scan(p, n, k, sigma, max_examples=3):
         "coset_union_injection_ok_by_order": cu_injection_ok,
         "quotient_core_floor": quot_floor,
         "quotient_core_floor_respected": floor_respected,
+        "active_order_set": active_set,
+        "structured_count_direct": structured_direct,
+        "structured_count_incl_excl": structured_incl_excl,
+        "structured_count_match": structured_count_match,
+        "dyadic_collapse_d_min": d_min,
+        "dyadic_collapse_ok": dyadic_collapse_ok,
+        "aperiodic_divisors": aperiodic_divisors,
+        "max_aperiodic_fiber_size": max_aperiodic_fiber,
+        "random_baseline": total / (p ** sigma),
         "nonsingleton_members": nonsingleton_members,
         "nonsingleton_aperiodic_members": nonsingleton_aperiodic_members,
         "nonsingleton_all_aperiodic": (
@@ -296,11 +346,13 @@ def self_check():
     # Lemma identity and corollary floor over a small parameter sweep.
     sweep = [(17, 16, k, sg) for k in range(2, 9) for sg in range(1, 6)
              if 0 < k + sg <= 15]
-    id_ok = floor_ok = True
+    id_ok = floor_ok = struct_ok = collapse_ok = True
     for (pp, nn, kk, ss) in sweep:
         rr = scan(pp, nn, kk, ss)
         id_ok &= rr["coset_union_identity_ok"]
         floor_ok &= rr["quotient_core_floor_respected"]
+        struct_ok &= rr["structured_count_match"]
+        collapse_ok &= rr["dyadic_collapse_ok"]
     flag = "OK " if id_ok else "FAIL"
     if not id_ok:
         ok = False
@@ -309,6 +361,14 @@ def self_check():
     if not floor_ok:
         ok = False
     print(f"  [{flag}] quotient-core floor respected across {len(sweep)} (k,sigma) cases: {floor_ok}")
+    flag = "OK " if struct_ok else "FAIL"
+    if not struct_ok:
+        ok = False
+    print(f"  [{flag}] structured count: direct == incl-excl across {len(sweep)} cases: {struct_ok}")
+    flag = "OK " if collapse_ok else "FAIL"
+    if not collapse_ok:
+        ok = False
+    print(f"  [{flag}] dyadic collapse to CU_dmin across {len(sweep)} cases: {collapse_ok}")
     return ok
 
 
@@ -330,6 +390,15 @@ def human_table(r):
     lines.append(f"  X^d->Y injection ok / ord  : {r['coset_union_injection_ok_by_order']}")
     lines.append(f"  quotient-core floor        : {r['quotient_core_floor']}  "
                  f"(respected: {r['quotient_core_floor_respected']})")
+    lines.append(f"  active orders (d>sigma)    : {r['active_order_set']}")
+    lines.append(f"  structured count (direct)  : {r['structured_count_direct']}  "
+                 f"(incl-excl: {r['structured_count_incl_excl']}, "
+                 f"match: {r['structured_count_match']})")
+    lines.append(f"  dyadic collapse d_min      : {r['dyadic_collapse_d_min']}  "
+                 f"(ok: {r['dyadic_collapse_ok']})")
+    lines.append(f"  aperiodic divisors         : {r['aperiodic_divisors']}  "
+                 f"(max aperiodic fiber: {r['max_aperiodic_fiber_size']})")
+    lines.append(f"  random baseline binom/q^s  : {r['random_baseline']:.4f}")
     lines.append(f"  nonsingleton members       : {r['nonsingleton_members']}")
     lines.append(f"  ... of which aperiodic     : {r['nonsingleton_aperiodic_members']}")
     lines.append(f"  all nonsingleton aperiodic : {r['nonsingleton_all_aperiodic']}")
