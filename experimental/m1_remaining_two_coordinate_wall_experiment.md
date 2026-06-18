@@ -113,3 +113,5 @@ S_{a,a,0,d},        d == -3a mod e,
 with all three projective line monodromies equal and nonprincipal. A useful
 proof would likely explain why the finite ratios can approach `4p` from
 below while still respecting the projective Euler-characteristic target.
+The first reduction for this subfamily is recorded in
+`experimental/m1_depth_two_equal_line_diagonal_reduction.md`.

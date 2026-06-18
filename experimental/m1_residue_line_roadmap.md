@@ -20,7 +20,8 @@ should be revised as the project learns more.
 3. Use exact finite audits as guardrails: the current evidence supports a
    possible `4p` target and already obstructs constants below `3.977p`.
    Targeted remaining-wall scans suggest that near-sharp rows concentrate in
-   the equal-line-monodromy diagonal subfamily.
+   the equal-line-monodromy diagonal subfamily; a symmetric-coordinate
+   reduction now isolates its residual quadratic-discriminant trace.
 4. After the trace-family wall is closed, generalize to fixed low-slack
    templates, then separate tangent, quotient-periodic, finite-template, and
    genuinely aperiodic packing.

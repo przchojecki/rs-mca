@@ -29,6 +29,27 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-18 - M1 equal-line diagonal reduction
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/m1_depth_two_equal_line_diagonal_reduction.md`,
+  `experimental/verify_m1_depth_two_equal_line_diagonal_reduction.py`,
+  `experimental/m1_kummer_weil_import_contract.md`,
+  `experimental/m1_remaining_two_coordinate_wall_experiment.md`,
+  `experimental/m1_depth_two_two_coordinate_sharp_target_audit.md`,
+  `experimental/m1_residue_line_roadmap.md`,
+  `experimental/agents-log.md`.
+- **Status:** CONDITIONAL / AUDIT.
+- **What is being added:** The equal-line diagonal two-coordinate family is
+  reduced by symmetric variables `s=u+v`, `t=uv` into a bounded Jacobi part
+  and a residual quadratic-discriminant trace.
+- **How it is useful:** Turns the numerically near-sharp remaining-wall
+  subfamily into a sharper analytic target: prove a `3p`-level bound for the
+  residual trace to explain the observed near-`4p` behavior.
+- **What to do next:** Prove the residual trace bound or identify the
+  geometric obstruction responsible for the near-alignment of the two pieces.
+
 ### 2026-06-18 - M1 remaining-wall numerical stress scan
 
 - **Agent/model:** Codex.

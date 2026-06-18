@@ -199,6 +199,15 @@ The remaining two-coordinate dependency is therefore the projective
 line/conic case where all three line monodromies are nonprincipal and no pair
 among them is reciprocal.
 
+The finite stress scan in
+`experimental/m1_remaining_two_coordinate_wall_experiment.md` suggests that
+the near-sharp part of this remaining wall concentrates in the equal-line
+diagonal subfamily. The symmetric-coordinate reduction in
+`experimental/m1_depth_two_equal_line_diagonal_reduction.md` splits that
+subfamily into a bounded one-dimensional Jacobi part and a residual
+quadratic-discriminant trace; this is a proof-guidance reduction, not yet a
+replacement for the `9p` import.
+
 Thus the fixed-window, quotient-window, and two-fiber certificates still use
 the conservative common ledger:
 
@@ -225,6 +234,7 @@ python3 experimental/verify_m1_depth_two_quadratic_one_coordinate_lemma.py
 python3 experimental/verify_m1_depth_two_nonquadratic_one_coordinate_lemma.py
 python3 experimental/verify_m1_depth_two_reciprocal_two_coordinate_lemma.py
 python3 experimental/verify_m1_depth_two_infinity_unramified_two_coordinate_lemma.py
+python3 experimental/verify_m1_depth_two_equal_line_diagonal_reduction.py
 python3 experimental/verify_m1_depth_two_kummer_constant_audit.py
 python3 experimental/verify_m1_kummer_divisor_geometry.py
 python3 experimental/verify_m1_depth_two_two_coordinate_fiber_reduction.py

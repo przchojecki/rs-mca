@@ -133,6 +133,8 @@ two largest observed ratios are
 
 This suggests that the equal-line-monodromy diagonal family may be the
 right first analytic subtarget for the remaining `4p` theorem.
+The symmetric-coordinate reduction for that subtarget is isolated in
+`experimental/m1_depth_two_equal_line_diagonal_reduction.md`.
 
 ## Contribution to M1
 
