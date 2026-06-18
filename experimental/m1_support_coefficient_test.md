@@ -1266,6 +1266,57 @@ m | (s-4) = k-2.
 If this fails, the whole depth-two slack-two small-residual layer is inactive
 at that quotient scale before any conic or square-coset counting is needed.
 
+For the full multiplicative domain, the nonzero depth-two frontier saturates
+all nonzero slopes except in the two tiny cases `p=5,7`. Let `D=F_p^*`,
+`p>=11`, and keep the admissibility conditions above. Then the values
+
+```text
+A(u,v)=-(u^2+v^2+uv+u+v+1)
+```
+
+hit both quadratic classes among admissible pairs. Hence the nonzero
+depth-two slack-two slope image is all of `F_p^*`, because multiplying by
+`x^2` runs through the square class of `A(u,v)`.
+
+For `p>=23` this follows from a character-sum margin. Write `chi` for the
+quadratic character and `Q=-A`. For fixed `u`, the polynomial in `v`
+
+```text
+Q(u,v)=v^2+(u+1)v+u^2+u+1
+```
+
+has discriminant `-3u^2-2u-3`. Therefore
+
+```text
+sum_(u,v in F_p) chi(A(u,v)) = p chi(2),
+```
+
+because the discriminant has `1+chi(-2)` roots. Also the zero locus is a
+nondegenerate conic, so it has at most `p+1` points. Thus each nonzero
+quadratic class occurs at least
+
+```text
+(p^2-(p+1)-p)/2
+```
+
+times before the admissibility cuts. The forbidden conditions
+
+```text
+u=0, v=0, w=0, u=1, v=1, w=1, u=v, u=w, v=w
+```
+
+with `w=-1-u-v` lie in the union of nine affine lines, containing at most
+`9p` pairs. Since `(p^2-2p-1)/2 > 9p` for `p>=23`, both quadratic classes
+remain after the cuts. The remaining primes `p=11,13,17,19` are checked by
+
+```bash
+python3 experimental/verify_m1_slack_two_depth_two_full_domain.py
+```
+
+The same finite check records the sharp tiny failures: at `p=5` the
+admissible depth-two frontier is purely zero, and at `p=7` it hits only the
+square class.
+
 For the full multiplicative domain this conic ledger has an exact elementary
 count. Take `D=F_p^*`, `p>3`, and write `chi` for the quadratic character.
 The affine conic `Q(u,v)=0` has `p-chi(-3)` points. The three sections

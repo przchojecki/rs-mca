@@ -256,6 +256,66 @@ def full_domain_slack_two_alpha_class_data(p: int) -> Optional[Dict[str, object]
     }
 
 
+def full_domain_slack_two_depth_two_A_class_data(
+    p: int,
+) -> Optional[Dict[str, object]]:
+    if p <= 3:
+        return None
+
+    square_count = 0
+    nonsquare_count = 0
+    zero_count = 0
+    for u in range(1, p):
+        for v in range(1, p):
+            w = (-1 - u - v) % p
+            if w == 0 or len({1, u, v, w}) != 4:
+                continue
+            value = (-(u * u + v * v + u * v + u + v + 1)) % p
+            character = quadratic_character(value, p)
+            if character > 0:
+                square_count += 1
+            elif character < 0:
+                nonsquare_count += 1
+            else:
+                zero_count += 1
+
+    nonzero_square_coset_count = (1 if square_count else 0) + (
+        1 if nonsquare_count else 0
+    )
+    nonzero_slope_count = nonzero_square_coset_count * ((p - 1) // 2)
+    if square_count and nonsquare_count:
+        nonzero_slope_image = "nonzero_field"
+    elif square_count:
+        nonzero_slope_image = "squares"
+    elif nonsquare_count:
+        nonzero_slope_image = "nonsquares"
+    else:
+        nonzero_slope_image = "empty"
+
+    large_prime_class_lower_bound = (p * p - 2 * p - 1) // 2
+    excluded_line_bound = 9 * p
+    return {
+        "A_square_count": square_count,
+        "A_nonsquare_count": nonsquare_count,
+        "A_zero_count": zero_count,
+        "A_character_sum_all_plane": p * quadratic_character(2, p),
+        "A_zero_conic_bound": p + 1,
+        "excluded_line_bound": excluded_line_bound,
+        "large_prime_class_lower_bound": large_prime_class_lower_bound,
+        "large_prime_certificate": (
+            p >= 23 and large_prime_class_lower_bound > excluded_line_bound
+        ),
+        "finite_low_prime_certificate": p in {11, 13, 17, 19},
+        "saturates_nonzero_square_cosets": (
+            square_count > 0 and nonsquare_count > 0
+        ),
+        "nonzero_square_coset_count": nonzero_square_coset_count,
+        "total_nonzero_square_coset_count": 2,
+        "nonzero_slope_count": nonzero_slope_count,
+        "nonzero_slope_image": nonzero_slope_image,
+    }
+
+
 def full_domain_slack_three_beta_class_data(p: int) -> Optional[Dict[str, object]]:
     if p <= 3:
         return None
@@ -2233,6 +2293,11 @@ def scan_supports(
         if slack_two_shape_ledger is not None and n == p - 1
         else None
     )
+    slack_two_depth_two_full_domain_A_data = (
+        full_domain_slack_two_depth_two_A_class_data(p)
+        if slack_two_second_shape_ledger is not None and n == p - 1
+        else None
+    )
     slack_three_full_domain_beta_data = (
         full_domain_slack_three_beta_class_data(p)
         if slack_three_shape_ledger is not None and n == p - 1
@@ -3624,6 +3689,80 @@ def scan_supports(
             len(slack_two_second_superboundary_slope_histogram)
             <= int(slack_two_second_shape_ledger["square_coset_slope_bound"])
             if slack_two_second_shape_ledger is not None
+            else None
+        ),
+        "canonical_slack_two_second_full_domain_A_square_count": (
+            int(slack_two_depth_two_full_domain_A_data["A_square_count"])
+            if slack_two_depth_two_full_domain_A_data is not None
+            else None
+        ),
+        "canonical_slack_two_second_full_domain_A_nonsquare_count": (
+            int(slack_two_depth_two_full_domain_A_data["A_nonsquare_count"])
+            if slack_two_depth_two_full_domain_A_data is not None
+            else None
+        ),
+        "canonical_slack_two_second_full_domain_A_zero_count": (
+            int(slack_two_depth_two_full_domain_A_data["A_zero_count"])
+            if slack_two_depth_two_full_domain_A_data is not None
+            else None
+        ),
+        "canonical_slack_two_second_full_domain_A_character_sum_all_plane": (
+            int(
+                slack_two_depth_two_full_domain_A_data[
+                    "A_character_sum_all_plane"
+                ]
+            )
+            if slack_two_depth_two_full_domain_A_data is not None
+            else None
+        ),
+        "canonical_slack_two_second_full_domain_large_prime_certificate": (
+            bool(
+                slack_two_depth_two_full_domain_A_data[
+                    "large_prime_certificate"
+                ]
+            )
+            if slack_two_depth_two_full_domain_A_data is not None
+            else None
+        ),
+        "canonical_slack_two_second_full_domain_finite_low_prime_certificate": (
+            bool(
+                slack_two_depth_two_full_domain_A_data[
+                    "finite_low_prime_certificate"
+                ]
+            )
+            if slack_two_depth_two_full_domain_A_data is not None
+            else None
+        ),
+        "canonical_slack_two_second_full_domain_saturates_nonzero_slopes": (
+            bool(
+                slack_two_depth_two_full_domain_A_data[
+                    "saturates_nonzero_square_cosets"
+                ]
+            )
+            if slack_two_depth_two_full_domain_A_data is not None
+            else None
+        ),
+        "canonical_slack_two_second_full_domain_nonzero_slope_image": (
+            str(slack_two_depth_two_full_domain_A_data["nonzero_slope_image"])
+            if slack_two_depth_two_full_domain_A_data is not None
+            else None
+        ),
+        "canonical_slack_two_second_full_domain_nonzero_slope_count": (
+            int(slack_two_depth_two_full_domain_A_data["nonzero_slope_count"])
+            if slack_two_depth_two_full_domain_A_data is not None
+            else None
+        ),
+        "canonical_slack_two_second_full_domain_coset_count_check": (
+            int(
+                slack_two_depth_two_full_domain_A_data[
+                    "nonzero_square_coset_count"
+                ]
+            )
+            == int(slack_two_second_shape_ledger["nonzero_square_coset_count"])
+            if (
+                slack_two_depth_two_full_domain_A_data is not None
+                and slack_two_second_shape_ledger is not None
+            )
             else None
         ),
         "canonical_slack_two_second_shape_expected_packet_slope_histogram": (

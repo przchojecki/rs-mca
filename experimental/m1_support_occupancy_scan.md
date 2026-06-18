@@ -149,6 +149,9 @@ canonical_slack_two_second_shape_square_image_size
 canonical_slack_two_second_shape_square_coset_slope_count
 canonical_slack_two_second_shape_square_coset_slope_count_check
 canonical_slack_two_second_shape_square_coset_slope_bound_check
+canonical_slack_two_second_full_domain_saturates_nonzero_slopes
+canonical_slack_two_second_full_domain_nonzero_slope_image
+canonical_slack_two_second_full_domain_coset_count_check
 canonical_slack_two_full_domain_alpha_square_count
 canonical_slack_two_full_domain_alpha_nonsquare_count
 canonical_slack_two_full_domain_alpha_zero_count
@@ -459,6 +462,13 @@ The `canonical_slack_two_second_*` fields report the depth-two lift gate
 exact square-coset compressed slope count. The zero-slope parameter count is
 the slack-three conic catalog, so this audit checks the first concrete link
 between the slack-two depth-two layer and the slack-three depth-one layer.
+When `D=F_p^*`, the
+`canonical_slack_two_second_full_domain_*` fields also record the full-domain
+frontier saturation certificate: for `p>=11`, the values
+`-(u^2+v^2+uv+u+v+1)` hit both quadratic classes on admissible shapes, so
+the nonzero depth-two slope image is all of `F_p^*`. The analytic proof covers
+`p>=23`; `experimental/verify_m1_slack_two_depth_two_full_domain.py` checks
+`p=11,13,17,19` and records the tiny failures `p=5,7`.
 
 When `D=F_p^*`, the `canonical_slack_two_full_domain_*` fields also check the
 quadratic-character formula for the classes of `alpha(u)=-(1+u+u^2)`. For
