@@ -304,6 +304,36 @@ def scan(p, n, k, sigma, max_examples=3):
         for key, sz in sizes.items() for h in H
     )
 
+    # --- Prefix-space localization of the quotient core. ---
+    # For A in fiber c: Stab_H(A) ⊆ Stab_star(c) = K_{g_c}, hence per(A) | g_c,
+    # where g_c = gcd(n, {j : c_j != 0}) and coordinate j (1-based) carries e_j.
+    def g_c_of_key(key):
+        g = n
+        for j in range(len(key)):
+            if key[j] % p != 0:
+                g = gcd(g, j + 1)
+        return g
+
+    per_divides_gc = True          # Stab_H(A) ⊆ K_{g_c} for every divisor in its fiber
+    gc1_fibers_all_aperiodic = True  # g_c = 1  =>  fiber is purely aperiodic
+    orbit_size_ok = True           # K_{g_c} orbit of A has size g_c/gcd(g_c,per(A))
+    for key, members in buckets.items():
+        gc = g_c_of_key(key)
+        memberset = set(members)
+        Hc = [h for h in H if pow(h, gc, p) == 1] if gc > 1 else [1]
+        seen = set()
+        for A in members:
+            per = max(cu_flags[A] | {1})
+            if gc % per != 0:
+                per_divides_gc = False
+            if gc == 1 and per != 1:
+                gc1_fibers_all_aperiodic = False
+            if gc > 1 and A not in seen:
+                orb = {frozenset((h * a) % p for a in A) for h in Hc}
+                seen |= orb
+                if len(orb) != gc // gcd(gc, per) or not orb <= memberset:
+                    orbit_size_ok = False
+
     entropy_margin_bits = sigma * _log2(p) - _log2_binom(n, s)
     result = {
         "status": "EXPERIMENTAL/AUDIT",
@@ -333,6 +363,9 @@ def scan(p, n, k, sigma, max_examples=3):
         "dilation_equivariant": equivariant,
         "stab_equals_period": stab_eq_period,
         "fiber_const_on_dilation_orbits": fiber_const_on_orbits,
+        "per_divides_gc": per_divides_gc,
+        "gc1_fibers_all_aperiodic": gc1_fibers_all_aperiodic,
+        "prefix_orbit_size_ok": orbit_size_ok,
         "nonsingleton_members": nonsingleton_members,
         "nonsingleton_aperiodic_members": nonsingleton_aperiodic_members,
         "nonsingleton_all_aperiodic": (
@@ -392,6 +425,7 @@ def self_check():
              if 0 < k + sg <= 15]
     id_ok = floor_ok = struct_ok = collapse_ok = True
     equiv_ok = stab_ok = orbit_ok = True
+    gc_ok = gc1_ok = porbit_ok = True
     for (pp, nn, kk, ss) in sweep:
         rr = scan(pp, nn, kk, ss)
         id_ok &= rr["coset_union_identity_ok"]
@@ -401,6 +435,9 @@ def self_check():
         equiv_ok &= rr["dilation_equivariant"]
         stab_ok &= rr["stab_equals_period"]
         orbit_ok &= rr["fiber_const_on_dilation_orbits"]
+        gc_ok &= rr["per_divides_gc"]
+        gc1_ok &= rr["gc1_fibers_all_aperiodic"]
+        porbit_ok &= rr["prefix_orbit_size_ok"]
     flag = "OK " if id_ok else "FAIL"
     if not id_ok:
         ok = False
@@ -429,6 +466,18 @@ def self_check():
     if not orbit_ok:
         ok = False
     print(f"  [{flag}] fiber sizes constant on dilation orbits across {len(sweep)} cases: {orbit_ok}")
+    flag = "OK " if gc_ok else "FAIL"
+    if not gc_ok:
+        ok = False
+    print(f"  [{flag}] per(A) | g_c (quotient core ⊆ symmetric prefixes) across {len(sweep)} cases: {gc_ok}")
+    flag = "OK " if gc1_ok else "FAIL"
+    if not gc1_ok:
+        ok = False
+    print(f"  [{flag}] g_c=1 fibers purely aperiodic across {len(sweep)} cases: {gc1_ok}")
+    flag = "OK " if porbit_ok else "FAIL"
+    if not porbit_ok:
+        ok = False
+    print(f"  [{flag}] prefix-stabilizer orbit sizes g_c/gcd(g_c,per) across {len(sweep)} cases: {porbit_ok}")
     return ok
 
 
@@ -462,6 +511,9 @@ def human_table(r):
     lines.append(f"  dilation-equivariant keys  : {r['dilation_equivariant']}")
     lines.append(f"  stab order == period       : {r['stab_equals_period']}")
     lines.append(f"  fiber const on dil. orbits : {r['fiber_const_on_dilation_orbits']}")
+    lines.append(f"  per(A) | g_c (all fibers)  : {r['per_divides_gc']}")
+    lines.append(f"  g_c=1 fibers all aperiodic : {r['gc1_fibers_all_aperiodic']}")
+    lines.append(f"  prefix-stab orbit sizes ok : {r['prefix_orbit_size_ok']}")
     lines.append(f"  nonsingleton members       : {r['nonsingleton_members']}")
     lines.append(f"  ... of which aperiodic     : {r['nonsingleton_aperiodic_members']}")
     lines.append(f"  all nonsingleton aperiodic : {r['nonsingleton_all_aperiodic']}")

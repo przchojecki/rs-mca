@@ -285,6 +285,56 @@ dilation-orbit structure of the `F_17` collisions reported in
 `l1_aperiodic_prefix_collision.md` (its three "dilation orbits" are exactly
 star-orbits under this action).
 
+## 7. Prefix-space localization of the quotient core
+
+The star-action of §6 has stabilizers. For a prefix `c`, set
+`H_c = Stab_star(c) = \{h in H : h \star c = c\}`. Since `h \star c = c` means
+`h^j c_j = c_j` for each `j`, i.e. `h^j = 1` whenever `c_j != 0`,
+```text
+H_c = K_{g_c},     g_c = gcd(n, \{ j : c_j != 0 \})      (g_c = n if c = 0).
+```
+By §6, `H_c` acts on the fiber `Phi_sigma^{-1}(c)` by dilation.
+
+**Theorem (the quotient core lives only in symmetric prefixes).** For every
+divisor `A in Phi_sigma^{-1}(c)`,
+```text
+Stab_H(A) ⊆ H_c,    equivalently    per(A) \mid g_c.
+```
+Consequently:
+
+(i) **Generic fibers are purely aperiodic.** If `g_c = 1` --- in particular
+whenever `c_1 != 0` --- then `per(A) = 1` for every `A` in the fiber: the fiber
+contains no quotient-periodic divisor at all.
+
+(ii) **Period-`d` mass sits in a thin prefix slice.** A divisor of period
+`d` (`K_d`-coset-union) occurs only in fibers with `d \mid g_c`, i.e. with
+`c_j = 0` for every index `j` not divisible by `d`. For dyadic `n` and `d=2`
+this means all odd-index prefix coordinates vanish --- a fraction
+`q^{-\lceil sigma/2 \rceil}` of prefix space.
+
+(iii) **Orbit decomposition.** The `K_{g_c}`-orbit of `A` inside the fiber has
+size `g_c / \gcd(g_c, per(A))`; in particular the number of fully aperiodic
+(`per = 1`) divisors in any fiber is divisible by `g_c`.
+
+*Proof.* If `h in Stab_H(A)` then `hA = A`, so by the §6 Lemma
+`c = Phi_sigma(A) = Phi_sigma(hA) = h \star c`, i.e. `h in H_c`. Thus
+`K_{per(A)} = Stab_H(A) ⊆ K_{g_c} = H_c`, giving `per(A) \mid g_c`. (i) is the
+case `g_c = 1`. (ii): `per(A) = d \mid g_c = \gcd(n, \{j : c_j != 0\})` forces
+`d \mid j` for every `j` with `c_j != 0`, i.e. `c_j = 0` when `d \nmid j`.
+(iii): `Stab_{H_c}(A) = H_c \cap Stab_H(A) = K_{\gcd(g_c, per(A))}`, so
+orbit-stabilizer gives the orbit size; for `per(A) = 1` each orbit has size
+`g_c`. ∎
+
+**Significance.** Together with §5 (quotient core localized in *divisor* space as
+coset-unions) this pins the quotient core in *prefix* space as well: it can
+inflate only the vanishing-fraction slice of *symmetric* prefixes
+(`g_c > 1`). Over the generic prefix (`c_1 != 0`) the fiber is a purely aperiodic
+list, so `conj:prefix-local`'s prediction `binom(n,s)/q^sigma + O(n^B)` must hold
+there with **no** quotient correction --- isolating the remaining open step (the
+aperiodic upper bound) to exactly the generic, quotient-free fibers. All three
+parts are verified by the scanner (`per_divides_gc`, `gc1_fibers_all_aperiodic`,
+`prefix_orbit_size_ok`) across the 35-case sweep.
+
 ## Ledger impact
 
 - **Quotient (worsens, now explicit):** gives an exact, field-independent
@@ -328,8 +378,9 @@ python3 experimental/verify_l1_prefix_divisor_count.py --p 17 --n 16 --k 4 --sig
    the random scale `binom(n,s)/q^sigma`; target a worst-case second-moment /
    Plotkin bound on the *aperiodic* sub-family that beats the generic Johnson
    anchor by using that coset-union mass has been removed.
-6. **Exploit the dilation symmetry (§6).** Aperiodic divisors have dilation
-   orbits of size `>= n/sigma`. Use the star-action of `Stab_star(c)` on a single
-   fiber to get divisibility/orbit constraints on aperiodic fiber sizes that
-   pairwise (Johnson) data misses --- the most promising route past the
-   `sec:pairwise` barrier of Paper B.
+6. **Exploit the dilation symmetry (§6, §7).** DONE in part: §7 localizes the
+   quotient core to symmetric prefixes (`g_c > 1`), so the remaining open step
+   is now isolated to the *generic, purely aperiodic* fiber (`c_1 != 0`). Target:
+   a `binom(n,s)/q^sigma + O(n^B)` upper bound there. The orbit-divisibility of
+   §7(iii) and the large-orbit structure of §6 are the non-pairwise handles to
+   try first against the `sec:pairwise` barrier.

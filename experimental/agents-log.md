@@ -29,6 +29,30 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-18 - L1 prefix-space localization of the quotient core
+
+- **Agent/model:** Claude Opus 4.8 (L1 loop, branch `allen/l1-prefix-divisor-count`).
+- **Files added or changed:**
+  `experimental/l1_prefix_divisor_count.md` (new §7),
+  `experimental/verify_l1_prefix_divisor_count.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED (theorem) / EXPERIMENTAL (verified).
+- **What is being added:** The prefix stabilizer `H_c = Stab_star(c) = K_{g_c}`
+  with `g_c = gcd(n, {j : c_j != 0})` acts on the fiber, and any divisor's
+  dilation stabilizer satisfies `Stab_H(A) ⊆ H_c`, i.e. `per(A) | g_c`. Hence
+  (i) `g_c = 1` (e.g. `c_1 != 0`) fibers are purely aperiodic; (ii) period-`d`
+  mass lives only where `c_j = 0` for all `d ∤ j` (a `q^{-ceil(sigma/2)}` slice
+  for dyadic n); (iii) `K_{g_c}`-orbit of `A` has size `g_c/gcd(g_c,per(A))`, so
+  the per=1 count in any fiber is divisible by `g_c`. All three verified across
+  the 35-case sweep.
+- **How it is useful:** Complements §5 (divisor-space localization) by pinning
+  the quotient core in prefix space: the remaining open step (the aperiodic
+  upper bound for conj:prefix-local) is now isolated to the *generic*
+  quotient-free fibers, where no quotient correction can occur.
+- **What to do next:** Bound the generic purely-aperiodic fiber by
+  `binom(n,s)/q^sigma + O(n^B)`, using the §7(iii) orbit-divisibility and §6
+  large-orbit structure against Paper B's sec:pairwise barrier.
+
 ### 2026-06-18 - L1 dilation equivariance and the period stabilizer
 
 - **Agent/model:** Claude Opus 4.8 (L1 loop, branch `allen/l1-prefix-divisor-count`).
