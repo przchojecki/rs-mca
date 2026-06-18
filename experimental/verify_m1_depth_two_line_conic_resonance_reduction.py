@@ -206,6 +206,81 @@ def line_support_formula(p: int) -> int:
     return p - 3 - legendre(-3, p)
 
 
+def support_size_formula(p: int) -> int:
+    return p * p - 3 * p + 3 + 3 * legendre(-3, p)
+
+
+def x_marginal_size_formula(p: int, x_value: int) -> int:
+    x_value %= p
+    if x_value == 0:
+        return 0
+    chi_minus_three = legendre(-3, p)
+    if x_value == 1:
+        return (1 + chi_minus_three) * (p - 2)
+    if x_value == (-2) % p:
+        return 1 + (1 + chi_minus_three) * (p - 3)
+    return (
+        p
+        - 2
+        - 2 * chi_minus_three
+        - legendre((x_value - 1) * (x_value + 3), p)
+    )
+
+
+def x_marginal_second_formula(p: int) -> int:
+    chi_minus_three = legendre(-3, p)
+    return (
+        p**3
+        - 3 * p * p
+        + 5 * p
+        - 19
+        + (6 * p - 16) * chi_minus_three
+    )
+
+
+def v_marginal_size_formula(p: int, v: int) -> int:
+    if v % p == 0:
+        return 0
+    delta = -3 * v * v - 2 * v - 3
+    return p - 2 - legendre(delta, p) + int(shape_b(v, p) == 0)
+
+
+def v_marginal_second_formula(p: int) -> int:
+    chi_minus_three = legendre(-3, p)
+    chi_minus_two = legendre(-2, p)
+    return (
+        p**3
+        - 5 * p * p
+        + 11 * p
+        - 11
+        + (6 * p - 13) * chi_minus_three
+        - chi_minus_two
+    )
+
+
+def nonprincipal_core_moment_formula(p: int) -> int:
+    chi_minus_three = legendre(-3, p)
+    chi_minus_two = legendre(-2, p)
+    direct_formula = (
+        p**4
+        - 8 * p**3
+        + 22 * p * p
+        - 6 * p
+        + 1
+        + (-p**3 + 5 * p * p + 4 * p - 2) * chi_minus_three
+        + (p * p - p) * chi_minus_two
+    )
+    orthogonality_formula = (
+        (p - 1) * (p - 1) * core_collision_formula(p)
+        - (p - 1) * x_marginal_second_formula(p)
+        - (p - 1) * v_marginal_second_formula(p)
+        + support_size_formula(p) * support_size_formula(p)
+    )
+    if direct_formula != orthogonality_formula:
+        raise AssertionError((p, direct_formula, orthogonality_formula))
+    return direct_formula
+
+
 def direct_core_collision_count(p: int) -> int:
     total = 0
     for v in range(1, p):
@@ -230,23 +305,55 @@ def direct_line_support_count(p: int) -> int:
     return count
 
 
-def direct_full_character_moments(p: int) -> Tuple[int, int]:
+def direct_support_marginal_counts(p: int) -> Tuple[int, int, int]:
+    x_counts: Dict[int, int] = {}
+    v_counts: Dict[int, int] = {}
+    for u in range(1, p):
+        inverse_u = pow(u, -1, p)
+        for v in range(1, p):
+            a_value = shape_a(u, v, p)
+            if a_value == 0:
+                continue
+            x_value = a_value * inverse_u % p
+            x_counts[x_value] = x_counts.get(x_value, 0) + 1
+            v_counts[v] = v_counts.get(v, 0) + 1
+    for x_value in range(1, p):
+        actual = x_counts.get(x_value, 0)
+        expected = x_marginal_size_formula(p, x_value)
+        if actual != expected:
+            raise AssertionError((p, "x_marginal", x_value, actual, expected))
+    for v in range(1, p):
+        actual = v_counts.get(v, 0)
+        expected = v_marginal_size_formula(p, v)
+        if actual != expected:
+            raise AssertionError((p, "v_marginal", v, actual, expected))
+    support_count = sum(x_counts.values())
+    x_second = sum(count * count for count in x_counts.values())
+    v_second = sum(count * count for count in v_counts.values())
+    return support_count, x_second, v_second
+
+
+def direct_full_character_moments(p: int) -> Tuple[int, int, int]:
     logs = log_table(p)
     table = character_table(p, logs)
     core_moment = 0.0
+    nonprincipal_core_moment = 0.0
     line_moment = 0.0
     for eta_exponent in range(p - 1):
         eta = table[eta_exponent]
         eta_inv = table[(-eta_exponent) % (p - 1)]
         for nu_exponent in range(p - 1):
             nu = table[nu_exponent]
-            core_moment += abs(direct_core(p, eta_inv, nu, eta)) ** 2
+            core_value = abs(direct_core(p, eta_inv, nu, eta)) ** 2
+            core_moment += core_value
+            if eta_exponent != 0 and nu_exponent != 0:
+                nonprincipal_core_moment += core_value
             line_moment += abs(line_correction(p, eta_inv, nu, eta)) ** 2
-    return round(core_moment), round(line_moment)
+    return round(core_moment), round(line_moment), round(nonprincipal_core_moment)
 
 
-def verify_second_moments() -> List[Tuple[int, int, int]]:
-    checked: List[Tuple[int, int, int]] = []
+def verify_second_moments() -> List[Tuple[int, int, int, int]]:
+    checked: List[Tuple[int, int, int, int]] = []
     for p in MOMENT_PRIMES:
         collision_count = direct_core_collision_count(p)
         expected_collision_count = core_collision_formula(p)
@@ -256,14 +363,36 @@ def verify_second_moments() -> List[Tuple[int, int, int]]:
         expected_line_support_count = line_support_formula(p)
         if line_support_count != expected_line_support_count:
             raise AssertionError((p, line_support_count, expected_line_support_count))
-        core_moment, line_moment = direct_full_character_moments(p)
+        support_count, x_second, v_second = direct_support_marginal_counts(p)
+        expected_support_count = support_size_formula(p)
+        if support_count != expected_support_count:
+            raise AssertionError((p, support_count, expected_support_count))
+        expected_x_second = x_marginal_second_formula(p)
+        expected_v_second = v_marginal_second_formula(p)
+        if x_second != expected_x_second:
+            raise AssertionError((p, "x_second", x_second, expected_x_second))
+        if v_second != expected_v_second:
+            raise AssertionError((p, "v_second", v_second, expected_v_second))
+        core_moment, line_moment, nonprincipal_moment = direct_full_character_moments(p)
         expected_core_moment = (p - 1) * (p - 1) * expected_collision_count
         expected_line_moment = (p - 1) * (p - 1) * expected_line_support_count
+        expected_nonprincipal_moment = nonprincipal_core_moment_formula(p)
         if core_moment != expected_core_moment:
             raise AssertionError((p, core_moment, expected_core_moment))
         if line_moment != expected_line_moment:
             raise AssertionError((p, line_moment, expected_line_moment))
-        checked.append((p, expected_collision_count, expected_line_support_count))
+        if nonprincipal_moment != expected_nonprincipal_moment:
+            raise AssertionError(
+                (p, nonprincipal_moment, expected_nonprincipal_moment)
+            )
+        checked.append(
+            (
+                p,
+                expected_collision_count,
+                expected_line_support_count,
+                expected_nonprincipal_moment,
+            )
+        )
     return checked
 
 

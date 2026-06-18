@@ -253,6 +253,105 @@ sum_{eta,nu} |L_{eta,nu}|^2
 Here orthogonality forces `-1-u=-1-u'` and then `u=u'`; the support excludes
 `u=0`, `u=-1`, and the `1+chi_2(-3)` roots of `u^2+u+1`.
 
+## Nonprincipal Second Moment
+
+The full-character moment above still includes the principal `eta` and `nu`
+rows, which are not part of the line-conic-resonant M1 target.  These rows
+carry a visible part of the average.  Removing them gives an exact
+nonprincipal moment.
+
+Let
+
+```text
+S = {(u,v): u != 0, v != 0, A(u,v) != 0},
+        x(u,v)=A(u,v)/u.
+```
+
+Write
+
+```text
+T_p = #S,
+N_x = sum_{x in F_p^*} #{(u,v) in S: x(u,v)=x}^2,
+N_v = sum_{v in F_p^*} #{u: (u,v) in S}^2.
+```
+
+Then
+
+```text
+T_p = p^2 - 3p + 3 + 3 chi_2(-3),
+
+N_x = p^3 - 3p^2 + 5p - 19
+      + (6p - 16) chi_2(-3),
+
+N_v = p^3 - 5p^2 + 11p - 11
+      + (6p - 13) chi_2(-3) - chi_2(-2).
+```
+
+Consequently
+
+```text
+sum_{eta != 1, nu != 1} |C_{eta,nu}|^2
+  = (p-1)^2 S_p - (p-1)(N_x+N_v) + T_p^2
+
+  = p^4 - 8p^3 + 22p^2 - 6p + 1
+    + (-p^3 + 5p^2 + 4p - 2) chi_2(-3)
+    + (p^2 - p) chi_2(-2).
+```
+
+Thus the true nonprincipal family has root-mean-square size
+`p+O(1)`, rather than the `sqrt(2)p+O(1)` full-character RMS.  The
+principal rows account for the missing average mass; the actual resonant
+target has no hidden large second moment.
+
+For the proof, nonprincipal orthogonality gives
+
+```text
+sum_{eta != 1} eta(x/x') = (p-1) 1_{x=x'} - 1,
+sum_{nu != 1} nu(v/v') = (p-1) 1_{v=v'} - 1.
+```
+
+Expanding the product gives the displayed formula in terms of `S_p`, `N_x`,
+`N_v`, and `T_p`.
+
+It remains only to compute the two marginal collision sums.  For fixed
+`v != 0`,
+
+```text
+#{u: (u,v) in S}
+  = p - 2 - chi_2(-3v^2-2v-3) + 1_{v^2+v+1=0}.
+```
+
+Squaring and summing over `v != 0`, using the elementary quadratic sums for
+`-3v^2-2v-3` and `v^2+v+1`, gives the displayed `N_v`.
+
+For fixed `x != 0`, the equation `x=A(u,v)/u` is the affine conic
+
+```text
+u^2+v^2+uv+(x+1)u+v+1=0
+```
+
+with `u,v != 0`.  Its projective determinant is
+`-(x-1)(x+2)/4`.  For `x != 1,-2`, the conic is nonsingular; it has
+`p+1` projective points, `1+chi_2(-3)` points at infinity, and the removed
+coordinate lines contribute `1+chi_2(-3)` points with `u=0` and
+`1+chi_2((x-1)(x+3))` points with `v=0`.  Hence
+
+```text
+#{(u,v) in S: x(u,v)=x}
+  = p - 2 - 2 chi_2(-3) - chi_2((x-1)(x+3)).
+```
+
+At the two degenerate values, the singular points are `(-1,0)` for `x=1`
+and `(1,-1)` for `x=-2`, with tangent cone `U^2+UV+V^2`.  Therefore
+
+```text
+M_1    = (1+chi_2(-3))(p-2),
+M_{-2} = 1 + (1+chi_2(-3))(p-3).
+```
+
+Summing these squared fiber sizes over `x in F_p^*` gives the displayed
+`N_x`.
+
 The finite verifier is
 
 ```bash

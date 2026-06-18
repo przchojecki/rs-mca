@@ -29,6 +29,23 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-19 - M1 line-conic nonprincipal moment
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/m1_depth_two_line_conic_resonance_reduction.md`,
+  `experimental/verify_m1_depth_two_line_conic_resonance_reduction.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** Proves and verifies the exact second moment of
+  the line-conic-resonant core after excluding principal `eta` and `nu`,
+  using the fixed-`v` and fixed-`x=A/u` marginal conic counts.
+- **How it is useful:** Removes principal-character leakage from the previous
+  full-character average: the actual nonprincipal target has RMS `p+O(1)`,
+  not `sqrt(2)p+O(1)`.
+- **What to do next:** Use the marginal conic geometry as a guide for the
+  pointwise middle-extension conductor proof of the `4p` core target.
+
 ### 2026-06-19 - M1 line-conic resonant wall scan
 
 - **Agent/model:** Codex.
