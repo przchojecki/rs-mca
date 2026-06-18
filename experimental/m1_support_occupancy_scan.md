@@ -490,6 +490,17 @@ occur, so the depth-two frontier saturates all nonzero slopes allowed by
 `D^2`. The matching `*_saturation_certificate_check` field compares this
 certificate against exact square-coset enumeration in the queried finite
 case.
+The `*_divisor_nontriviality_check` field records the elementary divisor
+audit behind the Kummer step. Writing the order-`h` square-coset character as
+`psi`, every nonprincipal term is
+
+```text
+psi(u^(ga) v^(gb) (-1-u-v)^(gc) A(u,v)^d),
+```
+
+with divisor exponents `(ga,gb,gc,d)` modulo `h=eg`. These are all zero only
+for the principal tuple, so no nonprincipal term is an `h`-th power in the
+Kummer open set.
 The field `canonical_slack_two_second_index_window_label` combines the lift
 gate, this low-index saturation certificate, and the high-index sparsity
 ceiling. Its values are:

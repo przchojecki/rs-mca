@@ -1370,6 +1370,29 @@ S_{a,b,c,d} =
     chi^a(u) chi^b(v) chi^c(-1-u-v) psi^d(A(u,v)).
 ```
 
+The nonprincipal terms in this expansion are genuinely Kummer-nontrivial.
+Indeed `H=D^2` has index `h=eg`, and after choosing `psi` of order `h` one
+has `chi=psi^g`. Thus each summand is
+
+```text
+psi(u^(ga) v^(gb) w^(gc) A(u,v)^d),     w=-1-u-v.
+```
+
+For `p>3`, the four divisors `u=0`, `v=0`, `w=0`, and `A=0` are distinct
+reduced components, with `A=0` a nonsingular conic. The divisor exponents
+are
+
+```text
+ga, gb, gc, d      modulo h.
+```
+
+If all four exponents are `0 mod h`, then `a=b=c=0 mod e` and `d=0 mod h`,
+which is exactly the principal tuple. Hence no nonprincipal term is an
+`h`-th power times a constant on the Kummer open set. The imported
+two-variable Weil bound is therefore being applied only to nontrivial
+Kummer sheaves; the scanner reports this as
+`canonical_slack_two_second_kummer_divisor_nontriviality_check`.
+
 The principal term counts the complement of the divisor
 `u v (-1-u-v) A(u,v)=0`, so it is at least `p^2-4p-1`. Assume the standard
 degree-five two-variable Kummer-Weil estimate

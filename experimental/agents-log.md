@@ -62,8 +62,10 @@ Keep entries concise and link to the relevant files.
   resulting index-window label for the slack-two depth-two first-nonzero
   frontier. Under the standard degree-five two-variable character-sum bound,
   low-index proper subgroups hit every nonzero `D^2`-coset; the scanner
-  combines this with the lift gate and high-index ceiling, and a verifier
-  checks low-index proper-subgroup samples against exact enumeration.
+  combines this with the lift gate and high-index ceiling. A divisor-exponent
+  audit proves that no nonprincipal character tuple is a hidden Kummer power,
+  and a verifier checks this plus low-index proper-subgroup samples against
+  exact enumeration.
 - **How it is useful:** Complements PR #78's high-index ceiling by showing
   that small-index proper subgroups are saturated rather than sparse, leaving
   a narrower intermediate-index window for M1 slope-image bounds.

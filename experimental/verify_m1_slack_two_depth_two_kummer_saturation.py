@@ -18,6 +18,29 @@ CASES = (
 )
 
 
+def divisor_power_failure_count(character_order: int, square_kernel_index: int) -> int:
+    square_coset_index = character_order * square_kernel_index
+    failures = 0
+    for a in range(character_order):
+        for b in range(character_order):
+            for c in range(character_order):
+                for d in range(square_coset_index):
+                    if (a, b, c, d) == (0, 0, 0, 0):
+                        continue
+                    divisor_exponents = (
+                        square_kernel_index * a,
+                        square_kernel_index * b,
+                        square_kernel_index * c,
+                        d,
+                    )
+                    if all(
+                        exponent % square_coset_index == 0
+                        for exponent in divisor_exponents
+                    ):
+                        failures += 1
+    return failures
+
+
 def square_coset_counts(p: int, domain: Sequence[int]) -> Tuple[int, int]:
     domain_set = set(domain)
     square_image = {x * x % p for x in domain}
@@ -42,6 +65,12 @@ def main() -> None:
     for p, n, expected_certificate in CASES:
         _, domain = make_domain(p, n, None)
         certificate = slack_two_second_kummer_saturation_data(p, n)
+        failures = divisor_power_failure_count(
+            int(certificate["character_order"]),
+            int(certificate["square_kernel_index"]),
+        )
+        if failures != int(certificate["divisor_power_failure_count"]):
+            raise AssertionError((p, n, failures, certificate))
         nonzero_coset_count, total_coset_count = square_coset_counts(p, domain)
         saturates = nonzero_coset_count == total_coset_count
         certificate_positive = bool(certificate["saturation_certificate"])
@@ -57,6 +86,7 @@ def main() -> None:
                 n,
                 certificate_positive,
                 certificate["uniform_prime_threshold"],
+                failures,
                 nonzero_coset_count,
                 total_coset_count,
             )

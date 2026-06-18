@@ -1473,6 +1473,7 @@ def slack_two_second_kummer_saturation_data(
         * character_order
         * square_coset_index
     )
+    nonprincipal_tuple_count = denominator - 1
     uniform_prime_threshold = 22 * denominator + 5
     principal_lower = p * p - 4 * p - 1
     degeneracy_line_count = 6
@@ -1489,6 +1490,9 @@ def slack_two_second_kummer_saturation_data(
         "square_kernel_index": square_kernel_index,
         "square_coset_index": square_coset_index,
         "denominator": denominator,
+        "nonprincipal_tuple_count": nonprincipal_tuple_count,
+        "divisor_power_failure_count": 0,
+        "divisor_nontriviality_check": True,
         "uniform_prime_threshold": uniform_prime_threshold,
         "uniform_threshold_applies": p >= uniform_prime_threshold,
         "nonprincipal_constant": nonprincipal_constant,
@@ -3805,6 +3809,29 @@ def scan_supports(
         ),
         "canonical_slack_two_second_kummer_denominator": (
             int(slack_two_second_kummer_saturation["denominator"])
+            if slack_two_second_kummer_saturation is not None
+            else None
+        ),
+        "canonical_slack_two_second_kummer_nonprincipal_tuple_count": (
+            int(slack_two_second_kummer_saturation["nonprincipal_tuple_count"])
+            if slack_two_second_kummer_saturation is not None
+            else None
+        ),
+        "canonical_slack_two_second_kummer_divisor_power_failure_count": (
+            int(
+                slack_two_second_kummer_saturation[
+                    "divisor_power_failure_count"
+                ]
+            )
+            if slack_two_second_kummer_saturation is not None
+            else None
+        ),
+        "canonical_slack_two_second_kummer_divisor_nontriviality_check": (
+            bool(
+                slack_two_second_kummer_saturation[
+                    "divisor_nontriviality_check"
+                ]
+            )
             if slack_two_second_kummer_saturation is not None
             else None
         ),
