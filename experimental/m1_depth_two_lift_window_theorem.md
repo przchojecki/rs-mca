@@ -226,6 +226,34 @@ monodromies are equal.  Inclusion-exclusion gives
 C_2^peq = 3 C_2^diag - 2 C_2^eq.
 ```
 
+Equivalently, let `D(e,g)=C_2^diag/3` and `E(e,g)=C_2^eq/3` be the
+per-active-pair coordinate-diagonal and all-lines-equal counts. These are
+closed forms. If `g=1`, then
+
+```text
+D(e,1) =
+  (e-1)(e-3)                                      if e is odd,
+  (e-2)(e-3) - 2(e/2-1-1_{4|e})                  if e is even,
+
+E(e,1) =
+  e - gcd(e,3)                                   if e is odd,
+  2(e/2-1-1_{4|e}) - (gcd(e/2,3)-1)             if e is even.
+```
+
+If `g=2`, then
+
+```text
+D(e,2) = (e-1-1_{2|e})(2e-5),
+E(e,2) = 2(e-1-1_{2|e}) - (gcd(e,3)-1).
+```
+
+Thus
+
+```text
+C_2^diag = 3D(e,g),       C_2^eq = 3E(e,g),
+C_2^peq = 9D(e,g) - 6E(e,g).
+```
+
 The symmetric-coordinate reduction applies to this full projective equal-pair
 mass, not only to `C_2^eq` or `C_2^diag`.  The verifier checks the
 general-diagonal obstruction audit: `alpha^2=1` and `2F1` parameter
@@ -289,13 +317,22 @@ The exact post-reduction residual mass is therefore
 C_2^asym = C_2 - C_2^0 - C_2^rec - C_2^peq.
 ```
 
+Writing `T(e,g)=(e-1)^2(ge-1)` for the raw two-coordinate mass per active
+pair, this is the closed formula
+
+```text
+C_2^asym =
+  3(T(e,g) - C_2^0/3 - C_2^rec/3 - 3D(e,g) + 2E(e,g)).
+```
+
 Every term counted by `C_2^asym` has three nonzero projective line monodromies
 which are pairwise distinct and have no reciprocal pair.  Hence the
 projective line-permutation action is free, and the verifier records the
 integer orbit count
 
 ```text
-O_2^asym = C_2^asym / 6.
+O_2^asym =
+  (T(e,g) - C_2^0/3 - C_2^rec/3 - 3D(e,g) + 2E(e,g))/2.
 ```
 
 This is the exact remaining two-coordinate wall after the proved

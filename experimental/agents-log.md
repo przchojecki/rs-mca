@@ -29,6 +29,27 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-18 - M1 asymmetric wall closed ledger
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/m1_support_occupancy_scan.py`,
+  `experimental/verify_m1_slack_two_depth_two_kummer_saturation.py`,
+  `experimental/m1_depth_two_lift_window_theorem.md`,
+  `experimental/m1_residue_line_roadmap.md`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** Replaces the hidden coordinate-diagonal and
+  equal-line loops in the projective equal-pair ledger by closed forms, and
+  records the resulting exact formula for `C_2^asym` and its free
+  line-permutation orbit count.
+- **How it is useful:** The remaining M1 two-coordinate wall is now an
+  explicit residual after the proved `C_2^0` and `C_2^rec` reductions and the
+  conditional `C_2^peq` ledger, so the next conductor target is isolated
+  without relying on scanner enumeration.
+- **What to do next:** Prove or refute a conductor bound for the genuinely
+  asymmetric projective line orbit class.
+
 ### 2026-06-18 - M1 asymmetric wall scan split
 
 - **Agent/model:** Codex.

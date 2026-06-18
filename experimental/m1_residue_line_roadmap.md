@@ -65,7 +65,10 @@ should be revised as the project learns more.
    remainder with no equal or reciprocal projective line pair.  Its exact
    mass is `C_2^asym = C_2-C_2^0-C_2^rec-C_2^peq`, and the free projective
    line-permutation action gives orbit count `O_2^asym=C_2^asym/6`.  The
-   updated remaining-wall scan now reports this asymmetric wall separately:
+   depth-two lift-window note now records closed forms for the
+   coordinate-diagonal and equal-line pieces determining `C_2^peq`, so this
+   residual is an explicit ledger rather than a hidden enumeration.  The
+   updated remaining-wall scan reports this asymmetric wall separately:
    in the current report grid the largest asymmetric ratio is
    `3.2173609608p`, while every near-`4p` top row lies in the projective
    equal-line slice already isolated by `C_2^peq`.

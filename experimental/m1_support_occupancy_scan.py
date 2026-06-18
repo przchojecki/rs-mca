@@ -2341,13 +2341,35 @@ def coordinate_diagonal_pair_count(
     return count
 
 
+def coordinate_diagonal_pair_count_formula(
+    character_order: int,
+    square_coset_index: int,
+) -> int:
+    """Closed form for coordinate_diagonal_pair_count."""
+
+    if character_order < 1 or square_coset_index % character_order:
+        raise ValueError((character_order, square_coset_index))
+    e = character_order
+    q = square_coset_index
+    lift = q // e
+    if lift == 1:
+        if e % 2:
+            return (e - 1) * (e - 3)
+        even_allowed = e // 2 - 1 - (1 if e % 4 == 0 else 0)
+        return (e - 2) * (e - 3) - 2 * even_allowed
+    if lift == 2:
+        allowed = e - 1 - (1 if e % 2 == 0 else 0)
+        return allowed * (2 * e - 5)
+    raise ValueError((character_order, square_coset_index, lift))
+
+
 def projective_equal_pair_count(
     character_order: int,
     square_coset_index: int,
 ) -> int:
     """Count ramified terms with some equal projective line pair."""
 
-    coordinate = coordinate_diagonal_pair_count(
+    coordinate = coordinate_diagonal_pair_count_formula(
         character_order,
         square_coset_index,
     )
@@ -2369,18 +2391,18 @@ def equal_line_diagonal_pair_count_formula(
     e = character_order
     q = square_coset_index
     lift = q // e
-    solution_count = 0
-    divisor = math.gcd(2, q)
-    for exponent in range(1, e):
-        if e % 2 == 0 and exponent == e // 2:
-            continue
-        right_hand_side = 3 * lift * exponent
-        if right_hand_side % divisor != 0:
-            continue
-        solution_count += divisor
-        if right_hand_side % q == 0:
-            solution_count -= 1
-    return solution_count
+    if lift == 1:
+        if e % 2:
+            return e - math.gcd(e, 3)
+        half = e // 2
+        even_allowed = half - 1 - (1 if e % 4 == 0 else 0)
+        zero_solutions = math.gcd(half, 3) - 1
+        return 2 * even_allowed - zero_solutions
+    if lift == 2:
+        allowed = e - 1 - (1 if e % 2 == 0 else 0)
+        zero_solutions = math.gcd(e, 3) - 1
+        return 2 * allowed - zero_solutions
+    raise ValueError((character_order, square_coset_index, lift))
 
 
 def raw_two_coordinate_projective_l1_split(
