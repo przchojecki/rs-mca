@@ -489,6 +489,40 @@ fork in the superboundary problem: the zero-slope component remains a counted
 power-coset ledger, while the nonzero component is the genuinely new sparse
 trinomial/additive residual source.
 
+The whole first-superboundary layer has a uniform shape-coset reduction.
+Assume `T+1<m` and define
+
+```text
+C_T(D) = { (u_1,...,u_T) in D^T :
+           1,u_1,...,u_T are distinct,
+           e_j(1,u_1,...,u_T)=0 for 1<=j<T }.
+```
+
+For `u=(u_1,...,u_T)` put
+
+```text
+a_T(u)=(-1)^T e_T(1,u_1,...,u_T),
+tau(u)=#{quotient fibers met by {1,u_1,...,u_T}}.
+```
+
+At exact support size `s=Lm+T+1`, the full lifted first-superboundary slope
+multiset is
+
+```text
+M_T(z) = (1/(T+1)!) sum_{u in C_T(D)}
+         binom(N-tau(u), L) * #{x in D : x^T a_T(u)=z}.
+```
+
+The proof is just normalization of residual packets. Every packet `P` of size
+`T+1` has `T+1` choices of base point and `T!` orderings of the remaining
+points; after scaling the base point to `1`, the zero-prefix equations are
+exactly the defining equations of `C_T(D)`. Conversely, every pair
+`(x,u) in D x C_T(D)` gives the packet
+`x{1,u_1,...,u_T}`. Scaling by `x` multiplies the slope by `x^T`, while the
+whole-fiber lift count is again determined only by the touched quotient
+fibers. Hence the nonzero slope image is a union of cosets `a_T(u)D^T`, with
+the zero-slope subcatalog equal to the power-coset family above.
+
 For slack `T=2`, this first-superboundary catalog has an exact unit-equation
 normal form. Assume `3<m`. Put
 
@@ -859,10 +893,12 @@ superboundary problem from spreading back into full support enumeration: each
 residual packet carries only the explicit quotient multiplier
 `binom(N-tau(P),(s-|P|)/m)`. The unresolved M1 content is therefore the size,
 structure, and slope image of the residual zero-prefix packet catalog itself.
-In the first superboundary layer `|P|=T+1`, the zero-slope subcatalog is again
-closed and quotient-level: it is just the `(T+1)`-power coset family. The
-remaining unclassified first-superboundary slopes are exactly the nonzero
-coefficients of `D`-split sparse trinomials `X^(T+1)+zX-c`.
+In the first superboundary layer `|P|=T+1`, the whole catalog has a uniform
+shape-coset reduction: normalized shapes form `C_T(D)`, the quotient by
+normalization has size `(T+1)!`, and the slope image is a union of cosets
+`a_T(C_T(D))D^T`. The zero-slope subcatalog is the counted
+`(T+1)`-power-coset family, while the remaining nonzero slopes are exactly
+the nonzero coefficients of `D`-split sparse trinomials `X^(T+1)+zX-c`.
 For `T=2`, even that nonzero catalog is no longer a support-enumeration
 problem: it is exactly the unit-equation shape set `C_2(D)`, with slope image
 given by the square cosets `alpha(u)D^2` and quotient-lift weight
@@ -918,6 +954,8 @@ the residual-packet lift formula, so scans can distinguish the new residual
 packet catalog from the already solved quotient-core lifting multiplicity.
 For residual packets of size `T+1`, it additionally checks the zero-slope
 power-coset classification and the corresponding lifted support count.
+For small scanned slack, it also checks the full normalized shape-coset
+formula and its `D^T` coset-compressed slope count.
 When `T=2`, it also checks the complete unit-equation shape ledger and its
 weighted slope histogram.
 The same scanner reports the associated square-coset slope-count bound.

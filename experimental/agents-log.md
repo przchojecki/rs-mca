@@ -48,14 +48,16 @@ Keep entries concise and link to the relevant files.
   resulting non-field-filling threshold. The square-coset compression is now
   exact, and the full-domain case has an explicit quadratic-character
   saturation formula. The proper-subgroup coset image also has an exact
-  character expansion and a conditional small-index saturation criterion. For
-  `T=3`, the first-superboundary catalog is reduced to a split-cubic beta
-  ledger, equivalently a conic shape set, and the cube-coset image
-  `beta D^3`.
+  character expansion and a conditional small-index saturation criterion. The
+  first-superboundary layer now has an all-slack shape-coset reduction through
+  normalized sets `C_T(D)` and slope cosets `a_T(C_T(D))D^T`. For `T=3`, this
+  specializes further to a split-cubic beta ledger, equivalently a conic shape
+  set, and the cube-coset image `beta D^3`.
 - **How it is useful:** Turns the first nonzero superboundary catalog from
   support enumeration into a finite multiplicative unit-equation problem plus
   the image of `alpha(C_2(D))` in `F_p^*/D^2`, and extends the same
-  shape-ledger method to the next low-slack case.
+  shape-ledger method to every first-superboundary slack with concrete
+  low-dimensional specializations at `T=2` and `T=3`.
 - **What to do next:** Narrow the gap between the small-index coset-saturation
   criterion and the large-index cyclotomic non-field-filling threshold for
   smooth proper subgroups, and seek comparable bounds for the slack-three

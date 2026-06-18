@@ -69,6 +69,13 @@ canonical_residual_packet_slope_consistency_check
 canonical_first_superboundary_zero_slope_packet_count_check
 canonical_first_superboundary_zero_slope_support_count_check
 canonical_first_superboundary_zero_slope_coset_check
+canonical_first_superboundary_shape_orbit_factor
+canonical_first_superboundary_shape_orbit_quotient_check
+canonical_first_superboundary_shape_packet_count_check
+canonical_first_superboundary_shape_support_slope_histogram_check
+canonical_first_superboundary_shape_active_nonzero_power_coset_count
+canonical_first_superboundary_shape_power_coset_slope_count
+canonical_first_superboundary_shape_power_coset_slope_count_check
 canonical_slack_two_shape_packet_count_check
 canonical_slack_two_shape_support_slope_histogram_check
 canonical_slack_two_shape_nonzero_square_coset_count
@@ -189,6 +196,32 @@ otherwise. The corresponding lifted support count is
 The fields `canonical_first_superboundary_zero_slope_*` compare these exact
 counts with the scan and verify the power-coset condition. Nonzero first
 superboundary slopes are left as the sparse-trinomial residual catalog.
+
+For small scanned slack, the scanner also audits the general
+first-superboundary shape-coset theorem. It enumerates
+
+```text
+C_t(D) = { (u_1,...,u_t) in D^t :
+           1,u_1,...,u_t distinct,
+           e_j(1,u_1,...,u_t)=0 for 1<=j<t },
+```
+
+uses the `(t+1)!`-to-one map
+`(x,u_1,...,u_t) -> x{1,u_1,...,u_t}`, and checks
+
+```text
+M_t(z) = (1/(t+1)!) sum_{u in C_t(D)}
+         binom(N-tau(u), (k+t-(t+1))/m)
+         * #{x in D : x^t a_t(u)=z},
+a_t(u)=(-1)^t e_t(1,u_1,...,u_t).
+```
+
+The `canonical_first_superboundary_shape_*` fields report the orbit factor,
+the quotient check, reconstructed packet/support counts and slope histograms,
+and the exact active coset-compressed slope count
+`1_{zero active} + #{active nonzero a_t(u)D^t cosets} * |D^t|`.
+The dedicated slack-two and slack-three ledgers below are lower-dimensional
+descriptions of this same theorem.
 
 For slack `t=2`, the scanner also verifies the complete first-superboundary
 shape ledger. It enumerates
