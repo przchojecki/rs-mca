@@ -72,8 +72,10 @@ Keep entries concise and link to the relevant files.
 - **How it is useful:** Complements PR #78's high-index ceiling by showing
   that small-index proper subgroups are raw-saturated rather than sparse, and
   identifies the exact elementary gate needed to transfer that statement to
-  exact supports. This leaves a narrower intermediate/lift-limited window for
-  M1 slope-image bounds.
+  exact supports. It also adds a lift-limited exact-support slope ceiling
+  depending on `R=N-L`, so cases with too few remaining quotient fibers can
+  be certified sparse even when the raw shape catalog is large. This leaves a
+  narrower intermediate/lift-limited window for M1 slope-image bounds.
 - **What to do next:** Prove or replace the imported Kummer-Weil constant in
   a standalone algebraic-geometry note, then attack the intermediate-index
   coset-image window where neither saturation nor high-index sparsity fires.

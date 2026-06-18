@@ -157,6 +157,12 @@ canonical_slack_two_second_shape_square_coset_slope_bound_check
 canonical_slack_two_second_shape_high_index_slope_bound
 canonical_slack_two_second_shape_high_index_nontrivial
 canonical_slack_two_second_shape_high_index_bound_check
+canonical_slack_two_second_shape_lift_limited_remaining_fibers
+canonical_slack_two_second_shape_lift_limited_parameter_bound
+canonical_slack_two_second_shape_lift_limited_nonzero_orbit_bound
+canonical_slack_two_second_shape_lift_limited_slope_bound
+canonical_slack_two_second_shape_lift_limited_nontrivial
+canonical_slack_two_second_shape_lift_limited_bound_check
 canonical_slack_two_second_full_domain_saturates_nonzero_slopes
 canonical_slack_two_second_full_domain_nonzero_slope_image
 canonical_slack_two_second_full_domain_coset_count_check
@@ -492,6 +498,33 @@ unconditional subgroup-size ceiling
 
 This bound is intentionally coarse, but it gives a quick non-field-filling
 certificate whenever the right side is below `p`.
+The `canonical_slack_two_second_shape_lift_limited_*` fields record the
+complementary exact-support ceiling when only
+
+```text
+R = N-L
+```
+
+quotient fibers remain after the whole-fiber choices. An active normalized
+four-point shape must touch at most `R` quotient fibers, including the fiber
+of the normalized point `1`. Therefore its ordered `(u,v)` pair is counted by
+
+```text
+B_R = sum_(r=1)^min(R,4,N) binom(N-1,r-1) (r m)^2.
+```
+
+Since every nonzero packet has exactly `24` normalizations, the exact-support
+depth-two slope image satisfies
+
+```text
+|Bad_{t=2,d=2}^{active}|
+  <= min(p, 1 + floor(B_R/24) |D^2|).
+```
+
+The scanner reports this bound and checks it against the exact active slope
+histogram. This is independent of the Kummer estimate: it is a quotient-lift
+restriction and is most useful precisely when the raw shape catalog saturates
+but too few quotient fibers remain for all shapes to lift.
 The `canonical_slack_two_second_kummer_*` fields record the opposite
 low-index certificate. They use the rank-two Kummer character-sum expansion
 for the depth-two shape map
@@ -545,6 +578,7 @@ ceiling. Its values are:
 inactive_lift_gate
 full_domain_saturated
 low_index_saturated
+lift_limited_sparse
 raw_saturated_lift_limited
 high_index_sparse
 intermediate_index_window
@@ -556,6 +590,8 @@ high-index ceiling explains the observed depth-two square-coset image.
 The `raw_saturated_lift_limited` label means the raw shape catalog is known
 to saturate, but the complement-fiber gate above is not strong enough to
 promote that statement to exact-support saturation.
+The `lift_limited_sparse` label means the exact-support quotient-fiber bound
+already proves non-field-filling, even if the raw shape catalog may be large.
 When `D=F_p^*`, the
 `canonical_slack_two_second_full_domain_*` fields also record the full-domain
 frontier saturation certificate: for `p>=11`, the values

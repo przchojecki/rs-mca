@@ -1459,12 +1459,49 @@ occurs among actual slack-two depth-two supports. Without this gate, the
 Kummer estimate is still a raw shape theorem, but the exact-support image must
 be read from the active shape catalog or proved by an additional argument.
 
+The same lift filter also gives an unconditional sparse bound in the
+lift-limited case. Let
+
+```text
+R=N-L
+```
+
+be the number of quotient fibers not consumed by the whole-fiber part of the
+support. An active normalized four-point shape must have
+
+```text
+tau(u,v) <= R,
+```
+
+so its quotient support is a subset of at most `R` quotient fibers containing
+the normalized fiber of `1`. Hence the number of active ordered normalized
+pairs `(u,v)` is at most
+
+```text
+B_R = sum_(r=1)^min(R,4,N) binom(N-1,r-1) (r m)^2.
+```
+
+The nonzero depth-two packets still have exactly `24` normalizations, while
+zero-slope packets contribute only the single slope `0`. Therefore the active
+exact-support slope image obeys the field-capped bound
+
+```text
+|Bad_{T=2,d=2}^{active}|
+  <= min(p, 1 + floor(B_R/24) |D^2|).
+```
+
+This bound is independent of the Kummer estimate. It explains part of the
+new `raw_saturated_lift_limited` regime: even if the raw shape map is
+surjective onto `F_p^*/D^2`, exact supports are non-field-filling whenever
+the displayed lift-limited bound is below `p`.
+
 This does not give a positive M1 bound; it is the complementary wall to the
 high-index ceiling above. Low-index proper subgroups are saturated only when
 the lift gate and complement-fiber gate transfer raw shapes to exact supports,
-high-index subgroups are sparse by the elementary `n^3/g` bound, and the
-genuinely M1-relevant regime is the intermediate window where neither
-certificate fires or where exact-support lift gates restrict the layer.
+high-index subgroups are sparse by the elementary `n^3/g` bound, lift-limited
+supports are sparse when the `B_R` bound is nontrivial, and the genuinely
+M1-relevant regime is the intermediate window where none of these
+certificates fires.
 
 The same inequality gives an exact integer threshold for fixed subgroup
 index data:
@@ -1905,6 +1942,10 @@ only equality of cosets, so the M1-relevant object is the image of
 The proper-subgroup character expansion gives a second analytic route: it
 counts this image coset-by-coset and proves all nonzero cosets are hit in a
 small-index regime, subject to the standard four-root Weil bound.
+The exact-support lift-limited bound gives the complementary finite-support
+route: when only `R=N-L` quotient fibers remain, the active depth-two image is
+bounded by `1+floor(B_R/24)|D^2|` even if the raw character-sum image
+saturates all square cosets.
 For the full multiplicative domain this image is already both quadratic
 classes for every `p>=17`, with zero added exactly when `p==1 mod 3`; this
 proves that full-domain slack-two examples saturate all nonzero slopes rather

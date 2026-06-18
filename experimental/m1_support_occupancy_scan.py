@@ -513,6 +513,25 @@ def all_residual_packets_lift_active(
     return (remaining_fibers >= required_fibers, remaining_fibers, required_fibers)
 
 
+def quotient_limited_pair_parameter_bound(
+    quotient_order: int,
+    fiber_size: int,
+    remaining_fibers: Optional[int],
+    residual_size: int,
+) -> int:
+    if remaining_fibers is None or remaining_fibers <= 0:
+        return 0
+
+    max_touched = min(remaining_fibers, residual_size, quotient_order)
+    total = 0
+    for touched in range(1, max_touched + 1):
+        total += (
+            math.comb(quotient_order - 1, touched - 1)
+            * (touched * fiber_size) ** 2
+        )
+    return total
+
+
 def expected_first_superboundary_zero_slope_data(
     domain_order: int,
     quotient_order: int,
@@ -1090,6 +1109,23 @@ def slack_two_second_superboundary_shape_ledger(
         )
         else None
     )
+    remaining_fibers = (
+        quotient_order - whole_fibers if whole_fibers is not None else None
+    )
+    lift_limited_parameter_bound = quotient_limited_pair_parameter_bound(
+        quotient_order=quotient_order,
+        fiber_size=fiber_size,
+        remaining_fibers=remaining_fibers,
+        residual_size=residual_size,
+    )
+    lift_limited_nonzero_packet_orbit_bound = (
+        lift_limited_parameter_bound // orbit_factor
+    )
+    lift_limited_slope_bound = min(
+        p,
+        (1 if lift_limited_parameter_bound else 0)
+        + lift_limited_nonzero_packet_orbit_bound * len(square_image),
+    )
 
     for u in domain:
         for v in domain:
@@ -1204,6 +1240,13 @@ def slack_two_second_superboundary_shape_ledger(
         "square_coset_slope_bound": min(p, square_coset_slope_bound),
         "high_index_slope_bound": high_index_slope_bound,
         "high_index_slope_bound_nontrivial": high_index_slope_bound < p,
+        "lift_limited_remaining_fibers": remaining_fibers,
+        "lift_limited_parameter_bound": lift_limited_parameter_bound,
+        "lift_limited_nonzero_packet_orbit_bound": (
+            lift_limited_nonzero_packet_orbit_bound
+        ),
+        "lift_limited_slope_bound": lift_limited_slope_bound,
+        "lift_limited_slope_bound_nontrivial": lift_limited_slope_bound < p,
         "twentyfourfold_quotient_check": quotient_check,
         "packet_count": packet_count_numerator // orbit_factor,
         "weighted_support_count": support_count_numerator // orbit_factor,
@@ -2495,6 +2538,12 @@ def scan_supports(
             slack_two_second_index_window_label = "full_domain_saturated"
         elif slack_two_second_kummer_exact_support_saturation:
             slack_two_second_index_window_label = "low_index_saturated"
+        elif bool(
+            slack_two_second_shape_ledger[
+                "lift_limited_slope_bound_nontrivial"
+            ]
+        ):
+            slack_two_second_index_window_label = "lift_limited_sparse"
         elif (
             full_domain_raw_saturation
             or bool(slack_two_second_kummer_saturation["saturation_certificate"])
@@ -3875,6 +3924,45 @@ def scan_supports(
         "canonical_slack_two_second_shape_high_index_bound_check": (
             len(slack_two_second_superboundary_slope_histogram)
             <= int(slack_two_second_shape_ledger["high_index_slope_bound"])
+            if slack_two_second_shape_ledger is not None
+            else None
+        ),
+        "canonical_slack_two_second_shape_lift_limited_remaining_fibers": (
+            slack_two_second_shape_ledger["lift_limited_remaining_fibers"]
+            if slack_two_second_shape_ledger is not None
+            else None
+        ),
+        "canonical_slack_two_second_shape_lift_limited_parameter_bound": (
+            int(slack_two_second_shape_ledger["lift_limited_parameter_bound"])
+            if slack_two_second_shape_ledger is not None
+            else None
+        ),
+        "canonical_slack_two_second_shape_lift_limited_nonzero_orbit_bound": (
+            int(
+                slack_two_second_shape_ledger[
+                    "lift_limited_nonzero_packet_orbit_bound"
+                ]
+            )
+            if slack_two_second_shape_ledger is not None
+            else None
+        ),
+        "canonical_slack_two_second_shape_lift_limited_slope_bound": (
+            int(slack_two_second_shape_ledger["lift_limited_slope_bound"])
+            if slack_two_second_shape_ledger is not None
+            else None
+        ),
+        "canonical_slack_two_second_shape_lift_limited_nontrivial": (
+            bool(
+                slack_two_second_shape_ledger[
+                    "lift_limited_slope_bound_nontrivial"
+                ]
+            )
+            if slack_two_second_shape_ledger is not None
+            else None
+        ),
+        "canonical_slack_two_second_shape_lift_limited_bound_check": (
+            len(slack_two_second_superboundary_slope_histogram)
+            <= int(slack_two_second_shape_ledger["lift_limited_slope_bound"])
             if slack_two_second_shape_ledger is not None
             else None
         ),

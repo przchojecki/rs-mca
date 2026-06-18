@@ -3,10 +3,12 @@
 
 from __future__ import annotations
 
+import math
 from typing import Sequence, Tuple
 
 from m1_support_occupancy_scan import (
     all_residual_packets_lift_active,
+    quotient_limited_pair_parameter_bound,
     slack_two_second_kummer_saturation_data,
     slack_two_second_superboundary_shape_ledger,
 )
@@ -27,6 +29,13 @@ LIFT_CASES = (
     # Six quotient fibers, two whole fibers selected, four left for any packet.
     (97, 48, 6, 8, 20, True),
     # Only three quotient fibers remain, so four-fiber packets are not certified.
+    (97, 48, 6, 8, 28, False),
+)
+
+LIFT_BOUND_CASES = (
+    # Only one quotient fiber remains, giving a nontrivial exact-slope bound.
+    (97, 48, 6, 8, 44, True),
+    # Three quotient fibers remain; the bound is true but field-trivial here.
     (97, 48, 6, 8, 28, False),
 )
 
@@ -92,6 +101,19 @@ def square_coset_counts(p: int, domain: Sequence[int]) -> Tuple[int, int]:
                 min((shape_slope * square) % p for square in square_image)
             )
     return len(nonzero_cosets), (p - 1) // len(square_image)
+
+
+def lift_limited_bound_formula(
+    quotient_order: int,
+    fiber_size: int,
+    remaining_fibers: int,
+) -> int:
+    max_touched = min(remaining_fibers, 4, quotient_order)
+    return sum(
+        math.comb(quotient_order - 1, touched - 1)
+        * (touched * fiber_size) ** 2
+        for touched in range(1, max_touched + 1)
+    )
 
 
 def main() -> None:
@@ -187,9 +209,65 @@ def main() -> None:
                 required_fibers,
             )
         )
+    lift_bound_checked = []
+    for (
+        p,
+        n,
+        quotient_order,
+        fiber_size,
+        support_size,
+        expected_nontrivial,
+    ) in LIFT_BOUND_CASES:
+        _, domain = make_domain(p, n, None)
+        whole_fibers = (support_size - 4) // fiber_size
+        remaining_fibers = quotient_order - whole_fibers
+        direct_bound = lift_limited_bound_formula(
+            quotient_order,
+            fiber_size,
+            remaining_fibers,
+        )
+        helper_bound = quotient_limited_pair_parameter_bound(
+            quotient_order=quotient_order,
+            fiber_size=fiber_size,
+            remaining_fibers=remaining_fibers,
+            residual_size=4,
+        )
+        if direct_bound != helper_bound:
+            raise AssertionError((p, n, support_size, direct_bound, helper_bound))
+        ledger = slack_two_second_superboundary_shape_ledger(
+            p=p,
+            domain=domain,
+            support_size=support_size,
+            quotient_order=quotient_order,
+            fiber_size=fiber_size,
+        )
+        if int(ledger["lift_limited_parameter_bound"]) != direct_bound:
+            raise AssertionError((p, n, support_size, ledger))
+        slope_count = len(ledger["support_slope_histogram"])
+        slope_bound = int(ledger["lift_limited_slope_bound"])
+        if slope_count > slope_bound:
+            raise AssertionError((p, n, support_size, slope_count, ledger))
+        if bool(ledger["lift_limited_slope_bound_nontrivial"]) != (
+            expected_nontrivial
+        ):
+            raise AssertionError((p, n, support_size, ledger))
+        lift_bound_checked.append(
+            (
+                p,
+                n,
+                quotient_order,
+                fiber_size,
+                support_size,
+                remaining_fibers,
+                direct_bound,
+                slope_count,
+                slope_bound,
+            )
+        )
     print(
         "verify_m1_slack_two_depth_two_kummer_saturation: "
-        f"PASS checked={checked} lift_checked={lift_checked}"
+        f"PASS checked={checked} lift_checked={lift_checked} "
+        f"lift_bound_checked={lift_bound_checked}"
     )
 
 
