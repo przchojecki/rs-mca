@@ -187,12 +187,32 @@ T_3(N)=1+7(N-1)+12 binom(N-1,2),        T_4(N)=N^3.
 ```
 
 Expanding the indicator of the union of all `R`-windows by quotient-kernel
-characters gives principal and coefficient weights `T_R(N)`. Thus the
-conservative lower numerator for the whole active union is
+characters gives principal weight `T_R(N)`. The nonprincipal coefficients are
+smaller. A quotient-Fourier calculation gives the coefficient bounds
+
+```text
+C_1(N)=1,
+C_2(N)=3N-6,
+C_3(N)=max(6,(N-2)(N-3)).
+```
+
+The `R=2` formula follows by writing each coefficient as `zN-6`, where `z`
+counts zero subset sums among the three quotient frequencies. For `R=3`, the
+complement is the ordered catalog of three distinct nonidentity quotient
+labels; inclusion-exclusion gives
+
+```text
+U(r)U(s)U(t) - U(r+s)U(t) - U(r+t)U(s) - U(s+t)U(r)
+  + 2U(r+s+t),
+```
+
+where `U(a)=N-1` if `a=0` and `U(a)=-1` otherwise. The displayed bound is the
+maximum absolute nonprincipal value of that expression. Thus the conservative
+lower numerator for the whole active union is
 
 ```text
 T_R(N) (p^2 - 4p + 6 + 4 chi(-3))
-  - (T_R(N)*16p + 6p - 11) h^3 q.
+  - (C_R(N)*16p + 6p - 11) h^3 q.
 ```
 
 When this is positive and `R<min(4,N)`, the exact-support active
@@ -201,8 +221,8 @@ saturation in cases where no single fixed window is Kummer-certified. The
 verifier audits two such strict improvements:
 
 ```text
-R=2, p=907, n=906, N=3: union certificate positive, fixed certificate negative.
-R=3, p=2069, n=2068, N=4: union certificate positive, fixed certificate negative.
+R=2, p=199, n=198, N=3: sharp union positive, crude union negative.
+R=3, p=229, n=228, N=4: sharp union positive, crude union negative.
 ```
 
 ## Contribution to M1

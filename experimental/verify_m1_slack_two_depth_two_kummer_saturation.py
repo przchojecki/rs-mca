@@ -10,6 +10,7 @@ from typing import Sequence, Tuple
 from m1_support_occupancy_scan import (
     all_residual_packets_lift_active,
     quotient_limited_pair_parameter_bound,
+    quotient_window_label_nonprincipal_bound,
     quotient_window_label_triple_count,
     scan_supports,
     slack_two_second_fixed_window_data,
@@ -87,10 +88,10 @@ FIXED_WINDOW_KUMMER_CASES = (
 R_WINDOW_UNION_KUMMER_CASES = (
     # Exact R=2 union saturation, but below the union Kummer threshold.
     (97, 48, 6, 2, False, False),
-    # The R=2 union certificate succeeds while each fixed R-window fails.
-    (907, 906, 3, 2, True, False),
-    # The same strict improvement at R=3.
-    (2069, 2068, 4, 3, True, False),
+    # The sharpened R=2 certificate succeeds while the crude one fails.
+    (199, 198, 3, 2, True, False),
+    # The same strict Fourier improvement at R=3.
+    (229, 228, 4, 3, True, False),
 )
 
 SCAN_LABEL_CASES = (
@@ -200,6 +201,67 @@ def direct_quotient_window_label_triple_count(
         1
         for labels in product(range(quotient_order), repeat=3)
         if len({0, *labels}) <= window_size
+    )
+
+
+def quotient_label_sum(value: int, quotient_order: int) -> int:
+    return quotient_order - 1 if value % quotient_order == 0 else -1
+
+
+def quotient_window_label_coefficient(
+    quotient_order: int,
+    window_size: int,
+    triple: Tuple[int, int, int],
+) -> int:
+    r, s, t = triple
+    if window_size == 1:
+        return 1
+    if window_size == 2:
+        zero_subset_count = 0
+        frequencies = (r, s, t)
+        for mask in range(1, 8):
+            subset_sum = sum(
+                frequencies[index]
+                for index in range(3)
+                if mask & (1 << index)
+            )
+            if subset_sum % quotient_order == 0:
+                zero_subset_count += 1
+        return zero_subset_count * quotient_order - 6
+    if window_size == 3:
+        full_cube = quotient_order ** 3 if (r, s, t) == (0, 0, 0) else 0
+        distinct_nonzero = (
+            quotient_label_sum(r, quotient_order)
+            * quotient_label_sum(s, quotient_order)
+            * quotient_label_sum(t, quotient_order)
+            - quotient_label_sum(r + s, quotient_order)
+            * quotient_label_sum(t, quotient_order)
+            - quotient_label_sum(r + t, quotient_order)
+            * quotient_label_sum(s, quotient_order)
+            - quotient_label_sum(s + t, quotient_order)
+            * quotient_label_sum(r, quotient_order)
+            + 2 * quotient_label_sum(r + s + t, quotient_order)
+        )
+        return full_cube - distinct_nonzero
+    return 0
+
+
+def direct_quotient_window_label_nonprincipal_bound(
+    quotient_order: int,
+    window_size: int,
+) -> int:
+    return max(
+        abs(
+            quotient_window_label_coefficient(
+                quotient_order,
+                window_size,
+                (r, s, t),
+            )
+        )
+        for r in range(quotient_order)
+        for s in range(quotient_order)
+        for t in range(quotient_order)
+        if (r, s, t) != (0, 0, 0)
     )
 
 
@@ -715,6 +777,26 @@ def main() -> None:
             raise AssertionError(
                 (p, n, quotient_order, label_triples, direct_label_triples)
             )
+        coefficient_bound = quotient_window_label_nonprincipal_bound(
+            quotient_order,
+            remaining_fibers,
+        )
+        direct_coefficient_bound = (
+            direct_quotient_window_label_nonprincipal_bound(
+                quotient_order,
+                remaining_fibers,
+            )
+        )
+        if coefficient_bound != direct_coefficient_bound:
+            raise AssertionError(
+                (
+                    p,
+                    n,
+                    quotient_order,
+                    coefficient_bound,
+                    direct_coefficient_bound,
+                )
+            )
         certificate = (
             slack_two_second_quotient_window_union_kummer_saturation_data(
                 p=p,
@@ -727,6 +809,8 @@ def main() -> None:
             raise AssertionError((p, n, quotient_order, remaining_fibers))
         if label_triples != int(certificate["label_triple_count"]):
             raise AssertionError((p, n, label_triples, certificate))
+        if coefficient_bound != int(certificate["coefficient_abs_bound"]):
+            raise AssertionError((p, n, coefficient_bound, certificate))
         failures = two_fiber_divisor_power_failure_count(
             int(certificate["kernel_character_order"]),
             int(certificate["square_coset_index"]),
@@ -753,6 +837,20 @@ def main() -> None:
         )
         if lower_numerator != int(certificate["lower_numerator"]):
             raise AssertionError((p, n, lower_numerator, certificate))
+        crude_lower_numerator = (
+            int(certificate["principal_weight"]) * principal_count
+            - (
+                int(certificate["crude_coefficient_abs_bound"])
+                * int(certificate["nonprincipal_constant"])
+                * p
+                + degeneracy_count
+            )
+            * int(certificate["denominator"])
+        )
+        if crude_lower_numerator != int(certificate["crude_lower_numerator"]):
+            raise AssertionError((p, n, crude_lower_numerator, certificate))
+        if crude_lower_numerator > 0:
+            raise AssertionError((p, n, crude_lower_numerator, certificate))
         union_certificate_positive = bool(certificate["saturation_certificate"])
         if union_certificate_positive != expected_union_certificate:
             raise AssertionError((p, n, certificate))
@@ -788,7 +886,9 @@ def main() -> None:
                 quotient_order,
                 remaining_fibers,
                 label_triples,
+                coefficient_bound,
                 certificate["denominator"],
+                certificate["crude_lower_numerator"],
                 certificate["lower_numerator"],
                 union_certificate_positive,
                 bool(fixed_certificate["saturation_certificate"]),
