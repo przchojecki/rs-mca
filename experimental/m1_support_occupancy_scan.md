@@ -95,6 +95,20 @@ canonical_first_superboundary_shape_power_coset_slope_count
 canonical_first_superboundary_shape_power_coset_slope_count_check
 canonical_first_superboundary_shape_power_coset_slope_bound
 canonical_first_superboundary_shape_power_coset_slope_bound_check
+canonical_second_superboundary_lift_gate_active
+canonical_second_superboundary_lift_gate_remainder
+canonical_second_superboundary_lift_gate_whole_fibers
+canonical_second_superboundary_lift_gate_check
+canonical_second_superboundary_shape_packet_count_check
+canonical_second_superboundary_shape_support_slope_histogram_check
+canonical_second_superboundary_shape_zero_next_slack_parameter_count
+canonical_second_superboundary_shape_active_nonzero_orbit_check
+canonical_second_superboundary_shape_nonzero_power_coset_count
+canonical_second_superboundary_shape_active_nonzero_power_coset_count
+canonical_second_superboundary_shape_power_image_size
+canonical_second_superboundary_shape_power_coset_slope_count
+canonical_second_superboundary_shape_power_coset_slope_count_check
+canonical_second_superboundary_shape_power_coset_slope_bound_check
 canonical_slack_two_shape_packet_count_check
 canonical_slack_two_shape_support_slope_histogram_check
 canonical_slack_two_shape_nonzero_square_coset_count
@@ -332,6 +346,30 @@ general field-capped power-coset slope bound
 
 The dedicated slack-two and slack-three ledgers below are lower-dimensional
 descriptions of this same theorem.
+
+The scanner also audits the generic second-superboundary shape-coset theorem
+for small slack. For residual packets of size `t+2`, it enumerates
+
+```text
+C_t^(2)(D) = { (u_1,...,u_(t+1)) in D^(t+1) :
+               1,u_1,...,u_(t+1) distinct,
+               e_j(1,u_1,...,u_(t+1))=0 for 1<=j<t },
+```
+
+and checks
+
+```text
+M_t^(2)(z) = (1/(t+2)!) sum_{u in C_t^(2)(D)}
+             binom(N-tau(u), (k+t-(t+2))/m)
+             * #{x in D : x^t b_t(u)=z},
+b_t(u)=(-1)^t e_t(1,u_1,...,u_(t+1)).
+```
+
+The `canonical_second_superboundary_*` fields report the lift gate `m | k-2`,
+the `(t+2)!` quotient check, reconstructed packet/support histograms, and the
+coset-compressed `D^t` slope count. The zero-slope parameter count is the
+first-superboundary shape catalog for slack `t+1`, making the scanner check
+the depth-two/next-slack transition explicitly.
 
 For slack `t=2`, the scanner also verifies the complete first-superboundary
 shape ledger. It enumerates

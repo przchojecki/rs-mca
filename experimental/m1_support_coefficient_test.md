@@ -618,6 +618,56 @@ nonzero-slope normalized packet has trivial multiplicative stabilizer: if
 shapes may have stabilizer, but they contribute only the single slope `0`.
 For `T=2` this recovers the square-coset slope bound below.
 
+The same normalization gives a uniform second-superboundary interface. Assume
+`T+2<m` and define
+
+```text
+C_T^(2)(D) = { (u_1,...,u_(T+1)) in D^(T+1) :
+               1,u_1,...,u_(T+1) are distinct,
+               e_j(1,u_1,...,u_(T+1))=0 for 1<=j<T }.
+```
+
+For `u in C_T^(2)(D)` put
+
+```text
+b_T(u)=(-1)^T e_T(1,u_1,...,u_(T+1)),
+tau(u)=#{quotient fibers met by {1,u_1,...,u_(T+1)}}.
+```
+
+At exact support size `s=Lm+T+2`, the depth-two residual-packet slope
+multiset is
+
+```text
+M_T^(2)(z) = (1/(T+2)!) sum_{u in C_T^(2)(D)}
+             binom(N-tau(u), L) * #{x in D : x^T b_T(u)=z}.
+```
+
+Indeed, every packet of size `T+2` has `T+2` choices of base point and
+`(T+1)!` orderings after normalization. Scaling by `x` multiplies
+`e_T` by `x^T`, while the quotient-core lift weight is again determined only
+by the touched fibers. Hence the nonzero depth-two slope image is a union of
+cosets `b_T(u)D^T`.
+
+The zero-slope slice of this depth-two catalog is exactly the
+first-superboundary shape catalog for the next slack:
+
+```text
+b_T(u)=0
+  <=> e_1=...=e_T=0 on {1,u_1,...,u_(T+1)}
+  <=> u in C_(T+1)(D).
+```
+
+Thus the low-slack residual-packet problem has a genuine hierarchy: the
+transition locus from depth two at slack `T` is the depth-one shape problem
+at slack `T+1`. Its exact-support lift gate is also uniform,
+
+```text
+m | (s-(T+2)) = k-2.
+```
+
+If the gate is closed, the whole second-superboundary catalog is absent at
+that quotient scale before any shape-count estimate is needed.
+
 This formula has an immediate dither gate. Since the residual packet has size
 `T+1` but the exact support size is `s=k+T`, a first-superboundary packet can
 lift only if
