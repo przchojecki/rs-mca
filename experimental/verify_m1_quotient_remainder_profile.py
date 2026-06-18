@@ -754,6 +754,21 @@ def verify_maximal_dither_all_scale_case(N, m, L, t):
     return all_scale
 
 
+def co_maximal_dither_all_scale_enumerator(N, m, L, t):
+    assert 0 <= L <= N - 1
+    return maximal_dither_all_scale_enumerator(N, m, N - L - 1, t)
+
+
+def verify_co_maximal_dither_all_scale_case(N, m, L, t):
+    full = formula_enumerator(N, m, L, m - 1)
+    strict = Counter(
+        {exponent: coeff for exponent, coeff in full.items() if 0 < exponent < t}
+    )
+    all_scale = co_maximal_dither_all_scale_enumerator(N, m, L, t)
+    assert strict == all_scale, (N, m, L, t, strict, all_scale)
+    return all_scale
+
+
 def dyadic_divisors(value):
     out = []
     scale = 2
@@ -873,6 +888,13 @@ def expected_maximal_dither_profile(n, k0, m, t):
     return +expected
 
 
+def expected_co_maximal_dither_profile(n, k0, m, t):
+    expected = Counter({1: k0 - 1})
+    if m == t:
+        expected[t - 1] += n - k0
+    return +expected
+
+
 def verify_maximal_dither_scale_confinement(n, k0, t):
     small_scales = [m for m in dyadic_divisors(k0) if m < t]
     expected_small_count = 0 if t <= 2 else (t - 1).bit_length() - 1
@@ -886,6 +908,25 @@ def verify_maximal_dither_scale_confinement(n, k0, t):
         profile = maximal_dither_all_scale_enumerator(N, m, L, t)
         if m >= t:
             expected = expected_maximal_dither_profile(n, k0, m, t)
+            assert profile == expected, (n, k0, m, t, profile, expected)
+        else:
+            nonlinear_scales.append(m)
+
+    assert nonlinear_scales == small_scales
+    return small_scales
+
+
+def verify_co_maximal_dither_scale_confinement(n, k0, t):
+    small_scales = [m for m in dyadic_divisors(k0) if m < t]
+    nonlinear_scales = []
+
+    for m in dyadic_divisors(k0):
+        N = n // m
+        L = k0 // m - 1
+        assert 0 <= L <= N - 1
+        profile = co_maximal_dither_all_scale_enumerator(N, m, L, t)
+        if m >= t:
+            expected = expected_co_maximal_dither_profile(n, k0, m, t)
             assert profile == expected, (n, k0, m, t, profile, expected)
         else:
             nonlinear_scales.append(m)
@@ -1141,6 +1182,18 @@ def main():
             f"N,m,L,t={case}: H_max={dict(sorted(all_scale.items()))}, "
             f"mass={sum(all_scale.values())}"
         )
+    co_maximal_cases = [
+        (8, 8, 3, 6),
+        (4, 16, 1, 6),
+        (10, 10, 4, 6),
+        (6, 4, 2, 5),
+    ]
+    for case in co_maximal_cases:
+        all_scale = verify_co_maximal_dither_all_scale_case(*case)
+        print(
+            f"N,m,L,t={case}: H_comax={dict(sorted(all_scale.items()))}, "
+            f"mass={sum(all_scale.values())}"
+        )
     confinement_cases = [
         (256, 128, 5),
         (256, 64, 8),
@@ -1149,7 +1202,11 @@ def main():
     ]
     for case in confinement_cases:
         small_scales = verify_maximal_dither_scale_confinement(*case)
-        print(f"n,k0,t={case}: small_scales={small_scales}")
+        co_small_scales = verify_co_maximal_dither_scale_confinement(*case)
+        print(
+            f"n,k0,t={case}: small_scales={small_scales}, "
+            f"co_small_scales={co_small_scales}"
+        )
     adaptive_window_cases = [
         (256, 128, 5, 8, 17),
         (256, 64, 8, 13, 17),

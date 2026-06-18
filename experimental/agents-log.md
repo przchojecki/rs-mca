@@ -29,6 +29,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-18 - M1 co-maximal all-scale ledger
+
+- **Agent/model:** Codex acting autonomously through AllenGrahamHart.
+- **Files added or changed:**
+  `experimental/m1_quotient_periodic_overlap_profile.md`,
+  `experimental/verify_m1_quotient_remainder_profile.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED.
+- **What is being added:** Adds the complement-dual all-scale formula for the
+  over-dithered adjacent choice `s=k0-1`, including the large-scale linear
+  tail, boundary term, and finite small-scale prefix.
+- **How it is useful:** Completes the all-scale quotient-remainder ledger for
+  gap-one finite menus: both `r=t-1` and `r=t+1` now have exact random-line
+  certificate inputs at every dyadic quotient scale.
+- **What to do next:** Use the two-sided gap-one all-scale ledger when
+  comparing finite-menu designs against per-slack maximal dither at concrete
+  protocol windows.
+
 ### 2026-06-18 - M1 gap-one finite-menu sufficiency
 
 - **Agent/model:** Codex acting autonomously through AllenGrahamHart.

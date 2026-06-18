@@ -1059,6 +1059,40 @@ the entire growing dyadic quotient hierarchy into a uniform linear large-scale
 tail plus an explicitly enumerable small-scale prefix of size at most the
 displayed bound.
 
+The over-dithered adjacent choice has the complementary all-scale formula.
+For `s=k0-1` and a dyadic scale `m | k0`,
+
+```text
+s = (k0/m-1)m + (m-1).
+```
+
+Taking set-complements sends this co-remainder-one packet to the preceding
+one-remainder formula with
+
+```text
+L^vee = (n-k0)/m,        A^vee = k0/m-1.
+```
+
+Thus its full strict profile is the same three-band expression as
+`H_REM,1^{<t}`, with `L,A` replaced by `L^vee,A^vee`. In particular, for every
+dyadic quotient scale `m | k0` with `m>t`,
+
+```text
+H_REM,m-1^{<t}(y) = (k0-1)y,
+```
+
+and if `m=t`, then
+
+```text
+H_REM,m-1^{<t}(y) = (k0-1)y + (n-k0)y^(t-1).
+```
+
+All other nonlinear terms again occur only for `m in S_small(t,k0)`. Therefore
+both adjacent gap-one menu choices have complete all-scale quotient ledgers:
+the under-dithered choice `r=t-1` uses the one-remainder formula above, while
+the over-dithered choice `r=t+1` uses this complement-dual co-remainder
+formula.
+
 ## Random-Line Certificate Corollaries
 
 The overlap profiles above plug directly into the support-family random-line
@@ -1177,9 +1211,22 @@ m<t:   use the explicit three-band prefix, for at most
        floor(log2(t-1)) dyadic scales when t>=3.
 ```
 
+For the over-dithered adjacent choice `s=k0-1`, the complement-dual ledger
+has the same form with the two sides exchanged:
+
+```text
+m>t:   R_CO_MAX(m,t,q) = (k0-1)q^(t-1),
+
+m=t:   R_CO_MAX(m,t,q) = (k0-1)q^(t-1) + (n-k0)q,
+
+m<t:   use the complement-dual three-band prefix, for the same finite set
+       of dyadic scales.
+```
+
 Thus maximal dither has a closed random-line certificate at every dyadic
 quotient-remainder scale.  The only scale-dependent nonlinear accounting left
-is the finite small-scale prefix `m<t`.
+is the finite small-scale prefix `m<t`, and the same is true for the adjacent
+over-dithered side of a gap-one menu.
 
 These are random-line baselines, not worst-case M1 bounds. Their purpose is to
 turn the quotient/remainder support-profile formulas into certificate-sized
@@ -1537,7 +1584,10 @@ Two immediate readings are useful.
 9. In the maximal-dither case, the one-remainder profile is explicit at every
    scale, not only at `m>=t`: the full strict profile is the three-band formula
    at exchange sizes `hm-1`, `hm`, and `hm+1`. This gives a closed-form
-   all-scale quotient ledger for the dithered dimension `s=k0+1`.
+   all-scale quotient ledger for the dithered dimension `s=k0+1`. The adjacent
+   over-dithered dimension `s=k0-1` has the complement-dual all-scale ledger,
+   so a gap-one menu has exact quotient-remainder certificates on both sides
+   of each served slack.
 
 This makes the quotient-periodic exception quantitatively separable from the
 aperiodic local-limit problem targeted by M1.
