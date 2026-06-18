@@ -2111,6 +2111,62 @@ def quotient_window_label_nonprincipal_bound(
     return 0
 
 
+def quotient_window_label_l1_data(
+    quotient_order: int,
+    window_size: int,
+) -> Dict[str, object]:
+    """Return an exact or certified quotient-label Fourier L1 bound."""
+
+    if quotient_order < 1 or window_size < 1:
+        return {"l1_bound": 0, "exact": False}
+    if window_size == 1:
+        return {"l1_bound": quotient_order ** 3, "exact": True}
+    if window_size == 2:
+        n = quotient_order
+        if n % 2:
+            zero_count = (n - 1) * (n - 3) * (n - 3)
+            one_count = (n - 1) * (7 * n - 17)
+            two_count = 3 * n - 3
+            three_count = 6 * n - 6
+        else:
+            zero_count = n ** 3 - 7 * n ** 2 + 15 * n - 10
+            one_count = (n - 2) * (7 * n - 10)
+            two_count = 3 * n - 6
+            three_count = 6 * n - 5
+        seven_count = 1
+        l1_bound = (
+            6 * zero_count
+            + abs(n - 6) * one_count
+            + abs(2 * n - 6) * two_count
+            + abs(3 * n - 6) * three_count
+            + (7 * n - 6) * seven_count
+        )
+        return {
+            "l1_bound": l1_bound,
+            "exact": True,
+            "zero_subset_count_histogram": (
+                (0, zero_count),
+                (1, one_count),
+                (2, two_count),
+                (3, three_count),
+                (7, seven_count),
+            ),
+        }
+
+    label_triple_count = quotient_window_label_triple_count(
+        quotient_order,
+        window_size,
+    )
+    coefficient_abs_bound = quotient_window_label_nonprincipal_bound(
+        quotient_order,
+        window_size,
+    )
+    quotient_l1_bound = label_triple_count + (
+        quotient_order ** 3 - 1
+    ) * coefficient_abs_bound
+    return {"l1_bound": quotient_l1_bound, "exact": False}
+
+
 def slack_two_second_quotient_window_union_kummer_saturation_data(
     p: int,
     domain_order: int,
@@ -2151,14 +2207,24 @@ def slack_two_second_quotient_window_union_kummer_saturation_data(
         effective_window_size,
     )
     ambient_restriction_kernel_count = kernel_character_order // quotient_order
-    quotient_coefficient_l1_bound = (
-        ambient_restriction_kernel_count ** 3 * label_triple_count
-        + (
-            kernel_character_order ** 3
-            - ambient_restriction_kernel_count ** 3
-        )
-        * coefficient_abs_bound
+    quotient_l1_data = quotient_window_label_l1_data(
+        quotient_order,
+        effective_window_size,
     )
+    if bool(quotient_l1_data["exact"]):
+        quotient_coefficient_l1_bound = (
+            ambient_restriction_kernel_count ** 3
+            * int(quotient_l1_data["l1_bound"])
+        )
+    else:
+        quotient_coefficient_l1_bound = (
+            ambient_restriction_kernel_count ** 3 * label_triple_count
+            + (
+                kernel_character_order ** 3
+                - ambient_restriction_kernel_count ** 3
+            )
+            * coefficient_abs_bound
+        )
     coefficient_l1_bound = (
         square_coset_index * quotient_coefficient_l1_bound
         - label_triple_count
@@ -2217,6 +2283,10 @@ def slack_two_second_quotient_window_union_kummer_saturation_data(
         "coefficient_abs_bound": coefficient_abs_bound,
         "crude_coefficient_abs_bound": label_triple_count,
         "ambient_restriction_kernel_count": ambient_restriction_kernel_count,
+        "quotient_l1_exact": bool(quotient_l1_data["exact"]),
+        "quotient_l1_zero_subset_histogram": quotient_l1_data.get(
+            "zero_subset_count_histogram"
+        ),
         "quotient_coefficient_l1_bound": quotient_coefficient_l1_bound,
         "coefficient_l1_bound": coefficient_l1_bound,
         "crude_coefficient_l1_bound": crude_coefficient_l1_bound,
@@ -5191,6 +5261,28 @@ def scan_supports(
                 ]
             )
             if slack_two_second_r_window_union_kummer_saturation is not None
+            else None
+        ),
+        "canonical_slack_two_second_r_window_union_kummer_quotient_l1_exact": (
+            bool(slack_two_second_r_window_union_kummer_saturation[
+                "quotient_l1_exact"
+            ])
+            if slack_two_second_r_window_union_kummer_saturation is not None
+            else None
+        ),
+        "canonical_slack_two_second_r_window_union_kummer_zero_subset_histogram": (
+            dict(
+                slack_two_second_r_window_union_kummer_saturation[
+                    "quotient_l1_zero_subset_histogram"
+                ]
+            )
+            if (
+                slack_two_second_r_window_union_kummer_saturation is not None
+                and slack_two_second_r_window_union_kummer_saturation[
+                    "quotient_l1_zero_subset_histogram"
+                ]
+                is not None
+            )
             else None
         ),
         "canonical_slack_two_second_r_window_union_kummer_quotient_l1_bound": (

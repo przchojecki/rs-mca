@@ -225,7 +225,28 @@ by `C_R(N)`. Hence the quotient-label L1 bound is
 S_R <= e^3 T_R(N) + (h^3-e^3) C_R(N),
 ```
 
-and, after the `D^2`-coset expansion, the nonprincipal coefficient L1 bound is
+For `R=2`, the quotient L1 term is exact. If `z(r,s,t)` is the number of
+nonempty subset sums among `r,s,t` that vanish in `D/K`, the coefficient is
+`zN-6`. The distribution is:
+
+```text
+N odd:
+  z=0: (N-1)(N-3)^2,    z=1: (N-1)(7N-17),
+  z=2: 3N-3,            z=3: 6N-6,      z=7: 1.
+
+N even:
+  z=0: N^3-7N^2+15N-10, z=1: (N-2)(7N-10),
+  z=2: 3N-6,            z=3: 6N-5,      z=7: 1.
+```
+
+Thus
+
+```text
+S_2 = e^3 sum_z count_z |zN-6|.
+```
+
+For `R=3`, the displayed `C_3(N)` bound is retained. After the `D^2`-coset
+expansion, the nonprincipal coefficient L1 bound is
 
 ```text
 E_R <= q S_R - T_R(N).
@@ -244,7 +265,7 @@ saturation in cases where no single fixed window is Kummer-certified. The
 verifier audits two such strict improvements:
 
 ```text
-R=2, p=211, n=210, N=3: sharp L1 positive, crude L1 negative.
+R=2, p=181, n=180, N=3: exact L1 positive, bounded L1 negative.
 R=3, p=257, n=256, N=4: sharp L1 positive, crude L1 negative.
 ```
 

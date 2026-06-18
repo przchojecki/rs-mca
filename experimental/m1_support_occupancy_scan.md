@@ -213,6 +213,8 @@ canonical_slack_two_second_r_window_union_kummer_principal_weight
 canonical_slack_two_second_r_window_union_kummer_coefficient_bound
 canonical_slack_two_second_r_window_union_kummer_crude_coefficient_bound
 canonical_slack_two_second_r_window_union_kummer_ambient_kernel_count
+canonical_slack_two_second_r_window_union_kummer_quotient_l1_exact
+canonical_slack_two_second_r_window_union_kummer_zero_subset_histogram
 canonical_slack_two_second_r_window_union_kummer_quotient_l1_bound
 canonical_slack_two_second_r_window_union_kummer_coefficient_l1_bound
 canonical_slack_two_second_r_window_union_kummer_crude_l1_bound
@@ -667,9 +669,23 @@ The quotient-label L1 bound is
 S_R <= e^3 T_R(N) + (h^3-e^3) C_R(N),
 ```
 
-because `e^3` ambient character triples restrict trivially to `D/K`. After
-also expanding the `D^2`-coset condition, the nonprincipal coefficient L1
-bound is
+because `e^3` ambient character triples restrict trivially to `D/K`. For
+`R=2`, the scanner uses the exact quotient L1 value instead. If `z(r,s,t)`
+is the number of nonempty subset sums among `r,s,t` that vanish in the
+quotient group, then the coefficient is `zN-6`. The exact distribution is:
+
+```text
+N odd:
+  z=0: (N-1)(N-3)^2,    z=1: (N-1)(7N-17),
+  z=2: 3N-3,            z=3: 6N-6,      z=7: 1.
+
+N even:
+  z=0: N^3-7N^2+15N-10, z=1: (N-2)(7N-10),
+  z=2: 3N-6,            z=3: 6N-5,      z=7: 1.
+```
+
+Thus `S_2=e^3 sum_z count_z |zN-6|` exactly. After also expanding the
+`D^2`-coset condition, the nonprincipal coefficient L1 bound is
 
 ```text
 E_R <= q S_R - T_R(N).
@@ -685,8 +701,8 @@ T_R(N) (p^2 - 4p + 6 + 4 chi(-3))
 When this is positive, the active quotient-window union itself hits every
 nonzero `D^2`-coset. The scanner also reports the crude numerator obtained by
 using the support-size bound for every nonprincipal coefficient, so strict
-Fourier-L1 threshold improvements are auditable. The verifier checks such
-improvements at `R=2` and `R=3`.
+Fourier-L1 threshold improvements are auditable. The verifier checks exact
+`R=2` and bounded `R=3` improvements.
 At the extreme `R=1`, the lift-limited layer has an exact quotient-kernel
 reduction. Let
 

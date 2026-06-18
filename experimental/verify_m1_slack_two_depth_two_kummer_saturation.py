@@ -11,6 +11,7 @@ from m1_support_occupancy_scan import (
     all_residual_packets_lift_active,
     quotient_limited_pair_parameter_bound,
     quotient_window_label_nonprincipal_bound,
+    quotient_window_label_l1_data,
     quotient_window_label_triple_count,
     scan_supports,
     slack_two_second_fixed_window_data,
@@ -88,8 +89,8 @@ FIXED_WINDOW_KUMMER_CASES = (
 R_WINDOW_UNION_KUMMER_CASES = (
     # Exact R=2 union saturation, but below the union Kummer threshold.
     (97, 48, 6, 2, False, False),
-    # The sharpened ambient L1 certificate succeeds while the crude one fails.
-    (211, 210, 3, 2, True, False),
+    # The exact R=2 L1 certificate succeeds while the L1 bound fails.
+    (181, 180, 3, 2, True, False),
     # The same strict Fourier-L1 improvement at R=3.
     (257, 256, 4, 3, True, False),
 )
@@ -263,6 +264,40 @@ def direct_quotient_window_label_nonprincipal_bound(
         for t in range(quotient_order)
         if (r, s, t) != (0, 0, 0)
     )
+
+
+def direct_quotient_window_label_l1_data(
+    quotient_order: int,
+    window_size: int,
+) -> Tuple[int, Tuple[Tuple[int, int], ...]]:
+    total = 0
+    zero_subset_histogram = {}
+    for r in range(quotient_order):
+        for s in range(quotient_order):
+            for t in range(quotient_order):
+                coefficient = quotient_window_label_coefficient(
+                    quotient_order,
+                    window_size,
+                    (r, s, t),
+                )
+                total += abs(coefficient)
+                if window_size == 2:
+                    zero_subset_count = sum(
+                        (
+                            (sum(
+                                (r, s, t)[index]
+                                for index in range(3)
+                                if mask & (1 << index)
+                            )
+                            % quotient_order)
+                            == 0
+                        )
+                        for mask in range(1, 8)
+                    )
+                    zero_subset_histogram[zero_subset_count] = (
+                        zero_subset_histogram.get(zero_subset_count, 0) + 1
+                    )
+    return total, tuple(sorted(zero_subset_histogram.items()))
 
 
 def direct_ambient_window_label_l1_bound(
@@ -826,6 +861,36 @@ def main() -> None:
                     direct_coefficient_bound,
                 )
             )
+        quotient_l1 = quotient_window_label_l1_data(
+            quotient_order,
+            remaining_fibers,
+        )
+        direct_quotient_l1, direct_zero_subset_histogram = (
+            direct_quotient_window_label_l1_data(
+                quotient_order,
+                remaining_fibers,
+            )
+        )
+        if bool(quotient_l1["exact"]):
+            if int(quotient_l1["l1_bound"]) != direct_quotient_l1:
+                raise AssertionError((p, n, quotient_l1, direct_quotient_l1))
+            if quotient_l1.get("zero_subset_count_histogram") is not None:
+                expected_histogram = tuple(
+                    (count, multiplicity)
+                    for count, multiplicity in quotient_l1[
+                        "zero_subset_count_histogram"
+                    ]
+                    if multiplicity
+                )
+                if (
+                    expected_histogram
+                    != direct_zero_subset_histogram
+                ):
+                    raise AssertionError(
+                        (p, n, quotient_l1, direct_zero_subset_histogram)
+                    )
+        elif int(quotient_l1["l1_bound"]) < direct_quotient_l1:
+            raise AssertionError((p, n, quotient_l1, direct_quotient_l1))
         certificate = (
             slack_two_second_quotient_window_union_kummer_saturation_data(
                 p=p,
@@ -841,25 +906,35 @@ def main() -> None:
         if coefficient_bound != int(certificate["coefficient_abs_bound"]):
             raise AssertionError((p, n, coefficient_bound, certificate))
         ambient_kernel_count = (p - 1) // n
-        quotient_l1_bound = (
-            ambient_kernel_count ** 3 * label_triples
-            + (
-                int(certificate["kernel_character_order"]) ** 3
-                - ambient_kernel_count ** 3
+        if bool(quotient_l1["exact"]):
+            quotient_l1_bound = (
+                ambient_kernel_count ** 3 * int(quotient_l1["l1_bound"])
             )
-            * coefficient_bound
-        )
+        else:
+            quotient_l1_bound = (
+                ambient_kernel_count ** 3 * label_triples
+                + (
+                    int(certificate["kernel_character_order"]) ** 3
+                    - ambient_kernel_count ** 3
+                )
+                * coefficient_bound
+            )
         if quotient_l1_bound != int(
             certificate["quotient_coefficient_l1_bound"]
         ):
             raise AssertionError((p, n, quotient_l1_bound, certificate))
+        if bool(certificate["quotient_l1_exact"]) != bool(quotient_l1["exact"]):
+            raise AssertionError((p, n, quotient_l1, certificate))
         coefficient_l1_bound = direct_ambient_window_label_l1_bound(
             int(certificate["kernel_character_order"]),
             quotient_order,
             remaining_fibers,
             int(certificate["square_coset_index"]),
         )
-        if coefficient_l1_bound > int(certificate["coefficient_l1_bound"]):
+        if bool(certificate["quotient_l1_exact"]):
+            if coefficient_l1_bound != int(certificate["coefficient_l1_bound"]):
+                raise AssertionError((p, n, coefficient_l1_bound, certificate))
+        elif coefficient_l1_bound > int(certificate["coefficient_l1_bound"]):
             raise AssertionError((p, n, coefficient_l1_bound, certificate))
         crude_coefficient_l1_bound = (
             int(certificate["crude_coefficient_abs_bound"])
