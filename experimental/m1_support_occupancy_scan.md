@@ -71,8 +71,15 @@ canonical_first_superboundary_zero_slope_support_count_check
 canonical_first_superboundary_zero_slope_coset_check
 canonical_slack_two_shape_packet_count_check
 canonical_slack_two_shape_support_slope_histogram_check
+canonical_slack_two_shape_nonzero_square_coset_count
 canonical_slack_two_shape_active_nonzero_square_coset_count
+canonical_slack_two_shape_total_nonzero_square_coset_count
+canonical_slack_two_shape_nonzero_square_coset_coverage_density
+canonical_slack_two_shape_active_nonzero_square_coset_coverage_density
+canonical_slack_two_shape_saturates_nonzero_square_cosets
+canonical_slack_two_shape_active_saturates_nonzero_square_cosets
 canonical_slack_two_shape_square_image_size
+canonical_slack_two_shape_abstract_square_coset_slope_count
 canonical_slack_two_shape_square_coset_slope_count
 canonical_slack_two_shape_square_coset_slope_count_check
 canonical_slack_two_shape_square_coset_slope_bound_check
@@ -207,6 +214,12 @@ records the exact coset-compressed count
 ```
 
 and checks equality against the observed first-superboundary slope count.
+The companion non-active fields report the abstract coset coverage of
+`alpha(C_2(D))` in `F_p^*/D^2` before quotient-lift filtering. The boolean
+`canonical_slack_two_shape_saturates_nonzero_square_cosets` records whether
+the abstract slack-two catalog hits every nonzero `D^2`-coset, while
+`canonical_slack_two_shape_active_saturates_nonzero_square_cosets` applies the
+same test after the exact-support lift filter.
 
 When `D=F_p^*`, the `canonical_slack_two_full_domain_*` fields also check the
 quadratic-character formula for the classes of `alpha(u)=-(1+u+u^2)`. For

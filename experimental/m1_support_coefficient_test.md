@@ -566,6 +566,57 @@ Thus the only remaining loss in the square-coset step is the number of
 distinct cosets hit by `alpha(C_2^act(D))`, not any uncontrolled overlap
 inside those cosets.
 
+For proper subgroups this coset image has its own character expansion. Let
+`D <= F_p^*` have order `n`, index `e`, put `g=gcd(2,n)`,
+`H=D^2`, and `h=[F_p^*:H]=eg`. Let `chi` have kernel `D`, let `psi` have
+kernel `H`, and fix a nonzero coset `gamma H`. Define the raw coset count
+
+```text
+U_gamma^raw =
+  #{ u in F_p : u in D, -1-u in D, alpha(u) in gamma H }.
+```
+
+With all multiplicative characters extended by zero at zero,
+
+```text
+U_gamma^raw =
+  (1/(e^2 h)) sum_{a,b,c}
+    psi^(-c)(gamma) S_{a,b,c},
+
+S_{a,b,c} =
+  sum_{u in F_p} chi^a(u) chi^b(-1-u) psi^c(alpha(u)),
+```
+
+where `0<=a,b<e` and `0<=c<h`. The principal term is
+
+```text
+S_{0,0,0} = p - 3 - chi_2(-3),
+```
+
+for `p>5`, where `chi_2` is the quadratic character. All nonprincipal terms
+are mixed multiplicative character sums supported on the four-root divisor
+`u(-1-u)alpha(u)`.
+
+Consequently, using the standard Weil bound
+
+```text
+|S_{a,b,c}| <= 3 sqrt(p)        for nonprincipal (a,b,c),
+```
+
+gives the uniform lower estimate
+
+```text
+U_gamma^raw >= (p - 3 - chi_2(-3))/(e^2 h) - 3 sqrt(p).
+```
+
+The admissible shape set removes at most the three degenerate parameters
+`u=1`, `u=-2`, and `u=-1/2`. Hence, if the right-hand side is greater than
+`3`, every nonzero coset of `H=D^2` is hit by an admissible slack-two shape.
+In the exact support layer `s=3`, where there is no quotient-core lift
+filter, the slack-two first-superboundary image then contains every nonzero
+field slope. This is the complementary small-index saturation regime to the
+large-index non-field-filling threshold below.
+
 This exact compression also explains why the full multiplicative domain is a
 saturated obstruction rather than a promising non-field-filling case. Take
 `D=F_p^*`, `p>5`, and write `chi` for the quadratic character. On the
@@ -759,6 +810,9 @@ payoff inside the superboundary range: improving M1 here reduces to bounding
 The exact square-coset compression removes one ambiguity: those overlaps are
 only equality of cosets, so the M1-relevant object is the image of
 `alpha(C_2(D))` in `F_p^*/D^2`.
+The proper-subgroup character expansion gives a second analytic route: it
+counts this image coset-by-coset and proves all nonzero cosets are hit in a
+small-index regime, subject to the standard four-root Weil bound.
 For the full multiplicative domain this image is already both quadratic
 classes for every `p>=17`, with zero added exactly when `p==1 mod 3`; this
 proves that full-domain slack-two examples saturate all nonzero slopes rather

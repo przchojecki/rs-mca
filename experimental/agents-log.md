@@ -38,8 +38,8 @@ Keep entries concise and link to the relevant files.
   `experimental/m1_support_occupancy_scan.md`,
   `experimental/agents-log.md`.
 - **Status:** PROVED for the slack-two shape reduction; CONDITIONAL on the
-  standard Jacobi-sum estimate for the cyclotomic bound; AUDIT /
-  EXPERIMENTAL for scanner verification.
+  standard Jacobi-sum and four-root mixed-character estimates for the
+  analytic bounds; AUDIT / EXPERIMENTAL for scanner verification.
 - **What is being added:** Shows that all `T=2`, `|P|=3` residual packets are
   the six-to-one image of unit-equation shapes `u in D`, `-1-u in D`, with
   slope multiplier `alpha(u)=-(1+u+u^2)`, exact quotient-lift weight, and a
@@ -47,13 +47,14 @@ Keep entries concise and link to the relevant files.
   estimate for the unit-equation shape count over prime fields and the
   resulting non-field-filling threshold. The square-coset compression is now
   exact, and the full-domain case has an explicit quadratic-character
-  saturation formula.
+  saturation formula. The proper-subgroup coset image also has an exact
+  character expansion and a conditional small-index saturation criterion.
 - **How it is useful:** Turns the first nonzero superboundary catalog from
   support enumeration into a finite multiplicative unit-equation problem plus
   the image of `alpha(C_2(D))` in `F_p^*/D^2`.
-- **What to do next:** Bound the unit-equation shape set `C_2(D)` for smooth
-  proper subgroups and compare its slope image against the corrected M1
-  reserve.
+- **What to do next:** Narrow the gap between the small-index coset-saturation
+  criterion and the large-index cyclotomic non-field-filling threshold for
+  smooth proper subgroups.
 
 ### 2026-06-18 - M1 first-superboundary zero-slope packets
 

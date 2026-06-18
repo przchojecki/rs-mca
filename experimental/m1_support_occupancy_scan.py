@@ -402,9 +402,12 @@ def slack_two_first_superboundary_shape_ledger(
     support_count_numerator = 0
     packet_slope_histogram_numerator: Counter[int] = Counter()
     support_slope_histogram_numerator: Counter[int] = Counter()
+    zero_slope = False
+    nonzero_square_cosets = set()
     active_zero_slope = False
     square_image = {x * x % p for x in domain}
     active_nonzero_square_cosets = set()
+    total_nonzero_square_cosets = (p - 1) // len(square_image)
     whole_fibers = (
         (support_size - 3) // fiber_size
         if support_size >= 3 and (support_size - 3) % fiber_size == 0
@@ -418,6 +421,15 @@ def slack_two_first_superboundary_shape_ledger(
         if u == 1 or v == 1 or v == u:
             continue
         parameter_count += 1
+        shape_slope = (-1 - u - u * u) % p
+        if shape_slope == 0:
+            zero_slope = True
+        else:
+            coset_representative = min(
+                (shape_slope * square) % p for square in square_image
+            )
+            nonzero_square_cosets.add(coset_representative)
+
         if whole_fibers is None:
             continue
 
@@ -435,14 +447,11 @@ def slack_two_first_superboundary_shape_ledger(
         if lift_count == 0:
             continue
         active_parameter_count += 1
-        shape_slope = (-1 - u - u * u) % p
         if shape_slope == 0:
             active_zero_parameter_count += 1
             active_zero_slope = True
         else:
-            active_nonzero_square_cosets.add(
-                min((shape_slope * square) % p for square in square_image)
-            )
+            active_nonzero_square_cosets.add(coset_representative)
 
         for x in domain:
             slope = (x * x * shape_slope) % p
@@ -481,12 +490,18 @@ def slack_two_first_superboundary_shape_ledger(
         (1 if active_zero_slope else 0)
         + len(active_nonzero_square_cosets) * len(square_image)
     )
+    abstract_square_coset_slope_count = (
+        (1 if zero_slope else 0) + len(nonzero_square_cosets) * len(square_image)
+    )
     return {
         "parameter_count": parameter_count,
         "active_parameter_count": active_parameter_count,
         "active_zero_parameter_count": active_zero_parameter_count,
+        "nonzero_square_coset_count": len(nonzero_square_cosets),
         "active_nonzero_square_coset_count": len(active_nonzero_square_cosets),
+        "total_nonzero_square_coset_count": total_nonzero_square_cosets,
         "square_image_size": len(square_image),
+        "abstract_square_coset_slope_count": abstract_square_coset_slope_count,
         "square_coset_slope_count": square_coset_slope_count,
         "sixfold_quotient_check": quotient_check,
         "packet_count": packet_count_numerator // 6,
@@ -1401,8 +1416,46 @@ def scan_supports(
             if slack_two_shape_ledger is not None
             else None
         ),
+        "canonical_slack_two_shape_nonzero_square_coset_count": (
+            int(slack_two_shape_ledger["nonzero_square_coset_count"])
+            if slack_two_shape_ledger is not None
+            else None
+        ),
         "canonical_slack_two_shape_active_nonzero_square_coset_count": (
             int(slack_two_shape_ledger["active_nonzero_square_coset_count"])
+            if slack_two_shape_ledger is not None
+            else None
+        ),
+        "canonical_slack_two_shape_total_nonzero_square_coset_count": (
+            int(slack_two_shape_ledger["total_nonzero_square_coset_count"])
+            if slack_two_shape_ledger is not None
+            else None
+        ),
+        "canonical_slack_two_shape_nonzero_square_coset_coverage_density": (
+            fraction_string(
+                int(slack_two_shape_ledger["nonzero_square_coset_count"]),
+                int(slack_two_shape_ledger["total_nonzero_square_coset_count"]),
+            )
+            if slack_two_shape_ledger is not None
+            else None
+        ),
+        "canonical_slack_two_shape_active_nonzero_square_coset_coverage_density": (
+            fraction_string(
+                int(slack_two_shape_ledger["active_nonzero_square_coset_count"]),
+                int(slack_two_shape_ledger["total_nonzero_square_coset_count"]),
+            )
+            if slack_two_shape_ledger is not None
+            else None
+        ),
+        "canonical_slack_two_shape_saturates_nonzero_square_cosets": (
+            int(slack_two_shape_ledger["nonzero_square_coset_count"])
+            == int(slack_two_shape_ledger["total_nonzero_square_coset_count"])
+            if slack_two_shape_ledger is not None
+            else None
+        ),
+        "canonical_slack_two_shape_active_saturates_nonzero_square_cosets": (
+            int(slack_two_shape_ledger["active_nonzero_square_coset_count"])
+            == int(slack_two_shape_ledger["total_nonzero_square_coset_count"])
             if slack_two_shape_ledger is not None
             else None
         ),
@@ -1447,6 +1500,11 @@ def scan_supports(
         "canonical_slack_two_shape_support_slope_histogram_check": (
             slack_two_shape_ledger["support_slope_histogram"]
             == first_superboundary_slope_histogram
+            if slack_two_shape_ledger is not None
+            else None
+        ),
+        "canonical_slack_two_shape_abstract_square_coset_slope_count": (
+            int(slack_two_shape_ledger["abstract_square_coset_slope_count"])
             if slack_two_shape_ledger is not None
             else None
         ),
