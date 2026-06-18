@@ -28,6 +28,9 @@ should be revised as the project learns more.
    top-dimensional target with domain-size arithmetic kept explicit. A
    compactified plane-divisor audit gives only a generic `5p` route, so the
    `3p` leading term must come from the hypergeometric pullback structure.
+   The current narrow import is a rank-two line-sheaf conductor calculation:
+   save two units beyond the generic `dim H^1 <= 5` count, most likely at
+   the two `B(s)=0` points or by pairing their contributions.
 4. After the trace-family wall is closed, generalize to fixed low-slack
    templates, then separate tangent, quotient-periodic, finite-template, and
    genuinely aperiodic packing.

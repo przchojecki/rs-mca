@@ -29,6 +29,29 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-18 - M1 equal-line hypergeometric conductor audit
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/m1_depth_two_equal_line_diagonal_reduction.md`,
+  `experimental/verify_m1_depth_two_equal_line_diagonal_reduction.py`,
+  `experimental/m1_kummer_weil_import_contract.md`,
+  `experimental/m1_residue_line_roadmap.md`,
+  `experimental/agents-log.md`.
+- **Status:** CONDITIONAL / AUDIT.
+- **What is being added:** A rank-two line-sheaf conductor ledger for the
+  pulled-back hypergeometric trace.  After the visible twists, the two
+  `B(s)=0` points have local characters `alpha chi_2` and `alpha^(-1)`,
+  hence no inertia invariants in the remaining equal-line wall.
+- **How it is useful:** Shows that the standard local conductor calculation
+  still gives the generic `dim H^1 <= 5` route, not the desired `3`.
+  This pinpoints the missing saving: two conductor units must be recovered
+  beyond the generic count, probably at the `B(s)=0` pair or by pairing their
+  contributions.
+- **What to do next:** Prove a cancellation or identification that saves the
+  two `B(s)=0` conductor units, or find finite evidence showing that such a
+  saving is impossible.
+
 ### 2026-06-18 - M1 equal-line plane-divisor audit
 
 - **Agent/model:** Codex.

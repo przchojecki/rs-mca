@@ -224,6 +224,11 @@ M1 domain-size arithmetic or the hypergeometric pullback structure visible.
 A compactified plane-divisor audit for the same single-character presentation
 gives the generic complement-Euler target `5`, so the desired `3p` leading
 constant cannot come from a naive surface Kummer estimate.
+The corresponding line-sheaf audit shows the same generic obstruction:
+after the visible twists, the two `B(s)=0` points each have no local
+invariants and cost two conductor units, giving generic `dim H^1 <= 5`.
+The desired `3p` leading constant therefore requires an additional
+two-unit saving beyond the standard local conductor count.
 
 Thus the fixed-window, quotient-window, and two-fiber certificates still use
 the conservative common ledger:

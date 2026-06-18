@@ -383,6 +383,88 @@ suggests a `5p+O(sqrt(p))` top-dimensional bound, not the observed
 hypergeometric middle-extension structure, or another cancellation beyond the
 generic plane-divisor complement.
 
+## Pullback Conductor Audit
+
+The plane audit raises the question of whether the hypergeometric
+presentation alone lowers the conductor to the desired leading constant.  Let
+`F` denote the rank-two middle-extension sheaf on the `lambda`-line whose
+trace is
+
+```text
+H(lambda)=sum_x mu(x) eta(x-1) chi_2(x-lambda).
+```
+
+Equivalently, `F` is the tame four-puncture hypergeometric sheaf attached to
+the characters
+
+```text
+mu,        eta,        chi_2,        (mu eta chi_2)^(-1).
+```
+
+The desired pullback main term is the trace sum of
+
+```text
+lambda^*F tensor L_{rho(B(s))}
+```
+
+on the `s`-line, with `rho=mu eta chi_2=alpha chi_2`.  The singular support
+is contained in
+
+```text
+s=0,        B(s)=0,        C(s)=0,        infinity,
+```
+
+where `C(s)=3s^2+4s+4`.
+
+The standard `2F1` normalization is
+
+```text
+H(lambda) = const * chi_2(-lambda)
+  * 2F1(chi_2, mu; alpha; 1/lambda).
+```
+
+Near a root of `B(s)`, the parameter `t=1/lambda` is a local parameter.
+The `t=0` local characters of the hypergeometric sheaf are `chi_2` and
+`mu`.  After the visible twist by `chi_2(t)` and then by
+`rho(B(s))`, the two local characters become
+
+```text
+alpha chi_2,        alpha^(-1).
+```
+
+Neither is trivial in the remaining equal-line wall.  Thus each of the two
+geometric roots of `B(s)=0` contributes two conductor units, not one.
+
+The generic tame conductor ledger on `P^1_s` is therefore
+
+```text
+s=0:        at most 1 unit,
+C(s)=0:     2 geometric points, one unit each,
+B(s)=0:     2 geometric points, two units each,
+infinity:   2 units from rho(B(s)) with monodromy alpha^(-2).
+```
+
+The total is
+
+```text
+1 + 2 + 4 + 2 = 9.
+```
+
+For a geometrically nonconstant rank-two middle extension with no global
+invariants, Euler-Poincare then gives the generic estimate
+
+```text
+dim H^1 <= 9 - 2*2 = 5.
+```
+
+This matches the plane-divisor obstruction rather than the desired
+`3p+O(sqrt(p))` target.  The useful information is the location of the
+missing saving: a proof of the `3p` leading constant must save two conductor
+units beyond this generic line-sheaf calculation, most naturally at the two
+`B(s)=0` points or through a cancellation pairing between them.  The finite
+verifier checks the algebraic support and this conductor ledger; it does not
+certify the imported hypergeometric local-monodromy table.
+
 ## Pullback Branch Checklist
 
 The rational pullback

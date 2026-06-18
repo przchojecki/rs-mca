@@ -372,6 +372,57 @@ def verify_plane_divisor_geometry(p: int) -> Dict[str, object]:
     }
 
 
+def verify_pullback_line_conductor_budget(p: int) -> Dict[str, object]:
+    if p <= 3:
+        raise AssertionError(p)
+    roots_b = [s for s in range(p) if shape_b(s, p) == 0]
+    roots_c = [s for s in range(p) if shape_c(s, p) == 0]
+    if shape_b(0, p) == 0 or shape_c(0, p) == 0:
+        raise AssertionError(("zero collides", p))
+    if shape_b(p - 1, p) == 0 or shape_c(p - 1, p) == 0:
+        raise AssertionError(("deleted point collides", p))
+    if shape_b(p - 2, p) == 0 or shape_c(p - 2, p) == 0:
+        raise AssertionError(("extra ramification collides", p))
+    if any(shape_c(s, p) == 0 for s in roots_b):
+        raise AssertionError(("B and C collide", p, roots_b, roots_c))
+
+    s_zero_cond = 1
+    c_root_cond = 2
+    b_root_cond = 4
+    infinity_twist_cond = 2
+    rank = 2
+    total_conductor = s_zero_cond + c_root_cond + b_root_cond
+    total_conductor += infinity_twist_cond
+    h1_budget = total_conductor - 2 * rank
+    if h1_budget != 5:
+        raise AssertionError((p, h1_budget))
+
+    return {
+        "p": p,
+        "rank": rank,
+        "geometric_collision_points": {
+            "lambda_zero": 1,
+            "lambda_one": 2,
+            "lambda_infinity": 2,
+            "s_infinity_twist": 1,
+        },
+        "rational_collision_counts": {
+            "b_roots": len(roots_b),
+            "c_roots": len(roots_c),
+        },
+        "conductor_budget": {
+            "s_zero": s_zero_cond,
+            "c_roots": c_root_cond,
+            "b_roots_after_twist": b_root_cond,
+            "infinity_twist": infinity_twist_cond,
+            "total": total_conductor,
+            "generic_h1_target": h1_budget,
+            "desired_h1_target": 3,
+            "missing_conductor_saving": h1_budget - 3,
+        },
+    }
+
+
 def audit_case(case: Dict[str, int]) -> Dict[str, object]:
     p = int(case["p"])
     n = int(case["n"])
@@ -466,6 +517,12 @@ def main() -> None:
         for case in CASES
     ]
     for row in plane_rows:
+        print(row)
+    conductor_rows = [
+        verify_pullback_line_conductor_budget(int(case["p"]))
+        for case in CASES
+    ]
+    for row in conductor_rows:
         print(row)
     top = max(rows, key=lambda row: float(row["sum_ratio"]))
     for key, value in EXPECTED_TOP.items():
