@@ -60,11 +60,12 @@ Keep entries concise and link to the relevant files.
   slack-two depth-two lift-window theory from the scanner: the exact
   quotient-window reduction for `R=N-L`, the lift-limited slope ceiling, and
   the conditional fixed-window Kummer saturation certificate with `R^3`
-  weights.
+  weights, plus the quotient-window union Kummer certificate with exact
+  quotient-label triple count `T_R(N)`.
 - **How it is useful:** Gives reviewers a single mathematical statement for
   the M1 contribution in PR #79, separating proved quotient-fiber algebra
   from the imported Kummer-Weil estimate and showing how the `R=1`, `R=2`,
-  `R=3`, and fixed-window examples fit one mechanism.
+  `R=3`, fixed-window, and union-window examples fit one mechanism.
 - **What to do next:** Prove or cite the Kummer-Weil estimate as a standalone
   algebraic-geometry input, then extend the quotient-window method beyond the
   canonical slack-two depth-two frontier.
@@ -113,12 +114,17 @@ Keep entries concise and link to the relevant files.
   character-sum method now gives a fixed `R`-window Kummer certificate with
   principal and error weights `R^3`; the verifier checks a positive `R=3`
   full-domain `p=2213,N=4` instance against exact fixed-window enumeration.
+  The quotient-window union certificate replaces the fixed-window weight by
+  the exact number `T_R(N)` of quotient-label triples touching at most `R`
+  fibers, and the verifier audits strict improvements at `R=2`
+  (`p=907,N=3`) and `R=3` (`p=2069,N=4`) where fixed-window Kummer is still
+  negative but the active union is certified saturated.
   This leaves a narrower intermediate/lift-limited window for M1 slope-image
   bounds.
 - **What to do next:** Prove or replace the imported Kummer-Weil constant in
   a standalone algebraic-geometry note, then attack the residual `R=1`
-  kernel catalog and sharpen the conservative two-fiber lower bound so it
-  explains more of the exact `R=2` union saturation cases analytically.
+  kernel catalog and extend the quotient-window union certificate beyond this
+  canonical depth-two layer.
 
 ### 2026-06-18 - PR #78 M1 residual-depth hierarchy
 

@@ -164,13 +164,55 @@ In the second case, exact fixed-window enumeration gives `2,055,708`
 parameters, `996` zero parameters, and both nonzero `D^2`-cosets, agreeing
 with the certificate.
 
+There is also a stronger certificate for the full quotient-window union. Let
+`Q=D/K` have order `N`, and let
+
+```text
+T_R(N) = #{(a,b,c) in Q^3 : |{1,a,b,c}| <= R}.
+```
+
+Equivalently,
+
+```text
+T_R(N) = sum_{j=0}^{min(R-1,3,N-1)}
+           binom(N-1,j)
+           sum_{i=0}^j (-1)^i binom(j,i) (j+1-i)^3.
+```
+
+In particular,
+
+```text
+T_1(N)=1,        T_2(N)=7N-6,
+T_3(N)=1+7(N-1)+12 binom(N-1,2),        T_4(N)=N^3.
+```
+
+Expanding the indicator of the union of all `R`-windows by quotient-kernel
+characters gives principal and coefficient weights `T_R(N)`. Thus the
+conservative lower numerator for the whole active union is
+
+```text
+T_R(N) (p^2 - 4p + 6 + 4 chi(-3))
+  - (T_R(N)*16p + 6p - 11) h^3 q.
+```
+
+When this is positive and `R<min(4,N)`, the exact-support active
+quotient-window catalog itself hits every nonzero `D^2`-coset. This can prove
+saturation in cases where no single fixed window is Kummer-certified. The
+verifier audits two such strict improvements:
+
+```text
+R=2, p=907, n=906, N=3: union certificate positive, fixed certificate negative.
+R=3, p=2069, n=2068, N=4: union certificate positive, fixed certificate negative.
+```
+
 ## Contribution to M1
 
 This theorem closes a coherent low-slack subproblem: the slack-two depth-two
 canonical frontier is now split into exact quotient-window lift regimes, a
-lift-limited sparse regime, and Kummer-certified saturation regimes. It does
+lift-limited sparse regime, and Kummer-certified saturation regimes. The
+quotient-window union certificate narrows the remaining lift-limited window by
+using all active quotient labels at once, not only one fixed window. It does
 not prove the full M1 corrected-reserve local limit. What remains is to remove
 or prove the imported Kummer-Weil estimate in a standalone algebraic-geometry
-argument, sharpen the fixed-window threshold, and extend beyond this canonical
-depth-two frontier toward the genuinely aperiodic residue-line packing
-problem.
+argument and extend beyond this canonical depth-two frontier toward the
+genuinely aperiodic residue-line packing problem.

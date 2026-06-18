@@ -203,6 +203,20 @@ canonical_slack_two_second_r_window_kummer_lower_numerator
 canonical_slack_two_second_r_window_kummer_lower_bound
 canonical_slack_two_second_r_window_kummer_certificate
 canonical_slack_two_second_r_window_kummer_exact_support_certificate
+canonical_slack_two_second_r_window_union_kummer_effective_size
+canonical_slack_two_second_r_window_union_kummer_window_count
+canonical_slack_two_second_r_window_union_kummer_label_triples
+canonical_slack_two_second_r_window_union_kummer_character_order
+canonical_slack_two_second_r_window_union_kummer_square_coset_index
+canonical_slack_two_second_r_window_union_kummer_denominator
+canonical_slack_two_second_r_window_union_kummer_principal_weight
+canonical_slack_two_second_r_window_union_kummer_coefficient_bound
+canonical_slack_two_second_r_window_union_kummer_prime_threshold
+canonical_slack_two_second_r_window_union_kummer_threshold_applies
+canonical_slack_two_second_r_window_union_kummer_lower_numerator
+canonical_slack_two_second_r_window_union_kummer_lower_bound
+canonical_slack_two_second_r_window_union_kummer_certificate
+canonical_slack_two_second_r_window_union_kummer_exact_support_certificate
 canonical_slack_two_second_full_domain_saturates_nonzero_slopes
 canonical_slack_two_second_full_domain_nonzero_slope_image
 canonical_slack_two_second_full_domain_coset_count_check
@@ -610,6 +624,31 @@ When this is positive, one fixed `R`-window already hits every nonzero
 `D^2`-coset, hence exact-support saturation follows whenever the
 exact-support complement has at least those `R` quotient fibers. The scanner
 records this as `r_window_kummer_saturated`.
+The `canonical_slack_two_second_r_window_union_kummer_*` fields apply the
+same Kummer estimate to the entire quotient-window union rather than to one
+fixed window. If the quotient group has order `N`, the number of quotient-label
+triples `(a,b,c)` for `u,v,-1-u-v` whose touched set
+`{1,a,b,c}` has size at most `R` is
+
+```text
+T_R(N) = sum_{j=0}^{min(R-1,3,N-1)}
+           binom(N-1,j)
+           sum_{i=0}^j (-1)^i binom(j,i) (j+1-i)^3.
+```
+
+Thus `T_1(N)=1`, `T_2(N)=7N-6`, and
+`T_3(N)=1+7(N-1)+12 binom(N-1,2)`. The union certificate uses principal
+and coefficient weights `T_R(N)` and the lower numerator
+
+```text
+T_R(N) (p^2 - 4p + 6 + 4 chi(-3))
+  - (T_R(N)*16*p + 6p - 11) h^3 q.
+```
+
+When this is positive, the active quotient-window union itself hits every
+nonzero `D^2`-coset. This can certify exact-support saturation even when no
+single fixed `R`-window certificate is positive; the verifier audits such
+strict improvements at `R=2` and `R=3`.
 At the extreme `R=1`, the lift-limited layer has an exact quotient-kernel
 reduction. Let
 
@@ -727,8 +766,9 @@ inactive_lift_gate
 full_domain_saturated
 low_index_saturated
 two_fiber_saturated
-r2_union_saturated
 r_window_kummer_saturated
+r_window_union_kummer_saturated
+r2_union_saturated
 r_window_saturated
 lift_limited_sparse
 raw_saturated_lift_limited
