@@ -29,6 +29,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-18 - M1 remaining-wall numerical stress scan
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/search_m1_remaining_two_coordinate_wall.py`,
+  `experimental/m1_remaining_two_coordinate_wall_experiment.md`,
+  `experimental/m1_depth_two_two_coordinate_sharp_target_audit.md`,
+  `experimental/m1_residue_line_roadmap.md`,
+  `experimental/agents-log.md`.
+- **Status:** EXPERIMENTAL / AUDIT.
+- **What is being added:** A targeted finite scan of the ramified
+  nonreciprocal two-coordinate class left after the proved slice reductions.
+  The report preset gives `946184` tuple evaluations with no `4p` violation.
+- **How it is useful:** The largest rows all have equal projective line
+  monodromies, suggesting a narrower analytic subtarget for the remaining
+  M1 two-coordinate wall.
+- **What to do next:** Prove the equal-line-monodromy diagonal case
+  `S_{a,a,0,d}` with `d == -3a mod e`, or find a larger counterexample.
+
 ### 2026-06-18 - M1 remaining-family near-4p obstruction
 
 - **Agent/model:** Codex.

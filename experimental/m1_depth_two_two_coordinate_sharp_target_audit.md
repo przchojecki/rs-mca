@@ -110,6 +110,30 @@ C >= 3.9771715522
 in this normalization. Thus the plausible `4p` target, if true, is nearly
 sharp for the remaining ramified nonreciprocal family.
 
+## Remaining-Wall Stress Scan
+
+The targeted scanner
+`experimental/search_m1_remaining_two_coordinate_wall.py` tests only the
+ramified nonreciprocal class left after the proved slice reductions. Its
+report preset exhausts all canonical active-pair remaining-wall tuples with
+`p <= 500` and `e <= 24`, then scans the diagonal `n=20` family up to
+`p <= 1601`. It finds no `4p` violation among `946184` tuple evaluations
+across the two scans.
+
+The top rows all have equal projective line monodromies. For example the
+two largest observed ratios are
+
+```text
+(p,n,e,h)=(421,20,21,42),  (a,b,c,d)=(5,5,0,6),
+|S|/p=3.9771715522,        lines=(10,10,10),
+
+(p,n,e,h)=(461,20,23,46),  (a,b,c,d)=(18,18,0,15),
+|S|/p=3.9643175123,        lines=(36,36,36).
+```
+
+This suggests that the equal-line-monodromy diagonal family may be the
+right first analytic subtarget for the remaining `4p` theorem.
+
 ## Contribution to M1
 
 The one-coordinate mixed terms are now reduced to one-dimensional input in
