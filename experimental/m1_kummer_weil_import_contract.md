@@ -306,6 +306,14 @@ alternative ledger, while the active certificate constants stay unchanged
 until this standard `2F1` local-monodromy import is accepted as
 theorem-grade.
 
+The same symmetric-coordinate reduction covers the larger coordinate-diagonal
+submass where the two active coordinate-line monodromies are equal, but the
+line at infinity is not necessarily equal to them.  The verifier now reports
+this diagonal mass and the non-equal remainder separately.  This broader
+diagonal slice is not yet a certificate improvement: it still needs a
+global-invariant audit for the general pulled-back `2F1` sheaf.  The consumed
+conditional ledger remains the exact `C_2^eq` equal-line submass above.
+
 ### `2F1` Local-Monodromy Import Consumed by the Equal-Line Audit
 
 The equal-line conductor saving uses the following narrow standard input.

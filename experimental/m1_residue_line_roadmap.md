@@ -60,6 +60,9 @@ should be revised as the project learns more.
    `C_2^eq = 3 #{a,d : 3ga+2d=0, 2ga != 0}`, so the next certificate step is
    to get reviewer acceptance of the recorded `2F1` local table, then promote
    the reported conditional equal-line ledger into the consumed certificate.
+   The broader coordinate-diagonal mass is now also counted; its symmetric
+   reduction has the same local `B(s)=0` saving, but it still needs a
+   global-invariant audit before it can become a certificate improvement.
 4. After the trace-family wall is closed, generalize to fixed low-slack
    templates, then separate tangent, quotient-periodic, finite-template, and
    genuinely aperiodic packing.

@@ -2128,6 +2128,14 @@ def raw_two_coordinate_projective_l1_split_formula(
         character_order,
         square_coset_index,
     )
+    coordinate_diagonal = coordinate_diagonal_pair_count(
+        character_order,
+        square_coset_index,
+    )
+    if equal_line_diagonal > coordinate_diagonal:
+        raise ValueError(
+            (character_order, square_coset_index, equal_line_diagonal)
+        )
     active_pair_count = 3
     return {
         "two_coordinate_infinity_unramified_l1_bound": (
@@ -2142,7 +2150,39 @@ def raw_two_coordinate_projective_l1_split_formula(
         "two_coordinate_equal_line_l1_bound": (
             active_pair_count * equal_line_diagonal
         ),
+        "two_coordinate_coordinate_diagonal_l1_bound": (
+            active_pair_count * coordinate_diagonal
+        ),
+        "two_coordinate_coordinate_diagonal_non_equal_l1_bound": (
+            active_pair_count * (coordinate_diagonal - equal_line_diagonal)
+        ),
     }
+
+
+def coordinate_diagonal_pair_count(
+    character_order: int,
+    square_coset_index: int,
+) -> int:
+    """Count ramified nonreciprocal diagonal terms for one active pair."""
+
+    if character_order < 1 or square_coset_index % character_order:
+        raise ValueError((character_order, square_coset_index))
+    e = character_order
+    q = square_coset_index
+    lift = q // e
+    count = 0
+    for exponent in range(1, e):
+        first = lift * exponent % q
+        for conic_exponent in range(1, q):
+            infinity = (-(2 * first + 2 * conic_exponent)) % q
+            if infinity == 0:
+                continue
+            if (2 * first) % q == 0:
+                continue
+            if (first + infinity) % q == 0:
+                continue
+            count += 1
+    return count
 
 
 def equal_line_diagonal_pair_count_formula(
@@ -2346,6 +2386,16 @@ def slack_two_second_kummer_saturation_data(
             + equal_line_conditional_sqrt_error_bound
         ),
         "conic_error_constant": 1,
+        "two_coordinate_coordinate_diagonal_l1_bound": int(
+            two_coordinate_projective_split[
+                "two_coordinate_coordinate_diagonal_l1_bound"
+            ]
+        ),
+        "two_coordinate_coordinate_diagonal_non_equal_l1_bound": int(
+            two_coordinate_projective_split[
+                "two_coordinate_coordinate_diagonal_non_equal_l1_bound"
+            ]
+        ),
         "divisor_power_failure_count": 0,
         "divisor_nontriviality_check": True,
         "radical_component_degrees": radical_component_degrees,
@@ -6632,6 +6682,30 @@ def scan_supports(
             int(
                 slack_two_second_kummer_saturation[
                     "two_coordinate_equal_line_l1_bound"
+                ]
+            )
+            if slack_two_second_kummer_saturation is not None
+            else None
+        ),
+        (
+            "canonical_slack_two_second_kummer_"
+            "coordinate_diagonal_l1_bound"
+        ): (
+            int(
+                slack_two_second_kummer_saturation[
+                    "two_coordinate_coordinate_diagonal_l1_bound"
+                ]
+            )
+            if slack_two_second_kummer_saturation is not None
+            else None
+        ),
+        (
+            "canonical_slack_two_second_kummer_"
+            "coordinate_diagonal_non_equal_l1_bound"
+        ): (
+            int(
+                slack_two_second_kummer_saturation[
+                    "two_coordinate_coordinate_diagonal_non_equal_l1_bound"
                 ]
             )
             if slack_two_second_kummer_saturation is not None

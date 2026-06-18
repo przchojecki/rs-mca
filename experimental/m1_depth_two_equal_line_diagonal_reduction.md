@@ -70,6 +70,13 @@ where `E_B` is supported on the at most two roots of `B(s)=0`, and
 |E_B(mu,eta)| <= 2 sqrt(p).
 ```
 
+The identities in this first section do not use the equal-line monodromy
+relation.  They apply to every coordinate-diagonal two-coordinate term,
+namely every active pair with the same coordinate character on the two active
+lines.  The equal-line condition is a further specialization used later to
+collapse the residual pullback to a single-character `alpha` form and to
+identify the exact certificate submass `C_2^eq`.
+
 ## Equal-Line Monodromy
 
 For the canonical active pair `(a,b,c)=(a,b,0)`, use a common character order
@@ -473,6 +480,30 @@ pullback main term, up to the already separated regular-fiber and
 the algebraic support and this corrected conductor ledger; the
 hypergeometric local-monodromy table remains an imported standard `2F1`
 input.
+
+The same `B(s)=0` local calculation is actually coordinate-diagonal rather
+than equal-line-specific.  For a general diagonal pair, put
+`alpha=mu eta`; the standard normalization becomes
+
+```text
+H(lambda) = const * chi_2(-lambda)
+  * 2F1(chi_2, mu; alpha; 1/lambda).
+```
+
+At a root of `B(s)=0`, the imported `t=0` characters are `1` and
+`alpha^(-1)`.  After the visible `chi_2(t)` factor and the outer twist
+`rho(B(s))=alpha chi_2(B(s))`, they again become
+
+```text
+alpha,        1.
+```
+
+Thus the two-unit local saving at `lambda=infinity` is not confined to the
+equal-line sub-slice.  What remains before using the larger diagonal mass in
+certificates is a global-invariant and degenerate-parameter audit for the
+general diagonal pullback.  The current certificate tooling therefore reports
+the full coordinate-diagonal L1 mass separately, but consumes only the
+equal-line conditional ledger.
 
 ## Deck Involution Audit
 

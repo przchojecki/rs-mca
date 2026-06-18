@@ -165,6 +165,7 @@ def raw_two_coordinate_projective_l1_split(
     infinity_unramified = 0
     projective_reciprocal = 0
     ramified_nonreciprocal = 0
+    coordinate_diagonal = 0
     equal_line_diagonal = 0
     for first_exponent in range(1, character_order):
         for second_exponent in range(1, character_order):
@@ -184,6 +185,8 @@ def raw_two_coordinate_projective_l1_split(
                     projective_reciprocal += 1
                 else:
                     ramified_nonreciprocal += 1
+                    if first == second:
+                        coordinate_diagonal += 1
                     if first == second == infinity:
                         equal_line_diagonal += 1
     active_pair_count = 3
@@ -191,6 +194,10 @@ def raw_two_coordinate_projective_l1_split(
         "infinity_unramified": active_pair_count * infinity_unramified,
         "projective_reciprocal": active_pair_count * projective_reciprocal,
         "ramified_nonreciprocal": active_pair_count * ramified_nonreciprocal,
+        "coordinate_diagonal": active_pair_count * coordinate_diagonal,
+        "coordinate_diagonal_non_equal": (
+            active_pair_count * (coordinate_diagonal - equal_line_diagonal)
+        ),
         "equal_line_diagonal": active_pair_count * equal_line_diagonal,
     }
 
@@ -216,6 +223,30 @@ def equal_line_diagonal_pair_count_formula(
         if right_hand_side % q == 0:
             solution_count -= 1
     return solution_count
+
+
+def coordinate_diagonal_pair_count_formula(
+    character_order: int,
+    square_coset_index: int,
+) -> int:
+    if square_coset_index % character_order:
+        raise AssertionError((character_order, square_coset_index))
+    e = character_order
+    q = square_coset_index
+    lift = q // e
+    count = 0
+    for exponent in range(1, e):
+        first = lift * exponent % q
+        for conic_exponent in range(1, q):
+            infinity = (-(2 * first + 2 * conic_exponent)) % q
+            if infinity == 0:
+                continue
+            if (2 * first) % q == 0:
+                continue
+            if (first + infinity) % q == 0:
+                continue
+            count += 1
+    return count
 
 
 def raw_two_coordinate_projective_l1_split_formula(
@@ -249,6 +280,26 @@ def raw_two_coordinate_projective_l1_split_formula(
         "projective_reciprocal": 3 * projective_reciprocal,
         "ramified_nonreciprocal": (
             3 * (total - infinity_unramified - projective_reciprocal)
+        ),
+        "coordinate_diagonal": (
+            3
+            * coordinate_diagonal_pair_count_formula(
+                character_order,
+                square_coset_index,
+            )
+        ),
+        "coordinate_diagonal_non_equal": (
+            3
+            * (
+                coordinate_diagonal_pair_count_formula(
+                    character_order,
+                    square_coset_index,
+                )
+                - equal_line_diagonal_pair_count_formula(
+                    character_order,
+                    square_coset_index,
+                )
+            )
         ),
         "equal_line_diagonal": (
             3
@@ -758,6 +809,18 @@ def main() -> None:
             raise AssertionError(
                 (p, n, two_coordinate_equal_line_l1_bound, certificate)
             )
+        if int(two_coordinate_projective_split["coordinate_diagonal"]) != int(
+            certificate["two_coordinate_coordinate_diagonal_l1_bound"]
+        ):
+            raise AssertionError((p, n, two_coordinate_projective_split, certificate))
+        if int(
+            two_coordinate_projective_split["coordinate_diagonal_non_equal"]
+        ) != int(
+            certificate[
+                "two_coordinate_coordinate_diagonal_non_equal_l1_bound"
+            ]
+        ):
+            raise AssertionError((p, n, two_coordinate_projective_split, certificate))
         if three_coordinate_kummer_l1_bound != int(
             certificate["three_coordinate_kummer_l1_bound"]
         ):
@@ -1008,13 +1071,25 @@ def main() -> None:
         if direct_split != formula_split:
             raise AssertionError((character_order, square_coset_index, direct_split))
         equal_line_l1 = int(direct_split["equal_line_diagonal"])
+        coordinate_diagonal_l1 = int(direct_split["coordinate_diagonal"])
+        coordinate_diagonal_non_equal_l1 = int(
+            direct_split["coordinate_diagonal_non_equal"]
+        )
         ramified_l1 = int(direct_split["ramified_nonreciprocal"])
         if equal_line_l1 > ramified_l1:
+            raise AssertionError((character_order, square_coset_index, direct_split))
+        if not equal_line_l1 <= coordinate_diagonal_l1 <= ramified_l1:
+            raise AssertionError((character_order, square_coset_index, direct_split))
+        if coordinate_diagonal_non_equal_l1 != (
+            coordinate_diagonal_l1 - equal_line_l1
+        ):
             raise AssertionError((character_order, square_coset_index, direct_split))
         equal_line_checked.append(
             (
                 character_order,
                 square_coset_index,
+                coordinate_diagonal_l1,
+                coordinate_diagonal_non_equal_l1,
                 equal_line_l1,
                 ramified_l1,
                 5 * equal_line_l1,

@@ -29,6 +29,28 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-18 - M1 coordinate-diagonal mass audit
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/m1_support_occupancy_scan.py`,
+  `experimental/verify_m1_slack_two_depth_two_kummer_saturation.py`,
+  `experimental/m1_depth_two_equal_line_diagonal_reduction.md`,
+  `experimental/m1_depth_two_lift_window_theorem.md`,
+  `experimental/m1_kummer_weil_import_contract.md`,
+  `experimental/m1_residue_line_roadmap.md`,
+  `experimental/agents-log.md`.
+- **Status:** CONDITIONAL / AUDIT.
+- **What is being added:** The raw projective two-coordinate split now reports
+  the full coordinate-diagonal ramified nonreciprocal mass, its non-equal
+  remainder, and the existing equal-line submass.
+- **How it is useful:** Makes clear that the symmetric-coordinate
+  hypergeometric reduction is not equal-line-specific; the equal-line result
+  is the first certificate-ready sub-slice of a larger diagonal target.
+- **What to do next:** Audit global invariants and degenerate parameters for
+  the general coordinate-diagonal pullback before promoting the
+  `C_2^diag-C_2^eq` remainder into a conditional certificate ledger.
+
 ### 2026-06-18 - M1 equal-line conditional certificate ledger
 
 - **Agent/model:** Codex.

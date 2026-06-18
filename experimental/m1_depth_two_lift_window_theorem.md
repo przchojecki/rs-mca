@@ -210,6 +210,19 @@ Here the three choices are the active coordinate pair.  The congruence
 are all equal; the condition `2ga != 0` removes the order-two common
 monodromy already counted in `C_2^rec`.
 
+The verifier also reports the larger coordinate-diagonal submass
+
+```text
+C_2^diag =
+  3 # {a,d : 1<=a<e, 1<=d<q,
+        (ga,ga,-2ga-2d) is ramified nonreciprocal}.
+```
+
+The symmetric-coordinate reduction applies to this full diagonal mass, not
+only to `C_2^eq`; however, only the equal-line submass currently has a
+complete conditional certificate ledger.  Promoting `C_2^diag-C_2^eq` would
+require the same global-invariant audit for the general diagonal pullback.
+
 Since `g` is either `1` or `2`, the `C_2^0` and `C_2^rec` counts have closed
 forms per active coordinate pair. If `g=1`, then
 
