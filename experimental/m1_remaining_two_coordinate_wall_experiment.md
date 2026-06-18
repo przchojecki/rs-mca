@@ -32,11 +32,12 @@ floating-point roots of unity. The current report also runs an
 `asymmetric_wall` pass, which removes the projective equal-pair tuples now
 isolated by the conditional `C_2^peq` ledger, and an
 `asymmetric_nonresonant_wall` pass, which also removes the exact line-conic
-resonant submass `C_2^lc`.
+resonant submass `C_2^lc`.  It now also reports the complementary
+`asymmetric_line_conic_resonant_wall` pass, isolating `C_2^lc` itself.
 
 ## Result
 
-The report preset ran four scans.
+The report preset ran five scans.
 
 ```text
 grid:
@@ -62,6 +63,13 @@ nonresonant:
   tuples = 596304
   violations of 4p = 0
 
+line-conic resonant:
+  same prime/character grid
+  projective equal-pair tuples removed, line-conic resonant tuples retained
+  cases = 453
+  tuples = 88848
+  violations of 4p = 0
+
 diagonal n=20:
   primes p <= 1601 with 20 | p-1
   only tuples (a,a,0,d) in the remaining class
@@ -74,7 +82,9 @@ The diagonal scan overlaps the bounded grid for small `p`, so the combined
 old remaining-wall count is `946184` tuple evaluations rather than a
 deduplicated tuple set. The asymmetric count is reported separately because
 it is the post-`C_2^peq` residual wall. The nonresonant count is the
-post-`C_2^lc` subwall inside that asymmetric residual.
+post-`C_2^lc` subwall inside that asymmetric residual. The line-conic
+resonant count is the complementary `C_2^lc` stress test inside the same
+asymmetric residual.
 
 The largest observed ratios were:
 
@@ -110,10 +120,22 @@ The largest observed asymmetric-only ratios in the same grid were:
 | `2.8077205315` | `(461,23,20,20)` | `(18,10,0,9)` | `(18,10,14)` | no |
 | `2.7940447234` | `(463,22,21,42)` | `(1,11,0,25)` | `(2,22,10)` | no |
 
-The top ten nonresonant asymmetric rows are the same ten rows. The first
-line-conic-resonant asymmetric row in the report top-20 appears lower, at
-ratio `2.7649691518` for `(p,n,e,h)=(461,20,23,46)` and tuple
-`(1,10,0,44)`.
+The top ten nonresonant asymmetric rows are the same ten rows.
+
+The largest observed line-conic-resonant asymmetric ratios were:
+
+| ratio | `(p,n,e,h)` | tuple `(a,b,c,d)` | line monodromies |
+| --- | --- | --- | --- |
+| `2.7649691518` | `(461,20,23,46)` | `(1,10,0,44)` | `(2,20,28)` |
+| `2.7469261727` | `(211,21,10,10)` | `(9,4,0,7)` | `(9,4,3)` |
+| `2.7070090633` | `(277,12,23,46)` | `(19,7,0,8)` | `(38,14,24)` |
+| `2.5339082341` | `(463,33,14,14)` | `(4,11,0,10)` | `(4,11,7)` |
+| `2.5335973491` | `(457,24,19,38)` | `(8,1,0,36)` | `(16,2,24)` |
+| `2.4963697768` | `(241,20,12,24)` | `(7,8,0,10)` | `(14,16,22)` |
+| `2.4963697768` | `(241,10,24,48)` | `(14,16,0,20)` | `(28,32,44)` |
+| `2.4686120945` | `(211,10,21,42)` | `(12,14,0,18)` | `(24,28,38)` |
+| `2.4437525698` | `(397,33,12,12)` | `(8,9,0,3)` | `(8,9,1)` |
+| `2.3995060208` | `(137,8,17,34)` | `(5,3,0,28)` | `(10,6,30)` |
 
 ## Interpretation
 
@@ -149,7 +171,8 @@ audited nonresonant asymmetric ratio is still `3.2173609608p`. Thus the
 largest observed asymmetric obstruction is already in the clean
 normal-crossing nonresonant subwall `C_2^anr`; the line-conic resonant slice
 is important for theorem hypotheses, but it does not currently explain the
-largest asymmetric examples.
+largest asymmetric examples. In the same report grid, the largest audited
+line-conic-resonant asymmetric ratio is only `2.7649691518p`.
 The resonant slice is now algebraically reduced in
 `experimental/m1_depth_two_line_conic_resonance_reduction.md`, so future
 numerical searches can treat resonant and nonresonant families as distinct

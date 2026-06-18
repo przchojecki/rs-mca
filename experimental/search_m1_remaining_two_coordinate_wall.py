@@ -162,6 +162,7 @@ def scan_case(
     diagonal_only: bool,
     asymmetric_only: bool,
     nonresonant_only: bool,
+    resonant_only: bool,
     tolerance: float,
 ) -> CaseResult:
     n = (p - 1) // e
@@ -202,7 +203,10 @@ def scan_case(
             monodromies = line_monodromies(e, h, a, b, d)
             if asymmetric_only and has_projective_equal_pair(monodromies):
                 continue
-            if nonresonant_only and has_line_conic_resonance(monodromies, d, h):
+            line_conic_resonant = has_line_conic_resonance(monodromies, d, h)
+            if nonresonant_only and line_conic_resonant:
+                continue
+            if resonant_only and not line_conic_resonant:
                 continue
             scanned_tuple_count += 1
             magnitude = float(abs(value))
@@ -233,9 +237,13 @@ def scan_case(
             "diagonal"
             if diagonal_only
             else (
-                "asymmetric_nonresonant_wall"
-                if nonresonant_only
-                else "asymmetric_wall" if asymmetric_only else "remaining_wall"
+                "asymmetric_line_conic_resonant_wall"
+                if resonant_only
+                else (
+                    "asymmetric_nonresonant_wall"
+                    if nonresonant_only
+                    else "asymmetric_wall" if asymmetric_only else "remaining_wall"
+                )
             )
         ),
         p=p,
@@ -260,6 +268,7 @@ def scan_grid(
     max_character_order: int,
     asymmetric_only: bool,
     nonresonant_only: bool,
+    resonant_only: bool,
     tolerance: float,
 ) -> List[CaseResult]:
     results: List[CaseResult] = []
@@ -279,6 +288,7 @@ def scan_grid(
                     diagonal_only=False,
                     asymmetric_only=asymmetric_only,
                     nonresonant_only=nonresonant_only,
+                    resonant_only=resonant_only,
                     tolerance=tolerance,
                 )
             )
@@ -309,6 +319,7 @@ def scan_diagonal_family(
                 diagonal_only=True,
                 asymmetric_only=False,
                 nonresonant_only=False,
+                resonant_only=False,
                 tolerance=tolerance,
             )
         )
@@ -330,6 +341,7 @@ def summarize_results(
     grid_results: List[CaseResult],
     asymmetric_results: List[CaseResult],
     nonresonant_results: List[CaseResult],
+    resonant_results: List[CaseResult],
     diagonal_results: List[CaseResult],
     top_count: int,
 ) -> Dict[str, object]:
@@ -357,6 +369,14 @@ def summarize_results(
             result.violation_count for result in nonresonant_results
         ),
         "nonresonant_top": top_results(nonresonant_results, top_count),
+        "resonant_case_count": len(resonant_results),
+        "resonant_scanned_tuple_count": sum(
+            result.scanned_tuple_count for result in resonant_results
+        ),
+        "resonant_violation_count": sum(
+            result.violation_count for result in resonant_results
+        ),
+        "resonant_top": top_results(resonant_results, top_count),
         "diagonal_case_count": len(diagonal_results),
         "diagonal_scanned_tuple_count": sum(
             result.scanned_tuple_count for result in diagonal_results
@@ -393,6 +413,12 @@ def print_text_report(summary: Dict[str, object]) -> None:
         f"violations={summary['nonresonant_violation_count']}",
     )
     print(
+        "line-conic resonant:",
+        f"cases={summary['resonant_case_count']}",
+        f"tuples={summary['resonant_scanned_tuple_count']}",
+        f"violations={summary['resonant_violation_count']}",
+    )
+    print(
         "diagonal:",
         f"cases={summary['diagonal_case_count']}",
         f"remaining_tuples={summary['diagonal_scanned_tuple_count']}",
@@ -412,6 +438,20 @@ def print_text_report(summary: Dict[str, object]) -> None:
             f"lines={tuple(row['best_line_monodromies'])}",
             f"equal_pair={row['best_projective_equal_pair']}",
             f"equal_lines={row['best_equal_line_monodromy']}",
+            f"line_conic_res={row['best_line_conic_resonant']}",
+            f"mode={row['mode']}",
+        )
+    print("top line-conic resonant asymmetric results:")
+    for row in summary["resonant_top"]:
+        print(
+            "  "
+            f"ratio={row['best_ratio_to_p']:.10f}",
+            f"p={row['p']}",
+            f"n={row['n']}",
+            f"e={row['e']}",
+            f"h={row['h']}",
+            f"tuple={tuple(row['best_tuple'])}",
+            f"lines={tuple(row['best_line_monodromies'])}",
             f"line_conic_res={row['best_line_conic_resonant']}",
             f"mode={row['mode']}",
         )
@@ -486,6 +526,7 @@ def main() -> None:
         max_character_order=int(args.max_character_order),
         asymmetric_only=False,
         nonresonant_only=False,
+        resonant_only=False,
         tolerance=float(args.tolerance),
     )
     asymmetric_results = scan_grid(
@@ -493,6 +534,7 @@ def main() -> None:
         max_character_order=int(args.max_character_order),
         asymmetric_only=True,
         nonresonant_only=False,
+        resonant_only=False,
         tolerance=float(args.tolerance),
     )
     nonresonant_results = scan_grid(
@@ -500,6 +542,15 @@ def main() -> None:
         max_character_order=int(args.max_character_order),
         asymmetric_only=True,
         nonresonant_only=True,
+        resonant_only=False,
+        tolerance=float(args.tolerance),
+    )
+    resonant_results = scan_grid(
+        prime_limit=int(args.prime_limit),
+        max_character_order=int(args.max_character_order),
+        asymmetric_only=True,
+        nonresonant_only=False,
+        resonant_only=True,
         tolerance=float(args.tolerance),
     )
     diagonal_results = scan_diagonal_family(
@@ -511,6 +562,7 @@ def main() -> None:
         grid_results,
         asymmetric_results,
         nonresonant_results,
+        resonant_results,
         diagonal_results,
         int(args.top),
     )

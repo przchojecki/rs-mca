@@ -29,6 +29,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-19 - M1 line-conic resonant wall scan
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/search_m1_remaining_two_coordinate_wall.py`,
+  `experimental/m1_remaining_two_coordinate_wall_experiment.md`,
+  `experimental/m1_depth_two_line_conic_resonance_reduction.md`,
+  `experimental/agents-log.md`.
+- **Status:** EXPERIMENTAL / AUDIT.
+- **What is being added:** Adds a dedicated
+  `asymmetric_line_conic_resonant_wall` scan mode for the exact `C_2^lc`
+  slice and records the report-grid maximum `2.7649691518p`.
+- **How it is useful:** This is a counterexample-first stress test for the
+  new line-conic transformed-core target; the resonant slice is well below
+  the `4p` target in the current grid and below the nonresonant asymmetric
+  maximum.
+- **What to do next:** Use the largest resonant rows to guide the
+  one-dimensional conductor proof or extend the resonant grid.
+
 ### 2026-06-19 - M1 line-conic second moment
 
 - **Agent/model:** Codex.

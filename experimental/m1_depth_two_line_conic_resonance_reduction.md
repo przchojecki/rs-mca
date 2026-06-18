@@ -182,6 +182,10 @@ The verifier also performs a finite counterexample-first audit for this
 target.  It exhausts all nonprincipal `(eta,nu)` for `p=17,31` and checks
 targeted larger cases; in the current audit it reports no `4p` violation for
 the core or open sums and no `3 sqrt(p)` violation for the line correction.
+The remaining-wall scanner also has a dedicated line-conic-resonant pass:
+in its current report grid, the largest `C_2^lc` asymmetric ratio is
+`2.7649691518p`, below the nonresonant asymmetric maximum
+`3.2173609608p`.
 
 ## Full-Character Second Moment
 
