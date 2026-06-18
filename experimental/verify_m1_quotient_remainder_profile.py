@@ -608,6 +608,42 @@ def verify_adaptive_competitive_menu_size(max_window_length, max_menu_size):
     return tuple(rows)
 
 
+def verify_gap_one_menu_linear_tail(n, k0, t_start, t_end, q):
+    assert k0 <= n - k0
+    window_length = t_end - t_start + 1
+    menu_size = adaptive_competitive_menu_size_formula(window_length)
+    menu = exact_dither_menu_construction(t_start, t_end, menu_size, 1)
+    assert menu_covers_window(t_start, t_end, menu, 1)
+    if menu_size > 1:
+        assert not menu_covers_window(t_start, t_end, menu[:-1], 1)
+
+    adaptive_mass = n - k0 - 1
+    rows = []
+    for t in range(t_start, t_end + 1):
+        choices = [r for r in menu if r != t and abs(t - r) == 1]
+        assert choices, (t_start, t_end, menu, t)
+        for r in choices:
+            expected_mass = n - k0 - 1 if r == t - 1 else k0 - 1
+            assert expected_mass <= adaptive_mass
+            for m in dyadic_divisors(k0):
+                if m < t + 1:
+                    continue
+                strict = verify_two_sided_fixed_dither_stable_tail(
+                    n,
+                    k0,
+                    r,
+                    t,
+                    m,
+                )
+                correction = weighted_strict_correction(strict, t, q)
+                assert dict(strict) == {1: expected_mass}
+                assert correction == expected_mass * q ** (t - 1)
+                assert correction <= adaptive_mass * q ** (t - 1)
+            rows.append((t, r, expected_mass))
+
+    return menu_size, tuple(menu), tuple(rows)
+
+
 def verify_fixed_window_stable_tail_minimax(n, k0, t_start, t_end):
     assert 1 <= t_start <= t_end
     window_length = t_end - t_start + 1
@@ -1068,6 +1104,16 @@ def main():
         max_menu_size=12,
     )
     print(f"adaptive-competitive menu sizes={adaptive_menu_rows}")
+    gap_one_menu_cases = [
+        (256, 128, 5, 12, 17),
+        (1024, 256, 9, 15, 257),
+    ]
+    for case in gap_one_menu_cases:
+        menu_size, menu, rows = verify_gap_one_menu_linear_tail(*case)
+        print(
+            f"n,k0,t0,t1,q={case}: gap_one_menu_size={menu_size}, "
+            f"menu={menu}, linear_rows={rows}"
+        )
     adjacent_remainder_cases = [
         (256, 128, 5, 8),
         (256, 128, 5, 16),

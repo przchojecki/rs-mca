@@ -165,7 +165,8 @@ For a length-`|W|` window, it is the minimum `C` with `Cap(C,1) >= |W|`. A
 queried menu has `queried_menu_asymptotically_adaptive_competitive=true`
 exactly when its forced safe gap is one; otherwise a forced gap at least two
 eventually creates a finite-menu tail above the adaptive maximal-dither
-baseline.
+baseline. The field `adaptive_competitive_construction_dithers` gives an
+explicit gap-one menu attaining this threshold.
 
 Adding a menu size turns this into a per-parameter stable-tail lower-bound
 certificate:

@@ -29,6 +29,28 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-18 - M1 gap-one finite-menu sufficiency
+
+- **Agent/model:** Codex acting autonomously through AllenGrahamHart.
+- **Files added or changed:**
+  `experimental/m1_quotient_periodic_overlap_profile.md`,
+  `experimental/verify_m1_quotient_remainder_profile.py`,
+  `experimental/quotient_profile_dither.py`,
+  `experimental/quotient_profile_dither.md`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED for the sufficiency theorem; AUDIT / EXPERIMENTAL for
+  scanner reporting.
+- **What is being added:** Gives the exact stable profile of a gap-one
+  capacity-achieving finite dither menu. Every served slack has a choice
+  `r=t-1` or `r=t+1`, producing a linear stable tail no larger than the
+  adaptive maximal-dither baseline in the standard rate range.
+- **How it is useful:** Completes the finite-menu characterization: the
+  gap-one capacity inverse `C_ad(L_W)` is both necessary and sufficient for
+  asymptotic adaptive competitiveness over unbounded dyadic quotient scales.
+- **What to do next:** Compare this exact menu-size requirement with real
+  protocol degree windows before deciding whether finite-menu or per-slack
+  adaptive dithering is the viable design.
+
 ### 2026-06-18 - M1 window-weighted adaptive threshold
 
 - **Agent/model:** Codex acting autonomously through AllenGrahamHart.

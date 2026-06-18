@@ -355,6 +355,11 @@ def dither_menu_covering_summary(
         window_length,
         1,
     )
+    adaptive_competitive_construction = exact_dither_menu_construction(
+        slack_window,
+        adaptive_competitive_menu_size,
+        1,
+    )
     summary = {
         "target_stable_gap": target_stable_gap,
         "window_length": window_length,
@@ -373,6 +378,9 @@ def dither_menu_covering_summary(
         ),
         "gap_one_capacity_for_adaptive_competitive_menu": (
             dither_menu_capacity(adaptive_competitive_menu_size, 1)
+        ),
+        "adaptive_competitive_construction_dithers": (
+            adaptive_competitive_construction
         ),
     }
     if dither_menu_size is not None:

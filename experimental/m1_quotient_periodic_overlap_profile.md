@@ -970,6 +970,27 @@ super-linear finite-menu tail at large dyadic scales. This is the precise
 menu-size cost of replacing per-slack adaptive maximal dither by a finite menu
 without allowing the exact-`k0` slack.
 
+This threshold is also sufficient. A capacity-achieving gap-one menu covers
+`W` by adjacent dithers: every served slack `t` has a permitted choice
+`r=t-1` or `r=t+1`. At every stable dyadic scale `m | k0` with `m >= t+1`,
+the two-sided stable formula gives the exact linear profile
+
+```text
+r=t-1:   H_REM^{<t}(y) = (n-k0-1)y,
+         R_REM(t,q) = (n-k0-1)q^(t-1),
+
+r=t+1:   H_REM^{<t}(y) = (k0-1)y,
+         R_REM(t,q) = (k0-1)q^(t-1).
+```
+
+Thus, in the standard rate range `k0 <= n/2`, every gap-one menu choice has
+same-slack mass and weighted correction at most the adaptive maximal-dither
+baseline, with equality only on the under-dithered side. Combining this
+sufficiency statement with the forced-gap lower bound above gives an exact
+large-scale characterization: over an unbounded dyadic quotient hierarchy,
+finite-menu stable tails are asymptotically adaptive-competitive if and only
+if the menu size is at least `C_ad(L_W)`.
+
 Finally, the maximal-dither remainder case has an exact all-scale formula, so
 small scales need not be handled as a black-box enumeration. Suppose
 
@@ -1510,7 +1531,9 @@ Two immediate readings are useful.
    equivalent to `D_C=1`, so the exact required menu size for a length-`L_W`
    window is the gap-one capacity inverse `C_ad(L_W)`. For weighted random-line
    budgets, the comparison against the whole adaptive window maximum pays the
-   explicit extra factor `q^(L_W-1)` beyond the same-slack comparison.
+   explicit extra factor `q^(L_W-1)` beyond the same-slack comparison. The
+   gap-one construction realizes the converse: every stable tail is linear and,
+   for `k0 <= n/2`, no larger than the adaptive same-slack baseline.
 9. In the maximal-dither case, the one-remainder profile is explicit at every
    scale, not only at `m>=t`: the full strict profile is the three-band formula
    at exchange sizes `hm-1`, `hm`, and `hm+1`. This gives a closed-form
