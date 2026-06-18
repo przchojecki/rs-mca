@@ -29,6 +29,7 @@ GLOBAL_EXPECTED = {
     "e": 21,
     "h": 42,
     "max_tuple": (5, 5, 0, 6),
+    "projective_class": "ramified_nonreciprocal",
     "ratio": 3.9771715522,
     "exceeds_multiplier": 3.97,
 }
@@ -47,6 +48,7 @@ EXHAUSTIVE_EXPECTED = {
     "e": 6,
     "h": 12,
     "max_tuple": (0, 5, 5, 3),
+    "projective_class": "ramified_nonreciprocal",
     "ratio": 3.3896787506,
     "exceeds_multiplier": 3,
 }
@@ -92,6 +94,31 @@ def character_table(p: int, order: int, logs: Dict[int, int]) -> List[List[compl
 
 def shape_a(u: int, v: int, p: int) -> int:
     return (-(u * u + v * v + u * v + u + v + 1)) % p
+
+
+def projective_class(
+    e: int,
+    h: int,
+    exponents: Tuple[int, int, int, int],
+) -> str:
+    lift = h // e
+    active = [
+        lift * exponent
+        for exponent in exponents[:3]
+        if exponent % e != 0
+    ]
+    if len(active) != 2:
+        raise AssertionError((e, h, exponents, active))
+    infinity = (-(active[0] + active[1] + 2 * exponents[3])) % h
+    if infinity == 0:
+        return "infinity_unramified"
+    if (
+        (active[0] + active[1]) % h == 0
+        or (active[0] + infinity) % h == 0
+        or (active[1] + infinity) % h == 0
+    ):
+        return "projective_reciprocal"
+    return "ramified_nonreciprocal"
 
 
 def sum_for_tuple(
@@ -161,6 +188,7 @@ def audit_sample(p: int, n: int) -> Dict[str, object]:
         "max_abs": round(best_abs, 10),
         "max_ratio_to_p": round(best_abs / p, 10),
         "max_tuple": best_tuple,
+        "projective_class": projective_class(e, h, best_tuple),
     }
 
 
@@ -198,6 +226,7 @@ def audit_targeted_case(case: Dict[str, object]) -> Dict[str, object]:
         "max_abs": round(magnitude, 10),
         "max_ratio_to_p": round(magnitude / p, 10),
         "max_tuple": exponents,
+        "projective_class": projective_class(e, h, exponents),
     }
 
 

@@ -79,9 +79,12 @@ This targeted tuple has
 |S_{5,5,0,6}| / p = 3.9771715522,
 ```
 
-still below `4p` but much closer to it. This row is not an exhaustive
-all-tuple audit for `(p,n)=(421,20)`; it is included to make the near-sharp
-finite obstruction reproducible without making the verifier expensive.
+still below `4p` but much closer to it. Its projective line monodromy class is
+`ramified_nonreciprocal`, so it is not removed by the proved
+infinity-unramified or projective-reciprocal reductions. This row is not an
+exhaustive all-tuple audit for `(p,n)=(421,20)`; it is included to make the
+near-sharp finite obstruction reproducible without making the verifier
+expensive.
 
 ## Finite Obstruction Below `4p`
 
@@ -101,7 +104,7 @@ C >= 3.9771715522
 ```
 
 in this normalization. Thus the plausible `4p` target, if true, is nearly
-sharp for this family.
+sharp for the remaining ramified nonreciprocal family.
 
 ## Contribution to M1
 
@@ -116,6 +119,9 @@ degree-four import
 ```
 
 by a sharper `4p` theorem, if the finite pattern persists uniformly.
+After the infinity-unramified and projective-reciprocal reductions, the same
+target is still necessary for the remaining ramified nonreciprocal family,
+as witnessed by the `(421,20)` targeted row.
 The three-coordinate `16p` term remains separate; the finite obstruction in
 `m1_depth_two_kummer_constant_audit.md` already shows that not all mixed
 terms can be collapsed to `4p`.

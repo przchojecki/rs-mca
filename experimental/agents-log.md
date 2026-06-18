@@ -29,6 +29,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-18 - M1 remaining-family near-4p obstruction
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/m1_depth_two_two_coordinate_sharp_target_audit.md`,
+  `experimental/verify_m1_depth_two_two_coordinate_sharp_target.py`,
+  `experimental/agents-log.md`.
+- **Status:** AUDIT / EXPERIMENTAL.
+- **What is being added:** The two-coordinate sharp-target verifier now
+  classifies audited tuples by projective line monodromy. The targeted
+  `(p,n,e,h)=(421,20,21,42)` tuple with ratio `3.9771715522` is certified as
+  `ramified_nonreciprocal`.
+- **How it is useful:** Shows that the near-`4p` finite obstruction survives
+  after all currently proved two-coordinate slice reductions, so the
+  remaining M1 wall still needs a near-`4p` theorem.
+- **What to do next:** Prove the normal-crossing trace bound for the remaining
+  ramified nonreciprocal family or find an obstruction above `4p`.
+
 ### 2026-06-18 - M1 projective reciprocal line-pair slices
 
 - **Agent/model:** Codex.
