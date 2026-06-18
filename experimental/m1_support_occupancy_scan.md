@@ -130,6 +130,16 @@ canonical_slack_three_shape_beta_parameter_count_check
 canonical_slack_three_shape_active_nonzero_cube_coset_count
 canonical_slack_three_shape_cube_coset_slope_count
 canonical_slack_three_shape_cube_coset_slope_count_check
+canonical_slack_three_full_domain_ordered_shape_count
+canonical_slack_three_full_domain_ordered_shape_count_check
+canonical_slack_three_full_domain_beta_count
+canonical_slack_three_full_domain_beta_count_check
+canonical_slack_three_full_domain_zero_beta_count
+canonical_slack_three_full_domain_nonzero_beta_count
+canonical_slack_three_full_domain_cube_surjective
+canonical_slack_three_full_domain_slope_image
+canonical_slack_three_full_domain_slope_count
+canonical_slack_three_full_domain_slope_count_check
 canonical_slack_three_cyclotomic_character_order
 canonical_slack_three_cyclotomic_conic_weil_constant
 canonical_slack_three_cyclotomic_shape_count_bound
@@ -388,6 +398,20 @@ the beta count and sixfold beta check, the 24-fold quotient check,
 reconstructed packet/support counts and histograms, and the exact cube-coset
 slope count
 `1_{zero active} + #{active nonzero beta(u,v)D^3 cosets} * |D^3|`.
+
+When `D=F_p^*`, `canonical_slack_three_full_domain_*` checks the exact
+quadratic-character count
+
+```text
+|C_3(F_p^*)| = p - 9 - 4 chi(-3) - 6 chi(-2).
+```
+
+It also records the exact beta count, the zero-beta criterion
+`chi(-1)=1`, and the cube-surjective slope image. In particular, for
+`p==2 mod 3` and `p>=23`, the full-domain slack-three first-superboundary
+catalog hits every nonzero slope; it hits zero too exactly when
+`p==1 mod 4`. The slope-count equality check is asserted only when every
+full-domain shape has an active quotient lift at the queried support size.
 
 For prime fields, `canonical_slack_three_cyclotomic_*` reports the conditional
 genus-zero character-sum bound for this ordered conic shape count. If

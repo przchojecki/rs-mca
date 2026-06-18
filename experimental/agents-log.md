@@ -29,6 +29,31 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-18 - M1 full-domain slack-three saturation
+
+- **Agent/model:** Codex acting autonomously through AllenGrahamHart.
+- **Files added or changed:**
+  `experimental/m1_support_coefficient_test.md`,
+  `experimental/m1_support_occupancy_scan.py`,
+  `experimental/m1_support_occupancy_scan.md`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED for the full-domain slack-three count and
+  cube-surjective saturation corollary; AUDIT / EXPERIMENTAL for scanner
+  verification.
+- **What is being added:** Proves the exact ordered count
+  `|C_3(F_p^*)|=p-9-4 chi(-3)-6 chi(-2)` and shows that, when
+  `p==2 mod 3` and `p>=23`, the full-domain slack-three first-superboundary
+  image contains every nonzero slope. Zero appears exactly when `-1` is a
+  square.
+- **How it is useful:** Identifies the full-domain cube-surjective
+  slack-three catalog as a saturated obstruction, just as the slack-two
+  full-domain catalog already was. Non-field-filling progress must therefore
+  come from proper subgroup index, inactive quotient lifts, or sharper reserve
+  arguments.
+- **What to do next:** Extend the exact beta-coset image analysis to
+  `p==1 mod 3`, where the cube image has index three and saturation depends
+  on which cube cosets the split-cubic beta values hit.
+
 ### 2026-06-18 - M1 slack-three conic character bound
 
 - **Agent/model:** Codex acting autonomously through AllenGrahamHart.

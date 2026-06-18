@@ -955,6 +955,57 @@ slope image is exactly a union of cosets `beta(u,v)D^3`; since `D^3` is a
 subgroup, the same disjoint-or-equal coset compression applies. The zero
 slope slice is the already classified four-power-coset family.
 
+For the full multiplicative domain this conic ledger has an exact elementary
+count. Take `D=F_p^*`, `p>3`, and write `chi` for the quadratic character.
+The affine conic `Q(u,v)=0` has `p-chi(-3)` points. The three sections
+`u=0`, `v=0`, and `w=0` are disjoint on the conic and each has
+`1+chi(-3)` points. The six degeneracy sections
+
+```text
+u=1, v=1, w=1, u=v, u=w, v=w
+```
+
+are disjoint from those zero sections, and for `p>3` are pairwise disjoint
+on the conic. Each has `1+chi(-2)` points. Hence the ordered full-domain
+shape count is
+
+```text
+|C_3(F_p^*)| = p - 9 - 4 chi(-3) - 6 chi(-2).
+```
+
+The split-cubic compression then gives exactly
+
+```text
+#{admissible beta values}
+  = (p - 9 - 4 chi(-3) - 6 chi(-2))/6.
+```
+
+The zero value `beta=0` occurs exactly when
+
+```text
+G_0(Y)=Y^3+Y^2+Y+1=(Y+1)(Y^2+1)
+```
+
+splits over `F_p`, equivalently when `chi(-1)=1`; in that case it contributes
+one beta value and six ordered shapes.
+
+Consequently, when `p==2 mod 3` the cube map on `F_p^*` is surjective, so
+any nonzero admissible beta value already gives every nonzero slope. The
+count above shows that such a nonzero beta exists for every `p>=23` with
+`p==2 mod 3`. Therefore the full-domain slack-three first-superboundary slope
+image is
+
+```text
+F_p        if p==5 mod 12 and p>=29,
+F_p^*      if p==11 mod 12 and p>=23.
+```
+
+The small exceptional primes are also explicit: `p=5` and `p=17` contribute
+only the zero slope, while `p=11` has no admissible full-domain slack-three
+shape. Thus, as in the slack-two full-domain case, the full-domain
+cube-surjective slack-three catalog is a saturated obstruction, not a
+non-field-filling source.
+
 There is also a prime-field character-sum route for the slack-three conic
 count. Let `D <= F_p^*` have order `n`, index `e=(p-1)/n`, and let `chi` be
 a multiplicative character of order `e`, extended by zero at zero. Put
@@ -1137,6 +1188,9 @@ For `T=3`, the first-superboundary catalog is also no longer a raw support
 enumeration: it is a split-cubic beta ledger, equivalently a conic shape set
 `C_3(D)`, and a cube-coset image. This extends the low-slack template
 classification one step beyond the unit equation case.
+In the full-domain cube-surjective case `p==2 mod 3`, the exact conic count
+proves saturation for every `p>=23`: all nonzero slopes occur, and zero
+occurs exactly when `p==1 mod 4`.
 The prime-field conic character expansion gives the matching analytic route:
 under a standard genus-zero character-sum estimate, the slack-three ordered
 shape count is roughly `p/e^3`, and the resulting cube-coset slope budget has

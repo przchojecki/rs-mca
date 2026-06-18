@@ -227,6 +227,43 @@ def full_domain_slack_two_alpha_class_data(p: int) -> Optional[Dict[str, object]
     }
 
 
+def full_domain_slack_three_beta_class_data(p: int) -> Optional[Dict[str, object]]:
+    if p <= 3:
+        return None
+
+    chi_minus_one = quadratic_character(-1, p)
+    chi_minus_two = quadratic_character(-2, p)
+    chi_minus_three = quadratic_character(-3, p)
+    ordered_shape_count = p - 9 - 4 * chi_minus_three - 6 * chi_minus_two
+    beta_count = ordered_shape_count // 6
+    zero_beta_count = 1 if chi_minus_one == 1 else 0
+    nonzero_beta_count = beta_count - zero_beta_count
+    cube_surjective = math.gcd(3, p - 1) == 1
+
+    if cube_surjective and nonzero_beta_count > 0:
+        slope_count = (p - 1) + zero_beta_count
+        slope_image = "full_field" if zero_beta_count else "nonzero_field"
+    elif cube_surjective and zero_beta_count:
+        slope_count = 1
+        slope_image = "zero_only"
+    elif cube_surjective:
+        slope_count = 0
+        slope_image = "empty"
+    else:
+        slope_count = None
+        slope_image = "cube_coset_dependent"
+
+    return {
+        "ordered_shape_count": ordered_shape_count,
+        "beta_count": beta_count,
+        "zero_beta_count": zero_beta_count,
+        "nonzero_beta_count": nonzero_beta_count,
+        "cube_surjective": cube_surjective,
+        "slope_count": slope_count,
+        "slope_image": slope_image,
+    }
+
+
 def signed_symmetric_coefficient(
     values: Sequence[int],
     degree: int,
@@ -1394,6 +1431,11 @@ def scan_supports(
         if slack_two_shape_ledger is not None and n == p - 1
         else None
     )
+    slack_three_full_domain_beta_data = (
+        full_domain_slack_three_beta_class_data(p)
+        if slack_three_shape_ledger is not None and n == p - 1
+        else None
+    )
     slack_two_cyclotomic_bound = (
         slack_two_cyclotomic_shape_bound(p, n)
         if slack_two_shape_ledger is not None
@@ -2319,6 +2361,74 @@ def scan_supports(
             len(first_superboundary_slope_histogram)
             == int(slack_three_shape_ledger["cube_coset_slope_count"])
             if slack_three_shape_ledger is not None
+            else None
+        ),
+        "canonical_slack_three_full_domain_ordered_shape_count": (
+            int(slack_three_full_domain_beta_data["ordered_shape_count"])
+            if slack_three_full_domain_beta_data is not None
+            else None
+        ),
+        "canonical_slack_three_full_domain_ordered_shape_count_check": (
+            int(slack_three_shape_ledger["parameter_count"])
+            == int(slack_three_full_domain_beta_data["ordered_shape_count"])
+            if (
+                slack_three_shape_ledger is not None
+                and slack_three_full_domain_beta_data is not None
+            )
+            else None
+        ),
+        "canonical_slack_three_full_domain_beta_count": (
+            int(slack_three_full_domain_beta_data["beta_count"])
+            if slack_three_full_domain_beta_data is not None
+            else None
+        ),
+        "canonical_slack_three_full_domain_beta_count_check": (
+            int(slack_three_shape_ledger["beta_count"])
+            == int(slack_three_full_domain_beta_data["beta_count"])
+            if (
+                slack_three_shape_ledger is not None
+                and slack_three_full_domain_beta_data is not None
+            )
+            else None
+        ),
+        "canonical_slack_three_full_domain_zero_beta_count": (
+            int(slack_three_full_domain_beta_data["zero_beta_count"])
+            if slack_three_full_domain_beta_data is not None
+            else None
+        ),
+        "canonical_slack_three_full_domain_nonzero_beta_count": (
+            int(slack_three_full_domain_beta_data["nonzero_beta_count"])
+            if slack_three_full_domain_beta_data is not None
+            else None
+        ),
+        "canonical_slack_three_full_domain_cube_surjective": (
+            bool(slack_three_full_domain_beta_data["cube_surjective"])
+            if slack_three_full_domain_beta_data is not None
+            else None
+        ),
+        "canonical_slack_three_full_domain_slope_image": (
+            str(slack_three_full_domain_beta_data["slope_image"])
+            if slack_three_full_domain_beta_data is not None
+            else None
+        ),
+        "canonical_slack_three_full_domain_slope_count": (
+            int(slack_three_full_domain_beta_data["slope_count"])
+            if (
+                slack_three_full_domain_beta_data is not None
+                and slack_three_full_domain_beta_data["slope_count"] is not None
+            )
+            else None
+        ),
+        "canonical_slack_three_full_domain_slope_count_check": (
+            len(first_superboundary_slope_histogram)
+            == int(slack_three_full_domain_beta_data["slope_count"])
+            if (
+                slack_three_shape_ledger is not None
+                and slack_three_full_domain_beta_data is not None
+                and slack_three_full_domain_beta_data["slope_count"] is not None
+                and int(slack_three_shape_ledger["active_parameter_count"])
+                == int(slack_three_shape_ledger["parameter_count"])
+            )
             else None
         ),
         "canonical_slack_two_cyclotomic_shape_count_bound": (
