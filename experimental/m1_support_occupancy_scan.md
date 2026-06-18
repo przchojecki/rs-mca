@@ -130,6 +130,7 @@ canonical_slack_three_shape_beta_parameter_count_check
 canonical_slack_three_split_cubic_beta_count
 canonical_slack_three_split_cubic_parameter_count_check
 canonical_slack_three_split_cubic_root_count_histogram
+canonical_slack_three_split_cubic_zero_beta_criterion_check
 canonical_slack_three_split_cubic_nonzero_cube_coset_count
 canonical_slack_three_split_cubic_cube_coset_beta_counts_check
 canonical_slack_three_shape_active_nonzero_cube_coset_count
@@ -416,6 +417,9 @@ A beta value is admissible exactly when it has three distinct roots in
 count, and the exact nonzero `D^3` coset counts, then checks them against the
 two-dimensional conic enumeration. This gives a fast finite-audit path for
 coset-coverage questions without full support-incidence enumeration.
+It also checks the zero-beta criterion: `beta=0` is admissible exactly when
+`G_0(Y)=(Y+1)(Y^2+1)` splits inside `D\{1}`, equivalently when the cyclic
+subgroup `D` has order divisible by four.
 
 The `canonical_slack_three_shape_*` fields report the conic parameter count,
 the beta count and sixfold beta check, the 24-fold quotient check,
@@ -515,6 +519,8 @@ unsaturated primes in that finite range are
 `5,11,17,23,29,41,47,53,59,71,83,89,101,107,113,131,137,149,167,173,179,
 191,197,227,233,239,251,257,269,281,317,347,359,383,401,431,467,491,503,
 587,617,647,653,701,1031`.
+By the zero-beta criterion, this gives full-field coverage exactly for
+`p==17 mod 24`; otherwise it gives nonzero-field coverage.
 Run
 
 ```bash

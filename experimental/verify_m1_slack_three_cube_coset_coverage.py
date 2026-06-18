@@ -70,6 +70,12 @@ def split_cubic_beta_coset_row(p: int, n: int) -> Dict[str, object]:
         "cube_cosets_hit": len(beta_counts),
         "total_cube_cosets": total_cosets,
         "zero_beta_count": int(beta_ledger["zero_beta_count"]),
+        "expected_zero_beta_count": int(
+            beta_ledger["expected_zero_beta_count"]
+        ),
+        "zero_beta_criterion_check": bool(
+            beta_ledger["zero_beta_count_check"]
+        ),
         "beta_count": int(beta_ledger["beta_count"]),
         "candidate_beta_count": int(beta_ledger["candidate_beta_count"]),
         "root_count_histogram": beta_ledger["root_count_histogram"],
@@ -96,6 +102,7 @@ def verify_sample(sample: Dict[str, object]) -> Dict[str, object]:
         "expect_uniform_prime_threshold"
     ]
     assert row["coset_beta_counts"] == tuple(expected_counts)
+    assert row["zero_beta_criterion_check"]
     assert row["lower_bound_check"]
     if row["uniform_threshold_applies"]:
         assert row["coverage_certificate"]

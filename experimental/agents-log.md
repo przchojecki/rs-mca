@@ -49,7 +49,8 @@ Keep entries concise and link to the relevant files.
   lower bound is uniformly positive, and a fast split-cubic beta ledger that
   computes exact coset counts by grouping `-(y^3+y^2+y+1)` for `y in D\{1}`.
   The exact quadratic-residue index-two audit improves the `p==5 mod 6`
-  threshold from the uniform conditional `38026` to `1049`.
+  threshold from the uniform conditional `38026` to `1049`, and the zero-beta
+  criterion identifies full-field coverage exactly when `4 | |D|`.
 - **How it is useful:** Complements the existing high-index non-field-filling
   slope bound and the full-domain saturation theorem by identifying a
   low-index regime where the abstract first-superboundary slack-three catalog

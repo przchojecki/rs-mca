@@ -747,6 +747,7 @@ def slack_three_split_cubic_beta_ledger(
         for beta, roots in beta_roots.items()
         if len(roots) == 3
     }
+    expected_zero_beta_count = 1 if len(domain) % 4 == 0 else 0
     cube_image = {pow(x, 3, p) for x in domain}
     cube_coset_representative = multiplicative_coset_representative_map(
         p,
@@ -766,6 +767,11 @@ def slack_three_split_cubic_beta_ledger(
         "candidate_beta_count": len(beta_roots),
         "beta_count": len(admissible_beta_values),
         "zero_beta_count": 1 if 0 in admissible_beta_values else 0,
+        "expected_zero_beta_count": expected_zero_beta_count,
+        "zero_beta_count_check": (
+            (1 if 0 in admissible_beta_values else 0)
+            == expected_zero_beta_count
+        ),
         "parameter_count": 6 * len(admissible_beta_values),
         "root_count_histogram": {
             str(count): frequency
@@ -932,6 +938,9 @@ def slack_three_first_superboundary_shape_ledger(
         "split_cubic_zero_beta_count": int(
             split_cubic_ledger["zero_beta_count"]
         ),
+        "split_cubic_expected_zero_beta_count": int(
+            split_cubic_ledger["expected_zero_beta_count"]
+        ),
         "split_cubic_parameter_count": int(
             split_cubic_ledger["parameter_count"]
         ),
@@ -953,6 +962,9 @@ def slack_three_first_superboundary_shape_ledger(
         "split_cubic_zero_beta_count_check": (
             (1 if zero_slope else 0)
             == int(split_cubic_ledger["zero_beta_count"])
+        ),
+        "split_cubic_zero_beta_criterion_check": bool(
+            split_cubic_ledger["zero_beta_count_check"]
         ),
         "split_cubic_cube_coset_count_check": (
             len(nonzero_cube_cosets)
@@ -2505,6 +2517,24 @@ def scan_supports(
         ),
         "canonical_slack_three_split_cubic_zero_beta_count": (
             int(slack_three_shape_ledger["split_cubic_zero_beta_count"])
+            if slack_three_shape_ledger is not None
+            else None
+        ),
+        "canonical_slack_three_split_cubic_expected_zero_beta_count": (
+            int(
+                slack_three_shape_ledger[
+                    "split_cubic_expected_zero_beta_count"
+                ]
+            )
+            if slack_three_shape_ledger is not None
+            else None
+        ),
+        "canonical_slack_three_split_cubic_zero_beta_criterion_check": (
+            bool(
+                slack_three_shape_ledger[
+                    "split_cubic_zero_beta_criterion_check"
+                ]
+            )
             if slack_three_shape_ledger is not None
             else None
         ),

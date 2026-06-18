@@ -976,6 +976,22 @@ The conic enumeration is still needed for quotient-lift weights depending on
 `tau(u,v)`, but the coset-coverage questions used by the character
 certificates reduce to this one-dimensional split-cubic ledger.
 
+The zero-slope part also has a subgroup-level criterion. Since
+
+```text
+G_0(Y)=Y^3+Y^2+Y+1=(Y+1)(Y^2+1),
+```
+
+the value `beta=0` is admissible exactly when the three roots
+`-1, i, -i` lie in `D`. Because `D` is cyclic, this is equivalent to
+
+```text
+4 | |D|.
+```
+
+Thus any nonzero-coset saturation statement for slack three becomes full
+field saturation precisely when the subgroup order is divisible by four.
+
 Thus the `T=3`, `|P|=4` residual catalog is reduced to a conic over the
 multiplicative domain plus the cube-image map `x -> x^3` on `D`. Its nonzero
 slope image is exactly a union of cosets `beta(u,v)D^3`; since `D^3` is a
@@ -1283,6 +1299,8 @@ cosets. Combining this finite audit with the uniform conditional threshold
 above gives full nonzero `D^3`-coset coverage for every quadratic-residue
 domain with `p==5 mod 6` and `p>=1049`, subject only to the imported
 large-prime character-sum estimate for the range `p>=38026`.
+The zero-slope criterion says that this image is all of `F_p` exactly when
+`p==17 mod 24`; otherwise it is `F_p^*`.
 The finite audit is reproduced by
 
 ```bash
