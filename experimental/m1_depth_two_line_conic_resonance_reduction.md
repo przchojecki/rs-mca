@@ -141,6 +141,48 @@ this reduction with a future conductor bound for `G_nu(y)` would remove the
 last two-coordinate slice still charged at the old `9p` import after the
 conditional projective-equal and nonresonant ledgers.
 
+## Conditional Ledger Target
+
+The precise conductor target is now the following one-dimensional statement:
+
+```text
+|C_{eta,nu}| <= 4p
+```
+
+for every nonprincipal line-conic-resonant pair occurring in `C_2^lc`.  Since
+the open two-coordinate sum differs from `C_{eta,nu}` by the genus-zero line
+correction above, this would give the certificate-facing replacement
+
+```text
+|S_open| <= 4p + 3 sqrt(p)
+```
+
+on the whole `C_2^lc` slice.  This is intentionally recorded as a
+`CONDITIONAL` target, not as a proved theorem: the missing input is the
+middle-extension conductor bound for the rank-two quadratic-fiber
+pushforward on the `y`-line.
+
+The saturation scanner now reports this optional ledger separately.  If the
+projective equal-pair import, the clean nonresonant line/conic import, and
+this line-conic-resonant conductor import are all accepted, the residual
+ramified nonreciprocal two-coordinate mass after the proved
+`C_2^0` and `C_2^rec` reductions is charged at
+
+```text
+4(C_2^peq + C_2^anr + C_2^lc)
+  = 4(C_2^peq + C_2^asym).
+```
+
+Equivalently, relative to the conservative `9p` charge on that residual, the
+leading L1 weight drops by `5(C_2^peq+C_2^asym)` and the square-root mass
+adds `3(C_2^peq+C_2^asym)`.  The active `saturation_certificate` remains
+unchanged.
+
+The verifier also performs a finite counterexample-first audit for this
+target.  It exhausts all nonprincipal `(eta,nu)` for `p=17,31` and checks
+targeted larger cases; in the current audit it reports no `4p` violation for
+the core or open sums and no `3 sqrt(p)` violation for the line correction.
+
 The finite verifier is
 
 ```bash

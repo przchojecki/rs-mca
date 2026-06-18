@@ -403,6 +403,19 @@ quadratic-fiber trace family with candidate singular support
 `{0,-1,2,3,infinity}`.  A conductor bound for that trace family would remove
 the last two-coordinate mass left at the old `9p` import in the combined
 conditional ledger.
+The scanner now reports this stronger optional ledger as well: if the
+line-conic-resonant core satisfies `|C|<=4p`, then the open-set correction
+gives `4p+3 sqrt(p)` on `C_2^lc`, and the two-coordinate residual after
+`C_2^0` and `C_2^rec` is charged by
+
+```text
+4(C_2^peq + C_2^anr + C_2^lc)
+  = 4(C_2^peq + C_2^asym).
+```
+
+This drops the leading L1 weight by `5(C_2^peq+C_2^asym)` and adds
+square-root mass `3(C_2^peq+C_2^asym)`, but remains conditional and is not
+consumed by the active `saturation_certificate`.
 
 The currently consumed square-root correction has L1 mass
 

@@ -16,6 +16,11 @@ TARGETED_CASES = (
     (43, 12, 5),
     (61, 5, 17),
     (61, 19, 7),
+    (61, 30, 23),
+    (73, 8, 32),
+    (97, 49, 59),
+    (109, 105, 19),
+    (109, 105, 92),
 )
 TOLERANCE = 1e-7
 
@@ -191,6 +196,12 @@ def main() -> None:
     checked_fibers = 0
     checked_open_decompositions = 0
     max_difference = 0.0
+    max_core_ratio = 0.0
+    max_open_ratio = 0.0
+    max_line_ratio = 0.0
+    max_core_label: Tuple[object, ...] = ()
+    max_open_label: Tuple[object, ...] = ()
+    max_line_label: Tuple[object, ...] = ()
     for p, eta_exponent, nu_exponent in case_iterator():
         if p not in tables:
             logs = log_table(p)
@@ -210,14 +221,33 @@ def main() -> None:
         transformed = transformed_core(p, eta, nu)
         assert_close((p, eta_exponent, nu_exponent, "core"), direct, transformed)
         max_difference = max(max_difference, abs(direct - transformed))
+        core_ratio = abs(direct) / p
+        if core_ratio > max_core_ratio:
+            max_core_ratio = core_ratio
+            max_core_label = (p, eta_exponent, nu_exponent)
+        if abs(direct) > 4 * p + TOLERANCE:
+            raise AssertionError((p, eta_exponent, nu_exponent, "core_4p"))
         direct_open_sum = direct_open(p, eta_inv, nu, eta)
-        corrected_core = direct - line_correction(p, eta_inv, nu, eta)
+        correction = line_correction(p, eta_inv, nu, eta)
+        corrected_core = direct - correction
         assert_close(
             (p, eta_exponent, nu_exponent, "open"),
             direct_open_sum,
             corrected_core,
         )
         max_difference = max(max_difference, abs(direct_open_sum - corrected_core))
+        open_ratio = abs(direct_open_sum) / p
+        line_ratio = abs(correction) / math.sqrt(p)
+        if open_ratio > max_open_ratio:
+            max_open_ratio = open_ratio
+            max_open_label = (p, eta_exponent, nu_exponent)
+        if line_ratio > max_line_ratio:
+            max_line_ratio = line_ratio
+            max_line_label = (p, eta_exponent, nu_exponent)
+        if abs(direct_open_sum) > 4 * p + TOLERANCE:
+            raise AssertionError((p, eta_exponent, nu_exponent, "open_4p"))
+        if abs(correction) > 3 * math.sqrt(p) + TOLERANCE:
+            raise AssertionError((p, eta_exponent, nu_exponent, "line_3sqrt"))
         checked_open_decompositions += 1
         checked_cases += 1
     print(
@@ -226,6 +256,9 @@ def main() -> None:
         f"fibers={checked_fibers}",
         f"open_decompositions={checked_open_decompositions}",
         f"max_difference={max_difference:.3e}",
+        f"max_core_ratio={max_core_ratio:.10f}@{max_core_label}",
+        f"max_open_ratio={max_open_ratio:.10f}@{max_open_label}",
+        f"max_line_ratio={max_line_ratio:.10f}@{max_line_label}",
     )
 
 

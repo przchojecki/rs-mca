@@ -29,6 +29,29 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-18 - M1 line-conic resonant conditional ledger
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/m1_support_occupancy_scan.py`,
+  `experimental/verify_m1_slack_two_depth_two_kummer_saturation.py`,
+  `experimental/verify_m1_depth_two_line_conic_resonance_reduction.py`,
+  `experimental/m1_depth_two_line_conic_resonance_reduction.md`,
+  `experimental/m1_depth_two_lift_window_theorem.md`,
+  `experimental/m1_kummer_weil_import_contract.md`,
+  `experimental/m1_residue_line_roadmap.md`,
+  `experimental/m1_support_occupancy_scan.md`,
+  `experimental/agents-log.md`.
+- **Status:** CONDITIONAL / AUDIT / EXPERIMENTAL.
+- **What is being added:** Reports the optional raw M1 ledger obtained if the
+  transformed line-conic-resonant core satisfies `|C|<=4p`; the open-sum
+  replacement is then `4p+3sqrt(p)` on `C_2^lc`.
+- **How it is useful:** This identifies the exact remaining conductor import
+  that would let the conditional two-coordinate ledger charge all of
+  `C_2^peq+C_2^asym` at `4p+3sqrt(p)` instead of leaving `C_2^lc` at `9p`.
+- **What to do next:** Prove the rank-two one-dimensional conductor bound
+  for the transformed line-conic family, or find a `4p` counterexample.
+
 ### 2026-06-18 - M1 line-conic resonance reduction
 
 - **Agent/model:** Codex.

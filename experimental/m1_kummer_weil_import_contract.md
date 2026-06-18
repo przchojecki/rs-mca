@@ -214,6 +214,16 @@ quadratic-fiber discriminant is `16(y-2)(y+1)`, and the candidate singular
 support on the `y`-line is `{0,-1,2,3,infinity}`.  Thus the resonant
 asymmetric slice is also a one-dimensional conductor problem; the clean
 two-variable normal-crossing target is the nonresonant complement `C_2^anr`.
+The explicit conditional replacement needed for the resonant slice is
+`|C_{eta,nu}|<=4p` for the transformed core.  Together with its already
+proved genus-zero line correction, this gives `4p+3sqrt(p)` on the open
+line-conic-resonant terms.  The raw scanner reports this as the
+`projective_equal_pair_all_asymmetric_conditional_*` ledger: if the
+projective equal-pair, nonresonant, and line-conic-resonant conductor imports
+are all accepted, the full residual asymmetric mass
+`C_2^asym=C_2^anr+C_2^lc` is charged at the same `4p+3sqrt(p)` rate as
+`C_2^peq`.  This remains conditional and is not consumed by the active
+certificate.
 
 The finite stress scan in
 `experimental/m1_remaining_two_coordinate_wall_experiment.md` suggests that
@@ -345,6 +355,9 @@ line-permutation action is free and the verifier records
 The later line-conic split writes
 `C_2^asym=C_2^lc+C_2^anr`, where `C_2^lc` is the resonant transform family
 above and `C_2^anr` is the clean nonresonant normal-crossing wall.
+The optional all-asymmetric ledger further assumes the `C_2^lc` transformed
+core bound `4p`, so that both asymmetric pieces can be charged by
+`4p+3sqrt(p)`.
 
 ### `2F1` Local-Monodromy Import Consumed by the Equal-Line Audit
 

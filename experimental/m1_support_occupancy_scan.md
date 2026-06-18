@@ -946,6 +946,17 @@ certificate numerator.
 The raw split is computed by the closed forms recorded in
 `experimental/m1_depth_two_lift_window_theorem.md`, and the verifier compares
 those forms with direct exponent enumeration.
+The scanner also reports conditional alternatives for the ramified
+nonreciprocal two-coordinate residual.  The
+`*_projective_equal_pair_nonresonant_conditional_*` fields assume the
+projective equal-pair conductor import and the clean nonresonant line/conic
+import, while leaving the line-conic-resonant slice at `9p`.  The
+`*_projective_equal_pair_all_asymmetric_conditional_*` fields additionally
+assume the transformed line-conic-resonant core bound `|C|<=4p`; with the
+proved line correction this charges
+`C_2^peq+C_2^anr+C_2^lc = C_2^peq+C_2^asym` at `4p+3 ceil(sqrt(p))`.
+Both alternatives are reported for audit only and are not consumed by the
+active `saturation_certificate`.
 The `*_principal_exact_count` field records the exact principal open-set
 count
 
