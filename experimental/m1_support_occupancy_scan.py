@@ -176,6 +176,22 @@ def is_power_coset(values: Sequence[int], exponent: int, p: int) -> bool:
     return all(pow(value, exponent, p) == target for value in values)
 
 
+def multiplicative_coset_representative_map(
+    p: int,
+    subgroup: Sequence[int],
+) -> Dict[int, int]:
+    representative_by_value: Dict[int, int] = {}
+    subgroup_values = tuple(subgroup)
+    for value in range(1, p):
+        if value in representative_by_value:
+            continue
+        coset = [(value * element) % p for element in subgroup_values]
+        representative = min(coset)
+        for element in coset:
+            representative_by_value[element] = representative
+    return representative_by_value
+
+
 def quadratic_character(value: int, p: int) -> int:
     value %= p
     if value == 0:
@@ -732,11 +748,15 @@ def slack_three_split_cubic_beta_ledger(
         if len(roots) == 3
     }
     cube_image = {pow(x, 3, p) for x in domain}
+    cube_coset_representative = multiplicative_coset_representative_map(
+        p,
+        tuple(cube_image),
+    )
     nonzero_cube_coset_beta_values: Dict[int, set[int]] = {}
     for beta in admissible_beta_values:
         if beta == 0:
             continue
-        representative = min((beta * cube) % p for cube in cube_image)
+        representative = cube_coset_representative[beta]
         nonzero_cube_coset_beta_values.setdefault(
             representative,
             set(),

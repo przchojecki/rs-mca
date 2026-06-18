@@ -1266,6 +1266,29 @@ Thus quadratic-residue domains with `p==5 mod 6` have `M=16`, so this
 conditional certificate already proves full nonzero `D^3`-coset coverage for
 all such primes `p>=38026`.
 
+The remaining finite range for this index-two case is small enough to audit
+exactly with the split-cubic beta ledger. Let `D=(F_p^*)^2` and assume
+`p==5 mod 6`. Then `D^3=D`, so the nonzero beta image has exactly two
+`D^3` cosets to hit. Exact enumeration for every prime `p==5 mod 6` below
+`38026` shows that the only unsaturated primes are
+
+```text
+5,11,17,23,29,41,47,53,59,71,83,89,101,107,113,131,137,149,
+167,173,179,191,197,227,233,239,251,257,269,281,317,347,359,
+383,401,431,467,491,503,587,617,647,653,701,1031.
+```
+
+Every prime `p==5 mod 6` with `1049<=p<38026` hits both nonzero `D^3`
+cosets. Combining this finite audit with the uniform conditional threshold
+above gives full nonzero `D^3`-coset coverage for every quadratic-residue
+domain with `p==5 mod 6` and `p>=1049`, subject only to the imported
+large-prime character-sum estimate for the range `p>=38026`.
+The finite audit is reproduced by
+
+```bash
+python3 experimental/verify_m1_slack_three_qr_index_two_audit.py
+```
+
 The split-cubic exact audit
 
 ```bash

@@ -508,7 +508,21 @@ For every prime `p>=P_M` with the same denominator `M`, the lower-bound
 numerator is positive regardless of `chi_2(-3)`. Thus the certificate fires
 uniformly for that fixed index/cube-kernel regime; for example `M=16` gives
 `P_M=38026`.
+For quadratic-residue domains with `p==5 mod 6`, this is the index-two case
+`D=(F_p^*)^2` and `D^3=D`. The exact split-cubic finite audit below `38026`
+improves the practical saturation threshold to `p>=1049`: the only
+unsaturated primes in that finite range are
+`5,11,17,23,29,41,47,53,59,71,83,89,101,107,113,131,137,149,167,173,179,
+191,197,227,233,239,251,257,269,281,317,347,359,383,401,431,467,491,503,
+587,617,647,653,701,1031`.
 Run
+
+```bash
+python3 experimental/verify_m1_slack_three_qr_index_two_audit.py
+```
+
+to reproduce this finite audit.
+The broader split-cubic sample verifier remains
 
 ```bash
 python3 experimental/verify_m1_slack_three_cube_coset_coverage.py
