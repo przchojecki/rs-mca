@@ -912,6 +912,8 @@ def main() -> None:
                 square_coset_index,
                 equal_line_l1,
                 ramified_l1,
+                5 * equal_line_l1,
+                3 * equal_line_l1,
             )
         )
     lift_checked = []

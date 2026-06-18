@@ -238,19 +238,22 @@ The raw weighted error is therefore
   + 9(C_2-C_2^0-C_2^rec) + 16C_3.
 ```
 
-If the conditional equal-line diagonal `3p+O(sqrt(p))` conductor import is
-used, the linear part can instead replace the last two-coordinate term by
+If the conditional equal-line diagonal conductor import is used for the full
+two-coordinate open sum, the residual contributes `3p` and the Jacobi part
+contributes one more `p`.  Thus the linear part can instead replace the last
+two-coordinate term by
 
 ```text
-3C_2^eq + 9(C_2-C_2^0-C_2^rec-C_2^eq).
+4C_2^eq + 9(C_2-C_2^0-C_2^rec-C_2^eq).
 ```
 
-Equivalently, the leading L1 weight drops by `6C_2^eq`.  The current
-certificate code does not yet consume this improvement because the
-corresponding square-root correction and local-monodromy citation still need
-to be recorded as a clean import.
+Equivalently, the leading L1 weight drops by `5C_2^eq`.  The corresponding
+square-root mass is `3C_2^eq`: one unit from the Jacobi part and two from
+the exceptional `B(s)=0` fibers.  The current certificate code does not yet
+consume this improvement because the local-monodromy citation still needs to
+be recorded as a clean import.
 
-Its square-root correction has L1 mass
+The currently consumed square-root correction has L1 mass
 
 ```text
 6J + 5C_2^0 + 3C_2^rec,        J = (e^3-1) + (q-1).

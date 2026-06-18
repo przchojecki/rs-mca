@@ -297,11 +297,13 @@ C_2^eq =
         2ga != 0 mod q},        g=q/e.
 ```
 
-The corrected equal-line conductor ledger would charge this submass by
-`3p+O(sqrt(p))` instead of `9p`, dropping the leading L1 weight by
-`6C_2^eq`.  The present certificates still leave the constants unchanged
-until the square-root correction and the standard `2F1` local-monodromy
-import are recorded cleanly.
+The corrected equal-line conductor ledger charges the residual part of this
+submass by `3p`, but the full two-coordinate open sum also contains the
+Jacobi term.  Thus the certificate-facing replacement is `4p+3sqrt(p)`
+instead of `9p`, dropping the leading L1 weight by `5C_2^eq` and adding
+square-root L1 mass `3C_2^eq`.  The present certificates still leave the
+constants unchanged until the standard `2F1` local-monodromy import is
+recorded cleanly.
 
 The finite audit
 
