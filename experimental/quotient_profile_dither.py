@@ -18,6 +18,13 @@ inside one M-coset of size sigma+rem, provided sigma+rem < M.
 The exact profile is the certificate quantity.  The remainder diagnostic is a
 finite-length warning signal for small-remainder dimensions, not a replacement
 for the exact profile.
+
+With --slack-window START:END, the script also reports the proved dyadic
+first-exchange slack-window ledger L_win(r) from
+experimental/m1_quotient_periodic_overlap_profile.md.  For each fixed dither
+r and dyadic scale M, active whole-fiber quotient slacks in the requested
+window are exactly the residue class t == r mod M, subject to the strict and
+endpoint eligibility checks.
 """
 
 from __future__ import annotations
@@ -27,7 +34,7 @@ import json
 import math
 from dataclasses import dataclass
 from fractions import Fraction
-from typing import Dict, Iterable, List, Optional, Sequence
+from typing import Dict, Iterable, List, Optional, Sequence, Tuple
 
 DEFAULT_RATES = (Fraction(1, 2), Fraction(1, 4), Fraction(1, 8), Fraction(1, 16))
 DEFAULT_ETAS = (Fraction(1, 64), Fraction(1, 32), Fraction(1, 16))
@@ -59,6 +66,32 @@ class ScaleRecord:
         return result
 
 
+@dataclass(frozen=True)
+class WindowLedgerEntry:
+    """One active first-exchange whole-fiber quotient entry in a slack window."""
+
+    slack: int
+    M: int
+    N: int
+    support_size: int
+    quotient_support: int
+    first_codegree: int
+    log2_first_codegree: float
+    first_exchange_complete: bool
+
+    def to_json(self) -> Dict[str, object]:
+        return {
+            "slack": self.slack,
+            "M_coset_size": self.M,
+            "N_quotient_order": self.N,
+            "support_size": self.support_size,
+            "quotient_support": self.quotient_support,
+            "first_codegree": self.first_codegree,
+            "log2_first_codegree": round(self.log2_first_codegree, 6),
+            "first_exchange_complete_for_scale": self.first_exchange_complete,
+        }
+
+
 def parse_fraction(raw: str) -> Fraction:
     try:
         return Fraction(raw)
@@ -70,6 +103,20 @@ def parse_fraction_list(raw: str) -> List[Fraction]:
     if not raw:
         return []
     return [parse_fraction(part.strip()) for part in raw.split(",") if part.strip()]
+
+
+def parse_slack_window(raw: str) -> Tuple[int, int]:
+    if ":" not in raw:
+        raise argparse.ArgumentTypeError("expected slack window START:END")
+    start_text, end_text = raw.split(":", 1)
+    try:
+        start = int(start_text)
+        end = int(end_text)
+    except ValueError as exc:
+        raise argparse.ArgumentTypeError(f"invalid slack window: {raw}") from exc
+    if start < 0 or end < start:
+        raise argparse.ArgumentTypeError("require 0 <= START <= END")
+    return start, end
 
 
 def fraction_label(value: Fraction) -> str:
@@ -156,6 +203,69 @@ def profile_value(records: Sequence[ScaleRecord]) -> Optional[float]:
     return records[0].log2_list_size
 
 
+def slack_window_entries(
+    n: int,
+    k0: int,
+    dither: int,
+    slack_window: Tuple[int, int],
+) -> List[WindowLedgerEntry]:
+    start, end = slack_window
+    records = []
+    for M in divisors_of_power_of_two(n):
+        if M <= 1 or M > k0 or k0 % M:
+            continue
+        for slack in range(max(start, M + 1), end + 1):
+            support_size = k0 + slack - dither
+            if support_size < M or support_size > n - M:
+                continue
+            if (slack - dither) % M:
+                continue
+
+            N = n // M
+            quotient_support = support_size // M
+            codegree = quotient_support * (N - quotient_support)
+            records.append(
+                WindowLedgerEntry(
+                    slack=slack,
+                    M=M,
+                    N=N,
+                    support_size=support_size,
+                    quotient_support=quotient_support,
+                    first_codegree=codegree,
+                    log2_first_codegree=math.log2(codegree),
+                    first_exchange_complete=slack <= 2 * M,
+                )
+            )
+    records.sort(key=lambda item: (-item.log2_first_codegree, item.slack, item.M))
+    return records
+
+
+def retained_window_entries(
+    records: Sequence[WindowLedgerEntry],
+    top_scales: int,
+) -> List[Dict[str, object]]:
+    if top_scales < 0:
+        return [item.to_json() for item in records]
+    return [item.to_json() for item in records[:top_scales]]
+
+
+def slack_window_summary(
+    records: Sequence[WindowLedgerEntry],
+    top_scales: int,
+) -> Dict[str, object]:
+    return {
+        "active_entry_count": len(records),
+        "active_scale_count": len({item.M for item in records}),
+        "active_slack_count": len({item.slack for item in records}),
+        "max_log2_first_codegree": (
+            None
+            if not records
+            else round(max(item.log2_first_codegree for item in records), 6)
+        ),
+        "entries": retained_window_entries(records, top_scales),
+    }
+
+
 def best_record(records: Sequence[Dict[str, object]], key: str) -> Dict[str, object]:
     def score(record: Dict[str, object]) -> tuple:
         value = record[key]
@@ -163,6 +273,21 @@ def best_record(records: Sequence[Dict[str, object]], key: str) -> Dict[str, obj
         return (numeric, int(record["dither"]))
 
     return min(records, key=score)
+
+
+def best_window_record(records: Sequence[Dict[str, object]]) -> Optional[Dict[str, object]]:
+    candidates = [record for record in records if "slack_window_ledger" in record]
+    if not candidates:
+        return None
+
+    def score(record: Dict[str, object]) -> tuple:
+        ledger = record["slack_window_ledger"]
+        assert isinstance(ledger, dict)
+        value = ledger["max_log2_first_codegree"]
+        numeric = -1.0 if value is None else float(value)
+        return (numeric, int(ledger["active_entry_count"]), int(record["dither"]))
+
+    return min(candidates, key=score)
 
 
 def retained_scales(records: Sequence[ScaleRecord], top_scales: int) -> List[Dict[str, object]]:
@@ -177,6 +302,7 @@ def scan_case(
     eta: Fraction,
     max_dither: int,
     top_scales: int,
+    slack_window: Optional[Tuple[int, int]],
 ) -> Dict[str, object]:
     n = 1 << m
     if (rate * n).denominator != 1:
@@ -191,28 +317,33 @@ def scan_case(
             continue
         exact = exact_scales(n, k, sigma)
         remainder = remainder_scales(n, k, sigma)
-        dither_records.append(
-            {
-                "dither": dither,
-                "k": k,
-                "gcd_n_k": math.gcd(n, k),
-                "sigma": sigma,
-                "rate_actual": k / n,
-                "rate_loss": dither / n,
-                "exact_profile_log2": (
-                    None if profile_value(exact) is None else round(profile_value(exact), 6)
-                ),
-                "exact_active_scales": retained_scales(exact, top_scales),
-                "remainder_profile_log2": (
-                    None
-                    if profile_value(remainder) is None
-                    else round(profile_value(remainder), 6)
-                ),
-                "remainder_active_scales": retained_scales(remainder, top_scales),
-            }
-        )
+        record = {
+            "dither": dither,
+            "k": k,
+            "gcd_n_k": math.gcd(n, k),
+            "sigma": sigma,
+            "rate_actual": k / n,
+            "rate_loss": dither / n,
+            "exact_profile_log2": (
+                None if profile_value(exact) is None else round(profile_value(exact), 6)
+            ),
+            "exact_active_scales": retained_scales(exact, top_scales),
+            "remainder_profile_log2": (
+                None
+                if profile_value(remainder) is None
+                else round(profile_value(remainder), 6)
+            ),
+            "remainder_active_scales": retained_scales(remainder, top_scales),
+        }
+        if slack_window is not None:
+            window_entries = slack_window_entries(n, k0, dither, slack_window)
+            record["slack_window_ledger"] = slack_window_summary(
+                window_entries,
+                top_scales,
+            )
+        dither_records.append(record)
 
-    return {
+    result = {
         "m": m,
         "n": n,
         "rate_nominal": fraction_label(rate),
@@ -229,6 +360,10 @@ def scan_case(
         "best_remainder_dither": best_record(dither_records, "remainder_profile_log2"),
         "dithers": dither_records,
     }
+    if slack_window is not None:
+        result["slack_window"] = {"start": slack_window[0], "end": slack_window[1]}
+        result["best_window_dither"] = best_window_record(dither_records)
+    return result
 
 
 def scan(
@@ -238,20 +373,36 @@ def scan(
     etas: Iterable[Fraction],
     max_dither: int,
     top_scales: int,
+    slack_window: Optional[Tuple[int, int]],
 ) -> Dict[str, object]:
     cases = []
     for m in range(m_min, m_max + 1):
         for rate in rates:
             for eta in etas:
                 if (rate * (1 << m)).denominator == 1:
-                    cases.append(scan_case(m, rate, eta, max_dither, top_scales))
+                    cases.append(
+                        scan_case(
+                            m,
+                            rate,
+                            eta,
+                            max_dither,
+                            top_scales,
+                            slack_window,
+                        )
+                    )
     return {
         "proof_status": "AUDIT / EXPERIMENTAL",
         "theorem_problem_id": "L3-quotient-profile-dimension-dithering",
         "determinism": "deterministic finite divisor scan; no random seed",
         "object_checked": (
             "exact Qprof_H(a,k) from snarks_v4.tex plus a separate "
-            "small-remainder quotient-core diagnostic"
+            "small-remainder quotient-core diagnostic, optionally including "
+            "the proved fixed-dither slack-window first-exchange ledger"
+        ),
+        "slack_window": (
+            None
+            if slack_window is None
+            else {"start": slack_window[0], "end": slack_window[1]}
         ),
         "cases": cases,
     }
@@ -280,11 +431,35 @@ def format_scales(scales: Sequence[Dict[str, object]]) -> str:
     return "; ".join(pieces)
 
 
+def format_window_entries(entries: Sequence[Dict[str, object]]) -> str:
+    if not entries:
+        return "-"
+    pieces = []
+    for entry in entries:
+        pieces.append(
+            "t={t},M={M},logGamma={log:.1f}".format(
+                t=entry["slack"],
+                M=entry["M_coset_size"],
+                log=float(entry["log2_first_codegree"]),
+            )
+        )
+    return "; ".join(pieces)
+
+
 def print_text(result: Dict[str, object]) -> None:
     print("Quotient-profile dimension-dither scan")
     print("proof_status: AUDIT / EXPERIMENTAL")
     print("exact object: Qprof_H(a,k) at a=k+sigma")
     print("remainder object: diagnostic for sigma+remainder < M")
+    if result["slack_window"] is not None:
+        window = result["slack_window"]
+        assert isinstance(window, dict)
+        print(
+            "slack-window object: L_win(r) for t={start}..{end}".format(
+                start=window["start"],
+                end=window["end"],
+            )
+        )
     print()
 
     for case in result["cases"]:
@@ -292,6 +467,7 @@ def print_text(result: Dict[str, object]) -> None:
         one = case["one_step_dither"]
         best_exact = case["best_exact_dither"]
         best_remainder = case["best_remainder_dither"]
+        best_window = case.get("best_window_dither")
         print(
             "m={m:>2} n=2^{m:<2} rho={rho:<4} eta={eta:<5} sigma={sigma:<6} "
             "k0={k0}".format(
@@ -325,11 +501,27 @@ def print_text(result: Dict[str, object]) -> None:
                 rvalue=format_value(best_remainder["remainder_profile_log2"]),
             )
         )
+        if best_window is not None:
+            ledger = best_window["slack_window_ledger"]
+            assert isinstance(ledger, dict)
+            print(
+                "  best window r={r} max_logGamma={value} entries={entries}".format(
+                    r=best_window["dither"],
+                    value=format_value(ledger["max_log2_first_codegree"]),
+                    entries=ledger["active_entry_count"],
+                )
+            )
         print("  active exact scales: " + format_scales(exact["exact_active_scales"]))
         print(
             "  active remainder scales: "
             + format_scales(exact["remainder_active_scales"])
         )
+        if "slack_window_ledger" in exact:
+            ledger = exact["slack_window_ledger"]
+            assert isinstance(ledger, dict)
+            entries = ledger["entries"]
+            assert isinstance(entries, list)
+            print("  r=0 window entries: " + format_window_entries(entries))
         print()
 
 
@@ -364,6 +556,12 @@ def main() -> None:
         help="number of active scales retained per dither; negative retains all",
     )
     parser.add_argument(
+        "--slack-window",
+        type=parse_slack_window,
+        default=None,
+        help="optional inclusive slack window START:END for the proved L_win(r) ledger",
+    )
+    parser.add_argument(
         "--format",
         choices=("text", "json"),
         default="text",
@@ -382,6 +580,7 @@ def main() -> None:
         etas=args.etas,
         max_dither=args.max_dither,
         top_scales=args.top_scales,
+        slack_window=args.slack_window,
     )
     if args.format == "json":
         print(json.dumps(result, indent=2, sort_keys=True))

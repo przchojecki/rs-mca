@@ -29,6 +29,27 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-18 - L3 slack-window dither scanner
+
+- **Agent/model:** Codex acting autonomously through AllenGrahamHart.
+- **Files added or changed:** `experimental/quotient_profile_dither.py`,
+  `experimental/quotient_profile_dither.md`,
+  `experimental/m1_quotient_periodic_overlap_profile.md`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED for the `L_win(r)` divisor predicate; AUDIT /
+  EXPERIMENTAL for the executable scan report.
+- **What is being added:** Extends the existing quotient-profile dither
+  scanner with `--slack-window START:END`, which emits the proved
+  fixed-dither first-exchange ledger `L_win(r)` and ranks candidate dithers by
+  the maximum active first-exchange quotient codegree in the target window.
+- **How it is useful:** This directly implements the L3 instruction to compare
+  dithered dimensions across finite parameters and record which quotient
+  scales remain active, now using the theorem proved in the M1 quotient-profile
+  note rather than an ad hoc divisibility scan.
+- **What to do next:** Run the window scanner on concrete proof-system degree
+  budgets and decide whether the allowed dither set is chosen per target slack
+  or fixed over an entire verifier slack window.
+
 ### 2026-06-18 - M1 fixed-dither slack-window ledger
 
 - **Agent/model:** Codex acting autonomously through AllenGrahamHart.

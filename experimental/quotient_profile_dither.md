@@ -48,3 +48,35 @@ random seed.
 This is not a proof of the corrected local-limit conjecture.  Passing this scan
 means only that the explicit quotient-core obstructions represented by the
 printed profile are absent or budgeted at the scanned finite parameters.
+
+## Slack-Window Ledger Mode
+
+The script also has a theorem-backed window mode:
+
+```bash
+python3 experimental/quotient_profile_dither.py \
+  --rates 1/2 --etas 1/64 --m-min 8 --m-max 12 \
+  --max-dither 16 --slack-window 1:16
+```
+
+For each fixed dimension dither `r` and dyadic quotient scale `M`, this mode
+reports the first-exchange whole-fiber quotient ledger proved in
+`experimental/m1_quotient_periodic_overlap_profile.md`:
+
+```text
+L_win(r) = {
+  (t,M) : t in W, M | k0, M > 1,
+          t >= M+1, M <= k0+t-r <= n-M, t == r mod M
+}.
+```
+
+The entry `(t,M)` contributes first-exchange codegree
+
+```text
+((k0+t-r)/M)(n/M - (k0+t-r)/M)
+```
+
+to the quotient-periodic support ledger.  The text output reports the best
+fixed dither by the maximum active first-exchange codegree in the requested
+window; JSON output includes the retained active entries under
+`slack_window_ledger`.
