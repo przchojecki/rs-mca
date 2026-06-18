@@ -29,6 +29,29 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-18 - M1 equal-line pullback spectrum audit
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/search_m1_equal_line_pullback_spectrum.py`,
+  `experimental/m1_equal_line_pullback_spectrum_experiment.md`,
+  `experimental/m1_depth_two_equal_line_diagonal_reduction.md`,
+  `experimental/m1_kummer_weil_import_contract.md`,
+  `experimental/m1_residue_line_roadmap.md`,
+  `experimental/agents-log.md`.
+- **Status:** EXPERIMENTAL / COUNTEREXAMPLE / AUDIT.
+- **What is being added:** An FFT-based spectrum scanner computes the
+  normalized equal-line pullback main term for every multiplicative character
+  of `F_p^*` at once, then filters the same data back to the M1 equal-line
+  tuple families.
+- **How it is useful:** The scan disproves the tempting unrestricted
+  all-character `3p` pullback conjecture, but finds no `3p` violation in the
+  tested M1-admissible filters. This narrows the proof target toward the
+  admissible character arithmetic or hypergeometric pullback structure.
+- **What to do next:** Determine which admissibility constraint prevents the
+  full-spectrum counterexamples, or replace the target by a proven ambient
+  bound plus a sharper M1-filtered estimate.
+
 ### 2026-06-18 - M1 equal-line diagonal reduction
 
 - **Agent/model:** Codex.

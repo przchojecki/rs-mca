@@ -1,0 +1,132 @@
+# M1 Equal-Line Pullback Spectrum Experiment
+
+**Status:** EXPERIMENTAL / COUNTEREXAMPLE / AUDIT.
+
+## Purpose
+
+This note records a targeted numerical audit of the normalized equal-line
+pullback main term
+
+```text
+M_alpha =
+  chi_2(-1) sum_{s!=-1, B(s)!=0} sum_x
+    alpha(B(s)) alpha^(-2)(x) alpha^3(x-1)
+    chi_2(4B(s)x-s^2),
+```
+
+where `B(s)=s^2+s+1`.  The earlier tuple scanner only tested the
+M1-admissible equal-line characters.  This scan tests the full character
+spectrum and then filters the same data back to the M1-admissible tuples.
+
+## Method
+
+For a primitive root `g`, write
+
+```text
+alpha(g)=exp(2 pi i k/(p-1)).
+```
+
+For every nonzero Kummer factor, the summand depends on `k` only through
+
+```text
+log B(s) - 2 log x + 3 log(x-1) mod p-1.
+```
+
+The script builds this additive-log histogram once for each prime and applies
+one FFT to recover `M_alpha` for every multiplicative character `alpha` of
+`F_p^*`.  It then reports:
+
+- the full nonquadratic spectrum,
+- the M1 equal-line grid with `e <= 24`,
+- the diagonal M1 family with `n=20`.
+
+The FFT calculation is checked against direct summation on small primes by
+passing `--validate`.
+
+## Command
+
+The report data below was generated with
+
+```bash
+python3 experimental/search_m1_equal_line_pullback_spectrum.py \
+  --preset report --top 12
+```
+
+The compatibility check against the old tuple-scan range was generated with
+
+```bash
+python3 experimental/search_m1_equal_line_pullback_spectrum.py \
+  --preset report --prime-limit 500 --m1-max-character-order 24 --top 8
+```
+
+## Result
+
+The report preset scans all primes `p <= 1601`.  On the full nonquadratic
+character spectrum it tests `184552` character values and finds `28`
+violations of the unrestricted target
+
+```text
+|M_alpha| <= 3p.
+```
+
+The largest full-spectrum rows are:
+
+| ratio | `p` | exponent `k` | order |
+| --- | ---: | ---: | ---: |
+| `3.0600680546` | `1153` | `181` | `1152` |
+| `3.0527498268` | `1013` | `450` | `506` |
+| `3.0277388242` | `1447` | `1122` | `241` |
+| `3.0235039776` | `607` | `192` | `101` |
+| `3.0167068703` | `599` | `470` | `299` |
+
+The same FFT data gives the following M1-filtered results.
+
+```text
+M1 equal-line grid:
+  primes p <= 1601
+  character orders e <= 24 with e | p-1
+  tuples = 13662
+  violations of 3p = 0
+  rows above 2.95p = 2
+  best ratio = 2.9877564255 at p=1429, exponent k=966, order=34
+
+M1 diagonal n=20:
+  primes p <= 1601 with 20 | p-1
+  tuples = 2134
+  violations of 3p = 0
+  rows above 2.95p = 0
+  best ratio = 2.9412840316 at p=461, exponent k=410, order=46
+```
+
+On the old tuple-scan range `p <= 500`, `e <= 24`, the spectrum scanner
+reproduces the earlier M1 count:
+
+```text
+M1 equal-line grid:
+  tuples = 4804
+  violations of 3p = 0
+  best ratios = 2.9412840316, 2.9391353527, 2.9357869704
+```
+
+## Interpretation
+
+The naive all-character version of the `3p` pullback conjecture is false.
+Thus a future proof of the equal-line M1 target cannot be just a generic
+rank-one Kummer surface estimate for the divisor
+
+```text
+B(s), x, x-1, 4B(s)x-s^2.
+```
+
+It must use the M1-admissible character arithmetic, the hypergeometric
+pullback structure, or a slightly weaker ambient estimate plus an admissible
+character refinement.  The M1-filtered evidence still supports the desired
+`3p` pullback target in the tested ranges, but the `p=1429` row shows that
+the margin can become very small even inside the bounded equal-line grid.
+
+## Limitations
+
+This is finite numerical evidence only.  It disproves the unrestricted
+finite-range statement over all nonquadratic characters in the scanned range,
+but it does not prove the M1-admissible `3p` target and does not rule out a
+larger M1-admissible counterexample outside the scanned parameters.

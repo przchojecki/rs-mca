@@ -213,6 +213,11 @@ singular support contained in `s=0`, `s^2+s+1=0`,
 `alpha=mu eta` gives `mu=alpha^(-2)` and `eta=alpha^3`, so the pullback main
 has a single-character Kummer normal form; this is a proof-guidance
 reduction, not yet a replacement for the `9p` import.
+The full-spectrum audit in
+`experimental/m1_equal_line_pullback_spectrum_experiment.md` shows that the
+unrestricted all-character `3p` version of this pullback target is false, so
+any proof must keep the M1-admissible character arithmetic or the
+hypergeometric pullback structure visible.
 
 Thus the fixed-window, quotient-window, and two-fiber certificates still use
 the conservative common ledger:
