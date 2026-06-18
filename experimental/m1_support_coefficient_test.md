@@ -441,6 +441,54 @@ This does not classify the first superboundary packets `T<|P|<m`. It proves
 that they are the only new object left: once such a packet is known, the
 quotient-core lift and slope multiplicity are completely deterministic.
 
+The zero-slope part of the first superboundary is also exact. Assume
+`T+1<m` and let `P` be a residual packet of size `T+1` satisfying
+`e_1(P)=...=e_(T-1)(P)=0`. Its vanishing polynomial has the sparse form
+
+```text
+L_P(X)=X^(T+1)+zX-c,
+```
+
+where
+
+```text
+z=(-1)^T e_T(P),        c=(-1)^T e_(T+1)(P).
+```
+
+Therefore `z=0` if and only if
+
+```text
+L_P(X)=X^(T+1)-c,
+```
+
+equivalently all points of `P` have the same `(T+1)`-st power. In a cyclic
+multiplicative domain `D` of order `n`, such zero-slope first-superboundary
+packets exist if and only if `T+1 | n`; then they are exactly the `n/(T+1)`
+cosets of the subgroup of `D` of size `T+1`. Each such packet touches
+
+```text
+(T+1)/gcd(T+1,m)
+```
+
+quotient fibers. Hence, at exact support size
+
+```text
+s=Lm+T+1,
+```
+
+the zero-slope first-superboundary support count is
+
+```text
+1_{T+1 | n} * (n/(T+1))
+  * binom(N - (T+1)/gcd(T+1,m), L).
+```
+
+All other first-superboundary packets are precisely the nonzero-slope
+`D`-split trinomials `X^(T+1)+zX-c` with `z != 0`. This gives a clean first
+fork in the superboundary problem: the zero-slope component remains a counted
+power-coset ledger, while the nonzero component is the genuinely new sparse
+trinomial/additive residual source.
+
 ## M1 Impact
 
 This turns the positive M1 problem into a precise incidence question:
@@ -498,6 +546,10 @@ superboundary problem from spreading back into full support enumeration: each
 residual packet carries only the explicit quotient multiplier
 `binom(N-tau(P),(s-|P|)/m)`. The unresolved M1 content is therefore the size,
 structure, and slope image of the residual zero-prefix packet catalog itself.
+In the first superboundary layer `|P|=T+1`, the zero-slope subcatalog is again
+closed and quotient-level: it is just the `(T+1)`-power coset family. The
+remaining unclassified first-superboundary slopes are exactly the nonzero
+coefficients of `D`-split sparse trinomials `X^(T+1)+zX-c`.
 
 ## Suggested Next Step
 
@@ -524,3 +576,5 @@ dithered residue range. It also reports the closed small-residual regime for
 support residues `b<=T`. In the first superboundary range it now also checks
 the residual-packet lift formula, so scans can distinguish the new residual
 packet catalog from the already solved quotient-core lifting multiplicity.
+For residual packets of size `T+1`, it additionally checks the zero-slope
+power-coset classification and the corresponding lifted support count.

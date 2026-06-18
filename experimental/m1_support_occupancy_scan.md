@@ -66,6 +66,9 @@ canonical_small_residual_slope_count_check
 canonical_small_residual_slope_multiplicity_check
 canonical_residual_packet_lift_count_check
 canonical_residual_packet_slope_consistency_check
+canonical_first_superboundary_zero_slope_packet_count_check
+canonical_first_superboundary_zero_slope_support_count_check
+canonical_first_superboundary_zero_slope_coset_check
 canonical_subboundary_residual_floor_check
 canonical_residual_slope_check
 canonical_boundary_slope_decomposition_check
@@ -137,6 +140,21 @@ residual packet catalog are reported as
 `canonical_residual_packet_size_histogram` and
 `canonical_residual_packet_touched_fiber_histogram`.
 
+The first superboundary layer has residual size `t+1`. In this layer the
+scanner checks the zero-slope classification: a zero-slope packet is exactly a
+`(t+1)`-power coset. In cyclic domains, when the support residue is `t+1`,
+the expected zero-slope packet count is `n/(t+1)` if `t+1|n`, and zero
+otherwise. The corresponding lifted support count is
+
+```text
+1_{t+1 | n} * (n/(t+1))
+  * binom(N - (t+1)/gcd(t+1,m), (k+t-(t+1))/m).
+```
+
+The fields `canonical_first_superboundary_zero_slope_*` compare these exact
+counts with the scan and verify the power-coset condition. Nonzero first
+superboundary slopes are left as the sparse-trinomial residual catalog.
+
 For dithered residues in the range
 
 ```text
@@ -181,3 +199,5 @@ more than one full fiber's worth of residual points.
 In the remaining `b>t` superboundary range, the residual-packet lift check
 separates the additive residual zero-prefix catalog from the already solved
 quotient-core choice of whole fibers.
+At residual size `t+1`, the zero-slope slice is also separated as a counted
+power-coset source.

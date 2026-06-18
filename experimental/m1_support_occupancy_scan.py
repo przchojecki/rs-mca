@@ -304,6 +304,37 @@ def expected_residual_packet_lift_count(
     return math.comb(available_fibers, whole_fibers)
 
 
+def expected_first_superboundary_zero_slope_data(
+    domain_order: int,
+    quotient_order: int,
+    fiber_size: int,
+    support_size: int,
+    slack: int,
+) -> Tuple[int, int, int, Optional[int]]:
+    residual_size = slack + 1
+    if residual_size >= fiber_size:
+        return (0, 0, 0, None)
+    if support_size % fiber_size != residual_size:
+        return (0, 0, 0, None)
+    if domain_order % residual_size:
+        return (0, 0, 0, None)
+
+    whole_fibers = (support_size - residual_size) // fiber_size
+    touched_fibers = residual_size // math.gcd(residual_size, fiber_size)
+    remaining_fibers = quotient_order - touched_fibers
+    if whole_fibers < 0 or whole_fibers > remaining_fibers:
+        return (0, 0, 0, touched_fibers)
+
+    packet_count = domain_order // residual_size
+    lift_multiplicity = math.comb(remaining_fibers, whole_fibers)
+    return (
+        packet_count,
+        packet_count * lift_multiplicity,
+        lift_multiplicity,
+        touched_fibers,
+    )
+
+
 def occupancy_histogram(
     support: Sequence[int],
     quotient_order: int,
@@ -485,6 +516,18 @@ def scan_supports(
         slack // math.gcd(slack, fiber_size)
         if slack < fiber_size and n % slack == 0
         else None
+    )
+    (
+        expected_first_superboundary_zero_packet_count,
+        expected_first_superboundary_zero_support_count,
+        expected_first_superboundary_zero_lift_multiplicity,
+        expected_first_superboundary_zero_touched_fibers,
+    ) = expected_first_superboundary_zero_slope_data(
+        domain_order=n,
+        quotient_order=quotient_order,
+        fiber_size=fiber_size,
+        support_size=support_size,
+        slack=slack,
     )
 
     records: Dict[Tuple[int, ...], Dict[str, object]] = {}
@@ -735,8 +778,14 @@ def scan_supports(
     residual_packet_size_histogram: Counter[int] = Counter()
     residual_packet_touched_fiber_histogram: Counter[int] = Counter()
     residual_packet_slope_histogram: Counter[int] = Counter()
+    first_superboundary_packet_count = 0
+    first_superboundary_zero_slope_packet_count = 0
+    first_superboundary_zero_slope_support_count = 0
+    first_superboundary_zero_slope_coset_mismatches = 0
+    first_superboundary_packet_slope_histogram: Counter[int] = Counter()
+    first_superboundary_slope_histogram: Counter[int] = Counter()
 
-    for packet in residual_packet_records.values():
+    for residual, packet in residual_packet_records.items():
         residual_size = int(packet["residual_size"])
         touched_fibers = int(packet["touched_fibers"])
         expected_lift_count = expected_residual_packet_lift_count(
@@ -759,6 +808,18 @@ def scan_supports(
             continue
         slope = next(iter(slope_histogram))
         residual_packet_slope_histogram[slope] += expected_lift_count
+        if residual_size == slack + 1:
+            first_superboundary_packet_count += 1
+            first_superboundary_packet_slope_histogram[slope] += 1
+            first_superboundary_slope_histogram[slope] += expected_lift_count
+            if slope == 0:
+                first_superboundary_zero_slope_packet_count += 1
+                first_superboundary_zero_slope_support_count += (
+                    expected_lift_count
+                )
+                residual_values = [domain[index] for index in residual]
+                if not is_power_coset(residual_values, slack + 1, p):
+                    first_superboundary_zero_slope_coset_mismatches += 1
 
     return {
         "proof_status": "AUDIT / EXPERIMENTAL",
@@ -1026,6 +1087,91 @@ def scan_supports(
             if canonical_line and slack < fiber_size
             else None
         ),
+        "canonical_first_superboundary_residual_size": (
+            slack + 1 if canonical_line and slack + 1 < fiber_size else None
+        ),
+        "canonical_first_superboundary_packet_count": (
+            first_superboundary_packet_count
+            if canonical_line and slack + 1 < fiber_size
+            else None
+        ),
+        "canonical_first_superboundary_slope_count": (
+            len(first_superboundary_slope_histogram)
+            if canonical_line and slack + 1 < fiber_size
+            else None
+        ),
+        "canonical_first_superboundary_packet_slope_histogram": (
+            {
+                str(slope): count
+                for slope, count in sorted(
+                    first_superboundary_packet_slope_histogram.items()
+                )
+            }
+            if canonical_line and slack + 1 < fiber_size
+            else None
+        ),
+        "canonical_first_superboundary_slope_histogram": (
+            {
+                str(slope): count
+                for slope, count in sorted(
+                    first_superboundary_slope_histogram.items()
+                )
+            }
+            if canonical_line and slack + 1 < fiber_size
+            else None
+        ),
+        "canonical_first_superboundary_zero_slope_packet_count": (
+            first_superboundary_zero_slope_packet_count
+            if canonical_line and slack + 1 < fiber_size
+            else None
+        ),
+        "canonical_first_superboundary_expected_zero_slope_packet_count": (
+            expected_first_superboundary_zero_packet_count
+            if canonical_line and slack + 1 < fiber_size
+            else None
+        ),
+        "canonical_first_superboundary_zero_slope_packet_count_check": (
+            first_superboundary_zero_slope_packet_count
+            == expected_first_superboundary_zero_packet_count
+            if canonical_line and slack + 1 < fiber_size
+            else None
+        ),
+        "canonical_first_superboundary_zero_slope_support_count": (
+            first_superboundary_zero_slope_support_count
+            if canonical_line and slack + 1 < fiber_size
+            else None
+        ),
+        "canonical_first_superboundary_expected_zero_slope_support_count": (
+            expected_first_superboundary_zero_support_count
+            if canonical_line and slack + 1 < fiber_size
+            else None
+        ),
+        "canonical_first_superboundary_zero_slope_support_count_check": (
+            first_superboundary_zero_slope_support_count
+            == expected_first_superboundary_zero_support_count
+            if canonical_line and slack + 1 < fiber_size
+            else None
+        ),
+        "canonical_first_superboundary_zero_slope_lift_multiplicity": (
+            expected_first_superboundary_zero_lift_multiplicity
+            if canonical_line and slack + 1 < fiber_size
+            else None
+        ),
+        "canonical_first_superboundary_zero_slope_touched_fiber_count": (
+            expected_first_superboundary_zero_touched_fibers
+            if canonical_line and slack + 1 < fiber_size
+            else None
+        ),
+        "canonical_first_superboundary_zero_slope_coset_check": (
+            first_superboundary_zero_slope_coset_mismatches == 0
+            if canonical_line and slack + 1 < fiber_size
+            else None
+        ),
+        "canonical_first_superboundary_zero_slope_coset_mismatch_count": (
+            first_superboundary_zero_slope_coset_mismatches
+            if canonical_line and slack + 1 < fiber_size
+            else None
+        ),
         "canonical_subboundary_residual_floor": (
             subboundary_floor if canonical_line and slack < fiber_size else None
         ),
@@ -1141,6 +1287,7 @@ def print_text(result: Dict[str, object]) -> None:
             "boundary_slope_count_check={slope_count} "
             "small_residual_regime={small} "
             "residual_packet_lift_check={packet} "
+            "first_superboundary_zero_check={first} "
             "subboundary_floor_check={floor} "
             "residual_slope_check={slope} "
             "boundary_slope_check={boundary}".format(
@@ -1153,6 +1300,9 @@ def print_text(result: Dict[str, object]) -> None:
                 slope_count=result["canonical_boundary_slope_count_check"],
                 small=result["canonical_small_residual_regime"],
                 packet=result["canonical_residual_packet_lift_count_check"],
+                first=result[
+                    "canonical_first_superboundary_zero_slope_packet_count_check"
+                ],
                 floor=result["canonical_subboundary_residual_floor_check"],
                 slope=result["canonical_residual_slope_check"],
                 boundary=result["canonical_boundary_slope_decomposition_check"],

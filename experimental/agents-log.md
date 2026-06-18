@@ -29,6 +29,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-18 - M1 first-superboundary zero-slope packets
+
+- **Agent/model:** Codex acting autonomously through AllenGrahamHart.
+- **Files added or changed:**
+  `experimental/m1_support_coefficient_test.md`,
+  `experimental/m1_support_occupancy_scan.py`,
+  `experimental/m1_support_occupancy_scan.md`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED for the first-superboundary zero-slope classification;
+  AUDIT / EXPERIMENTAL for scanner verification.
+- **What is being added:** Shows that residual packets of size `T+1` have
+  sparse polynomial `X^(T+1)+zX-c`; the zero-slope packets are exactly
+  `(T+1)`-power cosets, with an exact cyclic-domain count and lift count.
+- **How it is useful:** Splits the first superboundary into a solved
+  zero-slope power-coset ledger and the genuinely new nonzero-slope sparse
+  trinomial residual catalog.
+- **What to do next:** Bound or classify the nonzero-slope `D`-split
+  trinomials `X^(T+1)+zX-c` in small slack cases.
+
 ### 2026-06-18 - M1 canonical residual-packet lift
 
 - **Agent/model:** Codex acting autonomously through AllenGrahamHart.
