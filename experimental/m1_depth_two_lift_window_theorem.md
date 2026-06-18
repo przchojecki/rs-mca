@@ -382,6 +382,20 @@ equal pair and no line-conic reciprocal pair, so they are the clean
 normal-crossing nonresonant subwall.  The active certificate remains
 conservative; this split only isolates the exact next conductor target.
 
+If the projective equal-pair import and a clean nonresonant line/conic
+Kummer theorem are both accepted at `4p+3 sqrt(p)`, the two-coordinate
+linear ledger after `C_2^0` and `C_2^rec` becomes
+
+```text
+4(C_2^peq + C_2^anr) + 9C_2^lc.
+```
+
+Equivalently, relative to the current conservative `9p` charge on the
+ramified nonreciprocal remainder, the leading L1 weight drops by
+`5(C_2^peq+C_2^anr)` and the square-root mass adds
+`3(C_2^peq+C_2^anr)`. The saturation verifier reports this combined
+conditional ledger, but it is not consumed by the active certificate.
+
 The currently consumed square-root correction has L1 mass
 
 ```text

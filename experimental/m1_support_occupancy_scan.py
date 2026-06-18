@@ -1918,6 +1918,9 @@ def depth_two_kummer_error_l1_split(
     two_coordinate_projective_equal_pair_l1_bound: int = 0,
     two_coordinate_projective_equal_pair_constant: int = 4,
     two_coordinate_projective_equal_pair_sqrt_constant: int = 3,
+    two_coordinate_projective_asymmetric_nonresonant_l1_bound: int = 0,
+    two_coordinate_projective_asymmetric_nonresonant_constant: int = 4,
+    two_coordinate_projective_asymmetric_nonresonant_sqrt_constant: int = 3,
 ) -> Dict[str, int]:
     """Split depth-two character error into proved and imported masses."""
 
@@ -1986,6 +1989,14 @@ def depth_two_kummer_error_l1_split(
         two_coordinate_projective_equal_pair_l1_bound
     ):
         raise ValueError("coordinate diagonal cannot exceed projective-equal")
+    two_coordinate_projective_asymmetric_l1_bound = (
+        two_coordinate_ramified_nonreciprocal_l1_bound
+        - two_coordinate_projective_equal_pair_l1_bound
+    )
+    if not 0 <= two_coordinate_projective_asymmetric_nonresonant_l1_bound <= (
+        two_coordinate_projective_asymmetric_l1_bound
+    ):
+        raise ValueError("invalid asymmetric-nonresonant two-coordinate L1 split")
     three_coordinate_kummer_l1_bound = (
         coordinate_three_nonprincipal_l1_bound * (square_coset_index - 1)
     )
@@ -2031,6 +2042,18 @@ def depth_two_kummer_error_l1_split(
     projective_equal_pair_conditional_weighted_error_l1_bound = (
         weighted_error_l1_bound - projective_equal_pair_leading_l1_drop
     )
+    projective_asymmetric_nonresonant_leading_l1_drop = (
+        (
+            two_coordinate_kummer_constant
+            - two_coordinate_projective_asymmetric_nonresonant_constant
+        )
+        * two_coordinate_projective_asymmetric_nonresonant_l1_bound
+    )
+    projective_equal_pair_nonresonant_conditional_weighted_error_l1_bound = (
+        weighted_error_l1_bound
+        - projective_equal_pair_leading_l1_drop
+        - projective_asymmetric_nonresonant_leading_l1_drop
+    )
     two_coordinate_infinity_unramified_sqrt_l1_bound = (
         two_coordinate_infinity_unramified_sqrt_constant
         * two_coordinate_infinity_unramified_l1_bound
@@ -2050,6 +2073,10 @@ def depth_two_kummer_error_l1_split(
     two_coordinate_projective_equal_pair_sqrt_l1_bound = (
         two_coordinate_projective_equal_pair_sqrt_constant
         * two_coordinate_projective_equal_pair_l1_bound
+    )
+    two_coordinate_projective_asymmetric_nonresonant_sqrt_l1_bound = (
+        two_coordinate_projective_asymmetric_nonresonant_sqrt_constant
+        * two_coordinate_projective_asymmetric_nonresonant_l1_bound
     )
     return {
         "jacobi_l1_bound": jacobi_l1_bound,
@@ -2141,6 +2168,23 @@ def depth_two_kummer_error_l1_split(
         "two_coordinate_projective_equal_pair_sqrt_l1_bound": (
             two_coordinate_projective_equal_pair_sqrt_l1_bound
         ),
+        "two_coordinate_projective_asymmetric_nonresonant_l1_bound": (
+            two_coordinate_projective_asymmetric_nonresonant_l1_bound
+        ),
+        "two_coordinate_projective_asymmetric_nonresonant_error_constant": (
+            two_coordinate_projective_asymmetric_nonresonant_constant
+        ),
+        "two_coordinate_projective_asymmetric_nonresonant_sqrt_constant": (
+            two_coordinate_projective_asymmetric_nonresonant_sqrt_constant
+        ),
+        (
+            "two_coordinate_projective_asymmetric_nonresonant_"
+            "leading_l1_drop"
+        ): projective_asymmetric_nonresonant_leading_l1_drop,
+        (
+            "two_coordinate_projective_asymmetric_nonresonant_"
+            "sqrt_l1_bound"
+        ): two_coordinate_projective_asymmetric_nonresonant_sqrt_l1_bound,
         "three_coordinate_kummer_l1_bound": three_coordinate_kummer_l1_bound,
         "three_coordinate_kummer_error_constant": nonprincipal_constant,
         "kummer_l1_bound": kummer_l1_bound,
@@ -2154,6 +2198,10 @@ def depth_two_kummer_error_l1_split(
         "projective_equal_pair_conditional_weighted_error_l1_bound": (
             projective_equal_pair_conditional_weighted_error_l1_bound
         ),
+        (
+            "projective_equal_pair_nonresonant_conditional_"
+            "weighted_error_l1_bound"
+        ): projective_equal_pair_nonresonant_conditional_weighted_error_l1_bound,
     }
 
 
@@ -2535,6 +2583,12 @@ def slack_two_second_kummer_saturation_data(
                 "two_coordinate_projective_equal_pair_l1_bound"
             ]
         ),
+        two_coordinate_projective_asymmetric_nonresonant_l1_bound=int(
+            two_coordinate_projective_split[
+                "two_coordinate_projective_asymmetric_line_conic_"
+                "nonresonant_l1_bound"
+            ]
+        ),
     )
     open_sqrt_error_bound = depth_two_open_sqrt_error_bound(
         p,
@@ -2577,6 +2631,24 @@ def slack_two_second_kummer_saturation_data(
     )
     projective_equal_pair_conditional_sqrt_error_bound = (
         ceil_sqrt(p) * projective_equal_pair_conditional_sqrt_weight
+    )
+    projective_equal_pair_nonresonant_conditional_sqrt_weight = (
+        total_sqrt_weight
+        + int(
+            error_split[
+                "two_coordinate_projective_equal_pair_sqrt_l1_bound"
+            ]
+        )
+        + int(
+            error_split[
+                "two_coordinate_projective_asymmetric_nonresonant_"
+                "sqrt_l1_bound"
+            ]
+        )
+    )
+    projective_equal_pair_nonresonant_conditional_sqrt_error_bound = (
+        ceil_sqrt(p)
+        * projective_equal_pair_nonresonant_conditional_sqrt_weight
     )
     uniform_prime_threshold = kummer_quadratic_uniform_prime_threshold(
         principal_weight=1,
@@ -2623,6 +2695,23 @@ def slack_two_second_kummer_saturation_data(
             sqrt_error_weight=projective_equal_pair_conditional_sqrt_weight,
         )
     )
+    projective_equal_pair_nonresonant_conditional_uniform_prime_threshold = (
+        kummer_quadratic_uniform_prime_threshold(
+            principal_weight=1,
+            linear_error_weight=(
+                int(
+                    error_split[
+                        "projective_equal_pair_nonresonant_conditional_"
+                        "weighted_error_l1_bound"
+                    ]
+                )
+                + 6 * denominator
+            ),
+            sqrt_error_weight=(
+                projective_equal_pair_nonresonant_conditional_sqrt_weight
+            ),
+        )
+    )
     chi_minus_three = quadratic_character(-3, p)
     principal_exact_count = p * p - 4 * p + 6 + 4 * chi_minus_three
     degeneracy_line_count = 6
@@ -2656,6 +2745,20 @@ def slack_two_second_kummer_saturation_data(
         )
         + projective_equal_pair_conditional_sqrt_error_bound
         + degeneracy_line_union_count * denominator
+    )
+    projective_equal_pair_nonresonant_conditional_lower_numerator = (
+        principal_exact_count
+        - (
+            p
+            * int(
+                error_split[
+                    "projective_equal_pair_nonresonant_conditional_"
+                    "weighted_error_l1_bound"
+                ]
+            )
+            + projective_equal_pair_nonresonant_conditional_sqrt_error_bound
+            + degeneracy_line_union_count * denominator
+        )
     )
     admissible_per_coset_lower_bound = (
         (lower_numerator + denominator - 1) // denominator
@@ -2692,6 +2795,16 @@ def slack_two_second_kummer_saturation_data(
         if projective_equal_pair_conditional_lower_numerator > 0
         else 0
     )
+    projective_equal_pair_nonresonant_admissible_per_coset_lower_bound = (
+        (
+            projective_equal_pair_nonresonant_conditional_lower_numerator
+            + denominator
+            - 1
+        )
+        // denominator
+        if projective_equal_pair_nonresonant_conditional_lower_numerator > 0
+        else 0
+    )
     return {
         "character_order": character_order,
         "square_kernel_index": square_kernel_index,
@@ -2718,6 +2831,9 @@ def slack_two_second_kummer_saturation_data(
             "CONDITIONAL / not consumed by saturation_certificate"
         ),
         "projective_equal_pair_conditional_import_status": (
+            "CONDITIONAL / not consumed by saturation_certificate"
+        ),
+        "projective_equal_pair_nonresonant_conditional_import_status": (
             "CONDITIONAL / not consumed by saturation_certificate"
         ),
         "equal_line_conditional_sqrt_error_weight": (
@@ -2759,6 +2875,27 @@ def slack_two_second_kummer_saturation_data(
                 ]
             )
             + projective_equal_pair_conditional_sqrt_error_bound
+        ),
+        (
+            "projective_equal_pair_nonresonant_conditional_"
+            "sqrt_error_weight"
+        ): projective_equal_pair_nonresonant_conditional_sqrt_weight,
+        (
+            "projective_equal_pair_nonresonant_conditional_"
+            "sqrt_error_bound"
+        ): projective_equal_pair_nonresonant_conditional_sqrt_error_bound,
+        (
+            "projective_equal_pair_nonresonant_conditional_"
+            "weighted_error_total_bound"
+        ): (
+            p
+            * int(
+                error_split[
+                    "projective_equal_pair_nonresonant_conditional_"
+                    "weighted_error_l1_bound"
+                ]
+            )
+            + projective_equal_pair_nonresonant_conditional_sqrt_error_bound
         ),
         "conic_error_constant": 1,
         "two_coordinate_coordinate_diagonal_l1_bound": int(
@@ -2864,6 +3001,17 @@ def slack_two_second_kummer_saturation_data(
         "projective_equal_pair_conditional_uniform_threshold_applies": (
             p >= projective_equal_pair_conditional_uniform_prime_threshold
         ),
+        (
+            "projective_equal_pair_nonresonant_conditional_"
+            "uniform_prime_threshold"
+        ): projective_equal_pair_nonresonant_conditional_uniform_prime_threshold,
+        (
+            "projective_equal_pair_nonresonant_conditional_"
+            "uniform_threshold_applies"
+        ): (
+            p
+            >= projective_equal_pair_nonresonant_conditional_uniform_prime_threshold
+        ),
         "nonprincipal_constant": nonprincipal_constant,
         "principal_chi_minus_three": chi_minus_three,
         "principal_exact_count": principal_exact_count,
@@ -2880,6 +3028,10 @@ def slack_two_second_kummer_saturation_data(
         "projective_equal_pair_conditional_lower_numerator": (
             projective_equal_pair_conditional_lower_numerator
         ),
+        (
+            "projective_equal_pair_nonresonant_conditional_"
+            "lower_numerator"
+        ): projective_equal_pair_nonresonant_conditional_lower_numerator,
         "admissible_per_coset_lower_bound": (
             admissible_per_coset_lower_bound
         ),
@@ -2892,6 +3044,10 @@ def slack_two_second_kummer_saturation_data(
         "projective_equal_pair_conditional_admissible_per_coset_lower_bound": (
             projective_equal_pair_conditional_admissible_per_coset_lower_bound
         ),
+        (
+            "projective_equal_pair_nonresonant_conditional_"
+            "admissible_per_coset_lower_bound"
+        ): projective_equal_pair_nonresonant_admissible_per_coset_lower_bound,
         "saturation_certificate": admissible_per_coset_lower_bound > 0,
         "equal_line_conditional_saturation_certificate": (
             equal_line_conditional_admissible_per_coset_lower_bound > 0
@@ -2901,6 +3057,13 @@ def slack_two_second_kummer_saturation_data(
         ),
         "projective_equal_pair_conditional_saturation_certificate": (
             projective_equal_pair_conditional_admissible_per_coset_lower_bound > 0
+        ),
+        (
+            "projective_equal_pair_nonresonant_conditional_"
+            "saturation_certificate"
+        ): (
+            projective_equal_pair_nonresonant_admissible_per_coset_lower_bound
+            > 0
         ),
     }
 
@@ -7377,6 +7540,19 @@ def scan_supports(
             if slack_two_second_kummer_saturation is not None
             else None
         ),
+        (
+            "canonical_slack_two_second_kummer_projective_equal_pair_"
+            "nonresonant_conditional_weighted_error_l1_bound"
+        ): (
+            int(
+                slack_two_second_kummer_saturation[
+                    "projective_equal_pair_nonresonant_conditional_"
+                    "weighted_error_l1_bound"
+                ]
+            )
+            if slack_two_second_kummer_saturation is not None
+            else None
+        ),
         "canonical_slack_two_second_kummer_sqrt_error_bound": (
             int(slack_two_second_kummer_saturation["sqrt_error_bound"])
             if slack_two_second_kummer_saturation is not None
@@ -7419,6 +7595,19 @@ def scan_supports(
             else None
         ),
         (
+            "canonical_slack_two_second_kummer_projective_equal_pair_"
+            "nonresonant_conditional_sqrt_error_bound"
+        ): (
+            int(
+                slack_two_second_kummer_saturation[
+                    "projective_equal_pair_nonresonant_conditional_"
+                    "sqrt_error_bound"
+                ]
+            )
+            if slack_two_second_kummer_saturation is not None
+            else None
+        ),
+        (
             "canonical_slack_two_second_kummer_coordinate_diagonal_"
             "conditional_saturation_certificate"
         ): (
@@ -7437,6 +7626,19 @@ def scan_supports(
             bool(
                 slack_two_second_kummer_saturation[
                     "projective_equal_pair_conditional_saturation_certificate"
+                ]
+            )
+            if slack_two_second_kummer_saturation is not None
+            else None
+        ),
+        (
+            "canonical_slack_two_second_kummer_projective_equal_pair_"
+            "nonresonant_conditional_saturation_certificate"
+        ): (
+            bool(
+                slack_two_second_kummer_saturation[
+                    "projective_equal_pair_nonresonant_conditional_"
+                    "saturation_certificate"
                 ]
             )
             if slack_two_second_kummer_saturation is not None

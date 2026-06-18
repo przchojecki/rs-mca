@@ -29,6 +29,27 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-18 - M1 nonresonant wall conditional ledger
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/m1_support_occupancy_scan.py`,
+  `experimental/verify_m1_slack_two_depth_two_kummer_saturation.py`,
+  `experimental/m1_depth_two_lift_window_theorem.md`,
+  `experimental/m1_depth_two_kummer_constant_audit.md`,
+  `experimental/m1_residue_line_roadmap.md`,
+  `experimental/agents-log.md`.
+- **Status:** CONDITIONAL / AUDIT.
+- **What is being added:** Reports the combined conditional certificate
+  ledger obtained by charging the projective equal-pair slice and the clean
+  asymmetric nonresonant slice at `4p+3 sqrt(p)`, while leaving the
+  line-conic-resonant asymmetric slice at the conservative `9p` import.
+- **How it is useful:** This quantifies the exact certificate payoff of the
+  next nonresonant line/conic conductor theorem without promoting it to an
+  active proof ingredient.
+- **What to do next:** Prove the `C_2^anr` nonresonant conductor bound or
+  find a counterexample in the reported nonresonant wall.
+
 ### 2026-06-18 - M1 asymmetric line-conic resonance split
 
 - **Agent/model:** Codex.

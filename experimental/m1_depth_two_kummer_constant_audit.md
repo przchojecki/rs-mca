@@ -126,3 +126,8 @@ split sharpen this boundary further: the clean nonresonant target has no
 equal or reciprocal projective line pair and no line-conic reciprocal dense
 edge, while the line-conic-resonant asymmetric slice is now counted
 separately by the `C_2^lc` ledger.
+The saturation certificate keeps the conservative `9p` import active, but it
+also reports the conditional ledger obtained by combining the projective
+equal-pair import with a future nonresonant `4p+3 sqrt(p)` theorem.  Under
+that combined import, the only remaining two-coordinate terms still charged
+at `9p` are the line-conic-resonant asymmetric terms.

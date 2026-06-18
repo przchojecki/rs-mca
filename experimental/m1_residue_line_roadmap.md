@@ -71,6 +71,9 @@ should be revised as the project learns more.
    splits the next dense-edge obstruction: the line-conic-resonant submass is
    `C_2^lc=9((e-1)(e-5)+3 1_{2|e}+2(gcd(e,3)-1))`, and the complement
    `C_2^anr=C_2^asym-C_2^lc` is the clean normal-crossing nonresonant wall.
+   The certificate now reports the conditional combined ledger that would
+   charge `C_2^peq+C_2^anr` at `4p+3 sqrt(p)`, leaving only `C_2^lc` at the
+   old `9p` two-coordinate import.
    The updated remaining-wall scan reports this asymmetric wall separately:
    in the current report grid the largest asymmetric ratio is
    `3.2173609608p`, while every near-`4p` top row lies in the projective

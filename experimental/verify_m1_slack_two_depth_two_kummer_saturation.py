@@ -895,6 +895,11 @@ def main() -> None:
         two_coordinate_projective_equal_pair_l1_bound = int(
             two_coordinate_projective_split["projective_equal_pair"]
         )
+        two_coordinate_projective_asymmetric_nonresonant_l1_bound = int(
+            two_coordinate_projective_split[
+                "projective_asymmetric_line_conic_nonresonant"
+            ]
+        )
         two_coordinate_ramified_l1_bound = (
             two_coordinate_kummer_l1_bound
             - two_coordinate_infinity_unramified_l1_bound
@@ -1106,6 +1111,12 @@ def main() -> None:
             raise AssertionError((p, n, two_coordinate_projective_split, certificate))
         if int(certificate["two_coordinate_projective_asymmetric_l1_bound"]) % 6:
             raise AssertionError((p, n, certificate))
+        if two_coordinate_projective_asymmetric_nonresonant_l1_bound != int(
+            certificate[
+                "two_coordinate_projective_asymmetric_nonresonant_l1_bound"
+            ]
+        ):
+            raise AssertionError((p, n, two_coordinate_projective_split, certificate))
         if three_coordinate_kummer_l1_bound != int(
             certificate["three_coordinate_kummer_l1_bound"]
         ):
@@ -1150,6 +1161,26 @@ def main() -> None:
             raise AssertionError((p, n, certificate))
         if int(certificate["two_coordinate_projective_equal_pair_sqrt_constant"]) != 3:
             raise AssertionError((p, n, certificate))
+        if (
+            int(
+                certificate[
+                    "two_coordinate_projective_asymmetric_nonresonant_"
+                    "error_constant"
+                ]
+            )
+            != 4
+        ):
+            raise AssertionError((p, n, certificate))
+        if (
+            int(
+                certificate[
+                    "two_coordinate_projective_asymmetric_nonresonant_"
+                    "sqrt_constant"
+                ]
+            )
+            != 3
+        ):
+            raise AssertionError((p, n, certificate))
         if int(certificate["two_coordinate_kummer_error_constant"]) != 9:
             raise AssertionError((p, n, certificate))
         if int(certificate["three_coordinate_kummer_error_constant"]) != int(
@@ -1175,6 +1206,14 @@ def main() -> None:
         )
         projective_equal_pair_conditional_weighted_error_l1_bound = (
             weighted_error_l1_bound - projective_equal_pair_leading_l1_drop
+        )
+        projective_asymmetric_nonresonant_leading_l1_drop = (
+            5 * two_coordinate_projective_asymmetric_nonresonant_l1_bound
+        )
+        projective_equal_pair_nonresonant_weighted_error_l1_bound = (
+            weighted_error_l1_bound
+            - projective_equal_pair_leading_l1_drop
+            - projective_asymmetric_nonresonant_leading_l1_drop
         )
         if equal_line_leading_l1_drop != int(
             certificate["two_coordinate_equal_line_leading_l1_drop"]
@@ -1224,6 +1263,34 @@ def main() -> None:
                     p,
                     n,
                     projective_equal_pair_conditional_weighted_error_l1_bound,
+                    certificate,
+                )
+            )
+        if projective_asymmetric_nonresonant_leading_l1_drop != int(
+            certificate[
+                "two_coordinate_projective_asymmetric_nonresonant_"
+                "leading_l1_drop"
+            ]
+        ):
+            raise AssertionError(
+                (
+                    p,
+                    n,
+                    projective_asymmetric_nonresonant_leading_l1_drop,
+                    certificate,
+                )
+            )
+        if projective_equal_pair_nonresonant_weighted_error_l1_bound != int(
+            certificate[
+                "projective_equal_pair_nonresonant_conditional_"
+                "weighted_error_l1_bound"
+            ]
+        ):
+            raise AssertionError(
+                (
+                    p,
+                    n,
+                    projective_equal_pair_nonresonant_weighted_error_l1_bound,
                     certificate,
                 )
             )
@@ -1291,6 +1358,16 @@ def main() -> None:
         projective_equal_pair_conditional_sqrt_error_bound = (
             sqrt_error_bound + projective_equal_pair_sqrt_error_bound
         )
+        projective_asymmetric_nonresonant_sqrt_error_bound = (
+            3
+            * ceil_sqrt(p)
+            * two_coordinate_projective_asymmetric_nonresonant_l1_bound
+        )
+        projective_equal_pair_nonresonant_conditional_sqrt_error_bound = (
+            sqrt_error_bound
+            + projective_equal_pair_sqrt_error_bound
+            + projective_asymmetric_nonresonant_sqrt_error_bound
+        )
         if sqrt_error_bound != int(certificate["sqrt_error_bound"]):
             raise AssertionError((p, n, sqrt_error_bound, certificate))
         if equal_line_sqrt_error_bound != (
@@ -1320,6 +1397,23 @@ def main() -> None:
             raise AssertionError(
                 (p, n, projective_equal_pair_sqrt_error_bound, certificate)
             )
+        if projective_asymmetric_nonresonant_sqrt_error_bound != (
+            ceil_sqrt(p)
+            * int(
+                certificate[
+                    "two_coordinate_projective_asymmetric_nonresonant_"
+                    "sqrt_l1_bound"
+                ]
+            )
+        ):
+            raise AssertionError(
+                (
+                    p,
+                    n,
+                    projective_asymmetric_nonresonant_sqrt_error_bound,
+                    certificate,
+                )
+            )
         if equal_line_conditional_sqrt_error_bound != int(
             certificate["equal_line_conditional_sqrt_error_bound"]
         ):
@@ -1348,6 +1442,20 @@ def main() -> None:
                     certificate,
                 )
             )
+        if projective_equal_pair_nonresonant_conditional_sqrt_error_bound != int(
+            certificate[
+                "projective_equal_pair_nonresonant_conditional_"
+                "sqrt_error_bound"
+            ]
+        ):
+            raise AssertionError(
+                (
+                    p,
+                    n,
+                    projective_equal_pair_nonresonant_conditional_sqrt_error_bound,
+                    certificate,
+                )
+            )
         weighted_error_total_bound = (
             p * weighted_error_l1_bound + sqrt_error_bound
         )
@@ -1362,6 +1470,10 @@ def main() -> None:
         projective_equal_pair_conditional_weighted_error_total_bound = (
             p * projective_equal_pair_conditional_weighted_error_l1_bound
             + projective_equal_pair_conditional_sqrt_error_bound
+        )
+        projective_equal_pair_nonresonant_weighted_error_total_bound = (
+            p * projective_equal_pair_nonresonant_weighted_error_l1_bound
+            + projective_equal_pair_nonresonant_conditional_sqrt_error_bound
         )
         if weighted_error_total_bound != int(
             certificate["weighted_error_total_bound"]
@@ -1406,6 +1518,20 @@ def main() -> None:
                     certificate,
                 )
             )
+        if projective_equal_pair_nonresonant_weighted_error_total_bound != int(
+            certificate[
+                "projective_equal_pair_nonresonant_conditional_"
+                "weighted_error_total_bound"
+            ]
+        ):
+            raise AssertionError(
+                (
+                    p,
+                    n,
+                    projective_equal_pair_nonresonant_weighted_error_total_bound,
+                    certificate,
+                )
+            )
         lower_numerator = principal_count - (
             p * weighted_error_l1_bound
             + sqrt_error_bound
@@ -1424,6 +1550,11 @@ def main() -> None:
         projective_equal_pair_conditional_lower_numerator = principal_count - (
             p * projective_equal_pair_conditional_weighted_error_l1_bound
             + projective_equal_pair_conditional_sqrt_error_bound
+            + degeneracy_count * int(certificate["denominator"])
+        )
+        projective_equal_pair_nonresonant_lower_numerator = principal_count - (
+            p * projective_equal_pair_nonresonant_weighted_error_l1_bound
+            + projective_equal_pair_nonresonant_conditional_sqrt_error_bound
             + degeneracy_count * int(certificate["denominator"])
         )
         if lower_numerator != int(certificate["lower_numerator"]):
@@ -1453,6 +1584,20 @@ def main() -> None:
                     p,
                     n,
                     projective_equal_pair_conditional_lower_numerator,
+                    certificate,
+                )
+            )
+        if projective_equal_pair_nonresonant_lower_numerator != int(
+            certificate[
+                "projective_equal_pair_nonresonant_conditional_"
+                "lower_numerator"
+            ]
+        ):
+            raise AssertionError(
+                (
+                    p,
+                    n,
+                    projective_equal_pair_nonresonant_lower_numerator,
                     certificate,
                 )
             )
@@ -1542,6 +1687,36 @@ def main() -> None:
                     certificate,
                 )
             )
+        projective_equal_pair_nonresonant_expected_threshold = (
+            kummer_quadratic_uniform_prime_threshold(
+                1,
+                (
+                    projective_equal_pair_nonresonant_weighted_error_l1_bound
+                    + int(certificate["degeneracy_line_count"])
+                    * int(certificate["denominator"])
+                ),
+                sqrt_error_weight=int(
+                    certificate[
+                        "projective_equal_pair_nonresonant_conditional_"
+                        "sqrt_error_weight"
+                    ]
+                ),
+            )
+        )
+        if projective_equal_pair_nonresonant_expected_threshold != int(
+            certificate[
+                "projective_equal_pair_nonresonant_conditional_"
+                "uniform_prime_threshold"
+            ]
+        ):
+            raise AssertionError(
+                (
+                    p,
+                    n,
+                    projective_equal_pair_nonresonant_expected_threshold,
+                    certificate,
+                )
+            )
         nonzero_coset_count, total_coset_count = square_coset_counts(p, domain)
         saturates = nonzero_coset_count == total_coset_count
         certificate_positive = bool(certificate["saturation_certificate"])
@@ -1553,6 +1728,12 @@ def main() -> None:
         )
         projective_equal_pair_conditional_certificate_positive = bool(
             certificate["projective_equal_pair_conditional_saturation_certificate"]
+        )
+        projective_equal_pair_nonresonant_certificate_positive = bool(
+            certificate[
+                "projective_equal_pair_nonresonant_conditional_"
+                "saturation_certificate"
+            ]
         )
         if certificate_positive != expected_certificate:
             raise AssertionError((p, n, certificate))
@@ -1574,6 +1755,13 @@ def main() -> None:
             ]
         ) != projective_equal_pair_conditional_certificate_positive:
             raise AssertionError((p, n, certificate))
+        if bool(
+            certificate[
+                "projective_equal_pair_nonresonant_conditional_"
+                "uniform_threshold_applies"
+            ]
+        ) != projective_equal_pair_nonresonant_certificate_positive:
+            raise AssertionError((p, n, certificate))
         if certificate_positive and not equal_line_conditional_certificate_positive:
             raise AssertionError((p, n, certificate))
         if (
@@ -1584,6 +1772,11 @@ def main() -> None:
         if (
             coordinate_diagonal_conditional_certificate_positive
             and not projective_equal_pair_conditional_certificate_positive
+        ):
+            raise AssertionError((p, n, certificate))
+        if (
+            projective_equal_pair_conditional_certificate_positive
+            and not projective_equal_pair_nonresonant_certificate_positive
         ):
             raise AssertionError((p, n, certificate))
         if certificate_positive and not saturates:
