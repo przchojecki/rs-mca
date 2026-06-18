@@ -12,7 +12,7 @@ not a proof-status authority and should be revised as the project learns more.
    `-3u^2-2u-3=0`, and infinity; carve out ratio-reducible slices such as
    `nu=mu^{-1}` when they collapse to genus-zero sums.
 3. Use exact finite audits as guardrails: the current evidence supports a
-   possible `4p` target and already obstructs a uniform `3p` target.
+   possible `4p` target and already obstructs constants below `3.831p`.
 4. After the trace-family wall is closed, generalize to fixed low-slack
    templates, then separate tangent, quotient-periodic, finite-template, and
    genuinely aperiodic packing.

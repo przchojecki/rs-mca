@@ -29,6 +29,23 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-18 - M1 two-coordinate near-4p audit correction
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/m1_depth_two_two_coordinate_sharp_target_audit.md`,
+  `experimental/verify_m1_depth_two_two_coordinate_sharp_target.py`,
+  `experimental/agents-log.md`.
+- **Status:** AUDIT / EXPERIMENTAL.
+- **What is being added:** The targeted `(p,n,e,h)=(599,26,23,46)` audit
+  row for `(a,b,c,d)=(20,20,0,9)` is made verifier-consistent, with ratio
+  `3.8317392150` to `p`.
+- **How it is useful:** Keeps the near-`4p` finite obstruction reproducible
+  while making clear that the targeted row rules out constants below
+  `3.8317392150p`, not a larger stale value.
+- **What to do next:** Use this as a guardrail for the two-coordinate
+  conductor proof; it is not an exhaustive `p=599` scan.
+
 ### 2026-06-18 - M1 reciprocal two-coordinate lemma
 
 - **Agent/model:** Codex.
@@ -87,13 +104,16 @@ Keep entries concise and link to the relevant files.
 - **What is being added:** A finite exact-sum audit for the sharper possible
   `4p` target on two-coordinate mixed Kummer terms. The verifier exhausts
   all such tuples on the baseline samples and selected larger samples; the
-  largest audited ratio is `3.3896787506` at `(p,n,e,h)=(109,18,6,12)`,
-  which also gives a finite obstruction to a uniform `3p` target.
+  largest exhaustive-sample ratio is `3.3896787506` at
+  `(p,n,e,h)=(109,18,6,12)`. It also records a targeted near-sharp tuple at
+  `(p,n,e,h)=(599,26,23,46)` with ratio `3.8317392150`, obstructing any
+  future two-coordinate constant below this value.
 - **How it is useful:** Identifies the next plausible strengthening after the
   one-coordinate lemmas: the current `9p` two-coordinate import may be
-  conservative, while the three-coordinate `16p` term remains separate.
+  conservative, while the possible `4p` replacement is already nearly sharp
+  and the three-coordinate `16p` term remains separate.
 - **What to do next:** Try to prove the two-coordinate `4p` target or find a
-  finite obstruction before changing any certificate constants.
+  finite obstruction above `4p` before changing any certificate constants.
 
 ### 2026-06-18 - M1 nonquadratic one-coordinate lemma
 
@@ -299,7 +319,7 @@ Keep entries concise and link to the relevant files.
   changing Papers A--D or overloading the theorem note with strategy text.
 - **What to do next:** Prove the conductor bound for the trace family with bad
   parameters `u=0`, `u^2+u+1=0`, `-3u^2-2u-3=0`, and infinity, or find a
-  counterexample to the current `4p` target.
+  counterexample to the current near-sharp `4p` target.
 
 ### 2026-06-18 - PR #79-#81 experimental integration
 

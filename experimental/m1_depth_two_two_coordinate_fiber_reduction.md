@@ -142,6 +142,8 @@ depth-two saturation constants. In particular, the finite `4p` target audit
 in `experimental/m1_depth_two_two_coordinate_sharp_target_audit.md` becomes
 the question of proving a correspondingly sharper conductor bound for this
 same one-dimensional trace family.
+The updated audit records a targeted tuple with ratio `3.8317392150`, so a
+uniform `4p` theorem would be nearly sharp in this normalization.
 
 The reciprocal slice `nu=mu^{-1}` is already one-dimensional in a stronger
 sense: the substitution `v=tu` collapses the core sum to a genus-zero Kummer

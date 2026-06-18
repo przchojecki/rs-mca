@@ -24,6 +24,24 @@ SAMPLES = (
 )
 
 GLOBAL_EXPECTED = {
+    "p": 599,
+    "n": 26,
+    "e": 23,
+    "h": 46,
+    "max_tuple": (20, 20, 0, 9),
+    "ratio": 3.831739215,
+    "exceeds_multiplier": 3.8,
+}
+
+TARGETED_CASES = (
+    {
+        "p": 599,
+        "n": 26,
+        "exponents": (20, 20, 0, 9),
+    },
+)
+
+EXHAUSTIVE_EXPECTED = {
     "p": 109,
     "n": 18,
     "e": 6,
@@ -146,12 +164,45 @@ def audit_sample(p: int, n: int) -> Dict[str, object]:
     }
 
 
-def main() -> None:
-    rows = [audit_sample(sample["p"], sample["n"]) for sample in SAMPLES]
-    for row in rows:
-        print(row)
-    best = max(rows, key=lambda row: float(row["max_ratio_to_p"]))
-    for key, value in GLOBAL_EXPECTED.items():
+def audit_targeted_case(case: Dict[str, object]) -> Dict[str, object]:
+    p = int(case["p"])
+    n = int(case["n"])
+    exponents = tuple(int(value) for value in case["exponents"])
+    if (p - 1) % n != 0:
+        raise ValueError("n must divide p-1")
+    e = (p - 1) // n
+    h = e * math.gcd(2, n)
+    logs = log_table(p)
+    char_e = character_table(p, e, logs)
+    char_h = character_table(p, h, logs)
+    a_values = [[shape_a(u, v, p) for v in range(p)] for u in range(p)]
+    w_values = [[(-1 - u - v) % p for v in range(p)] for u in range(p)]
+    value = sum_for_tuple(
+        p,
+        char_e,
+        char_h,
+        exponents,
+        a_values,
+        w_values,
+    )
+    magnitude = abs(value)
+    if magnitude > 4 * p + 1e-8:
+        raise AssertionError((p, n, magnitude, exponents))
+    return {
+        "p": p,
+        "n": n,
+        "e": e,
+        "h": h,
+        "tuple_count": 1,
+        "targeted": True,
+        "max_abs": round(magnitude, 10),
+        "max_ratio_to_p": round(magnitude / p, 10),
+        "max_tuple": exponents,
+    }
+
+
+def check_expected(best: Dict[str, object], expected: Dict[str, object]) -> None:
+    for key, value in expected.items():
         if key == "ratio":
             actual = float(best["max_ratio_to_p"])
         elif key == "exceeds_multiplier":
@@ -164,6 +215,19 @@ def main() -> None:
             continue
         if actual != value:
             raise AssertionError((key, actual, value))
+
+
+def main() -> None:
+    rows = [audit_sample(sample["p"], sample["n"]) for sample in SAMPLES]
+    targeted_rows = [audit_targeted_case(case) for case in TARGETED_CASES]
+    for row in rows:
+        print(row)
+    for row in targeted_rows:
+        print(row)
+    exhaustive_best = max(rows, key=lambda row: float(row["max_ratio_to_p"]))
+    check_expected(exhaustive_best, EXHAUSTIVE_EXPECTED)
+    best = max(rows + targeted_rows, key=lambda row: float(row["max_ratio_to_p"]))
+    check_expected(best, GLOBAL_EXPECTED)
     print("M1 depth-two two-coordinate sharp-target verifier passed")
 
 

@@ -42,7 +42,7 @@ coordinate-character order.
 ## Audit Result
 
 The verifier exhausts all two-coordinate mixed tuples on the baseline
-Kummer-audit samples and on several larger targeted samples:
+Kummer-audit samples and on several larger exhaustive samples:
 
 ```text
 (p,n,e,h) = (17,8,2,4),
@@ -58,8 +58,8 @@ Kummer-audit samples and on several larger targeted samples:
             (193,64,3,6).
 ```
 
-Every audited two-coordinate mixed term satisfies the sharper `4p` target.
-The largest audited ratio is
+Every two-coordinate mixed term in these exhaustive samples satisfies the
+sharper `4p` target. The largest exhaustive-sample ratio remains
 
 ```text
 |S_{0,5,5,3}| / p = 3.3896787506
@@ -67,18 +67,41 @@ The largest audited ratio is
 
 at `(p,n,e,h)=(109,18,6,12)`.
 
-## Finite Obstruction to a `3p` Target
+The verifier also includes one targeted near-sharp obstruction:
 
-The same sample rules out the stronger uniform target `3p`: the exact tuple
+```text
+(p,n,e,h)=(599,26,23,46),        (a,b,c,d)=(20,20,0,9).
+```
+
+This targeted tuple has
+
+```text
+|S_{20,20,0,9}| / p = 3.8317392150,
+```
+
+still below `4p` but much closer to it. This row is not an exhaustive
+all-tuple audit for `(p,n)=(599,26)`; it is included to make the near-sharp
+finite obstruction reproducible without making the verifier expensive.
+
+## Finite Obstruction Below `4p`
+
+The older exhaustive sample already rules out the stronger uniform target
+`3p`: the exact tuple
 
 ```text
 (p,n,e,h)=(109,18,6,12),        (a,b,c,d)=(0,5,5,3)
 ```
 
 has absolute value `369.4749838169`, which is larger than `3p=327`.
-Thus a future two-coordinate theorem, if it improves the present `9p`
-import, still needs a constant strictly larger than `3.3896787506` in this
-normalization.
+The targeted `(599,26)` tuple strengthens the obstruction: any future
+two-coordinate theorem of the form `|S| <= C p` needs
+
+```text
+C >= 3.8317392150
+```
+
+in this normalization. Thus the plausible `4p` target, if true, is nearly
+sharp for this family.
 
 ## Contribution to M1
 
