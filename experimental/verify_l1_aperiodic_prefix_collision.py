@@ -425,12 +425,15 @@ def co_large_separation_report(
 ) -> dict[str, Any]:
     exchange_histogram: Counter[int] = Counter()
     overlap_histogram: Counter[int] = Counter()
+    fixed_support_exchange_counts: dict[tuple[int, ...], Counter[int]] = {}
     strict_high_overlap_pairs = 0
     pair_count = 0
 
     for supports in fibers.values():
         if len(supports) < 2:
             continue
+        for support in supports:
+            fixed_support_exchange_counts[support] = Counter()
         for first, second in itertools.combinations(supports, 2):
             first_set = set(first)
             second_set = set(second)
@@ -439,6 +442,8 @@ def co_large_separation_report(
             pair_count += 1
             exchange_histogram[exchange] += 1
             overlap_histogram[overlap] += 1
+            fixed_support_exchange_counts[first][exchange] += 1
+            fixed_support_exchange_counts[second][exchange] += 1
             if exchange < SIGMA:
                 strict_high_overlap_pairs += 1
 
@@ -456,6 +461,23 @@ def co_large_separation_report(
     if strict_high_overlap_pairs:
         raise AssertionError("found strict high-overlap pair inside a prefix fiber")
 
+    ordered_exchange_profile = {
+        exchange: 2 * count
+        for exchange, count in sorted(exchange_histogram.items())
+    }
+    max_exchange_codegree: Counter[int] = Counter()
+    for counts in fixed_support_exchange_counts.values():
+        for exchange, count in counts.items():
+            max_exchange_codegree[exchange] = max(
+                max_exchange_codegree[exchange],
+                count,
+            )
+    for exchange in range(1, SIGMA + 1):
+        if ordered_exchange_profile.get(exchange, 0):
+            raise AssertionError("unexpected ordered mass at small exchange")
+        if max_exchange_codegree.get(exchange, 0):
+            raise AssertionError("unexpected codegree at small exchange")
+
     return {
         "checked": True,
         "unordered_pair_count": pair_count,
@@ -463,6 +485,9 @@ def co_large_separation_report(
         "maximum_overlap": max_overlap,
         "exchange_histogram": dict(sorted(exchange_histogram.items())),
         "overlap_histogram": dict(sorted(overlap_histogram.items())),
+        "ordered_exchange_profile": ordered_exchange_profile,
+        "max_exchange_codegree": dict(sorted(max_exchange_codegree.items())),
+        "zero_exchange_profile_through": SIGMA,
         "strict_high_overlap_pairs_at_slack_sigma": strict_high_overlap_pairs,
         "internal_m1_correction_vanishes": True,
     }
@@ -816,6 +841,11 @@ def print_text(cert: dict[str, Any]) -> None:
         f"max overlap {co_large_separation['maximum_overlap']}, "
         "strict high-overlap pairs "
         f"{co_large_separation['strict_high_overlap_pairs_at_slack_sigma']}"
+    )
+    print(
+        "internal exchange profile: "
+        f"Delta={co_large_separation['ordered_exchange_profile']}, "
+        f"Gamma={co_large_separation['max_exchange_codegree']}"
     )
     print(
         "growing-width envelope cases checked: "

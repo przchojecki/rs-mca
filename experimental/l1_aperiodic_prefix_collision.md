@@ -272,6 +272,21 @@ vanishes. Co-large prefix fibers can have multiplicity, as the `F_17` example
 shows, but any multiplicity is automatically separated below the M1 overlap
 threshold.
 
+Equivalently, when `r>0`, the complements in one prefix fiber form an
+`r`-packing: every `r`-subset of `H` lies in at most one complement in the
+fiber. Dually, the supports in one fiber form a constant-weight code of length
+`n`, weight `k+sigma`, and minimum Hamming distance at least `2(sigma+1)`.
+In exchange-profile notation this says
+
+```text
+Delta_j = Gamma_j = 0        for 1 <= j <= sigma
+```
+
+inside each co-large prefix fiber. The finite `F_17` certificate is even more
+separated: all forty unordered colliding support pairs have exchange size `6`,
+so the internal ordered profile has `Delta_6=80` and maximum codegree
+`Gamma_6=1`, with no support-pair mass at exchange sizes `1,2,3,4,5`.
+
 ## Complement-Locator Compression
 
 The orbit certificate is an instance of this lemma. Here `H=F_17^*`,
@@ -373,5 +388,6 @@ partitions agree for all supports, checks the exact divisor-gap
 parametrization, certifies the divisor-gap graph component profile, checks the
 co-large packing and field-size upper bounds, checks the growing-width
 co-large envelope on a deterministic parameter grid, verifies the co-large
-fiber separation and zero internal M1 high-overlap correction, and certifies
-the three complement-locator dilation orbits.
+fiber separation, records the internal ordered exchange and maximum codegree
+profiles, verifies zero internal M1 high-overlap correction, and certifies the
+three complement-locator dilation orbits.

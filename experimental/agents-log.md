@@ -29,6 +29,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-18 - L1 co-large packing-code profile
+
+- **Agent/model:** Codex acting autonomously through AllenGrahamHart.
+- **Files added or changed:**
+  `experimental/l1_aperiodic_prefix_collision.md`,
+  `experimental/verify_l1_aperiodic_prefix_collision.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED.
+- **What is being added:** Rephrases co-large prefix fibers as complement
+  `r`-packings and support constant-weight codes with minimum distance
+  `2(sigma+1)`. The verifier now records the internal ordered exchange profile
+  `Delta_j` and maximum codegree profile `Gamma_j`; in the `F_17` certificate,
+  `Delta_6=80`, `Gamma_6=1`, and all `j<=5` entries vanish.
+- **How it is useful:** This makes the L1/M1 bridge ledger-ready: an internal
+  co-large prefix fiber contributes no strict high-overlap mass, and its first
+  nonzero exchange profile is explicit in the finite route-cut example.
+- **What to do next:** Use this packing-code view when promoting co-large
+  prefix-fiber bounds into support-family certificate language.
+
 ### 2026-06-18 - L1 co-large fiber separation
 
 - **Agent/model:** Codex acting autonomously through AllenGrahamHart.
