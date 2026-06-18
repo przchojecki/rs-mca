@@ -71,6 +71,13 @@ Consequently, low-slack M1 packet work can be organized as:
 3. shift inherited zero frontiers to the next slack;
 4. prove coset-image estimates only on the genuinely first-nonzero frontiers.
 
+The weighted ladder identity in
+`experimental/m1_residual_depth_frontier_shift.md` makes item 3 exact: the
+zero-frontier catalog at slack `T` is the next-slack catalog at `T+1` with the
+same binomial quotient-lift weight.  Thus the template exposes one genuinely
+new frontier per rung rather than multiplying the inherited packet weight
+through the ladder.
+
 ## Dither Gate
 
 At the canonical exact layer `s=k+T`, a residual packet of depth `d` can lift

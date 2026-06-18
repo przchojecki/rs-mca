@@ -44,28 +44,60 @@ At fixed exact support size this is the dimension shift
 The quotient-lift gate is unchanged, because both sides have the same residual
 packet size `T+d` and the same exact support size.
 
-## Lossless Additive Decomposition
+## Weighted Ladder Identity
 
-For a fixed packet size `r=T+d`, the catalog at slack `T` splits disjointly as
-
-```text
-C_T(r) = F_{T,r}^{(0)} disjoint C_(T+1)(r).
-```
-
-Here `F_{T,r}^{(0)}` is the genuinely new nonzero frontier
-`e_T(P) != 0`, while the second summand is exactly the inherited zero-frontier
-catalog `e_T(P)=0`.  Iterating gives
+Fix a quotient decomposition of `D` into `N` fibers of common size `m`, an
+exact support size `s`, and a normalized residual packet size `r`.  For
+`1<=T<r`, put
 
 ```text
-C_T(r) = F_{T,r}^{(0)} disjoint F_(T+1),r^(0) disjoint ...
-         disjoint F_(r-1),r^(0) disjoint C_r(r).
+C_T(r) = { P subset D : 1 in P, |P|=r,
+           e_1(P)=...=e_(T-1)(P)=0,
+           all elements of P are distinct },
+Z_T(r) = { P in C_T(r) : e_T(P)=0 },
+F_T(r) = { P in C_T(r) : e_T(P)!=0 }.
 ```
 
-The exact-support quotient-lift weight of a packet depends only on the fixed
-support size, the packet size, and the quotient fibers touched by that same
-packet.  It is therefore unchanged by the shift.  Thus packet counts, weighted
-support counts, and shifted frontier slope histograms pass through the
-zero-frontier shift without a multiplicative factor.
+Let `tau(P)` be the number of quotient fibers touched by `P`.  The
+exact-support quotient-lift weight is
+
+```text
+w_s(P) =
+  binom(N-tau(P), (s-r)/m),  if s>=r and m | (s-r),
+  0,                         otherwise.
+```
+
+Then the zero-frontier shift is the literal set identity
+
+```text
+Z_T(r) = C_(T+1)(r).
+```
+
+Consequently, for every packet statistic `Phi(P)` independent of the slack
+label,
+
+```text
+sum_{P in Z_T(r)} w_s(P) Phi(P)
+  = sum_{P in C_(T+1)(r)} w_s(P) Phi(P).
+```
+
+This applies in particular to `Phi=1`, to exact quotient-lift support weights,
+and to shifted frontier slope histograms.  The proof is only the definition:
+adding `e_T(P)=0` to the equations cutting out `C_T(r)` gives exactly the
+equations cutting out `C_(T+1)(r)`, while `w_s(P)` depends on the packet `P`,
+the fixed support size, and the quotient fibers touched by `P`, not on the
+slack label used to describe the same packet.
+
+Iterating the identity gives the disjoint weighted decomposition
+
+```text
+C_T(r) = F_T(r) disjoint F_(T+1)(r) disjoint ... disjoint F_(r-1)(r)
+         disjoint C_r(r).
+```
+
+All inherited zero-frontier terms are therefore carried to the next slack with
+the same weight.  This removes the bookkeeping source of a multiplicative
+depth loss: the only new contribution exposed at rung `T` is `F_T(r)`.
 
 This is only the lossless bookkeeping part of the M1/X1 no-square-root-loss
 route.  It does not prove the required nonzero-frontier character-sum estimate.

@@ -29,6 +29,26 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-18 - M1 weighted frontier-shift identity
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/m1_residual_depth_frontier_shift.md`,
+  `experimental/m1_low_slack_packet_template_theorem.md`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** Strengthens the residual-depth shift note with a
+  weighted ladder identity: for fixed residual packet size, the zero-frontier
+  catalog at slack `T` is exactly the catalog at slack `T+1`, with the same
+  binomial exact-support quotient-lift weight.
+- **How it is useful:** This proves the bookkeeping part of the additive M1/X1
+  route.  Inherited zero-frontier packets are carried through the ladder
+  without a multiplicative factor; only the newly exposed nonzero frontier at
+  each rung needs a fresh analytic estimate.
+- **What to do next:** Attack the remaining nonzero-frontier problem by proving
+  a depth-uniform `O(sqrt(p))` conductor bound, or search for a finite family
+  where that nonzero-frontier estimate compounds.
+
 ### 2026-06-18 - M1 residual-depth ladder audit
 
 - **Agent/model:** Codex.
