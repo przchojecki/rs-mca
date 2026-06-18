@@ -1317,6 +1317,29 @@ The same finite check records the sharp tiny failures: at `p=5` the
 admissible depth-two frontier is purely zero, and at `p=7` it hits only the
 square class.
 
+The complementary high-index ceiling is unconditional and works for every
+multiplicative subgroup `D`. Put `n=|D|` and `g=gcd(2,n)`. In the slack-two
+depth-two frontier, normalized ordered shapes are a subset of `D^2`, and each
+nonzero shape contributes at most one square coset `A(u,v)D^2`. Since
+`|D^2|=n/g`, the nonzero slope image has size at most
+
+```text
+n^2 * n/g.
+```
+
+Adding the possible zero slope gives the field-capped certificate
+
+```text
+|Bad_{T=2,d=2}| <= min(p, 1 + n^3/g).
+```
+
+This is crude compared with the exact square-coset scanner, but it is useful
+as a scale marker: whenever `1+n^3/g<p`, the depth-two slack-two frontier is
+provably non-field-filling before any character-sum estimate is invoked.
+Thus the full-domain saturation theorem above and this high-index ceiling
+bracket the first nonzero frontier: low-index/full-domain cases saturate,
+while sufficiently high-index subgroup cases are automatically sparse.
+
 For the full multiplicative domain this conic ledger has an exact elementary
 count. Take `D=F_p^*`, `p>3`, and write `chi` for the quadratic character.
 The affine conic `Q(u,v)=0` has `p-chi(-3)` points. The three sections

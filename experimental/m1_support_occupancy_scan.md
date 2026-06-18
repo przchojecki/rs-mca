@@ -149,6 +149,9 @@ canonical_slack_two_second_shape_square_image_size
 canonical_slack_two_second_shape_square_coset_slope_count
 canonical_slack_two_second_shape_square_coset_slope_count_check
 canonical_slack_two_second_shape_square_coset_slope_bound_check
+canonical_slack_two_second_shape_high_index_slope_bound
+canonical_slack_two_second_shape_high_index_nontrivial
+canonical_slack_two_second_shape_high_index_bound_check
 canonical_slack_two_second_full_domain_saturates_nonzero_slopes
 canonical_slack_two_second_full_domain_nonzero_slope_image
 canonical_slack_two_second_full_domain_coset_count_check
@@ -462,6 +465,15 @@ The `canonical_slack_two_second_*` fields report the depth-two lift gate
 exact square-coset compressed slope count. The zero-slope parameter count is
 the slack-three conic catalog, so this audit checks the first concrete link
 between the slack-two depth-two layer and the slack-three depth-one layer.
+The `canonical_slack_two_second_shape_high_index_*` fields record the
+unconditional subgroup-size ceiling
+
+```text
+|Bad_{t=2,d=2}| <= min(p, 1+|D|^3/gcd(2,|D|)).
+```
+
+This bound is intentionally coarse, but it gives a quick non-field-filling
+certificate whenever the right side is below `p`.
 When `D=F_p^*`, the
 `canonical_slack_two_second_full_domain_*` fields also record the full-domain
 frontier saturation certificate: for `p>=11`, the values

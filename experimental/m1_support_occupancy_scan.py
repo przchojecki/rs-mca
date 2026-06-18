@@ -1165,6 +1165,10 @@ def slack_two_second_superboundary_shape_ledger(
         (1 if active_zero_slope else 0)
         + active_nonzero_packet_orbit_count * len(square_image)
     )
+    high_index_slope_bound = min(
+        p,
+        1 + len(domain) * len(domain) * len(square_image),
+    )
     return {
         "residual_size": residual_size,
         "orbit_factor": orbit_factor,
@@ -1181,6 +1185,8 @@ def slack_two_second_superboundary_shape_ledger(
         "abstract_square_coset_slope_count": abstract_square_coset_slope_count,
         "square_coset_slope_count": square_coset_slope_count,
         "square_coset_slope_bound": min(p, square_coset_slope_bound),
+        "high_index_slope_bound": high_index_slope_bound,
+        "high_index_slope_bound_nontrivial": high_index_slope_bound < p,
         "twentyfourfold_quotient_check": quotient_check,
         "packet_count": packet_count_numerator // orbit_factor,
         "weighted_support_count": support_count_numerator // orbit_factor,
@@ -3688,6 +3694,22 @@ def scan_supports(
         "canonical_slack_two_second_shape_square_coset_slope_bound_check": (
             len(slack_two_second_superboundary_slope_histogram)
             <= int(slack_two_second_shape_ledger["square_coset_slope_bound"])
+            if slack_two_second_shape_ledger is not None
+            else None
+        ),
+        "canonical_slack_two_second_shape_high_index_slope_bound": (
+            int(slack_two_second_shape_ledger["high_index_slope_bound"])
+            if slack_two_second_shape_ledger is not None
+            else None
+        ),
+        "canonical_slack_two_second_shape_high_index_nontrivial": (
+            bool(slack_two_second_shape_ledger["high_index_slope_bound_nontrivial"])
+            if slack_two_second_shape_ledger is not None
+            else None
+        ),
+        "canonical_slack_two_second_shape_high_index_bound_check": (
+            len(slack_two_second_superboundary_slope_histogram)
+            <= int(slack_two_second_shape_ledger["high_index_slope_bound"])
             if slack_two_second_shape_ledger is not None
             else None
         ),
