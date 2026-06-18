@@ -107,6 +107,8 @@ class RemainderWindowEntry:
     strict_codegree_mass: int
     log2_strict_codegree_mass: float
     large_fiber_formula: bool
+    stable_large_scale_formula: bool
+    dither_gap: int
 
     def to_json(self) -> Dict[str, object]:
         return {
@@ -119,6 +121,8 @@ class RemainderWindowEntry:
             "strict_codegree_mass": self.strict_codegree_mass,
             "log2_strict_codegree_mass": round(self.log2_strict_codegree_mass, 6),
             "large_fiber_formula_complete": self.large_fiber_formula,
+            "stable_large_scale_formula": self.stable_large_scale_formula,
+            "dither_gap": self.dither_gap,
         }
 
 
@@ -385,6 +389,7 @@ def remainder_window_entries(
             support_size = k0 + slack - dither
             if support_size <= 0 or support_size >= n:
                 continue
+            dither_gap = slack - dither
             b = support_size % M
             if b == 0:
                 continue
@@ -405,6 +410,11 @@ def remainder_window_entries(
                     strict_codegree_mass=mass,
                     log2_strict_codegree_mass=math.log2(mass),
                     large_fiber_formula=slack <= M,
+                    stable_large_scale_formula=(
+                        b == dither_gap and 1 <= dither_gap < slack
+                        and M >= slack + dither_gap
+                    ),
+                    dither_gap=dither_gap,
                 )
             )
     records.sort(
@@ -647,11 +657,13 @@ def format_remainder_entries(entries: Sequence[Dict[str, object]]) -> str:
     pieces = []
     for entry in entries:
         pieces.append(
-            "t={t},M={M},b={b},logMass={log:.1f}".format(
+            "t={t},M={M},b={b},d={d},logMass={log:.1f}{stable}".format(
                 t=entry["slack"],
                 M=entry["M_coset_size"],
                 b=entry["remainder"],
+                d=entry["dither_gap"],
                 log=float(entry["log2_strict_codegree_mass"]),
+                stable=",stable" if entry["stable_large_scale_formula"] else "",
             )
         )
     return "; ".join(pieces)

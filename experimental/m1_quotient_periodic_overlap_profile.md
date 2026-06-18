@@ -488,6 +488,57 @@ large-scale one-remainder strict codegree linear in the ambient codimension
 degree-`d` binomial factor `binom(m,d)` and therefore can still be a genuinely
 larger quotient-profile term.
 
+This gives a fixed-window obstruction. Suppose one fixed dither is maximal at
+slack `t0`, so
+
+```text
+r0 = t0 - 1.
+```
+
+At the adjacent slack `t0+1`, the same dither has
+
+```text
+d = (t0+1)-r0 = 2.
+```
+
+Therefore, for every dyadic scale `m | k0` with
+
+```text
+m >= t0 + 3,
+```
+
+the stable large-scale one-remainder mass at slack `t0+1` is exactly
+
+```text
+H_REM^{<t0+1}(1)
+  = ((n-k0)/m) binom(m,2) - 1
+  = (n-k0)(m-1)/2 - 1.
+```
+
+By contrast, at the original slack `t0`, maximal dither has the linear
+large-scale mass
+
+```text
+n-k0-1.
+```
+
+Thus a fixed dither that is optimal for one slack cannot keep the adjacent
+large-scale one-remainder quotient packets uniformly tangent-sized. The next
+slack already restores a scale-dependent mass of order `(n-k0)m`.
+
+More generally, for any fixed dither `r0` and any slack `t` with
+`d=t-r0 >= 2`, every dyadic scale `m | k0` satisfying `m >= t+d` has exact
+stable mass
+
+```text
+((n-k0)/m) binom(m,d) - 1.
+```
+
+This is a degree-`d-1` polynomial in the scale `m` after the ambient codimension
+factor is pulled out. Consequently, fixed-window dithering cannot be analyzed
+only by asking which whole-fiber quotient scales survive; the one-remainder
+ledger is a separate large-scale obstruction.
+
 Finally, the maximal-dither remainder case has an exact all-scale formula, so
 small scales need not be handled as a black-box enumeration. Suppose
 
@@ -903,6 +954,19 @@ by Vandermonde, because `m-d >= d`. Hence the same-remainder contribution at
 H_REM^{<t}(1) = ((n-k0)/m) binom(m,d) - 1.
 ```
 
+The fixed-window obstruction is the specialization of the same formula. If
+`r0=t0-1`, then at slack `t0+1` one has `d=2`. The stability condition becomes
+`m >= (t0+1)+2 = t0+3`, and the stable mass is
+
+```text
+((n-k0)/m) binom(m,2) - 1 = (n-k0)(m-1)/2 - 1.
+```
+
+For any fixed dither and any slack with `d=t-r0 >= 2`, the displayed stable
+hierarchy formula applies verbatim at scales `m >= t+d`; its leading behavior
+in `m` is `(n-k0)m^(d-1)/d!`, which is no longer uniformly linear in
+`n-k0`.
+
 For the maximal-dither all-scale formula, specialize the one-remainder
 enumerator to `b=1` and put `A=N-L-1`. The same-remainder-fiber factor is
 `1+(m-1)y`. The terms with new remainder fiber outside `I union {p}` simplify
@@ -992,7 +1056,10 @@ Two immediate readings are useful.
    distinguished choice: if `d=t-r0` and `m >= t+d`, then the unweighted
    strict remainder mass is exactly `((n-k0)/m)binom(m,d)-1`. Thus `d=1` is the
    only stable dither class with a uniformly linear large-scale remainder
-   budget.
+   budget. If a fixed dither is maximal at slack `t0`, the adjacent slack
+   `t0+1` has `d=2` and large-scale mass `(n-k0)(m-1)/2-1`; fixed-window
+   dithering therefore reintroduces a scale-dependent one-remainder
+   obstruction even when whole-fiber scales are controlled.
 9. In the maximal-dither case, the one-remainder profile is explicit at every
    scale, not only at `m>=t`: the full strict profile is the three-band formula
    at exchange sizes `hm-1`, `hm`, and `hm+1`. This gives a closed-form

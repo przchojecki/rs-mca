@@ -145,6 +145,25 @@ def verify_stable_large_scale_case(N, m, L, d, t):
     return stable
 
 
+def verify_adjacent_slack_remainder_obstruction(n, k0, t0, m):
+    assert m >= t0 + 3
+    assert k0 % m == 0
+    N = n // m
+    L = k0 // m
+    t = t0 + 1
+
+    full = formula_enumerator(N, m, L, 2)
+    strict = Counter(
+        {exponent: coeff for exponent, coeff in full.items() if 0 < exponent < t}
+    )
+    expected_mass = (n - k0) * (m - 1) // 2 - 1
+    assert sum(strict.values()) == expected_mass, (n, k0, t0, m, strict)
+
+    stable = stable_large_scale_enumerator(N, m, L, 2, t)
+    assert strict == stable, (n, k0, t0, m, strict, stable)
+    return strict
+
+
 def maximal_dither_all_scale_enumerator(N, m, L, t):
     assert m >= 2
     A = N - L - 1
@@ -375,6 +394,18 @@ def main():
         print(
             f"N,m,L,d,t={case}: H_stable={dict(sorted(stable.items()))}, "
             f"mass={sum(stable.values())}"
+        )
+    adjacent_remainder_cases = [
+        (256, 128, 5, 8),
+        (256, 128, 5, 16),
+        (1024, 256, 8, 16),
+        (1024, 256, 8, 32),
+    ]
+    for case in adjacent_remainder_cases:
+        strict = verify_adjacent_slack_remainder_obstruction(*case)
+        print(
+            f"n,k0,t0,m={case}: H_adjacent_rem={dict(sorted(strict.items()))}, "
+            f"mass={sum(strict.values())}"
         )
     maximal_cases = [
         (8, 2, 4, 6),

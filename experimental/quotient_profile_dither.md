@@ -104,3 +104,26 @@ This distinction matters when comparing fixed dithers across a slack window:
 an odd dither can remove whole-fiber dyadic scales at one slack, while the
 nonzero one-remainder packet may still carry a much larger strict codegree mass
 at nearby slacks.
+
+Entries marked `stable_large_scale_formula` lie in the range
+
+```text
+d = t-r,        1 <= d < t,        M >= t+d.
+```
+
+There the scanner is using the closed mass
+
+```text
+((n-k0)/M) binom(M,d) - 1.
+```
+
+In particular, if a fixed dither is maximal at slack `t0`, then at the adjacent
+slack `t0+1` one has `d=2`, and every dyadic scale `M >= t0+3` has stable mass
+
+```text
+(n-k0)(M-1)/2 - 1.
+```
+
+This is the executable form of the fixed-window remainder obstruction: a
+single fixed dither cannot keep all adjacent large-scale remainder packets in
+the linear maximal-dither regime.

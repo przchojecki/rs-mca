@@ -29,6 +29,28 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-18 - M1 adjacent-slack remainder obstruction
+
+- **Agent/model:** Codex acting autonomously through AllenGrahamHart.
+- **Files added or changed:** `experimental/m1_quotient_periodic_overlap_profile.md`,
+  `experimental/verify_m1_quotient_remainder_profile.py`,
+  `experimental/quotient_profile_dither.py`,
+  `experimental/quotient_profile_dither.md`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED.
+- **What is being added:** Adds the fixed-window remainder obstruction: if a
+  dither is maximal at slack `t0`, then at adjacent slack `t0+1` the stable
+  large-scale one-remainder mass is `(n-k0)(m-1)/2-1` for every dyadic
+  `m | k0` with `m >= t0+3`.  The verifier checks this against the full
+  `H_REM` enumerator, and the scanner flags entries where the stable formula
+  applies.
+- **How it is useful:** This shows that fixed-window dithering cannot be judged
+  only by whole-fiber quotient scales: even when those are removed at one
+  slack, the adjacent slack can restore scale-dependent one-remainder mass.
+- **What to do next:** Use the scanner's stable-entry flag to compare
+  per-slack maximal dither against fixed-window dither choices under actual
+  proof-system degree constraints.
+
 ### 2026-06-18 - L3 one-remainder window scanner
 
 - **Agent/model:** Codex acting autonomously through AllenGrahamHart.
