@@ -420,8 +420,19 @@ def verify_dither_menu_stable_tail_lower_bound(
         weighted_threshold = mass_threshold * q ** (t_start - max_gap)
         mass_dominates = mass_threshold > adaptive_mass
         weighted_dominates = mass_threshold > adaptive_mass * q ** (max_gap - 1)
+        window_weighted_dominates = (
+            mass_threshold
+            > adaptive_mass * q ** (t_end - 1 - (t_start - max_gap))
+        )
         scale_thresholds.append(
-            (m, mass_threshold, weighted_threshold, mass_dominates, weighted_dominates)
+            (
+                m,
+                mass_threshold,
+                weighted_threshold,
+                mass_dominates,
+                weighted_dominates,
+                window_weighted_dominates,
+            )
         )
     assert scale_thresholds
 
@@ -447,10 +458,12 @@ def verify_dither_menu_stable_tail_lower_bound(
             weighted_threshold,
             mass_dominates,
             weighted_dominates,
+            window_weighted_dominates,
         ) in scale_thresholds:
             strict = verify_two_sided_fixed_dither_stable_tail(n, k0, r, t, m)
             correction = weighted_strict_correction(strict, t, q)
             adaptive_correction = adaptive_mass * q ** (t - 1)
+            adaptive_window_correction = adaptive_mass * q ** (t_end - 1)
             assert sum(strict.values()) >= mass_threshold, (
                 n,
                 k0,
@@ -483,6 +496,8 @@ def verify_dither_menu_stable_tail_lower_bound(
                 assert sum(strict.values()) > adaptive_mass
             if weighted_dominates:
                 assert correction > adaptive_correction
+            if window_weighted_dominates:
+                assert correction > adaptive_window_correction
 
     return forced_gap, tuple(scale_thresholds), len(valid_menus)
 
@@ -519,6 +534,45 @@ def verify_adaptive_threshold_closed_form(n, k0, forced_gap, max_gap, q):
         assert weighted_dominates == weighted_threshold
 
         rows.append((m, mass_floor, mass_dominates, weighted_dominates))
+
+    assert rows
+    return tuple(rows)
+
+
+def verify_window_weighted_threshold_closed_form(
+    n,
+    k0,
+    forced_gap,
+    max_gap,
+    window_length,
+    q,
+):
+    assert forced_gap >= 1
+    assert max_gap >= forced_gap
+    assert window_length >= 1
+    assert q > 1
+
+    side_total = min(k0, n - k0)
+    adaptive_mass = n - k0 - 1
+    window_factor = q ** (window_length + max_gap - 2)
+    rows = []
+    for m in dyadic_divisors(k0):
+        if m <= 1 or m < forced_gap or n % m:
+            continue
+        side_floor = min(k0 // m, (n - k0) // m)
+        assert side_floor == side_total // m
+
+        mass_floor = side_floor * choose(m, forced_gap) - 1
+        closed_numerator = side_total * choose(m - 1, forced_gap - 1)
+        assert mass_floor == closed_numerator // forced_gap - 1
+
+        window_weighted_dominates = mass_floor > adaptive_mass * window_factor
+        window_threshold = closed_numerator > forced_gap * (
+            adaptive_mass * window_factor + 1
+        )
+        assert window_weighted_dominates == window_threshold
+
+        rows.append((m, mass_floor, window_weighted_dominates))
 
     assert rows
     return tuple(rows)
@@ -1002,6 +1056,13 @@ def main():
     for case in threshold_cases:
         rows = verify_adaptive_threshold_closed_form(*case)
         print(f"n,k0,E,D,q={case}: adaptive_thresholds={rows}")
+    window_threshold_cases = [
+        (256, 128, 3, 3, 8, 17),
+        (2**20, 2**19, 4, 4, 4, 17),
+    ]
+    for case in window_threshold_cases:
+        rows = verify_window_weighted_threshold_closed_form(*case)
+        print(f"n,k0,E,D,L,q={case}: window_weighted_thresholds={rows}")
     adaptive_menu_rows = verify_adaptive_competitive_menu_size(
         max_window_length=20,
         max_menu_size=12,

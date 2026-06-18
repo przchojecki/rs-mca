@@ -907,9 +907,31 @@ same-slack weighted mass exactly when
 K_side binom(m-1,E-1) > E((n-k0-1)Q + 1).
 ```
 
-This isolates the field-size penalty as an explicit scale threshold: increasing
-`q` or the allowed service gap `D` only delays the first separating scale; it
-does not change the binomial degree forced by a fixed menu.
+For comparison against the whole adaptive slack window, the conservative
+weighted floor above must be compared to
+
+```text
+(n-k0-1)q^(t_+-1).
+```
+
+Let
+
+```text
+G_win = t_+-1-(t_- - D) = |W| + D - 2.
+```
+
+Then the finite-menu lower bound beats the adaptive window maximum exactly
+when
+
+```text
+K_side binom(m-1,E-1) > E((n-k0-1)q^G_win + 1).
+```
+
+Thus the whole-window comparison is stricter than the same-slack comparison by
+the extra factor `q^(|W|-1)`. This isolates the field-size penalty as an
+explicit scale threshold: increasing `q` or the allowed service gap `D` only
+delays the first separating scale; it does not change the binomial degree
+forced by a fixed menu.
 
 Consequently, a finite menu is scale-unbounded adaptive-competitive exactly in
 the gap-one case.  More precisely, fix a nontrivial asymptotic dyadic rate
@@ -1486,7 +1508,9 @@ Two immediate readings are useful.
    `4, 8, 16, 32` for rates `1/2, 1/4, 1/8, 1/16`, respectively. Over an
    unbounded dyadic hierarchy, asymptotic adaptive competitiveness is
    equivalent to `D_C=1`, so the exact required menu size for a length-`L_W`
-   window is the gap-one capacity inverse `C_ad(L_W)`.
+   window is the gap-one capacity inverse `C_ad(L_W)`. For weighted random-line
+   budgets, the comparison against the whole adaptive window maximum pays the
+   explicit extra factor `q^(L_W-1)` beyond the same-slack comparison.
 9. In the maximal-dither case, the one-remainder profile is explicit at every
    scale, not only at `m>=t`: the full strict profile is the three-band formula
    at exchange sizes `hm-1`, `hm`, and `hm+1`. This gives a closed-form

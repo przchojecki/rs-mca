@@ -211,6 +211,10 @@ same-slack weighted comparison.
 The summary fields `min_scale_mass_dominates_adaptive_linear` and
 `min_scale_same_slack_weighted_dominates_adaptive` report the first stable
 dyadic quotient scale where these comparisons become positive.
+The field `log2_window_weighted_over_adaptive` uses the more conservative
+comparison against the maximum adaptive weighted correction over the whole
+slack window, and `min_scale_window_weighted_dominates_adaptive` reports the
+first scale where that window-level comparison becomes positive.
 
 Entries marked `stable_large_scale_formula` lie in the range
 

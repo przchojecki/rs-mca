@@ -29,6 +29,27 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-18 - M1 window-weighted adaptive threshold
+
+- **Agent/model:** Codex acting autonomously through AllenGrahamHart.
+- **Files added or changed:**
+  `experimental/m1_quotient_periodic_overlap_profile.md`,
+  `experimental/verify_m1_quotient_remainder_profile.py`,
+  `experimental/quotient_profile_dither.py`,
+  `experimental/quotient_profile_dither.md`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED for the threshold lemma; AUDIT / EXPERIMENTAL for scanner
+  reporting.
+- **What is being added:** Compares the finite-menu weighted lower bound to
+  the maximum adaptive weighted baseline over the whole slack window. The
+  exact conservative threshold pays `q^(|W|+D-2)` instead of the same-slack
+  factor `q^(D-1)`.
+- **How it is useful:** Separates same-slack intuition from protocol-level
+  window budgeting, making the line-field and slack-window penalties explicit.
+- **What to do next:** Use the window-weighted scanner fields to find concrete
+  parameter ranges where finite menus dominate even after the whole-window
+  adaptive penalty.
+
 ### 2026-06-18 - M1 adaptive-competitive menu size
 
 - **Agent/model:** Codex acting autonomously through AllenGrahamHart.
