@@ -208,6 +208,11 @@ def raw_two_coordinate_projective_l1_split(
                     if first == second == infinity:
                         equal_line_diagonal += 1
     active_pair_count = 3
+    projective_asymmetric = ramified_nonreciprocal - projective_equal_pair
+    if projective_asymmetric < 0 or projective_asymmetric % 2:
+        raise AssertionError(
+            (character_order, square_coset_index, projective_asymmetric)
+        )
     return {
         "infinity_unramified": active_pair_count * infinity_unramified,
         "projective_reciprocal": active_pair_count * projective_reciprocal,
@@ -225,6 +230,10 @@ def raw_two_coordinate_projective_l1_split(
         "projective_equal_pair": active_pair_count * projective_equal_pair,
         "projective_equal_pair_non_coordinate": (
             active_pair_count * (projective_equal_pair - coordinate_diagonal)
+        ),
+        "projective_asymmetric": active_pair_count * projective_asymmetric,
+        "projective_asymmetric_orbit_count": (
+            active_pair_count * projective_asymmetric // 6
         ),
         "equal_line_diagonal": active_pair_count * equal_line_diagonal,
     }
@@ -405,6 +414,30 @@ def raw_two_coordinate_projective_l1_split_formula(
                     square_coset_index,
                 )
             )
+        ),
+        "projective_asymmetric": (
+            3
+            * (
+                total
+                - infinity_unramified
+                - projective_reciprocal
+                - projective_equal_pair_count_formula(
+                    character_order,
+                    square_coset_index,
+                )
+            )
+        ),
+        "projective_asymmetric_orbit_count": (
+            (
+                total
+                - infinity_unramified
+                - projective_reciprocal
+                - projective_equal_pair_count_formula(
+                    character_order,
+                    square_coset_index,
+                )
+            )
+            // 2
         ),
         "equal_line_diagonal": (
             3
@@ -966,6 +999,20 @@ def main() -> None:
             ]
         ):
             raise AssertionError((p, n, two_coordinate_projective_split, certificate))
+        if int(two_coordinate_projective_split["projective_asymmetric"]) != int(
+            certificate["two_coordinate_projective_asymmetric_l1_bound"]
+        ):
+            raise AssertionError((p, n, two_coordinate_projective_split, certificate))
+        if int(
+            two_coordinate_projective_split[
+                "projective_asymmetric_orbit_count"
+            ]
+        ) != int(
+            certificate["two_coordinate_projective_asymmetric_orbit_count"]
+        ):
+            raise AssertionError((p, n, two_coordinate_projective_split, certificate))
+        if int(certificate["two_coordinate_projective_asymmetric_l1_bound"]) % 6:
+            raise AssertionError((p, n, certificate))
         if three_coordinate_kummer_l1_bound != int(
             certificate["three_coordinate_kummer_l1_bound"]
         ):
@@ -1484,6 +1531,10 @@ def main() -> None:
         projective_equal_pair_non_coordinate_l1 = int(
             direct_split["projective_equal_pair_non_coordinate"]
         )
+        projective_asymmetric_l1 = int(direct_split["projective_asymmetric"])
+        projective_asymmetric_orbit_count = int(
+            direct_split["projective_asymmetric_orbit_count"]
+        )
         ramified_l1 = int(direct_split["ramified_nonreciprocal"])
         if equal_line_l1 > ramified_l1:
             raise AssertionError((character_order, square_coset_index, direct_split))
@@ -1499,6 +1550,10 @@ def main() -> None:
             projective_equal_pair_l1 - coordinate_diagonal_l1
         ):
             raise AssertionError((character_order, square_coset_index, direct_split))
+        if projective_asymmetric_l1 != ramified_l1 - projective_equal_pair_l1:
+            raise AssertionError((character_order, square_coset_index, direct_split))
+        if projective_asymmetric_l1 != 6 * projective_asymmetric_orbit_count:
+            raise AssertionError((character_order, square_coset_index, direct_split))
         equal_line_checked.append(
             (
                 character_order,
@@ -1507,6 +1562,8 @@ def main() -> None:
                 coordinate_diagonal_non_equal_l1,
                 projective_equal_pair_l1,
                 projective_equal_pair_non_coordinate_l1,
+                projective_asymmetric_l1,
+                projective_asymmetric_orbit_count,
                 equal_line_l1,
                 ramified_l1,
                 5 * equal_line_l1,

@@ -29,6 +29,28 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-18 - M1 asymmetric residual orbit ledger
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/m1_support_occupancy_scan.py`,
+  `experimental/verify_m1_slack_two_depth_two_kummer_saturation.py`,
+  `experimental/m1_depth_two_lift_window_theorem.md`,
+  `experimental/m1_kummer_weil_import_contract.md`,
+  `experimental/m1_residue_line_roadmap.md`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / LEDGER.
+- **What is being added:** Defines and verifies the exact remaining
+  asymmetric two-coordinate mass
+  `C_2^asym=C_2-C_2^0-C_2^rec-C_2^peq`.
+- **How it is useful:** Every term in this residual class has nonzero
+  projective line monodromies with no equal or reciprocal pair, so projective
+  line permutation acts freely; the verifier records the exact orbit count
+  `O_2^asym=C_2^asym/6`.
+- **What to do next:** Attack this genuinely asymmetric orbit class, which is
+  now the remaining two-coordinate wall after the proved reductions and the
+  conditional projective equal-pair ledger.
+
 ### 2026-06-18 - M1 projective equal-pair conditional ledger
 
 - **Agent/model:** Codex.

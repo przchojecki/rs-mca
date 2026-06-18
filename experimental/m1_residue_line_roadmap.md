@@ -62,7 +62,9 @@ should be revised as the project learns more.
    three projective line pairs.  The active certificate remains conservative
    until the imported `2F1` local table is accepted as theorem-grade.  The
    next two-coordinate target is therefore the ramified nonreciprocal
-   remainder with no equal or reciprocal projective line pair.
+   remainder with no equal or reciprocal projective line pair.  Its exact
+   mass is `C_2^asym = C_2-C_2^0-C_2^rec-C_2^peq`, and the free projective
+   line-permutation action gives orbit count `O_2^asym=C_2^asym/6`.
 4. After the trace-family wall is closed, generalize to fixed low-slack
    templates, then separate tangent, quotient-periodic, finite-template, and
    genuinely aperiodic packing.

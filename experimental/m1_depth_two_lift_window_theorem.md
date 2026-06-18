@@ -283,6 +283,25 @@ stronger projective-equal conditional ledger, but the active
 `saturation_certificate` remains the conservative one until the
 local-monodromy import is accepted as theorem-grade.
 
+The exact post-reduction residual mass is therefore
+
+```text
+C_2^asym = C_2 - C_2^0 - C_2^rec - C_2^peq.
+```
+
+Every term counted by `C_2^asym` has three nonzero projective line monodromies
+which are pairwise distinct and have no reciprocal pair.  Hence the
+projective line-permutation action is free, and the verifier records the
+integer orbit count
+
+```text
+O_2^asym = C_2^asym / 6.
+```
+
+This is the exact remaining two-coordinate wall after the proved
+infinity-unramified and projective-reciprocal reductions and the conditional
+projective equal-pair ledger.
+
 The currently consumed square-root correction has L1 mass
 
 ```text

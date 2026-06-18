@@ -2240,6 +2240,11 @@ def raw_two_coordinate_projective_l1_split_formula(
             (character_order, square_coset_index, diagonal_failures)
         )
     active_pair_count = 3
+    projective_asymmetric = ramified_nonreciprocal - projective_equal_pair
+    if projective_asymmetric < 0 or projective_asymmetric % 2:
+        raise ValueError(
+            (character_order, square_coset_index, projective_asymmetric)
+        )
     return {
         "two_coordinate_infinity_unramified_l1_bound": (
             active_pair_count * infinity_unramified
@@ -2264,6 +2269,12 @@ def raw_two_coordinate_projective_l1_split_formula(
         ),
         "two_coordinate_projective_equal_pair_non_coordinate_l1_bound": (
             active_pair_count * (projective_equal_pair - coordinate_diagonal)
+        ),
+        "two_coordinate_projective_asymmetric_l1_bound": (
+            active_pair_count * projective_asymmetric
+        ),
+        "two_coordinate_projective_asymmetric_orbit_count": (
+            active_pair_count * projective_asymmetric // 6
         ),
         "two_coordinate_coordinate_diagonal_alpha_square_trivial_count": 0,
         "two_coordinate_coordinate_diagonal_2f1_cancellation_count": 0,
@@ -2712,6 +2723,16 @@ def slack_two_second_kummer_saturation_data(
         "two_coordinate_projective_equal_pair_non_coordinate_l1_bound": int(
             two_coordinate_projective_split[
                 "two_coordinate_projective_equal_pair_non_coordinate_l1_bound"
+            ]
+        ),
+        "two_coordinate_projective_asymmetric_l1_bound": int(
+            two_coordinate_projective_split[
+                "two_coordinate_projective_asymmetric_l1_bound"
+            ]
+        ),
+        "two_coordinate_projective_asymmetric_orbit_count": int(
+            two_coordinate_projective_split[
+                "two_coordinate_projective_asymmetric_orbit_count"
             ]
         ),
         "divisor_power_failure_count": 0,
@@ -7078,6 +7099,30 @@ def scan_supports(
             int(
                 slack_two_second_kummer_saturation[
                     "two_coordinate_projective_equal_pair_non_coordinate_l1_bound"
+                ]
+            )
+            if slack_two_second_kummer_saturation is not None
+            else None
+        ),
+        (
+            "canonical_slack_two_second_kummer_"
+            "projective_asymmetric_l1_bound"
+        ): (
+            int(
+                slack_two_second_kummer_saturation[
+                    "two_coordinate_projective_asymmetric_l1_bound"
+                ]
+            )
+            if slack_two_second_kummer_saturation is not None
+            else None
+        ),
+        (
+            "canonical_slack_two_second_kummer_"
+            "projective_asymmetric_orbit_count"
+        ): (
+            int(
+                slack_two_second_kummer_saturation[
+                    "two_coordinate_projective_asymmetric_orbit_count"
                 ]
             )
             if slack_two_second_kummer_saturation is not None

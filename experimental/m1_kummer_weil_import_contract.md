@@ -320,6 +320,12 @@ the quadratic pullback, and the `mu^2=1` cases are precisely the projective
 reciprocal terms already removed; the two `C(s)=0` roots cost at most one
 each.  The active certificate remains conservative, but the reported
 conditional ledger now includes the full `C_2^peq` mass, not only `C_2^eq`.
+After removing `C_2^0`, `C_2^rec`, and this projective equal-pair mass, the
+reported residual two-coordinate wall is the asymmetric mass
+`C_2^asym=C_2-C_2^0-C_2^rec-C_2^peq`.  Its projective line monodromies are
+nonzero, pairwise distinct, and have no reciprocal pair, so the projective
+line-permutation action is free and the verifier records
+`O_2^asym=C_2^asym/6`.
 
 ### `2F1` Local-Monodromy Import Consumed by the Equal-Line Audit
 
