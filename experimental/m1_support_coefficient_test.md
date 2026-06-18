@@ -592,6 +592,33 @@ The exact scanner keeps the sharper active-shape and square-coset count; this
 character estimate is the asymptotic bridge from the unit-equation ledger to a
 field-size bad-slope budget.
 
+Writing
+
+```text
+B_e = ceil((p-2 + (e^2-1)sqrt(p))/e^2),
+g = gcd(2,n),
+```
+
+the cyclotomic estimate gives the concrete certificate
+
+```text
+|Bad_{T=2, |P|=3}| <= min(p, 1 + ceil(B_e/6) * n/g).
+```
+
+Thus the slack-two first-superboundary slice is provably non-field-filling
+whenever
+
+```text
+1 + ceil(B_e/6) * n/g < p.
+```
+
+This is the first explicit index threshold for the superboundary catalog:
+using `n=(p-1)/e`, the leading term is on the order of
+`p^2/(6g e^3)` plus the square-root-error contribution. Hence the character
+method starts to give a nontrivial slope budget around the regime
+`e^3 >> p`, while small-index domains can still saturate the whole slope
+field in the toy slack-two catalog.
+
 ## M1 Impact
 
 This turns the positive M1 problem into a precise incidence question:
@@ -663,6 +690,9 @@ payoff inside the superboundary range: improving M1 here reduces to bounding
 The cyclotomic expansion gives the first analytic route to such a bound: once
 standard Jacobi-sum estimates apply, the shape count is roughly `p/e^2` with
 square-root error, where `e=(p-1)/|D|`.
+The resulting non-field-filling test is explicit in `p,n,e`: it identifies
+which subgroup indices are already controlled by the cyclotomic method and
+which low-index cases require a sharper argument or different reserve.
 
 ## Suggested Next Step
 
@@ -696,3 +726,4 @@ weighted slope histogram.
 The same scanner reports the associated square-coset slope-count bound.
 For prime fields it also reports the cyclotomic/Jacobi shape-count bound and
 the induced slope-count bound.
+It flags whether this induced bound is genuinely below the ambient field size.

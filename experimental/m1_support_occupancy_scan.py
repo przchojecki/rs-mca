@@ -1387,6 +1387,9 @@ def scan_supports(
             if slack_two_cyclotomic_bound is not None
             else None
         ),
+        "canonical_slack_two_cyclotomic_character_order": (
+            (p - 1) // n if slack_two_cyclotomic_bound is not None else None
+        ),
         "canonical_slack_two_cyclotomic_shape_count_bound_check": (
             int(slack_two_shape_ledger["parameter_count"])
             <= slack_two_cyclotomic_bound
@@ -1398,6 +1401,16 @@ def scan_supports(
         ),
         "canonical_slack_two_cyclotomic_slope_bound": (
             slack_two_cyclotomic_slope_bound
+            if slack_two_cyclotomic_slope_bound is not None
+            else None
+        ),
+        "canonical_slack_two_cyclotomic_slope_bound_density": (
+            fraction_string(slack_two_cyclotomic_slope_bound, p)
+            if slack_two_cyclotomic_slope_bound is not None
+            else None
+        ),
+        "canonical_slack_two_cyclotomic_slope_bound_nontrivial": (
+            slack_two_cyclotomic_slope_bound < p
             if slack_two_cyclotomic_slope_bound is not None
             else None
         ),

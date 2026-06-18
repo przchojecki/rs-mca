@@ -44,7 +44,8 @@ Keep entries concise and link to the relevant files.
   the six-to-one image of unit-equation shapes `u in D`, `-1-u in D`, with
   slope multiplier `alpha(u)=-(1+u+u^2)`, exact quotient-lift weight, and a
   square-coset slope-count bound. It also records the cyclotomic/Jacobi
-  estimate for the unit-equation shape count over prime fields.
+  estimate for the unit-equation shape count over prime fields and the
+  resulting non-field-filling threshold.
 - **How it is useful:** Turns the first nonzero superboundary catalog from
   support enumeration into a finite multiplicative unit-equation problem plus
   the square-image map on `D`.

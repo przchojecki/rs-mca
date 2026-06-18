@@ -72,8 +72,13 @@ canonical_first_superboundary_zero_slope_coset_check
 canonical_slack_two_shape_packet_count_check
 canonical_slack_two_shape_support_slope_histogram_check
 canonical_slack_two_shape_square_coset_slope_bound_check
+canonical_slack_two_cyclotomic_character_order
+canonical_slack_two_cyclotomic_shape_count_bound
 canonical_slack_two_cyclotomic_shape_count_bound_check
+canonical_slack_two_cyclotomic_slope_bound
+canonical_slack_two_cyclotomic_slope_bound_density
 canonical_slack_two_cyclotomic_slope_bound_check
+canonical_slack_two_cyclotomic_slope_bound_nontrivial
 canonical_subboundary_residual_floor_check
 canonical_residual_slope_check
 canonical_boundary_slope_decomposition_check
@@ -193,7 +198,9 @@ character-sum bound obtained from the index `e=(p-1)/|D|`:
 
 The scanner uses an integer ceiling for `sqrt(p)`, checks the shape count
 against this bound, and reports the induced field-capped slope bound
-`1+ceil(|C_2(D)|/6)|D|/gcd(2,|D|)`.
+`min(p, 1+ceil(|C_2(D)|/6)|D|/gcd(2,|D|))` and its density.
+The boolean `canonical_slack_two_cyclotomic_slope_bound_nontrivial` records
+whether this induced bound is strictly below the full field size.
 
 For dithered residues in the range
 
