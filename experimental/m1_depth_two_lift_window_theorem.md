@@ -149,6 +149,11 @@ size at most `3 sqrt(p)`. Within that family, the reciprocal slice where the
 two active coordinate characters are `mu` and `mu^{-1}` collapses further by
 the ratio substitution `v=tu`; this is isolated in
 `experimental/m1_depth_two_reciprocal_two_coordinate_lemma.md`.
+The larger infinity-unramified slice `mu nu eta^2=1` also reduces to
+one-dimensional genus-zero sums after the substitution `u=tv`, `r=1/v`,
+giving a `2p+2 sqrt(p)` core bound plus the same line correction. This is
+isolated in
+`experimental/m1_depth_two_infinity_unramified_two_coordinate_lemma.md`.
 
 For the raw normalized catalog on `D`, the verifier audits the character
 expansion, the divisor nontriviality, the exact principal open-set count

@@ -30,6 +30,10 @@ finite exact-sum regression audit for that corrected ledger.
 The proof-level one-coordinate mixed reductions are isolated in
 `experimental/m1_depth_two_quadratic_one_coordinate_lemma.md` and
 `experimental/m1_depth_two_nonquadratic_one_coordinate_lemma.md`.
+The two-coordinate proof boundary is sharpened further in
+`experimental/m1_depth_two_infinity_unramified_two_coordinate_lemma.md`,
+which proves the full `mu nu eta^2=1` slice with a
+`2p+2 sqrt(p)` core bound and the usual `3 sqrt(p)` line correction.
 
 ## Parameters
 
@@ -104,6 +108,7 @@ the ledger. A failure would identify a concrete tuple `(p,n,a,b,c,d)` and the
 active radical degree responsible for the breakdown.
 
 Second, it separates finite computational evidence from the uniform theorem.
-The finite audit supports the repaired ledger but leaves the proof-status
-boundary unchanged: the remaining mathematical task is still a uniform
-normal-crossing Kummer estimate for the line/conic arrangement.
+The finite audit supports the repaired ledger but leaves one proof-status
+boundary: after the one-coordinate and infinity-unramified two-coordinate
+reductions, the remaining mathematical task is a uniform normal-crossing
+Kummer estimate for the ramified-infinity line/conic arrangement.

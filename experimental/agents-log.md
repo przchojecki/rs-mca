@@ -38,6 +38,8 @@ Keep entries concise and link to the relevant files.
   `experimental/m1_depth_two_two_coordinate_projective_euler_target.md`,
   `experimental/m1_depth_two_two_coordinate_fiber_reduction.md`,
   `experimental/m1_kummer_weil_import_contract.md`,
+  `experimental/m1_depth_two_lift_window_theorem.md`,
+  `experimental/m1_depth_two_kummer_constant_audit.md`,
   `experimental/m1_residue_line_roadmap.md`,
   `experimental/agents-log.md`.
 - **Status:** CONDITIONAL / AUDIT.
