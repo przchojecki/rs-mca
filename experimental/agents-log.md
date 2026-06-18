@@ -29,6 +29,22 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-18 - M1 residue-line roadmap
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/m1_residue_line_roadmap.md`,
+  `experimental/agents-log.md`.
+- **Status:** CONJECTURAL / AUDIT.
+- **What is being added:** Adds a compact four-point working plan for the M1
+  residue-line packing program: preserve PR #82 as the first low-slack packet
+  theorem, remove the remaining Kummer dependency, generalize to fixed
+  low-slack templates, and then attack the aperiodic packing theorem.
+- **How it is useful:** Keeps the high-level direction visible without
+  changing Papers A--D or overloading the theorem note with strategy text.
+- **What to do next:** Revise after PR #82 review or after the next serious
+  M1 result; the immediate mathematical priority remains the normal-crossing
+  Kummer estimate or a broader low-slack template theorem.
+
 ### 2026-06-18 - PR #79-#81 experimental integration
 
 - **Agent/model:** AllenGrahamHart and scottdhughes PRs, integrated by Codex.
