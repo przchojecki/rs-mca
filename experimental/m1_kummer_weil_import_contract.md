@@ -235,6 +235,12 @@ not an immediate deck-symmetry consequence.
 In the quotient coordinate `z=s/(s+2)`, the paired sum introduces the
 auxiliary trace `sum_{z^2=q} alpha^(-2)(1-z)`; this is the concrete object
 that must supply any additional cancellation.
+Equivalently, before quotienting by `z -> -z`, the equal-line twist completes
+to the balanced kernel
+`chi_2(1+3z^2) alpha((1+3z^2)/(1-z)^2)`. This has no Kummer zero or pole at
+`z=infinity`, and the pullback main differs from the complete `z`-line sum
+only by the regular fibers `H(1/4)` and
+`alpha(3) chi_2(3) H(1/3)`.
 
 Thus the fixed-window, quotient-window, and two-fiber certificates still use
 the conservative common ledger:

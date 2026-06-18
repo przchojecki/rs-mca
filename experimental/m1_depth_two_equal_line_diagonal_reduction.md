@@ -537,6 +537,59 @@ sum_{z^2=q} alpha^(-2)(1-z).
 This is the precise object that a future cancellation argument must exploit;
 the quotient alone does not lower the conductor.
 
+There is, however, a cleaner complete-sum form before taking the quotient by
+`z -> -z`.  Let `rho=alpha chi_2` and put
+
+```text
+Lambda(z) = z^2/(1+3z^2),
+K_alpha(z) =
+  chi_2(1+3z^2) alpha((1+3z^2)/(1-z)^2).
+```
+
+The finite `z`-line completion is
+
+```text
+C_alpha = sum_{z in F_p, 1+3z^2 != 0}
+  K_alpha(z) H(Lambda(z)).
+```
+
+Here the point `z=1` contributes zero, while `z=-1` is the deleted regular
+point `s=-1`.  The fixed point `z=infinity` is `s=-2`.  Thus the pullback
+main satisfies the exact identity
+
+```text
+M_alpha =
+  chi_2(-4) (C_alpha - H(1/4)
+    + alpha(3) chi_2(3) H(1/3)).
+```
+
+The two correction terms are regular hypergeometric fibers, hence are only
+`O(sqrt(p))` in the same imported rank-two Weil framework.  Therefore the
+leading `3p+O(sqrt(p))` target is equivalent to the same leading bound for
+`C_alpha`.
+
+The useful structural point is that the equal-line twist is balanced at
+infinity:
+
+```text
+rho(1+3z^2) alpha^(-2)(1-z)
+  = chi_2(1+3z^2) alpha((1+3z^2)/(1-z)^2).
+```
+
+The numerator and denominator of `(1+3z^2)/(1-z)^2` have the same degree, so
+there is no Kummer zero or pole at `z=infinity`; the infinity value is
+`alpha(3) chi_2(3)`.  The completed `z`-line trace has finite singular support
+contained in
+
+```text
+z=0,        1+2z^2=0,        1+3z^2=0,        z=1,
+```
+
+with `z=infinity` regular.  This does not by itself prove the missing
+two-unit saving, but it moves the problem to a complete rank-two line trace
+with no infinity Kummer ramification and only explicit regular-fiber
+corrections.
+
 ## Pullback Branch Checklist
 
 The rational pullback

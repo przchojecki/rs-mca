@@ -295,6 +295,49 @@ def quotient_paired_pullback_main(
     return quadratic_character(-4, p) * total
 
 
+def balanced_z_kernel_value(
+    p: int,
+    alpha: List[complex],
+    rho: List[complex],
+    z: int,
+) -> complex:
+    numerator = (1 + 3 * z * z) % p
+    direct_value = (
+        rho[numerator]
+        * alpha[(1 - z) % p].conjugate()
+        * alpha[(1 - z) % p].conjugate()
+    )
+    balanced_value = (
+        alpha[numerator]
+        * quadratic_character(numerator, p)
+        * alpha[(1 - z) % p].conjugate()
+        * alpha[(1 - z) % p].conjugate()
+    )
+    if abs(direct_value - balanced_value) > 1e-8:
+        raise AssertionError(("balanced z kernel", p, z))
+    return balanced_value
+
+
+def balanced_z_complete_sum(
+    p: int,
+    mu: List[complex],
+    eta: List[complex],
+    alpha: List[complex],
+    rho: List[complex],
+) -> complex:
+    total = 0j
+    for z in range(p):
+        numerator = (1 + 3 * z * z) % p
+        if numerator == 0:
+            continue
+        lam = (z * z * pow(numerator, -1, p)) % p
+        total += (
+            balanced_z_kernel_value(p, alpha, rho, z)
+            * hypergeometric_trace(p, mu, eta, lam)
+        )
+    return total
+
+
 def verify_pullback_branch_geometry(p: int) -> Dict[str, object]:
     if p <= 3:
         raise AssertionError(p)
@@ -536,6 +579,45 @@ def verify_pullback_deck_involution(p: int) -> Dict[str, object]:
     }
 
 
+def verify_balanced_z_completion_geometry(p: int) -> Dict[str, object]:
+    if p <= 3:
+        raise AssertionError(p)
+    lambda_one_roots = [z for z in range(p) if (1 + 2 * z * z) % p == 0]
+    lambda_infinity_roots = [z for z in range(p) if (1 + 3 * z * z) % p == 0]
+    for z in range(p):
+        numerator = (1 + 3 * z * z) % p
+        if numerator == 0:
+            continue
+        lam = z * z * pow(numerator, -1, p) % p
+        if (lam == 0) != (z == 0):
+            raise AssertionError(("z lambda zero", p, z, lam))
+        if (lam == 1) != ((1 + 2 * z * z) % p == 0):
+            raise AssertionError(("z lambda one", p, z, lam))
+    if (1 + 3 * 1 * 1) % p == 0:
+        raise AssertionError(("z=1 bad", p))
+    if (1 + 3 * (p - 1) * (p - 1)) % p == 0:
+        raise AssertionError(("z=-1 bad", p))
+    lambda_minus_one = (
+        (p - 1)
+        * (p - 1)
+        * pow((1 + 3 * (p - 1) * (p - 1)) % p, -1, p)
+    ) % p
+    if lambda_minus_one != pow(4, -1, p):
+        raise AssertionError(("lambda z=-1", p, lambda_minus_one))
+
+    return {
+        "p": p,
+        "complete_coordinate": "z=s/(s+2)",
+        "kernel": "chi_2(1+3z^2) alpha((1+3z^2)/(1-z)^2)",
+        "lambda_z": "z^2/(1+3z^2)",
+        "deleted_regular_point": "z=-1, lambda=1/4, kernel=1",
+        "fixed_infinity_point": "z=infinity, lambda=1/3",
+        "lambda_one_root_count": len(lambda_one_roots),
+        "lambda_infinity_root_count": len(lambda_infinity_roots),
+        "infinity_kummer_ramification": 0,
+    }
+
+
 def audit_case(case: Dict[str, int]) -> Dict[str, object]:
     p = int(case["p"])
     n = int(case["n"])
@@ -599,6 +681,23 @@ def audit_case(case: Dict[str, int]) -> Dict[str, object]:
     )
     if abs(pullback_main - quotient_paired_main) > 1e-8:
         raise AssertionError((case, pullback_main, quotient_paired_main))
+    balanced_complete = balanced_z_complete_sum(
+        p,
+        mu,
+        eta,
+        alpha,
+        rho_chi,
+    )
+    deleted_regular = hypergeometric_trace(p, mu, eta, pow(4, -1, p))
+    fixed_infinity = (
+        rho_chi[3 % p]
+        * hypergeometric_trace(p, mu, eta, pow(3, -1, p))
+    )
+    balanced_main = quadratic_character(-4, p) * (
+        balanced_complete - deleted_regular + fixed_infinity
+    )
+    if abs(pullback_main - balanced_main) > 1e-8:
+        raise AssertionError((case, pullback_main, balanced_main))
     if abs(exceptional) > 2 * math.sqrt(p) + 1e-8:
         raise AssertionError((case, exceptional))
     jacobi_bound = p + math.sqrt(p)
@@ -622,6 +721,7 @@ def audit_case(case: Dict[str, int]) -> Dict[str, object]:
         "pullback_error": f"{abs(residual - (pullback_main + exceptional)):.2e}",
         "single_character_error": f"{abs(pullback_main - single_character_main):.2e}",
         "quotient_pair_error": f"{abs(pullback_main - quotient_paired_main):.2e}",
+        "balanced_z_error": f"{abs(pullback_main - balanced_main):.2e}",
     }
 
 
@@ -652,6 +752,12 @@ def main() -> None:
         for case in CASES
     ]
     for row in deck_rows:
+        print(row)
+    z_rows = [
+        verify_balanced_z_completion_geometry(int(case["p"]))
+        for case in CASES
+    ]
+    for row in z_rows:
         print(row)
     top = max(rows, key=lambda row: float(row["sum_ratio"]))
     for key, value in EXPECTED_TOP.items():

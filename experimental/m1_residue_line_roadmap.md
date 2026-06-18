@@ -33,7 +33,11 @@ should be revised as the project learns more.
    the two `B(s)=0` points or by pairing their contributions. The deck
    involution swaps those points but introduces the multiplier
    `rho((s+1)^(-2))`; in quotient coordinate this becomes the auxiliary
-   trace `sum_{z^2=q} alpha^(-2)(1-z)`.
+   trace `sum_{z^2=q} alpha^(-2)(1-z)`. Before quotienting, the same
+   calculation gives a complete balanced `z`-line trace with kernel
+   `chi_2(1+3z^2) alpha((1+3z^2)/(1-z)^2)` and only two regular-fiber
+   corrections, so the next conductor target can ignore infinity Kummer
+   ramification and focus on the four finite singular loci.
 4. After the trace-family wall is closed, generalize to fixed low-slack
    templates, then separate tangent, quotient-periodic, finite-template, and
    genuinely aperiodic packing.

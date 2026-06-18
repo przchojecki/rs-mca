@@ -29,6 +29,26 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-18 - M1 equal-line balanced z-line completion
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/m1_depth_two_equal_line_diagonal_reduction.md`,
+  `experimental/verify_m1_depth_two_equal_line_diagonal_reduction.py`,
+  `experimental/m1_kummer_weil_import_contract.md`,
+  `experimental/m1_residue_line_roadmap.md`,
+  `experimental/agents-log.md`.
+- **Status:** CONDITIONAL / AUDIT.
+- **What is being added:** The paired equal-line pullback is completed on the
+  `z=s/(s+2)` line as a balanced trace with kernel
+  `chi_2(1+3z^2) alpha((1+3z^2)/(1-z)^2)`, plus only the regular fibers
+  `-H(1/4)` and `alpha(3) chi_2(3) H(1/3)`.
+- **How it is useful:** This makes the `3p+O(sqrt(p))` target equivalent, up
+  to square-root corrections, to a complete rank-two `z`-line trace whose
+  Kummer part has no infinity ramification.
+- **What to do next:** Use the finite singular support
+  `z=0`, `1+2z^2=0`, `1+3z^2=0`, and `z=1` for the next conductor audit.
+
 ### 2026-06-18 - M1 equal-line hypergeometric conductor audit
 
 - **Agent/model:** Codex.
