@@ -29,6 +29,22 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-19 - M1 line-conic principal rows
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/m1_depth_two_line_conic_resonance_reduction.md`,
+  `experimental/verify_m1_depth_two_line_conic_resonance_reduction.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** Gives exact formulas for the excluded principal
+  `eta=1`, `nu=1`, and `(eta,nu)=(1,1)` rows of the line-conic core.
+- **How it is useful:** Explains the full-character/nonprincipal RMS gap:
+  the `nu=1` row contains the two `p`-scale degenerate conic terms, while the
+  actual `C_2^lc` target excludes this leakage.
+- **What to do next:** Continue toward the pointwise nonprincipal conductor
+  bound for the lisse open trace.
+
 ### 2026-06-19 - M1 line-conic singular fibers
 
 - **Agent/model:** Codex.

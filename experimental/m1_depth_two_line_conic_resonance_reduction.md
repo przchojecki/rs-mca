@@ -420,6 +420,59 @@ M_{-2} = 1 + (1+chi_2(-3))(p-3).
 Summing these squared fiber sizes over `x in F_p^*` gives the displayed
 `N_x`.
 
+## Principal-Row Leakage
+
+The principal rows excluded above have exact formulas.  They explain why the
+full-character moment has RMS `sqrt(2)p+O(1)` while the actual nonprincipal
+target has RMS `p+O(1)`.
+
+If `eta=1` and `nu` is nonprincipal, then
+
+```text
+C_{1,nu}
+  = -sum_v nu(v) chi_2(-3v^2-2v-3)
+    + sum_{v^2+v+1=0} nu(v).
+```
+
+This is only a genus-zero-size row: the first term is a Kummer sum on
+`P^1_v` with support contained in `v=0`, the two roots of
+`-3v^2-2v-3`, and infinity, while the second term has at most two summands.
+
+If `nu=1` and `eta` is nonprincipal, then
+
+```text
+C_{eta,1}
+  = -sum_x eta(x) chi_2((x-1)(x+3))
+    + chi_2(-3) p (eta(1)+eta(-2)).
+```
+
+Thus the `nu=1` row contains the two `p`-scale exceptional conic
+degeneracies at `x=1` and `x=-2`.  These rows are not part of `C_2^lc`, but
+they account for the extra full-character second-moment mass.
+
+Finally,
+
+```text
+C_{1,1} = T_p = p^2 - 3p + 3 + 3chi_2(-3).
+```
+
+The first formula follows from fixed `v`: the number of contributing
+`u != 0` is
+
+```text
+p - 2 - chi_2(-3v^2-2v-3) + 1_{v^2+v+1=0},
+```
+
+and the constant term vanishes against nonprincipal `nu`.  The second follows
+from fixed `x=A/u`: the generic conic count is
+
+```text
+p - 2 - 2chi_2(-3) - chi_2((x-1)(x+3)),
+```
+
+but at the two degenerate values `x=1,-2` the actual count differs by
+`chi_2(-3)p`, giving the exceptional term.
+
 The finite verifier is
 
 ```bash

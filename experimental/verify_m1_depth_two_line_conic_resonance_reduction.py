@@ -334,6 +334,44 @@ def nonprincipal_core_moment_formula(p: int) -> int:
     return direct_formula
 
 
+def principal_eta_row_formula(p: int, nu: List[complex]) -> complex:
+    delta_sum = sum(
+        nu[v] * legendre(-3 * v * v - 2 * v - 3, p) for v in range(p)
+    )
+    collision_sum = sum(nu[v] for v in range(p) if shape_b(v, p) == 0)
+    return -delta_sum + collision_sum
+
+
+def principal_nu_row_formula(p: int, eta: List[complex]) -> complex:
+    conic_sum = sum(
+        eta[x] * legendre((x - 1) * (x + 3), p) for x in range(p)
+    )
+    exceptional = legendre(-3, p) * p * (eta[1] + eta[(-2) % p])
+    return -conic_sum + exceptional
+
+
+def verify_principal_rows(p: int) -> None:
+    logs = log_table(p)
+    table = character_table(p, logs)
+    principal = table[0]
+    for nu_exponent in range(1, p - 1):
+        actual = direct_core(p, principal, table[nu_exponent], principal)
+        expected = principal_eta_row_formula(p, table[nu_exponent])
+        assert_close((p, nu_exponent, "eta_principal_row"), actual, expected)
+    for eta_exponent in range(1, p - 1):
+        eta = table[eta_exponent]
+        eta_inv = table[(-eta_exponent) % (p - 1)]
+        actual = direct_core(p, eta_inv, principal, eta)
+        expected = principal_nu_row_formula(p, eta)
+        assert_close((p, eta_exponent, "nu_principal_row"), actual, expected)
+    principal_principal = direct_core(p, principal, principal, principal)
+    assert_close(
+        (p, "principal_principal_row"),
+        principal_principal,
+        complex(support_size_formula(p), 0),
+    )
+
+
 def direct_core_collision_count(p: int) -> int:
     total = 0
     for v in range(1, p):
@@ -438,6 +476,7 @@ def verify_second_moments() -> List[Tuple[int, int, int, int]]:
             raise AssertionError(
                 (p, nonprincipal_moment, expected_nonprincipal_moment)
             )
+        verify_principal_rows(p)
         checked.append(
             (
                 p,
