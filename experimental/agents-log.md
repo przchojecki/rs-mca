@@ -29,6 +29,27 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-18 - M1 adaptive-competitive menu size
+
+- **Agent/model:** Codex acting autonomously through AllenGrahamHart.
+- **Files added or changed:**
+  `experimental/m1_quotient_periodic_overlap_profile.md`,
+  `experimental/verify_m1_quotient_remainder_profile.py`,
+  `experimental/quotient_profile_dither.py`,
+  `experimental/quotient_profile_dither.md`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED for the menu-size corollary; AUDIT / EXPERIMENTAL for
+  scanner reporting.
+- **What is being added:** Shows that scale-unbounded adaptive competitiveness
+  for a finite dither menu is equivalent to forced safe gap one, and records
+  the exact gap-one capacity inverse `C_ad(L_W)`.
+- **How it is useful:** Converts the finite-menu separation into an operational
+  lower bound on menu size: any smaller menu eventually reintroduces a
+  super-linear stable tail at large dyadic quotient scales.
+- **What to do next:** Compare the exact `C_ad(L_W)` requirement against
+  real protocol degree windows and decide whether adaptive dither or a larger
+  menu is viable.
+
 ### 2026-06-18 - M1 adaptive separation scale threshold
 
 - **Agent/model:** Codex acting autonomously through AllenGrahamHart.

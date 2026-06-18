@@ -158,6 +158,15 @@ forced safe gap is
 max(1, ceil((|W|-p)/(3p+eps))).
 ```
 
+The same summary also reports the exact menu size needed for asymptotic
+adaptive competitiveness over an unbounded dyadic quotient hierarchy. This is
+the gap-one inverse `exact_min_menu_size_for_asymptotic_adaptive_competitiveness`.
+For a length-`|W|` window, it is the minimum `C` with `Cap(C,1) >= |W|`. A
+queried menu has `queried_menu_asymptotically_adaptive_competitive=true`
+exactly when its forced safe gap is one; otherwise a forced gap at least two
+eventually creates a finite-menu tail above the adaptive maximal-dither
+baseline.
+
 Adding a menu size turns this into a per-parameter stable-tail lower-bound
 certificate:
 

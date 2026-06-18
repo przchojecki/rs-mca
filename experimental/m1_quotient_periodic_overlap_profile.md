@@ -911,6 +911,43 @@ This isolates the field-size penalty as an explicit scale threshold: increasing
 `q` or the allowed service gap `D` only delays the first separating scale; it
 does not change the binomial degree forced by a fixed menu.
 
+Consequently, a finite menu is scale-unbounded adaptive-competitive exactly in
+the gap-one case.  More precisely, fix a nontrivial asymptotic dyadic rate
+`0 < k0/n < 1` and a finite same-slack field penalty. If the forced menu gap
+`E` is at least two, then the binomial threshold above is crossed at all
+sufficiently large dyadic stable scales in the family. If `E=1`, then
+
+```text
+B_1(m) = min(k0,n-k0)-1 <= n-k0-1 = A_ad,
+```
+
+so the finite-menu mass floor never beats the adaptive linear mass. Thus
+scale-unbounded mass competitiveness is equivalent to forcing `D_C=1`.
+
+The exact menu size needed for this is the exact capacity at safe gap one.
+For a slack window of length `L_W`,
+
+```text
+Cap(C,1) =
+  2C       if C is even,
+  2C-1     if C is odd.
+```
+
+Equivalently, writing `L_W=4a+r` with `0 <= r <= 3`, the minimum
+asymptotically adaptive-competitive menu size is
+
+```text
+C_ad(L_W) =
+  2a       if r=0,
+  2a+1     if r=1,
+  2a+2     if r=2 or r=3.
+```
+
+Any smaller menu has forced gap at least two and therefore eventually pays a
+super-linear finite-menu tail at large dyadic scales. This is the precise
+menu-size cost of replacing per-slack adaptive maximal dither by a finite menu
+without allowing the exact-`k0` slack.
+
 Finally, the maximal-dither remainder case has an exact all-scale formula, so
 small scales need not be handled as a black-box enumeration. Suppose
 
@@ -1446,7 +1483,10 @@ Two immediate readings are useful.
    threshold
    `K_side binom(m-1,D_C-1) > D_C(n-k0)` for beating adaptive linear mass.
    At the standard rates, forced gap two first separates at dyadic scales
-   `4, 8, 16, 32` for rates `1/2, 1/4, 1/8, 1/16`, respectively.
+   `4, 8, 16, 32` for rates `1/2, 1/4, 1/8, 1/16`, respectively. Over an
+   unbounded dyadic hierarchy, asymptotic adaptive competitiveness is
+   equivalent to `D_C=1`, so the exact required menu size for a length-`L_W`
+   window is the gap-one capacity inverse `C_ad(L_W)`.
 9. In the maximal-dither case, the one-remainder profile is explicit at every
    scale, not only at `m>=t`: the full strict profile is the three-band formula
    at exchange sizes `hm-1`, `hm`, and `hm+1`. This gives a closed-form

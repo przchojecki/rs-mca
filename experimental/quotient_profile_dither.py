@@ -345,6 +345,10 @@ def dither_menu_covering_summary(
         exact_min_menu_size,
         target_stable_gap,
     )
+    adaptive_competitive_menu_size = exact_min_menu_size_for_gap(
+        window_length,
+        1,
+    )
     summary = {
         "target_stable_gap": target_stable_gap,
         "window_length": window_length,
@@ -358,6 +362,12 @@ def dither_menu_covering_summary(
             target_stable_gap,
         ),
         "exact_capacity_construction_dithers": exact_construction,
+        "exact_min_menu_size_for_asymptotic_adaptive_competitiveness": (
+            adaptive_competitive_menu_size
+        ),
+        "gap_one_capacity_for_adaptive_competitive_menu": (
+            dither_menu_capacity(adaptive_competitive_menu_size, 1)
+        ),
     }
     if dither_menu_size is not None:
         forced_gap = exact_min_safe_gap_for_menu_size(
@@ -381,6 +391,13 @@ def dither_menu_covering_summary(
             )
         )
         summary["stable_tail_condition_D_lt_t_start"] = target_stable_gap < start
+        summary["queried_menu_asymptotically_adaptive_competitive"] = (
+            forced_gap == 1
+        )
+        summary["asymptotic_adaptive_menu_size_deficit"] = max(
+            0,
+            adaptive_competitive_menu_size - dither_menu_size,
+        )
     return summary
 
 
@@ -1296,10 +1313,14 @@ def print_text(result: Dict[str, object]) -> None:
             print(
                 (
                     "dither-menu covering: gap<={gap} exactly needs {exact} "
-                    "dithers; coarse lower bound {lower}"
+                    "dithers; adaptive-competitive menu needs {adaptive}; "
+                    "coarse lower bound {lower}"
                 ).format(
                     gap=menu_covering["target_stable_gap"],
                     exact=menu_covering["exact_min_menu_size_for_target_gap"],
+                    adaptive=menu_covering[
+                        "exact_min_menu_size_for_asymptotic_adaptive_competitiveness"
+                    ],
                     lower=menu_covering["coarse_menu_size_lower_bound"],
                 )
             )

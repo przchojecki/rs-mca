@@ -524,6 +524,36 @@ def verify_adaptive_threshold_closed_form(n, k0, forced_gap, max_gap, q):
     return tuple(rows)
 
 
+def adaptive_competitive_menu_size_formula(window_length):
+    quotient, remainder = divmod(window_length, 4)
+    if remainder == 0:
+        return 2 * quotient
+    if remainder == 1:
+        return 2 * quotient + 1
+    return 2 * quotient + 2
+
+
+def verify_adaptive_competitive_menu_size(max_window_length, max_menu_size):
+    rows = []
+    for window_length in range(1, max_window_length + 1):
+        formula_size = adaptive_competitive_menu_size_formula(window_length)
+        exact_size = exact_min_menu_size_for_gap(window_length, 1)
+        assert formula_size == exact_size
+        assert dither_menu_capacity(exact_size, 1) >= window_length
+        if exact_size > 1:
+            assert dither_menu_capacity(exact_size - 1, 1) < window_length
+
+        for menu_size in range(1, max_menu_size + 1):
+            forced_gap = exact_min_safe_gap_for_menu_size(
+                window_length,
+                menu_size,
+            )
+            assert (forced_gap == 1) == (menu_size >= exact_size)
+
+        rows.append((window_length, exact_size))
+    return tuple(rows)
+
+
 def verify_fixed_window_stable_tail_minimax(n, k0, t_start, t_end):
     assert 1 <= t_start <= t_end
     window_length = t_end - t_start + 1
@@ -972,6 +1002,11 @@ def main():
     for case in threshold_cases:
         rows = verify_adaptive_threshold_closed_form(*case)
         print(f"n,k0,E,D,q={case}: adaptive_thresholds={rows}")
+    adaptive_menu_rows = verify_adaptive_competitive_menu_size(
+        max_window_length=20,
+        max_menu_size=12,
+    )
+    print(f"adaptive-competitive menu sizes={adaptive_menu_rows}")
     adjacent_remainder_cases = [
         (256, 128, 5, 8),
         (256, 128, 5, 16),
