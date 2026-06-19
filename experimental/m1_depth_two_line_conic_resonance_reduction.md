@@ -1474,8 +1474,37 @@ sum_z W_{eta,nu}(z)H_nu(z)
   = sum_z W_{eta,nu}(z)L_nu(z) - sum_z W_{eta,nu}(z).
 ```
 
-The second term is a difference of two four-point genus-zero Kummer sums and
-is `O(sqrt(p))`.  For the first term, split the square-class gate:
+The second term is already theorem-grade.  Write
+
+```text
+B(alpha,beta,gamma)=sum_z alpha(z)beta(1-z)gamma(z+2).
+```
+
+Then
+
+```text
+sum_z W_{eta,nu}(z)
+  = B(nu,eta,gamma) - chi_2(-2)B(nu chi_2,eta,gamma).
+```
+
+Each `B` is a four-point genus-zero Kummer sum on `P^1_z`, supported at
+`z=0,1,-2,infinity`.  In both summands the local monodromy at `z=1` is
+`eta`, which is nonprincipal, so the sheaf is not geometrically constant.
+The standard genus-zero bound gives
+
+```text
+|B(nu,eta,gamma)| <= 2sqrt(p),
+|B(nu chi_2,eta,gamma)| <= 2sqrt(p),
+```
+
+and therefore
+
+```text
+|sum_z W_{eta,nu}(z)| <= 4sqrt(p).
+```
+
+Thus the only p-scale input still being imported is the first term.  Split
+the square-class gate:
 
 ```text
 W_{eta,nu}
@@ -1490,12 +1519,18 @@ section.  Since `L_nu` is lisse at `z=1`, the Kummer twist contributes the
 scalar local monodromy `eta` there; `eta` is nonprincipal, so no
 geometrically constant summand can survive.
 
-Consequently, by the standard one-variable Deligne/Katz conductor bound for
-a bounded-conductor middle-extension trace sheaf of weight one, there is an
+Consequently, if the standard one-variable Deligne/Katz conductor bound for
+this bounded-conductor middle-extension trace sheaf of weight one gives an
 absolute constant `K` such that
 
 ```text
-|sum_z W_{eta,nu}(z)H_nu(z)| <= K p.
+|sum_z W_{eta,nu}(z)L_nu(z)| <= K p,
+```
+
+then the full collapsed transform satisfies
+
+```text
+|sum_z W_{eta,nu}(z)H_nu(z)| <= K p + 4sqrt(p).
 ```
 
 Together with the already separated exceptional theta contribution, this

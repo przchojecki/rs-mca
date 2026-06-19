@@ -1394,6 +1394,9 @@ def verify_quotient_line_spectral_normal_form(
     float,
     float,
     float,
+    float,
+    float,
+    float,
     int,
 ]:
     delta = least_nonsquare(p)
@@ -1437,6 +1440,9 @@ def verify_quotient_line_spectral_normal_form(
     max_generic_diagonal_error = 0.0
     max_collapsed_diagonal_error = 0.0
     max_collapsed_singular_error = 0.0
+    max_collapsed_rank_one_error = 0.0
+    max_collapsed_rank_one_piece_ratio = 0.0
+    max_collapsed_rank_one_ratio = 0.0
     max_paired_phase_ratio = 0.0
     paired_generic_count = 0
     max_outer_piece_ratio = 0.0
@@ -1973,6 +1979,69 @@ def verify_quotient_line_spectral_normal_form(
                     singular_value,
                 )
             )
+    rank_one_plain = quotient_line_outer_standard_piece(p, nu, eta, gamma)
+    rank_one_quadratic = quotient_line_outer_standard_piece(
+        p,
+        table[(nu_exponent + quadratic_exponent) % order],
+        eta,
+        gamma,
+    )
+    rank_one_correction = quotient_line_outer_square_filtered_piece(
+        p,
+        nu,
+        eta,
+        gamma,
+    )
+    expected_rank_one_correction = (
+        rank_one_plain - legendre(-2, p) * rank_one_quadratic
+    )
+    rank_one_error = abs(rank_one_correction - expected_rank_one_correction)
+    max_collapsed_rank_one_error = max(
+        max_collapsed_rank_one_error,
+        rank_one_error,
+    )
+    if rank_one_error > TOLERANCE:
+        raise AssertionError(
+            (
+                p,
+                eta_exponent,
+                nu_exponent,
+                "collapsed_rank_one_filter",
+                rank_one_correction,
+                expected_rank_one_correction,
+            )
+        )
+    max_collapsed_rank_one_piece_ratio = max(
+        max_collapsed_rank_one_piece_ratio,
+        abs(rank_one_plain) / math.sqrt(p),
+        abs(rank_one_quadratic) / math.sqrt(p),
+    )
+    if (
+        abs(rank_one_plain) > 2 * math.sqrt(p) + TOLERANCE
+        or abs(rank_one_quadratic) > 2 * math.sqrt(p) + TOLERANCE
+    ):
+        raise AssertionError(
+            (
+                p,
+                eta_exponent,
+                nu_exponent,
+                "collapsed_rank_one_piece_2sqrt",
+            )
+        )
+    max_collapsed_rank_one_ratio = max(
+        max_collapsed_rank_one_ratio,
+        abs(rank_one_correction) / math.sqrt(p),
+    )
+    if abs(rank_one_correction) > 4 * math.sqrt(p) + TOLERANCE:
+        raise AssertionError(
+            (
+                p,
+                eta_exponent,
+                nu_exponent,
+                "collapsed_rank_one_4sqrt",
+                rank_one_correction,
+            )
+        )
     pair_diagonal_error = abs(algebraic_pair_sum - diagonal_pair_sum)
     max_pair_diagonal_error = max(
         max_pair_diagonal_error,
@@ -2057,6 +2126,9 @@ def verify_quotient_line_spectral_normal_form(
         max_generic_diagonal_error,
         max_collapsed_diagonal_error,
         max_collapsed_singular_error,
+        max_collapsed_rank_one_error,
+        max_collapsed_rank_one_piece_ratio,
+        max_collapsed_rank_one_ratio,
         max_paired_phase_ratio,
         paired_generic_count,
     )
@@ -2539,6 +2611,9 @@ def main() -> None:
     max_generic_diagonal_error = 0.0
     max_collapsed_diagonal_error = 0.0
     max_collapsed_singular_error = 0.0
+    max_collapsed_rank_one_error = 0.0
+    max_collapsed_rank_one_piece_ratio = 0.0
+    max_collapsed_rank_one_ratio = 0.0
     max_paired_phase_ratio = 0.0
     max_outer_mellin_piece_ratio = 0.0
     max_outer_mellin_ratio = 0.0
@@ -2785,6 +2860,9 @@ def main() -> None:
             generic_diagonal_error,
             collapsed_diagonal_error,
             collapsed_singular_error,
+            collapsed_rank_one_error,
+            collapsed_rank_one_piece_ratio,
+            collapsed_rank_one_ratio,
             paired_phase_ratio,
             paired_generic_count,
         ) = verify_quotient_line_spectral_normal_form(
@@ -2939,6 +3017,18 @@ def main() -> None:
             max_collapsed_singular_error,
             collapsed_singular_error,
         )
+        max_collapsed_rank_one_error = max(
+            max_collapsed_rank_one_error,
+            collapsed_rank_one_error,
+        )
+        max_collapsed_rank_one_piece_ratio = max(
+            max_collapsed_rank_one_piece_ratio,
+            collapsed_rank_one_piece_ratio,
+        )
+        max_collapsed_rank_one_ratio = max(
+            max_collapsed_rank_one_ratio,
+            collapsed_rank_one_ratio,
+        )
         max_paired_phase_ratio = max(
             max_paired_phase_ratio,
             paired_phase_ratio,
@@ -3044,6 +3134,12 @@ def main() -> None:
         f"{max_collapsed_diagonal_error:.3e}",
         f"max_collapsed_singular_error="
         f"{max_collapsed_singular_error:.3e}",
+        f"max_collapsed_rank_one_error="
+        f"{max_collapsed_rank_one_error:.3e}",
+        f"max_collapsed_rank_one_piece_ratio="
+        f"{max_collapsed_rank_one_piece_ratio:.10f}",
+        f"max_collapsed_rank_one_ratio="
+        f"{max_collapsed_rank_one_ratio:.10f}",
         f"max_paired_phase_ratio={max_paired_phase_ratio:.10f}",
         f"max_outer_mellin_piece_ratio={max_outer_mellin_piece_ratio:.10f}",
         f"max_outer_mellin_ratio={max_outer_mellin_ratio:.10f}",

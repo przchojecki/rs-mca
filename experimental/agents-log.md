@@ -29,6 +29,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-19 - M1 collapsed rank-one correction
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/m1_depth_two_line_conic_resonance_reduction.md`,
+  `experimental/verify_m1_depth_two_line_conic_resonance_reduction.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** Splits the collapsed correction
+  `sum_z W_{eta,nu}(z)` into two four-point genus-zero Kummer sums
+  `B(nu,eta,gamma)` and `B(nu chi_2,eta,gamma)`, proving the
+  `4sqrt(p)` bound.
+- **How it is useful:** Sharpens the collapsed conductor bridge: the only
+  remaining p-scale import is now the rank-two transform
+  `sum_z W_{eta,nu}(z)L_nu(z)`, not the rank-one correction.
+- **What to do next:** Prove or import the bounded-conductor rank-two
+  Deligne/Katz estimate with usable constants for `W_{eta,nu}L_nu`.
+
 ### 2026-06-19 - M1 collapsed conductor bridge
 
 - **Agent/model:** Codex.
