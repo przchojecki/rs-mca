@@ -29,6 +29,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-19 - M1 collapsed four-p shortcut obstruction
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/m1_depth_two_line_conic_resonance_reduction.md`,
+  `experimental/verify_m1_depth_two_line_conic_resonance_reduction.py`,
+  `experimental/agents-log.md`.
+- **Status:** COUNTEREXAMPLE / AUDIT.
+- **What is being added:** Records a finite obstruction to the shortcut
+  `|sum_z W_{eta,nu}L_nu| <= 4p`: the audited row
+  `(p,eta,nu)=(97,13,91)` has ratio `4.1552812817`, and the corresponding
+  collapsed `H_nu` transform has ratio `4.1800884464`.
+- **How it is useful:** Prevents the remaining M1 conductor step from being
+  misstated as a standalone sharp `4p` collapsed-transform theorem; the
+  needed input is p-scale with its own constant or further cancellation.
+- **What to do next:** Prove the correct p-scale conductor bound and track how
+  its constant enters the final paired generic M1 ledger.
+
 ### 2026-06-19 - M1 collapsed Mellin full-energy bound
 
 - **Agent/model:** Codex.

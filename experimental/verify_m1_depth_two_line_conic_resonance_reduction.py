@@ -1201,6 +1201,52 @@ def quotient_line_collapsed_rank_two_transform(
     return total
 
 
+def verify_quotient_line_collapsed_four_p_obstruction() -> Tuple[
+    int, int, int, float, float
+]:
+    p = 97
+    eta_exponent = 13
+    nu_exponent = 91
+    order = p - 1
+    table = character_table(p, log_table(p))
+    eta = table[eta_exponent]
+    nu = table[nu_exponent]
+    gamma = table[(-eta_exponent - nu_exponent) % order]
+    rank_two_transform = quotient_line_collapsed_rank_two_transform(
+        p,
+        eta,
+        nu,
+        gamma,
+    )
+    rank_one_transform = quotient_line_outer_square_filtered_piece(
+        p,
+        nu,
+        eta,
+        gamma,
+    )
+    h_transform = rank_two_transform - rank_one_transform
+    rank_two_ratio = abs(rank_two_transform) / p
+    h_ratio = abs(h_transform) / p
+    quadratic_exponent = order // 2
+    if eta_exponent in {0, quadratic_exponent}:
+        raise AssertionError((p, eta_exponent, "eta_not_generic"))
+    if nu_exponent in {0, quadratic_exponent}:
+        raise AssertionError((p, nu_exponent, "nu_not_generic"))
+    if (2 * eta_exponent - nu_exponent) % order == 0:
+        raise AssertionError((p, eta_exponent, nu_exponent, "sqrt_row"))
+    if rank_two_ratio <= 4.0 + TOLERANCE:
+        raise AssertionError((p, eta_exponent, nu_exponent, rank_two_ratio))
+    if h_ratio <= 4.0 + TOLERANCE:
+        raise AssertionError((p, eta_exponent, nu_exponent, h_ratio))
+    return (
+        p,
+        eta_exponent,
+        nu_exponent,
+        round(rank_two_ratio, 10),
+        round(h_ratio, 10),
+    )
+
+
 def quotient_line_collapsed_mobius_kernel(
     p: int,
     r_value: int,
@@ -1607,6 +1653,7 @@ def verify_quotient_line_spectral_normal_form(
     float,
     float,
     float,
+    float,
     int,
 ]:
     delta = least_nonsquare(p)
@@ -1657,6 +1704,7 @@ def verify_quotient_line_spectral_normal_form(
     max_collapsed_rank_two_mobius_error = 0.0
     max_collapsed_mobius_deleted_error = 0.0
     max_collapsed_rank_two_ratio = 0.0
+    max_collapsed_h_ratio = 0.0
     max_paired_phase_ratio = 0.0
     paired_generic_count = 0
     max_outer_piece_ratio = 0.0
@@ -2326,6 +2374,10 @@ def verify_quotient_line_spectral_normal_form(
         max_collapsed_rank_two_ratio,
         abs(rank_two_transform) / p,
     )
+    max_collapsed_h_ratio = max(
+        max_collapsed_h_ratio,
+        abs(collapsed_h_transform) / p,
+    )
     pair_diagonal_error = abs(algebraic_pair_sum - diagonal_pair_sum)
     max_pair_diagonal_error = max(
         max_pair_diagonal_error,
@@ -2417,6 +2469,7 @@ def verify_quotient_line_spectral_normal_form(
         max_collapsed_rank_two_mobius_error,
         max_collapsed_mobius_deleted_error,
         max_collapsed_rank_two_ratio,
+        max_collapsed_h_ratio,
         max_paired_phase_ratio,
         paired_generic_count,
     )
@@ -2906,6 +2959,7 @@ def main() -> None:
     max_collapsed_rank_two_mobius_error = 0.0
     max_collapsed_mobius_deleted_error = 0.0
     max_collapsed_rank_two_ratio = 0.0
+    max_collapsed_h_ratio = 0.0
     max_paired_phase_ratio = 0.0
     max_outer_mellin_piece_ratio = 0.0
     max_outer_mellin_ratio = 0.0
@@ -2929,6 +2983,8 @@ def main() -> None:
     max_split_projection_label: Tuple[object, ...] = ()
     max_nonsplit_projection_label: Tuple[object, ...] = ()
     max_nonsplit_singular_label: Tuple[object, ...] = ()
+    max_collapsed_rank_two_label: Tuple[object, ...] = ()
+    max_collapsed_h_label: Tuple[object, ...] = ()
     singular_checked: List[int] = []
     lambda_map_checked = 0
     lambda_twist_checked: List[Tuple[int, int, int]] = []
@@ -2956,6 +3012,9 @@ def main() -> None:
     filter_checked = verify_admissible_filter_counts()
     twist_nontrivial_checked = verify_admissible_twist_nontriviality()
     moment_checked = verify_second_moments()
+    collapsed_four_p_obstruction_checked = (
+        verify_quotient_line_collapsed_four_p_obstruction()
+    )
     for p, eta_exponent, nu_exponent in case_iterator():
         if p not in tables:
             logs = log_table(p)
@@ -3191,6 +3250,7 @@ def main() -> None:
             collapsed_rank_two_mobius_error,
             collapsed_mobius_deleted_error,
             collapsed_rank_two_ratio,
+            collapsed_h_ratio,
             paired_phase_ratio,
             paired_generic_count,
         ) = verify_quotient_line_spectral_normal_form(
@@ -3369,10 +3429,12 @@ def main() -> None:
             max_collapsed_mobius_deleted_error,
             collapsed_mobius_deleted_error,
         )
-        max_collapsed_rank_two_ratio = max(
-            max_collapsed_rank_two_ratio,
-            collapsed_rank_two_ratio,
-        )
+        if collapsed_rank_two_ratio > max_collapsed_rank_two_ratio:
+            max_collapsed_rank_two_ratio = collapsed_rank_two_ratio
+            max_collapsed_rank_two_label = (p, eta_exponent, nu_exponent)
+        if collapsed_h_ratio > max_collapsed_h_ratio:
+            max_collapsed_h_ratio = collapsed_h_ratio
+            max_collapsed_h_label = (p, eta_exponent, nu_exponent)
         max_paired_phase_ratio = max(
             max_paired_phase_ratio,
             paired_phase_ratio,
@@ -3491,7 +3553,10 @@ def main() -> None:
         f"max_collapsed_mobius_deleted_error="
         f"{max_collapsed_mobius_deleted_error:.3e}",
         f"max_collapsed_rank_two_ratio="
-        f"{max_collapsed_rank_two_ratio:.10f}",
+        f"{max_collapsed_rank_two_ratio:.10f}@"
+        f"{max_collapsed_rank_two_label}",
+        f"max_collapsed_h_ratio={max_collapsed_h_ratio:.10f}@"
+        f"{max_collapsed_h_label}",
         f"max_paired_phase_ratio={max_paired_phase_ratio:.10f}",
         f"max_outer_mellin_piece_ratio={max_outer_mellin_piece_ratio:.10f}",
         f"max_outer_mellin_ratio={max_outer_mellin_ratio:.10f}",
@@ -3538,6 +3603,8 @@ def main() -> None:
         f"twist_nontrivial_checked={twist_nontrivial_checked[0]}.."
         f"{twist_nontrivial_checked[-1]}",
         f"moment_checked={moment_checked}",
+        f"collapsed_four_p_obstruction_checked="
+        f"{collapsed_four_p_obstruction_checked}",
     )
 
 

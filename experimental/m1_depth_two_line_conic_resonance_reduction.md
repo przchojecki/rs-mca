@@ -1594,6 +1594,22 @@ Thus the remaining rank-two transform is already `O(p)` in RMS over
 average-mass statement; it is a uniform pointwise Mellin-coefficient bound
 for this explicit trace.
 
+The same audit rules out one tempting sharp shortcut.  A standalone `4p`
+pointwise bound for the collapsed rank-two import is false in the checked
+range: at `(p,eta,nu)=(97,13,91)` (exponents relative to the verifier's
+primitive character),
+
+```text
+|sum_z W_{eta,nu}(z)L_nu(z)|/p = 4.1552812817,
+|sum_z W_{eta,nu}(z)H_nu(z)|/p = 4.1800884464.
+```
+
+These are nonprincipal, nonquadratic character rows and not one of the
+square-root exceptional relations.  Thus the remaining import should be
+treated as a p-scale conductor theorem with its own constant, or combined
+with later cancellation; it should not be replaced by an unsupported
+standalone `4p` collapsed-transform claim.
+
 Equivalently, split the square-class gate:
 
 ```text
