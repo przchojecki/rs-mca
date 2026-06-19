@@ -597,6 +597,10 @@ The elementary hypotheses behind this import are now audited in
   `Res_beta(A_beta beta^2+B_beta beta+C_beta, d_UV/r)
    = a^2 r^2 (a-r)^2 K_alpha^2`, so every finite `d_UV=0` point is already on
   the deleted diagonal or lower-chart curve;
+- the determinant of the rank-two good pushforward is the base Kummer
+  character `psi^2 phi(C_beta/A_beta)`, since
+  `beta_1 beta_2=C_beta/A_beta` and the descended quadratic sign occurs on
+  both sheets;
 - the verifier checks that the finite intersections lie in those displayed
   resultant root supports.
 

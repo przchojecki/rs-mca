@@ -213,7 +213,10 @@ should be revised as the project learns more.
    The finite `U V` sign divisor is now removed from the good cover by the
    resultant
    `Res_beta(beta equation,d_UV/r)=a^2r^2(a-r)^2K_alpha^2`, so sign zeros
-   occur only on already deleted diagonal/lower-chart fibers.
+   occur only on already deleted diagonal/lower-chart fibers.  The rank-two
+   good pushforward now also has explicit determinant
+   `psi^2 phi(C_beta/A_beta)`, so no sheet-dependent determinant ramification
+   remains hidden in `(BETA_2)`.
    The updated remaining-wall scan reports this asymmetric wall separately:
    in the current report grid the largest asymmetric ratio is
    `3.2173609608p`, while every near-`4p` top row lies in the projective

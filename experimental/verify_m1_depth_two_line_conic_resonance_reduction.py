@@ -5178,6 +5178,90 @@ def verify_ratio_surface_exceptional_root_bound() -> List[
     return checked
 
 
+def verify_ratio_surface_beta_pushforward_determinant() -> List[
+    Tuple[int, int, int, int, int, float]
+]:
+    checked: List[Tuple[int, int, int, int, int, float]] = []
+    for p, psi_exponent, phi_exponent in PUSHFORWARD_TRACE_CASES:
+        logs = log_table(p)
+        table = character_table(p, logs)
+        psi = table[psi_exponent]
+        phi = table[phi_exponent]
+        split_fiber_count = 0
+        determinant_checks = 0
+        max_error = 0.0
+        for alpha in range(1, p):
+            for ratio in range(1, p):
+                if not ratio_surface_beta_pushforward_good(p, alpha, ratio):
+                    continue
+                if legendre(ratio_surface_beta_discriminant(p, alpha, ratio), p) != 1:
+                    continue
+                roots = ratio_surface_affine_beta_roots(p, alpha, ratio)
+                if len(roots) != 2:
+                    raise AssertionError((p, alpha, ratio, roots))
+                quadratic, _, constant = ratio_surface_beta_coefficients(
+                    p,
+                    alpha,
+                    ratio,
+                )
+                beta_product = roots[0] * roots[1] % p
+                expected_product = constant * pow(quadratic, -1, p) % p
+                if beta_product != expected_product:
+                    raise AssertionError(
+                        (p, alpha, ratio, roots, beta_product, expected_product)
+                    )
+                signs = [
+                    legendre(
+                        ratio_surface_binary_discriminants(
+                            p,
+                            alpha,
+                            beta,
+                            ratio,
+                        )[0],
+                        p,
+                    )
+                    for beta in roots
+                ]
+                if signs[0] != signs[1] or signs[0] == 0:
+                    raise AssertionError((p, alpha, ratio, roots, signs))
+                sheet_product = (
+                    psi[alpha]
+                    * signs[0]
+                    * phi[roots[0]]
+                    * psi[alpha]
+                    * signs[1]
+                    * phi[roots[1]]
+                )
+                base_determinant = psi[alpha] * psi[alpha] * phi[expected_product]
+                error = abs(sheet_product - base_determinant)
+                max_error = max(max_error, error)
+                if error > 1000 * TOLERANCE:
+                    raise AssertionError(
+                        (
+                            p,
+                            psi_exponent,
+                            phi_exponent,
+                            alpha,
+                            ratio,
+                            sheet_product,
+                            base_determinant,
+                        )
+                    )
+                split_fiber_count += 1
+                determinant_checks += 1
+        checked.append(
+            (
+                p,
+                psi_exponent,
+                phi_exponent,
+                split_fiber_count,
+                determinant_checks,
+                round(max_error, 12),
+            )
+        )
+    return checked
+
+
 def verify_ratio_surface_full_trace_reduction() -> List[
     Tuple[int, int, int, int, int, int, int, float, int]
 ]:
@@ -6751,6 +6835,9 @@ def main() -> None:
     ratio_surface_exceptional_root_bound_checked = (
         verify_ratio_surface_exceptional_root_bound()
     )
+    ratio_surface_beta_pushforward_determinant_checked = (
+        verify_ratio_surface_beta_pushforward_determinant()
+    )
     ratio_surface_full_trace_reduction_checked = (
         verify_ratio_surface_full_trace_reduction()
     )
@@ -7408,6 +7495,8 @@ def main() -> None:
         f"{ratio_surface_beta_pushforward_checked}",
         f"ratio_surface_exceptional_root_bound_checked="
         f"{ratio_surface_exceptional_root_bound_checked}",
+        f"ratio_surface_beta_pushforward_determinant_checked="
+        f"{ratio_surface_beta_pushforward_determinant_checked}",
         f"ratio_surface_full_trace_reduction_checked="
         f"{ratio_surface_full_trace_reduction_checked}",
         f"ratio_surface_quotient_trace_reduction_checked="

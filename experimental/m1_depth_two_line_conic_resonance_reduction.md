@@ -3316,7 +3316,28 @@ S^UV_{psi,phi}
     + E_{psi,phi},
 ```
 
-where the summand is `0` on nonsplit fibers.  The error term is supported
+where the summand is `0` on nonsplit fibers.  The corresponding rank-two
+pushforward has explicit determinant.  On a split good fiber,
+
+```text
+beta_1 beta_2 = C_beta/A_beta,
+```
+
+and the descended sign appears on both sheets, so
+
+```text
+(psi(a) eps phi(beta_1))(psi(a) eps phi(beta_2))
+  = psi(a)^2 phi(C_beta/A_beta).
+```
+
+Thus, after the descended quadratic sign twist, the determinant is the base
+Kummer character `psi^2 phi(C_beta/A_beta)`.  In particular the determinant
+has no hidden sheet-dependent ramification: its finite zero/pole support is
+only the already deleted `A_beta C_beta=0` boundary (and the toric boundary
+of the compactification).  The verifier checks this determinant identity on
+all audited good split fibers for the pushforward character cases.
+
+The error term is supported
 only on the curve-sized exceptional ledger
 
 ```text
