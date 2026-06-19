@@ -29,6 +29,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-19 - M1 beta-pushforward trace identity
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/m1_depth_two_line_conic_resonance_reduction.md`,
+  `experimental/verify_m1_depth_two_line_conic_resonance_reduction.py`,
+  `experimental/m1_residue_line_roadmap.md`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** Decomposes the main `U V` determinant-chart trace
+  into a good-base rank-two beta pushforward
+  `psi(alpha) eps(alpha,r)(phi(beta_1)+phi(beta_2))` plus an exceptional
+  ledger supported on curve-sized deleted loci.
+- **How it is useful:** Names the exact remaining analytic object after all
+  lower charts, branch curves, coordinate deletions, and vertical fibers are
+  removed.
+- **What to do next:** Prove the conductor bound for this good-base
+  beta-pushforward trace.
+
 ### 2026-06-19 - M1 beta-cover branch geometry
 
 - **Agent/model:** Codex.

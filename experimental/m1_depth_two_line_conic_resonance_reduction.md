@@ -3255,6 +3255,45 @@ extra branch intersections, and the verifier records that finite special
 case separately.  Consequently the final two-sheet cover has an explicitly
 rational branch divisor with no hidden high-genus branch component.
 
+This gives an exact pushforward form for the main-chart trace.  Put
+
+```text
+G = {(a,r): A_beta C_beta D_beta (a-r) K_alpha(a,r) != 0}.
+```
+
+For `(a,r) in G`, either the beta fiber is nonsplit over `F_p` and
+contributes no rational beta points, or it has two roots `beta_1,beta_2 in
+F_p^*`.  In the split case both roots lie in the main chart and have the
+same singular-excess sign; write
+
+```text
+eps(a,r) = chi(d_UV(a,beta_1,r)) = chi(d_UV(a,beta_2,r)).
+```
+
+For any multiplicative characters `psi,phi`, the main `U V` trace therefore
+splits as
+
+```text
+S^UV_{psi,phi}
+  = sum_{(a,r) in G}
+      psi(a) eps(a,r) (phi(beta_1)+phi(beta_2))
+    + E_{psi,phi},
+```
+
+where the summand is `0` on nonsplit fibers.  The error term is supported
+only on the curve-sized exceptional ledger
+
+```text
+A_beta=0,  C_beta=0,  D_beta=0,  a=r,  K_alpha(a,r)=0,
+```
+
+together with the separated vertical fiber, so `E_{psi,phi}=O(p)` by
+counting.  The verifier checks this identity against direct main-chart
+summation for several full-character pairs and audits that the exceptional
+ledger is linear in `p` on the tested grid.  The remaining analytic input is
+now exactly a conductor bound for the good-base rank-two beta pushforward
+with kernel `psi(a) eps(a,r) (phi(beta_1)+phi(beta_2))`.
+
 ## Principal-Row Leakage
 
 The principal rows excluded above have exact formulas.  They explain why the

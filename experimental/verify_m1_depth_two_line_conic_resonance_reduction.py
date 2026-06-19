@@ -22,6 +22,13 @@ RATIO_SURFACE_CASES = (
     (43, 14),
 )
 LOWER_CHART_PRIMES = (5, 7, 11, 17, 31, 43)
+PUSHFORWARD_TRACE_CASES = (
+    (17, 1, 3),
+    (17, 5, 7),
+    (31, 2, 5),
+    (31, 6, 11),
+    (43, 3, 10),
+)
 TARGETED_CASES = (
     (37, 2, 5),
     (37, 7, 11),
@@ -4648,6 +4655,140 @@ def ratio_surface_projective_beta_root_count(
     return count
 
 
+def ratio_surface_affine_beta_roots(
+    p: int,
+    alpha: int,
+    ratio: int,
+) -> List[int]:
+    return [
+        beta
+        for beta in range(1, p)
+        if ratio_surface_delta(p, alpha, beta, ratio) == 0
+    ]
+
+
+def ratio_surface_beta_pushforward_good(
+    p: int,
+    alpha: int,
+    ratio: int,
+) -> bool:
+    quadratic, _, constant = ratio_surface_beta_coefficients(
+        p,
+        alpha,
+        ratio,
+    )
+    return (
+        quadratic != 0
+        and constant != 0
+        and ratio_surface_beta_discriminant(p, alpha, ratio) != 0
+        and (alpha - ratio) % p != 0
+        and ratio_surface_lower_alpha_kernel(p, alpha, ratio) != 0
+    )
+
+
+def verify_ratio_surface_beta_pushforward_trace() -> List[
+    Tuple[int, int, int, int, int, int, float]
+]:
+    checked: List[Tuple[int, int, int, int, int, int, float]] = []
+    for p, psi_exponent, phi_exponent in PUSHFORWARD_TRACE_CASES:
+        logs = log_table(p)
+        table = character_table(p, logs)
+        psi = table[psi_exponent]
+        phi = table[phi_exponent]
+        direct = 0j
+        pushforward = 0j
+        exceptional = 0j
+        good_base_count = 0
+        good_point_count = 0
+        exceptional_point_count = 0
+        for alpha in range(1, p):
+            for ratio in range(1, p):
+                roots = ratio_surface_affine_beta_roots(p, alpha, ratio)
+                main_roots = [
+                    beta
+                    for beta in roots
+                    if ratio_surface_binary_discriminants(
+                        p,
+                        alpha,
+                        beta,
+                        ratio,
+                    )[0] != 0
+                ]
+                direct += psi[alpha] * sum(
+                    legendre(
+                        ratio_surface_binary_discriminants(
+                            p,
+                            alpha,
+                            beta,
+                            ratio,
+                        )[0],
+                        p,
+                    )
+                    * phi[beta]
+                    for beta in main_roots
+                )
+                if ratio_surface_beta_pushforward_good(p, alpha, ratio):
+                    good_base_count += 1
+                    if len(main_roots) not in (0, 2):
+                        raise AssertionError((p, alpha, ratio, main_roots))
+                    if not main_roots:
+                        continue
+                    signs = [
+                        legendre(
+                            ratio_surface_binary_discriminants(
+                                p,
+                                alpha,
+                                beta,
+                                ratio,
+                            )[0],
+                            p,
+                        )
+                        for beta in main_roots
+                    ]
+                    if signs[0] != signs[1]:
+                        raise AssertionError((p, alpha, ratio, main_roots, signs))
+                    good_point_count += len(main_roots)
+                    pushforward += (
+                        psi[alpha]
+                        * signs[0]
+                        * sum(phi[beta] for beta in main_roots)
+                    )
+                    continue
+                exceptional_point_count += len(main_roots)
+                exceptional += psi[alpha] * sum(
+                    legendre(
+                        ratio_surface_binary_discriminants(
+                            p,
+                            alpha,
+                            beta,
+                            ratio,
+                        )[0],
+                        p,
+                    )
+                    * phi[beta]
+                    for beta in main_roots
+                )
+        if exceptional_point_count > 20 * (p - 1):
+            raise AssertionError((p, exceptional_point_count))
+        error = abs(direct - pushforward - exceptional)
+        if error > 1000 * TOLERANCE:
+            raise AssertionError(
+                (p, psi_exponent, phi_exponent, direct, pushforward, exceptional)
+            )
+        checked.append(
+            (
+                p,
+                psi_exponent,
+                phi_exponent,
+                good_base_count,
+                good_point_count,
+                exceptional_point_count,
+                round(error, 12),
+            )
+        )
+    return checked
+
+
 def verify_ratio_surface_beta_projection() -> List[
     Tuple[int, int, int, int, int, int, int, int]
 ]:
@@ -5556,6 +5697,9 @@ def main() -> None:
     ratio_surface_branch_geometry_checked = (
         verify_ratio_surface_branch_geometry()
     )
+    ratio_surface_beta_pushforward_checked = (
+        verify_ratio_surface_beta_pushforward_trace()
+    )
     quotient_conic_centered_bound_checked = (
         verify_quotient_conic_centered_bounds()
     )
@@ -6184,6 +6328,8 @@ def main() -> None:
         f"{ratio_surface_beta_projection_checked}",
         f"ratio_surface_branch_geometry_checked="
         f"{ratio_surface_branch_geometry_checked}",
+        f"ratio_surface_beta_pushforward_checked="
+        f"{ratio_surface_beta_pushforward_checked}",
         f"quotient_conic_centered_bound_checked="
         f"{quotient_conic_centered_bound_checked}",
         f"weighted_ratio_surface_centering_checked="

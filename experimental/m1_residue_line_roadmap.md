@@ -167,7 +167,12 @@ should be revised as the project learns more.
    problem is the open two-sheet cover with descended sign.  The branch
    curves `M=0` and `H=0` are now rationally parametrized from `(1,1)`,
    and for `p>5` they meet in the torus only at that already separated
-   vertical point; characteristic `5` is a finite audited exception.
+   vertical point; characteristic `5` is a finite audited exception.  The
+   main `U V` trace now has an exact pushforward identity over the good base
+   `A_beta C_beta D_beta (alpha-r)K_alpha != 0`, with all deleted pieces
+   contributing only `O(p)`.  The final analytic object is the good-base
+   rank-two beta pushforward
+   `psi(alpha) eps(alpha,r)(phi(beta_1)+phi(beta_2))`.
    The updated remaining-wall scan reports this asymmetric wall separately:
    in the current report grid the largest asymmetric ratio is
    `3.2173609608p`, while every near-`4p` top row lies in the projective
