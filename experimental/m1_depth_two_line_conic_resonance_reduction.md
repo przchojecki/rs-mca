@@ -2276,6 +2276,30 @@ holds with every term in closed form.  The line correction has RMS
 core is only `O(p^3)`.  This makes precise why removing the open line
 changes the exact moment but not the leading `p` RMS scale.
 
+The same nonprincipal moment gives a certified average bound on the actual
+admissible `C_2^lc` character slice.  For full character order `e=p-1`, the
+number of admissible pairs is
+
+```text
+R(p-1)=(p-2)(p-6)+3 1_{2 | p-1}+2(gcd(p-1,3)-1).
+```
+
+Since the admissible slice is a subset of the nonprincipal pairs,
+
+```text
+1/R(p-1) sum_{(eta,nu) admissible} |C^o_{eta,nu}|^2
+  <= 1/R(p-1) sum_{eta != 1, nu != 1} |C^o_{eta,nu}|^2.
+```
+
+Thus the actual line-conic-resonant slice also has a theorem-grade p-scale
+RMS bound.  The verifier audits the admissible slice directly for
+`p=17,31,43`; the observed RMS ratios are `0.8161`, `0.8502`, and
+`0.9043`, all below the inherited bounds `1.0137`, `0.9625`, and `0.9747`.
+The largest observed open ratios in those audits are `1.3054`, `1.8423`,
+and `2.2232`, respectively.  This does not prove the pointwise `4p`
+conductor target, but it confirms that the real admissible slice has no
+dense average obstruction.
+
 ## Principal-Row Leakage
 
 The principal rows excluded above have exact formulas.  They explain why the

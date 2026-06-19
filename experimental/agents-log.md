@@ -29,6 +29,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-19 - M1 admissible open-slice L2 audit
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/m1_depth_two_line_conic_resonance_reduction.md`,
+  `experimental/verify_m1_depth_two_line_conic_resonance_reduction.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** Applies the open nonprincipal second-moment theorem
+  to the actual full-order `C_2^lc` admissible character slice and adds a
+  direct finite audit for `p=17,31,43`.  The verifier checks the admissible
+  pair count, actual open RMS, maximum open ratio, and inherited RMS bound.
+- **How it is useful:** Moves the average-control statement from all
+  nonprincipal characters to the real line-conic-resonant admissible slice,
+  confirming there is no dense average obstruction in the target family.
+- **What to do next:** Replace the inherited average bound with a sharper
+  exact admissible moment if needed, or proceed to pointwise conductor control.
+
 ### 2026-06-19 - M1 open line-correction covariance
 
 - **Agent/model:** Codex.

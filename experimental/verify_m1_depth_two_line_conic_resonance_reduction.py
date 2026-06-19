@@ -11,6 +11,7 @@ from typing import Dict, Iterable, List, Tuple
 EXHAUSTIVE_PRIMES = (17, 31)
 MOMENT_PRIMES = (5, 7, 11, 17, 31)
 FILTER_ORDERS = tuple(range(2, 41))
+ADMISSIBLE_OPEN_AUDIT_PRIMES = (17, 31, 43)
 TARGETED_CASES = (
     (37, 2, 5),
     (37, 7, 11),
@@ -3185,6 +3186,54 @@ def direct_full_character_projector_moments(p: int) -> Tuple[int, int, int]:
     return round(split_moment), round(nonsplit_moment), round(cross_moment.real)
 
 
+def verify_admissible_open_moment_audit() -> List[
+    Tuple[int, int, float, float, Tuple[int, int], float]
+]:
+    checked: List[Tuple[int, int, float, float, Tuple[int, int], float]] = []
+    for p in ADMISSIBLE_OPEN_AUDIT_PRIMES:
+        table = character_table(p, log_table(p))
+        order = p - 1
+        total = 0.0
+        count = 0
+        max_ratio = 0.0
+        max_label = (0, 0)
+        for eta_exponent in range(1, order):
+            eta = table[eta_exponent]
+            eta_inv = table[(-eta_exponent) % order]
+            for nu_exponent in range(1, order):
+                if not is_line_conic_admissible_pair(
+                    order,
+                    eta_exponent,
+                    nu_exponent,
+                ):
+                    continue
+                nu = table[nu_exponent]
+                value = direct_open(p, eta_inv, nu, eta)
+                total += abs(value) ** 2
+                count += 1
+                ratio = abs(value) / p
+                if ratio > max_ratio:
+                    max_ratio = ratio
+                    max_label = (eta_exponent, nu_exponent)
+        expected_count = admissible_filter_formula(order)
+        if count != expected_count:
+            raise AssertionError((p, count, expected_count))
+        inherited_bound = nonprincipal_open_moment_formula(p)
+        if total > inherited_bound + 100 * TOLERANCE:
+            raise AssertionError((p, total, inherited_bound))
+        checked.append(
+            (
+                p,
+                count,
+                round(math.sqrt(total / count) / p, 10),
+                round(max_ratio, 10),
+                max_label,
+                round(math.sqrt(inherited_bound / count) / p, 10),
+            )
+        )
+    return checked
+
+
 def verify_second_moments() -> List[
     Tuple[int, int, int, int, int, int, int, int, int, int, int]
 ]:
@@ -3430,6 +3479,7 @@ def main() -> None:
     filter_checked = verify_admissible_filter_counts()
     twist_nontrivial_checked = verify_admissible_twist_nontriviality()
     moment_checked = verify_second_moments()
+    admissible_open_moment_checked = verify_admissible_open_moment_audit()
     collapsed_four_p_obstruction_checked = (
         verify_quotient_line_collapsed_four_p_obstruction()
     )
@@ -4033,6 +4083,7 @@ def main() -> None:
         f"twist_nontrivial_checked={twist_nontrivial_checked[0]}.."
         f"{twist_nontrivial_checked[-1]}",
         f"moment_checked={moment_checked}",
+        f"admissible_open_moment_checked={admissible_open_moment_checked}",
         f"collapsed_four_p_obstruction_checked="
         f"{collapsed_four_p_obstruction_checked}",
     )
