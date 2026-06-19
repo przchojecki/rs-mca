@@ -29,6 +29,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-19 - M1 singular-excess matrix reduction
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/m1_depth_two_line_conic_resonance_reduction.md`,
+  `experimental/verify_m1_depth_two_line_conic_resonance_reduction.py`,
+  `experimental/m1_residue_line_roadmap.md`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** Packages the weighted projective singular excess
+  as `P_e=p w^T Gamma_e w`, where `Gamma_e` is the `e x e` quotient-label
+  matrix of signed singular-conic excesses.  Since `sum w=0`, only the
+  row/column-centered matrix `Gamma_e^circ` contributes, giving
+  `|P_e| <= p e(e-1)||Gamma_e^circ||_F`.
+- **How it is useful:** Turns the final singular-excess theorem into the
+  precise fixed-index target `||Gamma_e^circ||_F <= C_e p`.
+- **What to do next:** Prove the centered singular-excess matrix bound,
+  likely as a determinant-surface trace estimate.
+
 ### 2026-06-19 - M1 closed boundary moment inequality
 
 - **Agent/model:** Codex.

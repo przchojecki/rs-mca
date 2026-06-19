@@ -4410,6 +4410,101 @@ def weighted_projective_error_sum(
     return total, singular_count, zero_conic_count
 
 
+def projective_excess_unit(
+    p: int,
+    alpha: int,
+    beta: int,
+    ratio: int,
+) -> int:
+    coefficients = ratio_surface_conic_coefficients(p, alpha, beta, ratio)
+    projective_count = ratio_surface_projective_point_count(
+        p,
+        alpha,
+        beta,
+        ratio,
+    )
+    excess = projective_count - (p + 1)
+    if excess % p != 0:
+        raise AssertionError((p, alpha, beta, ratio, excess))
+    unit = excess // p
+    if all(coefficient == 0 for coefficient in coefficients):
+        if unit != p:
+            raise AssertionError((p, alpha, beta, ratio, unit))
+    elif unit not in (-1, 0, 1):
+        raise AssertionError((p, alpha, beta, ratio, unit))
+    return unit
+
+
+def weighted_projective_singular_matrix_audit(
+    p: int,
+    suborder: int,
+    logs: Dict[int, int],
+    projective_error: int,
+) -> Tuple[int, float, float, float]:
+    matrix = [[0 for _ in range(suborder)] for _ in range(suborder)]
+    for alpha in range(1, p):
+        alpha_label = logs[alpha] % suborder
+        for beta in range(1, p):
+            beta_label = logs[beta] % suborder
+            for ratio in range(1, p):
+                determinant = ratio_surface_doubled_projective_determinant(
+                    p,
+                    alpha,
+                    beta,
+                    ratio,
+                )
+                if determinant != 0:
+                    continue
+                matrix[alpha_label][beta_label] += projective_excess_unit(
+                    p,
+                    alpha,
+                    beta,
+                    ratio,
+                )
+
+    quotient_weights = [suborder - 1] + [-1 for _ in range(1, suborder)]
+    weighted_units = sum(
+        quotient_weights[left]
+        * quotient_weights[right]
+        * matrix[left][right]
+        for left in range(suborder)
+        for right in range(suborder)
+    )
+    if p * weighted_units != projective_error:
+        raise AssertionError((p, suborder, p * weighted_units, projective_error))
+
+    row_sums = [sum(row) for row in matrix]
+    column_sums = [
+        sum(matrix[row][column] for row in range(suborder))
+        for column in range(suborder)
+    ]
+    total = sum(row_sums)
+    centered_frobenius_sq = 0.0
+    max_entry_ratio = 0.0
+    for row in range(suborder):
+        for column in range(suborder):
+            centered = (
+                matrix[row][column]
+                - row_sums[row] / suborder
+                - column_sums[column] / suborder
+                + total / (suborder * suborder)
+            )
+            centered_frobenius_sq += centered * centered
+            max_entry_ratio = max(max_entry_ratio, abs(matrix[row][column]) / p)
+    centered_frobenius = math.sqrt(centered_frobenius_sq)
+    weight_norm_sq = suborder * (suborder - 1)
+    cauchy_bound = p * weight_norm_sq * centered_frobenius
+    if abs(projective_error) > cauchy_bound + 1000 * TOLERANCE:
+        raise AssertionError((p, suborder, projective_error, cauchy_bound))
+    bound_ratio = abs(projective_error) / cauchy_bound if cauchy_bound else 0.0
+    return (
+        weighted_units,
+        round(centered_frobenius / p, 10),
+        round(max_entry_ratio, 10),
+        round(bound_ratio, 10),
+    )
+
+
 def verify_weighted_projective_decomposition() -> List[
     Tuple[
         int,
@@ -4425,6 +4520,7 @@ def verify_weighted_projective_decomposition() -> List[
         Tuple[int, int, Tuple[int, float]],
         Tuple[int, int, int, float],
         Tuple[float, float],
+        Tuple[int, float, float, float],
     ]
 ]:
     checked: List[
@@ -4442,6 +4538,7 @@ def verify_weighted_projective_decomposition() -> List[
             Tuple[int, int, Tuple[int, float]],
             Tuple[int, int, int, float],
             Tuple[float, float],
+            Tuple[int, float, float, float],
         ]
     ] = []
     for p, suborder in RATIO_SURFACE_CASES:
@@ -4449,6 +4546,12 @@ def verify_weighted_projective_decomposition() -> List[
         _, _, _, _, moment = open_suborder_coset_moment(p, suborder, logs)
         projective_error, singular_count, zero_conic_count = (
             weighted_projective_error_sum(p, suborder, logs)
+        )
+        singular_matrix = weighted_projective_singular_matrix_audit(
+            p,
+            suborder,
+            logs,
+            projective_error,
         )
         boundary_error = projective_error - moment
         boundary_parts = weighted_boundary_partition_sum(p, suborder, logs)
@@ -4559,6 +4662,7 @@ def verify_weighted_projective_decomposition() -> List[
                 (source_exclusive, line_overlap, overlap_spectral),
                 target_pairing,
                 closed_bounds,
+                singular_matrix,
             )
         )
     return checked

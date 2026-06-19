@@ -3011,6 +3011,52 @@ verifier checks the exact recomposition
 `M_e^o=P_e-I_e-O_e-2T_e` and both the exact-overlap and conductor-overlap
 versions of the closed inequality.
 
+The singular-excess target can be sharpened one more step.  For a singular
+projective conic define
+
+```text
+epsilon(alpha,beta,r)
+  = (Q(alpha,beta,r)-(p+1))/p.
+```
+
+The diagonal zero conic has `epsilon=p`; every other singular conic has
+`epsilon in {-1,0,1}`.  Group singular parameters by quotient labels
+`i,j in F_p^*/K_e`:
+
+```text
+Gamma_e(i,j)
+  = sum_{alpha in i, beta in j, Delta(alpha,beta,r)=0}
+      epsilon(alpha,beta,r).
+```
+
+If `w_0=e-1` and `w_i=-1` for the other quotient labels, then
+
+```text
+P_e = p w^T Gamma_e w.
+```
+
+Since `sum_i w_i=0`, row-only, column-only, and constant parts of
+`Gamma_e` vanish in this bilinear form.  With `Gamma_e^circ` the
+row/column-centered matrix,
+
+```text
+|P_e| <= p ||w||_2^2 ||Gamma_e^circ||_F
+       = p e(e-1) ||Gamma_e^circ||_F.
+```
+
+Thus the exact remaining fixed-index target is
+
+```text
+||Gamma_e^circ||_F <= C_e p.
+```
+
+This is a much smaller object than the original boundary ledger: an `e x e`
+matrix of signed singular-fiber excesses.  The verifier audits the
+divisibility of `Q-(p+1)` by `p`, the allowed values of `epsilon`, the exact
+bilinear identity for `P_e`, and the Frobenius Cauchy reduction.  On the
+current grid the normalized centered Frobenius ratios are small constants,
+which is consistent with the linear-in-`p` target but is not a proof of it.
+
 ## Principal-Row Leakage
 
 The principal rows excluded above have exact formulas.  They explain why the

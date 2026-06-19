@@ -141,6 +141,11 @@ should be revised as the project learns more.
    `M_e^o <= (sqrt(P_e^+)+3(e-1)sqrt(p))^2`, where `P_e` is the weighted
    projective singular excess.  The remaining quotient-conic target is
    therefore a sharp fixed-index `P_e=O(p^2)` singular-excess theorem.
+   The latest reduction packages `P_e` as
+   `P_e=p w^T Gamma_e w`, where `Gamma_e` is the `e x e` quotient-label
+   matrix of signed projective singular excesses; since `sum w=0`, only
+   the row/column-centered matrix `Gamma_e^circ` matters, and it is enough
+   to prove `||Gamma_e^circ||_F <= C_e p`.
    The updated remaining-wall scan reports this asymmetric wall separately:
    in the current report grid the largest asymmetric ratio is
    `3.2173609608p`, while every near-`4p` top row lies in the projective
