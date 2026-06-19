@@ -29,6 +29,29 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-19 - M1 beta-pushforward conductor ledger
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/m1_depth_two_line_conic_resonance_reduction.md`,
+  `experimental/verify_m1_depth_two_line_conic_resonance_reduction.py`,
+  `experimental/m1_residue_line_roadmap.md`,
+  `experimental/agents-log.md`.
+- **Status:** CONDITIONAL / AUDIT.
+- **What is being added:** Isolates the standard bounded-conductor
+  Deligne--Katz import needed for the remaining good rank-two beta
+  pushforward, and proves the visible no-constant-summand check: along the
+  beta-zero boundary `Q_beta=0`, the local monodromy is nontrivial `phi` for
+  every centered row.  The verifier audits the beta-zero divisor formula and
+  its bounded intersections with the beta-linear, sign, infinity, and branch
+  divisors.
+- **How it is useful:** Converts the final M1 singular-trace wall into a
+  sharply identified sheaf-theoretic import with all elementary divisor
+  hypotheses checked in the experimental ledger.
+- **What to do next:** Either promote the bounded-conductor
+  Deligne--Katz estimate as an accepted import for this explicit pushforward,
+  or replace it with a direct proof specialized to the beta-cover model.
+
 ### 2026-06-19 - M1 full singular trace reduced to good beta pushforward
 
 - **Agent/model:** Codex.

@@ -4599,6 +4599,22 @@ def ratio_surface_beta_middle_factor(p: int, alpha: int, ratio: int) -> int:
     return (-3 * a * a * r + 4 * a * r * r - 2 * a * r + 4 * a - 3 * r) % p
 
 
+def ratio_surface_beta_zero_factor(p: int, alpha: int, ratio: int) -> int:
+    a = alpha
+    r = ratio
+    return (-2 * a * a * r + 3 * a * r * r - a * r + 3 * a - 3 * r) % p
+
+
+def ratio_surface_uv_discriminant_at_beta_zero(
+    p: int,
+    alpha: int,
+    ratio: int,
+) -> int:
+    a = alpha
+    r = ratio
+    return a * r * r * (-3 * a + 4 * r) % p
+
+
 def ratio_surface_branch_m_param(p: int, slope: int) -> Tuple[int, int]:
     denominator = slope * (4 * slope - 3) % p
     if denominator == 0:
@@ -5055,6 +5071,82 @@ def verify_ratio_surface_full_trace_reduction() -> List[
                 exceptional_point_count,
                 round(error + grouped_error, 12),
                 bad_bound,
+            )
+        )
+    return checked
+
+
+def verify_ratio_surface_beta_kummer_conductor_ledger() -> List[
+    Tuple[int, int, int, int, int, int, int, int]
+]:
+    checked: List[Tuple[int, int, int, int, int, int, int, int]] = []
+    for p in LOWER_CHART_PRIMES:
+        beta_zero_count = 0
+        beta_linear_intersection = 0
+        uv_zero_intersection = 0
+        infinity_intersection = 0
+        branch_m_intersection = 0
+        branch_h_intersection = 0
+        formula_checks = 0
+        for alpha in range(1, p):
+            for ratio in range(1, p):
+                quadratic, _, constant = ratio_surface_beta_coefficients(
+                    p,
+                    alpha,
+                    ratio,
+                )
+                zero_factor = ratio_surface_beta_zero_factor(p, alpha, ratio)
+                if constant != alpha * ratio * zero_factor % p:
+                    raise AssertionError((p, alpha, ratio, constant, zero_factor))
+                discriminants = ratio_surface_binary_discriminants(
+                    p,
+                    alpha,
+                    0,
+                    ratio,
+                )
+                beta_zero_uv = ratio_surface_uv_discriminant_at_beta_zero(
+                    p,
+                    alpha,
+                    ratio,
+                )
+                if discriminants[0] != beta_zero_uv:
+                    raise AssertionError(
+                        (p, alpha, ratio, discriminants[0], beta_zero_uv)
+                    )
+                formula_checks += 1
+                if zero_factor != 0:
+                    continue
+                beta_zero_count += 1
+                beta_linear_intersection += int((alpha - 1) * (ratio + 1) % p == 0)
+                uv_zero_intersection += int(beta_zero_uv == 0)
+                infinity_intersection += int(quadratic == 0)
+                branch_m_intersection += int(
+                    ratio_surface_beta_middle_factor(p, alpha, ratio) == 0
+                )
+                branch_h_intersection += int(
+                    ratio_surface_beta_branch_factor(p, alpha, ratio) == 0
+                )
+        if beta_zero_count > 2 * (p - 1):
+            raise AssertionError((p, beta_zero_count))
+        for count in (
+            beta_linear_intersection,
+            uv_zero_intersection,
+            infinity_intersection,
+            branch_m_intersection,
+            branch_h_intersection,
+        ):
+            if count > 3:
+                raise AssertionError((p, count))
+        checked.append(
+            (
+                p,
+                beta_zero_count,
+                beta_linear_intersection,
+                uv_zero_intersection,
+                infinity_intersection,
+                branch_m_intersection,
+                branch_h_intersection,
+                formula_checks,
             )
         )
     return checked
@@ -5974,6 +6066,9 @@ def main() -> None:
     ratio_surface_full_trace_reduction_checked = (
         verify_ratio_surface_full_trace_reduction()
     )
+    ratio_surface_beta_kummer_conductor_checked = (
+        verify_ratio_surface_beta_kummer_conductor_ledger()
+    )
     ratio_surface_beta_ratio_resonance_checked = (
         verify_ratio_surface_beta_ratio_resonance()
     )
@@ -6612,6 +6707,8 @@ def main() -> None:
         f"{ratio_surface_beta_pushforward_checked}",
         f"ratio_surface_full_trace_reduction_checked="
         f"{ratio_surface_full_trace_reduction_checked}",
+        f"ratio_surface_beta_kummer_conductor_checked="
+        f"{ratio_surface_beta_kummer_conductor_checked}",
         f"ratio_surface_beta_ratio_resonance_checked="
         f"{ratio_surface_beta_ratio_resonance_checked}",
         f"ratio_surface_beta_quotient_energy_checked="

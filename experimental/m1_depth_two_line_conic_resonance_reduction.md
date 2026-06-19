@@ -3392,6 +3392,78 @@ rank-two beta pushforward.  The zero conic, lower charts, branch fibers,
 coordinate deletions, and vertical fiber cannot by themselves create a
 superlinear obstruction.
 
+The conductor ledger for that last pushforward is now explicit.  On the
+good base, the two-sheet cover is
+
+```text
+A_beta beta^2 + B_beta beta + C_beta = 0
+```
+
+and the rank-one summand on the cover is
+
+```text
+K_{psi,phi}
+  = psi(a) phi(beta) chi(d_UV(a,beta,r)).
+```
+
+All its zero/pole and ramification divisors lie in the bounded-degree
+compactified boundary consisting of the toric boundary together with
+
+```text
+A_beta=0, C_beta=0, D_beta=0, a=r, K_alpha=0, d_UV=0.
+```
+
+Thus the finite pushforward has rank `2` and conductor bounded only in
+terms of the fixed quotient order, not in terms of `p`.  The remaining
+top-cohomology obstruction would be a geometrically constant summand.  For
+the centered M1 target `phi` is nonprincipal, and the beta-zero boundary
+rules this out visibly.  Namely
+
+```text
+C_beta = ar Q_beta(a,r),
+Q_beta = -2a^2r + 3ar^2 - ar + 3a - 3r,
+```
+
+while at `beta=0`
+
+```text
+d_UV(a,0,r) = ar^2(-3a+4r).
+```
+
+The resultants
+
+```text
+Res_a(Q_beta, d_UV(a,0,r)) = -3r^6(2r-3)^2,
+Res_r(Q_beta, d_UV(a,0,r)) = 27a^5(a-2)^2
+```
+
+show that `Q_beta=0` has no component on which the `U V` sign also
+vanishes.  The same finite ledger checks that `Q_beta` has no component in
+common with the beta-linear coefficient `B_beta` (so `beta` is generically a
+local parameter), the beta-infinity divisor, or the branch divisors
+(`A_beta=0`, `M=0`, `H=0`).  Hence at the generic point of the beta-zero
+boundary, the local monodromy of `K_{psi,phi}` is exactly `phi`, which is
+nontrivial.  Therefore the good pushforward has no geometrically constant
+summand in the nonprincipal `phi` rows relevant to the centered singular
+matrix.
+
+Consequently, under the standard bounded-conductor Deligne--Katz estimate
+for nonconstant tame Kummer sheaves on bounded-degree surfaces, the good
+pushforward satisfies
+
+```text
+G_{psi,phi} = O_e(p)
+```
+
+for every fixed quotient order `e` and every centered character pair
+(`psi,phi`) with `phi != 1`.  Combined with the explicit `O(p)` bad-ledger
+decomposition above, this conditionally gives the desired
+`S_{psi,phi}=O_e(p)` singular-trace bound for the depth-two M1
+determinant-surface target.  The conditional input is now isolated: it is
+only the standard bounded-conductor trace estimate for this explicitly
+charted rank-two beta pushforward, not any further combinatorial or
+bookkeeping loss.
+
 ## Principal-Row Leakage
 
 The principal rows excluded above have exact formulas.  They explain why the

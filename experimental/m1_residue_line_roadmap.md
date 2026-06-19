@@ -187,7 +187,13 @@ should be revised as the project learns more.
    good beta pushforward; the first three pieces are `O(p)` directly
    (audited as `|bad| <= p+25(p-1)` on the checked grid).  Therefore the
    depth-two singular-excess target has been reduced to cancellation for
-   this one good rank-two beta pushforward.
+   this one good rank-two beta pushforward.  Its conductor ledger is now
+   explicit: the beta-zero boundary `Q_beta=0` has nontrivial `phi`
+   monodromy for every centered row (`phi != 1`) and shares no component
+   with the beta-linear, `U V` sign, beta-infinity, or branch divisors.
+   Thus, under the standard bounded-conductor Deligne--Katz estimate for
+   this nonconstant rank-two Kummer pushforward, the singular trace satisfies
+   `S_{psi,phi}=O_e(p)`.
    The updated remaining-wall scan reports this asymmetric wall separately:
    in the current report grid the largest asymmetric ratio is
    `3.2173609608p`, while every near-`4p` top row lies in the projective
