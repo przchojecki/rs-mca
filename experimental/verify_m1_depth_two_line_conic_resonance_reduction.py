@@ -3503,8 +3503,10 @@ def ratio_surface_doubled_projective_determinant(
     ) % p
 
 
-def verify_ratio_surface_degeneracy() -> List[Tuple[int, int, int, int, int, int]]:
-    checked: List[Tuple[int, int, int, int, int, int]] = []
+def verify_ratio_surface_degeneracy() -> List[
+    Tuple[int, int, int, int, int, int, int, int, int]
+]:
+    checked: List[Tuple[int, int, int, int, int, int, int, int, int]] = []
     for p, suborder in RATIO_SURFACE_CASES:
         logs = log_table(p)
         kernel = [value for value in range(1, p) if logs[value] % suborder == 0]
@@ -3573,6 +3575,25 @@ def verify_ratio_surface_degeneracy() -> List[Tuple[int, int, int, int, int, int
             raise AssertionError((p, suborder, zero_conic_count))
         if degenerate_count > degenerate_bound:
             raise AssertionError((p, suborder, degenerate_count, degenerate_bound))
+        support_count, joint_energy, _, _, _ = open_suborder_coset_moment(
+            p,
+            suborder,
+            logs,
+        )
+        conic_bound = (
+            support_count
+            + (parameter_count - degenerate_count) * (p + 1)
+            + (degenerate_count - 1) * (2 * p + 1)
+        )
+        uniform_bound = (
+            support_count
+            + (parameter_count - 1) * (p + 1)
+            + (degenerate_bound - 1) * p
+        )
+        if joint_energy > conic_bound:
+            raise AssertionError((p, suborder, joint_energy, conic_bound))
+        if conic_bound > uniform_bound:
+            raise AssertionError((p, suborder, conic_bound, uniform_bound))
         checked.append(
             (
                 p,
@@ -3581,6 +3602,9 @@ def verify_ratio_surface_degeneracy() -> List[Tuple[int, int, int, int, int, int
                 degenerate_count,
                 zero_conic_count,
                 degenerate_bound,
+                joint_energy,
+                conic_bound,
+                uniform_bound,
             )
         )
     return checked

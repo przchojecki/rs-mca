@@ -100,7 +100,10 @@ should be revised as the project learns more.
    ratio fibers are exactly the explicit hypersurface `Delta=0`.  Since
    `Delta` is a nonzero cubic in `r` for every fixed `alpha,beta`, there are
    at most `3|K_e|^2` singular ratio parameters, and the only zero conic is
-   the identity diagonal `(1,1,1)`.
+   the identity diagonal `(1,1,1)`.  This gives the aggregate bound
+   `J_e <= T^o+(N_e-D_e)(p+1)+(D_e-1)(2p+1)`, and hence the uniform
+   `J_e <= T^o+(N_e-1)(p+1)+(3|K_e|^2-1)p`; the remaining task is to exploit
+   row/column centering beyond this raw joint-energy estimate.
    The updated remaining-wall scan reports this asymmetric wall separately:
    in the current report grid the largest asymmetric ratio is
    `3.2173609608p`, while every near-`4p` top row lies in the projective

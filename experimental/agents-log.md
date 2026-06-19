@@ -29,6 +29,26 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-19 - M1 quotient-conic joint-energy bound
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/m1_depth_two_line_conic_resonance_reduction.md`,
+  `experimental/verify_m1_depth_two_line_conic_resonance_reduction.py`,
+  `experimental/m1_residue_line_roadmap.md`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** Converts the conic fibration and sparse singular
+  locus into the aggregate quotient joint-energy bound
+  `J_e <= T^o+(N_e-D_e)(p+1)+(D_e-1)(2p+1)`, hence the uniform bound
+  `J_e <= T^o+(N_e-1)(p+1)+(3|K_e|^2-1)p`.  The verifier checks the bound
+  against the exact quotient joint energies in the existing audited cases.
+- **How it is useful:** Rules out hidden two-dimensional exceptional fibers in
+  the quotient-collision fibration and recovers the correct leading
+  `p^4/e^2` scale before the row/column-centered cancellation step.
+- **What to do next:** Use the exact marginal subtraction in `M_e^o` to improve
+  this raw joint-energy estimate toward the desired centered quotient mixing.
+
 ### 2026-06-19 - M1 sparse quotient-conic singular fibers
 
 - **Agent/model:** Codex.

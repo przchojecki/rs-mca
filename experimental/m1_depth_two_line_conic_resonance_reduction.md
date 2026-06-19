@@ -2574,6 +2574,36 @@ projective conic and has at most `2p+1` projective `F_p`-points.  In
 particular, the only `p^2` fiber in the quotient-collision fibration is the
 identity diagonal; all non-diagonal singular fibers are line-sized.
 
+This gives an immediate aggregate joint-energy bound.  Let
+
+```text
+J_e = sum_{i,j} n_{ij}^2,        k_e=|K_e|=(p-1)/e,
+N_e = k_e^2(p-1),
+T^o = #S^o = p^2-4p+6+4 chi_2(-3).
+```
+
+If `D_e` is the number of singular ratio parameters, including the identity
+diagonal, then
+
+```text
+J_e <= T^o + (N_e-D_e)(p+1) + (D_e-1)(2p+1).
+```
+
+Indeed, the identity diagonal contributes exactly `T^o`; each smooth
+projective conic contributes at most `p+1` affine open points; and each
+nonzero singular projective conic contributes at most `2p+1` projective
+points.  Combining this with `D_e <= 3k_e^2` gives the uniform form
+
+```text
+J_e <= T^o + (N_e-1)(p+1) + (3k_e^2-1)p.
+```
+
+So the conic fibration already recovers the correct leading scale
+`J_e <= p^4/e^2 + O(p^3/e^2+p^2)`, with an explicitly separated diagonal
+term.  The remaining centered-mixing problem is therefore not the existence
+of a hidden two-dimensional exceptional fiber; it is to exploit the
+row/column subtraction in `M_e^o` beyond this raw joint-energy estimate.
+
 ## Principal-Row Leakage
 
 The principal rows excluded above have exact formulas.  They explain why the
