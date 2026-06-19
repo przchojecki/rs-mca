@@ -29,6 +29,27 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-19 - M1 admissible aggregate L1 bound
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/m1_depth_two_line_conic_resonance_reduction.md`,
+  `experimental/verify_m1_depth_two_line_conic_resonance_reduction.py`,
+  `experimental/m1_residue_line_roadmap.md`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** Uses the exact open nonprincipal second moment and
+  Cauchy's inequality to bound the full-order admissible line-conic aggregate
+  `sum |C^o_{eta,nu}|` by `sqrt(R(p-1)M_o(p))`, i.e. average `p+O(1)` per
+  admissible pair.  The verifier audits actual L1 averages for `p=17,31,43`
+  against this Cauchy bound.
+- **How it is useful:** Gives a possible grouped-L1 route for the `C_2^lc`
+  certificate contribution, separate from the still-open pointwise `4p`
+  conductor theorem.
+- **What to do next:** Decide whether the saturation certificate can group the
+  nine line-conic chart copies before taking absolute values; if so, record a
+  separate aggregate conditional ledger without changing the active one.
+
 ### 2026-06-19 - M1 admissible open-slice L2 audit
 
 - **Agent/model:** Codex.

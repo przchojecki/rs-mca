@@ -78,6 +78,11 @@ should be revised as the project learns more.
    additional transformed-core conductor target `|C|<=4p`, the scanner also
    reports the fully conditional ledger charging
    `C_2^peq+C_2^anr+C_2^lc = C_2^peq+C_2^asym` at `4p+3 sqrt(p)`.
+   The exact open nonprincipal second moment now gives a separate aggregate
+   route for the line-conic slice: per fixed full-order resonant chart,
+   `sum |C^o_{eta,nu}| <= sqrt(R(p-1)M_o(p)) = p(1+O(1/p))R(p-1)`.
+   This is a possible grouped L1 certificate improvement, not a replacement
+   for the missing pointwise `4p` conductor theorem.
    The updated remaining-wall scan reports this asymmetric wall separately:
    in the current report grid the largest asymmetric ratio is
    `3.2173609608p`, while every near-`4p` top row lies in the projective

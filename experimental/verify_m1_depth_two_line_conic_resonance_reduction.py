@@ -3187,13 +3187,16 @@ def direct_full_character_projector_moments(p: int) -> Tuple[int, int, int]:
 
 
 def verify_admissible_open_moment_audit() -> List[
-    Tuple[int, int, float, float, Tuple[int, int], float]
+    Tuple[int, int, float, float, float, Tuple[int, int], float]
 ]:
-    checked: List[Tuple[int, int, float, float, Tuple[int, int], float]] = []
+    checked: List[
+        Tuple[int, int, float, float, float, Tuple[int, int], float]
+    ] = []
     for p in ADMISSIBLE_OPEN_AUDIT_PRIMES:
         table = character_table(p, log_table(p))
         order = p - 1
         total = 0.0
+        l1_total = 0.0
         count = 0
         max_ratio = 0.0
         max_label = (0, 0)
@@ -3210,6 +3213,7 @@ def verify_admissible_open_moment_audit() -> List[
                 nu = table[nu_exponent]
                 value = direct_open(p, eta_inv, nu, eta)
                 total += abs(value) ** 2
+                l1_total += abs(value)
                 count += 1
                 ratio = abs(value) / p
                 if ratio > max_ratio:
@@ -3221,11 +3225,15 @@ def verify_admissible_open_moment_audit() -> List[
         inherited_bound = nonprincipal_open_moment_formula(p)
         if total > inherited_bound + 100 * TOLERANCE:
             raise AssertionError((p, total, inherited_bound))
+        cauchy_l1_bound = math.sqrt(count * inherited_bound)
+        if l1_total > cauchy_l1_bound + 100 * TOLERANCE:
+            raise AssertionError((p, l1_total, cauchy_l1_bound))
         checked.append(
             (
                 p,
                 count,
                 round(math.sqrt(total / count) / p, 10),
+                round(l1_total / (count * p), 10),
                 round(max_ratio, 10),
                 max_label,
                 round(math.sqrt(inherited_bound / count) / p, 10),

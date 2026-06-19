@@ -2300,6 +2300,33 @@ and `2.2232`, respectively.  This does not prove the pointwise `4p`
 conductor target, but it confirms that the real admissible slice has no
 dense average obstruction.
 
+There is also an aggregate L1 consequence that may be more useful to the
+certificate than a pointwise tail statement.  Let `A_p` be the full-order
+admissible set and write `M_o(p)` for the exact nonprincipal open moment above.
+Cauchy's inequality gives
+
+```text
+sum_{(eta,nu) in A_p} |C^o_{eta,nu}|
+  <= sqrt(R(p-1) M_o(p)).
+```
+
+Equivalently, the admissible line-conic slice has average absolute value at
+most
+
+```text
+p sqrt(M_o(p)/(R(p-1)p^2)) = p(1+O(1/p)).
+```
+
+Thus, if a later saturation certificate groups the full fixed-resonant-line
+slice before applying absolute values term by term, the line-conic-resonant
+aggregate can be charged at an average `p`-scale coefficient rather than at
+the uniform `4p` or old `9p` pointwise constants.  This is not yet consumed by
+the active certificate: it is an aggregate L1 bound for the normalized
+full-order chart, not the missing uniform conductor theorem.  The verifier now
+audits the actual average L1 ratios for `p=17,31,43`; they are `0.7523`,
+`0.7628`, and `0.7973`, below the Cauchy bounds `1.0137`, `0.9625`, and
+`0.9747`.
+
 ## Principal-Row Leakage
 
 The principal rows excluded above have exact formulas.  They explain why the
