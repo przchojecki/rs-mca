@@ -960,6 +960,149 @@ def verify_quotient_line_mellin_spectrum(
     return checked, max_formula_error, max_mellin_ratio
 
 
+def quotient_line_outer_twist_value(
+    p: int,
+    s_value: int,
+    delta: int,
+    eta: List[complex],
+    nu: List[complex],
+) -> complex:
+    if s_value == delta:
+        return 0j
+    projector_weight = 1 + legendre(s_value, p)
+    if projector_weight == 0:
+        return 0j
+    denominator = (s_value - delta) % p
+    y = (2 * s_value + delta) * pow(denominator, -1, p) % p
+    return (
+        projector_weight
+        * eta[(-y) % p]
+        * nu[s_value * pow(denominator, -1, p) % p]
+    )
+
+
+def quotient_line_outer_kummer_piece(
+    p: int,
+    delta: int,
+    alpha: List[complex],
+    beta: List[complex],
+    gamma: List[complex],
+) -> complex:
+    total = 0j
+    for s_value in range(p):
+        total += (
+            alpha[s_value]
+            * beta[(2 * s_value + delta) % p]
+            * gamma[(s_value - delta) % p]
+        )
+    return total
+
+
+def verify_quotient_line_spectral_normal_form(
+    p: int,
+    eta_exponent: int,
+    nu_exponent: int,
+    table: List[List[complex]],
+) -> Tuple[int, float, float, float]:
+    delta = least_nonsquare(p)
+    order = p - 1
+    eta = table[eta_exponent]
+    nu = table[nu_exponent]
+    quadratic_exponent = order // 2
+    gamma = table[(-eta_exponent - nu_exponent) % order]
+    outer_values = [
+        quotient_line_outer_twist_value(p, s_value, delta, eta, nu)
+        for s_value in range(p)
+    ]
+    kernel_values = [
+        quotient_line_kernel_trace(p, s_value, delta, nu)
+        for s_value in range(p)
+    ]
+    direct_pairing = sum(
+        outer_values[s_value] * kernel_values[s_value]
+        for s_value in range(p)
+    )
+    spectral_pairing = 0j
+    checked = 0
+    max_outer_decomposition_error = 0.0
+    max_outer_ratio = 0.0
+    for theta_exponent, theta in enumerate(table):
+        outer_mellin = sum(
+            theta[s_value] * outer_values[s_value]
+            for s_value in range(p)
+        )
+        alpha_plain = table[(theta_exponent + nu_exponent) % order]
+        alpha_quadratic = table[
+            (theta_exponent + nu_exponent + quadratic_exponent) % order
+        ]
+        expected_outer_mellin = eta[(-1) % p] * (
+            quotient_line_outer_kummer_piece(
+                p, delta, alpha_plain, eta, gamma
+            )
+            + quotient_line_outer_kummer_piece(
+                p, delta, alpha_quadratic, eta, gamma
+            )
+        )
+        outer_error = abs(outer_mellin - expected_outer_mellin)
+        max_outer_decomposition_error = max(
+            max_outer_decomposition_error,
+            outer_error,
+        )
+        if outer_error > TOLERANCE:
+            raise AssertionError(
+                (
+                    p,
+                    eta_exponent,
+                    nu_exponent,
+                    theta_exponent,
+                    "outer_mellin_decomposition",
+                )
+            )
+        if abs(outer_mellin) > 4 * math.sqrt(p) + TOLERANCE:
+            raise AssertionError(
+                (
+                    p,
+                    eta_exponent,
+                    nu_exponent,
+                    theta_exponent,
+                    "outer_mellin_4sqrt",
+                )
+            )
+        max_outer_ratio = max(max_outer_ratio, abs(outer_mellin) / math.sqrt(p))
+        inverse_theta = table[(-theta_exponent) % order]
+        outer_inverse_mellin = sum(
+            inverse_theta[s_value] * outer_values[s_value]
+            for s_value in range(p)
+        )
+        kernel_mellin = sum(
+            theta[s_value] * kernel_values[s_value]
+            for s_value in range(p)
+        )
+        spectral_pairing += outer_inverse_mellin * kernel_mellin
+        checked += 1
+    reconstructed_pairing = spectral_pairing / order
+    assert_close(
+        (p, eta_exponent, nu_exponent, "quotient_spectral_pairing"),
+        reconstructed_pairing,
+        direct_pairing,
+    )
+    spectral_nonsplit = (
+        eta[(-2) % p] * transformed_inner(p, 2 % p, nu)
+        + legendre(-3, p) * reconstructed_pairing
+    )
+    assert_close(
+        (p, eta_exponent, nu_exponent, "quotient_spectral_nonsplit"),
+        spectral_nonsplit,
+        quotient_line_nonsplit_sum(p, eta, nu),
+    )
+    return (
+        checked,
+        max_outer_decomposition_error,
+        abs(reconstructed_pairing - direct_pairing),
+        max_outer_ratio,
+    )
+
+
 def verify_twisted_line_kernel_moments(
     p: int,
     table: List[List[complex]],
@@ -1423,6 +1566,9 @@ def main() -> None:
     max_twisted_difference = 0.0
     max_twisted_line_difference = 0.0
     max_quotient_line_difference = 0.0
+    max_quotient_spectral_difference = 0.0
+    max_outer_mellin_decomposition_error = 0.0
+    max_outer_mellin_ratio = 0.0
     max_core_ratio = 0.0
     max_open_ratio = 0.0
     max_line_ratio = 0.0
@@ -1446,6 +1592,7 @@ def main() -> None:
     quotient_line_mellin_checked: List[Tuple[int, int, float, float]] = []
     twisted_line_kernel_moment_checked: List[Tuple[int, int, float, float]] = []
     twisted_line_fiber_checked = 0
+    quotient_spectral_checked = 0
     split_hypergeometric_checked = 0
     filter_checked = verify_admissible_filter_counts()
     twist_nontrivial_checked = verify_admissible_twist_nontriviality()
@@ -1582,6 +1729,18 @@ def main() -> None:
         twisted_nonsplit = twisted_discriminant_nonsplit_sum(p, eta, nu)
         twisted_line_nonsplit = twisted_line_nonsplit_sum(p, eta, nu)
         quotient_line_nonsplit = quotient_line_nonsplit_sum(p, eta, nu)
+        (
+            spectral_theta_count,
+            outer_decomposition_error,
+            quotient_spectral_difference,
+            outer_mellin_ratio,
+        ) = verify_quotient_line_spectral_normal_form(
+            p,
+            eta_exponent,
+            nu_exponent,
+            table,
+        )
+        quotient_spectral_checked += spectral_theta_count
         assert_close(
             (p, eta_exponent, nu_exponent, "lambda_pullback_descent"),
             pulled_back,
@@ -1668,6 +1827,18 @@ def main() -> None:
             max_quotient_line_difference,
             abs(quotient_line_nonsplit - nonsplit_projection),
         )
+        max_quotient_spectral_difference = max(
+            max_quotient_spectral_difference,
+            quotient_spectral_difference,
+        )
+        max_outer_mellin_decomposition_error = max(
+            max_outer_mellin_decomposition_error,
+            outer_decomposition_error,
+        )
+        max_outer_mellin_ratio = max(
+            max_outer_mellin_ratio,
+            outer_mellin_ratio,
+        )
         split_projection_ratio = abs(split_projection) / p
         nonsplit_projection_ratio = abs(nonsplit_projection) / p
         nonsplit_singular_ratio = abs(singular_nonsplit)
@@ -1719,6 +1890,11 @@ def main() -> None:
         f"max_twisted_difference={max_twisted_difference:.3e}",
         f"max_twisted_line_difference={max_twisted_line_difference:.3e}",
         f"max_quotient_line_difference={max_quotient_line_difference:.3e}",
+        f"max_quotient_spectral_difference="
+        f"{max_quotient_spectral_difference:.3e}",
+        f"max_outer_mellin_decomposition_error="
+        f"{max_outer_mellin_decomposition_error:.3e}",
+        f"max_outer_mellin_ratio={max_outer_mellin_ratio:.10f}",
         f"max_core_ratio={max_core_ratio:.10f}@{max_core_label}",
         f"max_open_ratio={max_open_ratio:.10f}@{max_open_label}",
         f"max_line_ratio={max_line_ratio:.10f}@{max_line_label}",
@@ -1738,6 +1914,7 @@ def main() -> None:
         f"quotient_line_kernel_moment_checked="
         f"{quotient_line_kernel_moment_checked}",
         f"quotient_line_mellin_checked={quotient_line_mellin_checked}",
+        f"quotient_spectral_checked={quotient_spectral_checked}",
         f"twisted_line_kernel_moment_checked="
         f"{twisted_line_kernel_moment_checked}",
         f"twisted_line_fiber_checked={twisted_line_fiber_checked}",

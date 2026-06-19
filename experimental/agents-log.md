@@ -29,6 +29,26 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-19 - M1 line-conic nonsplit spectral normal form
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/m1_depth_two_line_conic_resonance_reduction.md`,
+  `experimental/verify_m1_depth_two_line_conic_resonance_reduction.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** Writes the nonsplit quotient-line projector as an
+  exact Mellin convolution
+  `eta(-2)G(2)+chi_2(-3)/(p-1)sum_theta A(theta^{-1})M(theta)`, with
+  `M` the Jacobi-product kernel spectrum and `A` a sum of two three-point
+  Kummer coefficients.
+- **How it is useful:** Localizes the remaining nonsplit M1 obstruction to
+  cancellation across the Mellin parameter instead of an opaque one-variable
+  trace, and records the termwise `p^{3/2}` fallback as insufficient for the
+  desired p-scale theorem.
+- **What to do next:** Prove cancellation in this spectral sum, or identify
+  a structural diagonal/off-diagonal split that yields the p-scale bound.
+
 ### 2026-06-19 - M1 line-conic quotient-line Mellin spectrum
 
 - **Agent/model:** Codex.

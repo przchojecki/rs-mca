@@ -919,6 +919,54 @@ smaller values in the degenerate Jacobi cases.  This identifies the descended
 kernel as a hypergeometric Mellin object with no super-`p` coefficient before
 the outer rational twist is imposed.
 
+## Nonsplit Spectral Normal Form
+
+The full nonsplit quotient-line transform can now be written as an exact
+Mellin convolution.  Define
+
+```text
+A_{eta,nu}(theta)
+  = sum_s theta(s)(1+chi_2(s))
+      eta(-(2s+delta)/(s-delta)) nu(s/(s-delta)),
+M_nu(theta)
+  = sum_s theta(s) J_{nu,delta}(s).
+```
+
+The terms at `s=0` and `s=delta` vanish with the zero-extension convention
+for multiplicative characters and with `delta` nonsquare.  Mellin inversion on
+`F_p^*` gives
+
+```text
+C^-_{eta,nu}
+  = eta(-2)G_nu(2)
+    + chi_2(-3)/(p-1) sum_theta A_{eta,nu}(theta^(-1)) M_nu(theta).
+```
+
+The outer coefficient is itself a sum of two explicit three-point Kummer
+coefficients.  If
+
+```text
+B_{alpha,beta,gamma}
+  = sum_s alpha(s) beta(2s+delta) gamma(s-delta),
+```
+
+then
+
+```text
+A_{eta,nu}(theta)
+  = eta(-1) (
+      B_{theta nu, eta, (eta nu)^(-1)}
+      + B_{theta nu chi_2, eta, (eta nu)^(-1)}
+    ).
+```
+
+Thus the nonsplit projector is no longer an opaque one-variable trace.  The
+kernel side `M_nu(theta)` is a product of Jacobi sums, and the outer side is a
+pair of three-point Kummer coefficients supported at
+`s=0`, `s=delta`, `s=-delta/2`, and infinity.  Termwise estimates give only a
+`p^{3/2}`-scale fallback, so the desired `p`-scale nonsplit projector theorem
+has been localized to cancellation across the Mellin parameter `theta`.
+
 ## Twisted-Line Kernel Moment
 
 The translated kernel has no hidden large average.  For every nonprincipal
