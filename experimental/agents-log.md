@@ -29,6 +29,26 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-19 - M1 collapsed large-coefficient sparsity
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/m1_depth_two_line_conic_resonance_reduction.md`,
+  `experimental/verify_m1_depth_two_line_conic_resonance_reduction.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** Records the Parseval corollary of the selected
+  energy theorem: for threshold `Lambda p`, at most
+  `(p-1)(2p^2-2)/(Lambda^2 p^2)` collapsed Mellin coefficients can exceed it.
+  In particular, `4p`-sized coefficients occupy less than one eighth of the
+  eta-aspect.  The verifier also checks that the finite `4p` obstruction row
+  `(p,eta,nu)=(97,13,91)` satisfies the actual `C_2^lc` admissible filter.
+- **How it is useful:** Shows the remaining collapsed conductor obstruction
+  is sparse in the Mellin aspect but still genuinely belongs to the M1
+  line-conic-resonant character range.
+- **What to do next:** Bound the sparse exceptional coefficients directly or
+  exploit their cancellation in the paired generic ledger.
+
 ### 2026-06-19 - M1 collapsed selected-energy bound
 
 - **Agent/model:** Codex.

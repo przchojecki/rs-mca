@@ -1201,6 +1201,23 @@ def quotient_line_collapsed_rank_two_transform(
     return total
 
 
+def is_line_conic_admissible_pair(
+    order: int,
+    eta_exponent: int,
+    nu_exponent: int,
+) -> bool:
+    a_exponent = (-eta_exponent) % order
+    b_exponent = nu_exponent % order
+    return (
+        a_exponent != 0
+        and b_exponent != 0
+        and b_exponent != a_exponent
+        and b_exponent != (-a_exponent) % order
+        and b_exponent != (2 * a_exponent) % order
+        and (2 * b_exponent - a_exponent) % order != 0
+    )
+
+
 def verify_quotient_line_collapsed_four_p_obstruction() -> Tuple[
     int, int, int, float, float
 ]:
@@ -1234,6 +1251,8 @@ def verify_quotient_line_collapsed_four_p_obstruction() -> Tuple[
         raise AssertionError((p, nu_exponent, "nu_not_generic"))
     if (2 * eta_exponent - nu_exponent) % order == 0:
         raise AssertionError((p, eta_exponent, nu_exponent, "sqrt_row"))
+    if not is_line_conic_admissible_pair(order, eta_exponent, nu_exponent):
+        raise AssertionError((p, eta_exponent, nu_exponent, "not_admissible"))
     if rank_two_ratio <= 4.0 + TOLERANCE:
         raise AssertionError((p, eta_exponent, nu_exponent, rank_two_ratio))
     if h_ratio <= 4.0 + TOLERANCE:

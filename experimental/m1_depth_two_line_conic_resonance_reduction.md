@@ -1666,6 +1666,33 @@ improves the RMS ceiling to
 RMS_eta <= sqrt(2p^2-2) < sqrt(2)p.
 ```
 
+This also gives a clean large-coefficient sparsity statement.  For any
+`Lambda>0`, let
+
+```text
+N_nu(Lambda)
+  = #{eta : |sum_r eta(r)Phi_nu(r)| >= Lambda p}.
+```
+
+Then Parseval and the selected-energy bound give
+
+```text
+N_nu(Lambda)
+  <= (p-1)(2p^2-2)/(Lambda^2 p^2).
+```
+
+In particular, coefficients of size at least `4p` occupy less than one
+eighth of the Mellin characters:
+
+```text
+N_nu(4) <= floor((p-1)(p^2-1)/(8p^2)) < (p-1)/8.
+```
+
+So a finite row above `4p` is compatible with the average theory, but such
+rows cannot form a dense obstruction.  The remaining conductor problem is
+to bound these sparse exceptional Mellin coefficients, or to exploit their
+cancellation in the paired generic ledger.
+
 The same audit rules out one tempting sharp shortcut.  A standalone `4p`
 pointwise bound for the collapsed rank-two import is false in the checked
 range: at `(p,eta,nu)=(97,13,91)` (exponents relative to the verifier's
@@ -1677,10 +1704,13 @@ primitive character),
 ```
 
 These are nonprincipal, nonquadratic character rows and not one of the
-square-root exceptional relations.  Thus the remaining import should be
-treated as a p-scale conductor theorem with its own constant, or combined
-with later cancellation; it should not be replaced by an unsupported
-standalone `4p` collapsed-transform claim.
+square-root exceptional relations.  They also satisfy the actual
+line-conic-resonant admissible filter with
+`a=-eta=83`, `b=nu=91` modulo `96`, so this is not only a broad-import
+artifact.  Thus the remaining import should be treated as a p-scale
+conductor theorem with its own constant, or combined with later
+cancellation; it should not be replaced by an unsupported standalone `4p`
+collapsed-transform claim.
 
 Equivalently, split the square-class gate:
 
