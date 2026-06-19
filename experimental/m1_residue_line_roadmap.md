@@ -157,7 +157,14 @@ should be revised as the project learns more.
    collapsed to the diagonal curve `alpha=beta=r` plus the residual
    quadratic curve `K_alpha(alpha,r)=K_beta(beta,r)=0`, so it has at most
    `5(p-1)` points and is already `O(p)` in every trace.  The remaining
-   surface-cancellation target is the main `d_UV != 0` chart.
+   surface-cancellation target is the main `d_UV != 0` chart.  This chart
+   is now projected to a projective two-sheet beta cover over
+   `(alpha,r)`, with branch divisor
+   `M(alpha,r)H(alpha,r)=0`; the vertical fiber, beta-zero/beta-infinity
+   deletions, branch fibers, and lower-chart companions are all curve-sized.
+   On the remaining split two-root fibers, `chi(d_UV)` is invariant under
+   beta-conjugation by the square resultant formula, so the last trace
+   problem is the open two-sheet cover with descended sign.
    The updated remaining-wall scan reports this asymmetric wall separately:
    in the current report grid the largest asymmetric ratio is
    `3.2173609608p`, while every near-`4p` top row lies in the projective

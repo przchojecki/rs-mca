@@ -29,6 +29,26 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-19 - M1 main determinant-chart beta cover
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/m1_depth_two_line_conic_resonance_reduction.md`,
+  `experimental/verify_m1_depth_two_line_conic_resonance_reduction.py`,
+  `experimental/m1_residue_line_roadmap.md`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** Projects the main determinant chart to
+  `(alpha,r)` as a projective quadratic beta cover with discriminant
+  `alpha*r*M(alpha,r)*H(alpha,r)`, separates the vertical and coordinate
+  deletion curves, and verifies conjugate invariance of `chi(d_UV)` on
+  split two-root main fibers.
+- **How it is useful:** Reduces the remaining `S_{psi,phi}` surface problem
+  to an open two-sheet cover with explicit branch divisor and descended
+  quadratic sign, after removing only `O(p)` exceptional curves.
+- **What to do next:** Prove cancellation for the descended Kummer trace on
+  the open two-sheet cover, or identify a counterexample family there.
+
 ### 2026-06-19 - M1 lower determinant-chart collapse
 
 - **Agent/model:** Codex.

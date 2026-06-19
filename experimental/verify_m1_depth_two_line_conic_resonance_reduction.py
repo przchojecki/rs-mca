@@ -4561,6 +4561,179 @@ def ratio_surface_lower_beta_kernel(p: int, beta: int, ratio: int) -> int:
     ) % p
 
 
+def ratio_surface_beta_coefficients(
+    p: int,
+    alpha: int,
+    ratio: int,
+) -> Tuple[int, int, int]:
+    a = alpha
+    r = ratio
+    return (
+        (3 * a * a * r - 3 * a * r * r + a * r - 3 * a + 2 * r) % p,
+        (-a * r * (a - 1) * (r + 1)) % p,
+        (
+            a
+            * r
+            * (-2 * a * a * r + 3 * a * r * r - a * r + 3 * a - 3 * r)
+        )
+        % p,
+    )
+
+
+def ratio_surface_beta_branch_factor(p: int, alpha: int, ratio: int) -> int:
+    a = alpha
+    r = ratio
+    return (-8 * a * a * r + 9 * a * r * r - 2 * a * r + 9 * a - 8 * r) % p
+
+
+def ratio_surface_beta_middle_factor(p: int, alpha: int, ratio: int) -> int:
+    a = alpha
+    r = ratio
+    return (-3 * a * a * r + 4 * a * r * r - 2 * a * r + 4 * a - 3 * r) % p
+
+
+def ratio_surface_beta_discriminant(p: int, alpha: int, ratio: int) -> int:
+    quadratic, linear, constant = ratio_surface_beta_coefficients(
+        p,
+        alpha,
+        ratio,
+    )
+    return (linear * linear - 4 * quadratic * constant) % p
+
+
+def ratio_surface_projective_beta_root_count(
+    p: int,
+    alpha: int,
+    ratio: int,
+) -> int:
+    quadratic, linear, constant = ratio_surface_beta_coefficients(
+        p,
+        alpha,
+        ratio,
+    )
+    count = int(quadratic == 0)
+    for beta in range(p):
+        if (quadratic * beta * beta + linear * beta + constant) % p == 0:
+            count += 1
+    return count
+
+
+def verify_ratio_surface_beta_projection() -> List[
+    Tuple[int, int, int, int, int, int, int, int]
+]:
+    checked: List[Tuple[int, int, int, int, int, int, int, int]] = []
+    for p in LOWER_CHART_PRIMES:
+        vertical_count = 0
+        branch_base_count = 0
+        infinity_base_count = 0
+        zero_beta_base_count = 0
+        split_main_pair_count = 0
+        split_lower_pair_count = 0
+        nonsplit_base_count = 0
+        conjugate_sign_checks = 0
+        for alpha in range(1, p):
+            for ratio in range(1, p):
+                quadratic, linear, constant = ratio_surface_beta_coefficients(
+                    p,
+                    alpha,
+                    ratio,
+                )
+                for beta in range(p):
+                    delta_value = ratio_surface_delta(p, alpha, beta, ratio)
+                    beta_value = (
+                        quadratic * beta * beta + linear * beta + constant
+                    ) % p
+                    if delta_value != beta_value:
+                        raise AssertionError((p, alpha, beta, ratio))
+                discriminant = ratio_surface_beta_discriminant(
+                    p,
+                    alpha,
+                    ratio,
+                )
+                expected_discriminant = (
+                    alpha
+                    * ratio
+                    * ratio_surface_beta_middle_factor(p, alpha, ratio)
+                    * ratio_surface_beta_branch_factor(p, alpha, ratio)
+                ) % p
+                if discriminant != expected_discriminant:
+                    raise AssertionError(
+                        (p, alpha, ratio, discriminant, expected_discriminant)
+                    )
+                if (quadratic, linear, constant) == (0, 0, 0):
+                    if (alpha, ratio) != (1, 1):
+                        raise AssertionError((p, alpha, ratio, "vertical"))
+                    vertical_count += 1
+                    continue
+                projective_count = ratio_surface_projective_beta_root_count(
+                    p,
+                    alpha,
+                    ratio,
+                )
+                expected_count = 1 + legendre(discriminant, p)
+                if projective_count != expected_count:
+                    raise AssertionError(
+                        (p, alpha, ratio, projective_count, expected_count)
+                    )
+                branch_base_count += int(discriminant == 0)
+                infinity_base_count += int(quadratic == 0)
+                zero_beta_base_count += int(constant == 0)
+                if discriminant == 0 or quadratic == 0 or constant == 0:
+                    continue
+                if legendre(discriminant, p) == -1:
+                    nonsplit_base_count += 1
+                    continue
+                roots = [
+                    beta
+                    for beta in range(1, p)
+                    if ratio_surface_delta(p, alpha, beta, ratio) == 0
+                ]
+                if len(roots) != 2:
+                    raise AssertionError((p, alpha, ratio, roots))
+                signs = [
+                    legendre(
+                        ratio_surface_binary_discriminants(
+                            p,
+                            alpha,
+                            beta,
+                            ratio,
+                        )[0],
+                        p,
+                    )
+                    for beta in roots
+                ]
+                if 0 in signs:
+                    split_lower_pair_count += 1
+                    continue
+                split_main_pair_count += 1
+                conjugate_sign_checks += 1
+                if signs[0] != signs[1]:
+                    raise AssertionError((p, alpha, ratio, roots, signs))
+        if vertical_count != 1:
+            raise AssertionError((p, vertical_count))
+        for count in (
+            branch_base_count,
+            infinity_base_count,
+            zero_beta_base_count,
+            split_lower_pair_count,
+        ):
+            if count > 4 * (p - 1):
+                raise AssertionError((p, count))
+        checked.append(
+            (
+                p,
+                branch_base_count,
+                infinity_base_count,
+                zero_beta_base_count,
+                split_main_pair_count,
+                split_lower_pair_count,
+                nonsplit_base_count,
+                conjugate_sign_checks,
+            )
+        )
+    return checked
+
+
 def verify_ratio_surface_lower_chart_collapse() -> List[
     Tuple[int, int, int, int, int, int]
 ]:
@@ -5302,6 +5475,9 @@ def main() -> None:
     ratio_surface_lower_chart_checked = (
         verify_ratio_surface_lower_chart_collapse()
     )
+    ratio_surface_beta_projection_checked = (
+        verify_ratio_surface_beta_projection()
+    )
     quotient_conic_centered_bound_checked = (
         verify_quotient_conic_centered_bounds()
     )
@@ -5926,6 +6102,8 @@ def main() -> None:
         f"{ratio_surface_degeneracy_checked}",
         f"ratio_surface_lower_chart_checked="
         f"{ratio_surface_lower_chart_checked}",
+        f"ratio_surface_beta_projection_checked="
+        f"{ratio_surface_beta_projection_checked}",
         f"quotient_conic_centered_bound_checked="
         f"{quotient_conic_centered_bound_checked}",
         f"weighted_ratio_surface_centering_checked="

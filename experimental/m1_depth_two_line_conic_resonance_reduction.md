@@ -3180,6 +3180,54 @@ ordered lower chart is actually `U W`: on the diagonal
 small characteristic `p=5` sample.  The only remaining surface-cancellation
 problem is therefore the main `d_UV != 0` determinant chart.
 
+That main chart has a useful two-sheet presentation.  View `Delta` as a
+homogeneous quadratic in `beta=[B:Z]`:
+
+```text
+A_beta B^2 + B_beta BZ + C_beta Z^2 = 0,
+
+A_beta = 3a^2r - 3ar^2 + ar - 3a + 2r,
+B_beta = -ar(a-1)(r+1),
+C_beta = ar(-2a^2r + 3ar^2 - ar + 3a - 3r).
+```
+
+Its discriminant factors as
+
+```text
+D_beta = B_beta^2 - 4A_beta C_beta
+       = ar M(a,r) H(a,r),
+
+M(a,r) = -3a^2r + 4ar^2 - 2ar + 4a - 3r,
+H(a,r) = -8a^2r + 9ar^2 - 2ar + 9a - 8r.
+```
+
+The only all-zero projective `beta` fiber is `(a,r)=(1,1)`, a vertical line
+which is `O(p)`.  Away from it, the projective fiber has
+`1+chi(D_beta)` `F_p`-points.  Hence the branch divisor of the
+projective `beta` cover is explicitly contained in the two curves
+`M(a,r)=0` and `H(a,r)=0`.  Passing back to the affine nonzero-`beta`
+trace only deletes the coordinate curves `A_beta=0` (the beta-infinity
+sheet) and `C_beta=0` (the beta-zero sheet), again `O(p)` sets.
+
+Finally, on the open split two-root fibers which avoid the lower chart, the
+singular-excess sign is invariant under beta-conjugation.  Indeed
+
+```text
+Res_beta(Delta,d_UV)
+  = a^2 r^4 (a-r)^2 K_alpha(a,r)^2,
+```
+
+so, when both roots are finite nonzero main-chart roots,
+`d_UV(beta_1)d_UV(beta_2)` is a square.  Therefore
+`chi(d_UV(beta_1))=chi(d_UV(beta_2))`.  Fibers meeting the lower chart lie
+over the already curve-sized projection `a=r` or `K_alpha(a,r)=0`, so their
+main-sheet companions are also only an `O(p)` contribution.  The remaining
+trace problem is thus the open two-sheet beta cover over `(a,r)`, branched
+only over `M(a,r)H(a,r)=0`, with the quadratic sign descending through the
+cover involution.  The verifier audits the discriminant factorization,
+projective beta-root count, exceptional coordinate curves, and conjugate
+sign equality on split fibers.
+
 ## Principal-Row Leakage
 
 The principal rows excluded above have exact formulas.  They explain why the
