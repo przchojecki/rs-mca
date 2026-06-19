@@ -1,6 +1,6 @@
 # M1 Depth-Two Line-Conic Resonance Reduction
 
-**Status:** PROVED / AUDIT.
+**Status:** PROVED / CONDITIONAL / AUDIT.
 
 ## Claim
 
@@ -1455,6 +1455,54 @@ The last equality uses `chi_2(-8)=chi_2(-2)`.  Thus the new singular value
 from the quadratic pairing.  The collapsed main term is therefore supported
 only on the lisse finite `z`-line; the remaining conductor issue is at the
 open correlation and infinity, not at a finite exceptional value.
+
+## Conditional Collapsed Conductor Bound
+
+The previous reductions isolate a standard one-variable conductor import.
+Let
+
+```text
+W_{eta,nu}(z)
+  = nu(z)(1-chi_2(-2)chi_2(z))eta(1-z)gamma(z+2),
+L_nu(z)=H_nu(z)+1.
+```
+
+Then the collapsed main transform splits as
+
+```text
+sum_z W_{eta,nu}(z)H_nu(z)
+  = sum_z W_{eta,nu}(z)L_nu(z) - sum_z W_{eta,nu}(z).
+```
+
+The second term is a difference of two four-point genus-zero Kummer sums and
+is `O(sqrt(p))`.  For the first term, split the square-class gate:
+
+```text
+W_{eta,nu}
+  = nu(z)eta(1-z)gamma(z+2)
+    - chi_2(-2)nu(z)chi_2(z)eta(1-z)gamma(z+2).
+```
+
+Each summand is the trace of the rank-two sheaf behind `L_nu` tensor a
+rank-one Kummer twist supported at `z=0,1,-2,infinity`.  The finite singular
+point `z=-8` of `L_nu` contributes no collapsed finite term by the previous
+section.  Since `L_nu` is lisse at `z=1`, the Kummer twist contributes the
+scalar local monodromy `eta` there; `eta` is nonprincipal, so no
+geometrically constant summand can survive.
+
+Consequently, by the standard one-variable Deligne/Katz conductor bound for
+a bounded-conductor middle-extension trace sheaf of weight one, there is an
+absolute constant `K` such that
+
+```text
+|sum_z W_{eta,nu}(z)H_nu(z)| <= K p.
+```
+
+Together with the already separated exceptional theta contribution, this
+gives a p-scale bound for the paired generic M1 nonsplit term.  This is a
+conditional import statement: it identifies the exact sheaf-conductor theorem
+needed after the elementary reductions above.  It does not claim the sharp
+constant needed for the original `4p` target.
 
 ## Spectral Energy Ledger
 

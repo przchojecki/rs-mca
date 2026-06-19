@@ -29,6 +29,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-19 - M1 collapsed conductor bridge
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/m1_depth_two_line_conic_resonance_reduction.md`,
+  `experimental/agents-log.md`.
+- **Status:** CONDITIONAL / AUDIT.
+- **What is being added:** States the final collapsed one-variable
+  conductor import: after writing `H_nu=L_nu-1`, the collapsed transform is a
+  bounded-conductor rank-two trace twisted by a rank-one Kummer sheaf, plus a
+  harmless rank-one correction.
+- **How it is useful:** Converts the remaining M1 generic obstruction into an
+  explicit Deligne/Katz conductor theorem and yields a conditional p-scale
+  bound for the paired nonsplit term, though not the sharp `4p` constant.
+- **What to do next:** Import or prove the needed conductor bound with usable
+  constants, or identify a geometric obstruction to the no-constant-summand
+  claim.
+
 ### 2026-06-19 - M1 collapsed inner pointwise bound
 
 - **Agent/model:** Codex.
