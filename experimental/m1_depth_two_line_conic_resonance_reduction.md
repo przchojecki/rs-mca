@@ -1569,6 +1569,20 @@ E_nu := sum_{r in F_p^*} |Phi_nu(r)|^2
   <= 8p(p-1).
 ```
 
+The exact full-energy ledger sharpens this.  From the collapsed inner
+Mellin spectrum,
+
+```text
+sum_{z in F_p^*} |L_nu(z)|^2 = p^2 - 2p - 1 - p nu(-1).
+```
+
+Since `Phi_nu` is `2 L_nu(z)` times a unit character on one selected
+square class and vanishes elsewhere,
+
+```text
+E_nu <= 4(p^2 - 2p - 1 - p nu(-1)) < 4p^2.
+```
+
 By Parseval on `F_p^*`,
 
 ```text
@@ -1576,9 +1590,9 @@ By Parseval on `F_p^*`,
 ```
 
 Thus the remaining rank-two transform is already `O(p)` in RMS over
-`eta`, with RMS at most `sqrt(8p(p-1)) < 2sqrt(2)p`.  The missing theorem is
-not an average-mass statement; it is a uniform pointwise Mellin-coefficient
-bound for this explicit trace.
+`eta`, with RMS strictly below `2p`.  The missing theorem is not an
+average-mass statement; it is a uniform pointwise Mellin-coefficient bound
+for this explicit trace.
 
 Equivalently, split the square-class gate:
 

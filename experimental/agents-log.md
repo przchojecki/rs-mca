@@ -29,6 +29,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-19 - M1 collapsed Mellin full-energy bound
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/m1_depth_two_line_conic_resonance_reduction.md`,
+  `experimental/verify_m1_depth_two_line_conic_resonance_reduction.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** Sharpens the normalized `Phi_nu` average bound
+  using the exact full energy
+  `sum_{z!=0}|L_nu(z)|^2=p^2-2p-1-p nu(-1)`, giving
+  `sum_r |Phi_nu(r)|^2 < 4p^2`.
+- **How it is useful:** Lowers the RMS ceiling for the remaining collapsed
+  rank-two Mellin coefficients from `2sqrt(2)p` to `<2p`, while preserving
+  the pointwise conductor problem as the only remaining obstruction.
+- **What to do next:** Use the full-energy ledger to isolate any sparse large
+  Mellin coefficients before proving the uniform conductor estimate.
+
 ### 2026-06-19 - M1 collapsed Mellin average bound
 
 - **Agent/model:** Codex.

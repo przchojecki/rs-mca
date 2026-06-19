@@ -1238,7 +1238,7 @@ def quotient_line_collapsed_mobius_transform(
 def verify_quotient_line_collapsed_mobius_energy(
     p: int,
     table: List[List[complex]],
-) -> Tuple[int, int, float, float, float, float, float]:
+) -> Tuple[int, int, float, float, float, float, float, float, float, float]:
     order = p - 1
     expected_active = (p - 1) // 2
     if legendre(-2, p) == -1:
@@ -1248,6 +1248,9 @@ def verify_quotient_line_collapsed_mobius_energy(
     max_energy_ratio = 0.0
     max_pointwise_ratio = 0.0
     max_rms_ratio = 0.0
+    max_full_energy_error = 0.0
+    max_sharp_energy_ratio = 0.0
+    max_sharp_bound_rms_ratio = 0.0
     max_transform_ratio = 0.0
     for nu_exponent in range(1, order):
         nu = table[nu_exponent]
@@ -1293,6 +1296,27 @@ def verify_quotient_line_collapsed_mobius_energy(
                     expected_active,
                 )
             )
+        full_l_energy = sum(
+            abs(quotient_line_collapsed_inner_trace(p, z_value, nu) + 1) ** 2
+            for z_value in range(1, p)
+        )
+        nu_minus_one_value = nu[(-1) % p]
+        if abs(nu_minus_one_value.imag) > TOLERANCE:
+            raise AssertionError((p, nu_exponent, "mobius_nu_minus_one_not_real"))
+        nu_minus_one = int(round(nu_minus_one_value.real))
+        expected_full_l_energy = p * p - 2 * p - 1 - p * nu_minus_one
+        full_energy_error = abs(full_l_energy - expected_full_l_energy)
+        max_full_energy_error = max(max_full_energy_error, full_energy_error)
+        if full_energy_error > 100 * TOLERANCE:
+            raise AssertionError(
+                (
+                    p,
+                    nu_exponent,
+                    "collapsed_mobius_full_l_energy",
+                    full_l_energy,
+                    expected_full_l_energy,
+                )
+            )
         energy_bound = 16 * p * expected_active
         max_energy_ratio = max(max_energy_ratio, energy / energy_bound)
         if energy > energy_bound + 100 * TOLERANCE:
@@ -1303,6 +1327,25 @@ def verify_quotient_line_collapsed_mobius_energy(
                     "collapsed_mobius_energy_bound",
                     energy,
                     energy_bound,
+                )
+            )
+        sharp_energy_bound = 4 * expected_full_l_energy
+        max_sharp_energy_ratio = max(
+            max_sharp_energy_ratio,
+            energy / sharp_energy_bound,
+        )
+        max_sharp_bound_rms_ratio = max(
+            max_sharp_bound_rms_ratio,
+            math.sqrt(sharp_energy_bound) / p,
+        )
+        if energy > sharp_energy_bound + 100 * TOLERANCE:
+            raise AssertionError(
+                (
+                    p,
+                    nu_exponent,
+                    "collapsed_mobius_sharp_energy_bound",
+                    energy,
+                    sharp_energy_bound,
                 )
             )
         max_rms_ratio = max(max_rms_ratio, math.sqrt(energy) / p)
@@ -1334,6 +1377,9 @@ def verify_quotient_line_collapsed_mobius_energy(
         max_energy_ratio,
         max_pointwise_ratio,
         max_rms_ratio,
+        max_full_energy_error,
+        max_sharp_energy_ratio,
+        max_sharp_bound_rms_ratio,
         max_transform_ratio,
     )
 
@@ -2899,7 +2945,9 @@ def main() -> None:
         Tuple[int, int, float, float, float, float, float, float, int, int, int]
     ] = []
     collapsed_mobius_energy_checked: List[
-        Tuple[int, int, int, float, float, float, float, float]
+        Tuple[
+            int, int, int, float, float, float, float, float, float, float, float
+        ]
     ] = []
     twisted_line_kernel_moment_checked: List[Tuple[int, int, float, float]] = []
     twisted_line_fiber_checked = 0
@@ -3043,6 +3091,9 @@ def main() -> None:
                 max_mobius_energy_ratio,
                 max_mobius_pointwise_ratio,
                 max_mobius_rms_ratio,
+                max_mobius_full_energy_error,
+                max_mobius_sharp_energy_ratio,
+                max_mobius_sharp_bound_rms_ratio,
                 max_mobius_transform_ratio,
             ) = verify_quotient_line_collapsed_mobius_energy(p, tables[p])
             collapsed_mobius_energy_checked.append(
@@ -3054,6 +3105,9 @@ def main() -> None:
                     round(max_mobius_energy_ratio, 10),
                     round(max_mobius_pointwise_ratio, 10),
                     round(max_mobius_rms_ratio, 10),
+                    round(max_mobius_full_energy_error, 9),
+                    round(max_mobius_sharp_energy_ratio, 10),
+                    round(max_mobius_sharp_bound_rms_ratio, 10),
                     round(max_mobius_transform_ratio, 10),
                 )
             )
