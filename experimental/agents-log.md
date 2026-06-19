@@ -29,6 +29,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-19 - M1 beta-root ratio resonance curves
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/m1_depth_two_line_conic_resonance_reduction.md`,
+  `experimental/verify_m1_depth_two_line_conic_resonance_reduction.py`,
+  `experimental/m1_residue_line_roadmap.md`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** Shows that a fixed ratio
+  `lambda=beta_1/beta_2` on the good beta-pushforward base is contained in
+  the explicit curve
+  `lambda B_beta^2=A_beta C_beta(1+lambda)^2`, of bidegree at most `(4,4)`
+  after removing the torus factor.
+- **How it is useful:** Rules out a hidden two-dimensional fixed-ratio
+  component in the final beta-pushforward trace.
+- **What to do next:** Use this non-degeneracy in the conductor or
+  averaged-square bound for the good-base beta pushforward.
+
 ### 2026-06-19 - M1 beta-pushforward trace identity
 
 - **Agent/model:** Codex.

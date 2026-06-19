@@ -172,7 +172,11 @@ should be revised as the project learns more.
    `A_beta C_beta D_beta (alpha-r)K_alpha != 0`, with all deleted pieces
    contributing only `O(p)`.  The final analytic object is the good-base
    rank-two beta pushforward
-   `psi(alpha) eps(alpha,r)(phi(beta_1)+phi(beta_2))`.
+   `psi(alpha) eps(alpha,r)(phi(beta_1)+phi(beta_2))`.  The beta sheets now
+   have an explicit fixed-ratio resonance curve
+   `lambda B_beta^2=A_beta C_beta(1+lambda)^2`; after removing the torus
+   factor this has bidegree at most `(4,4)`, so no fixed beta-root ratio
+   supports a two-dimensional family on the good base.
    The updated remaining-wall scan reports this asymmetric wall separately:
    in the current report grid the largest asymmetric ratio is
    `3.2173609608p`, while every near-`4p` top row lies in the projective

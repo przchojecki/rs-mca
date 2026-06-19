@@ -4686,6 +4686,83 @@ def ratio_surface_beta_pushforward_good(
     )
 
 
+def ratio_surface_beta_ratio_resonance(
+    p: int,
+    alpha: int,
+    ratio: int,
+    beta_ratio: int,
+) -> int:
+    quadratic, linear, constant = ratio_surface_beta_coefficients(
+        p,
+        alpha,
+        ratio,
+    )
+    return (
+        beta_ratio * linear * linear
+        - quadratic * constant * (1 + beta_ratio) * (1 + beta_ratio)
+    ) % p
+
+
+def verify_ratio_surface_beta_ratio_resonance() -> List[
+    Tuple[int, int, int, int]
+]:
+    checked: List[Tuple[int, int, int, int]] = []
+    for p in LOWER_CHART_PRIMES:
+        max_count = 0
+        max_ratio = 0
+        split_pair_checks = 0
+        for beta_ratio in range(1, p):
+            count = 0
+            for alpha in range(1, p):
+                for ratio in range(1, p):
+                    if not ratio_surface_beta_pushforward_good(p, alpha, ratio):
+                        continue
+                    if (
+                        ratio_surface_beta_ratio_resonance(
+                            p,
+                            alpha,
+                            ratio,
+                            beta_ratio,
+                        )
+                        == 0
+                    ):
+                        count += 1
+            if count > max_count:
+                max_count = count
+                max_ratio = beta_ratio
+        if max_count > 10 * (p - 1):
+            raise AssertionError((p, max_ratio, max_count))
+
+        for alpha in range(1, p):
+            for ratio in range(1, p):
+                if not ratio_surface_beta_pushforward_good(p, alpha, ratio):
+                    continue
+                if legendre(ratio_surface_beta_discriminant(p, alpha, ratio), p) != 1:
+                    continue
+                roots = ratio_surface_affine_beta_roots(p, alpha, ratio)
+                if len(roots) != 2:
+                    raise AssertionError((p, alpha, ratio, roots))
+                root_ratio = roots[0] * pow(roots[1], -1, p) % p
+                inverse_ratio = pow(root_ratio, -1, p)
+                if ratio_surface_beta_ratio_resonance(
+                    p,
+                    alpha,
+                    ratio,
+                    root_ratio,
+                ) != 0:
+                    raise AssertionError((p, alpha, ratio, roots, root_ratio))
+                if ratio_surface_beta_ratio_resonance(
+                    p,
+                    alpha,
+                    ratio,
+                    inverse_ratio,
+                ) != 0:
+                    raise AssertionError((p, alpha, ratio, roots, inverse_ratio))
+                split_pair_checks += 1
+        checked.append((p, max_ratio, max_count, split_pair_checks))
+    return checked
+
+
 def verify_ratio_surface_beta_pushforward_trace() -> List[
     Tuple[int, int, int, int, int, int, float]
 ]:
@@ -5700,6 +5777,9 @@ def main() -> None:
     ratio_surface_beta_pushforward_checked = (
         verify_ratio_surface_beta_pushforward_trace()
     )
+    ratio_surface_beta_ratio_resonance_checked = (
+        verify_ratio_surface_beta_ratio_resonance()
+    )
     quotient_conic_centered_bound_checked = (
         verify_quotient_conic_centered_bounds()
     )
@@ -6330,6 +6410,8 @@ def main() -> None:
         f"{ratio_surface_branch_geometry_checked}",
         f"ratio_surface_beta_pushforward_checked="
         f"{ratio_surface_beta_pushforward_checked}",
+        f"ratio_surface_beta_ratio_resonance_checked="
+        f"{ratio_surface_beta_ratio_resonance_checked}",
         f"quotient_conic_centered_bound_checked="
         f"{quotient_conic_centered_bound_checked}",
         f"weighted_ratio_surface_centering_checked="

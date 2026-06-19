@@ -3294,6 +3294,29 @@ ledger is linear in `p` on the tested grid.  The remaining analytic input is
 now exactly a conductor bound for the good-base rank-two beta pushforward
 with kernel `psi(a) eps(a,r) (phi(beta_1)+phi(beta_2))`.
 
+The beta sheets also have no fixed-ratio surface.  If a good split fiber has
+`lambda=beta_1/beta_2`, then the elementary symmetric relations give
+
+```text
+lambda B_beta^2 = A_beta C_beta (1+lambda)^2.
+```
+
+Conversely, for each fixed `lambda in F_p^*`, the possible good-base points
+with beta-root ratio `lambda` are contained in the explicit curve
+
+```text
+R_lambda(a,r)
+  = lambda B_beta^2 - A_beta C_beta (1+lambda)^2 = 0.
+```
+
+On the torus this polynomial has bidegree at most `(4,4)` after the
+irrelevant `ar` factor is removed.  The special value `lambda=1` is exactly
+the branch divisor already deleted from `G`, while `lambda=-1` gives the
+line condition `B_beta=0`.  Hence a fixed beta-root ratio contributes only
+`O(p)` good-base points.  The verifier checks the identity for both
+orientations `beta_1/beta_2` and `beta_2/beta_1` on every split good fiber
+in the audit grid, and records the largest fixed-ratio fiber.
+
 ## Principal-Row Leakage
 
 The principal rows excluded above have exact formulas.  They explain why the
