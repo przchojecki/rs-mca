@@ -29,6 +29,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-19 - M1 line-conic twisted deck symmetry
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/m1_depth_two_line_conic_resonance_reduction.md`,
+  `experimental/verify_m1_depth_two_line_conic_resonance_reduction.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** Proves the nonsplit kernel symmetry
+  `K(-t)=nu(-1)K(t)`, hence invariance of the full twisted-line finite
+  summand under the deck involution `t -> -t`; also records the standard
+  rank-two pointwise bound `|K(t)| <= 2sqrt(p)`.
+- **How it is useful:** Shows the two nonsplit preimages over a `y` value
+  are paired exactly, so the twisted-line model can descend through `t^2`
+  without a deck-asymmetry loss.
+- **What to do next:** Use the deck-invariant descended trace and the
+  nonsplit divisor table to prove the p-scale outer conductor bound.
+
 ### 2026-06-19 - M1 line-conic twisted outer divisor
 
 - **Agent/model:** Codex.

@@ -711,6 +711,74 @@ def verify_twisted_line_twist_divisor(p: int) -> Tuple[int, int, int, int]:
     )
 
 
+def verify_twisted_line_deck_symmetry(
+    p: int,
+    table: List[List[complex]],
+) -> Tuple[int, float, float, float]:
+    delta = least_nonsquare(p)
+    checked = 0
+    max_kernel_difference = 0.0
+    max_summand_difference = 0.0
+    max_kernel_ratio = 0.0
+    kernel_values: Dict[int, List[complex]] = {}
+    for nu_exponent in range(1, p - 1):
+        nu = table[nu_exponent]
+        kernel_values[nu_exponent] = [
+            twisted_line_kernel_trace(p, t, delta, nu) for t in range(p)
+        ]
+        for t in range(p):
+            actual_kernel = kernel_values[nu_exponent][(-t) % p]
+            expected_kernel = nu[(-1) % p] * kernel_values[nu_exponent][t]
+            assert_close(
+                (p, t, nu_exponent, "twisted_line_kernel_deck"),
+                actual_kernel,
+                expected_kernel,
+            )
+            max_kernel_difference = max(
+                max_kernel_difference,
+                abs(actual_kernel - expected_kernel),
+            )
+            kernel_ratio = abs(kernel_values[nu_exponent][t])
+            max_kernel_ratio = max(max_kernel_ratio, kernel_ratio / math.sqrt(p))
+            if kernel_ratio > 2 * math.sqrt(p) + TOLERANCE:
+                raise AssertionError((p, t, nu_exponent, "kernel_2sqrt"))
+            checked += 1
+
+    for eta_exponent in range(1, p - 1):
+        eta = table[eta_exponent]
+        for nu_exponent in range(1, p - 1):
+            nu = table[nu_exponent]
+            for t in range(p):
+                minus_t = (-t) % p
+                denominator = (t * t - delta) % p
+                y = twisted_discriminant_y(p, t, delta)
+                actual_summand = (
+                    eta[(-y) % p]
+                    * nu[minus_t * pow(denominator, -1, p) % p]
+                    * kernel_values[nu_exponent][minus_t]
+                )
+                expected_summand = (
+                    eta[(-y) % p]
+                    * nu[t * pow(denominator, -1, p) % p]
+                    * kernel_values[nu_exponent][t]
+                )
+                assert_close(
+                    (p, t, eta_exponent, nu_exponent, "twisted_line_deck"),
+                    actual_summand,
+                    expected_summand,
+                )
+                max_summand_difference = max(
+                    max_summand_difference,
+                    abs(actual_summand - expected_summand),
+                )
+    return (
+        checked,
+        max_kernel_difference,
+        max_summand_difference,
+        max_kernel_ratio,
+    )
+
+
 def core_collision_formula(p: int) -> int:
     return (
         2 * p * p
@@ -1070,6 +1138,7 @@ def main() -> None:
     lambda_twist_checked: List[Tuple[int, int, int]] = []
     twisted_discriminant_checked: List[Tuple[int, int, int]] = []
     twisted_line_twist_checked: List[Tuple[int, int, int, int, int]] = []
+    twisted_line_deck_checked: List[Tuple[int, int, float, float, float]] = []
     twisted_line_fiber_checked = 0
     split_hypergeometric_checked = 0
     filter_checked = verify_admissible_filter_counts()
@@ -1101,6 +1170,21 @@ def main() -> None:
                     geometric_outer_points,
                     rational_trace_points,
                     geometric_trace_points,
+                )
+            )
+            (
+                deck_count,
+                max_kernel_deck,
+                max_summand_deck,
+                max_kernel_ratio,
+            ) = verify_twisted_line_deck_symmetry(p, tables[p])
+            twisted_line_deck_checked.append(
+                (
+                    p,
+                    deck_count,
+                    round(max_kernel_deck, 12),
+                    round(max_summand_deck, 12),
+                    round(max_kernel_ratio, 10),
                 )
             )
             twisted_line_fiber_checked += verify_twisted_line_fiber_trace(
@@ -1278,6 +1362,7 @@ def main() -> None:
         f"lambda_twist_checked={lambda_twist_checked}",
         f"twisted_discriminant_checked={twisted_discriminant_checked}",
         f"twisted_line_twist_checked={twisted_line_twist_checked}",
+        f"twisted_line_deck_checked={twisted_line_deck_checked}",
         f"twisted_line_fiber_checked={twisted_line_fiber_checked}",
         f"split_hypergeometric_checked={split_hypergeometric_checked}",
         f"filter_checked={filter_checked[0]}..{filter_checked[-1]}",

@@ -667,6 +667,57 @@ split `lambda`-line.  Any saving has to come from the local table of
 `K_{nu,delta}` or from global cancellation, not from a character
 specialization removing one of these outer-twist points.
 
+## Twisted-Line Deck Symmetry
+
+The nonsplit `t`-line trace is compatible with the deck involution
+`t -> -t`.  The kernel satisfies
+
+```text
+K_{nu,delta}(-t) = nu(-1) K_{nu,delta}(t).
+```
+
+Indeed, substitute `x -> -x` in the defining sum:
+
+```text
+K_{nu,delta}(-t)
+  = sum_x nu(x+t) chi_2(x^2-4delta)
+  = nu(-1) sum_x nu(x-t) chi_2(x^2-4delta).
+```
+
+Since `D(-t)=D(t)` and `y_delta(-t)=y_delta(t)`, the full finite summand
+
+```text
+eta(-y_delta(t)) nu(t/D(t)) K_{nu,delta}(t)
+```
+
+is invariant under `t -> -t`.  Thus the twisted-line pullback is not
+introducing two unrelated nonsplit traces over each `y`: the two preimages
+are exactly paired.  Equivalently, the nonsplit projector can be descended
+through the quotient `t^2` without a deck-asymmetry loss; the remaining
+analytic work is the conductor bound for the descended rank-two trace.
+
+For fixed `t`, the kernel is a genus-zero Kummer sum in `x` with local
+characters
+
+```text
+x=t:              nu,
+x^2=4delta:       chi_2,
+x=infinity:       nu^(-1).
+```
+
+Away from the geometric collision `t^2=4delta`, the standard genus-zero
+bound gives
+
+```text
+|K_{nu,delta}(t)| <= 2 sqrt(p).
+```
+
+At the collision the support can only merge or cancel, so the same bound
+continues to hold by specialization.  This pointwise square-root bound is
+not enough by itself to prove the `p`-scale estimate for `C^-`, but it
+identifies the exact rank-two local table whose outer Mellin transform must
+be bounded.
+
 ## Open-Set Line Correction
 
 For the actual two-coordinate open sum, the principal coordinate line
