@@ -29,6 +29,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-19 - M1 singular-excess discriminant character
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/m1_depth_two_line_conic_resonance_reduction.md`,
+  `experimental/verify_m1_depth_two_line_conic_resonance_reduction.py`,
+  `experimental/m1_residue_line_roadmap.md`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** Identifies the signed projective singular excess
+  on rank-two conics with the Legendre symbol of any nonzero binary
+  discriminant of the homogeneous quadratic form; rank-one conics contribute
+  zero and the zero conic remains separated with `epsilon=p`.
+- **How it is useful:** Converts the determinant-surface trace weight from a
+  projective point-count oracle into an explicit Kummer character on finitely
+  many rank-two charts.
+- **What to do next:** Prove the determinant-surface trace estimate chart by
+  chart using this discriminant character.
+
 ### 2026-06-19 - M1 singular-excess trace formulation
 
 - **Agent/model:** Codex.

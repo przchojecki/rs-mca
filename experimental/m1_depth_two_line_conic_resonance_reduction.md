@@ -3088,6 +3088,36 @@ surface, or even from the averaged square bound
 normalizations against the same quotient matrix and reports the largest
 normalized spectral coefficient on the audited grid.
 
+The signed excess `epsilon` is itself a quadratic character on rank-two
+charts.  For a homogeneous conic
+
+```text
+a U^2 + b UV + c V^2 + d UW + e VW + f W^2 = 0
+```
+
+write the three binary discriminants
+
+```text
+d_UV = b^2 - 4ac,
+d_UW = d^2 - 4af,
+d_VW = e^2 - 4cf.
+```
+
+On a rank-two singular conic, any nonzero one of these has the same square
+class, and the projective point count is `2p+1` or `1` according as that
+class is square or nonsquare.  Hence
+
+```text
+epsilon = chi(d)
+```
+
+for any nonzero `d` among the three discriminants.  If all three vanish, the
+conic has rank at most one and `epsilon=0`, except for the zero conic already
+separated with `epsilon=p`.  Thus the trace above is a genuine Kummer trace
+on finitely many determinant-surface charts, not a black-box point-count
+weight.  The verifier audits this discriminant formula against exact
+projective counts on every singular ratio fiber in the grid.
+
 ## Principal-Row Leakage
 
 The principal rows excluded above have exact formulas.  They explain why the

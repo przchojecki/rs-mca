@@ -4432,7 +4432,45 @@ def projective_excess_unit(
             raise AssertionError((p, alpha, beta, ratio, unit))
     elif unit not in (-1, 0, 1):
         raise AssertionError((p, alpha, beta, ratio, unit))
+    discriminant_unit = projective_excess_unit_from_discriminants(
+        p,
+        coefficients,
+    )
+    if discriminant_unit != unit:
+        raise AssertionError(
+            (p, alpha, beta, ratio, unit, discriminant_unit, coefficients)
+        )
     return unit
+
+
+def binary_discriminants(
+    coefficients: Tuple[int, int, int, int, int, int],
+) -> Tuple[int, int, int]:
+    uu, uv, vv, u_linear, v_linear, constant = coefficients
+    return (
+        uv * uv - 4 * uu * vv,
+        u_linear * u_linear - 4 * uu * constant,
+        v_linear * v_linear - 4 * vv * constant,
+    )
+
+
+def projective_excess_unit_from_discriminants(
+    p: int,
+    coefficients: Tuple[int, int, int, int, int, int],
+) -> int:
+    if all(coefficient % p == 0 for coefficient in coefficients):
+        return p
+    classes = [
+        legendre(discriminant, p)
+        for discriminant in binary_discriminants(coefficients)
+        if discriminant % p != 0
+    ]
+    if not classes:
+        return 0
+    first = classes[0]
+    if any(value != first for value in classes):
+        raise AssertionError((p, coefficients, classes))
+    return first
 
 
 def weighted_projective_singular_matrix_audit(
