@@ -29,6 +29,28 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-19 - M1 centered quotient-conic moment bound
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/m1_depth_two_line_conic_resonance_reduction.md`,
+  `experimental/verify_m1_depth_two_line_conic_resonance_reduction.py`,
+  `experimental/m1_residue_line_roadmap.md`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** Combines the quotient-conic joint-energy bound with
+  Cauchy's lower bounds on the quotient row and column marginal energies,
+  giving
+  `M_e^o <= e^2(T^o+(N_e-1)(p+1)+(3|K_e|^2-1)p)-(T^o)^2`.
+  The verifier checks the Cauchy inputs and centered bound across the audited
+  low-order divisor grid.
+- **How it is useful:** Proves the leading `p^4` term cancels after centering
+  and isolates the remaining low-index obstruction as a genuine `p^3` moment
+  gap, not a hidden two-dimensional exceptional conic fiber.
+- **What to do next:** Find structure beyond Cauchy in the centered quotient
+  occupancy matrix, likely by exploiting correlations between the conic
+  fibration and the row/column marginals.
+
 ### 2026-06-19 - M1 quotient-conic joint-energy bound
 
 - **Agent/model:** Codex.

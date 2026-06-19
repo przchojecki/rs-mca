@@ -2604,6 +2604,38 @@ term.  The remaining centered-mixing problem is therefore not the existence
 of a hidden two-dimensional exceptional fiber; it is to exploit the
 row/column subtraction in `M_e^o` beyond this raw joint-energy estimate.
 
+The row/column centering gives one automatic cancellation.  Put
+
+```text
+X_e=sum_i (n_i^x)^2,        V_e=sum_j (n_j^v)^2.
+```
+
+Cauchy's inequality gives `X_e >= (T^o)^2/e` and
+`V_e >= (T^o)^2/e`.  Therefore
+
+```text
+M_e^o
+  = e^2 J_e - eX_e - eV_e + (T^o)^2
+  <= e^2 J_e - (T^o)^2.
+```
+
+Using the uniform conic bound above yields
+
+```text
+M_e^o
+  <= e^2 (T^o+(N_e-1)(p+1)+(3k_e^2-1)p) - (T^o)^2.
+```
+
+This is the first centered theorem in the quotient-conic route: the leading
+`p^4` term cancels formally.  For fixed low `e` it still leaves a
+`p^3`-scale moment bound, hence a `p^{3/2}` pointwise RMS scale after
+averaging over the `(e-1)^2` nonprincipal characters.  It is not enough for
+the desired grouped line-conic certificate, but it proves that the remaining
+loss is no longer a hidden large ratio fiber; it is the need for genuine
+row/column-centered cancellation beyond Cauchy.  The verifier checks this
+bound for every audited divisor `e | p-1` with nonempty admissible slice in
+`p=17,31,43`.
+
 ## Principal-Row Leakage
 
 The principal rows excluded above have exact formulas.  They explain why the

@@ -3610,6 +3610,70 @@ def verify_ratio_surface_degeneracy() -> List[
     return checked
 
 
+def quotient_conic_joint_energy_bound(p: int, suborder: int) -> int:
+    kernel_size = (p - 1) // suborder
+    parameter_count = kernel_size * kernel_size * (p - 1)
+    degenerate_bound = 3 * kernel_size * kernel_size
+    support_count = open_support_size_formula(p)
+    return (
+        support_count
+        + (parameter_count - 1) * (p + 1)
+        + (degenerate_bound - 1) * p
+    )
+
+
+def quotient_conic_centered_moment_bound(p: int, suborder: int) -> int:
+    support_count = open_support_size_formula(p)
+    return (
+        suborder
+        * suborder
+        * quotient_conic_joint_energy_bound(p, suborder)
+        - support_count
+        * support_count
+    )
+
+
+def verify_quotient_conic_centered_bounds() -> List[
+    Tuple[int, int, int, int, float]
+]:
+    checked: List[Tuple[int, int, int, int, float]] = []
+    for p in ADMISSIBLE_OPEN_AUDIT_PRIMES:
+        logs = log_table(p)
+        order = p - 1
+        for suborder in range(2, order + 1):
+            if order % suborder != 0:
+                continue
+            if admissible_filter_formula(suborder) == 0:
+                continue
+            (
+                support_count,
+                joint_energy,
+                x_energy,
+                v_energy,
+                moment,
+            ) = open_suborder_coset_moment(p, suborder, logs)
+            if suborder * x_energy < support_count * support_count:
+                raise AssertionError((p, suborder, "x-cauchy"))
+            if suborder * v_energy < support_count * support_count:
+                raise AssertionError((p, suborder, "v-cauchy"))
+            joint_bound = quotient_conic_joint_energy_bound(p, suborder)
+            if joint_energy > joint_bound:
+                raise AssertionError((p, suborder, joint_energy, joint_bound))
+            moment_bound = quotient_conic_centered_moment_bound(p, suborder)
+            if moment > moment_bound:
+                raise AssertionError((p, suborder, moment, moment_bound))
+            checked.append(
+                (
+                    p,
+                    suborder,
+                    moment,
+                    moment_bound,
+                    round(math.sqrt(moment_bound) / ((suborder - 1) * p), 10),
+                )
+            )
+    return checked
+
+
 def direct_suborder_nonprincipal_open_moment(
     p: int,
     suborder: int,
@@ -3935,6 +3999,9 @@ def main() -> None:
     suborder_parseval_moment_checked = verify_suborder_parseval_open_moments()
     ratio_surface_joint_energy_checked = verify_ratio_surface_joint_energy()
     ratio_surface_degeneracy_checked = verify_ratio_surface_degeneracy()
+    quotient_conic_centered_bound_checked = (
+        verify_quotient_conic_centered_bounds()
+    )
     collapsed_four_p_obstruction_checked = (
         verify_quotient_line_collapsed_four_p_obstruction()
     )
@@ -4548,6 +4615,8 @@ def main() -> None:
         f"{ratio_surface_joint_energy_checked}",
         f"ratio_surface_degeneracy_checked="
         f"{ratio_surface_degeneracy_checked}",
+        f"quotient_conic_centered_bound_checked="
+        f"{quotient_conic_centered_bound_checked}",
         f"collapsed_four_p_obstruction_checked="
         f"{collapsed_four_p_obstruction_checked}",
     )

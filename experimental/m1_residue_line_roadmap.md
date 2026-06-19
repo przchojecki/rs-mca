@@ -103,7 +103,10 @@ should be revised as the project learns more.
    the identity diagonal `(1,1,1)`.  This gives the aggregate bound
    `J_e <= T^o+(N_e-D_e)(p+1)+(D_e-1)(2p+1)`, and hence the uniform
    `J_e <= T^o+(N_e-1)(p+1)+(3|K_e|^2-1)p`; the remaining task is to exploit
-   row/column centering beyond this raw joint-energy estimate.
+   row/column centering beyond this raw joint-energy estimate.  Cauchy on the
+   quotient row/column marginals gives the first centered bound
+   `M_e^o <= e^2(T^o+(N_e-1)(p+1)+(3|K_e|^2-1)p)-(T^o)^2`, cancelling the
+   leading `p^4` term but still leaving the low-index `p^3` moment gap.
    The updated remaining-wall scan reports this asymmetric wall separately:
    in the current report grid the largest asymmetric ratio is
    `3.2173609608p`, while every near-`4p` top row lies in the projective
