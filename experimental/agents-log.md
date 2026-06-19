@@ -29,6 +29,27 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-19 - M1 order-e quotient-energy moment reduction
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/m1_depth_two_line_conic_resonance_reduction.md`,
+  `experimental/verify_m1_depth_two_line_conic_resonance_reduction.py`,
+  `experimental/m1_residue_line_roadmap.md`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** Proves the all-nonprincipal order-`e` open moment
+  identity
+  `M_e^o=e^2 sum n_ij^2-e sum (n_i^x)^2-e sum (n_j^v)^2+(T^o)^2`,
+  where `n_ij` are quotient-coset occupancies of `(A(u,v)/u,v)` in
+  `(F_p^*/K_e)^2`.  The verifier compares this coset-energy formula with
+  direct order-`e` character summation for the audited suborders.
+- **How it is useful:** Converts the low-index grouped-L1 obstacle from a
+  black-box character average into a concrete quotient occupancy energy,
+  sharply improving the inherited constants in the finite audit.
+- **What to do next:** Prove a uniform quotient-energy bound in the relevant
+  low-index regime, or locate a quotient-coset concentration counterexample.
+
 ### 2026-06-19 - M1 admissible suborder moment audit
 
 - **Agent/model:** Codex.

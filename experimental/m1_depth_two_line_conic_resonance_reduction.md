@@ -2387,6 +2387,61 @@ pinpoints the next useful theorem: an exact order-`e` admissible open moment,
 or a structural order-`e` large-sieve bound, would make the grouped-L1 route
 usable in low-index M1 certificates.
 
+There is a theorem-grade reduction of that order-`e` problem to a quotient
+collision energy.  Let `K_e=(F_p^*)^e` and let `[z]_e` denote the class of
+`z` in `F_p^*/K_e`.  For the open support `S^o`, set
+
+```text
+x(u,v)=A(u,v)/u,
+n_{ij}=# {(u,v) in S^o : [x(u,v)]_e=i, [v]_e=j},
+n_i^x=sum_j n_{ij},        n_j^v=sum_i n_{ij},        T^o=sum_{i,j}n_{ij}.
+```
+
+Then the all-nonprincipal order-`e` open moment is exactly
+
+```text
+M_e^o =
+  e^2 sum_{i,j} n_{ij}^2
+  - e sum_i (n_i^x)^2
+  - e sum_j (n_j^v)^2
+  + (T^o)^2.
+```
+
+Indeed, for the order-`e` character group,
+
+```text
+sum_{eta != 1} eta(z/z') = e 1_{[z]_e=[z']_e} - 1,
+```
+
+and the same formula holds for `nu`; expanding the product gives the displayed
+identity.  Hence the low-order grouped-L1 problem is not a black-box
+character-sum average: it is equivalent to bounding the two-dimensional
+quotient occupancy energy of the rational map `(u,v) -> (A(u,v)/u, v)`.
+
+The verifier checks this identity by comparing the coset-energy formula with
+direct order-`e` character summation.  It gives the following inherited bounds
+for the admissible slice, using `M_e^o` instead of the full-order moment:
+
+```text
+p   e   R(e)  all-np RMS/p  sqrt(M_e^o/R(e))/p  full-order bound/p
+17   8    24  0.8714        1.2451              2.6819
+17  16   168  0.8759        1.0137              1.0137
+31   6    12  1.1716        1.6910              7.5172
+31  10    48  0.9339        1.2132              3.7586
+31  15   144  0.9238        1.0778              2.1700
+31  30   732  0.8979        0.9625              0.9625
+43   6    12  1.1750        1.6959             10.9839
+43   7    12  0.8822        1.5279             10.9839
+43  14   120  0.8242        0.9781              3.4734
+43  21   324  0.9379        1.0421              2.1138
+43  42  1524  0.9280        0.9747              0.9747
+```
+
+This improves the inherited low-order constants by large factors without any
+pointwise conductor input.  A proof that this quotient occupancy energy is
+`O(p^2/e^2 + p)` uniformly in the relevant low-index regime would give the
+desired average `p`-scale grouped line-conic ledger.
+
 ## Principal-Row Leakage
 
 The principal rows excluded above have exact formulas.  They explain why the

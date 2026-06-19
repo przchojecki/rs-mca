@@ -3332,6 +3332,111 @@ def verify_admissible_suborder_moment_audit() -> List[
     return checked
 
 
+def open_suborder_coset_moment(
+    p: int,
+    suborder: int,
+    logs: Dict[int, int],
+) -> Tuple[int, int, int, int, int]:
+    joint_counts: Dict[Tuple[int, int], int] = {}
+    x_counts: Dict[int, int] = {}
+    v_counts: Dict[int, int] = {}
+    support_count = 0
+    for u in range(1, p):
+        inverse_u = pow(u, -1, p)
+        for v in range(1, p):
+            if (-1 - u - v) % p == 0:
+                continue
+            a_value = shape_a(u, v, p)
+            if a_value == 0:
+                continue
+            x_class = logs[a_value * inverse_u % p] % suborder
+            v_class = logs[v] % suborder
+            joint_counts[(x_class, v_class)] = (
+                joint_counts.get((x_class, v_class), 0) + 1
+            )
+            x_counts[x_class] = x_counts.get(x_class, 0) + 1
+            v_counts[v_class] = v_counts.get(v_class, 0) + 1
+            support_count += 1
+    joint_energy = sum(count * count for count in joint_counts.values())
+    x_energy = sum(count * count for count in x_counts.values())
+    v_energy = sum(count * count for count in v_counts.values())
+    moment = (
+        suborder * suborder * joint_energy
+        - suborder * (x_energy + v_energy)
+        + support_count * support_count
+    )
+    return support_count, joint_energy, x_energy, v_energy, moment
+
+
+def direct_suborder_nonprincipal_open_moment(
+    p: int,
+    suborder: int,
+    table: List[List[complex]],
+) -> int:
+    order = p - 1
+    lift = order // suborder
+    total = 0.0
+    for eta_subexponent in range(1, suborder):
+        eta_exponent = lift * eta_subexponent
+        eta = table[eta_exponent]
+        eta_inv = table[(-eta_exponent) % order]
+        for nu_subexponent in range(1, suborder):
+            nu_exponent = lift * nu_subexponent
+            total += abs(direct_open(p, eta_inv, table[nu_exponent], eta)) ** 2
+    return round(total)
+
+
+def verify_suborder_parseval_open_moments() -> List[
+    Tuple[int, int, int, int, float, float, float]
+]:
+    checked: List[Tuple[int, int, int, int, float, float, float]] = []
+    for p in ADMISSIBLE_OPEN_AUDIT_PRIMES:
+        logs = log_table(p)
+        table = character_table(p, logs)
+        order = p - 1
+        full_moment_bound = nonprincipal_open_moment_formula(p)
+        for suborder in range(2, order + 1):
+            if order % suborder != 0:
+                continue
+            admissible_count = admissible_filter_formula(suborder)
+            if admissible_count == 0:
+                continue
+            (
+                support_count,
+                joint_energy,
+                x_energy,
+                v_energy,
+                moment,
+            ) = open_suborder_coset_moment(p, suborder, logs)
+            expected_support = open_support_size_formula(p)
+            if support_count != expected_support:
+                raise AssertionError((p, suborder, support_count, expected_support))
+            direct_moment = direct_suborder_nonprincipal_open_moment(
+                p,
+                suborder,
+                table,
+            )
+            if moment != direct_moment:
+                raise AssertionError((p, suborder, moment, direct_moment))
+            if moment > full_moment_bound:
+                raise AssertionError((p, suborder, moment, full_moment_bound))
+            all_nonprincipal_count = (suborder - 1) * (suborder - 1)
+            checked.append(
+                (
+                    p,
+                    suborder,
+                    admissible_count,
+                    moment,
+                    round(math.sqrt(moment / all_nonprincipal_count) / p, 10),
+                    round(math.sqrt(moment / admissible_count) / p, 10),
+                    round(math.sqrt(full_moment_bound / admissible_count) / p, 10),
+                )
+            )
+            if joint_energy <= 0 or x_energy <= 0 or v_energy <= 0:
+                raise AssertionError((p, suborder, joint_energy, x_energy, v_energy))
+    return checked
+
+
 def verify_second_moments() -> List[
     Tuple[int, int, int, int, int, int, int, int, int, int, int]
 ]:
@@ -3584,6 +3689,7 @@ def main() -> None:
     admissible_suborder_moment_checked = (
         verify_admissible_suborder_moment_audit()
     )
+    suborder_parseval_moment_checked = verify_suborder_parseval_open_moments()
     collapsed_four_p_obstruction_checked = (
         verify_quotient_line_collapsed_four_p_obstruction()
     )
@@ -4192,6 +4298,7 @@ def main() -> None:
         f"{admissible_transfer_thresholds_checked}",
         f"admissible_suborder_moment_checked="
         f"{admissible_suborder_moment_checked}",
+        f"suborder_parseval_moment_checked={suborder_parseval_moment_checked}",
         f"collapsed_four_p_obstruction_checked="
         f"{collapsed_four_p_obstruction_checked}",
     )
