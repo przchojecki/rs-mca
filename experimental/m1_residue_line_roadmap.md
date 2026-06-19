@@ -106,7 +106,12 @@ should be revised as the project learns more.
    row/column centering beyond this raw joint-energy estimate.  Cauchy on the
    quotient row/column marginals gives the first centered bound
    `M_e^o <= e^2(T^o+(N_e-1)(p+1)+(3|K_e|^2-1)p)-(T^o)^2`, cancelling the
-   leading `p^4` term but still leaving the low-index `p^3` moment gap.
+   leading `p^4` term but still leaving the low-index `p^3` moment gap.  The
+   exact signed ratio-fibration formula
+   `M_e^o=sum W_e(alpha)W_e(beta)F(alpha,beta,r)` now gives the structural
+   target beyond Cauchy: parameter-independent smooth-conic main terms cancel
+   because `sum W_e=0`, so the remaining work is weighted trace and boundary
+   cancellation over the conic fibration.
    The updated remaining-wall scan reports this asymmetric wall separately:
    in the current report grid the largest asymmetric ratio is
    `3.2173609608p`, while every near-`4p` top row lies in the projective

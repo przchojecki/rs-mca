@@ -3633,6 +3633,76 @@ def quotient_conic_centered_moment_bound(p: int, suborder: int) -> int:
     )
 
 
+def quotient_centering_weight(p: int, suborder: int, logs: Dict[int, int], value: int) -> int:
+    if value % p == 0:
+        raise ValueError((p, suborder, "zero-weight"))
+    return suborder * int(logs[value % p] % suborder == 0) - 1
+
+
+def weighted_ratio_surface_centered_moment(
+    p: int,
+    suborder: int,
+    logs: Dict[int, int],
+) -> int:
+    support: List[Tuple[int, int, int]] = []
+    for u in range(1, p):
+        inverse_u = pow(u, -1, p)
+        for v in range(1, p):
+            if not is_open_support_point(p, u, v):
+                continue
+            support.append((u, v, shape_a(u, v, p) * inverse_u % p))
+    total = 0
+    for u, v, x_value in support:
+        inverse_u = pow(u, -1, p)
+        inverse_v = pow(v, -1, p)
+        inverse_x = pow(x_value, -1, p)
+        for target_u, target_v, target_x in support:
+            alpha = target_x * inverse_x % p
+            beta = target_v * inverse_v % p
+            ratio = target_u * inverse_u % p
+            equation = (
+                ratio * (ratio - alpha) * u * u
+                + ratio * ((beta - alpha) * v + (1 - alpha)) * u
+                + shape_b(beta * v % p, p)
+                - alpha * ratio * shape_b(v, p)
+            ) % p
+            if equation != 0:
+                raise AssertionError(
+                    (p, suborder, alpha, beta, ratio, u, v, equation)
+                )
+            total += (
+                quotient_centering_weight(p, suborder, logs, alpha)
+                * quotient_centering_weight(p, suborder, logs, beta)
+            )
+    return total
+
+
+def verify_weighted_ratio_surface_centering() -> List[Tuple[int, int, int]]:
+    checked: List[Tuple[int, int, int]] = []
+    for p, suborder in RATIO_SURFACE_CASES:
+        logs = log_table(p)
+        support_count, _, _, _, moment = open_suborder_coset_moment(
+            p,
+            suborder,
+            logs,
+        )
+        weighted_moment = weighted_ratio_surface_centered_moment(
+            p,
+            suborder,
+            logs,
+        )
+        if weighted_moment != moment:
+            raise AssertionError((p, suborder, weighted_moment, moment))
+        weight_sum = sum(
+            quotient_centering_weight(p, suborder, logs, value)
+            for value in range(1, p)
+        )
+        if weight_sum != 0:
+            raise AssertionError((p, suborder, weight_sum))
+        checked.append((p, suborder, support_count, moment))
+    return checked
+
+
 def verify_quotient_conic_centered_bounds() -> List[
     Tuple[int, int, int, int, float]
 ]:
@@ -4001,6 +4071,9 @@ def main() -> None:
     ratio_surface_degeneracy_checked = verify_ratio_surface_degeneracy()
     quotient_conic_centered_bound_checked = (
         verify_quotient_conic_centered_bounds()
+    )
+    weighted_ratio_surface_centering_checked = (
+        verify_weighted_ratio_surface_centering()
     )
     collapsed_four_p_obstruction_checked = (
         verify_quotient_line_collapsed_four_p_obstruction()
@@ -4617,6 +4690,8 @@ def main() -> None:
         f"{ratio_surface_degeneracy_checked}",
         f"quotient_conic_centered_bound_checked="
         f"{quotient_conic_centered_bound_checked}",
+        f"weighted_ratio_surface_centering_checked="
+        f"{weighted_ratio_surface_centering_checked}",
         f"collapsed_four_p_obstruction_checked="
         f"{collapsed_four_p_obstruction_checked}",
     )

@@ -29,6 +29,29 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-19 - M1 weighted quotient-conic centering formula
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/m1_depth_two_line_conic_resonance_reduction.md`,
+  `experimental/verify_m1_depth_two_line_conic_resonance_reduction.py`,
+  `experimental/m1_residue_line_roadmap.md`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** Rewrites the centered order-`e` moment as the exact
+  signed ratio-fibration sum
+  `M_e^o=sum W_e(alpha)W_e(beta)F(alpha,beta,r)`, where
+  `W_e(z)=e 1_{z in K_e}-1` and `F` is the open point count on the quotient
+  conic fiber.  The verifier checks this weighted ratio identity against the
+  exact Parseval moment in the existing ratio-surface cases.
+- **How it is useful:** Explains the leading-term cancellation structurally:
+  since `sum W_e=0`, parameter-independent smooth-conic main terms vanish,
+  leaving a weighted trace and boundary-correction problem rather than an
+  uncentered occupancy estimate.
+- **What to do next:** Attack the weighted fiber-error sum directly, separating
+  the diagonal zero conic, singular parameters, smooth trace fluctuations, and
+  open-support boundary deletions.
+
 ### 2026-06-19 - M1 centered quotient-conic moment bound
 
 - **Agent/model:** Codex.

@@ -2636,6 +2636,54 @@ row/column-centered cancellation beyond Cauchy.  The verifier checks this
 bound for every audited divisor `e | p-1` with nonempty admissible slice in
 `p=17,31,43`.
 
+There is also an exact centered ratio-fibration formula.  Define the
+order-`e` centering weight
+
+```text
+W_e(z)=e 1_{z in K_e}-1,        z in F_p^*.
+```
+
+Then `sum_{z in F_p^*} W_e(z)=0`, and
+
+```text
+M_e^o
+  = sum_{(u,v),(u',v') in S^o}
+      W_e(x(u',v')/x(u,v)) W_e(v'/v).
+```
+
+After the same change of variables
+
+```text
+alpha=x(u',v')/x(u,v),        beta=v'/v,        u'=ru,
+```
+
+this becomes
+
+```text
+M_e^o
+  = sum_{alpha,beta,r} W_e(alpha)W_e(beta)
+      F(alpha,beta,r),
+```
+
+where `F(alpha,beta,r)` is the number of open affine points `(u,v)` on the
+same conic fiber
+
+```text
+r(r-alpha)u^2
+  + r((beta-alpha)v+1-alpha)u
+  + B(beta v) - alpha rB(v) = 0
+```
+
+with `(u,v)` and `(ru,beta v)` both in `S^o`.  This is just multiplicative
+orthogonality with the principal row and column removed, but it is the useful
+form of the remaining problem: any parameter-independent smooth-conic main
+term cancels because the two weight sums are zero.  The diagonal zero conic
+still contributes `(e-1)^2T^o`, which is only `p^2` scale for fixed `e`.
+Thus the low-index M1 task is a weighted trace and boundary-correction
+problem over this conic fibration, not an uncentered occupancy count.  The
+verifier checks the weighted ratio-fibration identity on the same
+`(p,e)` cases used for the unweighted ratio-surface audit.
+
 ## Principal-Row Leakage
 
 The principal rows excluded above have exact formulas.  They explain why the
