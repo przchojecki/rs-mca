@@ -71,13 +71,8 @@ extension-valued degree-1 residue-line same-set MCA-bad line. It does **not**
 prove a deployed-parameter cap certificate, nor does it establish universality
 across rates, extension degrees, or larger smooth domains.
 
-The source certificate engine and larger 600-trial search live in:
-
-```text
-https://github.com/latifkasuli/mca
-commit 62c54c017bb2c6ad987c0fab3ef2726697297329
-residue-layer commit 73f0beb4d2cda0b5a70599e532fbddbb6fbdd889
-```
+This folder is self-contained.  It intentionally does not rely on any
+private repository or external certificate engine.
 
 Next checks:
 

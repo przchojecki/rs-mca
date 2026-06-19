@@ -1,0 +1,106 @@
+{
+  "all_match": true,
+  "certificates": [
+    {
+      "claimed": {
+        "all_verified": true,
+        "distinct_ge_claim4_bound": true
+      },
+      "computed": {
+        "all_verified": true,
+        "claim4_bound": 31.9,
+        "distinct": 250,
+        "distinct_ge_claim4_bound": true,
+        "n_fb_lower_bound": 235
+      },
+      "inputs": {
+        "L_fiber": 472,
+        "averaged_over_set": "F\\B (size q-p)",
+        "deep_hole": "theta",
+        "field": "F_17^2",
+        "k": 8,
+        "n": 16
+      },
+      "matches": true,
+      "mismatches": {},
+      "name": "nfb.claim4_distinctness_toy",
+      "notes": "",
+      "object": "deep-hole c_A(a) family at F_17^2: #distinct{c_A(a)} >= CS25 Claim-4 bound L(q-n)/(q-n+(L-1)k); every counted F\\B slope is a verified same-set failure",
+      "reproducibility": "deep-hole line N_FB certificate at F_17^2, z0=0, a=theta",
+      "status": "PROVED",
+      "supports": "deployed-lift obligation (2): CS25 Claim 4 / distinct-evaluation boundary"
+    },
+    {
+      "claimed": {
+        "all_cA_nonconstant": true,
+        "avg_base_le_mu": true,
+        "ell_divides_N": false,
+        "lemma_preimage_le_pk": true
+      },
+      "computed": {
+        "all_cA_nonconstant": true,
+        "avg_base": 29.8,
+        "avg_base_le_mu": true,
+        "ell_divides_N": false,
+        "lemma_preimage_le_pk": true,
+        "max_preimage": 53,
+        "mu": 236.0,
+        "num_constant_cA": 0
+      },
+      "inputs": {
+        "N": 16,
+        "ell": 10,
+        "fiber": 472,
+        "field": "F_17^2",
+        "k": 8,
+        "p": 17,
+        "pk": 136
+      },
+      "matches": true,
+      "mismatches": {},
+      "name": "nfb.lemma4_nonbase_toy",
+      "notes": "",
+      "object": "Base-coefficient non-base lemma at F_17^2, exhaustive over the fiber: every c_A is nonconstant and each c_A in B[X] has #{a in F : c_A(a) in B} <= p*k; hence avg_{a in F\\B} #{A:c_A(a) in B} <= |fiber|*p*k/(q-p).",
+      "reproducibility": "all fiber elements checked: #constant c_A==0; max_A #{a in F:c_A(a) in B} <= p*k; avg_{F\\B} <= mu",
+      "status": "PROVED",
+      "supports": "deployed-lift obligation (3): base-coefficient non-base lemma"
+    },
+    {
+      "claimed": {
+        "Nfb_lb_clears_cap_target": true,
+        "all_cA_nonconstant_via_ell_nmid_N": true,
+        "nonbase_density_proven_at_deployed_scale": true
+      },
+      "computed": {
+        "Nfb_lb_clears_cap_target": true,
+        "all_cA_nonconstant_via_ell_nmid_N": true,
+        "averaged_over_set": "F\\B (size q-p)",
+        "log2_Nfb_lower_bound": 165.93,
+        "log2_cap_target_qmn_over_2k": 164.93,
+        "log2_mu_over_bound": -80.2,
+        "nonbase_bound": "Lemma 4: avg_{F\\B} base <= |fiber|*p*k/(q-p)",
+        "nonbase_density_proven_at_deployed_scale": true
+      },
+      "inputs": {
+        "N": 256,
+        "ell": 130,
+        "field": "KoalaBear^6",
+        "k": "2^20",
+        "log2_L_fiber": 220.6,
+        "n": "2^21"
+      },
+      "matches": true,
+      "mismatches": {},
+      "name": "nfb.deployed_lowerbound",
+      "notes": "Proof-composition given imports: (1) heavy-fiber lower bound, (2) CS25 Claim 4, and (3) the base-coefficient non-base lemma. Margin is about one bit.",
+      "object": "KoalaBear^6: F\\B N_FB lower bound avg_{a in F\\B}[N_FB] >= 1/c0' - mu, averaged over the deep-hole set F\\B (|F\\B|=q-p), clears cap target (q-n)/2k; all c_A nonconstant since ell nmid N (z0=0).",
+      "reproducibility": "(1/c0' - mu) vs (q-n)/2k at KoalaBear^6; 1/c0'=L(q-p)/(q-p+(L-1)k), mu=L*p*k/(q-p)",
+      "status": "AUDIT",
+      "supports": "cor:Fvalued deployed-density arithmetic companion, conditional on imported heavy-fiber and CS25 collision inputs"
+    }
+  ],
+  "count": 3,
+  "matched": 3,
+  "schema": "mca-frontier.reproducibility-certificate.v1",
+  "title": "Deep-hole per-line F\\B density: deployed-lift certificate"
+}

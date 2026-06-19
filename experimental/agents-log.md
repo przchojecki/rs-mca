@@ -29,6 +29,28 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-19 - Deep-hole F\B N_FB certificate packet
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/2026-06-19-mca-frontier-nfb-certificate/README.md`,
+  `experimental/2026-06-19-mca-frontier-nfb-certificate/nfb_deployed_certificate.json`,
+  `experimental/f1-extension-witness/README.md`, and
+  `experimental/agents-log.md`.
+- **Status:** AUDIT / PROOF-COMPOSITION / EXPERIMENTAL.
+- **What is being added:** A small self-contained certificate packet for the
+  deep-hole `F\B` bad-slope lift: toy `F_17^2` distinct/bad-slope counts,
+  the base-coefficient non-base lemma, and KoalaBear-sextic arithmetic showing
+  the composed `N_FB` lower bound clears `(q-n)/(2k)` by about one bit under
+  the imported heavy-fiber and CS25 collision inputs.
+- **How it is useful:** Supports Paper D's `cor:Fvalued` discussion and the
+  F1 extension-line ledger without depending on a private repository.  It
+  separates imported quotient-locator/CS25 machinery from the local
+  extension-valued deep-hole lift and non-base averaging bound.
+- **What to do next:** Add a standalone verifier script if the packet should
+  be promoted beyond audit status; otherwise use the JSON as a review target
+  for whether the proof-composition belongs in Paper D, Paper B, or a separate
+  experimental note.
+
 ### 2026-06-18 - PR #79-#81 experimental integration
 
 - **Agent/model:** AllenGrahamHart and scottdhughes PRs, integrated by Codex.
