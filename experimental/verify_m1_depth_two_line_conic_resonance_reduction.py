@@ -3707,6 +3707,203 @@ def ratio_surface_projective_point_count(
     return affine_count + infinity_count
 
 
+def ratio_surface_affine_value(
+    p: int,
+    alpha: int,
+    beta: int,
+    ratio: int,
+    u: int,
+    v: int,
+) -> int:
+    uu, uv, vv, u_linear, v_linear, constant = (
+        ratio_surface_conic_coefficients(p, alpha, beta, ratio)
+    )
+    return (
+        uu * u * u
+        + uv * u * v
+        + vv * v * v
+        + u_linear * u
+        + v_linear * v
+        + constant
+    ) % p
+
+
+def ratio_surface_infinity_count(
+    p: int,
+    alpha: int,
+    beta: int,
+    ratio: int,
+) -> int:
+    uu, uv, vv, _, _, _ = ratio_surface_conic_coefficients(
+        p,
+        alpha,
+        beta,
+        ratio,
+    )
+    count = int(vv == 0)
+    for slope in range(p):
+        if (uu + uv * slope + vv * slope * slope) % p == 0:
+            count += 1
+    return count
+
+
+BOUNDARY_LABELS = (
+    "infinity",
+    "u0",
+    "v0",
+    "source_line",
+    "target_line",
+    "source_a0",
+    "target_a0",
+)
+
+
+def shape_a_zero_points(p: int) -> List[Tuple[int, int]]:
+    return [
+        (u, v)
+        for u in range(p)
+        for v in range(p)
+        if shape_a(u, v, p) == 0
+    ]
+
+
+def ratio_surface_boundary_label(
+    p: int,
+    beta: int,
+    ratio: int,
+    u: int,
+    v: int,
+) -> str:
+    if u % p == 0:
+        return "u0"
+    if v % p == 0:
+        return "v0"
+    if (-1 - u - v) % p == 0:
+        return "source_line"
+    if (-1 - ratio * u - beta * v) % p == 0:
+        return "target_line"
+    if shape_a(u, v, p) == 0:
+        return "source_a0"
+    if shape_a(ratio * u % p, beta * v % p, p) == 0:
+        return "target_a0"
+    return ""
+
+
+def add_boundary_candidate(
+    totals: Dict[str, int],
+    p: int,
+    alpha: int,
+    beta: int,
+    ratio: int,
+    weight: int,
+    expected_label: str,
+    u: int,
+    v: int,
+) -> None:
+    if ratio_surface_affine_value(p, alpha, beta, ratio, u, v) != 0:
+        return
+    label = ratio_surface_boundary_label(p, beta, ratio, u, v)
+    if label == expected_label:
+        totals[label] += weight
+
+
+def weighted_boundary_partition_sum(
+    p: int,
+    suborder: int,
+    logs: Dict[int, int],
+) -> Tuple[int, ...]:
+    totals = {label: 0 for label in BOUNDARY_LABELS}
+    source_a_points = shape_a_zero_points(p)
+    for alpha in range(1, p):
+        alpha_weight = quotient_centering_weight(p, suborder, logs, alpha)
+        for beta in range(1, p):
+            inverse_beta = pow(beta, -1, p)
+            weight = alpha_weight * quotient_centering_weight(
+                p,
+                suborder,
+                logs,
+                beta,
+            )
+            for ratio in range(1, p):
+                inverse_ratio = pow(ratio, -1, p)
+                totals["infinity"] += weight * ratio_surface_infinity_count(
+                    p,
+                    alpha,
+                    beta,
+                    ratio,
+                )
+                for v in range(p):
+                    add_boundary_candidate(
+                        totals,
+                        p,
+                        alpha,
+                        beta,
+                        ratio,
+                        weight,
+                        "u0",
+                        0,
+                        v,
+                    )
+                for u in range(p):
+                    add_boundary_candidate(
+                        totals,
+                        p,
+                        alpha,
+                        beta,
+                        ratio,
+                        weight,
+                        "v0",
+                        u,
+                        0,
+                    )
+                    add_boundary_candidate(
+                        totals,
+                        p,
+                        alpha,
+                        beta,
+                        ratio,
+                        weight,
+                        "source_line",
+                        u,
+                        (-1 - u) % p,
+                    )
+                    add_boundary_candidate(
+                        totals,
+                        p,
+                        alpha,
+                        beta,
+                        ratio,
+                        weight,
+                        "target_line",
+                        u,
+                        (-1 - ratio * u) * inverse_beta % p,
+                    )
+                for u, v in source_a_points:
+                    add_boundary_candidate(
+                        totals,
+                        p,
+                        alpha,
+                        beta,
+                        ratio,
+                        weight,
+                        "source_a0",
+                        u,
+                        v,
+                    )
+                    add_boundary_candidate(
+                        totals,
+                        p,
+                        alpha,
+                        beta,
+                        ratio,
+                        weight,
+                        "target_a0",
+                        u * inverse_ratio % p,
+                        v * inverse_beta % p,
+                    )
+    return tuple(totals[label] for label in BOUNDARY_LABELS)
+
+
 def weighted_projective_error_sum(
     p: int,
     suborder: int,
@@ -3753,9 +3950,9 @@ def weighted_projective_error_sum(
 
 
 def verify_weighted_projective_decomposition() -> List[
-    Tuple[int, int, int, int, int, int]
+    Tuple[int, int, int, int, int, int, Tuple[int, ...]]
 ]:
-    checked: List[Tuple[int, int, int, int, int, int]] = []
+    checked: List[Tuple[int, int, int, int, int, int, Tuple[int, ...]]] = []
     for p, suborder in RATIO_SURFACE_CASES:
         logs = log_table(p)
         _, _, _, _, moment = open_suborder_coset_moment(p, suborder, logs)
@@ -3763,6 +3960,9 @@ def verify_weighted_projective_decomposition() -> List[
             weighted_projective_error_sum(p, suborder, logs)
         )
         boundary_error = projective_error - moment
+        boundary_parts = weighted_boundary_partition_sum(p, suborder, logs)
+        if sum(boundary_parts) != boundary_error:
+            raise AssertionError((p, suborder, boundary_parts, boundary_error))
         if zero_conic_count != 1:
             raise AssertionError((p, suborder, zero_conic_count))
         if singular_count > 3 * (p - 1) * (p - 1):
@@ -3775,6 +3975,7 @@ def verify_weighted_projective_decomposition() -> List[
                 projective_error,
                 boundary_error,
                 singular_count,
+                boundary_parts,
             )
         )
     return checked

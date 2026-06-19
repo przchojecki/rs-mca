@@ -2724,6 +2724,18 @@ audits the decomposition by summing the projective excess over all ratio
 parameters for the existing `(p,e)` ratio-surface cases and checking that the
 singular support has at most `3(p-1)^2` parameters and one zero conic.
 
+For audit purposes the same verifier partitions `B` by the first failed
+boundary condition in the ordered list
+
+```text
+infinity, u=0, v=0, source line, target line, source A=0, target A=0.
+```
+
+This is a disjoint bookkeeping partition, not a mathematical asymmetry: it
+prevents overlaps between boundary components from being counted twice and
+lets future work attack the infinity, line-deletion, and conic-deletion
+pieces separately.
+
 ## Principal-Row Leakage
 
 The principal rows excluded above have exact formulas.  They explain why the

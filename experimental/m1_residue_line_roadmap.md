@@ -115,7 +115,8 @@ should be revised as the project learns more.
    makes this explicit:
    `M_e^o=sum W_eW_e(Q-(p+1))-sum W_eW_eB`; the first sum is supported only
    on `Delta=0` plus the zero conic, and the second is the open-boundary
-   deletion term.
+   deletion term.  The verifier now partitions that boundary term into
+   infinity, coordinate, source/target line, and source/target `A=0` pieces.
    The updated remaining-wall scan reports this asymmetric wall separately:
    in the current report grid the largest asymmetric ratio is
    `3.2173609608p`, while every near-`4p` top row lies in the projective

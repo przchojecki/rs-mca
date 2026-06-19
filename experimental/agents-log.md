@@ -44,7 +44,8 @@ Keep entries concise and link to the relevant files.
   every smooth nonzero conic, so it is supported only on `Delta=0` and the
   zero conic; the boundary term records the remaining open-support deletions.
   The verifier sums the projective excess over all ratio parameters in the
-  audited cases and checks the singular support and zero-conic counts.
+  audited cases, partitions the boundary term into infinity/line/conic
+  deletion pieces, and checks the singular support and zero-conic counts.
 - **How it is useful:** Sharpens the remaining low-index task to cancellation
   in an explicit weighted boundary term plus sparse singular support, removing
   the smooth projective main term from the problem entirely.
