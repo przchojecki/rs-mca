@@ -29,6 +29,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-19 - M1 paired square-class filters
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/m1_depth_two_line_conic_resonance_reduction.md`,
+  `experimental/verify_m1_depth_two_line_conic_resonance_reduction.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** Refines the delta-free quadratic-pair formula by
+  rewriting both trace differences as square-class filters:
+  `S_alpha - chi_2(-2)S_{alpha chi_2}` and
+  `J(theta,chi_2)-J(theta chi_2,chi_2)`.
+- **How it is useful:** Shows the remaining generic M1 paired correlation is
+  built from fixed Kummer tables with explicit square/nonsquare gates, rather
+  than from arbitrary paired trace differences.
+- **What to do next:** Use the square-class filtered form to look for a
+  diagonal/off-diagonal decomposition or a sheaf-correlation bound.
+
 ### 2026-06-19 - M1 line-conic delta-free paired correlation
 
 - **Agent/model:** Codex.

@@ -1183,6 +1183,45 @@ for generic `theta`, so the paired kernel factor has absolute value at most
 spurious nonsquare-parameter degree of freedom from the remaining
 correlation problem.
 
+## Quadratic-Pair Square-Class Filters
+
+The paired formula above has an even sharper elementary form: both
+differences are square-class filters.  Define
+
+```text
+S_alpha^{[-2]}
+  = sum_z alpha(z)(1-chi_2(-2)chi_2(z)) eta(1-z) gamma(z+2),
+
+D_theta^-
+  = sum_x theta(x)(1-chi_2(x))chi_2(1-x).
+```
+
+Then
+
+```text
+S_alpha^{[-2]} = S_alpha - chi_2(-2)S_{alpha chi_2},
+D_theta^-      = J(theta,chi_2)-J(theta chi_2,chi_2).
+```
+
+Thus the delta-free paired summand is
+
+```text
+A(theta^(-1))(omega_nu(theta)+omega_nu(theta chi_2))
+  = -chi_2(-1)eta(2)nu(-1)theta(-8)
+      S_{theta^(-1)nu}^{[-2]}
+      J(theta^(-2),nu)
+      D_theta^- / p.
+```
+
+The kernel factor `D_theta^-` is supported only on nonsquare `x`.  The outer
+factor is supported only on the opposite square class to `chi_2(-2)`:
+on nonsquare `z` if `chi_2(-2)=1`, and on square `z` if
+`chi_2(-2)=-1`.  The remaining generic M1 obstruction is therefore not a
+correlation of two arbitrary four-point Kummer traces; after quadratic
+pairing, it is a product of fixed Kummer tables with explicit square-class
+gates.  This is the natural form for any later sheaf-correlation or
+diagonal/off-diagonal attack on the paired theta sum.
+
 ## Spectral Energy Ledger
 
 The spectral normal form has exact energy identities.  By Parseval on

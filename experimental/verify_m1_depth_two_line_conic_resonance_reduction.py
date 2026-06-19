@@ -1088,6 +1088,39 @@ def quotient_line_outer_standard_piece(
     return total
 
 
+def quotient_line_outer_square_filtered_piece(
+    p: int,
+    alpha: List[complex],
+    beta: List[complex],
+    gamma: List[complex],
+) -> complex:
+    total = 0j
+    square_class = legendre(-2, p)
+    for z_value in range(p):
+        total += (
+            alpha[z_value]
+            * (1 - square_class * legendre(z_value, p))
+            * beta[(1 - z_value) % p]
+            * gamma[(z_value + 2) % p]
+        )
+    return total
+
+
+def quotient_line_kernel_square_filtered_jacobi(
+    p: int,
+    theta: List[complex],
+    quadratic: List[complex],
+) -> complex:
+    total = 0j
+    for x_value in range(p):
+        total += (
+            theta[x_value]
+            * (1 - legendre(x_value, p))
+            * quadratic[(1 - x_value) % p]
+        )
+    return total
+
+
 def verify_quotient_line_spectral_normal_form(
     p: int,
     eta_exponent: int,
@@ -1106,6 +1139,8 @@ def verify_quotient_line_spectral_normal_form(
     float,
     float,
     int,
+    float,
+    float,
     float,
     float,
     float,
@@ -1147,6 +1182,8 @@ def verify_quotient_line_spectral_normal_form(
     max_kernel_pair_phase_error = 0.0
     max_delta_free_pair_error = 0.0
     max_pair_jacobi_product_error = 0.0
+    max_outer_square_filter_error = 0.0
+    max_kernel_square_filter_error = 0.0
     max_paired_phase_ratio = 0.0
     paired_generic_count = 0
     max_outer_piece_ratio = 0.0
@@ -1409,6 +1446,29 @@ def verify_quotient_line_spectral_normal_form(
         first_jacobi = jacobi_sum(p, theta, quadratic)
         shifted_jacobi = jacobi_sum(p, theta_chi, quadratic)
         square_jacobi = jacobi_sum(p, theta_inverse_square, nu)
+        filtered_jacobi = quotient_line_kernel_square_filtered_jacobi(
+            p,
+            theta,
+            quadratic,
+        )
+        kernel_filter_error = abs(
+            filtered_jacobi - (first_jacobi - shifted_jacobi)
+        )
+        max_kernel_square_filter_error = max(
+            max_kernel_square_filter_error,
+            kernel_filter_error,
+        )
+        if kernel_filter_error > TOLERANCE:
+            raise AssertionError(
+                (
+                    p,
+                    nu_exponent,
+                    theta_exponent,
+                    "kernel_square_class_filter",
+                    filtered_jacobi,
+                    first_jacobi - shifted_jacobi,
+                )
+            )
         expected_paired_phase = (
             chi_minus_c
             * nu[(-1) % p]
@@ -1467,13 +1527,36 @@ def verify_quotient_line_spectral_normal_form(
             eta,
             gamma,
         )
+        filtered_outer = quotient_line_outer_square_filtered_piece(
+            p,
+            alpha_plain,
+            eta,
+            gamma,
+        )
+        outer_filter_error = abs(
+            filtered_outer
+            - (standard_plain - legendre(-2, p) * standard_quadratic)
+        )
+        max_outer_square_filter_error = max(
+            max_outer_square_filter_error,
+            outer_filter_error,
+        )
+        if outer_filter_error > TOLERANCE:
+            raise AssertionError(
+                (
+                    p,
+                    eta_exponent,
+                    nu_exponent,
+                    theta_exponent,
+                    "outer_square_class_filter",
+                    filtered_outer,
+                    standard_plain - legendre(-2, p) * standard_quadratic,
+                )
+            )
         expected_outer_inverse = (
             eta[2 % p]
             * theta[scale_point].conjugate()
-            * (
-                standard_plain
-                - legendre(-2, p) * standard_quadratic
-            )
+            * filtered_outer
         )
         outer_delta_free_error = abs(
             outer_inverse_mellins[theta_exponent]
@@ -1494,12 +1577,9 @@ def verify_quotient_line_spectral_normal_form(
         expected_pair_term = (
             pair_constant
             * theta[(-8) % p]
-            * (
-                standard_plain
-                - legendre(-2, p) * standard_quadratic
-            )
+            * filtered_outer
             * square_jacobi
-            * (first_jacobi - shifted_jacobi)
+            * filtered_jacobi
             / p
         )
         pair_term = outer_inverse_mellins[theta_exponent] * paired_phase
@@ -1575,6 +1655,8 @@ def verify_quotient_line_spectral_normal_form(
         max_kernel_pair_phase_error,
         max_delta_free_pair_error,
         max_pair_jacobi_product_error,
+        max_outer_square_filter_error,
+        max_kernel_square_filter_error,
         max_paired_phase_ratio,
         paired_generic_count,
     )
@@ -2050,6 +2132,8 @@ def main() -> None:
     max_kernel_pair_phase_error = 0.0
     max_delta_free_pair_error = 0.0
     max_pair_jacobi_product_error = 0.0
+    max_outer_square_filter_error = 0.0
+    max_kernel_square_filter_error = 0.0
     max_paired_phase_ratio = 0.0
     max_outer_mellin_piece_ratio = 0.0
     max_outer_mellin_ratio = 0.0
@@ -2259,6 +2343,8 @@ def main() -> None:
             kernel_pair_phase_error,
             delta_free_pair_error,
             pair_jacobi_product_error,
+            outer_square_filter_error,
+            kernel_square_filter_error,
             paired_phase_ratio,
             paired_generic_count,
         ) = verify_quotient_line_spectral_normal_form(
@@ -2385,6 +2471,14 @@ def main() -> None:
             max_pair_jacobi_product_error,
             pair_jacobi_product_error,
         )
+        max_outer_square_filter_error = max(
+            max_outer_square_filter_error,
+            outer_square_filter_error,
+        )
+        max_kernel_square_filter_error = max(
+            max_kernel_square_filter_error,
+            kernel_square_filter_error,
+        )
         max_paired_phase_ratio = max(
             max_paired_phase_ratio,
             paired_phase_ratio,
@@ -2479,6 +2573,9 @@ def main() -> None:
         f"max_delta_free_pair_error={max_delta_free_pair_error:.3e}",
         f"max_pair_jacobi_product_error="
         f"{max_pair_jacobi_product_error:.3e}",
+        f"max_outer_square_filter_error={max_outer_square_filter_error:.3e}",
+        f"max_kernel_square_filter_error="
+        f"{max_kernel_square_filter_error:.3e}",
         f"max_paired_phase_ratio={max_paired_phase_ratio:.10f}",
         f"max_outer_mellin_piece_ratio={max_outer_mellin_piece_ratio:.10f}",
         f"max_outer_mellin_ratio={max_outer_mellin_ratio:.10f}",
