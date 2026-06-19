@@ -1222,6 +1222,60 @@ pairing, it is a product of fixed Kummer tables with explicit square-class
 gates.  This is the natural form for any later sheaf-correlation or
 diagonal/off-diagonal attack on the paired theta sum.
 
+## Paired Diagonal Expansion
+
+The square-class filtered paired sum can be collapsed completely by
+multiplicative orthogonality.  Write
+
+```text
+Pi_{eta,nu}(theta)
+  = -chi_2(-1)eta(2)nu(-1)theta(-8)
+      S_{theta^(-1)nu}^{[-2]}
+      J(theta^(-2),nu)
+      D_theta^- / p.
+```
+
+Let
+
+```text
+kappa_{eta,nu} = -chi_2(-1)eta(2)nu(-1),
+gamma=(eta nu)^(-1).
+```
+
+Expanding the three filtered factors and summing over all multiplicative
+characters `theta` gives
+
+```text
+sum_theta Pi_{eta,nu}(theta)
+  = kappa_{eta,nu}(p-1)/p
+      sum_{z,y in F_p^*, -8x=z y^2}
+        nu(z)nu(1-y)
+        (1-chi_2(-2)chi_2(z))(1-chi_2(x))
+        eta(1-z)gamma(z+2)chi_2(1-x).
+```
+
+Indeed the theta dependence in the expanded summand is
+`theta(-8x/(z y^2))`, so the theta sum vanishes unless `-8x=z y^2`,
+where it contributes `p-1`.  The zero-extension convention is already
+accounted for by `z,y in F_p^*`; then `x` is automatically nonzero.
+
+The actual generic phase sum is obtained from this diagonal sum by deleting
+the exceptional theta orbits:
+
+```text
+sum_{theta in G_nu} A(theta^(-1))omega_nu(theta)
+  = 1/2 (
+      sum_theta Pi_{eta,nu}(theta)
+      - sum_{theta in E_nu} Pi_{eta,nu}(theta)
+    ).
+```
+
+The factor `1/2` appears because `Pi(theta chi_2)=Pi(theta)`, so the
+all-character sum counts each quadratic pair twice.  This is an exact
+finite-field identity.  It turns the remaining M1 generic obstruction into a
+single constrained two-variable sum plus the already isolated exceptional
+theta correction.
+
 ## Spectral Energy Ledger
 
 The spectral normal form has exact energy identities.  By Parseval on

@@ -29,6 +29,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-19 - M1 paired diagonal expansion
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/m1_depth_two_line_conic_resonance_reduction.md`,
+  `experimental/verify_m1_depth_two_line_conic_resonance_reduction.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** Expands the square-class filtered paired theta
+  summand and uses multiplicative orthogonality to collapse the all-theta sum
+  onto the finite diagonal constraint `-8x=z y^2`, with the generic sum
+  recovered by subtracting exceptional theta orbits and dividing by two.
+- **How it is useful:** Converts the remaining M1 generic phase obstruction
+  from a spectral correlation into one explicit constrained two-variable
+  finite-field sum plus known exceptional corrections.
+- **What to do next:** Analyze the constrained diagonal sum directly, looking
+  for cancellation or a structural obstruction in the `z,y` variables.
+
 ### 2026-06-19 - M1 paired square-class filters
 
 - **Agent/model:** Codex.

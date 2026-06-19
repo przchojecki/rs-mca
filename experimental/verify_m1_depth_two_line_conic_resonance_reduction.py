@@ -1121,6 +1121,36 @@ def quotient_line_kernel_square_filtered_jacobi(
     return total
 
 
+def quotient_line_paired_diagonal_sum(
+    p: int,
+    eta: List[complex],
+    nu: List[complex],
+    gamma: List[complex],
+) -> complex:
+    total = 0j
+    inverse_eight = pow(8, -1, p)
+    square_class = legendre(-2, p)
+    for z_value in range(1, p):
+        outer_weight = (
+            nu[z_value]
+            * (1 - square_class * legendre(z_value, p))
+            * eta[(1 - z_value) % p]
+            * gamma[(z_value + 2) % p]
+        )
+        if abs(outer_weight) == 0:
+            continue
+        for y_value in range(1, p):
+            x_value = (-z_value * y_value * y_value * inverse_eight) % p
+            kernel_weight = (
+                (1 - legendre(x_value, p))
+                * legendre(1 - x_value, p)
+            )
+            if kernel_weight == 0:
+                continue
+            total += outer_weight * nu[(1 - y_value) % p] * kernel_weight
+    return total
+
+
 def verify_quotient_line_spectral_normal_form(
     p: int,
     eta_exponent: int,
@@ -1139,6 +1169,9 @@ def verify_quotient_line_spectral_normal_form(
     float,
     float,
     int,
+    float,
+    float,
+    float,
     float,
     float,
     float,
@@ -1184,6 +1217,9 @@ def verify_quotient_line_spectral_normal_form(
     max_pair_jacobi_product_error = 0.0
     max_outer_square_filter_error = 0.0
     max_kernel_square_filter_error = 0.0
+    max_algebraic_pair_orbit_error = 0.0
+    max_pair_diagonal_error = 0.0
+    max_generic_diagonal_error = 0.0
     max_paired_phase_ratio = 0.0
     paired_generic_count = 0
     max_outer_piece_ratio = 0.0
@@ -1613,6 +1649,101 @@ def verify_quotient_line_spectral_normal_form(
             )
         paired_generic_phase_sum += pair_term
         paired_generic_count += 1
+    algebraic_pair_terms: List[complex] = []
+    algebraic_pair_sum = 0j
+    exceptional_algebraic_pair_sum = 0j
+    for theta_exponent, theta in enumerate(table):
+        alpha_plain = table[(-theta_exponent + nu_exponent) % order]
+        filtered_outer = quotient_line_outer_square_filtered_piece(
+            p,
+            alpha_plain,
+            eta,
+            gamma,
+        )
+        square_jacobi = jacobi_sum(
+            p,
+            table[(-2 * theta_exponent) % order],
+            nu,
+        )
+        filtered_jacobi = quotient_line_kernel_square_filtered_jacobi(
+            p,
+            theta,
+            quadratic,
+        )
+        algebraic_pair_term = (
+            pair_constant
+            * theta[(-8) % p]
+            * filtered_outer
+            * square_jacobi
+            * filtered_jacobi
+            / p
+        )
+        algebraic_pair_terms.append(algebraic_pair_term)
+        algebraic_pair_sum += algebraic_pair_term
+        if not generic_flags[theta_exponent]:
+            exceptional_algebraic_pair_sum += algebraic_pair_term
+    for theta_exponent, algebraic_pair_term in enumerate(algebraic_pair_terms):
+        partner_exponent = (theta_exponent + quadratic_exponent) % order
+        orbit_error = abs(
+            algebraic_pair_term - algebraic_pair_terms[partner_exponent]
+        )
+        max_algebraic_pair_orbit_error = max(
+            max_algebraic_pair_orbit_error,
+            orbit_error,
+        )
+        if orbit_error > TOLERANCE:
+            raise AssertionError(
+                (
+                    p,
+                    eta_exponent,
+                    nu_exponent,
+                    theta_exponent,
+                    "algebraic_pair_orbit",
+                    algebraic_pair_term,
+                    algebraic_pair_terms[partner_exponent],
+                )
+            )
+    diagonal_pair_sum = (
+        pair_constant
+        * (p - 1)
+        * quotient_line_paired_diagonal_sum(p, eta, nu, gamma)
+        / p
+    )
+    pair_diagonal_error = abs(algebraic_pair_sum - diagonal_pair_sum)
+    max_pair_diagonal_error = max(
+        max_pair_diagonal_error,
+        pair_diagonal_error,
+    )
+    if pair_diagonal_error > 100 * TOLERANCE:
+        raise AssertionError(
+            (
+                p,
+                eta_exponent,
+                nu_exponent,
+                "paired_diagonal_expansion",
+                algebraic_pair_sum,
+                diagonal_pair_sum,
+            )
+        )
+    generic_from_diagonal = (
+        diagonal_pair_sum - exceptional_algebraic_pair_sum
+    ) / 2
+    generic_diagonal_error = abs(generic_from_diagonal - generic_phase_sum)
+    max_generic_diagonal_error = max(
+        max_generic_diagonal_error,
+        generic_diagonal_error,
+    )
+    if generic_diagonal_error > 100 * TOLERANCE:
+        raise AssertionError(
+            (
+                p,
+                eta_exponent,
+                nu_exponent,
+                "generic_diagonal_expansion",
+                generic_from_diagonal,
+                generic_phase_sum,
+            )
+        )
     assert_close(
         (p, eta_exponent, nu_exponent, "paired_generic_phase_reconstruction"),
         paired_generic_phase_sum,
@@ -1657,6 +1788,9 @@ def verify_quotient_line_spectral_normal_form(
         max_pair_jacobi_product_error,
         max_outer_square_filter_error,
         max_kernel_square_filter_error,
+        max_algebraic_pair_orbit_error,
+        max_pair_diagonal_error,
+        max_generic_diagonal_error,
         max_paired_phase_ratio,
         paired_generic_count,
     )
@@ -2134,6 +2268,9 @@ def main() -> None:
     max_pair_jacobi_product_error = 0.0
     max_outer_square_filter_error = 0.0
     max_kernel_square_filter_error = 0.0
+    max_algebraic_pair_orbit_error = 0.0
+    max_pair_diagonal_error = 0.0
+    max_generic_diagonal_error = 0.0
     max_paired_phase_ratio = 0.0
     max_outer_mellin_piece_ratio = 0.0
     max_outer_mellin_ratio = 0.0
@@ -2345,6 +2482,9 @@ def main() -> None:
             pair_jacobi_product_error,
             outer_square_filter_error,
             kernel_square_filter_error,
+            algebraic_pair_orbit_error,
+            pair_diagonal_error,
+            generic_diagonal_error,
             paired_phase_ratio,
             paired_generic_count,
         ) = verify_quotient_line_spectral_normal_form(
@@ -2479,6 +2619,18 @@ def main() -> None:
             max_kernel_square_filter_error,
             kernel_square_filter_error,
         )
+        max_algebraic_pair_orbit_error = max(
+            max_algebraic_pair_orbit_error,
+            algebraic_pair_orbit_error,
+        )
+        max_pair_diagonal_error = max(
+            max_pair_diagonal_error,
+            pair_diagonal_error,
+        )
+        max_generic_diagonal_error = max(
+            max_generic_diagonal_error,
+            generic_diagonal_error,
+        )
         max_paired_phase_ratio = max(
             max_paired_phase_ratio,
             paired_phase_ratio,
@@ -2576,6 +2728,10 @@ def main() -> None:
         f"max_outer_square_filter_error={max_outer_square_filter_error:.3e}",
         f"max_kernel_square_filter_error="
         f"{max_kernel_square_filter_error:.3e}",
+        f"max_algebraic_pair_orbit_error="
+        f"{max_algebraic_pair_orbit_error:.3e}",
+        f"max_pair_diagonal_error={max_pair_diagonal_error:.3e}",
+        f"max_generic_diagonal_error={max_generic_diagonal_error:.3e}",
         f"max_paired_phase_ratio={max_paired_phase_ratio:.10f}",
         f"max_outer_mellin_piece_ratio={max_outer_mellin_piece_ratio:.10f}",
         f"max_outer_mellin_ratio={max_outer_mellin_ratio:.10f}",
