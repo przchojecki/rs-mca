@@ -1235,6 +1235,109 @@ def quotient_line_collapsed_mobius_transform(
     return total
 
 
+def verify_quotient_line_collapsed_mobius_energy(
+    p: int,
+    table: List[List[complex]],
+) -> Tuple[int, int, float, float, float, float, float]:
+    order = p - 1
+    expected_active = (p - 1) // 2
+    if legendre(-2, p) == -1:
+        expected_active -= 1
+    checked = 0
+    max_parseval_error = 0.0
+    max_energy_ratio = 0.0
+    max_pointwise_ratio = 0.0
+    max_rms_ratio = 0.0
+    max_transform_ratio = 0.0
+    for nu_exponent in range(1, order):
+        nu = table[nu_exponent]
+        active_count = 0
+        energy = 0.0
+        kernels: List[Tuple[int, complex]] = []
+        for r_value in range(1, p):
+            if r_value == (-1) % p:
+                continue
+            denominator = (r_value + 1) % p
+            z_value = (1 - 2 * r_value) * pow(denominator, -1, p) % p
+            nu_argument = (1 - 2 * r_value) * pow(3, -1, p) % p
+            active = (
+                nu_argument != 0
+                and 1 - legendre(-2, p) * legendre(z_value, p) != 0
+            )
+            if active:
+                active_count += 1
+            kernel = quotient_line_collapsed_mobius_kernel(p, r_value, nu)
+            kernels.append((r_value, kernel))
+            energy += abs(kernel) ** 2
+            max_pointwise_ratio = max(
+                max_pointwise_ratio,
+                abs(kernel) / (4 * math.sqrt(p)),
+            )
+            if abs(kernel) > 4 * math.sqrt(p) + TOLERANCE:
+                raise AssertionError(
+                    (
+                        p,
+                        nu_exponent,
+                        r_value,
+                        "collapsed_mobius_kernel_4sqrt",
+                        kernel,
+                    )
+                )
+        if active_count != expected_active:
+            raise AssertionError(
+                (
+                    p,
+                    nu_exponent,
+                    "collapsed_mobius_active_count",
+                    active_count,
+                    expected_active,
+                )
+            )
+        energy_bound = 16 * p * expected_active
+        max_energy_ratio = max(max_energy_ratio, energy / energy_bound)
+        if energy > energy_bound + 100 * TOLERANCE:
+            raise AssertionError(
+                (
+                    p,
+                    nu_exponent,
+                    "collapsed_mobius_energy_bound",
+                    energy,
+                    energy_bound,
+                )
+            )
+        max_rms_ratio = max(max_rms_ratio, math.sqrt(energy) / p)
+        parseval_sum = 0.0
+        for eta in table:
+            transform = sum(
+                eta[r_value] * kernel
+                for r_value, kernel in kernels
+            )
+            parseval_sum += abs(transform) ** 2
+            max_transform_ratio = max(max_transform_ratio, abs(transform) / p)
+        parseval_error = abs(parseval_sum - order * energy)
+        max_parseval_error = max(max_parseval_error, parseval_error)
+        if parseval_error > 100 * TOLERANCE:
+            raise AssertionError(
+                (
+                    p,
+                    nu_exponent,
+                    "collapsed_mobius_parseval",
+                    parseval_sum,
+                    order * energy,
+                )
+            )
+        checked += order
+    return (
+        checked,
+        expected_active,
+        max_parseval_error,
+        max_energy_ratio,
+        max_pointwise_ratio,
+        max_rms_ratio,
+        max_transform_ratio,
+    )
+
+
 def quotient_line_collapsed_inner_trace(
     p: int,
     z_value: int,
@@ -2795,6 +2898,9 @@ def main() -> None:
     collapsed_inner_spectrum_checked: List[
         Tuple[int, int, float, float, float, float, float, float, int, int, int]
     ] = []
+    collapsed_mobius_energy_checked: List[
+        Tuple[int, int, int, float, float, float, float, float]
+    ] = []
     twisted_line_kernel_moment_checked: List[Tuple[int, int, float, float]] = []
     twisted_line_fiber_checked = 0
     quotient_spectral_checked = 0
@@ -2928,6 +3034,27 @@ def main() -> None:
                     inner_p_size_count,
                     inner_sqrt_size_count,
                     inner_unit_size_count,
+                )
+            )
+            (
+                mobius_energy_count,
+                mobius_active_count,
+                max_mobius_parseval_error,
+                max_mobius_energy_ratio,
+                max_mobius_pointwise_ratio,
+                max_mobius_rms_ratio,
+                max_mobius_transform_ratio,
+            ) = verify_quotient_line_collapsed_mobius_energy(p, tables[p])
+            collapsed_mobius_energy_checked.append(
+                (
+                    p,
+                    mobius_energy_count,
+                    mobius_active_count,
+                    round(max_mobius_parseval_error, 9),
+                    round(max_mobius_energy_ratio, 10),
+                    round(max_mobius_pointwise_ratio, 10),
+                    round(max_mobius_rms_ratio, 10),
+                    round(max_mobius_transform_ratio, 10),
                 )
             )
             (
@@ -3343,6 +3470,8 @@ def main() -> None:
         f"{quotient_line_mellin_magnitude_checked}",
         f"collapsed_inner_spectrum_checked="
         f"{collapsed_inner_spectrum_checked}",
+        f"collapsed_mobius_energy_checked="
+        f"{collapsed_mobius_energy_checked}",
         f"quotient_spectral_checked={quotient_spectral_checked}",
         f"exceptional_theta_checked={exceptional_theta_checked}",
         f"generic_theta_checked={generic_theta_checked}",

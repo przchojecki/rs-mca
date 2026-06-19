@@ -29,6 +29,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-19 - M1 collapsed Mellin average bound
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/m1_depth_two_line_conic_resonance_reduction.md`,
+  `experimental/verify_m1_depth_two_line_conic_resonance_reduction.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** Proves an `eta`-average p-scale bound for the
+  normalized trace `Phi_nu`: the active support has size `(p-1)/2` or
+  `(p-3)/2`, `|Phi_nu(r)| <= 4sqrt(p)`, and Parseval gives RMS at most
+  `sqrt(8p(p-1))`.
+- **How it is useful:** Shows the remaining collapsed rank-two obstruction is
+  not average mass in the Mellin aspect; only a uniform pointwise
+  Mellin-coefficient bound remains.
+- **What to do next:** Prove the pointwise conductor estimate for the
+  exceptional Mellin coefficients of `Phi_nu`.
+
 ### 2026-06-19 - M1 collapsed Mellin normalization
 
 - **Agent/model:** Codex.

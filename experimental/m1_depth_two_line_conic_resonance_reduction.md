@@ -1542,8 +1542,45 @@ outside the Mellin torus, and `r=-1` is the missing value corresponding to
 `z=infinity`.
 
 The remaining p-scale theorem is therefore a uniform Mellin-transform bound
-for the `nu`-dependent trace `Phi_nu`.  Equivalently, split the
-square-class gate:
+for the `nu`-dependent trace `Phi_nu`.
+
+There is already an average p-scale theorem in the `eta` aspect.  The active
+`r`-support of `Phi_nu` has size
+
+```text
+A_p = (p-1)/2,  chi_2(-2)=1,
+A_p = (p-3)/2,  chi_2(-2)=-1,
+```
+
+because the square-class gate selects `chi_2(z)=-chi_2(-2)`, the point
+`z=0` is killed by the `nu(z/(z+2))` factor, and the selected point `z=1`
+is outside the Mellin torus exactly when `chi_2(-2)=-1`.  On this active
+support the pointwise inner bound gives
+
+```text
+|Phi_nu(r)| <= 4sqrt(p),
+```
+
+so
+
+```text
+E_nu := sum_{r in F_p^*} |Phi_nu(r)|^2
+  <= 16p A_p
+  <= 8p(p-1).
+```
+
+By Parseval on `F_p^*`,
+
+```text
+1/(p-1) sum_eta |sum_r eta(r)Phi_nu(r)|^2 = E_nu.
+```
+
+Thus the remaining rank-two transform is already `O(p)` in RMS over
+`eta`, with RMS at most `sqrt(8p(p-1)) < 2sqrt(2)p`.  The missing theorem is
+not an average-mass statement; it is a uniform pointwise Mellin-coefficient
+bound for this explicit trace.
+
+Equivalently, split the square-class gate:
 
 ```text
 W_{eta,nu}
