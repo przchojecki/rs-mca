@@ -29,6 +29,23 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-19 - M1 line-conic pullback descent
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/m1_depth_two_line_conic_resonance_reduction.md`,
+  `experimental/verify_m1_depth_two_line_conic_resonance_reduction.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** Proves the finite-field descent identity
+  `P_{eta,nu}=C_{eta,nu}+C^quad_{eta,nu}-eta(-3)G_nu(3)` for the
+  `lambda`-pullback trace.
+- **How it is useful:** Clarifies exactly what the hypergeometric pullback
+  controls: the split-projected combination of the core and its quadratic
+  discriminant twist, up to the already evaluated `y=3` Jacobi term.
+- **What to do next:** Control the companion quadratic twist or descend the
+  quadratic pushforward sheaf without square-root loss.
+
 ### 2026-06-19 - M1 line-conic twist nontriviality
 
 - **Agent/model:** Codex.

@@ -428,6 +428,42 @@ def verify_lambda_twist_divisor(p: int) -> Tuple[int, int]:
     return finite_support_count, finite_support_count + 1
 
 
+def lambda_pullback_sum(
+    p: int,
+    eta: List[complex],
+    nu: List[complex],
+) -> complex:
+    total = 0j
+    for parameter in range(p):
+        denominator = lambda_denominator(parameter, p)
+        if denominator == 0:
+            continue
+        y = lambda_outer_numerator(parameter, p) * pow(denominator, -1, p) % p
+        root_plus = (-8 * (1 + parameter) * pow(denominator, -1, p)) % p
+        total += (
+            eta[(-y) % p]
+            * legendre(-3, p)
+            * nu[root_plus]
+            * hypergeometric_fiber_trace(p, parameter, nu)
+        )
+    return total
+
+
+def quadratic_twisted_core(
+    p: int,
+    eta: List[complex],
+    nu: List[complex],
+) -> complex:
+    total = 0j
+    for y in range(p):
+        total += (
+            legendre((y - 2) * (y + 1), p)
+            * eta[(-y) % p]
+            * transformed_inner(p, y, nu)
+        )
+    return total
+
+
 def core_collision_formula(p: int) -> int:
     return (
         2 * p * p
@@ -767,6 +803,7 @@ def main() -> None:
     checked_fibers = 0
     checked_open_decompositions = 0
     max_difference = 0.0
+    max_pullback_difference = 0.0
     max_core_ratio = 0.0
     max_open_ratio = 0.0
     max_line_ratio = 0.0
@@ -808,6 +845,22 @@ def main() -> None:
         transformed = transformed_core(p, eta, nu)
         assert_close((p, eta_exponent, nu_exponent, "core"), direct, transformed)
         max_difference = max(max_difference, abs(direct - transformed))
+        pulled_back = lambda_pullback_sum(p, eta, nu)
+        twisted_core = quadratic_twisted_core(p, eta, nu)
+        pullback_expected = (
+            transformed
+            + twisted_core
+            - eta[(-3) % p] * transformed_inner(p, 3 % p, nu)
+        )
+        assert_close(
+            (p, eta_exponent, nu_exponent, "lambda_pullback_descent"),
+            pulled_back,
+            pullback_expected,
+        )
+        max_pullback_difference = max(
+            max_pullback_difference,
+            abs(pulled_back - pullback_expected),
+        )
         core_ratio = abs(direct) / p
         if core_ratio > max_core_ratio:
             max_core_ratio = core_ratio
@@ -843,6 +896,7 @@ def main() -> None:
         f"fibers={checked_fibers}",
         f"open_decompositions={checked_open_decompositions}",
         f"max_difference={max_difference:.3e}",
+        f"max_pullback_difference={max_pullback_difference:.3e}",
         f"max_core_ratio={max_core_ratio:.10f}@{max_core_label}",
         f"max_open_ratio={max_open_ratio:.10f}@{max_open_label}",
         f"max_line_ratio={max_line_ratio:.10f}@{max_line_label}",

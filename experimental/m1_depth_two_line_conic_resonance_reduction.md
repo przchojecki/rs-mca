@@ -350,6 +350,45 @@ character-specialization shortcut; the only possible savings must come from
 the hypergeometric local table, the quadratic pushforward structure, or
 global cancellation.
 
+## Finite-Field Pullback Descent
+
+The `lambda`-pullback controls the split projection of the original core,
+not the original core by itself.  Define the quadratic discriminant twist
+
+```text
+C^quad_{eta,nu}
+  = sum_y chi_2((y-2)(y+1)) eta(-y) G_nu(y),
+```
+
+and the finite `lambda`-pullback trace
+
+```text
+P_{eta,nu}
+  = sum_{3lambda^2+10lambda+3 != 0}
+      eta(-y(lambda)) chi_2(-3) nu(r_+(lambda)) H_nu(lambda).
+```
+
+Then
+
+```text
+P_{eta,nu}
+  = C_{eta,nu} + C^quad_{eta,nu} - eta(-3)G_nu(3).
+```
+
+Indeed, away from `y=infinity`, the map `lambda -> y` has
+`1+chi_2((y-2)(y+1))` finite preimages, except at `y=3`: one preimage is
+`lambda=0` and the other is `lambda=infinity`, outside the finite
+`lambda`-sum and outside the affine hypergeometric chart.  The branch values
+`y=-1,2` have one finite preimage and are counted correctly, while `y=0`
+contributes zero because `eta(0)=0`.  Summing the split-fiber identity over
+finite `lambda` therefore gives the displayed descent formula.
+
+This identity is a useful guardrail: a conductor bound for the pulled-back
+hypergeometric trace gives a bound for the split-projected combination
+`C+C^quad`, up to the already evaluated `y=3` Jacobi term.  A complete proof
+of the original `4p` target still has to control the companion quadratic
+twist or descend the pushforward sheaf without losing a square-root factor.
+
 ## Open-Set Line Correction
 
 For the actual two-coordinate open sum, the principal coordinate line
