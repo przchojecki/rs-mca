@@ -29,6 +29,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-19 - M1 collapsed selected-energy bound
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/m1_depth_two_line_conic_resonance_reduction.md`,
+  `experimental/verify_m1_depth_two_line_conic_resonance_reduction.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** Proves a quadratic-twisted energy bound for the
+  collapsed inner trace: `|sum_z chi_2(z)|L_nu(z)|^2| <= p` when
+  `nu(-1)=-1` and `<=3p` when `nu(-1)=1`.  Consequently the selected
+  square-class energy of the normalized collapsed trace is at most `2p^2-2`.
+- **How it is useful:** Sharpens the eta-average ceiling for the remaining
+  collapsed rank-two Mellin coefficients from `<2p` to `<sqrt(2)p`, so any
+  pointwise obstruction is provably sparse in the Mellin aspect.
+- **What to do next:** Use this sharper selected-energy ledger to guide the
+  final pointwise conductor estimate for the collapsed rank-two transform.
+
 ### 2026-06-19 - M1 collapsed four-p shortcut obstruction
 
 - **Agent/model:** Codex.

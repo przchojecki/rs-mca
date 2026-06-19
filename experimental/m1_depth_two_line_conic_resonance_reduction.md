@@ -1594,6 +1594,78 @@ Thus the remaining rank-two transform is already `O(p)` in RMS over
 average-mass statement; it is a uniform pointwise Mellin-coefficient bound
 for this explicit trace.
 
+The selected square-class energy has a sharper parity refinement.  Let
+
+```text
+Q_nu = sum_{z in F_p^*} chi_2(z)|L_nu(z)|^2.
+```
+
+Then
+
+```text
+|Q_nu| <= p,        nu(-1)=-1,
+|Q_nu| <= 3p,       nu(-1)= 1.
+```
+
+Here is the proof.  Write
+
+```text
+B(t)=sum_w chi_2(w(1+w)(1+t^2 w)).
+```
+
+Expanding `Q_nu`, setting `y=ts` for `s != 0`, and using the correlation
+
+```text
+sum_s nu(1-ts)nu^(-1)(1-s)
+  = p-1,        t=1,
+  = -nu(t),     t != 1,
+```
+
+with the `s=0` term removed gives
+
+```text
+Q_nu = chi_2(8)(pB(1)-T_nu),
+T_nu = sum_t nu(t)B(t).
+```
+
+The two elementary identities used here are
+
+```text
+B(1)=-chi_2(-1),        sum_t B(t)=1.
+```
+
+Since `B(t)=B(-t)`, the term `T_nu` vanishes when `nu(-1)=-1`; hence
+`|Q_nu|=p` in the odd case.  If `nu(-1)=1`, choose a character `alpha` with
+`alpha^2=nu`.  Interchanging the `t` and `w` sums and evaluating the two
+quadratic fibers gives
+
+```text
+T_nu = chi_2(-1)(
+  J(alpha,chi_2)J(alpha^(-1)chi_2,chi_2)
+  + J(alpha chi_2,chi_2)J(alpha^(-1),chi_2)).
+```
+
+Each Jacobi product has absolute value at most `p`, so `|T_nu|<=2p`, and
+therefore `|Q_nu|<=3p`.
+
+Consequently the selected energy satisfies the uniform bound
+
+```text
+E_nu
+ = sum_z (1-chi_2(-2)chi_2(z))^2 |L_nu(z)|^2
+ = 2 sum_z |L_nu(z)|^2 - 2 chi_2(-2)Q_nu
+ <= 2p^2 - 2.
+```
+
+Indeed, when `nu(-1)=-1`, the full energy is `p^2-p-1` and the twisted
+term costs at most `2p`; when `nu(-1)=1`, the full energy is `p^2-3p-1`
+and the twisted term costs at most `6p`.  Parseval on `F_p^*` therefore
+improves the RMS ceiling to
+
+```text
+RMS_eta <= sqrt(2p^2-2) < sqrt(2)p.
+```
+
 The same audit rules out one tempting sharp shortcut.  A standalone `4p`
 pointwise bound for the collapsed rank-two import is false in the checked
 range: at `(p,eta,nu)=(97,13,91)` (exponents relative to the verifier's

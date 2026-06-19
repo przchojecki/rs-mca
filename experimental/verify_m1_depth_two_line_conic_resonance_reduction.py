@@ -1281,10 +1281,53 @@ def quotient_line_collapsed_mobius_transform(
     return total
 
 
+def collapsed_quadratic_l_energy_formula(
+    p: int,
+    nu_exponent: int,
+    table: List[List[complex]],
+) -> Tuple[complex, float]:
+    order = p - 1
+    quadratic_exponent = order // 2
+    quadratic = table[quadratic_exponent]
+    b_one = -legendre(-1, p)
+    if nu_exponent % 2 == 1:
+        return legendre(8, p) * p * b_one, float(p)
+
+    alpha_exponent = nu_exponent // 2
+    alpha = table[alpha_exponent]
+    alpha_inverse = table[(-alpha_exponent) % order]
+    alpha_quadratic = table[(alpha_exponent + quadratic_exponent) % order]
+    alpha_inverse_quadratic = table[
+        (-alpha_exponent + quadratic_exponent) % order
+    ]
+    t_transform = legendre(-1, p) * (
+        jacobi_sum(p, alpha, quadratic)
+        * jacobi_sum(p, alpha_inverse_quadratic, quadratic)
+        + jacobi_sum(p, alpha_quadratic, quadratic)
+        * jacobi_sum(p, alpha_inverse, quadratic)
+    )
+    return legendre(8, p) * (p * b_one - t_transform), 3.0 * p
+
+
 def verify_quotient_line_collapsed_mobius_energy(
     p: int,
     table: List[List[complex]],
-) -> Tuple[int, int, float, float, float, float, float, float, float, float]:
+) -> Tuple[
+    int,
+    int,
+    float,
+    float,
+    float,
+    float,
+    float,
+    float,
+    float,
+    float,
+    float,
+    float,
+    float,
+    float,
+]:
     order = p - 1
     expected_active = (p - 1) // 2
     if legendre(-2, p) == -1:
@@ -1297,6 +1340,10 @@ def verify_quotient_line_collapsed_mobius_energy(
     max_full_energy_error = 0.0
     max_sharp_energy_ratio = 0.0
     max_sharp_bound_rms_ratio = 0.0
+    max_quadratic_energy_error = 0.0
+    max_quadratic_energy_ratio = 0.0
+    max_selected_energy_ratio = 0.0
+    max_selected_bound_rms_ratio = 0.0
     max_transform_ratio = 0.0
     for nu_exponent in range(1, order):
         nu = table[nu_exponent]
@@ -1363,6 +1410,35 @@ def verify_quotient_line_collapsed_mobius_energy(
                     expected_full_l_energy,
                 )
             )
+        quadratic_l_energy = sum(
+            legendre(z_value, p)
+            * abs(quotient_line_collapsed_inner_trace(p, z_value, nu) + 1) ** 2
+            for z_value in range(1, p)
+        )
+        expected_quadratic_l_energy, quadratic_energy_bound = (
+            collapsed_quadratic_l_energy_formula(p, nu_exponent, table)
+        )
+        quadratic_energy_error = abs(
+            quadratic_l_energy - expected_quadratic_l_energy
+        )
+        max_quadratic_energy_error = max(
+            max_quadratic_energy_error,
+            quadratic_energy_error,
+        )
+        max_quadratic_energy_ratio = max(
+            max_quadratic_energy_ratio,
+            abs(quadratic_l_energy) / quadratic_energy_bound,
+        )
+        if quadratic_energy_error > 100 * TOLERANCE:
+            raise AssertionError(
+                (
+                    p,
+                    nu_exponent,
+                    "collapsed_mobius_quadratic_l_energy",
+                    quadratic_l_energy,
+                    expected_quadratic_l_energy,
+                )
+            )
         energy_bound = 16 * p * expected_active
         max_energy_ratio = max(max_energy_ratio, energy / energy_bound)
         if energy > energy_bound + 100 * TOLERANCE:
@@ -1392,6 +1468,25 @@ def verify_quotient_line_collapsed_mobius_energy(
                     "collapsed_mobius_sharp_energy_bound",
                     energy,
                     sharp_energy_bound,
+                )
+            )
+        selected_energy_bound = 2 * p * p - 2
+        max_selected_energy_ratio = max(
+            max_selected_energy_ratio,
+            energy / selected_energy_bound,
+        )
+        max_selected_bound_rms_ratio = max(
+            max_selected_bound_rms_ratio,
+            math.sqrt(selected_energy_bound) / p,
+        )
+        if energy > selected_energy_bound + 100 * TOLERANCE:
+            raise AssertionError(
+                (
+                    p,
+                    nu_exponent,
+                    "collapsed_mobius_selected_energy_bound",
+                    energy,
+                    selected_energy_bound,
                 )
             )
         max_rms_ratio = max(max_rms_ratio, math.sqrt(energy) / p)
@@ -1426,6 +1521,10 @@ def verify_quotient_line_collapsed_mobius_energy(
         max_full_energy_error,
         max_sharp_energy_ratio,
         max_sharp_bound_rms_ratio,
+        max_quadratic_energy_error,
+        max_quadratic_energy_ratio,
+        max_selected_energy_ratio,
+        max_selected_bound_rms_ratio,
         max_transform_ratio,
     )
 
@@ -3002,7 +3101,21 @@ def main() -> None:
     ] = []
     collapsed_mobius_energy_checked: List[
         Tuple[
-            int, int, int, float, float, float, float, float, float, float, float
+            int,
+            int,
+            int,
+            float,
+            float,
+            float,
+            float,
+            float,
+            float,
+            float,
+            float,
+            float,
+            float,
+            float,
+            float,
         ]
     ] = []
     twisted_line_kernel_moment_checked: List[Tuple[int, int, float, float]] = []
@@ -3153,6 +3266,10 @@ def main() -> None:
                 max_mobius_full_energy_error,
                 max_mobius_sharp_energy_ratio,
                 max_mobius_sharp_bound_rms_ratio,
+                max_mobius_quadratic_energy_error,
+                max_mobius_quadratic_energy_ratio,
+                max_mobius_selected_energy_ratio,
+                max_mobius_selected_bound_rms_ratio,
                 max_mobius_transform_ratio,
             ) = verify_quotient_line_collapsed_mobius_energy(p, tables[p])
             collapsed_mobius_energy_checked.append(
@@ -3167,6 +3284,10 @@ def main() -> None:
                     round(max_mobius_full_energy_error, 9),
                     round(max_mobius_sharp_energy_ratio, 10),
                     round(max_mobius_sharp_bound_rms_ratio, 10),
+                    round(max_mobius_quadratic_energy_error, 9),
+                    round(max_mobius_quadratic_energy_ratio, 10),
+                    round(max_mobius_selected_energy_ratio, 10),
+                    round(max_mobius_selected_bound_rms_ratio, 10),
                     round(max_mobius_transform_ratio, 10),
                 )
             )
