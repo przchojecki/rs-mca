@@ -4440,7 +4440,7 @@ def weighted_projective_singular_matrix_audit(
     suborder: int,
     logs: Dict[int, int],
     projective_error: int,
-) -> Tuple[int, float, float, float]:
+) -> Tuple[int, float, float, float, float]:
     matrix = [[0 for _ in range(suborder)] for _ in range(suborder)]
     for alpha in range(1, p):
         alpha_label = logs[alpha] % suborder
@@ -4497,11 +4497,39 @@ def weighted_projective_singular_matrix_audit(
     if abs(projective_error) > cauchy_bound + 1000 * TOLERANCE:
         raise AssertionError((p, suborder, projective_error, cauchy_bound))
     bound_ratio = abs(projective_error) / cauchy_bound if cauchy_bound else 0.0
+
+    spectral_sum = 0j
+    spectral_energy = 0.0
+    max_spectral_ratio = 0.0
+    root = cmath.exp(2j * math.pi / suborder)
+    for left_character in range(1, suborder):
+        for right_character in range(1, suborder):
+            coefficient = 0j
+            for left in range(suborder):
+                for right in range(suborder):
+                    coefficient += matrix[left][right] * root ** (
+                        left_character * left
+                        + right_character * right
+                    )
+            spectral_sum += coefficient
+            spectral_energy += abs(coefficient) ** 2
+            max_spectral_ratio = max(max_spectral_ratio, abs(coefficient) / p)
+    if abs(spectral_sum.real - weighted_units) > 1000 * TOLERANCE:
+        raise AssertionError((p, suborder, spectral_sum, weighted_units))
+    if abs(spectral_sum.imag) > 1000 * TOLERANCE:
+        raise AssertionError((p, suborder, spectral_sum))
+    if abs(spectral_energy / (suborder * suborder) - centered_frobenius_sq) > (
+        1000 * TOLERANCE
+    ):
+        raise AssertionError(
+            (p, suborder, spectral_energy, centered_frobenius_sq)
+        )
     return (
         weighted_units,
         round(centered_frobenius / p, 10),
         round(max_entry_ratio, 10),
         round(bound_ratio, 10),
+        round(max_spectral_ratio, 10),
     )
 
 
@@ -4520,7 +4548,7 @@ def verify_weighted_projective_decomposition() -> List[
         Tuple[int, int, Tuple[int, float]],
         Tuple[int, int, int, float],
         Tuple[float, float],
-        Tuple[int, float, float, float],
+        Tuple[int, float, float, float, float],
     ]
 ]:
     checked: List[
@@ -4538,7 +4566,7 @@ def verify_weighted_projective_decomposition() -> List[
             Tuple[int, int, Tuple[int, float]],
             Tuple[int, int, int, float],
             Tuple[float, float],
-            Tuple[int, float, float, float],
+            Tuple[int, float, float, float, float],
         ]
     ] = []
     for p, suborder in RATIO_SURFACE_CASES:

@@ -3057,6 +3057,37 @@ bilinear identity for `P_e`, and the Frobenius Cauchy reduction.  On the
 current grid the normalized centered Frobenius ratios are small constants,
 which is consistent with the linear-in-`p` target but is not a proof of it.
 
+Equivalently, this is a two-dimensional quotient-character trace problem.
+For nontrivial characters `psi,phi` of `F_p^*/K_e`, set
+
+```text
+S_{psi,phi}
+  = sum_{Delta(alpha,beta,r)=0}
+      epsilon(alpha,beta,r) psi(alpha) phi(beta).
+```
+
+The row and column projections of `Gamma_e` disappear exactly when
+`psi` and `phi` are both nontrivial.  Parseval gives
+
+```text
+||Gamma_e^circ||_F^2
+  = e^{-2} sum_{psi,phi != 1} |S_{psi,phi}|^2,
+```
+
+and the special weight `w=e 1_{K_e}-1` has all nontrivial Fourier
+coefficients equal to `e`, so
+
+```text
+P_e/p = sum_{psi,phi != 1} S_{psi,phi}.
+```
+
+Thus the fixed-index `P_e=O(p^2)` theorem would follow from the standard
+looking trace estimate `|S_{psi,phi}| <= C_e p` for the signed determinant
+surface, or even from the averaged square bound
+`sum |S_{psi,phi}|^2 <= C_e p^2`.  The verifier checks these Fourier
+normalizations against the same quotient matrix and reports the largest
+normalized spectral coefficient on the audited grid.
+
 ## Principal-Row Leakage
 
 The principal rows excluded above have exact formulas.  They explain why the

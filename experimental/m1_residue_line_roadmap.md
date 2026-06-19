@@ -145,7 +145,9 @@ should be revised as the project learns more.
    `P_e=p w^T Gamma_e w`, where `Gamma_e` is the `e x e` quotient-label
    matrix of signed projective singular excesses; since `sum w=0`, only
    the row/column-centered matrix `Gamma_e^circ` matters, and it is enough
-   to prove `||Gamma_e^circ||_F <= C_e p`.
+   to prove `||Gamma_e^circ||_F <= C_e p`.  Equivalently, prove an averaged
+   square bound for the nonprincipal determinant-surface traces
+   `S_{psi,phi}=sum_{Delta=0} epsilon psi(alpha)phi(beta)`.
    The updated remaining-wall scan reports this asymmetric wall separately:
    in the current report grid the largest asymmetric ratio is
    `3.2173609608p`, while every near-`4p` top row lies in the projective

@@ -29,6 +29,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-19 - M1 singular-excess trace formulation
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/m1_depth_two_line_conic_resonance_reduction.md`,
+  `experimental/verify_m1_depth_two_line_conic_resonance_reduction.py`,
+  `experimental/m1_residue_line_roadmap.md`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** Gives the Fourier form of the singular-excess
+  matrix: for nonprincipal quotient characters,
+  `S_{psi,phi}=sum_{Delta=0} epsilon psi(alpha)phi(beta)`, with
+  `||Gamma_e^circ||_F^2=e^{-2}sum|S_{psi,phi}|^2` and
+  `P_e/p=sum S_{psi,phi}`.
+- **How it is useful:** Restates the final M1 quotient-conic obstacle as a
+  concrete determinant-surface trace estimate or averaged square bound.
+- **What to do next:** Prove `sum|S_{psi,phi}|^2 <= C_e p^2` or an
+  equivalent fixed-index conductor bound for the determinant-surface trace.
+
 ### 2026-06-19 - M1 singular-excess matrix reduction
 
 - **Agent/model:** Codex.
