@@ -29,6 +29,26 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-19 - M1 surviving boundary solved-alpha formulas
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/m1_depth_two_line_conic_resonance_reduction.md`,
+  `experimental/verify_m1_depth_two_line_conic_resonance_reduction.py`,
+  `experimental/m1_residue_line_roadmap.md`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** Gives explicit solved-alpha formulas for the three
+  surviving weighted boundary pieces: infinity (`[1:s:0]` and `[0:1:0]`),
+  source line (`v=-1-u`), and target line (`v=(-1-ru)/beta`).  The verifier
+  evaluates these formulas and checks that they match the corresponding
+  entries of the signed boundary partition in the audited cases.
+- **How it is useful:** Converts the remaining boundary obstruction from a
+  geometric deletion ledger into three concrete one-dimensional weighted sums.
+- **What to do next:** Prove cancellation bounds for the three solved-alpha
+  sums, starting with the infinity piece because it has the cleanest
+  projective-slope parametrization.
+
 ### 2026-06-19 - M1 boundary vanishing in quotient-conic split
 
 - **Agent/model:** Codex.

@@ -119,7 +119,9 @@ should be revised as the project learns more.
    infinity, coordinate, source/target line, and source/target `A=0` pieces;
    the coordinate and `A=0` pieces vanish by mean-zero weights and the
    identity `A(ru,beta v)=alpha r A(u,v)`, leaving only infinity and the two
-   line-deletion terms.
+   line-deletion terms.  These three survivors now have direct solved-alpha
+   formulas: infinity over projective slopes, source line with `v=-1-u`, and
+   target line with `v=(-1-ru)/beta`.
    The updated remaining-wall scan reports this asymmetric wall separately:
    in the current report grid the largest asymmetric ratio is
    `3.2173609608p`, while every near-`4p` top row lies in the projective

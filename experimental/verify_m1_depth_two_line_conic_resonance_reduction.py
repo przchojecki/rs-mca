@@ -3904,6 +3904,131 @@ def weighted_boundary_partition_sum(
     return tuple(totals[label] for label in BOUNDARY_LABELS)
 
 
+def add_solved_alpha_weight(
+    p: int,
+    suborder: int,
+    logs: Dict[int, int],
+    beta: int,
+    numerator: int,
+    denominator: int,
+) -> int:
+    numerator %= p
+    denominator %= p
+    if denominator == 0:
+        return 0
+    alpha = numerator * pow(denominator, -1, p) % p
+    if alpha == 0:
+        return 0
+    return (
+        quotient_centering_weight(p, suborder, logs, alpha)
+        * quotient_centering_weight(p, suborder, logs, beta)
+    )
+
+
+def weighted_infinity_formula_sum(
+    p: int,
+    suborder: int,
+    logs: Dict[int, int],
+) -> int:
+    total = 0
+    for beta in range(1, p):
+        beta_weight = quotient_centering_weight(p, suborder, logs, beta)
+        for ratio in range(1, p):
+            for slope in range(p):
+                numerator = (
+                    ratio * ratio
+                    + ratio * beta * slope
+                    + beta * beta * slope * slope
+                )
+                denominator = ratio * shape_b(slope, p)
+                total += add_solved_alpha_weight(
+                    p,
+                    suborder,
+                    logs,
+                    beta,
+                    numerator,
+                    denominator,
+                )
+            alpha = beta * beta * pow(ratio, -1, p) % p
+            total += (
+                quotient_centering_weight(p, suborder, logs, alpha)
+                * beta_weight
+            )
+    return total
+
+
+def weighted_source_line_formula_sum(
+    p: int,
+    suborder: int,
+    logs: Dict[int, int],
+) -> int:
+    total = 0
+    for beta in range(1, p):
+        for ratio in range(1, p):
+            for u in range(1, p):
+                v = (-1 - u) % p
+                if v == 0:
+                    continue
+                numerator = (
+                    ratio * ratio * u * u
+                    + ratio * (beta * v + 1) * u
+                    + shape_b(beta * v % p, p)
+                )
+                denominator = ratio * shape_b(u, p)
+                total += add_solved_alpha_weight(
+                    p,
+                    suborder,
+                    logs,
+                    beta,
+                    numerator,
+                    denominator,
+                )
+    return total
+
+
+def weighted_target_line_formula_sum(
+    p: int,
+    suborder: int,
+    logs: Dict[int, int],
+) -> int:
+    total = 0
+    for beta in range(1, p):
+        inverse_beta = pow(beta, -1, p)
+        for ratio in range(1, p):
+            for u in range(1, p):
+                v = (-1 - ratio * u) * inverse_beta % p
+                if ratio_surface_boundary_label(p, beta, ratio, u, v) != (
+                    "target_line"
+                ):
+                    continue
+                constant = ratio_surface_affine_value(p, 0, beta, ratio, u, v)
+                linear = (
+                    ratio_surface_affine_value(p, 1, beta, ratio, u, v)
+                    - constant
+                ) % p
+                total += add_solved_alpha_weight(
+                    p,
+                    suborder,
+                    logs,
+                    beta,
+                    -constant,
+                    linear,
+                )
+    return total
+
+
+def weighted_surviving_boundary_formula_sums(
+    p: int,
+    suborder: int,
+    logs: Dict[int, int],
+) -> Tuple[int, int, int]:
+    return (
+        weighted_infinity_formula_sum(p, suborder, logs),
+        weighted_source_line_formula_sum(p, suborder, logs),
+        weighted_target_line_formula_sum(p, suborder, logs),
+    )
+
+
 def weighted_projective_error_sum(
     p: int,
     suborder: int,
@@ -3968,6 +4093,18 @@ def verify_weighted_projective_decomposition() -> List[
             value = boundary_parts[BOUNDARY_LABELS.index(label)]
             if value != 0:
                 raise AssertionError((p, suborder, label, value))
+        surviving_formulas = weighted_surviving_boundary_formula_sums(
+            p,
+            suborder,
+            logs,
+        )
+        expected_survivors = (
+            boundary_parts[BOUNDARY_LABELS.index("infinity")],
+            boundary_parts[BOUNDARY_LABELS.index("source_line")],
+            boundary_parts[BOUNDARY_LABELS.index("target_line")],
+        )
+        if surviving_formulas != expected_survivors:
+            raise AssertionError((p, suborder, surviving_formulas, expected_survivors))
         if zero_conic_count != 1:
             raise AssertionError((p, suborder, zero_conic_count))
         if singular_count > 3 * (p - 1) * (p - 1):

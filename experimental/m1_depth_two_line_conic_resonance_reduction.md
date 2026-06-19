@@ -2757,6 +2757,34 @@ piece in the ordered partition.  Therefore the only boundary components left
 to bound are infinity, the source line, and the target line.  The verifier
 asserts these four vanishings in the audited ratio-surface cases.
 
+The surviving three pieces have one-dimensional formulas.  For infinity,
+write the finite point at infinity as `[1:s:0]`; its equation is
+
+```text
+r^2 + r beta s + beta^2 s^2
+  = alpha r B(s).
+```
+
+The point `[0:1:0]` contributes with `alpha=beta^2/r`.  Thus the infinity
+piece is a weighted sum over `(beta,r,s)`, with `alpha` determined by the
+displayed equation whenever `B(s) != 0`; the `B(s)=0` free-alpha cases vanish
+by `sum_alpha W_e(alpha)=0`.
+
+For the source line put `v=-1-u`, with `u,v != 0`.  Since
+`B(v)=B(u)`, the conic equation becomes
+
+```text
+r^2u^2 + r(beta v+1)u + B(beta v) = alpha r B(u).
+```
+
+Again `alpha` is determined unless `B(u)=0`, and the free-alpha cases vanish.
+For the target line put `v=(-1-ru)/beta` and discard points already assigned
+to earlier boundary pieces.  The remaining conic equation is linear in
+`alpha`, so it gives the third explicit one-dimensional weighted sum.  The
+verifier evaluates these three solved-alpha formulas and checks that they
+match the infinity, source-line, and target-line entries of the boundary
+partition.
+
 ## Principal-Row Leakage
 
 The principal rows excluded above have exact formulas.  They explain why the
