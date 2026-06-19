@@ -3470,6 +3470,53 @@ which is nontrivial.  Therefore the good pushforward has no geometrically
 constant summand in the nonprincipal `phi` rows relevant to the centered
 singular matrix.
 
+The opposite vertical beta boundary is equally controlled.  Write
+`gamma=1/beta`; then the beta equation is
+
+```text
+A_beta + B_beta gamma + C_beta gamma^2 = 0,
+```
+
+so the beta-infinity sheet lies over `A_beta=0`.  At `gamma=0`,
+`phi(beta)=phi(gamma)^(-1)` and
+
+```text
+d_UV(a,beta,r) = gamma^{-2} r(4a-3r) + O(gamma^{-1}),
+```
+
+so the quadratic pole is invisible to `chi` and the generic local monodromy
+is `phi^{-1}`.  The component separations are again explicit:
+
+```text
+Res_a(A_beta, B_beta/(ar))       = -3(r-1)^2(r+1)^2,
+Res_r(A_beta, B_beta/(ar))       = -(a-1)^2(a+2)(3a+1),
+
+Res_a(A_beta, Q_beta)            = -3r^2(r-1)^2(3r^2+4r+3),
+Res_r(A_beta, Q_beta)            =  9a^2(a-1)^2(a+1)^2,
+
+Res_a(A_beta, 4a-3r)             = -r(3r-2)^2,
+Res_r(A_beta, 4a-3r)             = -3a(2a-1)^2,
+
+Res_a(A_beta, M)                 = -3r^2(r-1)^2(r+1)^2,
+Res_r(A_beta, M)                 =  a^2(a-1)^2(3a+1)^2,
+
+Res_a(A_beta, H)                 = -18r^2(r-1)^2(r+1)^2,
+Res_r(A_beta, H)                 =  9a^2(a-1)^2(a+2)^2,
+
+Res_a(A_beta, a-r)               =  r(r-1),
+Res_r(A_beta, a-r)               =  a(a-1),
+
+Res_a(A_beta, K_alpha)           =  3r^2(r-1)^2(2r-3)(3r-2),
+Res_r(A_beta, K_alpha)           =  9a^2(a-1)^2(2a-1)^2.
+```
+
+Thus the beta-infinity boundary also has no common component with the
+beta-linear, beta-zero, `U V` leading-coefficient, branch, diagonal, or
+lower-chart divisors.  At its generic point the local monodromy is
+`phi^{-1}`, again nontrivial for the centered rows.  The verifier audits
+these finite intersections in the same root-support style as the beta-zero
+ledger.
+
 Consequently, under the bounded-conductor rank-two beta-pushforward import
 `(BETA_2)` recorded in `m1_kummer_weil_import_contract.md`, the good
 pushforward satisfies

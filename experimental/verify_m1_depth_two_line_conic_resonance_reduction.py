@@ -4615,6 +4615,16 @@ def ratio_surface_uv_discriminant_at_beta_zero(
     return a * r * r * (-3 * a + 4 * r) % p
 
 
+def ratio_surface_uv_discriminant_at_beta_infinity(
+    p: int,
+    alpha: int,
+    ratio: int,
+) -> int:
+    a = alpha
+    r = ratio
+    return r * (4 * a - 3 * r) % p
+
+
 def ratio_surface_branch_m_param(p: int, slope: int) -> Tuple[int, int]:
     denominator = slope * (4 * slope - 3) % p
     if denominator == 0:
@@ -5379,6 +5389,115 @@ def verify_ratio_surface_beta_kummer_conductor_ledger() -> List[
                 beta_linear_intersection,
                 uv_zero_intersection,
                 infinity_intersection,
+                branch_m_intersection,
+                branch_h_intersection,
+                diagonal_intersection,
+                lower_alpha_intersection,
+                formula_checks,
+            )
+        )
+    return checked
+
+
+def verify_ratio_surface_beta_infinity_conductor_ledger() -> List[
+    Tuple[int, int, int, int, int, int, int, int, int, int]
+]:
+    checked: List[Tuple[int, int, int, int, int, int, int, int, int, int]] = []
+    for p in LOWER_CHART_PRIMES:
+        beta_infinity_count = 0
+        beta_linear_intersection = 0
+        beta_zero_intersection = 0
+        uv_infinity_intersection = 0
+        branch_m_intersection = 0
+        branch_h_intersection = 0
+        diagonal_intersection = 0
+        lower_alpha_intersection = 0
+        formula_checks = 0
+        for alpha in range(1, p):
+            for ratio in range(1, p):
+                quadratic, _, _ = ratio_surface_beta_coefficients(
+                    p,
+                    alpha,
+                    ratio,
+                )
+                infinity_uv = ratio_surface_uv_discriminant_at_beta_infinity(
+                    p,
+                    alpha,
+                    ratio,
+                )
+                formula_checks += 1
+                if quadratic != 0:
+                    continue
+                beta_infinity_count += 1
+                if (alpha - 1) * (ratio + 1) % p == 0:
+                    beta_linear_intersection += 1
+                    if (
+                        (ratio - 1) * (ratio + 1) % p != 0
+                        or (alpha - 1) * (alpha + 2) * (3 * alpha + 1) % p
+                        != 0
+                    ):
+                        raise AssertionError((p, alpha, ratio, "B_beta"))
+                if ratio_surface_beta_zero_factor(p, alpha, ratio) == 0:
+                    beta_zero_intersection += 1
+                    if (
+                        (ratio - 1) * (3 * ratio * ratio + 4 * ratio + 3) % p
+                        != 0
+                        or (alpha - 1) * (alpha + 1) % p != 0
+                    ):
+                        raise AssertionError((p, alpha, ratio, "C_beta"))
+                if infinity_uv == 0:
+                    uv_infinity_intersection += 1
+                    if (3 * ratio - 2) % p != 0 or (2 * alpha - 1) % p != 0:
+                        raise AssertionError((p, alpha, ratio, "d_uv_infinity"))
+                if ratio_surface_beta_middle_factor(p, alpha, ratio) == 0:
+                    branch_m_intersection += 1
+                    if (
+                        (ratio - 1) * (ratio + 1) % p != 0
+                        or (alpha - 1) * (3 * alpha + 1) % p != 0
+                    ):
+                        raise AssertionError((p, alpha, ratio, "M"))
+                if ratio_surface_beta_branch_factor(p, alpha, ratio) == 0:
+                    branch_h_intersection += 1
+                    if (
+                        (ratio - 1) * (ratio + 1) % p != 0
+                        or (alpha - 1) * (alpha + 2) % p != 0
+                    ):
+                        raise AssertionError((p, alpha, ratio, "H"))
+                if (alpha - ratio) % p == 0:
+                    diagonal_intersection += 1
+                    if (alpha - 1) % p != 0 or (ratio - 1) % p != 0:
+                        raise AssertionError((p, alpha, ratio, "diagonal"))
+                if ratio_surface_lower_alpha_kernel(p, alpha, ratio) == 0:
+                    lower_alpha_intersection += 1
+                    if (
+                        (ratio - 1)
+                        * (2 * ratio - 3)
+                        * (3 * ratio - 2)
+                        % p
+                        != 0
+                        or (alpha - 1) * (2 * alpha - 1) % p != 0
+                    ):
+                        raise AssertionError((p, alpha, ratio, "K_alpha"))
+        if beta_infinity_count > 2 * (p - 1):
+            raise AssertionError((p, beta_infinity_count))
+        for count in (
+            beta_linear_intersection,
+            beta_zero_intersection,
+            uv_infinity_intersection,
+            branch_m_intersection,
+            branch_h_intersection,
+            diagonal_intersection,
+            lower_alpha_intersection,
+        ):
+            if count > 3:
+                raise AssertionError((p, count))
+        checked.append(
+            (
+                p,
+                beta_infinity_count,
+                beta_linear_intersection,
+                beta_zero_intersection,
+                uv_infinity_intersection,
                 branch_m_intersection,
                 branch_h_intersection,
                 diagonal_intersection,
@@ -6312,6 +6431,9 @@ def main() -> None:
     ratio_surface_beta_kummer_conductor_checked = (
         verify_ratio_surface_beta_kummer_conductor_ledger()
     )
+    ratio_surface_beta_infinity_conductor_checked = (
+        verify_ratio_surface_beta_infinity_conductor_ledger()
+    )
     ratio_surface_beta_ratio_resonance_checked = (
         verify_ratio_surface_beta_ratio_resonance()
     )
@@ -6956,6 +7078,8 @@ def main() -> None:
         f"{ratio_surface_quotient_trace_reduction_checked}",
         f"ratio_surface_beta_kummer_conductor_checked="
         f"{ratio_surface_beta_kummer_conductor_checked}",
+        f"ratio_surface_beta_infinity_conductor_checked="
+        f"{ratio_surface_beta_infinity_conductor_checked}",
         f"ratio_surface_beta_ratio_resonance_checked="
         f"{ratio_surface_beta_ratio_resonance_checked}",
         f"ratio_surface_beta_quotient_energy_checked="

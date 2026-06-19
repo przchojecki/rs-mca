@@ -577,9 +577,15 @@ The elementary hypotheses behind this import are now audited in
 - the deleted lower-chart and exceptional main-chart loci are curve-sized;
 - the beta-zero boundary
   `Q_beta=-2a^2r+3ar^2-ar+3a-3r=0` carries nontrivial local monodromy `phi`;
+- the beta-infinity boundary `A_beta=0` carries nontrivial local monodromy
+  `phi^{-1}`; the quadratic pole of `d_UV` is invisible to `chi`, and the
+  leading coefficient is `r(4a-3r)`;
 - `Q_beta=0` has no common component with `B_beta`, `d_UV`, `A_beta`, `M`,
   `H`, `a-r`, or `K_alpha`, by the explicit resultants recorded in
   `m1_depth_two_line_conic_resonance_reduction.md`;
+- `A_beta=0` has no common component with `B_beta`, `C_beta`, the
+  beta-infinity leading `U V` coefficient, `M`, `H`, `a-r`, or `K_alpha`,
+  by the corresponding explicit resultants recorded there;
 - the verifier checks that the finite intersections lie in those displayed
   resultant root supports.
 

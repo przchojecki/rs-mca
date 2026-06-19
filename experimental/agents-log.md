@@ -29,6 +29,28 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-19 - M1 beta-infinity boundary monodromy audit
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/m1_depth_two_line_conic_resonance_reduction.md`,
+  `experimental/m1_kummer_weil_import_contract.md`,
+  `experimental/verify_m1_depth_two_line_conic_resonance_reduction.py`,
+  `experimental/m1_residue_line_roadmap.md`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** Adds the beta-infinity analogue of the beta-zero
+  boundary ledger.  With `gamma=1/beta`, the infinity sheet lies over
+  `A_beta=0`, has generic local monodromy `phi^{-1}`, and the verifier checks
+  explicit resultants separating it from the beta-linear, beta-zero, `U V`
+  leading-coefficient, branch, diagonal, and lower-chart divisors.
+- **How it is useful:** Strengthens the `(BETA_2)` pushforward audit by showing
+  both vertical beta boundaries carry nontrivial centered-row monodromy; a
+  hidden obstruction cannot be assigned only to beta infinity.
+- **What to do next:** Continue the boundary/conductor audit for the remaining
+  nonvertical divisors, or cite/prove the bounded-conductor beta-pushforward
+  estimate using this completed vertical-boundary ledger.
+
 ### 2026-06-19 - M1 good beta cover is finite etale
 
 - **Agent/model:** Codex.

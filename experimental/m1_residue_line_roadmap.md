@@ -204,6 +204,10 @@ should be revised as the project learns more.
    inequality gives `M_e^o=O_e(p^2)`.  The verifier now checks the
    good/bad singular-trace partition on every nonprincipal quotient
    character pair for the audited quotient orders.
+   The vertical beta-boundary audit has also been doubled: beta zero carries
+   monodromy `phi`, beta infinity carries monodromy `phi^{-1}`, and explicit
+   resultants show both boundaries avoid the beta-linear, sign, branch,
+   diagonal, and lower-chart divisors componentwise.
    The updated remaining-wall scan reports this asymmetric wall separately:
    in the current report grid the largest asymmetric ratio is
    `3.2173609608p`, while every near-`4p` top row lies in the projective
