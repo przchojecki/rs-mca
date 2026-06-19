@@ -3288,7 +3288,7 @@ Thus in the torus, for `p>3`, each branch curve is singular only at
 The verifier checks this directly over the audited prime grid.
 
 The same single point is the whole boundary pile-up for the beta conductor
-ledger.  Blow it up in the affine slope chart
+ledger.  The first affine chart of its blow-up is the finite-slope chart
 
 ```text
 r = 1 + t(a-1).
@@ -3343,6 +3343,58 @@ checks these strict-transform identities, including `C_beta=ar Q_beta`, and
 every displayed pairwise support over the audited primes; the largest
 pairwise intersection count in the affine blow-up chart is `3`, and the
 largest open-torus count is `2`.
+
+The reciprocal chart covers the vertical tangent direction:
+
+```text
+a = 1 + s(r-1).
+```
+
+After removing powers of `r-1`, write
+
+```text
+A_beta = (r-1) Ahat,
+Q_beta = (r-1) Qhat,
+K_alpha = (r-1)^2 Khat,
+a-r = (r-1) Lhat,
+M = (r-1)^2 Mhat,
+H = (r-1)^2 Hhat,
+```
+
+where
+
+```text
+Ahat =  3r^2s^2 - 3r^2s - 3rs^2 + 7rs - 3r - 3s + 3,
+Qhat = -2r^2s^2 + 3r^2s + 2rs^2 - 5rs + 3r + 3s - 3,
+Khat = -rs^2 + 3rs - 3s + 3,
+Lhat =  s - 1,
+Mhat = -3rs^2 + 4rs - 4s + 4,
+Hhat = -8rs^2 + 9rs - 9s + 9.
+```
+
+Eliminating `r`, the nontrivial pairwise supports in this chart are
+
+```text
+Res(Ahat,Qhat) =  3s^3(s-1)(5s^2-10s+6),
+Res(Ahat,Khat) =  3s^2(s-1)(s+1)(2s-3),
+Res(Ahat,Mhat) =  s^2(s-1)(3s-2)^2,
+Res(Ahat,Hhat) =  6s^2(s-1)(2s-3)^2,
+
+Res(Qhat,Khat) = -3s^2(s-2)(s-1)(s+3),
+Res(Qhat,Mhat) =  3s^2(s-2)^2(s-1),
+Res(Qhat,Hhat) =  3s^2(s-1)(4s-3)^2,
+
+Res(Khat,Mhat) = -5s^2(s-1),
+Res(Khat,Hhat) = -15s^2(s-1),
+Res(Mhat,Hhat) = -5s^2(s-1),
+```
+
+and `Lhat=s-1` again meets every other strict transform only at slope
+`s=1`.  The verifier checks the reciprocal strict-transform identities and
+all displayed supports; the largest pairwise intersection count in this
+chart is `4`, and the largest open-torus count is `3`.  Thus the full
+two-chart blow-up has bounded-degree strict transforms and no unresolved
+high-multiplicity boundary component.
 On the good base, the cover is finite etale of degree two: at any beta root,
 `2A_beta beta+B_beta` is nonzero and its square is `D_beta`.  Since the good
 base is an open subset of `G_m^2`, the good beta-cover surface is smooth;

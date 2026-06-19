@@ -4770,6 +4770,69 @@ def ratio_surface_slope_blowup_pair_support(
     return support % p
 
 
+def ratio_surface_reciprocal_blowup_strict_factors(
+    p: int,
+    ratio: int,
+    reciprocal_slope: int,
+) -> Dict[str, int]:
+    r = ratio
+    s = reciprocal_slope
+    return {
+        "A": (
+            3 * r * r * s * s
+            - 3 * r * r * s
+            - 3 * r * s * s
+            + 7 * r * s
+            - 3 * r
+            - 3 * s
+            + 3
+        )
+        % p,
+        "Q": (
+            -2 * r * r * s * s
+            + 3 * r * r * s
+            + 2 * r * s * s
+            - 5 * r * s
+            + 3 * r
+            + 3 * s
+            - 3
+        )
+        % p,
+        "K": (-r * s * s + 3 * r * s - 3 * s + 3) % p,
+        "diag": (s - 1) % p,
+        "M": (-3 * r * s * s + 4 * r * s - 4 * s + 4) % p,
+        "H": (-8 * r * s * s + 9 * r * s - 9 * s + 9) % p,
+    }
+
+
+def ratio_surface_reciprocal_blowup_pair_support(
+    p: int,
+    first: str,
+    second: str,
+    reciprocal_slope: int,
+) -> int:
+    s = reciprocal_slope
+    pair = (first, second)
+    support = {
+        ("A", "Q"): 3 * s * s * s * (s - 1) * (5 * s * s - 10 * s + 6),
+        ("A", "K"): 3 * s * s * (s - 1) * (s + 1) * (2 * s - 3),
+        ("A", "diag"): (s - 1) * (s - 1),
+        ("A", "M"): s * s * (s - 1) * (3 * s - 2) * (3 * s - 2),
+        ("A", "H"): 6 * s * s * (s - 1) * (2 * s - 3) * (2 * s - 3),
+        ("Q", "K"): -3 * s * s * (s - 2) * (s - 1) * (s + 3),
+        ("Q", "diag"): (s - 1) * (s - 1),
+        ("Q", "M"): 3 * s * s * (s - 2) * (s - 2) * (s - 1),
+        ("Q", "H"): 3 * s * s * (s - 1) * (4 * s - 3) * (4 * s - 3),
+        ("K", "diag"): s - 1,
+        ("K", "M"): -5 * s * s * (s - 1),
+        ("K", "H"): -15 * s * s * (s - 1),
+        ("diag", "M"): s - 1,
+        ("diag", "H"): s - 1,
+        ("M", "H"): -5 * s * s * (s - 1),
+    }[pair]
+    return support % p
+
+
 def ratio_surface_branch_m_param(p: int, slope: int) -> Tuple[int, int]:
     denominator = slope * (4 * slope - 3) % p
     if denominator == 0:
@@ -6366,6 +6429,112 @@ def verify_ratio_surface_slope_blowup_boundary_ledger() -> List[
     return checked
 
 
+def verify_ratio_surface_reciprocal_blowup_boundary_ledger() -> List[
+    Tuple[int, int, int, int, int]
+]:
+    pairs = (
+        ("A", "Q"),
+        ("A", "K"),
+        ("A", "diag"),
+        ("A", "M"),
+        ("A", "H"),
+        ("Q", "K"),
+        ("Q", "diag"),
+        ("Q", "M"),
+        ("Q", "H"),
+        ("K", "diag"),
+        ("K", "M"),
+        ("K", "H"),
+        ("diag", "M"),
+        ("diag", "H"),
+        ("M", "H"),
+    )
+    checked: List[Tuple[int, int, int, int, int]] = []
+    for p in LOWER_CHART_PRIMES:
+        identity_checks = 0
+        pair_intersections = 0
+        pair_counts = {pair: 0 for pair in pairs}
+        open_pair_counts = {pair: 0 for pair in pairs}
+        for ratio in range(p):
+            for reciprocal_slope in range(p):
+                alpha = (1 + reciprocal_slope * (ratio - 1)) % p
+                exceptional = (ratio - 1) % p
+                strict = ratio_surface_reciprocal_blowup_strict_factors(
+                    p,
+                    ratio,
+                    reciprocal_slope,
+                )
+                quadratic, _, constant = ratio_surface_beta_coefficients(
+                    p,
+                    alpha,
+                    ratio,
+                )
+                if quadratic != exceptional * strict["A"] % p:
+                    raise AssertionError(
+                        (p, ratio, reciprocal_slope, "A", quadratic)
+                    )
+                if (
+                    ratio_surface_beta_zero_factor(p, alpha, ratio)
+                    != exceptional * strict["Q"] % p
+                ):
+                    raise AssertionError((p, ratio, reciprocal_slope, "Q"))
+                if (
+                    ratio_surface_lower_alpha_kernel(p, alpha, ratio)
+                    != exceptional * exceptional * strict["K"] % p
+                ):
+                    raise AssertionError((p, ratio, reciprocal_slope, "K"))
+                if (alpha - ratio) % p != exceptional * strict["diag"] % p:
+                    raise AssertionError((p, ratio, reciprocal_slope, "diag"))
+                if (
+                    ratio_surface_beta_middle_factor(p, alpha, ratio)
+                    != exceptional * exceptional * strict["M"] % p
+                ):
+                    raise AssertionError((p, ratio, reciprocal_slope, "M"))
+                if (
+                    ratio_surface_beta_branch_factor(p, alpha, ratio)
+                    != exceptional * exceptional * strict["H"] % p
+                ):
+                    raise AssertionError((p, ratio, reciprocal_slope, "H"))
+                if constant != alpha * ratio * (
+                    ratio_surface_beta_zero_factor(p, alpha, ratio)
+                ) % p:
+                    raise AssertionError((p, ratio, reciprocal_slope, "C_beta"))
+                identity_checks += 7
+
+                for pair in pairs:
+                    if strict[pair[0]] != 0 or strict[pair[1]] != 0:
+                        continue
+                    pair_counts[pair] += 1
+                    pair_intersections += 1
+                    if ratio_surface_reciprocal_blowup_pair_support(
+                        p,
+                        pair[0],
+                        pair[1],
+                        reciprocal_slope,
+                    ) != 0:
+                        raise AssertionError(
+                            (p, ratio, reciprocal_slope, pair)
+                        )
+                    if alpha != 0 and ratio != 0:
+                        open_pair_counts[pair] += 1
+        max_pair_count = max(pair_counts.values())
+        max_open_pair_count = max(open_pair_counts.values())
+        if max_pair_count > 4:
+            raise AssertionError((p, pair_counts))
+        if max_open_pair_count > 3:
+            raise AssertionError((p, open_pair_counts))
+        checked.append(
+            (
+                p,
+                identity_checks,
+                pair_intersections,
+                max_pair_count,
+                max_open_pair_count,
+            )
+        )
+    return checked
+
+
 def verify_ratio_surface_lower_chart_collapse() -> List[
     Tuple[int, int, int, int, int, int]
 ]:
@@ -7122,6 +7291,9 @@ def main() -> None:
     ratio_surface_slope_blowup_boundary_checked = (
         verify_ratio_surface_slope_blowup_boundary_ledger()
     )
+    ratio_surface_reciprocal_blowup_boundary_checked = (
+        verify_ratio_surface_reciprocal_blowup_boundary_ledger()
+    )
     ratio_surface_beta_pushforward_checked = (
         verify_ratio_surface_beta_pushforward_trace()
     )
@@ -7789,6 +7961,8 @@ def main() -> None:
         f"{ratio_surface_branch_smoothness_checked}",
         f"ratio_surface_slope_blowup_boundary_checked="
         f"{ratio_surface_slope_blowup_boundary_checked}",
+        f"ratio_surface_reciprocal_blowup_boundary_checked="
+        f"{ratio_surface_reciprocal_blowup_boundary_checked}",
         f"ratio_surface_beta_pushforward_checked="
         f"{ratio_surface_beta_pushforward_checked}",
         f"ratio_surface_exceptional_root_bound_checked="

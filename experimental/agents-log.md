@@ -29,6 +29,27 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-19 - M1 beta blow-up reciprocal chart audited
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/m1_depth_two_line_conic_resonance_reduction.md`,
+  `experimental/m1_kummer_weil_import_contract.md`,
+  `experimental/m1_residue_line_roadmap.md`,
+  `experimental/verify_m1_depth_two_line_conic_resonance_reduction.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** Completes the beta-boundary blow-up ledger with the
+  reciprocal chart `a=1+s(r-1)`.  The verifier checks the strict transforms of
+  `A_beta`, `Q_beta`, `K_alpha`, `a-r`, `M`, and `H`, and audits pairwise
+  intersections against explicit finite resultant supports in this chart.
+- **How it is useful:** Makes the `(BETA_2)` boundary-resolution claim cover
+  the full two-chart blow-up, including the vertical tangent direction missed
+  by the finite-slope chart alone.
+- **What to do next:** Use the completed two-chart boundary ledger when
+  proving or citing the bounded-conductor theorem for the good beta
+  pushforward.
+
 ### 2026-06-19 - M1 beta boundary pile-up resolved by slope blow-up
 
 - **Agent/model:** Codex.
