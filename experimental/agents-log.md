@@ -29,6 +29,26 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-19 - M1 beta blow-up strict transforms are smooth
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/m1_depth_two_line_conic_resonance_reduction.md`,
+  `experimental/m1_kummer_weil_import_contract.md`,
+  `experimental/m1_residue_line_roadmap.md`,
+  `experimental/verify_m1_depth_two_line_conic_resonance_reduction.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** Audits the partial derivatives of the strict
+  transforms in both beta-boundary blow-up charts.  For every audited `p>5`,
+  no strict transform has a singular point; characteristic `5` has only
+  isolated `A_beta`/`Q_beta` strict-transform singularities.
+- **How it is useful:** Strengthens the `(BETA_2)` conductor ledger from
+  finite pairwise boundary support to smooth strict-transform components in
+  the good characteristics.
+- **What to do next:** Use the smooth two-chart boundary ledger in a direct
+  bounded-conductor proof for the good beta pushforward.
+
 ### 2026-06-19 - M1 beta blow-up reciprocal chart audited
 
 - **Agent/model:** Codex.

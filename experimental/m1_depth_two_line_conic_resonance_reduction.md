@@ -3395,6 +3395,17 @@ all displayed supports; the largest pairwise intersection count in this
 chart is `4`, and the largest open-torus count is `3`.  Thus the full
 two-chart blow-up has bounded-degree strict transforms and no unresolved
 high-multiplicity boundary component.
+
+The strict transforms themselves are smooth in the good characteristics.
+The verifier checks the partial derivatives of `A#`, `Q#`, `K#`, `L#`, `M#`,
+`H#` and of `Ahat`, `Qhat`, `Khat`, `Lhat`, `Mhat`, `Hhat` on the full
+affine charts.  For every audited `p>5` there is no point where a strict
+transform and both of its partials vanish.  The only audited exception is
+the already special characteristic `5`, where the finite-slope chart has one
+isolated singular point on each of `A#` and `Q#`, and the reciprocal chart
+has the analogous isolated `Ahat` and `Qhat` singular points.  Thus for
+`p>5` the beta-boundary blow-up has smooth strict-transform components; no
+singular boundary component remains hidden in the conductor ledger.
 On the good base, the cover is finite etale of degree two: at any beta root,
 `2A_beta beta+B_beta` is nonzero and its square is `D_beta`.  Since the good
 base is an open subset of `G_m^2`, the good beta-cover surface is smooth;

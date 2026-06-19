@@ -4742,6 +4742,38 @@ def ratio_surface_slope_blowup_strict_factors(
     }
 
 
+def ratio_surface_slope_blowup_strict_derivatives(
+    p: int,
+    alpha: int,
+    slope: int,
+) -> Dict[str, Tuple[int, int]]:
+    a = alpha
+    t = slope
+    return {
+        "A": (
+            (-6 * a * t * t + 6 * a * t + 3 * t * t - 5 * t + 3) % p,
+            (-(a - 1) * (6 * a * t - 3 * a + 2)) % p,
+        ),
+        "Q": (
+            ((3 * t - 2) * (2 * a * t - t + 1)) % p,
+            ((a - 1) * (6 * a * t - 2 * a + 3)) % p,
+        ),
+        "K": (
+            (t * (3 * t - 1)) % p,
+            (6 * a * t - a + 1) % p,
+        ),
+        "diag": (0, -1 % p),
+        "M": (
+            (t * (4 * t - 3)) % p,
+            (8 * a * t - 3 * a + 3) % p,
+        ),
+        "H": (
+            (t * (9 * t - 8)) % p,
+            (2 * (9 * a * t - 4 * a + 4)) % p,
+        ),
+    }
+
+
 def ratio_surface_slope_blowup_pair_support(
     p: int,
     first: str,
@@ -4802,6 +4834,38 @@ def ratio_surface_reciprocal_blowup_strict_factors(
         "diag": (s - 1) % p,
         "M": (-3 * r * s * s + 4 * r * s - 4 * s + 4) % p,
         "H": (-8 * r * s * s + 9 * r * s - 9 * s + 9) % p,
+    }
+
+
+def ratio_surface_reciprocal_blowup_strict_derivatives(
+    p: int,
+    ratio: int,
+    reciprocal_slope: int,
+) -> Dict[str, Tuple[int, int]]:
+    r = ratio
+    s = reciprocal_slope
+    return {
+        "A": (
+            (6 * r * s * s - 6 * r * s - 3 * s * s + 7 * s - 3) % p,
+            (6 * r * r * s - 3 * r * r - 6 * r * s + 7 * r - 3) % p,
+        ),
+        "Q": (
+            (-(2 * s - 3) * (2 * r * s - s + 1)) % p,
+            (-4 * r * r * s + 3 * r * r + 4 * r * s - 5 * r + 3) % p,
+        ),
+        "K": (
+            (-s * (s - 3)) % p,
+            (-2 * r * s + 3 * r - 3) % p,
+        ),
+        "diag": (0, 1 % p),
+        "M": (
+            (-s * (3 * s - 4)) % p,
+            (-2 * (3 * r * s - 2 * r + 2)) % p,
+        ),
+        "H": (
+            (-s * (8 * s - 9)) % p,
+            (-16 * r * s + 9 * r - 9) % p,
+        ),
     }
 
 
@@ -6535,6 +6599,93 @@ def verify_ratio_surface_reciprocal_blowup_boundary_ledger() -> List[
     return checked
 
 
+def verify_ratio_surface_blowup_strict_transform_smoothness() -> List[
+    Tuple[int, int, int, int, int]
+]:
+    names = ("A", "Q", "K", "diag", "M", "H")
+    checked: List[Tuple[int, int, int, int, int]] = []
+    for p in LOWER_CHART_PRIMES:
+        finite_singular_count = 0
+        reciprocal_singular_count = 0
+        finite_by_component = {name: 0 for name in names}
+        reciprocal_by_component = {name: 0 for name in names}
+
+        for alpha in range(p):
+            for slope in range(p):
+                strict = ratio_surface_slope_blowup_strict_factors(
+                    p,
+                    alpha,
+                    slope,
+                )
+                derivatives = ratio_surface_slope_blowup_strict_derivatives(
+                    p,
+                    alpha,
+                    slope,
+                )
+                for name in names:
+                    if strict[name] == 0 and derivatives[name] == (0, 0):
+                        finite_singular_count += 1
+                        finite_by_component[name] += 1
+
+        for ratio in range(p):
+            for reciprocal_slope in range(p):
+                strict = ratio_surface_reciprocal_blowup_strict_factors(
+                    p,
+                    ratio,
+                    reciprocal_slope,
+                )
+                derivatives = ratio_surface_reciprocal_blowup_strict_derivatives(
+                    p,
+                    ratio,
+                    reciprocal_slope,
+                )
+                for name in names:
+                    if strict[name] == 0 and derivatives[name] == (0, 0):
+                        reciprocal_singular_count += 1
+                        reciprocal_by_component[name] += 1
+
+        if p == 5:
+            if finite_by_component != {
+                "A": 1,
+                "Q": 1,
+                "K": 0,
+                "diag": 0,
+                "M": 0,
+                "H": 0,
+            }:
+                raise AssertionError((p, "finite", finite_by_component))
+            if reciprocal_by_component != {
+                "A": 1,
+                "Q": 1,
+                "K": 0,
+                "diag": 0,
+                "M": 0,
+                "H": 0,
+            }:
+                raise AssertionError((p, "reciprocal", reciprocal_by_component))
+        elif finite_singular_count != 0 or reciprocal_singular_count != 0:
+            raise AssertionError(
+                (
+                    p,
+                    finite_singular_count,
+                    reciprocal_singular_count,
+                    finite_by_component,
+                    reciprocal_by_component,
+                )
+            )
+
+        checked.append(
+            (
+                p,
+                finite_singular_count,
+                reciprocal_singular_count,
+                max(finite_by_component.values()),
+                max(reciprocal_by_component.values()),
+            )
+        )
+    return checked
+
+
 def verify_ratio_surface_lower_chart_collapse() -> List[
     Tuple[int, int, int, int, int, int]
 ]:
@@ -7294,6 +7445,9 @@ def main() -> None:
     ratio_surface_reciprocal_blowup_boundary_checked = (
         verify_ratio_surface_reciprocal_blowup_boundary_ledger()
     )
+    ratio_surface_blowup_smoothness_checked = (
+        verify_ratio_surface_blowup_strict_transform_smoothness()
+    )
     ratio_surface_beta_pushforward_checked = (
         verify_ratio_surface_beta_pushforward_trace()
     )
@@ -7963,6 +8117,8 @@ def main() -> None:
         f"{ratio_surface_slope_blowup_boundary_checked}",
         f"ratio_surface_reciprocal_blowup_boundary_checked="
         f"{ratio_surface_reciprocal_blowup_boundary_checked}",
+        f"ratio_surface_blowup_smoothness_checked="
+        f"{ratio_surface_blowup_smoothness_checked}",
         f"ratio_surface_beta_pushforward_checked="
         f"{ratio_surface_beta_pushforward_checked}",
         f"ratio_surface_exceptional_root_bound_checked="

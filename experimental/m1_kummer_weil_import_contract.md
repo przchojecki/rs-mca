@@ -578,6 +578,9 @@ The elementary hypotheses behind this import are now audited in
   transforms of `A_beta`, `Q_beta=C_beta/(ar)`, `K_alpha`, `a-r`, `M`, and `H`
   have explicit factors in both charts, and all pairwise intersections lie on
   the displayed finite slope-resultant supports;
+- for every audited `p>5`, those strict transforms are smooth in both blow-up
+  charts; characteristic `5` has only isolated `A_beta`/`Q_beta` strict-transform
+  singularities and is already treated as a finite special case;
 - on the good base, `D_beta != 0` and
   `(2A_beta beta+B_beta)^2=D_beta` at every beta root, so the projection
   `Y_G -> G` is finite etale of degree two; since `G` is an open subset of

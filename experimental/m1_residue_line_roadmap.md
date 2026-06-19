@@ -178,7 +178,9 @@ should be revised as the project learns more.
    two-chart blow-up `r=1+t(alpha-1)` and `alpha=1+s(r-1)`: the strict
    transforms of `A_beta`, `Q_beta`, `K_alpha`, `alpha-r`, `M`, and `H` have
    explicit factors and pairwise intersections supported on finite slope
-   resultants.  The main `U V` trace now has an exact pushforward identity over
+   resultants; for audited `p>5` those strict transforms are smooth, with
+   only isolated characteristic-`5` exceptions.  The main `U V` trace now has
+   an exact pushforward identity over
    the good base `A_beta C_beta D_beta (alpha-r)K_alpha != 0`, with all
    deleted pieces contributing only `O(p)`.  The final analytic object is
    the good-base rank-two beta pushforward
