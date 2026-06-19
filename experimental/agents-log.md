@@ -29,6 +29,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-19 - M1 collapsed admissible-slice sparsity
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/m1_depth_two_line_conic_resonance_reduction.md`,
+  `experimental/verify_m1_depth_two_line_conic_resonance_reduction.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** Specializes the collapsed large-coefficient
+  sparsity theorem to the actual line-conic-resonant admissible eta slice.
+  For each fixed `nu`, fewer than `(p-1)/8` admissible eta can have collapsed
+  rank-two coefficient at least `4p`; the verifier now audits both the
+  all-character and admissible `4p` row counts.
+- **How it is useful:** Confirms the `4p` obstruction is real inside `C_2^lc`
+  but cannot be a dense fixed-`nu` obstruction, sharpening the remaining
+  conductor target.
+- **What to do next:** Bound the sparse admissible exceptional rows, or show
+  their paired generic contribution cancels in the final M1 ledger.
+
 ### 2026-06-19 - M1 collapsed large-coefficient sparsity
 
 - **Agent/model:** Codex.

@@ -1345,6 +1345,8 @@ def verify_quotient_line_collapsed_mobius_energy(
     float,
     float,
     float,
+    int,
+    int,
     float,
 ]:
     order = p - 1
@@ -1363,6 +1365,8 @@ def verify_quotient_line_collapsed_mobius_energy(
     max_quadratic_energy_ratio = 0.0
     max_selected_energy_ratio = 0.0
     max_selected_bound_rms_ratio = 0.0
+    max_four_p_count = 0
+    max_admissible_four_p_count = 0
     max_transform_ratio = 0.0
     for nu_exponent in range(1, order):
         nu = table[nu_exponent]
@@ -1510,13 +1514,49 @@ def verify_quotient_line_collapsed_mobius_energy(
             )
         max_rms_ratio = max(max_rms_ratio, math.sqrt(energy) / p)
         parseval_sum = 0.0
-        for eta in table:
+        four_p_count = 0
+        admissible_four_p_count = 0
+        four_p_count_bound = (order * (p * p - 1)) // (8 * p * p)
+        for eta_exponent, eta in enumerate(table):
             transform = sum(
                 eta[r_value] * kernel
                 for r_value, kernel in kernels
             )
             parseval_sum += abs(transform) ** 2
             max_transform_ratio = max(max_transform_ratio, abs(transform) / p)
+            if abs(transform) >= 4 * p - TOLERANCE:
+                four_p_count += 1
+                if is_line_conic_admissible_pair(
+                    order,
+                    eta_exponent,
+                    nu_exponent,
+                ):
+                    admissible_four_p_count += 1
+        max_four_p_count = max(max_four_p_count, four_p_count)
+        max_admissible_four_p_count = max(
+            max_admissible_four_p_count,
+            admissible_four_p_count,
+        )
+        if four_p_count > four_p_count_bound:
+            raise AssertionError(
+                (
+                    p,
+                    nu_exponent,
+                    "collapsed_mobius_four_p_sparsity",
+                    four_p_count,
+                    four_p_count_bound,
+                )
+            )
+        if admissible_four_p_count > four_p_count_bound:
+            raise AssertionError(
+                (
+                    p,
+                    nu_exponent,
+                    "collapsed_mobius_admissible_four_p_sparsity",
+                    admissible_four_p_count,
+                    four_p_count_bound,
+                )
+            )
         parseval_error = abs(parseval_sum - order * energy)
         max_parseval_error = max(max_parseval_error, parseval_error)
         if parseval_error > 100 * TOLERANCE:
@@ -1544,6 +1584,8 @@ def verify_quotient_line_collapsed_mobius_energy(
         max_quadratic_energy_ratio,
         max_selected_energy_ratio,
         max_selected_bound_rms_ratio,
+        max_four_p_count,
+        max_admissible_four_p_count,
         max_transform_ratio,
     )
 
@@ -3134,6 +3176,8 @@ def main() -> None:
             float,
             float,
             float,
+            int,
+            int,
             float,
         ]
     ] = []
@@ -3289,6 +3333,8 @@ def main() -> None:
                 max_mobius_quadratic_energy_ratio,
                 max_mobius_selected_energy_ratio,
                 max_mobius_selected_bound_rms_ratio,
+                max_mobius_four_p_count,
+                max_mobius_admissible_four_p_count,
                 max_mobius_transform_ratio,
             ) = verify_quotient_line_collapsed_mobius_energy(p, tables[p])
             collapsed_mobius_energy_checked.append(
@@ -3307,6 +3353,8 @@ def main() -> None:
                     round(max_mobius_quadratic_energy_ratio, 10),
                     round(max_mobius_selected_energy_ratio, 10),
                     round(max_mobius_selected_bound_rms_ratio, 10),
+                    max_mobius_four_p_count,
+                    max_mobius_admissible_four_p_count,
                     round(max_mobius_transform_ratio, 10),
                 )
             )

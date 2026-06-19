@@ -1693,6 +1693,16 @@ rows cannot form a dense obstruction.  The remaining conductor problem is
 to bound these sparse exceptional Mellin coefficients, or to exploit their
 cancellation in the paired generic ledger.
 
+The same estimate applies after restricting `eta` to the actual
+line-conic-resonant admissible set for fixed `nu`, since that set is a
+subset of all Mellin characters.  Thus for each fixed `nu`, fewer than
+`(p-1)/8` admissible `eta` can have a collapsed rank-two coefficient of
+size at least `4p`.  The verifier audits the exact counts in the checked
+range; the current maxima are one `4p`-scale coefficient in all characters
+and one in the admissible slice.  This is a useful tension: the obstruction
+to a sharp standalone `4p` theorem is genuine for `C_2^lc`, but it is
+provably sparse in every fixed-`nu` Mellin slice.
+
 The same audit rules out one tempting sharp shortcut.  A standalone `4p`
 pointwise bound for the collapsed rank-two import is false in the checked
 range: at `(p,eta,nu)=(97,13,91)` (exponents relative to the verifier's
