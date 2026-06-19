@@ -29,6 +29,28 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-19 - M1 beta square-root vertical pencil ledger
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/m1_depth_two_line_conic_resonance_reduction.md`,
+  `experimental/m1_kummer_weil_import_contract.md`,
+  `experimental/m1_residue_line_roadmap.md`,
+  `experimental/verify_m1_depth_two_line_conic_resonance_reduction.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** Records the vertical `r`-pencil of the normalized
+  square-root beta cover.  For `p>5`, the branch polynomial
+  `P_r(a)=aM(a,r)H(a,r)` has discriminant
+  `51840000 r^8(r-1)^12(r^2+r+1)(9r^2+14r+9)`, and the verifier checks that
+  branch-boundary intersections occur only over the displayed fixed
+  `r`-supports.
+- **How it is useful:** Turns the remaining `(BETA_2)` import into a
+  one-parameter family of bounded-conductor genus-two curve traces and rules
+  out a hidden unbounded family of bad vertical fibers.
+- **What to do next:** Prove the corresponding family trace has bounded
+  conductor and no constant summand over the `r`-line.
+
 ### 2026-06-19 - M1 beta pushforward square-root normalization
 
 - **Agent/model:** Codex.

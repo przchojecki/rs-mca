@@ -3478,6 +3478,54 @@ affine beta roots and `y^2=D_beta` roots, the nonvanishing of
 `y-B_beta` on the good cover, and the normalized character-trace identity
 for the audited pushforward character pairs.
 
+The same normalization gives a vertical Lefschetz-pencil ledger for the
+remaining conductor import.  Fix `r != 0`.  Since
+
+```text
+D_beta = a r M(a,r)H(a,r),
+```
+
+the finite branch polynomial in the `a`-line is
+
+```text
+P_r(a) = a M(a,r)H(a,r),
+```
+
+with a stable branch point at infinity because the leading coefficient is
+`24r^2`.  For `p>5`,
+
+```text
+disc_a(P_r)
+ = 51840000 r^8(r-1)^12(r^2+r+1)(9r^2+14r+9).
+```
+
+Thus, away from the fixed bad set
+
+```text
+r=1,        r^2+r+1=0,        9r^2+14r+9=0
+```
+
+(and the toric value `r=0`), the vertical fiber of the square-root cover is
+a smooth genus-two hyperelliptic curve with bounded marked divisor.  The
+intersections of this branch divisor with the deleted beta-infinity,
+beta-zero, lower-chart, diagonal, and beta-linear boundaries are also
+confined to fixed vertical parameters:
+
+```text
+Res_a(P_r,A_beta)          =  108 r^5(r-1)^4(r+1)^4,
+Res_a(P_r,Q_beta)          = -162 r^5(r-1)^4(r+1)^4,
+Res_a(P_r,K_alpha)         = -5625 r^5(r-1)^8,
+Res_a(P_r,a-r)             = -r^3(r-1)^4,
+Res_a(P_r,B_beta/(ar))     =  36 (r-1)^4(r+1)^5.
+```
+
+So the remaining `(BETA_2)` estimate can be viewed as cancellation in a
+one-parameter family of bounded-conductor curve traces over the `r`-line:
+there is no unbounded set of bad vertical fibers hidden inside the normalized
+square-root model.  The verifier audits this by checking that every finite
+branch collision or branch-boundary intersection over the audited primes lies
+over the displayed `r`-supports.
+
 For `(a,r) in G`, either the beta fiber is nonsplit over `F_p` and
 contributes no rational beta points, or it has two roots `beta_1,beta_2 in
 F_p^*`.  In the split case both roots lie in the main chart and have the

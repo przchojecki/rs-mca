@@ -188,7 +188,11 @@ should be revised as the project learns more.
    the good-base rank-two beta pushforward
    `psi(alpha)chi(rM)(phi(beta_1)+phi(beta_2))`, equivalently the
    square-root cover `y^2=D_beta` with kernel
-   `psi(alpha)chi(rM)phi((2A_beta)^(-1))phi(y-B_beta)`.  The beta sheets now
+   `psi(alpha)chi(rM)phi((2A_beta)^(-1))phi(y-B_beta)`.  Its vertical
+   `r`-pencil now has explicit genus-two branch polynomial
+   `P_r(alpha)=alpha M H` and fixed bad parameters
+   `r=1`, `r^2+r+1=0`, and `9r^2+14r+9=0`, with branch-boundary collisions
+   confined to the recorded resultant supports.  The beta sheets now
    have an explicit fixed-ratio resonance curve
    `lambda B_beta^2=A_beta C_beta(1+lambda)^2`; after removing the torus
    factor this has degree at most four in `alpha` on every vertical fiber

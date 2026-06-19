@@ -595,6 +595,12 @@ The elementary hypotheses behind this import are now audited in
   `beta=(y-B_beta)/(2A_beta)`, so the trace can be written as the base twist
   `psi(a)chi(rM)phi((2A_beta)^(-1))` times
   `sum_{y^2=D_beta} phi(y-B_beta)`;
+- in this normalized model, the vertical projection to the `r`-line has
+  branch polynomial `P_r(a)=aM(a,r)H(a,r)` with discriminant
+  `51840000 r^8(r-1)^12(r^2+r+1)(9r^2+14r+9)`, and its intersections with
+  `A_beta`, `Q_beta`, `K_alpha`, `a-r`, and `B_beta/(ar)` occur only over the
+  displayed fixed `r`-supports; hence the remaining import has no hidden
+  unbounded family of bad vertical fibers;
 - the deleted lower-chart and exceptional main-chart loci are curve-sized;
   more sharply, in centered rows the zero conic plus vertical beta tail costs
   at most `p`, the lower chart costs at most `5(p-1)`, and the nonvertical

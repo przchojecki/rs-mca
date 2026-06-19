@@ -4987,6 +4987,82 @@ def ratio_surface_beta_normalized_y_roots(
     return [value for value in range(p) if value * value % p == discriminant]
 
 
+def ratio_surface_beta_vertical_branch_polynomial(
+    p: int,
+    alpha: int,
+    ratio: int,
+) -> int:
+    return (
+        alpha
+        * ratio_surface_beta_middle_factor(p, alpha, ratio)
+        * ratio_surface_beta_branch_factor(p, alpha, ratio)
+    ) % p
+
+
+def ratio_surface_beta_vertical_branch_derivative(
+    p: int,
+    alpha: int,
+    ratio: int,
+) -> int:
+    middle = ratio_surface_beta_middle_factor(p, alpha, ratio)
+    branch = ratio_surface_beta_branch_factor(p, alpha, ratio)
+    middle_alpha_derivative = ratio_surface_beta_middle_factor_derivatives(
+        p,
+        alpha,
+        ratio,
+    )[0]
+    branch_alpha_derivative = ratio_surface_beta_branch_factor_derivatives(
+        p,
+        alpha,
+        ratio,
+    )[0]
+    return (
+        middle * branch
+        + alpha * middle_alpha_derivative * branch
+        + alpha * middle * branch_alpha_derivative
+    ) % p
+
+
+def ratio_surface_beta_vertical_pencil_bad_factor(p: int, ratio: int) -> int:
+    r = ratio
+    return (r - 1) * (r * r + r + 1) * (9 * r * r + 14 * r + 9) % p
+
+
+def ratio_surface_beta_vertical_boundary_support(
+    p: int,
+    label: str,
+    ratio: int,
+) -> int:
+    r = ratio
+    support = {
+        "A": (r - 1) * (r + 1),
+        "Q": (r - 1) * (r + 1),
+        "K": r - 1,
+        "diag": r - 1,
+        "B": (r - 1) * (r + 1),
+    }[label]
+    return support % p
+
+
+def ratio_surface_beta_vertical_boundary_value(
+    p: int,
+    label: str,
+    alpha: int,
+    ratio: int,
+) -> int:
+    if label == "A":
+        return ratio_surface_beta_coefficients(p, alpha, ratio)[0]
+    if label == "Q":
+        return ratio_surface_beta_zero_factor(p, alpha, ratio)
+    if label == "K":
+        return ratio_surface_lower_alpha_kernel(p, alpha, ratio)
+    if label == "diag":
+        return (alpha - ratio) % p
+    if label == "B":
+        return (alpha - 1) * (ratio + 1) % p
+    raise AssertionError(label)
+
+
 def ratio_surface_projective_beta_root_count(
     p: int,
     alpha: int,
@@ -5386,6 +5462,93 @@ def verify_ratio_surface_beta_square_root_normalization() -> Tuple[
         )
 
     return algebraic_checked, trace_checked
+
+
+def verify_ratio_surface_beta_vertical_pencil_ledger() -> List[
+    Tuple[int, int, int, int, int, int, int, int, int, int]
+]:
+    checked: List[Tuple[int, int, int, int, int, int, int, int, int, int]] = []
+    boundary_labels = ("A", "Q", "K", "diag", "B")
+    for p in LOWER_CHART_PRIMES:
+        if p <= 5:
+            continue
+        bad_ratio_count = 0
+        generic_ratio_count = 0
+        generic_singular_roots = 0
+        boundary_hits: Dict[str, int] = {label: 0 for label in boundary_labels}
+        formula_checks = 0
+        for ratio in range(1, p):
+            if 24 * ratio * ratio % p == 0:
+                raise AssertionError((p, ratio, "vertical_leading_coefficient"))
+            bad_ratio = (
+                ratio_surface_beta_vertical_pencil_bad_factor(p, ratio) == 0
+            )
+            bad_ratio_count += int(bad_ratio)
+            generic_ratio_count += int(not bad_ratio)
+            for alpha in range(p):
+                branch_value = ratio_surface_beta_vertical_branch_polynomial(
+                    p,
+                    alpha,
+                    ratio,
+                )
+                if branch_value != 0:
+                    continue
+                branch_derivative = ratio_surface_beta_vertical_branch_derivative(
+                    p,
+                    alpha,
+                    ratio,
+                )
+                if branch_derivative == 0:
+                    if not bad_ratio:
+                        raise AssertionError(
+                            (p, alpha, ratio, "unlisted_vertical_branch_collision")
+                        )
+                    generic_singular_roots += int(not bad_ratio)
+                for label in boundary_labels:
+                    if (
+                        ratio_surface_beta_vertical_boundary_value(
+                            p,
+                            label,
+                            alpha,
+                            ratio,
+                        )
+                        != 0
+                    ):
+                        continue
+                    boundary_hits[label] += 1
+                    if (
+                        ratio_surface_beta_vertical_boundary_support(
+                            p,
+                            label,
+                            ratio,
+                        )
+                        != 0
+                    ):
+                        raise AssertionError(
+                            (
+                                p,
+                                alpha,
+                                ratio,
+                                label,
+                                "unlisted_vertical_branch_boundary",
+                            )
+                        )
+                formula_checks += 1
+        checked.append(
+            (
+                p,
+                bad_ratio_count,
+                generic_ratio_count,
+                generic_singular_roots,
+                boundary_hits["A"],
+                boundary_hits["Q"],
+                boundary_hits["K"],
+                boundary_hits["diag"],
+                boundary_hits["B"],
+                formula_checks,
+            )
+        )
+    return checked
 
 
 def verify_ratio_surface_beta_pushforward_trace() -> List[
@@ -7851,6 +8014,9 @@ def main() -> None:
     ratio_surface_beta_square_root_normalization_checked = (
         verify_ratio_surface_beta_square_root_normalization()
     )
+    ratio_surface_beta_vertical_pencil_checked = (
+        verify_ratio_surface_beta_vertical_pencil_ledger()
+    )
     ratio_surface_branch_geometry_checked = (
         verify_ratio_surface_branch_geometry()
     )
@@ -8532,6 +8698,8 @@ def main() -> None:
         f"{ratio_surface_beta_etale_cover_checked}",
         f"ratio_surface_beta_square_root_normalization_checked="
         f"{ratio_surface_beta_square_root_normalization_checked}",
+        f"ratio_surface_beta_vertical_pencil_checked="
+        f"{ratio_surface_beta_vertical_pencil_checked}",
         f"ratio_surface_branch_geometry_checked="
         f"{ratio_surface_branch_geometry_checked}",
         f"ratio_surface_branch_smoothness_checked="
