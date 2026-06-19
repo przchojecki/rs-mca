@@ -3324,11 +3324,37 @@ A_beta=0,  C_beta=0,  D_beta=0,  a=r,  K_alpha(a,r)=0,
 ```
 
 together with the separated vertical fiber, so `E_{psi,phi}=O(p)` by
-counting.  The verifier checks this identity against direct main-chart
-summation for several full-character pairs and audits that the exceptional
-ledger is linear in `p` on the tested grid.  The remaining analytic input is
-now exactly a conductor bound for the good-base rank-two beta pushforward
-with kernel `psi(a) eps(a,r) (phi(beta_1)+phi(beta_2))`.
+counting.  For centered rows (`phi != 1`), the all-zero vertical fiber has
+the exact contribution
+
+```text
+p + sum_{beta in F_p^*, beta != 1} phi(beta) = p-1,
+```
+
+so the zero conic together with the vertical tail costs at most `p`.  Away
+from that vertical fiber, each deleted beta-infinity, beta-zero, and branch
+base contributes at most one affine beta root, while the deleted diagonal
+and lower-chart bases contribute at most two.  Since in the torus
+
+```text
+#A_beta <= 2(p-1),   #C_beta <= 2(p-1),   #D_beta <= 4(p-1),
+#(a=r) = p-1,        #K_alpha <= 2(p-1),
+```
+
+the nonvertical exceptional main-chart ledger has at most `14(p-1)` points.
+Together with the `5(p-1)` lower-chart bound, every centered bad contribution
+outside the good beta pushforward is bounded by
+
+```text
+p + 19(p-1) < 20p.
+```
+
+The verifier checks this identity against direct main-chart summation for
+several full-character pairs and audits the same sharpened bad-ledger bound
+for every nonprincipal quotient-character pair in the tested quotient
+orders.  The remaining analytic input is now exactly a conductor bound for
+the good-base rank-two beta pushforward with kernel
+`psi(a) eps(a,r) (phi(beta_1)+phi(beta_2))`.
 
 The beta sheets also have no fixed-ratio surface.  If a good split fiber has
 `lambda=beta_1/beta_2`, then the elementary symmetric relations give
@@ -3411,15 +3437,15 @@ main-chart exceptional ledger
 A_beta=0,  C_beta=0,  D_beta=0,  a=r,  K_alpha(a,r)=0
 ```
 
-together with the vertical beta fiber.  The zero conic contributes exactly
-`p`, the lower chart has at most `5(p-1)` torus points, and the exceptional
-main ledger is curve-sized (the verifier enforces the sharper
-`20(p-1)` audit bound on the tested grid).  Thus the direct full singular
-trace differs from the good beta pushforward by only an explicit `O(p)`
-term; on the audit grid,
+together with the vertical beta fiber.  The zero conic and centered vertical
+tail contribute at most `p`, the lower chart has at most `5(p-1)` torus
+points, and the nonvertical exceptional main ledger has at most `14(p-1)`
+points by the degree/root-count argument above.  Thus the direct full
+singular trace differs from the good beta pushforward by the explicit
+uniform bound
 
 ```text
-|S_{psi,phi} - G_{psi,phi}| <= p + 25(p-1).
+|S_{psi,phi} - G_{psi,phi}| <= p + 19(p-1) < 20p.
 ```
 
 Consequently this depth-two M1 singular-excess problem has been reduced to
@@ -3598,31 +3624,31 @@ the imported pushforward estimate gives
 ```
 
 for all nonprincipal characters of a fixed quotient order `e`.  Since the
-bad ledger above gives `|S_{psi,phi}-G_{psi,phi}| <= 26p`, every centered
+bad ledger above gives `|S_{psi,phi}-G_{psi,phi}| <= 20p`, every centered
 singular trace satisfies
 
 ```text
-|S_{psi,phi}| <= (C_beta(e)+26)p.
+|S_{psi,phi}| <= (C_beta(e)+20)p.
 ```
 
 Therefore Parseval gives
 
 ```text
 ||Gamma_e^circ||_F
-  <= ((e-1)/e)(C_beta(e)+26)p,
+  <= ((e-1)/e)(C_beta(e)+20)p,
 ```
 
 and the singular projective excess obeys
 
 ```text
-|P_e| <= (e-1)^2(C_beta(e)+26)p^2.
+|P_e| <= (e-1)^2(C_beta(e)+20)p^2.
 ```
 
 Finally the closed boundary inequality already proved above yields
 
 ```text
 M_e^o
-  <= ((e-1)sqrt(C_beta(e)+26)p + 3(e-1)sqrt(p))^2.
+  <= ((e-1)sqrt(C_beta(e)+20)p + 3(e-1)sqrt(p))^2.
 ```
 
 Thus the conditional beta-pushforward estimate would close the depth-two

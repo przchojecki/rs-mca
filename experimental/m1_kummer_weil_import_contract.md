@@ -578,6 +578,10 @@ The elementary hypotheses behind this import are now audited in
   `Y_G -> G` is finite etale of degree two; since `G` is an open subset of
   the torus, `Y_G` is smooth;
 - the deleted lower-chart and exceptional main-chart loci are curve-sized;
+  more sharply, in centered rows the zero conic plus vertical beta tail costs
+  at most `p`, the lower chart costs at most `5(p-1)`, and the nonvertical
+  exceptional main-chart roots cost at most `14(p-1)`, giving the uniform
+  bad-ledger bound `|S_{psi,phi}-G_{psi,phi}| < 20p`;
 - the beta-zero boundary
   `Q_beta=-2a^2r+3ar^2-ar+3a-3r=0` carries nontrivial local monodromy `phi`;
 - the beta-infinity boundary `A_beta=0` carries nontrivial local monodromy

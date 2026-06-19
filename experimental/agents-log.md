@@ -29,6 +29,28 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-19 - M1 bad-ledger constant sharpened below 20p
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/m1_depth_two_line_conic_resonance_reduction.md`,
+  `experimental/m1_kummer_weil_import_contract.md`,
+  `experimental/verify_m1_depth_two_line_conic_resonance_reduction.py`,
+  `experimental/m1_residue_line_roadmap.md`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** Replaces the grid-only `p+25(p-1)` bad-ledger
+  bound by a uniform centered-row bound `p+19(p-1)<20p`.  The proof uses the
+  exact cancellation of the vertical beta tail against nonprincipal `phi`,
+  plus the degree/root-count bound `14(p-1)` for nonvertical exceptional
+  main-chart roots.
+- **How it is useful:** Improves the conditional `(BETA_2)` implication from
+  `C_beta(e)+26` to `C_beta(e)+20`, and makes the bad-ledger loss algebraic
+  rather than only grid-audited.
+- **What to do next:** Use the sharpened bad-ledger constant in any reviewer
+  discussion of the final quotient-conic closure, then continue toward a
+  standard bounded-conductor proof or citation for the good beta pushforward.
+
 ### 2026-06-19 - M1 branch boundary smoothness audit
 
 - **Agent/model:** Codex.

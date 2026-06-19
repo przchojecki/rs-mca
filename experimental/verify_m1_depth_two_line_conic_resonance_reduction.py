@@ -5078,6 +5078,106 @@ def verify_ratio_surface_beta_pushforward_trace() -> List[
     return checked
 
 
+def verify_ratio_surface_exceptional_root_bound() -> List[
+    Tuple[int, int, int, int, int, int, int, int, int, int]
+]:
+    checked: List[Tuple[int, int, int, int, int, int, int, int, int, int]] = []
+    for p in LOWER_CHART_PRIMES:
+        infinity_base_count = 0
+        zero_base_count = 0
+        branch_base_count = 0
+        diagonal_base_count = 0
+        lower_alpha_base_count = 0
+        nonvertical_exceptional_root_count = 0
+        vertical_tail_count = 0
+        for alpha in range(1, p):
+            for ratio in range(1, p):
+                is_vertical = (alpha, ratio) == (1, 1)
+                quadratic, _, constant = ratio_surface_beta_coefficients(
+                    p,
+                    alpha,
+                    ratio,
+                )
+                discriminant = ratio_surface_beta_discriminant(
+                    p,
+                    alpha,
+                    ratio,
+                )
+                lower_kernel = ratio_surface_lower_alpha_kernel(
+                    p,
+                    alpha,
+                    ratio,
+                )
+                if not is_vertical:
+                    infinity_base_count += int(quadratic == 0)
+                    zero_base_count += int(constant == 0)
+                    branch_base_count += int(discriminant == 0)
+                    diagonal_base_count += int((alpha - ratio) % p == 0)
+                    lower_alpha_base_count += int(lower_kernel == 0)
+                for beta in ratio_surface_affine_beta_roots(p, alpha, ratio):
+                    coefficients = ratio_surface_conic_coefficients(
+                        p,
+                        alpha,
+                        beta,
+                        ratio,
+                    )
+                    chart, _ = projective_excess_chart(p, coefficients)
+                    discriminants = ratio_surface_binary_discriminants(
+                        p,
+                        alpha,
+                        beta,
+                        ratio,
+                    )
+                    if chart == "zero" or discriminants[0] == 0:
+                        continue
+                    if ratio_surface_beta_pushforward_good(p, alpha, ratio):
+                        continue
+                    if is_vertical:
+                        vertical_tail_count += 1
+                    else:
+                        nonvertical_exceptional_root_count += 1
+        if infinity_base_count > 2 * (p - 1):
+            raise AssertionError((p, "A_beta", infinity_base_count))
+        if zero_base_count > 2 * (p - 1):
+            raise AssertionError((p, "C_beta", zero_base_count))
+        if branch_base_count > 4 * (p - 1):
+            raise AssertionError((p, "D_beta", branch_base_count))
+        if diagonal_base_count > p - 1:
+            raise AssertionError((p, "diagonal", diagonal_base_count))
+        if lower_alpha_base_count > 2 * (p - 1):
+            raise AssertionError((p, "K_alpha", lower_alpha_base_count))
+        root_bound = (
+            infinity_base_count
+            + zero_base_count
+            + branch_base_count
+            + 2 * diagonal_base_count
+            + 2 * lower_alpha_base_count
+        )
+        if root_bound > 14 * (p - 1):
+            raise AssertionError((p, root_bound))
+        if nonvertical_exceptional_root_count > root_bound:
+            raise AssertionError(
+                (p, nonvertical_exceptional_root_count, root_bound)
+            )
+        if vertical_tail_count != p - 2:
+            raise AssertionError((p, vertical_tail_count))
+        checked.append(
+            (
+                p,
+                infinity_base_count,
+                zero_base_count,
+                branch_base_count,
+                diagonal_base_count,
+                lower_alpha_base_count,
+                nonvertical_exceptional_root_count,
+                vertical_tail_count,
+                root_bound,
+                14 * (p - 1),
+            )
+        )
+    return checked
+
+
 def verify_ratio_surface_full_trace_reduction() -> List[
     Tuple[int, int, int, int, int, int, int, float, int]
 ]:
@@ -5098,6 +5198,8 @@ def verify_ratio_surface_full_trace_reduction() -> List[
         good_base_count = 0
         good_point_count = 0
         exceptional_point_count = 0
+        nonvertical_exceptional_point_count = 0
+        vertical_exceptional = 0j
         for alpha in range(1, p):
             for ratio in range(1, p):
                 roots = ratio_surface_affine_beta_roots(p, alpha, ratio)
@@ -5150,6 +5252,10 @@ def verify_ratio_surface_full_trace_reduction() -> List[
                         continue
 
                     exceptional_point_count += 1
+                    if (alpha, ratio) == (1, 1):
+                        vertical_exceptional += term
+                    else:
+                        nonvertical_exceptional_point_count += 1
                     exceptional += term
 
                 if not is_good_base or not good_roots:
@@ -5184,16 +5290,25 @@ def verify_ratio_surface_full_trace_reduction() -> List[
             raise AssertionError((p, psi_exponent, phi_exponent, zero_count))
         if lower_count > 5 * (p - 1):
             raise AssertionError((p, psi_exponent, phi_exponent, lower_count))
-        if exceptional_point_count > 20 * (p - 1):
+        if nonvertical_exceptional_point_count > 14 * (p - 1):
             raise AssertionError(
-                (p, psi_exponent, phi_exponent, exceptional_point_count)
+                (
+                    p,
+                    psi_exponent,
+                    phi_exponent,
+                    nonvertical_exceptional_point_count,
+                )
             )
-        bad_bound = p + lower_count + exceptional_point_count
+        if abs(zero + vertical_exceptional) > p + 1000 * TOLERANCE:
+            raise AssertionError(
+                (p, psi_exponent, phi_exponent, zero, vertical_exceptional)
+            )
+        bad_bound = p + lower_count + nonvertical_exceptional_point_count
         if abs(zero + lower + exceptional) > bad_bound + 1000 * TOLERANCE:
             raise AssertionError(
                 (p, psi_exponent, phi_exponent, zero, lower, exceptional)
             )
-        if bad_bound > p + 25 * (p - 1):
+        if bad_bound > p + 19 * (p - 1):
             raise AssertionError((p, psi_exponent, phi_exponent, bad_bound))
         checked.append(
             (
@@ -5228,6 +5343,7 @@ def verify_ratio_surface_quotient_trace_reduction() -> List[
         lower_count = 0
         good_point_count = 0
         exceptional_point_count = 0
+        nonvertical_exceptional_point_count = 0
         for alpha in range(1, p):
             alpha_label = logs[alpha] % suborder
             for ratio in range(1, p):
@@ -5273,16 +5389,20 @@ def verify_ratio_surface_quotient_trace_reduction() -> List[
                         continue
 
                     exceptional_point_count += 1
+                    if (alpha, ratio) != (1, 1):
+                        nonvertical_exceptional_point_count += 1
                     exceptional_matrix[alpha_label][beta_label] += unit
 
         if zero_count != 1:
             raise AssertionError((p, suborder, zero_count))
         if lower_count > 5 * (p - 1):
             raise AssertionError((p, suborder, lower_count))
-        if exceptional_point_count > 20 * (p - 1):
-            raise AssertionError((p, suborder, exceptional_point_count))
-        bad_bound = p + lower_count + exceptional_point_count
-        if bad_bound > p + 25 * (p - 1):
+        if nonvertical_exceptional_point_count > 14 * (p - 1):
+            raise AssertionError(
+                (p, suborder, nonvertical_exceptional_point_count)
+            )
+        bad_bound = p + lower_count + nonvertical_exceptional_point_count
+        if bad_bound > p + 19 * (p - 1):
             raise AssertionError((p, suborder, bad_bound))
 
         max_bad_ratio = 0.0
@@ -6628,6 +6748,9 @@ def main() -> None:
     ratio_surface_beta_pushforward_checked = (
         verify_ratio_surface_beta_pushforward_trace()
     )
+    ratio_surface_exceptional_root_bound_checked = (
+        verify_ratio_surface_exceptional_root_bound()
+    )
     ratio_surface_full_trace_reduction_checked = (
         verify_ratio_surface_full_trace_reduction()
     )
@@ -7283,6 +7406,8 @@ def main() -> None:
         f"{ratio_surface_branch_smoothness_checked}",
         f"ratio_surface_beta_pushforward_checked="
         f"{ratio_surface_beta_pushforward_checked}",
+        f"ratio_surface_exceptional_root_bound_checked="
+        f"{ratio_surface_exceptional_root_bound_checked}",
         f"ratio_surface_full_trace_reduction_checked="
         f"{ratio_surface_full_trace_reduction_checked}",
         f"ratio_surface_quotient_trace_reduction_checked="

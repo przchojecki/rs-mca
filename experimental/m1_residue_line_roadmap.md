@@ -189,8 +189,8 @@ should be revised as the project learns more.
    `E_e^beta <= (2e+4)(p-1)^2`; the beta sheets do not create a hidden
    `p^3` averaged obstruction.  The full singular trace is now partitioned
    as zero conic plus lower-chart plus exceptional-main ledger plus the
-   good beta pushforward; the first three pieces are `O(p)` directly
-   (audited as `|bad| <= p+25(p-1)` on the checked grid).  Therefore the
+   good beta pushforward; in centered rows the first three pieces satisfy
+   the uniform algebraic bound `|bad| <= p+19(p-1)<20p`.  Therefore the
    depth-two singular-excess target has been reduced to cancellation for
    this one good rank-two beta pushforward.  Its conductor ledger is now
    explicit: the beta-zero boundary `Q_beta=0` has nontrivial `phi`
