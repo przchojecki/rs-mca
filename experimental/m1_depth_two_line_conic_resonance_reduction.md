@@ -3517,6 +3517,30 @@ lower-chart divisors.  At its generic point the local monodromy is
 these finite intersections in the same root-support style as the beta-zero
 ledger.
 
+The quadratic `U V` sign itself has no finite divisor on the good cover.
+After removing the harmless unit `r`,
+
+```text
+d_UV/r = (4a-3r) beta^2 - 2ar beta - 3a^2r + 4ar^2.
+```
+
+Taking the resultant with the beta equation gives the exact square
+
+```text
+Res_beta(A_beta beta^2+B_beta beta+C_beta, d_UV/r)
+  = a^2 r^2 (a-r)^2 K_alpha(a,r)^2.
+```
+
+Thus every finite common point of the beta cover with `d_UV=0` projects to
+the already deleted diagonal `a=r` or lower-chart curve `K_alpha=0` (on the
+torus `a,r != 0`).  On the good base `G`, `d_UV` is everywhere nonzero on
+`Y_G`.  Hence the `chi(d_UV)` factor contributes no additional finite branch
+divisor to the good beta pushforward; its finite zeros are already in the
+bad ledger, and its beta-infinity leading coefficient was handled in the
+vertical-boundary audit above.  The verifier checks the resultant identity
+and confirms that there are no good-base common roots on the audited prime
+grid.
+
 Consequently, under the bounded-conductor rank-two beta-pushforward import
 `(BETA_2)` recorded in `m1_kummer_weil_import_contract.md`, the good
 pushforward satisfies

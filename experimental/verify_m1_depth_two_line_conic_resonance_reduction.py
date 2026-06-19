@@ -4516,6 +4516,24 @@ def binary_discriminants(
     )
 
 
+def quadratic_resultant(
+    p: int,
+    left: Tuple[int, int, int],
+    right: Tuple[int, int, int],
+) -> int:
+    a, b, c = left
+    d, e, f = right
+    return (
+        a * a * f * f
+        - a * b * e * f
+        + a * c * e * e
+        - 2 * a * c * d * f
+        + b * b * d * f
+        - b * c * d * e
+        + c * c * d * d
+    ) % p
+
+
 def projective_excess_unit_from_discriminants(
     p: int,
     coefficients: Tuple[int, int, int, int, int, int],
@@ -4623,6 +4641,20 @@ def ratio_surface_uv_discriminant_at_beta_infinity(
     a = alpha
     r = ratio
     return r * (4 * a - 3 * r) % p
+
+
+def ratio_surface_uv_sign_coefficients(
+    p: int,
+    alpha: int,
+    ratio: int,
+) -> Tuple[int, int, int]:
+    a = alpha
+    r = ratio
+    return (
+        (4 * a - 3 * r) % p,
+        (-2 * a * r) % p,
+        (-3 * a * a * r + 4 * a * r * r) % p,
+    )
 
 
 def ratio_surface_branch_m_param(p: int, slope: int) -> Tuple[int, int]:
@@ -5502,6 +5534,100 @@ def verify_ratio_surface_beta_infinity_conductor_ledger() -> List[
                 branch_h_intersection,
                 diagonal_intersection,
                 lower_alpha_intersection,
+                formula_checks,
+            )
+        )
+    return checked
+
+
+def verify_ratio_surface_uv_sign_divisor_deleted() -> List[
+    Tuple[int, int, int, int, int, int, int]
+]:
+    checked: List[Tuple[int, int, int, int, int, int, int]] = []
+    for p in LOWER_CHART_PRIMES:
+        resultant_zero_count = 0
+        diagonal_support_count = 0
+        lower_support_count = 0
+        common_root_count = 0
+        good_common_root_count = 0
+        formula_checks = 0
+        for alpha in range(1, p):
+            for ratio in range(1, p):
+                beta_coefficients = ratio_surface_beta_coefficients(
+                    p,
+                    alpha,
+                    ratio,
+                )
+                sign_coefficients = ratio_surface_uv_sign_coefficients(
+                    p,
+                    alpha,
+                    ratio,
+                )
+                resultant = quadratic_resultant(
+                    p,
+                    beta_coefficients,
+                    sign_coefficients,
+                )
+                lower_kernel = ratio_surface_lower_alpha_kernel(
+                    p,
+                    alpha,
+                    ratio,
+                )
+                expected = (
+                    alpha
+                    * alpha
+                    * ratio
+                    * ratio
+                    * (alpha - ratio)
+                    * (alpha - ratio)
+                    * lower_kernel
+                    * lower_kernel
+                ) % p
+                if resultant != expected:
+                    raise AssertionError(
+                        (p, alpha, ratio, resultant, expected)
+                    )
+                formula_checks += 1
+                if resultant == 0:
+                    resultant_zero_count += 1
+                    diagonal_support_count += int((alpha - ratio) % p == 0)
+                    lower_support_count += int(lower_kernel == 0)
+                    if (alpha - ratio) % p != 0 and lower_kernel != 0:
+                        raise AssertionError(
+                            (p, alpha, ratio, "unsupported_resultant_zero")
+                        )
+                common_roots = 0
+                for beta in range(p):
+                    beta_value = (
+                        beta_coefficients[0] * beta * beta
+                        + beta_coefficients[1] * beta
+                        + beta_coefficients[2]
+                    ) % p
+                    sign_value = (
+                        sign_coefficients[0] * beta * beta
+                        + sign_coefficients[1] * beta
+                        + sign_coefficients[2]
+                    ) % p
+                    if beta_value == 0 and sign_value == 0:
+                        common_roots += 1
+                if common_roots:
+                    common_root_count += common_roots
+                    if (alpha - ratio) % p != 0 and lower_kernel != 0:
+                        raise AssertionError(
+                            (p, alpha, ratio, common_roots, "unsupported")
+                        )
+                    if ratio_surface_beta_pushforward_good(p, alpha, ratio):
+                        good_common_root_count += common_roots
+        if good_common_root_count != 0:
+            raise AssertionError((p, good_common_root_count))
+        checked.append(
+            (
+                p,
+                resultant_zero_count,
+                diagonal_support_count,
+                lower_support_count,
+                common_root_count,
+                good_common_root_count,
                 formula_checks,
             )
         )
@@ -6434,6 +6560,9 @@ def main() -> None:
     ratio_surface_beta_infinity_conductor_checked = (
         verify_ratio_surface_beta_infinity_conductor_ledger()
     )
+    ratio_surface_uv_sign_divisor_checked = (
+        verify_ratio_surface_uv_sign_divisor_deleted()
+    )
     ratio_surface_beta_ratio_resonance_checked = (
         verify_ratio_surface_beta_ratio_resonance()
     )
@@ -7080,6 +7209,8 @@ def main() -> None:
         f"{ratio_surface_beta_kummer_conductor_checked}",
         f"ratio_surface_beta_infinity_conductor_checked="
         f"{ratio_surface_beta_infinity_conductor_checked}",
+        f"ratio_surface_uv_sign_divisor_checked="
+        f"{ratio_surface_uv_sign_divisor_checked}",
         f"ratio_surface_beta_ratio_resonance_checked="
         f"{ratio_surface_beta_ratio_resonance_checked}",
         f"ratio_surface_beta_quotient_energy_checked="

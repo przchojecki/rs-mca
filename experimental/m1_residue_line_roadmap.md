@@ -208,6 +208,10 @@ should be revised as the project learns more.
    monodromy `phi`, beta infinity carries monodromy `phi^{-1}`, and explicit
    resultants show both boundaries avoid the beta-linear, sign, branch,
    diagonal, and lower-chart divisors componentwise.
+   The finite `U V` sign divisor is now removed from the good cover by the
+   resultant
+   `Res_beta(beta equation,d_UV/r)=a^2r^2(a-r)^2K_alpha^2`, so sign zeros
+   occur only on already deleted diagonal/lower-chart fibers.
    The updated remaining-wall scan reports this asymmetric wall separately:
    in the current report grid the largest asymmetric ratio is
    `3.2173609608p`, while every near-`4p` top row lies in the projective

@@ -29,6 +29,28 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-19 - M1 UV sign divisor is deleted on good beta cover
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/m1_depth_two_line_conic_resonance_reduction.md`,
+  `experimental/m1_kummer_weil_import_contract.md`,
+  `experimental/verify_m1_depth_two_line_conic_resonance_reduction.py`,
+  `experimental/m1_residue_line_roadmap.md`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** Proves and verifies the resultant identity
+  `Res_beta(beta equation,d_UV/r)=a^2r^2(a-r)^2K_alpha^2`.  Therefore every
+  finite `U V` sign zero on the beta cover lies over the already deleted
+  diagonal `a=r` or lower-chart curve `K_alpha=0`, and there are no finite
+  `d_UV=0` points on the good cover.
+- **How it is useful:** Strengthens the `(BETA_2)` conductor ledger: the
+  quadratic sign factor `chi(d_UV)` has no extra finite branch divisor on the
+  good beta cover, so finite sign ramification is confined to the bad ledger.
+- **What to do next:** Continue converting the remaining good-pushforward
+  conductor assertions into explicit divisor/resultant checks, especially at
+  toric and branch-boundary components.
+
 ### 2026-06-19 - M1 beta-infinity boundary monodromy audit
 
 - **Agent/model:** Codex.

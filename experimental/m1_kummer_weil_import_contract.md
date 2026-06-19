@@ -586,6 +586,10 @@ The elementary hypotheses behind this import are now audited in
 - `A_beta=0` has no common component with `B_beta`, `C_beta`, the
   beta-infinity leading `U V` coefficient, `M`, `H`, `a-r`, or `K_alpha`,
   by the corresponding explicit resultants recorded there;
+- the finite `U V` sign divisor is absent on the good cover:
+  `Res_beta(A_beta beta^2+B_beta beta+C_beta, d_UV/r)
+   = a^2 r^2 (a-r)^2 K_alpha^2`, so every finite `d_UV=0` point is already on
+  the deleted diagonal or lower-chart curve;
 - the verifier checks that the finite intersections lie in those displayed
   resultant root supports.
 
