@@ -897,6 +897,51 @@ def nonprincipal_core_moment_formula(p: int) -> int:
     return direct_formula
 
 
+def split_projector_weight(p: int, y: int) -> int:
+    chi_discriminant = legendre((y - 2) * (y + 1), p)
+    return 1 + chi_discriminant - int(y % p == 3 % p)
+
+
+def nonsplit_projector_weight(p: int, y: int) -> int:
+    chi_discriminant = legendre((y - 2) * (y + 1), p)
+    return 1 - chi_discriminant
+
+
+def projector_v_support_count(p: int, y: int) -> int:
+    return sum(1 for v in range(1, p) if q_y_v(y, v, p) != 0)
+
+
+def projector_v_support_formula(p: int, y: int) -> int:
+    chi_discriminant = legendre((y - 2) * (y + 1), p)
+    zero_root_correction = int(y % p == (-1) % p) + int(y % p == 3 % p)
+    return p - 2 - chi_discriminant + zero_root_correction
+
+
+def projector_collision_sums(p: int) -> Tuple[int, int, int]:
+    split_sum = 0
+    nonsplit_sum = 0
+    cross_sum = 0
+    for y in range(1, p):
+        direct_support = projector_v_support_count(p, y)
+        expected_support = projector_v_support_formula(p, y)
+        if direct_support != expected_support:
+            raise AssertionError((p, y, direct_support, expected_support))
+        split_weight = split_projector_weight(p, y)
+        nonsplit_weight = nonsplit_projector_weight(p, y)
+        split_sum += split_weight * split_weight * direct_support
+        nonsplit_sum += nonsplit_weight * nonsplit_weight * direct_support
+        cross_sum += split_weight * nonsplit_weight * direct_support
+    return split_sum, nonsplit_sum, cross_sum
+
+
+def projector_collision_formulas(p: int) -> Tuple[int, int, int]:
+    chi_minus_two = legendre(-2, p)
+    split_sum = 2 * p * p - 15 * p + 31 - 2 * (p - 3) * chi_minus_two
+    nonsplit_sum = 2 * p * p - 4 * p + 1 + 2 * (p - 1) * chi_minus_two
+    cross_sum = 2 * p - 3
+    return split_sum, nonsplit_sum, cross_sum
+
+
 def principal_eta_row_formula(p: int, nu: List[complex]) -> complex:
     delta_sum = sum(
         nu[v] * legendre(-3 * v * v - 2 * v - 3, p) for v in range(p)
@@ -1095,13 +1140,37 @@ def direct_full_character_moments(p: int) -> Tuple[int, int, int]:
     return round(core_moment), round(line_moment), round(nonprincipal_core_moment)
 
 
-def verify_second_moments() -> List[Tuple[int, int, int, int]]:
-    checked: List[Tuple[int, int, int, int]] = []
+def direct_full_character_projector_moments(p: int) -> Tuple[int, int, int]:
+    logs = log_table(p)
+    table = character_table(p, logs)
+    split_moment = 0.0
+    nonsplit_moment = 0.0
+    cross_moment = 0j
+    for eta_exponent in range(p - 1):
+        eta = table[eta_exponent]
+        for nu_exponent in range(p - 1):
+            nu = table[nu_exponent]
+            split_value = split_projected_core(p, eta, nu)
+            nonsplit_value = nonsplit_projected_core(p, eta, nu)
+            split_moment += abs(split_value) ** 2
+            nonsplit_moment += abs(nonsplit_value) ** 2
+            cross_moment += nonsplit_value * split_value.conjugate()
+    if abs(cross_moment.imag) > 100 * TOLERANCE:
+        raise AssertionError((p, "projector_cross_imag", cross_moment))
+    return round(split_moment), round(nonsplit_moment), round(cross_moment.real)
+
+
+def verify_second_moments() -> List[Tuple[int, int, int, int, int, int, int]]:
+    checked: List[Tuple[int, int, int, int, int, int, int]] = []
     for p in MOMENT_PRIMES:
         collision_count = direct_core_collision_count(p)
         expected_collision_count = core_collision_formula(p)
         if collision_count != expected_collision_count:
             raise AssertionError((p, collision_count, expected_collision_count))
+        projector_sums = projector_collision_sums(p)
+        expected_projector_sums = projector_collision_formulas(p)
+        if projector_sums != expected_projector_sums:
+            raise AssertionError((p, projector_sums, expected_projector_sums))
         line_support_count = direct_line_support_count(p)
         expected_line_support_count = line_support_formula(p)
         if line_support_count != expected_line_support_count:
@@ -1128,6 +1197,26 @@ def verify_second_moments() -> List[Tuple[int, int, int, int]]:
             raise AssertionError(
                 (p, nonprincipal_moment, expected_nonprincipal_moment)
             )
+        (
+            split_projector_moment,
+            nonsplit_projector_moment,
+            projector_cross_moment,
+        ) = direct_full_character_projector_moments(p)
+        expected_split_moment = (p - 1) * (p - 1) * expected_projector_sums[0]
+        expected_nonsplit_moment = (p - 1) * (p - 1) * expected_projector_sums[1]
+        expected_projector_cross = (p - 1) * (p - 1) * expected_projector_sums[2]
+        if split_projector_moment != expected_split_moment:
+            raise AssertionError(
+                (p, split_projector_moment, expected_split_moment)
+            )
+        if nonsplit_projector_moment != expected_nonsplit_moment:
+            raise AssertionError(
+                (p, nonsplit_projector_moment, expected_nonsplit_moment)
+            )
+        if projector_cross_moment != expected_projector_cross:
+            raise AssertionError(
+                (p, projector_cross_moment, expected_projector_cross)
+            )
         verify_principal_rows(p)
         checked.append(
             (
@@ -1135,6 +1224,9 @@ def verify_second_moments() -> List[Tuple[int, int, int, int]]:
                 expected_collision_count,
                 expected_line_support_count,
                 expected_nonprincipal_moment,
+                expected_projector_sums[0],
+                expected_projector_sums[1],
+                expected_projector_sums[2],
             )
         )
     return checked

@@ -29,6 +29,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-19 - M1 line-conic projector moments
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/m1_depth_two_line_conic_resonance_reduction.md`,
+  `experimental/verify_m1_depth_two_line_conic_resonance_reduction.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** Computes exact full-character second moments for
+  the split and nonsplit projectors and their cross moment:
+  `S_- = 2p^2-4p+1+2(p-1)chi_2(-2)`,
+  `S_+ = 2p^2-15p+31-2(p-3)chi_2(-2)`, and `S_{-,+}=2p-3`, each times
+  `(p-1)^2`.
+- **How it is useful:** Shows the split/nonsplit projectors are p-scale on
+  average and nearly orthogonal, so the nonsplit pointwise obstruction is not
+  caused by hidden large average mass.
+- **What to do next:** Use the projector moment and nonsplit kernel moment
+  to guide a pointwise conductor proof for the outer Mellin transform.
+
 ### 2026-06-19 - M1 line-conic twisted kernel moment
 
 - **Agent/model:** Codex.

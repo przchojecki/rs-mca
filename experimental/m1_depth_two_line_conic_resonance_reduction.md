@@ -484,6 +484,63 @@ singular terms are harmless, and the possible square-root loss can only come
 from bounding the lisse nonsplit projector, balancing the two projector
 constants, or from an inefficient descent of the quadratic pushforward.
 
+## Split/Nonsplit Full-Character Moment
+
+The split and nonsplit projectors have no large average obstruction.  Sum
+over all multiplicative characters `eta,nu` of `F_p^*`, extended by zero.
+Then
+
+```text
+sum_{eta,nu} |C^-_{eta,nu}|^2
+  = (p-1)^2(2p^2 - 4p + 1 + 2(p-1)chi_2(-2)),
+
+sum_{eta,nu} |C^+_{eta,nu}|^2
+  = (p-1)^2(2p^2 - 15p + 31 - 2(p-3)chi_2(-2)),
+```
+
+and the cross moment is
+
+```text
+sum_{eta,nu} C^-_{eta,nu} overline{C^+_{eta,nu}}
+  = (p-1)^2(2p-3).
+```
+
+Thus both projectors have full-family RMS `sqrt(2)p+O(1)`, and they are
+nearly orthogonal on average.  The observed nonsplit pointwise ratio slightly
+above `4p` is therefore not an average-mass phenomenon.
+
+For the proof, write
+
+```text
+d_y=(y-2)(y+1),        c_y=chi_2(d_y),
+a_-(y)=1-c_y,          a_+(y)=1+c_y-1_{y=3}.
+```
+
+Then `C^-` and `C^+` are the Mellin transforms with coefficients `a_-`
+and `a_+`.  Orthogonality gives
+
+```text
+sum_{eta,nu} C^sigma overline{C^tau}
+  = (p-1)^2 sum_{y!=0} a_sigma(y)a_tau(y) M(y),
+```
+
+where
+
+```text
+M(y)=#{v in F_p^*: Q_y(v) != 0}
+    = p-2-c_y+1_{y=-1}+1_{y=3}.
+```
+
+Indeed the quadratic in `v` has `1+c_y` roots over `F_p`, and `v=0` is one
+of them exactly at `y=-1` and `y=3`.  Expanding the three sums uses only
+
+```text
+sum_{y!=0} c_y = -1-chi_2(-2),        sum_{y!=0} c_y^2 = p-3,
+```
+
+together with the exceptional values `c_{-1}=0`, `c_3=1`.  This gives the
+three displayed formulas.
+
 ## Twisted Discriminant-Line Model for the Nonsplit Projector
 
 The nonsplit projector also has an exact one-dimensional pullback, but it
