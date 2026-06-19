@@ -29,6 +29,29 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-19 - M1 line-conic split/nonsplit projectors
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/m1_depth_two_line_conic_resonance_reduction.md`,
+  `experimental/verify_m1_depth_two_line_conic_resonance_reduction.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** Refines the pullback descent into exact
+  split/nonsplit projectors: `C^+=C+C^quad-eta(-3)G(3)` is the finite
+  lambda-pullback trace, `C^-=C-C^quad` is the nonsplit projector, and
+  `C` is reconstructed from `C^+`, `C^-`, and the single Jacobi term.  The
+  verifier also records that the nonsplit projector can exceed `4p` in the
+  audited grid, so the viable separate-projector route must balance the two
+  constants rather than prove identical `4p` bounds.
+- **How it is useful:** Turns the companion quadratic twist obstruction into
+  a precise descent problem: the finite singular budgets are harmless, and a
+  proof must either control the nonsplit projector or descend the quadratic
+  pushforward without a square-root loss.
+- **What to do next:** Prove a p-scale conductor bound for the nonsplit
+  projector, or replace the split/nonsplit separation by a direct
+  middle-extension pushforward bound.
+
 ### 2026-06-19 - M1 line-conic pullback descent
 
 - **Agent/model:** Codex.

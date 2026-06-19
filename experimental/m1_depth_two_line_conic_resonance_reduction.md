@@ -389,6 +389,101 @@ hypergeometric trace gives a bound for the split-projected combination
 of the original `4p` target still has to control the companion quadratic
 twist or descend the pushforward sheaf without losing a square-root factor.
 
+## Split/Nonsplit Projection Criterion
+
+The preceding descent can be stated as an exact projector identity on the
+`y`-line.  Put
+
+```text
+C^+_{eta,nu}
+  = C_{eta,nu} + C^quad_{eta,nu} - eta(-3)G_nu(3),
+
+C^-_{eta,nu}
+  = C_{eta,nu} - C^quad_{eta,nu}.
+```
+
+Then `C^+_{eta,nu}` is exactly the finite `lambda`-pullback trace
+`P_{eta,nu}`.  On the lisse open set
+
+```text
+U = P^1_y \ {0,-1,2,3,infinity},
+```
+
+the two projectors have the elementary form
+
+```text
+C^+_U = sum_{y in U(F_p)}
+          (1+chi_2((y-2)(y+1))) eta(-y)G_nu(y),
+
+C^-_U = sum_{y in U(F_p)}
+          (1-chi_2((y-2)(y+1))) eta(-y)G_nu(y).
+```
+
+Thus `C^+` is the split-fiber projection and `C^-` is the nonsplit-fiber
+projection.  They reconstruct the original core and the companion twist by
+
+```text
+C_{eta,nu}
+  = (C^+_{eta,nu} + C^-_{eta,nu} + eta(-3)G_nu(3))/2,
+
+C^quad_{eta,nu}
+  = (C^+_{eta,nu} - C^-_{eta,nu} + eta(-3)G_nu(3))/2.
+```
+
+The finite singular budgets are also separated exactly.  The split projector
+has the same finite singular contribution as the lambda pullback,
+
+```text
+eta(-2)G_nu(2) + eta(-3)G_nu(3),
+```
+
+and the nonsplit projector has only
+
+```text
+eta(-2)G_nu(2).
+```
+
+Indeed `G_nu(-1)=0`, the outer `y=0` term vanishes, `chi_2((3-2)(3+1))=1`
+so the `y=3` Jacobi term cancels from `C^-`, and the finite `lambda`-sum
+counts only one of the two `y=3` pullback points in `C^+`.
+
+Consequently a no-loss descent proof can be phrased in either of two
+equivalent ways:
+
+```text
+control both C^+ and C^- at p-scale,
+```
+
+or prove a direct conductor bound for the quadratic pushforward on the
+`y`-line.  A bound for `C^+=P` alone cannot prove the original `C` bound,
+because the missing term is the whole nonsplit projection `C^-`.  Conversely,
+if
+
+```text
+|C^+_{eta,nu}| <= K_+ p,        |C^-_{eta,nu}| <= K_- p,
+```
+
+then
+
+```text
+|C_{eta,nu}| <= (K_+ + K_-)p/2 + sqrt(p)/2
+```
+
+on the admissible nonprincipal range, using the Jacobi bound for `G_nu(3)`.
+Thus a projector proof of the `4p` core target needs the combined constant
+`K_+ + K_-` to be at most `8` up to lower-order terms; it does not require
+matching `4p` bounds for the two projectors separately.
+
+This distinction is not cosmetic.  The finite audit reports the largest
+tested split-projector ratio as `3.2068909828p` and the largest tested
+nonsplit-projector ratio as `4.0427466236p`.  So the naive same-constant
+route "`|C^+|<=4p` and `|C^-|<=4p`" is already too rigid for the nonsplit
+piece, even though the original core remains below `4p` in the same audit.
+This is the precise form of the remaining descent problem: the finite
+singular terms are harmless, and the possible square-root loss can only come
+from bounding the lisse nonsplit projector, balancing the two projector
+constants, or from an inefficient descent of the quadratic pushforward.
+
 ## Open-Set Line Correction
 
 For the actual two-coordinate open sum, the principal coordinate line

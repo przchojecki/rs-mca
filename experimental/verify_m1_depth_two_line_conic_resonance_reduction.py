@@ -464,6 +464,53 @@ def quadratic_twisted_core(
     return total
 
 
+def split_projected_core(
+    p: int,
+    eta: List[complex],
+    nu: List[complex],
+) -> complex:
+    return (
+        transformed_core(p, eta, nu)
+        + quadratic_twisted_core(p, eta, nu)
+        - eta[(-3) % p] * transformed_inner(p, 3 % p, nu)
+    )
+
+
+def nonsplit_projected_core(
+    p: int,
+    eta: List[complex],
+    nu: List[complex],
+) -> complex:
+    return transformed_core(p, eta, nu) - quadratic_twisted_core(p, eta, nu)
+
+
+def projection_singular_contributions(
+    p: int,
+    eta: List[complex],
+    nu: List[complex],
+) -> Tuple[complex, complex, complex, complex]:
+    split_projection = 0j
+    nonsplit_projection = 0j
+    for y in {0, (-1) % p, 2 % p, 3 % p}:
+        base = eta[(-y) % p] * transformed_inner(p, y, nu)
+        discriminant_sign = legendre((y - 2) * (y + 1), p)
+        split_projection += (1 + discriminant_sign) * base
+        nonsplit_projection += (1 - discriminant_sign) * base
+    split_projection -= eta[(-3) % p] * transformed_inner(p, 3 % p, nu)
+
+    split_expected = (
+        eta[(-2) % p] * transformed_inner(p, 2 % p, nu)
+        + eta[(-3) % p] * transformed_inner(p, 3 % p, nu)
+    )
+    nonsplit_expected = eta[(-2) % p] * transformed_inner(p, 2 % p, nu)
+    return (
+        split_projection,
+        nonsplit_projection,
+        split_expected,
+        nonsplit_expected,
+    )
+
+
 def core_collision_formula(p: int) -> int:
     return (
         2 * p * p
@@ -807,9 +854,15 @@ def main() -> None:
     max_core_ratio = 0.0
     max_open_ratio = 0.0
     max_line_ratio = 0.0
+    max_split_projection_ratio = 0.0
+    max_nonsplit_projection_ratio = 0.0
+    max_nonsplit_singular_ratio = 0.0
     max_core_label: Tuple[object, ...] = ()
     max_open_label: Tuple[object, ...] = ()
     max_line_label: Tuple[object, ...] = ()
+    max_split_projection_label: Tuple[object, ...] = ()
+    max_nonsplit_projection_label: Tuple[object, ...] = ()
+    max_nonsplit_singular_label: Tuple[object, ...] = ()
     singular_checked: List[int] = []
     lambda_map_checked = 0
     lambda_twist_checked: List[Tuple[int, int, int]] = []
@@ -852,15 +905,79 @@ def main() -> None:
             + twisted_core
             - eta[(-3) % p] * transformed_inner(p, 3 % p, nu)
         )
+        split_projection = split_projected_core(p, eta, nu)
+        nonsplit_projection = nonsplit_projected_core(p, eta, nu)
         assert_close(
             (p, eta_exponent, nu_exponent, "lambda_pullback_descent"),
             pulled_back,
             pullback_expected,
         )
+        assert_close(
+            (p, eta_exponent, nu_exponent, "split_projector"),
+            pulled_back,
+            split_projection,
+        )
+        g_at_three = transformed_inner(p, 3 % p, nu)
+        reconstructed_core = (
+            split_projection
+            + nonsplit_projection
+            + eta[(-3) % p] * g_at_three
+        ) / 2
+        reconstructed_twist = (
+            split_projection
+            - nonsplit_projection
+            + eta[(-3) % p] * g_at_three
+        ) / 2
+        assert_close(
+            (p, eta_exponent, nu_exponent, "projector_core_reconstruction"),
+            reconstructed_core,
+            transformed,
+        )
+        assert_close(
+            (p, eta_exponent, nu_exponent, "projector_twist_reconstruction"),
+            reconstructed_twist,
+            twisted_core,
+        )
+        (
+            singular_split,
+            singular_nonsplit,
+            expected_singular_split,
+            expected_singular_nonsplit,
+        ) = projection_singular_contributions(p, eta, nu)
+        assert_close(
+            (p, eta_exponent, nu_exponent, "split_singular_projection"),
+            singular_split,
+            expected_singular_split,
+        )
+        assert_close(
+            (p, eta_exponent, nu_exponent, "nonsplit_singular_projection"),
+            singular_nonsplit,
+            expected_singular_nonsplit,
+        )
+        if abs(singular_split) > 1 + math.sqrt(p) + TOLERANCE:
+            raise AssertionError(
+                (p, eta_exponent, nu_exponent, "split_singular_bound")
+            )
+        if abs(singular_nonsplit) > 1 + TOLERANCE:
+            raise AssertionError(
+                (p, eta_exponent, nu_exponent, "nonsplit_singular_bound")
+            )
         max_pullback_difference = max(
             max_pullback_difference,
             abs(pulled_back - pullback_expected),
         )
+        split_projection_ratio = abs(split_projection) / p
+        nonsplit_projection_ratio = abs(nonsplit_projection) / p
+        nonsplit_singular_ratio = abs(singular_nonsplit)
+        if split_projection_ratio > max_split_projection_ratio:
+            max_split_projection_ratio = split_projection_ratio
+            max_split_projection_label = (p, eta_exponent, nu_exponent)
+        if nonsplit_projection_ratio > max_nonsplit_projection_ratio:
+            max_nonsplit_projection_ratio = nonsplit_projection_ratio
+            max_nonsplit_projection_label = (p, eta_exponent, nu_exponent)
+        if nonsplit_singular_ratio > max_nonsplit_singular_ratio:
+            max_nonsplit_singular_ratio = nonsplit_singular_ratio
+            max_nonsplit_singular_label = (p, eta_exponent, nu_exponent)
         core_ratio = abs(direct) / p
         if core_ratio > max_core_ratio:
             max_core_ratio = core_ratio
@@ -900,6 +1017,12 @@ def main() -> None:
         f"max_core_ratio={max_core_ratio:.10f}@{max_core_label}",
         f"max_open_ratio={max_open_ratio:.10f}@{max_open_label}",
         f"max_line_ratio={max_line_ratio:.10f}@{max_line_label}",
+        f"max_split_projection_ratio={max_split_projection_ratio:.10f}@"
+        f"{max_split_projection_label}",
+        f"max_nonsplit_projection_ratio={max_nonsplit_projection_ratio:.10f}@"
+        f"{max_nonsplit_projection_label}",
+        f"max_nonsplit_singular={max_nonsplit_singular_ratio:.10f}@"
+        f"{max_nonsplit_singular_label}",
         f"singular_checked={singular_checked}",
         f"lambda_map_checked={lambda_map_checked}",
         f"lambda_twist_checked={lambda_twist_checked}",
