@@ -4432,6 +4432,26 @@ def projective_excess_unit(
             raise AssertionError((p, alpha, beta, ratio, unit))
     elif unit not in (-1, 0, 1):
         raise AssertionError((p, alpha, beta, ratio, unit))
+    coefficient_discriminants = tuple(
+        discriminant % p for discriminant in binary_discriminants(coefficients)
+    )
+    formula_discriminants = ratio_surface_binary_discriminants(
+        p,
+        alpha,
+        beta,
+        ratio,
+    )
+    if coefficient_discriminants != formula_discriminants:
+        raise AssertionError(
+            (
+                p,
+                alpha,
+                beta,
+                ratio,
+                coefficient_discriminants,
+                formula_discriminants,
+            )
+        )
     discriminant_unit = projective_excess_unit_from_discriminants(
         p,
         coefficients,
@@ -4441,6 +4461,40 @@ def projective_excess_unit(
             (p, alpha, beta, ratio, unit, discriminant_unit, coefficients)
         )
     return unit
+
+
+def ratio_surface_binary_discriminants(
+    p: int,
+    alpha: int,
+    beta: int,
+    ratio: int,
+) -> Tuple[int, int, int]:
+    a = alpha
+    b = beta
+    r = ratio
+    return (
+        r * (
+            -3 * a * a * r
+            + 4 * a * b * b
+            - 2 * a * b * r
+            + 4 * a * r * r
+            - 3 * b * b * r
+        ) % p,
+        r * (
+            -3 * a * a * r
+            + 4 * a * r * r
+            - 2 * a * r
+            + 4 * a
+            - 3 * r
+        ) % p,
+        (
+            -3 * a * a * r * r
+            + 4 * a * b * b * r
+            - 2 * a * b * r
+            + 4 * a * r
+            - 3 * b * b
+        ) % p,
+    )
 
 
 def binary_discriminants(
@@ -4473,13 +4527,33 @@ def projective_excess_unit_from_discriminants(
     return first
 
 
+def projective_excess_chart(
+    p: int,
+    coefficients: Tuple[int, int, int, int, int, int],
+) -> Tuple[str, int]:
+    if all(coefficient % p == 0 for coefficient in coefficients):
+        return "zero", p
+    labels = ("uv", "u1", "v1")
+    for label, discriminant in zip(labels, binary_discriminants(coefficients)):
+        if discriminant % p != 0:
+            return label, legendre(discriminant, p)
+    return "rank1", 0
+
+
 def weighted_projective_singular_matrix_audit(
     p: int,
     suborder: int,
     logs: Dict[int, int],
     projective_error: int,
-) -> Tuple[int, float, float, float, float]:
+) -> Tuple[int, float, float, float, float, Tuple[int, int, int, int, int]]:
     matrix = [[0 for _ in range(suborder)] for _ in range(suborder)]
+    chart_counts = {
+        "zero": 0,
+        "rank1": 0,
+        "uv": 0,
+        "u1": 0,
+        "v1": 0,
+    }
     for alpha in range(1, p):
         alpha_label = logs[alpha] % suborder
         for beta in range(1, p):
@@ -4493,12 +4567,25 @@ def weighted_projective_singular_matrix_audit(
                 )
                 if determinant != 0:
                     continue
-                matrix[alpha_label][beta_label] += projective_excess_unit(
+                coefficients = ratio_surface_conic_coefficients(
                     p,
                     alpha,
                     beta,
                     ratio,
                 )
+                chart, chart_unit = projective_excess_chart(p, coefficients)
+                chart_counts[chart] += 1
+                exact_unit = projective_excess_unit(
+                    p,
+                    alpha,
+                    beta,
+                    ratio,
+                )
+                if chart_unit != exact_unit:
+                    raise AssertionError(
+                        (p, suborder, alpha, beta, ratio, chart, chart_unit)
+                    )
+                matrix[alpha_label][beta_label] += exact_unit
 
     quotient_weights = [suborder - 1] + [-1 for _ in range(1, suborder)]
     weighted_units = sum(
@@ -4568,6 +4655,13 @@ def weighted_projective_singular_matrix_audit(
         round(max_entry_ratio, 10),
         round(bound_ratio, 10),
         round(max_spectral_ratio, 10),
+        (
+            chart_counts["zero"],
+            chart_counts["rank1"],
+            chart_counts["uv"],
+            chart_counts["u1"],
+            chart_counts["v1"],
+        ),
     )
 
 
@@ -4586,7 +4680,7 @@ def verify_weighted_projective_decomposition() -> List[
         Tuple[int, int, Tuple[int, float]],
         Tuple[int, int, int, float],
         Tuple[float, float],
-        Tuple[int, float, float, float, float],
+        Tuple[int, float, float, float, float, Tuple[int, int, int, int, int]],
     ]
 ]:
     checked: List[
@@ -4604,7 +4698,7 @@ def verify_weighted_projective_decomposition() -> List[
             Tuple[int, int, Tuple[int, float]],
             Tuple[int, int, int, float],
             Tuple[float, float],
-            Tuple[int, float, float, float, float],
+            Tuple[int, float, float, float, float, Tuple[int, int, int, int, int]],
         ]
     ] = []
     for p, suborder in RATIO_SURFACE_CASES:

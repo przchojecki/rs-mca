@@ -3118,6 +3118,30 @@ on finitely many determinant-surface charts, not a black-box point-count
 weight.  The verifier audits this discriminant formula against exact
 projective counts on every singular ratio fiber in the grid.
 
+For the ratio-surface conic, with parameters `a=alpha`, `b=beta`, and
+`r`, these three discriminants are the explicit polynomials
+
+```text
+d_UV = r(-3a^2r + 4ab^2 - 2abr + 4ar^2 - 3b^2r),
+d_UW = r(-3a^2r + 4ar^2 - 2ar + 4a - 3r),
+d_VW = -3a^2r^2 + 4ab^2r - 2abr + 4ar - 3b^2.
+```
+
+Thus one may cover the determinant surface by the ordered rank-two charts
+
+```text
+U V:  d_UV != 0,                         epsilon = chi(d_UV),
+U W:  d_UV = 0, d_UW != 0,               epsilon = chi(d_UW),
+V W:  d_UV = d_UW = 0, d_VW != 0,        epsilon = chi(d_VW).
+```
+
+The residual locus where all three discriminants vanish has rank at most one
+and contributes zero, except for the separated zero conic.  Consequently
+each `S_{psi,phi}` is now a finite sum of explicit Kummer traces on these
+three determinant-surface charts.  The verifier checks the displayed
+formulas against the coefficient discriminants and records how singular
+fibers distribute among the ordered charts.
+
 ## Principal-Row Leakage
 
 The principal rows excluded above have exact formulas.  They explain why the

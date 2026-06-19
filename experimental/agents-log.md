@@ -29,6 +29,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-19 - M1 singular-excess charted Kummer trace
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/m1_depth_two_line_conic_resonance_reduction.md`,
+  `experimental/verify_m1_depth_two_line_conic_resonance_reduction.py`,
+  `experimental/m1_residue_line_roadmap.md`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** Writes the three ratio-surface binary
+  discriminants `d_UV`, `d_UW`, and `d_VW` explicitly in
+  `(alpha,beta,r)`, and covers each rank-two singular fiber by the ordered
+  nonzero-discriminant charts.
+- **How it is useful:** Turns the remaining determinant-surface trace
+  `S_{psi,phi}` into a concrete finite sum of Kummer traces on explicit
+  charts, with rank-one residuals and the zero conic separated.
+- **What to do next:** Prove fixed-index conductor or averaged-square bounds
+  on the three charted determinant-surface Kummer sums.
+
 ### 2026-06-19 - M1 singular-excess discriminant character
 
 - **Agent/model:** Codex.

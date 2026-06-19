@@ -150,7 +150,10 @@ should be revised as the project learns more.
    `S_{psi,phi}=sum_{Delta=0} epsilon psi(alpha)phi(beta)`.  The signed
    excess `epsilon` is now identified as the Legendre symbol of any nonzero
    binary discriminant on rank-two singular conic charts, so this is a
-   charted Kummer trace problem on the determinant surface.
+   charted Kummer trace problem on the determinant surface.  The ordered
+   discriminant cover is now explicit: first use `d_UV`, then `d_UW`, then
+   `d_VW`; the all-zero residual has rank at most one and contributes zero,
+   except for the separated zero conic.
    The updated remaining-wall scan reports this asymmetric wall separately:
    in the current report grid the largest asymmetric ratio is
    `3.2173609608p`, while every near-`4p` top row lies in the projective
