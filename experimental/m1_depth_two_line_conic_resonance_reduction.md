@@ -2327,6 +2327,39 @@ audits the actual average L1 ratios for `p=17,31,43`; they are `0.7523`,
 `0.7628`, and `0.7973`, below the Cauchy bounds `1.0137`, `0.9625`, and
 `0.9747`.
 
+This aggregate bound has a precise transfer limitation.  If a certificate uses
+only an order-`e` quotient-character subgroup, with `e | p-1`, then the
+inherited full-order moment proves only
+
+```text
+sum_{(eta,nu) in A_e} |C^o_{eta,nu}|
+  <= sqrt(R(e) M_o(p)),
+```
+
+because `A_e` is merely a subset of the full nonprincipal character family.
+Therefore the inherited argument gives an average `Kp` bound on that
+suborder chart exactly when
+
+```text
+R(e) >= M_o(p)/(K^2 p^2).
+```
+
+For small quotient-character order this condition can fail badly; an exact
+order-`e` moment would then be needed before the grouped-L1 idea can be
+consumed by a low-index saturation certificate.  The verifier records this
+threshold over divisors of `p-1`.  For `p=17,31,43`, the minimal orders
+certifying average `Kp` by this inherited route are:
+
+```text
+K=1:  none, 30, 42
+K=2:  16,   30, 42
+K=4:   8,   10, 14
+K=9:   8,    6, 14
+```
+
+Thus the full-order aggregate theorem is a genuine p-scale statement, but it
+does not automatically upgrade the existing low-index certificate ledgers.
+
 ## Principal-Row Leakage
 
 The principal rows excluded above have exact formulas.  They explain why the

@@ -12,6 +12,7 @@ EXHAUSTIVE_PRIMES = (17, 31)
 MOMENT_PRIMES = (5, 7, 11, 17, 31)
 FILTER_ORDERS = tuple(range(2, 41))
 ADMISSIBLE_OPEN_AUDIT_PRIMES = (17, 31, 43)
+ADMISSIBLE_TRANSFER_CONSTANTS = (1, 2, 4, 9)
 TARGETED_CASES = (
     (37, 2, 5),
     (37, 7, 11),
@@ -3242,6 +3243,40 @@ def verify_admissible_open_moment_audit() -> List[
     return checked
 
 
+def verify_admissible_suborder_transfer_thresholds() -> List[
+    Tuple[int, int, Tuple[Tuple[int, int], ...]]
+]:
+    checked: List[Tuple[int, int, Tuple[Tuple[int, int], ...]]] = []
+    for p in ADMISSIBLE_OPEN_AUDIT_PRIMES:
+        order = p - 1
+        moment_bound = nonprincipal_open_moment_formula(p)
+        thresholds: List[Tuple[int, int]] = []
+        for constant in ADMISSIBLE_TRANSFER_CONSTANTS:
+            possible_orders = [
+                suborder
+                for suborder in range(2, order + 1)
+                if order % suborder == 0
+                and admissible_filter_formula(suborder) > 0
+                and moment_bound
+                <= constant * constant * p * p
+                * admissible_filter_formula(suborder)
+            ]
+            thresholds.append(
+                (constant, min(possible_orders) if possible_orders else 0)
+            )
+        full_order_bound = thresholds[-1][1]
+        if full_order_bound == 0:
+            raise AssertionError((p, thresholds))
+        checked.append(
+            (
+                p,
+                admissible_filter_formula(order),
+                tuple(thresholds),
+            )
+        )
+    return checked
+
+
 def verify_second_moments() -> List[
     Tuple[int, int, int, int, int, int, int, int, int, int, int]
 ]:
@@ -3488,6 +3523,9 @@ def main() -> None:
     twist_nontrivial_checked = verify_admissible_twist_nontriviality()
     moment_checked = verify_second_moments()
     admissible_open_moment_checked = verify_admissible_open_moment_audit()
+    admissible_transfer_thresholds_checked = (
+        verify_admissible_suborder_transfer_thresholds()
+    )
     collapsed_four_p_obstruction_checked = (
         verify_quotient_line_collapsed_four_p_obstruction()
     )
@@ -4092,6 +4130,8 @@ def main() -> None:
         f"{twist_nontrivial_checked[-1]}",
         f"moment_checked={moment_checked}",
         f"admissible_open_moment_checked={admissible_open_moment_checked}",
+        f"admissible_transfer_thresholds_checked="
+        f"{admissible_transfer_thresholds_checked}",
         f"collapsed_four_p_obstruction_checked="
         f"{collapsed_four_p_obstruction_checked}",
     )

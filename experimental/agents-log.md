@@ -29,6 +29,26 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-19 - M1 aggregate suborder transfer criterion
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/m1_depth_two_line_conic_resonance_reduction.md`,
+  `experimental/verify_m1_depth_two_line_conic_resonance_reduction.py`,
+  `experimental/m1_residue_line_roadmap.md`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** Records the exact transfer criterion for using the
+  full-order admissible aggregate L1 theorem on an order-`e` quotient-character
+  subchart: the inherited Cauchy route gives average `Kp` only when
+  `R(e) >= M_o(p)/(K^2p^2)`.
+- **How it is useful:** Prevents overusing the full-order moment in low-index
+  saturation certificates and identifies the missing input as an exact
+  order-`e` moment when the threshold fails.
+- **What to do next:** Derive or experimentally probe the order-`e`
+  line-conic moment for low quotient orders before consuming the aggregate
+  route in certificate fields.
+
 ### 2026-06-19 - M1 admissible aggregate L1 bound
 
 - **Agent/model:** Codex.

@@ -82,7 +82,11 @@ should be revised as the project learns more.
    route for the line-conic slice: per fixed full-order resonant chart,
    `sum |C^o_{eta,nu}| <= sqrt(R(p-1)M_o(p)) = p(1+O(1/p))R(p-1)`.
    This is a possible grouped L1 certificate improvement, not a replacement
-   for the missing pointwise `4p` conductor theorem.
+   for the missing pointwise `4p` conductor theorem.  For a smaller
+   quotient-character order `e`, the inherited full-order moment gives only
+   `sqrt(R(e)M_o(p))`; consuming the grouped route in low-index certificates
+   therefore needs either `R(e) >= M_o(p)/(K^2p^2)` for the desired average
+   `Kp` constant, or a new exact order-`e` moment.
    The updated remaining-wall scan reports this asymmetric wall separately:
    in the current report grid the largest asymmetric ratio is
    `3.2173609608p`, while every near-`4p` top row lies in the projective
