@@ -29,6 +29,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-19 - M1 lower determinant-chart collapse
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/m1_depth_two_line_conic_resonance_reduction.md`,
+  `experimental/verify_m1_depth_two_line_conic_resonance_reduction.py`,
+  `experimental/m1_residue_line_roadmap.md`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** Shows that the `Delta=d_UV=0` lower chart is
+  contained in the diagonal branch `alpha=beta=r` plus the residual branch
+  `K_alpha(alpha,r)=K_beta(beta,r)=0`, giving at most `5(p-1)` points.
+- **How it is useful:** Removes the lower charts from the surface-cancellation
+  problem: their contribution to every determinant-surface trace is already
+  `O(p)` by counting.
+- **What to do next:** Prove cancellation on the main determinant chart
+  `Delta=0, d_UV != 0`.
+
 ### 2026-06-19 - M1 singular-excess charted Kummer trace
 
 - **Agent/model:** Codex.

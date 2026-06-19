@@ -153,7 +153,11 @@ should be revised as the project learns more.
    charted Kummer trace problem on the determinant surface.  The ordered
    discriminant cover is now explicit: first use `d_UV`, then `d_UW`, then
    `d_VW`; the all-zero residual has rank at most one and contributes zero,
-   except for the separated zero conic.
+   except for the separated zero conic.  The non-`d_UV` lower chart is now
+   collapsed to the diagonal curve `alpha=beta=r` plus the residual
+   quadratic curve `K_alpha(alpha,r)=K_beta(beta,r)=0`, so it has at most
+   `5(p-1)` points and is already `O(p)` in every trace.  The remaining
+   surface-cancellation target is the main `d_UV != 0` chart.
    The updated remaining-wall scan reports this asymmetric wall separately:
    in the current report grid the largest asymmetric ratio is
    `3.2173609608p`, while every near-`4p` top row lies in the projective

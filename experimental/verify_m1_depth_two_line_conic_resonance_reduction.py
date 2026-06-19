@@ -21,6 +21,7 @@ RATIO_SURFACE_CASES = (
     (43, 6),
     (43, 14),
 )
+LOWER_CHART_PRIMES = (5, 7, 11, 17, 31, 43)
 TARGETED_CASES = (
     (37, 2, 5),
     (37, 7, 11),
@@ -4540,6 +4541,84 @@ def projective_excess_chart(
     return "rank1", 0
 
 
+def ratio_surface_lower_alpha_kernel(p: int, alpha: int, ratio: int) -> int:
+    a = alpha
+    r = ratio
+    return (-a * a * r + 3 * a * r * r - 4 * a * r + 3 * a - r) % p
+
+
+def ratio_surface_lower_beta_kernel(p: int, beta: int, ratio: int) -> int:
+    b = beta
+    r = ratio
+    return (
+        3 * b * b * r
+        - 2 * b * b
+        + 3 * b * r * r
+        - 8 * b * r
+        + 3 * b
+        - 2 * r * r
+        + 3 * r
+    ) % p
+
+
+def verify_ratio_surface_lower_chart_collapse() -> List[
+    Tuple[int, int, int, int, int, int]
+]:
+    checked: List[Tuple[int, int, int, int, int, int]] = []
+    for p in LOWER_CHART_PRIMES:
+        uv_count = 0
+        lower_count = 0
+        diagonal_count = 0
+        residual_count = 0
+        zero_count = 0
+        for alpha in range(1, p):
+            for beta in range(1, p):
+                for ratio in range(1, p):
+                    if ratio_surface_delta(p, alpha, beta, ratio) != 0:
+                        continue
+                    discriminants = ratio_surface_binary_discriminants(
+                        p,
+                        alpha,
+                        beta,
+                        ratio,
+                    )
+                    if discriminants[0] != 0:
+                        uv_count += 1
+                        continue
+                    lower_count += 1
+                    diagonal = alpha == ratio and beta == ratio
+                    residual = (
+                        ratio_surface_lower_alpha_kernel(p, alpha, ratio) == 0
+                        and ratio_surface_lower_beta_kernel(p, beta, ratio) == 0
+                    )
+                    if not (diagonal or residual):
+                        raise AssertionError((p, alpha, beta, ratio))
+                    diagonal_count += int(diagonal)
+                    residual_count += int(residual)
+                    if (alpha, beta, ratio) == (1, 1, 1):
+                        zero_count += 1
+                        continue
+                    if discriminants[1] == 0:
+                        raise AssertionError(
+                            (p, alpha, beta, ratio, discriminants)
+                        )
+        if lower_count > 5 * (p - 1):
+            raise AssertionError((p, lower_count))
+        if zero_count != 1:
+            raise AssertionError((p, zero_count))
+        checked.append(
+            (
+                p,
+                uv_count,
+                lower_count,
+                diagonal_count,
+                residual_count,
+                zero_count,
+            )
+        )
+    return checked
+
+
 def weighted_projective_singular_matrix_audit(
     p: int,
     suborder: int,
@@ -5220,6 +5299,9 @@ def main() -> None:
     suborder_parseval_moment_checked = verify_suborder_parseval_open_moments()
     ratio_surface_joint_energy_checked = verify_ratio_surface_joint_energy()
     ratio_surface_degeneracy_checked = verify_ratio_surface_degeneracy()
+    ratio_surface_lower_chart_checked = (
+        verify_ratio_surface_lower_chart_collapse()
+    )
     quotient_conic_centered_bound_checked = (
         verify_quotient_conic_centered_bounds()
     )
@@ -5842,6 +5924,8 @@ def main() -> None:
         f"{ratio_surface_joint_energy_checked}",
         f"ratio_surface_degeneracy_checked="
         f"{ratio_surface_degeneracy_checked}",
+        f"ratio_surface_lower_chart_checked="
+        f"{ratio_surface_lower_chart_checked}",
         f"quotient_conic_centered_bound_checked="
         f"{quotient_conic_centered_bound_checked}",
         f"weighted_ratio_surface_centering_checked="

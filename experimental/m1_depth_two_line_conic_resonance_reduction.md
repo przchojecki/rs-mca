@@ -3142,6 +3142,44 @@ three determinant-surface charts.  The verifier checks the displayed
 formulas against the coefficient discriminants and records how singular
 fibers distribute among the ordered charts.
 
+The lower charts are not another two-dimensional surface.  Let
+
+```text
+K_alpha(a,r) = -a^2r + 3ar^2 - 4ar + 3a - r,
+K_beta(b,r)  = (3r-2)b^2 + (3r^2-8r+3)b + r(3-2r).
+```
+
+Eliminating `b` from `Delta=0` and `d_UV=0` gives
+
+```text
+Res_b(Delta,d_UV) = a^2 r^4 (a-r)^2 K_alpha(a,r)^2.
+```
+
+On the diagonal branch `a=r`,
+
+```text
+Delta = r(r-1)(b-r)(b-r^2),        d_UV = r^2(b-r)^2,
+```
+
+so the lower chart contains only `a=b=r` from this branch.  On the residual
+branch `K_alpha=0`, eliminating `a` from `(K_alpha,Delta)` and from
+`(K_alpha,d_UV)` has common factor `K_beta`; hence every residual
+`Delta=d_UV=0` point has `K_beta(b,r)=0`.  Therefore, for each fixed
+`r in F_p^*`, the non-`U V` part is contained in one diagonal point plus at
+most four residual points.  In particular
+
+```text
+#{Delta=0, d_UV=0} <= 5(p-1).
+```
+
+Thus the non-`U V` contribution to every `S_{psi,phi}` is already `O(p)` by
+counting alone.  Moreover, away from the zero conic and for `p>5`, the
+ordered lower chart is actually `U W`: on the diagonal
+`d_UW=r^2(r-1)^2`, while modulo `K_alpha` one has
+`d_UW=-5ar(r-1)^2`.  The verifier audits the finite collapse, including the
+small characteristic `p=5` sample.  The only remaining surface-cancellation
+problem is therefore the main `d_UV != 0` determinant chart.
+
 ## Principal-Row Leakage
 
 The principal rows excluded above have exact formulas.  They explain why the
