@@ -121,7 +121,10 @@ should be revised as the project learns more.
    identity `A(ru,beta v)=alpha r A(u,v)`, leaving only infinity and the two
    line-deletion terms.  These three survivors now have direct solved-alpha
    formulas: infinity over projective slopes, source line with `v=-1-u`, and
-   target line with `v=(-1-ru)/beta`.
+   target line with `v=(-1-ru)/beta`.  The infinity term further reduces by
+   `beta=rt` to the quotient-weight autocorrelation
+   `(p-1)sum_{t,s} W_e((1+ts+t^2s^2)/(tB(s)))`, with the `[0:1:0]` point
+   cancelling by `sum W_e=0`.
    The updated remaining-wall scan reports this asymmetric wall separately:
    in the current report grid the largest asymmetric ratio is
    `3.2173609608p`, while every near-`4p` top row lies in the projective

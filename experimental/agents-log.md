@@ -29,6 +29,28 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-19 - M1 infinity boundary autocorrelation
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/m1_depth_two_line_conic_resonance_reduction.md`,
+  `experimental/verify_m1_depth_two_line_conic_resonance_reduction.py`,
+  `experimental/m1_residue_line_roadmap.md`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** Reduces the infinity boundary component by setting
+  `beta=rt` and using the quotient-weight autocorrelation
+  `sum_r W_e(lambda r)W_e(r)=(p-1)W_e(lambda)`.  The infinity term becomes
+  `(p-1)sum_{t,s} W_e((1+ts+t^2s^2)/(tB(s)))`, with zero-alpha and
+  `[0:1:0]` cases removed/cancelled explicitly.  The verifier audits the
+  autocorrelation identity and checks the reduced formula against the
+  boundary partition.
+- **How it is useful:** Converts the cleanest surviving boundary component
+  into a two-variable quotient-weight sum, removing one multiplicative
+  parameter and exposing the exact cancellation target.
+- **What to do next:** Bound or further transform this two-variable quotient
+  sum, then apply similar reductions to the source- and target-line pieces.
+
 ### 2026-06-19 - M1 surviving boundary solved-alpha formulas
 
 - **Agent/model:** Codex.

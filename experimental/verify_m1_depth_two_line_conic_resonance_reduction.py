@@ -3957,6 +3957,66 @@ def weighted_infinity_formula_sum(
     return total
 
 
+def quotient_weight_autocorrelation(
+    p: int,
+    suborder: int,
+    logs: Dict[int, int],
+    value: int,
+) -> int:
+    value %= p
+    if value == 0:
+        return 0
+    direct = 0
+    for y in range(1, p):
+        direct += quotient_centering_weight(
+            p,
+            suborder,
+            logs,
+            value * y % p,
+        ) * quotient_centering_weight(p, suborder, logs, y)
+    expected = (p - 1) * quotient_centering_weight(p, suborder, logs, value)
+    if direct != expected:
+        raise AssertionError((p, suborder, value, direct, expected))
+    return expected
+
+
+def weighted_infinity_autocorrelation_sum(
+    p: int,
+    suborder: int,
+    logs: Dict[int, int],
+) -> int:
+    total = 0
+    point_at_infinity = 0
+    for t in range(1, p):
+        point_at_infinity += quotient_weight_autocorrelation(
+            p,
+            suborder,
+            logs,
+            t,
+        )
+        for slope in range(p):
+            denominator = t * shape_b(slope, p) % p
+            if denominator == 0:
+                continue
+            numerator = (
+                1
+                + t * slope
+                + t * t * slope * slope
+            ) % p
+            if numerator == 0:
+                continue
+            value = numerator * pow(denominator, -1, p) % p
+            total += quotient_weight_autocorrelation(
+                p,
+                suborder,
+                logs,
+                value,
+            )
+    if point_at_infinity != 0:
+        raise AssertionError((p, suborder, point_at_infinity))
+    return total
+
+
 def weighted_source_line_formula_sum(
     p: int,
     suborder: int,
@@ -4075,9 +4135,11 @@ def weighted_projective_error_sum(
 
 
 def verify_weighted_projective_decomposition() -> List[
-    Tuple[int, int, int, int, int, int, Tuple[int, ...]]
+    Tuple[int, int, int, int, int, int, Tuple[int, ...], int]
 ]:
-    checked: List[Tuple[int, int, int, int, int, int, Tuple[int, ...]]] = []
+    checked: List[
+        Tuple[int, int, int, int, int, int, Tuple[int, ...], int]
+    ] = []
     for p, suborder in RATIO_SURFACE_CASES:
         logs = log_table(p)
         _, _, _, _, moment = open_suborder_coset_moment(p, suborder, logs)
@@ -4105,6 +4167,13 @@ def verify_weighted_projective_decomposition() -> List[
         )
         if surviving_formulas != expected_survivors:
             raise AssertionError((p, suborder, surviving_formulas, expected_survivors))
+        infinity_reduced = weighted_infinity_autocorrelation_sum(
+            p,
+            suborder,
+            logs,
+        )
+        if infinity_reduced != expected_survivors[0]:
+            raise AssertionError((p, suborder, infinity_reduced, expected_survivors))
         if zero_conic_count != 1:
             raise AssertionError((p, suborder, zero_conic_count))
         if singular_count > 3 * (p - 1) * (p - 1):
@@ -4118,6 +4187,7 @@ def verify_weighted_projective_decomposition() -> List[
                 boundary_error,
                 singular_count,
                 boundary_parts,
+                infinity_reduced,
             )
         )
     return checked

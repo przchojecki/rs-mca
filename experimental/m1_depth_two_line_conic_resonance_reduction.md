@@ -2785,6 +2785,42 @@ verifier evaluates these three solved-alpha formulas and checks that they
 match the infinity, source-line, and target-line entries of the boundary
 partition.
 
+The infinity piece has a further quotient-autocorrelation reduction.  Put
+`beta=rt`.  For a finite point at infinity `[1:s:0]` with `B(s) != 0`,
+
+```text
+alpha
+  = r (1+ts+t^2s^2)/B(s),
+```
+
+and therefore
+
+```text
+alpha/beta = (1+ts+t^2s^2)/(tB(s)).
+```
+
+The inner sum over `r` is
+
+```text
+sum_r W_e(r alpha/beta) W_e(r)
+  = (p-1) W_e(alpha/beta),
+```
+
+the autocorrelation identity for the quotient-centering weight.  If
+`1+ts+t^2s^2=0`, then the corresponding `alpha` is zero and no
+multiplicative parameter contributes.  The remaining point `[0:1:0]` gives
+`alpha/beta=t`, whose total contribution is
+`(p-1)sum_t W_e(t)=0`.  Thus the infinity boundary is exactly
+
+```text
+(p-1) sum_{t in F_p^*}
+  sum_{s in F_p, B(s) != 0, 1+ts+t^2s^2 != 0}
+    W_e((1+ts+t^2s^2)/(tB(s))).
+```
+
+The verifier checks this reduced two-variable formula against the original
+infinity boundary partition and audits the autocorrelation identity directly.
+
 ## Principal-Row Leakage
 
 The principal rows excluded above have exact formulas.  They explain why the
