@@ -13,6 +13,14 @@ MOMENT_PRIMES = (5, 7, 11, 17, 31)
 FILTER_ORDERS = tuple(range(2, 41))
 ADMISSIBLE_OPEN_AUDIT_PRIMES = (17, 31, 43)
 ADMISSIBLE_TRANSFER_CONSTANTS = (1, 2, 4, 9)
+RATIO_SURFACE_CASES = (
+    (17, 8),
+    (17, 16),
+    (31, 6),
+    (31, 10),
+    (43, 6),
+    (43, 14),
+)
 TARGETED_CASES = (
     (37, 2, 5),
     (37, 7, 11),
@@ -3368,6 +3376,56 @@ def open_suborder_coset_moment(
     return support_count, joint_energy, x_energy, v_energy, moment
 
 
+def is_open_support_point(p: int, u: int, v: int) -> bool:
+    return (
+        u % p != 0
+        and v % p != 0
+        and (-1 - u - v) % p != 0
+        and shape_a(u, v, p) != 0
+    )
+
+
+def ratio_surface_joint_energy(p: int, suborder: int) -> int:
+    logs = log_table(p)
+    kernel = [value for value in range(1, p) if logs[value] % suborder == 0]
+    total = 0
+    for alpha in kernel:
+        for beta in kernel:
+            for ratio in range(1, p):
+                for u in range(1, p):
+                    ratio_u = ratio * u % p
+                    for v in range(1, p):
+                        beta_v = beta * v % p
+                        equation = (
+                            ratio * (ratio - alpha) * u * u
+                            + ratio
+                            * ((beta - alpha) * v + (1 - alpha))
+                            * u
+                            + shape_b(beta_v, p)
+                            - alpha * ratio * shape_b(v, p)
+                        ) % p
+                        if equation != 0:
+                            continue
+                        if not is_open_support_point(p, u, v):
+                            continue
+                        if not is_open_support_point(p, ratio_u, beta_v):
+                            continue
+                        total += 1
+    return total
+
+
+def verify_ratio_surface_joint_energy() -> List[Tuple[int, int, int]]:
+    checked: List[Tuple[int, int, int]] = []
+    for p, suborder in RATIO_SURFACE_CASES:
+        logs = log_table(p)
+        _, joint_energy, _, _, _ = open_suborder_coset_moment(p, suborder, logs)
+        surface_energy = ratio_surface_joint_energy(p, suborder)
+        if surface_energy != joint_energy:
+            raise AssertionError((p, suborder, surface_energy, joint_energy))
+        checked.append((p, suborder, joint_energy))
+    return checked
+
+
 def direct_suborder_nonprincipal_open_moment(
     p: int,
     suborder: int,
@@ -3691,6 +3749,7 @@ def main() -> None:
         verify_admissible_suborder_moment_audit()
     )
     suborder_parseval_moment_checked = verify_suborder_parseval_open_moments()
+    ratio_surface_joint_energy_checked = verify_ratio_surface_joint_energy()
     collapsed_four_p_obstruction_checked = (
         verify_quotient_line_collapsed_four_p_obstruction()
     )
@@ -4300,6 +4359,8 @@ def main() -> None:
         f"admissible_suborder_moment_checked="
         f"{admissible_suborder_moment_checked}",
         f"suborder_parseval_moment_checked={suborder_parseval_moment_checked}",
+        f"ratio_surface_joint_energy_checked="
+        f"{ratio_surface_joint_energy_checked}",
         f"collapsed_four_p_obstruction_checked="
         f"{collapsed_four_p_obstruction_checked}",
     )

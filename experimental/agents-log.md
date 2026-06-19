@@ -29,6 +29,26 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-19 - M1 quotient collision conic fibration
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/m1_depth_two_line_conic_resonance_reduction.md`,
+  `experimental/verify_m1_depth_two_line_conic_resonance_reduction.py`,
+  `experimental/m1_residue_line_roadmap.md`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** Parameterizes quotient joint-energy collisions by
+  `alpha,beta in K_e`, `r=u'/u`, and proves the equivalent conic-fibration
+  equation
+  `r(r-alpha)u^2+r((beta-alpha)v+1-alpha)u+B(beta v)-alpha rB(v)=0`.
+  The verifier checks the ratio-surface count against the quotient joint
+  energy in selected audited cases.
+- **How it is useful:** Turns the centered quotient-mixing target into an
+  explicit family of conics whose degenerate ratio fibers can be classified.
+- **What to do next:** Analyze the discriminant and degenerate parameter locus
+  of this conic family uniformly in the low-index regime.
+
 ### 2026-06-19 - M1 centered quotient-mixing formulation
 
 - **Agent/model:** Codex.

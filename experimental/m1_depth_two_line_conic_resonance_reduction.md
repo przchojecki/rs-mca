@@ -2457,6 +2457,48 @@ pointwise conductor input.  A proof that this quotient occupancy energy is
 `O(p^2/e^2 + p)` uniformly in the relevant low-index regime would give the
 desired average `p`-scale grouped line-conic ledger.
 
+The joint quotient energy has a further algebraic normal form.  Write
+`alpha,beta in K_e` for the quotient collision ratios
+
+```text
+x(u',v')=alpha x(u,v),        v'=beta v,
+```
+
+and put `u'=r u`.  Since
+
+```text
+x(u,v)=-(u+v+1+B(v)/u),        B(v)=v^2+v+1,
+```
+
+the collision condition is equivalent, after multiplying by `r u`, to the
+conic-fibration equation
+
+```text
+r(r-alpha)u^2
+  + r((beta-alpha)v+1-alpha)u
+  + B(beta v) - alpha r B(v) = 0.
+```
+
+Thus
+
+```text
+sum_{i,j} n_{ij}^2
+```
+
+is exactly the number of tuples `(alpha,beta,r,u,v)` satisfying this equation,
+with `alpha,beta in K_e`, `r,u,v in F_p^*`, and with both `(u,v)` and
+`(ru,beta v)` lying in the open support.  Conversely, every pair counted by
+the joint energy gives a unique such tuple by taking
+`alpha=x(u',v')/x(u,v)`, `beta=v'/v`, and `r=u'/u`.  The verifier checks this
+ratio-surface count against the quotient joint energy for
+`(p,e)=(17,8),(17,16),(31,6),(31,10),(43,6),(43,14)`, giving joint energies
+`993,419,21059,8005,81875,15835`.
+
+This turns the centered-mixing target into a family of explicit conics over
+the ratio parameters `(alpha,beta,r)`.  Degenerate ratio fibers are now the
+objects to classify; away from them, a uniform conic-fiber estimate is the
+natural route to the desired quotient-energy bound.
+
 ## Principal-Row Leakage
 
 The principal rows excluded above have exact formulas.  They explain why the
