@@ -29,6 +29,27 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-19 - M1 BETA_2 beta-pushforward import contract
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/m1_kummer_weil_import_contract.md`,
+  `experimental/m1_depth_two_line_conic_resonance_reduction.md`,
+  `experimental/m1_residue_line_roadmap.md`,
+  `experimental/agents-log.md`.
+- **Status:** CONDITIONAL / AUDIT.
+- **What is being added:** Names the remaining rank-two beta-pushforward
+  estimate as `(BETA_2)`: for nonprincipal centered `phi`, the good-base
+  trace of
+  `psi(a) phi(beta) chi(d_UV(a,beta,r))` over the beta cover is
+  `O_e(p)`.
+- **How it is useful:** Puts the final conditional dependency of PR #82 in
+  the central M1 import contract, alongside the existing Kummer-Weil imports,
+  and lists the algebraic hypotheses already audited by the verifier.
+- **What to do next:** Accept `(BETA_2)` as a standard bounded-conductor
+  Deligne--Katz/Rojas-Leon input, or prove it directly for the explicit
+  beta-cover model.
+
 ### 2026-06-19 - M1 beta-zero conductor resultants
 
 - **Agent/model:** Codex.

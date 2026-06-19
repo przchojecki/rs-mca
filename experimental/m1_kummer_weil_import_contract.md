@@ -6,7 +6,11 @@ This note isolates the remaining non-elementary two-variable character-sum
 input used by the M1 slack-two depth-two certificates in
 `m1_depth_two_lift_window_theorem.md`. It is not a proof of the imported
 estimate; it states the exact import and records which hypotheses are already
-checked by the scanner/verifier.
+checked by the scanner/verifier.  It also records the newer rank-two
+beta-pushforward import isolated by
+`m1_depth_two_line_conic_resonance_reduction.md`; that import is separate
+from the raw `KW_2` line/conic arrangement below and is not consumed unless
+explicitly stated.
 
 ## The Import
 
@@ -525,6 +529,66 @@ and the six distinctness-failure lines have union size
 ```text
 6p - 11.
 ```
+
+## Beta-Pushforward Import (`BETA_2`)
+
+The line-conic-resonance reduction has isolated a second, narrower import for
+the quotient-conic singular-excess route.  Work over `F_p`, fix a quotient
+order `e | p-1`, and let `psi,phi` be multiplicative characters of
+`F_p^*/K_e` with `phi != 1`.  On the good base
+
+```text
+G = {(a,r): A_beta C_beta D_beta (a-r)K_alpha != 0} <= G_m^2
+```
+
+consider the two-sheet beta cover
+
+```text
+Y_G: A_beta beta^2 + B_beta beta + C_beta = 0.
+```
+
+The trace sheaf on `Y_G` is the tame rank-one Kummer sheaf
+
+```text
+K_{psi,phi}
+  = psi(a) phi(beta) chi(d_UV(a,beta,r)).
+```
+
+The imported estimate is:
+
+```text
+| sum_{(a,beta,r) in Y_G(F_p)} K_{psi,phi}(a,beta,r) |
+  <= C_beta(e) p.                                      (BETA_2)
+```
+
+Equivalently, the rank-two pushforward `pi_! K_{psi,phi}` to the `(a,r)`-base
+has bounded conductor depending only on `e`, has no geometrically constant
+summand when `phi != 1`, and its compactly supported trace is `O_e(p)`.
+
+The elementary hypotheses behind this import are now audited in
+`verify_m1_depth_two_line_conic_resonance_reduction.py`:
+
+- the beta cover is rank two on the good base, with branch divisor
+  `D_beta=alpha*r*M*H`;
+- the deleted lower-chart and exceptional main-chart loci are curve-sized;
+- the beta-zero boundary
+  `Q_beta=-2a^2r+3ar^2-ar+3a-3r=0` carries nontrivial local monodromy `phi`;
+- `Q_beta=0` has no common component with `B_beta`, `d_UV`, `A_beta`, `M`,
+  `H`, `a-r`, or `K_alpha`, by the explicit resultants recorded in
+  `m1_depth_two_line_conic_resonance_reduction.md`;
+- the verifier checks that the finite intersections lie in those displayed
+  resultant root supports.
+
+Thus the only remaining non-elementary input in `(BETA_2)` is the standard
+bounded-conductor Deligne--Katz/Rojas-Leon style trace estimate for this
+explicit tame rank-two pushforward.  If `(BETA_2)` is accepted, then
+
+```text
+||Gamma_e^circ||_F = O_e(p),   P_e = O_e(p^2),   M_e^o = O_e(p^2),
+```
+
+by the quotient-character Parseval and closed-boundary reductions in
+`m1_depth_two_line_conic_resonance_reduction.md`.
 
 ## Why This Is Not a Direct Nonsingular Citation
 

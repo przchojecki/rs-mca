@@ -194,8 +194,8 @@ should be revised as the project learns more.
    The component separations are recorded by explicit resultants, including
    the diagonal and `K_alpha` deleted divisors, and the verifier checks the
    corresponding finite intersection root supports.
-   Thus, under the standard bounded-conductor Deligne--Katz estimate for
-   this nonconstant rank-two Kummer pushforward, the singular trace satisfies
+   Thus, under the `(BETA_2)` bounded-conductor import now isolated in
+   `m1_kummer_weil_import_contract.md`, the singular trace satisfies
    `S_{psi,phi}=O_e(p)`.  Parseval then gives
    `||Gamma_e^circ||_F=O_e(p)`, so `P_e=O_e(p^2)` and the closed boundary
    inequality gives `M_e^o=O_e(p^2)`.  The verifier now checks the

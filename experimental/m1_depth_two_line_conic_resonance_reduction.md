@@ -3466,8 +3466,8 @@ which is nontrivial.  Therefore the good pushforward has no geometrically
 constant summand in the nonprincipal `phi` rows relevant to the centered
 singular matrix.
 
-Consequently, under the standard bounded-conductor Deligne--Katz estimate
-for nonconstant tame Kummer sheaves on bounded-degree surfaces, the good
+Consequently, under the bounded-conductor rank-two beta-pushforward import
+`(BETA_2)` recorded in `m1_kummer_weil_import_contract.md`, the good
 pushforward satisfies
 
 ```text
@@ -3479,9 +3479,9 @@ for every fixed quotient order `e` and every centered character pair
 decomposition above, this conditionally gives the desired
 `S_{psi,phi}=O_e(p)` singular-trace bound for the depth-two M1
 determinant-surface target.  The conditional input is now isolated: it is
-only the standard bounded-conductor trace estimate for this explicitly
-charted rank-two beta pushforward, not any further combinatorial or
-bookkeeping loss.
+only the bounded-conductor trace estimate for this explicitly charted
+rank-two beta pushforward, not any further combinatorial or bookkeeping
+loss.
 
 At the quotient-matrix level the implication is completely explicit.  Suppose
 the imported pushforward estimate gives
