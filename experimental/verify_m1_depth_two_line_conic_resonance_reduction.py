@@ -3677,6 +3677,109 @@ def weighted_ratio_surface_centered_moment(
     return total
 
 
+def ratio_surface_projective_point_count(
+    p: int,
+    alpha: int,
+    beta: int,
+    ratio: int,
+) -> int:
+    uu, uv, vv, u_linear, v_linear, constant = (
+        ratio_surface_conic_coefficients(p, alpha, beta, ratio)
+    )
+    affine_count = 0
+    for u in range(p):
+        for v in range(p):
+            value = (
+                uu * u * u
+                + uv * u * v
+                + vv * v * v
+                + u_linear * u
+                + v_linear * v
+                + constant
+            ) % p
+            if value == 0:
+                affine_count += 1
+    infinity_count = int(vv == 0)
+    for slope in range(p):
+        value = (uu + uv * slope + vv * slope * slope) % p
+        if value == 0:
+            infinity_count += 1
+    return affine_count + infinity_count
+
+
+def weighted_projective_error_sum(
+    p: int,
+    suborder: int,
+    logs: Dict[int, int],
+) -> Tuple[int, int, int]:
+    total = 0
+    singular_count = 0
+    zero_conic_count = 0
+    for alpha in range(1, p):
+        alpha_weight = quotient_centering_weight(p, suborder, logs, alpha)
+        for beta in range(1, p):
+            weight = alpha_weight * quotient_centering_weight(
+                p,
+                suborder,
+                logs,
+                beta,
+            )
+            for ratio in range(1, p):
+                determinant = ratio_surface_doubled_projective_determinant(
+                    p,
+                    alpha,
+                    beta,
+                    ratio,
+                )
+                if determinant != 0:
+                    continue
+                singular_count += 1
+                coefficients = ratio_surface_conic_coefficients(
+                    p,
+                    alpha,
+                    beta,
+                    ratio,
+                )
+                if all(coefficient == 0 for coefficient in coefficients):
+                    zero_conic_count += 1
+                projective_count = ratio_surface_projective_point_count(
+                    p,
+                    alpha,
+                    beta,
+                    ratio,
+                )
+                total += weight * (projective_count - (p + 1))
+    return total, singular_count, zero_conic_count
+
+
+def verify_weighted_projective_decomposition() -> List[
+    Tuple[int, int, int, int, int, int]
+]:
+    checked: List[Tuple[int, int, int, int, int, int]] = []
+    for p, suborder in RATIO_SURFACE_CASES:
+        logs = log_table(p)
+        _, _, _, _, moment = open_suborder_coset_moment(p, suborder, logs)
+        projective_error, singular_count, zero_conic_count = (
+            weighted_projective_error_sum(p, suborder, logs)
+        )
+        boundary_error = projective_error - moment
+        if zero_conic_count != 1:
+            raise AssertionError((p, suborder, zero_conic_count))
+        if singular_count > 3 * (p - 1) * (p - 1):
+            raise AssertionError((p, suborder, singular_count))
+        checked.append(
+            (
+                p,
+                suborder,
+                moment,
+                projective_error,
+                boundary_error,
+                singular_count,
+            )
+        )
+    return checked
+
+
 def verify_weighted_ratio_surface_centering() -> List[Tuple[int, int, int]]:
     checked: List[Tuple[int, int, int]] = []
     for p, suborder in RATIO_SURFACE_CASES:
@@ -4074,6 +4177,9 @@ def main() -> None:
     )
     weighted_ratio_surface_centering_checked = (
         verify_weighted_ratio_surface_centering()
+    )
+    weighted_projective_decomposition_checked = (
+        verify_weighted_projective_decomposition()
     )
     collapsed_four_p_obstruction_checked = (
         verify_quotient_line_collapsed_four_p_obstruction()
@@ -4692,6 +4798,8 @@ def main() -> None:
         f"{quotient_conic_centered_bound_checked}",
         f"weighted_ratio_surface_centering_checked="
         f"{weighted_ratio_surface_centering_checked}",
+        f"weighted_projective_decomposition_checked="
+        f"{weighted_projective_decomposition_checked}",
         f"collapsed_four_p_obstruction_checked="
         f"{collapsed_four_p_obstruction_checked}",
     )

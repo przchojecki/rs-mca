@@ -111,7 +111,11 @@ should be revised as the project learns more.
    `M_e^o=sum W_e(alpha)W_e(beta)F(alpha,beta,r)` now gives the structural
    target beyond Cauchy: parameter-independent smooth-conic main terms cancel
    because `sum W_e=0`, so the remaining work is weighted trace and boundary
-   cancellation over the conic fibration.
+   cancellation over the conic fibration.  The exact projective decomposition
+   makes this explicit:
+   `M_e^o=sum W_eW_e(Q-(p+1))-sum W_eW_eB`; the first sum is supported only
+   on `Delta=0` plus the zero conic, and the second is the open-boundary
+   deletion term.
    The updated remaining-wall scan reports this asymmetric wall separately:
    in the current report grid the largest asymmetric ratio is
    `3.2173609608p`, while every near-`4p` top row lies in the projective

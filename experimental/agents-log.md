@@ -29,6 +29,29 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-19 - M1 quotient-conic projective boundary split
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/m1_depth_two_line_conic_resonance_reduction.md`,
+  `experimental/verify_m1_depth_two_line_conic_resonance_reduction.py`,
+  `experimental/m1_residue_line_roadmap.md`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** Splits the weighted quotient-conic formula into
+  projective excess and open-boundary deletion:
+  `M_e^o=sum W_eW_e(Q-(p+1))-sum W_eW_eB`.  The projective excess vanishes on
+  every smooth nonzero conic, so it is supported only on `Delta=0` and the
+  zero conic; the boundary term records the remaining open-support deletions.
+  The verifier sums the projective excess over all ratio parameters in the
+  audited cases and checks the singular support and zero-conic counts.
+- **How it is useful:** Sharpens the remaining low-index task to cancellation
+  in an explicit weighted boundary term plus sparse singular support, removing
+  the smooth projective main term from the problem entirely.
+- **What to do next:** Decompose the boundary term by infinity, source
+  deletions, and target deletions, then prove weighted cancellation for each
+  boundary component.
+
 ### 2026-06-19 - M1 weighted quotient-conic centering formula
 
 - **Agent/model:** Codex.

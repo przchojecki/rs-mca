@@ -2684,6 +2684,46 @@ problem over this conic fibration, not an uncentered occupancy count.  The
 verifier checks the weighted ratio-fibration identity on the same
 `(p,e)` cases used for the unweighted ratio-surface audit.
 
+The preceding sentence can be made an exact decomposition.  Let
+`\overline C_{alpha,beta,r}` be the projective closure of the conic fiber,
+with the zero conic interpreted as the whole projective plane, and put
+
+```text
+Q(alpha,beta,r)=#\overline C_{alpha,beta,r}(F_p),
+B(alpha,beta,r)=Q(alpha,beta,r)-F(alpha,beta,r).
+```
+
+Since
+
+```text
+sum_{alpha,beta,r} W_e(alpha)W_e(beta)(p+1)=0,
+```
+
+one has the exact identity
+
+```text
+M_e^o =
+  sum_{alpha,beta,r} W_e(alpha)W_e(beta)(Q(alpha,beta,r)-(p+1))
+  - sum_{alpha,beta,r} W_e(alpha)W_e(beta)B(alpha,beta,r).
+```
+
+For every nonzero nonsingular conic, `Q(alpha,beta,r)=p+1`; hence the first
+sum is supported entirely on the determinant hypersurface `Delta=0`, together
+with the zero conic at `(1,1,1)`.  The smooth projective main term is therefore
+gone before any estimate is applied.  What remains is explicit:
+
+- the diagonal zero conic, whose projective excess is `p^2`;
+- nonzero singular conics on `Delta=0`, each with projective excess in
+  `{-p,0,p}`;
+- the boundary term `B`, accounting for infinity, deleted source lines, and
+  deleted target lines.
+
+Thus a low-index `p^2` moment theorem would follow from cancellation in this
+weighted boundary term plus the already sparse singular support.  The verifier
+audits the decomposition by summing the projective excess over all ratio
+parameters for the existing `(p,e)` ratio-surface cases and checking that the
+singular support has at most `3(p-1)^2` parameters and one zero conic.
+
 ## Principal-Row Leakage
 
 The principal rows excluded above have exact formulas.  They explain why the
