@@ -2247,6 +2247,35 @@ M_{-2}^o = 1 + (1+chi_2(-3))(p-4).
 
 Their squared sum is `N_x^o`.
 
+The lower-order line-correction ledger is exact as well.  Over
+nonprincipal `eta,nu`,
+
+```text
+sum |L_{eta,nu}|^2
+  = p^3 - 7p^2 + 14p - 3
+    + (-p^2 + 3p + 2)chi_2(-3),
+```
+
+and the real covariance with the closed core is
+
+```text
+Re sum C_{eta,nu} conjugate(L_{eta,nu})
+  = p^3 - 4p^2 - 3p + 1
+    - 7p chi_2(-3) + (1-p)chi_2(-1).
+```
+
+Thus
+
+```text
+sum |C^o|^2 = sum |C|^2 + sum |L|^2
+              - 2 Re sum C conjugate(L)
+```
+
+holds with every term in closed form.  The line correction has RMS
+`sqrt(p)+O(1)` over nonprincipal pairs, and its covariance with the p-scale
+core is only `O(p^3)`.  This makes precise why removing the open line
+changes the exact moment but not the leading `p` RMS scale.
+
 ## Principal-Row Leakage
 
 The principal rows excluded above have exact formulas.  They explain why the

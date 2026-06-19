@@ -29,6 +29,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-19 - M1 open line-correction covariance
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/m1_depth_two_line_conic_resonance_reduction.md`,
+  `experimental/verify_m1_depth_two_line_conic_resonance_reduction.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** Computes the exact nonprincipal moment of the
+  removed line correction `L_{eta,nu}` and its exact real covariance with the
+  closed line-conic core `C_{eta,nu}`.  The verifier checks both formulas
+  directly in the moment-prime character sweep.
+- **How it is useful:** Quantifies that the open-line correction has RMS
+  `sqrt(p)+O(1)` and only lower-order covariance with the p-scale core, so the
+  open deletion changes constants but not the leading M1 second-moment scale.
+- **What to do next:** Use the lower-order covariance ledger to keep the
+  remaining work focused on pointwise conductor bounds for the core/open trace.
+
 ### 2026-06-19 - M1 open line-conic nonprincipal moment
 
 - **Agent/model:** Codex.

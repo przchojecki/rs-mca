@@ -2842,6 +2842,30 @@ def nonprincipal_open_moment_formula(p: int) -> int:
     return direct_formula
 
 
+def nonprincipal_line_moment_formula(p: int) -> int:
+    chi_minus_three = legendre(-3, p)
+    return (
+        p**3
+        - 7 * p * p
+        + 14 * p
+        - 3
+        + (-p * p + 3 * p + 2) * chi_minus_three
+    )
+
+
+def nonprincipal_core_line_cross_formula(p: int) -> int:
+    chi_minus_three = legendre(-3, p)
+    chi_minus_one = legendre(-1, p)
+    return (
+        p**3
+        - 4 * p * p
+        - 3 * p
+        + 1
+        - 7 * p * chi_minus_three
+        + (1 - p) * chi_minus_one
+    )
+
+
 def split_projector_weight(p: int, y: int) -> int:
     chi_discriminant = legendre((y - 2) * (y + 1), p)
     return 1 + chi_discriminant - int(y % p == 3 % p)
@@ -3101,31 +3125,43 @@ def direct_open_support_marginal_counts(p: int) -> Tuple[int, int, int, int]:
     return support_count, collision_count, x_second, v_second
 
 
-def direct_full_character_moments(p: int) -> Tuple[int, int, int, int]:
+def direct_full_character_moments(
+    p: int,
+) -> Tuple[int, int, int, int, int, int]:
     logs = log_table(p)
     table = character_table(p, logs)
     core_moment = 0.0
     nonprincipal_core_moment = 0.0
     nonprincipal_open_moment = 0.0
+    nonprincipal_line_moment = 0.0
+    nonprincipal_core_line_cross = 0j
     line_moment = 0.0
     for eta_exponent in range(p - 1):
         eta = table[eta_exponent]
         eta_inv = table[(-eta_exponent) % (p - 1)]
         for nu_exponent in range(p - 1):
             nu = table[nu_exponent]
-            core_value = abs(direct_core(p, eta_inv, nu, eta)) ** 2
+            core_sum = direct_core(p, eta_inv, nu, eta)
+            core_value = abs(core_sum) ** 2
             core_moment += core_value
+            line_value = line_correction(p, eta_inv, nu, eta)
             if eta_exponent != 0 and nu_exponent != 0:
                 nonprincipal_core_moment += core_value
                 nonprincipal_open_moment += (
                     abs(direct_open(p, eta_inv, nu, eta)) ** 2
                 )
-            line_moment += abs(line_correction(p, eta_inv, nu, eta)) ** 2
+                nonprincipal_line_moment += abs(line_value) ** 2
+                nonprincipal_core_line_cross += core_sum * line_value.conjugate()
+            line_moment += abs(line_value) ** 2
+    if abs(nonprincipal_core_line_cross.imag) > 100 * TOLERANCE:
+        raise AssertionError((p, "nonprincipal_cross_imag"))
     return (
         round(core_moment),
         round(line_moment),
         round(nonprincipal_core_moment),
         round(nonprincipal_open_moment),
+        round(nonprincipal_line_moment),
+        round(nonprincipal_core_line_cross.real),
     )
 
 
@@ -3150,9 +3186,11 @@ def direct_full_character_projector_moments(p: int) -> Tuple[int, int, int]:
 
 
 def verify_second_moments() -> List[
-    Tuple[int, int, int, int, int, int, int, int, int]
+    Tuple[int, int, int, int, int, int, int, int, int, int, int]
 ]:
-    checked: List[Tuple[int, int, int, int, int, int, int, int, int]] = []
+    checked: List[
+        Tuple[int, int, int, int, int, int, int, int, int, int, int]
+    ] = []
     for p in MOMENT_PRIMES:
         collision_count = direct_core_collision_count(p)
         expected_collision_count = core_collision_formula(p)
@@ -3212,11 +3250,15 @@ def verify_second_moments() -> List[
             line_moment,
             nonprincipal_moment,
             nonprincipal_open_moment,
+            nonprincipal_line_moment,
+            nonprincipal_core_line_cross,
         ) = direct_full_character_moments(p)
         expected_core_moment = (p - 1) * (p - 1) * expected_collision_count
         expected_line_moment = (p - 1) * (p - 1) * expected_line_support_count
         expected_nonprincipal_moment = nonprincipal_core_moment_formula(p)
         expected_nonprincipal_open_moment = nonprincipal_open_moment_formula(p)
+        expected_nonprincipal_line_moment = nonprincipal_line_moment_formula(p)
+        expected_nonprincipal_cross = nonprincipal_core_line_cross_formula(p)
         if core_moment != expected_core_moment:
             raise AssertionError((p, core_moment, expected_core_moment))
         if line_moment != expected_line_moment:
@@ -3231,6 +3273,22 @@ def verify_second_moments() -> List[
                     p,
                     nonprincipal_open_moment,
                     expected_nonprincipal_open_moment,
+                )
+            )
+        if nonprincipal_line_moment != expected_nonprincipal_line_moment:
+            raise AssertionError(
+                (
+                    p,
+                    nonprincipal_line_moment,
+                    expected_nonprincipal_line_moment,
+                )
+            )
+        if nonprincipal_core_line_cross != expected_nonprincipal_cross:
+            raise AssertionError(
+                (
+                    p,
+                    nonprincipal_core_line_cross,
+                    expected_nonprincipal_cross,
                 )
             )
         (
@@ -3262,6 +3320,8 @@ def verify_second_moments() -> List[
                 expected_nonprincipal_moment,
                 expected_open_collision_count,
                 expected_nonprincipal_open_moment,
+                expected_nonprincipal_line_moment,
+                expected_nonprincipal_cross,
                 expected_projector_sums[0],
                 expected_projector_sums[1],
                 expected_projector_sums[2],
