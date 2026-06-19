@@ -29,6 +29,27 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-19 - M1 infinity boundary spectral square
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/m1_depth_two_line_conic_resonance_reduction.md`,
+  `experimental/verify_m1_depth_two_line_conic_resonance_reduction.py`,
+  `experimental/m1_residue_line_roadmap.md`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** Converts the autocorrelation form of the infinity
+  boundary into the positive spectral square
+  `(p-1)sum_{psi != 1, psi^e=1}|sum_a chi((a-3)(a+1))psi(a)|^2`, using
+  `F(z)=B(z)/z` and the fiber count
+  `#{z:F(z)=a}=1+chi((a-3)(a+1))`.  This gives the uniform conductor bound
+  `0 <= I_e <= 4(e-1)p(p-1)` for `p > 3`.
+- **How it is useful:** Closes the cleanest surviving boundary component to
+  a depth-independent Kummer conductor estimate, removing it as a possible
+  multiplicative-loss source in the M1 quotient-conic route.
+- **What to do next:** Seek analogous centered-energy or spectral reductions
+  for the source- and target-line deletion pieces.
+
 ### 2026-06-19 - M1 infinity boundary autocorrelation
 
 - **Agent/model:** Codex.

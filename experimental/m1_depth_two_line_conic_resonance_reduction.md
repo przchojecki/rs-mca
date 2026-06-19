@@ -2821,6 +2821,65 @@ multiplicative parameter contributes.  The remaining point `[0:1:0]` gives
 The verifier checks this reduced two-variable formula against the original
 infinity boundary partition and audits the autocorrelation identity directly.
 
+This two-variable formula has a second reduction to a positive spectral
+square.  The `s=0` row contributes `sum_t W_e(1/t)=0`; for `s != 0` put
+`x=ts`.  Since
+
+```text
+(1+ts+t^2s^2)/(tB(s))
+  = s B(x)/(x B(s))
+  = F(x)/F(s),              F(z)=B(z)/z=z+1+z^{-1},
+```
+
+the infinity boundary equals
+
+```text
+(p-1) sum_{a,b in F_p^*} N(a)N(b) W_e(a/b),
+```
+
+where
+
+```text
+N(a)=#{z in F_p^* : F(z)=a}.
+```
+
+The fiber equation is `z^2+(1-a)z+1=0`, hence
+
+```text
+N(a)=1+chi((a-3)(a+1)).
+```
+
+The constant and linear terms vanish against the mean-zero weight `W_e`, so
+
+```text
+I_e/(p-1)
+  = sum_{a,b in F_p^*}
+      chi((a-3)(a+1)) chi((b-3)(b+1)) W_e(a/b).
+```
+
+Expanding `W_e` as the sum of the nontrivial characters of
+`F_p^*/K_e` gives the exact spectral-square identity
+
+```text
+I_e/(p-1)
+  = sum_{psi != 1, psi^e=1}
+      | sum_{a in F_p^*} chi((a-3)(a+1)) psi(a) |^2.
+```
+
+Thus the infinity boundary is nonnegative and is controlled by a fixed
+rank-one Kummer conductor: for `p > 3` each inner sum has branch points only
+at `a=-1,0,3,infinity`, so the standard Weil bound gives
+`|sum_a chi((a-3)(a+1)) psi(a)| <= 2sqrt(p)`.  Consequently
+
+```text
+0 <= I_e <= 4(e-1)p(p-1).
+```
+
+This is the first surviving boundary piece with an explicit
+depth-independent conductor bound.  The verifier checks the `F`-fiber count,
+the centered energy identity, the spectral-square formula, and the audited
+`2sqrt(p)` ceiling on the existing ratio-surface grid.
+
 ## Principal-Row Leakage
 
 The principal rows excluded above have exact formulas.  They explain why the

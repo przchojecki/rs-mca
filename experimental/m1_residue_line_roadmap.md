@@ -124,7 +124,10 @@ should be revised as the project learns more.
    target line with `v=(-1-ru)/beta`.  The infinity term further reduces by
    `beta=rt` to the quotient-weight autocorrelation
    `(p-1)sum_{t,s} W_e((1+ts+t^2s^2)/(tB(s)))`, with the `[0:1:0]` point
-   cancelling by `sum W_e=0`.
+   cancelling by `sum W_e=0`.  Substituting `x=ts` then turns this infinity
+   term into the spectral square
+   `(p-1)sum_{psi != 1, psi^e=1}|sum_a chi((a-3)(a+1))psi(a)|^2`, giving
+   the uniform conductor bound `0 <= I_e <= 4(e-1)p(p-1)` for `p > 3`.
    The updated remaining-wall scan reports this asymmetric wall separately:
    in the current report grid the largest asymmetric ratio is
    `3.2173609608p`, while every near-`4p` top row lies in the projective

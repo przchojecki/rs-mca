@@ -4017,6 +4017,77 @@ def weighted_infinity_autocorrelation_sum(
     return total
 
 
+def infinity_shape_ratio(p: int, value: int) -> int:
+    return shape_b(value, p) * pow(value, -1, p) % p
+
+
+def weighted_infinity_fiber_energy_sum(
+    p: int,
+    suborder: int,
+    logs: Dict[int, int],
+) -> int:
+    counts = {value: 0 for value in range(1, p)}
+    for source in range(1, p):
+        if shape_b(source, p) == 0:
+            continue
+        counts[infinity_shape_ratio(p, source)] += 1
+
+    for value, count in counts.items():
+        discriminant = value * value - 2 * value - 3
+        expected = 1 + legendre(discriminant, p)
+        if count != expected:
+            raise AssertionError((p, suborder, value, count, expected))
+
+    fiber_energy = 0
+    centered_energy = 0
+    constant_part = 0
+    linear_part = 0
+    for left in range(1, p):
+        left_twist = legendre(left * left - 2 * left - 3, p)
+        for right in range(1, p):
+            right_twist = legendre(right * right - 2 * right - 3, p)
+            weight = quotient_centering_weight(
+                p,
+                suborder,
+                logs,
+                left * pow(right, -1, p),
+            )
+            fiber_energy += counts[left] * counts[right] * weight
+            centered_energy += left_twist * right_twist * weight
+            constant_part += weight
+            linear_part += left_twist * weight
+    if constant_part != 0 or linear_part != 0:
+        raise AssertionError((p, suborder, constant_part, linear_part))
+    if fiber_energy != centered_energy:
+        raise AssertionError((p, suborder, fiber_energy, centered_energy))
+    return (p - 1) * fiber_energy
+
+
+def weighted_infinity_spectral_audit(
+    p: int,
+    suborder: int,
+    logs: Dict[int, int],
+) -> Tuple[int, float]:
+    total = 0.0
+    max_ratio = 0.0
+    root = cmath.exp(2j * math.pi / suborder)
+    for exponent in range(1, suborder):
+        character_sum = 0j
+        for value in range(1, p):
+            twist = legendre(value * value - 2 * value - 3, p)
+            if twist == 0:
+                continue
+            character_sum += twist * root ** (exponent * logs[value])
+        total += abs(character_sum) ** 2
+        max_ratio = max(max_ratio, abs(character_sum) / math.sqrt(p))
+    energy = weighted_infinity_fiber_energy_sum(p, suborder, logs) // (p - 1)
+    if abs(total - energy) > 1000 * TOLERANCE:
+        raise AssertionError((p, suborder, total, energy))
+    if max_ratio > 2 + 1000 * TOLERANCE:
+        raise AssertionError((p, suborder, max_ratio))
+    return round(total), round(max_ratio, 10)
+
+
 def weighted_source_line_formula_sum(
     p: int,
     suborder: int,
@@ -4135,10 +4206,32 @@ def weighted_projective_error_sum(
 
 
 def verify_weighted_projective_decomposition() -> List[
-    Tuple[int, int, int, int, int, int, Tuple[int, ...], int]
+    Tuple[
+        int,
+        int,
+        int,
+        int,
+        int,
+        int,
+        Tuple[int, ...],
+        int,
+        int,
+        Tuple[int, float],
+    ]
 ]:
     checked: List[
-        Tuple[int, int, int, int, int, int, Tuple[int, ...], int]
+        Tuple[
+            int,
+            int,
+            int,
+            int,
+            int,
+            int,
+            Tuple[int, ...],
+            int,
+            int,
+            Tuple[int, float],
+        ]
     ] = []
     for p, suborder in RATIO_SURFACE_CASES:
         logs = log_table(p)
@@ -4174,6 +4267,20 @@ def verify_weighted_projective_decomposition() -> List[
         )
         if infinity_reduced != expected_survivors[0]:
             raise AssertionError((p, suborder, infinity_reduced, expected_survivors))
+        infinity_energy = weighted_infinity_fiber_energy_sum(
+            p,
+            suborder,
+            logs,
+        )
+        if infinity_energy != infinity_reduced:
+            raise AssertionError((p, suborder, infinity_energy, infinity_reduced))
+        infinity_spectral = weighted_infinity_spectral_audit(
+            p,
+            suborder,
+            logs,
+        )
+        if (p - 1) * infinity_spectral[0] != infinity_reduced:
+            raise AssertionError((p, suborder, infinity_spectral, infinity_reduced))
         if zero_conic_count != 1:
             raise AssertionError((p, suborder, zero_conic_count))
         if singular_count > 3 * (p - 1) * (p - 1):
@@ -4188,6 +4295,8 @@ def verify_weighted_projective_decomposition() -> List[
                 singular_count,
                 boundary_parts,
                 infinity_reduced,
+                infinity_energy,
+                infinity_spectral,
             )
         )
     return checked
