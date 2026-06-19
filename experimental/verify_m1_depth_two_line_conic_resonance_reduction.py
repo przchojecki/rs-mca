@@ -862,6 +862,50 @@ def verify_quotient_line_support(p: int) -> Tuple[int, int]:
     return rational_finite_points, geometric_projective_points
 
 
+def verify_quotient_line_kernel_moments(
+    p: int,
+    table: List[List[complex]],
+) -> Tuple[int, float, float]:
+    delta = least_nonsquare(p)
+    checked = 0
+    max_zero_value = 0.0
+    max_second_moment_error = 0.0
+    for nu_exponent in range(1, p - 1):
+        nu = table[nu_exponent]
+        values = [
+            quotient_line_kernel_trace(p, s_value, delta, nu)
+            for s_value in range(p)
+        ]
+        zero_value = abs(values[0])
+        second_moment = sum(abs(value) ** 2 for value in values)
+        nu_minus_one_value = nu[(-1) % p]
+        if abs(nu_minus_one_value.imag) > TOLERANCE:
+            raise AssertionError((p, nu_exponent, "nu_minus_one_not_real"))
+        nu_minus_one = int(round(nu_minus_one_value.real))
+        if nu_minus_one not in {-1, 1}:
+            raise AssertionError((p, nu_exponent, "nu_minus_one_not_sign"))
+        expected_second_moment = p * p - 2 * p - 1 - p * nu_minus_one
+        max_zero_value = max(max_zero_value, zero_value)
+        max_second_moment_error = max(
+            max_second_moment_error,
+            abs(second_moment - expected_second_moment),
+        )
+        if zero_value > TOLERANCE:
+            raise AssertionError((p, nu_exponent, "quotient_kernel_zero"))
+        if abs(second_moment - expected_second_moment) > TOLERANCE:
+            raise AssertionError(
+                (
+                    p,
+                    nu_exponent,
+                    "quotient_kernel_second_moment",
+                    second_moment,
+                    expected_second_moment,
+                )
+            )
+        checked += 1
+    return checked, max_zero_value, max_second_moment_error
+
+
 def verify_twisted_line_kernel_moments(
     p: int,
     table: List[List[complex]],
@@ -1344,6 +1388,7 @@ def main() -> None:
     twisted_line_twist_checked: List[Tuple[int, int, int, int, int]] = []
     twisted_line_deck_checked: List[Tuple[int, int, float, float, float]] = []
     quotient_line_checked: List[Tuple[int, int, float, int, int]] = []
+    quotient_line_kernel_moment_checked: List[Tuple[int, int, float, float]] = []
     twisted_line_kernel_moment_checked: List[Tuple[int, int, float, float]] = []
     twisted_line_fiber_checked = 0
     split_hypergeometric_checked = 0
@@ -1406,6 +1451,19 @@ def main() -> None:
                     round(quotient_kernel_difference, 12),
                     quotient_finite_points,
                     quotient_projective_points,
+                )
+            )
+            (
+                quotient_moment_count,
+                max_quotient_zero,
+                max_quotient_second_error,
+            ) = verify_quotient_line_kernel_moments(p, tables[p])
+            quotient_line_kernel_moment_checked.append(
+                (
+                    p,
+                    quotient_moment_count,
+                    round(max_quotient_zero, 12),
+                    round(max_quotient_second_error, 12),
                 )
             )
             (
@@ -1609,6 +1667,8 @@ def main() -> None:
         f"twisted_line_twist_checked={twisted_line_twist_checked}",
         f"twisted_line_deck_checked={twisted_line_deck_checked}",
         f"quotient_line_checked={quotient_line_checked}",
+        f"quotient_line_kernel_moment_checked="
+        f"{quotient_line_kernel_moment_checked}",
         f"twisted_line_kernel_moment_checked="
         f"{twisted_line_kernel_moment_checked}",
         f"twisted_line_fiber_checked={twisted_line_fiber_checked}",

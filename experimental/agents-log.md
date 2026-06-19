@@ -29,6 +29,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-19 - M1 line-conic quotient-line kernel moment
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/m1_depth_two_line_conic_resonance_reduction.md`,
+  `experimental/verify_m1_depth_two_line_conic_resonance_reduction.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** Proves the exact descended-kernel identities
+  `J(0)=0` and
+  `sum_s |J_{nu,delta}(s)|^2 = p^2 - 2p - 1 - p nu(-1)` for every
+  nonprincipal `nu`.
+- **How it is useful:** Gives the quotient-line nonsplit conductor target its
+  own p-scale RMS certificate, showing the descended `s`-line kernel has no
+  hidden large average before the outer `eta,nu` twist is applied.
+- **What to do next:** Use this quotient-line moment with the five-point
+  support ledger to attack the pointwise nonsplit projector transform.
+
 ### 2026-06-19 - M1 line-conic quotient-line descent
 
 - **Agent/model:** Codex.

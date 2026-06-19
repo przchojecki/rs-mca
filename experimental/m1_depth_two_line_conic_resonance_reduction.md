@@ -827,6 +827,56 @@ branch point of `s r^2-4delta` inside `J`.  Thus the twisted nonsplit
 projector has been reduced from a two-variable sum to a single quotient-line
 trace with a five-point conductor ledger.
 
+## Quotient-Line Kernel Moment
+
+The descended kernel has its own exact full `s`-line moment.  For every
+nonprincipal `nu`,
+
+```text
+J_{nu,delta}(0) = 0,
+sum_s |J_{nu,delta}(s)|^2 = p^2 - 2p - 1 - p nu(-1).
+```
+
+In particular the moment is `p^2-p-1` if `nu(-1)=-1` and
+`p^2-3p-1` if `nu(-1)=1`.  The proof is a direct quotient-line
+orthogonality count.  Put `a_r=nu(r-1)` and `c=-4delta`.  Then
+
+```text
+sum_s |J(s)|^2
+  = sum_{r,u} a_r conj(a_u) sum_s chi_2(s r^2+c) chi_2(s u^2+c).
+```
+
+The inner sum is `p` for `r=u=0`, is `0` when exactly one of `r,u`
+vanishes, is `p-1` for nonzero `r,u` with `u=r` or `u=-r`, and is `-1`
+otherwise.  If
+
+```text
+D = sum_{r,u != 0, r^2=u^2} a_r conj(a_u),
+```
+
+then the nonzero off-diagonal contribution is `1-D`, because
+`sum_{r != 0} a_r=-nu(-1)`.  Hence
+
+```text
+sum_s |J(s)|^2 = p-1+pD.
+```
+
+It remains to compute `D`.  The diagonal part is `p-2`, since `a_1=0`.
+The cross term is
+
+```text
+sum_{r != 0} nu(r-1)nu^(-1)(-r-1).
+```
+
+The nonzero terms have `r notin {0,1,-1}`; the substitution
+`z=(r-1)/(-r-1)` bijects this domain with `F_p^* \ {1,-1}`.  Therefore the
+cross term is `-1-nu(-1)`, and `D=p-3-nu(-1)`, giving the displayed formula.
+
+Thus the quotient-line trace also has root-mean-square size `sqrt(p+O(1))`.
+This reinforces that the nonsplit obstruction is not hidden average mass in
+the kernel, but cancellation in the outer `eta,nu`-twisted transform with the
+five-point conductor ledger above.
+
 ## Twisted-Line Kernel Moment
 
 The translated kernel has no hidden large average.  For every nonprincipal
