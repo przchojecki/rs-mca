@@ -877,6 +877,48 @@ This reinforces that the nonsplit obstruction is not hidden average mass in
 the kernel, but cancellation in the outer `eta,nu`-twisted transform with the
 five-point conductor ledger above.
 
+## Quotient-Line Mellin Spectrum
+
+The full multiplicative Mellin spectrum of `J` is also explicit.  Let
+`theta` be any multiplicative character of `F_p^*`, extended by zero at `0`,
+let `epsilon` be the principal character, put `c=4delta`, and use
+
+```text
+Jac(alpha,beta) = sum_x alpha(x) beta(1-x).
+```
+
+Then
+
+```text
+sum_s theta(s) J_{nu,delta}(s)
+  = chi_2(-c) nu(-1)
+      ( 1_{theta=epsilon}(p-1)
+        + theta(c) Jac(theta,chi_2) Jac(theta^(-2),nu) ).
+```
+
+Indeed, after interchanging the `s` and `r` sums, the `r=0` term contributes
+only for `theta=epsilon`, giving `chi_2(-c)nu(-1)(p-1)`.  For `r != 0`,
+the change of variable `w=s r^2/c` gives
+
+```text
+sum_s theta(s) chi_2(sr^2-c)
+  = chi_2(-c) theta(c) theta^(-2)(r) Jac(theta,chi_2).
+```
+
+The remaining `r`-sum is
+
+```text
+sum_r theta^(-2)(r) nu(r-1)
+  = nu(-1) Jac(theta^(-2),nu).
+```
+
+Thus every multiplicative Mellin coefficient of the quotient-line kernel is
+bounded by `p`.  For `theta=epsilon` the bracket equals exactly `p`; for
+`theta != epsilon` the standard Jacobi bounds give the same `p` ceiling, with
+smaller values in the degenerate Jacobi cases.  This identifies the descended
+kernel as a hypergeometric Mellin object with no super-`p` coefficient before
+the outer rational twist is imposed.
+
 ## Twisted-Line Kernel Moment
 
 The translated kernel has no hidden large average.  For every nonprincipal

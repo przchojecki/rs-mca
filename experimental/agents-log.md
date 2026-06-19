@@ -29,6 +29,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-19 - M1 line-conic quotient-line Mellin spectrum
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/m1_depth_two_line_conic_resonance_reduction.md`,
+  `experimental/verify_m1_depth_two_line_conic_resonance_reduction.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** Computes the full multiplicative Mellin spectrum
+  of the descended quotient-line kernel `J` as
+  `chi_2(-4delta)nu(-1)(1_{theta=1}(p-1)
+  + theta(4delta)Jac(theta,chi_2)Jac(theta^{-2},nu))`.
+- **How it is useful:** Identifies `J` as an explicit hypergeometric Mellin
+  object and proves every multiplicative coefficient is bounded by `p`,
+  giving a sharper structural handle for the outer nonsplit Kummer transform.
+- **What to do next:** Use this Mellin spectrum to analyze the remaining
+  rational `eta,nu` twist in the nonsplit projector.
+
 ### 2026-06-19 - M1 line-conic quotient-line kernel moment
 
 - **Agent/model:** Codex.

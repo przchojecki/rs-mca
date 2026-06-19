@@ -906,6 +906,60 @@ def verify_quotient_line_kernel_moments(
     return checked, max_zero_value, max_second_moment_error
 
 
+def verify_quotient_line_mellin_spectrum(
+    p: int,
+    table: List[List[complex]],
+) -> Tuple[int, float, float]:
+    delta = least_nonsquare(p)
+    c_value = 4 * delta % p
+    quadratic = table[(p - 1) // 2]
+    chi_minus_c = legendre(-c_value, p)
+    checked = 0
+    max_formula_error = 0.0
+    max_mellin_ratio = 0.0
+    for nu_exponent in range(1, p - 1):
+        nu = table[nu_exponent]
+        kernel_values = [
+            quotient_line_kernel_trace(p, s_value, delta, nu)
+            for s_value in range(p)
+        ]
+        for theta_exponent, theta in enumerate(table):
+            theta_inverse_square = table[(-2 * theta_exponent) % (p - 1)]
+            actual = sum(
+                theta[s_value] * kernel_values[s_value]
+                for s_value in range(p)
+            )
+            expected = (
+                chi_minus_c
+                * nu[(-1) % p]
+                * theta[c_value]
+                * jacobi_sum(p, theta, quadratic)
+                * jacobi_sum(p, theta_inverse_square, nu)
+            )
+            if theta_exponent == 0:
+                expected += chi_minus_c * nu[(-1) % p] * (p - 1)
+            error = abs(actual - expected)
+            max_formula_error = max(max_formula_error, error)
+            max_mellin_ratio = max(max_mellin_ratio, abs(actual) / p)
+            if error > TOLERANCE:
+                raise AssertionError(
+                    (
+                        p,
+                        nu_exponent,
+                        theta_exponent,
+                        "quotient_mellin_formula",
+                        actual,
+                        expected,
+                    )
+                )
+            if abs(actual) > p + TOLERANCE:
+                raise AssertionError(
+                    (p, nu_exponent, theta_exponent, "quotient_mellin_bound")
+                )
+            checked += 1
+    return checked, max_formula_error, max_mellin_ratio
+
+
 def verify_twisted_line_kernel_moments(
     p: int,
     table: List[List[complex]],
@@ -1389,6 +1443,7 @@ def main() -> None:
     twisted_line_deck_checked: List[Tuple[int, int, float, float, float]] = []
     quotient_line_checked: List[Tuple[int, int, float, int, int]] = []
     quotient_line_kernel_moment_checked: List[Tuple[int, int, float, float]] = []
+    quotient_line_mellin_checked: List[Tuple[int, int, float, float]] = []
     twisted_line_kernel_moment_checked: List[Tuple[int, int, float, float]] = []
     twisted_line_fiber_checked = 0
     split_hypergeometric_checked = 0
@@ -1464,6 +1519,19 @@ def main() -> None:
                     quotient_moment_count,
                     round(max_quotient_zero, 12),
                     round(max_quotient_second_error, 12),
+                )
+            )
+            (
+                quotient_mellin_count,
+                max_quotient_mellin_error,
+                max_quotient_mellin_ratio,
+            ) = verify_quotient_line_mellin_spectrum(p, tables[p])
+            quotient_line_mellin_checked.append(
+                (
+                    p,
+                    quotient_mellin_count,
+                    round(max_quotient_mellin_error, 12),
+                    round(max_quotient_mellin_ratio, 10),
                 )
             )
             (
@@ -1669,6 +1737,7 @@ def main() -> None:
         f"quotient_line_checked={quotient_line_checked}",
         f"quotient_line_kernel_moment_checked="
         f"{quotient_line_kernel_moment_checked}",
+        f"quotient_line_mellin_checked={quotient_line_mellin_checked}",
         f"twisted_line_kernel_moment_checked="
         f"{twisted_line_kernel_moment_checked}",
         f"twisted_line_fiber_checked={twisted_line_fiber_checked}",
