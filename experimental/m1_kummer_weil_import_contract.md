@@ -573,6 +573,11 @@ The elementary hypotheses behind this import are now audited in
 - the branch curves `M=0` and `H=0` are rational, are disjoint in the torus
   away from the separated point `(1,1)` for `p>5`, and are smooth away from
   that same separated point;
+- the boundary pile-up at `(1,1)` is resolved by the fixed slope blow-up
+  `r=1+t(a-1)`: after removing exceptional powers, the strict transforms of
+  `A_beta`, `Q_beta=C_beta/(ar)`, `K_alpha`, `a-r`, `M`, and `H` have the
+  explicit factors `A#`, `Q#`, `K#`, `1-t`, `M#`, `H#`, and all pairwise
+  intersections lie on the displayed finite slope-resultant supports;
 - on the good base, `D_beta != 0` and
   `(2A_beta beta+B_beta)^2=D_beta` at every beta root, so the projection
   `Y_G -> G` is finite etale of degree two; since `G` is an open subset of

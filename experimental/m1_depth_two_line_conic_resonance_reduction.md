@@ -3286,6 +3286,63 @@ Res_a(H,H_r) = 5184(r-1)^2(r+1)^2.
 Thus in the torus, for `p>3`, each branch curve is singular only at
 `(a,r)=(1,1)`, the same separated point already removed from the good base.
 The verifier checks this directly over the audited prime grid.
+
+The same single point is the whole boundary pile-up for the beta conductor
+ledger.  Blow it up in the affine slope chart
+
+```text
+r = 1 + t(a-1).
+```
+
+After removing the exceptional powers of `a-1`, the relevant strict
+transforms are
+
+```text
+A_beta = (a-1) A#,
+Q_beta = (a-1) Q#,
+K_alpha = (a-1)^2 K#,
+a-r = (a-1) L#,
+M = (a-1)^2 M#,
+H = (a-1)^2 H#,
+```
+
+where `C_beta=ar Q_beta` and
+
+```text
+A# = -3a^2t^2 + 3a^2t + 3at^2 - 5at + 3a + 2t - 2,
+Q# =  3a^2t^2 - 2a^2t - 3at^2 + 5at - 2a - 3t + 3,
+K# =  3at^2 - at + t - 1,
+L# =  1 - t,
+M# =  4at^2 - 3at + 3t - 3,
+H# =  9at^2 - 8at + 8t - 8.
+```
+
+The pairwise strict-transform intersections have no hidden common
+component.  Eliminating `a`, the nontrivial resultant supports are
+
+```text
+Res(A#,Q#) = -3t^2(t-1)(6t^2-10t+5),
+Res(A#,K#) =  3t^2(t-1)(t+1)(3t-2),
+Res(A#,M#) = -t^2(t-1)(2t-3)^2,
+Res(A#,H#) = -6t^2(t-1)(3t-2)^2,
+
+Res(Q#,K#) = -3t^2(t-1)(2t-1)(3t+1),
+Res(Q#,M#) = -3t^2(t-1)(2t-1)^2,
+Res(Q#,H#) = -3t^2(t-1)(3t-4)^2,
+
+Res(K#,M#) =  5t^2(t-1),
+Res(K#,H#) = 15t^2(t-1),
+Res(M#,H#) =  5t^2(t-1),
+```
+
+with the diagonal transform `L#=1-t` meeting every other strict transform
+only on the slope `t=1`.  Thus one fixed blow-up separates the high
+multiplicity point into bounded-degree strict transforms whose remaining
+intersections are supported on an explicit finite slope set.  The verifier
+checks these strict-transform identities, including `C_beta=ar Q_beta`, and
+every displayed pairwise support over the audited primes; the largest
+pairwise intersection count in the affine blow-up chart is `3`, and the
+largest open-torus count is `2`.
 On the good base, the cover is finite etale of degree two: at any beta root,
 `2A_beta beta+B_beta` is nonzero and its square is `D_beta`.  Since the good
 base is an open subset of `G_m^2`, the good beta-cover surface is smooth;

@@ -29,6 +29,29 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-19 - M1 beta boundary pile-up resolved by slope blow-up
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/m1_depth_two_line_conic_resonance_reduction.md`,
+  `experimental/m1_kummer_weil_import_contract.md`,
+  `experimental/m1_residue_line_roadmap.md`,
+  `experimental/verify_m1_depth_two_line_conic_resonance_reduction.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** Blows up the common beta-boundary point
+  `(a,r)=(1,1)` with `r=1+t(a-1)` and records the strict transforms of
+  `A_beta`, `Q_beta=C_beta/(ar)`, `K_alpha`, `a-r`, `M`, and `H`.  The
+  verifier checks the strict-transform identities and that every pairwise
+  strict-transform intersection lies on the displayed finite slope-resultant
+  supports.
+- **How it is useful:** Strengthens the `(BETA_2)` conductor ledger: the last
+  rank-two beta pushforward no longer has an opaque high-multiplicity boundary
+  pile-up at the removed vertical point.
+- **What to do next:** Use this fixed blow-up ledger in a direct
+  Deligne--Katz/Rojas-Leon bounded-conductor proof or citation for the good
+  beta pushforward.
+
 ### 2026-06-19 - M1 descended UV sign is explicit base twist
 
 - **Agent/model:** Codex.
