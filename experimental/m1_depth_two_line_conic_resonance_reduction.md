@@ -2736,6 +2736,27 @@ prevents overlaps between boundary components from being counted twice and
 lets future work attack the infinity, line-deletion, and conic-deletion
 pieces separately.
 
+Four of these seven signed pieces vanish identically.  On `u=0`, if
+`B(v) != 0`, the conic equation determines
+`alpha=B(beta v)/(rB(v))`, so summing over `r in F_p^*` makes `alpha` run
+through `F_p^*` and the total `W_e(alpha)` weight is zero.  If `B(v)=0`,
+then `alpha` is free whenever the boundary equation is solvable, giving the
+same zero by `sum_alpha W_e(alpha)=0`.  On `v=0`, the conic equation is
+independent of `beta`, so `sum_beta W_e(beta)=0`.  On source `A=0`, the
+identity
+
+```text
+A(ru,beta v) = alpha r A(u,v)
+```
+
+on the conic fiber shows that the equation is independent of `alpha` after
+forcing target `A=0`; hence the source-`A=0` signed piece vanishes by the
+free `alpha` weight.  Finally, target `A=0` together with the same identity
+forces source `A=0`, so it has already been assigned to the previous boundary
+piece in the ordered partition.  Therefore the only boundary components left
+to bound are infinity, the source line, and the target line.  The verifier
+asserts these four vanishings in the audited ratio-surface cases.
+
 ## Principal-Row Leakage
 
 The principal rows excluded above have exact formulas.  They explain why the

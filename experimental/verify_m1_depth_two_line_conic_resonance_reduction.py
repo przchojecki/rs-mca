@@ -3963,6 +3963,11 @@ def verify_weighted_projective_decomposition() -> List[
         boundary_parts = weighted_boundary_partition_sum(p, suborder, logs)
         if sum(boundary_parts) != boundary_error:
             raise AssertionError((p, suborder, boundary_parts, boundary_error))
+        vanishing_labels = ("u0", "v0", "source_a0", "target_a0")
+        for label in vanishing_labels:
+            value = boundary_parts[BOUNDARY_LABELS.index(label)]
+            if value != 0:
+                raise AssertionError((p, suborder, label, value))
         if zero_conic_count != 1:
             raise AssertionError((p, suborder, zero_conic_count))
         if singular_count > 3 * (p - 1) * (p - 1):

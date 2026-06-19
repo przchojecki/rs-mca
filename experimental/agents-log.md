@@ -29,6 +29,26 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-19 - M1 boundary vanishing in quotient-conic split
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/m1_depth_two_line_conic_resonance_reduction.md`,
+  `experimental/verify_m1_depth_two_line_conic_resonance_reduction.py`,
+  `experimental/m1_residue_line_roadmap.md`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** Proves that the signed `u=0`, `v=0`,
+  source-`A=0`, and target-`A=0` boundary pieces vanish in the weighted
+  quotient-conic split.  The proof uses mean-zero quotient weights and the
+  conic-fiber identity `A(ru,beta v)=alpha r A(u,v)`.  The verifier asserts
+  these vanishings in the audited ratio-surface cases.
+- **How it is useful:** Reduces the remaining boundary obstruction from seven
+  bookkeeping pieces to exactly three: infinity, source-line deletion, and
+  target-line deletion.
+- **What to do next:** Derive explicit one-variable formulas for the three
+  surviving weighted boundary components and prove their cancellation.
+
 ### 2026-06-19 - M1 quotient-conic projective boundary split
 
 - **Agent/model:** Codex.
