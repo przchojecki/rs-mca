@@ -1330,7 +1330,21 @@ The new inner trace has an exact Mellin spectrum.  For
 H_nu(z)=sum_{y in F_p^*} nu(1-y)chi_2(1+z y^2/8),
 ```
 
-one has `H_nu(0)=-1`, and for every multiplicative character `rho`,
+one has
+
+```text
+H_nu(0)=-1,
+H_nu(-8)=nu(2)J(nu chi_2,chi_2)-1.
+```
+
+The second identity follows from
+
+```text
+H_nu(-8)=sum_{y != 0} nu(1-y)chi_2(1-y^2)
+```
+
+and the substitution `t=(1-y)/2`; the omitted point `y=0` contributes the
+subtracted `1`.  For every multiplicative character `rho`,
 
 ```text
 sum_{z in F_p^*} rho(z)H_nu(z)
@@ -1367,6 +1381,37 @@ large average, but its Mellin spectrum is still generically `p`-sized.  The
 remaining M1 work is not to make `H_nu` small termwise; it is to exploit
 cancellation when this explicit trace is multiplied by the square-class
 restricted outer Kummer twist in the collapsed diagonal transform.
+
+## Finite Singular Cancellation
+
+The collapsed one-variable main term has no finite singular contribution.
+Its finite candidate bad values are
+
+```text
+z=0,        z=1,        z=-2,        z=-8.
+```
+
+The first three are the outer Kummer points and the last is the new singular
+point of `H_nu`.  In the collapsed summand
+
+```text
+nu(z)(1-chi_2(-2)chi_2(z))eta(1-z)gamma(z+2)H_nu(z),
+```
+
+they vanish termwise:
+
+```text
+z=0:        nu(z)=0,
+z=1:        eta(1-z)=0,
+z=-2:       gamma(z+2)=0,
+z=-8:       1-chi_2(-2)chi_2(z)=0.
+```
+
+The last equality uses `chi_2(-8)=chi_2(-2)`.  Thus the new singular value
+`H_nu(-8)` is exactly projected out by the same square-class gate that arose
+from the quadratic pairing.  The collapsed main term is therefore supported
+only on the lisse finite `z`-line; the remaining conductor issue is at the
+open correlation and infinity, not at a finite exceptional value.
 
 ## Spectral Energy Ledger
 

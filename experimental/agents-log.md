@@ -29,6 +29,23 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-19 - M1 collapsed finite singular cancellation
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/m1_depth_two_line_conic_resonance_reduction.md`,
+  `experimental/verify_m1_depth_two_line_conic_resonance_reduction.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** Evaluates the collapsed inner trace at
+  `z=0` and `z=-8`, then proves that all finite candidate singular values
+  `z=0,1,-2,-8` contribute zero to the collapsed main term.
+- **How it is useful:** Shows the new singular value of `H_nu` is exactly
+  killed by the square-class gate, so the remaining M1 collapsed transform has
+  no finite singular contribution to budget.
+- **What to do next:** Focus on cancellation on the lisse finite `z`-line and
+  the behavior at infinity.
+
 ### 2026-06-19 - M1 collapsed inner trace spectrum
 
 - **Agent/model:** Codex.

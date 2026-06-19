@@ -1196,7 +1196,7 @@ def quotient_line_collapsed_inner_trace(
 def verify_quotient_line_collapsed_inner_spectrum(
     p: int,
     table: List[List[complex]],
-) -> Tuple[int, float, float, float, int, int, int]:
+) -> Tuple[int, float, float, float, float, float, int, int, int]:
     order = p - 1
     quadratic_exponent = order // 2
     quadratic = table[quadratic_exponent]
@@ -1204,6 +1204,8 @@ def verify_quotient_line_collapsed_inner_spectrum(
     max_formula_error = 0.0
     max_magnitude_error = 0.0
     max_moment_error = 0.0
+    max_special_error = 0.0
+    max_special_ratio = 0.0
     total_p_size = 0
     total_sqrt_size = 0
     total_unit_size = 0
@@ -1216,6 +1218,32 @@ def verify_quotient_line_collapsed_inner_spectrum(
         if abs(inner_values[0] + 1) > TOLERANCE:
             raise AssertionError(
                 (p, nu_exponent, "collapsed_inner_zero", inner_values[0])
+            )
+        special_value = inner_values[(-8) % p]
+        expected_special_value = (
+            nu[2 % p]
+            * jacobi_sum(
+                p,
+                table[(nu_exponent + quadratic_exponent) % order],
+                quadratic,
+            )
+            - 1
+        )
+        special_error = abs(special_value - expected_special_value)
+        max_special_error = max(max_special_error, special_error)
+        max_special_ratio = max(
+            max_special_ratio,
+            abs(special_value) / (math.sqrt(p) + 1),
+        )
+        if special_error > TOLERANCE:
+            raise AssertionError(
+                (
+                    p,
+                    nu_exponent,
+                    "collapsed_inner_minus_eight",
+                    special_value,
+                    expected_special_value,
+                )
             )
         second_moment = sum(abs(inner_values[z_value]) ** 2 for z_value in range(1, p))
         nu_minus_one_value = nu[(-1) % p]
@@ -1308,6 +1336,8 @@ def verify_quotient_line_collapsed_inner_spectrum(
         max_formula_error,
         max_magnitude_error,
         max_moment_error,
+        max_special_error,
+        max_special_ratio,
         total_p_size,
         total_sqrt_size,
         total_unit_size,
@@ -1332,6 +1362,7 @@ def verify_quotient_line_spectral_normal_form(
     float,
     float,
     int,
+    float,
     float,
     float,
     float,
@@ -1385,6 +1416,7 @@ def verify_quotient_line_spectral_normal_form(
     max_pair_diagonal_error = 0.0
     max_generic_diagonal_error = 0.0
     max_collapsed_diagonal_error = 0.0
+    max_collapsed_singular_error = 0.0
     max_paired_phase_ratio = 0.0
     paired_generic_count = 0
     max_outer_piece_ratio = 0.0
@@ -1898,6 +1930,29 @@ def verify_quotient_line_spectral_normal_form(
                 collapsed_diagonal_pair_sum,
             )
         )
+    for singular_z in (0, 1, (-2) % p, (-8) % p):
+        singular_value = (
+            nu[singular_z]
+            * (1 - legendre(-2, p) * legendre(singular_z, p))
+            * eta[(1 - singular_z) % p]
+            * gamma[(singular_z + 2) % p]
+            * quotient_line_collapsed_inner_trace(p, singular_z, nu)
+        )
+        max_collapsed_singular_error = max(
+            max_collapsed_singular_error,
+            abs(singular_value),
+        )
+        if abs(singular_value) > TOLERANCE:
+            raise AssertionError(
+                (
+                    p,
+                    eta_exponent,
+                    nu_exponent,
+                    singular_z,
+                    "collapsed_singular_zero",
+                    singular_value,
+                )
+            )
     pair_diagonal_error = abs(algebraic_pair_sum - diagonal_pair_sum)
     max_pair_diagonal_error = max(
         max_pair_diagonal_error,
@@ -1981,6 +2036,7 @@ def verify_quotient_line_spectral_normal_form(
         max_pair_diagonal_error,
         max_generic_diagonal_error,
         max_collapsed_diagonal_error,
+        max_collapsed_singular_error,
         max_paired_phase_ratio,
         paired_generic_count,
     )
@@ -2462,6 +2518,7 @@ def main() -> None:
     max_pair_diagonal_error = 0.0
     max_generic_diagonal_error = 0.0
     max_collapsed_diagonal_error = 0.0
+    max_collapsed_singular_error = 0.0
     max_paired_phase_ratio = 0.0
     max_outer_mellin_piece_ratio = 0.0
     max_outer_mellin_ratio = 0.0
@@ -2498,7 +2555,7 @@ def main() -> None:
         Tuple[int, int, float, int, int, int]
     ] = []
     collapsed_inner_spectrum_checked: List[
-        Tuple[int, int, float, float, float, int, int, int]
+        Tuple[int, int, float, float, float, float, float, int, int, int]
     ] = []
     twisted_line_kernel_moment_checked: List[Tuple[int, int, float, float]] = []
     twisted_line_fiber_checked = 0
@@ -2613,6 +2670,8 @@ def main() -> None:
                 max_collapsed_inner_error,
                 max_collapsed_inner_magnitude_error,
                 max_collapsed_inner_moment_error,
+                max_collapsed_inner_special_error,
+                max_collapsed_inner_special_ratio,
                 inner_p_size_count,
                 inner_sqrt_size_count,
                 inner_unit_size_count,
@@ -2624,6 +2683,8 @@ def main() -> None:
                     round(max_collapsed_inner_error, 12),
                     round(max_collapsed_inner_magnitude_error, 12),
                     round(max_collapsed_inner_moment_error, 12),
+                    round(max_collapsed_inner_special_error, 12),
+                    round(max_collapsed_inner_special_ratio, 10),
                     inner_p_size_count,
                     inner_sqrt_size_count,
                     inner_unit_size_count,
@@ -2701,6 +2762,7 @@ def main() -> None:
             pair_diagonal_error,
             generic_diagonal_error,
             collapsed_diagonal_error,
+            collapsed_singular_error,
             paired_phase_ratio,
             paired_generic_count,
         ) = verify_quotient_line_spectral_normal_form(
@@ -2851,6 +2913,10 @@ def main() -> None:
             max_collapsed_diagonal_error,
             collapsed_diagonal_error,
         )
+        max_collapsed_singular_error = max(
+            max_collapsed_singular_error,
+            collapsed_singular_error,
+        )
         max_paired_phase_ratio = max(
             max_paired_phase_ratio,
             paired_phase_ratio,
@@ -2954,6 +3020,8 @@ def main() -> None:
         f"max_generic_diagonal_error={max_generic_diagonal_error:.3e}",
         f"max_collapsed_diagonal_error="
         f"{max_collapsed_diagonal_error:.3e}",
+        f"max_collapsed_singular_error="
+        f"{max_collapsed_singular_error:.3e}",
         f"max_paired_phase_ratio={max_paired_phase_ratio:.10f}",
         f"max_outer_mellin_piece_ratio={max_outer_mellin_piece_ratio:.10f}",
         f"max_outer_mellin_ratio={max_outer_mellin_ratio:.10f}",
