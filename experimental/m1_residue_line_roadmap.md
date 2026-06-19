@@ -182,7 +182,12 @@ should be revised as the project learns more.
    Consequently the nonprincipal quotient-character beta-sheet energy is
    exactly `(2e-4)N_split+2eN_K` and satisfies
    `E_e^beta <= (2e+4)(p-1)^2`; the beta sheets do not create a hidden
-   `p^3` averaged obstruction.
+   `p^3` averaged obstruction.  The full singular trace is now partitioned
+   as zero conic plus lower-chart plus exceptional-main ledger plus the
+   good beta pushforward; the first three pieces are `O(p)` directly
+   (audited as `|bad| <= p+25(p-1)` on the checked grid).  Therefore the
+   depth-two singular-excess target has been reduced to cancellation for
+   this one good rank-two beta pushforward.
    The updated remaining-wall scan reports this asymmetric wall separately:
    in the current report grid the largest asymmetric ratio is
    `3.2173609608p`, while every near-`4p` top row lies in the projective

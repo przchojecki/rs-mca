@@ -3357,6 +3357,41 @@ nonprincipal character energy `O_e(p^2)` before any cancellation in
 formula and the quotient-kernel collision bound for the audited quotient
 orders.
 
+Putting the chart reductions together gives the final singular-trace
+decomposition.  For every multiplicative-character pair in the determinant
+surface trace,
+
+```text
+S_{psi,phi}
+  = Z_{psi,phi} + L_{psi,phi}
+    + G_{psi,phi} + X_{psi,phi},
+```
+
+where `Z` is the separated zero conic, `L` is the non-`U V` lower chart,
+`G` is the good-base beta pushforward just described, and `X` is the
+main-chart exceptional ledger
+
+```text
+A_beta=0,  C_beta=0,  D_beta=0,  a=r,  K_alpha(a,r)=0
+```
+
+together with the vertical beta fiber.  The zero conic contributes exactly
+`p`, the lower chart has at most `5(p-1)` torus points, and the exceptional
+main ledger is curve-sized (the verifier enforces the sharper
+`20(p-1)` audit bound on the tested grid).  Thus the direct full singular
+trace differs from the good beta pushforward by only an explicit `O(p)`
+term; on the audit grid,
+
+```text
+|S_{psi,phi} - G_{psi,phi}| <= p + 25(p-1).
+```
+
+Consequently this depth-two M1 singular-excess problem has been reduced to
+one analytic statement: a conductor/cancellation bound for the good
+rank-two beta pushforward.  The zero conic, lower charts, branch fibers,
+coordinate deletions, and vertical fiber cannot by themselves create a
+superlinear obstruction.
+
 ## Principal-Row Leakage
 
 The principal rows excluded above have exact formulas.  They explain why the

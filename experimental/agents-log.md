@@ -29,6 +29,27 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-19 - M1 full singular trace reduced to good beta pushforward
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/m1_depth_two_line_conic_resonance_reduction.md`,
+  `experimental/verify_m1_depth_two_line_conic_resonance_reduction.py`,
+  `experimental/m1_residue_line_roadmap.md`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** Partitions the full M1 determinant-surface
+  singular trace into the zero conic, lower chart, good beta pushforward, and
+  exceptional main-chart ledger.  The verifier checks the pointwise
+  decomposition and the bound
+  `|S_{psi,phi}-G_{psi,phi}| <= p+25(p-1)` on the audited character pairs.
+- **How it is useful:** Turns the accumulated chart reductions into a single
+  remaining analytic target: prove cancellation/conductor control for the
+  good rank-two beta pushforward.
+- **What to do next:** Prove the conductor bound for the good beta
+  pushforward, using the rational branch geometry and fixed beta-ratio
+  resonance control already established in this PR.
+
 ### 2026-06-19 - M1 beta quotient-character energy bound
 
 - **Agent/model:** Codex.

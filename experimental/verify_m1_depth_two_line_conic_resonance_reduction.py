@@ -4927,6 +4927,139 @@ def verify_ratio_surface_beta_pushforward_trace() -> List[
     return checked
 
 
+def verify_ratio_surface_full_trace_reduction() -> List[
+    Tuple[int, int, int, int, int, int, int, float, int]
+]:
+    checked: List[Tuple[int, int, int, int, int, int, int, float, int]] = []
+    for p, psi_exponent, phi_exponent in PUSHFORWARD_TRACE_CASES:
+        logs = log_table(p)
+        table = character_table(p, logs)
+        psi = table[psi_exponent]
+        phi = table[phi_exponent]
+        direct = 0j
+        zero = 0j
+        lower = 0j
+        good = 0j
+        grouped_good = 0j
+        exceptional = 0j
+        zero_count = 0
+        lower_count = 0
+        good_base_count = 0
+        good_point_count = 0
+        exceptional_point_count = 0
+        for alpha in range(1, p):
+            for ratio in range(1, p):
+                roots = ratio_surface_affine_beta_roots(p, alpha, ratio)
+                is_good_base = ratio_surface_beta_pushforward_good(
+                    p,
+                    alpha,
+                    ratio,
+                )
+                good_roots: List[Tuple[int, int]] = []
+                if is_good_base:
+                    good_base_count += 1
+                for beta in roots:
+                    coefficients = ratio_surface_conic_coefficients(
+                        p,
+                        alpha,
+                        beta,
+                        ratio,
+                    )
+                    chart, unit = projective_excess_chart(p, coefficients)
+                    term = unit * psi[alpha] * phi[beta]
+                    direct += term
+                    if chart == "zero":
+                        zero_count += 1
+                        zero += term
+                        if (alpha, beta, ratio, unit) != (1, 1, 1, p):
+                            raise AssertionError(
+                                (p, alpha, beta, ratio, chart, unit)
+                            )
+                        continue
+
+                    discriminants = ratio_surface_binary_discriminants(
+                        p,
+                        alpha,
+                        beta,
+                        ratio,
+                    )
+                    if discriminants[0] == 0:
+                        lower_count += 1
+                        lower += term
+                        continue
+
+                    if is_good_base:
+                        if unit != legendre(discriminants[0], p):
+                            raise AssertionError(
+                                (p, alpha, beta, ratio, unit, discriminants)
+                            )
+                        good_point_count += 1
+                        good_roots.append((beta, unit))
+                        good += term
+                        continue
+
+                    exceptional_point_count += 1
+                    exceptional += term
+
+                if not is_good_base or not good_roots:
+                    continue
+                if len(good_roots) != 2:
+                    raise AssertionError((p, alpha, ratio, good_roots))
+                signs = [unit for _, unit in good_roots]
+                if signs[0] != signs[1]:
+                    raise AssertionError((p, alpha, ratio, good_roots))
+                grouped_good += psi[alpha] * signs[0] * sum(
+                    phi[beta] for beta, _ in good_roots
+                )
+
+        error = abs(direct - zero - lower - good - exceptional)
+        if error > 1000 * TOLERANCE:
+            raise AssertionError(
+                (
+                    p,
+                    psi_exponent,
+                    phi_exponent,
+                    direct,
+                    zero,
+                    lower,
+                    good,
+                    exceptional,
+                )
+            )
+        grouped_error = abs(good - grouped_good)
+        if grouped_error > 1000 * TOLERANCE:
+            raise AssertionError((p, psi_exponent, phi_exponent, grouped_error))
+        if zero_count != 1:
+            raise AssertionError((p, psi_exponent, phi_exponent, zero_count))
+        if lower_count > 5 * (p - 1):
+            raise AssertionError((p, psi_exponent, phi_exponent, lower_count))
+        if exceptional_point_count > 20 * (p - 1):
+            raise AssertionError(
+                (p, psi_exponent, phi_exponent, exceptional_point_count)
+            )
+        bad_bound = p + lower_count + exceptional_point_count
+        if abs(zero + lower + exceptional) > bad_bound + 1000 * TOLERANCE:
+            raise AssertionError(
+                (p, psi_exponent, phi_exponent, zero, lower, exceptional)
+            )
+        if bad_bound > p + 25 * (p - 1):
+            raise AssertionError((p, psi_exponent, phi_exponent, bad_bound))
+        checked.append(
+            (
+                p,
+                psi_exponent,
+                phi_exponent,
+                good_base_count,
+                good_point_count,
+                lower_count,
+                exceptional_point_count,
+                round(error + grouped_error, 12),
+                bad_bound,
+            )
+        )
+    return checked
+
+
 def verify_ratio_surface_beta_projection() -> List[
     Tuple[int, int, int, int, int, int, int, int]
 ]:
@@ -5838,6 +5971,9 @@ def main() -> None:
     ratio_surface_beta_pushforward_checked = (
         verify_ratio_surface_beta_pushforward_trace()
     )
+    ratio_surface_full_trace_reduction_checked = (
+        verify_ratio_surface_full_trace_reduction()
+    )
     ratio_surface_beta_ratio_resonance_checked = (
         verify_ratio_surface_beta_ratio_resonance()
     )
@@ -6474,6 +6610,8 @@ def main() -> None:
         f"{ratio_surface_branch_geometry_checked}",
         f"ratio_surface_beta_pushforward_checked="
         f"{ratio_surface_beta_pushforward_checked}",
+        f"ratio_surface_full_trace_reduction_checked="
+        f"{ratio_surface_full_trace_reduction_checked}",
         f"ratio_surface_beta_ratio_resonance_checked="
         f"{ratio_surface_beta_ratio_resonance_checked}",
         f"ratio_surface_beta_quotient_energy_checked="
