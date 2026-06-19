@@ -29,6 +29,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-19 - M1 line-conic generic phase reduction
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/m1_depth_two_line_conic_resonance_reduction.md`,
+  `experimental/verify_m1_depth_two_line_conic_resonance_reduction.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** After removing exceptional Mellin parameters,
+  writes the nonsplit projector as an `O(sqrt(p))` term plus
+  `p/(p-1)` times a generic theta sum
+  `sum A(theta^{-1})omega(theta)` with `|omega(theta)|=1`.
+- **How it is useful:** Puts the remaining p-scale M1 nonsplit target in its
+  sharp form: prove square-root cancellation in the generic phase correlation,
+  since the kernel has become a pure unit phase after extracting `p`.
+- **What to do next:** Attack this normalized generic phase sum directly,
+  either through sheaf correlation or a diagonal/off-diagonal split.
+
 ### 2026-06-19 - M1 line-conic exceptional Mellin split
 
 - **Agent/model:** Codex.

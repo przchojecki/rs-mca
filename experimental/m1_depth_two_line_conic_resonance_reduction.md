@@ -1054,6 +1054,37 @@ separate singular term `eta(-2)G_nu(2)` has size at most `1`.  Therefore all
 p-scale difficulty in the nonsplit projector sits in the generic set
 `theta notin E_nu`, where `|M_nu(theta)|=p`.
 
+## Generic Phase Reduction
+
+On the generic set `G_nu = {theta: theta notin E_nu}`, write
+
+```text
+omega_nu(theta) = M_nu(theta)/p.
+```
+
+The magnitude ledger gives `|omega_nu(theta)|=1` on `G_nu`.  Hence the
+nonsplit projector has the exact residual form
+
+```text
+C^-_{eta,nu}
+  = eta(-2)G_nu(2)
+    + chi_2(-3)P^exc_{eta,nu}
+    + chi_2(-3) p/(p-1)
+        sum_{theta in G_nu} A_{eta,nu}(theta^(-1)) omega_nu(theta),
+```
+
+where `P^exc_{eta,nu}` is the exceptional contribution bounded above by
+`O(sqrt(p))`.  Thus the pointwise p-scale nonsplit theorem is now exactly a
+square-root cancellation problem for the generic phase sum
+
+```text
+sum_{theta in G_nu} A_{eta,nu}(theta^(-1)) omega_nu(theta),
+```
+
+whose individual terms have size at most `4sqrt(p)`.  No further saving can
+come from kernel magnitude on this generic set: the kernel contributes only a
+unit phase after the factor `p` is extracted.
+
 ## Spectral Energy Ledger
 
 The spectral normal form has exact energy identities.  By Parseval on

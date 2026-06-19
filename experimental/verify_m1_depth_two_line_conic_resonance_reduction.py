@@ -1077,7 +1077,7 @@ def verify_quotient_line_spectral_normal_form(
     eta_exponent: int,
     nu_exponent: int,
     table: List[List[complex]],
-) -> Tuple[int, float, float, float, float, float, float, float, int]:
+) -> Tuple[int, float, float, float, float, float, float, float, int, float, float, int]:
     delta = least_nonsquare(p)
     order = p - 1
     eta = table[eta_exponent]
@@ -1099,6 +1099,9 @@ def verify_quotient_line_spectral_normal_form(
     spectral_pairing = 0j
     exceptional_pairing = 0j
     exceptional_count = 0
+    generic_phase_sum = 0j
+    generic_count = 0
+    max_generic_phase_error = 0.0
     checked = 0
     max_outer_decomposition_error = 0.0
     max_outer_piece_ratio = 0.0
@@ -1184,6 +1187,26 @@ def verify_quotient_line_spectral_normal_form(
         if is_exceptional:
             exceptional_pairing += outer_inverse_mellin * kernel_mellin
             exceptional_count += 1
+        else:
+            generic_phase = kernel_mellin / p
+            generic_phase_error = abs(abs(generic_phase) - 1)
+            max_generic_phase_error = max(
+                max_generic_phase_error,
+                generic_phase_error,
+            )
+            if generic_phase_error > TOLERANCE:
+                raise AssertionError(
+                    (
+                        p,
+                        eta_exponent,
+                        nu_exponent,
+                        theta_exponent,
+                        "generic_kernel_phase",
+                        abs(generic_phase),
+                    )
+                )
+            generic_phase_sum += outer_inverse_mellin * generic_phase
+            generic_count += 1
         outer_energy += abs(outer_mellin) ** 2
         kernel_energy += abs(kernel_mellin) ** 2
         spectral_pairing += outer_inverse_mellin * kernel_mellin
@@ -1203,6 +1226,17 @@ def verify_quotient_line_spectral_normal_form(
                 "exceptional_theta_count",
                 exceptional_count,
                 expected_exceptional_count,
+            )
+        )
+    expected_generic_count = order - expected_exceptional_count
+    if generic_count != expected_generic_count:
+        raise AssertionError(
+            (
+                p,
+                nu_exponent,
+                "generic_theta_count",
+                generic_count,
+                expected_generic_count,
             )
         )
     exceptional_contribution = exceptional_pairing / order
@@ -1252,6 +1286,12 @@ def verify_quotient_line_spectral_normal_form(
             )
         )
     reconstructed_pairing = spectral_pairing / order
+    generic_pairing = p * generic_phase_sum / order
+    assert_close(
+        (p, eta_exponent, nu_exponent, "generic_phase_reconstruction"),
+        exceptional_contribution + generic_pairing,
+        reconstructed_pairing,
+    )
     assert_close(
         (p, eta_exponent, nu_exponent, "quotient_spectral_pairing"),
         reconstructed_pairing,
@@ -1276,6 +1316,9 @@ def verify_quotient_line_spectral_normal_form(
         math.sqrt(expected_outer_energy * expected_kernel_energy) / ((p - 1) * p),
         abs(exceptional_contribution) / math.sqrt(p),
         exceptional_count,
+        max_generic_phase_error,
+        abs(generic_phase_sum) / p,
+        generic_count,
     )
 
 
@@ -1749,7 +1792,10 @@ def main() -> None:
     max_spectral_energy_error = 0.0
     max_spectral_cauchy_ratio = 0.0
     max_exceptional_spectral_ratio = 0.0
+    max_generic_phase_error = 0.0
+    max_generic_phase_sum_ratio = 0.0
     exceptional_theta_checked = 0
+    generic_theta_checked = 0
     max_core_ratio = 0.0
     max_open_ratio = 0.0
     max_line_ratio = 0.0
@@ -1940,6 +1986,9 @@ def main() -> None:
             spectral_cauchy_ratio,
             exceptional_spectral_ratio,
             exceptional_theta_count,
+            generic_phase_error,
+            generic_phase_sum_ratio,
+            generic_theta_count,
         ) = verify_quotient_line_spectral_normal_form(
             p,
             eta_exponent,
@@ -1948,6 +1997,7 @@ def main() -> None:
         )
         quotient_spectral_checked += spectral_theta_count
         exceptional_theta_checked += exceptional_theta_count
+        generic_theta_checked += generic_theta_count
         assert_close(
             (p, eta_exponent, nu_exponent, "lambda_pullback_descent"),
             pulled_back,
@@ -2062,6 +2112,14 @@ def main() -> None:
             max_exceptional_spectral_ratio,
             exceptional_spectral_ratio,
         )
+        max_generic_phase_error = max(
+            max_generic_phase_error,
+            generic_phase_error,
+        )
+        max_generic_phase_sum_ratio = max(
+            max_generic_phase_sum_ratio,
+            generic_phase_sum_ratio,
+        )
         split_projection_ratio = abs(split_projection) / p
         nonsplit_projection_ratio = abs(nonsplit_projection) / p
         nonsplit_singular_ratio = abs(singular_nonsplit)
@@ -2123,6 +2181,8 @@ def main() -> None:
         f"max_spectral_cauchy_ratio={max_spectral_cauchy_ratio:.10f}",
         f"max_exceptional_spectral_ratio="
         f"{max_exceptional_spectral_ratio:.10f}",
+        f"max_generic_phase_error={max_generic_phase_error:.3e}",
+        f"max_generic_phase_sum_ratio={max_generic_phase_sum_ratio:.10f}",
         f"max_core_ratio={max_core_ratio:.10f}@{max_core_label}",
         f"max_open_ratio={max_open_ratio:.10f}@{max_open_label}",
         f"max_line_ratio={max_line_ratio:.10f}@{max_line_label}",
@@ -2146,6 +2206,7 @@ def main() -> None:
         f"{quotient_line_mellin_magnitude_checked}",
         f"quotient_spectral_checked={quotient_spectral_checked}",
         f"exceptional_theta_checked={exceptional_theta_checked}",
+        f"generic_theta_checked={generic_theta_checked}",
         f"twisted_line_kernel_moment_checked="
         f"{twisted_line_kernel_moment_checked}",
         f"twisted_line_fiber_checked={twisted_line_fiber_checked}",
