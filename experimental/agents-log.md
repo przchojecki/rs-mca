@@ -29,6 +29,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-19 - M1 collapsed diagonal gate
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/m1_depth_two_line_conic_resonance_reduction.md`,
+  `experimental/verify_m1_depth_two_line_conic_resonance_reduction.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** Uses the diagonal relation `-8x=z y^2` to show
+  the outer and kernel square-class filters coincide, collapsing the paired
+  diagonal to one square-class gate and an explicit inner quadratic trace
+  `H_nu(z)=sum_y nu(1-y)chi_2(1+z y^2/8)`.
+- **How it is useful:** Further reduces the remaining M1 generic obstruction
+  from a constrained two-variable diagonal to a one-variable outer transform
+  against a concrete quadratic trace family.
+- **What to do next:** Bound or structurally analyze the collapsed
+  one-variable transform, including its exceptional theta correction.
+
 ### 2026-06-19 - M1 paired diagonal expansion
 
 - **Agent/model:** Codex.

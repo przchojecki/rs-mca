@@ -1276,6 +1276,52 @@ finite-field identity.  It turns the remaining M1 generic obstruction into a
 single constrained two-variable sum plus the already isolated exceptional
 theta correction.
 
+## Collapsed Diagonal Gate
+
+On the diagonal `-8x=z y^2`, the two square-class filters are the same:
+
+```text
+chi_2(x)=chi_2(-2)chi_2(z).
+```
+
+Hence
+
+```text
+(1-chi_2(-2)chi_2(z))(1-chi_2(x))
+  = 2(1-chi_2(-2)chi_2(z)).
+```
+
+Therefore the all-theta paired diagonal sum is equivalently
+
+```text
+sum_theta Pi_{eta,nu}(theta)
+  = 2 kappa_{eta,nu}(p-1)/p
+      sum_{z,y in F_p^*}
+        nu(z)nu(1-y)
+        (1-chi_2(-2)chi_2(z))
+        eta(1-z)gamma(z+2)chi_2(1+z y^2/8).
+```
+
+Equivalently, with
+
+```text
+H_nu(z)=sum_{y in F_p^*} nu(1-y)chi_2(1+z y^2/8),
+```
+
+this is the one-variable transform
+
+```text
+2 kappa_{eta,nu}(p-1)/p
+  sum_{z in F_p^*}
+    nu(z)(1-chi_2(-2)chi_2(z))eta(1-z)gamma(z+2)H_nu(z).
+```
+
+Thus the paired diagonal no longer has two independent square-class gates:
+the diagonal relation forces them to coincide.  The remaining main term is a
+single square-class restricted outer Kummer twist against the explicit
+quadratic trace `H_nu(z)`, plus the exceptional theta correction from the
+previous section.
+
 ## Spectral Energy Ledger
 
 The spectral normal form has exact energy identities.  By Parseval on

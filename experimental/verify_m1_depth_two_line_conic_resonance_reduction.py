@@ -1151,6 +1151,33 @@ def quotient_line_paired_diagonal_sum(
     return total
 
 
+def quotient_line_paired_collapsed_diagonal_sum(
+    p: int,
+    eta: List[complex],
+    nu: List[complex],
+    gamma: List[complex],
+) -> complex:
+    total = 0j
+    inverse_eight = pow(8, -1, p)
+    square_class = legendre(-2, p)
+    for z_value in range(1, p):
+        outer_weight = (
+            nu[z_value]
+            * (1 - square_class * legendre(z_value, p))
+            * eta[(1 - z_value) % p]
+            * gamma[(z_value + 2) % p]
+        )
+        if abs(outer_weight) == 0:
+            continue
+        for y_value in range(1, p):
+            kernel_value = legendre(
+                1 + z_value * y_value * y_value * inverse_eight,
+                p,
+            )
+            total += 2 * outer_weight * nu[(1 - y_value) % p] * kernel_value
+    return total
+
+
 def verify_quotient_line_spectral_normal_form(
     p: int,
     eta_exponent: int,
@@ -1169,6 +1196,7 @@ def verify_quotient_line_spectral_normal_form(
     float,
     float,
     int,
+    float,
     float,
     float,
     float,
@@ -1220,6 +1248,7 @@ def verify_quotient_line_spectral_normal_form(
     max_algebraic_pair_orbit_error = 0.0
     max_pair_diagonal_error = 0.0
     max_generic_diagonal_error = 0.0
+    max_collapsed_diagonal_error = 0.0
     max_paired_phase_ratio = 0.0
     paired_generic_count = 0
     max_outer_piece_ratio = 0.0
@@ -1709,6 +1738,30 @@ def verify_quotient_line_spectral_normal_form(
         * quotient_line_paired_diagonal_sum(p, eta, nu, gamma)
         / p
     )
+    collapsed_diagonal_pair_sum = (
+        pair_constant
+        * (p - 1)
+        * quotient_line_paired_collapsed_diagonal_sum(p, eta, nu, gamma)
+        / p
+    )
+    collapsed_diagonal_error = abs(
+        diagonal_pair_sum - collapsed_diagonal_pair_sum
+    )
+    max_collapsed_diagonal_error = max(
+        max_collapsed_diagonal_error,
+        collapsed_diagonal_error,
+    )
+    if collapsed_diagonal_error > 100 * TOLERANCE:
+        raise AssertionError(
+            (
+                p,
+                eta_exponent,
+                nu_exponent,
+                "collapsed_diagonal_expansion",
+                diagonal_pair_sum,
+                collapsed_diagonal_pair_sum,
+            )
+        )
     pair_diagonal_error = abs(algebraic_pair_sum - diagonal_pair_sum)
     max_pair_diagonal_error = max(
         max_pair_diagonal_error,
@@ -1791,6 +1844,7 @@ def verify_quotient_line_spectral_normal_form(
         max_algebraic_pair_orbit_error,
         max_pair_diagonal_error,
         max_generic_diagonal_error,
+        max_collapsed_diagonal_error,
         max_paired_phase_ratio,
         paired_generic_count,
     )
@@ -2271,6 +2325,7 @@ def main() -> None:
     max_algebraic_pair_orbit_error = 0.0
     max_pair_diagonal_error = 0.0
     max_generic_diagonal_error = 0.0
+    max_collapsed_diagonal_error = 0.0
     max_paired_phase_ratio = 0.0
     max_outer_mellin_piece_ratio = 0.0
     max_outer_mellin_ratio = 0.0
@@ -2485,6 +2540,7 @@ def main() -> None:
             algebraic_pair_orbit_error,
             pair_diagonal_error,
             generic_diagonal_error,
+            collapsed_diagonal_error,
             paired_phase_ratio,
             paired_generic_count,
         ) = verify_quotient_line_spectral_normal_form(
@@ -2631,6 +2687,10 @@ def main() -> None:
             max_generic_diagonal_error,
             generic_diagonal_error,
         )
+        max_collapsed_diagonal_error = max(
+            max_collapsed_diagonal_error,
+            collapsed_diagonal_error,
+        )
         max_paired_phase_ratio = max(
             max_paired_phase_ratio,
             paired_phase_ratio,
@@ -2732,6 +2792,8 @@ def main() -> None:
         f"{max_algebraic_pair_orbit_error:.3e}",
         f"max_pair_diagonal_error={max_pair_diagonal_error:.3e}",
         f"max_generic_diagonal_error={max_generic_diagonal_error:.3e}",
+        f"max_collapsed_diagonal_error="
+        f"{max_collapsed_diagonal_error:.3e}",
         f"max_paired_phase_ratio={max_paired_phase_ratio:.10f}",
         f"max_outer_mellin_piece_ratio={max_outer_mellin_piece_ratio:.10f}",
         f"max_outer_mellin_ratio={max_outer_mellin_ratio:.10f}",
