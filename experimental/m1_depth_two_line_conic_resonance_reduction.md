@@ -547,6 +547,75 @@ The `t^2=4delta` and `t^2=delta` pairs have no `F_p`-points for nonsquare
 `delta`, but they remain geometric support points for a conductor proof.
 This is the precise nonsplit target left by the projector criterion.
 
+## Twisted-Line Fiber Trace
+
+The twisted model can be pushed one step further: after pulling back to the
+`t`-line, the quadratic fiber trace is itself a fixed translated
+hypergeometric trace.  Put
+
+```text
+D(t)=t^2-delta,
+K_{nu,delta}(t) = sum_x nu(x-t) chi_2(x^2-4delta).
+```
+
+For every finite `t`,
+
+```text
+G_nu(y_delta(t))
+  = chi_2(-3) nu(t/D(t)) K_{nu,delta}(t),
+```
+
+where characters are extended by zero.  Therefore
+
+```text
+C^-_{eta,nu}
+  = eta(-2)G_nu(2)
+    + chi_2(-3) sum_t
+        eta(-(2t^2+delta)/D(t))
+        nu(t/D(t)) K_{nu,delta}(t).
+```
+
+For the proof, write `s=t^2`, `D=s-delta`, and
+`y=(2s+delta)/D`.  A direct calculation gives
+
+```text
+D^2 Q_y(v) = -3((Dv+s)^2 - 4delta s).
+```
+
+Since `D` is nonzero for finite `t`, the change of variables
+`m=Dv+s` gives
+
+```text
+G_nu(y_delta(t))
+  = chi_2(-3)nu(D)^(-1)
+    sum_m nu(m-t^2) chi_2(m^2-4delta t^2).
+```
+
+If `t != 0`, substitute `m=tx` to get the displayed formula.  If `t=0`,
+the right side is zero because `nu(t/D)=0`, while the previous line is
+`chi_2(-3)nu(D)^(-1) sum_m nu(m)chi_2(m^2)=0`; this is the already known
+branch value `G_nu(-1)=0`.
+
+This formulation isolates the nonsplit local table.  The trace
+`K_{nu,delta}(t)` has geometric singularities only when the moving Kummer
+point `x=t` collides with a quadratic branch point of `x^2-4delta`, namely
+at
+
+```text
+t^2=4delta,
+```
+
+and at infinity.  The remaining finite support points in the full nonsplit
+projector come only from the outer Kummer twist:
+
+```text
+t=0,        t^2=delta,        t^2=-delta/2.
+```
+
+Thus the nonsplit projector is reduced to a rank-two translated
+hypergeometric trace on the same five-point geometric checklist recorded
+above, rather than to an opaque two-variable sum.
+
 ## Open-Set Line Correction
 
 For the actual two-coordinate open sum, the principal coordinate line

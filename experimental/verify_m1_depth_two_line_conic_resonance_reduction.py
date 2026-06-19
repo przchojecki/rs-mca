@@ -600,6 +600,65 @@ def twisted_discriminant_nonsplit_sum(
     return total
 
 
+def twisted_line_kernel_trace(
+    p: int,
+    t: int,
+    delta: int,
+    nu: List[complex],
+) -> complex:
+    total = 0j
+    for x in range(p):
+        total += nu[(x - t) % p] * legendre(x * x - 4 * delta, p)
+    return total
+
+
+def verify_twisted_line_fiber_trace(
+    p: int,
+    table: List[List[complex]],
+) -> int:
+    delta = least_nonsquare(p)
+    checked = 0
+    for t in range(p):
+        denominator = (t * t - delta) % p
+        if denominator == 0:
+            raise AssertionError((p, t, delta, "twisted_line_denominator"))
+        y = twisted_discriminant_y(p, t, delta)
+        for nu_exponent in range(1, p - 1):
+            nu = table[nu_exponent]
+            expected = (
+                legendre(-3, p)
+                * nu[t * pow(denominator, -1, p) % p]
+                * twisted_line_kernel_trace(p, t, delta, nu)
+            )
+            actual = transformed_inner(p, y, nu)
+            assert_close(
+                (p, t, nu_exponent, "twisted_line_fiber_trace"),
+                actual,
+                expected,
+            )
+            checked += 1
+    return checked
+
+
+def twisted_line_nonsplit_sum(
+    p: int,
+    eta: List[complex],
+    nu: List[complex],
+) -> complex:
+    delta = least_nonsquare(p)
+    total = eta[(-2) % p] * transformed_inner(p, 2 % p, nu)
+    for t in range(p):
+        denominator = (t * t - delta) % p
+        y = twisted_discriminant_y(p, t, delta)
+        total += (
+            eta[(-y) % p]
+            * legendre(-3, p)
+            * nu[t * pow(denominator, -1, p) % p]
+            * twisted_line_kernel_trace(p, t, delta, nu)
+        )
+    return total
+
+
 def core_collision_formula(p: int) -> int:
     return (
         2 * p * p
@@ -941,6 +1000,7 @@ def main() -> None:
     max_difference = 0.0
     max_pullback_difference = 0.0
     max_twisted_difference = 0.0
+    max_twisted_line_difference = 0.0
     max_core_ratio = 0.0
     max_open_ratio = 0.0
     max_line_ratio = 0.0
@@ -957,6 +1017,7 @@ def main() -> None:
     lambda_map_checked = 0
     lambda_twist_checked: List[Tuple[int, int, int]] = []
     twisted_discriminant_checked: List[Tuple[int, int, int]] = []
+    twisted_line_fiber_checked = 0
     split_hypergeometric_checked = 0
     filter_checked = verify_admissible_filter_counts()
     twist_nontrivial_checked = verify_admissible_twist_nontriviality()
@@ -973,6 +1034,10 @@ def main() -> None:
             twist_map_count, nonsplit_value_count = verify_twisted_discriminant_map(p)
             twisted_discriminant_checked.append(
                 (p, twist_map_count, nonsplit_value_count)
+            )
+            twisted_line_fiber_checked += verify_twisted_line_fiber_trace(
+                p,
+                tables[p],
             )
             split_hypergeometric_checked += verify_split_hypergeometric_pullback(
                 p,
@@ -1003,6 +1068,7 @@ def main() -> None:
         split_projection = split_projected_core(p, eta, nu)
         nonsplit_projection = nonsplit_projected_core(p, eta, nu)
         twisted_nonsplit = twisted_discriminant_nonsplit_sum(p, eta, nu)
+        twisted_line_nonsplit = twisted_line_nonsplit_sum(p, eta, nu)
         assert_close(
             (p, eta_exponent, nu_exponent, "lambda_pullback_descent"),
             pulled_back,
@@ -1016,6 +1082,11 @@ def main() -> None:
         assert_close(
             (p, eta_exponent, nu_exponent, "twisted_discriminant_nonsplit"),
             twisted_nonsplit,
+            nonsplit_projection,
+        )
+        assert_close(
+            (p, eta_exponent, nu_exponent, "twisted_line_nonsplit"),
+            twisted_line_nonsplit,
             nonsplit_projection,
         )
         g_at_three = transformed_inner(p, 3 % p, nu)
@@ -1071,6 +1142,10 @@ def main() -> None:
             max_twisted_difference,
             abs(twisted_nonsplit - nonsplit_projection),
         )
+        max_twisted_line_difference = max(
+            max_twisted_line_difference,
+            abs(twisted_line_nonsplit - nonsplit_projection),
+        )
         split_projection_ratio = abs(split_projection) / p
         nonsplit_projection_ratio = abs(nonsplit_projection) / p
         nonsplit_singular_ratio = abs(singular_nonsplit)
@@ -1120,6 +1195,7 @@ def main() -> None:
         f"max_difference={max_difference:.3e}",
         f"max_pullback_difference={max_pullback_difference:.3e}",
         f"max_twisted_difference={max_twisted_difference:.3e}",
+        f"max_twisted_line_difference={max_twisted_line_difference:.3e}",
         f"max_core_ratio={max_core_ratio:.10f}@{max_core_label}",
         f"max_open_ratio={max_open_ratio:.10f}@{max_open_label}",
         f"max_line_ratio={max_line_ratio:.10f}@{max_line_label}",
@@ -1133,6 +1209,7 @@ def main() -> None:
         f"lambda_map_checked={lambda_map_checked}",
         f"lambda_twist_checked={lambda_twist_checked}",
         f"twisted_discriminant_checked={twisted_discriminant_checked}",
+        f"twisted_line_fiber_checked={twisted_line_fiber_checked}",
         f"split_hypergeometric_checked={split_hypergeometric_checked}",
         f"filter_checked={filter_checked[0]}..{filter_checked[-1]}",
         f"twist_nontrivial_checked={twist_nontrivial_checked[0]}.."

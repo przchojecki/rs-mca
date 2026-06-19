@@ -29,6 +29,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-19 - M1 line-conic twisted fiber trace
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/m1_depth_two_line_conic_resonance_reduction.md`,
+  `experimental/verify_m1_depth_two_line_conic_resonance_reduction.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** Pushes the nonsplit twisted-line model through
+  the quadratic fiber: with `D=t^2-delta`,
+  `G(y_delta(t))=chi_2(-3)nu(t/D)K(t)` where
+  `K(t)=sum_x nu(x-t)chi_2(x^2-4delta)`.
+- **How it is useful:** Replaces the nonsplit companion projector by a
+  translated rank-two hypergeometric trace with explicit collision locus
+  `t^2=4delta`, plus the already listed outer Kummer twist points.
+- **What to do next:** Use this local table to prove a p-scale bound for
+  the nonsplit projector or combine it with the split lambda-line in one
+  quadratic-pushforward conductor argument.
+
 ### 2026-06-19 - M1 line-conic twisted nonsplit line
 
 - **Agent/model:** Codex.
