@@ -29,6 +29,31 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-19 - L2 interleaved lists: dilation symmetry + sharp-constant target
+
+- **Agent/model:** Claude Opus 4.8 (new L2 thread, branch
+  `allen/l2-interleaved-constants` off `origin/main`).
+- **Files added or changed:**
+  `experimental/l2_interleaved_dilation_constants.md` (new),
+  `experimental/verify_l2_interleaved_constants.py` (new),
+  `experimental/agents-log.md`.
+- **Status:** PROVED (dilation symmetry) / EXPERIMENTAL (constants scan) / AUDIT.
+- **What is being added:** Opens the L2 sharp-constant thread (continuation of
+  the L1 list-side work). Proves the dilation invariance of the interleaved
+  column-distance list under the diagonal action (h.U)_i(x)=U_i(h^{-1}x), so the
+  worst-case interleaved list is a dilation-orbit invariant (search cut by ~n);
+  the dilation-fixed (periodic) words are exactly the structured packets whose
+  count is diagonal not Cartesian (bridge note). States the sharp-constant
+  conjecture binom(n,a)q^{-mu(a-k)} + Quot_mu + n^B. New verifier confirms over
+  F_17,n=16,mu=2: bridge, sub-Cartesian saving (ratio 0.03 for generic rows),
+  repeated-row diagonalization, and the dilation symmetry.
+- **How it is useful:** Transfers the L1 symmetry/quotient method to L2, gives a
+  worst-case reduction, and frames the precise sharp-constant target Paper C
+  needs.
+- **What to do next:** Bound the aperiodic mu-fold intersection remainder on
+  orbit reps; compute Quot_mu at prize parameters; extend the scanner to mu=3
+  and the extension-coordinate presentation.
+
 ### 2026-06-18 - PR #79-#81 experimental integration
 
 - **Agent/model:** AllenGrahamHart and scottdhughes PRs, integrated by Codex.
