@@ -136,7 +136,11 @@ should be revised as the project learns more.
    final term is now an exact spectral pairing between a target-line
    rank-one sum and the open M1 character sum, so Cauchy gives
    `|T_e|^2 <= O_e M_e^o`; after the overlap bound it can be absorbed by a
-   quadratic inequality in `sqrt(M_e^o)`.
+   quadratic inequality in `sqrt(M_e^o)`.  Combining all boundary pieces now
+   gives the closed inequality
+   `M_e^o <= (sqrt(P_e^+)+3(e-1)sqrt(p))^2`, where `P_e` is the weighted
+   projective singular excess.  The remaining quotient-conic target is
+   therefore a sharp fixed-index `P_e=O(p^2)` singular-excess theorem.
    The updated remaining-wall scan reports this asymmetric wall separately:
    in the current report grid the largest asymmetric ratio is
    `3.2173609608p`, while every near-`4p` top row lies in the projective

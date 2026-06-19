@@ -29,6 +29,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-19 - M1 closed boundary moment inequality
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/m1_depth_two_line_conic_resonance_reduction.md`,
+  `experimental/verify_m1_depth_two_line_conic_resonance_reduction.py`,
+  `experimental/m1_residue_line_roadmap.md`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** Combines the projective split, infinity square,
+  overlap square, and target-line pairing into
+  `M_e^o=P_e-I_e-O_e-2T_e` with `I_e,O_e>=0` and
+  `|T_e|^2<=O_e M_e^o`, yielding
+  `M_e^o <= (sqrt(P_e^+)+3(e-1)sqrt(p))^2`.
+- **How it is useful:** Eliminates the open-boundary terms as independent
+  obstacles; the M1 quotient-conic moment is now reduced to bounding the
+  weighted projective singular excess `P_e` sharply.
+- **What to do next:** Prove or refute a fixed-index `P_e=O(p^2)` bound.
+
 ### 2026-06-19 - M1 target-line spectral pairing
 
 - **Agent/model:** Codex.

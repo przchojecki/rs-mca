@@ -4295,6 +4295,33 @@ def weighted_target_line_spectral_pairing_audit(
     )
 
 
+def closed_boundary_moment_bounds(
+    p: int,
+    suborder: int,
+    moment: int,
+    projective_error: int,
+    overlap_energy: int,
+) -> Tuple[float, float]:
+    projective_positive = max(projective_error, 0)
+    exact_bound = (
+        math.sqrt(projective_positive)
+        + math.sqrt(overlap_energy)
+    ) ** 2
+    conductor_overlap_bound = 9 * (suborder - 1) * (suborder - 1) * p
+    conductor_bound = (
+        math.sqrt(projective_positive)
+        + math.sqrt(conductor_overlap_bound)
+    ) ** 2
+    if moment > exact_bound + 1000 * TOLERANCE:
+        raise AssertionError((p, suborder, moment, exact_bound))
+    if moment > conductor_bound + 1000 * TOLERANCE:
+        raise AssertionError((p, suborder, moment, conductor_bound))
+    return (
+        round(moment / exact_bound, 10) if exact_bound else 0.0,
+        round(moment / conductor_bound, 10) if conductor_bound else 0.0,
+    )
+
+
 def weighted_target_line_formula_sum(
     p: int,
     suborder: int,
@@ -4397,6 +4424,7 @@ def verify_weighted_projective_decomposition() -> List[
         Tuple[int, float],
         Tuple[int, int, Tuple[int, float]],
         Tuple[int, int, int, float],
+        Tuple[float, float],
     ]
 ]:
     checked: List[
@@ -4413,6 +4441,7 @@ def verify_weighted_projective_decomposition() -> List[
             Tuple[int, float],
             Tuple[int, int, Tuple[int, float]],
             Tuple[int, int, int, float],
+            Tuple[float, float],
         ]
     ] = []
     for p, suborder in RATIO_SURFACE_CASES:
@@ -4494,6 +4523,23 @@ def verify_weighted_projective_decomposition() -> List[
             line_overlap,
             expected_survivors[2],
         )
+        closed_boundary = (
+            infinity_reduced
+            + line_overlap
+            + 2 * expected_survivors[2]
+        )
+        if closed_boundary != boundary_error:
+            raise AssertionError((p, suborder, closed_boundary, boundary_error))
+        closed_moment = projective_error - closed_boundary
+        if closed_moment != moment:
+            raise AssertionError((p, suborder, closed_moment, moment))
+        closed_bounds = closed_boundary_moment_bounds(
+            p,
+            suborder,
+            moment,
+            projective_error,
+            line_overlap,
+        )
         if zero_conic_count != 1:
             raise AssertionError((p, suborder, zero_conic_count))
         if singular_count > 3 * (p - 1) * (p - 1):
@@ -4512,6 +4558,7 @@ def verify_weighted_projective_decomposition() -> List[
                 infinity_spectral,
                 (source_exclusive, line_overlap, overlap_spectral),
                 target_pairing,
+                closed_bounds,
             )
         )
     return checked

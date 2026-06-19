@@ -2975,6 +2975,42 @@ exclusive line contribution can be absorbed by a quadratic inequality in
 The verifier checks the spectral pairing itself, both Parseval identities,
 and the resulting Cauchy bound against the exact target-line formula.
 
+Putting the pieces together gives a closed boundary inequality.  Let `P_e`
+denote the weighted projective singular excess, so
+
+```text
+M_e^o = P_e - I_e - O_e - 2T_e.
+```
+
+Here `I_e` and `O_e` are nonnegative spectral squares, and
+`|T_e|^2 <= O_e M_e^o`.  With `P_e^+=max(P_e,0)` and
+`Y=sqrt(M_e^o)`, this gives
+
+```text
+Y^2 <= P_e^+ - O_e + 2sqrt(O_e)Y,
+```
+
+hence
+
+```text
+(Y-sqrt(O_e))^2 <= P_e^+,
+sqrt(M_e^o) <= sqrt(P_e^+) + sqrt(O_e).
+```
+
+Using the overlap conductor bound,
+
+```text
+M_e^o <= (sqrt(P_e^+) + 3(e-1)sqrt(p))^2.
+```
+
+Thus all open-boundary terms have been eliminated from the independent
+target list: the remaining quotient-conic moment problem is to bound the
+projective singular excess `P_e` sharply.  If `P_e=O(p^2)` for fixed `e`,
+then the whole centered quotient-conic moment is `O(p^2)` as well.  The
+verifier checks the exact recomposition
+`M_e^o=P_e-I_e-O_e-2T_e` and both the exact-overlap and conductor-overlap
+versions of the closed inequality.
+
 ## Principal-Row Leakage
 
 The principal rows excluded above have exact formulas.  They explain why the
