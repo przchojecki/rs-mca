@@ -3426,6 +3426,90 @@ def verify_ratio_surface_joint_energy() -> List[Tuple[int, int, int]]:
     return checked
 
 
+def ratio_surface_conic_coefficients(
+    p: int,
+    alpha: int,
+    beta: int,
+    ratio: int,
+) -> Tuple[int, int, int, int, int, int]:
+    return (
+        ratio * (ratio - alpha) % p,
+        ratio * (beta - alpha) % p,
+        (beta * beta - alpha * ratio) % p,
+        ratio * (1 - alpha) % p,
+        (beta - alpha * ratio) % p,
+        (1 - alpha * ratio) % p,
+    )
+
+
+def ratio_surface_delta(p: int, alpha: int, beta: int, ratio: int) -> int:
+    a = alpha
+    b = beta
+    r = ratio
+    return (
+        -2 * a * a * a * r * r
+        + 3 * a * a * b * b * r
+        - a * a * b * r * r
+        - a * a * b * r
+        + 3 * a * a * r * r * r
+        - a * a * r * r
+        + 3 * a * a * r
+        - 3 * a * b * b * r * r
+        + a * b * b * r
+        - 3 * a * b * b
+        + a * b * r * r
+        + a * b * r
+        - 3 * a * r * r
+        + 2 * b * b * r
+    ) % p
+
+
+def ratio_surface_doubled_projective_determinant(
+    p: int,
+    alpha: int,
+    beta: int,
+    ratio: int,
+) -> int:
+    uu, uv, vv, u_linear, v_linear, constant = (
+        ratio_surface_conic_coefficients(p, alpha, beta, ratio)
+    )
+    return (
+        (2 * uu) * ((2 * vv) * (2 * constant) - v_linear * v_linear)
+        - uv * (uv * (2 * constant) - v_linear * u_linear)
+        + u_linear * (uv * v_linear - (2 * vv) * u_linear)
+    ) % p
+
+
+def verify_ratio_surface_degeneracy() -> List[Tuple[int, int, int, int]]:
+    checked: List[Tuple[int, int, int, int]] = []
+    for p, suborder in RATIO_SURFACE_CASES:
+        logs = log_table(p)
+        kernel = [value for value in range(1, p) if logs[value] % suborder == 0]
+        parameter_count = 0
+        degenerate_count = 0
+        for alpha in kernel:
+            for beta in kernel:
+                for ratio in range(1, p):
+                    parameter_count += 1
+                    determinant = ratio_surface_doubled_projective_determinant(
+                        p,
+                        alpha,
+                        beta,
+                        ratio,
+                    )
+                    expected = (
+                        2 * ratio * ratio_surface_delta(p, alpha, beta, ratio)
+                    ) % p
+                    if determinant != expected:
+                        raise AssertionError(
+                            (p, suborder, alpha, beta, ratio, determinant, expected)
+                        )
+                    if determinant == 0:
+                        degenerate_count += 1
+        checked.append((p, suborder, parameter_count, degenerate_count))
+    return checked
+
+
 def direct_suborder_nonprincipal_open_moment(
     p: int,
     suborder: int,
@@ -3750,6 +3834,7 @@ def main() -> None:
     )
     suborder_parseval_moment_checked = verify_suborder_parseval_open_moments()
     ratio_surface_joint_energy_checked = verify_ratio_surface_joint_energy()
+    ratio_surface_degeneracy_checked = verify_ratio_surface_degeneracy()
     collapsed_four_p_obstruction_checked = (
         verify_quotient_line_collapsed_four_p_obstruction()
     )
@@ -4361,6 +4446,8 @@ def main() -> None:
         f"suborder_parseval_moment_checked={suborder_parseval_moment_checked}",
         f"ratio_surface_joint_energy_checked="
         f"{ratio_surface_joint_energy_checked}",
+        f"ratio_surface_degeneracy_checked="
+        f"{ratio_surface_degeneracy_checked}",
         f"collapsed_four_p_obstruction_checked="
         f"{collapsed_four_p_obstruction_checked}",
     )

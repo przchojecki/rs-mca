@@ -29,6 +29,27 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-19 - M1 quotient conic degeneracy criterion
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/m1_depth_two_line_conic_resonance_reduction.md`,
+  `experimental/verify_m1_depth_two_line_conic_resonance_reduction.py`,
+  `experimental/m1_residue_line_roadmap.md`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** Computes the doubled projective determinant of the
+  quotient-collision conic and records
+  `det = 2r Delta(alpha,beta,r)`.  Since `r != 0`, singular ratio fibers are
+  exactly the explicit determinant hypersurface `Delta=0`.  The verifier
+  checks the determinant identity and counts degenerate ratio parameters in
+  the existing audited `(p,e)` cases.
+- **How it is useful:** Replaces the vague "degenerate ratio fiber" exception
+  in the low-index quotient-energy route by a concrete algebraic locus to
+  split off before applying smooth-conic estimates.
+- **What to do next:** Analyze the `Delta=0` locus and bound the smooth
+  ratio fibers uniformly.
+
 ### 2026-06-19 - M1 quotient collision conic fibration
 
 - **Agent/model:** Codex.

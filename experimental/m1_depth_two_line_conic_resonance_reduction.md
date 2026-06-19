@@ -2499,6 +2499,50 @@ the ratio parameters `(alpha,beta,r)`.  Degenerate ratio fibers are now the
 objects to classify; away from them, a uniform conic-fiber estimate is the
 natural route to the desired quotient-energy bound.
 
+The degeneracy test is explicit.  In affine coordinates the conic has
+coefficients
+
+```text
+a = r(r-alpha),        b = r(beta-alpha),
+c = beta^2-alpha r,    d = r(1-alpha),
+e = beta-alpha r,      f = 1-alpha r,
+```
+
+so its projective closure has doubled symmetric matrix
+
+```text
+[ 2a   b   d ]
+[  b  2c   e ]
+[  d   e  2f ].
+```
+
+For `p>3`,
+
+```text
+det =
+  2r Delta(alpha,beta,r),
+```
+
+where
+
+```text
+Delta =
+ -2 alpha^3 r^2
+ +3 alpha^2 beta^2 r
+ -alpha^2 beta r^2 - alpha^2 beta r
+ +3 alpha^2 r^3 - alpha^2 r^2 + 3 alpha^2 r
+ -3 alpha beta^2 r^2 + alpha beta^2 r - 3 alpha beta^2
+ +alpha beta r^2 + alpha beta r - 3 alpha r^2
+ +2 beta^2 r.
+```
+
+Because `r in F_p^*`, a ratio fiber is singular exactly when
+`Delta(alpha,beta,r)=0`.  Thus the exceptional quotient-collision parameters
+lie on a concrete determinant hypersurface, the pullback of the cubic
+discriminant in conic-coefficient space.  The verifier checks this determinant
+identity over the same `(p,e)` cases as the joint-energy audit and reports the
+number of degenerate ratio parameters.
+
 ## Principal-Row Leakage
 
 The principal rows excluded above have exact formulas.  They explain why the

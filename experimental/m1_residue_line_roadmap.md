@@ -96,7 +96,8 @@ should be revised as the project learns more.
    grouped certificates.  The joint quotient energy further reduces to the
    explicit conic fibration
    `r(r-alpha)u^2+r((beta-alpha)v+1-alpha)u+B(beta v)-alpha rB(v)=0`;
-   the next analytic step is to classify its degenerate ratio fibers.
+   its projective determinant is `2r Delta(alpha,beta,r)`, so the degenerate
+   ratio fibers are exactly the explicit hypersurface `Delta=0`.
    The updated remaining-wall scan reports this asymmetric wall separately:
    in the current report grid the largest asymmetric ratio is
    `3.2173609608p`, while every near-`4p` top row lies in the projective
