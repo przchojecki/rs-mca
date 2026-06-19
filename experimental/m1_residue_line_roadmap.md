@@ -191,6 +191,9 @@ should be revised as the project learns more.
    explicit: the beta-zero boundary `Q_beta=0` has nontrivial `phi`
    monodromy for every centered row (`phi != 1`) and shares no component
    with the beta-linear, `U V` sign, beta-infinity, or branch divisors.
+   The component separations are recorded by explicit resultants, including
+   the diagonal and `K_alpha` deleted divisors, and the verifier checks the
+   corresponding finite intersection root supports.
    Thus, under the standard bounded-conductor Deligne--Katz estimate for
    this nonconstant rank-two Kummer pushforward, the singular trace satisfies
    `S_{psi,phi}=O_e(p)`.  Parseval then gives

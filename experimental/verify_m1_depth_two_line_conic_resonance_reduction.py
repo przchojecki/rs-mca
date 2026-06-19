@@ -5201,9 +5201,9 @@ def verify_ratio_surface_quotient_trace_reduction() -> List[
 
 
 def verify_ratio_surface_beta_kummer_conductor_ledger() -> List[
-    Tuple[int, int, int, int, int, int, int, int]
+    Tuple[int, int, int, int, int, int, int, int, int, int]
 ]:
-    checked: List[Tuple[int, int, int, int, int, int, int, int]] = []
+    checked: List[Tuple[int, int, int, int, int, int, int, int, int, int]] = []
     for p in LOWER_CHART_PRIMES:
         beta_zero_count = 0
         beta_linear_intersection = 0
@@ -5211,6 +5211,8 @@ def verify_ratio_surface_beta_kummer_conductor_ledger() -> List[
         infinity_intersection = 0
         branch_m_intersection = 0
         branch_h_intersection = 0
+        diagonal_intersection = 0
+        lower_alpha_intersection = 0
         formula_checks = 0
         for alpha in range(1, p):
             for ratio in range(1, p):
@@ -5241,15 +5243,55 @@ def verify_ratio_surface_beta_kummer_conductor_ledger() -> List[
                 if zero_factor != 0:
                     continue
                 beta_zero_count += 1
-                beta_linear_intersection += int((alpha - 1) * (ratio + 1) % p == 0)
-                uv_zero_intersection += int(beta_zero_uv == 0)
-                infinity_intersection += int(quadratic == 0)
-                branch_m_intersection += int(
-                    ratio_surface_beta_middle_factor(p, alpha, ratio) == 0
-                )
-                branch_h_intersection += int(
-                    ratio_surface_beta_branch_factor(p, alpha, ratio) == 0
-                )
+                if (alpha - 1) * (ratio + 1) % p == 0:
+                    beta_linear_intersection += 1
+                    if (
+                        (ratio - 1) * (ratio + 1) % p != 0
+                        or (alpha - 1) * (alpha + 3) * (2 * alpha + 1) % p
+                        != 0
+                    ):
+                        raise AssertionError((p, alpha, ratio, "B_beta"))
+                if beta_zero_uv == 0:
+                    uv_zero_intersection += 1
+                    if (2 * ratio - 3) % p != 0 or (alpha - 2) % p != 0:
+                        raise AssertionError((p, alpha, ratio, "d_uv"))
+                if quadratic == 0:
+                    infinity_intersection += 1
+                    if (
+                        (ratio - 1) * (3 * ratio * ratio + 4 * ratio + 3) % p
+                        != 0
+                        or (alpha - 1) * (alpha + 1) % p != 0
+                    ):
+                        raise AssertionError((p, alpha, ratio, "A_beta"))
+                if ratio_surface_beta_middle_factor(p, alpha, ratio) == 0:
+                    branch_m_intersection += 1
+                    if (
+                        (ratio - 1) * (ratio + 1) % p != 0
+                        or (alpha - 1) * (alpha + 3) % p != 0
+                    ):
+                        raise AssertionError((p, alpha, ratio, "M"))
+                if ratio_surface_beta_branch_factor(p, alpha, ratio) == 0:
+                    branch_h_intersection += 1
+                    if (
+                        (ratio - 1) * (ratio + 1) % p != 0
+                        or (alpha - 1) * (2 * alpha + 1) % p != 0
+                    ):
+                        raise AssertionError((p, alpha, ratio, "H"))
+                if (alpha - ratio) % p == 0:
+                    diagonal_intersection += 1
+                    if (alpha - 1) % p != 0 or (ratio - 1) % p != 0:
+                        raise AssertionError((p, alpha, ratio, "diagonal"))
+                if ratio_surface_lower_alpha_kernel(p, alpha, ratio) == 0:
+                    lower_alpha_intersection += 1
+                    if (
+                        (ratio - 1)
+                        * (2 * ratio - 3)
+                        * (3 * ratio - 2)
+                        % p
+                        != 0
+                        or (alpha - 1) * (alpha - 2) % p != 0
+                    ):
+                        raise AssertionError((p, alpha, ratio, "K_alpha"))
         if beta_zero_count > 2 * (p - 1):
             raise AssertionError((p, beta_zero_count))
         for count in (
@@ -5258,6 +5300,8 @@ def verify_ratio_surface_beta_kummer_conductor_ledger() -> List[
             infinity_intersection,
             branch_m_intersection,
             branch_h_intersection,
+            diagonal_intersection,
+            lower_alpha_intersection,
         ):
             if count > 3:
                 raise AssertionError((p, count))
@@ -5270,6 +5314,8 @@ def verify_ratio_surface_beta_kummer_conductor_ledger() -> List[
                 infinity_intersection,
                 branch_m_intersection,
                 branch_h_intersection,
+                diagonal_intersection,
+                lower_alpha_intersection,
                 formula_checks,
             )
         )

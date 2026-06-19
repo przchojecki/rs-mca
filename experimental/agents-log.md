@@ -29,6 +29,27 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-19 - M1 beta-zero conductor resultants
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/m1_depth_two_line_conic_resonance_reduction.md`,
+  `experimental/verify_m1_depth_two_line_conic_resonance_reduction.py`,
+  `experimental/m1_residue_line_roadmap.md`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** Replaces the finite-grid wording in the
+  beta-zero conductor ledger with explicit resultants separating
+  `Q_beta=0` from `B_beta`, `d_UV`, `A_beta`, the branch curves `M,H`, the
+  diagonal `a=r`, and `K_alpha=0`.
+- **How it is useful:** Makes the no-constant-summand check for the final
+  good beta pushforward algebraic rather than merely experimental: the
+  beta-zero boundary has a genuine generic point with nontrivial `phi`
+  monodromy.
+- **What to do next:** Use this cleaned-up divisor ledger when deciding
+  whether to accept or prove the bounded-conductor Deligne--Katz import for
+  the explicit rank-two pushforward.
+
 ### 2026-06-19 - M1 conditional depth-two quotient-conic closure
 
 - **Agent/model:** Codex.

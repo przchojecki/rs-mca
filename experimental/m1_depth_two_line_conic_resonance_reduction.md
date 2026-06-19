@@ -3430,22 +3430,41 @@ while at `beta=0`
 d_UV(a,0,r) = ar^2(-3a+4r).
 ```
 
-The resultants
+The needed component-separation resultants are all explicit:
 
 ```text
-Res_a(Q_beta, d_UV(a,0,r)) = -3r^6(2r-3)^2,
-Res_r(Q_beta, d_UV(a,0,r)) = 27a^5(a-2)^2
+Res_a(Q_beta, B_beta/(ar))       =  3(r-1)^2(r+1)^2,
+Res_r(Q_beta, B_beta/(ar))       =  (a-1)^2(a+3)(2a+1),
+
+Res_a(Q_beta, d_UV(a,0,r))       = -3r^6(2r-3)^2,
+Res_r(Q_beta, d_UV(a,0,r))       =  27a^5(a-2)^2,
+
+Res_a(Q_beta, A_beta)            = -3r^2(r-1)^2(3r^2+4r+3),
+Res_r(Q_beta, A_beta)            =  9a^2(a-1)^2(a+1)^2,
+
+Res_a(Q_beta, M)                 = -3r^2(r-1)^2(r+1)^2,
+Res_r(Q_beta, M)                 =  a^2(a-1)^2(a+3)^2,
+
+Res_a(Q_beta, H)                 = -18r^2(r-1)^2(r+1)^2,
+Res_r(Q_beta, H)                 =  9a^2(a-1)^2(2a+1)^2,
+
+Res_a(Q_beta, a-r)               =  r^2(r-1),
+Res_r(Q_beta, a-r)               =  a^2(a-1),
+
+Res_a(Q_beta, K_alpha)           =  3r^2(r-1)^2(2r-3)(3r-2),
+Res_r(Q_beta, K_alpha)           =  9a^2(a-2)^2(a-1)^2.
 ```
 
-show that `Q_beta=0` has no component on which the `U V` sign also
-vanishes.  The same finite ledger checks that `Q_beta` has no component in
-common with the beta-linear coefficient `B_beta` (so `beta` is generically a
-local parameter), the beta-infinity divisor, or the branch divisors
-(`A_beta=0`, `M=0`, `H=0`).  Hence at the generic point of the beta-zero
-boundary, the local monodromy of `K_{psi,phi}` is exactly `phi`, which is
-nontrivial.  Therefore the good pushforward has no geometrically constant
-summand in the nonprincipal `phi` rows relevant to the centered singular
-matrix.
+Thus `Q_beta=0` has no common component with the beta-linear coefficient
+`B_beta` (so `beta` is generically a local parameter), the `U V` sign
+divisor, beta infinity, either branch curve, the diagonal `a=r`, or the
+lower-chart divisor `K_alpha=0`.  The verifier audits the corresponding
+finite intersections by checking that every intersection point lies in the
+displayed resultant root supports.  Hence at the generic point of the
+beta-zero boundary, the local monodromy of `K_{psi,phi}` is exactly `phi`,
+which is nontrivial.  Therefore the good pushforward has no geometrically
+constant summand in the nonprincipal `phi` rows relevant to the centered
+singular matrix.
 
 Consequently, under the standard bounded-conductor Deligne--Katz estimate
 for nonconstant tame Kummer sheaves on bounded-degree surfaces, the good
