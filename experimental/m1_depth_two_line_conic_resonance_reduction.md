@@ -2418,23 +2418,38 @@ identity.  Hence the low-order grouped-L1 problem is not a black-box
 character-sum average: it is equivalent to bounding the two-dimensional
 quotient occupancy energy of the rational map `(u,v) -> (A(u,v)/u, v)`.
 
+Equivalently,
+
+```text
+M_e^o
+  = e^2 sum_{i,j}
+      (n_{ij} - n_i^x/e - n_j^v/e + T^o/e^2)^2.
+```
+
+The moment is therefore the row-and-column-centered mixing energy of the
+quotient occupancy matrix.  Pure imbalance in the `x`-cosets or `v`-cosets is
+projected out; only the genuinely two-dimensional deviation from the
+independent row/column model remains.  This is the exact low-index analogue of
+the "without square-root loss" target: prove mixing for this centered quotient
+matrix uniformly, not a pointwise conductor estimate for every coefficient.
+
 The verifier checks this identity by comparing the coset-energy formula with
 direct order-`e` character summation.  It gives the following inherited bounds
 for the admissible slice, using `M_e^o` instead of the full-order moment:
 
 ```text
-p   e   R(e)  all-np RMS/p  sqrt(M_e^o/R(e))/p  full-order bound/p
-17   8    24  0.8714        1.2451              2.6819
-17  16   168  0.8759        1.0137              1.0137
-31   6    12  1.1716        1.6910              7.5172
-31  10    48  0.9339        1.2132              3.7586
-31  15   144  0.9238        1.0778              2.1700
-31  30   732  0.8979        0.9625              0.9625
-43   6    12  1.1750        1.6959             10.9839
-43   7    12  0.8822        1.5279             10.9839
-43  14   120  0.8242        0.9781              3.4734
-43  21   324  0.9379        1.0421              2.1138
-43  42  1524  0.9280        0.9747              0.9747
+p   e   R(e)  centered/p  all-np RMS/p  admissible/p  full-order/p
+17   8    24  0.7625      0.8714        1.2451        2.6819
+17  16   168  0.8212      0.8759        1.0137        1.0137
+31   6    12  0.9763      1.1716        1.6910        7.5172
+31  10    48  0.8405      0.9339        1.2132        3.7586
+31  15   144  0.8622      0.9238        1.0778        2.1700
+31  30   732  0.8680      0.8979        0.9625        0.9625
+43   6    12  0.9791      1.1750        1.6959       10.9839
+43   7    12  0.7561      0.8822        1.5279       10.9839
+43  14   120  0.7653      0.8242        0.9781        3.4734
+43  21   324  0.8932      0.9379        1.0421        2.1138
+43  42  1524  0.9059      0.9280        0.9747        0.9747
 ```
 
 This improves the inherited low-order constants by large factors without any

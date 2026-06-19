@@ -3387,9 +3387,9 @@ def direct_suborder_nonprincipal_open_moment(
 
 
 def verify_suborder_parseval_open_moments() -> List[
-    Tuple[int, int, int, int, float, float, float]
+    Tuple[int, int, int, int, float, float, float, float]
 ]:
-    checked: List[Tuple[int, int, int, int, float, float, float]] = []
+    checked: List[Tuple[int, int, int, int, float, float, float, float]] = []
     for p in ADMISSIBLE_OPEN_AUDIT_PRIMES:
         logs = log_table(p)
         table = character_table(p, logs)
@@ -3427,6 +3427,7 @@ def verify_suborder_parseval_open_moments() -> List[
                     suborder,
                     admissible_count,
                     moment,
+                    round(math.sqrt(moment) / (suborder * p), 10),
                     round(math.sqrt(moment / all_nonprincipal_count) / p, 10),
                     round(math.sqrt(moment / admissible_count) / p, 10),
                     round(math.sqrt(full_moment_bound / admissible_count) / p, 10),

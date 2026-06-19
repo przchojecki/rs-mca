@@ -29,6 +29,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-19 - M1 centered quotient-mixing formulation
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/m1_depth_two_line_conic_resonance_reduction.md`,
+  `experimental/verify_m1_depth_two_line_conic_resonance_reduction.py`,
+  `experimental/m1_residue_line_roadmap.md`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** Rewrites the order-`e` open moment as
+  `e^2` times the squared Frobenius norm of the quotient occupancy matrix
+  after subtracting its row means, column means, and grand mean.  The verifier
+  now reports the normalized centered-mixing ratio `sqrt(M_e^o)/(ep)`.
+- **How it is useful:** Identifies the exact low-index object to bound:
+  genuine two-dimensional quotient mixing of `(A(u,v)/u,v)`, with one-dimensional
+  marginal imbalance projected out.
+- **What to do next:** Prove a uniform centered-mixing estimate or find a
+  quotient concentration pattern that violates it.
+
 ### 2026-06-19 - M1 order-e quotient-energy moment reduction
 
 - **Agent/model:** Codex.

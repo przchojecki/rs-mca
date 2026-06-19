@@ -90,9 +90,10 @@ should be revised as the project learns more.
    `p=17,31,43` show the actual low-order slices remain p-scale even when the
    inherited bound is loose by large constants, making the exact order-`e`
    moment the next concrete grouped-L1 target.  That moment now has an exact
-   Parseval reduction to the quotient occupancy energy of the map
-   `(u,v) -> (A(u,v)/u, v)` in `(F_p^*/K_e)^2`; bounding this energy uniformly
-   is the concrete analytic route for low-index grouped certificates.
+   Parseval reduction to the row/column-centered quotient occupancy energy of
+   the map `(u,v) -> (A(u,v)/u, v)` in `(F_p^*/K_e)^2`; bounding this centered
+   mixing energy uniformly is the concrete analytic route for low-index
+   grouped certificates.
    The updated remaining-wall scan reports this asymmetric wall separately:
    in the current report grid the largest asymmetric ratio is
    `3.2173609608p`, while every near-`4p` top row lies in the projective
