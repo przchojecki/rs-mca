@@ -193,7 +193,11 @@ should be revised as the project learns more.
    with the beta-linear, `U V` sign, beta-infinity, or branch divisors.
    Thus, under the standard bounded-conductor Deligne--Katz estimate for
    this nonconstant rank-two Kummer pushforward, the singular trace satisfies
-   `S_{psi,phi}=O_e(p)`.
+   `S_{psi,phi}=O_e(p)`.  Parseval then gives
+   `||Gamma_e^circ||_F=O_e(p)`, so `P_e=O_e(p^2)` and the closed boundary
+   inequality gives `M_e^o=O_e(p^2)`.  The verifier now checks the
+   good/bad singular-trace partition on every nonprincipal quotient
+   character pair for the audited quotient orders.
    The updated remaining-wall scan reports this asymmetric wall separately:
    in the current report grid the largest asymmetric ratio is
    `3.2173609608p`, while every near-`4p` top row lies in the projective

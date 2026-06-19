@@ -5076,6 +5076,130 @@ def verify_ratio_surface_full_trace_reduction() -> List[
     return checked
 
 
+def verify_ratio_surface_quotient_trace_reduction() -> List[
+    Tuple[int, int, int, int, int, float, float]
+]:
+    checked: List[Tuple[int, int, int, int, int, float, float]] = []
+    for p, suborder in RATIO_SURFACE_CASES:
+        logs = log_table(p)
+        direct_matrix = [[0 for _ in range(suborder)] for _ in range(suborder)]
+        zero_matrix = [[0 for _ in range(suborder)] for _ in range(suborder)]
+        lower_matrix = [[0 for _ in range(suborder)] for _ in range(suborder)]
+        good_matrix = [[0 for _ in range(suborder)] for _ in range(suborder)]
+        exceptional_matrix = [
+            [0 for _ in range(suborder)] for _ in range(suborder)
+        ]
+        zero_count = 0
+        lower_count = 0
+        good_point_count = 0
+        exceptional_point_count = 0
+        for alpha in range(1, p):
+            alpha_label = logs[alpha] % suborder
+            for ratio in range(1, p):
+                roots = ratio_surface_affine_beta_roots(p, alpha, ratio)
+                is_good_base = ratio_surface_beta_pushforward_good(
+                    p,
+                    alpha,
+                    ratio,
+                )
+                for beta in roots:
+                    beta_label = logs[beta] % suborder
+                    coefficients = ratio_surface_conic_coefficients(
+                        p,
+                        alpha,
+                        beta,
+                        ratio,
+                    )
+                    chart, unit = projective_excess_chart(p, coefficients)
+                    direct_matrix[alpha_label][beta_label] += unit
+                    if chart == "zero":
+                        zero_count += 1
+                        zero_matrix[alpha_label][beta_label] += unit
+                        if (alpha, beta, ratio, unit) != (1, 1, 1, p):
+                            raise AssertionError(
+                                (p, suborder, alpha, beta, ratio, chart, unit)
+                            )
+                        continue
+
+                    discriminants = ratio_surface_binary_discriminants(
+                        p,
+                        alpha,
+                        beta,
+                        ratio,
+                    )
+                    if discriminants[0] == 0:
+                        lower_count += 1
+                        lower_matrix[alpha_label][beta_label] += unit
+                        continue
+
+                    if is_good_base:
+                        good_point_count += 1
+                        good_matrix[alpha_label][beta_label] += unit
+                        continue
+
+                    exceptional_point_count += 1
+                    exceptional_matrix[alpha_label][beta_label] += unit
+
+        if zero_count != 1:
+            raise AssertionError((p, suborder, zero_count))
+        if lower_count > 5 * (p - 1):
+            raise AssertionError((p, suborder, lower_count))
+        if exceptional_point_count > 20 * (p - 1):
+            raise AssertionError((p, suborder, exceptional_point_count))
+        bad_bound = p + lower_count + exceptional_point_count
+        if bad_bound > p + 25 * (p - 1):
+            raise AssertionError((p, suborder, bad_bound))
+
+        max_bad_ratio = 0.0
+        max_total_ratio = 0.0
+        max_recomposition_error = 0.0
+        root = cmath.exp(2j * math.pi / suborder)
+        for left_character in range(1, suborder):
+            for right_character in range(1, suborder):
+                direct = 0j
+                zero = 0j
+                lower = 0j
+                good = 0j
+                exceptional = 0j
+                for left in range(suborder):
+                    for right in range(suborder):
+                        character_value = root ** (
+                            left_character * left
+                            + right_character * right
+                        )
+                        direct += direct_matrix[left][right] * character_value
+                        zero += zero_matrix[left][right] * character_value
+                        lower += lower_matrix[left][right] * character_value
+                        good += good_matrix[left][right] * character_value
+                        exceptional += (
+                            exceptional_matrix[left][right] * character_value
+                        )
+                error = abs(direct - zero - lower - good - exceptional)
+                max_recomposition_error = max(max_recomposition_error, error)
+                bad = zero + lower + exceptional
+                if abs(bad) > bad_bound + 1000 * TOLERANCE:
+                    raise AssertionError(
+                        (p, suborder, left_character, right_character)
+                    )
+                max_bad_ratio = max(max_bad_ratio, abs(bad) / p)
+                max_total_ratio = max(max_total_ratio, abs(direct) / p)
+        if max_recomposition_error > 1000 * TOLERANCE:
+            raise AssertionError((p, suborder, max_recomposition_error))
+
+        checked.append(
+            (
+                p,
+                suborder,
+                good_point_count,
+                lower_count,
+                exceptional_point_count,
+                round(max_bad_ratio, 10),
+                round(max_total_ratio, 10),
+            )
+        )
+    return checked
+
+
 def verify_ratio_surface_beta_kummer_conductor_ledger() -> List[
     Tuple[int, int, int, int, int, int, int, int]
 ]:
@@ -6066,6 +6190,9 @@ def main() -> None:
     ratio_surface_full_trace_reduction_checked = (
         verify_ratio_surface_full_trace_reduction()
     )
+    ratio_surface_quotient_trace_reduction_checked = (
+        verify_ratio_surface_quotient_trace_reduction()
+    )
     ratio_surface_beta_kummer_conductor_checked = (
         verify_ratio_surface_beta_kummer_conductor_ledger()
     )
@@ -6707,6 +6834,8 @@ def main() -> None:
         f"{ratio_surface_beta_pushforward_checked}",
         f"ratio_surface_full_trace_reduction_checked="
         f"{ratio_surface_full_trace_reduction_checked}",
+        f"ratio_surface_quotient_trace_reduction_checked="
+        f"{ratio_surface_quotient_trace_reduction_checked}",
         f"ratio_surface_beta_kummer_conductor_checked="
         f"{ratio_surface_beta_kummer_conductor_checked}",
         f"ratio_surface_beta_ratio_resonance_checked="

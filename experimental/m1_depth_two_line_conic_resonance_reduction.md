@@ -3464,6 +3464,48 @@ only the standard bounded-conductor trace estimate for this explicitly
 charted rank-two beta pushforward, not any further combinatorial or
 bookkeeping loss.
 
+At the quotient-matrix level the implication is completely explicit.  Suppose
+the imported pushforward estimate gives
+
+```text
+|G_{psi,phi}| <= C_beta(e) p
+```
+
+for all nonprincipal characters of a fixed quotient order `e`.  Since the
+bad ledger above gives `|S_{psi,phi}-G_{psi,phi}| <= 26p`, every centered
+singular trace satisfies
+
+```text
+|S_{psi,phi}| <= (C_beta(e)+26)p.
+```
+
+Therefore Parseval gives
+
+```text
+||Gamma_e^circ||_F
+  <= ((e-1)/e)(C_beta(e)+26)p,
+```
+
+and the singular projective excess obeys
+
+```text
+|P_e| <= (e-1)^2(C_beta(e)+26)p^2.
+```
+
+Finally the closed boundary inequality already proved above yields
+
+```text
+M_e^o
+  <= ((e-1)sqrt(C_beta(e)+26)p + 3(e-1)sqrt(p))^2.
+```
+
+Thus the conditional beta-pushforward estimate would close the depth-two
+quotient-conic M1 target in the precise required form
+`M_e^o=O_e(p^2)`.  The verifier now audits the singular-trace partition not
+only on sample full-character pairs but on every nonprincipal quotient
+character pair for the tested quotient orders, using the quotient-label
+matrix before applying Fourier inversion.
+
 ## Principal-Row Leakage
 
 The principal rows excluded above have exact formulas.  They explain why the

@@ -29,6 +29,29 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-19 - M1 conditional depth-two quotient-conic closure
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/m1_depth_two_line_conic_resonance_reduction.md`,
+  `experimental/verify_m1_depth_two_line_conic_resonance_reduction.py`,
+  `experimental/m1_residue_line_roadmap.md`,
+  `experimental/agents-log.md`.
+- **Status:** CONDITIONAL / AUDIT.
+- **What is being added:** Propagates the conditional good beta-pushforward
+  trace estimate through the quotient-character Parseval identities:
+  `|G|<=C_beta(e)p` implies `||Gamma_e^circ||_F=O_e(p)`,
+  `P_e=O_e(p^2)`, and `M_e^o=O_e(p^2)`.  The verifier now checks the
+  good/bad singular-trace partition on every nonprincipal quotient character
+  pair for the audited quotient orders.
+- **How it is useful:** Shows exactly how the explicit rank-two
+  beta-pushforward import would close the current depth-two M1
+  quotient-conic target, with no hidden bookkeeping loss between trace,
+  matrix, projective excess, and open moment.
+- **What to do next:** Decide whether the bounded-conductor
+  Deligne--Katz estimate can be accepted as standard for this explicit
+  pushforward, or prove that estimate directly.
+
 ### 2026-06-19 - M1 beta-pushforward conductor ledger
 
 - **Agent/model:** Codex.
