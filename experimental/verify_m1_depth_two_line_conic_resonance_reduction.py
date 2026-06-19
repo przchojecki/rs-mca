@@ -1077,7 +1077,7 @@ def verify_quotient_line_spectral_normal_form(
     eta_exponent: int,
     nu_exponent: int,
     table: List[List[complex]],
-) -> Tuple[int, float, float, float, float, float, float]:
+) -> Tuple[int, float, float, float, float, float, float, float, int]:
     delta = least_nonsquare(p)
     order = p - 1
     eta = table[eta_exponent]
@@ -1097,6 +1097,8 @@ def verify_quotient_line_spectral_normal_form(
         for s_value in range(p)
     )
     spectral_pairing = 0j
+    exceptional_pairing = 0j
+    exceptional_count = 0
     checked = 0
     max_outer_decomposition_error = 0.0
     max_outer_piece_ratio = 0.0
@@ -1174,6 +1176,14 @@ def verify_quotient_line_spectral_normal_form(
             theta[s_value] * kernel_values[s_value]
             for s_value in range(p)
         )
+        is_exceptional = (
+            theta_exponent == 0
+            or theta_exponent == quadratic_exponent
+            or (2 * theta_exponent - nu_exponent) % order == 0
+        )
+        if is_exceptional:
+            exceptional_pairing += outer_inverse_mellin * kernel_mellin
+            exceptional_count += 1
         outer_energy += abs(outer_mellin) ** 2
         kernel_energy += abs(kernel_mellin) ** 2
         spectral_pairing += outer_inverse_mellin * kernel_mellin
@@ -1184,6 +1194,35 @@ def verify_quotient_line_spectral_normal_form(
     nu_minus_one = int(round(nu_minus_one_value.real))
     if nu_minus_one not in {-1, 1}:
         raise AssertionError((p, nu_exponent, "spectral_nu_minus_one_not_sign"))
+    expected_exceptional_count = 4 if nu_minus_one == 1 else 2
+    if exceptional_count != expected_exceptional_count:
+        raise AssertionError(
+            (
+                p,
+                nu_exponent,
+                "exceptional_theta_count",
+                exceptional_count,
+                expected_exceptional_count,
+            )
+        )
+    exceptional_contribution = exceptional_pairing / order
+    exceptional_bound = (
+        4
+        * math.sqrt(p)
+        * (p + 1 + (2 * math.sqrt(p) if nu_minus_one == 1 else 0))
+        / order
+    )
+    if abs(exceptional_contribution) > exceptional_bound + TOLERANCE:
+        raise AssertionError(
+            (
+                p,
+                eta_exponent,
+                nu_exponent,
+                "exceptional_spectral_bound",
+                exceptional_contribution,
+                exceptional_bound,
+            )
+        )
     expected_outer_energy = 2 * (p - 1) * (p - 2 + legendre(-2, p))
     expected_kernel_energy = (p - 1) * (
         p * p - 2 * p - 1 - p * nu_minus_one
@@ -1235,6 +1274,8 @@ def verify_quotient_line_spectral_normal_form(
         max_outer_ratio,
         max(outer_energy_error, kernel_energy_error),
         math.sqrt(expected_outer_energy * expected_kernel_energy) / ((p - 1) * p),
+        abs(exceptional_contribution) / math.sqrt(p),
+        exceptional_count,
     )
 
 
@@ -1707,6 +1748,8 @@ def main() -> None:
     max_outer_mellin_ratio = 0.0
     max_spectral_energy_error = 0.0
     max_spectral_cauchy_ratio = 0.0
+    max_exceptional_spectral_ratio = 0.0
+    exceptional_theta_checked = 0
     max_core_ratio = 0.0
     max_open_ratio = 0.0
     max_line_ratio = 0.0
@@ -1895,6 +1938,8 @@ def main() -> None:
             outer_mellin_ratio,
             spectral_energy_error,
             spectral_cauchy_ratio,
+            exceptional_spectral_ratio,
+            exceptional_theta_count,
         ) = verify_quotient_line_spectral_normal_form(
             p,
             eta_exponent,
@@ -1902,6 +1947,7 @@ def main() -> None:
             table,
         )
         quotient_spectral_checked += spectral_theta_count
+        exceptional_theta_checked += exceptional_theta_count
         assert_close(
             (p, eta_exponent, nu_exponent, "lambda_pullback_descent"),
             pulled_back,
@@ -2012,6 +2058,10 @@ def main() -> None:
             max_spectral_cauchy_ratio,
             spectral_cauchy_ratio,
         )
+        max_exceptional_spectral_ratio = max(
+            max_exceptional_spectral_ratio,
+            exceptional_spectral_ratio,
+        )
         split_projection_ratio = abs(split_projection) / p
         nonsplit_projection_ratio = abs(nonsplit_projection) / p
         nonsplit_singular_ratio = abs(singular_nonsplit)
@@ -2071,6 +2121,8 @@ def main() -> None:
         f"max_outer_mellin_ratio={max_outer_mellin_ratio:.10f}",
         f"max_spectral_energy_error={max_spectral_energy_error:.3e}",
         f"max_spectral_cauchy_ratio={max_spectral_cauchy_ratio:.10f}",
+        f"max_exceptional_spectral_ratio="
+        f"{max_exceptional_spectral_ratio:.10f}",
         f"max_core_ratio={max_core_ratio:.10f}@{max_core_label}",
         f"max_open_ratio={max_open_ratio:.10f}@{max_open_label}",
         f"max_line_ratio={max_line_ratio:.10f}@{max_line_label}",
@@ -2093,6 +2145,7 @@ def main() -> None:
         f"quotient_line_mellin_magnitude_checked="
         f"{quotient_line_mellin_magnitude_checked}",
         f"quotient_spectral_checked={quotient_spectral_checked}",
+        f"exceptional_theta_checked={exceptional_theta_checked}",
         f"twisted_line_kernel_moment_checked="
         f"{twisted_line_kernel_moment_checked}",
         f"twisted_line_fiber_checked={twisted_line_fiber_checked}",

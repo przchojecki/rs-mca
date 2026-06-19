@@ -29,6 +29,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-19 - M1 line-conic exceptional Mellin split
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/m1_depth_two_line_conic_resonance_reduction.md`,
+  `experimental/verify_m1_depth_two_line_conic_resonance_reduction.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** Separates the exceptional Mellin parameters
+  `{epsilon, chi_2} union {theta: theta^2=nu}` and proves their spectral
+  contribution is `O(sqrt(p))`, with an explicit bound using the
+  `4sqrt(p)` outer coefficient estimate.
+- **How it is useful:** Removes all small/degenerate kernel-Mellin terms from
+  the p-scale nonsplit obstruction, leaving only generic `theta` where
+  `|M(theta)|=p`.
+- **What to do next:** Attack cancellation on the generic theta set in the
+  `A(theta^{-1})M(theta)` correlation.
+
 ### 2026-06-19 - M1 line-conic kernel Mellin magnitudes
 
 - **Agent/model:** Codex.

@@ -1025,6 +1025,35 @@ Combined with `|M_nu(theta)| <= p`, this recovers the termwise
 is sharper on average, but it still does not supply the phase cancellation
 needed for a pointwise `O(p)` theorem.
 
+## Exceptional Mellin Parameters
+
+The special Mellin parameters in the kernel magnitude ledger are harmless.
+Let
+
+```text
+E_nu = {epsilon, chi_2} union {theta: theta^2=nu}.
+```
+
+The last set has two elements when `nu(-1)=1` and is empty when
+`nu(-1)=-1`.  In the spectral pairing
+
+```text
+P_{eta,nu} = 1/(p-1) sum_theta A_{eta,nu}(theta^(-1))M_nu(theta),
+```
+
+the exceptional contribution satisfies
+
+```text
+|1/(p-1) sum_{theta in E_nu} A(theta^(-1))M(theta)|
+  <= 4sqrt(p)(p+1+2sqrt(p) 1_{nu(-1)=1})/(p-1).
+```
+
+Indeed `|A(theta)| <= 4sqrt(p)`, while the exceptional kernel magnitudes are
+`p`, `1`, and two possible `sqrt(p)` values.  This is `O(sqrt(p))`, and the
+separate singular term `eta(-2)G_nu(2)` has size at most `1`.  Therefore all
+p-scale difficulty in the nonsplit projector sits in the generic set
+`theta notin E_nu`, where `|M_nu(theta)|=p`.
+
 ## Spectral Energy Ledger
 
 The spectral normal form has exact energy identities.  By Parseval on
