@@ -659,6 +659,58 @@ def twisted_line_nonsplit_sum(
     return total
 
 
+def verify_twisted_line_twist_divisor(p: int) -> Tuple[int, int, int, int]:
+    delta = least_nonsquare(p)
+    inverse_two = pow(2, -1, p)
+    outer_zero_roots = {0}
+    outer_pole_roots = {t for t in range(p) if (t * t - delta) % p == 0}
+    outer_mellin_roots = {
+        t for t in range(p) if (2 * t * t + delta) % p == 0
+    }
+    trace_collision_roots = {
+        t for t in range(p) if (t * t - 4 * delta) % p == 0
+    }
+
+    if outer_pole_roots:
+        raise AssertionError((p, delta, "unexpected_rational_denominator_root"))
+    if trace_collision_roots:
+        raise AssertionError((p, delta, "unexpected_rational_collision_root"))
+    expected_mellin_root_count = 1 + legendre(-delta * inverse_two, p)
+    if len(outer_mellin_roots) != expected_mellin_root_count:
+        raise AssertionError(
+            (p, delta, outer_mellin_roots, expected_mellin_root_count)
+        )
+    if outer_zero_roots & outer_mellin_roots:
+        raise AssertionError((p, delta, "zero_outer_collision"))
+
+    # Geometric disjointness of t=0, t^2=delta, t^2=-delta/2, and t^2=4delta.
+    if delta % p == 0:
+        raise AssertionError((p, delta, "zero_delta"))
+    if (delta + delta * inverse_two) % p == 0:
+        raise AssertionError((p, delta, "pole_mellin_collision"))
+    if (delta - 4 * delta) % p == 0:
+        raise AssertionError((p, delta, "pole_trace_collision"))
+    if ((-delta * inverse_two) - 4 * delta) % p == 0:
+        raise AssertionError((p, delta, "mellin_trace_collision"))
+
+    # The outer twist is unramified at the K(t) collision pair.
+    for value in (4 * delta % p,):
+        if value == 0 or value == delta % p or (2 * value + delta) % p == 0:
+            raise AssertionError((p, delta, value, "trace_collision_outer_twist"))
+
+    geometric_outer_points = 1 + 2 + 2 + 1  # t=0, D=0, N=0, infinity.
+    geometric_trace_points = 2              # t^2=4delta.
+    rational_outer_points = (
+        len(outer_zero_roots) + len(outer_pole_roots) + len(outer_mellin_roots) + 1
+    )
+    return (
+        rational_outer_points,
+        geometric_outer_points,
+        len(trace_collision_roots),
+        geometric_trace_points,
+    )
+
+
 def core_collision_formula(p: int) -> int:
     return (
         2 * p * p
@@ -1017,6 +1069,7 @@ def main() -> None:
     lambda_map_checked = 0
     lambda_twist_checked: List[Tuple[int, int, int]] = []
     twisted_discriminant_checked: List[Tuple[int, int, int]] = []
+    twisted_line_twist_checked: List[Tuple[int, int, int, int, int]] = []
     twisted_line_fiber_checked = 0
     split_hypergeometric_checked = 0
     filter_checked = verify_admissible_filter_counts()
@@ -1034,6 +1087,21 @@ def main() -> None:
             twist_map_count, nonsplit_value_count = verify_twisted_discriminant_map(p)
             twisted_discriminant_checked.append(
                 (p, twist_map_count, nonsplit_value_count)
+            )
+            (
+                rational_outer_points,
+                geometric_outer_points,
+                rational_trace_points,
+                geometric_trace_points,
+            ) = verify_twisted_line_twist_divisor(p)
+            twisted_line_twist_checked.append(
+                (
+                    p,
+                    rational_outer_points,
+                    geometric_outer_points,
+                    rational_trace_points,
+                    geometric_trace_points,
+                )
             )
             twisted_line_fiber_checked += verify_twisted_line_fiber_trace(
                 p,
@@ -1209,6 +1277,7 @@ def main() -> None:
         f"lambda_map_checked={lambda_map_checked}",
         f"lambda_twist_checked={lambda_twist_checked}",
         f"twisted_discriminant_checked={twisted_discriminant_checked}",
+        f"twisted_line_twist_checked={twisted_line_twist_checked}",
         f"twisted_line_fiber_checked={twisted_line_fiber_checked}",
         f"split_hypergeometric_checked={split_hypergeometric_checked}",
         f"filter_checked={filter_checked[0]}..{filter_checked[-1]}",

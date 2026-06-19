@@ -616,6 +616,57 @@ Thus the nonsplit projector is reduced to a rank-two translated
 hypergeometric trace on the same five-point geometric checklist recorded
 above, rather than to an opaque two-variable sum.
 
+## Twisted-Line Outer-Twist Divisor
+
+The nonsplit `t`-line also has an explicit Kummer twist divisor.  Apart from
+the translated trace `K_{nu,delta}(t)`, the finite summand is multiplied by
+
+```text
+eta(-(2t^2+delta)/(t^2-delta)) nu(t/(t^2-delta)).
+```
+
+Hence the outer twist is supported at
+
+```text
+t=0,        t^2=delta,        t^2=-delta/2,
+```
+
+with infinity as one further support point.  Its local characters are
+
+```text
+t=0:                         nu
+t^2=delta:                   (eta nu)^(-1)
+t^2=-delta/2:                eta
+t=infinity:                  nu.
+```
+
+The translated trace `K_{nu,delta}(t)` contributes the separate collision
+pair
+
+```text
+t^2=4delta,
+```
+
+where the moving Kummer point `x=t` meets a branch point of `x^2-4delta`.
+The outer twist is unramified at this pair.  For `p>3`, all four finite
+geometric loci above are pairwise disjoint: the equalities
+
+```text
+0=delta,        delta=-delta/2,        delta=4delta,
+        -delta/2=4delta
+```
+
+would force either `delta=0` or `p=3`.  Since `delta` is nonsquare, the
+`t^2=delta` and `t^2=4delta` pairs have no `F_p`-points, but they remain
+geometric singular points for conductor accounting.
+
+On the admissible `C_2^lc` character range, the displayed outer-twist
+characters are all nonprincipal: `eta`, `nu`, and `eta nu` are nonprincipal.
+Thus the nonsplit line has the same no-disappearing-support feature as the
+split `lambda`-line.  Any saving has to come from the local table of
+`K_{nu,delta}` or from global cancellation, not from a character
+specialization removing one of these outer-twist points.
+
 ## Open-Set Line Correction
 
 For the actual two-coordinate open sum, the principal coordinate line

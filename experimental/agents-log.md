@@ -29,6 +29,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-19 - M1 line-conic twisted outer divisor
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/m1_depth_two_line_conic_resonance_reduction.md`,
+  `experimental/verify_m1_depth_two_line_conic_resonance_reduction.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** Records the Kummer outer-twist divisor on the
+  nonsplit `t`-line: local characters `nu` at `t=0` and infinity,
+  `(eta nu)^(-1)` at `t^2=delta`, and `eta` at `t^2=-delta/2`, with the
+  `K(t)` collision pair `t^2=4delta` separated.
+- **How it is useful:** Gives the nonsplit projector a conductor checklist
+  matching the split-side lambda ledger and shows no outer-twist support point
+  disappears on the admissible `C_2^lc` character range.
+- **What to do next:** Combine this divisor table with the translated
+  hypergeometric local table to prove the nonsplit p-scale conductor bound.
+
 ### 2026-06-19 - M1 line-conic twisted fiber trace
 
 - **Agent/model:** Codex.
