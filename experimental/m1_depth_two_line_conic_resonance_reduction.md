@@ -2933,6 +2933,48 @@ source-target involution numerically (`source-exclusive = target-line`), the
 overlap formula, the overlap spectral-square identity, and the audited
 `3sqrt(p)` ceiling.
 
+The remaining target-line piece is nevertheless not a new independent
+conductor problem.  Parameterize the target line by
+`(x,y)=(x,-1-x)`.  For a source point `(u,v)` in the open support,
+
+```text
+beta = y/v,       alpha = (-B(x)/x)/(A(u,v)/u).
+```
+
+Here `A(u,v)=-(u^2+v^2+uv+u+v+1)`.  Expanding the two quotient weights gives
+the exact spectral pairing
+
+```text
+T_e =
+  sum_{psi,phi != 1}
+    L_{psi,phi} C^o_{psi^{-1},phi^{-1}},
+
+L_{psi,phi}
+  = sum_{x in D} psi(-B(x)/x) phi(-1-x),
+
+C^o_{psi^{-1},phi^{-1}}
+  = sum_{(u,v) in U^o}
+      psi^{-1}(A(u,v)/u) phi^{-1}(v),
+```
+
+where `D={x in F_p^* : x != -1, B(x) != 0}` and
+`U^o={u,v != 0, u+v+1 != 0, A(u,v) != 0}`.  The first Parseval norm is
+exactly the line-pair overlap `O_e`; the second Parseval norm is exactly the
+open centered moment `M_e^o`.  Hence
+
+```text
+|T_e|^2 <= O_e M_e^o,
+|T_e| <= 3(e-1) sqrt(p M_e^o)        (using O_e <= 9(e-1)^2p).
+```
+
+This converts the last boundary term into a controlled cross term between a
+rank-one line spectrum and the main open M1 spectrum.  It is the boundary
+analogue of completing a square: once `O_e` is conductor-bounded, the
+exclusive line contribution can be absorbed by a quadratic inequality in
+`sqrt(M_e^o)` rather than estimated by a separate pointwise Kummer theorem.
+The verifier checks the spectral pairing itself, both Parseval identities,
+and the resulting Cauchy bound against the exact target-line formula.
+
 ## Principal-Row Leakage
 
 The principal rows excluded above have exact formulas.  They explain why the

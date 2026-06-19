@@ -4214,6 +4214,87 @@ def weighted_line_pair_overlap_spectral_audit(
     return round(total), round(max_ratio, 10)
 
 
+def target_line_domain(p: int) -> List[Tuple[int, int]]:
+    domain = []
+    for value in range(1, p):
+        target_v = (-1 - value) % p
+        if target_v == 0:
+            continue
+        if shape_b(value, p) == 0:
+            continue
+        target_quotient = (-infinity_shape_ratio(p, value)) % p
+        domain.append((target_quotient, target_v))
+    return domain
+
+
+def source_open_domain(p: int) -> List[Tuple[int, int]]:
+    domain = []
+    for u in range(1, p):
+        inverse_u = pow(u, -1, p)
+        for v in range(1, p):
+            if (-1 - u - v) % p == 0:
+                continue
+            a_value = shape_a(u, v, p)
+            if a_value == 0:
+                continue
+            domain.append((a_value * inverse_u % p, v))
+    return domain
+
+
+def weighted_target_line_spectral_pairing_audit(
+    p: int,
+    suborder: int,
+    logs: Dict[int, int],
+    moment: int,
+    overlap_energy: int,
+    target_line: int,
+) -> Tuple[int, int, int, float]:
+    total = 0j
+    line_energy = 0.0
+    source_energy = 0.0
+    root = cmath.exp(2j * math.pi / suborder)
+    target_domain = target_line_domain(p)
+    source_domain = source_open_domain(p)
+    for first_exponent in range(1, suborder):
+        for second_exponent in range(1, suborder):
+            line_sum = 0j
+            for quotient, target_v in target_domain:
+                line_sum += root ** (
+                    first_exponent * logs[quotient]
+                    + second_exponent * logs[target_v]
+                )
+            source_sum = 0j
+            for quotient, source_v in source_domain:
+                source_sum += root ** (
+                    -first_exponent * logs[quotient]
+                    - second_exponent * logs[source_v]
+                )
+            total += line_sum * source_sum
+            line_energy += abs(line_sum) ** 2
+            source_energy += abs(source_sum) ** 2
+    if abs(total.imag) > 1000 * TOLERANCE:
+        raise AssertionError((p, suborder, total))
+    rounded_total = round(total.real)
+    rounded_line_energy = round(line_energy)
+    rounded_source_energy = round(source_energy)
+    if rounded_total != target_line:
+        raise AssertionError((p, suborder, rounded_total, target_line))
+    if rounded_line_energy != overlap_energy:
+        raise AssertionError((p, suborder, rounded_line_energy, overlap_energy))
+    if rounded_source_energy != moment:
+        raise AssertionError((p, suborder, rounded_source_energy, moment))
+    cauchy_bound = math.sqrt(overlap_energy * moment)
+    if abs(target_line) > cauchy_bound + 1000 * TOLERANCE:
+        raise AssertionError((p, suborder, target_line, cauchy_bound))
+    ratio = abs(target_line) / cauchy_bound if cauchy_bound else 0.0
+    return (
+        rounded_total,
+        rounded_line_energy,
+        rounded_source_energy,
+        round(ratio, 10),
+    )
+
+
 def weighted_target_line_formula_sum(
     p: int,
     suborder: int,
@@ -4315,6 +4396,7 @@ def verify_weighted_projective_decomposition() -> List[
         int,
         Tuple[int, float],
         Tuple[int, int, Tuple[int, float]],
+        Tuple[int, int, int, float],
     ]
 ]:
     checked: List[
@@ -4330,6 +4412,7 @@ def verify_weighted_projective_decomposition() -> List[
             int,
             Tuple[int, float],
             Tuple[int, int, Tuple[int, float]],
+            Tuple[int, int, int, float],
         ]
     ] = []
     for p, suborder in RATIO_SURFACE_CASES:
@@ -4403,6 +4486,14 @@ def verify_weighted_projective_decomposition() -> List[
         )
         if overlap_spectral[0] != line_overlap:
             raise AssertionError((p, suborder, overlap_spectral, line_overlap))
+        target_pairing = weighted_target_line_spectral_pairing_audit(
+            p,
+            suborder,
+            logs,
+            moment,
+            line_overlap,
+            expected_survivors[2],
+        )
         if zero_conic_count != 1:
             raise AssertionError((p, suborder, zero_conic_count))
         if singular_count > 3 * (p - 1) * (p - 1):
@@ -4420,6 +4511,7 @@ def verify_weighted_projective_decomposition() -> List[
                 infinity_energy,
                 infinity_spectral,
                 (source_exclusive, line_overlap, overlap_spectral),
+                target_pairing,
             )
         )
     return checked

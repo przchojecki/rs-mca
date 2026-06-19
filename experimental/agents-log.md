@@ -29,6 +29,28 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-19 - M1 target-line spectral pairing
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/m1_depth_two_line_conic_resonance_reduction.md`,
+  `experimental/verify_m1_depth_two_line_conic_resonance_reduction.py`,
+  `experimental/m1_residue_line_roadmap.md`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** Expresses the remaining target-line boundary term
+  as the spectral pairing
+  `sum_{psi,phi != 1} L_{psi,phi} C^o_{psi^{-1},phi^{-1}}`, where the
+  target-line Parseval norm is the overlap energy `O_e` and the source-open
+  Parseval norm is the main centered moment `M_e^o`.
+- **How it is useful:** Gives the absorption bound
+  `|T_e|^2 <= O_e M_e^o`, so after the overlap conductor bound the final
+  line boundary term is controlled by the main moment instead of requiring a
+  separate pointwise Kummer theorem.
+- **What to do next:** Combine the projective, infinity, overlap, and
+  target-line pairing inequalities into a closed quotient-conic moment
+  inequality.
+
 ### 2026-06-19 - M1 line-pair overlap spectral square
 
 - **Agent/model:** Codex.

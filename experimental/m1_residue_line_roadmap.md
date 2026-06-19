@@ -132,7 +132,11 @@ should be revised as the project learns more.
    `source line = target line + overlap`; the overlap is another positive
    spectral square over `z -> (B(z)/z,1+z)` and satisfies
    `0 <= O_e <= 9(e-1)^2p`.  Thus the boundary wall is reduced to one
-   source/target-exclusive line term plus already squared pieces.
+   source/target-exclusive line term plus already squared pieces.  That
+   final term is now an exact spectral pairing between a target-line
+   rank-one sum and the open M1 character sum, so Cauchy gives
+   `|T_e|^2 <= O_e M_e^o`; after the overlap bound it can be absorbed by a
+   quadratic inequality in `sqrt(M_e^o)`.
    The updated remaining-wall scan reports this asymmetric wall separately:
    in the current report grid the largest asymmetric ratio is
    `3.2173609608p`, while every near-`4p` top row lies in the projective
