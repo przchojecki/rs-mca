@@ -3254,6 +3254,10 @@ already separated vertical point `(1,1)`.  In characteristic `5` there are
 extra branch intersections, and the verifier records that finite special
 case separately.  Consequently the final two-sheet cover has an explicitly
 rational branch divisor with no hidden high-genus branch component.
+On the good base, the cover is finite etale of degree two: at any beta root,
+`2A_beta beta+B_beta` is nonzero and its square is `D_beta`.  Since the good
+base is an open subset of `G_m^2`, the good beta-cover surface is smooth;
+all ramification is confined to the deleted branch divisor `D_beta=0`.
 
 This gives an exact pushforward form for the main-chart trace.  Put
 

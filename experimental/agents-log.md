@@ -29,6 +29,26 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-19 - M1 good beta cover is finite etale
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/m1_depth_two_line_conic_resonance_reduction.md`,
+  `experimental/m1_kummer_weil_import_contract.md`,
+  `experimental/verify_m1_depth_two_line_conic_resonance_reduction.py`,
+  `experimental/m1_residue_line_roadmap.md`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** Verifies that on the good beta base the derivative
+  `2A_beta beta+B_beta` is nonzero at every beta root and has square
+  `D_beta`, so the beta cover is finite etale of degree two over the good
+  torus base.
+- **How it is useful:** Strengthens the `(BETA_2)` import contract: the
+  pushforward is taken from a smooth good-cover surface, with ramification
+  confined to the deleted branch divisor.
+- **What to do next:** Use this smooth/etale model in any direct proof or
+  external citation of the bounded-conductor beta-pushforward estimate.
+
 ### 2026-06-19 - M1 BETA_2 beta-pushforward import contract
 
 - **Agent/model:** Codex.

@@ -570,6 +570,10 @@ The elementary hypotheses behind this import are now audited in
 
 - the beta cover is rank two on the good base, with branch divisor
   `D_beta=alpha*r*M*H`;
+- on the good base, `D_beta != 0` and
+  `(2A_beta beta+B_beta)^2=D_beta` at every beta root, so the projection
+  `Y_G -> G` is finite etale of degree two; since `G` is an open subset of
+  the torus, `Y_G` is smooth;
 - the deleted lower-chart and exceptional main-chart loci are curve-sized;
 - the beta-zero boundary
   `Q_beta=-2a^2r+3ar^2-ar+3a-3r=0` carries nontrivial local monodromy `phi`;

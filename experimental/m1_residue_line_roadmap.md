@@ -167,7 +167,10 @@ should be revised as the project learns more.
    problem is the open two-sheet cover with descended sign.  The branch
    curves `M=0` and `H=0` are now rationally parametrized from `(1,1)`,
    and for `p>5` they meet in the torus only at that already separated
-   vertical point; characteristic `5` is a finite audited exception.  The
+   vertical point; characteristic `5` is a finite audited exception.  On the
+   good base the beta cover is finite etale of degree two, with derivative
+   square equal to `D_beta`, so the good beta-cover surface is smooth and
+   all ramification is on deleted branch fibers.  The
    main `U V` trace now has an exact pushforward identity over the good base
    `A_beta C_beta D_beta (alpha-r)K_alpha != 0`, with all deleted pieces
    contributing only `O(p)`.  The final analytic object is the good-base

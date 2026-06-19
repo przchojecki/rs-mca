@@ -4654,6 +4654,20 @@ def ratio_surface_beta_discriminant(p: int, alpha: int, ratio: int) -> int:
     return (linear * linear - 4 * quadratic * constant) % p
 
 
+def ratio_surface_beta_derivative(
+    p: int,
+    alpha: int,
+    beta: int,
+    ratio: int,
+) -> int:
+    quadratic, linear, _ = ratio_surface_beta_coefficients(
+        p,
+        alpha,
+        ratio,
+    )
+    return (2 * quadratic * beta + linear) % p
+
+
 def ratio_surface_projective_beta_root_count(
     p: int,
     alpha: int,
@@ -4835,6 +4849,59 @@ def verify_ratio_surface_beta_quotient_energy() -> List[
                 round(formula_energy),
                 energy_bound,
                 round(formula_energy / ((p - 1) * (p - 1)), 10),
+            )
+        )
+    return checked
+
+
+def verify_ratio_surface_beta_etale_cover() -> List[Tuple[int, int, int, int, int]]:
+    checked: List[Tuple[int, int, int, int, int]] = []
+    for p in LOWER_CHART_PRIMES:
+        good_base_count = 0
+        split_base_count = 0
+        nonsplit_base_count = 0
+        root_checks = 0
+        for alpha in range(1, p):
+            for ratio in range(1, p):
+                if not ratio_surface_beta_pushforward_good(p, alpha, ratio):
+                    continue
+                good_base_count += 1
+                discriminant = ratio_surface_beta_discriminant(p, alpha, ratio)
+                if discriminant == 0:
+                    raise AssertionError((p, alpha, ratio, "branch"))
+                root_class = legendre(discriminant, p)
+                if root_class == -1:
+                    nonsplit_base_count += 1
+                    if ratio_surface_affine_beta_roots(p, alpha, ratio):
+                        raise AssertionError((p, alpha, ratio, "nonsplit"))
+                    continue
+                split_base_count += 1
+                roots = ratio_surface_affine_beta_roots(p, alpha, ratio)
+                if len(roots) != 2:
+                    raise AssertionError((p, alpha, ratio, roots))
+                for beta in roots:
+                    derivative = ratio_surface_beta_derivative(
+                        p,
+                        alpha,
+                        beta,
+                        ratio,
+                    )
+                    if derivative == 0:
+                        raise AssertionError((p, alpha, beta, ratio, "ramified"))
+                    if derivative * derivative % p != discriminant:
+                        raise AssertionError(
+                            (p, alpha, beta, ratio, derivative, discriminant)
+                        )
+                    root_checks += 1
+        if good_base_count != split_base_count + nonsplit_base_count:
+            raise AssertionError((p, good_base_count, split_base_count))
+        checked.append(
+            (
+                p,
+                good_base_count,
+                split_base_count,
+                nonsplit_base_count,
+                root_checks,
             )
         )
     return checked
@@ -6227,6 +6294,9 @@ def main() -> None:
     ratio_surface_beta_projection_checked = (
         verify_ratio_surface_beta_projection()
     )
+    ratio_surface_beta_etale_cover_checked = (
+        verify_ratio_surface_beta_etale_cover()
+    )
     ratio_surface_branch_geometry_checked = (
         verify_ratio_surface_branch_geometry()
     )
@@ -6874,6 +6944,8 @@ def main() -> None:
         f"{ratio_surface_lower_chart_checked}",
         f"ratio_surface_beta_projection_checked="
         f"{ratio_surface_beta_projection_checked}",
+        f"ratio_surface_beta_etale_cover_checked="
+        f"{ratio_surface_beta_etale_cover_checked}",
         f"ratio_surface_branch_geometry_checked="
         f"{ratio_surface_branch_geometry_checked}",
         f"ratio_surface_beta_pushforward_checked="
