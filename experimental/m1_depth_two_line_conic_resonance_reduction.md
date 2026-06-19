@@ -3306,13 +3306,39 @@ same singular-excess sign; write
 eps(a,r) = chi(d_UV(a,beta_1,r)) = chi(d_UV(a,beta_2,r)).
 ```
 
+The descended sign is in fact an explicit base character.  In the coordinate
+ring of the beta cover, with
+
+```text
+N_M = a^2r + a beta r - 2a beta - 2ar^2 + ar + beta r,
+N_H = r(2a beta + ar - 3a - 3 beta r + beta + 2r),
+```
+
+one has the cleared square identities
+
+```text
+M^2 d_UV = r M N_M^2,
+H^2 d_UV = a H N_H^2.
+```
+
+On the good base `M H != 0`, so
+
+```text
+eps(a,r) = chi(r M(a,r)) = chi(a H(a,r)).
+```
+
+The equality of the two base formulas is also forced by
+`D_beta=arMH` being a square on split fibers.  The verifier checks both
+cleared square identities and the resulting character equalities on all
+audited good split fibers.
+
 For any multiplicative characters `psi,phi`, the main `U V` trace therefore
 splits as
 
 ```text
 S^UV_{psi,phi}
   = sum_{(a,r) in G}
-      psi(a) eps(a,r) (phi(beta_1)+phi(beta_2))
+      psi(a) chi(rM(a,r)) (phi(beta_1)+phi(beta_2))
     + E_{psi,phi},
 ```
 
@@ -3375,7 +3401,7 @@ several full-character pairs and audits the same sharpened bad-ledger bound
 for every nonprincipal quotient-character pair in the tested quotient
 orders.  The remaining analytic input is now exactly a conductor bound for
 the good-base rank-two beta pushforward with kernel
-`psi(a) eps(a,r) (phi(beta_1)+phi(beta_2))`.
+`psi(a) chi(rM(a,r)) (phi(beta_1)+phi(beta_2))`.
 
 The beta sheets also have no fixed-ratio surface.  If a good split fiber has
 `lambda=beta_1/beta_2`, then the elementary symmetric relations give

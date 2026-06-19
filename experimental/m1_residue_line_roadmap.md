@@ -162,9 +162,10 @@ should be revised as the project learns more.
    `(alpha,r)`, with branch divisor
    `M(alpha,r)H(alpha,r)=0`; the vertical fiber, beta-zero/beta-infinity
    deletions, branch fibers, and lower-chart companions are all curve-sized.
-   On the remaining split two-root fibers, `chi(d_UV)` is invariant under
-   beta-conjugation by the square resultant formula, so the last trace
-   problem is the open two-sheet cover with descended sign.  The branch
+   On the remaining split two-root fibers, `chi(d_UV)` is now identified as
+   the base twist `chi(rM)=chi(aH)` by cleared square identities on the
+   beta cover, so the last trace problem is the open two-sheet cover with an
+   explicit base-twisted beta Kummer pushforward.  The branch
    curves `M=0` and `H=0` are now rationally parametrized from `(1,1)`,
    and for `p>5` they meet in the torus only at that already separated
    vertical point; characteristic `5` is a finite audited exception.  On the
@@ -177,7 +178,7 @@ should be revised as the project learns more.
    the good base `A_beta C_beta D_beta (alpha-r)K_alpha != 0`, with all
    deleted pieces contributing only `O(p)`.  The final analytic object is
    the good-base rank-two beta pushforward
-   `psi(alpha) eps(alpha,r)(phi(beta_1)+phi(beta_2))`.  The beta sheets now
+   `psi(alpha)chi(rM)(phi(beta_1)+phi(beta_2))`.  The beta sheets now
    have an explicit fixed-ratio resonance curve
    `lambda B_beta^2=A_beta C_beta(1+lambda)^2`; after removing the torus
    factor this has degree at most four in `alpha` on every vertical fiber
@@ -213,7 +214,8 @@ should be revised as the project learns more.
    The finite `U V` sign divisor is now removed from the good cover by the
    resultant
    `Res_beta(beta equation,d_UV/r)=a^2r^2(a-r)^2K_alpha^2`, so sign zeros
-   occur only on already deleted diagonal/lower-chart fibers.  The rank-two
+   occur only on already deleted diagonal/lower-chart fibers; the stronger
+   square-class identities give `chi(d_UV)=chi(rM)=chi(aH)`.  The rank-two
    good pushforward now also has explicit determinant
    `psi^2 phi(C_beta/A_beta)`, so no sheet-dependent determinant ramification
    remains hidden in `(BETA_2)`.

@@ -29,6 +29,28 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-19 - M1 descended UV sign is explicit base twist
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/m1_depth_two_line_conic_resonance_reduction.md`,
+  `experimental/m1_kummer_weil_import_contract.md`,
+  `experimental/verify_m1_depth_two_line_conic_resonance_reduction.py`,
+  `experimental/m1_residue_line_roadmap.md`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** Proves the cleared square identities
+  `M^2 d_UV=rM N_M^2` and `H^2 d_UV=aH N_H^2` on the beta cover.  Hence on
+  the good base the descended quadratic sign is explicitly
+  `chi(d_UV)=chi(rM)=chi(aH)`, and the final pushforward is a base Kummer
+  twist of the beta Kummer pushforward.
+- **How it is useful:** Removes the last opaque part of the descended sign in
+  `(BETA_2)`: the final rank-two object is now
+  `psi(a)chi(rM) pi_! phi(beta)`, with all sign zeros already in the deleted
+  bad ledger.
+- **What to do next:** Use the base-twist form when citing/proving the
+  bounded-conductor estimate for the final beta pushforward.
+
 ### 2026-06-19 - M1 beta-pushforward determinant identified
 
 - **Agent/model:** Codex.

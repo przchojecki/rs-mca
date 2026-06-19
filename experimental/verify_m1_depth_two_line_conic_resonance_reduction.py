@@ -4683,6 +4683,30 @@ def ratio_surface_uv_sign_coefficients(
     )
 
 
+def ratio_surface_uv_sign_square_numerators(
+    p: int,
+    alpha: int,
+    beta: int,
+    ratio: int,
+) -> Tuple[int, int]:
+    a = alpha
+    b = beta
+    r = ratio
+    middle_numerator = (
+        a * a * r
+        + a * b * r
+        - 2 * a * b
+        - 2 * a * r * r
+        + a * r
+        + b * r
+    ) % p
+    branch_numerator = (
+        r
+        * (2 * a * b + a * r - 3 * a - 3 * b * r + b + 2 * r)
+    ) % p
+    return middle_numerator, branch_numerator
+
+
 def ratio_surface_branch_m_param(p: int, slope: int) -> Tuple[int, int]:
     denominator = slope * (4 * slope - 3) % p
     if denominator == 0:
@@ -5864,6 +5888,107 @@ def verify_ratio_surface_uv_sign_divisor_deleted() -> List[
     return checked
 
 
+def verify_ratio_surface_uv_sign_base_squareclass() -> List[
+    Tuple[int, int, int, int, int]
+]:
+    checked: List[Tuple[int, int, int, int, int]] = []
+    for p in LOWER_CHART_PRIMES:
+        good_split_count = 0
+        root_checks = 0
+        middle_squareclass_matches = 0
+        branch_squareclass_matches = 0
+        for alpha in range(1, p):
+            for ratio in range(1, p):
+                if not ratio_surface_beta_pushforward_good(p, alpha, ratio):
+                    continue
+                if legendre(ratio_surface_beta_discriminant(p, alpha, ratio), p) != 1:
+                    continue
+                middle_factor = ratio_surface_beta_middle_factor(
+                    p,
+                    alpha,
+                    ratio,
+                )
+                branch_factor = ratio_surface_beta_branch_factor(
+                    p,
+                    alpha,
+                    ratio,
+                )
+                if middle_factor == 0 or branch_factor == 0:
+                    raise AssertionError((p, alpha, ratio, "branch_on_good"))
+                roots = ratio_surface_affine_beta_roots(p, alpha, ratio)
+                if len(roots) != 2:
+                    raise AssertionError((p, alpha, ratio, roots))
+                good_split_count += 1
+                for beta in roots:
+                    uv_sign = ratio_surface_binary_discriminants(
+                        p,
+                        alpha,
+                        beta,
+                        ratio,
+                    )[0]
+                    middle_numerator, branch_numerator = (
+                        ratio_surface_uv_sign_square_numerators(
+                            p,
+                            alpha,
+                            beta,
+                            ratio,
+                        )
+                    )
+                    if (
+                        middle_factor * middle_factor * uv_sign
+                        - ratio * middle_factor * middle_numerator * middle_numerator
+                    ) % p != 0:
+                        raise AssertionError(
+                            (
+                                p,
+                                alpha,
+                                beta,
+                                ratio,
+                                "middle_squareclass",
+                            )
+                        )
+                    if (
+                        branch_factor * branch_factor * uv_sign
+                        - alpha * branch_factor * branch_numerator * branch_numerator
+                    ) % p != 0:
+                        raise AssertionError(
+                            (
+                                p,
+                                alpha,
+                                beta,
+                                ratio,
+                                "branch_squareclass",
+                            )
+                        )
+                    if legendre(uv_sign, p) != legendre(
+                        ratio * middle_factor,
+                        p,
+                    ):
+                        raise AssertionError(
+                            (p, alpha, beta, ratio, "middle_character")
+                        )
+                    if legendre(uv_sign, p) != legendre(
+                        alpha * branch_factor,
+                        p,
+                    ):
+                        raise AssertionError(
+                            (p, alpha, beta, ratio, "branch_character")
+                        )
+                    middle_squareclass_matches += 1
+                    branch_squareclass_matches += 1
+                    root_checks += 1
+        checked.append(
+            (
+                p,
+                good_split_count,
+                root_checks,
+                middle_squareclass_matches,
+                branch_squareclass_matches,
+            )
+        )
+    return checked
+
+
 def verify_ratio_surface_beta_projection() -> List[
     Tuple[int, int, int, int, int, int, int, int]
 ]:
@@ -6853,6 +6978,9 @@ def main() -> None:
     ratio_surface_uv_sign_divisor_checked = (
         verify_ratio_surface_uv_sign_divisor_deleted()
     )
+    ratio_surface_uv_sign_base_squareclass_checked = (
+        verify_ratio_surface_uv_sign_base_squareclass()
+    )
     ratio_surface_beta_ratio_resonance_checked = (
         verify_ratio_surface_beta_ratio_resonance()
     )
@@ -7507,6 +7635,8 @@ def main() -> None:
         f"{ratio_surface_beta_infinity_conductor_checked}",
         f"ratio_surface_uv_sign_divisor_checked="
         f"{ratio_surface_uv_sign_divisor_checked}",
+        f"ratio_surface_uv_sign_base_squareclass_checked="
+        f"{ratio_surface_uv_sign_base_squareclass_checked}",
         f"ratio_surface_beta_ratio_resonance_checked="
         f"{ratio_surface_beta_ratio_resonance_checked}",
         f"ratio_surface_beta_quotient_energy_checked="
