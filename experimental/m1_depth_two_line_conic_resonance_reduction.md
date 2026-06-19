@@ -3312,10 +3312,15 @@ R_lambda(a,r)
 On the torus this polynomial has bidegree at most `(4,4)` after the
 irrelevant `ar` factor is removed.  The special value `lambda=1` is exactly
 the branch divisor already deleted from `G`, while `lambda=-1` gives the
-line condition `B_beta=0`.  Hence a fixed beta-root ratio contributes only
-`O(p)` good-base points.  The verifier checks the identity for both
-orientations `beta_1/beta_2` and `beta_2/beta_1` on every split good fiber
-in the audit grid, and records the largest fixed-ratio fiber.
+line condition `B_beta=0`.  More explicitly, for `lambda != -1` the
+torus-normalized `R_lambda` has leading `a`-coefficient
+`6r^2(lambda+1)^2`, so for each fixed `r != 0` it has at most four
+`a`-solutions.  For `lambda=-1`, the resonance condition is contained in
+the two lines `a=1` and `r=-1`.  Hence every fixed beta-root ratio
+contributes at most `4(p-1)` good-base points.  The verifier checks the
+identity for both orientations `beta_1/beta_2` and `beta_2/beta_1` on every
+split good fiber in the audit grid, and records the largest fixed-ratio
+fiber against this explicit bound.
 
 ## Principal-Row Leakage
 

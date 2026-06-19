@@ -4730,7 +4730,9 @@ def verify_ratio_surface_beta_ratio_resonance() -> List[
             if count > max_count:
                 max_count = count
                 max_ratio = beta_ratio
-        if max_count > 10 * (p - 1):
+            if beta_ratio == p - 1 and count > 2 * (p - 1):
+                raise AssertionError((p, beta_ratio, count, "minus-one"))
+        if max_count > 4 * (p - 1):
             raise AssertionError((p, max_ratio, max_count))
 
         for alpha in range(1, p):

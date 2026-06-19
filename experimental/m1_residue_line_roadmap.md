@@ -175,8 +175,10 @@ should be revised as the project learns more.
    `psi(alpha) eps(alpha,r)(phi(beta_1)+phi(beta_2))`.  The beta sheets now
    have an explicit fixed-ratio resonance curve
    `lambda B_beta^2=A_beta C_beta(1+lambda)^2`; after removing the torus
-   factor this has bidegree at most `(4,4)`, so no fixed beta-root ratio
-   supports a two-dimensional family on the good base.
+   factor this has degree at most four in `alpha` on every vertical fiber
+   unless `lambda=-1`, where it collapses to two lines.  Thus every fixed
+   beta-root ratio has at most `4(p-1)` good-base points, so no fixed
+   beta-root ratio supports a two-dimensional family on the good base.
    The updated remaining-wall scan reports this asymmetric wall separately:
    in the current report grid the largest asymmetric ratio is
    `3.2173609608p`, while every near-`4p` top row lies in the projective

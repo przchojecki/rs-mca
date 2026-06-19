@@ -41,8 +41,9 @@ Keep entries concise and link to the relevant files.
 - **What is being added:** Shows that a fixed ratio
   `lambda=beta_1/beta_2` on the good beta-pushforward base is contained in
   the explicit curve
-  `lambda B_beta^2=A_beta C_beta(1+lambda)^2`, of bidegree at most `(4,4)`
-  after removing the torus factor.
+  `lambda B_beta^2=A_beta C_beta(1+lambda)^2`; after removing the torus
+  factor, this has at most four points over each `r != 0`, with the
+  `lambda=-1` case collapsing to two lines.
 - **How it is useful:** Rules out a hidden two-dimensional fixed-ratio
   component in the final beta-pushforward trace.
 - **What to do next:** Use this non-degeneracy in the conductor or
