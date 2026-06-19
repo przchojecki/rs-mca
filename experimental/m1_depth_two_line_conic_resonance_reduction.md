@@ -2360,6 +2360,33 @@ K=9:   8,    6, 14
 Thus the full-order aggregate theorem is a genuine p-scale statement, but it
 does not automatically upgrade the existing low-index certificate ledgers.
 
+The finite suborder audit suggests that the transfer obstruction is an
+artifact of using the full nonprincipal moment, not visible growth in the
+actual low-order slices.  For every divisor `e | p-1` with nonempty admissible
+set in `p=17,31,43`, the verifier directly evaluates the embedded order-`e`
+characters.  It reports:
+
+```text
+p   e   R(e)  RMS/p   avg |.|/p  max/p   inherited avg/p
+17   8    24  0.7518  0.7047     1.1326  2.6819
+17  16   168  0.8161  0.7523     1.3054  1.0137
+31   6    12  1.1590  1.1491     1.2915  7.5172
+31  10    48  0.8276  0.7239     1.5350  3.7586
+31  15   144  0.8432  0.7710     1.4948  2.1700
+31  30   732  0.8502  0.7628     1.8423  0.9625
+43   6    12  0.8446  0.6982     1.2032 10.9839
+43   7    12  0.4423  0.3916     0.6819 10.9839
+43  14   120  0.7200  0.6381     1.5406  3.4734
+43  21   324  0.8783  0.7619     2.2231  2.1138
+43  42  1524  0.9043  0.7973     2.2231  0.9747
+```
+
+So the audited low-order slices still look `p`-scale even where the inherited
+bound is off by factors of `4` to `11`.  This is only finite evidence, but it
+pinpoints the next useful theorem: an exact order-`e` admissible open moment,
+or a structural order-`e` large-sieve bound, would make the grouped-L1 route
+usable in low-index M1 certificates.
+
 ## Principal-Row Leakage
 
 The principal rows excluded above have exact formulas.  They explain why the

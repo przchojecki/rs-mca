@@ -3277,6 +3277,61 @@ def verify_admissible_suborder_transfer_thresholds() -> List[
     return checked
 
 
+def verify_admissible_suborder_moment_audit() -> List[
+    Tuple[int, int, int, float, float, float, float]
+]:
+    checked: List[Tuple[int, int, int, float, float, float, float]] = []
+    for p in ADMISSIBLE_OPEN_AUDIT_PRIMES:
+        table = character_table(p, log_table(p))
+        order = p - 1
+        inherited_bound = nonprincipal_open_moment_formula(p)
+        for suborder in range(2, order + 1):
+            if order % suborder != 0:
+                continue
+            expected_count = admissible_filter_formula(suborder)
+            if expected_count == 0:
+                continue
+            lift = order // suborder
+            total = 0.0
+            l1_total = 0.0
+            count = 0
+            max_ratio = 0.0
+            for eta_subexponent in range(1, suborder):
+                eta_exponent = lift * eta_subexponent
+                eta = table[eta_exponent]
+                eta_inv = table[(-eta_exponent) % order]
+                for nu_subexponent in range(1, suborder):
+                    if not is_line_conic_admissible_pair(
+                        suborder,
+                        eta_subexponent,
+                        nu_subexponent,
+                    ):
+                        continue
+                    nu_exponent = lift * nu_subexponent
+                    value = direct_open(p, eta_inv, table[nu_exponent], eta)
+                    value_abs = abs(value)
+                    total += value_abs * value_abs
+                    l1_total += value_abs
+                    count += 1
+                    max_ratio = max(max_ratio, value_abs / p)
+            if count != expected_count:
+                raise AssertionError((p, suborder, count, expected_count))
+            if l1_total > math.sqrt(count * inherited_bound) + 100 * TOLERANCE:
+                raise AssertionError((p, suborder, l1_total, inherited_bound))
+            checked.append(
+                (
+                    p,
+                    suborder,
+                    count,
+                    round(math.sqrt(total / count) / p, 10),
+                    round(l1_total / (count * p), 10),
+                    round(max_ratio, 10),
+                    round(math.sqrt(inherited_bound / count) / p, 10),
+                )
+            )
+    return checked
+
+
 def verify_second_moments() -> List[
     Tuple[int, int, int, int, int, int, int, int, int, int, int]
 ]:
@@ -3525,6 +3580,9 @@ def main() -> None:
     admissible_open_moment_checked = verify_admissible_open_moment_audit()
     admissible_transfer_thresholds_checked = (
         verify_admissible_suborder_transfer_thresholds()
+    )
+    admissible_suborder_moment_checked = (
+        verify_admissible_suborder_moment_audit()
     )
     collapsed_four_p_obstruction_checked = (
         verify_quotient_line_collapsed_four_p_obstruction()
@@ -4132,6 +4190,8 @@ def main() -> None:
         f"admissible_open_moment_checked={admissible_open_moment_checked}",
         f"admissible_transfer_thresholds_checked="
         f"{admissible_transfer_thresholds_checked}",
+        f"admissible_suborder_moment_checked="
+        f"{admissible_suborder_moment_checked}",
         f"collapsed_four_p_obstruction_checked="
         f"{collapsed_four_p_obstruction_checked}",
     )

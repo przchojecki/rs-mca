@@ -29,6 +29,26 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-19 - M1 admissible suborder moment audit
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/m1_depth_two_line_conic_resonance_reduction.md`,
+  `experimental/verify_m1_depth_two_line_conic_resonance_reduction.py`,
+  `experimental/m1_residue_line_roadmap.md`,
+  `experimental/agents-log.md`.
+- **Status:** EXPERIMENTAL / AUDIT.
+- **What is being added:** Directly evaluates the embedded order-`e`
+  admissible open line-conic moments for every nonempty divisor `e | p-1` in
+  `p=17,31,43`, reporting RMS, average L1, maximum ratio, and inherited
+  full-order Cauchy average.
+- **How it is useful:** Shows that audited low-order admissible slices remain
+  p-scale even when the inherited full-order moment is too loose, identifying
+  an exact order-`e` moment or large-sieve bound as the next grouped-L1 target.
+- **What to do next:** Derive a closed order-`e` moment formula using quotient
+  character orthogonality, or extend the audit to search for low-order
+  counterexamples before promoting any grouped certificate ledger.
+
 ### 2026-06-19 - M1 aggregate suborder transfer criterion
 
 - **Agent/model:** Codex.

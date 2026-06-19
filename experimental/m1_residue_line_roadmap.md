@@ -86,7 +86,10 @@ should be revised as the project learns more.
    quotient-character order `e`, the inherited full-order moment gives only
    `sqrt(R(e)M_o(p))`; consuming the grouped route in low-index certificates
    therefore needs either `R(e) >= M_o(p)/(K^2p^2)` for the desired average
-   `Kp` constant, or a new exact order-`e` moment.
+   `Kp` constant, or a new exact order-`e` moment.  Direct audits for
+   `p=17,31,43` show the actual low-order slices remain p-scale even when the
+   inherited bound is loose by large constants, making the exact order-`e`
+   moment the next concrete grouped-L1 target.
    The updated remaining-wall scan reports this asymmetric wall separately:
    in the current report grid the largest asymmetric ratio is
    `3.2173609608p`, while every near-`4p` top row lies in the projective
