@@ -994,6 +994,36 @@ pair of three-point Kummer coefficients supported at
 `p^{3/2}`-scale fallback, so the desired `p`-scale nonsplit projector theorem
 has been localized to cancellation across the Mellin parameter `theta`.
 
+## Outer Kummer Fixed-Support Form
+
+The outer Kummer coefficient has a fixed four-point normal form independent of
+the nonsquare `delta`.  For
+
+```text
+B_{alpha,beta,gamma}
+  = sum_s alpha(s) beta(2s+delta) gamma(s-delta),
+```
+
+put `z=-2s/delta`.  Then
+
+```text
+B_{alpha,beta,gamma}
+  = alpha(-delta/2) beta(delta) gamma(-delta/2)
+      sum_z alpha(z) beta(1-z) gamma(z+2).
+```
+
+Thus every outer coefficient is a scalar multiple of the same Kummer trace on
+`P^1_z` with finite support at
+
+```text
+z=0,        z=1,        z=-2,
+```
+
+and infinity.  The nonsquare `delta` only changes the scalar character value;
+the conductor geometry of the outer spectrum is the fixed
+`{0,1,-2,infinity}` table.  This is the precise object whose phases must
+correlate with the normalized kernel phases in the generic reduction below.
+
 ## Outer Mellin Square-Root Bound
 
 The outer coefficients in the spectral normal form have a uniform

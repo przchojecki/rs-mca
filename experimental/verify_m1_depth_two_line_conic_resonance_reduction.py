@@ -1072,6 +1072,22 @@ def quotient_line_outer_kummer_piece(
     return total
 
 
+def quotient_line_outer_standard_piece(
+    p: int,
+    alpha: List[complex],
+    beta: List[complex],
+    gamma: List[complex],
+) -> complex:
+    total = 0j
+    for z_value in range(p):
+        total += (
+            alpha[z_value]
+            * beta[(1 - z_value) % p]
+            * gamma[(z_value + 2) % p]
+        )
+    return total
+
+
 def verify_quotient_line_spectral_normal_form(
     p: int,
     eta_exponent: int,
@@ -1104,6 +1120,7 @@ def verify_quotient_line_spectral_normal_form(
     max_generic_phase_error = 0.0
     checked = 0
     max_outer_decomposition_error = 0.0
+    max_outer_standard_error = 0.0
     max_outer_piece_ratio = 0.0
     max_outer_ratio = 0.0
     outer_energy = 0.0
@@ -1123,6 +1140,35 @@ def verify_quotient_line_spectral_normal_form(
         quadratic_piece = quotient_line_outer_kummer_piece(
             p, delta, alpha_quadratic, eta, gamma
         )
+        inv_two = pow(2, -1, p)
+        scale_point = (-delta * inv_two) % p
+        for alpha, piece in (
+            (alpha_plain, plain_piece),
+            (alpha_quadratic, quadratic_piece),
+        ):
+            expected_piece = (
+                alpha[scale_point]
+                * eta[delta % p]
+                * gamma[scale_point]
+                * quotient_line_outer_standard_piece(p, alpha, eta, gamma)
+            )
+            standard_error = abs(piece - expected_piece)
+            max_outer_standard_error = max(
+                max_outer_standard_error,
+                standard_error,
+            )
+            if standard_error > TOLERANCE:
+                raise AssertionError(
+                    (
+                        p,
+                        eta_exponent,
+                        nu_exponent,
+                        theta_exponent,
+                        "outer_standard_form",
+                        piece,
+                        expected_piece,
+                    )
+                )
         max_outer_piece_ratio = max(
             max_outer_piece_ratio,
             abs(plain_piece) / math.sqrt(p),
@@ -1309,6 +1355,7 @@ def verify_quotient_line_spectral_normal_form(
     return (
         checked,
         max_outer_decomposition_error,
+        max_outer_standard_error,
         abs(reconstructed_pairing - direct_pairing),
         max_outer_piece_ratio,
         max_outer_ratio,
@@ -1787,6 +1834,7 @@ def main() -> None:
     max_quotient_line_difference = 0.0
     max_quotient_spectral_difference = 0.0
     max_outer_mellin_decomposition_error = 0.0
+    max_outer_standard_error = 0.0
     max_outer_mellin_piece_ratio = 0.0
     max_outer_mellin_ratio = 0.0
     max_spectral_energy_error = 0.0
@@ -1979,6 +2027,7 @@ def main() -> None:
         (
             spectral_theta_count,
             outer_decomposition_error,
+            outer_standard_error,
             quotient_spectral_difference,
             outer_mellin_piece_ratio,
             outer_mellin_ratio,
@@ -2092,6 +2141,10 @@ def main() -> None:
             max_outer_mellin_decomposition_error,
             outer_decomposition_error,
         )
+        max_outer_standard_error = max(
+            max_outer_standard_error,
+            outer_standard_error,
+        )
         max_outer_mellin_ratio = max(
             max_outer_mellin_ratio,
             outer_mellin_ratio,
@@ -2175,6 +2228,7 @@ def main() -> None:
         f"{max_quotient_spectral_difference:.3e}",
         f"max_outer_mellin_decomposition_error="
         f"{max_outer_mellin_decomposition_error:.3e}",
+        f"max_outer_standard_error={max_outer_standard_error:.3e}",
         f"max_outer_mellin_piece_ratio={max_outer_mellin_piece_ratio:.10f}",
         f"max_outer_mellin_ratio={max_outer_mellin_ratio:.10f}",
         f"max_spectral_energy_error={max_spectral_energy_error:.3e}",
