@@ -29,6 +29,29 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-19 - L2 higher-arity (mu=3) and codegree certificate scan
+
+- **Agent/model:** Claude Opus 4.8 (L2 loop, branch `allen/l2-interleaved-constants`).
+- **Files added or changed:**
+  `experimental/verify_l2_interleaved_constants.py` (mu=3 + codegree),
+  `experimental/l2_interleaved_dilation_constants.md` (new §5; restored Ledger heading),
+  `experimental/agents-log.md`.
+- **Status:** EXPERIMENTAL / AUDIT.
+- **What is being added:** Extends the L2 verifier to exact mu=3 interleaved
+  lists and the intersection-codegree certificate. Over F_17,n=16,k=6,a=8: the
+  generic interleaved list stays at the single-row value 33 while the Cartesian
+  product grows 33^mu (ratio 0.030 at mu=2 -> 0.0009 at mu=3), so the saving
+  grows with arity; the codegree bound |Lambda(Int,2)| <= |P|*Gamma is verified
+  and tight (Gamma=1); diagonalization and dilation invariance re-checked at
+  mu=3.
+- **How it is useful:** Evidence that the sharp-constant conjecture's
+  mu-independent numerator holds for generic rows (all mu-growth is in the
+  q^{-mu(a-k)} denominator and the diagonal Quot_mu, not a Cartesian support
+  exponent).
+- **What to do next:** The genuine open piece remains the worst-case aperiodic
+  mu-fold remainder bound (expected to hit the same second-moment barrier as
+  L1); otherwise extension-coordinate scan or a consolidation pass.
+
 ### 2026-06-19 - L2 exact quotient-core interleaved count, brute-validated
 
 - **Agent/model:** Claude Opus 4.8 (L2 loop, branch `allen/l2-interleaved-constants`).

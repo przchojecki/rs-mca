@@ -134,6 +134,33 @@ entire `binom(Q,ell)^{mu-1}` Cartesian factor. This is the exact value of
 interleaved list does **not** pay the interleaving exponent, consistent with the
 §1 dilation invariance (these packets are the dilation-fixed periodic words).
 
+## 5. Higher arity and the codegree certificate (`mu = 2, 3`)
+
+`verify_l2_interleaved_constants.py` now also computes the exact `mu=3`
+interleaved list and the intersection-codegree certificate. At
+`F_17, n=16, k=6, a=8`:
+
+| rows | interleaved | Cartesian `|Supp|^mu` | ratio |
+|---|---:|---:|---:|
+| rand0 x rand1 (`mu=2`) | 33 | 1089 | 0.030 |
+| rand0 x rand1 x rand2 (`mu=3`) | 33 | 35937 | **0.0009** |
+
+The generic interleaved list stays at the single-row value `33` while the
+Cartesian product grows as `33^mu`, so the **saving grows with the arity** ---
+the structural content of the bridge `|Lambda| <= min_i |Fib_Ui(a)|`, seen to be
+far below the product at every `mu`. The codegree certificate
+`|Lambda(Int(C,2),...)| <= |P| * Gamma_{>=a}(P,Q)` is verified and here *tight*:
+`Gamma_{>=a} = 1` for the generic pair, so `33 = |P| * 1` is met with equality.
+Repeated-row diagonalization and the §1 dilation invariance are re-checked at
+`mu=3`.
+
+This is evidence (not a worst-case theorem) that the sharp-constant conjecture's
+`mu`-independence of the numerator holds for generic rows: the only `mu`-growth
+is in the field-power denominator `q^{-mu(a-k)}` and the diagonal `Quot_mu`, not
+in a Cartesian support exponent.
+
+## Ledger impact
+
 - **Interleaved list (improves):** the worst-case interleaved list is a
   dilation-orbit invariant, so a worst-case L2 certificate may restrict to orbit
   representatives.

@@ -113,6 +113,28 @@ def interleaved_and_fiber_2(P, Q, a):
     return listed, fiber
 
 
+def interleaved_and_fiber_mu(supps, a):
+    """Exact mu-row interleaved list and simultaneous fiber for mu support families."""
+    listed = fiber = 0
+    for tup in itertools.product(*supps):
+        common = set(tup[0])
+        for A in tup[1:]:
+            common &= A
+        r = len(common)
+        if r >= a:
+            listed += 1
+            fiber += comb(r, a)
+    return listed, fiber
+
+
+def max_codegree(P, Q, a):
+    """max_{A in P} #{B in Q : |A cap B| >= a}  (intersection-codegree certificate)."""
+    best = 0
+    for A in P:
+        best = max(best, sum(1 for B in Q if len(A & B) >= a))
+    return best
+
+
 def dilation_perm(H, p, h):
     pos = {x: i for i, x in enumerate(H)}
     hinv = pow(h, p - 2, p)
@@ -137,6 +159,7 @@ def run(p=17, n=16, k=6, a=8):
         "periodic": make_word("periodic", n, p),
         "rand0": make_word("rand", n, p, 0),
         "rand1": make_word("rand", n, p, 1),
+        "rand2": make_word("rand", n, p, 2),
     }
     supp = {name: row_supports(V, H, k, a, p) for name, V in rows.items()}
     rowlist = {name: len(supp[name]) for name in rows}           # |Supp| (row list)
@@ -158,11 +181,36 @@ def run(p=17, n=16, k=6, a=8):
                       "min_fib_row": fib_min, "cartesian_rowlist": cart,
                       "ratio_vs_cartesian": round(listed / cart, 4) if cart else 0.0})
 
-    # (3) repeated-row diagonalization: Lambda(Int,(V,V)) == |row list|.
+    # (2b) intersection-codegree certificate: interleaved <= |P| * Gamma_{>=a}(P,Q).
+    codeg_ok = True
+    codeg = []
+    for n1, n2 in [("rand0", "rand1"), ("monomial", "rand0")]:
+        listed, _ = interleaved_and_fiber_2(supp[n1], supp[n2], a)
+        g_pq = max_codegree(supp[n1], supp[n2], a)
+        g_qp = max_codegree(supp[n2], supp[n1], a)
+        bound = min(rowlist[n1] * g_pq, rowlist[n2] * g_qp)
+        codeg_ok &= (listed <= bound)
+        codeg.append({"rows": f"{n1}x{n2}", "interleaved": listed,
+                      "codegree_bound": bound, "Gamma_pq": g_pq, "Gamma_qp": g_qp})
+
+    # (2c) mu=3 sub-Cartesian: interleaved_3 vs product of row lists.
+    mu3 = []
+    mu3_ok = True
+    for triple in [("rand0", "rand1", "rand2"), ("periodic", "rand0", "rand1")]:
+        listed, fiber = interleaved_and_fiber_mu([supp[t] for t in triple], a)
+        cart = rowlist[triple[0]] * rowlist[triple[1]] * rowlist[triple[2]]
+        lo = min(rowlist[t] for t in triple)
+        mu3_ok &= (listed <= cart)
+        mu3.append({"rows": "x".join(triple), "interleaved": listed, "fiber": fiber,
+                    "min_row": lo, "cartesian": cart,
+                    "ratio_vs_cartesian": round(listed / cart, 5) if cart else 0.0})
+
+    # (3) repeated-row diagonalization: Lambda(Int,(V,V)) == |row list|; mu=3 too.
     diag_ok = True
     for name in rows:
-        listed, _ = interleaved_and_fiber_2(supp[name], supp[name], a)
-        if listed != rowlist[name]:
+        listed2, _ = interleaved_and_fiber_2(supp[name], supp[name], a)
+        listed3, _ = interleaved_and_fiber_mu([supp[name]] * 3, a)
+        if listed2 != rowlist[name] or listed3 != rowlist[name]:
             diag_ok = False
 
     # (4) dilation symmetry of the 2-row interleaved list.
@@ -183,11 +231,16 @@ def run(p=17, n=16, k=6, a=8):
         "params": {"p": p, "n": n, "k": k, "a": a, "sigma": a - k},
         "row_list_sizes": rowlist,
         "pairs": pairs,
+        "codegree": codeg,
+        "mu3": mu3,
         "bridge_ok": bridge_ok,
         "sub_cartesian_ok": cart_ok,
+        "codegree_cert_ok": codeg_ok,
+        "mu3_sub_cartesian_ok": mu3_ok,
         "diagonalization_ok": diag_ok,
         "dilation_symmetry_ok": dil_ok,
-        "overall_pass": bridge_ok and cart_ok and diag_ok and dil_ok,
+        "overall_pass": (bridge_ok and cart_ok and codeg_ok and mu3_ok
+                         and diag_ok and dil_ok),
     }
 
 
@@ -212,8 +265,17 @@ def main(argv=None):
             print(f"    {pr['rows']:>16}: interleaved={pr['interleaved']:>4}  "
                   f"fiber={pr['fiber']:>5}  min|Fib|={pr['min_fib_row']:>6}  "
                   f"cart(|Supp|^2)={pr['cartesian_rowlist']:>5}  (ratio {pr['ratio_vs_cartesian']})")
-        for key in ("bridge_ok", "sub_cartesian_ok", "diagonalization_ok",
-                    "dilation_symmetry_ok"):
+        print("  codegree certificate (interleaved <= |P|*Gamma):")
+        for cg in r["codegree"]:
+            print(f"    {cg['rows']:>16}: interleaved={cg['interleaved']:>4}  "
+                  f"<= bound {cg['codegree_bound']:>5}  (Gamma_pq={cg['Gamma_pq']}, "
+                  f"Gamma_qp={cg['Gamma_qp']})")
+        print("  mu=3 sub-Cartesian:")
+        for m3 in r["mu3"]:
+            print(f"    {m3['rows']:>22}: interleaved={m3['interleaved']:>4}  "
+                  f"cartesian={m3['cartesian']:>7}  (ratio {m3['ratio_vs_cartesian']})")
+        for key in ("bridge_ok", "sub_cartesian_ok", "codegree_cert_ok",
+                    "mu3_sub_cartesian_ok", "diagonalization_ok", "dilation_symmetry_ok"):
             print(f"  [{'OK ' if r[key] else 'FAIL'}] {key}")
         print(f"RESULT: {'PASS' if r['overall_pass'] else 'FAIL'}")
     return 0 if r["overall_pass"] else 1
