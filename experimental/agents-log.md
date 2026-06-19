@@ -29,6 +29,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-19 - M1 collapsed Mellin normalization
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/m1_depth_two_line_conic_resonance_reduction.md`,
+  `experimental/verify_m1_depth_two_line_conic_resonance_reduction.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** Normalizes the remaining collapsed rank-two
+  transform by `r=(1-z)/(z+2)`, giving
+  `sum_z W_{eta,nu}(z)L_nu(z) =
+  sum_{r in F_p^*, r!=-1} eta(r)Phi_nu(r)` with `Phi_nu`
+  independent of `eta`.
+- **How it is useful:** Turns the last conditional M1 input into a uniform
+  Mellin-transform bound for one explicit `nu`-dependent trace and identifies
+  the finite deleted/collision points.
+- **What to do next:** Prove the bounded-conductor Mellin estimate for
+  `Phi_nu`, including the local contribution at `r=-1`.
+
 ### 2026-06-19 - M1 collapsed rank-one correction
 
 - **Agent/model:** Codex.

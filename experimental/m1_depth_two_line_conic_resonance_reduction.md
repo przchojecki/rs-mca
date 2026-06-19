@@ -1503,8 +1503,47 @@ and therefore
 |sum_z W_{eta,nu}(z)| <= 4sqrt(p).
 ```
 
-Thus the only p-scale input still being imported is the first term.  Split
-the square-class gate:
+Thus the only p-scale input still being imported is the first term.  This
+term has a cleaner Mellin normal form.  Put
+
+```text
+r=(1-z)/(z+2),        z=(1-2r)/(r+1).
+```
+
+Then `z+2=3/(r+1)` and `z/(z+2)=(1-2r)/3`.  Since
+`gamma=(eta nu)^(-1)`,
+
+```text
+eta(1-z)gamma(z+2)nu(z)
+  = eta(r)nu(z/(z+2))
+  = eta(r)nu((1-2r)/3).
+```
+
+Consequently
+
+```text
+sum_z W_{eta,nu}(z)L_nu(z)
+  = sum_{r in F_p^*, r != -1} eta(r) Phi_nu(r),
+```
+
+where
+
+```text
+Phi_nu(r)
+  = nu((1-2r)/3)
+    (1-chi_2(-2)chi_2((1-2r)/(r+1)))
+    L_nu((1-2r)/(r+1)).
+```
+
+The finite deleted/collision points are explicit: `r=1/2` maps to `z=0`
+and is killed by `nu((1-2r)/3)`, while `r=-3/2` maps to `z=-8` and is
+killed by the square-class gate.  The point `r=0` maps to `z=1` and is
+outside the Mellin torus, and `r=-1` is the missing value corresponding to
+`z=infinity`.
+
+The remaining p-scale theorem is therefore a uniform Mellin-transform bound
+for the `nu`-dependent trace `Phi_nu`.  Equivalently, split the
+square-class gate:
 
 ```text
 W_{eta,nu}
@@ -1525,6 +1564,12 @@ absolute constant `K` such that
 
 ```text
 |sum_z W_{eta,nu}(z)L_nu(z)| <= K p,
+```
+
+or, in the normalized coordinate,
+
+```text
+|sum_{r in F_p^*, r != -1} eta(r) Phi_nu(r)| <= K p,
 ```
 
 then the full collapsed transform satisfies

@@ -1178,6 +1178,63 @@ def quotient_line_paired_collapsed_diagonal_sum(
     return total
 
 
+def quotient_line_collapsed_rank_two_transform(
+    p: int,
+    eta: List[complex],
+    nu: List[complex],
+    gamma: List[complex],
+) -> complex:
+    total = 0j
+    square_class = legendre(-2, p)
+    for z_value in range(p):
+        outer_weight = (
+            nu[z_value]
+            * (1 - square_class * legendre(z_value, p))
+            * eta[(1 - z_value) % p]
+            * gamma[(z_value + 2) % p]
+        )
+        if abs(outer_weight) == 0:
+            continue
+        total += outer_weight * (
+            quotient_line_collapsed_inner_trace(p, z_value, nu) + 1
+        )
+    return total
+
+
+def quotient_line_collapsed_mobius_kernel(
+    p: int,
+    r_value: int,
+    nu: List[complex],
+) -> complex:
+    if r_value == (-1) % p:
+        return 0j
+    denominator = (r_value + 1) % p
+    z_value = (1 - 2 * r_value) * pow(denominator, -1, p) % p
+    nu_argument = (1 - 2 * r_value) * pow(3, -1, p) % p
+    return (
+        nu[nu_argument]
+        * (1 - legendre(-2, p) * legendre(z_value, p))
+        * (quotient_line_collapsed_inner_trace(p, z_value, nu) + 1)
+    )
+
+
+def quotient_line_collapsed_mobius_transform(
+    p: int,
+    eta: List[complex],
+    nu: List[complex],
+) -> complex:
+    total = 0j
+    for r_value in range(1, p):
+        if r_value == (-1) % p:
+            continue
+        total += eta[r_value] * quotient_line_collapsed_mobius_kernel(
+            p,
+            r_value,
+            nu,
+        )
+    return total
+
+
 def quotient_line_collapsed_inner_trace(
     p: int,
     z_value: int,
@@ -1397,6 +1454,10 @@ def verify_quotient_line_spectral_normal_form(
     float,
     float,
     float,
+    float,
+    float,
+    float,
+    float,
     int,
 ]:
     delta = least_nonsquare(p)
@@ -1443,6 +1504,10 @@ def verify_quotient_line_spectral_normal_form(
     max_collapsed_rank_one_error = 0.0
     max_collapsed_rank_one_piece_ratio = 0.0
     max_collapsed_rank_one_ratio = 0.0
+    max_collapsed_rank_two_split_error = 0.0
+    max_collapsed_rank_two_mobius_error = 0.0
+    max_collapsed_mobius_deleted_error = 0.0
+    max_collapsed_rank_two_ratio = 0.0
     max_paired_phase_ratio = 0.0
     paired_generic_count = 0
     max_outer_piece_ratio = 0.0
@@ -1932,11 +1997,11 @@ def verify_quotient_line_spectral_normal_form(
         * quotient_line_paired_diagonal_sum(p, eta, nu, gamma)
         / p
     )
+    collapsed_h_transform = (
+        quotient_line_paired_collapsed_diagonal_sum(p, eta, nu, gamma) / 2
+    )
     collapsed_diagonal_pair_sum = (
-        pair_constant
-        * (p - 1)
-        * quotient_line_paired_collapsed_diagonal_sum(p, eta, nu, gamma)
-        / p
+        pair_constant * (p - 1) * 2 * collapsed_h_transform / p
     )
     collapsed_diagonal_error = abs(
         diagonal_pair_sum - collapsed_diagonal_pair_sum
@@ -2042,6 +2107,76 @@ def verify_quotient_line_spectral_normal_form(
                 rank_one_correction,
             )
         )
+    rank_two_transform = quotient_line_collapsed_rank_two_transform(
+        p,
+        eta,
+        nu,
+        gamma,
+    )
+    rank_two_split_error = abs(
+        rank_two_transform - collapsed_h_transform - rank_one_correction
+    )
+    max_collapsed_rank_two_split_error = max(
+        max_collapsed_rank_two_split_error,
+        rank_two_split_error,
+    )
+    if rank_two_split_error > 100 * TOLERANCE:
+        raise AssertionError(
+            (
+                p,
+                eta_exponent,
+                nu_exponent,
+                "collapsed_rank_two_split",
+                rank_two_transform,
+                collapsed_h_transform + rank_one_correction,
+            )
+        )
+    mobius_transform = quotient_line_collapsed_mobius_transform(p, eta, nu)
+    mobius_error = abs(rank_two_transform - mobius_transform)
+    max_collapsed_rank_two_mobius_error = max(
+        max_collapsed_rank_two_mobius_error,
+        mobius_error,
+    )
+    if mobius_error > 100 * TOLERANCE:
+        raise AssertionError(
+            (
+                p,
+                eta_exponent,
+                nu_exponent,
+                "collapsed_rank_two_mobius",
+                rank_two_transform,
+                mobius_transform,
+            )
+        )
+    inverse_two = pow(2, -1, p)
+    deleted_error = max(
+        abs(quotient_line_collapsed_mobius_kernel(p, inverse_two, nu)),
+        abs(
+            quotient_line_collapsed_mobius_kernel(
+                p,
+                (-3 * inverse_two) % p,
+                nu,
+            )
+        ),
+    )
+    max_collapsed_mobius_deleted_error = max(
+        max_collapsed_mobius_deleted_error,
+        deleted_error,
+    )
+    if deleted_error > TOLERANCE:
+        raise AssertionError(
+            (
+                p,
+                eta_exponent,
+                nu_exponent,
+                "collapsed_mobius_deleted_points",
+                deleted_error,
+            )
+        )
+    max_collapsed_rank_two_ratio = max(
+        max_collapsed_rank_two_ratio,
+        abs(rank_two_transform) / p,
+    )
     pair_diagonal_error = abs(algebraic_pair_sum - diagonal_pair_sum)
     max_pair_diagonal_error = max(
         max_pair_diagonal_error,
@@ -2129,6 +2264,10 @@ def verify_quotient_line_spectral_normal_form(
         max_collapsed_rank_one_error,
         max_collapsed_rank_one_piece_ratio,
         max_collapsed_rank_one_ratio,
+        max_collapsed_rank_two_split_error,
+        max_collapsed_rank_two_mobius_error,
+        max_collapsed_mobius_deleted_error,
+        max_collapsed_rank_two_ratio,
         max_paired_phase_ratio,
         paired_generic_count,
     )
@@ -2614,6 +2753,10 @@ def main() -> None:
     max_collapsed_rank_one_error = 0.0
     max_collapsed_rank_one_piece_ratio = 0.0
     max_collapsed_rank_one_ratio = 0.0
+    max_collapsed_rank_two_split_error = 0.0
+    max_collapsed_rank_two_mobius_error = 0.0
+    max_collapsed_mobius_deleted_error = 0.0
+    max_collapsed_rank_two_ratio = 0.0
     max_paired_phase_ratio = 0.0
     max_outer_mellin_piece_ratio = 0.0
     max_outer_mellin_ratio = 0.0
@@ -2863,6 +3006,10 @@ def main() -> None:
             collapsed_rank_one_error,
             collapsed_rank_one_piece_ratio,
             collapsed_rank_one_ratio,
+            collapsed_rank_two_split_error,
+            collapsed_rank_two_mobius_error,
+            collapsed_mobius_deleted_error,
+            collapsed_rank_two_ratio,
             paired_phase_ratio,
             paired_generic_count,
         ) = verify_quotient_line_spectral_normal_form(
@@ -3029,6 +3176,22 @@ def main() -> None:
             max_collapsed_rank_one_ratio,
             collapsed_rank_one_ratio,
         )
+        max_collapsed_rank_two_split_error = max(
+            max_collapsed_rank_two_split_error,
+            collapsed_rank_two_split_error,
+        )
+        max_collapsed_rank_two_mobius_error = max(
+            max_collapsed_rank_two_mobius_error,
+            collapsed_rank_two_mobius_error,
+        )
+        max_collapsed_mobius_deleted_error = max(
+            max_collapsed_mobius_deleted_error,
+            collapsed_mobius_deleted_error,
+        )
+        max_collapsed_rank_two_ratio = max(
+            max_collapsed_rank_two_ratio,
+            collapsed_rank_two_ratio,
+        )
         max_paired_phase_ratio = max(
             max_paired_phase_ratio,
             paired_phase_ratio,
@@ -3140,6 +3303,14 @@ def main() -> None:
         f"{max_collapsed_rank_one_piece_ratio:.10f}",
         f"max_collapsed_rank_one_ratio="
         f"{max_collapsed_rank_one_ratio:.10f}",
+        f"max_collapsed_rank_two_split_error="
+        f"{max_collapsed_rank_two_split_error:.3e}",
+        f"max_collapsed_rank_two_mobius_error="
+        f"{max_collapsed_rank_two_mobius_error:.3e}",
+        f"max_collapsed_mobius_deleted_error="
+        f"{max_collapsed_mobius_deleted_error:.3e}",
+        f"max_collapsed_rank_two_ratio="
+        f"{max_collapsed_rank_two_ratio:.10f}",
         f"max_paired_phase_ratio={max_paired_phase_ratio:.10f}",
         f"max_outer_mellin_piece_ratio={max_outer_mellin_piece_ratio:.10f}",
         f"max_outer_mellin_ratio={max_outer_mellin_ratio:.10f}",
