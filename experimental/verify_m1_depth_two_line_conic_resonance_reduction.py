@@ -4765,6 +4765,65 @@ def verify_ratio_surface_beta_ratio_resonance() -> List[
     return checked
 
 
+def verify_ratio_surface_beta_quotient_energy() -> List[
+    Tuple[int, int, int, int, int, int, float]
+]:
+    checked: List[Tuple[int, int, int, int, int, int, float]] = []
+    for p, suborder in RATIO_SURFACE_CASES:
+        logs = log_table(p)
+        table = character_table(p, logs)
+        lift = (p - 1) // suborder
+        kernel_size = (p - 1) // suborder
+        split_count = 0
+        same_quotient_count = 0
+        exact_energy = 0.0
+        for alpha in range(1, p):
+            for ratio in range(1, p):
+                if not ratio_surface_beta_pushforward_good(p, alpha, ratio):
+                    continue
+                if legendre(ratio_surface_beta_discriminant(p, alpha, ratio), p) != 1:
+                    continue
+                roots = ratio_surface_affine_beta_roots(p, alpha, ratio)
+                if len(roots) != 2:
+                    raise AssertionError((p, suborder, alpha, ratio, roots))
+                root_ratio = roots[0] * pow(roots[1], -1, p) % p
+                same_quotient = int(logs[root_ratio] % suborder == 0)
+                same_quotient_count += same_quotient
+                split_count += 1
+                for exponent in range(1, suborder):
+                    phi = table[lift * exponent]
+                    exact_energy += abs(phi[roots[0]] + phi[roots[1]]) ** 2
+        formula_energy = (
+            (2 * suborder - 4) * split_count
+            + 2 * suborder * same_quotient_count
+        )
+        if abs(exact_energy - formula_energy) > 1000 * TOLERANCE:
+            raise AssertionError((p, suborder, exact_energy, formula_energy))
+        quotient_collision_bound = 4 * (p - 1) * kernel_size
+        if same_quotient_count > quotient_collision_bound:
+            raise AssertionError(
+                (p, suborder, same_quotient_count, quotient_collision_bound)
+            )
+        energy_bound = (
+            (2 * suborder - 4) * (p - 1) * (p - 1)
+            + 2 * suborder * quotient_collision_bound
+        )
+        if formula_energy > energy_bound:
+            raise AssertionError((p, suborder, formula_energy, energy_bound))
+        checked.append(
+            (
+                p,
+                suborder,
+                split_count,
+                same_quotient_count,
+                round(formula_energy),
+                energy_bound,
+                round(formula_energy / ((p - 1) * (p - 1)), 10),
+            )
+        )
+    return checked
+
+
 def verify_ratio_surface_beta_pushforward_trace() -> List[
     Tuple[int, int, int, int, int, int, float]
 ]:
@@ -5782,6 +5841,9 @@ def main() -> None:
     ratio_surface_beta_ratio_resonance_checked = (
         verify_ratio_surface_beta_ratio_resonance()
     )
+    ratio_surface_beta_quotient_energy_checked = (
+        verify_ratio_surface_beta_quotient_energy()
+    )
     quotient_conic_centered_bound_checked = (
         verify_quotient_conic_centered_bounds()
     )
@@ -6414,6 +6476,8 @@ def main() -> None:
         f"{ratio_surface_beta_pushforward_checked}",
         f"ratio_surface_beta_ratio_resonance_checked="
         f"{ratio_surface_beta_ratio_resonance_checked}",
+        f"ratio_surface_beta_quotient_energy_checked="
+        f"{ratio_surface_beta_quotient_energy_checked}",
         f"quotient_conic_centered_bound_checked="
         f"{quotient_conic_centered_bound_checked}",
         f"weighted_ratio_surface_centering_checked="

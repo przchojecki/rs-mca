@@ -3322,6 +3322,41 @@ identity for both orientations `beta_1/beta_2` and `beta_2/beta_1` on every
 split good fiber in the audit grid, and records the largest fixed-ratio
 fiber against this explicit bound.
 
+This gives a quotient-beta energy bound.  Fix a quotient order `e` and let
+`Phi_e` be the `e` multiplicative characters trivial on the kernel `K_e`.
+For the good split fibers, put `z=beta_1/beta_2`.  Character orthogonality
+gives the exact local identity
+
+```text
+sum_{phi in Phi_e, phi != 1} |phi(beta_1)+phi(beta_2)|^2
+  = 2e - 4 + 2e 1_{z in K_e}.
+```
+
+Therefore, if `N_split` is the number of good split fibers and `N_K` is the
+number with beta-root ratio in `K_e`, then
+
+```text
+E_e^beta = (2e-4)N_split + 2e N_K.
+```
+
+The fixed-ratio bound gives
+
+```text
+N_K <= 4(p-1)|K_e| = 4(p-1)^2/e,
+```
+
+and hence
+
+```text
+E_e^beta <= (2e+4)(p-1)^2.
+```
+
+Thus the beta-sheet part of the good pushforward has fixed-quotient
+nonprincipal character energy `O_e(p^2)` before any cancellation in
+`alpha` or `r` is used.  The verifier checks the exact orthogonality
+formula and the quotient-kernel collision bound for the audited quotient
+orders.
+
 ## Principal-Row Leakage
 
 The principal rows excluded above have exact formulas.  They explain why the

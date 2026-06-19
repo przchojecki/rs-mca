@@ -29,6 +29,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-19 - M1 beta quotient-character energy bound
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/m1_depth_two_line_conic_resonance_reduction.md`,
+  `experimental/verify_m1_depth_two_line_conic_resonance_reduction.py`,
+  `experimental/m1_residue_line_roadmap.md`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** Uses quotient-character orthogonality and the
+  fixed beta-root-ratio bound to prove
+  `E_e^beta=(2e-4)N_split+2eN_K <= (2e+4)(p-1)^2`.
+- **How it is useful:** Shows that the beta-sheet factor in the good
+  pushforward has fixed-index `O(p^2)` nonprincipal character energy before
+  any base cancellation is used.
+- **What to do next:** Combine this beta energy control with cancellation in
+  the `(alpha,r)` base trace.
+
 ### 2026-06-19 - M1 beta-root ratio resonance curves
 
 - **Agent/model:** Codex.

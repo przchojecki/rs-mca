@@ -179,6 +179,10 @@ should be revised as the project learns more.
    unless `lambda=-1`, where it collapses to two lines.  Thus every fixed
    beta-root ratio has at most `4(p-1)` good-base points, so no fixed
    beta-root ratio supports a two-dimensional family on the good base.
+   Consequently the nonprincipal quotient-character beta-sheet energy is
+   exactly `(2e-4)N_split+2eN_K` and satisfies
+   `E_e^beta <= (2e+4)(p-1)^2`; the beta sheets do not create a hidden
+   `p^3` averaged obstruction.
    The updated remaining-wall scan reports this asymmetric wall separately:
    in the current report grid the largest asymmetric ratio is
    `3.2173609608p`, while every near-`4p` top row lies in the projective
