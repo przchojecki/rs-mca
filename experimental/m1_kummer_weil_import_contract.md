@@ -581,6 +581,11 @@ The elementary hypotheses behind this import are now audited in
 - for every audited `p>5`, those strict transforms are smooth in both blow-up
   charts; characteristic `5` has only isolated `A_beta`/`Q_beta` strict-transform
   singularities and is already treated as a finite special case;
+- for every audited `p>5`, the only open-torus nontransverse incidences after
+  the blow-up are the four explicit tangencies
+  `(A_beta,M)`, `(A_beta,H)`, `(Q_beta,M)`, `(Q_beta,H)`; there are no
+  open-torus triple points, and the sole triple-or-higher point in each chart is
+  the toric corner over `(a,r)=(0,0)`;
 - on the good base, `D_beta != 0` and
   `(2A_beta beta+B_beta)^2=D_beta` at every beta root, so the projection
   `Y_G -> G` is finite etale of degree two; since `G` is an open subset of

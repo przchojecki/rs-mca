@@ -3406,6 +3406,37 @@ isolated singular point on each of `A#` and `Q#`, and the reciprocal chart
 has the analogous isolated `Ahat` and `Qhat` singular points.  Thus for
 `p>5` the beta-boundary blow-up has smooth strict-transform components; no
 singular boundary component remains hidden in the conductor ledger.
+
+The remaining non-normal-crossing incidences are also bounded and explicit.
+For every audited `p>5`, each blow-up chart has exactly one triple-or-higher
+point, namely the toric corner `(a,t)=(0,1)` in the finite-slope chart and
+`(r,s)=(0,1)` in the reciprocal chart; these both lie over `(a,r)=(0,0)`
+and are outside the torus.  There are no open-torus triple points.  The only
+open-torus tangencies are four pairwise boundary tangencies, recorded in the
+finite-slope chart as
+
+```text
+A# tangent M#:  3a+1 = 0, 2t-3 = 0,
+A# tangent H#:  a+2 = 0, 3t-2 = 0,
+Q# tangent M#:  a+3 = 0, 2t-1 = 0,
+Q# tangent H#:  2a+1 = 0, 3t-4 = 0,
+```
+
+and equivalently in the reciprocal chart as
+
+```text
+Ahat tangent Mhat:  r+1 = 0, 3s-2 = 0,
+Ahat tangent Hhat:  r+1 = 0, 2s-3 = 0,
+Qhat tangent Mhat:  r+1 = 0, s-2 = 0,
+Qhat tangent Hhat:  r+1 = 0, 4s-3 = 0.
+```
+
+The additional tangency `Q#` with `L#` (and `Qhat` with `Lhat`) occurs only
+at the toric corner.  Thus the blow-up boundary is normal crossing away from
+a fixed finite incidence set of bounded size; the verifier checks the
+gradient determinants, absence of open triple points, and the displayed
+tangency supports on the audited prime grid.
+
 On the good base, the cover is finite etale of degree two: at any beta root,
 `2A_beta beta+B_beta` is nonzero and its square is `D_beta`.  Since the good
 base is an open subset of `G_m^2`, the good beta-cover surface is smooth;

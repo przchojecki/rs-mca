@@ -6686,6 +6686,222 @@ def verify_ratio_surface_blowup_strict_transform_smoothness() -> List[
     return checked
 
 
+def verify_ratio_surface_blowup_boundary_incidence() -> List[
+    Tuple[int, int, int, int, int, int, int, int, int]
+]:
+    names = ("A", "Q", "K", "diag", "M", "H")
+    pairs = tuple(
+        (names[first_index], names[second_index])
+        for first_index in range(len(names))
+        for second_index in range(first_index + 1, len(names))
+    )
+    finite_expected_tangencies = {
+        ("A", "M"): lambda p, a, t: (3 * a + 1) % p == 0
+        and (2 * t - 3) % p == 0,
+        ("A", "H"): lambda p, a, t: (a + 2) % p == 0
+        and (3 * t - 2) % p == 0,
+        ("Q", "M"): lambda p, a, t: (a + 3) % p == 0
+        and (2 * t - 1) % p == 0,
+        ("Q", "H"): lambda p, a, t: (2 * a + 1) % p == 0
+        and (3 * t - 4) % p == 0,
+        ("Q", "diag"): lambda p, a, t: a % p == 0 and (t - 1) % p == 0,
+    }
+    reciprocal_expected_tangencies = {
+        ("A", "M"): lambda p, r, s: (r + 1) % p == 0
+        and (3 * s - 2) % p == 0,
+        ("A", "H"): lambda p, r, s: (r + 1) % p == 0
+        and (2 * s - 3) % p == 0,
+        ("Q", "M"): lambda p, r, s: (r + 1) % p == 0
+        and (s - 2) % p == 0,
+        ("Q", "H"): lambda p, r, s: (r + 1) % p == 0
+        and (4 * s - 3) % p == 0,
+        ("Q", "diag"): lambda p, r, s: r % p == 0 and (s - 1) % p == 0,
+    }
+
+    def tangent(
+        p: int,
+        first_derivative: Tuple[int, int],
+        second_derivative: Tuple[int, int],
+    ) -> bool:
+        return (
+            first_derivative[0] * second_derivative[1]
+            - first_derivative[1] * second_derivative[0]
+        ) % p == 0
+
+    checked: List[Tuple[int, int, int, int, int, int, int, int, int]] = []
+    for p in LOWER_CHART_PRIMES:
+        finite_tangent_count = 0
+        finite_open_tangent_count = 0
+        finite_triple_count = 0
+        finite_open_triple_count = 0
+        finite_max_components = 0
+        finite_tangent_by_pair = {pair: 0 for pair in pairs}
+
+        for alpha in range(p):
+            for slope in range(p):
+                ratio = (1 + slope * (alpha - 1)) % p
+                strict = ratio_surface_slope_blowup_strict_factors(
+                    p,
+                    alpha,
+                    slope,
+                )
+                derivatives = ratio_surface_slope_blowup_strict_derivatives(
+                    p,
+                    alpha,
+                    slope,
+                )
+                zero_components = tuple(
+                    name for name in names if strict[name] == 0
+                )
+                finite_max_components = max(
+                    finite_max_components,
+                    len(zero_components),
+                )
+                if len(zero_components) >= 3:
+                    finite_triple_count += 1
+                    if alpha != 0 and ratio != 0:
+                        finite_open_triple_count += 1
+                    if p > 5 and (alpha, slope) != (0, 1):
+                        raise AssertionError((p, "finite_triple", alpha, slope))
+                for first_index, first in enumerate(zero_components):
+                    for second in zero_components[first_index + 1 :]:
+                        if not tangent(p, derivatives[first], derivatives[second]):
+                            continue
+                        pair = (first, second)
+                        finite_tangent_count += 1
+                        finite_tangent_by_pair[pair] += 1
+                        if alpha != 0 and ratio != 0:
+                            finite_open_tangent_count += 1
+                        if p > 5 and not finite_expected_tangencies.get(
+                            pair,
+                            lambda *_: False,
+                        )(p, alpha, slope):
+                            raise AssertionError(
+                                (p, "finite_tangent", pair, alpha, slope)
+                            )
+
+        reciprocal_tangent_count = 0
+        reciprocal_open_tangent_count = 0
+        reciprocal_triple_count = 0
+        reciprocal_open_triple_count = 0
+        reciprocal_max_components = 0
+        reciprocal_tangent_by_pair = {pair: 0 for pair in pairs}
+
+        for ratio in range(p):
+            for reciprocal_slope in range(p):
+                alpha = (1 + reciprocal_slope * (ratio - 1)) % p
+                strict = ratio_surface_reciprocal_blowup_strict_factors(
+                    p,
+                    ratio,
+                    reciprocal_slope,
+                )
+                derivatives = ratio_surface_reciprocal_blowup_strict_derivatives(
+                    p,
+                    ratio,
+                    reciprocal_slope,
+                )
+                zero_components = tuple(
+                    name for name in names if strict[name] == 0
+                )
+                reciprocal_max_components = max(
+                    reciprocal_max_components,
+                    len(zero_components),
+                )
+                if len(zero_components) >= 3:
+                    reciprocal_triple_count += 1
+                    if alpha != 0 and ratio != 0:
+                        reciprocal_open_triple_count += 1
+                    if p > 5 and (ratio, reciprocal_slope) != (0, 1):
+                        raise AssertionError(
+                            (p, "reciprocal_triple", ratio, reciprocal_slope)
+                        )
+                for first_index, first in enumerate(zero_components):
+                    for second in zero_components[first_index + 1 :]:
+                        if not tangent(p, derivatives[first], derivatives[second]):
+                            continue
+                        pair = (first, second)
+                        reciprocal_tangent_count += 1
+                        reciprocal_tangent_by_pair[pair] += 1
+                        if alpha != 0 and ratio != 0:
+                            reciprocal_open_tangent_count += 1
+                        if p > 5 and not reciprocal_expected_tangencies.get(
+                            pair,
+                            lambda *_: False,
+                        )(p, ratio, reciprocal_slope):
+                            raise AssertionError(
+                                (
+                                    p,
+                                    "reciprocal_tangent",
+                                    pair,
+                                    ratio,
+                                    reciprocal_slope,
+                                )
+                            )
+
+        if p > 5:
+            expected_tangent_pairs = {
+                ("A", "M"),
+                ("A", "H"),
+                ("Q", "M"),
+                ("Q", "H"),
+                ("Q", "diag"),
+            }
+            for pair in pairs:
+                expected_count = int(pair in expected_tangent_pairs)
+                if finite_tangent_by_pair[pair] != expected_count:
+                    raise AssertionError((p, "finite_pair", pair))
+                if reciprocal_tangent_by_pair[pair] != expected_count:
+                    raise AssertionError((p, "reciprocal_pair", pair))
+            if (
+                finite_tangent_count,
+                finite_open_tangent_count,
+                finite_triple_count,
+                finite_open_triple_count,
+                finite_max_components,
+            ) != (5, 4, 1, 0, 6):
+                raise AssertionError((p, "finite_counts"))
+            if (
+                reciprocal_tangent_count,
+                reciprocal_open_tangent_count,
+                reciprocal_triple_count,
+                reciprocal_open_triple_count,
+                reciprocal_max_components,
+            ) != (5, 4, 1, 0, 6):
+                raise AssertionError((p, "reciprocal_counts"))
+        else:
+            if (
+                finite_tangent_count,
+                finite_open_tangent_count,
+                finite_triple_count,
+                finite_open_triple_count,
+                finite_max_components,
+            ) != (17, 13, 3, 2, 6):
+                raise AssertionError((p, "finite_p5_counts"))
+            if (
+                reciprocal_tangent_count,
+                reciprocal_open_tangent_count,
+                reciprocal_triple_count,
+                reciprocal_open_triple_count,
+                reciprocal_max_components,
+            ) != (16, 12, 3, 2, 6):
+                raise AssertionError((p, "reciprocal_p5_counts"))
+
+        checked.append(
+            (
+                p,
+                finite_tangent_count,
+                finite_open_tangent_count,
+                finite_triple_count,
+                finite_open_triple_count,
+                reciprocal_tangent_count,
+                reciprocal_open_tangent_count,
+                reciprocal_triple_count,
+                reciprocal_open_triple_count,
+            )
+        )
+    return checked
+
+
 def verify_ratio_surface_lower_chart_collapse() -> List[
     Tuple[int, int, int, int, int, int]
 ]:
@@ -7448,6 +7664,9 @@ def main() -> None:
     ratio_surface_blowup_smoothness_checked = (
         verify_ratio_surface_blowup_strict_transform_smoothness()
     )
+    ratio_surface_blowup_incidence_checked = (
+        verify_ratio_surface_blowup_boundary_incidence()
+    )
     ratio_surface_beta_pushforward_checked = (
         verify_ratio_surface_beta_pushforward_trace()
     )
@@ -8119,6 +8338,8 @@ def main() -> None:
         f"{ratio_surface_reciprocal_blowup_boundary_checked}",
         f"ratio_surface_blowup_smoothness_checked="
         f"{ratio_surface_blowup_smoothness_checked}",
+        f"ratio_surface_blowup_incidence_checked="
+        f"{ratio_surface_blowup_incidence_checked}",
         f"ratio_surface_beta_pushforward_checked="
         f"{ratio_surface_beta_pushforward_checked}",
         f"ratio_surface_exceptional_root_bound_checked="

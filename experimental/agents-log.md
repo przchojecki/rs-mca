@@ -29,6 +29,26 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-19 - M1 beta blow-up boundary incidence classified
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/m1_depth_two_line_conic_resonance_reduction.md`,
+  `experimental/m1_kummer_weil_import_contract.md`,
+  `experimental/m1_residue_line_roadmap.md`,
+  `experimental/verify_m1_depth_two_line_conic_resonance_reduction.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** Classifies the non-normal incidences of the
+  two-chart beta-boundary blow-up.  For audited `p>5`, there are no open-torus
+  triple points; the only open tangencies are the four explicit pairs
+  `(A_beta,M)`, `(A_beta,H)`, `(Q_beta,M)`, and `(Q_beta,H)`, and the only
+  triple-or-higher point is the toric corner over `(a,r)=(0,0)`.
+- **How it is useful:** Further reduces the remaining `(BETA_2)` conductor
+  proof to a smooth boundary with a fixed finite incidence/tangency ledger.
+- **What to do next:** Use this finite incidence table when applying or
+  proving a bounded-conductor estimate for the good beta pushforward.
+
 ### 2026-06-19 - M1 beta blow-up strict transforms are smooth
 
 - **Agent/model:** Codex.
