@@ -73,6 +73,13 @@ def legendre(value: int, p: int) -> int:
     return 1 if pow(value, (p - 1) // 2, p) == 1 else -1
 
 
+def least_nonsquare(p: int) -> int:
+    for value in range(2, p):
+        if legendre(value, p) == -1:
+            return value
+    raise ValueError((p, "no nonsquare"))
+
+
 def shape_a(u: int, v: int, p: int) -> int:
     return (-(u * u + v * v + u * v + u + v + 1)) % p
 
@@ -511,6 +518,88 @@ def projection_singular_contributions(
     )
 
 
+def twisted_discriminant_y(p: int, t: int, delta: int) -> int:
+    denominator = (t * t - delta) % p
+    if denominator == 0:
+        raise AssertionError((p, t, delta, "twist_denominator"))
+    numerator = (2 * t * t + delta) % p
+    return numerator * pow(denominator, -1, p) % p
+
+
+def verify_twisted_discriminant_map(p: int) -> Tuple[int, int]:
+    delta = least_nonsquare(p)
+    checked = 0
+    nonsplit_values = set()
+    for t in range(p):
+        denominator = (t * t - delta) % p
+        if denominator == 0:
+            raise AssertionError((p, t, delta, "finite_twist_pole"))
+        y = twisted_discriminant_y(p, t, delta)
+        inverse_denominator = pow(denominator, -1, p)
+
+        expected_y_minus_two = 3 * delta * inverse_denominator % p
+        expected_y_plus_one = 3 * t * t * inverse_denominator % p
+        expected_y_minus_three = (4 * delta - t * t) * inverse_denominator % p
+        if (y - 2) % p != expected_y_minus_two:
+            raise AssertionError((p, t, delta, "twist_y_minus_two"))
+        if (y + 1) % p != expected_y_plus_one:
+            raise AssertionError((p, t, delta, "twist_y_plus_one"))
+        if (y - 3) % p != expected_y_minus_three:
+            raise AssertionError((p, t, delta, "twist_y_minus_three"))
+
+        discriminant = (y - 2) * (y + 1) % p
+        expected_discriminant = (
+            9
+            * delta
+            * t
+            * t
+            * pow(denominator * denominator % p, -1, p)
+        ) % p
+        if discriminant != expected_discriminant:
+            raise AssertionError((p, t, delta, "twist_discriminant"))
+        if t == 0:
+            if y != (-1) % p:
+                raise AssertionError((p, t, y, "twist_zero_branch"))
+        elif legendre(discriminant, p) != -1:
+            raise AssertionError((p, t, y, discriminant, "not_nonsplit"))
+        else:
+            nonsplit_values.add(y)
+        checked += 1
+
+    expected_nonsplit_values = {
+        y
+        for y in range(p)
+        if legendre((y - 2) * (y + 1), p) == -1
+    }
+    if nonsplit_values != expected_nonsplit_values:
+        raise AssertionError(
+            (p, delta, "nonsplit_value_set", nonsplit_values, expected_nonsplit_values)
+        )
+    for y in expected_nonsplit_values:
+        roots = [t for t in range(p) if twisted_discriminant_y(p, t, delta) == y]
+        if len(roots) != 2 or (roots[0] + roots[1]) % p != 0:
+            raise AssertionError((p, delta, y, roots, "nonsplit_preimages"))
+
+    # These are geometric support pairs but have no F_p-points for nonsquare delta.
+    for value, label in ((delta, "twist_infinity_poles"), (4 * delta, "twist_y3")):
+        if any(t * t % p == value % p for t in range(p)):
+            raise AssertionError((p, delta, value, label))
+    return checked, len(nonsplit_values)
+
+
+def twisted_discriminant_nonsplit_sum(
+    p: int,
+    eta: List[complex],
+    nu: List[complex],
+) -> complex:
+    delta = least_nonsquare(p)
+    total = eta[(-2) % p] * transformed_inner(p, 2 % p, nu)
+    for t in range(p):
+        y = twisted_discriminant_y(p, t, delta)
+        total += eta[(-y) % p] * transformed_inner(p, y, nu)
+    return total
+
+
 def core_collision_formula(p: int) -> int:
     return (
         2 * p * p
@@ -851,6 +940,7 @@ def main() -> None:
     checked_open_decompositions = 0
     max_difference = 0.0
     max_pullback_difference = 0.0
+    max_twisted_difference = 0.0
     max_core_ratio = 0.0
     max_open_ratio = 0.0
     max_line_ratio = 0.0
@@ -866,6 +956,7 @@ def main() -> None:
     singular_checked: List[int] = []
     lambda_map_checked = 0
     lambda_twist_checked: List[Tuple[int, int, int]] = []
+    twisted_discriminant_checked: List[Tuple[int, int, int]] = []
     split_hypergeometric_checked = 0
     filter_checked = verify_admissible_filter_counts()
     twist_nontrivial_checked = verify_admissible_twist_nontriviality()
@@ -879,6 +970,10 @@ def main() -> None:
             lambda_map_checked += verify_lambda_map_ledger(p)
             finite_twist_count, projective_twist_count = verify_lambda_twist_divisor(p)
             lambda_twist_checked.append((p, finite_twist_count, projective_twist_count))
+            twist_map_count, nonsplit_value_count = verify_twisted_discriminant_map(p)
+            twisted_discriminant_checked.append(
+                (p, twist_map_count, nonsplit_value_count)
+            )
             split_hypergeometric_checked += verify_split_hypergeometric_pullback(
                 p,
                 tables[p],
@@ -907,6 +1002,7 @@ def main() -> None:
         )
         split_projection = split_projected_core(p, eta, nu)
         nonsplit_projection = nonsplit_projected_core(p, eta, nu)
+        twisted_nonsplit = twisted_discriminant_nonsplit_sum(p, eta, nu)
         assert_close(
             (p, eta_exponent, nu_exponent, "lambda_pullback_descent"),
             pulled_back,
@@ -916,6 +1012,11 @@ def main() -> None:
             (p, eta_exponent, nu_exponent, "split_projector"),
             pulled_back,
             split_projection,
+        )
+        assert_close(
+            (p, eta_exponent, nu_exponent, "twisted_discriminant_nonsplit"),
+            twisted_nonsplit,
+            nonsplit_projection,
         )
         g_at_three = transformed_inner(p, 3 % p, nu)
         reconstructed_core = (
@@ -966,6 +1067,10 @@ def main() -> None:
             max_pullback_difference,
             abs(pulled_back - pullback_expected),
         )
+        max_twisted_difference = max(
+            max_twisted_difference,
+            abs(twisted_nonsplit - nonsplit_projection),
+        )
         split_projection_ratio = abs(split_projection) / p
         nonsplit_projection_ratio = abs(nonsplit_projection) / p
         nonsplit_singular_ratio = abs(singular_nonsplit)
@@ -1014,6 +1119,7 @@ def main() -> None:
         f"open_decompositions={checked_open_decompositions}",
         f"max_difference={max_difference:.3e}",
         f"max_pullback_difference={max_pullback_difference:.3e}",
+        f"max_twisted_difference={max_twisted_difference:.3e}",
         f"max_core_ratio={max_core_ratio:.10f}@{max_core_label}",
         f"max_open_ratio={max_open_ratio:.10f}@{max_open_label}",
         f"max_line_ratio={max_line_ratio:.10f}@{max_line_label}",
@@ -1026,6 +1132,7 @@ def main() -> None:
         f"singular_checked={singular_checked}",
         f"lambda_map_checked={lambda_map_checked}",
         f"lambda_twist_checked={lambda_twist_checked}",
+        f"twisted_discriminant_checked={twisted_discriminant_checked}",
         f"split_hypergeometric_checked={split_hypergeometric_checked}",
         f"filter_checked={filter_checked[0]}..{filter_checked[-1]}",
         f"twist_nontrivial_checked={twist_nontrivial_checked[0]}.."

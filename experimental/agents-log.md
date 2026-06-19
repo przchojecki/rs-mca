@@ -29,6 +29,27 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-19 - M1 line-conic twisted nonsplit line
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/m1_depth_two_line_conic_resonance_reduction.md`,
+  `experimental/verify_m1_depth_two_line_conic_resonance_reduction.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** Gives an exact quadratic-twist parameterization
+  of the nonsplit projector: for a nonsquare `delta`,
+  `y_delta(t)=(2t^2+delta)/(t^2-delta)` hits exactly the nonsplit
+  discriminant fibers two-to-one, and
+  `C^-=eta(-2)G(2)+sum_t eta(-y_delta(t))G(y_delta(t))`.
+- **How it is useful:** Converts the missing companion projector from an
+  unnamed quadratic-twist obstruction into a rational-line conductor target,
+  with geometric support at `t=0`, `infinity`, `t^2=-delta/2`,
+  `t^2=4delta`, and `t^2=delta`.
+- **What to do next:** Prove the p-scale conductor bound on this twisted
+  line, or combine it with the split lambda-line analysis in a direct
+  quadratic-pushforward estimate.
+
 ### 2026-06-19 - M1 line-conic split/nonsplit projectors
 
 - **Agent/model:** Codex.

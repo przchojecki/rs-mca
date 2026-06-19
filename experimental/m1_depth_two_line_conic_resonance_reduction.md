@@ -484,6 +484,69 @@ singular terms are harmless, and the possible square-root loss can only come
 from bounding the lisse nonsplit projector, balancing the two projector
 constants, or from an inefficient descent of the quadratic pushforward.
 
+## Twisted Discriminant-Line Model for the Nonsplit Projector
+
+The nonsplit projector also has an exact one-dimensional pullback, but it
+lives on the quadratic twist of the discriminant cover rather than on the
+split `lambda`-line.  Fix a nonsquare `delta in F_p^*` and define
+
+```text
+y_delta(t) = (2t^2 + delta)/(t^2 - delta),        t in F_p.
+```
+
+Since `delta` is nonsquare, the denominator never vanishes for finite `t`.
+The elementary identities
+
+```text
+y_delta(t)-2 = 3delta/(t^2-delta),
+y_delta(t)+1 = 3t^2/(t^2-delta),
+y_delta(t)-3 = (4delta-t^2)/(t^2-delta)
+```
+
+give
+
+```text
+(y_delta(t)-2)(y_delta(t)+1)
+  = 9 delta t^2/(t^2-delta)^2.
+```
+
+Thus for `t != 0`, the discriminant is nonsquare, while `t=0` maps to the
+branch value `y=-1`.  The missing projective point `t=infinity` maps to the
+other branch value `y=2`.  Consequently
+
+```text
+C^-_{eta,nu}
+  = eta(-2)G_nu(2)
+    + sum_{t in F_p} eta(-y_delta(t)) G_nu(y_delta(t)).
+```
+
+Indeed, every nonsplit `y` has exactly two preimages `t` and `-t`, giving
+the coefficient `1-chi_2((y-2)(y+1))=2`; `t=0` contributes
+`eta(1)G_nu(-1)=0`; the projective point at infinity supplies the branch
+term `eta(-2)G_nu(2)`; and any finite preimage of `y=0` contributes zero
+through the outer Mellin character.
+
+This twisted-line model is the nonsplit analogue of the finite
+`lambda`-pullback.  It does not split the quadratic `v`-fiber over `F_p`;
+instead it packages the nonsplit projection as a rational-line Mellin
+transform of the same trace family `G_nu`.  Its geometric conductor
+checklist is the pullback of
+
+```text
+y=0,        y=-1,        y=2,        y=3,        y=infinity,
+```
+
+namely
+
+```text
+t=0,        t=infinity,        t^2=-delta/2,
+t^2=4delta,        t^2=delta.
+```
+
+The `t^2=4delta` and `t^2=delta` pairs have no `F_p`-points for nonsquare
+`delta`, but they remain geometric support points for a conductor proof.
+This is the precise nonsplit target left by the projector criterion.
+
 ## Open-Set Line Correction
 
 For the actual two-coordinate open sum, the principal coordinate line
