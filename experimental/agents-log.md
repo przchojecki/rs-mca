@@ -29,6 +29,23 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-19 - M1 collapsed inner pointwise bound
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/m1_depth_two_line_conic_resonance_reduction.md`,
+  `experimental/verify_m1_depth_two_line_conic_resonance_reduction.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** Proves the collapsed inner trace satisfies
+  `|H_nu(z)+1| <= 2sqrt(p)` for `z notin {0,-8}`, with special values
+  `H_nu(0)=-1` and `|H_nu(-8)| <= sqrt(p)+1`.
+- **How it is useful:** Supplies the local conductor ceiling for the final
+  collapsed one-variable M1 transform and confirms that no pointwise inner
+  trace spike remains after the diagonal collapse.
+- **What to do next:** Prove cancellation between this bounded inner trace and
+  the square-class restricted outer Kummer twist.
+
 ### 2026-06-19 - M1 collapsed finite singular cancellation
 
 - **Agent/model:** Codex.

@@ -1196,7 +1196,7 @@ def quotient_line_collapsed_inner_trace(
 def verify_quotient_line_collapsed_inner_spectrum(
     p: int,
     table: List[List[complex]],
-) -> Tuple[int, float, float, float, float, float, int, int, int]:
+) -> Tuple[int, float, float, float, float, float, float, int, int, int]:
     order = p - 1
     quadratic_exponent = order // 2
     quadratic = table[quadratic_exponent]
@@ -1206,6 +1206,7 @@ def verify_quotient_line_collapsed_inner_spectrum(
     max_moment_error = 0.0
     max_special_error = 0.0
     max_special_ratio = 0.0
+    max_regular_full_ratio = 0.0
     total_p_size = 0
     total_sqrt_size = 0
     total_unit_size = 0
@@ -1245,6 +1246,24 @@ def verify_quotient_line_collapsed_inner_spectrum(
                     expected_special_value,
                 )
             )
+        for z_value in range(1, p):
+            if z_value == (-8) % p:
+                continue
+            regular_full_trace = inner_values[z_value] + 1
+            max_regular_full_ratio = max(
+                max_regular_full_ratio,
+                abs(regular_full_trace) / (2 * math.sqrt(p)),
+            )
+            if abs(regular_full_trace) > 2 * math.sqrt(p) + TOLERANCE:
+                raise AssertionError(
+                    (
+                        p,
+                        nu_exponent,
+                        z_value,
+                        "collapsed_inner_regular_bound",
+                        regular_full_trace,
+                    )
+                )
         second_moment = sum(abs(inner_values[z_value]) ** 2 for z_value in range(1, p))
         nu_minus_one_value = nu[(-1) % p]
         if abs(nu_minus_one_value.imag) > TOLERANCE:
@@ -1338,6 +1357,7 @@ def verify_quotient_line_collapsed_inner_spectrum(
         max_moment_error,
         max_special_error,
         max_special_ratio,
+        max_regular_full_ratio,
         total_p_size,
         total_sqrt_size,
         total_unit_size,
@@ -2555,7 +2575,7 @@ def main() -> None:
         Tuple[int, int, float, int, int, int]
     ] = []
     collapsed_inner_spectrum_checked: List[
-        Tuple[int, int, float, float, float, float, float, int, int, int]
+        Tuple[int, int, float, float, float, float, float, float, int, int, int]
     ] = []
     twisted_line_kernel_moment_checked: List[Tuple[int, int, float, float]] = []
     twisted_line_fiber_checked = 0
@@ -2672,6 +2692,7 @@ def main() -> None:
                 max_collapsed_inner_moment_error,
                 max_collapsed_inner_special_error,
                 max_collapsed_inner_special_ratio,
+                max_collapsed_inner_regular_ratio,
                 inner_p_size_count,
                 inner_sqrt_size_count,
                 inner_unit_size_count,
@@ -2685,6 +2706,7 @@ def main() -> None:
                     round(max_collapsed_inner_moment_error, 12),
                     round(max_collapsed_inner_special_error, 12),
                     round(max_collapsed_inner_special_ratio, 10),
+                    round(max_collapsed_inner_regular_ratio, 10),
                     inner_p_size_count,
                     inner_sqrt_size_count,
                     inner_unit_size_count,

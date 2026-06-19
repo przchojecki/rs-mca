@@ -1382,6 +1382,49 @@ remaining M1 work is not to make `H_nu` small termwise; it is to exploit
 cancellation when this explicit trace is multiplied by the square-class
 restricted outer Kummer twist in the collapsed diagonal transform.
 
+## Collapsed Inner Pointwise Bound
+
+The inner trace also has a uniform conductor bound.  Put
+
+```text
+L_nu(z)=H_nu(z)+1
+      = sum_{y in F_p} nu(1-y)chi_2(1+z y^2/8).
+```
+
+For `z notin {0,-8}`, this is a genus-zero Kummer sum on `P^1_y` with
+finite support at
+
+```text
+y=1,        1+z y^2/8=0,
+```
+
+and with infinity as the remaining support point.  The two quadratic roots
+are geometrically distinct and do not collide with `y=1` precisely away from
+`z=-8`.  Since `nu` is nonprincipal, the local monodromy at `y=1` is
+nontrivial, so the sheaf is not geometrically constant.  The standard
+four-point genus-zero bound gives
+
+```text
+|L_nu(z)| <= 2sqrt(p),        z notin {0,-8},
+```
+
+and hence
+
+```text
+|H_nu(z)| <= 2sqrt(p)+1,      z notin {0,-8}.
+```
+
+At the two excluded values, the special formulas above give
+
+```text
+H_nu(0)=-1,        |H_nu(-8)| <= sqrt(p)+1.
+```
+
+Thus the collapsed inner trace has no pointwise spike beyond its expected
+four-point conductor.  This supplies the local ceiling for the final
+one-variable transform; the desired p-scale bound still requires
+cancellation against the outer Kummer twist.
+
 ## Finite Singular Cancellation
 
 The collapsed one-variable main term has no finite singular contribution.
