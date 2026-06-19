@@ -29,6 +29,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-19 - M1 line-conic spectral energy ledger
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/m1_depth_two_line_conic_resonance_reduction.md`,
+  `experimental/verify_m1_depth_two_line_conic_resonance_reduction.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** Computes exact Parseval energies for the nonsplit
+  spectral normal form:
+  `sum|A|^2=2(p-1)(p-2+chi_2(-2))` and
+  `sum|M|^2=(p-1)(p^2-2p-1-p nu(-1))`.
+- **How it is useful:** Quantifies the best separate-spectrum Cauchy fallback
+  as `O(p^{3/2})`, proving that the desired p-scale nonsplit result requires
+  cancellation in the correlation across the Mellin parameter.
+- **What to do next:** Analyze that spectral correlation directly rather than
+  only bounding the two spectra separately.
+
 ### 2026-06-19 - M1 line-conic nonsplit spectral normal form
 
 - **Agent/model:** Codex.

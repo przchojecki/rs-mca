@@ -967,6 +967,46 @@ pair of three-point Kummer coefficients supported at
 `p^{3/2}`-scale fallback, so the desired `p`-scale nonsplit projector theorem
 has been localized to cancellation across the Mellin parameter `theta`.
 
+## Spectral Energy Ledger
+
+The spectral normal form has exact energy identities.  By Parseval on
+`F_p^*` and the quotient-line moment above,
+
+```text
+sum_theta |M_nu(theta)|^2
+  = (p-1)(p^2 - 2p - 1 - p nu(-1)).
+```
+
+The outer side is also exact.  The finite values of the outer summand have
+magnitude `2` precisely when `s` is a nonzero square and
+`2s+delta != 0`; they vanish at `s=0`, at nonsquares, and at
+`s=-delta/2` if that point is a square.  Since `delta` is nonsquare,
+`-delta/2` is square exactly when `chi_2(-2)=-1`.  Therefore
+
+```text
+sum_s |(1+chi_2(s)) eta(-(2s+delta)/(s-delta))nu(s/(s-delta))|^2
+  = 2(p-2+chi_2(-2)),
+```
+
+and Parseval gives
+
+```text
+sum_theta |A_{eta,nu}(theta)|^2
+  = 2(p-1)(p-2+chi_2(-2)).
+```
+
+Consequently the exact Cauchy fallback from the spectral normal form is
+
+```text
+|1/(p-1) sum_theta A_{eta,nu}(theta^(-1))M_nu(theta)|
+  <= sqrt(2(p-2+chi_2(-2))(p^2 - 2p - 1 - p nu(-1))).
+```
+
+This is a theorem-grade `O(p^{3/2})` bound, not the desired `O(p)` bound.
+Thus separate control of the outer and kernel spectra is not enough.  The
+remaining nonsplit problem is now sharply phrased as cancellation in their
+correlation across `theta`.
+
 ## Twisted-Line Kernel Moment
 
 The translated kernel has no hidden large average.  For every nonprincipal

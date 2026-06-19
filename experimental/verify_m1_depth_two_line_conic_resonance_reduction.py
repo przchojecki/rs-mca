@@ -1003,7 +1003,7 @@ def verify_quotient_line_spectral_normal_form(
     eta_exponent: int,
     nu_exponent: int,
     table: List[List[complex]],
-) -> Tuple[int, float, float, float]:
+) -> Tuple[int, float, float, float, float, float]:
     delta = least_nonsquare(p)
     order = p - 1
     eta = table[eta_exponent]
@@ -1026,6 +1026,8 @@ def verify_quotient_line_spectral_normal_form(
     checked = 0
     max_outer_decomposition_error = 0.0
     max_outer_ratio = 0.0
+    outer_energy = 0.0
+    kernel_energy = 0.0
     for theta_exponent, theta in enumerate(table):
         outer_mellin = sum(
             theta[s_value] * outer_values[s_value]
@@ -1078,8 +1080,44 @@ def verify_quotient_line_spectral_normal_form(
             theta[s_value] * kernel_values[s_value]
             for s_value in range(p)
         )
+        outer_energy += abs(outer_mellin) ** 2
+        kernel_energy += abs(kernel_mellin) ** 2
         spectral_pairing += outer_inverse_mellin * kernel_mellin
         checked += 1
+    nu_minus_one_value = nu[(-1) % p]
+    if abs(nu_minus_one_value.imag) > TOLERANCE:
+        raise AssertionError((p, nu_exponent, "spectral_nu_minus_one_not_real"))
+    nu_minus_one = int(round(nu_minus_one_value.real))
+    if nu_minus_one not in {-1, 1}:
+        raise AssertionError((p, nu_exponent, "spectral_nu_minus_one_not_sign"))
+    expected_outer_energy = 2 * (p - 1) * (p - 2 + legendre(-2, p))
+    expected_kernel_energy = (p - 1) * (
+        p * p - 2 * p - 1 - p * nu_minus_one
+    )
+    outer_energy_error = abs(outer_energy - expected_outer_energy)
+    kernel_energy_error = abs(kernel_energy - expected_kernel_energy)
+    if outer_energy_error > TOLERANCE:
+        raise AssertionError(
+            (
+                p,
+                eta_exponent,
+                nu_exponent,
+                "outer_spectral_energy",
+                outer_energy,
+                expected_outer_energy,
+            )
+        )
+    if kernel_energy_error > 100 * TOLERANCE:
+        raise AssertionError(
+            (
+                p,
+                eta_exponent,
+                nu_exponent,
+                "kernel_spectral_energy",
+                kernel_energy,
+                expected_kernel_energy,
+            )
+        )
     reconstructed_pairing = spectral_pairing / order
     assert_close(
         (p, eta_exponent, nu_exponent, "quotient_spectral_pairing"),
@@ -1100,6 +1138,8 @@ def verify_quotient_line_spectral_normal_form(
         max_outer_decomposition_error,
         abs(reconstructed_pairing - direct_pairing),
         max_outer_ratio,
+        max(outer_energy_error, kernel_energy_error),
+        math.sqrt(expected_outer_energy * expected_kernel_energy) / ((p - 1) * p),
     )
 
 
@@ -1569,6 +1609,8 @@ def main() -> None:
     max_quotient_spectral_difference = 0.0
     max_outer_mellin_decomposition_error = 0.0
     max_outer_mellin_ratio = 0.0
+    max_spectral_energy_error = 0.0
+    max_spectral_cauchy_ratio = 0.0
     max_core_ratio = 0.0
     max_open_ratio = 0.0
     max_line_ratio = 0.0
@@ -1734,6 +1776,8 @@ def main() -> None:
             outer_decomposition_error,
             quotient_spectral_difference,
             outer_mellin_ratio,
+            spectral_energy_error,
+            spectral_cauchy_ratio,
         ) = verify_quotient_line_spectral_normal_form(
             p,
             eta_exponent,
@@ -1839,6 +1883,14 @@ def main() -> None:
             max_outer_mellin_ratio,
             outer_mellin_ratio,
         )
+        max_spectral_energy_error = max(
+            max_spectral_energy_error,
+            spectral_energy_error,
+        )
+        max_spectral_cauchy_ratio = max(
+            max_spectral_cauchy_ratio,
+            spectral_cauchy_ratio,
+        )
         split_projection_ratio = abs(split_projection) / p
         nonsplit_projection_ratio = abs(nonsplit_projection) / p
         nonsplit_singular_ratio = abs(singular_nonsplit)
@@ -1895,6 +1947,8 @@ def main() -> None:
         f"max_outer_mellin_decomposition_error="
         f"{max_outer_mellin_decomposition_error:.3e}",
         f"max_outer_mellin_ratio={max_outer_mellin_ratio:.10f}",
+        f"max_spectral_energy_error={max_spectral_energy_error:.3e}",
+        f"max_spectral_cauchy_ratio={max_spectral_cauchy_ratio:.10f}",
         f"max_core_ratio={max_core_ratio:.10f}@{max_core_label}",
         f"max_open_ratio={max_open_ratio:.10f}@{max_open_label}",
         f"max_line_ratio={max_line_ratio:.10f}@{max_line_label}",
