@@ -128,6 +128,11 @@ should be revised as the project learns more.
    term into the spectral square
    `(p-1)sum_{psi != 1, psi^e=1}|sum_a chi((a-3)(a+1))psi(a)|^2`, giving
    the uniform conductor bound `0 <= I_e <= 4(e-1)p(p-1)` for `p > 3`.
+   The source/target line pair now splits as
+   `source line = target line + overlap`; the overlap is another positive
+   spectral square over `z -> (B(z)/z,1+z)` and satisfies
+   `0 <= O_e <= 9(e-1)^2p`.  Thus the boundary wall is reduced to one
+   source/target-exclusive line term plus already squared pieces.
    The updated remaining-wall scan reports this asymmetric wall separately:
    in the current report grid the largest asymmetric ratio is
    `3.2173609608p`, while every near-`4p` top row lies in the projective

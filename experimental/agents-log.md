@@ -29,6 +29,26 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-19 - M1 line-pair overlap spectral square
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/m1_depth_two_line_conic_resonance_reduction.md`,
+  `experimental/verify_m1_depth_two_line_conic_resonance_reduction.py`,
+  `experimental/m1_residue_line_roadmap.md`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** Splits the surviving source/target line boundary
+  terms by the source-target involution: source line equals target line plus
+  their overlap.  The overlap is the positive spectral square
+  `sum_{psi,phi != 1}|sum_{z in D}psi(B(z)/z)phi(1+z)|^2`, hence
+  `0 <= O_e <= 9(e-1)^2p` by a rank-one Kummer bound for `p > 3`.
+- **How it is useful:** Removes the line-pair intersection from the remaining
+  M1 boundary wall and leaves only one source/target-exclusive line term to
+  control after the already-squared infinity and overlap pieces.
+- **What to do next:** Reduce or bound the single source/target-exclusive
+  line term.
+
 ### 2026-06-19 - M1 infinity boundary spectral square
 
 - **Agent/model:** Codex.

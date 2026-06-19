@@ -2880,6 +2880,59 @@ depth-independent conductor bound.  The verifier checks the `F`-fiber count,
 the centered energy identity, the spectral-square formula, and the audited
 `2sqrt(p)` ceiling on the existing ratio-surface grid.
 
+The source and target line deletions also have a structural split.  The
+ordered boundary partition assigns the intersection of the two deleted lines
+to the source-line piece.  If this overlap is removed, the source-exclusive
+and target-exclusive pieces are identical: swap the source point
+`(u,v)` with the target point `(ru,beta v)`.  The parameters become
+`r^{-1}`, `beta^{-1}`, and `alpha^{-1}`, and the weight is unchanged because
+`W_e(z^{-1})=W_e(z)`.  Thus
+
+```text
+source line = target line + overlap.
+```
+
+The overlap itself is explicit.  Put both source and target points on the
+deleted line, so `v=-1-u` and `beta v=-1-ru`.  With `x=ru`,
+`H(z)=1+z`, and the same `F(z)=B(z)/z` as above, the conic equation gives
+
+```text
+alpha = F(x)/F(u),        beta = H(x)/H(u).
+```
+
+The overlap is therefore
+
+```text
+O_e =
+  sum_{x,u in D} W_e(F(x)/F(u)) W_e(H(x)/H(u)),
+
+D = { z in F_p^* : z != -1, B(z) != 0 }.
+```
+
+Expanding both quotient weights gives a second positive spectral square:
+
+```text
+O_e =
+  sum_{psi,phi != 1, psi^e=phi^e=1}
+    | sum_{z in D} psi(F(z)) phi(H(z)) |^2.
+```
+
+For `p > 3`, the branch points of `psi(F(z))phi(H(z))` lie among
+`0`, `-1`, the two roots of `B`, and `infinity`.  Since both characters are
+nontrivial, the divisor is not an `e`-th power, so the standard rank-one
+Kummer bound gives
+
+```text
+|sum_{z in D} psi(F(z)) phi(H(z))| <= 3sqrt(p),
+0 <= O_e <= 9(e-1)^2 p.
+```
+
+Thus the only line-deletion term not yet converted into a positive spectral
+square is one source/target-exclusive line piece.  The verifier checks the
+source-target involution numerically (`source-exclusive = target-line`), the
+overlap formula, the overlap spectral-square identity, and the audited
+`3sqrt(p)` ceiling.
+
 ## Principal-Row Leakage
 
 The principal rows excluded above have exact formulas.  They explain why the

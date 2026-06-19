@@ -4117,6 +4117,103 @@ def weighted_source_line_formula_sum(
     return total
 
 
+def weighted_source_line_split_formula_sums(
+    p: int,
+    suborder: int,
+    logs: Dict[int, int],
+) -> Tuple[int, int]:
+    exclusive = 0
+    overlap = 0
+    for beta in range(1, p):
+        for ratio in range(1, p):
+            for u in range(1, p):
+                v = (-1 - u) % p
+                if v == 0:
+                    continue
+                numerator = (
+                    ratio * ratio * u * u
+                    + ratio * (beta * v + 1) * u
+                    + shape_b(beta * v % p, p)
+                )
+                denominator = ratio * shape_b(u, p)
+                value = add_solved_alpha_weight(
+                    p,
+                    suborder,
+                    logs,
+                    beta,
+                    numerator,
+                    denominator,
+                )
+                if (-1 - ratio * u - beta * v) % p == 0:
+                    overlap += value
+                else:
+                    exclusive += value
+    return exclusive, overlap
+
+
+def line_pair_overlap_domain(p: int) -> List[Tuple[int, int]]:
+    domain = []
+    for value in range(1, p):
+        if (1 + value) % p == 0:
+            continue
+        if shape_b(value, p) == 0:
+            continue
+        domain.append((infinity_shape_ratio(p, value), (1 + value) % p))
+    return domain
+
+
+def weighted_line_pair_overlap_energy_sum(
+    p: int,
+    suborder: int,
+    logs: Dict[int, int],
+) -> int:
+    domain = line_pair_overlap_domain(p)
+    total = 0
+    for target_f, target_h in domain:
+        for source_f, source_h in domain:
+            total += (
+                quotient_centering_weight(
+                    p,
+                    suborder,
+                    logs,
+                    target_f * pow(source_f, -1, p),
+                )
+                * quotient_centering_weight(
+                    p,
+                    suborder,
+                    logs,
+                    target_h * pow(source_h, -1, p),
+                )
+            )
+    return total
+
+
+def weighted_line_pair_overlap_spectral_audit(
+    p: int,
+    suborder: int,
+    logs: Dict[int, int],
+) -> Tuple[int, float]:
+    total = 0.0
+    max_ratio = 0.0
+    root = cmath.exp(2j * math.pi / suborder)
+    for first_exponent in range(1, suborder):
+        for second_exponent in range(1, suborder):
+            character_sum = 0j
+            for first_value, second_value in line_pair_overlap_domain(p):
+                character_sum += root ** (
+                    first_exponent * logs[first_value]
+                    + second_exponent * logs[second_value]
+                )
+            total += abs(character_sum) ** 2
+            max_ratio = max(max_ratio, abs(character_sum) / math.sqrt(p))
+    expected = weighted_line_pair_overlap_energy_sum(p, suborder, logs)
+    if abs(total - expected) > 1000 * TOLERANCE:
+        raise AssertionError((p, suborder, total, expected))
+    if max_ratio > 3 + 1000 * TOLERANCE:
+        raise AssertionError((p, suborder, max_ratio))
+    return round(total), round(max_ratio, 10)
+
+
 def weighted_target_line_formula_sum(
     p: int,
     suborder: int,
@@ -4217,6 +4314,7 @@ def verify_weighted_projective_decomposition() -> List[
         int,
         int,
         Tuple[int, float],
+        Tuple[int, int, Tuple[int, float]],
     ]
 ]:
     checked: List[
@@ -4231,6 +4329,7 @@ def verify_weighted_projective_decomposition() -> List[
             int,
             int,
             Tuple[int, float],
+            Tuple[int, int, Tuple[int, float]],
         ]
     ] = []
     for p, suborder in RATIO_SURFACE_CASES:
@@ -4281,6 +4380,29 @@ def verify_weighted_projective_decomposition() -> List[
         )
         if (p - 1) * infinity_spectral[0] != infinity_reduced:
             raise AssertionError((p, suborder, infinity_spectral, infinity_reduced))
+        source_exclusive, line_overlap = weighted_source_line_split_formula_sums(
+            p,
+            suborder,
+            logs,
+        )
+        if source_exclusive + line_overlap != expected_survivors[1]:
+            raise AssertionError((p, suborder, source_exclusive, line_overlap))
+        if source_exclusive != expected_survivors[2]:
+            raise AssertionError((p, suborder, source_exclusive, expected_survivors))
+        overlap_energy = weighted_line_pair_overlap_energy_sum(
+            p,
+            suborder,
+            logs,
+        )
+        if overlap_energy != line_overlap:
+            raise AssertionError((p, suborder, overlap_energy, line_overlap))
+        overlap_spectral = weighted_line_pair_overlap_spectral_audit(
+            p,
+            suborder,
+            logs,
+        )
+        if overlap_spectral[0] != line_overlap:
+            raise AssertionError((p, suborder, overlap_spectral, line_overlap))
         if zero_conic_count != 1:
             raise AssertionError((p, suborder, zero_conic_count))
         if singular_count > 3 * (p - 1) * (p - 1):
@@ -4297,6 +4419,7 @@ def verify_weighted_projective_decomposition() -> List[
                 infinity_reduced,
                 infinity_energy,
                 infinity_spectral,
+                (source_exclusive, line_overlap, overlap_spectral),
             )
         )
     return checked
