@@ -779,6 +779,89 @@ def verify_twisted_line_deck_symmetry(
     )
 
 
+def quotient_line_kernel_trace(
+    p: int,
+    s_value: int,
+    delta: int,
+    nu: List[complex],
+) -> complex:
+    total = 0j
+    for r_value in range(p):
+        total += nu[(r_value - 1) % p] * legendre(
+            s_value * r_value * r_value - 4 * delta,
+            p,
+        )
+    return total
+
+
+def verify_quotient_line_kernel_trace(
+    p: int,
+    table: List[List[complex]],
+) -> Tuple[int, float]:
+    delta = least_nonsquare(p)
+    checked = 0
+    max_difference = 0.0
+    for nu_exponent in range(1, p - 1):
+        nu = table[nu_exponent]
+        for t in range(1, p):
+            s_value = t * t % p
+            actual = twisted_line_kernel_trace(p, t, delta, nu)
+            expected = nu[t] * quotient_line_kernel_trace(
+                p,
+                s_value,
+                delta,
+                nu,
+            )
+            assert_close(
+                (p, t, nu_exponent, "quotient_line_kernel_trace"),
+                actual,
+                expected,
+            )
+            max_difference = max(max_difference, abs(actual - expected))
+            checked += 1
+    return checked, max_difference
+
+
+def quotient_line_nonsplit_sum(
+    p: int,
+    eta: List[complex],
+    nu: List[complex],
+) -> complex:
+    delta = least_nonsquare(p)
+    total = eta[(-2) % p] * transformed_inner(p, 2 % p, nu)
+    for s_value in range(p):
+        if s_value == delta:
+            continue
+        projector_weight = 1 + legendre(s_value, p)
+        if projector_weight == 0:
+            continue
+        denominator = (s_value - delta) % p
+        y = (2 * s_value + delta) * pow(denominator, -1, p) % p
+        total += (
+            legendre(-3, p)
+            * projector_weight
+            * eta[(-y) % p]
+            * nu[s_value * pow(denominator, -1, p) % p]
+            * quotient_line_kernel_trace(p, s_value, delta, nu)
+        )
+    return total
+
+
+def verify_quotient_line_support(p: int) -> Tuple[int, int]:
+    delta = least_nonsquare(p)
+    support_points = {
+        0,
+        delta % p,
+        (-delta * pow(2, -1, p)) % p,
+        (4 * delta) % p,
+    }
+    if len(support_points) != 4:
+        raise AssertionError((p, delta, support_points, "quotient_support_collision"))
+    rational_finite_points = len(support_points)
+    geometric_projective_points = rational_finite_points + 1
+    return rational_finite_points, geometric_projective_points
+
+
 def verify_twisted_line_kernel_moments(
     p: int,
     table: List[List[complex]],
@@ -1241,6 +1324,7 @@ def main() -> None:
     max_pullback_difference = 0.0
     max_twisted_difference = 0.0
     max_twisted_line_difference = 0.0
+    max_quotient_line_difference = 0.0
     max_core_ratio = 0.0
     max_open_ratio = 0.0
     max_line_ratio = 0.0
@@ -1259,6 +1343,7 @@ def main() -> None:
     twisted_discriminant_checked: List[Tuple[int, int, int]] = []
     twisted_line_twist_checked: List[Tuple[int, int, int, int, int]] = []
     twisted_line_deck_checked: List[Tuple[int, int, float, float, float]] = []
+    quotient_line_checked: List[Tuple[int, int, float, int, int]] = []
     twisted_line_kernel_moment_checked: List[Tuple[int, int, float, float]] = []
     twisted_line_fiber_checked = 0
     split_hypergeometric_checked = 0
@@ -1308,6 +1393,21 @@ def main() -> None:
                     round(max_kernel_ratio, 10),
                 )
             )
+            quotient_kernel_count, quotient_kernel_difference = (
+                verify_quotient_line_kernel_trace(p, tables[p])
+            )
+            quotient_finite_points, quotient_projective_points = (
+                verify_quotient_line_support(p)
+            )
+            quotient_line_checked.append(
+                (
+                    p,
+                    quotient_kernel_count,
+                    round(quotient_kernel_difference, 12),
+                    quotient_finite_points,
+                    quotient_projective_points,
+                )
+            )
             (
                 kernel_moment_count,
                 max_kernel_first_moment,
@@ -1355,6 +1455,7 @@ def main() -> None:
         nonsplit_projection = nonsplit_projected_core(p, eta, nu)
         twisted_nonsplit = twisted_discriminant_nonsplit_sum(p, eta, nu)
         twisted_line_nonsplit = twisted_line_nonsplit_sum(p, eta, nu)
+        quotient_line_nonsplit = quotient_line_nonsplit_sum(p, eta, nu)
         assert_close(
             (p, eta_exponent, nu_exponent, "lambda_pullback_descent"),
             pulled_back,
@@ -1373,6 +1474,11 @@ def main() -> None:
         assert_close(
             (p, eta_exponent, nu_exponent, "twisted_line_nonsplit"),
             twisted_line_nonsplit,
+            nonsplit_projection,
+        )
+        assert_close(
+            (p, eta_exponent, nu_exponent, "quotient_line_nonsplit"),
+            quotient_line_nonsplit,
             nonsplit_projection,
         )
         g_at_three = transformed_inner(p, 3 % p, nu)
@@ -1432,6 +1538,10 @@ def main() -> None:
             max_twisted_line_difference,
             abs(twisted_line_nonsplit - nonsplit_projection),
         )
+        max_quotient_line_difference = max(
+            max_quotient_line_difference,
+            abs(quotient_line_nonsplit - nonsplit_projection),
+        )
         split_projection_ratio = abs(split_projection) / p
         nonsplit_projection_ratio = abs(nonsplit_projection) / p
         nonsplit_singular_ratio = abs(singular_nonsplit)
@@ -1482,6 +1592,7 @@ def main() -> None:
         f"max_pullback_difference={max_pullback_difference:.3e}",
         f"max_twisted_difference={max_twisted_difference:.3e}",
         f"max_twisted_line_difference={max_twisted_line_difference:.3e}",
+        f"max_quotient_line_difference={max_quotient_line_difference:.3e}",
         f"max_core_ratio={max_core_ratio:.10f}@{max_core_label}",
         f"max_open_ratio={max_open_ratio:.10f}@{max_open_label}",
         f"max_line_ratio={max_line_ratio:.10f}@{max_line_label}",
@@ -1497,6 +1608,7 @@ def main() -> None:
         f"twisted_discriminant_checked={twisted_discriminant_checked}",
         f"twisted_line_twist_checked={twisted_line_twist_checked}",
         f"twisted_line_deck_checked={twisted_line_deck_checked}",
+        f"quotient_line_checked={quotient_line_checked}",
         f"twisted_line_kernel_moment_checked="
         f"{twisted_line_kernel_moment_checked}",
         f"twisted_line_fiber_checked={twisted_line_fiber_checked}",

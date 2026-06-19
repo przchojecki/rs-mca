@@ -29,6 +29,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-19 - M1 line-conic quotient-line descent
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/m1_depth_two_line_conic_resonance_reduction.md`,
+  `experimental/verify_m1_depth_two_line_conic_resonance_reduction.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** Descends the nonsplit twisted `t`-line through
+  `s=t^2`: `K(t)=nu(t)J(s)` for
+  `J(s)=sum_r nu(r-1)chi_2(sr^2-4delta)`, giving an exact quotient-line
+  formula for `C^-` with projector factor `1+chi_2(s)`.
+- **How it is useful:** Removes the auxiliary two-cover from the nonsplit
+  conductor target and leaves a single `s`-line trace with five projective
+  support points `{0, delta, -delta/2, 4delta, infinity}`.
+- **What to do next:** Prove the p-scale conductor bound for this descended
+  quotient-line trace.
+
 ### 2026-06-19 - M1 line-conic projector moments
 
 - **Agent/model:** Codex.

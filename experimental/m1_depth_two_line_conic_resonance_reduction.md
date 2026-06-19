@@ -775,6 +775,58 @@ not enough by itself to prove the `p`-scale estimate for `C^-`, but it
 identifies the exact rank-two local table whose outer Mellin transform must
 be bounded.
 
+## Quotient-Line Descent of the Nonsplit Projector
+
+The deck symmetry can be made completely explicit on the quotient
+coordinate
+
+```text
+s=t^2.
+```
+
+For `s in F_p`, define
+
+```text
+J_{nu,delta}(s) = sum_r nu(r-1) chi_2(s r^2 - 4delta).
+```
+
+If `t != 0` and `s=t^2`, then
+
+```text
+K_{nu,delta}(t) = nu(t) J_{nu,delta}(s),
+```
+
+by the substitution `x=tr`.  Consequently the nonsplit projector descends to
+
+```text
+C^-_{eta,nu}
+  = eta(-2)G_nu(2)
+    + chi_2(-3) sum_{s != delta}
+        (1+chi_2(s))
+        eta(-(2s+delta)/(s-delta))
+        nu(s/(s-delta))
+        J_{nu,delta}(s).
+```
+
+The factor `1+chi_2(s)` is exactly the number of finite `t` with `t^2=s`
+except at `s=0`; at `s=0` the additional factor `nu(s/(s-delta))=0`, so the
+formula is still correct.  The point `s=delta` is omitted only because the
+rational expression has a pole there; since `delta` is nonsquare, its
+projector factor would be zero.
+
+This is the quotient-line version of the nonsplit conductor target.  Its
+finite geometric checklist is now the rational five-point set
+
+```text
+s=0,        s=delta,        s=-delta/2,        s=4delta,        infinity.
+```
+
+Here `s=0`, `s=delta`, `s=-delta/2`, and infinity come from the outer
+Kummer/projector factors, while `s=4delta` is the collision of `r=1` with a
+branch point of `s r^2-4delta` inside `J`.  Thus the twisted nonsplit
+projector has been reduced from a two-variable sum to a single quotient-line
+trace with a five-point conductor ledger.
+
 ## Twisted-Line Kernel Moment
 
 The translated kernel has no hidden large average.  For every nonprincipal
