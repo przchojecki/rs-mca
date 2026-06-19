@@ -29,6 +29,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-19 - M1 line-conic delta-free paired correlation
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/m1_depth_two_line_conic_resonance_reduction.md`,
+  `experimental/verify_m1_depth_two_line_conic_resonance_reduction.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** Folds the generic Mellin obstruction by the
+  quadratic shift `theta -> theta chi_2` and proves that the paired summand
+  `A(theta^(-1))(omega(theta)+omega(theta chi_2))` has a delta-free fixed
+  formula involving the `{0,1,-2,infinity}` outer Kummer table and a paired
+  Jacobi difference.
+- **How it is useful:** Removes the nonsquare parameter from the remaining
+  generic M1 correlation problem, showing that the nonsplit model choice is
+  not a source of per-rung theta-phase loss.
+- **What to do next:** Attack cancellation in the resulting fixed
+  theta-correlation table, or identify a diagonal obstruction in that table.
+
 ### 2026-06-19 - M1 line-conic outer Kummer normal form
 
 - **Agent/model:** Codex.

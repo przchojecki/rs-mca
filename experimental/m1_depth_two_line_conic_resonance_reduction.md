@@ -1115,6 +1115,74 @@ whose individual terms have size at most `4sqrt(p)`.  No further saving can
 come from kernel magnitude on this generic set: the kernel contributes only a
 unit phase after the factor `p` is extracted.
 
+## Delta-Free Quadratic-Pair Correlation
+
+The generic phase sum has one more exact normalization.  The generic set is
+stable under `theta -> theta chi_2`, and the outer coefficient is invariant
+under this shift:
+
+```text
+A_{eta,nu}(theta chi_2) = A_{eta,nu}(theta).
+```
+
+Indeed, the outer summand contains the square-projector factor
+`1+chi_2(s)`, and `(1+chi_2(s))chi_2(s)=1+chi_2(s)` on `F_p^*`.  Therefore,
+for any representative set `R_nu` of `G_nu/{1,chi_2}`,
+
+```text
+sum_{theta in G_nu} A(theta^(-1))omega_nu(theta)
+  = sum_{theta in R_nu}
+      A(theta^(-1))(omega_nu(theta)+omega_nu(theta chi_2)).
+```
+
+This folded summand is independent of the nonsquare parameter.  Put
+
+```text
+c=4delta,        q=-delta/2,        gamma=(eta nu)^(-1),
+S_alpha=sum_z alpha(z) eta(1-z) gamma(z+2).
+```
+
+The fixed-support form gives
+
+```text
+A(theta^(-1))
+  = eta(2)theta(q)^(-1)
+      (S_{theta^(-1)nu} - chi_2(-2)S_{theta^(-1)nu chi_2}).
+```
+
+On the generic set the kernel formula gives
+
+```text
+omega_nu(theta)+omega_nu(theta chi_2)
+  = chi_2(-c)nu(-1)theta(c)J(theta^(-2),nu)
+      (J(theta,chi_2)-J(theta chi_2,chi_2))/p,
+```
+
+because `chi_2(c)=-1`.  Multiplying the two identities cancels the
+`delta`-dependent theta factor:
+
+```text
+A(theta^(-1))(omega_nu(theta)+omega_nu(theta chi_2))
+  = -chi_2(-1)eta(2)nu(-1)theta(-8)
+      (S_{theta^(-1)nu} - chi_2(-2)S_{theta^(-1)nu chi_2})
+      J(theta^(-2),nu)
+      (J(theta,chi_2)-J(theta chi_2,chi_2))/p.
+```
+
+Thus the whole generic obstruction is a fixed character-correlation table in
+`theta`: the outer support is `{0,1,-2,infinity}`, the kernel is the
+quadratic-paired Jacobi difference above, and no nonsquare `delta` remains in
+the paired summand.  Also
+
+```text
+J(theta,chi_2)J(theta chi_2,chi_2)=chi_2(-1)p
+```
+
+for generic `theta`, so the paired kernel factor has absolute value at most
+`2`.  This does not yet prove the required `p`-scale bound, but it removes a
+spurious nonsquare-parameter degree of freedom from the remaining
+correlation problem.
+
 ## Spectral Energy Ledger
 
 The spectral normal form has exact energy identities.  By Parseval on

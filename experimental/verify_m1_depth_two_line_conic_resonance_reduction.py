@@ -1093,12 +1093,34 @@ def verify_quotient_line_spectral_normal_form(
     eta_exponent: int,
     nu_exponent: int,
     table: List[List[complex]],
-) -> Tuple[int, float, float, float, float, float, float, float, int, float, float, int]:
+) -> Tuple[
+    int,
+    float,
+    float,
+    float,
+    float,
+    float,
+    float,
+    float,
+    int,
+    float,
+    float,
+    int,
+    float,
+    float,
+    float,
+    float,
+    float,
+    int,
+]:
     delta = least_nonsquare(p)
     order = p - 1
     eta = table[eta_exponent]
     nu = table[nu_exponent]
     quadratic_exponent = order // 2
+    quadratic = table[quadratic_exponent]
+    c_value = 4 * delta % p
+    chi_minus_c = legendre(-c_value, p)
     gamma = table[(-eta_exponent - nu_exponent) % order]
     outer_values = [
         quotient_line_outer_twist_value(p, s_value, delta, eta, nu)
@@ -1121,10 +1143,19 @@ def verify_quotient_line_spectral_normal_form(
     checked = 0
     max_outer_decomposition_error = 0.0
     max_outer_standard_error = 0.0
+    max_outer_quadratic_shift_error = 0.0
+    max_kernel_pair_phase_error = 0.0
+    max_delta_free_pair_error = 0.0
+    max_pair_jacobi_product_error = 0.0
+    max_paired_phase_ratio = 0.0
+    paired_generic_count = 0
     max_outer_piece_ratio = 0.0
     max_outer_ratio = 0.0
     outer_energy = 0.0
     kernel_energy = 0.0
+    outer_inverse_mellins: List[complex] = []
+    kernel_mellins: List[complex] = []
+    generic_flags: List[bool] = []
     for theta_exponent, theta in enumerate(table):
         outer_mellin = sum(
             theta[s_value] * outer_values[s_value]
@@ -1225,11 +1256,14 @@ def verify_quotient_line_spectral_normal_form(
             theta[s_value] * kernel_values[s_value]
             for s_value in range(p)
         )
+        outer_inverse_mellins.append(outer_inverse_mellin)
+        kernel_mellins.append(kernel_mellin)
         is_exceptional = (
             theta_exponent == 0
             or theta_exponent == quadratic_exponent
             or (2 * theta_exponent - nu_exponent) % order == 0
         )
+        generic_flags.append(not is_exceptional)
         if is_exceptional:
             exceptional_pairing += outer_inverse_mellin * kernel_mellin
             exceptional_count += 1
@@ -1333,6 +1367,177 @@ def verify_quotient_line_spectral_normal_form(
         )
     reconstructed_pairing = spectral_pairing / order
     generic_pairing = p * generic_phase_sum / order
+    paired_generic_phase_sum = 0j
+    scale_point = (-delta * pow(2, -1, p)) % p
+    pair_constant = -legendre(-1, p) * eta[2 % p] * nu[(-1) % p]
+    for theta_exponent, theta in enumerate(table):
+        partner_exponent = (theta_exponent + quadratic_exponent) % order
+        if theta_exponent > partner_exponent:
+            continue
+        if not generic_flags[theta_exponent]:
+            continue
+        if not generic_flags[partner_exponent]:
+            raise AssertionError(
+                (p, nu_exponent, theta_exponent, "generic_pair_stability")
+            )
+        outer_shift_error = abs(
+            outer_inverse_mellins[theta_exponent]
+            - outer_inverse_mellins[partner_exponent]
+        )
+        max_outer_quadratic_shift_error = max(
+            max_outer_quadratic_shift_error,
+            outer_shift_error,
+        )
+        if outer_shift_error > TOLERANCE:
+            raise AssertionError(
+                (
+                    p,
+                    eta_exponent,
+                    nu_exponent,
+                    theta_exponent,
+                    "outer_quadratic_shift",
+                    outer_inverse_mellins[theta_exponent],
+                    outer_inverse_mellins[partner_exponent],
+                )
+            )
+        paired_phase = (
+            kernel_mellins[theta_exponent]
+            + kernel_mellins[partner_exponent]
+        ) / p
+        theta_inverse_square = table[(-2 * theta_exponent) % order]
+        theta_chi = table[partner_exponent]
+        first_jacobi = jacobi_sum(p, theta, quadratic)
+        shifted_jacobi = jacobi_sum(p, theta_chi, quadratic)
+        square_jacobi = jacobi_sum(p, theta_inverse_square, nu)
+        expected_paired_phase = (
+            chi_minus_c
+            * nu[(-1) % p]
+            * theta[c_value]
+            * square_jacobi
+            * (first_jacobi + quadratic[c_value] * shifted_jacobi)
+            / p
+        )
+        pair_phase_error = abs(paired_phase - expected_paired_phase)
+        max_kernel_pair_phase_error = max(
+            max_kernel_pair_phase_error,
+            pair_phase_error,
+        )
+        if pair_phase_error > TOLERANCE:
+            raise AssertionError(
+                (
+                    p,
+                    nu_exponent,
+                    theta_exponent,
+                    "paired_kernel_phase_formula",
+                    paired_phase,
+                    expected_paired_phase,
+                )
+            )
+        jacobi_product_error = abs(
+            first_jacobi * shifted_jacobi - legendre(-1, p) * p
+        )
+        max_pair_jacobi_product_error = max(
+            max_pair_jacobi_product_error,
+            jacobi_product_error,
+        )
+        if jacobi_product_error > TOLERANCE:
+            raise AssertionError(
+                (
+                    p,
+                    nu_exponent,
+                    theta_exponent,
+                    "quadratic_jacobi_pair_product",
+                    first_jacobi * shifted_jacobi,
+                    legendre(-1, p) * p,
+                )
+            )
+        alpha_plain = table[(-theta_exponent + nu_exponent) % order]
+        alpha_quadratic = table[
+            (-theta_exponent + nu_exponent + quadratic_exponent) % order
+        ]
+        standard_plain = quotient_line_outer_standard_piece(
+            p,
+            alpha_plain,
+            eta,
+            gamma,
+        )
+        standard_quadratic = quotient_line_outer_standard_piece(
+            p,
+            alpha_quadratic,
+            eta,
+            gamma,
+        )
+        expected_outer_inverse = (
+            eta[2 % p]
+            * theta[scale_point].conjugate()
+            * (
+                standard_plain
+                - legendre(-2, p) * standard_quadratic
+            )
+        )
+        outer_delta_free_error = abs(
+            outer_inverse_mellins[theta_exponent]
+            - expected_outer_inverse
+        )
+        if outer_delta_free_error > TOLERANCE:
+            raise AssertionError(
+                (
+                    p,
+                    eta_exponent,
+                    nu_exponent,
+                    theta_exponent,
+                    "outer_delta_free_form",
+                    outer_inverse_mellins[theta_exponent],
+                    expected_outer_inverse,
+                )
+            )
+        expected_pair_term = (
+            pair_constant
+            * theta[(-8) % p]
+            * (
+                standard_plain
+                - legendre(-2, p) * standard_quadratic
+            )
+            * square_jacobi
+            * (first_jacobi - shifted_jacobi)
+            / p
+        )
+        pair_term = outer_inverse_mellins[theta_exponent] * paired_phase
+        delta_free_error = abs(pair_term - expected_pair_term)
+        max_delta_free_pair_error = max(
+            max_delta_free_pair_error,
+            delta_free_error,
+        )
+        if delta_free_error > TOLERANCE:
+            raise AssertionError(
+                (
+                    p,
+                    eta_exponent,
+                    nu_exponent,
+                    theta_exponent,
+                    "delta_free_pair_term",
+                    pair_term,
+                    expected_pair_term,
+                )
+            )
+        max_paired_phase_ratio = max(max_paired_phase_ratio, abs(paired_phase))
+        if abs(paired_phase) > 2 + TOLERANCE:
+            raise AssertionError(
+                (
+                    p,
+                    nu_exponent,
+                    theta_exponent,
+                    "paired_kernel_phase_bound",
+                    abs(paired_phase),
+                )
+            )
+        paired_generic_phase_sum += pair_term
+        paired_generic_count += 1
+    assert_close(
+        (p, eta_exponent, nu_exponent, "paired_generic_phase_reconstruction"),
+        paired_generic_phase_sum,
+        generic_phase_sum,
+    )
     assert_close(
         (p, eta_exponent, nu_exponent, "generic_phase_reconstruction"),
         exceptional_contribution + generic_pairing,
@@ -1366,6 +1571,12 @@ def verify_quotient_line_spectral_normal_form(
         max_generic_phase_error,
         abs(generic_phase_sum) / p,
         generic_count,
+        max_outer_quadratic_shift_error,
+        max_kernel_pair_phase_error,
+        max_delta_free_pair_error,
+        max_pair_jacobi_product_error,
+        max_paired_phase_ratio,
+        paired_generic_count,
     )
 
 
@@ -1835,6 +2046,11 @@ def main() -> None:
     max_quotient_spectral_difference = 0.0
     max_outer_mellin_decomposition_error = 0.0
     max_outer_standard_error = 0.0
+    max_outer_quadratic_shift_error = 0.0
+    max_kernel_pair_phase_error = 0.0
+    max_delta_free_pair_error = 0.0
+    max_pair_jacobi_product_error = 0.0
+    max_paired_phase_ratio = 0.0
     max_outer_mellin_piece_ratio = 0.0
     max_outer_mellin_ratio = 0.0
     max_spectral_energy_error = 0.0
@@ -1844,6 +2060,7 @@ def main() -> None:
     max_generic_phase_sum_ratio = 0.0
     exceptional_theta_checked = 0
     generic_theta_checked = 0
+    paired_generic_theta_checked = 0
     max_core_ratio = 0.0
     max_open_ratio = 0.0
     max_line_ratio = 0.0
@@ -2038,6 +2255,12 @@ def main() -> None:
             generic_phase_error,
             generic_phase_sum_ratio,
             generic_theta_count,
+            outer_quadratic_shift_error,
+            kernel_pair_phase_error,
+            delta_free_pair_error,
+            pair_jacobi_product_error,
+            paired_phase_ratio,
+            paired_generic_count,
         ) = verify_quotient_line_spectral_normal_form(
             p,
             eta_exponent,
@@ -2047,6 +2270,7 @@ def main() -> None:
         quotient_spectral_checked += spectral_theta_count
         exceptional_theta_checked += exceptional_theta_count
         generic_theta_checked += generic_theta_count
+        paired_generic_theta_checked += paired_generic_count
         assert_close(
             (p, eta_exponent, nu_exponent, "lambda_pullback_descent"),
             pulled_back,
@@ -2145,6 +2369,26 @@ def main() -> None:
             max_outer_standard_error,
             outer_standard_error,
         )
+        max_outer_quadratic_shift_error = max(
+            max_outer_quadratic_shift_error,
+            outer_quadratic_shift_error,
+        )
+        max_kernel_pair_phase_error = max(
+            max_kernel_pair_phase_error,
+            kernel_pair_phase_error,
+        )
+        max_delta_free_pair_error = max(
+            max_delta_free_pair_error,
+            delta_free_pair_error,
+        )
+        max_pair_jacobi_product_error = max(
+            max_pair_jacobi_product_error,
+            pair_jacobi_product_error,
+        )
+        max_paired_phase_ratio = max(
+            max_paired_phase_ratio,
+            paired_phase_ratio,
+        )
         max_outer_mellin_ratio = max(
             max_outer_mellin_ratio,
             outer_mellin_ratio,
@@ -2229,6 +2473,13 @@ def main() -> None:
         f"max_outer_mellin_decomposition_error="
         f"{max_outer_mellin_decomposition_error:.3e}",
         f"max_outer_standard_error={max_outer_standard_error:.3e}",
+        f"max_outer_quadratic_shift_error="
+        f"{max_outer_quadratic_shift_error:.3e}",
+        f"max_kernel_pair_phase_error={max_kernel_pair_phase_error:.3e}",
+        f"max_delta_free_pair_error={max_delta_free_pair_error:.3e}",
+        f"max_pair_jacobi_product_error="
+        f"{max_pair_jacobi_product_error:.3e}",
+        f"max_paired_phase_ratio={max_paired_phase_ratio:.10f}",
         f"max_outer_mellin_piece_ratio={max_outer_mellin_piece_ratio:.10f}",
         f"max_outer_mellin_ratio={max_outer_mellin_ratio:.10f}",
         f"max_spectral_energy_error={max_spectral_energy_error:.3e}",
@@ -2261,6 +2512,7 @@ def main() -> None:
         f"quotient_spectral_checked={quotient_spectral_checked}",
         f"exceptional_theta_checked={exceptional_theta_checked}",
         f"generic_theta_checked={generic_theta_checked}",
+        f"paired_generic_theta_checked={paired_generic_theta_checked}",
         f"twisted_line_kernel_moment_checked="
         f"{twisted_line_kernel_moment_checked}",
         f"twisted_line_fiber_checked={twisted_line_fiber_checked}",
