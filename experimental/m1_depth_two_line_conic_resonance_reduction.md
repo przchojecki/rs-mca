@@ -3448,6 +3448,36 @@ This gives an exact pushforward form for the main-chart trace.  Put
 G = {(a,r): A_beta C_beta D_beta (a-r) K_alpha(a,r) != 0}.
 ```
 
+Equivalently, over `G`, the good beta cover is the standard square-root cover.
+Put
+
+```text
+y = 2A_beta beta + B_beta.
+```
+
+Then on the open good base, where `A_beta != 0`,
+
+```text
+y^2 = D_beta,              beta = (y-B_beta)/(2A_beta).
+```
+
+Thus the remaining good pushforward can be written without a general
+quadratic equation as
+
+```text
+G_{psi,phi}
+ = sum_{(a,r) in G}
+     psi(a) chi(rM) phi((2A_beta)^(-1))
+       sum_{y^2=D_beta(a,r)} phi(y-B_beta).
+```
+
+The deleted beta-zero boundary is exactly the excluded locus where
+`y-B_beta=0` on the square-root cover, and beta infinity is the excluded
+`A_beta=0` boundary.  The verifier checks the two-way bijection between
+affine beta roots and `y^2=D_beta` roots, the nonvanishing of
+`y-B_beta` on the good cover, and the normalized character-trace identity
+for the audited pushforward character pairs.
+
 For `(a,r) in G`, either the beta fiber is nonsplit over `F_p` and
 contributes no rational beta points, or it has two roots `beta_1,beta_2 in
 F_p^*`.  In the split case both roots lie in the main chart and have the

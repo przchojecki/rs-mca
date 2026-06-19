@@ -590,6 +590,11 @@ The elementary hypotheses behind this import are now audited in
   `(2A_beta beta+B_beta)^2=D_beta` at every beta root, so the projection
   `Y_G -> G` is finite etale of degree two; since `G` is an open subset of
   the torus, `Y_G` is smooth;
+- equivalently, with `y=2A_beta beta+B_beta`, the good cover is the standard
+  square-root cover `y^2=D_beta` and
+  `beta=(y-B_beta)/(2A_beta)`, so the trace can be written as the base twist
+  `psi(a)chi(rM)phi((2A_beta)^(-1))` times
+  `sum_{y^2=D_beta} phi(y-B_beta)`;
 - the deleted lower-chart and exceptional main-chart loci are curve-sized;
   more sharply, in centered rows the zero conic plus vertical beta tail costs
   at most `p`, the lower chart costs at most `5(p-1)`, and the nonvertical

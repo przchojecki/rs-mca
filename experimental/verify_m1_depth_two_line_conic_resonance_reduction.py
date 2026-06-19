@@ -4950,6 +4950,43 @@ def ratio_surface_beta_derivative(
     return (2 * quadratic * beta + linear) % p
 
 
+def ratio_surface_beta_normalized_y(
+    p: int,
+    alpha: int,
+    beta: int,
+    ratio: int,
+) -> int:
+    quadratic, linear, _ = ratio_surface_beta_coefficients(
+        p,
+        alpha,
+        ratio,
+    )
+    return (2 * quadratic * beta + linear) % p
+
+
+def ratio_surface_beta_from_normalized_y(
+    p: int,
+    alpha: int,
+    normalized_y: int,
+    ratio: int,
+) -> int:
+    quadratic, linear, _ = ratio_surface_beta_coefficients(
+        p,
+        alpha,
+        ratio,
+    )
+    return (normalized_y - linear) * pow(2 * quadratic, -1, p) % p
+
+
+def ratio_surface_beta_normalized_y_roots(
+    p: int,
+    alpha: int,
+    ratio: int,
+) -> List[int]:
+    discriminant = ratio_surface_beta_discriminant(p, alpha, ratio)
+    return [value for value in range(p) if value * value % p == discriminant]
+
+
 def ratio_surface_projective_beta_root_count(
     p: int,
     alpha: int,
@@ -5187,6 +5224,168 @@ def verify_ratio_surface_beta_etale_cover() -> List[Tuple[int, int, int, int, in
             )
         )
     return checked
+
+
+def verify_ratio_surface_beta_square_root_normalization() -> Tuple[
+    List[Tuple[int, int, int, int, int]],
+    List[Tuple[int, int, int, int, int, float]],
+]:
+    algebraic_checked: List[Tuple[int, int, int, int, int]] = []
+    for p in LOWER_CHART_PRIMES:
+        good_base_count = 0
+        split_base_count = 0
+        beta_to_y_checks = 0
+        y_to_beta_checks = 0
+        numerator_nonzero_checks = 0
+        for alpha in range(1, p):
+            for ratio in range(1, p):
+                if not ratio_surface_beta_pushforward_good(p, alpha, ratio):
+                    continue
+                good_base_count += 1
+                quadratic, linear, _ = ratio_surface_beta_coefficients(
+                    p,
+                    alpha,
+                    ratio,
+                )
+                discriminant = ratio_surface_beta_discriminant(
+                    p,
+                    alpha,
+                    ratio,
+                )
+                beta_roots = ratio_surface_affine_beta_roots(
+                    p,
+                    alpha,
+                    ratio,
+                )
+                y_roots = ratio_surface_beta_normalized_y_roots(
+                    p,
+                    alpha,
+                    ratio,
+                )
+                if legendre(discriminant, p) == -1:
+                    if beta_roots or y_roots:
+                        raise AssertionError((p, alpha, ratio, "nonsplit"))
+                    continue
+                split_base_count += 1
+                if len(beta_roots) != 2 or len(y_roots) != 2:
+                    raise AssertionError((p, alpha, ratio, beta_roots, y_roots))
+                y_from_beta = sorted(
+                    ratio_surface_beta_normalized_y(
+                        p,
+                        alpha,
+                        beta,
+                        ratio,
+                    )
+                    for beta in beta_roots
+                )
+                if y_from_beta != sorted(y_roots):
+                    raise AssertionError((p, alpha, ratio, y_from_beta, y_roots))
+                beta_to_y_checks += len(beta_roots)
+                for y_value in y_roots:
+                    beta = ratio_surface_beta_from_normalized_y(
+                        p,
+                        alpha,
+                        y_value,
+                        ratio,
+                    )
+                    if beta not in beta_roots:
+                        raise AssertionError((p, alpha, ratio, y_value, beta))
+                    if (
+                        ratio_surface_beta_normalized_y(
+                            p,
+                            alpha,
+                            beta,
+                            ratio,
+                        )
+                        != y_value
+                    ):
+                        raise AssertionError((p, alpha, ratio, y_value, beta))
+                    if (y_value - linear) % p != 2 * quadratic * beta % p:
+                        raise AssertionError((p, alpha, ratio, y_value, beta))
+                    if (y_value - linear) % p == 0:
+                        raise AssertionError((p, alpha, ratio, y_value, beta))
+                    y_to_beta_checks += 1
+                    numerator_nonzero_checks += 1
+        algebraic_checked.append(
+            (
+                p,
+                good_base_count,
+                split_base_count,
+                beta_to_y_checks,
+                numerator_nonzero_checks,
+            )
+        )
+
+    trace_checked: List[Tuple[int, int, int, int, int, float]] = []
+    for p, psi_exponent, phi_exponent in PUSHFORWARD_TRACE_CASES:
+        logs = log_table(p)
+        table = character_table(p, logs)
+        psi = table[psi_exponent]
+        phi = table[phi_exponent]
+        good_base_count = 0
+        normalized_point_checks = 0
+        max_error = 0.0
+        for alpha in range(1, p):
+            for ratio in range(1, p):
+                if not ratio_surface_beta_pushforward_good(p, alpha, ratio):
+                    continue
+                good_base_count += 1
+                quadratic, linear, _ = ratio_surface_beta_coefficients(
+                    p,
+                    alpha,
+                    ratio,
+                )
+                beta_roots = ratio_surface_affine_beta_roots(
+                    p,
+                    alpha,
+                    ratio,
+                )
+                y_roots = ratio_surface_beta_normalized_y_roots(
+                    p,
+                    alpha,
+                    ratio,
+                )
+                base_twist = (
+                    psi[alpha]
+                    * legendre(
+                        ratio
+                        * ratio_surface_beta_middle_factor(p, alpha, ratio),
+                        p,
+                    )
+                )
+                beta_trace = base_twist * sum(phi[beta] for beta in beta_roots)
+                normalized_trace = (
+                    base_twist
+                    * phi[pow(2 * quadratic, -1, p)]
+                    * sum(phi[(y_value - linear) % p] for y_value in y_roots)
+                )
+                error = abs(beta_trace - normalized_trace)
+                max_error = max(max_error, error)
+                if error > 1000 * TOLERANCE:
+                    raise AssertionError(
+                        (
+                            p,
+                            psi_exponent,
+                            phi_exponent,
+                            alpha,
+                            ratio,
+                            beta_trace,
+                            normalized_trace,
+                        )
+                    )
+                normalized_point_checks += len(y_roots)
+        trace_checked.append(
+            (
+                p,
+                psi_exponent,
+                phi_exponent,
+                good_base_count,
+                normalized_point_checks,
+                round(max_error, 12),
+            )
+        )
+
+    return algebraic_checked, trace_checked
 
 
 def verify_ratio_surface_beta_pushforward_trace() -> List[
@@ -7649,6 +7848,9 @@ def main() -> None:
     ratio_surface_beta_etale_cover_checked = (
         verify_ratio_surface_beta_etale_cover()
     )
+    ratio_surface_beta_square_root_normalization_checked = (
+        verify_ratio_surface_beta_square_root_normalization()
+    )
     ratio_surface_branch_geometry_checked = (
         verify_ratio_surface_branch_geometry()
     )
@@ -8328,6 +8530,8 @@ def main() -> None:
         f"{ratio_surface_beta_projection_checked}",
         f"ratio_surface_beta_etale_cover_checked="
         f"{ratio_surface_beta_etale_cover_checked}",
+        f"ratio_surface_beta_square_root_normalization_checked="
+        f"{ratio_surface_beta_square_root_normalization_checked}",
         f"ratio_surface_branch_geometry_checked="
         f"{ratio_surface_branch_geometry_checked}",
         f"ratio_surface_branch_smoothness_checked="

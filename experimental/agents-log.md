@@ -29,6 +29,27 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-19 - M1 beta pushforward square-root normalization
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/m1_depth_two_line_conic_resonance_reduction.md`,
+  `experimental/m1_kummer_weil_import_contract.md`,
+  `experimental/m1_residue_line_roadmap.md`,
+  `experimental/verify_m1_depth_two_line_conic_resonance_reduction.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** Normalizes the good beta cover by
+  `y=2A_beta beta+B_beta`, giving the standard square-root cover
+  `y^2=D_beta` and `beta=(y-B_beta)/(2A_beta)`.  The verifier checks the
+  two-way root bijection, nonvanishing of `y-B_beta` on the good cover, and
+  the normalized character-trace identity.
+- **How it is useful:** Replaces the remaining `(BETA_2)` quadratic cover by
+  a standard square-root Kummer pushforward with explicit base twist
+  `psi(a)chi(rM)phi((2A_beta)^(-1))`.
+- **What to do next:** Apply the bounded-conductor theorem to this normalized
+  square-root cover, using the completed boundary and incidence ledger.
+
 ### 2026-06-19 - M1 beta blow-up boundary incidence classified
 
 - **Agent/model:** Codex.
