@@ -1178,6 +1178,142 @@ def quotient_line_paired_collapsed_diagonal_sum(
     return total
 
 
+def quotient_line_collapsed_inner_trace(
+    p: int,
+    z_value: int,
+    nu: List[complex],
+) -> complex:
+    total = 0j
+    inverse_eight = pow(8, -1, p)
+    for y_value in range(1, p):
+        total += nu[(1 - y_value) % p] * legendre(
+            1 + z_value * y_value * y_value * inverse_eight,
+            p,
+        )
+    return total
+
+
+def verify_quotient_line_collapsed_inner_spectrum(
+    p: int,
+    table: List[List[complex]],
+) -> Tuple[int, float, float, float, int, int, int]:
+    order = p - 1
+    quadratic_exponent = order // 2
+    quadratic = table[quadratic_exponent]
+    checked = 0
+    max_formula_error = 0.0
+    max_magnitude_error = 0.0
+    max_moment_error = 0.0
+    total_p_size = 0
+    total_sqrt_size = 0
+    total_unit_size = 0
+    for nu_exponent in range(1, order):
+        nu = table[nu_exponent]
+        inner_values = [
+            quotient_line_collapsed_inner_trace(p, z_value, nu)
+            for z_value in range(p)
+        ]
+        if abs(inner_values[0] + 1) > TOLERANCE:
+            raise AssertionError(
+                (p, nu_exponent, "collapsed_inner_zero", inner_values[0])
+            )
+        second_moment = sum(abs(inner_values[z_value]) ** 2 for z_value in range(1, p))
+        nu_minus_one_value = nu[(-1) % p]
+        if abs(nu_minus_one_value.imag) > TOLERANCE:
+            raise AssertionError((p, nu_exponent, "inner_nu_minus_one_not_real"))
+        nu_minus_one = int(round(nu_minus_one_value.real))
+        expected_second_moment = p * p - 3 * p - 2 - p * nu_minus_one
+        moment_error = abs(second_moment - expected_second_moment)
+        max_moment_error = max(max_moment_error, moment_error)
+        if moment_error > 100 * TOLERANCE:
+            raise AssertionError(
+                (
+                    p,
+                    nu_exponent,
+                    "collapsed_inner_second_moment",
+                    second_moment,
+                    expected_second_moment,
+                )
+            )
+        p_size = 0
+        sqrt_size = 0
+        unit_size = 0
+        for rho_exponent, rho in enumerate(table):
+            actual = sum(
+                rho[z_value] * inner_values[z_value]
+                for z_value in range(1, p)
+            )
+            expected = (
+                rho[(-8) % p]
+                * jacobi_sum(p, rho, quadratic)
+                * jacobi_sum(p, table[(-2 * rho_exponent) % order], nu)
+            )
+            formula_error = abs(actual - expected)
+            max_formula_error = max(max_formula_error, formula_error)
+            if formula_error > TOLERANCE:
+                raise AssertionError(
+                    (
+                        p,
+                        nu_exponent,
+                        rho_exponent,
+                        "collapsed_inner_mellin_formula",
+                        actual,
+                        expected,
+                    )
+                )
+            if rho_exponent in {0, quadratic_exponent}:
+                expected_magnitude = 1.0
+                unit_size += 1
+            elif (2 * rho_exponent - nu_exponent) % order == 0:
+                expected_magnitude = math.sqrt(p)
+                sqrt_size += 1
+            else:
+                expected_magnitude = float(p)
+                p_size += 1
+            magnitude_error = abs(abs(actual) - expected_magnitude)
+            max_magnitude_error = max(max_magnitude_error, magnitude_error)
+            if magnitude_error > TOLERANCE:
+                raise AssertionError(
+                    (
+                        p,
+                        nu_exponent,
+                        rho_exponent,
+                        "collapsed_inner_mellin_magnitude",
+                        abs(actual),
+                        expected_magnitude,
+                    )
+                )
+            checked += 1
+        expected_sqrt_size = 2 if nu_exponent % 2 == 0 else 0
+        expected_p_size = p - 5 if nu_exponent % 2 == 0 else p - 3
+        if (p_size, sqrt_size, unit_size) != (
+            expected_p_size,
+            expected_sqrt_size,
+            2,
+        ):
+            raise AssertionError(
+                (
+                    p,
+                    nu_exponent,
+                    "collapsed_inner_magnitude_counts",
+                    (p_size, sqrt_size, unit_size),
+                    (expected_p_size, expected_sqrt_size, 2),
+                )
+            )
+        total_p_size += p_size
+        total_sqrt_size += sqrt_size
+        total_unit_size += unit_size
+    return (
+        checked,
+        max_formula_error,
+        max_magnitude_error,
+        max_moment_error,
+        total_p_size,
+        total_sqrt_size,
+        total_unit_size,
+    )
+
+
 def verify_quotient_line_spectral_normal_form(
     p: int,
     eta_exponent: int,
@@ -2361,6 +2497,9 @@ def main() -> None:
     quotient_line_mellin_magnitude_checked: List[
         Tuple[int, int, float, int, int, int]
     ] = []
+    collapsed_inner_spectrum_checked: List[
+        Tuple[int, int, float, float, float, int, int, int]
+    ] = []
     twisted_line_kernel_moment_checked: List[Tuple[int, int, float, float]] = []
     twisted_line_fiber_checked = 0
     quotient_spectral_checked = 0
@@ -2467,6 +2606,27 @@ def main() -> None:
                     p_size_count,
                     sqrt_size_count,
                     unit_size_count,
+                )
+            )
+            (
+                collapsed_inner_count,
+                max_collapsed_inner_error,
+                max_collapsed_inner_magnitude_error,
+                max_collapsed_inner_moment_error,
+                inner_p_size_count,
+                inner_sqrt_size_count,
+                inner_unit_size_count,
+            ) = verify_quotient_line_collapsed_inner_spectrum(p, tables[p])
+            collapsed_inner_spectrum_checked.append(
+                (
+                    p,
+                    collapsed_inner_count,
+                    round(max_collapsed_inner_error, 12),
+                    round(max_collapsed_inner_magnitude_error, 12),
+                    round(max_collapsed_inner_moment_error, 12),
+                    inner_p_size_count,
+                    inner_sqrt_size_count,
+                    inner_unit_size_count,
                 )
             )
             (
@@ -2824,6 +2984,8 @@ def main() -> None:
         f"quotient_line_mellin_checked={quotient_line_mellin_checked}",
         f"quotient_line_mellin_magnitude_checked="
         f"{quotient_line_mellin_magnitude_checked}",
+        f"collapsed_inner_spectrum_checked="
+        f"{collapsed_inner_spectrum_checked}",
         f"quotient_spectral_checked={quotient_spectral_checked}",
         f"exceptional_theta_checked={exceptional_theta_checked}",
         f"generic_theta_checked={generic_theta_checked}",

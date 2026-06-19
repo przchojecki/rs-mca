@@ -1322,6 +1322,52 @@ single square-class restricted outer Kummer twist against the explicit
 quadratic trace `H_nu(z)`, plus the exceptional theta correction from the
 previous section.
 
+## Collapsed Inner Trace Spectrum
+
+The new inner trace has an exact Mellin spectrum.  For
+
+```text
+H_nu(z)=sum_{y in F_p^*} nu(1-y)chi_2(1+z y^2/8),
+```
+
+one has `H_nu(0)=-1`, and for every multiplicative character `rho`,
+
+```text
+sum_{z in F_p^*} rho(z)H_nu(z)
+  = rho(-8)J(rho,chi_2)J(rho^(-2),nu).
+```
+
+Indeed, after interchanging the `z` and `y` sums, the change of variable
+`w=-z y^2/8` gives
+
+```text
+sum_z rho(z)chi_2(1+z y^2/8)
+  = rho(-8)rho^(-2)(y)J(rho,chi_2),
+```
+
+and the remaining `y`-sum is `J(rho^(-2),nu)`.  Therefore, for nonprincipal
+`nu`,
+
+```text
+|sum_z rho(z)H_nu(z)| =
+  1,        rho=epsilon or rho=chi_2,
+  sqrt(p),  rho^2=nu,
+  p,        otherwise.
+```
+
+The square-root line has two characters exactly when `nu(-1)=1` and is
+empty when `nu(-1)=-1`.  Parseval gives the exact moment
+
+```text
+sum_{z in F_p^*} |H_nu(z)|^2 = p^2 - 3p - 2 - p nu(-1).
+```
+
+Thus the collapsed inner trace has RMS size `sqrt(p)+O(1)` and no hidden
+large average, but its Mellin spectrum is still generically `p`-sized.  The
+remaining M1 work is not to make `H_nu` small termwise; it is to exploit
+cancellation when this explicit trace is multiplied by the square-class
+restricted outer Kummer twist in the collapsed diagonal transform.
+
 ## Spectral Energy Ledger
 
 The spectral normal form has exact energy identities.  By Parseval on

@@ -29,6 +29,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-19 - M1 collapsed inner trace spectrum
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/m1_depth_two_line_conic_resonance_reduction.md`,
+  `experimental/verify_m1_depth_two_line_conic_resonance_reduction.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** Computes the exact Mellin spectrum of the
+  collapsed inner trace
+  `H_nu(z)=sum_y nu(1-y)chi_2(1+z y^2/8)` as
+  `rho(-8)J(rho,chi_2)J(rho^(-2),nu)`, with the magnitude ledger and exact
+  second moment.
+- **How it is useful:** Shows the collapsed inner trace has RMS `sqrt(p)`
+  but generically `p`-sized Mellin coefficients, isolating the remaining M1
+  task as cancellation against the square-class restricted outer Kummer twist.
+- **What to do next:** Analyze that final one-variable correlation directly,
+  using the explicit Mellin ledger and exceptional-theta subtraction.
+
 ### 2026-06-19 - M1 collapsed diagonal gate
 
 - **Agent/model:** Codex.
