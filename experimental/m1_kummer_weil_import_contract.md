@@ -570,6 +570,9 @@ The elementary hypotheses behind this import are now audited in
 
 - the beta cover is rank two on the good base, with branch divisor
   `D_beta=alpha*r*M*H`;
+- the branch curves `M=0` and `H=0` are rational, are disjoint in the torus
+  away from the separated point `(1,1)` for `p>5`, and are smooth away from
+  that same separated point;
 - on the good base, `D_beta != 0` and
   `(2A_beta beta+B_beta)^2=D_beta` at every beta root, so the projection
   `Y_G -> G` is finite etale of degree two; since `G` is an open subset of

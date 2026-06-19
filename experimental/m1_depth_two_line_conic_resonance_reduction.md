@@ -3254,6 +3254,38 @@ already separated vertical point `(1,1)`.  In characteristic `5` there are
 extra branch intersections, and the verifier records that finite special
 case separately.  Consequently the final two-sheet cover has an explicitly
 rational branch divisor with no hidden high-genus branch component.
+The branch curves also have no hidden singular component on the good locus.
+For `M`, the relevant derivatives are
+
+```text
+M_a = -6ar + 4r^2 - 2r + 4,
+M_r = -3a^2 + 8ar - 2a - 3,
+```
+
+and
+
+```text
+Res_a(M,M_a) = 48r(r-1)^2(r^2+r+1),
+Res_a(M,M_r) = 144(r-1)^2(r+1)^2.
+```
+
+For `H`,
+
+```text
+H_a = -16ar + 9r^2 - 2r + 9,
+H_r = -8a^2 + 18ar - 2a - 8,
+```
+
+and
+
+```text
+Res_a(H,H_a) = 72r(r-1)^2(9r^2+14r+9),
+Res_a(H,H_r) = 5184(r-1)^2(r+1)^2.
+```
+
+Thus in the torus, for `p>3`, each branch curve is singular only at
+`(a,r)=(1,1)`, the same separated point already removed from the good base.
+The verifier checks this directly over the audited prime grid.
 On the good base, the cover is finite etale of degree two: at any beta root,
 `2A_beta beta+B_beta` is nonzero and its square is `D_beta`.  Since the good
 base is an open subset of `G_m^2`, the good beta-cover surface is smooth;

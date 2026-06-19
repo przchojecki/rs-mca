@@ -29,6 +29,27 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-19 - M1 branch boundary smoothness audit
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/m1_depth_two_line_conic_resonance_reduction.md`,
+  `experimental/m1_kummer_weil_import_contract.md`,
+  `experimental/verify_m1_depth_two_line_conic_resonance_reduction.py`,
+  `experimental/m1_residue_line_roadmap.md`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** Audits the ramification branch curves
+  `M(a,r)=0` and `H(a,r)=0`: their derivative resultants force the only
+  torus singular point to be `(1,1)`, the already separated point outside the
+  good base.  The verifier checks this directly over the audited prime grid.
+- **How it is useful:** Strengthens the `(BETA_2)` conductor ledger by showing
+  that the deleted branch boundary has no hidden singular branch component on
+  the good locus of the final beta pushforward.
+- **What to do next:** Continue shrinking `(BETA_2)` to a standard bounded
+  conductor citation by auditing toric-boundary intersections and the remaining
+  compactification data.
+
 ### 2026-06-19 - M1 UV sign divisor is deleted on good beta cover
 
 - **Agent/model:** Codex.

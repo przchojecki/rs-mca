@@ -170,11 +170,13 @@ should be revised as the project learns more.
    vertical point; characteristic `5` is a finite audited exception.  On the
    good base the beta cover is finite etale of degree two, with derivative
    square equal to `D_beta`, so the good beta-cover surface is smooth and
-   all ramification is on deleted branch fibers.  The
-   main `U V` trace now has an exact pushforward identity over the good base
-   `A_beta C_beta D_beta (alpha-r)K_alpha != 0`, with all deleted pieces
-   contributing only `O(p)`.  The final analytic object is the good-base
-   rank-two beta pushforward
+   all ramification is on deleted branch fibers.  The branch curves are now
+   also audited smooth away from the separated point
+   `(1,1)`, so there is no hidden singular branch component on the good
+   locus.  The main `U V` trace now has an exact pushforward identity over
+   the good base `A_beta C_beta D_beta (alpha-r)K_alpha != 0`, with all
+   deleted pieces contributing only `O(p)`.  The final analytic object is
+   the good-base rank-two beta pushforward
    `psi(alpha) eps(alpha,r)(phi(beta_1)+phi(beta_2))`.  The beta sheets now
    have an explicit fixed-ratio resonance curve
    `lambda B_beta^2=A_beta C_beta(1+lambda)^2`; after removing the torus

@@ -4611,10 +4611,36 @@ def ratio_surface_beta_branch_factor(p: int, alpha: int, ratio: int) -> int:
     return (-8 * a * a * r + 9 * a * r * r - 2 * a * r + 9 * a - 8 * r) % p
 
 
+def ratio_surface_beta_branch_factor_derivatives(
+    p: int,
+    alpha: int,
+    ratio: int,
+) -> Tuple[int, int]:
+    a = alpha
+    r = ratio
+    return (
+        (-16 * a * r + 9 * r * r - 2 * r + 9) % p,
+        (-8 * a * a + 18 * a * r - 2 * a - 8) % p,
+    )
+
+
 def ratio_surface_beta_middle_factor(p: int, alpha: int, ratio: int) -> int:
     a = alpha
     r = ratio
     return (-3 * a * a * r + 4 * a * r * r - 2 * a * r + 4 * a - 3 * r) % p
+
+
+def ratio_surface_beta_middle_factor_derivatives(
+    p: int,
+    alpha: int,
+    ratio: int,
+) -> Tuple[int, int]:
+    a = alpha
+    r = ratio
+    return (
+        (-6 * a * r + 4 * r * r - 2 * r + 4) % p,
+        (-3 * a * a + 8 * a * r - 2 * a - 3) % p,
+    )
 
 
 def ratio_surface_beta_zero_factor(p: int, alpha: int, ratio: int) -> int:
@@ -5795,6 +5821,57 @@ def verify_ratio_surface_branch_geometry() -> List[
     return checked
 
 
+def verify_ratio_surface_branch_smoothness() -> List[
+    Tuple[int, int, int, int, int]
+]:
+    checked: List[Tuple[int, int, int, int, int]] = []
+    for p in LOWER_CHART_PRIMES:
+        m_point_count = 0
+        h_point_count = 0
+        m_singular_count = 0
+        h_singular_count = 0
+        for alpha in range(1, p):
+            for ratio in range(1, p):
+                if ratio_surface_beta_middle_factor(p, alpha, ratio) == 0:
+                    m_point_count += 1
+                    if (
+                        ratio_surface_beta_middle_factor_derivatives(
+                            p,
+                            alpha,
+                            ratio,
+                        )
+                        == (0, 0)
+                    ):
+                        m_singular_count += 1
+                        if (alpha, ratio) != (1, 1):
+                            raise AssertionError((p, "M", alpha, ratio))
+                if ratio_surface_beta_branch_factor(p, alpha, ratio) == 0:
+                    h_point_count += 1
+                    if (
+                        ratio_surface_beta_branch_factor_derivatives(
+                            p,
+                            alpha,
+                            ratio,
+                        )
+                        == (0, 0)
+                    ):
+                        h_singular_count += 1
+                        if (alpha, ratio) != (1, 1):
+                            raise AssertionError((p, "H", alpha, ratio))
+        if m_singular_count != 1 or h_singular_count != 1:
+            raise AssertionError((p, m_singular_count, h_singular_count))
+        checked.append(
+            (
+                p,
+                m_point_count,
+                h_point_count,
+                m_singular_count,
+                h_singular_count,
+            )
+        )
+    return checked
+
+
 def verify_ratio_surface_lower_chart_collapse() -> List[
     Tuple[int, int, int, int, int, int]
 ]:
@@ -6545,6 +6622,9 @@ def main() -> None:
     ratio_surface_branch_geometry_checked = (
         verify_ratio_surface_branch_geometry()
     )
+    ratio_surface_branch_smoothness_checked = (
+        verify_ratio_surface_branch_smoothness()
+    )
     ratio_surface_beta_pushforward_checked = (
         verify_ratio_surface_beta_pushforward_trace()
     )
@@ -7199,6 +7279,8 @@ def main() -> None:
         f"{ratio_surface_beta_etale_cover_checked}",
         f"ratio_surface_branch_geometry_checked="
         f"{ratio_surface_branch_geometry_checked}",
+        f"ratio_surface_branch_smoothness_checked="
+        f"{ratio_surface_branch_smoothness_checked}",
         f"ratio_surface_beta_pushforward_checked="
         f"{ratio_surface_beta_pushforward_checked}",
         f"ratio_surface_full_trace_reduction_checked="
