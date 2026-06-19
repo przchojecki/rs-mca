@@ -29,6 +29,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-19 - M1 open line-conic nonprincipal moment
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/m1_depth_two_line_conic_resonance_reduction.md`,
+  `experimental/verify_m1_depth_two_line_conic_resonance_reduction.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** Computes the exact nonprincipal second moment of
+  the open line-conic core `C^o_{eta,nu}=C_{eta,nu}-L_{eta,nu}` after imposing
+  `w=-1-u-v != 0`.  The verifier checks the open support size, joint
+  collision count, open `x`- and `v`-marginal second moments, and the direct
+  nonprincipal open character moment on the moment-prime grid.
+- **How it is useful:** Shows the actual certificate-facing open family still
+  has RMS `p+O(1)` over nonprincipal character pairs; the removed line does
+  not hide a larger average obstruction.
+- **What to do next:** Use the open moment and collapsed sparsity ledgers to
+  focus on pointwise conductor control for the sparse exceptional rows.
+
 ### 2026-06-19 - M1 collapsed admissible-slice sparsity
 
 - **Agent/model:** Codex.

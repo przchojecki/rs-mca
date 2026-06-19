@@ -2678,8 +2678,16 @@ def line_support_formula(p: int) -> int:
     return p - 3 - legendre(-3, p)
 
 
+def open_support_size_formula(p: int) -> int:
+    return p * p - 4 * p + 6 + 4 * legendre(-3, p)
+
+
 def support_size_formula(p: int) -> int:
     return p * p - 3 * p + 3 + 3 * legendre(-3, p)
+
+
+def open_core_collision_formula(p: int) -> int:
+    return core_collision_formula(p) - 3 * (p - 3 - legendre(-3, p))
 
 
 def x_marginal_size_formula(p: int, x_value: int) -> int:
@@ -2710,11 +2718,52 @@ def x_marginal_second_formula(p: int) -> int:
     )
 
 
+def open_x_marginal_second_formula(p: int) -> int:
+    chi_minus_three = legendre(-3, p)
+    return (
+        p**3
+        - 5 * p * p
+        + 17 * p
+        - 50
+        + (10 * p - 36) * chi_minus_three
+    )
+
+
+def open_x_marginal_size_formula(p: int, x_value: int) -> int:
+    x_value %= p
+    if x_value == 0:
+        return 0
+    chi_minus_three = legendre(-3, p)
+    if x_value == 1:
+        return (1 + chi_minus_three) * (p - 2)
+    if x_value == (-2) % p:
+        return 1 + (1 + chi_minus_three) * (p - 4)
+    return (
+        p
+        - 3
+        - 2 * chi_minus_three
+        - 2 * legendre((x_value - 1) * (x_value + 3), p)
+    )
+
+
 def v_marginal_size_formula(p: int, v: int) -> int:
     if v % p == 0:
         return 0
     delta = -3 * v * v - 2 * v - 3
     return p - 2 - legendre(delta, p) + int(shape_b(v, p) == 0)
+
+
+def open_v_marginal_size_formula(p: int, v: int) -> int:
+    if v % p == 0:
+        return 0
+    delta = -3 * v * v - 2 * v - 3
+    return (
+        p
+        - 3
+        - legendre(delta, p)
+        + 2 * int(shape_b(v, p) == 0)
+        + int(v % p == (-1) % p)
+    )
 
 
 def v_marginal_second_formula(p: int) -> int:
@@ -2727,6 +2776,21 @@ def v_marginal_second_formula(p: int) -> int:
         - 11
         + (6 * p - 13) * chi_minus_three
         - chi_minus_two
+    )
+
+
+def open_v_marginal_second_formula(p: int) -> int:
+    chi_minus_three = legendre(-3, p)
+    chi_minus_two = legendre(-2, p)
+    chi_minus_one = legendre(-1, p)
+    return (
+        p**3
+        - 7 * p * p
+        + 22 * p
+        - 28
+        + (8 * p - 24) * chi_minus_three
+        - chi_minus_two
+        - 2 * chi_minus_one
     )
 
 
@@ -2747,6 +2811,31 @@ def nonprincipal_core_moment_formula(p: int) -> int:
         - (p - 1) * x_marginal_second_formula(p)
         - (p - 1) * v_marginal_second_formula(p)
         + support_size_formula(p) * support_size_formula(p)
+    )
+    if direct_formula != orthogonality_formula:
+        raise AssertionError((p, direct_formula, orthogonality_formula))
+    return direct_formula
+
+
+def nonprincipal_open_moment_formula(p: int) -> int:
+    chi_minus_three = legendre(-3, p)
+    chi_minus_two = legendre(-2, p)
+    chi_minus_one = legendre(-1, p)
+    direct_formula = (
+        p**4
+        - 9 * p**3
+        + 23 * p * p
+        + 14 * p
+        - 4
+        + (-p**3 + 4 * p * p + 21 * p) * chi_minus_three
+        + (p * p - p) * chi_minus_two
+        + (2 * p - 2) * chi_minus_one
+    )
+    orthogonality_formula = (
+        (p - 1) * (p - 1) * open_core_collision_formula(p)
+        - (p - 1) * open_x_marginal_second_formula(p)
+        - (p - 1) * open_v_marginal_second_formula(p)
+        + open_support_size_formula(p) * open_support_size_formula(p)
     )
     if direct_formula != orthogonality_formula:
         raise AssertionError((p, direct_formula, orthogonality_formula))
@@ -2977,11 +3066,47 @@ def direct_support_marginal_counts(p: int) -> Tuple[int, int, int]:
     return support_count, x_second, v_second
 
 
-def direct_full_character_moments(p: int) -> Tuple[int, int, int]:
+def direct_open_support_marginal_counts(p: int) -> Tuple[int, int, int, int]:
+    x_counts: Dict[int, int] = {}
+    v_counts: Dict[int, int] = {}
+    xv_counts: Dict[Tuple[int, int], int] = {}
+    for u in range(1, p):
+        inverse_u = pow(u, -1, p)
+        for v in range(1, p):
+            if (-1 - u - v) % p == 0:
+                continue
+            a_value = shape_a(u, v, p)
+            if a_value == 0:
+                continue
+            x_value = a_value * inverse_u % p
+            x_counts[x_value] = x_counts.get(x_value, 0) + 1
+            v_counts[v] = v_counts.get(v, 0) + 1
+            xv_counts[(x_value, v)] = xv_counts.get((x_value, v), 0) + 1
+    for x_value in range(1, p):
+        actual = x_counts.get(x_value, 0)
+        expected = open_x_marginal_size_formula(p, x_value)
+        if actual != expected:
+            raise AssertionError(
+                (p, "open_x_marginal", x_value, actual, expected)
+            )
+    for v in range(1, p):
+        actual = v_counts.get(v, 0)
+        expected = open_v_marginal_size_formula(p, v)
+        if actual != expected:
+            raise AssertionError((p, "open_v_marginal", v, actual, expected))
+    support_count = sum(x_counts.values())
+    collision_count = sum(count * count for count in xv_counts.values())
+    x_second = sum(count * count for count in x_counts.values())
+    v_second = sum(count * count for count in v_counts.values())
+    return support_count, collision_count, x_second, v_second
+
+
+def direct_full_character_moments(p: int) -> Tuple[int, int, int, int]:
     logs = log_table(p)
     table = character_table(p, logs)
     core_moment = 0.0
     nonprincipal_core_moment = 0.0
+    nonprincipal_open_moment = 0.0
     line_moment = 0.0
     for eta_exponent in range(p - 1):
         eta = table[eta_exponent]
@@ -2992,8 +3117,16 @@ def direct_full_character_moments(p: int) -> Tuple[int, int, int]:
             core_moment += core_value
             if eta_exponent != 0 and nu_exponent != 0:
                 nonprincipal_core_moment += core_value
+                nonprincipal_open_moment += (
+                    abs(direct_open(p, eta_inv, nu, eta)) ** 2
+                )
             line_moment += abs(line_correction(p, eta_inv, nu, eta)) ** 2
-    return round(core_moment), round(line_moment), round(nonprincipal_core_moment)
+    return (
+        round(core_moment),
+        round(line_moment),
+        round(nonprincipal_core_moment),
+        round(nonprincipal_open_moment),
+    )
 
 
 def direct_full_character_projector_moments(p: int) -> Tuple[int, int, int]:
@@ -3016,8 +3149,10 @@ def direct_full_character_projector_moments(p: int) -> Tuple[int, int, int]:
     return round(split_moment), round(nonsplit_moment), round(cross_moment.real)
 
 
-def verify_second_moments() -> List[Tuple[int, int, int, int, int, int, int]]:
-    checked: List[Tuple[int, int, int, int, int, int, int]] = []
+def verify_second_moments() -> List[
+    Tuple[int, int, int, int, int, int, int, int, int]
+]:
+    checked: List[Tuple[int, int, int, int, int, int, int, int, int]] = []
     for p in MOMENT_PRIMES:
         collision_count = direct_core_collision_count(p)
         expected_collision_count = core_collision_formula(p)
@@ -3041,10 +3176,47 @@ def verify_second_moments() -> List[Tuple[int, int, int, int, int, int, int]]:
             raise AssertionError((p, "x_second", x_second, expected_x_second))
         if v_second != expected_v_second:
             raise AssertionError((p, "v_second", v_second, expected_v_second))
-        core_moment, line_moment, nonprincipal_moment = direct_full_character_moments(p)
+        (
+            open_support_count,
+            open_collision_count,
+            open_x_second,
+            open_v_second,
+        ) = direct_open_support_marginal_counts(p)
+        expected_open_support_count = open_support_size_formula(p)
+        expected_open_collision_count = open_core_collision_formula(p)
+        expected_open_x_second = open_x_marginal_second_formula(p)
+        expected_open_v_second = open_v_marginal_second_formula(p)
+        if open_support_count != expected_open_support_count:
+            raise AssertionError(
+                (p, "open_support", open_support_count, expected_open_support_count)
+            )
+        if open_collision_count != expected_open_collision_count:
+            raise AssertionError(
+                (
+                    p,
+                    "open_collision",
+                    open_collision_count,
+                    expected_open_collision_count,
+                )
+            )
+        if open_x_second != expected_open_x_second:
+            raise AssertionError(
+                (p, "open_x_second", open_x_second, expected_open_x_second)
+            )
+        if open_v_second != expected_open_v_second:
+            raise AssertionError(
+                (p, "open_v_second", open_v_second, expected_open_v_second)
+            )
+        (
+            core_moment,
+            line_moment,
+            nonprincipal_moment,
+            nonprincipal_open_moment,
+        ) = direct_full_character_moments(p)
         expected_core_moment = (p - 1) * (p - 1) * expected_collision_count
         expected_line_moment = (p - 1) * (p - 1) * expected_line_support_count
         expected_nonprincipal_moment = nonprincipal_core_moment_formula(p)
+        expected_nonprincipal_open_moment = nonprincipal_open_moment_formula(p)
         if core_moment != expected_core_moment:
             raise AssertionError((p, core_moment, expected_core_moment))
         if line_moment != expected_line_moment:
@@ -3052,6 +3224,14 @@ def verify_second_moments() -> List[Tuple[int, int, int, int, int, int, int]]:
         if nonprincipal_moment != expected_nonprincipal_moment:
             raise AssertionError(
                 (p, nonprincipal_moment, expected_nonprincipal_moment)
+            )
+        if nonprincipal_open_moment != expected_nonprincipal_open_moment:
+            raise AssertionError(
+                (
+                    p,
+                    nonprincipal_open_moment,
+                    expected_nonprincipal_open_moment,
+                )
             )
         (
             split_projector_moment,
@@ -3080,6 +3260,8 @@ def verify_second_moments() -> List[Tuple[int, int, int, int, int, int, int]]:
                 expected_collision_count,
                 expected_line_support_count,
                 expected_nonprincipal_moment,
+                expected_open_collision_count,
+                expected_nonprincipal_open_moment,
                 expected_projector_sums[0],
                 expected_projector_sums[1],
                 expected_projector_sums[2],

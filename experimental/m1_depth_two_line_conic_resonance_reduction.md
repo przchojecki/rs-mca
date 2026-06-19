@@ -2151,6 +2151,102 @@ M_{-2} = 1 + (1+chi_2(-3))(p-3).
 Summing these squared fiber sizes over `x in F_p^*` gives the displayed
 `N_x`.
 
+## Open Nonprincipal Second Moment
+
+The actual open line-conic core has the same nonprincipal RMS scale.  Put
+
+```text
+S^o = {(u,v): u != 0, v != 0, -1-u-v != 0, A(u,v) != 0},
+        x(u,v)=A(u,v)/u.
+```
+
+Let `T^o=#S^o`, let `P^o` be the collision count for the joint map
+`(u,v) |-> (x(u,v),v)`, and define the open marginal moments
+
+```text
+N_x^o = sum_x #{(u,v) in S^o: x(u,v)=x}^2,
+N_v^o = sum_v #{u: (u,v) in S^o}^2.
+```
+
+Then
+
+```text
+T^o = p^2 - 4p + 6 + 4chi_2(-3),
+
+P^o = 2p^2 - 11p + 22
+      - p chi_2(-3) + 12chi_2(-3) + chi_2(-2),
+
+N_x^o = p^3 - 5p^2 + 17p - 50
+        + (10p - 36)chi_2(-3),
+
+N_v^o = p^3 - 7p^2 + 22p - 28
+        + (8p - 24)chi_2(-3) - chi_2(-2) - 2chi_2(-1).
+```
+
+Consequently, for the open sum
+`C^o_{eta,nu}=C_{eta,nu}-L_{eta,nu}`,
+
+```text
+sum_{eta != 1, nu != 1} |C^o_{eta,nu}|^2
+  = (p-1)^2 P^o - (p-1)(N_x^o+N_v^o) + (T^o)^2
+
+  = p^4 - 9p^3 + 23p^2 + 14p - 4
+    + (-p^3 + 4p^2 + 21p)chi_2(-3)
+    + (p^2 - p)chi_2(-2)
+    + (2p - 2)chi_2(-1).
+```
+
+Thus the certificate-facing open family also has RMS `p+O(1)` over
+nonprincipal character pairs.  The open-line correction does not hide a
+larger second-moment obstruction.
+
+The proof is the same orthogonality argument as above, with one extra
+deleted line.  For fixed `v`, the open condition removes `u=-1-v` unless
+`B(v)=0` or `v=-1`; hence
+
+```text
+#{u:(u,v) in S^o}
+  = p - 3 - chi_2(-3v^2-2v-3)
+    + 2 1_{B(v)=0} + 1_{v=-1}.
+```
+
+Squaring and summing gives `N_v^o`.  On joint `(x,v)` fibers, the deleted
+point `u=-1-v` belongs to a two-point collision orbit `u u'=B(v)`, so it
+removes exactly three ordered collisions for each
+`v` with `B(v) != 0` and `v != -1`.  Therefore
+
+```text
+P^o = S_p - 3(p-3-chi_2(-3)).
+```
+
+For fixed `x`, the open cut `w=0` intersects the conic
+
+```text
+u^2+v^2+uv+(x+1)u+v+1=0
+```
+
+in
+
+```text
+u^2+(x+1)u+1=0.
+```
+
+Thus for `x notin {1,-2}`,
+
+```text
+#{(u,v) in S^o: x(u,v)=x}
+  = p - 3 - 2chi_2(-3) - 2chi_2((x-1)(x+3)),
+```
+
+with special values
+
+```text
+M_1^o    = (1+chi_2(-3))(p-2),
+M_{-2}^o = 1 + (1+chi_2(-3))(p-4).
+```
+
+Their squared sum is `N_x^o`.
+
 ## Principal-Row Leakage
 
 The principal rows excluded above have exact formulas.  They explain why the
