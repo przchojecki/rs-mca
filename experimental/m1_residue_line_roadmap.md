@@ -97,7 +97,10 @@ should be revised as the project learns more.
    explicit conic fibration
    `r(r-alpha)u^2+r((beta-alpha)v+1-alpha)u+B(beta v)-alpha rB(v)=0`;
    its projective determinant is `2r Delta(alpha,beta,r)`, so the degenerate
-   ratio fibers are exactly the explicit hypersurface `Delta=0`.
+   ratio fibers are exactly the explicit hypersurface `Delta=0`.  Since
+   `Delta` is a nonzero cubic in `r` for every fixed `alpha,beta`, there are
+   at most `3|K_e|^2` singular ratio parameters, and the only zero conic is
+   the identity diagonal `(1,1,1)`.
    The updated remaining-wall scan reports this asymmetric wall separately:
    in the current report grid the largest asymmetric ratio is
    `3.2173609608p`, while every near-`4p` top row lies in the projective

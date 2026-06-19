@@ -2543,6 +2543,37 @@ discriminant in conic-coefficient space.  The verifier checks this determinant
 identity over the same `(p,e)` cases as the joint-energy audit and reports the
 number of degenerate ratio parameters.
 
+This exceptional set is sparse in the ratio direction.  For fixed
+`alpha,beta in F_p^*`, write
+
+```text
+Delta(alpha,beta,r)
+  = 3 alpha^2 r^3
+    + alpha(-2alpha^2-alpha beta-alpha-3beta^2+beta-3)r^2
+    + (3alpha^2 beta^2-alpha^2 beta+3alpha^2
+       +alpha beta^2+alpha beta+2beta^2)r
+    - 3alpha beta^2.
+```
+
+Since `p>3` and `alpha != 0`, the leading coefficient `3alpha^2` is
+nonzero.  Thus each fixed pair `(alpha,beta)` has at most three singular
+ratios `r`.  Consequently,
+
+```text
+#{(alpha,beta,r) in K_e^2 x F_p^* : Delta(alpha,beta,r)=0}
+  <= 3 |K_e|^2.
+```
+
+The only identically zero conic is the diagonal parameter
+`(alpha,beta,r)=(1,1,1)`.  Indeed, if all six conic coefficients vanish, then
+`r(r-alpha)=0` gives `r=alpha`, `r(beta-alpha)=0` gives `beta=alpha`, and
+`r(1-alpha)=0` gives `alpha=1`; conversely `(1,1,1)` makes the equation
+identically zero.  Hence the diagonal fiber contributes exactly the open
+support size, while every other singular ratio fiber is a nonzero singular
+projective conic and has at most `2p+1` projective `F_p`-points.  In
+particular, the only `p^2` fiber in the quotient-collision fibration is the
+identity diagonal; all non-diagonal singular fibers are line-sized.
+
 ## Principal-Row Leakage
 
 The principal rows excluded above have exact formulas.  They explain why the

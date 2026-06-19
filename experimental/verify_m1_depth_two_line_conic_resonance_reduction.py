@@ -3464,6 +3464,29 @@ def ratio_surface_delta(p: int, alpha: int, beta: int, ratio: int) -> int:
     ) % p
 
 
+def ratio_surface_delta_cubic_coefficients(
+    p: int,
+    alpha: int,
+    beta: int,
+) -> Tuple[int, int, int, int]:
+    a = alpha
+    b = beta
+    return (
+        3 * a * a % p,
+        a * (-2 * a * a - a * b - a - 3 * b * b + b - 3) % p,
+        (
+            3 * a * a * b * b
+            - a * a * b
+            + 3 * a * a
+            + a * b * b
+            + a * b
+            + 2 * b * b
+        )
+        % p,
+        -3 * a * b * b % p,
+    )
+
+
 def ratio_surface_doubled_projective_determinant(
     p: int,
     alpha: int,
@@ -3480,17 +3503,56 @@ def ratio_surface_doubled_projective_determinant(
     ) % p
 
 
-def verify_ratio_surface_degeneracy() -> List[Tuple[int, int, int, int]]:
-    checked: List[Tuple[int, int, int, int]] = []
+def verify_ratio_surface_degeneracy() -> List[Tuple[int, int, int, int, int, int]]:
+    checked: List[Tuple[int, int, int, int, int, int]] = []
     for p, suborder in RATIO_SURFACE_CASES:
         logs = log_table(p)
         kernel = [value for value in range(1, p) if logs[value] % suborder == 0]
         parameter_count = 0
         degenerate_count = 0
+        zero_conic_count = 0
         for alpha in kernel:
             for beta in kernel:
+                cubic_coefficients = ratio_surface_delta_cubic_coefficients(
+                    p,
+                    alpha,
+                    beta,
+                )
+                if cubic_coefficients[0] == 0:
+                    raise AssertionError((p, suborder, alpha, beta, "zero-leading"))
                 for ratio in range(1, p):
                     parameter_count += 1
+                    cubic_value = (
+                        cubic_coefficients[0] * ratio * ratio * ratio
+                        + cubic_coefficients[1] * ratio * ratio
+                        + cubic_coefficients[2] * ratio
+                        + cubic_coefficients[3]
+                    ) % p
+                    delta_value = ratio_surface_delta(p, alpha, beta, ratio)
+                    if cubic_value != delta_value:
+                        raise AssertionError(
+                            (
+                                p,
+                                suborder,
+                                alpha,
+                                beta,
+                                ratio,
+                                cubic_value,
+                                delta_value,
+                            )
+                        )
+                    coefficients = ratio_surface_conic_coefficients(
+                        p,
+                        alpha,
+                        beta,
+                        ratio,
+                    )
+                    if all(coefficient == 0 for coefficient in coefficients):
+                        zero_conic_count += 1
+                        if (alpha, beta, ratio) != (1, 1, 1):
+                            raise AssertionError(
+                                (p, suborder, alpha, beta, ratio, "zero-conic")
+                            )
                     determinant = ratio_surface_doubled_projective_determinant(
                         p,
                         alpha,
@@ -3506,7 +3568,21 @@ def verify_ratio_surface_degeneracy() -> List[Tuple[int, int, int, int]]:
                         )
                     if determinant == 0:
                         degenerate_count += 1
-        checked.append((p, suborder, parameter_count, degenerate_count))
+        degenerate_bound = 3 * len(kernel) * len(kernel)
+        if zero_conic_count != 1:
+            raise AssertionError((p, suborder, zero_conic_count))
+        if degenerate_count > degenerate_bound:
+            raise AssertionError((p, suborder, degenerate_count, degenerate_bound))
+        checked.append(
+            (
+                p,
+                suborder,
+                parameter_count,
+                degenerate_count,
+                zero_conic_count,
+                degenerate_bound,
+            )
+        )
     return checked
 
 

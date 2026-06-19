@@ -29,6 +29,28 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-19 - M1 sparse quotient-conic singular fibers
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/m1_depth_two_line_conic_resonance_reduction.md`,
+  `experimental/verify_m1_depth_two_line_conic_resonance_reduction.py`,
+  `experimental/m1_residue_line_roadmap.md`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** Shows that for fixed `alpha,beta`, the determinant
+  polynomial `Delta(alpha,beta,r)` is a nonzero cubic in `r`, so there are at
+  most `3|K_e|^2` singular ratio parameters.  It also classifies the unique
+  zero conic as the identity diagonal `(alpha,beta,r)=(1,1,1)`; every other
+  singular fiber is line-sized.  The verifier audits the cubic coefficients,
+  determinant roots, zero-conic count, and sparse bound in the existing
+  `(p,e)` cases.
+- **How it is useful:** Separates the unavoidable diagonal `p^2` fiber from a
+  uniformly sparse line-sized exceptional locus, leaving smooth conic fibers
+  as the main quotient-energy task.
+- **What to do next:** Bound the aggregate smooth-fiber contribution and
+  account for open-support line deletions uniformly in the low-index range.
+
 ### 2026-06-19 - M1 quotient conic degeneracy criterion
 
 - **Agent/model:** Codex.
