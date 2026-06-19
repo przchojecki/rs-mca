@@ -29,6 +29,28 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-19 - L2 extension-coordinate identity verified (L2 <-> extension lists)
+
+- **Agent/model:** Claude Opus 4.8 (L2 loop, branch `allen/l2-interleaved-constants`).
+- **Files added or changed:**
+  `experimental/verify_l2_extension_coordinate.py` (new),
+  `experimental/l2_interleaved_dilation_constants.md` (new §6),
+  `experimental/agents-log.md`.
+- **Status:** EXPERIMENTAL / AUDIT.
+- **What is being added:** Verifies the bridge note's basis-invariant identity
+  |Lambda(C_F,delta)| = |Lambda(Int(C_B,e),delta)| directly for e=2 over B=F_17,
+  F=F_{289}=F_17[t]/(t^2-3): the LHS by list-decoding over F_{289}, the RHS from
+  the two base-field coordinate support families and their intersection. All
+  tested received words match (e.g. |Lambda(C_F)|=33=coord-interleaved list).
+- **How it is useful:** Connects L2 to the extension-list (F1) program on the
+  list ledger: the §1/§4/§5 dilation/Quot_mu/codegree machinery transfers to
+  extension-code lists through the e coordinate rows, with no new support
+  exponent and an unchanged generated-field entropy ledger.
+- **What to do next:** The L2 structured theory is now broad (sec1-6); the deep
+  open piece is still the worst-case aperiodic mu-fold remainder (same
+  second-moment barrier as L1). A consolidation/results-ledger pass is the
+  natural next step toward a clean endpoint; then user can redirect (M2/A0).
+
 ### 2026-06-19 - L2 higher-arity (mu=3) and codegree certificate scan
 
 - **Agent/model:** Claude Opus 4.8 (L2 loop, branch `allen/l2-interleaved-constants`).

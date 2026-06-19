@@ -159,6 +159,26 @@ This is evidence (not a worst-case theorem) that the sharp-constant conjecture's
 is in the field-power denominator `q^{-mu(a-k)}` and the diagonal `Quot_mu`, not
 in a Cartesian support exponent.
 
+## 6. Extension-coordinate identity (L2 <-> extension lists), verified
+
+The bridge note's basis-invariant identity `|Lambda(C_F,delta)| =
+|Lambda(Int(C_B,e),delta)|` lets an extension-code list certificate reuse the L2
+machinery. `verify_l2_extension_coordinate.py` checks it directly for `e=2` over
+`B = F_17`, `F = F_{17^2} = F_17[t]/(t^2-3)`: the left side is computed by
+list-decoding over `F_{289}`, the right side from the two base-field coordinate
+support families `Supp_{pi_0(U)}(a), Supp_{pi_1(U)}(a)` and their intersection
+profile. For every tested received word `U : H -> F_{289}` (`k=6, a=8`) the two
+independent computations agree (e.g. `|Lambda(C_F)| = 33 =` coordinate-interleaved
+base list).
+
+**Consequence.** The dilation symmetry (§1), exact `Quot_mu` (§4), and codegree
+certificate (§5) all transfer to extension-code lists through the `e` coordinate
+rows: an extension challenge does *not* introduce a new support exponent, and the
+generated-field entropy ledger is unchanged (the coordinate support families are
+base-field `B` objects; only the final list-size-over-field denominator changes
+when a protocol consumes the extension code). This is the list-side counterpart
+of the F1 extension-line questions, kept strictly on the list ledger.
+
 ## Ledger impact
 
 - **Interleaved list (improves):** the worst-case interleaved list is a
@@ -186,4 +206,5 @@ python3 experimental/verify_l2_interleaved_constants.py
 python3 experimental/verify_l2_interleaved_constants.py --a 9 --format json
 python3 experimental/verify_l2_quotient_core_count.py --self-check
 python3 experimental/verify_l2_quotient_core_count.py
+python3 experimental/verify_l2_extension_coordinate.py
 ```
