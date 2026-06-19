@@ -29,6 +29,30 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-19 - L2 exact quotient-core interleaved count, brute-validated
+
+- **Agent/model:** Claude Opus 4.8 (L2 loop, branch `allen/l2-interleaved-constants`).
+- **Files added or changed:**
+  `experimental/verify_l2_quotient_core_count.py` (new),
+  `experimental/l2_interleaved_dilation_constants.md` (new §4),
+  `experimental/agents-log.md`.
+- **Status:** PROVED-by-check (formula vs brute) / EXPERIMENTAL / AUDIT.
+- **What is being added:** Implements and brute-validates the bridge note's
+  aligned quotient-core packet count `L_mu(a,tau) = sum_c binom(Q,c)
+  E_empty(Q-c,ell-c,mu)` (and `E_empty`), confirming both against direct
+  enumeration across many parameters and the endpoint identities (diagonal
+  `binom(Q,ell)` at `a=k+sigma`, Cartesian `binom(Q,ell)^mu` at `h=0`). Tabulates
+  the step-function interpolation and the prize-parameter saving: at `a=k+sigma`
+  (aligned), e.g. `n=256,k=64,M=4,mu=2` gives `L_mu=binom(63,16)~3.66e14`,
+  saving the entire `binom(Q,ell)^{mu-1}` Cartesian factor.
+- **How it is useful:** Pins `Quot_mu` in the §2 sharp-constant conjecture
+  exactly --- the structured (dilation-fixed periodic) part of the interleaved
+  list does not pay the interleaving exponent --- and audits the bridge note's
+  combinatorics.
+- **What to do next:** Bound the aperiodic mu-fold intersection remainder on
+  orbit reps (the genuine open piece); extend to mu=3 and the
+  extension-coordinate presentation with codegree/second-moment data.
+
 ### 2026-06-19 - L2 interleaved lists: dilation symmetry + sharp-constant target
 
 - **Agent/model:** Claude Opus 4.8 (new L2 thread, branch

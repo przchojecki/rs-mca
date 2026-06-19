@@ -93,7 +93,46 @@ random pair --- the saving in action); repeated-row diagonalization
 `Lambda(Int,(V,V)) = Lambda(C,V)`; and the §1 dilation symmetry (invariance of
 the interleaved list under `h.U` for sampled `h`).
 
-## Ledger impact
+## 4. Exact quotient-core interleaved count `Quot_mu`, brute-validated
+
+The `Quot_mu` term of §2 is the bridge note's aligned-packet count
+`L_mu(a,tau)`. This section pins it exactly (validated against direct
+enumeration) and quantifies the diagonal<->Cartesian saving at prize parameters.
+
+With `K <= H` of order `M`, `N = n/M`, `ell = k/M`, `Q = N-1`, slack overlap
+`tau`, and `h(a,tau) = ceil((a-tau)/M)`,
+```text
+L_mu(a,tau) = sum_{c=h}^{ell} binom(Q,c) E_empty(Q-c, ell-c, mu),
+E_empty(R,b,mu) = sum_{j=0}^b (-1)^j binom(R,j) binom(R-j, b-j)^mu
+                = # of mu ordered b-subsets of [R] with empty common intersection.
+```
+
+**Validated (PROVED-by-check).** `verify_l2_quotient_core_count.py --self-check`
+confirms `E_empty` and `L_mu` against brute enumeration across many
+`(N,ell,mu,M,tau,a)`, and the two endpoints
+```text
+a = k+sigma  (h = ell)  =>  L_mu = binom(Q,ell)      (diagonal L),
+h = 0                   =>  L_mu = binom(Q,ell)^mu   (full Cartesian).
+```
+The count is a step function of the threshold `a`: for `N=6, ell=2, mu=2, M=4,
+sigma=tau=2` it is `10` (diagonal) for `a in {7,...,10}`, jumps to `70` for
+`a in {3,...,6}`, and reaches `100 = 10^2` (Cartesian) for `a <= 2`.
+
+**Prize-parameter saving.** At the quotient-core threshold `a = k+sigma` with
+aligned slacks (`tau = sigma`), the packet is exactly diagonal:
+
+| n | k | M | mu | `L_mu` at `a=k+sigma` | Cartesian `L^mu` |
+|---|---|---|---|---|---|
+| 256 | 64 | 4 | 2 | `binom(63,16) ~ 3.66e14` | `~1.3e29` |
+| 256 | 64 | 4 | 3 | `binom(63,16) ~ 3.66e14` | `~4.9e43` |
+| 1024 | 256 | 8 | 2 | `binom(127,32) ~ 1.11e30` | `~1.2e60` |
+
+So the aligned quotient-core packet --- the dominant *structured* interleaved
+obstruction --- contributes only its single-row size `binom(Q,ell)`, saving the
+entire `binom(Q,ell)^{mu-1}` Cartesian factor. This is the exact value of
+`Quot_mu` in the §2 sharp-constant conjecture: the structured part of the
+interleaved list does **not** pay the interleaving exponent, consistent with the
+§1 dilation invariance (these packets are the dilation-fixed periodic words).
 
 - **Interleaved list (improves):** the worst-case interleaved list is a
   dilation-orbit invariant, so a worst-case L2 certificate may restrict to orbit
@@ -104,16 +143,20 @@ the interleaved list under `h.U` for sampled `h`).
 
 ## Status / what to do next
 
-- PROVED: dilation invariance of the interleaved list; worst-case reduction.
-- TARGET: the sharp-constant conjecture above. Next: (a) bound the aperiodic
+- PROVED: dilation invariance of the interleaved list; worst-case reduction (§1).
+- PROVED-by-check: the exact `Quot_mu = L_mu(a,tau)` count and its diagonal
+  endpoint at prize parameters (§4), saving the full `binom(Q,ell)^{mu-1}` factor.
+- TARGET: the sharp-constant conjecture above. Next: (a) bound the *aperiodic*
   `mu`-fold intersection remainder on orbit representatives (the L2 analogue of
-  the L1 aperiodic step); (b) compute `Quot_mu` exactly at prize parameters and
-  compare to the product baseline; (c) extend the scanner to `mu=3` and to the
-  extension-coordinate presentation `|Lambda(C_F,delta)| = |Lambda(Int(C_B,e))|`.
+  the L1 aperiodic step) --- the genuine open piece; (c) extend the scanner to
+  `mu=3` and the extension-coordinate presentation
+  `|Lambda(C_F,delta)| = |Lambda(Int(C_B,e))|`, with second-moment/codegree data.
 
 ## Reproducibility
 
 ```bash
 python3 experimental/verify_l2_interleaved_constants.py
 python3 experimental/verify_l2_interleaved_constants.py --a 9 --format json
+python3 experimental/verify_l2_quotient_core_count.py --self-check
+python3 experimental/verify_l2_quotient_core_count.py
 ```
