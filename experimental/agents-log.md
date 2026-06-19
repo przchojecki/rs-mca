@@ -29,6 +29,23 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-19 - M1 line-conic twisted kernel moment
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/m1_depth_two_line_conic_resonance_reduction.md`,
+  `experimental/verify_m1_depth_two_line_conic_resonance_reduction.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** Proves the exact first and second moments of the
+  nonsplit translated kernel:
+  `sum_t K(t)=0` and `sum_t |K(t)|^2=p^2-1` for every nonprincipal `nu`.
+- **How it is useful:** Shows the nonsplit kernel has RMS
+  `sqrt(p-1/p)`, so the remaining obstruction is the outer Mellin transform
+  rather than hidden large average mass inside the rank-two kernel.
+- **What to do next:** Use the exact moment with the deck-invariant
+  descended trace to attack the p-scale nonsplit projector bound.
+
 ### 2026-06-19 - M1 line-conic twisted deck symmetry
 
 - **Agent/model:** Codex.

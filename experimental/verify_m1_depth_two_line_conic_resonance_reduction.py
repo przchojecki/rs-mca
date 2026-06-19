@@ -779,6 +779,34 @@ def verify_twisted_line_deck_symmetry(
     )
 
 
+def verify_twisted_line_kernel_moments(
+    p: int,
+    table: List[List[complex]],
+) -> Tuple[int, float, float]:
+    delta = least_nonsquare(p)
+    checked = 0
+    max_first_moment = 0.0
+    max_second_moment_error = 0.0
+    for nu_exponent in range(1, p - 1):
+        nu = table[nu_exponent]
+        values = [twisted_line_kernel_trace(p, t, delta, nu) for t in range(p)]
+        first_moment = sum(values)
+        second_moment = sum(abs(value) ** 2 for value in values)
+        max_first_moment = max(max_first_moment, abs(first_moment))
+        max_second_moment_error = max(
+            max_second_moment_error,
+            abs(second_moment - (p * p - 1)),
+        )
+        if abs(first_moment) > TOLERANCE:
+            raise AssertionError((p, nu_exponent, "kernel_first_moment"))
+        if abs(second_moment - (p * p - 1)) > TOLERANCE:
+            raise AssertionError(
+                (p, nu_exponent, "kernel_second_moment", second_moment)
+            )
+        checked += 1
+    return checked, max_first_moment, max_second_moment_error
+
+
 def core_collision_formula(p: int) -> int:
     return (
         2 * p * p
@@ -1139,6 +1167,7 @@ def main() -> None:
     twisted_discriminant_checked: List[Tuple[int, int, int]] = []
     twisted_line_twist_checked: List[Tuple[int, int, int, int, int]] = []
     twisted_line_deck_checked: List[Tuple[int, int, float, float, float]] = []
+    twisted_line_kernel_moment_checked: List[Tuple[int, int, float, float]] = []
     twisted_line_fiber_checked = 0
     split_hypergeometric_checked = 0
     filter_checked = verify_admissible_filter_counts()
@@ -1185,6 +1214,19 @@ def main() -> None:
                     round(max_kernel_deck, 12),
                     round(max_summand_deck, 12),
                     round(max_kernel_ratio, 10),
+                )
+            )
+            (
+                kernel_moment_count,
+                max_kernel_first_moment,
+                max_kernel_second_error,
+            ) = verify_twisted_line_kernel_moments(p, tables[p])
+            twisted_line_kernel_moment_checked.append(
+                (
+                    p,
+                    kernel_moment_count,
+                    round(max_kernel_first_moment, 12),
+                    round(max_kernel_second_error, 12),
                 )
             )
             twisted_line_fiber_checked += verify_twisted_line_fiber_trace(
@@ -1363,6 +1405,8 @@ def main() -> None:
         f"twisted_discriminant_checked={twisted_discriminant_checked}",
         f"twisted_line_twist_checked={twisted_line_twist_checked}",
         f"twisted_line_deck_checked={twisted_line_deck_checked}",
+        f"twisted_line_kernel_moment_checked="
+        f"{twisted_line_kernel_moment_checked}",
         f"twisted_line_fiber_checked={twisted_line_fiber_checked}",
         f"split_hypergeometric_checked={split_hypergeometric_checked}",
         f"filter_checked={filter_checked[0]}..{filter_checked[-1]}",

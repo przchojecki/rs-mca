@@ -718,6 +718,57 @@ not enough by itself to prove the `p`-scale estimate for `C^-`, but it
 identifies the exact rank-two local table whose outer Mellin transform must
 be bounded.
 
+## Twisted-Line Kernel Moment
+
+The translated kernel has no hidden large average.  For every nonprincipal
+`nu`,
+
+```text
+sum_t K_{nu,delta}(t) = 0,
+sum_t |K_{nu,delta}(t)|^2 = p^2 - 1.
+```
+
+For the first identity, interchange sums:
+
+```text
+sum_t K_{nu,delta}(t)
+  = sum_x chi_2(x^2-4delta) sum_t nu(x-t) = 0.
+```
+
+For the second, write `b_x=chi_2(x^2-4delta)`.  Since `delta` is nonsquare,
+`x^2-4delta` never vanishes over `F_p`, so `b_x^2=1` for all `x`, and
+
+```text
+sum_x b_x = -1.
+```
+
+By multiplicative-character correlation,
+
+```text
+sum_t nu(x-t) nu^(-1)(z-t)
+  = p-1        if x=z,
+  = -1         if x!=z.
+```
+
+The off-diagonal value follows from the fractional-linear change of variable
+`r=(x-t)/(z-t)`, which misses only `r=1`, and from nonprincipal
+orthogonality.  Therefore
+
+```text
+sum_t |K(t)|^2
+  = (p-1) sum_x b_x^2
+    - sum_{x!=z} b_x b_z
+  = p(p-1) - ((sum_x b_x)^2 - sum_x b_x^2)
+  = p(p-1) - (1-p)
+  = p^2-1.
+```
+
+Thus the kernel's root-mean-square size is exactly `sqrt(p-1/p)`.  This is
+much smaller than the pointwise `2sqrt(p)` conductor ceiling on average, and
+it rules out a hidden large kernel-average obstruction behind the nonsplit
+projector.  The remaining problem is cancellation in the outer
+`eta,nu`-twisted transform of this rank-two trace.
+
 ## Open-Set Line Correction
 
 For the actual two-coordinate open sum, the principal coordinate line
