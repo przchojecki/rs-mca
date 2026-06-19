@@ -967,6 +967,37 @@ pair of three-point Kummer coefficients supported at
 `p^{3/2}`-scale fallback, so the desired `p`-scale nonsplit projector theorem
 has been localized to cancellation across the Mellin parameter `theta`.
 
+## Outer Mellin Square-Root Bound
+
+The outer coefficients in the spectral normal form have a uniform
+square-root bound.  Each term
+
+```text
+B_{alpha,beta,gamma}
+  = sum_s alpha(s) beta(2s+delta) gamma(s-delta)
+```
+
+is a genus-zero Kummer sum on `P^1_s` with possible finite support at
+`s=0`, `s=-delta/2`, and `s=delta`, plus infinity.  In the transformed
+line-conic target `beta=eta` is nonprincipal, so the sheaf is not
+geometrically constant even if `alpha` or `gamma` is principal.  The standard
+genus-zero estimate therefore gives
+
+```text
+|B_{alpha,beta,gamma}| <= 2sqrt(p).
+```
+
+Since `A_{eta,nu}(theta)` is the sum of two such coefficients,
+
+```text
+|A_{eta,nu}(theta)| <= 4sqrt(p).
+```
+
+Combined with `|M_nu(theta)| <= p`, this recovers the termwise
+`O(p^{3/2})` fallback in the spectral normal form.  The energy ledger below
+is sharper on average, but it still does not supply the phase cancellation
+needed for a pointwise `O(p)` theorem.
+
 ## Spectral Energy Ledger
 
 The spectral normal form has exact energy identities.  By Parseval on

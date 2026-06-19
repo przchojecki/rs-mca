@@ -29,6 +29,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-19 - M1 line-conic outer Mellin bound
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/m1_depth_two_line_conic_resonance_reduction.md`,
+  `experimental/verify_m1_depth_two_line_conic_resonance_reduction.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** Proves the outer Mellin coefficient bound
+  `|A_{eta,nu}(theta)| <= 4sqrt(p)` by decomposing `A` into two
+  three-point genus-zero Kummer sums, each bounded by `2sqrt(p)`.
+- **How it is useful:** Supplies the proof-level termwise input behind the
+  nonsplit spectral normal form's `O(p^{3/2})` fallback and confirms that
+  the remaining p-scale target must use correlation cancellation.
+- **What to do next:** Use the spectral normal form to study the theta-phase
+  correlation between the Jacobi-product kernel spectrum and the outer
+  Kummer spectrum.
+
 ### 2026-06-19 - M1 line-conic spectral energy ledger
 
 - **Agent/model:** Codex.

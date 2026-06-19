@@ -1003,7 +1003,7 @@ def verify_quotient_line_spectral_normal_form(
     eta_exponent: int,
     nu_exponent: int,
     table: List[List[complex]],
-) -> Tuple[int, float, float, float, float, float]:
+) -> Tuple[int, float, float, float, float, float, float]:
     delta = least_nonsquare(p)
     order = p - 1
     eta = table[eta_exponent]
@@ -1025,6 +1025,7 @@ def verify_quotient_line_spectral_normal_form(
     spectral_pairing = 0j
     checked = 0
     max_outer_decomposition_error = 0.0
+    max_outer_piece_ratio = 0.0
     max_outer_ratio = 0.0
     outer_energy = 0.0
     kernel_energy = 0.0
@@ -1037,13 +1038,32 @@ def verify_quotient_line_spectral_normal_form(
         alpha_quadratic = table[
             (theta_exponent + nu_exponent + quadratic_exponent) % order
         ]
+        plain_piece = quotient_line_outer_kummer_piece(
+            p, delta, alpha_plain, eta, gamma
+        )
+        quadratic_piece = quotient_line_outer_kummer_piece(
+            p, delta, alpha_quadratic, eta, gamma
+        )
+        max_outer_piece_ratio = max(
+            max_outer_piece_ratio,
+            abs(plain_piece) / math.sqrt(p),
+            abs(quadratic_piece) / math.sqrt(p),
+        )
+        if (
+            abs(plain_piece) > 2 * math.sqrt(p) + TOLERANCE
+            or abs(quadratic_piece) > 2 * math.sqrt(p) + TOLERANCE
+        ):
+            raise AssertionError(
+                (
+                    p,
+                    eta_exponent,
+                    nu_exponent,
+                    theta_exponent,
+                    "outer_kummer_piece_2sqrt",
+                )
+            )
         expected_outer_mellin = eta[(-1) % p] * (
-            quotient_line_outer_kummer_piece(
-                p, delta, alpha_plain, eta, gamma
-            )
-            + quotient_line_outer_kummer_piece(
-                p, delta, alpha_quadratic, eta, gamma
-            )
+            plain_piece + quadratic_piece
         )
         outer_error = abs(outer_mellin - expected_outer_mellin)
         max_outer_decomposition_error = max(
@@ -1137,6 +1157,7 @@ def verify_quotient_line_spectral_normal_form(
         checked,
         max_outer_decomposition_error,
         abs(reconstructed_pairing - direct_pairing),
+        max_outer_piece_ratio,
         max_outer_ratio,
         max(outer_energy_error, kernel_energy_error),
         math.sqrt(expected_outer_energy * expected_kernel_energy) / ((p - 1) * p),
@@ -1608,6 +1629,7 @@ def main() -> None:
     max_quotient_line_difference = 0.0
     max_quotient_spectral_difference = 0.0
     max_outer_mellin_decomposition_error = 0.0
+    max_outer_mellin_piece_ratio = 0.0
     max_outer_mellin_ratio = 0.0
     max_spectral_energy_error = 0.0
     max_spectral_cauchy_ratio = 0.0
@@ -1775,6 +1797,7 @@ def main() -> None:
             spectral_theta_count,
             outer_decomposition_error,
             quotient_spectral_difference,
+            outer_mellin_piece_ratio,
             outer_mellin_ratio,
             spectral_energy_error,
             spectral_cauchy_ratio,
@@ -1883,6 +1906,10 @@ def main() -> None:
             max_outer_mellin_ratio,
             outer_mellin_ratio,
         )
+        max_outer_mellin_piece_ratio = max(
+            max_outer_mellin_piece_ratio,
+            outer_mellin_piece_ratio,
+        )
         max_spectral_energy_error = max(
             max_spectral_energy_error,
             spectral_energy_error,
@@ -1946,6 +1973,7 @@ def main() -> None:
         f"{max_quotient_spectral_difference:.3e}",
         f"max_outer_mellin_decomposition_error="
         f"{max_outer_mellin_decomposition_error:.3e}",
+        f"max_outer_mellin_piece_ratio={max_outer_mellin_piece_ratio:.10f}",
         f"max_outer_mellin_ratio={max_outer_mellin_ratio:.10f}",
         f"max_spectral_energy_error={max_spectral_energy_error:.3e}",
         f"max_spectral_cauchy_ratio={max_spectral_cauchy_ratio:.10f}",
