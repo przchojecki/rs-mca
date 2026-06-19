@@ -960,6 +960,80 @@ def verify_quotient_line_mellin_spectrum(
     return checked, max_formula_error, max_mellin_ratio
 
 
+def verify_quotient_line_mellin_magnitudes(
+    p: int,
+    table: List[List[complex]],
+) -> Tuple[int, float, int, int, int]:
+    delta = least_nonsquare(p)
+    order = p - 1
+    quadratic_exponent = order // 2
+    checked = 0
+    max_magnitude_error = 0.0
+    total_p_size = 0
+    total_sqrt_size = 0
+    total_unit_size = 0
+    for nu_exponent in range(1, order):
+        nu = table[nu_exponent]
+        kernel_values = [
+            quotient_line_kernel_trace(p, s_value, delta, nu)
+            for s_value in range(p)
+        ]
+        p_size = 0
+        sqrt_size = 0
+        unit_size = 0
+        for theta_exponent, theta in enumerate(table):
+            actual = sum(
+                theta[s_value] * kernel_values[s_value]
+                for s_value in range(p)
+            )
+            if theta_exponent == 0:
+                expected_magnitude = float(p)
+                p_size += 1
+            elif theta_exponent == quadratic_exponent:
+                expected_magnitude = 1.0
+                unit_size += 1
+            elif (2 * theta_exponent - nu_exponent) % order == 0:
+                expected_magnitude = math.sqrt(p)
+                sqrt_size += 1
+            else:
+                expected_magnitude = float(p)
+                p_size += 1
+            magnitude_error = abs(abs(actual) - expected_magnitude)
+            max_magnitude_error = max(max_magnitude_error, magnitude_error)
+            if magnitude_error > TOLERANCE:
+                raise AssertionError(
+                    (
+                        p,
+                        nu_exponent,
+                        theta_exponent,
+                        "quotient_mellin_magnitude",
+                        abs(actual),
+                        expected_magnitude,
+                    )
+                )
+            checked += 1
+        expected_sqrt_size = 2 if nu_exponent % 2 == 0 else 0
+        expected_p_size = p - 4 if nu_exponent % 2 == 0 else p - 2
+        if (p_size, sqrt_size, unit_size) != (
+            expected_p_size,
+            expected_sqrt_size,
+            1,
+        ):
+            raise AssertionError(
+                (
+                    p,
+                    nu_exponent,
+                    "quotient_mellin_magnitude_counts",
+                    (p_size, sqrt_size, unit_size),
+                    (expected_p_size, expected_sqrt_size, 1),
+                )
+            )
+        total_p_size += p_size
+        total_sqrt_size += sqrt_size
+        total_unit_size += unit_size
+    return checked, max_magnitude_error, total_p_size, total_sqrt_size, total_unit_size
+
+
 def quotient_line_outer_twist_value(
     p: int,
     s_value: int,
@@ -1654,6 +1728,9 @@ def main() -> None:
     quotient_line_checked: List[Tuple[int, int, float, int, int]] = []
     quotient_line_kernel_moment_checked: List[Tuple[int, int, float, float]] = []
     quotient_line_mellin_checked: List[Tuple[int, int, float, float]] = []
+    quotient_line_mellin_magnitude_checked: List[
+        Tuple[int, int, float, int, int, int]
+    ] = []
     twisted_line_kernel_moment_checked: List[Tuple[int, int, float, float]] = []
     twisted_line_fiber_checked = 0
     quotient_spectral_checked = 0
@@ -1743,6 +1820,23 @@ def main() -> None:
                     quotient_mellin_count,
                     round(max_quotient_mellin_error, 12),
                     round(max_quotient_mellin_ratio, 10),
+                )
+            )
+            (
+                quotient_magnitude_count,
+                max_quotient_magnitude_error,
+                p_size_count,
+                sqrt_size_count,
+                unit_size_count,
+            ) = verify_quotient_line_mellin_magnitudes(p, tables[p])
+            quotient_line_mellin_magnitude_checked.append(
+                (
+                    p,
+                    quotient_magnitude_count,
+                    round(max_quotient_magnitude_error, 12),
+                    p_size_count,
+                    sqrt_size_count,
+                    unit_size_count,
                 )
             )
             (
@@ -1996,6 +2090,8 @@ def main() -> None:
         f"quotient_line_kernel_moment_checked="
         f"{quotient_line_kernel_moment_checked}",
         f"quotient_line_mellin_checked={quotient_line_mellin_checked}",
+        f"quotient_line_mellin_magnitude_checked="
+        f"{quotient_line_mellin_magnitude_checked}",
         f"quotient_spectral_checked={quotient_spectral_checked}",
         f"twisted_line_kernel_moment_checked="
         f"{twisted_line_kernel_moment_checked}",

@@ -919,6 +919,33 @@ smaller values in the degenerate Jacobi cases.  This identifies the descended
 kernel as a hypergeometric Mellin object with no super-`p` coefficient before
 the outer rational twist is imposed.
 
+## Kernel Mellin Magnitude Ledger
+
+The degenerate Jacobi cases in the formula above can be classified exactly.
+For nonprincipal `nu`,
+
+```text
+|M_nu(theta)| =
+  p,        theta=epsilon,
+  1,        theta=chi_2,
+  sqrt(p),  theta^2=nu,
+  p,        otherwise.
+```
+
+The alternatives are disjoint: `theta=epsilon` or `theta=chi_2` both have
+`theta^2=epsilon`, while `nu` is nonprincipal.  This is just the standard
+Jacobi magnitude rule.  The factor `Jac(theta,chi_2)` is degenerate only for
+`theta=epsilon` or `theta=chi_2`; the factor `Jac(theta^(-2),nu)` is
+degenerate only for `theta^2=epsilon` or `theta^2=nu`, with the principal
+`theta=epsilon` term already carrying the extra `(p-1)` contribution.
+
+Equivalently, if `nu(-1)=-1`, then no square root of `nu` exists and the
+kernel spectrum has `p-2` coefficients of size `p` and one coefficient of
+size `1`.  If `nu(-1)=1`, it has `p-4` coefficients of size `p`, two
+coefficients of size `sqrt(p)`, and one coefficient of size `1`.  Thus the
+kernel side is generically full `p`-size; the remaining nonsplit saving
+cannot come from sparsity or smallness of `M_nu(theta)`.
+
 ## Nonsplit Spectral Normal Form
 
 The full nonsplit quotient-line transform can now be written as an exact
