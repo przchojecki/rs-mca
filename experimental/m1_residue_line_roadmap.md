@@ -164,7 +164,10 @@ should be revised as the project learns more.
    deletions, branch fibers, and lower-chart companions are all curve-sized.
    On the remaining split two-root fibers, `chi(d_UV)` is invariant under
    beta-conjugation by the square resultant formula, so the last trace
-   problem is the open two-sheet cover with descended sign.
+   problem is the open two-sheet cover with descended sign.  The branch
+   curves `M=0` and `H=0` are now rationally parametrized from `(1,1)`,
+   and for `p>5` they meet in the torus only at that already separated
+   vertical point; characteristic `5` is a finite audited exception.
    The updated remaining-wall scan reports this asymmetric wall separately:
    in the current report grid the largest asymmetric ratio is
    `3.2173609608p`, while every near-`4p` top row lies in the projective

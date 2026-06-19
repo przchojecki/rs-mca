@@ -4592,6 +4592,36 @@ def ratio_surface_beta_middle_factor(p: int, alpha: int, ratio: int) -> int:
     return (-3 * a * a * r + 4 * a * r * r - 2 * a * r + 4 * a - 3 * r) % p
 
 
+def ratio_surface_branch_m_param(p: int, slope: int) -> Tuple[int, int]:
+    denominator = slope * (4 * slope - 3) % p
+    if denominator == 0:
+        return (0, 0)
+    alpha = -3 * (slope - 1) * pow(denominator, -1, p) % p
+    ratio_denominator = (4 * slope - 3) % p
+    ratio = (
+        -4
+        * slope
+        * (slope - 1)
+        * pow(ratio_denominator, -1, p)
+    ) % p
+    return alpha, ratio
+
+
+def ratio_surface_branch_h_param(p: int, slope: int) -> Tuple[int, int]:
+    denominator = slope * (9 * slope - 8) % p
+    if denominator == 0:
+        return (0, 0)
+    alpha = -8 * (slope - 1) * pow(denominator, -1, p) % p
+    ratio_denominator = (9 * slope - 8) % p
+    ratio = (
+        -9
+        * slope
+        * (slope - 1)
+        * pow(ratio_denominator, -1, p)
+    ) % p
+    return alpha, ratio
+
+
 def ratio_surface_beta_discriminant(p: int, alpha: int, ratio: int) -> int:
     quadratic, linear, constant = ratio_surface_beta_coefficients(
         p,
@@ -4729,6 +4759,51 @@ def verify_ratio_surface_beta_projection() -> List[
                 split_lower_pair_count,
                 nonsplit_base_count,
                 conjugate_sign_checks,
+            )
+        )
+    return checked
+
+
+def verify_ratio_surface_branch_geometry() -> List[
+    Tuple[int, int, int, int, int]
+]:
+    checked: List[Tuple[int, int, int, int, int]] = []
+    for p in LOWER_CHART_PRIMES:
+        m_points = {
+            (alpha, ratio)
+            for alpha in range(1, p)
+            for ratio in range(1, p)
+            if ratio_surface_beta_middle_factor(p, alpha, ratio) == 0
+        }
+        h_points = {
+            (alpha, ratio)
+            for alpha in range(1, p)
+            for ratio in range(1, p)
+            if ratio_surface_beta_branch_factor(p, alpha, ratio) == 0
+        }
+        m_param_points = {(1, 1)}
+        h_param_points = {(1, 1)}
+        for slope in range(p):
+            alpha, ratio = ratio_surface_branch_m_param(p, slope)
+            if alpha != 0 and ratio != 0:
+                m_param_points.add((alpha, ratio))
+            alpha, ratio = ratio_surface_branch_h_param(p, slope)
+            if alpha != 0 and ratio != 0:
+                h_param_points.add((alpha, ratio))
+        if m_points != m_param_points:
+            raise AssertionError((p, "M", m_points ^ m_param_points))
+        if h_points != h_param_points:
+            raise AssertionError((p, "H", h_points ^ h_param_points))
+        intersection = m_points & h_points
+        if p != 5 and intersection != {(1, 1)}:
+            raise AssertionError((p, intersection))
+        checked.append(
+            (
+                p,
+                len(m_points),
+                len(h_points),
+                len(intersection),
+                int(intersection == {(1, 1)}),
             )
         )
     return checked
@@ -5478,6 +5553,9 @@ def main() -> None:
     ratio_surface_beta_projection_checked = (
         verify_ratio_surface_beta_projection()
     )
+    ratio_surface_branch_geometry_checked = (
+        verify_ratio_surface_branch_geometry()
+    )
     quotient_conic_centered_bound_checked = (
         verify_quotient_conic_centered_bounds()
     )
@@ -6104,6 +6182,8 @@ def main() -> None:
         f"{ratio_surface_lower_chart_checked}",
         f"ratio_surface_beta_projection_checked="
         f"{ratio_surface_beta_projection_checked}",
+        f"ratio_surface_branch_geometry_checked="
+        f"{ratio_surface_branch_geometry_checked}",
         f"quotient_conic_centered_bound_checked="
         f"{quotient_conic_centered_bound_checked}",
         f"weighted_ratio_surface_centering_checked="

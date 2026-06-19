@@ -29,6 +29,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-19 - M1 beta-cover branch geometry
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/m1_depth_two_line_conic_resonance_reduction.md`,
+  `experimental/verify_m1_depth_two_line_conic_resonance_reduction.py`,
+  `experimental/m1_residue_line_roadmap.md`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** Parametrizes the two beta-cover branch curves
+  `M=0` and `H=0` from their shared singular point `(1,1)`, and records the
+  resultants showing that for `p>5` they meet in the torus only at that
+  point.
+- **How it is useful:** Shows that the remaining two-sheet cover has an
+  explicit rational branch divisor, with no hidden high-genus branch
+  component.
+- **What to do next:** Use the rational branch model to prove the conductor
+  bound for the descended beta-cover Kummer trace.
+
 ### 2026-06-19 - M1 main determinant-chart beta cover
 
 - **Agent/model:** Codex.

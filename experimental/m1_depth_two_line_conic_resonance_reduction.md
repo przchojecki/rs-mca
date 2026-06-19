@@ -3228,6 +3228,33 @@ cover involution.  The verifier audits the discriminant factorization,
 projective beta-root count, exceptional coordinate curves, and conjugate
 sign equality on split fibers.
 
+The branch divisor is itself elementary.  Both `M=0` and `H=0` are singular
+at `(a,r)=(1,1)` and are rationally parametrized by the slope
+`t=(r-1)/(a-1)` through that point:
+
+```text
+M=0:
+  a = -3(t-1)/(t(4t-3)),
+  r = -4t(t-1)/(4t-3),
+
+H=0:
+  a = -8(t-1)/(t(9t-8)),
+  r = -9t(t-1)/(9t-8).
+```
+
+The resultants are
+
+```text
+Res_a(M,H) = 25 r^2 (r-1)^4,
+Res_r(M,H) = 25 a^2 (a-1)^4.
+```
+
+Thus, for `p>5`, the two branch curves meet in the torus only at the
+already separated vertical point `(1,1)`.  In characteristic `5` there are
+extra branch intersections, and the verifier records that finite special
+case separately.  Consequently the final two-sheet cover has an explicitly
+rational branch divisor with no hidden high-genus branch component.
+
 ## Principal-Row Leakage
 
 The principal rows excluded above have exact formulas.  They explain why the
