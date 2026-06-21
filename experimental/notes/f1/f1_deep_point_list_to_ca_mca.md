@@ -7,7 +7,7 @@ This note records a direct simple-pole conversion from large lists for
 `RS[F,D,k+1]` into many bad slopes for both no-loss correlated agreement (CA)
 and support-wise mutual correlated agreement (MCA) for `RS[F,D,k]`.
 
-For a deep point `alpha notin D`, the simple-pole line
+For a deep point `alpha \notin D`, the simple-pole line
 
 ```text
 f_alpha(x) = U(x)/(x-alpha),
@@ -30,12 +30,12 @@ Together with the slack-two quotient-locator list input, this suggests a direct
 CA/MCA cap route. The simple-pole identity is self-contained. The cap
 application should still be checked against the quotient-locator list mass, the
 CA/MCA definitions, and the finite constants in the main papers.
-Crites--Stewart remains useful as a broader list-to-agreement conversion and as
+Crites-Stewart remains useful as a broader list-to-agreement conversion and as
 an independent comparison route.
 
 ## 0. Conventions
 
-Let `F` be a finite field, let `D subset F` have size `n`, and let
+Let `F` be a finite field, let `D \subseteq F` have size `n`, and let
 
 ```text
 C   = RS[F,D,k],
@@ -43,8 +43,8 @@ C_+ = RS[F,D,k+1],
 1 <= k < n.
 ```
 
-Codewords of `C` are restrictions to `D` of polynomials in `F[X]_<k`, and
-codewords of `C_+` are restrictions to `D` of polynomials in `F[X]_<k+1`.
+Codewords of `C` are restrictions to `D` of polynomials in `F[X]_{<k}`, and
+codewords of `C_+` are restrictions to `D` of polynomials in `F[X]_{<k+1}`.
 
 For an integer `a` with
 
@@ -65,7 +65,7 @@ The no-loss CA bad-slope set of a line `f + z g` at radius `delta` is
 
 ```text
 Bad_CA(f,g; delta)
-= { z in F : Delta(f+zg,C) <= delta and Delta((f,g),C^2) > delta }.
+= { z \in F : Delta(f+zg,C) <= delta and Delta((f,g),C^2) > delta }.
 ```
 
 The proximity-loss CA bad-slope set is defined similarly with radii
@@ -73,7 +73,7 @@ The proximity-loss CA bad-slope set is defined similarly with radii
 
 ```text
 Bad_CA(f,g; delta_fld, delta_int)
-= { z in F : Delta(f+zg,C) <= delta_fld
+= { z \in F : Delta(f+zg,C) <= delta_fld
              and Delta((f,g),C^2) > delta_int }.
 ```
 
@@ -81,7 +81,7 @@ The support-wise MCA bad-slope set at radius `delta` is
 
 ```text
 Bad_MCA(f,g; delta)
-= { z in F : exists S subset D, |S| >= (1-delta)n,
+= { z \in F : exists S \subseteq D, |S| >= (1-delta)n,
              f+zg is explained by C on S,
              but (f,g) is not simultaneously explained by C^2 on S }.
 ```
@@ -93,7 +93,7 @@ distances are relative Hamming distances on `D`.
 
 ### Theorem 1.1: exact deep-point image identity for CA and MCA
 
-Let `U : D -> F`, let `alpha in F \ D`, and define
+Let `U : D -> F`, let `alpha \in F \setminus D`, and define
 
 ```text
 f_alpha(x) = U(x)/(x-alpha),
@@ -108,8 +108,8 @@ Deep_alpha(U,a)
 =
 {
     P(alpha) :
-    P in F[X]_<k+1 and
-    |{x in D : P(x)=U(x)}| >= a
+    P \in F[X]_{<k+1} and
+    |{x \in D : P(x)=U(x)}| >= a
 }.
 ```
 
@@ -130,7 +130,7 @@ Deep_alpha(U,a).
 ```
 
 For larger radii the theorem gives persistence, not a new exact description:
-every `z in Deep_alpha(U,a)` remains CA-bad for every proximity-loss pair
+every `z \in Deep_alpha(U,a)` remains CA-bad for every proximity-loss pair
 
 ```text
 delta_fld >= delta_a,
@@ -142,7 +142,7 @@ In particular, for no-loss CA, and also for support-wise MCA, the same slope
 remains bad for every
 
 ```text
-delta in [delta_a, 1-k/n).
+delta \in [delta_a, 1-k/n).
 ```
 
 For MCA alone, the same support-wise witness also persists for larger radii, but
@@ -153,13 +153,13 @@ the Proximity Prize cap only needs the subcapacity range `delta < 1-k/n`.
 First prove
 
 ```text
-Deep_alpha(U,a) subset Bad_CA cap Bad_MCA.
+Deep_alpha(U,a) \subseteq Bad_CA \cap Bad_MCA.
 ```
 
-Take `z in Deep_alpha(U,a)`. Then there is `P in F[X]_<k+1` and a support
+Take `z \in Deep_alpha(U,a)`. Then there is `P \in F[X]_{<k+1}` and a support
 
 ```text
-S = {x in D : P(x)=U(x)}
+S = {x \in D : P(x)=U(x)}
 ```
 
 with `|S| >= a > k` and `z = P(alpha)`.
@@ -185,10 +185,10 @@ Now show that `(f_alpha,g_alpha)` is not close to `C^2` on any support of size
 `> k`. It is enough to show that `g_alpha` alone has no degree-`<k` explanation
 on such a support.
 
-Suppose some `T subset D`, `|T| > k`, and some `G in F[X]_<k` satisfy
+Suppose some `T \subseteq D`, `|T| > k`, and some `G \in F[X]_{<k}` satisfy
 
 ```text
-G(x) = -1/(x-alpha)       for all x in T.
+G(x) = -1/(x-alpha)       for all x \in T.
 ```
 
 Then
@@ -212,17 +212,17 @@ support-wise MCA-badness on the specific support `S`.
 
 Now prove the reverse inclusion.
 
-Suppose `z` is MCA-bad at radius `delta_a`. Then there is a support `S subset D`,
-`|S| >= a`, and a polynomial `Q in F[X]_<k` such that
+Suppose `z` is MCA-bad at radius `delta_a`. Then there is a support
+`S \subseteq D`, `|S| >= a`, and a polynomial `Q \in F[X]_{<k}` such that
 
 ```text
-f_alpha(x) + z g_alpha(x) = Q(x)       for all x in S.
+f_alpha(x) + z g_alpha(x) = Q(x)       for all x \in S.
 ```
 
 Multiplying by `x-alpha` gives
 
 ```text
-U(x) - z = (x-alpha)Q(x)       for all x in S.
+U(x) - z = (x-alpha)Q(x)       for all x \in S.
 ```
 
 Define
@@ -231,8 +231,8 @@ Define
 P(X) = (X-alpha)Q(X) + z.
 ```
 
-Then `deg P < k+1`, `P(alpha)=z`, and `P(x)=U(x)` for all `x in S`. Hence
-`z in Deep_alpha(U,a)`.
+Then `deg P < k+1`, `P(alpha)=z`, and `P(x)=U(x)` for all `x \in S`. Hence
+`z \in Deep_alpha(U,a)`.
 
 The same reverse implication applies if `z` is CA-bad, because CA-badness
 includes the condition that `f_alpha+z g_alpha` is `delta_a`-close to `C`.
@@ -254,17 +254,17 @@ lower-bounds the size of a deep image for some `alpha`.
 Let
 
 ```text
-P_1, ..., P_L in F[X]_<k+1
+P_1, ..., P_L \in F[X]_{<k+1}
 ```
 
-be pairwise distinct polynomials. Let `Omega subset F` be any nonempty candidate
-set of deep points. For `alpha in Omega`, write
+be pairwise distinct polynomials. Let `Omega \subseteq F` be any nonempty
+candidate set of deep points. For `alpha \in Omega`, write
 
 ```text
 M(alpha) = |{P_i(alpha) : 1 <= i <= L}|.
 ```
 
-Then there exists `alpha in Omega` such that
+Then there exists `alpha \in Omega` such that
 
 ```text
 M(alpha) >= L / (1 + k(L-1)/|Omega|).
@@ -276,7 +276,7 @@ For each unordered pair `{i,j}` with `i != j`, the polynomial `P_i-P_j` is
 nonzero and has degree at most `k`. Therefore
 
 ```text
-|{alpha in Omega : P_i(alpha)=P_j(alpha)}| <= k.
+|{alpha \in Omega : P_i(alpha)=P_j(alpha)}| <= k.
 ```
 
 Let `C_alpha` be the number of unordered colliding pairs at `alpha`. Averaging
@@ -315,7 +315,7 @@ Let `U : D -> F` be a received word. Suppose there are pairwise distinct
 polynomials
 
 ```text
-P_1, ..., P_L in F[X]_<k+1
+P_1, ..., P_L \in F[X]_{<k+1}
 ```
 
 such that each `P_i` agrees with `U` on at least `a` points of `D`, where
@@ -324,8 +324,8 @@ such that each `P_i` agrees with `U` on at least `a` points of `D`, where
 k < a <= n.
 ```
 
-Let `Omega subset F \ D` be nonempty. Then there exists `alpha in Omega` and a
-simple-pole line
+Let `Omega \subseteq F \setminus D` be nonempty. Then there exists
+`alpha \in Omega` and a simple-pole line
 
 ```text
 f_alpha(x) = U(x)/(x-alpha),
@@ -356,19 +356,19 @@ epsilon_ca(C, delta_fld, delta_int)
 whenever
 
 ```text
-delta_fld in [delta_a, 1-k/n),
+delta_fld \in [delta_a, 1-k/n),
 delta_fld <= delta_int < 1-k/n.
 ```
 
 The same lower bound also holds for `epsilon_mca(C,delta)` for every
-`delta in [delta_a,1-k/n)`.
+`delta \in [delta_a,1-k/n)`.
 
 #### Proof
 
-Apply Lemma 2.1 to choose `alpha in Omega` with at least the displayed number of
-distinct values among `P_i(alpha)`. Theorem 1.1 identifies those distinct values
-with CA-bad and MCA-bad slopes for the simple-pole line. Dividing the number of
-bad slopes by `|F|` gives the claimed error lower bounds.
+Apply Lemma 2.1 to choose `alpha \in Omega` with at least the displayed number
+of distinct values among `P_i(alpha)`. Theorem 1.1 identifies those distinct
+values with CA-bad and MCA-bad slopes for the simple-pole line. Dividing the
+number of bad slopes by `|F|` gives the claimed error lower bounds.
 
 QED.
 
@@ -410,11 +410,12 @@ For `R >> 1`, this is essentially `|Omega|/k`.
 Assume now that
 
 ```text
-B <= F,
-D subset B.
+B \le F,
+D \subseteq B.
 ```
 
-Taking `Omega = F \ B` in Theorem 2.2 gives a genuinely extension-valued line.
+Taking `Omega = F \setminus B` in Theorem 2.2 gives a genuinely
+extension-valued line.
 If `F != B`, then
 
 ```text
@@ -452,7 +453,7 @@ epsilon_mca(RS[F,D,k], 1-a/n)
 with the same proximity-loss and no-loss persistence range from Theorem 2.2.
 
 This does not contradict subfield confinement for `B`-valued lines. For
-`alpha in F \ B`, the words
+`alpha \in F \setminus B`, the words
 
 ```text
 f_alpha(x)=U(x)/(x-alpha),
@@ -463,19 +464,19 @@ are generally not `B`-valued on `D`.
 
 ### Lemma 3.1: simple pole is not scalar-`B`-valued
 
-Let `B < F`, let `D subset B` contain at least two distinct points, and let
-`alpha in F \ B`. Define
+Let `B \subsetneq F`, let `D \subseteq B` contain at least two distinct points,
+and let `alpha \in F \setminus B`. Define
 
 ```text
-g_alpha(x) = -1/(x-alpha),  x in D.
+g_alpha(x) = -1/(x-alpha),  x \in D.
 ```
 
-Then there is no `lambda in F^*` such that `lambda^{-1} g_alpha(x) in B` for all
-`x in D`.
+Then there is no `lambda \in F^*` such that `lambda^{-1} g_alpha(x) \in B` for
+all `x \in D`.
 
 #### Proof
 
-Suppose such `lambda` exists. Then for every distinct `x,y in D`,
+Suppose such `lambda` exists. Then for every distinct `x,y \in D`,
 
 ```text
 g_alpha(x)/g_alpha(y) = (y-alpha)/(x-alpha)
@@ -483,10 +484,10 @@ g_alpha(x)/g_alpha(y) = (y-alpha)/(x-alpha)
 
 lies in `B`.
 
-Fix distinct `x,y in D` and put
+Fix distinct `x,y \in D` and put
 
 ```text
-r = (y-alpha)/(x-alpha) in B.
+r = (y-alpha)/(x-alpha) \in B.
 ```
 
 If `r=1`, then `x=y`, contradiction. Hence `r != 1`. Rearranging,
@@ -496,7 +497,7 @@ r(x-alpha) = y-alpha,
 (r-1) alpha = rx-y.
 ```
 
-The right side lies in `B`, and `r-1` is nonzero in `B`, so `alpha in B`, a
+The right side lies in `B`, and `r-1` is nonzero in `B`, so `alpha \in B`, a
 contradiction.
 
 QED.
@@ -507,12 +508,12 @@ The universal-cap application uses the following list input.
 
 ### Lemma 4.1: slack-two quotient-locator list fiber
 
-Let `B <= F` be finite fields. Let `D subset B^*` be a multiplicative coset of
+Let `B \le F` be finite fields. Let `D \subseteq B^*` be a multiplicative coset of
 order `n`. Let `N | n` and set
 
 ```text
 a0 = n/N,
-Q  = D^a0 = {x^a0 : x in D} subset B^*.
+Q  = D^a0 = {x^a0 : x \in D} \subseteq B^*.
 ```
 
 Then `Q` is a multiplicative coset of order `N`, and the map `x -> x^a0` maps
@@ -537,10 +538,10 @@ of degree `<= k`.
 
 #### Proof
 
-For `A subset Q` with `|A|=ell`, define
+For `A \subseteq Q` with `|A|=ell`, define
 
 ```text
-L_A(X) = prod_{b in A} (X^a0 - b).
+L_A(X) = prod_{b \in A} (X^a0 - b).
 ```
 
 Since `a0 ell = k + 2a0`, this expands as
@@ -554,7 +555,7 @@ where `deg R_A <= k`.
 Set
 
 ```text
-z_A = -e_1(A) in B,
+z_A = -e_1(A) \in B,
 U_{z_A}(x) = x^(k+2a0) + z_A x^(k+a0),
 c_A(x) = -R_A(x).
 ```
@@ -563,7 +564,7 @@ Then `c_A` is a codeword of `RS[B,D,k+1]`, because `deg R_A <= k`. The
 polynomial `L_A` vanishes exactly on
 
 ```text
-S_A = {x in D : x^a0 in A},
+S_A = {x \in D : x^a0 \in A},
 ```
 
 and `|S_A| = a0 ell = k + 2a0`. On `S_A`,
@@ -581,7 +582,7 @@ Thus `c_A` is within radius
 of `U_{z_A}`.
 
 As `A` ranges over the `binom(N,ell)` subsets of `Q`, the value `z_A` lies in
-`B`, so some `z in B` occurs for at least `ceil(binom(N,ell)/|B|)` choices of
+`B`, so some `z \in B` occurs for at least `ceil(binom(N,ell)/|B|)` choices of
 `A`.
 
 For this fixed `z`, the corresponding `c_A` are distinct. Indeed, if
@@ -590,7 +591,7 @@ For this fixed `z`, the corresponding `c_A` are distinct. Indeed, if
 root sets `S_A` and `S_A'` are equal, and therefore
 
 ```text
-A = {x^a0 : x in S_A} = {x^a0 : x in S_A'} = A'.
+A = {x^a0 : x \in S_A} = {x^a0 : x \in S_A'} = A'.
 ```
 
 So the fixed word `U_z` has at least `ceil(binom(N,ell)/|B|)` distinct nearby
@@ -610,7 +611,7 @@ b  = |B|,
 L0 = ceil( binom(N,rho N + 2) / b ).
 ```
 
-Let `Omega subset F \ D` be nonempty. Then
+Let `Omega \subseteq F \setminus D` be nonempty. Then
 
 ```text
 epsilon_ca(RS[F,D,k], 1-rho-2/N)
@@ -625,19 +626,19 @@ epsilon_mca(RS[F,D,k], 1-rho-2/N)
 The same lower bound holds for proximity-loss CA whenever
 
 ```text
-delta_fld in [1-rho-2/N, 1-rho),
+delta_fld \in [1-rho-2/N, 1-rho),
 delta_fld <= delta_int < 1-rho,
 ```
 
 and for no-loss CA/MCA throughout
 
 ```text
-delta in [1-rho-2/N, 1-rho).
+delta \in [1-rho-2/N, 1-rho).
 ```
 
 In particular:
 
-1. Taking `Omega = F \ D` gives
+1. Taking `Omega = F \setminus D` gives
 
    ```text
    epsilon_ca(RS[F,D,k], delta)  >= (q-n)/(2kq),
@@ -650,7 +651,7 @@ In particular:
    L0 >= (q-n)/k.
    ```
 
-2. If `D subset B subsetneq F`, taking `Omega = F \ B` gives the genuinely
+2. If `D \subseteq B \subsetneq F`, taking `Omega = F \setminus B` gives the genuinely
    extension-valued lower bound
 
    ```text
@@ -674,8 +675,8 @@ k + 2a0 > k.
 ```
 
 Then apply Theorem 2.2 with `a = k + 2a0`. This gives the main displayed
-bounds. The two half-bounds are Corollary 2.3 with `Omega = F\D` and
-`Omega = F\B`.
+bounds. The two half-bounds are Corollary 2.3 with `Omega = F \setminus D` and
+`Omega = F \setminus B`.
 
 QED.
 
@@ -686,18 +687,19 @@ QED.
 Let
 
 ```text
-rho in {1/2, 1/4, 1/8, 1/16}.
+rho \in {1/2, 1/4, 1/8, 1/16}.
 ```
 
 Set
 
 ```text
-N_rho = 1024   for rho in {1/2, 1/4, 1/8},
+N_rho = 1024   for rho \in {1/2, 1/4, 1/8},
 N_rho = 2048   for rho = 1/16.
 ```
 
-Let `F` be any finite field with `q=|F| < 2^256`. Let `B <= F` be a subfield, and
-let `D subset B^*` be a multiplicative coset of order `n` with `N_rho | n`. Let
+Let `F` be any finite field with `q=|F| < 2^256`. Let `B \le F` be a subfield,
+and let `D \subseteq B^*` be a multiplicative coset of order `n` with
+`N_rho | n`. Let
 
 ```text
 C = RS[F,D,k],
@@ -707,7 +709,7 @@ k = rho n <= 2^40.
 Then, for every no-loss radius
 
 ```text
-delta in [1-rho-2/N_rho, 1-rho),
+delta \in [1-rho-2/N_rho, 1-rho),
 ```
 
 we have
@@ -727,7 +729,7 @@ epsilon_ca(C, delta_fld, delta_int)
 whenever
 
 ```text
-delta_fld in [1-rho-2/N_rho, 1-rho),
+delta_fld \in [1-rho-2/N_rho, 1-rho),
 delta_fld <= delta_int < 1-rho.
 ```
 
@@ -740,14 +742,14 @@ If `q >= 2n`, then the same lower bound improves to
 Consequently,
 
 ```text
-delta^*_C(2^-128) <= 1-rho-2^-9       for rho in {1/2,1/4,1/8},
+delta^*_C(2^-128) <= 1-rho-2^-9       for rho \in {1/2,1/4,1/8},
 delta^*_C(2^-128) <= 1-rho-2^-10      for rho = 1/16.
 ```
 
 #### Proof
 
-Apply Theorem 5.1 with `N=N_rho` and `Omega=F\D`. We verify the saturation
-condition
+Apply Theorem 5.1 with `N=N_rho` and `Omega=F \setminus D`. We verify the
+saturation condition
 
 ```text
 L0 >= (q-n)/k.
@@ -792,8 +794,8 @@ epsilon_mca(C, delta) >= (q-n)/(2kq)
 
 throughout the stated no-loss and proximity-loss ranges.
 
-It remains only to check the numerical `2^-86` lower bound. Since `D subset F^*`,
-we have `n <= q-1`, and hence
+It remains only to check the numerical `2^-86` lower bound. Since
+`D \subseteq F^*`, we have `n <= q-1`, and hence
 
 ```text
 1 - n/q >= 1/(n+1).
@@ -873,7 +875,7 @@ we get
 log2 L0 > 216.
 ```
 
-For `Omega = F \ B`,
+For `Omega = F \setminus B`,
 
 ```text
 |Omega| = p^6 - p,
@@ -911,7 +913,7 @@ The witness line has the explicit rational shape
 ```text
 f_alpha(x) = U_z0(x)/(x-alpha),
 g_alpha(x) = -1/(x-alpha),
-alpha in F \ B,
+alpha \in F \setminus B,
 ```
 
 and the bad slopes are the distinct values
@@ -950,7 +952,7 @@ anything is promoted out of `experimental/`.
    of size `>k` would not force badness at the corresponding radius.
 
 5. Degree drop.
-   Since `P in F[X]_<k+1`, the quotient
+   Since `P \in F[X]_{<k+1}`, the quotient
 
    ```text
    (P(X)-P(alpha))/(X-alpha)
@@ -959,7 +961,7 @@ anything is promoted out of `experimental/`.
    has degree `<k`.
 
 6. Denominator.
-   We require `alpha notin D`, so `x-alpha` is nonzero on every evaluation point.
+   We require `alpha \notin D`, so `x-alpha` is nonzero on every evaluation point.
 
 7. Reverse inclusion.
    If `f_alpha+z g_alpha` is close on support `S`, multiplying by `X-alpha`
@@ -967,12 +969,12 @@ anything is promoted out of `experimental/`.
    polynomial. This proves exactness of the image identity.
 
 8. Evaluation expansion.
-   For distinct `P_i,P_j in F[X]_<k+1`, the difference `P_i-P_j` has degree at
+   For distinct `P_i,P_j \in F[X]_{<k+1}`, the difference `P_i-P_j` has degree at
    most `k`, hence has at most `k` roots. This is the only input in Lemma 2.1.
 
 9. Extension-valued line.
-   For the extension-field application, choose `alpha in F\B`. Then `f_alpha`
-   and `g_alpha` are generally `F`-valued but not `B`-valued, so this route is
+   For the extension-field application, choose `alpha \in F \setminus B`. Then
+   `f_alpha` and `g_alpha` are generally `F`-valued but not `B`-valued, so this route is
    outside the `B`-valued subfield-confinement class.
 
 10. Imported list mass.

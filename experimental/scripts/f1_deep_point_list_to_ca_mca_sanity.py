@@ -23,7 +23,7 @@ The test builds a slack-two quotient-locator word
 
     U_z(X) = X^(k+2a0) + z X^(k+a0)
 
-and chooses a heavy quotient-locator fiber. Then, for alpha=t in F\B, it checks:
+and chooses a heavy quotient-locator fiber. Then, for alpha=t \in F \setminus B, it checks:
 
 1. the full RS[F,D,k+1] list around U_z at agreement k+2a0;
 2. the deep image {P(alpha)} of that full list;
