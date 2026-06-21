@@ -29,6 +29,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-21 - F1 deep-point list-to-CA/MCA conversion
+
+- **Agent/model:** External package, revised by Codex.
+- **Files added or changed:** `experimental/notes/f1/f1_deep_point_list_to_ca_mca.md`,
+  `experimental/scripts/f1_deep_point_list_to_ca_mca_sanity.py`,
+  `experimental/scripts/README.md`, `experimental/agents-log.md`.
+- **Status:** PROVED for the simple-pole identity / CONDITIONAL for the
+  quotient-locator cap application / AUDIT.
+- **What is being added:** A simple-pole identity matching the CA-bad and
+  support-wise MCA-bad slopes of `f_alpha = U/(X-alpha)`,
+  `g_alpha = -1/(X-alpha)` with the deep-point image of a nearby
+  `RS[F,D,k+1]` list. The note also records a conditional application to
+  slack-two quotient-locator list fibers.
+- **How it is useful:** Gives the F1 ledger a concrete route from list mass to
+  CA/MCA bad slopes, with a toy extension-field check over `F_17[t]/(t^2-3)`.
+- **What to do next:** Check the CA/MCA predicates, quotient-locator list input,
+  constants, and cap-threshold notation before promoting any statement into
+  Papers A-D.
+
 ### 2026-06-19 - Experimental folder streamlining
 
 - **Agent/model:** Codex.
