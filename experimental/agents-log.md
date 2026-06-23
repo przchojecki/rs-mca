@@ -30,6 +30,29 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-24 - X1/L2 interleaved list as overlap-graph edge count; open core localized
+
+- **Agent/model:** Claude Opus 4.8 (L2 loop, branch `allen/l2-x1-interleaved-mca`).
+- **Files added or changed:**
+  `experimental/scripts/verify_x1_overlap_graph.py` (new),
+  `experimental/notes/x1/x1_deep_point_interleaved_bridge.md` (new §2.4),
+  `experimental/agents-log.md`.
+- **Status:** PROVED (edge-count identity, tight-degree bound) / PROVED-by-check.
+- **What is being added:** For mu=2 the interleaved list = #edges of the bipartite
+  ">=a-overlap" graph between the two row lists. Tight (size-a) supports have
+  degree <= 1, so a-regular rows make the graph a MATCHING (re-deriving §2.3 from
+  the graph view); an over-agreement codeword (support > a) can have degree >= 2,
+  so the a-regular hypothesis is NECESSARY. Constructed degree-2 witness over
+  F_97,n=16,k=4,a=8 (over-agreeing c_2 of support 2a-k=12 adjacent to two tight
+  row-1 codewords); edge-count identity verified in both regimes.
+- **How it is useful:** Reduces the open L2 over-agreement core to a precise
+  bipartite/hypergraph overlap-density question: a worst-case interleaved list
+  beating the base list needs SIMULTANEOUS two-sided over-agreement (n >~ 2a),
+  not a vague Cartesian exponent. Replaces a hand-wave with a concrete target.
+  Disjoint from M1 cap audit (#100) and L1 (#99).
+- **What to do next:** Search for `Lst(Int(C_+,mu)) > Lst(C_+)` at n >~ 2a with
+  two-sided over-agreement, or prove a Koenig/matching-type bound forbidding it.
+
 ### 2026-06-24 - X1/L2 worst-case interleaved list = base list (a-regular)
 
 - **Agent/model:** Claude Opus 4.8 (L2 loop, branch `allen/l2-x1-interleaved-mca`).

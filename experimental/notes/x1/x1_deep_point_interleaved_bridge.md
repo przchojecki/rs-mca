@@ -222,6 +222,43 @@ with the L1 constant in this regime (the honest reduction L2 -> L1).
 `mu=1,2,3` (a-regular quotient-locator words; base list `4`, interleaved `4` at
 every `mu`).
 
+## 2.4 The interleaved list as an overlap-graph edge count, and the open core
+
+§2.3 left the non-a-regular (over-agreement) regime open. This section localizes
+it exactly. For `mu=2`, the full-agreement formula reads
+
+```text
+|Lambda(Int(C_+,2),1-a/n,(U_1,U_2))|
+  = #{ (c_1,c_2) in list(U_1) x list(U_2) : |A_{c_1}(U_1) cap A_{c_2}(U_2)| >= a }
+  = #edges of the bipartite ">=a-overlap" graph G(list U_1, list U_2).
+```
+
+**Tight-support degree bound (PROVED).** A codeword whose full agreement support
+has size exactly `a` has degree `<= 1` in `G`: if two opposite-side codewords
+both have support meeting it in `>= a = |support|` points, both supports contain
+that `a`-set, so the two codewords agree on `> k` points and coincide. Hence
+**a-regular rows make `G` a matching**, giving `|interleaved| <= min row list <=
+base`, which re-derives the §2.3 collapse purely from the graph.
+
+**Over-agreement breaks the matching (PROVED-by-check).** A codeword with support
+`> a` can have degree `>= 2`. Witness over `F_97, n=16, k=4, a=8`
+(`verify_x1_overlap_graph.py`): an over-agreeing `c_2` with support `2a-k = 12`
+is adjacent to two tight row-1 codewords `c_1, c_1'` (built on overlapping
+`a`-sets `S, S'` inside `A_2`), so `deg(c_2)=2`. The edge-count identity
+`interleaved == edges` holds in both the tight and the witness case.
+
+**Consequence / open core.** The §2.3 a-regular hypothesis is *necessary*: drop
+it and `G` need not be a matching. For the worst-case interleaved list to
+*exceed* the base list one needs the edge count to beat the larger side, which
+requires **simultaneous over-agreement on both rows** (codewords of support `> a`
+on each side with compatible overlaps). This is geometrically constrained: two
+same-row codewords of support `b` overlap in `<= k`, forcing `n >= 2b-k`, so the
+construction needs `n` large relative to `a`. The witness above already has a
+degree-2 vertex but `interleaved = 2 = L_1` (a single over-agreeing `c_2`), so it
+does not beat base. **Whether `Lst(Int(C_+,mu)) > Lst(C_+)` ever holds is the
+precise open over-agreement core of L2**, now reduced to a bipartite/hypergraph
+overlap-density question rather than a vague "Cartesian exponent" worry.
+
 ## 3. Plan (incremental commits on this PR)
 
 1. (done) Independent audit + broadened verifier of the base identity (§1).
@@ -234,10 +271,12 @@ every `mu`).
 4. (done) Worst-case interleaved list = base list in the a-regular regime
    (§2.3) + `scripts/verify_x1_worst_case_interleaved.py`: interleaving exponent
    exactly 1; the honest L2 -> L1 reduction.
-5. (next) the aperiodic over-agreement regime (non-a-regular rows): bound the
-   interleaved list when codewords agree on `> a` points -- the residual open
-   piece, which is where any genuine L2-vs-L1 separation could appear; or align
-   `L` to the exact L2 `Quot_mu` count at prize parameters.
+5. (done) Overlap-graph reduction (§2.4): interleaved (mu=2) = bipartite
+   >=a-overlap edge count; tight => matching (=> §2.3); over-agreement => degree
+   >= 2 (a-regular hypothesis necessary). `scripts/verify_x1_overlap_graph.py`.
+6. (next) attack the open core: does simultaneous two-sided over-agreement ever
+   give `Lst(Int(C_+,mu)) > Lst(C_+)`? search at `n >~ 2a`, or prove a general
+   matching/Koenig-type bound forbidding it.
 
 ## Ledger impact
 
@@ -260,4 +299,6 @@ python3 experimental/scripts/verify_x1_forward_interleaved_count.py
 python3 experimental/scripts/verify_x1_forward_interleaved_count.py --json
 python3 experimental/scripts/verify_x1_worst_case_interleaved.py
 python3 experimental/scripts/verify_x1_worst_case_interleaved.py --json
+python3 experimental/scripts/verify_x1_overlap_graph.py
+python3 experimental/scripts/verify_x1_overlap_graph.py --json
 ```
