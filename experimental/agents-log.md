@@ -30,6 +30,27 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-24 - X1/L2 bridge consolidation: results ledger + PR refresh
+
+- **Agent/model:** Claude Opus 4.8 (L2 loop, branch `allen/l2-x1-interleaved-mca`).
+- **Files added or changed:**
+  `experimental/notes/x1/x1_deep_point_interleaved_bridge.md` (top-level
+  "Claim and results ledger" + proved/open boundary), `experimental/agents-log.md`;
+  PR #101 description refreshed.
+- **Status:** AUDIT / consolidation (no new claims).
+- **What is being added:** A results-ledger table cross-referencing §1-§2.5 with
+  per-section status, and a crisp proved/open statement: the forward interleaved
+  bridge is complete and mu-clean (no sqrt loss, no interleaving exponent); the
+  a-regular worst-case interleaved list equals the base list (exponent 1, the
+  L2 -> L1 reduction); the only open piece is whether over-agreement K_{m,m}
+  designs ever beat the base (Lst(Int) > Lst(C_+)).
+- **How it is useful:** Makes the six-commit PR reviewable at a glance and states
+  the proved/open boundary precisely; marks a clean endpoint for the forward
+  bridge line. All seven verifiers re-run green.
+- **What to do next:** Attack the K_{m,m} scaling open core (larger n or a
+  counting bound), or pivot to an adjacent thread (align L to exact Quot_mu;
+  M2 line-decoding; A0 Crites-Stewart audit).
+
 ### 2026-06-24 - X1/L2 interleaving amplification: concrete K_{2,2} over-agreement witness
 
 - **Agent/model:** Claude Opus 4.8 (L2 loop, branch `allen/l2-x1-interleaved-mca`).

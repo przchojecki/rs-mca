@@ -3,7 +3,7 @@
 - **Status:** AUDIT (base identity, independently reproduced) / PROVED + PROVED-by-check
   (interleaved identity §2 and the mu-independent collision bound).
 - **Agent/model:** Claude Opus 4.8 (L2 loop, branch `allen/l2-x1-interleaved-mca`).
-- **Date:** 2026-06-23.
+- **Date:** 2026-06-23 / 2026-06-24.
 - **Scope:** Problem X1 (list <-> CA/MCA without square-root loss) and L2
   (interleaved-list constants), `agents.md`. Builds on
   `notes/f1/f1_deep_point_list_to_ca_mca.md` (avdeevvadim, Theorem 1.1/2.2) and
@@ -20,6 +20,37 @@ bound to cap `delta*`), which is the subject of the active M1 audit PR #100
 (`codex/m1-cycle120-gate-audit`, the `n=512,k=256,delta=125/256` row). Files
 here live under `notes/x1/`, `notes/l2/`, and `scripts/verify_x1_*` /
 `scripts/verify_l2_*`; they do not collide with `notes/m1/` or `verify_m1_*`.
+
+## Claim and results ledger
+
+This note develops the **forward** direction of the deep-point bridge for the
+*interleaved* object, turning interleaved list bounds (L2) into interleaved-MCA
+bad-slope counts (X1) for `C = RS[F,D,k]`, consuming the `C_+ = RS[F,D,k+1]`
+list at the same radius `delta_a = 1-a/n`, `a > k`.
+
+| § | Result | Status |
+|---|--------|--------|
+| 1 | Base deep-point identity `Bad_CA = Bad_MCA = Deep_alpha(U,a)` | AUDIT (independently reproduced, 312 checks, all `alpha in F_p\D`) |
+| 2 | Interleaved `mu`-row identity `BadVec(alpha;a) = Deep_alpha^{mu}(U,a)`; `mu`-independent transfer constant (`<= k` collisions) | PROVED + PROVED-by-check |
+| 2.2 | Forward count chain `avg_lb <= BadVec_max <= L <= Cartesian`; interleaved list `L` constant in `mu` | PROVED-by-check |
+| 2.3 | a-regular regime: worst-case interleaved list `= base list`, all `mu` (interleaving exponent exactly 1) | PROVED |
+| 2.4 | `interleaved(mu=2) = #edges` of `>=a`-overlap graph; tight `=>` matching; over-agreement `=>` degree `>= 2` (hypothesis of §2.3 necessary) | PROVED + PROVED-by-check |
+| 2.5 | `K_{2,2}` witness: interleaving amplifies beyond both rows (`4 > max(L_1,L_2)`), but below base | PROVED-by-check |
+
+**What is proved.** The forward interleaved bridge is complete and `mu`-clean: an
+interleaved list bound transfers to an interleaved-MCA bad-slope count at the
+same radius with **no square-root loss and no interleaving exponent** (§2, §2.2).
+In the generic **a-regular** regime the worst-case interleaved list **equals the
+base-code list** for every `mu` (§2.3) -- the sharp L2 constant is the base
+(`= L1`) constant, exponent exactly 1, the honest L2 -> L1 reduction. The
+interleaved list is exactly the `>=a`-overlap graph edge count (§2.4).
+
+**What remains open.** Whether `Lst(Int(C_+,mu)) > Lst(C_+)` can ever hold in the
+**over-agreement** regime. §2.4-§2.5 reduce this to a concrete combinatorial
+question: a `K_{m,m}` overlap design yields interleaved `= m^2`, which beats the
+base only if the design scales (large `n`) faster than `Lst(C_+)` grows. The
+smallest design (`K_{2,2}`) already amplifies beyond the participating rows but
+not past the base. This is the sharp open core of L2.
 
 ## 1. Base identity, independently audited
 
