@@ -36,6 +36,7 @@ list at the same radius `delta_a = 1-a/n`, `a > k`.
 | 2.3 | a-regular regime: worst-case interleaved list `= base list`, all `mu` (interleaving exponent exactly 1) | PROVED |
 | 2.4 | `interleaved(mu=2) = #edges` of `>=a`-overlap graph; tight `=>` matching; over-agreement `=>` degree `>= 2` (hypothesis of §2.3 necessary) | PROVED + PROVED-by-check |
 | 2.5 | `K_{2,2}` witness: interleaving amplifies beyond both rows (`4 > max(L_1,L_2)`), but below base | PROVED-by-check |
+| 2.6 | L2 -> L1 reduction `Lst(Int) <= Lst(C_+)^mu` (= `Lst(C_+)` a-regular); `K_{m,m}` clique cap `n >= k+m^2(a-k)` | PROVED + PROVED-by-check |
 
 **What is proved.** The forward interleaved bridge is complete and `mu`-clean: an
 interleaved list bound transfers to an interleaved-MCA bad-slope count at the
@@ -46,11 +47,12 @@ base-code list** for every `mu` (§2.3) -- the sharp L2 constant is the base
 interleaved list is exactly the `>=a`-overlap graph edge count (§2.4).
 
 **What remains open.** Whether `Lst(Int(C_+,mu)) > Lst(C_+)` can ever hold in the
-**over-agreement** regime. §2.4-§2.5 reduce this to a concrete combinatorial
-question: a `K_{m,m}` overlap design yields interleaved `= m^2`, which beats the
-base only if the design scales (large `n`) faster than `Lst(C_+)` grows. The
-smallest design (`K_{2,2}`) already amplifies beyond the participating rows but
-not past the base. This is the sharp open core of L2.
+**over-agreement** regime. §2.6 reduces this to L1: `Lst(Int) <= Lst(C_+)^mu`
+always (`= Lst(C_+)` when a-regular), so the exact exponent in `[1,mu]` is
+governed by the base (L1) list, and the only constructive amplification route
+(`K_{m,m}` cliques) is geometrically capped at `n >= k+m^2(a-k)` and cannot beat
+a large base list. The residual is whether a non-clique configuration pushes the
+worst-case exponent strictly above `1` -- an L1-governed question.
 
 ## 1. Base identity, independently audited
 
@@ -327,6 +329,45 @@ attack it. Net honest status: interleaving can exceed both rows in the
 over-agreement regime, but no worst-case-vs-base separation is exhibited at toy
 scale; the a-regular collapse (§2.3) remains the proven worst-case statement.
 
+## 2.6 L2 reduces to L1, and the clique-amplification cap
+
+Two honest statements close the over-agreement analysis (without claiming the
+open separation either way).
+
+**(R) Reduction (PROVED).** Since the interleaved list is the `>=a`-overlap edge
+count (§2.4), for every `mu`-row word
+```text
+|Lambda(Int(C_+,mu),delta_a,U)|  <=  prod_i |Lambda(C_+,delta_a,U_i)|  <=  Lst(C_+,delta_a)^mu,
+```
+and `= Lst(C_+,delta_a)` in the a-regular regime (§2.3). Hence **the worst-case
+interleaved list is polynomial iff the base (L1) list is**: the L2 interleaved
+problem reduces to the L1 base-list problem, with exponent in `[1,mu]` (exactly
+`1` when a-regular). An L1 bound `Lst(C_+) <= n^B` immediately gives
+`Lst(Int(C_+,mu)) <= n^{mu B}`. No separate L2 list theorem is needed; the
+trivial Cartesian exponent `mu` is the worst case and `1` the generic case.
+
+**(C) Clique cap (PROVED).** The only known constructive way to push the exponent
+above `1` is the `K_{m,m}` two-sided over-agreement design (§2.5). It is
+geometrically capped: `m` row-1 supports sharing exactly the `k`-set `T` have
+pairwise-disjoint non-`T` parts (similarly row 2), and each of the `m^2` cells
+`A_i cap B_j` needs `>= a-k` non-`T` points, so
+```text
+n  >=  k + m^2 (a - k).
+```
+Thus a `K_{m,m}` clique realizes `interleaved = m^2` only at `n >= k+m^2(a-k)`;
+its amplification `m^2 <= (n-k)/(a-k)` is **linear in `n`**. Beating the base via
+this route needs `Lst(C_+) < (n-k)/(a-k)` -- a base list already linear-small,
+i.e. never the hard large-list L2 regime. `verify_x1_clique_cap.py` builds the
+grid designs for `m=2,3,4` (`n=20,40,68`, `edges=4,9,16`, supports `12,16,20 > a`)
+and cross-checks `m=2` against the field-realized construction of §2.5.
+
+**Net.** The L2 sharp-constant question is governed by L1: exponent `1` generically
+(§2.3), `<= mu` always (R), and the only clique route to a strict increase is
+capped (C) and cannot beat a large base list. Whether a non-clique configuration
+pushes the *worst-case* exponent strictly above `1` while exceeding the base
+remains open, but it cannot come from the `K_{m,m}` family and is bounded by the
+L1 list either way.
+
 ## 3. Plan (incremental commits on this PR)
 
 1. (done) Independent audit + broadened verifier of the base identity (§1).
@@ -344,9 +385,11 @@ scale; the a-regular collapse (§2.3) remains the proven worst-case statement.
    >= 2 (a-regular hypothesis necessary). `scripts/verify_x1_overlap_graph.py`.
 6. (done) K_{2,2} amplification witness (§2.5): `interleaved=4 > max row list=3`
    in the over-agreement regime, but below the base; `verify_x1_interleaving_amplification.py`.
-7. (next) the sharp open core: does a K_{m,m} overlap design scale so that
-   `m^2 > Lst(C_+)` (true Lst(Int)>Lst(C_+) separation), or does a counting bound
-   forbid it? larger n, or a proof.
+7. (done) §2.6: L2 -> L1 reduction (`Lst(Int) <= Lst(C_+)^mu`) + `K_{m,m}` clique
+   cap (`n>=k+m^2(a-k)`); `scripts/verify_x1_clique_cap.py`.
+8. (open) whether a NON-clique configuration pushes the worst-case exponent
+   strictly above 1 while exceeding the base -- bounded by the L1 list (R), not
+   from the clique family (C). This is now an L1-governed residual.
 
 ## Ledger impact
 
@@ -373,4 +416,6 @@ python3 experimental/scripts/verify_x1_overlap_graph.py
 python3 experimental/scripts/verify_x1_overlap_graph.py --json
 python3 experimental/scripts/verify_x1_interleaving_amplification.py
 python3 experimental/scripts/verify_x1_interleaving_amplification.py --json
+python3 experimental/scripts/verify_x1_clique_cap.py
+python3 experimental/scripts/verify_x1_clique_cap.py --json
 ```

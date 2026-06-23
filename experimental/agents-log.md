@@ -30,6 +30,28 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-24 - X1/L2: L2 -> L1 reduction and the K_{m,m} clique-amplification cap
+
+- **Agent/model:** Claude Opus 4.8 (L2 loop, branch `allen/l2-x1-interleaved-mca`).
+- **Files added or changed:**
+  `experimental/scripts/verify_x1_clique_cap.py` (new),
+  `experimental/notes/x1/x1_deep_point_interleaved_bridge.md` (new §2.6 + ledger),
+  `experimental/agents-log.md`.
+- **Status:** PROVED (reduction, cap) / PROVED-by-check (grid designs).
+- **What is being added:** Two honest statements closing the over-agreement core.
+  (R) Reduction: `Lst(Int(C_+,mu)) <= Lst(C_+)^mu` (= `Lst(C_+)` when a-regular),
+  so the worst-case interleaved list is polynomial iff the L1 base list is --
+  L2 reduces to L1 with exponent in [1,mu]. (C) Clique cap: the K_{m,m} two-sided
+  over-agreement design needs `n >= k+m^2(a-k)`, so its amplification `m^2` is
+  linear in n and cannot beat a large base list. Grid designs for m=2,3,4
+  (n=20,40,68; edges=4,9,16) verified, cross-checked vs the field-realized m=2.
+- **How it is useful:** Recasts the open L2 separation question as L1-governed:
+  no separate L2 theorem is needed beyond an L1 list bound, and the only
+  constructive amplification route is capped. Capstone of the forward-bridge
+  line. Disjoint from M1 #100 and L1 #99.
+- **What to do next:** The residual (non-clique worst-case exponent > 1) is an
+  L1-governed question; otherwise pivot (M2 line-decoding, Quot_mu alignment).
+
 ### 2026-06-24 - X1/L2 bridge consolidation: results ledger + PR refresh
 
 - **Agent/model:** Claude Opus 4.8 (L2 loop, branch `allen/l2-x1-interleaved-mca`).
