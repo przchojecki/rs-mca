@@ -257,7 +257,7 @@ def build_report() -> Dict[str, Any]:
         },
         "checks": checks,
         "imports_required": [
-            "Cycle84 ordered off-diagonal energy upper bound D <= 24",
+            "projected tau-folded duplicate-bin completeness",
             "official ABF source gate verification",
         ],
         "nonmutating": True,

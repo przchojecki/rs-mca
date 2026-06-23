@@ -30,6 +30,26 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-23 - Cycle84 kernel-lift candidate verification
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_cycle116_finite_chain_contract.md`,
+  `experimental/scripts/verify_m1_cycle84_kernel_lift_candidates.py`,
+  `experimental/scripts/verify_m1_cycle84_color_collision_witnesses.py`, and
+  `experimental/agents-log.md`.
+- **Status:** AUDIT / FINITE-MODEL-KERNEL-LIFT-VERIFIED / CONDITIONAL.
+- **What is being added:** A verifier for all 30 projected Cycle84 duplicate-bin
+  lift candidates. It checks 60 normalized witnesses against the current slot
+  table, verifies color shell membership, full-log exponentiation, congruence
+  modulo `(17^16-1)/3`, and the kernel-difference test distinguishing the six
+  true collision orbits from the 24 false projected collisions.
+- **How it is useful:** Narrows the remaining Cycle84 finite import again: the
+  kernel lift/filtering is now replayed locally, leaving projected tau-folded
+  duplicate-bin completeness as the precise heavy census statement to audit.
+- **What to do next:** Independently replay or audit the projected tau-folded
+  census showing exactly these 30 projected duplicate bins, each of count 2.
+
 ### 2026-06-23 - Cycle84 color shell and collision witnesses
 
 - **Agent/model:** Codex.
