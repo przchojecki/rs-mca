@@ -234,7 +234,7 @@ def build_report() -> Dict[str, Any]:
         "checks": checks,
         "imports_required": [
             "Cycle116 slot identity replay by verify_m1_cycle116_slot_identities.py",
-            "Cycle84 exact product occupancy for the normalized slot table",
+            "Cycle84 energy upper bound D <= 24 for the normalized slot table",
             "Cycle116 co-support assembly with common singleton {1}",
             "official ABF source gate verification",
         ],

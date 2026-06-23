@@ -34,7 +34,7 @@ EXPECTED_FIELD_SIZE = 2_367_911_594_760_467_245_844_106_297_320_951_247_361
 IMPORTS_REQUIRED = (
     "official ABF source gates and page references",
     "finite certificate for K, theta, and H=<theta>",
-    "Cycle84 finite count producing N",
+    "Cycle84 finite energy/census producing N",
     "Cycle116 finite-chain transfer at agreement 262",
     "optional Cycle119 two-ended transfer at agreement 263",
 )

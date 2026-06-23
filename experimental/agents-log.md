@@ -30,6 +30,29 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-23 - Cycle84 color shell and collision witnesses
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_cycle116_finite_chain_contract.md`,
+  `experimental/scripts/verify_m1_cycle84_color_collision_witnesses.py`,
+  `experimental/scripts/verify_m1_cycle116_fixed_jet_bridge.py`,
+  `experimental/scripts/verify_m1_cycle116_field_lift_contract.py`, and
+  `experimental/agents-log.md`.
+- **Status:** AUDIT / FINITE-MODEL-WITNESS-VERIFIED / CONDITIONAL.
+- **What is being added:** A compact verifier for the Cycle84 color shell and
+  explicit collision witnesses, using the normalized slot table from the
+  Cycle116 slot replay. It checks the exact color-shell size
+  `52,747,567,104`, verifies six product-collision pairs and their tau partners,
+  and records their ordered-energy contribution `24`.
+- **How it is useful:** Reduces the remaining Cycle84 finite wall to the sharp
+  energy upper bound `D <= 24`. If that imported bound holds, the verified
+  witnesses saturate all collisions and give the exact downstream numerator
+  `52,747,567,092`.
+- **What to do next:** Independently replay or audit the Cycle84 ordered-energy
+  upper bound for the normalized slot table; this is now the precise finite
+  census bottleneck.
+
 ### 2026-06-23 - Cycle116 slot identity replay
 
 - **Agent/model:** Codex.

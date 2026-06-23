@@ -329,7 +329,7 @@ def build_report() -> Dict[str, Any]:
             "single_slot_u_maps_injective": all(injectivity_checks.values()),
         },
         "imports_required": [
-            "Cycle84 exact product occupancy for this normalized slot table",
+            "Cycle84 color/witness replay and energy upper bound D <= 24",
             "official ABF source gate verification",
         ],
         "nonmutating": True,

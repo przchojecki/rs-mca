@@ -269,6 +269,50 @@ evaluations. It also emits a stable digest for the normalized slot table
 The remaining imported finite computation is the Cycle84 product occupancy
 census for that normalized table.
 
+## Cycle84 Color Shell And Energy Saturation
+
+The companion verifier
+
+```text
+python3 experimental/scripts/verify_m1_cycle84_color_collision_witnesses.py
+```
+
+checks two further finite clauses for the same normalized slot table.
+
+First, it computes the exact seven-slot color shell:
+
+```text
+#{T: color(T)=4 mod 16} = 52,747,567,104.
+```
+
+Second, it verifies six explicit product-collision pairs and their images under
+the Cycle84 tau involution. These give:
+
+```text
+verified tau collision orbits = 6,
+verified double fibers        = 12,
+ordered off-diagonal energy   >= 24.
+```
+
+Thus the remaining heavy Cycle84 census can be stated as a sharp energy upper
+bound for this normalized table:
+
+```text
+D <= 24,
+```
+
+where `D=sum_v m(v)(m(v)-1)` is the ordered off-diagonal product energy on the
+color shell. If this imported upper bound holds, the verified witnesses saturate
+all possible off-diagonal energy. Hence every nontrivial fiber is one of the
+twelve verified double fibers, no fiber has size at least `3`, and
+
+```text
+#{Phi(T)} = 52,747,567,104 - 12
+          = 52,747,567,092.
+```
+
+This is the exact numerator used downstream.
+
 ## Abstract Smooth Padding Lift
 
 Let `C0=RS[F0,D0,k0]` and suppose a native support-wise bad-slope theorem gives
@@ -410,8 +454,10 @@ ABF-facing contract.
 The chain is only as strong as the following imported clauses:
 
 1. The Cycle84 finite product census really has
-   `#{Phi(T)} = 52,747,567,092` with the stated color shell, for the normalized
-   slot table emitted by `verify_m1_cycle116_slot_identities.py`.
+   ordered off-diagonal energy `D <= 24` for the normalized slot table emitted
+   by `verify_m1_cycle116_slot_identities.py`. The color-shell size and twelve
+   saturating double-fiber witnesses are now independently replayed by
+   `verify_m1_cycle84_color_collision_witnesses.py`.
 2. The slot-block assembly really uses the co-support
    `{1} union union_t eta^t Y_{i_t,a_t}` with disjoint active cosets; the
    current slot-identity verifier checks the disjoint active-coset envelope.
