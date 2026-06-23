@@ -376,7 +376,8 @@ tau-canonical shards. By default it scans the `30` receipt shards that contain
 duplicate bins, verifying those bins by recomputation and checking that no extra
 duplicate appears in those shards. This still does not prove absence of
 duplicates in unselected shards; run the same script with `--all-shards` for the
-complete projected-census replay.
+complete projected-census replay. The generated replay parallelizes shard
+scanning; use `--threads N` to set the OpenMP worker count.
 
 ## Abstract Smooth Padding Lift
 

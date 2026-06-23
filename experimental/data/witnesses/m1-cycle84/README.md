@@ -37,4 +37,5 @@ python3 experimental/scripts/verify_m1_cycle84_projected_census_shard_replay.py
 
 By default this recompiles a temporary C++ replay and scans the 30 shards that
 contain the receipt's duplicate bins. Use `--all-shards` for the complete
-16,384-shard replay.
+16,384-shard replay, and `--threads N` to set the OpenMP shard-scanning worker
+count.

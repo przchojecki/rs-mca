@@ -38,14 +38,17 @@ CPP_SOURCE_TEMPLATE = r"""
 #include <parallel/algorithm>
 #include <algorithm>
 #include <array>
+#include <atomic>
 #include <cstdint>
 #include <cstdlib>
 #include <iostream>
 #include <limits>
+#include <mutex>
 #include <stdexcept>
 #include <string>
 #include <unordered_map>
 #include <vector>
+#include <omp.h>
 
 @@LOG_TABLES@@
 
@@ -54,6 +57,7 @@ static constexpr uint64_t S0 = 7668598605862660454ULL;
 static constexpr uint64_t S1 = 15778797251807138534ULL;
 static constexpr uint64_t HALF = MOD / 2;
 static constexpr int SHARDS = 16384;
+static constexpr int THREADS = @@THREADS@@;
 
 static inline uint64_t addm(uint64_t a, uint64_t b) {
     __uint128_t z = static_cast<__uint128_t>(a) + b;
@@ -241,84 +245,104 @@ int main(int argc, char** argv) {
 
     static constexpr size_t CAP = 1ULL << 22;
     static constexpr size_t MASK = CAP - 1;
-    std::vector<uint64_t> table(CAP, std::numeric_limits<uint64_t>::max());
-    std::vector<uint32_t> used;
-    used.reserve(1800000);
-    std::unordered_map<uint64_t, uint16_t> duplicate_counts;
-    duplicate_counts.reserve(32);
     std::vector<Duplicate> duplicates;
-    uint64_t selected_entries = 0;
-    uint64_t selected_energy = 0;
-    uint16_t selected_max = 1;
+    std::mutex duplicate_mutex;
+    std::atomic<uint64_t> selected_entries{0};
+    std::atomic<uint64_t> selected_energy{0};
+    std::atomic<uint16_t> selected_max{1};
 
-    for (int shard : selected_shards) {
-        uint64_t lo = static_cast<uint64_t>(
-            static_cast<__uint128_t>(HALF) * shard / SHARDS
-        );
-        uint64_t hi = static_cast<uint64_t>(
-            static_cast<__uint128_t>(HALF) * (shard + 1) / SHARDS
-        );
-        uint64_t l2 = MOD - hi + 1;
-        __uint128_t upper = static_cast<__uint128_t>(MOD) - lo + 1;
-        uint64_t u2 = upper > MOD ? MOD : static_cast<uint64_t>(upper);
+    #pragma omp parallel num_threads(THREADS)
+    {
+        std::vector<uint64_t> table(CAP, std::numeric_limits<uint64_t>::max());
+        std::vector<uint32_t> used;
+        used.reserve(1800000);
+        std::unordered_map<uint64_t, uint16_t> duplicate_counts;
+        duplicate_counts.reserve(32);
 
-        uint64_t entries = 0;
-        uint64_t energy = 0;
-        uint16_t max_multiplicity = 1;
-        used.clear();
-        duplicate_counts.clear();
+        #pragma omp for schedule(dynamic, 1)
+        for (size_t shard_index = 0; shard_index < selected_shards.size(); ++shard_index) {
+            int shard = selected_shards[shard_index];
+            uint64_t lo = static_cast<uint64_t>(
+                static_cast<__uint128_t>(HALF) * shard / SHARDS
+            );
+            uint64_t hi = static_cast<uint64_t>(
+                static_cast<__uint128_t>(HALF) * (shard + 1) / SHARDS
+            );
+            uint64_t l2 = MOD - hi + 1;
+            __uint128_t upper = static_cast<__uint128_t>(MOD) - lo + 1;
+            uint64_t u2 = upper > MOD ? MOD : static_cast<uint64_t>(upper);
 
-        auto insert = [&](uint64_t base_log, uint64_t tail_log) {
-            uint64_t projected = addm(base_log, tail_log);
-            uint64_t z = subm(projected, S0);
-            uint64_t canonical = std::min(z, MOD - z);
-            if (!(lo <= canonical && canonical < hi)) {
-                throw std::runtime_error("canonical key outside shard range");
-            }
-            entries++;
-            size_t position = mix(canonical) & MASK;
-            for (;;) {
-                uint64_t current = table[position];
-                if (current == std::numeric_limits<uint64_t>::max()) {
-                    table[position] = canonical;
-                    used.push_back(static_cast<uint32_t>(position));
-                    return;
+            uint64_t entries = 0;
+            uint64_t energy = 0;
+            uint16_t max_multiplicity = 1;
+            used.clear();
+            duplicate_counts.clear();
+
+            auto insert = [&](uint64_t base_log, uint64_t tail_log) {
+                uint64_t projected = addm(base_log, tail_log);
+                uint64_t z = subm(projected, S0);
+                uint64_t canonical = std::min(z, MOD - z);
+                if (!(lo <= canonical && canonical < hi)) {
+                    throw std::runtime_error("canonical key outside shard range");
                 }
-                if (current == canonical) {
-                    auto result = duplicate_counts.emplace(canonical, 1);
-                    uint16_t old = result.first->second;
-                    energy += 2ULL * old;
-                    result.first->second = old + 1;
-                    max_multiplicity = std::max(max_multiplicity, result.first->second);
-                    return;
+                entries++;
+                size_t position = mix(canonical) & MASK;
+                for (;;) {
+                    uint64_t current = table[position];
+                    if (current == std::numeric_limits<uint64_t>::max()) {
+                        table[position] = canonical;
+                        used.push_back(static_cast<uint32_t>(position));
+                        return;
+                    }
+                    if (current == canonical) {
+                        auto result = duplicate_counts.emplace(canonical, 1);
+                        uint16_t old = result.first->second;
+                        energy += 2ULL * old;
+                        result.first->second = old + 1;
+                        max_multiplicity = std::max(max_multiplicity, result.first->second);
+                        return;
+                    }
+                    position = (position + 1) & MASK;
                 }
-                position = (position + 1) & MASK;
-            }
-        };
+            };
 
-        for (const auto& tail : tails) {
-            const auto& values = base[(4 - tail.color) & 15];
-            uint64_t start = subm(S0, tail.log_sum);
-            circular_slice(values, start, lo, hi, [&](uint64_t base_log) {
-                insert(base_log, tail.log_sum);
-            });
-            if (l2 < MOD && l2 < u2) {
-                circular_slice(values, start, l2, u2, [&](uint64_t base_log) {
+            for (const auto& tail : tails) {
+                const auto& values = base[(4 - tail.color) & 15];
+                uint64_t start = subm(S0, tail.log_sum);
+                circular_slice(values, start, lo, hi, [&](uint64_t base_log) {
                     insert(base_log, tail.log_sum);
                 });
+                if (l2 < MOD && l2 < u2) {
+                    circular_slice(values, start, l2, u2, [&](uint64_t base_log) {
+                        insert(base_log, tail.log_sum);
+                    });
+                }
             }
-        }
 
-        if (used.size() > CAP * 3 / 5) {
-            throw std::runtime_error("hash table load is too high");
-        }
-        for (uint32_t position : used) table[position] = std::numeric_limits<uint64_t>::max();
+            if (used.size() > CAP * 3 / 5) {
+                throw std::runtime_error("hash table load is too high");
+            }
+            for (uint32_t position : used) {
+                table[position] = std::numeric_limits<uint64_t>::max();
+            }
 
-        selected_entries += entries;
-        selected_energy += energy;
-        selected_max = std::max(selected_max, max_multiplicity);
-        for (const auto& item : duplicate_counts) {
-            duplicates.push_back({item.first, item.second, shard});
+            selected_entries.fetch_add(entries, std::memory_order_relaxed);
+            selected_energy.fetch_add(energy, std::memory_order_relaxed);
+            uint16_t old_max = selected_max.load(std::memory_order_relaxed);
+            while (
+                max_multiplicity > old_max
+                && !selected_max.compare_exchange_weak(
+                    old_max,
+                    max_multiplicity,
+                    std::memory_order_relaxed
+                )
+            ) {}
+            if (!duplicate_counts.empty()) {
+                std::lock_guard<std::mutex> lock(duplicate_mutex);
+                for (const auto& item : duplicate_counts) {
+                    duplicates.push_back({item.first, item.second, shard});
+                }
+            }
         }
     }
 
@@ -332,7 +356,7 @@ int main(int argc, char** argv) {
         duplicate_energy += static_cast<uint64_t>(item.count) * (item.count - 1);
         duplicate_max = std::max(duplicate_max, item.count);
     }
-    if (duplicate_energy != selected_energy || duplicate_max != selected_max) {
+    if (duplicate_energy != selected_energy.load() || duplicate_max != selected_max.load()) {
         throw std::runtime_error("duplicate summary mismatch");
     }
 
@@ -347,11 +371,12 @@ int main(int argc, char** argv) {
         }
         std::cout << "],\n";
     }
+    std::cout << "  \"threads\": " << THREADS << ",\n";
     std::cout << "  \"tau_half_domain_expected\": " << expected_total << ",\n";
     std::cout << "  \"fixed_selected_counts\": [" << fixed0 << ", " << fixed1 << "],\n";
-    std::cout << "  \"selected_entries\": " << selected_entries << ",\n";
-    std::cout << "  \"selected_folded_ordered_energy\": " << selected_energy << ",\n";
-    std::cout << "  \"selected_max_canonical_projected_multiplicity\": " << selected_max << ",\n";
+    std::cout << "  \"selected_entries\": " << selected_entries.load() << ",\n";
+    std::cout << "  \"selected_folded_ordered_energy\": " << selected_energy.load() << ",\n";
+    std::cout << "  \"selected_max_canonical_projected_multiplicity\": " << selected_max.load() << ",\n";
     std::cout << "  \"duplicate_canonical_bins\": [\n";
     for (size_t i = 0; i < duplicates.size(); ++i) {
         const auto& item = duplicates[i];
@@ -402,7 +427,11 @@ def render_cpp_table(
     )
 
 
-def render_cpp_source(logs_mod_m: Sequence[Sequence[int]], colors: Sequence[Sequence[int]]) -> str:
+def render_cpp_source(
+    logs_mod_m: Sequence[Sequence[int]],
+    colors: Sequence[Sequence[int]],
+    threads: int,
+) -> str:
     tables = "\n".join(
         [
             f"static constexpr uint64_t MOD = {log_cert.M}ULL;",
@@ -410,7 +439,11 @@ def render_cpp_source(logs_mod_m: Sequence[Sequence[int]], colors: Sequence[Sequ
             render_cpp_table("uint8_t", "COLORS", colors),
         ]
     )
-    return CPP_SOURCE_TEMPLATE.replace("@@LOG_TABLES@@", tables)
+    return (
+        CPP_SOURCE_TEMPLATE
+        .replace("@@LOG_TABLES@@", tables)
+        .replace("@@THREADS@@", str(threads))
+    )
 
 
 def receipt_bins_for_shards(
@@ -466,6 +499,7 @@ def run_cpp_replay(
     selected_shards: Sequence[int],
     all_shards: bool,
     cxx: str,
+    threads: int,
 ) -> Dict[str, Any]:
     with tempfile.TemporaryDirectory(prefix="m1-cycle84-shards-") as tmp:
         tmp_path = Path(tmp)
@@ -497,9 +531,11 @@ def run_cpp_replay(
             )
 
         run_args = ["all"] if all_shards else [str(shard) for shard in selected_shards]
+        env = {**os.environ, "OMP_NUM_THREADS": str(threads)}
         run_result = subprocess.run(
             [str(exe_path), *run_args],
             cwd=tmp_path,
+            env=env,
             text=True,
             capture_output=True,
             check=False,
@@ -517,6 +553,7 @@ def verify_replay(
     receipt_data: Dict[str, Any],
     selected_shards: Sequence[int],
     all_shards: bool,
+    requested_threads: int,
 ) -> Dict[str, bool]:
     expected_bins = normalize_bins(receipt_bins_for_shards(receipt_data, selected_shards))
     replay_bins = normalize_bins(replay["duplicate_canonical_bins"])
@@ -533,6 +570,7 @@ def verify_replay(
             or [int(value) for value in replay["selected_shards"]] == list(selected_shards)
         ),
         "all_shards_flag_matches": bool(replay["all_shards"]) == all_shards,
+        "thread_count_matches_request": int(replay["threads"]) == requested_threads,
         "tau_half_domain_expected_matches_receipt": (
             int(replay["tau_half_domain_expected"])
             == int(receipt_data["tau_half_domain_expected"])
@@ -572,17 +610,30 @@ def verify_replay(
 
 def build_report(args: argparse.Namespace) -> Dict[str, Any]:
     receipt_path = args.receipt
+    if args.threads < 1:
+        raise AssertionError("--threads must be positive")
     receipt_report, receipt_data = load_receipt(receipt_path)
     log_tables = load_log_tables()
     selected_shards = selected_shards_from_args(args, receipt_data)
-    cpp_source = render_cpp_source(log_tables["logs_mod_m"], log_tables["colors"])
-    replay = run_cpp_replay(cpp_source, selected_shards, args.all_shards, args.cxx)
+    cpp_source = render_cpp_source(
+        log_tables["logs_mod_m"],
+        log_tables["colors"],
+        args.threads,
+    )
+    replay = run_cpp_replay(
+        cpp_source,
+        selected_shards,
+        args.all_shards,
+        args.cxx,
+        args.threads,
+    )
     checks = verify_replay(
         replay,
         receipt_report,
         receipt_data,
         selected_shards,
         args.all_shards,
+        args.threads,
     )
     failed = [name for name, value in checks.items() if not value]
     if failed:
@@ -615,6 +666,7 @@ def build_report(args: argparse.Namespace) -> Dict[str, Any]:
         "selected_shard_count": len(selected_shards),
         "all_shards": args.all_shards,
         "selected_shards": selected_shards if len(selected_shards) <= 256 else None,
+        "threads": int(replay["threads"]),
         "duplicate_bins_replayed": len(replay_bins),
         "selected_entries": int(replay["selected_entries"]),
         "selected_folded_ordered_energy": int(
@@ -640,6 +692,7 @@ def print_human(report: Dict[str, Any]) -> None:
     print(
         "replay="
         f"selected_shards={report['selected_shard_count']}, "
+        f"threads={report['threads']}, "
         f"all_shards={report['all_shards']}, "
         f"duplicate_bins={report['duplicate_bins_replayed']}, "
         f"entries={report['selected_entries']}, "
@@ -676,6 +729,12 @@ def main() -> None:
         "--cxx",
         default=os.environ.get("CXX", "g++"),
         help="C++ compiler to use",
+    )
+    parser.add_argument(
+        "--threads",
+        type=int,
+        default=int(os.environ.get("M1_CYCLE84_THREADS", "16")),
+        help="OpenMP worker count for shard scanning",
     )
     parser.add_argument(
         "--json",

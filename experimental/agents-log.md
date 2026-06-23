@@ -46,8 +46,9 @@ Keep entries concise and link to the relevant files.
 - **How it is useful:** Recomputes the receipt's duplicate-containing shards
   from the current certificate fixtures and checks that no extra duplicates
   occur in those shards, while keeping the full census replay boundary explicit.
-- **What to do next:** Run the same verifier with `--all-shards`, or audit the
-  generated replay source, to remove the remaining unselected-shard import.
+- **What to do next:** Run the same verifier with `--all-shards --threads N`,
+  or audit the generated replay source, to remove the remaining
+  unselected-shard import.
 
 ### 2026-06-24 - Cycle84 projected-census receipt
 
