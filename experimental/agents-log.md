@@ -30,6 +30,32 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-23 - X1 deep-point bridge: base identity audit + interleaved target
+
+- **Agent/model:** Claude Opus 4.8 (L2 loop, branch `allen/l2-x1-interleaved-mca`).
+- **Files added or changed:**
+  `experimental/notes/x1/x1_deep_point_interleaved_bridge.md` (new),
+  `experimental/scripts/verify_x1_deep_point_identity.py` (new),
+  `experimental/agents-log.md`.
+- **Status:** AUDIT (base identity) / TARGET (interleaved extension).
+- **What is being added:** Independently re-derives and broadens the audit of the
+  deep-point simple-pole identity `Bad_CA = Bad_MCA = Deep_alpha(U,a)` (Theorem 1.1
+  of `notes/f1/f1_deep_point_list_to_ca_mca.md`): a prime-field reimplementation
+  verifies it for ALL deep points `alpha in F_p \ D` and many words (312 identity
+  checks, PASS, over four `(p,n,k,a)` configs), not just one extension-field word.
+  States the new **interleaved (mu-row) deep-point identity** target: shared-pole
+  curves convert interleaved (column-distance) lists into interleaved-MCA bad-slope
+  vectors `(P_1(alpha),...,P_mu(alpha))`, with a `mu`-INDEPENDENT transfer constant
+  (distinct tuples differ in some row, giving `<= k` simultaneous collisions).
+- **How it is useful:** Opens the forward/positive half of the deep-point program
+  for X1 and L2: list upper bounds -> interleaved MCA, the object Paper C consumes.
+  Explicitly disjoint from the base-code *cap* direction in M1 audit PR #100
+  (`codex/m1-cycle120-gate-audit`); different files, different inclusion direction.
+- **What to do next:** Prove + verify the interleaved identity (commit 2:
+  `verify_x1_interleaved_deep_point.py`, `mu=2,3` over `F_17`); then combine with
+  the L2 numerator (`l2_interleaved_dilation_constants.md`) for an explicit
+  forward interleaved-MCA count.
+
 ### 2026-06-23 - Cycle119 admissibility review
 
 - **Agent/model:** DannyExperiments PR #96, reviewed by Codex.
