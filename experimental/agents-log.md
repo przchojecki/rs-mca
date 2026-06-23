@@ -30,6 +30,30 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-24 - X1/M2: line-decoding reading -- MCA = CA = line-decoding coincide
+
+- **Agent/model:** Claude Opus 4.8 (L2 loop, branch `allen/l2-x1-interleaved-mca`).
+- **Files added or changed:**
+  `experimental/scripts/verify_x1_line_decoding.py` (new),
+  `experimental/notes/x1/x1_deep_point_interleaved_bridge.md` (new §2.7 + ledger),
+  `experimental/agents-log.md`.
+- **Status:** AUDIT / PROVED-by-check.
+- **What is being added:** The line-decoding reading of the bridge for M2. The
+  simple-pole line's decoding list `LD(alpha;delta_a)` equals `Bad_MCA = Bad_CA =
+  Deep_alpha(U,a)` -- so support-wise MCA, no-loss CA, and line-decoding COINCIDE
+  on the simple-pole family; no MCA-vs-line-decoding separation occurs there, so
+  any separation must come from other line families. A slope may carry several
+  closing codewords (distinct C_+ list elements with equal P(alpha)), so the
+  (z,c) incidence multiplicity tracks list size while the slope count is
+  `<= |Lambda(C_+,delta_a,U)|`. Verified across 3 configs (306 coincidence checks).
+- **How it is useful:** Connects the X1 bridge to the M2 line-decoding ledger
+  Paper C consumes, gives the explicit line family + radius, and localizes any
+  MCA/line-decoding separation away from the simple-pole lines. Disjoint from
+  M1 #100, L1 #99; M2 has no active PR.
+- **What to do next:** The forward-bridge line is at a clean endpoint (§1-§2.7);
+  pivot options: align the structured count to exact L2 Quot_mu at prize params,
+  or a fresh thread (M2 other line families, A0 Crites-Stewart audit).
+
 ### 2026-06-24 - X1/L2: L2 -> L1 reduction and the K_{m,m} clique-amplification cap
 
 - **Agent/model:** Claude Opus 4.8 (L2 loop, branch `allen/l2-x1-interleaved-mca`).

@@ -37,6 +37,7 @@ list at the same radius `delta_a = 1-a/n`, `a > k`.
 | 2.4 | `interleaved(mu=2) = #edges` of `>=a`-overlap graph; tight `=>` matching; over-agreement `=>` degree `>= 2` (hypothesis of §2.3 necessary) | PROVED + PROVED-by-check |
 | 2.5 | `K_{2,2}` witness: interleaving amplifies beyond both rows (`4 > max(L_1,L_2)`), but below base | PROVED-by-check |
 | 2.6 | L2 -> L1 reduction `Lst(Int) <= Lst(C_+)^mu` (= `Lst(C_+)` a-regular); `K_{m,m}` clique cap `n >= k+m^2(a-k)` | PROVED + PROVED-by-check |
+| 2.7 | Line-decoding reading (M2): `LD = Bad_MCA = Bad_CA = Deep_alpha` coincide on the simple-pole family | AUDIT / PROVED-by-check |
 
 **What is proved.** The forward interleaved bridge is complete and `mu`-clean: an
 interleaved list bound transfers to an interleaved-MCA bad-slope count at the
@@ -368,6 +369,37 @@ pushes the *worst-case* exponent strictly above `1` while exceeding the base
 remains open, but it cannot come from the `K_{m,m}` family and is bounded by the
 L1 list either way.
 
+## 2.7 Line-decoding reading (M2)
+
+The simple-pole family is a concrete **line**, so the bridge has a line-decoding
+reading useful for Paper C. The line-decoding list of `f_alpha + z g_alpha` at
+radius `delta_a` is the set of slopes whose line passes within `delta_a` of a
+codeword of `C = RS[F,D,k]`:
+```text
+LD(alpha; delta_a) = { z : exists c in C, |{x : f_alpha(x)+z g_alpha(x)=c(x)}| >= a }.
+```
+By §1, `f_alpha + z g_alpha` is `delta_a`-close to `C` iff `z in Deep_alpha(U,a)`,
+so
+```text
+LD(alpha; delta_a) = Bad_MCA(alpha; delta_a) = Bad_CA(alpha; delta_a) = Deep_alpha(U,a).
+```
+
+**Coincidence (M2).** On the simple-pole line family, support-wise **MCA**,
+no-loss **CA**, and **line-decoding** all coincide -- each equal to the deep
+image. So there is **no MCA-vs-line-decoding separation on this family**; any
+genuine separation (M2's "small MCA but large line-decoding, or vice versa")
+must come from *other* line families. A single slope may carry several closing
+codewords (distinct `C_+` list elements `P` with equal `P(alpha)`), so the
+`(z,c)` incidence multiplicity equals the relevant list size, while the slope
+count `|LD| = |Deep_alpha| <= |Lambda(C_+,delta_a,U)|`.
+
+Parameters: radius `delta_a = 1-a/n`, line pencil `{f_alpha + z g_alpha}`,
+decoding-list size `<= |Lambda(C_+,delta_a,U)|`. The interleaved `mu`-row
+shared-pole curve has simultaneous line-decoding list `Deep_alpha^{mu}(U,a)`
+(§2). `verify_x1_line_decoding.py` confirms the coincidence across
+`(p,n,k,a) in {(17,8,3,5),(17,8,4,6),(41,8,3,5)}` (306 checks), reporting the
+list multiplicity per slope.
+
 ## 3. Plan (incremental commits on this PR)
 
 1. (done) Independent audit + broadened verifier of the base identity (§1).
@@ -390,6 +422,8 @@ L1 list either way.
 8. (open) whether a NON-clique configuration pushes the worst-case exponent
    strictly above 1 while exceeding the base -- bounded by the L1 list (R), not
    from the clique family (C). This is now an L1-governed residual.
+9. (done) §2.7 line-decoding reading (M2): MCA = CA = line-decoding coincide on
+   the simple-pole family; `scripts/verify_x1_line_decoding.py`.
 
 ## Ledger impact
 
@@ -418,4 +452,6 @@ python3 experimental/scripts/verify_x1_interleaving_amplification.py
 python3 experimental/scripts/verify_x1_interleaving_amplification.py --json
 python3 experimental/scripts/verify_x1_clique_cap.py
 python3 experimental/scripts/verify_x1_clique_cap.py --json
+python3 experimental/scripts/verify_x1_line_decoding.py
+python3 experimental/scripts/verify_x1_line_decoding.py --json
 ```
