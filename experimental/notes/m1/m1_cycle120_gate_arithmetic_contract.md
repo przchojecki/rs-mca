@@ -9,6 +9,18 @@ It extracts only the gate and arithmetic implications from the longer
 integration note
 `experimental/notes/m1/m1_cycle120_abf_counterexample_candidate.md`.
 
+The companion source-gate audit is:
+
+```text
+experimental/notes/m1/m1_cycle120_abf_source_gate_audit.md
+```
+
+That audit independently checks the public Proximity Prize page and the author
+page identifying ABF ePrint 2026/680, records that direct ePrint PDF retrieval
+is still blocked by Cloudflare from this environment, and classifies
+Definitions 2.11, 2.12, and 4.3 as checked only against the PR #96 PDF extract
+until a human reviewer fetches the official PDF/source directly.
+
 It does not prove the Cycle84 finite count, the Cycle116 fixed-jet transfer, or
 the optional Cycle119 strict-ball transfer. It records exactly what those
 imports would imply if they survive independent review.
@@ -150,7 +162,8 @@ The following inputs remain outside this arithmetic contract:
 
 1. Official ABF PDF/source verification, with page references for the row
    gates, sampler, smoothness condition, support-wise predicate, and closed
-   threshold.
+   threshold. The source-gate audit above gives public-page confirmation plus
+   PDF-extract evidence, but not final independent ePrint retrieval.
 2. The finite definition of `K`, `theta`, and `H`, including the proof or
    certificate that `H=<theta>` is the intended power-of-two subgroup.
 3. The Cycle84 finite count producing

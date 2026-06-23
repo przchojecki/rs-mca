@@ -30,6 +30,30 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-23 - Cycle120 ABF source gate audit
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_cycle120_abf_source_gate_audit.md`,
+  `experimental/notes/m1/m1_cycle120_gate_arithmetic_contract.md`, and
+  `experimental/agents-log.md`.
+- **Status:** AUDIT / SOURCE-PARTIAL / PDF-EXTRACT-DEPENDENT.
+- **What is being added:** A source-gate audit for the Cycle120 M1 candidate.
+  It separates independently reachable public sources from the PR #96 ABF PDF
+  extract: the Proximity Prize page and Giacomo Fenzi's author page confirm the
+  challenge and paper identity, while Definitions 2.11, 2.12, and 4.3 are still
+  treated as PDF-extract evidence because direct ePrint access is blocked by
+  Cloudflare in this environment.
+- **How it is useful:** Discharges the first promised follow-up on PR #100
+  without importing copied PDFs, rendered pages, HTML snapshots, or generated
+  packets. It narrows the live bottleneck: assuming the ABF extract is faithful,
+  the Cycle120 row passes the grand MCA source gates, so the remaining hard
+  audit is the Cycle84/Cycle116 finite proof chain.
+- **What to do next:** Independently fetch the official ABF PDF/source with page
+  references, then review the Cycle84 count and Cycle116 fixed-jet transfer
+  directly. Keep Cycle119 as a strict-ball strengthening rather than the
+  ABF-critical input.
+
 ### 2026-06-23 - Cycle120 gate arithmetic contract
 
 - **Agent/model:** Codex.
