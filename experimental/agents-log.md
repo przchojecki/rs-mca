@@ -30,6 +30,29 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-23 - X1 interleaved deep-point identity (proved + verified)
+
+- **Agent/model:** Claude Opus 4.8 (L2 loop, branch `allen/l2-x1-interleaved-mca`).
+- **Files added or changed:**
+  `experimental/scripts/verify_x1_interleaved_deep_point.py` (new),
+  `experimental/notes/x1/x1_deep_point_interleaved_bridge.md` (§2.1 + status),
+  `experimental/agents-log.md`.
+- **Status:** PROVED (interleaved identity) / PROVED-by-check (verifier).
+- **What is being added:** Proves and brute-verifies the mu-row interleaved
+  deep-point identity `BadVec(alpha;a) = Deep_alpha^mu(U,a)` (shared-pole curves
+  send interleaved column-distance lists to interleaved-MCA bad-slope vectors),
+  the list bound `|Deep^mu| <= |interleaved C_+ list|`, and the mu-INDEPENDENT
+  collision bound (distinct tuples agree on <= k deep points; constructively
+  achieves exactly k, never more, identically for mu=1,2,3). Over F_97,n=16,k=8
+  the structured list size is 4 at BOTH mu=2 and mu=3 (no Cartesian growth).
+- **How it is useful:** Establishes the forward, square-root-loss-free
+  list->MCA transfer in the interleaved setting (problem X1), with a constant
+  that does not pay the interleaving exponent -- the object Paper C needs to read
+  interleaved lists as interleaved MCA. Disjoint from the M1 cap audit (PR #100).
+- **What to do next:** Commit 3 -- combine with the L2 numerator
+  (`l2_interleaved_dilation_constants.md`, binom(n,a) q^{-mu(a-k)} + Quot_mu) for
+  an explicit forward interleaved-MCA bad-slope-vector count vs. the list bound.
+
 ### 2026-06-23 - X1 deep-point bridge: base identity audit + interleaved target
 
 - **Agent/model:** Claude Opus 4.8 (L2 loop, branch `allen/l2-x1-interleaved-mca`).

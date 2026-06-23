@@ -1,7 +1,7 @@
 # X1: Interleaved Deep-Point Bridge (list -> interleaved CA/MCA, forward direction)
 
-- **Status:** AUDIT (base identity, independently reproduced) / CONJECTURAL->TARGET
-  (interleaved extension, stated here, proved+verified in later commits).
+- **Status:** AUDIT (base identity, independently reproduced) / PROVED + PROVED-by-check
+  (interleaved identity §2 and the mu-independent collision bound).
 - **Agent/model:** Claude Opus 4.8 (L2 loop, branch `allen/l2-x1-interleaved-mca`).
 - **Date:** 2026-06-23.
 - **Scope:** Problem X1 (list <-> CA/MCA without square-root loss) and L2
@@ -121,14 +121,40 @@ the list numerator** -- the forward list->MCA conversion is `mu`-clean. This is
 the positive/forward counterpart of the negative cap direction, and the exact
 statement Paper C needs to consume interleaved lists as interleaved MCA.
 
+## 2.1 Numerical confirmation (`verify_x1_interleaved_deep_point.py`)
+
+The verifier builds full interleaved (column-distance) lists, deep images, and
+bad-slope-vector sets by independent brute force and checks all three claims:
+
+- **(A) identity** `BadVec(alpha;a) = Deep_alpha^{mu}(U,a)` for every tested
+  word and deep point. Exercised on structured aligned quotient-locator words
+  (and a dilated second row for genuinely non-diagonal interleaving) over
+  `F_97, n=16, k=8, a=12`: at both `mu=2` and `mu=3` the interleaved list has
+  size `L=4` and `|Deep^{mu}| = |BadVec| = 4`. The list size is **unchanged from
+  `mu=2` to `mu=3`** -- interleaving does not grow it -- matching the L2
+  no-Cartesian-exponent result.
+- **(B) list bound** `|Deep_alpha^{mu}(U,a)| <= |interleaved C_+ list|` holds in
+  every case.
+- **(C) `mu`-independent collision bound.** A constructive demo over `F_97`,
+  `k=8`: two distinct interleaved tuples differing in one row by
+  `V = prod_i (X-d_i)` (`deg V = j <= k`, roots `d_i` deep points) agree on
+  exactly `j` deep points; choosing `j=k` achieves collision `= k`, and `deg V`
+  cannot exceed `k` while keeping the row in `RS_{<k+1}`. The achieved maximum is
+  `k=8` and never exceeds `k`, **identically for `mu=1,2,3`**. This is the exact
+  fact behind the `mu`-independent `M >= L/(1+k(L-1)/|Omega|)` expansion.
+
+Result: PASS (configs `(p,n,k,a,mu)` = `(97,16,8,12,{2,3})` structured, plus
+small spread cases for the collision scan).
+
 ## 3. Plan (incremental commits on this PR)
 
 1. (done) Independent audit + broadened verifier of the base identity (§1).
-2. Interleaved identity (§2): proof + `scripts/verify_x1_interleaved_deep_point.py`
-   checking `Bad_MCA^{int} = Deep_alpha^{mu}` and the `mu`-independent collision
-   bound over `F_17`, `mu=2,3`.
-3. Forward X1 statement: combine §2 with the L2 numerator to print an explicit
-   interleaved-MCA bad-slope-vector count vs. the L2 list bound; verifier.
+2. (done) Interleaved identity (§2) + `scripts/verify_x1_interleaved_deep_point.py`
+   confirming `Bad_MCA^{int} = Deep_alpha^{mu}`, the list bound, and the
+   `mu`-independent collision bound (§2.1).
+3. (next) Forward X1 statement: combine §2 with the L2 numerator
+   (`l2_interleaved_dilation_constants.md`) to print an explicit interleaved-MCA
+   bad-slope-vector count vs. the L2 list bound; verifier.
 4. (stretch) push the aperiodic `mu`-fold remainder of the L2 conjecture, now
    carrying MCA meaning through §2.
 
@@ -147,4 +173,6 @@ statement Paper C needs to consume interleaved lists as interleaved MCA.
 ```bash
 python3 experimental/scripts/verify_x1_deep_point_identity.py
 python3 experimental/scripts/verify_x1_deep_point_identity.py --json
+python3 experimental/scripts/verify_x1_interleaved_deep_point.py
+python3 experimental/scripts/verify_x1_interleaved_deep_point.py --json
 ```
