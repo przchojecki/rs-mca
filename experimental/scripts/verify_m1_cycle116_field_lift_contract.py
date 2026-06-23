@@ -4,8 +4,9 @@
 This verifier supports
 experimental/notes/m1/m1_cycle116_finite_chain_contract.md. It checks the
 finite-field envelope and parameter arithmetic used by the Cycle116 smooth
-lift. It does not verify the Cycle84 product census, the fixed-jet identities,
-or the smooth padding proof.
+lift. The note proves the abstract smooth-padding lemma; this script checks
+only its concrete Cycle116 field and cardinality hypotheses. It does not verify
+the Cycle84 product census or fixed-jet identities.
 """
 
 from __future__ import annotations
@@ -235,7 +236,6 @@ def build_report() -> Dict[str, Any]:
             "Cycle84 exact product occupancy N",
             "Cycle84 fixed six-jet locator identity",
             "Cycle84 product-scalar bridge P_T(beta)=4(beta-1)Phi(T)",
-            "Cycle116 smooth padding lift preserving support-wise noncontainment",
             "official ABF source gate verification",
         ],
         "nonmutating": True,

@@ -15,9 +15,10 @@ Cycle84 exact finite product occupancy
   -> ABF radius arithmetic from the Cycle120 contract.
 ```
 
-The note imports the heavy Cycle84 finite census and the Cycle116 smooth-lift
-certificate as claims to be independently reviewed. It includes the abstract
-fixed-jet transfer argument because that is short enough to audit directly.
+The note imports the heavy Cycle84 finite census and the Cycle84 fixed-jet
+instantiation as claims to be independently reviewed. It includes the abstract
+fixed-jet transfer and the smooth padding lift because both are short enough to
+audit directly.
 
 ## Finite Anchor
 
@@ -177,9 +178,74 @@ I2. the product-scalar identity P_T(beta)=4(beta-1)Phi(T).
 
 The finite product census alone does not prove these identities.
 
+## Abstract Smooth Padding Lift
+
+Let `C0=RS[F0,D0,k0]` and suppose a native support-wise bad-slope theorem gives
+one line `f+z g` and, for each parameter `z` in a set `Z`, a support
+`S_z subset D0` such that:
+
+```text
+|S_z| = a0,
+f+z g is explained by C0 on S_z,
+(f,g) is not simultaneously explained by C0 on S_z.
+```
+
+Let `K/F0` be an extension field, let `B` be a set of new evaluation points
+disjoint from `D0`, and let `A subset B` have size `r`. Put
+
+```text
+H = D0 disjoint_union B,
+L_A(X) = prod_{a in A}(X-a),
+k = k0 + r.
+```
+
+Define lifted received words on `H` by
+
+```text
+F(x) = L_A(x) f(x)   for x in D0,
+G(x) = L_A(x) g(x)   for x in D0,
+F(a) = G(a) = 0      for a in A,
+```
+
+with arbitrary values on `B \ A`.
+
+If `c_z` of degree `<k0` explains `f+z g` on `S_z`, then
+
+```text
+C_z(X) = L_A(X)c_z(X)
+```
+
+has degree `<k0+r=k` and explains `F+z G` on `S_z union A`. Hence every `z in Z`
+has agreement at least
+
+```text
+a0 + r.
+```
+
+The lifted same-support noncontainment is lossless. If `P,Q` of degree `<k`
+simultaneously explained `F,G` on `S_z union A`, then both `P` and `Q` would
+vanish on `A`, so
+
+```text
+P = L_A p,   Q = L_A q
+```
+
+with `deg p, deg q < k0`. On `S_z`, the points avoid `A`, so `L_A` is nonzero
+and `p,q` would simultaneously explain `f,g` on `S_z`, contradicting the
+native noncontainment.
+
+Therefore
+
+```text
+LD_sw(RS[K,H,k], a0+r) >= |Z|
+```
+
+with the same bad parameters `Z`.
+
 ## Smooth [512,256] Lift Contract
 
-The Cycle116 smooth lift adjoins a square root of `eta`:
+The Cycle116 lift uses the padding lemma after adjoining a square root of
+`eta`:
 
 ```text
 K = F0(theta), theta^2 = eta.
@@ -202,7 +268,7 @@ theta has exact order 512;
 H=<theta> has size 512 and even powers recover D0=<eta>.
 ```
 
-The imported smooth-padding claim is then:
+The field/lift setup is:
 
 ```text
 H = D0 disjoint_union theta D0,
@@ -210,6 +276,18 @@ choose 119 fixed padding points in theta D0,
 lift the native support of size 143 to a support of size 262,
 raise the degree bound from <137 to <256,
 preserve the same N bad line parameters and same-support noncontainment.
+```
+
+This is exactly the abstract padding lemma with:
+
+```text
+D0 = <eta>,          |D0| = 256,
+B = theta D0,        |B| = 256,
+A subset theta D0,   |A| = 119,
+k0 = 137,
+r = 119,
+k = 256,
+a0 = 143.
 ```
 
 This gives the smooth row
@@ -246,8 +324,9 @@ The chain is only as strong as the following imported clauses:
    `P_T(X)=X^113-X^112+O(X^107)`.
 3. The product-scalar bridge is exactly
    `P_T(beta)=4(beta-1)Phi(T)`, with no zero scalar or hidden collision.
-4. The smooth `[512,256]` padding lift preserves one affine line, the bad
-   parameters, the agreement supports, and support-wise noncontainment.
+4. The field/lift envelope is correct: `F0(theta)` has size `17^32`, `theta`
+   has order `512`, and `H=<theta>` decomposes as
+   `D0 disjoint_union theta D0`.
 5. The source-gate audit remains faithful to the official ABF text.
 
 Failure of any clause should downgrade or revise the Cycle120 negative
@@ -267,7 +346,7 @@ an asymptotic theorem;
 an accepted Proximity Prize solution;
 a prime-field or deployed-row result;
 independent replay of the Cycle84 heavy census;
-independent proof of the Cycle116 smooth padding lift.
+independent proof of the Cycle84 fixed-jet instantiation.
 ```
 
 It is the finite-chain contract that the next human or agent review should

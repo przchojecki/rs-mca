@@ -41,20 +41,21 @@ Keep entries concise and link to the relevant files.
 - **Status:** CONDITIONAL / AUDIT / FINITE-COMPUTATION-DEPENDENT.
 - **What is being added:** A compact contract for the finite chain behind the
   Cycle120 candidate: Cycle84 exact product occupancy, the abstract fixed-jet
-  locator-to-support-wise-MCA transfer, and the smooth `[512,256]` lift. The
-  companion verifier checks the deterministic field and lift arithmetic
+  locator-to-support-wise-MCA transfer, and a proved abstract smooth-padding
+  lift to the smooth `[512,256]` row. The companion verifier checks the
+  deterministic field and lift arithmetic
   (`X^16+X^8+3` irreducible over `F_17`, `eta` order `256`, nonsquare lift to
   `F_17^32`, `theta` order `512`, and the exact support/rate/density ledger).
 - **How it is useful:** Moves PR #100 from a gate/arithmetic audit toward the
   actual mathematical bottleneck. The abstract fixed-jet transfer proof is now
-  stated in reviewer form, while the heavy Cycle84 census, fixed-jet
-  instantiation, and smooth padding proof remain explicit imports to verify or
-  falsify.
+  stated in reviewer form, the smooth padding lift is no longer a black-box
+  imported clause, and the heavy Cycle84 census plus fixed-jet instantiation
+  remain explicit imports to verify or falsify.
 - **What to do next:** Review the imported Cycle84 finite census and the two
   Cycle116 instantiation clauses:
   `P_T(X)=X^113-X^112+O(X^107)` and
-  `P_T(beta)=4(beta-1)Phi(T)`, then audit the smooth padding lift for
-  preservation of one affine line and support-wise noncontainment.
+  `P_T(beta)=4(beta-1)Phi(T)`, then independently replay or audit the compact
+  Cycle84 finite certificate.
 
 ### 2026-06-23 - Cycle120 ABF source gate audit
 
