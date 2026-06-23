@@ -210,4 +210,10 @@ Cycle84 count N = 52,747,567,092
   -> support-wise agreement 262 and noncontainment.
 ```
 
+The current finite-chain contract is:
+
+```text
+experimental/notes/m1/m1_cycle116_finite_chain_contract.md
+```
+
 That is now the main mathematical bottleneck after the source-gate audit.

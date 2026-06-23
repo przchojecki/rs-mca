@@ -1,0 +1,274 @@
+# M1 Cycle116 Finite Chain Contract
+
+Status: CONDITIONAL / AUDIT / FINITE-COMPUTATION-DEPENDENT.
+
+Date: 2026-06-23.
+
+This note records the finite proof chain that the Cycle120 ABF-facing audit
+depends on. It is a reviewer contract, not a raw certificate bundle. It keeps
+the chain split into:
+
+```text
+Cycle84 exact finite product occupancy
+  -> fixed-jet locator-to-support-wise-MCA transfer
+  -> smooth [512,256] field/domain lift
+  -> ABF radius arithmetic from the Cycle120 contract.
+```
+
+The note imports the heavy Cycle84 finite census and the Cycle116 smooth-lift
+certificate as claims to be independently reviewed. It includes the abstract
+fixed-jet transfer argument because that is short enough to audit directly.
+
+## Finite Anchor
+
+The Cycle84 finite certificate works over
+
+```text
+F0 = F_17[X] / (X^16 + X^8 + 3),
+eta = 6 X^9,
+beta = X + 2,
+D0 = <eta>, |D0| = 256.
+```
+
+It asserts the exact product occupancy
+
+```text
+N = 52,747,567,092,
+m_max(beta) = 2,
+ordered off-diagonal energy D = 24,
+12 double fibers,
+no fibers of size >= 3.
+```
+
+The integrated repository note
+
+```text
+experimental/notes/m1/m1_cycle84_public_replay_audit.md
+```
+
+records the public replay metadata and keeps the result at status
+`AUDIT / FINITE_MODEL_PROOF / PUBLIC_REPLAY`. The copied finite certificate in
+the closed PR #96 branch should still be treated as an imported finite
+computation until a reviewer reruns or independently checks it.
+
+## Abstract Fixed-Jet Transfer
+
+Let `D subset F`, `|D|=n`, let `beta notin D`, and let `J` range over a family
+of `j`-subsets of `D`. Put
+
+```text
+P_J(X) = prod_{a in J}(X-a),
+S_J = D \ J.
+```
+
+Assume all `P_J` have a common leading `sigma`-jet:
+
+```text
+deg(P_J - P_J') <= j - sigma
+```
+
+for all pairs in the family, and set
+
+```text
+k = n - j - sigma.
+```
+
+Then the complementary locators
+
+```text
+L_J(X) = prod_{a in S_J}(X-a)
+```
+
+have a common high-degree truncation in degrees strictly above `k`. Let `W` denote
+that common truncation and put
+
+```text
+Q_J(X) = W(X) - L_J(X).
+```
+
+Then `deg Q_J <= k`. Define two received words on `D` by
+
+```text
+f(x) = W(x)/(x-beta),
+g(x) = -1/(x-beta),
+```
+
+and for each `J` define
+
+```text
+z_J = Q_J(beta).
+```
+
+Since `Q_J(X)-Q_J(beta)` is divisible by `X-beta`, the polynomial
+
+```text
+c_J(X) = (Q_J(X)-z_J)/(X-beta)
+```
+
+has degree `< k`. On `S_J`, the locator `L_J` vanishes, so `Q_J=W` there, and
+
+```text
+c_J(x) = f(x) + z_J g(x)  for all x in S_J.
+```
+
+Thus the line point `f+z_J g` is explained by `RS[F,D,k]` on a support of size
+
+```text
+|S_J| = n-j = k+sigma.
+```
+
+The same support cannot simultaneously explain `f` and `g` by two codewords of
+`RS[F,D,k]`: if `G` of degree `<k` agreed with `g` on `S_J`, then
+
+```text
+(X-beta)G(X) + 1
+```
+
+would be a nonzero polynomial of degree at most `k`, vanish on
+`|S_J|=k+sigma>k` points, and take value `1` at `X=beta`, a contradiction.
+
+Finally,
+
+```text
+z_J = W(beta) - L_J(beta)
+    = W(beta) - V_D(beta)/P_J(beta),
+```
+
+where `V_D(X)=prod_{a in D}(X-a)`. Since `beta notin D`, `V_D(beta) != 0`.
+Therefore distinct values of `P_J(beta)` give distinct bad line parameters
+`z_J`.
+
+Consequently, if the family has `M` distinct values `P_J(beta)`, then
+
+```text
+LD_sw(RS[F,D,k], k+sigma) >= M.
+```
+
+This is a support-wise line/MCA statement. It is not an ordinary list-decoding
+lower bound.
+
+## Cycle84 Native Instantiation
+
+The Cycle116 packet claims that the Cycle84 family satisfies
+
+```text
+j = 113,
+sigma = 6,
+n = 256,
+k = 256 - 113 - 6 = 137,
+|S_T| = 143,
+P_T(X) = X^113 - X^112 + O(X^107),
+P_T(beta) = 4(beta - 1) Phi(T),
+4(beta - 1) != 0.
+```
+
+Together with the Cycle84 occupancy `#{Phi(T)} = N`, the abstract transfer gives
+
+```text
+LD_sw(RS[F0,D0,137],143) >= N.
+```
+
+This native-row conclusion is conditional on the two Cycle116 import clauses:
+
+```text
+I1. the fixed six-jet identity for all Cycle84 locators P_T;
+I2. the product-scalar identity P_T(beta)=4(beta-1)Phi(T).
+```
+
+The finite product census alone does not prove these identities.
+
+## Smooth [512,256] Lift Contract
+
+The Cycle116 smooth lift adjoins a square root of `eta`:
+
+```text
+K = F0(theta), theta^2 = eta.
+```
+
+The companion verifier
+
+```text
+python3 experimental/scripts/verify_m1_cycle116_field_lift_contract.py
+```
+
+checks the field/lift envelope:
+
+```text
+X^16 + X^8 + 3 is irreducible over F_17;
+eta has exact order 256 in F0^*;
+eta is nonsquare in F0;
+therefore K has size 17^32;
+theta has exact order 512;
+H=<theta> has size 512 and even powers recover D0=<eta>.
+```
+
+The imported smooth-padding claim is then:
+
+```text
+H = D0 disjoint_union theta D0,
+choose 119 fixed padding points in theta D0,
+lift the native support of size 143 to a support of size 262,
+raise the degree bound from <137 to <256,
+preserve the same N bad line parameters and same-support noncontainment.
+```
+
+This gives the smooth row
+
+```text
+C = RS[F_17^32,H,256], |H| = 512,
+LD_sw(C,262) >= N.
+```
+
+The support arithmetic is exact:
+
+```text
+143 + 119 = 262,
+512 - 262 = 250,
+256/512 = 1/2.
+```
+
+At `delta=125/256`,
+
+```text
+(1-delta)512 = 262.
+```
+
+Thus this is exactly the closed support threshold consumed in the Cycle120
+ABF-facing contract.
+
+## What Remains To Review
+
+The chain is only as strong as the following imported clauses:
+
+1. The Cycle84 finite product census really has
+   `#{Phi(T)} = 52,747,567,092` with the stated color shell.
+2. The Cycle84 locators satisfy the fixed six-jet identity
+   `P_T(X)=X^113-X^112+O(X^107)`.
+3. The product-scalar bridge is exactly
+   `P_T(beta)=4(beta-1)Phi(T)`, with no zero scalar or hidden collision.
+4. The smooth `[512,256]` padding lift preserves one affine line, the bad
+   parameters, the agreement supports, and support-wise noncontainment.
+5. The source-gate audit remains faithful to the official ABF text.
+
+Failure of any clause should downgrade or revise the Cycle120 negative
+certificate. If the first four clauses survive review, then the remaining
+source question is whether the official challenge text admits the extension
+field row and samples `gamma` from `F_17^32`, as recorded in
+`m1_cycle120_abf_source_gate_audit.md`.
+
+## Nonclaims
+
+This note does not claim:
+
+```text
+ordinary list decoding;
+protocol soundness failure;
+an asymptotic theorem;
+an accepted Proximity Prize solution;
+a prime-field or deployed-row result;
+independent replay of the Cycle84 heavy census;
+independent proof of the Cycle116 smooth padding lift.
+```
+
+It is the finite-chain contract that the next human or agent review should
+either verify, repair, or falsify.
