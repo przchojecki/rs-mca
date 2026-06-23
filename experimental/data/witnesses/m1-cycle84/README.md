@@ -66,3 +66,13 @@ python3 experimental/scripts/verify_m1_cycle84_projected_replay_algorithm.py
 That verifier checks the circular-slice and shard-canonicalization logic against
 brute force on small exact models and reports the SHA256 of the generated
 Cycle84 replay source for `--threads 16`.
+
+The exact finite-model occupancy conclusion is checked by:
+
+```sh
+python3 experimental/scripts/verify_m1_cycle84_exact_occupancy_chain.py
+```
+
+It composes the color-shell witness verifier, projected-log certificate, full
+replay receipt, and kernel-lift verifier to report
+`52,747,567,092` distinct products, true ordered energy `24`, and `m_max=2`.

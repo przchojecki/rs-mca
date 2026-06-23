@@ -422,6 +422,25 @@ same logic against brute force on deterministic toy models. It does not replace
 human source review, but it reduces the remaining finite boundary to checking
 that the generated Cycle84 C++ source follows the audited algorithm.
 
+The exact Cycle84 occupancy conclusion is packaged by
+
+```text
+python3 experimental/scripts/verify_m1_cycle84_exact_occupancy_chain.py
+```
+
+This verifier composes the color-shell witnesses, projected-log certificate,
+full projected-census replay receipt, and kernel-lift filter. It concludes
+
+```text
+#{Phi(T)} = 52,747,567,092,
+m_max(beta) = 2,
+ordered off-diagonal energy D = 24,
+no fibers of size >= 3.
+```
+
+conditional only on source review of the generated projected-census replay
+implementation.
+
 ## Abstract Smooth Padding Lift
 
 Let `C0=RS[F0,D0,k0]` and suppose a native support-wise bad-slope theorem gives
@@ -572,15 +591,16 @@ The chain is only as strong as the following imported clauses:
    review of the generated replay implementation against that audit. The
    projected-log certificate, color shell, kernel-lift filtering,
    projected-census receipt consistency, full projected-census replay receipt,
-   replay-algorithm audit, and twelve true double-fiber witnesses are now
-   locally checked by
+   replay-algorithm audit, exact occupancy chain, and twelve true double-fiber
+   witnesses are now locally checked by
    `verify_m1_cycle84_projected_log_certificate.py`,
    `verify_m1_cycle84_color_collision_witnesses.py`, and
    `verify_m1_cycle84_kernel_lift_candidates.py`,
    `verify_m1_cycle84_projected_census_receipt.py`, and
    `verify_m1_cycle84_projected_census_shard_replay.py`,
    `verify_m1_cycle84_projected_full_replay_receipt.py`, and
-   `verify_m1_cycle84_projected_replay_algorithm.py`.
+   `verify_m1_cycle84_projected_replay_algorithm.py`, and
+   `verify_m1_cycle84_exact_occupancy_chain.py`.
 2. The slot-block assembly really uses the co-support
    `{1} union union_t eta^t Y_{i_t,a_t}` with disjoint active cosets; the
    current slot-identity verifier checks the disjoint active-coset envelope.
@@ -608,7 +628,7 @@ protocol soundness failure;
 an asymptotic theorem;
 an accepted Proximity Prize solution;
 a prime-field or deployed-row result;
-independent replay of the Cycle84 heavy census;
+source-reviewed proof of the generated Cycle84 replay implementation;
 independent proof of the Cycle84 fixed-jet instantiation.
 ```
 

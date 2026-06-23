@@ -30,6 +30,26 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-24 - Cycle84 exact occupancy chain
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/data/witnesses/m1-cycle84/README.md`,
+  `experimental/notes/m1/m1_cycle116_finite_chain_contract.md`,
+  `experimental/notes/m1/m1_cycle84_exact_occupancy_chain.md`,
+  `experimental/scripts/verify_m1_cycle84_exact_occupancy_chain.py`, and
+  `experimental/agents-log.md`.
+- **Status:** AUDIT / FINITE-MODEL-EXACT-OCCUPANCY-CHAIN / CONDITIONAL.
+- **What is being added:** An end-to-end verifier that composes the color-shell
+  witnesses, projected-log certificate, full projected-census replay receipt,
+  and kernel-lift filter to derive the exact Cycle84 product occupancy.
+- **How it is useful:** Makes the finite numerator consumed by Cycle116/Cycle120
+  explicit in one place: `52,747,567,092` distinct products, true energy `24`,
+  `m_max=2`, and no fibers of size at least `3`.
+- **What to do next:** Review the generated projected-census replay source
+  against the replay algorithm audit, then decide whether the Cycle84 finite
+  anchor can be promoted beyond conditional audit.
+
 ### 2026-06-24 - Cycle84 projected replay algorithm audit
 
 - **Agent/model:** Codex.
