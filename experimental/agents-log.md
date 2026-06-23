@@ -30,6 +30,31 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-24 - X1/L2 worst-case interleaved list = base list (a-regular)
+
+- **Agent/model:** Claude Opus 4.8 (L2 loop, branch `allen/l2-x1-interleaved-mca`).
+- **Files added or changed:**
+  `experimental/scripts/verify_x1_worst_case_interleaved.py` (new),
+  `experimental/notes/x1/x1_deep_point_interleaved_bridge.md` (new §2.3),
+  `experimental/agents-log.md`.
+- **Status:** PROVED (theorem (i),(ii)) / PROVED-by-check.
+- **What is being added:** Theorem pinning the worst-case interleaved list.
+  (i) diagonal lower bound `Lst(Int(C_+,mu)) >= Lst(C_+)` all mu (off-diagonal
+  impossible: distinct codewords share <=k<a points). (ii) a-regular upper bound:
+  if no row codeword over-agrees (agreement exactly a) then the interleaved list
+  equals `|intersect_i Supp_{U_i}^{=a}|` <= min row list, via the bridge note's
+  full-agreement formula. Hence in the a-regular regime the worst-case
+  interleaved list EQUALS the base-code list for every mu -- interleaving
+  exponent exactly 1, not mu. Brute-verified over F_97/F_193 (mu=1,2,3, base=4,
+  interleaved=4 throughout).
+- **How it is useful:** Sharpest possible L2 worst-case constant in the generic
+  (a-regular) regime, and the honest reduction L2 -> L1: via the deep-point
+  bridge the interleaved-MCA count is governed by the base-code (L1)
+  locator-fiber list, mu-independently. Disjoint from the M1 cap audit (PR #100).
+- **What to do next:** the non-a-regular (over-agreement) residual -- the only
+  place a genuine L2-vs-L1 separation could live; or align the structured count
+  to the exact L2 Quot_mu at prize parameters.
+
 ### 2026-06-23 - X1 forward interleaved-MCA count chain (list -> MCA, L2 saving)
 
 - **Agent/model:** Claude Opus 4.8 (L2 loop, branch `allen/l2-x1-interleaved-mca`).

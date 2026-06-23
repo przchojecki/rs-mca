@@ -181,6 +181,47 @@ inherits the saving. (Matching `L` to the exact L2 `Quot_mu` formula at aligned
 prize parameters is a parameter-alignment check left for a later pass; the
 structural fact -- diagonal, not Cartesian -- is what transfers here.)
 
+## 2.3 Worst-case interleaved list = base list (a-regular regime)
+
+The §2.2 chain bounds the forward count by the interleaved list `L`. This section
+pins the worst case of `L` itself. Using the bridge note's full-agreement
+formula (`l2_interleaved_support_bridge.md`, PROVED)
+
+```text
+|Lambda(Int(C_+,mu),1-a/n,U)|
+  = #{ (A_1,...,A_mu) : A_i in Supp_{U_i}^{>=a}, |A_1 cap ... cap A_mu| >= a },
+```
+
+call a row word `V` **a-regular** if every `C_+`-codeword agreeing with `V` on
+`>= a` points agrees on exactly `a` (the generic maximal-radius case; distinct
+`C_+ = RS[F,D,k+1]` codewords agree on `<= k < a` points).
+
+**Theorem.**
+- (i) *(diagonal lower bound, any words)* `Lst(Int(C_+,mu),1-a/n) >=
+  Lst(C_+,1-a/n)` for every `mu`, with equality of the diagonal word's
+  interleaved list and the base list (off-diagonal tuples are impossible: two
+  distinct codewords share `<= k < a` points).
+- (ii) *(a-regular upper bound)* if every row `U_i` is a-regular then
+  ```text
+  |Lambda(Int(C_+,mu),1-a/n,U)| = | intersect_i Supp_{U_i}^{=a} | <= min_i |Lambda(C_+,1-a/n,U_i)|.
+  ```
+  *Proof.* `|A_i| = a` and `|intersect A_i| >= a` force every `A_i` to equal the
+  common `a`-set `T`, so the tuple is `(T,...,T)` with `T` a full agreement
+  support of every row; `tuple <-> T` is a bijection onto
+  `intersect_i Supp_{U_i}^{=a}`. ∎
+
+Combining (i) and (ii): **in the a-regular regime the worst-case interleaved
+list equals the base-code list for every `mu` -- the interleaving exponent is
+exactly `1`, not `mu`.** Via §2, the interleaved-MCA bad-slope-vector count is
+then governed by the base-code list, `mu`-independently; and the base list is
+exactly the L1 locator-fiber object, so the L2 worst-case constant coincides
+with the L1 constant in this regime (the honest reduction L2 -> L1).
+
+`verify_x1_worst_case_interleaved.py` confirms (i), (ii), and the exact formula
+`|interleaved| = |common supports|` over `F_97`/`F_193`, `n=16,k=8,a=12`, for
+`mu=1,2,3` (a-regular quotient-locator words; base list `4`, interleaved `4` at
+every `mu`).
+
 ## 3. Plan (incremental commits on this PR)
 
 1. (done) Independent audit + broadened verifier of the base identity (§1).
@@ -190,9 +231,13 @@ structural fact -- diagonal, not Cartesian -- is what transfers here.)
 3. (done) Forward X1 count chain (§2.2) +
    `scripts/verify_x1_forward_interleaved_count.py`: explicit
    `avg_lb <= BadVec_max <= L <= Cartesian`, with `L` constant in `mu`.
-4. (next) push the aperiodic `mu`-fold remainder of the L2 conjecture (the open
-   core), now carrying MCA meaning through §2; or align `L` to the exact L2
-   `Quot_mu` count at prize parameters.
+4. (done) Worst-case interleaved list = base list in the a-regular regime
+   (§2.3) + `scripts/verify_x1_worst_case_interleaved.py`: interleaving exponent
+   exactly 1; the honest L2 -> L1 reduction.
+5. (next) the aperiodic over-agreement regime (non-a-regular rows): bound the
+   interleaved list when codewords agree on `> a` points -- the residual open
+   piece, which is where any genuine L2-vs-L1 separation could appear; or align
+   `L` to the exact L2 `Quot_mu` count at prize parameters.
 
 ## Ledger impact
 
@@ -213,4 +258,6 @@ python3 experimental/scripts/verify_x1_interleaved_deep_point.py
 python3 experimental/scripts/verify_x1_interleaved_deep_point.py --json
 python3 experimental/scripts/verify_x1_forward_interleaved_count.py
 python3 experimental/scripts/verify_x1_forward_interleaved_count.py --json
+python3 experimental/scripts/verify_x1_worst_case_interleaved.py
+python3 experimental/scripts/verify_x1_worst_case_interleaved.py --json
 ```
