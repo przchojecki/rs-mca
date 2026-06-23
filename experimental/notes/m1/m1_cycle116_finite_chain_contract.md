@@ -316,14 +316,26 @@ This is the exact numerator used downstream.
 The kernel-lift filtering stage is checked by
 
 ```text
+python3 experimental/scripts/verify_m1_cycle84_projected_log_certificate.py
+```
+
+and
+
+```text
 python3 experimental/scripts/verify_m1_cycle84_kernel_lift_candidates.py
 ```
 
-This verifier checks all `30` projected duplicate-bin candidates against the
-same normalized slot table. For each of the `60` normalized witnesses it checks
-the color-shell condition, exponentiates the supplied full log back to the
-finite-field product, verifies congruence modulo `M=(17^16-1)/3`, and confirms
-that kernel difference `0` is exactly the true-collision case. Its output is:
+The projected-log verifier checks the compact fixture
+`experimental/data/witnesses/m1-cycle84/slot_logs.json`: all `336` slot logs
+exponentiate back to the normalized slot values, their residue vectors are
+correct, colors agree, and the tau-pair log sums are constant in each slot.
+
+The kernel-lift verifier then checks all `30` projected duplicate-bin
+candidates against the same normalized slot table. For each of the `60`
+normalized witnesses it checks the color-shell condition, exponentiates the
+supplied full log back to the finite-field product, verifies congruence modulo
+`M=(17^16-1)/3`, and confirms that kernel difference `0` is exactly the
+true-collision case. Its output is:
 
 ```text
 projected duplicate bins checked = 30,
@@ -334,9 +346,9 @@ true ordered energy after tau    = 24.
 ```
 
 Therefore the remaining heavy Cycle84 import is now only the projected
-tau-folded census completeness statement: the `30` projected duplicate bins
-listed in the kernel-lift verifier are the complete projected duplicate list,
-and each has projected count `2`.
+tau-folded census completeness statement over the certified projected-log
+table: the `30` projected duplicate bins listed in the kernel-lift verifier are
+the complete projected duplicate list, and each has projected count `2`.
 
 ## Abstract Smooth Padding Lift
 
@@ -480,10 +492,12 @@ The chain is only as strong as the following imported clauses:
 
 1. The Cycle84 finite product census really has
    projected tau-folded duplicate-bin completeness for the normalized slot
-   table emitted by `verify_m1_cycle116_slot_identities.py`. The color shell,
-   kernel-lift filtering, and twelve true double-fiber witnesses are now
-   independently replayed by `verify_m1_cycle84_color_collision_witnesses.py`
-   and `verify_m1_cycle84_kernel_lift_candidates.py`.
+   table emitted by `verify_m1_cycle116_slot_identities.py`. The projected-log
+   certificate, color shell, kernel-lift filtering, and twelve true
+   double-fiber witnesses are now independently replayed by
+   `verify_m1_cycle84_projected_log_certificate.py`,
+   `verify_m1_cycle84_color_collision_witnesses.py`, and
+   `verify_m1_cycle84_kernel_lift_candidates.py`.
 2. The slot-block assembly really uses the co-support
    `{1} union union_t eta^t Y_{i_t,a_t}` with disjoint active cosets; the
    current slot-identity verifier checks the disjoint active-coset envelope.

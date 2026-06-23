@@ -31,6 +31,7 @@ if str(SCRIPT_DIR) not in sys.path:
     sys.path.insert(0, str(SCRIPT_DIR))
 
 import verify_m1_cycle84_color_collision_witnesses as color_witness
+import verify_m1_cycle84_projected_log_certificate as log_cert
 import verify_m1_cycle116_slot_identities as slot
 
 
@@ -114,6 +115,7 @@ def verify_candidate(
 
 def build_report() -> Dict[str, Any]:
     slot_report = slot.build_report()
+    log_report = log_cert.build_report()
     table = color_witness.build_slot_values()
 
     seen_keys = set()
@@ -142,6 +144,7 @@ def build_report() -> Dict[str, Any]:
 
     checks = {
         "slot_identity_replay_passes": slot_report["status"] == "PASS",
+        "projected_log_certificate_passes": log_report["status"] == "PASS",
         "projected_duplicate_bins_checked": len(PROJECTED_LIFT_CANDIDATES) == 30,
         "canonical_keys_distinct": len(seen_keys) == 30,
         "normalized_tuples_distinct": len(seen_tuples) == 60,
@@ -167,6 +170,7 @@ def build_report() -> Dict[str, Any]:
         "proof_status": "AUDIT / FINITE-MODEL-KERNEL-LIFT-VERIFIED / CONDITIONAL",
         "theorem_problem_id": "M1 Cycle84 kernel lift candidates",
         "slot_table_digest": slot_report["slot_table"]["digest_sha256"],
+        "projected_log_certificate_sha256": log_report["certificate_sha256"],
         "projected_lift": {
             "projected_duplicate_bins_checked": len(PROJECTED_LIFT_CANDIDATES),
             "normalized_witnesses_checked": len(seen_tuples),

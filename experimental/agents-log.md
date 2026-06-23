@@ -30,6 +30,28 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-24 - Cycle84 projected-log certificate
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/data/witnesses/m1-cycle84/README.md`,
+  `experimental/data/witnesses/m1-cycle84/slot_logs.json`,
+  `experimental/notes/m1/m1_cycle116_finite_chain_contract.md`,
+  `experimental/scripts/verify_m1_cycle84_projected_log_certificate.py`,
+  `experimental/scripts/verify_m1_cycle84_color_collision_witnesses.py`,
+  `experimental/scripts/verify_m1_cycle84_kernel_lift_candidates.py`, and
+  `experimental/agents-log.md`.
+- **Status:** AUDIT / FINITE-MODEL-LOG-CERTIFICATE-VERIFIED.
+- **What is being added:** A compact 336-row projected-log certificate for the
+  Cycle84 normalized slot table. The verifier checks every discrete log by
+  exponentiation in `F_17^16`, verifies colors and residue vectors, and checks
+  the tau-pair projected-log structure used by the duplicate-bin census.
+- **How it is useful:** Ties the remaining projected tau-folded census to
+  actual finite-field slot products without importing the old workflow,
+  generated archive, or full replay bundle.
+- **What to do next:** Audit or rerun the projected tau-folded duplicate-bin
+  enumeration over this certified log table.
+
 ### 2026-06-23 - Cycle84 kernel-lift candidate verification
 
 - **Agent/model:** Codex.
