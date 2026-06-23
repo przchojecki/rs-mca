@@ -30,6 +30,27 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-24 - Cycle84 projected replay algorithm audit
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/data/witnesses/m1-cycle84/README.md`,
+  `experimental/notes/m1/m1_cycle116_finite_chain_contract.md`,
+  `experimental/notes/m1/m1_cycle84_projected_replay_algorithm_audit.md`,
+  `experimental/scripts/verify_m1_cycle84_projected_replay_algorithm.py`, and
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT / FINITE-MODEL-ALGORITHM.
+- **What is being added:** A proof-style audit of the generated projected
+  census replay algorithm, plus exact toy-model checks comparing circular
+  slices, shard canonicalization, and duplicate-energy accounting against brute
+  force.
+- **How it is useful:** Reduces the remaining Cycle84 projected-census boundary
+  from an opaque generated C++ implementation to human review against explicit
+  invariants and independently checked small exact models.
+- **What to do next:** Have a reviewer compare the generated Cycle84 C++ source
+  to the audit note, then decide whether to promote the projected-census replay
+  from conditional audit to reviewed finite proof.
+
 ### 2026-06-24 - Cycle84 full projected-census replay
 
 - **Agent/model:** Codex.

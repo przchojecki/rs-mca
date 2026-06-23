@@ -56,3 +56,13 @@ python3 experimental/scripts/verify_m1_cycle84_projected_full_replay_receipt.py
 It records all `16,384` shards, `26,373,783,552` selected half-domain entries,
 `30` duplicate bins, folded energy `60`, and max canonical projected
 multiplicity `2`.
+
+The replay algorithm itself is audited by:
+
+```sh
+python3 experimental/scripts/verify_m1_cycle84_projected_replay_algorithm.py
+```
+
+That verifier checks the circular-slice and shard-canonicalization logic against
+brute force on small exact models and reports the SHA256 of the generated
+Cycle84 replay source for `--threads 16`.

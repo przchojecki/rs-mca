@@ -404,6 +404,24 @@ Thus the unselected-shard part of the projected census has been replayed from
 the current `slot_logs.json`. The remaining finite-audit boundary is source-code
 review of the generated replay implementation itself.
 
+The replay algorithm is audited in
+
+```text
+experimental/notes/m1/m1_cycle84_projected_replay_algorithm_audit.md
+```
+
+with companion checks
+
+```text
+python3 experimental/scripts/verify_m1_cycle84_projected_replay_algorithm.py
+```
+
+That audit proves the five-slot/two-slot split, the circular shard slices, and
+the duplicate-energy accounting used by the generated C++ replay, and tests the
+same logic against brute force on deterministic toy models. It does not replace
+human source review, but it reduces the remaining finite boundary to checking
+that the generated Cycle84 C++ source follows the audited algorithm.
+
 ## Abstract Smooth Padding Lift
 
 Let `C0=RS[F0,D0,k0]` and suppose a native support-wise bad-slope theorem gives
@@ -549,17 +567,20 @@ The chain is only as strong as the following imported clauses:
    table emitted by `verify_m1_cycle116_slot_identities.py`. The compact
    projected-census receipt is now checked against the current certificate
    fixtures, and the full `16,384`-shard projected census has been replayed from
-   the current `slot_logs.json`. The remaining finite-audit boundary is
-   source-code review of the generated replay implementation. The projected-log
-   certificate, color shell, kernel-lift filtering, projected-census receipt
-   consistency, full projected-census replay receipt, and twelve true
-   double-fiber witnesses are now locally checked by
+   the current `slot_logs.json`. The replay algorithm has a separate audit note
+   and toy-model verifier; the remaining finite-audit boundary is human source
+   review of the generated replay implementation against that audit. The
+   projected-log certificate, color shell, kernel-lift filtering,
+   projected-census receipt consistency, full projected-census replay receipt,
+   replay-algorithm audit, and twelve true double-fiber witnesses are now
+   locally checked by
    `verify_m1_cycle84_projected_log_certificate.py`,
    `verify_m1_cycle84_color_collision_witnesses.py`, and
    `verify_m1_cycle84_kernel_lift_candidates.py`,
    `verify_m1_cycle84_projected_census_receipt.py`, and
-   `verify_m1_cycle84_projected_census_shard_replay.py`, and
-   `verify_m1_cycle84_projected_full_replay_receipt.py`.
+   `verify_m1_cycle84_projected_census_shard_replay.py`,
+   `verify_m1_cycle84_projected_full_replay_receipt.py`, and
+   `verify_m1_cycle84_projected_replay_algorithm.py`.
 2. The slot-block assembly really uses the co-support
    `{1} union union_t eta^t Y_{i_t,a_t}` with disjoint active cosets; the
    current slot-identity verifier checks the disjoint active-coset envelope.
