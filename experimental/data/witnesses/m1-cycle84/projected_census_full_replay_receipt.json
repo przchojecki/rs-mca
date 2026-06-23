@@ -1,0 +1,35 @@
+{
+  "all_shards": true,
+  "checks": {
+    "all_shard_energy_matches_receipt": true,
+    "all_shard_entries_match_receipt": true,
+    "all_shard_max_matches_receipt": true,
+    "all_shards_flag_matches": true,
+    "duplicate_bins_match_receipt_on_selected_shards": true,
+    "fixed_selected_counts_match_receipt": true,
+    "receipt_verifier_passes": true,
+    "selected_energy_matches_replayed_bins": true,
+    "selected_max_matches_replayed_bins": true,
+    "selected_shard_count_matches": true,
+    "selected_shards_match_when_reported": true,
+    "tau_half_domain_expected_matches_receipt": true,
+    "thread_count_matches_request": true
+  },
+  "duplicate_bins_replayed": 30,
+  "imports_required": [
+    "source-code audit of this generated replay",
+    "official ABF source gate verification"
+  ],
+  "nonmutating": true,
+  "proof_status": "AUDIT / FINITE-MODEL-PROJECTED-CENSUS-FULL-REPLAYED / CONDITIONAL",
+  "receipt_path": "experimental/data/witnesses/m1-cycle84/projected_census_receipt.json",
+  "remaining_import": "source-code audit of this generated replay",
+  "selected_entries": 26373783552,
+  "selected_folded_ordered_energy": 60,
+  "selected_max_canonical_projected_multiplicity": 2,
+  "selected_shard_count": 16384,
+  "selected_shards": null,
+  "status": "PASS",
+  "theorem_problem_id": "M1 Cycle84 projected census shard replay",
+  "threads": 16
+}

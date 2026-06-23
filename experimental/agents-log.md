@@ -30,6 +30,27 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-24 - Cycle84 full projected-census replay
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/data/witnesses/m1-cycle84/README.md`,
+  `experimental/data/witnesses/m1-cycle84/projected_census_full_replay_receipt.json`,
+  `experimental/notes/m1/m1_cycle116_finite_chain_contract.md`,
+  `experimental/scripts/verify_m1_cycle84_projected_full_replay_receipt.py`,
+  and `experimental/agents-log.md`.
+- **Status:** AUDIT / FINITE-MODEL-PROJECTED-CENSUS-FULL-REPLAYED /
+  CONDITIONAL.
+- **What is being added:** A saved receipt for a completed all-shards run of
+  `verify_m1_cycle84_projected_census_shard_replay.py --all-shards --threads
+  16`, plus a lightweight verifier for that receipt.
+- **How it is useful:** Removes the unselected-shard gap from the Cycle84
+  projected duplicate-bin census audit: all `16,384` shards replayed from the
+  current `slot_logs.json` and matched the compact receipt.
+- **What to do next:** Audit the generated C++ replay implementation itself,
+  then decide whether the Cycle84 projected census import can be promoted from
+  conditional finite audit to reviewed finite proof.
+
 ### 2026-06-24 - Cycle84 projected-census shard replay
 
 - **Agent/model:** Codex.

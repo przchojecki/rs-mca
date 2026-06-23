@@ -379,6 +379,31 @@ duplicates in unselected shards; run the same script with `--all-shards` for the
 complete projected-census replay. The generated replay parallelizes shard
 scanning; use `--threads N` to set the OpenMP worker count.
 
+The full replay has now been run once with
+
+```text
+python3 experimental/scripts/verify_m1_cycle84_projected_census_shard_replay.py --all-shards --threads 16 --json
+```
+
+and the saved receipt is checked by
+
+```text
+python3 experimental/scripts/verify_m1_cycle84_projected_full_replay_receipt.py
+```
+
+The run covered all `16,384` shards and matched the compact receipt exactly:
+
+```text
+tau half-domain entries = 26,373,783,552,
+duplicate bins          = 30,
+folded ordered energy   = 60,
+max canonical multiplicity = 2.
+```
+
+Thus the unselected-shard part of the projected census has been replayed from
+the current `slot_logs.json`. The remaining finite-audit boundary is source-code
+review of the generated replay implementation itself.
+
 ## Abstract Smooth Padding Lift
 
 Let `C0=RS[F0,D0,k0]` and suppose a native support-wise bad-slope theorem gives
@@ -523,16 +548,18 @@ The chain is only as strong as the following imported clauses:
    projected tau-folded duplicate-bin completeness for the normalized slot
    table emitted by `verify_m1_cycle116_slot_identities.py`. The compact
    projected-census receipt is now checked against the current certificate
-   fixtures, but the heavy census source/replay that produced it remains an
-   imported computation. The projected-log certificate, color shell,
-   kernel-lift filtering, projected-census receipt consistency, selected-shard
-   projected-census replay, and twelve true double-fiber witnesses are now
-   locally checked by
+   fixtures, and the full `16,384`-shard projected census has been replayed from
+   the current `slot_logs.json`. The remaining finite-audit boundary is
+   source-code review of the generated replay implementation. The projected-log
+   certificate, color shell, kernel-lift filtering, projected-census receipt
+   consistency, full projected-census replay receipt, and twelve true
+   double-fiber witnesses are now locally checked by
    `verify_m1_cycle84_projected_log_certificate.py`,
    `verify_m1_cycle84_color_collision_witnesses.py`, and
    `verify_m1_cycle84_kernel_lift_candidates.py`,
    `verify_m1_cycle84_projected_census_receipt.py`, and
-   `verify_m1_cycle84_projected_census_shard_replay.py`.
+   `verify_m1_cycle84_projected_census_shard_replay.py`, and
+   `verify_m1_cycle84_projected_full_replay_receipt.py`.
 2. The slot-block assembly really uses the co-support
    `{1} union union_t eta^t Y_{i_t,a_t}` with disjoint active cosets; the
    current slot-identity verifier checks the disjoint active-coset envelope.

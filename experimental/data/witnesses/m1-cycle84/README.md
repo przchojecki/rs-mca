@@ -39,3 +39,20 @@ By default this recompiles a temporary C++ replay and scans the 30 shards that
 contain the receipt's duplicate bins. Use `--all-shards` for the complete
 16,384-shard replay, and `--threads N` to set the OpenMP shard-scanning worker
 count.
+
+`projected_census_full_replay_receipt.json` records a completed all-shards run:
+
+```sh
+python3 experimental/scripts/verify_m1_cycle84_projected_census_shard_replay.py \
+  --all-shards --threads 16 --json
+```
+
+The saved full-replay receipt is checked by:
+
+```sh
+python3 experimental/scripts/verify_m1_cycle84_projected_full_replay_receipt.py
+```
+
+It records all `16,384` shards, `26,373,783,552` selected half-domain entries,
+`30` duplicate bins, folded energy `60`, and max canonical projected
+multiplicity `2`.
