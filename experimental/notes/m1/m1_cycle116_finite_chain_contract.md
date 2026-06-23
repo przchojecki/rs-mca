@@ -178,6 +178,70 @@ I2. the product-scalar identity P_T(beta)=4(beta-1)Phi(T).
 
 The finite product census alone does not prove these identities.
 
+## Slot-Block Bridge Reduction
+
+The Cycle116 packet gives a more local form of the fixed-jet/product-scalar
+instantiation. For each seven-state tuple `T=((i_t,a_t))_{t=1}^7`, the
+co-support is
+
+```text
+J_T = {1} union union_{t=1}^7 eta^t Y_{i_t,a_t},
+```
+
+where each slot block has size `16` and the seven active cosets are disjoint.
+Thus `|J_T|=1+7*16=113`. The imported finite slot identities are:
+
+```text
+R_{t,i,a}(X) = prod_{y in Y_{i,a}}(X - eta^t y)
+             = X^16 + O(X^10),
+R_{t,i,a}(beta) = 3^t u_t(i,a),
+```
+
+for all `t=1,...,7`, `i=1,2,3`, and `a=0,...,15`. Here
+`X^16+O(X^10)` means that the coefficients of `X^15,...,X^11` vanish.
+
+These 336 slot identities imply the two Cycle116 instantiation clauses without
+any further finite search. Indeed,
+
+```text
+P_T(X) = (X-1) prod_{t=1}^7 R_{t,i_t,a_t}(X).
+```
+
+Let `Q_T=prod_t R_{t,i_t,a_t}`. Since every nonleading term in a block drops the
+degree by at least `6`, one has
+
+```text
+Q_T(X) = X^112 + O(X^106).
+```
+
+Multiplying by `X-1` gives
+
+```text
+P_T(X) = X^113 - X^112 + O(X^107).
+```
+
+Likewise,
+
+```text
+P_T(beta)
+= (beta-1) prod_{t=1}^7 R_{t,i_t,a_t}(beta)
+= (beta-1) 3^(1+...+7) prod_{t=1}^7 u_t(i_t,a_t)
+= 4(beta-1) Phi(T),
+```
+
+because `3^28=4` in `F_17`. Thus the current black-box part of the Cycle116
+instantiation is narrower than the full fixed-jet/product-scalar statement:
+it is exactly the 336 slot identities plus the Cycle84 occupancy certificate.
+
+The companion verifier
+
+```text
+python3 experimental/scripts/verify_m1_cycle116_fixed_jet_bridge.py
+```
+
+checks this formal degree-support and scalar reduction. It does not verify the
+336 slot identities themselves.
+
 ## Abstract Smooth Padding Lift
 
 Let `C0=RS[F0,D0,k0]` and suppose a native support-wise bad-slope theorem gives
@@ -320,10 +384,11 @@ The chain is only as strong as the following imported clauses:
 
 1. The Cycle84 finite product census really has
    `#{Phi(T)} = 52,747,567,092` with the stated color shell.
-2. The Cycle84 locators satisfy the fixed six-jet identity
-   `P_T(X)=X^113-X^112+O(X^107)`.
-3. The product-scalar bridge is exactly
-   `P_T(beta)=4(beta-1)Phi(T)`, with no zero scalar or hidden collision.
+2. The 336 Cycle116 slot identities really hold:
+   `R_{t,i,a}(X)=X^16+O(X^10)` and
+   `R_{t,i,a}(beta)=3^t u_t(i,a)`.
+3. The slot-block assembly really uses the co-support
+   `{1} union union_t eta^t Y_{i_t,a_t}` with disjoint active cosets.
 4. The field/lift envelope is correct: `F0(theta)` has size `17^32`, `theta`
    has order `512`, and `H=<theta>` decomposes as
    `D0 disjoint_union theta D0`.

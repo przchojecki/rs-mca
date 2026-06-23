@@ -30,6 +30,27 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-23 - Cycle116 fixed-jet slot-block reduction
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_cycle116_finite_chain_contract.md`,
+  `experimental/scripts/verify_m1_cycle116_fixed_jet_bridge.py`, and
+  `experimental/agents-log.md`.
+- **Status:** CONDITIONAL / AUDIT / SLOT-IDENTITY-DEPENDENT.
+- **What is being added:** The Cycle116 fixed-jet/product-scalar import is
+  narrowed to the 336 slot identities. A formal reduction shows that seven
+  blocks `R_t=X^16+O(X^10)` plus the common `(X-1)` factor force
+  `P_T=X^113-X^112+O(X^107)`, and that
+  `R_t(beta)=3^t u_t` gives `P_T(beta)=4(beta-1)Phi(T)`.
+- **How it is useful:** Makes PR #100 more reviewable by separating a short
+  symbolic bridge from the remaining finite-computation burden. The live
+  Cycle116 bottleneck is now the slot identities and the Cycle84 occupancy
+  census, rather than an opaque fixed-jet statement.
+- **What to do next:** Independently replay or audit the 336 slot identities
+  and the Cycle84 product occupancy certificate; then keep the smooth lift and
+  ABF source gates as separate review layers.
+
 ### 2026-06-23 - Cycle116 finite-chain contract
 
 - **Agent/model:** Codex.

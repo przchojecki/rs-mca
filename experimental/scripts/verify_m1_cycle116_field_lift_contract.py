@@ -234,8 +234,9 @@ def build_report() -> Dict[str, Any]:
         "checks": checks,
         "imports_required": [
             "Cycle84 exact product occupancy N",
-            "Cycle84 fixed six-jet locator identity",
-            "Cycle84 product-scalar bridge P_T(beta)=4(beta-1)Phi(T)",
+            "336 Cycle116 slot identities R_tia=X^16+O(X^10)",
+            "336 Cycle116 slot evaluations R_tia(beta)=3^t u_t(i,a)",
+            "Cycle116 co-support assembly with common singleton {1}",
             "official ABF source gate verification",
         ],
         "nonmutating": True,
