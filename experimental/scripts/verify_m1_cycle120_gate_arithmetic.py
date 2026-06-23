@@ -35,7 +35,7 @@ IMPORTS_REQUIRED = (
     "official ABF source gates and page references",
     "finite certificate for K, theta, and H=<theta>",
     "Cycle84 finite count producing N",
-    "Cycle116 fixed-jet transfer at agreement 262",
+    "Cycle116 finite-chain transfer at agreement 262",
     "optional Cycle119 two-ended transfer at agreement 263",
 )
 

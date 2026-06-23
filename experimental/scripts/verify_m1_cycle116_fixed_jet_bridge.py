@@ -114,9 +114,8 @@ def build_report() -> Dict[str, Any]:
         },
         "checks": checks,
         "imports_required": [
-            "336 Cycle116 slot identities R_tia=X^16+O(X^10)",
-            "336 Cycle116 slot evaluation identities R_tia(beta)=3^t u_t(i,a)",
-            "Cycle84 exact product occupancy #{Phi(T)}=52,747,567,092",
+            "Cycle116 slot identity replay by verify_m1_cycle116_slot_identities.py",
+            "Cycle84 exact product occupancy for the normalized slot table",
             "official ABF source gate verification",
         ],
         "nonmutating": True,

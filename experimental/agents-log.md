@@ -30,6 +30,31 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-23 - Cycle116 slot identity replay
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_cycle116_finite_chain_contract.md`,
+  `experimental/notes/m1/m1_cycle120_gate_arithmetic_contract.md`,
+  `experimental/scripts/verify_m1_cycle116_slot_identities.py`,
+  `experimental/scripts/verify_m1_cycle116_fixed_jet_bridge.py`,
+  `experimental/scripts/verify_m1_cycle116_field_lift_contract.py`,
+  `experimental/scripts/verify_m1_cycle120_gate_arithmetic.py`, and
+  `experimental/agents-log.md`.
+- **Status:** AUDIT / FINITE-MODEL-IDENTITY-VERIFIED.
+- **What is being added:** A self-contained replay of the 336 Cycle116 slot
+  identities in `F_17[X]/(X^16+X^8+3)`. The verifier recomputes the three seed
+  polynomials, all slot block locators, all normalized evaluations
+  `R_tia(beta)=3^t u_tia`, full-slot product checks, single-slot injectivity,
+  and a digest for the normalized 336-value table:
+  `47ae84dc2df0fe0b4b43a7e0543b141fb940061fc48ccb80b40ce4e9483abc01`.
+- **How it is useful:** Removes the 336 slot identities as an opaque import in
+  PR #100. The remaining finite wall is now sharper: the Cycle84 product
+  occupancy census must be audited for exactly this normalized slot table.
+- **What to do next:** Compare the emitted table digest with the Cycle84 public
+  replay/certificate data or independently rerun the Cycle84 occupancy census
+  from this table.
+
 ### 2026-06-23 - Cycle116 fixed-jet slot-block reduction
 
 - **Agent/model:** Codex.

@@ -21,9 +21,9 @@ is still blocked by Cloudflare from this environment, and classifies
 Definitions 2.11, 2.12, and 4.3 as checked only against the PR #96 PDF extract
 until a human reviewer fetches the official PDF/source directly.
 
-It does not prove the Cycle84 finite count, the Cycle116 fixed-jet transfer, or
-the optional Cycle119 strict-ball transfer. It records exactly what those
-imports would imply if they survive independent review.
+It does not prove the Cycle84 finite count, the full Cycle116 finite-chain
+transfer, or the optional Cycle119 strict-ball transfer. It records exactly
+what those imports would imply if they survive independent review.
 
 ## Object
 
@@ -168,8 +168,9 @@ The following inputs remain outside this arithmetic contract:
    certificate that `H=<theta>` is the intended power-of-two subgroup.
 3. The Cycle84 finite count producing
    `N = 52,747,567,092`.
-4. The Cycle116 fixed-jet transfer producing agreement `262` in the
-   support-wise MCA predicate.
+4. The Cycle116 finite-chain transfer producing agreement `262` in the
+   support-wise MCA predicate, including the slot-identity replay, the Cycle84
+   occupancy census, and the smooth padding lift.
 5. Optionally, the Cycle119 two-ended transfer producing agreement `263`.
 
 ## Nonclaims

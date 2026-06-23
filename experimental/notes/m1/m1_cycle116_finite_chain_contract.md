@@ -242,6 +242,33 @@ python3 experimental/scripts/verify_m1_cycle116_fixed_jet_bridge.py
 checks this formal degree-support and scalar reduction. It does not verify the
 336 slot identities themselves.
 
+The 336 identities are replayed separately by
+
+```text
+python3 experimental/scripts/verify_m1_cycle116_slot_identities.py
+```
+
+That verifier works directly in `F_17[X]/(X^16+X^8+3)`. It recomputes the three
+seed polynomials from
+
+```text
+E_1={0,1,2,3,5,11,12,13},
+E_2={0,1,2,3,4,8,9,14},
+E_3={0,1,2,4,5,7,11,14},
+```
+
+checks that their `Z^7` and `Z^6` coefficients vanish, forms all sets
+`B_{i,a}=a+E_i mod 16`, and then checks all `7*3*16=336` block locators and
+evaluations. It also emits a stable digest for the normalized slot table
+`u_t(i,a)`:
+
+```text
+47ae84dc2df0fe0b4b43a7e0543b141fb940061fc48ccb80b40ce4e9483abc01
+```
+
+The remaining imported finite computation is the Cycle84 product occupancy
+census for that normalized table.
+
 ## Abstract Smooth Padding Lift
 
 Let `C0=RS[F0,D0,k0]` and suppose a native support-wise bad-slope theorem gives
@@ -383,12 +410,14 @@ ABF-facing contract.
 The chain is only as strong as the following imported clauses:
 
 1. The Cycle84 finite product census really has
-   `#{Phi(T)} = 52,747,567,092` with the stated color shell.
-2. The 336 Cycle116 slot identities really hold:
+   `#{Phi(T)} = 52,747,567,092` with the stated color shell, for the normalized
+   slot table emitted by `verify_m1_cycle116_slot_identities.py`.
+2. The slot-block assembly really uses the co-support
+   `{1} union union_t eta^t Y_{i_t,a_t}` with disjoint active cosets; the
+   current slot-identity verifier checks the disjoint active-coset envelope.
+3. The 336 Cycle116 slot identities continue to pass independent replay:
    `R_{t,i,a}(X)=X^16+O(X^10)` and
    `R_{t,i,a}(beta)=3^t u_t(i,a)`.
-3. The slot-block assembly really uses the co-support
-   `{1} union union_t eta^t Y_{i_t,a_t}` with disjoint active cosets.
 4. The field/lift envelope is correct: `F0(theta)` has size `17^32`, `theta`
    has order `512`, and `H=<theta>` decomposes as
    `D0 disjoint_union theta D0`.
