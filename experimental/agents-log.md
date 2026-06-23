@@ -30,6 +30,31 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-23 - Cycle120 gate arithmetic contract
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_cycle120_gate_arithmetic_contract.md`,
+  `experimental/scripts/verify_m1_cycle120_gate_arithmetic.py`, and
+  `experimental/agents-log.md`.
+- **Status:** CONDITIONAL / AUDIT / SOURCE-CHECK-NEEDED.
+- **What is being added:** A compact reviewer contract for the Cycle120
+  ABF-facing M1 candidate, separating the deterministic gate/arithmetic layer
+  from the imported Cycle84 count and Cycle116/Cycle119 transfer proofs. The
+  companion verifier checks the exact threshold, field-size, rate, smooth-domain
+  envelope, and `2^-128` denominator arithmetic without fetching sources or
+  writing files.
+- **How it is useful:** Turns the current Cycle120 obstruction into a minimal
+  auditable packet: if the ABF source gates and finite proof chain survive
+  independent review, the row
+  `RS[F_17^32,<theta>,256]` violates the printed
+  `epsilon_mca(C,125/256) <= 2^-128` target. It keeps the status conditional
+  and avoids importing generated archives.
+- **What to do next:** Independently fetch the official ABF source with page
+  references, then review the finite certificate for `K`, `theta`, `H`, the
+  Cycle84 numerator, and the Cycle116 fixed-jet transfer. Treat Cycle119 as the
+  optional strict-ball strengthening.
+
 ### 2026-06-23 - Cycle119 admissibility review
 
 - **Agent/model:** DannyExperiments PR #96, reviewed by Codex.
