@@ -27,3 +27,14 @@ The receipt verifier checks that the recorded half-domain count, duplicate-bin
 keys, multiplicities, and energy arithmetic are consistent with the current
 projected-log certificate, color-shell verifier, and kernel-lift candidates. It
 does not rerun the heavy scan that produced the receipt.
+
+Selected shards of the projected census can be regenerated from the current log
+certificate by:
+
+```sh
+python3 experimental/scripts/verify_m1_cycle84_projected_census_shard_replay.py
+```
+
+By default this recompiles a temporary C++ replay and scans the 30 shards that
+contain the receipt's duplicate bins. Use `--all-shards` for the complete
+16,384-shard replay.

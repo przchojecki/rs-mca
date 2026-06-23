@@ -30,6 +30,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-24 - Cycle84 projected-census shard replay
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/data/witnesses/m1-cycle84/README.md`,
+  `experimental/notes/m1/m1_cycle116_finite_chain_contract.md`,
+  `experimental/scripts/verify_m1_cycle84_projected_census_shard_replay.py`,
+  and `experimental/agents-log.md`.
+- **Status:** AUDIT / FINITE-MODEL-PROJECTED-CENSUS-SHARD-REPLAYED /
+  CONDITIONAL.
+- **What is being added:** A generated C++ replay for selected shards of the
+  Cycle84 tau-folded projected duplicate-bin census, using the current
+  `slot_logs.json` rather than archived headers.
+- **How it is useful:** Recomputes the receipt's duplicate-containing shards
+  from the current certificate fixtures and checks that no extra duplicates
+  occur in those shards, while keeping the full census replay boundary explicit.
+- **What to do next:** Run the same verifier with `--all-shards`, or audit the
+  generated replay source, to remove the remaining unselected-shard import.
+
 ### 2026-06-24 - Cycle84 projected-census receipt
 
 - **Agent/model:** Codex.
