@@ -259,6 +259,43 @@ does not beat base. **Whether `Lst(Int(C_+,mu)) > Lst(C_+)` ever holds is the
 precise open over-agreement core of L2**, now reduced to a bipartite/hypergraph
 overlap-density question rather than a vague "Cartesian exponent" worry.
 
+## 2.5 Interleaving amplification: a concrete K_{2,2} over-agreement witness
+
+§2.4 said a separation needs two-sided over-agreement. This section realizes the
+smallest such design with actual codewords and measures it.
+
+Over `F_41, n=20, k=4, a=8` (so `C_+ = RS` deg `<= 4`; distinct codewords agree
+on `<= 4 = k`; over-agreement support `2a-k = 12`), choose four size-12 supports
+
+```text
+A_1,A_2  (row 1),   B_1,B_2  (row 2),   |A_i cap A_j| = |B_i cap B_j| = 4 = k,
+all four cross overlaps |A_i cap B_j| = 8 = a,
+```
+
+realized by codeword pairs agreeing exactly on a shared `k`-set `T`
+(`g_2 = g_1 + prod_{x in T}(X-x)`) and words `U_1,U_2` producing exactly those
+agreement supports. The `>=a`-overlap graph is then the complete bipartite
+`K_{2,2}`. `verify_x1_interleaving_amplification.py` measures (all by brute force):
+
+```text
+interleaved list = 4 = edges,   L_1 = 3,   L_2 = 2,   max supports = (12, 12) > a.
+```
+
+So **`interleaved = 4 > 3 = max(L_1, L_2)`: interleaving strictly amplifies beyond
+the larger participating row list** -- impossible in the a-regular regime (§2.3,
+`interleaved <= min row list`). This is the over-agreement effect, realized.
+
+**But it does not beat the global base.** At these parameters a single
+quotient-locator word already has a row list of `10`, so `interleaved = 4` is far
+below `Lst(C_+)`; this is amplification beyond the *participating* rows, not a
+`Lst(Int(C_+,mu)) > Lst(C_+)` separation. A true separation needs a `K_{m,m}`
+overlap design giving `interleaved = m^2 > Lst(C_+)`, i.e. the overlap design
+must scale (larger `n`) faster than the base list grows. **That scaling question
+is the sharp open core of L2**, and §2.4's overlap-graph reduction is the tool to
+attack it. Net honest status: interleaving can exceed both rows in the
+over-agreement regime, but no worst-case-vs-base separation is exhibited at toy
+scale; the a-regular collapse (§2.3) remains the proven worst-case statement.
+
 ## 3. Plan (incremental commits on this PR)
 
 1. (done) Independent audit + broadened verifier of the base identity (§1).
@@ -274,9 +311,11 @@ overlap-density question rather than a vague "Cartesian exponent" worry.
 5. (done) Overlap-graph reduction (§2.4): interleaved (mu=2) = bipartite
    >=a-overlap edge count; tight => matching (=> §2.3); over-agreement => degree
    >= 2 (a-regular hypothesis necessary). `scripts/verify_x1_overlap_graph.py`.
-6. (next) attack the open core: does simultaneous two-sided over-agreement ever
-   give `Lst(Int(C_+,mu)) > Lst(C_+)`? search at `n >~ 2a`, or prove a general
-   matching/Koenig-type bound forbidding it.
+6. (done) K_{2,2} amplification witness (§2.5): `interleaved=4 > max row list=3`
+   in the over-agreement regime, but below the base; `verify_x1_interleaving_amplification.py`.
+7. (next) the sharp open core: does a K_{m,m} overlap design scale so that
+   `m^2 > Lst(C_+)` (true Lst(Int)>Lst(C_+) separation), or does a counting bound
+   forbid it? larger n, or a proof.
 
 ## Ledger impact
 
@@ -301,4 +340,6 @@ python3 experimental/scripts/verify_x1_worst_case_interleaved.py
 python3 experimental/scripts/verify_x1_worst_case_interleaved.py --json
 python3 experimental/scripts/verify_x1_overlap_graph.py
 python3 experimental/scripts/verify_x1_overlap_graph.py --json
+python3 experimental/scripts/verify_x1_interleaving_amplification.py
+python3 experimental/scripts/verify_x1_interleaving_amplification.py --json
 ```

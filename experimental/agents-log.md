@@ -30,6 +30,30 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-24 - X1/L2 interleaving amplification: concrete K_{2,2} over-agreement witness
+
+- **Agent/model:** Claude Opus 4.8 (L2 loop, branch `allen/l2-x1-interleaved-mca`).
+- **Files added or changed:**
+  `experimental/scripts/verify_x1_interleaving_amplification.py` (new),
+  `experimental/notes/x1/x1_deep_point_interleaved_bridge.md` (new §2.5),
+  `experimental/agents-log.md`.
+- **Status:** PROVED-by-check (construction) / honest negative on global separation.
+- **What is being added:** Realizes the smallest two-sided over-agreement design
+  with actual codewords: a K_{2,2} overlap pattern over F_41,n=20,k=4,a=8 (four
+  size-12 supports, all cross-overlaps = a = 8, within-row = k = 4). Measured:
+  interleaved list = 4 = edges, row lists L1=3, L2=2, supports (12,12) > a. So
+  interleaved = 4 > max(L1,L2) = 3 -- interleaving STRICTLY amplifies beyond both
+  participating rows, impossible in the a-regular regime (§2.3). BUT a single
+  quotient-locator word already lists 10, so interleaved=4 does NOT beat the
+  global base: no Lst(Int) > Lst(C_+) separation at toy scale.
+- **How it is useful:** Settles that over-agreement genuinely breaks the
+  a-regular collapse (concrete witness), while showing the amplification is below
+  base here; a true separation needs a K_{m,m} design with m^2 > Lst(C_+), i.e.
+  the overlap design must out-scale the base list -- the sharp open core, now a
+  concrete combinatorial-design question. Disjoint from #100, #99.
+- **What to do next:** Test whether K_{m,m} scales (larger n) past Lst(C_+), or
+  prove a counting bound interleaved <= f(Lst) forbidding a worst-case separation.
+
 ### 2026-06-24 - X1/L2 interleaved list as overlap-graph edge count; open core localized
 
 - **Agent/model:** Claude Opus 4.8 (L2 loop, branch `allen/l2-x1-interleaved-mca`).
