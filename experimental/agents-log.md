@@ -30,6 +30,27 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-24 - Cycle84 projected-census receipt
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/data/witnesses/m1-cycle84/README.md`,
+  `experimental/data/witnesses/m1-cycle84/projected_census_receipt.json`,
+  `experimental/notes/m1/m1_cycle116_finite_chain_contract.md`,
+  `experimental/scripts/verify_m1_cycle84_projected_census_receipt.py`, and
+  `experimental/agents-log.md`.
+- **Status:** AUDIT / FINITE-MODEL-PROJECTED-CENSUS-RECEIPT-VERIFIED /
+  CONDITIONAL.
+- **What is being added:** A compact receipt for the archived Cycle84
+  tau-folded projected duplicate-bin scan, plus a verifier tying the receipt to
+  the current projected-log certificate, color-shell count, and 30 kernel-lift
+  candidates.
+- **How it is useful:** Narrows the remaining Cycle84 finite import to the
+  heavy census replay/source audit itself, rather than an unstructured archived
+  output file.
+- **What to do next:** Independently rerun or audit the optimized projected
+  census generator that produced the receipt.
+
 ### 2026-06-24 - Cycle84 projected-log certificate
 
 - **Agent/model:** Codex.

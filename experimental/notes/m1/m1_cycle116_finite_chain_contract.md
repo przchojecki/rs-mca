@@ -350,6 +350,20 @@ tau-folded census completeness statement over the certified projected-log
 table: the `30` projected duplicate bins listed in the kernel-lift verifier are
 the complete projected duplicate list, and each has projected count `2`.
 
+The compact receipt for the archived heavy scan is checked by
+
+```text
+python3 experimental/scripts/verify_m1_cycle84_projected_census_receipt.py
+```
+
+It verifies that
+`experimental/data/witnesses/m1-cycle84/projected_census_receipt.json` has the
+same projection modulus, tau constant, fixed roots, half-domain count, `30`
+duplicate keys, count-`2` multiplicities, and folded/projected energy arithmetic
+as the current projected-log, color-shell, and kernel-lift verifiers. This is a
+receipt consistency check, not an independent replay of the `345s` optimized
+C++ scan.
+
 ## Abstract Smooth Padding Lift
 
 Let `C0=RS[F0,D0,k0]` and suppose a native support-wise bad-slope theorem gives
@@ -492,12 +506,16 @@ The chain is only as strong as the following imported clauses:
 
 1. The Cycle84 finite product census really has
    projected tau-folded duplicate-bin completeness for the normalized slot
-   table emitted by `verify_m1_cycle116_slot_identities.py`. The projected-log
-   certificate, color shell, kernel-lift filtering, and twelve true
-   double-fiber witnesses are now independently replayed by
+   table emitted by `verify_m1_cycle116_slot_identities.py`. The compact
+   projected-census receipt is now checked against the current certificate
+   fixtures, but the heavy census source/replay that produced it remains an
+   imported computation. The projected-log certificate, color shell,
+   kernel-lift filtering, projected-census receipt consistency, and twelve true
+   double-fiber witnesses are now locally checked by
    `verify_m1_cycle84_projected_log_certificate.py`,
    `verify_m1_cycle84_color_collision_witnesses.py`, and
-   `verify_m1_cycle84_kernel_lift_candidates.py`.
+   `verify_m1_cycle84_kernel_lift_candidates.py`, and
+   `verify_m1_cycle84_projected_census_receipt.py`.
 2. The slot-block assembly really uses the co-support
    `{1} union union_t eta^t Y_{i_t,a_t}` with disjoint active cosets; the
    current slot-identity verifier checks the disjoint active-coset envelope.

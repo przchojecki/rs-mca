@@ -1,0 +1,66 @@
+{
+  "source": {
+    "commit": "fdb3cac",
+    "path": "experimental/certificates/cycle84_finite_certificate/output/tau_opt.out",
+    "sha256": "65bc5cf766497c9b31a1c71856a129023d72a314ab392ddf5509a72b40e96849"
+  },
+  "decision": "TAU_FOLDED_PROJECTED_MMAX_LE_12",
+  "projection_modulus": 16220397291888956160,
+  "kernel_order": 3,
+  "kappa": 15337197211725320908,
+  "fixed_roots": [
+    7668598605862660454,
+    15778797251807138534
+  ],
+  "fixed_selected_counts": [
+    0,
+    0
+  ],
+  "tau_half_domain_expected": 26373783552,
+  "tau_half_domain_counted": 26373783552,
+  "canonical_shards": 16384,
+  "threads": 16,
+  "folded_ordered_energy": 60,
+  "projected_ordered_energy": 120,
+  "max_canonical_projected_multiplicity": 2,
+  "full_projected_max_including_fixed": 2,
+  "duplicate_canonical_bins": [
+    {"key": 179351812256751797, "count": 2, "shard": 362},
+    {"key": 179795084433593580, "count": 2, "shard": 363},
+    {"key": 222915557520769006, "count": 2, "shard": 450},
+    {"key": 254958237482354612, "count": 2, "shard": 515},
+    {"key": 1871222699767544580, "count": 2, "shard": 3780},
+    {"key": 1946829124993147395, "count": 2, "shard": 3932},
+    {"key": 2115829786642026153, "count": 2, "shard": 4274},
+    {"key": 2191436211867628968, "count": 2, "shard": 4427},
+    {"key": 2752876908959724607, "count": 2, "shard": 5561},
+    {"key": 3173541850524071265, "count": 2, "shard": 6411},
+    {"key": 3275293692624999094, "count": 2, "shard": 6616},
+    {"key": 3807700674152818936, "count": 2, "shard": 7692},
+    {"key": 3834149319236634720, "count": 2, "shard": 7745},
+    {"key": 3861193039733633404, "count": 2, "shard": 7800},
+    {"key": 3883307099378421751, "count": 2, "shard": 7844},
+    {"key": 3909755744462237535, "count": 2, "shard": 7898},
+    {"key": 4992786929752216345, "count": 2, "shard": 10086},
+    {"key": 5035907402839391771, "count": 2, "shard": 10173},
+    {"key": 5526020206747427503, "count": 2, "shard": 11163},
+    {"key": 5601626631973030318, "count": 2, "shard": 11316},
+    {"key": 5770627293621909076, "count": 2, "shard": 11657},
+    {"key": 5846233718847511891, "count": 2, "shard": 11810},
+    {"key": 6514369406671509109, "count": 2, "shard": 13160},
+    {"key": 6616121248772436938, "count": 2, "shard": 13365},
+    {"key": 6733442005186036094, "count": 2, "shard": 13602},
+    {"key": 6835193847286963923, "count": 2, "shard": 13808},
+    {"key": 7462498181132701859, "count": 2, "shard": 15075},
+    {"key": 7538104606358304674, "count": 2, "shard": 15228},
+    {"key": 7546212406836699991, "count": 2, "shard": 15244},
+    {"key": 7565868754278347372, "count": 2, "shard": 15284}
+  ],
+  "seconds": {
+    "generate_base": 1.03682,
+    "sort_base": 4.63964,
+    "setup": 0.00336803,
+    "scan": 339.985,
+    "total": 345.665
+  }
+}

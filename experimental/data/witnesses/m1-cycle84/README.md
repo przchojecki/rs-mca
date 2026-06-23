@@ -15,3 +15,15 @@ python3 experimental/scripts/verify_m1_cycle84_projected_log_certificate.py
 The verifier checks that every log exponentiates to the current normalized slot
 value, verifies colors and residue vectors, and checks the tau-pair projected
 log structure. It does not rerun the projected duplicate-bin census.
+
+`projected_census_receipt.json` records the compact JSON output of the archived
+heavy tau-folded projected duplicate-bin scan. It is checked by:
+
+```sh
+python3 experimental/scripts/verify_m1_cycle84_projected_census_receipt.py
+```
+
+The receipt verifier checks that the recorded half-domain count, duplicate-bin
+keys, multiplicities, and energy arithmetic are consistent with the current
+projected-log certificate, color-shell verifier, and kernel-lift candidates. It
+does not rerun the heavy scan that produced the receipt.
