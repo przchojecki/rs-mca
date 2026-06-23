@@ -146,17 +146,53 @@ bad-slope-vector sets by independent brute force and checks all three claims:
 Result: PASS (configs `(p,n,k,a,mu)` = `(97,16,8,12,{2,3})` structured, plus
 small spread cases for the collision scan).
 
+## 2.2 Forward interleaved-MCA count (verified)
+
+Combining §2 (identity), the §1 averaging (Lemma 2.1, applied to the interleaved
+tuple list with the `mu`-independent `<= k` collision bound), and the L2 saving
+gives the explicit forward count chain, for the shared-pole curve of a `mu`-row
+word `U`:
+
+```text
+ceil( L / (1 + k(L-1)/|Omega|) )
+   <=  BadVec_max  =  max_{alpha in Omega} |Deep_alpha^{mu}(U,a)|     (forward MCA count)
+   <=  L           =  |Lambda(Int(C_+,mu), 1-a/n, U)|                 (interleaved C_+ list)
+   <=  prod_i L_row_i                                                 (Cartesian product).
+```
+
+The protocol consequence: the interleaved-MCA bad-slope-vector density is
+`|BadVec|/q^{mu} <= L/q^{mu}`, with `L` the L2-controlled interleaved list, **not**
+the naive `(L_row/q)^{mu}`.
+
+`verify_x1_forward_interleaved_count.py` confirms the full chain on structured
+quotient-locator words (row 0 plus dilated rows, genuinely non-diagonal) over
+`F_97` and `F_193`, `n=16, k=8, a=12`:
+
+| p | mu | L_row | Cartesian | L (interleaved) | BadVec_max | avg_lb | L/Cart |
+|---|---|---|---|---|---|---|---|
+| 97 | 2 | [4,4] | 16 | 4 | 4 | 4 | 0.250 |
+| 97 | 3 | [4,4,4] | 64 | 4 | 4 | 4 | 0.0625 |
+| 193 | 2 | [4,4] | 16 | 4 | 4 | 4 | 0.250 |
+| 193 | 3 | [4,4,4] | 64 | 4 | 4 | 4 | 0.0625 |
+
+The interleaved list `L=4` is **constant in `mu`** while the Cartesian product
+grows as `4^{mu}`; the forward interleaved-MCA count `BadVec_max` equals `L` and
+inherits the saving. (Matching `L` to the exact L2 `Quot_mu` formula at aligned
+prize parameters is a parameter-alignment check left for a later pass; the
+structural fact -- diagonal, not Cartesian -- is what transfers here.)
+
 ## 3. Plan (incremental commits on this PR)
 
 1. (done) Independent audit + broadened verifier of the base identity (§1).
 2. (done) Interleaved identity (§2) + `scripts/verify_x1_interleaved_deep_point.py`
    confirming `Bad_MCA^{int} = Deep_alpha^{mu}`, the list bound, and the
    `mu`-independent collision bound (§2.1).
-3. (next) Forward X1 statement: combine §2 with the L2 numerator
-   (`l2_interleaved_dilation_constants.md`) to print an explicit interleaved-MCA
-   bad-slope-vector count vs. the L2 list bound; verifier.
-4. (stretch) push the aperiodic `mu`-fold remainder of the L2 conjecture, now
-   carrying MCA meaning through §2.
+3. (done) Forward X1 count chain (§2.2) +
+   `scripts/verify_x1_forward_interleaved_count.py`: explicit
+   `avg_lb <= BadVec_max <= L <= Cartesian`, with `L` constant in `mu`.
+4. (next) push the aperiodic `mu`-fold remainder of the L2 conjecture (the open
+   core), now carrying MCA meaning through §2; or align `L` to the exact L2
+   `Quot_mu` count at prize parameters.
 
 ## Ledger impact
 
@@ -175,4 +211,6 @@ python3 experimental/scripts/verify_x1_deep_point_identity.py
 python3 experimental/scripts/verify_x1_deep_point_identity.py --json
 python3 experimental/scripts/verify_x1_interleaved_deep_point.py
 python3 experimental/scripts/verify_x1_interleaved_deep_point.py --json
+python3 experimental/scripts/verify_x1_forward_interleaved_count.py
+python3 experimental/scripts/verify_x1_forward_interleaved_count.py --json
 ```

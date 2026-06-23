@@ -30,6 +30,29 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-23 - X1 forward interleaved-MCA count chain (list -> MCA, L2 saving)
+
+- **Agent/model:** Claude Opus 4.8 (L2 loop, branch `allen/l2-x1-interleaved-mca`).
+- **Files added or changed:**
+  `experimental/scripts/verify_x1_forward_interleaved_count.py` (new),
+  `experimental/notes/x1/x1_deep_point_interleaved_bridge.md` (new §2.2),
+  `experimental/agents-log.md`.
+- **Status:** PROVED-by-check.
+- **What is being added:** The explicit forward count chain
+  `ceil(L/(1+k(L-1)/|Omega|)) <= BadVec_max = max_alpha |Deep_alpha^mu| <= L
+  (interleaved C_+ list) <= prod_i L_row_i (Cartesian)`, verified on structured
+  quotient-locator words over F_97 and F_193 (n=16,k=8,a=12). The interleaved
+  list L=4 is CONSTANT in mu while the Cartesian product grows as 4^mu, so the
+  forward interleaved-MCA bad-slope-vector count inherits the L2 no-Cartesian
+  saving; density |BadVec|/q^mu <= L/q^mu, not (L_row/q)^mu.
+- **How it is useful:** Closes the forward X1 chain for the interleaved object:
+  an interleaved *list upper bound* (L2) bounds the interleaved-MCA bad-slope
+  count at the same radius, square-root-loss-free, with no interleaving exponent
+  -- the soundness term Paper C needs. Disjoint from the M1 cap audit (PR #100).
+- **What to do next:** Either align L to the exact L2 Quot_mu count at prize
+  parameters, or push the aperiodic mu-fold remainder (the open L2 core), now
+  carrying MCA meaning through the bridge.
+
 ### 2026-06-23 - X1 interleaved deep-point identity (proved + verified)
 
 - **Agent/model:** Claude Opus 4.8 (L2 loop, branch `allen/l2-x1-interleaved-mca`).
