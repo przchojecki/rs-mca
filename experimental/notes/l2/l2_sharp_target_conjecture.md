@@ -203,6 +203,22 @@ not `binom(Q,ell_M)^mu`. The previous divisible-only budget is the sub-sum over
 scales with `M|k`; the all-remainder form is the budget used in the target
 below.
 
+There is also a closed active-scale criterion. In the nontrivial list-decoding
+range `a<n`, the omissions `ell_M=0` and `ell_M>Q` mean exactly that an
+all-remainder packet at scale `M` is nonempty iff
+
+```text
+M | n,        a-k < M <= a.
+```
+
+Indeed, `ell_M=floor(a/M)` is nonzero iff `M<=a`, while
+`ell_M<=Q=n/M-1` follows automatically from `a<n` and `M|n`. Thus ordinary
+dimension dithering by making `M` fail to divide `k` does not remove these
+arbitrary-word quotient packets. The relevant clearance condition for this
+all-remainder budget is instead interval-divisor clearance: no divisor of `n`
+should lie in `(a-k,a]`, unless the resulting packet is explicitly charged to
+`Quot_rem_mu`.
+
 ## 3. Conjecture L2-Sharp, Version 0
 
 Fix a compact rate window `rho in [rho_0,rho_1] subset (0,1)`, fixed arity
@@ -636,11 +652,13 @@ checks five stress points.
    all-remainder budget both have three active packet scales and total `1389`.
    But at the dithered dimension `(n,k,a,mu)=(64,15,17,2)`, the divisible-only
    budget is `0` while the all-remainder budget is still `1389`, coming from
-   partial-coset packets. For `(k,a)=(16,18)`, the punctured Johnson step
-   controls anchor supports through `s=21`; the remaining large-anchor tail
-   starts only at `s=22`, i.e. four extra agreements above the list threshold.
-   The exact controlled Johnson shell weight in this example is `17`; the
-   powered shell weight for the fixed-arity `mu=3` reduction is `199`.
+   partial-coset packets. The active all-remainder scales in that dithered
+   example are exactly `M in {4,8,16}`, matching the interval
+   `a-k < M <= a`. For `(k,a)=(16,18)`, the punctured Johnson step controls
+   anchor supports through `s=21`; the remaining large-anchor tail starts only
+   at `s=22`, i.e. four extra agreements above the list threshold. The exact
+   controlled Johnson shell weight in this example is `17`; the powered shell
+   weight for the fixed-arity `mu=3` reduction is `199`.
 2. The all-remainder quotient construction is realized explicitly over
    `F_17`, `n=16`, `k=7`, `a=9`, `M=4`. Here `M` does not divide `k`,
    `ell=floor(a/M)=2`, and the partial omitted coset has size `1`. The verifier

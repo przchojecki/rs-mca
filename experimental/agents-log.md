@@ -73,16 +73,19 @@ Keep entries concise and link to the relevant files.
   budget is `0` but the all-remainder budget is `1389`. The verifier also
   realizes an actual dithered packet over `F_17`, `n=16`, `k=7`, `a=9`, `M=4`
   with `M` not dividing `k`: it constructs the three expected codewords, with
-  maximum degree `5<k` and agreement at least `9`.
+  maximum degree `5<k` and agreement at least `9`. The active all-remainder
+  scales are now characterized exactly by interval-divisor clearance:
+  `M|n` and `a-k<M<=a`; for the dithered `(64,15,17)` example these are
+  `{4,8,16}`.
 - **How it is useful:** Turns the L2 objective from a broad "avoid Cartesian
   overcharge" principle into a concrete conjectural inequality that can be
   falsified or promoted. The `K_{2,2}` witness records that local Cartesian
   blocks are real, so the correct target is a global sharp bound with those
   blocks charged to the polynomial codegree term.
 - **What to do next:** Prove/import the repaired one-row L1 list bound at the
-  original threshold `a=k+sigma`, compare `Quot_rem_mu` with the active
-  quotient-profile/dithering scanners, and reconcile the final statement with
-  the active X1/L2 bridge PR #101 before promotion.
+  original threshold `a=k+sigma`, compare the interval-divisor clearance
+  criterion with the active quotient-profile/dithering scanners, and reconcile
+  the final statement with the active X1/L2 bridge PR #101 before promotion.
 
 ### 2026-06-23 - Cycle119 admissibility review
 

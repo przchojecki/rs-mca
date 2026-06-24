@@ -147,6 +147,19 @@ def remainder_quotient_budget(n: int, k: int, a: int, mu: int) -> dict:
     return {"total": total, "packets": packets}
 
 
+def active_remainder_scales(n: int, k: int, a: int) -> list[int]:
+    """Scales with a nonempty all-remainder quotient packet."""
+    sigma = a - k
+    return [
+        fiber_size
+        for fiber_size in range(2, n + 1)
+        if n % fiber_size == 0
+        and fiber_size > sigma
+        and (a // fiber_size) > 0
+        and (a // fiber_size) <= n // fiber_size - 1
+    ]
+
+
 def primitive_root(p: int) -> int:
     phi = p - 1
     factors = []
@@ -685,6 +698,10 @@ def run() -> dict:
         "divisible_only": aligned_quotient_budget(n=64, k=15, a=17, mu=2),
         "all_remainders": remainder_quotient_budget(n=64, k=15, a=17, mu=2),
     }
+    active_scale_examples = {
+        "divisible": active_remainder_scales(n=64, k=16, a=18),
+        "dithered": active_remainder_scales(n=64, k=15, a=17),
+    }
     threshold_example = johnson_anchor_threshold(k=16, a=18)
     shell_weight_example = johnson_shell_weight(n=64, k=16, a=18)
     fixed_arity_shell_weight_example = johnson_shell_weight(
@@ -701,6 +718,13 @@ def run() -> dict:
             "all_remainders"
         ]["total"]
         > dithered_quotient_example["divisible_only"]["total"],
+        "active_remainder_scales_match_budget": active_scale_examples[
+            "dithered"
+        ]
+        == [
+            packet["M"]
+            for packet in dithered_quotient_example["all_remainders"]["packets"]
+        ],
         "dithered_quotient_witness_count": dithered_witness[
             "constructed_count"
         ]
@@ -735,6 +759,7 @@ def run() -> dict:
         "aligned_quotient_budget_example": quotient_example,
         "remainder_quotient_budget_example": remainder_quotient_example,
         "dithered_quotient_budget_example": dithered_quotient_example,
+        "active_remainder_scale_examples": active_scale_examples,
         "johnson_anchor_threshold_example": threshold_example,
         "johnson_shell_weight_example": shell_weight_example,
         "fixed_arity_johnson_shell_weight_example": fixed_arity_shell_weight_example,
@@ -764,10 +789,12 @@ def main(argv: list[str] | None = None) -> int:
             f"total={rqb['total']}, packets={len(rqb['packets'])}"
         )
         dqb = result["dithered_quotient_budget_example"]
+        active = result["active_remainder_scale_examples"]
         print(
             "  dithered quotient budget example (n=64,k=15,a=17): "
             f"divisible_total={dqb['divisible_only']['total']}, "
-            f"all_remainders_total={dqb['all_remainders']['total']}"
+            f"all_remainders_total={dqb['all_remainders']['total']}, "
+            f"active_M={active['dithered']}"
         )
         dq_witness = result["realized_dithered_quotient_packet"]
         print(
