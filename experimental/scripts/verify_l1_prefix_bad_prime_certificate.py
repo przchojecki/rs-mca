@@ -346,6 +346,19 @@ def primitive_root(prime: int) -> int:
     raise AssertionError(f"no primitive root for {prime}")
 
 
+def multiplicative_order_mod(value: int, modulus: int) -> int:
+    if gcd(value, modulus) != 1:
+        raise AssertionError("multiplicative order requires a unit")
+    current = value % modulus
+    exponent = 1
+    while current != 1:
+        current = current * value % modulus
+        exponent += 1
+        if exponent > modulus:
+            raise AssertionError("multiplicative order search failed")
+    return exponent
+
+
 def poly_from_roots_mod(roots: Iterable[int], prime: int) -> list[int]:
     coeffs = [1]
     for root in roots:
@@ -1124,6 +1137,8 @@ def check_extension_field_row_accounting() -> dict[str, Any]:
     order = 8
     complement_size = 2
     sigma = 1
+    if multiplicative_order_mod(characteristic, order) != extension_degree:
+        raise AssertionError("bad nonsplit Frobenius orbit length")
     primitive_roots = gf9_primitive_order_roots(order)
     incidence_counter: Counter[tuple[tuple[int, ...], tuple[int, ...]]] = Counter()
     row_counts_by_root = {}
@@ -1146,9 +1161,12 @@ def check_extension_field_row_accounting() -> dict[str, Any]:
 
     degree_distribution: Counter[int] = Counter()
     char_zero_distribution: Counter[int] = Counter()
+    prime_ideal_count_distribution: Counter[int] = Counter()
     degree_weighted_sum = 0
+    prime_ideal_weighted_sum = 0
     non_char_zero_pairs = 0
     non_char_zero_degree_sum = 0
+    non_char_zero_prime_ideal_sum = 0
     for pair, multiplicity in incidence_counter.items():
         common_factor = common_root_gcd_mod(
             pair[0],
@@ -1160,9 +1178,14 @@ def check_extension_field_row_accounting() -> dict[str, Any]:
         common_degree = degree(common_factor)
         if common_degree != multiplicity:
             raise AssertionError("F_9 row incidence differs from gcd degree")
+        if common_degree % extension_degree != 0:
+            raise AssertionError("F_9 gcd degree is not a Frobenius-orbit multiple")
+        prime_ideal_count = common_degree // extension_degree
         certificate = bad_prime_certificate(pair[0], pair[1], order, sigma)
         degree_distribution[common_degree] += 1
+        prime_ideal_count_distribution[prime_ideal_count] += 1
         degree_weighted_sum += common_degree
+        prime_ideal_weighted_sum += prime_ideal_count
         if certificate["char_zero_collision"]:
             char_zero_distribution[common_degree] += 1
         else:
@@ -1170,6 +1193,7 @@ def check_extension_field_row_accounting() -> dict[str, Any]:
                 raise AssertionError("F_9 bad-prime pair missed the certificate")
             non_char_zero_pairs += 1
             non_char_zero_degree_sum += common_degree
+            non_char_zero_prime_ideal_sum += prime_ideal_count
 
     incidence_sum = sum(incidence_counter.values())
     expected_incidence_sum = len(primitive_roots) * 30
@@ -1177,8 +1201,12 @@ def check_extension_field_row_accounting() -> dict[str, Any]:
         raise AssertionError("bad F_9 incidence count")
     if degree_weighted_sum != incidence_sum:
         raise AssertionError("bad F_9 degree-weighted row accounting")
+    if prime_ideal_weighted_sum * extension_degree != degree_weighted_sum:
+        raise AssertionError("bad F_9 prime-ideal weighted row accounting")
     if dict(degree_distribution) != {2: 48, 4: 6}:
         raise AssertionError("unexpected F_9 degree distribution")
+    if dict(prime_ideal_count_distribution) != {1: 48, 2: 6}:
+        raise AssertionError("unexpected F_9 prime-ideal distribution")
     if dict(char_zero_distribution) != {4: 6}:
         raise AssertionError("unexpected F_9 characteristic-zero distribution")
 
@@ -1198,14 +1226,19 @@ def check_extension_field_row_accounting() -> dict[str, Any]:
         "incident_template_pair_count": len(incidence_counter),
         "root_template_incidence_sum": incidence_sum,
         "gcd_degree_weighted_sum": degree_weighted_sum,
+        "prime_ideal_weighted_sum": prime_ideal_weighted_sum,
         "degree_distribution_on_incident_pairs": dict(
             sorted(degree_distribution.items())
+        ),
+        "prime_ideal_count_distribution": dict(
+            sorted(prime_ideal_count_distribution.items())
         ),
         "char_zero_degree_distribution": dict(
             sorted(char_zero_distribution.items())
         ),
         "non_char_zero_pair_count": non_char_zero_pairs,
         "non_char_zero_degree_sum": non_char_zero_degree_sum,
+        "non_char_zero_prime_ideal_sum": non_char_zero_prime_ideal_sum,
     }
 
 
@@ -1683,7 +1716,8 @@ def print_human(report: dict[str, Any]) -> None:
         f"roots={extension_accounting['primitive_root_count']}, "
         f"fixed_pairs={extension_accounting['fixed_root_collision_pair_count']}, "
         f"incidence_sum={extension_accounting['root_template_incidence_sum']}, "
-        f"gcd_degree_sum={extension_accounting['gcd_degree_weighted_sum']}"
+        f"gcd_degree_sum={extension_accounting['gcd_degree_weighted_sum']}, "
+        f"prime_ideal_sum={extension_accounting['prime_ideal_weighted_sum']}"
     )
     bridge = report["newton_power_sum_bridge"]
     print(

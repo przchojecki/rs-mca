@@ -47,7 +47,8 @@ Keep entries concise and link to the relevant files.
   modular gcd `gcd(Phi_n, Delta_1, ..., Delta_sigma)` needed to filter
   rational-certificate false positives.  The modular gcd degree is also
   recorded as the exact primitive-root embedding multiplicity at split and
-  nonsplit primes.
+  nonsplit primes, with the Frobenius-orbit quotient giving the rational
+  prime-ideal count.
   The note additionally records affine-orbit invariance, the split-prime
   row-accounting identity equating row collision counts with degree-weighted
   common-prime-ideal incidence, its nonsplit extension-field analogue and

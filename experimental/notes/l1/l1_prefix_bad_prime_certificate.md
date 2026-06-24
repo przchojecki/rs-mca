@@ -167,8 +167,17 @@ therefore
 deg gcd(Phi_n, Delta_1, ..., Delta_sigma) in F_p[T]
 ```
 
-counts the primitive roots in `F_{p^f}` where the template collides.  Summing
-over unordered template pairs gives
+counts the primitive roots in `F_{p^f}` where the template collides.  The root
+set is stable under Frobenius `alpha -> alpha^p`, and every primitive
+`n`-th-root Frobenius orbit has size exactly `f`.  Hence `deg G_p(A,B)` is a
+multiple of `f`, and
+
+```text
+deg G_p(A,B) / f
+```
+
+is the number of prime ideals above `p` at which the template collides.
+Summing over unordered template pairs gives
 
 ```text
 sum_{A<B} deg G_p(A,B)
@@ -181,7 +190,9 @@ For the `F_9` witness row with `n=8`, `m=2`, and `sigma=1`, the verifier checks
 all four primitive eighth roots.  Each root has `30` collision pairs, so there
 are `120` root-template incidences.  The modular gcd ledger over `F_3` has the
 same weighted mass: `48` non-characteristic-zero pairs have degree `2`, and
-`6` characteristic-zero pairs have degree `4`.
+`6` characteristic-zero pairs have degree `4`.  Since `ord_8(3)=2`, this is
+equivalently `48` one-prime-ideal pairs and `6` two-prime-ideal pairs, for
+total rational-prime-ideal mass `60 = 120/2`.
 
 ## Norm Size And Finite-Family Aggregation
 
