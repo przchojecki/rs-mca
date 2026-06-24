@@ -237,6 +237,14 @@ def radical_part(value: int) -> int:
     return result
 
 
+def part_away_from_order(value: int, order: int) -> int:
+    result = 1
+    for prime, exponent in factorint(value).items():
+        if order % prime != 0:
+            result *= prime ** exponent
+    return result
+
+
 def resultant_height_bound(order: int, complement_size: int, rank: int) -> int:
     return (2 * comb(complement_size, rank)) ** euler_phi(order)
 
@@ -2080,6 +2088,152 @@ def check_prefix_depth_filtration() -> dict[str, Any]:
     }
 
 
+def radical_frontier_drop(
+    left: Sequence[int],
+    right: Sequence[int],
+    order: int,
+    sigma: int,
+) -> dict[str, Any]:
+    current = common_ideal_radical_incidence_index(left, right, order, sigma)
+    deeper = common_ideal_radical_incidence_index(left, right, order, sigma + 1)
+    if current["radical_incidence_index"] == 0:
+        raise AssertionError("frontier drop excludes char-zero current ideal")
+    if deeper["radical_incidence_index"] == 0:
+        raise AssertionError("frontier drop excludes char-zero deeper ideal")
+
+    candidate_primes = (
+        set(factorint(current["radical_incidence_index"]))
+        | set(factorint(deeper["radical_incidence_index"]))
+    )
+    drop_part = 1
+    rows = []
+    for prime in sorted(candidate_primes):
+        if order % prime == 0:
+            continue
+        current_valuation = p_adic_valuation(
+            current["radical_incidence_index"],
+            prime,
+        )
+        deeper_valuation = p_adic_valuation(
+            deeper["radical_incidence_index"],
+            prime,
+        )
+        if deeper_valuation > current_valuation:
+            raise AssertionError("radical frontier valuation increased")
+        current_degree = degree(common_root_gcd_mod(
+            left,
+            right,
+            order,
+            sigma,
+            prime,
+        ))
+        deeper_degree = degree(common_root_gcd_mod(
+            left,
+            right,
+            order,
+            sigma + 1,
+            prime,
+        ))
+        if current_degree != current_valuation:
+            raise AssertionError("current radical valuation missed degree")
+        if deeper_degree != deeper_valuation:
+            raise AssertionError("deeper radical valuation missed degree")
+        if current_degree - deeper_degree != current_valuation - deeper_valuation:
+            raise AssertionError("frontier degree drop mismatched radical drop")
+        valuation_drop = current_valuation - deeper_valuation
+        drop_part *= prime ** valuation_drop
+        rows.append({
+            "prime": prime,
+            "current_valuation": current_valuation,
+            "deeper_valuation": deeper_valuation,
+            "valuation_drop": valuation_drop,
+            "current_degree": current_degree,
+            "deeper_degree": deeper_degree,
+            "degree_drop": current_degree - deeper_degree,
+        })
+
+    return {
+        "sigma": sigma,
+        "current_radical_index": current["radical_incidence_index"],
+        "deeper_radical_index": deeper["radical_incidence_index"],
+        "current_away_from_order": part_away_from_order(
+            current["radical_incidence_index"],
+            order,
+        ),
+        "deeper_away_from_order": part_away_from_order(
+            deeper["radical_incidence_index"],
+            order,
+        ),
+        "frontier_drop_part": drop_part,
+        "frontier_drop_factorization": factorint(drop_part),
+        "rows": rows,
+    }
+
+
+def check_prefix_radical_frontier_drop() -> dict[str, Any]:
+    order = 16
+    prime = 17
+    left = (0, 1, 2, 3, 4, 14)
+    right = (5, 6, 7, 9, 12, 15)
+    expected_representative_drops = {
+        1: {17: 1},
+        2: {},
+        3: {},
+        4: {17: 1},
+        5: {},
+    }
+    representative_rows = []
+    for sigma in range(1, 6):
+        drop = radical_frontier_drop(left, right, order, sigma)
+        if drop["frontier_drop_factorization"] != expected_representative_drops[
+            sigma
+        ]:
+            raise AssertionError("bad representative radical frontier drop")
+        row_at_prime = next(
+            (row for row in drop["rows"] if row["prime"] == prime),
+            None,
+        )
+        if row_at_prime is not None:
+            if row_at_prime["degree_drop"] != row_at_prime["valuation_drop"]:
+                raise AssertionError("bad representative degree/drop row")
+        representative_rows.append(drop)
+
+    packet = finite_prefix_collision_pairs(
+        prime=prime,
+        order=order,
+        complement_size=6,
+        sigma=4,
+    )
+    packet_frontier_product = 1
+    packet_drop_counter: Counter[int] = Counter()
+    for pair in packet["pairs"]:
+        drop = radical_frontier_drop(pair["left"], pair["right"], order, 4)
+        if drop["frontier_drop_factorization"] != {17: 1}:
+            raise AssertionError("bad F_17 packet radical frontier drop")
+        packet_frontier_product *= drop["frontier_drop_part"]
+        packet_drop_counter[drop["frontier_drop_part"]] += 1
+    if factorint(packet_frontier_product) != {17: 40}:
+        raise AssertionError("bad F_17 packet frontier product")
+
+    extension_drop = radical_frontier_drop((0, 1), (2, 5), 8, 1)
+    if extension_drop["frontier_drop_factorization"] != {3: 2}:
+        raise AssertionError("bad F_9 radical frontier drop")
+
+    return {
+        "representative": {
+            "left": list(left),
+            "right": list(right),
+            "rows": representative_rows,
+        },
+        "packet_sigma4_to_5": {
+            "pair_count": packet["collision_pair_count"],
+            "frontier_drop_counts": dict(sorted(packet_drop_counter.items())),
+            "frontier_product_factorization": factorint(packet_frontier_product),
+        },
+        "nonsplit_witness": extension_drop,
+    }
+
+
 def check_full_prefix_rigidity() -> dict[str, Any]:
     order = 16
     primes = [17, 97]
@@ -2872,10 +3026,7 @@ def check_log_weighted_density_budget() -> dict[str, Any]:
         raise AssertionError(f"unexpected log-density rows: {rows}")
     if index_product % incidence_divisor != 0:
         raise AssertionError("incidence divisor did not divide index product")
-    radical_away_from_order = 1
-    for prime, exponent in factorint(radical_product).items():
-        if order % prime != 0:
-            radical_away_from_order *= prime ** exponent
+    radical_away_from_order = part_away_from_order(radical_product, order)
     if radical_away_from_order != incidence_divisor:
         raise AssertionError("radical product did not equal incidence divisor")
     if height_bound_product < index_product:
@@ -3504,6 +3655,7 @@ def build_report() -> dict[str, Any]:
         ),
         "extension_field_row_accounting": check_extension_field_row_accounting(),
         "prefix_depth_filtration": check_prefix_depth_filtration(),
+        "prefix_radical_frontier_drop": check_prefix_radical_frontier_drop(),
         "full_prefix_rigidity": check_full_prefix_rigidity(),
         "full_prefix_common_ideal_endpoint": (
             check_full_prefix_common_ideal_endpoint()
@@ -3523,9 +3675,8 @@ def build_report() -> dict[str, Any]:
         "affine_invariance": check_affine_invariance(),
         "nonmutating": True,
         "remaining_open_problem": (
-            "bound valuation budgets of exact common-ideal indices over "
-            "robustly aperiodic "
-            "templates"
+            "bound exact radical incidence budgets, or norm-controlled "
+            "common-ideal envelopes, over robustly aperiodic templates"
         ),
     }
 
@@ -3605,6 +3756,15 @@ def print_human(report: dict[str, Any]) -> None:
         for row in filtration["row_profile"]
     }
     print(f"prefix_depth_pairs={depth_pairs}")
+    frontier = report["prefix_radical_frontier_drop"]
+    print(
+        "prefix_radical_frontier_drop="
+        f"packet_drops={frontier['packet_sigma4_to_5']['frontier_drop_counts']}, "
+        "packet_product="
+        f"{frontier['packet_sigma4_to_5']['frontier_product_factorization']}, "
+        "f9_drop="
+        f"{frontier['nonsplit_witness']['frontier_drop_factorization']}"
+    )
     full_prefix = report["full_prefix_rigidity"]
     print(
         "full_prefix_rigidity="

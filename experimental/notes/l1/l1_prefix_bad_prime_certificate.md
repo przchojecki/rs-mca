@@ -914,6 +914,33 @@ This is the local mechanism behind the L1 prefix threshold: increasing `sigma`
 does not merely add data heuristically; it refines the algebraic bad-prime
 sieve by divisibility.
 
+The radical incidence ledger makes the depth loss exact.  For primes `p` not
+dividing `n`, write
+
+```text
+d_{p,sigma}(A,B)=deg G_{p,sigma}(A,B).
+```
+
+Since `v_p(J_sigma)=d_{p,sigma}`, one has
+
+```text
+v_p(J_sigma(A,B))-v_p(J_{sigma+1}(A,B))
+  =
+d_{p,sigma}(A,B)-d_{p,sigma+1}(A,B).
+```
+
+Equivalently, because
+
+```text
+G_{p,sigma+1}=gcd(G_{p,sigma}, Delta_{sigma+1}),
+```
+
+the radical frontier drop counts exactly the primitive-root factors that
+satisfied the first `sigma` equations but fail the next one.  Thus, away from
+the inseparable primes dividing `n`, the quotient of radical incidence ledgers
+is not merely monotone: it is the exact depth-frontier mass removed by the next
+prefix coefficient.
+
 ## Full-Prefix Rigidity
 
 The endpoint of the filtration is rigid.  Let `p` be split, let `h in F_p`
@@ -1092,6 +1119,22 @@ Thus the known `sigma=4` bad-prime collision disappears at the next prefix
 rank: `17` leaves the certificate support and the modular common-root factor
 becomes constant.
 
+The radical frontier-drop ledger records the same disappearance exactly.  For
+the representative pair above, the away-from-`n` radical drops are:
+
+```text
+sigma 1 -> 2: 17
+sigma 2 -> 3: 1
+sigma 3 -> 4: 1
+sigma 4 -> 5: 17
+sigma 5 -> 6: 1
+```
+
+For the full `40`-pair `F_17` packet, every pair has radical frontier drop
+`17` from `sigma=4` to `sigma=5`, so the aggregate frontier product is
+`17^40`.  The nonsplit `F_9` witness similarly has radical frontier drop
+`3^2` from `sigma=1` to the full-prefix endpoint `sigma=2`.
+
 The verifier separately checks this full-prefix endpoint for `n=16` at the
 split primes `17` and `97`, for every complement size `1 <= m <= 8`: at
 `sigma=m`, every fiber is a singleton and the collision-pair count is `0`.
@@ -1157,11 +1200,12 @@ The theorem is templatewise.  A positive L1 local-limit theorem still needs a
 uniform aggregation bound such as:
 
 ```text
-sum over robustly aperiodic templates of split primes dividing I_n,sigma(A,B)
+sum over robustly aperiodic templates of v_p(J_n,sigma(A,B))
 ```
 
-or a sharper incidence theorem proving that, after quotient and
-characteristic-zero strata are removed, only polynomially many bad-prime
-templates can contribute to any one finite field.
+for the exact radical incidence ledger, or a norm-controlled upper bound via
+the common-ideal index `I_n,sigma(A,B)`.  Equivalently, after quotient and
+characteristic-zero strata are removed, one needs a theorem proving that only
+polynomially many bad-prime templates can contribute to any one finite field.
 
 That aggregation problem is the next hard L1 target.
