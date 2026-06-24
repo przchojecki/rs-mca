@@ -30,6 +30,23 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-24 - L1 full-petal high-rank lemma
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/notes/l1/l1_full_list_quotient_proof_program.md`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED.
+- **What is being added:** A high-rank lemma for the full-petal CRT map below
+  the top-defect boundary.  For `t>=3` and `d<(t-1)ell`, the map has rank at
+  least `ell`, so fixed `(I,d)` full-petal extras are bounded by
+  `q^(d-ell+1)`.
+- **How it is useful:** Shows the residual full-petal regime below top defect
+  is not a low-rank CRT failure; any large family must instead be a
+  split-locator concentration inside a growing kernel.
+- **What to do next:** Study split core locators inside those kernels, and
+  treat the exact top-defect boundary separately.
+
 ### 2026-06-24 - L1 background-free residual normal form
 
 - **Agent/model:** Codex.
@@ -40,7 +57,7 @@ Keep entries concise and link to the relevant files.
 - **What is being added:** A residual normal-form proposition for the
   background-free sunflower obstruction.  After unioning the proved polynomial
   layers, any remaining super-polynomial family must be either a
-  growing-excess full-petal rank-defect family or a diffuse partial-petal
+  growing-excess full-petal CRT-kernel family or a diffuse partial-petal
   family with no bounded-deficit petal pair.
 - **How it is useful:** Consolidates the sunflower proof program into a clear
   endpoint: it identifies exactly which regimes are already controlled and

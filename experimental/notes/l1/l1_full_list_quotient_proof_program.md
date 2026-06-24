@@ -1142,12 +1142,97 @@ The first scan obstruction has been reduced to a residual normal form.  A
 future proof of the mixed-petal amplification lemma can now focus on two
 genuinely hard cases:
 
-1. growing-excess full-petal rank defects;
+1. growing-excess full-petal CRT kernels;
 2. diffuse partial-petal patterns with no bounded-deficit petal pair.
 
 Conversely, a counterexample search should target those two residual regimes,
 not the already-controlled two-petal, minimal-defect, bounded-excess, or
 near-saturated layers.
+
+## Lemma 13. Full-Petal High Rank Below Top Defect
+
+Status: PROVED.
+
+Keep the background-free full-petal notation of Lemma 8.  Suppose `t=|I|>=3`
+and
+
+```text
+ell <= d < (t-1)ell.
+```
+
+Then
+
+```text
+dim K_{I,d} <= d-ell+1,
+```
+
+or equivalently
+
+```text
+r_{I,d} >= ell.
+```
+
+Consequently, for fixed `I` and `d`, the number of full-petal listed codewords
+with exact touched-petal set `I` and core defect `d` is at most
+
+```text
+q^{d-ell+1}.
+```
+
+### Proof
+
+Fix one petal index `i in I`.  If `F in K_{I,d}`, Lemma 8 gives a polynomial
+`W` of degree at most `d` such that
+
+```text
+W = c_j F        mod L_{T_j}        for all j in I.
+```
+
+Write
+
+```text
+W - c_iF = L_{T_i}A_i,
+```
+
+where `deg A_i <= d-ell`.  We claim that the map
+
+```text
+F |-> A_i
+```
+
+is injective on `K_{I,d}`.  If `A_i=0`, then `W=c_iF`.  For every
+`j in I\{i}`,
+
+```text
+(c_i-c_j)F = W-c_jF
+```
+
+is divisible by `L_{T_j}`.  The petal scalars are distinct, so `F` is divisible
+by each `L_{T_j}` for `j != i`.  These locators are pairwise coprime, hence
+`F` is divisible by
+
+```text
+prod_{j in I, j != i} L_{T_j},
+```
+
+which has degree `(t-1)ell`.  Since `deg F <= d < (t-1)ell`, this forces
+`F=0`.  The injection follows, so
+
+```text
+dim K_{I,d} <= dim F_q[X]_{<= d-ell} = d-ell+1.
+```
+
+Since `dim V_d=d+1`, this is equivalent to `r_{I,d}>=ell`.  The counting
+bound follows from Lemma 8.
+
+### Consequences
+
+Before the top-defect boundary `d=(t-1)ell`, the full-petal residual regime is
+not caused by a low-rank CRT map: the top-coefficient map always has rank at
+least `ell`.  A remaining super-polynomial family below that boundary must
+come from many split core locators inside a kernel of dimension `d-ell+1`,
+with `d-ell` growing.  The exact top-defect boundary remains a separate
+case.
 
 ## Development Ledger
 
@@ -1185,6 +1270,8 @@ near-saturated layers.
 - **Two-petal syzygy compression:** PROVED.  Reduces partial-petal extras with
   two near-saturated petals to polynomially many syzygy certificates.
 - **Background-free residual normal form:** PROVED.  Leaves only
-  growing-excess full-petal rank defects and diffuse partial-petal patterns.
+  growing-excess full-petal CRT kernels and diffuse partial-petal patterns.
+- **Full-petal high rank below top defect:** PROVED.  Shows the CRT map has
+  rank at least `ell` for `t>=3` and `d<(t-1)ell`.
 - **Mixed-petal sunflower amplification:** CONJECTURAL.  Next focused bound to
   prove or refute in the large-defect regime.
