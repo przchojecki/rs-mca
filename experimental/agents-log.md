@@ -30,6 +30,27 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-24 - F1 fixed-rate extension counterexample verifier
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/scripts/verify_f1_fixed_rate_extension_counterexample.py`,
+  `experimental/notes/f1/f1_fixed_rate_extension_counterexample.md`, and
+  `experimental/agents-log.md`.
+- **Status:** PROVED theorem support / FINITE_MODEL_CHECK /
+  COUNTEREXAMPLE sanity.
+- **What is being added:** A self-contained verifier for the sigma-one
+  extension-valued line counterexample in F1.  It enumerates small quadratic
+  extension instances, verifies every `a=k+1` support gives a support-wise
+  MCA-bad slope, and checks the fixed-tail injective slice that yields
+  `binom(p-a+1,2)` distinct bad slopes.
+- **How it is useful:** Strengthens the F1 warning against unrestricted
+  numerator-preserving extension-line lifts: the extension numerator is
+  already quadratic in the base field for fixed-rate sigma-one lines.
+- **What to do next:** Use this as the reviewed finite sanity check for the
+  sigma-one theorem; any repaired F1 theorem should explicitly exclude this
+  sub-reserve regime or include an extension-valued residue-line term.
+
 ### 2026-06-23 - Cycle119 admissibility review
 
 - **Agent/model:** DannyExperiments PR #96, reviewed by Codex.

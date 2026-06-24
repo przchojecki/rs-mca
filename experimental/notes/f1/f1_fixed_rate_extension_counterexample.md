@@ -388,17 +388,26 @@ ledger, not merely nonzero slack. A repaired F1 theorem must either:
 
 ## Relation To Existing Experimental Material
 
-This note extracts a clean proof from the F1 audit bundle. The existing
-verifier
+This note extracts a clean proof from the F1 audit bundle. The verifier
 
 ```text
-experimental/scripts/codex_f1_l1_20260617/verifiers/verify_f1_fixed_rate_slice.py
+experimental/scripts/verify_f1_fixed_rate_extension_counterexample.py
 ```
 
-checks finite instances of the injective slice used above. The theorem here is
-the general finite-field proof of that slice mechanism.
+checks finite sigma-one instances over `F_{p^2}` for `p=5,7,11,13`.  It
+enumerates every `a=k+1` support, constructs the slope `z_S=Q_S(alpha)`,
+checks the explaining polynomial `(Q_S-z_S)/(X-alpha)`, verifies
+same-support noncontainment by interpolation of the direction
+`-1/(X-alpha)`, and checks the fixed-tail pair-slice injectivity giving
 
-The sigma-two slice is checked by
+```text
+binom(p-a+1,2)
+```
+
+distinct bad slopes.  The theorem above is the general finite-field proof of
+that mechanism.
+
+The sigma-two slice was originally checked in the F1 audit bundle by
 
 ```text
 experimental/scripts/codex_f1_l1_20260617/verifiers/\
