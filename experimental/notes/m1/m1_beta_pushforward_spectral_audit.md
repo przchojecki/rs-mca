@@ -604,6 +604,30 @@ rephrases the remaining one-sided Kummer obstruction as a dihedral quotient
 problem on the `z`-line.  The standalone verifier checks the quotient-orbit
 trace identity and this Chebyshev-kernel formula on every expanded row.
 
+For nonprincipal `psi`, the beta-line family does not descend as a scalar
+trace on the `z`-line.  Instead, the pair `(psi,psi^{-1})` descends as a
+two-component dihedral trace.  If an inversion orbit has two points
+`{b,b^{-1}}`, then
+
+```text
+tau_{psi,p}(b^{-1}) = tau_{psi^{-1},p}(b),
+```
+
+and its contribution to `G_{psi,phi}` is
+
+```text
+phi(b) tau_{psi,p}(b) + phi(b)^{-1} tau_{psi^{-1},p}(b).
+```
+
+The two fixed beta orbits `b=1,-1` contribute the single scalar term
+`phi(b)tau_{psi,p}(b)`.  Hence the centered beta-line block can also be
+viewed on the inversion quotient, but with a two-component dihedral trace
+instead of the scalar marginal trace.  The standalone verifier computes
+`tau_{psi,p}(b)` at the individual beta level, checks
+`tau_{psi,p}(b^{-1})=tau_{psi^{-1},p}(b)`, checks that grouping by quotient
+labels recovers the matrix `G_e`, and checks this dihedral formula for every
+left/right quotient-character block on every expanded row.
+
 ## Interpretation
 
 The scan finds no hidden `p^2` component in the tested quotient rows.  The good
@@ -722,6 +746,10 @@ on the same rows.  The quotient has `(p+1)/2` points: two fixed orbits
 `b=1,-1` and `(p-3)/2` paired orbits.  It also checks the exact kernel
 second-moment formulas `p-3` and `2p-4`.
 
+The centered beta-line dihedral audit checks the same quotient after retaining
+the two-component `(psi,psi^{-1})` trace.  This is the quotient form relevant
+to the actual `psi != 1, phi != 1` M1 block.
+
 Thus the averaged M1 target remains substantially smaller than the largest
 individual full pointwise coefficient and smaller than the full
 right-nonprincipal RMS in the finite rows, matching the point of the
@@ -760,3 +788,5 @@ marginal family, the exact beta-column Mellin identity, and the regular versus
 fixed-support beta-fiber trace maxima.  Finally, it checks the grouped
 beta-line identity, the inversion symmetry, and the beta-marginal Chebyshev
 quotient formula and kernel second moments for every quotient-character block.
+It also checks the two-component beta-line dihedral quotient formula for every
+left/right quotient-character block.

@@ -806,6 +806,19 @@ Thus the one-sided beta marginal can be viewed as a Chebyshev/Kummer transform
 on the inversion quotient of the beta line.  This is a structural reduction of
 the obstruction, not a square-root-cancellation theorem.
 
+For general `psi`, the scalar descent is replaced by a two-component dihedral
+descent.  On a two-point inversion orbit `{b,b^{-1}}`,
+
+```text
+tau_{psi,p}(b^{-1}) = tau_{psi^{-1},p}(b),
+G_{psi,phi}|_{orbit}
+  = phi(b)tau_{psi,p}(b) + phi(b)^{-1}tau_{psi^{-1},p}(b),
+```
+
+with the fixed orbits `b=1,-1` contributing single scalar terms.  Thus the
+centered `psi != 1, phi != 1` beta-line block also lives naturally on the
+inversion quotient, as a rank-two dihedral trace problem.
+
 The elementary hypotheses behind this import are now audited in
 `verify_m1_depth_two_line_conic_resonance_reduction.py`:
 

@@ -159,6 +159,7 @@ EXPECTED_BETA_FIBER_TRACE_ROWS = {
 TOLERANCE = 1e-8
 BETA_TRACE_CACHE: dict[int, list[int]] = {}
 BETA_INVERSION_CACHE: dict[int, dict[str, int]] = {}
+BETA_LEFT_TRACE_CACHE: dict[tuple[int, int], list[list[complex]]] = {}
 
 
 def good_pushforward_matrix(p: int, quotient_order: int) -> tuple[list[list[int]], int]:
@@ -788,6 +789,120 @@ def beta_marginal_chebyshev_quotient_case(
     }
 
 
+def exact_beta_left_trace_vectors(
+    p: int,
+    quotient_order: int,
+) -> list[list[complex]]:
+    cache_key = (p, quotient_order)
+    if cache_key in BETA_LEFT_TRACE_CACHE:
+        return BETA_LEFT_TRACE_CACHE[cache_key]
+    logs = m1.log_table(p)
+    root = cmath.exp(2j * math.pi / quotient_order)
+    traces = [[0j for _ in range(p)] for _ in range(quotient_order)]
+    for alpha in range(1, p):
+        alpha_label = logs[alpha] % quotient_order
+        left_values = [
+            root ** (left_character * alpha_label)
+            for left_character in range(quotient_order)
+        ]
+        for ratio in range(1, p):
+            if not m1.ratio_surface_beta_pushforward_good(p, alpha, ratio):
+                continue
+            for beta in m1.ratio_surface_affine_beta_roots(p, alpha, ratio):
+                discriminant = m1.ratio_surface_binary_discriminants(
+                    p,
+                    alpha,
+                    beta,
+                    ratio,
+                )[0]
+                sign = m1.legendre(discriminant, p)
+                for left_character, left_value in enumerate(left_values):
+                    traces[left_character][beta] += sign * left_value
+    BETA_LEFT_TRACE_CACHE[cache_key] = traces
+    return traces
+
+
+def beta_line_dihedral_quotient_case(
+    p: int,
+    quotient_order: int,
+    matrix: list[list[int]],
+) -> dict[str, float | int]:
+    logs = m1.log_table(p)
+    root = cmath.exp(2j * math.pi / quotient_order)
+    traces = exact_beta_left_trace_vectors(p, quotient_order)
+    beta_orbits: dict[int, list[int]] = {}
+    for beta in range(1, p):
+        z_value = (beta + pow(beta, -1, p)) % p
+        beta_orbits.setdefault(z_value, []).append(beta)
+
+    max_trace_inversion_error = 0.0
+    max_grouped_matrix_error = 0.0
+    max_dihedral_formula_error = 0.0
+    for left_character in range(quotient_order):
+        inverse_left = (-left_character) % quotient_order
+        grouped_beta_trace = [0j for _ in range(quotient_order)]
+        for beta in range(1, p):
+            inverse_beta = pow(beta, -1, p)
+            max_trace_inversion_error = max(
+                max_trace_inversion_error,
+                abs(traces[left_character][inverse_beta] - traces[inverse_left][beta]),
+            )
+            grouped_beta_trace[logs[beta] % quotient_order] += traces[
+                left_character
+            ][beta]
+        for right in range(quotient_order):
+            matrix_group = sum(
+                matrix[left][right] * root ** (left_character * left)
+                for left in range(quotient_order)
+            )
+            max_grouped_matrix_error = max(
+                max_grouped_matrix_error,
+                abs(grouped_beta_trace[right] - matrix_group),
+            )
+
+        for right_character in range(1, quotient_order):
+            direct_coefficient = sum(
+                grouped_beta_trace[right] * root ** (right_character * right)
+                for right in range(quotient_order)
+            )
+            quotient_coefficient = 0j
+            for orbit in beta_orbits.values():
+                if len(orbit) == 1:
+                    beta = orbit[0]
+                    beta_label = logs[beta] % quotient_order
+                    quotient_coefficient += (
+                        root ** (right_character * beta_label)
+                        * traces[left_character][beta]
+                    )
+                    continue
+                beta = orbit[0]
+                beta_label = logs[beta] % quotient_order
+                quotient_coefficient += (
+                    root ** (right_character * beta_label)
+                    * traces[left_character][beta]
+                )
+                quotient_coefficient += (
+                    root ** (-right_character * beta_label)
+                    * traces[inverse_left][beta]
+                )
+            max_dihedral_formula_error = max(
+                max_dihedral_formula_error,
+                abs(direct_coefficient - quotient_coefficient),
+            )
+    if max_trace_inversion_error > 1000 * TOLERANCE:
+        raise AssertionError((p, quotient_order, max_trace_inversion_error))
+    if max_grouped_matrix_error > 1000 * TOLERANCE:
+        raise AssertionError((p, quotient_order, max_grouped_matrix_error))
+    if max_dihedral_formula_error > 1000 * TOLERANCE:
+        raise AssertionError((p, quotient_order, max_dihedral_formula_error))
+    return {
+        "quotient_point_count": len(beta_orbits),
+        "max_trace_inversion_error": round(max_trace_inversion_error, 12),
+        "max_grouped_matrix_error": round(max_grouped_matrix_error, 12),
+        "max_dihedral_formula_error": round(max_dihedral_formula_error, 12),
+    }
+
+
 def centered_frobenius_square(matrix: list[list[int]]) -> float:
     order = len(matrix)
     row_sums = [sum(row) for row in matrix]
@@ -1159,6 +1274,11 @@ def audit_case(p: int, quotient_order: int) -> dict[str, Any]:
     )
     beta_line_reduction = beta_line_quotient_reduction_case(matrix)
     beta_inversion = beta_inversion_symmetry_case(p, matrix)
+    beta_dihedral = beta_line_dihedral_quotient_case(
+        p,
+        quotient_order,
+        matrix,
+    )
     parseval_error = abs(
         two_sided_energy / (quotient_order * quotient_order) - frobenius_square
     )
@@ -1288,6 +1408,7 @@ def audit_case(p: int, quotient_order: int) -> dict[str, Any]:
             ],
         },
         "beta_inversion_symmetry": beta_inversion,
+        "beta_line_dihedral_quotient": beta_dihedral,
     }
 
 
@@ -1502,6 +1623,7 @@ def print_report(report: dict[str, Any]) -> None:
         beta_chebyshev = row["beta_marginal_chebyshev_quotient"]
         beta_line_reduction = row["beta_line_quotient_reduction"]
         beta_inversion = row["beta_inversion_symmetry"]
+        beta_dihedral = row["beta_line_dihedral_quotient"]
         print(
             "p={p} e={quotient_order} good={good_point_count} "
             "two_sided/p={max_two_sided_coefficient_ratio} "
@@ -1523,6 +1645,7 @@ def print_report(report: dict[str, Any]) -> None:
             "chebyshev_error={chebyshev_error} "
             "chebyshev_l2_error={chebyshev_l2_error} "
             "beta_line_error={beta_line_error} "
+            "dihedral_error={dihedral_error} "
             "inversion_error={inversion_error}".format(
                 alpha_coeff_ratio=alpha_reduction[
                     "max_alpha_marginal_coefficient_ratio"
@@ -1533,6 +1656,7 @@ def print_report(report: dict[str, Any]) -> None:
                 beta_line_error=beta_line_reduction[
                     "max_beta_line_formula_error"
                 ],
+                dihedral_error=beta_dihedral["max_dihedral_formula_error"],
                 chebyshev_error=beta_chebyshev["max_chebyshev_formula_error"],
                 chebyshev_l2_error=beta_chebyshev[
                     "max_chebyshev_second_moment_error"

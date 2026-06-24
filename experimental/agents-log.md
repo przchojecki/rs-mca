@@ -86,6 +86,9 @@ Keep entries concise and link to the relevant files.
   descends to the inversion quotient `z=b+b^{-1}` as the Chebyshev transform
   `B_phi=sum_z bar_tau_p(z) sum_{b+b^{-1}=z} phi(b)`, whose kernel has exact
   second moment `p-3` except for the quadratic row, where it is `2p-4`.
+  For general `psi`, the centered beta-line block is also rewritten on the
+  same quotient as the two-component dihedral trace
+  `phi(b)tau_psi(b)+phi(b)^(-1)tau_{psi^{-1}}(b)`.
 - **How it is useful:** This is a counterexample-first test of the remaining
   rank-two pushforward object, not of the already controlled exceptional
   ledger. The audited rows show p-scale behavior, with largest recorded full
