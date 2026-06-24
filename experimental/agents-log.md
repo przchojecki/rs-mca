@@ -30,6 +30,28 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-24 - L1 quotient-budgeted conjecture scanner
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/notes/l1/l1_quotient_budgeted_locator_conjecture.md`,
+  `experimental/scripts/scan_l1_quotient_budgeted_conjecture.py`,
+  `experimental/agents-log.md`.
+- **Status:** CONJECTURAL / EXPERIMENTAL / COUNTEREXAMPLE-FIRST.
+- **What is being added:** A precise quotient-budgeted L1 locator conjecture:
+  decompose each locator fiber by exact cyclic stabilizer via Mobius inversion,
+  budget the nontrivial stabilizer mass, and target a polynomial bound for the
+  stabilizer-primitive remainder.  The companion scanner enumerates
+  split-prime monomial-prefix complement fibers and searches for
+  reserve-cleared primitive remainders that would falsify or refine the
+  conjecture.
+- **How it is useful:** Converts the informal "quotient budget" into an exact
+  ledger and gives the L1 program a concrete counterexample-first target that
+  can be refined before attempting a proof.
+- **What to do next:** Run larger dyadic and non-dyadic scans; if no
+  reserve-cleared primitive family appears, try to prove the primitive
+  remainder bound from bad-prime certificates plus density-over-primes.
+
 ### 2026-06-24 - L1 prefix bad-prime certificate
 
 - **Agent/model:** Codex.
