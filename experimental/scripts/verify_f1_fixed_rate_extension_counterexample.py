@@ -14,11 +14,17 @@ Element = tuple[int, int]
 Poly = list[Element]
 
 
-CASES = (
+SIGMA_ONE_CASES = (
     {"p": 5, "k": 2},
     {"p": 7, "k": 3},
     {"p": 11, "k": 5},
     {"p": 13, "k": 6},
+)
+
+SIGMA_TWO_CASES = (
+    {"p": 7, "k": 2},
+    {"p": 11, "k": 4},
+    {"p": 13, "k": 5},
 )
 
 
@@ -185,7 +191,11 @@ def support_has_direction_explanation(
     )
 
 
-def verify_case(p: int, k: int) -> dict[str, Any]:
+def support_sum(support: tuple[int, ...], p: int) -> int:
+    return sum(support) % p
+
+
+def verify_sigma_one_case(p: int, k: int) -> dict[str, Any]:
     d = least_nonsquare(p)
     alpha = (0, 1)
     domain = tuple(range(1, p))
@@ -253,27 +263,131 @@ def verify_case(p: int, k: int) -> dict[str, Any]:
     }
 
 
+def verify_sigma_two_case(p: int, k: int) -> dict[str, Any]:
+    d = least_nonsquare(p)
+    alpha = (0, 1)
+    domain = tuple(range(1, p))
+    n = len(domain)
+    a = k + 2
+    if not (3 <= a <= n):
+        raise ValueError(f"bad sigma-two parameters p={p}, k={k}, a={a}, n={n}")
+
+    all_supports = list(itertools.combinations(domain, a))
+    zero_sum_supports = [
+        support for support in all_supports if support_sum(support, p) == 0
+    ]
+    zero_sum_formula = (comb(p - 1, a) + (p - 1) * ((-1) ** a)) // p
+    if len(zero_sum_supports) != zero_sum_formula:
+        raise AssertionError("zero-sum support count formula failed")
+
+    bad_slopes: set[Element] = set()
+    tail_to_triples: dict[tuple[int, ...], list[tuple[int, int, int]]] = {}
+    for support in zero_sum_supports:
+        z_value, q_poly, witness_poly = sigma_one_slope(support, a, alpha, p, d)
+        if len(q_poly) > k + 1:
+            raise AssertionError("zero-sum Q polynomial degree is too high")
+        if len(witness_poly) > k:
+            raise AssertionError("sigma-two witness polynomial degree is too high")
+        for point in support:
+            lhs = poly_eval(witness_poly, base(point, p), p, d)
+            rhs = line_value(point, z_value, a, alpha, p, d)
+            if lhs != rhs:
+                raise AssertionError("sigma-two line point is not explained")
+        if support_has_direction_explanation(support, k, alpha, p, d):
+            raise AssertionError("sigma-two direction unexpectedly explained")
+        bad_slopes.add(z_value)
+
+        for triple in itertools.combinations(support, 3):
+            tail = tuple(point for point in support if point not in triple)
+            tail_to_triples.setdefault(tail, []).append(triple)
+
+    best_tail, best_triples = max(
+        tail_to_triples.items(), key=lambda item: len(item[1])
+    )
+    tails_count = comb(p - 1, k - 1)
+    decomposition_count = len(zero_sum_supports) * comb(a, 3)
+    if len(best_triples) * tails_count < decomposition_count:
+        raise AssertionError("best tail is below the averaged lower bound")
+
+    tail_sum = support_sum(best_tail, p)
+    triple_slopes: dict[Element, tuple[int, int, int]] = {}
+    for triple in best_triples:
+        if (tail_sum + support_sum(triple, p)) % p != 0:
+            raise AssertionError("best-tail triple is not zero-sum with tail")
+        support = tuple(sorted(best_tail + triple))
+        z_value, _, _ = sigma_one_slope(support, a, alpha, p, d)
+        if z_value in triple_slopes:
+            raise AssertionError("sigma-two triple-slice injectivity failed")
+        triple_slopes[z_value] = triple
+
+    checks = {
+        "zero_sum_formula_matches": len(zero_sum_supports) == zero_sum_formula,
+        "all_zero_sum_supports_bad": bool(zero_sum_supports),
+        "best_tail_meets_average_bound": (
+            len(best_triples) * tails_count >= decomposition_count
+        ),
+        "best_tail_triple_slopes_are_distinct": (
+            len(triple_slopes) == len(best_triples)
+        ),
+    }
+    failed = [name for name, passed in checks.items() if not passed]
+    if failed:
+        raise AssertionError(
+            f"failed sigma-two checks for p={p}: {', '.join(failed)}"
+        )
+
+    return {
+        "p": p,
+        "nonsquare_d": d,
+        "field": f"F_{p}[alpha]/(alpha^2-{d})",
+        "n": n,
+        "k": k,
+        "agreement_a": a,
+        "delta": f"{n-a}/{n}",
+        "zero_sum_support_count": len(zero_sum_supports),
+        "zero_sum_formula_count": zero_sum_formula,
+        "distinct_slopes_from_zero_sum_supports": len(bad_slopes),
+        "best_tail": list(best_tail),
+        "best_tail_triple_count": len(best_triples),
+        "average_lower_bound_numerator": decomposition_count,
+        "average_lower_bound_denominator": tails_count,
+        "extension_field_size": p * p,
+        "checks": checks,
+    }
+
+
 def compute_report() -> dict[str, Any]:
-    cases = [verify_case(**case) for case in CASES]
+    sigma_one_cases = [verify_sigma_one_case(**case) for case in SIGMA_ONE_CASES]
+    sigma_two_cases = [verify_sigma_two_case(**case) for case in SIGMA_TWO_CASES]
     return {
         "status": "PASS",
         "proof_status": "FINITE_MODEL_CHECK / COUNTEREXAMPLE_SANITY",
         "claim": (
             "For sigma=1 and a=k+1, the extension-valued line "
             "(x^a-z)/(x-alpha) has at least binom(p-a+1,2) support-wise "
-            "MCA-bad slopes over F_{p^2}."
+            "MCA-bad slopes over F_{p^2}; for sigma=2 and a=k+2, zero-sum "
+            "supports give a tail with the averaged number of distinct bad "
+            "triple slopes."
         ),
-        "cases": cases,
+        "sigma_one_cases": sigma_one_cases,
+        "sigma_two_cases": sigma_two_cases,
     }
 
 
 def print_report(report: dict[str, Any]) -> None:
     print("f1_fixed_rate_extension_counterexample: PASS")
-    for case in report["cases"]:
+    for case in report["sigma_one_cases"]:
         print(
-            "p={p} k={k} a={agreement_a} lower_bound={proved_lower_bound} "
+            "sigma=1 p={p} k={k} a={agreement_a} "
+            "lower_bound={proved_lower_bound} "
             "density={mca_density_lower_bound} "
             "distinct_all={distinct_slopes_from_all_supports}".format(**case)
+        )
+    for case in report["sigma_two_cases"]:
+        print(
+            "sigma=2 p={p} k={k} a={agreement_a} "
+            "zero_sum={zero_sum_support_count} "
+            "best_tail_triples={best_tail_triple_count}".format(**case)
         )
 
 

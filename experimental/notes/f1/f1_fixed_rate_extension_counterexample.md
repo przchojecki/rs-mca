@@ -394,11 +394,12 @@ This note extracts a clean proof from the F1 audit bundle. The verifier
 experimental/scripts/verify_f1_fixed_rate_extension_counterexample.py
 ```
 
-checks finite sigma-one instances over `F_{p^2}` for `p=5,7,11,13`.  It
-enumerates every `a=k+1` support, constructs the slope `z_S=Q_S(alpha)`,
-checks the explaining polynomial `(Q_S-z_S)/(X-alpha)`, verifies
-same-support noncontainment by interpolation of the direction
-`-1/(X-alpha)`, and checks the fixed-tail pair-slice injectivity giving
+checks finite instances over `F_{p^2}`.  For the sigma-one family at
+`p=5,7,11,13`, it enumerates every `a=k+1` support, constructs the slope
+`z_S=Q_S(alpha)`, checks the explaining polynomial
+`(Q_S-z_S)/(X-alpha)`, verifies same-support noncontainment by interpolation
+of the direction `-1/(X-alpha)`, and checks the fixed-tail pair-slice
+injectivity giving
 
 ```text
 binom(p-a+1,2)
@@ -407,7 +408,12 @@ binom(p-a+1,2)
 distinct bad slopes.  The theorem above is the general finite-field proof of
 that mechanism.
 
-The sigma-two slice was originally checked in the F1 audit bundle by
+For the sigma-two family at `p=7,11,13`, the same verifier enumerates all
+zero-sum `a=k+2` supports, checks the degree drop `deg Q_S <= k`, verifies
+the same support-wise bad-slope and noncontainment conditions, and finds a
+tail `T` whose zero-sum triples meet the averaged lower bound.  It then checks
+that the slopes on that tail/triple slice are distinct.  This replaces the
+older F1 audit-bundle verifier reference
 
 ```text
 experimental/scripts/codex_f1_l1_20260617/verifiers/\
