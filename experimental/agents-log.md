@@ -47,7 +47,8 @@ Keep entries concise and link to the relevant files.
   lemma, direction-coset invariance of `LD_sw`, exact shifted-assignment
   reduction, general `m`-bucket assignment obstruction, and resulting
   close-list size necessary condition that explain the example, together with
-  the matching pigeonhole sufficiency below the obstruction threshold.
+  the matching pigeonhole sufficiency below the obstruction threshold and the
+  resulting exact full-field criterion for code-direction lines.
 - **How it is useful:** Clarifies the M2 bridge by ruling out the converse
   shortcut from residue-line packing or bounded `LD_sw` to ABF/GG
   line-decodability.

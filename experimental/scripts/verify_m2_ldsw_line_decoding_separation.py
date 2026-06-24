@@ -280,6 +280,8 @@ def compute_report() -> dict[str, Any]:
     list_threshold = list_size_obstruction_threshold(B_THRESHOLD)
     automatic_bound = automatic_list_size_bound(P, B_THRESHOLD)
     pigeonhole_bound = pigeonhole_collinearity_bound(P, len(close_coeffs))
+    criterion_regime_holds = list_threshold <= B_THRESHOLD - 1
+    criterion_close_list_bound = list_threshold - 1
 
     checks = {
         "p0_and_p1_distinct": p0 != p1,
@@ -314,6 +316,8 @@ def compute_report() -> dict[str, Any]:
         "base_close_list_is_exactly_two": len(close_coeffs) == 2,
         "base_close_list_meets_threshold": len(close_coeffs) >= list_threshold,
         "automatic_list_size_bound_is_one": automatic_bound == 1,
+        "criterion_regime_holds": criterion_regime_holds,
+        "criterion_close_list_bound_is_one": criterion_close_list_bound == 1,
         "close_list_is_first_obstructing_size": (
             len(close_coeffs) == automatic_bound + 1
         ),
@@ -364,6 +368,8 @@ def compute_report() -> dict[str, Any]:
             "balanced_m_bucket_bound": balanced_bound,
             "list_size_obstruction_threshold": list_threshold,
             "automatic_list_size_bound": automatic_bound,
+            "full_field_criterion_close_list_bound": criterion_close_list_bound,
+            "full_field_criterion_regime_holds": criterion_regime_holds,
             "pigeonhole_collinearity_bound": pigeonhole_bound,
         },
         **max_report,
@@ -417,6 +423,10 @@ def print_report(report: dict[str, Any]) -> None:
     print(
         "automatic list-size bound: "
         f"{report['assignment']['automatic_list_size_bound']}"
+    )
+    print(
+        "full-field criterion close-list bound: "
+        f"{report['assignment']['full_field_criterion_close_list_bound']}"
     )
     print(
         "pigeonhole bound for actual close list: "

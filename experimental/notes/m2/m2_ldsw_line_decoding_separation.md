@@ -181,6 +181,25 @@ The pigeonhole half above shows this threshold is exact for code-direction
 lines: below `s_b`, every full-field assignment is forced to contain a
 `b`-point affine graph.
 
+Thus, in the regime `s_b <= b-1`, code-direction lines have the following exact
+full-field criterion:
+
+```text
+Every full-field close-codeword assignment on every line r+gamma v, v in C,
+has a b-slope affine-code-line agreement
+```
+
+if and only if
+
+```text
+|L_a(r)| < s_b
+```
+
+for every base word `r`.  The forward implication is the balanced-bucket
+obstruction applied to any `s_b` close codewords of a violating base word.  The
+reverse implication is the pigeonhole argument applied to the shifted
+assignment `gamma -> U(gamma)-gamma v`.
+
 ## Construction
 
 Let `D={0,...,7}` in `F_13`, let `C=RS[F_13,D,3]`, and put
@@ -255,7 +274,9 @@ directions, while ABF/GG line-decodability remains sensitive to the shifted
 assignment.  In the
 `b=n+1` convention, the code-direction obstruction demands ordinary close-list
 control at the scale `ceil(|F|/n)` whenever `ceil(|F|/n) <= n`; below that
-scale, code-direction lines are controlled by pigeonhole.
+scale, code-direction lines are controlled by pigeonhole.  In this full-field
+code-direction slice, that close-list threshold is not only necessary but
+sufficient.
 
 This does not contradict the ABF/GG theorem.  It only rules out a possible
 shortcut from support-wise MCA bounds back to line-decodability.

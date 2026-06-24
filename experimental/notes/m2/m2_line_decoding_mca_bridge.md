@@ -426,6 +426,9 @@ required `b` agreeing slopes on code-direction lines.
 More generally, `LD_sw` depends on the received direction only modulo `C`,
 whereas ABF/GG line-decodability depends on the shifted close-codeword
 assignment inside that quotient class.
+For full-field code-direction assignments, when
+`ceil(|F|/(b-1)) <= b-1`, this gives an exact criterion: the shifted close list
+of every base word must have size below `ceil(|F|/(b-1))`.
 
 ## Follow-Up Checks
 
