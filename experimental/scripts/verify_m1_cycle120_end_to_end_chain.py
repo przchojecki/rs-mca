@@ -34,6 +34,7 @@ import verify_m1_cycle116_fixed_jet_transfer as fixed_transfer
 import verify_m1_cycle116_slot_assembly as slot_assembly
 import verify_m1_cycle116_slot_identities as slot_ids
 import verify_m1_cycle116_smooth_padding_transfer as smooth_padding
+import verify_m1_cycle120_domain_field_ledger as domain_ledger
 import verify_m1_cycle120_gate_arithmetic as gate
 import verify_m1_cycle120_supportwise_mca_bridge as mca_bridge
 
@@ -61,6 +62,7 @@ def build_report() -> Dict[str, Any]:
     transfer_report = fixed_transfer.build_report()
     lift_report = field_lift.build_report()
     smooth_report = smooth_padding.build_report()
+    ledger_report = domain_ledger.build_report()
     external_report = external_packet.build_report(
         {
             "cycle84": cycle84_report,
@@ -90,6 +92,7 @@ def build_report() -> Dict[str, Any]:
     gate_object = gate_report["object"]
     gate_arithmetic = gate_report["arithmetic"]
     mca_conclusion = mca_report["mca_conclusion"]
+    ledger = ledger_report["field_ledger"]
 
     numerator = int(exact["distinct_products"])
     field_size = int(gate_object["field_size"])
@@ -108,6 +111,7 @@ def build_report() -> Dict[str, Any]:
         "cycle116_smooth_padding_transfer_passes": (
             smooth_report["status"] == "PASS"
         ),
+        "cycle120_domain_field_ledger_passes": ledger_report["status"] == "PASS",
         "cycle116_external_packet_contract_passes": (
             external_report["status"] == "PASS"
         ),
@@ -189,6 +193,12 @@ def build_report() -> Dict[str, Any]:
         ),
         "lift_field_size_matches_gate_field_size": (
             int(lift_field["lifted_field_size"]) == field_size
+        ),
+        "domain_generated_field_ledgers_match_line_field": (
+            int(ledger["q_gen"])
+            == int(ledger["q_code"])
+            == int(ledger["q_line"])
+            == field_size
         ),
         "lift_domain_matches_gate_domain": (
             int(lift_field["domain_size"]) == int(gate_object["domain_size"])
@@ -324,6 +334,15 @@ def build_report() -> Dict[str, Any]:
                 },
                 "conclusion": "LD_sw(RS[F_17^32,H,256],262) >= N",
             },
+            "cycle120_domain_field_ledger": {
+                "native_generator": ledger["native_generator"],
+                "native_generated_degree": int(ledger["native_generated_degree"]),
+                "lift_generator": ledger["lift_generator"],
+                "lift_generated_degree": int(ledger["lift_generated_degree"]),
+                "q_gen": int(ledger["q_gen"]),
+                "q_code": int(ledger["q_code"]),
+                "q_line": int(ledger["q_line"]),
+            },
             "cycle120_gate_arithmetic": {
                 "closed_agreement_threshold": int(
                     gate_arithmetic["closed_agreement_threshold"]
@@ -362,6 +381,7 @@ def print_human(report: Dict[str, Any]) -> None:
     native = chain["cycle116_native"]
     transfer = chain["cycle116_fixed_jet_transfer"]
     lifted = chain["cycle116_smooth_lift"]
+    ledger = chain["cycle120_domain_field_ledger"]
     gate_chain = chain["cycle120_gate_arithmetic"]
     mca = chain["cycle120_supportwise_mca"]
 
@@ -405,6 +425,11 @@ def print_human(report: Dict[str, Any]) -> None:
         f"k={lifted['dimension']}, agreement={lifted['agreement']}, "
         f"delta={lifted['delta']}, A={lifted['padding']['A_size']}, "
         f"R={lifted['padding']['R_size']}"
+    )
+    print(
+        "cycle120_field_ledger="
+        f"{ledger['lift_generator']} generates degree "
+        f"{ledger['lift_generated_degree']}, q_gen=q_code=q_line={ledger['q_line']}"
     )
     print(
         "cycle120_gate="

@@ -44,6 +44,16 @@ experimental/notes/m1/m1_cycle120_supportwise_mca_bridge.md
 python3 experimental/scripts/verify_m1_cycle120_supportwise_mca_bridge.py
 ```
 
+The row's generated-field ledger is checked in:
+
+```text
+experimental/notes/m1/m1_cycle120_domain_field_ledger.md
+python3 experimental/scripts/verify_m1_cycle120_domain_field_ledger.py
+```
+
+That audit verifies that `theta` has degree `32` over `F_17`, so
+`q_gen=q_code=q_line=17^32` for this row.
+
 ## Object
 
 Use the row
@@ -184,7 +194,9 @@ The following inputs remain outside this arithmetic contract:
    threshold. The source-gate audit above gives public-page confirmation plus
    PDF-extract evidence, but not final independent ePrint retrieval.
 2. The finite definition of `K`, `theta`, and `H`, including the proof or
-   certificate that `H=<theta>` is the intended power-of-two subgroup.
+   certificate that `H=<theta>` is the intended power-of-two subgroup. The
+   local field-ledger verifier now also checks that `theta` generates the full
+   field `F_17^32` over `F_17`.
 3. The Cycle84 finite energy/census producing
    `N = 52,747,567,092`; this is now packaged by the exact occupancy verifier
    but still awaits generated-source review.

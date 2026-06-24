@@ -117,6 +117,20 @@ k = 256,
 delta = 125/256,
 ```
 
+the domain-generated field ledger is checked by
+
+```text
+python3 experimental/scripts/verify_m1_cycle120_domain_field_ledger.py
+```
+
+It verifies `ord_512(17)=32`, equivalently that `theta` is not contained in
+any proper subfield of `F_17^32`. Thus the smooth domain generator itself
+generates the full field, and this row has
+
+```text
+q_gen = q_code = q_line = 17^32.
+```
+
 the closed agreement threshold is exactly
 
 ```text
@@ -166,6 +180,8 @@ the external Cycle116 packet contract uses the same verified co-support and
 the fixed-jet bad-parameter map is injective on the counted product values;
 the smooth padding uses disjoint A/R odd-coset blocks and preserves the same
   bad parameters;
+the domain generator theta generates the full field F_17^32, so
+  q_gen=q_code=q_line=17^32 for this row;
 the Cycle116 slot replay and Cycle84 certificate use the same slot-table digest;
 the native Cycle116 parameters are n=256, k=137, agreement=143;
 the smooth lift reaches n=512, k=256, agreement=262 without changing N;
@@ -219,6 +235,7 @@ python3 experimental/scripts/verify_m1_cycle120_end_to_end_chain.py --json
 python3 experimental/scripts/verify_m1_cycle116_external_packet_contract.py
 python3 experimental/scripts/verify_m1_cycle116_fixed_jet_transfer.py
 python3 experimental/scripts/verify_m1_cycle116_smooth_padding_transfer.py
+python3 experimental/scripts/verify_m1_cycle120_domain_field_ledger.py
 python3 experimental/scripts/verify_m1_cycle120_supportwise_mca_bridge.py
 ```
 

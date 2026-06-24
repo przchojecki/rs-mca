@@ -30,6 +30,26 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-24 - Cycle120 domain-generated field ledger
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/scripts/verify_m1_cycle120_domain_field_ledger.py`,
+  `experimental/notes/m1/m1_cycle120_domain_field_ledger.md`,
+  `experimental/scripts/verify_m1_cycle120_end_to_end_chain.py`,
+  `experimental/notes/m1/m1_cycle120_end_to_end_finite_chain.md`,
+  `experimental/notes/m1/m1_cycle120_gate_arithmetic_contract.md`, and
+  `experimental/agents-log.md`.
+- **Status:** AUDIT / DOMAIN-GENERATED-FIELD-LEDGER.
+- **What is being added:** A field-ledger verifier showing that `eta` generates
+  `F_17^16` and `theta` generates `F_17^32` over `F_17`: `ord_256(17)=16`,
+  `ord_512(17)=32`, plus Frobenius noncontainment in every proper subfield.
+- **How it is useful:** Closes a ledger ambiguity for the Cycle120 row: the
+  smooth-domain generator itself generates the full ambient field, so
+  `q_gen=q_code=q_line=17^32` locally.
+- **What to do next:** Keep official ABF source verification separate from
+  this local finite-field ledger; the remaining promotion gates are unchanged.
+
 ### 2026-06-24 - Cycle116 smooth padding transfer audit
 
 - **Agent/model:** Codex.
