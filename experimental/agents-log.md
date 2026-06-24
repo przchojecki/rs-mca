@@ -37,6 +37,7 @@ Keep entries concise and link to the relevant files.
   `experimental/notes/m1/m1_beta_pushforward_spectral_audit.md`,
   `experimental/notes/m1/m1_kummer_weil_import_contract.md`,
   `experimental/scripts/verify_m1_depth_two_line_conic_resonance_reduction.py`,
+  `experimental/scripts/verify_m1_beta_pushforward_spectral_audit.py`,
   `experimental/agents-log.md`.
 - **Status:** EXPERIMENTAL / FINITE SPECTRAL AUDIT.
 - **What is being added:** A quotient-character scan of the exact good
@@ -46,10 +47,12 @@ Keep entries concise and link to the relevant files.
   centered character pair in the audited quotient rows.  The notes also record
   the weaker averaged import `(BETA_2^avg)` and the exact constants showing
   that it would already close the fixed-index quotient-conic target.
+  A standalone verifier extends the counterexample-first scan to 20 exact rows
+  through `p=127` without slowing the broad line-conic verifier.
 - **How it is useful:** This is a counterexample-first test of the remaining
   rank-two pushforward object, not of the already controlled exceptional
   ledger. The audited rows show p-scale behavior, with largest recorded
-  `max |G_{psi,phi}|/p = 3.0697674419` and largest recorded
+  `max |G_{psi,phi}|/p = 4.8036624425` and largest recorded
   `||G_e^circ||_F/p = 1.1366043634`.
 - **What to do next:** Prove the bounded-conductor/no-constant-summand
   `(BETA_2)` estimate for the explicit rank-two pushforward, prove the weaker

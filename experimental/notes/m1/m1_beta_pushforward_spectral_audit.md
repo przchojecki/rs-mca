@@ -93,6 +93,24 @@ pushforward coefficients are p-scale in every audited case, with largest
 observed coefficient ratio `3.0697674419` and largest centered-Frobenius ratio
 `1.1366043634`, both at `(p,e)=(43,6)`.
 
+The standalone verifier expands the scan to 20 rows through `p=127`, without
+adding those larger rows to the broad line-conic verifier.  In the expanded
+audit the largest individual coefficient ratio is
+
+```text
+max |G_{psi,phi}|/p = 4.8036624425 at (p,e)=(127,14),
+```
+
+while the largest centered-Frobenius ratio is still
+
+```text
+||G_e^circ||_F/p = 1.1366043634 at (p,e)=(43,6).
+```
+
+Thus the averaged target remains substantially smaller than the largest
+individual coefficient in the finite rows, matching the point of the
+`(BETA_2^avg)` reformulation.
+
 This is useful only as evidence and as a regression guard.  It cannot certify
 `(BETA_2)`: the proof still needs a bounded-conductor/no-constant-summand
 argument for the explicit rank-two beta pushforward, or a direct proof of the
@@ -106,9 +124,13 @@ Run:
 
 ```bash
 python3 experimental/scripts/verify_m1_depth_two_line_conic_resonance_reduction.py
+python3 experimental/scripts/verify_m1_beta_pushforward_spectral_audit.py
+python3 experimental/scripts/verify_m1_beta_pushforward_spectral_audit.py --json
 ```
 
 The relevant output line is
 `ratio_surface_quotient_trace_reduction_checked`; its tuple entries now include
 `max_good_pushforward/p` and `good_centered_frobenius/p` between `max_bad/p`
-and `max_total_singular_trace/p`.
+and `max_total_singular_trace/p`.  The standalone beta-pushforward verifier
+checks a larger fixed grid and hard-codes the audited row values as regression
+data.
