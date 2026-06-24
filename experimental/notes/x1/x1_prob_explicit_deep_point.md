@@ -58,6 +58,20 @@ generator `alpha` of `F_{p^6}^*` has `alpha^{a_q}` of full degree `6`, so a
 generic (in fact `>= 1/2`) set of deep points gives genuinely `F`-valued slopes
 filling a `2^-21` fraction of `F`. [`verify_x1_prob_explicit_deployed.py`.]
 
+## Also covers the CA (`eca`) half, and the periodicity is harmless
+
+- **CA as well as MCA.** The deep-point identity is `Bad_CA = Bad_MCA =
+  Deep_alpha(U,a)` (Thm 1.1), so the *same* explicit line gives the no-loss
+  `eca` lower bound too, on `cor:deployed`'s CS-admissible subinterval
+  `[1/2-2^-7, 1/2-2^-21)` (via the persistence statement of Thm 1.1). So the
+  construction covers the *full* `cor:deployed` claim, not just the `emca` half.
+- **Periodicity is harmless.** The heavy word is `X^{a_q}`-periodic, so codewords
+  are `P=G(X^{a_q})` with `deg G <= m=k/a_q=128`, and slopes are `G(alpha^{a_q})`.
+  The averaging over `beta=alpha^{a_q}` (range size `~(q-1)/a_q ~ 2^173`) uses
+  `deg G <= m`: `m/|B_set| = 2^7/2^173 = 2^-166 = k/|Omega|`, giving the same
+  `M >= 2^165.93`. The `1/k` density is unchanged; the slopes fill `F_{p^6}`
+  exactly when `alpha^{a_q}` has full degree 6 (generator `alpha`, as above).
+
 ## What this resolves, honestly
 
 - **Constructive vs. existence.** This is the **explicit, `B`-free counterpart of
