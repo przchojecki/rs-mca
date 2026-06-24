@@ -6,13 +6,14 @@ settled by the support-intersection bridge: over-agreement can create
 interleaved mass, so the falsification target is whether that mass can grow like
 a Cartesian product rather than like a polynomial support-overlap codegree.
 
-The script checks five finite objects.
+The script checks six finite objects.
 
-1. The aligned quotient packet count used as Quot_mu in the target note.
+1. The all-remainder quotient packet count used as Quot_rem_mu in the target.
 2. The Johnson-shell weights used in the codegree reduction.
 3. The abstract K_{m,m} grid over-agreement design and its size formula.
 4. An explicit dithered all-remainder quotient packet with M not dividing k.
-5. A realized Reed-Solomon K_{2,2} gluing over a prime-field multiplicative
+5. The dyadic active-scale clearance criterion for small dimension dithers.
+6. A realized Reed-Solomon K_{2,2} gluing over a prime-field multiplicative
    subgroup, computed by exact list enumeration, together with its punctured
    codegree profile.
 
@@ -158,6 +159,48 @@ def active_remainder_scales(n: int, k: int, a: int) -> list[int]:
         and (a // fiber_size) > 0
         and (a // fiber_size) <= n // fiber_size - 1
     ]
+
+
+def next_power_of_two_above(x: int) -> int:
+    power = 1
+    while power <= x:
+        power *= 2
+    return power
+
+
+def dyadic_remainder_dither_scan(
+    n: int, k0: int, sigma: int, max_r: int, mu: int
+) -> dict:
+    """Scan k=k0-r and record all-remainder active scales."""
+    threshold = next_power_of_two_above(sigma)
+    rows = []
+    for r in range(max_r + 1):
+        k = k0 - r
+        if k <= 0:
+            continue
+        a = k + sigma
+        active = active_remainder_scales(n, k, a)
+        budget = remainder_quotient_budget(n, k, a, mu)
+        rows.append(
+            {
+                "r": r,
+                "k": k,
+                "a": a,
+                "active_M": active,
+                "budget_total": budget["total"],
+            }
+        )
+    first_clear = next((row["r"] for row in rows if not row["active_M"]), None)
+    return {
+        "n": n,
+        "k0": k0,
+        "sigma": sigma,
+        "mu": mu,
+        "next_power_above_sigma": threshold,
+        "predicted_clearance_condition": f"a < {threshold}",
+        "first_clear_r": first_clear,
+        "rows": rows,
+    }
 
 
 def primitive_root(p: int) -> int:
@@ -702,6 +745,9 @@ def run() -> dict:
         "divisible": active_remainder_scales(n=64, k=16, a=18),
         "dithered": active_remainder_scales(n=64, k=15, a=17),
     }
+    dyadic_dither_scan = dyadic_remainder_dither_scan(
+        n=64, k0=16, sigma=2, max_r=15, mu=2
+    )
     threshold_example = johnson_anchor_threshold(k=16, a=18)
     shell_weight_example = johnson_shell_weight(n=64, k=16, a=18)
     fixed_arity_shell_weight_example = johnson_shell_weight(
@@ -725,6 +771,17 @@ def run() -> dict:
             packet["M"]
             for packet in dithered_quotient_example["all_remainders"]["packets"]
         ],
+        "dyadic_dither_scan_starts_active": dyadic_dither_scan["rows"][0][
+            "active_M"
+        ]
+        == [4, 8, 16],
+        "dyadic_dither_scan_first_clear": dyadic_dither_scan["first_clear_r"]
+        == 15,
+        "dyadic_dither_scan_clearance_condition": all(
+            bool(row["active_M"])
+            == (row["a"] >= dyadic_dither_scan["next_power_above_sigma"])
+            for row in dyadic_dither_scan["rows"]
+        ),
         "dithered_quotient_witness_count": dithered_witness[
             "constructed_count"
         ]
@@ -760,6 +817,7 @@ def run() -> dict:
         "remainder_quotient_budget_example": remainder_quotient_example,
         "dithered_quotient_budget_example": dithered_quotient_example,
         "active_remainder_scale_examples": active_scale_examples,
+        "dyadic_remainder_dither_scan": dyadic_dither_scan,
         "johnson_anchor_threshold_example": threshold_example,
         "johnson_shell_weight_example": shell_weight_example,
         "fixed_arity_johnson_shell_weight_example": fixed_arity_shell_weight_example,
@@ -795,6 +853,13 @@ def main(argv: list[str] | None = None) -> int:
             f"divisible_total={dqb['divisible_only']['total']}, "
             f"all_remainders_total={dqb['all_remainders']['total']}, "
             f"active_M={active['dithered']}"
+        )
+        dscan = result["dyadic_remainder_dither_scan"]
+        print(
+            "  dyadic all-remainder dither scan: "
+            f"n={dscan['n']}, k0={dscan['k0']}, sigma={dscan['sigma']}, "
+            f"next_power={dscan['next_power_above_sigma']}, "
+            f"first_clear_r={dscan['first_clear_r']}"
         )
         dq_witness = result["realized_dithered_quotient_packet"]
         print(

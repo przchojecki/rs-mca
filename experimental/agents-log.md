@@ -76,7 +76,11 @@ Keep entries concise and link to the relevant files.
   maximum degree `5<k` and agreement at least `9`. The active all-remainder
   scales are now characterized exactly by interval-divisor clearance:
   `M|n` and `a-k<M<=a`; for the dithered `(64,15,17)` example these are
-  `{4,8,16}`.
+  `{4,8,16}`. For dyadic `n`, this becomes a next-power threshold:
+  all all-remainder packets are absent exactly when `a` falls below the first
+  power of two larger than `sigma`; in the verifier scan
+  `(n,k_0,sigma)=(64,16,2)`, this first happens only after the large dither
+  `r=15`.
 - **How it is useful:** Turns the L2 objective from a broad "avoid Cartesian
   overcharge" principle into a concrete conjectural inequality that can be
   falsified or promoted. The `K_{2,2}` witness records that local Cartesian

@@ -219,6 +219,23 @@ all-remainder budget is instead interval-divisor clearance: no divisor of `n`
 should lie in `(a-k,a]`, unless the resulting packet is explicitly charged to
 `Quot_rem_mu`.
 
+For dyadic domains this becomes especially transparent. If `n` is a power of
+two and
+
+```text
+M_*(sigma) = min {2^j : 2^j > sigma},
+```
+
+then all all-remainder quotient packets are absent iff
+
+```text
+a < M_*(sigma).
+```
+
+Equivalently, with `a=k+sigma`, one needs `k < M_*(sigma)-sigma`. Small
+dimension dithers usually do not meet this condition; they only move the upper
+endpoint `a` of the active interval.
+
 ## 3. Conjecture L2-Sharp, Version 0
 
 Fix a compact rate window `rho in [rho_0,rho_1] subset (0,1)`, fixed arity
@@ -654,11 +671,14 @@ checks five stress points.
    budget is `0` while the all-remainder budget is still `1389`, coming from
    partial-coset packets. The active all-remainder scales in that dithered
    example are exactly `M in {4,8,16}`, matching the interval
-   `a-k < M <= a`. For `(k,a)=(16,18)`, the punctured Johnson step controls
-   anchor supports through `s=21`; the remaining large-anchor tail starts only
-   at `s=22`, i.e. four extra agreements above the list threshold. The exact
-   controlled Johnson shell weight in this example is `17`; the powered shell
-   weight for the fixed-arity `mu=3` reduction is `199`.
+   `a-k < M <= a`. A dyadic dither scan with `n=64`, `k_0=16`, `sigma=2`,
+   and `k=k_0-r` first clears all all-remainder scales only at `r=15`, where
+   `a=3` falls below the next dyadic divisor `4`. For `(k,a)=(16,18)`, the
+   punctured Johnson step controls anchor supports through `s=21`; the
+   remaining large-anchor tail starts only at `s=22`, i.e. four extra
+   agreements above the list threshold. The exact controlled Johnson shell
+   weight in this example is `17`; the powered shell weight for the fixed-arity
+   `mu=3` reduction is `199`.
 2. The all-remainder quotient construction is realized explicitly over
    `F_17`, `n=16`, `k=7`, `a=9`, `M=4`. Here `M` does not divide `k`,
    `ell=floor(a/M)=2`, and the partial omitted coset has size `1`. The verifier
