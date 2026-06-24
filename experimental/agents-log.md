@@ -48,7 +48,11 @@ Keep entries concise and link to the relevant files.
   rational-certificate false positives.  It further adds the exact
   common-ideal/Fitting index `I_n,sigma(A,B)`, whose prime divisors away from
   `n` are exactly the rational primes with a simultaneous common-root factor;
-  this removes the recorded `p=97` rational false positive.  The modular gcd
+  this removes the recorded `p=97` rational false positive.  The note then
+  records the finite-family exact aggregation theorem: after
+  characteristic-zero templates are removed, the lcm of the indices
+  `I_n,sigma(A,B)` has exactly the bad rational-prime support for simultaneous
+  primitive-root collisions away from primes dividing `n`.  The modular gcd
   degree is also
   recorded as the exact primitive-root embedding multiplicity at split and
   nonsplit primes, with the Frobenius-orbit quotient giving the rational

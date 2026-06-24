@@ -499,6 +499,20 @@ def prime_factors(value: int) -> set[int]:
     return set(factorint(value))
 
 
+def prime_support_away_from_order(value: int, order: int) -> list[int]:
+    return [
+        prime for prime in sorted(factorint(value))
+        if order % prime != 0
+    ]
+
+
+def split_prime_support(value: int, order: int) -> list[int]:
+    return [
+        prime for prime in prime_support_away_from_order(value, order)
+        if prime % order == 1
+    ]
+
+
 def is_prime(value: int) -> bool:
     if value < 2:
         return False
@@ -1825,6 +1839,145 @@ def check_prime_ideal_false_positive() -> dict[str, Any]:
     }
 
 
+def check_finite_family_exact_aggregation() -> dict[str, Any]:
+    order = 16
+    sigma = 4
+    packet = finite_prefix_collision_pairs(
+        prime=17,
+        order=order,
+        complement_size=6,
+        sigma=sigma,
+    )
+    false_positive = normalized_pair(
+        (0, 1, 2, 7, 9, 13),
+        (0, 1, 2, 3, 4, 11),
+    )
+    family = [
+        normalized_pair(pair["left"], pair["right"])
+        for pair in packet["pairs"]
+    ]
+    family.append(false_positive)
+
+    norm_lcm = 1
+    ideal_lcm = 1
+    for left, right in family:
+        certificate = bad_prime_certificate(left, right, order, sigma)
+        common_ideal = common_ideal_index(left, right, order, sigma)
+        if certificate["char_zero_collision"] or common_ideal["char_zero_collision"]:
+            raise AssertionError("finite-family aggregation assumes char-zero removed")
+        if certificate["certificate"] % common_ideal["index"] != 0:
+            raise AssertionError("common-ideal index did not divide certificate")
+        norm_lcm = lcm_int(norm_lcm, certificate["certificate"])
+        ideal_lcm = lcm_int(ideal_lcm, common_ideal["index"])
+
+    if norm_lcm != 14_352_896:
+        raise AssertionError("unexpected finite-family resultant lcm")
+    if ideal_lcm != 8_704:
+        raise AssertionError("unexpected finite-family common-ideal lcm")
+    if split_prime_support(norm_lcm, order) != [17, 97]:
+        raise AssertionError("unexpected coarse split-prime support")
+    if split_prime_support(ideal_lcm, order) != [17]:
+        raise AssertionError("unexpected exact split-prime support")
+
+    direct_rows = []
+    for prime in split_prime_support(norm_lcm, order):
+        positive_pairs = 0
+        degree_sum = 0
+        for left, right in family:
+            common_degree = degree(common_root_gcd_mod(
+                left,
+                right,
+                order,
+                sigma,
+                prime,
+            ))
+            if common_degree > 0:
+                positive_pairs += 1
+                degree_sum += common_degree
+        direct_rows.append({
+            "prime": prime,
+            "positive_template_pairs": positive_pairs,
+            "common_root_degree_sum": degree_sum,
+        })
+    expected_direct_rows = [
+        {
+            "prime": 17,
+            "positive_template_pairs": 40,
+            "common_root_degree_sum": 40,
+        },
+        {
+            "prime": 97,
+            "positive_template_pairs": 0,
+            "common_root_degree_sum": 0,
+        },
+    ]
+    if direct_rows != expected_direct_rows:
+        raise AssertionError(f"bad direct split-prime rows: {direct_rows}")
+    direct_split_support = [
+        row["prime"] for row in direct_rows
+        if row["common_root_degree_sum"] > 0
+    ]
+    if direct_split_support != split_prime_support(ideal_lcm, order):
+        raise AssertionError("exact lcm support did not match direct gcd support")
+
+    extension_order = 8
+    extension_sigma = 1
+    extension_left = (0, 1)
+    extension_right = (2, 5)
+    extension_ideal = common_ideal_index(
+        extension_left,
+        extension_right,
+        extension_order,
+        extension_sigma,
+    )
+    extension_support = prime_support_away_from_order(
+        extension_ideal["index"],
+        extension_order,
+    )
+    if extension_support != [3]:
+        raise AssertionError("unexpected nonsplit exact support")
+    if split_prime_support(extension_ideal["index"], extension_order):
+        raise AssertionError("nonsplit witness appeared in split support")
+    if degree(common_root_gcd_mod(
+        extension_left,
+        extension_right,
+        extension_order,
+        extension_sigma,
+        3,
+    )) != 2:
+        raise AssertionError("nonsplit exact support missed F_9 collision")
+
+    return {
+        "split_family": {
+            "order": order,
+            "sigma": sigma,
+            "template_pair_count": len(family),
+            "resultant_lcm": norm_lcm,
+            "resultant_split_support": split_prime_support(norm_lcm, order),
+            "common_ideal_lcm": ideal_lcm,
+            "common_ideal_split_support": split_prime_support(ideal_lcm, order),
+            "direct_split_rows": direct_rows,
+        },
+        "nonsplit_witness": {
+            "order": extension_order,
+            "sigma": extension_sigma,
+            "common_ideal_index": extension_ideal["index"],
+            "support_away_from_order": extension_support,
+            "split_support": split_prime_support(
+                extension_ideal["index"],
+                extension_order,
+            ),
+            "common_root_degree_at_3": degree(common_root_gcd_mod(
+                extension_left,
+                extension_right,
+                extension_order,
+                extension_sigma,
+                3,
+            )),
+        },
+    }
+
+
 def check_galois_invariance() -> dict[str, Any]:
     left = (0, 1, 2, 12, 14, 15)
     right = (3, 4, 5, 7, 10, 13)
@@ -1942,11 +2095,14 @@ def build_report() -> dict[str, Any]:
         "split_prime_sweep": check_split_prime_sweep(),
         "bounded_split_prime_row_scan": check_bounded_split_prime_row_scan(),
         "prime_ideal_false_positive": check_prime_ideal_false_positive(),
+        "finite_family_exact_aggregation": (
+            check_finite_family_exact_aggregation()
+        ),
         "galois_invariance": check_galois_invariance(),
         "affine_invariance": check_affine_invariance(),
         "nonmutating": True,
         "remaining_open_problem": (
-            "aggregate the bad-prime certificates over robustly aperiodic "
+            "aggregate the exact common-ideal indices over robustly aperiodic "
             "templates"
         ),
     }
@@ -2040,6 +2196,15 @@ def print_human(report: dict[str, Any]) -> None:
         f"gcd_degree={false_positive['common_root_degree']}, "
         f"embedding_count={false_positive['embedding_zero_count']}, "
         f"actual={false_positive['actual_collision_for_any_embedding']}"
+    )
+    aggregation = report["finite_family_exact_aggregation"]
+    split_family = aggregation["split_family"]
+    print(
+        "finite_family_exact_aggregation="
+        f"templates={split_family['template_pair_count']}, "
+        f"resultant_split_support={split_family['resultant_split_support']}, "
+        f"ideal_split_support={split_family['common_ideal_split_support']}, "
+        f"ideal_lcm={split_family['common_ideal_lcm']}"
     )
     affine = report["affine_invariance"]
     print(
