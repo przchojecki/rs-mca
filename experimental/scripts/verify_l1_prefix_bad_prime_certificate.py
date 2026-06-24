@@ -217,6 +217,13 @@ def factorint(value: int) -> dict[int, int]:
     return factors
 
 
+def mobius_value(value: int) -> int:
+    factors = factorint(value)
+    if any(exponent > 1 for exponent in factors.values()):
+        return 0
+    return -1 if len(factors) % 2 else 1
+
+
 def euler_phi(value: int) -> int:
     result = value
     for prime in factorint(value):
@@ -2297,6 +2304,75 @@ def pair_support_stabilizer_shifts(
     )
 
 
+def stabilizer_frontier_mobius_ledger(
+    family: Iterable[tuple[tuple[int, ...], tuple[int, ...]]],
+    order: int,
+    sigma: int,
+    prime: int,
+) -> dict[str, Any]:
+    divisors = positive_divisors(order)
+    exact_degree = {divisor: 0 for divisor in divisors}
+    containing_degree = {divisor: 0 for divisor in divisors}
+    exact_count = {divisor: 0 for divisor in divisors}
+    containing_count = {divisor: 0 for divisor in divisors}
+
+    for left, right in family:
+        stabilizer_size = len(pair_support_stabilizer_shifts(
+            left,
+            right,
+            order,
+        ))
+        frontier_degree = degree(common_root_frontier_factor_mod(
+            left,
+            right,
+            order,
+            sigma,
+            prime,
+        ))
+        exact_degree[stabilizer_size] += frontier_degree
+        exact_count[stabilizer_size] += 1
+        for divisor in divisors:
+            if stabilizer_size % divisor == 0:
+                containing_degree[divisor] += frontier_degree
+                containing_count[divisor] += 1
+
+    recovered_exact_degree = {}
+    recovered_exact_count = {}
+    for divisor in divisors:
+        recovered_exact_degree[divisor] = sum(
+            mobius_value(quotient // divisor) * containing_degree[quotient]
+            for quotient in divisors
+            if quotient % divisor == 0
+        )
+        recovered_exact_count[divisor] = sum(
+            mobius_value(quotient // divisor) * containing_count[quotient]
+            for quotient in divisors
+            if quotient % divisor == 0
+        )
+    if recovered_exact_degree != exact_degree:
+        raise AssertionError("frontier-degree Mobius ledger failed")
+    if recovered_exact_count != exact_count:
+        raise AssertionError("frontier-count Mobius ledger failed")
+
+    def nonzero_rows(rows: dict[int, int]) -> dict[int, int]:
+        return {key: value for key, value in rows.items() if value != 0}
+
+    return {
+        "exact_frontier_degree_by_stabilizer": nonzero_rows(exact_degree),
+        "containing_frontier_degree_by_stabilizer": nonzero_rows(
+            containing_degree
+        ),
+        "mobius_recovered_frontier_degree_by_stabilizer": nonzero_rows(
+            recovered_exact_degree
+        ),
+        "exact_count_by_stabilizer": nonzero_rows(exact_count),
+        "containing_count_by_stabilizer": nonzero_rows(containing_count),
+        "mobius_recovered_count_by_stabilizer": nonzero_rows(
+            recovered_exact_count
+        ),
+    }
+
+
 def frontier_layer_factor_profile(
     family: Iterable[tuple[tuple[int, ...], tuple[int, ...]]],
     order: int,
@@ -2724,6 +2800,128 @@ def check_primitive_frontier_remainder() -> dict[str, Any]:
             "primitive_frontier_degree_sum": nonsplit_frontier_sum,
         },
         "periodic_lift_cases": lifted_cases,
+    }
+
+
+def check_frontier_stabilizer_mobius_ledger() -> dict[str, Any]:
+    split_prime = 17
+    split_order = 16
+    split_sigma = 4
+    split_family: set[tuple[tuple[int, ...], tuple[int, ...]]] = set()
+    for root in primitive_order_roots(split_prime, split_order):
+        row = finite_prefix_collision_pairs(
+            prime=split_prime,
+            order=split_order,
+            complement_size=6,
+            sigma=split_sigma,
+            root=root,
+        )
+        for pair in row["pairs"]:
+            split_family.add(normalized_pair(pair["left"], pair["right"]))
+    split_ledger = stabilizer_frontier_mobius_ledger(
+        split_family,
+        split_order,
+        split_sigma,
+        split_prime,
+    )
+    if split_ledger["containing_frontier_degree_by_stabilizer"] != {1: 320}:
+        raise AssertionError("bad split stabilizer-containing frontier ledger")
+    if split_ledger["mobius_recovered_frontier_degree_by_stabilizer"] != {1: 320}:
+        raise AssertionError("bad split Mobius primitive frontier ledger")
+
+    nonsplit_prime = 3
+    nonsplit_order = 8
+    nonsplit_sigma = 1
+    nonsplit_all: set[tuple[tuple[int, ...], tuple[int, ...]]] = set()
+    nonsplit_nonchar: set[tuple[tuple[int, ...], tuple[int, ...]]] = set()
+    nonsplit_structured: set[tuple[tuple[int, ...], tuple[int, ...]]] = set()
+    for root in gf9_primitive_order_roots(nonsplit_order):
+        row = finite_prefix_collision_pairs_gf9(
+            order=nonsplit_order,
+            complement_size=2,
+            sigma=nonsplit_sigma,
+            root=root,
+        )
+        for pair in row["pairs"]:
+            key = normalized_pair(pair["left"], pair["right"])
+            nonsplit_all.add(key)
+            certificate = bad_prime_certificate(
+                key[0],
+                key[1],
+                nonsplit_order,
+                nonsplit_sigma,
+            )
+            if certificate["char_zero_collision"]:
+                nonsplit_structured.add(key)
+            else:
+                nonsplit_nonchar.add(key)
+
+    nonsplit_all_ledger = stabilizer_frontier_mobius_ledger(
+        nonsplit_all,
+        nonsplit_order,
+        nonsplit_sigma,
+        nonsplit_prime,
+    )
+    if (
+        nonsplit_all_ledger["containing_frontier_degree_by_stabilizer"]
+        != {1: 120, 2: 24}
+    ):
+        raise AssertionError("bad F_9 containing frontier ledger")
+    if (
+        nonsplit_all_ledger["mobius_recovered_frontier_degree_by_stabilizer"]
+        != {1: 96, 2: 24}
+    ):
+        raise AssertionError("bad F_9 Mobius frontier ledger")
+    if nonsplit_all_ledger["containing_count_by_stabilizer"] != {1: 54, 2: 6}:
+        raise AssertionError("bad F_9 containing count ledger")
+    if (
+        nonsplit_all_ledger["mobius_recovered_count_by_stabilizer"]
+        != {1: 48, 2: 6}
+    ):
+        raise AssertionError("bad F_9 Mobius count ledger")
+
+    nonsplit_nonchar_ledger = stabilizer_frontier_mobius_ledger(
+        nonsplit_nonchar,
+        nonsplit_order,
+        nonsplit_sigma,
+        nonsplit_prime,
+    )
+    nonsplit_structured_ledger = stabilizer_frontier_mobius_ledger(
+        nonsplit_structured,
+        nonsplit_order,
+        nonsplit_sigma,
+        nonsplit_prime,
+    )
+    if (
+        nonsplit_nonchar_ledger["mobius_recovered_frontier_degree_by_stabilizer"]
+        != {1: 96}
+    ):
+        raise AssertionError("bad F_9 non-char Mobius frontier ledger")
+    if (
+        nonsplit_structured_ledger["mobius_recovered_frontier_degree_by_stabilizer"]
+        != {2: 24}
+    ):
+        raise AssertionError("bad F_9 structured Mobius frontier ledger")
+
+    return {
+        "split_case": {
+            "field": "F_17",
+            "prime": split_prime,
+            "order": split_order,
+            "family_size": len(split_family),
+            "ledger": split_ledger,
+        },
+        "nonsplit_case": {
+            "field": "F_9 = F_3[i]/(i^2+1)",
+            "prime": nonsplit_prime,
+            "order": nonsplit_order,
+            "family_size": len(nonsplit_all),
+            "nonchar_size": len(nonsplit_nonchar),
+            "structured_size": len(nonsplit_structured),
+            "all_row_ledger": nonsplit_all_ledger,
+            "nonchar_ledger": nonsplit_nonchar_ledger,
+            "structured_ledger": nonsplit_structured_ledger,
+        },
     }
 
 
@@ -4825,6 +5023,9 @@ def build_report() -> dict[str, Any]:
             check_quotient_periodic_frontier_pullback()
         ),
         "primitive_frontier_remainder": check_primitive_frontier_remainder(),
+        "frontier_stabilizer_mobius_ledger": (
+            check_frontier_stabilizer_mobius_ledger()
+        ),
         "prefix_radical_frontier_drop": check_prefix_radical_frontier_drop(),
         "frontier_factor_decomposition": check_frontier_factor_decomposition(),
         "frontier_orbit_layer_decomposition": (
@@ -4972,6 +5173,20 @@ def print_human(report: dict[str, Any]) -> None:
         "f9_structured_stabilizers="
         f"{primitive_frontier['nonsplit_case']['structured_stabilizer_counts']}, "
         f"lifted_stabilizers={lifted_stabilizers}"
+    )
+    stabilizer_mobius = report["frontier_stabilizer_mobius_ledger"]
+    split_mobius = stabilizer_mobius["split_case"]["ledger"]
+    f9_mobius = stabilizer_mobius["nonsplit_case"]["all_row_ledger"]
+    print(
+        "frontier_stabilizer_mobius_ledger="
+        "split_containing="
+        f"{split_mobius['containing_frontier_degree_by_stabilizer']}, "
+        "split_exact="
+        f"{split_mobius['mobius_recovered_frontier_degree_by_stabilizer']}, "
+        "f9_containing="
+        f"{f9_mobius['containing_frontier_degree_by_stabilizer']}, "
+        "f9_exact="
+        f"{f9_mobius['mobius_recovered_frontier_degree_by_stabilizer']}"
     )
     frontier = report["prefix_radical_frontier_drop"]
     print(

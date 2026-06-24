@@ -1094,6 +1094,32 @@ removed by quotient-periodic recursion or by characteristic-zero structure, and
 it is the bad-prime mass that a future L1 aperiodic aggregation theorem must
 bound.
 
+For overlap-safe bookkeeping, use the stabilizer Mobius ledger.  For each
+`d | n`, let
+
+```text
+P_d(T)=sum_{(A,B) in T, K_d <= Stab(A,B)} deg H_{p,sigma}(A,B),
+Q_d(T)=sum_{(A,B) in T, Stab(A,B)=K_d} deg H_{p,sigma}(A,B).
+```
+
+Then
+
+```text
+P_d(T)=sum_{e: d|e} Q_e(T),
+Q_d(T)=sum_{e: d|e} mu(e/d) P_e(T).
+```
+
+In particular,
+
+```text
+Q_1(T)=sum_{e|n} mu(e) P_e(T)
+```
+
+is the exact primitive frontier mass.  This is the frontier-degree analogue of
+the periodic-support Mobius ledger: one may measure the easier
+stabilizer-containing sums `P_d`, subtract their overlaps, and recover the
+exact-stabilizer-one aperiodic remainder.
+
 ## Full-Prefix Rigidity
 
 The endpoint of the filtration is rigid.  Let `p` be split, let `h in F_p`
@@ -1325,6 +1351,12 @@ nonsplit `F_9` non-characteristic-zero templates also have stabilizer `1`.
 By contrast, the six structured `F_9` row pairs have stabilizer `2`, and the
 explicit quotient lifts above have exact stabilizer equal to the lifted kernel
 size.
+The stabilizer Mobius check gives the same split without prior exact
+classification: on the full nonsplit `F_9` row the containing ledger is
+`P_1=120, P_2=24`, so Mobius recovery gives exact frontier degrees
+`Q_1=96, Q_2=24`.  Thus the primitive part is precisely the
+non-characteristic-zero frontier mass, while the periodic structured row is
+charged to the quotient ledger.
 
 The verifier separately checks this full-prefix endpoint for `n=16` at the
 split primes `17` and `97`, for every complement size `1 <= m <= 8`: at
