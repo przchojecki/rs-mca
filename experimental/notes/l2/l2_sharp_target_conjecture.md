@@ -173,6 +173,31 @@ Thus the divisible case `M|k` is only the special case `ell_M=k/M` and
 `u_M=sigma`; if `M` does not divide `k`, the partial omitted coset has size
 `u_M=a mod M`.
 
+In the residue-moment formulation below, this same packet is an explicit
+zero-moment solution. For
+
+```text
+S = T union U_A,        L_S(X)=L_T(X)L_A(X),
+```
+
+the degree-`<a` interpolant of the word `Y` on `S` is exactly
+
+```text
+Y(X)-L_S(X) = P_A(X),
+```
+
+because the two polynomials agree with `Y` on the roots of `L_S` and both have
+degree `<a`. Since `deg P_A<k`, all top syndromes vanish, equivalently
+
+```text
+R_j(Y,S)=0        for every 0 <= j < sigma.
+```
+
+Thus `Quot_rem_mu` is charging an explicit structured family inside the same
+simultaneous zero-moment locus as the regular-core problem; the residual
+aperiodic target is the zero-moment locus after these quotient packets are
+removed or budgeted.
+
 For interleaving, if row `i` has partial set `T_i` and quotient subset `A_i`,
 then the common agreement size is
 
@@ -879,7 +904,10 @@ checks the following stress points.
    `F_17`, `n=16`, `k=7`, `a=9`, `M=4`. Here `M` does not divide `k`,
    `ell=floor(a/M)=2`, and the partial omitted coset has size `1`. The verifier
    constructs the three expected codewords, checks that their maximum degree is
-   `5<k`, and verifies agreement on at least `9` points.
+   `5<k`, and verifies agreement on at least `9` points. It also checks that
+   the degree-`<a` interpolant on each advertised support is the constructed
+   degree-`<k` codeword, so the advertised support has zero top syndrome and
+   zero residue moments.
 3. The natural `K_{m,m}` grid over-agreement family has
    ```text
    n_min = (k-1) + m^2(a-k+1),

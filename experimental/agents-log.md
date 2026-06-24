@@ -99,7 +99,11 @@ Keep entries concise and link to the relevant files.
   syndromes are further identified with a unit-triangular transform of the
   weighted residue moments
   `sum_{s in S} U_i(s)s^j/L_S'(s)` for `0<=j<sigma`; the same verifier checks
-  zero formula mismatches and zero zero-locus mismatches.
+  zero formula mismatches and zero zero-locus mismatches. The all-remainder
+  quotient packets are also now identified inside this zero-moment locus: for
+  the dithered `F_17` packet, the verifier checks that every advertised support
+  interpolates to the constructed degree-`<k` codeword and has zero top
+  syndrome and zero residue moments.
 - **How it is useful:** Turns the L2 objective from a broad "avoid Cartesian
   overcharge" principle into a concrete conjectural inequality that can be
   falsified or promoted. The `K_{2,2}` witness records that local Cartesian

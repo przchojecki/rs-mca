@@ -795,10 +795,13 @@ def realized_dithered_quotient_packet() -> dict:
     partial_points = cosets[omitted][:partial]
     l_t = poly_from_roots(p, partial_points)
     y_poly = poly_mul(monomial(fiber_size * ell), l_t, p)
+    y_values = tuple(eval_poly(tuple(y_poly), x, p) for x in h_values)
+    positions = {x: idx for idx, x in enumerate(h_values)}
 
     rows = []
     polynomials = []
     advertised_supports = []
+    max_interpolant_degree = -1
     for quotient_subset in itertools.combinations(quotient_values[1:], ell):
         l_a = [1]
         support = set(partial_points)
@@ -815,10 +818,20 @@ def realized_dithered_quotient_packet() -> dict:
             for x in h_values
             if eval_poly(tuple(p_poly), x, p) == eval_poly(tuple(y_poly), x, p)
         ]
+        support_indices = frozenset(positions[x] for x in support)
+        interpolant = interpolate_subset_poly(p, h_values, y_values, support_indices)
+        syndrome = top_syndrome(interpolant, k, a)
+        moments = residue_moments(p, h_values, y_values, support_indices, sigma)
+        max_interpolant_degree = max(max_interpolant_degree, poly_degree(interpolant))
         rows.append(
             {
                 "quotient_subset": quotient_subset,
                 "degree": poly_degree(p_poly),
+                "interpolant_degree": poly_degree(interpolant),
+                "interpolant_matches_codeword": trim_poly(interpolant[:])
+                == trim_poly(p_poly[:]),
+                "top_syndrome_zero": all(value == 0 for value in syndrome),
+                "residue_moments_zero": all(value == 0 for value in moments),
                 "advertised_support_size": len(support),
                 "agreement_size": len(agreement),
                 "advertised_support_contained": support.issubset(set(agreement)),
@@ -848,8 +861,18 @@ def realized_dithered_quotient_packet() -> dict:
         "distinct_polynomials": len(set(polynomials)),
         "distinct_advertised_supports": len(set(advertised_supports)),
         "max_degree": max(row["degree"] for row in rows),
+        "max_interpolant_degree": max_interpolant_degree,
         "min_agreement": min(row["agreement_size"] for row in rows),
         "all_degrees_below_k": all(row["degree"] < k for row in rows),
+        "all_interpolants_match_codewords": all(
+            row["interpolant_matches_codeword"] for row in rows
+        ),
+        "all_advertised_supports_zero_syndrome": all(
+            row["top_syndrome_zero"] for row in rows
+        ),
+        "all_advertised_supports_zero_moments": all(
+            row["residue_moments_zero"] for row in rows
+        ),
         "all_advertised_supports_size_a": all(
             row["advertised_support_size"] == a for row in rows
         ),
@@ -1016,6 +1039,13 @@ def run() -> dict:
         "dithered_quotient_witness_degree": dithered_witness[
             "all_degrees_below_k"
         ],
+        "dithered_quotient_witness_interpolants": dithered_witness[
+            "all_interpolants_match_codewords"
+        ],
+        "dithered_quotient_witness_syndromes": dithered_witness[
+            "all_advertised_supports_zero_syndrome"
+        ]
+        and dithered_witness["all_advertised_supports_zero_moments"],
         "dithered_quotient_witness_agreement": dithered_witness[
             "all_advertised_supports_size_a"
         ]
@@ -1138,7 +1168,9 @@ def main(argv: list[str] | None = None) -> int:
             f"partial={dq_witness['partial']}, "
             f"count={dq_witness['constructed_count']}, "
             f"max_degree={dq_witness['max_degree']}, "
-            f"min_agreement={dq_witness['min_agreement']}"
+            f"max_interpolant_degree={dq_witness['max_interpolant_degree']}, "
+            f"min_agreement={dq_witness['min_agreement']}, "
+            f"zero_moments={dq_witness['all_advertised_supports_zero_moments']}"
         )
         jt = result["johnson_anchor_threshold_example"]
         print(
