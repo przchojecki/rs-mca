@@ -2299,6 +2299,17 @@ def check_dilation_invariant_row_bound() -> dict[str, Any]:
         valuation = p_adic_valuation(common_ideal["index"], prime)
         if valuation <= 0:
             raise AssertionError("incident orbit has zero valuation budget")
+        for member in members:
+            member_ideal = common_ideal_index(
+                member[0],
+                member[1],
+                order,
+                sigma,
+            )
+            if member_ideal["index"] != common_ideal["index"]:
+                raise AssertionError("common-ideal index changed on affine orbit")
+            if p_adic_valuation(member_ideal["index"], prime) != valuation:
+                raise AssertionError("valuation changed on affine orbit")
         weighted_budget = len(members) * valuation
         valuation_budget += weighted_budget
         orbit_rows.append({
@@ -2396,6 +2407,12 @@ def check_affine_invariance() -> dict[str, Any]:
             order=order,
             sigma=sigma,
         )
+        base_common_ideal = common_ideal_index(
+            template["left"],
+            template["right"],
+            order,
+            sigma,
+        )
         base_degree = degree(common_root_gcd_mod(
             template["left"],
             template["right"],
@@ -2407,6 +2424,8 @@ def check_affine_invariance() -> dict[str, Any]:
             raise AssertionError("bad affine-invariance base certificate")
         if base_degree != template["base_gcd_degree"]:
             raise AssertionError("bad affine-invariance base gcd degree")
+        if base["certificate"] % base_common_ideal["index"] != 0:
+            raise AssertionError("bad affine-invariance base common-ideal index")
 
         checked = 0
         for unit in units:
@@ -2414,6 +2433,12 @@ def check_affine_invariance() -> dict[str, Any]:
                 left = affine_subset(template["left"], unit, shift, order)
                 right = affine_subset(template["right"], unit, shift, order)
                 transformed = bad_prime_certificate(left, right, order, sigma)
+                transformed_common_ideal = common_ideal_index(
+                    left,
+                    right,
+                    order,
+                    sigma,
+                )
                 transformed_degree = degree(common_root_gcd_mod(
                     left,
                     right,
@@ -2423,6 +2448,8 @@ def check_affine_invariance() -> dict[str, Any]:
                 ))
                 if transformed["certificate"] != base["certificate"]:
                     raise AssertionError("certificate changed under affine action")
+                if transformed_common_ideal["index"] != base_common_ideal["index"]:
+                    raise AssertionError("common-ideal index changed under affine")
                 if transformed_degree != base_degree:
                     raise AssertionError("gcd degree changed under affine action")
                 checked += 1
@@ -2430,6 +2457,7 @@ def check_affine_invariance() -> dict[str, Any]:
             "name": template["name"],
             "prime": template["prime"],
             "certificate": base["certificate"],
+            "common_ideal_index": base_common_ideal["index"],
             "common_root_degree": base_degree,
             "affine_transforms_checked": checked,
         })
