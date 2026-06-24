@@ -189,7 +189,25 @@ J_T = {1} union union_{t=1}^7 eta^t Y_{i_t,a_t},
 ```
 
 where each slot block has size `16` and the seven active cosets are disjoint.
-Thus `|J_T|=1+7*16=113`. The imported finite slot identities are:
+Thus `|J_T|=1+7*16=113`.
+
+The slot-block assembly itself is checked by
+
+```text
+python3 experimental/scripts/verify_m1_cycle116_slot_assembly.py
+```
+
+That verifier works in the same `F_17^16` model, checks that the eight cosets
+`eta^t H32` partition `D0`, places the singleton `{1}` in the inactive coset,
+checks all `48` possible `Y_{i,a}` sets have size `16`, and proves the
+co-support size formula `1+7*16=113` for every seven-slot tuple. It also checks
+representative locator products against the direct locator of the assembled
+root set.
+
+The remaining source boundary is narrower: compare the external Cycle116 packet
+against this exact co-support definition.
+
+The finite slot identities are:
 
 ```text
 R_{t,i,a}(X) = prod_{y in Y_{i,a}}(X - eta^t y)
@@ -614,9 +632,11 @@ The chain is only as strong as the following imported clauses:
    `verify_m1_cycle84_projected_full_replay_receipt.py`, and
    `verify_m1_cycle84_projected_replay_algorithm.py`, and
    `verify_m1_cycle84_exact_occupancy_chain.py`.
-2. The slot-block assembly really uses the co-support
-   `{1} union union_t eta^t Y_{i_t,a_t}` with disjoint active cosets; the
-   current slot-identity verifier checks the disjoint active-coset envelope.
+2. The slot-block assembly uses the co-support
+   `{1} union union_t eta^t Y_{i_t,a_t}` with disjoint active cosets. The
+   internal assembly is now checked by
+   `verify_m1_cycle116_slot_assembly.py`; the remaining boundary is source
+   comparison that the external Cycle116 packet uses this same definition.
 3. The 336 Cycle116 slot identities continue to pass independent replay:
    `R_{t,i,a}(X)=X^16+O(X^10)` and
    `R_{t,i,a}(beta)=3^t u_t(i,a)`.

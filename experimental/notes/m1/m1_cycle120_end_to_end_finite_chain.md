@@ -52,6 +52,16 @@ LD_sw(RS[F0,D0,137],143) >= N,
 where `F0=F_17^16`, `|D0|=256`, the co-support size is `113`, and the common
 fixed jet has length `sigma=6`.
 
+The co-support size and disjoint slot geometry are checked separately by
+
+```text
+python3 experimental/scripts/verify_m1_cycle116_slot_assembly.py
+```
+
+It verifies the `D0` decomposition into eight `eta^t H32` cosets, the singleton
+in the inactive coset, all `336` active slot blocks, and the all-tuple formula
+`|J_T|=1+7*16=113`.
+
 The smooth padding lift preserves the same set of bad parameters and gives
 
 ```text
@@ -97,6 +107,7 @@ pieces. This note and its verifier check that:
 
 ```text
 the Cycle84 exact occupancy numerator is the same N used downstream;
+the Cycle116 slot assembly has co-support size 113;
 the Cycle116 slot replay and Cycle84 certificate use the same slot-table digest;
 the native Cycle116 parameters are n=256, k=137, agreement=143;
 the smooth lift reaches n=512, k=256, agreement=262 without changing N;
@@ -117,8 +128,8 @@ The chain remains conditional on:
    convention.
 2. Human review that the generated Cycle84 projected-census C++ replay source
    follows the audited replay algorithm.
-3. Review that the Cycle116 packet-to-slot assembly is exactly the `{1}` plus
-   seven active 16-point slot-block co-support used in the fixed-jet bridge.
+3. Source comparison that the external Cycle116 packet uses the locally verified
+   `{1}` plus seven active 16-point slot-block co-support.
 
 The current repository verifiers reduce these boundaries, but they do not
 remove them.

@@ -235,7 +235,7 @@ def build_report() -> Dict[str, Any]:
         "imports_required": [
             "Cycle116 slot identity replay by verify_m1_cycle116_slot_identities.py",
             "Cycle84 projected duplicate-bin completeness for the normalized slot table",
-            "Cycle116 co-support assembly with common singleton {1}",
+            "Cycle116 slot-block assembly by verify_m1_cycle116_slot_assembly.py",
             "official ABF source gate verification",
         ],
         "nonmutating": True,

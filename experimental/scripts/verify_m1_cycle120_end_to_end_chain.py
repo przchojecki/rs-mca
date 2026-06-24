@@ -29,6 +29,7 @@ if str(SCRIPT_DIR) not in sys.path:
 import verify_m1_cycle84_exact_occupancy_chain as cycle84
 import verify_m1_cycle116_field_lift_contract as field_lift
 import verify_m1_cycle116_fixed_jet_bridge as fixed_jet
+import verify_m1_cycle116_slot_assembly as slot_assembly
 import verify_m1_cycle116_slot_identities as slot_ids
 import verify_m1_cycle120_gate_arithmetic as gate
 
@@ -50,12 +51,14 @@ EXPECTED_DELTA = "125/256"
 
 def build_report() -> Dict[str, Any]:
     cycle84_report = cycle84.build_report()
+    assembly_report = slot_assembly.build_report()
     slot_report = slot_ids.build_report()
     fixed_report = fixed_jet.build_report()
     lift_report = field_lift.build_report()
     gate_report = gate.build_report()
 
     exact = cycle84_report["cycle84_exact"]
+    assembly = assembly_report["assembly"]
     slot_table = slot_report["slot_table"]
     native = fixed_report["parameters"]
     formal = fixed_report["formal_reduction"]
@@ -73,6 +76,7 @@ def build_report() -> Dict[str, Any]:
 
     checks = {
         "cycle84_exact_occupancy_chain_passes": cycle84_report["status"] == "PASS",
+        "cycle116_slot_assembly_passes": assembly_report["status"] == "PASS",
         "cycle116_slot_identities_pass": slot_report["status"] == "PASS",
         "cycle116_fixed_jet_bridge_passes": fixed_report["status"] == "PASS",
         "cycle116_field_lift_contract_passes": lift_report["status"] == "PASS",
@@ -84,6 +88,7 @@ def build_report() -> Dict[str, Any]:
             slot_table["digest_sha256"] == cycle84_report["slot_table_digest"]
         ),
         "slot_identity_count_336": slot_table["rows"] == 336,
+        "slot_assembly_block_count_336": int(assembly["slot_block_count"]) == 336,
         "cycle84_numerator_matches_expected": numerator == EXPECTED_NUMERATOR,
         "cycle84_numerator_matches_gate_bad_gamma_count": (
             numerator == int(gate_object["bad_gamma_count"])
@@ -97,8 +102,18 @@ def build_report() -> Dict[str, Any]:
         "native_domain_matches_contract": (
             int(native["native_domain_size"]) == EXPECTED_NATIVE_DOMAIN_SIZE
         ),
+        "assembly_domain_matches_native_domain": (
+            int(assembly["native_domain_size"]) == int(native["native_domain_size"])
+        ),
         "native_cosupport_matches_contract": (
             int(native["native_cosupport_size"]) == EXPECTED_NATIVE_COSUPPORT_SIZE
+        ),
+        "assembly_cosupport_matches_native_cosupport": (
+            int(assembly["cosupport_size"]) == int(native["native_cosupport_size"])
+        ),
+        "assembly_cosupport_formula_1_plus_7_times_16": (
+            assembly["cosupport_formula"] == "1 + 7*16"
+            and int(assembly["cosupport_size"]) == 1 + 7 * 16
         ),
         "fixed_jet_sigma_matches_contract": (
             int(formal["fixed_jet_sigma"]) == EXPECTED_FIXED_JET_SIGMA
@@ -167,6 +182,18 @@ def build_report() -> Dict[str, Any]:
                 "m_max": int(exact["m_max"]),
                 "distinct_products": numerator,
             },
+            "cycle116_slot_assembly": {
+                "native_domain_size": int(assembly["native_domain_size"]),
+                "active_cosets": assembly["active_cosets"],
+                "slot_choices_per_active_coset": int(
+                    assembly["slot_choices_per_active_coset"]
+                ),
+                "slot_block_size": int(assembly["slot_block_size"]),
+                "slot_block_count": int(assembly["slot_block_count"]),
+                "cosupport_formula": assembly["cosupport_formula"],
+                "cosupport_size": int(assembly["cosupport_size"]),
+                "all_tuple_count": int(assembly["all_tuple_count"]),
+            },
             "cycle116_native": {
                 "field": slot_report["model"]["field"],
                 "domain_size": int(native["native_domain_size"]),
@@ -204,8 +231,8 @@ def build_report() -> Dict[str, Any]:
             "smoothness, same-support predicate, and closed threshold",
             "human review that the generated Cycle84 projected-census C++ replay "
             "source follows the audited algorithm",
-            "review that the Cycle116 packet-to-slot assembly is exactly the "
-            "{1} plus seven active 16-point slot-block co-support used here",
+            "source comparison that the external Cycle116 packet uses the locally "
+            "verified {1} plus seven active 16-point slot-block co-support",
         ],
         "nonmutating": True,
     }
@@ -214,6 +241,7 @@ def build_report() -> Dict[str, Any]:
 def print_human(report: Dict[str, Any]) -> None:
     chain = report["chain"]
     cycle84_chain = chain["cycle84_exact_occupancy"]
+    assembly = chain["cycle116_slot_assembly"]
     native = chain["cycle116_native"]
     lifted = chain["cycle116_smooth_lift"]
     gate_chain = chain["cycle120_gate_arithmetic"]
@@ -227,6 +255,13 @@ def print_human(report: Dict[str, Any]) -> None:
         f"energy={cycle84_chain['true_ordered_energy']}, "
         f"m_max={cycle84_chain['m_max']}, "
         f"digest={cycle84_chain['slot_table_digest']}"
+    )
+    print(
+        "cycle116_assembly="
+        f"cosupport={assembly['cosupport_size']}, "
+        f"blocks={assembly['slot_block_count']}, "
+        f"block_size={assembly['slot_block_size']}, "
+        f"all_tuples={assembly['all_tuple_count']}"
     )
     print(
         "cycle116_native="

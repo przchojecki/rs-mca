@@ -183,7 +183,8 @@ The following inputs remain outside this arithmetic contract:
 4. The Cycle116 finite-chain transfer producing agreement `262` in the
    support-wise MCA predicate, including the slot-identity replay, the Cycle84
    occupancy census, and the smooth padding lift; these components are now
-   composed by the end-to-end finite-chain verifier.
+   composed by the end-to-end finite-chain verifier. The slot-block co-support
+   assembly is separately checked by `verify_m1_cycle116_slot_assembly.py`.
 5. Optionally, the Cycle119 two-ended transfer producing agreement `263`.
 
 ## Nonclaims

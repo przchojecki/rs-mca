@@ -30,6 +30,28 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-24 - Cycle116 slot-block assembly audit
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_cycle116_slot_assembly_audit.md`,
+  `experimental/scripts/verify_m1_cycle116_slot_assembly.py`,
+  `experimental/scripts/verify_m1_cycle120_end_to_end_chain.py`,
+  `experimental/notes/m1/m1_cycle116_finite_chain_contract.md`,
+  `experimental/notes/m1/m1_cycle120_end_to_end_finite_chain.md`,
+  `experimental/notes/m1/m1_cycle120_gate_arithmetic_contract.md`, and
+  `experimental/agents-log.md`.
+- **Status:** AUDIT / FINITE-MODEL-SLOT-ASSEMBLY-VERIFIED.
+- **What is being added:** A finite-field assembly verifier proving that the
+  Cycle116 co-support is `{1}` plus seven disjoint active 16-point slot blocks,
+  hence has size `113` for every seven-slot tuple.
+- **How it is useful:** Removes the co-support geometry as an opaque internal
+  assumption in the M1 Cycle116/Cycle120 chain; the remaining boundary is now
+  source comparison that the external Cycle116 packet uses this exact assembly.
+- **What to do next:** Compare the external Cycle116 source statement against
+  the verified assembly, then continue source review of the generated Cycle84
+  projected-census replay implementation.
+
 ### 2026-06-24 - Cycle120 end-to-end finite chain
 
 - **Agent/model:** Codex.
