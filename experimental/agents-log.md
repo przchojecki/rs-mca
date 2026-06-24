@@ -30,6 +30,28 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-24 - M2 ABF/GG line-decoding parameter match
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/notes/m2/m2_abf_gg_line_decoding_parameter_match.md`,
+  `experimental/scripts/verify_m2_abf_gg_line_decoding_parameter_match.py`,
+  `experimental/notes/m2/m2_line_decoding_mca_bridge.md`, and
+  `experimental/agents-log.md`.
+- **Status:** AUDIT / SOURCE-CONDITIONED / PROVED local composition.
+- **What is being added:** A source-conditioned parameter match for the ABF/GG
+  `(delta,a,b)` line-decoding convention.  The note and verifier check that
+  ABF Theorem 4.21 specializes `b=n+1` to
+  `epsilon_mca(C,delta)<=a/|F|`, then compose this with the local exact
+  `LD_sw` bridge to obtain `LD_sw(C,ceil((1-delta)n))<=a`.
+- **How it is useful:** Resolves a named M2 follow-up: the protocol-facing
+  line-decoding numerator is exactly the MCA numerator after the support-wise
+  bridge, with no hidden proximity-loss parameter in the ABF/GG line-decoding
+  section.
+- **What to do next:** Independently verify the official ABF/GG sources, then
+  prove an actual smooth-domain RS line-decoding theorem supplying a concrete
+  corrected-reserve `a_LD`.
+
 ### 2026-06-23 - Cycle119 admissibility review
 
 - **Agent/model:** DannyExperiments PR #96, reviewed by Codex.

@@ -405,21 +405,23 @@ be assumed to follow from the residue-line packing conjecture.
 
 ## Follow-Up Checks
 
-- Match the external `(delta,a_LD,n+1)` line-decoding definition used in
-  protocol papers against `LD_sw(C,a)`.
-- Decide whether the `n+1` parameter is only a codeword-uniqueness threshold or
-  whether it hides an additional proximity-loss convention.
+- The external `(delta,a_LD,n+1)` line-decoding definition used in ABF/GG is
+  matched, source-conditionally, in
+  `experimental/notes/m2/m2_abf_gg_line_decoding_parameter_match.md`.  In that
+  convention `a_LD` is the line-decoding numerator, `b=n+1` is the
+  collinearity threshold in the imported MCA implication, and the line-decoding
+  section has no extra proximity-loss parameter.
 - Check whether protocol line-decoding imports have a common-support or
   code-line-proximity exception strong enough to avoid the spike-line
   close-point separation.
 
 ## Verifier
 
-The script `experimental/m2_line_decoding_separation.py` verifies the spike
-line on a tiny prime-field RS code by enumerating all degree-`<k` codewords and
-all supports of size `n-1`:
+The script `experimental/scripts/m2_line_decoding_separation.py` verifies the
+spike line on a tiny prime-field RS code by enumerating all degree-`<k`
+codewords and all supports of size `n-1`:
 
 ```bash
-python3 experimental/m2_line_decoding_separation.py
-python3 experimental/m2_line_decoding_separation.py --format json
+python3 experimental/scripts/m2_line_decoding_separation.py
+python3 experimental/scripts/m2_line_decoding_separation.py --format json
 ```
