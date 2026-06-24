@@ -926,6 +926,10 @@ checks the following stress points.
    one-row supports give `42` listed pairs, not `42^2`; the quotient part gives
    `3`, the residual part gives `39`, and there are no mixed quotient/residual
    listed pairs.
+   The same finite family has no nontrivial dilation self-correlation: among
+   the `16` domain rotations, only the identity maps any zero-moment support
+   back into the zero-moment family. In particular the maximum non-identity
+   overlap for the residual subfamily is `0`.
    Thus `Quot_rem_mu` is a structured subfamily of the zero-moment locus, not
    an exhaustive description of that locus in small finite examples; the
    remaining aperiodic zero-moment supports are exactly what the polynomial

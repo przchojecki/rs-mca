@@ -114,6 +114,9 @@ Keep entries concise and link to the relevant files.
   Equal-row interleaving of the exact-support family remains diagonal: `42`
   one-row zero-moment supports give `42` listed pairs, with `3` quotient pairs,
   `39` residual pairs, and no mixed quotient/residual listed pairs.
+  Nontrivial dilation correlations also vanish in this finite family: among
+  the `16` domain rotations, only the identity maps zero-moment supports back
+  into the family, and the maximum non-identity residual overlap is `0`.
   This records that `Quot_rem_mu` is a structured budgeted subfamily, not an
   exhaustive finite classification of the zero-moment locus.
 - **How it is useful:** Turns the L2 objective from a broad "avoid Cartesian

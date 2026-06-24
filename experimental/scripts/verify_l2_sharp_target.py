@@ -958,6 +958,42 @@ def realized_dithered_quotient_packet() -> dict:
         )
         + pair_count(residual_supports, active_quotient_supports),
     }
+    dilation_rows = []
+    for shift, multiplier in enumerate(h_values):
+        permutation = {
+            idx: positions[(multiplier * x) % p]
+            for idx, x in enumerate(h_values)
+        }
+
+        def dilate_family(family: set[frozenset[int]]) -> set[frozenset[int]]:
+            return {frozenset(permutation[idx] for idx in support) for support in family}
+
+        dilated_zero = dilate_family(zero_support_set)
+        dilated_quotient = dilate_family(active_quotient_supports)
+        dilated_residual = dilate_family(residual_supports)
+        dilation_rows.append(
+            {
+                "shift": shift,
+                "all_overlap": len(zero_support_set & dilated_zero),
+                "quotient_overlap": len(active_quotient_supports & dilated_quotient),
+                "residual_overlap": len(residual_supports & dilated_residual),
+                "mixed_overlap": len(active_quotient_supports & dilated_residual)
+                + len(residual_supports & dilated_quotient),
+            }
+        )
+    nontrivial_dilations = [row for row in dilation_rows if row["shift"] != 0]
+    dilation_profile = {
+        "rows": dilation_rows,
+        "max_nontrivial_all_overlap": max(
+            (row["all_overlap"] for row in nontrivial_dilations), default=0
+        ),
+        "max_nontrivial_residual_overlap": max(
+            (row["residual_overlap"] for row in nontrivial_dilations), default=0
+        ),
+        "max_nontrivial_mixed_overlap": max(
+            (row["mixed_overlap"] for row in nontrivial_dilations), default=0
+        ),
+    }
     zero_moment_profile = {
         "all_a_subsets": comb(n, a),
         "zero_moment_supports": zero_moment_supports,
@@ -990,6 +1026,7 @@ def realized_dithered_quotient_packet() -> dict:
         "active_quotient_shape_residual": zero_moment_supports
         - len(active_quotient_supports),
         "equal_row_profile": equal_row_profile,
+        "dilation_profile": dilation_profile,
     }
     return {
         "p": p,
@@ -1248,6 +1285,28 @@ def run() -> dict:
             "residual_interleaved_pairs": 39,
             "mixed_interleaved_pairs": 0,
         },
+        "dithered_quotient_dilation_separates_residuals": dithered_witness[
+            "zero_moment_profile"
+        ]["dilation_profile"]["rows"][0]
+        == {
+            "shift": 0,
+            "all_overlap": 42,
+            "quotient_overlap": 3,
+            "residual_overlap": 39,
+            "mixed_overlap": 0,
+        }
+        and dithered_witness["zero_moment_profile"]["dilation_profile"][
+            "max_nontrivial_all_overlap"
+        ]
+        == 0
+        and dithered_witness["zero_moment_profile"]["dilation_profile"][
+            "max_nontrivial_residual_overlap"
+        ]
+        == 0
+        and dithered_witness["zero_moment_profile"]["dilation_profile"][
+            "max_nontrivial_mixed_overlap"
+        ]
+        == 0,
         "dithered_quotient_witness_agreement": dithered_witness[
             "all_advertised_supports_size_a"
         ]
@@ -1375,6 +1434,7 @@ def main(argv: list[str] | None = None) -> int:
             f"zero_moments={dq_witness['all_advertised_supports_zero_moments']}"
         )
         qprof = dq_witness["zero_moment_profile"]
+        dprof = qprof["dilation_profile"]
         print(
             "    quotient word zero-moment profile: "
             f"all_a_subsets={qprof['all_a_subsets']}, "
@@ -1386,7 +1446,11 @@ def main(argv: list[str] | None = None) -> int:
             f"active_shapes={qprof['active_quotient_shape_profile']}, "
             f"active_shape_residual={qprof['active_quotient_shape_residual']}, "
             f"residual_occupancy={qprof['residual_occupancy_histogram']}, "
-            f"equal_row={qprof['equal_row_profile']}"
+            f"equal_row={qprof['equal_row_profile']}, "
+            f"dilation_identity={dprof['rows'][0]}, "
+            f"max_nontrivial_dilation=({dprof['max_nontrivial_all_overlap']}, "
+            f"{dprof['max_nontrivial_residual_overlap']}, "
+            f"{dprof['max_nontrivial_mixed_overlap']})"
         )
         jt = result["johnson_anchor_threshold_example"]
         print(
