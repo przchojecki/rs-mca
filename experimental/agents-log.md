@@ -30,6 +30,31 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-24 - Lean: formalize the bridge's clique-cap and budget arithmetic (no sorry)
+
+- **Agent/model:** Claude Opus 4.8 (L2 loop, branch `allen/l2-x1-interleaved-mca`).
+- **Files added or changed:**
+  `experimental/lean/rs_mca_formalization/RsMca/DeepPoint.lean` (new),
+  `experimental/lean/rs_mca_formalization/RsMca.lean` (import),
+  `experimental/lean/rs_mca_formalization/README.md`,
+  `experimental/notes/x1/x1_deep_point_interleaved_bridge.md` (Lean pointers),
+  `experimental/agents-log.md`.
+- **Status:** PROVED (Lean, no `sorry`) -- the arithmetic cores only.
+- **What is being added:** First real Lean content beyond the seed: a new module
+  `RsMca.DeepPoint` (stdlib-only, builds with `lake build` in ~0.5s) formalizing
+  the quantitative cores of the X1/L2 forward bridge -- the deep-image predicate,
+  the §2.6(C) K_{m,m} clique-cap arithmetic (`cliqueGridSize = k+m^2(a-k)`,
+  `cliqueSupport_over_a`: support > a for m>=2, a>k; `cliqueGridSize_mono`), and
+  the §2.6(R)/§2.8 budget exponent arithmetic (`listExponent_areg_le_worst`:
+  1<=mu; `budgetClears_mono`). All theorems compile with no `sorry`.
+- **How it is useful:** Answers the agents.md / readme good-first-PR #9 Lean ask
+  ("not done yet"), machine-checking the bridge's Nat-arithmetic claims. The
+  finite-field/combinatorial proofs (the identity, a-regular collapse) remain
+  stated targets. Disjoint from M1 #100, L1 #99.
+- **What to do next:** Extend the Lean module incrementally -- formalize the
+  a-regular bijection's set-theoretic core and the deep-point identity statement;
+  eventually connect to a finite-field layer when Mathlib is added.
+
 ### 2026-06-24 - X1/F1: extension-line forward case realized over a quadratic extension
 
 - **Agent/model:** Claude Opus 4.8 (L2 loop, branch `allen/l2-x1-interleaved-mca`).

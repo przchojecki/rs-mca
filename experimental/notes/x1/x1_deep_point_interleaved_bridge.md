@@ -544,6 +544,8 @@ general (non-simple-pole) F1 lift remains the open F1 question.
     the `e`-fold interleaved bridge (connection to prob:F1).
 12. (done) §2.10 extension-line forward case realized over `F_{p^2}`:
     `scripts/verify_x1_extension_line.py` (base identity, list control, M_z transfer).
+13. (done) Lean: `lean/rs_mca_formalization/RsMca/DeepPoint.lean` machine-checks
+    the §2.6 clique-cap and §2.8 budget arithmetic (no `sorry`).
 
 ## Ledger impact
 
@@ -578,4 +580,5 @@ python3 experimental/scripts/verify_x1_conditional_budget.py
 python3 experimental/scripts/verify_x1_conditional_budget.py --json
 python3 experimental/scripts/verify_x1_extension_line.py
 python3 experimental/scripts/verify_x1_extension_line.py --json
+(cd experimental/lean/rs_mca_formalization && lake build)
 ```
