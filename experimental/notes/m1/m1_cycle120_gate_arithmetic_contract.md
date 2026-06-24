@@ -25,6 +25,17 @@ It does not prove the Cycle84 finite energy/census, the full Cycle116 finite-cha
 transfer, or the optional Cycle119 strict-ball transfer. It records exactly
 what those imports would imply if they survive independent review.
 
+The current finite-chain composition of those imports is packaged separately in:
+
+```text
+experimental/notes/m1/m1_cycle120_end_to_end_finite_chain.md
+python3 experimental/scripts/verify_m1_cycle120_end_to_end_chain.py
+```
+
+That composition checks the Cycle84 numerator, Cycle116 agreement threshold,
+smooth lift, and Cycle120 density comparison in one nonmutating audit. It still
+inherits the official ABF source-gate and finite-source-review boundaries.
+
 ## Object
 
 Use the row
@@ -167,10 +178,12 @@ The following inputs remain outside this arithmetic contract:
 2. The finite definition of `K`, `theta`, and `H`, including the proof or
    certificate that `H=<theta>` is the intended power-of-two subgroup.
 3. The Cycle84 finite energy/census producing
-   `N = 52,747,567,092`.
+   `N = 52,747,567,092`; this is now packaged by the exact occupancy verifier
+   but still awaits generated-source review.
 4. The Cycle116 finite-chain transfer producing agreement `262` in the
    support-wise MCA predicate, including the slot-identity replay, the Cycle84
-   occupancy census, and the smooth padding lift.
+   occupancy census, and the smooth padding lift; these components are now
+   composed by the end-to-end finite-chain verifier.
 5. Optionally, the Cycle119 two-ended transfer producing agreement `263`.
 
 ## Nonclaims

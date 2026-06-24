@@ -441,6 +441,19 @@ no fibers of size >= 3.
 conditional only on source review of the generated projected-census replay
 implementation.
 
+The downstream composition with the Cycle116 smooth lift and Cycle120 gate
+arithmetic is packaged separately by
+
+```text
+experimental/notes/m1/m1_cycle120_end_to_end_finite_chain.md
+python3 experimental/scripts/verify_m1_cycle120_end_to_end_chain.py
+```
+
+That verifier checks that the same numerator `N`, slot-table digest, native
+agreement `143`, lifted agreement `262`, and Cycle120 density gate are aligned.
+It does not discharge the official ABF source-gate review or the generated
+Cycle84 replay source review.
+
 ## Abstract Smooth Padding Lift
 
 Let `C0=RS[F0,D0,k0]` and suppose a native support-wise bad-slope theorem gives

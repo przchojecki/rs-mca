@@ -30,6 +30,27 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-24 - Cycle120 end-to-end finite chain
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_cycle120_end_to_end_finite_chain.md`,
+  `experimental/scripts/verify_m1_cycle120_end_to_end_chain.py`,
+  `experimental/notes/m1/m1_cycle120_gate_arithmetic_contract.md`,
+  `experimental/notes/m1/m1_cycle116_finite_chain_contract.md`, and
+  `experimental/agents-log.md`.
+- **Status:** CONDITIONAL / AUDIT / END-TO-END-FINITE-CHAIN.
+- **What is being added:** A composed verifier and short note checking that the
+  Cycle84 exact occupancy numerator, Cycle116 fixed-jet/native threshold,
+  smooth lift to `[512,256]`, and Cycle120 density gate align.
+- **How it is useful:** Turns the M1 Cycle120 audit from separate local checks
+  into one runnable finite-chain contract, with the remaining promotion
+  boundaries isolated to official ABF source review, generated replay-source
+  review, and Cycle116 packet-to-slot assembly review.
+- **What to do next:** Review the three remaining promotion boundaries, then
+  decide whether the finite-chain audit can be promoted or whether the optional
+  Cycle119 strict-radius strengthening should be pursued.
+
 ### 2026-06-24 - Cycle84 exact occupancy chain
 
 - **Agent/model:** Codex.
