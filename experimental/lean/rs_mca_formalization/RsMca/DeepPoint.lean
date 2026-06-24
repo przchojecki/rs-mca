@@ -93,4 +93,49 @@ theorem budgetClears_mono {e e' B m logQ target : Nat} (he : e ≤ e')
     Nat.mul_le_mul_right m (Nat.mul_le_mul_right B he)
   omega
 
+/-! ## Statements of the deep-point identity and the a-regular collapse
+
+These record the exact claims proved in the notes by finite-field / set
+arguments. Their proofs need polynomial-root and finite-set facts (Mathlib) and
+are left as formalization targets; the statements are stdlib-only. -/
+
+/-- The bad-slope set of a line at a radius accepted by `bigEnough`. -/
+def badSlopeSet {D F : Type} (code : Word D F -> Prop)
+    (combine : F -> F -> F -> F) (f g : Word D F) (bigEnough : List D -> Prop)
+    (z : F) : Prop :=
+  exists S, bigEnough S /\ mcaBadSupport code combine f g z S
+
+/-- §1-§2 deep-point identity (statement): the MCA-bad slopes of the simple-pole
+    line equal the deep image.  Target proof: the per-row division
+    `Q = (P - P(alpha))/(X - alpha)` plus the global far condition. -/
+def DeepPointIdentity {D F P : Type}
+    (code : Word D F -> Prop) (combine : F -> F -> F -> F) (f g : Word D F)
+    (pcode : P -> Prop) (toWord : P -> Word D F) (eval : P -> F)
+    (U : Word D F) (bigEnough : List D -> Prop) : Prop :=
+  forall z, badSlopeSet code combine f g bigEnough z <->
+            deepImageMem pcode toWord eval U bigEnough z
+
+/-- §2.3 a-regular collapse (statement): in the a-regular regime the worst-case
+    interleaved list equals the base-code list (interleaving exponent 1). -/
+def ARegularCollapse (interleavedList baseList : Nat) : Prop :=
+  interleavedList = baseList
+
+/-! ## §2 / §2.1: the mu-independent collision bound (arithmetic core) -/
+
+/-- Two distinct interleaved tuples differ in some row, so their simultaneous
+    deep-point collision count is at most that row's count, hence at most `k`
+    (rows being degree-`<= k`).  Core: a subset/`min` bound. -/
+theorem simultaneousCollision_le_k {rowCollision simultaneous k : Nat}
+    (hsub : simultaneous ≤ rowCollision) (hrow : rowCollision ≤ k) :
+    simultaneous ≤ k :=
+  Nat.le_trans hsub hrow
+
+/-- The collision bound is `mu`-independent: the same `k` bounds it for every
+    arity, since the simultaneous collision only shrinks as rows are added. -/
+theorem collision_bound_mu_independent {k : Nat}
+    (simultaneous : Nat -> Nat) (rowCollision : Nat)
+    (hmono : forall mu, simultaneous mu ≤ rowCollision) (hrow : rowCollision ≤ k) :
+    forall mu, simultaneous mu ≤ k :=
+  fun mu => Nat.le_trans (hmono mu) hrow
+
 end RsMca

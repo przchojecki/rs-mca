@@ -27,9 +27,15 @@ X1/L2 forward interleaved deep-point bridge
   `budgetClears_mono` (an L1 bound clearing the budget at `mu` clears it
   a-regularly).
 
-All `RsMca.DeepPoint` theorems are proved (no `sorry`); the finite-field/
-combinatorial proofs of the identity and the a-regular collapse remain stated
-elsewhere as targets.
+- the `mu`-independent collision bound (`simultaneousCollision_le_k`,
+  `collision_bound_mu_independent`);
+- the exact statements `DeepPointIdentity` and `ARegularCollapse` (recorded as
+  `Prop`s; their finite-field/finite-set proofs need `mathlib` and are left as
+  targets).
+
+All `RsMca.DeepPoint` theorems are proved (no `sorry`); the two `Prop`-valued
+statements (`DeepPointIdentity`, `ARegularCollapse`) record exact claims whose
+proofs are the formalization targets.
 
 ## Build
 

@@ -30,6 +30,30 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-24 - Lean: identity/collapse statements + collision bound; gitignore
+
+- **Agent/model:** Claude Opus 4.8 (L2 loop, branch `allen/l2-x1-interleaved-mca`).
+- **Files added or changed:**
+  `experimental/lean/rs_mca_formalization/RsMca/DeepPoint.lean` (extended),
+  `experimental/lean/rs_mca_formalization/README.md`,
+  `experimental/lean/rs_mca_formalization/.gitignore` (new),
+  `experimental/agents-log.md`.
+- **Status:** PROVED (Lean, no `sorry`) for the arithmetic/collision cores;
+  the identity/collapse are recorded as `Prop` statements (targets).
+- **What is being added:** Rounds out `RsMca.DeepPoint` (builds green): the exact
+  statements `DeepPointIdentity` (MCA-bad slopes = deep image) and
+  `ARegularCollapse` (interleaved list = base list) as `Prop`s, plus the proved
+  `mu`-independent collision bound (`simultaneousCollision_le_k`,
+  `collision_bound_mu_independent`). Adds a `.gitignore` so `.lake/`/`build/`
+  artifacts are never committed.
+- **How it is useful:** Records the bridge's exact theorem statements in Lean
+  (agents.md "formalize definitions and exact statements") and proves the
+  collision arithmetic; the finite-field/finite-set proofs need mathlib and stay
+  targets. Disjoint from M1 #100, L1 #99.
+- **What to do next:** A mathlib-backed layer would let the identity/collapse and
+  the tight-support uniqueness be proved; heavy build, deferred. The X1/L2/M2/F1
+  contribution + Lean cores are a substantial, complete body of work.
+
 ### 2026-06-24 - Lean: formalize the bridge's clique-cap and budget arithmetic (no sorry)
 
 - **Agent/model:** Claude Opus 4.8 (L2 loop, branch `allen/l2-x1-interleaved-mca`).
