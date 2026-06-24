@@ -588,9 +588,9 @@ def compute_report() -> dict[str, Any]:
             "(x^a-z)/(x-alpha) has at least binom(p-a+1,2) support-wise "
             "MCA-bad slopes over F_{p^2}; for sigma=2 and a=k+2, zero-sum "
             "supports give a tail with the averaged number of distinct bad "
-            "triple slopes; for sigma=3, finite cases check the general "
-            "prefix-vanishing fixed-tail injectivity template and exact "
-            "dynamic support counts."
+            "triple slopes; the note proves a fixed-sigma character bound for "
+            "the general prefix-vanishing template, and sigma=3 finite cases "
+            "check exact dynamic support counts."
         ),
         "sigma_one_cases": sigma_one_cases,
         "sigma_two_cases": sigma_two_cases,

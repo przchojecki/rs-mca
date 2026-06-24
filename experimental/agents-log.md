@@ -44,20 +44,19 @@ Keep entries concise and link to the relevant files.
   extension instances, verifies every sigma-one `a=k+1` support gives a
   support-wise MCA-bad slope, checks the fixed-tail injective pair slice that
   yields `binom(p-a+1,2)` distinct bad slopes, checks the sigma-two zero-sum
-  support / tail-triple slice, and records a general fixed-slack degree-one
-  template whose only remaining input is a prefix-vanishing support count.  For
-  the first open case `sigma=3`, it adds an exact dynamic count recurrence,
-  a character-sum error bound, and the fixed-rate constant-density lower
-  bound.
+  support / tail-triple slice, proves a general fixed-slack degree-one
+  template, and adds a fixed-sigma character bound showing the required
+  prefix-vanishing support count has density `(1+o(1))p^{-(sigma-1)}`.  It also
+  keeps an exact dynamic count recurrence for the first nontrivial finite case
+  `sigma=3`.
 - **How it is useful:** Strengthens the F1 warning against unrestricted
   numerator-preserving extension-line lifts: the extension numerator is
   already quadratic in the base field for fixed-rate sigma-one lines, and the
   same fixed-tail injectivity mechanism persists for all fixed slack.
-- **What to do next:** Use this as the reviewed finite sanity check for the
-  fixed-slack degree-one theorems; extend the sigma-three character argument
-  or find an obstruction for `sigma>=4`, and ensure any repaired F1 theorem
-  excludes this sub-reserve regime or includes an extension-valued residue-line
-  term.
+- **What to do next:** Use this as the reviewed fixed-slack obstruction theorem
+  for F1; the remaining positive-theorem frontier is growing slack, especially
+  the corrected-reserve range `sigma >= C n/log n`, or adding an
+  extension-valued residue-line term.
 
 ### 2026-06-23 - Cycle119 admissibility review
 
