@@ -322,6 +322,77 @@ W - c_i L_D        on T_i,
 or a proof that large-defect concentration forces quotient, low-defect, or
 another budgeted structure.
 
+## Lemma 4. Petal-Support Tradeoff
+
+Status: PROVED.
+
+Let `P` be a non-planted listed codeword for the sunflower received word.  Use
+the notation of Lemma 2, and write
+
+```text
+r = |R_P|,
+h = sum_i |S_i|,
+t = #{ i : S_i is nonempty }.
+```
+
+If `d>0`, then
+
+```text
+t >= ceil((sigma+d+1-r)/d),
+```
+
+and equivalently
+
+```text
+(t-1)d >= sigma+1-r.
+```
+
+If the sunflower is maximal, so that the unused background has size
+`b=|R|<sigma+1`, then every non-planted listed codeword satisfies `t>=2`.
+More generally, any non-planted listed codeword supported on at most `T`
+petals satisfies
+
+```text
+d >= ceil((sigma+1-b)/(T-1))        for T >= 2.
+```
+
+### Proof
+
+The list condition and the definition of the core defect give
+
+```text
+h + r = |A cap (H_n \ C)| >= s - |C_P|
+      = (k+sigma) - (k-1-d) = sigma+d+1.
+```
+
+Thus `h >= sigma+d+1-r`.  Lemma 2 gives the per-petal bound `|S_i|<=d` for a
+non-planted codeword, so `h <= td`.  Combining these inequalities gives
+
+```text
+td >= sigma+d+1-r,
+```
+
+which is the asserted tradeoff.
+
+If the sunflower is maximal, then `r<=b<sigma+1`.  First, `d=0` is impossible:
+the per-petal bound gives `h=0`, while the list condition gives
+`h+r>=sigma+1`.  Thus `d>0`.  A zero- or one-petal extra would have
+`(t-1)d<=0`, contradicting `(t-1)d >= sigma+1-r > 0`.  The displayed lower
+bound for `d` follows from the same inequality and `r<=b`.
+
+### Consequences
+
+Lemma 4 explains why the small `F_97,n=16,k=8,s=10` extras are genuinely
+mixed-petal.  In that row `sigma=2` and the maximal sunflower has no unused
+background, so a defect-`2` extra must touch at least three petals, while a
+two-petal extra must have defect at least `3`.
+
+For the asymptotic proof program, the remaining danger is now sharper.  A
+counterexample must either spread across many petals, or it must pay a large
+core defect proportional to `sigma/(T-1)` if it is supported on only `T`
+petals.  The next incidence estimate can therefore be organized by the pair
+`(d,t)` rather than by all mixed-petal extras at once.
+
 ## Development Ledger
 
 - **Conjecture 1 full-list primitive remainder:** CONJECTURAL.  Main proof
@@ -341,5 +412,7 @@ another budgeted structure.
   mixed-petal extra to a degree-`d` interpolation problem with a per-petal cap.
 - **Fixed-defect sunflower layers:** PROVED.  Bounds each fixed missed-core
   layer by `O_{d0}(n^{2d0+1})`.
+- **Petal-support tradeoff:** PROVED.  Shows that few-petal non-planted extras
+  require large missed-core defect.
 - **Mixed-petal sunflower amplification:** CONJECTURAL.  Next focused bound to
   prove or refute in the large-defect regime.

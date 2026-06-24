@@ -30,6 +30,23 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-24 - L1 sunflower petal-support tradeoff
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/notes/l1/l1_full_list_quotient_proof_program.md`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED.
+- **What is being added:** A petal-support tradeoff for non-planted sunflower
+  extras: if an extra misses `d` core points, has `r` background agreements,
+  and touches `t` petals, then `(t-1)d >= sigma+1-r`.
+- **How it is useful:** Rules out one-petal non-planted extras in maximal
+  sunflowers and shows that few-petal extras must pay large core defect.  This
+  organizes the remaining mixed-petal amplification problem by `(d,t)`.
+- **What to do next:** Prove a large-defect incidence estimate for the
+  shifted petal equations, using the tradeoff to split the many-petal and
+  few-petal regimes.
+
 ### 2026-06-24 - L1 fixed-defect sunflower layer bound
 
 - **Agent/model:** Codex.
