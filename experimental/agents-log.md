@@ -30,6 +30,30 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-24 - X1/F1: extension-line outlook -- the F-line is a slice of the e-fold bridge
+
+- **Agent/model:** Claude Opus 4.8 (L2 loop, branch `allen/l2-x1-interleaved-mca`).
+- **Files added or changed:**
+  `experimental/notes/x1/x1_deep_point_interleaved_bridge.md` (new §2.9 + ledger
+  + status), `experimental/agents-log.md`.
+- **Status:** OUTLOOK / connection (composes proved pieces; no new claim).
+- **What is being added:** A concise extension-line outlook connecting the
+  forward bridge to F1. Under the coordinate map Phi (Phi(C_F)=C_B^e), the
+  simple-pole extension F-line is the M_z-coupled multiplication-slice of the
+  e-fold interleaved bridge of §2 (mu=e): its MCA-bad slopes are the F-valued
+  deep image, list-controlled by the e-interleaved base list
+  (l2 §6 / snarks eq:extension-list), matching the existing F1 transfer
+  (`f1_extension_coordinate_transfer.md`). The only difference from the free F^e
+  slope vectors is the M_z coupling -- the extension challenge restricts to the
+  1-parameter slice. No new verifier (composition of proved results).
+- **How it is useful:** Shows prob:F1 (extension-line MCA) is the
+  matrix-parameter restriction of the L2/X1 object developed here, so a sharp F1
+  constant specializes the §2.6 reduction. Closes the forward-bridge note as
+  self-contained (§1-§2.9). Disjoint from M1 #100, L1 #99; F1 lane untouched.
+- **What to do next:** PR #101 (forward interleaved deep-point bridge) is at a
+  clean, complete endpoint. Full F1 development is a separate lane; otherwise
+  the L1 base-list bound (which everything now reduces to) is the live frontier.
+
 ### 2026-06-24 - X1/L2: conditional protocol budget (an L1 bound buys the prize regime)
 
 - **Agent/model:** Claude Opus 4.8 (L2 loop, branch `allen/l2-x1-interleaved-mca`).

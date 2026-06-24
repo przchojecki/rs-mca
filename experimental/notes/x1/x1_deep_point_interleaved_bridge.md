@@ -1,7 +1,9 @@
 # X1: Interleaved Deep-Point Bridge (list -> interleaved CA/MCA, forward direction)
 
 - **Status:** AUDIT (base identity, independently reproduced) / PROVED + PROVED-by-check
-  (interleaved identity §2 and the mu-independent collision bound).
+  (interleaved identity §2, a-regular collapse §2.3, overlap-graph §2.4, L2->L1
+  reduction + clique cap §2.6) / CONDITIONAL (protocol budget §2.8, on the L1
+  bound) / OUTLOOK (extension-line §2.9). Self-contained forward-bridge note.
 - **Agent/model:** Claude Opus 4.8 (L2 loop, branch `allen/l2-x1-interleaved-mca`).
 - **Date:** 2026-06-23 / 2026-06-24.
 - **Scope:** Problem X1 (list <-> CA/MCA without square-root loss) and L2
@@ -39,6 +41,7 @@ list at the same radius `delta_a = 1-a/n`, `a > k`.
 | 2.6 | L2 -> L1 reduction `Lst(Int) <= Lst(C_+)^mu` (= `Lst(C_+)` a-regular); `K_{m,m}` clique cap `n >= k+m^2(a-k)` | PROVED + PROVED-by-check |
 | 2.7 | Line-decoding reading (M2): `LD = Bad_MCA = Bad_CA = Deep_alpha` coincide on the simple-pole family | AUDIT / PROVED-by-check |
 | 2.8 | Conditional protocol budget: `Lst(C_+) <= n^B` => interleaved-MCA term `<= n^{eB}/q`; small `B` clears `2^-128` | PROVED (conditional on L1) |
+| 2.9 | Extension-line outlook (F1): the `F`-line is the `M_z`-coupled slice of the `e`-fold interleaved bridge | OUTLOOK |
 
 **What is proved.** The forward interleaved bridge is complete and `mu`-clean: an
 interleaved list bound transfers to an interleaved-MCA bad-slope count at the
@@ -434,6 +437,39 @@ A **polynomial L1 list bound with a small exponent suffices** for the entire
 prize regime once routed through the bridge -- which is exactly what the L1
 program (`l1_prefix_divisor_count.md`, `conj:prefix-local`) is trying to prove.
 
+## 2.9 Extension-line outlook (connection to F1)
+
+*Status: OUTLOOK / connection (composes proved pieces; full F1 development is its
+own lane). No new claim beyond the cited results.*
+
+The interleaved bridge specializes to **extension `F`-lines** and meets the F1
+program. Let `B subset F` have degree `e`, `D subset B`, and fix a `B`-basis to
+get the coordinate map `Phi` with `Phi(C_F) = C_B^e`
+(`notes/f1/f1_extension_coordinate_transfer.md`, PROVED). For the simple-pole
+`F`-line at a deep point `alpha in F \ D`:
+
+1. by §1-§2 over `F`, its support-wise MCA-bad slopes are the `F`-valued deep
+   image `Deep_alpha(U,a)`, i.e. the `alpha`-evaluation of the
+   `C_{F,+} = RS[F,D,k+1]` list;
+2. by the extension-coordinate list identity
+   (`notes/l2/l2_interleaved_dilation_constants.md` §6;
+   `tex/snarks_v4.tex` `eq:extension-list`), `|Lambda(C_F,delta_a)| =
+   |Lambda(Int(C_B,e),delta_a)|`, so that list is the `e`-interleaved base-code
+   list;
+3. by the F1 transfer, `Phi` carries the `F`-line to the **multiplication-slice**
+   family `Phi(f)+M_z Phi(g)` inside `C_B^e`, where the scalar `z in F` becomes
+   the multiplication matrix `M_z`.
+
+So the simple-pole **extension-line is a one-parameter, matrix-coupled slice of
+the `e`-fold interleaved bridge of §2** (`mu = e`): its MCA-bad slopes are the
+deep image, list-controlled by the `e`-interleaved base list. The only
+difference from the free `F^e` slope vectors of §2 is the `M_z` coupling -- the
+extension challenge restricts to the `1`-parameter slice. This connects the
+forward bridge to `prob:F1` (extension-line MCA) and shows the F1 object is the
+matrix-parameter restriction of the L2/X1 object developed here; a sharp F1
+constant would specialize the §2.6 reduction to the multiplication-slice family.
+Full F1 development is deferred to the F1 lane.
+
 ## 3. Plan (incremental commits on this PR)
 
 1. (done) Independent audit + broadened verifier of the base identity (§1).
@@ -460,6 +496,9 @@ program (`l1_prefix_divisor_count.md`, `conj:prefix-local`) is trying to prove.
    the simple-pole family; `scripts/verify_x1_line_decoding.py`.
 10. (done) §2.8 conditional protocol budget: an L1 bound `Lst(C_+)<=n^B` yields
     the interleaved-MCA soundness budget; `scripts/verify_x1_conditional_budget.py`.
+11. (done) §2.9 extension-line outlook: the F-line is the `M_z`-coupled slice of
+    the `e`-fold interleaved bridge (connection to prob:F1). The forward-bridge
+    note is now self-contained (§1-§2.9).
 
 ## Ledger impact
 
