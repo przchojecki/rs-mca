@@ -1311,6 +1311,87 @@ has been reduced uniformly to split-locator concentration inside explicit CRT
 kernels.  Below the top boundary the kernel has dimension at most `d-ell+1`;
 at the boundary it has dimension at most `d-ell+2`.
 
+## Lemma 15. Uniform Full-Petal Cofactor Injection
+
+Status: PROVED.
+
+Keep the background-free full-petal notation of Lemma 8.  Fix `I` with
+`t=|I|>=3`, fix `i in I`, and suppose
+
+```text
+ell <= d <= (t-1)ell.
+```
+
+The map sending a full-petal listed codeword with exact touched-petal set `I`
+and core defect `d` to its cofactor
+
+```text
+A_i = (W_P-c_iL_D)/L_{T_i}
+```
+
+is injective.  Consequently, for every fixed `I` and `d`, the number of such
+full-petal listed codewords is at most
+
+```text
+q^{d-ell+1}.
+```
+
+### Proof
+
+For a full-petal listed codeword, Lemma 7 gives the missed-core locator
+`F=L_D` and a polynomial `W` of degree at most `d` such that
+
+```text
+W-c_jF
+```
+
+is divisible by `L_{T_j}` for every `j in I`.  Thus the displayed cofactor
+`A_i` has degree at most `d-ell`.
+
+Suppose two full-petal listed codewords give the same cofactor `A_i`.  Write
+their data as `(F,W)` and `(F',W')`.  Equality of the cofactors gives
+
+```text
+W-W' = c_i(F-F').
+```
+
+For every `j in I\{i}`, subtracting the two divisibility relations modulo
+`L_{T_j}` gives
+
+```text
+(c_i-c_j)(F-F') = W-W'-c_j(F-F')
+```
+
+divisible by `L_{T_j}`.  Since the petal scalars are distinct and the petal
+locators are pairwise coprime, `F-F'` is divisible by
+
+```text
+B_i = prod_{j in I, j != i} L_{T_j}.
+```
+
+If `d<(t-1)ell`, then `deg(F-F')<deg B_i`, so `F=F'`.  If
+`d=(t-1)ell`, then `F` and `F'` are both monic of degree `d`; hence
+`deg(F-F')<d=deg B_i` unless `F=F'`.  Thus `F=F'` in all cases.  Lemma 7 then
+recovers the listed codeword from `F`, so the cofactor map is injective.
+
+There are at most `q^{d-ell+1}` choices for a polynomial `A_i` of degree at
+most `d-ell`, proving the count.
+
+### Consequences
+
+The top-defect boundary no longer carries the extra linear-kernel factor from
+Lemma 14 once one restricts to actual monic missed-core locators.  For fixed
+`I` and `d`, every full-petal layer with `t>=3` satisfies the same cofactor
+bound
+
+```text
+q^{d-ell+1}.
+```
+
+The remaining full-petal task is therefore not a rank or boundary artifact:
+it is to bound how often split monic degree-`d` locators can land in the
+cofactor image as `d-ell` grows.
+
 ## Development Ledger
 
 - **Conjecture 1 full-list primitive remainder:** CONJECTURAL.  Main proof
@@ -1352,5 +1433,7 @@ at the boundary it has dimension at most `d-ell+2`.
   rank at least `ell` for `t>=3` and `d<(t-1)ell`.
 - **Full-petal top-defect rank:** PROVED.  Shows the CRT map is full-rank on
   its top-coefficient target at `d=(t-1)ell`.
+- **Uniform full-petal cofactor injection:** PROVED.  Gives the fixed-`I,d`
+  bound `q^{d-ell+1}` throughout `ell<=d<=(t-1)ell`.
 - **Mixed-petal sunflower amplification:** CONJECTURAL.  Next focused bound to
   prove or refute in the large-defect regime.

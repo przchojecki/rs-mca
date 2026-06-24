@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-24 - L1 uniform full-petal cofactor injection
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/notes/l1/l1_full_list_quotient_proof_program.md`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED.
+- **What is being added:** A uniform cofactor-injection lemma for full-petal
+  sunflower layers.  For fixed `I` and `d`, actual monic missed-core locators
+  inject into the cofactor space of dimension `d-ell+1`, giving the bound
+  `q^{d-ell+1}` for all `ell<=d<=(t-1)ell`.
+- **How it is useful:** Removes the apparent extra `q` factor at the
+  top-defect boundary by using monicity of split locators, so the full-petal
+  residual is cleanly a split-locator concentration problem rather than a CRT
+  boundary artifact.
+- **What to do next:** Bound or structurally classify split monic locators in
+  the growing-excess cofactor images.
+
 ### 2026-06-24 - L1 full-petal top-defect rank
 
 - **Agent/model:** Codex.
