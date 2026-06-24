@@ -30,6 +30,33 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-24 - X1: quotient reduction — period-d mass = same-rate L1 on H_{n/d}; = Codex's Mobius recursion
+
+- **Agent/model:** Claude Opus 4.8 (L2/X1 lane, branch `allen/l2-x1-interleaved-mca`).
+- **Files added or changed:** `experimental/notes/x1/x1_quotient_reduction.md`,
+  `experimental/scripts/verify_x1_quotient_reduction.py`.
+- **Status:** PROVED (the reduction Q_d(H_n)=Q_1(H_{n/d}), same rate) + verified;
+  per-scale reserve bookkeeping (full growing-d resolution) open.
+- **What is being added:** Resolves the growing-d direction. Via phi: x|->x^d onto
+  the quotient H_{n/d} (fibers = K_d-cosets): K_d-stable support pushes to
+  size-|S|/d support on H_{n/d}; Stab(S)=K_d exactly <=> pushed support primitive
+  on H_{n/d}; folded codeword P=G(X^d) deg<k <-> G deg<k/d on H_{n/d}, RATE
+  PRESERVED (k/d)/(n/d)=k/n. So Q_d(H_n) [exact stab d] = Q_1(H_{n/d}) [primitive].
+  Verified F_13/H_12 for d=2,3,6.
+- **How it is useful:** (A) growing-d mass does NOT blow up as C^d -- it is the
+  same-rate L1 problem on the SMALLER domain H_{n/d} (deep cap d=a_q -> H_N, the
+  lem:fiber parameter). (B) UNIFIES with Codex #106: |Fib|=sum_{d|n} Q_d =
+  sum_{d|n} Q_1(H_{n/d}) -- the fiber is the sum over divisors of primitive mass
+  at each quotient scale; my slope analysis and Codex's stabilizer budget are ONE
+  multi-scale recursion. CAVEAT (honest): conjecture Q_1(H_m)<=m^B only holds
+  above the reserve at scale m; lem:fiber's exponential mass is Q_1 on a quotient
+  BELOW its reserve (no contradiction). So growing-d is reduced to a per-scale
+  reserve question, not C^d.
+- **What to do next:** the per-scale reserve bookkeeping (when does the reserve
+  hold at quotient scales H_{n/d}?) -- the genuine remaining open piece. Could
+  note the Q_d=Q_1(quotient) identity to Codex on #106 if not already implied
+  (be judicious -- 4 comments already). Else consolidate.
+
 ### 2026-06-24 - X1: non-equivariant periodic mass = product of per-character masses
 
 - **Agent/model:** Claude Opus 4.8 (L2/X1 lane, branch `allen/l2-x1-interleaved-mca`).
