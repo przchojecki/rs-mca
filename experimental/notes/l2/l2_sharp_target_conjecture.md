@@ -384,6 +384,36 @@ that any super-random regular-core obstruction must organize many supports into
 large high-overlap clusters, a much narrower structure than an arbitrary
 Cartesian product of support fibers.
 
+The connected case also isolates the diagonal exactly.
+
+**Corollary (diagonal is the only zero-loss connected cluster).** Suppose
+`G_k` is connected. Then
+
+```text
+Pr[S_1,...,S_m in Fib_U(a)] <= q^{-(a-k)}
+```
+
+for one random row, with the bound having no extra exponent beyond a single
+support only when all the `S_i` are the same `a`-set. If the connected cluster
+is not diagonal, then
+
+```text
+Pr[S_1,...,S_m in Fib_U(a)] <= q^{-(a-k+1)}.
+```
+
+For `mu` independent rows, these exponents are multiplied by `mu`.
+
+*Proof.* Since `G_k` is connected, the cluster-rank lemma gives
+`q^{k-|V|}`. Always `|V|>=a`. Equality `|V|=a` holds exactly when every
+`S_i` is the same `a`-subset of `H`; this is the diagonal case. Otherwise
+`|V|>=a+1`, giving the extra factor `q^{-1}` per row.
+
+Thus the exact-support diagonalization seen in equal-row interleaving is not an
+artifact of that special row choice: in the random regular-core model, the only
+connected high-overlap clusters with no entropy loss are genuinely diagonal.
+Any non-diagonal connected cluster must pay at least `q^{-mu}` beyond one
+representative support.
+
 **Lemma (all-remainder quotient packets have exact support and exact count).**
 Fix one scale `M | n` with `M>sigma`, write `a=M ell+u` with
 `0<=u<M`, and fix an omitted `M`-coset `C_0`. For row `i`, choose
@@ -1122,15 +1152,20 @@ checks the following stress points.
    high-overlap surplus at `r>=k` are checked directly in a finite RS model.
    This is random-model evidence for the regular-core local-limit target, not
    a worst-case proof.
-4. The multi-support high-overlap cluster bound is brute-checked on three
+4. The multi-support high-overlap cluster bound is brute-checked on four
    `F_7`, `n=6`, `k=2`, `a=3` configurations. A connected high-overlap triple
-   has one component, union size `4`, dimension bound `2`, and exactly `7^2`
-   feasible assignments. A mixed high/low path has two components, union size
-   `6`, and count below the `7^4` bound. A low-overlap cycle has three
-   components, union size `6`, but only `7^3` feasible assignments below the
-   loose `7^6` cluster bound, showing that low-overlap consistency can only
-   reduce the feasible space further. This identifies high-overlap clustering
-   as the only source of positive rank surplus left by the random model.
+   with all supports equal has one component, union size `3`, exponent `1`,
+   and exactly `7^2` feasible assignments: this is the diagonal zero-loss
+   case. A non-diagonal connected high-overlap triple has one component, union
+   size `4`, exponent `2`, and exactly `7^2` feasible assignments, showing the
+   extra `q^{-1}` loss predicted by the corollary. A mixed high/low path has
+   two components, union size `6`, and count below the `7^4` bound. A
+   low-overlap cycle has three components, union size `6`, but only `7^3`
+   feasible assignments below the loose `7^6` cluster bound, showing that
+   low-overlap consistency can only reduce the feasible space further. This
+   identifies high-overlap clustering as the only source of positive rank
+   surplus left by the random model, with diagonal clusters as the only
+   zero-loss connected case.
 5. The natural `K_{m,m}` grid over-agreement family has
    ```text
    n_min = (k-1) + m^2(a-k+1),

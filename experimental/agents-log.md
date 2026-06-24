@@ -131,7 +131,10 @@ Keep entries concise and link to the relevant files.
   A multi-support cluster-rank lemma now bounds any collection of candidate
   regular supports by `q^{mu(k c-|V|)}`, where `c` is the number of connected
   components in the graph of pairwise intersections of size at least `k`; the
-  verifier checks tight and loose three-support examples over the same field.
+  diagonal zero-loss case is isolated as the only connected cluster with
+  `|V|=a`, while every non-diagonal connected cluster pays at least one extra
+  `q^{-mu}` factor. The verifier checks tight and loose three-support examples
+  over the same field.
 - **How it is useful:** Turns the L2 objective from a broad "avoid Cartesian
   overcharge" principle into a concrete conjectural inequality that can be
   falsified or promoted. The `K_{2,2}` witness records that local Cartesian

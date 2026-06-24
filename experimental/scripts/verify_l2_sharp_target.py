@@ -457,6 +457,10 @@ def support_cluster_rank_profile() -> dict:
     codewords = all_codewords(p, h_values, k)
     examples = [
         {
+            "name": "diagonal_component",
+            "supports": [(0, 1, 2), (0, 1, 2), (0, 1, 2)],
+        },
+        {
             "name": "one_high_overlap_component",
             "supports": [(0, 1, 2), (1, 2, 3), (0, 2, 3)],
         },
@@ -495,6 +499,7 @@ def support_cluster_rank_profile() -> dict:
                 "probability_exponent_bound": union_size - dimension_upper_bound,
             }
         )
+    row_by_name = {row["name"]: row for row in rows}
     return {
         "p": p,
         "n": n,
@@ -504,10 +509,22 @@ def support_cluster_rank_profile() -> dict:
         "all_counts_bounded": all(
             row["brute_count"] <= row["count_upper_bound"] for row in rows
         ),
-        "connected_high_overlap_tight": rows[0]["brute_count"]
-        == rows[0]["count_upper_bound"],
-        "low_overlap_bound_can_be_loose": rows[2]["brute_count"]
-        < rows[2]["count_upper_bound"],
+        "diagonal_component_zero_loss": row_by_name["diagonal_component"][
+            "probability_exponent_bound"
+        ]
+        == a - k,
+        "nondiagonal_connected_extra_loss": row_by_name[
+            "one_high_overlap_component"
+        ]["probability_exponent_bound"]
+        == a - k + 1,
+        "connected_high_overlap_tight": row_by_name["one_high_overlap_component"][
+            "brute_count"
+        ]
+        == row_by_name["one_high_overlap_component"]["count_upper_bound"],
+        "low_overlap_bound_can_be_loose": row_by_name["low_overlap_cycle"][
+            "brute_count"
+        ]
+        < row_by_name["low_overlap_cycle"]["count_upper_bound"],
     }
 
 
@@ -1505,6 +1522,12 @@ def run() -> dict:
         ],
         "support_cluster_rank_counts": support_cluster_profile[
             "all_counts_bounded"
+        ],
+        "support_cluster_rank_diagonal_zero_loss": support_cluster_profile[
+            "diagonal_component_zero_loss"
+        ],
+        "support_cluster_rank_nondiagonal_extra_loss": support_cluster_profile[
+            "nondiagonal_connected_extra_loss"
         ],
         "support_cluster_rank_connected_tight": support_cluster_profile[
             "connected_high_overlap_tight"
