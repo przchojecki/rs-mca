@@ -6,7 +6,7 @@ settled by the support-intersection bridge: over-agreement can create
 interleaved mass, so the falsification target is whether that mass can grow like
 a Cartesian product rather than like a polynomial support-overlap codegree.
 
-The script checks thirteen finite objects.
+The script checks fourteen finite objects.
 
 1. The all-remainder quotient packet count used as Quot_rem_mu in the target.
 2. The Johnson-shell weights used in the codegree reduction.
@@ -20,7 +20,8 @@ The script checks thirteen finite objects.
 10. The support-pair rank law behind the random regular-core second moment.
 11. The multi-support high-overlap cluster-rank upper bound.
 12. The connected high-overlap cluster count by union excess.
-13. A realized Reed-Solomon K_{2,2} gluing over a prime-field multiplicative
+13. The rank-corrected ledger for low-overlap closure-component intersections.
+14. A realized Reed-Solomon K_{2,2} gluing over a prime-field multiplicative
    subgroup, computed by exact list enumeration, together with its punctured
    codegree profile.
 
@@ -430,6 +431,41 @@ def connected_components_count(edges: list[tuple[int, int]], vertex_count: int) 
     return len({find(idx) for idx in range(vertex_count)})
 
 
+def matrix_rank_mod(matrix: list[list[int]], p: int) -> int:
+    rows = [
+        [entry % p for entry in row]
+        for row in matrix
+        if any(entry % p for entry in row)
+    ]
+    if not rows:
+        return 0
+    rank = 0
+    column_count = len(rows[0])
+    for column in range(column_count):
+        pivot = None
+        for row in range(rank, len(rows)):
+            if rows[row][column] % p:
+                pivot = row
+                break
+        if pivot is None:
+            continue
+        rows[rank], rows[pivot] = rows[pivot], rows[rank]
+        inv = pow(rows[rank][column], -1, p)
+        rows[rank] = [(entry * inv) % p for entry in rows[rank]]
+        for row in range(len(rows)):
+            if row == rank or rows[row][column] % p == 0:
+                continue
+            factor = rows[row][column] % p
+            rows[row] = [
+                (rows[row][idx] - factor * rows[rank][idx]) % p
+                for idx in range(column_count)
+            ]
+        rank += 1
+        if rank == len(rows):
+            break
+    return rank
+
+
 def high_overlap_components(supports: list[tuple[int, ...]], k: int) -> list[set[int]]:
     parent = list(range(len(supports)))
 
@@ -472,6 +508,53 @@ def closure_components(supports: list[tuple[int, ...]], k: int) -> list[set[int]
                     changed = True
                     break
     return components
+
+
+def component_unions(
+    supports: list[tuple[int, ...]],
+    components: list[set[int]],
+) -> list[set[int]]:
+    return [
+        set().union(*[set(supports[idx]) for idx in component])
+        for component in components
+    ]
+
+
+def component_overlap_edges(part_unions: list[set[int]]) -> list[tuple[int, int]]:
+    return [
+        (i, j)
+        for i in range(len(part_unions))
+        for j in range(i + 1, len(part_unions))
+        if part_unions[i] & part_unions[j]
+    ]
+
+
+def is_forest(edges: list[tuple[int, int]], vertex_count: int) -> bool:
+    return len(edges) == vertex_count - connected_components_count(
+        edges, vertex_count
+    )
+
+
+def cross_constraint_rank(
+    p: int,
+    h_values: list[int],
+    k: int,
+    part_unions: list[set[int]],
+) -> int:
+    rows = []
+    part_count = len(part_unions)
+    for i in range(part_count):
+        for j in range(i + 1, part_count):
+            for idx in sorted(part_unions[i] & part_unions[j]):
+                row = [0] * (part_count * k)
+                power = 1
+                x = h_values[idx]
+                for degree in range(k):
+                    row[i * k + degree] = (row[i * k + degree] + power) % p
+                    row[j * k + degree] = (row[j * k + degree] - power) % p
+                    power = (power * x) % p
+                rows.append(row)
+    return matrix_rank_mod(rows, p)
 
 
 def feasible_assignment_count(
@@ -705,32 +788,64 @@ def connected_cluster_count_profile() -> dict:
 
 def closure_signature_profile() -> dict:
     """Count all ordered support triples by k-closed component signature."""
-    n, k, a, tuple_size = 6, 2, 3, 3
+    p, n, k, a, tuple_size = 7, 6, 2, 3, 3
+    h_values = subgroup(p, n)
     supports = [tuple(support) for support in itertools.combinations(range(n), a)]
-    rows_by_signature: dict[tuple[int, int, int], int] = {}
+    rows_by_signature: dict[tuple[int, int, int, int, int, int, bool], int] = {}
     for support_tuple in itertools.product(supports, repeat=tuple_size):
         closed_components = closure_components(list(support_tuple), k)
+        part_unions = component_unions(list(support_tuple), closed_components)
         closed_count = len(closed_components)
         union_size = len(set().union(*[set(support) for support in support_tuple]))
+        sum_part_union_size = sum(len(part_union) for part_union in part_unions)
+        cross_overlap_defect = sum_part_union_size - union_size
+        cross_rank = cross_constraint_rank(p, h_values, k, part_unions)
         global_excess = union_size - a * closed_count
-        signature = (closed_count, union_size, global_excess)
+        corrected_excess = global_excess + cross_rank
+        overlap_edges = component_overlap_edges(part_unions)
+        overlap_is_forest = is_forest(overlap_edges, closed_count)
+        signature = (
+            closed_count,
+            union_size,
+            global_excess,
+            cross_rank,
+            corrected_excess,
+            cross_overlap_defect,
+            overlap_is_forest,
+        )
         rows_by_signature[signature] = rows_by_signature.get(signature, 0) + 1
     rows = []
-    for (closed_count, union_size, global_excess), count in sorted(
-        rows_by_signature.items()
-    ):
+    for (
+        closed_count,
+        union_size,
+        global_excess,
+        cross_rank,
+        corrected_excess,
+        cross_overlap_defect,
+        overlap_is_forest,
+    ), count in sorted(rows_by_signature.items()):
         union_bound = comb(n, union_size) * comb(union_size, a) ** tuple_size
         rows.append(
             {
                 "closed_components": closed_count,
                 "union_size": union_size,
                 "global_excess": global_excess,
+                "cross_constraint_rank": cross_rank,
+                "rank_corrected_excess": corrected_excess,
+                "cross_overlap_defect": cross_overlap_defect,
+                "component_union_excess": global_excess + cross_overlap_defect,
+                "overlap_is_forest": overlap_is_forest,
                 "tuple_count": count,
                 "union_count_bound": union_bound,
                 "entropy_exponent": union_size - k * closed_count,
+                "rank_corrected_entropy_exponent": union_size
+                - k * closed_count
+                + cross_rank,
             }
         )
+    forest_rows = [row for row in rows if row["overlap_is_forest"]]
     return {
+        "p": p,
         "n": n,
         "k": k,
         "a": a,
@@ -749,6 +864,23 @@ def closure_signature_profile() -> dict:
         ),
         "has_positive_global_excess": any(
             row["global_excess"] > 0 for row in rows
+        ),
+        "has_cyclic_overlap_graph": any(
+            not row["overlap_is_forest"] for row in rows
+        ),
+        "forest_rank_cancels_overlap_defect": all(
+            row["cross_constraint_rank"] == row["cross_overlap_defect"]
+            and row["rank_corrected_excess"] == row["component_union_excess"]
+            for row in forest_rows
+        ),
+        "two_part_rank_cancels_overlap_defect": all(
+            row["cross_constraint_rank"] == row["cross_overlap_defect"]
+            and row["rank_corrected_excess"] == row["component_union_excess"]
+            for row in rows
+            if row["closed_components"] == 2
+        ),
+        "rank_corrected_excess_nonnegative": all(
+            row["rank_corrected_excess"] >= 0 for row in rows
         ),
     }
 
@@ -1807,6 +1939,18 @@ def run() -> dict:
         "closure_signature_has_positive_excess": closure_signature[
             "has_positive_global_excess"
         ],
+        "closure_signature_has_cyclic_overlap_graph": closure_signature[
+            "has_cyclic_overlap_graph"
+        ],
+        "closure_signature_forest_rank_cancels": closure_signature[
+            "forest_rank_cancels_overlap_defect"
+        ],
+        "closure_signature_two_part_rank_cancels": closure_signature[
+            "two_part_rank_cancels_overlap_defect"
+        ],
+        "closure_signature_rank_corrected_nonnegative": closure_signature[
+            "rank_corrected_excess_nonnegative"
+        ],
         "kmm_grid_formula": all(d["interleaved_edges"] == d["grid_edges_at_n_min"] for d in designs),
         "rs_witness_creates_mass": witness["mass_creation"],
         "rs_witness_realizes_k22": witness["interleaved"] == witness["product_bound"] == 4,
@@ -2015,7 +2159,7 @@ def main(argv: list[str] | None = None) -> int:
         cs = result["closure_signature_profile"]
         print(
             "  closure signature profile: "
-            f"n={cs['n']}, k={cs['k']}, a={cs['a']}, "
+            f"F_{cs['p']}, n={cs['n']}, k={cs['k']}, a={cs['a']}, "
             f"tuple_size={cs['tuple_size']}, rows={cs['rows']}"
         )
         print("  K_{m,m} abstract designs:")

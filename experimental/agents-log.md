@@ -154,6 +154,10 @@ Keep entries concise and link to the relevant files.
   `k`-closed parts and global excess `D=|V|-ac`, the random-row probability is
   at most `q^{-(c(a-k)+D)}`; the verifier enumerates all triples by closure
   signature and records negative/zero/positive `D` cases.
+  A rank-corrected closure ledger now adds the exact cross-component equality
+  rank `r_cross`; forest overlap graphs, including all two-component cases,
+  satisfy `D+r_cross=sum_alpha(|V_alpha|-a)`, so only cyclic low-overlap
+  closed-part intersections remain as a separate rank-analysis issue.
 - **How it is useful:** Turns the L2 objective from a broad "avoid Cartesian
   overcharge" principle into a concrete conjectural inequality that can be
   falsified or promoted. The `K_{2,2}` witness records that local Cartesian

@@ -433,6 +433,83 @@ points; it is a low-overlap cross-component correction, not a high-overlap
 cluster. This is why the note does not claim a clean product factorization
 across raw components.
 
+The low-overlap correction can itself be recorded exactly as a linear rank.
+For each closed part `C_alpha`, introduce one degree-`<k` polynomial
+`P_alpha`. Whenever a domain point lies in two closed-part unions
+`V_alpha` and `V_beta`, impose the linear equality
+
+```text
+P_alpha(x) = P_beta(x).
+```
+
+Let `r_cross` be the rank, over `F_q`, of all these cross-part equality
+constraints on the `c k` polynomial coefficients.
+
+**Lemma (rank-corrected closure ledger).** With notation as above, for one
+random row
+
+```text
+Pr[S_1,...,S_m in Fib_U(a)]
+  <= q^{-(c(a-k)+D+r_cross)}.
+```
+
+For `mu` independent rows, the exponent is multiplied by `mu`.
+
+*Proof.* After `k`-closure, every closed part uses at most one degree-`<k`
+polynomial. Thus the polynomial choices start in a vector space of dimension
+`ck`. Since `U` is a single function on the union `V`, two closed-part
+polynomials must give the same value at every point where their unions meet.
+By definition these cross-part equalities have rank `r_cross`, so the feasible
+value assignments on `V` lie in a space of dimension at most `ck-r_cross`.
+Dividing by the ambient `q^{|V|}` assignments gives
+
+```text
+q^{ck-r_cross-|V|}
+ = q^{-(c(a-k)+D+r_cross)}.
+```
+
+This rank correction explains exactly what the negative `D` entries measure:
+they are not a new high-overlap component, but they must be paired with the
+linear constraints forced by sharing actual domain points.
+
+There is a clean case where this correction fully cancels the low-overlap
+defect. Form the overlap graph on the `k`-closed parts by joining
+`alpha,beta` when `V_alpha cap V_beta` is nonempty.
+
+**Corollary (forest overlap factorization).** If this closed-part overlap graph
+is a forest, then
+
+```text
+r_cross = sum_{alpha beta edge} |V_alpha cap V_beta|
+```
+
+and therefore
+
+```text
+D+r_cross = sum_{alpha=1}^c (|V_alpha|-a) >= 0.
+```
+
+In particular, two `k`-closed parts never create a residual negative correction
+after the rank ledger; the first possible obstruction to closed-part
+factorization is a low-overlap cycle among at least three closed parts.
+
+*Proof.* Since the parts are `k`-closed, every edge intersection has size
+`<k`. Root each tree and eliminate leaves. A leaf part meets the rest of its
+tree only through its unique neighbor, so its cross constraints are evaluations
+of one degree-`<k` polynomial at fewer than `k` distinct points; these
+constraints are independent. Removing the leaf and iterating gives the stated
+rank sum. A forest has no triple-overlap point across three distinct vertices
+and no non-edge intersections, so the usual inclusion-exclusion for the union
+has no cycle correction:
+
+```text
+|V| = sum_alpha |V_alpha|
+      - sum_{alpha beta edge} |V_alpha cap V_beta|.
+```
+
+Substituting this identity into `D=|V|-ac` gives
+`D+r_cross=sum_alpha(|V_alpha|-a)`.
+
 The connected case also isolates the diagonal exactly.
 
 **Corollary (diagonal is the only zero-loss connected cluster).** Suppose
@@ -1331,7 +1408,13 @@ checks the following stress points.
    signature `(closed components, total union size, global excess D)`. The
    finite table contains negative, zero, and positive `D`, confirming that
    low-overlap cross-component intersections are a real correction term rather
-   than an artifact of the proof.
+   than an artifact of the proof. The same table now computes the rank of the
+   cross-component equality constraints. In the forest rows, including all
+   two-component rows, this rank exactly cancels the low-overlap defect:
+   `D+r_cross` equals the sum of the internal closed-part union excesses. The
+   only non-forest row in the toy table is the three-component low-overlap
+   cycle, isolating cycles of closed parts as the first place where an
+   additional low-overlap rank analysis is needed.
 5. The natural `K_{m,m}` grid over-agreement family has
    ```text
    n_min = (k-1) + m^2(a-k+1),
