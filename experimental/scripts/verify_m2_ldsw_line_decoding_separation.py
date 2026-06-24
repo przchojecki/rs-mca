@@ -253,6 +253,17 @@ def compute_report() -> dict[str, Any]:
     bad_slopes, explaining_supports = supportwise_bad_slopes_for_received_line(
         received, received_direction, support_code
     )
+    zero_direction_bad_slopes, _ = supportwise_bad_slopes_for_received_line(
+        received, p0, support_code
+    )
+    noncode_direction = received
+    shifted_noncode_direction = word_add(noncode_direction, received_direction)
+    noncode_bad_slopes, _ = supportwise_bad_slopes_for_received_line(
+        received, noncode_direction, support_code
+    )
+    shifted_noncode_bad_slopes, _ = supportwise_bad_slopes_for_received_line(
+        received, shifted_noncode_direction, support_code
+    )
     p0_agreement = agreement_count(received, p0)
     p1_agreement = agreement_count(received, p1)
     assignment_count = len(P0_SLOPES) + len(P1_SLOPES)
@@ -280,6 +291,12 @@ def compute_report() -> dict[str, Any]:
         "p0_agrees_with_received_on_5": p0_agreement == AGREEMENT,
         "p1_agrees_with_received_on_5": p1_agreement == AGREEMENT,
         "nonconstant_line_has_no_ldsw_bad_slopes": bad_slopes == [],
+        "code_direction_shift_preserves_zero_bad_slopes": (
+            bad_slopes == zero_direction_bad_slopes
+        ),
+        "noncode_direction_shift_preserves_bad_slopes": (
+            noncode_bad_slopes == shifted_noncode_bad_slopes
+        ),
         "assignment_uses_all_field_slopes": assignment_count == P,
         "assignment_is_close_on_every_slope": (
             p0_agreement >= AGREEMENT and p1_agreement >= AGREEMENT
@@ -334,6 +351,9 @@ def compute_report() -> dict[str, Any]:
         "p0_agreement": p0_agreement,
         "p1_agreement": p1_agreement,
         "received_line_ldsw_bad_slopes": bad_slopes,
+        "zero_direction_ldsw_bad_slopes": zero_direction_bad_slopes,
+        "noncode_direction_ldsw_bad_slopes": noncode_bad_slopes,
+        "shifted_noncode_direction_ldsw_bad_slopes": shifted_noncode_bad_slopes,
         "received_line_explaining_support_count": explaining_supports,
         "assignment": {
             "p0_slopes": list(P0_SLOPES),
@@ -372,6 +392,11 @@ def print_report(report: dict[str, Any]) -> None:
     print(
         "received-line LD_sw bad slopes: "
         f"{len(report['received_line_ldsw_bad_slopes'])}"
+    )
+    print(
+        "noncode shift-invariance bad slopes: "
+        f"{report['noncode_direction_ldsw_bad_slopes']} -> "
+        f"{report['shifted_noncode_direction_ldsw_bad_slopes']}"
     )
     print(
         "assigned close codewords across slopes: "

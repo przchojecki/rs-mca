@@ -44,6 +44,23 @@ explaining support is already contained in the support-wise MCA sense.  If
 `r notin C` and `v != 0`, the received line may be nonconstant and not
 contained in `C`, but its contribution to `LD_sw(C,a)` is still `0`.
 
+More generally, `LD_sw` is invariant under adding a codeword to the received
+line direction.  For any line `f+gamma g` and any `v in C`, the support-wise
+noncontained slopes for
+
+```text
+f + gamma(g+v)
+```
+
+are exactly the support-wise noncontained slopes for `f+gamma g`.  On each
+support, subtract the codeword `gamma v` from an explaining codeword for the
+line point; this gives the equivalence of line-point explainability.  The
+contained-support condition is also unchanged, because `g|S` is explained by a
+codeword if and only if `(g+v)|S` is explained by a codeword.  Thus the
+support-wise numerator sees the direction only modulo `C`.  The code-direction
+invisibility lemma is the special case where the direction is zero in this
+quotient.
+
 This invisibility is specific to the support-wise numerator.  For a code-line
 candidate `u0+gamma u1` and an assigned close codeword `U(gamma)`, put
 
@@ -232,7 +249,10 @@ assignment-collinearity input if it aims to prove ABF/GG line-decodability;
 residue-line packing or `LD_sw` alone proves the MCA numerator, not the
 stronger close-codeword assignment theorem.  The `m`-bucket bound also explains
 what such an input must control: affine-graph incidence inside ordinary close
-lists, not only the size of the support-wise bad-slope set.  In the
+lists, not only the size of the support-wise bad-slope set.  The direction-coset
+invariance explains why residue-line packing naturally quotients by codeword
+directions, while ABF/GG line-decodability remains sensitive to the shifted
+assignment.  In the
 `b=n+1` convention, the code-direction obstruction demands ordinary close-list
 control at the scale `ceil(|F|/n)` whenever `ceil(|F|/n) <= n`; below that
 scale, code-direction lines are controlled by pigeonhole.
