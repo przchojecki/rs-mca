@@ -366,9 +366,9 @@ def build_report() -> Dict[str, Any]:
             "smoothness, same-support predicate, and closed threshold",
             "reviewer acceptance of the Cycle84 generated source contract for "
             "promotion beyond audit status",
-            "reviewer acceptance of the external PR #96 proof text and verifier "
-            "content; the separate source-hash audit checks the contract-to-Git "
-            "object binding",
+            "reviewer acceptance of the external PR #96 verifier proof logic; "
+            "the separate source-hash and transfer-replay audits check the "
+            "contract-to-Git binding and executable output",
         ],
         "nonmutating": True,
     }

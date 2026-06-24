@@ -96,12 +96,16 @@ The source files behind that compact contract are checked separately by
 
 ```text
 python3 experimental/scripts/verify_m1_cycle116_external_packet_sources.py
+python3 experimental/scripts/verify_m1_cycle116_external_transfer_replay.py
 ```
 
 after fetching the PR #96 head commit with
 `git fetch origin pull/96/head:refs/remotes/origin/pr-96`. This source-hash
 audit verifies blob ids, file modes, byte sizes, SHA256 digests, and exact
-copies of the two JSON inputs used by the compact contract.
+copies of the two JSON inputs used by the compact contract. The transfer-replay
+audit then materializes the PR #96 packet in a temporary directory, executes the
+hash-pinned `verify_transfer.py`, and compares its native/smooth `LD_sw` and
+field-ledger output to this local end-to-end chain.
 
 The smooth padding lift preserves the same set of bad parameters and gives
 
@@ -215,10 +219,10 @@ The chain remains conditional on:
    convention.
 2. Reviewer acceptance that the Cycle84 generated source contract plus the
    replay algorithm audit is sufficient for promotion beyond audit status.
-3. Reviewer acceptance of the external PR #96 proof text and verifier content.
-   The source-hash audit now mechanically ties the compact contract to the
-   recorded PR #96 Git objects, but it does not replace mathematical review of
-   that external proof packet.
+3. Reviewer acceptance of the external PR #96 verifier proof logic. The
+   source-hash and transfer-replay audits now mechanically tie the compact
+   contract to the recorded PR #96 Git objects and executable output, but they
+   do not replace mathematical review of that verifier.
 
 The current repository verifiers reduce these boundaries, but they do not
 remove them.
@@ -247,6 +251,7 @@ python3 experimental/scripts/verify_m1_cycle120_end_to_end_chain.py
 python3 experimental/scripts/verify_m1_cycle120_end_to_end_chain.py --json
 python3 experimental/scripts/verify_m1_cycle116_external_packet_contract.py
 python3 experimental/scripts/verify_m1_cycle116_external_packet_sources.py
+python3 experimental/scripts/verify_m1_cycle116_external_transfer_replay.py
 python3 experimental/scripts/verify_m1_cycle116_fixed_jet_transfer.py
 python3 experimental/scripts/verify_m1_cycle116_smooth_padding_transfer.py
 python3 experimental/scripts/verify_m1_cycle120_domain_field_ledger.py

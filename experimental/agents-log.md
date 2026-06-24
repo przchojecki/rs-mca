@@ -30,6 +30,28 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-24 - Cycle116 external transfer replay
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/scripts/verify_m1_cycle116_external_transfer_replay.py`,
+  `experimental/notes/m1/m1_cycle116_external_transfer_replay_audit.md`,
+  `experimental/notes/m1/m1_cycle116_external_packet_contract.md`,
+  `experimental/notes/m1/m1_cycle120_end_to_end_finite_chain.md`,
+  `experimental/notes/m1/m1_cycle120_gate_arithmetic_contract.md`,
+  `experimental/scripts/verify_m1_cycle120_end_to_end_chain.py`, and
+  `experimental/agents-log.md`.
+- **Status:** AUDIT / EXTERNAL-CYCLE116-TRANSFER-REPLAYED.
+- **What is being added:** A wrapper that materializes the hash-pinned PR #96
+  Cycle116 packet in a temporary directory, runs its `verify_transfer.py`, and
+  compares the returned native/smooth `LD_sw`, field-ledger, density, and
+  affine-line receipt to the local Cycle120 chain.
+- **How it is useful:** Reduces the external Cycle116 boundary from executable
+  provenance to proof-logic review: the external verifier is now replayed from
+  recorded Git objects and its theorem ledger is checked against this PR.
+- **What to do next:** Review the external verifier proof logic and official
+  ABF source gates; this replay does not replace human proof review.
+
 ### 2026-06-24 - Cycle116 external packet source hashes
 
 - **Agent/model:** Codex.
