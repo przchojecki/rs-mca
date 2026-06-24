@@ -228,6 +228,20 @@ extension. More generally, if `F/F_p` has degree `e>=2` and
 `alpha in F\F_p`, the same bad-slope numerator works over `F`; only the
 density denominator changes from `p^2` to `p^e`.
 
+There is also a higher-degree amplification. If `alpha` has base-field degree
+at least `r`, with fixed `r>=2`, then the fixed-tail injectivity argument uses
+blocks of size `sigma+r-1` instead of `sigma+1`. Consequently, for fixed
+`sigma`, fixed `r`, and fixed rate,
+
+```text
+|F| emca(C_F, 1-(k+sigma)/(p-1))
+  >= ((1-rho)^(sigma+r-1)/(sigma+r-1)! - o(1)) p^r.
+```
+
+In particular, taking `alpha` to generate `F_{p^e}` gives a constant-density
+extension-line counterexample in every fixed extension degree `e>=2`, not only
+in quadratic extensions.
+
 ## Status
 
 PROVED / COUNTEREXAMPLE.
@@ -237,8 +251,10 @@ adds a proved degree-one fixed-rate family for every fixed slack `sigma`. The
 proof combines the fixed-tail injectivity template with a character bound for
 prefix-vanishing elementary symmetric support sets. The same bound is uniform
 for `sigma=o(sqrt(p)/log p)`, and it still beats the base-field numerator
-through `sigma <= (1-epsilon) log p/log log p`. These results do not refute a
-repaired extension-line theorem in the corrected-reserve regime
+through `sigma <= (1-epsilon) log p/log log p`. The higher-degree
+amplification gives order-`p^r` numerators for elements of base-field degree
+at least `r`. These results do not refute a repaired extension-line theorem in
+the corrected-reserve regime
 `sigma >= C n/log n`. They do refute any unrestricted route that bounds
 extension-line MCA by taking a base-field numerator and dividing by the larger
 extension challenge field. The extension-degree corollary shows that the issue
@@ -614,21 +630,26 @@ R_{p,k,sigma}
       ceil((binom(p-1,a) - (p^(sigma-1)-1)B_{p,a,sigma})
            / p^(sigma-1))),
 
-N_{p,k,sigma}
-  = ceil(R_{p,k,sigma} binom(a,sigma+1) / binom(p-1,k-1)).
+N_{p,k,sigma,r}
+  = ceil(R_{p,k,sigma} binom(a,sigma+r-1) / binom(p-1,k-r+1)).
 ```
 
-Then `G_{p,a,sigma} >= R_{p,k,sigma}`.  Averaging the decompositions
-`S=T union U` over all `(k-1)`-tails gives a tail with at least
-`N_{p,k,sigma}` admissible blocks.  The fixed-tail injectivity theorem turns
-those blocks into distinct bad slopes.  Therefore, for every finite extension
-`F/F_p` and every `alpha in F\F_p`,
+Here `r` is any integer with `2 <= r <= [F_p(alpha):F_p]` and `k>=r-1`.
+The case `sigma=1` uses the same definition with
+`R_{p,k,1}=binom(p-1,k+1)`.  Then
+`G_{p,a,sigma} >= R_{p,k,sigma}`.  Averaging the decompositions
+`S=T union U` over all `(k-r+1)`-tails gives a tail with at least
+`N_{p,k,sigma,r}` admissible blocks.  The higher-degree fixed-tail injectivity
+argument below turns those blocks into distinct bad slopes.  Therefore, for every finite
+extension `F/F_p` and every `alpha` of base-field degree at least `r`,
 
 ```text
-emca(C_F, 1-(k+sigma)/(p-1)) >= N_{p,k,sigma} / |F|.
+emca(C_F, 1-(k+sigma)/(p-1)) >= N_{p,k,sigma,r} / |F|.
 ```
 
-The lower numerator `N_{p,k,sigma}` is independent of the extension degree.
+The lower numerator `N_{p,k,sigma,r}` is independent of the ambient extension
+degree once such an `alpha` exists.  The earlier quadratic numerator statement
+is the special case `r=2`.
 
 For fixed `0<rho<1`, fixed `sigma`, and
 `a=floor(rho(p-1))+sigma`, the right side is
@@ -657,6 +678,35 @@ Since `p-k=(1-rho+o(1))p`, the number of distinct bad slopes is at least
 
 Dividing by `|F|=p^2` proves the displayed constant-density lower bound for
 every fixed `sigma`.
+
+More generally, if `alpha` has base-field degree at least a fixed `r>=2`, fix
+a tail `T` of size `k-r+1` and let the moving block have size
+
+```text
+|U| = sigma+r-1.
+```
+
+The same prefix equations determine `e_1(U),...,e_{sigma-1}(U)` from `T`.
+Thus, for two admissible blocks on the same tail, the difference
+`L_U-L_{U'}` has degree at most `r-1`.  If their slopes are equal, then
+`L_U(alpha)=L_{U'}(alpha)`. Since no nonzero polynomial of degree `<r` can
+vanish at `alpha`, equality of slopes forces `L_U=L_{U'}`, hence `U=U'`.
+Averaging over `(k-r+1)`-tails gives
+
+```text
+max_T #{ admissible U for T }
+  >= (1+o(1)) binom(p-k+r-2,sigma+r-1) / p^(sigma-1).
+```
+
+For fixed `sigma`, fixed `r`, and fixed rate this is
+
+```text
+((1-rho)^(sigma+r-1)/(sigma+r-1)! - o(1)) p^r.
+```
+
+If `F=F_{p^e}` and `alpha` generates `F` over `F_p`, then `r=e`; after
+division by `|F|=p^e`, the lower bound has constant density in every fixed
+extension degree.
 
 ## Uniform Slow-Slack Consequence
 
@@ -742,6 +792,18 @@ factor `p^(epsilon-o(1))` throughout this slowly growing slack window. This is
 still far below the corrected reserve
 `sigma >= C n/log n`; it sharpens the lower-bound side without claiming a
 positive theorem near the reserve.
+
+With an element of base-field degree at least fixed `r`, the same slow-slack
+argument gives numerator
+
+```text
+(1+o(1)) binom(p-k+r-2,sigma+r-1) / p^(sigma-1).
+```
+
+In the logarithmic slow-slack window above, this is at least
+`p^(r-1+epsilon-o(1))`.  Thus higher-degree extension lines amplify the
+failure of same-numerator transfer by the factor `p^(r-2+epsilon-o(1))` over
+the base numerator `p`.
 
 ## Exact Sigma-Three Prefix Count Recurrence
 
@@ -881,6 +943,9 @@ obstruction persists into the slowly growing range
 `sigma <= (1-epsilon) log p/log log p`. The finite form shows that these are
 extension-degree-independent numerator lower bounds: increasing the challenge
 field only divides the same numerator by a larger `|F|`. The repaired theorem
+with an element of degree at least `r` strengthens the numerator from quadratic
+to order `p^r`, giving constant-density counterexamples in every fixed
+extension degree when `alpha` generates the extension. The repaired theorem
 needs residual slack large enough for the list ledger, not merely nonzero or
 logarithmic slack. A repaired F1 theorem must either:
 
@@ -958,3 +1023,9 @@ is positive and that the resulting tail-averaged bad-slope numerator already
 exceeds the base-field numerator `p`. It also reports the same numerator over
 several extension degrees, confirming that the proof is an extension-degree
 independent numerator obstruction and not a quadratic-only density accident.
+The minimal-degree rows check the higher-degree amplification: for elements of
+degree at least `r`, the script fixes `(k-r+1)`-tails, checks that the high
+coefficients of each admissible block locator are forced by the tail, and
+verifies that the remaining `r` low coefficients are distinct on the best-tail
+slice. The finite bound rows then certify the corresponding amplified
+bad-slope numerators for `r=3` and `r=4`.

@@ -64,6 +64,18 @@ EXTENSION_DEGREE_BOUND_CASES = (
     {"p": 65537, "k": 32768, "sigma": 4, "degrees": (2, 3, 4)},
 )
 
+MINIMAL_DEGREE_TEMPLATE_CASES = (
+    {"p": 7, "k": 3, "sigma": 1, "alpha_degree": 3},
+    {"p": 17, "k": 8, "sigma": 2, "alpha_degree": 3},
+    {"p": 11, "k": 5, "sigma": 1, "alpha_degree": 4},
+)
+
+MINIMAL_DEGREE_BOUND_CASES = (
+    {"p": 1009, "k": 504, "sigma": 3, "alpha_degree": 3},
+    {"p": 10007, "k": 5003, "sigma": 4, "alpha_degree": 3},
+    {"p": 1009, "k": 504, "sigma": 2, "alpha_degree": 4},
+)
+
 
 def base(value: int, p: int) -> Element:
     return (value % p, 0)
@@ -251,6 +263,17 @@ def has_prefix_vanishing(support: tuple[int, ...], sigma: int, p: int) -> bool:
     )
 
 
+def locator_base(points: tuple[int, ...], p: int) -> list[int]:
+    poly = [1]
+    for point in points:
+        next_poly = [0] * (len(poly) + 1)
+        for degree, coef in enumerate(poly):
+            next_poly[degree] = (next_poly[degree] - point * coef) % p
+            next_poly[degree + 1] = (next_poly[degree + 1] + coef) % p
+        poly = next_poly
+    return poly
+
+
 def ceil_div(numerator: int, denominator: int) -> int:
     return -(-numerator // denominator)
 
@@ -260,27 +283,42 @@ def ceil_sqrt(value: int) -> int:
     return root if root * root == value else root + 1
 
 
-def character_tail_lower_bound(p: int, k: int, sigma: int) -> dict[str, int]:
+def character_tail_lower_bound(
+    p: int, k: int, sigma: int, alpha_degree: int = 2
+) -> dict[str, int]:
     n = p - 1
     a = k + sigma
-    if not (2 <= sigma < p and sigma + 1 <= a <= n):
+    block_size = sigma + alpha_degree - 1
+    tail_size = k - alpha_degree + 1
+    if not (
+        1 <= sigma < p
+        and 2 <= alpha_degree
+        and 0 <= tail_size
+        and block_size <= a <= n
+    ):
         raise ValueError(
-            f"bad character-bound parameters p={p}, k={k}, sigma={sigma}, a={a}"
+            "bad character-bound parameters "
+            f"p={p}, k={k}, sigma={sigma}, alpha_degree={alpha_degree}, a={a}"
         )
 
-    m = sigma - 1
-    weil_radius = (m - 1) * ceil_sqrt(p) + 1
-    error_bound = (p**m - 1) * comb(a + weil_radius, a)
     random_model_numerator = comb(n, a)
-    support_lower_numerator = random_model_numerator - error_bound
-    support_lower_bound = (
-        ceil_div(support_lower_numerator, p**m)
-        if support_lower_numerator > 0
-        else 0
-    )
+    if sigma == 1:
+        weil_radius = 0
+        error_bound = 0
+        support_lower_bound = random_model_numerator
+    else:
+        m = sigma - 1
+        weil_radius = (m - 1) * ceil_sqrt(p) + 1
+        error_bound = (p**m - 1) * comb(a + weil_radius, a)
+        support_lower_numerator = random_model_numerator - error_bound
+        support_lower_bound = (
+            ceil_div(support_lower_numerator, p**m)
+            if support_lower_numerator > 0
+            else 0
+        )
 
-    tail_denominator = comb(n, k - 1)
-    tail_numerator_lower = support_lower_bound * comb(a, sigma + 1)
+    tail_denominator = comb(n, tail_size)
+    tail_numerator_lower = support_lower_bound * comb(a, block_size)
     tail_lower_bound = (
         ceil_div(tail_numerator_lower, tail_denominator)
         if tail_numerator_lower
@@ -294,6 +332,8 @@ def character_tail_lower_bound(p: int, k: int, sigma: int) -> dict[str, int]:
         "tail_lower_bound": tail_lower_bound,
         "tail_denominator": tail_denominator,
         "tail_numerator_lower": tail_numerator_lower,
+        "block_size": block_size,
+        "tail_size": tail_size,
     }
 
 
@@ -607,6 +647,130 @@ def verify_extension_degree_bound_case(
     }
 
 
+def verify_minimal_degree_bound_case(
+    p: int, k: int, sigma: int, alpha_degree: int
+) -> dict[str, Any]:
+    n = p - 1
+    a = k + sigma
+    bound = character_tail_lower_bound(p, k, sigma, alpha_degree)
+    tail_lower_bound = bound["tail_lower_bound"]
+    quadratic_bound = character_tail_lower_bound(p, k, sigma, 2)
+    checks = {
+        "bad_slope_numerator_is_positive": tail_lower_bound > 0,
+        "degree_amplifies_quadratic_bound": (
+            tail_lower_bound >= quadratic_bound["tail_lower_bound"]
+        ),
+        "tail_lower_bound_beats_base_numerator": tail_lower_bound > p,
+    }
+    failed = [name for name, passed in checks.items() if not passed]
+    if failed:
+        raise AssertionError(
+            f"failed minimal-degree checks for p={p}: {', '.join(failed)}"
+        )
+
+    return {
+        "p": p,
+        "n": n,
+        "k": k,
+        "sigma": sigma,
+        "agreement_a": a,
+        "alpha_degree": alpha_degree,
+        "block_size": bound["block_size"],
+        "tail_size": bound["tail_size"],
+        "certified_tail_bad_slope_lower_bound": tail_lower_bound,
+        "quadratic_tail_bad_slope_lower_bound": (
+            quadratic_bound["tail_lower_bound"]
+        ),
+        "base_field_trivial_numerator": p,
+        "checks": checks,
+    }
+
+
+def verify_minimal_degree_template_case(
+    p: int, k: int, sigma: int, alpha_degree: int
+) -> dict[str, Any]:
+    domain = tuple(range(1, p))
+    n = len(domain)
+    a = k + sigma
+    block_size = sigma + alpha_degree - 1
+    tail_size = k - alpha_degree + 1
+    if not (0 <= tail_size and block_size <= a <= n):
+        raise ValueError(
+            "bad minimal-degree template parameters "
+            f"p={p}, k={k}, sigma={sigma}, alpha_degree={alpha_degree}, a={a}"
+        )
+
+    admissible_supports = [
+        support
+        for support in itertools.combinations(domain, a)
+        if has_prefix_vanishing(support, sigma, p)
+    ]
+    if not admissible_supports:
+        raise AssertionError("minimal-degree template found no supports")
+
+    tail_to_blocks: dict[tuple[int, ...], list[tuple[int, ...]]] = {}
+    for support in admissible_supports:
+        for block in itertools.combinations(support, block_size):
+            tail = tuple(point for point in support if point not in block)
+            tail_to_blocks.setdefault(tail, []).append(block)
+
+    best_tail, best_blocks = max(
+        tail_to_blocks.items(), key=lambda item: len(item[1])
+    )
+    tails_count = comb(n, tail_size)
+    decomposition_count = len(admissible_supports) * comb(a, block_size)
+    if len(best_blocks) * tails_count < decomposition_count:
+        raise AssertionError("best tail is below the minimal-degree average")
+
+    high_reference: tuple[int, ...] | None = None
+    low_keys: dict[tuple[int, ...], tuple[int, ...]] = {}
+    for block in best_blocks:
+        support = tuple(sorted(best_tail + block))
+        if not has_prefix_vanishing(support, sigma, p):
+            raise AssertionError("best-tail block is not admissible")
+        loc = locator_base(block, p)
+        high_key = tuple(loc[alpha_degree:])
+        low_key = tuple(loc[:alpha_degree])
+        if high_reference is None:
+            high_reference = high_key
+        elif high_key != high_reference:
+            raise AssertionError("high coefficients are not fixed by the tail")
+        if low_key in low_keys:
+            raise AssertionError("minimal-degree block injectivity failed")
+        low_keys[low_key] = block
+
+    checks = {
+        "admissible_supports_exist": bool(admissible_supports),
+        "best_tail_meets_average_bound": (
+            len(best_blocks) * tails_count >= decomposition_count
+        ),
+        "high_coefficients_are_fixed": high_reference is not None,
+        "low_coefficient_keys_are_distinct": len(low_keys) == len(best_blocks),
+    }
+    failed = [name for name, passed in checks.items() if not passed]
+    if failed:
+        raise AssertionError(
+            f"failed minimal-degree template checks for p={p}: {', '.join(failed)}"
+        )
+
+    return {
+        "p": p,
+        "n": n,
+        "k": k,
+        "sigma": sigma,
+        "alpha_degree": alpha_degree,
+        "agreement_a": a,
+        "block_size": block_size,
+        "tail_size": tail_size,
+        "admissible_support_count": len(admissible_supports),
+        "best_tail": list(best_tail),
+        "best_tail_block_count": len(best_blocks),
+        "average_lower_bound_numerator": decomposition_count,
+        "average_lower_bound_denominator": tails_count,
+        "checks": checks,
+    }
+
+
 def verify_fixed_slack_template_case(p: int, k: int, sigma: int) -> dict[str, Any]:
     d = least_nonsquare(p)
     alpha = (0, 1)
@@ -818,6 +982,14 @@ def compute_report() -> dict[str, Any]:
         verify_extension_degree_bound_case(**case)
         for case in EXTENSION_DEGREE_BOUND_CASES
     ]
+    minimal_degree_template_cases = [
+        verify_minimal_degree_template_case(**case)
+        for case in MINIMAL_DEGREE_TEMPLATE_CASES
+    ]
+    minimal_degree_bound_cases = [
+        verify_minimal_degree_bound_case(**case)
+        for case in MINIMAL_DEGREE_BOUND_CASES
+    ]
     return {
         "status": "PASS",
         "proof_status": "FINITE_MODEL_CHECK / COUNTEREXAMPLE_SANITY",
@@ -831,7 +1003,9 @@ def compute_report() -> dict[str, Any]:
             "check exact dynamic support counts. The same character-bound "
             "formula gives finite slow-slack certificates where the forced "
             "extension numerator already exceeds the base-field numerator, "
-            "with the same numerator over every extension degree."
+            "with the same numerator over every extension degree. If alpha has "
+            "higher base-field degree, the fixed-tail injectivity block can be "
+            "enlarged and the numerator grows like the corresponding power of p."
         ),
         "sigma_one_cases": sigma_one_cases,
         "sigma_two_cases": sigma_two_cases,
@@ -840,6 +1014,8 @@ def compute_report() -> dict[str, Any]:
         "fixed_sigma_count_cases": fixed_sigma_count_cases,
         "slow_slack_bound_cases": slow_slack_bound_cases,
         "extension_degree_bound_cases": extension_degree_bound_cases,
+        "minimal_degree_template_cases": minimal_degree_template_cases,
+        "minimal_degree_bound_cases": minimal_degree_bound_cases,
     }
 
 
@@ -895,6 +1071,18 @@ def print_report(report: dict[str, Any]) -> None:
             "tail_lower={certified_tail_bad_slope_lower_bound} "
             "base_numerator={base_field_trivial_numerator} "
             "degrees={degrees}".format(**case, degrees=degrees)
+        )
+    for case in report["minimal_degree_template_cases"]:
+        print(
+            "minimal-degree-template r={alpha_degree} p={p} "
+            "sigma={sigma} k={k} a={agreement_a} "
+            "blocks={best_tail_block_count}".format(**case)
+        )
+    for case in report["minimal_degree_bound_cases"]:
+        print(
+            "minimal-degree-bound r={alpha_degree} p={p} "
+            "sigma={sigma} k={k} tail_lower={certified_tail_bad_slope_lower_bound} "
+            "quadratic_tail={quadratic_tail_bad_slope_lower_bound}".format(**case)
         )
 
 
