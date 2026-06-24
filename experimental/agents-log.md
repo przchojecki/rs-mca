@@ -90,9 +90,12 @@ Keep entries concise and link to the relevant files.
   `{5:4}`. The regular core is now identified exactly as a simultaneous
   support-fiber subproblem: an `a`-set feasible for all rows determines a unique
   interleaved tuple, and it contributes to `Reg_mu` precisely when every induced
-  full row support is that same `a`-set. The verifier records that the
-  `K_{2,2}` witness has `4` simultaneous feasible `a`-sets, all row-irregular,
-  with unique row choices.
+  full row support is that same `a`-set. This subproblem is now written in
+  locator-syndrome form: interpolate each row on `S` to degree `<a`, then set
+  the `sigma=a-k` top coefficients in degrees `k,...,a-1` to zero. The verifier
+  records that the `K_{2,2}` witness has `4` simultaneous feasible
+  zero-syndrome `a`-sets, all row-irregular, with unique row choices and no
+  mismatch against the enumerated support families.
 - **How it is useful:** Turns the L2 objective from a broad "avoid Cartesian
   overcharge" principle into a concrete conjectural inequality that can be
   falsified or promoted. The `K_{2,2}` witness records that local Cartesian

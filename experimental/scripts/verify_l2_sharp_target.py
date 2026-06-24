@@ -6,7 +6,7 @@ settled by the support-intersection bridge: over-agreement can create
 interleaved mass, so the falsification target is whether that mass can grow like
 a Cartesian product rather than like a polynomial support-overlap codegree.
 
-The script checks eight finite objects.
+The script checks nine finite objects.
 
 1. The all-remainder quotient packet count used as Quot_rem_mu in the target.
 2. The Johnson-shell weights used in the codegree reduction.
@@ -15,7 +15,8 @@ The script checks eight finite objects.
 5. The dyadic active-scale clearance criterion for small dimension dithers.
 6. The regular/row-irregular split of the interleaved support count.
 7. The simultaneous feasible-support fiber behind the regular exact-row core.
-8. A realized Reed-Solomon K_{2,2} gluing over a prime-field multiplicative
+8. The locator-syndrome equations defining that simultaneous fiber.
+9. A realized Reed-Solomon K_{2,2} gluing over a prime-field multiplicative
    subgroup, computed by exact list enumeration, together with its punctured
    codegree profile.
 
@@ -424,6 +425,85 @@ def simultaneous_fiber_profile(
     }
 
 
+def interpolate_subset_poly(
+    p: int, h_values: list[int], word: tuple[int, ...], subset: frozenset[int]
+) -> list[int]:
+    """Degree-<|subset| interpolant of word on subset."""
+    out = [0]
+    for idx in subset:
+        xi = h_values[idx]
+        basis = [1]
+        denominator = 1
+        for jdx in subset:
+            if jdx == idx:
+                continue
+            xj = h_values[jdx]
+            basis = poly_mul(basis, [(-xj) % p, 1], p)
+            denominator = (denominator * (xi - xj)) % p
+        scale = word[idx] * pow(denominator, p - 2, p)
+        term = [(scale * coeff) % p for coeff in basis]
+        out = poly_add(out, term, p)
+    return trim_poly(out)
+
+
+def top_syndrome(poly: list[int], k: int, a: int) -> tuple[int, ...]:
+    """Coefficients in degrees k,...,a-1 of a degree-<a interpolant."""
+    return tuple(poly[degree] if degree < len(poly) else 0 for degree in range(k, a))
+
+
+def simultaneous_syndrome_profile(
+    words: list[tuple[int, ...]],
+    h_values: list[int],
+    families: list[list[frozenset[int]]],
+    k: int,
+    a: int,
+    p: int,
+) -> dict:
+    """Verify that simultaneous fibers are the common zero locus of syndromes."""
+    simultaneous_zero = 0
+    regular_exact = 0
+    row_irregular = 0
+    support_family_mismatches = 0
+    for subset in itertools.combinations(range(len(h_values)), a):
+        s_set = frozenset(subset)
+        full_supports = []
+        row_zero = []
+        for word in words:
+            interpolant = interpolate_subset_poly(p, h_values, word, s_set)
+            syndrome = top_syndrome(interpolant, k, a)
+            is_zero = all(value == 0 for value in syndrome)
+            row_zero.append(is_zero)
+            if is_zero:
+                full_supports.append(
+                    frozenset(
+                        idx
+                        for idx, x in enumerate(h_values)
+                        if eval_poly(tuple(interpolant), x, p) == word[idx]
+                    )
+                )
+            else:
+                full_supports.append(frozenset())
+        family_contains = [
+            any(s_set <= support for support in family)
+            for family in families
+        ]
+        if row_zero != family_contains:
+            support_family_mismatches += 1
+        if all(row_zero):
+            simultaneous_zero += 1
+            if all(support == s_set for support in full_supports):
+                regular_exact += 1
+            else:
+                row_irregular += 1
+    return {
+        "simultaneous_syndrome_zero_a_sets": simultaneous_zero,
+        "regular_exact_a_sets": regular_exact,
+        "row_irregular_a_sets": row_irregular,
+        "support_family_mismatches": support_family_mismatches,
+        "syndrome_length": a - k,
+    }
+
+
 def punctured_johnson_bound(s: int, k: int, a: int) -> dict:
     """Elementary pairwise-overlap bound for an [s,k] punctured RS code.
 
@@ -773,6 +853,9 @@ def realized_rs_k22() -> dict:
     support_sizes = [[len(s) for s in fam] for fam in families]
     regular_profile = regular_irregular_profile(families, a)
     fiber_profile = simultaneous_fiber_profile(families, a, n)
+    syndrome_profile = simultaneous_syndrome_profile(
+        [tuple(word1), tuple(word2)], h_values, families, k, a, p
+    )
     codegree_profile = two_row_codegree_profile(families, a)
     shell_bound = shell_codegree_bound(families, k, a)
     l1_reduction_bound = l1_shell_reduction_bound(families, n, k, a)
@@ -810,6 +893,7 @@ def realized_rs_k22() -> dict:
         ],
         "regular_irregular_profile": regular_profile,
         "simultaneous_fiber_profile": fiber_profile,
+        "simultaneous_syndrome_profile": syndrome_profile,
         "punctured_codegree_profile": codegree_profile,
         "codegree_identity_holds": codegree_profile["codegree_sum"] == interleaved,
         "shell_codegree_bound": shell_bound,
@@ -914,6 +998,18 @@ def run() -> dict:
         ]["max_row_choices_per_a_set"]
         == 1
         and witness["simultaneous_fiber_profile"]["duplicate_choice_a_sets"] == 0,
+        "rs_witness_syndrome_matches_fiber": witness[
+            "simultaneous_syndrome_profile"
+        ]["simultaneous_syndrome_zero_a_sets"]
+        == witness["simultaneous_fiber_profile"]["simultaneous_a_sets"]
+        and witness["simultaneous_syndrome_profile"]["regular_exact_a_sets"]
+        == witness["simultaneous_fiber_profile"]["regular_exact_a_sets"]
+        and witness["simultaneous_syndrome_profile"]["row_irregular_a_sets"]
+        == witness["simultaneous_fiber_profile"]["row_irregular_a_sets"],
+        "rs_witness_syndrome_matches_support_families": witness[
+            "simultaneous_syndrome_profile"
+        ]["support_family_mismatches"]
+        == 0,
         "rs_witness_shell_bound": witness["interleaved"] <= witness["shell_codegree_bound"]["total_bound"],
         "rs_witness_l1_shell_reduction": witness["interleaved"]
         <= witness["l1_shell_reduction_bound"]["total_bound"],
@@ -1036,6 +1132,14 @@ def main(argv: list[str] | None = None) -> int:
             f"regular_exact={fib['regular_exact_a_sets']}, "
             f"row_irregular={fib['row_irregular_a_sets']}, "
             f"max_row_choices={fib['max_row_choices_per_a_set']}"
+        )
+        syn = w["simultaneous_syndrome_profile"]
+        print(
+            "    locator syndromes: "
+            f"zero_a_sets={syn['simultaneous_syndrome_zero_a_sets']}, "
+            f"regular_exact={syn['regular_exact_a_sets']}, "
+            f"row_irregular={syn['row_irregular_a_sets']}, "
+            f"mismatches={syn['support_family_mismatches']}"
         )
         print(
             f"    Johnson threshold={w['johnson_anchor_threshold']}, "

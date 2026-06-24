@@ -664,6 +664,52 @@ the row-irregular fibers removed. The random term is precisely the expectation
 of `|Fib_U^cap(a)|` for independent random rows, namely
 `binom(n,a) q^{-mu(a-k)}`.
 
+There is an explicit syndrome form of this fiber. For an `a`-set `S`, let
+
+```text
+L_S(X) = product_{s in S} (X-s)
+```
+
+and for a row `V` define the unique degree-`<a` interpolant on `S` by
+
+```text
+I_{V,S}(X)
+ = sum_{s in S} V(s) L_S(X) / ((X-s)L_S'(s)).
+```
+
+Write `sigma=a-k` and define the top-coefficient syndrome
+
+```text
+Syn_V(S)
+ = ([X^k]I_{V,S}, [X^{k+1}]I_{V,S}, ..., [X^{a-1}]I_{V,S})
+   in F_q^sigma.
+```
+
+Then
+
+```text
+S in Fib_V(a)    iff    Syn_V(S)=0.
+```
+
+Indeed, `I_{V,S}` is the only degree-`<a` polynomial agreeing with `V` on `S`,
+and `a>=k`; it extends to a degree-`<k` codeword exactly when its coefficients
+in degrees `k,...,a-1` vanish. Therefore
+
+```text
+Fib_U^cap(a)
+ = {S subset H : |S|=a and Syn_{U_i}(S)=0 for every i}.
+```
+
+This is the concrete L1-style object left in the regular core: a support
+locator `L_S` must satisfy `mu sigma` top-coefficient conditions. The exact
+regular part further imposes the inequalities
+
+```text
+I_{U_i,S}(x) != U_i(x)       for every x in H \ S and every i,
+```
+
+while dropping these inequalities gives the simultaneous-fiber upper bound.
+
 For row-irregular tuples, at least one row has support size `>=a+1`. Anchoring
 such a row and using the fixed-arity shell reduction gives the union bound
 
@@ -806,7 +852,9 @@ checks the following stress points.
    listed tuple is charged to row over-agreement rather than to the regular
    exact-row core. The simultaneous feasible-support fiber has `4` feasible
    `a`-sets, with `0` regular exact sets, `4` row-irregular sets, and a unique
-   row codeword choice for each row and each feasible `a`-set.
+   row codeword choice for each row and each feasible `a`-set. The
+   locator-syndrome test gives the same `4` simultaneous zero-syndrome
+   `a`-sets, with no mismatch against the enumerated support families.
    The two row-1 anchor supports have size `8`; the punctured Johnson bound is
    `floor(8(8-3+1)/(5^2-8(3-1))) = 5`, so the observed codegrees `2,2`
    satisfy the proposition.
