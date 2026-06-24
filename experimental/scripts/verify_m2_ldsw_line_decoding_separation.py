@@ -211,6 +211,12 @@ def balanced_bucket_bound(bucket_count: int) -> int:
     return max((P + bucket_count - 1) // bucket_count, bucket_count)
 
 
+def list_size_obstruction_threshold(b_threshold: int) -> int:
+    if b_threshold <= 1:
+        raise ValueError("b_threshold must be at least 2")
+    return (P + b_threshold - 2) // (b_threshold - 1)
+
+
 def compute_report() -> dict[str, Any]:
     codebook = codewords()
     support_code = support_tables(codebook)
@@ -236,6 +242,7 @@ def compute_report() -> dict[str, Any]:
     bucket_sizes = (len(P0_SLOPES), len(P1_SLOPES))
     bucket_bound = bucket_obstruction_bound(bucket_sizes)
     balanced_bound = balanced_bucket_bound(len(bucket_sizes))
+    list_threshold = list_size_obstruction_threshold(B_THRESHOLD)
 
     checks = {
         "p0_and_p1_distinct": p0 != p1,
@@ -259,6 +266,11 @@ def compute_report() -> dict[str, Any]:
         ),
         "bucket_obstruction_matches_balanced_bound": (
             bucket_bound == balanced_bound
+        ),
+        "list_size_threshold_is_two": list_threshold == 2,
+        "base_close_list_meets_threshold": len(bucket_sizes) >= list_threshold,
+        "list_threshold_below_collinearity_threshold": (
+            list_threshold <= B_THRESHOLD - 1
         ),
         "abf_threshold_b_n_plus_1_fails": (
             max_report["max_assignment_agreement"] < B_THRESHOLD
@@ -297,6 +309,7 @@ def compute_report() -> dict[str, Any]:
             "assigned_close_codewords": assignment_count,
             "m_bucket_obstruction_bound": bucket_bound,
             "balanced_m_bucket_bound": balanced_bound,
+            "list_size_obstruction_threshold": list_threshold,
         },
         **max_report,
         "interpretation": (
@@ -336,6 +349,10 @@ def print_report(report: dict[str, Any]) -> None:
     print(
         "balanced m-bucket bound: "
         f"{report['assignment']['balanced_m_bucket_bound']}"
+    )
+    print(
+        "list-size obstruction threshold: "
+        f"{report['assignment']['list_size_obstruction_threshold']}"
     )
     print(
         "max code-line agreement with assignment: "

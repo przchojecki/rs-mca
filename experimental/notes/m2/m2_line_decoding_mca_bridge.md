@@ -417,7 +417,10 @@ the close-codeword assignment need not come from one affine code-line.  After
 subtracting `gamma v`, the ABF/GG conclusion becomes an affine-graph incidence
 problem inside the ordinary close list of the base word `r`.  The general
 `m`-bucket obstruction gives the concrete failure threshold
-`max(ceil(|F|/m),m)` for a base word with `m` close codewords.
+`max(ceil(|F|/m),m)` for a base word with `m` close codewords.  Equivalently,
+at collinearity threshold `b`, line-decodability on such code-direction lines
+requires ordinary close-list size below `ceil(|F|/(b-1))` whenever that number
+is at most `b-1`.
 
 ## Follow-Up Checks
 

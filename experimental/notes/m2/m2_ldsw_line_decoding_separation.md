@@ -117,6 +117,25 @@ max(ceil(|F|/m), m) < b,
 then the code fails the ABF/GG collinearity conclusion on a line whose
 support-wise `LD_sw` contribution is zero.
 
+Equivalently, for any nonvacuous ABF/GG threshold `2 <= b <= |F|`, put
+
+```text
+s_b = ceil(|F|/(b-1)).
+```
+
+If `s_b <= b-1`, then ABF/GG `(delta,a_LD,b)` line-decodability with
+`a_LD <= |F|` forces every base word `r` to have fewer than `s_b` ordinary
+close codewords at the same agreement threshold.  Otherwise, choose `s_b` of
+them, use a balanced `s_b`-bucket assignment, and every affine code-line hits
+at most
+
+```text
+max(ceil(|F|/s_b), s_b) <= b-1
+```
+
+slopes.  This violates the required `b`-slope collinearity conclusion while
+the code-direction received line still contributes nothing to `LD_sw`.
+
 ## Construction
 
 Let `D={0,...,7}` in `F_13`, let `C=RS[F_13,D,3]`, and put
@@ -161,7 +180,9 @@ numerator `a_LD <= 13`.
 
 However, no code-line `u0 + gamma u1` agrees with this assignment on nine
 slopes.  This is the `m=2` bucket obstruction above with bucket sizes `6` and
-`7`; the exact maximum is `max(ceil(13/2),2)=7 < 9`.
+`7`; the exact maximum is `max(ceil(13/2),2)=7 < 9`.  The list-size corollary
+also applies directly: for `b=9`, one has `s_b=ceil(13/8)=2`, and the base
+word `r` has the two close codewords `p0,p1`.
 
 ## Consequence for M2
 
@@ -180,7 +201,9 @@ assignment-collinearity input if it aims to prove ABF/GG line-decodability;
 residue-line packing or `LD_sw` alone proves the MCA numerator, not the
 stronger close-codeword assignment theorem.  The `m`-bucket bound also explains
 what such an input must control: affine-graph incidence inside ordinary close
-lists, not only the size of the support-wise bad-slope set.
+lists, not only the size of the support-wise bad-slope set.  In the
+`b=n+1` convention, the code-direction obstruction demands ordinary close-list
+control at the scale `ceil(|F|/n)` whenever `ceil(|F|/n) <= n`.
 
 This does not contradict the ABF/GG theorem.  It only rules out a possible
 shortcut from support-wise MCA bounds back to line-decodability.
