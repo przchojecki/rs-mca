@@ -43,83 +43,83 @@ AUDIT_CASES = (
 EXPECTED_ROWS = {
     (17, 8): (
         98, 1.1361004999, 1.1361004999, 1.0588235294,
-        0.4744784060, 0.1604222370, 0.5008643049,
+        0.4744784060, 0.2235100611, 0.1604222370, 0.5008643049,
     ),
     (17, 16): (
         98, 1.5728968500, 1.5728968500, 1.0588235294,
-        0.4632352941, 0.1210446885, 0.4787888411,
+        0.4632352941, 0.2694629736, 0.1210446885, 0.4787888411,
     ),
     (31, 6): (
         486, 2.3225806452, 2.3225806452, 2.2580645161,
-        0.6634504452, 0.5956833972, 0.8916306427,
+        0.6634504452, 0.5521691216, 0.5956833972, 0.8916306427,
     ),
     (31, 10): (
         486, 1.8416183853, 3.1043892896, 3.1043892896,
-        0.5965213065, 0.8914205479, 1.0725988356,
+        0.5965213065, 0.3935483871, 0.8914205479, 1.0725988356,
     ),
     (43, 6): (
         1568, 3.0697674419, 3.2558139535, 3.2558139535,
-        1.1366043634, 0.6522692703, 1.3104673518,
+        1.1366043634, 0.9002934041, 0.6522692703, 1.3104673518,
     ),
     (43, 14): (
         1568, 2.5116279070, 4.1755606367, 4.1755606367,
-        0.8267620588, 0.8830649777, 1.2096856024,
+        0.8267620588, 0.5021779037, 0.8830649777, 1.2096856024,
     ),
     (61, 10): (
         3638, 3.1564925354, 4.6342117655, 4.6342117655,
-        1.0413952974, 1.1549828950, 1.5551493990,
+        1.0413952974, 0.7253908491, 1.1549828950, 1.5551493990,
     ),
     (61, 12): (
         3638, 3.7704918033, 5.0163934426, 5.0163934426,
-        0.8927070383, 0.6915699414, 1.1292452524,
+        0.8927070383, 0.6368113387, 0.6915699414, 1.1292452524,
     ),
     (61, 20): (
         3638, 4.1651103505, 5.3219296886, 5.3219296886,
-        1.0676033635, 0.9151432864, 1.4061522593,
+        1.0676033635, 0.5499480809, 0.9151432864, 1.4061522593,
     ),
     (73, 8): (
         4452, 3.3972602740, 3.9136778741, 3.9136778741,
-        1.0215128288, 1.0631452044, 1.4743697586,
+        1.0215128288, 0.7235353976, 1.0631452044, 1.4743697586,
     ),
     (73, 12): (
         4452, 3.3972602740, 5.5068493151, 5.5068493151,
-        0.8625907978, 1.0433365298, 1.3537407429,
+        0.8625907978, 0.4811884192, 1.0433365298, 1.3537407429,
     ),
     (97, 12): (
         8220, 2.4147368394, 3.6118420031, 3.6118420031,
-        0.9058943297, 0.6312463166, 1.1041360644,
+        0.9058943297, 0.3631084660, 0.6312463166, 1.1041360644,
     ),
     (97, 16): (
         8220, 3.1778878253, 3.9489699606, 3.9489699606,
-        0.8764288851, 0.8280980376, 1.2057669553,
+        0.8764288851, 0.3376091912, 0.8280980376, 1.2057669553,
     ),
     (109, 12): (
         11750, 3.9816513761, 5.6717827398, 5.6717827398,
-        1.1119173117, 1.2278896782, 1.6565244248,
+        1.1119173117, 0.8039426154, 1.2278896782, 1.6565244248,
     ),
     (109, 18): (
         11750, 3.9816513761, 4.7522935780, 4.7522935780,
-        0.9676363750, 0.8838514219, 1.3105393891,
+        0.9676363750, 0.4518468641, 0.8838514219, 1.3105393891,
     ),
     (109, 27): (
         11750, 3.9872656889, 4.6710181306, 4.6710181306,
-        0.8757048097, 0.5079449321, 1.0123571345,
+        0.8757048097, 0.3973402927, 0.5079449321, 1.0123571345,
     ),
     (127, 9): (
         12406, 3.5511811024, 3.8582677165, 3.8582677165,
-        0.9915857812, 0.7704811722, 1.2557402591,
+        0.9915857812, 0.7258323902, 0.7704811722, 1.2557402591,
     ),
     (127, 14): (
         12406, 4.8036624425, 5.1781602661, 5.1781602661,
-        0.9401651247, 1.0542609262, 1.4125779845,
+        0.9401651247, 0.4350589111, 1.0542609262, 1.4125779845,
     ),
     (127, 18): (
         12406, 3.7751417349, 4.1417322835, 4.1417322835,
-        0.8755124649, 0.5311890425, 1.0240526721,
+        0.8755124649, 0.4019596469, 0.5311890425, 1.0240526721,
     ),
     (127, 21): (
         12406, 4.8036624425, 4.8036624425, 4.6769325284,
-        0.8972861099, 0.7390713327, 1.1624752892,
+        0.8972861099, 0.3888406786, 0.7390713327, 1.1624752892,
     ),
 }
 
@@ -214,6 +214,12 @@ def principal_trace_case(p: int) -> dict[str, Any]:
             base_trace += base_contribution
     if direct_trace != base_trace:
         raise AssertionError((p, direct_trace, base_trace))
+    expected_middle_trace = p + 2 * m1.legendre(-3, p)
+    expected_branch_trace = p + 2
+    if full_middle_trace != expected_middle_trace:
+        raise AssertionError((p, full_middle_trace, expected_middle_trace))
+    if full_branch_trace != expected_branch_trace:
+        raise AssertionError((p, full_branch_trace, expected_branch_trace))
     deleted_correction = base_trace - full_middle_trace - full_branch_trace
     if abs(deleted_correction) > 2 * deleted_base_count:
         raise AssertionError((p, deleted_correction, deleted_base_count))
@@ -224,6 +230,8 @@ def principal_trace_case(p: int) -> dict[str, Any]:
         "principal_trace": direct_trace,
         "full_middle_trace": full_middle_trace,
         "full_branch_trace": full_branch_trace,
+        "expected_full_middle_trace": expected_middle_trace,
+        "expected_full_branch_trace": expected_branch_trace,
         "deleted_correction": deleted_correction,
         "principal_trace_ratio": round(abs(direct_trace) / p, 10),
         "full_torus_trace_ratio": round(
@@ -254,6 +262,13 @@ def centered_frobenius_square(matrix: list[list[int]]) -> float:
             )
             norm_square += centered * centered
     return norm_square
+
+
+def alpha_marginal_square(matrix: list[list[int]]) -> float:
+    order = len(matrix)
+    row_sums = [sum(row) for row in matrix]
+    total = sum(row_sums)
+    return sum((row_sum - total / order) ** 2 for row_sum in row_sums) / order
 
 
 def beta_marginal_square(matrix: list[list[int]]) -> float:
@@ -364,6 +379,7 @@ def spectral_stats(
 def audit_case(p: int, quotient_order: int) -> dict[str, Any]:
     matrix, point_count = good_pushforward_matrix(p, quotient_order)
     frobenius_square = centered_frobenius_square(matrix)
+    alpha_marginal = alpha_marginal_square(matrix)
     marginal_square = beta_marginal_square(matrix)
     right_projected_square = right_projected_frobenius_square(matrix)
     components = fiber_product_components(matrix)
@@ -395,6 +411,13 @@ def audit_case(p: int, quotient_order: int) -> dict[str, Any]:
     component_right_error = abs(
         components["right_projected_from_components"] - right_projected_square
     )
+    joint_decomposition_error = abs(
+        components["joint_collision"]
+        - frobenius_square
+        - alpha_marginal
+        - marginal_square
+        - components["total_collision"] / (quotient_order * quotient_order)
+    )
     if parseval_error > TOLERANCE:
         raise AssertionError((p, quotient_order, two_sided_energy, frobenius_square))
     if marginal_parseval_error > TOLERANCE:
@@ -419,10 +442,13 @@ def audit_case(p: int, quotient_order: int) -> dict[str, Any]:
         raise AssertionError(
             (p, quotient_order, components["right_projected_from_components"])
         )
+    if joint_decomposition_error > TOLERANCE:
+        raise AssertionError((p, quotient_order, joint_decomposition_error))
     two_sided_ratio = max_two_sided / p
     beta2_ratio = max_beta2 / p
     left_principal_ratio = max_left_principal / p
     frobenius_ratio = math.sqrt(frobenius_square) / p
+    alpha_marginal_ratio = math.sqrt(alpha_marginal) / p
     marginal_ratio = math.sqrt(marginal_square) / p
     right_projected_ratio = math.sqrt(right_projected_square) / p
     nonnegative_bound_ratio = math.sqrt(
@@ -437,6 +463,7 @@ def audit_case(p: int, quotient_order: int) -> dict[str, Any]:
         "max_beta2_coefficient_ratio": round(beta2_ratio, 10),
         "max_left_principal_coefficient_ratio": round(left_principal_ratio, 10),
         "centered_frobenius_ratio": round(frobenius_ratio, 10),
+        "alpha_marginal_frobenius_ratio": round(alpha_marginal_ratio, 10),
         "beta_marginal_frobenius_ratio": round(marginal_ratio, 10),
         "right_projected_frobenius_ratio": round(right_projected_ratio, 10),
         "nonnegative_sufficient_bound_ratio": round(nonnegative_bound_ratio, 10),
@@ -464,6 +491,7 @@ def audit_case(p: int, quotient_order: int) -> dict[str, Any]:
         "component_centered_error": round(component_centered_error, 12),
         "component_marginal_error": round(component_marginal_error, 12),
         "component_right_error": round(component_right_error, 12),
+        "joint_decomposition_error": round(joint_decomposition_error, 12),
     }
 
 
@@ -480,6 +508,7 @@ def compute_report() -> dict[str, Any]:
             expected_beta2,
             expected_left_principal,
             expected_frobenius,
+            expected_alpha_marginal,
             expected_marginal,
             expected_right_projected,
         ) = EXPECTED_ROWS[key]
@@ -507,6 +536,17 @@ def compute_report() -> dict[str, Any]:
         if abs(row["centered_frobenius_ratio"] - expected_frobenius) > TOLERANCE:
             raise AssertionError(
                 (key, row["centered_frobenius_ratio"], expected_frobenius)
+            )
+        if (
+            abs(row["alpha_marginal_frobenius_ratio"] - expected_alpha_marginal)
+            > TOLERANCE
+        ):
+            raise AssertionError(
+                (
+                    key,
+                    row["alpha_marginal_frobenius_ratio"],
+                    expected_alpha_marginal,
+                )
             )
         if abs(row["beta_marginal_frobenius_ratio"] - expected_marginal) > TOLERANCE:
             raise AssertionError(
@@ -541,6 +581,10 @@ def compute_report() -> dict[str, Any]:
     )
     max_beta2_row = max(rows, key=lambda row: row["max_beta2_coefficient_ratio"])
     max_frobenius_row = max(rows, key=lambda row: row["centered_frobenius_ratio"])
+    max_alpha_marginal_row = max(
+        rows,
+        key=lambda row: row["alpha_marginal_frobenius_ratio"],
+    )
     max_marginal_row = max(
         rows,
         key=lambda row: row["beta_marginal_frobenius_ratio"],
@@ -567,6 +611,7 @@ def compute_report() -> dict[str, Any]:
         "max_two_sided_coefficient_row": max_two_sided_row,
         "max_beta2_coefficient_row": max_beta2_row,
         "max_centered_frobenius_row": max_frobenius_row,
+        "max_alpha_marginal_frobenius_row": max_alpha_marginal_row,
         "max_beta_marginal_frobenius_row": max_marginal_row,
         "max_right_projected_frobenius_row": max_right_projected_row,
         "max_joint_collision_row": max_joint_collision_row,
@@ -590,6 +635,7 @@ def print_report(report: dict[str, Any]) -> None:
             "beta2/p={max_beta2_coefficient_ratio} "
             "left_principal/p={max_left_principal_coefficient_ratio} "
             "frob/p={centered_frobenius_ratio} "
+            "alpha_marginal/p={alpha_marginal_frobenius_ratio} "
             "beta_marginal/p={beta_marginal_frobenius_ratio} "
             "right_projected/p={right_projected_frobenius_ratio} "
             "nonnull_bound/p={nonnegative_sufficient_bound_ratio} "
@@ -603,6 +649,7 @@ def print_report(report: dict[str, Any]) -> None:
     max_two_sided = report["max_two_sided_coefficient_row"]
     max_beta2 = report["max_beta2_coefficient_row"]
     max_frobenius = report["max_centered_frobenius_row"]
+    max_alpha_marginal = report["max_alpha_marginal_frobenius_row"]
     max_marginal = report["max_beta_marginal_frobenius_row"]
     max_right_projected = report["max_right_projected_frobenius_row"]
     max_joint_collision = report["max_joint_collision_row"]
@@ -621,6 +668,12 @@ def print_report(report: dict[str, Any]) -> None:
         "max centered Frobenius row: "
         f"p={max_frobenius['p']} e={max_frobenius['quotient_order']} "
         f"ratio={max_frobenius['centered_frobenius_ratio']}"
+    )
+    print(
+        "max alpha-marginal Frobenius row: "
+        f"p={max_alpha_marginal['p']} "
+        f"e={max_alpha_marginal['quotient_order']} "
+        f"ratio={max_alpha_marginal['alpha_marginal_frobenius_ratio']}"
     )
     print(
         "max beta-marginal Frobenius row: "

@@ -688,6 +688,22 @@ averaged M1 target either by controlling the signed four-term
 inclusion-exclusion directly, or, in the nonnegative route, by proving the
 remaining joint quotient-collision estimate `C_ab=O_e(p^2)`.
 
+The joint-collision target is stronger than the centered M1 target.  It has
+the orthogonal block decomposition
+
+```text
+C_ab = ||G_e^circ||_F^2
+       + e^{-1} sum_i (r_i - T/e)^2
+       + e^{-1} sum_j (c_j - T/e)^2
+       + e^{-2}T^2,
+```
+
+where `r_i=sum_j(G_e)_{i,j}` and `c_j=sum_i(G_e)_{i,j}`.  The last block is
+now controlled by the principal trace formula.  Therefore the positive
+`C_ab` route would still need p-scale estimates for the centered block and
+for the alpha- and beta-marginal energies.  The centered block alone is the
+minimal averaged input consumed by the quotient-conic M1 ledger.
+
 The elementary hypotheses behind this import are now audited in
 `verify_m1_depth_two_line_conic_resonance_reduction.py`:
 

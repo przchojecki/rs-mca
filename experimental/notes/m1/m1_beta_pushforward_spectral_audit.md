@@ -235,6 +235,23 @@ of fixed discriminant polynomials, each one-variable quadratic-character sum
 is constant, and the exceptional parameters are finite in number.  Hence both
 full-torus traces are `O(p)`.
 
+More precisely, the discriminants are
+
+```text
+disc_a M = 16(r-1)^2(r^2+r+1),
+disc_r H = 32(a-1)^2(a+2)(2a+1).
+```
+
+The quadratic-character sums over the full torus are therefore explicit:
+
+```text
+sum_{a,r in F_p^*} chi(rM(a,r)) = p + 2 chi(-3),
+sum_{a,r in F_p^*} chi(aH(a,r)) = p + 2.
+```
+
+The standalone verifier checks these exact formulas on every expanded prime
+row before applying the deleted-boundary correction below.
+
 The difference between the good base and the full torus is contained in the
 fixed-degree boundary
 
@@ -253,6 +270,40 @@ changes `(TRACE)` by at most `2`.  Therefore
 
 Thus the nonnegative sufficient route has only one remaining positive target:
 the joint quotient-collision estimate `C_ab=O_e(p^2)`.
+
+## Joint-Energy Fourier Blocks
+
+The remaining positive target `C_ab` also decomposes orthogonally into its
+Fourier blocks.  With
+
+```text
+r_i = sum_j (G_e)_{i,j},        c_j = sum_i (G_e)_{i,j},
+T = sum_{i,j} (G_e)_{i,j},
+r_i^circ = r_i - T/e,           c_j^circ = c_j - T/e,
+```
+
+one has the exact identity
+
+```text
+C_ab = ||G_e^circ||_F^2
+       + e^{-1} sum_i (r_i^circ)^2
+       + e^{-1} sum_j (c_j^circ)^2
+       + e^{-2} T^2.
+```
+
+Equivalently, this is Parseval split into the four character blocks
+
+```text
+psi != 1, phi != 1;     psi != 1, phi = 1;
+psi = 1,  phi != 1;     psi = 1,  phi = 1.
+```
+
+The last block is controlled by the principal trace reduction above.  Thus a
+proof of the nonnegative `C_ab=O_e(p^2)` route now amounts to proving p-scale
+energy for the centered block and the two one-sided marginals.  The centered
+block is the actual `(BETA_2^avg)` target consumed by M1; the two marginal
+blocks are extra one-sided estimates needed only if one chooses to prove the
+stronger positive joint-collision target.
 
 ## Interpretation
 
@@ -288,6 +339,7 @@ while the largest centered-Frobenius ratio is still
 The marginal split gives the additional expanded-row maxima
 
 ```text
+e^{-1/2} ||r^circ||_2 / p = 0.9002934041 at (p,e)=(43,6),
 e^{-1/2} ||c^circ||_2 / p = 1.2278896782 at (p,e)=(109,12),
 ||R_e||_F / p             = 1.6565244248 at (p,e)=(109,12).
 ```

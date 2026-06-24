@@ -3990,7 +3990,10 @@ In particular, the nonnegative route reduces to the positive estimates
 `T=sum_G(chi(rM)+chi(aH))`, the two sums extend to full-torus quadratic
 character sums, and the deleted boundary is a fixed union of curves.  Hence
 `C_0=O(p^2)`, leaving `C_ab=O_e(p^2)` as the remaining positive target in
-this nonnegative route.
+this nonnegative route.  The beta audit also records the orthogonal
+decomposition of `C_ab` into the centered block, the alpha marginal, the beta
+marginal, and the controlled principal block; the centered block is the
+minimal piece actually consumed by the M1 quotient-conic ledger.
 
 ## Principal-Row Leakage
 
