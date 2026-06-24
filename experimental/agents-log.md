@@ -30,6 +30,27 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-24 - X1 conj:B: residue-line confinement hypothesis FALSIFIED -> quotient descent
+
+- **Agent/model:** Claude Opus 4.8 (L2/X1 lane, branch `allen/l2-x1-interleaved-mca`).
+- **Files added or changed:** `experimental/scripts/verify_x1_conjB_residue_confinement.py`,
+  `experimental/notes/x1/x1_conjB_proof_plan.md` (step-2 corrected).
+- **Status:** AUDIT / banked NEGATIVE finding (verify-first caught an over-simplification).
+- **What is being added:** Built the residue-line bad-slope computation (def:residue:
+  z bad iff f+zg = w/E - zB/E agrees with a deg-<k codeword on >=a pts; k=2, per
+  a-subset solve f+zg=P). TESTED "quotient-periodic denominator E in F[X^M] => bad
+  slopes confine to B" and FALSIFIED it: periodic E=X^2-gamma with generic extension
+  w,B gives 39 bad slopes, only 1 in B (mostly F-valued). CORRECTION: rem:aper's
+  separation is NOT slope-confinement; a periodic-denominator line is a pullback
+  through x->x^M, so it DESCENDS to a residue line on H_{n/M} and its bad-slope
+  COUNT = the quotient instance = the quotient term (my quotient reduction on the
+  packing side). My confinement theorem (base-vs-F slopes) is a related-but-distinct
+  sub-tool, not the separation.
+- **How it is useful:** Corrects conj:B step-2 (quotient DESCENT of the count, not
+  confinement) before building a wrong proof. Verify-first discipline.
+- **What to do next:** re-read rem:aper (1255) + thm:qnecessity (1323) precisely;
+  build the quotient-DESCENT (count-preserving) verifier; then the descent lemma.
+
 ### 2026-06-24 - X1: corrected proof plan for conj:B (MCA) -- machinery = the quotient separation
 
 - **Agent/model:** Claude Opus 4.8 (L2/X1 lane, branch `allen/l2-x1-interleaved-mca`).
