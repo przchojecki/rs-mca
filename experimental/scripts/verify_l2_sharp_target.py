@@ -253,6 +253,67 @@ def two_row_codegree_profile(families: list[list[frozenset[int]]], a: int) -> di
     }
 
 
+def support_size_histogram(family: list[frozenset[int]]) -> dict[int, int]:
+    hist: dict[int, int] = {}
+    for supp in family:
+        hist[len(supp)] = hist.get(len(supp), 0) + 1
+    return dict(sorted(hist.items()))
+
+
+def exact_a_locator_count(family: list[frozenset[int]], a: int) -> int:
+    """Count exact a-subsets lying in full agreement supports."""
+    return sum(comb(len(supp), a) for supp in family if len(supp) >= a)
+
+
+def shell_codegree_bound(families: list[list[frozenset[int]]], k: int, a: int) -> dict:
+    """Deterministic two-row shell bound from punctured Johnson plus tail."""
+    row1, row2 = families
+    threshold = johnson_anchor_threshold(k, a)
+    threshold_value = threshold["threshold"]
+    row1_hist = support_size_histogram(row1)
+    controlled_terms = []
+    controlled_bound = 0
+    tail_count = 0
+    for s, count in row1_hist.items():
+        if threshold_value is None or s < threshold_value:
+            profile = punctured_johnson_bound(s, k, a)
+            if profile["bound"] is None:
+                raise ValueError("shell below Johnson threshold was not controlled")
+            contribution = count * profile["bound"]
+            controlled_terms.append(
+                {
+                    "support_size": s,
+                    "count": count,
+                    "mode": profile["mode"],
+                    "per_anchor_bound": profile["bound"],
+                    "contribution": contribution,
+                }
+            )
+            controlled_bound += contribution
+        else:
+            tail_count += count
+
+    row2_list_size = len(row2)
+    tail_trivial_bound = tail_count * row2_list_size
+    exact_count = exact_a_locator_count(row1, a)
+    if threshold_value is None or threshold_value > max((len(s) for s in row1), default=0):
+        tail_count_from_exact_a = 0
+    else:
+        tail_count_from_exact_a = exact_count // comb(threshold_value, a)
+    return {
+        "row1_support_histogram": row1_hist,
+        "row2_list_size": row2_list_size,
+        "johnson_threshold": threshold,
+        "controlled_terms": controlled_terms,
+        "controlled_bound": controlled_bound,
+        "tail_count": tail_count,
+        "tail_trivial_bound": tail_trivial_bound,
+        "exact_a_locator_count_row1": exact_count,
+        "tail_count_bound_from_exact_a": tail_count_from_exact_a,
+        "total_bound": controlled_bound + tail_trivial_bound,
+    }
+
+
 def kmm_grid_design(k: int, a: int, m: int) -> dict:
     """Abstract K_{m,m} grid design obeying the same-row RS overlap cap."""
     overlap_cap = k - 1
@@ -324,6 +385,7 @@ def realized_rs_k22() -> dict:
         r = len(supp1 & supp2)
         common_profile[r] = common_profile.get(r, 0) + 1
     codegree_profile = two_row_codegree_profile(families, a)
+    shell_bound = shell_codegree_bound(families, k, a)
     johnson_profiles = [
         punctured_johnson_bound(len(supp), k, a)
         for supp in families[0]
@@ -356,6 +418,7 @@ def realized_rs_k22() -> dict:
         "common_intersection_profile": dict(sorted(common_profile.items())),
         "punctured_codegree_profile": codegree_profile,
         "codegree_identity_holds": codegree_profile["codegree_sum"] == interleaved,
+        "shell_codegree_bound": shell_bound,
         "punctured_johnson_profiles": johnson_profiles,
         "johnson_anchor_threshold": threshold,
         "large_anchor_flags": large_anchor_flags,
@@ -375,6 +438,7 @@ def run() -> dict:
         "rs_witness_creates_mass": witness["mass_creation"],
         "rs_witness_realizes_k22": witness["interleaved"] == witness["product_bound"] == 4,
         "rs_witness_codegree_identity": witness["codegree_identity_holds"],
+        "rs_witness_shell_bound": witness["interleaved"] <= witness["shell_codegree_bound"]["total_bound"],
         "rs_witness_punctured_johnson": witness["punctured_johnson_ok"],
     }
     return {
@@ -428,6 +492,13 @@ def main(argv: list[str] | None = None) -> int:
         print(
             f"    Johnson threshold={w['johnson_anchor_threshold']}, "
             f"large_anchor_flags={w['large_anchor_flags']}"
+        )
+        sb = w["shell_codegree_bound"]
+        print(
+            f"    shell bound={sb['total_bound']} "
+            f"(controlled={sb['controlled_bound']}, tail={sb['tail_trivial_bound']}), "
+            f"row1_exact_a={sb['exact_a_locator_count_row1']}, "
+            f"tail_from_exact_a<={sb['tail_count_bound_from_exact_a']}"
         )
         print(f"    punctured Johnson profiles={w['punctured_johnson_profiles']}")
         print(f"  RESULT: {'PASS' if result['pass'] else 'FAIL'}")

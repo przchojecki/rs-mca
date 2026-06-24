@@ -335,13 +335,68 @@ ceil(a^2/(k-1)) - a
   = ceil(a(sigma+1)/(k-1)).
 ```
 
+This gives a deterministic shell decomposition for the two-row L2 problem. For
+a received word `V`, put
+
+```text
+N_V(s) = |{c in C : |A_V(c)| = s}|,
+L_V(a) = sum_{s>=a} N_V(s).
+```
+
+Let
+
+```text
+J(s;k,a) =
+  1,                                      if 2a > s+k-1,
+  floor(s(s-k+1)/(a^2-s(k-1))),           if a^2 > s(k-1).
+```
+
+**Proposition (two-row shell bound).** For `mu=2`, `k>=2`, and
+`s_J=ceil(a^2/(k-1))`, every pair of rows `U_1,U_2` satisfies
+
+```text
+|Lambda_2((U_1,U_2),a)|
+ <= sum_{s=a}^{min(n,s_J-1)} N_{U_1}(s) J(s;k,a)
+    + L_{U_2}(a) sum_{s=s_J}^n N_{U_1}(s).
+```
+
+The same inequality holds with the two rows interchanged.
+
+Moreover, if
+
+```text
+E_V^{(a)}
+  = |{S subset H : |S|=a and V|_S extends to a degree-<k polynomial}|,
+```
+
+then for every `s_0>=a`,
+
+```text
+sum_{s>=s_0} N_V(s) <= E_V^{(a)} / binom(s_0,a).
+```
+
+*Proof.* Start from the exact codegree decomposition. For an anchor
+`c_1` with `|A_{U_1}(c_1)|=s<s_J`, the punctured Johnson proposition bounds
+the inner completion number by `J(s;k,a)`. For anchors with `s>=s_J`, use the
+trivial bound
+
+```text
+Gamma_{A_{U_1}(c_1)}(U_2,a) <= L_{U_2}(a).
+```
+
+Summing over row-1 support-size shells gives the displayed inequality. The
+final estimate is a double count: each row codeword with full support size `s`
+contains exactly `binom(s,a)` subsets `S` of size `a`, and each such `S`
+determines at most one degree-`<k` polynomial because `a>=k`.
+
 Thus a proof of L2-Sharp can be organized by anchor support size `s`: small
 over-agreement anchors fall into unique decoding; intermediate anchors are
 Johnson-controlled by the proposition; any remaining large anchors must already
 have at least `ceil(a(sigma+1)/(k-1))` extra agreements above the list threshold
-`a`. The remaining proof obligation is therefore not arbitrary punctured
-list-decoding, but a high-overagreement tail after quotient packets are removed
-or budgeted.
+`a`, and their number is reducible to an exact-`a` one-row locator budget with
+a `binom(s_J,a)` multiplicity saving. The remaining proof obligation is
+therefore not arbitrary punctured list-decoding, but a high-overagreement tail
+after quotient packets are removed or budgeted.
 
 ## 5. Already proved or checked
 
@@ -360,7 +415,7 @@ The new falsification script
 python3 experimental/scripts/verify_l2_sharp_target.py
 ```
 
-checks three stress points.
+checks four stress points.
 
 1. The explicit aligned quotient budget is computable. For example, at
    `(n,k,a,mu)=(64,16,18,2)` the conservative budget has three active packet
@@ -385,6 +440,10 @@ checks three stress points.
    The two row-1 anchor supports have size `8`; the punctured Johnson bound is
    `floor(8(8-3+1)/(5^2-8(3-1))) = 5`, so the observed codegrees `2,2`
    satisfy the proposition.
+4. The same witness satisfies the deterministic shell bound: the row-1 shell
+   histogram is `{8:2}`, the controlled shell contribution is `2*5=10`, the
+   large-anchor tail is empty, and the exact-`a` row-1 locator multiplicity is
+   `2 binom(8,5)=112`.
    Thus the target cannot forbid local Cartesian blocks. The correct target is
    the global sharp bound above, with these blocks charged to the polynomial
    punctured-list/codegree error.
