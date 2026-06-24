@@ -57,6 +57,8 @@ Keep entries concise and link to the relevant files.
   degree-weighted common-prime-ideal incidence into an integer valuation budget.
   A radical Smith incidence index `J_n,sigma` sharpens this to an exact
   identity `v_p(J_n,sigma(A,B)) = deg G_p(A,B)` away from primes dividing `n`.
+  Its finite-family product gives the exact degree-weighted incidence product
+  away from primes dividing `n`, and `J_n,sigma` is invariant on affine orbits.
   Summing over rational primes gives a log-weighted density bound:
   `prod p^{d_T(p)}` divides the product of common-ideal indices over the
   finite template family.  For dilation-stable finite-field template families,

@@ -2634,18 +2634,28 @@ def check_log_weighted_density_budget() -> dict[str, Any]:
     ))
 
     index_product = 1
+    radical_product = 1
     height_bound_product = 1
     resultant_lcm = 1
     for left, right in family:
         certificate = bad_prime_certificate(left, right, order, sigma)
         common_ideal = common_ideal_index(left, right, order, sigma)
+        radical = common_ideal_radical_incidence_index(
+            left,
+            right,
+            order,
+            sigma,
+        )
         if common_ideal["index"] == 0:
             raise AssertionError("log budget excludes char-zero templates")
         if certificate["certificate"] % common_ideal["index"] != 0:
             raise AssertionError("common-ideal index did not divide certificate")
+        if common_ideal["index"] != radical["index"]:
+            raise AssertionError("radical wrapper changed common-ideal index")
         if common_ideal["index"] > certificate["least_active_height_bound"]:
             raise AssertionError("common-ideal index exceeded height bound")
         index_product *= common_ideal["index"]
+        radical_product *= radical["radical_incidence_index"]
         height_bound_product *= certificate["least_active_height_bound"]
         resultant_lcm = lcm_int(resultant_lcm, certificate["certificate"])
 
@@ -2658,6 +2668,7 @@ def check_log_weighted_density_budget() -> dict[str, Any]:
     for prime in candidate_primes:
         degree_sum = 0
         valuation_budget = p_adic_valuation(index_product, prime)
+        radical_valuation = p_adic_valuation(radical_product, prime)
         for left, right in family:
             degree_sum += degree(common_root_gcd_mod(
                 left,
@@ -2668,10 +2679,13 @@ def check_log_weighted_density_budget() -> dict[str, Any]:
             ))
         if degree_sum > valuation_budget:
             raise AssertionError("degree sum exceeded product valuation budget")
+        if degree_sum != radical_valuation:
+            raise AssertionError("degree sum did not match radical product")
         incidence_divisor *= prime ** degree_sum
         rows.append({
             "prime": prime,
             "common_root_degree_sum": degree_sum,
+            "radical_product_valuation": radical_valuation,
             "product_valuation_budget": valuation_budget,
         })
 
@@ -2679,17 +2693,25 @@ def check_log_weighted_density_budget() -> dict[str, Any]:
         {
             "prime": 17,
             "common_root_degree_sum": 40,
+            "radical_product_valuation": 40,
             "product_valuation_budget": 40,
         },
         {
             "prime": 97,
             "common_root_degree_sum": 0,
+            "radical_product_valuation": 0,
             "product_valuation_budget": 0,
         },
     ]:
         raise AssertionError(f"unexpected log-density rows: {rows}")
     if index_product % incidence_divisor != 0:
         raise AssertionError("incidence divisor did not divide index product")
+    radical_away_from_order = 1
+    for prime, exponent in factorint(radical_product).items():
+        if order % prime != 0:
+            radical_away_from_order *= prime ** exponent
+    if radical_away_from_order != incidence_divisor:
+        raise AssertionError("radical product did not equal incidence divisor")
     if height_bound_product < index_product:
         raise AssertionError("height-bound product did not dominate index product")
 
@@ -2699,6 +2721,12 @@ def check_log_weighted_density_budget() -> dict[str, Any]:
     extension_right = (2, 5)
     extension_prime = 3
     extension_ideal = common_ideal_index(
+        extension_left,
+        extension_right,
+        extension_order,
+        extension_sigma,
+    )
+    extension_radical = common_ideal_radical_incidence_index(
         extension_left,
         extension_right,
         extension_order,
@@ -2714,6 +2742,16 @@ def check_log_weighted_density_budget() -> dict[str, Any]:
     extension_incidence_divisor = extension_prime ** extension_degree
     if extension_ideal["index"] % extension_incidence_divisor != 0:
         raise AssertionError("nonsplit incidence divisor missed index product")
+    if (
+        extension_radical["radical_incidence_index"]
+        % extension_incidence_divisor != 0
+    ):
+        raise AssertionError("nonsplit incidence divisor missed radical index")
+    if p_adic_valuation(
+        extension_radical["radical_incidence_index"],
+        extension_prime,
+    ) != extension_degree:
+        raise AssertionError("nonsplit radical index did not match degree")
 
     return {
         "split_family": {
@@ -2724,6 +2762,8 @@ def check_log_weighted_density_budget() -> dict[str, Any]:
             "rows": rows,
             "incidence_divisor": incidence_divisor,
             "incidence_divisor_factorization": factorint(incidence_divisor),
+            "radical_product_factorization": factorint(radical_product),
+            "radical_away_from_order": radical_away_from_order,
             "index_product_factorization": factorint(index_product),
             "height_bound_dominates_index_product": (
                 height_bound_product >= index_product
@@ -2736,6 +2776,9 @@ def check_log_weighted_density_budget() -> dict[str, Any]:
             "common_root_degree": extension_degree,
             "incidence_divisor": extension_incidence_divisor,
             "common_ideal_index": extension_ideal["index"],
+            "radical_incidence_index": (
+                extension_radical["radical_incidence_index"]
+            ),
         },
     }
 
@@ -2797,6 +2840,7 @@ def check_dilation_invariant_row_bound() -> dict[str, Any]:
 
     orbit_rows = []
     valuation_budget = 0
+    radical_budget = 0
     for representative, members in orbit_groups.items():
         orbit_members = affine_orbit_members(
             representative[0],
@@ -2811,11 +2855,29 @@ def check_dilation_invariant_row_bound() -> dict[str, Any]:
             order,
             sigma,
         )
+        radical = common_ideal_radical_incidence_index(
+            representative[0],
+            representative[1],
+            order,
+            sigma,
+        )
         valuation = p_adic_valuation(common_ideal["index"], prime)
+        radical_valuation = p_adic_valuation(
+            radical["radical_incidence_index"],
+            prime,
+        )
         if valuation <= 0:
             raise AssertionError("incident orbit has zero valuation budget")
+        if radical_valuation <= 0:
+            raise AssertionError("incident orbit has zero radical budget")
         for member in members:
             member_ideal = common_ideal_index(
+                member[0],
+                member[1],
+                order,
+                sigma,
+            )
+            member_radical = common_ideal_radical_incidence_index(
                 member[0],
                 member[1],
                 order,
@@ -2825,14 +2887,32 @@ def check_dilation_invariant_row_bound() -> dict[str, Any]:
                 raise AssertionError("common-ideal index changed on affine orbit")
             if p_adic_valuation(member_ideal["index"], prime) != valuation:
                 raise AssertionError("valuation changed on affine orbit")
+            if (
+                member_radical["radical_incidence_index"]
+                != radical["radical_incidence_index"]
+            ):
+                raise AssertionError("radical index changed on affine orbit")
+            if (
+                p_adic_valuation(
+                    member_radical["radical_incidence_index"],
+                    prime,
+                )
+                != radical_valuation
+            ):
+                raise AssertionError("radical valuation changed on affine orbit")
         weighted_budget = len(members) * valuation
+        weighted_radical_budget = len(members) * radical_valuation
         valuation_budget += weighted_budget
+        radical_budget += weighted_radical_budget
         orbit_rows.append({
             "orbit_size": len(members),
             "representative": [list(representative[0]), list(representative[1])],
             "common_ideal_index": common_ideal["index"],
+            "radical_incidence_index": radical["radical_incidence_index"],
             "valuation_at_prime": valuation,
+            "radical_valuation_at_prime": radical_valuation,
             "weighted_budget": weighted_budget,
+            "weighted_radical_budget": weighted_radical_budget,
         })
     orbit_rows.sort(key=lambda item: (
         item["orbit_size"],
@@ -2842,13 +2922,25 @@ def check_dilation_invariant_row_bound() -> dict[str, Any]:
 
     if valuation_budget != degree_sum:
         raise AssertionError("valuation budget did not match degree sum")
+    if radical_budget != degree_sum:
+        raise AssertionError("radical budget did not match degree sum")
     row_bound = valuation_budget // euler_phi(order)
+    radical_row_bound = radical_budget // euler_phi(order)
     if valuation_budget % euler_phi(order) != 0:
         raise AssertionError("valuation budget is not divisible by phi(n)")
+    if radical_budget % euler_phi(order) != 0:
+        raise AssertionError("radical budget is not divisible by phi(n)")
     if row_bound != 40:
         raise AssertionError("unexpected valuation row bound")
+    if radical_row_bound != 40:
+        raise AssertionError("unexpected radical row bound")
     if any(row_count > row_bound for row_count in row_counts_by_root.values()):
         raise AssertionError("row count exceeded valuation row bound")
+    if any(
+        row_count > radical_row_bound
+        for row_count in row_counts_by_root.values()
+    ):
+        raise AssertionError("row count exceeded radical row bound")
 
     return {
         "prime": prime,
@@ -2863,7 +2955,9 @@ def check_dilation_invariant_row_bound() -> dict[str, Any]:
         },
         "degree_weighted_incidence_sum": degree_sum,
         "valuation_budget": valuation_budget,
+        "radical_budget": radical_budget,
         "valuation_row_bound": row_bound,
+        "radical_row_bound": radical_row_bound,
         "affine_orbit_count": len(orbit_rows),
         "affine_orbits": orbit_rows,
     }
@@ -3149,6 +3243,12 @@ def check_affine_invariance() -> dict[str, Any]:
             order,
             sigma,
         )
+        base_radical = common_ideal_radical_incidence_index(
+            template["left"],
+            template["right"],
+            order,
+            sigma,
+        )
         base_degree = degree(common_root_gcd_mod(
             template["left"],
             template["right"],
@@ -3162,6 +3262,8 @@ def check_affine_invariance() -> dict[str, Any]:
             raise AssertionError("bad affine-invariance base gcd degree")
         if base["certificate"] % base_common_ideal["index"] != 0:
             raise AssertionError("bad affine-invariance base common-ideal index")
+        if base_common_ideal["index"] != base_radical["index"]:
+            raise AssertionError("bad affine-invariance base radical wrapper")
 
         checked = 0
         for unit in units:
@@ -3170,6 +3272,12 @@ def check_affine_invariance() -> dict[str, Any]:
                 right = affine_subset(template["right"], unit, shift, order)
                 transformed = bad_prime_certificate(left, right, order, sigma)
                 transformed_common_ideal = common_ideal_index(
+                    left,
+                    right,
+                    order,
+                    sigma,
+                )
+                transformed_radical = common_ideal_radical_incidence_index(
                     left,
                     right,
                     order,
@@ -3186,6 +3294,11 @@ def check_affine_invariance() -> dict[str, Any]:
                     raise AssertionError("certificate changed under affine action")
                 if transformed_common_ideal["index"] != base_common_ideal["index"]:
                     raise AssertionError("common-ideal index changed under affine")
+                if (
+                    transformed_radical["radical_incidence_index"]
+                    != base_radical["radical_incidence_index"]
+                ):
+                    raise AssertionError("radical index changed under affine")
                 if transformed_degree != base_degree:
                     raise AssertionError("gcd degree changed under affine action")
                 checked += 1
@@ -3194,6 +3307,7 @@ def check_affine_invariance() -> dict[str, Any]:
             "prime": template["prime"],
             "certificate": base["certificate"],
             "common_ideal_index": base_common_ideal["index"],
+            "radical_incidence_index": base_radical["radical_incidence_index"],
             "common_root_degree": base_degree,
             "affine_transforms_checked": checked,
         })
@@ -3387,7 +3501,9 @@ def print_human(report: dict[str, Any]) -> None:
         "dilation_invariant_row_bound="
         f"family={row_bound['family_size']}, "
         f"valuation_budget={row_bound['valuation_budget']}, "
+        f"radical_budget={row_bound['radical_budget']}, "
         f"row_bound={row_bound['valuation_row_bound']}, "
+        f"radical_row_bound={row_bound['radical_row_bound']}, "
         f"affine_orbits={row_bound['affine_orbit_count']}"
     )
     fiber_bound = report["finite_field_row_fiber_bound"]
