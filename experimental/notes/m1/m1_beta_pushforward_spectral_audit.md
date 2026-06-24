@@ -631,8 +631,8 @@ right-nonprincipal RMS in the finite rows, matching the point of the
 `(BETA_2^avg)` reformulation.
 
 This is useful only as evidence and as a regression guard.  It cannot certify
-`(BETA_2)`: the proof still needs a bounded-conductor/no-constant-summand
-argument for the explicit rank-two beta pushforward, or a direct proof of the
+`(BETA_2)`: the proof still needs a bounded-conductor/no-`phi^{-1}`-Kummer
+summand argument for the beta-line pushforwards, or a direct proof of the
 averaged `(BETA_2^avg)` matrix bound.  The value of the scan is that it tests
 precisely that remaining analytic object, rather than a cruder two-variable
 Kummer surface or the already controlled exceptional ledger.

@@ -835,9 +835,13 @@ The elementary hypotheses behind this import are now audited in
 - the verifier checks that the finite intersections lie in those displayed
   resultant root supports.
 
-Thus the only remaining non-elementary input in `(BETA_2)` is the standard
-bounded-conductor Deligne--Katz/Rojas-Leon style trace estimate for this
-explicit tame rank-two pushforward.  If `(BETA_2)` is accepted, then
+Thus the remaining non-elementary input in `(BETA_2)` is now localized to the
+beta-line trace families from `m1_beta_pushforward_spectral_audit.md`, not to a
+generic constant-sheaf assertion for the rank-two surface pushforward.
+For every left quotient character `psi`, one needs bounded conductor together
+with no finite Kummer-isotypic `phi^{-1}` summand before twisting by a
+nonprincipal right character `phi`; equivalently, prove the averaged
+`(BETA_2^avg)` matrix bound directly.  If `(BETA_2)` is accepted, then
 
 ```text
 ||Gamma_e^circ||_F = O_e(p),   P_e = O_e(p^2),   M_e^o = O_e(p^2),
