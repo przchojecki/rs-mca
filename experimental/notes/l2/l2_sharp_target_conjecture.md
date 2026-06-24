@@ -526,6 +526,43 @@ over-agreement contribution obeys
 
 For every fixed protocol arity `mu`, this is polynomial in `n`.
 
+This packages the reduction to L1 as a conditional theorem.
+
+**Conditional theorem (L1 shell local limit gives the L2 codegree term).**
+Fix `mu>=2`. Suppose that, in the quotient-free or quotient-budgeted residual
+problem, there is a constant `B_L` such that every row word `V` satisfies
+
+```text
+L_V(t) <= n^{B_L}
+```
+
+for every shell threshold
+
+```text
+a <= t <= min(n,s_J),        s_J = ceil(a^2/(k-1)).
+```
+
+Then every fixed-arity interleaved received word `U=(U_1,...,U_mu)` has
+over-agreement/codegree contribution bounded by
+
+```text
+n^{B_L+2(mu-1)}(2+log n) + n^{mu B_L}.
+```
+
+Thus, after the aligned quotient packets are removed or charged to
+`Quot_align_mu(n,k,a)`, this L1 shell hypothesis supplies the polynomial
+`n^B` error term required by L2-Sharp, for example with any
+
+```text
+B > max(B_L+2(mu-1), mu B_L).
+```
+
+This conditional theorem does not prove the sharp random simultaneous-support
+main term or the explicit quotient budget. Its content is narrower: no
+additional Cartesian-product obstruction remains in the fixed-arity
+over-agreement/codegree term once the repaired L1 shell local limit is
+available.
+
 Thus a proof of L2-Sharp can be organized by anchor support size `s`: small
 over-agreement anchors fall into unique decoding; intermediate anchors are
 Johnson-controlled by the proposition; any remaining large anchors must already

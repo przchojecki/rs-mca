@@ -57,8 +57,10 @@ Keep entries concise and link to the relevant files.
   `O(n^2 log n)`. The same argument is extended to fixed protocol arity `mu`:
   the powered shell weight `sum_s J(s;k,a)^(mu-1)` is
   `O_mu(n^{2(mu-1)} log n)`, so repaired one-row L1 shell bounds imply a
-  polynomial fixed-arity L2 codegree bound. The verifier stress-tests the exact
-  quotient budget, natural
+  polynomial fixed-arity L2 codegree bound. This is now stated as a conditional
+  theorem: after quotient packets are removed or charged to `Quot_align_mu`,
+  the L1 shell local limit supplies the `n^B` error term in L2-Sharp. The
+  verifier stress-tests the exact quotient budget, natural
   `K_{m,m}` grid over-agreement attacks, and a realized `F_29` Reed-Solomon
   `K_{2,2}` gluing witness with punctured codegrees `[2,2]` satisfying the
   Johnson bound `5`, exact shell bound `10`, and L1-shell reduction bound
