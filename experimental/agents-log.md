@@ -119,6 +119,11 @@ Keep entries concise and link to the relevant files.
   into the family, and the maximum non-identity residual overlap is `0`.
   This records that `Quot_rem_mu` is a structured budgeted subfamily, not an
   exhaustive finite classification of the zero-moment locus.
+  The V0 note now also proves the two leading terms exactly: the random
+  simultaneous-fiber mean is `binom(n,a)q^{-mu(a-k)}`, the exact-regular random
+  mean has the additional `(1-1/q)^{mu(n-a)}` factor, and each all-remainder
+  quotient packet has exact support with interleaved count `L_{M,mu}(a,tau)`;
+  the verifier checks exact advertised support in the dithered `F_17` packet.
 - **How it is useful:** Turns the L2 objective from a broad "avoid Cartesian
   overcharge" principle into a concrete conjectural inequality that can be
   falsified or promoted. The `K_{2,2}` witness records that local Cartesian

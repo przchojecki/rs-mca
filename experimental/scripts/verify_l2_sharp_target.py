@@ -823,6 +823,7 @@ def realized_dithered_quotient_packet() -> dict:
             for x in h_values
             if eval_poly(tuple(p_poly), x, p) == eval_poly(tuple(y_poly), x, p)
         ]
+        agreement_set = set(agreement)
         support_indices = frozenset(positions[x] for x in support)
         interpolant = interpolate_subset_poly(p, h_values, y_values, support_indices)
         syndrome = top_syndrome(interpolant, k, a)
@@ -839,7 +840,8 @@ def realized_dithered_quotient_packet() -> dict:
                 "residue_moments_zero": all(value == 0 for value in moments),
                 "advertised_support_size": len(support),
                 "agreement_size": len(agreement),
-                "advertised_support_contained": support.issubset(set(agreement)),
+                "advertised_support_contained": support.issubset(agreement_set),
+                "advertised_support_exact": support == agreement_set,
             }
         )
         polynomials.append(tuple(trim_poly(p_poly[:])))
@@ -1063,6 +1065,9 @@ def realized_dithered_quotient_packet() -> dict:
         "all_advertised_supports_contained": all(
             row["advertised_support_contained"] for row in rows
         ),
+        "all_advertised_supports_exact": all(
+            row["advertised_support_exact"] for row in rows
+        ),
         "zero_moment_profile": zero_moment_profile,
         "rows": rows,
     }
@@ -1231,6 +1236,11 @@ def run() -> dict:
             "all_advertised_supports_zero_syndrome"
         ]
         and dithered_witness["all_advertised_supports_zero_moments"],
+        "dithered_quotient_witness_exact_support": dithered_witness[
+            "all_advertised_supports_size_a"
+        ]
+        and dithered_witness["all_advertised_supports_contained"]
+        and dithered_witness["all_advertised_supports_exact"],
         "dithered_quotient_zero_moment_profile": dithered_witness[
             "zero_moment_profile"
         ]["zero_moment_supports"]
@@ -1431,6 +1441,7 @@ def main(argv: list[str] | None = None) -> int:
             f"max_degree={dq_witness['max_degree']}, "
             f"max_interpolant_degree={dq_witness['max_interpolant_degree']}, "
             f"min_agreement={dq_witness['min_agreement']}, "
+            f"exact_supports={dq_witness['all_advertised_supports_exact']}, "
             f"zero_moments={dq_witness['all_advertised_supports_zero_moments']}"
         )
         qprof = dq_witness["zero_moment_profile"]

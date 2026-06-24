@@ -261,6 +261,98 @@ Equivalently, with `a=k+sigma`, one needs `k < M_*(sigma)-sigma`. Small
 dimension dithers usually do not meet this condition; they only move the upper
 endpoint `a` of the active interval.
 
+### Leading-term exactness
+
+Two elementary facts explain why the two non-polynomial terms in V0 have the
+displayed shape.
+
+**Lemma (random simultaneous-fiber mean).** If the rows
+`U_1,...,U_mu` are independent uniform functions `H -> F_q`, then
+
+```text
+E |Fib_U^cap(a)| = binom(n,a) q^{-mu(a-k)}.
+```
+
+Moreover, for the exact-row regular core,
+
+```text
+E Reg_mu(U,a)
+ = binom(n,a) q^{-mu(a-k)} (1-1/q)^{mu(n-a)}.
+```
+
+In particular the first term in V0 is the exact random mean of the relaxed
+simultaneous fiber and an upper envelope for the exact regular mean.
+
+*Proof.* Fix an `a`-set `S subset H`. The restrictions to `S` of degree-`<k`
+polynomials form a `k`-dimensional subspace of `F_q^S`, since `a>=k`.
+Therefore a uniform row `U_i` is feasible on `S` with probability
+`q^k/q^a=q^{-(a-k)}`. The rows are independent, so the probability that `S`
+lies in `Fib_U^cap(a)` is `q^{-mu(a-k)}`. Summing over the `binom(n,a)`
+possible sets `S` proves the first formula.
+
+For exact regularity, after `U_i|_S` is feasible there is a unique row codeword
+`c_{i,S}` agreeing with it on `S`. At each point of `H \ S`, the independent
+uniform value `U_i(x)` must avoid the single value `c_{i,S}(x)`, which has
+probability `1-1/q`. These outside conditions are independent over rows and
+points. Summing again over `S` gives the displayed exact-regular mean.
+
+**Lemma (all-remainder quotient packets have exact support and exact count).**
+Fix one scale `M | n` with `M>sigma`, write `a=M ell+u` with
+`0<=u<M`, and fix an omitted `M`-coset `C_0`. For row `i`, choose
+`T_i subset C_0` of size `u` and put
+
+```text
+Y_i(X)=X^{M ell} L_{T_i}(X).
+```
+
+For an `ell`-subset `A_i` of the remaining quotient cosets, define
+
+```text
+S_i = T_i union U_{A_i},
+P_i(X)=L_{T_i}(X)(X^{M ell}-L_{A_i}(X)).
+```
+
+Then `deg P_i<k` and the full agreement support of `P_i` against `Y_i` on
+`H` is exactly `S_i`. If
+
+```text
+tau = |T_1 cap ... cap T_mu|,
+```
+
+then the number of ordered quotient choices `(A_1,...,A_mu)` whose interleaved
+common agreement support has size at least `a` is exactly
+
+```text
+L_{M,mu}(a,tau)
+  = sum_{c=h_M(a,tau)}^ell
+      binom(Q,c) E_empty(Q-c,ell-c,mu).
+```
+
+*Proof.* The degree bound is the cancellation already used above:
+`deg(X^{M ell}-L_{A_i}) <= M(ell-1)`, so
+`deg P_i <= u+M(ell-1)=a-M<k`. Also
+
+```text
+Y_i(X)-P_i(X)=L_{T_i}(X)L_{A_i}(X).
+```
+
+The roots of the right-hand side inside `H` are exactly `T_i` together with the
+full `M`-cosets selected by `A_i`; hence the full agreement support is exactly
+`S_i`, with no hidden over-agreement.
+
+The common interleaved support has size
+
+```text
+tau + M |A_1 cap ... cap A_mu|.
+```
+
+Thus it is listed exactly when
+`|A_1 cap ... cap A_mu| >= h_M(a,tau)`. If the common quotient intersection
+has exact size `c`, choose it in `binom(Q,c)` ways. After removing these `c`
+common cosets, the residual `ell-c` choices in each row must have empty common
+intersection; by inclusion-exclusion this number is
+`E_empty(Q-c,ell-c,mu)`. Summing over all `c>=h_M(a,tau)` gives the formula.
+
 ## 3. Conjecture L2-Sharp, Version 0
 
 Fix a compact rate window `rho in [rho_0,rho_1] subset (0,1)`, fixed arity
