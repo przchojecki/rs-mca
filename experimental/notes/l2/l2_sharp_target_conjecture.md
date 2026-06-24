@@ -384,6 +384,27 @@ that any super-random regular-core obstruction must organize many supports into
 large high-overlap clusters, a much narrower structure than an arbitrary
 Cartesian product of support fibers.
 
+There is one immediate refinement that is useful for avoiding a false product
+factorization across components. Start from the connected components of `G_k`.
+If two current components have unions whose intersection has size at least `k`,
+merge them, and iterate until no such pair remains. Call the resulting partition
+the **`k`-closure** of the support tuple, and write `c_cl` for its number of
+parts. Then
+
+```text
+Pr[S_1,...,S_m in Fib_U(a)] <= q^{k c_cl-|V|}
+```
+
+for one random row, and the `mu`-row version is obtained by raising the right
+side to the `mu`-th power.
+
+Indeed, each original high-overlap component already uses one polynomial. If
+two component unions meet in at least `k` points, the two corresponding
+degree-`<k` polynomials agree on at least `k` points and hence are identical.
+Iterating gives at most one polynomial per `k`-closed part. This is strictly
+stronger than using the raw connected components when low-overlap components
+have large aggregate overlap across their unions.
+
 The connected case also isolates the diagonal exactly.
 
 **Corollary (diagonal is the only zero-loss connected cluster).** Suppose
@@ -1253,14 +1274,16 @@ checks the following stress points.
    high-overlap surplus at `r>=k` are checked directly in a finite RS model.
    This is random-model evidence for the regular-core local-limit target, not
    a worst-case proof.
-4. The multi-support high-overlap cluster bound is brute-checked on five
+4. The multi-support high-overlap cluster bound is brute-checked on six
    `F_7`, `n=6`, `k=2`, `a=3` configurations. A connected high-overlap triple
    with all supports equal has one component, union size `3`, exponent `1`,
    and exactly `7^2` feasible assignments: this is the diagonal zero-loss
    case. A non-diagonal connected high-overlap triple has one component, union
    size `4`, exponent `2`, and exactly `7^2` feasible assignments, showing the
    extra `q^{-1}` loss predicted by the corollary. A mixed high/low path has
-   two components, union size `6`, and count below the `7^4` bound. A connected
+   two components, union size `6`, and count below the `7^4` bound. An
+   aggregate-overlap example has two raw high-overlap components but one
+   `k`-closed component, sharpening the exponent from `1` to `3`. A connected
    four-support chain has union excess `3` and exponent `4=a-k+3`, matching the
    union-excess tradeoff. A low-overlap cycle has three components, union size
    `6`, but only `7^3` feasible assignments below the loose `7^6` cluster

@@ -146,6 +146,10 @@ Keep entries concise and link to the relevant files.
   A finite-moment clearance corollary shows that if
   `q^mu >= 2 rho_0^{-1} n^t`, the positive-excess connected contribution is at
   most one diagonal scale; the verifier checks this exactly for `q=31, mu=2`.
+  The cluster rank bound now also has a `k`-closure refinement: raw high-overlap
+  components whose unions overlap in at least `k` points must merge to one
+  degree-`<k` polynomial; the verifier includes an aggregate-overlap example
+  where this strictly sharpens the exponent.
 - **How it is useful:** Turns the L2 objective from a broad "avoid Cartesian
   overcharge" principle into a concrete conjectural inequality that can be
   falsified or promoted. The `K_{2,2}` witness records that local Cartesian

@@ -430,6 +430,50 @@ def connected_components_count(edges: list[tuple[int, int]], vertex_count: int) 
     return len({find(idx) for idx in range(vertex_count)})
 
 
+def high_overlap_components(supports: list[tuple[int, ...]], k: int) -> list[set[int]]:
+    parent = list(range(len(supports)))
+
+    def find(x: int) -> int:
+        while parent[x] != x:
+            parent[x] = parent[parent[x]]
+            x = parent[x]
+        return x
+
+    def union(x: int, y: int) -> None:
+        root_x = find(x)
+        root_y = find(y)
+        if root_x != root_y:
+            parent[root_y] = root_x
+
+    for i in range(len(supports)):
+        for j in range(i + 1, len(supports)):
+            if len(set(supports[i]) & set(supports[j])) >= k:
+                union(i, j)
+    components: dict[int, set[int]] = {}
+    for idx in range(len(supports)):
+        components.setdefault(find(idx), set()).add(idx)
+    return list(components.values())
+
+
+def closure_components(supports: list[tuple[int, ...]], k: int) -> list[set[int]]:
+    components = high_overlap_components(supports, k)
+    changed = True
+    while changed:
+        changed = False
+        for i in range(len(components)):
+            if changed:
+                break
+            union_i = set().union(*[set(supports[idx]) for idx in components[i]])
+            for j in range(i + 1, len(components)):
+                union_j = set().union(*[set(supports[idx]) for idx in components[j]])
+                if len(union_i & union_j) >= k:
+                    components[i] |= components[j]
+                    del components[j]
+                    changed = True
+                    break
+    return components
+
+
 def feasible_assignment_count(
     p: int,
     codewords: list[tuple[int, ...]],
@@ -471,6 +515,10 @@ def support_cluster_rank_profile() -> dict:
             "supports": [(0, 1, 2), (1, 2, 3), (3, 4, 5)],
         },
         {
+            "name": "aggregate_union_merge",
+            "supports": [(0, 1, 2), (0, 3, 4), (1, 3, 4)],
+        },
+        {
             "name": "connected_chain_four_distinct",
             "supports": [(0, 1, 2), (1, 2, 3), (2, 3, 4), (3, 4, 5)],
         },
@@ -489,25 +537,33 @@ def support_cluster_rank_profile() -> dict:
             if len(set(supports[i]) & set(supports[j])) >= k
         ]
         components = connected_components_count(edges, len(supports))
+        closed_components = closure_components(supports, k)
+        closed_component_count = len(closed_components)
         union_size = len(set().union(*[set(support) for support in supports]))
         union_excess = union_size - a
         distinct_supports = len({frozenset(support) for support in supports})
         brute_count = feasible_assignment_count(p, codewords, supports)
         dimension_upper_bound = k * components
+        closure_dimension_upper_bound = k * closed_component_count
         rows.append(
             {
                 "name": example["name"],
                 "supports": [list(support) for support in supports],
                 "high_overlap_edges": [list(edge) for edge in edges],
                 "components": components,
+                "closure_components": closed_component_count,
                 "union_size": union_size,
                 "union_excess": union_excess,
                 "distinct_supports": distinct_supports,
                 "support_capacity_bound": comb(a + union_excess, a),
                 "dimension_upper_bound": dimension_upper_bound,
+                "closure_dimension_upper_bound": closure_dimension_upper_bound,
                 "brute_count": brute_count,
                 "count_upper_bound": p**dimension_upper_bound,
+                "closure_count_upper_bound": p**closure_dimension_upper_bound,
                 "probability_exponent_bound": union_size - dimension_upper_bound,
+                "closure_probability_exponent_bound": union_size
+                - closure_dimension_upper_bound,
             }
         )
     row_by_name = {row["name"]: row for row in rows}
@@ -545,6 +601,18 @@ def support_cluster_rank_profile() -> dict:
             "probability_exponent_bound"
         ]
         == a - k + row_by_name["connected_chain_four_distinct"]["union_excess"],
+        "aggregate_union_closure_merges": row_by_name["aggregate_union_merge"][
+            "components"
+        ]
+        == 2
+        and row_by_name["aggregate_union_merge"]["closure_components"] == 1,
+        "closure_rank_counts": all(
+            row["brute_count"] <= row["closure_count_upper_bound"] for row in rows
+        ),
+        "aggregate_union_closure_sharpens": row_by_name["aggregate_union_merge"][
+            "closure_probability_exponent_bound"
+        ]
+        > row_by_name["aggregate_union_merge"]["probability_exponent_bound"],
         "low_overlap_bound_can_be_loose": row_by_name["low_overlap_cycle"][
             "brute_count"
         ]
@@ -1649,6 +1717,15 @@ def run() -> dict:
         "support_cluster_rank_chain_loss": support_cluster_profile[
             "connected_chain_loss"
         ],
+        "support_cluster_rank_aggregate_closure": support_cluster_profile[
+            "aggregate_union_closure_merges"
+        ],
+        "support_cluster_rank_closure_counts": support_cluster_profile[
+            "closure_rank_counts"
+        ],
+        "support_cluster_rank_closure_sharpens": support_cluster_profile[
+            "aggregate_union_closure_sharpens"
+        ],
         "support_cluster_rank_low_overlap_loose": support_cluster_profile[
             "low_overlap_bound_can_be_loose"
         ],
@@ -1846,12 +1923,15 @@ def main(argv: list[str] | None = None) -> int:
             {
                 "name": row["name"],
                 "components": row["components"],
+                "closure_components": row["closure_components"],
                 "union": row["union_size"],
                 "excess": row["union_excess"],
                 "distinct": row["distinct_supports"],
                 "dim_bound": row["dimension_upper_bound"],
+                "closure_dim_bound": row["closure_dimension_upper_bound"],
                 "count": row["brute_count"],
                 "bound": row["count_upper_bound"],
+                "closure_bound": row["closure_count_upper_bound"],
             }
             for row in sc["rows"]
         ]
