@@ -57,7 +57,9 @@ Keep entries concise and link to the relevant files.
   degree-weighted common-prime-ideal incidence into an integer valuation budget.
   Summing over rational primes gives a log-weighted density bound:
   `prod p^{d_T(p)}` divides the product of common-ideal indices over the
-  finite template family.
+  finite template family.  For dilation-stable split-prime template families,
+  the same budget gives the direct row bound
+  `|Coll_T(h)| <= phi(n)^{-1} sum_T v_p(I_n,sigma(A,B))`.
   The modular gcd degree is also
   recorded as the exact primitive-root embedding multiplicity at split and
   nonsplit primes, with the Frobenius-orbit quotient giving the rational

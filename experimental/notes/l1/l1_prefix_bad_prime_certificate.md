@@ -646,6 +646,46 @@ This is the practical aggregation ledger: an exact row bound can be proved by
 bounding orbit sizes and representative common-root degrees, rather than by
 enumerating every ordered root-template incidence separately.
 
+## Dilation-Invariant Split Row Bound
+
+The valuation budget gives a direct row bound once the finite template family is
+closed under dilation.  Let `T` be a finite family of unordered
+non-characteristic-zero template pairs that is stable under
+
+```text
+(A,B) -> (uA,uB),        u in (Z/nZ)^*.
+```
+
+For a split prime `p` and primitive root `h in F_p`, write
+
+```text
+Coll_T(h) = {{A,B} in T : E_r(A;h)=E_r(B;h) for all r<=sigma}.
+```
+
+Then all primitive roots have the same row count, and
+
+```text
+|Coll_T(h)|
+  = (1/phi(n)) sum_{(A,B) in T} d_p(A,B)
+  <= (1/phi(n)) sum_{(A,B) in T} v_p(I_n,sigma(A,B)).
+```
+
+The equality is the split-prime row accounting identity restricted to `T`.
+Dilation stability makes the row count independent of the primitive root.  The
+inequality is the valuation incidence budget.
+
+Equivalently, after quotienting by affine orbits contained in `T`,
+
+```text
+|Coll_T(h)|
+  <= (1/phi(n)) sum_O |O| v_p(I_n,sigma(A_O,B_O)).
+```
+
+This is the form closest to the desired L1 local-limit estimate: after the
+structured characteristic-zero and quotient-periodic strata are removed, a row
+fiber bound follows from bounding the valuation budget of a dilation-stable
+aperiodic template family.
+
 ## Prefix-Depth Filtration
 
 The bad-prime objects are monotone in the prefix length.  Write

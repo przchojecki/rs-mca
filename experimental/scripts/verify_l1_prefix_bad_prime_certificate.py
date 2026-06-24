@@ -2225,6 +2225,124 @@ def check_log_weighted_density_budget() -> dict[str, Any]:
     }
 
 
+def check_dilation_invariant_row_bound() -> dict[str, Any]:
+    prime = 17
+    order = 16
+    sigma = 4
+    complement_size = 6
+    primitive_roots = primitive_order_roots(prime, order)
+    family: set[tuple[tuple[int, ...], tuple[int, ...]]] = set()
+    row_counts_by_root = {}
+
+    for root in primitive_roots:
+        row = finite_prefix_collision_pairs(
+            prime=prime,
+            order=order,
+            complement_size=complement_size,
+            sigma=sigma,
+            root=root,
+        )
+        row_counts_by_root[root] = row["collision_pair_count"]
+        for pair in row["pairs"]:
+            family.add(normalized_pair(pair["left"], pair["right"]))
+
+    if set(row_counts_by_root.values()) != {40}:
+        raise AssertionError("unexpected root row counts")
+    if len(family) != 320:
+        raise AssertionError("unexpected dilation-invariant incident family size")
+
+    units = [unit for unit in range(1, order) if gcd(unit, order) == 1]
+    for left, right in family:
+        for unit in units:
+            scaled = normalized_pair(
+                scaled_subset(left, unit, order),
+                scaled_subset(right, unit, order),
+            )
+            if scaled not in family:
+                raise AssertionError("incident family is not dilation-stable")
+
+    degree_sum = 0
+    for left, right in family:
+        degree_sum += degree(common_root_gcd_mod(
+            left,
+            right,
+            order,
+            sigma,
+            prime,
+        ))
+    if degree_sum != len(primitive_roots) * 40:
+        raise AssertionError("unexpected degree-weighted incidence sum")
+
+    orbit_groups: dict[tuple[tuple[int, ...], tuple[int, ...]], set[
+        tuple[tuple[int, ...], tuple[int, ...]]
+    ]]
+    orbit_groups = defaultdict(set)
+    for left, right in family:
+        orbit_groups[affine_orbit_key(left, right, order)].add((left, right))
+
+    orbit_rows = []
+    valuation_budget = 0
+    for representative, members in orbit_groups.items():
+        orbit_members = affine_orbit_members(
+            representative[0],
+            representative[1],
+            order,
+        )
+        if members != orbit_members:
+            raise AssertionError("incident family is not a full affine-orbit union")
+        common_ideal = common_ideal_index(
+            representative[0],
+            representative[1],
+            order,
+            sigma,
+        )
+        valuation = p_adic_valuation(common_ideal["index"], prime)
+        if valuation <= 0:
+            raise AssertionError("incident orbit has zero valuation budget")
+        weighted_budget = len(members) * valuation
+        valuation_budget += weighted_budget
+        orbit_rows.append({
+            "orbit_size": len(members),
+            "representative": [list(representative[0]), list(representative[1])],
+            "common_ideal_index": common_ideal["index"],
+            "valuation_at_prime": valuation,
+            "weighted_budget": weighted_budget,
+        })
+    orbit_rows.sort(key=lambda item: (
+        item["orbit_size"],
+        item["common_ideal_index"],
+        item["representative"],
+    ))
+
+    if valuation_budget != degree_sum:
+        raise AssertionError("valuation budget did not match degree sum")
+    row_bound = valuation_budget // euler_phi(order)
+    if valuation_budget % euler_phi(order) != 0:
+        raise AssertionError("valuation budget is not divisible by phi(n)")
+    if row_bound != 40:
+        raise AssertionError("unexpected valuation row bound")
+    if any(row_count > row_bound for row_count in row_counts_by_root.values()):
+        raise AssertionError("row count exceeded valuation row bound")
+
+    return {
+        "prime": prime,
+        "order": order,
+        "sigma": sigma,
+        "complement_size": complement_size,
+        "primitive_root_count": len(primitive_roots),
+        "family_size": len(family),
+        "row_counts_by_root": {
+            str(root): row_counts_by_root[root]
+            for root in sorted(row_counts_by_root)
+        },
+        "degree_weighted_incidence_sum": degree_sum,
+        "valuation_budget": valuation_budget,
+        "valuation_row_bound": row_bound,
+        "affine_orbit_count": len(orbit_rows),
+        "affine_orbits": orbit_rows,
+    }
+
+
 def check_galois_invariance() -> dict[str, Any]:
     left = (0, 1, 2, 12, 14, 15)
     right = (3, 4, 5, 7, 10, 13)
@@ -2347,6 +2465,7 @@ def build_report() -> dict[str, Any]:
         ),
         "valuation_incidence_budget": check_valuation_incidence_budget(),
         "log_weighted_density_budget": check_log_weighted_density_budget(),
+        "dilation_invariant_row_bound": check_dilation_invariant_row_bound(),
         "galois_invariance": check_galois_invariance(),
         "affine_invariance": check_affine_invariance(),
         "nonmutating": True,
@@ -2468,6 +2587,14 @@ def print_human(report: dict[str, Any]) -> None:
         f"templates={log_budget['template_pair_count']}, "
         f"incidence_factors={log_budget['incidence_divisor_factorization']}, "
         f"index_product_factors={log_budget['index_product_factorization']}"
+    )
+    row_bound = report["dilation_invariant_row_bound"]
+    print(
+        "dilation_invariant_row_bound="
+        f"family={row_bound['family_size']}, "
+        f"valuation_budget={row_bound['valuation_budget']}, "
+        f"row_bound={row_bound['valuation_row_bound']}, "
+        f"affine_orbits={row_bound['affine_orbit_count']}"
     )
     affine = report["affine_invariance"]
     print(
