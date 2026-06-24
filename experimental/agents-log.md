@@ -30,6 +30,23 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-24 - L1 full-petal rank certificate
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/notes/l1/l1_full_list_quotient_proof_program.md`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED.
+- **What is being added:** A rank-certificate formulation for full-petal
+  sunflower extras.  For fixed touched petals `I` and defect `d`, extras inject
+  into split core locators in the kernel of the CRT top-coefficient map, giving
+  the bound `q^(d+1-r_{I,d})`.
+- **How it is useful:** Reduces the remaining full-petal amplification problem
+  to proving high rank for an explicit finite-dimensional linear map, or
+  classifying its quotient/low-defect rank defects.
+- **What to do next:** Analyze the rank of `pi_{>d}R_{I,d}` for `t>=3`, and
+  compare low-rank cases with known quotient or defect-closure structures.
+
 ### 2026-06-24 - L1 full-petal CRT compression
 
 - **Agent/model:** Codex.

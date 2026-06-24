@@ -713,6 +713,97 @@ concrete target: bound how often core locators make these CRT top
 coefficients vanish, or show that many such vanishing events force quotient or
 low-defect structure.
 
+## Lemma 8. Full-Petal Rank Certificate
+
+Status: PROVED.
+
+Keep the background-free notation of Lemma 7.  Fix a touched-petal set `I`
+with `t=|I|>=2`, and fix an integer
+
+```text
+ell <= d <= (t-1)ell.
+```
+
+Let `V_d` be the vector space of polynomials over `F_q` of degree at most `d`.
+Define the linear CRT operator
+
+```text
+R_{I,d} : V_d -> F_q[X]_{< t*ell}
+```
+
+by requiring
+
+```text
+R_{I,d}(F) = c_i F        mod L_{T_i}        for every i in I.
+```
+
+Let
+
+```text
+pi_{>d} : F_q[X]_{< t*ell} -> F_q^{t*ell-d-1}
+```
+
+extract the coefficients of degrees `d+1,...,t*ell-1`, and put
+
+```text
+K_{I,d} = ker(pi_{>d} R_{I,d}).
+```
+
+Then the full-petal listed codewords with exact touched-petal set `I` and
+core defect `d` inject into
+
+```text
+{ L_D : D subset C, |D|=d } cap K_{I,d}.
+```
+
+In particular, if
+
+```text
+r_{I,d} = rank(pi_{>d} R_{I,d}),
+```
+
+then their number is at most
+
+```text
+q^{d+1-r_{I,d}}.
+```
+
+### Proof
+
+Lemma 7 sends each such codeword to its missed-core locator `L_D`.  The exact
+missed-core set is part of the codeword data, so this map is injective.  The
+same lemma says that the corresponding CRT residue has degree at most `d`,
+which is exactly the condition
+
+```text
+pi_{>d} R_{I,d}(L_D) = 0.
+```
+
+Thus the image lies in the displayed split-locator intersection.
+
+The linear map `pi_{>d}R_{I,d}` has kernel dimension `d+1-r_{I,d}` inside the
+`d+1` dimensional space `V_d`.  The split locators form a subset of this
+kernel, so there are at most `q^{d+1-r_{I,d}}` possible images, hence at most
+that many full-petal listed codewords.
+
+### Consequences
+
+The remaining full-petal sunflower problem is now a rank problem.  A
+polynomial bound follows for any regime in which
+
+```text
+d+1-r_{I,d} = O(log n / log q).
+```
+
+Since `q=poly(n)` in the generated-field window, it is enough to prove
+`r_{I,d} >= d-O(1)` uniformly outside explicitly budgeted quotient or
+low-defect strata.
+
+Conversely, a super-polynomial full-petal family must create a large rank
+defect in `pi_{>d}R_{I,d}` or an unusually large split-locator concentration
+inside its kernel.  This is now a concrete finite-dimensional certificate
+matching the rank-defect philosophy in the L1 repaired locator package.
+
 ## Development Ledger
 
 - **Conjecture 1 full-list primitive remainder:** CONJECTURAL.  Main proof
@@ -740,5 +831,7 @@ low-defect structure.
   family by `binom(M,2)q`.
 - **Full-petal CRT compression:** PROVED.  Reduces full-petal multi-petal
   extras to top-coefficient vanishing in a CRT residue.
+- **Full-petal rank certificate:** PROVED.  Bounds full-petal extras by the
+  kernel dimension of the CRT top-coefficient map.
 - **Mixed-petal sunflower amplification:** CONJECTURAL.  Next focused bound to
   prove or refute in the large-defect regime.
