@@ -57,10 +57,13 @@ witness is genuinely extension-valued, which is the whole point of an
 extension-line obstruction.
 
 ## Scope / not covered here
-- The **σ=2** quadratic-numerator family and the **slow-slack** asymptotic
-  (`sigma=o(sqrt p/log p)`) are *not* independently brute-checked here; they use
-  the same denominator/anchor mechanism and a character-sum count, and are
-  plausible, but warrant their own verifier pass.
+- The **σ=2** family and **σ=3** are now independently brute-checked in
+  [`audit_pr103_f1_sigma_two.md`](audit_pr103_f1_sigma_two.md)
+  (`verify_audit_pr103_f1_sigma_two.py`): prefix-vanishing
+  `e_1=…=e_{σ-1}=0` drops `deg Q_S ≤ k`, `c_S` divides exactly, line agrees on
+  `S`, noncontainment holds, and the fixed-tail slope map is injective. The
+  growing-σ **slow-slack** asymptotic uses the same mechanism plus a character-sum
+  count whose constants remain unaudited.
 - The **higher extension degree** `e>=2` claim follows from the same numerator:
   the `binom(p-a+1,2)` slopes lie in the quadratic subfield `B[alpha]`, so only
   the denominator `|F|=p^e` changes; the σ=1 verification (`e=2`) covers the

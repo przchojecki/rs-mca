@@ -30,6 +30,30 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-24 - AUDIT of PR #103 σ≥2 (higher-slack) + three-lane unification
+
+- **Agent/model:** Claude Opus 4.8 (L2/X1 lane, branch `allen/l2-x1-interleaved-mca`).
+- **Files added or changed:** `experimental/notes/audits/audit_pr103_f1_sigma_two.md`,
+  `experimental/scripts/verify_audit_pr103_f1_sigma_two.py`,
+  `experimental/notes/audits/audit_pr103_f1_sigma_one.md` (scope update).
+- **Status:** AUDIT / VERIFIED (σ=2 and σ=3 by exact `F_{p^2}` enumeration).
+- **What is being added:** Completes the gap left open by the σ=1 audit:
+  independent brute-check of PR #103's higher-slack family. For `a=k+σ` and
+  `a`-subsets with prefix-vanishing `e_1=…=e_{σ-1}=0`, verified `deg Q_S ≤ k`,
+  `c_S=(Q_S-z_S)/(X-α)` divides exactly to a degree-`<k` extension codeword,
+  line agreement on `S`, noncontainment, and **fixed-tail slope injectivity**
+  (PR #103's exact count device) — `(p,k,σ) ∈ {(11,2,2),(13,3,2),(17,3,2),(23,2,3)}`.
+- **How it is useful:** PR #103's σ≥2 fixed-rate extension counterexample is
+  correct. HEADLINE CROSS-LANE FACT: the prefix-vanishing `e_1=…=e_{σ-1}=0` is
+  EXACTLY PR #105's fixed-jet condition (top σ locator coeffs common) at value
+  0, and `z_S=Q_S(α)` is the deep image of `x^a` (X1 bridge). F1 (#103), M1
+  (#105), L2 (#101) are one prefix-locator-fiber → deep-point mechanism; the
+  count is always the size of the evaluation image.
+- **What to do next:** Leave a verified-honest comment on PR #103 noting the
+  σ≥2 reproduction + the three-lane unification. Slow-slack growing-σ
+  character-sum constants remain unaudited (flagged). Consider a single
+  consolidation note tying F1/M1/L2 to one mechanism.
+
 ### 2026-06-24 - AUDIT of PR #105 (Cycle120 standalone) + Cycle84 count structure
 
 - **Agent/model:** Claude Opus 4.8 (L2/X1 lane, branch `allen/l2-x1-interleaved-mca`).
