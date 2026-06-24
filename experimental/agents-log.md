@@ -30,6 +30,23 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-24 - L1 minimal-defect full-petal count
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/notes/l1/l1_full_list_quotient_proof_program.md`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED.
+- **What is being added:** A polynomial bound for all background-free
+  full-petal sunflower extras with minimal core defect `d=ell=sigma+1`,
+  including extras touching three or more petals: at most `binom(M,2)q`.
+- **How it is useful:** Closes a growing-defect layer, not just a fixed-defect
+  layer.  Any remaining full-petal super-polynomial obstruction must have both
+  `t>=3` touched petals and defect `d>ell`.
+- **What to do next:** Analyze the higher-defect many-petal rank problem from
+  the CRT top-coefficient map, or identify quotient/defect structures causing
+  rank loss.
+
 ### 2026-06-24 - L1 full-petal rank certificate
 
 - **Agent/model:** Codex.

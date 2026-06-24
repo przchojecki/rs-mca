@@ -804,6 +804,90 @@ defect in `pi_{>d}R_{I,d}` or an unusually large split-locator concentration
 inside its kernel.  This is now a concrete finite-dimensional certificate
 matching the rank-defect philosophy in the L1 repaired locator package.
 
+## Lemma 9. Minimal-Defect Full-Petal Count
+
+Status: PROVED.
+
+Assume the sunflower has no unused background.  The number of non-planted
+listed codewords whose touched petals are all full and whose core defect is
+minimal,
+
+```text
+d = ell = sigma+1,
+```
+
+is at most
+
+```text
+binom(M,2) q.
+```
+
+This bound includes codewords touching three or more full petals.  Consequently,
+at the L1 lower cutoff and in the generated-field window `q=poly(n)`, the
+minimal-defect full-petal layer is polynomially bounded.
+
+### Proof
+
+Let `P` be such a codeword, with touched-petal set `I`.  Since `P` is
+non-planted and contains a full petal, Lemma 2 gives `d>=ell`; by hypothesis
+`d=ell`.  The list condition gives at least two full petals, because one full
+petal plus the retained core would give only
+
+```text
+(k-1-ell)+ell = k-1 < s.
+```
+
+Choose the two smallest indices `i<j` in `I`.  Lemma 2 gives
+
+```text
+W_P - c_i L_D = alpha_i L_{T_i},
+W_P - c_j L_D = alpha_j L_{T_j},
+```
+
+because both sides have degree at most `ell` and vanish on a full petal of
+size `ell`.  The same leading-coefficient comparison as in Lemma 5 gives a
+unique `beta in F_q` such that
+
+```text
+L_D = (1+beta)L_{T_i} - beta L_{T_j}.
+```
+
+Thus the codeword determines a certificate
+
+```text
+({i,j}, beta).
+```
+
+Conversely, this certificate determines `L_D`, hence `D`, and then determines
+`W_P` by
+
+```text
+W_P = c_iL_D + (1+beta)(c_j-c_i)L_{T_i}.
+```
+
+Therefore two codewords with the same certificate are equal.  There are
+`binom(M,2)` choices of `{i,j}` and `q` choices of `beta`, proving the bound.
+At the lower cutoff, `M=O(log n)`, so this is `O(q log(n)^2)`.
+
+### Consequences
+
+The full-petal obstruction now has two closed polynomial layers:
+
+```text
+t=2, any allowed defect;
+d=ell, any number of full petals.
+```
+
+The remaining full-petal danger must have both
+
+```text
+t>=3,        d>ell.
+```
+
+Equivalently, any further super-polynomial sunflower family must be a genuine
+higher-defect, many-petal rank-defect phenomenon, not the minimal
+locator-pencil mechanism seen in the first scans.
+
 ## Development Ledger
 
 - **Conjecture 1 full-list primitive remainder:** CONJECTURAL.  Main proof
@@ -833,5 +917,7 @@ matching the rank-defect philosophy in the L1 repaired locator package.
   extras to top-coefficient vanishing in a CRT residue.
 - **Full-petal rank certificate:** PROVED.  Bounds full-petal extras by the
   kernel dimension of the CRT top-coefficient map.
+- **Minimal-defect full-petal count:** PROVED.  Bounds all full-petal extras
+  with `d=ell` by `binom(M,2)q`.
 - **Mixed-petal sunflower amplification:** CONJECTURAL.  Next focused bound to
   prove or refute in the large-defect regime.
