@@ -30,6 +30,22 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-24 - L1 average-deficit sunflower closure
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/notes/l1/l1_full_list_quotient_proof_program.md`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED.
+- **What is being added:** A stronger closure theorem for the background-free
+  sunflower obstruction.  Using pigeonhole plus the two-petal syzygy
+  compression, it shows bounded excess and bounded average petal deficit are
+  polynomially controlled without bounding the number of touched petals.
+- **How it is useful:** Removes unbounded touched-petal count as an independent
+  residual escape route.  Remaining super-polynomial sunflower families must
+  have growing cofactor excess or growing average petal deficit.
+- **What to do next:** Attack one of those two quantitative regimes directly.
+
 ### 2026-06-24 - L1 bounded-parameter sunflower closure
 
 - **Agent/model:** Codex.

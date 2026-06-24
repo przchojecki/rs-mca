@@ -1838,6 +1838,92 @@ The remaining proof or counterexample target is one of:
 2. partial-petal patterns touching an unbounded number of petals;
 3. partial-petal patterns with unbounded average deficit per touched petal.
 
+The next theorem removes the second alternative when the average deficit is
+bounded.
+
+## Theorem 22. Average-Deficit Sunflower Closure
+
+Status: PROVED.
+
+Assume the sunflower has no unused background, and work at the L1 lower cutoff
+with generated field `q=poly(n)`.  Fix integer constants
+
+```text
+E,A >= 0.
+```
+
+Then the following union of non-planted listed codewords is polynomially
+bounded in `n`:
+
+1. full-petal codewords with `d<=ell+E`;
+2. partial-petal codewords with
+
+```text
+d <= ell+E,
+u(P) <= A t(P).
+```
+
+More explicitly, the union is bounded by
+
+```text
+binom(M,2)q + 2^M sum_{e=1}^{E} q^{e+1}
+  + binom(M,2) (sum_{v=0}^{2A} binom(ell,v))^2 q^{2(E+2A+1)}.
+```
+
+Consequently, any super-polynomial background-free sunflower family at the L1
+lower cutoff must have either
+
+```text
+d-ell -> infinity,
+```
+
+or, along its partial-petal members,
+
+```text
+u(P)/t(P) -> infinity.
+```
+
+### Proof
+
+The full-petal part is bounded by Lemma 16.
+
+Now consider a partial-petal codeword with touched-petal count `t=t(P)` and
+total petal deficit `u(P)<=At`.  In the background-free case, Lemma 4 rules
+out one-petal non-planted extras, so `t>=2`.  If fewer than two touched petals
+had deficit at most `2A`, then at least `t-1` touched petals would have
+deficit at least `2A+1`, giving
+
+```text
+u(P) >= (t-1)(2A+1) > At
+```
+
+for every `t>=2`, a contradiction.  Thus the codeword has two touched petals
+each missing at most `2A` points.
+
+The counted near-saturated corollary of Lemma 11, with `e0=E` and `u0=2A`,
+therefore bounds all such partial-petal codewords by
+
+```text
+binom(M,2) (sum_{v=0}^{2A} binom(ell,v))^2 q^{2(E+2A+1)}.
+```
+
+Adding the full-petal bound gives the displayed estimate.  At the L1 lower
+cutoff, `M=O(log n)`, `ell<=n`, and `q=poly(n)`, so this estimate is
+polynomial in `n` for fixed `E,A`.
+
+For the final assertion, if both `d-ell` and the partial-petal average deficit
+were bounded along a super-polynomial family, some fixed `E,A` would contain
+the family in the displayed polynomially bounded union, a contradiction.
+
+### Consequences
+
+This removes the bounded-width escape route from Theorem 21.  The sunflower
+obstruction has been reduced to two genuinely quantitative regimes:
+
+1. growing cofactor excess `d-ell`;
+2. partial-petal codewords whose average missing-petal deficit grows without
+   bound.
+
 ## Development Ledger
 
 - **Conjecture 1 full-list primitive remainder:** CONJECTURAL.  Main proof
@@ -1893,5 +1979,8 @@ The remaining proof or counterexample target is one of:
   touched-petal count, and bounded average deficit give only polynomial mass.
 - **Background-free bounded-parameter sunflower closure:** PROVED.  Combines
   full-petal and mixed-petal bounds into a single residual theorem.
+- **Average-deficit sunflower closure:** PROVED.  Removes bounded-width as a
+  residual escape route; bounded excess and bounded average deficit are
+  polynomially controlled.
 - **Mixed-petal sunflower amplification:** CONJECTURAL.  Next focused bound to
   prove or refute in the large-defect regime.
