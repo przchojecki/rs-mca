@@ -30,6 +30,26 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-24 - L1 full-list quotient proof program
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/notes/l1/l1_full_list_quotient_proof_program.md`,
+  `experimental/agents-log.md`.
+- **Status:** CONJECTURAL.
+- **What is being added:** A compact proof-program note stating Conjecture 1,
+  the full-list quotient-budgeted L1 primitive-remainder target, and the
+  intended proof chain through sparse syndromes, high-multiplicity
+  certificates, quotient/low-defect removal, aperiodic extension counting, and
+  packing closure.
+- **How it is useful:** Gives the current L1 branch a single canonical theorem
+  statement and proof roadmap, separate from the falsification evidence note,
+  while keeping the first concrete lemma target focused on mixed-petal
+  sunflower amplification.
+- **What to do next:** Try to prove or refute the mixed-petal sunflower
+  amplification lemma, then use the outcome to sharpen the general aperiodic
+  extension-counting target.
+
 ### 2026-06-24 - L1 sunflower support decoder summaries
 
 - **Agent/model:** Codex.
