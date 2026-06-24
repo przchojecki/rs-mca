@@ -6,7 +6,7 @@ settled by the support-intersection bridge: over-agreement can create
 interleaved mass, so the falsification target is whether that mass can grow like
 a Cartesian product rather than like a polynomial support-overlap codegree.
 
-The script checks eleven finite objects.
+The script checks thirteen finite objects.
 
 1. The all-remainder quotient packet count used as Quot_rem_mu in the target.
 2. The Johnson-shell weights used in the codegree reduction.
@@ -19,7 +19,8 @@ The script checks eleven finite objects.
 9. The equivalent weighted residue-moment equations.
 10. The support-pair rank law behind the random regular-core second moment.
 11. The multi-support high-overlap cluster-rank upper bound.
-12. A realized Reed-Solomon K_{2,2} gluing over a prime-field multiplicative
+12. The connected high-overlap cluster count by union excess.
+13. A realized Reed-Solomon K_{2,2} gluing over a prime-field multiplicative
    subgroup, computed by exact list enumeration, together with its punctured
    codegree profile.
 
@@ -547,6 +548,57 @@ def support_cluster_rank_profile() -> dict:
             "brute_count"
         ]
         < row_by_name["low_overlap_cycle"]["count_upper_bound"],
+    }
+
+
+def connected_cluster_count_profile() -> dict:
+    """Count connected high-overlap support tuples by union excess."""
+    n, k, a, tuple_size = 6, 2, 3, 3
+    supports = [tuple(support) for support in itertools.combinations(range(n), a)]
+    rows_by_excess: dict[int, int] = {}
+    for support_tuple in itertools.product(supports, repeat=tuple_size):
+        edges = [
+            (i, j)
+            for i in range(tuple_size)
+            for j in range(i + 1, tuple_size)
+            if len(set(support_tuple[i]) & set(support_tuple[j])) >= k
+        ]
+        if connected_components_count(edges, tuple_size) != 1:
+            continue
+        union_size = len(set().union(*[set(support) for support in support_tuple]))
+        union_excess = union_size - a
+        rows_by_excess[union_excess] = rows_by_excess.get(union_excess, 0) + 1
+    rows = []
+    for union_excess, count in sorted(rows_by_excess.items()):
+        union_size = a + union_excess
+        support_capacity = comb(union_size, a)
+        upper_bound = comb(n, union_size) * support_capacity**tuple_size
+        rows.append(
+            {
+                "union_excess": union_excess,
+                "connected_tuples": count,
+                "union_choices": comb(n, union_size),
+                "support_capacity": support_capacity,
+                "count_upper_bound": upper_bound,
+                "entropy_exponent_extra": union_excess,
+            }
+        )
+    return {
+        "n": n,
+        "k": k,
+        "a": a,
+        "tuple_size": tuple_size,
+        "rows": rows,
+        "all_counts_bounded": all(
+            row["connected_tuples"] <= row["count_upper_bound"]
+            for row in rows
+        ),
+        "diagonal_count_exact": rows[0]["union_excess"] == 0
+        and rows[0]["connected_tuples"] == comb(n, a),
+        "has_positive_excess_clusters": any(
+            row["union_excess"] > 0 and row["connected_tuples"] > 0
+            for row in rows
+        ),
     }
 
 
@@ -1404,6 +1456,7 @@ def run() -> dict:
     dithered_witness = realized_dithered_quotient_packet()
     support_pair_profile = support_pair_rank_profile()
     support_cluster_profile = support_cluster_rank_profile()
+    connected_cluster_profile = connected_cluster_count_profile()
     witness = realized_rs_k22()
     checks = {
         "quotient_budget_nonnegative": quotient_example["total"] >= 0,
@@ -1566,6 +1619,15 @@ def run() -> dict:
         "support_cluster_rank_low_overlap_loose": support_cluster_profile[
             "low_overlap_bound_can_be_loose"
         ],
+        "connected_cluster_count_bound": connected_cluster_profile[
+            "all_counts_bounded"
+        ],
+        "connected_cluster_count_diagonal": connected_cluster_profile[
+            "diagonal_count_exact"
+        ],
+        "connected_cluster_count_positive_excess": connected_cluster_profile[
+            "has_positive_excess_clusters"
+        ],
         "kmm_grid_formula": all(d["interleaved_edges"] == d["grid_edges_at_n_min"] for d in designs),
         "rs_witness_creates_mass": witness["mass_creation"],
         "rs_witness_realizes_k22": witness["interleaved"] == witness["product_bound"] == 4,
@@ -1635,6 +1697,7 @@ def run() -> dict:
         "realized_dithered_quotient_packet": dithered_witness,
         "support_pair_rank_profile": support_pair_profile,
         "support_cluster_rank_profile": support_cluster_profile,
+        "connected_cluster_count_profile": connected_cluster_profile,
         "realized_rs_k22": witness,
         "checks": checks,
         "pass": all(checks.values()),
@@ -1756,6 +1819,12 @@ def main(argv: list[str] | None = None) -> int:
         print(
             "  support-cluster rank profile: "
             f"F_{sc['p']}, n={sc['n']}, k={sc['k']}, a={sc['a']}, rows={sc_rows}"
+        )
+        cc = result["connected_cluster_count_profile"]
+        print(
+            "  connected cluster count profile: "
+            f"n={cc['n']}, k={cc['k']}, a={cc['a']}, "
+            f"tuple_size={cc['tuple_size']}, rows={cc['rows']}"
         )
         print("  K_{m,m} abstract designs:")
         for d in result["kmm_designs"]:

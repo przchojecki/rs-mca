@@ -445,6 +445,38 @@ small polynomial-size cluster inside `a+d` points.
 where `|V|=a+d`. For the counting statement, every distinct support in the
 cluster is an `a`-subset of the common union `V`, whose size is `a+d`.
 
+This gives a moment-counting bound for the connected high-overlap part.
+
+**Corollary (connected cluster moment bound).** Fix `t>=1`, and let
+`X=|Fib_U^cap(a)|` for `mu` independent random rows. The contribution to
+`E X^t` from ordered `t`-tuples `(S_1,...,S_t)` whose high-overlap graph `G_k`
+is connected is at most
+
+```text
+sum_{d=0}^{n-a}
+  binom(n,a+d) binom(a+d,a)^t q^{-mu(a-k+d)}.
+```
+
+Equivalently, relative to the diagonal first-moment scale
+`binom(n,a)q^{-mu(a-k)}`, the union-excess `d` part is bounded by
+
+```text
+  [ binom(n,a+d) / binom(n,a) ] binom(a+d,a)^t q^{-mu d}.
+```
+
+*Proof.* If a connected ordered tuple has union size `a+d`, first choose its
+union `V`, in at most `binom(n,a+d)` ways. Each support `S_i` is then an
+`a`-subset of `V`, giving at most `binom(a+d,a)^t` ordered tuples. The
+union-excess corollary gives the probability bound
+`q^{-mu(a-k+d)}` for each such tuple. Summing over `d` gives the first display;
+dividing by the diagonal first-moment scale gives the second.
+
+This does not prove the worst-case regular-core theorem, because V0 is a
+uniform received-word statement, not an average-random statement. It does give a
+concrete proof route: connected high-overlap clusters either remain diagonal,
+or their union excess pays a field-entropy factor `q^{-mu d}` against only the
+combinatorial cost of choosing a small enlarged union.
+
 **Lemma (all-remainder quotient packets have exact support and exact count).**
 Fix one scale `M | n` with `M>sigma`, write `a=M ell+u` with
 `0<=u<M`, and fix an omitted `M`-coset `C_0`. For row `i`, choose
@@ -1199,6 +1231,11 @@ checks the following stress points.
    `binom(a+d,a)`. This identifies high-overlap clustering as the only source
    of positive rank surplus left by the random model, with diagonal clusters as
    the only zero-loss connected case.
+   The verifier also counts all ordered connected high-overlap triples of
+   `3`-sets in `[6]` by union excess `d` and checks the moment-counting bound
+   `binom(n,a+d) binom(a+d,a)^3`: the diagonal `d=0` term is exact, and the
+   positive-excess terms are present but bounded by the displayed union-count
+   ledger.
 5. The natural `K_{m,m}` grid over-agreement family has
    ```text
    n_min = (k-1) + m^2(a-k+1),

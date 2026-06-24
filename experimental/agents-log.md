@@ -139,6 +139,10 @@ Keep entries concise and link to the relevant files.
   union size `a+d` costs `q^{-mu d}` beyond one support and contains at most
   `binom(a+d,a)` distinct supports; the verifier adds a four-support chain
   example realizing the predicted exponent.
+  A connected-cluster moment corollary now bounds the union-excess `d` part of
+  random `t`-th moments by
+  `binom(n,a+d) binom(a+d,a)^t q^{-mu(a-k+d)}`; the verifier counts connected
+  ordered triples by `d` in the finite `F_7` model.
 - **How it is useful:** Turns the L2 objective from a broad "avoid Cartesian
   overcharge" principle into a concrete conjectural inequality that can be
   falsified or promoted. The `K_{2,2}` witness records that local Cartesian
