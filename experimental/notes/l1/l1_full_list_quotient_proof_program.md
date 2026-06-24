@@ -1924,6 +1924,69 @@ obstruction has been reduced to two genuinely quantitative regimes:
 2. partial-petal codewords whose average missing-petal deficit grows without
    bound.
 
+## Corollary 23. Defect-Deficit Sandwich
+
+Status: PROVED.
+
+Assume the sunflower has no unused background.  For any non-planted listed
+codeword, let
+
+```text
+t = #{i : S_i nonempty},
+h = sum_i |S_i|,
+u = sum_i (ell-|S_i|).
+```
+
+Then
+
+```text
+t(ell-d) <= u <= (t-1)ell-d.
+```
+
+Consequently,
+
+```text
+u/t >= ell-d.
+```
+
+In particular, bounded average petal deficit forces `d>=ell-O(1)`.
+
+### Proof
+
+The identity `u=t*ell-h` is immediate from the definition of total petal
+deficit.  Lemma 2 gives the per-petal cap `|S_i|<=d`, so
+
+```text
+h <= td.
+```
+
+Substituting into `u=t*ell-h` gives the lower bound
+
+```text
+u >= t(ell-d).
+```
+
+The list condition in the background-free case gives
+
+```text
+h >= ell+d.
+```
+
+Substitution gives the upper bound
+
+```text
+u <= t*ell-(ell+d) = (t-1)ell-d.
+```
+
+Dividing the lower bound by `t` proves `u/t>=ell-d`.
+
+### Consequences
+
+The average-deficit residual in Theorem 22 also contains all cases where the
+core defect falls far below the petal size.  Thus the sunflower proof program
+has a two-sided interpretation: bounded average deficit pins `d` to a bounded
+window below `ell`, while Theorem 22 controls bounded excess above `ell`.
+
 ## Development Ledger
 
 - **Conjecture 1 full-list primitive remainder:** CONJECTURAL.  Main proof
@@ -1982,5 +2045,7 @@ obstruction has been reduced to two genuinely quantitative regimes:
 - **Average-deficit sunflower closure:** PROVED.  Removes bounded-width as a
   residual escape route; bounded excess and bounded average deficit are
   polynomially controlled.
+- **Defect-deficit sandwich:** PROVED.  Shows bounded average petal deficit
+  forces the core defect to stay within a bounded window below `ell`.
 - **Mixed-petal sunflower amplification:** CONJECTURAL.  Next focused bound to
   prove or refute in the large-defect regime.

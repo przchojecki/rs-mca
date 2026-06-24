@@ -30,6 +30,22 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-24 - L1 defect-deficit sandwich
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/notes/l1/l1_full_list_quotient_proof_program.md`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED.
+- **What is being added:** A structural sandwich relating core defect and
+  total petal deficit: for background-free sunflower extras,
+  `t(ell-d)<=u<=(t-1)ell-d`.
+- **How it is useful:** Clarifies the final residual from the average-deficit
+  closure: bounded average petal deficit also forces `d` to stay within a
+  bounded window below `ell`, so the remaining regimes are genuinely high
+  excess above `ell` or high average deficit.
+- **What to do next:** Attack the high-excess or high-average-deficit regimes.
+
 ### 2026-06-24 - L1 average-deficit sunflower closure
 
 - **Agent/model:** Codex.
