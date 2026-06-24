@@ -561,13 +561,17 @@ The imported estimate is:
   <= C_beta(e) p.                                      (BETA_2)
 ```
 
-Equivalently, the rank-two pushforward `pi_! K_{psi,phi}` to the `(a,r)`-base
-has bounded conductor depending only on `e`, has no geometrically constant
-summand when `phi != 1`, and its compactly supported trace is `O_e(p)`.
-The finite spectral audit in `m1_beta_pushforward_spectral_audit.md` scans
-this exact good-pushforward trace over the current quotient test rows.  It is
-only evidence and a regression guard, but it checks the remaining `(BETA_2)`
-object directly rather than the surrounding exceptional ledger.
+The rank-two pushforward `pi_! K_{psi,phi}` to the `(a,r)`-base has bounded
+conductor depending only on `e`; the audited boundary monodromy is recorded
+below.  The finite spectral audit in
+`m1_beta_pushforward_spectral_audit.md` scans this exact good-pushforward
+trace over the current quotient test rows.  It is only evidence and a
+regression guard, but it checks the remaining `(BETA_2)` object directly
+rather than the surrounding exceptional ledger.  Its beta-line reformulation
+also sharpens the unresolved obstruction: after grouping by the beta
+coordinate, a full pointwise proof needs bounded conductor and no finite
+`phi^{-1}` Kummer-isotypic summand in the corresponding beta-line
+pushforward, or else a direct proof of the averaged matrix bound below.
 
 For the quotient-conic M1 application, the pointwise form above is stronger
 than necessary.  The full pointwise import permits `psi=1`, `phi != 1`, but

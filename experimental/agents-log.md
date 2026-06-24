@@ -35,6 +35,7 @@ Keep entries concise and link to the relevant files.
 - **Agent/model:** Codex.
 - **Files added or changed:**
   `experimental/notes/m1/m1_beta_pushforward_spectral_audit.md`,
+  `experimental/notes/m1/m1_depth_two_line_conic_resonance_reduction.md`,
   `experimental/notes/m1/m1_kummer_weil_import_contract.md`,
   `experimental/scripts/verify_m1_depth_two_line_conic_resonance_reduction.py`,
   `experimental/scripts/verify_m1_beta_pushforward_spectral_audit.py`,
@@ -74,7 +75,9 @@ Keep entries concise and link to the relevant files.
   checks the grouped beta-line identity
   `G_{psi,phi}=sum_j phi(j)sum_i psi(i)(G_e)_{i,j}` for every quotient-character
   block, localizing full `(BETA_2)` to a no-`phi^{-1}`-Kummer-summand statement
-  for bounded-conductor beta-line pushforwards.
+  for bounded-conductor beta-line pushforwards.  The line-conic note and import
+  contract now explicitly separate the audited beta-zero/beta-infinity local
+  monodromy ledger from this unresolved Kummer-isotypy obstruction.
 - **How it is useful:** This is a counterexample-first test of the remaining
   rank-two pushforward object, not of the already controlled exceptional
   ledger. The audited rows show p-scale behavior, with largest recorded full

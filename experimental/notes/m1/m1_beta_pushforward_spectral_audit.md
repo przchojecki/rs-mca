@@ -6,7 +6,8 @@ This note records a counterexample-first finite check of the remaining
 `(BETA_2)` input in `m1_kummer_weil_import_contract.md`.  It does not prove the
 bounded-conductor estimate.  It tests the exact quotient-character object that
 would fail if the good beta pushforward had a hidden geometrically constant
-piece or a two-dimensional coherent component.
+piece, a beta-line Kummer-isotypic obstruction, or a two-dimensional coherent
+component.
 
 ## Object Tested
 
