@@ -464,6 +464,11 @@ def compute_report() -> dict[str, Any]:
         for slope in range(P)
     }
     generic_full_max = max_affine_graph_agreement(full_shifted_assignment)
+    close_list_graph_free_number = (
+        len(full_shifted_assignment)
+        if generic_full_max["max_agreement"] < B_THRESHOLD
+        else None
+    )
     bucket_sizes = (len(P0_SLOPES), len(P1_SLOPES))
     bucket_bound = bucket_obstruction_bound(bucket_sizes)
     balanced_bound = balanced_bucket_bound(len(bucket_sizes))
@@ -521,6 +526,9 @@ def compute_report() -> dict[str, Any]:
             generic_full_max["max_agreement"]
             == max_report["max_assignment_agreement"]
         ),
+        "close_list_graph_free_number_is_full_field": (
+            close_list_graph_free_number == P
+        ),
         "max_agreement_matches_bucket_obstruction": (
             max_report["max_assignment_agreement"] == bucket_bound
         ),
@@ -542,6 +550,10 @@ def compute_report() -> dict[str, Any]:
         ),
         "partial_trigger_initial_avoids_b_graph": (
             initial_partial_max["max_agreement"] < B_THRESHOLD
+        ),
+        "exact_trigger_criterion_fails_at_partial_trigger": (
+            close_list_graph_free_number is not None
+            and close_list_graph_free_number >= PARTIAL_TRIGGER
         ),
         "greedy_extension_size_condition_holds": greedy_size_condition,
         "greedy_extension_uses_all_slopes": (
@@ -607,6 +619,11 @@ def compute_report() -> dict[str, Any]:
             "affine_cap_obstruction_threshold": list_threshold,
             "affine_cap_obstruction_applies": affine_cap_obstruction_applies,
             "partial_trigger_numerator": PARTIAL_TRIGGER,
+            "close_list_graph_free_number": close_list_graph_free_number,
+            "exact_trigger_criterion_holds": (
+                close_list_graph_free_number is not None
+                and close_list_graph_free_number < PARTIAL_TRIGGER
+            ),
             "partial_trigger_obstruction_threshold": partial_trigger_threshold,
             "partial_trigger_initial_max_affine_agreement": (
                 initial_partial_max["max_agreement"]
@@ -687,6 +704,10 @@ def print_report(report: dict[str, Any]) -> None:
     print(
         "partial trigger numerator: "
         f"{report['assignment']['partial_trigger_numerator']}"
+    )
+    print(
+        "close-list graph-free number: "
+        f"{report['assignment']['close_list_graph_free_number']}"
     )
     print(
         "greedy extension max affine agreement: "

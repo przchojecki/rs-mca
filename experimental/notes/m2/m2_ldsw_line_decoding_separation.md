@@ -87,18 +87,53 @@ equivalent to finding a large affine graph inside the shifted assignment
 numerator has already vanished before this assignment-collinearity question
 appears.
 
-This reduction has an exact pigeonhole half.  Let
+Write
 
 ```text
 L_a(r) = {c in C : c agrees with r on at least a coordinates}.
 ```
 
+This gives an exact code-direction reduction.  For a set `L subset C`, define
+`G_b(L)` to be the largest size of a partial assignment
+
+```text
+phi:T -> L,        T subset F,
+```
+
+whose graph contains no `b` points of any affine code-space line
+
+```text
+gamma -> c + gamma w,        c,w in C.
+```
+
+Assume `b >= 3` and `|C| > binom(|F|,2)`, so the greedy extension lemma below
+applies.  Then ABF/GG line-decodability on all code-direction lines
+`r+gamma v`, `v in C`, with trigger numerator `A`, is equivalent to
+
+```text
+G_b(L_a(r)) < A
+```
+
+for every base word `r`.  The forward direction is just the shifted-assignment
+reduction: any violating decoded assignment restricts on its close slopes to a
+graph-free partial assignment into `L_a(r)`.  Conversely, any graph-free
+partial assignment into `L_a(r)` of size `A` extends to a full graph-free
+decoded assignment, giving a violating code-direction line.  Thus the exact
+positive input needed beyond `LD_sw` is a finite-geometric statement about
+affine graphs inside ordinary close lists.
+
+This reduction has an exact pigeonhole half.  Let
+
+```text
+L = L_a(r).
+```
+
 If an assignment is close on a set `T subset F` of slopes, then the shifted
-values `c_gamma` for `gamma in T` lie in `L_a(r)`.  Hence some `c in L_a(r)`
+values `c_gamma` for `gamma in T` lie in `L`.  Hence some `c in L`
 appears at least
 
 ```text
-ceil(|T|/|L_a(r)|)
+ceil(|T|/|L|)
 ```
 
 times.  The affine code-line `c + gamma v` agrees with the original assignment
@@ -106,11 +141,11 @@ on all those slopes.  Consequently, for any trigger size `A`, code-direction
 lines automatically satisfy the ABF/GG `b`-collinearity conclusion whenever
 
 ```text
-|L_a(r)| <= floor((A-1)/(b-1)).
+|L| <= floor((A-1)/(b-1)).
 ```
 
 In the full-field case `A=|F|`, this automatic range is
-`|L_a(r)| < ceil(|F|/(b-1))`.
+`|L| < ceil(|F|/(b-1))`.
 
 As a direct obstruction, suppose `m` distinct codewords
 `c_1,...,c_m in C` all agree with `r` on at least `a` coordinates, and split

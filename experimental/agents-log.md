@@ -53,7 +53,9 @@ Keep entries concise and link to the relevant files.
   affine-cap number inside every ordinary close list, not merely a bounded
   close-list cardinality.  The latest strengthening proves a greedy extension
   lemma showing that this affine-cap obstruction applies at the actual trigger
-  numerator `a_LD` whenever `|C| > binom(|F|,2)` and `b >= 3`.
+  numerator `a_LD` whenever `|C| > binom(|F|,2)` and `b >= 3`, and packages the
+  code-direction slice as the exact finite-geometric criterion
+  `G_b(L_a(r)) < a_LD`.
 - **How it is useful:** Clarifies the M2 bridge by ruling out the converse
   shortcut from residue-line packing or bounded `LD_sw` to ABF/GG
   line-decodability.

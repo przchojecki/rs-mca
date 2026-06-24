@@ -416,6 +416,11 @@ explain the base and direction.  ABF/GG line-decodability can still fail because
 the close-codeword assignment need not come from one affine code-line.  After
 subtracting `gamma v`, the ABF/GG conclusion becomes an affine-graph incidence
 problem inside the ordinary close list of the base word `r`.  The general
+criterion is exact on code-direction lines, under the same greedy-extension
+size hypothesis: if `G_b(L_a(r))` denotes the largest partial assignment from
+slopes into the ordinary close list with no `b` points on an affine graph in
+the code space, then the code-direction slice satisfies the trigger numerator
+`a_LD` exactly when `G_b(L_a(r)) < a_LD` for every base word `r`.  The general
 `m`-bucket obstruction gives the concrete failure threshold
 `max(ceil(|F|/m),m)` for a base word with `m` close codewords.  Equivalently,
 at collinearity threshold `b`, line-decodability on such code-direction lines
