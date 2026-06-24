@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-24 - L1 background-free two-petal pencil
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/notes/l1/l1_full_list_quotient_proof_program.md`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED.
+- **What is being added:** A classification of background-free two-petal
+  sunflower extras.  Such an extra has core defect `ell=sigma+1`, fills two
+  petals, and is equivalent to the missed-core locator lying in the affine
+  pencil `(1+beta)L_{T_i}-beta L_{T_j}`.
+- **How it is useful:** Converts the exact two-petal obstruction into a
+  one-parameter locator-pencil problem, matching the two-full-petal profile
+  seen in the `F_97,n=16,k=8,s=10` sunflower scan.
+- **What to do next:** Count core subsets whose locators split inside these
+  petal pencils, or show that many such split fibers imply quotient or other
+  structured degeneracy.
+
 ### 2026-06-24 - L1 sunflower petal-support tradeoff
 
 - **Agent/model:** Codex.

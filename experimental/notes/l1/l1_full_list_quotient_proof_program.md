@@ -393,6 +393,155 @@ core defect proportional to `sigma/(T-1)` if it is supported on only `T`
 petals.  The next incidence estimate can therefore be organized by the pair
 `(d,t)` rather than by all mixed-petal extras at once.
 
+## Lemma 5. Background-Free Two-Petal Pencil
+
+Status: PROVED.
+
+Assume the sunflower has no unused background, so
+
+```text
+H_n = C union T_1 union ... union T_M.
+```
+
+Put `ell=sigma+1=|T_i|`.  Let `P` be a non-planted listed codeword touching
+exactly two petals, say `T_i` and `T_j`.  Then
+
+```text
+d = ell,        S_i = T_i,        S_j = T_j,
+```
+
+and the missed-core locator `L_D` lies in the affine pencil
+
+```text
+L_D = (1+beta) L_{T_i} - beta L_{T_j}
+```
+
+for some `beta in F_q`.
+
+Conversely, if `D subset C` has size `ell` and satisfies the displayed pencil
+identity for some pair of petals and some `beta`, then it produces a listed
+codeword agreeing with `U` on
+
+```text
+(C \ D) union T_i union T_j.
+```
+
+If this codeword has no further petal agreements, it is exactly a two-petal
+non-planted extra.
+
+### Proof
+
+Since `R` is empty and `t=2`, Lemma 4 gives
+
+```text
+d >= sigma+1 = ell.
+```
+
+The list condition gives `h >= sigma+d+1`, while the two petals have total
+size `2ell`.  Thus
+
+```text
+sigma+d+1 <= h <= 2ell.
+```
+
+Since `ell=sigma+1`, this forces `d=ell` and `h=2ell`.  Therefore the two
+touched petals are full:
+
+```text
+S_i = T_i,        S_j = T_j.
+```
+
+By Lemma 2,
+
+```text
+W_P - c_i L_D
+```
+
+vanishes on `T_i`, and
+
+```text
+W_P - c_j L_D
+```
+
+vanishes on `T_j`.  All three polynomials have degree at most `ell`, so there
+are scalars `alpha_i, alpha_j` with
+
+```text
+W_P - c_i L_D = alpha_i L_{T_i},
+W_P - c_j L_D = alpha_j L_{T_j}.
+```
+
+Subtracting gives
+
+```text
+(c_j-c_i)L_D = alpha_i L_{T_i} - alpha_j L_{T_j}.
+```
+
+The petal scalars are distinct, so `c_j-c_i` is nonzero.  Put
+
+```text
+beta = alpha_j / (c_j-c_i).
+```
+
+Because both sides have leading coefficient `1`, the leading coefficients in
+the previous identity give
+
+```text
+alpha_i / (c_j-c_i) = 1 + beta.
+```
+
+Dividing by `c_j-c_i` gives the asserted pencil identity.
+
+Conversely, suppose
+
+```text
+L_D = (1+beta)L_{T_i} - beta L_{T_j}.
+```
+
+Let `Delta=c_j-c_i` and define
+
+```text
+W = c_iL_D + (1+beta)Delta L_{T_i}.
+```
+
+Then
+
+```text
+W - c_iL_D = (1+beta)Delta L_{T_i},
+W - c_jL_D = beta Delta L_{T_j}.
+```
+
+Therefore `P=L_{C\D}W` agrees with `U` on `C\D`, on `T_i`, and on `T_j`.
+The agreement count is
+
+```text
+|C\D| + |T_i| + |T_j| = (k-1-ell) + 2ell = k+sigma = s,
+```
+
+so `P` is listed.  It is non-planted: if `W` vanished on all of `D`, then
+`W` would be a scalar multiple of `L_D`, forcing `L_D` to be a scalar multiple
+of `L_{T_i}` or `L_{T_j}`, impossible because `D`, `T_i`, and `T_j` are
+disjoint.  Since this non-planted codeword contains two full petals, Lemma 2
+forces its actual core defect to be at least `ell`; since it already vanishes
+on `C\D`, its actual core defect is at most `ell`.  Hence the actual missed
+core is exactly `D`.  If no other petal contributes an agreement, the codeword
+is exactly a two-petal extra.
+
+### Consequences
+
+The background-free two-petal obstruction is no longer a free large-defect
+family.  It is a locator-pencil problem: for each pair of petals, count the
+core subsets `D` of size `ell` whose locator polynomial lies on the line
+
+```text
+{ (1+beta)L_{T_i} - beta L_{T_j} : beta in F_q }.
+```
+
+The two-petal profile seen in the `F_97,n=16,k=8,s=10` seed sweep is exactly
+of this type: `ell=3`, defect `d=3`, and two full petals.  Future progress on
+this subcase should attack splitting of this affine pencil inside the core,
+rather than re-enumerating full received words.
+
 ## Development Ledger
 
 - **Conjecture 1 full-list primitive remainder:** CONJECTURAL.  Main proof
@@ -414,5 +563,7 @@ petals.  The next incidence estimate can therefore be organized by the pair
   layer by `O_{d0}(n^{2d0+1})`.
 - **Petal-support tradeoff:** PROVED.  Shows that few-petal non-planted extras
   require large missed-core defect.
+- **Background-free two-petal pencil:** PROVED.  Classifies exact two-petal
+  extras by a one-parameter locator pencil.
 - **Mixed-petal sunflower amplification:** CONJECTURAL.  Next focused bound to
   prove or refute in the large-defect regime.
