@@ -27,6 +27,12 @@ SIGMA_TWO_CASES = (
     {"p": 13, "k": 5},
 )
 
+SIGMA_THREE_CASES = (
+    {"p": 13, "k": 3},
+    {"p": 17, "k": 5},
+    {"p": 19, "k": 6},
+)
+
 
 def base(value: int, p: int) -> Element:
     return (value % p, 0)
@@ -131,6 +137,8 @@ def locator(points: tuple[int, ...], p: int, d: int) -> Poly:
 
 def divide_by_x_minus_alpha(poly: Poly, alpha: Element, p: int, d: int) -> Poly:
     if len(poly) <= 1:
+        if poly == [(0, 0)]:
+            return [(0, 0)]
         raise ValueError("constant polynomial cannot be divided by X-alpha here")
     quotient = [(0, 0)] * (len(poly) - 1)
     quotient[-1] = poly[-1]
@@ -193,6 +201,23 @@ def support_has_direction_explanation(
 
 def support_sum(support: tuple[int, ...], p: int) -> int:
     return sum(support) % p
+
+
+def elementary_symmetric(points: tuple[int, ...], degree: int, p: int) -> int:
+    total = 0
+    for selection in itertools.combinations(points, degree):
+        product = 1
+        for point in selection:
+            product = (product * point) % p
+        total = (total + product) % p
+    return total
+
+
+def has_prefix_vanishing(support: tuple[int, ...], sigma: int, p: int) -> bool:
+    return all(
+        elementary_symmetric(support, degree, p) == 0
+        for degree in range(1, sigma)
+    )
 
 
 def verify_sigma_one_case(p: int, k: int) -> dict[str, Any]:
@@ -259,6 +284,101 @@ def verify_sigma_one_case(p: int, k: int) -> dict[str, Any]:
         "base_field_trivial_numerator": p,
         "extension_field_size": p * p,
         "mca_density_lower_bound": f"{lower_bound}/{p*p}",
+        "checks": checks,
+    }
+
+
+def verify_fixed_slack_template_case(p: int, k: int, sigma: int) -> dict[str, Any]:
+    d = least_nonsquare(p)
+    alpha = (0, 1)
+    domain = tuple(range(1, p))
+    n = len(domain)
+    a = k + sigma
+    block_size = sigma + 1
+    if not (block_size <= a <= n):
+        raise ValueError(
+            f"bad fixed-slack parameters p={p}, k={k}, sigma={sigma}, a={a}"
+        )
+
+    all_supports = list(itertools.combinations(domain, a))
+    admissible_supports = [
+        support for support in all_supports if has_prefix_vanishing(support, sigma, p)
+    ]
+    if not admissible_supports:
+        raise AssertionError("fixed-slack template found no admissible supports")
+
+    bad_slopes: set[Element] = set()
+    tail_to_blocks: dict[tuple[int, ...], list[tuple[int, ...]]] = {}
+    for support in admissible_supports:
+        z_value, q_poly, witness_poly = sigma_one_slope(support, a, alpha, p, d)
+        if len(q_poly) > k + 1:
+            raise AssertionError("admissible Q polynomial degree is too high")
+        if len(witness_poly) > k:
+            raise AssertionError("admissible witness polynomial degree is too high")
+        for point in support:
+            lhs = poly_eval(witness_poly, base(point, p), p, d)
+            rhs = line_value(point, z_value, a, alpha, p, d)
+            if lhs != rhs:
+                raise AssertionError("fixed-slack line point is not explained")
+        if support_has_direction_explanation(support, k, alpha, p, d):
+            raise AssertionError("fixed-slack direction unexpectedly explained")
+        bad_slopes.add(z_value)
+
+        for block in itertools.combinations(support, block_size):
+            tail = tuple(point for point in support if point not in block)
+            tail_to_blocks.setdefault(tail, []).append(block)
+
+    best_tail, best_blocks = max(
+        tail_to_blocks.items(), key=lambda item: len(item[1])
+    )
+    tails_count = comb(p - 1, k - 1)
+    decomposition_count = len(admissible_supports) * comb(a, block_size)
+    if len(best_blocks) * tails_count < decomposition_count:
+        raise AssertionError("best tail is below the fixed-slack average")
+
+    block_slopes: dict[Element, tuple[int, ...]] = {}
+    for block in best_blocks:
+        support = tuple(sorted(best_tail + block))
+        if not has_prefix_vanishing(support, sigma, p):
+            raise AssertionError("best-tail block does not satisfy prefix vanishing")
+        z_value, _, _ = sigma_one_slope(support, a, alpha, p, d)
+        if z_value in block_slopes:
+            raise AssertionError("fixed-slack block-slice injectivity failed")
+        block_slopes[z_value] = block
+
+    checks = {
+        "admissible_supports_exist": bool(admissible_supports),
+        "all_admissible_supports_bad": bool(admissible_supports),
+        "best_tail_meets_average_bound": (
+            len(best_blocks) * tails_count >= decomposition_count
+        ),
+        "best_tail_block_slopes_are_distinct": (
+            len(block_slopes) == len(best_blocks)
+        ),
+    }
+    failed = [name for name, passed in checks.items() if not passed]
+    if failed:
+        raise AssertionError(
+            f"failed fixed-slack checks for p={p}: {', '.join(failed)}"
+        )
+
+    return {
+        "p": p,
+        "nonsquare_d": d,
+        "field": f"F_{p}[alpha]/(alpha^2-{d})",
+        "n": n,
+        "k": k,
+        "sigma": sigma,
+        "agreement_a": a,
+        "delta": f"{n-a}/{n}",
+        "admissible_support_count": len(admissible_supports),
+        "distinct_slopes_from_admissible_supports": len(bad_slopes),
+        "best_tail": list(best_tail),
+        "best_tail_block_size": block_size,
+        "best_tail_block_count": len(best_blocks),
+        "average_lower_bound_numerator": decomposition_count,
+        "average_lower_bound_denominator": tails_count,
+        "extension_field_size": p * p,
         "checks": checks,
     }
 
@@ -359,6 +479,10 @@ def verify_sigma_two_case(p: int, k: int) -> dict[str, Any]:
 def compute_report() -> dict[str, Any]:
     sigma_one_cases = [verify_sigma_one_case(**case) for case in SIGMA_ONE_CASES]
     sigma_two_cases = [verify_sigma_two_case(**case) for case in SIGMA_TWO_CASES]
+    sigma_three_cases = [
+        verify_fixed_slack_template_case(sigma=3, **case)
+        for case in SIGMA_THREE_CASES
+    ]
     return {
         "status": "PASS",
         "proof_status": "FINITE_MODEL_CHECK / COUNTEREXAMPLE_SANITY",
@@ -367,10 +491,12 @@ def compute_report() -> dict[str, Any]:
             "(x^a-z)/(x-alpha) has at least binom(p-a+1,2) support-wise "
             "MCA-bad slopes over F_{p^2}; for sigma=2 and a=k+2, zero-sum "
             "supports give a tail with the averaged number of distinct bad "
-            "triple slopes."
+            "triple slopes; for sigma=3, finite cases check the general "
+            "prefix-vanishing fixed-tail injectivity template."
         ),
         "sigma_one_cases": sigma_one_cases,
         "sigma_two_cases": sigma_two_cases,
+        "sigma_three_template_cases": sigma_three_cases,
     }
 
 
@@ -388,6 +514,12 @@ def print_report(report: dict[str, Any]) -> None:
             "sigma=2 p={p} k={k} a={agreement_a} "
             "zero_sum={zero_sum_support_count} "
             "best_tail_triples={best_tail_triple_count}".format(**case)
+        )
+    for case in report["sigma_three_template_cases"]:
+        print(
+            "sigma=3 p={p} k={k} a={agreement_a} "
+            "admissible={admissible_support_count} "
+            "best_tail_blocks={best_tail_block_count}".format(**case)
         )
 
 

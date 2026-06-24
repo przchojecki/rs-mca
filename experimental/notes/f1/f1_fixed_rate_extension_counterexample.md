@@ -136,13 +136,58 @@ emca(C_F, 1-(k+2)/(p-1))
 This remains a sub-reserve counterexample: `sigma=2` gives
 `eta=2/(p-1)`, far below the corrected `C/log n` reserve.
 
+More generally, for every fixed slack
+
+```text
+sigma >= 1,        a = k + sigma,
+```
+
+the same degree-one denominator gives a support-wise bad slope from every
+`a`-subset `S` satisfying
+
+```text
+e_1(S) = e_2(S) = ... = e_{sigma-1}(S) = 0.
+```
+
+If a `(k-1)`-tail `T` is fixed, the slope map is injective on the admissible
+blocks
+
+```text
+S = T union U,        |U| = sigma+1,
+```
+
+that satisfy these prefix-vanishing equations. Consequently, if
+`G_{p,k,sigma}` denotes the number of such admissible `a`-subsets of
+`F_p^*`, then some tail gives at least
+
+```text
+G_{p,k,sigma} * binom(k+sigma, sigma+1) / binom(p-1,k-1)
+```
+
+distinct bad slopes. Thus any square-root-type or random-model count
+
+```text
+G_{p,k,sigma} = (1+o(1)) binom(p-1,k+sigma) / p^(sigma-1)
+```
+
+would force a quadratic extension numerator
+
+```text
+((1-rho)^(sigma+1)/(sigma+1)! - o(1)) p^2
+```
+
+for fixed-rate `k=floor(rho(p-1))`.
+
 ## Status
 
 PROVED / COUNTEREXAMPLE.
 
 This starts with a sigma-one counterexample, with agreement size `k+1`, and
-adds a proved sigma-two degree-one family. These do not refute a repaired
-extension-line theorem in the corrected-reserve regime
+adds a proved sigma-two degree-one family. It also records a proved
+fixed-slack degree-one template for all `sigma`, reducing the higher-slack
+extension obstruction to a precise count of prefix-vanishing elementary
+symmetric support sets. These do not refute a repaired extension-line theorem
+in the corrected-reserve regime
 `sigma >= C n/log n`. They do refute any unrestricted route that bounds
 extension-line MCA by taking a base-field numerator and dividing by the larger
 extension challenge field. The extension-degree corollary shows that the issue
@@ -342,6 +387,91 @@ M_{p,k}
 along fixed-rate sequences. Dividing by `|F|=p^2` gives the displayed
 constant-density sigma-two lower bound.
 
+## General Fixed-Slack Degree-One Template
+
+The previous two cases are instances of a uniform degree-one mechanism.  Fix
+`sigma >= 1`, put `a=k+sigma`, and keep the line
+
+```text
+u_z(x) = (x^a-z)/(x-alpha).
+```
+
+For an `a`-subset `S`, expand
+
+```text
+L_S(X)
+  = X^a - e_1(S)X^(a-1) + e_2(S)X^(a-2) - ... + (-1)^a e_a(S).
+```
+
+Then
+
+```text
+Q_S(X) = X^a - L_S(X)
+```
+
+has degree at most `k` exactly when
+
+```text
+e_1(S) = ... = e_{sigma-1}(S) = 0.
+```
+
+For every such support, the same construction
+
+```text
+z_S = Q_S(alpha),        P_S = (Q_S-z_S)/(X-alpha)
+```
+
+gives `deg P_S < k` and explains `u_{z_S}` on `S`.  The same noncontainment
+argument used above applies because `|S|=k+sigma>k`.
+
+Now fix a tail `T` of size `k-1`.  Suppose
+
+```text
+S = T union U,        S' = T union U',        |U|=|U'|=sigma+1
+```
+
+are both prefix-vanishing supports and have the same slope.  Since
+
+```text
+L_S(alpha) = L_T(alpha)L_U(alpha)
+```
+
+and `L_T(alpha) != 0`, equality of slopes gives
+
+```text
+L_U(alpha) = L_{U'}(alpha).
+```
+
+The equations `e_m(T union U)=0` for `1 <= m <= sigma-1` recursively determine
+`e_m(U)` from `T` and the lower `e_i(U)`.  Hence `U` and `U'` have the same
+elementary symmetric coefficients through degree `sigma-1`.  Because
+`|U|=sigma+1`, the difference `L_U-L_{U'}` is therefore a polynomial of degree
+at most one:
+
+```text
+L_U(X)-L_{U'}(X) = A X + B,        A,B in F_p.
+```
+
+Evaluating at `alpha` gives `A alpha + B = 0`.  Since `alpha notin F_p`, the
+elements `1,alpha` are linearly independent over `F_p`, so `A=B=0`.  Thus
+`L_U=L_{U'}` and the unordered blocks are equal.  The slope map is injective
+on every fixed-tail admissible block slice.
+
+Averaging over tails gives the displayed lower bound in terms of
+`G_{p,k,sigma}`.  The only missing input for a full fixed-slack extension
+counterexample at general `sigma` is therefore a lower bound for the number of
+prefix-vanishing supports.  If those supports have the expected density
+`p^{-(sigma-1)}`, then the standard double count gives
+
+```text
+binom(p-1,k+sigma) binom(k+sigma,sigma+1)
+  / (p^(sigma-1) binom(p-1,k-1))
+  = ((1-rho)^(sigma+1)/(sigma+1)! - o(1)) p^2.
+```
+
+This keeps the fixed-slack obstruction quadratic in the base field size for
+every fixed `sigma`.
+
 For fixed rate `k=floor(rho(p-1))`, the numerator ratio
 
 ```text
@@ -376,8 +506,10 @@ Consequently a protocol ledger cannot safely take an MCA numerator proved over
 `F`-valued lines. The sigma-one extension numerator is already quadratic in
 `|B|`, even when `|F|` is a higher extension. The sigma-two slice shows that
 fixed positive residual slack still leaves constant-density degree-one
-families; the repaired theorem needs residual slack large enough for the list
-ledger, not merely nonzero slack. A repaired F1 theorem must either:
+families, and the fixed-slack template shows that higher fixed slack reduces to
+an explicit prefix-vanishing support count. The repaired theorem needs residual
+slack large enough for the list ledger, not merely nonzero slack. A repaired F1
+theorem must either:
 
 - prove MCA directly over the actual extension line field;
 - add an extension-valued residue-line numerator term;
@@ -419,3 +551,10 @@ older F1 audit-bundle verifier reference
 experimental/scripts/codex_f1_l1_20260617/verifiers/\
 verify_f1_sigma2_degree1.py
 ```
+
+The verifier also checks the general fixed-slack template at `sigma=3` for
+`(p,k)=(13,3),(17,5),(19,6)`: it enumerates supports satisfying
+`e_1(S)=e_2(S)=0`, verifies the degree drop and noncontainment, finds a tail
+meeting the double-count average, and checks injectivity on the resulting
+four-block slice.  These finite checks are not promoted to an asymptotic
+counting theorem; they only sanity-check the structural reduction above.
