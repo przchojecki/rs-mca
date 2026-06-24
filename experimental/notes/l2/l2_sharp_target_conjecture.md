@@ -603,6 +603,69 @@ for all received words, then the fixed-arity over-agreement contribution obeys
 
 For every fixed protocol arity `mu`, this is polynomial in `n`.
 
+The same shell reduction separates the genuinely sharp part of L2 from the
+row-overagreement error. Call an interleaved tuple
+`(c_1,...,c_mu) in Lambda_mu(U,a)` **regular** if every row has full agreement
+support of size exactly `a`:
+
+```text
+|A_{U_i}(c_i)| = a        for every i.
+```
+
+Otherwise call it **row-irregular**. If a tuple is regular, then the common
+intersection condition forces
+
+```text
+A_{U_1}(c_1) = ... = A_{U_mu}(c_mu) = S
+```
+
+for one `a`-subset `S subset H`; since `a>=k`, this support determines every
+row codeword uniquely. Thus the regular core is exactly the diagonal
+exact-support object on which the random term and the quotient packet budget
+should act.
+
+For row-irregular tuples, at least one row has support size `>=a+1`. Anchoring
+such a row and using the fixed-arity shell reduction gives the union bound
+
+```text
+Irr_mu(U,a)
+ <= sum_{j=1}^mu
+      ( P_j^+ W_J^{[mu-1]}(n,k,a)
+        + T_j product_{i != j} L_{U_i}(a) ),
+```
+
+where
+
+```text
+P_j^+ = max_{a+1 <= t <= min(n,s_J-1)} L_{U_j}(t),
+T_j   = L_{U_j}(s_J),
+```
+
+with `P_j^+=0` if the displayed range is empty. Consequently, the repaired
+one-row L1 bound `L_V(a)<=n^{B_L}` implies
+
+```text
+Irr_mu(U,a)
+ <= mu ( n^{B_L+2(mu-1)}(2+log n) + n^{mu B_L} ).
+```
+
+Therefore L2-Sharp V0 is reduced to the following sharper exact-core local
+limit, plus the repaired one-row L1 theorem:
+
+```text
+Reg_mu(U,a)
+ <= binom(n,a) q^(-mu(a-k))
+    + Quot_rem_mu(n,k,a)
+    + n^{B_reg}.
+```
+
+This is a narrower target than bounding all interleaved lists directly. Local
+Cartesian blocks with row over-agreement, such as the `K_{2,2}` witness below,
+belong to `Irr_mu` and are already charged to the polynomial codegree term.
+The remaining sharp question is whether exact-row diagonal supports have only
+the random simultaneous-support mass, the explicit all-remainder quotient
+packets, and a polynomial residual.
+
 This packages the reduction to L1 as a conditional theorem.
 
 **Conditional theorem (L1 shell local limit gives the L2 codegree term).**
@@ -629,21 +692,20 @@ Thus, after the aligned quotient packets are removed or charged to
 B > max(B_L+2(mu-1), mu B_L).
 ```
 
-This conditional theorem does not prove the sharp random simultaneous-support
-main term or the explicit quotient budget. Its content is narrower: no
-additional Cartesian-product obstruction remains in the fixed-arity
-over-agreement/codegree term once the repaired L1 shell local limit is
-available. By monotonicity, the single threshold `a` controls every shell
-threshold `t>=a` used in the reduction.
+This conditional theorem does not prove the sharp regular-core local limit.
+Its content is narrower: no additional Cartesian-product obstruction remains in
+the fixed-arity row-irregular/codegree term once the repaired L1 shell local
+limit is available. By monotonicity, the single threshold `a` controls every
+shell threshold `t>=a` used in the reduction.
 
-Thus a proof of L2-Sharp can be organized by anchor support size `s`: small
-over-agreement anchors fall into unique decoding; intermediate anchors are
-Johnson-controlled by the proposition; any remaining large anchors must already
-have at least `ceil(a(sigma+1)/(k-1))` extra agreements above the list threshold
-`a`, and their number is reducible to an exact-`a` one-row locator budget with
-a `binom(s_J,a)` multiplicity saving. The remaining proof obligation is
-therefore not arbitrary punctured list-decoding, but a high-overagreement tail
-after quotient packets are removed or budgeted.
+Thus a proof of L2-Sharp splits into two concrete obligations. First prove the
+regular exact-row local limit: exact common supports contribute only the random
+simultaneous-support term, the explicit `Quot_rem_mu` packets, and a polynomial
+residual. Second prove/import the repaired one-row L1 theorem, which controls
+row-irregular tuples by anchor support size `s`: small over-agreement anchors
+fall into unique decoding, intermediate anchors are Johnson-controlled, and any
+remaining large anchors already have at least
+`ceil(a(sigma+1)/(k-1))` extra agreements above the list threshold.
 
 ## 5. Already proved or checked
 
@@ -662,7 +724,7 @@ The new falsification script
 python3 experimental/scripts/verify_l2_sharp_target.py
 ```
 
-checks five stress points.
+checks the following stress points.
 
 1. The explicit aligned quotient budget is computable. For example, at
    `(n,k,a,mu)=(64,16,18,2)` the old divisible-only budget and the
@@ -698,6 +760,11 @@ checks five stress points.
    product bound = 4.
    ```
    The same run reports punctured codegrees `[2,2]`, with codegree sum `4`.
+   Its regular/irregular split is also decisive: the regular exact-row count is
+   `0`, the row-irregular count is `4`, and the common-intersection profile is
+   `{5:4}`. Thus the witness has exact common intersection size `a`, but every
+   listed tuple is charged to row over-agreement rather than to the regular
+   exact-row core.
    The two row-1 anchor supports have size `8`; the punctured Johnson bound is
    `floor(8(8-3+1)/(5^2-8(3-1))) = 5`, so the observed codegrees `2,2`
    satisfy the proposition.
@@ -719,8 +786,10 @@ following above the reserve.
 
 - A non-aligned quotient family whose interleaved contribution is not covered
   by `Quot_rem_mu(n,k,a)` and is larger than `n^B`.
-- A non-grid over-agreement/codegree construction whose common-intersection
-  count grows like a Cartesian support product rather than a polynomial error.
+- A regular exact-row support family whose count exceeds the random term plus
+  `Quot_rem_mu(n,k,a)` by more than a polynomial factor.
+- A row-irregular over-agreement/codegree construction whose anchored shell
+  count is super-polynomial despite the repaired one-row L1 bound.
 - A family of punctured domains `A=A_{U_1}(c_1)` for which the punctured-list
   term `Gamma_A(U_2,a)` is super-polynomial after quotient packets are removed.
 - A quotient packet not covered by the all-remainder budget above that changes

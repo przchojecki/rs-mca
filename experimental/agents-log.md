@@ -80,16 +80,23 @@ Keep entries concise and link to the relevant files.
   all all-remainder packets are absent exactly when `a` falls below the first
   power of two larger than `sigma`; in the verifier scan
   `(n,k_0,sigma)=(64,16,2)`, this first happens only after the large dither
-  `r=15`.
+  `r=15`. The latest refinement splits the L2 count into a regular exact-row
+  core and a row-irregular shell. Regular tuples have all row supports equal to
+  the same `a`-set and are the only place where the sharp random term plus
+  `Quot_rem_mu` must be proved. Row-irregular tuples have at least one row
+  support of size `>a`, so the fixed-arity Johnson/L1 shell reduction bounds
+  them by a polynomial. The `F_29` `K_{2,2}` witness now verifies this split:
+  regular count `0`, row-irregular count `4`, common-intersection profile
+  `{5:4}`.
 - **How it is useful:** Turns the L2 objective from a broad "avoid Cartesian
   overcharge" principle into a concrete conjectural inequality that can be
   falsified or promoted. The `K_{2,2}` witness records that local Cartesian
   blocks are real, so the correct target is a global sharp bound with those
   blocks charged to the polynomial codegree term.
-- **What to do next:** Prove/import the repaired one-row L1 list bound at the
-  original threshold `a=k+sigma`, compare the interval-divisor clearance
-  criterion with the active quotient-profile/dithering scanners, and reconcile
-  the final statement with the active X1/L2 bridge PR #101 before promotion.
+- **What to do next:** Prove the regular exact-row local limit
+  `Reg_mu <= binom(n,a)q^{-mu(a-k)} + Quot_rem_mu + n^B`, prove/import the
+  repaired one-row L1 list bound at `a=k+sigma`, and reconcile the final
+  statement with the active X1/L2 bridge PR #101 before promotion.
 
 ### 2026-06-23 - Cycle119 admissibility review
 

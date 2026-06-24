@@ -6,14 +6,15 @@ settled by the support-intersection bridge: over-agreement can create
 interleaved mass, so the falsification target is whether that mass can grow like
 a Cartesian product rather than like a polynomial support-overlap codegree.
 
-The script checks six finite objects.
+The script checks seven finite objects.
 
 1. The all-remainder quotient packet count used as Quot_rem_mu in the target.
 2. The Johnson-shell weights used in the codegree reduction.
 3. The abstract K_{m,m} grid over-agreement design and its size formula.
 4. An explicit dithered all-remainder quotient packet with M not dividing k.
 5. The dyadic active-scale clearance criterion for small dimension dithers.
-6. A realized Reed-Solomon K_{2,2} gluing over a prime-field multiplicative
+6. The regular/row-irregular split of the interleaved support count.
+7. A realized Reed-Solomon K_{2,2} gluing over a prime-field multiplicative
    subgroup, computed by exact list enumeration, together with its punctured
    codegree profile.
 
@@ -336,6 +337,47 @@ def interleaved_count(families: list[list[frozenset[int]]], a: int) -> int:
         if len(common) >= a:
             count += 1
     return count
+
+
+def regular_irregular_profile(families: list[list[frozenset[int]]], a: int) -> dict:
+    """Split interleaved tuples by exact-row regularity.
+
+    A regular tuple has every row support of size exactly a. Then the common
+    intersection condition forces all row supports to be the same a-set. Every
+    other listed tuple has at least one row support of size >a and belongs to
+    the row-irregular shell controlled by the codegree reduction.
+    """
+    common_profile: dict[int, int] = {}
+    regular = 0
+    row_irregular = 0
+    common_overagreement = 0
+    regular_diagonal = True
+    for supports in itertools.product(*families):
+        common = set(supports[0])
+        for supp in supports[1:]:
+            common &= supp
+            if len(common) < a:
+                break
+        common_size = len(common)
+        if common_size < a:
+            continue
+        common_profile[common_size] = common_profile.get(common_size, 0) + 1
+        if all(len(supp) == a for supp in supports):
+            regular += 1
+            regular_diagonal = regular_diagonal and len(set(supports)) == 1
+        else:
+            row_irregular += 1
+        if common_size > a:
+            common_overagreement += 1
+    total = regular + row_irregular
+    return {
+        "regular_exact_row_count": regular,
+        "row_irregular_count": row_irregular,
+        "common_overagreement_count": common_overagreement,
+        "total": total,
+        "regular_diagonal": regular_diagonal,
+        "common_intersection_profile": dict(sorted(common_profile.items())),
+    }
 
 
 def punctured_johnson_bound(s: int, k: int, a: int) -> dict:
@@ -685,10 +727,7 @@ def realized_rs_k22() -> dict:
     product_bound = len(families[0]) * len(families[1])
     max_base = max(len(families[0]), len(families[1]))
     support_sizes = [[len(s) for s in fam] for fam in families]
-    common_profile = {}
-    for supp1, supp2 in itertools.product(*families):
-        r = len(supp1 & supp2)
-        common_profile[r] = common_profile.get(r, 0) + 1
+    regular_profile = regular_irregular_profile(families, a)
     codegree_profile = two_row_codegree_profile(families, a)
     shell_bound = shell_codegree_bound(families, k, a)
     l1_reduction_bound = l1_shell_reduction_bound(families, n, k, a)
@@ -721,7 +760,10 @@ def realized_rs_k22() -> dict:
         "mass_creation": interleaved > max_base,
         "saving_vs_cartesian": interleaved / product_bound if product_bound else None,
         "support_sizes": support_sizes,
-        "common_intersection_profile": dict(sorted(common_profile.items())),
+        "common_intersection_profile": regular_profile[
+            "common_intersection_profile"
+        ],
+        "regular_irregular_profile": regular_profile,
         "punctured_codegree_profile": codegree_profile,
         "codegree_identity_holds": codegree_profile["codegree_sum"] == interleaved,
         "shell_codegree_bound": shell_bound,
@@ -802,6 +844,17 @@ def run() -> dict:
         "rs_witness_creates_mass": witness["mass_creation"],
         "rs_witness_realizes_k22": witness["interleaved"] == witness["product_bound"] == 4,
         "rs_witness_codegree_identity": witness["codegree_identity_holds"],
+        "rs_witness_regular_irregular_split": witness[
+            "regular_irregular_profile"
+        ]["total"]
+        == witness["interleaved"]
+        and witness["regular_irregular_profile"]["regular_exact_row_count"] == 0
+        and witness["regular_irregular_profile"]["row_irregular_count"]
+        == witness["interleaved"],
+        "rs_witness_no_common_overagreement": witness[
+            "regular_irregular_profile"
+        ]["common_overagreement_count"]
+        == 0,
         "rs_witness_shell_bound": witness["interleaved"] <= witness["shell_codegree_bound"]["total_bound"],
         "rs_witness_l1_shell_reduction": witness["interleaved"]
         <= witness["l1_shell_reduction_bound"]["total_bound"],
@@ -908,6 +961,14 @@ def main(argv: list[str] | None = None) -> int:
             f"    punctured codegrees={w['punctured_codegree_profile']['inner_codegrees']}, "
             f"sum={w['punctured_codegree_profile']['codegree_sum']}, "
             f"max={w['punctured_codegree_profile']['max_inner_codegree']}"
+        )
+        reg = w["regular_irregular_profile"]
+        print(
+            "    regular split: "
+            f"regular={reg['regular_exact_row_count']}, "
+            f"row_irregular={reg['row_irregular_count']}, "
+            f"common_overagreement={reg['common_overagreement_count']}, "
+            f"profile={reg['common_intersection_profile']}"
         )
         print(
             f"    Johnson threshold={w['johnson_anchor_threshold']}, "
