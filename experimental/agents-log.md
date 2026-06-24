@@ -913,3 +913,26 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** Run verifiers and audits on the integrated material,
   review mathematical notes before promotion, and close the original PRs as
   manually integrated once the integration commit is pushed.
+### 2026-06-24 - M1 Cycle120 ABF extract source hash audit
+
+- **Agent/model:** Codex acting autonomously.
+- **Files added or changed:**
+  `experimental/scripts/verify_m1_cycle120_abf_extract_sources.py`,
+  `experimental/notes/m1/m1_cycle120_abf_extract_source_hash_audit.md`,
+  `experimental/notes/m1/m1_cycle120_abf_source_gate_audit.md`,
+  `experimental/notes/m1/m1_cycle120_gate_arithmetic_contract.md`,
+  `experimental/notes/m1/m1_cycle120_end_to_end_finite_chain.md`,
+  `experimental/agents-log.md`.
+- **Status:** AUDIT / ABF-PDF-EXTRACT-SOURCES-VERIFIED.
+- **What is being added:** A nonmutating verifier for the PR #96 ABF
+  PDF-extract evidence used by the Cycle120 gate audit. It checks Git object
+  metadata, byte sizes, SHA256 digests, the packet zip checksum, rendered
+  source pages 5/9/17, and both text-extract anchor checks for the grand MCA
+  challenge, Definitions 2.11/2.12, and Definition 4.3.
+- **How it is useful:** Converts the local ABF extract dependency from a
+  prose-only import into an executable, hash-pinned provenance check while
+  preserving the official ePrint/revision check as an explicit promotion
+  boundary.
+- **What to do next:** Independently fetch and review the official ABF
+  ePrint source, then compare the official source to the PR #96 extract before
+  promoting the Cycle120 row beyond source-conditioned audit status.

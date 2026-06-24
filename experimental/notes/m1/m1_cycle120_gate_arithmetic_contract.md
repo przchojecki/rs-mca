@@ -21,6 +21,17 @@ is still blocked by Cloudflare from this environment, and classifies
 Definitions 2.11, 2.12, and 4.3 as checked only against the PR #96 PDF extract
 until a human reviewer fetches the official PDF/source directly.
 
+The PR #96 ABF extract objects themselves are now hash-bound by:
+
+```text
+experimental/notes/m1/m1_cycle120_abf_extract_source_hash_audit.md
+python3 experimental/scripts/verify_m1_cycle120_abf_extract_sources.py
+```
+
+That verifier checks the copied PDF, both text extracts, the rendered source
+pages used by the gate audit, and the Cycle120 ABF packet zip at the recorded
+PR #96 head. It does not close the official ePrint/revision check.
+
 It does not prove the Cycle84 finite energy/census, the full Cycle116 finite-chain
 transfer, or the optional Cycle119 strict-ball transfer. It records exactly
 what those imports would imply if they survive independent review.
@@ -192,7 +203,7 @@ The following inputs remain outside this arithmetic contract:
 1. Official ABF PDF/source verification, with page references for the row
    gates, sampler, smoothness condition, support-wise predicate, and closed
    threshold. The source-gate audit above gives public-page confirmation plus
-   PDF-extract evidence, but not final independent ePrint retrieval.
+   hash-bound PDF-extract evidence, but not final independent ePrint retrieval.
 2. The finite definition of `K`, `theta`, and `H`, including the proof or
    certificate that `H=<theta>` is the intended power-of-two subgroup. The
    local field-ledger verifier now also checks that `theta` generates the full

@@ -32,7 +32,8 @@ DEGREE_ENVELOPE_BITS = 40
 EXPECTED_FIELD_SIZE = 2_367_911_594_760_467_245_844_106_297_320_951_247_361
 
 IMPORTS_REQUIRED = (
-    "official ABF source gates and page references",
+    "official ABF source gates and page references; PR #96 extract objects are "
+    "hash-bound separately but do not close official ePrint review",
     "finite certificate for K, theta, and H=<theta>",
     "Cycle84 finite energy/census producing N",
     "Cycle116 finite-chain transfer at agreement 262",

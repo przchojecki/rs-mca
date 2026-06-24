@@ -10,8 +10,13 @@ are already supported by independently reachable public material, which gates
 are supported only by the PR #96 ABF PDF extract, and which questions remain
 fatal if the official PDF later differs.
 
-It does not import the copied ABF PDF, rendered pages, HTML snapshots, raw model
-returns, or generated packet from PR #96.
+It does not copy the ABF PDF, rendered pages, HTML snapshots, raw model returns,
+or generated packet from PR #96 into this branch. The companion extract-source
+verifier hash-checks the PR #96 Git objects in place:
+
+```text
+python3 experimental/scripts/verify_m1_cycle120_abf_extract_sources.py
+```
 
 ## Source Tiers
 
@@ -108,6 +113,16 @@ Because the PDF was obtained from a closed PR branch rather than independently
 downloaded from ePrint in this session, this tier should be treated as
 PDF-extract evidence, not final source closure.
 
+The extract-source verifier pins this tier to PR #96 commit
+`fdb3cacece5a7f71399f12c697bd5193806f82ef`. It checks the copied PDF hash above,
+the two text-extract hashes, the rendered page images for pages 5, 9, and 17,
+the Cycle120 ABF packet zip checksum, and the presence of the cited source
+anchors in both text extracts. See:
+
+```text
+experimental/notes/m1/m1_cycle120_abf_extract_source_hash_audit.md
+```
+
 ## Gate Matrix
 
 | Gate | Best current evidence | Cycle120 status |
@@ -187,7 +202,8 @@ Before promotion, a human reviewer should still discharge:
 
 1. Independently fetch the official ABF PDF or source from ePrint and verify
    Definitions 2.11, 2.12, and 4.3 with page references.
-2. Confirm that no later official revision changes the row envelope, smoothness
+2. Confirm that the copied PR #96 PDF is exactly the intended official ABF
+   source and that no later official revision changes the row envelope, smoothness
    definition, sampler field, or support-wise predicate.
 3. Tie the finite `H=<theta>` assertion to the Cycle84/Cycle116 certificate:
    `H` must be the intended order-512 subgroup of `K^*`, where

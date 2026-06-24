@@ -107,6 +107,18 @@ audit then materializes the PR #96 packet in a temporary directory, executes the
 hash-pinned `verify_transfer.py`, and compares its native/smooth `LD_sw` and
 field-ledger output to this local end-to-end chain.
 
+The ABF PDF-extract evidence from the same PR #96 head is checked separately by:
+
+```text
+python3 experimental/scripts/verify_m1_cycle120_abf_extract_sources.py
+```
+
+It hash-binds the copied ABF PDF, both text extracts, the rendered source pages
+for pages 5, 9, and 17, and the Cycle120 ABF packet zip. It also checks that
+both text extracts contain the source anchors cited by the Cycle120 gate audit.
+This remains extract-source evidence only; it does not replace official ePrint
+fetch and revision review.
+
 The smooth padding lift preserves the same set of bad parameters and gives
 
 ```text
@@ -216,7 +228,9 @@ The chain remains conditional on:
 
 1. Official ABF PDF/source verification for the admissible row gates, sampler,
    smoothness condition, same-support MCA predicate, and closed-threshold
-   convention.
+   convention. The PR #96 extract dependency is now hash-bound by
+   `verify_m1_cycle120_abf_extract_sources.py`, but official ePrint/revision
+   review remains open.
 2. Reviewer acceptance that the Cycle84 finite-source closure audit is
    sufficient for promotion beyond audit status. The exact occupancy verifier
    now composes the replay algorithm audit, generated source contract, saved
