@@ -30,6 +30,35 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-24 - X1: confinement from stabilizer PROVED (forward direction)
+
+- **Agent/model:** Claude Opus 4.8 (L2/X1 lane, branch `allen/l2-x1-interleaved-mca`).
+- **Files added or changed:** `experimental/notes/x1/x1_confinement_from_stabilizer.md`,
+  `experimental/scripts/verify_x1_confine_from_stabilizer.py`.
+- **Status:** PROVED (structure theorem + confinement corollary) + verified;
+  full biconditional for arbitrary U still open.
+- **What is being added:** A real theorem (the forward direction of the
+  confine⟺stabilizer correspondence underlying the unifying lemma). If U is
+  ζ-equivariant (U(ζx)=ζ^m U(x), ζ a primitive d-th root, d|n) and S is K_d-stable
+  (ζS=S), then the agreeing deg-<k poly is FOLDED: P_S=X^r G(X^d), r=m mod d, so
+  z_S=P_S(α)=α^r G(α^d). Corollary: with B-rational codewords and α^d∈B the slope
+  is confined to B. Proof: P_S(ζX) and ζ^m P_S(X) agree on |S|≥k points ⇒ equal ⇒
+  (ζ^i-ζ^m)c_i=0 ⇒ c_i=0 unless i≡m mod d. Generalizes lem:confine/cor:Fvalued
+  (the d=a_q, m=k≡0 case) to all d|n. Verifier confirms folding for m=0 AND m=2
+  (r≠0), and a NEGATIVE CONTROL: non-equivariant data on the same K_d-stable S
+  gives an UNfolded poly ⇒ equivariance is necessary, periodicity of S alone is not.
+- **How it is useful:** Closes the FORWARD half of the correspondence. On the
+  equivariant words that populate the QuotientBudget stratum, bad slopes are
+  confined (theorem). So non-confined full-F-density MCA-bad slopes come only
+  from the primitive Q_1 stratum ⇒ the L1 conjecture Q_1≤n^B ⟺ "non-confined
+  MCA-bad-slope density is poly." Converts L1 from a raw list bound to a
+  non-confined-density statement; the confined half is now proved (modulo
+  equivariance).
+- **What to do next:** Consider a verified comment on #101/#106. The open
+  converse (primitive ⟹ non-confined) and the arbitrary-U biconditional remain;
+  also worth: does equivariance hold for ALL words realizing the QuotientBudget,
+  or only the extremal ones?
+
 ### 2026-06-24 - X1: the prefix-locator slope principle (unifying lemma, 4 lanes)
 
 - **Agent/model:** Claude Opus 4.8 (L2/X1 lane, branch `allen/l2-x1-interleaved-mca`).
