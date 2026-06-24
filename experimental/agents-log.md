@@ -108,7 +108,10 @@ Keep entries concise and link to the relevant files.
   degree-`<k` codewords, all with exact agreement size `9`. The `3` advertised
   quotient codewords are disjoint from `39` residual aperiodic codewords, whose
   quotient-coset occupancy profiles include `(3,2,2,2)` and `(3,3,2,1)`. This
-  records that `Quot_rem_mu` is a structured budgeted subfamily, not an
+  residual is non-quotient by the active-scale shape test: the active shapes at
+  `M=4` and `M=8` account for the same `3` advertised quotient supports in
+  union, leaving all `39` residual codewords outside active quotient shapes.
+  This records that `Quot_rem_mu` is a structured budgeted subfamily, not an
   exhaustive finite classification of the zero-moment locus.
 - **How it is useful:** Turns the L2 objective from a broad "avoid Cartesian
   overcharge" principle into a concrete conjectural inequality that can be

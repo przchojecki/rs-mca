@@ -917,6 +917,11 @@ checks the following stress points.
    (4,2,2,1): 7,  (3,3,3,0): 1,
    (3,3,2,1): 14, (3,2,2,2): 17.
    ```
+   The only active quotient scales are `M=4` and `M=8`; their quotient shapes
+   occur among the zero-moment supports `3` and `1` times respectively, and
+   their union is still the same `3` advertised quotient supports. Thus the
+   `39` residual codewords fail the active quotient-shape test at every active
+   scale.
    Thus `Quot_rem_mu` is a structured subfamily of the zero-moment locus, not
    an exhaustive description of that locus in small finite examples; the
    remaining aperiodic zero-moment supports are exactly what the polynomial

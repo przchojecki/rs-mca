@@ -861,6 +861,7 @@ def realized_dithered_quotient_packet() -> dict:
     advertised_zero_moment_polynomials = set()
     residual_zero_moment_polynomials = set()
     agreement_size_hist: dict[int, int] = {}
+    zero_moment_support_index_sets = []
     for subset in itertools.combinations(range(n), a):
         support_indices = frozenset(subset)
         interpolant = interpolate_subset_poly(p, h_values, y_values, support_indices)
@@ -874,6 +875,7 @@ def realized_dithered_quotient_packet() -> dict:
         if not syndrome_zero:
             continue
         zero_moment_supports += 1
+        zero_moment_support_index_sets.append(support_indices)
         interpolant_key = tuple(trim_poly(interpolant[:]))
         zero_moment_polynomials.add(interpolant_key)
         full_support = frozenset(
@@ -902,6 +904,39 @@ def realized_dithered_quotient_packet() -> dict:
             residual_occupancy_hist[profile] = (
                 residual_occupancy_hist.get(profile, 0) + 1
             )
+    active_scale_rows = []
+    active_quotient_supports = set()
+    for active_m in active_remainder_scales(n, k, a):
+        active_cosets: dict[int, list[int]] = {}
+        for x in h_values:
+            active_cosets.setdefault(pow(x, active_m, p), []).append(x)
+        active_index_by_position = {}
+        for coset_index, alpha in enumerate(active_cosets):
+            for x in active_cosets[alpha]:
+                active_index_by_position[positions[x]] = coset_index
+        active_n = len(active_cosets)
+        active_ell = a // active_m
+        active_u = a - active_m * active_ell
+        shape_values = [active_m] * active_ell
+        if active_u:
+            shape_values.append(active_u)
+        shape_values.extend([0] * (active_n - len(shape_values)))
+        active_shape = tuple(sorted(shape_values, reverse=True))
+        matching_supports = set()
+        for support_indices in zero_moment_support_index_sets:
+            occupancy = [0] * active_n
+            for idx in support_indices:
+                occupancy[active_index_by_position[idx]] += 1
+            if tuple(sorted(occupancy, reverse=True)) == active_shape:
+                matching_supports.add(support_indices)
+        active_quotient_supports.update(matching_supports)
+        active_scale_rows.append(
+            {
+                "M": active_m,
+                "shape": list(active_shape),
+                "zero_moment_supports_with_shape": len(matching_supports),
+            }
+        )
     zero_moment_profile = {
         "all_a_subsets": comb(n, a),
         "zero_moment_supports": zero_moment_supports,
@@ -929,6 +964,10 @@ def realized_dithered_quotient_packet() -> dict:
             {"agreement": size, "count": count}
             for size, count in sorted(agreement_size_hist.items())
         ],
+        "active_quotient_shape_profile": active_scale_rows,
+        "active_quotient_shape_union": len(active_quotient_supports),
+        "active_quotient_shape_residual": zero_moment_supports
+        - len(active_quotient_supports),
     }
     return {
         "p": p,
@@ -1163,6 +1202,17 @@ def run() -> dict:
         == 0
         and dithered_witness["zero_moment_profile"]["agreement_size_histogram"]
         == [{"agreement": 9, "count": 42}],
+        "dithered_quotient_active_shape_profile": dithered_witness[
+            "zero_moment_profile"
+        ]["active_quotient_shape_profile"]
+        == [
+            {"M": 4, "shape": [4, 4, 1, 0], "zero_moment_supports_with_shape": 3},
+            {"M": 8, "shape": [8, 1], "zero_moment_supports_with_shape": 1},
+        ]
+        and dithered_witness["zero_moment_profile"]["active_quotient_shape_union"]
+        == 3
+        and dithered_witness["zero_moment_profile"]["active_quotient_shape_residual"]
+        == 39,
         "dithered_quotient_witness_agreement": dithered_witness[
             "all_advertised_supports_size_a"
         ]
@@ -1298,6 +1348,8 @@ def main(argv: list[str] | None = None) -> int:
             f"extra={qprof['extra_zero_moment_supports']}, "
             f"distinct_polys={qprof['distinct_zero_moment_polynomials']}, "
             f"residual_polys={qprof['residual_zero_moment_polynomials']}, "
+            f"active_shapes={qprof['active_quotient_shape_profile']}, "
+            f"active_shape_residual={qprof['active_quotient_shape_residual']}, "
             f"residual_occupancy={qprof['residual_occupancy_histogram']}"
         )
         jt = result["johnson_anchor_threshold_example"]
