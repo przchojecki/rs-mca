@@ -53,6 +53,12 @@ FIXED_SIGMA_COUNT_CASES = (
     {"p": 23, "k": 6, "sigma": 5},
 )
 
+SLOW_SLACK_BOUND_CASES = (
+    {"p": 1009, "k": 504, "sigma": 3},
+    {"p": 10007, "k": 5003, "sigma": 4},
+    {"p": 65537, "k": 32768, "sigma": 4},
+)
+
 
 def base(value: int, p: int) -> Element:
     return (value % p, 0)
@@ -466,6 +472,61 @@ def verify_fixed_sigma_count_case(p: int, k: int, sigma: int) -> dict[str, Any]:
     }
 
 
+def verify_slow_slack_bound_case(p: int, k: int, sigma: int) -> dict[str, Any]:
+    n = p - 1
+    a = k + sigma
+    if not (2 <= sigma < p and sigma + 1 <= a <= n):
+        raise ValueError(
+            f"bad slow-slack parameters p={p}, k={k}, sigma={sigma}, a={a}"
+        )
+
+    m = sigma - 1
+    weil_radius = (m - 1) * ceil_sqrt(p) + 1
+    error_bound = (p**m - 1) * comb(a + weil_radius, a)
+    random_model_numerator = comb(n, a)
+    support_lower_numerator = random_model_numerator - error_bound
+    if support_lower_numerator <= 0:
+        support_lower_bound = 0
+    else:
+        support_lower_bound = ceil_div(support_lower_numerator, p**m)
+
+    tail_denominator = comb(n, k - 1)
+    tail_numerator_lower = support_lower_bound * comb(a, sigma + 1)
+    tail_lower_bound = (
+        ceil_div(tail_numerator_lower, tail_denominator)
+        if tail_numerator_lower
+        else 0
+    )
+
+    checks = {
+        "character_lower_bound_is_positive": support_lower_bound > 0,
+        "averaged_tail_lower_bound_is_positive": tail_lower_bound > 0,
+        "tail_lower_bound_beats_base_numerator": tail_lower_bound > p,
+    }
+    failed = [name for name, passed in checks.items() if not passed]
+    if failed:
+        raise AssertionError(
+            f"failed slow-slack checks for p={p}: {', '.join(failed)}"
+        )
+
+    return {
+        "p": p,
+        "n": n,
+        "k": k,
+        "sigma": sigma,
+        "agreement_a": a,
+        "weil_radius": weil_radius,
+        "random_model_numerator_bits": random_model_numerator.bit_length(),
+        "character_error_bound_bits": error_bound.bit_length(),
+        "certified_support_lower_bound_bits": support_lower_bound.bit_length(),
+        "certified_tail_bad_slope_lower_bound": tail_lower_bound,
+        "base_field_trivial_numerator": p,
+        "extension_field_size": p * p,
+        "mca_density_lower_bound": f"{tail_lower_bound}/{p*p}",
+        "checks": checks,
+    }
+
+
 def verify_fixed_slack_template_case(p: int, k: int, sigma: int) -> dict[str, Any]:
     d = least_nonsquare(p)
     alpha = (0, 1)
@@ -669,6 +730,10 @@ def compute_report() -> dict[str, Any]:
         verify_fixed_sigma_count_case(**case)
         for case in FIXED_SIGMA_COUNT_CASES
     ]
+    slow_slack_bound_cases = [
+        verify_slow_slack_bound_case(**case)
+        for case in SLOW_SLACK_BOUND_CASES
+    ]
     return {
         "status": "PASS",
         "proof_status": "FINITE_MODEL_CHECK / COUNTEREXAMPLE_SANITY",
@@ -679,13 +744,16 @@ def compute_report() -> dict[str, Any]:
             "supports give a tail with the averaged number of distinct bad "
             "triple slopes; the note proves a fixed-sigma character bound for "
             "the general prefix-vanishing template, and sigma=3 finite cases "
-            "check exact dynamic support counts."
+            "check exact dynamic support counts. The same character-bound "
+            "formula gives finite slow-slack certificates where the forced "
+            "extension numerator already exceeds the base-field numerator."
         ),
         "sigma_one_cases": sigma_one_cases,
         "sigma_two_cases": sigma_two_cases,
         "sigma_three_template_cases": sigma_three_cases,
         "sigma_three_count_cases": sigma_three_count_cases,
         "fixed_sigma_count_cases": fixed_sigma_count_cases,
+        "slow_slack_bound_cases": slow_slack_bound_cases,
     }
 
 
@@ -722,6 +790,13 @@ def print_report(report: dict[str, Any]) -> None:
             "sigma={sigma}-count p={p} k={k} a={agreement_a} "
             "G={prefix_vanishing_support_count} "
             "tail_lower={proved_tail_bad_slope_lower_bound} "
+            "density={mca_density_lower_bound}".format(**case)
+        )
+    for case in report["slow_slack_bound_cases"]:
+        print(
+            "slow-slack p={p} sigma={sigma} k={k} a={agreement_a} "
+            "tail_lower={certified_tail_bad_slope_lower_bound} "
+            "base_numerator={base_field_trivial_numerator} "
             "density={mca_density_lower_bound}".format(**case)
         )
 

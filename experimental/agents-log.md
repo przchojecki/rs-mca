@@ -45,14 +45,18 @@ Keep entries concise and link to the relevant files.
   support-wise MCA-bad slope, checks the fixed-tail injective pair slice that
   yields `binom(p-a+1,2)` distinct bad slopes, checks the sigma-two zero-sum
   support / tail-triple slice, proves a general fixed-slack degree-one
-  template, and adds a fixed-sigma character bound showing the required
-  prefix-vanishing support count has density `(1+o(1))p^{-(sigma-1)}`.  It also
-  keeps an exact dynamic count recurrence for the first nontrivial finite case
-  `sigma=3`, plus generic finite count audits for `sigma=4,5`.
+  template, and adds a character bound showing the required prefix-vanishing
+  support count has density `(1+o(1))p^{-(sigma-1)}` for every fixed `sigma`
+  and uniformly for `sigma=o(sqrt(p)/log p)`. It also keeps an exact dynamic
+  count recurrence for the first nontrivial finite case `sigma=3`, plus generic
+  finite count audits for `sigma=4,5` and finite slow-slack certificates whose
+  forced extension numerator exceeds the base-field numerator.
 - **How it is useful:** Strengthens the F1 warning against unrestricted
   numerator-preserving extension-line lifts: the extension numerator is
-  already quadratic in the base field for fixed-rate sigma-one lines, and the
-  same fixed-tail injectivity mechanism persists for all fixed slack.
+  already quadratic in the base field for fixed-rate sigma-one lines. The same
+  fixed-tail injectivity mechanism persists for all fixed slack and still
+  beats same-numerator extension transfer through
+  `sigma <= (1-epsilon) log p/log log p`.
 - **What to do next:** Use this as the reviewed fixed-slack obstruction theorem
   for F1; the remaining positive-theorem frontier is growing slack, especially
   the corrected-reserve range `sigma >= C n/log n`, or adding an

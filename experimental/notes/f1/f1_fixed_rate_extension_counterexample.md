@@ -192,15 +192,48 @@ quadratic extension numerator
 
 for fixed-rate `k=floor(rho(p-1))`.
 
+The character bound is also uniform for slowly growing slack. If
+`sigma=sigma(p)=o(sqrt(p)/log p)`, then the same prefix-vanishing count obeys
+
+```text
+G_{p,k,sigma}
+  = (1+o(1)) binom(p-1,k+sigma) / p^(sigma-1).
+```
+
+Consequently, for fixed `0<rho<1`,
+
+```text
+|F| emca(C_F, 1-(k+sigma)/(p-1))
+  >= (1+o(1)) binom(p-k,sigma+1) / p^(sigma-1).
+```
+
+In particular, for every fixed `0<epsilon<1`, throughout the window
+
+```text
+sigma <= (1-epsilon) log p / log log p,
+```
+
+the forced quadratic-extension numerator is at least
+
+```text
+p^(1+epsilon-o(1)).
+```
+
+Thus same-numerator extension transfer from the base-field numerator `p`
+still fails by a polynomial factor in this slowly growing, sub-reserve slack
+range.
+
 ## Status
 
 PROVED / COUNTEREXAMPLE.
 
 This starts with a sigma-one counterexample, with agreement size `k+1`, and
 adds a proved degree-one fixed-rate family for every fixed slack `sigma`. The
-proof combines the fixed-tail injectivity template with a fixed-sigma
-character bound for prefix-vanishing elementary symmetric support sets. These
-do not refute a repaired extension-line theorem in the corrected-reserve regime
+proof combines the fixed-tail injectivity template with a character bound for
+prefix-vanishing elementary symmetric support sets. The same bound is uniform
+for `sigma=o(sqrt(p)/log p)`, and it still beats the base-field numerator
+through `sigma <= (1-epsilon) log p/log log p`. These results do not refute a
+repaired extension-line theorem in the corrected-reserve regime
 `sigma >= C n/log n`. They do refute any unrestricted route that bounds
 extension-line MCA by taking a base-field numerator and dividing by the larger
 extension challenge field. The extension-degree corollary shows that the issue
@@ -593,6 +626,91 @@ Since `p-k=(1-rho+o(1))p`, the number of distinct bad slopes is at least
 Dividing by `|F|=p^2` proves the displayed constant-density lower bound for
 every fixed `sigma`.
 
+## Uniform Slow-Slack Consequence
+
+The same finite character bound proves a controlled growing-slack statement.
+Let `sigma=sigma(p)`, put `m=sigma-1`, and assume
+
+```text
+sigma=o(sqrt(p)/log p),        p>sigma.
+```
+
+Keep `k=floor(rho(p-1))` with fixed `0<rho<1` and `a=k+sigma`. The finite
+bound above gives
+
+```text
+|G_{p,a,sigma} - binom(p-1,a)/p^m|
+  <= binom(a+(m-1)sqrt(p)+1, a).
+```
+
+Write `u=(m-1)sqrt(p)+1`. Since `u=o(p)` and `a=rho p+o(p)`,
+
+```text
+log binom(a+u,a) <= u log(e(a+u)/u) = o(p).
+```
+
+Also `m log p=o(p)`, while
+
+```text
+log binom(p-1,a) = (H(rho)+o(1))p
+```
+
+with `H(rho)>0`. Therefore
+
+```text
+p^m binom(a+u,a) / binom(p-1,a) -> 0,
+```
+
+and hence
+
+```text
+G_{p,k,sigma}
+  = (1+o(1)) binom(p-1,k+sigma) / p^(sigma-1)
+```
+
+uniformly in this slow-slack range. Combining with the fixed-tail injectivity
+and double-counting identity gives
+
+```text
+max_T #{ admissible U for T }
+  >= (1+o(1)) binom(p-k,sigma+1) / p^(sigma-1).
+```
+
+This is the extension-field numerator forced by the degree-one line.
+
+Now suppose, more restrictively, that for some fixed `0<epsilon<1`,
+
+```text
+sigma <= (1-epsilon) log p / log log p.
+```
+
+Using Stirling and `p-k=(1-rho+o(1))p`,
+
+```text
+log( binom(p-k,sigma+1) / p^(sigma-1) )
+  = 2 log p - log((sigma+1)!) + O(sigma)
+  >= (1+epsilon-o(1)) log p.
+```
+
+Thus
+
+```text
+|F| emca(C_F, 1-(k+sigma)/(p-1)) >= p^(1+epsilon-o(1)).
+```
+
+Equivalently, for `F=F_{p^2}`,
+
+```text
+emca(C_F, 1-(k+sigma)/(p-1)) >= p^(-1+epsilon-o(1)).
+```
+
+A same-numerator lift from the base-field numerator `p` would only give the
+density `p/|F|=1/p`. The degree-one extension line therefore beats that
+prediction by the factor `p^(epsilon-o(1))` throughout this slowly growing
+slack window. This is still far below the corrected reserve
+`sigma >= C n/log n`; it sharpens the lower-bound side without claiming a
+positive theorem near the reserve.
+
 ## Exact Sigma-Three Prefix Count Recurrence
 
 For `sigma=3`, the prefix-vanishing equations admit a particularly small
@@ -726,8 +844,11 @@ Consequently a protocol ledger cannot safely take an MCA numerator proved over
 `F`-valued lines. The sigma-one extension numerator is already quadratic in
 `|B|`, even when `|F|` is a higher extension. The fixed-slack character bound
 shows that every fixed positive residual slack still leaves constant-density
-degree-one families. The repaired theorem needs residual slack large enough for
-the list ledger, not merely nonzero slack. A repaired F1 theorem must either:
+degree-one families, and the uniform version shows that the same numerator
+obstruction persists into the slowly growing range
+`sigma <= (1-epsilon) log p/log log p`. The repaired theorem needs residual
+slack large enough for the list ledger, not merely nonzero or logarithmic
+slack. A repaired F1 theorem must either:
 
 - prove MCA directly over the actual extension line field;
 - add an extension-valued residue-line numerator term;
@@ -788,3 +909,16 @@ The verifier also includes generic fixed-sigma count cases for `sigma=4,5`.
 These use the elementary-symmetric DP directly, verify complement symmetry,
 check the integer Weil-bound inequality from the fixed-slack character proof,
 and report the tail-averaged lower bound.
+
+Finally, the verifier evaluates the explicit finite lower formula coming from
+the character bound in several slow-slack rows. These rows do not enumerate
+supports; they certify that the lower bound from
+
+```text
+G >= (binom(p-1,a)
+      - (p^(sigma-1)-1) binom(a+(sigma-2)ceil(sqrt(p))+1,a))
+     / p^(sigma-1)
+```
+
+is positive and that the resulting tail-averaged bad-slope numerator already
+exceeds the base-field numerator `p`.
