@@ -30,6 +30,28 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-24 - Cycle116 smooth padding transfer audit
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/scripts/verify_m1_cycle116_smooth_padding_transfer.py`,
+  `experimental/notes/m1/m1_cycle116_smooth_padding_transfer_audit.md`,
+  `experimental/scripts/verify_m1_cycle120_end_to_end_chain.py`,
+  `experimental/notes/m1/m1_cycle116_finite_chain_contract.md`,
+  `experimental/notes/m1/m1_cycle120_end_to_end_finite_chain.md`, and
+  `experimental/agents-log.md`.
+- **Status:** CONDITIONAL / AUDIT / SMOOTH-PADDING-TRANSFER.
+- **What is being added:** A concrete verifier for the Cycle116 smooth-padding
+  lift: `H=D0 disjoint_union theta D0`, the `A`/`R` odd-coset partition,
+  nonzero `P_A(beta)` and `P_R(beta)`, and the degree inequalities preserving
+  the same bad parameters in the `[512,256]` row.
+- **How it is useful:** Makes the native-to-smooth lift executable rather than
+  only prose: agreement `143+119=262`, dimension `137+119=256`, co-support
+  `113+137=250`, and fixed-jet loss `244=250-6` are checked in one layer.
+- **What to do next:** Keep the remaining promotion gates focused on Cycle84
+  generated-source review, external Cycle116 contract provenance, and official
+  ABF source verification.
+
 ### 2026-06-24 - Cycle116 fixed-jet transfer audit
 
 - **Agent/model:** Codex.

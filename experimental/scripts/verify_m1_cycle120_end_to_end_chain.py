@@ -33,6 +33,7 @@ import verify_m1_cycle116_fixed_jet_bridge as fixed_jet
 import verify_m1_cycle116_fixed_jet_transfer as fixed_transfer
 import verify_m1_cycle116_slot_assembly as slot_assembly
 import verify_m1_cycle116_slot_identities as slot_ids
+import verify_m1_cycle116_smooth_padding_transfer as smooth_padding
 import verify_m1_cycle120_gate_arithmetic as gate
 import verify_m1_cycle120_supportwise_mca_bridge as mca_bridge
 
@@ -59,6 +60,7 @@ def build_report() -> Dict[str, Any]:
     fixed_report = fixed_jet.build_report()
     transfer_report = fixed_transfer.build_report()
     lift_report = field_lift.build_report()
+    smooth_report = smooth_padding.build_report()
     external_report = external_packet.build_report(
         {
             "cycle84": cycle84_report,
@@ -103,6 +105,9 @@ def build_report() -> Dict[str, Any]:
         "cycle116_fixed_jet_bridge_passes": fixed_report["status"] == "PASS",
         "cycle116_fixed_jet_transfer_passes": transfer_report["status"] == "PASS",
         "cycle116_field_lift_contract_passes": lift_report["status"] == "PASS",
+        "cycle116_smooth_padding_transfer_passes": (
+            smooth_report["status"] == "PASS"
+        ),
         "cycle116_external_packet_contract_passes": (
             external_report["status"] == "PASS"
         ),
@@ -200,6 +205,14 @@ def build_report() -> Dict[str, Any]:
             int(lift_params["lift_agreement"])
             == int(gate_arithmetic["closed_agreement_threshold"])
             == EXPECTED_LIFT_AGREEMENT
+        ),
+        "smooth_padding_transfer_matches_lift_contract": (
+            int(smooth_report["smooth_padding"]["lift_agreement"])
+            == int(lift_params["lift_agreement"])
+            and int(smooth_report["smooth_padding"]["lift_dimension"])
+            == int(lift_params["lift_dimension"])
+            and smooth_report["smooth_padding"]["delta"] == lift_params["delta"]
+            and smooth_report["smooth_padding"]["P_R_beta_nonzero"]
         ),
         "external_packet_smooth_lift_matches_chain": (
             int(external["smooth_lift_parameters"]["n"]) == int(lift_field["domain_size"])
@@ -300,6 +313,15 @@ def build_report() -> Dict[str, Any]:
                 "agreement": int(lift_params["lift_agreement"]),
                 "delta": lift_params["delta"],
                 "bad_line_parameters": numerator,
+                "padding": {
+                    "A_range": smooth_report["smooth_padding"]["A_range"],
+                    "A_size": int(smooth_report["smooth_padding"]["A_size"]),
+                    "R_range": smooth_report["smooth_padding"]["R_range"],
+                    "R_size": int(smooth_report["smooth_padding"]["R_size"]),
+                    "P_R_beta_nonzero": bool(
+                        smooth_report["smooth_padding"]["P_R_beta_nonzero"]
+                    ),
+                },
                 "conclusion": "LD_sw(RS[F_17^32,H,256],262) >= N",
             },
             "cycle120_gate_arithmetic": {
@@ -381,7 +403,8 @@ def print_human(report: Dict[str, Any]) -> None:
         "cycle116_lift="
         f"{lifted['field']}, n={lifted['domain_size']}, "
         f"k={lifted['dimension']}, agreement={lifted['agreement']}, "
-        f"delta={lifted['delta']}"
+        f"delta={lifted['delta']}, A={lifted['padding']['A_size']}, "
+        f"R={lifted['padding']['R_size']}"
     )
     print(
         "cycle120_gate="

@@ -98,6 +98,16 @@ The smooth padding lift preserves the same set of bad parameters and gives
 LD_sw(RS[F_17^32,H,256],262) >= N.
 ```
 
+The concrete smooth padding is checked by
+
+```text
+python3 experimental/scripts/verify_m1_cycle116_smooth_padding_transfer.py
+```
+
+It verifies the partition of the odd coset into `A` of size `119` and `R` of
+size `137`, checks `P_R(beta)!=0`, and checks the degree inequalities that keep
+the same bad parameters after lifting to the `[512,256]` row.
+
 At the Cycle120 row
 
 ```text
@@ -154,6 +164,8 @@ the Cycle116 slot assembly has co-support size 113;
 the external Cycle116 packet contract uses the same verified co-support and
   finite values;
 the fixed-jet bad-parameter map is injective on the counted product values;
+the smooth padding uses disjoint A/R odd-coset blocks and preserves the same
+  bad parameters;
 the Cycle116 slot replay and Cycle84 certificate use the same slot-table digest;
 the native Cycle116 parameters are n=256, k=137, agreement=143;
 the smooth lift reaches n=512, k=256, agreement=262 without changing N;
@@ -206,6 +218,7 @@ python3 experimental/scripts/verify_m1_cycle120_end_to_end_chain.py
 python3 experimental/scripts/verify_m1_cycle120_end_to_end_chain.py --json
 python3 experimental/scripts/verify_m1_cycle116_external_packet_contract.py
 python3 experimental/scripts/verify_m1_cycle116_fixed_jet_transfer.py
+python3 experimental/scripts/verify_m1_cycle116_smooth_padding_transfer.py
 python3 experimental/scripts/verify_m1_cycle120_supportwise_mca_bridge.py
 ```
 

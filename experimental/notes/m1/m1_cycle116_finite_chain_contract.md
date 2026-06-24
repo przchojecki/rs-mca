@@ -617,6 +617,22 @@ theta has exact order 512;
 H=<theta> has size 512 and even powers recover D0=<eta>.
 ```
 
+The concrete padding transfer is checked by
+
+```text
+python3 experimental/scripts/verify_m1_cycle116_smooth_padding_transfer.py
+```
+
+It verifies the actual odd-coset partition
+
+```text
+A={theta eta^i:0<=i<=118}, |A|=119,
+R={theta eta^i:119<=i<=255}, |R|=137,
+```
+
+checks that `P_R(beta)` is nonzero, and checks the degree inequalities behind
+both the lifted explanations and the same-support noncontainment division.
+
 The field/lift setup is:
 
 ```text
@@ -699,7 +715,9 @@ The chain is only as strong as the following imported clauses:
    `R_{t,i,a}(beta)=3^t u_t(i,a)`.
 4. The field/lift envelope is correct: `F0(theta)` has size `17^32`, `theta`
    has order `512`, and `H=<theta>` decomposes as
-   `D0 disjoint_union theta D0`.
+   `D0 disjoint_union theta D0`. The concrete `A/R` odd-coset padding and
+   nonzero `P_R(beta)` condition are checked by
+   `verify_m1_cycle116_smooth_padding_transfer.py`.
 5. The source-gate audit remains faithful to the official ABF text.
 
 Failure of any clause should downgrade or revise the Cycle120 negative
