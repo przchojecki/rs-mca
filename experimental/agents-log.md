@@ -57,9 +57,10 @@ Keep entries concise and link to the relevant files.
   degree-weighted common-prime-ideal incidence into an integer valuation budget.
   Summing over rational primes gives a log-weighted density bound:
   `prod p^{d_T(p)}` divides the product of common-ideal indices over the
-  finite template family.  For dilation-stable split-prime template families,
+  finite template family.  For dilation-stable finite-field template families,
   the same budget gives the direct row bound
-  `|Coll_T(h)| <= phi(n)^{-1} sum_T v_p(I_n,sigma(A,B))`.
+  `|Coll_T(h)| <= phi(n)^{-1} sum_T v_p(I_n,sigma(A,B))`, and hence an
+  explicit max-fiber bound after structured row pairs are separately budgeted.
   The affine-orbit reduction is also extended from resultant/common-root
   degree invariance to common-ideal index and valuation invariance.
   At the full-prefix endpoint `sigma=m`, the common-ideal index has no prime

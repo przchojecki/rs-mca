@@ -194,6 +194,13 @@ same weighted mass: `48` non-characteristic-zero pairs have degree `2`, and
 equivalently `48` one-prime-ideal pairs and `6` two-prime-ideal pairs, for
 total rational-prime-ideal mass `60 = 120/2`.
 
+The finite-field row/fiber bound below is also checked on this nonsplit row.
+After the `6` characteristic-zero pairs per primitive root are accounted for
+separately, the non-characteristic-zero family has common-ideal valuation
+budget `96`.  Dividing by `phi(8)=4` gives a non-structural row bound `24`.
+Together with the `6` structured pairs, this gives `30` total row pairs and the
+formal fiber bound `M <= 8`; the actual maximum fiber in the `F_9` row is `4`.
+
 ## Norm Size And Finite-Family Aggregation
 
 The same certificate has a simple size bound.  Since
@@ -685,23 +692,26 @@ This is the practical aggregation ledger: an exact row bound can be proved by
 bounding orbit sizes and representative common-root degrees, rather than by
 enumerating every ordered root-template incidence separately.
 
-## Dilation-Invariant Split Row Bound
+## Dilation-Invariant Finite-Field Row And Fiber Bound
 
-The valuation budget gives a direct row bound once the finite template family is
-closed under dilation.  Let `T` be a finite family of unordered
-non-characteristic-zero template pairs that is stable under
+The valuation budget gives a direct row bound over any finite field containing
+a primitive `n`-th root, once the finite template family is closed under
+dilation.  Let `p` be a prime not dividing `n`, and let `K` be a finite field
+of characteristic `p` containing a primitive `n`-th root `h`.  Let `T` be a
+finite family of unordered non-characteristic-zero template pairs that is
+stable under
 
 ```text
 (A,B) -> (uA,uB),        u in (Z/nZ)^*.
 ```
 
-For a split prime `p` and primitive root `h in F_p`, write
+Write
 
 ```text
 Coll_T(h) = {{A,B} in T : E_r(A;h)=E_r(B;h) for all r<=sigma}.
 ```
 
-Then all primitive roots have the same row count, and
+Then all primitive roots in `K` have the same row count, and
 
 ```text
 |Coll_T(h)|
@@ -709,9 +719,12 @@ Then all primitive roots have the same row count, and
   <= (1/phi(n)) sum_{(A,B) in T} v_p(I_n,sigma(A,B)).
 ```
 
-The equality is the split-prime row accounting identity restricted to `T`.
-Dilation stability makes the row count independent of the primitive root.  The
-inequality is the valuation incidence budget.
+Here `d_p(A,B)` is the degree of the common-root gcd over `F_p`.  The equality
+does not require `p` to split over `F_p`: the roots of `Phi_n` are simple
+because `p` does not divide `n`, and `d_p(A,B)` counts all primitive roots in
+the algebraic closure where the template collides.  Since every primitive root
+is `h^u`, dilation stability makes the row count independent of the primitive
+root.  The inequality is the valuation incidence budget.
 
 Equivalently, after quotienting by affine orbits contained in `T`,
 
@@ -722,8 +735,34 @@ Equivalently, after quotienting by affine orbits contained in `T`,
 
 This is the form closest to the desired L1 local-limit estimate: after the
 structured characteristic-zero and quotient-periodic strata are removed, a row
-fiber bound follows from bounding the valuation budget of a dilation-stable
-aperiodic template family.
+collision-pair bound follows from bounding the valuation budget of a
+dilation-stable aperiodic template family.
+
+It also gives the immediate locator-fiber consequence.  Suppose a candidate
+locator set has at most `C_0` structured collision pairs in each row after the
+characteristic-zero and quotient-periodic ledgers are applied, and all remaining
+collision pairs lie in such a dilation-stable family `T`.  Put
+
+```text
+B_p(T) = sum_{(A,B) in T} v_p(I_n,sigma(A,B)),
+C_p = C_0 + floor(B_p(T)/phi(n)).
+```
+
+If `M` is the largest prefix fiber in the row over `h`, then
+
+```text
+binom(M,2) <= C_p,
+```
+
+so
+
+```text
+M <= floor((1 + sqrt(1 + 8 C_p))/2).
+```
+
+Thus an L1 polynomial locator-fiber bound follows from two separate budgets:
+the already-structured row contribution `C_0`, and the exact common-ideal
+valuation budget `B_p(T)` for the robustly aperiodic remainder.
 
 ## Prefix-Depth Filtration
 
@@ -899,6 +938,12 @@ orbit size 128, common-root degree 1, contribution 128
 
 Their weighted sum is again `320`.  This is the orbit-level form that a larger
 finite-family bad-prime aggregation would try to control.
+
+The valuation row/fiber consequence is exact at the row-pair level on this
+packet.  The dilation-stable incident family has common-ideal valuation budget
+`320`; after division by `phi(16)=8`, the row-pair bound is `40`, matching the
+actual collision-pair count for every primitive root.  The resulting formal
+fiber bound is `M <= 9`, while the actual maximum fiber at `sigma=4` is `2`.
 
 The prefix-depth filtration is sharp on this same row.  For `p=17`, `n=16`,
 and `m=6`, the full row profile is:

@@ -1,18 +1,18 @@
 #!/usr/bin/env python3
 """Verify the L1 prefix bad-prime certificate theorem.
 
-The theorem checked here is templatewise:
+The first theorem checked here is templatewise:
 
-    finite-field prefix collision for a split prime p
+    finite-field prefix collision in characteristic p, with p not dividing n,
       -> characteristic-zero collision
          or p divides a cyclotomic resultant certificate.
 
 This script is intentionally small and nonmutating.  It does not prove the
 missing L1 bad-prime aggregation theorem.
 
-It also checks the split-prime row-accounting identity for the known F_17
-packet: summing modular common-root degrees over template pairs agrees with
-counting collision pairs over all primitive roots.
+It also checks split and nonsplit row-accounting identities, exact common-ideal
+valuation budgets, and the finite-field row/fiber bound obtained from those
+budgets after characteristic-zero pairs are separated.
 """
 
 from __future__ import annotations
@@ -21,7 +21,7 @@ import argparse
 import itertools
 import json
 from collections import Counter, defaultdict
-from math import comb, factorial, gcd
+from math import comb, factorial, gcd, isqrt
 from typing import Any, Iterable, Sequence
 
 
@@ -581,6 +581,17 @@ def p_adic_valuation(value: int, prime: int) -> int:
         exponent += 1
         remaining //= prime
     return exponent
+
+
+def max_fiber_bound_from_pair_bound(pair_bound: int) -> int:
+    if pair_bound < 0:
+        raise AssertionError("pair bound must be nonnegative")
+    bound = (1 + isqrt(1 + 8 * pair_bound)) // 2
+    while bound * (bound - 1) // 2 > pair_bound:
+        bound -= 1
+    while (bound + 1) * bound // 2 <= pair_bound:
+        bound += 1
+    return bound
 
 
 def is_prime(value: int) -> bool:
@@ -2607,6 +2618,227 @@ def check_dilation_invariant_row_bound() -> dict[str, Any]:
     }
 
 
+def check_finite_field_row_fiber_bound() -> dict[str, Any]:
+    def assert_unit_dilation_stable(
+        family: set[tuple[tuple[int, ...], tuple[int, ...]]],
+        order: int,
+    ) -> None:
+        units = [unit for unit in range(1, order) if gcd(unit, order) == 1]
+        for left, right in family:
+            for unit in units:
+                scaled = normalized_pair(
+                    scaled_subset(left, unit, order),
+                    scaled_subset(right, unit, order),
+                )
+                if scaled not in family:
+                    raise AssertionError("family is not unit-dilation-stable")
+
+    split_prime = 17
+    split_order = 16
+    split_sigma = 4
+    split_complement_size = 6
+    split_roots = primitive_order_roots(split_prime, split_order)
+    split_family: set[tuple[tuple[int, ...], tuple[int, ...]]] = set()
+    split_row_counts = {}
+    split_max_fibers = {}
+    for root in split_roots:
+        row = finite_prefix_collision_pairs(
+            prime=split_prime,
+            order=split_order,
+            complement_size=split_complement_size,
+            sigma=split_sigma,
+            root=root,
+        )
+        split_row_counts[root] = row["collision_pair_count"]
+        split_max_fibers[root] = row["max_fiber"]
+        for pair in row["pairs"]:
+            split_family.add(normalized_pair(pair["left"], pair["right"]))
+    assert_unit_dilation_stable(split_family, split_order)
+
+    split_degree_sum = 0
+    split_valuation_budget = 0
+    for left, right in split_family:
+        certificate = bad_prime_certificate(left, right, split_order, split_sigma)
+        if certificate["char_zero_collision"]:
+            raise AssertionError("split row-bound test includes char-zero pair")
+        common_degree = degree(common_root_gcd_mod(
+            left,
+            right,
+            split_order,
+            split_sigma,
+            split_prime,
+        ))
+        common_ideal = common_ideal_index(
+            left,
+            right,
+            split_order,
+            split_sigma,
+        )
+        valuation = p_adic_valuation(common_ideal["index"], split_prime)
+        if common_degree > valuation:
+            raise AssertionError("split common degree exceeded valuation")
+        split_degree_sum += common_degree
+        split_valuation_budget += valuation
+    split_row_pair_bound = split_valuation_budget // euler_phi(split_order)
+    split_max_fiber_bound = max_fiber_bound_from_pair_bound(split_row_pair_bound)
+    if split_valuation_budget % euler_phi(split_order) != 0:
+        raise AssertionError("split valuation budget is not phi-divisible")
+    if set(split_row_counts.values()) != {40}:
+        raise AssertionError("unexpected split row counts")
+    if split_degree_sum != split_valuation_budget or split_degree_sum != 320:
+        raise AssertionError("unexpected split field row budget")
+    if split_row_pair_bound != 40 or split_max_fiber_bound != 9:
+        raise AssertionError("unexpected split row/fiber bound")
+    if max(split_max_fibers.values()) > split_max_fiber_bound:
+        raise AssertionError("split max fiber exceeded valuation fiber bound")
+
+    nonsplit_prime = 3
+    nonsplit_order = 8
+    nonsplit_sigma = 1
+    nonsplit_complement_size = 2
+    nonsplit_roots = gf9_primitive_order_roots(nonsplit_order)
+    non_char_family: set[tuple[tuple[int, ...], tuple[int, ...]]] = set()
+    char_zero_family: set[tuple[tuple[int, ...], tuple[int, ...]]] = set()
+    nonsplit_row_counts = {}
+    nonsplit_non_char_row_counts = {}
+    nonsplit_char_zero_row_counts = {}
+    nonsplit_max_fibers = {}
+    for root in nonsplit_roots:
+        row = finite_prefix_collision_pairs_gf9(
+            order=nonsplit_order,
+            complement_size=nonsplit_complement_size,
+            sigma=nonsplit_sigma,
+            root=root,
+        )
+        non_char_count = 0
+        char_zero_count = 0
+        for pair in row["pairs"]:
+            key = normalized_pair(pair["left"], pair["right"])
+            certificate = bad_prime_certificate(
+                key[0],
+                key[1],
+                nonsplit_order,
+                nonsplit_sigma,
+            )
+            if certificate["char_zero_collision"]:
+                char_zero_family.add(key)
+                char_zero_count += 1
+            else:
+                non_char_family.add(key)
+                non_char_count += 1
+        nonsplit_row_counts[tuple(root)] = row["collision_pair_count"]
+        nonsplit_non_char_row_counts[tuple(root)] = non_char_count
+        nonsplit_char_zero_row_counts[tuple(root)] = char_zero_count
+        nonsplit_max_fibers[tuple(root)] = row["max_fiber"]
+    assert_unit_dilation_stable(non_char_family, nonsplit_order)
+
+    nonsplit_degree_sum = 0
+    nonsplit_valuation_budget = 0
+    for left, right in non_char_family:
+        common_degree = degree(common_root_gcd_mod(
+            left,
+            right,
+            nonsplit_order,
+            nonsplit_sigma,
+            nonsplit_prime,
+        ))
+        common_ideal = common_ideal_index(
+            left,
+            right,
+            nonsplit_order,
+            nonsplit_sigma,
+        )
+        valuation = p_adic_valuation(common_ideal["index"], nonsplit_prime)
+        if common_degree > valuation:
+            raise AssertionError("nonsplit common degree exceeded valuation")
+        nonsplit_degree_sum += common_degree
+        nonsplit_valuation_budget += valuation
+    nonsplit_phi = euler_phi(nonsplit_order)
+    nonsplit_row_pair_bound = nonsplit_valuation_budget // nonsplit_phi
+    structural_pair_bound = max(nonsplit_char_zero_row_counts.values())
+    nonsplit_total_pair_bound = structural_pair_bound + nonsplit_row_pair_bound
+    nonsplit_max_fiber_bound = max_fiber_bound_from_pair_bound(
+        nonsplit_total_pair_bound
+    )
+    if nonsplit_valuation_budget % nonsplit_phi != 0:
+        raise AssertionError("nonsplit valuation budget is not phi-divisible")
+    if set(nonsplit_row_counts.values()) != {30}:
+        raise AssertionError("unexpected nonsplit row counts")
+    if set(nonsplit_non_char_row_counts.values()) != {24}:
+        raise AssertionError("unexpected nonsplit non-char-zero counts")
+    if set(nonsplit_char_zero_row_counts.values()) != {6}:
+        raise AssertionError("unexpected nonsplit char-zero counts")
+    if len(non_char_family) != 48 or len(char_zero_family) != 6:
+        raise AssertionError("unexpected nonsplit family sizes")
+    if (
+        nonsplit_degree_sum != nonsplit_valuation_budget
+        or nonsplit_degree_sum != 96
+    ):
+        raise AssertionError("unexpected nonsplit valuation budget")
+    if nonsplit_row_pair_bound != 24:
+        raise AssertionError("unexpected nonsplit row-pair bound")
+    if nonsplit_total_pair_bound != 30 or nonsplit_max_fiber_bound != 8:
+        raise AssertionError("unexpected nonsplit fiber bound")
+    if max(nonsplit_max_fibers.values()) > nonsplit_max_fiber_bound:
+        raise AssertionError("nonsplit max fiber exceeded row/fiber bound")
+
+    return {
+        "split_case": {
+            "field": "F_17",
+            "prime": split_prime,
+            "order": split_order,
+            "sigma": split_sigma,
+            "complement_size": split_complement_size,
+            "primitive_root_count": len(split_roots),
+            "family_size": len(split_family),
+            "row_counts_by_root": {
+                str(root): split_row_counts[root]
+                for root in sorted(split_row_counts)
+            },
+            "max_fibers_by_root": {
+                str(root): split_max_fibers[root]
+                for root in sorted(split_max_fibers)
+            },
+            "degree_weighted_incidence_sum": split_degree_sum,
+            "valuation_budget": split_valuation_budget,
+            "row_pair_bound": split_row_pair_bound,
+            "max_fiber_bound": split_max_fiber_bound,
+        },
+        "nonsplit_case": {
+            "field": "F_9 = F_3[i]/(i^2+1)",
+            "prime": nonsplit_prime,
+            "order": nonsplit_order,
+            "sigma": nonsplit_sigma,
+            "complement_size": nonsplit_complement_size,
+            "primitive_root_count": len(nonsplit_roots),
+            "non_char_zero_family_size": len(non_char_family),
+            "char_zero_family_size": len(char_zero_family),
+            "row_counts_by_root": {
+                str(root): nonsplit_row_counts[root]
+                for root in sorted(nonsplit_row_counts)
+            },
+            "non_char_zero_counts_by_root": {
+                str(root): nonsplit_non_char_row_counts[root]
+                for root in sorted(nonsplit_non_char_row_counts)
+            },
+            "char_zero_counts_by_root": {
+                str(root): nonsplit_char_zero_row_counts[root]
+                for root in sorted(nonsplit_char_zero_row_counts)
+            },
+            "max_fibers_by_root": {
+                str(root): nonsplit_max_fibers[root]
+                for root in sorted(nonsplit_max_fibers)
+            },
+            "non_char_zero_degree_sum": nonsplit_degree_sum,
+            "non_char_zero_valuation_budget": nonsplit_valuation_budget,
+            "non_char_zero_row_pair_bound": nonsplit_row_pair_bound,
+            "structural_pair_bound": structural_pair_bound,
+            "total_pair_bound": nonsplit_total_pair_bound,
+            "max_fiber_bound": nonsplit_max_fiber_bound,
+        },
+    }
+
+
 def check_galois_invariance() -> dict[str, Any]:
     left = (0, 1, 2, 12, 14, 15)
     right = (3, 4, 5, 7, 10, 13)
@@ -2751,6 +2983,7 @@ def build_report() -> dict[str, Any]:
         "valuation_incidence_budget": check_valuation_incidence_budget(),
         "log_weighted_density_budget": check_log_weighted_density_budget(),
         "dilation_invariant_row_bound": check_dilation_invariant_row_bound(),
+        "finite_field_row_fiber_bound": check_finite_field_row_fiber_bound(),
         "galois_invariance": check_galois_invariance(),
         "affine_invariance": check_affine_invariance(),
         "nonmutating": True,
@@ -2895,6 +3128,17 @@ def print_human(report: dict[str, Any]) -> None:
         f"valuation_budget={row_bound['valuation_budget']}, "
         f"row_bound={row_bound['valuation_row_bound']}, "
         f"affine_orbits={row_bound['affine_orbit_count']}"
+    )
+    fiber_bound = report["finite_field_row_fiber_bound"]
+    split_bound = fiber_bound["split_case"]
+    nonsplit_bound = fiber_bound["nonsplit_case"]
+    print(
+        "finite_field_row_fiber_bound="
+        f"split_row_bound={split_bound['row_pair_bound']}, "
+        f"split_fiber_bound={split_bound['max_fiber_bound']}, "
+        f"nonsplit_nonchar_bound="
+        f"{nonsplit_bound['non_char_zero_row_pair_bound']}, "
+        f"nonsplit_fiber_bound={nonsplit_bound['max_fiber_bound']}"
     )
     affine = report["affine_invariance"]
     print(
