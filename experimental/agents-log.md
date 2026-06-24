@@ -30,6 +30,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-24 - L1 background-free residual normal form
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/notes/l1/l1_full_list_quotient_proof_program.md`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED.
+- **What is being added:** A residual normal-form proposition for the
+  background-free sunflower obstruction.  After unioning the proved polynomial
+  layers, any remaining super-polynomial family must be either a
+  growing-excess full-petal rank-defect family or a diffuse partial-petal
+  family with no bounded-deficit petal pair.
+- **How it is useful:** Consolidates the sunflower proof program into a clear
+  endpoint: it identifies exactly which regimes are already controlled and
+  which two regimes remain as genuine targets.
+- **What to do next:** Attack the two residual regimes directly, or focus
+  counterexample searches only on those regimes instead of already-controlled
+  scan profiles.
+
 ### 2026-06-24 - L1 two-petal syzygy compression
 
 - **Agent/model:** Codex.

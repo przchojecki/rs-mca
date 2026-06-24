@@ -1082,6 +1082,73 @@ petal situation.  Any remaining partial-petal super-polynomial obstruction
 must therefore either have growing defect excess, or avoid having two
 near-saturated petals.
 
+## Proposition 12. Background-Free Residual Normal Form
+
+Status: PROVED.
+
+Assume the sunflower has no unused background, and work at the L1 lower cutoff
+with generated field `q=poly(n)`.  Fix constants `e0,u0 >= 0`.  The following
+classes of non-planted listed codewords are polynomially bounded:
+
+1. codewords touching exactly two petals;
+2. full-petal codewords with `d-ell <= e0`;
+3. codewords with `d <= ell+e0` and two touched petals each missing at most
+   `u0` points.
+
+More explicitly, their union is bounded by the sum of
+
+```text
+binom(M,2) q,
+binom(M,2) sum_{e=0}^{e0} q^{2(e+1)},
+binom(M,2) (sum_{u=0}^{u0} binom(ell,u))^2 q^{2(e0+u0+1)}.
+```
+
+Since `M=O(log n)` and `ell<=n` at the lower cutoff, this is polynomial in
+`n` for fixed `e0,u0`.
+
+Consequently, any background-free sunflower family that gives a
+super-polynomial primitive contribution must have, for every fixed `e0,u0`,
+super-polynomially many extras outside this union.  Such residual extras
+satisfy:
+
+```text
+t >= 3;
+if all touched petals are full, then d-ell > e0;
+if d <= ell+e0, no two touched petals both have deficit <= u0.
+```
+
+Equivalently, after the proved polynomial layers are removed, the remaining
+obstruction must either have genuinely growing core-defect excess, or it must
+spread its partial-petal deficits so that no bounded-deficit pair exists.
+
+### Proof
+
+The first class is bounded by Lemma 6.  The second is bounded by Lemma 10.  The
+third is bounded by the counted near-saturated corollary of Lemma 11.  Taking
+the union bound gives the displayed expression.
+
+At the lower cutoff, the planted floor satisfies `M=O(log n)`.  Since `u0` and
+`e0` are fixed, the binomial sum in `ell` is polynomial in `n`, and all powers
+of `q` appearing above are fixed powers.  Thus the union is polynomially
+bounded in the generated-field window.
+
+The residual assertions are exactly the negation of membership in these three
+polynomially bounded classes.
+
+### Consequences
+
+This proposition is the current stopping point of the sunflower proof program.
+The first scan obstruction has been reduced to a residual normal form.  A
+future proof of the mixed-petal amplification lemma can now focus on two
+genuinely hard cases:
+
+1. growing-excess full-petal rank defects;
+2. diffuse partial-petal patterns with no bounded-deficit petal pair.
+
+Conversely, a counterexample search should target those two residual regimes,
+not the already-controlled two-petal, minimal-defect, bounded-excess, or
+near-saturated layers.
+
 ## Development Ledger
 
 - **Conjecture 1 full-list primitive remainder:** CONJECTURAL.  Main proof
@@ -1117,5 +1184,7 @@ near-saturated petals.
   with `d-ell<=e0` by `O_{e0}(q^{2e0+2}log(n)^2)`.
 - **Two-petal syzygy compression:** PROVED.  Reduces partial-petal extras with
   two near-saturated petals to polynomially many syzygy certificates.
+- **Background-free residual normal form:** PROVED.  Leaves only
+  growing-excess full-petal rank defects and diffuse partial-petal patterns.
 - **Mixed-petal sunflower amplification:** CONJECTURAL.  Next focused bound to
   prove or refute in the large-defect regime.
