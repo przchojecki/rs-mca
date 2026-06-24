@@ -520,6 +520,49 @@ has no `phi^{-1}` Kummer constituent for `phi != 1`, with conductor bounded
 only in terms of `e`.  The standalone verifier checks the grouped
 beta-line identity for all quotient-character blocks on every expanded row.
 
+## Inversion Symmetry
+
+The beta-line trace family has an exact involution which cuts the independent
+Kummer-isotypy checks in half.  On the torus set
+
+```text
+I(a,b,r) = (a^{-1}, b^{-1}, r^{-1}).
+```
+
+For the beta equation `Delta(a,b,r)=0` and the good-base factors, direct
+expansion gives
+
+```text
+a^3 b^2 r^3 Delta(I(a,b,r)) = -Delta(a,b,r),
+a^2 r^2 M(I(a,r)) = M(a,r),
+a^2 r^2 H(I(a,r)) = H(a,r),
+a^2 r^2 K_alpha(I(a,r)) = K_alpha(a,r).
+```
+
+Moreover `a-r`, `A_beta`, and `C_beta` are exchanged up to torus units, and
+
+```text
+a^2 b^2 r^4 d_UV(I(a,b,r)) = d_UV(a,b,r).
+```
+
+Thus `I` preserves the good beta cover and the quadratic sign.  It sends the
+rank-one summand `psi(a)phi(b)chi(d_UV)` to
+`psi^{-1}(a)phi^{-1}(b)chi(d_UV)`.  Consequently
+
+```text
+tau_{psi,p}(b) = tau_{psi^{-1},p}(b^{-1}),
+G_{psi,phi} = G_{psi^{-1},phi^{-1}},
+(G_e)_{i,j} = (G_e)_{-i,-j}.
+```
+
+For the beta marginal, this specializes to `tau_p(b)=tau_p(b^{-1})`.  The
+symmetry does not prove the no-Kummer-summand input: a Kummer constituent
+could still occur in an inverse pair.  It is nevertheless a structural
+constraint on any route-killing obstruction and on any eventual monodromy
+proof.  The standalone verifier checks good-locus preservation, inverse-root
+pairing, sign preservation, the exact quotient-matrix symmetry, and the
+induced grouped beta-line coefficient identity on every expanded row.
+
 ## Interpretation
 
 The scan finds no hidden `p^2` component in the tested quotient rows.  The good
@@ -623,8 +666,10 @@ G_{psi,phi} = sum_j phi(j) sum_i psi(i)(G_e)_{i,j}
 ```
 
 for all quotient-character blocks, with zero formula error in the printed
-rows up to floating tolerance.  Thus the finite spectral scan is now testing
-exactly the beta-line Kummer-isotypic obstruction described above.
+rows up to floating tolerance.  The inversion-symmetry audit also checks
+`G_{psi,phi}=G_{psi^{-1},phi^{-1}}` on the same rows.  Thus the finite
+spectral scan is now testing exactly the beta-line Kummer-isotypic obstruction
+described above.
 
 Thus the averaged M1 target remains substantially smaller than the largest
 individual full pointwise coefficient and smaller than the full
@@ -662,4 +707,5 @@ and reports the nonnegative sufficient bound `sqrt(C_ab+e^{-2}C_0)/p`.
 It also checks the fixed beta-fiber singular-support ledger for the beta
 marginal family, the exact beta-column Mellin identity, and the regular versus
 fixed-support beta-fiber trace maxima.  Finally, it checks the grouped
-beta-line identity for every quotient-character block.
+beta-line identity and the inversion symmetry for every quotient-character
+block.

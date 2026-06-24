@@ -77,7 +77,12 @@ Keep entries concise and link to the relevant files.
   block, localizing full `(BETA_2)` to a no-`phi^{-1}`-Kummer-summand statement
   for bounded-conductor beta-line pushforwards.  The line-conic note and import
   contract now explicitly separate the audited beta-zero/beta-infinity local
-  monodromy ledger from this unresolved Kummer-isotypy obstruction.
+  monodromy ledger from this unresolved Kummer-isotypy obstruction.  The audit
+  also records the exact inversion involution
+  `(a,b,r)->(a^{-1},b^{-1},r^{-1})`, giving
+  `tau_{psi,p}(b)=tau_{psi^{-1},p}(b^{-1})`,
+  `G_{psi,phi}=G_{psi^{-1},phi^{-1}}`, and
+  `(G_e)_{i,j}=(G_e)_{-i,-j}`.
 - **How it is useful:** This is a counterexample-first test of the remaining
   rank-two pushforward object, not of the already controlled exceptional
   ledger. The audited rows show p-scale behavior, with largest recorded full

@@ -158,6 +158,7 @@ EXPECTED_BETA_FIBER_TRACE_ROWS = {
 
 TOLERANCE = 1e-8
 BETA_TRACE_CACHE: dict[int, list[int]] = {}
+BETA_INVERSION_CACHE: dict[int, dict[str, int]] = {}
 
 
 def good_pushforward_matrix(p: int, quotient_order: int) -> tuple[list[list[int]], int]:
@@ -853,6 +854,175 @@ def beta_line_quotient_reduction_case(matrix: list[list[int]]) -> dict[str, floa
     }
 
 
+def beta_prime_inversion_case(p: int) -> dict[str, int]:
+    if p in BETA_INVERSION_CACHE:
+        return BETA_INVERSION_CACHE[p]
+    good_base_count = 0
+    split_point_count = 0
+    for alpha in range(1, p):
+        inverse_alpha = pow(alpha, -1, p)
+        for ratio in range(1, p):
+            inverse_ratio = pow(ratio, -1, p)
+            is_good = m1.ratio_surface_beta_pushforward_good(p, alpha, ratio)
+            inverse_is_good = m1.ratio_surface_beta_pushforward_good(
+                p,
+                inverse_alpha,
+                inverse_ratio,
+            )
+            if is_good != inverse_is_good:
+                raise AssertionError(
+                    (p, alpha, ratio, inverse_alpha, inverse_ratio)
+                )
+            if not is_good:
+                continue
+            good_base_count += 1
+            roots = m1.ratio_surface_affine_beta_roots(p, alpha, ratio)
+            inverse_roots = sorted(pow(beta, -1, p) for beta in roots)
+            expected_roots = sorted(
+                m1.ratio_surface_affine_beta_roots(
+                    p,
+                    inverse_alpha,
+                    inverse_ratio,
+                )
+            )
+            if inverse_roots != expected_roots:
+                raise AssertionError(
+                    (
+                        p,
+                        alpha,
+                        ratio,
+                        roots,
+                        inverse_alpha,
+                        inverse_ratio,
+                        expected_roots,
+                    )
+                )
+            for beta in roots:
+                inverse_beta = pow(beta, -1, p)
+                sign = m1.legendre(
+                    m1.ratio_surface_binary_discriminants(
+                        p,
+                        alpha,
+                        beta,
+                        ratio,
+                    )[0],
+                    p,
+                )
+                inverse_sign = m1.legendre(
+                    m1.ratio_surface_binary_discriminants(
+                        p,
+                        inverse_alpha,
+                        inverse_beta,
+                        inverse_ratio,
+                    )[0],
+                    p,
+                )
+                if sign != inverse_sign:
+                    raise AssertionError(
+                        (
+                            p,
+                            alpha,
+                            beta,
+                            ratio,
+                            sign,
+                            inverse_alpha,
+                            inverse_beta,
+                            inverse_ratio,
+                            inverse_sign,
+                        )
+                    )
+                split_point_count += 1
+
+    traces = exact_beta_trace_vector(p)
+    beta_trace_inversion_error = 0
+    for beta in range(1, p):
+        inverse_beta = pow(beta, -1, p)
+        beta_trace_inversion_error = max(
+            beta_trace_inversion_error,
+            abs(traces[beta] - traces[inverse_beta]),
+        )
+    if beta_trace_inversion_error != 0:
+        raise AssertionError((p, beta_trace_inversion_error))
+    BETA_INVERSION_CACHE[p] = {
+        "p": p,
+        "good_base_count": good_base_count,
+        "split_point_count": split_point_count,
+        "beta_trace_inversion_error": beta_trace_inversion_error,
+    }
+    return BETA_INVERSION_CACHE[p]
+
+
+def beta_inversion_symmetry_case(
+    p: int,
+    matrix: list[list[int]],
+) -> dict[str, float | int]:
+    prime_case = beta_prime_inversion_case(p)
+    order = len(matrix)
+    root = cmath.exp(2j * math.pi / order)
+    matrix_error = 0
+    for left in range(order):
+        for right in range(order):
+            matrix_error = max(
+                matrix_error,
+                abs(matrix[left][right] - matrix[-left % order][-right % order]),
+            )
+    if matrix_error != 0:
+        raise AssertionError((p, order, matrix_error))
+
+    max_grouped_trace_error = 0.0
+    max_coefficient_error = 0.0
+    for left_character in range(order):
+        grouped_beta_trace = []
+        inverse_grouped_beta_trace = []
+        for right in range(order):
+            grouped_beta_trace.append(
+                sum(
+                    matrix[left][right] * root ** (left_character * left)
+                    for left in range(order)
+                )
+            )
+            inverse_grouped_beta_trace.append(
+                sum(
+                    matrix[left][right] * root ** (-left_character * left)
+                    for left in range(order)
+                )
+            )
+        for right in range(order):
+            max_grouped_trace_error = max(
+                max_grouped_trace_error,
+                abs(
+                    grouped_beta_trace[right]
+                    - inverse_grouped_beta_trace[-right % order]
+                ),
+            )
+        for right_character in range(1, order):
+            coefficient = sum(
+                grouped_beta_trace[right] * root ** (right_character * right)
+                for right in range(order)
+            )
+            inverse_coefficient = sum(
+                inverse_grouped_beta_trace[right]
+                * root ** (-right_character * right)
+                for right in range(order)
+            )
+            max_coefficient_error = max(
+                max_coefficient_error,
+                abs(coefficient - inverse_coefficient),
+            )
+    if max_grouped_trace_error > TOLERANCE:
+        raise AssertionError((p, order, max_grouped_trace_error))
+    if max_coefficient_error > TOLERANCE:
+        raise AssertionError((p, order, max_coefficient_error))
+    return {
+        "good_base_count": prime_case["good_base_count"],
+        "split_point_count": prime_case["split_point_count"],
+        "beta_trace_inversion_error": prime_case["beta_trace_inversion_error"],
+        "matrix_inversion_error": matrix_error,
+        "max_grouped_trace_inversion_error": round(max_grouped_trace_error, 12),
+        "max_coefficient_inversion_error": round(max_coefficient_error, 12),
+    }
+
+
 def audit_case(p: int, quotient_order: int) -> dict[str, Any]:
     matrix, point_count = good_pushforward_matrix(p, quotient_order)
     frobenius_square = centered_frobenius_square(matrix)
@@ -875,6 +1045,7 @@ def audit_case(p: int, quotient_order: int) -> dict[str, Any]:
         matrix,
     )
     beta_line_reduction = beta_line_quotient_reduction_case(matrix)
+    beta_inversion = beta_inversion_symmetry_case(p, matrix)
     parseval_error = abs(
         two_sided_energy / (quotient_order * quotient_order) - frobenius_square
     )
@@ -1002,6 +1173,7 @@ def audit_case(p: int, quotient_order: int) -> dict[str, Any]:
                 "max_beta_line_formula_error"
             ],
         },
+        "beta_inversion_symmetry": beta_inversion,
     }
 
 
@@ -1214,6 +1386,7 @@ def print_report(report: dict[str, Any]) -> None:
         alpha_reduction = row["alpha_marginal_reduction"]
         beta_reduction = row["beta_marginal_reduction"]
         beta_line_reduction = row["beta_line_quotient_reduction"]
+        beta_inversion = row["beta_inversion_symmetry"]
         print(
             "p={p} e={quotient_order} good={good_point_count} "
             "two_sided/p={max_two_sided_coefficient_ratio} "
@@ -1232,7 +1405,8 @@ def print_report(report: dict[str, Any]) -> None:
             "pair_energy_error={pair_energy_error} "
             "pythagorean_error={pythagorean_error} "
             "component_error={component_centered_error} "
-            "beta_line_error={beta_line_error}".format(
+            "beta_line_error={beta_line_error} "
+            "inversion_error={inversion_error}".format(
                 alpha_coeff_ratio=alpha_reduction[
                     "max_alpha_marginal_coefficient_ratio"
                 ],
@@ -1242,6 +1416,7 @@ def print_report(report: dict[str, Any]) -> None:
                 beta_line_error=beta_line_reduction[
                     "max_beta_line_formula_error"
                 ],
+                inversion_error=beta_inversion["max_coefficient_inversion_error"],
                 **row,
             )
         )

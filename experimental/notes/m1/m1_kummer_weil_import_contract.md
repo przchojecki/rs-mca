@@ -773,6 +773,20 @@ beta-line Kummer spectrum.  Therefore a full pointwise `(BETA_2)` proof is
 equivalent to a bounded-conductor/no-`phi^{-1}`-Kummer-summand statement for
 these beta-line pushforwards.
 
+This beta-line formulation has an exact inversion symmetry.  The involution
+`(a,b,r) -> (a^{-1},b^{-1},r^{-1})` sends the beta equation to a torus-unit
+multiple of itself, preserves the good locus and the `U V` sign, and changes
+the character pair `(psi,phi)` to `(psi^{-1},phi^{-1})`.  Hence
+
+```text
+tau_{psi,p}(b) = tau_{psi^{-1},p}(b^{-1}),
+G_{psi,phi} = G_{psi^{-1},phi^{-1}}.
+```
+
+For `psi=1`, the beta marginal trace vector is inversion-invariant:
+`tau_p(b)=tau_p(b^{-1})`.  This is not the no-Kummer-summand proof, but it
+constrains any possible Kummer obstruction to occur compatibly with inversion.
+
 The elementary hypotheses behind this import are now audited in
 `verify_m1_depth_two_line_conic_resonance_reduction.py`:
 
