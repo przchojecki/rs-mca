@@ -908,11 +908,13 @@ checks the following stress points.
    the degree-`<a` interpolant on each advertised support is the constructed
    degree-`<k` codeword, so the advertised support has zero top syndrome and
    zero residue moments. Exhausting all `binom(16,9)=11440` size-`9` supports
-   for this same word gives `42` exact zero-moment supports: the `3`
-   advertised quotient supports plus `39` additional supports. Their quotient
-   coset occupancy profiles are
+   for this same word gives `42` exact zero-moment supports, and these give
+   `42` distinct degree-`<k` codewords all agreeing on exactly `9` points. The
+   `3` advertised quotient supports/codewords are disjoint from the `39`
+   residual supports/codewords. The residual quotient-coset occupancy profiles
+   are
    ```text
-   (4,4,1,0): 3,  (4,2,2,1): 7,  (3,3,3,0): 1,
+   (4,2,2,1): 7,  (3,3,3,0): 1,
    (3,3,2,1): 14, (3,2,2,2): 17.
    ```
    Thus `Quot_rem_mu` is a structured subfamily of the zero-moment locus, not

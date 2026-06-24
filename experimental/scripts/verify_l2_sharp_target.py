@@ -856,6 +856,11 @@ def realized_dithered_quotient_packet() -> dict:
     advertised_zero_moment_supports = 0
     moment_zero_mismatches = 0
     occupancy_hist: dict[tuple[int, ...], int] = {}
+    residual_occupancy_hist: dict[tuple[int, ...], int] = {}
+    zero_moment_polynomials = set()
+    advertised_zero_moment_polynomials = set()
+    residual_zero_moment_polynomials = set()
+    agreement_size_hist: dict[int, int] = {}
     for subset in itertools.combinations(range(n), a):
         support_indices = frozenset(subset)
         interpolant = interpolate_subset_poly(p, h_values, y_values, support_indices)
@@ -869,10 +874,15 @@ def realized_dithered_quotient_packet() -> dict:
         if not syndrome_zero:
             continue
         zero_moment_supports += 1
+        interpolant_key = tuple(trim_poly(interpolant[:]))
+        zero_moment_polynomials.add(interpolant_key)
         full_support = frozenset(
             idx
             for idx, x in enumerate(h_values)
             if eval_poly(tuple(interpolant), x, p) == y_values[idx]
+        )
+        agreement_size_hist[len(full_support)] = (
+            agreement_size_hist.get(len(full_support), 0) + 1
         )
         if full_support == support_indices:
             exact_zero_moment_supports += 1
@@ -880,14 +890,27 @@ def realized_dithered_quotient_packet() -> dict:
             overagreement_zero_moment_supports += 1
         if support_indices in advertised_support_indices:
             advertised_zero_moment_supports += 1
+            advertised_zero_moment_polynomials.add(interpolant_key)
+        else:
+            residual_zero_moment_polynomials.add(interpolant_key)
         occupancy = [0] * quotient_order
         for idx in support_indices:
             occupancy[coset_index_by_position[idx]] += 1
         profile = tuple(sorted(occupancy, reverse=True))
         occupancy_hist[profile] = occupancy_hist.get(profile, 0) + 1
+        if support_indices not in advertised_support_indices:
+            residual_occupancy_hist[profile] = (
+                residual_occupancy_hist.get(profile, 0) + 1
+            )
     zero_moment_profile = {
         "all_a_subsets": comb(n, a),
         "zero_moment_supports": zero_moment_supports,
+        "distinct_zero_moment_polynomials": len(zero_moment_polynomials),
+        "advertised_zero_moment_polynomials": len(advertised_zero_moment_polynomials),
+        "residual_zero_moment_polynomials": len(residual_zero_moment_polynomials),
+        "advertised_residual_polynomial_overlap": len(
+            advertised_zero_moment_polynomials & residual_zero_moment_polynomials
+        ),
         "exact_zero_moment_supports": exact_zero_moment_supports,
         "overagreement_zero_moment_supports": overagreement_zero_moment_supports,
         "advertised_zero_moment_supports": advertised_zero_moment_supports,
@@ -897,6 +920,14 @@ def realized_dithered_quotient_packet() -> dict:
         "occupancy_histogram": [
             {"occupancy": list(profile), "count": count}
             for profile, count in sorted(occupancy_hist.items(), reverse=True)
+        ],
+        "residual_occupancy_histogram": [
+            {"occupancy": list(profile), "count": count}
+            for profile, count in sorted(residual_occupancy_hist.items(), reverse=True)
+        ],
+        "agreement_size_histogram": [
+            {"agreement": size, "count": count}
+            for size, count in sorted(agreement_size_hist.items())
         ],
     }
     return {
@@ -1114,6 +1145,24 @@ def run() -> dict:
         == 39
         and dithered_witness["zero_moment_profile"]["moment_zero_mismatches"]
         == 0,
+        "dithered_quotient_zero_moment_distinct": dithered_witness[
+            "zero_moment_profile"
+        ]["distinct_zero_moment_polynomials"]
+        == 42
+        and dithered_witness["zero_moment_profile"][
+            "advertised_zero_moment_polynomials"
+        ]
+        == 3
+        and dithered_witness["zero_moment_profile"][
+            "residual_zero_moment_polynomials"
+        ]
+        == 39
+        and dithered_witness["zero_moment_profile"][
+            "advertised_residual_polynomial_overlap"
+        ]
+        == 0
+        and dithered_witness["zero_moment_profile"]["agreement_size_histogram"]
+        == [{"agreement": 9, "count": 42}],
         "dithered_quotient_witness_agreement": dithered_witness[
             "all_advertised_supports_size_a"
         ]
@@ -1247,7 +1296,9 @@ def main(argv: list[str] | None = None) -> int:
             f"zero={qprof['zero_moment_supports']}, "
             f"advertised={qprof['advertised_zero_moment_supports']}, "
             f"extra={qprof['extra_zero_moment_supports']}, "
-            f"occupancy={qprof['occupancy_histogram']}"
+            f"distinct_polys={qprof['distinct_zero_moment_polynomials']}, "
+            f"residual_polys={qprof['residual_zero_moment_polynomials']}, "
+            f"residual_occupancy={qprof['residual_occupancy_histogram']}"
         )
         jt = result["johnson_anchor_threshold_example"]
         print(
