@@ -417,13 +417,7 @@ def common_ideal_index(
     }
 
 
-def common_ideal_radical_incidence_index(
-    left: Sequence[int],
-    right: Sequence[int],
-    order: int,
-    sigma: int,
-) -> dict[str, Any]:
-    common_ideal = common_ideal_index(left, right, order, sigma)
+def with_radical_incidence_index(common_ideal: dict[str, Any]) -> dict[str, Any]:
     if (
         common_ideal["char_zero_collision"]
         or common_ideal["rank"] != common_ideal["dimension"]
@@ -443,6 +437,17 @@ def common_ideal_radical_incidence_index(
         "radical_incidence_index": radical_index,
         "radical_incidence_factorization": factorint(radical_index),
     }
+
+
+def common_ideal_radical_incidence_index(
+    left: Sequence[int],
+    right: Sequence[int],
+    order: int,
+    sigma: int,
+) -> dict[str, Any]:
+    return with_radical_incidence_index(
+        common_ideal_index(left, right, order, sigma)
+    )
 
 
 def power_common_ideal_matrix(
@@ -502,6 +507,17 @@ def power_common_ideal_index(
         "factorization": factorint(index),
         "diagonal_entries": diagonal,
     }
+
+
+def power_common_ideal_radical_incidence_index(
+    left: Sequence[int],
+    right: Sequence[int],
+    order: int,
+    sigma: int,
+) -> dict[str, Any]:
+    return with_radical_incidence_index(
+        power_common_ideal_index(left, right, order, sigma)
+    )
 
 
 def exponent_elementary_poly(
@@ -1541,6 +1557,156 @@ def check_newton_common_ideal_bridge() -> dict[str, Any]:
             "rows": depth_rows,
         },
         "extension_witness": extension_comparison,
+    }
+
+
+def check_newton_radical_incidence_bridge() -> dict[str, Any]:
+    def compare_local_radical_valuations(
+        left: Sequence[int],
+        right: Sequence[int],
+        order: int,
+        sigma: int,
+    ) -> dict[str, Any]:
+        elementary = common_ideal_radical_incidence_index(
+            left,
+            right,
+            order,
+            sigma,
+        )
+        power = power_common_ideal_radical_incidence_index(
+            left,
+            right,
+            order,
+            sigma,
+        )
+        if elementary["char_zero_collision"] != power["char_zero_collision"]:
+            raise AssertionError("Newton radical bridge changed char-zero status")
+        if elementary["radical_incidence_index"] == 0:
+            return {
+                "elementary_radical_index": 0,
+                "power_radical_index": 0,
+                "checked_primes": [],
+            }
+        excluded = set(factorint(order)) | set(factorint(factorial(sigma)))
+        candidate_primes = (
+            set(factorint(elementary["radical_incidence_index"]))
+            | set(factorint(power["radical_incidence_index"]))
+        )
+        checked_primes = []
+        for prime in sorted(candidate_primes - excluded):
+            elementary_valuation = p_adic_valuation(
+                elementary["radical_incidence_index"],
+                prime,
+            )
+            power_valuation = p_adic_valuation(
+                power["radical_incidence_index"],
+                prime,
+            )
+            if elementary_valuation != power_valuation:
+                raise AssertionError("Newton bridge changed radical valuation")
+            checked_primes.append({
+                "prime": prime,
+                "valuation": elementary_valuation,
+            })
+        return {
+            "elementary_radical_index": (
+                elementary["radical_incidence_index"]
+            ),
+            "power_radical_index": power["radical_incidence_index"],
+            "excluded_primes": sorted(excluded),
+            "checked_primes": checked_primes,
+        }
+
+    order = 16
+    sigma = 4
+    row = finite_prefix_collision_pairs(
+        prime=17,
+        order=order,
+        complement_size=6,
+        sigma=sigma,
+    )
+    radical_pair_counts: Counter[tuple[int, int]] = Counter()
+    for pair in row["pairs"]:
+        comparison = compare_local_radical_valuations(
+            pair["left"],
+            pair["right"],
+            order,
+            sigma,
+        )
+        radical_pair_counts[(
+            comparison["elementary_radical_index"],
+            comparison["power_radical_index"],
+        )] += 1
+        if comparison["checked_primes"] != [{"prime": 17, "valuation": 1}]:
+            raise AssertionError("bad F_17 radical Newton valuation")
+    expected_radical_pair_counts = Counter({
+        (68, 136): 16,
+        (272, 272): 16,
+        (4_352, 4_352): 8,
+    })
+    if radical_pair_counts != expected_radical_pair_counts:
+        raise AssertionError("unexpected elementary/power radical pairs")
+
+    false_positive = compare_local_radical_valuations(
+        (0, 1, 2, 7, 9, 13),
+        (0, 1, 2, 3, 4, 11),
+        order,
+        sigma,
+    )
+    if false_positive["elementary_radical_index"] != 2:
+        raise AssertionError("unexpected false-positive elementary radical")
+    if false_positive["power_radical_index"] != 2:
+        raise AssertionError("unexpected false-positive power radical")
+    if false_positive["checked_primes"]:
+        raise AssertionError("false-positive had an off-denominator radical prime")
+
+    depth_rows = []
+    depth_left = (0, 1, 2, 3, 4, 14)
+    depth_right = (5, 6, 7, 9, 12, 15)
+    for depth_sigma in range(1, 7):
+        comparison = compare_local_radical_valuations(
+            depth_left,
+            depth_right,
+            order,
+            depth_sigma,
+        )
+        depth_rows.append({
+            "sigma": depth_sigma,
+            "elementary_radical_index": (
+                comparison["elementary_radical_index"]
+            ),
+            "power_radical_index": comparison["power_radical_index"],
+            "checked_primes": comparison["checked_primes"],
+        })
+
+    extension = compare_local_radical_valuations(
+        (0, 1),
+        (2, 5),
+        8,
+        1,
+    )
+    if extension["elementary_radical_index"] != 36:
+        raise AssertionError("bad F_9 elementary radical index")
+    if extension["power_radical_index"] != 36:
+        raise AssertionError("bad F_9 power radical index")
+    if extension["checked_primes"] != [{"prime": 3, "valuation": 2}]:
+        raise AssertionError("bad F_9 radical Newton valuation")
+
+    return {
+        "status": "PASS",
+        "condition": "ell does not divide n*sigma!",
+        "f17_packet_pairs_checked": row["collision_pair_count"],
+        "f17_radical_pair_counts": {
+            f"{left}->{right}": count
+            for (left, right), count in sorted(radical_pair_counts.items())
+        },
+        "false_positive": false_positive,
+        "depth_representative": {
+            "left": list(depth_left),
+            "right": list(depth_right),
+            "rows": depth_rows,
+        },
+        "extension_witness": extension,
     }
 
 
@@ -3330,6 +3496,9 @@ def build_report() -> dict[str, Any]:
         "split_prime_row_accounting": check_split_prime_row_accounting(),
         "newton_power_sum_bridge": check_newton_power_sum_bridge(),
         "newton_common_ideal_bridge": check_newton_common_ideal_bridge(),
+        "newton_radical_incidence_bridge": (
+            check_newton_radical_incidence_bridge()
+        ),
         "extension_field_bad_prime_certificate": (
             check_extension_field_bad_prime_certificate()
         ),
@@ -3422,6 +3591,13 @@ def print_human(report: dict[str, Any]) -> None:
         f"f17_pairs={ideal_bridge['f17_packet_pairs_checked']}, "
         f"index_pairs={ideal_bridge['f17_index_pair_counts']}, "
         f"condition='{ideal_bridge['condition']}'"
+    )
+    radical_bridge = report["newton_radical_incidence_bridge"]
+    print(
+        "newton_radical_incidence_bridge="
+        f"f17_pairs={radical_bridge['f17_packet_pairs_checked']}, "
+        f"radical_pairs={radical_bridge['f17_radical_pair_counts']}, "
+        f"condition='{radical_bridge['condition']}'"
     )
     filtration = report["prefix_depth_filtration"]
     depth_pairs = {

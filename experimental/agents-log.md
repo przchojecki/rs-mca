@@ -72,6 +72,9 @@ Keep entries concise and link to the relevant files.
   The Newton bridge is strengthened from modular common-root factors to
   localized common-ideal indices: away from primes dividing `n sigma!`,
   elementary and power-sum/Fourier coordinates have the same valuation budgets.
+  The same localized Newton change of generators also preserves radical
+  incidence valuations, so the exact row-incidence ledger `J_n,sigma` can be
+  read in Fourier power-sum coordinates away from the Newton denominators.
   The modular gcd degree is also
   recorded as the exact primitive-root embedding multiplicity at split and
   nonsplit primes, with the Frobenius-orbit quotient giving the rational

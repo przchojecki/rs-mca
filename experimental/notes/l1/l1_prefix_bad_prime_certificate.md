@@ -667,6 +667,29 @@ dividing `n sigma!` can be computed in the Fourier power-sum coordinates.  This
 is the exact-index bridge between the finite-field bad-prime certificate lane
 and the Fourier orbit-cancellation lane.
 
+The same localization also transports the radical incidence index.  Let
+`J^e_n,sigma(A,B)` and `J^p_n,sigma(A,B)` be the radical incidence indices
+built from the elementary and power-sum common-ideal matrices.  For every prime
+`ell` with
+
+```text
+ell not dividing n sigma!,
+```
+
+one has
+
+```text
+v_ell(J^e_n,sigma(A,B)) = v_ell(J^p_n,sigma(A,B)).
+```
+
+The reason is that the localized elementary and power-sum ideals are equal in
+`Z_(ell)[T]/Phi_n(T)`, so the localized cokernels are isomorphic.  The
+`ell`-adic radical valuation is the number of Smith directions killed modulo
+`ell`, equivalently the dimension of the localized cokernel after reduction
+modulo `ell`.  Thus the exact row-incidence ledger `J`, not only the coarser
+index `I`, can be computed in Fourier power-sum coordinates away from the
+Newton denominators.
+
 ## Affine-Orbit Reduction
 
 The template data has an affine symmetry.  For `u in (Z/nZ)^*` and
@@ -1079,6 +1102,19 @@ power-sum common-root factor agree and have degree `1`; for the `p=97`
 rational false-positive template both factors are constant.  Along the
 representative depth filtration above, the elementary and power-sum factors
 agree at every `1 <= sigma <= 6`.
+
+The localized radical incidence bridge is checked on the same packet.  The
+elementary/power radical-index pairs are
+
+```text
+16 pairs: 68 -> 136
+16 pairs: 272 -> 272
+ 8 pairs: 4352 -> 4352
+```
+
+The only displayed discrepancy is at the excluded small prime `2`; the
+`17`-adic radical valuation is `1` for every collision pair in both coordinate
+systems.
 
 The verifier also checks the same row over the next split primes
 
