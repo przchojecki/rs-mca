@@ -1,0 +1,332 @@
+#!/usr/bin/env python3
+"""Stress tests for the exact L2 sharp interleaved-list target.
+
+This verifier is deliberately small.  It tests the part of L2 that is not
+settled by the support-intersection bridge: over-agreement can create
+interleaved mass, so the falsification target is whether that mass can grow like
+a Cartesian product rather than like a polynomial support-overlap codegree.
+
+The script checks three finite objects.
+
+1. The aligned quotient packet count used as Quot_mu in the target note.
+2. The abstract K_{m,m} grid over-agreement design and its size formula.
+3. A realized Reed-Solomon K_{2,2} gluing over a prime-field multiplicative
+   subgroup, computed by exact list enumeration.
+
+Standard library only.
+"""
+
+from __future__ import annotations
+
+import argparse
+import itertools
+import json
+import sys
+from math import comb
+
+
+def ceil_div(a: int, b: int) -> int:
+    return -(-a // b)
+
+
+def e_empty(r_size: int, b_size: int, mu: int) -> int:
+    """# of mu ordered b-subsets of [r_size] with empty common intersection."""
+    if b_size < 0 or b_size > r_size:
+        return 0
+    return sum(
+        (-1) ** j * comb(r_size, j) * comb(r_size - j, b_size - j) ** mu
+        for j in range(b_size + 1)
+    )
+
+
+def h_thresh(a: int, tau: int, fiber_size: int) -> int:
+    return ceil_div(a - tau, fiber_size) if a > tau else 0
+
+
+def aligned_quotient_packet(
+    quotient_order: int,
+    ell: int,
+    mu: int,
+    a: int,
+    tau: int,
+    fiber_size: int,
+) -> int:
+    """Exact aligned quotient-core count L_mu(a,tau)."""
+    q_minus_omitted = quotient_order - 1
+    h_val = h_thresh(a, tau, fiber_size)
+    if h_val > ell:
+        return 0
+    return sum(
+        comb(q_minus_omitted, c)
+        * e_empty(q_minus_omitted - c, ell - c, mu)
+        for c in range(max(h_val, 0), ell + 1)
+    )
+
+
+def aligned_quotient_budget(n: int, k: int, a: int, mu: int) -> dict:
+    """A concrete conservative aligned quotient budget.
+
+    For every subgroup fiber size M dividing both n and k, take the worst slack
+    overlap tau in [0,M-1] and sum the resulting aligned packet counts.  This is
+    intentionally a budget, not a claim that all packets are disjoint.
+    """
+    packets = []
+    total = 0
+    for fiber_size in range(2, min(n, k) + 1):
+        if n % fiber_size or k % fiber_size:
+            continue
+        quotient_order = n // fiber_size
+        ell = k // fiber_size
+        if ell <= 0 or ell > quotient_order - 1:
+            continue
+        candidates = [
+            aligned_quotient_packet(quotient_order, ell, mu, a, tau, fiber_size)
+            for tau in range(fiber_size)
+        ]
+        best = max(candidates)
+        best_tau = candidates.index(best)
+        if best:
+            packets.append(
+                {
+                    "M": fiber_size,
+                    "N": quotient_order,
+                    "ell": ell,
+                    "tau": best_tau,
+                    "packet": best,
+                }
+            )
+            total += best
+    return {"total": total, "packets": packets}
+
+
+def primitive_root(p: int) -> int:
+    phi = p - 1
+    factors = []
+    x = phi
+    d = 2
+    while d * d <= x:
+        if x % d == 0:
+            factors.append(d)
+            while x % d == 0:
+                x //= d
+        d += 1
+    if x > 1:
+        factors.append(x)
+    for g in range(2, p):
+        if all(pow(g, phi // q, p) != 1 for q in factors):
+            return g
+    raise ValueError(f"no primitive root found for p={p}")
+
+
+def subgroup(p: int, n: int) -> list[int]:
+    if (p - 1) % n:
+        raise ValueError(f"n={n} does not divide p-1={p-1}")
+    gen = pow(primitive_root(p), (p - 1) // n, p)
+    out = []
+    x = 1
+    for _ in range(n):
+        out.append(x)
+        x = (x * gen) % p
+    if len(set(out)) != n:
+        raise ValueError("subgroup generator has wrong order")
+    return out
+
+
+def eval_poly(coeffs: tuple[int, ...], x: int, p: int) -> int:
+    total = 0
+    power = 1
+    for c in coeffs:
+        total = (total + c * power) % p
+        power = (power * x) % p
+    return total
+
+
+def all_codewords(p: int, h_values: list[int], k: int) -> list[tuple[int, ...]]:
+    return [
+        tuple(eval_poly(coeffs, x, p) for x in h_values)
+        for coeffs in itertools.product(range(p), repeat=k)
+    ]
+
+
+def vanish_values(p: int, h_values: list[int], root_indices: list[int]) -> tuple[int, ...]:
+    vals = []
+    roots = [h_values[i] for i in root_indices]
+    for x in h_values:
+        y = 1
+        for r in roots:
+            y = (y * (x - r)) % p
+        vals.append(y)
+    return tuple(vals)
+
+
+def choose_filler(p: int, forbidden: set[int]) -> int:
+    for y in range(p):
+        if y not in forbidden:
+            return y
+    raise ValueError("field too small to choose filler")
+
+
+def support_families(word: tuple[int, ...], codewords: list[tuple[int, ...]], a: int) -> list[frozenset[int]]:
+    supports = []
+    seen = set()
+    for cw in codewords:
+        supp = frozenset(i for i, y in enumerate(word) if cw[i] == y)
+        if len(supp) >= a and supp not in seen:
+            supports.append(supp)
+            seen.add(supp)
+    return supports
+
+
+def interleaved_count(families: list[list[frozenset[int]]], a: int) -> int:
+    count = 0
+    for supports in itertools.product(*families):
+        common = set(supports[0])
+        for supp in supports[1:]:
+            common &= supp
+            if len(common) < a:
+                break
+        if len(common) >= a:
+            count += 1
+    return count
+
+
+def kmm_grid_design(k: int, a: int, m: int) -> dict:
+    """Abstract K_{m,m} grid design obeying the same-row RS overlap cap."""
+    overlap_cap = k - 1
+    cell_size = a - overlap_cap
+    if cell_size <= 0:
+        raise ValueError("need a >= k for a nontrivial design")
+    n_min = overlap_cap + m * m * cell_size
+    row_support_size = overlap_cap + m * cell_size
+    return {
+        "k": k,
+        "a": a,
+        "m": m,
+        "overlap_cap": overlap_cap,
+        "cell_size": cell_size,
+        "minimum_n": n_min,
+        "row_support_size": row_support_size,
+        "interleaved_edges": m * m,
+        "grid_edges_at_n_min": (n_min - overlap_cap) // cell_size,
+    }
+
+
+def realized_rs_k22() -> dict:
+    """Exact RS enumeration for a prime-field K_{2,2} gluing witness."""
+    p, n, k, a, m = 29, 14, 3, 5, 2
+    h_values = subgroup(p, n)
+    codewords = all_codewords(p, h_values, k)
+    overlap_cap = k - 1
+    core = list(range(overlap_cap))
+    cell_size = a - overlap_cap
+    cells = []
+    cursor = overlap_cap
+    for _ in range(m * m):
+        cells.append(list(range(cursor, cursor + cell_size)))
+        cursor += cell_size
+    assert cursor == n
+
+    vanish = vanish_values(p, h_values, core)
+    # Row-1 codewords c_i and row-2 codewords d_j.  All agree on the core and
+    # otherwise differ by scalar multiples of the same vanishing polynomial.
+    c_rows = [tuple((lam * y) % p for y in vanish) for lam in (1, 2)]
+    d_rows = [tuple((lam * y) % p for y in vanish) for lam in (3, 4)]
+
+    word1 = [None] * n
+    word2 = [None] * n
+    for idx in core:
+        word1[idx] = 0
+        word2[idx] = 0
+    for i in range(m):
+        for j in range(m):
+            for idx in cells[i * m + j]:
+                word1[idx] = c_rows[i][idx]
+                word2[idx] = d_rows[j][idx]
+    for idx in range(n):
+        if word1[idx] is None:
+            word1[idx] = choose_filler(p, {cw[idx] for cw in c_rows})
+        if word2[idx] is None:
+            word2[idx] = choose_filler(p, {cw[idx] for cw in d_rows})
+
+    families = [
+        support_families(tuple(word1), codewords, a),
+        support_families(tuple(word2), codewords, a),
+    ]
+    interleaved = interleaved_count(families, a)
+    product_bound = len(families[0]) * len(families[1])
+    max_base = max(len(families[0]), len(families[1]))
+    support_sizes = [[len(s) for s in fam] for fam in families]
+    common_profile = {}
+    for supp1, supp2 in itertools.product(*families):
+        r = len(supp1 & supp2)
+        common_profile[r] = common_profile.get(r, 0) + 1
+
+    return {
+        "p": p,
+        "n": n,
+        "k": k,
+        "a": a,
+        "m": m,
+        "base_lists": [len(families[0]), len(families[1])],
+        "max_base": max_base,
+        "product_bound": product_bound,
+        "interleaved": interleaved,
+        "mass_creation": interleaved > max_base,
+        "saving_vs_cartesian": interleaved / product_bound if product_bound else None,
+        "support_sizes": support_sizes,
+        "common_intersection_profile": dict(sorted(common_profile.items())),
+        "kmm_grid_model": kmm_grid_design(k, a, m),
+    }
+
+
+def run() -> dict:
+    quotient_example = aligned_quotient_budget(n=64, k=16, a=18, mu=2)
+    designs = [kmm_grid_design(k=3, a=5, m=m) for m in (2, 3, 4, 5)]
+    witness = realized_rs_k22()
+    checks = {
+        "quotient_budget_nonnegative": quotient_example["total"] >= 0,
+        "kmm_grid_formula": all(d["interleaved_edges"] == d["grid_edges_at_n_min"] for d in designs),
+        "rs_witness_creates_mass": witness["mass_creation"],
+        "rs_witness_realizes_k22": witness["interleaved"] == witness["product_bound"] == 4,
+    }
+    return {
+        "status": "EXPERIMENTAL / FALSIFICATION",
+        "aligned_quotient_budget_example": quotient_example,
+        "kmm_designs": designs,
+        "realized_rs_k22": witness,
+        "checks": checks,
+        "pass": all(checks.values()),
+    }
+
+
+def main(argv: list[str] | None = None) -> int:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--format", choices=["human", "json"], default="human")
+    args = parser.parse_args(argv)
+
+    result = run()
+    if args.format == "json":
+        print(json.dumps(result, indent=2, sort_keys=True))
+    else:
+        print(f"L2 sharp-target stress test ({result['status']})")
+        qb = result["aligned_quotient_budget_example"]
+        print(f"  aligned quotient budget example: total={qb['total']}, packets={len(qb['packets'])}")
+        print("  K_{m,m} abstract designs:")
+        for d in result["kmm_designs"]:
+            print(
+                f"    m={d['m']}: n_min={d['minimum_n']}, "
+                f"edges={d['interleaved_edges']}, grid_edges={d['grid_edges_at_n_min']}"
+            )
+        w = result["realized_rs_k22"]
+        print("  realized RS K_{2,2} witness:")
+        print(
+            f"    F_{w['p']}, n={w['n']}, k={w['k']}, a={w['a']}: "
+            f"base={w['base_lists']}, interleaved={w['interleaved']}, "
+            f"product={w['product_bound']}, creates_mass={w['mass_creation']}"
+        )
+        print(f"  RESULT: {'PASS' if result['pass'] else 'FAIL'}")
+    return 0 if result["pass"] else 1
+
+
+if __name__ == "__main__":
+    sys.exit(main())

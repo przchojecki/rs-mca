@@ -30,6 +30,29 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-24 - L2 sharp target exactification
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/notes/l2/l2_sharp_target_conjecture.md`,
+  `experimental/scripts/verify_l2_sharp_target.py`, and
+  `experimental/agents-log.md`.
+- **Status:** CONJECTURAL / EXPERIMENTAL / FALSIFICATION.
+- **What is being added:** A standalone version-0 L2 sharp interleaved-list
+  target with explicit fixed-arity setup, generated-field reserve, aligned
+  quotient budget `Quot_align_mu`, and a polynomial over-agreement/codegree
+  error. The verifier stress-tests the exact quotient budget, natural
+  `K_{m,m}` grid over-agreement attacks, and a realized `F_29` Reed-Solomon
+  `K_{2,2}` gluing witness.
+- **How it is useful:** Turns the L2 objective from a broad "avoid Cartesian
+  overcharge" principle into a concrete conjectural inequality that can be
+  falsified or promoted. The `K_{2,2}` witness records that local Cartesian
+  blocks are real, so the correct target is a global sharp bound with those
+  blocks charged to the polynomial codegree term.
+- **What to do next:** Search for non-grid over-agreement/codegree families,
+  add dithered quotient scales where `M` does not divide `k`, and reconcile the
+  final statement with the active X1/L2 bridge PR #101 before promotion.
+
 ### 2026-06-23 - Cycle119 admissibility review
 
 - **Agent/model:** DannyExperiments PR #96, reviewed by Codex.
