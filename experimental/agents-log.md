@@ -41,14 +41,15 @@ Keep entries concise and link to the relevant files.
 - **What is being added:** A templatewise bad-prime theorem for monomial-prefix
   collisions: a split finite-field prefix collision either lifts to a
   characteristic-zero prefix collision or the prime divides an explicit
-  cyclotomic resultant certificate.
+  cyclotomic resultant certificate. The note also records the associated norm
+  bound and finite-family lcm aggregation handle.
 - **How it is useful:** This supplies the finite-field layer complementary to
   characteristic-zero L1 reductions. It turns robustly aperiodic modular
   collisions into algebraic norm/resultant divisibility events, matching a
   first attack in `agents.md`.
-- **What to do next:** Prove an aggregation or density-over-primes bound for
-  these certificates after quotient-periodic and characteristic-zero templates
-  are removed.
+- **What to do next:** Prove a uniform aggregation or density-over-primes bound
+  for these lcm certificates after quotient-periodic and characteristic-zero
+  templates are removed.
 
 ### 2026-06-23 - Cycle119 admissibility review
 

@@ -17,7 +17,7 @@ import argparse
 import itertools
 import json
 from collections import Counter, defaultdict
-from math import gcd
+from math import comb, gcd
 from typing import Any, Iterable, Sequence
 
 
@@ -172,6 +172,23 @@ def factorint(value: int) -> dict[int, int]:
     return factors
 
 
+def euler_phi(value: int) -> int:
+    result = value
+    for prime in factorint(value):
+        result = result // prime * (prime - 1)
+    return result
+
+
+def lcm_int(left: int, right: int) -> int:
+    if left == 0 or right == 0:
+        return 0
+    return abs(left // gcd(left, right) * right)
+
+
+def resultant_height_bound(order: int, complement_size: int, rank: int) -> int:
+    return (2 * comb(complement_size, rank)) ** euler_phi(order)
+
+
 def exponent_elementary_poly(
     exponents: Sequence[int],
     order: int,
@@ -209,11 +226,15 @@ def bad_prime_certificate(
         res = abs(resultant(phi, remainder))
         if res == 0:
             raise AssertionError("nonzero cyclotomic remainder has zero resultant")
+        height_bound = resultant_height_bound(order, len(left), rank)
+        if res > height_bound:
+            raise AssertionError("resultant exceeded the trivial norm bound")
         gcd_certificate = res if gcd_certificate == 0 else gcd(gcd_certificate, res)
         rows.append({
             "rank": rank,
             "cyclotomic_zero": False,
             "resultant": res,
+            "height_bound": height_bound,
             "remainder": remainder,
         })
     char_zero = gcd_certificate == 0
@@ -223,6 +244,11 @@ def bad_prime_certificate(
             prime for prime in sorted(factorint(gcd_certificate))
             if prime % order == 1
         ]
+    active_bounds = [
+        row["height_bound"]
+        for row in rows
+        if not row["cyclotomic_zero"]
+    ]
     return {
         "left": list(left),
         "right": list(right),
@@ -231,6 +257,7 @@ def bad_prime_certificate(
         "char_zero_collision": char_zero,
         "certificate": gcd_certificate,
         "certificate_factorization": factorint(gcd_certificate),
+        "least_active_height_bound": min(active_bounds) if active_bounds else 0,
         "split_prime_factors": split_factors,
         "rows": rows,
     }
@@ -316,6 +343,32 @@ def scaled_subset(subset: Sequence[int], unit: int, order: int) -> tuple[int, ..
     return tuple(sorted((unit * value) % order for value in subset))
 
 
+def translated_subset(subset: Sequence[int], shift: int, order: int) -> tuple[int, ...]:
+    return tuple(sorted((value + shift) % order for value in subset))
+
+
+def normalized_pair(
+    left: Sequence[int],
+    right: Sequence[int],
+) -> tuple[tuple[int, ...], tuple[int, ...]]:
+    ordered = sorted((tuple(left), tuple(right)))
+    return ordered[0], ordered[1]
+
+
+def translation_orbit_key(
+    left: Sequence[int],
+    right: Sequence[int],
+    order: int,
+) -> tuple[tuple[int, ...], tuple[int, ...]]:
+    return min(
+        normalized_pair(
+            translated_subset(left, shift, order),
+            translated_subset(right, shift, order),
+        )
+        for shift in range(order)
+    )
+
+
 def check_structured_char_zero_example() -> dict[str, Any]:
     report = bad_prime_certificate((0, 2), (1, 3), order=4, sigma=1)
     if not report["char_zero_collision"]:
@@ -343,6 +396,9 @@ def check_f17_packet() -> dict[str, Any]:
 
     certificate_counter: Counter[int] = Counter()
     split_factor_sets: Counter[tuple[int, ...]] = Counter()
+    aggregate_certificate = 1
+    orbit_groups: dict[tuple[tuple[int, ...], tuple[int, ...]], list[dict[str, Any]]]
+    orbit_groups = defaultdict(list)
     for pair in row["pairs"]:
         certificate = bad_prime_certificate(
             pair["left"],
@@ -359,10 +415,47 @@ def check_f17_packet() -> dict[str, Any]:
             raise AssertionError(f"unexpected split factors {split_factors}")
         certificate_counter[certificate["certificate"]] += 1
         split_factor_sets[split_factors] += 1
+        aggregate_certificate = lcm_int(aggregate_certificate, certificate["certificate"])
+        orbit_groups[translation_orbit_key(pair["left"], pair["right"], 16)].append(pair)
 
     expected = Counter({68: 16, 272: 16, 147_968: 8})
     if certificate_counter != expected:
         raise AssertionError((certificate_counter, expected))
+    if aggregate_certificate != 147_968:
+        raise AssertionError("unexpected aggregate lcm certificate")
+    aggregate_split_factors = [
+        prime for prime in sorted(factorint(aggregate_certificate))
+        if prime % 16 == 1
+    ]
+    if aggregate_split_factors != [17]:
+        raise AssertionError("unexpected aggregate split-prime support")
+
+    orbit_ledger = []
+    for key, members in orbit_groups.items():
+        certs = {
+            bad_prime_certificate(
+                pair["left"],
+                pair["right"],
+                order=16,
+                sigma=4,
+            )["certificate"]
+            for pair in members
+        }
+        if len(certs) != 1:
+            raise AssertionError("translation orbit has nonconstant certificate")
+        orbit_ledger.append({
+            "orbit_size": len(members),
+            "certificate": next(iter(certs)),
+            "representative": [list(key[0]), list(key[1])],
+        })
+    orbit_ledger.sort(key=lambda item: (item["orbit_size"], item["certificate"]))
+    if [(row["orbit_size"], row["certificate"]) for row in orbit_ledger] != [
+        (8, 147_968),
+        (16, 68),
+        (16, 272),
+    ]:
+        raise AssertionError(f"unexpected orbit ledger: {orbit_ledger}")
+
     return {
         "prime": 17,
         "order": 16,
@@ -372,6 +465,9 @@ def check_f17_packet() -> dict[str, Any]:
         "max_fiber": row["max_fiber"],
         "fiber_histogram": row["fiber_histogram"],
         "certificate_counts": dict(sorted(certificate_counter.items())),
+        "aggregate_lcm_certificate": aggregate_certificate,
+        "aggregate_split_prime_factors": aggregate_split_factors,
+        "translation_orbits": orbit_ledger,
         "split_factor_sets": {
             ",".join(map(str, key)): value
             for key, value in sorted(split_factor_sets.items())
@@ -415,7 +511,7 @@ def check_split_prime_sweep() -> list[dict[str, Any]]:
     return rows
 
 
-def check_dilation_invariance() -> dict[str, Any]:
+def check_galois_invariance() -> dict[str, Any]:
     left = (0, 1, 2, 12, 14, 15)
     right = (3, 4, 5, 7, 10, 13)
     base = bad_prime_certificate(left, right, order=16, sigma=4)
@@ -446,7 +542,7 @@ def build_report() -> dict[str, Any]:
         "structured_char_zero_example": check_structured_char_zero_example(),
         "f17_packet": check_f17_packet(),
         "split_prime_sweep": check_split_prime_sweep(),
-        "dilation_invariance": check_dilation_invariance(),
+        "galois_invariance": check_galois_invariance(),
         "nonmutating": True,
         "remaining_open_problem": (
             "aggregate the bad-prime certificates over robustly aperiodic "
@@ -471,7 +567,9 @@ def print_human(report: dict[str, Any]) -> None:
         for row in report["split_prime_sweep"]
     )
     print(f"split_prime_sweep={sweep}")
-    print(f"dilation_certificate={report['dilation_invariance']['base_certificate']}")
+    print(f"aggregate_lcm={packet['aggregate_lcm_certificate']}")
+    print(f"translation_orbits={len(packet['translation_orbits'])}")
+    print(f"galois_certificate={report['galois_invariance']['base_certificate']}")
     print(f"remaining_open_problem={report['remaining_open_problem']}")
 
 

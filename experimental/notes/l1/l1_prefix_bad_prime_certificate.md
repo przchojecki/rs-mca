@@ -73,7 +73,9 @@ C_n,sigma(A,B)
 ```
 
 This is a nonzero integer.  It is invariant under the Galois/dilation action
-`A -> uA`, `B -> uB` for `u in (Z/nZ)^*`.
+`A -> uA`, `B -> uB` for `u in (Z/nZ)^*`, and under common translations
+`A -> A+t`, `B -> B+t`, up to multiplication of each `Delta_r(zeta)` by a
+cyclotomic unit.
 
 ## Theorem: Split Bad-Prime Certificate
 
@@ -110,6 +112,38 @@ This holds for every nonzero cyclotomic remainder among the `Delta_r`.  Hence
 exists, all `Delta_r` vanish at `zeta`, which is exactly a
 characteristic-zero prefix collision.  This proves the theorem.
 
+## Norm Size And Finite-Family Aggregation
+
+The same certificate has a simple size bound.  Since
+
+```text
+Res(Phi_n, Delta_r) = Norm_{Q(zeta_n)/Q}(Delta_r(zeta_n)),
+```
+
+and each conjugate satisfies
+
+```text
+|Delta_r(zeta_n^u)| <= 2 binom(m,r),
+```
+
+we have
+
+```text
+|Res(Phi_n, Delta_r)| <= (2 binom(m,r))^phi(n).
+```
+
+Consequently each non-characteristic-zero template has only finitely many split
+bad primes, all dividing a computable integer bounded by these norms.  For a
+finite normalized template family `T`, all split primes that realize any member
+of `T` divide
+
+```text
+LCM_T = lcm_{(A,B) in T} C_n,sigma(A,B).
+```
+
+This is not yet the desired L1 aggregation theorem, but it is the exact finite
+object that such a theorem can try to bound.
+
 ## Worked L1 Packet: F_17, n=16
 
 The existing aperiodic collision certificate in
@@ -137,9 +171,16 @@ orbit size 16: C = 272    = 2^4 * 17
 orbit size 8:  C = 147968 = 2^9 * 17^2
 ```
 
+The aggregate lcm for the whole packet is
+
+```text
+LCM = 147968 = 2^9 * 17^2.
+```
+
 Thus `17` is the only split prime in the certificate of every collision
-template.  In particular, the packet is a genuine finite-field bad-prime event,
-not evidence for a characteristic-zero aperiodic family.
+template and of the complete three-orbit packet.  In particular, the packet is
+a genuine finite-field bad-prime event, not evidence for a characteristic-zero
+aperiodic family.
 
 The verifier also checks the same row over the next split primes
 
