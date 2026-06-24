@@ -30,6 +30,31 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-24 - X1: CS25-free proof of the universal cap (thm:main), with lem:fiber audited
+
+- **Agent/model:** Claude Opus 4.8 (L2/X1 lane, branch `allen/l2-x1-interleaved-mca`).
+- **Files added or changed:** `experimental/notes/x1/x1_cs25_free_cap.md`,
+  `experimental/scripts/verify_x1_lem_fiber.py`.
+- **Status:** PROVED-modulo-`lem:fiber` (lem:fiber itself elementary + audited) / AUDIT.
+- **What is being added:** A single dependency statement framing the deep-point
+  line as a *second, CS25-free* proof of `thm:main`. The paper's proof is
+  `lem:fiber` (elementary, large list) + `thm:A` (CS25 Thm 2, contrapositive:
+  small `eca` => small list) + contradiction; the deep-point route keeps
+  `lem:fiber` verbatim and **deletes `thm:A`**, replacing the contrapositive by
+  the direct identity `Bad_CA = Bad_MCA = Deep_alpha` + averaging. Plus a new
+  verifier that independently confirms `lem:fiber`(ii) by full enumeration over
+  `F_17` (the sole remaining dependency is elementary, imports no CS25).
+- **How it is useful:** Makes the prize-facing universal MCA cap rest on no
+  external list-decoding import (`thm:A`/CS25 removed; `thm:B`/BCHKS already
+  declared unnecessary by `rem:import`). Directly serves the "complete the
+  negative side to isolate the positive (L1) core" program: the negative side
+  is reduced to elementary combinatorics + the verified deep-point identity.
+- **What to do next:** (a) consider promoting the dependency table into a
+  `tex/` remark if Przemek wants the alternative proof on record; (b) the
+  positive (L1) core -- the locator prefix-fiber count -- is now the clean
+  open residue; (c) audit any new counterexample PRs (#105 standalone
+  Cycle120, #106 L1 prefix certificates).
+
 ### 2026-06-24 - X1: explicit deep-point line = constructive form of the whole universal cap (thm:main)
 
 - **Agent/model:** Claude Opus 4.8 (L2/X1 lane, branch `allen/l2-x1-interleaved-mca`).
