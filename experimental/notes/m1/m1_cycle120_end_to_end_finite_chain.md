@@ -19,7 +19,7 @@ Cycle84 exact product occupancy
   -> Cycle116 fixed-jet support-wise line/MCA lower bound over F_17^16
   -> Cycle116 external packet source-contract comparison
   -> Cycle116 smooth [512,256] lift over F_17^32
-  -> Cycle120 ABF-facing agreement and density gate.
+  -> Cycle120 support-wise MCA bridge and ABF-facing density gate.
 ```
 
 The finite numerator is supplied by
@@ -116,8 +116,21 @@ Thus, conditional on the source-gate and finite-audit boundaries below, the
 composed local chain gives the ABF-facing density comparison
 
 ```text
-N / 17^32 > 2^-128.
+epsilon_mca(RS[F_17^32,H,256],125/256)
+  >= N / 17^32
+  > 2^-128.
 ```
+
+The definition-level bridge from `LD_sw(C,262)>=N` to this normalized
+`epsilon_mca` lower bound is checked by
+
+```text
+python3 experimental/scripts/verify_m1_cycle120_supportwise_mca_bridge.py
+```
+
+It verifies that `262=ceil((1-125/256)512)`, that the line-parameter
+denominator is the same field `17^32`, and that the numerator is the same
+Cycle84 value `N` used by the finite chain.
 
 ## What This Resolves Locally
 
@@ -133,6 +146,8 @@ the Cycle116 slot replay and Cycle84 certificate use the same slot-table digest;
 the native Cycle116 parameters are n=256, k=137, agreement=143;
 the smooth lift reaches n=512, k=256, agreement=262 without changing N;
 the Cycle120 closed threshold at delta=125/256 is exactly 262;
+the support-wise line/MCA count normalizes to
+  epsilon_mca(C,125/256) >= N/17^32;
 the density numerator N is far above the >2^-128 gate.
 ```
 
@@ -178,6 +193,7 @@ Run:
 python3 experimental/scripts/verify_m1_cycle120_end_to_end_chain.py
 python3 experimental/scripts/verify_m1_cycle120_end_to_end_chain.py --json
 python3 experimental/scripts/verify_m1_cycle116_external_packet_contract.py
+python3 experimental/scripts/verify_m1_cycle120_supportwise_mca_bridge.py
 ```
 
 The verifier is nonmutating. It imports and runs the lower M1 verifiers, then

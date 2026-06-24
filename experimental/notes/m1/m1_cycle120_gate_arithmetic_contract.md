@@ -36,6 +36,14 @@ That composition checks the Cycle84 numerator, Cycle116 agreement threshold,
 smooth lift, and Cycle120 density comparison in one nonmutating audit. It still
 inherits the official ABF source-gate and finite-source-review boundaries.
 
+The definition-level conversion from the support-wise line/MCA count to the
+normalized `epsilon_mca` lower bound is isolated in:
+
+```text
+experimental/notes/m1/m1_cycle120_supportwise_mca_bridge.md
+python3 experimental/scripts/verify_m1_cycle120_supportwise_mca_bridge.py
+```
+
 ## Object
 
 Use the row

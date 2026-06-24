@@ -33,6 +33,7 @@ import verify_m1_cycle116_fixed_jet_bridge as fixed_jet
 import verify_m1_cycle116_slot_assembly as slot_assembly
 import verify_m1_cycle116_slot_identities as slot_ids
 import verify_m1_cycle120_gate_arithmetic as gate
+import verify_m1_cycle120_supportwise_mca_bridge as mca_bridge
 
 
 EXPECTED_NUMERATOR = 52_747_567_092
@@ -66,6 +67,13 @@ def build_report() -> Dict[str, Any]:
         }
     )
     gate_report = gate.build_report()
+    mca_report = mca_bridge.build_report(
+        {
+            "cycle84": cycle84_report,
+            "field_lift": lift_report,
+            "gate": gate_report,
+        }
+    )
 
     exact = cycle84_report["cycle84_exact"]
     assembly = assembly_report["assembly"]
@@ -77,6 +85,7 @@ def build_report() -> Dict[str, Any]:
     lift_params = lift_report["parameters"]
     gate_object = gate_report["object"]
     gate_arithmetic = gate_report["arithmetic"]
+    mca_conclusion = mca_report["mca_conclusion"]
 
     numerator = int(exact["distinct_products"])
     field_size = int(gate_object["field_size"])
@@ -95,6 +104,7 @@ def build_report() -> Dict[str, Any]:
             external_report["status"] == "PASS"
         ),
         "cycle120_gate_arithmetic_passes": gate_report["status"] == "PASS",
+        "cycle120_supportwise_mca_bridge_passes": mca_report["status"] == "PASS",
         "slot_digest_matches_expected": (
             slot_table["digest_sha256"] == EXPECTED_SLOT_DIGEST
         ),
@@ -204,6 +214,10 @@ def build_report() -> Dict[str, Any]:
             == int(exact["true_ordered_energy"])
             and int(external["cycle84_values"]["m_max"]) == int(exact["m_max"])
         ),
+        "mca_bridge_uses_same_density_numerator_and_denominator": (
+            int(mca_conclusion["numerator"]) == numerator
+            and int(mca_conclusion["denominator"]) == field_size
+        ),
         "bad_gamma_density_strictly_exceeds_2_minus_128": (
             numerator * epsilon_denominator > field_size
         ),
@@ -275,6 +289,12 @@ def build_report() -> Dict[str, Any]:
                 "bad_gamma_count": numerator,
                 "density_comparison": "N / 17^32 > 2^-128",
             },
+            "cycle120_supportwise_mca": {
+                "statement": mca_conclusion["statement"],
+                "numerator": int(mca_conclusion["numerator"]),
+                "denominator": int(mca_conclusion["denominator"]),
+                "epsilon_star": mca_conclusion["epsilon_star"],
+            },
         },
         "checks": checks,
         "remaining_imports": [
@@ -297,6 +317,7 @@ def print_human(report: Dict[str, Any]) -> None:
     native = chain["cycle116_native"]
     lifted = chain["cycle116_smooth_lift"]
     gate_chain = chain["cycle120_gate_arithmetic"]
+    mca = chain["cycle120_supportwise_mca"]
 
     print("m1_cycle120_end_to_end_chain: PASS")
     print(f"status={report['proof_status']}")
@@ -337,6 +358,10 @@ def print_human(report: Dict[str, Any]) -> None:
         f"threshold={gate_chain['closed_agreement_threshold']}, "
         f"minimum_bad_count={gate_chain['minimum_bad_gamma_count_for_gt_2_minus_128']}, "
         f"density={gate_chain['density_comparison']}"
+    )
+    print(
+        "cycle120_supportwise_mca="
+        f"{mca['numerator']} / {mca['denominator']} > {mca['epsilon_star']}"
     )
     print("remaining_imports=" + "; ".join(report["remaining_imports"]))
 

@@ -30,6 +30,29 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-24 - Cycle120 support-wise MCA bridge
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/scripts/verify_m1_cycle120_supportwise_mca_bridge.py`,
+  `experimental/notes/m1/m1_cycle120_supportwise_mca_bridge.md`,
+  `experimental/scripts/verify_m1_cycle120_end_to_end_chain.py`,
+  `experimental/notes/m1/m1_cycle120_end_to_end_finite_chain.md`,
+  `experimental/notes/m1/m1_cycle120_gate_arithmetic_contract.md`,
+  `experimental/notes/m1/m1_cycle116_finite_chain_contract.md`, and
+  `experimental/agents-log.md`.
+- **Status:** CONDITIONAL / AUDIT / LD-SW-TO-EPSILON-MCA-BRIDGE.
+- **What is being added:** A standalone bridge from the finite
+  `LD_sw(C,262)>=N` statement to the ABF-facing normalized lower bound
+  `epsilon_mca(C,125/256)>=N/17^32`, with a verifier for the closed threshold,
+  denominator, and numerator alignment.
+- **How it is useful:** Removes a notation gap in the M1 Cycle120 chain: the
+  PR now explicitly checks that the finite bad-line count is the same object
+  consumed by support-wise `epsilon_mca`.
+- **What to do next:** Keep the remaining promotion gates focused on official
+  ABF source verification, the Cycle84 generated-source contract, and external
+  Cycle116 contract provenance.
+
 ### 2026-06-24 - Cycle116 external packet contract comparison
 
 - **Agent/model:** Codex.

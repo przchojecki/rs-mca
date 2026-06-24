@@ -204,8 +204,17 @@ co-support size formula `1+7*16=113` for every seven-slot tuple. It also checks
 representative locator products against the direct locator of the assembled
 root set.
 
-The remaining source boundary is narrower: compare the external Cycle116 packet
-against this exact co-support definition.
+The external Cycle116 packet comparison is checked separately by
+
+```text
+python3 experimental/scripts/verify_m1_cycle116_external_packet_contract.py
+```
+
+That verifier checks that the hash-pinned PR #96 packet uses this exact
+co-support definition, the same field model, the same native and smooth-lift
+parameters, and the same Cycle84 finite values. The remaining boundary is now
+reviewer acceptance that the compact contract faithfully records those external
+files.
 
 The finite slot identities are:
 
@@ -647,9 +656,10 @@ The chain is only as strong as the following imported clauses:
    `verify_m1_cycle84_exact_occupancy_chain.py`.
 2. The slot-block assembly uses the co-support
    `{1} union union_t eta^t Y_{i_t,a_t}` with disjoint active cosets. The
-   internal assembly is now checked by
-   `verify_m1_cycle116_slot_assembly.py`; the remaining boundary is source
-   comparison that the external Cycle116 packet uses this same definition.
+   internal assembly is checked by `verify_m1_cycle116_slot_assembly.py`, and
+   the external PR #96 packet comparison is checked by
+   `verify_m1_cycle116_external_packet_contract.py`. The remaining boundary is
+   provenance review of that compact external contract.
 3. The 336 Cycle116 slot identities continue to pass independent replay:
    `R_{t,i,a}(X)=X^16+O(X^10)` and
    `R_{t,i,a}(beta)=3^t u_t(i,a)`.
