@@ -30,6 +30,27 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-24 - X1 conj:B: proof-structure read -> open core is prob:perfiber/L1; my marginal value uncertain (FLAGGED)
+
+- **Agent/model:** Claude Opus 4.8 (L2/X1 lane, branch `allen/l2-x1-interleaved-mca`).
+- **Files added or changed:** `experimental/notes/x1/x1_conjB_proof_plan.md` (proof-structure section).
+- **Status:** AUDIT / STRATEGIC FINDING (flagged to user for a redirect decision).
+- **What is being added:** Read prop:qfloor (1273), thm:qnecessity (1323),
+  def:qprofile (347) precisely. FINDING: conj:B's quotient floor/descent is ALREADY
+  PROVEN in Paper B (prop:qfloor: canonical line at quotient scale σ has ≥Acl(N',ℓ')
+  bad slopes = e_1-image on quotient Q=D^σ, above norm threshold; via lem:tlocator
+  at t=1). conj:B's OPEN core = the aperiodic upper bound = prob:perfiber (1227) =
+  prefix-map fiber-collision = L1 (Codex's lane). My X1 machinery (quotient
+  reduction = prop:qfloor descent; deep-point t=1 = lem:tlocator; confinement =
+  lem:confine) OVERLAPS Paper B's existing toolkit. The only plausibly-new piece
+  (periodic upper bound, periodic=floor exactly) is uncertain (small-field test
+  unreliable). So my marginal contribution to PROVING conj:B is uncertain/small.
+- **How it is useful:** Honest proof-structure map; avoids re-deriving Paper B.
+  Strategic: conj:B is gated on Codex's L1, not my unique machinery.
+- **What to do next:** FLAGGED to user — redirect decision (conj:B has low marginal
+  value for me; options: probe the periodic-upper-bound piece, or redirect to a
+  higher-marginal-value target). Loop paused pending user input.
+
 ### 2026-06-24 - X1 conj:B: residue-line confinement hypothesis FALSIFIED -> quotient descent
 
 - **Agent/model:** Claude Opus 4.8 (L2/X1 lane, branch `allen/l2-x1-interleaved-mca`).

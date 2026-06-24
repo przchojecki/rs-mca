@@ -88,17 +88,40 @@ itself. NEXT: build the quotient-descent (count-preserving) verifier; re-read
 `rem:aper` (1255) and `thm:qnecessity` (1323) precisely for the exact descent
 statement before proving it.
 
-## Honest scope
+## conj:B proof-structure: proven vs open (precise, after reading prop:qfloor + thm:qnecessity)
 
-- **Not mine:** the monomial-stratum core (`prob:perfiber`/L1) — Codex.
-- **Mine:** the quotient-periodic separation making `Λ^aper` the clean
-  L1-bounded object; i.e. the rigorous form of `rem:aper`.
-- So `conj:B` ⟸ (Codex's `prob:perfiber`/L1) + (my separation). I prove the
-  second half; the first is L1.
+Reading the exact statements shows the quotient structure is **already in
+Paper B**, and the open core is **`prob:perfiber`/L1 (Codex)**:
 
-## Next increments
-1. Build a verifier for the residue-line correspondence
-   `E ∈ F[X^M] ⟺ K_M-support ⟺ confined slope` on a small field (the exact step-2
-   biconditional), per-character.
-2. Prove the separation lemma; write up honestly (assumes `prob:perfiber`/L1).
-3. Handle the tangent-floor/`o(1)` correction (`rem:strata`).
+- **`thm:normalform` (1197, PROVED):** `emca·q = max_{1≤t≤r} Λ^NC_{t,δ}`.
+- **`prop:qfloor` (1273, PROVED, above the norm threshold `p>(2ℓ')^{N'/2}`):** the
+  canonical line `x^{k+σ}+zx^k` at quotient scale `σ=n/N'` has `≥ Acl(N',ℓ')`
+  bad slopes `= {−e₁(B) : B ∈ \binom{Q}{ℓ'}}`, the `e₁`-image on the quotient
+  `Q=D^σ` (order `N'`). **This is the quotient descent — already proven** — and
+  it is done *via `lem:tlocator` at `t=1`*, i.e. Paper B's own `t=1` locator
+  machinery (which my deep-point bridge re-derives).
+- **`thm:qnecessity` (1323) / `def:qprofile` (347):** the quotient profile
+  `Q_{H_n}(η)` organizes the scales and is *necessary* (the floor is a genuine
+  lower bound on `emca`).
+- **`conj:B` (1231):** the matching **upper** bound — `Λ^aper ≤ n^{1+o(1)}` after
+  the floor is paid. Its aperiodic half is exactly **`prob:perfiber` (1227) = the
+  prefix-map fiber-collision bound = L1 (Codex's lane), OPEN.**
+
+**Honest reassessment of my marginal contribution.** The quotient *floor/descent*
+(what I'd been planning to prove as "my separation") is **already proven in
+Paper B** (`prop:qfloor`), and my machinery (quotient reduction, deep-point at
+`t=1`, confinement = `lem:confine`) **re-derives Paper B's existing tools** rather
+than adding a new step. The only piece that is *plausibly* a new contribution is
+the **periodic upper bound** (periodic lines contribute `≤` the floor, exactly —
+upgrading `prop:qfloor`'s `≥` to `=` via my exact `Q_M=Q_1` bijection). But:
+- `prop:qfloor` already *equates* the floor with `Acl` above the norm threshold;
+- my `k=2,n=8` confinement test gave 39 bad slopes for a periodic-denominator
+  line — at degenerate params below reliability — so I cannot yet tell whether
+  the periodic upper bound is open, trivial, or even holds.
+
+**Conclusion (flagged to user):** `conj:B`'s open core is `prob:perfiber`/L1
+(Codex); the quotient structure is Paper B's (`prop:qfloor`). My X1 machinery
+overlaps Paper B's toolkit, so my marginal contribution to *proving* `conj:B` is
+**uncertain / small** — pushing it risks re-deriving Paper B. This is a genuine
+strategic finding, surfaced for a redirect decision (see agents-log + the user
+flag of 2026-06-24).
