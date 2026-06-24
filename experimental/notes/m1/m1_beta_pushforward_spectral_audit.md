@@ -303,7 +303,9 @@ proof of the nonnegative `C_ab=O_e(p^2)` route now amounts to proving p-scale
 energy for the centered block and the two one-sided marginals.  The centered
 block is the actual `(BETA_2^avg)` target consumed by M1; the two marginal
 blocks are extra one-sided estimates needed only if one chooses to prove the
-stronger positive joint-collision target.
+stronger positive joint-collision target.  The next two sections reduce those
+two marginal blocks to one-parameter trace estimates; the centered block
+remains the only genuinely two-sided M1 target.
 
 ## Alpha Marginal Reduction
 
@@ -372,21 +374,37 @@ Consequently `M_psi^tor` is the Mellin transform of a fixed-conductor
 non-isotrivial elliptic trace sheaf on
 `P^1 - {0,1,-3,-1/3,infinity}`.  The standard curve Weil bound for this
 middle-extension sheaf gives `M_psi^tor=O_e(p)` for fixed quotient order.
-Therefore the alpha marginal is p-scale; the remaining genuinely
-beta-pushforward blocks are the centered block and the beta marginal.
+Therefore the alpha marginal is p-scale.  The beta marginal is reduced below
+to a separate one-parameter trace over the beta line.  After these two
+marginal reductions, the centered rank-two block is the minimal M1 target
+left by the quotient-conic ledger.
 
 The standalone verifier checks the identity `(ALPHA)`, the exact full-torus
 `H` formula, the boundary correction, the cubic discriminant ledger, the
 three singular parameters above, and the fiberwise Hasse bound on every
 expanded prime row.
 
-## Beta Marginal Fixed-Fiber Support
+## Beta Marginal One-Parameter Reduction
 
 The opposite one-sided marginal is the full `(BETA_2)` row with `psi=1`.
 For a nonprincipal quotient character `phi`, it is
 
 ```text
 B_phi = sum_i sum_j (G_e)_{i,j} phi(j).
+```
+
+Equivalently, define the exact beta-column trace
+
+```text
+tau_p(b) =
+  sum_{(a,r) in G, Delta_b(a,r)=0}
+    chi(d_UV(a,b,r)).
+```
+
+Then
+
+```text
+B_phi = sum_{b in F_p^*} phi(b) tau_p(b).
 ```
 
 On the open good locus, the squareclass identities rewrite
@@ -453,12 +471,21 @@ component; their three-way singular resultants add only the already displayed
 that every torus singular fiber lies in the displayed support.  The largest
 support count in the audit is `9` beta-values.
 
-This does not prove the full beta marginal.  It records the useful structural
-fact that the marginal is a fixed-conductor beta-column family, with no
-unbounded supply of singular beta fibers.  The centered rank-two block remains
-the minimal M1 target, and the beta marginal remains an additional estimate
-needed only for a full pointwise `(BETA_2)` theorem or for the stronger
-positive `C_ab` route.
+Thus the beta marginal is a fixed-conductor beta-column family.  On the
+regular beta-line complement, the family has bounded bidegree and bounded
+Kummer divisor.  The finite singular support has `O(1)` fibers, each of size
+`O(p)`.  Tensoring the resulting constructible beta-line sheaf by the
+nonprincipal Kummer sheaf `phi(b)` kills any geometrically constant summand
+on `G_m`.  The standard one-variable middle-extension trace bound therefore
+gives
+
+```text
+B_phi = O_e(p)
+```
+
+for every fixed quotient order `e` and every nonprincipal `phi` of
+`F_p^*/K_e`.  This closes the beta marginal as a standard one-parameter
+input; it is not the centered rank-two `(BETA_2^avg)` target itself.
 
 ## Interpretation
 
@@ -537,6 +564,25 @@ The beta-fiber singular-support audit gives
 max_beta_support_count = 9 at p=43,73,97.
 ```
 
+The exact beta-column trace audit also checks
+
+```text
+B_phi = sum_{b in F_p^*} phi(b) tau_p(b)
+```
+
+against the left-principal quotient coefficients.  In the expanded rows, the
+largest regular beta-fiber trace outside the fixed singular support is
+
+```text
+max_regular |tau_p(b)|/sqrt(p) = 2.8736848324 at p=31, b=30,
+```
+
+while the largest support-fiber trace is
+
+```text
+max_support |tau_p(b)|/p = 1.9527559055 at p=127, b=1.
+```
+
 Thus the averaged M1 target remains substantially smaller than the largest
 individual full pointwise coefficient and smaller than the full
 right-nonprincipal RMS in the finite rows, matching the point of the
@@ -571,4 +617,5 @@ decomposition `||R_e||_F^2=||G_e^circ||_F^2+e^{-1}||c^circ||_2^2`.  It also
 checks the four component identities for `C_ab`, `C_a`, `C_b`, and `C_0`,
 and reports the nonnegative sufficient bound `sqrt(C_ab+e^{-2}C_0)/p`.
 It also checks the fixed beta-fiber singular-support ledger for the beta
-marginal family.
+marginal family, the exact beta-column Mellin identity, and the regular versus
+fixed-support beta-fiber trace maxima.

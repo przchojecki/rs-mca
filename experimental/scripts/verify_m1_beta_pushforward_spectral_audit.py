@@ -145,7 +145,19 @@ EXPECTED_BETA_FIBER_SINGULAR_ROWS = {
     127: ((1, 19, 107), (1, 19, 20, 107, 108)),
 }
 
+EXPECTED_BETA_FIBER_TRACE_ROWS = {
+    17: (4, 5, 1, 8, -14),
+    31: (16, 30, 56, 1, -66),
+    43: (10, 10, 78, 1, 168),
+    61: (20, 4, 116, 1, -178),
+    73: (17, 18, 138, 1, 284),
+    97: (17, 17, 186, 1, 380),
+    109: (29, 59, 212, 1, -370),
+    127: (24, 15, 248, 1, 502),
+}
+
 TOLERANCE = 1e-8
+BETA_TRACE_CACHE: dict[int, list[int]] = {}
 
 
 def good_pushforward_matrix(p: int, quotient_order: int) -> tuple[list[list[int]], int]:
@@ -541,6 +553,132 @@ def beta_fiber_singularity_case(p: int) -> dict[str, Any]:
     }
 
 
+def exact_beta_trace_vector(p: int) -> list[int]:
+    if p in BETA_TRACE_CACHE:
+        return BETA_TRACE_CACHE[p]
+    traces = [0 for _ in range(p)]
+    for beta in range(1, p):
+        trace = 0
+        for alpha in range(1, p):
+            for ratio in range(1, p):
+                if not m1.ratio_surface_beta_pushforward_good(p, alpha, ratio):
+                    continue
+                if m1.ratio_surface_delta(p, alpha, beta, ratio) != 0:
+                    continue
+                discriminant = m1.ratio_surface_binary_discriminants(
+                    p,
+                    alpha,
+                    beta,
+                    ratio,
+                )[0]
+                sign = m1.legendre(discriminant, p)
+                if sign == 0:
+                    raise AssertionError((p, beta, alpha, ratio, "zero-sign"))
+                base_sign = m1.legendre(
+                    ratio
+                    * m1.ratio_surface_beta_middle_factor(p, alpha, ratio),
+                    p,
+                )
+                if sign != base_sign:
+                    raise AssertionError((p, beta, alpha, ratio, sign, base_sign))
+                trace += sign
+        traces[beta] = trace
+    BETA_TRACE_CACHE[p] = traces
+    return traces
+
+
+def beta_fiber_trace_case(p: int) -> dict[str, Any]:
+    traces = exact_beta_trace_vector(p)
+    max_regular_trace = 0
+    max_regular_beta = 0
+    max_support_trace = 0
+    max_support_beta = 0
+    regular_beta_count = 0
+    support_beta_count = 0
+    for beta in range(1, p):
+        trace_size = abs(traces[beta])
+        if beta_fiber_singular_support_value(p, beta) == 0:
+            support_beta_count += 1
+            if trace_size > max_support_trace:
+                max_support_trace = trace_size
+                max_support_beta = beta
+        else:
+            regular_beta_count += 1
+            if trace_size > max_regular_trace:
+                max_regular_trace = trace_size
+                max_regular_beta = beta
+    return {
+        "p": p,
+        "regular_beta_count": regular_beta_count,
+        "support_beta_count": support_beta_count,
+        "max_regular_trace": max_regular_trace,
+        "max_regular_beta": max_regular_beta,
+        "max_regular_trace_sqrt_ratio": round(
+            max_regular_trace / math.sqrt(p),
+            10,
+        ),
+        "max_regular_trace_p_ratio": round(max_regular_trace / p, 10),
+        "max_support_trace": max_support_trace,
+        "max_support_beta": max_support_beta,
+        "max_support_trace_p_ratio": round(max_support_trace / p, 10),
+        "total_trace": sum(traces),
+    }
+
+
+def beta_marginal_trace_reduction_case(
+    p: int,
+    quotient_order: int,
+    matrix: list[list[int]],
+) -> dict[str, Any]:
+    traces = exact_beta_trace_vector(p)
+    logs = m1.log_table(p)
+    root = cmath.exp(2j * math.pi / quotient_order)
+    column_sums = [
+        sum(matrix[row][column] for row in range(quotient_order))
+        for column in range(quotient_order)
+    ]
+    grouped_traces = [0 for _ in range(quotient_order)]
+    for beta in range(1, p):
+        grouped_traces[logs[beta] % quotient_order] += traces[beta]
+    if grouped_traces != column_sums:
+        raise AssertionError((p, quotient_order, grouped_traces, column_sums))
+
+    max_coefficient = 0.0
+    max_formula_error = 0.0
+    for character_exponent in range(1, quotient_order):
+        trace_coefficient = sum(
+            traces[beta]
+            * root ** (character_exponent * (logs[beta] % quotient_order))
+            for beta in range(1, p)
+        )
+        matrix_coefficient = sum(
+            column_sums[label] * root ** (character_exponent * label)
+            for label in range(quotient_order)
+        )
+        formula_error = abs(trace_coefficient - matrix_coefficient)
+        if formula_error > 1000 * TOLERANCE:
+            raise AssertionError(
+                (
+                    p,
+                    quotient_order,
+                    character_exponent,
+                    trace_coefficient,
+                    matrix_coefficient,
+                )
+            )
+        max_formula_error = max(max_formula_error, formula_error)
+        max_coefficient = max(max_coefficient, abs(trace_coefficient))
+    return {
+        "p": p,
+        "quotient_order": quotient_order,
+        "max_beta_marginal_coefficient_ratio": round(max_coefficient / p, 10),
+        "max_beta_marginal_trace_formula_error": round(
+            max_formula_error,
+            12,
+        ),
+    }
+
+
 def centered_frobenius_square(matrix: list[list[int]]) -> float:
     order = len(matrix)
     row_sums = [sum(row) for row in matrix]
@@ -690,6 +828,11 @@ def audit_case(p: int, quotient_order: int) -> dict[str, Any]:
         max_left_principal,
     ) = spectral_stats(matrix)
     alpha_reduction = alpha_marginal_reduction_case(p, quotient_order, matrix)
+    beta_reduction = beta_marginal_trace_reduction_case(
+        p,
+        quotient_order,
+        matrix,
+    )
     parseval_error = abs(
         two_sided_energy / (quotient_order * quotient_order) - frobenius_square
     )
@@ -792,6 +935,7 @@ def audit_case(p: int, quotient_order: int) -> dict[str, Any]:
         "component_right_error": round(component_right_error, 12),
         "joint_decomposition_error": round(joint_decomposition_error, 12),
         "alpha_marginal_reduction": alpha_reduction,
+        "beta_marginal_reduction": beta_reduction,
     }
 
 
@@ -807,6 +951,9 @@ def compute_report() -> dict[str, Any]:
     beta_fiber_singularity_rows = [
         beta_fiber_singularity_case(p)
         for p in sorted({case[0] for case in AUDIT_CASES})
+    ]
+    beta_fiber_trace_rows = [
+        beta_fiber_trace_case(p) for p in sorted({case[0] for case in AUDIT_CASES})
     ]
     for row in rows:
         key = (row["p"], row["quotient_order"])
@@ -841,6 +988,11 @@ def compute_report() -> dict[str, Any]:
                     expected_left_principal,
                 )
             )
+        beta_reduction_ratio = row["beta_marginal_reduction"][
+            "max_beta_marginal_coefficient_ratio"
+        ]
+        if abs(beta_reduction_ratio - expected_left_principal) > TOLERANCE:
+            raise AssertionError((key, beta_reduction_ratio, expected_left_principal))
         if abs(row["centered_frobenius_ratio"] - expected_frobenius) > TOLERANCE:
             raise AssertionError(
                 (key, row["centered_frobenius_ratio"], expected_frobenius)
@@ -880,6 +1032,17 @@ def compute_report() -> dict[str, Any]:
             row["full_middle_trace"],
             row["full_branch_trace"],
             row["deleted_correction"],
+        )
+        if actual != expected:
+            raise AssertionError((row["p"], actual, expected))
+    for row in beta_fiber_trace_rows:
+        expected = EXPECTED_BETA_FIBER_TRACE_ROWS[row["p"]]
+        actual = (
+            row["max_regular_trace"],
+            row["max_regular_beta"],
+            row["max_support_trace"],
+            row["max_support_beta"],
+            row["total_trace"],
         )
         if actual != expected:
             raise AssertionError((row["p"], actual, expected))
@@ -938,6 +1101,14 @@ def compute_report() -> dict[str, Any]:
         beta_fiber_singularity_rows,
         key=lambda row: row["support_beta_count"],
     )
+    max_beta_regular_trace_row = max(
+        beta_fiber_trace_rows,
+        key=lambda row: row["max_regular_trace_sqrt_ratio"],
+    )
+    max_beta_support_trace_row = max(
+        beta_fiber_trace_rows,
+        key=lambda row: row["max_support_trace_p_ratio"],
+    )
     return {
         "status": "PASS",
         "proof_status": "EXPERIMENTAL / FINITE SPECTRAL AUDIT",
@@ -946,6 +1117,7 @@ def compute_report() -> dict[str, Any]:
         "principal_trace_rows": principal_trace_rows,
         "alpha_middle_elliptic_rows": alpha_middle_elliptic_rows,
         "beta_fiber_singularity_rows": beta_fiber_singularity_rows,
+        "beta_fiber_trace_rows": beta_fiber_trace_rows,
         "max_two_sided_coefficient_row": max_two_sided_row,
         "max_beta2_coefficient_row": max_beta2_row,
         "max_centered_frobenius_row": max_frobenius_row,
@@ -959,6 +1131,8 @@ def compute_report() -> dict[str, Any]:
         "max_principal_trace_row": max_principal_trace_row,
         "max_alpha_middle_fiber_row": max_alpha_middle_fiber_row,
         "max_beta_fiber_support_row": max_beta_fiber_support_row,
+        "max_beta_regular_trace_row": max_beta_regular_trace_row,
+        "max_beta_support_trace_row": max_beta_support_trace_row,
         "interpretation": (
             "All audited good beta-pushforward matrices have p-scale full "
             "BETA_2 coefficients, p-scale centered Frobenius norm, and "
@@ -972,6 +1146,7 @@ def print_report(report: dict[str, Any]) -> None:
     print(f"cases: {report['case_count']}")
     for row in report["rows"]:
         alpha_reduction = row["alpha_marginal_reduction"]
+        beta_reduction = row["beta_marginal_reduction"]
         print(
             "p={p} e={quotient_order} good={good_point_count} "
             "two_sided/p={max_two_sided_coefficient_ratio} "
@@ -981,6 +1156,7 @@ def print_report(report: dict[str, Any]) -> None:
             "alpha_marginal/p={alpha_marginal_frobenius_ratio} "
             "alpha_coeff/p={alpha_coeff_ratio} "
             "beta_marginal/p={beta_marginal_frobenius_ratio} "
+            "beta_coeff/p={beta_coeff_ratio} "
             "right_projected/p={right_projected_frobenius_ratio} "
             "nonnull_bound/p={nonnegative_sufficient_bound_ratio} "
             "joint/p^2={joint_collision_ratio} "
@@ -991,6 +1167,9 @@ def print_report(report: dict[str, Any]) -> None:
             "component_error={component_centered_error}".format(
                 alpha_coeff_ratio=alpha_reduction[
                     "max_alpha_marginal_coefficient_ratio"
+                ],
+                beta_coeff_ratio=beta_reduction[
+                    "max_beta_marginal_coefficient_ratio"
                 ],
                 **row,
             )
@@ -1007,6 +1186,8 @@ def print_report(report: dict[str, Any]) -> None:
     max_nonnegative_bound = report["max_nonnegative_sufficient_bound_row"]
     coef_key = "max_alpha_marginal_coefficient_ratio"
     max_alpha_middle_fiber = report["max_alpha_middle_fiber_row"]
+    max_beta_regular_trace = report["max_beta_regular_trace_row"]
+    max_beta_support_trace = report["max_beta_support_trace_row"]
     print(
         "max two-sided coefficient row: "
         f"p={max_two_sided['p']} e={max_two_sided['quotient_order']} "
@@ -1053,6 +1234,18 @@ def print_report(report: dict[str, Any]) -> None:
         f"ratio={max_marginal['beta_marginal_frobenius_ratio']}"
     )
     print(
+        "max beta regular-fiber trace row: "
+        f"p={max_beta_regular_trace['p']} "
+        f"beta={max_beta_regular_trace['max_regular_beta']} "
+        f"ratio={max_beta_regular_trace['max_regular_trace_sqrt_ratio']}"
+    )
+    print(
+        "max beta support-fiber trace row: "
+        f"p={max_beta_support_trace['p']} "
+        f"beta={max_beta_support_trace['max_support_beta']} "
+        f"ratio={max_beta_support_trace['max_support_trace_p_ratio']}"
+    )
+    print(
         "max right-projected Frobenius row: "
         f"p={max_right_projected['p']} "
         f"e={max_right_projected['quotient_order']} "
@@ -1097,6 +1290,14 @@ def print_report(report: dict[str, Any]) -> None:
             f"p={row['p']} singular={tuple(row['singular_beta_values'])} "
             f"support_count={row['support_beta_count']} "
             f"singular_points={row['singular_point_count']}"
+        )
+    for row in report["beta_fiber_trace_rows"]:
+        print(
+            "beta-fiber trace row: "
+            f"p={row['p']} max_regular/sqrtp="
+            f"{row['max_regular_trace_sqrt_ratio']} "
+            f"max_support/p={row['max_support_trace_p_ratio']} "
+            f"total={row['total_trace']}"
         )
     max_beta_fiber_support = report["max_beta_fiber_support_row"]
     print(

@@ -67,7 +67,10 @@ Keep entries concise and link to the relevant files.
   support ledger for the beta marginal: after setting `psi=1`, the marginal
   is a Mellin transform over a bidegree `(3,3)` torus family
   `Delta_b(a,r)=0`, whose singular beta-values are confined to one explicit
-  fixed polynomial support checked on every expanded prime row.
+  fixed polynomial support checked on every expanded prime row.  The verifier
+  now checks the exact beta-column Mellin identity
+  `B_phi=sum_b phi(b)tau_p(b)` and the regular/support-fiber split, reducing
+  the beta marginal to a standard one-variable middle-extension estimate.
 - **How it is useful:** This is a counterexample-first test of the remaining
   rank-two pushforward object, not of the already controlled exceptional
   ledger. The audited rows show p-scale behavior, with largest recorded full
@@ -84,10 +87,12 @@ Keep entries concise and link to the relevant files.
   full-middle alpha trace ratio is `2.8331969382`; the largest audited
   elliptic fiber trace ratio is `1.8299828440 sqrt(p)`.  The beta-fiber
   singular-support audit has largest support count `9`, with every observed
-  torus singular beta-value contained in the displayed fixed support.
-- **What to do next:** Prove p-scale estimates for the centered block and
-  the beta marginal block, prove the bounded-conductor/no-constant-summand
-  `(BETA_2)` estimate for the explicit rank-two pushforward, or extend the
+  torus singular beta-value contained in the displayed fixed support.  The
+  largest regular beta-fiber trace is `2.8736848324 sqrt(p)`, and the largest
+  fixed-support beta-fiber trace is `1.9527559055 p`.
+- **What to do next:** Prove p-scale estimates for the centered rank-two
+  block, prove the bounded-conductor/no-constant-summand `(BETA_2)` estimate
+  for the explicit rank-two pushforward, or extend the
   finite scan to larger primes and quotient orders if looking for
   route-killing counterexamples.
 

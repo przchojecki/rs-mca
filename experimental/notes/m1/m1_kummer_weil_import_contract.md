@@ -702,7 +702,9 @@ where `r_i=sum_j(G_e)_{i,j}` and `c_j=sum_i(G_e)_{i,j}`.  The last block is
 now controlled by the principal trace formula.  Therefore the positive
 `C_ab` route would still need p-scale estimates for the centered block and
 for the alpha- and beta-marginal energies.  The centered block alone is the
-minimal averaged input consumed by the quotient-conic M1 ledger.
+minimal averaged input consumed by the quotient-conic M1 ledger; the two
+one-sided marginal estimates are reduced below to one-dimensional trace
+inputs.
 
 The alpha marginal is simpler than the beta marginal.  For nonprincipal
 `psi`, its coefficient descends to
@@ -734,16 +736,24 @@ alpha-marginal `O_e(p)` bound by the standard curve Weil bound.  This closes
 the alpha marginal as a one-dimensional input; it is still not the centered
 M1 target itself.
 
-The beta marginal is less elementary but also has a fixed beta-fiber support
-ledger in `m1_beta_pushforward_spectral_audit.md`.  Setting `psi=1` gives a
-Mellin transform over beta of a bidegree `(3,3)` torus family
-`Delta_b(a,r)=0`, with bounded Kummer divisor `chi(rM(a,r))`.  Eliminating
-`a` and `r` from `Delta_b=partial_a Delta_b=partial_r Delta_b=0` confines the
-finite singular beta-values to one explicit fixed polynomial support of
-degree `26` including beta zero, hence degree `25` on `G_m` (plus beta
-infinity), and the standalone verifier checks this support on the expanded
-prime rows.  This is not a proof of the beta marginal, but it rules out an
-unbounded supply of bad beta-column fibers.
+The beta marginal is less elementary but is also one-dimensional after
+forgetting the alpha character.  Setting `psi=1` gives
+
+```text
+B_phi = sum_{b in F_p^*} phi(b) tau_p(b),
+```
+
+where `tau_p(b)` is the signed trace on the bidegree `(3,3)` torus family
+`Delta_b(a,r)=0`, with Kummer divisor `chi(rM(a,r))`.  Eliminating `a` and
+`r` from `Delta_b=partial_a Delta_b=partial_r Delta_b=0` confines the finite
+singular beta-values to one explicit fixed polynomial support of degree `26`
+including beta zero, hence degree `25` on `G_m` (plus beta infinity), and the
+standalone verifier checks this support on the expanded prime rows.  The
+regular family has bounded conductor, the fixed singular fibers contribute
+`O(p)`, and tensoring by nonprincipal `phi` removes constant beta-line
+summands.  Hence the standard one-variable middle-extension trace estimate
+gives `B_phi=O_e(p)`.  This closes the beta marginal as a one-dimensional
+input; it is still not the centered M1 target itself.
 
 The elementary hypotheses behind this import are now audited in
 `verify_m1_depth_two_line_conic_resonance_reduction.py`:
