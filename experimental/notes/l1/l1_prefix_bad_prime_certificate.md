@@ -158,6 +158,31 @@ prime-ideal factor rather than two rational split embeddings.  This is why the
 split-prime support list is empty while the rational bad prime `3` is still
 detected by the certificate.
 
+The same degree accounting also extends to nonsplit primes.  Let `f` be the
+order of `p` modulo `n`, so that all primitive `n`-th roots lie in
+`F_{p^f}`.  Because `p` does not divide `n`, `Phi_n` is squarefree modulo `p`;
+therefore
+
+```text
+deg gcd(Phi_n, Delta_1, ..., Delta_sigma) in F_p[T]
+```
+
+counts the primitive roots in `F_{p^f}` where the template collides.  Summing
+over unordered template pairs gives
+
+```text
+sum_{A<B} deg G_p(A,B)
+  = sum_{h primitive in F_{p^f}} |Coll(h)|.
+```
+
+The split-prime row-accounting identity is the special case `f=1`.
+
+For the `F_9` witness row with `n=8`, `m=2`, and `sigma=1`, the verifier checks
+all four primitive eighth roots.  Each root has `30` collision pairs, so there
+are `120` root-template incidences.  The modular gcd ledger over `F_3` has the
+same weighted mass: `48` non-characteristic-zero pairs have degree `2`, and
+`6` characteristic-zero pairs have degree `4`.
+
 ## Norm Size And Finite-Family Aggregation
 
 The same certificate has a simple size bound.  Since

@@ -412,6 +412,62 @@ def exponent_elementary_gf9(
     return total
 
 
+def gf9_primitive_order_roots(order: int) -> list[tuple[int, int]]:
+    root = (1, 1)
+    if gf9_multiplicative_order(root) != order:
+        raise AssertionError("bad F_9 primitive root")
+    roots = [
+        gf9_pow(root, unit)
+        for unit in range(1, order)
+        if gcd(unit, order) == 1
+    ]
+    if len(set(roots)) != euler_phi(order):
+        raise AssertionError("bad F_9 primitive-root list")
+    return roots
+
+
+def finite_prefix_collision_pairs_gf9(
+    *,
+    order: int,
+    complement_size: int,
+    sigma: int,
+    root: tuple[int, int],
+) -> dict[str, Any]:
+    if gf9_multiplicative_order(root) != order:
+        raise AssertionError("root must have exact requested order")
+
+    buckets: dict[tuple[tuple[int, int], ...], list[tuple[int, ...]]]
+    buckets = defaultdict(list)
+    for exponents in itertools.combinations(range(order), complement_size):
+        key = tuple(
+            exponent_elementary_gf9(exponents, order, rank, root)
+            for rank in range(1, sigma + 1)
+        )
+        buckets[key].append(tuple(exponents))
+
+    pairs = []
+    histogram = Counter(len(members) for members in buckets.values())
+    for key, members in buckets.items():
+        if len(members) <= 1:
+            continue
+        for left, right in itertools.combinations(members, 2):
+            pairs.append({
+                "top_sigma_key": [list(value) for value in key],
+                "left": list(left),
+                "right": list(right),
+            })
+    return {
+        "order": order,
+        "complement_size": complement_size,
+        "sigma": sigma,
+        "root": list(root),
+        "fiber_histogram": dict(sorted(histogram.items())),
+        "max_fiber": max(histogram) if histogram else 0,
+        "collision_pair_count": len(pairs),
+        "pairs": pairs,
+    }
+
+
 def top_sigma_key_mod(coeffs: Sequence[int], sigma: int, prime: int) -> tuple[int, ...]:
     size = len(coeffs) - 1
     effective = min(sigma, size)
@@ -1062,6 +1118,97 @@ def check_extension_field_bad_prime_certificate() -> dict[str, Any]:
     }
 
 
+def check_extension_field_row_accounting() -> dict[str, Any]:
+    characteristic = 3
+    extension_degree = 2
+    order = 8
+    complement_size = 2
+    sigma = 1
+    primitive_roots = gf9_primitive_order_roots(order)
+    incidence_counter: Counter[tuple[tuple[int, ...], tuple[int, ...]]] = Counter()
+    row_counts_by_root = {}
+
+    for root in primitive_roots:
+        row = finite_prefix_collision_pairs_gf9(
+            order=order,
+            complement_size=complement_size,
+            sigma=sigma,
+            root=root,
+        )
+        if row["collision_pair_count"] != 30:
+            raise AssertionError("unexpected F_9 row count")
+        if row["max_fiber"] != 4:
+            raise AssertionError("unexpected F_9 max fiber")
+        row_counts_by_root[tuple(root)] = row["collision_pair_count"]
+        for pair in row["pairs"]:
+            key = normalized_pair(pair["left"], pair["right"])
+            incidence_counter[key] += 1
+
+    degree_distribution: Counter[int] = Counter()
+    char_zero_distribution: Counter[int] = Counter()
+    degree_weighted_sum = 0
+    non_char_zero_pairs = 0
+    non_char_zero_degree_sum = 0
+    for pair, multiplicity in incidence_counter.items():
+        common_factor = common_root_gcd_mod(
+            pair[0],
+            pair[1],
+            order,
+            sigma,
+            characteristic,
+        )
+        common_degree = degree(common_factor)
+        if common_degree != multiplicity:
+            raise AssertionError("F_9 row incidence differs from gcd degree")
+        certificate = bad_prime_certificate(pair[0], pair[1], order, sigma)
+        degree_distribution[common_degree] += 1
+        degree_weighted_sum += common_degree
+        if certificate["char_zero_collision"]:
+            char_zero_distribution[common_degree] += 1
+        else:
+            if certificate["certificate"] % characteristic != 0:
+                raise AssertionError("F_9 bad-prime pair missed the certificate")
+            non_char_zero_pairs += 1
+            non_char_zero_degree_sum += common_degree
+
+    incidence_sum = sum(incidence_counter.values())
+    expected_incidence_sum = len(primitive_roots) * 30
+    if incidence_sum != expected_incidence_sum:
+        raise AssertionError("bad F_9 incidence count")
+    if degree_weighted_sum != incidence_sum:
+        raise AssertionError("bad F_9 degree-weighted row accounting")
+    if dict(degree_distribution) != {2: 48, 4: 6}:
+        raise AssertionError("unexpected F_9 degree distribution")
+    if dict(char_zero_distribution) != {4: 6}:
+        raise AssertionError("unexpected F_9 characteristic-zero distribution")
+
+    return {
+        "base_prime": characteristic,
+        "extension_degree": extension_degree,
+        "field": "F_9 = F_3[i]/(i^2+1)",
+        "order": order,
+        "complement_size": complement_size,
+        "sigma": sigma,
+        "primitive_root_count": len(primitive_roots),
+        "row_counts_by_root": {
+            str(root): row_counts_by_root[root]
+            for root in sorted(row_counts_by_root)
+        },
+        "fixed_root_collision_pair_count": 30,
+        "incident_template_pair_count": len(incidence_counter),
+        "root_template_incidence_sum": incidence_sum,
+        "gcd_degree_weighted_sum": degree_weighted_sum,
+        "degree_distribution_on_incident_pairs": dict(
+            sorted(degree_distribution.items())
+        ),
+        "char_zero_degree_distribution": dict(
+            sorted(char_zero_distribution.items())
+        ),
+        "non_char_zero_pair_count": non_char_zero_pairs,
+        "non_char_zero_degree_sum": non_char_zero_degree_sum,
+    }
+
+
 def check_prefix_depth_filtration() -> dict[str, Any]:
     prime = 17
     order = 16
@@ -1478,6 +1625,7 @@ def build_report() -> dict[str, Any]:
         "extension_field_bad_prime_certificate": (
             check_extension_field_bad_prime_certificate()
         ),
+        "extension_field_row_accounting": check_extension_field_row_accounting(),
         "prefix_depth_filtration": check_prefix_depth_filtration(),
         "full_prefix_rigidity": check_full_prefix_rigidity(),
         "split_prime_sweep": check_split_prime_sweep(),
@@ -1527,6 +1675,15 @@ def print_human(report: dict[str, Any]) -> None:
         f"degree={extension['extension_degree']}, "
         f"cert={extension['certificate']}, "
         f"gcd_degree={extension['common_factor_degree_mod_3']}"
+    )
+    extension_accounting = report["extension_field_row_accounting"]
+    print(
+        "extension_row_accounting="
+        f"p={extension_accounting['base_prime']}, "
+        f"roots={extension_accounting['primitive_root_count']}, "
+        f"fixed_pairs={extension_accounting['fixed_root_collision_pair_count']}, "
+        f"incidence_sum={extension_accounting['root_template_incidence_sum']}, "
+        f"gcd_degree_sum={extension_accounting['gcd_degree_weighted_sum']}"
     )
     bridge = report["newton_power_sum_bridge"]
     print(
