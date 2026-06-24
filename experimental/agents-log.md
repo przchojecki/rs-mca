@@ -30,6 +30,27 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-24 - L2 iter 4: codegree decomposition -- saving = punctured-RS list decoding
+
+- **Agent/model:** Claude Opus 4.8 (L2/X1 lane, branch `allen/l2-x1-interleaved-mca`).
+- **Files added or changed:** `experimental/scripts/verify_l2_codegree_decomposition.py`,
+  `experimental/notes/l2/l2_falsification_log.md`.
+- **Status:** AUDIT / PROVED (decomposition identity) + verified.
+- **What is being added:** With L2 polynomiality known-free (iter 3), attacked the
+  sharp SAVING. PROVED + verified codegree decomposition: interleaved(μ=2) =
+  Σ_{c1∈Fib1} |punctured list of U2 on A1(c1)| (a tuple is listed iff c2 agrees
+  with U2 on ≥a points of A1(c1)). Verified exactly (interleaved==codegree_sum) for
+  gluing AND non-gluing words; inner punctured lists small (≤2, often 1=unique
+  decode). Reduces L2's sharp saving to punctured-RS list decoding (a known object,
+  Johnson-bounded) summed over Fib1 — interleaved = |Fib1|·(small punctured list),
+  NOT |Fib1|·|Fib2|.
+- **How it is useful:** Gives the structural skeleton of a PROOF of the L2 saving:
+  bound the punctured-RS list (Johnson) + sum over Fib1 (L1). Remaining: worst-case
+  punctured-list constant + μ>2 recursion constants = the genuine sharp-constant
+  content, now reduced to standard punctured-RS list decoding.
+- **What to do next:** (loop paused by user). Bound the punctured-RS list constant
+  (Johnson on A1(c1)); handle μ>2 recursion; assemble into a saving proof.
+
 ### 2026-06-24 - L2: falsification scanner for the sharp-constant conjecture (iter 1)
 
 - **Agent/model:** Claude Opus 4.8 (L2/X1 lane, branch `allen/l2-x1-interleaved-mca`).
