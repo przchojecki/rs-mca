@@ -3982,6 +3982,8 @@ left-principal block `psi=1`, from the two-sided centered block consumed here,
 and records the equivalent signed pair-correlation form of
 `||G_e^circ||_F^2`.  The remaining one-sided part is the beta-column marginal
 of the same good quotient matrix and is orthogonal to this M1-centered term.
+The centered pair-correlation is further expanded there into the four signed
+quotient-fiber-product components `C_ab`, `C_a`, `C_b`, and `C_0`.
 
 ## Principal-Row Leakage
 

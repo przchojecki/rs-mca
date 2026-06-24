@@ -151,6 +151,41 @@ splits cleanly into the M1-centered target `(BETA_2^avg)` plus a beta-marginal
 bound.  The quotient-conic M1 ledger consumes only the first summand, while a
 future full `(BETA_2)` proof must also control the marginal.
 
+## Fiber-Product Component Ledger
+
+The centered pair-correlation can be expanded into four signed quotient-fiber
+product counts.  Put
+
+```text
+r_i = sum_j (G_e)_{i,j},        c_j = sum_i (G_e)_{i,j},
+T = sum_{i,j} (G_e)_{i,j}.
+```
+
+Define
+
+```text
+C_ab = sum_{i,j} (G_e)_{i,j}^2,
+C_a  = sum_i r_i^2,
+C_b  = sum_j c_j^2,
+C_0  = T^2.
+```
+
+Equivalently, `C_ab` is the signed count of pairs of good beta-cover points
+whose `a`-labels and `beta`-labels both agree modulo `K_e`; `C_a` and `C_b`
+drop one of those two quotient equalities; `C_0` drops both.  Then
+
+```text
+||G_e^circ||_F^2 = C_ab - e^{-1}C_a - e^{-1}C_b + e^{-2}C_0,
+
+e^{-1}||c^circ||_2^2 = e^{-1}C_b - e^{-2}C_0,
+
+||R_e||_F^2 = C_ab - e^{-1}C_a.
+```
+
+Thus a direct proof of `(BETA_2^avg)` may be phrased as an `O_e(p^2)` bound
+for this signed four-term fiber product.  The standalone verifier now checks
+these component identities exactly from the quotient matrix.
+
 ## Interpretation
 
 The scan finds no hidden `p^2` component in the tested quotient rows.  The good
@@ -189,6 +224,12 @@ e^{-1/2} ||c^circ||_2 / p = 1.2278896782 at (p,e)=(109,12),
 ||R_e||_F / p             = 1.6565244248 at (p,e)=(109,12).
 ```
 
+The largest raw joint-collision component in the expanded rows is
+
+```text
+C_ab/p^2 = 3.4704149482 at (p,e)=(109,12).
+```
+
 Thus the averaged M1 target remains substantially smaller than the largest
 individual full pointwise coefficient and smaller than the full
 right-nonprincipal RMS in the finite rows, matching the point of the
@@ -219,4 +260,5 @@ The relevant output line is
 beta-pushforward verifier checks a larger fixed grid, hard-codes the audited
 row values as regression data, and also checks the grouped pair-correlation
 identity `(PAIR_2)`, the beta-marginal Parseval identity, and the orthogonal
-decomposition `||R_e||_F^2=||G_e^circ||_F^2+e^{-1}||c^circ||_2^2`.
+decomposition `||R_e||_F^2=||G_e^circ||_F^2+e^{-1}||c^circ||_2^2`.  It also
+checks the four component identities for `C_ab`, `C_a`, `C_b`, and `C_0`.

@@ -194,6 +194,36 @@ def right_projected_frobenius_square(matrix: list[list[int]]) -> float:
     return norm_square
 
 
+def fiber_product_components(matrix: list[list[int]]) -> dict[str, float]:
+    order = len(matrix)
+    row_sums = [sum(row) for row in matrix]
+    column_sums = [
+        sum(matrix[row][column] for row in range(order))
+        for column in range(order)
+    ]
+    total = sum(row_sums)
+    joint_collision = sum(entry * entry for row in matrix for entry in row)
+    alpha_collision = sum(row_sum * row_sum for row_sum in row_sums)
+    beta_collision = sum(column_sum * column_sum for column_sum in column_sums)
+    total_collision = total * total
+    return {
+        "joint_collision": float(joint_collision),
+        "alpha_collision": float(alpha_collision),
+        "beta_collision": float(beta_collision),
+        "total_collision": float(total_collision),
+        "centered_from_components": (
+            joint_collision
+            - alpha_collision / order
+            - beta_collision / order
+            + total_collision / (order * order)
+        ),
+        "marginal_from_components": (
+            beta_collision / order - total_collision / (order * order)
+        ),
+        "right_projected_from_components": joint_collision - alpha_collision / order,
+    }
+
+
 def centered_pair_energy_square(matrix: list[list[int]]) -> float:
     order = len(matrix)
     norm_square = 0.0
@@ -252,6 +282,7 @@ def audit_case(p: int, quotient_order: int) -> dict[str, Any]:
     frobenius_square = centered_frobenius_square(matrix)
     marginal_square = beta_marginal_square(matrix)
     right_projected_square = right_projected_frobenius_square(matrix)
+    components = fiber_product_components(matrix)
     pair_square = centered_pair_energy_square(matrix)
     (
         two_sided_energy,
@@ -271,6 +302,15 @@ def audit_case(p: int, quotient_order: int) -> dict[str, Any]:
     pythagorean_error = abs(
         right_projected_square - frobenius_square - marginal_square
     )
+    component_centered_error = abs(
+        components["centered_from_components"] - frobenius_square
+    )
+    component_marginal_error = abs(
+        components["marginal_from_components"] - marginal_square
+    )
+    component_right_error = abs(
+        components["right_projected_from_components"] - right_projected_square
+    )
     if parseval_error > TOLERANCE:
         raise AssertionError((p, quotient_order, two_sided_energy, frobenius_square))
     if marginal_parseval_error > TOLERANCE:
@@ -282,6 +322,18 @@ def audit_case(p: int, quotient_order: int) -> dict[str, Any]:
     if pythagorean_error > TOLERANCE:
         raise AssertionError(
             (p, quotient_order, right_projected_square, frobenius_square)
+        )
+    if component_centered_error > TOLERANCE:
+        raise AssertionError(
+            (p, quotient_order, components["centered_from_components"])
+        )
+    if component_marginal_error > TOLERANCE:
+        raise AssertionError(
+            (p, quotient_order, components["marginal_from_components"])
+        )
+    if component_right_error > TOLERANCE:
+        raise AssertionError(
+            (p, quotient_order, components["right_projected_from_components"])
         )
     two_sided_ratio = max_two_sided / p
     beta2_ratio = max_beta2 / p
@@ -299,10 +351,30 @@ def audit_case(p: int, quotient_order: int) -> dict[str, Any]:
         "centered_frobenius_ratio": round(frobenius_ratio, 10),
         "beta_marginal_frobenius_ratio": round(marginal_ratio, 10),
         "right_projected_frobenius_ratio": round(right_projected_ratio, 10),
+        "joint_collision_ratio": round(
+            components["joint_collision"] / (p * p),
+            10,
+        ),
+        "alpha_collision_ratio": round(
+            components["alpha_collision"] / (quotient_order * p * p),
+            10,
+        ),
+        "beta_collision_ratio": round(
+            components["beta_collision"] / (quotient_order * p * p),
+            10,
+        ),
+        "total_collision_ratio": round(
+            components["total_collision"]
+            / (quotient_order * quotient_order * p * p),
+            10,
+        ),
         "parseval_error": round(parseval_error, 12),
         "marginal_parseval_error": round(marginal_parseval_error, 12),
         "pair_energy_error": round(pair_energy_error, 12),
         "pythagorean_error": round(pythagorean_error, 12),
+        "component_centered_error": round(component_centered_error, 12),
+        "component_marginal_error": round(component_marginal_error, 12),
+        "component_right_error": round(component_right_error, 12),
     }
 
 
@@ -373,6 +445,7 @@ def compute_report() -> dict[str, Any]:
         rows,
         key=lambda row: row["right_projected_frobenius_ratio"],
     )
+    max_joint_collision_row = max(rows, key=lambda row: row["joint_collision_ratio"])
     return {
         "status": "PASS",
         "proof_status": "EXPERIMENTAL / FINITE SPECTRAL AUDIT",
@@ -383,6 +456,7 @@ def compute_report() -> dict[str, Any]:
         "max_centered_frobenius_row": max_frobenius_row,
         "max_beta_marginal_frobenius_row": max_marginal_row,
         "max_right_projected_frobenius_row": max_right_projected_row,
+        "max_joint_collision_row": max_joint_collision_row,
         "interpretation": (
             "All audited good beta-pushforward matrices have p-scale full "
             "BETA_2 coefficients and p-scale centered Frobenius norm."
@@ -402,16 +476,19 @@ def print_report(report: dict[str, Any]) -> None:
             "frob/p={centered_frobenius_ratio} "
             "beta_marginal/p={beta_marginal_frobenius_ratio} "
             "right_projected/p={right_projected_frobenius_ratio} "
+            "joint/p^2={joint_collision_ratio} "
             "parseval_error={parseval_error} "
             "marginal_parseval_error={marginal_parseval_error} "
             "pair_energy_error={pair_energy_error} "
-            "pythagorean_error={pythagorean_error}".format(**row)
+            "pythagorean_error={pythagorean_error} "
+            "component_error={component_centered_error}".format(**row)
         )
     max_two_sided = report["max_two_sided_coefficient_row"]
     max_beta2 = report["max_beta2_coefficient_row"]
     max_frobenius = report["max_centered_frobenius_row"]
     max_marginal = report["max_beta_marginal_frobenius_row"]
     max_right_projected = report["max_right_projected_frobenius_row"]
+    max_joint_collision = report["max_joint_collision_row"]
     print(
         "max two-sided coefficient row: "
         f"p={max_two_sided['p']} e={max_two_sided['quotient_order']} "
@@ -437,6 +514,12 @@ def print_report(report: dict[str, Any]) -> None:
         f"p={max_right_projected['p']} "
         f"e={max_right_projected['quotient_order']} "
         f"ratio={max_right_projected['right_projected_frobenius_ratio']}"
+    )
+    print(
+        "max joint collision row: "
+        f"p={max_joint_collision['p']} "
+        f"e={max_joint_collision['quotient_order']} "
+        f"ratio={max_joint_collision['joint_collision_ratio']}"
     )
 
 

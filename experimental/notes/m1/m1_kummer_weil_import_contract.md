@@ -641,6 +641,27 @@ target plus a beta-marginal bound.  The current quotient-conic M1 ledger does
 not consume this marginal term, but the full pointwise `(BETA_2)` route must
 control it.
 
+The centered target can also be written as a four-term signed fiber-product
+ledger.  With
+
+```text
+C_ab = sum_{i,j} (G_e)_{i,j}^2,
+C_a  = sum_i (sum_j (G_e)_{i,j})^2,
+C_b  = sum_j (sum_i (G_e)_{i,j})^2,
+C_0  = (sum_{i,j}(G_e)_{i,j})^2,
+```
+
+one has
+
+```text
+||G_e^circ||_F^2 = C_ab - e^{-1}C_a - e^{-1}C_b + e^{-2}C_0.
+```
+
+Here `C_ab`, `C_a`, `C_b`, and `C_0` are signed counts on the product of two
+good beta covers, with both quotient equalities, only the `a` equality, only
+the `beta` equality, or no quotient equality imposed.  This is the most
+literal finite fiber-product form of the direct `(BETA_2^avg)` target.
+
 The elementary hypotheses behind this import are now audited in
 `verify_m1_depth_two_line_conic_resonance_reduction.py`:
 
