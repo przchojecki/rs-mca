@@ -288,6 +288,13 @@ def poly_from_roots_mod(roots: Iterable[int], prime: int) -> list[int]:
     return coeffs
 
 
+def poly_eval_mod(poly: Sequence[int], value: int, prime: int) -> int:
+    total = 0
+    for coeff in reversed(poly):
+        total = (total * value + coeff) % prime
+    return total
+
+
 def top_sigma_key_mod(coeffs: Sequence[int], sigma: int, prime: int) -> tuple[int, ...]:
     size = len(coeffs) - 1
     effective = min(sigma, size)
@@ -475,6 +482,34 @@ def check_f17_packet() -> dict[str, Any]:
     }
 
 
+def primitive_order_roots(prime: int, order: int) -> list[int]:
+    generator = primitive_root(prime)
+    root = pow(generator, (prime - 1) // order, prime)
+    return [
+        pow(root, unit, prime)
+        for unit in range(1, order)
+        if gcd(unit, order) == 1
+    ]
+
+
+def prefix_delta_values_mod(
+    left: Sequence[int],
+    right: Sequence[int],
+    order: int,
+    sigma: int,
+    root: int,
+    prime: int,
+) -> list[int]:
+    values = []
+    for rank in range(1, sigma + 1):
+        delta = poly_sub(
+            exponent_elementary_poly(left, order, rank),
+            exponent_elementary_poly(right, order, rank),
+        )
+        values.append(poly_eval_mod(delta, root, prime))
+    return values
+
+
 def check_split_prime_sweep() -> list[dict[str, Any]]:
     rows = []
     expected_counts = {17: 40, 97: 0, 113: 0, 193: 0}
@@ -511,6 +546,51 @@ def check_split_prime_sweep() -> list[dict[str, Any]]:
     return rows
 
 
+def check_prime_ideal_false_positive() -> dict[str, Any]:
+    left = (0, 1, 2, 7, 9, 13)
+    right = (0, 1, 2, 3, 4, 11)
+    order = 16
+    sigma = 4
+    prime = 97
+    certificate = bad_prime_certificate(left, right, order=order, sigma=sigma)
+    if certificate["certificate"] != 194:
+        raise AssertionError("unexpected false-positive certificate")
+    if certificate["split_prime_factors"] != [prime]:
+        raise AssertionError("expected 97 as rational split certificate factor")
+
+    profile = []
+    any_collision = False
+    for root in primitive_order_roots(prime, order):
+        values = prefix_delta_values_mod(
+            left,
+            right,
+            order,
+            sigma,
+            root,
+            prime,
+        )
+        all_zero = all(value == 0 for value in values)
+        any_collision = any_collision or all_zero
+        profile.append({
+            "root": root,
+            "delta_values": values,
+            "all_zero": all_zero,
+        })
+    if any_collision:
+        raise AssertionError("rational false positive became an ideal collision")
+    return {
+        "left": list(left),
+        "right": list(right),
+        "order": order,
+        "sigma": sigma,
+        "prime": prime,
+        "certificate": certificate["certificate"],
+        "certificate_factorization": certificate["certificate_factorization"],
+        "primitive_root_checks": profile,
+        "actual_collision_for_any_embedding": any_collision,
+    }
+
+
 def check_galois_invariance() -> dict[str, Any]:
     left = (0, 1, 2, 12, 14, 15)
     right = (3, 4, 5, 7, 10, 13)
@@ -542,6 +622,7 @@ def build_report() -> dict[str, Any]:
         "structured_char_zero_example": check_structured_char_zero_example(),
         "f17_packet": check_f17_packet(),
         "split_prime_sweep": check_split_prime_sweep(),
+        "prime_ideal_false_positive": check_prime_ideal_false_positive(),
         "galois_invariance": check_galois_invariance(),
         "nonmutating": True,
         "remaining_open_problem": (
@@ -569,6 +650,12 @@ def print_human(report: dict[str, Any]) -> None:
     print(f"split_prime_sweep={sweep}")
     print(f"aggregate_lcm={packet['aggregate_lcm_certificate']}")
     print(f"translation_orbits={len(packet['translation_orbits'])}")
+    false_positive = report["prime_ideal_false_positive"]
+    print(
+        "false_positive="
+        f"p={false_positive['prime']}, cert={false_positive['certificate']}, "
+        f"actual={false_positive['actual_collision_for_any_embedding']}"
+    )
     print(f"galois_certificate={report['galois_invariance']['base_certificate']}")
     print(f"remaining_open_problem={report['remaining_open_problem']}")
 

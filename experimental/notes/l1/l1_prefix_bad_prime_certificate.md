@@ -144,6 +144,50 @@ LCM_T = lcm_{(A,B) in T} C_n,sigma(A,B).
 This is not yet the desired L1 aggregation theorem, but it is the exact finite
 object that such a theorem can try to bound.
 
+## Prime-Ideal Refinement
+
+The rational certificate is a necessary rational-prime filter, not a sufficient
+collision test.  If `p` splits, the actual finite-field row also chooses a
+prime ideal
+
+```text
+(p, zeta_n-h)
+```
+
+or equivalently a primitive `n`-th root `h in F_p`.  The exact ideal-level
+condition is
+
+```text
+Delta_r(h) = 0 in F_p,        1 <= r <= sigma.
+```
+
+Thus `p | C_n,sigma(A,B)` says that each nonzero `Delta_r(zeta_n)` vanishes
+modulo at least one prime ideal above `p`; it need not be the same prime ideal
+for all `r`.
+
+The verifier records a small false-positive template:
+
+```text
+A = {0,1,2,7,9,13},
+B = {0,1,2,3,4,11},
+n = 16,
+sigma = 4.
+```
+
+Its rational certificate is
+
+```text
+C_16,4(A,B) = 194 = 2 * 97,
+```
+
+so `97` passes the rational split-prime filter.  But evaluating the four
+`Delta_r` at all primitive `16`-th roots in `F_97` gives no common zero.  Hence
+there is no finite-field prefix collision for this template over `F_97`.
+
+This distinction is important for aggregation: lcm certificates produce a
+candidate set of rational primes, while the final row-level verifier or theorem
+must still impose the common-prime-ideal condition.
+
 ## Worked L1 Packet: F_17, n=16
 
 The existing aperiodic collision certificate in
