@@ -394,6 +394,15 @@ def translated_subset(subset: Sequence[int], shift: int, order: int) -> tuple[in
     return tuple(sorted((value + shift) % order for value in subset))
 
 
+def affine_subset(
+    subset: Sequence[int],
+    unit: int,
+    shift: int,
+    order: int,
+) -> tuple[int, ...]:
+    return tuple(sorted((unit * value + shift) % order for value in subset))
+
+
 def normalized_pair(
     left: Sequence[int],
     right: Sequence[int],
@@ -412,6 +421,22 @@ def translation_orbit_key(
             translated_subset(left, shift, order),
             translated_subset(right, shift, order),
         )
+        for shift in range(order)
+    )
+
+
+def affine_orbit_key(
+    left: Sequence[int],
+    right: Sequence[int],
+    order: int,
+) -> tuple[tuple[int, ...], tuple[int, ...]]:
+    units = [unit for unit in range(1, order) if gcd(unit, order) == 1]
+    return min(
+        normalized_pair(
+            affine_subset(left, unit, shift, order),
+            affine_subset(right, unit, shift, order),
+        )
+        for unit in units
         for shift in range(order)
     )
 
@@ -447,6 +472,7 @@ def check_f17_packet() -> dict[str, Any]:
     aggregate_certificate = 1
     orbit_groups: dict[tuple[tuple[int, ...], tuple[int, ...]], list[dict[str, Any]]]
     orbit_groups = defaultdict(list)
+    affine_orbits: set[tuple[tuple[int, ...], tuple[int, ...]]] = set()
     for pair in row["pairs"]:
         certificate = bad_prime_certificate(
             pair["left"],
@@ -476,6 +502,7 @@ def check_f17_packet() -> dict[str, Any]:
         split_factor_sets[split_factors] += 1
         aggregate_certificate = lcm_int(aggregate_certificate, certificate["certificate"])
         orbit_groups[translation_orbit_key(pair["left"], pair["right"], 16)].append(pair)
+        affine_orbits.add(affine_orbit_key(pair["left"], pair["right"], 16))
 
     expected = Counter({68: 16, 272: 16, 147_968: 8})
     if certificate_counter != expected:
@@ -528,6 +555,7 @@ def check_f17_packet() -> dict[str, Any]:
         "aggregate_lcm_certificate": aggregate_certificate,
         "aggregate_split_prime_factors": aggregate_split_factors,
         "translation_orbits": orbit_ledger,
+        "affine_orbit_count": len(affine_orbits),
         "split_factor_sets": {
             ",".join(map(str, key)): value
             for key, value in sorted(split_factor_sets.items())
@@ -691,6 +719,82 @@ def check_galois_invariance() -> dict[str, Any]:
     }
 
 
+def check_affine_invariance() -> dict[str, Any]:
+    order = 16
+    sigma = 4
+    units = [unit for unit in range(1, order) if gcd(unit, order) == 1]
+    templates = [
+        {
+            "name": "f17_collision",
+            "left": (0, 1, 2, 12, 14, 15),
+            "right": (3, 4, 5, 7, 10, 13),
+            "prime": 17,
+            "base_certificate": 68,
+            "base_gcd_degree": 1,
+        },
+        {
+            "name": "p97_rational_false_positive",
+            "left": (0, 1, 2, 7, 9, 13),
+            "right": (0, 1, 2, 3, 4, 11),
+            "prime": 97,
+            "base_certificate": 194,
+            "base_gcd_degree": 0,
+        },
+    ]
+    rows = []
+    for template in templates:
+        base = bad_prime_certificate(
+            template["left"],
+            template["right"],
+            order=order,
+            sigma=sigma,
+        )
+        base_degree = degree(common_root_gcd_mod(
+            template["left"],
+            template["right"],
+            order,
+            sigma,
+            template["prime"],
+        ))
+        if base["certificate"] != template["base_certificate"]:
+            raise AssertionError("bad affine-invariance base certificate")
+        if base_degree != template["base_gcd_degree"]:
+            raise AssertionError("bad affine-invariance base gcd degree")
+
+        checked = 0
+        for unit in units:
+            for shift in range(order):
+                left = affine_subset(template["left"], unit, shift, order)
+                right = affine_subset(template["right"], unit, shift, order)
+                transformed = bad_prime_certificate(left, right, order, sigma)
+                transformed_degree = degree(common_root_gcd_mod(
+                    left,
+                    right,
+                    order,
+                    sigma,
+                    template["prime"],
+                ))
+                if transformed["certificate"] != base["certificate"]:
+                    raise AssertionError("certificate changed under affine action")
+                if transformed_degree != base_degree:
+                    raise AssertionError("gcd degree changed under affine action")
+                checked += 1
+        rows.append({
+            "name": template["name"],
+            "prime": template["prime"],
+            "certificate": base["certificate"],
+            "common_root_degree": base_degree,
+            "affine_transforms_checked": checked,
+        })
+    return {
+        "order": order,
+        "sigma": sigma,
+        "unit_count": len(units),
+        "shift_count": order,
+        "templates": rows,
+    }
+
+
 def build_report() -> dict[str, Any]:
     return {
         "status": "PASS",
@@ -701,6 +805,7 @@ def build_report() -> dict[str, Any]:
         "split_prime_sweep": check_split_prime_sweep(),
         "prime_ideal_false_positive": check_prime_ideal_false_positive(),
         "galois_invariance": check_galois_invariance(),
+        "affine_invariance": check_affine_invariance(),
         "nonmutating": True,
         "remaining_open_problem": (
             "aggregate the bad-prime certificates over robustly aperiodic "
@@ -727,12 +832,19 @@ def print_human(report: dict[str, Any]) -> None:
     print(f"split_prime_sweep={sweep}")
     print(f"aggregate_lcm={packet['aggregate_lcm_certificate']}")
     print(f"translation_orbits={len(packet['translation_orbits'])}")
+    print(f"affine_orbits={packet['affine_orbit_count']}")
     false_positive = report["prime_ideal_false_positive"]
     print(
         "false_positive="
         f"p={false_positive['prime']}, cert={false_positive['certificate']}, "
         f"gcd_degree={false_positive['common_root_degree']}, "
         f"actual={false_positive['actual_collision_for_any_embedding']}"
+    )
+    affine = report["affine_invariance"]
+    print(
+        "affine_invariance="
+        f"templates={len(affine['templates'])}, "
+        f"transforms={affine['templates'][0]['affine_transforms_checked']}"
     )
     print(f"galois_certificate={report['galois_invariance']['base_certificate']}")
     print(f"remaining_open_problem={report['remaining_open_problem']}")

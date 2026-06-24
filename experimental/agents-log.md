@@ -44,7 +44,8 @@ Keep entries concise and link to the relevant files.
   cyclotomic resultant certificate. The note also records the associated norm
   bound, finite-family lcm aggregation handle, and the prime-ideal refinement
   via the modular gcd `gcd(Phi_n, Delta_1, ..., Delta_sigma)` needed to filter
-  rational-certificate false positives.
+  rational-certificate false positives, together with affine-orbit invariance
+  for future aggregation.
 - **How it is useful:** This supplies the finite-field layer complementary to
   characteristic-zero L1 reductions. It turns robustly aperiodic modular
   collisions into algebraic norm/resultant divisibility events, matching a

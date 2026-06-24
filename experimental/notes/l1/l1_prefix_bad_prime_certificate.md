@@ -207,6 +207,42 @@ This distinction is important for aggregation: lcm certificates produce a
 candidate set of rational primes, while the final row-level verifier or theorem
 must still impose the common-prime-ideal condition.
 
+## Affine-Orbit Reduction
+
+The template data has an affine symmetry.  For `u in (Z/nZ)^*` and
+`t in Z/nZ`, put
+
+```text
+A' = uA+t,
+B' = uB+t.
+```
+
+Then
+
+```text
+Delta'_r(T) = T^(rt) Delta_r(T^u).
+```
+
+The substitution `T -> T^u` is a Galois automorphism on primitive `n`-th roots,
+and `T^(rt)` is a cyclotomic unit.  Therefore:
+
+```text
+C_n,sigma(A',B') = C_n,sigma(A,B).
+```
+
+For every split prime `p`, the same identity permutes primitive `n`-th roots in
+`F_p`, so the modular common-root degree is also invariant:
+
+```text
+deg gcd(Phi_n, Delta'_1, ..., Delta'_sigma)
+  =
+deg gcd(Phi_n, Delta_1, ..., Delta_sigma).
+```
+
+Thus any finite bad-prime aggregation can quotient by affine template orbits
+without changing either the rational certificate or the ideal-level collision
+test.
+
 ## Worked L1 Packet: F_17, n=16
 
 The existing aperiodic collision certificate in
