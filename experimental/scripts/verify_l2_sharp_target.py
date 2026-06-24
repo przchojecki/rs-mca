@@ -101,6 +101,51 @@ def aligned_quotient_budget(n: int, k: int, a: int, mu: int) -> dict:
     return {"total": total, "packets": packets}
 
 
+def remainder_quotient_budget(n: int, k: int, a: int, mu: int) -> dict:
+    """Conservative aligned quotient budget for all remainders.
+
+    For M | n with M > a-k, write a = M*ell + u, 0 <= u < M.  The quotient-core
+    packet uses ell full non-omitted M-cosets plus u points in one omitted
+    M-coset.  When M | k this specializes to the previous divisible packet.
+    """
+    packets = []
+    total = 0
+    sigma = a - k
+    if sigma < 0:
+        raise ValueError("expected a >= k")
+    for fiber_size in range(2, n + 1):
+        if n % fiber_size or fiber_size <= sigma:
+            continue
+        quotient_order = n // fiber_size
+        q_minus_omitted = quotient_order - 1
+        ell = a // fiber_size
+        partial = a - fiber_size * ell
+        if ell <= 0 or ell > q_minus_omitted:
+            continue
+        candidates = [
+            aligned_quotient_packet(
+                quotient_order, ell, mu, a, tau, fiber_size
+            )
+            for tau in range(partial + 1)
+        ]
+        best = max(candidates)
+        best_tau = candidates.index(best)
+        if best:
+            packets.append(
+                {
+                    "M": fiber_size,
+                    "N": quotient_order,
+                    "ell": ell,
+                    "partial": partial,
+                    "tau": best_tau,
+                    "packet": best,
+                    "divides_k": k % fiber_size == 0,
+                }
+            )
+            total += best
+    return {"total": total, "packets": packets}
+
+
 def primitive_root(p: int) -> int:
     phi = p - 1
     factors = []
@@ -509,6 +554,11 @@ def realized_rs_k22() -> dict:
 
 def run() -> dict:
     quotient_example = aligned_quotient_budget(n=64, k=16, a=18, mu=2)
+    remainder_quotient_example = remainder_quotient_budget(n=64, k=16, a=18, mu=2)
+    dithered_quotient_example = {
+        "divisible_only": aligned_quotient_budget(n=64, k=15, a=17, mu=2),
+        "all_remainders": remainder_quotient_budget(n=64, k=15, a=17, mu=2),
+    }
     threshold_example = johnson_anchor_threshold(k=16, a=18)
     shell_weight_example = johnson_shell_weight(n=64, k=16, a=18)
     fixed_arity_shell_weight_example = johnson_shell_weight(
@@ -518,6 +568,12 @@ def run() -> dict:
     witness = realized_rs_k22()
     checks = {
         "quotient_budget_nonnegative": quotient_example["total"] >= 0,
+        "remainder_budget_extends_divisible": remainder_quotient_example["total"]
+        >= quotient_example["total"],
+        "dithered_remainder_budget_detects_packets": dithered_quotient_example[
+            "all_remainders"
+        ]["total"]
+        > dithered_quotient_example["divisible_only"]["total"],
         "kmm_grid_formula": all(d["interleaved_edges"] == d["grid_edges_at_n_min"] for d in designs),
         "rs_witness_creates_mass": witness["mass_creation"],
         "rs_witness_realizes_k22": witness["interleaved"] == witness["product_bound"] == 4,
@@ -534,6 +590,8 @@ def run() -> dict:
     return {
         "status": "EXPERIMENTAL / FALSIFICATION",
         "aligned_quotient_budget_example": quotient_example,
+        "remainder_quotient_budget_example": remainder_quotient_example,
+        "dithered_quotient_budget_example": dithered_quotient_example,
         "johnson_anchor_threshold_example": threshold_example,
         "johnson_shell_weight_example": shell_weight_example,
         "fixed_arity_johnson_shell_weight_example": fixed_arity_shell_weight_example,
@@ -556,6 +614,17 @@ def main(argv: list[str] | None = None) -> int:
         print(f"L2 sharp-target stress test ({result['status']})")
         qb = result["aligned_quotient_budget_example"]
         print(f"  aligned quotient budget example: total={qb['total']}, packets={len(qb['packets'])}")
+        rqb = result["remainder_quotient_budget_example"]
+        print(
+            "  all-remainder quotient budget example: "
+            f"total={rqb['total']}, packets={len(rqb['packets'])}"
+        )
+        dqb = result["dithered_quotient_budget_example"]
+        print(
+            "  dithered quotient budget example (n=64,k=15,a=17): "
+            f"divisible_total={dqb['divisible_only']['total']}, "
+            f"all_remainders_total={dqb['all_remainders']['total']}"
+        )
         jt = result["johnson_anchor_threshold_example"]
         print(
             "  Johnson anchor threshold example: "

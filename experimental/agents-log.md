@@ -39,9 +39,13 @@ Keep entries concise and link to the relevant files.
   `experimental/agents-log.md`.
 - **Status:** CONJECTURAL / EXPERIMENTAL / FALSIFICATION.
 - **What is being added:** A standalone version-0 L2 sharp interleaved-list
-  target with explicit fixed-arity setup, generated-field reserve, aligned
-  quotient budget `Quot_align_mu`, and a polynomial over-agreement/codegree
-  error. The target now names the `mu=2` codegree error exactly as a sum of
+  target with explicit fixed-arity setup, generated-field reserve, an
+  all-remainder aligned quotient budget `Quot_rem_mu`, and a polynomial
+  over-agreement/codegree error. The quotient budget now includes
+  dimension-dithered scales `M|n` with `M` not necessarily dividing `k`, using
+  `ell=floor(a/M)` full cosets plus a partial omitted coset of size
+  `a mod M`; the old divisible-only budget is just a sub-sum. The target now
+  names the `mu=2` codegree error exactly as a sum of
   punctured Reed-Solomon list sizes over row-1 full supports and proves an
   elementary punctured Johnson/codegree bound:
   `L_A <= floor(s(s-k+1)/(a^2-s(k-1)))` when `a^2>s(k-1)`, with unique
@@ -58,22 +62,24 @@ Keep entries concise and link to the relevant files.
   the powered shell weight `sum_s J(s;k,a)^(mu-1)` is
   `O_mu(n^{2(mu-1)} log n)`, so the repaired one-row L1 bound at `a` implies a
   polynomial fixed-arity L2 codegree bound. This is now stated as a conditional
-  theorem: after quotient packets are removed or charged to `Quot_align_mu`,
+  theorem: after quotient packets are removed or charged to `Quot_rem_mu`,
   the L1 local limit supplies the `n^B` error term in L2-Sharp. The
   verifier stress-tests the exact quotient budget, natural
   `K_{m,m}` grid over-agreement attacks, and a realized `F_29` Reed-Solomon
   `K_{2,2}` gluing witness with punctured codegrees `[2,2]` satisfying the
   Johnson bound `5`, exact shell bound `10`, and L1-shell reduction bound
   `372`; for `(n,k,a)=(64,16,18)`, the `mu=3` powered shell weight is `199`.
+  At the dithered example `(n,k,a)=(64,15,17)`, the divisible-only quotient
+  budget is `0` but the all-remainder budget is `1389`.
 - **How it is useful:** Turns the L2 objective from a broad "avoid Cartesian
   overcharge" principle into a concrete conjectural inequality that can be
   falsified or promoted. The `K_{2,2}` witness records that local Cartesian
   blocks are real, so the correct target is a global sharp bound with those
   blocks charged to the polynomial codegree term.
 - **What to do next:** Prove/import the repaired one-row L1 list bound at the
-  original threshold `a=k+sigma`, add dithered quotient scales where `M` does
-  not divide `k`, and reconcile the final statement with the active X1/L2
-  bridge PR #101 before promotion.
+  original threshold `a=k+sigma`, compare `Quot_rem_mu` with the active
+  quotient-profile/dithering scanners, and reconcile the final statement with
+  the active X1/L2 bridge PR #101 before promotion.
 
 ### 2026-06-23 - Cycle119 admissibility review
 

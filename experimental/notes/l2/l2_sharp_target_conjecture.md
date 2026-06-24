@@ -101,19 +101,21 @@ with fixed constants `epsilon>0`, `Cq`, and `C0`. The last inequality is the
 same coarse high-slack guard used in the L1 proof program; later protocol
 specialization may replace it with the exact corrected reserve.
 
-## 2. Explicit aligned quotient budget
+## 2. Explicit all-remainder quotient budget
 
-This version makes the quotient term concrete in the divisible quotient window.
-For every subgroup fiber size
+This version makes the quotient term concrete for every quotient scale, including
+dimension-dithered cases where `M` need not divide `k`. Put `sigma=a-k`. For
+every subgroup fiber size
 
 ```text
-M | n,        M | k,        M >= 2,
+M | n,        M > sigma,        M >= 2,
 ```
 
 put
 
 ```text
-N = n/M,        ell = k/M,        Q = N-1.
+N = n/M,        Q = N-1,
+ell_M = floor(a/M),        u_M = a - M ell_M        (0 <= u_M < M).
 ```
 
 For a slack-overlap parameter `0 <= tau < M`, define
@@ -130,38 +132,76 @@ E_empty(R,b,mu)
 ```
 
 This counts ordered `mu`-tuples of `b`-subsets of an `R`-set with empty common
-intersection. The aligned quotient-core packet at scale `M` is
+intersection. The all-remainder aligned quotient-core packet at scale `M` is
 
 ```text
 L_{M,mu}(a,tau)
-  = sum_{c=h_M(a,tau)}^ell
-      binom(Q,c) E_empty(Q-c,ell-c,mu),
+  = sum_{c=h_M(a,tau)}^ell_M
+      binom(Q,c) E_empty(Q-c,ell_M-c,mu),
 ```
 
-with the value read as `0` if `h_M(a,tau)>ell`.
+with the value read as `0` if `h_M(a,tau)>ell_M`.
 
-Define the conservative aligned quotient budget
+The reason this is the right dithered quotient packet is the following
+degree-cancellation lemma. Choose one `M`-coset `C_0`, a set
+`T subset C_0` with `|T|=u_M`, and an `ell_M`-subset `A` of the remaining
+quotient cosets. Let `U_A` be the union of those full cosets and
 
 ```text
-Quot_align_mu(n,k,a)
-  = sum_{M | gcd(n,k), M>=2}
-      max_{0 <= tau < M} L_{M,mu}(a,tau),
+L_T(X) = prod_{t in T}(X-t),
+L_A(X) = prod_{alpha in A}(X^M-alpha),
+Y(X) = X^{M ell_M} L_T(X).
 ```
 
-omitting terms with `ell=0` or `ell>Q`. This is a budget, not a disjointness
-claim: it may overcount overlapping quotient packets. Its value is explicit and
-finite. At the aligned threshold `a=k+sigma`, `tau=sigma<M`, the endpoint is
-diagonal:
+Then
 
 ```text
-L_{M,mu}(k+sigma,sigma) = binom(Q,ell),
+P_A(X) = Y(X) - L_T(X)L_A(X)
+       = L_T(X)(X^{M ell_M}-L_A(X))
 ```
 
-not `binom(Q,ell)^mu`.
+has degree `<k`: indeed `X^{M ell_M}-L_A(X)` has degree at most
+`M(ell_M-1)`, so
 
-The non-divisible and dimension-dithered quotient cases are not included in
-this version. They should either be reduced to this divisible window or added
-as a separate exact budget.
+```text
+deg P_A <= u_M + M(ell_M-1) = a-M = k+sigma-M < k.
+```
+
+On `T union U_A`, either `L_T` or `L_A` vanishes, so `P_A` agrees with `Y` on
+the advertised quotient-core support of size `a` (and possibly more points).
+Thus the divisible case `M|k` is only the special case `ell_M=k/M` and
+`u_M=sigma`; if `M` does not divide `k`, the partial omitted coset has size
+`u_M=a mod M`.
+
+For interleaving, if row `i` has partial set `T_i` and quotient subset `A_i`,
+then the common agreement size is
+
+```text
+|T_1 cap ... cap T_mu| + M |A_1 cap ... cap A_mu|.
+```
+
+So the same `E_empty` formula counts the packet. Since the partial sets have
+size `u_M`, the actual overlap satisfies `0 <= tau <= u_M`. Define the
+conservative all-remainder quotient budget
+
+```text
+Quot_rem_mu(n,k,a)
+  = sum_{M | n, M>sigma, M>=2}
+      max_{0 <= tau <= u_M} L_{M,mu}(a,tau),
+```
+
+omitting terms with `ell_M=0` or `ell_M>Q`. This is a budget, not a
+disjointness claim: it may overcount overlapping quotient packets. Its value is
+explicit and finite. At the aligned endpoint `tau=u_M`, one has
+`h_M(a,u_M)=ell_M`, hence
+
+```text
+L_{M,mu}(a,u_M) = binom(Q,ell_M),
+```
+
+not `binom(Q,ell_M)^mu`. The previous divisible-only budget is the sub-sum over
+scales with `M|k`; the all-remainder form is the budget used in the target
+below.
 
 ## 3. Conjecture L2-Sharp, Version 0
 
@@ -174,7 +214,7 @@ above,
 ```text
 Lst_mu(H,k,a;q)
  <= binom(n,a) q^(-mu(a-k))
-    + Quot_align_mu(n,k,a)
+    + Quot_rem_mu(n,k,a)
     + n^B.
 ```
 
@@ -549,7 +589,7 @@ n^{B_L+2(mu-1)}(2+log n) + n^{mu B_L}.
 ```
 
 Thus, after the aligned quotient packets are removed or charged to
-`Quot_align_mu(n,k,a)`, this L1 shell hypothesis supplies the polynomial
+`Quot_rem_mu(n,k,a)`, this L1 shell hypothesis supplies the polynomial
 `n^B` error term required by L2-Sharp, for example with any
 
 ```text
@@ -592,13 +632,15 @@ python3 experimental/scripts/verify_l2_sharp_target.py
 checks four stress points.
 
 1. The explicit aligned quotient budget is computable. For example, at
-   `(n,k,a,mu)=(64,16,18,2)` the conservative budget has three active packet
-   scales and total `1389`. For the same `(k,a)=(16,18)`, the punctured
-   Johnson step controls anchor supports through `s=21`; the remaining
-   large-anchor tail starts only at `s=22`, i.e. four extra agreements above
-   the list threshold. The exact controlled Johnson shell weight in this
-   example is `17`; the powered shell weight for the fixed-arity `mu=3`
-   reduction is `199`.
+   `(n,k,a,mu)=(64,16,18,2)` the old divisible-only budget and the
+   all-remainder budget both have three active packet scales and total `1389`.
+   But at the dithered dimension `(n,k,a,mu)=(64,15,17,2)`, the divisible-only
+   budget is `0` while the all-remainder budget is still `1389`, coming from
+   partial-coset packets. For `(k,a)=(16,18)`, the punctured Johnson step
+   controls anchor supports through `s=21`; the remaining large-anchor tail
+   starts only at `s=22`, i.e. four extra agreements above the list threshold.
+   The exact controlled Johnson shell weight in this example is `17`; the
+   powered shell weight for the fixed-arity `mu=3` reduction is `199`.
 2. The natural `K_{m,m}` grid over-agreement family has
    ```text
    n_min = (k-1) + m^2(a-k+1),
@@ -633,13 +675,13 @@ The conjecture would fail, or need refinement, if one finds any of the
 following above the reserve.
 
 - A non-aligned quotient family whose interleaved contribution is not covered
-  by `Quot_align_mu(n,k,a)` and is larger than `n^B`.
+  by `Quot_rem_mu(n,k,a)` and is larger than `n^B`.
 - A non-grid over-agreement/codegree construction whose common-intersection
   count grows like a Cartesian support product rather than a polynomial error.
 - A family of punctured domains `A=A_{U_1}(c_1)` for which the punctured-list
   term `Gamma_A(U_2,a)` is super-polynomial after quotient packets are removed.
-- A dithered-dimension quotient packet (`M` not dividing `k`) that changes the
-  diagonal packet count by more than a polynomial factor.
+- A quotient packet not covered by the all-remainder budget above that changes
+  the diagonal packet count by more than a polynomial factor.
 - A protocol-relevant growing-`mu` regime. This version treats `mu` as fixed.
 
 The next useful proof target is therefore a codegree theorem: after quotient
