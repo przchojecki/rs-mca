@@ -143,6 +143,9 @@ Keep entries concise and link to the relevant files.
   random `t`-th moments by
   `binom(n,a+d) binom(a+d,a)^t q^{-mu(a-k+d)}`; the verifier counts connected
   ordered triples by `d` in the finite `F_7` model.
+  A finite-moment clearance corollary shows that if
+  `q^mu >= 2 rho_0^{-1} n^t`, the positive-excess connected contribution is at
+  most one diagonal scale; the verifier checks this exactly for `q=31, mu=2`.
 - **How it is useful:** Turns the L2 objective from a broad "avoid Cartesian
   overcharge" principle into a concrete conjectural inequality that can be
   falsified or promoted. The `K_{2,2}` witness records that local Cartesian

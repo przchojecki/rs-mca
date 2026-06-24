@@ -477,6 +477,44 @@ concrete proof route: connected high-overlap clusters either remain diagonal,
 or their union excess pays a field-entropy factor `q^{-mu d}` against only the
 combinatorial cost of choosing a small enlarged union.
 
+In a fixed moment, this entropy payment clears the positive-excess layers under
+a simple polynomial lower bound on `q^mu`.
+
+**Corollary (finite-moment connected-cluster clearance).** Fix `t>=1` and
+assume `a>=rho_0 n`. If
+
+```text
+q^mu >= 2 rho_0^{-1} n^t,
+```
+
+then in the random model the total connected high-overlap contribution to
+`E X^t` from union excess `d>=1` is at most the diagonal first-moment scale
+
+```text
+binom(n,a) q^{-mu(a-k)}.
+```
+
+Thus, under this sufficient condition, positive-excess connected clusters add
+at most one more diagonal-scale contribution to the fixed `t`-th moment.
+
+*Proof.* From the preceding corollary, the `d`-th positive-excess layer divided
+by the diagonal scale is at most
+
+```text
+[ binom(n,a+d) / binom(n,a) ] binom(a+d,a)^t q^{-mu d}.
+```
+
+Since `a>=rho_0 n`,
+
+```text
+binom(n,a+d) / binom(n,a)
+ = prod_{j=1}^d (n-a-j+1)/(a+j)
+ <= rho_0^{-d}.
+```
+
+Also `binom(a+d,a)<=n^d`. Hence the relative `d`-layer is at most
+`(rho_0^{-1} n^t/q^mu)^d <= 2^{-d}`. Summing over `d>=1` gives the claim.
+
 **Lemma (all-remainder quotient packets have exact support and exact count).**
 Fix one scale `M | n` with `M>sigma`, write `a=M ell+u` with
 `0<=u<M`, and fix an omitted `M`-coset `C_0`. For row `i`, choose
@@ -1235,7 +1273,9 @@ checks the following stress points.
    `3`-sets in `[6]` by union excess `d` and checks the moment-counting bound
    `binom(n,a+d) binom(a+d,a)^3`: the diagonal `d=0` term is exact, and the
    positive-excess terms are present but bounded by the displayed union-count
-   ledger.
+   ledger. With `q=31` and `mu=2`, the exact positive-excess connected-triple
+   contribution is below the diagonal scale, and the union-count upper bound is
+   below the diagonal scale as well.
 5. The natural `K_{m,m}` grid over-agreement family has
    ```text
    n_min = (k-1) + m^2(a-k+1),

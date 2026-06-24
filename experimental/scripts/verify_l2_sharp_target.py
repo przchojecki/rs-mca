@@ -33,6 +33,7 @@ import argparse
 import itertools
 import json
 import sys
+from fractions import Fraction
 from math import ceil, comb, log
 
 
@@ -554,6 +555,7 @@ def support_cluster_rank_profile() -> dict:
 def connected_cluster_count_profile() -> dict:
     """Count connected high-overlap support tuples by union excess."""
     n, k, a, tuple_size = 6, 2, 3, 3
+    moment_q, mu = 31, 2
     supports = [tuple(support) for support in itertools.combinations(range(n), a)]
     rows_by_excess: dict[int, int] = {}
     for support_tuple in itertools.product(supports, repeat=tuple_size):
@@ -569,10 +571,21 @@ def connected_cluster_count_profile() -> dict:
         union_excess = union_size - a
         rows_by_excess[union_excess] = rows_by_excess.get(union_excess, 0) + 1
     rows = []
+    diagonal_scale_count = comb(n, a)
+    positive_actual_ratio = Fraction(0, 1)
+    positive_bound_ratio = Fraction(0, 1)
     for union_excess, count in sorted(rows_by_excess.items()):
         union_size = a + union_excess
         support_capacity = comb(union_size, a)
         upper_bound = comb(n, union_size) * support_capacity**tuple_size
+        actual_ratio = Fraction(count, diagonal_scale_count * moment_q ** (mu * union_excess))
+        bound_ratio = Fraction(
+            upper_bound,
+            diagonal_scale_count * moment_q ** (mu * union_excess),
+        )
+        if union_excess > 0:
+            positive_actual_ratio += actual_ratio
+            positive_bound_ratio += bound_ratio
         rows.append(
             {
                 "union_excess": union_excess,
@@ -581,6 +594,14 @@ def connected_cluster_count_profile() -> dict:
                 "support_capacity": support_capacity,
                 "count_upper_bound": upper_bound,
                 "entropy_exponent_extra": union_excess,
+                "actual_relative_to_diagonal": {
+                    "numerator": actual_ratio.numerator,
+                    "denominator": actual_ratio.denominator,
+                },
+                "bound_relative_to_diagonal": {
+                    "numerator": bound_ratio.numerator,
+                    "denominator": bound_ratio.denominator,
+                },
             }
         )
     return {
@@ -588,7 +609,17 @@ def connected_cluster_count_profile() -> dict:
         "k": k,
         "a": a,
         "tuple_size": tuple_size,
+        "moment_q": moment_q,
+        "mu": mu,
         "rows": rows,
+        "positive_actual_relative_to_diagonal": {
+            "numerator": positive_actual_ratio.numerator,
+            "denominator": positive_actual_ratio.denominator,
+        },
+        "positive_bound_relative_to_diagonal": {
+            "numerator": positive_bound_ratio.numerator,
+            "denominator": positive_bound_ratio.denominator,
+        },
         "all_counts_bounded": all(
             row["connected_tuples"] <= row["count_upper_bound"]
             for row in rows
@@ -599,6 +630,8 @@ def connected_cluster_count_profile() -> dict:
             row["union_excess"] > 0 and row["connected_tuples"] > 0
             for row in rows
         ),
+        "positive_excess_bound_below_diagonal": positive_bound_ratio < 1,
+        "positive_excess_actual_below_diagonal": positive_actual_ratio < 1,
     }
 
 
@@ -1628,6 +1661,12 @@ def run() -> dict:
         "connected_cluster_count_positive_excess": connected_cluster_profile[
             "has_positive_excess_clusters"
         ],
+        "connected_cluster_bound_clears_positive_excess": connected_cluster_profile[
+            "positive_excess_bound_below_diagonal"
+        ],
+        "connected_cluster_actual_clears_positive_excess": connected_cluster_profile[
+            "positive_excess_actual_below_diagonal"
+        ],
         "kmm_grid_formula": all(d["interleaved_edges"] == d["grid_edges_at_n_min"] for d in designs),
         "rs_witness_creates_mass": witness["mass_creation"],
         "rs_witness_realizes_k22": witness["interleaved"] == witness["product_bound"] == 4,
@@ -1824,7 +1863,10 @@ def main(argv: list[str] | None = None) -> int:
         print(
             "  connected cluster count profile: "
             f"n={cc['n']}, k={cc['k']}, a={cc['a']}, "
-            f"tuple_size={cc['tuple_size']}, rows={cc['rows']}"
+            f"tuple_size={cc['tuple_size']}, q={cc['moment_q']}, mu={cc['mu']}, "
+            f"positive_actual={cc['positive_actual_relative_to_diagonal']}, "
+            f"positive_bound={cc['positive_bound_relative_to_diagonal']}, "
+            f"rows={cc['rows']}"
         )
         print("  K_{m,m} abstract designs:")
         for d in result["kmm_designs"]:
