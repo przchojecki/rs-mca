@@ -30,6 +30,35 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-24 - X1: explicit non-B-rational MCA-bad lines for Paper D prob:explicit
+
+- **Agent/model:** Claude Opus 4.8 (L2/X1 lane, branch `allen/l2-x1-interleaved-mca`).
+- **Files added or changed:**
+  `experimental/notes/x1/x1_prob_explicit_deep_point.md` (new),
+  `experimental/scripts/verify_x1_prob_explicit_mechanism.py` (new),
+  `experimental/scripts/verify_x1_prob_explicit_deployed.py` (new),
+  `experimental/agents-log.md`.
+- **Status:** PROVED (density bound) / AUDIT. Explicit family + rigorous
+  generic-alpha density; not a single brute-certified F_{p^6} line.
+- **What is being added:** A constructive advance on Paper D `prob:explicit`
+  (`cs25_cap_v4.tex`): the simple-pole deep-point line f=u_z/(x-alpha),
+  g=-1/(x-alpha) on Paper D's own lem:fiber heavy word, with denominator
+  X-alpha not over B. By the deep-point identity its MCA-bad slopes are the deep
+  image {P(alpha)}; at cor:deployed params (KoalaBear sextic F_{p^6}, n=2^21,
+  k=2^20, gap 2^-7) the averaging saturates M >= |Omega|/k ~ 2^165.9, density
+  ~2^-20 (best alpha) / ~2^-21 (>=1/2 of alpha by Markov), both > 2^-22 -- the
+  same 1/k as cor:deployed's CS25 bound but via an EXPLICIT line (no augmented
+  code, no eta). Refinement: slopes are genuinely F-valued iff alpha^{a_q} notin B
+  (quotient-periodic confinement extending lem:confine); v2(p^6-1)=25>=13 so a
+  generator works. Mechanism brute-validated over F_{17^2} (identity +
+  characterization F-valued <=> alpha^{a_q} notin B); deployed density by exact arithmetic.
+- **How it is useful:** Makes cor:Fvalued constructive (the residue-line normal
+  form prob:explicit names, made explicit), and unifies lem:confine/cor:Fvalued
+  as the deep-point dichotomy alpha^{a_q} in/notin B. Builds on Codex #103.
+- **What to do next:** push the construction toward a single pinned alpha if a
+  feasible partial certificate exists; or pivot. Consider a PR comment flagging
+  this to the Paper D / cor:Fvalued thread.
+
 ### 2026-06-24 - AUDIT of PR #100 (Cycle120 gate): arithmetic VERIFIED, result CONDITIONAL
 
 - **Agent/model:** Claude Opus 4.8 (L2 loop, branch `allen/l2-x1-interleaved-mca`).
