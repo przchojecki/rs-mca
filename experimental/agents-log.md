@@ -30,6 +30,27 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-24 - X1 bridge: reconcile with Codex's M2 (#102) and F1 (#103) PRs
+
+- **Agent/model:** Claude Opus 4.8 (L2 loop, branch `allen/l2-x1-interleaved-mca`).
+- **Files added or changed:**
+  `experimental/notes/x1/x1_deep_point_interleaved_bridge.md` (lane deference +
+  §2.7/§2.10 cross-refs), `experimental/agents-log.md`.
+- **Status:** AUDIT / coordination (no new claim).
+- **What is being added:** Coordination pass after Codex opened #102 (M2 ABF/GG
+  line-decoding parameter match) and #103 (F1 extension-line counterexamples).
+  Adds a "deference" paragraph: this note's M2 touch (§2.7) defers to #102 for the
+  protocol parameter ledger, and its F1 touch (§2.9-§2.10) is the *upper*
+  structure complementing #103's *lower* bound -- a new §2.10 remark proves the
+  two are consistent (the extension line is a counterexample regime; the bridge
+  transfers it faithfully, it does not make emca small). Keeps #101 focused on its
+  unique L2/X1 core.
+- **How it is useful:** Prevents duplicate/conflicting claims across the parallel
+  PRs; records that #102 owns the M2 parameter ledger and #103 owns the F1
+  lower-bound. Sets up the independent audit of #103/#100 (next).
+- **What to do next:** Independently audit #103 (F1 extension counterexample),
+  then #100 (Cycle120 gate arithmetic + list->MCA step).
+
 ### 2026-06-24 - X1 bridge: paper-label crosswalk (promotion aid); line complete
 
 - **Agent/model:** Claude Opus 4.8 (L2 loop, branch `allen/l2-x1-interleaved-mca`).

@@ -24,6 +24,20 @@ bound to cap `delta*`), which is the subject of the active M1 audit PR #100
 here live under `notes/x1/`, `notes/l2/`, and `scripts/verify_x1_*` /
 `scripts/verify_l2_*`; they do not collide with `notes/m1/` or `verify_m1_*`.
 
+**Deference to the parallel Codex PRs.** Two later Codex PRs now own the M2 and
+F1 lanes substantively, and the M2/F1 *touches* in this note (§2.7, §2.9-§2.10)
+are subordinate cross-references, not competing claims:
+
+- **M2** — PR #102 (`m2_abf_gg_line_decoding_parameter_match`) is the protocol
+  parameter-match `epsilon_mca(C,delta) = LD_sw(C, ceil((1-delta)n))/|F|` under
+  the ABF/GG convention. Our §2.7 only records that on the *simple-pole* family
+  MCA = CA = line-decoding coincide; it defers to #102 for the parameter ledger.
+- **F1** — PR #103 (`f1_fixed_rate_extension_counterexample`) proves extension
+  lines give a *lower* bound on `emca` (a counterexample). Our §2.9-§2.10 give
+  the complementary *upper* structure (the extension line is the `M_z`-slice of
+  the interleaved bridge, list-controlled). These are consistent (see §2.10
+  remark); #103 owns the F1 lower-bound/counterexample statement.
+
 ## Claim and results ledger
 
 This note develops the **forward** direction of the deep-point bridge for the
@@ -433,7 +447,8 @@ decoding-list size `<= |Lambda(C_+,delta_a,U)|`. The interleaved `mu`-row
 shared-pole curve has simultaneous line-decoding list `Deep_alpha^{mu}(U,a)`
 (§2). `verify_x1_line_decoding.py` confirms the coincidence across
 `(p,n,k,a) in {(17,8,3,5),(17,8,4,6),(41,8,3,5)}` (306 checks), reporting the
-list multiplicity per slope.
+list multiplicity per slope. For the protocol-facing M2 parameter ledger
+(`epsilon_mca = LD_sw/|F|` under the ABF/GG convention) this defers to PR #102.
 
 ## 2.8 Conditional protocol budget: what an L1 bound buys
 
@@ -530,6 +545,18 @@ the interleaved base list, with the scalar `z in F` acting as the multiplication
 matrix `M_z`. It composes the deep-point identity (§1-§2), the extension-coordinate
 list identity (§2.9), and the F1 transfer into one verified forward statement; the
 general (non-simple-pole) F1 lift remains the open F1 question.
+
+**Remark (consistency with PR #103).** This is an *upper* structure, not a
+positivity claim. PR #103 (`f1_fixed_rate_extension_counterexample`) proves a
+matching *lower* bound: degree-`>= 1` extension lines force
+`emca(C_F, 1-(k+sigma)/(p-1)) >= (1-rho)^{sigma+1}/(sigma+1)! - o(1)`, with
+higher-degree numerator amplification giving constant-density counterexamples in
+every fixed extension degree. The two are consistent and complementary: §2.10
+says the extension-line bad slopes *are* the (interleaved-list-controlled) deep
+image; #103 says that image is *large* in this regime. So the extension case is a
+genuine counterexample regime — the bridge transfers it faithfully, it does not
+make it small. #103 owns the F1 lower-bound statement; §2.10 owns the structural
+identification with the `e`-fold interleaved bridge.
 
 ## 3. Plan (incremental commits on this PR)
 
