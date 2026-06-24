@@ -52,13 +52,17 @@ Keep entries concise and link to the relevant files.
   shell bound now separates Johnson-controlled shells from this tail and bounds
   the tail anchor count by the exact-`a` one-row locator multiplicity divided by
   `binom(s_J,a)`. A new L1-to-L2 shell corollary proves that uniform one-row
-  list bounds on `a<=t<=s_J` imply a two-row codegree bound
+  list bounds on `a<=t<=min(n,s_J)` imply a two-row codegree bound
   `n^{B_L+2}(2+log n)+n^{2B_L}`; the controlled Johnson shell weight is
-  `O(n^2 log n)`. The verifier stress-tests the exact quotient budget, natural
+  `O(n^2 log n)`. The same argument is extended to fixed protocol arity `mu`:
+  the powered shell weight `sum_s J(s;k,a)^(mu-1)` is
+  `O_mu(n^{2(mu-1)} log n)`, so repaired one-row L1 shell bounds imply a
+  polynomial fixed-arity L2 codegree bound. The verifier stress-tests the exact
+  quotient budget, natural
   `K_{m,m}` grid over-agreement attacks, and a realized `F_29` Reed-Solomon
   `K_{2,2}` gluing witness with punctured codegrees `[2,2]` satisfying the
   Johnson bound `5`, exact shell bound `10`, and L1-shell reduction bound
-  `372`.
+  `372`; for `(n,k,a)=(64,16,18)`, the `mu=3` powered shell weight is `199`.
 - **How it is useful:** Turns the L2 objective from a broad "avoid Cartesian
   overcharge" principle into a concrete conjectural inequality that can be
   falsified or promoted. The `K_{2,2}` witness records that local Cartesian

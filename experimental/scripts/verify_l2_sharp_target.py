@@ -6,11 +6,12 @@ settled by the support-intersection bridge: over-agreement can create
 interleaved mass, so the falsification target is whether that mass can grow like
 a Cartesian product rather than like a polynomial support-overlap codegree.
 
-The script checks three finite objects.
+The script checks four finite objects.
 
 1. The aligned quotient packet count used as Quot_mu in the target note.
-2. The abstract K_{m,m} grid over-agreement design and its size formula.
-3. A realized Reed-Solomon K_{2,2} gluing over a prime-field multiplicative
+2. The Johnson-shell weights used in the codegree reduction.
+3. The abstract K_{m,m} grid over-agreement design and its size formula.
+4. A realized Reed-Solomon K_{2,2} gluing over a prime-field multiplicative
    subgroup, computed by exact list enumeration, together with its punctured
    codegree profile.
 
@@ -269,13 +270,16 @@ def cumulative_list_size(family: list[frozenset[int]], threshold: int) -> int:
     return sum(1 for supp in family if len(supp) >= threshold)
 
 
-def johnson_shell_weight(n: int, k: int, a: int) -> dict:
+def johnson_shell_weight(n: int, k: int, a: int, power: int = 1) -> dict:
     """Total Johnson weight across controlled support-size shells."""
+    if power < 1:
+        raise ValueError("power must be positive")
     threshold = johnson_anchor_threshold(k, a)
     threshold_value = threshold["threshold"]
     if threshold_value is None:
         return {
             "johnson_threshold": threshold,
+            "power": power,
             "controlled_shells": [],
             "exact_weight_sum": 0,
             "harmonic_upper_bound": None,
@@ -292,12 +296,14 @@ def johnson_shell_weight(n: int, k: int, a: int) -> dict:
                 "support_size": s,
                 "mode": profile["mode"],
                 "weight": profile["bound"],
+                "powered_weight": profile["bound"] ** power,
             }
         )
-        exact_weight_sum += profile["bound"]
-    harmonic_upper_bound = ceil(n * n * (2 + log(max(2, n))))
+        exact_weight_sum += profile["bound"] ** power
+    harmonic_upper_bound = ceil((n ** (2 * power)) * (2 + log(max(2, n))))
     return {
         "johnson_threshold": threshold,
+        "power": power,
         "controlled_shells": shells,
         "exact_weight_sum": exact_weight_sum,
         "harmonic_upper_bound": harmonic_upper_bound,
@@ -503,6 +509,9 @@ def run() -> dict:
     quotient_example = aligned_quotient_budget(n=64, k=16, a=18, mu=2)
     threshold_example = johnson_anchor_threshold(k=16, a=18)
     shell_weight_example = johnson_shell_weight(n=64, k=16, a=18)
+    fixed_arity_shell_weight_example = johnson_shell_weight(
+        n=64, k=16, a=18, power=2
+    )
     designs = [kmm_grid_design(k=3, a=5, m=m) for m in (2, 3, 4, 5)]
     witness = realized_rs_k22()
     checks = {
@@ -521,6 +530,7 @@ def run() -> dict:
         "aligned_quotient_budget_example": quotient_example,
         "johnson_anchor_threshold_example": threshold_example,
         "johnson_shell_weight_example": shell_weight_example,
+        "fixed_arity_johnson_shell_weight_example": fixed_arity_shell_weight_example,
         "kmm_designs": designs,
         "realized_rs_k22": witness,
         "checks": checks,
@@ -552,6 +562,12 @@ def main(argv: list[str] | None = None) -> int:
             "  Johnson shell weight example: "
             f"exact={jw['exact_weight_sum']}, "
             f"harmonic_bound={jw['harmonic_upper_bound']}"
+        )
+        fjw = result["fixed_arity_johnson_shell_weight_example"]
+        print(
+            "  fixed-arity Johnson shell weight example: "
+            f"power={fjw['power']}, exact={fjw['exact_weight_sum']}, "
+            f"harmonic_bound={fjw['harmonic_upper_bound']}"
         )
         print("  K_{m,m} abstract designs:")
         for d in result["kmm_designs"]:

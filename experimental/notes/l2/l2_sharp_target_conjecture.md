@@ -399,7 +399,7 @@ W_J(n,k,a) = sum_{s=a}^{min(n,s_J-1)} J(s;k,a).
 For rows `U_1,U_2`, put
 
 ```text
-P_1 = max_{a <= t < s_J} L_{U_1}(t),
+P_1 = max_{a <= t <= min(n,s_J-1)} L_{U_1}(t),
 T_1 = L_{U_1}(s_J),
 L_2 = L_{U_2}(a),
 ```
@@ -428,8 +428,8 @@ The same estimate holds with the two rows interchanged.
 N_{U_1}(s) <= L_{U_1}(s) <= P_1
 ```
 
-for `a<=s<s_J`, while the tail count is `L_{U_1}(s_J)=T_1`. This gives the
-first displayed inequality. For the weight estimate, write
+for `a<=s<=min(n,s_J-1)`, while the tail count is `L_{U_1}(s_J)=T_1`. This
+gives the first displayed inequality. For the weight estimate, write
 
 ```text
 D_s = a^2 - s(k-1).
@@ -452,8 +452,9 @@ bound
 L_V(t) <= n^{B_L}
 ```
 
-for every received word `V` and every `t` in the window `a<=t<=s_J`, then the
-non-quotient two-row codegree contribution is bounded by
+for every received word `V` and every `t` in the window
+`a<=t<=min(n,s_J)`, then the non-quotient two-row codegree contribution is
+bounded by
 
 ```text
 n^{B_L+2}(2+log n) + n^{2B_L}.
@@ -461,6 +462,69 @@ n^{B_L+2}(2+log n) + n^{2B_L}.
 
 This is the precise sense in which the remaining L2 over-agreement problem is
 an L1 shell problem, not a new Cartesian-product exponent.
+
+The same argument gives a fixed-arity version. For `r>=1`, set
+
+```text
+W_J^{[r]}(n,k,a) = sum_{s=a}^{min(n,s_J-1)} J(s;k,a)^r.
+```
+
+**Corollary (fixed-arity shell reduction).** For fixed `mu>=2`, rows
+`U_1,...,U_mu`, and
+
+```text
+P_1 = max_{a <= t <= min(n,s_J-1)} L_{U_1}(t),
+T_1 = L_{U_1}(s_J),
+L_i = L_{U_i}(a)        (2 <= i <= mu),
+```
+
+one has
+
+```text
+|Lambda_mu(U,a)|
+ <= P_1 W_J^{[mu-1]}(n,k,a) + T_1 product_{i=2}^mu L_i.
+```
+
+Furthermore,
+
+```text
+W_J^{[r]}(n,k,a) <= n^{2r}(2+log n)
+```
+
+for every fixed `r>=1` and `n>=2`.
+
+*Proof.* Anchor the first row and use the recursive codegree identity. If the
+anchor support has size `s<s_J`, then each remaining row has at most `J(s;k,a)`
+punctured completions on that anchor, by the punctured Johnson proposition.
+Forgetting the common-intersection condition among the remaining rows gives the
+product upper bound `J(s;k,a)^(mu-1)`. If `s>=s_J`, use the trivial product
+bound `product_{i=2}^mu L_i`. Summing over row-1 support shells gives the
+first inequality.
+
+The weight bound is the same denominator estimate as before: on controlled
+shells, `J(s;k,a) <= n^2/D_s` with `D_s=a^2-s(k-1)>=1`, and
+`D_s^{-r} <= D_s^{-1}`. Thus
+
+```text
+sum_s J(s;k,a)^r
+ <= n^{2r} sum_s 1/D_s
+ <= n^{2r}(2+log n).
+```
+
+Consequently, if repaired one-row L1 local bounds give
+
+```text
+L_V(t) <= n^{B_L}
+```
+
+for all received words and all `a<=t<=min(n,s_J)`, then the fixed-arity
+over-agreement contribution obeys
+
+```text
+|Lambda_mu(U,a)| <= n^{B_L+2(mu-1)}(2+log n) + n^{mu B_L}.
+```
+
+For every fixed protocol arity `mu`, this is polynomial in `n`.
 
 Thus a proof of L2-Sharp can be organized by anchor support size `s`: small
 over-agreement anchors fall into unique decoding; intermediate anchors are
@@ -496,7 +560,8 @@ checks four stress points.
    Johnson step controls anchor supports through `s=21`; the remaining
    large-anchor tail starts only at `s=22`, i.e. four extra agreements above
    the list threshold. The exact controlled Johnson shell weight in this
-   example is `17`.
+   example is `17`; the powered shell weight for the fixed-arity `mu=3`
+   reduction is `199`.
 2. The natural `K_{m,m}` grid over-agreement family has
    ```text
    n_min = (k-1) + m^2(a-k+1),
