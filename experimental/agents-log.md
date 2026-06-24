@@ -30,6 +30,29 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-24 - Cycle116 external packet source hashes
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/scripts/verify_m1_cycle116_external_packet_sources.py`,
+  `experimental/notes/m1/m1_cycle116_external_packet_source_hash_audit.md`,
+  `experimental/notes/m1/m1_cycle116_external_packet_contract.md`,
+  `experimental/notes/m1/m1_cycle120_end_to_end_finite_chain.md`,
+  `experimental/notes/m1/m1_cycle120_gate_arithmetic_contract.md`,
+  `experimental/scripts/verify_m1_cycle120_end_to_end_chain.py`, and
+  `experimental/agents-log.md`.
+- **Status:** AUDIT / EXTERNAL-CYCLE116-SOURCE-HASHES-VERIFIED.
+- **What is being added:** A Git-object source-hash verifier for the four PR #96
+  files behind the compact Cycle116 external packet contract. It checks blob
+  ids, file modes, byte sizes, SHA256 digests, and exact copies of the two JSON
+  inputs embedded in the local contract.
+- **How it is useful:** Removes a provenance ambiguity in the M1 Cycle120 finite
+  chain: the compact external packet contract is now mechanically tied to the
+  recorded PR #96 source objects when that commit is fetched locally.
+- **What to do next:** Review the external proof text/verifier content and the
+  official ABF source gates; this audit only closes the hash/source-binding
+  part of the boundary.
+
 ### 2026-06-24 - Cycle120 domain-generated field ledger
 
 - **Agent/model:** Codex.

@@ -21,6 +21,17 @@ It is pinned to PR #96, branch `cycle58-5p5-audit`, commit
 `fixed_jet_certificate.json`, `cycle84_anchor.json`,
 `STANDALONE_CERTIFICATE_SECTION.md`, and `verify_transfer.py` source files.
 
+The corresponding Git-object source check is:
+
+```text
+experimental/notes/m1/m1_cycle116_external_packet_source_hash_audit.md
+python3 experimental/scripts/verify_m1_cycle116_external_packet_sources.py
+```
+
+That verifier reads the recorded files from the PR #96 head commit with
+`git show`, checks blob ids, file modes, byte sizes, and SHA256 digests, and
+checks that the two JSON inputs are copied exactly into the compact contract.
+
 ## Local Comparison
 
 The verifier
@@ -58,17 +69,16 @@ the locally verified `{1}` plus seven active 16-point slot-block co-support.
 That comparison is now executable.
 
 This does not prove official ABF compatibility, and it does not ask reviewers
-to trust the closed PR #96 packet blindly. It narrows the remaining source
-issue to whether the compact contract faithfully records the hash-pinned
-external files.
+to trust the closed PR #96 packet blindly. Together with the source-hash audit,
+it narrows the remaining source issue to reviewer acceptance of the external
+proof text and verifier content themselves.
 
 ## Remaining Boundaries
 
 The remaining boundaries are:
 
 ```text
-reviewer acceptance that the compact contract faithfully records the
-  hash-pinned external PR #96 files;
+reviewer acceptance of the external PR #96 proof text and verifier content;
 reviewer acceptance of the Cycle84 generated replay source contract;
 official ABF PDF/source verification for the Cycle120 row gates, sampler,
   smoothness, same-support predicate, and closed-threshold convention.
@@ -81,8 +91,15 @@ Run:
 ```sh
 python3 experimental/scripts/verify_m1_cycle116_external_packet_contract.py
 python3 experimental/scripts/verify_m1_cycle116_external_packet_contract.py --json
+python3 experimental/scripts/verify_m1_cycle116_external_packet_sources.py
+python3 experimental/scripts/verify_m1_cycle116_external_packet_sources.py --json
 ```
 
-The verifier is nonmutating. It imports and runs the local Cycle84, Cycle116
-slot identity, slot assembly, fixed-jet bridge, and smooth-lift verifiers, then
-checks the exact cross-artifact equalities listed above.
+Both verifiers are nonmutating. The contract comparison imports and runs the
+local Cycle84, Cycle116 slot identity, slot assembly, fixed-jet bridge, and
+smooth-lift verifiers, then checks the exact cross-artifact equalities listed
+above. The source-hash audit requires the PR #96 Git object locally:
+
+```sh
+git fetch origin pull/96/head:refs/remotes/origin/pr-96
+```

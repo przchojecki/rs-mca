@@ -205,6 +205,9 @@ The following inputs remain outside this arithmetic contract:
    occupancy census, and the smooth padding lift; these components are now
    composed by the end-to-end finite-chain verifier. The slot-block co-support
    assembly is separately checked by `verify_m1_cycle116_slot_assembly.py`.
+   The compact external packet is also tied to the PR #96 Git source objects by
+   `verify_m1_cycle116_external_packet_sources.py`, leaving review of the
+   external proof content rather than a hash-provenance gap.
 5. Optionally, the Cycle119 two-ended transfer producing agreement `263`.
 
 ## Nonclaims

@@ -92,6 +92,17 @@ native parameters `(n,j,sigma,k,agreement)=(256,113,6,137,143)`, smooth-lift
 parameters `(n,j,sigma,k,agreement)=(512,250,6,256,262)`, and Cycle84 finite
 values as the local chain.
 
+The source files behind that compact contract are checked separately by
+
+```text
+python3 experimental/scripts/verify_m1_cycle116_external_packet_sources.py
+```
+
+after fetching the PR #96 head commit with
+`git fetch origin pull/96/head:refs/remotes/origin/pr-96`. This source-hash
+audit verifies blob ids, file modes, byte sizes, SHA256 digests, and exact
+copies of the two JSON inputs used by the compact contract.
+
 The smooth padding lift preserves the same set of bad parameters and gives
 
 ```text
@@ -204,8 +215,10 @@ The chain remains conditional on:
    convention.
 2. Reviewer acceptance that the Cycle84 generated source contract plus the
    replay algorithm audit is sufficient for promotion beyond audit status.
-3. Reviewer acceptance that the compact external Cycle116 contract faithfully
-   records the hash-pinned files from PR #96.
+3. Reviewer acceptance of the external PR #96 proof text and verifier content.
+   The source-hash audit now mechanically ties the compact contract to the
+   recorded PR #96 Git objects, but it does not replace mathematical review of
+   that external proof packet.
 
 The current repository verifiers reduce these boundaries, but they do not
 remove them.
@@ -233,6 +246,7 @@ Run:
 python3 experimental/scripts/verify_m1_cycle120_end_to_end_chain.py
 python3 experimental/scripts/verify_m1_cycle120_end_to_end_chain.py --json
 python3 experimental/scripts/verify_m1_cycle116_external_packet_contract.py
+python3 experimental/scripts/verify_m1_cycle116_external_packet_sources.py
 python3 experimental/scripts/verify_m1_cycle116_fixed_jet_transfer.py
 python3 experimental/scripts/verify_m1_cycle116_smooth_padding_transfer.py
 python3 experimental/scripts/verify_m1_cycle120_domain_field_ledger.py
