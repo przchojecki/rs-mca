@@ -52,6 +52,29 @@ simplify it (reduce L2's open piece to L1). But the sweep is small and
 hand-picked; the "create mass" construction tried here self-destructs (overlaps
 < a), so it does not yet *rule out* a cleverer cross-mass word.
 
+## Iteration 2 (engineered witness + random search, F_17 n=16 k=3 a=5)
+
+**Mass creation IS achievable — correcting iteration 1's tentative reading.** A
+pure 2-codeword-per-row gluing has cross-overlaps `|P_1^a ∩ P_2^b|` that (for pure
+partitions) **sum to `n`**, so "all 4 cross-pairs ≥ a" needs `4a ≤ n` (`20 > 16`,
+impossible) but **3 cross-pairs** (`5+5+5+1=16`) is possible. Engineered witness:
+`interleaved = 3 > max_base = 2` (predicted 3). So **`interleaved ≤ max_base` is
+FALSE** — L2 is *not* trivially subsumed by L1.
+
+**But the excess is `O(1)`.** Random search (4000 gluings): max `interleaved = 4`,
+`max_base = 2`, **max ratio 2.0**. The empirical search **caught an error** in my
+clean bound: I predicted `interleaved ≤ n/a = 3`, but the agreement sets are
+slightly larger than the partition cells (codewords coincidentally agree on up to
+`k−1` extra points), so cross-overlaps don't *exactly* sum to `n` and the count
+reached 4. The honest statement: the cross-overlaps sum to `~n` (exact for pure
+partitions + small `≤k−1` corrections), so `#cross-pairs ≥ a` is `~n/a`, and the
+excess over a single-row fiber is `O(1)` across this search — **no super-poly
+threat from the gluing attack**, but the precise constant slightly exceeds `n/a`.
+
+**Reading:** the conjecture looks robust against gluing attacks (the natural
+adversary creates only `O(1)` extra mass, absorbed by `n^B`). The decisive open
+test is whether the max ratio **grows with `n`** (super-poly) or stays `O(1)`.
+
 ## Next iterations (planned)
 
 1. **Engineer genuine cross-mass:** partitions whose pairwise cross-regions are
