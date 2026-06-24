@@ -997,6 +997,23 @@ target: after structured rows are removed, it is enough to bound the radical
 frontier layers rather than the whole partial-prefix collision relation at
 once.
 
+If `T` is also a union of affine template orbits, the same decomposition can
+be quotiented.  The affine identity
+`Delta'_r(T)=T^(rt) Delta_r(T^u)` sends `G_{p,r}` and `G_{p,r+1}` to their
+Galois-conjugate counterparts, so `deg H_{p,r}` is constant on every orbit.
+Thus, for orbit representatives `(A_O,B_O)`,
+
+```text
+|Coll_{T,sigma}(h)|
+  =
+  (1/phi(n)) sum_{r=sigma}^{m-1}
+    sum_O |O| deg H_{p,r}(A_O,B_O).
+```
+
+This is the orbit-level target for L1: after quotient-periodic and
+characteristic-zero strata are separated, one only has to control the frontier
+factors on orbit representatives, weighted by orbit size.
+
 ## Full-Prefix Rigidity
 
 The endpoint of the filtration is rigid.  Let `p` be split, let `h in F_p`
@@ -1211,6 +1228,10 @@ The verifier also computes the frontier factors themselves: the fixed-root
 full dilation-stable `F_17` family has degree sums `320,0` across the two
 frontier layers, and the nonsplit `F_9` family has forty-eight degree-two
 frontier factors at `sigma=1`.
+The orbit quotient is much smaller: the `F_17` family is the union of three
+affine orbits of sizes `64,128,128`, each with frontier degrees `1,0` across
+the two layers, and the nonsplit non-characteristic-zero `F_9` family is the
+union of two affine orbits of sizes `16,32`, each with frontier degree `2`.
 
 The verifier separately checks this full-prefix endpoint for `n=16` at the
 split primes `17` and `97`, for every complement size `1 <= m <= 8`: at

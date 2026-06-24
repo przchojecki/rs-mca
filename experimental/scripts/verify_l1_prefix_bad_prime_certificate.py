@@ -2614,6 +2614,219 @@ def check_frontier_factor_decomposition() -> dict[str, Any]:
     }
 
 
+def check_frontier_orbit_layer_decomposition() -> dict[str, Any]:
+    split_prime = 17
+    split_order = 16
+    split_sigma = 4
+    split_full_sigma = 6
+    split_family: set[tuple[tuple[int, ...], tuple[int, ...]]] = set()
+    for root in primitive_order_roots(split_prime, split_order):
+        row = finite_prefix_collision_pairs(
+            prime=split_prime,
+            order=split_order,
+            complement_size=6,
+            sigma=split_sigma,
+            root=root,
+        )
+        for pair in row["pairs"]:
+            split_family.add(normalized_pair(pair["left"], pair["right"]))
+
+    split_orbit_groups: dict[tuple[tuple[int, ...], tuple[int, ...]], set[
+        tuple[tuple[int, ...], tuple[int, ...]]
+    ]]
+    split_orbit_groups = defaultdict(set)
+    for left, right in split_family:
+        split_orbit_groups[affine_orbit_key(left, right, split_order)].add(
+            (left, right)
+        )
+
+    split_layers_by_sigma = {
+        sigma: 0 for sigma in range(split_sigma, split_full_sigma)
+    }
+    split_orbit_rows = []
+    for representative, members in split_orbit_groups.items():
+        orbit_members = affine_orbit_members(
+            representative[0],
+            representative[1],
+            split_order,
+        )
+        if members != orbit_members:
+            raise AssertionError("split frontier family is not orbit-closed")
+        layers = []
+        for sigma in range(split_sigma, split_full_sigma):
+            representative_degree = degree(common_root_frontier_factor_mod(
+                representative[0],
+                representative[1],
+                split_order,
+                sigma,
+                split_prime,
+            ))
+            for member in members:
+                member_degree = degree(common_root_frontier_factor_mod(
+                    member[0],
+                    member[1],
+                    split_order,
+                    sigma,
+                    split_prime,
+                ))
+                if member_degree != representative_degree:
+                    raise AssertionError("split frontier degree changed on orbit")
+            weighted_degree = len(members) * representative_degree
+            split_layers_by_sigma[sigma] += weighted_degree
+            layers.append({
+                "sigma": sigma,
+                "frontier_factor_degree": representative_degree,
+                "weighted_degree": weighted_degree,
+            })
+        split_orbit_rows.append({
+            "orbit_size": len(members),
+            "representative": [
+                list(representative[0]),
+                list(representative[1]),
+            ],
+            "frontier_layers": layers,
+        })
+    split_orbit_rows.sort(key=lambda item: (
+        item["orbit_size"],
+        item["representative"],
+    ))
+    split_layer_rows = [
+        {
+            "sigma": sigma,
+            "orbit_weighted_frontier_degree_sum": split_layers_by_sigma[sigma],
+        }
+        for sigma in range(split_sigma, split_full_sigma)
+    ]
+    if split_layer_rows != [
+        {"sigma": 4, "orbit_weighted_frontier_degree_sum": 320},
+        {"sigma": 5, "orbit_weighted_frontier_degree_sum": 0},
+    ]:
+        raise AssertionError("bad split orbit frontier layers")
+    if [
+        (
+            row["orbit_size"],
+            [layer["frontier_factor_degree"] for layer in row["frontier_layers"]],
+        )
+        for row in split_orbit_rows
+    ] != [(64, [1, 0]), (128, [1, 0]), (128, [1, 0])]:
+        raise AssertionError("bad split orbit frontier profile")
+    split_row_count = (
+        sum(split_layers_by_sigma.values()) // euler_phi(split_order)
+    )
+    if split_row_count != 40:
+        raise AssertionError("bad split orbit frontier row count")
+
+    nonsplit_prime = 3
+    nonsplit_order = 8
+    nonsplit_sigma = 1
+    nonsplit_family: set[tuple[tuple[int, ...], tuple[int, ...]]] = set()
+    for root in gf9_primitive_order_roots(nonsplit_order):
+        row = finite_prefix_collision_pairs_gf9(
+            order=nonsplit_order,
+            complement_size=2,
+            sigma=nonsplit_sigma,
+            root=root,
+        )
+        for pair in row["pairs"]:
+            key = normalized_pair(pair["left"], pair["right"])
+            certificate = bad_prime_certificate(
+                key[0],
+                key[1],
+                nonsplit_order,
+                nonsplit_sigma,
+            )
+            if not certificate["char_zero_collision"]:
+                nonsplit_family.add(key)
+
+    nonsplit_orbit_groups: dict[tuple[tuple[int, ...], tuple[int, ...]], set[
+        tuple[tuple[int, ...], tuple[int, ...]]
+    ]]
+    nonsplit_orbit_groups = defaultdict(set)
+    for left, right in nonsplit_family:
+        nonsplit_orbit_groups[affine_orbit_key(left, right, nonsplit_order)].add(
+            (left, right)
+        )
+
+    nonsplit_weighted_sum = 0
+    nonsplit_orbit_rows = []
+    for representative, members in nonsplit_orbit_groups.items():
+        orbit_members = affine_orbit_members(
+            representative[0],
+            representative[1],
+            nonsplit_order,
+        )
+        if members != orbit_members:
+            raise AssertionError("nonsplit frontier family is not orbit-closed")
+        representative_degree = degree(common_root_frontier_factor_mod(
+            representative[0],
+            representative[1],
+            nonsplit_order,
+            nonsplit_sigma,
+            nonsplit_prime,
+        ))
+        for member in members:
+            member_degree = degree(common_root_frontier_factor_mod(
+                member[0],
+                member[1],
+                nonsplit_order,
+                nonsplit_sigma,
+                nonsplit_prime,
+            ))
+            if member_degree != representative_degree:
+                raise AssertionError("nonsplit frontier degree changed on orbit")
+        weighted_degree = len(members) * representative_degree
+        nonsplit_weighted_sum += weighted_degree
+        nonsplit_orbit_rows.append({
+            "orbit_size": len(members),
+            "representative": [
+                list(representative[0]),
+                list(representative[1]),
+            ],
+            "frontier_factor_degree": representative_degree,
+            "weighted_degree": weighted_degree,
+        })
+    nonsplit_orbit_rows.sort(key=lambda item: (
+        item["orbit_size"],
+        item["representative"],
+    ))
+    if [
+        (row["orbit_size"], row["frontier_factor_degree"])
+        for row in nonsplit_orbit_rows
+    ] != [(16, 2), (32, 2)]:
+        raise AssertionError("bad nonsplit orbit frontier profile")
+    if nonsplit_weighted_sum != 96:
+        raise AssertionError("bad nonsplit orbit frontier layer")
+    nonsplit_row_count = nonsplit_weighted_sum // euler_phi(nonsplit_order)
+    if nonsplit_row_count != 24:
+        raise AssertionError("bad nonsplit orbit frontier row count")
+
+    return {
+        "split_case": {
+            "field": "F_17",
+            "prime": split_prime,
+            "order": split_order,
+            "family_size": len(split_family),
+            "affine_orbit_count": len(split_orbit_rows),
+            "frontier_layers": split_layer_rows,
+            "frontier_orbits": split_orbit_rows,
+            "row_count_from_orbit_frontiers": split_row_count,
+        },
+        "nonsplit_case": {
+            "field": "F_9 = F_3[i]/(i^2+1)",
+            "prime": nonsplit_prime,
+            "order": nonsplit_order,
+            "family_size": len(nonsplit_family),
+            "affine_orbit_count": len(nonsplit_orbit_rows),
+            "frontier_layer": {
+                "sigma": nonsplit_sigma,
+                "orbit_weighted_frontier_degree_sum": nonsplit_weighted_sum,
+            },
+            "frontier_orbits": nonsplit_orbit_rows,
+            "row_count_from_orbit_frontiers": nonsplit_row_count,
+        },
+    }
+
+
 def check_frontier_layer_row_decomposition() -> dict[str, Any]:
     split_prime = 17
     split_order = 16
@@ -4182,6 +4395,9 @@ def build_report() -> dict[str, Any]:
         "prefix_depth_filtration": check_prefix_depth_filtration(),
         "prefix_radical_frontier_drop": check_prefix_radical_frontier_drop(),
         "frontier_factor_decomposition": check_frontier_factor_decomposition(),
+        "frontier_orbit_layer_decomposition": (
+            check_frontier_orbit_layer_decomposition()
+        ),
         "frontier_layer_row_decomposition": (
             check_frontier_layer_row_decomposition()
         ),
@@ -4305,6 +4521,31 @@ def print_human(report: dict[str, Any]) -> None:
         f"{factors['split_case']['frontier_factor_layers']}, "
         "f9_layer="
         f"{factors['nonsplit_case']['frontier_factor_layer']}"
+    )
+    frontier_orbits = report["frontier_orbit_layer_decomposition"]
+    split_orbit_summary = [
+        (
+            row["orbit_size"],
+            [
+                layer["frontier_factor_degree"]
+                for layer in row["frontier_layers"]
+            ],
+        )
+        for row in frontier_orbits["split_case"]["frontier_orbits"]
+    ]
+    f9_orbit_summary = [
+        (row["orbit_size"], row["frontier_factor_degree"])
+        for row in frontier_orbits["nonsplit_case"]["frontier_orbits"]
+    ]
+    print(
+        "frontier_orbit_layer_decomposition="
+        f"split_orbits={split_orbit_summary}, "
+        "split_layers="
+        f"{frontier_orbits['split_case']['frontier_layers']}, "
+        f"split_row={frontier_orbits['split_case']['row_count_from_orbit_frontiers']}, "
+        f"f9_orbits={f9_orbit_summary}, "
+        "f9_row="
+        f"{frontier_orbits['nonsplit_case']['row_count_from_orbit_frontiers']}"
     )
     frontier_rows = report["frontier_layer_row_decomposition"]
     print(

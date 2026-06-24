@@ -88,8 +88,8 @@ Keep entries concise and link to the relevant files.
   increments, the modular frontier factors
   `H_{p,sigma}=G_{p,sigma}/G_{p,sigma+1}` realizing those drops, the
   telescoping decomposition of radical incidence to the full-prefix rigid
-  endpoint, its row-level frontier-layer decomposition for dilation-stable
-  families, and a bounded exact split-prime scan for the
+  endpoint, its row-level and affine-orbit frontier-layer decompositions for
+  dilation-stable families, and a bounded exact split-prime scan for the
   `n=16,m=6,sigma=4` row.
 - **How it is useful:** This supplies the finite-field layer complementary to
   characteristic-zero L1 reductions. It turns robustly aperiodic modular
