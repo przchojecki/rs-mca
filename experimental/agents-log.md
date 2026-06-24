@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-24 - L1 fixed-defect sunflower layer bound
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/notes/l1/l1_full_list_quotient_proof_program.md`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED.
+- **What is being added:** A fixed-defect counting lemma for sunflower
+  received words.  For any fixed `d0`, listed codewords missing at most `d0`
+  core points are bounded by
+  `sum_{d<=d0} binom(k-1,d) binom(n-k+1,d+1)`.
+- **How it is useful:** Shows that the mixed-petal obstruction is already
+  polynomial on every fixed missed-core layer, so any super-polynomial
+  sunflower counterexample must have core defect growing with `n`.
+- **What to do next:** Attack the large-defect incidence problem for
+  `W-c_iL_D` on the petals, or show that large-defect concentration forces
+  quotient, low-defect, or another budgeted structured family.
+
 ### 2026-06-24 - L1 sunflower core-defect reduction
 
 - **Agent/model:** Codex.

@@ -242,6 +242,86 @@ W - c_i L_D        on T_i.
 
 This is the first precise target for the mixed-petal amplification bound.
 
+## Lemma 3. Fixed-Defect Sunflower Layers Are Polynomial
+
+Status: PROVED.
+
+For the sunflower received word above, fix an integer `d0 >= 0`.  The number
+of listed codewords `P in ImgFib_U(s)` whose agreement set misses at most `d0`
+core points is at most
+
+```text
+sum_{d=0}^{d0} binom(k-1,d) binom(n-k+1,d+1).
+```
+
+In particular, for fixed `d0` this contribution is `O_{d0}(n^{2d0+1})`.
+
+### Proof
+
+Let `P` have core defect `d <= d0`, and keep the notation of Lemma 2.  Once
+the missed core set
+
+```text
+D = C \ C_P
+```
+
+is fixed, the codeword is determined by the degree-`<=d` polynomial `W_P`,
+because `P=L_{C_P}W_P`.
+
+Let `B` be the non-core part of the domain,
+
+```text
+B = H_n \ C.
+```
+
+For fixed `D`, Lemma 2 gives a target value on every point of `B`:
+
+```text
+tau_D(x) = 0             if x is in the unused background R,
+tau_D(x) = c_i L_D(x)   if x is in the petal T_i.
+```
+
+The list condition gives
+
+```text
+|A_P(U) cap B| >= s - |C_P| = (k+sigma) - (k-1-d)
+                = sigma + d + 1.
+```
+
+Thus `W_P` agrees with `tau_D` on at least `d+1` points of `B`.  With a fixed
+ordering of `B`, choose the first `d+1` such points.  A degree-`<=d` polynomial
+is uniquely determined by its values at these distinct points, so the pair
+
+```text
+(D, first d+1 non-core agreement points)
+```
+
+determines `W_P`, hence determines `P`.  For exact defect `d`, there are at
+most
+
+```text
+binom(k-1,d) binom(n-k+1,d+1)
+```
+
+such pairs.  Summing over `0 <= d <= d0` gives the claimed bound.
+
+### Consequences
+
+The mixed-petal sunflower obstruction is harmless on every fixed-defect layer.
+The numerical extras seen in the `n=16` scans all lie in small-defect layers,
+so Lemma 3 explains why those examples amplify the planted floor only mildly.
+
+Any super-polynomial sunflower counterexample to Conjecture 1 must therefore
+come from core defect `d` growing with `n`.  The next proof target is a
+large-defect incidence bound for the same equations
+
+```text
+W - c_i L_D        on T_i,
+```
+
+or a proof that large-defect concentration forces quotient, low-defect, or
+another budgeted structure.
+
 ## Development Ledger
 
 - **Conjecture 1 full-list primitive remainder:** CONJECTURAL.  Main proof
@@ -259,5 +339,7 @@ This is the first precise target for the mixed-petal amplification bound.
   needed for Conjecture 1.
 - **Sunflower core-defect reduction:** PROVED.  Reduces each non-planted
   mixed-petal extra to a degree-`d` interpolation problem with a per-petal cap.
+- **Fixed-defect sunflower layers:** PROVED.  Bounds each fixed missed-core
+  layer by `O_{d0}(n^{2d0+1})`.
 - **Mixed-petal sunflower amplification:** CONJECTURAL.  Next focused bound to
-  prove or refute using the core-defect reduction.
+  prove or refute in the large-defect regime.
