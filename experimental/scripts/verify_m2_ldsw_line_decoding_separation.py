@@ -494,6 +494,9 @@ def compute_report() -> dict[str, Any]:
     affine_cap_obstruction_applies = (
         len(close_coeffs) >= list_threshold and close_list_is_b_affine_cap
     )
+    affine_cap_formula_graph_free_number = min(
+        P, (B_THRESHOLD - 1) * len(close_coeffs)
+    )
     partial_trigger_threshold = cap_size_obstruction_threshold(
         PARTIAL_TRIGGER, B_THRESHOLD
     )
@@ -539,6 +542,10 @@ def compute_report() -> dict[str, Any]:
         ),
         "close_list_graph_free_number_is_full_field": (
             close_list_graph_free_number == P
+        ),
+        "affine_cap_formula_matches_graph_free_number": (
+            close_list_is_b_affine_cap
+            and close_list_graph_free_number == affine_cap_formula_graph_free_number
         ),
         "full_affine_line_nonlinear_assignment_avoids_b_graph": (
             full_affine_line_max["max_agreement"] < B_THRESHOLD
@@ -637,6 +644,9 @@ def compute_report() -> dict[str, Any]:
             "affine_cap_obstruction_applies": affine_cap_obstruction_applies,
             "partial_trigger_numerator": PARTIAL_TRIGGER,
             "close_list_graph_free_number": close_list_graph_free_number,
+            "affine_cap_formula_graph_free_number": (
+                affine_cap_formula_graph_free_number
+            ),
             "exact_trigger_criterion_holds": (
                 close_list_graph_free_number is not None
                 and close_list_graph_free_number < PARTIAL_TRIGGER
@@ -733,6 +743,10 @@ def print_report(report: dict[str, Any]) -> None:
     print(
         "close-list graph-free number: "
         f"{report['assignment']['close_list_graph_free_number']}"
+    )
+    print(
+        "affine-cap formula graph-free number: "
+        f"{report['assignment']['affine_cap_formula_graph_free_number']}"
     )
     print(
         "full affine line graph-free number: "

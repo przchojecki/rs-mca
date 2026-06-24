@@ -226,6 +226,20 @@ alpha_b(L_a(r)) =
 
 to be smaller than the first size that admits such a bucket partition.
 
+For an actual `b`-affine cap `L`, this obstruction is exact in the `G_b`
+criterion:
+
+```text
+G_b(L) = min(|F|, (b-1)|L|).
+```
+
+The upper bound is pigeonhole: any assignment on more than `(b-1)|L|` slopes
+uses some value of `L` at least `b` times, giving a constant affine graph.  For
+the lower bound, assign `min(|F|,(b-1)|L|)` slopes to values of `L`, with no
+value used more than `b-1` times.  Constant affine graphs hit at most `b-1`
+assigned slopes, while nonconstant affine graphs hit at most `lambda(L) <= b-1`
+assigned slopes.  Thus the assignment is graph-free.
+
 This cap obstruction also applies to a partial ABF/GG trigger, not only to the
 full-field trigger, once the decoded assignment can be extended away from the
 close slopes.  Suppose `b >= 3`, the code space has
