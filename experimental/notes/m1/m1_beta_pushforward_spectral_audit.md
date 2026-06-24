@@ -116,6 +116,41 @@ it is nonnegative only after the full summation, because it is the squared
 norm of the centered quotient matrix.  The standalone verifier checks this
 identity in grouped form, in addition to the Fourier Parseval identity.
 
+## One-Sided Marginal Split
+
+The left-principal block in the full `(BETA_2)` audit is exactly the
+beta-column marginal of the good quotient matrix.  Let
+
+```text
+c_j = sum_i (G_e)_{i,j},        c_j^circ = c_j - e^{-1} sum_l c_l,
+R_e = G_e - row averages.
+```
+
+Then the Fourier basis gives the orthogonal identities
+
+```text
+e^{-2} sum_{psi any, phi != 1} |G_{psi,phi}|^2 = ||R_e||_F^2,
+
+e^{-2} sum_{phi != 1} |G_{1,phi}|^2
+  = e^{-1} sum_j |c_j^circ|^2,
+
+||R_e||_F^2
+  = ||G_e^circ||_F^2 + e^{-1} sum_j |c_j^circ|^2.
+```
+
+Equivalently, using the same kernel `kappa_e` as above, the one-sided
+marginal energy is
+
+```text
+e^{-1} sum_{x,y in Y_G(F_p)}
+  epsilon(x) epsilon(y) kappa_e(beta_x,beta_y).
+```
+
+Thus a full averaged pointwise theorem with `psi` allowed to be principal
+splits cleanly into the M1-centered target `(BETA_2^avg)` plus a beta-marginal
+bound.  The quotient-conic M1 ledger consumes only the first summand, while a
+future full `(BETA_2)` proof must also control the marginal.
+
 ## Interpretation
 
 The scan finds no hidden `p^2` component in the tested quotient rows.  The good
@@ -147,9 +182,17 @@ while the largest centered-Frobenius ratio is still
 ||G_e^circ||_F/p = 1.1366043634 at (p,e)=(43,6).
 ```
 
-Thus the averaged target remains substantially smaller than the largest
-individual full pointwise coefficient in the finite rows, matching the point
-of the `(BETA_2^avg)` reformulation.
+The marginal split gives the additional expanded-row maxima
+
+```text
+e^{-1/2} ||c^circ||_2 / p = 1.2278896782 at (p,e)=(109,12),
+||R_e||_F / p             = 1.6565244248 at (p,e)=(109,12).
+```
+
+Thus the averaged M1 target remains substantially smaller than the largest
+individual full pointwise coefficient and smaller than the full
+right-nonprincipal RMS in the finite rows, matching the point of the
+`(BETA_2^avg)` reformulation.
 
 This is useful only as evidence and as a regression guard.  It cannot certify
 `(BETA_2)`: the proof still needs a bounded-conductor/no-constant-summand
@@ -175,4 +218,5 @@ The relevant output line is
 `max_bad_two_sided/p` and `max_total_two_sided/p`.  The standalone
 beta-pushforward verifier checks a larger fixed grid, hard-codes the audited
 row values as regression data, and also checks the grouped pair-correlation
-identity `(PAIR_2)`.
+identity `(PAIR_2)`, the beta-marginal Parseval identity, and the orthogonal
+decomposition `||R_e||_F^2=||G_e^circ||_F^2+e^{-1}||c^circ||_2^2`.

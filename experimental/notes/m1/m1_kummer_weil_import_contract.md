@@ -622,6 +622,25 @@ pair-correlation bound for the two quotient labels `(a,beta)`.  This
 reduction is useful because it separates the one-sided pointwise coefficients
 from the two-sided energy actually consumed by M1.
 
+The separation is orthogonal.  If `c_j=sum_i (G_e)_{i,j}` is the beta-column
+marginal and `R_e=G_e` with each row average subtracted, then
+
+```text
+e^{-2} sum_{psi any, phi != 1} |G_{psi,phi}|^2 = ||R_e||_F^2,
+
+e^{-2} sum_{phi != 1} |G_{1,phi}|^2
+  = e^{-1} sum_j |c_j - e^{-1}sum_l c_l|^2,
+
+||R_e||_F^2
+  = ||G_e^circ||_F^2
+    + e^{-1} sum_j |c_j - e^{-1}sum_l c_l|^2.
+```
+
+Thus a full averaged theorem allowing `psi=1` is exactly the M1 averaged
+target plus a beta-marginal bound.  The current quotient-conic M1 ledger does
+not consume this marginal term, but the full pointwise `(BETA_2)` route must
+control it.
+
 The elementary hypotheses behind this import are now audited in
 `verify_m1_depth_two_line_conic_resonance_reduction.py`:
 

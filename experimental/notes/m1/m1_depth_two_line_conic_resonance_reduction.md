@@ -3980,7 +3980,8 @@ audit records exactly this centered-Frobenius quantity on the finite test rows.
 It also separates the full pointwise `(BETA_2)` scan, which includes the
 left-principal block `psi=1`, from the two-sided centered block consumed here,
 and records the equivalent signed pair-correlation form of
-`||G_e^circ||_F^2`.
+`||G_e^circ||_F^2`.  The remaining one-sided part is the beta-column marginal
+of the same good quotient matrix and is orthogonal to this M1-centered term.
 
 ## Principal-Row Leakage
 
