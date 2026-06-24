@@ -797,10 +797,15 @@ def realized_dithered_quotient_packet() -> dict:
     y_poly = poly_mul(monomial(fiber_size * ell), l_t, p)
     y_values = tuple(eval_poly(tuple(y_poly), x, p) for x in h_values)
     positions = {x: idx for idx, x in enumerate(h_values)}
+    coset_index_by_position = {}
+    for coset_index, alpha in enumerate(quotient_values):
+        for x in cosets[alpha]:
+            coset_index_by_position[positions[x]] = coset_index
 
     rows = []
     polynomials = []
     advertised_supports = []
+    advertised_support_indices = set()
     max_interpolant_degree = -1
     for quotient_subset in itertools.combinations(quotient_values[1:], ell):
         l_a = [1]
@@ -839,11 +844,61 @@ def realized_dithered_quotient_packet() -> dict:
         )
         polynomials.append(tuple(trim_poly(p_poly[:])))
         advertised_supports.append(frozenset(support))
+        advertised_support_indices.add(support_indices)
 
     expected_count = comb(quotient_order - 1, ell)
     formula_count = aligned_quotient_packet(
         quotient_order, ell, mu=2, a=a, tau=partial, fiber_size=fiber_size
     )
+    zero_moment_supports = 0
+    exact_zero_moment_supports = 0
+    overagreement_zero_moment_supports = 0
+    advertised_zero_moment_supports = 0
+    moment_zero_mismatches = 0
+    occupancy_hist: dict[tuple[int, ...], int] = {}
+    for subset in itertools.combinations(range(n), a):
+        support_indices = frozenset(subset)
+        interpolant = interpolate_subset_poly(p, h_values, y_values, support_indices)
+        syndrome_zero = all(value == 0 for value in top_syndrome(interpolant, k, a))
+        moments_zero = all(
+            value == 0
+            for value in residue_moments(p, h_values, y_values, support_indices, sigma)
+        )
+        if syndrome_zero != moments_zero:
+            moment_zero_mismatches += 1
+        if not syndrome_zero:
+            continue
+        zero_moment_supports += 1
+        full_support = frozenset(
+            idx
+            for idx, x in enumerate(h_values)
+            if eval_poly(tuple(interpolant), x, p) == y_values[idx]
+        )
+        if full_support == support_indices:
+            exact_zero_moment_supports += 1
+        else:
+            overagreement_zero_moment_supports += 1
+        if support_indices in advertised_support_indices:
+            advertised_zero_moment_supports += 1
+        occupancy = [0] * quotient_order
+        for idx in support_indices:
+            occupancy[coset_index_by_position[idx]] += 1
+        profile = tuple(sorted(occupancy, reverse=True))
+        occupancy_hist[profile] = occupancy_hist.get(profile, 0) + 1
+    zero_moment_profile = {
+        "all_a_subsets": comb(n, a),
+        "zero_moment_supports": zero_moment_supports,
+        "exact_zero_moment_supports": exact_zero_moment_supports,
+        "overagreement_zero_moment_supports": overagreement_zero_moment_supports,
+        "advertised_zero_moment_supports": advertised_zero_moment_supports,
+        "extra_zero_moment_supports": zero_moment_supports
+        - advertised_zero_moment_supports,
+        "moment_zero_mismatches": moment_zero_mismatches,
+        "occupancy_histogram": [
+            {"occupancy": list(profile), "count": count}
+            for profile, count in sorted(occupancy_hist.items(), reverse=True)
+        ],
+    }
     return {
         "p": p,
         "n": n,
@@ -879,6 +934,7 @@ def realized_dithered_quotient_packet() -> dict:
         "all_advertised_supports_contained": all(
             row["advertised_support_contained"] for row in rows
         ),
+        "zero_moment_profile": zero_moment_profile,
         "rows": rows,
     }
 
@@ -1046,6 +1102,18 @@ def run() -> dict:
             "all_advertised_supports_zero_syndrome"
         ]
         and dithered_witness["all_advertised_supports_zero_moments"],
+        "dithered_quotient_zero_moment_profile": dithered_witness[
+            "zero_moment_profile"
+        ]["zero_moment_supports"]
+        == 42
+        and dithered_witness["zero_moment_profile"]["exact_zero_moment_supports"]
+        == 42
+        and dithered_witness["zero_moment_profile"]["advertised_zero_moment_supports"]
+        == dithered_witness["constructed_count"]
+        and dithered_witness["zero_moment_profile"]["extra_zero_moment_supports"]
+        == 39
+        and dithered_witness["zero_moment_profile"]["moment_zero_mismatches"]
+        == 0,
         "dithered_quotient_witness_agreement": dithered_witness[
             "all_advertised_supports_size_a"
         ]
@@ -1171,6 +1239,15 @@ def main(argv: list[str] | None = None) -> int:
             f"max_interpolant_degree={dq_witness['max_interpolant_degree']}, "
             f"min_agreement={dq_witness['min_agreement']}, "
             f"zero_moments={dq_witness['all_advertised_supports_zero_moments']}"
+        )
+        qprof = dq_witness["zero_moment_profile"]
+        print(
+            "    quotient word zero-moment profile: "
+            f"all_a_subsets={qprof['all_a_subsets']}, "
+            f"zero={qprof['zero_moment_supports']}, "
+            f"advertised={qprof['advertised_zero_moment_supports']}, "
+            f"extra={qprof['extra_zero_moment_supports']}, "
+            f"occupancy={qprof['occupancy_histogram']}"
         )
         jt = result["johnson_anchor_threshold_example"]
         print(

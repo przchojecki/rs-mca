@@ -103,7 +103,12 @@ Keep entries concise and link to the relevant files.
   quotient packets are also now identified inside this zero-moment locus: for
   the dithered `F_17` packet, the verifier checks that every advertised support
   interpolates to the constructed degree-`<k` codeword and has zero top
-  syndrome and zero residue moments.
+  syndrome and zero residue moments. Exhausting all `binom(16,9)` supports for
+  that same word gives `42` exact zero-moment supports: the `3` advertised
+  quotient supports and `39` additional aperiodic supports, with quotient-coset
+  occupancy profiles including `(3,2,2,2)` and `(3,3,2,1)`. This records that
+  `Quot_rem_mu` is a structured budgeted subfamily, not an exhaustive finite
+  classification of the zero-moment locus.
 - **How it is useful:** Turns the L2 objective from a broad "avoid Cartesian
   overcharge" principle into a concrete conjectural inequality that can be
   falsified or promoted. The `K_{2,2}` witness records that local Cartesian

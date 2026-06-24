@@ -907,7 +907,18 @@ checks the following stress points.
    `5<k`, and verifies agreement on at least `9` points. It also checks that
    the degree-`<a` interpolant on each advertised support is the constructed
    degree-`<k` codeword, so the advertised support has zero top syndrome and
-   zero residue moments.
+   zero residue moments. Exhausting all `binom(16,9)=11440` size-`9` supports
+   for this same word gives `42` exact zero-moment supports: the `3`
+   advertised quotient supports plus `39` additional supports. Their quotient
+   coset occupancy profiles are
+   ```text
+   (4,4,1,0): 3,  (4,2,2,1): 7,  (3,3,3,0): 1,
+   (3,3,2,1): 14, (3,2,2,2): 17.
+   ```
+   Thus `Quot_rem_mu` is a structured subfamily of the zero-moment locus, not
+   an exhaustive description of that locus in small finite examples; the
+   remaining aperiodic zero-moment supports are exactly what the polynomial
+   residual must control.
 3. The natural `K_{m,m}` grid over-agreement family has
    ```text
    n_min = (k-1) + m^2(a-k+1),
