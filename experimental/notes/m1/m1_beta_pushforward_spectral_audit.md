@@ -380,6 +380,86 @@ The standalone verifier checks the identity `(ALPHA)`, the exact full-torus
 three singular parameters above, and the fiberwise Hasse bound on every
 expanded prime row.
 
+## Beta Marginal Fixed-Fiber Support
+
+The opposite one-sided marginal is the full `(BETA_2)` row with `psi=1`.
+For a nonprincipal quotient character `phi`, it is
+
+```text
+B_phi = sum_i sum_j (G_e)_{i,j} phi(j).
+```
+
+On the open good locus, the squareclass identities rewrite
+`chi(d_UV(a,b,r))` as `chi(rM(a,r))`.  After adding or deleting only the
+fixed good-base boundary, the beta-column model is therefore a Mellin
+transform over the beta coordinate of the torus surface
+
+```text
+Delta_b(a,r) = 0,
+```
+
+where, as a cubic in `a` for fixed `(b,r)`,
+
+```text
+Delta_b(a,r)
+ = -2r^2 a^3
+   + r(3b^2 - br - b + 3r^2 - r + 3)a^2
+   + (-3b^2r^2 + b^2r - 3b^2 + br^2 + br - 3r^2)a
+   + 2b^2r.
+```
+
+Thus the beta marginal is not another alpha-style elliptic trace, but it does
+form a bounded one-parameter family: `Delta_b` has bidegree `(3,3)` on
+`P^1_a x P^1_r`, and the Kummer factor `chi(rM(a,r))` has bounded divisor on
+these fibers.
+
+The singular beta-values of this family are confined to a fixed finite
+support.  Let
+
+```text
+Q16(b) =
+  6561b^16 + 8019b^15 - 4860b^14 - 29727b^13
+  + 4023b^12 + 57528b^11 + 54777b^10 - 73453b^9
+  - 139136b^8 - 73453b^7 + 54777b^6 + 57528b^5
+  + 4023b^4 - 29727b^3 - 4860b^2 + 8019b + 6561.
+```
+
+Eliminating `a` and `r` from `Delta_b=partial_a Delta_b=partial_r Delta_b=0`
+gives the reduced support
+
+```text
+b(b-1)(b^2+b+1)(9b^2+14b+9)
+  (9b^4-6b^3-5b^2-6b+9)Q16(b) = 0,
+```
+
+with beta infinity handled by the compactification.  More explicitly, if
+
+```text
+D_a = Res_a(Delta_b, partial_a Delta_b)/(2r^4),
+E_a = Res_a(Delta_b, partial_r Delta_b)/(36b^2r^2(r-b)(r-1)),
+```
+
+then
+
+```text
+Res_r(D_a,E_a)
+ = 5^8 b^12(b-1)^24(b^2+b+1)^2(9b^2+14b+9)^2
+   (9b^4-6b^3-5b^2-6b+9)^4 Q16(b)^2.
+```
+
+The removed special lines `r=b` and `r=1` have no extra generic common
+component; their three-way singular resultants add only the already displayed
+`b=1` case.  The standalone verifier checks, on every expanded prime row,
+that every torus singular fiber lies in the displayed support.  The largest
+support count in the audit is `9` beta-values.
+
+This does not prove the full beta marginal.  It records the useful structural
+fact that the marginal is a fixed-conductor beta-column family, with no
+unbounded supply of singular beta fibers.  The centered rank-two block remains
+the minimal M1 target, and the beta marginal remains an additional estimate
+needed only for a full pointwise `(BETA_2)` theorem or for the stronger
+positive `C_ab` route.
+
 ## Interpretation
 
 The scan finds no hidden `p^2` component in the tested quotient rows.  The good
@@ -451,6 +531,12 @@ The largest audited elliptic-fiber trace in the alpha-middle family is
 max_a |sum_r chi(rM(a,r))|/sqrt(p) = 1.8299828440 at p=43.
 ```
 
+The beta-fiber singular-support audit gives
+
+```text
+max_beta_support_count = 9 at p=43,73,97.
+```
+
 Thus the averaged M1 target remains substantially smaller than the largest
 individual full pointwise coefficient and smaller than the full
 right-nonprincipal RMS in the finite rows, matching the point of the
@@ -484,3 +570,5 @@ identity `(PAIR_2)`, the beta-marginal Parseval identity, and the orthogonal
 decomposition `||R_e||_F^2=||G_e^circ||_F^2+e^{-1}||c^circ||_2^2`.  It also
 checks the four component identities for `C_ab`, `C_a`, `C_b`, and `C_0`,
 and reports the nonnegative sufficient bound `sqrt(C_ab+e^{-2}C_0)/p`.
+It also checks the fixed beta-fiber singular-support ledger for the beta
+marginal family.

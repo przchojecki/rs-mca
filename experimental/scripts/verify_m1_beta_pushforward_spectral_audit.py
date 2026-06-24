@@ -134,6 +134,17 @@ EXPECTED_PRINCIPAL_TRACE_ROWS = {
     127: (15184, 692, 502, 129, 129, 244),
 }
 
+EXPECTED_BETA_FIBER_SINGULAR_ROWS = {
+    17: ((1, 8, 15), (1, 8, 15)),
+    31: ((1, 5, 25), (1, 5, 25)),
+    43: ((1, 6, 16, 35, 36), (1, 6, 16, 19, 20, 28, 34, 35, 36)),
+    61: ((1, 13, 47), (1, 13, 47)),
+    73: ((1, 2, 8, 37, 64), (1, 2, 4, 8, 37, 40, 42, 55, 64)),
+    97: ((1, 24, 35, 61, 93), (1, 12, 24, 32, 35, 61, 89, 93, 94)),
+    109: ((1, 45, 63), (1, 38, 45, 63, 66)),
+    127: ((1, 19, 107), (1, 19, 20, 107, 108)),
+}
+
 TOLERANCE = 1e-8
 
 
@@ -413,6 +424,123 @@ def alpha_middle_elliptic_case(p: int) -> dict[str, Any]:
     }
 
 
+def poly_value_mod(p: int, value: int, coefficients: tuple[int, ...]) -> int:
+    total = 0
+    for coefficient in coefficients:
+        total = (total * value + coefficient) % p
+    return total
+
+
+def beta_fiber_delta_alpha_derivative(
+    p: int,
+    alpha: int,
+    beta: int,
+    ratio: int,
+) -> int:
+    a = alpha
+    b = beta
+    r = ratio
+    return (
+        -6 * a * a * r * r
+        + 2
+        * a
+        * (3 * b * b * r - b * r * r - b * r + 3 * r * r * r - r * r + 3 * r)
+        - 3 * b * b * r * r
+        + b * b * r
+        - 3 * b * b
+        + b * r * r
+        + b * r
+        - 3 * r * r
+    ) % p
+
+
+def beta_fiber_delta_ratio_derivative(
+    p: int,
+    alpha: int,
+    beta: int,
+    ratio: int,
+) -> int:
+    a = alpha
+    b = beta
+    r = ratio
+    return (
+        -4 * a * a * a * r
+        + a
+        * a
+        * (3 * b * b - 2 * b * r - b + 9 * r * r - 2 * r + 3)
+        + a * (-6 * b * b * r + b * b + 2 * b * r + b - 6 * r)
+        + 2 * b * b
+    ) % p
+
+
+def beta_fiber_singular_support_value(p: int, beta: int) -> int:
+    quartic = poly_value_mod(p, beta, (9, -6, -5, -6, 9))
+    degree_sixteen = poly_value_mod(
+        p,
+        beta,
+        (
+            6561,
+            8019,
+            -4860,
+            -29727,
+            4023,
+            57528,
+            54777,
+            -73453,
+            -139136,
+            -73453,
+            54777,
+            57528,
+            4023,
+            -29727,
+            -4860,
+            8019,
+            6561,
+        ),
+    )
+    return (
+        beta
+        * (beta - 1)
+        * (beta * beta + beta + 1)
+        * (9 * beta * beta + 14 * beta + 9)
+        * quartic
+        * degree_sixteen
+    ) % p
+
+
+def beta_fiber_singularity_case(p: int) -> dict[str, Any]:
+    singular_beta_values = []
+    support_beta_values = []
+    singular_point_count = 0
+    for beta in range(1, p):
+        in_support = beta_fiber_singular_support_value(p, beta) == 0
+        if in_support:
+            support_beta_values.append(beta)
+        beta_is_singular = False
+        for alpha in range(1, p):
+            for ratio in range(1, p):
+                if m1.ratio_surface_delta(p, alpha, beta, ratio) != 0:
+                    continue
+                if beta_fiber_delta_alpha_derivative(p, alpha, beta, ratio) != 0:
+                    continue
+                if beta_fiber_delta_ratio_derivative(p, alpha, beta, ratio) != 0:
+                    continue
+                if not in_support:
+                    raise AssertionError((p, beta, alpha, ratio, "off-support"))
+                beta_is_singular = True
+                singular_point_count += 1
+        if beta_is_singular:
+            singular_beta_values.append(beta)
+    return {
+        "p": p,
+        "singular_beta_values": singular_beta_values,
+        "support_beta_values": support_beta_values,
+        "singular_beta_count": len(singular_beta_values),
+        "support_beta_count": len(support_beta_values),
+        "singular_point_count": singular_point_count,
+    }
+
+
 def centered_frobenius_square(matrix: list[list[int]]) -> float:
     order = len(matrix)
     row_sums = [sum(row) for row in matrix]
@@ -676,6 +804,10 @@ def compute_report() -> dict[str, Any]:
         alpha_middle_elliptic_case(p)
         for p in sorted({case[0] for case in AUDIT_CASES})
     ]
+    beta_fiber_singularity_rows = [
+        beta_fiber_singularity_case(p)
+        for p in sorted({case[0] for case in AUDIT_CASES})
+    ]
     for row in rows:
         key = (row["p"], row["quotient_order"])
         (
@@ -751,6 +883,14 @@ def compute_report() -> dict[str, Any]:
         )
         if actual != expected:
             raise AssertionError((row["p"], actual, expected))
+    for row in beta_fiber_singularity_rows:
+        expected = EXPECTED_BETA_FIBER_SINGULAR_ROWS[row["p"]]
+        actual = (
+            tuple(row["singular_beta_values"]),
+            tuple(row["support_beta_values"]),
+        )
+        if actual != expected:
+            raise AssertionError((row["p"], actual, expected))
     max_two_sided_row = max(
         rows,
         key=lambda row: row["max_two_sided_coefficient_ratio"],
@@ -794,6 +934,10 @@ def compute_report() -> dict[str, Any]:
         alpha_middle_elliptic_rows,
         key=lambda row: row["max_fiber_trace_sqrt_ratio"],
     )
+    max_beta_fiber_support_row = max(
+        beta_fiber_singularity_rows,
+        key=lambda row: row["support_beta_count"],
+    )
     return {
         "status": "PASS",
         "proof_status": "EXPERIMENTAL / FINITE SPECTRAL AUDIT",
@@ -801,6 +945,7 @@ def compute_report() -> dict[str, Any]:
         "rows": rows,
         "principal_trace_rows": principal_trace_rows,
         "alpha_middle_elliptic_rows": alpha_middle_elliptic_rows,
+        "beta_fiber_singularity_rows": beta_fiber_singularity_rows,
         "max_two_sided_coefficient_row": max_two_sided_row,
         "max_beta2_coefficient_row": max_beta2_row,
         "max_centered_frobenius_row": max_frobenius_row,
@@ -813,6 +958,7 @@ def compute_report() -> dict[str, Any]:
         "max_nonnegative_sufficient_bound_row": max_nonnegative_bound_row,
         "max_principal_trace_row": max_principal_trace_row,
         "max_alpha_middle_fiber_row": max_alpha_middle_fiber_row,
+        "max_beta_fiber_support_row": max_beta_fiber_support_row,
         "interpretation": (
             "All audited good beta-pushforward matrices have p-scale full "
             "BETA_2 coefficients, p-scale centered Frobenius norm, and "
@@ -945,6 +1091,19 @@ def print_report(report: dict[str, Any]) -> None:
             f"p={row['p']} singular={tuple(row['singular_parameters'])} "
             f"max_fiber/sqrtp={row['max_fiber_trace_sqrt_ratio']}"
         )
+    for row in report["beta_fiber_singularity_rows"]:
+        print(
+            "beta-fiber singular row: "
+            f"p={row['p']} singular={tuple(row['singular_beta_values'])} "
+            f"support_count={row['support_beta_count']} "
+            f"singular_points={row['singular_point_count']}"
+        )
+    max_beta_fiber_support = report["max_beta_fiber_support_row"]
+    print(
+        "max beta-fiber support row: "
+        f"p={max_beta_fiber_support['p']} "
+        f"support_count={max_beta_fiber_support['support_beta_count']}"
+    )
 
 
 def main() -> None:

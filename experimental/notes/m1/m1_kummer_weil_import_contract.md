@@ -734,6 +734,17 @@ alpha-marginal `O_e(p)` bound by the standard curve Weil bound.  This closes
 the alpha marginal as a one-dimensional input; it is still not the centered
 M1 target itself.
 
+The beta marginal is less elementary but also has a fixed beta-fiber support
+ledger in `m1_beta_pushforward_spectral_audit.md`.  Setting `psi=1` gives a
+Mellin transform over beta of a bidegree `(3,3)` torus family
+`Delta_b(a,r)=0`, with bounded Kummer divisor `chi(rM(a,r))`.  Eliminating
+`a` and `r` from `Delta_b=partial_a Delta_b=partial_r Delta_b=0` confines the
+finite singular beta-values to one explicit fixed polynomial support of
+degree `26` including beta zero, hence degree `25` on `G_m` (plus beta
+infinity), and the standalone verifier checks this support on the expanded
+prime rows.  This is not a proof of the beta marginal, but it rules out an
+unbounded supply of bad beta-column fibers.
+
 The elementary hypotheses behind this import are now audited in
 `verify_m1_depth_two_line_conic_resonance_reduction.py`:
 

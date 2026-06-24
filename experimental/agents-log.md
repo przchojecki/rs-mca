@@ -63,7 +63,11 @@ Keep entries concise and link to the relevant files.
   `p(1+psi(-2)+psi(-1/2))`, the fixed deleted-boundary correction, and the
   rank-one torus trace `sum psi(a)chi(rM(a,r))`; the latter is identified as
   a fixed-conductor non-isotrivial elliptic trace sheaf with singular
-  parameters `a=1,-3,-1/3`.
+  parameters `a=1,-3,-1/3`.  The same audit now records a fixed beta-fiber
+  support ledger for the beta marginal: after setting `psi=1`, the marginal
+  is a Mellin transform over a bidegree `(3,3)` torus family
+  `Delta_b(a,r)=0`, whose singular beta-values are confined to one explicit
+  fixed polynomial support checked on every expanded prime row.
 - **How it is useful:** This is a counterexample-first test of the remaining
   rank-two pushforward object, not of the already controlled exceptional
   ledger. The audited rows show p-scale behavior, with largest recorded full
@@ -78,7 +82,9 @@ Keep entries concise and link to the relevant files.
   The largest alpha-marginal Frobenius ratio is `0.9002934041`, the largest
   alpha-marginal coefficient ratio is `4.6632993198`, and the largest
   full-middle alpha trace ratio is `2.8331969382`; the largest audited
-  elliptic fiber trace ratio is `1.8299828440 sqrt(p)`.
+  elliptic fiber trace ratio is `1.8299828440 sqrt(p)`.  The beta-fiber
+  singular-support audit has largest support count `9`, with every observed
+  torus singular beta-value contained in the displayed fixed support.
 - **What to do next:** Prove p-scale estimates for the centered block and
   the beta marginal block, prove the bounded-conductor/no-constant-summand
   `(BETA_2)` estimate for the explicit rank-two pushforward, or extend the
