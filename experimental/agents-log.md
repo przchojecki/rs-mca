@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-24 - L1 background-free two-petal count
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/notes/l1/l1_full_list_quotient_proof_program.md`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED.
+- **What is being added:** A polynomial bound for the exact background-free
+  two-petal sunflower subcase: at most `binom(M,2)q` non-planted listed
+  codewords touch exactly two petals.
+- **How it is useful:** Closes the two-petal profile as a possible
+  super-polynomial sunflower obstruction in the generated-field window
+  `q=poly(n)`, reducing the remaining background-free cases to three-or-more
+  petals or different structured degeneracies.
+- **What to do next:** Attack the three-or-more-petal incidence problem, using
+  the core-defect reduction and petal-support tradeoff to organize the count by
+  defect and number of touched petals.
+
 ### 2026-06-24 - L1 background-free two-petal pencil
 
 - **Agent/model:** Codex.

@@ -542,6 +542,66 @@ of this type: `ell=3`, defect `d=3`, and two full petals.  Future progress on
 this subcase should attack splitting of this affine pencil inside the core,
 rather than re-enumerating full received words.
 
+## Lemma 6. Background-Free Two-Petal Count
+
+Status: PROVED.
+
+In the background-free sunflower setting of Lemma 5, the number of
+non-planted listed codewords that touch exactly two petals is at most
+
+```text
+binom(M,2) q.
+```
+
+Consequently, in the generated-field regime `q=poly(n)`, the entire
+background-free two-petal obstruction is polynomially bounded.  At the L1
+lower cutoff `sigma >= C n/log n`, this bound is
+
+```text
+O(q log(n)^2).
+```
+
+### Proof
+
+Each two-petal extra has a unique unordered pair of touched petals
+`{T_i,T_j}`.  Fix the order `i<j`.  By Lemma 5, the missed-core locator lies
+on the affine pencil
+
+```text
+L_D = (1+beta)L_{T_i} - beta L_{T_j}.
+```
+
+For this fixed pair, the map
+
+```text
+beta |-> (1+beta)L_{T_i} - beta L_{T_j}
+```
+
+is injective.  Indeed, two values of `beta` give the same polynomial only if
+`L_{T_i}=L_{T_j}`, which is impossible because the petals are disjoint and
+nonempty.  For a given polynomial in the pencil, there is at most one subset
+`D subset C` whose locator polynomial equals it, since the roots determine
+`D`.  Lemma 5 then gives at most one listed codeword for that pair and that
+`beta`.
+
+There are `binom(M,2)` unordered petal pairs and `q` possible values of
+`beta`, proving the bound.  Since a background-free sunflower has
+
+```text
+M = (n-k+1)/(sigma+1),
+```
+
+the lower cutoff `sigma >= C n/log n` gives `M=O(log n)`, and hence
+`binom(M,2)q = O(q log(n)^2)`.
+
+### Consequences
+
+This closes the exact background-free two-petal profile as a possible
+super-polynomial obstruction to Conjecture 1 in the polynomial generated-field
+window.  The remaining background-free sunflower cases either touch at least
+three petals or involve a different structured degeneracy not captured by the
+two-petal pencil.
+
 ## Development Ledger
 
 - **Conjecture 1 full-list primitive remainder:** CONJECTURAL.  Main proof
@@ -565,5 +625,7 @@ rather than re-enumerating full received words.
   require large missed-core defect.
 - **Background-free two-petal pencil:** PROVED.  Classifies exact two-petal
   extras by a one-parameter locator pencil.
+- **Background-free two-petal count:** PROVED.  Bounds the exact two-petal
+  family by `binom(M,2)q`.
 - **Mixed-petal sunflower amplification:** CONJECTURAL.  Next focused bound to
   prove or refute in the large-defect regime.
