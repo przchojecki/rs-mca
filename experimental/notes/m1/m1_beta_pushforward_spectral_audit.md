@@ -472,6 +472,31 @@ component; their three-way singular resultants add only the already displayed
 that every torus singular fiber lies in the displayed support.  The largest
 support count in the audit is `9` beta-values.
 
+The displayed finite support is compatible with the inversion quotient.  On
+`G_m`, every nontrivial support factor is reciprocal, and the degree-16 factor
+descends by
+
+```text
+Q16(b) = b^8 Q8(b+b^{-1}),
+Q8(z)=6561z^8+8019z^7-57348z^6-85860z^5+164403z^4
+      +318429z^3-110031z^2-450805z-217802.
+```
+
+Set-theoretically, after `z=b+b^{-1}` the finite bad quotient support is
+contained in
+
+```text
+(z-2)(z+1)(9z+14)(9z^2-6z-23)Q8(z)=0.
+```
+
+The factor `b-1` gives the fixed quotient point `z=2`, while `b=0` and
+`b=infinity` map to the quotient point at infinity.  The standalone verifier
+checks that the beta support is inversion-stable and that its image in the
+`G_m/<b~b^{-1}>` quotient is exactly the root set of this degree-13 polynomial
+restricted to the actual quotient image.  In the expanded rows the largest
+visible finite quotient support has only `5` z-values, while the full
+polynomial root set in `F_p` has at most `6` roots in the same rows.
+
 Thus the beta marginal is a fixed-conductor beta-column family.  On the
 regular beta-line complement, the family has bounded bidegree and bounded
 Kummer divisor.  The finite singular support has `O(1)` fibers, each of size
@@ -789,4 +814,5 @@ fixed-support beta-fiber trace maxima.  Finally, it checks the grouped
 beta-line identity, the inversion symmetry, and the beta-marginal Chebyshev
 quotient formula and kernel second moments for every quotient-character block.
 It also checks the two-component beta-line dihedral quotient formula for every
-left/right quotient-character block.
+left/right quotient-character block, and the degree-13 quotient support
+polynomial for the finite beta singular fibers.

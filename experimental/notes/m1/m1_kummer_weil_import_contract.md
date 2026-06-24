@@ -761,6 +761,19 @@ trace estimate give `B_phi=O_e(p)`.  Thus the beta marginal is reduced to a
 one-dimensional Kummer-isotypy check; it is still not the centered M1 target
 itself.
 
+This singular-support ledger is also compatible with the inversion quotient.
+After `z=b+b^{-1}`, the finite bad quotient support is contained in the
+degree-13 set
+
+```text
+(z-2)(z+1)(9z+14)(9z^2-6z-23)Q8(z)=0,
+```
+
+where `Q16(b)=b^8 Q8(b+b^{-1})`.  The quotient point at infinity accounts for
+`b=0,infinity`.  Thus the Chebyshev/dihedral beta-line formulation does not
+introduce a growing quotient singular set; the remaining obstruction is still
+the Kummer-isotypic or averaged matrix bound on a bounded-conductor family.
+
 The same beta-line localization applies to all character rows:
 
 ```text

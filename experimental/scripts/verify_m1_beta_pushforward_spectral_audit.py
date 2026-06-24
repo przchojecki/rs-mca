@@ -156,6 +156,29 @@ EXPECTED_BETA_FIBER_TRACE_ROWS = {
     127: (24, 15, 248, 1, 502),
 }
 
+BETA_SUPPORT_Z_DEGREE_EIGHT = (
+    6561,
+    8019,
+    -57348,
+    -85860,
+    164403,
+    318429,
+    -110031,
+    -450805,
+    -217802,
+)
+
+EXPECTED_BETA_FIBER_QUOTIENT_SUPPORT_ROWS = {
+    17: ((2, 6), (2, 6, 16)),
+    31: ((2, 30), (2, 26, 30)),
+    43: ((2, 5, 8, 10, 42), (2, 5, 8, 10, 34, 42)),
+    61: ((2, 60), (2, 12, 60)),
+    73: ((2, 9, 39, 59, 72), (2, 9, 39, 59, 72)),
+    97: ((2, 4, 20, 29, 96), (2, 4, 20, 29, 96)),
+    109: ((2, 104, 108), (2, 59, 104, 108)),
+    127: ((1, 2, 126), (1, 2, 69, 126)),
+}
+
 TOLERANCE = 1e-8
 BETA_TRACE_CACHE: dict[int, list[int]] = {}
 BETA_INVERSION_CACHE: dict[int, dict[str, int]] = {}
@@ -522,6 +545,17 @@ def beta_fiber_singular_support_value(p: int, beta: int) -> int:
     ) % p
 
 
+def beta_fiber_singular_quotient_support_value(p: int, z_value: int) -> int:
+    degree_eight = poly_value_mod(p, z_value, BETA_SUPPORT_Z_DEGREE_EIGHT)
+    return (
+        (z_value - 2)
+        * (z_value + 1)
+        * (9 * z_value + 14)
+        * (9 * z_value * z_value - 6 * z_value - 23)
+        * degree_eight
+    ) % p
+
+
 def beta_fiber_singularity_case(p: int) -> dict[str, Any]:
     singular_beta_values = []
     support_beta_values = []
@@ -552,6 +586,57 @@ def beta_fiber_singularity_case(p: int) -> dict[str, Any]:
         "singular_beta_count": len(singular_beta_values),
         "support_beta_count": len(support_beta_values),
         "singular_point_count": singular_point_count,
+    }
+
+
+def beta_fiber_quotient_support_case(p: int) -> dict[str, Any]:
+    beta_orbits: dict[int, list[int]] = {}
+    max_support_inversion_error = 0
+    for beta in range(1, p):
+        inverse_beta = pow(beta, -1, p)
+        beta_in_support = beta_fiber_singular_support_value(p, beta) == 0
+        inverse_in_support = (
+            beta_fiber_singular_support_value(p, inverse_beta) == 0
+        )
+        max_support_inversion_error = max(
+            max_support_inversion_error,
+            abs(int(beta_in_support) - int(inverse_in_support)),
+        )
+        z_value = (beta + inverse_beta) % p
+        beta_orbits.setdefault(z_value, []).append(beta)
+
+    support_z_values = sorted(
+        z_value
+        for z_value, orbit in beta_orbits.items()
+        if any(beta_fiber_singular_support_value(p, beta) == 0 for beta in orbit)
+    )
+    quotient_polynomial_roots = sorted(
+        z_value
+        for z_value in range(p)
+        if beta_fiber_singular_quotient_support_value(p, z_value) == 0
+    )
+    quotient_image_roots = sorted(
+        z_value
+        for z_value in beta_orbits
+        if beta_fiber_singular_quotient_support_value(p, z_value) == 0
+    )
+    if max_support_inversion_error != 0:
+        raise AssertionError((p, max_support_inversion_error))
+    if support_z_values != quotient_image_roots:
+        raise AssertionError((p, support_z_values, quotient_image_roots))
+    if len(quotient_polynomial_roots) > 13:
+        raise AssertionError((p, quotient_polynomial_roots))
+    return {
+        "p": p,
+        "support_z_values": support_z_values,
+        "quotient_polynomial_roots": quotient_polynomial_roots,
+        "quotient_image_roots": quotient_image_roots,
+        "support_z_count": len(support_z_values),
+        "quotient_polynomial_root_count": len(quotient_polynomial_roots),
+        "nonimage_root_count": (
+            len(quotient_polynomial_roots) - len(quotient_image_roots)
+        ),
+        "max_support_inversion_error": max_support_inversion_error,
     }
 
 
@@ -1425,6 +1510,10 @@ def compute_report() -> dict[str, Any]:
         beta_fiber_singularity_case(p)
         for p in sorted({case[0] for case in AUDIT_CASES})
     ]
+    beta_fiber_quotient_support_rows = [
+        beta_fiber_quotient_support_case(p)
+        for p in sorted({case[0] for case in AUDIT_CASES})
+    ]
     beta_fiber_trace_rows = [
         beta_fiber_trace_case(p) for p in sorted({case[0] for case in AUDIT_CASES})
     ]
@@ -1527,6 +1616,14 @@ def compute_report() -> dict[str, Any]:
         )
         if actual != expected:
             raise AssertionError((row["p"], actual, expected))
+    for row in beta_fiber_quotient_support_rows:
+        expected = EXPECTED_BETA_FIBER_QUOTIENT_SUPPORT_ROWS[row["p"]]
+        actual = (
+            tuple(row["support_z_values"]),
+            tuple(row["quotient_polynomial_roots"]),
+        )
+        if actual != expected:
+            raise AssertionError((row["p"], actual, expected))
     max_two_sided_row = max(
         rows,
         key=lambda row: row["max_two_sided_coefficient_ratio"],
@@ -1574,6 +1671,10 @@ def compute_report() -> dict[str, Any]:
         beta_fiber_singularity_rows,
         key=lambda row: row["support_beta_count"],
     )
+    max_beta_quotient_support_row = max(
+        beta_fiber_quotient_support_rows,
+        key=lambda row: row["support_z_count"],
+    )
     max_beta_regular_trace_row = max(
         beta_fiber_trace_rows,
         key=lambda row: row["max_regular_trace_sqrt_ratio"],
@@ -1590,6 +1691,7 @@ def compute_report() -> dict[str, Any]:
         "principal_trace_rows": principal_trace_rows,
         "alpha_middle_elliptic_rows": alpha_middle_elliptic_rows,
         "beta_fiber_singularity_rows": beta_fiber_singularity_rows,
+        "beta_fiber_quotient_support_rows": beta_fiber_quotient_support_rows,
         "beta_fiber_trace_rows": beta_fiber_trace_rows,
         "max_two_sided_coefficient_row": max_two_sided_row,
         "max_beta2_coefficient_row": max_beta2_row,
@@ -1604,6 +1706,7 @@ def compute_report() -> dict[str, Any]:
         "max_principal_trace_row": max_principal_trace_row,
         "max_alpha_middle_fiber_row": max_alpha_middle_fiber_row,
         "max_beta_fiber_support_row": max_beta_fiber_support_row,
+        "max_beta_quotient_support_row": max_beta_quotient_support_row,
         "max_beta_regular_trace_row": max_beta_regular_trace_row,
         "max_beta_support_trace_row": max_beta_support_trace_row,
         "interpretation": (
@@ -1679,6 +1782,7 @@ def print_report(report: dict[str, Any]) -> None:
     max_alpha_middle_fiber = report["max_alpha_middle_fiber_row"]
     max_beta_regular_trace = report["max_beta_regular_trace_row"]
     max_beta_support_trace = report["max_beta_support_trace_row"]
+    max_beta_quotient_support = report["max_beta_quotient_support_row"]
     print(
         "max two-sided coefficient row: "
         f"p={max_two_sided['p']} e={max_two_sided['quotient_order']} "
@@ -1782,6 +1886,13 @@ def print_report(report: dict[str, Any]) -> None:
             f"support_count={row['support_beta_count']} "
             f"singular_points={row['singular_point_count']}"
         )
+    for row in report["beta_fiber_quotient_support_rows"]:
+        print(
+            "beta-fiber quotient support row: "
+            f"p={row['p']} support_z={tuple(row['support_z_values'])} "
+            "quotient_roots="
+            f"{tuple(row['quotient_polynomial_roots'])}"
+        )
     for row in report["beta_fiber_trace_rows"]:
         print(
             "beta-fiber trace row: "
@@ -1795,6 +1906,13 @@ def print_report(report: dict[str, Any]) -> None:
         "max beta-fiber support row: "
         f"p={max_beta_fiber_support['p']} "
         f"support_count={max_beta_fiber_support['support_beta_count']}"
+    )
+    print(
+        "max beta-fiber quotient support row: "
+        f"p={max_beta_quotient_support['p']} "
+        f"support_z_count={max_beta_quotient_support['support_z_count']} "
+        "quotient_root_count="
+        f"{max_beta_quotient_support['quotient_polynomial_root_count']}"
     )
 
 

@@ -89,6 +89,8 @@ Keep entries concise and link to the relevant files.
   For general `psi`, the centered beta-line block is also rewritten on the
   same quotient as the two-component dihedral trace
   `phi(b)tau_psi(b)+phi(b)^(-1)tau_{psi^{-1}}(b)`.
+  The finite beta singular support is now checked to descend to a degree-13
+  support polynomial on the same quotient line `z=b+b^{-1}`.
 - **How it is useful:** This is a counterexample-first test of the remaining
   rank-two pushforward object, not of the already controlled exceptional
   ledger. The audited rows show p-scale behavior, with largest recorded full
