@@ -420,7 +420,9 @@ problem inside the ordinary close list of the base word `r`.  The general
 `max(ceil(|F|/m),m)` for a base word with `m` close codewords.  Equivalently,
 at collinearity threshold `b`, line-decodability on such code-direction lines
 requires ordinary close-list size below `ceil(|F|/(b-1))` whenever that number
-is at most `b-1`.
+is at most `b-1`.  Conversely, if the close list has size at most
+`floor((A-1)/(b-1))` for a trigger size `A`, pigeonhole already supplies the
+required `b` agreeing slopes on code-direction lines.
 
 ## Follow-Up Checks
 

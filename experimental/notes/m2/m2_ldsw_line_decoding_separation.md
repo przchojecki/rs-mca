@@ -70,6 +70,31 @@ equivalent to finding a large affine graph inside the shifted assignment
 numerator has already vanished before this assignment-collinearity question
 appears.
 
+This reduction has an exact pigeonhole half.  Let
+
+```text
+L_a(r) = {c in C : c agrees with r on at least a coordinates}.
+```
+
+If an assignment is close on a set `T subset F` of slopes, then the shifted
+values `c_gamma` for `gamma in T` lie in `L_a(r)`.  Hence some `c in L_a(r)`
+appears at least
+
+```text
+ceil(|T|/|L_a(r)|)
+```
+
+times.  The affine code-line `c + gamma v` agrees with the original assignment
+on all those slopes.  Consequently, for any trigger size `A`, code-direction
+lines automatically satisfy the ABF/GG `b`-collinearity conclusion whenever
+
+```text
+|L_a(r)| <= floor((A-1)/(b-1)).
+```
+
+In the full-field case `A=|F|`, this automatic range is
+`|L_a(r)| < ceil(|F|/(b-1))`.
+
 As a direct obstruction, suppose `m` distinct codewords
 `c_1,...,c_m in C` all agree with `r` on at least `a` coordinates, and split
 the field into nonempty buckets
@@ -135,6 +160,9 @@ max(ceil(|F|/s_b), s_b) <= b-1
 
 slopes.  This violates the required `b`-slope collinearity conclusion while
 the code-direction received line still contributes nothing to `LD_sw`.
+The pigeonhole half above shows this threshold is exact for code-direction
+lines: below `s_b`, every full-field assignment is forced to contain a
+`b`-point affine graph.
 
 ## Construction
 
@@ -182,7 +210,10 @@ However, no code-line `u0 + gamma u1` agrees with this assignment on nine
 slopes.  This is the `m=2` bucket obstruction above with bucket sizes `6` and
 `7`; the exact maximum is `max(ceil(13/2),2)=7 < 9`.  The list-size corollary
 also applies directly: for `b=9`, one has `s_b=ceil(13/8)=2`, and the base
-word `r` has the two close codewords `p0,p1`.
+word `r` has exactly the two close codewords `p0,p1`.  If the close list had
+size `1` instead, every full-field assignment on a code-direction line would
+have a constant shifted value on all `13` slopes, hence would satisfy the
+`9`-slope collinearity conclusion by pigeonhole.
 
 ## Consequence for M2
 
@@ -203,7 +234,8 @@ stronger close-codeword assignment theorem.  The `m`-bucket bound also explains
 what such an input must control: affine-graph incidence inside ordinary close
 lists, not only the size of the support-wise bad-slope set.  In the
 `b=n+1` convention, the code-direction obstruction demands ordinary close-list
-control at the scale `ceil(|F|/n)` whenever `ceil(|F|/n) <= n`.
+control at the scale `ceil(|F|/n)` whenever `ceil(|F|/n) <= n`; below that
+scale, code-direction lines are controlled by pigeonhole.
 
 This does not contradict the ABF/GG theorem.  It only rules out a possible
 shortcut from support-wise MCA bounds back to line-decodability.

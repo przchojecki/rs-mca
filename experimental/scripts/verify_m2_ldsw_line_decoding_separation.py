@@ -79,6 +79,17 @@ def agreement_count(left: tuple[int, ...], right: tuple[int, ...]) -> int:
     return sum(a == b for a, b in zip(left, right))
 
 
+def close_codeword_coeffs(
+    received: tuple[int, ...],
+    codebook: dict[tuple[int, ...], tuple[int, ...]],
+) -> list[tuple[int, ...]]:
+    return [
+        coeffs
+        for coeffs, word in codebook.items()
+        if agreement_count(received, word) >= AGREEMENT
+    ]
+
+
 def build_received_word(
     p0: tuple[int, ...], p1: tuple[int, ...]
 ) -> tuple[int, ...]:
@@ -217,6 +228,18 @@ def list_size_obstruction_threshold(b_threshold: int) -> int:
     return (P + b_threshold - 2) // (b_threshold - 1)
 
 
+def automatic_list_size_bound(trigger_size: int, b_threshold: int) -> int:
+    if b_threshold <= 1:
+        raise ValueError("b_threshold must be at least 2")
+    return (trigger_size - 1) // (b_threshold - 1)
+
+
+def pigeonhole_collinearity_bound(trigger_size: int, list_size: int) -> int:
+    if list_size <= 0:
+        raise ValueError("list_size must be positive")
+    return (trigger_size + list_size - 1) // list_size
+
+
 def compute_report() -> dict[str, Any]:
     codebook = codewords()
     support_code = support_tables(codebook)
@@ -225,6 +248,7 @@ def compute_report() -> dict[str, Any]:
     received_direction = codebook[DIRECTION_COEFFS]
     received = build_received_word(p0, p1)
     full_code = set(codebook.values())
+    close_coeffs = close_codeword_coeffs(received, codebook)
 
     bad_slopes, explaining_supports = supportwise_bad_slopes_for_received_line(
         received, received_direction, support_code
@@ -243,6 +267,8 @@ def compute_report() -> dict[str, Any]:
     bucket_bound = bucket_obstruction_bound(bucket_sizes)
     balanced_bound = balanced_bucket_bound(len(bucket_sizes))
     list_threshold = list_size_obstruction_threshold(B_THRESHOLD)
+    automatic_bound = automatic_list_size_bound(P, B_THRESHOLD)
+    pigeonhole_bound = pigeonhole_collinearity_bound(P, len(close_coeffs))
 
     checks = {
         "p0_and_p1_distinct": p0 != p1,
@@ -268,7 +294,13 @@ def compute_report() -> dict[str, Any]:
             bucket_bound == balanced_bound
         ),
         "list_size_threshold_is_two": list_threshold == 2,
-        "base_close_list_meets_threshold": len(bucket_sizes) >= list_threshold,
+        "base_close_list_is_exactly_two": len(close_coeffs) == 2,
+        "base_close_list_meets_threshold": len(close_coeffs) >= list_threshold,
+        "automatic_list_size_bound_is_one": automatic_bound == 1,
+        "close_list_is_first_obstructing_size": (
+            len(close_coeffs) == automatic_bound + 1
+        ),
+        "pigeonhole_bound_for_actual_list_is_seven": pigeonhole_bound == 7,
         "list_threshold_below_collinearity_threshold": (
             list_threshold <= B_THRESHOLD - 1
         ),
@@ -297,6 +329,7 @@ def compute_report() -> dict[str, Any]:
         "p1_word": list(p1),
         "received_word": list(received),
         "received_direction_word": list(received_direction),
+        "close_codeword_coeffs": [list(coeffs) for coeffs in close_coeffs],
         "received_line_contained_in_code": line_contained,
         "p0_agreement": p0_agreement,
         "p1_agreement": p1_agreement,
@@ -310,6 +343,8 @@ def compute_report() -> dict[str, Any]:
             "m_bucket_obstruction_bound": bucket_bound,
             "balanced_m_bucket_bound": balanced_bound,
             "list_size_obstruction_threshold": list_threshold,
+            "automatic_list_size_bound": automatic_bound,
+            "pigeonhole_collinearity_bound": pigeonhole_bound,
         },
         **max_report,
         "interpretation": (
@@ -353,6 +388,14 @@ def print_report(report: dict[str, Any]) -> None:
     print(
         "list-size obstruction threshold: "
         f"{report['assignment']['list_size_obstruction_threshold']}"
+    )
+    print(
+        "automatic list-size bound: "
+        f"{report['assignment']['automatic_list_size_bound']}"
+    )
+    print(
+        "pigeonhole bound for actual close list: "
+        f"{report['assignment']['pigeonhole_collinearity_bound']}"
     )
     print(
         "max code-line agreement with assignment: "
