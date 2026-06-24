@@ -1721,6 +1721,72 @@ def check_full_prefix_rigidity() -> dict[str, Any]:
     }
 
 
+def check_full_prefix_common_ideal_endpoint() -> dict[str, Any]:
+    order = 16
+    exhaustive_max_complement_size = 2
+    pair_count = 0
+    max_endpoint_index = 0
+    endpoint_factorizations: Counter[tuple[tuple[int, int], ...]] = Counter()
+    for complement_size in range(1, exhaustive_max_complement_size + 1):
+        subsets = list(itertools.combinations(range(order), complement_size))
+        for left_idx, left in enumerate(subsets):
+            for right in subsets[left_idx + 1:]:
+                common_ideal = common_ideal_index(
+                    left,
+                    right,
+                    order,
+                    complement_size,
+                )
+                if common_ideal["index"] == 0:
+                    raise AssertionError("distinct full-prefix pair was char-zero")
+                support = prime_support_away_from_order(
+                    common_ideal["index"],
+                    order,
+                )
+                if support:
+                    raise AssertionError("full-prefix endpoint had off-order support")
+                max_endpoint_index = max(max_endpoint_index, common_ideal["index"])
+                endpoint_factorizations[
+                    tuple(sorted(common_ideal["factorization"].items()))
+                ] += 1
+                pair_count += 1
+    if pair_count != 7_260:
+        raise AssertionError("unexpected full-prefix endpoint pair count")
+
+    representative_left = (0, 1, 2, 3, 4, 14)
+    representative_right = (5, 6, 7, 9, 12, 15)
+    representative_ideal = common_ideal_index(
+        representative_left,
+        representative_right,
+        order,
+        6,
+    )
+    representative_support = prime_support_away_from_order(
+        representative_ideal["index"],
+        order,
+    )
+    if representative_ideal["index"] != 4 or representative_support:
+        raise AssertionError("representative full-prefix endpoint had bad support")
+
+    return {
+        "order": order,
+        "exhaustive_max_complement_size": exhaustive_max_complement_size,
+        "pairs_checked": pair_count,
+        "max_endpoint_index": max_endpoint_index,
+        "endpoint_factorizations": {
+            str(dict(key)): value
+            for key, value in sorted(endpoint_factorizations.items())
+        },
+        "representative": {
+            "complement_size": 6,
+            "left": list(representative_left),
+            "right": list(representative_right),
+            "common_ideal_index": representative_ideal["index"],
+            "support_away_from_order": representative_support,
+        },
+    }
+
+
 def check_split_prime_sweep() -> list[dict[str, Any]]:
     rows = []
     expected_counts = {17: 40, 97: 0, 113: 0, 193: 0}
@@ -2485,6 +2551,9 @@ def build_report() -> dict[str, Any]:
         "extension_field_row_accounting": check_extension_field_row_accounting(),
         "prefix_depth_filtration": check_prefix_depth_filtration(),
         "full_prefix_rigidity": check_full_prefix_rigidity(),
+        "full_prefix_common_ideal_endpoint": (
+            check_full_prefix_common_ideal_endpoint()
+        ),
         "split_prime_sweep": check_split_prime_sweep(),
         "bounded_split_prime_row_scan": check_bounded_split_prime_row_scan(),
         "prime_ideal_false_positive": check_prime_ideal_false_positive(),
@@ -2572,6 +2641,14 @@ def print_human(report: dict[str, Any]) -> None:
         f"primes={full_prefix['primes_checked']}, "
         f"m<={full_prefix['max_complement_size']}, "
         "collisions=0"
+    )
+    full_index = report["full_prefix_common_ideal_endpoint"]
+    print(
+        "full_prefix_common_ideal_endpoint="
+        f"m<={full_index['exhaustive_max_complement_size']}, "
+        f"pairs={full_index['pairs_checked']}, "
+        f"max_index={full_index['max_endpoint_index']}, "
+        "off_order_support=0"
     )
     accounting = report["split_prime_row_accounting"]
     print(

@@ -62,6 +62,8 @@ Keep entries concise and link to the relevant files.
   `|Coll_T(h)| <= phi(n)^{-1} sum_T v_p(I_n,sigma(A,B))`.
   The affine-orbit reduction is also extended from resultant/common-root
   degree invariance to common-ideal index and valuation invariance.
+  At the full-prefix endpoint `sigma=m`, the common-ideal index has no prime
+  support away from primes dividing `n`.
   The modular gcd degree is also
   recorded as the exact primitive-root embedding multiplicity at split and
   nonsplit primes, with the Frobenius-orbit quotient giving the rational

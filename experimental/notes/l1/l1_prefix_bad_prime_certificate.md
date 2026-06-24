@@ -763,6 +763,28 @@ partial-prefix phenomenon with `sigma < m`.  The bad-prime aggregation problem
 only needs to control how quickly the prefix-depth filtration reaches this
 rigid endpoint.
 
+The exact common-ideal index has the corresponding endpoint.  If `A != B` and
+`sigma=m`, then
+
+```text
+prime divisors of I_n,m(A,B) are all divisors of n.
+```
+
+Indeed, if a prime `p` not dividing `n` divided `I_n,m(A,B)`, the exact
+common-ideal criterion would give a primitive `n`-th root `alpha` in the
+algebraic closure of `F_p` where all elementary sums agree:
+
+```text
+E_r(A;alpha)=E_r(B;alpha),        1 <= r <= m.
+```
+
+The two monic locator polynomials over that algebraic closure would then have
+the same degree and all the same coefficients.  Since `alpha` has exact order
+`n`, its powers are distinct, so the root subsets coincide and `A=B`, a
+contradiction.  Thus the prefix-depth filtration removes every separable
+rational bad prime by the full-prefix endpoint; only primes dividing `n` can
+remain in `I_n,m`.
+
 ## Worked L1 Packet: F_17, n=16
 
 The existing aperiodic collision certificate in
