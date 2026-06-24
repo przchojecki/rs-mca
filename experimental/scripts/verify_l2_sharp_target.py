@@ -703,6 +703,56 @@ def connected_cluster_count_profile() -> dict:
     }
 
 
+def closure_signature_profile() -> dict:
+    """Count all ordered support triples by k-closed component signature."""
+    n, k, a, tuple_size = 6, 2, 3, 3
+    supports = [tuple(support) for support in itertools.combinations(range(n), a)]
+    rows_by_signature: dict[tuple[int, int, int], int] = {}
+    for support_tuple in itertools.product(supports, repeat=tuple_size):
+        closed_components = closure_components(list(support_tuple), k)
+        closed_count = len(closed_components)
+        union_size = len(set().union(*[set(support) for support in support_tuple]))
+        global_excess = union_size - a * closed_count
+        signature = (closed_count, union_size, global_excess)
+        rows_by_signature[signature] = rows_by_signature.get(signature, 0) + 1
+    rows = []
+    for (closed_count, union_size, global_excess), count in sorted(
+        rows_by_signature.items()
+    ):
+        union_bound = comb(n, union_size) * comb(union_size, a) ** tuple_size
+        rows.append(
+            {
+                "closed_components": closed_count,
+                "union_size": union_size,
+                "global_excess": global_excess,
+                "tuple_count": count,
+                "union_count_bound": union_bound,
+                "entropy_exponent": union_size - k * closed_count,
+            }
+        )
+    return {
+        "n": n,
+        "k": k,
+        "a": a,
+        "tuple_size": tuple_size,
+        "rows": rows,
+        "total_tuples": sum(row["tuple_count"] for row in rows),
+        "expected_total_tuples": len(supports) ** tuple_size,
+        "all_counts_bounded": all(
+            row["tuple_count"] <= row["union_count_bound"] for row in rows
+        ),
+        "has_negative_global_excess": any(
+            row["global_excess"] < 0 for row in rows
+        ),
+        "has_zero_global_excess": any(
+            row["global_excess"] == 0 for row in rows
+        ),
+        "has_positive_global_excess": any(
+            row["global_excess"] > 0 for row in rows
+        ),
+    }
+
+
 def regular_irregular_profile(families: list[list[frozenset[int]]], a: int) -> dict:
     """Split interleaved tuples by exact-row regularity.
 
@@ -1558,6 +1608,7 @@ def run() -> dict:
     support_pair_profile = support_pair_rank_profile()
     support_cluster_profile = support_cluster_rank_profile()
     connected_cluster_profile = connected_cluster_count_profile()
+    closure_signature = closure_signature_profile()
     witness = realized_rs_k22()
     checks = {
         "quotient_budget_nonnegative": quotient_example["total"] >= 0,
@@ -1744,6 +1795,18 @@ def run() -> dict:
         "connected_cluster_actual_clears_positive_excess": connected_cluster_profile[
             "positive_excess_actual_below_diagonal"
         ],
+        "closure_signature_counts_bound": closure_signature["all_counts_bounded"],
+        "closure_signature_total": closure_signature["total_tuples"]
+        == closure_signature["expected_total_tuples"],
+        "closure_signature_has_negative_excess": closure_signature[
+            "has_negative_global_excess"
+        ],
+        "closure_signature_has_zero_excess": closure_signature[
+            "has_zero_global_excess"
+        ],
+        "closure_signature_has_positive_excess": closure_signature[
+            "has_positive_global_excess"
+        ],
         "kmm_grid_formula": all(d["interleaved_edges"] == d["grid_edges_at_n_min"] for d in designs),
         "rs_witness_creates_mass": witness["mass_creation"],
         "rs_witness_realizes_k22": witness["interleaved"] == witness["product_bound"] == 4,
@@ -1814,6 +1877,7 @@ def run() -> dict:
         "support_pair_rank_profile": support_pair_profile,
         "support_cluster_rank_profile": support_cluster_profile,
         "connected_cluster_count_profile": connected_cluster_profile,
+        "closure_signature_profile": closure_signature,
         "realized_rs_k22": witness,
         "checks": checks,
         "pass": all(checks.values()),
@@ -1947,6 +2011,12 @@ def main(argv: list[str] | None = None) -> int:
             f"positive_actual={cc['positive_actual_relative_to_diagonal']}, "
             f"positive_bound={cc['positive_bound_relative_to_diagonal']}, "
             f"rows={cc['rows']}"
+        )
+        cs = result["closure_signature_profile"]
+        print(
+            "  closure signature profile: "
+            f"n={cs['n']}, k={cs['k']}, a={cs['a']}, "
+            f"tuple_size={cs['tuple_size']}, rows={cs['rows']}"
         )
         print("  K_{m,m} abstract designs:")
         for d in result["kmm_designs"]:

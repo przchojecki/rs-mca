@@ -150,6 +150,10 @@ Keep entries concise and link to the relevant files.
   components whose unions overlap in at least `k` points must merge to one
   degree-`<k` polynomial; the verifier includes an aggregate-overlap example
   where this strictly sharpens the exponent.
+  The same closure ledger is now stated for arbitrary tuples: with `c`
+  `k`-closed parts and global excess `D=|V|-ac`, the random-row probability is
+  at most `q^{-(c(a-k)+D)}`; the verifier enumerates all triples by closure
+  signature and records negative/zero/positive `D` cases.
 - **How it is useful:** Turns the L2 objective from a broad "avoid Cartesian
   overcharge" principle into a concrete conjectural inequality that can be
   falsified or promoted. The `K_{2,2}` witness records that local Cartesian

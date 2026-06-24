@@ -405,6 +405,34 @@ Iterating gives at most one polynomial per `k`-closed part. This is strictly
 stronger than using the raw connected components when low-overlap components
 have large aggregate overlap across their unions.
 
+For a full tuple this gives the following global exponent ledger. Let
+`C_1,...,C_c` be the `k`-closed parts, let
+
+```text
+V_j = union_{i in C_j} S_i,        V = union_{j=1}^c V_j,
+```
+
+and define the global excess
+
+```text
+D = |V| - ac.
+```
+
+Then for one random row
+
+```text
+Pr[S_1,...,S_m in Fib_U(a)] <= q^{-(c(a-k)+D)}.
+```
+
+For `mu` independent rows, the exponent is multiplied by `mu`. Thus each
+`k`-closed part contributes one diagonal-scale factor `q^{-(a-k)}`, and the
+global excess `D` records the remaining correction. Positive `D` is genuine
+union excess and pays extra entropy. Negative `D` is possible only because
+different `k`-closed component unions may still overlap in fewer than `k`
+points; it is a low-overlap cross-component correction, not a high-overlap
+cluster. This is why the note does not claim a clean product factorization
+across raw components.
+
 The connected case also isolates the diagonal exactly.
 
 **Corollary (diagonal is the only zero-loss connected cluster).** Suppose
@@ -1299,6 +1327,11 @@ checks the following stress points.
    ledger. With `q=31` and `mu=2`, the exact positive-excess connected-triple
    contribution is below the diagonal scale, and the union-count upper bound is
    below the diagonal scale as well.
+   Finally, the verifier enumerates all ordered triples by `k`-closure
+   signature `(closed components, total union size, global excess D)`. The
+   finite table contains negative, zero, and positive `D`, confirming that
+   low-overlap cross-component intersections are a real correction term rather
+   than an artifact of the proof.
 5. The natural `K_{m,m}` grid over-agreement family has
    ```text
    n_min = (k-1) + m^2(a-k+1),
