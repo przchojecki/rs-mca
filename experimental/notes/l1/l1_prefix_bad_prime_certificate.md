@@ -290,6 +290,22 @@ p = 97, 113, 193,
 and finds no collisions.  This is not a proof for all primes; it is a finite
 sanity check that the certificate is detecting the known exceptional row.
 
+The current verifier also runs a bounded exact row scan:
+
+```text
+p <= 5000,
+p = 1 mod 16.
+```
+
+It enumerates the full prefix-fiber histogram for every such prime and finds
+that the only nonzero collision row is:
+
+```text
+p = 17, collision pairs = 40, max fiber = 2.
+```
+
+This is a finite theorem for the bounded range, not an asymptotic statement.
+
 ## Relation To Scott's L1 Characteristic-Zero PR
 
 PR `#99` develops characteristic-zero prefix-fiber structure.  This note does

@@ -45,7 +45,8 @@ Keep entries concise and link to the relevant files.
   bound, finite-family lcm aggregation handle, and the prime-ideal refinement
   via the modular gcd `gcd(Phi_n, Delta_1, ..., Delta_sigma)` needed to filter
   rational-certificate false positives, together with affine-orbit invariance
-  for future aggregation.
+  for future aggregation and a bounded exact split-prime scan for the
+  `n=16,m=6,sigma=4` row.
 - **How it is useful:** This supplies the finite-field layer complementary to
   characteristic-zero L1 reductions. It turns robustly aperiodic modular
   collisions into algebraic norm/resultant divisibility events, matching a

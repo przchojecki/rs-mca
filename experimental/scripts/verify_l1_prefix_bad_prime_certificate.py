@@ -22,6 +22,7 @@ from typing import Any, Iterable, Sequence
 
 
 STATUS = "PROVED / FINITE-FIELD REDUCTION / NOT A FULL AGGREGATION BOUND"
+BOUNDED_SPLIT_PRIME_SCAN_LIMIT = 5_000
 
 
 def trim(poly: Sequence[int]) -> list[int]:
@@ -305,6 +306,19 @@ def bad_prime_certificate(
 
 def prime_factors(value: int) -> set[int]:
     return set(factorint(value))
+
+
+def is_prime(value: int) -> bool:
+    if value < 2:
+        return False
+    if value % 2 == 0:
+        return value == 2
+    divisor = 3
+    while divisor * divisor <= value:
+        if value % divisor == 0:
+            return False
+        divisor += 2
+    return True
 
 
 def primitive_root(prime: int) -> int:
@@ -646,6 +660,36 @@ def check_split_prime_sweep() -> list[dict[str, Any]]:
     return rows
 
 
+def check_bounded_split_prime_row_scan() -> dict[str, Any]:
+    rows = []
+    nonzero_rows = []
+    for prime in range(17, BOUNDED_SPLIT_PRIME_SCAN_LIMIT + 1):
+        if prime % 16 != 1 or not is_prime(prime):
+            continue
+        row = finite_prefix_collision_pairs(
+            prime=prime,
+            order=16,
+            complement_size=6,
+            sigma=4,
+        )
+        entry = {
+            "prime": prime,
+            "collision_pair_count": row["collision_pair_count"],
+            "max_fiber": row["max_fiber"],
+        }
+        rows.append(entry)
+        if row["collision_pair_count"]:
+            nonzero_rows.append(entry)
+    expected = [{"prime": 17, "collision_pair_count": 40, "max_fiber": 2}]
+    if nonzero_rows != expected:
+        raise AssertionError(f"unexpected bounded split-prime scan: {nonzero_rows}")
+    return {
+        "prime_bound": BOUNDED_SPLIT_PRIME_SCAN_LIMIT,
+        "split_primes_checked": len(rows),
+        "nonzero_collision_rows": nonzero_rows,
+    }
+
+
 def check_prime_ideal_false_positive() -> dict[str, Any]:
     left = (0, 1, 2, 7, 9, 13)
     right = (0, 1, 2, 3, 4, 11)
@@ -803,6 +847,7 @@ def build_report() -> dict[str, Any]:
         "structured_char_zero_example": check_structured_char_zero_example(),
         "f17_packet": check_f17_packet(),
         "split_prime_sweep": check_split_prime_sweep(),
+        "bounded_split_prime_row_scan": check_bounded_split_prime_row_scan(),
         "prime_ideal_false_positive": check_prime_ideal_false_positive(),
         "galois_invariance": check_galois_invariance(),
         "affine_invariance": check_affine_invariance(),
@@ -830,6 +875,12 @@ def print_human(report: dict[str, Any]) -> None:
         for row in report["split_prime_sweep"]
     )
     print(f"split_prime_sweep={sweep}")
+    bounded = report["bounded_split_prime_row_scan"]
+    print(
+        "bounded_split_prime_scan="
+        f"p<={bounded['prime_bound']}, checked={bounded['split_primes_checked']}, "
+        f"nonzero={bounded['nonzero_collision_rows']}"
+    )
     print(f"aggregate_lcm={packet['aggregate_lcm_certificate']}")
     print(f"translation_orbits={len(packet['translation_orbits'])}")
     print(f"affine_orbits={packet['affine_orbit_count']}")
