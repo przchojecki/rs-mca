@@ -1771,6 +1771,73 @@ Thus the next obstruction search should no longer spend effort on bounded
 numbers of mildly deficient petals; those are polynomially controlled by the
 cofactor-injection mechanism.
 
+## Theorem 21. Background-Free Bounded-Parameter Sunflower Closure
+
+Status: PROVED.
+
+Assume the sunflower has no unused background, and work at the L1 lower cutoff
+with generated field `q=poly(n)`.  Fix integer constants
+
+```text
+E,T,A >= 0.
+```
+
+Then the following union of non-planted listed codewords is polynomially
+bounded in `n`:
+
+1. full-petal codewords with `d<=ell+E`;
+2. partial-petal codewords with
+
+```text
+d <= ell+E,
+t(P) <= T,
+u(P) <= A t(P).
+```
+
+More explicitly, the union is bounded by
+
+```text
+binom(M,2)q + 2^M sum_{e=1}^{E} q^{e+1}
+  + sum_{t=2}^{T} sum_{u=0}^{At}
+      binom(M,t) binom(t*ell,u)
+      (E+floor(u/t)+1) q^{E+floor(u/t)+1}.
+```
+
+Consequently, any super-polynomial background-free sunflower family at the L1
+lower cutoff must have at least one of the following unbounded parameters:
+
+```text
+d-ell,
+t(P)        for partial-petal codewords,
+u(P)/t(P)  for partial-petal codewords.
+```
+
+### Proof
+
+The full-petal part is bounded by Lemma 16.  The partial-petal part is bounded
+by Proposition 20.  Taking the union bound gives the displayed estimate.
+
+At the L1 lower cutoff, `M=O(log n)`, `ell<=n`, and `q=poly(n)`.  For fixed
+`E,T,A`, every term in the displayed estimate is polynomial in `n`, so the
+union is polynomially bounded.
+
+For the final assertion, suppose a background-free sunflower family is
+super-polynomial while all three displayed parameters are bounded along the
+family.  Choose constants `E,T,A` bounding them.  Full-petal members lie in
+the first controlled class, and partial-petal members lie in the second.  The
+theorem would then give a polynomial bound, a contradiction.
+
+### Consequences
+
+The first sunflower obstruction is now localized to a smaller, more structural
+region.  Bounded-excess full-petal layers and bounded-width partial-petal
+layers are no longer viable sources of super-polynomial primitive list mass.
+The remaining proof or counterexample target is one of:
+
+1. genuinely growing cofactor excess;
+2. partial-petal patterns touching an unbounded number of petals;
+3. partial-petal patterns with unbounded average deficit per touched petal.
+
 ## Development Ledger
 
 - **Conjecture 1 full-list primitive remainder:** CONJECTURAL.  Main proof
@@ -1824,5 +1891,7 @@ cofactor-injection mechanism.
   with cofactor exponent depending on `floor(u/t)`.
 - **Bounded-width mixed-petal layers:** PROVED.  Shows bounded excess, bounded
   touched-petal count, and bounded average deficit give only polynomial mass.
+- **Background-free bounded-parameter sunflower closure:** PROVED.  Combines
+  full-petal and mixed-petal bounds into a single residual theorem.
 - **Mixed-petal sunflower amplification:** CONJECTURAL.  Next focused bound to
   prove or refute in the large-defect regime.

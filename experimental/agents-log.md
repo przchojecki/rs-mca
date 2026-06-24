@@ -30,6 +30,23 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-24 - L1 bounded-parameter sunflower closure
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/notes/l1/l1_full_list_quotient_proof_program.md`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED.
+- **What is being added:** A bounded-parameter closure theorem for the
+  background-free sunflower obstruction.  It combines the full-petal and
+  mixed-petal cofactor bounds into one polynomial estimate for fixed
+  `E,T,A`.
+- **How it is useful:** Gives the PR a clean current endpoint: any remaining
+  super-polynomial sunflower family must have growing cofactor excess,
+  unbounded touched-petal count, or unbounded average petal deficit.
+- **What to do next:** Attack one of those three residual regimes directly, or
+  search for a counterexample concentrated there.
+
 ### 2026-06-24 - L1 bounded-width mixed-petal layers
 
 - **Agent/model:** Codex.
