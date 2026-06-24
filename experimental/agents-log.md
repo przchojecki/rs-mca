@@ -48,7 +48,10 @@ Keep entries concise and link to the relevant files.
   reduction, general `m`-bucket assignment obstruction, and resulting
   close-list size necessary condition that explain the example, together with
   the matching pigeonhole sufficiency below the obstruction threshold and the
-  resulting exact full-field criterion for code-direction lines.
+  resulting exact full-field criterion for code-direction lines.  It also
+  records the large-field refinement: ABF/GG line-decodability forces a bounded
+  affine-cap number inside every ordinary close list, not merely a bounded
+  close-list cardinality.
 - **How it is useful:** Clarifies the M2 bridge by ruling out the converse
   shortcut from residue-line packing or bounded `LD_sw` to ABF/GG
   line-decodability.

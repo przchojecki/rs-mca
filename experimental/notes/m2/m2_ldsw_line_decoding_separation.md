@@ -147,6 +147,29 @@ With a balanced partition this becomes the bound
 max(ceil(|F|/m), m).
 ```
 
+The same argument has a sharper large-field form.  For a subset
+`S subset L_a(r)`, define its affine-line intersection number inside the code
+space by
+
+```text
+lambda(S) =
+  max_{c in C, w in C \ {0}} |S cap {c+gamma w : gamma in F}|.
+```
+
+If `S` can be assigned to slope buckets of size at most `b-1` and
+`lambda(S) <= b-1`, then the same code-direction line violates the
+`b`-slope collinearity conclusion.  Constant shifted code-lines hit only one
+bucket, and nonconstant shifted code-lines hit at most `lambda(S)` values of
+`S`.  Thus ABF/GG line-decodability on code-direction lines forces the
+`b`-affine-cap number
+
+```text
+alpha_b(L_a(r)) =
+  max{|S| : S subset L_a(r) and lambda(S) <= b-1}
+```
+
+to be smaller than the first size that admits such a bucket partition.
+
 Thus, for code-direction received lines, ABF/GG line-decodability with
 threshold `b` requires an additional assignment-collinearity theorem for the
 ordinary close list of the base word `r`.  In particular, if some base word has
@@ -165,7 +188,20 @@ Equivalently, for any nonvacuous ABF/GG threshold `2 <= b <= |F|`, put
 s_b = ceil(|F|/(b-1)).
 ```
 
-If `s_b <= b-1`, then ABF/GG `(delta,a_LD,b)` line-decodability with
+For every `b`, ABF/GG `(delta,a_LD,b)` line-decodability with
+`a_LD <= |F|` forces
+
+```text
+alpha_b(L_a(r)) < s_b
+```
+
+for every base word `r`.  Otherwise choose a `b`-affine cap
+`S subset L_a(r)` of size `s_b`, partition the full field into `s_b` nonempty
+buckets of size at most `b-1`, and use the code-direction assignment above.
+
+In the smaller-field regime `s_b <= b-1`, this cap condition collapses to an
+ordinary close-list size condition.  Then ABF/GG `(delta,a_LD,b)`
+line-decodability with
 `a_LD <= |F|` forces every base word `r` to have fewer than `s_b` ordinary
 close codewords at the same agreement threshold.  Otherwise, choose `s_b` of
 them, use a balanced `s_b`-bucket assignment, and every affine code-line hits
@@ -246,10 +282,12 @@ However, no code-line `u0 + gamma u1` agrees with this assignment on nine
 slopes.  This is the `m=2` bucket obstruction above with bucket sizes `6` and
 `7`; the exact maximum is `max(ceil(13/2),2)=7 < 9`.  The list-size corollary
 also applies directly: for `b=9`, one has `s_b=ceil(13/8)=2`, and the base
-word `r` has exactly the two close codewords `p0,p1`.  If the close list had
-size `1` instead, every full-field assignment on a code-direction line would
-have a constant shifted value on all `13` slopes, hence would satisfy the
-`9`-slope collinearity conclusion by pigeonhole.
+word `r` has exactly the two close codewords `p0,p1`.  This two-point set is a
+`9`-affine cap in the code space, so it also saturates the affine-cap
+obstruction threshold.  If the close list had size `1` instead, every
+full-field assignment on a code-direction line would have a constant shifted
+value on all `13` slopes, hence would satisfy the `9`-slope collinearity
+conclusion by pigeonhole.
 
 ## Consequence for M2
 
@@ -276,7 +314,10 @@ assignment.  In the
 control at the scale `ceil(|F|/n)` whenever `ceil(|F|/n) <= n`; below that
 scale, code-direction lines are controlled by pigeonhole.  In this full-field
 code-direction slice, that close-list threshold is not only necessary but
-sufficient.
+sufficient.  Outside this smaller-field regime the necessary condition becomes
+an affine-cap condition inside the ordinary close list: every subset large
+enough to balance the field into buckets of size `< b` must itself contain
+`b` points on a nonconstant affine line in the code space.
 
 This does not contradict the ABF/GG theorem.  It only rules out a possible
 shortcut from support-wise MCA bounds back to line-decodability.

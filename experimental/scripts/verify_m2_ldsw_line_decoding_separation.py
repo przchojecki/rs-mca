@@ -52,6 +52,10 @@ def word_sub(left: tuple[int, ...], right: tuple[int, ...]) -> tuple[int, ...]:
     return tuple((a - b) % P for a, b in zip(left, right))
 
 
+def coeff_sub(left: tuple[int, ...], right: tuple[int, ...]) -> tuple[int, ...]:
+    return tuple((a - b) % P for a, b in zip(left, right))
+
+
 def is_zero_word(word: tuple[int, ...]) -> bool:
     return all(value == 0 for value in word)
 
@@ -240,6 +244,49 @@ def pigeonhole_collinearity_bound(trigger_size: int, list_size: int) -> int:
     return (trigger_size + list_size - 1) // list_size
 
 
+def affine_line_intersection_report(
+    subset_coeffs: list[tuple[int, ...]],
+) -> dict[str, Any]:
+    """Return the largest intersection with a nonconstant affine line in C."""
+
+    if not subset_coeffs:
+        return {
+            "max_affine_line_intersection": 0,
+            "sample_affine_line": None,
+        }
+    if len(subset_coeffs) == 1:
+        return {
+            "max_affine_line_intersection": 1,
+            "sample_affine_line": {
+                "base_coeffs": subset_coeffs[0],
+                "direction_coeffs": None,
+                "intersection_coeffs": [subset_coeffs[0]],
+            },
+        }
+
+    max_intersection = 1
+    witness: dict[str, Any] | None = None
+    for index, base in enumerate(subset_coeffs):
+        for target in subset_coeffs[index + 1 :]:
+            direction = coeff_sub(target, base)
+            intersection = [
+                point
+                for point in subset_coeffs
+                if scalar_solving(base, direction, point) is not None
+            ]
+            if len(intersection) > max_intersection:
+                max_intersection = len(intersection)
+                witness = {
+                    "base_coeffs": base,
+                    "direction_coeffs": direction,
+                    "intersection_coeffs": intersection,
+                }
+    return {
+        "max_affine_line_intersection": max_intersection,
+        "sample_affine_line": witness,
+    }
+
+
 def compute_report() -> dict[str, Any]:
     codebook = codewords()
     support_code = support_tables(codebook)
@@ -282,6 +329,12 @@ def compute_report() -> dict[str, Any]:
     pigeonhole_bound = pigeonhole_collinearity_bound(P, len(close_coeffs))
     criterion_regime_holds = list_threshold <= B_THRESHOLD - 1
     criterion_close_list_bound = list_threshold - 1
+    affine_cap_report = affine_line_intersection_report(close_coeffs)
+    affine_cap_intersection = affine_cap_report["max_affine_line_intersection"]
+    close_list_is_b_affine_cap = affine_cap_intersection <= B_THRESHOLD - 1
+    affine_cap_obstruction_applies = (
+        len(close_coeffs) >= list_threshold and close_list_is_b_affine_cap
+    )
 
     checks = {
         "p0_and_p1_distinct": p0 != p1,
@@ -318,6 +371,9 @@ def compute_report() -> dict[str, Any]:
         "automatic_list_size_bound_is_one": automatic_bound == 1,
         "criterion_regime_holds": criterion_regime_holds,
         "criterion_close_list_bound_is_one": criterion_close_list_bound == 1,
+        "close_list_affine_intersection_is_two": affine_cap_intersection == 2,
+        "close_list_is_b_affine_cap": close_list_is_b_affine_cap,
+        "affine_cap_obstruction_applies": affine_cap_obstruction_applies,
         "close_list_is_first_obstructing_size": (
             len(close_coeffs) == automatic_bound + 1
         ),
@@ -370,8 +426,13 @@ def compute_report() -> dict[str, Any]:
             "automatic_list_size_bound": automatic_bound,
             "full_field_criterion_close_list_bound": criterion_close_list_bound,
             "full_field_criterion_regime_holds": criterion_regime_holds,
+            "close_list_affine_line_intersection": affine_cap_intersection,
+            "close_list_is_b_affine_cap": close_list_is_b_affine_cap,
+            "affine_cap_obstruction_threshold": list_threshold,
+            "affine_cap_obstruction_applies": affine_cap_obstruction_applies,
             "pigeonhole_collinearity_bound": pigeonhole_bound,
         },
+        "close_list_affine_line_sample": affine_cap_report["sample_affine_line"],
         **max_report,
         "interpretation": (
             "The nonconstant received line r+gamma*x has LD_sw contribution 0 "
@@ -427,6 +488,14 @@ def print_report(report: dict[str, Any]) -> None:
     print(
         "full-field criterion close-list bound: "
         f"{report['assignment']['full_field_criterion_close_list_bound']}"
+    )
+    print(
+        "close-list affine-line intersection: "
+        f"{report['assignment']['close_list_affine_line_intersection']}"
+    )
+    print(
+        "affine-cap obstruction applies: "
+        f"{report['assignment']['affine_cap_obstruction_applies']}"
     )
     print(
         "pigeonhole bound for actual close list: "

@@ -429,6 +429,11 @@ assignment inside that quotient class.
 For full-field code-direction assignments, when
 `ceil(|F|/(b-1)) <= b-1`, this gives an exact criterion: the shifted close list
 of every base word must have size below `ceil(|F|/(b-1))`.
+In larger-field regimes, the necessary condition becomes geometric rather than
+purely cardinal: the ordinary close list may not contain
+`ceil(|F|/(b-1))` codewords with no `b` points on a nonconstant affine line in
+the code space, since such an affine cap can be bucketed across the slopes to
+defeat every `b`-slope code-line agreement.
 
 ## Follow-Up Checks
 
