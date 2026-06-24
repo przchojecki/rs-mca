@@ -513,6 +513,17 @@ def split_prime_support(value: int, order: int) -> list[int]:
     ]
 
 
+def p_adic_valuation(value: int, prime: int) -> int:
+    if value == 0:
+        raise AssertionError("p-adic valuation is finite only for nonzero input")
+    remaining = abs(value)
+    exponent = 0
+    while remaining % prime == 0:
+        exponent += 1
+        remaining //= prime
+    return exponent
+
+
 def is_prime(value: int) -> bool:
     if value < 2:
         return False
@@ -1978,6 +1989,117 @@ def check_finite_family_exact_aggregation() -> dict[str, Any]:
     }
 
 
+def check_valuation_incidence_budget() -> dict[str, Any]:
+    order = 16
+    sigma = 4
+    packet = finite_prefix_collision_pairs(
+        prime=17,
+        order=order,
+        complement_size=6,
+        sigma=sigma,
+    )
+    family = [
+        normalized_pair(pair["left"], pair["right"])
+        for pair in packet["pairs"]
+    ]
+    family.append(normalized_pair(
+        (0, 1, 2, 7, 9, 13),
+        (0, 1, 2, 3, 4, 11),
+    ))
+
+    valuation_rows = []
+    for prime in [17, 97]:
+        degree_sum = 0
+        valuation_sum = 0
+        positive_pairs = 0
+        for left, right in family:
+            common_degree = degree(common_root_gcd_mod(
+                left,
+                right,
+                order,
+                sigma,
+                prime,
+            ))
+            common_ideal = common_ideal_index(left, right, order, sigma)
+            if common_ideal["index"] == 0:
+                raise AssertionError("valuation budget excludes char-zero templates")
+            valuation = p_adic_valuation(common_ideal["index"], prime)
+            if common_degree > valuation:
+                raise AssertionError("common-root degree exceeded valuation budget")
+            degree_sum += common_degree
+            valuation_sum += valuation
+            if common_degree:
+                positive_pairs += 1
+        if degree_sum > valuation_sum:
+            raise AssertionError("family degree sum exceeded valuation budget")
+        valuation_rows.append({
+            "prime": prime,
+            "positive_template_pairs": positive_pairs,
+            "common_root_degree_sum": degree_sum,
+            "valuation_budget": valuation_sum,
+        })
+
+    expected_rows = [
+        {
+            "prime": 17,
+            "positive_template_pairs": 40,
+            "common_root_degree_sum": 40,
+            "valuation_budget": 40,
+        },
+        {
+            "prime": 97,
+            "positive_template_pairs": 0,
+            "common_root_degree_sum": 0,
+            "valuation_budget": 0,
+        },
+    ]
+    if valuation_rows != expected_rows:
+        raise AssertionError(f"unexpected valuation rows: {valuation_rows}")
+
+    extension_order = 8
+    extension_sigma = 1
+    extension_left = (0, 1)
+    extension_right = (2, 5)
+    extension_prime = 3
+    extension_degree = degree(common_root_gcd_mod(
+        extension_left,
+        extension_right,
+        extension_order,
+        extension_sigma,
+        extension_prime,
+    ))
+    extension_ideal = common_ideal_index(
+        extension_left,
+        extension_right,
+        extension_order,
+        extension_sigma,
+    )
+    extension_budget = p_adic_valuation(
+        extension_ideal["index"],
+        extension_prime,
+    )
+    if extension_degree != 2 or extension_budget != 2:
+        raise AssertionError("unexpected nonsplit valuation budget")
+    if extension_degree > extension_budget:
+        raise AssertionError("nonsplit degree exceeded valuation budget")
+
+    return {
+        "split_family": {
+            "order": order,
+            "sigma": sigma,
+            "template_pair_count": len(family),
+            "rows": valuation_rows,
+        },
+        "nonsplit_witness": {
+            "order": extension_order,
+            "sigma": extension_sigma,
+            "prime": extension_prime,
+            "common_root_degree": extension_degree,
+            "valuation_budget": extension_budget,
+        },
+    }
+
+
 def check_galois_invariance() -> dict[str, Any]:
     left = (0, 1, 2, 12, 14, 15)
     right = (3, 4, 5, 7, 10, 13)
@@ -2098,11 +2220,13 @@ def build_report() -> dict[str, Any]:
         "finite_family_exact_aggregation": (
             check_finite_family_exact_aggregation()
         ),
+        "valuation_incidence_budget": check_valuation_incidence_budget(),
         "galois_invariance": check_galois_invariance(),
         "affine_invariance": check_affine_invariance(),
         "nonmutating": True,
         "remaining_open_problem": (
-            "aggregate the exact common-ideal indices over robustly aperiodic "
+            "bound valuation budgets of exact common-ideal indices over "
+            "robustly aperiodic "
             "templates"
         ),
     }
@@ -2205,6 +2329,12 @@ def print_human(report: dict[str, Any]) -> None:
         f"resultant_split_support={split_family['resultant_split_support']}, "
         f"ideal_split_support={split_family['common_ideal_split_support']}, "
         f"ideal_lcm={split_family['common_ideal_lcm']}"
+    )
+    valuation = report["valuation_incidence_budget"]["split_family"]
+    print(
+        "valuation_incidence_budget="
+        f"templates={valuation['template_pair_count']}, "
+        f"rows={valuation['rows']}"
     )
     affine = report["affine_invariance"]
     print(

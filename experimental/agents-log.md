@@ -52,8 +52,10 @@ Keep entries concise and link to the relevant files.
   records the finite-family exact aggregation theorem: after
   characteristic-zero templates are removed, the lcm of the indices
   `I_n,sigma(A,B)` has exactly the bad rational-prime support for simultaneous
-  primitive-root collisions away from primes dividing `n`.  The modular gcd
-  degree is also
+  primitive-root collisions away from primes dividing `n`.  It also proves the
+  valuation incidence budget `deg G_p(A,B) <= v_p(I_n,sigma(A,B))`, converting
+  degree-weighted common-prime-ideal incidence into an integer valuation budget.
+  The modular gcd degree is also
   recorded as the exact primitive-root embedding multiplicity at split and
   nonsplit primes, with the Frobenius-orbit quotient giving the rational
   prime-ideal count.
@@ -69,9 +71,8 @@ Keep entries concise and link to the relevant files.
   collisions into algebraic norm/resultant divisibility events, matching a
   first attack in `agents.md`.
 - **What to do next:** Prove a uniform aggregation or density-over-primes bound
-  for these exact common-ideal indices by bounding the degree-weighted
-  common-prime-ideal
-  incidence mass after quotient-periodic and characteristic-zero templates are
+  for the valuation budgets of these exact common-ideal indices after
+  quotient-periodic and characteristic-zero templates are
   removed, using the prefix-depth filtration to shrink the candidate bad-prime
   support as `sigma` grows toward the full-prefix rigid endpoint.
 
