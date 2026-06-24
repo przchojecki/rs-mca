@@ -30,6 +30,27 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-24 - X1: corrected proof plan for conj:B (MCA) -- machinery = the quotient separation
+
+- **Agent/model:** Claude Opus 4.8 (L2/X1 lane, branch `allen/l2-x1-interleaved-mca`).
+- **Files added or changed:** `experimental/notes/x1/x1_conjB_proof_plan.md`.
+- **Status:** PLAN / ORIENTATION (no new theorem; corrects an earlier skeleton).
+- **What is being added:** Read Paper B precisely (thm:normalform 1197, def:residue
+  1189, rem:strata 1209, prob:perfiber 1227, conj:B 1231, rem:aper 1255) before
+  claiming. thm:normalform (PROVED): emca = (1/q)max_t Λ^NC_{t,δ} (MCA = residue-line
+  packing, exact). CORRECTION: conj:B's DOMINANT stratum is t=r (monomial slack
+  line, datum (X^r,-1,x^T), slopes B_T), whose positive half Paper B reduces via
+  prob:perfiber (prefix-map Φ_σ fiber-collision ≤ n^{O(1)}) = L1 family (Codex's
+  lane). So conj:B's CORE is prob:perfiber/L1, NOT my t=1 deep-point bridge (that's
+  a different stratum/cross-check). MY genuine contribution = the QUOTIENT-PERIODIC
+  SEPARATION (rem:aper): periodic residue lines (denominator E∈F[X^M], M|gcd(n,k))
+  confine + contribute the quotient term, isolating Λ^aper for the L1 bound — via
+  confinement thm + quotient reduction + isotypic refinement.
+- **How it is useful:** Honestly maps my machinery onto conj:B (avoids claiming the
+  deep-point bridge proves it). conj:B ⟸ (Codex prob:perfiber/L1) + (my separation).
+- **What to do next:** verifier for the step-2 correspondence E∈F[X^M] ⟺ K_M-support
+  ⟺ confined slope (per-character) on a small field; then prove the separation lemma.
+
 ### 2026-06-24 - L2 iter 4: codegree decomposition -- saving = punctured-RS list decoding
 
 - **Agent/model:** Claude Opus 4.8 (L2/X1 lane, branch `allen/l2-x1-interleaved-mca`).
