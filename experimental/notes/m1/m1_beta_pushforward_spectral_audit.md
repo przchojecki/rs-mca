@@ -653,6 +653,47 @@ instead of the scalar marginal trace.  The standalone verifier computes
 labels recovers the matrix `G_e`, and checks this dihedral formula for every
 left/right quotient-character block on every expanded row.
 
+There is also an exact beta-sheet quotient-energy ledger before any
+`alpha,r` cancellation is used.  On a good split base fiber with beta roots
+`beta_1,beta_2`, quotient-character orthogonality gives
+
+```text
+sum_{phi in Phi_e, phi != 1} |phi(beta_1)+phi(beta_2)|^2
+  = 2e - 4 + 2e 1_{beta_1/beta_2 in K_e}.
+```
+
+Thus, if `N_split` is the number of good split base fibers and `N_K` is the
+number whose beta-root ratio lies in the quotient kernel `K_e`, then the
+raw beta-sheet right-character energy is
+
+```text
+E_e^sheet = (2e-4)N_split + 2e N_K.
+```
+
+The fixed-ratio resonance equation
+
+```text
+lambda B_beta^2 = A_beta C_beta(1+lambda)^2
+```
+
+has bidegree at most `(4,4)` on the torus after removing the irrelevant
+`ar` factor, with the `lambda=-1` case contained in two lines.  Hence each
+oriented fixed beta-root ratio contributes at most `4(p-1)` split good base
+fibers, so
+
+```text
+N_K <= 4(p-1)|K_e|,        E_e^sheet = O_e(p^2).
+```
+
+The standalone verifier checks the resonance identity for both root-ratio
+orientations, the exact orthogonality formula above, and this quotient-kernel
+collision bound on every expanded row.  The largest expanded-row value is
+`E_e^sheet/(p-1)^2 = 26.1241426612` at `(p,e)=(109,27)`, and the largest
+actual split fixed-ratio count is `114`, far below the bound `4(p-1)`.  This
+does not prove the beta-line Kummer-isotypy theorem, but it rules out a
+separate oversized right-character kernel on the two beta sheets; the
+remaining obstruction is the coherent base trace, not sheet multiplicity.
+
 ## Interpretation
 
 The scan finds no hidden `p^2` component in the tested quotient rows.  The good
@@ -815,4 +856,5 @@ beta-line identity, the inversion symmetry, and the beta-marginal Chebyshev
 quotient formula and kernel second moments for every quotient-character block.
 It also checks the two-component beta-line dihedral quotient formula for every
 left/right quotient-character block, and the degree-13 quotient support
-polynomial for the finite beta singular fibers.
+polynomial for the finite beta singular fibers.  Finally, it checks the
+beta-sheet quotient-energy formula and fixed beta-root-ratio bound.

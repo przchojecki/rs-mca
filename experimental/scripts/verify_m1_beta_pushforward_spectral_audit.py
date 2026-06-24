@@ -183,6 +183,7 @@ TOLERANCE = 1e-8
 BETA_TRACE_CACHE: dict[int, list[int]] = {}
 BETA_INVERSION_CACHE: dict[int, dict[str, int]] = {}
 BETA_LEFT_TRACE_CACHE: dict[tuple[int, int], list[list[complex]]] = {}
+BETA_RATIO_RESONANCE_CACHE: dict[int, dict[str, int]] = {}
 
 
 def good_pushforward_matrix(p: int, quotient_order: int) -> tuple[list[list[int]], int]:
@@ -637,6 +638,119 @@ def beta_fiber_quotient_support_case(p: int) -> dict[str, Any]:
             len(quotient_polynomial_roots) - len(quotient_image_roots)
         ),
         "max_support_inversion_error": max_support_inversion_error,
+    }
+
+
+def beta_ratio_resonance_case(p: int) -> dict[str, int]:
+    if p in BETA_RATIO_RESONANCE_CACHE:
+        return BETA_RATIO_RESONANCE_CACHE[p]
+    fixed_ratio_counts = {beta_ratio: 0 for beta_ratio in range(1, p)}
+    split_base_count = 0
+    for alpha in range(1, p):
+        for ratio in range(1, p):
+            if not m1.ratio_surface_beta_pushforward_good(p, alpha, ratio):
+                continue
+            discriminant = m1.ratio_surface_beta_discriminant(p, alpha, ratio)
+            if m1.legendre(discriminant, p) != 1:
+                continue
+            roots = m1.ratio_surface_affine_beta_roots(p, alpha, ratio)
+            if len(roots) != 2:
+                raise AssertionError((p, alpha, ratio, roots))
+            root_ratio = roots[0] * pow(roots[1], -1, p) % p
+            inverse_ratio = pow(root_ratio, -1, p)
+            if m1.ratio_surface_beta_ratio_resonance(
+                p,
+                alpha,
+                ratio,
+                root_ratio,
+            ) != 0:
+                raise AssertionError((p, alpha, ratio, roots, root_ratio))
+            if m1.ratio_surface_beta_ratio_resonance(
+                p,
+                alpha,
+                ratio,
+                inverse_ratio,
+            ) != 0:
+                raise AssertionError((p, alpha, ratio, roots, inverse_ratio))
+            fixed_ratio_counts[root_ratio] += 1
+            split_base_count += 1
+    max_fixed_ratio = max(
+        fixed_ratio_counts,
+        key=lambda beta_ratio: fixed_ratio_counts[beta_ratio],
+    )
+    max_fixed_ratio_count = fixed_ratio_counts[max_fixed_ratio]
+    if max_fixed_ratio_count > 4 * (p - 1):
+        raise AssertionError((p, max_fixed_ratio, max_fixed_ratio_count))
+
+    BETA_RATIO_RESONANCE_CACHE[p] = {
+        "p": p,
+        "max_fixed_ratio": max_fixed_ratio,
+        "max_fixed_ratio_count": max_fixed_ratio_count,
+        "split_base_count": split_base_count,
+    }
+    return BETA_RATIO_RESONANCE_CACHE[p]
+
+
+def beta_sheet_quotient_energy_case(
+    p: int,
+    quotient_order: int,
+) -> dict[str, float | int]:
+    logs = m1.log_table(p)
+    root = cmath.exp(2j * math.pi / quotient_order)
+    ratio_case = beta_ratio_resonance_case(p)
+    split_base_count = 0
+    same_quotient_count = 0
+    exact_energy = 0.0
+    for alpha in range(1, p):
+        for ratio in range(1, p):
+            if not m1.ratio_surface_beta_pushforward_good(p, alpha, ratio):
+                continue
+            if m1.legendre(m1.ratio_surface_beta_discriminant(p, alpha, ratio), p) != 1:
+                continue
+            roots = m1.ratio_surface_affine_beta_roots(p, alpha, ratio)
+            if len(roots) != 2:
+                raise AssertionError((p, quotient_order, alpha, ratio, roots))
+            labels = [logs[beta] % quotient_order for beta in roots]
+            same_quotient_count += int(labels[0] == labels[1])
+            split_base_count += 1
+            for exponent in range(1, quotient_order):
+                beta_kernel = (
+                    root ** (exponent * labels[0])
+                    + root ** (exponent * labels[1])
+                )
+                exact_energy += abs(beta_kernel) ** 2
+    if split_base_count != ratio_case["split_base_count"]:
+        raise AssertionError((p, quotient_order, split_base_count, ratio_case))
+
+    formula_energy = (
+        (2 * quotient_order - 4) * split_base_count
+        + 2 * quotient_order * same_quotient_count
+    )
+    if abs(exact_energy - formula_energy) > 1000 * TOLERANCE:
+        raise AssertionError((p, quotient_order, exact_energy, formula_energy))
+    quotient_kernel_size = (p - 1) // quotient_order
+    same_quotient_bound = 4 * (p - 1) * quotient_kernel_size
+    if same_quotient_count > same_quotient_bound:
+        raise AssertionError(
+            (p, quotient_order, same_quotient_count, same_quotient_bound)
+        )
+    energy_bound = (
+        (2 * quotient_order - 4) * (p - 1) * (p - 1)
+        + 2 * quotient_order * same_quotient_bound
+    )
+    if formula_energy > energy_bound:
+        raise AssertionError((p, quotient_order, formula_energy, energy_bound))
+    return {
+        "split_base_count": split_base_count,
+        "same_quotient_count": same_quotient_count,
+        "same_quotient_bound": same_quotient_bound,
+        "formula_energy": round(formula_energy),
+        "energy_bound": energy_bound,
+        "energy_ratio": round(formula_energy / ((p - 1) * (p - 1)), 10),
+        "max_fixed_ratio": ratio_case["max_fixed_ratio"],
+        "max_fixed_ratio_count": ratio_case["max_fixed_ratio_count"],
+        "max_fixed_ratio_bound": 4 * (p - 1),
+        "max_formula_error": round(abs(exact_energy - formula_energy), 12),
     }
 
 
@@ -1364,6 +1478,7 @@ def audit_case(p: int, quotient_order: int) -> dict[str, Any]:
         quotient_order,
         matrix,
     )
+    beta_sheet_energy = beta_sheet_quotient_energy_case(p, quotient_order)
     parseval_error = abs(
         two_sided_energy / (quotient_order * quotient_order) - frobenius_square
     )
@@ -1494,6 +1609,7 @@ def audit_case(p: int, quotient_order: int) -> dict[str, Any]:
         },
         "beta_inversion_symmetry": beta_inversion,
         "beta_line_dihedral_quotient": beta_dihedral,
+        "beta_sheet_quotient_energy": beta_sheet_energy,
     }
 
 
@@ -1675,6 +1791,16 @@ def compute_report() -> dict[str, Any]:
         beta_fiber_quotient_support_rows,
         key=lambda row: row["support_z_count"],
     )
+    max_beta_sheet_energy_row = max(
+        rows,
+        key=lambda row: row["beta_sheet_quotient_energy"]["energy_ratio"],
+    )
+    max_beta_fixed_ratio_row = max(
+        rows,
+        key=lambda row: row["beta_sheet_quotient_energy"][
+            "max_fixed_ratio_count"
+        ],
+    )
     max_beta_regular_trace_row = max(
         beta_fiber_trace_rows,
         key=lambda row: row["max_regular_trace_sqrt_ratio"],
@@ -1707,6 +1833,8 @@ def compute_report() -> dict[str, Any]:
         "max_alpha_middle_fiber_row": max_alpha_middle_fiber_row,
         "max_beta_fiber_support_row": max_beta_fiber_support_row,
         "max_beta_quotient_support_row": max_beta_quotient_support_row,
+        "max_beta_sheet_energy_row": max_beta_sheet_energy_row,
+        "max_beta_fixed_ratio_row": max_beta_fixed_ratio_row,
         "max_beta_regular_trace_row": max_beta_regular_trace_row,
         "max_beta_support_trace_row": max_beta_support_trace_row,
         "interpretation": (
@@ -1727,6 +1855,7 @@ def print_report(report: dict[str, Any]) -> None:
         beta_line_reduction = row["beta_line_quotient_reduction"]
         beta_inversion = row["beta_inversion_symmetry"]
         beta_dihedral = row["beta_line_dihedral_quotient"]
+        beta_sheet = row["beta_sheet_quotient_energy"]
         print(
             "p={p} e={quotient_order} good={good_point_count} "
             "two_sided/p={max_two_sided_coefficient_ratio} "
@@ -1749,6 +1878,7 @@ def print_report(report: dict[str, Any]) -> None:
             "chebyshev_l2_error={chebyshev_l2_error} "
             "beta_line_error={beta_line_error} "
             "dihedral_error={dihedral_error} "
+            "sheet_energy/p2={sheet_energy_ratio} "
             "inversion_error={inversion_error}".format(
                 alpha_coeff_ratio=alpha_reduction[
                     "max_alpha_marginal_coefficient_ratio"
@@ -1760,6 +1890,7 @@ def print_report(report: dict[str, Any]) -> None:
                     "max_beta_line_formula_error"
                 ],
                 dihedral_error=beta_dihedral["max_dihedral_formula_error"],
+                sheet_energy_ratio=beta_sheet["energy_ratio"],
                 chebyshev_error=beta_chebyshev["max_chebyshev_formula_error"],
                 chebyshev_l2_error=beta_chebyshev[
                     "max_chebyshev_second_moment_error"
@@ -1783,6 +1914,8 @@ def print_report(report: dict[str, Any]) -> None:
     max_beta_regular_trace = report["max_beta_regular_trace_row"]
     max_beta_support_trace = report["max_beta_support_trace_row"]
     max_beta_quotient_support = report["max_beta_quotient_support_row"]
+    max_beta_sheet_energy = report["max_beta_sheet_energy_row"]
+    max_beta_fixed_ratio = report["max_beta_fixed_ratio_row"]
     print(
         "max two-sided coefficient row: "
         f"p={max_two_sided['p']} e={max_two_sided['quotient_order']} "
@@ -1913,6 +2046,20 @@ def print_report(report: dict[str, Any]) -> None:
         f"support_z_count={max_beta_quotient_support['support_z_count']} "
         "quotient_root_count="
         f"{max_beta_quotient_support['quotient_polynomial_root_count']}"
+    )
+    print(
+        "max beta-sheet quotient energy row: "
+        f"p={max_beta_sheet_energy['p']} "
+        f"e={max_beta_sheet_energy['quotient_order']} "
+        "ratio="
+        f"{max_beta_sheet_energy['beta_sheet_quotient_energy']['energy_ratio']}"
+    )
+    print(
+        "max beta fixed-ratio row: "
+        f"p={max_beta_fixed_ratio['p']} "
+        f"e={max_beta_fixed_ratio['quotient_order']} "
+        "count="
+        f"{max_beta_fixed_ratio['beta_sheet_quotient_energy']['max_fixed_ratio_count']}"
     )
 
 

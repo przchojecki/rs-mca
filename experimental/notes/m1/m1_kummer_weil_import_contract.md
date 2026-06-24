@@ -832,6 +832,21 @@ with the fixed orbits `b=1,-1` contributing single scalar terms.  Thus the
 centered `psi != 1, phi != 1` beta-line block also lives naturally on the
 inversion quotient, as a rank-two dihedral trace problem.
 
+The two beta sheets themselves have controlled quotient-character energy.  On
+each good split base fiber,
+
+```text
+sum_{phi in Phi_e, phi != 1} |phi(beta_1)+phi(beta_2)|^2
+  = 2e - 4 + 2e 1_{beta_1/beta_2 in K_e}.
+```
+
+The fixed-ratio resonance equation
+`lambda B_beta^2=A_beta C_beta(1+lambda)^2` has bidegree at most `(4,4)` on
+the torus, with `lambda=-1` contained in two lines.  Therefore
+`N_K <= 4(p-1)|K_e|` and the raw beta-sheet quotient energy is `O_e(p^2)`.
+This removes a possible sheet-multiplicity source of growth; the remaining
+problem is still the coherent beta-line trace or the averaged matrix bound.
+
 The elementary hypotheses behind this import are now audited in
 `verify_m1_depth_two_line_conic_resonance_reduction.py`:
 

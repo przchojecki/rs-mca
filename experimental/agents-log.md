@@ -91,6 +91,8 @@ Keep entries concise and link to the relevant files.
   `phi(b)tau_psi(b)+phi(b)^(-1)tau_{psi^{-1}}(b)`.
   The finite beta singular support is now checked to descend to a degree-13
   support polynomial on the same quotient line `z=b+b^{-1}`.
+  The beta-sheet right-character kernel now has an exact quotient-energy
+  formula controlled by fixed beta-root ratios.
 - **How it is useful:** This is a counterexample-first test of the remaining
   rank-two pushforward object, not of the already controlled exceptional
   ledger. The audited rows show p-scale behavior, with largest recorded full
