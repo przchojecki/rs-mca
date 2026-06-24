@@ -212,6 +212,32 @@ def punctured_johnson_bound(s: int, k: int, a: int) -> dict:
     }
 
 
+def johnson_anchor_threshold(k: int, a: int) -> dict:
+    """First anchor support size not controlled by punctured Johnson."""
+    if k <= 1:
+        return {
+            "k": k,
+            "a": a,
+            "sigma": a - k,
+            "threshold": None,
+            "johnson_controls_through": None,
+            "excess_over_a": None,
+            "formula_excess": None,
+        }
+    threshold = ceil_div(a * a, k - 1)
+    sigma = a - k
+    formula_excess = ceil_div(a * (sigma + 1), k - 1)
+    return {
+        "k": k,
+        "a": a,
+        "sigma": sigma,
+        "threshold": threshold,
+        "johnson_controls_through": threshold - 1,
+        "excess_over_a": threshold - a,
+        "formula_excess": formula_excess,
+    }
+
+
 def two_row_codegree_profile(families: list[list[frozenset[int]]], a: int) -> dict:
     """Return row-1 anchored punctured-list/codegree data for two support families."""
     row1, row2 = families
@@ -302,6 +328,11 @@ def realized_rs_k22() -> dict:
         punctured_johnson_bound(len(supp), k, a)
         for supp in families[0]
     ]
+    threshold = johnson_anchor_threshold(k, a)
+    large_anchor_flags = [
+        threshold["threshold"] is not None and len(supp) >= threshold["threshold"]
+        for supp in families[0]
+    ]
     johnson_ok = all(
         profile["bound"] is not None and inner <= profile["bound"]
         for inner, profile in zip(
@@ -326,6 +357,8 @@ def realized_rs_k22() -> dict:
         "punctured_codegree_profile": codegree_profile,
         "codegree_identity_holds": codegree_profile["codegree_sum"] == interleaved,
         "punctured_johnson_profiles": johnson_profiles,
+        "johnson_anchor_threshold": threshold,
+        "large_anchor_flags": large_anchor_flags,
         "punctured_johnson_ok": johnson_ok,
         "kmm_grid_model": kmm_grid_design(k, a, m),
     }
@@ -333,6 +366,7 @@ def realized_rs_k22() -> dict:
 
 def run() -> dict:
     quotient_example = aligned_quotient_budget(n=64, k=16, a=18, mu=2)
+    threshold_example = johnson_anchor_threshold(k=16, a=18)
     designs = [kmm_grid_design(k=3, a=5, m=m) for m in (2, 3, 4, 5)]
     witness = realized_rs_k22()
     checks = {
@@ -346,6 +380,7 @@ def run() -> dict:
     return {
         "status": "EXPERIMENTAL / FALSIFICATION",
         "aligned_quotient_budget_example": quotient_example,
+        "johnson_anchor_threshold_example": threshold_example,
         "kmm_designs": designs,
         "realized_rs_k22": witness,
         "checks": checks,
@@ -365,6 +400,13 @@ def main(argv: list[str] | None = None) -> int:
         print(f"L2 sharp-target stress test ({result['status']})")
         qb = result["aligned_quotient_budget_example"]
         print(f"  aligned quotient budget example: total={qb['total']}, packets={len(qb['packets'])}")
+        jt = result["johnson_anchor_threshold_example"]
+        print(
+            "  Johnson anchor threshold example: "
+            f"k={jt['k']}, a={jt['a']}, threshold={jt['threshold']}, "
+            f"controls_s<={jt['johnson_controls_through']}, "
+            f"excess={jt['excess_over_a']}"
+        )
         print("  K_{m,m} abstract designs:")
         for d in result["kmm_designs"]:
             print(
@@ -382,6 +424,10 @@ def main(argv: list[str] | None = None) -> int:
             f"    punctured codegrees={w['punctured_codegree_profile']['inner_codegrees']}, "
             f"sum={w['punctured_codegree_profile']['codegree_sum']}, "
             f"max={w['punctured_codegree_profile']['max_inner_codegree']}"
+        )
+        print(
+            f"    Johnson threshold={w['johnson_anchor_threshold']}, "
+            f"large_anchor_flags={w['large_anchor_flags']}"
         )
         print(f"    punctured Johnson profiles={w['punctured_johnson_profiles']}")
         print(f"  RESULT: {'PASS' if result['pass'] else 'FAIL'}")

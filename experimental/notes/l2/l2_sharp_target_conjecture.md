@@ -298,11 +298,50 @@ L (a^2 - s(k-1)) <= s(s-k+1).
 
 This gives the displayed bound when the denominator is positive.
 
+The proposition also gives a precise location for the next obstruction.
+
+**Lemma (large-anchor threshold).** Suppose `k>=2` and `a=k+sigma`. Let
+
+```text
+s_J = ceil(a^2/(k-1)).
+```
+
+Then every punctured anchor support size
+
+```text
+a <= s <= s_J-1
+```
+
+is controlled by the punctured Johnson bound above. If an anchor support is not
+controlled by that bound, then
+
+```text
+s >= s_J = a + ceil(a(sigma+1)/(k-1)).
+```
+
+*Proof.* The Johnson denominator is positive exactly when
+
+```text
+s(k-1) < a^2,
+```
+
+or, equivalently for integral `s`, when `s <= ceil(a^2/(k-1))-1`. This proves
+the first assertion. For the displayed excess, use
+
+```text
+ceil(a^2/(k-1)) - a
+  = ceil(a^2/(k-1) - a)
+  = ceil(a(a-k+1)/(k-1))
+  = ceil(a(sigma+1)/(k-1)).
+```
+
 Thus a proof of L2-Sharp can be organized by anchor support size `s`: small
 over-agreement anchors fall into unique decoding; intermediate anchors are
-Johnson-controlled by the proposition; any remaining large anchors with
-`a^2 <= s(k-1)` must be handled by quotient budgeting, L1 control on the anchor
-family, or a separate over-agreement classification.
+Johnson-controlled by the proposition; any remaining large anchors must already
+have at least `ceil(a(sigma+1)/(k-1))` extra agreements above the list threshold
+`a`. The remaining proof obligation is therefore not arbitrary punctured
+list-decoding, but a high-overagreement tail after quotient packets are removed
+or budgeted.
 
 ## 5. Already proved or checked
 
@@ -325,7 +364,10 @@ checks three stress points.
 
 1. The explicit aligned quotient budget is computable. For example, at
    `(n,k,a,mu)=(64,16,18,2)` the conservative budget has three active packet
-   scales and total `1389`.
+   scales and total `1389`. For the same `(k,a)=(16,18)`, the punctured
+   Johnson step controls anchor supports through `s=21`; the remaining
+   large-anchor tail starts only at `s=22`, i.e. four extra agreements above
+   the list threshold.
 2. The natural `K_{m,m}` grid over-agreement family has
    ```text
    n_min = (k-1) + m^2(a-k+1),
