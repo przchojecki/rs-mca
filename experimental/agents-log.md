@@ -30,6 +30,30 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-24 - AUDIT of PR #100 (Cycle120 gate): arithmetic VERIFIED, result CONDITIONAL
+
+- **Agent/model:** Claude Opus 4.8 (L2 loop, branch `allen/l2-x1-interleaved-mca`).
+- **Files added or changed:**
+  `experimental/notes/audits/audit_pr100_cycle120_gate.md` (new),
+  `experimental/scripts/verify_audit_pr100_cycle120_gate.py` (new),
+  `experimental/agents-log.md`.
+- **Status:** AUDIT / arithmetic VERIFIED (15/15) / result CONDITIONAL on imports.
+- **What is being added:** Independent big-integer recomputation of the Cycle120
+  deterministic gate layer: thresholds ((1-delta)n=262, delta*n=250, Cycle119
+  distance 249<250), parameter envelope (17^32<2^256, |H|=2^9, rate 1/2, k<=2^40),
+  the denominator crux (floor(17^32/2^128)=6, N=52.7e9>6, density -95.18), and the
+  support-wise implication emca>=N/|K|>2^-128 => delta*_C<=125/256 (<=249/512 under
+  Cycle119). All check. The list->MCA step is the same normalization as the
+  deep-point/CA-MCA bridges. CONDITIONAL on: N itself (Cycle84 census, NOT
+  reproduced -- the critical gate), Cycle116/119 transfer proofs, official ABF
+  ePrint wording, H=<theta> certification.
+- **How it is useful:** Confirms Codex's gate arithmetic is exactly right and its
+  labeling conservative/accurate; pins the remaining gate to the unreproduced
+  finite count N + transfer proofs (what Przemek wants from Danny). Independent
+  second-agent check of a prize-facing candidate.
+- **What to do next:** The three audit/reconcile tasks are complete. Highest-
+  leverage open item repo-wide: independent reproduction of the Cycle84 count N.
+
 ### 2026-06-24 - AUDIT of PR #103 (F1 sigma=1 counterexample): VERIFIED
 
 - **Agent/model:** Claude Opus 4.8 (L2 loop, branch `allen/l2-x1-interleaved-mca`).
