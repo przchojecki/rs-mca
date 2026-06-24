@@ -434,6 +434,10 @@ purely cardinal: the ordinary close list may not contain
 `ceil(|F|/(b-1))` codewords with no `b` points on a nonconstant affine line in
 the code space, since such an affine cap can be bucketed across the slopes to
 defeat every `b`-slope code-line agreement.
+If `|C| > binom(|F|,2)` and `b >= 3`, the same obstruction works at the actual
+trigger numerator `a_LD`: a cap of size `ceil(a_LD/(b-1))` can be bucketed on
+`a_LD` close slopes and greedily extended to the remaining slopes without
+creating a `b`-point affine graph.
 
 ## Follow-Up Checks
 

@@ -170,6 +170,40 @@ alpha_b(L_a(r)) =
 
 to be smaller than the first size that admits such a bucket partition.
 
+This cap obstruction also applies to a partial ABF/GG trigger, not only to the
+full-field trigger, once the decoded assignment can be extended away from the
+close slopes.  Suppose `b >= 3`, the code space has
+
+```text
+|C| > binom(|F|,2),
+```
+
+and a partial shifted assignment `phi:T -> C` has no `b` points on an affine
+graph.  Then `phi` extends to a full assignment `F -> C` with the same property:
+add slopes one at a time, and avoid values that would complete an affine graph
+already hit on `b-1` old slopes.  Each such graph is determined by a pair of
+old slope-value points, so at most `binom(|F|,2)` values are forbidden.
+
+Consequently, if an ABF/GG trigger uses `A` close slopes and `L_a(r)` contains
+a subset `S` with
+
+```text
+|S| >= ceil(A/(b-1)),        lambda(S) <= b-1,
+```
+
+then code-direction line-decodability fails under the same size condition on
+`C`: choose `A` slopes, bucket them over `S` with bucket sizes at most `b-1`,
+and extend the shifted assignment greedily.  In this trigger-level form,
+line-decodability forces
+
+```text
+alpha_b(L_a(r)) < ceil(A/(b-1)).
+```
+
+This is the protocol-facing obstruction: the numerator `A=a_LD`, rather than
+`|F|`, controls how large an affine cap in an ordinary close list is already
+fatal.
+
 Thus, for code-direction received lines, ABF/GG line-decodability with
 threshold `b` requires an additional assignment-collinearity theorem for the
 ordinary close list of the base word `r`.  In particular, if some base word has
@@ -289,6 +323,14 @@ full-field assignment on a code-direction line would have a constant shifted
 value on all `13` slopes, hence would satisfy the `9`-slope collinearity
 conclusion by pigeonhole.
 
+The trigger-level obstruction is already visible at `A=9`, not only at the
+full-field trigger `A=13`.  Assign four of nine close slopes to `p0` and five
+to `p1`; this partial shifted assignment has no nine-point affine graph.  Since
+`|C|=13^3 > binom(13,2)`, the greedy extension lemma fills the remaining four
+slopes with codewords while preserving the absence of nine collinear graph
+points.  Thus the same example also refutes the ABF/GG implication with
+trigger numerator `a_LD=9`.
+
 ## Consequence for M2
 
 The parameter-match note proves the useful forward implication:
@@ -317,7 +359,10 @@ code-direction slice, that close-list threshold is not only necessary but
 sufficient.  Outside this smaller-field regime the necessary condition becomes
 an affine-cap condition inside the ordinary close list: every subset large
 enough to balance the field into buckets of size `< b` must itself contain
-`b` points on a nonconstant affine line in the code space.
+`b` points on a nonconstant affine line in the code space.  With the greedy
+extension lemma, the same affine-cap condition applies at the actual
+line-decoding trigger numerator `a_LD` whenever the code space has more than
+`binom(|F|,2)` codewords.
 
 This does not contradict the ABF/GG theorem.  It only rules out a possible
 shortcut from support-wise MCA bounds back to line-decodability.

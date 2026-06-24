@@ -22,6 +22,9 @@ AGREEMENT = 5
 B_THRESHOLD = N + 1
 P0_SLOPES = tuple(range(6))
 P1_SLOPES = tuple(range(6, P))
+PARTIAL_TRIGGER = B_THRESHOLD
+PARTIAL_P0_SLOPES = tuple(range(4))
+PARTIAL_P1_SLOPES = tuple(range(4, PARTIAL_TRIGGER))
 DIRECTION_COEFFS = (0, 1, 0)
 
 
@@ -54,6 +57,14 @@ def word_sub(left: tuple[int, ...], right: tuple[int, ...]) -> tuple[int, ...]:
 
 def coeff_sub(left: tuple[int, ...], right: tuple[int, ...]) -> tuple[int, ...]:
     return tuple((a - b) % P for a, b in zip(left, right))
+
+
+def coeff_add(left: tuple[int, ...], right: tuple[int, ...]) -> tuple[int, ...]:
+    return tuple((a + b) % P for a, b in zip(left, right))
+
+
+def coeff_scale(scalar: int, coeffs: tuple[int, ...]) -> tuple[int, ...]:
+    return tuple((scalar * value) % P for value in coeffs)
 
 
 def is_zero_word(word: tuple[int, ...]) -> bool:
@@ -232,6 +243,12 @@ def list_size_obstruction_threshold(b_threshold: int) -> int:
     return (P + b_threshold - 2) // (b_threshold - 1)
 
 
+def cap_size_obstruction_threshold(trigger_size: int, b_threshold: int) -> int:
+    if b_threshold <= 1:
+        raise ValueError("b_threshold must be at least 2")
+    return (trigger_size + b_threshold - 2) // (b_threshold - 1)
+
+
 def automatic_list_size_bound(trigger_size: int, b_threshold: int) -> int:
     if b_threshold <= 1:
         raise ValueError("b_threshold must be at least 2")
@@ -287,6 +304,127 @@ def affine_line_intersection_report(
     }
 
 
+def affine_coeff_value(
+    base: tuple[int, ...], direction: tuple[int, ...], slope: int
+) -> tuple[int, ...]:
+    return coeff_add(base, coeff_scale(slope, direction))
+
+
+def interpolate_affine_coeff_map(
+    slope_a: int,
+    value_a: tuple[int, ...],
+    slope_b: int,
+    value_b: tuple[int, ...],
+) -> tuple[tuple[int, ...], tuple[int, ...]]:
+    denominator = (slope_b - slope_a) % P
+    if denominator == 0:
+        raise ValueError("slopes must be distinct")
+    direction = coeff_scale(pow(denominator, -1, P), coeff_sub(value_b, value_a))
+    base = coeff_sub(value_a, coeff_scale(slope_a, direction))
+    return base, direction
+
+
+def affine_maps_from_assignment(
+    assignment: dict[int, tuple[int, ...]],
+) -> set[tuple[tuple[int, ...], tuple[int, ...]]]:
+    maps: set[tuple[tuple[int, ...], tuple[int, ...]]] = set()
+    items = list(assignment.items())
+    zero_direction = (0,) * K
+    for _, value in items:
+        maps.add((value, zero_direction))
+    for (slope_a, value_a), (slope_b, value_b) in itertools.combinations(
+        items, 2
+    ):
+        maps.add(
+            interpolate_affine_coeff_map(slope_a, value_a, slope_b, value_b)
+        )
+    return maps
+
+
+def max_affine_graph_agreement(
+    assignment: dict[int, tuple[int, ...]],
+) -> dict[str, Any]:
+    if not assignment:
+        return {"max_agreement": 0, "sample_maps": []}
+    max_agreement = 0
+    witnesses: list[dict[str, Any]] = []
+    for base, direction in affine_maps_from_assignment(assignment):
+        agreement = sum(
+            affine_coeff_value(base, direction, slope) == value
+            for slope, value in assignment.items()
+        )
+        if agreement > max_agreement:
+            max_agreement = agreement
+            witnesses = [
+                {
+                    "base_coeffs": base,
+                    "direction_coeffs": direction,
+                    "agreement": agreement,
+                }
+            ]
+        elif agreement == max_agreement and len(witnesses) < 5:
+            witnesses.append(
+                {
+                    "base_coeffs": base,
+                    "direction_coeffs": direction,
+                    "agreement": agreement,
+                }
+            )
+    return {"max_agreement": max_agreement, "sample_maps": witnesses}
+
+
+def forbidden_extension_values(
+    assignment: dict[int, tuple[int, ...]],
+    new_slope: int,
+    b_threshold: int,
+) -> set[tuple[int, ...]]:
+    forbidden: set[tuple[int, ...]] = set()
+    for base, direction in affine_maps_from_assignment(assignment):
+        agreement = sum(
+            affine_coeff_value(base, direction, slope) == value
+            for slope, value in assignment.items()
+        )
+        if agreement >= b_threshold - 1:
+            forbidden.add(affine_coeff_value(base, direction, new_slope))
+    return forbidden
+
+
+def greedy_extend_affine_cap_assignment(
+    initial_assignment: dict[int, tuple[int, ...]],
+    candidate_values: list[tuple[int, ...]],
+    b_threshold: int,
+) -> dict[str, Any]:
+    assignment = dict(initial_assignment)
+    extension_choices: list[dict[str, Any]] = []
+    for slope in range(P):
+        if slope in assignment:
+            continue
+        forbidden = forbidden_extension_values(assignment, slope, b_threshold)
+        for candidate in candidate_values:
+            if candidate in forbidden:
+                continue
+            assignment[slope] = candidate
+            extension_choices.append(
+                {
+                    "slope": slope,
+                    "chosen_coeffs": candidate,
+                    "forbidden_count": len(forbidden),
+                }
+            )
+            break
+        else:
+            raise AssertionError(f"no extension value available at slope {slope}")
+        if max_affine_graph_agreement(assignment)["max_agreement"] >= b_threshold:
+            raise AssertionError("greedy extension created a forbidden graph")
+    max_report = max_affine_graph_agreement(assignment)
+    return {
+        "assignment": assignment,
+        "extension_choices": extension_choices,
+        "max_agreement": max_report["max_agreement"],
+        "sample_maps": max_report["sample_maps"],
+    }
+
+
 def compute_report() -> dict[str, Any]:
     codebook = codewords()
     support_code = support_tables(codebook)
@@ -321,6 +459,11 @@ def compute_report() -> dict[str, Any]:
     max_report = max_code_line_assignment_agreement(
         codebook, received_direction, p0, p1
     )
+    full_shifted_assignment = {
+        slope: (0, 0, 0) if slope in P0_SLOPES else (0, P - 1, 1)
+        for slope in range(P)
+    }
+    generic_full_max = max_affine_graph_agreement(full_shifted_assignment)
     bucket_sizes = (len(P0_SLOPES), len(P1_SLOPES))
     bucket_bound = bucket_obstruction_bound(bucket_sizes)
     balanced_bound = balanced_bucket_bound(len(bucket_sizes))
@@ -335,6 +478,21 @@ def compute_report() -> dict[str, Any]:
     affine_cap_obstruction_applies = (
         len(close_coeffs) >= list_threshold and close_list_is_b_affine_cap
     )
+    partial_trigger_threshold = cap_size_obstruction_threshold(
+        PARTIAL_TRIGGER, B_THRESHOLD
+    )
+    initial_partial_assignment = {
+        slope: (0, 0, 0)
+        for slope in PARTIAL_P0_SLOPES
+    } | {
+        slope: (0, P - 1, 1)
+        for slope in PARTIAL_P1_SLOPES
+    }
+    initial_partial_max = max_affine_graph_agreement(initial_partial_assignment)
+    greedy_extension = greedy_extend_affine_cap_assignment(
+        initial_partial_assignment, list(codebook.keys()), B_THRESHOLD
+    )
+    greedy_size_condition = len(codebook) > P * (P - 1) // 2
 
     checks = {
         "p0_and_p1_distinct": p0 != p1,
@@ -359,6 +517,10 @@ def compute_report() -> dict[str, Any]:
         "max_code_line_agreement_is_7": (
             max_report["max_assignment_agreement"] == len(P1_SLOPES)
         ),
+        "generic_full_assignment_max_matches_code_line_max": (
+            generic_full_max["max_agreement"]
+            == max_report["max_assignment_agreement"]
+        ),
         "max_agreement_matches_bucket_obstruction": (
             max_report["max_assignment_agreement"] == bucket_bound
         ),
@@ -374,6 +536,20 @@ def compute_report() -> dict[str, Any]:
         "close_list_affine_intersection_is_two": affine_cap_intersection == 2,
         "close_list_is_b_affine_cap": close_list_is_b_affine_cap,
         "affine_cap_obstruction_applies": affine_cap_obstruction_applies,
+        "partial_trigger_threshold_is_two": partial_trigger_threshold == 2,
+        "partial_trigger_initial_uses_nine_close_slopes": (
+            len(initial_partial_assignment) == PARTIAL_TRIGGER
+        ),
+        "partial_trigger_initial_avoids_b_graph": (
+            initial_partial_max["max_agreement"] < B_THRESHOLD
+        ),
+        "greedy_extension_size_condition_holds": greedy_size_condition,
+        "greedy_extension_uses_all_slopes": (
+            len(greedy_extension["assignment"]) == P
+        ),
+        "greedy_extension_avoids_b_graph": (
+            greedy_extension["max_agreement"] < B_THRESHOLD
+        ),
         "close_list_is_first_obstructing_size": (
             len(close_coeffs) == automatic_bound + 1
         ),
@@ -430,9 +606,20 @@ def compute_report() -> dict[str, Any]:
             "close_list_is_b_affine_cap": close_list_is_b_affine_cap,
             "affine_cap_obstruction_threshold": list_threshold,
             "affine_cap_obstruction_applies": affine_cap_obstruction_applies,
+            "partial_trigger_numerator": PARTIAL_TRIGGER,
+            "partial_trigger_obstruction_threshold": partial_trigger_threshold,
+            "partial_trigger_initial_max_affine_agreement": (
+                initial_partial_max["max_agreement"]
+            ),
+            "greedy_extension_size_condition": greedy_size_condition,
+            "greedy_extension_max_affine_agreement": (
+                greedy_extension["max_agreement"]
+            ),
+            "greedy_extension_choices": greedy_extension["extension_choices"],
             "pigeonhole_collinearity_bound": pigeonhole_bound,
         },
         "close_list_affine_line_sample": affine_cap_report["sample_affine_line"],
+        "partial_trigger_sample_maximizers": greedy_extension["sample_maps"],
         **max_report,
         "interpretation": (
             "The nonconstant received line r+gamma*x has LD_sw contribution 0 "
@@ -496,6 +683,14 @@ def print_report(report: dict[str, Any]) -> None:
     print(
         "affine-cap obstruction applies: "
         f"{report['assignment']['affine_cap_obstruction_applies']}"
+    )
+    print(
+        "partial trigger numerator: "
+        f"{report['assignment']['partial_trigger_numerator']}"
+    )
+    print(
+        "greedy extension max affine agreement: "
+        f"{report['assignment']['greedy_extension_max_affine_agreement']}"
     )
     print(
         "pigeonhole bound for actual close list: "
