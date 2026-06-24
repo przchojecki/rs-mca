@@ -40,9 +40,10 @@ Keep entries concise and link to the relevant files.
   `experimental/agents-log.md`.
 - **Status:** COUNTEREXAMPLE / FINITE.
 - **What is being added:** An explicit
-  `RS[F_13,{0,...,7},3]` example where a constant received line has
-  support-wise `LD_sw` contribution `0`, but an adversarial close-codeword
-  assignment fails the ABF/GG `b=n+1` collinearity conclusion.
+  `RS[F_13,{0,...,7},3]` example where a nonconstant received line with
+  nonzero codeword direction has support-wise `LD_sw` contribution `0`, but an
+  adversarial close-codeword assignment fails the ABF/GG `b=n+1` collinearity
+  conclusion.
 - **How it is useful:** Clarifies the M2 bridge by ruling out the converse
   shortcut from residue-line packing or bounded `LD_sw` to ABF/GG
   line-decodability.

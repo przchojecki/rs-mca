@@ -405,11 +405,11 @@ be assumed to follow from the residue-line packing conjecture.
 
 The stronger ABF/GG line-decodability predicate is also not implied by an
 `LD_sw` bound.  The finite RS separation in
-`experimental/notes/m2/m2_ldsw_line_decoding_separation.md` gives a constant
-received line with support-wise `LD_sw` contribution `0`, while an adversarial
-close-codeword assignment violates `(delta,a_LD,n+1)` line-decodability for
-every nonvacuous numerator.  Thus a genuine M2 theorem needs an additional
-assignment-collinearity input beyond residue-line packing.
+`experimental/notes/m2/m2_ldsw_line_decoding_separation.md` gives a
+nonconstant received line with support-wise `LD_sw` contribution `0`, while an
+adversarial close-codeword assignment violates `(delta,a_LD,n+1)`
+line-decodability for every nonvacuous numerator.  Thus a genuine M2 theorem
+needs an additional assignment-collinearity input beyond residue-line packing.
 
 ## Follow-Up Checks
 

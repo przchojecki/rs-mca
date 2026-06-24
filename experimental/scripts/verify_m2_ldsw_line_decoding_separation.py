@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
 """Verify a finite separation between LD_sw and ABF/GG line-decodability.
 
-The model is RS[F_13,{0,...,7},3] at agreement 5.  A constant received line has
-zero support-wise noncontained slopes, while a close-codeword assignment on the
-same line is not captured by any code-line on b=n+1 slopes.
+The model is RS[F_13,{0,...,7},3] at agreement 5.  A nonconstant received line
+with nonzero code direction has zero support-wise noncontained slopes, while a
+close-codeword assignment on the same line is not captured by any code-line on
+b=n+1 slopes.
 """
 
 from __future__ import annotations
@@ -21,6 +22,7 @@ AGREEMENT = 5
 B_THRESHOLD = N + 1
 P0_SLOPES = tuple(range(6))
 P1_SLOPES = tuple(range(6, P))
+DIRECTION_COEFFS = (0, 1, 0)
 
 
 def eval_poly(coeffs: tuple[int, ...], x_value: int) -> int:
@@ -44,6 +46,10 @@ def word_add(left: tuple[int, ...], right: tuple[int, ...]) -> tuple[int, ...]:
 
 def word_scale(scalar: int, word: tuple[int, ...]) -> tuple[int, ...]:
     return tuple((scalar * value) % P for value in word)
+
+
+def word_sub(left: tuple[int, ...], right: tuple[int, ...]) -> tuple[int, ...]:
+    return tuple((a - b) % P for a, b in zip(left, right))
 
 
 def is_zero_word(word: tuple[int, ...]) -> bool:
@@ -87,24 +93,24 @@ def build_received_word(
     return tuple(values)
 
 
-def supportwise_bad_slopes_for_constant_line(
+def supportwise_bad_slopes_for_received_line(
     received: tuple[int, ...],
-    zero_word: tuple[int, ...],
+    direction: tuple[int, ...],
     support_code: dict[tuple[int, ...], set[tuple[int, ...]]],
 ) -> tuple[list[int], int]:
-    """Return support-wise bad slopes for the constant line received + gamma*0."""
+    """Return support-wise bad slopes for the line received + gamma*direction."""
 
     bad_slopes: set[int] = set()
     explaining_supports = 0
     for slope in range(P):
-        line_word = word_add(received, word_scale(slope, zero_word))
+        line_word = word_add(received, word_scale(slope, direction))
         for support, restrictions in support_code.items():
             if support_restriction(line_word, support) not in restrictions:
                 continue
             explaining_supports += 1
             contained = (
                 support_restriction(received, support) in restrictions
-                and support_restriction(zero_word, support) in restrictions
+                and support_restriction(direction, support) in restrictions
             )
             if not contained:
                 bad_slopes.add(slope)
@@ -136,12 +142,14 @@ def scalar_solving(
 def code_line_assignment_agreement(
     base: tuple[int, ...],
     direction: tuple[int, ...],
+    received_direction: tuple[int, ...],
     p0: tuple[int, ...],
     p1: tuple[int, ...],
 ) -> int:
     """Count slopes where a code-line agrees with the adversarial assignment."""
 
-    if is_zero_word(direction):
+    shifted_direction = word_sub(direction, received_direction)
+    if is_zero_word(shifted_direction):
         if base == p0:
             return len(P0_SLOPES)
         if base == p1:
@@ -149,10 +157,10 @@ def code_line_assignment_agreement(
         return 0
 
     agreement = 0
-    gamma0 = scalar_solving(base, direction, p0)
+    gamma0 = scalar_solving(base, shifted_direction, p0)
     if gamma0 is not None and gamma0 in P0_SLOPES:
         agreement += 1
-    gamma1 = scalar_solving(base, direction, p1)
+    gamma1 = scalar_solving(base, shifted_direction, p1)
     if gamma1 is not None and gamma1 in P1_SLOPES:
         agreement += 1
     return agreement
@@ -160,6 +168,7 @@ def code_line_assignment_agreement(
 
 def max_code_line_assignment_agreement(
     codebook: dict[tuple[int, ...], tuple[int, ...]],
+    received_direction: tuple[int, ...],
     p0: tuple[int, ...],
     p1: tuple[int, ...],
 ) -> dict[str, Any]:
@@ -168,7 +177,9 @@ def max_code_line_assignment_agreement(
     words = list(codebook.items())
     for base_coeffs, base in words:
         for direction_coeffs, direction in words:
-            agreement = code_line_assignment_agreement(base, direction, p0, p1)
+            agreement = code_line_assignment_agreement(
+                base, direction, received_direction, p0, p1
+            )
             if agreement > max_agreement:
                 max_agreement = agreement
                 witnesses = [
@@ -197,23 +208,34 @@ def compute_report() -> dict[str, Any]:
     support_code = support_tables(codebook)
     p0 = codebook[(0, 0, 0)]
     p1 = codebook[(0, P - 1, 1)]
-    zero_word = p0
+    received_direction = codebook[DIRECTION_COEFFS]
     received = build_received_word(p0, p1)
+    full_code = set(codebook.values())
 
-    bad_slopes, explaining_supports = supportwise_bad_slopes_for_constant_line(
-        received, zero_word, support_code
+    bad_slopes, explaining_supports = supportwise_bad_slopes_for_received_line(
+        received, received_direction, support_code
     )
     p0_agreement = agreement_count(received, p0)
     p1_agreement = agreement_count(received, p1)
     assignment_count = len(P0_SLOPES) + len(P1_SLOPES)
-    max_report = max_code_line_assignment_agreement(codebook, p0, p1)
+    line_contained = all(
+        word_add(received, word_scale(slope, received_direction)) in full_code
+        for slope in range(P)
+    )
+    max_report = max_code_line_assignment_agreement(
+        codebook, received_direction, p0, p1
+    )
 
     checks = {
         "p0_and_p1_distinct": p0 != p1,
         "p0_and_p1_meet_at_0_and_1": p0[:2] == p1[:2] == (0, 0),
+        "received_direction_is_nonzero_codeword": not is_zero_word(
+            received_direction
+        ),
+        "received_line_is_not_contained_in_code": not line_contained,
         "p0_agrees_with_received_on_5": p0_agreement == AGREEMENT,
         "p1_agrees_with_received_on_5": p1_agreement == AGREEMENT,
-        "constant_line_has_no_ldsw_bad_slopes": bad_slopes == [],
+        "nonconstant_line_has_no_ldsw_bad_slopes": bad_slopes == [],
         "assignment_uses_all_field_slopes": assignment_count == P,
         "assignment_is_close_on_every_slope": (
             p0_agreement >= AGREEMENT and p1_agreement >= AGREEMENT
@@ -241,13 +263,16 @@ def compute_report() -> dict[str, Any]:
         "abf_b_threshold": B_THRESHOLD,
         "p0_coeffs": [0, 0, 0],
         "p1_coeffs": [0, P - 1, 1],
+        "received_direction_coeffs": list(DIRECTION_COEFFS),
         "p0_word": list(p0),
         "p1_word": list(p1),
         "received_word": list(received),
+        "received_direction_word": list(received_direction),
+        "received_line_contained_in_code": line_contained,
         "p0_agreement": p0_agreement,
         "p1_agreement": p1_agreement,
-        "constant_line_ldsw_bad_slopes": bad_slopes,
-        "constant_line_explaining_support_count": explaining_supports,
+        "received_line_ldsw_bad_slopes": bad_slopes,
+        "received_line_explaining_support_count": explaining_supports,
         "assignment": {
             "p0_slopes": list(P0_SLOPES),
             "p1_slopes": list(P1_SLOPES),
@@ -255,9 +280,9 @@ def compute_report() -> dict[str, Any]:
         },
         **max_report,
         "interpretation": (
-            "The constant received line has LD_sw contribution 0 at agreement 5, "
-            "but an adversarial close-codeword assignment on the same line is "
-            "not captured by any code-line on b=n+1=9 slopes."
+            "The nonconstant received line r+gamma*x has LD_sw contribution 0 "
+            "at agreement 5, but an adversarial close-codeword assignment on "
+            "the same line is not captured by any code-line on b=n+1=9 slopes."
         ),
         "checks": checks,
     }
@@ -269,11 +294,16 @@ def print_report(report: dict[str, Any]) -> None:
             **report
         )
     )
+    print(f"received direction coeffs: {report['received_direction_coeffs']}")
+    print(
+        "received line contained in code: "
+        f"{report['received_line_contained_in_code']}"
+    )
     print(f"p0 agreement with received word: {report['p0_agreement']}")
     print(f"p1 agreement with received word: {report['p1_agreement']}")
     print(
-        "constant-line LD_sw bad slopes: "
-        f"{len(report['constant_line_ldsw_bad_slopes'])}"
+        "received-line LD_sw bad slopes: "
+        f"{len(report['received_line_ldsw_bad_slopes'])}"
     )
     print(
         "assigned close codewords across slopes: "

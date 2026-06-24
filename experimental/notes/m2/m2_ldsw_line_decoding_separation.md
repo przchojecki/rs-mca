@@ -4,17 +4,18 @@
 
 This note records a finite Reed-Solomon example showing that the support-wise
 line-decoding numerator `LD_sw` does not imply the stronger ABF/GG
-`(delta,a,b)` line-decodability predicate.  Thus the M2 bridge can import an
-external line-decoding theorem in the forward direction, but a small `LD_sw`
-bound should not be read as proving the ABF/GG assignment-collinearity
-conclusion.
+`(delta,a,b)` line-decodability predicate.  The received line is nonconstant,
+with nonzero codeword direction, so the separation does not depend on allowing
+degenerate constant lines.  Thus the M2 bridge can import an external
+line-decoding theorem in the forward direction, but a small `LD_sw` bound
+should not be read as proving the ABF/GG assignment-collinearity conclusion.
 
 ## Claim
 
 There is a Reed-Solomon code `C=RS[F_13,{0,...,7},3]`, an agreement threshold
-`a=5`, and a received line with support-wise `LD_sw` contribution `0`, while a
-close-codeword assignment on that same line violates the ABF/GG collinearity
-conclusion with `b=n+1=9`.
+`a=5`, and a nonconstant received line with support-wise `LD_sw` contribution
+`0`, while a close-codeword assignment on that same line violates the ABF/GG
+collinearity conclusion with `b=n+1=9`.
 
 Equivalently, bounded support-wise MCA numerator is not a converse to ABF/GG
 line-decodability.
@@ -35,31 +36,36 @@ r = p1 on {0,1,5,6,7}.
 ```
 
 This is well-defined, and both `p0` and `p1` agree with `r` on exactly five
-domain points.  Consider the constant received line
+domain points.  Let `v(x)=x`, a nonzero codeword in `C`, and consider the
+received line
 
 ```text
-ell_gamma = r + gamma 0.
+ell_gamma = r + gamma v.
 ```
 
-Every large support on which a line point is code-explained also explains the
-base `r` by that same codeword and explains the zero direction by the zero
-codeword.  Hence this line has no support-wise noncontained slopes at agreement
+This line is nonconstant and is not contained in `C`, since `r` is not a
+codeword: any degree-`<3` polynomial agreeing with `r` on `{0,1,2,3,4}` would
+be `p0`, but `r(5)=p1(5) != 0`.  Every large support on which a line point is
+code-explained also explains the base `r`: subtract the already code-explained
+direction `gamma v`.  The same support explains the direction `v` because
+`v in C`.  Hence this line has no support-wise noncontained slopes at agreement
 `5`; its contribution to `LD_sw(C,5)` is `0`.
 
 Now define an adversarial close-codeword assignment on the slopes:
 
 ```text
-U(gamma) = p0 for gamma in {0,1,2,3,4,5},
-U(gamma) = p1 for gamma in {6,7,8,9,10,11,12}.
+U(gamma) = p0 + gamma v for gamma in {0,1,2,3,4,5},
+U(gamma) = p1 + gamma v for gamma in {6,7,8,9,10,11,12}.
 ```
 
 Every assigned codeword is `delta=3/8` close to the corresponding line point
-`r`.  Thus the ABF/GG line-decoding premise is triggered for any numerator
-`a_LD <= 13`.
+`r + gamma v`.  Thus the ABF/GG line-decoding premise is triggered for any
+numerator `a_LD <= 13`.
 
 However, no code-line `u0 + gamma u1` agrees with this assignment on nine
-slopes.  If `u1=0`, then the code-line is constant and matches at most the
-larger bucket, namely seven slopes.  If `u1 != 0`, then it can hit `p0` for at
+slopes.  Subtract `gamma v` from the target assignment.  If `u1=v`, then the
+shifted code-line is constant and matches at most the larger bucket, namely
+seven slopes.  If `u1 != v`, then the shifted code-line can hit `p0` for at
 most one slope and `p1` for at most one slope, so it matches at most two slopes.
 The exact maximum is therefore `7 < 9`.
 
