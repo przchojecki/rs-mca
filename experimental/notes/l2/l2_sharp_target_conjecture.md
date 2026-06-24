@@ -627,6 +627,63 @@ After division by `binom(n,2r)`, the first factor ratio is at most
 `rho_0^{-r}` when `2r=a>=rho_0 n`, and the multinomial factor is at most
 `3^{3r}=27^r`.
 
+The first such lower-rank structured cycle also has a direct count.
+
+**Lemma (constant-ratio triangle count).** Keep the notation
+`r=k-1`, `a=2r`, and
+
+```text
+S_1=A union B,        S_2=A union C,        S_3=B union C
+```
+
+with `A,B,C` pairwise disjoint `r`-sets. Suppose the locator ratio
+`L_A/L_B` is constant on `C`. Then this subfamily has at most
+
+```text
+(q-2) binom(n,r) binom(n-r,r)
+```
+
+ordered triples. Its rank-corrected exponent is `2r-2`, so its contribution
+to the random-model third moment, divided by the diagonal first-moment scale,
+is at most
+
+```text
+(q-2) binom(2r,r) q^{-mu(r-1)}.
+```
+
+In particular, for fixed `mu` this constant-ratio subfamily is exponentially
+below diagonal once `r` grows linearly with `n` and the generated field is in
+the polynomial window.
+
+*Proof.* Let the constant value of `L_A/L_B` on `C` be `gamma`. Since
+`A` and `B` are disjoint, `gamma` cannot be `1`: otherwise `L_A-L_B`, a
+polynomial of degree at most `r-1`, would vanish on the `r` points of `C`, so
+`L_A=L_B`. For fixed ordered disjoint `A,B` and fixed
+`gamma in F_q^* \ {1}`, the set `C` is contained in the roots of
+
+```text
+L_A(X) - gamma L_B(X),
+```
+
+a degree-`r` polynomial. Hence there is at most one possible `r`-set `C`.
+This gives the count bound.
+
+In the rank calculation from the previous counterexample, constant ratio gives
+one free scalar relation between `lambda` and `mu`, so the solution space has
+dimension `k+1` and `r_cross=2k-1=2r+1`. Therefore
+
+```text
+c(a-k)+D+r_cross = 3(r-1)-3r+(2r+1) = 2r-2.
+```
+
+The diagonal exponent is `a-k=r-1`. Dividing the count bound by
+`binom(n,2r)` and multiplying by `q^{-mu(r-1)}` gives the displayed relative
+bound, using
+
+```text
+binom(n,r) binom(n-r,r) = binom(n,2r) binom(2r,r).
+```
+
 The connected case also isolates the diagonal exactly.
 
 **Corollary (diagonal is the only zero-loss connected cluster).** Suppose
@@ -1541,6 +1598,11 @@ checks the following stress points.
    family and compares its third-moment contribution to the diagonal scale;
    over `F_17` with `mu=2`, all tested rows are already below diagonal,
    matching the general bound `(27 rho_0^{-1} q^{-mu})^{k-1}`.
+   Finally, the constant locator-ratio exceptional subfamily is counted
+   separately. The verifier enumerates it over the same `F_17` domain for
+   `r=2,3,4,5`, checks the degree-forced count bound
+   `(q-2) binom(n,r) binom(n-r,r)`, and verifies that even this lower-rank
+   subfamily is below the diagonal scale at `mu=2`.
 5. The natural `K_{m,m}` grid over-agreement family has
    ```text
    n_min = (k-1) + m^2(a-k+1),

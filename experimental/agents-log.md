@@ -164,6 +164,9 @@ Keep entries concise and link to the relevant files.
   The generic triangle family is then counted exactly and shown to be
   random-model harmless under `q^mu>27/rho_0`, shifting the remaining cyclic
   issue to lower-rank structured cycles such as constant locator-ratio cases.
+  The constant locator-ratio subfamily is now also counted by fixing `A,B` and
+  the ratio, which forces `C` through a degree-`r` locator equation; the
+  verifier enumerates the `F_17` cases and checks the resulting bound.
 - **How it is useful:** Turns the L2 objective from a broad "avoid Cartesian
   overcharge" principle into a concrete conjectural inequality that can be
   falsified or promoted. The `K_{2,2}` witness records that local Cartesian

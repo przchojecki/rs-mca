@@ -6,7 +6,7 @@ settled by the support-intersection bridge: over-agreement can create
 interleaved mass, so the falsification target is whether that mass can grow like
 a Cartesian product rather than like a polynomial support-overlap codegree.
 
-The script checks fifteen finite objects.
+The script checks sixteen finite objects.
 
 1. The all-remainder quotient packet count used as Quot_rem_mu in the target.
 2. The Johnson-shell weights used in the codegree reduction.
@@ -22,7 +22,8 @@ The script checks fifteen finite objects.
 12. The connected high-overlap cluster count by union excess.
 13. The rank-corrected ledger for low-overlap closure-component intersections.
 14. A cyclic low-overlap closed-part rank-deficit family.
-15. A realized Reed-Solomon K_{2,2} gluing over a prime-field multiplicative
+15. The constant locator-ratio subfamily of cyclic triangles.
+16. A realized Reed-Solomon K_{2,2} gluing over a prime-field multiplicative
    subgroup, computed by exact list enumeration, together with its punctured
    codegree profile.
 
@@ -998,6 +999,114 @@ def cyclic_overlap_rank_deficit_profile() -> dict:
     }
 
 
+def constant_ratio_triangle_profile() -> dict:
+    """Count cyclic triangles where the locator ratio is constant on C."""
+    p, n, mu = 17, 16, 2
+    h_values = subgroup(p, n)
+    rows = []
+    for r in range(2, 6):
+        subsets = [tuple(subset) for subset in itertools.combinations(range(n), r)]
+        locators = {
+            subset: vanish_values(p, h_values, list(subset))
+            for subset in subsets
+        }
+        inverse_locators = {
+            subset: tuple(
+                0 if idx in subset else pow(value, -1, p)
+                for idx, value in enumerate(values)
+            )
+            for subset, values in locators.items()
+        }
+        exact_count = 0
+        max_ratio_bucket = 0
+        example = None
+        for a_block in subsets:
+            a_set = set(a_block)
+            complement_a = [idx for idx in range(n) if idx not in a_set]
+            locator_a = locators[a_block]
+            for b_block in itertools.combinations(complement_a, r):
+                b_set = set(b_block)
+                remaining = [idx for idx in complement_a if idx not in b_set]
+                inverse_b = inverse_locators[tuple(b_block)]
+                buckets: dict[int, list[int]] = {}
+                for idx in remaining:
+                    ratio = (locator_a[idx] * inverse_b[idx]) % p
+                    if ratio == 1:
+                        continue
+                    buckets.setdefault(ratio, []).append(idx)
+                for ratio, indices in buckets.items():
+                    if len(indices) < r:
+                        continue
+                    exact_count += comb(len(indices), r)
+                    if len(indices) > max_ratio_bucket:
+                        max_ratio_bucket = len(indices)
+                        example = {
+                            "A": list(a_block),
+                            "B": list(b_block),
+                            "ratio": ratio,
+                            "bucket": indices,
+                        }
+        count_bound = (p - 2) * comb(n, r) * comb(n - r, r)
+        diagonal_count = comb(n, 2 * r)
+        exponent_gap = r - 1
+        exact_relative = Fraction(
+            exact_count,
+            diagonal_count * p ** (mu * exponent_gap),
+        )
+        bound_relative = Fraction(
+            count_bound,
+            diagonal_count * p ** (mu * exponent_gap),
+        )
+        rows.append(
+            {
+                "r": r,
+                "k": r + 1,
+                "a": 2 * r,
+                "exact_count": exact_count,
+                "count_bound": count_bound,
+                "diagonal_count": diagonal_count,
+                "rank_corrected_exponent": 2 * r - 2,
+                "diagonal_exponent": r - 1,
+                "exponent_gap": exponent_gap,
+                "max_ratio_bucket": max_ratio_bucket,
+                "example": example,
+                "exact_relative_to_diagonal": {
+                    "numerator": exact_relative.numerator,
+                    "denominator": exact_relative.denominator,
+                },
+                "bound_relative_to_diagonal": {
+                    "numerator": bound_relative.numerator,
+                    "denominator": bound_relative.denominator,
+                },
+            }
+        )
+    return {
+        "p": p,
+        "n": n,
+        "mu": mu,
+        "rows": rows,
+        "all_counts_bounded": all(
+            row["exact_count"] <= row["count_bound"] for row in rows
+        ),
+        "all_buckets_degree_bounded": all(
+            row["max_ratio_bucket"] <= row["r"] for row in rows
+        ),
+        "exact_relative_below_diagonal": all(
+            row["exact_relative_to_diagonal"]["numerator"]
+            < row["exact_relative_to_diagonal"]["denominator"]
+            for row in rows
+        ),
+        "bound_relative_below_diagonal": all(
+            row["bound_relative_to_diagonal"]["numerator"]
+            < row["bound_relative_to_diagonal"]["denominator"]
+            for row in rows
+        ),
+        "exponent_gap_formula": all(
+            row["exponent_gap"] == row["r"] - 1 for row in rows
+        ),
+    }
+
+
 def regular_irregular_profile(families: list[list[frozenset[int]]], a: int) -> dict:
     """Split interleaved tuples by exact-row regularity.
 
@@ -1855,6 +1964,7 @@ def run() -> dict:
     connected_cluster_profile = connected_cluster_count_profile()
     closure_signature = closure_signature_profile()
     cyclic_rank_deficit = cyclic_overlap_rank_deficit_profile()
+    constant_ratio_triangles = constant_ratio_triangle_profile()
     witness = realized_rs_k22()
     checks = {
         "quotient_budget_nonnegative": quotient_example["total"] >= 0,
@@ -2089,6 +2199,21 @@ def run() -> dict:
         "cyclic_rank_deficit_below_diagonal": cyclic_rank_deficit[
             "generic_triangle_family_below_diagonal"
         ],
+        "constant_ratio_triangle_counts_bound": constant_ratio_triangles[
+            "all_counts_bounded"
+        ],
+        "constant_ratio_triangle_degree_bound": constant_ratio_triangles[
+            "all_buckets_degree_bounded"
+        ],
+        "constant_ratio_triangle_exact_clears": constant_ratio_triangles[
+            "exact_relative_below_diagonal"
+        ],
+        "constant_ratio_triangle_bound_clears": constant_ratio_triangles[
+            "bound_relative_below_diagonal"
+        ],
+        "constant_ratio_triangle_exponent_gap": constant_ratio_triangles[
+            "exponent_gap_formula"
+        ],
         "kmm_grid_formula": all(d["interleaved_edges"] == d["grid_edges_at_n_min"] for d in designs),
         "rs_witness_creates_mass": witness["mass_creation"],
         "rs_witness_realizes_k22": witness["interleaved"] == witness["product_bound"] == 4,
@@ -2161,6 +2286,7 @@ def run() -> dict:
         "connected_cluster_count_profile": connected_cluster_profile,
         "closure_signature_profile": closure_signature,
         "cyclic_overlap_rank_deficit_profile": cyclic_rank_deficit,
+        "constant_ratio_triangle_profile": constant_ratio_triangles,
         "realized_rs_k22": witness,
         "checks": checks,
         "pass": all(checks.values()),
@@ -2305,6 +2431,12 @@ def main(argv: list[str] | None = None) -> int:
         print(
             "  cyclic overlap rank-deficit profile: "
             f"F_{cyc['p']}, n={cyc['n']}, rows={cyc['rows']}"
+        )
+        const_ratio = result["constant_ratio_triangle_profile"]
+        print(
+            "  constant-ratio triangle profile: "
+            f"F_{const_ratio['p']}, n={const_ratio['n']}, "
+            f"rows={const_ratio['rows']}"
         )
         print("  K_{m,m} abstract designs:")
         for d in result["kmm_designs"]:
