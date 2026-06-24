@@ -710,6 +710,54 @@ I_{U_i,S}(x) != U_i(x)       for every x in H \ S and every i,
 
 while dropping these inequalities gives the simultaneous-fiber upper bound.
 
+The same equations can be written in residue-moment form. Write
+
+```text
+L_S(X) = sum_{r=0}^a lambda_r X^r,        lambda_a=1,
+```
+
+and define
+
+```text
+R_j(V,S) = sum_{s in S} V(s) s^j / L_S'(s),        0 <= j < sigma.
+```
+
+Since
+
+```text
+[X^d] L_S(X)/(X-s)
+ = sum_{r=d+1}^a lambda_r s^{r-d-1},
+```
+
+one has, for `k<=d<a`,
+
+```text
+[X^d] I_{V,S}
+ = sum_{r=d+1}^a lambda_r R_{r-d-1}(V,S).
+```
+
+Equivalently, for `0<=t<sigma`,
+
+```text
+[X^{a-1-t}] I_{V,S}
+ = R_t(V,S) + lambda_{a-1} R_{t-1}(V,S)
+   + ... + lambda_{a-t} R_0(V,S).
+```
+
+This is a unit-triangular change of coordinates from the moment vector
+`(R_0,...,R_{sigma-1})` to `Syn_V(S)`. Hence
+
+```text
+Syn_V(S)=0    iff    R_j(V,S)=0 for every 0<=j<sigma.
+```
+
+Thus the regular-core upper-bound problem can be attacked as a simultaneous
+weighted residue-moment problem:
+
+```text
+R_j(U_i,S)=0        for every i=1,...,mu and j=0,...,sigma-1.
+```
+
 For row-irregular tuples, at least one row has support size `>=a+1`. Anchoring
 such a row and using the fixed-arity shell reduction gives the union bound
 
@@ -854,7 +902,10 @@ checks the following stress points.
    `a`-sets, with `0` regular exact sets, `4` row-irregular sets, and a unique
    row codeword choice for each row and each feasible `a`-set. The
    locator-syndrome test gives the same `4` simultaneous zero-syndrome
-   `a`-sets, with no mismatch against the enumerated support families.
+   `a`-sets, with no mismatch against the enumerated support families. The
+   verifier also checks that the weighted residue moments are a unit-triangular
+   transform of the top-coefficient syndromes, with zero formula mismatches and
+   zero zero-locus mismatches.
    The two row-1 anchor supports have size `8`; the punctured Johnson bound is
    `floor(8(8-3+1)/(5^2-8(3-1))) = 5`, so the observed codegrees `2,2`
    satisfy the proposition.

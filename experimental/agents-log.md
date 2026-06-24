@@ -95,7 +95,11 @@ Keep entries concise and link to the relevant files.
   the `sigma=a-k` top coefficients in degrees `k,...,a-1` to zero. The verifier
   records that the `K_{2,2}` witness has `4` simultaneous feasible
   zero-syndrome `a`-sets, all row-irregular, with unique row choices and no
-  mismatch against the enumerated support families.
+  mismatch against the enumerated support families. The top-coefficient
+  syndromes are further identified with a unit-triangular transform of the
+  weighted residue moments
+  `sum_{s in S} U_i(s)s^j/L_S'(s)` for `0<=j<sigma`; the same verifier checks
+  zero formula mismatches and zero zero-locus mismatches.
 - **How it is useful:** Turns the L2 objective from a broad "avoid Cartesian
   overcharge" principle into a concrete conjectural inequality that can be
   falsified or promoted. The `K_{2,2}` witness records that local Cartesian

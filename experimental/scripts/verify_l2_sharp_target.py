@@ -6,7 +6,7 @@ settled by the support-intersection bridge: over-agreement can create
 interleaved mass, so the falsification target is whether that mass can grow like
 a Cartesian product rather than like a polynomial support-overlap codegree.
 
-The script checks nine finite objects.
+The script checks ten finite objects.
 
 1. The all-remainder quotient packet count used as Quot_rem_mu in the target.
 2. The Johnson-shell weights used in the codegree reduction.
@@ -16,7 +16,8 @@ The script checks nine finite objects.
 6. The regular/row-irregular split of the interleaved support count.
 7. The simultaneous feasible-support fiber behind the regular exact-row core.
 8. The locator-syndrome equations defining that simultaneous fiber.
-9. A realized Reed-Solomon K_{2,2} gluing over a prime-field multiplicative
+9. The equivalent weighted residue-moment equations.
+10. A realized Reed-Solomon K_{2,2} gluing over a prime-field multiplicative
    subgroup, computed by exact list enumeration, together with its punctured
    codegree profile.
 
@@ -451,6 +452,46 @@ def top_syndrome(poly: list[int], k: int, a: int) -> tuple[int, ...]:
     return tuple(poly[degree] if degree < len(poly) else 0 for degree in range(k, a))
 
 
+def residue_moments(
+    p: int,
+    h_values: list[int],
+    word: tuple[int, ...],
+    subset: frozenset[int],
+    sigma: int,
+) -> tuple[int, ...]:
+    """Weighted moments sum_s word(s) s^j / L'_S(s), j<sigma."""
+    moments = []
+    for power in range(sigma):
+        total = 0
+        for idx in subset:
+            xi = h_values[idx]
+            derivative = 1
+            for jdx in subset:
+                if jdx != idx:
+                    derivative = (derivative * (xi - h_values[jdx])) % p
+            total = (
+                total
+                + word[idx] * pow(xi, power, p) * pow(derivative, p - 2, p)
+            ) % p
+        moments.append(total)
+    return tuple(moments)
+
+
+def top_syndrome_from_moments(
+    locator: list[int], moments: tuple[int, ...], k: int, a: int, p: int
+) -> tuple[int, ...]:
+    """Recover top interpolant coefficients from residue moments."""
+    coeffs = locator + [0] * (a + 1 - len(locator))
+    values = []
+    for degree in range(k, a):
+        total = 0
+        for r in range(degree + 1, a + 1):
+            moment_index = r - degree - 1
+            total = (total + coeffs[r] * moments[moment_index]) % p
+        values.append(total)
+    return tuple(values)
+
+
 def simultaneous_syndrome_profile(
     words: list[tuple[int, ...]],
     h_values: list[int],
@@ -464,13 +505,24 @@ def simultaneous_syndrome_profile(
     regular_exact = 0
     row_irregular = 0
     support_family_mismatches = 0
+    moment_formula_mismatches = 0
+    moment_zero_mismatches = 0
     for subset in itertools.combinations(range(len(h_values)), a):
         s_set = frozenset(subset)
+        locator = poly_from_roots(p, [h_values[idx] for idx in s_set])
         full_supports = []
         row_zero = []
         for word in words:
             interpolant = interpolate_subset_poly(p, h_values, word, s_set)
             syndrome = top_syndrome(interpolant, k, a)
+            moments = residue_moments(p, h_values, word, s_set, a - k)
+            moment_syndrome = top_syndrome_from_moments(locator, moments, k, a, p)
+            if moment_syndrome != syndrome:
+                moment_formula_mismatches += 1
+            if all(value == 0 for value in moments) != all(
+                value == 0 for value in syndrome
+            ):
+                moment_zero_mismatches += 1
             is_zero = all(value == 0 for value in syndrome)
             row_zero.append(is_zero)
             if is_zero:
@@ -500,6 +552,8 @@ def simultaneous_syndrome_profile(
         "regular_exact_a_sets": regular_exact,
         "row_irregular_a_sets": row_irregular,
         "support_family_mismatches": support_family_mismatches,
+        "moment_formula_mismatches": moment_formula_mismatches,
+        "moment_zero_mismatches": moment_zero_mismatches,
         "syndrome_length": a - k,
     }
 
@@ -1010,6 +1064,12 @@ def run() -> dict:
             "simultaneous_syndrome_profile"
         ]["support_family_mismatches"]
         == 0,
+        "rs_witness_moments_match_syndromes": witness[
+            "simultaneous_syndrome_profile"
+        ]["moment_formula_mismatches"]
+        == 0
+        and witness["simultaneous_syndrome_profile"]["moment_zero_mismatches"]
+        == 0,
         "rs_witness_shell_bound": witness["interleaved"] <= witness["shell_codegree_bound"]["total_bound"],
         "rs_witness_l1_shell_reduction": witness["interleaved"]
         <= witness["l1_shell_reduction_bound"]["total_bound"],
@@ -1139,7 +1199,9 @@ def main(argv: list[str] | None = None) -> int:
             f"zero_a_sets={syn['simultaneous_syndrome_zero_a_sets']}, "
             f"regular_exact={syn['regular_exact_a_sets']}, "
             f"row_irregular={syn['row_irregular_a_sets']}, "
-            f"mismatches={syn['support_family_mismatches']}"
+            f"mismatches={syn['support_family_mismatches']}, "
+            f"moment_formula_mismatches={syn['moment_formula_mismatches']}, "
+            f"moment_zero_mismatches={syn['moment_zero_mismatches']}"
         )
         print(
             f"    Johnson threshold={w['johnson_anchor_threshold']}, "
