@@ -563,6 +563,34 @@ proof.  The standalone verifier checks good-locus preservation, inverse-root
 pairing, sign preservation, the exact quotient-matrix symmetry, and the
 induced grouped beta-line coefficient identity on every expanded row.
 
+For the beta marginal, the same involution gives a one-dimensional quotient
+form.  Put
+
+```text
+z = b + b^{-1},        bar_tau_p(z) = tau_p(b).
+```
+
+This is well-defined because `tau_p(b)=tau_p(b^{-1})`.  For any nonprincipal
+right character `phi`, define the Chebyshev kernel
+
+```text
+C_phi(z) = sum_{b in F_p^*: b+b^{-1}=z} phi(b).
+```
+
+Then the beta marginal coefficient is exactly
+
+```text
+B_phi = sum_z bar_tau_p(z) C_phi(z).
+```
+
+Thus the one-sided beta marginal is not an arbitrary Kummer Mellin transform
+on `G_m`: trace-theoretically it factors through the inversion quotient of
+the beta line and is paired with the rank-two Chebyshev/Kummer kernel
+`C_phi`.  This still does not prove square-root cancellation, but it
+rephrases the remaining one-sided Kummer obstruction as a dihedral quotient
+problem on the `z`-line.  The standalone verifier checks the quotient-orbit
+trace identity and this Chebyshev-kernel formula on every expanded row.
+
 ## Interpretation
 
 The scan finds no hidden `p^2` component in the tested quotient rows.  The good
@@ -671,6 +699,15 @@ rows up to floating tolerance.  The inversion-symmetry audit also checks
 spectral scan is now testing exactly the beta-line Kummer-isotypic obstruction
 described above.
 
+The beta-marginal Chebyshev quotient audit checks the further identity
+
+```text
+B_phi = sum_z bar_tau_p(z) C_phi(z)
+```
+
+on the same rows.  The quotient has `(p+1)/2` points: two fixed orbits
+`b=1,-1` and `(p-3)/2` paired orbits.
+
 Thus the averaged M1 target remains substantially smaller than the largest
 individual full pointwise coefficient and smaller than the full
 right-nonprincipal RMS in the finite rows, matching the point of the
@@ -707,5 +744,5 @@ and reports the nonnegative sufficient bound `sqrt(C_ab+e^{-2}C_0)/p`.
 It also checks the fixed beta-fiber singular-support ledger for the beta
 marginal family, the exact beta-column Mellin identity, and the regular versus
 fixed-support beta-fiber trace maxima.  Finally, it checks the grouped
-beta-line identity and the inversion symmetry for every quotient-character
-block.
+beta-line identity, the inversion symmetry, and the beta-marginal Chebyshev
+quotient formula for every quotient-character block.

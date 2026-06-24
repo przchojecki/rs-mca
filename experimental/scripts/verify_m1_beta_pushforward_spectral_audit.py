@@ -680,6 +680,79 @@ def beta_marginal_trace_reduction_case(
     }
 
 
+def beta_marginal_chebyshev_quotient_case(
+    p: int,
+    quotient_order: int,
+    matrix: list[list[int]],
+) -> dict[str, float | int]:
+    traces = exact_beta_trace_vector(p)
+    logs = m1.log_table(p)
+    root = cmath.exp(2j * math.pi / quotient_order)
+    column_sums = [
+        sum(matrix[row][column] for row in range(quotient_order))
+        for column in range(quotient_order)
+    ]
+
+    beta_orbits: dict[int, list[int]] = {}
+    quotient_traces: dict[int, int] = {}
+    max_orbit_trace_error = 0
+    for beta in range(1, p):
+        z_value = (beta + pow(beta, -1, p)) % p
+        beta_orbits.setdefault(z_value, []).append(beta)
+    for z_value, orbit in beta_orbits.items():
+        if len(orbit) not in (1, 2):
+            raise AssertionError((p, z_value, orbit))
+        trace_value = traces[orbit[0]]
+        for beta in orbit:
+            max_orbit_trace_error = max(
+                max_orbit_trace_error,
+                abs(trace_value - traces[beta]),
+            )
+        quotient_traces[z_value] = trace_value
+    if max_orbit_trace_error != 0:
+        raise AssertionError((p, max_orbit_trace_error))
+
+    max_formula_error = 0.0
+    max_kernel_size = 0.0
+    for character_exponent in range(1, quotient_order):
+        direct_coefficient = sum(
+            column_sums[label] * root ** (character_exponent * label)
+            for label in range(quotient_order)
+        )
+        quotient_coefficient = 0j
+        for z_value, orbit in beta_orbits.items():
+            chebyshev_kernel = sum(
+                root ** (character_exponent * (logs[beta] % quotient_order))
+                for beta in orbit
+            )
+            max_kernel_size = max(max_kernel_size, abs(chebyshev_kernel))
+            quotient_coefficient += quotient_traces[z_value] * chebyshev_kernel
+        formula_error = abs(direct_coefficient - quotient_coefficient)
+        if formula_error > 1000 * TOLERANCE:
+            raise AssertionError(
+                (
+                    p,
+                    quotient_order,
+                    character_exponent,
+                    direct_coefficient,
+                    quotient_coefficient,
+                )
+            )
+        max_formula_error = max(max_formula_error, formula_error)
+    return {
+        "quotient_point_count": len(beta_orbits),
+        "fixed_orbit_count": sum(
+            1 for orbit in beta_orbits.values() if len(orbit) == 1
+        ),
+        "paired_orbit_count": sum(
+            1 for orbit in beta_orbits.values() if len(orbit) == 2
+        ),
+        "max_orbit_trace_error": max_orbit_trace_error,
+        "max_chebyshev_kernel_size": round(max_kernel_size, 12),
+        "max_chebyshev_formula_error": round(max_formula_error, 12),
+    }
+
+
 def centered_frobenius_square(matrix: list[list[int]]) -> float:
     order = len(matrix)
     row_sums = [sum(row) for row in matrix]
@@ -1044,6 +1117,11 @@ def audit_case(p: int, quotient_order: int) -> dict[str, Any]:
         quotient_order,
         matrix,
     )
+    beta_chebyshev = beta_marginal_chebyshev_quotient_case(
+        p,
+        quotient_order,
+        matrix,
+    )
     beta_line_reduction = beta_line_quotient_reduction_case(matrix)
     beta_inversion = beta_inversion_symmetry_case(p, matrix)
     parseval_error = abs(
@@ -1163,6 +1241,7 @@ def audit_case(p: int, quotient_order: int) -> dict[str, Any]:
         "joint_decomposition_error": round(joint_decomposition_error, 12),
         "alpha_marginal_reduction": alpha_reduction,
         "beta_marginal_reduction": beta_reduction,
+        "beta_marginal_chebyshev_quotient": beta_chebyshev,
         "beta_line_quotient_reduction": {
             "max_beta_line_any_coefficient_ratio": round(beta_line_any_ratio, 10),
             "max_beta_line_two_sided_coefficient_ratio": round(
@@ -1385,6 +1464,7 @@ def print_report(report: dict[str, Any]) -> None:
     for row in report["rows"]:
         alpha_reduction = row["alpha_marginal_reduction"]
         beta_reduction = row["beta_marginal_reduction"]
+        beta_chebyshev = row["beta_marginal_chebyshev_quotient"]
         beta_line_reduction = row["beta_line_quotient_reduction"]
         beta_inversion = row["beta_inversion_symmetry"]
         print(
@@ -1405,6 +1485,7 @@ def print_report(report: dict[str, Any]) -> None:
             "pair_energy_error={pair_energy_error} "
             "pythagorean_error={pythagorean_error} "
             "component_error={component_centered_error} "
+            "chebyshev_error={chebyshev_error} "
             "beta_line_error={beta_line_error} "
             "inversion_error={inversion_error}".format(
                 alpha_coeff_ratio=alpha_reduction[
@@ -1416,6 +1497,7 @@ def print_report(report: dict[str, Any]) -> None:
                 beta_line_error=beta_line_reduction[
                     "max_beta_line_formula_error"
                 ],
+                chebyshev_error=beta_chebyshev["max_chebyshev_formula_error"],
                 inversion_error=beta_inversion["max_coefficient_inversion_error"],
                 **row,
             )

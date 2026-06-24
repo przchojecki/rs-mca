@@ -786,6 +786,17 @@ G_{psi,phi} = G_{psi^{-1},phi^{-1}}.
 For `psi=1`, the beta marginal trace vector is inversion-invariant:
 `tau_p(b)=tau_p(b^{-1})`.  This is not the no-Kummer-summand proof, but it
 constrains any possible Kummer obstruction to occur compatibly with inversion.
+Equivalently, after setting `z=b+b^{-1}` the beta marginal descends
+trace-theoretically to
+
+```text
+B_phi = sum_z bar_tau_p(z) C_phi(z),
+C_phi(z)=sum_{b+b^{-1}=z} phi(b).
+```
+
+Thus the one-sided beta marginal can be viewed as a Chebyshev/Kummer transform
+on the inversion quotient of the beta line.  This is a structural reduction of
+the obstruction, not a square-root-cancellation theorem.
 
 The elementary hypotheses behind this import are now audited in
 `verify_m1_depth_two_line_conic_resonance_reduction.py`:
