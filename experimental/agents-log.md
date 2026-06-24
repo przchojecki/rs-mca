@@ -30,6 +30,26 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-24 - M1 Cycle120 standalone LDsw proof
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_cycle120_standalone_ldsw_proof.md`,
+  `experimental/scripts/verify_m1_cycle120_standalone_ldsw_proof.py`, and
+  `experimental/agents-log.md`.
+- **Status:** PROVED / COMPUTATION-DEPENDENT / SOURCE-CONDITIONAL.
+- **What is being added:** A standalone proof note that the Cycle84 finite
+  count plus the Cycle116 fixed-jet identities imply
+  `LD_sw(RS[F_17^32,H,256],262) >= 52,747,567,092`, together with a
+  nonmutating verifier for the arithmetic gates and the generic transfer
+  lemmas on exact toy models.
+- **How it is useful:** Converts the rejected generated Cycle120 packet into a
+  reviewer-facing proof target. It separates the finite Cycle84 computation
+  from the human-readable fixed-jet and smooth-padding transfer argument.
+- **What to do next:** Review the finite Cycle84 census and the Cycle116
+  slot/beta certificates as imported inputs; then decide whether to pursue the
+  stronger strict `263` addendum separately.
+
 ### 2026-06-23 - Cycle119 admissibility review
 
 - **Agent/model:** DannyExperiments PR #96, reviewed by Codex.
