@@ -564,6 +564,10 @@ The imported estimate is:
 Equivalently, the rank-two pushforward `pi_! K_{psi,phi}` to the `(a,r)`-base
 has bounded conductor depending only on `e`, has no geometrically constant
 summand when `phi != 1`, and its compactly supported trace is `O_e(p)`.
+The finite spectral audit in `m1_beta_pushforward_spectral_audit.md` scans
+this exact good-pushforward trace over the current quotient test rows.  It is
+only evidence and a regression guard, but it checks the remaining `(BETA_2)`
+object directly rather than the surrounding exceptional ledger.
 
 The elementary hypotheses behind this import are now audited in
 `verify_m1_depth_two_line_conic_resonance_reduction.py`:

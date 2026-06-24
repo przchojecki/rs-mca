@@ -5987,9 +5987,9 @@ def verify_ratio_surface_full_trace_reduction() -> List[
 
 
 def verify_ratio_surface_quotient_trace_reduction() -> List[
-    Tuple[int, int, int, int, int, float, float]
+    Tuple[int, int, int, int, int, float, float, float]
 ]:
-    checked: List[Tuple[int, int, int, int, int, float, float]] = []
+    checked: List[Tuple[int, int, int, int, int, float, float, float]] = []
     for p, suborder in RATIO_SURFACE_CASES:
         logs = log_table(p)
         direct_matrix = [[0 for _ in range(suborder)] for _ in range(suborder)]
@@ -6066,6 +6066,7 @@ def verify_ratio_surface_quotient_trace_reduction() -> List[
             raise AssertionError((p, suborder, bad_bound))
 
         max_bad_ratio = 0.0
+        max_good_ratio = 0.0
         max_total_ratio = 0.0
         max_recomposition_error = 0.0
         root = cmath.exp(2j * math.pi / suborder)
@@ -6097,6 +6098,7 @@ def verify_ratio_surface_quotient_trace_reduction() -> List[
                         (p, suborder, left_character, right_character)
                     )
                 max_bad_ratio = max(max_bad_ratio, abs(bad) / p)
+                max_good_ratio = max(max_good_ratio, abs(good) / p)
                 max_total_ratio = max(max_total_ratio, abs(direct) / p)
         if max_recomposition_error > 1000 * TOLERANCE:
             raise AssertionError((p, suborder, max_recomposition_error))
@@ -6109,6 +6111,7 @@ def verify_ratio_surface_quotient_trace_reduction() -> List[
                 lower_count,
                 exceptional_point_count,
                 round(max_bad_ratio, 10),
+                round(max_good_ratio, 10),
                 round(max_total_ratio, 10),
             )
         )
