@@ -341,6 +341,10 @@ def audit_case(p: int, quotient_order: int) -> dict[str, Any]:
     frobenius_ratio = math.sqrt(frobenius_square) / p
     marginal_ratio = math.sqrt(marginal_square) / p
     right_projected_ratio = math.sqrt(right_projected_square) / p
+    nonnegative_bound_ratio = math.sqrt(
+        components["joint_collision"]
+        + components["total_collision"] / (quotient_order * quotient_order)
+    ) / p
     return {
         "p": p,
         "quotient_order": quotient_order,
@@ -351,6 +355,7 @@ def audit_case(p: int, quotient_order: int) -> dict[str, Any]:
         "centered_frobenius_ratio": round(frobenius_ratio, 10),
         "beta_marginal_frobenius_ratio": round(marginal_ratio, 10),
         "right_projected_frobenius_ratio": round(right_projected_ratio, 10),
+        "nonnegative_sufficient_bound_ratio": round(nonnegative_bound_ratio, 10),
         "joint_collision_ratio": round(
             components["joint_collision"] / (p * p),
             10,
@@ -446,6 +451,10 @@ def compute_report() -> dict[str, Any]:
         key=lambda row: row["right_projected_frobenius_ratio"],
     )
     max_joint_collision_row = max(rows, key=lambda row: row["joint_collision_ratio"])
+    max_nonnegative_bound_row = max(
+        rows,
+        key=lambda row: row["nonnegative_sufficient_bound_ratio"],
+    )
     return {
         "status": "PASS",
         "proof_status": "EXPERIMENTAL / FINITE SPECTRAL AUDIT",
@@ -457,6 +466,7 @@ def compute_report() -> dict[str, Any]:
         "max_beta_marginal_frobenius_row": max_marginal_row,
         "max_right_projected_frobenius_row": max_right_projected_row,
         "max_joint_collision_row": max_joint_collision_row,
+        "max_nonnegative_sufficient_bound_row": max_nonnegative_bound_row,
         "interpretation": (
             "All audited good beta-pushforward matrices have p-scale full "
             "BETA_2 coefficients and p-scale centered Frobenius norm."
@@ -476,6 +486,7 @@ def print_report(report: dict[str, Any]) -> None:
             "frob/p={centered_frobenius_ratio} "
             "beta_marginal/p={beta_marginal_frobenius_ratio} "
             "right_projected/p={right_projected_frobenius_ratio} "
+            "nonnull_bound/p={nonnegative_sufficient_bound_ratio} "
             "joint/p^2={joint_collision_ratio} "
             "parseval_error={parseval_error} "
             "marginal_parseval_error={marginal_parseval_error} "
@@ -489,6 +500,7 @@ def print_report(report: dict[str, Any]) -> None:
     max_marginal = report["max_beta_marginal_frobenius_row"]
     max_right_projected = report["max_right_projected_frobenius_row"]
     max_joint_collision = report["max_joint_collision_row"]
+    max_nonnegative_bound = report["max_nonnegative_sufficient_bound_row"]
     print(
         "max two-sided coefficient row: "
         f"p={max_two_sided['p']} e={max_two_sided['quotient_order']} "
@@ -520,6 +532,12 @@ def print_report(report: dict[str, Any]) -> None:
         f"p={max_joint_collision['p']} "
         f"e={max_joint_collision['quotient_order']} "
         f"ratio={max_joint_collision['joint_collision_ratio']}"
+    )
+    print(
+        "max nonnegative sufficient bound row: "
+        f"p={max_nonnegative_bound['p']} "
+        f"e={max_nonnegative_bound['quotient_order']} "
+        f"ratio={max_nonnegative_bound['nonnegative_sufficient_bound_ratio']}"
     )
 
 

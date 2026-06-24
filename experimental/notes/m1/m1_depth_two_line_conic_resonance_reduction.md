@@ -3984,6 +3984,8 @@ and records the equivalent signed pair-correlation form of
 of the same good quotient matrix and is orthogonal to this M1-centered term.
 The centered pair-correlation is further expanded there into the four signed
 quotient-fiber-product components `C_ab`, `C_a`, `C_b`, and `C_0`.
+In particular, the nonnegative bounds `C_ab=O_e(p^2)` and `C_0=O_e(p^2)`
+would already imply the averaged beta target.
 
 ## Principal-Row Leakage
 

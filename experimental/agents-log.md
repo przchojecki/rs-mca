@@ -51,7 +51,8 @@ Keep entries concise and link to the relevant files.
   counterexample-first scan to 20 exact rows through `p=127` without slowing
   the broad line-conic verifier, checks the orthogonal split between the
   M1-centered energy and the beta-column marginal, and checks the four signed
-  quotient-fiber-product components of the centered energy.
+  quotient-fiber-product components of the centered energy.  It also records
+  the nonnegative sufficient route via `C_ab=O_e(p^2)` and `T=O_e(p)`.
 - **How it is useful:** This is a counterexample-first test of the remaining
   rank-two pushforward object, not of the already controlled exceptional
   ledger. The audited rows show p-scale behavior, with largest recorded full
@@ -60,7 +61,8 @@ Keep entries concise and link to the relevant files.
   `||G_e^circ||_F/p = 1.1366043634`.  The largest beta-marginal Frobenius
   ratio is `1.2278896782`, and the largest full right-nonprincipal RMS ratio
   is `1.6565244248`.  The largest audited raw joint quotient-collision ratio
-  is `C_ab/p^2 = 3.4704149482`.
+  is `C_ab/p^2 = 3.4704149482`, and the largest audited nonnegative
+  sufficient-bound ratio is `sqrt(C_ab+e^{-2}C_0)/p = 1.8842592703`.
 - **What to do next:** Prove the bounded-conductor/no-constant-summand
   `(BETA_2)` estimate for the explicit rank-two pushforward, prove the weaker
   averaged `(BETA_2^avg)` estimate directly, or extend the finite scan to

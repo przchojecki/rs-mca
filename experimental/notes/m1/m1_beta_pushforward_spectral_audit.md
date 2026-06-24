@@ -186,6 +186,23 @@ Thus a direct proof of `(BETA_2^avg)` may be phrased as an `O_e(p^2)` bound
 for this signed four-term fiber product.  The standalone verifier now checks
 these component identities exactly from the quotient matrix.
 
+There is also a useful nonnegative sufficient target.  Since `C_a` and `C_b`
+enter with negative signs,
+
+```text
+||G_e^circ||_F^2 <= C_ab + e^{-2} C_0.
+```
+
+Consequently `(BETA_2^avg)` follows from the two estimates
+
+```text
+C_ab = O_e(p^2),        |T| = O_e(p).
+```
+
+This route does not ask for cancellation in the row- or column-marginal
+subtractions.  It isolates two positive targets: joint quotient-collision
+energy for the good beta cover, and the principal total trace.
+
 ## Interpretation
 
 The scan finds no hidden `p^2` component in the tested quotient rows.  The good
@@ -230,6 +247,12 @@ The largest raw joint-collision component in the expanded rows is
 C_ab/p^2 = 3.4704149482 at (p,e)=(109,12).
 ```
 
+The largest finite value of the nonnegative sufficient bound is
+
+```text
+sqrt(C_ab + e^{-2}C_0)/p = 1.8842592703 at (p,e)=(109,12).
+```
+
 Thus the averaged M1 target remains substantially smaller than the largest
 individual full pointwise coefficient and smaller than the full
 right-nonprincipal RMS in the finite rows, matching the point of the
@@ -261,4 +284,5 @@ beta-pushforward verifier checks a larger fixed grid, hard-codes the audited
 row values as regression data, and also checks the grouped pair-correlation
 identity `(PAIR_2)`, the beta-marginal Parseval identity, and the orthogonal
 decomposition `||R_e||_F^2=||G_e^circ||_F^2+e^{-1}||c^circ||_2^2`.  It also
-checks the four component identities for `C_ab`, `C_a`, `C_b`, and `C_0`.
+checks the four component identities for `C_ab`, `C_a`, `C_b`, and `C_0`,
+and reports the nonnegative sufficient bound `sqrt(C_ab+e^{-2}C_0)/p`.

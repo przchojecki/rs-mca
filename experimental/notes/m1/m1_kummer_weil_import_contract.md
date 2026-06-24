@@ -662,6 +662,23 @@ good beta covers, with both quotient equalities, only the `a` equality, only
 the `beta` equality, or no quotient equality imposed.  This is the most
 literal finite fiber-product form of the direct `(BETA_2^avg)` target.
 
+Since the `C_a` and `C_b` terms are subtracted, a simpler sufficient route is
+
+```text
+C_ab = O_e(p^2),        C_0 = T^2 = O_e(p^2).
+```
+
+Indeed this gives
+
+```text
+||G_e^circ||_F^2 <= C_ab + e^{-2}C_0 = O_e(p^2).
+```
+
+Thus one can prove the averaged M1 target either by controlling the signed
+four-term inclusion-exclusion directly, or by proving the two positive
+estimates: joint quotient-collision energy for the good beta cover and the
+principal total trace.
+
 The elementary hypotheses behind this import are now audited in
 `verify_m1_depth_two_line_conic_resonance_reduction.py`:
 
