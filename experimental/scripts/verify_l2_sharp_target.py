@@ -937,6 +937,27 @@ def realized_dithered_quotient_packet() -> dict:
                 "zero_moment_supports_with_shape": len(matching_supports),
             }
         )
+    residual_supports = set(zero_moment_support_index_sets) - active_quotient_supports
+
+    def pair_count(left: set[frozenset[int]], right: set[frozenset[int]]) -> int:
+        return sum(1 for s_left in left for s_right in right if len(s_left & s_right) >= a)
+
+    zero_support_set = set(zero_moment_support_index_sets)
+    equal_row_profile = {
+        "all_supports": len(zero_support_set),
+        "all_cartesian_pairs": len(zero_support_set) ** 2,
+        "all_interleaved_pairs": pair_count(zero_support_set, zero_support_set),
+        "quotient_supports": len(active_quotient_supports),
+        "quotient_interleaved_pairs": pair_count(
+            active_quotient_supports, active_quotient_supports
+        ),
+        "residual_supports": len(residual_supports),
+        "residual_interleaved_pairs": pair_count(residual_supports, residual_supports),
+        "mixed_interleaved_pairs": pair_count(
+            active_quotient_supports, residual_supports
+        )
+        + pair_count(residual_supports, active_quotient_supports),
+    }
     zero_moment_profile = {
         "all_a_subsets": comb(n, a),
         "zero_moment_supports": zero_moment_supports,
@@ -968,6 +989,7 @@ def realized_dithered_quotient_packet() -> dict:
         "active_quotient_shape_union": len(active_quotient_supports),
         "active_quotient_shape_residual": zero_moment_supports
         - len(active_quotient_supports),
+        "equal_row_profile": equal_row_profile,
     }
     return {
         "p": p,
@@ -1213,6 +1235,19 @@ def run() -> dict:
         == 3
         and dithered_witness["zero_moment_profile"]["active_quotient_shape_residual"]
         == 39,
+        "dithered_quotient_equal_row_diagonal": dithered_witness[
+            "zero_moment_profile"
+        ]["equal_row_profile"]
+        == {
+            "all_supports": 42,
+            "all_cartesian_pairs": 1764,
+            "all_interleaved_pairs": 42,
+            "quotient_supports": 3,
+            "quotient_interleaved_pairs": 3,
+            "residual_supports": 39,
+            "residual_interleaved_pairs": 39,
+            "mixed_interleaved_pairs": 0,
+        },
         "dithered_quotient_witness_agreement": dithered_witness[
             "all_advertised_supports_size_a"
         ]
@@ -1350,7 +1385,8 @@ def main(argv: list[str] | None = None) -> int:
             f"residual_polys={qprof['residual_zero_moment_polynomials']}, "
             f"active_shapes={qprof['active_quotient_shape_profile']}, "
             f"active_shape_residual={qprof['active_quotient_shape_residual']}, "
-            f"residual_occupancy={qprof['residual_occupancy_histogram']}"
+            f"residual_occupancy={qprof['residual_occupancy_histogram']}, "
+            f"equal_row={qprof['equal_row_profile']}"
         )
         jt = result["johnson_anchor_threshold_example"]
         print(

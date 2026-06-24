@@ -922,6 +922,10 @@ checks the following stress points.
    their union is still the same `3` advertised quotient supports. Thus the
    `39` residual codewords fail the active quotient-shape test at every active
    scale.
+   Equal-row interleaving of this exact-support family is diagonal: the `42`
+   one-row supports give `42` listed pairs, not `42^2`; the quotient part gives
+   `3`, the residual part gives `39`, and there are no mixed quotient/residual
+   listed pairs.
    Thus `Quot_rem_mu` is a structured subfamily of the zero-moment locus, not
    an exhaustive description of that locus in small finite examples; the
    remaining aperiodic zero-moment supports are exactly what the polynomial

@@ -111,6 +111,9 @@ Keep entries concise and link to the relevant files.
   residual is non-quotient by the active-scale shape test: the active shapes at
   `M=4` and `M=8` account for the same `3` advertised quotient supports in
   union, leaving all `39` residual codewords outside active quotient shapes.
+  Equal-row interleaving of the exact-support family remains diagonal: `42`
+  one-row zero-moment supports give `42` listed pairs, with `3` quotient pairs,
+  `39` residual pairs, and no mixed quotient/residual listed pairs.
   This records that `Quot_rem_mu` is a structured budgeted subfamily, not an
   exhaustive finite classification of the zero-moment locus.
 - **How it is useful:** Turns the L2 objective from a broad "avoid Cartesian
