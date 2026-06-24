@@ -415,7 +415,9 @@ The structural reason is that every received line with codeword direction
 explain the base and direction.  ABF/GG line-decodability can still fail because
 the close-codeword assignment need not come from one affine code-line.  After
 subtracting `gamma v`, the ABF/GG conclusion becomes an affine-graph incidence
-problem inside the ordinary close list of the base word `r`.
+problem inside the ordinary close list of the base word `r`.  The general
+`m`-bucket obstruction gives the concrete failure threshold
+`max(ceil(|F|/m),m)` for a base word with `m` close codewords.
 
 ## Follow-Up Checks
 

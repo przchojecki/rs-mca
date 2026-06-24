@@ -203,12 +203,12 @@ def max_code_line_assignment_agreement(
     }
 
 
-def bucket_obstruction_bound() -> int:
-    return max(len(P0_SLOPES), len(P1_SLOPES), 2)
+def bucket_obstruction_bound(bucket_sizes: tuple[int, ...]) -> int:
+    return max(max(bucket_sizes), len(bucket_sizes))
 
 
-def balanced_bucket_ceiling() -> int:
-    return (P + 1) // 2
+def balanced_bucket_bound(bucket_count: int) -> int:
+    return max((P + bucket_count - 1) // bucket_count, bucket_count)
 
 
 def compute_report() -> dict[str, Any]:
@@ -233,8 +233,9 @@ def compute_report() -> dict[str, Any]:
     max_report = max_code_line_assignment_agreement(
         codebook, received_direction, p0, p1
     )
-    bucket_bound = bucket_obstruction_bound()
-    balanced_bound = balanced_bucket_ceiling()
+    bucket_sizes = (len(P0_SLOPES), len(P1_SLOPES))
+    bucket_bound = bucket_obstruction_bound(bucket_sizes)
+    balanced_bound = balanced_bucket_bound(len(bucket_sizes))
 
     checks = {
         "p0_and_p1_distinct": p0 != p1,
@@ -256,7 +257,7 @@ def compute_report() -> dict[str, Any]:
         "max_agreement_matches_bucket_obstruction": (
             max_report["max_assignment_agreement"] == bucket_bound
         ),
-        "bucket_obstruction_is_balanced_ceiling": (
+        "bucket_obstruction_matches_balanced_bound": (
             bucket_bound == balanced_bound
         ),
         "abf_threshold_b_n_plus_1_fails": (
@@ -292,9 +293,10 @@ def compute_report() -> dict[str, Any]:
         "assignment": {
             "p0_slopes": list(P0_SLOPES),
             "p1_slopes": list(P1_SLOPES),
+            "bucket_sizes": list(bucket_sizes),
             "assigned_close_codewords": assignment_count,
-            "two_bucket_obstruction_bound": bucket_bound,
-            "balanced_bucket_ceiling": balanced_bound,
+            "m_bucket_obstruction_bound": bucket_bound,
+            "balanced_m_bucket_bound": balanced_bound,
         },
         **max_report,
         "interpretation": (
@@ -328,12 +330,12 @@ def print_report(report: dict[str, Any]) -> None:
         f"{report['assignment']['assigned_close_codewords']}"
     )
     print(
-        "two-bucket obstruction bound: "
-        f"{report['assignment']['two_bucket_obstruction_bound']}"
+        "m-bucket obstruction bound: "
+        f"{report['assignment']['m_bucket_obstruction_bound']}"
     )
     print(
-        "balanced bucket ceiling: "
-        f"{report['assignment']['balanced_bucket_ceiling']}"
+        "balanced m-bucket bound: "
+        f"{report['assignment']['balanced_m_bucket_bound']}"
     )
     print(
         "max code-line agreement with assignment: "

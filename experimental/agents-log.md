@@ -44,7 +44,7 @@ Keep entries concise and link to the relevant files.
   nonzero codeword direction has support-wise `LD_sw` contribution `0`, but an
   adversarial close-codeword assignment fails the ABF/GG `b=n+1` collinearity
   conclusion.  The note now proves the general code-direction invisibility
-  lemma, exact shifted-assignment reduction, and two-bucket assignment
+  lemma, exact shifted-assignment reduction, and general `m`-bucket assignment
   obstruction that explain the example.
 - **How it is useful:** Clarifies the M2 bridge by ruling out the converse
   shortcut from residue-line packing or bounded `LD_sw` to ABF/GG

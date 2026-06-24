@@ -1,6 +1,6 @@
 # M2 LD_sw Versus ABF/GG Line-Decoding Separation
 
-**Status:** PROVED structural lemma; COUNTEREXAMPLE / FINITE instance.
+**Status:** PROVED structural lemmas; COUNTEREXAMPLE / FINITE instance.
 
 This note records a finite Reed-Solomon example showing that the support-wise
 line-decoding numerator `LD_sw` does not imply the stronger ABF/GG
@@ -70,13 +70,18 @@ equivalent to finding a large affine graph inside the shifted assignment
 numerator has already vanished before this assignment-collinearity question
 appears.
 
-As a direct obstruction, suppose two distinct codewords `c0,c1 in C` both
-agree with `r` on at least `a` coordinates, and split the field into two
-nonempty buckets `F=A0 disjoint union A1`.  Define
+As a direct obstruction, suppose `m` distinct codewords
+`c_1,...,c_m in C` all agree with `r` on at least `a` coordinates, and split
+the field into nonempty buckets
 
 ```text
-U(gamma) = c0 + gamma v,        gamma in A0,
-U(gamma) = c1 + gamma v,        gamma in A1.
+F = A_1 disjoint union ... disjoint union A_m.
+```
+
+Define
+
+```text
+U(gamma) = c_i + gamma v,        gamma in A_i.
 ```
 
 Every assigned codeword is `a`-close to the corresponding line point
@@ -84,16 +89,33 @@ Every assigned codeword is `a`-close to the corresponding line point
 on at most
 
 ```text
-max(|A0|, |A1|, 2)
+max( max_i |A_i|, m )
 ```
 
 slopes.  To see this, subtract `gamma v` from the target assignment.  If
 `u1=v`, the shifted code-line is constant and can match only one bucket.  If
-`u1 != v`, then the shifted code-line can hit `c0` for at most one slope and
-`c1` for at most one slope.  Therefore any collinearity threshold
-`b > max(|A0|,|A1|,2)` fails, even though the support-wise numerator of the
-same received line is zero.  With a balanced partition this rules out every
-threshold `b > ceil(|F|/2)` whenever such a two-codeword close list exists.
+`u1 != v`, then the shifted code-line can hit each fixed codeword `c_i` for at
+most one slope.  Therefore any collinearity threshold
+`b > max(max_i |A_i|,m)` fails, even though the support-wise numerator of the
+same received line is zero.
+
+With a balanced partition this becomes the bound
+
+```text
+max(ceil(|F|/m), m).
+```
+
+Thus, for code-direction received lines, ABF/GG line-decodability with
+threshold `b` requires an additional assignment-collinearity theorem for the
+ordinary close list of the base word `r`.  In particular, if some base word has
+`m` close codewords with
+
+```text
+max(ceil(|F|/m), m) < b,
+```
+
+then the code fails the ABF/GG collinearity conclusion on a line whose
+support-wise `LD_sw` contribution is zero.
 
 ## Construction
 
@@ -138,8 +160,8 @@ Every assigned codeword is `delta=3/8` close to the corresponding line point
 numerator `a_LD <= 13`.
 
 However, no code-line `u0 + gamma u1` agrees with this assignment on nine
-slopes.  This is the two-bucket obstruction above with bucket sizes `6` and
-`7`; the exact maximum is `ceil(13/2)=7 < 9`.
+slopes.  This is the `m=2` bucket obstruction above with bucket sizes `6` and
+`7`; the exact maximum is `max(ceil(13/2),2)=7 < 9`.
 
 ## Consequence for M2
 
@@ -151,12 +173,14 @@ ABF/GG (delta,a_LD,n+1) line-decodable
   => epsilon_mca(C,delta) <= a_LD/|F|.
 ```
 
-The structural lemma, exact shifted-assignment reduction, and finite
+The structural lemmas, exact shifted-assignment reduction, and finite
 Reed-Solomon instance show the converse fails for a conceptual reason, not a
 numerical accident.  A genuine M2 theorem therefore needs a separate
 assignment-collinearity input if it aims to prove ABF/GG line-decodability;
 residue-line packing or `LD_sw` alone proves the MCA numerator, not the
-stronger close-codeword assignment theorem.
+stronger close-codeword assignment theorem.  The `m`-bucket bound also explains
+what such an input must control: affine-graph incidence inside ordinary close
+lists, not only the size of the support-wise bad-slope set.
 
 This does not contradict the ABF/GG theorem.  It only rules out a possible
 shortcut from support-wise MCA bounds back to line-decodability.
