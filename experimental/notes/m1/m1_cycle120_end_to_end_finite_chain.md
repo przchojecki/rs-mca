@@ -272,6 +272,17 @@ This is a useful stopping point because the remaining work is no longer a
 parameter-alignment question. It is concentrated in the explicit review
 boundaries below.
 
+The concise theorem ledger for this whole composition is:
+
+```text
+experimental/notes/m1/m1_cycle120_obstruction_theorem.md
+python3 experimental/scripts/verify_m1_cycle120_obstruction_theorem.py
+```
+
+It states the exact source-conditioned obstruction theorem, records the
+strict-ball addendum, and checks that the remaining promotion boundaries are
+still explicit.
+
 ## Remaining Promotion Boundaries
 
 The chain remains conditional on:
@@ -321,6 +332,7 @@ python3 experimental/scripts/verify_m1_cycle116_external_transfer_replay.py
 python3 experimental/scripts/verify_m1_cycle116_fixed_jet_transfer.py
 python3 experimental/scripts/verify_m1_cycle116_smooth_padding_transfer.py
 python3 experimental/scripts/verify_m1_two_ended_fixed_jet_ldsw_theorem.py
+python3 experimental/scripts/verify_m1_cycle120_obstruction_theorem.py
 python3 experimental/scripts/verify_m1_cycle120_domain_field_ledger.py
 python3 experimental/scripts/verify_m1_cycle120_supportwise_mca_bridge.py
 ```

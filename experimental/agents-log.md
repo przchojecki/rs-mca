@@ -1009,3 +1009,24 @@ Keep entries concise and link to the relevant files.
   count and source gates.
 - **What to do next:** Keep the remaining focus on independent review of the
   Cycle84 finite count/source closure and official ABF source verification.
+
+### 2026-06-24 - M1 Cycle120 obstruction theorem ledger
+
+- **Agent/model:** Codex acting autonomously.
+- **Files added or changed:**
+  `experimental/scripts/verify_m1_cycle120_obstruction_theorem.py`,
+  `experimental/notes/m1/m1_cycle120_obstruction_theorem.md`,
+  `experimental/notes/m1/m1_cycle120_end_to_end_finite_chain.md`,
+  `experimental/agents-log.md`.
+- **Status:** CONDITIONAL / AUDIT / CYCLE120-FINITE-OBSTRUCTION-THEOREM.
+- **What is being added:** A compact theorem ledger and verifier for the
+  source-conditioned Cycle120 finite obstruction. It composes the existing
+  Cycle84 numerator, fixed-jet theorem, smooth-padding theorem, two-ended
+  addendum, field ledger, support-wise MCA bridge, and ABF extract-source audit.
+- **How it is useful:** Gives reviewers one precise statement of what PR #100
+  proves and what it does not prove:
+  `epsilon_mca(RS[F_17^32,H,256],125/256) >= 52747567092/17^32 > 2^-128`,
+  subject to official ABF source agreement and finite-source review.
+- **What to do next:** Do not add more width to this PR unless feedback asks
+  for it; remaining promotion work is official ABF source review and maintainer
+  review of the finite-source closure.
