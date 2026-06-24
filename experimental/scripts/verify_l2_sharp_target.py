@@ -1048,7 +1048,12 @@ def constant_ratio_triangle_profile() -> dict:
                         }
         count_bound = (p - 2) * comb(n, r) * comb(n - r, r)
         diagonal_count = comb(n, 2 * r)
+        triangle_family_count = (
+            comb(n, r) * comb(n - r, r) * comb(n - 2 * r, r)
+        )
+        nonconstant_count = triangle_family_count - exact_count
         exponent_gap = r - 1
+        nonconstant_exponent_gap = r
         exact_relative = Fraction(
             exact_count,
             diagonal_count * p ** (mu * exponent_gap),
@@ -1057,17 +1062,28 @@ def constant_ratio_triangle_profile() -> dict:
             count_bound,
             diagonal_count * p ** (mu * exponent_gap),
         )
+        combined_exact_relative = exact_relative + Fraction(
+            nonconstant_count,
+            diagonal_count * p ** (mu * nonconstant_exponent_gap),
+        )
+        combined_bound_relative = bound_relative + Fraction(
+            triangle_family_count,
+            diagonal_count * p ** (mu * nonconstant_exponent_gap),
+        )
         rows.append(
             {
                 "r": r,
                 "k": r + 1,
                 "a": 2 * r,
+                "triangle_family_count": triangle_family_count,
+                "nonconstant_count": nonconstant_count,
                 "exact_count": exact_count,
                 "count_bound": count_bound,
                 "diagonal_count": diagonal_count,
                 "rank_corrected_exponent": 2 * r - 2,
                 "diagonal_exponent": r - 1,
                 "exponent_gap": exponent_gap,
+                "nonconstant_exponent_gap": nonconstant_exponent_gap,
                 "max_ratio_bucket": max_ratio_bucket,
                 "example": example,
                 "exact_relative_to_diagonal": {
@@ -1077,6 +1093,14 @@ def constant_ratio_triangle_profile() -> dict:
                 "bound_relative_to_diagonal": {
                     "numerator": bound_relative.numerator,
                     "denominator": bound_relative.denominator,
+                },
+                "combined_exact_relative_to_diagonal": {
+                    "numerator": combined_exact_relative.numerator,
+                    "denominator": combined_exact_relative.denominator,
+                },
+                "combined_bound_relative_to_diagonal": {
+                    "numerator": combined_bound_relative.numerator,
+                    "denominator": combined_bound_relative.denominator,
                 },
             }
         )
@@ -1103,6 +1127,16 @@ def constant_ratio_triangle_profile() -> dict:
         ),
         "exponent_gap_formula": all(
             row["exponent_gap"] == row["r"] - 1 for row in rows
+        ),
+        "combined_exact_relative_below_diagonal": all(
+            row["combined_exact_relative_to_diagonal"]["numerator"]
+            < row["combined_exact_relative_to_diagonal"]["denominator"]
+            for row in rows
+        ),
+        "combined_bound_relative_below_diagonal": all(
+            row["combined_bound_relative_to_diagonal"]["numerator"]
+            < row["combined_bound_relative_to_diagonal"]["denominator"]
+            for row in rows
         ),
     }
 
@@ -2213,6 +2247,12 @@ def run() -> dict:
         ],
         "constant_ratio_triangle_exponent_gap": constant_ratio_triangles[
             "exponent_gap_formula"
+        ],
+        "constant_ratio_triangle_combined_exact_clears": constant_ratio_triangles[
+            "combined_exact_relative_below_diagonal"
+        ],
+        "constant_ratio_triangle_combined_bound_clears": constant_ratio_triangles[
+            "combined_bound_relative_below_diagonal"
         ],
         "kmm_grid_formula": all(d["interleaved_edges"] == d["grid_edges_at_n_min"] for d in designs),
         "rs_witness_creates_mass": witness["mass_creation"],

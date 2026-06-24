@@ -167,6 +167,9 @@ Keep entries concise and link to the relevant files.
   The constant locator-ratio subfamily is now also counted by fixing `A,B` and
   the ratio, which forces `C` through a degree-`r` locator equation; the
   verifier enumerates the `F_17` cases and checks the resulting bound.
+  Combining the generic and constant-ratio cases gives a full clearance
+  corollary for symmetric three-block cyclic triangles, with exact and bounded
+  diagonal-relative ratios checked in the verifier.
 - **How it is useful:** Turns the L2 objective from a broad "avoid Cartesian
   overcharge" principle into a concrete conjectural inequality that can be
   falsified or promoted. The `K_{2,2}` witness records that local Cartesian

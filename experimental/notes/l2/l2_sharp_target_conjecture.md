@@ -684,6 +684,44 @@ bound, using
 binom(n,r) binom(n-r,r) = binom(n,2r) binom(2r,r).
 ```
 
+Combining the two cases clears the whole symmetric three-block cycle family.
+
+**Corollary (symmetric cyclic triangle clearance).** With the same notation,
+the total contribution of all ordered triples
+
+```text
+(A union B, A union C, B union C)
+```
+
+with pairwise disjoint `r`-sets `A,B,C` to the random-model third moment,
+divided by the diagonal first-moment scale, is at most
+
+```text
+  binom(n,r) binom(n-r,r) binom(n-2r,r)
+  -------------------------------------------------  q^{-mu r}
+                  binom(n,2r)
+
+  + (q-2) binom(2r,r) q^{-mu(r-1)}.
+```
+
+If `a=2r>=rho_0 n`, this is at most
+
+```text
+(27 rho_0^{-1} q^{-mu})^r
+  + (q-2) 4^r q^{-mu(r-1)}.
+```
+
+In particular, for fixed arity `mu>=2`, generated field size `q=poly(n)`, and
+linear `r`, the full symmetric low-overlap triangle family is below the
+diagonal scale.
+
+*Proof.* Split the family according to whether `L_A/L_B` is constant on `C`.
+For the nonconstant part, use the generic triangle rank `2k` and bound the
+number of triples by the full labeled count. For the constant part, use the
+constant-ratio count and its exponent `2r-2`. The displayed estimates are
+exactly the two relative bounds just proved. Finally,
+`binom(2r,r)<=4^r`.
+
 The connected case also isolates the diagonal exactly.
 
 **Corollary (diagonal is the only zero-loss connected cluster).** Suppose
@@ -1602,7 +1640,10 @@ checks the following stress points.
    separately. The verifier enumerates it over the same `F_17` domain for
    `r=2,3,4,5`, checks the degree-forced count bound
    `(q-2) binom(n,r) binom(n-r,r)`, and verifies that even this lower-rank
-   subfamily is below the diagonal scale at `mu=2`.
+   subfamily is below the diagonal scale at `mu=2`. Combining the generic and
+   constant-ratio pieces gives a complete clearance bound for the full
+   symmetric three-block cyclic triangle family; the verifier checks both the
+   exact combined ratios and the displayed combined upper bounds.
 5. The natural `K_{m,m}` grid over-agreement family has
    ```text
    n_min = (k-1) + m^2(a-k+1),
