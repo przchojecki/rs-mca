@@ -203,6 +203,57 @@ This route does not ask for cancellation in the row- or column-marginal
 subtractions.  It isolates two positive targets: joint quotient-collision
 energy for the good beta cover, and the principal total trace.
 
+## Principal Total Trace Reduction
+
+The principal total trace in this nonnegative route is elementary.  It is
+
+```text
+T = sum_{i,j} (G_e)_{i,j},
+```
+
+which is independent of the quotient order `e`.  For a good base point
+`(a,r)`, the two beta roots, when they are rational, have the same `U V`
+squareclass.  The squareclass identities checked in
+`m1_depth_two_line_conic_resonance_reduction.md` give
+
+```text
+chi(d_UV(a,beta_l,r)) = chi(rM(a,r)) = chi(aH(a,r))
+```
+
+on split good fibers.  Since `D_beta=a r M H`, the nonsplit good fibers have
+`chi(rM)=-chi(aH)` and contribute no rational beta roots.  Thus, with an empty
+root sum on nonsplit fibers,
+
+```text
+T = sum_{(a,r) in G} (chi(rM(a,r)) + chi(aH(a,r))).          (TRACE)
+```
+
+Now extend the two sums in `(TRACE)` from the good base `G` to the full torus
+`(F_p^*)^2`.  For fixed `r`, `rM(a,r)` is a quadratic polynomial in `a`; for
+fixed `a`, `aH(a,r)` is a quadratic polynomial in `r`.  Except for the roots
+of fixed discriminant polynomials, each one-variable quadratic-character sum
+is constant, and the exceptional parameters are finite in number.  Hence both
+full-torus traces are `O(p)`.
+
+The difference between the good base and the full torus is contained in the
+fixed-degree boundary
+
+```text
+A_beta=0,        C_beta=0,        D_beta=0,
+a=r,             K_alpha(a,r)=0,
+```
+
+where `D_beta=0` is the union of the two branch curves `M=0` and `H=0` on the
+torus.  This boundary has `O(p)` rational points, and each deleted point
+changes `(TRACE)` by at most `2`.  Therefore
+
+```text
+|T| = O(p),        C_0 = T^2 = O(p^2).
+```
+
+Thus the nonnegative sufficient route has only one remaining positive target:
+the joint quotient-collision estimate `C_ab=O_e(p^2)`.
+
 ## Interpretation
 
 The scan finds no hidden `p^2` component in the tested quotient rows.  The good
@@ -251,6 +302,13 @@ The largest finite value of the nonnegative sufficient bound is
 
 ```text
 sqrt(C_ab + e^{-2}C_0)/p = 1.8842592703 at (p,e)=(109,12).
+```
+
+The principal-trace audit checks the exact identity `(TRACE)` on the expanded
+prime rows.  The largest audited value is
+
+```text
+|T|/p = 3.9527559055 at p=127.
 ```
 
 Thus the averaged M1 target remains substantially smaller than the largest

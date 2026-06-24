@@ -3984,8 +3984,13 @@ and records the equivalent signed pair-correlation form of
 of the same good quotient matrix and is orthogonal to this M1-centered term.
 The centered pair-correlation is further expanded there into the four signed
 quotient-fiber-product components `C_ab`, `C_a`, `C_b`, and `C_0`.
-In particular, the nonnegative bounds `C_ab=O_e(p^2)` and `C_0=O_e(p^2)`
-would already imply the averaged beta target.
+In particular, the nonnegative route reduces to the positive estimates
+`C_ab=O_e(p^2)` and `C_0=O_e(p^2)`.  The principal-trace term
+`C_0=T^2` is now elementary: on the good base,
+`T=sum_G(chi(rM)+chi(aH))`, the two sums extend to full-torus quadratic
+character sums, and the deleted boundary is a fixed union of curves.  Hence
+`C_0=O(p^2)`, leaving `C_ab=O_e(p^2)` as the remaining positive target in
+this nonnegative route.
 
 ## Principal-Row Leakage
 

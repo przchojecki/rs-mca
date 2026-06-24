@@ -52,7 +52,10 @@ Keep entries concise and link to the relevant files.
   the broad line-conic verifier, checks the orthogonal split between the
   M1-centered energy and the beta-column marginal, and checks the four signed
   quotient-fiber-product components of the centered energy.  It also records
-  the nonnegative sufficient route via `C_ab=O_e(p^2)` and `T=O_e(p)`.
+  the nonnegative sufficient route via `C_ab=O_e(p^2)` and `T=O(p)`, and
+  proves the principal-trace identity
+  `T=sum_G(chi(rM)+chi(aH))` by reducing it to full-torus quadratic-character
+  sums plus fixed boundary curves.
 - **How it is useful:** This is a counterexample-first test of the remaining
   rank-two pushforward object, not of the already controlled exceptional
   ledger. The audited rows show p-scale behavior, with largest recorded full
@@ -63,11 +66,12 @@ Keep entries concise and link to the relevant files.
   is `1.6565244248`.  The largest audited raw joint quotient-collision ratio
   is `C_ab/p^2 = 3.4704149482`, and the largest audited nonnegative
   sufficient-bound ratio is `sqrt(C_ab+e^{-2}C_0)/p = 1.8842592703`.
-- **What to do next:** Prove the bounded-conductor/no-constant-summand
-  `(BETA_2)` estimate for the explicit rank-two pushforward, prove the weaker
-  averaged `(BETA_2^avg)` estimate directly, or extend the finite scan to
-  larger primes and quotient orders if looking for route-killing
-  counterexamples.
+  The principal total trace has largest audited ratio `|T|/p = 3.9527559055`.
+- **What to do next:** Prove the remaining positive joint-collision estimate
+  `C_ab=O_e(p^2)`, prove the bounded-conductor/no-constant-summand
+  `(BETA_2)` estimate for the explicit rank-two pushforward, or extend the
+  finite scan to larger primes and quotient orders if looking for
+  route-killing counterexamples.
 
 ### 2026-06-23 - Cycle119 admissibility review
 

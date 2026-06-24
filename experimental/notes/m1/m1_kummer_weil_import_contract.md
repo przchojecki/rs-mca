@@ -674,10 +674,19 @@ Indeed this gives
 ||G_e^circ||_F^2 <= C_ab + e^{-2}C_0 = O_e(p^2).
 ```
 
-Thus one can prove the averaged M1 target either by controlling the signed
-four-term inclusion-exclusion directly, or by proving the two positive
-estimates: joint quotient-collision energy for the good beta cover and the
-principal total trace.
+The second positive estimate is now elementary.  On the good base the
+principal total trace is
+
+```text
+T = sum_{(a,r) in G} (chi(rM(a,r)) + chi(aH(a,r))).
+```
+
+The two summands extend to full-torus one-variable quadratic-character sums
+in `a` and `r`, respectively, and the deleted good-base boundary is a fixed
+union of curves.  Hence `|T|=O(p)` and `C_0=O(p^2)`.  Thus one can prove the
+averaged M1 target either by controlling the signed four-term
+inclusion-exclusion directly, or, in the nonnegative route, by proving the
+remaining joint quotient-collision estimate `C_ab=O_e(p^2)`.
 
 The elementary hypotheses behind this import are now audited in
 `verify_m1_depth_two_line_conic_resonance_reduction.py`:

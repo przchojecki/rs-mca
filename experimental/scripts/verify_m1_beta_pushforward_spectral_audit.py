@@ -123,6 +123,17 @@ EXPECTED_ROWS = {
     ),
 }
 
+EXPECTED_PRINCIPAL_TRACE_ROWS = {
+    17: (194, 62, -14, 15, 19, -48),
+    31: (758, 142, -66, 33, 33, -132),
+    43: (1526, 238, 168, 45, 45, 78),
+    61: (3246, 354, -178, 63, 63, -304),
+    73: (4782, 402, 284, 75, 75, 134),
+    97: (8670, 546, 380, 99, 99, 182),
+    109: (11022, 642, -370, 111, 111, -592),
+    127: (15184, 692, 502, 129, 129, 244),
+}
+
 TOLERANCE = 1e-8
 
 
@@ -149,6 +160,79 @@ def good_pushforward_matrix(p: int, quotient_order: int) -> tuple[list[list[int]
                 matrix[alpha_label][beta_label] += m1.legendre(discriminant, p)
                 point_count += 1
     return matrix, point_count
+
+
+def principal_trace_case(p: int) -> dict[str, Any]:
+    direct_trace = 0
+    base_trace = 0
+    full_middle_trace = 0
+    full_branch_trace = 0
+    good_base_count = 0
+    deleted_base_count = 0
+    for alpha in range(1, p):
+        for ratio in range(1, p):
+            middle_factor = m1.ratio_surface_beta_middle_factor(
+                p,
+                alpha,
+                ratio,
+            )
+            branch_factor = m1.ratio_surface_beta_branch_factor(
+                p,
+                alpha,
+                ratio,
+            )
+            full_middle_trace += m1.legendre(ratio * middle_factor, p)
+            full_branch_trace += m1.legendre(alpha * branch_factor, p)
+            if not m1.ratio_surface_beta_pushforward_good(p, alpha, ratio):
+                deleted_base_count += 1
+                continue
+            good_base_count += 1
+            direct_contribution = 0
+            for beta in m1.ratio_surface_affine_beta_roots(p, alpha, ratio):
+                discriminant = m1.ratio_surface_binary_discriminants(
+                    p,
+                    alpha,
+                    beta,
+                    ratio,
+                )[0]
+                direct_contribution += m1.legendre(discriminant, p)
+            base_contribution = (
+                m1.legendre(ratio * middle_factor, p)
+                + m1.legendre(alpha * branch_factor, p)
+            )
+            if direct_contribution != base_contribution:
+                raise AssertionError(
+                    (
+                        p,
+                        alpha,
+                        ratio,
+                        direct_contribution,
+                        base_contribution,
+                    )
+                )
+            direct_trace += direct_contribution
+            base_trace += base_contribution
+    if direct_trace != base_trace:
+        raise AssertionError((p, direct_trace, base_trace))
+    deleted_correction = base_trace - full_middle_trace - full_branch_trace
+    if abs(deleted_correction) > 2 * deleted_base_count:
+        raise AssertionError((p, deleted_correction, deleted_base_count))
+    return {
+        "p": p,
+        "good_base_count": good_base_count,
+        "deleted_base_count": deleted_base_count,
+        "principal_trace": direct_trace,
+        "full_middle_trace": full_middle_trace,
+        "full_branch_trace": full_branch_trace,
+        "deleted_correction": deleted_correction,
+        "principal_trace_ratio": round(abs(direct_trace) / p, 10),
+        "full_torus_trace_ratio": round(
+            abs(full_middle_trace + full_branch_trace) / p,
+            10,
+        ),
+        "deleted_correction_ratio": round(abs(deleted_correction) / p, 10),
+        "deleted_base_ratio": round(deleted_base_count / p, 10),
+    }
 
 
 def centered_frobenius_square(matrix: list[list[int]]) -> float:
@@ -385,6 +469,9 @@ def audit_case(p: int, quotient_order: int) -> dict[str, Any]:
 
 def compute_report() -> dict[str, Any]:
     rows = [audit_case(*case) for case in AUDIT_CASES]
+    principal_trace_rows = [
+        principal_trace_case(p) for p in sorted({case[0] for case in AUDIT_CASES})
+    ]
     for row in rows:
         key = (row["p"], row["quotient_order"])
         (
@@ -436,6 +523,18 @@ def compute_report() -> dict[str, Any]:
                     expected_right_projected,
                 )
             )
+    for row in principal_trace_rows:
+        expected = EXPECTED_PRINCIPAL_TRACE_ROWS[row["p"]]
+        actual = (
+            row["good_base_count"],
+            row["deleted_base_count"],
+            row["principal_trace"],
+            row["full_middle_trace"],
+            row["full_branch_trace"],
+            row["deleted_correction"],
+        )
+        if actual != expected:
+            raise AssertionError((row["p"], actual, expected))
     max_two_sided_row = max(
         rows,
         key=lambda row: row["max_two_sided_coefficient_ratio"],
@@ -455,11 +554,16 @@ def compute_report() -> dict[str, Any]:
         rows,
         key=lambda row: row["nonnegative_sufficient_bound_ratio"],
     )
+    max_principal_trace_row = max(
+        principal_trace_rows,
+        key=lambda row: row["principal_trace_ratio"],
+    )
     return {
         "status": "PASS",
         "proof_status": "EXPERIMENTAL / FINITE SPECTRAL AUDIT",
         "case_count": len(rows),
         "rows": rows,
+        "principal_trace_rows": principal_trace_rows,
         "max_two_sided_coefficient_row": max_two_sided_row,
         "max_beta2_coefficient_row": max_beta2_row,
         "max_centered_frobenius_row": max_frobenius_row,
@@ -467,9 +571,11 @@ def compute_report() -> dict[str, Any]:
         "max_right_projected_frobenius_row": max_right_projected_row,
         "max_joint_collision_row": max_joint_collision_row,
         "max_nonnegative_sufficient_bound_row": max_nonnegative_bound_row,
+        "max_principal_trace_row": max_principal_trace_row,
         "interpretation": (
             "All audited good beta-pushforward matrices have p-scale full "
-            "BETA_2 coefficients and p-scale centered Frobenius norm."
+            "BETA_2 coefficients, p-scale centered Frobenius norm, and "
+            "p-scale principal total trace."
         ),
     }
 
@@ -538,6 +644,21 @@ def print_report(report: dict[str, Any]) -> None:
         f"p={max_nonnegative_bound['p']} "
         f"e={max_nonnegative_bound['quotient_order']} "
         f"ratio={max_nonnegative_bound['nonnegative_sufficient_bound_ratio']}"
+    )
+    for row in report["principal_trace_rows"]:
+        print(
+            "principal trace row: "
+            f"p={row['p']} good_base={row['good_base_count']} "
+            f"deleted_base={row['deleted_base_count']} "
+            f"T/p={row['principal_trace_ratio']} "
+            f"full_torus/p={row['full_torus_trace_ratio']} "
+            f"deleted_correction/p={row['deleted_correction_ratio']}"
+        )
+    max_principal_trace = report["max_principal_trace_row"]
+    print(
+        "max principal trace row: "
+        f"p={max_principal_trace['p']} "
+        f"ratio={max_principal_trace['principal_trace_ratio']}"
     )
 
 
