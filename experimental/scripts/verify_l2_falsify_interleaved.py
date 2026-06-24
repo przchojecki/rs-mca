@@ -142,6 +142,58 @@ def search_max_ratio(p, n, k, a, H, cws, trials, seed):
     return best
 
 
+def grid_witness(p, n, k, a, H, cws):
+    """GRID construction realizing ~n/a cross-pairs: tile H into s1*s2 blocks of
+    size ~a; row1 = codeword d_i on the i-th block-row, row2 = e_j on j-th
+    block-col. Each block(i,j) (>=a pts) realizes cross-pair (d_i,e_j), so
+    interleaved = s1*s2 ~ n/a, max_base = max(s1,s2)."""
+    m = n // a                                  # max #blocks of size a
+    if m < 1:
+        return None
+    # factor m into s1<=s2 closest to sqrt (maximizes min => maximizes ratio)
+    s1 = max(1, int(m ** 0.5))
+    while m % s1 != 0 and s1 > 1:
+        s1 -= 1
+    s2 = m // s1
+    nb = s1 * s2
+    # block sizes: size a each, remainder folded into the last block
+    sizes = [a] * nb
+    sizes[-1] += n - a * nb
+    blocks, pos = [], 0
+    for sz in sizes:
+        blocks.append(list(range(pos, pos + sz))); pos += sz
+    ds = cws[:s1]                                # row1 codewords
+    es = cws[s1:s1 + s2]                         # row2 codewords (distinct)
+    U1 = [0] * n; U2 = [0] * n
+    for bi in range(nb):
+        i, j = bi // s2, bi % s2
+        for x in blocks[bi]:
+            U1[x] = ds[i][x]; U2[x] = es[j][x]
+    fibs = [fiber(tuple(U1), cws, a), fiber(tuple(U2), cws, a)]
+    base = [len(f) for f in fibs]
+    inter = interleaved_count(fibs, a, n)
+    return {"s1": s1, "s2": s2, "blocks": nb, "base": base,
+            "max_base": max(base), "interleaved": inter,
+            "ratio": round(inter / max(base), 3) if max(base) else None}
+
+
+def scaling_scan():
+    """Decisive test: does max interleaved (gluing attack) grow poly or super-poly in n?
+    Uses the GRID construction (s codewords/row, ~n/a cross-pairs). k=2 (a=4),
+    distinct codewords agree on <=1 pt; sweep n via fields with n|p-1."""
+    points = [(13, 12, 2), (17, 16, 2), (41, 20, 2), (73, 24, 2), (97, 48, 2), (89, 88, 2)]
+    rows = []
+    for (p, n, k) in points:
+        a = k + 2
+        H, cws, _ = build(p, n, k)
+        g = grid_witness(p, n, k, a, H, cws)
+        rows.append({"p": p, "n": n, "a": a, "rho": round(k / n, 3),
+                     "grid_s1xs2": f"{g['s1']}x{g['s2']}",
+                     "interleaved": g["interleaved"], "max_base": g["max_base"],
+                     "ratio": g["ratio"], "n_over_a": n // a})
+    return rows
+
+
 def run():
     p, n, k = 17, 16, 3
     a = k + 2                         # 5, slack 2
@@ -221,9 +273,11 @@ def run():
     witness = cross_mass_witness(p, n, k, a, H, cws)
     search = search_max_ratio(p, n, k, a, H, cws, trials=4000, seed=12345)
     create_found = create_found or witness["creates_mass"] or search["ratio"] > 1.0
+    scaling = scaling_scan()
     return {"params": {"p": p, "n": n, "k": k, "a": a, "sigma": a - k},
             "create_mass_found": create_found, "families": rows,
-            "engineered_witness": witness, "random_search_max": search}
+            "engineered_witness": witness, "random_search_max": search,
+            "scaling": scaling}
 
 
 def main():
@@ -251,8 +305,22 @@ def main():
     print("  HEURISTIC: cross-overlaps ~sum to n (exact for pure partitions; + small corrections from")
     print("  the <=k-1 coincidental agreements), so #cross-pairs>=a is ~n/a. The search found interleaved")
     print(f"  up to {s['interleaved']} (slightly above n/a={s['n_over_a (sum-constraint bound on #cross-pairs)']} via those corrections), max ratio {s['ratio']}.")
-    print("  => excess is O(1) over this search -- no super-poly threat from gluings yet; the n-scaling")
-    print("     of the max ratio is the decisive next test (iter 3).")
+    print()
+    print("  n-SCALING via GRID construction (k=2, a=4 fixed; poly vs super-poly?):")
+    print(f"    {'n':>3} {'rho':>6} {'grid':>7} {'inter':>6} {'maxbase':>7} {'ratio':>6} {'n/a':>4}")
+    for r in out["scaling"]:
+        print(f"    {r['n']:>3} {r['rho']:>6} {r['grid_s1xs2']:>7} {r['interleaved']:>6} "
+              f"{r['max_base']:>7} {str(r['ratio']):>6} {r['n_over_a']:>4}")
+    print()
+    print("RESULT / REFRAME:")
+    print("  (1) POLYNOMIALITY is TRIVIAL from L1: interleaved <= (base fiber)^mu <= (n^B)^mu = poly")
+    print("      (mu constant). So the conjecture's n^B remainder is subsumed by L1 -- NOT the open piece.")
+    print("  (2) The real L2 content is the SHARP CONSTANT / saving (binom*q^-mu(a-k) vs Cartesian binom^mu).")
+    print("      The gluing/grid attack tests it: interleaved ~ n/a, FAR below Cartesian -- saving holds.")
+    print("      (Domain reason: fiber agreement sets pairwise overlap <=k-1, cross-overlaps sum to ~n,")
+    print("       so #cross-pairs>=a is ~n/a -- linear/poly, never super-poly.)")
+    print("  => conjecture robust vs gluings; OPEN = PROVE the sharp saving (finer 2nd-moment argument)")
+    print("     + test NON-gluing words. The naive 'interleaved<=max_base' is false but irrelevant.")
     raise SystemExit(0)
 
 

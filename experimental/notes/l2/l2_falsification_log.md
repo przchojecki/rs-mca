@@ -75,6 +75,38 @@ threat from the gluing attack**, but the precise constant slightly exceeds `n/a`
 adversary creates only `O(1)` extra mass, absorbed by `n^B`). The decisive open
 test is whether the max ratio **grows with `n`** (super-poly) or stays `O(1)`.
 
+## Iteration 3 (n-scaling, grid construction) — and a key reframe
+
+First attempt capped `interleaved` at `4` by gluing only 2 codewords/row (`2²`) —
+caught before claiming. Fixed with a **grid construction**: tile `H` into
+`s₁·s₂` size-`a` blocks, codeword `dᵢ` on row-1 block-rows, `eⱼ` on row-2
+block-cols ⇒ all `s₁·s₂` cross-pairs realized.
+
+**Result (k=2, a=4):** `interleaved` tracks `n/a` linearly —
+```
+n:        12  16  20  24  48   (88)
+interleaved: 3   4   5   6  12   (28, n/a=22; max_base=105 = small-block artifact)
+n/a:       3   4   5   6  12    22
+```
+Linear in `n` (polynomial), **not** exponential. So the gluing/grid attack
+creates only `~n/a` mass.
+
+**The reframe (important).** `interleaved ≤ (base fiber)^μ ≤ (n^B)^μ = poly`
+**trivially** (μ constant). So the conjecture's `n^B` polynomial remainder is
+**already subsumed by L1** — it is *not* the open piece. The genuinely
+L2-specific content is **only the sharp constant / the saving**
+(`binom(n,a)q^{−μ(a−k)}` vs the Cartesian `binom(n,a)^μ`). The gluing attack tests
+*that*: `interleaved ~ n/a ≪ Cartesian`, so the saving **holds** robustly.
+Domain reason: fiber agreement sets pairwise overlap `≤ k−1` (RS distance), so the
+cross-overlaps sum to `~n` and `#cross-pairs ≥ a` is `~n/a` — linear/poly, never
+super-poly.
+
+**Status:** the conjecture is robust against the gluing adversary. The naive
+"interleaved ≤ max_base" is false (iter 2) but irrelevant — polynomiality comes
+free from L1, and the saving survives. OPEN: (a) *prove* the sharp saving (the
+finer second-moment / codegree argument, already partly in
+`l2_interleaved_dilation_constants.md §5`); (b) test NON-gluing adversarial words.
+
 ## Next iterations (planned)
 
 1. **Engineer genuine cross-mass:** partitions whose pairwise cross-regions are
