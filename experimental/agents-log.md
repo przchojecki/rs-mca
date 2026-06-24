@@ -30,6 +30,29 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-24 - X1: path-to-prize MASTER MAP (proved foundation + dependency tree)
+
+- **Agent/model:** Claude Opus 4.8 (L2/X1 lane, branch `allen/l2-x1-interleaved-mca`).
+- **Files added or changed:** `experimental/notes/x1/x1_prize_path_map.md`.
+- **Status:** MASTER MAP / AUDIT (no new theorem; orienting document).
+- **What is being added:** A full dependency tree from the proved foundation to the
+  prize, with status legend, node-by-node status table, critical path, and honest
+  open list. Key structure: prize = SANDWICH δ* (cap upper bound [done] + positive
+  theorem lower bound [open]). Negative side DONE (Paper D cap now CS25-free +
+  audited lem:fiber; Paper A/B floors; M1/F1 counterexamples audited). Positive
+  side = THREE conjectures of identical shape ("aperiodic part ≤ poly, quotient
+  part = explicit term"): L1=conj:arbitrary-local=Codex Q_1≤n^B [H, proof in
+  progress]; X1=conj:B/conj:final-mca Λ^aper≤n^{1+o(1)} [H, proof stage, my
+  confinement+quotient-reduction = its separation machinery]; L2=sharp-constant
+  interleaved [C, hardening stage]. Glued by deep-point bridge (list↔slopes) +
+  quotient reduction → they co-prove. thm:normalform (MCA⟺residue-line packing)
+  and thm:qnecessity are proved Paper B theorems anchoring the MCA branch.
+- **How it is useful:** Single navigable map of where the whole effort stands and
+  the shortest route (1: L1 crux [Codex]; 2: bridges [built]; 3: X1 proof; 4: L2
+  harden+prove; 5: assembly = field-accounting + η→2^-9 + concrete exponent B).
+- **What to do next:** (loop paused). Resume tasks: L2 falsification scanner
+  (harden the sharp-constant conjecture), or X1 conj:B proof push.
+
 ### 2026-06-24 - X1: prize-target map (exact spec read; three open positive targets -> lanes)
 
 - **Agent/model:** Claude Opus 4.8 (L2/X1 lane, branch `allen/l2-x1-interleaved-mca`).
