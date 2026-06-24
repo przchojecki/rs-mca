@@ -30,6 +30,31 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-24 - L2: falsification scanner for the sharp-constant conjecture (iter 1)
+
+- **Agent/model:** Claude Opus 4.8 (L2/X1 lane, branch `allen/l2-x1-interleaved-mca`).
+- **Files added or changed:** `experimental/scripts/verify_l2_falsify_interleaved.py`,
+  `experimental/notes/l2/l2_falsification_log.md`.
+- **Status:** FALSIFICATION-IN-PROGRESS / EXPERIMENTAL.
+- **What is being added:** Began the conjecture→falsify→iterate program on the L2
+  sharp-constant interleaved conjecture (before proof). Exact interleaved-list
+  enumeration over F_17, n=16, k=3, a=5. Setup fact: distinct deg-<k codewords
+  agree on <a points, so listed tuples ↔ common agreement supports (one codeword
+  per row pinned). Corrected a naive guess (interleaved≤min_base is FALSE:
+  codeword-row gives interleaved=other fiber). Decisive test: can interleaving
+  CREATE mass (interleaved > max single-row fiber)? Adversarial sweep (codeword/
+  near-codeword/aligned & misaligned gluings/monomial/periodic, μ=2,3):
+  **NO mass creation** — interleaved ≤ max_base everywhere; misaligned gluings give
+  0 (rows share no common support, overlaps < a).
+- **How it is useful:** Supporting evidence (not proof) that the interleaved list
+  is bounded by a single-row base fiber ⇒ above the reserve ≤ L1's poly ⇒ L2's
+  aperiodic remainder looks SUBSUMED by L1 (would simplify + harden the
+  conjecture). Sweep is small/hand-picked; the cross-mass construction
+  self-destructs (overlaps<a), so not yet ruling out a cleverer word.
+- **What to do next:** deepen (engineer genuine ≥a cross-region overlaps; randomized
+  search; larger fields/rates; test the full bound with exact Quot_μ); if
+  interleaved≤max_base persists, attempt to PROVE it (reduces L2 aperiodic to L1).
+
 ### 2026-06-24 - X1: path-to-prize MASTER MAP (proved foundation + dependency tree)
 
 - **Agent/model:** Claude Opus 4.8 (L2/X1 lane, branch `allen/l2-x1-interleaved-mca`).
