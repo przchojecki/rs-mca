@@ -410,6 +410,10 @@ nonconstant received line with support-wise `LD_sw` contribution `0`, while an
 adversarial close-codeword assignment violates `(delta,a_LD,n+1)`
 line-decodability for every nonvacuous numerator.  Thus a genuine M2 theorem
 needs an additional assignment-collinearity input beyond residue-line packing.
+The structural reason is that every received line with codeword direction
+`r+gamma v`, `v in C`, is invisible to `LD_sw`: all explaining supports also
+explain the base and direction.  ABF/GG line-decodability can still fail because
+the close-codeword assignment need not come from one affine code-line.
 
 ## Follow-Up Checks
 

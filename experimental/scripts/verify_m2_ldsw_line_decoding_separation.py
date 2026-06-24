@@ -203,6 +203,10 @@ def max_code_line_assignment_agreement(
     }
 
 
+def bucket_obstruction_bound() -> int:
+    return max(len(P0_SLOPES), len(P1_SLOPES), 2)
+
+
 def compute_report() -> dict[str, Any]:
     codebook = codewords()
     support_code = support_tables(codebook)
@@ -225,6 +229,7 @@ def compute_report() -> dict[str, Any]:
     max_report = max_code_line_assignment_agreement(
         codebook, received_direction, p0, p1
     )
+    bucket_bound = bucket_obstruction_bound()
 
     checks = {
         "p0_and_p1_distinct": p0 != p1,
@@ -242,6 +247,9 @@ def compute_report() -> dict[str, Any]:
         ),
         "max_code_line_agreement_is_7": (
             max_report["max_assignment_agreement"] == len(P1_SLOPES)
+        ),
+        "max_agreement_matches_bucket_obstruction": (
+            max_report["max_assignment_agreement"] == bucket_bound
         ),
         "abf_threshold_b_n_plus_1_fails": (
             max_report["max_assignment_agreement"] < B_THRESHOLD
@@ -277,6 +285,7 @@ def compute_report() -> dict[str, Any]:
             "p0_slopes": list(P0_SLOPES),
             "p1_slopes": list(P1_SLOPES),
             "assigned_close_codewords": assignment_count,
+            "two_bucket_obstruction_bound": bucket_bound,
         },
         **max_report,
         "interpretation": (
@@ -308,6 +317,10 @@ def print_report(report: dict[str, Any]) -> None:
     print(
         "assigned close codewords across slopes: "
         f"{report['assignment']['assigned_close_codewords']}"
+    )
+    print(
+        "two-bucket obstruction bound: "
+        f"{report['assignment']['two_bucket_obstruction_bound']}"
     )
     print(
         "max code-line agreement with assignment: "
