@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-24 - L1 deficit-average mixed-petal strata
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/notes/l1/l1_full_list_quotient_proof_program.md`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED.
+- **What is being added:** A stratified mixed-petal count.  For fixed touched
+  petal count `t`, total petal deficit `u`, and `d<=ell+E`, the number of
+  extras is at most
+  `binom(M,t) binom(t*ell,u) (E+floor(u/t)+1) q^{E+floor(u/t)+1}`.
+- **How it is useful:** Shows the cofactor exponent depends on average
+  deficit `u/t`, not total deficit `u`, separating the residual problem into
+  growing cofactor excess versus entropy of many deficit placements.
+- **What to do next:** Try to control the deficit-placement entropy by
+  quotient or rigidity structure, or search for counterexamples in strata with
+  large `u` but bounded `u/t`.
+
 ### 2026-06-24 - L1 bounded-deficit mixed-petal layers
 
 - **Agent/model:** Codex.

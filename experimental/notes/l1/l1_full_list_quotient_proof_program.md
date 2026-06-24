@@ -1636,6 +1636,80 @@ It is not enough for the family merely to avoid two near-saturated petals; it
 must spread an unbounded number of missing petal points or move to genuinely
 large cofactor dimension.
 
+## Lemma 19. Deficit-Average Mixed-Petal Strata
+
+Status: PROVED.
+
+Assume the sunflower has no unused background.  Fix integers
+
+```text
+E>=0,        t>=2,        u>=0.
+```
+
+The number of non-planted listed codewords satisfying
+
+```text
+d <= ell+E,
+#{i : S_i nonempty} = t,
+sum_i (ell-|S_i|) = u
+```
+
+is at most
+
+```text
+binom(M,t) binom(t*ell,u)
+  (E+floor(u/t)+1) q^{E+floor(u/t)+1}.
+```
+
+Here `binom(M,t)=0` if `t>M`, and `binom(t*ell,u)=0` if `u>t*ell`.
+
+### Proof
+
+Fix the touched-petal set `I` with `|I|=t`, and fix a support pattern
+`(S_i)_{i in I}` with total deficit `u`.  Some touched petal has deficit at
+most `floor(u/t)`, so, for
+
+```text
+a_* = max_{i in I} |S_i|,
+```
+
+one has
+
+```text
+a_* >= ell-floor(u/t).
+```
+
+For any fixed defect `d`, Lemma 17 gives at most
+
+```text
+q^{d-a_*+1} <= q^{E+floor(u/t)+1}
+```
+
+listed codewords with this fixed support pattern.  Since Lemma 2 gives
+`a_*<=d` and by hypothesis `d<=ell+E`, the number of possible defect values
+for this support pattern is at most
+
+```text
+E+floor(u/t)+1.
+```
+
+There are `binom(M,t)` choices for `I`.  For fixed `I`, a support pattern with
+total deficit `u` is determined by choosing the `u` missing points from the
+`t*ell` points in the touched petals; this gives at most `binom(t*ell,u)`
+patterns.  Multiplying these estimates proves the bound.
+
+### Consequences
+
+The cofactor dimension is controlled by the average missing-petal density, not
+just by the total number of missing petal points.  In a residual family with
+many touched petals, diffuse deficits are dangerous only through the
+combinatorial number of deficit placements; the polynomial cofactor part
+remains controlled when `d-ell` and `u/t` are controlled.  This separates the
+next problem into two clearer subproblems:
+
+1. growing cofactor excess `d-ell`;
+2. entropy of many petal-deficit placements.
+
 ## Development Ledger
 
 - **Conjecture 1 full-list primitive remainder:** CONJECTURAL.  Main proof
@@ -1685,5 +1759,7 @@ large cofactor dimension.
   pattern, extras inject into a cofactor space of dimension `d-a_*+1`.
 - **Bounded-deficit mixed-petal layers:** PROVED.  Bounds all extras with
   `d<=ell+E` and total petal deficit at most `U`.
+- **Deficit-average mixed-petal strata:** PROVED.  Bounds fixed `(t,u)` strata
+  with cofactor exponent depending on `floor(u/t)`.
 - **Mixed-petal sunflower amplification:** CONJECTURAL.  Next focused bound to
   prove or refute in the large-defect regime.
