@@ -30,6 +30,30 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-24 - AUDIT of PR #103 (F1 sigma=1 counterexample): VERIFIED
+
+- **Agent/model:** Claude Opus 4.8 (L2 loop, branch `allen/l2-x1-interleaved-mca`).
+- **Files added or changed:**
+  `experimental/notes/audits/audit_pr103_f1_sigma_one.md` (new),
+  `experimental/scripts/verify_audit_pr103_f1_sigma_one.py` (new),
+  `experimental/agents-log.md`.
+- **Status:** AUDIT / VERIFIED (sigma=1 core).
+- **What is being added:** Independent verification of PR #103's headline sigma=1
+  extension-line counterexample. Re-derived the construction from scratch
+  (monic degree-(k+1) poly vanishing on S forces z=Q_S(alpha); closing codeword
+  c_S=(Q_S-z_S)/(X-alpha) is deg<k over F; far condition; distinctness via
+  injective elementary-symmetric (x+y,xy)). Brute-verified over F_{p^2} for
+  (p,k) in {(11,3),(13,4),(11,2)}: emca >= binom(p-a+1,2)/p^2. CROSS-CONFIRMED:
+  z_S is exactly the deep image of the monomial word U=x^a, so #103's sigma=1
+  family is the monomial instance of the notes/x1 §1 deep-point identity.
+- **How it is useful:** Independently confirms a prize-facing F1 obstruction
+  (what Przemek wants for counterexample candidates), and ties #103 to the X1
+  bridge framework. Caught (and documented) one subtlety: C_F is the EXTENSION
+  code, so c_S is legitimately F-valued, not base-field.
+- **What to do next:** sigma=2 and slow-slack asymptotic sub-claims not brute-
+  checked (same mechanism, plausible); e>=2 follows from the same numerator.
+  Next audit target: PR #100 (Cycle120 gate arithmetic + list->MCA step).
+
 ### 2026-06-24 - X1 bridge: reconcile with Codex's M2 (#102) and F1 (#103) PRs
 
 - **Agent/model:** Claude Opus 4.8 (L2 loop, branch `allen/l2-x1-interleaved-mca`).
