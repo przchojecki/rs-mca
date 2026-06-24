@@ -510,6 +510,76 @@ has no cycle correction:
 Substituting this identity into `D=|V|-ac` gives
 `D+r_cross=sum_alpha(|V_alpha|-a)`.
 
+The forest hypothesis is real: cyclic low-overlap overlaps can leave a
+rank-corrected surplus over product-diagonal behavior.
+
+**Counterexample to naive closed-part factorization.** Let `k>=4`, let
+`A,B,C subset H` be pairwise disjoint sets of size `k-1`, and put
+
+```text
+S_1 = A union B,        S_2 = A union C,        S_3 = B union C.
+```
+
+Set `a=2(k-1)`. Then every pairwise intersection has size `k-1<k`, so the
+`k`-closure has three singleton parts. Moreover
+
+```text
+|S_1 union S_2 union S_3| = 3(k-1),        D = -3(k-1).
+```
+
+Assume the locator ratio `L_A/L_B` is not constant on `C`. Then the
+cross-component equality rank is
+
+```text
+r_cross = 2k,
+```
+
+and hence
+
+```text
+D+r_cross = 3-k < 0.
+```
+
+The rank-corrected exponent is therefore
+
+```text
+c(a-k)+D+r_cross = 2k-3,
+```
+
+whereas the product of three diagonal closed parts would have exponent
+`3(a-k)=3k-6`. Thus the cyclic low-overlap triangle carries a surplus factor
+`q^{k-3}` over product-diagonal factorization.
+
+*Proof.* Write the three closed-part polynomials as `P_1,P_2,P_3`. The
+condition on `A=S_1 cap S_2` says that
+
+```text
+P_2-P_1 = lambda L_A
+```
+
+for some scalar `lambda`, since `P_2-P_1` has degree `<k` and vanishes on the
+`k-1` points of `A`. Similarly
+
+```text
+P_3-P_1 = mu L_B.
+```
+
+The remaining equality on `C=S_2 cap S_3` requires
+
+```text
+lambda L_A(x) - mu L_B(x) = 0        for every x in C.
+```
+
+Since `L_A/L_B` is not constant on `C`, this forces `lambda=mu=0`. Thus
+`P_1=P_2=P_3`, and the solution space has dimension `k` inside the original
+`3k` polynomial coefficients. Hence the cross-rank is `3k-k=2k`, giving the
+displayed exponents.
+
+This counterexample does not threaten L2-Sharp V0 by itself; it only rules out
+one overly optimistic proof step. It says that after the forest ledger, the
+remaining regular-core cluster route must count or rank-control cyclic
+low-overlap closed-part diagrams rather than factor them independently.
+
 The connected case also isolates the diagonal exactly.
 
 **Corollary (diagonal is the only zero-loss connected cluster).** Suppose
@@ -1414,7 +1484,13 @@ checks the following stress points.
    `D+r_cross` equals the sum of the internal closed-part union excesses. The
    only non-forest row in the toy table is the three-component low-overlap
    cycle, isolating cycles of closed parts as the first place where an
-   additional low-overlap rank analysis is needed.
+   additional low-overlap rank analysis is needed. The verifier then tests an
+   explicit cyclic rank-deficit family over `F_17`: for `k=3,4,5,6`, three
+   supports of the form `A union B`, `A union C`, `B union C` have
+   cross-rank `2k`, rank-corrected excess `3-k`, and surplus
+   `k-3` over product-diagonal factorization. Thus the forest theorem is
+   sharp as a structural statement; cyclic low-overlap diagrams require their
+   own count or rank argument.
 5. The natural `K_{m,m}` grid over-agreement family has
    ```text
    n_min = (k-1) + m^2(a-k+1),

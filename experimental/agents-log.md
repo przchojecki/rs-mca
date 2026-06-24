@@ -158,6 +158,9 @@ Keep entries concise and link to the relevant files.
   rank `r_cross`; forest overlap graphs, including all two-component cases,
   satisfy `D+r_cross=sum_alpha(|V_alpha|-a)`, so only cyclic low-overlap
   closed-part intersections remain as a separate rank-analysis issue.
+  That boundary is now shown to be real: the note gives a three-cycle
+  low-overlap counterexample to naive closed-part factorization, and the
+  verifier checks an `F_17` sweep where the cyclic rank deficit is `k-3`.
 - **How it is useful:** Turns the L2 objective from a broad "avoid Cartesian
   overcharge" principle into a concrete conjectural inequality that can be
   falsified or promoted. The `K_{2,2}` witness records that local Cartesian

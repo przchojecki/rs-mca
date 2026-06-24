@@ -6,7 +6,7 @@ settled by the support-intersection bridge: over-agreement can create
 interleaved mass, so the falsification target is whether that mass can grow like
 a Cartesian product rather than like a polynomial support-overlap codegree.
 
-The script checks fourteen finite objects.
+The script checks fifteen finite objects.
 
 1. The all-remainder quotient packet count used as Quot_rem_mu in the target.
 2. The Johnson-shell weights used in the codegree reduction.
@@ -21,7 +21,8 @@ The script checks fourteen finite objects.
 11. The multi-support high-overlap cluster-rank upper bound.
 12. The connected high-overlap cluster count by union excess.
 13. The rank-corrected ledger for low-overlap closure-component intersections.
-14. A realized Reed-Solomon K_{2,2} gluing over a prime-field multiplicative
+14. A cyclic low-overlap closed-part rank-deficit family.
+15. A realized Reed-Solomon K_{2,2} gluing over a prime-field multiplicative
    subgroup, computed by exact list enumeration, together with its punctured
    codegree profile.
 
@@ -885,6 +886,87 @@ def closure_signature_profile() -> dict:
     }
 
 
+def cyclic_overlap_rank_deficit_profile() -> dict:
+    """Finite instances where cyclic low-overlap components do not factor."""
+    p, n = 17, 16
+    h_values = subgroup(p, n)
+    rows = []
+    for k in range(3, 7):
+        block_size = k - 1
+        a = 2 * block_size
+        first = set(range(block_size))
+        second = set(range(block_size, 2 * block_size))
+        third = set(range(2 * block_size, 3 * block_size))
+        supports = [
+            tuple(sorted(first | second)),
+            tuple(sorted(first | third)),
+            tuple(sorted(second | third)),
+        ]
+        closed_components = closure_components(supports, k)
+        part_unions = component_unions(supports, closed_components)
+        closed_count = len(closed_components)
+        union_size = len(set().union(*[set(support) for support in supports]))
+        cross_overlap_defect = (
+            sum(len(part_union) for part_union in part_unions) - union_size
+        )
+        cross_rank = cross_constraint_rank(p, h_values, k, part_unions)
+        global_excess = union_size - a * closed_count
+        rank_corrected_excess = global_excess + cross_rank
+        product_diagonal_exponent = closed_count * (a - k)
+        rank_corrected_exponent = product_diagonal_exponent + rank_corrected_excess
+        overlap_edges = component_overlap_edges(part_unions)
+        rows.append(
+            {
+                "k": k,
+                "a": a,
+                "supports": [list(support) for support in supports],
+                "closed_components": closed_count,
+                "overlap_edges": [list(edge) for edge in overlap_edges],
+                "overlap_is_forest": is_forest(overlap_edges, closed_count),
+                "union_size": union_size,
+                "global_excess": global_excess,
+                "cross_overlap_defect": cross_overlap_defect,
+                "cross_constraint_rank": cross_rank,
+                "rank_deficit_vs_overlap": cross_overlap_defect - cross_rank,
+                "rank_corrected_excess": rank_corrected_excess,
+                "product_diagonal_exponent": product_diagonal_exponent,
+                "rank_corrected_exponent": rank_corrected_exponent,
+                "surplus_over_product_diagonal": product_diagonal_exponent
+                - rank_corrected_exponent,
+            }
+        )
+    deficit_rows = [row for row in rows if row["k"] >= 4]
+    return {
+        "p": p,
+        "n": n,
+        "rows": rows,
+        "all_three_part_cycles": all(
+            row["closed_components"] == 3
+            and len(row["overlap_edges"]) == 3
+            and not row["overlap_is_forest"]
+            for row in rows
+        ),
+        "rank_formula_holds": all(
+            row["cross_constraint_rank"] == 2 * row["k"] for row in rows
+        ),
+        "excess_formula_holds": all(
+            row["rank_corrected_excess"] == 3 - row["k"] for row in rows
+        ),
+        "exponent_formula_holds": all(
+            row["rank_corrected_exponent"] == 2 * row["k"] - 3
+            for row in rows
+        ),
+        "has_negative_rank_corrected_excess": any(
+            row["rank_corrected_excess"] < 0 for row in rows
+        ),
+        "deficit_grows_after_k_three": all(
+            row["surplus_over_product_diagonal"] == row["k"] - 3
+            and row["rank_deficit_vs_overlap"] == row["k"] - 3
+            for row in deficit_rows
+        ),
+    }
+
+
 def regular_irregular_profile(families: list[list[frozenset[int]]], a: int) -> dict:
     """Split interleaved tuples by exact-row regularity.
 
@@ -1741,6 +1823,7 @@ def run() -> dict:
     support_cluster_profile = support_cluster_rank_profile()
     connected_cluster_profile = connected_cluster_count_profile()
     closure_signature = closure_signature_profile()
+    cyclic_rank_deficit = cyclic_overlap_rank_deficit_profile()
     witness = realized_rs_k22()
     checks = {
         "quotient_budget_nonnegative": quotient_example["total"] >= 0,
@@ -1951,6 +2034,24 @@ def run() -> dict:
         "closure_signature_rank_corrected_nonnegative": closure_signature[
             "rank_corrected_excess_nonnegative"
         ],
+        "cyclic_rank_deficit_three_part_cycles": cyclic_rank_deficit[
+            "all_three_part_cycles"
+        ],
+        "cyclic_rank_deficit_rank_formula": cyclic_rank_deficit[
+            "rank_formula_holds"
+        ],
+        "cyclic_rank_deficit_excess_formula": cyclic_rank_deficit[
+            "excess_formula_holds"
+        ],
+        "cyclic_rank_deficit_exponent_formula": cyclic_rank_deficit[
+            "exponent_formula_holds"
+        ],
+        "cyclic_rank_deficit_negative_exists": cyclic_rank_deficit[
+            "has_negative_rank_corrected_excess"
+        ],
+        "cyclic_rank_deficit_grows": cyclic_rank_deficit[
+            "deficit_grows_after_k_three"
+        ],
         "kmm_grid_formula": all(d["interleaved_edges"] == d["grid_edges_at_n_min"] for d in designs),
         "rs_witness_creates_mass": witness["mass_creation"],
         "rs_witness_realizes_k22": witness["interleaved"] == witness["product_bound"] == 4,
@@ -2022,6 +2123,7 @@ def run() -> dict:
         "support_cluster_rank_profile": support_cluster_profile,
         "connected_cluster_count_profile": connected_cluster_profile,
         "closure_signature_profile": closure_signature,
+        "cyclic_overlap_rank_deficit_profile": cyclic_rank_deficit,
         "realized_rs_k22": witness,
         "checks": checks,
         "pass": all(checks.values()),
@@ -2161,6 +2263,11 @@ def main(argv: list[str] | None = None) -> int:
             "  closure signature profile: "
             f"F_{cs['p']}, n={cs['n']}, k={cs['k']}, a={cs['a']}, "
             f"tuple_size={cs['tuple_size']}, rows={cs['rows']}"
+        )
+        cyc = result["cyclic_overlap_rank_deficit_profile"]
+        print(
+            "  cyclic overlap rank-deficit profile: "
+            f"F_{cyc['p']}, n={cyc['n']}, rows={cyc['rows']}"
         )
         print("  K_{m,m} abstract designs:")
         for d in result["kmm_designs"]:
