@@ -44,9 +44,35 @@ explaining support is already contained in the support-wise MCA sense.  If
 `r notin C` and `v != 0`, the received line may be nonconstant and not
 contained in `C`, but its contribution to `LD_sw(C,a)` is still `0`.
 
-This invisibility is specific to the support-wise numerator.  Suppose two
-distinct codewords `c0,c1 in C` both agree with `r` on at least `a` coordinates,
-and split the field into two nonempty buckets `F=A0 disjoint union A1`.  Define
+This invisibility is specific to the support-wise numerator.  For a code-line
+candidate `u0+gamma u1` and an assigned close codeword `U(gamma)`, put
+
+```text
+c_gamma = U(gamma) - gamma v.
+```
+
+Then `U(gamma)` is close to `r+gamma v` exactly when `c_gamma` is close to
+`r`, and
+
+```text
+u0 + gamma u1 = U(gamma)
+```
+
+holds exactly when
+
+```text
+u0 + gamma(u1-v) = c_gamma.
+```
+
+Thus, on a code-direction received line, the ABF/GG collinearity conclusion is
+equivalent to finding a large affine graph inside the shifted assignment
+`gamma -> c_gamma` into the ordinary close list of `r`.  The support-wise
+numerator has already vanished before this assignment-collinearity question
+appears.
+
+As a direct obstruction, suppose two distinct codewords `c0,c1 in C` both
+agree with `r` on at least `a` coordinates, and split the field into two
+nonempty buckets `F=A0 disjoint union A1`.  Define
 
 ```text
 U(gamma) = c0 + gamma v,        gamma in A0,
@@ -66,7 +92,8 @@ slopes.  To see this, subtract `gamma v` from the target assignment.  If
 `u1 != v`, then the shifted code-line can hit `c0` for at most one slope and
 `c1` for at most one slope.  Therefore any collinearity threshold
 `b > max(|A0|,|A1|,2)` fails, even though the support-wise numerator of the
-same received line is zero.
+same received line is zero.  With a balanced partition this rules out every
+threshold `b > ceil(|F|/2)` whenever such a two-codeword close list exists.
 
 ## Construction
 
@@ -112,7 +139,7 @@ numerator `a_LD <= 13`.
 
 However, no code-line `u0 + gamma u1` agrees with this assignment on nine
 slopes.  This is the two-bucket obstruction above with bucket sizes `6` and
-`7`; the exact maximum is `7 < 9`.
+`7`; the exact maximum is `ceil(13/2)=7 < 9`.
 
 ## Consequence for M2
 
@@ -124,11 +151,12 @@ ABF/GG (delta,a_LD,n+1) line-decodable
   => epsilon_mca(C,delta) <= a_LD/|F|.
 ```
 
-The structural lemma and its finite Reed-Solomon instance show the converse
-fails for a conceptual reason, not a numerical accident.  A genuine M2 theorem
-therefore needs a separate assignment-collinearity input if it aims to prove
-ABF/GG line-decodability; residue-line packing or `LD_sw` alone proves the MCA
-numerator, not the stronger close-codeword assignment theorem.
+The structural lemma, exact shifted-assignment reduction, and finite
+Reed-Solomon instance show the converse fails for a conceptual reason, not a
+numerical accident.  A genuine M2 theorem therefore needs a separate
+assignment-collinearity input if it aims to prove ABF/GG line-decodability;
+residue-line packing or `LD_sw` alone proves the MCA numerator, not the
+stronger close-codeword assignment theorem.
 
 This does not contradict the ABF/GG theorem.  It only rules out a possible
 shortcut from support-wise MCA bounds back to line-decodability.

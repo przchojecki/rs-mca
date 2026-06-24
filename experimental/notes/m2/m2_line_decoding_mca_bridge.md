@@ -413,7 +413,9 @@ needs an additional assignment-collinearity input beyond residue-line packing.
 The structural reason is that every received line with codeword direction
 `r+gamma v`, `v in C`, is invisible to `LD_sw`: all explaining supports also
 explain the base and direction.  ABF/GG line-decodability can still fail because
-the close-codeword assignment need not come from one affine code-line.
+the close-codeword assignment need not come from one affine code-line.  After
+subtracting `gamma v`, the ABF/GG conclusion becomes an affine-graph incidence
+problem inside the ordinary close list of the base word `r`.
 
 ## Follow-Up Checks
 

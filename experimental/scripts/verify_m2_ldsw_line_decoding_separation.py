@@ -207,6 +207,10 @@ def bucket_obstruction_bound() -> int:
     return max(len(P0_SLOPES), len(P1_SLOPES), 2)
 
 
+def balanced_bucket_ceiling() -> int:
+    return (P + 1) // 2
+
+
 def compute_report() -> dict[str, Any]:
     codebook = codewords()
     support_code = support_tables(codebook)
@@ -230,6 +234,7 @@ def compute_report() -> dict[str, Any]:
         codebook, received_direction, p0, p1
     )
     bucket_bound = bucket_obstruction_bound()
+    balanced_bound = balanced_bucket_ceiling()
 
     checks = {
         "p0_and_p1_distinct": p0 != p1,
@@ -250,6 +255,9 @@ def compute_report() -> dict[str, Any]:
         ),
         "max_agreement_matches_bucket_obstruction": (
             max_report["max_assignment_agreement"] == bucket_bound
+        ),
+        "bucket_obstruction_is_balanced_ceiling": (
+            bucket_bound == balanced_bound
         ),
         "abf_threshold_b_n_plus_1_fails": (
             max_report["max_assignment_agreement"] < B_THRESHOLD
@@ -286,6 +294,7 @@ def compute_report() -> dict[str, Any]:
             "p1_slopes": list(P1_SLOPES),
             "assigned_close_codewords": assignment_count,
             "two_bucket_obstruction_bound": bucket_bound,
+            "balanced_bucket_ceiling": balanced_bound,
         },
         **max_report,
         "interpretation": (
@@ -321,6 +330,10 @@ def print_report(report: dict[str, Any]) -> None:
     print(
         "two-bucket obstruction bound: "
         f"{report['assignment']['two_bucket_obstruction_bound']}"
+    )
+    print(
+        "balanced bucket ceiling: "
+        f"{report['assignment']['balanced_bucket_ceiling']}"
     )
     print(
         "max code-line agreement with assignment: "
