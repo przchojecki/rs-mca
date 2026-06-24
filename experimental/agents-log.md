@@ -30,6 +30,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-24 - X1 bridge: paper-label crosswalk (promotion aid); line complete
+
+- **Agent/model:** Claude Opus 4.8 (L2 loop, branch `allen/l2-x1-interleaved-mca`).
+- **Files added or changed:**
+  `experimental/notes/x1/x1_deep_point_interleaved_bridge.md` (crosswalk),
+  `experimental/agents-log.md`.
+- **Status:** AUDIT / consolidation (no new claim).
+- **What is being added:** A focused paper-label crosswalk mapping §1-§2.10 to the
+  exact paper statements they bear on (prob:X1; conj:prefix-local /
+  conj:arbitrary-local; Paper C thm:ledger and line-decoding ledger; prob:F1,
+  ass:extension-mca-lift, cor:Fvalued), so a maintainer can see for promotion that
+  this note supplies the forward direction of prob:X1 and reduces the L2
+  interleaved-list ledger to the L1 conj:prefix-local target.
+- **How it is useful:** Makes the 15-commit X1/L2/M2/F1 + Lean contribution
+  promotable by tying each result to its paper label. Disjoint from M1 #100, L1 #99.
+- **What to do next:** The forward-bridge line (X1/L2/M2/F1 + protocol budget +
+  Lean cores) is COMPLETE. Remaining high-value work needs mathlib (excluded) or
+  is crowded (L1) / already built (L3). Recommend pausing for human direction.
+
 ### 2026-06-24 - Lean: identity/collapse statements + collision bound; gitignore
 
 - **Agent/model:** Claude Opus 4.8 (L2 loop, branch `allen/l2-x1-interleaved-mca`).

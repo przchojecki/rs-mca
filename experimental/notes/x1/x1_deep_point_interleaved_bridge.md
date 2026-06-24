@@ -61,6 +61,23 @@ governed by the base (L1) list, and the only constructive amplification route
 a large base list. The residual is whether a non-clique configuration pushes the
 worst-case exponent strictly above `1` -- an L1-governed question.
 
+## Paper-label crosswalk (promotion aid)
+
+Which paper statement each result bears on (labels per
+`notes/audits/theorem_label_map.md`; this note does not edit Papers A--D):
+
+| § | Bears on | How |
+|---|----------|-----|
+| 1, 2 | `prob:X1` (list <-> CA/MCA); `notes/f1/f1_deep_point_list_to_ca_mca.md` Thm 1.1 | forward, √-loss-free list -> (interleaved) MCA; independently audited + extended to interleaving |
+| 2.3, 2.6 | `slackMCA_v3.tex` `conj:prefix-local` / `conj:arbitrary-local` | the interleaved (L2) list is governed by the base (L1) list: `Lst(Int) <= Lst(C_+)^mu`, `= Lst(C_+)` a-regular -- so L2 needs no theorem beyond `conj:prefix-local` |
+| 2.7 | Paper C line-decoding ledger (`snarks_v4.tex`) / M2 | MCA = CA = line-decoding coincide on the simple-pole family |
+| 2.2, 2.8 | `snarks_v4.tex` `thm:ledger`, interleaving/list budget | the interleaved-list soundness term is `Lst/q` with no Cartesian `mu` exponent; small L1 exponent `B` clears `2^-128` |
+| 2.9, 2.10 | `prob:F1`; Paper C `ass:extension-mca-lift`; Paper D `cor:Fvalued` | the extension `F`-line is the `M_z` multiplication-slice of the `e`-fold interleaved bridge; realized over `F_{p^2}` |
+
+Net for promotion: this note supplies the **forward** (positive) direction of
+`prob:X1` for the simple-pole family and reduces the L2 interleaved-list ledger
+to the L1 `conj:prefix-local` target, with the protocol budget made explicit.
+
 ## 1. Base identity, independently audited
 
 Theorem 1.1 of the deep-point note states, for `U : D -> F`, a deep point
