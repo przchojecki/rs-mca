@@ -472,6 +472,88 @@ binom(p-1,k+sigma) binom(k+sigma,sigma+1)
 This keeps the fixed-slack obstruction quadratic in the base field size for
 every fixed `sigma`.
 
+## Exact Sigma-Three Prefix Count Recurrence
+
+For `sigma=3`, the prefix-vanishing equations admit a particularly small
+finite counter. Since
+
+```text
+e_2(S) = (e_1(S)^2 - sum_{x in S} x^2)/2,
+```
+
+and `p` is odd, the equations `e_1(S)=e_2(S)=0` are equivalent to
+
+```text
+sum_{x in S} x = 0,        sum_{x in S} x^2 = 0.
+```
+
+Let `C_m(b,r,s)` be the number of `b`-subsets of `{1,...,m}` with
+
+```text
+e_1 = r,        e_2 = s        in F_p.
+```
+
+When a point `x` is added to a set, the elementary symmetric data update by
+
+```text
+e_1 -> e_1 + x,
+e_2 -> e_2 + x e_1.
+```
+
+Thus the triangular recurrence
+
+```text
+C_m(b,r,s)
+  = C_{m-1}(b,r,s)
+    + C_{m-1}(b-1, r-m, s-m(r-m))
+```
+
+with residues read modulo `p` computes
+
+```text
+G_{p,k,3} = C_{p-1}(k+3,0,0)
+```
+
+exactly, without enumerating `binom(p-1,k+3)` supports.
+
+There is also a useful check on the count.  For `p>3`,
+
+```text
+prod_{x in F_p^*} (X-x) = X^(p-1)-1,
+```
+
+so the full domain has `e_1=e_2=0`.  If `S` and `R=F_p^*\S` are complements,
+then
+
+```text
+e_1(F_p^*) = e_1(S)+e_1(R),
+e_2(F_p^*) = e_2(S)+e_1(S)e_1(R)+e_2(R).
+```
+
+Therefore `S` is sigma-three prefix-vanishing if and only if `R` is.  The
+verifier checks this complement symmetry for every computed size.
+
+The same script gives exact finite lower bounds for the sigma-three
+degree-one obstruction by combining `G_{p,k,3}` with the fixed-tail averaging
+theorem above.  Some sample certified cases are:
+
+```text
+p   k   a=k+3   G_{p,k,3}       tail lower bound
+29  14  17      25,536          2
+37  18  21      4,067,064       3
+47  23  26      2,538,811,346   5
+59  29  32      6,363,217,823,105  8
+31   7  10      31,275          12
+41  10  13      7,158,280       19
+53  13  16      3,689,282,935   33
+```
+
+The first four rows are near rate `1/2`; the last three are near rate `1/4`.
+These rows are finite certificates, not an asymptotic proof.  They support the
+random-model prediction that `G_{p,k,3}` has density about `p^-2` in the
+middle range and give concrete lower bounds for distinct bad slopes via the
+proved fixed-tail injection.
+
 For fixed rate `k=floor(rho(p-1))`, the numerator ratio
 
 ```text
@@ -558,3 +640,8 @@ The verifier also checks the general fixed-slack template at `sigma=3` for
 meeting the double-count average, and checks injectivity on the resulting
 four-block slice.  These finite checks are not promoted to an asymptotic
 counting theorem; they only sanity-check the structural reduction above.
+
+For larger sigma-three cases, the verifier switches to the exact recurrence
+in the previous section.  It computes `G_{p,k,3}` without support
+enumeration, verifies complement symmetry, and reports the finite tail-averaged
+lower bound for the distinct bad slopes forced by the general template.

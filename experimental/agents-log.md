@@ -45,16 +45,18 @@ Keep entries concise and link to the relevant files.
   support-wise MCA-bad slope, checks the fixed-tail injective pair slice that
   yields `binom(p-a+1,2)` distinct bad slopes, checks the sigma-two zero-sum
   support / tail-triple slice, and records a general fixed-slack degree-one
-  template whose only remaining input is a prefix-vanishing support count.
+  template whose only remaining input is a prefix-vanishing support count.  For
+  the first open case `sigma=3`, it adds an exact dynamic count recurrence and
+  finite tail-lower-bound certificates.
 - **How it is useful:** Strengthens the F1 warning against unrestricted
   numerator-preserving extension-line lifts: the extension numerator is
   already quadratic in the base field for fixed-rate sigma-one lines, and the
   same fixed-tail injectivity mechanism persists for all fixed slack.
 - **What to do next:** Use this as the reviewed finite sanity check for the
-  fixed-slack degree-one theorems; prove or refute the expected
-  prefix-vanishing support count for higher fixed slack, and ensure any
-  repaired F1 theorem excludes this sub-reserve regime or includes an
-  extension-valued residue-line term.
+  fixed-slack degree-one theorems; prove or refute the expected asymptotic
+  `p^{-(sigma-1)}` prefix-vanishing support count for higher fixed slack, and
+  ensure any repaired F1 theorem excludes this sub-reserve regime or includes
+  an extension-valued residue-line term.
 
 ### 2026-06-23 - Cycle119 admissibility review
 

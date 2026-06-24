@@ -33,6 +33,16 @@ SIGMA_THREE_CASES = (
     {"p": 19, "k": 6},
 )
 
+SIGMA_THREE_COUNT_CASES = (
+    {"p": 29, "k": 14},
+    {"p": 37, "k": 18},
+    {"p": 47, "k": 23},
+    {"p": 59, "k": 29},
+    {"p": 31, "k": 7},
+    {"p": 41, "k": 10},
+    {"p": 53, "k": 13},
+)
+
 
 def base(value: int, p: int) -> Element:
     return (value % p, 0)
@@ -220,6 +230,26 @@ def has_prefix_vanishing(support: tuple[int, ...], sigma: int, p: int) -> bool:
     )
 
 
+def ceil_div(numerator: int, denominator: int) -> int:
+    return -(-numerator // denominator)
+
+
+def sigma_three_prefix_counts(p: int) -> list[int]:
+    states: list[dict[tuple[int, int], int]] = [dict() for _ in range(p)]
+    states[0][(0, 0)] = 1
+    max_size = 0
+    for point in range(1, p):
+        for size in range(max_size, -1, -1):
+            for (e1_value, e2_value), count in list(states[size].items()):
+                new_key = (
+                    (e1_value + point) % p,
+                    (e2_value + point * e1_value) % p,
+                )
+                states[size + 1][new_key] = states[size + 1].get(new_key, 0) + count
+        max_size += 1
+    return [states[size].get((0, 0), 0) for size in range(p)]
+
+
 def verify_sigma_one_case(p: int, k: int) -> dict[str, Any]:
     d = least_nonsquare(p)
     alpha = (0, 1)
@@ -284,6 +314,54 @@ def verify_sigma_one_case(p: int, k: int) -> dict[str, Any]:
         "base_field_trivial_numerator": p,
         "extension_field_size": p * p,
         "mca_density_lower_bound": f"{lower_bound}/{p*p}",
+        "checks": checks,
+    }
+
+
+def verify_sigma_three_count_case(p: int, k: int) -> dict[str, Any]:
+    n = p - 1
+    sigma = 3
+    a = k + sigma
+    if not (4 <= a <= n):
+        raise ValueError(f"bad sigma-three count parameters p={p}, k={k}, a={a}")
+
+    counts = sigma_three_prefix_counts(p)
+    for size, value in enumerate(counts):
+        if value != counts[n - size]:
+            raise AssertionError("sigma-three complement symmetry failed")
+
+    support_count = counts[a]
+    expected_denominator = p * p
+    expected_numerator = comb(n, a)
+    tail_denominator = comb(n, k - 1)
+    tail_numerator = support_count * comb(a, sigma + 1)
+    tail_lower_bound = ceil_div(tail_numerator, tail_denominator)
+
+    checks = {
+        "prefix_count_is_positive": support_count > 0,
+        "complement_symmetry_holds": True,
+        "averaged_tail_lower_bound_is_positive": tail_lower_bound > 0,
+    }
+    failed = [name for name, passed in checks.items() if not passed]
+    if failed:
+        raise AssertionError(
+            f"failed sigma-three count checks for p={p}: {', '.join(failed)}"
+        )
+
+    return {
+        "p": p,
+        "n": n,
+        "k": k,
+        "sigma": sigma,
+        "agreement_a": a,
+        "prefix_vanishing_support_count": support_count,
+        "random_model_numerator": expected_numerator,
+        "random_model_denominator": expected_denominator,
+        "tail_average_numerator": tail_numerator,
+        "tail_average_denominator": tail_denominator,
+        "proved_tail_bad_slope_lower_bound": tail_lower_bound,
+        "extension_field_size": p * p,
+        "mca_density_lower_bound": f"{tail_lower_bound}/{p*p}",
         "checks": checks,
     }
 
@@ -483,6 +561,10 @@ def compute_report() -> dict[str, Any]:
         verify_fixed_slack_template_case(sigma=3, **case)
         for case in SIGMA_THREE_CASES
     ]
+    sigma_three_count_cases = [
+        verify_sigma_three_count_case(**case)
+        for case in SIGMA_THREE_COUNT_CASES
+    ]
     return {
         "status": "PASS",
         "proof_status": "FINITE_MODEL_CHECK / COUNTEREXAMPLE_SANITY",
@@ -492,11 +574,13 @@ def compute_report() -> dict[str, Any]:
             "MCA-bad slopes over F_{p^2}; for sigma=2 and a=k+2, zero-sum "
             "supports give a tail with the averaged number of distinct bad "
             "triple slopes; for sigma=3, finite cases check the general "
-            "prefix-vanishing fixed-tail injectivity template."
+            "prefix-vanishing fixed-tail injectivity template and exact "
+            "dynamic support counts."
         ),
         "sigma_one_cases": sigma_one_cases,
         "sigma_two_cases": sigma_two_cases,
         "sigma_three_template_cases": sigma_three_cases,
+        "sigma_three_count_cases": sigma_three_count_cases,
     }
 
 
@@ -520,6 +604,13 @@ def print_report(report: dict[str, Any]) -> None:
             "sigma=3 p={p} k={k} a={agreement_a} "
             "admissible={admissible_support_count} "
             "best_tail_blocks={best_tail_block_count}".format(**case)
+        )
+    for case in report["sigma_three_count_cases"]:
+        print(
+            "sigma=3-count p={p} k={k} a={agreement_a} "
+            "G={prefix_vanishing_support_count} "
+            "tail_lower={proved_tail_bad_slope_lower_bound} "
+            "density={mca_density_lower_bound}".format(**case)
         )
 
 
