@@ -794,6 +794,14 @@ B_phi = sum_z bar_tau_p(z) C_phi(z),
 C_phi(z)=sum_{b+b^{-1}=z} phi(b).
 ```
 
+The kernel has exact second moment
+
+```text
+sum_z |C_phi(z)|^2 = p-3      if phi^2 != 1,
+sum_z |C_phi(z)|^2 = 2p-4     if phi is quadratic,
+```
+
+and pointwise size at most `2`.
 Thus the one-sided beta marginal can be viewed as a Chebyshev/Kummer transform
 on the inversion quotient of the beta line.  This is a structural reduction of
 the obstruction, not a square-root-cancellation theorem.

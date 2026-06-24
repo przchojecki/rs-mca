@@ -84,7 +84,8 @@ Keep entries concise and link to the relevant files.
   `G_{psi,phi}=G_{psi^{-1},phi^{-1}}`, and
   `(G_e)_{i,j}=(G_e)_{-i,-j}`.  For `psi=1`, the beta marginal further
   descends to the inversion quotient `z=b+b^{-1}` as the Chebyshev transform
-  `B_phi=sum_z bar_tau_p(z) sum_{b+b^{-1}=z} phi(b)`.
+  `B_phi=sum_z bar_tau_p(z) sum_{b+b^{-1}=z} phi(b)`, whose kernel has exact
+  second moment `p-3` except for the quadratic row, where it is `2p-4`.
 - **How it is useful:** This is a counterexample-first test of the remaining
   rank-two pushforward object, not of the already controlled exceptional
   ledger. The audited rows show p-scale behavior, with largest recorded full

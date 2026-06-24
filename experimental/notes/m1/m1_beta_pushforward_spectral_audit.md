@@ -583,6 +583,19 @@ Then the beta marginal coefficient is exactly
 B_phi = sum_z bar_tau_p(z) C_phi(z).
 ```
 
+The kernel itself has exact p-scale orthogonality.  For nonprincipal `phi`,
+
+```text
+sum_z |C_phi(z)|^2 =
+  p - 3,        if phi^2 != 1,
+  2p - 4,       if phi is quadratic.
+```
+
+Also `|C_phi(z)| <= 2` pointwise.  Hence this quotient reduction introduces
+no hidden growth in the test kernel; the remaining beta-marginal issue is the
+correlation of the descended trace `bar_tau_p` with these explicit
+Chebyshev/Kummer kernels.
+
 Thus the one-sided beta marginal is not an arbitrary Kummer Mellin transform
 on `G_m`: trace-theoretically it factors through the inversion quotient of
 the beta line and is paired with the rank-two Chebyshev/Kummer kernel
@@ -706,7 +719,8 @@ B_phi = sum_z bar_tau_p(z) C_phi(z)
 ```
 
 on the same rows.  The quotient has `(p+1)/2` points: two fixed orbits
-`b=1,-1` and `(p-3)/2` paired orbits.
+`b=1,-1` and `(p-3)/2` paired orbits.  It also checks the exact kernel
+second-moment formulas `p-3` and `2p-4`.
 
 Thus the averaged M1 target remains substantially smaller than the largest
 individual full pointwise coefficient and smaller than the full
@@ -745,4 +759,4 @@ It also checks the fixed beta-fiber singular-support ledger for the beta
 marginal family, the exact beta-column Mellin identity, and the regular versus
 fixed-support beta-fiber trace maxima.  Finally, it checks the grouped
 beta-line identity, the inversion symmetry, and the beta-marginal Chebyshev
-quotient formula for every quotient-character block.
+quotient formula and kernel second moments for every quotient-character block.

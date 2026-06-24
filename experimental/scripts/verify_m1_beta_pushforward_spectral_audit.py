@@ -714,19 +714,51 @@ def beta_marginal_chebyshev_quotient_case(
 
     max_formula_error = 0.0
     max_kernel_size = 0.0
+    max_second_moment_error = 0.0
+    max_nonquadratic_second_moment = 0.0
+    quadratic_second_moment = 0.0
     for character_exponent in range(1, quotient_order):
         direct_coefficient = sum(
             column_sums[label] * root ** (character_exponent * label)
             for label in range(quotient_order)
         )
         quotient_coefficient = 0j
+        kernel_second_moment = 0.0
         for z_value, orbit in beta_orbits.items():
             chebyshev_kernel = sum(
                 root ** (character_exponent * (logs[beta] % quotient_order))
                 for beta in orbit
             )
             max_kernel_size = max(max_kernel_size, abs(chebyshev_kernel))
+            kernel_second_moment += abs(chebyshev_kernel) ** 2
             quotient_coefficient += quotient_traces[z_value] * chebyshev_kernel
+        is_quadratic_character = (
+            quotient_order % 2 == 0
+            and character_exponent == quotient_order // 2
+        )
+        expected_second_moment = (2 * p - 4) if is_quadratic_character else (p - 3)
+        second_moment_error = abs(kernel_second_moment - expected_second_moment)
+        if second_moment_error > 1000 * TOLERANCE:
+            raise AssertionError(
+                (
+                    p,
+                    quotient_order,
+                    character_exponent,
+                    kernel_second_moment,
+                    expected_second_moment,
+                )
+            )
+        max_second_moment_error = max(
+            max_second_moment_error,
+            second_moment_error,
+        )
+        if is_quadratic_character:
+            quadratic_second_moment = kernel_second_moment
+        else:
+            max_nonquadratic_second_moment = max(
+                max_nonquadratic_second_moment,
+                kernel_second_moment,
+            )
         formula_error = abs(direct_coefficient - quotient_coefficient)
         if formula_error > 1000 * TOLERANCE:
             raise AssertionError(
@@ -749,6 +781,9 @@ def beta_marginal_chebyshev_quotient_case(
         ),
         "max_orbit_trace_error": max_orbit_trace_error,
         "max_chebyshev_kernel_size": round(max_kernel_size, 12),
+        "max_chebyshev_second_moment_error": round(max_second_moment_error, 12),
+        "max_nonquadratic_second_moment": round(max_nonquadratic_second_moment, 12),
+        "quadratic_second_moment": round(quadratic_second_moment, 12),
         "max_chebyshev_formula_error": round(max_formula_error, 12),
     }
 
@@ -1486,6 +1521,7 @@ def print_report(report: dict[str, Any]) -> None:
             "pythagorean_error={pythagorean_error} "
             "component_error={component_centered_error} "
             "chebyshev_error={chebyshev_error} "
+            "chebyshev_l2_error={chebyshev_l2_error} "
             "beta_line_error={beta_line_error} "
             "inversion_error={inversion_error}".format(
                 alpha_coeff_ratio=alpha_reduction[
@@ -1498,6 +1534,9 @@ def print_report(report: dict[str, Any]) -> None:
                     "max_beta_line_formula_error"
                 ],
                 chebyshev_error=beta_chebyshev["max_chebyshev_formula_error"],
+                chebyshev_l2_error=beta_chebyshev[
+                    "max_chebyshev_second_moment_error"
+                ],
                 inversion_error=beta_inversion["max_coefficient_inversion_error"],
                 **row,
             )
