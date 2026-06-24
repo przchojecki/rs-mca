@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-24 - L1 full-petal CRT compression
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/notes/l1/l1_full_list_quotient_proof_program.md`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED.
+- **What is being added:** A CRT compression for background-free sunflower
+  extras whose touched petals are all full.  Such extras are equivalent to a
+  low-degree representative of the CRT residues
+  `W = c_iL_D mod L_{T_i}` on the touched petals.
+- **How it is useful:** Converts the remaining full-petal `t>=3` obstruction
+  into explicit top-coefficient vanishing conditions on a CRT residue,
+  recovering the two-petal pencil as the first case.
+- **What to do next:** Bound how often core locators make these CRT top
+  coefficients vanish, or prove that many such events force quotient or
+  low-defect structure.
+
 ### 2026-06-24 - L1 background-free two-petal count
 
 - **Agent/model:** Codex.

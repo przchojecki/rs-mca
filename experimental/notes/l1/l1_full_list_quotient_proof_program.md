@@ -602,6 +602,117 @@ window.  The remaining background-free sunflower cases either touch at least
 three petals or involve a different structured degeneracy not captured by the
 two-petal pencil.
 
+## Lemma 7. Full-Petal CRT Compression
+
+Status: PROVED.
+
+Assume the sunflower has no unused background.  Let `I` be the exact set of
+petals touched by a non-planted listed codeword `P`, and suppose every touched
+petal is full:
+
+```text
+S_i = T_i        for i in I,
+S_j = empty      for j notin I.
+```
+
+Put `t=|I|`, `ell=sigma+1`, and keep the missed-core set `D` and defect `d`
+from Lemma 2.  Then
+
+```text
+ell <= d <= (t-1)ell.
+```
+
+Let
+
+```text
+N_I = prod_{i in I} L_{T_i}.
+```
+
+There is a unique polynomial `W_{D,I}` of degree `< t*ell` satisfying the CRT
+conditions
+
+```text
+W_{D,I} = c_i L_D        mod L_{T_i}        for every i in I.
+```
+
+The listed codeword `P` is exactly
+
+```text
+P = L_{C\D} W_{D,I},
+```
+
+and the degree cutoff is
+
+```text
+deg W_{D,I} <= d.
+```
+
+Equivalently, the top `t*ell-d-1` coefficients of the CRT residue `W_{D,I}`
+vanish.  Conversely, any pair `(D,I)` with `|I|>=2`, `|D|=d`, and
+`ell <= d <= (t-1)ell` satisfying `deg W_{D,I}<=d` produces a listed codeword
+that agrees with `U` on
+
+```text
+(C \ D) union union_{i in I} T_i.
+```
+
+If it has no agreements on petals outside `I` and `W_{D,I}` is nonzero on
+`D`, then its exact missed-core set is `D` and its exact touched-petal set is
+`I`.
+
+### Proof
+
+Since the codeword is non-planted and contains at least one full petal, Lemma 2
+gives `d>=ell`.  The list condition gives
+
+```text
+t*ell = sum_{i in I} |S_i| >= sigma+d+1 = ell+d,
+```
+
+so `d <= (t-1)ell`.
+
+For every touched petal, Lemma 2 gives
+
+```text
+W_P = c_i L_D        on T_i,
+```
+
+or equivalently `W_P = c_iL_D mod L_{T_i}`.  The petal locators are pairwise
+coprime, so the Chinese remainder theorem gives a unique residue
+`W_{D,I}` modulo `N_I`, represented by a polynomial of degree `< t*ell`.
+
+The actual `W_P` has degree at most `d`, and the displayed inequality gives
+`d < t*ell`.  Therefore `W_P` and `W_{D,I}` are two representatives of the same
+CRT class with degree `< t*ell`; they are equal.  This proves the forward
+direction and the coefficient-vanishing formulation.
+
+Conversely, if `deg W_{D,I}<=d`, then `P=L_{C\D}W_{D,I}` has degree
+
+```text
+deg P <= (k-1-d)+d = k-1.
+```
+
+It agrees with `U` on `C\D` and on every petal in `I`.  Thus it has at least
+
+```text
+(k-1-d)+t*ell >= (k-1-d)+(ell+d) = k+sigma = s
+```
+
+agreements, and so it is listed.  The final exactness assertions follow
+directly from excluding agreements outside `I` and zeros of `W_{D,I}` on `D`.
+
+### Consequences
+
+The full-petal part of the remaining `t>=3` problem is now an explicit
+coefficient-vanishing problem.  For fixed `D` and `I`, the CRT residue is
+linear in the coefficients of `L_D`; the obstruction is the vanishing of the
+highest `t*ell-d-1` coefficients of that residue.
+
+For `t=2`, this recovers Lemma 5 and Lemma 6.  For `t>=3`, it gives the next
+concrete target: bound how often core locators make these CRT top
+coefficients vanish, or show that many such vanishing events force quotient or
+low-defect structure.
+
 ## Development Ledger
 
 - **Conjecture 1 full-list primitive remainder:** CONJECTURAL.  Main proof
@@ -627,5 +738,7 @@ two-petal pencil.
   extras by a one-parameter locator pencil.
 - **Background-free two-petal count:** PROVED.  Bounds the exact two-petal
   family by `binom(M,2)q`.
+- **Full-petal CRT compression:** PROVED.  Reduces full-petal multi-petal
+  extras to top-coefficient vanishing in a CRT residue.
 - **Mixed-petal sunflower amplification:** CONJECTURAL.  Next focused bound to
   prove or refute in the large-defect regime.
