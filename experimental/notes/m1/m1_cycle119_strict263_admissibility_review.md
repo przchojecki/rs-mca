@@ -1,6 +1,6 @@
 # M1 Cycle119 Strict-263 Admissibility Review
 
-Status: AUDIT / PROOF-CHECK-NEEDED / COMPUTATION-DEPENDENT.
+Status: CONDITIONAL / AUDIT / STRICT-BALL-THEOREM-CHECKED.
 
 Date: 2026-06-23.
 
@@ -131,13 +131,18 @@ The Cycle119 claim depends on two nontrivial components:
 1. the Cycle84 finite computation giving the `52,747,567,092` numerator;
 2. the Cycle119 two-ended locator transfer proof.
 
-The two-ended idea is plausible and the stated repair is exactly the right kind
-of repair: it avoids the invalid naive padding multiplication and instead
-constructs the final `[512,256]` line in parity-check space using common top
-six locator coefficients plus a common nonzero constant coefficient.
+The two-ended idea is now isolated as a local theorem and verifier:
 
-But a human-readable proof is still needed. Generated checker output and role
-returns are not a substitute for a paper-quality proof.
+```text
+experimental/notes/m1/m1_two_ended_fixed_jet_ldsw_theorem.md
+python3 experimental/scripts/verify_m1_two_ended_fixed_jet_ldsw_theorem.py
+```
+
+That theorem avoids the invalid naive padding multiplication and constructs
+the final `[512,256]` line in parity-check space using a common nonzero
+constant coefficient plus the common selected high coefficients. The result
+remains conditional on the Cycle84 finite computation and official-source
+gates, but the two-ended proof-logic import is no longer only a prose request.
 
 ## Recommended External Wording
 
@@ -178,6 +183,12 @@ That note records the direct two-ended algebra audit and keeps the result
 conditional on independent review of the Cycle84/Cycle116 finite inputs and
 independent retrieval of the ABF PDF.
 
+The direct theorem/proof note is:
+
+```text
+experimental/notes/m1/m1_two_ended_fixed_jet_ldsw_theorem.md
+```
+
 ## Integration Decision
 
 Do not merge PR #96 as-is.
@@ -203,17 +214,15 @@ HEURISTIC/AUDIT, for unreviewed generated proof sketches.
 
 ## Question To Send Back
 
-Ask Danny for a clean proof note, not another generated archive:
+The main remaining request to Danny is a clean finite-computation/source packet,
+not another generated archive:
 
 ```text
-Please provide a standalone human-readable proof of the two-ended locator
-transfer:
+Please provide:
 
-1. State the abstract theorem with all hypotheses.
-2. Prove the parity-check-space construction.
-3. Prove support-wise noncontainment.
-4. Specialize to K=F_17^32, H=<theta>, k=256, agreement 263.
-5. State exactly where the Cycle84 finite computation is used.
-6. Avoid generated-checker and archive language; classify inputs as proof,
-   computation, or heuristic.
+1. Independent review material for the Cycle84 finite computation.
+2. Exact ABF PDF/source references with page numbers.
+3. A minimal nonmutating packet tying the finite count to the stated row.
+4. No generated-checker or archive language; classify inputs as proof,
+   computation, audit, or heuristic.
 ```

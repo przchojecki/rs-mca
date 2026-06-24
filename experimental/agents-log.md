@@ -985,3 +985,27 @@ Keep entries concise and link to the relevant files.
   by a generic theorem, not only by a concrete audit.
 - **What to do next:** Keep the remaining focus on official ABF source/revision
   review and promotion-level review of the finite Cycle84 count.
+
+### 2026-06-24 - M1 two-ended fixed-jet LDsw theorem
+
+- **Agent/model:** Codex acting autonomously.
+- **Files added or changed:**
+  `experimental/scripts/verify_m1_two_ended_fixed_jet_ldsw_theorem.py`,
+  `experimental/notes/m1/m1_two_ended_fixed_jet_ldsw_theorem.md`,
+  `experimental/scripts/verify_m1_cycle120_end_to_end_chain.py`,
+  `experimental/notes/m1/m1_cycle120_end_to_end_finite_chain.md`,
+  `experimental/notes/m1/m1_cycle119_strict263_admissibility_review.md`,
+  `experimental/notes/m1/m1_cycle120_gate_arithmetic_contract.md`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT / TWO-ENDED-FIXED-JET-LDSW-THEOREM.
+- **What is being added:** A generic two-ended fixed-jet locator theorem and
+  verifier for the Cycle119 strict-ball addendum. The theorem uses a common
+  nonzero locator constant plus selected high coefficients
+  `0,j+1,...,j+sigma-1` to construct the same affine support-wise bad line.
+- **How it is useful:** Strengthens the M1 Cycle120 PR without widening its
+  scope: the closed ABF threshold already uses Cycle116 agreement `262`, while
+  this commit proves the strict-ball agreement `263` addendum with the same
+  `52,747,567,092` bad parameters, conditional on the same Cycle84 finite
+  count and source gates.
+- **What to do next:** Keep the remaining focus on independent review of the
+  Cycle84 finite count/source closure and official ABF source verification.

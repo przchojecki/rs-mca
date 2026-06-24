@@ -161,6 +161,26 @@ concrete field model: agreement grows by `|A|`, the code dimension grows by
 `|A|`, and the same bad line parameters remain bad on
 `H=D0 union A union R`.
 
+The optional strict-ball Cycle119 addendum is checked by:
+
+```text
+experimental/notes/m1/m1_two_ended_fixed_jet_ldsw_theorem.md
+python3 experimental/scripts/verify_m1_two_ended_fixed_jet_ldsw_theorem.py
+```
+
+It proves the generic two-ended fixed-jet transfer theorem: a common nonzero
+constant coefficient plus one fewer common top coefficient still gives an
+affine support-wise bad line. In the concrete row it uses `A*` of size `120`
+and `R*` of size `136`, giving
+
+```text
+LD_sw(RS[F_17^32,H,256],263) >= N.
+```
+
+This is not needed for the printed closed ABF threshold at `delta=125/256`,
+but it gives distance `249 < 250`, which addresses stricter open-ball
+conventions.
+
 At the Cycle120 row
 
 ```text
@@ -240,6 +260,8 @@ the domain generator theta generates the full field F_17^32, so
 the Cycle116 slot replay and Cycle84 certificate use the same slot-table digest;
 the native Cycle116 parameters are n=256, k=137, agreement=143;
 the smooth lift reaches n=512, k=256, agreement=262 without changing N;
+the Cycle119 two-ended theorem gives the strict-ball addendum at agreement
+  263 with the same N;
 the Cycle120 closed threshold at delta=125/256 is exactly 262;
 the support-wise line/MCA count normalizes to
   epsilon_mca(C,125/256) >= N/17^32;
@@ -298,6 +320,7 @@ python3 experimental/scripts/verify_m1_cycle116_external_packet_sources.py
 python3 experimental/scripts/verify_m1_cycle116_external_transfer_replay.py
 python3 experimental/scripts/verify_m1_cycle116_fixed_jet_transfer.py
 python3 experimental/scripts/verify_m1_cycle116_smooth_padding_transfer.py
+python3 experimental/scripts/verify_m1_two_ended_fixed_jet_ldsw_theorem.py
 python3 experimental/scripts/verify_m1_cycle120_domain_field_ledger.py
 python3 experimental/scripts/verify_m1_cycle120_supportwise_mca_bridge.py
 ```

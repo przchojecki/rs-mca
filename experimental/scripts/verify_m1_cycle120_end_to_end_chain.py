@@ -36,6 +36,7 @@ import verify_m1_cycle116_slot_identities as slot_ids
 import verify_m1_cycle116_smooth_padding_transfer as smooth_padding
 import verify_m1_fixed_jet_ldsw_theorem as fixed_jet_theorem
 import verify_m1_smooth_padding_ldsw_theorem as smooth_padding_theorem
+import verify_m1_two_ended_fixed_jet_ldsw_theorem as two_ended_theorem
 import verify_m1_cycle120_domain_field_ledger as domain_ledger
 import verify_m1_cycle120_gate_arithmetic as gate
 import verify_m1_cycle120_supportwise_mca_bridge as mca_bridge
@@ -89,6 +90,15 @@ def build_report() -> Dict[str, Any]:
         }
     )
     gate_report = gate.build_report()
+    two_ended_report = two_ended_theorem.build_report(
+        {
+            "cycle84": cycle84_report,
+            "fixed_jet": fixed_report,
+            "fixed_transfer": transfer_report,
+            "smooth_padding": smooth_report,
+            "gate": gate_report,
+        }
+    )
     mca_report = mca_bridge.build_report(
         {
             "cycle84": cycle84_report,
@@ -132,6 +142,9 @@ def build_report() -> Dict[str, Any]:
         ),
         "generic_smooth_padding_ldsw_theorem_passes": (
             padding_theorem_report["status"] == "PASS"
+        ),
+        "generic_two_ended_fixed_jet_ldsw_theorem_passes": (
+            two_ended_report["status"] == "PASS"
         ),
         "cycle120_domain_field_ledger_passes": ledger_report["status"] == "PASS",
         "cycle116_external_packet_contract_passes": (
@@ -277,6 +290,14 @@ def build_report() -> Dict[str, Any]:
         "bad_gamma_density_strictly_exceeds_2_minus_128": (
             numerator * epsilon_denominator > field_size
         ),
+        "cycle119_strict_ball_addendum_matches_gate": (
+            int(two_ended_report["cycle119_instantiation"]["agreement"])
+            == int(gate_arithmetic["cycle119_agreement"])
+            and int(two_ended_report["cycle119_instantiation"]["distance"])
+            == int(gate_arithmetic["cycle119_distance"])
+            and int(two_ended_report["cycle119_instantiation"]["bad_parameters"])
+            == numerator
+        ),
     }
 
     failed = [name for name, value in checks.items() if not value]
@@ -389,6 +410,24 @@ def build_report() -> Dict[str, Any]:
                     ]
                 ),
             },
+            "two_ended_fixed_jet_ldsw_theorem": {
+                "proof_status": two_ended_report["proof_status"],
+                "toy_case_count": len(two_ended_report["toy_cases"]),
+                "agreement": int(
+                    two_ended_report["cycle119_instantiation"]["agreement"]
+                ),
+                "distance": int(
+                    two_ended_report["cycle119_instantiation"]["distance"]
+                ),
+                "strict_delta_bound": (
+                    two_ended_report["cycle119_instantiation"][
+                        "strict_delta_bound"
+                    ]
+                ),
+                "bad_parameters": int(
+                    two_ended_report["cycle119_instantiation"]["bad_parameters"]
+                ),
+            },
             "cycle120_domain_field_ledger": {
                 "native_generator": ledger["native_generator"],
                 "native_generated_degree": int(ledger["native_generated_degree"]),
@@ -424,9 +463,10 @@ def build_report() -> Dict[str, Any]:
             "reviewer acceptance of the Cycle84 finite-source closure audit for "
             "promotion beyond audit status",
             "official review of the external PR #96 provenance if that packet is "
-            "cited directly; the local fixed-jet theorem and transfer audits now "
-            "cover the proof-logic core, while source-hash and transfer-replay "
-            "audits check contract-to-Git binding and executable output",
+            "cited directly; the local fixed-jet, smooth-padding, and "
+            "two-ended theorem audits now cover the proof-logic core, while "
+            "source-hash and transfer-replay audits check contract-to-Git "
+            "binding and executable output",
         ],
         "nonmutating": True,
     }
@@ -442,6 +482,7 @@ def print_human(report: Dict[str, Any]) -> None:
     lifted = chain["cycle116_smooth_lift"]
     theorem = chain["fixed_jet_ldsw_theorem"]
     padding_theorem = chain["smooth_padding_ldsw_theorem"]
+    two_ended = chain["two_ended_fixed_jet_ldsw_theorem"]
     ledger = chain["cycle120_domain_field_ledger"]
     gate_chain = chain["cycle120_gate_arithmetic"]
     mca = chain["cycle120_supportwise_mca"]
@@ -498,6 +539,12 @@ def print_human(report: Dict[str, Any]) -> None:
         f"toy_cases={padding_theorem['toy_case_count']}, "
         f"agreement={padding_theorem['native_agreement']}->"
         f"{padding_theorem['lift_agreement']}"
+    )
+    print(
+        "two_ended_fixed_jet_ldsw_theorem="
+        f"{two_ended['proof_status']}, toy_cases={two_ended['toy_case_count']}, "
+        f"agreement={two_ended['agreement']}, distance={two_ended['distance']}, "
+        f"delta_bound={two_ended['strict_delta_bound']}"
     )
     print(
         "cycle120_field_ledger="

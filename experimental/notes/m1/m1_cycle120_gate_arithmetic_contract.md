@@ -223,6 +223,9 @@ The following inputs remain outside this arithmetic contract:
    external verifier proof logic rather than a hash-provenance or executable
    output gap.
 5. Optionally, the Cycle119 two-ended transfer producing agreement `263`.
+   The generic theorem and current-row instantiation are now isolated in
+   `experimental/notes/m1/m1_two_ended_fixed_jet_ldsw_theorem.md` and checked by
+   `experimental/scripts/verify_m1_two_ended_fixed_jet_ldsw_theorem.py`.
 
 ## Nonclaims
 
