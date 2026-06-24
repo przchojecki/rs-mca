@@ -35,6 +35,7 @@ import verify_m1_cycle116_slot_assembly as slot_assembly
 import verify_m1_cycle116_slot_identities as slot_ids
 import verify_m1_cycle116_smooth_padding_transfer as smooth_padding
 import verify_m1_fixed_jet_ldsw_theorem as fixed_jet_theorem
+import verify_m1_smooth_padding_ldsw_theorem as smooth_padding_theorem
 import verify_m1_cycle120_domain_field_ledger as domain_ledger
 import verify_m1_cycle120_gate_arithmetic as gate
 import verify_m1_cycle120_supportwise_mca_bridge as mca_bridge
@@ -68,6 +69,12 @@ def build_report() -> Dict[str, Any]:
             "cycle84": cycle84_report,
             "fixed_jet": fixed_report,
             "fixed_transfer": transfer_report,
+            "smooth_padding": smooth_report,
+        }
+    )
+    padding_theorem_report = smooth_padding_theorem.build_report(
+        {
+            "fixed_jet_theorem": theorem_report,
             "smooth_padding": smooth_report,
         }
     )
@@ -122,6 +129,9 @@ def build_report() -> Dict[str, Any]:
         ),
         "generic_fixed_jet_ldsw_theorem_passes": (
             theorem_report["status"] == "PASS"
+        ),
+        "generic_smooth_padding_ldsw_theorem_passes": (
+            padding_theorem_report["status"] == "PASS"
         ),
         "cycle120_domain_field_ledger_passes": ledger_report["status"] == "PASS",
         "cycle116_external_packet_contract_passes": (
@@ -360,6 +370,25 @@ def build_report() -> Dict[str, Any]:
                     ]
                 ),
             },
+            "smooth_padding_ldsw_theorem": {
+                "proof_status": padding_theorem_report["proof_status"],
+                "toy_case_count": len(padding_theorem_report["toy_cases"]),
+                "native_agreement": int(
+                    padding_theorem_report["cycle116_instantiation"][
+                        "native_agreement"
+                    ]
+                ),
+                "lift_agreement": int(
+                    padding_theorem_report["cycle116_instantiation"][
+                        "lift_agreement"
+                    ]
+                ),
+                "bad_parameters_preserved": bool(
+                    padding_theorem_report["cycle116_instantiation"][
+                        "bad_parameters_preserved"
+                    ]
+                ),
+            },
             "cycle120_domain_field_ledger": {
                 "native_generator": ledger["native_generator"],
                 "native_generated_degree": int(ledger["native_generated_degree"]),
@@ -412,6 +441,7 @@ def print_human(report: Dict[str, Any]) -> None:
     transfer = chain["cycle116_fixed_jet_transfer"]
     lifted = chain["cycle116_smooth_lift"]
     theorem = chain["fixed_jet_ldsw_theorem"]
+    padding_theorem = chain["smooth_padding_ldsw_theorem"]
     ledger = chain["cycle120_domain_field_ledger"]
     gate_chain = chain["cycle120_gate_arithmetic"]
     mca = chain["cycle120_supportwise_mca"]
@@ -461,6 +491,13 @@ def print_human(report: Dict[str, Any]) -> None:
         "fixed_jet_ldsw_theorem="
         f"{theorem['proof_status']}, toy_cases={theorem['toy_case_count']}, "
         f"native_bad_parameters={theorem['native_bad_parameters']}"
+    )
+    print(
+        "smooth_padding_ldsw_theorem="
+        f"{padding_theorem['proof_status']}, "
+        f"toy_cases={padding_theorem['toy_case_count']}, "
+        f"agreement={padding_theorem['native_agreement']}->"
+        f"{padding_theorem['lift_agreement']}"
     )
     print(
         "cycle120_field_ledger="

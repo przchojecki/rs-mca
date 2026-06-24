@@ -100,3 +100,15 @@ the division argument returns degree-<137 native codewords.
 This audit depends on the native Cycle116 transfer at agreement `143`, the
 Cycle84 exact occupancy count for `N`, and the official ABF source gate if the
 row is promoted as prize-facing. It does not rerun the Cycle84 product census.
+
+The generic theorem behind the padding step is now isolated in:
+
+```text
+experimental/notes/m1/m1_smooth_padding_ldsw_transfer_theorem.md
+python3 experimental/scripts/verify_m1_smooth_padding_ldsw_theorem.py
+```
+
+That theorem proves that multiplying the native line by the `A`-locator pads
+agreement onto `A`, while any lifted simultaneous explanation must vanish on
+`A` and divide back to a native explanation. This concrete audit supplies the
+field/domain facts needed to instantiate that theorem for the `[512,256]` row.

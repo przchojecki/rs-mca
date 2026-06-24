@@ -149,6 +149,18 @@ It verifies the partition of the odd coset into `A` of size `119` and `R` of
 size `137`, checks `P_R(beta)!=0`, and checks the degree inequalities that keep
 the same bad parameters after lifting to the `[512,256]` row.
 
+The generic support-wise theorem for this step is isolated in:
+
+```text
+experimental/notes/m1/m1_smooth_padding_ldsw_transfer_theorem.md
+python3 experimental/scripts/verify_m1_smooth_padding_ldsw_theorem.py
+```
+
+It proves the `L_A` multiplication/division argument independent of the
+concrete field model: agreement grows by `|A|`, the code dimension grows by
+`|A|`, and the same bad line parameters remain bad on
+`H=D0 union A union R`.
+
 At the Cycle120 row
 
 ```text
@@ -221,6 +233,8 @@ the external Cycle116 packet contract uses the same verified co-support and
 the fixed-jet bad-parameter map is injective on the counted product values;
 the smooth padding uses disjoint A/R odd-coset blocks and preserves the same
   bad parameters;
+the generic smooth-padding theorem proves why the lift preserves the same
+  bad line parameters;
 the domain generator theta generates the full field F_17^32, so
   q_gen=q_code=q_line=17^32 for this row;
 the Cycle116 slot replay and Cycle84 certificate use the same slot-table digest;

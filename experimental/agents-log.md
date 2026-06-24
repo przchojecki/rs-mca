@@ -962,3 +962,26 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** Keep official ABF source/revision verification and
   promotion-level review of the finite Cycle84/Cycle116 audits as the main
   remaining boundaries for the Cycle120 row.
+
+### 2026-06-24 - M1 smooth-padding LDsw transfer theorem
+
+- **Agent/model:** Codex acting autonomously.
+- **Files added or changed:**
+  `experimental/scripts/verify_m1_smooth_padding_ldsw_theorem.py`,
+  `experimental/notes/m1/m1_smooth_padding_ldsw_transfer_theorem.md`,
+  `experimental/scripts/verify_m1_cycle120_end_to_end_chain.py`,
+  `experimental/notes/m1/m1_cycle116_smooth_padding_transfer_audit.md`,
+  `experimental/notes/m1/m1_cycle120_end_to_end_finite_chain.md`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT / SMOOTH-PADDING-LDSW-THEOREM.
+- **What is being added:** A generic theorem and verifier for the
+  smooth-padding step from the native Cycle116 line to the Cycle120 smooth row.
+  The verifier constructs exact finite-field toy bad lines, pads by an
+  `A`-locator, checks low-degree lifted explaining codewords, and verifies that
+  lifted noncontainment divides back to native noncontainment.
+- **How it is useful:** Separates the padding proof from the concrete
+  `F_17^32` arithmetic. The Cycle120 end-to-end verifier now records that the
+  same bad parameters survive the move from agreement `143` to agreement `262`
+  by a generic theorem, not only by a concrete audit.
+- **What to do next:** Keep the remaining focus on official ABF source/revision
+  review and promotion-level review of the finite Cycle84 count.
