@@ -223,7 +223,7 @@ def build_report() -> Dict[str, Any]:
         },
         "checks": checks,
         "remaining_imports": [
-            "reviewer acceptance of the external PR #96 proof text and verifier",
+            "external PR #96 provenance review if the packet is cited directly",
             "official ABF source gate verification",
         ],
         "nonmutating": True,

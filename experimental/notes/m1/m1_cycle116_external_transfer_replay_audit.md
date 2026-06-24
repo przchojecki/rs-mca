@@ -74,5 +74,7 @@ that directory after the external verifier exits.
 
 This audit makes the external transfer executable from hash-pinned source
 objects and checks that its theorem ledger matches the local Cycle120 chain. It
-does not replace reviewer inspection of the external verifier's proof logic,
-and it does not discharge the official ABF PDF/source gate.
+does not discharge the official ABF PDF/source gate. The generic fixed-jet
+proof logic used by the external verifier is now recorded locally in
+`experimental/notes/m1/m1_fixed_jet_ldsw_transfer_theorem.md`; this replay
+remains a provenance and executable-output check for the PR #96 packet.

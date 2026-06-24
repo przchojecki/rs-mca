@@ -936,3 +936,29 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** Independently fetch and review the official ABF
   ePrint source, then compare the official source to the PR #96 extract before
   promoting the Cycle120 row beyond source-conditioned audit status.
+
+### 2026-06-24 - M1 fixed-jet LDsw transfer theorem
+
+- **Agent/model:** Codex acting autonomously.
+- **Files added or changed:**
+  `experimental/scripts/verify_m1_fixed_jet_ldsw_theorem.py`,
+  `experimental/notes/m1/m1_fixed_jet_ldsw_transfer_theorem.md`,
+  `experimental/scripts/verify_m1_cycle120_end_to_end_chain.py`,
+  `experimental/notes/m1/m1_cycle120_end_to_end_finite_chain.md`,
+  `experimental/notes/m1/m1_cycle116_external_transfer_replay_audit.md`,
+  `experimental/notes/m1/m1_cycle116_external_packet_contract.md`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT / GENERIC-FIXED-JET-LDSW-THEOREM.
+- **What is being added:** A local proof note and verifier for the generic
+  fixed-jet locator-to-`LD_sw` transfer. The verifier checks the exact
+  syndrome identities and Vandermonde noncontainment on finite-field toy
+  instances, then confirms that the current Cycle116 fixed-jet bridge,
+  fixed-transfer audit, smooth-padding audit, and Cycle84 exact occupancy
+  chain instantiate the theorem.
+- **How it is useful:** Removes the external PR #96 verifier as an opaque
+  proof-logic import. The external packet remains useful as hash-bound
+  provenance and executable-output corroboration, while the core theorem used
+  by the M1 chain is now stated and checked locally.
+- **What to do next:** Keep official ABF source/revision verification and
+  promotion-level review of the finite Cycle84/Cycle116 audits as the main
+  remaining boundaries for the Cycle120 row.

@@ -82,17 +82,23 @@ That comparison is now executable.
 This does not prove official ABF compatibility, and it does not ask reviewers
 to trust the closed PR #96 packet blindly. Together with the source-hash and
 transfer-replay audits, it narrows the remaining source issue to reviewer
-acceptance of the external verifier's proof logic.
+acceptance of the external verifier's provenance and output if that packet is
+cited directly. The fixed-jet proof-logic core is now recorded locally in:
+
+```text
+experimental/notes/m1/m1_fixed_jet_ldsw_transfer_theorem.md
+python3 experimental/scripts/verify_m1_fixed_jet_ldsw_theorem.py
+```
 
 ## Remaining Boundaries
 
 The remaining boundaries are:
 
 ```text
-reviewer acceptance of the external PR #96 verifier proof logic;
 reviewer acceptance of the Cycle84 generated replay source contract;
 official ABF PDF/source verification for the Cycle120 row gates, sampler,
   smoothness, same-support predicate, and closed-threshold convention.
+external PR #96 provenance/output review if the packet is cited directly.
 ```
 
 ## Reproducibility

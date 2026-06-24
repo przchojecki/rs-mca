@@ -64,6 +64,20 @@ It verifies the common complement-locator truncation
 `z_T=W(beta)-V_D(beta)/P_T(beta)`, and the nonzero-denominator conditions
 needed for distinct `Phi(T)` values to give distinct bad line parameters.
 
+The generic proof-logic behind this transfer is isolated in:
+
+```text
+experimental/notes/m1/m1_fixed_jet_ldsw_transfer_theorem.md
+python3 experimental/scripts/verify_m1_fixed_jet_ldsw_theorem.py
+```
+
+That theorem proves the syndrome/Vandermonde step: a family of co-support
+locators with common top `sigma` coefficients gives one affine line with one
+support-wise bad parameter for each distinct value of `P_J(beta)`. The verifier
+checks the exact syndrome identities on toy finite-field instances and confirms
+that the Cycle116 fixed-jet bridge, fixed-transfer audit, smooth-padding audit,
+and Cycle84 exact occupancy chain supply the large-instance hypotheses.
+
 The co-support size and disjoint slot geometry are checked separately by
 
 ```text
@@ -235,10 +249,10 @@ The chain remains conditional on:
    sufficient for promotion beyond audit status. The exact occupancy verifier
    now composes the replay algorithm audit, generated source contract, saved
    all-shards receipt, and kernel-lift filtering.
-3. Reviewer acceptance of the external PR #96 verifier proof logic. The
+3. External PR #96 provenance review if that packet is cited directly. The
    source-hash and transfer-replay audits now mechanically tie the compact
-   contract to the recorded PR #96 Git objects and executable output, but they
-   do not replace mathematical review of that verifier.
+   contract to the recorded PR #96 Git objects and executable output, and the
+   local fixed-jet theorem above covers the core proof-logic step.
 
 The current repository verifiers reduce these boundaries, but they do not
 remove them.

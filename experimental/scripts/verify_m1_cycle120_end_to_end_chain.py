@@ -34,6 +34,7 @@ import verify_m1_cycle116_fixed_jet_transfer as fixed_transfer
 import verify_m1_cycle116_slot_assembly as slot_assembly
 import verify_m1_cycle116_slot_identities as slot_ids
 import verify_m1_cycle116_smooth_padding_transfer as smooth_padding
+import verify_m1_fixed_jet_ldsw_theorem as fixed_jet_theorem
 import verify_m1_cycle120_domain_field_ledger as domain_ledger
 import verify_m1_cycle120_gate_arithmetic as gate
 import verify_m1_cycle120_supportwise_mca_bridge as mca_bridge
@@ -62,6 +63,14 @@ def build_report() -> Dict[str, Any]:
     transfer_report = fixed_transfer.build_report()
     lift_report = field_lift.build_report()
     smooth_report = smooth_padding.build_report()
+    theorem_report = fixed_jet_theorem.build_report(
+        {
+            "cycle84": cycle84_report,
+            "fixed_jet": fixed_report,
+            "fixed_transfer": transfer_report,
+            "smooth_padding": smooth_report,
+        }
+    )
     ledger_report = domain_ledger.build_report()
     external_report = external_packet.build_report(
         {
@@ -110,6 +119,9 @@ def build_report() -> Dict[str, Any]:
         "cycle116_field_lift_contract_passes": lift_report["status"] == "PASS",
         "cycle116_smooth_padding_transfer_passes": (
             smooth_report["status"] == "PASS"
+        ),
+        "generic_fixed_jet_ldsw_theorem_passes": (
+            theorem_report["status"] == "PASS"
         ),
         "cycle120_domain_field_ledger_passes": ledger_report["status"] == "PASS",
         "cycle116_external_packet_contract_passes": (
@@ -334,6 +346,20 @@ def build_report() -> Dict[str, Any]:
                 },
                 "conclusion": "LD_sw(RS[F_17^32,H,256],262) >= N",
             },
+            "fixed_jet_ldsw_theorem": {
+                "proof_status": theorem_report["proof_status"],
+                "toy_case_count": len(theorem_report["toy_cases"]),
+                "native_bad_parameters": int(
+                    theorem_report["cycle116_instantiation"]["native"][
+                        "distinct_bad_parameters"
+                    ]
+                ),
+                "smooth_bad_parameters_preserved": bool(
+                    theorem_report["cycle116_instantiation"]["smooth_lift"][
+                        "bad_parameters_preserved"
+                    ]
+                ),
+            },
             "cycle120_domain_field_ledger": {
                 "native_generator": ledger["native_generator"],
                 "native_generated_degree": int(ledger["native_generated_degree"]),
@@ -368,9 +394,10 @@ def build_report() -> Dict[str, Any]:
             "objects but does not close official ePrint review",
             "reviewer acceptance of the Cycle84 finite-source closure audit for "
             "promotion beyond audit status",
-            "reviewer acceptance of the external PR #96 verifier proof logic; "
-            "the separate source-hash and transfer-replay audits check the "
-            "contract-to-Git binding and executable output",
+            "official review of the external PR #96 provenance if that packet is "
+            "cited directly; the local fixed-jet theorem and transfer audits now "
+            "cover the proof-logic core, while source-hash and transfer-replay "
+            "audits check contract-to-Git binding and executable output",
         ],
         "nonmutating": True,
     }
@@ -384,6 +411,7 @@ def print_human(report: Dict[str, Any]) -> None:
     native = chain["cycle116_native"]
     transfer = chain["cycle116_fixed_jet_transfer"]
     lifted = chain["cycle116_smooth_lift"]
+    theorem = chain["fixed_jet_ldsw_theorem"]
     ledger = chain["cycle120_domain_field_ledger"]
     gate_chain = chain["cycle120_gate_arithmetic"]
     mca = chain["cycle120_supportwise_mca"]
@@ -428,6 +456,11 @@ def print_human(report: Dict[str, Any]) -> None:
         f"k={lifted['dimension']}, agreement={lifted['agreement']}, "
         f"delta={lifted['delta']}, A={lifted['padding']['A_size']}, "
         f"R={lifted['padding']['R_size']}"
+    )
+    print(
+        "fixed_jet_ldsw_theorem="
+        f"{theorem['proof_status']}, toy_cases={theorem['toy_case_count']}, "
+        f"native_bad_parameters={theorem['native_bad_parameters']}"
     )
     print(
         "cycle120_field_ledger="

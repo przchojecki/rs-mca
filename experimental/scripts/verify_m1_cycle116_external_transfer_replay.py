@@ -282,7 +282,9 @@ def build_report() -> Dict[str, Any]:
         },
         "checks": checks,
         "remaining_imports": [
-            "reviewer acceptance of the external verifier proof logic",
+            "external PR #96 provenance/output review if the packet is cited "
+            "directly; the fixed-jet proof logic is recorded locally in "
+            "verify_m1_fixed_jet_ldsw_theorem.py",
             "official ABF source gate verification",
         ],
         "nonmutating": True,
