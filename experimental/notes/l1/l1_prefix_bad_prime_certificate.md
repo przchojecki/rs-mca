@@ -941,6 +941,29 @@ the inseparable primes dividing `n`, the quotient of radical incidence ledgers
 is not merely monotone: it is the exact depth-frontier mass removed by the next
 prefix coefficient.
 
+Telescoping to the full-prefix endpoint gives the depth decomposition.  If
+`A != B`, `|A|=|B|=m`, and `sigma<m`, then the full-prefix endpoint has no
+prime support away from primes dividing `n`, so
+
+```text
+part_away_n(J_sigma(A,B))
+  =
+product_{r=sigma}^{m-1} Frontier_r(A,B),
+```
+
+where `Frontier_r(A,B)` is the away-from-`n` radical quotient from depth `r`
+to `r+1`.  Prime by prime, this says
+
+```text
+v_p(J_sigma(A,B))
+  =
+sum_{r=sigma}^{m-1}
+  (d_{p,r}(A,B)-d_{p,r+1}(A,B)),        p not dividing n.
+```
+
+Thus the full bad-prime incidence budget at a partial prefix is exactly the sum
+of the successive frontier masses killed before the rigid endpoint.
+
 ## Full-Prefix Rigidity
 
 The endpoint of the filtration is rigid.  Let `p` be split, let `h in F_p`
@@ -1134,6 +1157,9 @@ For the full `40`-pair `F_17` packet, every pair has radical frontier drop
 `17` from `sigma=4` to `sigma=5`, so the aggregate frontier product is
 `17^40`.  The nonsplit `F_9` witness similarly has radical frontier drop
 `3^2` from `sigma=1` to the full-prefix endpoint `sigma=2`.
+Telescoping all the way to the full-prefix endpoint gives the same products:
+the `F_17` packet has full-depth radical frontier product `17^40`, and the
+`F_9` witness has full-depth product `3^2`.
 
 The verifier separately checks this full-prefix endpoint for `n=16` at the
 split primes `17` and `97`, for every complement size `1 <= m <= 8`: at

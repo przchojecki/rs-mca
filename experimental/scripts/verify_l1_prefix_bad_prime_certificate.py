@@ -2170,6 +2170,58 @@ def radical_frontier_drop(
     }
 
 
+def radical_depth_telescoping(
+    left: Sequence[int],
+    right: Sequence[int],
+    order: int,
+    start_sigma: int,
+    full_sigma: int,
+) -> dict[str, Any]:
+    if not 1 <= start_sigma < full_sigma:
+        raise AssertionError("bad telescoping depth interval")
+    start = common_ideal_radical_incidence_index(
+        left,
+        right,
+        order,
+        start_sigma,
+    )
+    endpoint = common_ideal_radical_incidence_index(
+        left,
+        right,
+        order,
+        full_sigma,
+    )
+    if start["radical_incidence_index"] == 0:
+        raise AssertionError("telescoping excludes char-zero start ideal")
+    if endpoint["radical_incidence_index"] == 0:
+        raise AssertionError("telescoping excludes char-zero endpoint ideal")
+
+    start_away = part_away_from_order(start["radical_incidence_index"], order)
+    endpoint_away = part_away_from_order(
+        endpoint["radical_incidence_index"],
+        order,
+    )
+    frontier_product = 1
+    frontier_rows = []
+    for sigma in range(start_sigma, full_sigma):
+        drop = radical_frontier_drop(left, right, order, sigma)
+        frontier_product *= drop["frontier_drop_part"]
+        frontier_rows.append(drop)
+    if start_away != endpoint_away * frontier_product:
+        raise AssertionError("radical depth telescoping failed")
+    return {
+        "start_sigma": start_sigma,
+        "full_sigma": full_sigma,
+        "start_radical_index": start["radical_incidence_index"],
+        "endpoint_radical_index": endpoint["radical_incidence_index"],
+        "start_away_from_order": start_away,
+        "endpoint_away_from_order": endpoint_away,
+        "frontier_product": frontier_product,
+        "frontier_product_factorization": factorint(frontier_product),
+        "frontier_rows": frontier_rows,
+    }
+
+
 def check_prefix_radical_frontier_drop() -> dict[str, Any]:
     order = 16
     prime = 17
@@ -2219,18 +2271,67 @@ def check_prefix_radical_frontier_drop() -> dict[str, Any]:
     if extension_drop["frontier_drop_factorization"] != {3: 2}:
         raise AssertionError("bad F_9 radical frontier drop")
 
+    representative_telescoping = []
+    for start_sigma in range(1, 6):
+        telescoping = radical_depth_telescoping(
+            left,
+            right,
+            order,
+            start_sigma,
+            6,
+        )
+        if (
+            telescoping["endpoint_away_from_order"] != 1
+            or telescoping["start_away_from_order"]
+            != telescoping["frontier_product"]
+        ):
+            raise AssertionError("bad representative radical telescoping")
+        representative_telescoping.append(telescoping)
+
+    packet_telescoping_product = 1
+    packet_telescoping_counter: Counter[int] = Counter()
+    for pair in packet["pairs"]:
+        telescoping = radical_depth_telescoping(
+            pair["left"],
+            pair["right"],
+            order,
+            4,
+            6,
+        )
+        if telescoping["frontier_product_factorization"] != {17: 1}:
+            raise AssertionError("bad F_17 packet radical telescoping")
+        packet_telescoping_product *= telescoping["frontier_product"]
+        packet_telescoping_counter[telescoping["frontier_product"]] += 1
+    if factorint(packet_telescoping_product) != {17: 40}:
+        raise AssertionError("bad F_17 packet telescoping product")
+
+    extension_telescoping = radical_depth_telescoping((0, 1), (2, 5), 8, 1, 2)
+    if extension_telescoping["frontier_product_factorization"] != {3: 2}:
+        raise AssertionError("bad F_9 radical telescoping")
+
     return {
         "representative": {
             "left": list(left),
             "right": list(right),
             "rows": representative_rows,
+            "telescoping": representative_telescoping,
         },
         "packet_sigma4_to_5": {
             "pair_count": packet["collision_pair_count"],
             "frontier_drop_counts": dict(sorted(packet_drop_counter.items())),
             "frontier_product_factorization": factorint(packet_frontier_product),
         },
+        "packet_sigma4_to_full": {
+            "pair_count": packet["collision_pair_count"],
+            "frontier_product_counts": dict(
+                sorted(packet_telescoping_counter.items())
+            ),
+            "frontier_product_factorization": factorint(
+                packet_telescoping_product
+            ),
+        },
         "nonsplit_witness": extension_drop,
+        "nonsplit_telescoping": extension_telescoping,
     }
 
 
@@ -3762,6 +3863,8 @@ def print_human(report: dict[str, Any]) -> None:
         f"packet_drops={frontier['packet_sigma4_to_5']['frontier_drop_counts']}, "
         "packet_product="
         f"{frontier['packet_sigma4_to_5']['frontier_product_factorization']}, "
+        "packet_full="
+        f"{frontier['packet_sigma4_to_full']['frontier_product_factorization']}, "
         "f9_drop="
         f"{frontier['nonsplit_witness']['frontier_drop_factorization']}"
     )

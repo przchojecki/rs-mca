@@ -85,8 +85,9 @@ Keep entries concise and link to the relevant files.
   affine-orbit quotient ledger, the Newton bridge from elementary prefixes to
   power-sum/Fourier prefixes, the prefix-depth filtration for certificates and
   common-root factors, the exact radical frontier-drop ledger for prefix-depth
-  increments, the full-prefix rigidity endpoint, and a bounded exact
-  split-prime scan for the `n=16,m=6,sigma=4` row.
+  increments, the telescoping decomposition of radical incidence to the
+  full-prefix rigid endpoint, and a bounded exact split-prime scan for the
+  `n=16,m=6,sigma=4` row.
 - **How it is useful:** This supplies the finite-field layer complementary to
   characteristic-zero L1 reductions. It turns robustly aperiodic modular
   collisions into algebraic norm/resultant divisibility events, matching a
