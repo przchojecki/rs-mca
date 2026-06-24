@@ -70,7 +70,11 @@ Keep entries concise and link to the relevant files.
   fixed polynomial support checked on every expanded prime row.  The verifier
   now checks the exact beta-column Mellin identity
   `B_phi=sum_b phi(b)tau_p(b)` and the regular/support-fiber split, reducing
-  the beta marginal to a standard one-variable middle-extension estimate.
+  the beta marginal to a standard one-variable Kummer-isotypy check.  It also
+  checks the grouped beta-line identity
+  `G_{psi,phi}=sum_j phi(j)sum_i psi(i)(G_e)_{i,j}` for every quotient-character
+  block, localizing full `(BETA_2)` to a no-`phi^{-1}`-Kummer-summand statement
+  for bounded-conductor beta-line pushforwards.
 - **How it is useful:** This is a counterexample-first test of the remaining
   rank-two pushforward object, not of the already controlled exceptional
   ledger. The audited rows show p-scale behavior, with largest recorded full
@@ -90,9 +94,9 @@ Keep entries concise and link to the relevant files.
   torus singular beta-value contained in the displayed fixed support.  The
   largest regular beta-fiber trace is `2.8736848324 sqrt(p)`, and the largest
   fixed-support beta-fiber trace is `1.9527559055 p`.
-- **What to do next:** Prove p-scale estimates for the centered rank-two
-  block, prove the bounded-conductor/no-constant-summand `(BETA_2)` estimate
-  for the explicit rank-two pushforward, or extend the
+- **What to do next:** Prove the bounded-conductor/no-`phi^{-1}`-Kummer-summand
+  statement for the beta-line pushforwards, especially in the centered
+  `psi != 1` rows, or extend the
   finite scan to larger primes and quotient orders if looking for
   route-killing counterexamples.
 

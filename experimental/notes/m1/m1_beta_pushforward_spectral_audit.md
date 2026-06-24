@@ -474,18 +474,50 @@ support count in the audit is `9` beta-values.
 Thus the beta marginal is a fixed-conductor beta-column family.  On the
 regular beta-line complement, the family has bounded bidegree and bounded
 Kummer divisor.  The finite singular support has `O(1)` fibers, each of size
-`O(p)`.  Tensoring the resulting constructible beta-line sheaf by the
-nonprincipal Kummer sheaf `phi(b)` kills any geometrically constant summand
-on `G_m`.  The standard one-variable middle-extension trace bound therefore
-gives
+`O(p)`.  The remaining issue is the usual one-variable top-cohomology
+obstruction: after tensoring by `phi(b)`, the beta-line sheaf must have no
+geometrically constant summand.  Equivalently, before tensoring it should
+have no `phi^{-1}` Kummer-isotypic summand on `G_m`.  Under this standard
+no-Kummer-isotypic input, the one-variable middle-extension trace bound gives
 
 ```text
 B_phi = O_e(p)
 ```
 
 for every fixed quotient order `e` and every nonprincipal `phi` of
-`F_p^*/K_e`.  This closes the beta marginal as a standard one-parameter
-input; it is not the centered rank-two `(BETA_2^avg)` target itself.
+`F_p^*/K_e`.  This reduces the beta marginal to a standard one-parameter
+Kummer-isotypy check; it is not the centered rank-two `(BETA_2^avg)` target
+itself.
+
+The same beta-line viewpoint localizes every full `(BETA_2)` coefficient.
+For a quotient character `psi`, put
+
+```text
+tau_{psi,p}(b) =
+  sum_{(a,r) in G, Delta_b(a,r)=0}
+    psi(a) chi(d_UV(a,b,r)).
+```
+
+Then
+
+```text
+G_{psi,phi} = sum_{b in F_p^*} phi(b) tau_{psi,p}(b).
+```
+
+Equivalently, after grouping beta labels modulo `K_e`,
+
+```text
+g_{psi,j} = sum_i psi(i)(G_e)_{i,j},
+G_{psi,phi} = sum_j phi(j) g_{psi,j}.
+```
+
+Thus the remaining centered block is exactly the
+`psi != 1, phi != 1` Kummer-isotypic spectrum of these beta-line trace
+families.  A full pointwise `(BETA_2)` proof would follow from showing that,
+for every quotient character `psi`, the corresponding beta-line pushforward
+has no `phi^{-1}` Kummer constituent for `phi != 1`, with conductor bounded
+only in terms of `e`.  The standalone verifier checks the grouped
+beta-line identity for all quotient-character blocks on every expanded row.
 
 ## Interpretation
 
@@ -583,6 +615,16 @@ while the largest support-fiber trace is
 max_support |tau_p(b)|/p = 1.9527559055 at p=127, b=1.
 ```
 
+The grouped beta-line audit further checks
+
+```text
+G_{psi,phi} = sum_j phi(j) sum_i psi(i)(G_e)_{i,j}
+```
+
+for all quotient-character blocks, with zero formula error in the printed
+rows up to floating tolerance.  Thus the finite spectral scan is now testing
+exactly the beta-line Kummer-isotypic obstruction described above.
+
 Thus the averaged M1 target remains substantially smaller than the largest
 individual full pointwise coefficient and smaller than the full
 right-nonprincipal RMS in the finite rows, matching the point of the
@@ -618,4 +660,5 @@ checks the four component identities for `C_ab`, `C_a`, `C_b`, and `C_0`,
 and reports the nonnegative sufficient bound `sqrt(C_ab+e^{-2}C_0)/p`.
 It also checks the fixed beta-fiber singular-support ledger for the beta
 marginal family, the exact beta-column Mellin identity, and the regular versus
-fixed-support beta-fiber trace maxima.
+fixed-support beta-fiber trace maxima.  Finally, it checks the grouped
+beta-line identity for every quotient-character block.

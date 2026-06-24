@@ -812,6 +812,47 @@ def spectral_stats(
     )
 
 
+def beta_line_quotient_reduction_case(matrix: list[list[int]]) -> dict[str, float]:
+    order = len(matrix)
+    root = cmath.exp(2j * math.pi / order)
+    max_formula_error = 0.0
+    max_two_sided = 0.0
+    max_any = 0.0
+    for left_character in range(order):
+        grouped_beta_trace = []
+        for right in range(order):
+            grouped_beta_trace.append(
+                sum(
+                    matrix[left][right] * root ** (left_character * left)
+                    for left in range(order)
+                )
+            )
+        for right_character in range(1, order):
+            beta_line_coefficient = sum(
+                grouped_beta_trace[right] * root ** (right_character * right)
+                for right in range(order)
+            )
+            direct_coefficient = 0j
+            for left in range(order):
+                for right in range(order):
+                    direct_coefficient += matrix[left][right] * root ** (
+                        left_character * left + right_character * right
+                    )
+            coefficient_size = abs(beta_line_coefficient)
+            max_any = max(max_any, coefficient_size)
+            if left_character != 0:
+                max_two_sided = max(max_two_sided, coefficient_size)
+            max_formula_error = max(
+                max_formula_error,
+                abs(beta_line_coefficient - direct_coefficient),
+            )
+    return {
+        "max_beta_line_any_coefficient": round(max_any, 10),
+        "max_beta_line_two_sided_coefficient": round(max_two_sided, 10),
+        "max_beta_line_formula_error": round(max_formula_error, 12),
+    }
+
+
 def audit_case(p: int, quotient_order: int) -> dict[str, Any]:
     matrix, point_count = good_pushforward_matrix(p, quotient_order)
     frobenius_square = centered_frobenius_square(matrix)
@@ -833,6 +874,7 @@ def audit_case(p: int, quotient_order: int) -> dict[str, Any]:
         quotient_order,
         matrix,
     )
+    beta_line_reduction = beta_line_quotient_reduction_case(matrix)
     parseval_error = abs(
         two_sided_energy / (quotient_order * quotient_order) - frobenius_square
     )
@@ -886,6 +928,20 @@ def audit_case(p: int, quotient_order: int) -> dict[str, Any]:
         )
     if joint_decomposition_error > TOLERANCE:
         raise AssertionError((p, quotient_order, joint_decomposition_error))
+    beta_line_any_ratio = (
+        beta_line_reduction["max_beta_line_any_coefficient"] / p
+    )
+    beta_line_two_sided_ratio = (
+        beta_line_reduction["max_beta_line_two_sided_coefficient"] / p
+    )
+    if abs(beta_line_any_ratio - max_beta2 / p) > TOLERANCE:
+        raise AssertionError((p, quotient_order, beta_line_any_ratio, max_beta2 / p))
+    if abs(beta_line_two_sided_ratio - max_two_sided / p) > TOLERANCE:
+        raise AssertionError(
+            (p, quotient_order, beta_line_two_sided_ratio, max_two_sided / p)
+        )
+    if beta_line_reduction["max_beta_line_formula_error"] > TOLERANCE:
+        raise AssertionError((p, quotient_order, beta_line_reduction))
     two_sided_ratio = max_two_sided / p
     beta2_ratio = max_beta2 / p
     left_principal_ratio = max_left_principal / p
@@ -936,6 +992,16 @@ def audit_case(p: int, quotient_order: int) -> dict[str, Any]:
         "joint_decomposition_error": round(joint_decomposition_error, 12),
         "alpha_marginal_reduction": alpha_reduction,
         "beta_marginal_reduction": beta_reduction,
+        "beta_line_quotient_reduction": {
+            "max_beta_line_any_coefficient_ratio": round(beta_line_any_ratio, 10),
+            "max_beta_line_two_sided_coefficient_ratio": round(
+                beta_line_two_sided_ratio,
+                10,
+            ),
+            "max_beta_line_formula_error": beta_line_reduction[
+                "max_beta_line_formula_error"
+            ],
+        },
     }
 
 
@@ -1147,6 +1213,7 @@ def print_report(report: dict[str, Any]) -> None:
     for row in report["rows"]:
         alpha_reduction = row["alpha_marginal_reduction"]
         beta_reduction = row["beta_marginal_reduction"]
+        beta_line_reduction = row["beta_line_quotient_reduction"]
         print(
             "p={p} e={quotient_order} good={good_point_count} "
             "two_sided/p={max_two_sided_coefficient_ratio} "
@@ -1164,12 +1231,16 @@ def print_report(report: dict[str, Any]) -> None:
             "marginal_parseval_error={marginal_parseval_error} "
             "pair_energy_error={pair_energy_error} "
             "pythagorean_error={pythagorean_error} "
-            "component_error={component_centered_error}".format(
+            "component_error={component_centered_error} "
+            "beta_line_error={beta_line_error}".format(
                 alpha_coeff_ratio=alpha_reduction[
                     "max_alpha_marginal_coefficient_ratio"
                 ],
                 beta_coeff_ratio=beta_reduction[
                     "max_beta_marginal_coefficient_ratio"
+                ],
+                beta_line_error=beta_line_reduction[
+                    "max_beta_line_formula_error"
                 ],
                 **row,
             )

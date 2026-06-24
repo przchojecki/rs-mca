@@ -750,10 +750,24 @@ singular beta-values to one explicit fixed polynomial support of degree `26`
 including beta zero, hence degree `25` on `G_m` (plus beta infinity), and the
 standalone verifier checks this support on the expanded prime rows.  The
 regular family has bounded conductor, the fixed singular fibers contribute
-`O(p)`, and tensoring by nonprincipal `phi` removes constant beta-line
-summands.  Hence the standard one-variable middle-extension trace estimate
-gives `B_phi=O_e(p)`.  This closes the beta marginal as a one-dimensional
-input; it is still not the centered M1 target itself.
+`O(p)`, and the only remaining one-variable obstruction is a possible
+`phi^{-1}` Kummer-isotypic summand on the beta line.  Excluding that summand
+for every nonprincipal `phi` lets the standard one-variable middle-extension
+trace estimate give `B_phi=O_e(p)`.  Thus the beta marginal is reduced to a
+one-dimensional Kummer-isotypy check; it is still not the centered M1 target
+itself.
+
+The same beta-line localization applies to all character rows:
+
+```text
+G_{psi,phi} = sum_{b in F_p^*} phi(b) tau_{psi,p}(b),
+```
+
+where `tau_{psi,p}` is the beta-fiber trace with the extra factor `psi(a)`.
+The centered M1 block is exactly the `psi != 1, phi != 1` part of this
+beta-line Kummer spectrum.  Therefore a full pointwise `(BETA_2)` proof is
+equivalent to a bounded-conductor/no-`phi^{-1}`-Kummer-summand statement for
+these beta-line pushforwards.
 
 The elementary hypotheses behind this import are now audited in
 `verify_m1_depth_two_line_conic_resonance_reduction.py`:
