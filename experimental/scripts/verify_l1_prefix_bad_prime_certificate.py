@@ -9,6 +9,10 @@ The theorem checked here is templatewise:
 
 This script is intentionally small and nonmutating.  It does not prove the
 missing L1 bad-prime aggregation theorem.
+
+It also checks the split-prime row-accounting identity for the known F_17
+packet: summing modular common-root degrees over template pairs agrees with
+counting collision pairs over all primitive roots.
 """
 
 from __future__ import annotations
@@ -361,11 +365,12 @@ def finite_prefix_collision_pairs(
     order: int,
     complement_size: int,
     sigma: int,
+    root: int | None = None,
 ) -> dict[str, Any]:
     if (prime - 1) % order != 0:
         raise AssertionError("order must divide prime-1")
     generator = primitive_root(prime)
-    h = pow(generator, (prime - 1) // order, prime)
+    h = root if root is not None else pow(generator, (prime - 1) // order, prime)
     if pow(h, order, prime) != 1 or any(pow(h, d, prime) == 1 for d in range(1, order)):
         raise AssertionError("constructed element does not have exact order")
 
@@ -397,6 +402,82 @@ def finite_prefix_collision_pairs(
         "max_fiber": max(histogram) if histogram else 0,
         "collision_pair_count": len(pairs),
         "pairs": pairs,
+    }
+
+
+def check_split_prime_row_accounting() -> dict[str, Any]:
+    prime = 17
+    order = 16
+    complement_size = 6
+    sigma = 4
+    primitive_roots = primitive_order_roots(prime, order)
+    incidence_counter: Counter[tuple[tuple[int, ...], tuple[int, ...]]] = Counter()
+    row_counts_by_root = {}
+
+    for root in primitive_roots:
+        row = finite_prefix_collision_pairs(
+            prime=prime,
+            order=order,
+            complement_size=complement_size,
+            sigma=sigma,
+            root=root,
+        )
+        row_counts_by_root[root] = row["collision_pair_count"]
+        for pair in row["pairs"]:
+            key = normalized_pair(pair["left"], pair["right"])
+            incidence_counter[key] += 1
+
+    fixed_row_counts = set(row_counts_by_root.values())
+    if fixed_row_counts != {40}:
+        raise AssertionError(f"unexpected split-root row counts: {row_counts_by_root}")
+
+    degree_distribution: Counter[int] = Counter()
+    degree_weighted_sum = 0
+    mismatches = []
+    for pair, multiplicity in incidence_counter.items():
+        common_root_degree = degree(common_root_gcd_mod(
+            pair[0],
+            pair[1],
+            order,
+            sigma,
+            prime,
+        ))
+        if common_root_degree != multiplicity:
+            mismatches.append({
+                "left": list(pair[0]),
+                "right": list(pair[1]),
+                "incidence_multiplicity": multiplicity,
+                "common_root_degree": common_root_degree,
+            })
+        degree_distribution[common_root_degree] += 1
+        degree_weighted_sum += common_root_degree
+    if mismatches:
+        raise AssertionError(f"row-accounting mismatches: {mismatches[:3]}")
+
+    direct_incidence_sum = sum(incidence_counter.values())
+    expected_incidence_sum = len(primitive_roots) * 40
+    if direct_incidence_sum != expected_incidence_sum:
+        raise AssertionError("bad direct incidence count")
+    if degree_weighted_sum != direct_incidence_sum:
+        raise AssertionError("gcd-degree sum does not match row incidences")
+
+    return {
+        "prime": prime,
+        "order": order,
+        "complement_size": complement_size,
+        "sigma": sigma,
+        "primitive_root_count": len(primitive_roots),
+        "row_counts_by_root": {
+            str(root): row_counts_by_root[root]
+            for root in sorted(row_counts_by_root)
+        },
+        "fixed_root_collision_pair_count": next(iter(fixed_row_counts)),
+        "incident_template_pair_count": len(incidence_counter),
+        "root_template_incidence_sum": direct_incidence_sum,
+        "gcd_degree_weighted_sum": degree_weighted_sum,
+        "degree_distribution_on_incident_pairs": dict(
+            sorted(degree_distribution.items())
+        ),
     }
 
 
@@ -883,6 +964,7 @@ def build_report() -> dict[str, Any]:
         "theorem_problem_id": "L1 prefix bad-prime certificate",
         "structured_char_zero_example": check_structured_char_zero_example(),
         "f17_packet": check_f17_packet(),
+        "split_prime_row_accounting": check_split_prime_row_accounting(),
         "split_prime_sweep": check_split_prime_sweep(),
         "bounded_split_prime_row_scan": check_bounded_split_prime_row_scan(),
         "prime_ideal_false_positive": check_prime_ideal_false_positive(),
@@ -923,6 +1005,16 @@ def print_human(report: dict[str, Any]) -> None:
     print(f"aggregate_lcm={packet['aggregate_lcm_certificate']}")
     print(f"translation_orbits={len(packet['translation_orbits'])}")
     print(f"affine_orbits={packet['affine_orbit_count']}")
+    accounting = report["split_prime_row_accounting"]
+    print(
+        "row_accounting="
+        f"p={accounting['prime']}, "
+        f"roots={accounting['primitive_root_count']}, "
+        f"fixed_pairs={accounting['fixed_root_collision_pair_count']}, "
+        f"incident_pairs={accounting['incident_template_pair_count']}, "
+        f"incidence_sum={accounting['root_template_incidence_sum']}, "
+        f"gcd_degree_sum={accounting['gcd_degree_weighted_sum']}"
+    )
     false_positive = report["prime_ideal_false_positive"]
     print(
         "false_positive="

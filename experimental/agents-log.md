@@ -46,15 +46,17 @@ Keep entries concise and link to the relevant files.
   via the modular gcd `gcd(Phi_n, Delta_1, ..., Delta_sigma)` needed to filter
   rational-certificate false positives.  The modular gcd degree is also
   recorded as the exact primitive-root embedding multiplicity at split primes.
-  The note additionally records affine-orbit invariance for future aggregation
-  and a bounded exact split-prime scan for the `n=16,m=6,sigma=4` row.
+  The note additionally records affine-orbit invariance, the split-prime
+  row-accounting identity equating row collision counts with degree-weighted
+  common-prime-ideal incidence, and a bounded exact split-prime scan for the
+  `n=16,m=6,sigma=4` row.
 - **How it is useful:** This supplies the finite-field layer complementary to
   characteristic-zero L1 reductions. It turns robustly aperiodic modular
   collisions into algebraic norm/resultant divisibility events, matching a
   first attack in `agents.md`.
 - **What to do next:** Prove a uniform aggregation or density-over-primes bound
-  for these lcm certificates, together with common-prime-ideal incidence
-  control, after quotient-periodic and characteristic-zero templates are
+  for these lcm certificates by bounding the degree-weighted common-prime-ideal
+  incidence mass after quotient-periodic and characteristic-zero templates are
   removed.
 
 ### 2026-06-23 - Cycle119 admissibility review

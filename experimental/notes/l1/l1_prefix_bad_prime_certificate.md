@@ -257,6 +257,51 @@ Thus any finite bad-prime aggregation can quotient by affine template orbits
 without changing either the rational certificate or the ideal-level collision
 test.
 
+## Split-Prime Row Accounting
+
+The common-root degree gives an exact row-level accounting identity.  Fix a
+split prime `p` and write `P_h` for the finite-field prefix map obtained from
+a primitive `n`-th root `h in F_p`.  Let
+
+```text
+Coll(h) = {{A,B}: A != B, P_h(A)=P_h(B)}
+```
+
+be the unordered collision-pair set at that root.  For an unordered template
+pair define
+
+```text
+d_p(A,B) = deg gcd(Phi_n, Delta_1, ..., Delta_sigma) in F_p[T].
+```
+
+Then, because `d_p(A,B)` counts exactly the primitive roots at which this pair
+collides,
+
+```text
+sum_{A<B} d_p(A,B)
+  = sum_{h primitive} |Coll(h)|.
+```
+
+Moreover all primitive roots give the same row count.  If `h'=h^u` with
+`u in (Z/nZ)^*`, then
+
+```text
+E_r(A;h') = E_r(uA;h),
+```
+
+and dilation by `u` is a bijection on the `m`-subsets of `Z/nZ`.  Hence
+`|Coll(h')|=|Coll(h)|`, and therefore
+
+```text
+sum_{A<B} d_p(A,B) = phi(n) |Coll(h)|.
+```
+
+Thus the split-prime row count is exactly the common-prime-ideal incidence
+mass divided by `phi(n)`.  After characteristic-zero and quotient-periodic
+templates are removed, every nonzero summand must also satisfy
+`p | C_n,sigma(A,B)`.  This is the precise finite object that a future L1
+density-over-primes or bad-prime aggregation theorem has to bound.
+
 ## Worked L1 Packet: F_17, n=16
 
 The existing aperiodic collision certificate in
@@ -294,6 +339,19 @@ Thus `17` is the only split prime in the certificate of every collision
 template and of the complete three-orbit packet.  In particular, the packet is
 a genuine finite-field bad-prime event, not evidence for a characteristic-zero
 aperiodic family.
+
+The verifier also checks the split-prime row accounting identity across all
+primitive roots in `F_17`.  There are `phi(16)=8` such roots, each gives `40`
+collision pairs, and the root-template incidence ledger has
+
+```text
+8 * 40 = 320
+```
+
+incidences.  The modular-gcd side has the same weighted mass: there are `320`
+incident unordered template pairs, each with common-root degree `1`.  Thus the
+known `F_17` packet is exactly accounted for by the degree-weighted
+common-prime-ideal ledger.
 
 The verifier also checks the same row over the next split primes
 
