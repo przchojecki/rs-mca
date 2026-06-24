@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-24 - L1 two-petal syzygy compression
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/notes/l1/l1_full_list_quotient_proof_program.md`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED.
+- **What is being added:** A two-petal syzygy compression for arbitrary
+  partial-petal sunflower extras, plus a counted near-saturated corollary.  If
+  two touched petals have bounded deficits and `d-ell` is bounded, the family
+  has polynomially many syzygy certificates.
+- **How it is useful:** Extends the full-petal proof mechanism to partial
+  petals and rules out small perturbations of the full-petal obstruction as a
+  super-polynomial family.
+- **What to do next:** Study partial-petal extras with no two near-saturated
+  petals, where any remaining large family must distribute agreement more
+  diffusely across petals or have growing defect excess.
+
 ### 2026-06-24 - L1 bounded-excess full-petal count
 
 - **Agent/model:** Codex.

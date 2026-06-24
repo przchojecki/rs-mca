@@ -976,6 +976,112 @@ mechanism plus bounded perturbation.  It must use genuinely growing
 core-defect excess, or it must leave the full-petal regime and use partial
 petal agreements.
 
+## Lemma 11. Two-Petal Syzygy Compression
+
+Status: PROVED.
+
+Return to the general sunflower notation of Lemma 2; the unused background may
+be nonempty.  Let `P` be a non-planted listed codeword, and suppose it touches
+two distinct petals `T_i,T_j`.  Put
+
+```text
+a_i = |S_i|,        a_j = |S_j|.
+```
+
+Then there are polynomials `A_i,A_j` satisfying
+
+```text
+deg A_i <= d-a_i,        deg A_j <= d-a_j,
+```
+
+and
+
+```text
+(c_j-c_i)L_D = L_{S_i}A_i - L_{S_j}A_j.
+```
+
+Moreover,
+
+```text
+W_P = c_iL_D + L_{S_i}A_i
+    = c_jL_D + L_{S_j}A_j.
+```
+
+### Proof
+
+By Lemma 2,
+
+```text
+W_P - c_iL_D
+```
+
+vanishes on `S_i`, and
+
+```text
+W_P - c_jL_D
+```
+
+vanishes on `S_j`.  Since `P` is non-planted, Lemma 2 also gives
+`a_i,a_j <= d`.  Therefore
+
+```text
+W_P - c_iL_D = L_{S_i}A_i,
+W_P - c_jL_D = L_{S_j}A_j
+```
+
+with the displayed degree bounds.  Subtracting these identities gives the
+syzygy for `L_D`, and either identity recovers `W_P`.
+
+### Counted Near-Saturated Corollary
+
+Assume now that the sunflower has no unused background, and fix integers
+`e0,u0 >= 0`.  The number of non-planted listed codewords satisfying
+
+```text
+d <= ell+e0
+```
+
+and having two touched petals with at most `u0` missed points in each of those
+petals is at most
+
+```text
+binom(M,2)
+  * (sum_{u=0}^{u0} binom(ell,u))^2
+  * q^{2(e0+u0+1)}.
+```
+
+Indeed, choose the lexicographically first pair of touched petals whose
+deficits are at most `u0`.  The codeword is determined by the certificate
+
+```text
+({i,j}, S_i, S_j, A_i, A_j).
+```
+
+The chosen subsets have the form `S_i subset T_i`, `S_j subset T_j`, each
+missing at most `u0` points.  Since
+
+```text
+d-a_i <= e0+u0,        d-a_j <= e0+u0,
+```
+
+there are at most `q^{e0+u0+1}` choices for each cofactor.  The syzygy then
+determines `L_D`; if this is a valid missed-core locator, it determines `D`,
+then `W_P`, and finally `P`.  Certificates that do not recover a valid locator
+or listed codeword are simply discarded.  Thus the certificate map is
+injective and the displayed bound follows.
+
+At the L1 lower cutoff, where `M=O(log n)` and `ell<=n`, this near-saturated
+partial-petal family is polynomial for fixed `e0,u0` in the generated-field
+window `q=poly(n)`.
+
+### Consequences
+
+The bounded-excess full-petal count is the special case `u0=0`.  Lemma 11
+also covers partial-petal extras that are small perturbations of that full
+petal situation.  Any remaining partial-petal super-polynomial obstruction
+must therefore either have growing defect excess, or avoid having two
+near-saturated petals.
+
 ## Development Ledger
 
 - **Conjecture 1 full-list primitive remainder:** CONJECTURAL.  Main proof
@@ -1009,5 +1115,7 @@ petal agreements.
   with `d=ell` by `binom(M,2)q`.
 - **Bounded-excess full-petal count:** PROVED.  Bounds all full-petal extras
   with `d-ell<=e0` by `O_{e0}(q^{2e0+2}log(n)^2)`.
+- **Two-petal syzygy compression:** PROVED.  Reduces partial-petal extras with
+  two near-saturated petals to polynomially many syzygy certificates.
 - **Mixed-petal sunflower amplification:** CONJECTURAL.  Next focused bound to
   prove or refute in the large-defect regime.
