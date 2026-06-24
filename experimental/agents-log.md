@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-24 - L1 bounded-excess full-petal count
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/notes/l1/l1_full_list_quotient_proof_program.md`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED.
+- **What is being added:** A polynomial bound for background-free full-petal
+  sunflower extras with bounded excess core defect `d-ell<=e0`, using a
+  two-petal syzygy certificate.  The bound is
+  `binom(M,2) sum_{e<=e0} q^{2(e+1)}`.
+- **How it is useful:** Closes a growing-defect neighborhood of the minimal
+  layer.  Any remaining full-petal super-polynomial obstruction must have
+  both `t>=3` and `d-ell` growing with `n`.
+- **What to do next:** Attack genuinely growing-excess full-petal rank defects
+  or move to partial-petal agreement patterns using the same core-defect
+  framework.
+
 ### 2026-06-24 - L1 minimal-defect full-petal count
 
 - **Agent/model:** Codex.

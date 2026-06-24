@@ -888,6 +888,94 @@ Equivalently, any further super-polynomial sunflower family must be a genuine
 higher-defect, many-petal rank-defect phenomenon, not the minimal
 locator-pencil mechanism seen in the first scans.
 
+## Lemma 10. Bounded-Excess Full-Petal Count
+
+Status: PROVED.
+
+Assume the sunflower has no unused background.  Fix `e0 >= 0`.  The number of
+non-planted listed codewords whose touched petals are all full and whose core
+defect satisfies
+
+```text
+ell <= d <= ell+e0
+```
+
+is at most
+
+```text
+binom(M,2) sum_{e=0}^{e0} q^{2(e+1)}.
+```
+
+For fixed `e0`, this is polynomial in the generated-field window `q=poly(n)`.
+At the L1 lower cutoff, where `M=O(log n)`, it is
+
+```text
+O_{e0}(q^{2e0+2} log(n)^2).
+```
+
+### Proof
+
+Let `P` be such a codeword.  By Lemma 4, it touches at least two petals.
+Choose the two smallest touched-petal indices `i<j`.  Put
+
+```text
+e = d - ell.
+```
+
+Since both petals are full, Lemma 2 gives
+
+```text
+W_P - c_i L_D = L_{T_i} A_i,
+W_P - c_j L_D = L_{T_j} A_j,
+```
+
+where
+
+```text
+deg A_i <= e,        deg A_j <= e.
+```
+
+Indeed, all displayed polynomials have degree at most `d`, and division by the
+degree-`ell` petal locator leaves degree at most `d-ell=e`.
+
+Thus the codeword determines the certificate
+
+```text
+({i,j}, A_i, A_j).
+```
+
+Conversely, this certificate determines
+
+```text
+L_D = (L_{T_i}A_i - L_{T_j}A_j)/(c_j-c_i)
+```
+
+and then
+
+```text
+W_P = c_iL_D + L_{T_i}A_i,
+P = L_{C\D}W_P,
+```
+
+whenever the right-hand side is a valid missed-core locator.  Therefore the
+map from codewords to certificates is injective.  For fixed `e`, there are
+`binom(M,2)` choices of `{i,j}` and at most `q^{e+1}` choices for each of
+`A_i` and `A_j`.  Summing over `0 <= e <= e0` proves the bound.
+
+### Consequences
+
+This closes every bounded-excess full-petal layer.  The remaining full-petal
+danger must have
+
+```text
+d - ell -> infinity,        t>=3.
+```
+
+Thus a future counterexample cannot come from the minimal locator-pencil
+mechanism plus bounded perturbation.  It must use genuinely growing
+core-defect excess, or it must leave the full-petal regime and use partial
+petal agreements.
+
 ## Development Ledger
 
 - **Conjecture 1 full-list primitive remainder:** CONJECTURAL.  Main proof
@@ -919,5 +1007,7 @@ locator-pencil mechanism seen in the first scans.
   kernel dimension of the CRT top-coefficient map.
 - **Minimal-defect full-petal count:** PROVED.  Bounds all full-petal extras
   with `d=ell` by `binom(M,2)q`.
+- **Bounded-excess full-petal count:** PROVED.  Bounds all full-petal extras
+  with `d-ell<=e0` by `O_{e0}(q^{2e0+2}log(n)^2)`.
 - **Mixed-petal sunflower amplification:** CONJECTURAL.  Next focused bound to
   prove or refute in the large-defect regime.
