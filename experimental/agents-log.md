@@ -124,6 +124,10 @@ Keep entries concise and link to the relevant files.
   mean has the additional `(1-1/q)^{mu(n-a)}` factor, and each all-remainder
   quotient packet has exact support with interleaved count `L_{M,mu}(a,tau)`;
   the verifier checks exact advertised support in the dithered `F_17` packet.
+  The random regular-core pair correlations are also now exact: two `a`-sets
+  with intersection `r` are independent for `r<k`, while for `r>=k` the only
+  surplus is `q^{mu(r-k)}`; the verifier brute-checks the support-pair rank law
+  over `F_7`, `n=6`, `k=2`, `a=3`.
 - **How it is useful:** Turns the L2 objective from a broad "avoid Cartesian
   overcharge" principle into a concrete conjectural inequality that can be
   falsified or promoted. The `K_{2,2}` witness records that local Cartesian

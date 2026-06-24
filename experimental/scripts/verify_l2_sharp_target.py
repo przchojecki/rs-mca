@@ -6,7 +6,7 @@ settled by the support-intersection bridge: over-agreement can create
 interleaved mass, so the falsification target is whether that mass can grow like
 a Cartesian product rather than like a polynomial support-overlap codegree.
 
-The script checks ten finite objects.
+The script checks eleven finite objects.
 
 1. The all-remainder quotient packet count used as Quot_rem_mu in the target.
 2. The Johnson-shell weights used in the codegree reduction.
@@ -17,7 +17,8 @@ The script checks ten finite objects.
 7. The simultaneous feasible-support fiber behind the regular exact-row core.
 8. The locator-syndrome equations defining that simultaneous fiber.
 9. The equivalent weighted residue-moment equations.
-10. A realized Reed-Solomon K_{2,2} gluing over a prime-field multiplicative
+10. The support-pair rank law behind the random regular-core second moment.
+11. A realized Reed-Solomon K_{2,2} gluing over a prime-field multiplicative
    subgroup, computed by exact list enumeration, together with its punctured
    codegree profile.
 
@@ -340,6 +341,70 @@ def interleaved_count(families: list[list[frozenset[int]]], a: int) -> int:
         if len(common) >= a:
             count += 1
     return count
+
+
+def support_pair_rank_profile() -> dict:
+    """Brute-force the two-support feasibility rank law for one random row."""
+    p, n, k, a = 7, 6, 2, 3
+    h_values = subgroup(p, n)
+    codewords = all_codewords(p, h_values, k)
+    rows = []
+    for intersection_size in range(a + 1):
+        first = tuple(range(a))
+        second = tuple(
+            list(range(intersection_size))
+            + list(range(a, a + (a - intersection_size)))
+        )
+        union = sorted(set(first) | set(second))
+        union_index = {idx: pos for pos, idx in enumerate(union)}
+        feasible_first = {
+            tuple(cw[idx] for idx in first)
+            for cw in codewords
+        }
+        feasible_second = {
+            tuple(cw[idx] for idx in second)
+            for cw in codewords
+        }
+        brute_count = 0
+        for assignment in itertools.product(range(p), repeat=len(union)):
+            first_values = tuple(assignment[union_index[idx]] for idx in first)
+            second_values = tuple(assignment[union_index[idx]] for idx in second)
+            if first_values in feasible_first and second_values in feasible_second:
+                brute_count += 1
+        expected_dimension = 2 * k - min(intersection_size, k)
+        probability_exponent = len(union) - expected_dimension
+        rows.append(
+            {
+                "intersection": intersection_size,
+                "union_size": len(union),
+                "expected_dimension": expected_dimension,
+                "brute_count": brute_count,
+                "expected_count": p**expected_dimension,
+                "probability_exponent": probability_exponent,
+                "independent_exponent": 2 * (a - k),
+            }
+        )
+    return {
+        "p": p,
+        "n": n,
+        "k": k,
+        "a": a,
+        "rows": rows,
+        "all_counts_match": all(
+            row["brute_count"] == row["expected_count"] for row in rows
+        ),
+        "below_k_independent": all(
+            row["probability_exponent"] == row["independent_exponent"]
+            for row in rows
+            if row["intersection"] < k
+        ),
+        "above_k_surplus": all(
+            row["probability_exponent"]
+            == 2 * a - row["intersection"] - k
+            for row in rows
+            if row["intersection"] >= k
+        ),
+    }
 
 
 def regular_irregular_profile(families: list[list[frozenset[int]]], a: int) -> dict:
@@ -1194,6 +1259,7 @@ def run() -> dict:
     )
     designs = [kmm_grid_design(k=3, a=5, m=m) for m in (2, 3, 4, 5)]
     dithered_witness = realized_dithered_quotient_packet()
+    support_pair_profile = support_pair_rank_profile()
     witness = realized_rs_k22()
     checks = {
         "quotient_budget_nonnegative": quotient_example["total"] >= 0,
@@ -1325,6 +1391,13 @@ def run() -> dict:
             "distinct_polynomials"
         ]
         == dithered_witness["constructed_count"],
+        "support_pair_rank_counts": support_pair_profile["all_counts_match"],
+        "support_pair_rank_independence_below_k": support_pair_profile[
+            "below_k_independent"
+        ],
+        "support_pair_rank_surplus_above_k": support_pair_profile[
+            "above_k_surplus"
+        ],
         "kmm_grid_formula": all(d["interleaved_edges"] == d["grid_edges_at_n_min"] for d in designs),
         "rs_witness_creates_mass": witness["mass_creation"],
         "rs_witness_realizes_k22": witness["interleaved"] == witness["product_bound"] == 4,
@@ -1392,6 +1465,7 @@ def run() -> dict:
         "fixed_arity_johnson_shell_weight_example": fixed_arity_shell_weight_example,
         "kmm_designs": designs,
         "realized_dithered_quotient_packet": dithered_witness,
+        "support_pair_rank_profile": support_pair_profile,
         "realized_rs_k22": witness,
         "checks": checks,
         "pass": all(checks.values()),
@@ -1481,6 +1555,20 @@ def main(argv: list[str] | None = None) -> int:
             "  fixed-arity Johnson shell weight example: "
             f"power={fjw['power']}, exact={fjw['exact_weight_sum']}, "
             f"harmonic_bound={fjw['harmonic_upper_bound']}"
+        )
+        sp = result["support_pair_rank_profile"]
+        sp_rows = [
+            {
+                "r": row["intersection"],
+                "dim": row["expected_dimension"],
+                "exp": row["probability_exponent"],
+                "count": row["brute_count"],
+            }
+            for row in sp["rows"]
+        ]
+        print(
+            "  support-pair rank profile: "
+            f"F_{sp['p']}, n={sp['n']}, k={sp['k']}, a={sp['a']}, rows={sp_rows}"
         )
         print("  K_{m,m} abstract designs:")
         for d in result["kmm_designs"]:

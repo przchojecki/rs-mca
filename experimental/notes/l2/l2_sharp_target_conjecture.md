@@ -296,6 +296,59 @@ uniform value `U_i(x)` must avoid the single value `c_{i,S}(x)`, which has
 probability `1-1/q`. These outside conditions are independent over rows and
 points. Summing again over `S` gives the displayed exact-regular mean.
 
+The first nontrivial correlation in this random model is also exact.
+
+**Lemma (support-pair rank and random second moment).** Fix two `a`-sets
+`S,T subset H`, put `r=|S cap T|`, and let `U:H -> F_q` be a uniform random
+row. Then
+
+```text
+Pr[S,T in Fib_U(a)]
+ = q^{-2(a-k)}                  if r < k,
+ = q^{-(2a-r-k)}                if r >= k.
+```
+
+For `mu` independent rows, the same probability is raised to the `mu`-th power.
+Consequently
+
+```text
+E |Fib_U^cap(a)|^2
+ = sum_{r=0}^a
+     binom(n,a) binom(a,r) binom(n-a,a-r)
+     q^{-mu(2a-r-2k+min(r,k))}.
+```
+
+Thus two candidate supports behave independently until their intersection has
+size at least `k`; the only random-model pair surplus is the explicit factor
+`q^{mu(r-k)}` from high-overlap pairs.
+
+*Proof.* The condition `S in Fib_U(a)` says that `U|_S` lies in the
+`k`-dimensional Reed-Solomon restriction space on `S`; similarly for `T`.
+Equivalently, on `S union T` there must be two degree-`<k` polynomials
+`P,Q` such that `U|_S=P|_S`, `U|_T=Q|_T`, and `P=Q` on `S cap T`.
+
+The pair `(P,Q)` has `2k` coefficients. The equality on `S cap T` imposes
+`min(r,k)` independent conditions, because a nonzero degree-`<k` polynomial
+cannot vanish on `k` distinct points. Since `a>=k`, evaluation on `S` and `T`
+separately determines `P` and `Q`; hence the resulting subspace of
+`F_q^{S union T}` has dimension
+
+```text
+2k - min(r,k).
+```
+
+The ambient union has size `2a-r`, so the probability for one row is
+
+```text
+q^{(2k-min(r,k))-(2a-r)}
+ = q^{-(2a-r-2k+min(r,k))},
+```
+
+which is the displayed two-case formula. Independence over rows gives the
+`mu`-row probability. Finally, the number of ordered pairs `(S,T)` with
+`|S|=|T|=a` and `|S cap T|=r` is
+`binom(n,a) binom(a,r) binom(n-a,a-r)`, giving the second-moment identity.
+
 **Lemma (all-remainder quotient packets have exact support and exact count).**
 Fix one scale `M | n` with `M>sigma`, write `a=M ell+u` with
 `0<=u<M`, and fix an omitted `M`-coset `C_0`. For row `i`, choose
@@ -1026,13 +1079,21 @@ checks the following stress points.
    an exhaustive description of that locus in small finite examples; the
    remaining aperiodic zero-moment supports are exactly what the polynomial
    residual must control.
-3. The natural `K_{m,m}` grid over-agreement family has
+3. The support-pair rank law is brute-checked over `F_7`, `n=6`, `k=2`,
+   `a=3`. For intersection sizes `r=0,1,2,3`, the verifier counts the actual
+   assignments on `S union T` for which both `S` and `T` are feasible. The
+   dimensions are `4,3,2,2`, giving counts `7^4,7^3,7^2,7^2` and probability
+   exponents `2,2,2,1`. Thus the independence threshold at `r<k` and the
+   high-overlap surplus at `r>=k` are checked directly in a finite RS model.
+   This is random-model evidence for the regular-core local-limit target, not
+   a worst-case proof.
+4. The natural `K_{m,m}` grid over-agreement family has
    ```text
    n_min = (k-1) + m^2(a-k+1),
    ```
    so this attack realizes local Cartesian blocks but only with polynomial
    growth in the tested grid model.
-4. An exact Reed-Solomon enumeration over `F_29`, `n=14`, `k=3`, `a=5`
+5. An exact Reed-Solomon enumeration over `F_29`, `n=14`, `k=3`, `a=5`
    realizes a genuine `K_{2,2}` over-agreement witness:
    ```text
    base row lists = [2,2],
@@ -1055,7 +1116,7 @@ checks the following stress points.
    The two row-1 anchor supports have size `8`; the punctured Johnson bound is
    `floor(8(8-3+1)/(5^2-8(3-1))) = 5`, so the observed codegrees `2,2`
    satisfy the proposition.
-5. The same witness satisfies the deterministic shell bound: the row-1 shell
+6. The same witness satisfies the deterministic shell bound: the row-1 shell
    histogram is `{8:2}`, the controlled shell contribution is `2*5=10`, the
    large-anchor tail is empty, and the exact-`a` row-1 locator multiplicity is
    `2 binom(8,5)=112`. If one forgets the exact shell histogram and uses only
