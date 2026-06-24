@@ -30,6 +30,34 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-24 - AUDIT of PR #105 (Cycle120 standalone) + Cycle84 count structure
+
+- **Agent/model:** Claude Opus 4.8 (L2/X1 lane, branch `allen/l2-x1-interleaved-mca`).
+- **Files added or changed:** `experimental/notes/audits/audit_pr105_cycle120_standalone.md`,
+  `experimental/scripts/verify_m1_cycle84_count_structure.py`.
+- **Status:** AUDIT (Lemma 1 VERIFIED by enumeration; count fingerprinted +
+  collision-consistent, not re-censused).
+- **What is being added:** Independent review of Codex PR #105. (A) Cycle84
+  count structure: `color shell = 52,747,567,104 = 2^27*3*131` (clean
+  fingerprint; `131 = 262/2`), and the census's `Occ = shell - 12` with
+  `m_max=2`, `energy=24` is the *internally forced* collision bookkeeping --
+  verified. (B) The fixed-jet locator transfer (PR #105 Lemma 1) reconstructed
+  from the paper's parity-check/error-word formulas and verified on `F_17` for
+  `sigma=1,2`: line agreement on `D\J`, `z_J=1/P_J(beta)`, distinct-slope =
+  `#{P_J(beta)}`, and support-wise noncontainment all hold.
+- **How it is useful:** PR #105's transfer chain is sound; the Cycle120 result
+  is conditional ONLY on the Cycle84 census (as the PR states). KEY UNIFYING
+  FACT: `Occ(beta) = #{Phi(T)} = #{P_T(beta)}` is exactly the injectivity
+  defect of the locator-evaluation map (`P_T(beta)=4(beta-1)Phi(T)`); the "12
+  collisions" are 12 `Phi(T)` pairs -- the same defect Lemma 1's `#{P_J(beta)}`
+  discards (my sigma=1 model: 35 subsets -> 16 slopes). CROSS-LANE: `z_J =
+  1/P_J(beta)` IS the same locator-fiber=>deep-image mechanism as the X1
+  universal-cap bridge -- M1 LD_sw count and L2 cap are one principle.
+- **What to do next:** Leave a verified-honest PR comment on #105 surfacing the
+  count fingerprint + the injectivity-defect identity; full census still needs
+  the slot spec (rejected archive). Then task (iv): F1 sigma=2 (the sigma=2
+  fixed-jet here is the same object).
+
 ### 2026-06-24 - X1: CS25-free proof of the universal cap (thm:main), with lem:fiber audited
 
 - **Agent/model:** Claude Opus 4.8 (L2/X1 lane, branch `allen/l2-x1-interleaved-mca`).
