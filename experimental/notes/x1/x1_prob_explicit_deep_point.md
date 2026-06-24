@@ -6,7 +6,7 @@
 - **Agent/model:** Claude Opus 4.8 (L2/X1 lane, branch `allen/l2-x1-interleaved-mca`).
 - **Date:** 2026-06-24.
 - **Scope:** Paper D (`tex/cs25_cap_v4.tex`) `cor:Fvalued`, `prob:explicit`,
-  `cor:deployed`, `lem:fiber`; the deep-point bridge of `notes/x1` §1 /
+  `cor:deployed`, `thm:main`/`cor:grand` (universal cap), `lem:fiber`; the deep-point bridge of `notes/x1` §1 /
   `notes/f1/f1_deep_point_list_to_ca_mca.md`. Does not edit Papers A--D.
 
 ## The open problem
@@ -71,6 +71,40 @@ filling a `2^-21` fraction of `F`. [`verify_x1_prob_explicit_deployed.py`.]
   `deg G <= m`: `m/|B_set| = 2^7/2^173 = 2^-166 = k/|Omega|`, giving the same
   `M >= 2^165.93`. The `1/k` density is unchanged; the slopes fill `F_{p^6}`
   exactly when `alpha^{a_q}` has full degree 6 (generator `alpha`, as above).
+
+## Generalization: the explicit line is the constructive form of the *whole* cap
+
+The cor:deployed instance is not special. `thm:main` (universal cap) has
+hypothesis (eq:hyp) `binom(N,rho N+2) >= |B|(q/k+1)`, i.e. exactly
+`L >= q/k + 1` -- **the averaging-saturation condition**. Its conclusion is
+`emca(C,delta) > (1/(2k))(1-n/q)` on `[1-rho-2/N, 1-rho)`. The explicit
+deep-point line recovers this **exactly**:
+
+- at the saturation boundary `L ~ q/k`, the best-`alpha` deep-image density is
+  `(q/k)/(1+1)/q = 1/(2k)` -- precisely `thm:main`'s bound; for `L >> q/k`
+  (e.g. cor:deployed) it improves to `1/k`. So `dens_best >= (1/(2k))(1-n/q)`
+  wherever (eq:hyp) holds.
+- `verify_x1_prob_explicit_universal.py` checks four cap-regime points
+  (cor:deployed `e=6`; an `e=2`, `rho=1/4` extension; a subgroup `B=F`,
+  `q~2^64`; a large `k=2^40`, `e=2` point): all satisfy (eq:hyp), all have
+  `dens_best >= thm:main bound`, and all clear `2^-128` (since `1/(2k) >= 2^-41`
+  for `k <= 2^40`).
+
+So the deep-point bridge is the **explicit/constructive form of `thm:main`**:
+same hypothesis (saturation = eq:hyp), same bound `(1/(2k))(1-n/q)`, replacing
+the non-constructive CS25 augmented-code conversion by an explicit line. This
+makes the **entire universal cap constructive**, not just `cor:deployed`.
+
+**Non-`B`-rational regime (the `prob:explicit`/`cor:Fvalued` part).** The slopes
+are `G(alpha^{a_q})`, so they are genuinely `F`-valued exactly when `alpha^{a_q}`
+has full degree `e=[F:B]` -- which for a generator `alpha` needs the 2-power
+condition `v_2(q-1) >= v_2(a_q)` (and `e>=2`). The two extension points above
+satisfy it (`v_2=25 >= 13`); the subgroup case (`e=1`) is, of course, not
+non-`B`-rational (there is nothing to confine); and the large-`k` `e=2` point
+*fails* it (`a_q=2^31`, `v_2(q-1)=25<31`), so there the line recovers the cap
+bound but its slopes may confine to `B`. Thus: the explicit construction gives
+`thm:main`'s bound throughout the cap, and is additionally a `prob:explicit`-type
+non-`B`-rational witness in the extension regime with `v_2(q-1) >= v_2(a_q)`.
 
 ## What this resolves, honestly
 

@@ -30,6 +30,35 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-24 - X1: explicit deep-point line = constructive form of the whole universal cap (thm:main)
+
+- **Agent/model:** Claude Opus 4.8 (L2/X1 lane, branch `allen/l2-x1-interleaved-mca`).
+- **Files added or changed:**
+  `experimental/scripts/verify_x1_prob_explicit_universal.py` (new),
+  `experimental/notes/x1/x1_prob_explicit_deep_point.md` (generalization section),
+  `experimental/agents-log.md`.
+- **Status:** PROVED-by-arithmetic (correspondence with thm:main) / AUDIT.
+- **What is being added:** Generalizes the prob:explicit construction from
+  cor:deployed to the ENTIRE universal cap (thm:main). Key exact correspondence:
+  thm:main's hypothesis eq:hyp (binom(N,rhoN+2) >= |B|(q/k+1)) IS the averaging-
+  saturation condition L >= q/k+1, and at that boundary the best-alpha deep-image
+  density is 1/(2k) = thm:main's exact bound (1/(2k))(1-n/q). So the explicit
+  deep-point line recovers thm:main's bound under thm:main's hypothesis, via an
+  explicit line (no CS25/augmented code/eta) -- making the WHOLE universal cap
+  constructive, clearing 2^-128 throughout (1/(2k)>=2^-41 for k<=2^40). Verified
+  at 4 cap-regime points (cor:deployed e=6, e=2 rho=1/4, subgroup q~2^64, large
+  k=2^40 e=2). REFINEMENT: non-B-rational (prob:explicit/cor:Fvalued) holds in the
+  extension regime exactly when v2(q-1)>=v2(a_q) (so alpha^{a_q} keeps full degree
+  e); subgroup case isn't non-B-rational; large-a_q e=2 fails the 2-power cond
+  (cap bound still holds, slopes may confine). [Corrected an earlier loose
+  "uniformly 1/k": the bound is (1/(2k))(1-n/q), regime-dependent, = thm:main.]
+- **How it is useful:** Upgrades the result from "explicit cor:deployed witness"
+  to "explicit/constructive form of the entire universal cap" -- the deep-point
+  line is the constructive replacement for the CS25 conversion in thm:main.
+- **What to do next:** Consider whether the subgroup-case explicit line (cap but
+  B-rational) is worth a separate note; or pivot. Could flag the thm:main-level
+  generalization to the Paper D thread.
+
 ### 2026-06-24 - X1: explicit non-B-rational MCA-bad lines for Paper D prob:explicit
 
 - **Agent/model:** Claude Opus 4.8 (L2/X1 lane, branch `allen/l2-x1-interleaved-mca`).
