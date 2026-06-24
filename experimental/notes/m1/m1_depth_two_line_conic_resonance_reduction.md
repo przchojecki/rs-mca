@@ -3934,6 +3934,50 @@ only on sample full-character pairs but on every nonprincipal quotient
 character pair for the tested quotient orders, using the quotient-label
 matrix before applying Fourier inversion.
 
+The pointwise hypothesis on every `G_{psi,phi}` is not logically necessary for
+the quotient-conic ledger.  Let `G_e` be the quotient-label matrix of the good
+beta pushforward alone, and let `G_e^circ` be its row/column-centered part.  If
+one can prove the averaged beta-pushforward estimate
+
+```text
+||G_e^circ||_F <= C_beta^avg(e) p,
+```
+
+then the same conclusion follows.  Indeed the bad ledger gives
+`|S_{psi,phi}-G_{psi,phi}| <= 20p` for every nonprincipal pair, so Parseval
+gives the centered bad-matrix bound
+
+```text
+||B_e^circ||_F <= 20((e-1)/e)p.
+```
+
+Therefore
+
+```text
+||Gamma_e^circ||_F
+  <= (C_beta^avg(e) + 20(e-1)/e)p,
+```
+
+and the projective excess satisfies
+
+```text
+|P_e|
+  <= e(e-1)(C_beta^avg(e) + 20(e-1)/e)p^2.
+```
+
+The closed boundary inequality then gives
+
+```text
+M_e^o
+  <= (sqrt(e(e-1)(C_beta^avg(e)+20(e-1)/e)) p
+      + 3(e-1)sqrt(p))^2.
+```
+
+Thus an averaged square-root-cancellation theorem for the good rank-two
+pushforward is already enough; a pointwise conductor theorem is one clean way
+to obtain it, but not the only possible route.  The beta-pushforward spectral
+audit records exactly this centered-Frobenius quantity on the finite test rows.
+
 ## Principal-Row Leakage
 
 The principal rows excluded above have exact formulas.  They explain why the

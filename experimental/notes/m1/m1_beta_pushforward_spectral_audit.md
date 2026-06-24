@@ -30,6 +30,20 @@ with `C_beta(e)` independent of `p`.  A counterexample search should therefore
 look for `|G_{psi,phi}|` growing on the order of `p^2`, or even for rapidly
 growing `|G_{psi,phi}|/p` across exact finite rows.
 
+The M1 quotient-conic ledger also admits a weaker averaged target.  It is
+enough to prove
+
+```text
+||G_e^circ||_F <= C_beta^avg(e) p,
+```
+
+where `G_e` is the quotient-label matrix of the good pushforward and
+`G_e^circ` is its row/column-centered part.  The pointwise `(BETA_2)` estimate
+implies this averaged estimate, but the averaged estimate alone already gives
+`P_e=O_e(p^2)` and `M_e^o=O_e(p^2)` after adding the explicit bad-ledger
+constant.  Thus the finite audit reports both the largest individual
+coefficient and the centered Frobenius norm.
+
 ## Finite Scan
 
 The verifier now scans every centered quotient-character pair in the existing
@@ -81,9 +95,10 @@ observed coefficient ratio `3.0697674419` and largest centered-Frobenius ratio
 
 This is useful only as evidence and as a regression guard.  It cannot certify
 `(BETA_2)`: the proof still needs a bounded-conductor/no-constant-summand
-argument for the explicit rank-two beta pushforward.  The value of the scan is
-that it tests precisely that remaining analytic object, rather than a cruder
-two-variable Kummer surface or the already controlled exceptional ledger.
+argument for the explicit rank-two beta pushforward, or a direct proof of the
+averaged `(BETA_2^avg)` matrix bound.  The value of the scan is that it tests
+precisely that remaining analytic object, rather than a cruder two-variable
+Kummer surface or the already controlled exceptional ledger.
 
 ## Verifier
 

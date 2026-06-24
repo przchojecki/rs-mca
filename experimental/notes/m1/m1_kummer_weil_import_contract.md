@@ -569,6 +569,37 @@ this exact good-pushforward trace over the current quotient test rows.  It is
 only evidence and a regression guard, but it checks the remaining `(BETA_2)`
 object directly rather than the surrounding exceptional ledger.
 
+For the quotient-conic M1 application, the pointwise form above is stronger
+than necessary.  It is enough to prove the averaged, row/column-centered
+matrix form
+
+```text
+||G_e^circ||_F <= C_beta^avg(e) p,                    (BETA_2^avg)
+```
+
+where `G_e` is the `e x e` quotient-label matrix of the good beta pushforward
+and `G_e^circ` is its row/column-centered part.  Equivalently,
+
+```text
+||G_e^circ||_F^2
+  = e^{-2} sum_{psi,phi != 1} |G_{psi,phi}|^2.
+```
+
+The pointwise `(BETA_2)` estimate implies `(BETA_2^avg)` with
+`C_beta^avg(e) <= ((e-1)/e) C_beta(e)`, but a direct averaged proof would be
+equally sufficient for the M1 ledger.  Combining `(BETA_2^avg)` with the
+already proved bad-ledger bound gives
+
+```text
+||Gamma_e^circ||_F
+  <= (C_beta^avg(e) + 20(e-1)/e) p,
+```
+
+and hence the same fixed-index conclusion
+`P_e=O_e(p^2)` and `M_e^o=O_e(p^2)`.  Thus the final analytic target can be
+phrased either as a pointwise conductor estimate for all `G_{psi,phi}` or as
+this averaged matrix estimate.
+
 The elementary hypotheses behind this import are now audited in
 `verify_m1_depth_two_line_conic_resonance_reduction.py`:
 

@@ -43,15 +43,18 @@ Keep entries concise and link to the relevant files.
   beta-pushforward trace `G_{psi,phi}` isolated by the M1 `(BETA_2)` import.
   The verifier now reports the maximum p-normalized good-pushforward
   coefficient and the Parseval-normalized centered Frobenius energy for every
-  centered character pair in the audited quotient rows.
+  centered character pair in the audited quotient rows.  The notes also record
+  the weaker averaged import `(BETA_2^avg)` and the exact constants showing
+  that it would already close the fixed-index quotient-conic target.
 - **How it is useful:** This is a counterexample-first test of the remaining
   rank-two pushforward object, not of the already controlled exceptional
   ledger. The audited rows show p-scale behavior, with largest recorded
   `max |G_{psi,phi}|/p = 3.0697674419` and largest recorded
   `||G_e^circ||_F/p = 1.1366043634`.
 - **What to do next:** Prove the bounded-conductor/no-constant-summand
-  `(BETA_2)` estimate for the explicit rank-two pushforward, or extend the
-  finite scan to larger primes and quotient orders if looking for route-killing
+  `(BETA_2)` estimate for the explicit rank-two pushforward, prove the weaker
+  averaged `(BETA_2^avg)` estimate directly, or extend the finite scan to
+  larger primes and quotient orders if looking for route-killing
   counterexamples.
 
 ### 2026-06-23 - Cycle119 admissibility review
