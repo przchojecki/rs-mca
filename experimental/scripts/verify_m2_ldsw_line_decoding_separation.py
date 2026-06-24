@@ -26,6 +26,7 @@ PARTIAL_TRIGGER = B_THRESHOLD
 PARTIAL_P0_SLOPES = tuple(range(4))
 PARTIAL_P1_SLOPES = tuple(range(4, PARTIAL_TRIGGER))
 DIRECTION_COEFFS = (0, 1, 0)
+FULL_LINE_NONLINEAR_DEGREE = B_THRESHOLD - 1
 
 
 def eval_poly(coeffs: tuple[int, ...], x_value: int) -> int:
@@ -469,6 +470,16 @@ def compute_report() -> dict[str, Any]:
         if generic_full_max["max_agreement"] < B_THRESHOLD
         else None
     )
+    full_affine_line_assignment = {
+        slope: coeff_scale(pow(slope, FULL_LINE_NONLINEAR_DEGREE, P), DIRECTION_COEFFS)
+        for slope in range(P)
+    }
+    full_affine_line_max = max_affine_graph_agreement(full_affine_line_assignment)
+    full_affine_line_graph_free_number = (
+        len(full_affine_line_assignment)
+        if full_affine_line_max["max_agreement"] < B_THRESHOLD
+        else None
+    )
     bucket_sizes = (len(P0_SLOPES), len(P1_SLOPES))
     bucket_bound = bucket_obstruction_bound(bucket_sizes)
     balanced_bound = balanced_bucket_bound(len(bucket_sizes))
@@ -528,6 +539,12 @@ def compute_report() -> dict[str, Any]:
         ),
         "close_list_graph_free_number_is_full_field": (
             close_list_graph_free_number == P
+        ),
+        "full_affine_line_nonlinear_assignment_avoids_b_graph": (
+            full_affine_line_max["max_agreement"] < B_THRESHOLD
+        ),
+        "full_affine_line_graph_free_number_is_full_field": (
+            full_affine_line_graph_free_number == P
         ),
         "max_agreement_matches_bucket_obstruction": (
             max_report["max_assignment_agreement"] == bucket_bound
@@ -624,6 +641,13 @@ def compute_report() -> dict[str, Any]:
                 close_list_graph_free_number is not None
                 and close_list_graph_free_number < PARTIAL_TRIGGER
             ),
+            "full_affine_line_nonlinear_degree": FULL_LINE_NONLINEAR_DEGREE,
+            "full_affine_line_graph_free_number": (
+                full_affine_line_graph_free_number
+            ),
+            "full_affine_line_max_affine_agreement": (
+                full_affine_line_max["max_agreement"]
+            ),
             "partial_trigger_obstruction_threshold": partial_trigger_threshold,
             "partial_trigger_initial_max_affine_agreement": (
                 initial_partial_max["max_agreement"]
@@ -637,6 +661,7 @@ def compute_report() -> dict[str, Any]:
         },
         "close_list_affine_line_sample": affine_cap_report["sample_affine_line"],
         "partial_trigger_sample_maximizers": greedy_extension["sample_maps"],
+        "full_affine_line_sample_maximizers": full_affine_line_max["sample_maps"],
         **max_report,
         "interpretation": (
             "The nonconstant received line r+gamma*x has LD_sw contribution 0 "
@@ -708,6 +733,14 @@ def print_report(report: dict[str, Any]) -> None:
     print(
         "close-list graph-free number: "
         f"{report['assignment']['close_list_graph_free_number']}"
+    )
+    print(
+        "full affine line graph-free number: "
+        f"{report['assignment']['full_affine_line_graph_free_number']}"
+    )
+    print(
+        "full affine line max affine agreement: "
+        f"{report['assignment']['full_affine_line_max_affine_agreement']}"
     )
     print(
         "greedy extension max affine agreement: "

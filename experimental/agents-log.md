@@ -55,7 +55,9 @@ Keep entries concise and link to the relevant files.
   lemma showing that this affine-cap obstruction applies at the actual trigger
   numerator `a_LD` whenever `|C| > binom(|F|,2)` and `b >= 3`, and packages the
   code-direction slice as the exact finite-geometric criterion
-  `G_b(L_a(r)) < a_LD`.
+  `G_b(L_a(r)) < a_LD`.  It further notes that `G_b` is strictly stronger than
+  affine-cap control: a full affine code-line in a close list already has
+  `G_b=|F|` by nonlinear parametrization.
 - **How it is useful:** Clarifies the M2 bridge by ruling out the converse
   shortcut from residue-line packing or bounded `LD_sw` to ABF/GG
   line-decodability.

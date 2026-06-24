@@ -443,6 +443,10 @@ If `|C| > binom(|F|,2)` and `b >= 3`, the same obstruction works at the actual
 trigger numerator `a_LD`: a cap of size `ceil(a_LD/(b-1))` can be bucketed on
 `a_LD` close slopes and greedily extended to the remaining slopes without
 creating a `b`-point affine graph.
+The exact `G_b` formulation is genuinely stronger than the affine-cap
+necessary condition: a full affine code-line inside a close list already has
+`G_b=|F|` for every `3 <= b <= |F|`, by the nonlinear parametrization
+`gamma -> gamma^(b-1)` along that line.
 
 ## Follow-Up Checks
 

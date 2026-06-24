@@ -122,6 +122,27 @@ decoded assignment, giving a violating code-direction line.  Thus the exact
 positive input needed beyond `LD_sw` is a finite-geometric statement about
 affine graphs inside ordinary close lists.
 
+This exact criterion is strictly stronger than forbidding affine caps inside
+the close list.  If `L_a(r)` contains a full nonconstant affine code-line
+
+```text
+{c0 + tau w : tau in F},        w != 0,
+```
+
+then `G_b(L_a(r))=|F|` for every `3 <= b <= |F|`.  Indeed, the assignment
+
+```text
+gamma -> c0 + gamma^(b-1) w
+```
+
+has no `b` points on an affine graph: after subtracting any affine graph
+`c+gamma u`, apply any linear functional on the code space that sends `w` to
+`1`.  The resulting scalar polynomial has leading term `gamma^(b-1)`, so it is
+nonzero of degree `b-1` and has at most `b-1` roots.  Since no partial
+assignment has more than `|F|` slopes, this is exact.  Therefore a positive M2
+line-decodability theorem must control graph-free parametrizations of close
+lists, not only large affine caps inside those lists.
+
 This reduction has an exact pigeonhole half.  Let
 
 ```text
