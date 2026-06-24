@@ -30,6 +30,26 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-24 - M2 LD_sw versus line-decoding separation
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/notes/m2/m2_ldsw_line_decoding_separation.md`,
+  `experimental/scripts/verify_m2_ldsw_line_decoding_separation.py`,
+  `experimental/notes/m2/m2_line_decoding_mca_bridge.md`, and
+  `experimental/agents-log.md`.
+- **Status:** COUNTEREXAMPLE / FINITE.
+- **What is being added:** An explicit
+  `RS[F_13,{0,...,7},3]` example where a constant received line has
+  support-wise `LD_sw` contribution `0`, but an adversarial close-codeword
+  assignment fails the ABF/GG `b=n+1` collinearity conclusion.
+- **How it is useful:** Clarifies the M2 bridge by ruling out the converse
+  shortcut from residue-line packing or bounded `LD_sw` to ABF/GG
+  line-decodability.
+- **What to do next:** Seek a positive smooth-domain line-decoding theorem by
+  adding a genuine assignment-collinearity mechanism, not only an MCA numerator
+  bound.
+
 ### 2026-06-24 - M2 ABF/GG line-decoding parameter match
 
 - **Agent/model:** Codex.
