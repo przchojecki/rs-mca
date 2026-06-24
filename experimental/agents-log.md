@@ -30,6 +30,26 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-24 - L1 sunflower mixed-petal extras
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/notes/l1/l1_full_list_quotient_falsification.md`,
+  `experimental/scripts/scan_l1_full_list_quotient_conjecture.py`,
+  `experimental/agents-log.md`.
+- **Status:** EXPERIMENTAL / COUNTEREXAMPLE-FIRST.
+- **What is being added:** The full-list sunflower scanner now classifies
+  accidental non-planted codewords by agreement size, core intersection, number
+  of petals touched, largest petal intersection, and number of full petals.
+  Seeded `F_97,n=16,k=8,s=10` sweeps show a repeated mixed-petal pattern; the
+  strongest current row reaches primitive remainder `8` from a planted floor
+  of `3`, still below the alert threshold.
+- **How it is useful:** Converts the first sunflower amplification from an
+  unexplained scan artifact into a concrete subproblem: bound accidental
+  mixed-petal codewords over a planted sunflower floor.
+- **What to do next:** Try to prove a mixed-petal amplification bound or use a
+  faster decoder to search for growing mixed-petal families at larger `n`.
+
 ### 2026-06-24 - L1 glued-codeword sunflower attack
 
 - **Agent/model:** Codex.

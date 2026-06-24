@@ -164,10 +164,34 @@ F_17, n=16, k=8, s=11: planted M=2, max Q_1 = 2.
 F_97, n=16, k=8, s=10: planted M=3, max Q_1 = 5.
 ```
 
-The `F_97` row is useful: random sunflower cores produced two accidental extra
+The `F_97` row is useful: random sunflower cores produced accidental extra
 primitive codewords beyond the three planted ones, but still no
-reserve-cleared alert at threshold `n=16`.  A deeper sunflower-only sweep with
-20 random cores again had maximum primitive remainder `5`.
+reserve-cleared alert at threshold `n=16`.
+
+The scanner now classifies these extra codewords by how their agreement sets
+intersect the sunflower core and petals.  The extras are not new planted
+petals.  They have exact agreement size `s`, retain only part of the common
+core, and mix points from all petals.  With seed `0`, a 20-core sweep reached
+maximum primitive remainder `5`; the two extra agreement sets had profiles
+
+```text
+agreement=10, core=3, petals_touched=3, max_petal_hit=3, full_petals=1
+agreement=10, core=4, petals_touched=3, max_petal_hit=3, full_petals=1
+```
+
+With seed `3`, a 20-core sweep reached maximum primitive remainder `8` from a
+planted floor of `3`.  Its five extra agreement sets had profiles
+
+```text
+agreement=10, core=3, petals_touched=3, max_petal_hit=3, full_petals=1 : 1
+agreement=10, core=4, petals_touched=3, max_petal_hit=2, full_petals=0 : 1
+agreement=10, core=5, petals_touched=3, max_petal_hit=2, full_petals=0 : 3
+```
+
+This mixed-petal amplification is the first nontrivial obstruction pattern
+seen by the full-list attack.  It does not yet threaten polynomiality, but it
+is a concrete subproblem for the conjecture: bound the number of accidental
+mixed-petal codewords over a sunflower floor.
 
 ## Interpretation
 
@@ -178,7 +202,7 @@ tests and that the scanner is targeting the correct repaired object.
 The next useful falsification step is to improve the near-boundary search:
 
 1. add meet-in-the-middle sparse-syndrome scans for radius `4` and `5`;
-2. classify the accidental extra codewords in sunflower rows;
+2. prove or falsify a mixed-petal amplification bound over sunflower floors;
 3. optimize the interpolation backend enough to test larger high-field rows;
 4. record any large primitive family as a new obstruction before attempting a
    proof.

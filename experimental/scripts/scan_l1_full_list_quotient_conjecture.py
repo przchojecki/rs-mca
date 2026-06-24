@@ -107,6 +107,13 @@ def mask_to_exponents(mask: int, n: int) -> list[int]:
     return [index for index in range(n) if mask & (1 << index)]
 
 
+def mask_from_indices(indices: Iterable[int]) -> int:
+    mask = 0
+    for index in indices:
+        mask |= 1 << index
+    return mask
+
+
 def trim_poly(coeffs: Iterable[int]) -> tuple[int, ...]:
     out = list(coeffs)
     while out and out[-1] == 0:
@@ -544,6 +551,67 @@ def sunflower_words(
     return words
 
 
+def classify_sunflower_listing(
+    listed_masks: Iterable[int],
+    sunflower: dict[str, object],
+    n: int,
+    max_extra_examples: int,
+) -> dict[str, object]:
+    core = set(sunflower["core"])
+    petals = [set(petal) for petal in sunflower["petals"]]
+    intended_masks = {
+        mask_from_indices(intended)
+        for intended in sunflower["intended_agreement_sets"]
+    }
+    listed_mask_set = set(listed_masks)
+    planted_present = listed_mask_set & intended_masks
+    missing_planted = intended_masks - listed_mask_set
+    extra_masks = sorted(listed_mask_set - intended_masks)
+    profile_histogram: Counter[tuple[int, int, int, int, int]] = Counter()
+    extra_examples: list[dict[str, object]] = []
+    for mask in extra_masks:
+        agreement = set(mask_to_exponents(mask, n))
+        petal_hits = [len(agreement & petal) for petal in petals]
+        profile = (
+            len(agreement),
+            len(agreement & core),
+            sum(1 for hit in petal_hits if hit),
+            max(petal_hits, default=0),
+            sum(1 for hit, petal in zip(petal_hits, petals, strict=True)
+                if hit == len(petal)),
+        )
+        profile_histogram[profile] += 1
+        if len(extra_examples) < max_extra_examples:
+            extra_examples.append({
+                "agreement_set": sorted(agreement),
+                "agreement_size": len(agreement),
+                "core_hits": len(agreement & core),
+                "petal_hits": petal_hits,
+                "positive_petals": sum(1 for hit in petal_hits if hit),
+                "full_petals": [
+                    index for index, (hit, petal) in enumerate(
+                        zip(petal_hits, petals, strict=True),
+                        start=1,
+                    )
+                    if hit == len(petal)
+                ],
+            })
+    return {
+        "planted_present_count": len(planted_present),
+        "planted_missing_count": len(missing_planted),
+        "extra_count": len(extra_masks),
+        "extra_profile_histogram": {
+            (
+                f"agreement={profile[0]},core={profile[1]},"
+                f"petals={profile[2]},max_petal={profile[3]},"
+                f"full_petals={profile[4]}"
+            ): count
+            for profile, count in sorted(profile_histogram.items())
+        },
+        "extra_examples": extra_examples,
+    }
+
+
 def sampled_words(
     p: int,
     n: int,
@@ -639,6 +707,14 @@ def sample_scan(
             intended = int(word["sunflower"]["intended_list_size"])
             row["sunflower_intended_survives"] = total >= intended
             row["sunflower_extra_list_count"] = total - intended
+            sunflower = word["sunflower"]
+            assert isinstance(sunflower, dict)
+            row["sunflower_listing_classification"] = classify_sunflower_listing(
+                listed.values(),
+                sunflower,
+                n,
+                max_examples,
+            )
         rows.append(row)
         max_quotient = max(max_quotient, quotient)
         if primitive > max_primitive or total > max_total:
