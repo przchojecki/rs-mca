@@ -234,6 +234,182 @@ def resultant_height_bound(order: int, complement_size: int, rank: int) -> int:
     return (2 * comb(complement_size, rank)) ** euler_phi(order)
 
 
+def pad_poly(poly: Sequence[int], size: int) -> list[int]:
+    if len(poly) > size:
+        raise AssertionError("polynomial does not fit requested size")
+    return list(poly) + [0] * (size - len(poly))
+
+
+def multiplication_matrix_mod_cyclotomic(
+    multiplier: Sequence[int],
+    order: int,
+) -> list[list[int]]:
+    phi = cyclotomic_poly(order)
+    dimension = degree(phi)
+    columns = []
+    for shift in range(dimension):
+        _, remainder = poly_divmod_monic([0] * shift + list(multiplier), phi)
+        columns.append(pad_poly(remainder, dimension))
+    return [
+        [columns[col][row] for col in range(dimension)]
+        for row in range(dimension)
+    ]
+
+
+def common_ideal_matrix(
+    left: Sequence[int],
+    right: Sequence[int],
+    order: int,
+    sigma: int,
+) -> list[list[int]]:
+    phi = cyclotomic_poly(order)
+    dimension = degree(phi)
+    blocks = []
+    for rank in range(1, sigma + 1):
+        delta = poly_sub(
+            exponent_elementary_poly(left, order, rank),
+            exponent_elementary_poly(right, order, rank),
+        )
+        _, remainder = poly_divmod_monic(delta, phi)
+        if remainder:
+            blocks.append(multiplication_matrix_mod_cyclotomic(remainder, order))
+    if not blocks:
+        return []
+    return [
+        [entry for block in blocks for entry in block[row]]
+        for row in range(dimension)
+    ]
+
+
+def swap_matrix_columns(matrix: list[list[int]], left: int, right: int) -> None:
+    if left == right:
+        return
+    for row in matrix:
+        row[left], row[right] = row[right], row[left]
+
+
+def integer_diagonal_entries(matrix: Sequence[Sequence[int]]) -> list[int]:
+    """Diagonalize an integer matrix by Euclidean row/column operations."""
+    work = [list(row) for row in matrix]
+    row_count = len(work)
+    col_count = len(work[0]) if row_count else 0
+    row_idx = 0
+    col_idx = 0
+    diagonal = []
+    steps = 0
+    while row_idx < row_count and col_idx < col_count:
+        pivot = None
+        best_abs = None
+        for r_idx in range(row_idx, row_count):
+            for c_idx in range(col_idx, col_count):
+                value = abs(work[r_idx][c_idx])
+                if value and (best_abs is None or value < best_abs):
+                    pivot = (r_idx, c_idx)
+                    best_abs = value
+        if pivot is None:
+            break
+
+        work[row_idx], work[pivot[0]] = work[pivot[0]], work[row_idx]
+        swap_matrix_columns(work, col_idx, pivot[1])
+
+        while True:
+            steps += 1
+            if steps > 100_000:
+                raise AssertionError("integer diagonalization did not terminate")
+            pivot_value = work[row_idx][col_idx]
+            if pivot_value < 0:
+                work[row_idx] = [-entry for entry in work[row_idx]]
+                pivot_value = -pivot_value
+
+            changed = False
+            for r_idx in range(row_count):
+                if r_idx == row_idx or work[r_idx][col_idx] == 0:
+                    continue
+                quotient = work[r_idx][col_idx] // pivot_value
+                work[r_idx] = [
+                    entry - quotient * pivot_entry
+                    for entry, pivot_entry in zip(work[r_idx], work[row_idx])
+                ]
+                if 0 < abs(work[r_idx][col_idx]) < pivot_value:
+                    work[row_idx], work[r_idx] = work[r_idx], work[row_idx]
+                    changed = True
+                    break
+            if changed:
+                continue
+
+            pivot_value = work[row_idx][col_idx]
+            if pivot_value < 0:
+                work[row_idx] = [-entry for entry in work[row_idx]]
+                pivot_value = -pivot_value
+
+            for c_idx in range(col_count):
+                if c_idx == col_idx or work[row_idx][c_idx] == 0:
+                    continue
+                quotient = work[row_idx][c_idx] // pivot_value
+                for r_idx in range(row_count):
+                    work[r_idx][c_idx] -= quotient * work[r_idx][col_idx]
+                if 0 < abs(work[row_idx][c_idx]) < pivot_value:
+                    swap_matrix_columns(work, col_idx, c_idx)
+                    changed = True
+                    break
+            if changed:
+                continue
+
+            column_clear = all(
+                work[r_idx][col_idx] == 0
+                for r_idx in range(row_count)
+                if r_idx != row_idx
+            )
+            row_clear = all(
+                work[row_idx][c_idx] == 0
+                for c_idx in range(col_count)
+                if c_idx != col_idx
+            )
+            if column_clear and row_clear:
+                break
+
+        if work[row_idx][col_idx] < 0:
+            work[row_idx] = [-entry for entry in work[row_idx]]
+        diagonal.append(abs(work[row_idx][col_idx]))
+        row_idx += 1
+        col_idx += 1
+    return diagonal
+
+
+def common_ideal_index(
+    left: Sequence[int],
+    right: Sequence[int],
+    order: int,
+    sigma: int,
+) -> dict[str, Any]:
+    matrix = common_ideal_matrix(left, right, order, sigma)
+    dimension = degree(cyclotomic_poly(order))
+    if not matrix:
+        return {
+            "char_zero_collision": True,
+            "rank": 0,
+            "dimension": dimension,
+            "index": 0,
+            "factorization": {},
+            "diagonal_entries": [],
+        }
+    diagonal = integer_diagonal_entries(matrix)
+    rank = len(diagonal)
+    index = 0
+    if rank == dimension:
+        index = 1
+        for entry in diagonal:
+            index *= entry
+    return {
+        "char_zero_collision": False,
+        "rank": rank,
+        "dimension": dimension,
+        "index": index,
+        "factorization": factorint(index),
+        "diagonal_entries": diagonal,
+    }
+
+
 def exponent_elementary_poly(
     exponents: Sequence[int],
     order: int,
@@ -789,10 +965,12 @@ def check_f17_packet() -> dict[str, Any]:
         raise AssertionError("unexpected F_17 maximum fiber")
 
     certificate_counter: Counter[int] = Counter()
+    common_ideal_index_counter: Counter[int] = Counter()
     common_root_degree_counter: Counter[int] = Counter()
     embedding_zero_count_counter: Counter[int] = Counter()
     split_factor_sets: Counter[tuple[int, ...]] = Counter()
     aggregate_certificate = 1
+    aggregate_common_ideal_index = 1
     orbit_groups: dict[tuple[tuple[int, ...], tuple[int, ...]], list[dict[str, Any]]]
     orbit_groups = defaultdict(list)
     affine_orbits: set[tuple[tuple[int, ...], tuple[int, ...]]] = set()
@@ -810,6 +988,20 @@ def check_f17_packet() -> dict[str, Any]:
         split_factors = tuple(certificate["split_prime_factors"])
         if split_factors != (17,):
             raise AssertionError(f"unexpected split factors {split_factors}")
+        common_ideal = common_ideal_index(
+            pair["left"],
+            pair["right"],
+            order=16,
+            sigma=4,
+        )
+        if common_ideal["char_zero_collision"]:
+            raise AssertionError("F_17 packet had zero common-ideal matrix")
+        if common_ideal["index"] == 0:
+            raise AssertionError("F_17 packet had zero common-ideal index")
+        if certificate["certificate"] % common_ideal["index"] != 0:
+            raise AssertionError("common-ideal index did not divide norm certificate")
+        if common_ideal["index"] % 17 != 0:
+            raise AssertionError("common-ideal index missed the actual bad prime")
         common_root_factor = common_root_gcd_mod(
             pair["left"],
             pair["right"],
@@ -832,10 +1024,15 @@ def check_f17_packet() -> dict[str, Any]:
         common_root_degree_counter[common_root_degree] += 1
         embedding_zero_count_counter[len(zero_roots)] += 1
         certificate_counter[certificate["certificate"]] += 1
+        common_ideal_index_counter[common_ideal["index"]] += 1
         split_factor_sets[split_factors] += 1
         aggregate_certificate = lcm_int(
             aggregate_certificate,
             certificate["certificate"],
+        )
+        aggregate_common_ideal_index = lcm_int(
+            aggregate_common_ideal_index,
+            common_ideal["index"],
         )
         orbit_key = translation_orbit_key(pair["left"], pair["right"], 16)
         orbit_groups[orbit_key].append(pair)
@@ -844,14 +1041,25 @@ def check_f17_packet() -> dict[str, Any]:
     expected = Counter({68: 16, 272: 16, 147_968: 8})
     if certificate_counter != expected:
         raise AssertionError((certificate_counter, expected))
+    expected_ideal_indices = Counter({68: 16, 272: 16, 8_704: 8})
+    if common_ideal_index_counter != expected_ideal_indices:
+        raise AssertionError((common_ideal_index_counter, expected_ideal_indices))
     if aggregate_certificate != 147_968:
         raise AssertionError("unexpected aggregate lcm certificate")
+    if aggregate_common_ideal_index != 8_704:
+        raise AssertionError("unexpected aggregate common-ideal index")
     aggregate_split_factors = [
         prime for prime in sorted(factorint(aggregate_certificate))
         if prime % 16 == 1
     ]
     if aggregate_split_factors != [17]:
         raise AssertionError("unexpected aggregate split-prime support")
+    aggregate_ideal_split_factors = [
+        prime for prime in sorted(factorint(aggregate_common_ideal_index))
+        if prime % 16 == 1
+    ]
+    if aggregate_ideal_split_factors != [17]:
+        raise AssertionError("unexpected aggregate ideal split-prime support")
 
     orbit_ledger = []
     for key, members in orbit_groups.items():
@@ -888,12 +1096,17 @@ def check_f17_packet() -> dict[str, Any]:
         "max_fiber": row["max_fiber"],
         "fiber_histogram": row["fiber_histogram"],
         "certificate_counts": dict(sorted(certificate_counter.items())),
+        "common_ideal_index_counts": dict(
+            sorted(common_ideal_index_counter.items())
+        ),
         "common_root_degree_counts": dict(sorted(common_root_degree_counter.items())),
         "embedding_zero_count_counts": dict(
             sorted(embedding_zero_count_counter.items())
         ),
         "aggregate_lcm_certificate": aggregate_certificate,
+        "aggregate_common_ideal_lcm": aggregate_common_ideal_index,
         "aggregate_split_prime_factors": aggregate_split_factors,
+        "aggregate_ideal_split_prime_factors": aggregate_ideal_split_factors,
         "translation_orbits": orbit_ledger,
         "affine_orbit_count": len(affine_orbits),
         "split_factor_sets": {
@@ -1112,6 +1325,11 @@ def check_extension_field_bad_prime_certificate() -> dict[str, Any]:
     )
     if degree(common_factor) != extension_degree:
         raise AssertionError("expected one quadratic prime-ideal factor over F_3")
+    common_ideal = common_ideal_index(left, right, order, sigma)
+    if common_ideal["index"] != 36:
+        raise AssertionError("unexpected F_9 common-ideal index")
+    if common_ideal["index"] % characteristic != 0:
+        raise AssertionError("F_9 common-ideal index missed characteristic 3")
 
     return {
         "base_prime": characteristic,
@@ -1126,6 +1344,8 @@ def check_extension_field_bad_prime_certificate() -> dict[str, Any]:
         "certificate": certificate["certificate"],
         "certificate_factorization": certificate["certificate_factorization"],
         "split_prime_factors": certificate["split_prime_factors"],
+        "common_ideal_index": common_ideal["index"],
+        "common_ideal_factorization": common_ideal["factorization"],
         "common_factor_mod_3": common_factor,
         "common_factor_degree_mod_3": degree(common_factor),
     }
@@ -1331,19 +1551,57 @@ def check_prefix_depth_filtration() -> dict[str, Any]:
     left = (0, 1, 2, 3, 4, 14)
     right = (5, 6, 7, 9, 12, 15)
     expected_template_rows = [
-        {"sigma": 1, "certificate": 2_312, "degree": 2, "split_factors": [17]},
-        {"sigma": 2, "certificate": 68, "degree": 1, "split_factors": [17]},
-        {"sigma": 3, "certificate": 68, "degree": 1, "split_factors": [17]},
-        {"sigma": 4, "certificate": 68, "degree": 1, "split_factors": [17]},
-        {"sigma": 5, "certificate": 4, "degree": 0, "split_factors": []},
-        {"sigma": 6, "certificate": 4, "degree": 0, "split_factors": []},
+        {
+            "sigma": 1,
+            "certificate": 2_312,
+            "ideal_index": 2_312,
+            "degree": 2,
+            "split_factors": [17],
+        },
+        {
+            "sigma": 2,
+            "certificate": 68,
+            "ideal_index": 68,
+            "degree": 1,
+            "split_factors": [17],
+        },
+        {
+            "sigma": 3,
+            "certificate": 68,
+            "ideal_index": 68,
+            "degree": 1,
+            "split_factors": [17],
+        },
+        {
+            "sigma": 4,
+            "certificate": 68,
+            "ideal_index": 68,
+            "degree": 1,
+            "split_factors": [17],
+        },
+        {
+            "sigma": 5,
+            "certificate": 4,
+            "ideal_index": 4,
+            "degree": 0,
+            "split_factors": [],
+        },
+        {
+            "sigma": 6,
+            "certificate": 4,
+            "ideal_index": 4,
+            "degree": 0,
+            "split_factors": [],
+        },
     ]
     template_rows = []
     previous_certificate = None
+    previous_ideal_index = None
     previous_degree = None
     for expected in expected_template_rows:
         sigma = expected["sigma"]
         certificate = bad_prime_certificate(left, right, order, sigma)
+        common_ideal = common_ideal_index(left, right, order, sigma)
         degree_at_prime = degree(common_root_gcd_mod(
             left,
             right,
@@ -1353,6 +1611,10 @@ def check_prefix_depth_filtration() -> dict[str, Any]:
         ))
         if certificate["certificate"] != expected["certificate"]:
             raise AssertionError("unexpected depth-filtration certificate")
+        if common_ideal["index"] != expected["ideal_index"]:
+            raise AssertionError("unexpected depth-filtration common-ideal index")
+        if certificate["certificate"] % common_ideal["index"] != 0:
+            raise AssertionError("depth common-ideal index did not divide certificate")
         if degree_at_prime != expected["degree"]:
             raise AssertionError("unexpected depth-filtration gcd degree")
         if certificate["split_prime_factors"] != expected["split_factors"]:
@@ -1362,13 +1624,20 @@ def check_prefix_depth_filtration() -> dict[str, Any]:
             and previous_certificate % certificate["certificate"] != 0
         ):
             raise AssertionError("certificate did not divide previous depth")
+        if (
+            previous_ideal_index is not None
+            and previous_ideal_index % common_ideal["index"] != 0
+        ):
+            raise AssertionError("common-ideal index did not divide previous depth")
         if previous_degree is not None and degree_at_prime > previous_degree:
             raise AssertionError("gcd degree increased with sigma")
         previous_certificate = certificate["certificate"]
+        previous_ideal_index = common_ideal["index"]
         previous_degree = degree_at_prime
         template_rows.append({
             "sigma": sigma,
             "certificate": certificate["certificate"],
+            "common_ideal_index": common_ideal["index"],
             "split_prime_factors": certificate["split_prime_factors"],
             "common_root_degree_at_17": degree_at_prime,
         })
@@ -1504,6 +1773,13 @@ def check_prime_ideal_false_positive() -> dict[str, Any]:
         raise AssertionError("unexpected false-positive certificate")
     if certificate["split_prime_factors"] != [prime]:
         raise AssertionError("expected 97 as rational split certificate factor")
+    common_ideal = common_ideal_index(left, right, order, sigma)
+    if common_ideal["index"] != 2:
+        raise AssertionError("unexpected p=97 false-positive common-ideal index")
+    if common_ideal["index"] % prime == 0:
+        raise AssertionError("common-ideal certificate did not remove p=97")
+    if certificate["certificate"] % common_ideal["index"] != 0:
+        raise AssertionError("common-ideal index did not divide norm certificate")
     common_root_factor = common_root_gcd_mod(left, right, order, sigma, prime)
     if degree(common_root_factor) > 0:
         raise AssertionError("false positive has a nontrivial common-root factor")
@@ -1539,6 +1815,8 @@ def check_prime_ideal_false_positive() -> dict[str, Any]:
         "prime": prime,
         "certificate": certificate["certificate"],
         "certificate_factorization": certificate["certificate_factorization"],
+        "common_ideal_index": common_ideal["index"],
+        "common_ideal_factorization": common_ideal["factorization"],
         "common_root_factor_mod_p": common_root_factor,
         "common_root_degree": degree(common_root_factor),
         "embedding_zero_count": len(zero_roots),
@@ -1684,6 +1962,7 @@ def print_human(report: dict[str, Any]) -> None:
         f"pairs={packet['collision_pair_count']}, "
         f"max_fiber={packet['max_fiber']}, "
         f"certificates={packet['certificate_counts']}, "
+        f"ideal_indices={packet['common_ideal_index_counts']}, "
         f"gcd_degrees={packet['common_root_degree_counts']}, "
         f"embedding_counts={packet['embedding_zero_count_counts']}"
     )
@@ -1699,6 +1978,7 @@ def print_human(report: dict[str, Any]) -> None:
         f"nonzero={bounded['nonzero_collision_rows']}"
     )
     print(f"aggregate_lcm={packet['aggregate_lcm_certificate']}")
+    print(f"aggregate_common_ideal_lcm={packet['aggregate_common_ideal_lcm']}")
     print(f"translation_orbits={len(packet['translation_orbits'])}")
     print(f"affine_orbits={packet['affine_orbit_count']}")
     extension = report["extension_field_bad_prime_certificate"]
@@ -1707,6 +1987,7 @@ def print_human(report: dict[str, Any]) -> None:
         f"p={extension['base_prime']}, "
         f"degree={extension['extension_degree']}, "
         f"cert={extension['certificate']}, "
+        f"ideal_index={extension['common_ideal_index']}, "
         f"gcd_degree={extension['common_factor_degree_mod_3']}"
     )
     extension_accounting = report["extension_field_row_accounting"]
@@ -1755,6 +2036,7 @@ def print_human(report: dict[str, Any]) -> None:
     print(
         "false_positive="
         f"p={false_positive['prime']}, cert={false_positive['certificate']}, "
+        f"ideal_index={false_positive['common_ideal_index']}, "
         f"gcd_degree={false_positive['common_root_degree']}, "
         f"embedding_count={false_positive['embedding_zero_count']}, "
         f"actual={false_positive['actual_collision_for_any_embedding']}"

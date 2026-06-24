@@ -45,7 +45,11 @@ Keep entries concise and link to the relevant files.
   refined for row accounting. The note also records the associated norm bound,
   finite-family lcm aggregation handle, and the prime-ideal refinement via the
   modular gcd `gcd(Phi_n, Delta_1, ..., Delta_sigma)` needed to filter
-  rational-certificate false positives.  The modular gcd degree is also
+  rational-certificate false positives.  It further adds the exact
+  common-ideal/Fitting index `I_n,sigma(A,B)`, whose prime divisors away from
+  `n` are exactly the rational primes with a simultaneous common-root factor;
+  this removes the recorded `p=97` rational false positive.  The modular gcd
+  degree is also
   recorded as the exact primitive-root embedding multiplicity at split and
   nonsplit primes, with the Frobenius-orbit quotient giving the rational
   prime-ideal count.
@@ -61,7 +65,8 @@ Keep entries concise and link to the relevant files.
   collisions into algebraic norm/resultant divisibility events, matching a
   first attack in `agents.md`.
 - **What to do next:** Prove a uniform aggregation or density-over-primes bound
-  for these lcm certificates by bounding the degree-weighted common-prime-ideal
+  for these exact common-ideal indices by bounding the degree-weighted
+  common-prime-ideal
   incidence mass after quotient-periodic and characteristic-zero templates are
   removed, using the prefix-depth filtration to shrink the candidate bad-prime
   support as `sigma` grows toward the full-prefix rigid endpoint.

@@ -303,6 +303,90 @@ This distinction is important for aggregation: lcm certificates produce a
 candidate set of rational primes, while the final row-level verifier or theorem
 must still impose the common-prime-ideal condition.
 
+## Exact Common-Ideal Certificate
+
+The prime-ideal refinement can be encoded by a sharper integer certificate,
+not only by a per-prime modular gcd.  Let
+
+```text
+R_Z = Z[T] / Phi_n(T),
+d = phi(n),
+```
+
+with basis `1,T,...,T^{d-1}`.  For each active nonzero remainder
+`Delta_r mod Phi_n`, let `M_r` be the `d x d` integer matrix for
+multiplication by `Delta_r` on `R_Z`.  Concatenate these blocks:
+
+```text
+M(A,B) = [ M_1 | M_2 | ... | M_a ].
+```
+
+Define
+
+```text
+I_n,sigma(A,B) = gcd of all d x d minors of M(A,B),
+```
+
+with the convention `I_n,sigma(A,B)=0` for characteristic-zero prefix
+collisions, where every `Delta_r` vanishes modulo `Phi_n`.
+
+Equivalently, `I_n,sigma(A,B)` is the index of the lattice in `R_Z` generated
+by the ideal
+
+```text
+(Delta_1, ..., Delta_sigma) R_Z
+```
+
+whenever this ideal has full rank.  This is the zeroth Fitting/determinantal
+divisor of the common-ideal map.
+
+For every prime `p` with `p not dividing n`,
+
+```text
+p | I_n,sigma(A,B)
+  iff deg gcd(Phi_n, Delta_1, ..., Delta_sigma) in F_p[T] is positive.
+```
+
+Indeed, reducing `M(A,B)` modulo `p`, the image is exactly the ideal generated
+by the `Delta_r` inside
+
+```text
+R_p = F_p[T] / Phi_n(T).
+```
+
+The matrix has full row rank over `F_p` iff this ideal is all of `R_p`.  Since
+`p` does not divide `n`, the polynomial `Phi_n` is squarefree modulo `p`, so
+`R_p` is reduced.  A proper ideal is therefore contained in a maximal ideal,
+equivalently a common primitive-root zero of `Phi_n` and all active
+`Delta_r` in the algebraic closure.  This is exactly the condition that the
+modular common-root factor have positive degree.
+
+This gives the exact rational-prime filter for simultaneous prime-ideal
+collisions, away from the inseparable primes dividing `n`.
+
+The index sharpens the norm certificate:
+
+```text
+I_n,sigma(A,B) | C_n,sigma(A,B).
+```
+
+The reason is that each single multiplication block `M_r` has determinant
+`+- Res(Phi_n, Delta_r)`, while `M(A,B)` contains all such blocks.  The gcd of
+all maximal minors of the concatenated matrix therefore divides the gcd of the
+single-block determinants.
+
+For the false-positive template above,
+
+```text
+C_16,4(A,B) = 194 = 2 * 97,
+I_16,4(A,B) = 2.
+```
+
+Thus the exact common-ideal certificate removes the rational split prime `97`
+before any root-by-root scan.  The false positive occurred because the separate
+resultants vanish modulo `97` at incompatible prime ideals; the generated ideal
+is still the whole algebra over `F_97`.
+
 ## Newton Bridge To Power Sums
 
 The same common-root factor can be computed from power sums whenever the small
@@ -533,6 +617,27 @@ template and of the complete three-orbit packet.  In particular, the packet is
 a genuine finite-field bad-prime event, not evidence for a characteristic-zero
 aperiodic family.
 
+The exact common-ideal index sharpens this packet without changing the rational
+split-prime support.  Across the same forty pairs the index distribution is:
+
+```text
+16 pairs: I = 68
+16 pairs: I = 272
+ 8 pairs: I = 8704 = 2^9 * 17.
+```
+
+The aggregate exact-index lcm is therefore
+
+```text
+LCM_I = 8704 = 2^9 * 17,
+```
+
+which divides the norm-certificate lcm and removes one redundant factor of
+`17`.  This distinction is not needed to explain the small `F_17` packet, but
+it is the right integer object for a future bad-prime aggregation theorem,
+because its rational prime support is exact for simultaneous common-ideal
+collisions away from primes dividing `n`.
+
 The verifier also checks the split-prime row accounting identity across all
 primitive roots in `F_17`.  There are `phi(16)=8` such roots, each gives `40`
 collision pairs, and the root-template incidence ledger has
@@ -580,13 +685,13 @@ B = {5,6,7,9,12,15},
 the corresponding certificate and common-root-degree filtration is:
 
 ```text
-sigma  C_sigma  split support  deg G_17,sigma
-1      2312     {17}           2
-2      68       {17}           1
-3      68       {17}           1
-4      68       {17}           1
-5      4        {}             0
-6      4        {}             0
+sigma  C_sigma  I_sigma  split support  deg G_17,sigma
+1      2312     2312     {17}           2
+2      68       68       {17}           1
+3      68       68       {17}           1
+4      68       68       {17}           1
+5      4        4        {}             0
+6      4        4        {}             0
 ```
 
 Thus the known `sigma=4` bad-prime collision disappears at the next prefix
