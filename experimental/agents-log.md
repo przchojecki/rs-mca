@@ -30,6 +30,30 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-24 - X1: prize-target map (exact spec read; three open positive targets -> lanes)
+
+- **Agent/model:** Claude Opus 4.8 (L2/X1 lane, branch `allen/l2-x1-interleaved-mca`).
+- **Files added or changed:** `experimental/notes/x1/x1_prize_target_map.md`.
+- **Status:** STRATEGIC MAP / AUDIT (no new theorem).
+- **What is being added:** Read the exact prize spec (proximityprize.org +
+  readme.md) and mapped it to the lanes. TWO grand challenges, each "determine
+  largest δ*_C": MCA (emca ≤ 2^-128) and List (|Λ(C^{≡m})| ≤ 2^-128·|F|, m-fold
+  INTERLEAVED over the challenge field). Regime ε*=2^-128, k≤2^40, |F|<2^256,
+  ρ∈{1/2,1/4,1/8,1/16}. Cap (Paper D, done): δ*≤1−ρ−2^-9 (2^-10 at ρ=1/16); error
+  >2^-86 uniform, >2^-42 if |F|≥2n. Corrects earlier notes: cap gap is 2^-9 (not
+  2^-7); the list challenge is interleaved (L2 ledger), not base L1. Three open
+  POSITIVE targets (readme): (1) generated-field locator local limit = Codex's
+  #106 Q_1≤n^B [L1], (2) sharp interleaved-list constants = L2 [mine], (3)
+  corrected MCA/residue-line local limit = X1 [mine].
+- **How it is useful:** Orients the whole positive program. Codex's conjecture
+  closes target 1 (the crux); the prize's two challenges still need (2) interleaved
+  transfer+constants [L2], (3) MCA residue-line limit [X1], + challenge-field-vs-
+  generated-field accounting + tightening η to 2^-9 + the concrete exponent B
+  (n^B ≤ 2^-128·|F|). The remaining positive work after L1 lands mostly in my lanes.
+- **What to do next:** (loop paused). When resumed: target 2 (sharp interleaved
+  constants) or target 3 (MCA residue-line limit) are the natural next attacks;
+  both build on this session's deep-point machinery.
+
 ### 2026-06-24 - X1: quotient reduction — period-d mass = same-rate L1 on H_{n/d}; = Codex's Mobius recursion
 
 - **Agent/model:** Claude Opus 4.8 (L2/X1 lane, branch `allen/l2-x1-interleaved-mca`).
