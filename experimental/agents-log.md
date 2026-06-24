@@ -30,6 +30,29 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-24 - Cycle116 external packet contract comparison
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/data/witnesses/m1-cycle116/external_packet_contract.json`,
+  `experimental/scripts/verify_m1_cycle116_external_packet_contract.py`,
+  `experimental/notes/m1/m1_cycle116_external_packet_contract.md`,
+  `experimental/scripts/verify_m1_cycle116_slot_assembly.py`,
+  `experimental/scripts/verify_m1_cycle120_end_to_end_chain.py`,
+  `experimental/notes/m1/m1_cycle120_end_to_end_finite_chain.md`, and
+  `experimental/agents-log.md`.
+- **Status:** AUDIT / EXTERNAL-CYCLE116-PACKET-CONTRACT-COMPARED.
+- **What is being added:** A compact, hash-pinned contract extracted from the
+  closed PR #96 Cycle116 packet, plus a verifier comparing its field model,
+  slot data, co-support clause, native fixed-jet bridge, smooth lift, and
+  Cycle84 finite values against the local M1 chain.
+- **How it is useful:** Removes the prior loose source-comparison boundary
+  that the external Cycle116 packet might use a different co-support; the
+  remaining issue is provenance review of the compact contract itself.
+- **What to do next:** Review that the compact JSON faithfully records the
+  hash-pinned PR #96 files, then keep official ABF source verification and the
+  Cycle84 generated-source review as the remaining promotion gates.
+
 ### 2026-06-24 - Cycle84 generated replay source contract
 
 - **Agent/model:** Codex.

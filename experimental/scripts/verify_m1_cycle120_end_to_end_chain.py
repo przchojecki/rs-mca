@@ -28,6 +28,7 @@ if str(SCRIPT_DIR) not in sys.path:
 
 import verify_m1_cycle84_exact_occupancy_chain as cycle84
 import verify_m1_cycle116_field_lift_contract as field_lift
+import verify_m1_cycle116_external_packet_contract as external_packet
 import verify_m1_cycle116_fixed_jet_bridge as fixed_jet
 import verify_m1_cycle116_slot_assembly as slot_assembly
 import verify_m1_cycle116_slot_identities as slot_ids
@@ -55,6 +56,15 @@ def build_report() -> Dict[str, Any]:
     slot_report = slot_ids.build_report()
     fixed_report = fixed_jet.build_report()
     lift_report = field_lift.build_report()
+    external_report = external_packet.build_report(
+        {
+            "cycle84": cycle84_report,
+            "slot_ids": slot_report,
+            "slot_assembly": assembly_report,
+            "fixed_jet": fixed_report,
+            "field_lift": lift_report,
+        }
+    )
     gate_report = gate.build_report()
 
     exact = cycle84_report["cycle84_exact"]
@@ -62,6 +72,7 @@ def build_report() -> Dict[str, Any]:
     slot_table = slot_report["slot_table"]
     native = fixed_report["parameters"]
     formal = fixed_report["formal_reduction"]
+    external = external_report["external_packet"]
     lift_field = lift_report["field"]
     lift_params = lift_report["parameters"]
     gate_object = gate_report["object"]
@@ -80,6 +91,9 @@ def build_report() -> Dict[str, Any]:
         "cycle116_slot_identities_pass": slot_report["status"] == "PASS",
         "cycle116_fixed_jet_bridge_passes": fixed_report["status"] == "PASS",
         "cycle116_field_lift_contract_passes": lift_report["status"] == "PASS",
+        "cycle116_external_packet_contract_passes": (
+            external_report["status"] == "PASS"
+        ),
         "cycle120_gate_arithmetic_passes": gate_report["status"] == "PASS",
         "slot_digest_matches_expected": (
             slot_table["digest_sha256"] == EXPECTED_SLOT_DIGEST
@@ -115,6 +129,12 @@ def build_report() -> Dict[str, Any]:
             assembly["cosupport_formula"] == "1 + 7*16"
             and int(assembly["cosupport_size"]) == 1 + 7 * 16
         ),
+        "external_packet_uses_verified_cosupport": (
+            external["co_support"]
+            == "J_T={1} union union_{t=1}^7 eta^t lift(i_t,a_t)"
+            and int(external["native_parameters"]["j"]) == int(assembly["cosupport_size"])
+            and external["slot_indices"] == assembly["active_cosets"]
+        ),
         "fixed_jet_sigma_matches_contract": (
             int(formal["fixed_jet_sigma"]) == EXPECTED_FIXED_JET_SIGMA
         ),
@@ -132,6 +152,14 @@ def build_report() -> Dict[str, Any]:
             int(native["native_domain_size"])
             - int(native["native_cosupport_size"])
             == int(native["native_agreement"])
+        ),
+        "external_packet_native_parameters_match_chain": (
+            int(external["native_parameters"]["n"]) == int(native["native_domain_size"])
+            and int(external["native_parameters"]["k"]) == int(native["native_dimension"])
+            and int(external["native_parameters"]["agreement"])
+            == int(native["native_agreement"])
+            and int(external["native_parameters"]["sigma"])
+            == int(formal["fixed_jet_sigma"])
         ),
         "lift_field_size_matches_gate_field_size": (
             int(lift_field["lifted_field_size"]) == field_size
@@ -152,6 +180,14 @@ def build_report() -> Dict[str, Any]:
             == int(gate_arithmetic["closed_agreement_threshold"])
             == EXPECTED_LIFT_AGREEMENT
         ),
+        "external_packet_smooth_lift_matches_chain": (
+            int(external["smooth_lift_parameters"]["n"]) == int(lift_field["domain_size"])
+            and int(external["smooth_lift_parameters"]["k"])
+            == int(lift_params["lift_dimension"])
+            and int(external["smooth_lift_parameters"]["agreement"])
+            == int(lift_params["lift_agreement"])
+            and external["smooth_lift_parameters"]["delta"] == lift_params["delta"]
+        ),
         "padding_is_lossless_on_agreement_count": (
             int(lift_params["native_agreement"]) + int(lift_params["odd_padding_size"])
             == int(lift_params["lift_agreement"])
@@ -160,6 +196,14 @@ def build_report() -> Dict[str, Any]:
             2 * int(lift_params["lift_dimension"]) == int(lift_field["domain_size"])
         ),
         "bad_gamma_count_exceeds_epsilon_gate": numerator >= minimum_bad_count,
+        "external_packet_cycle84_values_match_numerator": (
+            int(external["cycle84_values"]["distinct_products"]) == numerator
+            and int(external["cycle84_values"]["packet_supports"])
+            == int(exact["color_shell_size"])
+            and int(external["cycle84_values"]["ordered_offdiagonal_energy"])
+            == int(exact["true_ordered_energy"])
+            and int(external["cycle84_values"]["m_max"]) == int(exact["m_max"])
+        ),
         "bad_gamma_density_strictly_exceeds_2_minus_128": (
             numerator * epsilon_denominator > field_size
         ),
@@ -193,6 +237,13 @@ def build_report() -> Dict[str, Any]:
                 "cosupport_formula": assembly["cosupport_formula"],
                 "cosupport_size": int(assembly["cosupport_size"]),
                 "all_tuple_count": int(assembly["all_tuple_count"]),
+            },
+            "cycle116_external_packet_contract": {
+                "provenance": external_report["provenance"],
+                "co_support": external["co_support"],
+                "state_count": int(external["state_count"]),
+                "native_parameters": external["native_parameters"],
+                "smooth_lift_parameters": external["smooth_lift_parameters"],
             },
             "cycle116_native": {
                 "field": slot_report["model"]["field"],
@@ -231,8 +282,8 @@ def build_report() -> Dict[str, Any]:
             "smoothness, same-support predicate, and closed threshold",
             "reviewer acceptance of the Cycle84 generated source contract for "
             "promotion beyond audit status",
-            "source comparison that the external Cycle116 packet uses the locally "
-            "verified {1} plus seven active 16-point slot-block co-support",
+            "reviewer acceptance that the compact external Cycle116 contract "
+            "faithfully records the hash-pinned PR #96 files",
         ],
         "nonmutating": True,
     }
@@ -242,6 +293,7 @@ def print_human(report: Dict[str, Any]) -> None:
     chain = report["chain"]
     cycle84_chain = chain["cycle84_exact_occupancy"]
     assembly = chain["cycle116_slot_assembly"]
+    external = chain["cycle116_external_packet_contract"]
     native = chain["cycle116_native"]
     lifted = chain["cycle116_smooth_lift"]
     gate_chain = chain["cycle120_gate_arithmetic"]
@@ -262,6 +314,12 @@ def print_human(report: Dict[str, Any]) -> None:
         f"blocks={assembly['slot_block_count']}, "
         f"block_size={assembly['slot_block_size']}, "
         f"all_tuples={assembly['all_tuple_count']}"
+    )
+    print(
+        "cycle116_external_packet="
+        f"PR #{external['provenance']['pull_request']} "
+        f"{external['provenance']['head_ref']}, "
+        f"state_count={external['state_count']}, co_support={external['co_support']}"
     )
     print(
         "cycle116_native="

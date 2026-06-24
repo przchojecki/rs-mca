@@ -17,6 +17,7 @@ The current local chain is:
 ```text
 Cycle84 exact product occupancy
   -> Cycle116 fixed-jet support-wise line/MCA lower bound over F_17^16
+  -> Cycle116 external packet source-contract comparison
   -> Cycle116 smooth [512,256] lift over F_17^32
   -> Cycle120 ABF-facing agreement and density gate.
 ```
@@ -61,6 +62,24 @@ python3 experimental/scripts/verify_m1_cycle116_slot_assembly.py
 It verifies the `D0` decomposition into eight `eta^t H32` cosets, the singleton
 in the inactive coset, all `336` active slot blocks, and the all-tuple formula
 `|J_T|=1+7*16=113`.
+
+The external Cycle116 packet comparison is checked by
+
+```text
+python3 experimental/scripts/verify_m1_cycle116_external_packet_contract.py
+```
+
+It verifies that the compact contract extracted from the closed PR #96 packet
+uses the same field model, three base exponent sets, seven active slot cosets,
+co-support clause
+
+```text
+J_T={1} union union_{t=1}^7 eta^t lift(i_t,a_t),
+```
+
+native parameters `(n,j,sigma,k,agreement)=(256,113,6,137,143)`, smooth-lift
+parameters `(n,j,sigma,k,agreement)=(512,250,6,256,262)`, and Cycle84 finite
+values as the local chain.
 
 The smooth padding lift preserves the same set of bad parameters and gives
 
@@ -108,6 +127,8 @@ pieces. This note and its verifier check that:
 ```text
 the Cycle84 exact occupancy numerator is the same N used downstream;
 the Cycle116 slot assembly has co-support size 113;
+the external Cycle116 packet contract uses the same verified co-support and
+  finite values;
 the Cycle116 slot replay and Cycle84 certificate use the same slot-table digest;
 the native Cycle116 parameters are n=256, k=137, agreement=143;
 the smooth lift reaches n=512, k=256, agreement=262 without changing N;
@@ -128,8 +149,8 @@ The chain remains conditional on:
    convention.
 2. Reviewer acceptance that the Cycle84 generated source contract plus the
    replay algorithm audit is sufficient for promotion beyond audit status.
-3. Source comparison that the external Cycle116 packet uses the locally verified
-   `{1}` plus seven active 16-point slot-block co-support.
+3. Reviewer acceptance that the compact external Cycle116 contract faithfully
+   records the hash-pinned files from PR #96.
 
 The current repository verifiers reduce these boundaries, but they do not
 remove them.
@@ -156,6 +177,7 @@ Run:
 ```sh
 python3 experimental/scripts/verify_m1_cycle120_end_to_end_chain.py
 python3 experimental/scripts/verify_m1_cycle120_end_to_end_chain.py --json
+python3 experimental/scripts/verify_m1_cycle116_external_packet_contract.py
 ```
 
 The verifier is nonmutating. It imports and runs the lower M1 verifiers, then

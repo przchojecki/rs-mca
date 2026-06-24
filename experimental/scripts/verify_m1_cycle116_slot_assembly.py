@@ -216,7 +216,8 @@ def build_report() -> Dict[str, Any]:
         "checks": checks,
         "imports_required": [
             "Cycle116 slot identity replay for the fixed-jet and evaluation identities",
-            "source comparison that the external Cycle116 packet uses this co-support",
+            "external packet contract comparison by "
+            "verify_m1_cycle116_external_packet_contract.py",
         ],
         "nonmutating": True,
     }

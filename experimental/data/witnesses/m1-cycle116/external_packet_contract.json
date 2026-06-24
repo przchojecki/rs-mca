@@ -1,0 +1,140 @@
+{
+  "schema": "m1.cycle116.external_packet_contract.v1",
+  "provenance": {
+    "repository": "przchojecki/rs-mca",
+    "pull_request": 96,
+    "head_ref": "cycle58-5p5-audit",
+    "head_commit": "fdb3cacece5a7f71399f12c697bd5193806f82ef",
+    "source_files": {
+      "fixed_jet_certificate": {
+        "path": "experimental/notes/m1/cycle119_role05_twoended_qchal_goldilocks_9pro/context/base_cycle118_context/cycle116_verifier/cycle116_role08_verifier/inputs/fixed_jet_certificate.json",
+        "sha256": "e5615ac29a91cc39be9d3edf1a59e0b4994c146cf7bd0d5f415fbe9c7503e1a2"
+      },
+      "cycle84_anchor": {
+        "path": "experimental/notes/m1/cycle119_role05_twoended_qchal_goldilocks_9pro/context/base_cycle118_context/cycle116_verifier/cycle116_role08_verifier/inputs/cycle84_anchor.json",
+        "sha256": "4aa5baba92e62948e69e6295c19c60a3a7f50d986cc58102569026cf571c82de"
+      },
+      "standalone_certificate_section": {
+        "path": "experimental/notes/m1/cycle119_role05_twoended_qchal_goldilocks_9pro/context/base_cycle118_context/cycle116_verifier/cycle116_role08_verifier/STANDALONE_CERTIFICATE_SECTION.md",
+        "sha256": "49d195155fc4f895f352d4ad0de76d12016e6ba530d873c241c3773de973d59e"
+      },
+      "transfer_verifier": {
+        "path": "experimental/notes/m1/cycle119_role05_twoended_qchal_goldilocks_9pro/context/base_cycle118_context/cycle116_verifier/cycle116_role08_verifier/verify_transfer.py",
+        "sha256": "c8f993e19d9cb2a2314e2ac59511aaf60de89ff134c83958fb20594a927a6bd3"
+      }
+    }
+  },
+  "fixed_jet_certificate": {
+    "schema": "cycle116.fixed_jet_and_smooth_lift.v1",
+    "field": {
+      "p": 17,
+      "degree": 16,
+      "modulus_coefficients_low_to_high": [3, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1],
+      "eta_coefficients_low_to_high": [0, 0, 0, 0, 0, 0, 0, 0, 0, 6],
+      "beta_coefficients_low_to_high": [2, 1],
+      "slot_log_generator_coefficients_low_to_high": [2, 1],
+      "multiplicative_group_factorization": {
+        "2": 8,
+        "3": 2,
+        "5": 1,
+        "29": 1,
+        "18913": 1,
+        "41761": 1,
+        "184417": 1
+      }
+    },
+    "packet": {
+      "base_exponent_sets": {
+        "1": [0, 1, 2, 3, 5, 11, 12, 13],
+        "2": [0, 1, 2, 3, 4, 8, 9, 14],
+        "3": [0, 1, 2, 4, 5, 7, 11, 14]
+      },
+      "expected_base_locator_coefficients_low_to_high": {
+        "1": [6, 4, 4, 10, 5, 4, 0, 0, 1],
+        "2": [14, 13, 14, 12, 5, 9, 0, 0, 1],
+        "3": [4, 12, 1, 5, 0, 11, 0, 0, 1]
+      },
+      "color_offsets": {
+        "1": 15,
+        "2": 9,
+        "3": 12
+      },
+      "slot_indices": [1, 2, 3, 4, 5, 6, 7],
+      "state_a_range": [0, 15],
+      "color_shell_modulus": 16,
+      "color_shell_target": 4,
+      "reference_tuple_zero_based_state_indices": [4, 26, 46, 12, 32, 22, 40]
+    },
+    "native": {
+      "n": 256,
+      "j": 113,
+      "sigma": 6,
+      "k": 137,
+      "agreement": 143,
+      "delta_numerator": 113,
+      "delta_denominator": 256
+    },
+    "smooth_lift": {
+      "theta_relation": "theta^2=eta",
+      "H_order": 512,
+      "A_odd_coset_exponent_range_inclusive": [0, 118],
+      "R_odd_coset_exponent_range_inclusive": [119, 255],
+      "n": 512,
+      "j": 250,
+      "sigma": 6,
+      "k": 256,
+      "agreement": 262,
+      "delta_numerator": 125,
+      "delta_denominator": 256
+    },
+    "expected": {
+      "eta_power_16_prime_field_value": 3,
+      "three_power_28_prime_field_value": 4,
+      "slot_state_count": 336,
+      "packet_supports": 52747567104,
+      "distinct_products": 52747567092,
+      "floor_17_pow_32_over_2_pow_128": 6
+    }
+  },
+  "cycle84_anchor": {
+    "schema": "cycle116.cycle84_anchor.v1",
+    "imported_files": {
+      "master": {
+        "path": "../imports/cycle84_master_proof_certificate.json",
+        "sha256": "4abc98c8521856428c7c21b31ebfdb3380e32a9c1703202a50b3fcab85488088"
+      },
+      "slot_logs": {
+        "path": "../imports/slot_logs.json",
+        "sha256": "d4379b3ed97c4ae2a43511796e3bcb15514d3f5f989f15b6fb1bc9fc85c779d8"
+      },
+      "light_receipt": {
+        "path": "../imports/light_verification.out",
+        "sha256": "93177a6892e3aaf362d2414010f173eaa0dbc7e78c1f1f680bfbb5290dd2cb8a"
+      },
+      "standalone_note": {
+        "path": "../imports/STANDALONE_FINITE_CERTIFICATE.md",
+        "sha256": "14b3e668347e42af97440c5cf160c873cdb2f97d3b65e20f69b9ca3b6997e4cb"
+      }
+    },
+    "accepted_finite_values": {
+      "packet_supports": 52747567104,
+      "distinct_products": 52747567092,
+      "ordered_offdiagonal_energy": 24,
+      "m_max": 2,
+      "singleton_fibers": 52747567080,
+      "double_fibers": 12,
+      "fibers_ge_3": 0
+    }
+  },
+  "source_clauses": {
+    "native_co_support": "J_T={1} union union_{t=1}^7 eta^t lift(i_t,a_t)",
+    "native_locator_shape": "P_T(X)=X^113-X^112+O(X^107)",
+    "native_scalar": "P_T(beta)=(beta-1)3^28 Phi(T)=kappa Phi(T)",
+    "native_conclusion": "LD_sw(RS[F0,D0,137],143) >= 52747567092",
+    "smooth_domain": "H=<theta>=D0 disjoint_union theta D0",
+    "smooth_padding": "J_T^+=J_T union R and S_T^+=(D0\\J_T) union A",
+    "smooth_sizes": "|J_T^+|=250 and |S_T^+|=262",
+    "smooth_conclusion": "LD_sw(RS[F_17^32,H,256],262) >= 52747567092",
+    "scope": "finite smooth-domain standard Reed-Solomon support-wise MCA / LD_sw lower bound"
+  }
+}
