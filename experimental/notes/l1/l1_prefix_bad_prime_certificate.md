@@ -935,11 +935,26 @@ Equivalently, because
 G_{p,sigma+1}=gcd(G_{p,sigma}, Delta_{sigma+1}),
 ```
 
-the radical frontier drop counts exactly the primitive-root factors that
-satisfied the first `sigma` equations but fail the next one.  Thus, away from
-the inseparable primes dividing `n`, the quotient of radical incidence ledgers
-is not merely monotone: it is the exact depth-frontier mass removed by the next
-prefix coefficient.
+one has `G_{p,sigma+1}` dividing `G_{p,sigma}`.  Define the modular frontier
+factor
+
+```text
+H_{p,sigma}(A,B)=G_{p,sigma}(A,B)/G_{p,sigma+1}(A,B) in F_p[X].
+```
+
+Since `p` does not divide `n`, `Phi_n` is squarefree modulo `p`, so this
+quotient is squarefree.  Its roots are exactly the primitive-root embeddings
+that satisfied the first `sigma` equations but fail the next one, and
+
+```text
+deg H_{p,sigma}(A,B)
+  =
+v_p(J_sigma(A,B))-v_p(J_{sigma+1}(A,B)).
+```
+
+Thus, away from the inseparable primes dividing `n`, the quotient of radical
+incidence ledgers is not merely monotone: it is the exact depth-frontier mass
+removed by the next prefix coefficient.
 
 Telescoping to the full-prefix endpoint gives the depth decomposition.  If
 `A != B`, `|A|=|B|=m`, and `sigma<m`, then the full-prefix endpoint has no
@@ -973,7 +988,7 @@ field of characteristic `p not dividing n`, then
   =
   (1/phi(n)) sum_{r=sigma}^{m-1}
     sum_{(A,B) in T}
-      (v_p(J_r(A,B))-v_p(J_{r+1}(A,B))).
+      deg H_{p,r}(A,B).
 ```
 
 The left side is the row collision count at depth `sigma`; the right side is
@@ -1191,6 +1206,11 @@ Dividing by `phi(16)=8` gives the fixed-root row count `40`.  For the nonsplit
 `F_9` non-characteristic-zero family, the single frontier layer has sum `96`;
 dividing by `phi(8)=4` gives the non-structural row contribution `24`, with
 the remaining `6` row pairs coming from the characteristic-zero stratum.
+The verifier also computes the frontier factors themselves: the fixed-root
+`F_17` packet has forty degree-one factors from `sigma=4` to `sigma=5`, the
+full dilation-stable `F_17` family has degree sums `320,0` across the two
+frontier layers, and the nonsplit `F_9` family has forty-eight degree-two
+frontier factors at `sigma=1`.
 
 The verifier separately checks this full-prefix endpoint for `n=16` at the
 split primes `17` and `97`, for every complement size `1 <= m <= 8`: at

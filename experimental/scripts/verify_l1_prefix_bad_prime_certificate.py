@@ -2242,6 +2242,63 @@ def frontier_layer_valuation_sum(
     return total
 
 
+def common_root_frontier_factor_mod(
+    left: Sequence[int],
+    right: Sequence[int],
+    order: int,
+    sigma: int,
+    prime: int,
+) -> list[int]:
+    current = common_root_gcd_mod(left, right, order, sigma, prime)
+    deeper = common_root_gcd_mod(left, right, order, sigma + 1, prime)
+    quotient, remainder = poly_divmod_mod(current, deeper, prime)
+    if remainder:
+        raise AssertionError("deeper common-root factor did not divide current")
+    return quotient or [1]
+
+
+def frontier_layer_factor_profile(
+    family: Iterable[tuple[tuple[int, ...], tuple[int, ...]]],
+    order: int,
+    sigma: int,
+    prime: int,
+) -> dict[str, Any]:
+    total = 0
+    degree_counts: Counter[int] = Counter()
+    examples_by_degree: dict[int, list[int]] = {}
+    for left, right in family:
+        factor = common_root_frontier_factor_mod(
+            left,
+            right,
+            order,
+            sigma,
+            prime,
+        )
+        factor_degree = degree(factor)
+        drop = radical_frontier_drop(left, right, order, sigma)
+        valuation_drop = next(
+            (
+                row["valuation_drop"]
+                for row in drop["rows"]
+                if row["prime"] == prime
+            ),
+            0,
+        )
+        if factor_degree != valuation_drop:
+            raise AssertionError("frontier factor degree missed radical drop")
+        total += factor_degree
+        degree_counts[factor_degree] += 1
+        examples_by_degree.setdefault(factor_degree, factor)
+    return {
+        "frontier_factor_degree_sum": total,
+        "degree_counts": dict(sorted(degree_counts.items())),
+        "example_factors_by_degree": {
+            str(factor_degree): examples_by_degree[factor_degree]
+            for factor_degree in sorted(examples_by_degree)
+        },
+    }
+
+
 def check_prefix_radical_frontier_drop() -> dict[str, Any]:
     order = 16
     prime = 17
@@ -2352,6 +2409,208 @@ def check_prefix_radical_frontier_drop() -> dict[str, Any]:
         },
         "nonsplit_witness": extension_drop,
         "nonsplit_telescoping": extension_telescoping,
+    }
+
+
+def check_frontier_factor_decomposition() -> dict[str, Any]:
+    order = 16
+    prime = 17
+    left = (0, 1, 2, 3, 4, 14)
+    right = (5, 6, 7, 9, 12, 15)
+    expected_representative_degrees = {
+        1: 1,
+        2: 0,
+        3: 0,
+        4: 1,
+        5: 0,
+    }
+    representative_rows = []
+    for sigma, expected_degree in expected_representative_degrees.items():
+        factor = common_root_frontier_factor_mod(
+            left,
+            right,
+            order,
+            sigma,
+            prime,
+        )
+        factor_degree = degree(factor)
+        drop = radical_frontier_drop(left, right, order, sigma)
+        valuation_drop = next(
+            (
+                row["valuation_drop"]
+                for row in drop["rows"]
+                if row["prime"] == prime
+            ),
+            0,
+        )
+        if factor_degree != expected_degree:
+            raise AssertionError("bad representative frontier factor degree")
+        if factor_degree != valuation_drop:
+            raise AssertionError("representative factor missed radical drop")
+        representative_rows.append({
+            "sigma": sigma,
+            "frontier_factor": factor,
+            "frontier_factor_degree": factor_degree,
+        })
+
+    packet = finite_prefix_collision_pairs(
+        prime=prime,
+        order=order,
+        complement_size=6,
+        sigma=4,
+    )
+    packet_degree_counts: Counter[int] = Counter()
+    packet_examples_by_degree: dict[int, list[int]] = {}
+    packet_degree_sum = 0
+    for pair in packet["pairs"]:
+        factor = common_root_frontier_factor_mod(
+            pair["left"],
+            pair["right"],
+            order,
+            4,
+            prime,
+        )
+        factor_degree = degree(factor)
+        if factor_degree != 1:
+            raise AssertionError("bad F_17 packet frontier factor")
+        packet_degree_sum += factor_degree
+        packet_degree_counts[factor_degree] += 1
+        packet_examples_by_degree.setdefault(factor_degree, factor)
+    if packet_degree_sum != 40:
+        raise AssertionError("bad F_17 packet frontier factor degree sum")
+
+    split_roots = primitive_order_roots(prime, order)
+    split_family: set[tuple[tuple[int, ...], tuple[int, ...]]] = set()
+    split_row_counts = {}
+    for root in split_roots:
+        row = finite_prefix_collision_pairs(
+            prime=prime,
+            order=order,
+            complement_size=6,
+            sigma=4,
+            root=root,
+        )
+        split_row_counts[root] = row["collision_pair_count"]
+        for pair in row["pairs"]:
+            split_family.add(normalized_pair(pair["left"], pair["right"]))
+    if set(split_row_counts.values()) != {40}:
+        raise AssertionError("bad split family row counts")
+
+    split_layers = []
+    split_total = 0
+    for sigma in range(4, 6):
+        profile = frontier_layer_factor_profile(
+            split_family,
+            order,
+            sigma,
+            prime,
+        )
+        split_total += profile["frontier_factor_degree_sum"]
+        split_layers.append({
+            "sigma": sigma,
+            **profile,
+        })
+    if [
+        layer["frontier_factor_degree_sum"]
+        for layer in split_layers
+    ] != [320, 0]:
+        raise AssertionError("bad split frontier factor layers")
+    if [
+        layer["degree_counts"]
+        for layer in split_layers
+    ] != [{1: 320}, {0: 320}]:
+        raise AssertionError("bad split frontier factor degree profile")
+    split_row_bound = split_total // euler_phi(order)
+    if split_total % euler_phi(order) != 0 or split_row_bound != 40:
+        raise AssertionError("bad split frontier factor row formula")
+
+    nonsplit_prime = 3
+    nonsplit_order = 8
+    nonsplit_roots = gf9_primitive_order_roots(nonsplit_order)
+    nonsplit_family: set[tuple[tuple[int, ...], tuple[int, ...]]] = set()
+    nonsplit_nonchar_counts = {}
+    nonsplit_structured_counts = {}
+    for root in nonsplit_roots:
+        row = finite_prefix_collision_pairs_gf9(
+            order=nonsplit_order,
+            complement_size=2,
+            sigma=1,
+            root=root,
+        )
+        nonchar_count = 0
+        structured_count = 0
+        for pair in row["pairs"]:
+            key = normalized_pair(pair["left"], pair["right"])
+            certificate = bad_prime_certificate(
+                key[0],
+                key[1],
+                nonsplit_order,
+                1,
+            )
+            if certificate["char_zero_collision"]:
+                structured_count += 1
+            else:
+                nonsplit_family.add(key)
+                nonchar_count += 1
+        nonsplit_nonchar_counts[tuple(root)] = nonchar_count
+        nonsplit_structured_counts[tuple(root)] = structured_count
+    if set(nonsplit_nonchar_counts.values()) != {24}:
+        raise AssertionError("bad nonsplit non-char counts")
+    if set(nonsplit_structured_counts.values()) != {6}:
+        raise AssertionError("bad nonsplit structured counts")
+
+    nonsplit_profile = frontier_layer_factor_profile(
+        nonsplit_family,
+        nonsplit_order,
+        1,
+        nonsplit_prime,
+    )
+    if nonsplit_profile["frontier_factor_degree_sum"] != 96:
+        raise AssertionError("bad nonsplit frontier factor layer")
+    if nonsplit_profile["degree_counts"] != {2: 48}:
+        raise AssertionError("bad nonsplit frontier factor degree profile")
+    nonsplit_row_bound = (
+        nonsplit_profile["frontier_factor_degree_sum"]
+        // euler_phi(nonsplit_order)
+    )
+    if nonsplit_row_bound != 24:
+        raise AssertionError("bad nonsplit frontier factor row formula")
+
+    return {
+        "representative": {
+            "left": list(left),
+            "right": list(right),
+            "rows": representative_rows,
+        },
+        "packet_sigma4_to_5": {
+            "pair_count": packet["collision_pair_count"],
+            "frontier_factor_degree_sum": packet_degree_sum,
+            "degree_counts": dict(sorted(packet_degree_counts.items())),
+            "example_factors_by_degree": {
+                str(factor_degree): packet_examples_by_degree[factor_degree]
+                for factor_degree in sorted(packet_examples_by_degree)
+            },
+        },
+        "split_case": {
+            "field": "F_17",
+            "prime": prime,
+            "order": order,
+            "family_size": len(split_family),
+            "frontier_factor_layers": split_layers,
+            "row_count_from_frontier_factors": split_row_bound,
+        },
+        "nonsplit_case": {
+            "field": "F_9 = F_3[i]/(i^2+1)",
+            "prime": nonsplit_prime,
+            "order": nonsplit_order,
+            "family_size": len(nonsplit_family),
+            "frontier_factor_layer": {
+                "sigma": 1,
+                **nonsplit_profile,
+            },
+            "row_count_from_frontier_factors": nonsplit_row_bound,
+            "structured_row_count": 6,
+        },
     }
 
 
@@ -3922,6 +4181,7 @@ def build_report() -> dict[str, Any]:
         "extension_field_row_accounting": check_extension_field_row_accounting(),
         "prefix_depth_filtration": check_prefix_depth_filtration(),
         "prefix_radical_frontier_drop": check_prefix_radical_frontier_drop(),
+        "frontier_factor_decomposition": check_frontier_factor_decomposition(),
         "frontier_layer_row_decomposition": (
             check_frontier_layer_row_decomposition()
         ),
@@ -4035,6 +4295,16 @@ def print_human(report: dict[str, Any]) -> None:
         f"{frontier['packet_sigma4_to_full']['frontier_product_factorization']}, "
         "f9_drop="
         f"{frontier['nonsplit_witness']['frontier_drop_factorization']}"
+    )
+    factors = report["frontier_factor_decomposition"]
+    print(
+        "frontier_factor_decomposition="
+        "packet_degrees="
+        f"{factors['packet_sigma4_to_5']['degree_counts']}, "
+        "split_layers="
+        f"{factors['split_case']['frontier_factor_layers']}, "
+        "f9_layer="
+        f"{factors['nonsplit_case']['frontier_factor_layer']}"
     )
     frontier_rows = report["frontier_layer_row_decomposition"]
     print(
