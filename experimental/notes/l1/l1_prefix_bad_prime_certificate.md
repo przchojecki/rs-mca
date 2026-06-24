@@ -161,6 +161,24 @@ condition is
 Delta_r(h) = 0 in F_p,        1 <= r <= sigma.
 ```
 
+Equivalently, define the modular common-root factor
+
+```text
+G_p(T)=gcd(Phi_n(T), Delta_1(T), ..., Delta_sigma(T)) in F_p[T].
+```
+
+Then the template has a finite-field realization over some primitive `n`-th
+root in `F_p` if and only if
+
+```text
+deg G_p > 0.
+```
+
+Indeed, because `p` does not divide `n`, the roots of `Phi_n` in the algebraic
+closure are the primitive `n`-th roots and are simple.  A common zero of all
+the `Delta_r` is therefore exactly a nonconstant common divisor of `Phi_n` and
+the `Delta_r` reductions.
+
 Thus `p | C_n,sigma(A,B)` says that each nonzero `Delta_r(zeta_n)` vanishes
 modulo at least one prime ideal above `p`; it need not be the same prime ideal
 for all `r`.
@@ -181,8 +199,9 @@ C_16,4(A,B) = 194 = 2 * 97,
 ```
 
 so `97` passes the rational split-prime filter.  But evaluating the four
-`Delta_r` at all primitive `16`-th roots in `F_97` gives no common zero.  Hence
-there is no finite-field prefix collision for this template over `F_97`.
+`Delta_r` at all primitive `16`-th roots in `F_97` gives no common zero;
+equivalently the modular gcd `G_97` is constant.  Hence there is no
+finite-field prefix collision for this template over `F_97`.
 
 This distinction is important for aggregation: lcm certificates produce a
 candidate set of rational primes, while the final row-level verifier or theorem

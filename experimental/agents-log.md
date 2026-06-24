@@ -43,7 +43,8 @@ Keep entries concise and link to the relevant files.
   characteristic-zero prefix collision or the prime divides an explicit
   cyclotomic resultant certificate. The note also records the associated norm
   bound, finite-family lcm aggregation handle, and the prime-ideal refinement
-  needed to filter rational-certificate false positives.
+  via the modular gcd `gcd(Phi_n, Delta_1, ..., Delta_sigma)` needed to filter
+  rational-certificate false positives.
 - **How it is useful:** This supplies the finite-field layer complementary to
   characteristic-zero L1 reductions. It turns robustly aperiodic modular
   collisions into algebraic norm/resultant divisibility events, matching a

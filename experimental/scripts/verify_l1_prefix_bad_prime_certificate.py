@@ -73,6 +73,46 @@ def poly_divmod_monic(
     return trim(quotient), top
 
 
+def trim_mod(poly: Sequence[int], prime: int) -> list[int]:
+    out = [coeff % prime for coeff in poly]
+    while out and out[-1] == 0:
+        out.pop()
+    return out
+
+
+def poly_divmod_mod(
+    numerator: Sequence[int],
+    divisor: Sequence[int],
+    prime: int,
+) -> tuple[list[int], list[int]]:
+    top = trim_mod(numerator, prime)
+    bottom = trim_mod(divisor, prime)
+    if not bottom:
+        raise AssertionError("nonzero divisor required")
+    quotient = [0] * max(0, len(top) - len(bottom) + 1)
+    inv_lead = pow(bottom[-1], -1, prime)
+    while top and len(top) >= len(bottom):
+        shift = len(top) - len(bottom)
+        coeff = top[-1] * inv_lead % prime
+        quotient[shift] = coeff
+        for idx, div_coeff in enumerate(bottom):
+            top[shift + idx] = (top[shift + idx] - coeff * div_coeff) % prime
+        top = trim_mod(top, prime)
+    return trim_mod(quotient, prime), top
+
+
+def poly_gcd_mod(left: Sequence[int], right: Sequence[int], prime: int) -> list[int]:
+    a = trim_mod(left, prime)
+    b = trim_mod(right, prime)
+    while b:
+        _, remainder = poly_divmod_mod(a, b, prime)
+        a, b = b, remainder
+    if not a:
+        return []
+    inv_lead = pow(a[-1], -1, prime)
+    return trim_mod([(coeff * inv_lead) % prime for coeff in a], prime)
+
+
 def positive_divisors(value: int) -> list[int]:
     small: list[int] = []
     large: list[int] = []
@@ -402,6 +442,7 @@ def check_f17_packet() -> dict[str, Any]:
         raise AssertionError("unexpected F_17 maximum fiber")
 
     certificate_counter: Counter[int] = Counter()
+    common_root_degree_counter: Counter[int] = Counter()
     split_factor_sets: Counter[tuple[int, ...]] = Counter()
     aggregate_certificate = 1
     orbit_groups: dict[tuple[tuple[int, ...], tuple[int, ...]], list[dict[str, Any]]]
@@ -420,6 +461,17 @@ def check_f17_packet() -> dict[str, Any]:
         split_factors = tuple(certificate["split_prime_factors"])
         if split_factors != (17,):
             raise AssertionError(f"unexpected split factors {split_factors}")
+        common_root_factor = common_root_gcd_mod(
+            pair["left"],
+            pair["right"],
+            order=16,
+            sigma=4,
+            prime=17,
+        )
+        common_root_degree = degree(common_root_factor)
+        if common_root_degree <= 0:
+            raise AssertionError("actual F_17 collision has no common-root factor")
+        common_root_degree_counter[common_root_degree] += 1
         certificate_counter[certificate["certificate"]] += 1
         split_factor_sets[split_factors] += 1
         aggregate_certificate = lcm_int(aggregate_certificate, certificate["certificate"])
@@ -472,6 +524,7 @@ def check_f17_packet() -> dict[str, Any]:
         "max_fiber": row["max_fiber"],
         "fiber_histogram": row["fiber_histogram"],
         "certificate_counts": dict(sorted(certificate_counter.items())),
+        "common_root_degree_counts": dict(sorted(common_root_degree_counter.items())),
         "aggregate_lcm_certificate": aggregate_certificate,
         "aggregate_split_prime_factors": aggregate_split_factors,
         "translation_orbits": orbit_ledger,
@@ -508,6 +561,25 @@ def prefix_delta_values_mod(
         )
         values.append(poly_eval_mod(delta, root, prime))
     return values
+
+
+def common_root_gcd_mod(
+    left: Sequence[int],
+    right: Sequence[int],
+    order: int,
+    sigma: int,
+    prime: int,
+) -> list[int]:
+    common = trim_mod(cyclotomic_poly(order), prime)
+    for rank in range(1, sigma + 1):
+        delta = poly_sub(
+            exponent_elementary_poly(left, order, rank),
+            exponent_elementary_poly(right, order, rank),
+        )
+        common = poly_gcd_mod(common, delta, prime)
+        if degree(common) <= 0:
+            break
+    return common
 
 
 def check_split_prime_sweep() -> list[dict[str, Any]]:
@@ -557,6 +629,9 @@ def check_prime_ideal_false_positive() -> dict[str, Any]:
         raise AssertionError("unexpected false-positive certificate")
     if certificate["split_prime_factors"] != [prime]:
         raise AssertionError("expected 97 as rational split certificate factor")
+    common_root_factor = common_root_gcd_mod(left, right, order, sigma, prime)
+    if degree(common_root_factor) > 0:
+        raise AssertionError("false positive has a nontrivial common-root factor")
 
     profile = []
     any_collision = False
@@ -586,6 +661,8 @@ def check_prime_ideal_false_positive() -> dict[str, Any]:
         "prime": prime,
         "certificate": certificate["certificate"],
         "certificate_factorization": certificate["certificate_factorization"],
+        "common_root_factor_mod_p": common_root_factor,
+        "common_root_degree": degree(common_root_factor),
         "primitive_root_checks": profile,
         "actual_collision_for_any_embedding": any_collision,
     }
@@ -654,6 +731,7 @@ def print_human(report: dict[str, Any]) -> None:
     print(
         "false_positive="
         f"p={false_positive['prime']}, cert={false_positive['certificate']}, "
+        f"gcd_degree={false_positive['common_root_degree']}, "
         f"actual={false_positive['actual_collision_for_any_embedding']}"
     )
     print(f"galois_certificate={report['galois_invariance']['base_certificate']}")
