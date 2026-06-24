@@ -1710,6 +1710,67 @@ next problem into two clearer subproblems:
 1. growing cofactor excess `d-ell`;
 2. entropy of many petal-deficit placements.
 
+## Proposition 20. Bounded-Width Mixed-Petal Layers
+
+Status: PROVED.
+
+Assume the sunflower has no unused background, and work at the L1 lower cutoff
+with generated field `q=poly(n)`.  Fix integer constants
+
+```text
+E,T,A >= 0.
+```
+
+The number of non-planted listed codewords satisfying
+
+```text
+d <= ell+E,
+t(P) = #{i : S_i nonempty} <= T,
+u(P) = sum_i (ell-|S_i|) <= A t(P)
+```
+
+is polynomial in `n`.  More explicitly, it is at most
+
+```text
+sum_{t=2}^{T} sum_{u=0}^{At}
+  binom(M,t) binom(t*ell,u)
+  (E+floor(u/t)+1) q^{E+floor(u/t)+1}.
+```
+
+### Proof
+
+In the background-free case, Lemma 4 rules out non-planted zero- or one-petal
+extras, so `t(P)>=2`.  For each fixed pair `(t,u)` in the displayed ranges,
+Lemma 19 bounds the corresponding stratum by
+
+```text
+binom(M,t) binom(t*ell,u)
+  (E+floor(u/t)+1) q^{E+floor(u/t)+1}.
+```
+
+Summing over `2<=t<=T` and `0<=u<=At` gives the displayed estimate.
+
+At the L1 lower cutoff, `M=O(log n)`, `ell<=n`, and `q=poly(n)`.  Since
+`E,T,A` are fixed, the number of summands is fixed, the binomial factors are
+polynomial in `n`, and the power of `q` is bounded by the fixed exponent
+`E+A+1`.  Hence the displayed sum is polynomial in `n`.
+
+### Consequences
+
+The partial-petal residual has now been narrowed from "diffuse" to a genuinely
+large-width or large-average-deficit phenomenon.  A super-polynomial
+background-free sunflower family with bounded cofactor excess must satisfy at
+least one of
+
+```text
+t(P) -> infinity,
+u(P)/t(P) -> infinity.
+```
+
+Thus the next obstruction search should no longer spend effort on bounded
+numbers of mildly deficient petals; those are polynomially controlled by the
+cofactor-injection mechanism.
+
 ## Development Ledger
 
 - **Conjecture 1 full-list primitive remainder:** CONJECTURAL.  Main proof
@@ -1761,5 +1822,7 @@ next problem into two clearer subproblems:
   `d<=ell+E` and total petal deficit at most `U`.
 - **Deficit-average mixed-petal strata:** PROVED.  Bounds fixed `(t,u)` strata
   with cofactor exponent depending on `floor(u/t)`.
+- **Bounded-width mixed-petal layers:** PROVED.  Shows bounded excess, bounded
+  touched-petal count, and bounded average deficit give only polynomial mass.
 - **Mixed-petal sunflower amplification:** CONJECTURAL.  Next focused bound to
   prove or refute in the large-defect regime.

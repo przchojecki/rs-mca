@@ -30,6 +30,23 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-24 - L1 bounded-width mixed-petal layers
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/notes/l1/l1_full_list_quotient_proof_program.md`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED.
+- **What is being added:** A bounded-width mixed-petal proposition.  For fixed
+  `E,T,A`, extras with `d<=ell+E`, at most `T` touched petals, and average
+  petal deficit at most `A` are polynomially bounded at the L1 lower cutoff.
+- **How it is useful:** Consolidates the partial-petal residual: with bounded
+  cofactor excess, any super-polynomial sunflower family must have unbounded
+  touched-petal count or unbounded average petal deficit.
+- **What to do next:** Focus remaining searches or proofs on large-width
+  diffuse patterns, large average deficit, or genuinely growing cofactor
+  excess.
+
 ### 2026-06-24 - L1 deficit-average mixed-petal strata
 
 - **Agent/model:** Codex.
