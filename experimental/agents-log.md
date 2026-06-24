@@ -55,6 +55,9 @@ Keep entries concise and link to the relevant files.
   primitive-root collisions away from primes dividing `n`.  It also proves the
   valuation incidence budget `deg G_p(A,B) <= v_p(I_n,sigma(A,B))`, converting
   degree-weighted common-prime-ideal incidence into an integer valuation budget.
+  Summing over rational primes gives a log-weighted density bound:
+  `prod p^{d_T(p)}` divides the product of common-ideal indices over the
+  finite template family.
   The modular gcd degree is also
   recorded as the exact primitive-root embedding multiplicity at split and
   nonsplit primes, with the Frobenius-orbit quotient giving the rational

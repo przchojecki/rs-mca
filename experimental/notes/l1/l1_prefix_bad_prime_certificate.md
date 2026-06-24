@@ -478,6 +478,42 @@ degree-weighted common-prime-ideal incidence into a purely integer valuation
 budget.  The remaining hard L1 problem is to bound that valuation budget over
 the robustly aperiodic template families that arise at large `n`.
 
+There is also a global log-weighted form.  For a finite multiset `T` of
+non-characteristic-zero templates, put
+
+```text
+D_T = product_{(A,B) in T} I_n,sigma(A,B),
+d_T(p) = sum_{(A,B) in T} d_p(A,B).
+```
+
+Then, away from primes dividing `n`,
+
+```text
+product_{p not dividing n} p^{d_T(p)}  divides  D_T,
+```
+
+and therefore
+
+```text
+sum_{p not dividing n} d_T(p) log p
+  <= log D_T
+  = sum_{(A,B) in T} log I_n,sigma(A,B).
+```
+
+Since `I_n,sigma(A,B) | C_n,sigma(A,B)`, the right side is at most the
+corresponding sum of logarithms of the resultant certificates.  Using the
+trivial norm bound from above, each individual template also satisfies
+
+```text
+log I_n,sigma(A,B)
+  <= min_{active r} phi(n) log(2 binom(m,r)).
+```
+
+This is a finite density-over-primes statement: large degree-weighted incidence
+at many rational primes forces a large integer common-ideal product.  It still
+does not prove the L1 local limit, because the hard part is bounding `D_T` for
+the robustly aperiodic template families selected by the prefix problem.
+
 ## Newton Bridge To Power Sums
 
 The same common-root factor can be computed from power sums whenever the small

@@ -2100,6 +2100,131 @@ def check_valuation_incidence_budget() -> dict[str, Any]:
     }
 
 
+def check_log_weighted_density_budget() -> dict[str, Any]:
+    order = 16
+    sigma = 4
+    packet = finite_prefix_collision_pairs(
+        prime=17,
+        order=order,
+        complement_size=6,
+        sigma=sigma,
+    )
+    family = [
+        normalized_pair(pair["left"], pair["right"])
+        for pair in packet["pairs"]
+    ]
+    family.append(normalized_pair(
+        (0, 1, 2, 7, 9, 13),
+        (0, 1, 2, 3, 4, 11),
+    ))
+
+    index_product = 1
+    height_bound_product = 1
+    resultant_lcm = 1
+    for left, right in family:
+        certificate = bad_prime_certificate(left, right, order, sigma)
+        common_ideal = common_ideal_index(left, right, order, sigma)
+        if common_ideal["index"] == 0:
+            raise AssertionError("log budget excludes char-zero templates")
+        if certificate["certificate"] % common_ideal["index"] != 0:
+            raise AssertionError("common-ideal index did not divide certificate")
+        if common_ideal["index"] > certificate["least_active_height_bound"]:
+            raise AssertionError("common-ideal index exceeded height bound")
+        index_product *= common_ideal["index"]
+        height_bound_product *= certificate["least_active_height_bound"]
+        resultant_lcm = lcm_int(resultant_lcm, certificate["certificate"])
+
+    candidate_primes = sorted(set(
+        prime_support_away_from_order(index_product, order)
+        + split_prime_support(resultant_lcm, order)
+    ))
+    rows = []
+    incidence_divisor = 1
+    for prime in candidate_primes:
+        degree_sum = 0
+        valuation_budget = p_adic_valuation(index_product, prime)
+        for left, right in family:
+            degree_sum += degree(common_root_gcd_mod(
+                left,
+                right,
+                order,
+                sigma,
+                prime,
+            ))
+        if degree_sum > valuation_budget:
+            raise AssertionError("degree sum exceeded product valuation budget")
+        incidence_divisor *= prime ** degree_sum
+        rows.append({
+            "prime": prime,
+            "common_root_degree_sum": degree_sum,
+            "product_valuation_budget": valuation_budget,
+        })
+
+    if rows != [
+        {
+            "prime": 17,
+            "common_root_degree_sum": 40,
+            "product_valuation_budget": 40,
+        },
+        {
+            "prime": 97,
+            "common_root_degree_sum": 0,
+            "product_valuation_budget": 0,
+        },
+    ]:
+        raise AssertionError(f"unexpected log-density rows: {rows}")
+    if index_product % incidence_divisor != 0:
+        raise AssertionError("incidence divisor did not divide index product")
+    if height_bound_product < index_product:
+        raise AssertionError("height-bound product did not dominate index product")
+
+    extension_order = 8
+    extension_sigma = 1
+    extension_left = (0, 1)
+    extension_right = (2, 5)
+    extension_prime = 3
+    extension_ideal = common_ideal_index(
+        extension_left,
+        extension_right,
+        extension_order,
+        extension_sigma,
+    )
+    extension_degree = degree(common_root_gcd_mod(
+        extension_left,
+        extension_right,
+        extension_order,
+        extension_sigma,
+        extension_prime,
+    ))
+    extension_incidence_divisor = extension_prime ** extension_degree
+    if extension_ideal["index"] % extension_incidence_divisor != 0:
+        raise AssertionError("nonsplit incidence divisor missed index product")
+
+    return {
+        "split_family": {
+            "order": order,
+            "sigma": sigma,
+            "template_pair_count": len(family),
+            "candidate_primes": candidate_primes,
+            "rows": rows,
+            "incidence_divisor": incidence_divisor,
+            "incidence_divisor_factorization": factorint(incidence_divisor),
+            "index_product_factorization": factorint(index_product),
+            "height_bound_dominates_index_product": (
+                height_bound_product >= index_product
+            ),
+        },
+        "nonsplit_witness": {
+            "order": extension_order,
+            "sigma": extension_sigma,
+            "prime": extension_prime,
+            "common_root_degree": extension_degree,
+            "incidence_divisor": extension_incidence_divisor,
+            "common_ideal_index": extension_ideal["index"],
+        },
+    }
+
+
 def check_galois_invariance() -> dict[str, Any]:
     left = (0, 1, 2, 12, 14, 15)
     right = (3, 4, 5, 7, 10, 13)
@@ -2221,6 +2346,7 @@ def build_report() -> dict[str, Any]:
             check_finite_family_exact_aggregation()
         ),
         "valuation_incidence_budget": check_valuation_incidence_budget(),
+        "log_weighted_density_budget": check_log_weighted_density_budget(),
         "galois_invariance": check_galois_invariance(),
         "affine_invariance": check_affine_invariance(),
         "nonmutating": True,
@@ -2335,6 +2461,13 @@ def print_human(report: dict[str, Any]) -> None:
         "valuation_incidence_budget="
         f"templates={valuation['template_pair_count']}, "
         f"rows={valuation['rows']}"
+    )
+    log_budget = report["log_weighted_density_budget"]["split_family"]
+    print(
+        "log_weighted_density_budget="
+        f"templates={log_budget['template_pair_count']}, "
+        f"incidence_factors={log_budget['incidence_divisor_factorization']}, "
+        f"index_product_factors={log_budget['index_product_factorization']}"
     )
     affine = report["affine_invariance"]
     print(
