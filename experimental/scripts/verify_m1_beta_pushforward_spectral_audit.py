@@ -243,6 +243,121 @@ def principal_trace_case(p: int) -> dict[str, Any]:
     }
 
 
+def alpha_marginal_reduction_case(
+    p: int,
+    quotient_order: int,
+    matrix: list[list[int]],
+) -> dict[str, Any]:
+    logs = m1.log_table(p)
+    root = cmath.exp(2j * math.pi / quotient_order)
+    deleted_base_count = 0
+    for alpha in range(1, p):
+        for ratio in range(1, p):
+            deleted_base_count += int(
+                not m1.ratio_surface_beta_pushforward_good(p, alpha, ratio)
+            )
+
+    inverse_minus_two = pow(-2, -1, p)
+    row_sums = [sum(row) for row in matrix]
+    max_alpha_coefficient = 0.0
+    max_full_middle = 0.0
+    max_full_branch = 0.0
+    max_boundary = 0.0
+    max_matrix_formula_error = 0.0
+    max_branch_formula_error = 0.0
+
+    for character_exponent in range(1, quotient_order):
+        matrix_coefficient = sum(
+            row_sums[label] * root ** (character_exponent * label)
+            for label in range(quotient_order)
+        )
+        good_base = 0j
+        full_middle = 0j
+        full_branch = 0j
+        for alpha in range(1, p):
+            psi = root ** (character_exponent * (logs[alpha] % quotient_order))
+            for ratio in range(1, p):
+                middle_factor = m1.ratio_surface_beta_middle_factor(
+                    p,
+                    alpha,
+                    ratio,
+                )
+                branch_factor = m1.ratio_surface_beta_branch_factor(
+                    p,
+                    alpha,
+                    ratio,
+                )
+                middle_term = m1.legendre(ratio * middle_factor, p)
+                branch_term = m1.legendre(alpha * branch_factor, p)
+                full_middle += psi * middle_term
+                full_branch += psi * branch_term
+                if m1.ratio_surface_beta_pushforward_good(p, alpha, ratio):
+                    good_base += psi * (middle_term + branch_term)
+
+        psi_minus_two = root ** (
+            character_exponent * (logs[(-2) % p] % quotient_order)
+        )
+        psi_inverse_minus_two = root ** (
+            character_exponent * (logs[inverse_minus_two] % quotient_order)
+        )
+        expected_full_branch = p * (1 + psi_minus_two + psi_inverse_minus_two)
+        boundary = good_base - full_middle - full_branch
+        matrix_formula_error = abs(matrix_coefficient - good_base)
+        branch_formula_error = abs(full_branch - expected_full_branch)
+
+        if matrix_formula_error > 1000 * TOLERANCE:
+            raise AssertionError(
+                (
+                    p,
+                    quotient_order,
+                    character_exponent,
+                    matrix_coefficient,
+                    good_base,
+                )
+            )
+        if branch_formula_error > 1000 * TOLERANCE:
+            raise AssertionError(
+                (
+                    p,
+                    quotient_order,
+                    character_exponent,
+                    full_branch,
+                    expected_full_branch,
+                )
+            )
+        if abs(boundary) > 2 * deleted_base_count + 1000 * TOLERANCE:
+            raise AssertionError(
+                (p, quotient_order, character_exponent, boundary)
+            )
+
+        max_alpha_coefficient = max(max_alpha_coefficient, abs(matrix_coefficient))
+        max_full_middle = max(max_full_middle, abs(full_middle))
+        max_full_branch = max(max_full_branch, abs(full_branch))
+        max_boundary = max(max_boundary, abs(boundary))
+        max_matrix_formula_error = max(
+            max_matrix_formula_error,
+            matrix_formula_error,
+        )
+        max_branch_formula_error = max(
+            max_branch_formula_error,
+            branch_formula_error,
+        )
+
+    return {
+        "p": p,
+        "quotient_order": quotient_order,
+        "max_alpha_marginal_coefficient_ratio": round(
+            max_alpha_coefficient / p,
+            10,
+        ),
+        "max_alpha_full_middle_ratio": round(max_full_middle / p, 10),
+        "max_alpha_full_branch_ratio": round(max_full_branch / p, 10),
+        "max_alpha_boundary_ratio": round(max_boundary / p, 10),
+        "max_alpha_matrix_formula_error": round(max_matrix_formula_error, 12),
+        "max_alpha_branch_formula_error": round(max_branch_formula_error, 12),
+    }
+
+
 def centered_frobenius_square(matrix: list[list[int]]) -> float:
     order = len(matrix)
     row_sums = [sum(row) for row in matrix]
@@ -391,6 +506,7 @@ def audit_case(p: int, quotient_order: int) -> dict[str, Any]:
         max_beta2,
         max_left_principal,
     ) = spectral_stats(matrix)
+    alpha_reduction = alpha_marginal_reduction_case(p, quotient_order, matrix)
     parseval_error = abs(
         two_sided_energy / (quotient_order * quotient_order) - frobenius_square
     )
@@ -492,6 +608,7 @@ def audit_case(p: int, quotient_order: int) -> dict[str, Any]:
         "component_marginal_error": round(component_marginal_error, 12),
         "component_right_error": round(component_right_error, 12),
         "joint_decomposition_error": round(joint_decomposition_error, 12),
+        "alpha_marginal_reduction": alpha_reduction,
     }
 
 
@@ -585,6 +702,18 @@ def compute_report() -> dict[str, Any]:
         rows,
         key=lambda row: row["alpha_marginal_frobenius_ratio"],
     )
+    max_alpha_marginal_coefficient_row = max(
+        rows,
+        key=lambda row: row["alpha_marginal_reduction"][
+            "max_alpha_marginal_coefficient_ratio"
+        ],
+    )
+    max_alpha_full_middle_row = max(
+        rows,
+        key=lambda row: row["alpha_marginal_reduction"][
+            "max_alpha_full_middle_ratio"
+        ],
+    )
     max_marginal_row = max(
         rows,
         key=lambda row: row["beta_marginal_frobenius_ratio"],
@@ -612,6 +741,8 @@ def compute_report() -> dict[str, Any]:
         "max_beta2_coefficient_row": max_beta2_row,
         "max_centered_frobenius_row": max_frobenius_row,
         "max_alpha_marginal_frobenius_row": max_alpha_marginal_row,
+        "max_alpha_marginal_coefficient_row": max_alpha_marginal_coefficient_row,
+        "max_alpha_full_middle_row": max_alpha_full_middle_row,
         "max_beta_marginal_frobenius_row": max_marginal_row,
         "max_right_projected_frobenius_row": max_right_projected_row,
         "max_joint_collision_row": max_joint_collision_row,
@@ -629,6 +760,7 @@ def print_report(report: dict[str, Any]) -> None:
     print(f"status: {report['status']}")
     print(f"cases: {report['case_count']}")
     for row in report["rows"]:
+        alpha_reduction = row["alpha_marginal_reduction"]
         print(
             "p={p} e={quotient_order} good={good_point_count} "
             "two_sided/p={max_two_sided_coefficient_ratio} "
@@ -636,6 +768,7 @@ def print_report(report: dict[str, Any]) -> None:
             "left_principal/p={max_left_principal_coefficient_ratio} "
             "frob/p={centered_frobenius_ratio} "
             "alpha_marginal/p={alpha_marginal_frobenius_ratio} "
+            "alpha_coeff/p={alpha_coeff_ratio} "
             "beta_marginal/p={beta_marginal_frobenius_ratio} "
             "right_projected/p={right_projected_frobenius_ratio} "
             "nonnull_bound/p={nonnegative_sufficient_bound_ratio} "
@@ -644,16 +777,24 @@ def print_report(report: dict[str, Any]) -> None:
             "marginal_parseval_error={marginal_parseval_error} "
             "pair_energy_error={pair_energy_error} "
             "pythagorean_error={pythagorean_error} "
-            "component_error={component_centered_error}".format(**row)
+            "component_error={component_centered_error}".format(
+                alpha_coeff_ratio=alpha_reduction[
+                    "max_alpha_marginal_coefficient_ratio"
+                ],
+                **row,
+            )
         )
     max_two_sided = report["max_two_sided_coefficient_row"]
     max_beta2 = report["max_beta2_coefficient_row"]
     max_frobenius = report["max_centered_frobenius_row"]
     max_alpha_marginal = report["max_alpha_marginal_frobenius_row"]
+    max_alpha_coefficient = report["max_alpha_marginal_coefficient_row"]
+    max_alpha_middle = report["max_alpha_full_middle_row"]
     max_marginal = report["max_beta_marginal_frobenius_row"]
     max_right_projected = report["max_right_projected_frobenius_row"]
     max_joint_collision = report["max_joint_collision_row"]
     max_nonnegative_bound = report["max_nonnegative_sufficient_bound_row"]
+    coef_key = "max_alpha_marginal_coefficient_ratio"
     print(
         "max two-sided coefficient row: "
         f"p={max_two_sided['p']} e={max_two_sided['quotient_order']} "
@@ -674,6 +815,19 @@ def print_report(report: dict[str, Any]) -> None:
         f"p={max_alpha_marginal['p']} "
         f"e={max_alpha_marginal['quotient_order']} "
         f"ratio={max_alpha_marginal['alpha_marginal_frobenius_ratio']}"
+    )
+    print(
+        "max alpha-marginal coefficient row: "
+        f"p={max_alpha_coefficient['p']} "
+        f"e={max_alpha_coefficient['quotient_order']} "
+        "ratio="
+        f"{max_alpha_coefficient['alpha_marginal_reduction'][coef_key]}"
+    )
+    print(
+        "max alpha full-middle row: "
+        f"p={max_alpha_middle['p']} e={max_alpha_middle['quotient_order']} "
+        "ratio="
+        f"{max_alpha_middle['alpha_marginal_reduction']['max_alpha_full_middle_ratio']}"
     )
     print(
         "max beta-marginal Frobenius row: "

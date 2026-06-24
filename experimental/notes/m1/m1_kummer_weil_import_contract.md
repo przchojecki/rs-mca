@@ -704,6 +704,26 @@ now controlled by the principal trace formula.  Therefore the positive
 for the alpha- and beta-marginal energies.  The centered block alone is the
 minimal averaged input consumed by the quotient-conic M1 ledger.
 
+The alpha marginal is simpler than the beta marginal.  For nonprincipal
+`psi`, its coefficient descends to
+
+```text
+sum_{(a,r) in G} psi(a)(chi(rM(a,r)) + chi(aH(a,r))).
+```
+
+The full-torus `H` half is explicit:
+
+```text
+sum_{a,r in F_p^*} psi(a)chi(aH(a,r))
+  = p(1 + psi(-2) + psi(-1/2)).
+```
+
+Thus, up to the same fixed boundary curves as the principal trace, the
+alpha-marginal estimate reduces to the rank-one torus trace
+`sum_{a,r} psi(a)chi(rM(a,r))`.  This is a strictly simpler one-sided
+subproblem than the rank-two beta pushforward, but it is not the centered
+M1 target by itself.
+
 The elementary hypotheses behind this import are now audited in
 `verify_m1_depth_two_line_conic_resonance_reduction.py`:
 

@@ -58,7 +58,10 @@ Keep entries concise and link to the relevant files.
   sums plus fixed boundary curves.  The standalone audit now checks the exact
   full-torus formulas `sum chi(rM)=p+2chi(-3)` and `sum chi(aH)=p+2`, and
   records the orthogonal decomposition of `C_ab` into centered, alpha
-  marginal, beta marginal, and principal Fourier blocks.
+  marginal, beta marginal, and principal Fourier blocks.  It also reduces
+  the alpha marginal to an explicit full-torus `H` term
+  `p(1+psi(-2)+psi(-1/2))`, the fixed deleted-boundary correction, and the
+  rank-one torus trace `sum psi(a)chi(rM(a,r))`.
 - **How it is useful:** This is a counterexample-first test of the remaining
   rank-two pushforward object, not of the already controlled exceptional
   ledger. The audited rows show p-scale behavior, with largest recorded full
@@ -70,11 +73,14 @@ Keep entries concise and link to the relevant files.
   is `C_ab/p^2 = 3.4704149482`, and the largest audited nonnegative
   sufficient-bound ratio is `sqrt(C_ab+e^{-2}C_0)/p = 1.8842592703`.
   The principal total trace has largest audited ratio `|T|/p = 3.9527559055`.
-  The largest alpha-marginal Frobenius ratio is `0.9002934041`.
+  The largest alpha-marginal Frobenius ratio is `0.9002934041`, the largest
+  alpha-marginal coefficient ratio is `4.6632993198`, and the largest
+  remaining full-middle alpha trace ratio is `2.8331969382`.
 - **What to do next:** Prove p-scale estimates for the centered block and
-  the alpha/beta marginal blocks, prove the bounded-conductor/no-constant-
-  summand `(BETA_2)` estimate for the explicit rank-two pushforward, or
-  extend the finite scan to larger primes and quotient orders if looking for
+  the beta marginal block, close the rank-one alpha-middle trace if pursuing
+  the positive `C_ab` route, prove the bounded-conductor/no-constant-summand
+  `(BETA_2)` estimate for the explicit rank-two pushforward, or extend the
+  finite scan to larger primes and quotient orders if looking for
   route-killing counterexamples.
 
 ### 2026-06-23 - Cycle119 admissibility review

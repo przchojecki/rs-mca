@@ -3993,7 +3993,10 @@ character sums, and the deleted boundary is a fixed union of curves.  Hence
 this nonnegative route.  The beta audit also records the orthogonal
 decomposition of `C_ab` into the centered block, the alpha marginal, the beta
 marginal, and the controlled principal block; the centered block is the
-minimal piece actually consumed by the M1 quotient-conic ledger.
+minimal piece actually consumed by the M1 quotient-conic ledger.  The alpha
+marginal is further reduced there to an explicit full-torus `H` term plus
+the rank-one torus trace `sum psi(a)chi(rM(a,r))`, leaving the beta marginal
+and centered rank-two block as the genuinely beta-pushforward pieces.
 
 ## Principal-Row Leakage
 

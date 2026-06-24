@@ -305,6 +305,51 @@ block is the actual `(BETA_2^avg)` target consumed by M1; the two marginal
 blocks are extra one-sided estimates needed only if one chooses to prove the
 stronger positive joint-collision target.
 
+## Alpha Marginal Reduction
+
+One of the two one-sided marginal blocks also has a simpler descended form.
+For a nonprincipal quotient character `psi`, the alpha-marginal coefficient is
+
+```text
+A_psi = sum_j sum_i (G_e)_{i,j} psi(i).
+```
+
+The same squareclass calculation used for the principal trace gives
+
+```text
+A_psi
+  = sum_{(a,r) in G} psi(a) (chi(rM(a,r)) + chi(aH(a,r))).    (ALPHA)
+```
+
+Extending `(ALPHA)` to the full torus separates a completely explicit
+`H`-part from one remaining rank-one torus trace.  For fixed `a`,
+`aH(a,r)` is a quadratic polynomial in `r` with discriminant
+
+```text
+32(a-1)^2(a+2)(2a+1).
+```
+
+Therefore, for every nonprincipal `psi`,
+
+```text
+sum_{a,r in F_p^*} psi(a) chi(aH(a,r))
+  = p(1 + psi(-2) + psi(-1/2)).
+```
+
+The deleted good-base boundary is the same fixed union of curves as in the
+principal trace section, so it contributes `O_e(p)` to every fixed quotient
+character.  Hence the alpha marginal is reduced to the single full-torus
+rank-one Kummer trace
+
+```text
+M_psi^tor = sum_{a,r in F_p^*} psi(a) chi(rM(a,r)).
+```
+
+In particular, a standard fixed-conductor `M_psi^tor=O_e(p)` estimate would
+prove the alpha-marginal p-scale bound.  The standalone verifier checks the
+identity `(ALPHA)`, the exact full-torus `H` formula, and the boundary
+correction for every expanded quotient row.
+
 ## Interpretation
 
 The scan finds no hidden `p^2` component in the tested quotient rows.  The good
@@ -361,6 +406,13 @@ prime rows.  The largest audited value is
 
 ```text
 |T|/p = 3.9527559055 at p=127.
+```
+
+The alpha-marginal reduction gives the additional coefficient maxima
+
+```text
+max_{psi != 1} |A_psi|/p = 4.6632993198 at (p,e)=(61,20),
+max_{psi != 1} |M_psi^tor|/p = 2.8331969382 at (p,e)=(73,8).
 ```
 
 Thus the averaged M1 target remains substantially smaller than the largest
