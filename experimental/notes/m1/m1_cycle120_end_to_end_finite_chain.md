@@ -53,6 +53,17 @@ LD_sw(RS[F0,D0,137],143) >= N,
 where `F0=F_17^16`, `|D0|=256`, the co-support size is `113`, and the common
 fixed jet has length `sigma=6`.
 
+The native bad-parameter transfer is checked by
+
+```text
+python3 experimental/scripts/verify_m1_cycle116_fixed_jet_transfer.py
+```
+
+It verifies the common complement-locator truncation
+`W=X^143+X^142+X^141+X^140+X^139+X^138`, the formula
+`z_T=W(beta)-V_D(beta)/P_T(beta)`, and the nonzero-denominator conditions
+needed for distinct `Phi(T)` values to give distinct bad line parameters.
+
 The co-support size and disjoint slot geometry are checked separately by
 
 ```text
@@ -142,6 +153,7 @@ the Cycle84 exact occupancy numerator is the same N used downstream;
 the Cycle116 slot assembly has co-support size 113;
 the external Cycle116 packet contract uses the same verified co-support and
   finite values;
+the fixed-jet bad-parameter map is injective on the counted product values;
 the Cycle116 slot replay and Cycle84 certificate use the same slot-table digest;
 the native Cycle116 parameters are n=256, k=137, agreement=143;
 the smooth lift reaches n=512, k=256, agreement=262 without changing N;
@@ -193,6 +205,7 @@ Run:
 python3 experimental/scripts/verify_m1_cycle120_end_to_end_chain.py
 python3 experimental/scripts/verify_m1_cycle120_end_to_end_chain.py --json
 python3 experimental/scripts/verify_m1_cycle116_external_packet_contract.py
+python3 experimental/scripts/verify_m1_cycle116_fixed_jet_transfer.py
 python3 experimental/scripts/verify_m1_cycle120_supportwise_mca_bridge.py
 ```
 

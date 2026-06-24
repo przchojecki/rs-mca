@@ -148,6 +148,29 @@ LD_sw(RS[F,D,k], k+sigma) >= M.
 This is a support-wise line/MCA statement. It is not an ordinary list-decoding
 lower bound.
 
+The concrete Cycle116 transfer algebra is checked by
+
+```text
+python3 experimental/scripts/verify_m1_cycle116_fixed_jet_transfer.py
+```
+
+It verifies the native subgroup locator `V_D(X)=X^256-1`, the common complement
+truncation
+
+```text
+W(X)=X^143+X^142+X^141+X^140+X^139+X^138,
+```
+
+the bad-parameter formula
+
+```text
+z_T=W(beta)-V_D(beta)/P_T(beta),
+```
+
+and the nonzero denominator conditions that make distinct `Phi(T)` values give
+distinct bad line parameters after the scalar identity
+`P_T(beta)=4(beta-1)Phi(T)`.
+
 ## Cycle84 Native Instantiation
 
 The Cycle116 packet claims that the Cycle84 family satisfies
@@ -268,6 +291,17 @@ python3 experimental/scripts/verify_m1_cycle116_fixed_jet_bridge.py
 
 checks this formal degree-support and scalar reduction. It does not verify the
 336 slot identities themselves.
+
+The next algebraic transfer step is checked by
+
+```text
+python3 experimental/scripts/verify_m1_cycle116_fixed_jet_transfer.py
+```
+
+It verifies that the fixed top six coefficients of `P_T` force the common
+complement truncation `W`, that `Q_T=W-L_T` has degree at most `137`, and that
+the resulting bad-parameter map is injective on the distinct nonzero
+`Phi(T)` values counted by Cycle84.
 
 The 336 identities are replayed separately by
 

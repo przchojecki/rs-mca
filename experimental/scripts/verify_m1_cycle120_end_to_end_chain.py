@@ -30,6 +30,7 @@ import verify_m1_cycle84_exact_occupancy_chain as cycle84
 import verify_m1_cycle116_field_lift_contract as field_lift
 import verify_m1_cycle116_external_packet_contract as external_packet
 import verify_m1_cycle116_fixed_jet_bridge as fixed_jet
+import verify_m1_cycle116_fixed_jet_transfer as fixed_transfer
 import verify_m1_cycle116_slot_assembly as slot_assembly
 import verify_m1_cycle116_slot_identities as slot_ids
 import verify_m1_cycle120_gate_arithmetic as gate
@@ -56,6 +57,7 @@ def build_report() -> Dict[str, Any]:
     assembly_report = slot_assembly.build_report()
     slot_report = slot_ids.build_report()
     fixed_report = fixed_jet.build_report()
+    transfer_report = fixed_transfer.build_report()
     lift_report = field_lift.build_report()
     external_report = external_packet.build_report(
         {
@@ -99,6 +101,7 @@ def build_report() -> Dict[str, Any]:
         "cycle116_slot_assembly_passes": assembly_report["status"] == "PASS",
         "cycle116_slot_identities_pass": slot_report["status"] == "PASS",
         "cycle116_fixed_jet_bridge_passes": fixed_report["status"] == "PASS",
+        "cycle116_fixed_jet_transfer_passes": transfer_report["status"] == "PASS",
         "cycle116_field_lift_contract_passes": lift_report["status"] == "PASS",
         "cycle116_external_packet_contract_passes": (
             external_report["status"] == "PASS"
@@ -162,6 +165,14 @@ def build_report() -> Dict[str, Any]:
             int(native["native_domain_size"])
             - int(native["native_cosupport_size"])
             == int(native["native_agreement"])
+        ),
+        "fixed_transfer_parameters_match_native_chain": (
+            int(transfer_report["transfer"]["code_dimension"])
+            == int(native["native_dimension"])
+            and int(transfer_report["transfer"]["agreement"])
+            == int(native["native_agreement"])
+            and transfer_report["transfer"]["bad_parameter_formula"]
+            == "z_T=W(beta)-V_D(beta)/P_T(beta)"
         ),
         "external_packet_native_parameters_match_chain": (
             int(external["native_parameters"]["n"]) == int(native["native_domain_size"])
@@ -269,6 +280,18 @@ def build_report() -> Dict[str, Any]:
                 "bad_line_parameters": numerator,
                 "conclusion": "LD_sw(RS[F0,D0,137],143) >= N",
             },
+            "cycle116_fixed_jet_transfer": {
+                "complement_locator_truncation": (
+                    transfer_report["transfer"]["complement_locator_truncation"]
+                ),
+                "bad_parameter_formula": (
+                    transfer_report["transfer"]["bad_parameter_formula"]
+                ),
+                "injectivity_reason": transfer_report["transfer"]["injectivity_reason"],
+                "representative_q_degree": int(
+                    transfer_report["representative_check"]["q_degree"]
+                ),
+            },
             "cycle116_smooth_lift": {
                 "field": gate_object["field"],
                 "field_size": field_size,
@@ -315,6 +338,7 @@ def print_human(report: Dict[str, Any]) -> None:
     assembly = chain["cycle116_slot_assembly"]
     external = chain["cycle116_external_packet_contract"]
     native = chain["cycle116_native"]
+    transfer = chain["cycle116_fixed_jet_transfer"]
     lifted = chain["cycle116_smooth_lift"]
     gate_chain = chain["cycle120_gate_arithmetic"]
     mca = chain["cycle120_supportwise_mca"]
@@ -346,6 +370,12 @@ def print_human(report: Dict[str, Any]) -> None:
         "cycle116_native="
         f"n={native['domain_size']}, k={native['dimension']}, "
         f"agreement={native['agreement']}, bad_parameters={native['bad_line_parameters']}"
+    )
+    print(
+        "cycle116_fixed_jet_transfer="
+        f"{transfer['complement_locator_truncation']}, "
+        f"q_degree={transfer['representative_q_degree']}, "
+        f"formula={transfer['bad_parameter_formula']}"
     )
     print(
         "cycle116_lift="

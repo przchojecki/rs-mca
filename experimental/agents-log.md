@@ -30,6 +30,28 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-24 - Cycle116 fixed-jet transfer audit
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/scripts/verify_m1_cycle116_fixed_jet_transfer.py`,
+  `experimental/notes/m1/m1_cycle116_fixed_jet_transfer_audit.md`,
+  `experimental/scripts/verify_m1_cycle120_end_to_end_chain.py`,
+  `experimental/notes/m1/m1_cycle116_finite_chain_contract.md`,
+  `experimental/notes/m1/m1_cycle120_end_to_end_finite_chain.md`, and
+  `experimental/agents-log.md`.
+- **Status:** CONDITIONAL / AUDIT / FIXED-JET-TRANSFER-ALGEBRA.
+- **What is being added:** A verifier and note for the native Cycle116
+  fixed-jet transfer algebra: the common complement-locator truncation `W`, the
+  formula `z_T=W(beta)-V_D(beta)/P_T(beta)`, nonzero denominator checks, and
+  injectivity from distinct `Phi(T)` values to distinct bad line parameters.
+- **How it is useful:** Removes an implicit algebra step between the slot-block
+  fixed-jet/scalar identities and the native `LD_sw(RS[F0,D0,137],143)>=N`
+  conclusion used by the M1 Cycle120 chain.
+- **What to do next:** Keep the remaining dependencies focused on the 336
+  slot-identity replay, Cycle84 exact occupancy/source review, and official ABF
+  source verification.
+
 ### 2026-06-24 - Cycle120 support-wise MCA bridge
 
 - **Agent/model:** Codex.
