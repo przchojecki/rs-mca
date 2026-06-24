@@ -191,6 +191,27 @@ def interleaved_count(families: list[list[frozenset[int]]], a: int) -> int:
     return count
 
 
+def punctured_johnson_bound(s: int, k: int, a: int) -> dict:
+    """Elementary pairwise-overlap bound for an [s,k] punctured RS code.
+
+    Distinct degree-<k codewords agree on at most k-1 puncture points.  If L
+    agreement supports of size >=a have pairwise overlaps <=k-1, incidence
+    counting gives L <= s(s-k+1)/(a^2-s(k-1)) when the denominator is positive.
+    """
+    if 2 * a > s + k - 1:
+        return {"mode": "unique", "bound": 1, "denominator": None}
+    denom = a * a - s * (k - 1)
+    if denom <= 0:
+        return {"mode": "none", "bound": None, "denominator": denom}
+    numerator = s * (s - k + 1)
+    return {
+        "mode": "johnson",
+        "bound": numerator // denom,
+        "numerator": numerator,
+        "denominator": denom,
+    }
+
+
 def two_row_codegree_profile(families: list[list[frozenset[int]]], a: int) -> dict:
     """Return row-1 anchored punctured-list/codegree data for two support families."""
     row1, row2 = families
@@ -277,6 +298,16 @@ def realized_rs_k22() -> dict:
         r = len(supp1 & supp2)
         common_profile[r] = common_profile.get(r, 0) + 1
     codegree_profile = two_row_codegree_profile(families, a)
+    johnson_profiles = [
+        punctured_johnson_bound(len(supp), k, a)
+        for supp in families[0]
+    ]
+    johnson_ok = all(
+        profile["bound"] is not None and inner <= profile["bound"]
+        for inner, profile in zip(
+            codegree_profile["inner_codegrees"], johnson_profiles
+        )
+    )
 
     return {
         "p": p,
@@ -294,6 +325,8 @@ def realized_rs_k22() -> dict:
         "common_intersection_profile": dict(sorted(common_profile.items())),
         "punctured_codegree_profile": codegree_profile,
         "codegree_identity_holds": codegree_profile["codegree_sum"] == interleaved,
+        "punctured_johnson_profiles": johnson_profiles,
+        "punctured_johnson_ok": johnson_ok,
         "kmm_grid_model": kmm_grid_design(k, a, m),
     }
 
@@ -308,6 +341,7 @@ def run() -> dict:
         "rs_witness_creates_mass": witness["mass_creation"],
         "rs_witness_realizes_k22": witness["interleaved"] == witness["product_bound"] == 4,
         "rs_witness_codegree_identity": witness["codegree_identity_holds"],
+        "rs_witness_punctured_johnson": witness["punctured_johnson_ok"],
     }
     return {
         "status": "EXPERIMENTAL / FALSIFICATION",
@@ -349,6 +383,7 @@ def main(argv: list[str] | None = None) -> int:
             f"sum={w['punctured_codegree_profile']['codegree_sum']}, "
             f"max={w['punctured_codegree_profile']['max_inner_codegree']}"
         )
+        print(f"    punctured Johnson profiles={w['punctured_johnson_profiles']}")
         print(f"  RESULT: {'PASS' if result['pass'] else 'FAIL'}")
     return 0 if result["pass"] else 1
 

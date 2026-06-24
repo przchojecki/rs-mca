@@ -227,11 +227,82 @@ RS list/codegree completions and then a summation over the L1-controlled
 first-row support family. In the unique-decoding range
 
 ```text
-a > (|A|+k)/2,
+2a > |A| + k - 1,
 ```
 
-the punctured term is `<=1`; outside that range, a Johnson-style punctured-list
-constant is the natural object to prove.
+the punctured term is `<=1`; outside that range, the following elementary
+Johnson-style bound applies.
+
+**Proposition (punctured RS codegree bound).** Let `A subset H` have size
+`s >= a`, and let
+
+```text
+L_A(V,a) = |Lambda(RS[F_q,A,k], 1-a/s, V|_A)|.
+```
+
+Then:
+
+1. If `2a > s+k-1`, then `L_A(V,a) <= 1`.
+2. If
+   ```text
+   a^2 > s(k-1),
+   ```
+   then
+   ```text
+   L_A(V,a) <= floor( s(s-k+1) / (a^2 - s(k-1)) ).
+   ```
+
+*Proof.* Let `c_1,...,c_L` be listed punctured codewords and let
+
+```text
+S_i = {x in A : c_i(x)=V(x)}.
+```
+
+Each `|S_i| >= a`. Two distinct degree-`<k` polynomials agree on at most `k-1`
+points of `A`, so
+
+```text
+|S_i cap S_j| <= k-1        (i != j).
+```
+
+The first claim follows at once from
+`|S_i cap S_j| >= |S_i|+|S_j|-s >= 2a-s`: if `2a-s > k-1`, two listed
+codewords cannot be distinct.
+
+For the second claim, write `m_x = |{i : x in S_i}|` and
+`I = sum_x m_x`. Then `I >= La`, while
+
+```text
+sum_x binom(m_x,2) <= binom(L,2)(k-1).
+```
+
+By Cauchy,
+
+```text
+I^2 <= s sum_x m_x^2
+    = s( I + 2 sum_x binom(m_x,2) )
+    <= s( I + L(L-1)(k-1) ).
+```
+
+Using `I >= La` on the left and `I <= Ls` on the right gives
+
+```text
+L^2 a^2 <= s( Ls + L(L-1)(k-1) ).
+```
+
+After division by `L` and rearranging,
+
+```text
+L (a^2 - s(k-1)) <= s(s-k+1).
+```
+
+This gives the displayed bound when the denominator is positive.
+
+Thus a proof of L2-Sharp can be organized by anchor support size `s`: small
+over-agreement anchors fall into unique decoding; intermediate anchors are
+Johnson-controlled by the proposition; any remaining large anchors with
+`a^2 <= s(k-1)` must be handled by quotient budgeting, L1 control on the anchor
+family, or a separate over-agreement classification.
 
 ## 5. Already proved or checked
 
@@ -269,6 +340,9 @@ checks three stress points.
    product bound = 4.
    ```
    The same run reports punctured codegrees `[2,2]`, with codegree sum `4`.
+   The two row-1 anchor supports have size `8`; the punctured Johnson bound is
+   `floor(8(8-3+1)/(5^2-8(3-1))) = 5`, so the observed codegrees `2,2`
+   satisfy the proposition.
    Thus the target cannot forbid local Cartesian blocks. The correct target is
    the global sharp bound above, with these blocks charged to the polynomial
    punctured-list/codegree error.
