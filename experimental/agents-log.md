@@ -30,6 +30,29 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-24 - L1 full-list quotient falsification scanner
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/notes/l1/l1_full_list_quotient_falsification.md`,
+  `experimental/scripts/scan_l1_full_list_quotient_conjecture.py`,
+  `experimental/agents-log.md`.
+- **Status:** CONJECTURAL / EXPERIMENTAL / COUNTEREXAMPLE-FIRST.
+- **What is being added:** A repaired arbitrary-word/full-list falsification
+  scanner for the quotient-budgeted L1 conjecture.  It scans the actual
+  Reed--Solomon list/image fiber, decomposes listed codewords by the cyclic
+  stabilizer of their maximal agreement sets, and separates exact quotient
+  budget from primitive remainder.  It supports exact sparse-syndrome scans
+  when the low-weight ball is small and sampled/random/folded received-word
+  scans near the entropy boundary.
+- **How it is useful:** Moves the conjecture-testing loop from the monomial
+  prefix toy model to the repaired full arbitrary-word object while avoiding
+  the already-refuted raw support fiber.
+- **What to do next:** Add meet-in-the-middle sparse-syndrome scans for
+  near-boundary radii and more adversarial glued-codeword received words; any
+  large reserve-cleared primitive family should be recorded as a refinement or
+  counterexample.
+
 ### 2026-06-24 - L1 quotient-budgeted conjecture scanner
 
 - **Agent/model:** Codex.
