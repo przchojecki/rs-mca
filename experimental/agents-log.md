@@ -41,17 +41,20 @@ Keep entries concise and link to the relevant files.
 - **What is being added:** A standalone version-0 L2 sharp interleaved-list
   target with explicit fixed-arity setup, generated-field reserve, aligned
   quotient budget `Quot_align_mu`, and a polynomial over-agreement/codegree
-  error. The verifier stress-tests the exact quotient budget, natural
-  `K_{m,m}` grid over-agreement attacks, and a realized `F_29` Reed-Solomon
-  `K_{2,2}` gluing witness.
+  error. The target now names the `mu=2` codegree error exactly as a sum of
+  punctured Reed-Solomon list sizes over row-1 full supports. The verifier
+  stress-tests the exact quotient budget, natural `K_{m,m}` grid
+  over-agreement attacks, and a realized `F_29` Reed-Solomon `K_{2,2}` gluing
+  witness with punctured codegrees `[2,2]`.
 - **How it is useful:** Turns the L2 objective from a broad "avoid Cartesian
   overcharge" principle into a concrete conjectural inequality that can be
   falsified or promoted. The `K_{2,2}` witness records that local Cartesian
   blocks are real, so the correct target is a global sharp bound with those
   blocks charged to the polynomial codegree term.
-- **What to do next:** Search for non-grid over-agreement/codegree families,
-  add dithered quotient scales where `M` does not divide `k`, and reconcile the
-  final statement with the active X1/L2 bridge PR #101 before promotion.
+- **What to do next:** Prove or falsify a uniform punctured-list/codegree bound
+  after quotient packets are removed, add dithered quotient scales where `M`
+  does not divide `k`, and reconcile the final statement with the active X1/L2
+  bridge PR #101 before promotion.
 
 ### 2026-06-23 - Cycle119 admissibility review
 

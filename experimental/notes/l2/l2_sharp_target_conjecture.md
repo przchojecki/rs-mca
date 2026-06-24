@@ -188,7 +188,52 @@ subgraphs cannot occur. It says that all such over-agreement/codegree effects
 are absorbed by the polynomial error once the random simultaneous-support term
 and aligned quotient packets are accounted for.
 
-## 4. Already proved or checked
+## 4. Codegree form of the error term
+
+For `mu=2`, the polynomial error can be made into a concrete punctured-list
+object. Given rows `U_1,U_2`, and a row-1 codeword `c_1` with
+`|A_{U_1}(c_1)| >= a`, define
+
+```text
+Gamma_A(U_2,a)
+  = |{ c_2 in C : |A cap A_{U_2}(c_2)| >= a }|,
+        A = A_{U_1}(c_1).
+```
+
+Equivalently, `Gamma_A(U_2,a)` is the Reed-Solomon list size of `U_2`
+restricted to the punctured domain `A`, at agreement threshold `a`:
+
+```text
+Gamma_A(U_2,a)
+ = |Lambda(RS[F_q,A,k], 1-a/|A|, U_2|_A)|.
+```
+
+Then the support formula gives the exact decomposition
+
+```text
+|Lambda_2((U_1,U_2),a)|
+ =
+ sum_{c_1 : |A_{U_1}(c_1)| >= a}
+      Gamma_{A_{U_1}(c_1)}(U_2,a).
+```
+
+For higher fixed `mu`, the same identity recurses: after anchoring one row
+support `A`, the remaining factor is a `(mu-1)`-row interleaved list on the
+punctured domain `A`.
+
+Thus the proof obligation behind `n^B` is not vague. After quotient packets are
+removed or budgeted, one needs a uniform polynomial bound for these punctured
+RS list/codegree completions and then a summation over the L1-controlled
+first-row support family. In the unique-decoding range
+
+```text
+a > (|A|+k)/2,
+```
+
+the punctured term is `<=1`; outside that range, a Johnson-style punctured-list
+constant is the natural object to prove.
+
+## 5. Already proved or checked
 
 The existing L2 notes prove the following inputs.
 
@@ -223,11 +268,12 @@ checks three stress points.
    interleaved list = 4,
    product bound = 4.
    ```
+   The same run reports punctured codegrees `[2,2]`, with codegree sum `4`.
    Thus the target cannot forbid local Cartesian blocks. The correct target is
    the global sharp bound above, with these blocks charged to the polynomial
-   over-agreement/codegree error.
+   punctured-list/codegree error.
 
-## 5. Falsification boundary
+## 6. Falsification boundary
 
 The conjecture would fail, or need refinement, if one finds any of the
 following above the reserve.
@@ -236,6 +282,8 @@ following above the reserve.
   by `Quot_align_mu(n,k,a)` and is larger than `n^B`.
 - A non-grid over-agreement/codegree construction whose common-intersection
   count grows like a Cartesian support product rather than a polynomial error.
+- A family of punctured domains `A=A_{U_1}(c_1)` for which the punctured-list
+  term `Gamma_A(U_2,a)` is super-polynomial after quotient packets are removed.
 - A dithered-dimension quotient packet (`M` not dividing `k`) that changes the
   diagonal packet count by more than a polynomial factor.
 - A protocol-relevant growing-`mu` regime. This version treats `mu` as fixed.

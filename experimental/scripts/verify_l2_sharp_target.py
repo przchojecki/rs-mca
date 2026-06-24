@@ -11,7 +11,8 @@ The script checks three finite objects.
 1. The aligned quotient packet count used as Quot_mu in the target note.
 2. The abstract K_{m,m} grid over-agreement design and its size formula.
 3. A realized Reed-Solomon K_{2,2} gluing over a prime-field multiplicative
-   subgroup, computed by exact list enumeration.
+   subgroup, computed by exact list enumeration, together with its punctured
+   codegree profile.
 
 Standard library only.
 """
@@ -190,6 +191,21 @@ def interleaved_count(families: list[list[frozenset[int]]], a: int) -> int:
     return count
 
 
+def two_row_codegree_profile(families: list[list[frozenset[int]]], a: int) -> dict:
+    """Return row-1 anchored punctured-list/codegree data for two support families."""
+    row1, row2 = families
+    inners = [
+        sum(1 for supp2 in row2 if len(supp1 & supp2) >= a)
+        for supp1 in row1
+    ]
+    return {
+        "inner_codegrees": inners,
+        "codegree_sum": sum(inners),
+        "max_inner_codegree": max(inners) if inners else 0,
+        "all_inner_unique": all(value <= 1 for value in inners),
+    }
+
+
 def kmm_grid_design(k: int, a: int, m: int) -> dict:
     """Abstract K_{m,m} grid design obeying the same-row RS overlap cap."""
     overlap_cap = k - 1
@@ -260,6 +276,7 @@ def realized_rs_k22() -> dict:
     for supp1, supp2 in itertools.product(*families):
         r = len(supp1 & supp2)
         common_profile[r] = common_profile.get(r, 0) + 1
+    codegree_profile = two_row_codegree_profile(families, a)
 
     return {
         "p": p,
@@ -275,6 +292,8 @@ def realized_rs_k22() -> dict:
         "saving_vs_cartesian": interleaved / product_bound if product_bound else None,
         "support_sizes": support_sizes,
         "common_intersection_profile": dict(sorted(common_profile.items())),
+        "punctured_codegree_profile": codegree_profile,
+        "codegree_identity_holds": codegree_profile["codegree_sum"] == interleaved,
         "kmm_grid_model": kmm_grid_design(k, a, m),
     }
 
@@ -288,6 +307,7 @@ def run() -> dict:
         "kmm_grid_formula": all(d["interleaved_edges"] == d["grid_edges_at_n_min"] for d in designs),
         "rs_witness_creates_mass": witness["mass_creation"],
         "rs_witness_realizes_k22": witness["interleaved"] == witness["product_bound"] == 4,
+        "rs_witness_codegree_identity": witness["codegree_identity_holds"],
     }
     return {
         "status": "EXPERIMENTAL / FALSIFICATION",
@@ -323,6 +343,11 @@ def main(argv: list[str] | None = None) -> int:
             f"    F_{w['p']}, n={w['n']}, k={w['k']}, a={w['a']}: "
             f"base={w['base_lists']}, interleaved={w['interleaved']}, "
             f"product={w['product_bound']}, creates_mass={w['mass_creation']}"
+        )
+        print(
+            f"    punctured codegrees={w['punctured_codegree_profile']['inner_codegrees']}, "
+            f"sum={w['punctured_codegree_profile']['codegree_sum']}, "
+            f"max={w['punctured_codegree_profile']['max_inner_codegree']}"
         )
         print(f"  RESULT: {'PASS' if result['pass'] else 'FAIL'}")
     return 0 if result["pass"] else 1
