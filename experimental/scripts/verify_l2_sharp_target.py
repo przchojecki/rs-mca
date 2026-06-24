@@ -23,7 +23,7 @@ import argparse
 import itertools
 import json
 import sys
-from math import comb
+from math import ceil, comb, log
 
 
 def ceil_div(a: int, b: int) -> int:
@@ -265,6 +265,76 @@ def exact_a_locator_count(family: list[frozenset[int]], a: int) -> int:
     return sum(comb(len(supp), a) for supp in family if len(supp) >= a)
 
 
+def cumulative_list_size(family: list[frozenset[int]], threshold: int) -> int:
+    return sum(1 for supp in family if len(supp) >= threshold)
+
+
+def johnson_shell_weight(n: int, k: int, a: int) -> dict:
+    """Total Johnson weight across controlled support-size shells."""
+    threshold = johnson_anchor_threshold(k, a)
+    threshold_value = threshold["threshold"]
+    if threshold_value is None:
+        return {
+            "johnson_threshold": threshold,
+            "controlled_shells": [],
+            "exact_weight_sum": 0,
+            "harmonic_upper_bound": None,
+        }
+    controlled_max = min(n, threshold_value - 1)
+    shells = []
+    exact_weight_sum = 0
+    for s in range(a, controlled_max + 1):
+        profile = punctured_johnson_bound(s, k, a)
+        if profile["bound"] is None:
+            raise ValueError("controlled shell has no Johnson bound")
+        shells.append(
+            {
+                "support_size": s,
+                "mode": profile["mode"],
+                "weight": profile["bound"],
+            }
+        )
+        exact_weight_sum += profile["bound"]
+    harmonic_upper_bound = ceil(n * n * (2 + log(max(2, n))))
+    return {
+        "johnson_threshold": threshold,
+        "controlled_shells": shells,
+        "exact_weight_sum": exact_weight_sum,
+        "harmonic_upper_bound": harmonic_upper_bound,
+    }
+
+
+def l1_shell_reduction_bound(
+    families: list[list[frozenset[int]]], n: int, k: int, a: int
+) -> dict:
+    """Two-row bound using only one-row cumulative shell list sizes."""
+    row1, row2 = families
+    weight = johnson_shell_weight(n, k, a)
+    threshold = weight["johnson_threshold"]["threshold"]
+    controlled_max = min(n, threshold - 1) if threshold is not None else n
+    if controlled_max >= a:
+        row1_max_controlled_list = max(
+            cumulative_list_size(row1, t) for t in range(a, controlled_max + 1)
+        )
+    else:
+        row1_max_controlled_list = 0
+    row1_tail_list = (
+        cumulative_list_size(row1, threshold) if threshold is not None else 0
+    )
+    row2_base_list = cumulative_list_size(row2, a)
+    controlled_bound = row1_max_controlled_list * weight["exact_weight_sum"]
+    tail_bound = row1_tail_list * row2_base_list
+    return {
+        "johnson_shell_weight": weight,
+        "row1_max_controlled_list": row1_max_controlled_list,
+        "row1_tail_list": row1_tail_list,
+        "row2_base_list": row2_base_list,
+        "controlled_bound": controlled_bound,
+        "tail_bound": tail_bound,
+        "total_bound": controlled_bound + tail_bound,
+    }
+
+
 def shell_codegree_bound(families: list[list[frozenset[int]]], k: int, a: int) -> dict:
     """Deterministic two-row shell bound from punctured Johnson plus tail."""
     row1, row2 = families
@@ -386,6 +456,7 @@ def realized_rs_k22() -> dict:
         common_profile[r] = common_profile.get(r, 0) + 1
     codegree_profile = two_row_codegree_profile(families, a)
     shell_bound = shell_codegree_bound(families, k, a)
+    l1_reduction_bound = l1_shell_reduction_bound(families, n, k, a)
     johnson_profiles = [
         punctured_johnson_bound(len(supp), k, a)
         for supp in families[0]
@@ -419,6 +490,7 @@ def realized_rs_k22() -> dict:
         "punctured_codegree_profile": codegree_profile,
         "codegree_identity_holds": codegree_profile["codegree_sum"] == interleaved,
         "shell_codegree_bound": shell_bound,
+        "l1_shell_reduction_bound": l1_reduction_bound,
         "punctured_johnson_profiles": johnson_profiles,
         "johnson_anchor_threshold": threshold,
         "large_anchor_flags": large_anchor_flags,
@@ -430,6 +502,7 @@ def realized_rs_k22() -> dict:
 def run() -> dict:
     quotient_example = aligned_quotient_budget(n=64, k=16, a=18, mu=2)
     threshold_example = johnson_anchor_threshold(k=16, a=18)
+    shell_weight_example = johnson_shell_weight(n=64, k=16, a=18)
     designs = [kmm_grid_design(k=3, a=5, m=m) for m in (2, 3, 4, 5)]
     witness = realized_rs_k22()
     checks = {
@@ -439,12 +512,15 @@ def run() -> dict:
         "rs_witness_realizes_k22": witness["interleaved"] == witness["product_bound"] == 4,
         "rs_witness_codegree_identity": witness["codegree_identity_holds"],
         "rs_witness_shell_bound": witness["interleaved"] <= witness["shell_codegree_bound"]["total_bound"],
+        "rs_witness_l1_shell_reduction": witness["interleaved"]
+        <= witness["l1_shell_reduction_bound"]["total_bound"],
         "rs_witness_punctured_johnson": witness["punctured_johnson_ok"],
     }
     return {
         "status": "EXPERIMENTAL / FALSIFICATION",
         "aligned_quotient_budget_example": quotient_example,
         "johnson_anchor_threshold_example": threshold_example,
+        "johnson_shell_weight_example": shell_weight_example,
         "kmm_designs": designs,
         "realized_rs_k22": witness,
         "checks": checks,
@@ -470,6 +546,12 @@ def main(argv: list[str] | None = None) -> int:
             f"k={jt['k']}, a={jt['a']}, threshold={jt['threshold']}, "
             f"controls_s<={jt['johnson_controls_through']}, "
             f"excess={jt['excess_over_a']}"
+        )
+        jw = result["johnson_shell_weight_example"]
+        print(
+            "  Johnson shell weight example: "
+            f"exact={jw['exact_weight_sum']}, "
+            f"harmonic_bound={jw['harmonic_upper_bound']}"
         )
         print("  K_{m,m} abstract designs:")
         for d in result["kmm_designs"]:
@@ -499,6 +581,12 @@ def main(argv: list[str] | None = None) -> int:
             f"(controlled={sb['controlled_bound']}, tail={sb['tail_trivial_bound']}), "
             f"row1_exact_a={sb['exact_a_locator_count_row1']}, "
             f"tail_from_exact_a<={sb['tail_count_bound_from_exact_a']}"
+        )
+        l1b = w["l1_shell_reduction_bound"]
+        print(
+            f"    L1-shell reduction bound={l1b['total_bound']} "
+            f"(controlled={l1b['controlled_bound']}, tail={l1b['tail_bound']}), "
+            f"max_controlled_list={l1b['row1_max_controlled_list']}"
         )
         print(f"    punctured Johnson profiles={w['punctured_johnson_profiles']}")
         print(f"  RESULT: {'PASS' if result['pass'] else 'FAIL'}")

@@ -389,6 +389,79 @@ final estimate is a double count: each row codeword with full support size `s`
 contains exactly `binom(s,a)` subsets `S` of size `a`, and each such `S`
 determines at most one degree-`<k` polynomial because `a>=k`.
 
+The shell reduction also gives a direct bridge from one-row L1 bounds to the
+two-row L2 codegree term. Define the controlled Johnson shell weight
+
+```text
+W_J(n,k,a) = sum_{s=a}^{min(n,s_J-1)} J(s;k,a).
+```
+
+For rows `U_1,U_2`, put
+
+```text
+P_1 = max_{a <= t < s_J} L_{U_1}(t),
+T_1 = L_{U_1}(s_J),
+L_2 = L_{U_2}(a),
+```
+
+with `P_1=0` if there is no controlled shell.
+
+**Corollary (L1 shell control implies L2 codegree control).** For `mu=2` and
+`k>=2`,
+
+```text
+|Lambda_2((U_1,U_2),a)| <= P_1 W_J(n,k,a) + T_1 L_2.
+```
+
+Moreover,
+
+```text
+W_J(n,k,a) <= n^2(2+log n)
+```
+
+for `n>=2`, with any fixed logarithm base changing only the absolute constant.
+The same estimate holds with the two rows interchanged.
+
+*Proof.* In the two-row shell bound, each exact shell count satisfies
+
+```text
+N_{U_1}(s) <= L_{U_1}(s) <= P_1
+```
+
+for `a<=s<s_J`, while the tail count is `L_{U_1}(s_J)=T_1`. This gives the
+first displayed inequality. For the weight estimate, write
+
+```text
+D_s = a^2 - s(k-1).
+```
+
+On the controlled shells, `D_s>=1`, and `J(s;k,a) <= n^2/D_s`. As `s` ranges
+over the controlled shells, the positive integers `D_s` form an arithmetic
+progression with common difference `k-1` when read in increasing order. Hence
+
+```text
+sum_s 1/D_s <= 1 + sum_{j=1}^{n} 1/(j(k-1)) <= 2+log n,
+```
+
+which proves the claim.
+
+Consequently, if a repaired one-row L1 local theorem gives a uniform polynomial
+bound
+
+```text
+L_V(t) <= n^{B_L}
+```
+
+for every received word `V` and every `t` in the window `a<=t<=s_J`, then the
+non-quotient two-row codegree contribution is bounded by
+
+```text
+n^{B_L+2}(2+log n) + n^{2B_L}.
+```
+
+This is the precise sense in which the remaining L2 over-agreement problem is
+an L1 shell problem, not a new Cartesian-product exponent.
+
 Thus a proof of L2-Sharp can be organized by anchor support size `s`: small
 over-agreement anchors fall into unique decoding; intermediate anchors are
 Johnson-controlled by the proposition; any remaining large anchors must already
@@ -422,7 +495,8 @@ checks four stress points.
    scales and total `1389`. For the same `(k,a)=(16,18)`, the punctured
    Johnson step controls anchor supports through `s=21`; the remaining
    large-anchor tail starts only at `s=22`, i.e. four extra agreements above
-   the list threshold.
+   the list threshold. The exact controlled Johnson shell weight in this
+   example is `17`.
 2. The natural `K_{m,m}` grid over-agreement family has
    ```text
    n_min = (k-1) + m^2(a-k+1),
@@ -443,7 +517,10 @@ checks four stress points.
 4. The same witness satisfies the deterministic shell bound: the row-1 shell
    histogram is `{8:2}`, the controlled shell contribution is `2*5=10`, the
    large-anchor tail is empty, and the exact-`a` row-1 locator multiplicity is
-   `2 binom(8,5)=112`.
+   `2 binom(8,5)=112`. If one forgets the exact shell histogram and uses only
+   the one-row cumulative L1 shell maximum, the controlled Johnson weight is
+   `186` and the resulting L1-shell reduction bound is `2*186=372`, still
+   safely above the observed interleaved count `4`.
    Thus the target cannot forbid local Cartesian blocks. The correct target is
    the global sharp bound above, with these blocks charged to the polynomial
    punctured-list/codegree error.

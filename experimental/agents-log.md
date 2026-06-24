@@ -51,19 +51,23 @@ Keep entries concise and link to the relevant files.
   `ceil(a(sigma+1)/(k-1))` extra agreements above `a`. A deterministic two-row
   shell bound now separates Johnson-controlled shells from this tail and bounds
   the tail anchor count by the exact-`a` one-row locator multiplicity divided by
-  `binom(s_J,a)`. The verifier stress-tests the exact quotient budget, natural
+  `binom(s_J,a)`. A new L1-to-L2 shell corollary proves that uniform one-row
+  list bounds on `a<=t<=s_J` imply a two-row codegree bound
+  `n^{B_L+2}(2+log n)+n^{2B_L}`; the controlled Johnson shell weight is
+  `O(n^2 log n)`. The verifier stress-tests the exact quotient budget, natural
   `K_{m,m}` grid over-agreement attacks, and a realized `F_29` Reed-Solomon
   `K_{2,2}` gluing witness with punctured codegrees `[2,2]` satisfying the
-  Johnson bound `5` and shell bound `10`.
+  Johnson bound `5`, exact shell bound `10`, and L1-shell reduction bound
+  `372`.
 - **How it is useful:** Turns the L2 objective from a broad "avoid Cartesian
   overcharge" principle into a concrete conjectural inequality that can be
   falsified or promoted. The `K_{2,2}` witness records that local Cartesian
   blocks are real, so the correct target is a global sharp bound with those
   blocks charged to the polynomial codegree term.
-- **What to do next:** Prove/import exact-`a` one-row shell budgets for the
-  remaining high-overagreement tail `s>=ceil(a^2/(k-1))`, add dithered quotient
-  scales where `M` does not divide `k`, and reconcile the final statement with
-  the active X1/L2 bridge PR #101 before promotion.
+- **What to do next:** Prove/import repaired one-row L1 list bounds uniformly
+  on the shell window `a<=t<=ceil(a^2/(k-1))`, add dithered quotient scales
+  where `M` does not divide `k`, and reconcile the final statement with the
+  active X1/L2 bridge PR #101 before promotion.
 
 ### 2026-06-23 - Cycle119 admissibility review
 
