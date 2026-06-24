@@ -434,6 +434,10 @@ def check_split_prime_row_accounting() -> dict[str, Any]:
     degree_distribution: Counter[int] = Counter()
     degree_weighted_sum = 0
     mismatches = []
+    orbit_groups: dict[tuple[tuple[int, ...], tuple[int, ...]], list[
+        tuple[tuple[int, ...], tuple[int, ...]]
+    ]]
+    orbit_groups = defaultdict(list)
     for pair, multiplicity in incidence_counter.items():
         common_root_degree = degree(common_root_gcd_mod(
             pair[0],
@@ -451,6 +455,7 @@ def check_split_prime_row_accounting() -> dict[str, Any]:
             })
         degree_distribution[common_root_degree] += 1
         degree_weighted_sum += common_root_degree
+        orbit_groups[affine_orbit_key(pair[0], pair[1], order)].append(pair)
     if mismatches:
         raise AssertionError(f"row-accounting mismatches: {mismatches[:3]}")
 
@@ -460,6 +465,45 @@ def check_split_prime_row_accounting() -> dict[str, Any]:
         raise AssertionError("bad direct incidence count")
     if degree_weighted_sum != direct_incidence_sum:
         raise AssertionError("gcd-degree sum does not match row incidences")
+
+    orbit_rows = []
+    orbit_weighted_sum = 0
+    for orbit_key, incident_members in orbit_groups.items():
+        orbit_members = affine_orbit_members(orbit_key[0], orbit_key[1], order)
+        if set(incident_members) != orbit_members:
+            raise AssertionError("incident set is not a full affine orbit")
+        orbit_degree = degree(common_root_gcd_mod(
+            orbit_key[0],
+            orbit_key[1],
+            order,
+            sigma,
+            prime,
+        ))
+        for member in orbit_members:
+            member_degree = degree(common_root_gcd_mod(
+                member[0],
+                member[1],
+                order,
+                sigma,
+                prime,
+            ))
+            if member_degree != orbit_degree:
+                raise AssertionError("affine orbit has nonconstant gcd degree")
+        weighted_degree = len(orbit_members) * orbit_degree
+        orbit_weighted_sum += weighted_degree
+        orbit_rows.append({
+            "orbit_size": len(orbit_members),
+            "common_root_degree": orbit_degree,
+            "weighted_degree": weighted_degree,
+            "representative": [list(orbit_key[0]), list(orbit_key[1])],
+        })
+    orbit_rows.sort(key=lambda item: (
+        item["orbit_size"],
+        item["common_root_degree"],
+        item["representative"],
+    ))
+    if orbit_weighted_sum != degree_weighted_sum:
+        raise AssertionError("affine orbit quotient changed row mass")
 
     return {
         "prime": prime,
@@ -478,6 +522,9 @@ def check_split_prime_row_accounting() -> dict[str, Any]:
         "degree_distribution_on_incident_pairs": dict(
             sorted(degree_distribution.items())
         ),
+        "affine_orbit_count": len(orbit_rows),
+        "affine_orbit_weighted_sum": orbit_weighted_sum,
+        "affine_orbits": orbit_rows,
     }
 
 
@@ -496,6 +543,22 @@ def affine_subset(
     order: int,
 ) -> tuple[int, ...]:
     return tuple(sorted((unit * value + shift) % order for value in subset))
+
+
+def affine_orbit_members(
+    left: Sequence[int],
+    right: Sequence[int],
+    order: int,
+) -> set[tuple[tuple[int, ...], tuple[int, ...]]]:
+    units = [unit for unit in range(1, order) if gcd(unit, order) == 1]
+    return {
+        normalized_pair(
+            affine_subset(left, unit, shift, order),
+            affine_subset(right, unit, shift, order),
+        )
+        for unit in units
+        for shift in range(order)
+    }
 
 
 def normalized_pair(
@@ -525,15 +588,7 @@ def affine_orbit_key(
     right: Sequence[int],
     order: int,
 ) -> tuple[tuple[int, ...], tuple[int, ...]]:
-    units = [unit for unit in range(1, order) if gcd(unit, order) == 1]
-    return min(
-        normalized_pair(
-            affine_subset(left, unit, shift, order),
-            affine_subset(right, unit, shift, order),
-        )
-        for unit in units
-        for shift in range(order)
-    )
+    return min(affine_orbit_members(left, right, order))
 
 
 def check_structured_char_zero_example() -> dict[str, Any]:
@@ -1013,7 +1068,9 @@ def print_human(report: dict[str, Any]) -> None:
         f"fixed_pairs={accounting['fixed_root_collision_pair_count']}, "
         f"incident_pairs={accounting['incident_template_pair_count']}, "
         f"incidence_sum={accounting['root_template_incidence_sum']}, "
-        f"gcd_degree_sum={accounting['gcd_degree_weighted_sum']}"
+        f"gcd_degree_sum={accounting['gcd_degree_weighted_sum']}, "
+        f"affine_orbits={accounting['affine_orbit_count']}, "
+        f"orbit_sum={accounting['affine_orbit_weighted_sum']}"
     )
     false_positive = report["prime_ideal_false_positive"]
     print(

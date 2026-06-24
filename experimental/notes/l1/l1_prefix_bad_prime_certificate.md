@@ -302,6 +302,19 @@ templates are removed, every nonzero summand must also satisfy
 `p | C_n,sigma(A,B)`.  This is the precise finite object that a future L1
 density-over-primes or bad-prime aggregation theorem has to bound.
 
+Combining this with affine invariance gives the quotient form.  If `O` ranges
+over affine orbits of unordered template pairs and `(A_O,B_O)` is a
+representative, then `d_p` is constant on `O`, so
+
+```text
+phi(n) |Coll(h)|
+  = sum_O |O| d_p(A_O,B_O).
+```
+
+This is the practical aggregation ledger: an exact row bound can be proved by
+bounding orbit sizes and representative common-root degrees, rather than by
+enumerating every ordered root-template incidence separately.
+
 ## Worked L1 Packet: F_17, n=16
 
 The existing aperiodic collision certificate in
@@ -352,6 +365,17 @@ incidences.  The modular-gcd side has the same weighted mass: there are `320`
 incident unordered template pairs, each with common-root degree `1`.  Thus the
 known `F_17` packet is exactly accounted for by the degree-weighted
 common-prime-ideal ledger.
+
+After quotienting by affine orbits, the same ledger has only three rows:
+
+```text
+orbit size 64,  common-root degree 1, contribution 64
+orbit size 128, common-root degree 1, contribution 128
+orbit size 128, common-root degree 1, contribution 128
+```
+
+Their weighted sum is again `320`.  This is the orbit-level form that a larger
+finite-family bad-prime aggregation would try to control.
 
 The verifier also checks the same row over the next split primes
 

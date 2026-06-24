@@ -48,8 +48,8 @@ Keep entries concise and link to the relevant files.
   recorded as the exact primitive-root embedding multiplicity at split primes.
   The note additionally records affine-orbit invariance, the split-prime
   row-accounting identity equating row collision counts with degree-weighted
-  common-prime-ideal incidence, and a bounded exact split-prime scan for the
-  `n=16,m=6,sigma=4` row.
+  common-prime-ideal incidence, its affine-orbit quotient ledger, and a
+  bounded exact split-prime scan for the `n=16,m=6,sigma=4` row.
 - **How it is useful:** This supplies the finite-field layer complementary to
   characteristic-zero L1 reductions. It turns robustly aperiodic modular
   collisions into algebraic norm/resultant divisibility events, matching a
