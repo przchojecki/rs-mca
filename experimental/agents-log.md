@@ -87,13 +87,19 @@ Keep entries concise and link to the relevant files.
   support of size `>a`, so the fixed-arity Johnson/L1 shell reduction bounds
   them by a polynomial. The `F_29` `K_{2,2}` witness now verifies this split:
   regular count `0`, row-irregular count `4`, common-intersection profile
-  `{5:4}`.
+  `{5:4}`. The regular core is now identified exactly as a simultaneous
+  support-fiber subproblem: an `a`-set feasible for all rows determines a unique
+  interleaved tuple, and it contributes to `Reg_mu` precisely when every induced
+  full row support is that same `a`-set. The verifier records that the
+  `K_{2,2}` witness has `4` simultaneous feasible `a`-sets, all row-irregular,
+  with unique row choices.
 - **How it is useful:** Turns the L2 objective from a broad "avoid Cartesian
   overcharge" principle into a concrete conjectural inequality that can be
   falsified or promoted. The `K_{2,2}` witness records that local Cartesian
   blocks are real, so the correct target is a global sharp bound with those
   blocks charged to the polynomial codegree term.
-- **What to do next:** Prove the regular exact-row local limit
+- **What to do next:** Prove the simultaneous exact-support fiber local limit
+  for the regular core,
   `Reg_mu <= binom(n,a)q^{-mu(a-k)} + Quot_rem_mu + n^B`, prove/import the
   repaired one-row L1 list bound at `a=k+sigma`, and reconcile the final
   statement with the active X1/L2 bridge PR #101 before promotion.

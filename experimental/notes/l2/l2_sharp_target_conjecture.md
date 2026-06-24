@@ -624,6 +624,46 @@ row codeword uniquely. Thus the regular core is exactly the diagonal
 exact-support object on which the random term and the quotient packet budget
 should act.
 
+This exact core can be phrased without mentioning interleaved codeword tuples.
+For a row `V`, let
+
+```text
+Fib_V(a) = {S subset H : |S|=a and V|_S extends to a degree-<k polynomial}.
+```
+
+For `U=(U_1,...,U_mu)`, put
+
+```text
+Fib_U^cap(a) = Fib_{U_1}(a) cap ... cap Fib_{U_mu}(a).
+```
+
+Since `a>=k`, each `S in Fib_U^cap(a)` determines a unique tuple of row
+codewords `(c_{1,S},...,c_{mu,S})`. Let
+
+```text
+A_i(S) = A_{U_i}(c_{i,S}).
+```
+
+Then the map
+
+```text
+S |-> (c_{1,S},...,c_{mu,S})
+```
+
+surjects from `Fib_U^cap(a)` onto `Lambda_mu(U,a)`: the preimage of a listed
+tuple is exactly the set of `a`-subsets of its common agreement support.
+Moreover,
+
+```text
+Reg_mu(U,a)
+ = |{S in Fib_U^cap(a) : A_1(S)=...=A_mu(S)=S}|.
+```
+
+Thus the regular exact-row problem is a simultaneous locator-fiber problem with
+the row-irregular fibers removed. The random term is precisely the expectation
+of `|Fib_U^cap(a)|` for independent random rows, namely
+`binom(n,a) q^{-mu(a-k)}`.
+
 For row-irregular tuples, at least one row has support size `>=a+1`. Anchoring
 such a row and using the fixed-arity shell reduction gives the union bound
 
@@ -764,7 +804,9 @@ checks the following stress points.
    `0`, the row-irregular count is `4`, and the common-intersection profile is
    `{5:4}`. Thus the witness has exact common intersection size `a`, but every
    listed tuple is charged to row over-agreement rather than to the regular
-   exact-row core.
+   exact-row core. The simultaneous feasible-support fiber has `4` feasible
+   `a`-sets, with `0` regular exact sets, `4` row-irregular sets, and a unique
+   row codeword choice for each row and each feasible `a`-set.
    The two row-1 anchor supports have size `8`; the punctured Johnson bound is
    `floor(8(8-3+1)/(5^2-8(3-1))) = 5`, so the observed codegrees `2,2`
    satisfy the proposition.

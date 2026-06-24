@@ -6,7 +6,7 @@ settled by the support-intersection bridge: over-agreement can create
 interleaved mass, so the falsification target is whether that mass can grow like
 a Cartesian product rather than like a polynomial support-overlap codegree.
 
-The script checks seven finite objects.
+The script checks eight finite objects.
 
 1. The all-remainder quotient packet count used as Quot_rem_mu in the target.
 2. The Johnson-shell weights used in the codegree reduction.
@@ -14,7 +14,8 @@ The script checks seven finite objects.
 4. An explicit dithered all-remainder quotient packet with M not dividing k.
 5. The dyadic active-scale clearance criterion for small dimension dithers.
 6. The regular/row-irregular split of the interleaved support count.
-7. A realized Reed-Solomon K_{2,2} gluing over a prime-field multiplicative
+7. The simultaneous feasible-support fiber behind the regular exact-row core.
+8. A realized Reed-Solomon K_{2,2} gluing over a prime-field multiplicative
    subgroup, computed by exact list enumeration, together with its punctured
    codegree profile.
 
@@ -380,6 +381,49 @@ def regular_irregular_profile(families: list[list[frozenset[int]]], a: int) -> d
     }
 
 
+def simultaneous_fiber_profile(
+    families: list[list[frozenset[int]]], a: int, domain_size: int
+) -> dict:
+    """Count a-subsets that are feasible for every row.
+
+    For RS with a>=k, each feasible a-set determines at most one codeword in
+    each row.  This profile computes the simultaneous support fiber and splits
+    it according to whether the induced full supports are all exactly that
+    a-set, i.e. the regular exact-row core.
+    """
+    total = 0
+    regular_exact = 0
+    row_irregular = 0
+    max_row_choices = 0
+    duplicate_choice_sets = 0
+    for subset in itertools.combinations(range(domain_size), a):
+        s_set = frozenset(subset)
+        row_choices = [
+            [support for support in family if s_set <= support]
+            for family in families
+        ]
+        if any(not choices for choices in row_choices):
+            continue
+        total += 1
+        max_row_choices = max(
+            max_row_choices, max(len(choices) for choices in row_choices)
+        )
+        if any(len(choices) > 1 for choices in row_choices):
+            duplicate_choice_sets += 1
+        chosen = [choices[0] for choices in row_choices]
+        if all(support == s_set for support in chosen):
+            regular_exact += 1
+        else:
+            row_irregular += 1
+    return {
+        "simultaneous_a_sets": total,
+        "regular_exact_a_sets": regular_exact,
+        "row_irregular_a_sets": row_irregular,
+        "max_row_choices_per_a_set": max_row_choices,
+        "duplicate_choice_a_sets": duplicate_choice_sets,
+    }
+
+
 def punctured_johnson_bound(s: int, k: int, a: int) -> dict:
     """Elementary pairwise-overlap bound for an [s,k] punctured RS code.
 
@@ -728,6 +772,7 @@ def realized_rs_k22() -> dict:
     max_base = max(len(families[0]), len(families[1]))
     support_sizes = [[len(s) for s in fam] for fam in families]
     regular_profile = regular_irregular_profile(families, a)
+    fiber_profile = simultaneous_fiber_profile(families, a, n)
     codegree_profile = two_row_codegree_profile(families, a)
     shell_bound = shell_codegree_bound(families, k, a)
     l1_reduction_bound = l1_shell_reduction_bound(families, n, k, a)
@@ -764,6 +809,7 @@ def realized_rs_k22() -> dict:
             "common_intersection_profile"
         ],
         "regular_irregular_profile": regular_profile,
+        "simultaneous_fiber_profile": fiber_profile,
         "punctured_codegree_profile": codegree_profile,
         "codegree_identity_holds": codegree_profile["codegree_sum"] == interleaved,
         "shell_codegree_bound": shell_bound,
@@ -855,6 +901,19 @@ def run() -> dict:
             "regular_irregular_profile"
         ]["common_overagreement_count"]
         == 0,
+        "rs_witness_simultaneous_fiber_surjects": witness[
+            "simultaneous_fiber_profile"
+        ]["simultaneous_a_sets"]
+        >= witness["interleaved"],
+        "rs_witness_regular_core_is_exact_fiber": witness[
+            "simultaneous_fiber_profile"
+        ]["regular_exact_a_sets"]
+        == witness["regular_irregular_profile"]["regular_exact_row_count"],
+        "rs_witness_fiber_uniqueness": witness[
+            "simultaneous_fiber_profile"
+        ]["max_row_choices_per_a_set"]
+        == 1
+        and witness["simultaneous_fiber_profile"]["duplicate_choice_a_sets"] == 0,
         "rs_witness_shell_bound": witness["interleaved"] <= witness["shell_codegree_bound"]["total_bound"],
         "rs_witness_l1_shell_reduction": witness["interleaved"]
         <= witness["l1_shell_reduction_bound"]["total_bound"],
@@ -969,6 +1028,14 @@ def main(argv: list[str] | None = None) -> int:
             f"row_irregular={reg['row_irregular_count']}, "
             f"common_overagreement={reg['common_overagreement_count']}, "
             f"profile={reg['common_intersection_profile']}"
+        )
+        fib = w["simultaneous_fiber_profile"]
+        print(
+            "    simultaneous fiber: "
+            f"a_sets={fib['simultaneous_a_sets']}, "
+            f"regular_exact={fib['regular_exact_a_sets']}, "
+            f"row_irregular={fib['row_irregular_a_sets']}, "
+            f"max_row_choices={fib['max_row_choices_per_a_set']}"
         )
         print(
             f"    Johnson threshold={w['johnson_anchor_threshold']}, "
