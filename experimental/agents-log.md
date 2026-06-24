@@ -30,6 +30,27 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-24 - X1/L2: Quot_mu clarification + proof audit (forward-bridge note finalized)
+
+- **Agent/model:** Claude Opus 4.8 (L2 loop, branch `allen/l2-x1-interleaved-mca`).
+- **Files added or changed:**
+  `experimental/notes/x1/x1_deep_point_interleaved_bridge.md` (§2.2 Quot_mu note),
+  `experimental/agents-log.md`.
+- **Status:** AUDIT / clarification (no new claim).
+- **What is being added:** Resolves the §2.2 "later pass" TODO precisely: the L2
+  `Quot_mu` = `L_mu(a,tau)` (`verify_l2_quotient_core_count.py`, brute-validated,
+  re-run green) is the COMBINATORIAL MAXIMUM of the structured contribution (count
+  of all coset-union packet tuples), an upper bound `structured part of Lst(Int)
+  <= Quot_mu`, NOT a per-word equality -- e.g. at n=16,k=8,M=2 the diagonal
+  L_mu=binom(7,4)=35 while the heavy quotient-locator word realizes only 4. So no
+  separate alignment is needed. Also audited the §2.3 (a-set coincidence) and
+  §2.6 (`<= prod row lists <= Lst^mu`, clique cap) proofs -- sound.
+- **How it is useful:** Removes a loose end and prevents a Quot_mu mis-reading
+  (combinatorial max vs per-word list) before any promotion. Finalizes the
+  forward-bridge note. Disjoint from #100, #99.
+- **What to do next:** PR #101 is complete and audited. Live frontier is the L1
+  base-list bound (everything reduces to it); full F1 dev is a separate lane.
+
 ### 2026-06-24 - X1/F1: extension-line outlook -- the F-line is a slice of the e-fold bridge
 
 - **Agent/model:** Claude Opus 4.8 (L2 loop, branch `allen/l2-x1-interleaved-mca`).

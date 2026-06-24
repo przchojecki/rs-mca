@@ -215,9 +215,21 @@ quotient-locator words (row 0 plus dilated rows, genuinely non-diagonal) over
 
 The interleaved list `L=4` is **constant in `mu`** while the Cartesian product
 grows as `4^{mu}`; the forward interleaved-MCA count `BadVec_max` equals `L` and
-inherits the saving. (Matching `L` to the exact L2 `Quot_mu` formula at aligned
-prize parameters is a parameter-alignment check left for a later pass; the
-structural fact -- diagonal, not Cartesian -- is what transfers here.)
+inherits the saving.
+
+*Relation to the L2 `Quot_mu`.* The `Quot_mu` term of the sharp-constant
+conjecture is the aligned quotient-core count `L_mu(a,tau) = sum_{c=h}^{ell}
+binom(Q,c) E_empty(Q-c,ell-c,mu)` (`notes/l2/l2_interleaved_dilation_constants.md`
+§4; brute-validated in `scripts/verify_l2_quotient_core_count.py`), with diagonal
+endpoint `binom(Q,ell)` at `a=k+sigma`. This is the **combinatorial maximum** of
+the structured contribution -- the count of *all* `mu`-tuples of coset-union
+packets -- not a single word's list: it upper-bounds, and is generally not equal
+to, the structured part of a given `L` (e.g. at `n=16,k=8,M=2` the diagonal
+`L_mu = binom(7,4) = 35`, while the heavy quotient-locator word above realizes
+only the `4` packets consistent with it). So the right reading is
+`structured part of Lst(Int) <= Quot_mu` (diagonal, not Cartesian), exactly as the
+L2 §4 count states; the per-word `L=4` here is one such realization. No separate
+alignment is needed.
 
 ## 2.3 Worst-case interleaved list = base list (a-regular regime)
 
