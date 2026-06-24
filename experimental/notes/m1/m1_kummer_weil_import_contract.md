@@ -720,9 +720,19 @@ sum_{a,r in F_p^*} psi(a)chi(aH(a,r))
 
 Thus, up to the same fixed boundary curves as the principal trace, the
 alpha-marginal estimate reduces to the rank-one torus trace
-`sum_{a,r} psi(a)chi(rM(a,r))`.  This is a strictly simpler one-sided
-subproblem than the rank-two beta pushforward, but it is not the centered
-M1 target by itself.
+`sum_{a,r} psi(a)chi(rM(a,r))`.  For fixed `a`, the polynomial `rM(a,r)` is
+an elliptic cubic with discriminant
+
+```text
+48a^2(a-1)^2(a+3)(3a+1).
+```
+
+The only torus singular parameters are `a=1,-3,-1/3`, and the branch-point
+cross-ratio varies with `a`.  Hence this middle term is the Mellin transform
+of a fixed-conductor non-isotrivial elliptic trace sheaf, giving the
+alpha-marginal `O_e(p)` bound by the standard curve Weil bound.  This closes
+the alpha marginal as a one-dimensional input; it is still not the centered
+M1 target itself.
 
 The elementary hypotheses behind this import are now audited in
 `verify_m1_depth_two_line_conic_resonance_reduction.py`:

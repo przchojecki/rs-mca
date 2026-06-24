@@ -345,10 +345,40 @@ rank-one Kummer trace
 M_psi^tor = sum_{a,r in F_p^*} psi(a) chi(rM(a,r)).
 ```
 
-In particular, a standard fixed-conductor `M_psi^tor=O_e(p)` estimate would
-prove the alpha-marginal p-scale bound.  The standalone verifier checks the
-identity `(ALPHA)`, the exact full-torus `H` formula, and the boundary
-correction for every expanded quotient row.
+This remaining middle trace is a one-dimensional elliptic trace problem, not
+a rank-two beta-pushforward problem.  For fixed `a`,
+
+```text
+rM(a,r) = r(4ar^2 + (-3a^2-2a-3)r + 4a),
+disc_r(rM) = 48a^2(a-1)^2(a+3)(3a+1).
+```
+
+Thus over the torus the only singular parameters are
+
+```text
+a = 1,        a = -3,        a = -1/3.
+```
+
+For nonsingular `a`, the curve `y^2=rM(a,r)` is an elliptic curve.  Its
+finite nonzero branch roots have product `1`; writing them as `rho` and
+`rho^{-1}`, one has
+
+```text
+rho + rho^{-1} = (3a^2+2a+3)/(4a),
+```
+
+so the cross-ratio of the four branch points varies nontrivially with `a`.
+Consequently `M_psi^tor` is the Mellin transform of a fixed-conductor
+non-isotrivial elliptic trace sheaf on
+`P^1 - {0,1,-3,-1/3,infinity}`.  The standard curve Weil bound for this
+middle-extension sheaf gives `M_psi^tor=O_e(p)` for fixed quotient order.
+Therefore the alpha marginal is p-scale; the remaining genuinely
+beta-pushforward blocks are the centered block and the beta marginal.
+
+The standalone verifier checks the identity `(ALPHA)`, the exact full-torus
+`H` formula, the boundary correction, the cubic discriminant ledger, the
+three singular parameters above, and the fiberwise Hasse bound on every
+expanded prime row.
 
 ## Interpretation
 
@@ -413,6 +443,12 @@ The alpha-marginal reduction gives the additional coefficient maxima
 ```text
 max_{psi != 1} |A_psi|/p = 4.6632993198 at (p,e)=(61,20),
 max_{psi != 1} |M_psi^tor|/p = 2.8331969382 at (p,e)=(73,8).
+```
+
+The largest audited elliptic-fiber trace in the alpha-middle family is
+
+```text
+max_a |sum_r chi(rM(a,r))|/sqrt(p) = 1.8299828440 at p=43.
 ```
 
 Thus the averaged M1 target remains substantially smaller than the largest

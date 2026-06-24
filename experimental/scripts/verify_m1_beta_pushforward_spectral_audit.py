@@ -358,6 +358,61 @@ def alpha_marginal_reduction_case(
     }
 
 
+def alpha_middle_elliptic_case(p: int) -> dict[str, Any]:
+    expected_singular = tuple(sorted({1, (-3) % p, (-pow(3, -1, p)) % p}))
+    singular_parameters = []
+    max_fiber_trace = 0
+    max_fiber_trace_parameter = 0
+    for alpha in range(1, p):
+        discriminant = (
+            48
+            * alpha
+            * alpha
+            * (alpha - 1)
+            * (alpha - 1)
+            * (alpha + 3)
+            * (3 * alpha + 1)
+        ) % p
+        repeated_root = False
+        fiber_trace = 0
+        linear = (-3 * alpha * alpha - 2 * alpha - 3) % p
+        for ratio in range(p):
+            middle_factor = m1.ratio_surface_beta_middle_factor(
+                p,
+                alpha,
+                ratio,
+            )
+            cubic_value = ratio * middle_factor % p
+            cubic_derivative = (
+                12 * alpha * ratio * ratio + 2 * linear * ratio + 4 * alpha
+            ) % p
+            repeated_root = repeated_root or (
+                cubic_value == 0 and cubic_derivative == 0
+            )
+            if ratio != 0:
+                fiber_trace += m1.legendre(cubic_value, p)
+        if repeated_root != (discriminant == 0):
+            raise AssertionError((p, alpha, repeated_root, discriminant))
+        if repeated_root:
+            singular_parameters.append(alpha)
+        else:
+            if abs(fiber_trace) > 2 * math.sqrt(p) + TOLERANCE:
+                raise AssertionError((p, alpha, fiber_trace))
+        if abs(fiber_trace) > max_fiber_trace:
+            max_fiber_trace = abs(fiber_trace)
+            max_fiber_trace_parameter = alpha
+    if tuple(singular_parameters) != expected_singular:
+        raise AssertionError((p, singular_parameters, expected_singular))
+    return {
+        "p": p,
+        "singular_parameters": singular_parameters,
+        "max_fiber_trace": max_fiber_trace,
+        "max_fiber_trace_parameter": max_fiber_trace_parameter,
+        "max_fiber_trace_sqrt_ratio": round(max_fiber_trace / math.sqrt(p), 10),
+        "max_fiber_trace_p_ratio": round(max_fiber_trace / p, 10),
+    }
+
+
 def centered_frobenius_square(matrix: list[list[int]]) -> float:
     order = len(matrix)
     row_sums = [sum(row) for row in matrix]
@@ -617,6 +672,10 @@ def compute_report() -> dict[str, Any]:
     principal_trace_rows = [
         principal_trace_case(p) for p in sorted({case[0] for case in AUDIT_CASES})
     ]
+    alpha_middle_elliptic_rows = [
+        alpha_middle_elliptic_case(p)
+        for p in sorted({case[0] for case in AUDIT_CASES})
+    ]
     for row in rows:
         key = (row["p"], row["quotient_order"])
         (
@@ -731,12 +790,17 @@ def compute_report() -> dict[str, Any]:
         principal_trace_rows,
         key=lambda row: row["principal_trace_ratio"],
     )
+    max_alpha_middle_fiber_row = max(
+        alpha_middle_elliptic_rows,
+        key=lambda row: row["max_fiber_trace_sqrt_ratio"],
+    )
     return {
         "status": "PASS",
         "proof_status": "EXPERIMENTAL / FINITE SPECTRAL AUDIT",
         "case_count": len(rows),
         "rows": rows,
         "principal_trace_rows": principal_trace_rows,
+        "alpha_middle_elliptic_rows": alpha_middle_elliptic_rows,
         "max_two_sided_coefficient_row": max_two_sided_row,
         "max_beta2_coefficient_row": max_beta2_row,
         "max_centered_frobenius_row": max_frobenius_row,
@@ -748,6 +812,7 @@ def compute_report() -> dict[str, Any]:
         "max_joint_collision_row": max_joint_collision_row,
         "max_nonnegative_sufficient_bound_row": max_nonnegative_bound_row,
         "max_principal_trace_row": max_principal_trace_row,
+        "max_alpha_middle_fiber_row": max_alpha_middle_fiber_row,
         "interpretation": (
             "All audited good beta-pushforward matrices have p-scale full "
             "BETA_2 coefficients, p-scale centered Frobenius norm, and "
@@ -795,6 +860,7 @@ def print_report(report: dict[str, Any]) -> None:
     max_joint_collision = report["max_joint_collision_row"]
     max_nonnegative_bound = report["max_nonnegative_sufficient_bound_row"]
     coef_key = "max_alpha_marginal_coefficient_ratio"
+    max_alpha_middle_fiber = report["max_alpha_middle_fiber_row"]
     print(
         "max two-sided coefficient row: "
         f"p={max_two_sided['p']} e={max_two_sided['quotient_order']} "
@@ -828,6 +894,12 @@ def print_report(report: dict[str, Any]) -> None:
         f"p={max_alpha_middle['p']} e={max_alpha_middle['quotient_order']} "
         "ratio="
         f"{max_alpha_middle['alpha_marginal_reduction']['max_alpha_full_middle_ratio']}"
+    )
+    print(
+        "max alpha-middle elliptic fiber row: "
+        f"p={max_alpha_middle_fiber['p']} "
+        f"a={max_alpha_middle_fiber['max_fiber_trace_parameter']} "
+        f"ratio={max_alpha_middle_fiber['max_fiber_trace_sqrt_ratio']}"
     )
     print(
         "max beta-marginal Frobenius row: "
@@ -867,6 +939,12 @@ def print_report(report: dict[str, Any]) -> None:
         f"p={max_principal_trace['p']} "
         f"ratio={max_principal_trace['principal_trace_ratio']}"
     )
+    for row in report["alpha_middle_elliptic_rows"]:
+        print(
+            "alpha-middle elliptic row: "
+            f"p={row['p']} singular={tuple(row['singular_parameters'])} "
+            f"max_fiber/sqrtp={row['max_fiber_trace_sqrt_ratio']}"
+        )
 
 
 def main() -> None:
