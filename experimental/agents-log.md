@@ -42,11 +42,13 @@ Keep entries concise and link to the relevant files.
 - **What is being added:** A quotient-character scan of the exact good
   beta-pushforward trace `G_{psi,phi}` isolated by the M1 `(BETA_2)` import.
   The verifier now reports the maximum p-normalized good-pushforward
-  coefficient for every centered character pair in the audited quotient rows.
+  coefficient and the Parseval-normalized centered Frobenius energy for every
+  centered character pair in the audited quotient rows.
 - **How it is useful:** This is a counterexample-first test of the remaining
   rank-two pushforward object, not of the already controlled exceptional
   ledger. The audited rows show p-scale behavior, with largest recorded
-  `max |G_{psi,phi}|/p = 3.0697674419`.
+  `max |G_{psi,phi}|/p = 3.0697674419` and largest recorded
+  `||G_e^circ||_F/p = 1.1366043634`.
 - **What to do next:** Prove the bounded-conductor/no-constant-summand
   `(BETA_2)` estimate for the explicit rank-two pushforward, or extend the
   finite scan to larger primes and quotient orders if looking for route-killing
