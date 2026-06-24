@@ -200,6 +200,9 @@ separately, the non-characteristic-zero family has common-ideal valuation
 budget `96`.  Dividing by `phi(8)=4` gives a non-structural row bound `24`.
 Together with the `6` structured pairs, this gives `30` total row pairs and the
 formal fiber bound `M <= 8`; the actual maximum fiber in the `F_9` row is `4`.
+The radical incidence index is exact on this row: its total `3`-adic valuation
+over the `48` non-characteristic-zero pairs is also `96`, equal to the modular
+common-root degree sum.
 
 ## Norm Size And Finite-Family Aggregation
 
@@ -485,6 +488,70 @@ degree-weighted common-prime-ideal incidence into a purely integer valuation
 budget.  The remaining hard L1 problem is to bound that valuation budget over
 the robustly aperiodic template families that arise at large `n`.
 
+## Radical Incidence Index
+
+The valuation budget can be sharpened by removing higher prime-power torsion.
+Let
+
+```text
+s_1, ..., s_d
+```
+
+be diagonal entries obtained from the full-rank common-ideal matrix `M(A,B)` by
+unimodular integer row and column operations.  Thus
+
+```text
+I_n,sigma(A,B) = product_i s_i.
+```
+
+Define the radical incidence index
+
+```text
+J_n,sigma(A,B) = product_i rad(s_i),
+```
+
+where `rad(s)` is the product of the rational primes dividing `s`.  Then
+
+```text
+J_n,sigma(A,B) | I_n,sigma(A,B).
+```
+
+For every prime `p` with `p not dividing n`,
+
+```text
+v_p(J_n,sigma(A,B)) = d_p(A,B).
+```
+
+Indeed, reducing the diagonal form modulo `p`, the cokernel dimension is
+exactly the number of diagonal entries divisible by `p`.  That number is
+`v_p(J_n,sigma(A,B))`.  The common-ideal argument above identifies the same
+cokernel with
+
+```text
+F_p[T] / (Phi_n, Delta_1, ..., Delta_sigma)
+  ~= F_p[T] / (G_p),
+```
+
+whose dimension is `deg G_p=d_p(A,B)` because `Phi_n` is squarefree modulo
+`p`.
+
+Thus for every finite non-characteristic-zero family `T`, if
+
+```text
+J_T = product_{(A,B) in T} J_n,sigma(A,B),
+```
+
+then the incidence identity is exact:
+
+```text
+v_p(J_T) = sum_{(A,B) in T} d_p(A,B),        p not dividing n.
+```
+
+The original common-ideal index `I` is still useful as a Fitting/norm divisor,
+but `J` is the sharper object for row incidence: it remembers how many Smith
+directions vanish modulo `p`, not how much higher `p`-power torsion is present
+inside those directions.
+
 There is also a global log-weighted form.  For a finite multiset `T` of
 non-characteristic-zero templates, put
 
@@ -520,6 +587,8 @@ This is a finite density-over-primes statement: large degree-weighted incidence
 at many rational primes forces a large integer common-ideal product.  It still
 does not prove the L1 local limit, because the hard part is bounding `D_T` for
 the robustly aperiodic template families selected by the prefix problem.
+The radical product `J_T` gives the corresponding exact incidence product,
+while `D_T` gives the coarser but norm-controlled upper envelope.
 
 ## Newton Bridge To Power Sums
 
@@ -715,6 +784,7 @@ Then all primitive roots in `K` have the same row count, and
 
 ```text
 |Coll_T(h)|
+  = (1/phi(n)) sum_{(A,B) in T} v_p(J_n,sigma(A,B))
   = (1/phi(n)) sum_{(A,B) in T} d_p(A,B)
   <= (1/phi(n)) sum_{(A,B) in T} v_p(I_n,sigma(A,B)).
 ```
@@ -744,7 +814,7 @@ characteristic-zero and quotient-periodic ledgers are applied, and all remaining
 collision pairs lie in such a dilation-stable family `T`.  Put
 
 ```text
-B_p(T) = sum_{(A,B) in T} v_p(I_n,sigma(A,B)),
+B_p(T) = sum_{(A,B) in T} v_p(J_n,sigma(A,B)),
 C_p = C_0 + floor(B_p(T)/phi(n)).
 ```
 
@@ -762,7 +832,9 @@ M <= floor((1 + sqrt(1 + 8 C_p))/2).
 
 Thus an L1 polynomial locator-fiber bound follows from two separate budgets:
 the already-structured row contribution `C_0`, and the exact common-ideal
-valuation budget `B_p(T)` for the robustly aperiodic remainder.
+radical incidence budget `B_p(T)` for the robustly aperiodic remainder.  The
+coarser `I`-valuation budget can replace `J` whenever one wants a bound that is
+immediately dominated by the norm certificate.
 
 ## Prefix-Depth Filtration
 
@@ -944,6 +1016,9 @@ packet.  The dilation-stable incident family has common-ideal valuation budget
 `320`; after division by `phi(16)=8`, the row-pair bound is `40`, matching the
 actual collision-pair count for every primitive root.  The resulting formal
 fiber bound is `M <= 9`, while the actual maximum fiber at `sigma=4` is `2`.
+The radical incidence index sharpens the same statement: the total `17`-adic
+radical valuation is exactly `320`, equal to the modular common-root degree
+sum, with no contribution from the `p=97` rational false-positive template.
 
 The prefix-depth filtration is sharp on this same row.  For `p=17`, `n=16`,
 and `m=6`, the full row profile is:

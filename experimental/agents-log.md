@@ -55,6 +55,8 @@ Keep entries concise and link to the relevant files.
   primitive-root collisions away from primes dividing `n`.  It also proves the
   valuation incidence budget `deg G_p(A,B) <= v_p(I_n,sigma(A,B))`, converting
   degree-weighted common-prime-ideal incidence into an integer valuation budget.
+  A radical Smith incidence index `J_n,sigma` sharpens this to an exact
+  identity `v_p(J_n,sigma(A,B)) = deg G_p(A,B)` away from primes dividing `n`.
   Summing over rational primes gives a log-weighted density bound:
   `prod p^{d_T(p)}` divides the product of common-ideal indices over the
   finite template family.  For dilation-stable finite-field template families,

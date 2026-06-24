@@ -230,6 +230,13 @@ def lcm_int(left: int, right: int) -> int:
     return abs(left // gcd(left, right) * right)
 
 
+def radical_part(value: int) -> int:
+    result = 1
+    for prime in factorint(value):
+        result *= prime
+    return result
+
+
 def resultant_height_bound(order: int, complement_size: int, rank: int) -> int:
     return (2 * comb(complement_size, rank)) ** euler_phi(order)
 
@@ -407,6 +414,34 @@ def common_ideal_index(
         "index": index,
         "factorization": factorint(index),
         "diagonal_entries": diagonal,
+    }
+
+
+def common_ideal_radical_incidence_index(
+    left: Sequence[int],
+    right: Sequence[int],
+    order: int,
+    sigma: int,
+) -> dict[str, Any]:
+    common_ideal = common_ideal_index(left, right, order, sigma)
+    if (
+        common_ideal["char_zero_collision"]
+        or common_ideal["rank"] != common_ideal["dimension"]
+    ):
+        return {
+            **common_ideal,
+            "radical_incidence_index": 0,
+            "radical_incidence_factorization": {},
+        }
+    radical_index = 1
+    for entry in common_ideal["diagonal_entries"]:
+        radical_index *= radical_part(entry)
+    if common_ideal["index"] % radical_index != 0:
+        raise AssertionError("radical incidence index did not divide ideal index")
+    return {
+        **common_ideal,
+        "radical_incidence_index": radical_index,
+        "radical_incidence_factorization": factorint(radical_index),
     }
 
 
@@ -2364,6 +2399,222 @@ def check_valuation_incidence_budget() -> dict[str, Any]:
     }
 
 
+def check_radical_incidence_index() -> dict[str, Any]:
+    order = 16
+    sigma = 4
+    packet = finite_prefix_collision_pairs(
+        prime=17,
+        order=order,
+        complement_size=6,
+        sigma=sigma,
+    )
+    packet_radical_counts: Counter[int] = Counter()
+    packet_exact_degree_sum = 0
+    packet_radical_valuation_sum = 0
+    for pair in packet["pairs"]:
+        left = pair["left"]
+        right = pair["right"]
+        radical = common_ideal_radical_incidence_index(
+            left,
+            right,
+            order,
+            sigma,
+        )
+        common_degree = degree(common_root_gcd_mod(
+            left,
+            right,
+            order,
+            sigma,
+            17,
+        ))
+        radical_valuation = p_adic_valuation(
+            radical["radical_incidence_index"],
+            17,
+        )
+        if common_degree != radical_valuation:
+            raise AssertionError("F_17 radical index missed common-root degree")
+        if radical["index"] % radical["radical_incidence_index"] != 0:
+            raise AssertionError("radical index did not divide common-ideal index")
+        packet_exact_degree_sum += common_degree
+        packet_radical_valuation_sum += radical_valuation
+        packet_radical_counts[radical["radical_incidence_index"]] += 1
+    if packet_exact_degree_sum != 40 or packet_radical_valuation_sum != 40:
+        raise AssertionError("bad F_17 packet radical incidence total")
+
+    primitive_roots = primitive_order_roots(17, order)
+    dilation_family: set[tuple[tuple[int, ...], tuple[int, ...]]] = set()
+    for root in primitive_roots:
+        row = finite_prefix_collision_pairs(
+            prime=17,
+            order=order,
+            complement_size=6,
+            sigma=sigma,
+            root=root,
+        )
+        for pair in row["pairs"]:
+            dilation_family.add(normalized_pair(pair["left"], pair["right"]))
+    dilation_degree_sum = 0
+    dilation_radical_sum = 0
+    for left, right in dilation_family:
+        common_degree = degree(common_root_gcd_mod(
+            left,
+            right,
+            order,
+            sigma,
+            17,
+        ))
+        radical = common_ideal_radical_incidence_index(
+            left,
+            right,
+            order,
+            sigma,
+        )
+        radical_valuation = p_adic_valuation(
+            radical["radical_incidence_index"],
+            17,
+        )
+        if common_degree != radical_valuation:
+            raise AssertionError("dilation radical index missed degree")
+        dilation_degree_sum += common_degree
+        dilation_radical_sum += radical_valuation
+    if len(dilation_family) != 320:
+        raise AssertionError("unexpected radical dilation-family size")
+    if dilation_degree_sum != 320 or dilation_radical_sum != 320:
+        raise AssertionError("bad radical dilation-family total")
+
+    false_positive = common_ideal_radical_incidence_index(
+        (0, 1, 2, 7, 9, 13),
+        (0, 1, 2, 3, 4, 11),
+        order,
+        sigma,
+    )
+    false_positive_degree = degree(common_root_gcd_mod(
+        (0, 1, 2, 7, 9, 13),
+        (0, 1, 2, 3, 4, 11),
+        order,
+        sigma,
+        97,
+    ))
+    false_positive_valuation = p_adic_valuation(
+        false_positive["radical_incidence_index"],
+        97,
+    )
+    if false_positive_degree != 0 or false_positive_valuation != 0:
+        raise AssertionError("radical index did not remove p=97 false positive")
+
+    extension_order = 8
+    extension_sigma = 1
+    extension_prime = 3
+    extension_roots = gf9_primitive_order_roots(extension_order)
+    non_char_family: set[tuple[tuple[int, ...], tuple[int, ...]]] = set()
+    for root in extension_roots:
+        row = finite_prefix_collision_pairs_gf9(
+            order=extension_order,
+            complement_size=2,
+            sigma=extension_sigma,
+            root=root,
+        )
+        for pair in row["pairs"]:
+            key = normalized_pair(pair["left"], pair["right"])
+            certificate = bad_prime_certificate(
+                key[0],
+                key[1],
+                extension_order,
+                extension_sigma,
+            )
+            if not certificate["char_zero_collision"]:
+                non_char_family.add(key)
+    extension_degree_sum = 0
+    extension_radical_sum = 0
+    extension_radical_counts: Counter[int] = Counter()
+    for left, right in non_char_family:
+        common_degree = degree(common_root_gcd_mod(
+            left,
+            right,
+            extension_order,
+            extension_sigma,
+            extension_prime,
+        ))
+        radical = common_ideal_radical_incidence_index(
+            left,
+            right,
+            extension_order,
+            extension_sigma,
+        )
+        radical_valuation = p_adic_valuation(
+            radical["radical_incidence_index"],
+            extension_prime,
+        )
+        if common_degree != radical_valuation:
+            raise AssertionError("F_9 radical index missed common-root degree")
+        extension_degree_sum += common_degree
+        extension_radical_sum += radical_valuation
+        extension_radical_counts[radical["radical_incidence_index"]] += 1
+    if len(non_char_family) != 48:
+        raise AssertionError("unexpected F_9 non-char radical family size")
+    if extension_degree_sum != 96 or extension_radical_sum != 96:
+        raise AssertionError("bad F_9 radical incidence total")
+
+    witness = common_ideal_radical_incidence_index(
+        (0, 1),
+        (2, 5),
+        extension_order,
+        extension_sigma,
+    )
+    if p_adic_valuation(witness["radical_incidence_index"], 3) != 2:
+        raise AssertionError("F_9 witness radical index has wrong 3-valuation")
+
+    return {
+        "split_packet": {
+            "order": order,
+            "sigma": sigma,
+            "prime": 17,
+            "pair_count": packet["collision_pair_count"],
+            "radical_incidence_counts": dict(
+                sorted(packet_radical_counts.items())
+            ),
+            "common_root_degree_sum": packet_exact_degree_sum,
+            "radical_valuation_sum": packet_radical_valuation_sum,
+        },
+        "split_dilation_family": {
+            "order": order,
+            "sigma": sigma,
+            "prime": 17,
+            "family_size": len(dilation_family),
+            "common_root_degree_sum": dilation_degree_sum,
+            "radical_valuation_sum": dilation_radical_sum,
+            "row_bound": dilation_radical_sum // euler_phi(order),
+        },
+        "false_positive": {
+            "prime": 97,
+            "common_root_degree": false_positive_degree,
+            "radical_valuation": false_positive_valuation,
+            "radical_incidence_index": (
+                false_positive["radical_incidence_index"]
+            ),
+        },
+        "nonsplit_family": {
+            "order": extension_order,
+            "sigma": extension_sigma,
+            "prime": extension_prime,
+            "family_size": len(non_char_family),
+            "radical_incidence_counts": dict(
+                sorted(extension_radical_counts.items())
+            ),
+            "common_root_degree_sum": extension_degree_sum,
+            "radical_valuation_sum": extension_radical_sum,
+        },
+        "nonsplit_witness": {
+            "left": [0, 1],
+            "right": [2, 5],
+            "radical_incidence_index": witness["radical_incidence_index"],
+            "radical_incidence_factorization": (
+                witness["radical_incidence_factorization"]
+            ),
+        },
+    }
+
+
 def check_log_weighted_density_budget() -> dict[str, Any]:
     order = 16
     sigma = 4
@@ -2981,6 +3232,7 @@ def build_report() -> dict[str, Any]:
             check_finite_family_exact_aggregation()
         ),
         "valuation_incidence_budget": check_valuation_incidence_budget(),
+        "radical_incidence_index": check_radical_incidence_index(),
         "log_weighted_density_budget": check_log_weighted_density_budget(),
         "dilation_invariant_row_bound": check_dilation_invariant_row_bound(),
         "finite_field_row_fiber_bound": check_finite_field_row_fiber_bound(),
@@ -3113,6 +3365,15 @@ def print_human(report: dict[str, Any]) -> None:
         "valuation_incidence_budget="
         f"templates={valuation['template_pair_count']}, "
         f"rows={valuation['rows']}"
+    )
+    radical = report["radical_incidence_index"]
+    print(
+        "radical_incidence_index="
+        f"f17_degree={radical['split_packet']['common_root_degree_sum']}, "
+        f"f17_radical={radical['split_packet']['radical_valuation_sum']}, "
+        f"dilation_row_bound={radical['split_dilation_family']['row_bound']}, "
+        f"f9_degree={radical['nonsplit_family']['common_root_degree_sum']}, "
+        f"f9_radical={radical['nonsplit_family']['radical_valuation_sum']}"
     )
     log_budget = report["log_weighted_density_budget"]["split_family"]
     print(
