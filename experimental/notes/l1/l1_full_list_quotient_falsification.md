@@ -114,6 +114,61 @@ row; the `F_17`, `n=16`, `k=8`, `s=11` row reached primitive remainder `2`.
 Folded codewords appear as quotient-budgeted mass rather than primitive mass,
 as expected.
 
+## Glued-Codeword Sunflower Attack
+
+The first explicitly adversarial construction is a sunflower of agreement
+sets.  Let `C subset H` have size `k-1`, let `T_1,...,T_M` be disjoint petals
+in `H \ C` of size
+
+```text
+|T_i| = s-k+1 = sigma+1,
+```
+
+and assume `M < q`.  Put
+
+```text
+L_C(X) = prod_{x in C}(X-x),
+P_i(X) = c_i L_C(X)
+```
+
+for distinct nonzero scalars `c_i`.  Define `U` by
+
+```text
+U(x) = P_i(x)  for x in T_i,
+U(x) = 0       for x in C and on the unused background.
+```
+
+Since `L_C` vanishes exactly on `C`, each `P_i` agrees with `U` exactly on
+`C union T_i`.  Therefore
+
+```text
+|ImgFib_U(s)| >= M,
+M = min(q-1, floor((n-k+1)/(sigma+1))).
+```
+
+If the sets `C union T_i` have trivial cyclic stabilizer, this also gives
+
+```text
+Q_1^list(U,s) >= M.
+```
+
+This is not a counterexample to the polynomial conjecture.  At the corrected
+lower cutoff `sigma ~ n/log n`, the construction gives a logarithmic primitive
+floor.  It does show that one should not expect a uniform constant bound for
+the primitive full-list remainder.
+
+Finite sunflower scans gave:
+
+```text
+F_17, n=16, k=8, s=11: planted M=2, max Q_1 = 2.
+F_97, n=16, k=8, s=10: planted M=3, max Q_1 = 5.
+```
+
+The `F_97` row is useful: random sunflower cores produced two accidental extra
+primitive codewords beyond the three planted ones, but still no
+reserve-cleared alert at threshold `n=16`.  A deeper sunflower-only sweep with
+20 random cores again had maximum primitive remainder `5`.
+
 ## Interpretation
 
 This does not prove the full L1 conjecture.  It does establish that the
@@ -123,7 +178,7 @@ tests and that the scanner is targeting the correct repaired object.
 The next useful falsification step is to improve the near-boundary search:
 
 1. add meet-in-the-middle sparse-syndrome scans for radius `4` and `5`;
-2. generate received words by gluing several codewords on overlapping support
-   patterns, not only by random sampling;
-3. record any large primitive family as a new obstruction before attempting a
+2. classify the accidental extra codewords in sunflower rows;
+3. optimize the interpolation backend enough to test larger high-field rows;
+4. record any large primitive family as a new obstruction before attempting a
    proof.

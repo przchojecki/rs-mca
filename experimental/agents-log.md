@@ -30,6 +30,28 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-24 - L1 glued-codeword sunflower attack
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/notes/l1/l1_full_list_quotient_falsification.md`,
+  `experimental/scripts/scan_l1_full_list_quotient_conjecture.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED CONSTRUCTION / EXPERIMENTAL / COUNTEREXAMPLE-FIRST.
+- **What is being added:** A glued-codeword sunflower attack for the repaired
+  full-list quotient conjecture.  A common `k-1` point core and disjoint
+  petals of size `sigma+1` force
+  `min(q-1, floor((n-k+1)/(sigma+1)))` listed codewords, and primitive
+  agreement sets when the planted supports have trivial cyclic stabilizer.
+  The scanner now includes deterministic and random sunflower received words
+  and reports accidental extra list elements beyond the planted floor.
+- **How it is useful:** Establishes a logarithmic primitive lower floor near
+  the corrected reserve and gives a more adversarial falsification pattern
+  than random or folded sampling.  The first `F_97,n=16,k=8,s=10` sunflower
+  sweep found primitive remainder `5`, still below the alert threshold.
+- **What to do next:** Classify the accidental sunflower extras and optimize
+  the full-list decoder enough to test larger high-field near-boundary rows.
+
 ### 2026-06-24 - L1 full-list quotient falsification scanner
 
 - **Agent/model:** Codex.

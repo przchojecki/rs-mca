@@ -12,7 +12,7 @@ Two modes are available:
 * exact sparse-syndrome enumeration for all received-word cosets when the
   low-weight error ball is small;
 * random/adversarial received-word sampling using k-subset interpolation near
-  the entropy boundary.
+  the entropy boundary, including glued-codeword sunflower attacks.
 """
 
 from __future__ import annotations
@@ -433,7 +433,126 @@ def eval_random_poly(domain: list[int], coeffs: list[int], p: int) -> list[int]:
     return [eval_poly(coeffs, x_value, p) for x_value in domain]
 
 
-def sampled_words(p: int, n: int, k: int, sample_count: int, seed: int) -> list[dict[str, object]]:
+def locator_polynomial(domain: list[int], indices: list[int], p: int) -> tuple[int, ...]:
+    poly: tuple[int, ...] = (1,)
+    for index in indices:
+        poly = multiply_by_linear(poly, domain[index], p)
+    return poly
+
+
+def sunflower_word_from_blocks(
+    p: int,
+    n: int,
+    k: int,
+    s: int,
+    core: list[int],
+    petals: list[list[int]],
+    name: str,
+) -> dict[str, object] | None:
+    """Build U from P_i = c_i L_core on core+petal_i.
+
+    The background scalar is 0 and the petal scalars are 1,2,..., so each
+    listed codeword has exact agreement set core union petal_i as long as the
+    scalars are distinct in F_p.  This is a deliberate high-multiplicity attack,
+    not random sampling.
+    """
+    if not petals or len(petals) >= p:
+        return None
+    domain = subgroup(p, n)
+    core_locator = locator_polynomial(domain, core, p)
+    values = [0] * n
+    intended_sets: list[list[int]] = []
+    for scalar, petal in enumerate(petals, start=1):
+        intended = sorted(core + petal)
+        intended_sets.append(intended)
+        for index in petal:
+            values[index] = (scalar * eval_poly(core_locator, domain[index], p)) % p
+    intended_stabilizers = [
+        stabilizer_order(sum(1 << index for index in intended), n)
+        for intended in intended_sets
+    ]
+    return {
+        "name": name,
+        "values": values,
+        "sunflower": {
+            "core": sorted(core),
+            "petals": [sorted(petal) for petal in petals],
+            "intended_list_size": len(petals),
+            "intended_agreement_sets": intended_sets,
+            "intended_stabilizer_orders": intended_stabilizers,
+        },
+    }
+
+
+def sunflower_words(
+    p: int,
+    n: int,
+    k: int,
+    s: int,
+    seed: int,
+    random_count: int,
+) -> list[dict[str, object]]:
+    if not (0 < k < s <= n):
+        return []
+    core_size = k - 1
+    petal_size = s - core_size
+    if core_size < 0 or petal_size <= 0:
+        return []
+
+    words: list[dict[str, object]] = []
+    core = list(range(core_size))
+    remaining = [index for index in range(n) if index not in core]
+    petal_count = min(len(remaining) // petal_size, p - 1)
+    petals = [
+        remaining[i * petal_size:(i + 1) * petal_size]
+        for i in range(petal_count)
+    ]
+    word = sunflower_word_from_blocks(
+        p,
+        n,
+        k,
+        s,
+        core,
+        petals,
+        name=f"sunflower-sequential-m{petal_count}",
+    )
+    if word is not None:
+        words.append(word)
+
+    rng = random.Random(seed + 7919)
+    for index in range(random_count):
+        shuffled = list(range(n))
+        rng.shuffle(shuffled)
+        core = sorted(shuffled[:core_size])
+        remaining = shuffled[core_size:]
+        petal_count = min(len(remaining) // petal_size, p - 1)
+        petals = [
+            remaining[i * petal_size:(i + 1) * petal_size]
+            for i in range(petal_count)
+        ]
+        word = sunflower_word_from_blocks(
+            p,
+            n,
+            k,
+            s,
+            core,
+            petals,
+            name=f"sunflower-random-{index}-m{petal_count}",
+        )
+        if word is not None:
+            words.append(word)
+    return words
+
+
+def sampled_words(
+    p: int,
+    n: int,
+    k: int,
+    s: int,
+    sample_count: int,
+    seed: int,
+    sunflower_count: int,
+) -> list[dict[str, object]]:
     domain = subgroup(p, n)
     rng = random.Random(seed)
     words: list[dict[str, object]] = [
@@ -471,6 +590,7 @@ def sampled_words(p: int, n: int, k: int, sample_count: int, seed: int) -> list[
             for x_value in domain
         ]
         words.append({"name": f"folded-codeword-d{d}", "values": values})
+    words.extend(sunflower_words(p, n, k, s, seed, sunflower_count))
     return words
 
 
@@ -483,6 +603,7 @@ def sample_scan(
     alert_power: float,
     samples: int,
     seed: int,
+    sunflower_count: int,
     max_examples: int,
 ) -> dict[str, object]:
     domain = subgroup(p, n)
@@ -494,7 +615,7 @@ def sample_scan(
     examples: list[dict[str, object]] = []
     rows: list[dict[str, object]] = []
 
-    for word in sampled_words(p, n, k, samples, seed):
+    for word in sampled_words(p, n, k, s, samples, seed, sunflower_count):
         values = word["values"]
         assert isinstance(values, list)
         listed = img_list_from_values(values, domain, k, s, p)
@@ -513,6 +634,11 @@ def sample_scan(
                 str(order): count for order, count in ledger.items() if count
             },
         }
+        if "sunflower" in word:
+            row["sunflower"] = word["sunflower"]
+            intended = int(word["sunflower"]["intended_list_size"])
+            row["sunflower_intended_survives"] = total >= intended
+            row["sunflower_extra_list_count"] = total - intended
         rows.append(row)
         max_quotient = max(max_quotient, quotient)
         if primitive > max_primitive or total > max_total:
@@ -607,6 +733,7 @@ def main(argv: list[str]) -> int:
     parser.add_argument("--skip-sample", action="store_true")
     parser.add_argument("--max-ball", type=int, default=3_000_000)
     parser.add_argument("--samples", type=int, default=12)
+    parser.add_argument("--sunflowers", type=int, default=3)
     parser.add_argument("--seed", type=int, default=0)
     parser.add_argument("--epsilon", type=float, default=0.0)
     parser.add_argument("--alert-power", type=float, default=1.0)
@@ -641,6 +768,7 @@ def main(argv: list[str]) -> int:
                     args.alert_power,
                     args.samples,
                     args.seed,
+                    args.sunflowers,
                     args.max_examples,
                 )
             )
