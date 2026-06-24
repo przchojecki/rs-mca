@@ -3,7 +3,8 @@
 - **Status:** AUDIT (base identity, independently reproduced) / PROVED + PROVED-by-check
   (interleaved identity §2, a-regular collapse §2.3, overlap-graph §2.4, L2->L1
   reduction + clique cap §2.6) / CONDITIONAL (protocol budget §2.8, on the L1
-  bound) / OUTLOOK (extension-line §2.9). Self-contained forward-bridge note.
+  bound) / PROVED-by-check (extension-line forward case §2.10 over `F_{p^2}`).
+  Self-contained forward-bridge note covering X1, L2, M2, and F1 (simple-pole).
 - **Agent/model:** Claude Opus 4.8 (L2 loop, branch `allen/l2-x1-interleaved-mca`).
 - **Date:** 2026-06-23 / 2026-06-24.
 - **Scope:** Problem X1 (list <-> CA/MCA without square-root loss) and L2
@@ -42,6 +43,7 @@ list at the same radius `delta_a = 1-a/n`, `a > k`.
 | 2.7 | Line-decoding reading (M2): `LD = Bad_MCA = Bad_CA = Deep_alpha` coincide on the simple-pole family | AUDIT / PROVED-by-check |
 | 2.8 | Conditional protocol budget: `Lst(C_+) <= n^B` => interleaved-MCA term `<= n^{eB}/q`; small `B` clears `2^-128` | PROVED (conditional on L1) |
 | 2.9 | Extension-line outlook (F1): the `F`-line is the `M_z`-coupled slice of the `e`-fold interleaved bridge | OUTLOOK |
+| 2.10 | Extension-line forward case realized over `F_{p^2}`: base identity, list control, `M_z` transfer | PROVED-by-check |
 
 **What is proved.** The forward interleaved bridge is complete and `mu`-clean: an
 interleaved list bound transfers to an interleaved-MCA bad-slope count at the
@@ -482,6 +484,36 @@ matrix-parameter restriction of the L2/X1 object developed here; a sharp F1
 constant would specialize the §2.6 reduction to the multiplication-slice family.
 Full F1 development is deferred to the F1 lane.
 
+## 2.10 Extension-line forward case, realized (F1)
+
+§2.9 outlined the extension-line connection; this section develops and verifies it
+for the simple-pole family. Over `B = F_p`, `F = F_{p^2}`, `D subset B`, the
+simple-pole `F`-line at an extension-valued deep point `alpha in F \ D` is
+realized and `verify_x1_extension_line.py` confirms (over `F_{17^2}`, `alpha=t`):
+
+1. **Base identity over the extension.** `Bad_MCA_F(alpha; delta_a) =
+   Deep_alpha^F(U,a)` for `F`-valued words and an extension-valued `alpha` --
+   extending the §1 audit (prime-field deep points) to the genuine extension
+   setting. Verified including a planted word with a non-trivial extension list
+   (`|Deep^F| = 5` at `n=8,k=3,a=5`).
+2. **List control.** `|Deep_alpha^F(U,a)| <= |Lambda(C_{F,+},delta_a,U)|`, and by
+   the extension-coordinate identity `|Lambda(C_F)| = |Lambda(Int(C_B,2))|`
+   (`notes/l2/l2_interleaved_dilation_constants.md` §6), the `F`-line MCA is
+   governed by the **`2`-interleaved base-code list** -- i.e. the L2/X1 object of
+   §2 with `mu = e = 2`.
+3. **Multiplication-slice transfer.** Under `Phi` (`Phi(C_F) = C_B^2`), each
+   `F`-bad slope `z` yields a closing `F`-codeword whose coordinate words are
+   both `deg < k` over `B`, i.e. `Phi(f_alpha) + M_z Phi(g_alpha) in C_B^2|_S`
+   (`notes/f1/f1_extension_coordinate_transfer.md`). So the extension `F`-line is
+   exactly the `M_z`-coupled slice of the `e=2` interleaved bridge.
+
+This realizes the F1 forward direction for the simple-pole family (`prob:F1`):
+extension-line MCA bad slopes are the `F`-valued deep image, list-controlled by
+the interleaved base list, with the scalar `z in F` acting as the multiplication
+matrix `M_z`. It composes the deep-point identity (§1-§2), the extension-coordinate
+list identity (§2.9), and the F1 transfer into one verified forward statement; the
+general (non-simple-pole) F1 lift remains the open F1 question.
+
 ## 3. Plan (incremental commits on this PR)
 
 1. (done) Independent audit + broadened verifier of the base identity (§1).
@@ -509,8 +541,9 @@ Full F1 development is deferred to the F1 lane.
 10. (done) §2.8 conditional protocol budget: an L1 bound `Lst(C_+)<=n^B` yields
     the interleaved-MCA soundness budget; `scripts/verify_x1_conditional_budget.py`.
 11. (done) §2.9 extension-line outlook: the F-line is the `M_z`-coupled slice of
-    the `e`-fold interleaved bridge (connection to prob:F1). The forward-bridge
-    note is now self-contained (§1-§2.9).
+    the `e`-fold interleaved bridge (connection to prob:F1).
+12. (done) §2.10 extension-line forward case realized over `F_{p^2}`:
+    `scripts/verify_x1_extension_line.py` (base identity, list control, M_z transfer).
 
 ## Ledger impact
 
@@ -543,4 +576,6 @@ python3 experimental/scripts/verify_x1_line_decoding.py
 python3 experimental/scripts/verify_x1_line_decoding.py --json
 python3 experimental/scripts/verify_x1_conditional_budget.py
 python3 experimental/scripts/verify_x1_conditional_budget.py --json
+python3 experimental/scripts/verify_x1_extension_line.py
+python3 experimental/scripts/verify_x1_extension_line.py --json
 ```

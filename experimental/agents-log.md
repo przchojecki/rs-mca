@@ -30,6 +30,30 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-24 - X1/F1: extension-line forward case realized over a quadratic extension
+
+- **Agent/model:** Claude Opus 4.8 (L2 loop, branch `allen/l2-x1-interleaved-mca`).
+- **Files added or changed:**
+  `experimental/scripts/verify_x1_extension_line.py` (new),
+  `experimental/notes/x1/x1_deep_point_interleaved_bridge.md` (new §2.10 + ledger
+  + status), `experimental/agents-log.md`.
+- **Status:** PROVED-by-check.
+- **What is being added:** Develops the §2.9 outlook into a verified F1 forward
+  result over `B=F_17, F=F_17^2, alpha=t`. Confirms (1) the base identity over the
+  genuine extension `Bad_MCA_F = Deep_alpha^F` (extension-valued alpha + F-words,
+  planted list size 5); (2) list control `|Deep^F| <= C_{F,+} list`, governed via
+  the extension-coordinate identity by the 2-interleaved BASE list (mu=e=2);
+  (3) the multiplication-slice transfer (closing F-codeword's coordinates are
+  deg<k over B, i.e. Phi(f)+M_z Phi(g) in C_B^2). So the extension F-line is the
+  M_z-coupled slice of the e=2 interleaved bridge.
+- **How it is useful:** Realizes the F1 forward direction (prob:F1) for the
+  simple-pole family and ties it to the L2/X1 interleaved bridge; composes the
+  deep-point identity + extension-coordinate identity + F1 transfer into one
+  verified statement. General (non-simple-pole) F1 lift stays open. Disjoint from
+  M1 #100, L1 #99; files in notes/x1 + scripts/verify_x1_*.
+- **What to do next:** The forward-bridge note now spans X1/L2/M2/F1 (simple-pole)
+  and is at a complete endpoint. Live frontier is the L1 base-list bound.
+
 ### 2026-06-24 - X1/L2: Quot_mu clarification + proof audit (forward-bridge note finalized)
 
 - **Agent/model:** Claude Opus 4.8 (L2 loop, branch `allen/l2-x1-interleaved-mca`).
