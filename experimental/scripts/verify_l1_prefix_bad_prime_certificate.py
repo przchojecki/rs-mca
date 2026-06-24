@@ -245,6 +245,17 @@ def exponent_elementary_poly(
     return trim(coeffs)
 
 
+def exponent_power_sum_poly(
+    exponents: Sequence[int],
+    order: int,
+    rank: int,
+) -> list[int]:
+    coeffs = [0] * order
+    for exponent in exponents:
+        coeffs[(rank * exponent) % order] += 1
+    return trim(coeffs)
+
+
 def bad_prime_certificate(
     left: Sequence[int],
     right: Sequence[int],
@@ -837,6 +848,114 @@ def common_root_gcd_mod(
     return common
 
 
+def power_common_root_gcd_mod(
+    left: Sequence[int],
+    right: Sequence[int],
+    order: int,
+    sigma: int,
+    prime: int,
+) -> list[int]:
+    common = trim_mod(cyclotomic_poly(order), prime)
+    for rank in range(1, sigma + 1):
+        delta = poly_sub(
+            exponent_power_sum_poly(left, order, rank),
+            exponent_power_sum_poly(right, order, rank),
+        )
+        common = poly_gcd_mod(common, delta, prime)
+        if degree(common) <= 0:
+            break
+    return common
+
+
+def check_newton_power_sum_bridge() -> dict[str, Any]:
+    order = 16
+    prime = 17
+    sigma = 4
+    row = finite_prefix_collision_pairs(
+        prime=prime,
+        order=order,
+        complement_size=6,
+        sigma=sigma,
+    )
+    degree_counter: Counter[int] = Counter()
+    for pair in row["pairs"]:
+        elementary_factor = common_root_gcd_mod(
+            pair["left"],
+            pair["right"],
+            order,
+            sigma,
+            prime,
+        )
+        power_factor = power_common_root_gcd_mod(
+            pair["left"],
+            pair["right"],
+            order,
+            sigma,
+            prime,
+        )
+        if elementary_factor != power_factor:
+            raise AssertionError("Newton bridge changed the F_17 common factor")
+        degree_counter[degree(elementary_factor)] += 1
+
+    false_positive_left = (0, 1, 2, 7, 9, 13)
+    false_positive_right = (0, 1, 2, 3, 4, 11)
+    elementary_false_positive = common_root_gcd_mod(
+        false_positive_left,
+        false_positive_right,
+        order,
+        sigma,
+        97,
+    )
+    power_false_positive = power_common_root_gcd_mod(
+        false_positive_left,
+        false_positive_right,
+        order,
+        sigma,
+        97,
+    )
+    if elementary_false_positive != power_false_positive:
+        raise AssertionError("Newton bridge changed the p=97 false positive")
+
+    depth_left = (0, 1, 2, 3, 4, 14)
+    depth_right = (5, 6, 7, 9, 12, 15)
+    depth_rows = []
+    for depth_sigma in range(1, 7):
+        elementary_factor = common_root_gcd_mod(
+            depth_left,
+            depth_right,
+            order,
+            depth_sigma,
+            prime,
+        )
+        power_factor = power_common_root_gcd_mod(
+            depth_left,
+            depth_right,
+            order,
+            depth_sigma,
+            prime,
+        )
+        if elementary_factor != power_factor:
+            raise AssertionError("Newton bridge changed a depth-filtration row")
+        depth_rows.append({
+            "sigma": depth_sigma,
+            "common_root_degree": degree(elementary_factor),
+            "common_root_factor": elementary_factor,
+        })
+
+    return {
+        "status": "PASS",
+        "condition": "p does not divide sigma!",
+        "f17_packet_pairs_checked": row["collision_pair_count"],
+        "f17_degree_counts": dict(sorted(degree_counter.items())),
+        "p97_false_positive_degree": degree(elementary_false_positive),
+        "depth_representative": {
+            "left": list(depth_left),
+            "right": list(depth_right),
+            "rows": depth_rows,
+        },
+    }
+
+
 def check_prefix_depth_filtration() -> dict[str, Any]:
     prime = 17
     order = 16
@@ -1249,6 +1368,7 @@ def build_report() -> dict[str, Any]:
         "structured_char_zero_example": check_structured_char_zero_example(),
         "f17_packet": check_f17_packet(),
         "split_prime_row_accounting": check_split_prime_row_accounting(),
+        "newton_power_sum_bridge": check_newton_power_sum_bridge(),
         "prefix_depth_filtration": check_prefix_depth_filtration(),
         "full_prefix_rigidity": check_full_prefix_rigidity(),
         "split_prime_sweep": check_split_prime_sweep(),
@@ -1291,6 +1411,13 @@ def print_human(report: dict[str, Any]) -> None:
     print(f"aggregate_lcm={packet['aggregate_lcm_certificate']}")
     print(f"translation_orbits={len(packet['translation_orbits'])}")
     print(f"affine_orbits={packet['affine_orbit_count']}")
+    bridge = report["newton_power_sum_bridge"]
+    print(
+        "newton_power_sum_bridge="
+        f"f17_pairs={bridge['f17_packet_pairs_checked']}, "
+        f"degrees={bridge['f17_degree_counts']}, "
+        f"p97_degree={bridge['p97_false_positive_degree']}"
+    )
     filtration = report["prefix_depth_filtration"]
     depth_pairs = {
         row["sigma"]: row["collision_pair_count"]

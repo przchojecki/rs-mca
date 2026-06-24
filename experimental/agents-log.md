@@ -49,6 +49,7 @@ Keep entries concise and link to the relevant files.
   The note additionally records affine-orbit invariance, the split-prime
   row-accounting identity equating row collision counts with degree-weighted
   common-prime-ideal incidence, its affine-orbit quotient ledger, the
+  Newton bridge from elementary prefixes to power-sum/Fourier prefixes, the
   prefix-depth filtration for certificates and common-root factors, the
   full-prefix rigidity endpoint, and a bounded exact split-prime scan for the
   `n=16,m=6,sigma=4` row.

@@ -221,6 +221,43 @@ This distinction is important for aggregation: lcm certificates produce a
 candidate set of rational primes, while the final row-level verifier or theorem
 must still impose the common-prime-ideal condition.
 
+## Newton Bridge To Power Sums
+
+The same common-root factor can be computed from power sums whenever the small
+integers `1,...,sigma` are invertible.  Define
+
+```text
+P_j(A;T) = sum_{a in A} T^{ja},        1 <= j <= sigma.
+```
+
+Let `G^e_{p,sigma}` be the modular common-root factor built from the elementary
+differences `Delta_r=E_r(A)-E_r(B)`, and let `G^p_{p,sigma}` be the analogous
+factor built from the power-sum differences
+
+```text
+P_j(A;T)-P_j(B;T).
+```
+
+If `p` does not divide `n sigma!`, then
+
+```text
+G^e_{p,sigma}(A,B) = G^p_{p,sigma}(A,B).
+```
+
+Indeed, at any root `alpha` of `Phi_n` in the algebraic closure of `F_p`, the
+numbers `alpha^a` for `a in A` have elementary sums `E_r(A;alpha)` and power
+sums `P_j(A;alpha)`.  Newton's identities form a triangular system relating
+the first `sigma` elementary sums to the first `sigma` power sums, with diagonal
+coefficients `1,2,...,sigma`.  Since these coefficients are invertible modulo
+`p`, equality of the elementary prefix is equivalent to equality of the
+power-sum prefix.  Because `p` does not divide `n`, `Phi_n` is squarefree, so
+the two gcds are the same product of primitive-root factors.
+
+This bridges the bad-prime certificate layer to the Fourier/moment formulation
+used in the L1 orbit-cancellation notes.  The rational resultant certificate is
+an elementary-symmetric certificate, but the ideal-level split-prime test can
+be read equivalently in the power-sum coordinates used by Fourier analysis.
+
 ## Affine-Orbit Reduction
 
 The template data has an affine symmetry.  For `u in (Z/nZ)^*` and
@@ -477,6 +514,13 @@ becomes constant.
 The verifier separately checks this full-prefix endpoint for `n=16` at the
 split primes `17` and `97`, for every complement size `1 <= m <= 8`: at
 `sigma=m`, every fiber is a singleton and the collision-pair count is `0`.
+
+The verifier also checks the Newton bridge on this packet.  For all `40`
+`F_17` collision pairs at `sigma=4`, the elementary common-root factor and the
+power-sum common-root factor agree and have degree `1`; for the `p=97`
+rational false-positive template both factors are constant.  Along the
+representative depth filtration above, the elementary and power-sum factors
+agree at every `1 <= sigma <= 6`.
 
 The verifier also checks the same row over the next split primes
 
