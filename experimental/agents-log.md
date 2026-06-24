@@ -30,6 +30,22 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-24 - L1 full-petal top-defect rank
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/notes/l1/l1_full_list_quotient_proof_program.md`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED.
+- **What is being added:** A top-defect rank lemma for the full-petal CRT map.
+  At `d=(t-1)ell`, the top-coefficient map has full target rank `ell-1`,
+  giving the fixed-`I` bound `q^(d-ell+2)`.
+- **How it is useful:** Completes the rank analysis of the full-petal CRT map:
+  both below and at the top-defect boundary, the remaining issue is
+  split-locator concentration inside an explicit kernel, not CRT rank loss.
+- **What to do next:** Bound split core locators inside the full-petal CRT
+  kernels, or classify kernel concentration as quotient/defect structure.
+
 ### 2026-06-24 - L1 full-petal high-rank lemma
 
 - **Agent/model:** Codex.

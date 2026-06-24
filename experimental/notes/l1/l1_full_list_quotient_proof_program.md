@@ -1234,6 +1234,83 @@ come from many split core locators inside a kernel of dimension `d-ell+1`,
 with `d-ell` growing.  The exact top-defect boundary remains a separate
 case.
 
+## Lemma 14. Full-Petal Top-Defect Rank
+
+Status: PROVED.
+
+Keep the background-free full-petal notation of Lemma 8.  Suppose `t=|I|>=3`
+and
+
+```text
+d = (t-1)ell.
+```
+
+Then the CRT top-coefficient map has full target rank:
+
+```text
+r_{I,d} = ell-1.
+```
+
+Consequently, for fixed `I`, the number of full-petal listed codewords with
+exact touched-petal set `I` and top core defect `d=(t-1)ell` is at most
+
+```text
+q^{d-ell+2}.
+```
+
+### Proof
+
+Fix one petal index `i in I`.  As in Lemma 13, every `F in K_{I,d}` determines
+a polynomial `W` of degree at most `d` and a cofactor `A_i` with
+
+```text
+W-c_iF = L_{T_i}A_i,
+deg A_i <= d-ell.
+```
+
+Consider the linear map `F |-> A_i` on `K_{I,d}`.  If `A_i=0`, then
+`W=c_iF`.  For every `j in I\{i}`, the congruence defining `W` gives
+
+```text
+(c_i-c_j)F = W-c_jF
+```
+
+divisible by `L_{T_j}`.  Since the petal scalars are distinct and the petal
+locators are pairwise coprime, `F` is divisible by
+
+```text
+B_i = prod_{j in I, j != i} L_{T_j}.
+```
+
+Now `deg B_i=(t-1)ell=d`, while `deg F<=d`, so the kernel of `F |-> A_i` is
+at most the one-dimensional span of `B_i`.  Therefore
+
+```text
+dim K_{I,d} <= dim F_q[X]_{<= d-ell} + 1 = d-ell+2.
+```
+
+Since `dim V_d=d+1`, this gives
+
+```text
+r_{I,d} >= ell-1.
+```
+
+But the target of `pi_{>d}` has dimension
+
+```text
+t*ell-d-1 = ell-1,
+```
+
+so equality holds.  The counting bound follows from Lemma 8.
+
+### Consequences
+
+The exact top-defect boundary is also not a low-rank CRT phenomenon: the
+top-coefficient map is surjective.  Thus the full-petal residual obstruction
+has been reduced uniformly to split-locator concentration inside explicit CRT
+kernels.  Below the top boundary the kernel has dimension at most `d-ell+1`;
+at the boundary it has dimension at most `d-ell+2`.
+
 ## Development Ledger
 
 - **Conjecture 1 full-list primitive remainder:** CONJECTURAL.  Main proof
@@ -1273,5 +1350,7 @@ case.
   growing-excess full-petal CRT kernels and diffuse partial-petal patterns.
 - **Full-petal high rank below top defect:** PROVED.  Shows the CRT map has
   rank at least `ell` for `t>=3` and `d<(t-1)ell`.
+- **Full-petal top-defect rank:** PROVED.  Shows the CRT map is full-rank on
+  its top-coefficient target at `d=(t-1)ell`.
 - **Mixed-petal sunflower amplification:** CONJECTURAL.  Next focused bound to
   prove or refute in the large-defect regime.
