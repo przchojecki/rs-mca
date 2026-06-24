@@ -348,6 +348,34 @@ This is the local mechanism behind the L1 prefix threshold: increasing `sigma`
 does not merely add data heuristically; it refines the algebraic bad-prime
 sieve by divisibility.
 
+## Full-Prefix Rigidity
+
+The endpoint of the filtration is rigid.  Let `p` be split, let `h in F_p`
+have order `n`, and take `A,B subset Z/nZ` with `|A|=|B|=m`.  If
+
+```text
+E_r(A;h) = E_r(B;h),        1 <= r <= m,
+```
+
+then `A=B`.
+
+Indeed, the monic locator polynomials
+
+```text
+L_A(X)=prod_{a in A}(X-h^a),
+L_B(X)=prod_{b in B}(X-h^b)
+```
+
+have degree `m`.  Equality of the first `m` elementary sums is equality of all
+nonleading coefficients of these monic degree-`m` polynomials.  Hence
+`L_A=L_B`.  Since `h` has exact order `n`, the elements `h^0,...,h^{n-1}` are
+distinct in `F_p`, so the two root subsets coincide.
+
+Thus every split-prime collision at fixed complement size `m` is necessarily a
+partial-prefix phenomenon with `sigma < m`.  The bad-prime aggregation problem
+only needs to control how quickly the prefix-depth filtration reaches this
+rigid endpoint.
+
 ## Worked L1 Packet: F_17, n=16
 
 The existing aperiodic collision certificate in
@@ -445,6 +473,10 @@ sigma  C_sigma  split support  deg G_17,sigma
 Thus the known `sigma=4` bad-prime collision disappears at the next prefix
 rank: `17` leaves the certificate support and the modular common-root factor
 becomes constant.
+
+The verifier separately checks this full-prefix endpoint for `n=16` at the
+split primes `17` and `97`, for every complement size `1 <= m <= 8`: at
+`sigma=m`, every fiber is a singleton and the collision-pair count is `0`.
 
 The verifier also checks the same row over the next split primes
 

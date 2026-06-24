@@ -49,8 +49,9 @@ Keep entries concise and link to the relevant files.
   The note additionally records affine-orbit invariance, the split-prime
   row-accounting identity equating row collision counts with degree-weighted
   common-prime-ideal incidence, its affine-orbit quotient ledger, the
-  prefix-depth filtration for certificates and common-root factors, and a
-  bounded exact split-prime scan for the `n=16,m=6,sigma=4` row.
+  prefix-depth filtration for certificates and common-root factors, the
+  full-prefix rigidity endpoint, and a bounded exact split-prime scan for the
+  `n=16,m=6,sigma=4` row.
 - **How it is useful:** This supplies the finite-field layer complementary to
   characteristic-zero L1 reductions. It turns robustly aperiodic modular
   collisions into algebraic norm/resultant divisibility events, matching a
@@ -59,7 +60,7 @@ Keep entries concise and link to the relevant files.
   for these lcm certificates by bounding the degree-weighted common-prime-ideal
   incidence mass after quotient-periodic and characteristic-zero templates are
   removed, using the prefix-depth filtration to shrink the candidate bad-prime
-  support as `sigma` grows.
+  support as `sigma` grows toward the full-prefix rigid endpoint.
 
 ### 2026-06-23 - Cycle119 admissibility review
 

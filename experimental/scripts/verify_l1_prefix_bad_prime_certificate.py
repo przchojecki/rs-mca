@@ -982,6 +982,46 @@ def check_prefix_depth_filtration() -> dict[str, Any]:
     }
 
 
+def check_full_prefix_rigidity() -> dict[str, Any]:
+    order = 16
+    primes = [17, 97]
+    max_complement_size = 8
+    rows = []
+    for prime in primes:
+        for complement_size in range(1, max_complement_size + 1):
+            summary = finite_prefix_fiber_summary(
+                prime=prime,
+                order=order,
+                complement_size=complement_size,
+                sigma=complement_size,
+            )
+            expected_count = comb(order, complement_size)
+            expected_histogram = {1: expected_count}
+            if summary["distinct_prefix_values"] != expected_count:
+                raise AssertionError("full-prefix map lost a locator subset")
+            if summary["max_fiber"] != 1:
+                raise AssertionError("full-prefix map has a nontrivial fiber")
+            if summary["collision_pair_count"] != 0:
+                raise AssertionError("full-prefix map has a collision")
+            if summary["fiber_histogram"] != expected_histogram:
+                raise AssertionError("unexpected full-prefix histogram")
+            rows.append({
+                "prime": prime,
+                "order": order,
+                "complement_size": complement_size,
+                "sigma": complement_size,
+                "distinct_prefix_values": summary["distinct_prefix_values"],
+                "max_fiber": summary["max_fiber"],
+                "collision_pair_count": summary["collision_pair_count"],
+            })
+    return {
+        "order": order,
+        "primes_checked": primes,
+        "max_complement_size": max_complement_size,
+        "rows": rows,
+    }
+
+
 def check_split_prime_sweep() -> list[dict[str, Any]]:
     rows = []
     expected_counts = {17: 40, 97: 0, 113: 0, 193: 0}
@@ -1210,6 +1250,7 @@ def build_report() -> dict[str, Any]:
         "f17_packet": check_f17_packet(),
         "split_prime_row_accounting": check_split_prime_row_accounting(),
         "prefix_depth_filtration": check_prefix_depth_filtration(),
+        "full_prefix_rigidity": check_full_prefix_rigidity(),
         "split_prime_sweep": check_split_prime_sweep(),
         "bounded_split_prime_row_scan": check_bounded_split_prime_row_scan(),
         "prime_ideal_false_positive": check_prime_ideal_false_positive(),
@@ -1256,6 +1297,13 @@ def print_human(report: dict[str, Any]) -> None:
         for row in filtration["row_profile"]
     }
     print(f"prefix_depth_pairs={depth_pairs}")
+    full_prefix = report["full_prefix_rigidity"]
+    print(
+        "full_prefix_rigidity="
+        f"primes={full_prefix['primes_checked']}, "
+        f"m<={full_prefix['max_complement_size']}, "
+        "collisions=0"
+    )
     accounting = report["split_prime_row_accounting"]
     print(
         "row_accounting="
