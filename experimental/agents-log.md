@@ -48,7 +48,8 @@ Keep entries concise and link to the relevant files.
   recorded as the exact primitive-root embedding multiplicity at split primes.
   The note additionally records affine-orbit invariance, the split-prime
   row-accounting identity equating row collision counts with degree-weighted
-  common-prime-ideal incidence, its affine-orbit quotient ledger, and a
+  common-prime-ideal incidence, its affine-orbit quotient ledger, the
+  prefix-depth filtration for certificates and common-root factors, and a
   bounded exact split-prime scan for the `n=16,m=6,sigma=4` row.
 - **How it is useful:** This supplies the finite-field layer complementary to
   characteristic-zero L1 reductions. It turns robustly aperiodic modular
@@ -57,7 +58,8 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** Prove a uniform aggregation or density-over-primes bound
   for these lcm certificates by bounding the degree-weighted common-prime-ideal
   incidence mass after quotient-periodic and characteristic-zero templates are
-  removed.
+  removed, using the prefix-depth filtration to shrink the candidate bad-prime
+  support as `sigma` grows.
 
 ### 2026-06-23 - Cycle119 admissibility review
 

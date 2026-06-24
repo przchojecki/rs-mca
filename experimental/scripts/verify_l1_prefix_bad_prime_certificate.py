@@ -359,6 +359,50 @@ def top_sigma_key_mod(coeffs: Sequence[int], sigma: int, prime: int) -> tuple[in
     return tuple(coeffs[size - idx] % prime for idx in range(1, effective + 1))
 
 
+def finite_prefix_fiber_summary(
+    *,
+    prime: int,
+    order: int,
+    complement_size: int,
+    sigma: int,
+    root: int | None = None,
+) -> dict[str, Any]:
+    if (prime - 1) % order != 0:
+        raise AssertionError("order must divide prime-1")
+    generator = primitive_root(prime)
+    h = root if root is not None else pow(generator, (prime - 1) // order, prime)
+    has_exact_order = (
+        pow(h, order, prime) == 1
+        and all(pow(h, d, prime) != 1 for d in range(1, order))
+    )
+    if not has_exact_order:
+        raise AssertionError("constructed element does not have exact order")
+
+    buckets: dict[tuple[int, ...], int] = defaultdict(int)
+    for exponents in itertools.combinations(range(order), complement_size):
+        roots = [pow(h, exponent, prime) for exponent in exponents]
+        key = top_sigma_key_mod(poly_from_roots_mod(roots, prime), sigma, prime)
+        buckets[key] += 1
+
+    histogram = Counter(buckets.values())
+    collision_pair_count = sum(
+        fiber_size * (fiber_size - 1) // 2
+        for fiber_size in buckets.values()
+    )
+    return {
+        "prime": prime,
+        "order": order,
+        "complement_size": complement_size,
+        "sigma": sigma,
+        "generator": generator,
+        "order_generator": h,
+        "distinct_prefix_values": len(buckets),
+        "fiber_histogram": dict(sorted(histogram.items())),
+        "max_fiber": max(histogram) if histogram else 0,
+        "collision_pair_count": collision_pair_count,
+    }
+
+
 def finite_prefix_collision_pairs(
     *,
     prime: int,
@@ -793,6 +837,151 @@ def common_root_gcd_mod(
     return common
 
 
+def check_prefix_depth_filtration() -> dict[str, Any]:
+    prime = 17
+    order = 16
+    complement_size = 6
+    max_sigma = 6
+    expected_rows = {
+        1: {
+            "distinct_prefix_values": 17,
+            "max_fiber": 472,
+            "collision_pair_count": 1_882_116,
+            "fiber_histogram": {471: 16, 472: 1},
+        },
+        2: {
+            "distinct_prefix_values": 289,
+            "max_fiber": 32,
+            "collision_pair_count": 107_352,
+            "fiber_histogram": {
+                25: 16,
+                26: 72,
+                27: 48,
+                28: 64,
+                29: 56,
+                31: 32,
+                32: 1,
+            },
+        },
+        3: {
+            "distinct_prefix_values": 4_480,
+            "max_fiber": 5,
+            "collision_pair_count": 4_480,
+            "fiber_histogram": {1: 1_824, 2: 1_856, 3: 736, 4: 56, 5: 8},
+        },
+        4: {
+            "distinct_prefix_values": 7_968,
+            "max_fiber": 2,
+            "collision_pair_count": 40,
+            "fiber_histogram": {1: 7_928, 2: 40},
+        },
+        5: {
+            "distinct_prefix_values": 8_008,
+            "max_fiber": 1,
+            "collision_pair_count": 0,
+            "fiber_histogram": {1: 8_008},
+        },
+        6: {
+            "distinct_prefix_values": 8_008,
+            "max_fiber": 1,
+            "collision_pair_count": 0,
+            "fiber_histogram": {1: 8_008},
+        },
+    }
+
+    rows = []
+    previous_pair_count = None
+    previous_max_fiber = None
+    for sigma in range(1, max_sigma + 1):
+        summary = finite_prefix_fiber_summary(
+            prime=prime,
+            order=order,
+            complement_size=complement_size,
+            sigma=sigma,
+        )
+        expected = expected_rows[sigma]
+        for key, value in expected.items():
+            if summary[key] != value:
+                raise AssertionError((sigma, key, summary[key], value))
+        if (
+            previous_pair_count is not None
+            and summary["collision_pair_count"] > previous_pair_count
+        ):
+            raise AssertionError("collision pair count increased with sigma")
+        if (
+            previous_max_fiber is not None
+            and summary["max_fiber"] > previous_max_fiber
+        ):
+            raise AssertionError("max fiber increased with sigma")
+        previous_pair_count = summary["collision_pair_count"]
+        previous_max_fiber = summary["max_fiber"]
+        rows.append({
+            "sigma": sigma,
+            "distinct_prefix_values": summary["distinct_prefix_values"],
+            "max_fiber": summary["max_fiber"],
+            "collision_pair_count": summary["collision_pair_count"],
+            "fiber_histogram": summary["fiber_histogram"],
+        })
+
+    left = (0, 1, 2, 3, 4, 14)
+    right = (5, 6, 7, 9, 12, 15)
+    expected_template_rows = [
+        {"sigma": 1, "certificate": 2_312, "degree": 2, "split_factors": [17]},
+        {"sigma": 2, "certificate": 68, "degree": 1, "split_factors": [17]},
+        {"sigma": 3, "certificate": 68, "degree": 1, "split_factors": [17]},
+        {"sigma": 4, "certificate": 68, "degree": 1, "split_factors": [17]},
+        {"sigma": 5, "certificate": 4, "degree": 0, "split_factors": []},
+        {"sigma": 6, "certificate": 4, "degree": 0, "split_factors": []},
+    ]
+    template_rows = []
+    previous_certificate = None
+    previous_degree = None
+    for expected in expected_template_rows:
+        sigma = expected["sigma"]
+        certificate = bad_prime_certificate(left, right, order, sigma)
+        degree_at_prime = degree(common_root_gcd_mod(
+            left,
+            right,
+            order,
+            sigma,
+            prime,
+        ))
+        if certificate["certificate"] != expected["certificate"]:
+            raise AssertionError("unexpected depth-filtration certificate")
+        if degree_at_prime != expected["degree"]:
+            raise AssertionError("unexpected depth-filtration gcd degree")
+        if certificate["split_prime_factors"] != expected["split_factors"]:
+            raise AssertionError("unexpected depth-filtration split factors")
+        if (
+            previous_certificate is not None
+            and previous_certificate % certificate["certificate"] != 0
+        ):
+            raise AssertionError("certificate did not divide previous depth")
+        if previous_degree is not None and degree_at_prime > previous_degree:
+            raise AssertionError("gcd degree increased with sigma")
+        previous_certificate = certificate["certificate"]
+        previous_degree = degree_at_prime
+        template_rows.append({
+            "sigma": sigma,
+            "certificate": certificate["certificate"],
+            "split_prime_factors": certificate["split_prime_factors"],
+            "common_root_degree_at_17": degree_at_prime,
+        })
+
+    return {
+        "prime": prime,
+        "order": order,
+        "complement_size": complement_size,
+        "max_sigma": max_sigma,
+        "row_profile": rows,
+        "template": {
+            "left": list(left),
+            "right": list(right),
+            "filtration": template_rows,
+        },
+    }
+
+
 def check_split_prime_sweep() -> list[dict[str, Any]]:
     rows = []
     expected_counts = {17: 40, 97: 0, 113: 0, 193: 0}
@@ -1020,6 +1209,7 @@ def build_report() -> dict[str, Any]:
         "structured_char_zero_example": check_structured_char_zero_example(),
         "f17_packet": check_f17_packet(),
         "split_prime_row_accounting": check_split_prime_row_accounting(),
+        "prefix_depth_filtration": check_prefix_depth_filtration(),
         "split_prime_sweep": check_split_prime_sweep(),
         "bounded_split_prime_row_scan": check_bounded_split_prime_row_scan(),
         "prime_ideal_false_positive": check_prime_ideal_false_positive(),
@@ -1060,6 +1250,12 @@ def print_human(report: dict[str, Any]) -> None:
     print(f"aggregate_lcm={packet['aggregate_lcm_certificate']}")
     print(f"translation_orbits={len(packet['translation_orbits'])}")
     print(f"affine_orbits={packet['affine_orbit_count']}")
+    filtration = report["prefix_depth_filtration"]
+    depth_pairs = {
+        row["sigma"]: row["collision_pair_count"]
+        for row in filtration["row_profile"]
+    }
+    print(f"prefix_depth_pairs={depth_pairs}")
     accounting = report["split_prime_row_accounting"]
     print(
         "row_accounting="

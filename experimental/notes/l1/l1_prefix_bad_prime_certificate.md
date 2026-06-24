@@ -315,6 +315,39 @@ This is the practical aggregation ledger: an exact row bound can be proved by
 bounding orbit sizes and representative common-root degrees, rather than by
 enumerating every ordered root-template incidence separately.
 
+## Prefix-Depth Filtration
+
+The bad-prime objects are monotone in the prefix length.  Write
+`C_sigma(A,B)` and `G_{p,sigma}(A,B)` for the certificate and modular
+common-root factor using ranks `1 <= r <= sigma`.
+
+For fixed `p`, adding one more prefix equation can only shrink the common-root
+factor:
+
+```text
+G_{p,sigma+1}(A,B) | G_{p,sigma}(A,B),
+deg G_{p,sigma+1}(A,B) <= deg G_{p,sigma}(A,B).
+```
+
+Once `C_sigma(A,B)` is nonzero, the deeper certificates form a divisibility
+filtration:
+
+```text
+C_{sigma+1}(A,B) | C_sigma(A,B).
+```
+
+Indeed, `G_{p,sigma+1}` is obtained by taking one more gcd with
+`Delta_{sigma+1}`.  Similarly, `C_{sigma+1}` is the gcd of the previous active
+resultants and possibly one additional active resultant.  Therefore deeper
+prefixes can only remove primitive-root embeddings and rational split-prime
+candidates.  Row fiber sizes and collision-pair counts are also nonincreasing,
+because equality of `sigma+1` prefix coefficients implies equality of the
+first `sigma`.
+
+This is the local mechanism behind the L1 prefix threshold: increasing `sigma`
+does not merely add data heuristically; it refines the algebraic bad-prime
+sieve by divisibility.
+
 ## Worked L1 Packet: F_17, n=16
 
 The existing aperiodic collision certificate in
@@ -376,6 +409,42 @@ orbit size 128, common-root degree 1, contribution 128
 
 Their weighted sum is again `320`.  This is the orbit-level form that a larger
 finite-family bad-prime aggregation would try to control.
+
+The prefix-depth filtration is sharp on this same row.  For `p=17`, `n=16`,
+and `m=6`, the full row profile is:
+
+```text
+sigma  distinct prefixes  max fiber  collision pairs
+1      17                 472        1882116
+2      289                32         107352
+3      4480               5          4480
+4      7968               2          40
+5      8008               1          0
+6      8008               1          0
+```
+
+For the representative pair
+
+```text
+A = {0,1,2,3,4,14},
+B = {5,6,7,9,12,15},
+```
+
+the corresponding certificate and common-root-degree filtration is:
+
+```text
+sigma  C_sigma  split support  deg G_17,sigma
+1      2312     {17}           2
+2      68       {17}           1
+3      68       {17}           1
+4      68       {17}           1
+5      4        {}             0
+6      4        {}             0
+```
+
+Thus the known `sigma=4` bad-prime collision disappears at the next prefix
+rank: `17` leaves the certificate support and the modular common-root factor
+becomes constant.
 
 The verifier also checks the same row over the next split primes
 
