@@ -100,6 +100,22 @@ support with a non-confined slope. This **guards the unifying picture against
 overclaiming**: "confined ⟺ quotient-periodic" is true per-character / on the
 equivariant words, not as a blanket support-by-support equivalence.
 
+**The non-equivariant periodic mass is a product of per-character masses.** By
+*linearity* of the map `U|_S ↦ P_S(α)` and the isotypic split, a periodic-support
+slope is `z_S = Σ_m z_S(U_m)`, a sum of `d` per-character **confined** slopes.
+Hence the distinct non-confined periodic slopes satisfy
+```
+|{ z_S }|  ≤  Π_{m=0}^{d-1} |Slopes_m|  ≤  C^d,     C = max per-character confined count.
+```
+So the non-equivariant periodic supports are **not a new obstruction**: their mass
+is the `d`-fold product of the *same* per-character confined counts the L1
+conjecture already concerns — **polynomial for bounded `d`**. (Verified in
+`verify_x1_nonequivariant_product_bound.py`: `d=4`, two active characters give
+`|Slopes_0|=|Slopes_1|=17` and exactly `289 = 17²` distinct sums — the bound is
+tight, and with enough active characters the non-confined slopes fill `F`.) The
+**growing-`d`** regime (the deep cap's `a_q`) is left open: there `C^d` need not be
+polynomial, so a separate argument is needed for large-period supports.
+
 ## Why this matters for L1
 
 The QuotientBudget stratum (`x1_prefix_locator_slope_principle.md`) is populated

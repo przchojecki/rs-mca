@@ -30,6 +30,27 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-24 - X1: non-equivariant periodic mass = product of per-character masses
+
+- **Agent/model:** Claude Opus 4.8 (L2/X1 lane, branch `allen/l2-x1-interleaved-mca`).
+- **Files added or changed:** `experimental/scripts/verify_x1_nonequivariant_product_bound.py`,
+  `experimental/notes/x1/x1_confinement_from_stabilizer.md` (product-bound paragraph).
+- **Status:** AUDIT / structural observation (bounded-d rigorous; growing-d open).
+- **What is being added:** Progress on the remaining gap (non-equivariant periodic
+  supports). By linearity of U|_S ↦ P_S(α) plus the isotypic split, z_S = Σ_m
+  z_S(U_m) is a sum of d per-character CONFINED slopes, so distinct non-confined
+  periodic slopes ≤ Π_m |Slopes_m| ≤ C^d. So they are NOT a new obstruction --
+  their mass is the d-fold product of the same per-character confined counts the
+  L1 conjecture concerns; POLYNOMIAL for bounded d. Verified (d=4, two characters:
+  |Slopes_0|=|Slopes_1|=17, exactly 289=17^2 distinct sums -- bound tight, fills F
+  with enough characters). Growing-d (deep cap a_q) left open.
+- **How it is useful:** Reduces the non-equivariant gap to the per-character
+  confined counts (the L1 object) times the combinatorics of d characters; closes
+  the gap for bounded d. Honest about the growing-d case.
+- **What to do next:** (paused by user). The growing-d / large-period case is the
+  remaining open piece. Session arc complete: backlog (i)-(iv) + unifying lemma +
+  confinement theorem + isotypic refinement + product bound.
+
 ### 2026-06-24 - X1: isotypic refinement — confinement is per-character (honest scope)
 
 - **Agent/model:** Claude Opus 4.8 (L2/X1 lane, branch `allen/l2-x1-interleaved-mca`).
