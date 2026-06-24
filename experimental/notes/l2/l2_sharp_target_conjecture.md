@@ -445,16 +445,21 @@ sum_s 1/D_s <= 1 + sum_{j=1}^{n} 1/(j(k-1)) <= 2+log n,
 
 which proves the claim.
 
-Consequently, if a repaired one-row L1 local theorem gives a uniform polynomial
-bound
+The cumulative one-row list size is monotone in the threshold:
 
 ```text
-L_V(t) <= n^{B_L}
+t >= a  =>  L_V(t) <= L_V(a).
 ```
 
-for every received word `V` and every `t` in the window
-`a<=t<=min(n,s_J)`, then the non-quotient two-row codegree contribution is
-bounded by
+Consequently, if a repaired one-row L1 local theorem gives a uniform polynomial
+bound at the original threshold
+
+```text
+L_V(a) <= n^{B_L},
+```
+
+for every received word `V`, then the non-quotient two-row codegree
+contribution is bounded by
 
 ```text
 n^{B_L+2}(2+log n) + n^{2B_L}.
@@ -514,11 +519,10 @@ sum_s J(s;k,a)^r
 Consequently, if repaired one-row L1 local bounds give
 
 ```text
-L_V(t) <= n^{B_L}
+L_V(a) <= n^{B_L}
 ```
 
-for all received words and all `a<=t<=min(n,s_J)`, then the fixed-arity
-over-agreement contribution obeys
+for all received words, then the fixed-arity over-agreement contribution obeys
 
 ```text
 |Lambda_mu(U,a)| <= n^{B_L+2(mu-1)}(2+log n) + n^{mu B_L}.
@@ -530,16 +534,11 @@ This packages the reduction to L1 as a conditional theorem.
 
 **Conditional theorem (L1 shell local limit gives the L2 codegree term).**
 Fix `mu>=2`. Suppose that, in the quotient-free or quotient-budgeted residual
-problem, there is a constant `B_L` such that every row word `V` satisfies
+problem, there is a constant `B_L` such that every row word `V` satisfies the
+repaired one-row L1 bound at the original L2 agreement threshold
 
 ```text
-L_V(t) <= n^{B_L}
-```
-
-for every shell threshold
-
-```text
-a <= t <= min(n,s_J),        s_J = ceil(a^2/(k-1)).
+L_V(a) <= n^{B_L}.
 ```
 
 Then every fixed-arity interleaved received word `U=(U_1,...,U_mu)` has
@@ -561,7 +560,8 @@ This conditional theorem does not prove the sharp random simultaneous-support
 main term or the explicit quotient budget. Its content is narrower: no
 additional Cartesian-product obstruction remains in the fixed-arity
 over-agreement/codegree term once the repaired L1 shell local limit is
-available.
+available. By monotonicity, the single threshold `a` controls every shell
+threshold `t>=a` used in the reduction.
 
 Thus a proof of L2-Sharp can be organized by anchor support size `s`: small
 over-agreement anchors fall into unique decoding; intermediate anchors are

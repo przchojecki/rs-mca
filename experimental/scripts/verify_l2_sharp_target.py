@@ -327,11 +327,13 @@ def l1_shell_reduction_bound(
     row1_tail_list = (
         cumulative_list_size(row1, threshold) if threshold is not None else 0
     )
+    row1_base_list = cumulative_list_size(row1, a)
     row2_base_list = cumulative_list_size(row2, a)
     controlled_bound = row1_max_controlled_list * weight["exact_weight_sum"]
     tail_bound = row1_tail_list * row2_base_list
     return {
         "johnson_shell_weight": weight,
+        "row1_base_list": row1_base_list,
         "row1_max_controlled_list": row1_max_controlled_list,
         "row1_tail_list": row1_tail_list,
         "row2_base_list": row2_base_list,
@@ -523,6 +525,10 @@ def run() -> dict:
         "rs_witness_shell_bound": witness["interleaved"] <= witness["shell_codegree_bound"]["total_bound"],
         "rs_witness_l1_shell_reduction": witness["interleaved"]
         <= witness["l1_shell_reduction_bound"]["total_bound"],
+        "rs_witness_l1_shell_monotonicity": witness["l1_shell_reduction_bound"][
+            "row1_max_controlled_list"
+        ]
+        <= witness["l1_shell_reduction_bound"]["row1_base_list"],
         "rs_witness_punctured_johnson": witness["punctured_johnson_ok"],
     }
     return {
@@ -602,6 +608,7 @@ def main(argv: list[str] | None = None) -> int:
         print(
             f"    L1-shell reduction bound={l1b['total_bound']} "
             f"(controlled={l1b['controlled_bound']}, tail={l1b['tail_bound']}), "
+            f"base_list={l1b['row1_base_list']}, "
             f"max_controlled_list={l1b['row1_max_controlled_list']}"
         )
         print(f"    punctured Johnson profiles={w['punctured_johnson_profiles']}")

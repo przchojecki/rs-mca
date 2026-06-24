@@ -51,15 +51,15 @@ Keep entries concise and link to the relevant files.
   `ceil(a(sigma+1)/(k-1))` extra agreements above `a`. A deterministic two-row
   shell bound now separates Johnson-controlled shells from this tail and bounds
   the tail anchor count by the exact-`a` one-row locator multiplicity divided by
-  `binom(s_J,a)`. A new L1-to-L2 shell corollary proves that uniform one-row
-  list bounds on `a<=t<=min(n,s_J)` imply a two-row codegree bound
+  `binom(s_J,a)`. A new L1-to-L2 shell corollary proves that a uniform one-row
+  list bound at the original threshold `a` implies a two-row codegree bound
   `n^{B_L+2}(2+log n)+n^{2B_L}`; the controlled Johnson shell weight is
   `O(n^2 log n)`. The same argument is extended to fixed protocol arity `mu`:
   the powered shell weight `sum_s J(s;k,a)^(mu-1)` is
-  `O_mu(n^{2(mu-1)} log n)`, so repaired one-row L1 shell bounds imply a
+  `O_mu(n^{2(mu-1)} log n)`, so the repaired one-row L1 bound at `a` implies a
   polynomial fixed-arity L2 codegree bound. This is now stated as a conditional
   theorem: after quotient packets are removed or charged to `Quot_align_mu`,
-  the L1 shell local limit supplies the `n^B` error term in L2-Sharp. The
+  the L1 local limit supplies the `n^B` error term in L2-Sharp. The
   verifier stress-tests the exact quotient budget, natural
   `K_{m,m}` grid over-agreement attacks, and a realized `F_29` Reed-Solomon
   `K_{2,2}` gluing witness with punctured codegrees `[2,2]` satisfying the
@@ -70,10 +70,10 @@ Keep entries concise and link to the relevant files.
   falsified or promoted. The `K_{2,2}` witness records that local Cartesian
   blocks are real, so the correct target is a global sharp bound with those
   blocks charged to the polynomial codegree term.
-- **What to do next:** Prove/import repaired one-row L1 list bounds uniformly
-  on the shell window `a<=t<=ceil(a^2/(k-1))`, add dithered quotient scales
-  where `M` does not divide `k`, and reconcile the final statement with the
-  active X1/L2 bridge PR #101 before promotion.
+- **What to do next:** Prove/import the repaired one-row L1 list bound at the
+  original threshold `a=k+sigma`, add dithered quotient scales where `M` does
+  not divide `k`, and reconcile the final statement with the active X1/L2
+  bridge PR #101 before promotion.
 
 ### 2026-06-23 - Cycle119 admissibility review
 
