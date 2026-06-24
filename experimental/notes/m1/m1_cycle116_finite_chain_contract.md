@@ -436,9 +436,21 @@ python3 experimental/scripts/verify_m1_cycle84_projected_replay_algorithm.py
 
 That audit proves the five-slot/two-slot split, the circular shard slices, and
 the duplicate-energy accounting used by the generated C++ replay, and tests the
-same logic against brute force on deterministic toy models. It does not replace
-human source review, but it reduces the remaining finite boundary to checking
-that the generated Cycle84 C++ source follows the audited algorithm.
+same logic against brute force on deterministic toy models.
+
+The generated C++ source contract is checked by
+
+```text
+experimental/notes/m1/m1_cycle84_generated_replay_source_contract.md
+python3 experimental/scripts/verify_m1_cycle84_generated_replay_source.py
+```
+
+That source contract parses the injected `LOGS` and `COLORS` arrays back out of
+the generated source, checks the recorded source SHA256, and verifies the
+source-level landmarks used by the algorithm audit. The remaining finite
+promotion boundary is now reviewer acceptance that this source contract plus the
+algorithm audit is enough, rather than inspection of an opaque generated source
+blob.
 
 The exact Cycle84 occupancy conclusion is packaged by
 
@@ -456,8 +468,8 @@ ordered off-diagonal energy D = 24,
 no fibers of size >= 3.
 ```
 
-conditional only on source review of the generated projected-census replay
-implementation.
+conditional only on reviewer acceptance of the generated replay source
+contract.
 
 The downstream composition with the Cycle116 smooth lift and Cycle120 gate
 arithmetic is packaged separately by
@@ -618,18 +630,19 @@ The chain is only as strong as the following imported clauses:
    projected-census receipt is now checked against the current certificate
    fixtures, and the full `16,384`-shard projected census has been replayed from
    the current `slot_logs.json`. The replay algorithm has a separate audit note
-   and toy-model verifier; the remaining finite-audit boundary is human source
-   review of the generated replay implementation against that audit. The
+   and toy-model verifier; the remaining finite-audit boundary is reviewer
+   acceptance of the generated source contract against that audit. The
    projected-log certificate, color shell, kernel-lift filtering,
    projected-census receipt consistency, full projected-census replay receipt,
-   replay-algorithm audit, exact occupancy chain, and twelve true double-fiber
-   witnesses are now locally checked by
+   generated-source contract, replay-algorithm audit, exact occupancy chain, and
+   twelve true double-fiber witnesses are now locally checked by
    `verify_m1_cycle84_projected_log_certificate.py`,
    `verify_m1_cycle84_color_collision_witnesses.py`, and
    `verify_m1_cycle84_kernel_lift_candidates.py`,
    `verify_m1_cycle84_projected_census_receipt.py`, and
    `verify_m1_cycle84_projected_census_shard_replay.py`,
-   `verify_m1_cycle84_projected_full_replay_receipt.py`, and
+   `verify_m1_cycle84_projected_full_replay_receipt.py`,
+   `verify_m1_cycle84_generated_replay_source.py`, and
    `verify_m1_cycle84_projected_replay_algorithm.py`, and
    `verify_m1_cycle84_exact_occupancy_chain.py`.
 2. The slot-block assembly uses the co-support

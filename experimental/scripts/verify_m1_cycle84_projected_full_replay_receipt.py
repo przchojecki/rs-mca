@@ -35,6 +35,7 @@ if str(SCRIPT_DIR) not in sys.path:
     sys.path.insert(0, str(SCRIPT_DIR))
 
 import verify_m1_cycle84_projected_census_receipt as census_receipt
+import verify_m1_cycle84_generated_replay_source as source_contract
 
 
 EXPECTED_PROOF_STATUS = (
@@ -52,6 +53,7 @@ def build_report(receipt_path: Path = DEFAULT_FULL_REPLAY_RECEIPT) -> Dict[str, 
     raw = receipt_path.read_bytes()
     full = json.loads(raw)
     compact = census_receipt.build_report()
+    source_report = source_contract.build_report()
 
     checks = {
         "saved_receipt_status_passes": full["status"] == "PASS",
@@ -82,6 +84,10 @@ def build_report(receipt_path: Path = DEFAULT_FULL_REPLAY_RECEIPT) -> Dict[str, 
         "remaining_import_is_source_audit": (
             full["remaining_import"] == "source-code audit of this generated replay"
         ),
+        "generated_source_contract_passes": source_report["status"] == "PASS",
+        "generated_source_threads_match_receipt": (
+            source_report["source"]["threads"] == full["threads"] == 16
+        ),
         "all_embedded_checks_pass": all(full["checks"].values()),
         "all_shard_checks_present": all(
             name in full["checks"] for name in REQUIRED_ALL_SHARD_CHECKS
@@ -108,15 +114,27 @@ def build_report(receipt_path: Path = DEFAULT_FULL_REPLAY_RECEIPT) -> Dict[str, 
                 full["selected_max_canonical_projected_multiplicity"]
             ),
         },
+        "generated_source": {
+            "threads": source_report["source"]["threads"],
+            "sha256": source_report["source"]["sha256"],
+            "proof_status": source_report["proof_status"],
+        },
         "checks": checks,
-        "remaining_import": full["remaining_import"],
-        "imports_required": full["imports_required"],
+        "remaining_import": (
+            "reviewer acceptance of the generated source contract for promotion "
+            "beyond audit status"
+        ),
+        "imports_required": [
+            "Cycle84 generated replay source contract",
+            "official ABF source gate verification",
+        ],
         "nonmutating": True,
     }
 
 
 def print_human(report: Dict[str, Any]) -> None:
     replay = report["full_replay"]
+    source = report["generated_source"]
     print("m1_cycle84_projected_full_replay_receipt: PASS")
     print(f"status={report['proof_status']}")
     print(f"theorem_problem_id={report['theorem_problem_id']}")
@@ -131,6 +149,7 @@ def print_human(report: Dict[str, Any]) -> None:
         f"energy={replay['folded_ordered_energy']}, "
         f"max={replay['max_canonical_projected_multiplicity']}"
     )
+    print(f"generated_source=threads={source['threads']}, sha256={source['sha256']}")
     print(f"remaining_import={report['remaining_import']}")
     print("imports_required=" + "; ".join(report["imports_required"]))
 

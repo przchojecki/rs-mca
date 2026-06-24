@@ -30,6 +30,7 @@ if str(SCRIPT_DIR) not in sys.path:
     sys.path.insert(0, str(SCRIPT_DIR))
 
 import verify_m1_cycle84_projected_census_shard_replay as replay
+import verify_m1_cycle84_generated_replay_source as source_contract
 
 
 TOY_SLOT_COUNT = 7
@@ -346,6 +347,7 @@ def generated_source_sha256(threads: int = 16) -> str:
 def build_report() -> Dict[str, Any]:
     slice_report = test_circular_slices()
     toy_reports = [test_toy_model(seed) for seed in (3, 7, 11)]
+    source_report = source_contract.build_report()
     checks = {
         "circular_slice_matches_bruteforce": slice_report["cases_checked"] > 0,
         "toy_models_match_bruteforce": len(toy_reports) == 3,
@@ -353,6 +355,7 @@ def build_report() -> Dict[str, Any]:
             report["duplicate_bins"] > 0 for report in toy_reports
         ),
         "toy_models_have_nonzero_energy": all(report["energy"] > 0 for report in toy_reports),
+        "generated_source_contract_passes": source_report["status"] == "PASS",
     }
     failed = [name for name, value in checks.items() if not value]
     if failed:
@@ -367,11 +370,22 @@ def build_report() -> Dict[str, Any]:
         "generated_cycle84_source": {
             "threads": 16,
             "sha256": generated_source_sha256(16),
+            "source_contract_sha256": source_report["source"]["sha256"],
+        },
+        "generated_source_contract": {
+            "proof_status": source_report["proof_status"],
+            "line_count": source_report["source"]["line_count"],
+            "byte_count": source_report["source"]["byte_count"],
+            "constant_fragment_count": len(source_report["fragment_counts"]),
+            "required_fragment_count": source_report["required_fragment_count"],
+            "ordered_fragment_count": source_report["ordered_fragments"][
+                "fragment_count"
+            ],
         },
         "checks": checks,
         "remaining_import": (
-            "human review of the generated Cycle84 replay source against the "
-            "algorithm audit note"
+            "reviewer acceptance of the generated source contract for promotion "
+            "beyond audit status"
         ),
         "imports_required": [
             "official ABF source gate verification",
@@ -395,6 +409,14 @@ def print_human(report: Dict[str, Any]) -> None:
     )
     source = report["generated_cycle84_source"]
     print(f"generated_source=threads={source['threads']}, sha256={source['sha256']}")
+    contract = report["generated_source_contract"]
+    print(
+        "generated_source_contract="
+        f"status={contract['proof_status']}, "
+        f"constants={contract['constant_fragment_count']}, "
+        f"landmarks={contract['required_fragment_count']}, "
+        f"ordered={contract['ordered_fragment_count']}"
+    )
     print(f"remaining_import={report['remaining_import']}")
     print("imports_required=" + "; ".join(report["imports_required"]))
 

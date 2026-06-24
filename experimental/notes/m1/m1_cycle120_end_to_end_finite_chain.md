@@ -126,8 +126,8 @@ The chain remains conditional on:
 1. Official ABF PDF/source verification for the admissible row gates, sampler,
    smoothness condition, same-support MCA predicate, and closed-threshold
    convention.
-2. Human review that the generated Cycle84 projected-census C++ replay source
-   follows the audited replay algorithm.
+2. Reviewer acceptance that the Cycle84 generated source contract plus the
+   replay algorithm audit is sufficient for promotion beyond audit status.
 3. Source comparison that the external Cycle116 packet uses the locally verified
    `{1}` plus seven active 16-point slot-block co-support.
 

@@ -30,6 +30,30 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-24 - Cycle84 generated replay source contract
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_cycle84_generated_replay_source_contract.md`,
+  `experimental/scripts/verify_m1_cycle84_generated_replay_source.py`,
+  `experimental/scripts/verify_m1_cycle84_projected_replay_algorithm.py`,
+  `experimental/scripts/verify_m1_cycle84_projected_full_replay_receipt.py`,
+  `experimental/scripts/verify_m1_cycle84_exact_occupancy_chain.py`,
+  `experimental/scripts/verify_m1_cycle120_end_to_end_chain.py`,
+  `experimental/data/witnesses/m1-cycle84/README.md`, M1 Cycle84/Cycle116/Cycle120
+  notes, and `experimental/agents-log.md`.
+- **Status:** AUDIT / GENERATED-CYCLE84-CXX-SOURCE-CONTRACT.
+- **What is being added:** A verifier for the generated Cycle84 C++ replay
+  source at `--threads 16`, checking the source SHA256, injected log/color
+  tables, tau guards, five-two split, shard intervals, canonical-key map,
+  duplicate-energy accounting, OpenMP shard loop, and JSON output landmarks.
+- **How it is useful:** Replaces an opaque generated-source review boundary
+  with a reproducible source contract tied to the algorithm audit and saved
+  full-replay receipt.
+- **What to do next:** Decide whether this source contract is sufficient for
+  promotion beyond audit status; otherwise perform a manual source review
+  against the same checklist.
+
 ### 2026-06-24 - Cycle116 slot-block assembly audit
 
 - **Agent/model:** Codex.

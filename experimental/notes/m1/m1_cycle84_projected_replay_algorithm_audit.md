@@ -162,10 +162,19 @@ checks:
 3. the five-two replay against brute-force enumeration on deterministic toy
    models with tau-pair log sums, colors, fixed-root accounting, and nontrivial
    duplicate bins.
-4. the SHA256 of the generated Cycle84 C++ source for `--threads 16`, so that a
-   reviewer can tie this audit to the exact generated replay source family.
+4. the generated-source contract for the Cycle84 C++ source at `--threads 16`,
+   including the exact SHA256, injected tables, tau guards, five-two split,
+   shard intervals, canonical key, duplicate-energy accounting, and JSON output
+   fields.
+
+The generated-source contract is checked separately by
+
+```text
+python3 experimental/scripts/verify_m1_cycle84_generated_replay_source.py
+```
 
 The full Cycle84 run is still recorded separately by
 `projected_census_full_replay_receipt.json`. This note audits the algorithmic
-shape of that replay; human review should still inspect the generated C++ source
-if the finite proof is to be promoted beyond `AUDIT / CONDITIONAL`.
+shape of that replay and ties it to the generated source contract. A reviewer
+still has to decide whether this contract is enough for promotion beyond
+`AUDIT / CONDITIONAL`.

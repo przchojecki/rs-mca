@@ -229,8 +229,8 @@ def build_report() -> Dict[str, Any]:
         "remaining_imports": [
             "official ABF PDF/source verification for the row gates, sampler, "
             "smoothness, same-support predicate, and closed threshold",
-            "human review that the generated Cycle84 projected-census C++ replay "
-            "source follows the audited algorithm",
+            "reviewer acceptance of the Cycle84 generated source contract for "
+            "promotion beyond audit status",
             "source comparison that the external Cycle116 packet uses the locally "
             "verified {1} plus seven active 16-point slot-block co-support",
         ],

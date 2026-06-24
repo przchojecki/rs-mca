@@ -16,12 +16,13 @@ python3 experimental/scripts/verify_m1_cycle84_exact_occupancy_chain.py
 
 ## Inputs
 
-The chain consumes four local finite checks:
+The chain consumes five local finite checks:
 
 ```text
 verify_m1_cycle84_color_collision_witnesses.py
 verify_m1_cycle84_projected_log_certificate.py
 verify_m1_cycle84_projected_full_replay_receipt.py
+verify_m1_cycle84_generated_replay_source.py
 verify_m1_cycle84_kernel_lift_candidates.py
 ```
 
@@ -83,7 +84,8 @@ D = 24,
 no fibers of size >= 3.
 ```
 
-The remaining finite-audit boundary is human review that the generated C++
-replay source follows the algorithm audited in
-`m1_cycle84_projected_replay_algorithm_audit.md`. The ABF source-gate question is
-outside this finite-model note.
+The remaining finite-audit boundary is reviewer acceptance that the generated
+source contract, together with the algorithm audit in
+`m1_cycle84_projected_replay_algorithm_audit.md`, is sufficient for promotion
+beyond audit status. The ABF source-gate question is outside this finite-model
+note.
