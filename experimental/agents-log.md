@@ -161,6 +161,9 @@ Keep entries concise and link to the relevant files.
   That boundary is now shown to be real: the note gives a three-cycle
   low-overlap counterexample to naive closed-part factorization, and the
   verifier checks an `F_17` sweep where the cyclic rank deficit is `k-3`.
+  The generic triangle family is then counted exactly and shown to be
+  random-model harmless under `q^mu>27/rho_0`, shifting the remaining cyclic
+  issue to lower-rank structured cycles such as constant locator-ratio cases.
 - **How it is useful:** Turns the L2 objective from a broad "avoid Cartesian
   overcharge" principle into a concrete conjectural inequality that can be
   falsified or promoted. The `K_{2,2}` witness records that local Cartesian

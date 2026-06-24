@@ -580,6 +580,53 @@ one overly optimistic proof step. It says that after the forest ledger, the
 remaining regular-core cluster route must count or rank-control cyclic
 low-overlap closed-part diagrams rather than factor them independently.
 
+For the generic triangle family above, this counting is favorable. Put
+`r=k-1`, so `a=2r`, and consider labeled triples of the displayed form. Their
+number is exactly
+
+```text
+binom(n,r) binom(n-r,r) binom(n-2r,r),
+```
+
+and the rank-corrected exponent exceeds the diagonal first-moment exponent
+`a-k=r-1` by exactly `r`. Therefore their total random-model contribution to
+the third moment, divided by the diagonal first-moment scale, is
+
+```text
+  binom(n,r) binom(n-r,r) binom(n-2r,r)
+  -------------------------------------------------  q^{-mu r}.
+                  binom(n,2r)
+```
+
+If `a>=rho_0 n`, then this is at most
+
+```text
+(27 rho_0^{-1} q^{-mu})^r.
+```
+
+Thus the generic cyclic triangle is not itself a random-model obstruction in
+the polynomial-field window once `q^mu>27/rho_0`; the remaining cyclic problem
+is to classify and count lower-rank, more structured cycles such as constant
+locator-ratio configurations.
+
+*Proof.* The labeled blocks `A,B,C` are recovered uniquely from the ordered
+triple by pairwise intersections, so the displayed count is exact. The
+exponent difference is
+
+```text
+(2k-3) - (a-k) = (2r-1) - (r-1) = r.
+```
+
+For the coarse bound, write the count as
+
+```text
+binom(n,3r) (3r)!/(r!)^3.
+```
+
+After division by `binom(n,2r)`, the first factor ratio is at most
+`rho_0^{-r}` when `2r=a>=rho_0 n`, and the multinomial factor is at most
+`3^{3r}=27^r`.
+
 The connected case also isolates the diagonal exactly.
 
 **Corollary (diagonal is the only zero-loss connected cluster).** Suppose
@@ -1490,7 +1537,10 @@ checks the following stress points.
    cross-rank `2k`, rank-corrected excess `3-k`, and surplus
    `k-3` over product-diagonal factorization. Thus the forest theorem is
    sharp as a structural statement; cyclic low-overlap diagrams require their
-   own count or rank argument.
+   own count or rank argument. The same sweep counts the full generic triangle
+   family and compares its third-moment contribution to the diagonal scale;
+   over `F_17` with `mu=2`, all tested rows are already below diagonal,
+   matching the general bound `(27 rho_0^{-1} q^{-mu})^{k-1}`.
 5. The natural `K_{m,m}` grid over-agreement family has
    ```text
    n_min = (k-1) + m^2(a-k+1),

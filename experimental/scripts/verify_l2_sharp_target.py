@@ -888,7 +888,7 @@ def closure_signature_profile() -> dict:
 
 def cyclic_overlap_rank_deficit_profile() -> dict:
     """Finite instances where cyclic low-overlap components do not factor."""
-    p, n = 17, 16
+    p, n, mu = 17, 16, 2
     h_values = subgroup(p, n)
     rows = []
     for k in range(3, 7):
@@ -914,11 +914,24 @@ def cyclic_overlap_rank_deficit_profile() -> dict:
         rank_corrected_excess = global_excess + cross_rank
         product_diagonal_exponent = closed_count * (a - k)
         rank_corrected_exponent = product_diagonal_exponent + rank_corrected_excess
+        diagonal_exponent = a - k
+        family_count = (
+            comb(n, block_size)
+            * comb(n - block_size, block_size)
+            * comb(n - 2 * block_size, block_size)
+        )
+        diagonal_count = comb(n, a)
+        relative_to_diagonal = Fraction(
+            family_count,
+            diagonal_count
+            * p ** (mu * (rank_corrected_exponent - diagonal_exponent)),
+        )
         overlap_edges = component_overlap_edges(part_unions)
         rows.append(
             {
                 "k": k,
                 "a": a,
+                "block_size": block_size,
                 "supports": [list(support) for support in supports],
                 "closed_components": closed_count,
                 "overlap_edges": [list(edge) for edge in overlap_edges],
@@ -929,8 +942,15 @@ def cyclic_overlap_rank_deficit_profile() -> dict:
                 "cross_constraint_rank": cross_rank,
                 "rank_deficit_vs_overlap": cross_overlap_defect - cross_rank,
                 "rank_corrected_excess": rank_corrected_excess,
+                "family_count": family_count,
+                "diagonal_count": diagonal_count,
                 "product_diagonal_exponent": product_diagonal_exponent,
                 "rank_corrected_exponent": rank_corrected_exponent,
+                "diagonal_exponent": diagonal_exponent,
+                "relative_to_diagonal": {
+                    "numerator": relative_to_diagonal.numerator,
+                    "denominator": relative_to_diagonal.denominator,
+                },
                 "surplus_over_product_diagonal": product_diagonal_exponent
                 - rank_corrected_exponent,
             }
@@ -939,6 +959,7 @@ def cyclic_overlap_rank_deficit_profile() -> dict:
     return {
         "p": p,
         "n": n,
+        "mu": mu,
         "rows": rows,
         "all_three_part_cycles": all(
             row["closed_components"] == 3
@@ -963,6 +984,16 @@ def cyclic_overlap_rank_deficit_profile() -> dict:
             row["surplus_over_product_diagonal"] == row["k"] - 3
             and row["rank_deficit_vs_overlap"] == row["k"] - 3
             for row in deficit_rows
+        ),
+        "relative_exponent_is_block_size": all(
+            row["rank_corrected_exponent"] - row["diagonal_exponent"]
+            == row["block_size"]
+            for row in rows
+        ),
+        "generic_triangle_family_below_diagonal": all(
+            row["relative_to_diagonal"]["numerator"]
+            < row["relative_to_diagonal"]["denominator"]
+            for row in rows
         ),
     }
 
@@ -2051,6 +2082,12 @@ def run() -> dict:
         ],
         "cyclic_rank_deficit_grows": cyclic_rank_deficit[
             "deficit_grows_after_k_three"
+        ],
+        "cyclic_rank_deficit_relative_exponent": cyclic_rank_deficit[
+            "relative_exponent_is_block_size"
+        ],
+        "cyclic_rank_deficit_below_diagonal": cyclic_rank_deficit[
+            "generic_triangle_family_below_diagonal"
         ],
         "kmm_grid_formula": all(d["interleaved_edges"] == d["grid_edges_at_n_min"] for d in designs),
         "rs_witness_creates_mass": witness["mass_creation"],
