@@ -30,6 +30,27 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-24 - L1 sunflower support decoder summaries
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/notes/l1/l1_full_list_quotient_falsification.md`,
+  `experimental/scripts/scan_l1_full_list_quotient_conjecture.py`,
+  `experimental/agents-log.md`.
+- **Status:** EXPERIMENTAL / COUNTEREXAMPLE-FIRST.
+- **What is being added:** A seed-sweep mode for sunflower full-list rows,
+  aggregate mixed-petal profile summaries across sunflower seeds, and an
+  explicit proof target after the final first-pass falsification layer: bound
+  mixed-petal amplification over sunflower floors.
+- **How it is useful:** Gives a deterministic summary of the only obstruction
+  pattern found so far.  The `F_97,n=16,k=8,s=10` four-seed sweep reached
+  primitive remainder `8`, still below the alert threshold, so the note now
+  identifies a concrete lemma to try proving next instead of continuing broad
+  random falsification.
+- **What to do next:** Attempt the mixed-petal amplification lemma, using
+  support-profile equations from the sunflower construction; return to scans
+  only if the proof attempt suggests a growing family.
+
 ### 2026-06-24 - L1 sunflower mixed-petal extras
 
 - **Agent/model:** Codex.

@@ -814,6 +814,107 @@ def sample_scan(
     }
 
 
+def seed_sweep_scan(
+    p: int,
+    n: int,
+    k: int,
+    s: int,
+    epsilon: float,
+    alert_power: float,
+    samples: int,
+    seed_start: int,
+    seed_count: int,
+    sunflower_count: int,
+    decoder: str,
+    max_examples: int,
+) -> dict[str, object]:
+    seed_results = [
+        sample_scan(
+            p,
+            n,
+            k,
+            s,
+            epsilon,
+            alert_power,
+            samples,
+            seed,
+            sunflower_count,
+            decoder,
+            max_examples,
+        )
+        for seed in range(seed_start, seed_start + seed_count)
+    ]
+    if not seed_results:
+        raise ValueError("seed_count must be positive")
+
+    entropy = entropy_report(p, n, k, s, epsilon)
+    max_list_size = max(int(result["max_list_size"]) for result in seed_results)
+    max_primitive = max(int(result["max_primitive_exact"]) for result in seed_results)
+    max_quotient = max(int(result["max_quotient_budget"]) for result in seed_results)
+    primitive_alert = any(bool(result["primitive_alert"]) for result in seed_results)
+    sunflower_rows = 0
+    sunflower_rows_with_extras = 0
+    sunflower_max_extra_count = 0
+    profile_summary: Counter[str] = Counter()
+    top_seed_rows: list[dict[str, object]] = []
+    for seed, result in zip(range(seed_start, seed_start + seed_count), seed_results, strict=True):
+        sunflower_summary = result["sunflower_summary"]
+        assert isinstance(sunflower_summary, dict)
+        sunflower_rows += int(sunflower_summary["rows"])
+        sunflower_rows_with_extras += int(sunflower_summary["rows_with_extras"])
+        sunflower_max_extra_count = max(
+            sunflower_max_extra_count,
+            int(sunflower_summary["max_extra_count"]),
+        )
+        for profile, count in sunflower_summary["extra_profile_summary"].items():
+            profile_summary[str(profile)] += int(count)
+        top_rows = result["top_rows"]
+        assert isinstance(top_rows, list)
+        top_seed_rows.append({
+            "seed": seed,
+            "max_list_size": result["max_list_size"],
+            "max_primitive_exact": result["max_primitive_exact"],
+            "max_quotient_budget": result["max_quotient_budget"],
+            "primitive_alert": result["primitive_alert"],
+            "top_row": top_rows[0] if top_rows else None,
+        })
+    top_seed_rows.sort(
+        key=lambda row: (
+            int(row["max_primitive_exact"]),
+            int(row["max_list_size"]),
+        ),
+        reverse=True,
+    )
+    return {
+        "status": "EXPERIMENTAL/FULL_LIST_SUNFLOWER_SEED_SWEEP",
+        "mode": "seed-sweep",
+        "params": {
+            "p": p,
+            "n": n,
+            "k": k,
+            "s": s,
+            "decoder": decoder,
+            "seed_start": seed_start,
+            "seed_count": seed_count,
+            "sunflowers_per_seed": sunflower_count,
+            **entropy,
+        },
+        "words_scanned": sum(int(result["words_scanned"]) for result in seed_results),
+        "max_list_size": max_list_size,
+        "max_primitive_exact": max_primitive,
+        "max_quotient_budget": max_quotient,
+        "primitive_alert_threshold": n ** alert_power,
+        "primitive_alert": primitive_alert,
+        "top_seed_rows": top_seed_rows[:max_examples],
+        "sunflower_summary": {
+            "rows": sunflower_rows,
+            "rows_with_extras": sunflower_rows_with_extras,
+            "max_extra_count": sunflower_max_extra_count,
+            "extra_profile_summary": dict(sorted(profile_summary.items())),
+        },
+    }
+
+
 def parse_case(raw: str) -> tuple[int, int, int, int]:
     parts = [int(part.strip()) for part in raw.split(",")]
     if len(parts) != 4:
@@ -878,6 +979,12 @@ def main(argv: list[str]) -> int:
     parser.add_argument("--samples", type=int, default=12)
     parser.add_argument("--sunflowers", type=int, default=3)
     parser.add_argument(
+        "--seed-sweep-count",
+        type=int,
+        default=0,
+        help="if positive, aggregate sample mode over this many consecutive seeds",
+    )
+    parser.add_argument(
         "--decoder",
         choices=["auto", "k-subset", "support"],
         default="auto",
@@ -907,21 +1014,39 @@ def main(argv: list[str]) -> int:
             )
     if not args.skip_sample:
         for p, n, k, s in args.sample_case or default_sample_cases():
-            results.append(
-                sample_scan(
-                    p,
-                    n,
-                    k,
-                    s,
-                    args.epsilon,
-                    args.alert_power,
-                    args.samples,
-                    args.seed,
-                    args.sunflowers,
-                    args.decoder,
-                    args.max_examples,
+            if args.seed_sweep_count > 0:
+                results.append(
+                    seed_sweep_scan(
+                        p,
+                        n,
+                        k,
+                        s,
+                        args.epsilon,
+                        args.alert_power,
+                        args.samples,
+                        args.seed,
+                        args.seed_sweep_count,
+                        args.sunflowers,
+                        args.decoder,
+                        args.max_examples,
+                    )
                 )
-            )
+            else:
+                results.append(
+                    sample_scan(
+                        p,
+                        n,
+                        k,
+                        s,
+                        args.epsilon,
+                        args.alert_power,
+                        args.samples,
+                        args.seed,
+                        args.sunflowers,
+                        args.decoder,
+                        args.max_examples,
+                    )
+                )
 
     if args.json:
         print(json.dumps({"results": results}, indent=2, sort_keys=True))

@@ -211,16 +211,54 @@ mixed-petal codewords over a sunflower floor.  In both sweeps every extra
 used only core and petal points (`core_hits + petal_hits = s`) and touched all
 three petals.
 
+A final seed sweep aggregated seeds `0,1,2,3` with eight random sunflower cores
+per seed over `F_97,n=16,k=8,s=10`, using the support decoder and no additional
+random samples.  It scanned 84 words, including 36 sunflower rows.  Of those
+sunflower rows, 22 had extras, the maximum extra count in a row was `5`, and
+the maximum primitive full-list remainder was still `8`, with no
+reserve-cleared alert.  The aggregate extra-profile histogram was
+
+```text
+agreement=10, core=2, petal_hits=8, petals=3, max_petal=3, full_petals=2 : 1
+agreement=10, core=3, petal_hits=7, petals=3, max_petal=3, full_petals=1 : 4
+agreement=10, core=3, petal_hits=7, petals=3, max_petal=3, full_petals=2 : 1
+agreement=10, core=4, petal_hits=6, petals=2, max_petal=3, full_petals=2 : 1
+agreement=10, core=4, petal_hits=6, petals=3, max_petal=2, full_petals=0 : 4
+agreement=10, core=4, petal_hits=6, petals=3, max_petal=3, full_petals=1 : 9
+agreement=10, core=5, petal_hits=5, petals=3, max_petal=2, full_petals=0 : 16
+```
+
+## Proof Target After This Attack
+
+This is the stopping point for broad first-pass falsification.  The conjecture
+has survived prefix-fiber scans, full-list exact syndrome checks, random and
+folded samples, planted near-codeword samples, and the sunflower attack above.
+The useful proof target exposed by the final attack is:
+
+```text
+Mixed-petal amplification lemma.
+For sunflower received words with core size k-1 and petal size sigma+1,
+the number of non-planted primitive listed codewords whose agreement sets
+mix several petals is polynomially bounded, and preferably bounded by a
+small polynomial in the planted sunflower floor.
+```
+
+A proof would not by itself prove full L1, but it would close the first
+identified obstruction family for the repaired full-list quotient conjecture.
+If this lemma fails, the counterexample should be a growing sunflower family
+where mixed-petal extras dominate the planted floor.
+
 ## Interpretation
 
 This does not prove the full L1 conjecture.  It does establish that the
 current quotient-budgeted formulation passes the first full-list falsification
 tests and that the scanner is targeting the correct repaired object.
 
-The next useful falsification step is to improve the near-boundary search:
+The next useful step is no longer another broad random sweep.  It is to convert
+the observed sunflower obstruction into proof obligations:
 
-1. add meet-in-the-middle sparse-syndrome scans for radius `4` and `5`;
-2. prove or falsify a mixed-petal amplification bound over sunflower floors;
+1. prove or falsify a mixed-petal amplification bound over sunflower floors;
+2. add meet-in-the-middle sparse-syndrome scans for radius `4` and `5`;
 3. optimize the interpolation backend enough to test larger high-field rows;
 4. record any large primitive family as a new obstruction before attempting a
    proof.
