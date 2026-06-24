@@ -42,17 +42,19 @@ Keep entries concise and link to the relevant files.
 - **Status:** EXPERIMENTAL / FINITE SPECTRAL AUDIT.
 - **What is being added:** A quotient-character scan of the exact good
   beta-pushforward trace `G_{psi,phi}` isolated by the M1 `(BETA_2)` import.
-  The verifier now reports the maximum p-normalized good-pushforward
-  coefficient and the Parseval-normalized centered Frobenius energy for every
-  centered character pair in the audited quotient rows.  The notes also record
-  the weaker averaged import `(BETA_2^avg)` and the exact constants showing
-  that it would already close the fixed-index quotient-conic target.
-  A standalone verifier extends the counterexample-first scan to 20 exact rows
-  through `p=127` without slowing the broad line-conic verifier.
+  The verifier reports the maximum p-normalized full `(BETA_2)` coefficient,
+  the maximum two-sided centered coefficient, and the Parseval-normalized
+  centered Frobenius energy in the audited quotient rows.  The notes also
+  record the weaker averaged import `(BETA_2^avg)`, its exact signed
+  pair-correlation form, and the constants showing that it would already close
+  the fixed-index quotient-conic target.  A standalone verifier extends the
+  counterexample-first scan to 20 exact rows through `p=127` without slowing
+  the broad line-conic verifier.
 - **How it is useful:** This is a counterexample-first test of the remaining
   rank-two pushforward object, not of the already controlled exceptional
-  ledger. The audited rows show p-scale behavior, with largest recorded
-  `max |G_{psi,phi}|/p = 4.8036624425` and largest recorded
+  ledger. The audited rows show p-scale behavior, with largest recorded full
+  `(BETA_2)` coefficient ratio `5.6717827398`, largest recorded two-sided
+  coefficient ratio `4.8036624425`, and largest recorded
   `||G_e^circ||_F/p = 1.1366043634`.
 - **What to do next:** Prove the bounded-conductor/no-constant-summand
   `(BETA_2)` estimate for the explicit rank-two pushforward, prove the weaker

@@ -570,8 +570,9 @@ only evidence and a regression guard, but it checks the remaining `(BETA_2)`
 object directly rather than the surrounding exceptional ledger.
 
 For the quotient-conic M1 application, the pointwise form above is stronger
-than necessary.  It is enough to prove the averaged, row/column-centered
-matrix form
+than necessary.  The full pointwise import permits `psi=1`, `phi != 1`, but
+the quotient-conic singular-excess ledger uses only the two-sided centered
+block.  It is enough to prove the averaged, row/column-centered matrix form
 
 ```text
 ||G_e^circ||_F <= C_beta^avg(e) p,                    (BETA_2^avg)
@@ -599,6 +600,27 @@ and hence the same fixed-index conclusion
 `P_e=O_e(p^2)` and `M_e^o=O_e(p^2)`.  Thus the final analytic target can be
 phrased either as a pointwise conductor estimate for all `G_{psi,phi}` or as
 this averaged matrix estimate.
+
+There is also an exact pair-correlation form of the averaged target.  Let
+`x=(a_x,beta_x,r_x)` range over the good beta cover, put
+`epsilon(x)=chi(d_UV(x))`, and define
+
+```text
+kappa_e(x,y) = 1_{xK_e = yK_e} - 1/e.
+```
+
+Then
+
+```text
+||G_e^circ||_F^2
+  = sum_{x,y in Y_G(F_p)} epsilon(x) epsilon(y)
+      kappa_e(a_x,a_y) kappa_e(beta_x,beta_y).
+```
+
+Consequently a direct proof of `(BETA_2^avg)` is exactly an `O_e(p^2)` signed
+pair-correlation bound for the two quotient labels `(a,beta)`.  This
+reduction is useful because it separates the one-sided pointwise coefficients
+from the two-sided energy actually consumed by M1.
 
 The elementary hypotheses behind this import are now audited in
 `verify_m1_depth_two_line_conic_resonance_reduction.py`:

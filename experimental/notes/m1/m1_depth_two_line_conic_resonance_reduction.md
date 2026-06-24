@@ -3977,6 +3977,10 @@ Thus an averaged square-root-cancellation theorem for the good rank-two
 pushforward is already enough; a pointwise conductor theorem is one clean way
 to obtain it, but not the only possible route.  The beta-pushforward spectral
 audit records exactly this centered-Frobenius quantity on the finite test rows.
+It also separates the full pointwise `(BETA_2)` scan, which includes the
+left-principal block `psi=1`, from the two-sided centered block consumed here,
+and records the equivalent signed pair-correlation form of
+`||G_e^circ||_F^2`.
 
 ## Principal-Row Leakage
 
