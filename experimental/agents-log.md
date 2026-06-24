@@ -38,10 +38,11 @@ Keep entries concise and link to the relevant files.
   `experimental/scripts/scan_l1_full_list_quotient_conjecture.py`,
   `experimental/agents-log.md`.
 - **Status:** EXPERIMENTAL / COUNTEREXAMPLE-FIRST.
-- **What is being added:** The full-list sunflower scanner now classifies
-  accidental non-planted codewords by agreement size, core intersection, number
-  of petals touched, largest petal intersection, and number of full petals.
-  Seeded `F_97,n=16,k=8,s=10` sweeps show a repeated mixed-petal pattern; the
+- **What is being added:** The full-list sunflower scanner now has an exact
+  support-subset decoder and classifies accidental non-planted codewords by
+  agreement size, core intersection, total petal hits, number of petals
+  touched, largest petal intersection, and number of full petals.  Seeded
+  `F_97,n=16,k=8,s=10` sweeps show a repeated mixed-petal pattern; the
   strongest current row reaches primitive remainder `8` from a planted floor
   of `3`, still below the alert threshold.
 - **How it is useful:** Converts the first sunflower amplification from an

@@ -436,6 +436,52 @@ def img_list_from_values(
     return listed
 
 
+def img_list_from_support_subsets(
+    values: list[int],
+    domain: list[int],
+    k: int,
+    s: int,
+    p: int,
+) -> dict[tuple[int, ...], int]:
+    n = len(domain)
+    listed: dict[tuple[int, ...], int] = {}
+    for support in itertools.combinations(range(n), s):
+        xs = [domain[index] for index in support]
+        ys = [values[index] for index in support]
+        poly = interpolate_polynomial(xs, ys, p)
+        if poly_degree(poly) >= k:
+            continue
+        codeword = poly_values(poly, domain, p)
+        if codeword in listed:
+            continue
+        mask = 0
+        agreement = 0
+        for index, (left, right) in enumerate(zip(codeword, values, strict=True)):
+            if left == right:
+                mask |= 1 << index
+                agreement += 1
+        if agreement >= s:
+            listed[codeword] = mask
+    return listed
+
+
+def img_list(
+    values: list[int],
+    domain: list[int],
+    k: int,
+    s: int,
+    p: int,
+    decoder: str,
+) -> dict[tuple[int, ...], int]:
+    if decoder == "support":
+        return img_list_from_support_subsets(values, domain, k, s, p)
+    if decoder == "k-subset":
+        return img_list_from_values(values, domain, k, s, p)
+    if comb(len(domain), s) <= comb(len(domain), k):
+        return img_list_from_support_subsets(values, domain, k, s, p)
+    return img_list_from_values(values, domain, k, s, p)
+
+
 def eval_random_poly(domain: list[int], coeffs: list[int], p: int) -> list[int]:
     return [eval_poly(coeffs, x_value, p) for x_value in domain]
 
@@ -567,7 +613,7 @@ def classify_sunflower_listing(
     planted_present = listed_mask_set & intended_masks
     missing_planted = intended_masks - listed_mask_set
     extra_masks = sorted(listed_mask_set - intended_masks)
-    profile_histogram: Counter[tuple[int, int, int, int, int]] = Counter()
+    profile_histogram: Counter[tuple[int, int, int, int, int, int]] = Counter()
     extra_examples: list[dict[str, object]] = []
     for mask in extra_masks:
         agreement = set(mask_to_exponents(mask, n))
@@ -575,6 +621,7 @@ def classify_sunflower_listing(
         profile = (
             len(agreement),
             len(agreement & core),
+            sum(petal_hits),
             sum(1 for hit in petal_hits if hit),
             max(petal_hits, default=0),
             sum(1 for hit, petal in zip(petal_hits, petals, strict=True)
@@ -586,6 +633,7 @@ def classify_sunflower_listing(
                 "agreement_set": sorted(agreement),
                 "agreement_size": len(agreement),
                 "core_hits": len(agreement & core),
+                "total_petal_hits": sum(petal_hits),
                 "petal_hits": petal_hits,
                 "positive_petals": sum(1 for hit in petal_hits if hit),
                 "full_petals": [
@@ -603,8 +651,8 @@ def classify_sunflower_listing(
         "extra_profile_histogram": {
             (
                 f"agreement={profile[0]},core={profile[1]},"
-                f"petals={profile[2]},max_petal={profile[3]},"
-                f"full_petals={profile[4]}"
+                f"petal_hits={profile[2]},petals={profile[3]},"
+                f"max_petal={profile[4]},full_petals={profile[5]}"
             ): count
             for profile, count in sorted(profile_histogram.items())
         },
@@ -672,6 +720,7 @@ def sample_scan(
     samples: int,
     seed: int,
     sunflower_count: int,
+    decoder: str,
     max_examples: int,
 ) -> dict[str, object]:
     domain = subgroup(p, n)
@@ -682,11 +731,15 @@ def sample_scan(
     max_quotient = 0
     examples: list[dict[str, object]] = []
     rows: list[dict[str, object]] = []
+    sunflower_rows = 0
+    sunflower_rows_with_extras = 0
+    sunflower_max_extra_count = 0
+    sunflower_extra_profile_summary: Counter[str] = Counter()
 
     for word in sampled_words(p, n, k, s, samples, seed, sunflower_count):
         values = word["values"]
         assert isinstance(values, list)
-        listed = img_list_from_values(values, domain, k, s, p)
+        listed = img_list(values, domain, k, s, p, decoder)
         ledger = empty_ledger(n)
         for agreement_mask in listed.values():
             ledger[stabilizer_order(agreement_mask, n)] += 1
@@ -703,18 +756,26 @@ def sample_scan(
             },
         }
         if "sunflower" in word:
+            sunflower_rows += 1
             row["sunflower"] = word["sunflower"]
             intended = int(word["sunflower"]["intended_list_size"])
             row["sunflower_intended_survives"] = total >= intended
             row["sunflower_extra_list_count"] = total - intended
             sunflower = word["sunflower"]
             assert isinstance(sunflower, dict)
-            row["sunflower_listing_classification"] = classify_sunflower_listing(
+            classification = classify_sunflower_listing(
                 listed.values(),
                 sunflower,
                 n,
                 max_examples,
             )
+            row["sunflower_listing_classification"] = classification
+            extra_count = int(classification["extra_count"])
+            if extra_count:
+                sunflower_rows_with_extras += 1
+                sunflower_max_extra_count = max(sunflower_max_extra_count, extra_count)
+            for profile, count in classification["extra_profile_histogram"].items():
+                sunflower_extra_profile_summary[profile] += int(count)
         rows.append(row)
         max_quotient = max(max_quotient, quotient)
         if primitive > max_primitive or total > max_total:
@@ -735,7 +796,7 @@ def sample_scan(
     return {
         "status": "EXPERIMENTAL/FULL_LIST_SAMPLE_SCAN",
         "mode": "sample",
-        "params": {"p": p, "n": n, "k": k, "s": s, **entropy},
+        "params": {"p": p, "n": n, "k": k, "s": s, "decoder": decoder, **entropy},
         "words_scanned": len(rows),
         "max_list_size": max_total,
         "max_primitive_exact": max_primitive,
@@ -744,6 +805,12 @@ def sample_scan(
         "primitive_alert": primitive_alert,
         "top_rows": rows[: min(12, len(rows))],
         "max_primitive_examples": examples,
+        "sunflower_summary": {
+            "rows": sunflower_rows,
+            "rows_with_extras": sunflower_rows_with_extras,
+            "max_extra_count": sunflower_max_extra_count,
+            "extra_profile_summary": dict(sorted(sunflower_extra_profile_summary.items())),
+        },
     }
 
 
@@ -810,6 +877,12 @@ def main(argv: list[str]) -> int:
     parser.add_argument("--max-ball", type=int, default=3_000_000)
     parser.add_argument("--samples", type=int, default=12)
     parser.add_argument("--sunflowers", type=int, default=3)
+    parser.add_argument(
+        "--decoder",
+        choices=["auto", "k-subset", "support"],
+        default="auto",
+        help="decoder for sample mode; support enumerates s-subsets",
+    )
     parser.add_argument("--seed", type=int, default=0)
     parser.add_argument("--epsilon", type=float, default=0.0)
     parser.add_argument("--alert-power", type=float, default=1.0)
@@ -845,6 +918,7 @@ def main(argv: list[str]) -> int:
                     args.samples,
                     args.seed,
                     args.sunflowers,
+                    args.decoder,
                     args.max_examples,
                 )
             )

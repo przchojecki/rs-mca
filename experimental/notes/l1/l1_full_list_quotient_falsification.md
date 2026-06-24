@@ -168,30 +168,48 @@ The `F_97` row is useful: random sunflower cores produced accidental extra
 primitive codewords beyond the three planted ones, but still no
 reserve-cleared alert at threshold `n=16`.
 
-The scanner now classifies these extra codewords by how their agreement sets
-intersect the sunflower core and petals.  The extras are not new planted
-petals.  They have exact agreement size `s`, retain only part of the common
-core, and mix points from all petals.  With seed `0`, a 20-core sweep reached
-maximum primitive remainder `5`; the two extra agreement sets had profiles
+The scanner now has a support-subset decoder for sunflower rows and classifies
+extra codewords by how their agreement sets intersect the sunflower core and
+petals.  The extras are not new planted petals.  They have exact agreement size
+`s`, retain only part of the common core, and mix points from all petals.
+With seed `0`, a 20-core sweep reached maximum primitive remainder `5`; the
+top row's two extra agreement sets had profiles
 
 ```text
-agreement=10, core=3, petals_touched=3, max_petal_hit=3, full_petals=1
-agreement=10, core=4, petals_touched=3, max_petal_hit=3, full_petals=1
+agreement=10, core=3, petal_hits=7, petals=3, max_petal=3, full_petals=1
+agreement=10, core=4, petal_hits=6, petals=3, max_petal=3, full_petals=1
+```
+
+Across all 21 sunflower rows in that seed-`0` sweep, 12 rows had extras and
+the aggregate extra-profile histogram was
+
+```text
+agreement=10, core=3, petal_hits=7, petals=3, max_petal=3, full_petals=1 : 4
+agreement=10, core=3, petal_hits=7, petals=3, max_petal=3, full_petals=2 : 1
+agreement=10, core=4, petal_hits=6, petals=3, max_petal=2, full_petals=0 : 3
+agreement=10, core=4, petal_hits=6, petals=3, max_petal=3, full_petals=1 : 4
+agreement=10, core=5, petal_hits=5, petals=3, max_petal=2, full_petals=0 : 5
 ```
 
 With seed `3`, a 20-core sweep reached maximum primitive remainder `8` from a
-planted floor of `3`.  Its five extra agreement sets had profiles
+planted floor of `3`.  Across its 21 sunflower rows, 13 had extras and the
+aggregate extra-profile histogram was
 
 ```text
-agreement=10, core=3, petals_touched=3, max_petal_hit=3, full_petals=1 : 1
-agreement=10, core=4, petals_touched=3, max_petal_hit=2, full_petals=0 : 1
-agreement=10, core=5, petals_touched=3, max_petal_hit=2, full_petals=0 : 3
+agreement=10, core=2, petal_hits=8, petals=3, max_petal=3, full_petals=2 : 2
+agreement=10, core=3, petal_hits=7, petals=3, max_petal=3, full_petals=1 : 3
+agreement=10, core=3, petal_hits=7, petals=3, max_petal=3, full_petals=2 : 1
+agreement=10, core=4, petal_hits=6, petals=3, max_petal=2, full_petals=0 : 4
+agreement=10, core=4, petal_hits=6, petals=3, max_petal=3, full_petals=1 : 5
+agreement=10, core=5, petal_hits=5, petals=3, max_petal=2, full_petals=0 : 10
 ```
 
 This mixed-petal amplification is the first nontrivial obstruction pattern
 seen by the full-list attack.  It does not yet threaten polynomiality, but it
 is a concrete subproblem for the conjecture: bound the number of accidental
-mixed-petal codewords over a sunflower floor.
+mixed-petal codewords over a sunflower floor.  In both sweeps every extra
+used only core and petal points (`core_hits + petal_hits = s`) and touched all
+three petals.
 
 ## Interpretation
 
