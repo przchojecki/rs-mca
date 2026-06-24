@@ -364,7 +364,7 @@ def build_report() -> Dict[str, Any]:
         "remaining_imports": [
             "official ABF PDF/source verification for the row gates, sampler, "
             "smoothness, same-support predicate, and closed threshold",
-            "reviewer acceptance of the Cycle84 generated source contract for "
+            "reviewer acceptance of the Cycle84 finite-source closure audit for "
             "promotion beyond audit status",
             "reviewer acceptance of the external PR #96 verifier proof logic; "
             "the separate source-hash and transfer-replay audits check the "

@@ -30,6 +30,26 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-24 - Cycle84 finite-source closure in exact occupancy
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/scripts/verify_m1_cycle84_exact_occupancy_chain.py`,
+  `experimental/notes/m1/m1_cycle84_exact_occupancy_chain.md`,
+  `experimental/notes/m1/m1_cycle120_end_to_end_finite_chain.md`,
+  `experimental/scripts/verify_m1_cycle120_end_to_end_chain.py`, and
+  `experimental/agents-log.md`.
+- **Status:** AUDIT / FINITE-MODEL-EXACT-OCCUPANCY-CHAIN / CONDITIONAL.
+- **What is being added:** The Cycle84 exact occupancy verifier now imports and
+  checks the projected replay algorithm audit in the same chain as the generated
+  C++ source contract, saved all-shards receipt, projected-log certificate, and
+  kernel-lift filter.
+- **How it is useful:** Narrows the Cycle84 finite-source boundary for the M1
+  numerator: the exact occupancy chain now explicitly composes algorithm proof,
+  generated source identity, full replay receipt, and true-collision lift.
+- **What to do next:** Review the finite-source closure audit and official ABF
+  source gates; this does not rerun the full all-shards census.
+
 ### 2026-06-24 - Cycle116 external transfer replay
 
 - **Agent/model:** Codex.

@@ -7,6 +7,7 @@ This nonmutating verifier composes the local Cycle84 checks:
 * projected-log certificate;
 * saved full projected-census replay receipt;
 * generated C++ replay source contract;
+* projected replay algorithm audit;
 * kernel-lift filtering of all projected duplicate bins.
 
 It concludes the exact finite-model occupancy
@@ -32,6 +33,7 @@ import verify_m1_cycle84_generated_replay_source as source_contract
 import verify_m1_cycle84_kernel_lift_candidates as kernel_lift
 import verify_m1_cycle84_projected_full_replay_receipt as full_replay
 import verify_m1_cycle84_projected_log_certificate as log_cert
+import verify_m1_cycle84_projected_replay_algorithm as replay_algorithm
 
 
 EXPECTED_COLOR_SHELL_SIZE = 52_747_567_104
@@ -48,6 +50,7 @@ def build_report() -> Dict[str, Any]:
     log_report = log_cert.build_report()
     full_report = full_replay.build_report()
     source_report = source_contract.build_report()
+    algorithm_report = replay_algorithm.build_report()
     kernel_report = kernel_lift.build_report()
 
     shell_size = int(color_report["color_shell"]["compatible_tuple_count"])
@@ -64,6 +67,9 @@ def build_report() -> Dict[str, Any]:
         "projected_log_certificate_passes": log_report["status"] == "PASS",
         "full_projected_replay_receipt_passes": full_report["status"] == "PASS",
         "generated_replay_source_contract_passes": source_report["status"] == "PASS",
+        "projected_replay_algorithm_audit_passes": (
+            algorithm_report["status"] == "PASS"
+        ),
         "kernel_lift_verifier_passes": kernel_report["status"] == "PASS",
         "color_shell_size_matches": shell_size == EXPECTED_COLOR_SHELL_SIZE,
         "full_replay_covers_all_shards": full_replay_data["selected_shard_count"] == 16_384,
@@ -98,6 +104,19 @@ def build_report() -> Dict[str, Any]:
             == kernel_report["slot_table_digest"]
             == log_report["slot_table_digest"]
         ),
+        "algorithm_source_sha_matches_source_contract": (
+            algorithm_report["generated_cycle84_source"]["sha256"]
+            == source_report["source"]["sha256"]
+            == full_report["generated_source"]["sha256"]
+        ),
+        "algorithm_source_contract_status_matches": (
+            algorithm_report["generated_source_contract"]["proof_status"]
+            == source_report["proof_status"]
+        ),
+        "full_replay_receipt_uses_generated_source_contract": (
+            full_report["generated_source"]["proof_status"]
+            == source_report["proof_status"]
+        ),
     }
 
     failed = [name for name, value in checks.items() if not value]
@@ -114,6 +133,17 @@ def build_report() -> Dict[str, Any]:
         "projected_log_certificate_sha256": log_report["certificate_sha256"],
         "full_replay_receipt_sha256": full_report["receipt_sha256"],
         "generated_source_sha256": source_report["source"]["sha256"],
+        "finite_source_closure": {
+            "algorithm_proof_status": algorithm_report["proof_status"],
+            "algorithm_toy_model_count": len(algorithm_report["toy_models"]),
+            "algorithm_circular_slice_cases": int(
+                algorithm_report["circular_slice"]["cases_checked"]
+            ),
+            "source_contract_status": source_report["proof_status"],
+            "source_line_count": int(source_report["source"]["line_count"]),
+            "full_replay_status": full_report["proof_status"],
+            "full_replay_threads": int(full_report["full_replay"]["threads"]),
+        },
         "cycle84_exact": {
             "color_shell_size": shell_size,
             "projected_duplicate_bins": int(full_replay_data["duplicate_bins_replayed"]),
@@ -126,8 +156,8 @@ def build_report() -> Dict[str, Any]:
         },
         "checks": checks,
         "remaining_import": (
-            "reviewer acceptance of the generated source contract for promotion "
-            "beyond audit status"
+            "reviewer acceptance of the finite-source closure audit for "
+            "promotion beyond audit status"
         ),
         "imports_required": [
             "official ABF source gate verification",
@@ -145,6 +175,14 @@ def print_human(report: Dict[str, Any]) -> None:
     print(f"projected_log_certificate_sha256={report['projected_log_certificate_sha256']}")
     print(f"full_replay_receipt_sha256={report['full_replay_receipt_sha256']}")
     print(f"generated_source_sha256={report['generated_source_sha256']}")
+    closure = report["finite_source_closure"]
+    print(
+        "finite_source_closure="
+        f"algorithm={closure['algorithm_proof_status']}, "
+        f"toy_models={closure['algorithm_toy_model_count']}, "
+        f"source_lines={closure['source_line_count']}, "
+        f"full_replay={closure['full_replay_status']}"
+    )
     print(
         "cycle84_exact="
         f"shell={exact['color_shell_size']}, "

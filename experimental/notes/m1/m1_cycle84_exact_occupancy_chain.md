@@ -21,10 +21,16 @@ The chain consumes five local finite checks:
 ```text
 verify_m1_cycle84_color_collision_witnesses.py
 verify_m1_cycle84_projected_log_certificate.py
+verify_m1_cycle84_projected_replay_algorithm.py
 verify_m1_cycle84_projected_full_replay_receipt.py
 verify_m1_cycle84_generated_replay_source.py
 verify_m1_cycle84_kernel_lift_candidates.py
 ```
+
+The replay algorithm audit is now part of the exact occupancy verifier itself,
+not only a side note. It checks the circular-slice and five-two replay logic on
+exact toy models, then ties that algorithm audit to the generated C++ source
+contract used by the recorded full replay.
 
 The full replay receipt says that the projected tau-folded census over the
 current `slot_logs.json` covered all `16,384` shards and found:
@@ -85,7 +91,6 @@ no fibers of size >= 3.
 ```
 
 The remaining finite-audit boundary is reviewer acceptance that the generated
-source contract, together with the algorithm audit in
-`m1_cycle84_projected_replay_algorithm_audit.md`, is sufficient for promotion
-beyond audit status. The ABF source-gate question is outside this finite-model
-note.
+source contract, full replay receipt, and algorithm audit together constitute
+an acceptable finite-source closure for promotion beyond audit status. The ABF
+source-gate question is outside this finite-model note.

@@ -217,8 +217,10 @@ The chain remains conditional on:
 1. Official ABF PDF/source verification for the admissible row gates, sampler,
    smoothness condition, same-support MCA predicate, and closed-threshold
    convention.
-2. Reviewer acceptance that the Cycle84 generated source contract plus the
-   replay algorithm audit is sufficient for promotion beyond audit status.
+2. Reviewer acceptance that the Cycle84 finite-source closure audit is
+   sufficient for promotion beyond audit status. The exact occupancy verifier
+   now composes the replay algorithm audit, generated source contract, saved
+   all-shards receipt, and kernel-lift filtering.
 3. Reviewer acceptance of the external PR #96 verifier proof logic. The
    source-hash and transfer-replay audits now mechanically tie the compact
    contract to the recorded PR #96 Git objects and executable output, but they
