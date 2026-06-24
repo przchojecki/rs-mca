@@ -70,7 +70,10 @@ Keep entries concise and link to the relevant files.
   Johnson bound `5`, exact shell bound `10`, and L1-shell reduction bound
   `372`; for `(n,k,a)=(64,16,18)`, the `mu=3` powered shell weight is `199`.
   At the dithered example `(n,k,a)=(64,15,17)`, the divisible-only quotient
-  budget is `0` but the all-remainder budget is `1389`.
+  budget is `0` but the all-remainder budget is `1389`. The verifier also
+  realizes an actual dithered packet over `F_17`, `n=16`, `k=7`, `a=9`, `M=4`
+  with `M` not dividing `k`: it constructs the three expected codewords, with
+  maximum degree `5<k` and agreement at least `9`.
 - **How it is useful:** Turns the L2 objective from a broad "avoid Cartesian
   overcharge" principle into a concrete conjectural inequality that can be
   falsified or promoted. The `K_{2,2}` witness records that local Cartesian

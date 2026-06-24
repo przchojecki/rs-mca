@@ -6,12 +6,13 @@ settled by the support-intersection bridge: over-agreement can create
 interleaved mass, so the falsification target is whether that mass can grow like
 a Cartesian product rather than like a polynomial support-overlap codegree.
 
-The script checks four finite objects.
+The script checks five finite objects.
 
 1. The aligned quotient packet count used as Quot_mu in the target note.
 2. The Johnson-shell weights used in the codegree reduction.
 3. The abstract K_{m,m} grid over-agreement design and its size formula.
-4. A realized Reed-Solomon K_{2,2} gluing over a prime-field multiplicative
+4. An explicit dithered all-remainder quotient packet with M not dividing k.
+5. A realized Reed-Solomon K_{2,2} gluing over a prime-field multiplicative
    subgroup, computed by exact list enumeration, together with its punctured
    codegree profile.
 
@@ -186,6 +187,50 @@ def eval_poly(coeffs: tuple[int, ...], x: int, p: int) -> int:
         total = (total + c * power) % p
         power = (power * x) % p
     return total
+
+
+def trim_poly(poly: list[int]) -> list[int]:
+    while len(poly) > 1 and poly[-1] == 0:
+        poly.pop()
+    return poly
+
+
+def poly_degree(poly: list[int]) -> int:
+    return len(trim_poly(poly[:])) - 1
+
+
+def poly_add(a: list[int], b: list[int], p: int, sign: int = 1) -> list[int]:
+    out = [0] * max(len(a), len(b))
+    for i, coeff in enumerate(a):
+        out[i] = (out[i] + coeff) % p
+    for i, coeff in enumerate(b):
+        out[i] = (out[i] + sign * coeff) % p
+    return trim_poly(out)
+
+
+def poly_mul(a: list[int], b: list[int], p: int) -> list[int]:
+    out = [0] * (len(a) + len(b) - 1)
+    for i, ca in enumerate(a):
+        for j, cb in enumerate(b):
+            out[i + j] = (out[i + j] + ca * cb) % p
+    return trim_poly(out)
+
+
+def monomial(power: int, coeff: int = 1) -> list[int]:
+    out = [0] * (power + 1)
+    out[power] = coeff
+    return out
+
+
+def poly_from_roots(p: int, roots: list[int]) -> list[int]:
+    out = [1]
+    for root in roots:
+        out = poly_mul(out, [(-root) % p, 1], p)
+    return out
+
+
+def x_power_minus_alpha(power: int, alpha: int, p: int) -> list[int]:
+    return trim_poly([(-alpha) % p] + [0] * (power - 1) + [1])
 
 
 def all_codewords(p: int, h_values: list[int], k: int) -> list[tuple[int, ...]]:
@@ -458,6 +503,87 @@ def kmm_grid_design(k: int, a: int, m: int) -> dict:
     }
 
 
+def realized_dithered_quotient_packet() -> dict:
+    """Construct an all-remainder quotient packet with M not dividing k."""
+    p, n, k, a, fiber_size = 17, 16, 7, 9, 4
+    sigma = a - k
+    ell = a // fiber_size
+    partial = a - fiber_size * ell
+    quotient_order = n // fiber_size
+    h_values = subgroup(p, n)
+    cosets: dict[int, list[int]] = {}
+    for x in h_values:
+        cosets.setdefault(pow(x, fiber_size, p), []).append(x)
+    quotient_values = list(cosets)
+    omitted = quotient_values[0]
+    partial_points = cosets[omitted][:partial]
+    l_t = poly_from_roots(p, partial_points)
+    y_poly = poly_mul(monomial(fiber_size * ell), l_t, p)
+
+    rows = []
+    polynomials = []
+    advertised_supports = []
+    for quotient_subset in itertools.combinations(quotient_values[1:], ell):
+        l_a = [1]
+        support = set(partial_points)
+        for alpha in quotient_subset:
+            l_a = poly_mul(l_a, x_power_minus_alpha(fiber_size, alpha, p), p)
+            support.update(cosets[alpha])
+        p_poly = poly_mul(
+            l_t,
+            poly_add(monomial(fiber_size * ell), l_a, p, sign=-1),
+            p,
+        )
+        agreement = [
+            x
+            for x in h_values
+            if eval_poly(tuple(p_poly), x, p) == eval_poly(tuple(y_poly), x, p)
+        ]
+        rows.append(
+            {
+                "quotient_subset": quotient_subset,
+                "degree": poly_degree(p_poly),
+                "advertised_support_size": len(support),
+                "agreement_size": len(agreement),
+                "advertised_support_contained": support.issubset(set(agreement)),
+            }
+        )
+        polynomials.append(tuple(trim_poly(p_poly[:])))
+        advertised_supports.append(frozenset(support))
+
+    expected_count = comb(quotient_order - 1, ell)
+    formula_count = aligned_quotient_packet(
+        quotient_order, ell, mu=2, a=a, tau=partial, fiber_size=fiber_size
+    )
+    return {
+        "p": p,
+        "n": n,
+        "k": k,
+        "a": a,
+        "sigma": sigma,
+        "M": fiber_size,
+        "M_divides_k": k % fiber_size == 0,
+        "N": quotient_order,
+        "ell": ell,
+        "partial": partial,
+        "constructed_count": len(rows),
+        "expected_diagonal_count": expected_count,
+        "formula_count_mu2_tau_partial": formula_count,
+        "distinct_polynomials": len(set(polynomials)),
+        "distinct_advertised_supports": len(set(advertised_supports)),
+        "max_degree": max(row["degree"] for row in rows),
+        "min_agreement": min(row["agreement_size"] for row in rows),
+        "all_degrees_below_k": all(row["degree"] < k for row in rows),
+        "all_advertised_supports_size_a": all(
+            row["advertised_support_size"] == a for row in rows
+        ),
+        "all_advertised_supports_contained": all(
+            row["advertised_support_contained"] for row in rows
+        ),
+        "rows": rows,
+    }
+
+
 def realized_rs_k22() -> dict:
     """Exact RS enumeration for a prime-field K_{2,2} gluing witness."""
     p, n, k, a, m = 29, 14, 3, 5, 2
@@ -565,6 +691,7 @@ def run() -> dict:
         n=64, k=16, a=18, power=2
     )
     designs = [kmm_grid_design(k=3, a=5, m=m) for m in (2, 3, 4, 5)]
+    dithered_witness = realized_dithered_quotient_packet()
     witness = realized_rs_k22()
     checks = {
         "quotient_budget_nonnegative": quotient_example["total"] >= 0,
@@ -574,6 +701,22 @@ def run() -> dict:
             "all_remainders"
         ]["total"]
         > dithered_quotient_example["divisible_only"]["total"],
+        "dithered_quotient_witness_count": dithered_witness[
+            "constructed_count"
+        ]
+        == dithered_witness["expected_diagonal_count"]
+        == dithered_witness["formula_count_mu2_tau_partial"],
+        "dithered_quotient_witness_degree": dithered_witness[
+            "all_degrees_below_k"
+        ],
+        "dithered_quotient_witness_agreement": dithered_witness[
+            "all_advertised_supports_size_a"
+        ]
+        and dithered_witness["all_advertised_supports_contained"],
+        "dithered_quotient_witness_distinct": dithered_witness[
+            "distinct_polynomials"
+        ]
+        == dithered_witness["constructed_count"],
         "kmm_grid_formula": all(d["interleaved_edges"] == d["grid_edges_at_n_min"] for d in designs),
         "rs_witness_creates_mass": witness["mass_creation"],
         "rs_witness_realizes_k22": witness["interleaved"] == witness["product_bound"] == 4,
@@ -596,6 +739,7 @@ def run() -> dict:
         "johnson_shell_weight_example": shell_weight_example,
         "fixed_arity_johnson_shell_weight_example": fixed_arity_shell_weight_example,
         "kmm_designs": designs,
+        "realized_dithered_quotient_packet": dithered_witness,
         "realized_rs_k22": witness,
         "checks": checks,
         "pass": all(checks.values()),
@@ -624,6 +768,17 @@ def main(argv: list[str] | None = None) -> int:
             "  dithered quotient budget example (n=64,k=15,a=17): "
             f"divisible_total={dqb['divisible_only']['total']}, "
             f"all_remainders_total={dqb['all_remainders']['total']}"
+        )
+        dq_witness = result["realized_dithered_quotient_packet"]
+        print(
+            "  realized dithered quotient packet: "
+            f"F_{dq_witness['p']}, n={dq_witness['n']}, "
+            f"k={dq_witness['k']}, a={dq_witness['a']}, "
+            f"M={dq_witness['M']}, ell={dq_witness['ell']}, "
+            f"partial={dq_witness['partial']}, "
+            f"count={dq_witness['constructed_count']}, "
+            f"max_degree={dq_witness['max_degree']}, "
+            f"min_agreement={dq_witness['min_agreement']}"
         )
         jt = result["johnson_anchor_threshold_example"]
         print(

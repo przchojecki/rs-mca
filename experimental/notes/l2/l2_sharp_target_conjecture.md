@@ -629,7 +629,7 @@ The new falsification script
 python3 experimental/scripts/verify_l2_sharp_target.py
 ```
 
-checks four stress points.
+checks five stress points.
 
 1. The explicit aligned quotient budget is computable. For example, at
    `(n,k,a,mu)=(64,16,18,2)` the old divisible-only budget and the
@@ -641,13 +641,18 @@ checks four stress points.
    starts only at `s=22`, i.e. four extra agreements above the list threshold.
    The exact controlled Johnson shell weight in this example is `17`; the
    powered shell weight for the fixed-arity `mu=3` reduction is `199`.
-2. The natural `K_{m,m}` grid over-agreement family has
+2. The all-remainder quotient construction is realized explicitly over
+   `F_17`, `n=16`, `k=7`, `a=9`, `M=4`. Here `M` does not divide `k`,
+   `ell=floor(a/M)=2`, and the partial omitted coset has size `1`. The verifier
+   constructs the three expected codewords, checks that their maximum degree is
+   `5<k`, and verifies agreement on at least `9` points.
+3. The natural `K_{m,m}` grid over-agreement family has
    ```text
    n_min = (k-1) + m^2(a-k+1),
    ```
    so this attack realizes local Cartesian blocks but only with polynomial
    growth in the tested grid model.
-3. An exact Reed-Solomon enumeration over `F_29`, `n=14`, `k=3`, `a=5`
+4. An exact Reed-Solomon enumeration over `F_29`, `n=14`, `k=3`, `a=5`
    realizes a genuine `K_{2,2}` over-agreement witness:
    ```text
    base row lists = [2,2],
@@ -658,7 +663,7 @@ checks four stress points.
    The two row-1 anchor supports have size `8`; the punctured Johnson bound is
    `floor(8(8-3+1)/(5^2-8(3-1))) = 5`, so the observed codegrees `2,2`
    satisfy the proposition.
-4. The same witness satisfies the deterministic shell bound: the row-1 shell
+5. The same witness satisfies the deterministic shell bound: the row-1 shell
    histogram is `{8:2}`, the controlled shell contribution is `2*5=10`, the
    large-anchor tail is empty, and the exact-`a` row-1 locator multiplicity is
    `2 binom(8,5)=112`. If one forgets the exact shell histogram and uses only
