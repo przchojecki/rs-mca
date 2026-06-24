@@ -964,6 +964,24 @@ sum_{r=sigma}^{m-1}
 Thus the full bad-prime incidence budget at a partial prefix is exactly the sum
 of the successive frontier masses killed before the rigid endpoint.
 
+For a finite dilation-stable non-characteristic-zero family `T`, this
+telescopes at the row level.  If `h` is any primitive `n`-th root in a finite
+field of characteristic `p not dividing n`, then
+
+```text
+|Coll_{T,sigma}(h)|
+  =
+  (1/phi(n)) sum_{r=sigma}^{m-1}
+    sum_{(A,B) in T}
+      (v_p(J_r(A,B))-v_p(J_{r+1}(A,B))).
+```
+
+The left side is the row collision count at depth `sigma`; the right side is
+the sum of all future frontier layers.  This is the depth-local aggregation
+target: after structured rows are removed, it is enough to bound the radical
+frontier layers rather than the whole partial-prefix collision relation at
+once.
+
 ## Full-Prefix Rigidity
 
 The endpoint of the filtration is rigid.  Let `p` be split, let `h in F_p`
@@ -1160,6 +1178,19 @@ For the full `40`-pair `F_17` packet, every pair has radical frontier drop
 Telescoping all the way to the full-prefix endpoint gives the same products:
 the `F_17` packet has full-depth radical frontier product `17^40`, and the
 `F_9` witness has full-depth product `3^2`.
+
+At the row level, the `F_17` dilation-stable incident family has frontier
+layer sums
+
+```text
+sigma 4 -> 5: 320
+sigma 5 -> 6: 0
+```
+
+Dividing by `phi(16)=8` gives the fixed-root row count `40`.  For the nonsplit
+`F_9` non-characteristic-zero family, the single frontier layer has sum `96`;
+dividing by `phi(8)=4` gives the non-structural row contribution `24`, with
+the remaining `6` row pairs coming from the characteristic-zero stratum.
 
 The verifier separately checks this full-prefix endpoint for `n=16` at the
 split primes `17` and `97`, for every complement size `1 <= m <= 8`: at

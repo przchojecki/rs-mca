@@ -2222,6 +2222,26 @@ def radical_depth_telescoping(
     }
 
 
+def frontier_layer_valuation_sum(
+    family: Iterable[tuple[tuple[int, ...], tuple[int, ...]]],
+    order: int,
+    sigma: int,
+    prime: int,
+) -> int:
+    total = 0
+    for left, right in family:
+        drop = radical_frontier_drop(left, right, order, sigma)
+        total += next(
+            (
+                row["valuation_drop"]
+                for row in drop["rows"]
+                if row["prime"] == prime
+            ),
+            0,
+        )
+    return total
+
+
 def check_prefix_radical_frontier_drop() -> dict[str, Any]:
     order = 16
     prime = 17
@@ -2332,6 +2352,151 @@ def check_prefix_radical_frontier_drop() -> dict[str, Any]:
         },
         "nonsplit_witness": extension_drop,
         "nonsplit_telescoping": extension_telescoping,
+    }
+
+
+def check_frontier_layer_row_decomposition() -> dict[str, Any]:
+    split_prime = 17
+    split_order = 16
+    split_sigma = 4
+    split_full_sigma = 6
+    split_complement_size = 6
+    split_roots = primitive_order_roots(split_prime, split_order)
+    split_family: set[tuple[tuple[int, ...], tuple[int, ...]]] = set()
+    split_row_counts = {}
+    for root in split_roots:
+        row = finite_prefix_collision_pairs(
+            prime=split_prime,
+            order=split_order,
+            complement_size=split_complement_size,
+            sigma=split_sigma,
+            root=root,
+        )
+        split_row_counts[root] = row["collision_pair_count"]
+        for pair in row["pairs"]:
+            split_family.add(normalized_pair(pair["left"], pair["right"]))
+    if set(split_row_counts.values()) != {40}:
+        raise AssertionError("bad split frontier row counts")
+
+    split_layers = []
+    split_total = 0
+    for sigma in range(split_sigma, split_full_sigma):
+        layer_sum = frontier_layer_valuation_sum(
+            split_family,
+            split_order,
+            sigma,
+            split_prime,
+        )
+        split_total += layer_sum
+        split_layers.append({
+            "sigma": sigma,
+            "frontier_valuation_sum": layer_sum,
+        })
+    split_row_bound = split_total // euler_phi(split_order)
+    if split_total % euler_phi(split_order) != 0:
+        raise AssertionError("split frontier total not phi-divisible")
+    if split_layers != [
+        {"sigma": 4, "frontier_valuation_sum": 320},
+        {"sigma": 5, "frontier_valuation_sum": 0},
+    ]:
+        raise AssertionError("bad split frontier layers")
+    if split_row_bound != 40:
+        raise AssertionError("bad split frontier row formula")
+
+    nonsplit_prime = 3
+    nonsplit_order = 8
+    nonsplit_sigma = 1
+    nonsplit_full_sigma = 2
+    nonsplit_roots = gf9_primitive_order_roots(nonsplit_order)
+    nonsplit_family: set[tuple[tuple[int, ...], tuple[int, ...]]] = set()
+    nonsplit_nonchar_counts = {}
+    nonsplit_structured_counts = {}
+    for root in nonsplit_roots:
+        row = finite_prefix_collision_pairs_gf9(
+            order=nonsplit_order,
+            complement_size=2,
+            sigma=nonsplit_sigma,
+            root=root,
+        )
+        nonchar_count = 0
+        structured_count = 0
+        for pair in row["pairs"]:
+            key = normalized_pair(pair["left"], pair["right"])
+            certificate = bad_prime_certificate(
+                key[0],
+                key[1],
+                nonsplit_order,
+                nonsplit_sigma,
+            )
+            if certificate["char_zero_collision"]:
+                structured_count += 1
+            else:
+                nonsplit_family.add(key)
+                nonchar_count += 1
+        nonsplit_nonchar_counts[tuple(root)] = nonchar_count
+        nonsplit_structured_counts[tuple(root)] = structured_count
+    if set(nonsplit_nonchar_counts.values()) != {24}:
+        raise AssertionError("bad nonsplit non-char row counts")
+    if set(nonsplit_structured_counts.values()) != {6}:
+        raise AssertionError("bad nonsplit structured row counts")
+
+    nonsplit_layers = []
+    nonsplit_total = 0
+    for sigma in range(nonsplit_sigma, nonsplit_full_sigma):
+        layer_sum = frontier_layer_valuation_sum(
+            nonsplit_family,
+            nonsplit_order,
+            sigma,
+            nonsplit_prime,
+        )
+        nonsplit_total += layer_sum
+        nonsplit_layers.append({
+            "sigma": sigma,
+            "frontier_valuation_sum": layer_sum,
+        })
+    nonsplit_row_bound = nonsplit_total // euler_phi(nonsplit_order)
+    if nonsplit_total % euler_phi(nonsplit_order) != 0:
+        raise AssertionError("nonsplit frontier total not phi-divisible")
+    if nonsplit_layers != [{"sigma": 1, "frontier_valuation_sum": 96}]:
+        raise AssertionError("bad nonsplit frontier layers")
+    if nonsplit_row_bound != 24:
+        raise AssertionError("bad nonsplit frontier row formula")
+
+    return {
+        "split_case": {
+            "field": "F_17",
+            "prime": split_prime,
+            "order": split_order,
+            "sigma": split_sigma,
+            "full_sigma": split_full_sigma,
+            "family_size": len(split_family),
+            "row_counts_by_root": {
+                str(root): split_row_counts[root]
+                for root in sorted(split_row_counts)
+            },
+            "frontier_layers": split_layers,
+            "frontier_total": split_total,
+            "row_count_from_frontiers": split_row_bound,
+        },
+        "nonsplit_case": {
+            "field": "F_9 = F_3[i]/(i^2+1)",
+            "prime": nonsplit_prime,
+            "order": nonsplit_order,
+            "sigma": nonsplit_sigma,
+            "full_sigma": nonsplit_full_sigma,
+            "family_size": len(nonsplit_family),
+            "nonchar_counts_by_root": {
+                str(root): nonsplit_nonchar_counts[root]
+                for root in sorted(nonsplit_nonchar_counts)
+            },
+            "structured_counts_by_root": {
+                str(root): nonsplit_structured_counts[root]
+                for root in sorted(nonsplit_structured_counts)
+            },
+            "frontier_layers": nonsplit_layers,
+            "frontier_total": nonsplit_total,
+            "row_count_from_frontiers": nonsplit_row_bound,
+        },
     }
 
 
@@ -3757,6 +3922,9 @@ def build_report() -> dict[str, Any]:
         "extension_field_row_accounting": check_extension_field_row_accounting(),
         "prefix_depth_filtration": check_prefix_depth_filtration(),
         "prefix_radical_frontier_drop": check_prefix_radical_frontier_drop(),
+        "frontier_layer_row_decomposition": (
+            check_frontier_layer_row_decomposition()
+        ),
         "full_prefix_rigidity": check_full_prefix_rigidity(),
         "full_prefix_common_ideal_endpoint": (
             check_full_prefix_common_ideal_endpoint()
@@ -3867,6 +4035,18 @@ def print_human(report: dict[str, Any]) -> None:
         f"{frontier['packet_sigma4_to_full']['frontier_product_factorization']}, "
         "f9_drop="
         f"{frontier['nonsplit_witness']['frontier_drop_factorization']}"
+    )
+    frontier_rows = report["frontier_layer_row_decomposition"]
+    print(
+        "frontier_layer_row_decomposition="
+        "split_layers="
+        f"{frontier_rows['split_case']['frontier_layers']}, "
+        "split_row="
+        f"{frontier_rows['split_case']['row_count_from_frontiers']}, "
+        "f9_layers="
+        f"{frontier_rows['nonsplit_case']['frontier_layers']}, "
+        "f9_nonchar_row="
+        f"{frontier_rows['nonsplit_case']['row_count_from_frontiers']}"
     )
     full_prefix = report["full_prefix_rigidity"]
     print(
