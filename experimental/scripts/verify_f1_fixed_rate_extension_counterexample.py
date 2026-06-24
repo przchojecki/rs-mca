@@ -7,6 +7,7 @@ import argparse
 import itertools
 import json
 from math import comb
+from math import isqrt
 from typing import Any
 
 
@@ -234,6 +235,11 @@ def ceil_div(numerator: int, denominator: int) -> int:
     return -(-numerator // denominator)
 
 
+def ceil_sqrt(value: int) -> int:
+    root = isqrt(value)
+    return root if root * root == value else root + 1
+
+
 def sigma_three_prefix_counts(p: int) -> list[int]:
     states: list[dict[tuple[int, int], int]] = [dict() for _ in range(p)]
     states[0][(0, 0)] = 1
@@ -333,6 +339,12 @@ def verify_sigma_three_count_case(p: int, k: int) -> dict[str, Any]:
     support_count = counts[a]
     expected_denominator = p * p
     expected_numerator = comb(n, a)
+    scaled_error = abs(
+        expected_denominator * support_count
+        - expected_numerator
+        - (p - 1) * ((-1) ** a)
+    )
+    integer_gauss_bound = p * (p - 1) * comb(a + ceil_sqrt(p), a)
     tail_denominator = comb(n, k - 1)
     tail_numerator = support_count * comb(a, sigma + 1)
     tail_lower_bound = ceil_div(tail_numerator, tail_denominator)
@@ -340,6 +352,7 @@ def verify_sigma_three_count_case(p: int, k: int) -> dict[str, Any]:
     checks = {
         "prefix_count_is_positive": support_count > 0,
         "complement_symmetry_holds": True,
+        "character_error_bound_holds": scaled_error <= integer_gauss_bound,
         "averaged_tail_lower_bound_is_positive": tail_lower_bound > 0,
     }
     failed = [name for name, passed in checks.items() if not passed]
@@ -357,6 +370,8 @@ def verify_sigma_three_count_case(p: int, k: int) -> dict[str, Any]:
         "prefix_vanishing_support_count": support_count,
         "random_model_numerator": expected_numerator,
         "random_model_denominator": expected_denominator,
+        "scaled_character_error": scaled_error,
+        "integer_gauss_error_bound": integer_gauss_bound,
         "tail_average_numerator": tail_numerator,
         "tail_average_denominator": tail_denominator,
         "proved_tail_bad_slope_lower_bound": tail_lower_bound,

@@ -136,6 +136,18 @@ emca(C_F, 1-(k+2)/(p-1))
 This remains a sub-reserve counterexample: `sigma=2` gives
 `eta=2/(p-1)`, far below the corrected `C/log n` reserve.
 
+The next fixed-slack case also has a fixed-rate lower bound.  For
+`sigma=3`, put `a=k+3` and keep `F=F_{p^2}`.  Then, for every fixed-rate
+sequence `k=floor(rho(p-1))` with `0<rho<1`,
+
+```text
+emca(C_F, 1-(k+3)/(p-1))
+  >= ((1-rho)^4/24 - o(1)).
+```
+
+Thus `sigma=1,2,3` all give constant-density degree-one extension-line
+obstructions in the fixed-rate, sub-reserve regime.
+
 More generally, for every fixed slack
 
 ```text
@@ -183,11 +195,11 @@ for fixed-rate `k=floor(rho(p-1))`.
 PROVED / COUNTEREXAMPLE.
 
 This starts with a sigma-one counterexample, with agreement size `k+1`, and
-adds a proved sigma-two degree-one family. It also records a proved
-fixed-slack degree-one template for all `sigma`, reducing the higher-slack
-extension obstruction to a precise count of prefix-vanishing elementary
-symmetric support sets. These do not refute a repaired extension-line theorem
-in the corrected-reserve regime
+adds proved sigma-two and sigma-three degree-one fixed-rate families. It also
+records a proved fixed-slack degree-one template for all `sigma`, reducing the
+higher-slack extension obstruction to a precise count of prefix-vanishing
+elementary symmetric support sets. These do not refute a repaired
+extension-line theorem in the corrected-reserve regime
 `sigma >= C n/log n`. They do refute any unrestricted route that bounds
 extension-line MCA by taking a base-field numerator and dividing by the larger
 extension challenge field. The extension-degree corollary shows that the issue
@@ -533,6 +545,101 @@ e_2(F_p^*) = e_2(S)+e_1(S)e_1(R)+e_2(R).
 Therefore `S` is sigma-three prefix-vanishing if and only if `R` is.  The
 verifier checks this complement symmetry for every computed size.
 
+## Sigma-Three Character Bound
+
+The recurrence is exact, but the fixed-rate lower bound follows from a
+standard character expansion that is short enough to record here.  Let
+
+```text
+G_{p,a,3}
+  = #{ S subset F_p^* : |S|=a, e_1(S)=e_2(S)=0 }.
+```
+
+By Fourier inversion,
+
+```text
+G_{p,a,3}
+  = 1/p^2 sum_{r,s in F_p}
+      [Y^a] prod_{x in F_p^*}
+        (1 + Y psi(r x + s x^2)),
+```
+
+where `psi` is any nontrivial additive character.  The term `(r,s)=(0,0)`
+contributes `binom(p-1,a)`.  The terms with `s=0` and `r != 0` contribute
+`(p-1)(-1)^a`, since
+
+```text
+prod_{x in F_p^*} (1+Y psi(r x))
+  = (1+Y^p)/(1+Y)
+  = 1 - Y + Y^2 - ... + Y^(p-1).
+```
+
+It remains to bound the terms with `s != 0`.  For
+
+```text
+F_{r,s}(x) = psi(r x+s x^2),
+```
+
+the coefficient of `Y^a` in `prod_x(1+Y F_{r,s}(x))` is
+
+```text
+1/a! * sum_{distinct x_1,...,x_a in F_p^*}
+  prod_i F_{r,s}(x_i).
+```
+
+Applying the distinct-coordinate cycle expansion, each cycle of length `ell`
+contributes a sum
+
+```text
+sum_{x in F_p^*} psi(ell r x + ell s x^2).
+```
+
+Because `1 <= ell <= a <= p-1` and `s != 0`, this is a nonconstant quadratic
+Gauss sum over `F_p`, with the `x=0` term removed.  Its absolute value is at
+most `sqrt(p)+1`.  The cycle-index identity
+
+```text
+sum_{tau in S_a} u^{c(tau)}
+  = u(u+1)...(u+a-1)
+```
+
+therefore gives
+
+```text
+|[Y^a] prod_{x in F_p^*} (1 + Y psi(r x+s x^2))|
+  <= binom(a+sqrt(p), a)
+```
+
+for every `s != 0`.  Hence
+
+```text
+| G_{p,a,3}
+  - (binom(p-1,a)+(p-1)(-1)^a)/p^2 |
+  <= binom(a+sqrt(p), a).
+```
+
+For fixed `0<rho<1` and `a=floor(rho(p-1))+3`, the right side is
+`exp(O(sqrt(p) log p))`, while `binom(p-1,a)` is `exp(Theta(p))`.  Thus
+
+```text
+G_{p,a,3}
+  = (1+o(1)) binom(p-1,a)/p^2.
+```
+
+Combining this with the fixed-tail injectivity theorem gives
+
+```text
+max_T #{ admissible U for T }
+  >= (1+o(1))
+      binom(p-1,k+3) binom(k+3,4)
+        / (p^2 binom(p-1,k-1))
+  = (1+o(1)) binom(p-k,4)/p^2.
+```
+
+Since `p-k=(1-rho+o(1))p`, the number of distinct bad slopes is at least
+`((1-rho)^4/24-o(1))p^2`.  Dividing by `|F|=p^2` proves the displayed
+sigma-three constant-density lower bound.
+
 The same script gives exact finite lower bounds for the sigma-three
 degree-one obstruction by combining `G_{p,k,3}` with the fixed-tail averaging
 theorem above.  Some sample certified cases are:
@@ -549,10 +656,9 @@ p   k   a=k+3   G_{p,k,3}       tail lower bound
 ```
 
 The first four rows are near rate `1/2`; the last three are near rate `1/4`.
-These rows are finite certificates, not an asymptotic proof.  They support the
-random-model prediction that `G_{p,k,3}` has density about `p^-2` in the
-middle range and give concrete lower bounds for distinct bad slopes via the
-proved fixed-tail injection.
+These rows are finite certificates for the exact recurrence and lower-bound
+pipeline.  The character bound above is the asymptotic proof that the same
+count has density `(1+o(1))p^-2` at every fixed rate.
 
 For fixed rate `k=floor(rho(p-1))`, the numerator ratio
 
@@ -588,10 +694,11 @@ Consequently a protocol ledger cannot safely take an MCA numerator proved over
 `F`-valued lines. The sigma-one extension numerator is already quadratic in
 `|B|`, even when `|F|` is a higher extension. The sigma-two slice shows that
 fixed positive residual slack still leaves constant-density degree-one
-families, and the fixed-slack template shows that higher fixed slack reduces to
-an explicit prefix-vanishing support count. The repaired theorem needs residual
-slack large enough for the list ledger, not merely nonzero slack. A repaired F1
-theorem must either:
+families; the sigma-three character bound shows the same for the first
+genuinely two-equation prefix count; and the fixed-slack template shows that
+higher fixed slack reduces to explicit prefix-vanishing support counts. The
+repaired theorem needs residual slack large enough for the list ledger, not
+merely nonzero slack. A repaired F1 theorem must either:
 
 - prove MCA directly over the actual extension line field;
 - add an extension-valued residue-line numerator term;
@@ -644,4 +751,6 @@ counting theorem; they only sanity-check the structural reduction above.
 For larger sigma-three cases, the verifier switches to the exact recurrence
 in the previous section.  It computes `G_{p,k,3}` without support
 enumeration, verifies complement symmetry, and reports the finite tail-averaged
-lower bound for the distinct bad slopes forced by the general template.
+lower bound for the distinct bad slopes forced by the general template.  It
+also checks the integer form of the character-error bound against the exact
+dynamic counts.
