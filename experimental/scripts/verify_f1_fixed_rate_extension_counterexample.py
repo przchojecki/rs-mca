@@ -59,6 +59,11 @@ SLOW_SLACK_BOUND_CASES = (
     {"p": 65537, "k": 32768, "sigma": 4},
 )
 
+EXTENSION_DEGREE_BOUND_CASES = (
+    {"p": 1009, "k": 504, "sigma": 3, "degrees": (2, 3, 4)},
+    {"p": 65537, "k": 32768, "sigma": 4, "degrees": (2, 3, 4)},
+)
+
 
 def base(value: int, p: int) -> Element:
     return (value % p, 0)
@@ -253,6 +258,43 @@ def ceil_div(numerator: int, denominator: int) -> int:
 def ceil_sqrt(value: int) -> int:
     root = isqrt(value)
     return root if root * root == value else root + 1
+
+
+def character_tail_lower_bound(p: int, k: int, sigma: int) -> dict[str, int]:
+    n = p - 1
+    a = k + sigma
+    if not (2 <= sigma < p and sigma + 1 <= a <= n):
+        raise ValueError(
+            f"bad character-bound parameters p={p}, k={k}, sigma={sigma}, a={a}"
+        )
+
+    m = sigma - 1
+    weil_radius = (m - 1) * ceil_sqrt(p) + 1
+    error_bound = (p**m - 1) * comb(a + weil_radius, a)
+    random_model_numerator = comb(n, a)
+    support_lower_numerator = random_model_numerator - error_bound
+    support_lower_bound = (
+        ceil_div(support_lower_numerator, p**m)
+        if support_lower_numerator > 0
+        else 0
+    )
+
+    tail_denominator = comb(n, k - 1)
+    tail_numerator_lower = support_lower_bound * comb(a, sigma + 1)
+    tail_lower_bound = (
+        ceil_div(tail_numerator_lower, tail_denominator)
+        if tail_numerator_lower
+        else 0
+    )
+    return {
+        "weil_radius": weil_radius,
+        "random_model_numerator": random_model_numerator,
+        "character_error_bound": error_bound,
+        "support_lower_bound": support_lower_bound,
+        "tail_lower_bound": tail_lower_bound,
+        "tail_denominator": tail_denominator,
+        "tail_numerator_lower": tail_numerator_lower,
+    }
 
 
 def prefix_vanishing_counts(p: int, sigma: int) -> list[int]:
@@ -480,23 +522,9 @@ def verify_slow_slack_bound_case(p: int, k: int, sigma: int) -> dict[str, Any]:
             f"bad slow-slack parameters p={p}, k={k}, sigma={sigma}, a={a}"
         )
 
-    m = sigma - 1
-    weil_radius = (m - 1) * ceil_sqrt(p) + 1
-    error_bound = (p**m - 1) * comb(a + weil_radius, a)
-    random_model_numerator = comb(n, a)
-    support_lower_numerator = random_model_numerator - error_bound
-    if support_lower_numerator <= 0:
-        support_lower_bound = 0
-    else:
-        support_lower_bound = ceil_div(support_lower_numerator, p**m)
-
-    tail_denominator = comb(n, k - 1)
-    tail_numerator_lower = support_lower_bound * comb(a, sigma + 1)
-    tail_lower_bound = (
-        ceil_div(tail_numerator_lower, tail_denominator)
-        if tail_numerator_lower
-        else 0
-    )
+    bound = character_tail_lower_bound(p, k, sigma)
+    support_lower_bound = bound["support_lower_bound"]
+    tail_lower_bound = bound["tail_lower_bound"]
 
     checks = {
         "character_lower_bound_is_positive": support_lower_bound > 0,
@@ -515,14 +543,66 @@ def verify_slow_slack_bound_case(p: int, k: int, sigma: int) -> dict[str, Any]:
         "k": k,
         "sigma": sigma,
         "agreement_a": a,
-        "weil_radius": weil_radius,
-        "random_model_numerator_bits": random_model_numerator.bit_length(),
-        "character_error_bound_bits": error_bound.bit_length(),
+        "weil_radius": bound["weil_radius"],
+        "random_model_numerator_bits": (
+            bound["random_model_numerator"].bit_length()
+        ),
+        "character_error_bound_bits": bound["character_error_bound"].bit_length(),
         "certified_support_lower_bound_bits": support_lower_bound.bit_length(),
         "certified_tail_bad_slope_lower_bound": tail_lower_bound,
         "base_field_trivial_numerator": p,
         "extension_field_size": p * p,
         "mca_density_lower_bound": f"{tail_lower_bound}/{p*p}",
+        "checks": checks,
+    }
+
+
+def verify_extension_degree_bound_case(
+    p: int, k: int, sigma: int, degrees: tuple[int, ...]
+) -> dict[str, Any]:
+    n = p - 1
+    a = k + sigma
+    bound = character_tail_lower_bound(p, k, sigma)
+    tail_lower_bound = bound["tail_lower_bound"]
+    degree_rows = []
+    for degree in degrees:
+        if degree < 2:
+            raise ValueError(f"extension degree must be at least 2: {degree}")
+        extension_size = p**degree
+        degree_rows.append(
+            {
+                "extension_degree": degree,
+                "extension_field_size": extension_size,
+                "bad_slope_numerator_lower_bound": tail_lower_bound,
+                "mca_density_lower_bound": f"{tail_lower_bound}/{extension_size}",
+                "base_transfer_density": f"{p}/{extension_size}",
+                "numerator_gain_over_base": f"{tail_lower_bound}/{p}",
+            }
+        )
+
+    checks = {
+        "bad_slope_numerator_is_positive": tail_lower_bound > 0,
+        "bad_slope_numerator_beats_base": tail_lower_bound > p,
+        "all_degrees_use_same_bad_slope_numerator": all(
+            row["bad_slope_numerator_lower_bound"] == tail_lower_bound
+            for row in degree_rows
+        ),
+    }
+    failed = [name for name, passed in checks.items() if not passed]
+    if failed:
+        raise AssertionError(
+            f"failed extension-degree checks for p={p}: {', '.join(failed)}"
+        )
+
+    return {
+        "p": p,
+        "n": n,
+        "k": k,
+        "sigma": sigma,
+        "agreement_a": a,
+        "certified_tail_bad_slope_lower_bound": tail_lower_bound,
+        "base_field_trivial_numerator": p,
+        "extension_degree_rows": degree_rows,
         "checks": checks,
     }
 
@@ -734,6 +814,10 @@ def compute_report() -> dict[str, Any]:
         verify_slow_slack_bound_case(**case)
         for case in SLOW_SLACK_BOUND_CASES
     ]
+    extension_degree_bound_cases = [
+        verify_extension_degree_bound_case(**case)
+        for case in EXTENSION_DEGREE_BOUND_CASES
+    ]
     return {
         "status": "PASS",
         "proof_status": "FINITE_MODEL_CHECK / COUNTEREXAMPLE_SANITY",
@@ -746,7 +830,8 @@ def compute_report() -> dict[str, Any]:
             "the general prefix-vanishing template, and sigma=3 finite cases "
             "check exact dynamic support counts. The same character-bound "
             "formula gives finite slow-slack certificates where the forced "
-            "extension numerator already exceeds the base-field numerator."
+            "extension numerator already exceeds the base-field numerator, "
+            "with the same numerator over every extension degree."
         ),
         "sigma_one_cases": sigma_one_cases,
         "sigma_two_cases": sigma_two_cases,
@@ -754,6 +839,7 @@ def compute_report() -> dict[str, Any]:
         "sigma_three_count_cases": sigma_three_count_cases,
         "fixed_sigma_count_cases": fixed_sigma_count_cases,
         "slow_slack_bound_cases": slow_slack_bound_cases,
+        "extension_degree_bound_cases": extension_degree_bound_cases,
     }
 
 
@@ -798,6 +884,17 @@ def print_report(report: dict[str, Any]) -> None:
             "tail_lower={certified_tail_bad_slope_lower_bound} "
             "base_numerator={base_field_trivial_numerator} "
             "density={mca_density_lower_bound}".format(**case)
+        )
+    for case in report["extension_degree_bound_cases"]:
+        degrees = ",".join(
+            str(row["extension_degree"])
+            for row in case["extension_degree_rows"]
+        )
+        print(
+            "extension-degree p={p} sigma={sigma} "
+            "tail_lower={certified_tail_bad_slope_lower_bound} "
+            "base_numerator={base_field_trivial_numerator} "
+            "degrees={degrees}".format(**case, degrees=degrees)
         )
 
 

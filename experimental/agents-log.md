@@ -50,13 +50,16 @@ Keep entries concise and link to the relevant files.
   and uniformly for `sigma=o(sqrt(p)/log p)`. It also keeps an exact dynamic
   count recurrence for the first nontrivial finite case `sigma=3`, plus generic
   finite count audits for `sigma=4,5` and finite slow-slack certificates whose
-  forced extension numerator exceeds the base-field numerator.
+  forced extension numerator exceeds the base-field numerator. The note also
+  states the finite character-bound numerator `N_{p,k,sigma}` and records that
+  this numerator is independent of the extension degree `e>=2`.
 - **How it is useful:** Strengthens the F1 warning against unrestricted
   numerator-preserving extension-line lifts: the extension numerator is
   already quadratic in the base field for fixed-rate sigma-one lines. The same
   fixed-tail injectivity mechanism persists for all fixed slack and still
   beats same-numerator extension transfer through
-  `sigma <= (1-epsilon) log p/log log p`.
+  `sigma <= (1-epsilon) log p/log log p`; the obstruction is a numerator
+  obstruction over all extension degrees, not a quadratic-only density effect.
 - **What to do next:** Use this as the reviewed fixed-slack obstruction theorem
   for F1; the remaining positive-theorem frontier is growing slack, especially
   the corrected-reserve range `sigma >= C n/log n`, or adding an

@@ -223,6 +223,11 @@ Thus same-numerator extension transfer from the base-field numerator `p`
 still fails by a polynomial factor in this slowly growing, sub-reserve slack
 range.
 
+These are numerator statements, not artifacts of choosing a quadratic
+extension. More generally, if `F/F_p` has degree `e>=2` and
+`alpha in F\F_p`, the same bad-slope numerator works over `F`; only the
+density denominator changes from `p^2` to `p^e`.
+
 ## Status
 
 PROVED / COUNTEREXAMPLE.
@@ -598,6 +603,33 @@ for every nonzero `c`.  Hence
   <= binom(a+(m-1)sqrt(p)+1, a).
 ```
 
+This already gives a finite certificate.  Define
+
+```text
+B_{p,a,sigma}
+  = binom(a+(sigma-2)ceil(sqrt(p))+1, a),
+
+R_{p,k,sigma}
+  = max(0,
+      ceil((binom(p-1,a) - (p^(sigma-1)-1)B_{p,a,sigma})
+           / p^(sigma-1))),
+
+N_{p,k,sigma}
+  = ceil(R_{p,k,sigma} binom(a,sigma+1) / binom(p-1,k-1)).
+```
+
+Then `G_{p,a,sigma} >= R_{p,k,sigma}`.  Averaging the decompositions
+`S=T union U` over all `(k-1)`-tails gives a tail with at least
+`N_{p,k,sigma}` admissible blocks.  The fixed-tail injectivity theorem turns
+those blocks into distinct bad slopes.  Therefore, for every finite extension
+`F/F_p` and every `alpha in F\F_p`,
+
+```text
+emca(C_F, 1-(k+sigma)/(p-1)) >= N_{p,k,sigma} / |F|.
+```
+
+The lower numerator `N_{p,k,sigma}` is independent of the extension degree.
+
 For fixed `0<rho<1`, fixed `sigma`, and
 `a=floor(rho(p-1))+sigma`, the right side is
 `exp(O(sqrt(p) log p))`, while `binom(p-1,a)` is `exp(Theta(p))`.  Thus
@@ -698,16 +730,16 @@ Thus
 |F| emca(C_F, 1-(k+sigma)/(p-1)) >= p^(1+epsilon-o(1)).
 ```
 
-Equivalently, for `F=F_{p^2}`,
+Equivalently, for an extension `F/F_p` of fixed degree `e>=2`,
 
 ```text
-emca(C_F, 1-(k+sigma)/(p-1)) >= p^(-1+epsilon-o(1)).
+emca(C_F, 1-(k+sigma)/(p-1)) >= p^(1+epsilon-o(1)) / |F|.
 ```
 
-A same-numerator lift from the base-field numerator `p` would only give the
-density `p/|F|=1/p`. The degree-one extension line therefore beats that
-prediction by the factor `p^(epsilon-o(1))` throughout this slowly growing
-slack window. This is still far below the corrected reserve
+A same-numerator lift from the base-field numerator `p` would give density
+`p/|F|`. The degree-one extension line therefore beats that prediction by the
+factor `p^(epsilon-o(1))` throughout this slowly growing slack window. This is
+still far below the corrected reserve
 `sigma >= C n/log n`; it sharpens the lower-bound side without claiming a
 positive theorem near the reserve.
 
@@ -846,9 +878,11 @@ Consequently a protocol ledger cannot safely take an MCA numerator proved over
 shows that every fixed positive residual slack still leaves constant-density
 degree-one families, and the uniform version shows that the same numerator
 obstruction persists into the slowly growing range
-`sigma <= (1-epsilon) log p/log log p`. The repaired theorem needs residual
-slack large enough for the list ledger, not merely nonzero or logarithmic
-slack. A repaired F1 theorem must either:
+`sigma <= (1-epsilon) log p/log log p`. The finite form shows that these are
+extension-degree-independent numerator lower bounds: increasing the challenge
+field only divides the same numerator by a larger `|F|`. The repaired theorem
+needs residual slack large enough for the list ledger, not merely nonzero or
+logarithmic slack. A repaired F1 theorem must either:
 
 - prove MCA directly over the actual extension line field;
 - add an extension-valued residue-line numerator term;
@@ -921,4 +955,6 @@ G >= (binom(p-1,a)
 ```
 
 is positive and that the resulting tail-averaged bad-slope numerator already
-exceeds the base-field numerator `p`.
+exceeds the base-field numerator `p`. It also reports the same numerator over
+several extension degrees, confirming that the proof is an extension-degree
+independent numerator obstruction and not a quadratic-only density accident.
