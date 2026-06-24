@@ -59,20 +59,34 @@ The separation is exactly `rem:aper`, and my session's results are its tools:
 - **isotypic refinement** (`x1_isotypic_decomposition.md`): the separation is
   *per-character*, the subtlety to handle.
 
-## The exact correspondence to prove (the load-bearing step)
+## The exact correspondence to prove (the load-bearing step) — CORRECTED
 
-`rem:aper` defines "quotient-periodic" by the **denominator** `E ∈ F[X^M]`. My
-theorems are about **supports/words** (`K_M`-stable, ζ-equivariant) and **slopes**
-(confined). The step-2 work is to prove the three notions coincide:
+**Correction (verify-first, 2026-06-24).** I first guessed the separation was
+*slope-confinement*: "`E ∈ F[X^M]` ⟹ bad slopes confined to a proper subfield."
+`verify_x1_conjB_residue_confinement.py` **FALSIFIED** this: a periodic-denominator
+datum (`E = X²−γ`, generic extension `w,B`) gives 39 bad slopes, only 1 in `B`
+(mostly genuinely `F`-valued). So `rem:aper`'s separation is **not** confinement.
+
+**The corrected mechanism — quotient descent of the count.** A quotient-periodic
+line `E = E₀(X^M)` (`E ∈ F[X^M]`) is a *pullback through `x ↦ x^M`*; it descends
+to a residue line on the **quotient domain `H_{n/M}`** (with `Y = X^M`). So its
+bad-slope **count** equals the residue-line packing on `H_{n/M}` — a *smaller
+same-rate instance* (this is exactly my quotient reduction `Q_M(H_n)=Q_1(H_{n/M})`,
+now on the residue-line/packing side). That count **is** the quotient term
+(`thm:qnecessity`'s lower bound / Codex's `Quot_align_μ`). The non-periodic-
+denominator lines are `Λ^aper`, bounded by `prob:perfiber`/L1.
+
+So the step-2 lemma to prove is **the quotient descent**, not confinement:
 ```
-   E quotient-periodic (E ∈ F[X^M])
-        ⟺  the residue-line datum's support structure is K_M-periodic
-        ⟺  the slope set is confined (lies in a proper subfield),
-   per ζ-isotypic character, M | gcd(n,k).
+   E ∈ F[X^M]  ⟹  the line descends through x↦x^M to a residue line on H_{n/M},
+                  bad-slope-count-preserving  ⟹  contributes exactly the quotient term;
+   E not periodic for any M>1  ⟹  the line is in Λ^aper (L1-bounded).
 ```
-The confinement theorem gives the forward (periodic ⇒ confined) direction on the
-equivariant stratum; the exact biconditional for the residue-line `(E,B,w)` datum
-is the increment to build (with a small-field verifier first).
+My confinement theorem is a *related but distinct* phenomenon (base-vs-`F` slopes
+under fully `K_M`-equivariant data), useful as a sub-tool but not the separation
+itself. NEXT: build the quotient-descent (count-preserving) verifier; re-read
+`rem:aper` (1255) and `thm:qnecessity` (1323) precisely for the exact descent
+statement before proving it.
 
 ## Honest scope
 
