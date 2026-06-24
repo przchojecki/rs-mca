@@ -1014,6 +1014,62 @@ This is the orbit-level target for L1: after quotient-periodic and
 characteristic-zero strata are separated, one only has to control the frontier
 factors on orbit representatives, weighted by orbit size.
 
+## Quotient-Periodic Frontier Pullback
+
+The frontier ledger separates quotient-periodic mass recursively.  Let
+`n=dq`, and let `K_d={0,q,2q,...,(d-1)q}` be the size-`d` subgroup of
+`Z/nZ`.  Suppose `A` and `B` are full `K_d`-periodic lifts of
+`bar A, bar B subset Z/qZ`:
+
+```text
+A = union_{a in bar A} (a+K_d),        B = union_{b in bar B} (b+K_d).
+```
+
+For a primitive `n`-th root `zeta`, put `eta=zeta^d`; then `eta` is a
+primitive `q`-th root.  The locator polynomial factors as
+
+```text
+prod_{a in A}(X-zeta^a)
+  =
+prod_{a in bar A}(X^d-eta^a),
+```
+
+and similarly for `B`.  Consequently the elementary differences satisfy
+
+```text
+Delta_r^{(n)}(zeta)=0,                         d not dividing r,
+Delta_{dj}^{(n)}(zeta)=+- Delta_j^{(q)}(eta),  d dividing r.
+```
+
+The sign is irrelevant for vanishing.  With the convention
+`G_{p,0}^{(N)}=Phi_N`, for every prime `p` not dividing `n`,
+`Phi_n` and `Phi_q` are squarefree modulo `p`, and the map
+`zeta -> zeta^d` sends primitive `n`-th roots onto primitive `q`-th roots with
+fiber size `phi(n)/phi(q)`.  Hence
+
+```text
+deg G_{p,sigma}^{(n)}(A,B)
+  =
+  (phi(n)/phi(q)) deg G_{p,floor(sigma/d)}^{(q)}(bar A,bar B).
+```
+
+Therefore the frontier factors obey
+
+```text
+deg H_{p,sigma}^{(n)}(A,B)
+  =
+  (phi(n)/phi(q))
+  (deg G_{p,floor(sigma/d)}^{(q)}
+   - deg G_{p,floor((sigma+1)/d)}^{(q)}).
+```
+
+In particular, quotient-periodic frontier mass can occur only when the next
+rank crosses a multiple of `d`; at that moment it is exactly the pullback of a
+frontier layer on the quotient domain.  Thus quotient-periodic bad-prime mass
+is not a new aperiodic obstruction for L1.  It is a lower-order recursive
+ledger, leaving the genuinely new target on primitive/aperiodic template
+orbits.
+
 ## Full-Prefix Rigidity
 
 The endpoint of the filtration is rigid.  Let `p` be split, let `h in F_p`
@@ -1232,6 +1288,12 @@ The orbit quotient is much smaller: the `F_17` family is the union of three
 affine orbits of sizes `64,128,128`, each with frontier degrees `1,0` across
 the two layers, and the nonsplit non-characteristic-zero `F_9` family is the
 union of two affine orbits of sizes `16,32`, each with frontier degree `2`.
+The quotient-periodic pullback check verifies this recursion on three lifted
+examples: the `F_9` witness lifted from order `8` to `16` has nonzero frontier
+degrees `4,4` exactly at the two quotient ranks; the same witness lifted to
+order `32` has nonzero frontier degrees `8,8`; and the `F_17` representative
+lifted from order `16` to `32` has nonzero frontier degrees `12,2,2`, matching
+`phi(32)/phi(16)=2` times the quotient degree drops.
 
 The verifier separately checks this full-prefix endpoint for `n=16` at the
 split primes `17` and `97`, for every complement size `1 <= m <= 8`: at

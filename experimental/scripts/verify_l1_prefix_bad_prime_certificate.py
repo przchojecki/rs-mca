@@ -2257,6 +2257,21 @@ def common_root_frontier_factor_mod(
     return quotient or [1]
 
 
+def periodic_lift_subset(
+    subset: Sequence[int],
+    order: int,
+    kernel_size: int,
+) -> tuple[int, ...]:
+    if order % kernel_size != 0:
+        raise AssertionError("kernel size must divide order")
+    quotient_order = order // kernel_size
+    return tuple(sorted(
+        (value + fiber_idx * quotient_order) % order
+        for value in subset
+        for fiber_idx in range(kernel_size)
+    ))
+
+
 def frontier_layer_factor_profile(
     family: Iterable[tuple[tuple[int, ...], tuple[int, ...]]],
     order: int,
@@ -2296,6 +2311,176 @@ def frontier_layer_factor_profile(
             str(factor_degree): examples_by_degree[factor_degree]
             for factor_degree in sorted(examples_by_degree)
         },
+    }
+
+
+def check_quotient_periodic_frontier_pullback() -> dict[str, Any]:
+    def case_profile(
+        *,
+        name: str,
+        quotient_order: int,
+        kernel_size: int,
+        prime: int,
+        left: Sequence[int],
+        right: Sequence[int],
+        max_sigma: int,
+        expected_degrees: list[int],
+        expected_frontiers: list[int],
+    ) -> dict[str, Any]:
+        order = quotient_order * kernel_size
+        lifted_left = periodic_lift_subset(left, order, kernel_size)
+        lifted_right = periodic_lift_subset(right, order, kernel_size)
+        lift_multiplicity = euler_phi(order) // euler_phi(quotient_order)
+        if euler_phi(order) % euler_phi(quotient_order) != 0:
+            raise AssertionError("bad primitive-root lift multiplicity")
+
+        degree_rows = []
+        for sigma in range(max_sigma + 1):
+            quotient_sigma = sigma // kernel_size
+            lifted_degree = degree(common_root_gcd_mod(
+                lifted_left,
+                lifted_right,
+                order,
+                sigma,
+                prime,
+            ))
+            quotient_degree = degree(common_root_gcd_mod(
+                left,
+                right,
+                quotient_order,
+                quotient_sigma,
+                prime,
+            ))
+            predicted_degree = lift_multiplicity * quotient_degree
+            if lifted_degree != predicted_degree:
+                raise AssertionError("quotient-periodic degree pullback failed")
+            degree_rows.append({
+                "sigma": sigma,
+                "quotient_sigma": quotient_sigma,
+                "lifted_degree": lifted_degree,
+                "predicted_degree": predicted_degree,
+            })
+        if [row["lifted_degree"] for row in degree_rows] != expected_degrees:
+            raise AssertionError("bad quotient-periodic degree profile")
+
+        frontier_rows = []
+        for sigma in range(max_sigma):
+            quotient_sigma = sigma // kernel_size
+            next_quotient_sigma = (sigma + 1) // kernel_size
+            lifted_frontier_degree = degree(common_root_frontier_factor_mod(
+                lifted_left,
+                lifted_right,
+                order,
+                sigma,
+                prime,
+            ))
+            current_quotient_degree = degree(common_root_gcd_mod(
+                left,
+                right,
+                quotient_order,
+                quotient_sigma,
+                prime,
+            ))
+            next_quotient_degree = degree(common_root_gcd_mod(
+                left,
+                right,
+                quotient_order,
+                next_quotient_sigma,
+                prime,
+            ))
+            predicted_frontier_degree = lift_multiplicity * (
+                current_quotient_degree - next_quotient_degree
+            )
+            if lifted_frontier_degree != predicted_frontier_degree:
+                raise AssertionError("quotient-periodic frontier pullback failed")
+            frontier_rows.append({
+                "sigma": sigma,
+                "quotient_sigma": quotient_sigma,
+                "next_quotient_sigma": next_quotient_sigma,
+                "lifted_frontier_degree": lifted_frontier_degree,
+                "predicted_frontier_degree": predicted_frontier_degree,
+            })
+        if [
+            row["lifted_frontier_degree"]
+            for row in frontier_rows
+        ] != expected_frontiers:
+            raise AssertionError("bad quotient-periodic frontier profile")
+
+        nonzero_frontiers = [
+            row
+            for row in frontier_rows
+            if row["lifted_frontier_degree"] != 0
+        ]
+        for row in nonzero_frontiers:
+            if row["next_quotient_sigma"] == row["quotient_sigma"]:
+                raise AssertionError("frontier changed away from quotient rank")
+
+        return {
+            "name": name,
+            "prime": prime,
+            "order": order,
+            "quotient_order": quotient_order,
+            "kernel_size": kernel_size,
+            "lift_multiplicity": lift_multiplicity,
+            "left": list(lifted_left),
+            "right": list(lifted_right),
+            "quotient_left": list(left),
+            "quotient_right": list(right),
+            "degree_profile": degree_rows,
+            "frontier_profile": frontier_rows,
+            "nonzero_frontiers": nonzero_frontiers,
+        }
+
+    return {
+        "cases": [
+            case_profile(
+                name="F_9 witness lifted 8 -> 16",
+                quotient_order=8,
+                kernel_size=2,
+                prime=3,
+                left=(0, 1),
+                right=(2, 5),
+                max_sigma=4,
+                expected_degrees=[8, 8, 4, 4, 0],
+                expected_frontiers=[0, 4, 0, 4],
+            ),
+            case_profile(
+                name="F_9 witness lifted 8 -> 32",
+                quotient_order=8,
+                kernel_size=4,
+                prime=3,
+                left=(0, 1),
+                right=(2, 5),
+                max_sigma=8,
+                expected_degrees=[16, 16, 16, 16, 8, 8, 8, 8, 0],
+                expected_frontiers=[0, 0, 0, 8, 0, 0, 0, 8],
+            ),
+            case_profile(
+                name="F_17 packet representative lifted 16 -> 32",
+                quotient_order=16,
+                kernel_size=2,
+                prime=17,
+                left=(0, 1, 2, 3, 4, 14),
+                right=(5, 6, 7, 9, 12, 15),
+                max_sigma=12,
+                expected_degrees=[
+                    16,
+                    16,
+                    4,
+                    4,
+                    2,
+                    2,
+                    2,
+                    2,
+                    2,
+                    2,
+                    0,
+                    0,
+                    0,
+                ],
+                expected_frontiers=[0, 12, 0, 2, 0, 0, 0, 0, 0, 2, 0, 0],
+            ),
+        ],
     }
 
 
@@ -4393,6 +4578,9 @@ def build_report() -> dict[str, Any]:
         ),
         "extension_field_row_accounting": check_extension_field_row_accounting(),
         "prefix_depth_filtration": check_prefix_depth_filtration(),
+        "quotient_periodic_frontier_pullback": (
+            check_quotient_periodic_frontier_pullback()
+        ),
         "prefix_radical_frontier_drop": check_prefix_radical_frontier_drop(),
         "frontier_factor_decomposition": check_frontier_factor_decomposition(),
         "frontier_orbit_layer_decomposition": (
@@ -4501,6 +4689,26 @@ def print_human(report: dict[str, Any]) -> None:
         for row in filtration["row_profile"]
     }
     print(f"prefix_depth_pairs={depth_pairs}")
+    quotient_pullback = report["quotient_periodic_frontier_pullback"]
+    quotient_pullback_summary = [
+        {
+            "name": case["name"],
+            "n": case["order"],
+            "q": case["quotient_order"],
+            "d": case["kernel_size"],
+            "mult": case["lift_multiplicity"],
+            "nonzero_frontiers": [
+                (
+                    row["sigma"],
+                    row["lifted_frontier_degree"],
+                    row["next_quotient_sigma"],
+                )
+                for row in case["nonzero_frontiers"]
+            ],
+        }
+        for case in quotient_pullback["cases"]
+    ]
+    print(f"quotient_periodic_frontier_pullback={quotient_pullback_summary}")
     frontier = report["prefix_radical_frontier_drop"]
     print(
         "prefix_radical_frontier_drop="

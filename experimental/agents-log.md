@@ -89,8 +89,9 @@ Keep entries concise and link to the relevant files.
   `H_{p,sigma}=G_{p,sigma}/G_{p,sigma+1}` realizing those drops, the
   telescoping decomposition of radical incidence to the full-prefix rigid
   endpoint, its row-level and affine-orbit frontier-layer decompositions for
-  dilation-stable families, and a bounded exact split-prime scan for the
-  `n=16,m=6,sigma=4` row.
+  dilation-stable families, the quotient-periodic frontier pullback reducing
+  periodic lifted frontier mass to lower-order quotient domains, and a bounded
+  exact split-prime scan for the `n=16,m=6,sigma=4` row.
 - **How it is useful:** This supplies the finite-field layer complementary to
   characteristic-zero L1 reductions. It turns robustly aperiodic modular
   collisions into algebraic norm/resultant divisibility events, matching a
@@ -99,7 +100,9 @@ Keep entries concise and link to the relevant files.
   for the valuation budgets of these exact common-ideal indices after
   quotient-periodic and characteristic-zero templates are
   removed, using the prefix-depth filtration to shrink the candidate bad-prime
-  support as `sigma` grows toward the full-prefix rigid endpoint.
+  support as `sigma` grows toward the full-prefix rigid endpoint and the
+  quotient-periodic pullback to remove recursively induced periodic frontier
+  layers before attacking the primitive aperiodic orbit representatives.
 
 ### 2026-06-23 - Cycle119 admissibility review
 
