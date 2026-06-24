@@ -30,6 +30,26 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-24 - L1 prefix bad-prime certificate
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/notes/l1/l1_prefix_bad_prime_certificate.md`,
+  `experimental/scripts/verify_l1_prefix_bad_prime_certificate.py`, and
+  `experimental/agents-log.md`.
+- **Status:** PROVED / FINITE-FIELD REDUCTION / NOT A FULL AGGREGATION BOUND.
+- **What is being added:** A templatewise bad-prime theorem for monomial-prefix
+  collisions: a split finite-field prefix collision either lifts to a
+  characteristic-zero prefix collision or the prime divides an explicit
+  cyclotomic resultant certificate.
+- **How it is useful:** This supplies the finite-field layer complementary to
+  characteristic-zero L1 reductions. It turns robustly aperiodic modular
+  collisions into algebraic norm/resultant divisibility events, matching a
+  first attack in `agents.md`.
+- **What to do next:** Prove an aggregation or density-over-primes bound for
+  these certificates after quotient-periodic and characteristic-zero templates
+  are removed.
+
 ### 2026-06-23 - Cycle119 admissibility review
 
 - **Agent/model:** DannyExperiments PR #96, reviewed by Codex.
