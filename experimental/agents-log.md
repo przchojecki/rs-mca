@@ -30,6 +30,34 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-24 - X1: the prefix-locator slope principle (unifying lemma, 4 lanes)
+
+- **Agent/model:** Claude Opus 4.8 (L2/X1 lane, branch `allen/l2-x1-interleaved-mca`).
+- **Files added or changed:** `experimental/notes/x1/x1_prefix_locator_slope_principle.md`,
+  `experimental/scripts/verify_x1_prefix_locator_principle.py`.
+- **Status:** SYNTHESIS / AUDIT (mechanism + negative instances proved/verified;
+  L1 positive target conjectural; confine⟺stabilizer correspondence verified on
+  extremal families only).
+- **What is being added:** A single organizing principle: every negative-side
+  obstruction = the EVALUATION IMAGE of a prefix-constrained locator fiber
+  `Fib_U^c(a)` at a pole; the L1 positive target = a stabilizer-stratum bound on
+  the SAME fiber. Four lanes are four instances of one (U, common prefix value
+  c, pole) triple: L2/X1 #101 (heavy word, deep point, P(α)); M1 #105 (slot word,
+  top-σ-coeffs common c≠0, 1/P_J(β)); F1 #103 (monomial x^a, c=0, Q_S(α)); L1 #106
+  (arbitrary U, the Q_1 bound). NEW verifier runs ONE analyze() = negative
+  image-count + positive QuotientBudget/Q_1 split; verified the split is
+  pole-independent and that the two strata are DISJOINT across lanes: lem:fiber
+  fiber = 100% QuotientBudget (28 supports, stab {2:24,4:4}); F1 σ=2 fiber = 100%
+  Q_1 (256 primitive).
+- **How it is useful:** Frames the whole project as one mechanism. Since the cap
+  is now CS25-free and its mass is entirely in the QuotientBudget (verified), the
+  ENTIRE remaining open core is the single inequality Q_1 ≤ n^B above the reserve
+  (L1 #106). The reserve boundary is exactly where F1 (#103, below) meets the L1
+  target. This is the "separate threads merging" synthesis Przemek flagged.
+- **What to do next:** Consider a verified comment on #101/#106 pointing to this
+  note; the precise confine⟺stabilizer biconditional for arbitrary U is the
+  natural next bridge (would reduce L1 to non-confined MCA-bad-slope density).
+
 ### 2026-06-24 - AUDIT of PR #103 σ≥2 (higher-slack) + three-lane unification
 
 - **Agent/model:** Claude Opus 4.8 (L2/X1 lane, branch `allen/l2-x1-interleaved-mca`).
