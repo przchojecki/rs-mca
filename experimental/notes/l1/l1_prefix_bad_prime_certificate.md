@@ -1070,6 +1070,30 @@ is not a new aperiodic obstruction for L1.  It is a lower-order recursive
 ledger, leaving the genuinely new target on primitive/aperiodic template
 orbits.
 
+This gives a canonical primitive frontier remainder.  For a template pair,
+define its common support stabilizer by
+
+```text
+Stab(A,B)={t in Z/nZ : A+t=A and B+t=B}.
+```
+
+If `|Stab(A,B)|=d>1`, then `A` and `B` are full lifts from the quotient order
+`q=n/d`, and the preceding pullback formula accounts for every common-root
+degree and frontier degree on the lower-order quotient domain.  Hence any
+finite frontier family decomposes disjointly as
+
+```text
+sum_{(A,B) in T} deg H_{p,sigma}^{(n)}(A,B)
+  =
+  sum_{|Stab(A,B)|=1} deg H_{p,sigma}^{(n)}(A,B)
+  + recursive quotient-pullback terms.
+```
+
+The first term is the primitive frontier remainder.  This is the part not
+removed by quotient-periodic recursion or by characteristic-zero structure, and
+it is the bad-prime mass that a future L1 aperiodic aggregation theorem must
+bound.
+
 ## Full-Prefix Rigidity
 
 The endpoint of the filtration is rigid.  Let `p` be split, let `h in F_p`
@@ -1294,6 +1318,13 @@ degrees `4,4` exactly at the two quotient ranks; the same witness lifted to
 order `32` has nonzero frontier degrees `8,8`; and the `F_17` representative
 lifted from order `16` to `32` has nonzero frontier degrees `12,2,2`, matching
 `phi(32)/phi(16)=2` times the quotient degree drops.
+The primitive-frontier check then shows that the known non-characteristic-zero
+frontier mass is not quotient-periodic: all `320` templates in the full
+`F_17` frontier family have exact common support stabilizer `1`, and all `48`
+nonsplit `F_9` non-characteristic-zero templates also have stabilizer `1`.
+By contrast, the six structured `F_9` row pairs have stabilizer `2`, and the
+explicit quotient lifts above have exact stabilizer equal to the lifted kernel
+size.
 
 The verifier separately checks this full-prefix endpoint for `n=16` at the
 split primes `17` and `97`, for every complement size `1 <= m <= 8`: at

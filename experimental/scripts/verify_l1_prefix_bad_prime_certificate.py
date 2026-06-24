@@ -2272,6 +2272,31 @@ def periodic_lift_subset(
     ))
 
 
+def support_stabilizer_shifts(
+    subset: Sequence[int],
+    order: int,
+) -> tuple[int, ...]:
+    members = set(subset)
+    return tuple(
+        shift
+        for shift in range(order)
+        if {((value + shift) % order) for value in members} == members
+    )
+
+
+def pair_support_stabilizer_shifts(
+    left: Sequence[int],
+    right: Sequence[int],
+    order: int,
+) -> tuple[int, ...]:
+    right_stabilizer = set(support_stabilizer_shifts(right, order))
+    return tuple(
+        shift
+        for shift in support_stabilizer_shifts(left, order)
+        if shift in right_stabilizer
+    )
+
+
 def frontier_layer_factor_profile(
     family: Iterable[tuple[tuple[int, ...], tuple[int, ...]]],
     order: int,
@@ -2481,6 +2506,224 @@ def check_quotient_periodic_frontier_pullback() -> dict[str, Any]:
                 expected_frontiers=[0, 12, 0, 2, 0, 0, 0, 0, 0, 2, 0, 0],
             ),
         ],
+    }
+
+
+def check_primitive_frontier_remainder() -> dict[str, Any]:
+    split_prime = 17
+    split_order = 16
+    split_sigma = 4
+    packet = finite_prefix_collision_pairs(
+        prime=split_prime,
+        order=split_order,
+        complement_size=6,
+        sigma=split_sigma,
+    )
+    packet_pairs = [
+        normalized_pair(pair["left"], pair["right"])
+        for pair in packet["pairs"]
+    ]
+    packet_stabilizers = Counter(
+        len(pair_support_stabilizer_shifts(left, right, split_order))
+        for left, right in packet_pairs
+    )
+    if dict(packet_stabilizers) != {1: 40}:
+        raise AssertionError("F_17 fixed-root packet is not primitive")
+
+    split_family: set[tuple[tuple[int, ...], tuple[int, ...]]] = set()
+    for root in primitive_order_roots(split_prime, split_order):
+        row = finite_prefix_collision_pairs(
+            prime=split_prime,
+            order=split_order,
+            complement_size=6,
+            sigma=split_sigma,
+            root=root,
+        )
+        for pair in row["pairs"]:
+            split_family.add(normalized_pair(pair["left"], pair["right"]))
+    split_stabilizers = Counter(
+        len(pair_support_stabilizer_shifts(left, right, split_order))
+        for left, right in split_family
+    )
+    if dict(split_stabilizers) != {1: 320}:
+        raise AssertionError("F_17 split frontier family is not primitive")
+
+    split_frontier_sum = sum(
+        degree(common_root_frontier_factor_mod(
+            left,
+            right,
+            split_order,
+            split_sigma,
+            split_prime,
+        ))
+        for left, right in split_family
+    )
+    if split_frontier_sum != 320:
+        raise AssertionError("bad primitive F_17 frontier sum")
+
+    split_orbit_groups: dict[tuple[tuple[int, ...], tuple[int, ...]], set[
+        tuple[tuple[int, ...], tuple[int, ...]]
+    ]]
+    split_orbit_groups = defaultdict(set)
+    for left, right in split_family:
+        split_orbit_groups[affine_orbit_key(left, right, split_order)].add(
+            (left, right)
+        )
+    split_orbit_rows = []
+    for representative, members in split_orbit_groups.items():
+        stabilizer_size = len(pair_support_stabilizer_shifts(
+            representative[0],
+            representative[1],
+            split_order,
+        ))
+        if stabilizer_size != 1:
+            raise AssertionError("F_17 frontier orbit is not primitive")
+        frontier_degree = degree(common_root_frontier_factor_mod(
+            representative[0],
+            representative[1],
+            split_order,
+            split_sigma,
+            split_prime,
+        ))
+        split_orbit_rows.append({
+            "orbit_size": len(members),
+            "representative": [
+                list(representative[0]),
+                list(representative[1]),
+            ],
+            "support_stabilizer_size": stabilizer_size,
+            "frontier_factor_degree": frontier_degree,
+            "weighted_frontier_degree": len(members) * frontier_degree,
+        })
+    split_orbit_rows.sort(key=lambda item: (
+        item["orbit_size"],
+        item["representative"],
+    ))
+    if [
+        (
+            row["orbit_size"],
+            row["support_stabilizer_size"],
+            row["frontier_factor_degree"],
+        )
+        for row in split_orbit_rows
+    ] != [(64, 1, 1), (128, 1, 1), (128, 1, 1)]:
+        raise AssertionError("bad primitive F_17 orbit profile")
+
+    nonsplit_prime = 3
+    nonsplit_order = 8
+    nonsplit_sigma = 1
+    nonsplit_nonchar: set[tuple[tuple[int, ...], tuple[int, ...]]] = set()
+    nonsplit_structured: set[tuple[tuple[int, ...], tuple[int, ...]]] = set()
+    for root in gf9_primitive_order_roots(nonsplit_order):
+        row = finite_prefix_collision_pairs_gf9(
+            order=nonsplit_order,
+            complement_size=2,
+            sigma=nonsplit_sigma,
+            root=root,
+        )
+        for pair in row["pairs"]:
+            key = normalized_pair(pair["left"], pair["right"])
+            certificate = bad_prime_certificate(
+                key[0],
+                key[1],
+                nonsplit_order,
+                nonsplit_sigma,
+            )
+            if certificate["char_zero_collision"]:
+                nonsplit_structured.add(key)
+            else:
+                nonsplit_nonchar.add(key)
+    nonsplit_nonchar_stabilizers = Counter(
+        len(pair_support_stabilizer_shifts(left, right, nonsplit_order))
+        for left, right in nonsplit_nonchar
+    )
+    nonsplit_structured_stabilizers = Counter(
+        len(pair_support_stabilizer_shifts(left, right, nonsplit_order))
+        for left, right in nonsplit_structured
+    )
+    if dict(nonsplit_nonchar_stabilizers) != {1: 48}:
+        raise AssertionError("F_9 non-char frontier is not primitive")
+    if dict(nonsplit_structured_stabilizers) != {2: 6}:
+        raise AssertionError("F_9 structured row did not have stabilizer 2")
+    nonsplit_frontier_sum = sum(
+        degree(common_root_frontier_factor_mod(
+            left,
+            right,
+            nonsplit_order,
+            nonsplit_sigma,
+            nonsplit_prime,
+        ))
+        for left, right in nonsplit_nonchar
+    )
+    if nonsplit_frontier_sum != 96:
+        raise AssertionError("bad primitive F_9 frontier sum")
+
+    lifted_cases = [
+        {
+            "name": "F_9 witness lifted 8 -> 16",
+            "order": 16,
+            "kernel_size": 2,
+            "left": periodic_lift_subset((0, 1), 16, 2),
+            "right": periodic_lift_subset((2, 5), 16, 2),
+        },
+        {
+            "name": "F_9 witness lifted 8 -> 32",
+            "order": 32,
+            "kernel_size": 4,
+            "left": periodic_lift_subset((0, 1), 32, 4),
+            "right": periodic_lift_subset((2, 5), 32, 4),
+        },
+        {
+            "name": "F_17 packet representative lifted 16 -> 32",
+            "order": 32,
+            "kernel_size": 2,
+            "left": periodic_lift_subset(
+                (0, 1, 2, 3, 4, 14),
+                32,
+                2,
+            ),
+            "right": periodic_lift_subset(
+                (5, 6, 7, 9, 12, 15),
+                32,
+                2,
+            ),
+        },
+    ]
+    for case in lifted_cases:
+        stabilizer_size = len(pair_support_stabilizer_shifts(
+            case["left"],
+            case["right"],
+            case["order"],
+        ))
+        if stabilizer_size != case["kernel_size"]:
+            raise AssertionError("periodic lift has wrong exact stabilizer")
+        case["support_stabilizer_size"] = stabilizer_size
+        case["left"] = list(case["left"])
+        case["right"] = list(case["right"])
+
+    return {
+        "split_case": {
+            "field": "F_17",
+            "prime": split_prime,
+            "order": split_order,
+            "packet_stabilizer_counts": dict(sorted(packet_stabilizers.items())),
+            "family_stabilizer_counts": dict(sorted(split_stabilizers.items())),
+            "primitive_frontier_degree_sum": split_frontier_sum,
+            "primitive_frontier_orbits": split_orbit_rows,
+        },
+        "nonsplit_case": {
+            "field": "F_9 = F_3[i]/(i^2+1)",
+            "prime": nonsplit_prime,
+            "order": nonsplit_order,
+            "nonchar_stabilizer_counts": dict(
+                sorted(nonsplit_nonchar_stabilizers.items())
+            ),
+            "structured_stabilizer_counts": dict(
+                sorted(nonsplit_structured_stabilizers.items())
+            ),
+            "primitive_frontier_degree_sum": nonsplit_frontier_sum,
+        },
+        "periodic_lift_cases": lifted_cases,
     }
 
 
@@ -4581,6 +4824,7 @@ def build_report() -> dict[str, Any]:
         "quotient_periodic_frontier_pullback": (
             check_quotient_periodic_frontier_pullback()
         ),
+        "primitive_frontier_remainder": check_primitive_frontier_remainder(),
         "prefix_radical_frontier_drop": check_prefix_radical_frontier_drop(),
         "frontier_factor_decomposition": check_frontier_factor_decomposition(),
         "frontier_orbit_layer_decomposition": (
@@ -4709,6 +4953,26 @@ def print_human(report: dict[str, Any]) -> None:
         for case in quotient_pullback["cases"]
     ]
     print(f"quotient_periodic_frontier_pullback={quotient_pullback_summary}")
+    primitive_frontier = report["primitive_frontier_remainder"]
+    lifted_stabilizers = [
+        (
+            case["name"],
+            case["support_stabilizer_size"],
+        )
+        for case in primitive_frontier["periodic_lift_cases"]
+    ]
+    print(
+        "primitive_frontier_remainder="
+        "split_stabilizers="
+        f"{primitive_frontier['split_case']['family_stabilizer_counts']}, "
+        "split_primitive_degree="
+        f"{primitive_frontier['split_case']['primitive_frontier_degree_sum']}, "
+        "f9_nonchar_stabilizers="
+        f"{primitive_frontier['nonsplit_case']['nonchar_stabilizer_counts']}, "
+        "f9_structured_stabilizers="
+        f"{primitive_frontier['nonsplit_case']['structured_stabilizer_counts']}, "
+        f"lifted_stabilizers={lifted_stabilizers}"
+    )
     frontier = report["prefix_radical_frontier_drop"]
     print(
         "prefix_radical_frontier_drop="
