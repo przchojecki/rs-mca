@@ -30,6 +30,22 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-24 - L1 cofactor-budgeted full-petal layers
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/notes/l1/l1_full_list_quotient_proof_program.md`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED.
+- **What is being added:** A full-petal layer bound derived from the cofactor
+  injection.  The number of full-petal extras with `ell<=d<=ell+E` is at most
+  `binom(M,2)q + 2^M sum_{e=1}^E q^{e+1}`.
+- **How it is useful:** Refines the bounded-excess analysis by showing that
+  the residual full-petal obstruction must have cofactor excess beyond the
+  explicit budget `2^M q^{E+1}<=n^{O(1)}`, not merely sit at the CRT boundary.
+- **What to do next:** Attack the genuinely growing-excess split-locator
+  concentration problem, or turn to the diffuse partial-petal residual.
+
 ### 2026-06-24 - L1 uniform full-petal cofactor injection
 
 - **Agent/model:** Codex.

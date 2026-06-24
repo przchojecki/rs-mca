@@ -1392,6 +1392,68 @@ The remaining full-petal task is therefore not a rank or boundary artifact:
 it is to bound how often split monic degree-`d` locators can land in the
 cofactor image as `d-ell` grows.
 
+## Lemma 16. Cofactor-Budgeted Full-Petal Layers
+
+Status: PROVED.
+
+Assume the sunflower has no unused background.  Fix an integer `E>=0`.  The
+number of non-planted listed codewords whose touched petals are all full and
+whose core defect satisfies
+
+```text
+ell <= d <= ell+E
+```
+
+is at most
+
+```text
+binom(M,2)q + 2^M sum_{e=1}^{E} q^{e+1}.
+```
+
+For `E=0`, the sum is empty.  In particular, at the L1 lower cutoff, where
+`M=O(log n)` and `q=poly(n)`, every fixed-`E` full-petal layer is polynomially
+bounded.  More generally, the same conclusion holds for any varying `E=E(n)`
+such that
+
+```text
+2^M q^{E+1} <= n^{O(1)}.
+```
+
+### Proof
+
+The layer `d=ell` is bounded by Lemma 9, giving the first term
+`binom(M,2)q`.
+
+Now put `d=ell+e` with `1<=e<=E`.  A full-petal listed codeword touching
+exactly two petals would have `d=ell` by Lemma 7, so every such codeword has
+an exact touched-petal set `I` with `|I|>=3`.  For each fixed `I`, Lemma 15
+gives at most
+
+```text
+q^{d-ell+1} = q^{e+1}
+```
+
+listed codewords.  There are at most `2^M` choices of `I`, so summing over
+`e=1,...,E` gives the displayed bound.
+
+The polynomiality assertions follow directly from the displayed estimate and
+the lower-cutoff bound `M=O(log n)`.
+
+### Consequences
+
+Lemma 10 already showed that fixed-excess full-petal layers are polynomially
+bounded.  The cofactor-injection argument refines the dependence on the
+excess: the full-petal residual cannot appear until the excess leaves the
+explicit budget
+
+```text
+2^M q^{E+1} <= n^{O(1)}.
+```
+
+Thus a future counterexample or proof target in the full-petal regime should
+look for genuinely growing cofactor excess, not merely the top-defect boundary
+or bounded-excess CRT rank loss.
+
 ## Development Ledger
 
 - **Conjecture 1 full-list primitive remainder:** CONJECTURAL.  Main proof
@@ -1435,5 +1497,7 @@ cofactor image as `d-ell` grows.
   its top-coefficient target at `d=(t-1)ell`.
 - **Uniform full-petal cofactor injection:** PROVED.  Gives the fixed-`I,d`
   bound `q^{d-ell+1}` throughout `ell<=d<=(t-1)ell`.
+- **Cofactor-budgeted full-petal layers:** PROVED.  Bounds full-petal layers
+  with `d-ell<=E` by `binom(M,2)q + 2^M sum_{e=1}^E q^{e+1}`.
 - **Mixed-petal sunflower amplification:** CONJECTURAL.  Next focused bound to
   prove or refute in the large-defect regime.
