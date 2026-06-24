@@ -131,13 +131,17 @@ L1 target sit on the two sides of the same threshold, on the same object.
 
 - The **L1 conjecture (`Q_1 ≤ n^B`) is open**; evidence is small-`n` with no
   reserve-cleared primitive alert.
-- The **slope-confinement ⟺ stabilizer correspondence** (QuotientBudget ↔
-  confined `B`-rational slopes via `lem:confine`; `Q_1` ↔ genuinely `F`-valued
-  via `cor:Fvalued`) is verified on the extremal families (`lem:fiber` periodic →
-  confined; F1 primitive → `F`-valued; folded words → QuotientBudget per #106),
-  but the biconditional for **arbitrary** `U` is not proven. Making it precise is
-  the natural next bridge — it would turn the L1 conjecture into a statement
-  purely about non-confined MCA-bad-slope density.
+- The **slope-confinement ⟺ stabilizer correspondence** is now **proved in the
+  forward direction, but only per-character** (`x1_confinement_from_stabilizer.md`):
+  a ζ-equivariant word on a `K_d`-stable support gives a confined (folded) slope,
+  and any word decomposes into `d` isotypic components each of which folds. So the
+  correspondence is exact on the **equivariant stratum** (where the cap mass /
+  `lem:fiber` / folded quotient words live) — there QuotientBudget ↔ confined. It
+  is **not** a blanket support-by-support equivalence: a genuinely multi-isotypic
+  word can have a quotient-periodic support with a **non-confined** slope (verified
+  witness). So "L1 = non-confined MCA-bad-slope density" is rigorous on the
+  equivariant stratum; the remaining gap is the non-equivariant periodic supports
+  (show their mass is poly, or that they also confine).
 - This note **organizes**; it proves no new theorem. Its value is the single
   frame + the verified stratum assignment.
 

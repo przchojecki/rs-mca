@@ -67,6 +67,39 @@ eigen-character.
   `S` can still yield a confined slope for special `α`. What is clean is: *on the
   equivariant words*, periodicity ⟹ confinement.
 
+## Isotypic refinement — confinement is *per-character*, not per-support
+
+How far does this reach? Decompose any `t : S → F` on a `K_d`-stable `S` into its
+`d` ζ-isotypic components by the finite-Fourier projection
+```
+t_m(x) = (1/d) Σ_{j=0}^{d-1} ζ^{-jm} t(ζ^j x),     t = Σ_m t_m,
+```
+well-defined because `S` is `K_d`-stable and `p ∤ d` (so `1/d ∈ F`). Each `t_m`
+is ζ-equivariant with eigen-character `ζ^m`, so by the theorem its interpolant is
+folded, `X^{r_m} G_m(X^d)`, `r_m = m mod d`. Hence for **any** received word `U`
+and any `K_d`-stable `S ∈ Fib_U(a)`,
+```
+P_S(X) = Σ_{m=0}^{d-1} X^{r_m} G_m(X^d),     z_S = Σ_{m=0}^{d-1} α^{r_m} G_m(α^d)
+```
+— a sum of `d` confined pieces. This is proved (it is the theorem applied to each
+component) and verified in `verify_x1_isotypic_decomposition.py`.
+
+**Consequence (the honest scope).** Confinement is a statement *per isotypic
+character*, not per support:
+- `U` **single-isotypic** (equivariant) ⟹ `z_S` is **one** folded term ⟹
+  **confined** (verified: single-isotypic `m=0`, B-rational, `α^d∈B` ⟹ `z_S∈B`
+  for **all** amplitudes).
+- `U` **general** ⟹ `z_S` is a sum of `d` confined pieces, which **need not be
+  confined** (verified: a genuinely 2-isotypic word gives `z_S ∉ B`).
+
+So the combinatorial `QuotientBudget`/`Q_1` split (by support stabilizer) does
+**not** exactly equal the slope confined/non-confined split. They coincide on the
+**equivariant stratum** — which is exactly where the cap mass (`lem:fiber`, folded
+quotient words) lives — but a non-equivariant word can have a quotient-periodic
+support with a non-confined slope. This **guards the unifying picture against
+overclaiming**: "confined ⟺ quotient-periodic" is true per-character / on the
+equivariant words, not as a blanket support-by-support equivalence.
+
 ## Why this matters for L1
 
 The QuotientBudget stratum (`x1_prefix_locator_slope_principle.md`) is populated
@@ -77,13 +110,16 @@ says the bad slopes are **confined** (lie in a proper subfield / `B`). Therefore
 > genuinely non-confined, full-`F`-density MCA-bad slopes can come only from the
 > **primitive `Q_1` stratum**.
 
-So the L1 conjecture `Q_1 ≤ n^B` (above the reserve) is precisely the statement
-that *the non-confined MCA-bad-slope mass is polynomially small*. This converts
-the L1 positive target from a raw list bound into a statement about
-**non-confined slope density** — and the confined part is now a theorem (modulo
-equivariance), not a conjecture. That is concrete progress on isolating the
-positive core: half of the correspondence (the structured/confined half) is
-proved.
+So, **restricted to the equivariant (single-isotypic) stratum**, the L1
+conjecture `Q_1 ≤ n^B` (above the reserve) is precisely "the non-confined
+MCA-bad-slope mass is polynomially small." The confined part is now a theorem
+(modulo equivariance), not a conjecture. The honest caveat (above): the exact
+"confined ⟺ quotient-periodic" alignment is per-character, so the clean reduction
+is rigorous on the equivariant words that carry the cap mass; pinning the general
+non-equivariant periodic supports (showing their mass is poly, or that they too
+confine) is the remaining gap. Either way this is concrete progress on isolating
+the positive core: the structured/confined half is proved on the stratum that
+matters.
 
 ## Verification
 
@@ -93,16 +129,23 @@ m=0 (r=0): equivariant data on K_4-stable S => interpolant folded at i==0 mod 4;
 m=2 (r=2): same, folded at i==2 mod 4 (tests r != 0).
 negative control: non-equivariant data on the same S => UNfolded (residues {0,1,2,3}); equivariance is necessary.
 ```
-All PASS.
+`verify_x1_isotypic_decomposition.py` (exact `F_{17^2}`, `d = 4`): the isotypic
+decomposition `data = Σ_m t_m`, each component equivariant + folded,
+`P_S = Σ_m X^{r_m} G_m(X^d)`, `z_S = Σ_m α^{r_m} G_m(α^d)`; single-isotypic
+`m=0` confined for all amplitudes; a 2-isotypic word escapes `B` (the
+QuotientBudget is not entirely confined per-support). All PASS.
 
 ## Ledger impact
 
 - **`lem:confine`/`cor:Fvalued` (generalized + proved):** from heavy-word period
   `a_q` to arbitrary `d | n`; the precise hypothesis (word ζ-equivariance) is
   isolated and shown necessary.
-- **L1 (sharpened):** the QuotientBudget bad slopes are confined (theorem);
-  `Q_1 ≤ n^B` ⟺ non-confined MCA-bad-slope density is poly. The forward half of
-  the confine ⟺ stabilizer correspondence is closed.
+- **L1 (sharpened):** on the equivariant stratum the QuotientBudget bad slopes
+  are confined (theorem); `Q_1 ≤ n^B` ⟺ non-confined MCA-bad-slope density is
+  poly. The forward half of the confine ⟺ stabilizer correspondence is closed,
+  and shown to be *per-character* (isotypic refinement), not a blanket
+  support-by-support equivalence.
 ```bash
 python3 experimental/scripts/verify_x1_confine_from_stabilizer.py
+python3 experimental/scripts/verify_x1_isotypic_decomposition.py
 ```

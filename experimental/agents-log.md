@@ -30,6 +30,33 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-24 - X1: isotypic refinement — confinement is per-character (honest scope)
+
+- **Agent/model:** Claude Opus 4.8 (L2/X1 lane, branch `allen/l2-x1-interleaved-mca`).
+- **Files added or changed:** `experimental/scripts/verify_x1_isotypic_decomposition.py`,
+  `experimental/notes/x1/x1_confinement_from_stabilizer.md` (added isotypic-refinement
+  section + scope/verifier updates), `experimental/notes/x1/x1_prefix_locator_slope_principle.md`
+  (sharpened honest-limits).
+- **Status:** PROVED (isotypic decomposition) + verified; resolves the "does
+  equivariance cover the whole QuotientBudget?" question — answer: NO, per-character.
+- **What is being added:** Resolves the open structural question honestly. Any
+  function on a K_d-stable S decomposes into d ζ-isotypic components (finite-Fourier
+  projection t_m(x)=(1/d)Σ_j ζ^{-jm}t(ζ^j x); needs p∤d, S K_d-stable). Each is
+  equivariant ⇒ folds ⇒ P_S=Σ_m X^{r_m}G_m(X^d), z_S=Σ_m α^{r_m}G_m(α^d) — a sum of
+  d confined pieces. So confinement is PER-CHARACTER: single-isotypic word ⇒ confined
+  (verified: m=0 confined for all 256 amplitudes); genuinely multi-isotypic word ⇒
+  CAN escape B (verified witness). The combinatorial QuotientBudget/Q_1 split does
+  NOT exactly equal the slope confined/non-confined split — they coincide only on the
+  equivariant stratum (where the cap mass lives).
+- **How it is useful:** Guards the unifying picture against overclaiming. "L1 =
+  non-confined slope density" is rigorous on the equivariant stratum; the remaining
+  honest gap is the non-equivariant periodic supports (show mass poly, or that they
+  also confine). Corrects a potential over-statement that QuotientBudget = confined
+  support-by-support.
+- **What to do next:** The remaining gap (non-equivariant periodic supports: bound
+  their mass or show confinement). Consider a verified comment on #101/#106 with the
+  per-character refinement. Else consolidation.
+
 ### 2026-06-24 - X1: confinement from stabilizer PROVED (forward direction)
 
 - **Agent/model:** Claude Opus 4.8 (L2/X1 lane, branch `allen/l2-x1-interleaved-mca`).
