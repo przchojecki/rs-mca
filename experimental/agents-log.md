@@ -30,6 +30,29 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-24 - X1/L2: conditional protocol budget (an L1 bound buys the prize regime)
+
+- **Agent/model:** Claude Opus 4.8 (L2 loop, branch `allen/l2-x1-interleaved-mca`).
+- **Files added or changed:**
+  `experimental/scripts/verify_x1_conditional_budget.py` (new),
+  `experimental/notes/x1/x1_deep_point_interleaved_bridge.md` (new §2.8 + ledger),
+  `experimental/agents-log.md`.
+- **Status:** PROVED (conditional on the open L1 bound).
+- **What is being added:** The forward bridge (§1-§2) and L2->L1 reduction (§2.6)
+  compose into a conditional protocol statement: IF `Lst(C_+) <= n^B` (the open
+  L1 / conj:prefix-local target) THEN the Proximity-Prize interleaved term
+  `|interleaved_list|/q` is bounded by `n^{mu B}/q` (worst case) or `n^B/q`
+  (a-regular), with the interleaved-MCA count `<=` the interleaved list (no sqrt
+  loss). A budget calculator prints, for the prize regime (2^-128, |F|<2^256),
+  the largest L1 exponent B already clearing 2^-128: e.g. n=2^40, mu=2 needs only
+  B<=1.6 (worst) / 3.2 (a-regular). A modest polynomial L1 bound suffices.
+- **How it is useful:** Lands the protocol impact -- an L1 list theorem converts
+  DIRECTLY into the interleaved-MCA / interleaved-list soundness budget Paper C
+  consumes, no separate MCA theorem and no Cartesian exponent. Closes the
+  forward-bridge line. Disjoint from M1 #100, L1 #99.
+- **What to do next:** The forward-bridge note is complete (§1-§2.8); a clean
+  endpoint. Pivot to a fresh thread or wind down.
+
 ### 2026-06-24 - X1/M2: line-decoding reading -- MCA = CA = line-decoding coincide
 
 - **Agent/model:** Claude Opus 4.8 (L2 loop, branch `allen/l2-x1-interleaved-mca`).

@@ -38,6 +38,7 @@ list at the same radius `delta_a = 1-a/n`, `a > k`.
 | 2.5 | `K_{2,2}` witness: interleaving amplifies beyond both rows (`4 > max(L_1,L_2)`), but below base | PROVED-by-check |
 | 2.6 | L2 -> L1 reduction `Lst(Int) <= Lst(C_+)^mu` (= `Lst(C_+)` a-regular); `K_{m,m}` clique cap `n >= k+m^2(a-k)` | PROVED + PROVED-by-check |
 | 2.7 | Line-decoding reading (M2): `LD = Bad_MCA = Bad_CA = Deep_alpha` coincide on the simple-pole family | AUDIT / PROVED-by-check |
+| 2.8 | Conditional protocol budget: `Lst(C_+) <= n^B` => interleaved-MCA term `<= n^{eB}/q`; small `B` clears `2^-128` | PROVED (conditional on L1) |
 
 **What is proved.** The forward interleaved bridge is complete and `mu`-clean: an
 interleaved list bound transfers to an interleaved-MCA bad-slope count at the
@@ -400,6 +401,39 @@ shared-pole curve has simultaneous line-decoding list `Deep_alpha^{mu}(U,a)`
 `(p,n,k,a) in {(17,8,3,5),(17,8,4,6),(41,8,3,5)}` (306 checks), reporting the
 list multiplicity per slope.
 
+## 2.8 Conditional protocol budget: what an L1 bound buys
+
+The forward bridge (§1-§2) and the L2 -> L1 reduction (§2.6) compose into a
+conditional statement that lands the protocol impact.
+
+**Conditional theorem.** Suppose the L1 generated-field locator bound holds above
+the corrected reserve, `Lst(C_+, delta_a) <= n^B`. Then:
+```text
+Lst(Int(C_+,mu), delta_a)            <= n^{mu B}   (worst case, §2.6)
+                                     <= n^{B}      (a-regular regime, §2.3)
+interleaved-MCA bad-slope count      <= Lst(Int(C_+,mu), delta_a)   (§2, no sqrt loss)
+```
+so the Proximity-Prize soundness schematic (readme),
+`MCA_error + |interleaved_list|/|challenge field| + query_error`, has its
+interleaved term bounded by `n^{mu B}/q` (worst case) or `n^{B}/q` (a-regular).
+**An L1 list theorem converts directly into the interleaved-MCA / interleaved-list
+soundness budget Paper C consumes** -- no separate MCA theorem, no square-root
+loss, and no Cartesian `mu` exponent in the generic case.
+
+**Budget.** `verify_x1_conditional_budget.py` prints the largest L1 exponent `B`
+for which the interleaved term already clears `2^-128` over `|F| < 2^256`
+(`e*B*log2 n <= log2 q - 128`, `e in {1, mu}`). E.g. at `n = 2^40`:
+
+| mu | a-regular `B <=` | worst-case `B <=` |
+|---|---|---|
+| 1 | 3.2 | 3.2 |
+| 2 | 3.2 | 1.6 |
+| 3 | 3.2 | 1.067 |
+
+A **polynomial L1 list bound with a small exponent suffices** for the entire
+prize regime once routed through the bridge -- which is exactly what the L1
+program (`l1_prefix_divisor_count.md`, `conj:prefix-local`) is trying to prove.
+
 ## 3. Plan (incremental commits on this PR)
 
 1. (done) Independent audit + broadened verifier of the base identity (§1).
@@ -424,6 +458,8 @@ list multiplicity per slope.
    from the clique family (C). This is now an L1-governed residual.
 9. (done) §2.7 line-decoding reading (M2): MCA = CA = line-decoding coincide on
    the simple-pole family; `scripts/verify_x1_line_decoding.py`.
+10. (done) §2.8 conditional protocol budget: an L1 bound `Lst(C_+)<=n^B` yields
+    the interleaved-MCA soundness budget; `scripts/verify_x1_conditional_budget.py`.
 
 ## Ledger impact
 
@@ -454,4 +490,6 @@ python3 experimental/scripts/verify_x1_clique_cap.py
 python3 experimental/scripts/verify_x1_clique_cap.py --json
 python3 experimental/scripts/verify_x1_line_decoding.py
 python3 experimental/scripts/verify_x1_line_decoding.py --json
+python3 experimental/scripts/verify_x1_conditional_budget.py
+python3 experimental/scripts/verify_x1_conditional_budget.py --json
 ```
