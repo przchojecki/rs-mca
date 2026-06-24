@@ -64,6 +64,9 @@ Keep entries concise and link to the relevant files.
   degree invariance to common-ideal index and valuation invariance.
   At the full-prefix endpoint `sigma=m`, the common-ideal index has no prime
   support away from primes dividing `n`.
+  The Newton bridge is strengthened from modular common-root factors to
+  localized common-ideal indices: away from primes dividing `n sigma!`,
+  elementary and power-sum/Fourier coordinates have the same valuation budgets.
   The modular gcd degree is also
   recorded as the exact primitive-root embedding multiplicity at split and
   nonsplit primes, with the Frobenius-orbit quotient giving the rational

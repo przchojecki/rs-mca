@@ -21,7 +21,7 @@ import argparse
 import itertools
 import json
 from collections import Counter, defaultdict
-from math import comb, gcd
+from math import comb, factorial, gcd
 from typing import Any, Iterable, Sequence
 
 
@@ -383,6 +383,65 @@ def common_ideal_index(
     sigma: int,
 ) -> dict[str, Any]:
     matrix = common_ideal_matrix(left, right, order, sigma)
+    dimension = degree(cyclotomic_poly(order))
+    if not matrix:
+        return {
+            "char_zero_collision": True,
+            "rank": 0,
+            "dimension": dimension,
+            "index": 0,
+            "factorization": {},
+            "diagonal_entries": [],
+        }
+    diagonal = integer_diagonal_entries(matrix)
+    rank = len(diagonal)
+    index = 0
+    if rank == dimension:
+        index = 1
+        for entry in diagonal:
+            index *= entry
+    return {
+        "char_zero_collision": False,
+        "rank": rank,
+        "dimension": dimension,
+        "index": index,
+        "factorization": factorint(index),
+        "diagonal_entries": diagonal,
+    }
+
+
+def power_common_ideal_matrix(
+    left: Sequence[int],
+    right: Sequence[int],
+    order: int,
+    sigma: int,
+) -> list[list[int]]:
+    phi = cyclotomic_poly(order)
+    dimension = degree(phi)
+    blocks = []
+    for rank in range(1, sigma + 1):
+        delta = poly_sub(
+            exponent_power_sum_poly(left, order, rank),
+            exponent_power_sum_poly(right, order, rank),
+        )
+        _, remainder = poly_divmod_monic(delta, phi)
+        if remainder:
+            blocks.append(multiplication_matrix_mod_cyclotomic(remainder, order))
+    if not blocks:
+        return []
+    return [
+        [entry for block in blocks for entry in block[row]]
+        for row in range(dimension)
+    ]
+
+
+def power_common_ideal_index(
+    left: Sequence[int],
+    right: Sequence[int],
+    order: int,
+    sigma: int,
+) -> dict[str, Any]:
+    matrix = power_common_ideal_matrix(left, right, order, sigma)
     dimension = degree(cyclotomic_poly(order))
     if not matrix:
         return {
@@ -1308,6 +1367,134 @@ def check_newton_power_sum_bridge() -> dict[str, Any]:
             "right": list(depth_right),
             "rows": depth_rows,
         },
+    }
+
+
+def check_newton_common_ideal_bridge() -> dict[str, Any]:
+    def compare_local_valuations(
+        left: Sequence[int],
+        right: Sequence[int],
+        order: int,
+        sigma: int,
+    ) -> dict[str, Any]:
+        elementary = common_ideal_index(left, right, order, sigma)
+        power = power_common_ideal_index(left, right, order, sigma)
+        if elementary["char_zero_collision"] != power["char_zero_collision"]:
+            raise AssertionError("Newton bridge changed char-zero status")
+        if elementary["index"] == 0:
+            return {
+                "elementary_index": 0,
+                "power_index": 0,
+                "checked_primes": [],
+            }
+        excluded = set(factorint(order)) | set(factorint(factorial(sigma)))
+        candidate_primes = (
+            set(factorint(elementary["index"]))
+            | set(factorint(power["index"]))
+        )
+        checked_primes = []
+        for prime in sorted(candidate_primes - excluded):
+            elementary_valuation = p_adic_valuation(elementary["index"], prime)
+            power_valuation = p_adic_valuation(power["index"], prime)
+            if elementary_valuation != power_valuation:
+                raise AssertionError("Newton bridge changed local valuation")
+            checked_primes.append({
+                "prime": prime,
+                "valuation": elementary_valuation,
+            })
+        return {
+            "elementary_index": elementary["index"],
+            "power_index": power["index"],
+            "excluded_primes": sorted(excluded),
+            "checked_primes": checked_primes,
+        }
+
+    order = 16
+    sigma = 4
+    row = finite_prefix_collision_pairs(
+        prime=17,
+        order=order,
+        complement_size=6,
+        sigma=sigma,
+    )
+    index_pair_counts: Counter[tuple[int, int]] = Counter()
+    checked_pair_count = 0
+    for pair in row["pairs"]:
+        comparison = compare_local_valuations(
+            pair["left"],
+            pair["right"],
+            order,
+            sigma,
+        )
+        index_pair_counts[(
+            comparison["elementary_index"],
+            comparison["power_index"],
+        )] += 1
+        checked_pair_count += 1
+    expected_index_pair_counts = Counter({
+        (68, 136): 16,
+        (272, 272): 16,
+        (8_704, 8_704): 8,
+    })
+    if index_pair_counts != expected_index_pair_counts:
+        raise AssertionError("unexpected elementary/power index pairs")
+
+    false_positive_comparison = compare_local_valuations(
+        (0, 1, 2, 7, 9, 13),
+        (0, 1, 2, 3, 4, 11),
+        order,
+        sigma,
+    )
+    if false_positive_comparison["elementary_index"] != 2:
+        raise AssertionError("unexpected false-positive elementary index")
+    if false_positive_comparison["power_index"] != 2:
+        raise AssertionError("unexpected false-positive power index")
+
+    depth_rows = []
+    depth_left = (0, 1, 2, 3, 4, 14)
+    depth_right = (5, 6, 7, 9, 12, 15)
+    for depth_sigma in range(1, 7):
+        comparison = compare_local_valuations(
+            depth_left,
+            depth_right,
+            order,
+            depth_sigma,
+        )
+        depth_rows.append({
+            "sigma": depth_sigma,
+            "elementary_index": comparison["elementary_index"],
+            "power_index": comparison["power_index"],
+            "checked_primes": comparison["checked_primes"],
+        })
+
+    extension_comparison = compare_local_valuations(
+        (0, 1),
+        (2, 5),
+        8,
+        1,
+    )
+    if extension_comparison["elementary_index"] != 36:
+        raise AssertionError("bad F_9 elementary common-ideal index")
+    if extension_comparison["power_index"] != 36:
+        raise AssertionError("bad F_9 power common-ideal index")
+    if extension_comparison["checked_primes"] != [{"prime": 3, "valuation": 2}]:
+        raise AssertionError("bad F_9 local Newton valuation check")
+
+    return {
+        "status": "PASS",
+        "condition": "ell does not divide n*sigma!",
+        "f17_packet_pairs_checked": checked_pair_count,
+        "f17_index_pair_counts": {
+            f"{left}->{right}": count
+            for (left, right), count in sorted(index_pair_counts.items())
+        },
+        "false_positive": false_positive_comparison,
+        "depth_representative": {
+            "left": list(depth_left),
+            "right": list(depth_right),
+            "rows": depth_rows,
+        },
+        "extension_witness": extension_comparison,
     }
 
 
@@ -2545,6 +2732,7 @@ def build_report() -> dict[str, Any]:
         "f17_packet": check_f17_packet(),
         "split_prime_row_accounting": check_split_prime_row_accounting(),
         "newton_power_sum_bridge": check_newton_power_sum_bridge(),
+        "newton_common_ideal_bridge": check_newton_common_ideal_bridge(),
         "extension_field_bad_prime_certificate": (
             check_extension_field_bad_prime_certificate()
         ),
@@ -2628,6 +2816,13 @@ def print_human(report: dict[str, Any]) -> None:
         f"f17_pairs={bridge['f17_packet_pairs_checked']}, "
         f"degrees={bridge['f17_degree_counts']}, "
         f"p97_degree={bridge['p97_false_positive_degree']}"
+    )
+    ideal_bridge = report["newton_common_ideal_bridge"]
+    print(
+        "newton_common_ideal_bridge="
+        f"f17_pairs={ideal_bridge['f17_packet_pairs_checked']}, "
+        f"index_pairs={ideal_bridge['f17_index_pair_counts']}, "
+        f"condition='{ideal_bridge['condition']}'"
     )
     filtration = report["prefix_depth_filtration"]
     depth_pairs = {

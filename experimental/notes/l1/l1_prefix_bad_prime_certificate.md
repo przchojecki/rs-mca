@@ -551,6 +551,38 @@ used in the L1 orbit-cancellation notes.  The rational resultant certificate is
 an elementary-symmetric certificate, but the ideal-level split-prime test can
 be read equivalently in the power-sum coordinates used by Fourier analysis.
 
+There is also a common-ideal version after localizing away from the Newton
+denominators.  Let `I^e_n,sigma(A,B)` be the elementary common-ideal index above
+and let `I^p_n,sigma(A,B)` be the analogous index built from the power-sum
+differences
+
+```text
+P_j(A;T)-P_j(B;T),        1 <= j <= sigma.
+```
+
+For every prime `ell` with
+
+```text
+ell not dividing n sigma!,
+```
+
+one has
+
+```text
+v_ell(I^e_n,sigma(A,B)) = v_ell(I^p_n,sigma(A,B)).
+```
+
+Indeed, over the localized ring `Z_(ell)[T]/Phi_n(T)`, Newton's identities give
+an invertible triangular change of generators between the first `sigma`
+elementary differences and the first `sigma` power-sum differences.  The two
+generated ideals are equal after localization, so their lattice/Fitting indices
+have the same `ell`-adic valuation.
+
+Thus every separable bad-prime valuation budget away from the small primes
+dividing `n sigma!` can be computed in the Fourier power-sum coordinates.  This
+is the exact-index bridge between the finite-field bad-prime certificate lane
+and the Fourier orbit-cancellation lane.
+
 ## Affine-Orbit Reduction
 
 The template data has an affine symmetry.  For `u in (Z/nZ)^*` and
