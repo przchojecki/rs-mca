@@ -44,6 +44,15 @@ SIGMA_THREE_COUNT_CASES = (
     {"p": 53, "k": 13},
 )
 
+FIXED_SIGMA_COUNT_CASES = (
+    {"p": 17, "k": 4, "sigma": 4},
+    {"p": 19, "k": 7, "sigma": 4},
+    {"p": 23, "k": 8, "sigma": 4},
+    {"p": 17, "k": 3, "sigma": 5},
+    {"p": 19, "k": 4, "sigma": 5},
+    {"p": 23, "k": 6, "sigma": 5},
+)
+
 
 def base(value: int, p: int) -> Element:
     return (value % p, 0)
@@ -240,6 +249,30 @@ def ceil_sqrt(value: int) -> int:
     return root if root * root == value else root + 1
 
 
+def prefix_vanishing_counts(p: int, sigma: int) -> list[int]:
+    width = sigma - 1
+    if width < 0 or width >= p - 1:
+        raise ValueError(f"bad prefix-count parameters p={p}, sigma={sigma}")
+    zero_state = (0,) * width
+    states: list[dict[tuple[int, ...], int]] = [dict() for _ in range(p)]
+    states[0][zero_state] = 1
+    max_size = 0
+    for point in range(1, p):
+        for size in range(max_size, -1, -1):
+            for state, count in list(states[size].items()):
+                old_state = (1,) + state
+                new_state = list(state)
+                for degree in range(1, width + 1):
+                    new_state[degree - 1] = (
+                        new_state[degree - 1]
+                        + point * old_state[degree - 1]
+                    ) % p
+                key = tuple(new_state)
+                states[size + 1][key] = states[size + 1].get(key, 0) + count
+        max_size += 1
+    return [states[size].get(zero_state, 0) for size in range(p)]
+
+
 def sigma_three_prefix_counts(p: int) -> list[int]:
     states: list[dict[tuple[int, int], int]] = [dict() for _ in range(p)]
     states[0][(0, 0)] = 1
@@ -372,6 +405,58 @@ def verify_sigma_three_count_case(p: int, k: int) -> dict[str, Any]:
         "random_model_denominator": expected_denominator,
         "scaled_character_error": scaled_error,
         "integer_gauss_error_bound": integer_gauss_bound,
+        "tail_average_numerator": tail_numerator,
+        "tail_average_denominator": tail_denominator,
+        "proved_tail_bad_slope_lower_bound": tail_lower_bound,
+        "extension_field_size": p * p,
+        "mca_density_lower_bound": f"{tail_lower_bound}/{p*p}",
+        "checks": checks,
+    }
+
+
+def verify_fixed_sigma_count_case(p: int, k: int, sigma: int) -> dict[str, Any]:
+    n = p - 1
+    a = k + sigma
+    if not (2 <= sigma < p and sigma + 1 <= a <= n):
+        raise ValueError(
+            f"bad fixed-sigma count parameters p={p}, k={k}, sigma={sigma}, a={a}"
+        )
+
+    counts = prefix_vanishing_counts(p, sigma)
+    for size, value in enumerate(counts):
+        if value != counts[n - size]:
+            raise AssertionError("fixed-sigma complement symmetry failed")
+
+    support_count = counts[a]
+    m = sigma - 1
+    scaled_error = abs((p**m) * support_count - comb(n, a))
+    weil_radius = (m - 1) * ceil_sqrt(p) + 1
+    integer_weil_bound = (p**m - 1) * comb(a + weil_radius, a)
+    tail_denominator = comb(n, k - 1)
+    tail_numerator = support_count * comb(a, sigma + 1)
+    tail_lower_bound = ceil_div(tail_numerator, tail_denominator)
+
+    checks = {
+        "prefix_count_is_positive": support_count > 0,
+        "complement_symmetry_holds": True,
+        "fixed_sigma_character_bound_holds": scaled_error <= integer_weil_bound,
+        "averaged_tail_lower_bound_is_positive": tail_lower_bound > 0,
+    }
+    failed = [name for name, passed in checks.items() if not passed]
+    if failed:
+        raise AssertionError(
+            f"failed fixed-sigma count checks for p={p}: {', '.join(failed)}"
+        )
+
+    return {
+        "p": p,
+        "n": n,
+        "k": k,
+        "sigma": sigma,
+        "agreement_a": a,
+        "prefix_vanishing_support_count": support_count,
+        "scaled_character_error": scaled_error,
+        "integer_weil_error_bound": integer_weil_bound,
         "tail_average_numerator": tail_numerator,
         "tail_average_denominator": tail_denominator,
         "proved_tail_bad_slope_lower_bound": tail_lower_bound,
@@ -580,6 +665,10 @@ def compute_report() -> dict[str, Any]:
         verify_sigma_three_count_case(**case)
         for case in SIGMA_THREE_COUNT_CASES
     ]
+    fixed_sigma_count_cases = [
+        verify_fixed_sigma_count_case(**case)
+        for case in FIXED_SIGMA_COUNT_CASES
+    ]
     return {
         "status": "PASS",
         "proof_status": "FINITE_MODEL_CHECK / COUNTEREXAMPLE_SANITY",
@@ -596,6 +685,7 @@ def compute_report() -> dict[str, Any]:
         "sigma_two_cases": sigma_two_cases,
         "sigma_three_template_cases": sigma_three_cases,
         "sigma_three_count_cases": sigma_three_count_cases,
+        "fixed_sigma_count_cases": fixed_sigma_count_cases,
     }
 
 
@@ -623,6 +713,13 @@ def print_report(report: dict[str, Any]) -> None:
     for case in report["sigma_three_count_cases"]:
         print(
             "sigma=3-count p={p} k={k} a={agreement_a} "
+            "G={prefix_vanishing_support_count} "
+            "tail_lower={proved_tail_bad_slope_lower_bound} "
+            "density={mca_density_lower_bound}".format(**case)
+        )
+    for case in report["fixed_sigma_count_cases"]:
+        print(
+            "sigma={sigma}-count p={p} k={k} a={agreement_a} "
             "G={prefix_vanishing_support_count} "
             "tail_lower={proved_tail_bad_slope_lower_bound} "
             "density={mca_density_lower_bound}".format(**case)

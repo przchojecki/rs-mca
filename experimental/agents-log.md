@@ -48,7 +48,7 @@ Keep entries concise and link to the relevant files.
   template, and adds a fixed-sigma character bound showing the required
   prefix-vanishing support count has density `(1+o(1))p^{-(sigma-1)}`.  It also
   keeps an exact dynamic count recurrence for the first nontrivial finite case
-  `sigma=3`.
+  `sigma=3`, plus generic finite count audits for `sigma=4,5`.
 - **How it is useful:** Strengthens the F1 warning against unrestricted
   numerator-preserving extension-line lifts: the extension numerator is
   already quadratic in the base field for fixed-rate sigma-one lines, and the

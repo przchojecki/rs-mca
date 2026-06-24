@@ -674,6 +674,24 @@ These rows are finite certificates for the exact recurrence and lower-bound
 pipeline.  The fixed-slack character bound above is the asymptotic proof that
 the same count has density `(1+o(1))p^-2` at every fixed rate.
 
+The verifier also runs the same dynamic count for the first cases beyond
+`sigma=3`, using the elementary-symmetric update directly and checking the
+integer form of the general character-error bound.  Sample rows are:
+
+```text
+p   sigma   k   a=k+sigma   G_{p,k,sigma}   tail lower bound
+17    4     4       8        6               1
+19    4     7      11        18              1
+23    4     8      12        44              1
+17    5     3       8        2               1
+19    5     4       9        2               1
+23    5     6      11        2               1
+```
+
+These small rows are intentionally modest: their role is to audit the
+fixed-sigma DP, complement symmetry, and integer Weil-bound inequality in the
+first `sigma=4,5` cases.
+
 For fixed rate `k=floor(rho(p-1))`, the numerator ratio
 
 ```text
@@ -765,3 +783,8 @@ enumeration, verifies complement symmetry, and reports the finite tail-averaged
 lower bound for the distinct bad slopes forced by the general template.  It
 also checks the integer form of the character-error bound against the exact
 dynamic counts.
+
+The verifier also includes generic fixed-sigma count cases for `sigma=4,5`.
+These use the elementary-symmetric DP directly, verify complement symmetry,
+check the integer Weil-bound inequality from the fixed-slack character proof,
+and report the tail-averaged lower bound.
