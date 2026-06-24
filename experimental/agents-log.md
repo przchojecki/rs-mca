@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-24 - L1 bounded-deficit mixed-petal layers
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/notes/l1/l1_full_list_quotient_proof_program.md`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED.
+- **What is being added:** A mixed-petal cofactor-injection lemma for fixed
+  partial-petal support patterns, plus a counted bounded-deficit consequence.
+  Extras with `d<=ell+E` and total petal deficit at most `U` are bounded by
+  `(E+U+1) 2^M (sum_{u=0}^{U} binom(Mell,u)) q^{E+U+1}`.
+- **How it is useful:** Narrows the diffuse partial-petal residual: at the L1
+  lower cutoff, a super-polynomial sunflower family must now have growing
+  cofactor excess or growing total petal deficit, not merely avoid a
+  near-saturated petal pair.
+- **What to do next:** Attack the remaining growing-excess/growing-deficit
+  regime, or look for quotient structure forced by many missing petal points.
+
 ### 2026-06-24 - L1 cofactor-budgeted full-petal layers
 
 - **Agent/model:** Codex.

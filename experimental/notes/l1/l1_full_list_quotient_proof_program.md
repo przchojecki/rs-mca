@@ -1454,6 +1454,188 @@ Thus a future counterexample or proof target in the full-petal regime should
 look for genuinely growing cofactor excess, not merely the top-defect boundary
 or bounded-excess CRT rank loss.
 
+## Lemma 17. Mixed-Petal Cofactor Injection
+
+Status: PROVED.
+
+Assume the sunflower has no unused background.  Let `P` be a non-planted
+listed codeword, with touched-petal set `I`, partial-petal agreements
+
+```text
+S_i = A_P(U) cap T_i,        a_i = |S_i| > 0        for i in I,
+```
+
+and core defect `d=|D|`.  Fix the support pattern `(I,(S_i)_{i in I})` and
+fix one index `i in I`.  Among all listed codewords with this fixed support
+pattern and this fixed defect `d`, the map
+
+```text
+P |-> A_i = (W_P-c_iL_D)/L_{S_i}
+```
+
+is injective.  Consequently the number of such codewords is at most
+
+```text
+q^{d-a_i+1}.
+```
+
+In particular, choosing an index with `a_i=max_{j in I} a_j` gives the fixed
+support-pattern bound
+
+```text
+q^{d-a_*+1},        a_* = max_{j in I} |S_j|.
+```
+
+### Proof
+
+Lemma 2 gives
+
+```text
+W_P-c_jL_D
+```
+
+vanishing on `S_j` for every `j in I`, and also gives `a_j<=d` for
+non-planted codewords.  Hence each cofactor `A_j` exists and has
+`deg A_j<=d-a_j`.
+
+Suppose two listed codewords with the same support pattern and defect give the
+same cofactor `A_i`.  Write their data as `(F,W)` and `(F',W')`, where
+`F=L_D` and `F'=L_{D'}` are monic of degree `d`.  Equality of cofactors gives
+
+```text
+W-W' = c_i(F-F').
+```
+
+For every `j in I\{i}`, subtracting the two vanishing relations on `S_j`
+gives
+
+```text
+(c_i-c_j)(F-F') = W-W'-c_j(F-F')
+```
+
+vanishing on `S_j`.  Since the petal scalars are distinct and the sets `S_j`
+are disjoint, `F-F'` is divisible by
+
+```text
+B_i = prod_{j in I, j != i} L_{S_j}.
+```
+
+Let `h=sum_{j in I} a_j`.  Because the sunflower has no unused background, the
+list condition gives
+
+```text
+h >= ell+d.
+```
+
+Since `a_i<=ell`, this implies
+
+```text
+deg B_i = h-a_i >= d.
+```
+
+If `h-a_i>d`, then `deg(F-F')<=d<deg B_i`, so `F=F'`.  If `h-a_i=d`, then
+both `F` and `F'` are monic of degree `d`, so either `F=F'` or
+`deg(F-F')<d=deg B_i`; again `F=F'`.  The locator `F=L_D` determines `D`,
+and then the fixed support pattern determines the CRT residue `W_P` of degree
+at most `d`, hence determines `P=L_{C\D}W_P`.  Thus the cofactor map is
+injective.
+
+There are at most `q^{d-a_i+1}` possible cofactors of degree at most `d-a_i`,
+which proves the bound.
+
+### Consequences
+
+The cofactor-injection mechanism is not special to full petals.  Once a
+partial-petal support pattern is fixed, the only remaining freedom is a
+cofactor of degree controlled by
+
+```text
+d - max_i |S_i|.
+```
+
+Thus the diffuse partial-petal residual must pay either many support patterns
+or growing cofactor dimension.
+
+## Lemma 18. Bounded-Deficit Mixed-Petal Layers
+
+Status: PROVED.
+
+Assume the sunflower has no unused background.  For a listed codeword with
+touched-petal set `I`, define its total petal deficit by
+
+```text
+u(P) = sum_{i in I} (ell-|S_i|).
+```
+
+Fix integers `E,U>=0`.  The number of non-planted listed codewords satisfying
+
+```text
+d <= ell+E,        u(P) <= U
+```
+
+is at most
+
+```text
+(E+U+1) 2^M (sum_{u=0}^{U} binom(Mell,u)) q^{E+U+1}.
+```
+
+At the L1 lower cutoff, where `M=O(log n)`, `ell<=n`, and `q=poly(n)`, this
+is polynomial in `n` for fixed `E` and `U`.
+
+### Proof
+
+Fix the support pattern `(I,(S_i)_{i in I})` and the defect `d`.  Put
+`u=sum_{i in I}(ell-|S_i|)` and choose `i` so that `a_i=|S_i|` is maximal.
+Then
+
+```text
+a_i >= ell-u >= ell-U.
+```
+
+Lemma 17 therefore gives at most
+
+```text
+q^{d-a_i+1} <= q^{E+U+1}
+```
+
+listed codewords with this fixed support pattern and defect.  Also
+`a_i<=d`, so `d>=ell-U`.  Since `d<=ell+E`, there are at most `E+U+1`
+possible defect values.
+
+It remains to count support patterns with total petal deficit at most `U`.
+There are at most `2^M` choices for the touched-petal set `I`.  Once `I` is
+chosen, a support pattern with total deficit `u` is obtained by choosing `u`
+missing petal points among the at most `Mell` petal points, so the number of
+patterns with total deficit at most `U` is bounded by
+
+```text
+2^M sum_{u=0}^{U} binom(Mell,u).
+```
+
+Multiplying these three bounds proves the displayed estimate.  The
+polynomiality statement follows from `M=O(log n)` and `q=poly(n)` for fixed
+`E,U`.
+
+### Consequences
+
+The diffuse partial-petal residual is now sharper.  After this lemma, a
+super-polynomial background-free sunflower family at the L1 lower cutoff must
+have either growing cofactor excess
+
+```text
+d-ell -> infinity
+```
+
+or growing total petal deficit
+
+```text
+u(P) -> infinity.
+```
+
+It is not enough for the family merely to avoid two near-saturated petals; it
+must spread an unbounded number of missing petal points or move to genuinely
+large cofactor dimension.
+
 ## Development Ledger
 
 - **Conjecture 1 full-list primitive remainder:** CONJECTURAL.  Main proof
@@ -1499,5 +1681,9 @@ or bounded-excess CRT rank loss.
   bound `q^{d-ell+1}` throughout `ell<=d<=(t-1)ell`.
 - **Cofactor-budgeted full-petal layers:** PROVED.  Bounds full-petal layers
   with `d-ell<=E` by `binom(M,2)q + 2^M sum_{e=1}^E q^{e+1}`.
+- **Mixed-petal cofactor injection:** PROVED.  For fixed partial-petal support
+  pattern, extras inject into a cofactor space of dimension `d-a_*+1`.
+- **Bounded-deficit mixed-petal layers:** PROVED.  Bounds all extras with
+  `d<=ell+E` and total petal deficit at most `U`.
 - **Mixed-petal sunflower amplification:** CONJECTURAL.  Next focused bound to
   prove or refute in the large-defect regime.
