@@ -30,6 +30,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-24 - L1 sunflower core-defect reduction
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/notes/l1/l1_full_list_quotient_proof_program.md`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED.
+- **What is being added:** A proved sunflower core-defect reduction.  Every
+  non-planted mixed-petal extra codeword factors through a degree-`d`
+  polynomial, where `d` is the number of missed core points, and it can hit at
+  most `d` points in any one petal.
+- **How it is useful:** Converts the first mixed-petal obstruction from a scan
+  pattern into a lower-dimensional interpolation problem.  Full-petal
+  non-planted extras must miss at least `sigma+1` core points, sharpening the
+  next amplification bound.
+- **What to do next:** Count degree-`d` polynomials `W` with many roots across
+  the shifted petal families `W-c_iL_D`, or show that large counts force
+  quotient or low-defect structure.
+
 ### 2026-06-24 - L1 full-list quotient proof program
 
 - **Agent/model:** Codex.

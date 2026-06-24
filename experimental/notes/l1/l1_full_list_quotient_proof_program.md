@@ -141,6 +141,107 @@ Equivalently, if mixed-petal amplification is super-polynomial, then the
 agreement equations must force quotient, low-defect, or another explicitly
 budgeted structured family.
 
+## Lemma 2. Sunflower Core-Defect Reduction
+
+Status: PROVED.
+
+Use the notation of the sunflower construction above.  Let
+
+```text
+R = H_n \ (C union T_1 union ... union T_M)
+```
+
+be the unused background, and let `P in ImgFib_U(s)` have agreement set
+`A=A_P(U)`.  Put
+
+```text
+C_P = A cap C,
+R_P = A cap R,
+S_i = A cap T_i,
+D = C \ C_P,
+d = |D|.
+```
+
+Then there is a unique polynomial `W_P` with `deg W_P <= d` such that
+
+```text
+P = L_{C_P} W_P,
+W_P(x) = 0                  for x in R_P,
+W_P(x) = c_i L_D(x)         for x in S_i.
+```
+
+Moreover, if `P` is not one of the planted codewords `c_i L_C`, then
+
+```text
+|S_i| <= d        for every petal T_i.
+```
+
+In particular, any non-planted extra codeword that contains a full petal must
+miss at least `sigma+1` core points.
+
+### Proof
+
+The polynomial `P` agrees with `U=0` on `C_P union R_P`, so it vanishes on
+`C_P`.  Hence `P=L_{C_P}W_P` for a unique polynomial `W_P`.  Since
+`|C|=k-1` and `d=|C\C_P|`, one has
+
+```text
+deg W_P < k-|C_P| = d+1,
+```
+
+so `deg W_P <= d`.  For `x in R_P`, the factor `L_{C_P}(x)` is nonzero, and
+`P(x)=U(x)=0`; hence `W_P(x)=0`.  For `x in S_i`, one has
+
+```text
+L_{C_P}(x) W_P(x) = P(x) = U(x) = c_i L_C(x).
+```
+
+Since `T_i` is disjoint from `C`, the factor `L_{C_P}(x)` is nonzero.  Writing
+`L_C=L_{C_P}L_D` gives
+
+```text
+W_P(x)=c_i L_D(x).
+```
+
+Now suppose `|S_i|>d` for some petal.  The polynomial
+
+```text
+W_P - c_i L_D
+```
+
+has degree at most `d` and more than `d` roots, so it is identically zero.
+Thus `W_P=c_iL_D` and therefore
+
+```text
+P=L_{C_P}W_P=c_iL_C,
+```
+
+which is the planted codeword for petal `T_i`.  Therefore a non-planted
+codeword has `|S_i|<=d` on every petal.  A full petal has size `sigma+1`, so a
+non-planted codeword containing a full petal must have `d>=sigma+1`.
+
+### Consequences
+
+For a non-planted mixed-petal extra, the remaining unknown is no longer a
+degree-`<k` polynomial on `H_n`.  It is a degree-`<=d` polynomial `W_P` whose
+values on each petal lie on one of the shifted targets `c_iL_D`.  The agreement
+condition gives
+
+```text
+sum_i |S_i| >= d + 1 + sigma - |R_P|.
+```
+
+Combined with the per-petal cap `|S_i|<=d`, this forces genuinely mixed-petal
+behavior whenever the background agreement `|R_P|` is small.  The remaining
+amplification problem is therefore a lower-dimensional incidence question:
+count degree-`<=d` polynomials that have many zeros across the family
+
+```text
+W - c_i L_D        on T_i.
+```
+
+This is the first precise target for the mixed-petal amplification bound.
+
 ## Development Ledger
 
 - **Conjecture 1 full-list primitive remainder:** CONJECTURAL.  Main proof
@@ -156,5 +257,7 @@ budgeted structured family.
   budget.
 - **Aperiodic extension counting:** CONJECTURAL.  Main quantitative theorem
   needed for Conjecture 1.
-- **Mixed-petal sunflower amplification:** CONJECTURAL.  First focused lemma
-  to prove or refute.
+- **Sunflower core-defect reduction:** PROVED.  Reduces each non-planted
+  mixed-petal extra to a degree-`d` interpolation problem with a per-petal cap.
+- **Mixed-petal sunflower amplification:** CONJECTURAL.  Next focused bound to
+  prove or refute using the core-defect reduction.
