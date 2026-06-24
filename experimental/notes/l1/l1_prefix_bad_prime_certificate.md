@@ -112,6 +112,52 @@ This holds for every nonzero cyclotomic remainder among the `Delta_r`.  Hence
 exists, all `Delta_r` vanish at `zeta`, which is exactly a
 characteristic-zero prefix collision.  This proves the theorem.
 
+## General Finite-Field Form
+
+The split hypothesis is only needed later for row accounting inside `F_p`.
+The bad-prime divisibility statement itself works over any finite field.
+
+Let `K` be a finite field of characteristic `p`, with `p not dividing n`, and
+let `h in K^*` have exact order `n`.  If
+
+```text
+E_r(A;h) = E_r(B;h) in K,        1 <= r <= sigma,
+```
+
+then either `(A,B)` is a characteristic-zero prefix collision, or
+
+```text
+p | C_n,sigma(A,B).
+```
+
+The proof is the same.  The element `h` is a common root in an extension of
+`F_p` of `Phi_n` and every active `Delta_r`; hence each active resultant
+vanishes modulo `p`.
+
+The verifier includes a non-split witness:
+
+```text
+K = F_9 = F_3[i]/(i^2+1),
+n = 8,
+h = 1+i,
+A = {0,1},
+B = {2,5},
+sigma = 1.
+```
+
+Here `h` has order `8`, so `K` contains primitive eighth roots even though
+`8` does not divide `3-1`.  The two templates collide over `F_9`, do not
+collide in characteristic zero, and have
+
+```text
+C_8,1(A,B) = 36 = 2^2 * 3^2.
+```
+
+Modulo `3`, the common-root gcd has degree `2`, representing the quadratic
+prime-ideal factor rather than two rational split embeddings.  This is why the
+split-prime support list is empty while the rational bad prime `3` is still
+detected by the certificate.
+
 ## Norm Size And Finite-Family Aggregation
 
 The same certificate has a simple size bound.  Since

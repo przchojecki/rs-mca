@@ -39,11 +39,12 @@ Keep entries concise and link to the relevant files.
   `experimental/agents-log.md`.
 - **Status:** PROVED / FINITE-FIELD REDUCTION / NOT A FULL AGGREGATION BOUND.
 - **What is being added:** A templatewise bad-prime theorem for monomial-prefix
-  collisions: a split finite-field prefix collision either lifts to a
-  characteristic-zero prefix collision or the prime divides an explicit
-  cyclotomic resultant certificate. The note also records the associated norm
-  bound, finite-family lcm aggregation handle, and the prime-ideal refinement
-  via the modular gcd `gcd(Phi_n, Delta_1, ..., Delta_sigma)` needed to filter
+  collisions: a finite-field prefix collision either lifts to a
+  characteristic-zero prefix collision or the field characteristic divides an
+  explicit cyclotomic resultant certificate. The split-prime case is then
+  refined for row accounting. The note also records the associated norm bound,
+  finite-family lcm aggregation handle, and the prime-ideal refinement via the
+  modular gcd `gcd(Phi_n, Delta_1, ..., Delta_sigma)` needed to filter
   rational-certificate false positives.  The modular gcd degree is also
   recorded as the exact primitive-root embedding multiplicity at split primes.
   The note additionally records affine-orbit invariance, the split-prime

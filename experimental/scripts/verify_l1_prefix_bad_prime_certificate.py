@@ -364,6 +364,54 @@ def poly_eval_mod(poly: Sequence[int], value: int, prime: int) -> int:
     return total
 
 
+def gf9_add(
+    left: tuple[int, int],
+    right: tuple[int, int],
+) -> tuple[int, int]:
+    return ((left[0] + right[0]) % 3, (left[1] + right[1]) % 3)
+
+
+def gf9_mul(
+    left: tuple[int, int],
+    right: tuple[int, int],
+) -> tuple[int, int]:
+    # F_9 = F_3[i]/(i^2 + 1), so i^2 = -1 = 2.
+    return (
+        (left[0] * right[0] + 2 * left[1] * right[1]) % 3,
+        (left[0] * right[1] + left[1] * right[0]) % 3,
+    )
+
+
+def gf9_pow(value: tuple[int, int], exponent: int) -> tuple[int, int]:
+    result = (1, 0)
+    for _ in range(exponent):
+        result = gf9_mul(result, value)
+    return result
+
+
+def gf9_multiplicative_order(value: tuple[int, int]) -> int:
+    if value == (0, 0):
+        raise AssertionError("zero has no multiplicative order")
+    current = (1, 0)
+    for exponent in range(1, 9):
+        current = gf9_mul(current, value)
+        if current == (1, 0):
+            return exponent
+    raise AssertionError("bad F_9 multiplicative order")
+
+
+def exponent_elementary_gf9(
+    exponents: Sequence[int],
+    order: int,
+    rank: int,
+    root: tuple[int, int],
+) -> tuple[int, int]:
+    total = (0, 0)
+    for combo in itertools.combinations(exponents, rank):
+        total = gf9_add(total, gf9_pow(root, sum(combo) % order))
+    return total
+
+
 def top_sigma_key_mod(coeffs: Sequence[int], sigma: int, prime: int) -> tuple[int, ...]:
     size = len(coeffs) - 1
     effective = min(sigma, size)
@@ -956,6 +1004,64 @@ def check_newton_power_sum_bridge() -> dict[str, Any]:
     }
 
 
+def check_extension_field_bad_prime_certificate() -> dict[str, Any]:
+    characteristic = 3
+    extension_degree = 2
+    order = 8
+    sigma = 1
+    root = (1, 1)
+    left = (0, 1)
+    right = (2, 5)
+    if (characteristic - 1) % order == 0:
+        raise AssertionError("test prime unexpectedly split")
+    if (characteristic ** extension_degree - 1) % order != 0:
+        raise AssertionError("extension field cannot contain the requested root")
+    if gf9_multiplicative_order(root) != order:
+        raise AssertionError("chosen F_9 element is not primitive of order 8")
+
+    left_value = exponent_elementary_gf9(left, order, sigma, root)
+    right_value = exponent_elementary_gf9(right, order, sigma, root)
+    if left_value != right_value:
+        raise AssertionError("expected F_9 prefix collision")
+
+    certificate = bad_prime_certificate(left, right, order, sigma)
+    if certificate["char_zero_collision"]:
+        raise AssertionError("F_9 witness lifted to characteristic zero")
+    if certificate["certificate"] != 36:
+        raise AssertionError("unexpected F_9 witness certificate")
+    if certificate["certificate"] % characteristic != 0:
+        raise AssertionError("extension-field bad prime did not divide certificate")
+    if certificate["split_prime_factors"]:
+        raise AssertionError("non-split prime appeared in split-prime support")
+
+    common_factor = common_root_gcd_mod(
+        left,
+        right,
+        order,
+        sigma,
+        characteristic,
+    )
+    if degree(common_factor) != extension_degree:
+        raise AssertionError("expected one quadratic prime-ideal factor over F_3")
+
+    return {
+        "base_prime": characteristic,
+        "extension_degree": extension_degree,
+        "field": "F_9 = F_3[i]/(i^2+1)",
+        "order": order,
+        "sigma": sigma,
+        "root": list(root),
+        "left": list(left),
+        "right": list(right),
+        "prefix_value": list(left_value),
+        "certificate": certificate["certificate"],
+        "certificate_factorization": certificate["certificate_factorization"],
+        "split_prime_factors": certificate["split_prime_factors"],
+        "common_factor_mod_3": common_factor,
+        "common_factor_degree_mod_3": degree(common_factor),
+    }
+
+
 def check_prefix_depth_filtration() -> dict[str, Any]:
     prime = 17
     order = 16
@@ -1369,6 +1475,9 @@ def build_report() -> dict[str, Any]:
         "f17_packet": check_f17_packet(),
         "split_prime_row_accounting": check_split_prime_row_accounting(),
         "newton_power_sum_bridge": check_newton_power_sum_bridge(),
+        "extension_field_bad_prime_certificate": (
+            check_extension_field_bad_prime_certificate()
+        ),
         "prefix_depth_filtration": check_prefix_depth_filtration(),
         "full_prefix_rigidity": check_full_prefix_rigidity(),
         "split_prime_sweep": check_split_prime_sweep(),
@@ -1411,6 +1520,14 @@ def print_human(report: dict[str, Any]) -> None:
     print(f"aggregate_lcm={packet['aggregate_lcm_certificate']}")
     print(f"translation_orbits={len(packet['translation_orbits'])}")
     print(f"affine_orbits={packet['affine_orbit_count']}")
+    extension = report["extension_field_bad_prime_certificate"]
+    print(
+        "extension_field_certificate="
+        f"p={extension['base_prime']}, "
+        f"degree={extension['extension_degree']}, "
+        f"cert={extension['certificate']}, "
+        f"gcd_degree={extension['common_factor_degree_mod_3']}"
+    )
     bridge = report["newton_power_sum_bridge"]
     print(
         "newton_power_sum_bridge="
