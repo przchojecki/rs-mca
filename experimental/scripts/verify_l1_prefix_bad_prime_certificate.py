@@ -482,6 +482,7 @@ def check_f17_packet() -> dict[str, Any]:
 
     certificate_counter: Counter[int] = Counter()
     common_root_degree_counter: Counter[int] = Counter()
+    embedding_zero_count_counter: Counter[int] = Counter()
     split_factor_sets: Counter[tuple[int, ...]] = Counter()
     aggregate_certificate = 1
     orbit_groups: dict[tuple[tuple[int, ...], tuple[int, ...]], list[dict[str, Any]]]
@@ -511,11 +512,25 @@ def check_f17_packet() -> dict[str, Any]:
         common_root_degree = degree(common_root_factor)
         if common_root_degree <= 0:
             raise AssertionError("actual F_17 collision has no common-root factor")
+        zero_roots = primitive_common_zero_roots(
+            pair["left"],
+            pair["right"],
+            order=16,
+            sigma=4,
+            prime=17,
+        )
+        if len(zero_roots) != common_root_degree:
+            raise AssertionError("common-root degree does not count embeddings")
         common_root_degree_counter[common_root_degree] += 1
+        embedding_zero_count_counter[len(zero_roots)] += 1
         certificate_counter[certificate["certificate"]] += 1
         split_factor_sets[split_factors] += 1
-        aggregate_certificate = lcm_int(aggregate_certificate, certificate["certificate"])
-        orbit_groups[translation_orbit_key(pair["left"], pair["right"], 16)].append(pair)
+        aggregate_certificate = lcm_int(
+            aggregate_certificate,
+            certificate["certificate"],
+        )
+        orbit_key = translation_orbit_key(pair["left"], pair["right"], 16)
+        orbit_groups[orbit_key].append(pair)
         affine_orbits.add(affine_orbit_key(pair["left"], pair["right"], 16))
 
     expected = Counter({68: 16, 272: 16, 147_968: 8})
@@ -566,6 +581,9 @@ def check_f17_packet() -> dict[str, Any]:
         "fiber_histogram": row["fiber_histogram"],
         "certificate_counts": dict(sorted(certificate_counter.items())),
         "common_root_degree_counts": dict(sorted(common_root_degree_counter.items())),
+        "embedding_zero_count_counts": dict(
+            sorted(embedding_zero_count_counter.items())
+        ),
         "aggregate_lcm_certificate": aggregate_certificate,
         "aggregate_split_prime_factors": aggregate_split_factors,
         "translation_orbits": orbit_ledger,
@@ -603,6 +621,21 @@ def prefix_delta_values_mod(
         )
         values.append(poly_eval_mod(delta, root, prime))
     return values
+
+
+def primitive_common_zero_roots(
+    left: Sequence[int],
+    right: Sequence[int],
+    order: int,
+    sigma: int,
+    prime: int,
+) -> list[int]:
+    roots = []
+    for root in primitive_order_roots(prime, order):
+        values = prefix_delta_values_mod(left, right, order, sigma, root, prime)
+        if all(value == 0 for value in values):
+            roots.append(root)
+    return roots
 
 
 def common_root_gcd_mod(
@@ -704,6 +737,9 @@ def check_prime_ideal_false_positive() -> dict[str, Any]:
     common_root_factor = common_root_gcd_mod(left, right, order, sigma, prime)
     if degree(common_root_factor) > 0:
         raise AssertionError("false positive has a nontrivial common-root factor")
+    zero_roots = primitive_common_zero_roots(left, right, order, sigma, prime)
+    if len(zero_roots) != degree(common_root_factor):
+        raise AssertionError("false-positive gcd degree does not count embeddings")
 
     profile = []
     any_collision = False
@@ -735,6 +771,7 @@ def check_prime_ideal_false_positive() -> dict[str, Any]:
         "certificate_factorization": certificate["certificate_factorization"],
         "common_root_factor_mod_p": common_root_factor,
         "common_root_degree": degree(common_root_factor),
+        "embedding_zero_count": len(zero_roots),
         "primitive_root_checks": profile,
         "actual_collision_for_any_embedding": any_collision,
     }
@@ -868,7 +905,9 @@ def print_human(report: dict[str, Any]) -> None:
         "f17_packet="
         f"pairs={packet['collision_pair_count']}, "
         f"max_fiber={packet['max_fiber']}, "
-        f"certificates={packet['certificate_counts']}"
+        f"certificates={packet['certificate_counts']}, "
+        f"gcd_degrees={packet['common_root_degree_counts']}, "
+        f"embedding_counts={packet['embedding_zero_count_counts']}"
     )
     sweep = ", ".join(
         f"p={row['prime']}:pairs={row['collision_pair_count']}"
@@ -889,6 +928,7 @@ def print_human(report: dict[str, Any]) -> None:
         "false_positive="
         f"p={false_positive['prime']}, cert={false_positive['certificate']}, "
         f"gcd_degree={false_positive['common_root_degree']}, "
+        f"embedding_count={false_positive['embedding_zero_count']}, "
         f"actual={false_positive['actual_collision_for_any_embedding']}"
     )
     affine = report["affine_invariance"]

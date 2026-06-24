@@ -179,6 +179,19 @@ closure are the primitive `n`-th roots and are simple.  A common zero of all
 the `Delta_r` is therefore exactly a nonconstant common divisor of `Phi_n` and
 the `Delta_r` reductions.
 
+The same argument gives a counting form.  Since `Phi_n` is squarefree modulo
+`p`, the common-root factor `G_p` is squarefree, and
+
+```text
+deg G_p
+  = #{alpha in Fpbar : Phi_n(alpha)=0 and Delta_r(alpha)=0 for all r<=sigma}.
+```
+
+When `n | p-1`, this is just the number of primitive `n`-th roots
+`h in F_p` for which the template realizes the prefix collision.  Thus the
+modular gcd is not only a yes/no ideal-level filter; it records the exact
+embedding multiplicity at the split prime.
+
 Thus `p | C_n,sigma(A,B)` says that each nonzero `Delta_r(zeta_n)` vanishes
 modulo at least one prime ideal above `p`; it need not be the same prime ideal
 for all `r`.
@@ -200,8 +213,9 @@ C_16,4(A,B) = 194 = 2 * 97,
 
 so `97` passes the rational split-prime filter.  But evaluating the four
 `Delta_r` at all primitive `16`-th roots in `F_97` gives no common zero;
-equivalently the modular gcd `G_97` is constant.  Hence there is no
-finite-field prefix collision for this template over `F_97`.
+equivalently the modular gcd `G_97` is constant, with degree and embedding
+count both equal to `0`.  Hence there is no finite-field prefix collision for
+this template over `F_97`.
 
 This distinction is important for aggregation: lcm certificates produce a
 candidate set of rational primes, while the final row-level verifier or theorem
