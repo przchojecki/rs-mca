@@ -18,7 +18,8 @@ The script checks eleven finite objects.
 8. The locator-syndrome equations defining that simultaneous fiber.
 9. The equivalent weighted residue-moment equations.
 10. The support-pair rank law behind the random regular-core second moment.
-11. A realized Reed-Solomon K_{2,2} gluing over a prime-field multiplicative
+11. The multi-support high-overlap cluster-rank upper bound.
+12. A realized Reed-Solomon K_{2,2} gluing over a prime-field multiplicative
    subgroup, computed by exact list enumeration, together with its punctured
    codegree profile.
 
@@ -404,6 +405,109 @@ def support_pair_rank_profile() -> dict:
             for row in rows
             if row["intersection"] >= k
         ),
+    }
+
+
+def connected_components_count(edges: list[tuple[int, int]], vertex_count: int) -> int:
+    parent = list(range(vertex_count))
+
+    def find(x: int) -> int:
+        while parent[x] != x:
+            parent[x] = parent[parent[x]]
+            x = parent[x]
+        return x
+
+    def union(x: int, y: int) -> None:
+        root_x = find(x)
+        root_y = find(y)
+        if root_x != root_y:
+            parent[root_y] = root_x
+
+    for left, right in edges:
+        union(left, right)
+    return len({find(idx) for idx in range(vertex_count)})
+
+
+def feasible_assignment_count(
+    p: int,
+    codewords: list[tuple[int, ...]],
+    supports: list[tuple[int, ...]],
+) -> int:
+    union = sorted(set().union(*[set(support) for support in supports]))
+    union_index = {idx: pos for pos, idx in enumerate(union)}
+    feasible_by_support = [
+        {tuple(cw[idx] for idx in support) for cw in codewords}
+        for support in supports
+    ]
+    count = 0
+    for assignment in itertools.product(range(p), repeat=len(union)):
+        if all(
+            tuple(assignment[union_index[idx]] for idx in support)
+            in feasible_values
+            for support, feasible_values in zip(supports, feasible_by_support)
+        ):
+            count += 1
+    return count
+
+
+def support_cluster_rank_profile() -> dict:
+    """Brute-force examples for the high-overlap cluster-rank upper bound."""
+    p, n, k, a = 7, 6, 2, 3
+    h_values = subgroup(p, n)
+    codewords = all_codewords(p, h_values, k)
+    examples = [
+        {
+            "name": "one_high_overlap_component",
+            "supports": [(0, 1, 2), (1, 2, 3), (0, 2, 3)],
+        },
+        {
+            "name": "mixed_high_low_path",
+            "supports": [(0, 1, 2), (1, 2, 3), (3, 4, 5)],
+        },
+        {
+            "name": "low_overlap_cycle",
+            "supports": [(0, 1, 2), (2, 3, 4), (0, 4, 5)],
+        },
+    ]
+    rows = []
+    for example in examples:
+        supports = example["supports"]
+        edges = [
+            (i, j)
+            for i in range(len(supports))
+            for j in range(i + 1, len(supports))
+            if len(set(supports[i]) & set(supports[j])) >= k
+        ]
+        components = connected_components_count(edges, len(supports))
+        union_size = len(set().union(*[set(support) for support in supports]))
+        brute_count = feasible_assignment_count(p, codewords, supports)
+        dimension_upper_bound = k * components
+        rows.append(
+            {
+                "name": example["name"],
+                "supports": [list(support) for support in supports],
+                "high_overlap_edges": [list(edge) for edge in edges],
+                "components": components,
+                "union_size": union_size,
+                "dimension_upper_bound": dimension_upper_bound,
+                "brute_count": brute_count,
+                "count_upper_bound": p**dimension_upper_bound,
+                "probability_exponent_bound": union_size - dimension_upper_bound,
+            }
+        )
+    return {
+        "p": p,
+        "n": n,
+        "k": k,
+        "a": a,
+        "rows": rows,
+        "all_counts_bounded": all(
+            row["brute_count"] <= row["count_upper_bound"] for row in rows
+        ),
+        "connected_high_overlap_tight": rows[0]["brute_count"]
+        == rows[0]["count_upper_bound"],
+        "low_overlap_bound_can_be_loose": rows[2]["brute_count"]
+        < rows[2]["count_upper_bound"],
     }
 
 
@@ -1260,6 +1364,7 @@ def run() -> dict:
     designs = [kmm_grid_design(k=3, a=5, m=m) for m in (2, 3, 4, 5)]
     dithered_witness = realized_dithered_quotient_packet()
     support_pair_profile = support_pair_rank_profile()
+    support_cluster_profile = support_cluster_rank_profile()
     witness = realized_rs_k22()
     checks = {
         "quotient_budget_nonnegative": quotient_example["total"] >= 0,
@@ -1398,6 +1503,15 @@ def run() -> dict:
         "support_pair_rank_surplus_above_k": support_pair_profile[
             "above_k_surplus"
         ],
+        "support_cluster_rank_counts": support_cluster_profile[
+            "all_counts_bounded"
+        ],
+        "support_cluster_rank_connected_tight": support_cluster_profile[
+            "connected_high_overlap_tight"
+        ],
+        "support_cluster_rank_low_overlap_loose": support_cluster_profile[
+            "low_overlap_bound_can_be_loose"
+        ],
         "kmm_grid_formula": all(d["interleaved_edges"] == d["grid_edges_at_n_min"] for d in designs),
         "rs_witness_creates_mass": witness["mass_creation"],
         "rs_witness_realizes_k22": witness["interleaved"] == witness["product_bound"] == 4,
@@ -1466,6 +1580,7 @@ def run() -> dict:
         "kmm_designs": designs,
         "realized_dithered_quotient_packet": dithered_witness,
         "support_pair_rank_profile": support_pair_profile,
+        "support_cluster_rank_profile": support_cluster_profile,
         "realized_rs_k22": witness,
         "checks": checks,
         "pass": all(checks.values()),
@@ -1569,6 +1684,22 @@ def main(argv: list[str] | None = None) -> int:
         print(
             "  support-pair rank profile: "
             f"F_{sp['p']}, n={sp['n']}, k={sp['k']}, a={sp['a']}, rows={sp_rows}"
+        )
+        sc = result["support_cluster_rank_profile"]
+        sc_rows = [
+            {
+                "name": row["name"],
+                "components": row["components"],
+                "union": row["union_size"],
+                "dim_bound": row["dimension_upper_bound"],
+                "count": row["brute_count"],
+                "bound": row["count_upper_bound"],
+            }
+            for row in sc["rows"]
+        ]
+        print(
+            "  support-cluster rank profile: "
+            f"F_{sc['p']}, n={sc['n']}, k={sc['k']}, a={sc['a']}, rows={sc_rows}"
         )
         print("  K_{m,m} abstract designs:")
         for d in result["kmm_designs"]:

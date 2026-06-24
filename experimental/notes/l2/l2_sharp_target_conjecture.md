@@ -349,6 +349,41 @@ which is the displayed two-case formula. Independence over rows gives the
 `|S|=|T|=a` and `|S cap T|=r` is
 `binom(n,a) binom(a,r) binom(n-a,a-r)`, giving the second-moment identity.
 
+For larger collections the exact rank depends on low-overlap consistency
+relations, but the high-overlap part has a clean universal bound.
+
+**Lemma (high-overlap cluster-rank bound).** Let `S_1,...,S_m` be `a`-subsets
+of `H`. Form a graph `G_k` on `{1,...,m}` by joining `i` and `j` when
+
+```text
+|S_i cap S_j| >= k.
+```
+
+Let `c(G_k)` be the number of connected components and put
+`V= S_1 union ... union S_m`. For one uniform random row,
+
+```text
+Pr[S_1,...,S_m in Fib_U(a)] <= q^{k c(G_k)-|V|}.
+```
+
+For `mu` independent rows, the right-hand side is raised to the `mu`-th power.
+
+*Proof.* If a row is feasible on every `S_i`, choose degree-`<k` polynomials
+`P_i` with `U|_{S_i}=P_i|_{S_i}`. Along an edge of `G_k`, the polynomials
+`P_i` and `P_j` agree on at least `k` points, hence are identical. Therefore
+all vertices in one connected component use the same polynomial. Thus the set
+of feasible value assignments on `V` lies in the image of a linear map from at
+most one degree-`<k` polynomial per component, a vector space of dimension
+`k c(G_k)`. The ambient space has dimension `|V|`, which gives the probability
+bound. Independence gives the `mu`-row version.
+
+This lemma is deliberately an upper bound. It is tight for a single connected
+high-overlap cluster, but low-overlap intersections between different
+components can only add further linear consistency conditions. Its value is
+that any super-random regular-core obstruction must organize many supports into
+large high-overlap clusters, a much narrower structure than an arbitrary
+Cartesian product of support fibers.
+
 **Lemma (all-remainder quotient packets have exact support and exact count).**
 Fix one scale `M | n` with `M>sigma`, write `a=M ell+u` with
 `0<=u<M`, and fix an omitted `M`-coset `C_0`. For row `i`, choose
@@ -1087,13 +1122,22 @@ checks the following stress points.
    high-overlap surplus at `r>=k` are checked directly in a finite RS model.
    This is random-model evidence for the regular-core local-limit target, not
    a worst-case proof.
-4. The natural `K_{m,m}` grid over-agreement family has
+4. The multi-support high-overlap cluster bound is brute-checked on three
+   `F_7`, `n=6`, `k=2`, `a=3` configurations. A connected high-overlap triple
+   has one component, union size `4`, dimension bound `2`, and exactly `7^2`
+   feasible assignments. A mixed high/low path has two components, union size
+   `6`, and count below the `7^4` bound. A low-overlap cycle has three
+   components, union size `6`, but only `7^3` feasible assignments below the
+   loose `7^6` cluster bound, showing that low-overlap consistency can only
+   reduce the feasible space further. This identifies high-overlap clustering
+   as the only source of positive rank surplus left by the random model.
+5. The natural `K_{m,m}` grid over-agreement family has
    ```text
    n_min = (k-1) + m^2(a-k+1),
    ```
    so this attack realizes local Cartesian blocks but only with polynomial
    growth in the tested grid model.
-5. An exact Reed-Solomon enumeration over `F_29`, `n=14`, `k=3`, `a=5`
+6. An exact Reed-Solomon enumeration over `F_29`, `n=14`, `k=3`, `a=5`
    realizes a genuine `K_{2,2}` over-agreement witness:
    ```text
    base row lists = [2,2],
@@ -1116,7 +1160,7 @@ checks the following stress points.
    The two row-1 anchor supports have size `8`; the punctured Johnson bound is
    `floor(8(8-3+1)/(5^2-8(3-1))) = 5`, so the observed codegrees `2,2`
    satisfy the proposition.
-6. The same witness satisfies the deterministic shell bound: the row-1 shell
+7. The same witness satisfies the deterministic shell bound: the row-1 shell
    histogram is `{8:2}`, the controlled shell contribution is `2*5=10`, the
    large-anchor tail is empty, and the exact-`a` row-1 locator multiplicity is
    `2 binom(8,5)=112`. If one forgets the exact shell histogram and uses only
