@@ -469,6 +469,10 @@ def support_cluster_rank_profile() -> dict:
             "supports": [(0, 1, 2), (1, 2, 3), (3, 4, 5)],
         },
         {
+            "name": "connected_chain_four_distinct",
+            "supports": [(0, 1, 2), (1, 2, 3), (2, 3, 4), (3, 4, 5)],
+        },
+        {
             "name": "low_overlap_cycle",
             "supports": [(0, 1, 2), (2, 3, 4), (0, 4, 5)],
         },
@@ -484,6 +488,8 @@ def support_cluster_rank_profile() -> dict:
         ]
         components = connected_components_count(edges, len(supports))
         union_size = len(set().union(*[set(support) for support in supports]))
+        union_excess = union_size - a
+        distinct_supports = len({frozenset(support) for support in supports})
         brute_count = feasible_assignment_count(p, codewords, supports)
         dimension_upper_bound = k * components
         rows.append(
@@ -493,6 +499,9 @@ def support_cluster_rank_profile() -> dict:
                 "high_overlap_edges": [list(edge) for edge in edges],
                 "components": components,
                 "union_size": union_size,
+                "union_excess": union_excess,
+                "distinct_supports": distinct_supports,
+                "support_capacity_bound": comb(a + union_excess, a),
                 "dimension_upper_bound": dimension_upper_bound,
                 "brute_count": brute_count,
                 "count_upper_bound": p**dimension_upper_bound,
@@ -517,10 +526,23 @@ def support_cluster_rank_profile() -> dict:
             "one_high_overlap_component"
         ]["probability_exponent_bound"]
         == a - k + 1,
+        "connected_union_excess_tradeoff": all(
+            row["probability_exponent_bound"] == a - k + row["union_excess"]
+            for row in rows
+            if row["components"] == 1
+        ),
+        "distinct_support_capacity": all(
+            row["distinct_supports"] <= row["support_capacity_bound"]
+            for row in rows
+        ),
         "connected_high_overlap_tight": row_by_name["one_high_overlap_component"][
             "brute_count"
         ]
         == row_by_name["one_high_overlap_component"]["count_upper_bound"],
+        "connected_chain_loss": row_by_name["connected_chain_four_distinct"][
+            "probability_exponent_bound"
+        ]
+        == a - k + row_by_name["connected_chain_four_distinct"]["union_excess"],
         "low_overlap_bound_can_be_loose": row_by_name["low_overlap_cycle"][
             "brute_count"
         ]
@@ -1529,8 +1551,17 @@ def run() -> dict:
         "support_cluster_rank_nondiagonal_extra_loss": support_cluster_profile[
             "nondiagonal_connected_extra_loss"
         ],
+        "support_cluster_rank_union_excess_tradeoff": support_cluster_profile[
+            "connected_union_excess_tradeoff"
+        ],
+        "support_cluster_rank_distinct_capacity": support_cluster_profile[
+            "distinct_support_capacity"
+        ],
         "support_cluster_rank_connected_tight": support_cluster_profile[
             "connected_high_overlap_tight"
+        ],
+        "support_cluster_rank_chain_loss": support_cluster_profile[
+            "connected_chain_loss"
         ],
         "support_cluster_rank_low_overlap_loose": support_cluster_profile[
             "low_overlap_bound_can_be_loose"
@@ -1714,6 +1745,8 @@ def main(argv: list[str] | None = None) -> int:
                 "name": row["name"],
                 "components": row["components"],
                 "union": row["union_size"],
+                "excess": row["union_excess"],
+                "distinct": row["distinct_supports"],
                 "dim_bound": row["dimension_upper_bound"],
                 "count": row["brute_count"],
                 "bound": row["count_upper_bound"],

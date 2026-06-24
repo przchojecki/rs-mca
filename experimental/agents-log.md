@@ -135,6 +135,10 @@ Keep entries concise and link to the relevant files.
   `|V|=a`, while every non-diagonal connected cluster pays at least one extra
   `q^{-mu}` factor. The verifier checks tight and loose three-support examples
   over the same field.
+  This has been sharpened to a union-excess tradeoff: a connected cluster with
+  union size `a+d` costs `q^{-mu d}` beyond one support and contains at most
+  `binom(a+d,a)` distinct supports; the verifier adds a four-support chain
+  example realizing the predicted exponent.
 - **How it is useful:** Turns the L2 objective from a broad "avoid Cartesian
   overcharge" principle into a concrete conjectural inequality that can be
   falsified or promoted. The `K_{2,2}` witness records that local Cartesian
