@@ -142,6 +142,15 @@ Cycle84 slots; the `≥7` minimal target is the conservative survivor count.
    reduces to the proven Lemma 1 transfer (item 5) on the endpoint-fixed sub-family.
    strict264's conclusion is unaffected (the admissibility enumeration already used
    the correct grouping); only the stated degree condition is corrected `241 → 240`.
+   **Corroboration by the deployed record:** the `cycle119` proof record
+   (`site/data/frontier.json`) states its jet as *"common top-six coefficients plus
+   common nonzero constant coefficient."* For cycle119, `σ = 263−256 = 7`, so "top
+   six" `= e_1..e_6 = e_1..e_{σ−1}` **+ constant (endpoint)** — exactly the **corrected**
+   jet, fixing the top `σ−1 = 6`. The candidate note's *general* statement
+   `deg ≤ j−σ+1` would fix only the top `σ−2 = 5`; the record fixes one more. So the
+   actual deployed construction already uses the correct jet — the off-by-one is
+   confined to the note's *general prose*, and the verified correction matches the
+   proof record.
 
 ## Honest scope
 - **VERIFIED (arithmetic):** the M2-bridge gate (7 slopes ⟹ `>2^-128`, `δ*≤31/64`)
