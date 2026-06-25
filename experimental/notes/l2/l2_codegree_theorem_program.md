@@ -106,9 +106,38 @@ exploiting the tradeoff "large agreement set ⟹ rare codeword." Bounding this s
 increment. The `N'=a` end (`D=1`, many `c_1`) and the `N'=n` end (`D=|Fib_2|`, one
 `c_1`) both give small contributions; the interior is the work.
 
+## Step 2b findings (2026-06-25) — the reduction, and an honest correction
+
+`verify_l2_stratified_sum.py` measured the saving over adversarial `(U1,U2)`:
+- The saving is **real and strong**: e.g. `|Fib1|=72, |Fib2|=67` (Cartesian 4824)
+  gives interleaved `= 4` — far below even a single fiber.
+- **Second moment is insufficient.** Markov/Cauchy–Schwarz hold but are loose; the
+  quadratic term of `Σ_x cov_i(x)^2` dominates up to 94% of samples, where CS gives
+  only `Cartesian·(k-1)/a` (exponent `2B`, no real saving). So CS cannot prove the
+  exponent-`B` saving.
+
+**The right bound (the reduction).** By the codegree decomposition + step 2a,
+```
+|Λ_2| = Σ_{c2 ∈ Fib_2} (punctured list of U1 on A_2(c2))
+      ≤ Σ_{c2} D(|A_2(c2)|)  =  Σ_{N2} M_2(N2) · D(N2),
+```
+where `M_2(N2) = #{c2 : |A_2(c2)| ≥ N2}` is the **L1 agreement-size profile** and
+`D(N2) ≤ N2(N2-k+1)/(a^2-N2(k-1))` is the per-`N'` punctured list (step 2a).
+
+**Honest correction: the saving is NOT L1-independent.** I earlier claimed steps
+1–2 were L1-independent; that holds for the *structure* (the decomposition and the
+per-`N'` `D` bound), but **not for the saving assembly**. At near-capacity (`a≈k`)
+the Johnson bound `D(N2)` is non-vacuous only for `N2 ≲ a²/(k-1) ≈ a`; for all
+larger `N2` it is vacuous (`D` up to `|Fib1|`). So controlling `Σ_{N2} M_2(N2)D(N2)`
+requires the **profile decay `M_2(N2)`** — i.e. the L1 / `prob:perfiber` input.
+The L2 saving therefore **reduces to** (i) the punctured-RS Johnson bound
+(L1-independent, done) + (ii) the L1 agreement-size profile. This is a clean,
+named reduction — `L2 saving ⟸ L1 profile + punctured-RS Johnson` — even though
+it is not the L1-free result I first hoped for.
+
 ## Milestones (this PR)
-1. [x] worst-case punctured-RS-list scanner + measured `D` vs Johnson (step 2a).
-2. [ ] the agreement-size-stratified sum `Σ_{c1} D(|A_1(c1)|)` (step 2b) — bound it.
-3. [ ] assemble the codegree theorem (qualitative saving), L1-independent, verify.
-4. [ ] `μ>2` recursion constants.
-5. [ ] (stretch) sharp constant via non-smooth-puncture analysis.
+1. [x] worst-case punctured-RS-list scanner + per-`N'` `D ≤ Johnson` (step 2a).
+2. [x] stratified-sum reduction `|Λ_2| ≤ Σ_{N2} M_2(N2) D(N2)`; CS shown insufficient.
+3. [ ] verify the reduction bound numerically (`Σ M_2 D ≥ |Λ_2|`, tightness).
+4. [ ] state the reduction theorem cleanly: `L2 saving ⟸ L1 profile + Johnson`.
+5. [ ] `μ>2` recursion; (stretch) sharp constant via non-smooth-puncture.

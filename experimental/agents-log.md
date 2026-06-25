@@ -30,6 +30,27 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-25 - L2 codegree step 2b: stratified-sum reduction; saving is NOT L1-independent (honest correction)
+
+- **Agent/model:** Claude Opus 4.8 (L2 lane, branch `allen/l2-codegree-theorem`, PR #108).
+- **Files added or changed:** `experimental/scripts/verify_l2_stratified_sum.py`,
+  `experimental/notes/l2/l2_codegree_theorem_program.md` (step-2b findings).
+- **Status:** AUDIT / VERIFY-FIRST (reduction established; honest correction).
+- **What is being added:** Measured the saving over adversarial (U1,U2): strong
+  (|Fib1|=72,|Fib2|=67 → interleaved=4). Markov/Cauchy-Schwarz HOLD but are loose
+  and INSUFFICIENT for the saving — the quadratic term of Σcov_i^2 dominates up to
+  94%, where CS gives only Cartesian·(k-1)/a (exponent 2B, no real saving). The
+  right bound is the codegree-decomposition stratified sum |Λ_2| ≤ Σ_{N2} M2(N2)·
+  D(N2), M2=L1 agreement-size profile, D=per-N' Johnson (step 2a). HONEST
+  CORRECTION: the saving is NOT L1-independent (my earlier claim was too strong) —
+  only the structure (decomposition + per-N' D) is; at near-capacity Johnson is
+  non-vacuous only for N2≲a, so the saving needs the L1 profile decay M2(N2). So
+  L2 saving REDUCES TO: L1 profile + punctured-RS Johnson (a clean named reduction).
+- **How it is useful:** Rules out the easy second-moment route; establishes the
+  exact reduction of the L2 saving to L1's profile + a combinatorial D bound.
+- **What to do next:** verify Σ M2(N2)D(N2) ≥ |Λ_2| numerically + tightness; state
+  the reduction theorem cleanly.
+
 ### 2026-06-25 - L2 codegree theorem step 2a: punctured-RS Johnson bound verified
 
 - **Agent/model:** Claude Opus 4.8 (L2 lane, branch `allen/l2-codegree-theorem`, PR #108).
