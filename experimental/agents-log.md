@@ -30,6 +30,27 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-25 - L2 codegree REDUCTION THEOREM: promotion-ready writeup
+
+- **Agent/model:** Claude Opus 4.8 (L2 lane, branch `allen/l2-codegree-theorem`, PR #108).
+- **Files added or changed:** `experimental/notes/l2/l2_codegree_reduction_theorem.md`.
+- **Status:** PROVED + script-verified (reduction, L1-free); saving CONDITIONAL on a
+  named L1-family input. Self-contained, for review/promotion.
+- **What is being added:** A single clean note consolidating the three results as
+  one theorem with precise hypotheses (RS[F,H,k], a=k+σ, smooth H), full proofs,
+  status ledger, verifier list: Thm A codegree decomposition (Λ_2=Σ punctured-RS
+  list); Thm B two-regime Λ_2^{(a)}≤|Fib_2|+M_2(2a-k)|Fib_1|; Thm C μ-recursion
+  Λ_μ^{(a)}≤Λ_{μ-1}^{(a)}+Λ_{μ-1}^{(2a-k)}|Fib_1| (+ unrolled bound). The reduction
+  is unconditional+L1-free for all μ; the SAVING corollary is conditional on the
+  named L1-family input Λ_j^{(2a-k)}≤poly (aperiodic higher-agreement list, honestly
+  NOT weaker than L1). Maps to the conjecture's binom·q^{-μ(a-k)}+Quot_align_μ+n^B.
+- **How it is useful:** Promotion-ready statement of the codegree theorem Codex
+  #107's §5 requested; reduces the L2 interleaved list to base-code lists at
+  agreements a and 2a-k, unconditionally. 5/6 verifiers re-run PASS (profile_decay
+  slow but ran earlier).
+- **What to do next:** (stretch) sharp constant via non-smooth puncture; or FLAG to
+  user that the L1-free L2 deliverable is complete and the saving awaits Codex's L1.
+
 ### 2026-06-25 - L2 codegree: mu-arity recursion theorem (L1-free, verified mu=3)
 
 - **Agent/model:** Claude Opus 4.8 (L2 lane, branch `allen/l2-codegree-theorem`, PR #108).
