@@ -340,7 +340,8 @@ Keep entries concise and link to the relevant files.
   branch is curve-sized, and verifies the identity
   `s^2 Delta0 = Delta1*(s tau3 + A s - h) + G`. The latest increment adds a
   gate partition certificate separating base-valued, graph-divisibility, and
-  exceptional landings.
+  exceptional landings, and records the explicit curve-sized bound for the
+  exceptional locus.
 - **How it is useful:** Makes the live F1 rank/determinant resonance branch
   counterexample-first: any large split-cubic slope family in this restricted
   window must pass through the exact `Delta1==0` or `G==0` gate.

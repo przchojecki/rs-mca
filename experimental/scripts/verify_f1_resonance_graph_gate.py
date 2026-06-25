@@ -32,6 +32,8 @@ The script also checks the cleared-remainder identity
 so G is the exact resultant/divisibility obstruction for the graph branch.
 Every split-triple landing is then classified into the base-valued gate
 Delta1==0, the graph gate s!=0 and G=0, or the exceptional locus s=h=0.
+The exceptional locus is independently curve-sized whenever Delta1 is not
+identically zero.
 
 The default run uses random off-R0 samples to exercise the graph algebra and a
 tiny forced-Ra sample to hit the exact resonance gates quickly. Larger forced
@@ -209,6 +211,18 @@ def nonzero_gate_bound(delta1_zero: bool, s_poly: Poly2, g_poly: Poly2, p: int) 
     return g_degree * p + 2 * p
 
 
+def exceptional_locus_bound(delta1_zero: bool, s_poly: Poly2, p: int) -> int | None:
+    """Return a crude B^3 bound for s=h=0 when Delta1 is nonzero."""
+    if delta1_zero:
+        return None
+    if is_zero_poly(s_poly):
+        # Then h is a nonzero degree <=2 polynomial; each base zero gives at
+        # most two tau3 values from monic Delta0.
+        return 4 * p
+    # s=0 is a line, again with at most two tau3 values from monic Delta0.
+    return 2 * p
+
+
 def split_triple_stats(
     p: int,
     E: List[FElement],
@@ -232,6 +246,7 @@ def split_triple_stats(
     g_zero_pairs = p * p if g_zero else count_g_zero_pairs(g_poly, p)
     g_schwartz_bound = p * p if g_zero else pdegree(g_poly) * p
     active_bound = nonzero_gate_bound(delta1_zero, s_poly, g_poly, p)
+    exceptional_bound = exceptional_locus_bound(delta1_zero, s_poly, p)
 
     if coeffs.get((0, 0, 2), c11.zero) != c11.one:
         raise AssertionError("normalized tau3^2 coefficient is not 1")
@@ -240,6 +255,10 @@ def split_triple_stats(
             raise AssertionError("alpha component has tau3^2 term")
     if pdegree(g_poly) > 4:
         raise AssertionError("graph gate degree exceeded 4")
+    if pdegree(s_poly) > 1:
+        raise AssertionError("s unexpectedly has degree > 1")
+    if pdegree(h_poly) > 2:
+        raise AssertionError("h unexpectedly has degree > 2")
     if not g_zero and g_zero_pairs > g_schwartz_bound:
         raise AssertionError("G-zero pair count exceeds Schwartz-Zippel bound")
 
@@ -313,6 +332,8 @@ def split_triple_stats(
         raise AssertionError("gate partition did not cover all landings")
     if not delta1_zero and not g_zero and graph_common > g_zero_pairs:
         raise AssertionError("graph branch exceeds the G-zero pair count")
+    if exceptional_bound is not None and exceptional_common > exceptional_bound:
+        raise AssertionError("exceptional branch exceeds the finite exceptional bound")
     if active_bound is not None and split_landings > active_bound:
         raise AssertionError("nonzero-gate split landings exceed the active finite bound")
 
@@ -323,6 +344,7 @@ def split_triple_stats(
         "G_zero_pairs": g_zero_pairs,
         "G_schwartz_bound": g_schwartz_bound,
         "nonzero_gate_bound": active_bound,
+        "exceptional_bound": exceptional_bound,
         "remainder_identity": True,
         "gate_partition": True,
         "gate_status": (
@@ -500,6 +522,7 @@ def main() -> None:
                 "best_C2={C2} graph_C2={graph_C2} split_landings={split_landings} "
                 "gate={gate_status} Delta1_zero={Delta1_zero} G_zero={G_zero} G_degree={G_degree} "
                 "G_zero_pairs={G_zero_pairs} active_bound={nonzero_gate_bound} "
+                "exceptional_bound={exceptional_bound} "
                 "base={base_gate_common} graph={graph_common} exceptional={exceptional_common}".format(
                     record_mode=record["mode"],
                     checked=record["checked"],
@@ -524,6 +547,7 @@ def main() -> None:
                 "best_C2={C2} graph_C2={graph_C2} split_landings={split_landings} "
                 "gate={gate_status} Delta1_zero={Delta1_zero} G_zero={G_zero} G_degree={G_degree} "
                 "G_zero_pairs={G_zero_pairs} active_bound={nonzero_gate_bound} "
+                "exceptional_bound={exceptional_bound} "
                 "base={base_gate_common} graph={graph_common} exceptional={exceptional_common}".format(
                     record_mode=record["mode"],
                     checked=record["checked"],

@@ -108,14 +108,20 @@ graph gate:             Delta1 is nonzero and s(tau1,tau2) != 0,
 exceptional locus:      Delta1 is nonzero and s(tau1,tau2)=h(tau1,tau2)=0.
 ```
 
-The exceptional locus is already lower-dimensional: if `s` is a nonzero
-affine form it lies over a line, and if `s` is identically zero then `h` is a
-nonzero degree-`<=2` polynomial. Thus the only branches that can plausibly
-support a `Theta(p^2)` split-cubic slope image across growing primes are the
-two exact gates:
+The exceptional locus is already lower-dimensional, independently of whether
+`G` vanishes. If `s` is a nonzero affine form, `s=0` lies over a line and the
+monic quadratic `Delta0` gives at most two `tau3` values, so this branch has
+`<=2p` ambient points over `B=F_p`. If `s` is identically zero, then `h` is a
+nonzero degree-`<=2` polynomial and the same quadratic-in-`tau3` argument gives
+`<=4p` ambient points. Thus the exceptional branch is always curve-sized once
+`Delta1` is not identically zero.
+
+Consequently, the only branches that can plausibly support a `Theta(p^2)`
+split-cubic slope image across growing primes are:
 
 ```text
-Delta1 == 0        or        G == 0.
+Delta1 == 0                     (base-valued gate),
+s != 0 and G == 0               (open graph-divisibility gate).
 ```
 
 This is the operational form of the remaining search target. A future
@@ -141,6 +147,8 @@ each off-`R0` landing polynomial, and verifies:
 - `Delta1 = s tau3 + h` recovers every graph value `tau3=-h/s`;
 - every graph-branch common zero passes through `G=0`;
 - every landing is classified by the gate partition above;
+- the exceptional branch is bounded by the explicit `<=2p` or `<=4p`
+  lower-dimensional estimate whenever `Delta1` is nonzero;
 - whenever `G` is nonzero, the observed graph branch is bounded by the
   finite `G`-zero pair count;
 - whenever both exact gates are inactive, the observed split-triple landings
@@ -148,9 +156,9 @@ each off-`R0` landing polynomial, and verifies:
 
 The final `CERT` line records the best sampled branch in a machine-readable
 form with fields such as `p`, `q_gen`, `q_line`, `Delta1_zero`, `G_zero`,
-`G_degree`, `G_zero_pairs`, `nonzero_gate_bound`, `remainder_identity`,
-`gate_status`, `base_gate_C2`, `graph_C2`, `exceptional_C2`, and
-split-triple counts.
+`G_degree`, `G_zero_pairs`, `nonzero_gate_bound`, `exceptional_bound`,
+`remainder_identity`, `gate_status`, `base_gate_C2`, `graph_C2`,
+`exceptional_C2`, and split-triple counts.
 
 The companion symbolic checker
 
