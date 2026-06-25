@@ -1126,6 +1126,38 @@ linear dependence among the evaluation functionals supported on
 `E union F`. Reed-Solomon evaluation functionals on at most `k` distinct
 points are independent, so this is impossible when `e+f<=k`.
 
+The one-edge incidence mass is exact.
+
+**Corollary (one-edge incidence mass).** For every `1<=e<k`,
+
+```text
+sum_{[ell] in P(V^*)} N_e([ell])
+  = binom(n,e) (q^e-1)/(q-1).
+```
+
+Consequently, if clean rank-deficient edge-block tuples have fixed edge sizes
+`e_0,...,e_{m-1}`, then for any distinguished index `t` their number is at most
+
+```text
+binom(n,e_t) (q^{e_t}-1)/(q-1)
+  prod_{i != t} binom(n,e_i).
+```
+
+In particular, choosing an edge of minimum size `e_min` replaces the crude
+projective-functional factor `(q^k-1)/(q-1)` by `(q^{e_min}-1)/(q-1)`. Thus a
+clean cycle with a genuinely small edge gains a field-size saving of about
+`q^{k-e_min}` before any further disjointness or minimal-support restrictions
+are used.
+
+*Proof.* Sum the incidence relation over edge sets instead of functionals. For
+each fixed `e`-set `E`, the evaluation functionals `{ev_x:x in E}` are
+independent because `e<k`; hence their span has dimension `e` and contains
+exactly `(q^e-1)/(q-1)` projective nonzero functionals. Summing over the
+`binom(n,e)` choices of `E` gives the identity. The edge-tuple bound follows
+from the functional-incidence count by using this exact sum for the
+distinguished edge and the trivial bound `N_{e_i}([ell])<=binom(n,e_i)` for
+all remaining edges.
+
 The incidence counts are exact in the MDS uniqueness range.
 
 **Corollary (small-support uniqueness for `N_e`).** Let `r([ell])` be the

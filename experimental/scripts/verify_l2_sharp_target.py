@@ -1597,6 +1597,14 @@ def functional_incidence_profile() -> dict:
         for count in counts.values():
             histogram[count] = histogram.get(count, 0) + 1
         distribution[size] = dict(sorted(histogram.items()))
+    one_edge_incidence = {
+        size: sum(counts.values())
+        for size, counts in representation_counts.items()
+    }
+    expected_one_edge_incidence = {
+        size: comb(n, size) * (p**size - 1) // (p - 1)
+        for size in subsets_by_size
+    }
 
     singleton_represented = [
         functional
@@ -1698,6 +1706,10 @@ def functional_incidence_profile() -> dict:
         "projective_functional_count": len(projective_functionals),
         "expected_projective_functional_count": (p**k - 1) // (p - 1),
         "representation_count_distribution": distribution,
+        "one_edge_incidence": one_edge_incidence,
+        "expected_one_edge_incidence": expected_one_edge_incidence,
+        "one_edge_incidence_formula_holds": one_edge_incidence
+        == expected_one_edge_incidence,
         "minimal_support_distribution": {
             "none" if size is None else str(size): count
             for size, count in sorted(
@@ -2916,6 +2928,9 @@ def run() -> dict:
         "functional_incidence_small_edge_isolation": functional_incidence[
             "small_edge_isolation_holds"
         ],
+        "functional_incidence_one_edge_formula": functional_incidence[
+            "one_edge_incidence_formula_holds"
+        ],
         "kmm_grid_formula": all(d["interleaved_edges"] == d["grid_edges_at_n_min"] for d in designs),
         "rs_witness_creates_mass": witness["mass_creation"],
         "rs_witness_realizes_k22": witness["interleaved"] == witness["product_bound"] == 4,
@@ -3168,6 +3183,7 @@ def main(argv: list[str] | None = None) -> int:
             f"F_{finc['p']}, n={finc['n']}, k={finc['k']}, "
             f"projective={finc['projective_functional_count']}, "
             f"max_counts={finc['max_representation_counts']}, "
+            f"one_edge={finc['one_edge_incidence']}, "
             f"small_disjoint_forbidden={finc['small_disjoint_representations_forbidden']}"
         )
         print("  K_{m,m} abstract designs:")
