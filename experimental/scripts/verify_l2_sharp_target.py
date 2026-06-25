@@ -8332,6 +8332,49 @@ def realized_rs_k22() -> dict:
         "regular_profile_same": mixed_regular_profile == regular_profile,
         "mixed_regular_profile": mixed_regular_profile,
     }
+    rank_one_words = [
+        tuple(word1),
+        affine_transform_word(tuple(word1), codewords[23], 3, p),
+    ]
+    rank_one_families = [
+        support_families(rank_one_words[0], codewords, a),
+        support_families(rank_one_words[1], codewords, a),
+    ]
+    rank_one_basis_families = [rank_one_families[0]]
+    rank_one_fiber_profile = simultaneous_fiber_profile(
+        rank_one_families, a, n
+    )
+    rank_one_basis_fiber_profile = simultaneous_fiber_profile(
+        rank_one_basis_families, a, n
+    )
+    rank_one_syndrome_profile = simultaneous_syndrome_profile(
+        rank_one_words, h_values, rank_one_families, k, a, p
+    )
+    rank_one_basis_syndrome_profile = simultaneous_syndrome_profile(
+        [rank_one_words[0]], h_values, rank_one_basis_families, k, a, p
+    )
+    quotient_rank_reduction_profile = {
+        "rank": 1,
+        "dependent_scalar": 3,
+        "dependent_support_family_same": set(rank_one_families[1])
+        == set(rank_one_families[0]),
+        "interleaved_equals_basis": interleaved_count(rank_one_families, a)
+        == interleaved_count(rank_one_basis_families, a),
+        "fiber_count_equals_basis": rank_one_fiber_profile["simultaneous_a_sets"]
+        == rank_one_basis_fiber_profile["simultaneous_a_sets"],
+        "syndrome_zero_count_equals_basis": rank_one_syndrome_profile[
+            "simultaneous_syndrome_zero_a_sets"
+        ]
+        == rank_one_basis_syndrome_profile["simultaneous_syndrome_zero_a_sets"],
+        "moment_formula_mismatches": rank_one_syndrome_profile[
+            "moment_formula_mismatches"
+        ]
+        + rank_one_basis_syndrome_profile["moment_formula_mismatches"],
+        "moment_zero_mismatches": rank_one_syndrome_profile[
+            "moment_zero_mismatches"
+        ]
+        + rank_one_basis_syndrome_profile["moment_zero_mismatches"],
+    }
     codegree_profile = two_row_codegree_profile(families, a)
     shell_bound = shell_codegree_bound(families, k, a)
     l1_reduction_bound = l1_shell_reduction_bound(families, n, k, a)
@@ -8372,6 +8415,7 @@ def realized_rs_k22() -> dict:
         "simultaneous_syndrome_profile": syndrome_profile,
         "affine_invariance_profile": affine_invariance_profile,
         "row_span_invariance_profile": row_span_invariance_profile,
+        "quotient_rank_reduction_profile": quotient_rank_reduction_profile,
         "punctured_codegree_profile": codegree_profile,
         "codegree_identity_holds": codegree_profile["codegree_sum"] == interleaved,
         "shell_codegree_bound": shell_bound,
@@ -9580,6 +9624,24 @@ def run() -> dict:
         ]
         == 0
         and witness["row_span_invariance_profile"]["mixed_moment_zero_mismatches"]
+        == 0,
+        "rs_witness_quotient_rank_reduction": witness[
+            "quotient_rank_reduction_profile"
+        ]["rank"]
+        == 1
+        and witness["quotient_rank_reduction_profile"][
+            "dependent_support_family_same"
+        ]
+        and witness["quotient_rank_reduction_profile"]["interleaved_equals_basis"]
+        and witness["quotient_rank_reduction_profile"]["fiber_count_equals_basis"]
+        and witness["quotient_rank_reduction_profile"][
+            "syndrome_zero_count_equals_basis"
+        ]
+        and witness["quotient_rank_reduction_profile"][
+            "moment_formula_mismatches"
+        ]
+        == 0
+        and witness["quotient_rank_reduction_profile"]["moment_zero_mismatches"]
         == 0,
         "rs_witness_shell_bound": witness["interleaved"] <= witness["shell_codegree_bound"]["total_bound"],
         "rs_witness_l1_shell_reduction": witness["interleaved"]

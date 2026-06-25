@@ -30,6 +30,22 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-25 - L2 quotient-rank reduction
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/notes/l2/l2_sharp_target_conjecture.md`,
+  `experimental/scripts/verify_l2_sharp_target.py`, and
+  `experimental/agents-log.md`.
+- **Status:** PROVED / EXPERIMENTAL.
+- **What is being added:** A corollary reducing any `mu`-row instance whose
+  quotient row span has rank `r` to the corresponding `r`-row basis instance,
+  for both `Lambda_mu` and the relaxed fiber `Fib_mu`.
+- **How it is useful:** Isolates the full quotient-row-rank case as the
+  genuinely sharp L2 target; lower-rank tuples are lower-arity problems.
+- **What to do next:** Combine this rank split with the relaxed full-rank
+  residue-fiber target and lower-arity induction.
+
 ### 2026-06-25 - L2 relaxed fiber row-span invariance
 
 - **Agent/model:** Codex.

@@ -5774,6 +5774,40 @@ Unlike the relaxed fiber, the row-by-row exact-regular condition is not the
 natural invariant under arbitrary row mixing. This is another reason the
 quotient-budgeted relaxed residue fiber is the cleaner L2-specific target.
 
+This immediately separates lower-rank row tuples from the genuinely `mu`-row
+case.
+
+**Corollary (quotient-rank reduction).** Let `r` be the dimension of the row
+span of `U` in the quotient space `F_q^H/C`. Choose quotient-basis
+representatives `V=(V_1,...,V_r)`. Then
+
+```text
+|Lambda_mu(U,a)|=|Lambda_r(V,a)|,
+Fib_mu(U,a)=Fib_r(V,a).
+```
+
+In particular, the sharp `mu`-row relaxed-fiber problem only needs to be
+proved for full quotient row rank, provided the lower-arity cases are already
+available.
+
+*Proof.* By row-span invariance, apply an invertible row operation and subtract
+code rows to put `U` in the form
+
+```text
+(V_1,...,V_r,0,...,0)
+```
+
+in `F_q^H`. The relaxed fiber equality is then immediate: the zero rows impose
+no residue-moment constraints, while the first `r` rows impose exactly the
+fiber equations for `V`.
+
+For the interleaved list, any listed tuple has a common agreement support of
+size at least `a>=k`. On a zero received row, the corresponding degree-`<k`
+codeword vanishes on this common support, and hence is the zero codeword.
+Thus the zero quotient rows contribute no choices and no additional common
+support constraints. The listed tuples are therefore exactly the listed
+`r`-row tuples for `V`.
+
 ## 5. Already proved or checked
 
 The existing L2 notes prove the following inputs.
