@@ -30,6 +30,22 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-25 - L2 V0 conditional implication
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/notes/l2/l2_sharp_target_conjecture.md` and
+  `experimental/agents-log.md`.
+- **Status:** PROVED / EXPERIMENTAL.
+- **What is being added:** A formal conditional theorem showing that
+  L2-Sharp V0 follows from two named inputs: the regular exact-core local
+  limit and the repaired one-row L1 shell bound.
+- **How it is useful:** Turns the current V0 route into a checklist with an
+  explicit polynomial exponent budget, and isolates the genuinely L2-specific
+  work as the quotient-budgeted simultaneous residue-moment problem.
+- **What to do next:** Attack the regular exact-core local limit directly,
+  while importing or proving the repaired L1 shell bound separately.
+
 ### 2026-06-25 - L2 root-active tail-density dichotomy
 
 - **Agent/model:** Codex.

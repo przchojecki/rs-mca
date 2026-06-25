@@ -5571,6 +5571,57 @@ fall into unique decoding, intermediate anchors are Johnson-controlled, and any
 remaining large anchors already have at least
 `ceil(a(sigma+1)/(k-1))` extra agreements above the list threshold.
 
+This split is an actual implication, not just a heuristic decomposition.
+
+**Conditional theorem (regular core plus L1 shells imply L2-Sharp V0).** Fix
+`mu>=2` and the compact parameter window in V0. Assume the following two
+uniform inputs hold after quotient packets have been removed or charged to
+`Quot_rem_mu(n,k,a)`.
+
+1. There are constants `B_reg,N_reg` such that every received word
+   `U=(U_1,...,U_mu)` satisfies the regular exact-core estimate
+   ```text
+   Reg_mu(U,a)
+    <= binom(n,a) q^(-mu(a-k))
+       + Quot_rem_mu(n,k,a)
+       + n^B_reg.
+   ```
+2. There are constants `B_L,N_L` such that every one-row received word `V`
+   satisfies the repaired L1 shell bound
+   ```text
+   L_V(a) <= n^B_L.
+   ```
+
+Then L2-Sharp V0 holds. For example, for all sufficiently large `n`, one may
+take any exponent
+
+```text
+B > max(B_reg, B_L+2(mu-1)+1, mu B_L).
+```
+
+*Proof.* Every listed interleaved tuple is either regular or row-irregular, so
+
+```text
+|Lambda_mu(U,a)| = Reg_mu(U,a) + Irr_mu(U,a).
+```
+
+The fixed-arity shell reduction above gives
+
+```text
+Irr_mu(U,a)
+ <= mu ( n^{B_L+2(mu-1)}(2+log n) + n^{mu B_L} ).
+```
+
+For fixed `mu`, the prefactor `mu` is constant, and for all sufficiently large
+`n` the factor `2+log n` is bounded by `n`. Hence the row-irregular term is
+`O(n^B)` for any `B` satisfying the displayed strict inequalities. Adding the
+regular exact-core estimate gives precisely the V0 bound.
+
+Thus the remaining proof search can focus on the two named inputs. The L1
+shell input is an imported one-row theorem. The genuinely L2-specific input is
+the regular exact-core local limit, equivalently the quotient-budgeted
+simultaneous residue-moment problem.
+
 ## 5. Already proved or checked
 
 The existing L2 notes prove the following inputs.
