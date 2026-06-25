@@ -3549,6 +3549,72 @@ formula, because the spike constraints are already absorbed into the lower
 bound `y>=u+2`. The empty `B<4` and odd-incompatible cases are the global
 gates from the exact depth-transfer certificate.
 
+The subtraction formula can be expanded by the exact set of root-active
+positions.
+
+**Corollary (root-active bridge expansion).** Assume the hypotheses of the
+exact root-active transfer subtraction corollary. For a finite positive depth
+alphabet `E`, put
+
+```text
+H_E={y in E: y>=R},          L_E={y in E: y<R}.
+```
+
+If `J` is a path of `r>=1` low vertices whose adjacent high boundary depths
+are `alpha` on the left and `beta` on the right when those boundaries exist,
+define
+
+```text
+Bridge_E(J;alpha,beta)
+```
+
+to be the number of sequences `(z_1,...,z_r) in L_E^r` satisfying
+
+```text
+z_i+z_{i+1}<=2sigma                 for internal adjacent pairs,
+alpha+z_1<=2sigma                   if the left boundary exists,
+z_r+beta<=2sigma                    if the right boundary exists.
+```
+
+For the all-negative cycle sector,
+
+```text
+sum_{empty != I independent in C_m}
+sum_{h:I -> H_D}
+prod_{J component of C_m minus I} Bridge_D(J;h)
+```
+
+is exactly the all-negative root-active contribution. Here the two high
+boundary depths of a low component are read from the assigned values `h` at
+the adjacent vertices of `I`.
+
+For a permitted spike height `u`, set `E=D_u`. The pinned spike sector is
+exactly
+
+```text
+sum_{empty != I independent in P_{m-1}}
+sum_{h:I -> H_E}
+prod_{J component of P_{m-1} minus I} Bridge_E(J;h),
+```
+
+where endpoint components of the path have only the one high boundary that
+exists.
+
+In particular, replacing every bridge factor by the free bound
+`|L_E|^{|J|}` recovers the independent-set upper bound.
+
+*Proof.* Because `R>sigma`, the root-active vertices form an independent set
+in the relevant graph. Partition every admissible depth word by the exact set
+`I` of root-active nonspike positions and by the high-depth assignment
+`h:I->H_E`. The remaining vertices are low-depth components of the complement
+of `I`; on each component the only constraints left are the internal
+adjacent-depth inequalities and the boundary inequalities against adjacent
+high depths. These are exactly the displayed bridge counts, and different
+components are independent once `I` and `h` are fixed. This proves both the
+cycle and path formulas. Forgetting the internal and boundary inequalities in
+each low component gives at most `|L_E|^{|J|}` choices, which is precisely the
+root-active independent-set bound.
+
 For triangles, the transfer subtraction has a closed form.
 
 **Corollary (closed triangular root-active count).** Assume the hypotheses of

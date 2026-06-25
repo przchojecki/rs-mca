@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-25 - L2 root-active bridge expansion
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/notes/l2/l2_sharp_target_conjecture.md`,
+  `experimental/scripts/verify_l2_sharp_target.py`, and
+  `experimental/agents-log.md`.
+- **Status:** PROVED / EXPERIMENTAL.
+- **What is being added:** A general bridge expansion for exact root-active
+  residual counts: choose the independent set of root-active positions and
+  then count the low-depth bridge components between adjacent high depths.
+- **How it is useful:** Refines the independent-set bound without specializing
+  to small cycles, and gives the exact transfer object a componentwise form
+  suitable for later asymptotic estimates.
+- **What to do next:** Bound the bridge factors uniformly or by transfer
+  spectral radii to decide whether the near-threshold residual frontier is
+  harmless in the L2 reserve.
+
 ### 2026-06-25 - L2 square root-active closed form
 
 - **Agent/model:** Codex.
