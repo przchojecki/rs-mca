@@ -2617,6 +2617,74 @@ previous high-reserve corollary. The root-sharing selected-edge exponent gate
 therefore clears the absorbed hybrid ratio. Dividing the displayed condition by
 `k` and using `D_*/k>=beta` gives the stated rate window with margin.
 
+The residual shapes left by this clearance are forced into a narrow dimension
+band.
+
+**Corollary (residual clean-cycle dimension band).** For a clean simple cycle,
+write `d_i=k-e_i`. Then
+
+```text
+p_i = d_{i-1}+d_i-(k-sigma).
+```
+
+Consequently every valid clean cycle satisfies
+
+```text
+d_{i-1}+d_i >= k-sigma
+```
+
+for every `i`. If the private-mass reserve gate has not already applied, so
+`p_i<sigma` for every `i`, then the residual clean-cycle shape satisfies the
+two-sided adjacent-dimension band
+
+```text
+k-sigma <= d_{i-1}+d_i < k
+```
+
+for every `i`. In particular a small `d_i` forces both neighboring dimensions
+to be at least `k-sigma-d_i`.
+
+Moreover, any asymptotic family of such residual shapes not cleared by the
+root-sharing high-reserve corollary must satisfy
+
+```text
+D_* <= (m k - 2mu(m-2)sigma)/2 + o(n),
+```
+
+and hence contains an edge overlap of size at least
+
+```text
+max_i e_i >= k - (m k - 2mu(m-2)sigma)/2 - o(n).
+```
+
+Thus after the private-mass and root-sharing gates, a remaining clean-cycle
+obstruction must be large-overlap in at least one edge and must obey the
+adjacent dimension band above.
+
+*Proof.* Since `a=k+sigma` and `e_i=k-d_i`, the clean-cycle identity
+`p_i=a-e_{i-1}-e_i` gives
+
+```text
+p_i=k+sigma-(k-d_{i-1})-(k-d_i)
+    =d_{i-1}+d_i-(k-sigma).
+```
+
+The lower band is exactly `p_i>=0`; if the private-mass gate has not applied,
+then `p_i<sigma`, which is exactly `d_{i-1}+d_i<k`.
+
+For the final claim, take the contrapositive of the root-sharing high-reserve
+clearance corollary. If the family is not cleared by that corollary, then the
+quantity
+
+```text
+2mu(m-2)sigma - m k + 2D_*
+```
+
+cannot have a positive linear lower bound, hence it is `<=o(n)` along a
+subsequence. Rearranging gives the displayed upper bound for `D_*`. Choosing
+an index with minimal `d_i` gives `max_i e_i>=k-D_*`, which is the displayed
+large-overlap bound.
+
 The connected case also isolates the diagonal exactly.
 
 **Corollary (diagonal is the only zero-loss connected cluster).** Suppose

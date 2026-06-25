@@ -281,6 +281,9 @@ Keep entries concise and link to the relevant files.
   This gives a refined high-reserve clearance condition
   `2mu(m-2)sigma - mk + 2alpha_* >> n`, improving the clean-cycle window
   whenever the minimum coefficient dimension is linear.
+  The residual shapes not cleared by the private-mass/root-sharing gates now
+  obey the adjacent-dimension band `k-sigma <= d_{i-1}+d_i < k` and must
+  contain a quantitatively large-overlap edge.
   Combining
   the pivot, monic, and domain gates gives a
   marked selected-syzygy tuple bound; the verifier checks that this general

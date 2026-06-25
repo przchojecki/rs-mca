@@ -1794,7 +1794,13 @@ def clean_cycle_rank_profile() -> dict:
         coefficient_dimensions = [
             k - edge_size for edge_size in edge_sizes
         ]
+        dimension_pair_sums = [
+            coefficient_dimensions[idx - 1] + coefficient_dimensions[idx]
+            for idx in range(cycle_len)
+        ]
         min_coefficient_dimension = min(coefficient_dimensions)
+        min_dimension_pair_sum = min(dimension_pair_sums)
+        max_dimension_pair_sum = max(dimension_pair_sums)
         max_coefficient_dimension = max(coefficient_dimensions)
         max_coefficient_indices = [
             idx
@@ -2020,6 +2026,9 @@ def clean_cycle_rank_profile() -> dict:
             - cycle_len * k
             + 2 * dimension_gap_alpha_min
         )
+        root_sharing_nonclearance_dimension_bound_numerator = (
+            cycle_len * k - 2 * absorbed_gap_power
+        )
         absorbed_hybrid_relative_bound = Fraction(
             all_edge_hybrid_selected_bound,
             comb(n, a) * p**absorbed_gap_power,
@@ -2115,7 +2124,10 @@ def clean_cycle_rank_profile() -> dict:
                 "all_edge_expected_common_dim": all_edge_expected_common_dim,
                 "all_edge_disjoint_block_count": all_edge_disjoint_block_count,
                 "coefficient_dimensions": coefficient_dimensions,
+                "dimension_pair_sums": dimension_pair_sums,
                 "min_coefficient_dimension": min_coefficient_dimension,
+                "min_dimension_pair_sum": min_dimension_pair_sum,
+                "max_dimension_pair_sum": max_dimension_pair_sum,
                 "max_coefficient_dimension": max_coefficient_dimension,
                 "max_coefficient_indices": max_coefficient_indices,
                 "comparable_pivot_indices": comparable_pivot_indices,
@@ -2217,6 +2229,9 @@ def clean_cycle_rank_profile() -> dict:
                 "doubled_dimension_gap_uniform_floor_formula": (
                     doubled_dimension_gap_uniform_floor_formula
                 ),
+                "root_sharing_nonclearance_dimension_bound_numerator": (
+                    root_sharing_nonclearance_dimension_bound_numerator
+                ),
             }
         )
     return {
@@ -2299,6 +2314,24 @@ def clean_cycle_rank_profile() -> dict:
             2 * row["selected_domain_dim"]
             == row["cycle_len"] * (row["k"] - row["sigma"])
             + row["private_size_sum"]
+            for row in rows
+        ),
+        "dimension_pair_private_ledger_holds": all(
+            all(
+                row["private_sizes"][idx]
+                == row["dimension_pair_sums"][idx]
+                - (row["k"] - row["sigma"])
+                for idx in range(row["cycle_len"])
+            )
+            for row in rows
+        ),
+        "dimension_pair_nonnegative_band_holds": all(
+            row["min_dimension_pair_sum"] >= row["k"] - row["sigma"]
+            for row in rows
+        ),
+        "dimension_pair_private_below_reserve_band_holds": all(
+            row["max_private_size"] >= row["sigma"]
+            or row["max_dimension_pair_sum"] < row["k"]
             for row in rows
         ),
         "contains_small_pair_case": any(
@@ -2479,6 +2512,14 @@ def clean_cycle_rank_profile() -> dict:
             row["doubled_dimension_gap_uniform_private_margin_floor"]
             == row["doubled_uniform_private_margin_floor"]
             + 2 * row["dimension_gap_alpha_min"]
+            for row in rows
+        ),
+        "dimension_gap_nonclearance_floor_decomposition": all(
+            row["doubled_dimension_gap_uniform_private_margin_floor"]
+            == (
+                2 * row["dimension_gap_alpha_min"]
+                - row["root_sharing_nonclearance_dimension_bound_numerator"]
+            )
             for row in rows
         ),
         "dimension_gap_margin_positive_iff_below_threshold": all(
@@ -4483,6 +4524,15 @@ def run() -> dict:
         "clean_cycle_selected_domain_mass_ledger": clean_cycles[
             "selected_domain_mass_ledger_holds"
         ],
+        "clean_cycle_dimension_pair_private_ledger": clean_cycles[
+            "dimension_pair_private_ledger_holds"
+        ],
+        "clean_cycle_dimension_pair_lower_band": clean_cycles[
+            "dimension_pair_nonnegative_band_holds"
+        ],
+        "clean_cycle_dimension_pair_residual_band": clean_cycles[
+            "dimension_pair_private_below_reserve_band_holds"
+        ],
         "clean_cycle_has_small_pair_case": clean_cycles[
             "contains_small_pair_case"
         ],
@@ -4584,6 +4634,9 @@ def run() -> dict:
         ],
         "clean_cycle_dimension_gap_uniform_floor_refines": clean_cycles[
             "dimension_gap_uniform_floor_refines_marked"
+        ],
+        "clean_cycle_dimension_gap_nonclearance_floor": clean_cycles[
+            "dimension_gap_nonclearance_floor_decomposition"
         ],
         "clean_cycle_dimension_gap_margin_positive": clean_cycles[
             "dimension_gap_margin_positive_iff_below_threshold"
