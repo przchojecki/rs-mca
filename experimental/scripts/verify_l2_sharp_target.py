@@ -1422,8 +1422,8 @@ def clean_cycle_rank_profile() -> dict:
         diagonal_exponent = a - k
         exponent_gap = rank_corrected_exponent - diagonal_exponent
         expected_exponent_gap = (cycle_len - 1) * (a - k) + vanishing_sum_rank - k
-        min_edge_pair_sum = min(
-            edge_sizes[left] + edge_sizes[right]
+        min_edge_pair_sum, min_pair_left, min_pair_right = min(
+            (edge_sizes[left] + edge_sizes[right], left, right)
             for left in range(cycle_len)
             for right in range(left + 1, cycle_len)
         )
@@ -1471,6 +1471,32 @@ def clean_cycle_rank_profile() -> dict:
                 one_edge_tuple_bound * p ** (-gap_power),
                 comb(n, a),
             )
+        two_edge_common_functional_dim = two_edge_defect_upper_bound
+        if two_edge_common_functional_dim == 0:
+            two_edge_tuple_bound = 0
+        else:
+            left_size = edge_sizes[min_pair_left]
+            right_size = edge_sizes[min_pair_right]
+            two_edge_tuple_bound = (
+                comb(n, left_size)
+                * comb(n - left_size, right_size)
+                * (p**two_edge_common_functional_dim - 1)
+                // (p - 1)
+                * private_block_bound
+            )
+            for idx, edge_size in enumerate(edge_sizes):
+                if idx not in (min_pair_left, min_pair_right):
+                    two_edge_tuple_bound *= comb(n, edge_size)
+        if gap_power >= 0:
+            two_edge_relative_bound = Fraction(
+                two_edge_tuple_bound,
+                comb(n, a) * p**gap_power,
+            )
+        else:
+            two_edge_relative_bound = Fraction(
+                two_edge_tuple_bound * p ** (-gap_power),
+                comb(n, a),
+            )
         rows.append(
             {
                 "name": example["name"],
@@ -1489,8 +1515,10 @@ def clean_cycle_rank_profile() -> dict:
                 "expected_union_size": expected_union_size,
                 "edge_total": edge_total,
                 "min_edge_pair_sum": min_edge_pair_sum,
+                "min_edge_pair_indices": [min_pair_left, min_pair_right],
                 "two_edge_rank_lower_bound": two_edge_lower_bound,
                 "two_edge_defect_upper_bound": two_edge_defect_upper_bound,
+                "two_edge_common_functional_dim": two_edge_common_functional_dim,
                 "vanishing_sum_rank": vanishing_sum_rank,
                 "rank_defect": rank_defect,
                 "dual_intersection_dimension": dual_intersection_dim,
@@ -1518,6 +1546,11 @@ def clean_cycle_rank_profile() -> dict:
                 "one_edge_relative_bound_to_diagonal": {
                     "numerator": one_edge_relative_bound.numerator,
                     "denominator": one_edge_relative_bound.denominator,
+                },
+                "two_edge_tuple_bound": two_edge_tuple_bound,
+                "two_edge_relative_bound_to_diagonal": {
+                    "numerator": two_edge_relative_bound.numerator,
+                    "denominator": two_edge_relative_bound.denominator,
                 },
             }
         )
@@ -1590,6 +1623,27 @@ def clean_cycle_rank_profile() -> dict:
             row["name"] == "triangle_necklace"
             and row["one_edge_relative_bound_to_diagonal"]["numerator"]
             > row["one_edge_relative_bound_to_diagonal"]["denominator"]
+            for row in rows
+        ),
+        "two_edge_tuple_bound_saves_on_examples": all(
+            row["two_edge_tuple_bound"] <= row["one_edge_tuple_bound"]
+            for row in rows
+        ),
+        "two_edge_tuple_bound_forbids_small_pair_examples": all(
+            row["two_edge_tuple_bound"] == 0
+            for row in rows
+            if row["min_edge_pair_sum"] <= row["k"]
+        ),
+        "two_edge_relative_bound_clears_nontriangle_examples": all(
+            row["name"] == "triangle_necklace"
+            or row["two_edge_relative_bound_to_diagonal"]["numerator"]
+            < row["two_edge_relative_bound_to_diagonal"]["denominator"]
+            for row in rows
+        ),
+        "two_edge_relative_bound_records_triangle_coarseness": any(
+            row["name"] == "triangle_necklace"
+            and row["two_edge_relative_bound_to_diagonal"]["numerator"]
+            > row["two_edge_relative_bound_to_diagonal"]["denominator"]
             for row in rows
         ),
     }
@@ -1684,6 +1738,28 @@ def functional_incidence_profile() -> dict:
         size: comb(n, size) * (p**size - 1) // (p - 1)
         for size in subsets_by_size
     }
+    two_edge_disjoint_incidence = {}
+    expected_two_edge_disjoint_incidence = {}
+    for left_size in subsets_by_size:
+        for right_size in subsets_by_size:
+            key = f"{left_size},{right_size}"
+            total = 0
+            for functional in projective_functionals:
+                for left in representing_subsets[functional][left_size]:
+                    left_set = set(left)
+                    for right in representing_subsets[functional][right_size]:
+                        if left_set.isdisjoint(right):
+                            total += 1
+            common_dim = max(0, left_size + right_size - k)
+            two_edge_disjoint_incidence[key] = total
+            expected_two_edge_disjoint_incidence[key] = (
+                0
+                if common_dim == 0
+                else comb(n, left_size)
+                * comb(n - left_size, right_size)
+                * (p**common_dim - 1)
+                // (p - 1)
+            )
 
     singleton_represented = [
         functional
@@ -1789,6 +1865,10 @@ def functional_incidence_profile() -> dict:
         "expected_one_edge_incidence": expected_one_edge_incidence,
         "one_edge_incidence_formula_holds": one_edge_incidence
         == expected_one_edge_incidence,
+        "two_edge_disjoint_incidence": two_edge_disjoint_incidence,
+        "expected_two_edge_disjoint_incidence": expected_two_edge_disjoint_incidence,
+        "two_edge_disjoint_incidence_formula_holds": two_edge_disjoint_incidence
+        == expected_two_edge_disjoint_incidence,
         "minimal_support_distribution": {
             "none" if size is None else str(size): count
             for size, count in sorted(
@@ -2998,6 +3078,18 @@ def run() -> dict:
         "clean_cycle_one_edge_triangle_coarse": clean_cycles[
             "one_edge_relative_bound_records_triangle_coarseness"
         ],
+        "clean_cycle_two_edge_tuple_saves": clean_cycles[
+            "two_edge_tuple_bound_saves_on_examples"
+        ],
+        "clean_cycle_two_edge_small_pair_forbidden": clean_cycles[
+            "two_edge_tuple_bound_forbids_small_pair_examples"
+        ],
+        "clean_cycle_two_edge_relative_clears_nontriangle": clean_cycles[
+            "two_edge_relative_bound_clears_nontriangle_examples"
+        ],
+        "clean_cycle_two_edge_triangle_coarse": clean_cycles[
+            "two_edge_relative_bound_records_triangle_coarseness"
+        ],
         "functional_incidence_projective_count": functional_incidence[
             "projective_functional_count"
         ]
@@ -3021,6 +3113,9 @@ def run() -> dict:
         ],
         "functional_incidence_one_edge_formula": functional_incidence[
             "one_edge_incidence_formula_holds"
+        ],
+        "functional_incidence_two_edge_disjoint_formula": functional_incidence[
+            "two_edge_disjoint_incidence_formula_holds"
         ],
         "kmm_grid_formula": all(d["interleaved_edges"] == d["grid_edges_at_n_min"] for d in designs),
         "rs_witness_creates_mass": witness["mass_creation"],
@@ -3275,6 +3370,7 @@ def main(argv: list[str] | None = None) -> int:
             f"projective={finc['projective_functional_count']}, "
             f"max_counts={finc['max_representation_counts']}, "
             f"one_edge={finc['one_edge_incidence']}, "
+            f"two_edge_disjoint={finc['two_edge_disjoint_incidence']}, "
             f"small_disjoint_forbidden={finc['small_disjoint_representations_forbidden']}"
         )
         print("  K_{m,m} abstract designs:")

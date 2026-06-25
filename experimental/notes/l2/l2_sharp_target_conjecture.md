@@ -1247,6 +1247,77 @@ saving into a quick clearance test for asymmetric or private-mass clean cycles,
 and to isolate the remaining near-necklace regime that still needs sharper
 incidence structure.
 
+The first such sharpening is to use disjointness of two edge blocks.
+
+**Corollary (two-edge disjoint incidence mass).** For disjoint edge sets
+`E,F subset H` of sizes `e,f<k`, let
+
+```text
+U_E=span{ev_x:x in E},       U_F=span{ev_x:x in F}.
+```
+
+Then
+
+```text
+dim(U_E cap U_F)=max(0,e+f-k).
+```
+
+Consequently the number of ordered disjoint pairs `(E,F)` of sizes `(e,f)`,
+together with a projective nonzero functional `[ell]` represented on both
+edges, is exactly
+
+```text
+binom(n,e) binom(n-e,f) (q^{max(0,e+f-k)}-1)/(q-1).
+```
+
+In particular, this count is zero when `e+f<=k`.
+
+*Proof.* Since Reed-Solomon evaluation functionals on at most `k` distinct
+domain points are independent, the span of the evaluations on `E union F` has
+dimension `min(k,e+f)`. Hence
+
+```text
+dim(U_E cap U_F)=dim U_E+dim U_F-dim(U_E+U_F)
+               = e+f-min(k,e+f).
+```
+
+For each ordered disjoint pair, the common projective functionals are precisely
+the nonzero projective points in this intersection, giving
+`(q^d-1)/(q-1)` with `d=max(0,e+f-k)`. Summing over the
+`binom(n,e)binom(n-e,f)` ordered disjoint pairs gives the formula.
+
+For a fixed clean-cycle shape and two distinguished edge indices `s<t`, put
+
+```text
+d_{s,t}=max(0,e_s+e_t-k).
+```
+
+Then the number of ordered rank-deficient clean support tuples of this shape is
+at most
+
+```text
+  binom(n,e_s) binom(n-e_s,e_t) (q^{d_{s,t}}-1)/(q-1)
+  prod_{i notin {s,t}} binom(n,e_i)
+  prod_i binom(n,p_i).
+```
+
+Combining with the clean-cycle exponent gap, their random-model contribution
+relative to the diagonal first-moment scale is at most
+
+```text
+  [ binom(n,e_s) binom(n-e_s,e_t) (q^{d_{s,t}}-1)/(q-1)
+    prod_{i notin {s,t}} binom(n,e_i)
+    prod_i binom(n,p_i)
+    / binom(n,a) ]
+  q^{-mu((m-1)(a-k)-d_{s,t})}.
+```
+
+Choosing a pair minimizing `e_s+e_t` recovers the `d_2` loss in the two-edge
+rank lower bound and gives the sharpest version of this coarse two-edge test.
+It makes the small-pair obstruction exact: if two edge overlaps have total size
+at most `k`, no rank-deficient clean cycle can use those two disjoint edge
+blocks.
+
 The incidence counts are exact in the MDS uniqueness range.
 
 **Corollary (small-support uniqueness for `N_e`).** Let `r([ell])` be the

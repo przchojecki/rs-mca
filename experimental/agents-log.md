@@ -211,7 +211,15 @@ Keep entries concise and link to the relevant files.
   count with the two-edge lower bound gives a diagonal-relative clean-cycle
   contribution bound; the verifier records that this coarse criterion clears
   the nontriangle `F_31` examples while deliberately flagging the symmetric
-  triangle as a case handled by the sharper triangle lemmas above. The incidence
+  triangle as a case handled by the sharper triangle lemmas above. The first
+  disjointness sharpening is now exact: for two disjoint edge blocks of sizes
+  `e,f`, the common projective functional mass has dimension
+  `max(0,e+f-k)`, giving a two-edge incidence count
+  `binom(n,e)binom(n-e,f)(q^{max(0,e+f-k)}-1)/(q-1)`. The verifier checks this
+  formula in the `F_7` incidence profile and records that the resulting
+  two-edge clean-cycle bound further sharpens every tested example, forbids the
+  small-pair shape outright, and still leaves the symmetric triangle to the
+  specialized triangle counts. The incidence
   counts are now exact in the MDS uniqueness range: if `[ell]` has minimal
   support size `r` and `e>=r`, `r+e<=k`, then
   `N_e([ell])=binom(n-r,e-r)`, so for
