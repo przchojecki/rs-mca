@@ -3425,6 +3425,40 @@ root depth can exist when `R>=2sigma`; this is the pair-cap clearance
 inequality rewritten as
 `2(mu(m-2)-1)sigma>=(m-1)k`.
 
+The depth-packing clearance is sharp for the current gates.
+
+**Corollary (canonical depth witness below the root threshold).** Let `D` be
+the positive depth alphabet in the depth-transfer certificate, and let
+`s=min D`, `Y=max D`. Suppose `B>=4`, the odd-cycle compatibility gate holds
+when `m` is odd, and
+
+```text
+Y >= R=2mu(m-2)sigma-(m-1)k.
+```
+
+Then the exact centered residual-shape certificate is nonempty. In fact, the
+all-negative depth vector
+
+```text
+(Y,s,s,...,s)
+```
+
+and its cyclic rotations survive all gates in the centered certificate.
+
+Thus the pair-cap/depth clearance cannot be improved using only the current
+balanced-window, pairwise-cap, root-depth, and odd-compatibility gates: once
+the required root depth is attainable by the balanced depth alphabet, there is
+already a structural residual candidate.
+
+*Proof.* Since `Y` and `s` are the largest and smallest depths in the balanced
+depth alphabet, the parity progression gives `Y+s=2sigma`. Hence every
+adjacent depth sum in `(Y,s,...,s)` is at most `2sigma`. All centered
+deviations are negative, so the pairwise negativity gate is automatic. The
+root-depth gate holds because `Y>=R`, and the root budget assumption `B>=4`
+removes the exceptional empty case. The odd gate is assumed when needed.
+Therefore the exact centered residual-shape certificate contains this vector
+and all of its cyclic rotations.
+
 The finite certificate is monotone in the interleaving arity.
 
 **Corollary (arity monotonicity of residual-shape certificates).** Fix

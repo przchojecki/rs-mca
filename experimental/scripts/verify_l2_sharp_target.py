@@ -3425,6 +3425,24 @@ def residual_shape_scan_profile() -> dict:
             + cycle_len
             * sum(row["depth_walk_count"] for row in depth_spike_rows)
         )
+        min_depth = min(depth_values) if depth_values else None
+        max_depth = max(depth_values) if depth_values else None
+        canonical_depth_witness_condition = (
+            bool(depth_values)
+            and root_budget >= 4
+            and odd_compatible
+            and max_depth >= root_depth_required
+        )
+        if canonical_depth_witness_condition:
+            canonical_depth_witness = [max_depth] + [min_depth] * (
+                cycle_len - 1
+            )
+            canonical_dimension_witness = tuple(
+                (k - depth) // 2 for depth in canonical_depth_witness
+            )
+        else:
+            canonical_depth_witness = []
+            canonical_dimension_witness = None
         candidate_count = 0
         candidates = set()
         examples = []
@@ -3595,6 +3613,22 @@ def residual_shape_scan_profile() -> dict:
                 "transfer_spike_rows": transfer_spike_rows,
                 "transfer_candidate_count": transfer_candidate_count,
                 "root_depth_required": root_depth_required,
+                "min_depth": min_depth,
+                "max_depth": max_depth,
+                "canonical_depth_witness_condition": (
+                    canonical_depth_witness_condition
+                ),
+                "canonical_depth_witness": canonical_depth_witness,
+                "canonical_dimension_witness": (
+                    list(canonical_dimension_witness)
+                    if canonical_dimension_witness is not None
+                    else None
+                ),
+                "canonical_witness_in_candidates": (
+                    canonical_dimension_witness in candidates
+                    if canonical_dimension_witness is not None
+                    else True
+                ),
                 "depth_all_negative_count": depth_all_negative_count,
                 "depth_spike_rows": depth_spike_rows,
                 "depth_transfer_candidate_count": depth_transfer_candidate_count,
@@ -3871,6 +3905,21 @@ def residual_shape_scan_profile() -> dict:
         ),
         "depth_transfer_detects_empty_case": any(
             row["depth_transfer_candidate_count"] == 0 for row in rows
+        ),
+        "canonical_depth_witness_condition_holds": all(
+            row["canonical_witness_in_candidates"] for row in rows
+        ),
+        "canonical_depth_witness_detects_nonempty_case": any(
+            row["canonical_depth_witness_condition"]
+            and row["candidate_count"] > 0
+            for row in rows
+        ),
+        "canonical_depth_witness_explains_nonempty_examples": all(
+            (
+                not row["canonical_depth_witness_condition"]
+                or row["candidate_count"] > 0
+            )
+            for row in rows
         ),
         "pair_cap_clearance_holds": all(
             row["candidate_count"] == 0
@@ -5932,6 +5981,15 @@ def run() -> dict:
         ],
         "residual_shape_scan_depth_transfer_empty": residual_shape_scan[
             "depth_transfer_detects_empty_case"
+        ],
+        "residual_shape_scan_canonical_depth_witness": residual_shape_scan[
+            "canonical_depth_witness_condition_holds"
+        ],
+        "residual_shape_scan_canonical_depth_nonempty": residual_shape_scan[
+            "canonical_depth_witness_detects_nonempty_case"
+        ],
+        "residual_shape_scan_canonical_depth_explains": residual_shape_scan[
+            "canonical_depth_witness_explains_nonempty_examples"
         ],
         "residual_shape_scan_pair_cap_clearance": residual_shape_scan[
             "pair_cap_clearance_holds"
