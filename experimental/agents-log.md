@@ -30,6 +30,23 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-25 - L2 relaxed fiber row-span invariance
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/notes/l2/l2_sharp_target_conjecture.md`,
+  `experimental/scripts/verify_l2_sharp_target.py`, and
+  `experimental/agents-log.md`.
+- **Status:** PROVED / EXPERIMENTAL.
+- **What is being added:** A lemma proving that invertible row recombinations,
+  plus row additions from the RS code, preserve `Lambda_mu` and the relaxed
+  simultaneous fiber `Fib_mu`.
+- **How it is useful:** Refines the relaxed V0 target from ordered received
+  rows to row spans in `F_q^H/C`, giving a sharper quotient-space formulation
+  for future residue-moment attacks.
+- **What to do next:** Use row-span normal forms when searching for or proving
+  quotient-budgeted relaxed residue-fiber bounds.
+
 ### 2026-06-25 - L2 row-affine quotient invariance
 
 - **Agent/model:** Codex.

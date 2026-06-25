@@ -5725,6 +5725,55 @@ For the residue form, `R_j` is linear in the row word. If `Q_i` has degree
 its top syndrome and therefore all residue moments vanish. Hence
 `R_j(U_i',S)=alpha_i R_j(U_i,S)`, preserving the common zero locus.
 
+For the relaxed target, the whole ordered row basis can be changed.
+
+**Lemma (row-span invariance of the relaxed fiber).** Let
+`A in GL_mu(F_q)`, let `Q=(Q_1,...,Q_mu) in C^mu`, and define
+
+```text
+U' = A U + Q,
+```
+
+where rows are viewed as column vectors under the matrix `A`. Then
+
+```text
+|Lambda_mu(U',a)|=|Lambda_mu(U,a)|,
+Fib_mu(U',a)=Fib_mu(U,a).
+```
+
+In residue-moment coordinates, for each `a`-set `S` and each
+`0<=j<sigma`, the row vector of moments transforms as
+
+```text
+( R_j(U_1',S), ..., R_j(U_mu',S) )^T
+ =
+A ( R_j(U_1,S), ..., R_j(U_mu,S) )^T.
+```
+
+Thus the simultaneous zero-moment locus depends only on the row span in the
+quotient space `F_q^H/C`, not on a chosen ordered basis for that span.
+
+*Proof.* The map `c |-> A c+Q` is a bijection of `C^mu`, since `A` is
+invertible and `C` is linear. At a point `x`, the vector equality
+
+```text
+A c(x)+Q(x)=A U(x)+Q(x)
+```
+
+is equivalent to `c(x)=U(x)`. Hence the common agreement support of each tuple
+is preserved, proving the equality of interleaved list sizes.
+
+For a fixed `S`, the condition `S in Fib_mu(U,a)` says that each row
+restriction `U_i|_S` is the restriction of some degree-`<k` polynomial. This
+condition is invariant under invertible row combinations and under adding rows
+from `C`, proving `Fib_mu(U',a)=Fib_mu(U,a)`. The displayed moment
+transformation follows from row-linearity of `R_j` and the fact that all
+moments of rows in `C` vanish for `j<sigma`.
+
+Unlike the relaxed fiber, the row-by-row exact-regular condition is not the
+natural invariant under arbitrary row mixing. This is another reason the
+quotient-budgeted relaxed residue fiber is the cleaner L2-specific target.
+
 ## 5. Already proved or checked
 
 The existing L2 notes prove the following inputs.

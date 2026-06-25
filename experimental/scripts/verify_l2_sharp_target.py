@@ -406,6 +406,31 @@ def affine_transform_word(
     return tuple((scalar * value + codeword[idx]) % p for idx, value in enumerate(word))
 
 
+def row_span_transform_words(
+    words: list[tuple[int, ...]],
+    matrix: list[list[int]],
+    offsets: list[tuple[int, ...]],
+    p: int,
+) -> list[tuple[int, ...]]:
+    """Apply an invertible row recombination plus RS-codeword offsets."""
+    transformed = []
+    for row_coeffs, offset in zip(matrix, offsets):
+        transformed.append(
+            tuple(
+                (
+                    sum(
+                        coeff * words[col][idx]
+                        for col, coeff in enumerate(row_coeffs)
+                    )
+                    + offset[idx]
+                )
+                % p
+                for idx in range(len(words[0]))
+            )
+        )
+    return transformed
+
+
 def support_pair_rank_profile() -> dict:
     """Brute-force the two-support feasibility rank law for one random row."""
     p, n, k, a = 7, 6, 2, 3
@@ -8268,6 +8293,45 @@ def realized_rs_k22() -> dict:
         "fiber_profile_same": transformed_fiber_profile == fiber_profile,
         "syndrome_profile_same": transformed_syndrome_profile == syndrome_profile,
     }
+    row_mixing_matrix = [[1, 1], [1, 2]]
+    row_mixing_determinant = (
+        row_mixing_matrix[0][0] * row_mixing_matrix[1][1]
+        - row_mixing_matrix[0][1] * row_mixing_matrix[1][0]
+    ) % p
+    mixed_words = row_span_transform_words(
+        [tuple(word1), tuple(word2)],
+        row_mixing_matrix,
+        [codewords[19], codewords[37]],
+        p,
+    )
+    mixed_families = [
+        support_families(mixed_words[0], codewords, a),
+        support_families(mixed_words[1], codewords, a),
+    ]
+    mixed_regular_profile = regular_irregular_profile(mixed_families, a)
+    mixed_fiber_profile = simultaneous_fiber_profile(mixed_families, a, n)
+    mixed_syndrome_profile = simultaneous_syndrome_profile(
+        mixed_words, h_values, mixed_families, k, a, p
+    )
+    row_span_invariance_profile = {
+        "matrix": row_mixing_matrix,
+        "determinant": row_mixing_determinant,
+        "interleaved_same": interleaved_count(mixed_families, a) == interleaved,
+        "fiber_count_same": mixed_fiber_profile["simultaneous_a_sets"]
+        == fiber_profile["simultaneous_a_sets"],
+        "syndrome_zero_count_same": mixed_syndrome_profile[
+            "simultaneous_syndrome_zero_a_sets"
+        ]
+        == syndrome_profile["simultaneous_syndrome_zero_a_sets"],
+        "mixed_moment_formula_mismatches": mixed_syndrome_profile[
+            "moment_formula_mismatches"
+        ],
+        "mixed_moment_zero_mismatches": mixed_syndrome_profile[
+            "moment_zero_mismatches"
+        ],
+        "regular_profile_same": mixed_regular_profile == regular_profile,
+        "mixed_regular_profile": mixed_regular_profile,
+    }
     codegree_profile = two_row_codegree_profile(families, a)
     shell_bound = shell_codegree_bound(families, k, a)
     l1_reduction_bound = l1_shell_reduction_bound(families, n, k, a)
@@ -8307,6 +8371,7 @@ def realized_rs_k22() -> dict:
         "simultaneous_fiber_profile": fiber_profile,
         "simultaneous_syndrome_profile": syndrome_profile,
         "affine_invariance_profile": affine_invariance_profile,
+        "row_span_invariance_profile": row_span_invariance_profile,
         "punctured_codegree_profile": codegree_profile,
         "codegree_identity_holds": codegree_profile["codegree_sum"] == interleaved,
         "shell_codegree_bound": shell_bound,
@@ -9503,6 +9568,19 @@ def run() -> dict:
         and witness["affine_invariance_profile"]["regular_profile_same"]
         and witness["affine_invariance_profile"]["fiber_profile_same"]
         and witness["affine_invariance_profile"]["syndrome_profile_same"],
+        "rs_witness_row_span_invariance": witness[
+            "row_span_invariance_profile"
+        ]["determinant"]
+        != 0
+        and witness["row_span_invariance_profile"]["interleaved_same"]
+        and witness["row_span_invariance_profile"]["fiber_count_same"]
+        and witness["row_span_invariance_profile"]["syndrome_zero_count_same"]
+        and witness["row_span_invariance_profile"][
+            "mixed_moment_formula_mismatches"
+        ]
+        == 0
+        and witness["row_span_invariance_profile"]["mixed_moment_zero_mismatches"]
+        == 0,
         "rs_witness_shell_bound": witness["interleaved"] <= witness["shell_codegree_bound"]["total_bound"],
         "rs_witness_l1_shell_reduction": witness["interleaved"]
         <= witness["l1_shell_reduction_bound"]["total_bound"],
