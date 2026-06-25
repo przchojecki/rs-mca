@@ -3101,6 +3101,57 @@ Since `e_i=k-d_i`, the same two inequalities are equivalent to the displayed
 balanced window for the overlaps. The size bound follows because the open
 interval `((k-2sigma)/2,(k+2sigma)/2)` has length `2sigma`.
 
+It is useful to recenter the residual shape around `k/2`.
+
+**Corollary (centered-deviation residual normal form).** For a vector
+surviving the finite residual-shape certificate, put
+
+```text
+x_i=2d_i-k.
+```
+
+Then each `x_i` is an integer congruent to `k` modulo `2`, and the residual
+constraints imply
+
+```text
+-2sigma < x_i < 2sigma                         for every i,
+-2sigma <= x_{i-1}+x_i < 0                     for every i,
+x_i+x_j < 0                                    for every i<j,
+-m sigma <= sum_i x_i < 0.
+```
+
+In particular, at most one coordinate `x_i` is nonnegative. Equivalently, all
+but at most one residual dimension satisfy `d_i<k/2`, and all but at most one
+edge overlap satisfy `e_i>k/2`.
+
+Thus the finite certificate may be scanned in centered deviations, together
+with the same root-floor and odd-cycle compatibility gates, rather than in raw
+edge dimensions.
+
+*Proof.* The first displayed bound is the balanced-window corollary. The
+adjacent residual band
+
+```text
+k-sigma <= d_{i-1}+d_i < k
+```
+
+is exactly
+
+```text
+-2sigma <= x_{i-1}+x_i < 0.
+```
+
+The global pairwise cap `d_i+d_j<k` is exactly `x_i+x_j<0`. Summing the
+adjacent deviation inequalities around the cycle gives
+
+```text
+-2m sigma <= 2sum_i x_i < 0,
+```
+
+which is the displayed total-deviation band after division by `2`. Finally,
+if two coordinates were nonnegative, their pair sum would be nonnegative,
+contradicting `x_i+x_j<0`.
+
 The finite certificate is monotone in the interleaving arity.
 
 **Corollary (arity monotonicity of residual-shape certificates).** Fix

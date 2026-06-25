@@ -3160,6 +3160,29 @@ def residual_shape_scan_profile() -> dict:
                         "root_floor": root_floor,
                     }
                 )
+        deviation_rows = []
+        for dimensions in candidates:
+            deviations = tuple(2 * dimension - k for dimension in dimensions)
+            adjacent_deviation_sums = [
+                deviations[idx - 1] + deviations[idx]
+                for idx in range(cycle_len)
+            ]
+            pair_deviation_sums = [
+                deviations[left] + deviations[right]
+                for left in range(cycle_len)
+                for right in range(left + 1, cycle_len)
+            ]
+            deviation_rows.append(
+                {
+                    "deviations": deviations,
+                    "adjacent_sums": adjacent_deviation_sums,
+                    "pair_sums": pair_deviation_sums,
+                    "total": sum(deviations),
+                    "nonnegative_count": sum(
+                        deviation >= 0 for deviation in deviations
+                    ),
+                }
+            )
         rows.append(
             {
                 "name": scan_case["name"],
@@ -3187,6 +3210,10 @@ def residual_shape_scan_profile() -> dict:
                     for dimensions in candidates
                 ),
                 "balanced_window_values": balanced_window_values,
+                "deviation_alphabet_values": [
+                    2 * dimension - k
+                    for dimension in balanced_window_values
+                ],
                 "balanced_window_size": len(balanced_window_values),
                 "balanced_window_size_bound": 2 * sigma,
                 "balanced_window_search_size": len(balanced_window_values)
@@ -3194,6 +3221,39 @@ def residual_shape_scan_profile() -> dict:
                 "all_candidates_in_balanced_window": all(
                     all(dimension in balanced_window for dimension in dimensions)
                     for dimensions in candidates
+                ),
+                "max_nonnegative_deviation_count": max(
+                    (
+                        deviation_row["nonnegative_count"]
+                        for deviation_row in deviation_rows
+                    ),
+                    default=0,
+                ),
+                "contains_single_nonnegative_deviation_candidate": any(
+                    deviation_row["nonnegative_count"] == 1
+                    for deviation_row in deviation_rows
+                ),
+                "all_deviations_balanced": all(
+                    all(
+                        -2 * sigma < deviation < 2 * sigma
+                        for deviation in deviation_row["deviations"]
+                    )
+                    for deviation_row in deviation_rows
+                ),
+                "all_adjacent_deviation_sums_in_band": all(
+                    all(
+                        -2 * sigma <= adjacent_sum < 0
+                        for adjacent_sum in deviation_row["adjacent_sums"]
+                    )
+                    for deviation_row in deviation_rows
+                ),
+                "all_pair_deviation_sums_negative": all(
+                    all(pair_sum < 0 for pair_sum in deviation_row["pair_sums"])
+                    for deviation_row in deviation_rows
+                ),
+                "all_total_deviations_in_band": all(
+                    -cycle_len * sigma <= deviation_row["total"] < 0
+                    for deviation_row in deviation_rows
                 ),
                 "odd_lower_numerator": odd_lower_numerator,
                 "odd_upper_numerator": odd_upper_numerator,
@@ -3269,6 +3329,25 @@ def residual_shape_scan_profile() -> dict:
         "balanced_window_has_nontrivial_reduction": any(
             row["candidate_count"] > 0
             and row["balanced_window_search_size"] < row["checked"]
+            for row in rows
+        ),
+        "deviation_form_balanced": all(
+            row["all_deviations_balanced"] for row in rows
+        ),
+        "deviation_form_adjacent_band": all(
+            row["all_adjacent_deviation_sums_in_band"] for row in rows
+        ),
+        "deviation_form_pair_cap": all(
+            row["all_pair_deviation_sums_negative"] for row in rows
+        ),
+        "deviation_form_total_band": all(
+            row["all_total_deviations_in_band"] for row in rows
+        ),
+        "deviation_form_at_most_one_nonnegative": all(
+            row["max_nonnegative_deviation_count"] <= 1 for row in rows
+        ),
+        "deviation_form_has_tight_nonnegative_case": any(
+            row["contains_single_nonnegative_deviation_candidate"]
             for row in rows
         ),
         "pair_cap_clearance_holds": all(
@@ -5235,6 +5314,24 @@ def run() -> dict:
         ],
         "residual_shape_scan_balanced_window_reduces": residual_shape_scan[
             "balanced_window_has_nontrivial_reduction"
+        ],
+        "residual_shape_scan_deviation_balanced": residual_shape_scan[
+            "deviation_form_balanced"
+        ],
+        "residual_shape_scan_deviation_adjacent": residual_shape_scan[
+            "deviation_form_adjacent_band"
+        ],
+        "residual_shape_scan_deviation_pair_cap": residual_shape_scan[
+            "deviation_form_pair_cap"
+        ],
+        "residual_shape_scan_deviation_total": residual_shape_scan[
+            "deviation_form_total_band"
+        ],
+        "residual_shape_scan_deviation_nonnegative": residual_shape_scan[
+            "deviation_form_at_most_one_nonnegative"
+        ],
+        "residual_shape_scan_deviation_tight_case": residual_shape_scan[
+            "deviation_form_has_tight_nonnegative_case"
         ],
         "residual_shape_scan_pair_cap_clearance": residual_shape_scan[
             "pair_cap_clearance_holds"
