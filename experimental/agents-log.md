@@ -328,10 +328,11 @@ Keep entries concise and link to the relevant files.
   required root depth and the odd gate permits it, the canonical depth word
   `(Y,s,...,s)` survives. Near this threshold, root-active depths are sparse:
   when the required depth exceeds `sigma`, adjacent root-active depths are
-  impossible and their nonspike neighbors are forced below `sigma`. The
-  certificate is also monotone in arity: for fixed `m,k,sigma`, candidate sets
-  shrink as `mu` increases, so emptiness at `mu_0` certifies emptiness for all
-  larger arities.
+  impossible and their nonspike neighbors are forced below `sigma`; this gives
+  an independent-set polynomial upper bound for the near-threshold residual
+  transfer count. The certificate is also monotone in arity: for fixed
+  `m,k,sigma`, candidate sets shrink as `mu` increases, so emptiness at
+  `mu_0` certifies emptiness for all larger arities.
   Combining
   the pivot, monic, and domain gates gives a
   marked selected-syzygy tuple bound; the verifier checks that this general

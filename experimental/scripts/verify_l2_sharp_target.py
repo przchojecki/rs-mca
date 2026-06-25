@@ -3160,6 +3160,37 @@ def residual_shape_scan_profile() -> dict:
             state_counts = next_counts
         return sum(state_counts.values())
 
+    def independent_set_weight_bound(
+        vertex_count: int,
+        high_count: int,
+        low_count: int,
+        *,
+        cycle: bool,
+        require_nonempty: bool,
+    ) -> int:
+        total = 0
+        for mask in range(1 << vertex_count):
+            if require_nonempty and mask == 0:
+                continue
+            independent = True
+            for idx in range(vertex_count):
+                if not ((mask >> idx) & 1):
+                    continue
+                nxt = idx + 1
+                if nxt == vertex_count:
+                    if not cycle:
+                        continue
+                    nxt = 0
+                if (mask >> nxt) & 1:
+                    independent = False
+                    break
+            if independent:
+                size = mask.bit_count()
+                total += (high_count ** size) * (
+                    low_count ** (vertex_count - size)
+                )
+        return total
+
     scan_cases = [
         {"name": "triangle_nonempty", "cycle_len": 3, "mu": 2, "k": 8, "sigma": 3},
         {
@@ -3432,6 +3463,63 @@ def residual_shape_scan_profile() -> dict:
             + cycle_len
             * sum(row["depth_walk_count"] for row in depth_spike_rows)
         )
+        if root_depth_required > sigma:
+            high_depth_values = [
+                depth for depth in depth_values if depth >= root_depth_required
+            ]
+            low_depth_values = [
+                depth for depth in depth_values if depth < root_depth_required
+            ]
+            root_active_all_negative_bound = independent_set_weight_bound(
+                cycle_len,
+                len(high_depth_values),
+                len(low_depth_values),
+                cycle=True,
+                require_nonempty=True,
+            )
+            root_active_spike_bound_rows = []
+            for depth_spike_row in depth_spike_rows:
+                allowed_depths = depth_spike_row["allowed_depths"]
+                high_allowed_depths = [
+                    depth
+                    for depth in allowed_depths
+                    if depth >= root_depth_required
+                ]
+                low_allowed_depths = [
+                    depth
+                    for depth in allowed_depths
+                    if depth < root_depth_required
+                ]
+                spike = depth_spike_row["spike"]
+                if spike <= root_depth_threshold:
+                    bound = len(allowed_depths) ** (cycle_len - 1)
+                else:
+                    bound = independent_set_weight_bound(
+                        cycle_len - 1,
+                        len(high_allowed_depths),
+                        len(low_allowed_depths),
+                        cycle=False,
+                        require_nonempty=True,
+                    )
+                root_active_spike_bound_rows.append(
+                    {
+                        "spike": spike,
+                        "bound": bound,
+                        "high_depth_count": len(high_allowed_depths),
+                        "low_depth_count": len(low_allowed_depths),
+                    }
+                )
+            root_active_independent_set_bound = (
+                root_active_all_negative_bound
+                + cycle_len
+                * sum(row["bound"] for row in root_active_spike_bound_rows)
+            )
+        else:
+            high_depth_values = []
+            low_depth_values = []
+            root_active_all_negative_bound = None
+            root_active_spike_bound_rows = []
+            root_active_independent_set_bound = None
         min_depth = min(depth_values) if depth_values else None
         max_depth = max(depth_values) if depth_values else None
         canonical_depth_witness_condition = (
@@ -3645,6 +3733,13 @@ def residual_shape_scan_profile() -> dict:
                 "depth_all_negative_count": depth_all_negative_count,
                 "depth_spike_rows": depth_spike_rows,
                 "depth_transfer_candidate_count": depth_transfer_candidate_count,
+                "high_depth_values": high_depth_values,
+                "low_depth_values": low_depth_values,
+                "root_active_all_negative_bound": root_active_all_negative_bound,
+                "root_active_spike_bound_rows": root_active_spike_bound_rows,
+                "root_active_independent_set_bound": (
+                    root_active_independent_set_bound
+                ),
                 "centered_candidate_count": len(centered_candidates),
                 "centered_matches_dimension_scan": (
                     centered_candidates == candidates
@@ -3980,6 +4075,19 @@ def residual_shape_scan_profile() -> dict:
             and row["candidate_count"] > 0
             and row["root_depth_required"] > row["sigma"]
             and row["root_depth_required"] < 2 * row["sigma"]
+            for row in rows
+        ),
+        "root_active_independent_set_bound_holds": all(
+            row["root_depth_required"] <= row["sigma"]
+            or row["depth_transfer_candidate_count"]
+            <= row["root_active_independent_set_bound"]
+            for row in rows
+        ),
+        "root_active_independent_bound_has_strict_case": any(
+            row["root_depth_required"] > row["sigma"]
+            and row["depth_transfer_candidate_count"]
+            < row["root_active_independent_set_bound"]
+            and row["depth_transfer_candidate_count"] > 0
             for row in rows
         ),
         "pair_cap_clearance_holds": all(
@@ -6060,6 +6168,12 @@ def run() -> dict:
         ],
         "residual_shape_scan_root_active_near_threshold": residual_shape_scan[
             "root_active_has_near_threshold_nonempty_case"
+        ],
+        "residual_shape_scan_root_active_independent_bound": residual_shape_scan[
+            "root_active_independent_set_bound_holds"
+        ],
+        "residual_shape_scan_root_active_bound_strict": residual_shape_scan[
+            "root_active_independent_bound_has_strict_case"
         ],
         "residual_shape_scan_pair_cap_clearance": residual_shape_scan[
             "pair_cap_clearance_holds"

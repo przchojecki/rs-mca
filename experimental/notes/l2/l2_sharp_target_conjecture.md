@@ -3486,6 +3486,47 @@ depths were root-active, their sum would be at least `2R>2sigma`, a
 contradiction. The displayed neighbor bound is the same inequality solved for
 `y_j`.
 
+This gives a coarse but purely graph-theoretic upper bound near the threshold.
+
+**Corollary (root-active independent-set bound).** Assume `R>sigma`. Let
+
+```text
+H={y in D: y>=R},       L={y in D: y<R}.
+```
+
+The all-negative depth-transfer contribution is at most
+
+```text
+sum_{I independent in C_m, I nonempty} |H|^{|I|}|L|^{m-|I|}.
+```
+
+For a spike height `u`, put
+
+```text
+D_u={y in D: y>=u+2},  H_u={y in D_u: y>=R},  L_u={y in D_u: y<R}.
+```
+
+If the spike does not itself satisfy the root-depth gate, then the pinned
+spike contribution is at most
+
+```text
+sum_{I independent in P_{m-1}, I nonempty} |H_u|^{|I|}|L_u|^{m-1-|I|},
+```
+
+where `P_{m-1}` is the path left after deleting the spike. If the spike itself
+satisfies the root gate, the trivial bound `|D_u|^{m-1}` applies. Summing over
+spike positions and permitted heights gives an upper bound for the whole
+depth-transfer residual count.
+
+*Proof.* For `R>sigma`, the previous corollary shows that the set of
+root-active nonspike depths is independent in the relevant graph: the full
+cycle in the all-negative sector and the deleted-spike path in a spike sector.
+The root-depth gate requires this independent set to be nonempty unless the
+spike already satisfies the root condition. Once the independent root-active
+set is chosen, this bound forgets the remaining adjacent-sum constraints and
+only records whether each unmarked coordinate lies in `L` or `L_u`. This gives
+the displayed independence-polynomial upper bounds.
+
 The finite certificate is monotone in the interleaving arity.
 
 **Corollary (arity monotonicity of residual-shape certificates).** Fix
