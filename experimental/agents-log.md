@@ -272,7 +272,11 @@ Keep entries concise and link to the relevant files.
   verifier records this all-pivot coverage/fallback criterion. The fallback is
   also sharpened by a dimension-gap root-sharing bound, so its remaining
   field-size loss depends on `d_t-d_u` against a maximal nonpivot reference
-  rather than the full pivot dimension `d_t`. Combining
+  rather than the full pivot dimension `d_t`. The same shell bound now has a
+  field-exponent form with saving
+  `alpha_{t,u}=min(max(d_t,2),d_u+1)`, giving a root-sharing selected-edge
+  gate with `r_sel-alpha_*` in place of the older marked-syzygy exponent.
+  Combining
   the pivot, monic, and domain gates gives a
   marked selected-syzygy tuple bound; the verifier checks that this general
   formula exactly reproduces the earlier rank-deficient necklace count

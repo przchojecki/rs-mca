@@ -627,6 +627,30 @@ def dimension_gap_root_sharing_shell_factor(
     return factor
 
 
+def dimension_gap_shell_q_exponent(
+    pivot_dimension: int, reference_dimension: int
+) -> int:
+    """Largest q-power in the dimension-gap shell factor."""
+    if pivot_dimension <= 0:
+        return 0
+    if reference_dimension <= 0:
+        raise ValueError("reference dimension must be positive")
+    if pivot_dimension == 1:
+        return -1
+    return max(0, pivot_dimension - reference_dimension - 1)
+
+
+def dimension_gap_alpha(
+    pivot_dimension: int, reference_dimension: int
+) -> int:
+    """Field-exponent saving from dimension-gap root sharing."""
+    if pivot_dimension <= 0:
+        return 0
+    if reference_dimension <= 0:
+        raise ValueError("reference dimension must be positive")
+    return min(max(pivot_dimension, 2), reference_dimension + 1)
+
+
 def fraction_record(value: Fraction) -> dict[str, int]:
     return {
         "numerator": value.numerator,
@@ -1779,6 +1803,8 @@ def clean_cycle_rank_profile() -> dict:
         comparable_pivot_indices = []
         monicity_fallback_pivot_indices = []
         dimension_gap_factor_rows = []
+        dimension_gap_field_exponent_bound = None
+        dimension_gap_alpha_min = None
         for pivot in range(cycle_len):
             nonpivot_block_count = 1
             chosen_points = 0
@@ -1831,6 +1857,29 @@ def clean_cycle_rank_profile() -> dict:
                 monicity_coefficient_factor,
                 dimension_gap_fraction.numerator,
             )
+            shell_q_exponent = dimension_gap_shell_q_exponent(
+                coefficient_dimensions[pivot],
+                coefficient_dimensions[reference],
+            )
+            pivot_field_exponent_bound = (
+                nonpivot_coefficient_dim + shell_q_exponent
+            )
+            pivot_alpha = dimension_gap_alpha(
+                coefficient_dimensions[pivot],
+                coefficient_dimensions[reference],
+            )
+            if dimension_gap_field_exponent_bound is None:
+                dimension_gap_field_exponent_bound = pivot_field_exponent_bound
+                dimension_gap_alpha_min = pivot_alpha
+            else:
+                dimension_gap_field_exponent_bound = max(
+                    dimension_gap_field_exponent_bound,
+                    pivot_field_exponent_bound,
+                )
+                dimension_gap_alpha_min = min(
+                    dimension_gap_alpha_min,
+                    pivot_alpha,
+                )
             if coefficient_dimensions[pivot] <= coefficient_dimensions[reference]:
                 comparable_pivot_indices.append(pivot)
                 shell_factor = comparable_root_sharing_shell_factor(
@@ -1871,10 +1920,17 @@ def clean_cycle_rank_profile() -> dict:
                     "layer_cake_factor": fraction_record(
                         layer_cake_shell_factor
                     ),
+                    "shell_q_exponent": shell_q_exponent,
+                    "field_exponent_bound": pivot_field_exponent_bound,
+                    "alpha": pivot_alpha,
                     "coefficient_factor": dimension_gap_coefficient_factor,
                     "monicity_coefficient_factor": monicity_coefficient_factor,
                 }
             )
+        if dimension_gap_field_exponent_bound is None:
+            raise ValueError("expected at least one clean-cycle pivot")
+        if dimension_gap_alpha_min is None:
+            raise ValueError("expected a dimension-gap alpha")
         if gap_power >= 0:
             all_edge_marked_syzygy_relative_bound = Fraction(
                 all_edge_marked_syzygy_count_bound * private_block_bound,
@@ -1929,6 +1985,9 @@ def clean_cycle_rank_profile() -> dict:
             absorbed_gap_power - all_edge_expected_common_dim
         )
         absorbed_marked_field_margin = absorbed_gap_power - selected_domain_dim
+        absorbed_dimension_gap_field_margin = (
+            absorbed_gap_power - dimension_gap_field_exponent_bound
+        )
         doubled_full_common_dim_formula = max(
             0,
             cycle_len * sigma
@@ -2046,6 +2105,10 @@ def clean_cycle_rank_profile() -> dict:
                 "comparable_pivot_indices": comparable_pivot_indices,
                 "monicity_fallback_pivot_indices": monicity_fallback_pivot_indices,
                 "dimension_gap_factor_rows": dimension_gap_factor_rows,
+                "dimension_gap_field_exponent_bound": (
+                    dimension_gap_field_exponent_bound
+                ),
+                "dimension_gap_alpha_min": dimension_gap_alpha_min,
                 "all_edge_full_rank_selected_bound": (
                     all_edge_full_rank_selected_bound
                 ),
@@ -2113,6 +2176,9 @@ def clean_cycle_rank_profile() -> dict:
                 },
                 "absorbed_full_field_margin": absorbed_full_field_margin,
                 "absorbed_marked_field_margin": absorbed_marked_field_margin,
+                "absorbed_dimension_gap_field_margin": (
+                    absorbed_dimension_gap_field_margin
+                ),
                 "doubled_full_common_dim_formula": (
                     doubled_full_common_dim_formula
                 ),
@@ -2329,6 +2395,29 @@ def clean_cycle_rank_profile() -> dict:
         "dimension_gap_hybrid_saves_comparable": all(
             row["all_edge_dimension_gap_hybrid_selected_bound"]
             <= row["all_edge_comparable_hybrid_selected_bound"]
+            for row in rows
+        ),
+        "dimension_gap_alpha_formula_holds": all(
+            factor_row["alpha"]
+            == dimension_gap_alpha(
+                factor_row["pivot_dimension"],
+                factor_row["reference_dimension"],
+            )
+            for row in rows
+            for factor_row in row["dimension_gap_factor_rows"]
+        ),
+        "dimension_gap_alpha_at_least_two": all(
+            row["dimension_gap_alpha_min"] >= 2 for row in rows
+        ),
+        "dimension_gap_field_exponent_formula_holds": all(
+            row["dimension_gap_field_exponent_bound"]
+            == row["selected_domain_dim"] - row["dimension_gap_alpha_min"]
+            for row in rows
+        ),
+        "dimension_gap_field_margin_improves_marked": all(
+            row["absorbed_dimension_gap_field_margin"]
+            == row["absorbed_marked_field_margin"]
+            + row["dimension_gap_alpha_min"]
             for row in rows
         ),
         "dimension_gap_improves_unique_fallback_examples": any(
@@ -4388,6 +4477,18 @@ def run() -> dict:
         ],
         "clean_cycle_dimension_gap_hybrid_saves": clean_cycles[
             "dimension_gap_hybrid_saves_comparable"
+        ],
+        "clean_cycle_dimension_gap_alpha_formula": clean_cycles[
+            "dimension_gap_alpha_formula_holds"
+        ],
+        "clean_cycle_dimension_gap_alpha_floor": clean_cycles[
+            "dimension_gap_alpha_at_least_two"
+        ],
+        "clean_cycle_dimension_gap_field_exponent": clean_cycles[
+            "dimension_gap_field_exponent_formula_holds"
+        ],
+        "clean_cycle_dimension_gap_field_margin": clean_cycles[
+            "dimension_gap_field_margin_improves_marked"
         ],
         "clean_cycle_dimension_gap_improves_fallback": clean_cycles[
             "dimension_gap_improves_unique_fallback_examples"

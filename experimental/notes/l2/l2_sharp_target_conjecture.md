@@ -1889,6 +1889,37 @@ low-rank contribution by the shared-root count `s` shows that a fixed
 `min(d_u-1,d_t-1-s)` possible degree layers, proving the formula. The tuple
 bound follows by summing over the same nonpivot edge choices.
 
+The dimension-gap estimate has a useful field-exponent form.
+
+**Corollary (field exponent of the dimension-gap shell).** In the previous
+corollary define
+
+```text
+alpha_{t,u}=min(max(d_t,2),d_u+1).
+```
+
+Then the pivot-`t` coefficient factor in the marked selected-syzygy bound has
+field exponent at most
+
+```text
+r_sel-alpha_{t,u},       r_sel=sum_j d_j,
+```
+
+up to a `q`-independent shell factor depending on the edge sizes. Equivalently,
+the dimension-gap root-sharing replacement saves at least
+`alpha_{t,u}` powers of `q` from the crude `q^{r_sel}` marked-syzygy exponent.
+
+*Proof.* The nonpivot coefficient dimension is `D_t=r_sel-d_t`. If `d_t=1`,
+the shell factor is `q^{-1}`, so the field exponent is
+`D_t-1=r_sel-2`, and `alpha_{t,u}=2`. If `d_t>=2`, the largest `q`-power in
+`H^gap_{t,u}` is `q^{max(0,d_t-d_u-1)}`. Thus the total field exponent is
+
+```text
+D_t+max(0,d_t-d_u-1)
+ = r_sel-min(d_t,d_u+1)
+ = r_sel-alpha_{t,u}.
+```
+
 The comparable-dimension hypothesis fails for at most one pivot.
 
 **Corollary (all-pivot coverage except a unique smallest edge).** Select all
@@ -2358,6 +2389,43 @@ the right-hand side is at most a constant times
 
 which tends to zero. Dividing by `binom(n,a)>=1` can only improve the bound.
 The final obstruction statement is the contrapositive.
+
+The root-sharing refinement improves the marked-syzygy side of this gate.
+
+**Corollary (root-sharing selected-edge exponent gate).** In the all-edge
+clean-cycle setting, choose for each pivot `t` a nonpivot reference `u(t)` with
+maximal `d_u` among `u != t`, and put
+
+```text
+alpha_* = min_t min(max(d_t,2),d_{u(t)}+1).
+```
+
+Replace `B_mark` by the dimension-gap root-sharing marked-syzygy bound. Along
+generated-field sequences with fixed `m`, fixed `mu`, and `q>=n+1`, if
+
+```text
+T-d_full >= c n,             T-(r_sel-alpha_*) >= c n
+```
+
+for some constant `c>0`, then the absorbed selected-edge ratio with the
+dimension-gap marked-syzygy bound tends to zero. Consequently any asymptotic
+selected-edge obstruction left after this root-sharing refinement must satisfy
+
+```text
+d_full >= T-o(n)        or        r_sel-alpha_* >= T-o(n).
+```
+
+In particular `alpha_*>=2` whenever all selected edge coefficient dimensions
+are positive, and larger minimum coefficient dimensions give proportionally
+larger field-exponent savings.
+
+*Proof.* The full selected-rank term is unchanged. For the lower selected-rank
+term, the field-exponent corollary for the dimension-gap shell gives a
+coefficient exponent at most `r_sel-alpha_*` for every pivot. The remaining
+root-sharing shell and selected-edge block choices are `q`-independent and
+bounded by `2^{O_m(n)}` for fixed `m`. Hence the same argument as in the
+selected-edge field-exponent gate applies with `r_sel` replaced by
+`r_sel-alpha_*`. The obstruction statement is the contrapositive.
 
 The two field-exponent margins have a transparent mass form.
 
