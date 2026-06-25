@@ -6,7 +6,7 @@ settled by the support-intersection bridge: over-agreement can create
 interleaved mass, so the falsification target is whether that mass can grow like
 a Cartesian product rather than like a polynomial support-overlap codegree.
 
-The script checks nineteen finite objects.
+The script checks twenty finite objects.
 
 1. The all-remainder quotient packet count used as Quot_rem_mu in the target.
 2. The Johnson-shell weights used in the codegree reduction.
@@ -26,7 +26,8 @@ The script checks nineteen finite objects.
 16. Full-rank fixed-length cyclic necklaces in the same low-overlap model.
 17. Rank-deficient fixed-length cyclic necklaces, counted by dependency data.
 18. Clean simple cycles with arbitrary adjacent low-overlap edge sizes.
-19. A realized Reed-Solomon K_{2,2} gluing over a prime-field multiplicative
+19. The projective functional incidence reduction for clean-cycle defects.
+20. A realized Reed-Solomon K_{2,2} gluing over a prime-field multiplicative
    subgroup, computed by exact list enumeration, together with its punctured
    codegree profile.
 
@@ -1515,6 +1516,120 @@ def clean_cycle_rank_profile() -> dict:
     }
 
 
+def projective_normalize(vector: tuple[int, ...], p: int) -> tuple[int, ...]:
+    """Normalize a nonzero vector up to scalar."""
+    for entry in vector:
+        if entry % p:
+            inv = pow(entry, -1, p)
+            return tuple((value * inv) % p for value in vector)
+    raise ValueError("cannot projectivize zero vector")
+
+
+def functional_incidence_profile() -> dict:
+    """Finite profile for the projective functional incidence reduction."""
+    p, n, k = 7, 6, 4
+    h_values = subgroup(p, n)
+    projective_functionals = sorted(
+        {
+            projective_normalize(tuple(coeffs), p)
+            for coeffs in itertools.product(range(p), repeat=k)
+            if any(coeffs)
+        }
+    )
+    subsets_by_size = {
+        size: [tuple(subset) for subset in itertools.combinations(range(n), size)]
+        for size in range(1, k)
+    }
+    basis_by_subset = {}
+    for subsets in subsets_by_size.values():
+        for subset in subsets:
+            basis_by_subset[subset] = [
+                [pow(h_values[idx], degree, p) for degree in range(k)]
+                for idx in subset
+            ]
+    representation_counts = {
+        size: {functional: 0 for functional in projective_functionals}
+        for size in subsets_by_size
+    }
+    representing_subsets = {
+        functional: {size: [] for size in subsets_by_size}
+        for functional in projective_functionals
+    }
+    for size, subsets in subsets_by_size.items():
+        for subset in subsets:
+            basis = basis_by_subset[subset]
+            basis_rank = matrix_rank_mod(basis, p)
+            for functional in projective_functionals:
+                if matrix_rank_mod(basis + [list(functional)], p) == basis_rank:
+                    representation_counts[size][functional] += 1
+                    representing_subsets[functional][size].append(subset)
+
+    forbidden_small_disjoint = []
+    for functional in projective_functionals:
+        for left_size in subsets_by_size:
+            for right_size in subsets_by_size:
+                if left_size + right_size > k:
+                    continue
+                for left in representing_subsets[functional][left_size]:
+                    left_set = set(left)
+                    for right in representing_subsets[functional][right_size]:
+                        if left_set.isdisjoint(right):
+                            forbidden_small_disjoint.append(
+                                {
+                                    "functional": functional,
+                                    "left": left,
+                                    "right": right,
+                                }
+                            )
+                            break
+                    if forbidden_small_disjoint:
+                        break
+                if forbidden_small_disjoint:
+                    break
+            if forbidden_small_disjoint:
+                break
+        if forbidden_small_disjoint:
+            break
+
+    distribution = {}
+    for size, counts in representation_counts.items():
+        histogram: dict[int, int] = {}
+        for count in counts.values():
+            histogram[count] = histogram.get(count, 0) + 1
+        distribution[size] = dict(sorted(histogram.items()))
+
+    singleton_represented = [
+        functional
+        for functional, counts in representation_counts[1].items()
+        if counts
+    ]
+    domain_evaluations = {
+        projective_normalize(
+            tuple(pow(x, degree, p) for degree in range(k)), p
+        )
+        for x in h_values
+    }
+
+    return {
+        "p": p,
+        "n": n,
+        "k": k,
+        "projective_functional_count": len(projective_functionals),
+        "expected_projective_functional_count": (p**k - 1) // (p - 1),
+        "representation_count_distribution": distribution,
+        "max_representation_counts": {
+            size: max(counts.values())
+            for size, counts in representation_counts.items()
+        },
+        "singleton_represented_count": len(singleton_represented),
+        "domain_evaluation_count": len(domain_evaluations),
+        "singleton_represented_are_domain_evaluations": set(singleton_represented)
+        == domain_evaluations,
+        "small_disjoint_representation_violations": forbidden_small_disjoint,
+        "small_disjoint_representations_forbidden": not forbidden_small_disjoint,
+    }
+
+
 def regular_irregular_profile(families: list[list[frozenset[int]]], a: int) -> dict:
     """Split interleaved tuples by exact-row regularity.
 
@@ -2376,6 +2491,7 @@ def run() -> dict:
     full_rank_necklaces = full_rank_cyclic_necklace_profile()
     rank_deficient_necklaces = rank_deficient_cyclic_necklace_profile()
     clean_cycles = clean_cycle_rank_profile()
+    functional_incidence = functional_incidence_profile()
     witness = realized_rs_k22()
     checks = {
         "quotient_budget_nonnegative": quotient_example["total"] >= 0,
@@ -2685,6 +2801,18 @@ def run() -> dict:
         "clean_cycle_has_small_pair_case": clean_cycles[
             "contains_small_pair_case"
         ],
+        "functional_incidence_projective_count": functional_incidence[
+            "projective_functional_count"
+        ]
+        == functional_incidence["expected_projective_functional_count"],
+        "functional_incidence_singletons": functional_incidence[
+            "singleton_represented_count"
+        ]
+        == functional_incidence["domain_evaluation_count"]
+        and functional_incidence["singleton_represented_are_domain_evaluations"],
+        "functional_incidence_small_disjoint_forbidden": functional_incidence[
+            "small_disjoint_representations_forbidden"
+        ],
         "kmm_grid_formula": all(d["interleaved_edges"] == d["grid_edges_at_n_min"] for d in designs),
         "rs_witness_creates_mass": witness["mass_creation"],
         "rs_witness_realizes_k22": witness["interleaved"] == witness["product_bound"] == 4,
@@ -2761,6 +2889,7 @@ def run() -> dict:
         "full_rank_cyclic_necklace_profile": full_rank_necklaces,
         "rank_deficient_cyclic_necklace_profile": rank_deficient_necklaces,
         "clean_cycle_rank_profile": clean_cycles,
+        "functional_incidence_profile": functional_incidence,
         "realized_rs_k22": witness,
         "checks": checks,
         "pass": all(checks.values()),
@@ -2929,6 +3058,14 @@ def main(argv: list[str] | None = None) -> int:
             "  clean simple-cycle rank profile: "
             f"F_{clean_cycles['p']}, n={clean_cycles['n']}, "
             f"rows={clean_cycles['rows']}"
+        )
+        finc = result["functional_incidence_profile"]
+        print(
+            "  functional incidence profile: "
+            f"F_{finc['p']}, n={finc['n']}, k={finc['k']}, "
+            f"projective={finc['projective_functional_count']}, "
+            f"max_counts={finc['max_representation_counts']}, "
+            f"small_disjoint_forbidden={finc['small_disjoint_representations_forbidden']}"
         )
         print("  K_{m,m} abstract designs:")
         for d in result["kmm_designs"]:

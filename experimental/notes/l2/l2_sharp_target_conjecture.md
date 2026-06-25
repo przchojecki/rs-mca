@@ -1087,6 +1087,45 @@ Since `e_i<k`, the evaluations at points of `E_i` are linearly independent on
 
 Taking dimensions in the `k`-dimensional space `V` gives the identity.
 
+The dual form gives a projective incidence reduction for counting the
+rank-deficient clean cycles. For `1<=e<k` and a projective nonzero functional
+`[ell] in P(V^*)`, define
+
+```text
+N_e([ell]) =
+  #{ E subset H : |E|=e and ell in span{ev_x : x in E} }.
+```
+
+**Corollary (functional-incidence count for clean-cycle defects).** Fix edge
+sizes `e_0,...,e_{m-1}`. The number of ordered edge-block tuples
+`(E_0,...,E_{m-1})` that can occur in a rank-deficient clean cycle is at most
+
+```text
+sum_{[ell] in P(V^*)} prod_{i=0}^{m-1} N_{e_i}([ell]).
+```
+
+The same bound remains valid after imposing the disjointness conditions on the
+edge blocks, since it only overcounts. The private points in the clean cycle can
+then be counted separately; the rank defect depends only on the edge blocks.
+
+Moreover, if the same nonzero functional has two disjoint representations on
+`E` and `F` with `|E|=e`, `|F|=f`, then
+
+```text
+e+f>k.
+```
+
+*Proof.* If a clean cycle is rank-deficient, the dual lemma gives a nonzero
+functional `ell` lying in every edge span `U_i`. Passing to the projective
+class `[ell]`, each edge block `E_i` is counted by `N_{e_i}([ell])`, giving the
+displayed upper bound.
+
+For the last claim, suppose `ell` has representations supported on disjoint
+sets `E` and `F`. Subtracting these two representations gives a nontrivial
+linear dependence among the evaluation functionals supported on
+`E union F`. Reed-Solomon evaluation functionals on at most `k` distinct
+points are independent, so this is impossible when `e+f<=k`.
+
 This formula gives a useful first lower bound without classifying all possible
 dependencies among the `W_i`.
 

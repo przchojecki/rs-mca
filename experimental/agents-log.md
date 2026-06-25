@@ -195,7 +195,12 @@ Keep entries concise and link to the relevant files.
   `k-R_cyc=dim(U_0 cap ... cap U_{m-1})`, where `U_i` is the span of
   evaluation functionals on edge overlap `E_i`; equivalently, rank deficiency
   requires a nonzero linear functional on degree-`<k` polynomials supported on
-  every edge overlap. A two-edge lower bound now shows
+  every edge overlap. This gives a projective incidence reduction: for
+  `N_e([ell])` the number of size-`e` edge sets representing `[ell]`, the
+  rank-deficient edge-block tuples are bounded by
+  `sum_[ell] prod_i N_{e_i}([ell])`; the verifier checks the small finite
+  incidence profile over `F_7` and confirms that disjoint representations of
+  sizes summing to at most `k` are impossible. A two-edge lower bound now shows
   `R_cyc >= k-max(0,s_2-k)`, where `s_2` is the minimum pair sum of edge
   sizes; in particular, if two edge overlaps have total size at most `k`, then
   `R_cyc=k`. Thus rank-deficient clean cycles can only occur in the
