@@ -3231,6 +3231,41 @@ def residual_shape_scan_profile() -> dict:
                     ),
                 }
             )
+        centered_candidates = set()
+
+        def maybe_add_centered_candidate(deviations: tuple[int, ...]) -> None:
+            adjacent_ok = all(
+                -2 * sigma <= deviations[idx - 1] + deviations[idx] < 0
+                for idx in range(cycle_len)
+            )
+            if not adjacent_ok:
+                return
+            centered_root_floor = (
+                root_floor_constant + max(4, k + min(deviations))
+            )
+            if centered_root_floor > 0:
+                return
+            if not odd_compatible:
+                return
+            centered_candidates.add(
+                tuple((k + deviation) // 2 for deviation in deviations)
+            )
+
+        for deviations in itertools.product(
+            negative_deviation_values, repeat=cycle_len
+        ):
+            maybe_add_centered_candidate(deviations)
+        for spike_index in range(cycle_len):
+            for spike_row in spike_height_rows:
+                if not spike_row["total_compatible"]:
+                    continue
+                for negative_deviations in itertools.product(
+                    spike_row["allowed_negative_values"],
+                    repeat=cycle_len - 1,
+                ):
+                    deviations_list = list(negative_deviations)
+                    deviations_list.insert(spike_index, spike_row["spike"])
+                    maybe_add_centered_candidate(tuple(deviations_list))
         rows.append(
             {
                 "name": scan_case["name"],
@@ -3270,6 +3305,10 @@ def residual_shape_scan_profile() -> dict:
                 * (sigma ** cycle_len),
                 "spike_height_rows": spike_height_rows,
                 "spike_height_search_size": spike_height_search_size,
+                "centered_candidate_count": len(centered_candidates),
+                "centered_matches_dimension_scan": (
+                    centered_candidates == candidates
+                ),
                 "all_candidates_in_balanced_window": all(
                     all(dimension in balanced_window for dimension in dimensions)
                     for dimensions in candidates
@@ -3459,6 +3498,18 @@ def residual_shape_scan_profile() -> dict:
         "spike_height_has_strict_reduction": any(
             row["candidate_count"] > 0
             and row["spike_height_search_size"] < row["one_spike_search_size"]
+            for row in rows
+        ),
+        "centered_scan_matches_dimension_scan": all(
+            row["centered_matches_dimension_scan"] for row in rows
+        ),
+        "centered_scan_count_matches": all(
+            row["centered_candidate_count"] == row["candidate_count"]
+            for row in rows
+        ),
+        "centered_scan_reduces_raw_search": any(
+            row["candidate_count"] > 0
+            and row["spike_height_search_size"] < row["checked"]
             for row in rows
         ),
         "pair_cap_clearance_holds": all(
@@ -5467,6 +5518,15 @@ def run() -> dict:
         ],
         "residual_shape_scan_spike_height_strict": residual_shape_scan[
             "spike_height_has_strict_reduction"
+        ],
+        "residual_shape_scan_centered_matches": residual_shape_scan[
+            "centered_scan_matches_dimension_scan"
+        ],
+        "residual_shape_scan_centered_count": residual_shape_scan[
+            "centered_scan_count_matches"
+        ],
+        "residual_shape_scan_centered_reduces": residual_shape_scan[
+            "centered_scan_reduces_raw_search"
         ],
         "residual_shape_scan_pair_cap_clearance": residual_shape_scan[
             "pair_cap_clearance_holds"

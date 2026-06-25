@@ -312,9 +312,12 @@ Keep entries concise and link to the relevant files.
   decomposition with at most `(m+1)sigma^m` centered vectors before the
   remaining gates; refining by spike height `u` further restricts all other
   deviations to `<=-u-2` and forbids spikes with
-  `(m-2)u+2(m-1)>m sigma`. The certificate is also monotone in arity: for
-  fixed `m,k,sigma`, candidate sets shrink as `mu` increases, so emptiness at
-  `mu_0` certifies emptiness for all larger arities.
+  `(m-2)u+2(m-1)>m sigma`. The centered spike-height scan is now recorded as
+  an exact equivalent certificate, with the same candidate set as the raw
+  dimension-vector scan after applying the adjacent, root-floor, and parity
+  gates. The certificate is also monotone in arity: for fixed `m,k,sigma`,
+  candidate sets shrink as `mu` increases, so emptiness at `mu_0` certifies
+  emptiness for all larger arities.
   Combining
   the pivot, monic, and domain gates gives a
   marked selected-syzygy tuple bound; the verifier checks that this general

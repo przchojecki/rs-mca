@@ -3239,6 +3239,50 @@ the displayed spike-height bound. The counting formula follows by summing the
 allowed negative choices over the remaining `m-1` coordinates and over the
 `m` possible spike positions.
 
+Combining the centered reductions gives an exact smaller certificate.
+
+**Corollary (exact centered residual-shape certificate).** Let
+
+```text
+A_dim={2d-k : d in W(k,sigma)}.
+```
+
+Build the all-negative and spike-height sectors from `A_dim` exactly as above.
+Then the finite residual-shape search is equivalent to the following centered
+search. Look for a vector `x=(x_0,...,x_{m-1})` in those sectors such that
+
+```text
+-2sigma <= x_{i-1}+x_i < 0                       for every i,
+2mu(m-2)sigma - m k + max(4,k+min_i x_i) <= 0,
+```
+
+and, when `m` is odd,
+
+```text
+k - ((m+1)/2)sigma + (m-1)/2
+ <= m k - 2mu(m-2)sigma.
+```
+
+If no such centered vector exists, then every clean simple `m`-cycle shape at
+these parameters is already cleared by the current small-pair, private-mass,
+or dimension-gap root-sharing gates.
+
+*Proof.* The map `d_i -> x_i=2d_i-k` is a bijection from the balanced
+dimension window `W(k,sigma)` to `A_dim`. The residual adjacent band becomes
+the displayed adjacent-sum condition. The global pairwise cap is exactly the
+pairwise negativity condition, which is already encoded by the all-negative
+and spike-height sectors. The root-floor condition
+
+```text
+2mu(m-2)sigma - m k + 2max(2,min_i d_i) <= 0
+```
+
+becomes the displayed root condition because
+`2min_i d_i=k+min_i x_i`. The odd-cycle compatibility is unchanged. Thus the
+centered search and the finite residual-shape search have the same candidate
+set under the displayed bijection, and the final clearance statement is the
+finite residual-shape certificate.
+
 The finite certificate is monotone in the interleaving arity.
 
 **Corollary (arity monotonicity of residual-shape certificates).** Fix
