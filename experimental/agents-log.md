@@ -344,7 +344,9 @@ Keep entries concise and link to the relevant files.
   exceptional locus. It also records the symbolic slope-map normal form
   `q1 z^2 - (p1-q2)z - p2 = 0` for the remaining graph-collapse question,
   and the verifier now records the projective image size controlling graph
-  slopes through the quadratic root-count bound.
+  slopes through the quadratic root-count bound. The graph-image criterion
+  reduces this branch to bounding that projective image plus the degenerate
+  coefficient-triple subfamily.
 - **How it is useful:** Makes the live F1 rank/determinant resonance branch
   counterexample-first: any large split-cubic slope family in this restricted
   window must pass through the exact `Delta1==0` or `G==0` gate.

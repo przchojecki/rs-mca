@@ -165,9 +165,22 @@ has at most two roots in `F`, so the graph-branch slope count satisfies
 graph_C2 <= 2 * #image([q1 : (p1-q2) : p2]) + degenerate_graph_C2.
 ```
 
-Thus a positive graph-collapse proof may bound the projective image, while a
+**Corollary (graph-image criterion).** In this restricted window, fix any
+source-valid family of open graph-gate landings with `s != 0` and `G==0`.
+If the projective coefficient image
+
+```text
+[q1 : (p1-q2) : p2]
+```
+
+has size `O(p)` and the degenerate coefficient-triple slopes are also `O(p)`,
+then the graph-gate contribution has `C2=O(p)`.
+
+The proof is exactly the displayed quadratic root-count bound. Hence a
+positive graph-collapse proof may bound the projective image, while a
 counterpacket must exhibit a source-valid `G==0` family with a two-dimensional
-projective image.
+projective image or an unexpectedly large degenerate coefficient-triple
+subfamily.
 
 ## Verifier
 

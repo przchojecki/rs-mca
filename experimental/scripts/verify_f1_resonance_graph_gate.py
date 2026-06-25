@@ -381,6 +381,9 @@ def split_triple_stats(
         raise AssertionError("graph branch exceeds the G-zero pair count")
     if len(graph_nondegenerate_slopes) > 2 * len(graph_projective_images):
         raise AssertionError("graph slopes exceed the projective quadratic root-count bound")
+    graph_projective_root_bound = 2 * len(graph_projective_images) + len(graph_degenerate_slopes)
+    if len(graph_slopes) > graph_projective_root_bound:
+        raise AssertionError("total graph slopes exceed the projective image plus degenerate bound")
     if exceptional_bound is not None and exceptional_common > exceptional_bound:
         raise AssertionError("exceptional branch exceeds the finite exceptional bound")
     if active_bound is not None and split_landings > active_bound:
@@ -411,7 +414,8 @@ def split_triple_stats(
         "graph_projective_image_size": len(graph_projective_images),
         "graph_nondegenerate_C2": len(graph_nondegenerate_slopes),
         "graph_degenerate_C2": len(graph_degenerate_slopes),
-        "graph_projective_root_bound": 2 * len(graph_projective_images) + len(graph_degenerate_slopes),
+        "graph_projective_root_bound": graph_projective_root_bound,
+        "graph_projective_bound": True,
         "exceptional_common": exceptional_common,
         "exceptional_C2": len(exceptional_slopes),
         "max_slope_fiber": max(direct_slopes.values()) if direct_slopes else 0,
