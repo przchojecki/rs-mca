@@ -30,6 +30,8 @@ The script also checks the cleared-remainder identity
     s^2 Delta0 = Delta1 * (s tau3 + A s - h) + G,
 
 so G is the exact resultant/divisibility obstruction for the graph branch.
+Every split-triple landing is then classified into the base-valued gate
+Delta1==0, the graph gate s!=0 and G=0, or the exceptional locus s=h=0.
 
 The default run uses random off-R0 samples to exercise the graph algebra and a
 tiny forced-Ra sample to hit the exact resonance gates quickly. Larger forced
@@ -242,8 +244,11 @@ def split_triple_stats(
         raise AssertionError("G-zero pair count exceeds Schwartz-Zippel bound")
 
     direct_slopes = {}
+    base_gate_slopes = {}
     graph_slopes = {}
+    exceptional_slopes = {}
     split_landings = 0
+    base_gate_common = 0
     graph_common = 0
     exceptional_common = 0
     graph_identity_checks = 0
@@ -290,14 +295,22 @@ def split_triple_stats(
             raise AssertionError("Delta zero but direct slope test failed")
         direct_slopes[slope] = direct_slopes.get(slope, 0) + 1
 
-        if s_val % p:
+        if delta1_zero:
+            base_gate_common += 1
+            base_gate_slopes[slope] = base_gate_slopes.get(slope, 0) + 1
+        elif s_val % p:
             graph_common += 1
             graph_slopes[slope] = graph_slopes.get(slope, 0) + 1
             if not g_zero and peval(g_poly, x, y, p) != 0:
                 raise AssertionError("graph common zero did not pass G=0")
         elif h_val % p == 0:
             exceptional_common += 1
+            exceptional_slopes[slope] = exceptional_slopes.get(slope, 0) + 1
+        else:
+            raise AssertionError("landing escaped the gate partition")
 
+    if split_landings != base_gate_common + graph_common + exceptional_common:
+        raise AssertionError("gate partition did not cover all landings")
     if not delta1_zero and not g_zero and graph_common > g_zero_pairs:
         raise AssertionError("graph branch exceeds the G-zero pair count")
     if active_bound is not None and split_landings > active_bound:
@@ -311,12 +324,21 @@ def split_triple_stats(
         "G_schwartz_bound": g_schwartz_bound,
         "nonzero_gate_bound": active_bound,
         "remainder_identity": True,
+        "gate_partition": True,
+        "gate_status": (
+            "base_valued" if delta1_zero else
+            "graph_divisibility" if g_zero else
+            "nonzero_gate"
+        ),
         "split_triples_examined": n * (n - 1) * (n - 2) // 6,
         "split_landings": split_landings,
         "C2": len(direct_slopes),
+        "base_gate_common": base_gate_common,
+        "base_gate_C2": len(base_gate_slopes),
         "graph_common": graph_common,
         "graph_C2": len(graph_slopes),
         "exceptional_common": exceptional_common,
+        "exceptional_C2": len(exceptional_slopes),
         "max_slope_fiber": max(direct_slopes.values()) if direct_slopes else 0,
         "graph_identity_checks": graph_identity_checks,
         "graph_formula_checks": graph_formula_checks,
@@ -476,9 +498,9 @@ def main() -> None:
             print(
                 "mode={record_mode} p={p} seed={seed} checked={checked} off_R0={off_R0_checked} "
                 "best_C2={C2} graph_C2={graph_C2} split_landings={split_landings} "
-                "Delta1_zero={Delta1_zero} G_zero={G_zero} G_degree={G_degree} "
-                "G_zero_pairs={G_zero_pairs} active_bound={nonzero_gate_bound} graph_common={graph_common} "
-                "exceptional_common={exceptional_common}".format(
+                "gate={gate_status} Delta1_zero={Delta1_zero} G_zero={G_zero} G_degree={G_degree} "
+                "G_zero_pairs={G_zero_pairs} active_bound={nonzero_gate_bound} "
+                "base={base_gate_common} graph={graph_common} exceptional={exceptional_common}".format(
                     record_mode=record["mode"],
                     checked=record["checked"],
                     off_R0_checked=record["off_R0_checked"],
@@ -500,9 +522,9 @@ def main() -> None:
             print(
                 "mode={record_mode} p={p} seed={seed} checked={checked} off_R0={off_R0_checked} "
                 "best_C2={C2} graph_C2={graph_C2} split_landings={split_landings} "
-                "Delta1_zero={Delta1_zero} G_zero={G_zero} G_degree={G_degree} "
-                "G_zero_pairs={G_zero_pairs} active_bound={nonzero_gate_bound} graph_common={graph_common} "
-                "exceptional_common={exceptional_common}".format(
+                "gate={gate_status} Delta1_zero={Delta1_zero} G_zero={G_zero} G_degree={G_degree} "
+                "G_zero_pairs={G_zero_pairs} active_bound={nonzero_gate_bound} "
+                "base={base_gate_common} graph={graph_common} exceptional={exceptional_common}".format(
                     record_mode=record["mode"],
                     checked=record["checked"],
                     off_R0_checked=record["off_R0_checked"],

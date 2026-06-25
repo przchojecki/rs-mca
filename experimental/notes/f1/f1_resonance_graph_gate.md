@@ -95,6 +95,33 @@ Since the distinct slope count is bounded by the number of landing triples,
 the nonzero-gate branch is curve-sized before any slope-fiber collapse is
 used.
 
+## Gate Partition
+
+The verifier now records the exact gate into which each landing triple falls.
+In the normalized notation above, every split-triple landing belongs to one
+of the following disjoint branches:
+
+```text
+base-valued gate:       Delta1 is the zero polynomial;
+graph gate:             Delta1 is nonzero and s(tau1,tau2) != 0,
+                         hence tau3=-h/s and G(tau1,tau2)=0;
+exceptional locus:      Delta1 is nonzero and s(tau1,tau2)=h(tau1,tau2)=0.
+```
+
+The exceptional locus is already lower-dimensional: if `s` is a nonzero
+affine form it lies over a line, and if `s` is identically zero then `h` is a
+nonzero degree-`<=2` polynomial. Thus the only branches that can plausibly
+support a `Theta(p^2)` split-cubic slope image across growing primes are the
+two exact gates:
+
+```text
+Delta1 == 0        or        G == 0.
+```
+
+This is the operational form of the remaining search target. A future
+counterpacket must report which exact gate it occupies; a future positive
+proof must collapse the slope image on those exact gates.
+
 ## Verifier
 
 Run from the repository root:
@@ -113,6 +140,7 @@ each off-`R0` landing polynomial, and verifies:
   `s^2 Delta0 = Delta1*(s tau3 + A s - h) + G` holds coefficientwise;
 - `Delta1 = s tau3 + h` recovers every graph value `tau3=-h/s`;
 - every graph-branch common zero passes through `G=0`;
+- every landing is classified by the gate partition above;
 - whenever `G` is nonzero, the observed graph branch is bounded by the
   finite `G`-zero pair count;
 - whenever both exact gates are inactive, the observed split-triple landings
@@ -121,7 +149,8 @@ each off-`R0` landing polynomial, and verifies:
 The final `CERT` line records the best sampled branch in a machine-readable
 form with fields such as `p`, `q_gen`, `q_line`, `Delta1_zero`, `G_zero`,
 `G_degree`, `G_zero_pairs`, `nonzero_gate_bound`, `remainder_identity`,
-`C2`, `graph_C2`, and split-triple counts.
+`gate_status`, `base_gate_C2`, `graph_C2`, `exceptional_C2`, and
+split-triple counts.
 
 The companion symbolic checker
 
