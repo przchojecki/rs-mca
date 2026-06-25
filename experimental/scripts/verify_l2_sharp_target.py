@@ -3067,6 +3067,20 @@ def residual_shape_scan_profile() -> dict:
     """Finite residual-dimension scans after the clean-cycle normal-form gates."""
     scan_cases = [
         {"name": "triangle_nonempty", "cycle_len": 3, "mu": 2, "k": 8, "sigma": 3},
+        {
+            "name": "even_pair_cap_nonempty",
+            "cycle_len": 6,
+            "mu": 2,
+            "k": 10,
+            "sigma": 3,
+        },
+        {
+            "name": "even_pair_cap_empty",
+            "cycle_len": 6,
+            "mu": 2,
+            "k": 10,
+            "sigma": 4,
+        },
         {"name": "odd_mu2_nonempty", "cycle_len": 5, "mu": 2, "k": 14, "sigma": 5},
         {"name": "odd_mu3_empty", "cycle_len": 5, "mu": 3, "k": 14, "sigma": 5},
         {"name": "odd_mu4_empty", "cycle_len": 5, "mu": 4, "k": 14, "sigma": 5},
@@ -3080,6 +3094,9 @@ def residual_shape_scan_profile() -> dict:
         sigma = scan_case["sigma"]
         lower_band = k - sigma
         root_floor_constant = 2 * mu * (cycle_len - 2) * sigma - cycle_len * k
+        pair_cap_clearance_lhs = 2 * (mu * (cycle_len - 2) - 1) * sigma
+        pair_cap_clearance_rhs = (cycle_len - 1) * k
+        pair_cap_predicts_empty = pair_cap_clearance_lhs >= pair_cap_clearance_rhs
         if cycle_len % 2 == 1:
             odd_lower_numerator = (
                 k
@@ -3148,6 +3165,17 @@ def residual_shape_scan_profile() -> dict:
                 "candidate_count": candidate_count,
                 "examples": examples,
                 "root_floor_constant": root_floor_constant,
+                "pair_cap_clearance_lhs": pair_cap_clearance_lhs,
+                "pair_cap_clearance_rhs": pair_cap_clearance_rhs,
+                "pair_cap_predicts_empty": pair_cap_predicts_empty,
+                "candidate_min_twice_dimension": min(
+                    (2 * min(dimensions) for dimensions in candidates),
+                    default=None,
+                ),
+                "all_candidates_satisfy_pair_cap_lower_bound": all(
+                    2 * min(dimensions) > k - 2 * sigma
+                    for dimensions in candidates
+                ),
                 "odd_lower_numerator": odd_lower_numerator,
                 "odd_upper_numerator": odd_upper_numerator,
                 "odd_compatible": odd_compatible,
@@ -3206,6 +3234,27 @@ def residual_shape_scan_profile() -> dict:
                 ]
                 for example in row["examples"]
             )
+            for row in rows
+        ),
+        "pair_cap_lower_bound_holds": all(
+            row["all_candidates_satisfy_pair_cap_lower_bound"]
+            for row in rows
+        ),
+        "pair_cap_clearance_holds": all(
+            row["candidate_count"] == 0
+            for row in rows
+            if row["pair_cap_predicts_empty"]
+        ),
+        "pair_cap_has_empty_even_case": any(
+            row["name"] == "even_pair_cap_empty"
+            and row["pair_cap_predicts_empty"]
+            and row["candidate_count"] == 0
+            for row in rows
+        ),
+        "pair_cap_has_nonempty_below_threshold_case": any(
+            row["name"] == "even_pair_cap_nonempty"
+            and not row["pair_cap_predicts_empty"]
+            and row["candidate_count"] > 0
             for row in rows
         ),
         "arity_monotonicity_holds": all(
@@ -5143,6 +5192,18 @@ def run() -> dict:
         ],
         "residual_shape_scan_private_sizes": residual_shape_scan[
             "all_examples_satisfy_recorded_private_sizes"
+        ],
+        "residual_shape_scan_pair_cap_lower_bound": residual_shape_scan[
+            "pair_cap_lower_bound_holds"
+        ],
+        "residual_shape_scan_pair_cap_clearance": residual_shape_scan[
+            "pair_cap_clearance_holds"
+        ],
+        "residual_shape_scan_pair_cap_even_empty": residual_shape_scan[
+            "pair_cap_has_empty_even_case"
+        ],
+        "residual_shape_scan_pair_cap_even_nonempty": residual_shape_scan[
+            "pair_cap_has_nonempty_below_threshold_case"
         ],
         "residual_shape_scan_arity_monotone": residual_shape_scan[
             "arity_monotonicity_holds"

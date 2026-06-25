@@ -2975,6 +2975,80 @@ length, alternating propagation also gives the displayed parity compatibility.
 Thus any surviving residual shape gives an integer vector in the finite search.
 The contrapositive proves the certificate.
 
+The finite certificate already has a useful analytic clearance consequence.
+
+**Corollary (global pair-cap residual-shape clearance).** Fix `m>=3`,
+`mu>=2`, `k`, and `sigma`. If
+
+```text
+2(mu(m-2)-1)sigma >= (m-1)k,
+```
+
+then the finite residual-shape search in the preceding certificate is empty.
+Consequently the current small-pair, private-mass, and root-sharing gates
+clear every clean simple `m`-cycle shape at these parameters.
+
+Equivalently, residual shapes can exist only below the threshold
+
+```text
+sigma/k < (m-1)/(2(mu(m-2)-1)).
+```
+
+This improves the coarse high-reserve window
+
+```text
+sigma/k > m/(2mu(m-2))
+```
+
+exactly when `mu(m-2)>m`.
+
+*Proof.* Suppose a residual vector survives the finite certificate, and put
+`D=min_i d_i`. Choose `t` with `d_t=D`. The lower adjacent band gives
+
+```text
+d_{t-1}, d_{t+1} >= k-sigma-D.
+```
+
+The global pairwise cap applies to the two neighbors, so
+
+```text
+2(k-sigma-D) <= d_{t-1}+d_{t+1} < k.
+```
+
+Hence
+
+```text
+k-2sigma < 2D.
+```
+
+On the other hand, the root-sharing nonclearance condition in the finite
+certificate gives
+
+```text
+2D <= 2max(2,D) <= m k - 2mu(m-2)sigma.
+```
+
+Thus any surviving vector forces
+
+```text
+k-2sigma < m k - 2mu(m-2)sigma,
+```
+
+or equivalently
+
+```text
+2(mu(m-2)-1)sigma < (m-1)k.
+```
+
+The contrapositive proves emptiness. The comparison with the coarse
+high-reserve threshold is the inequality
+
+```text
+(m-1)/(2(mu(m-2)-1)) < m/(2mu(m-2)),
+```
+
+which is equivalent to `mu(m-2)>m`.
+
 The finite certificate is monotone in the interleaving arity.
 
 **Corollary (arity monotonicity of residual-shape certificates).** Fix

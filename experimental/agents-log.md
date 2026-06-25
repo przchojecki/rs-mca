@@ -299,8 +299,12 @@ Keep entries concise and link to the relevant files.
   form identifying the exact large-overlap/parity obstruction still left by the
   current L2 route; for fixed `m,mu,k,sigma` this normal form becomes a finite
   residual-shape scan over integer dimension vectors. The finite certificate is
-  monotone in arity: for fixed `m,k,sigma`, candidate sets shrink as `mu`
-  increases, so emptiness at `mu_0` certifies emptiness for all larger arities.
+  converted into an analytic pair-cap clearance threshold
+  `2(mu(m-2)-1)sigma >= (m-1)k`, using the two neighbors of a minimum
+  dimension and the global small-pair cap; this gives an even-cycle clearance
+  mechanism beyond the earlier odd parity obstruction. It is also monotone in
+  arity: for fixed `m,k,sigma`, candidate sets shrink as `mu` increases, so
+  emptiness at `mu_0` certifies emptiness for all larger arities.
   Combining
   the pivot, monic, and domain gates gives a
   marked selected-syzygy tuple bound; the verifier checks that this general
