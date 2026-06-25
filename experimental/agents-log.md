@@ -30,6 +30,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-25 - L1 largest-petal width floor
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/notes/l1/l1_full_list_quotient_proof_program.md`,
+  `experimental/scripts/scan_l1_full_list_quotient_conjecture.py`, and
+  `experimental/agents-log.md`.
+- **Status:** PROVED / EXPERIMENTAL.
+- **What is being added:** A largest-petal width-floor lemma for maximal
+  sunflower extras, bounding the touched-petal count from below using the
+  largest and second-largest petal supports. The scanner now reports the two
+  resulting width floors.
+- **How it is useful:** Refines the two-gate residual by showing that, once
+  the background-petal gate grows, a bounded-width obstruction must keep the
+  second-largest petal support large enough to satisfy the list condition.
+- **What to do next:** Use the width-floor diagnostics to distinguish
+  genuinely wide residual examples from bounded-width examples with large top
+  petal supports.
+
 ### 2026-06-25 - L1 maximal two-gate residual closure
 
 - **Agent/model:** Codex.

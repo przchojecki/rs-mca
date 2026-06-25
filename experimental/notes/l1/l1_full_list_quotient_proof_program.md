@@ -2843,6 +2843,83 @@ combined gate as
 best_anchor_exponent = min(two_anchor_exponent, background_petal_exponent).
 ```
 
+## Lemma B8. Largest-Petal Width Floor
+
+Status: PROVED.
+
+Assume the sunflower is maximal.  Let `P` be a non-planted listed codeword, and
+write the positive petal support sizes in decreasing order
+
+```text
+a_1 >= a_2 >= ... >= a_t > 0,
+```
+
+where `t=t(P)` is the touched-petal count.  Put `r=|R_P|` and
+`d=|C\C_P|`.  Then
+
+```text
+t >= ceil((ell+d-r)/a_1).
+```
+
+If `t>=2`, then also
+
+```text
+t >= 1 + ceil(max(0, ell+d-r-a_1)/a_2).
+```
+
+Equivalently, in the two-gate notation of Theorem B7, where
+`v_(1)=ell-a_1` and `G_R=(ell-r)+v_(1)`,
+
+```text
+t >= 1 + ceil(max(0, d-ell+G_R)/a_2).
+```
+
+### Proof
+
+The list condition gives
+
+```text
+h = sum_i |S_i| >= ell+d-r.
+```
+
+Since every touched petal has size at most `a_1`,
+
+```text
+h <= t a_1,
+```
+
+which proves the first lower bound.
+
+For the second, separate the largest touched petal.  The remaining `t-1`
+touched petals have size at most `a_2`, so
+
+```text
+h <= a_1 + (t-1)a_2.
+```
+
+Combining this with `h>=ell+d-r` gives the displayed floor.  Finally,
+
+```text
+ell+d-r-a_1 = d-ell + ((ell-r)+(ell-a_1)) = d-ell+G_R,
+```
+
+which is the equivalent two-gate form.
+
+### Consequences
+
+The two-gate residual cannot stay narrow unless the second-largest petal
+support is large relative to the positive part of `d-ell+G_R(P)`.  In
+particular, in any near-`ell` defect window `|d-ell|=O(1)`, a family with
+`G_R(P)->infinity` and bounded touched-petal count must have `a_2` growing on
+the same scale as `G_R(P)`.
+
+The scanner reports both floors as
+
+```text
+width_floor_a1,
+width_floor_a2.
+```
+
 ## Development Ledger
 
 - **Conjecture 1 full-list primitive remainder:** CONJECTURAL.  Main proof
@@ -2927,5 +3004,8 @@ best_anchor_exponent = min(two_anchor_exponent, background_petal_exponent).
 - **Maximal two-gate residual closure:** PROVED.  Combines the two-petal and
   background-petal anchor certificates: bounded cofactor excess is polynomial
   unless both anchor deficits escape every fixed bound.
+- **Largest-petal width floor:** PROVED.  Shows the current two-gate residual
+  must either spread across many petals or keep the top two petal supports
+  large enough to meet the list condition.
 - **Mixed-petal sunflower amplification:** CONJECTURAL.  Next focused bound to
   prove or refute in the large-defect regime.
