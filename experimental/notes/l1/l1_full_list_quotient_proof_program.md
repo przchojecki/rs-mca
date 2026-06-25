@@ -276,6 +276,39 @@ E(a)=T(a)-T(a+1),        T(n+1)=0,
 
 telescoping gives the displayed formula.
 
+### Johnson-Covered Weighted Tail
+
+On a punctured domain of size `N`, define the Johnson tail envelope
+
+```text
+J_N,k(a) =
+  1                                           if 2a > N+k-1,
+  N(N-k+1) / (a^2 - N(k-1))                  otherwise,
+```
+
+for agreement levels satisfying `a^2 > N(k-1)`.  Let
+
+```text
+a_0 >= s,        a_0^2 > N(k-1),
+```
+
+and let `w(a)` be nondecreasing and nonnegative for `a_0 <= a <= N`.  Then
+the Johnson-covered part of any punctured agreement profile satisfies
+
+```text
+sum_{a=a_0}^N N_A,=a(U_A) w(a)
+  <= J_N,k(a_0)w(a_0)
+     + sum_{a=a_0+1}^N J_N,k(a)(w(a)-w(a-1)).
+```
+
+Thus a weighted stratified reduction can be split cleanly at the first
+Johnson-covered level `a_0`: the displayed formula controls the high-agreement
+tail, and only levels `a<a_0` remain to be controlled by quotient,
+sunflower, or aperiodic input.
+
+This follows from the Abel profile ledger and the punctured Johnson tail bound
+`T(a)<=J_N,k(a)` at every level in the displayed range.
+
 ## First Lemma Target
 
 The first obstruction family isolated by the falsification scans is a

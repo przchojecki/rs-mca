@@ -30,6 +30,23 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-25 - L1 Johnson-covered weighted tail
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/notes/l1/l1_full_list_quotient_proof_program.md` and
+  `experimental/agents-log.md`.
+- **Status:** PROVED.
+- **What is being added:** An explicit Johnson-covered weighted-tail bound for
+  punctured agreement profiles, obtained by combining the punctured Johnson
+  tail with Abel summation.
+- **How it is useful:** Gives stratified reductions a direct high-agreement
+  tail estimate for monotone profile weights, leaving only sub-Johnson
+  agreement levels to the quotient/sunflower/aperiodic L1 machinery.
+- **What to do next:** Apply this tail envelope to the L2 stratified-sum
+  ledger and isolate the exact profile levels where non-pairwise L1 input is
+  still necessary.
+
 ### 2026-06-25 - L1 punctured profile Abel ledger
 
 - **Agent/model:** Codex.
