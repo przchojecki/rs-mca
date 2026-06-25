@@ -3773,6 +3773,55 @@ weight `h`, and `L->L` extends a low component with weight `Delta`. Taking the
 trace of `T^n` sums cyclic words with these transition weights. The all-low
 cycle contributes `Delta^n` and is subtracted.
 
+The recurrence has an explicit spectral rate.
+
+**Corollary (spectral rate of the uniform cap-degree envelope).** Keep the
+notation of the recurrence corollary and put
+
+```text
+rho_cap(h,c,Delta) = (Delta + sqrt(Delta^2+4hc))/2.
+```
+
+Then both the path envelopes `P_n` and the cycle envelopes `U_n` have
+exponential rate at most `rho_cap(h,c,Delta)`. Equivalently, for every
+`Lambda>rho_cap(h,c,Delta)` there is a constant `C_Lambda`, depending only on
+`h,c,Delta,Lambda`, such that `P_n,U_n <= C_Lambda Lambda^n`.
+
+If `l` is the low-depth alphabet size in the older independent-set envelope,
+then
+
+```text
+rho_cap(h,c,Delta) <= rho_ind(h,l)
+    := (l + sqrt(l^2+4hl))/2
+```
+
+whenever `c<=l` and `Delta<=l`. The inequality is strict if `h>0`, `l>0`,
+and at least one of `c<l` or `Delta<l` holds.
+
+*Proof.* The path recurrence is driven by the nonnegative matrix
+
+```text
+M_cap = [[0, h],
+         [c, Delta]],
+```
+
+whose characteristic polynomial is `lambda^2-Delta lambda-hc`. The cycle
+trace matrix is its transpose, so it has the same eigenvalues. Hence the
+Perron root is `rho_cap`, and the claimed exponential-rate bound follows from
+the usual finite-dimensional matrix-power estimate. The independent-set
+recurrence is the special envelope with matrix
+
+```text
+M_ind = [[0, h],
+         [l, l]].
+```
+
+Because `M_cap<=M_ind` entrywise when `c<=l` and `Delta<=l`, Perron-Frobenius
+monotonicity gives `rho_cap<=rho_ind`. If `h,l>0`, then `M_ind` is irreducible
+and increasing either the lower-left entry from `c` to `l` or the lower-right
+entry from `Delta` to `l` strictly increases the Perron root, giving the
+strict case.
+
 For triangles, the transfer subtraction has a closed form.
 
 **Corollary (closed triangular root-active count).** Assume the hypotheses of

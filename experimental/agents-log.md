@@ -30,6 +30,26 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-25 - L2 uniform envelope spectral rate
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/notes/l2/l2_sharp_target_conjecture.md`,
+  `experimental/scripts/verify_l2_sharp_target.py`, and
+  `experimental/agents-log.md`.
+- **Status:** PROVED / EXPERIMENTAL.
+- **What is being added:** A Perron-root comparison for the uniform
+  cap-degree bridge envelope: its characteristic rate is the positive root of
+  `lambda^2-Delta lambda-hc`, and it is no larger than the older
+  independent-set rate with low alphabet size `l`.
+- **How it is useful:** Turns the bridge refinement into a usable asymptotic
+  statement, showing a strict exponential-rate improvement whenever the
+  boundary cap or low-transfer degree is genuinely smaller than the full low
+  alphabet.
+- **What to do next:** Compare the resulting rate gap with the residual L2
+  reserve and identify which near-threshold sectors still need sharper local
+  estimates.
+
 ### 2026-06-25 - L2 uniform envelope recurrence
 
 - **Agent/model:** Codex.

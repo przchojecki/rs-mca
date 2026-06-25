@@ -3238,6 +3238,28 @@ def residual_shape_scan_profile() -> dict:
             rate += 1
         return rate
 
+    def uniform_cap_integer_rate(
+        high_count: int, cap_count: int, degree_bound: int
+    ) -> int:
+        if high_count + cap_count + degree_bound == 0:
+            return 0
+        rate = 1
+        while rate * rate < degree_bound * rate + high_count * cap_count:
+            rate += 1
+        return rate
+
+    def uniform_cap_strict_root_improvement(
+        high_count: int,
+        low_count: int,
+        cap_count: int,
+        degree_bound: int,
+    ) -> bool:
+        return (
+            high_count > 0
+            and low_count > 0
+            and (cap_count < low_count or degree_bound < low_count)
+        )
+
     def path_recurrence_spectral_bound(
         vertex_count: int, high_count: int, low_count: int
     ) -> int:
@@ -4004,6 +4026,15 @@ def residual_shape_scan_profile() -> dict:
             ) = uniform_cap_parameters(
                 depth_values, root_depth_required, sigma
             )
+            root_active_all_negative_uniform_high_count = (
+                all_negative_uniform_high_count
+            )
+            root_active_all_negative_uniform_cap_count = (
+                all_negative_uniform_cap_count
+            )
+            root_active_all_negative_uniform_degree_bound = (
+                all_negative_uniform_degree_bound
+            )
             root_active_all_negative_uniform_recurrence_bound = (
                 0
                 if root_budget < 4 or not odd_compatible
@@ -4055,6 +4086,25 @@ def residual_shape_scan_profile() -> dict:
                 len(high_depth_values),
                 len(low_depth_values),
             )
+            root_active_all_negative_uniform_spectral_rate = (
+                uniform_cap_integer_rate(
+                    all_negative_uniform_high_count,
+                    all_negative_uniform_cap_count,
+                    all_negative_uniform_degree_bound,
+                )
+            )
+            root_active_all_negative_uniform_rate_below_independent = (
+                root_active_all_negative_uniform_spectral_rate
+                <= root_active_all_negative_spectral_rate
+            )
+            root_active_all_negative_uniform_strict_root_improvement = (
+                uniform_cap_strict_root_improvement(
+                    all_negative_uniform_high_count,
+                    len(low_depth_values),
+                    all_negative_uniform_cap_count,
+                    all_negative_uniform_degree_bound,
+                )
+            )
             root_active_all_negative_spectral_bound = (
                 path_recurrence_spectral_bound(
                     cycle_len,
@@ -4082,6 +4132,13 @@ def residual_shape_scan_profile() -> dict:
                     if depth < root_depth_required
                 ]
                 spike = depth_spike_row["spike"]
+                (
+                    spike_uniform_high_count,
+                    spike_uniform_cap_count,
+                    spike_uniform_degree_bound,
+                ) = uniform_cap_parameters(
+                    allowed_depths, root_depth_required, sigma
+                )
                 if (
                     root_budget < 4
                     or not odd_compatible
@@ -4132,13 +4189,6 @@ def residual_shape_scan_profile() -> dict:
                             cycle=False,
                         )
                     )
-                    (
-                        spike_uniform_high_count,
-                        spike_uniform_cap_count,
-                        spike_uniform_degree_bound,
-                    ) = uniform_cap_parameters(
-                        allowed_depths, root_depth_required, sigma
-                    )
                     uniform_recurrence_bound = (
                         path_uniform_cap_recurrence_bound(
                             cycle_len - 1,
@@ -4175,6 +4225,9 @@ def residual_shape_scan_profile() -> dict:
                     spectral_rate = None
                     spectral_bound = bound
                     spectral_saves_free_alphabet = None
+                    uniform_spectral_rate = None
+                    uniform_rate_below_independent = None
+                    uniform_strict_root_improvement = None
                 else:
                     bound = independent_set_weight_bound(
                         cycle_len - 1,
@@ -4206,6 +4259,22 @@ def residual_shape_scan_profile() -> dict:
                             len(low_allowed_depths),
                         )
                     )
+                    uniform_spectral_rate = uniform_cap_integer_rate(
+                        spike_uniform_high_count,
+                        spike_uniform_cap_count,
+                        spike_uniform_degree_bound,
+                    )
+                    uniform_rate_below_independent = (
+                        uniform_spectral_rate <= spectral_rate
+                    )
+                    uniform_strict_root_improvement = (
+                        uniform_cap_strict_root_improvement(
+                            spike_uniform_high_count,
+                            len(low_allowed_depths),
+                            spike_uniform_cap_count,
+                            spike_uniform_degree_bound,
+                        )
+                    )
                 root_active_spike_bound_rows.append(
                     {
                         "spike": spike,
@@ -4227,6 +4296,16 @@ def residual_shape_scan_profile() -> dict:
                         ),
                         "high_depth_count": len(high_allowed_depths),
                         "low_depth_count": len(low_allowed_depths),
+                        "uniform_high_count": spike_uniform_high_count,
+                        "uniform_cap_count": spike_uniform_cap_count,
+                        "uniform_degree_bound": spike_uniform_degree_bound,
+                        "uniform_spectral_rate": uniform_spectral_rate,
+                        "uniform_rate_below_independent": (
+                            uniform_rate_below_independent
+                        ),
+                        "uniform_strict_root_improvement": (
+                            uniform_strict_root_improvement
+                        ),
                     }
                 )
             root_active_independent_set_bound = (
@@ -4324,6 +4403,12 @@ def residual_shape_scan_profile() -> dict:
             root_active_all_negative_bound = None
             root_active_all_negative_recurrence_bound = None
             root_active_all_negative_spectral_rate = None
+            root_active_all_negative_uniform_high_count = None
+            root_active_all_negative_uniform_cap_count = None
+            root_active_all_negative_uniform_degree_bound = None
+            root_active_all_negative_uniform_spectral_rate = None
+            root_active_all_negative_uniform_rate_below_independent = None
+            root_active_all_negative_uniform_strict_root_improvement = None
             root_active_all_negative_spectral_bound = None
             root_active_all_negative_spectral_saves = None
             root_active_spike_bound_rows = []
@@ -4574,6 +4659,15 @@ def residual_shape_scan_profile() -> dict:
                 "root_active_all_negative_uniform_recurrence_bound": (
                     root_active_all_negative_uniform_recurrence_bound
                 ),
+                "root_active_all_negative_uniform_high_count": (
+                    root_active_all_negative_uniform_high_count
+                ),
+                "root_active_all_negative_uniform_cap_count": (
+                    root_active_all_negative_uniform_cap_count
+                ),
+                "root_active_all_negative_uniform_degree_bound": (
+                    root_active_all_negative_uniform_degree_bound
+                ),
                 "root_active_triangle_all_negative_count": (
                     root_active_triangle_all_negative_count
                 ),
@@ -4585,6 +4679,15 @@ def residual_shape_scan_profile() -> dict:
                 ),
                 "root_active_all_negative_spectral_rate": (
                     root_active_all_negative_spectral_rate
+                ),
+                "root_active_all_negative_uniform_spectral_rate": (
+                    root_active_all_negative_uniform_spectral_rate
+                ),
+                "root_active_all_negative_uniform_rate_below_independent": (
+                    root_active_all_negative_uniform_rate_below_independent
+                ),
+                "root_active_all_negative_uniform_strict_root_improvement": (
+                    root_active_all_negative_uniform_strict_root_improvement
                 ),
                 "root_active_all_negative_spectral_bound": (
                     root_active_all_negative_spectral_bound
@@ -5060,6 +5163,55 @@ def residual_shape_scan_profile() -> dict:
             row["root_depth_required"] <= row["sigma"]
             or row["root_active_bridge_cap_bound"]
             <= row["root_active_uniform_recurrence_bound"]
+            for row in rows
+        ),
+        "root_active_uniform_parameters_within_low_alphabet": all(
+            row["root_depth_required"] <= row["sigma"]
+            or (
+                row["root_active_all_negative_uniform_cap_count"]
+                <= len(row["low_depth_values"])
+                and row["root_active_all_negative_uniform_degree_bound"]
+                <= len(row["low_depth_values"])
+                and all(
+                    spike_row["uniform_cap_count"]
+                    <= spike_row["low_depth_count"]
+                    and spike_row["uniform_degree_bound"]
+                    <= spike_row["low_depth_count"]
+                    for spike_row in row["root_active_spike_bound_rows"]
+                )
+            )
+            for row in rows
+        ),
+        "root_active_uniform_spectral_rate_below_independent": all(
+            row["root_depth_required"] <= row["sigma"]
+            or (
+                row[
+                    "root_active_all_negative_uniform_rate_below_independent"
+                ]
+                and all(
+                    spike_row["uniform_rate_below_independent"] is None
+                    or spike_row["uniform_rate_below_independent"]
+                    for spike_row in row["root_active_spike_bound_rows"]
+                )
+            )
+            for row in rows
+        ),
+        "root_active_uniform_spectral_has_strict_case": any(
+            row["name"] == "triangle_uniform_cap_strict"
+            and row["root_depth_required"] > row["sigma"]
+            and (
+                row[
+                    "root_active_all_negative_uniform_strict_root_improvement"
+                ]
+                or any(
+                    spike_row["uniform_strict_root_improvement"]
+                    for spike_row in row["root_active_spike_bound_rows"]
+                    if (
+                        spike_row["uniform_strict_root_improvement"]
+                        is not None
+                    )
+                )
+            )
             for row in rows
         ),
         "root_active_triangle_formula_matches_exact": all(
@@ -7249,6 +7401,19 @@ def run() -> dict:
         ],
         "residual_shape_scan_root_active_uniform_recurrence_bounds": (
             residual_shape_scan["root_active_uniform_recurrence_bounds_capped"]
+        ),
+        "residual_shape_scan_root_active_uniform_parameters": (
+            residual_shape_scan[
+                "root_active_uniform_parameters_within_low_alphabet"
+            ]
+        ),
+        "residual_shape_scan_root_active_uniform_spectral": (
+            residual_shape_scan[
+                "root_active_uniform_spectral_rate_below_independent"
+            ]
+        ),
+        "residual_shape_scan_root_active_uniform_spectral_strict": (
+            residual_shape_scan["root_active_uniform_spectral_has_strict_case"]
         ),
         "residual_shape_scan_root_active_triangle_formula": residual_shape_scan[
             "root_active_triangle_formula_matches_exact"
