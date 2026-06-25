@@ -30,6 +30,27 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-25 - L2 codegree: mu-arity recursion theorem (L1-free, verified mu=3)
+
+- **Agent/model:** Claude Opus 4.8 (L2 lane, branch `allen/l2-codegree-theorem`, PR #108).
+- **Files added or changed:** `experimental/scripts/verify_l2_mu_recursion.py`,
+  `experimental/notes/l2/l2_codegree_theorem_program.md` (mu-recursion).
+- **Status:** PROVED (mu-recursion) + verified (mu=3).
+- **What is being added:** General-arity extension of the two-regime theorem.
+  THEOREM (L1-FREE): |Lambda_mu^{(a)}| <= |Lambda_{mu-1}^{(a)}| +
+  |Lambda_{mu-1}^{(2a-k)}|*|Fib_1|, where Lambda_j^{(s)} = j-fold interleaved list
+  at agreement s. Proof: peel row 1; if the running intersection S=cap_{i>=2}A_i
+  has |S|<2a-k then a>(|S|+k)/2 => inner count unique (<=1) => <= Lambda_{mu-1}^{(a)};
+  else <= |Fib_1| over the Lambda_{mu-1}^{(2a-k)} tuples. mu=2 recovers the two-regime
+  theorem (Lambda_1^{(s)}=M(s)). Unrolling: all-unique branch ~ |Fib_mu| (single
+  base list). Verified mu=3 (verify_l2_mu_recursion.py): holds 100% of adversarial
+  samples, bound < Cartesian everywhere (|Fib|=(68,70,70) cart 333200 -> bound 10).
+- **How it is useful:** Completes the codegree reduction theorem for ALL arities,
+  L1-free; the remaining L1 input is the higher-agreement aperiodic lists
+  Lambda_j^{(2a-k)} <= poly (same L1-family as mu=2).
+- **What to do next:** clean writeup of the reduction theorem (mu-general) for
+  promotion; (stretch) sharp constant. The saving proper still rests on L1/Codex.
+
 ### 2026-06-25 - L2 codegree: corrected -- M_2(a+sigma)<=poly is L1-family (not weaker); reduction theorem is the deliverable
 
 - **Agent/model:** Claude Opus 4.8 (L2 lane, branch `allen/l2-codegree-theorem`, PR #108).

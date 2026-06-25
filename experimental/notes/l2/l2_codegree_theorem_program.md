@@ -180,9 +180,37 @@ list bound (here at agreement `a+σ`). What is genuinely **mine and L1-free** is
 list to that L1 input, which is precisely the "codegree theorem" Codex named on
 #107. The reduction is the deliverable; the saving itself rests on L1.
 
+## The μ-arity recursion (2026-06-25) — extends the theorem to all arities, L1-free
+
+Write `Λ_j^{(s)}(U) = #{(c_1,…,c_j) : |A_1(c_1)∩…∩A_j(c_j)| ≥ s}` for the `j`-fold
+interleaved list at agreement `s`.
+
+> **Theorem (μ-recursion; PROVED, verified μ=2,3).** Peeling row 1,
+> ```
+> |Λ_μ^{(a)}|  ≤  |Λ_{μ-1}^{(a)}|  +  |Λ_{μ-1}^{(2a-k)}| · |Fib_1|.
+> ```
+
+*Proof.* `|Λ_μ^{(a)}| = Σ over (c_2,…,c_μ)` of `#{c_1 : |A_1(c_1)∩S| ≥ a}`, where
+`S = ∩_{i≥2}A_i(c_i)`. If `|S| < 2a-k` then `a > (|S|+k)/2`, so the inner count is
+unique (`≤1`); summing over such `(c_2,…,c_μ)` gives `≤ |Λ_{μ-1}^{(a)}|`. If
+`|S| ≥ 2a-k`, bound the inner count by `|Fib_1|`; the number of such `(c_2,…,c_μ)`
+is `|Λ_{μ-1}^{(2a-k)}|`. ∎
+
+For `μ=2`, `Λ_1^{(s)} = M(s)`, recovering the two-regime theorem. Unrolling over the
+`μ-1` peels yields a sum over a binary tree: the all-unique branch gives
+`Λ_1^{(a)} = |Fib_μ|` (a single base list), and each "tail" branch carries a
+higher-agreement list `Λ_j^{(2a-k)}` times an `|Fib_i|`. Verified in
+`verify_l2_mu_recursion.py`: the `μ=3` step holds in 100% of adversarial samples
+and the bound is `< Cartesian` everywhere (e.g. `|Fib|=(68,70,70)`, Cartesian
+`333200`, bound `10`). So the saving persists at all `μ`, L1-free, with the
+remaining L1 input being the higher-agreement lists `Λ_j^{(2a-k)}` (the aperiodic
+versions polynomial — same L1-family input as the `μ=2` case).
+
 ## Milestones (this PR)
 1. [x] per-`N'` punctured-RS `D ≤ Johnson` (step 2a).
 2. [x] stratified-sum reduction; CS shown insufficient (step 2b).
 3. [x] two-regime reduction THEOREM `|Λ_2| ≤ |Fib_2| + M_2(2a-k)|Fib_1|` (proved, verified).
-4. [ ] the sharper L1-input: is `M_2(a+σ) ≤ poly` (list at 2×reserve) provable / from L1?
-5. [ ] `μ>2` recursion (recurse the decomposition); (stretch) sharp constant.
+4. [x] the L1 input pinned: `M_2(a+σ) ≤ poly` is the aperiodic list at `a+σ` (NOT weaker than L1).
+5. [x] `μ>2` recursion `|Λ_μ| ≤ |Λ_{μ-1}^{(a)}| + |Λ_{μ-1}^{(2a-k)}||Fib_1|` (proved, verified μ=3).
+6. [ ] clean writeup for promotion (precise hypotheses, the named L1 input).
+7. [ ] (stretch) sharp constant via non-smooth-puncture analysis.
