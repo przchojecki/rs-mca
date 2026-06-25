@@ -207,6 +207,23 @@ def multiply_bivariate(
     return product
 
 
+def multiply_trivariate(
+    left: Counter[tuple[int, int, int]],
+    right: Counter[tuple[int, int, int]],
+) -> Counter[tuple[int, int, int]]:
+    product: Counter[tuple[int, int, int]] = Counter()
+    for (left_balance, left_distance, left_exchange), left_coeff in left.items():
+        for (right_balance, right_distance, right_exchange), right_coeff in right.items():
+            product[
+                (
+                    left_balance + right_balance,
+                    left_distance + right_distance,
+                    left_exchange + right_exchange,
+                )
+            ] += left_coeff * right_coeff
+    return product
+
+
 def exchange_kernel_formula(
     fiber_size: int,
     source_occupancy: tuple[int, ...],
@@ -467,6 +484,131 @@ def check_profile_neighborhood_case(
                     degree_bound,
                 )
             )
+
+
+def mixed_profile_exchange_kernel_formula(
+    fiber_size: int,
+    source_occupancy: tuple[int, ...],
+) -> Counter[tuple[int, int]]:
+    kernel: Counter[tuple[int, int, int]] = Counter({(0, 0, 0): 1})
+    for source in source_occupancy:
+        fiber_kernel: Counter[tuple[int, int, int]] = Counter()
+        for target in range(fiber_size + 1):
+            lower = max(0, source + target - fiber_size)
+            upper = min(source, target)
+            for intersection in range(lower, upper + 1):
+                balance = target - source
+                profile_distance = max(0, source - target)
+                exchange = source - intersection
+                fiber_kernel[(balance, profile_distance, exchange)] += comb(
+                    source,
+                    intersection,
+                ) * comb(fiber_size - source, target - intersection)
+        kernel = multiply_trivariate(kernel, fiber_kernel)
+
+    out: Counter[tuple[int, int]] = Counter()
+    for (balance, profile_distance, exchange), coefficient in kernel.items():
+        if balance == 0:
+            out[(profile_distance, exchange)] += coefficient
+    return +out
+
+
+def occupancy_vector_from_support(
+    fiber_count: int,
+    fiber_size: int,
+    support: frozenset[int],
+) -> tuple[int, ...]:
+    occupancy = [0] * fiber_count
+    for point in support:
+        occupancy[point // fiber_size] += 1
+    return tuple(occupancy)
+
+
+def brute_mixed_profile_exchange_kernel(
+    fiber_count: int,
+    fiber_size: int,
+    support_size: int,
+    source_occupancy: tuple[int, ...],
+) -> Counter[tuple[int, int]]:
+    points = range(fiber_count * fiber_size)
+    source = canonical_support(fiber_size, source_occupancy)
+    counts: Counter[tuple[int, int]] = Counter()
+    for target_tuple in itertools.combinations(points, support_size):
+        target = frozenset(target_tuple)
+        target_occupancy = occupancy_vector_from_support(
+            fiber_count,
+            fiber_size,
+            target,
+        )
+        profile_distance = occupancy_exchange_distance(source_occupancy, target_occupancy)
+        exchange = len(source - target)
+        counts[(profile_distance, exchange)] += 1
+    return counts
+
+
+def check_mixed_profile_exchange_case(
+    fiber_count: int,
+    fiber_size: int,
+    support_size: int,
+    slack: int,
+) -> None:
+    vectors = occupancy_vectors(fiber_count, fiber_size, support_size)
+    domain_size = fiber_count * fiber_size
+    for source_occupancy in vectors:
+        formula = mixed_profile_exchange_kernel_formula(fiber_size, source_occupancy)
+        brute = brute_mixed_profile_exchange_kernel(
+            fiber_count,
+            fiber_size,
+            support_size,
+            source_occupancy,
+        )
+        if formula != brute:
+            raise AssertionError(
+                (fiber_count, fiber_size, support_size, source_occupancy, formula, brute)
+            )
+        by_exchange: Counter[int] = Counter()
+        for (profile_distance, exchange), count in formula.items():
+            if profile_distance > exchange:
+                raise AssertionError(
+                    (
+                        fiber_count,
+                        fiber_size,
+                        support_size,
+                        source_occupancy,
+                        profile_distance,
+                        exchange,
+                    )
+                )
+            if profile_distance >= slack and 0 < exchange < slack:
+                raise AssertionError(
+                    (
+                        fiber_count,
+                        fiber_size,
+                        support_size,
+                        source_occupancy,
+                        profile_distance,
+                        exchange,
+                    )
+                )
+            by_exchange[exchange] += count
+
+        for exchange in range(min(support_size, domain_size - support_size) + 1):
+            expected = comb(support_size, exchange) * comb(
+                domain_size - support_size,
+                exchange,
+            )
+            if by_exchange.get(exchange, 0) != expected:
+                raise AssertionError(
+                    (
+                        fiber_count,
+                        fiber_size,
+                        support_size,
+                        source_occupancy,
+                        exchange,
+                        by_exchange.get(exchange, 0),
+                        expected,
+                    )
+                )
 
 
 def occupancy_vectors(
@@ -1056,6 +1198,13 @@ def main() -> int:
         (5, 2, 5, 4),
     ]:
         check_profile_neighborhood_case(*case)
+    for case in [
+        (3, 3, 4, 2),
+        (4, 2, 4, 3),
+        (4, 3, 5, 3),
+        (5, 2, 5, 4),
+    ]:
+        check_mixed_profile_exchange_case(*case)
     for case in [
         (4, 3, 4),
         (4, 3, 6),

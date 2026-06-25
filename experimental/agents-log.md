@@ -48,8 +48,9 @@ Keep entries concise and link to the relevant files.
   variance-consumption term. It also records the all-scale maximal-dither
   and co-maximal-dither one-remainder ledger, plus an exact mixed-vector
   minimum-exchange cutoff and finite profile-neighborhood enumerator for
-  cross-occupancy residuals. A small verifier checks the formulas against
-  brute-force enumeration.
+  cross-occupancy residuals, together with a support-level mixed kernel that
+  counts target supports by both profile distance and exchange size. A small
+  verifier checks the formulas against brute-force enumeration.
 - **How it is useful:** Separates the budgeted quotient-periodic M1 support
   terms from the remaining partial-fiber / aperiodic residue-line target, and
   identifies the local low-exchange kernel the residual proof must control.
@@ -66,7 +67,10 @@ Keep entries concise and link to the relevant files.
   profile pairs from the M1 strict-overlap ledger. The profile-neighborhood
   corollary makes this localization quantitative: each source profile has at
   most `sum_{1<=d<t} binom(N+d-1,d)^2` possible mixed-profile neighbors
-  before residue-line or character-sum estimates enter.
+  before residue-line or character-sum estimates enter. The support-level
+  kernel gives the corresponding exact max-codegree envelope and shows that
+  the remaining M1 difficulty is the aperiodic residue-line occupation inside
+  this finite local kernel, rather than hidden support-pair bookkeeping.
 - **What to do next:** Use this theorem as the quotient ledger before attacking
   the aperiodic M1 local-limit residual.
 

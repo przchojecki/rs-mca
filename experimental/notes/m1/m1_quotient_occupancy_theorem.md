@@ -396,6 +396,76 @@ and `m-a`, the number of possible deficit vectors of total mass `d` is
 gives the displayed upper bound.  Corollary 6.1 then removes every profile
 with `d>=t` from the strict-overlap ledger.
 
+### Corollary 6.3. Local Mixed Support Kernel
+
+The same localization has a support-level form.  Fix a support `S` with
+occupancy vector `a`, and let `M_a(d,j)` be the number of target supports `T`
+with
+
+```text
+|T|=|S|=s,        d_occ(a,c(T))=d,        |S\T|=j.
+```
+
+Then the exact bivariate mixed kernel is
+
+```text
+sum_{d,j>=0} M_a(d,j) y^d x^j
+ =
+ [z^0] prod_{i=1}^N
+   sum_{c=0}^m
+   sum_{r=max(0,a_i+c-m)}^{min(a_i,c)}
+     binom(a_i,r) binom(m-a_i,c-r)
+     z^{c-a_i} y^{max(0,a_i-c)} x^{a_i-r}.
+```
+
+Consequently the full-support-layer mixed strict-overlap envelope around
+profile `a` is exactly
+
+```text
+R_a^mix(t,q)
+  = sum_{1 <= d < t} sum_{d <= j < t} M_a(d,j) q^(t-j).
+```
+
+There are no terms with `d>j`, and no target profile with `d>=t` contributes
+to this strict envelope.  Summing over profile distances recovers the ordinary
+Johnson exchange profile of the full support layer:
+
+```text
+sum_d M_a(d,j) = binom(s,j) binom(n-s,j).
+```
+
+Thus any residual subfamily contained in the full support layer has mixed
+max-codegree bounded by this explicit local coefficient extraction.  The open
+M1 issue is not hidden support-pair bookkeeping; it is to prove that the
+actual aperiodic residue-line subfamily occupies only a small part of this
+finite local kernel.
+
+#### Proof
+
+Work fiber by fiber.  In fiber `i`, the target support has size `c` and
+intersects `S cap B_i` in `r` points, where
+
+```text
+max(0,a_i+c-m) <= r <= min(a_i,c).
+```
+
+The number of choices is
+
+```text
+binom(a_i,r) binom(m-a_i,c-r).
+```
+
+This local choice changes the total support size by `c-a_i`, contributes
+`max(0,a_i-c)` to the occupancy distance, and removes `a_i-r` source points.
+Multiplying the local generating functions and taking the coefficient of
+`z^0` imposes the exact-support condition `sum_i c_i=sum_i a_i`.
+
+The inequality `d<=j` follows fiberwise from
+`max(0,a_i-c) <= a_i-r`.  Corollary 6.1 gives the strict cutoff at `d>=t`.
+Finally, if the profile distance variable is forgotten, a target support at
+exchange `j` is just the choice of `j` source points to remove and `j`
+complement points to insert, giving `binom(s,j)binom(n-s,j)`.
+
 ## Theorem 7. Sharp Exchange-One Residual Floor
 
 For an occupancy vector `a=(a_1,...,a_N)`, put
