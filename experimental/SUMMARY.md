@@ -291,9 +291,11 @@ and radii used in protocols.
 
 The support material is also important:
 
-- `a0_cs25_import_audit.md`, `a0_cs25_rational_constant_derivation.md`, and
-  `cs25_import_audit.md` track the imported Crites-Stewart/ABF dependency for
-  Paper D.
+- `a0_cs25_import_audit.md`, `a0_deep_point_cap_dependency_split.md`,
+  `a0_cs25_rational_constant_derivation.md`, and `cs25_import_audit.md` track
+  the Crites-Stewart/ABF dependency for Paper D.  The original import remains
+  unaudited against primary sources, but the X1 deep-point route gives a local
+  CS25-free dependency path for the headline MCA cap.
 - `a1_paperA_finite_verification_crosswalk.md` maps Paper A finite claims to
   scripts and proof records.
 - The reserve-emitter script, reserve JSON schema, and
@@ -366,9 +368,10 @@ as settled.
    The bridge note must become a parameter-exact statement that says exactly
    when Paper B's MCA form implies the line-decoding object Paper C wants.
 
-6. A completed A0 dependency audit.
-   Paper D's universal cap still depends on the imported list-to-agreement
-   conversion being checked against primary sources and exact constants.
+6. A completed A0 dependency audit for imported routes.
+   The headline MCA cap has a local deep-point dependency path, but the
+   original CS25/ABF route and slacked fallback still need primary-source and
+   exact-constant checks before they can be cited as source-certified imports.
 
 7. Promotion discipline.
    Several files contain local `PROVED` or old proof-sketch claims, but the
@@ -397,8 +400,10 @@ Recommended next work:
 5. Convert the L2 full-support intersection formula into concrete proof records
    for `mu=2` and then for protocol-relevant arities.
 
-6. Finish the A0 Crites-Stewart/ABF import audit before relying on Paper D's
-   cap as theorem-backed infrastructure.
+6. Finish the A0 Crites-Stewart/ABF import audit before relying on the original
+   imported route or slacked fallback as source-certified infrastructure; cite
+   the deep-point route separately for the headline MCA cap after local X1
+   review.
 
 7. Choose a small set of stable lemmas for Lean formalization: support
    injection, full-support interleaving formula, complement-prefix locator

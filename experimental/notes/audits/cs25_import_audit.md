@@ -14,9 +14,11 @@ decoding implication attributed to Crites--Stewart, as restated in ABF26. The
 same import also appears in the companion slack/MCA paper.
 
 This audit records the exact local dependency surface and the external checks
-that must be closed before the cap is cited as unconditional. The repo already
-marks the import as recent and conditional; this file makes the checklist
-explicit for later human or agent review.
+that must be closed before the CS25-based route is cited as unconditional. The
+repo already marks the import as recent and conditional; this file makes the
+checklist explicit for later human or agent review.  For the separate local
+deep-point route to the headline MCA cap, see
+`experimental/notes/audits/a0_deep_point_cap_dependency_split.md`.
 
 ## Local Import Surface
 
@@ -133,4 +135,5 @@ and grep the extracted text for `Theorem 2`, `Theorem 5.3`,
 
 Do not upgrade Paper D's CS25-based cap from conditional/imported to
 unconditional until E1--E7 are closed. Do not upgrade the slacked fallback until
-E8 is closed as well.
+E8 is closed as well.  This rule concerns the imported CS25/ABF routes, not
+the separate deep-point dependency split.
