@@ -300,6 +300,72 @@ def threshold_necessity_counterexample() -> dict[str, Any]:
     }
 
 
+def common_zero_degeneracy_case(prime: int) -> dict[str, Any]:
+    if prime < 7 or prime % 2 == 0:
+        raise AssertionError("common-zero degeneracy case expects an odd prime >= 7")
+
+    n = prime
+    k = 3
+    agreement = (prime + 3) // 2
+    common_support = tuple(range(agreement))
+    omega = tuple(i for i in range(prime) if i not in set(common_support))
+    common_zero = omega[0]
+    private_points = omega[1:]
+    private_count = len(private_points)
+    f = [0] * n
+    g = [0] * n
+    slopes = tuple(range(1, private_count + 1))
+    for point, slope in zip(private_points, slopes):
+        f[point] = (-slope) % prime
+        g[point] = 1
+
+    words = codewords(prime, k, tuple(range(n)))
+
+    def support_is_bad(slope: int, support: tuple[int, ...]) -> bool:
+        restrictions = {restriction(word, support) for word in words}
+        line_word = word_add(tuple(f), word_scale(slope, tuple(g), prime), prime)
+        contained = (
+            restriction(tuple(f), support) in restrictions
+            and restriction(tuple(g), support) in restrictions
+        )
+        return restriction(line_word, support) in restrictions and not contained
+
+    witness_base = common_support[: agreement - 2]
+    witnesses: dict[int, tuple[int, ...]] = {}
+    for point, slope in zip(private_points, slopes):
+        support = witness_base + (common_zero, point)
+        if not support_is_bad(slope, support):
+            raise AssertionError("common-zero degeneracy witness failed")
+        witnesses[slope] = support
+
+    h = max(1, agreement - len(common_support))
+    c0 = sum(1 for i in omega if f[i] == 0 and g[i] == 0)
+    overlap_floor = agreement + len(common_support) - n
+    if overlap_floor < k:
+        raise AssertionError("common-zero degeneracy should meet MDS forcing")
+    if h != c0:
+        raise AssertionError("common-zero degeneracy should have h=c0")
+
+    return {
+        "label": f"common_zero_degeneracy_p{prime}",
+        "prime": prime,
+        "n": n,
+        "k": k,
+        "agreement": agreement,
+        "common_support_size": len(common_support),
+        "omega_size": len(omega),
+        "overlap_floor": overlap_floor,
+        "h": h,
+        "c0": c0,
+        "certified_bad_slope_count": len(witnesses),
+        "threshold_holds": overlap_floor >= k,
+        "denominator_positive": h > c0,
+        "sample_witnesses": {
+            str(key): witnesses[key] for key in sorted(witnesses)[: min(5, len(witnesses))]
+        },
+    }
+
+
 def threshold_failure_family_case(prime: int) -> dict[str, Any]:
     if prime < 7:
         raise AssertionError("threshold family needs at least five usable units")
@@ -382,6 +448,8 @@ def main() -> None:
         spike_case(),
         deterministic_residual_case(),
         sharp_common_zero_residual_case(),
+        common_zero_degeneracy_case(11),
+        common_zero_degeneracy_case(17),
         threshold_failure_family_case(7),
         threshold_failure_family_case(11),
         threshold_failure_family_case(17),
@@ -396,11 +464,11 @@ def main() -> None:
                 "bound={residual_bound}".format(**report)
             )
         else:
+            count = report.get("bad_slope_count", report.get("certified_bad_slope_count"))
             print(
                 "{label}: p={prime} n={n} k={k} agreement={agreement} "
                 "b={common_support_size} overlap={overlap_floor} "
-                "h={h} c0={c0} bad={bad_slope_count} "
-                "naive_bound={naive_residual_bound}".format(**report)
+                "h={h} c0={c0} bad={count}".format(count=count, **report)
             )
     print("m2_common_code_line_residual_budget: PASS")
     print("CERT " + json.dumps(reports, sort_keys=True))

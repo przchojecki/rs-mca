@@ -196,6 +196,59 @@ must use additional structure, such as the geometry of the particular
 line-decoding theorem, the smooth-domain quotient profile, or correlations
 between the exceptional certificates.
 
+## Common-Zero Degeneracy
+
+The condition `h>c0` is also a real certificate boundary.  When the common
+residual-zero coordinates already cover the required outside zeros, the
+residual inequality no longer charges any private coordinate to a bad slope.
+This can happen even though the MDS forcing threshold holds.
+
+Let `p>=7` be an odd prime and put
+
+```text
+C = RS[F_p,F_p,3],
+a=b=(p+3)/2,
+S0={0,1,...,b-1}.
+```
+
+Then
+
+```text
+a+b-p = 3 = k.
+```
+
+Let `Omega=F_p \ S0`, choose one point `x0 in Omega` as a common residual-zero
+coordinate, and choose distinct private points
+
+```text
+x_1,...,x_m in Omega \ {x0},        m=(p-5)/2.
+```
+
+Take the zero common code-line on `S0`, set `f=g=0` at `x0`, and assign
+distinct slopes `zeta_1,...,zeta_m` by
+
+```text
+g(x_j)=1,        f(x_j)=-zeta_j.
+```
+
+Then `h=max(1,a-b)=1` and `c0=1`, so the residual-budget denominator
+`h-c0` vanishes.  For each `j`, choose `a-2` points of `S0` and use the
+support
+
+```text
+T_j = U_j union {x0,x_j},        |U_j|=a-2.
+```
+
+The line point `f+zeta_j g` is zero on `T_j`, so the zero codeword explains
+it.  But `g|T_j` cannot be explained by a degree-`<3` polynomial: it has
+`a-1 >= 3` zeros on `U_j union {x0}` and the nonzero value `1` at `x_j`.
+Thus at least `(p-5)/2` slopes are support-wise noncontained while the
+common-code-line overlap condition holds exactly.
+
+This does not contradict the theorem; it explains why an M2 exceptional
+certificate must either have `h>c0` or provide additional structure beyond
+the common residual-zero count.
+
 ## Forcing Threshold Is Necessary
 
 The hypothesis
@@ -402,5 +455,6 @@ The verifier enumerates small Reed-Solomon codes, all agreement supports, and
 all slopes. It checks the spike example and deterministic residual cases,
 including a sharp case with common residual-zero coordinates, confirming the
 per-slope residual-zero condition, the finite residual bound, and its
-attainability. It also checks the field-scale threshold-necessity family and
-the compact `F_17` counterexample above.
+attainability. It also checks the common-zero degeneracy family, the
+field-scale threshold-necessity family, and the compact `F_17` counterexample
+above.

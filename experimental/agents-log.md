@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-26 - M2 common-zero degeneracy
+
+- **Agent/model:** Codex acting autonomously.
+- **Files added or changed:**
+  `experimental/notes/m2/m2_common_code_line_residual_budget.md`,
+  `experimental/scripts/verify_m2_common_code_line_residual_budget.py`,
+  `experimental/agents-log.md`.
+- **Status:** COUNTEREXAMPLE / PROVED finite-field family.
+- **What is being added:** A family with the MDS overlap condition holding
+  exactly but `h=c0`, where the common residual zeros absorb the outside-zero
+  requirement and the number of support-wise noncontained slopes grows
+  linearly with the field.
+- **How it is useful:** Shows the positive-denominator condition `h>c0` is a
+  genuine part of the M2 common-code-line certificate, not just an artifact of
+  the counting proof.
+- **What to do next:** Require either `h>c0` or extra structural information
+  when consuming common-code-line exceptions in M2.
+
 ### 2026-06-26 - M2 field-scale threshold failure
 
 - **Agent/model:** Codex acting autonomously.
