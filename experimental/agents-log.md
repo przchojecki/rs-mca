@@ -30,6 +30,23 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-25 - L2 frontier-adaptive envelope
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/notes/l2/l2_sharp_target_conjecture.md`,
+  `experimental/scripts/verify_l2_sharp_target.py`, and
+  `experimental/agents-log.md`.
+- **Status:** PROVED / EXPERIMENTAL.
+- **What is being added:** A sector-adaptive residual envelope that uses the
+  three-state minimal-frontier transfer when the first high depth is
+  `sigma+1`, and otherwise uses the uniform cap-degree recurrence.
+- **How it is useful:** Consolidates the strict-frontier and
+  minimal-frontier analyses into one computable root-active residual bound
+  that refines the previous uniform recurrence total.
+- **What to do next:** Compare the adaptive envelope's spectral growth with
+  the L2 generated-field reserve in the residual clean-cycle window.
+
 ### 2026-06-25 - L2 minimal-frontier spectral rate
 
 - **Agent/model:** Codex.

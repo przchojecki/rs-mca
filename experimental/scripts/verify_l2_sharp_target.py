@@ -4520,6 +4520,23 @@ def residual_shape_scan_profile() -> dict:
                         all_negative_minimal_frontier_cap_count,
                     )
                 )
+            root_active_all_negative_adaptive_frontier_bound = (
+                root_active_all_negative_minimal_frontier_envelope
+                if root_active_all_negative_minimal_frontier_envelope
+                is not None
+                else root_active_all_negative_uniform_recurrence_bound
+            )
+            root_active_all_negative_adaptive_frontier_used_minimal = (
+                root_active_all_negative_minimal_frontier_envelope is not None
+            )
+            root_active_all_negative_adaptive_frontier_bounds_exact = (
+                root_active_all_negative_transfer_count
+                <= root_active_all_negative_adaptive_frontier_bound
+            )
+            root_active_all_negative_adaptive_frontier_refines_uniform = (
+                root_active_all_negative_adaptive_frontier_bound
+                <= root_active_all_negative_uniform_recurrence_bound
+            )
             root_active_all_negative_spectral_bound = (
                 path_recurrence_spectral_bound(
                     cycle_len,
@@ -4851,6 +4868,20 @@ def residual_shape_scan_profile() -> dict:
                             spike_minimal_frontier_cap_count,
                         )
                     )
+                spike_adaptive_frontier_bound = (
+                    spike_minimal_frontier_envelope
+                    if spike_minimal_frontier_envelope is not None
+                    else uniform_recurrence_bound
+                )
+                spike_adaptive_frontier_used_minimal = (
+                    spike_minimal_frontier_envelope is not None
+                )
+                spike_adaptive_frontier_bounds_exact = (
+                    exact_transfer_count <= spike_adaptive_frontier_bound
+                )
+                spike_adaptive_frontier_refines_uniform = (
+                    spike_adaptive_frontier_bound <= uniform_recurrence_bound
+                )
                 root_active_spike_bound_rows.append(
                     {
                         "spike": spike,
@@ -4932,6 +4963,18 @@ def residual_shape_scan_profile() -> dict:
                         "minimal_frontier_real_strict": (
                             spike_minimal_frontier_real_strict
                         ),
+                        "adaptive_frontier_bound": (
+                            spike_adaptive_frontier_bound
+                        ),
+                        "adaptive_frontier_used_minimal": (
+                            spike_adaptive_frontier_used_minimal
+                        ),
+                        "adaptive_frontier_bounds_exact": (
+                            spike_adaptive_frontier_bounds_exact
+                        ),
+                        "adaptive_frontier_refines_uniform": (
+                            spike_adaptive_frontier_refines_uniform
+                        ),
                         "elevated_cap_loss_holds": (
                             elevated_boundary_cap_loss_holds(
                                 allowed_depths,
@@ -5000,6 +5043,14 @@ def residual_shape_scan_profile() -> dict:
                     for row in root_active_spike_bound_rows
                 )
             )
+            root_active_adaptive_frontier_bound = (
+                root_active_all_negative_adaptive_frontier_bound
+                + cycle_len
+                * sum(
+                    row["adaptive_frontier_bound"]
+                    for row in root_active_spike_bound_rows
+                )
+            )
             root_active_triangle_formula_count = (
                 None
                 if cycle_len != 3
@@ -5062,6 +5113,10 @@ def residual_shape_scan_profile() -> dict:
             root_active_all_negative_minimal_frontier_rate = None
             root_active_all_negative_minimal_frontier_rate_below_old = None
             root_active_all_negative_minimal_frontier_real_strict = None
+            root_active_all_negative_adaptive_frontier_bound = None
+            root_active_all_negative_adaptive_frontier_used_minimal = None
+            root_active_all_negative_adaptive_frontier_bounds_exact = None
+            root_active_all_negative_adaptive_frontier_refines_uniform = None
             root_active_all_negative_elevated_cap_loss_holds = None
             root_active_all_negative_uniform_formula_matches = None
             root_active_all_negative_uniform_progression_matches = None
@@ -5078,6 +5133,7 @@ def residual_shape_scan_profile() -> dict:
             root_active_bridge_cap_bound = None
             root_active_uniform_cap_bound = None
             root_active_uniform_recurrence_bound = None
+            root_active_adaptive_frontier_bound = None
             root_active_triangle_formula_count = None
             root_active_square_formula_count = None
             root_active_spectral_bound = None
@@ -5382,6 +5438,18 @@ def residual_shape_scan_profile() -> dict:
                 "root_active_all_negative_minimal_frontier_real_strict": (
                     root_active_all_negative_minimal_frontier_real_strict
                 ),
+                "root_active_all_negative_adaptive_frontier_bound": (
+                    root_active_all_negative_adaptive_frontier_bound
+                ),
+                "root_active_all_negative_adaptive_frontier_used_minimal": (
+                    root_active_all_negative_adaptive_frontier_used_minimal
+                ),
+                "root_active_all_negative_adaptive_frontier_bounds_exact": (
+                    root_active_all_negative_adaptive_frontier_bounds_exact
+                ),
+                "root_active_all_negative_adaptive_frontier_refines_uniform": (
+                    root_active_all_negative_adaptive_frontier_refines_uniform
+                ),
                 "root_active_all_negative_elevated_cap_loss_holds": (
                     root_active_all_negative_elevated_cap_loss_holds
                 ),
@@ -5431,6 +5499,9 @@ def residual_shape_scan_profile() -> dict:
                 "root_active_uniform_cap_bound": root_active_uniform_cap_bound,
                 "root_active_uniform_recurrence_bound": (
                     root_active_uniform_recurrence_bound
+                ),
+                "root_active_adaptive_frontier_bound": (
+                    root_active_adaptive_frontier_bound
                 ),
                 "root_active_triangle_formula_count": (
                     root_active_triangle_formula_count
@@ -6129,6 +6200,40 @@ def residual_shape_scan_profile() -> dict:
                     if spike_row["minimal_frontier_real_strict"] is not None
                 )
             )
+            for row in rows
+        ),
+        "root_active_adaptive_frontier_bounds_exact": all(
+            row["root_depth_required"] <= row["sigma"]
+            or (
+                row["root_active_all_negative_adaptive_frontier_bounds_exact"]
+                and all(
+                    spike_row["adaptive_frontier_bounds_exact"]
+                    for spike_row in row["root_active_spike_bound_rows"]
+                )
+                and row["root_active_exact_transfer_count"]
+                <= row["root_active_adaptive_frontier_bound"]
+            )
+            for row in rows
+        ),
+        "root_active_adaptive_frontier_refines_uniform": all(
+            row["root_depth_required"] <= row["sigma"]
+            or (
+                row[
+                    "root_active_all_negative_adaptive_frontier_refines_uniform"
+                ]
+                and all(
+                    spike_row["adaptive_frontier_refines_uniform"]
+                    for spike_row in row["root_active_spike_bound_rows"]
+                )
+                and row["root_active_adaptive_frontier_bound"]
+                <= row["root_active_uniform_recurrence_bound"]
+            )
+            for row in rows
+        ),
+        "root_active_adaptive_frontier_has_strict_case": any(
+            row["root_depth_required"] > row["sigma"]
+            and row["root_active_adaptive_frontier_bound"]
+            < row["root_active_uniform_recurrence_bound"]
             for row in rows
         ),
         "root_active_elevated_depths_have_cap_loss": all(
@@ -8439,6 +8544,15 @@ def run() -> dict:
             residual_shape_scan[
                 "root_active_minimal_frontier_has_real_strict_rate"
             ]
+        ),
+        "residual_shape_scan_root_active_adaptive_frontier_bounds": (
+            residual_shape_scan["root_active_adaptive_frontier_bounds_exact"]
+        ),
+        "residual_shape_scan_root_active_adaptive_frontier_refines": (
+            residual_shape_scan["root_active_adaptive_frontier_refines_uniform"]
+        ),
+        "residual_shape_scan_root_active_adaptive_frontier_strict": (
+            residual_shape_scan["root_active_adaptive_frontier_has_strict_case"]
         ),
         "residual_shape_scan_root_active_elevated_cap_loss": (
             residual_shape_scan["root_active_elevated_depths_have_cap_loss"]

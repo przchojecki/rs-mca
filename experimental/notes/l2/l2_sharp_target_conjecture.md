@@ -4075,6 +4075,39 @@ independent-set rate is obtained by merging `A` and `G` into one high state,
 which replaces `l+c_G g` by `l+l g=l(1+g)`. The comparison and strictness are
 then immediate from monotonicity of the positive root in the constant term.
 
+Combining the strict-frontier and minimal-frontier envelopes gives a single
+adaptive residual bound.
+
+**Corollary (frontier-adaptive root-active envelope).** For any balanced tail
+`E={s_E,s_E+2,...,Y}` in the `R>sigma` residual certificate, define
+`Phi_E(n)` as follows. If the first high depth in `E` is `sigma+1`, let
+`Phi_E(n)` be the minimal-frontier envelope from `T_min` on a path or cycle of
+length `n`, according to the sector. Otherwise let `Phi_E(n)` be the uniform
+cap-degree recurrence/trace envelope with parameters `(h_E,c_E,Delta_E)`.
+
+Then the all-negative root-active transfer is bounded by `Phi_D(m)`, and each
+pinned spike sector of height `u` is bounded by `Phi_{D_u}(m-1)`. Therefore
+the total root-active residual transfer is bounded by
+
+```text
+Phi_D(m) + m sum_u Phi_{D_u}(m-1),
+```
+
+with the sum over permitted spike heights. This adaptive envelope is bounded
+term-by-term by the uniform cap-degree recurrence envelope. It is strictly
+smaller in any sector where the minimal-frontier envelope strictly refines the
+old independent-set recurrence.
+
+*Proof.* If the first high depth is `sigma+1`, the one-sided
+minimal-frontier transfer envelope bounds the exact transfer and is dominated
+by the old independent-set recurrence. In this same case the uniform
+cap-degree recurrence agrees with the old independent-set recurrence because
+`c_E=Delta_E=|L_E|`. Hence the minimal-frontier envelope is no larger than
+the uniform recurrence. If the first high depth is at least `sigma+2`, the
+uniform cap-degree envelope already applies. Summing the chosen sector bounds
+over the all-negative cycle and all pinned spike positions gives the displayed
+total bound.
+
 The uniform envelope has a two-state recurrence.
 
 **Corollary (recurrence form of the uniform cap-degree envelope).** Fix
