@@ -2737,6 +2737,37 @@ If two minimum-dimension edges were adjacent, their adjacent sum would be
 bounds follow by substituting the nonclearance upper bound for `D` from the
 previous corollary.
 
+The localization propagates one more step in the residual band.
+
+**Corollary (two-step residual-band propagation).** Keep the hypotheses and
+notation of the previous corollary, and assume the private-mass reserve gate
+has not applied. If `d_t=D=min_i d_i`, then
+
+```text
+d_{t-2}, d_{t+2} <= sigma+D-1,
+```
+
+or equivalently
+
+```text
+e_{t-2}, e_{t+2} >= k-sigma-D+1.
+```
+
+Thus a minimum-dimension edge forces a local alternating pattern:
+its immediate neighbors have large coefficient dimension, while its second
+neighbors are again large-overlap edges up to the threshold `sigma+D-1`.
+
+*Proof.* From the previous corollary,
+`d_{t+1}>=k-sigma-D`. Since the private-mass gate has not applied, the upper
+residual band gives `d_{t+1}+d_{t+2}<k`; all quantities are integral, so
+
+```text
+d_{t+2} <= k-1-d_{t+1} <= sigma+D-1.
+```
+
+The same argument on the left gives the bound for `d_{t-2}`. Translating by
+`e_i=k-d_i` gives the equivalent overlap lower bound.
+
 The connected case also isolates the diagonal exactly.
 
 **Corollary (diagonal is the only zero-loss connected cluster).** Suppose

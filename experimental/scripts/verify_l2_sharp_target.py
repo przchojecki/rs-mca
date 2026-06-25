@@ -1810,19 +1810,33 @@ def clean_cycle_rank_profile() -> dict:
         min_dimension_neighbor_edge_ceiling = (
             sigma + min_coefficient_dimension
         )
+        min_dimension_second_neighbor_ceiling = (
+            sigma + min_coefficient_dimension - 1
+        )
+        min_dimension_second_neighbor_edge_floor = (
+            k - sigma - min_coefficient_dimension + 1
+        )
         min_dimension_neighbor_rows = []
         for idx in min_coefficient_indices:
             left = (idx - 1) % cycle_len
             right = (idx + 1) % cycle_len
+            left2 = (idx - 2) % cycle_len
+            right2 = (idx + 2) % cycle_len
             min_dimension_neighbor_rows.append(
                 {
                     "index": idx,
                     "left": left,
                     "right": right,
+                    "left2": left2,
+                    "right2": right2,
                     "left_dimension": coefficient_dimensions[left],
                     "right_dimension": coefficient_dimensions[right],
+                    "left2_dimension": coefficient_dimensions[left2],
+                    "right2_dimension": coefficient_dimensions[right2],
                     "left_edge_size": edge_sizes[left],
                     "right_edge_size": edge_sizes[right],
+                    "left2_edge_size": edge_sizes[left2],
+                    "right2_edge_size": edge_sizes[right2],
                 }
             )
         min_dimension_pair_sum = min(dimension_pair_sums)
@@ -2157,6 +2171,12 @@ def clean_cycle_rank_profile() -> dict:
                 "min_dimension_neighbor_edge_ceiling": (
                     min_dimension_neighbor_edge_ceiling
                 ),
+                "min_dimension_second_neighbor_ceiling": (
+                    min_dimension_second_neighbor_ceiling
+                ),
+                "min_dimension_second_neighbor_edge_floor": (
+                    min_dimension_second_neighbor_edge_floor
+                ),
                 "min_dimension_neighbor_rows": min_dimension_neighbor_rows,
                 "min_dimension_pair_sum": min_dimension_pair_sum,
                 "max_dimension_pair_sum": max_dimension_pair_sum,
@@ -2393,6 +2413,28 @@ def clean_cycle_rank_profile() -> dict:
                 > row["min_coefficient_dimension"]
                 and neighbor_row["right_dimension"]
                 > row["min_coefficient_dimension"]
+                for neighbor_row in row["min_dimension_neighbor_rows"]
+            )
+            for row in rows
+        ),
+        "min_dimension_second_neighbor_ceiling_holds": all(
+            row["max_private_size"] >= row["sigma"]
+            or all(
+                neighbor_row["left2_dimension"]
+                <= row["min_dimension_second_neighbor_ceiling"]
+                and neighbor_row["right2_dimension"]
+                <= row["min_dimension_second_neighbor_ceiling"]
+                for neighbor_row in row["min_dimension_neighbor_rows"]
+            )
+            for row in rows
+        ),
+        "min_dimension_second_neighbor_edge_floor_holds": all(
+            row["max_private_size"] >= row["sigma"]
+            or all(
+                neighbor_row["left2_edge_size"]
+                >= row["min_dimension_second_neighbor_edge_floor"]
+                and neighbor_row["right2_edge_size"]
+                >= row["min_dimension_second_neighbor_edge_floor"]
                 for neighbor_row in row["min_dimension_neighbor_rows"]
             )
             for row in rows
@@ -4604,6 +4646,12 @@ def run() -> dict:
         ],
         "clean_cycle_small_min_dimension_isolated": clean_cycles[
             "strictly_small_min_dimensions_are_isolated"
+        ],
+        "clean_cycle_second_neighbor_dimension_ceiling": clean_cycles[
+            "min_dimension_second_neighbor_ceiling_holds"
+        ],
+        "clean_cycle_second_neighbor_edge_floor": clean_cycles[
+            "min_dimension_second_neighbor_edge_floor_holds"
         ],
         "clean_cycle_has_small_pair_case": clean_cycles[
             "contains_small_pair_case"

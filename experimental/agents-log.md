@@ -285,6 +285,8 @@ Keep entries concise and link to the relevant files.
   obey the adjacent-dimension band `k-sigma <= d_{i-1}+d_i < k` and must
   contain a quantitatively large-overlap edge; the band further forces any
   maximum-overlap edge to be flanked by overlaps at most `sigma+D`.
+  If the private-mass gate has not applied, this local structure propagates
+  one more step: second-neighbor dimensions are at most `sigma+D-1`.
   Combining
   the pivot, monic, and domain gates gives a
   marked selected-syzygy tuple bound; the verifier checks that this general
