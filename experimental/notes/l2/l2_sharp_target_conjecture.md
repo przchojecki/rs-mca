@@ -4108,6 +4108,50 @@ uniform cap-degree envelope already applies. Summing the chosen sector bounds
 over the all-negative cycle and all pinned spike positions gives the displayed
 total bound.
 
+The adaptive envelope converts the remaining root-active residual problem into
+an explicit spectral comparison.
+
+**Corollary (frontier-adaptive spectral reduction).** For a balanced tail
+`E={s_E,s_E+2,...,Y}` with first high depth `alpha_E`, define
+
+```text
+rho_ad(E)=rho_front(l_E,g_E,c_{G,E})       if alpha_E=sigma+1,
+rho_ad(E)=rho_cap(h_E,c_E,Delta_E)         otherwise,
+```
+
+with `rho_ad(E)=0` when `E` has no root-active depth. Let
+
+```text
+E_*={D} union {D_u : u is a permitted spike height},
+rho_* = max_{E in E_*} rho_ad(E).
+```
+
+Then for every `Lambda>rho_*` there is a finite constant `C_Lambda`, depending
+on the depth alphabets and on `Lambda`, such that the total root-active
+residual transfer is bounded by
+
+```text
+C_Lambda (1+m |{u}|) Lambda^m.
+```
+
+Here `|{u}|` is the number of permitted spike heights. In particular, because
+`|{u}|<=|D|<=sigma`, the remaining reserve comparison for this route is the
+single explicit spectral inequality `rho_*` versus the available field-entropy
+rate; the spike sum contributes only a polynomial prefactor in the
+fixed-arity/generated-field window.
+
+*Proof.* For nonminimal-frontier tails, the uniform cap-degree spectral
+corollary gives path and cycle envelopes with exponential rate
+`rho_cap(h_E,c_E,Delta_E)`. For minimal-frontier tails, the three-state
+transfer matrix has nonzero eigenvalues governed by
+`rho_front(l_E,g_E,c_{G,E})`; the usual finite-dimensional matrix-power bound
+therefore gives the same statement with rate `rho_front`. Choose
+`Lambda>rho_*` and take the maximum of the finitely many sector constants over
+`E_*`. The all-negative sector has length `m`, while every pinned spike sector
+has length `m-1`; since `Lambda>=1`, the latter are bounded by the same
+`Lambda^m` scale. Summing the all-negative sector and the `m` rotations of
+each permitted spike height gives the displayed bound.
+
 The uniform envelope has a two-state recurrence.
 
 **Corollary (recurrence form of the uniform cap-degree envelope).** Fix

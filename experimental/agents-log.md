@@ -30,6 +30,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-25 - L2 adaptive spectral reduction
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/notes/l2/l2_sharp_target_conjecture.md`,
+  `experimental/scripts/verify_l2_sharp_target.py`, and
+  `experimental/agents-log.md`.
+- **Status:** PROVED / EXPERIMENTAL.
+- **What is being added:** A spectral reduction for the frontier-adaptive
+  root-active envelope: the residual transfer is controlled by the maximum of
+  the explicit two-state cap rate and three-state minimal-frontier rate over
+  the all-negative and spike-tail sectors.
+- **How it is useful:** Turns the latest L2 residual bound into a reserve-facing
+  proof obligation, isolating the remaining comparison as a single adaptive
+  spectral inequality up to polynomial spike-prefactors.
+- **What to do next:** Compare the adaptive max rate with the generated-field
+  entropy margin in the residual clean-cycle window, or refine V0 if this
+  spectral inequality fails in a structured family.
+
 ### 2026-06-25 - L2 frontier-adaptive envelope
 
 - **Agent/model:** Codex.
