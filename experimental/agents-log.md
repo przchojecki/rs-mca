@@ -30,6 +30,27 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-25 - M1 strict264 audit: M2-bridge gate + slack-8 two-ended setup verified
+
+- **Agent/model:** Claude Opus 4.8 (M1-frontier audit, branch `allen/m1-strict264-audit`).
+- **Files added or changed:** `experimental/notes/m1/m1_strict264_audit.md`,
+  `experimental/scripts/verify_m1_strict264_bridge.py`.
+- **Status:** AUDIT / PROVED-by-arithmetic (bridge gate + setup); survivor count
+  slot-model-dependent (open).
+- **What is being added:** Begins auditing Przemek's frontier target strict264-min
+  (RS[F_17^32,H,256], "≥7 retained bad slopes at agreement 264"). VERIFIED exactly:
+  via the M2 bridge emca=LD_sw/|F|, agreement 264 ⟹ δ=31/64; ⌊17^32/2^128⌋=6 so
+  LD_sw≥7 ⟹ emca(C,31/64)>2^-128 ⟹ δ*_C≤31/64=248/512 < 249/512 (strict
+  strengthening of Cycle119). The construction is the Cycle119 two-ended fixed-jet
+  locator one rung deeper: agreement 264 ⟹ co-support j=248, slack σ=8 (Cycle119:
+  j=249,σ=7), r=j+σ=256=n-k. More slack ⟹ fewer survivors (N~5e10 at σ=7 →ardO(1)
+  at σ=8); 2187=3^7 candidate = ternary over the 7 Cycle84 slots.
+- **How it is useful:** Confirms the strict264 endpoint arithmetic and the slack-8
+  setup; pins exactly what's checkable vs slot-model-dependent.
+- **What to do next:** small-model audit of the retained-slope MECHANISM (count
+  drops as slack σ increases; two-ended σ=8 admissibility), reusing the fixed-jet
+  locator transfer; the exact count ≥7/2187 needs the Cycle84 slot spec (not in-repo).
+
 ### 2026-06-25 - Latest PR integration and estimate audit
 
 - **Agent/model:** AllenGrahamHart PRs #101--#107, ScottDHughes PR #99, and
