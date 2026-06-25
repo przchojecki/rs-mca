@@ -1327,6 +1327,7 @@ def clean_cycle_rank_profile() -> dict:
         {"name": "triangle_necklace", "cycle_len": 3, "k": 5, "a": 8, "edges": [4, 4, 4]},
         {"name": "private_mass_square", "cycle_len": 4, "k": 5, "a": 9, "edges": [4, 4, 4, 4]},
         {"name": "uneven_square", "cycle_len": 4, "k": 6, "a": 10, "edges": [5, 4, 5, 3]},
+        {"name": "small_pair_square", "cycle_len": 4, "k": 6, "a": 10, "edges": [5, 1, 5, 1]},
         {"name": "uneven_pentagon", "cycle_len": 5, "k": 6, "a": 10, "edges": [5, 5, 4, 4, 3]},
     ]
     rows = []
@@ -1386,6 +1387,14 @@ def clean_cycle_rank_profile() -> dict:
         diagonal_exponent = a - k
         exponent_gap = rank_corrected_exponent - diagonal_exponent
         expected_exponent_gap = (cycle_len - 1) * (a - k) + vanishing_sum_rank - k
+        min_edge_pair_sum = min(
+            edge_sizes[left] + edge_sizes[right]
+            for left in range(cycle_len)
+            for right in range(left + 1, cycle_len)
+        )
+        two_edge_lower_bound = (
+            k if min_edge_pair_sum <= k else 2 * k - min_edge_pair_sum
+        )
         rows.append(
             {
                 "name": example["name"],
@@ -1401,6 +1410,8 @@ def clean_cycle_rank_profile() -> dict:
                 "union_size": union_size,
                 "expected_union_size": expected_union_size,
                 "edge_total": edge_total,
+                "min_edge_pair_sum": min_edge_pair_sum,
+                "two_edge_rank_lower_bound": two_edge_lower_bound,
                 "vanishing_sum_rank": vanishing_sum_rank,
                 "cross_constraint_rank": cross_rank,
                 "expected_cross_constraint_rank": expected_cross_rank,
@@ -1442,6 +1453,18 @@ def clean_cycle_rank_profile() -> dict:
         ),
         "contains_private_mass": any(
             any(size > 0 for size in row["private_sizes"]) for row in rows
+        ),
+        "two_edge_lower_bound_holds": all(
+            row["vanishing_sum_rank"] >= row["two_edge_rank_lower_bound"]
+            for row in rows
+        ),
+        "small_pair_forces_full_rank": all(
+            row["vanishing_sum_rank"] == row["k"]
+            for row in rows
+            if row["min_edge_pair_sum"] <= row["k"]
+        ),
+        "contains_small_pair_case": any(
+            row["min_edge_pair_sum"] <= row["k"] for row in rows
         ),
     }
 
@@ -2603,6 +2626,15 @@ def run() -> dict:
         "clean_cycle_exponent_gap": clean_cycles["exponent_gap_formula_holds"],
         "clean_cycle_has_uneven_edges": clean_cycles["contains_uneven_edges"],
         "clean_cycle_has_private_mass": clean_cycles["contains_private_mass"],
+        "clean_cycle_two_edge_lower_bound": clean_cycles[
+            "two_edge_lower_bound_holds"
+        ],
+        "clean_cycle_small_pair_full_rank": clean_cycles[
+            "small_pair_forces_full_rank"
+        ],
+        "clean_cycle_has_small_pair_case": clean_cycles[
+            "contains_small_pair_case"
+        ],
         "kmm_grid_formula": all(d["interleaved_edges"] == d["grid_edges_at_n_min"] for d in designs),
         "rs_witness_creates_mass": witness["mass_creation"],
         "rs_witness_realizes_k22": witness["interleaved"] == witness["product_bound"] == 4,

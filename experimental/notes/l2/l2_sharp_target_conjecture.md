@@ -1057,6 +1057,61 @@ m(a-k) + D + r_cross
 
 Subtracting the diagonal exponent `a-k` gives the stated gap.
 
+This formula gives a useful first lower bound without classifying all possible
+dependencies among the `W_i`.
+
+**Corollary (two-edge lower bound for clean cycles).** With the notation of the
+clean simple-cycle lemma, let
+
+```text
+s_2 = min_{i<j} (e_i+e_j).
+```
+
+Then
+
+```text
+R_cyc >= k - max(0,s_2-k).
+```
+
+In particular, if two edge overlaps have total size at most `k`, then
+`R_cyc=k` and the clean-cycle exponent gap over diagonal is exactly
+
+```text
+(m-1)(a-k).
+```
+
+Thus any clean cyclic obstruction with `R_cyc<k` must have
+
+```text
+e_i+e_j>k        for every pair i<j.
+```
+
+Equivalently, the remaining rank-deficient clean cycles are forced into a
+near-necklace regime where the two smallest edge overlaps already have total
+larger than `k`.
+
+*Proof.* For two disjoint edge sets `E_i,E_j`, the intersection
+`W_i cap W_j` consists of degree-`<k` polynomials vanishing on
+`E_i union E_j`. Hence
+
+```text
+dim(W_i cap W_j)=max(k-e_i-e_j,0).
+```
+
+Since `dim W_i=k-e_i` and `dim W_j=k-e_j`,
+
+```text
+dim(W_i+W_j)
+  = (k-e_i)+(k-e_j)-max(k-e_i-e_j,0)
+  = k - max(0,e_i+e_j-k).
+```
+
+The full sum `W_0+...+W_{m-1}` contains every two-edge sum, so taking the pair
+with minimal `e_i+e_j` gives the stated lower bound. If `s_2<=k`, this lower
+bound is `k`, and `R_cyc` cannot exceed the ambient dimension `k`; therefore
+`R_cyc=k`. Substituting into the clean-cycle exponent gap formula gives
+`(m-1)(a-k)`.
+
 The connected case also isolates the diagonal exactly.
 
 **Corollary (diagonal is the only zero-loss connected cluster).** Suppose

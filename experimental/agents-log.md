@@ -191,7 +191,12 @@ Keep entries concise and link to the relevant files.
   `R_cyc=dim(W_0+...+W_{m-1})`, then the cross-rank is exactly
   `sum_i e_i+R_cyc-k` and the exponent gap over diagonal is
   `(m-1)(a-k)+R_cyc-k`. The verifier checks uneven and private-mass cycle
-  examples over `F_31`.
+  examples over `F_31`. A two-edge lower bound now shows
+  `R_cyc >= k-max(0,s_2-k)`, where `s_2` is the minimum pair sum of edge
+  sizes; in particular, if two edge overlaps have total size at most `k`, then
+  `R_cyc=k`. Thus rank-deficient clean cycles can only occur in the
+  near-necklace regime where the two smallest edge overlaps already sum to
+  more than `k`.
 - **How it is useful:** Turns the L2 objective from a broad "avoid Cartesian
   overcharge" principle into a concrete conjectural inequality that can be
   falsified or promoted. The `K_{2,2}` witness records that local Cartesian
@@ -202,9 +207,10 @@ Keep entries concise and link to the relevant files.
   `Reg_mu <= binom(n,a)q^{-mu(a-k)} + Quot_rem_mu + n^B`, prove/import the
   repaired one-row L1 list bound at `a=k+sigma`, and reconcile the final
   statement with the active X1/L2 bridge PR #101 before promotion.
-  For the regular-core cluster route, bound or count the subspace-rank
-  invariant `R_cyc` for clean cycle types, then extend the reduction to cyclic
-  diagrams with chords, shared edge intersections, or larger closure parts.
+  For the regular-core cluster route, bound or count the near-necklace
+  dependency loci where the two smallest clean-cycle edge overlaps have total
+  larger than `k`, then extend the reduction to cyclic diagrams with chords,
+  shared edge intersections, or larger closure parts.
 
 ### 2026-06-23 - Cycle119 admissibility review
 
