@@ -1540,6 +1540,8 @@ def clean_cycle_rank_profile() -> dict:
         min_edge_size = min(edge_sizes)
         min_edge_index = edge_sizes.index(min_edge_size)
         max_private_size = max(private_sizes)
+        private_size_sum = sum(private_sizes)
+        private_block_absorption_bound = n ** (cycle_len * max_private_size)
         two_edge_lower_bound = (
             k if min_edge_pair_sum <= k else 2 * k - min_edge_pair_sum
         )
@@ -1708,6 +1710,7 @@ def clean_cycle_rank_profile() -> dict:
                 "edge_sizes": edge_sizes,
                 "private_sizes": private_sizes,
                 "max_private_size": max_private_size,
+                "private_size_sum": private_size_sum,
                 "min_edge_size": min_edge_size,
                 "min_edge_index": min_edge_index,
                 "supports": [list(support) for support in supports],
@@ -1742,6 +1745,7 @@ def clean_cycle_rank_profile() -> dict:
                 "two_edge_gap_lower_bound": two_edge_gap_lower_bound,
                 "private_mass_gap_lower_bound": private_mass_gap_lower_bound,
                 "private_block_bound": private_block_bound,
+                "private_block_absorption_bound": private_block_absorption_bound,
                 "edge_block_bound": edge_block_bound,
                 "crude_projective_tuple_bound": crude_projective_tuple_bound,
                 "one_edge_tuple_bound": one_edge_tuple_bound,
@@ -1851,6 +1855,15 @@ def clean_cycle_rank_profile() -> dict:
             row["max_private_size"] >= row["sigma"]
             or row["two_edge_gap_lower_bound"]
             >= row["private_mass_gap_lower_bound"]
+            for row in rows
+        ),
+        "private_size_sum_bounded_by_m_pmax": all(
+            row["private_size_sum"]
+            <= row["cycle_len"] * row["max_private_size"]
+            for row in rows
+        ),
+        "private_block_absorption_inequality_holds": all(
+            row["private_block_bound"] <= row["private_block_absorption_bound"]
             for row in rows
         ),
         "contains_small_pair_case": any(
@@ -3537,6 +3550,12 @@ def run() -> dict:
         ],
         "clean_cycle_private_mass_gap_bound": clean_cycles[
             "private_mass_gap_bound_holds"
+        ],
+        "clean_cycle_private_sum_bounded_by_m_pmax": clean_cycles[
+            "private_size_sum_bounded_by_m_pmax"
+        ],
+        "clean_cycle_private_block_absorption": clean_cycles[
+            "private_block_absorption_inequality_holds"
         ],
         "clean_cycle_has_small_pair_case": clean_cycles[
             "contains_small_pair_case"

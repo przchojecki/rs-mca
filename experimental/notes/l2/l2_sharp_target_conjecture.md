@@ -1923,6 +1923,44 @@ Therefore
 
 The final statement is the same exponent bound multiplied by the arity `mu`.
 
+This also removes private blocks from the remaining hybrid estimate once the
+generated field has enough polynomial headroom.
+
+**Corollary (private-block absorption in the hybrid clean-cycle bound).** Keep
+the notation of the all-edge hybrid clean-cycle defect bound, and assume
+
+```text
+q^mu >= n^m.
+```
+
+Then every clean-cycle shape has either `R_cyc=k`, or its hybrid
+diagonal-relative rank-deficient contribution is at most
+
+```text
+  [ (B_full+B_mark) / binom(n,a) ] q^{-mu(m-2)(a-k)}.
+```
+
+Thus, under this field-size condition, the private-point choices are paid by
+the `p_max` part of the two-edge saving. The remaining clean-cycle problem is
+the selected-edge incidence/syzygy count, not private mass.
+
+*Proof.* If `p_max>=sigma`, the private-mass reserve gate gives `R_cyc=k`.
+Otherwise the hybrid bound and the previous corollary give
+
+```text
+  [ (B_full+B_mark) prod_i binom(n,p_i) / binom(n,a) ]
+  q^{-mu((m-2)sigma+p_max)}.
+```
+
+Since every `p_i<=p_max`,
+
+```text
+prod_i binom(n,p_i) <= n^{sum_i p_i} <= n^{m p_max} <= q^{mu p_max}.
+```
+
+Cancelling this against the `q^{-mu p_max}` factor leaves the displayed
+bound.
+
 The connected case also isolates the diagonal exactly.
 
 **Corollary (diagonal is the only zero-loss connected cluster).** Suppose

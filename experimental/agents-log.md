@@ -264,7 +264,10 @@ Keep entries concise and link to the relevant files.
   edge pair has total size at most `k`, so `R_cyc=k`; otherwise the exponent
   gap is at least `(m-2)sigma+p_max`. The verifier records this as top-level
   checks, including that all observed rank defects have private mass below the
-  reserve.
+  reserve. Under the field-size headroom `q^mu>=n^m`, this `p_max` saving
+  absorbs the entire private-block product
+  `prod_i binom(n,p_i)<=n^{m p_max}`; the remaining hybrid clean-cycle target
+  is therefore the selected-edge incidence/syzygy count.
   The incidence
   counts are now exact in the MDS uniqueness range: if `[ell]` has minimal
   support size `r` and `e>=r`, `r+e<=k`, then
