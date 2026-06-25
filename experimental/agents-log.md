@@ -30,6 +30,23 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-25 - L2 minimal-frontier bridge core
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/notes/l2/l2_sharp_target_conjecture.md`,
+  `experimental/scripts/verify_l2_sharp_target.py`, and
+  `experimental/agents-log.md`.
+- **Status:** PROVED / EXPERIMENTAL.
+- **What is being added:** A split of the nonsaving minimal-frontier
+  `alpha_E=sigma+1` case into an exact one-label independent-set core and an
+  elevated-depth remainder with strict boundary cap loss.
+- **How it is useful:** Shows that the frontier left by the uniform Perron
+  criterion is smaller than the old `|H_E|`-weighted independent-set envelope;
+  only the single minimal root-active layer has no boundary loss.
+- **What to do next:** Use the one-label core and elevated-loss split to build
+  a sharper recurrence for minimal-frontier residual sectors.
+
 ### 2026-06-25 - L2 balanced-tail strict-rate criterion
 
 - **Agent/model:** Codex.

@@ -3886,6 +3886,50 @@ root is strictly smaller than the independent-set root exactly when
 `c_E<l_E` or `Delta_E<l_E` in a nontrivial tail. The previous paragraphs show
 this happens exactly for `alpha_E>=sigma+2`.
 
+The nonsaving frontier therefore has a small exact core.
+
+**Corollary (minimal-frontier core split).** In the setting of the previous
+corollary, assume `alpha_E=sigma+1`. Let
+
+```text
+L_E={s_E,s_E+2,...,sigma-1},       a_0=sigma+1,
+G_E=H_E \ {a_0}.
+```
+
+On the alphabet `L_E union {a_0}`, the only adjacent-depth obstruction is
+that two `a_0` vertices cannot be adjacent. Hence, for a cycle or path graph
+`G` with `n` vertices, the root-active words using only the minimal
+root-active depth `a_0` are counted exactly by
+
+```text
+sum_{empty != I independent in G} |L_E|^{n-|I|}.
+```
+
+Equivalently, this is the root-active independent-set polynomial with high
+weight `1` rather than high weight `|H_E|`.
+
+Every remaining root-active word contains an elevated depth
+`gamma in G_E`, and each low component adjacent to such a depth has a strict
+boundary cap:
+
+```text
+|C_E(gamma)| < |L_E|.
+```
+
+Thus the minimal-frontier obstruction splits into a one-label hard-core core
+and a remainder that already sees cap loss at every elevated boundary.
+
+*Proof.* Since `a_0=sigma+1`, every low depth is at most `sigma-1`. Therefore
+low-low adjacent sums are at most `2sigma-2`, and low-`a_0` adjacent sums are
+at most `2sigma`. The only forbidden adjacency in `L_E union {a_0}` is
+`a_0+a_0>2sigma`. Choosing the positions of the `a_0` vertices is therefore
+exactly choosing a nonempty independent set, and every other vertex has
+`|L_E|` independent choices.
+
+If `gamma in G_E`, then `gamma>=sigma+3` because the depths have step size
+`2`. The top low depth `sigma-1` is not in `C_E(gamma)`, since
+`gamma+sigma-1>=2sigma+2`. Hence `|C_E(gamma)|<|L_E|`.
+
 The uniform envelope has a two-state recurrence.
 
 **Corollary (recurrence form of the uniform cap-degree envelope).** Fix

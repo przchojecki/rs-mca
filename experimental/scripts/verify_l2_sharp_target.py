@@ -3643,6 +3643,39 @@ def residual_shape_scan_profile() -> dict:
         high_depths = [depth for depth in depths if depth >= root_depth]
         return min(high_depths) if high_depths else None
 
+    def minimal_frontier_depth(
+        depths: list[int], root_depth: int, sigma: int
+    ) -> int | None:
+        high_depths = [depth for depth in depths if depth >= root_depth]
+        low_depths = [depth for depth in depths if depth < root_depth]
+        if not high_depths or not low_depths:
+            return None
+        first_high = min(high_depths)
+        return first_high if first_high == sigma + 1 else None
+
+    def minimal_core_alphabet(
+        depths: list[int], root_depth: int, sigma: int
+    ) -> list[int]:
+        minimal_depth = minimal_frontier_depth(depths, root_depth, sigma)
+        if minimal_depth is None:
+            return []
+        return [depth for depth in depths if depth < root_depth] + [
+            minimal_depth
+        ]
+
+    def elevated_boundary_cap_loss_holds(
+        depths: list[int], root_depth: int, sigma: int
+    ) -> bool:
+        minimal_depth = minimal_frontier_depth(depths, root_depth, sigma)
+        low_depths = [depth for depth in depths if depth < root_depth]
+        if minimal_depth is None or not low_depths:
+            return True
+        return all(
+            boundary_cap_count(low_depths, depth, sigma) < len(low_depths)
+            for depth in depths
+            if depth >= root_depth and depth != minimal_depth
+        )
+
     def path_uniform_cap_recurrence_bound(
         vertex_count: int, high_count: int, cap_count: int, degree_bound: int
     ) -> int:
@@ -4158,6 +4191,34 @@ def residual_shape_scan_profile() -> dict:
                     == all_negative_tail_strict_rate_criterion
                 )
             )
+            all_negative_minimal_core_alphabet = minimal_core_alphabet(
+                depth_values, root_depth_required, sigma
+            )
+            if all_negative_minimal_core_alphabet:
+                all_negative_minimal_core_exact = (
+                    cyclic_depth_count(
+                        all_negative_minimal_core_alphabet,
+                        cycle_len,
+                        sigma,
+                    )
+                    - cyclic_depth_count(
+                        low_depth_values,
+                        cycle_len,
+                        sigma,
+                    )
+                )
+                all_negative_minimal_core_independent = (
+                    independent_set_weight_bound(
+                        cycle_len,
+                        1,
+                        len(low_depth_values),
+                        cycle=True,
+                        require_nonempty=True,
+                    )
+                )
+            else:
+                all_negative_minimal_core_exact = None
+                all_negative_minimal_core_independent = None
             root_active_all_negative_uniform_high_count = (
                 all_negative_uniform_high_count
             )
@@ -4175,6 +4236,20 @@ def residual_shape_scan_profile() -> dict:
             )
             root_active_all_negative_uniform_cap_loss_matches_tail = (
                 all_negative_tail_cap_loss_matches
+            )
+            root_active_all_negative_minimal_core_count = (
+                all_negative_minimal_core_exact
+            )
+            root_active_all_negative_minimal_core_matches_independent = (
+                None
+                if all_negative_minimal_core_exact is None
+                else all_negative_minimal_core_exact
+                == all_negative_minimal_core_independent
+            )
+            root_active_all_negative_elevated_cap_loss_holds = (
+                elevated_boundary_cap_loss_holds(
+                    depth_values, root_depth_required, sigma
+                )
             )
             root_active_all_negative_uniform_recurrence_bound = (
                 0
@@ -4325,6 +4400,36 @@ def residual_shape_scan_profile() -> dict:
                         == spike_tail_strict_rate_criterion
                     )
                 )
+                spike_minimal_core_alphabet = minimal_core_alphabet(
+                    allowed_depths, root_depth_required, sigma
+                )
+                if spike_minimal_core_alphabet:
+                    spike_minimal_core_exact = (
+                        pinned_spike_depth_count(
+                            spike,
+                            spike_minimal_core_alphabet,
+                            cycle_len,
+                            sigma,
+                        )
+                        - pinned_spike_depth_count(
+                            spike,
+                            low_allowed_depths,
+                            cycle_len,
+                            sigma,
+                        )
+                    )
+                    spike_minimal_core_independent = (
+                        independent_set_weight_bound(
+                            cycle_len - 1,
+                            1,
+                            len(low_allowed_depths),
+                            cycle=False,
+                            require_nonempty=True,
+                        )
+                    )
+                else:
+                    spike_minimal_core_exact = None
+                    spike_minimal_core_independent = None
                 if (
                     root_budget < 4
                     or not odd_compatible
@@ -4503,6 +4608,20 @@ def residual_shape_scan_profile() -> dict:
                         "uniform_cap_loss_matches_tail": (
                             spike_tail_cap_loss_matches
                         ),
+                        "minimal_core_count": spike_minimal_core_exact,
+                        "minimal_core_matches_independent": (
+                            None
+                            if spike_minimal_core_exact is None
+                            else spike_minimal_core_exact
+                            == spike_minimal_core_independent
+                        ),
+                        "elevated_cap_loss_holds": (
+                            elevated_boundary_cap_loss_holds(
+                                allowed_depths,
+                                root_depth_required,
+                                sigma,
+                            )
+                        ),
                         "uniform_spectral_rate": uniform_spectral_rate,
                         "uniform_rate_below_independent": (
                             uniform_rate_below_independent
@@ -4613,6 +4732,9 @@ def residual_shape_scan_profile() -> dict:
             root_active_all_negative_uniform_first_high_depth = None
             root_active_all_negative_uniform_tail_strict_criterion = None
             root_active_all_negative_uniform_cap_loss_matches_tail = None
+            root_active_all_negative_minimal_core_count = None
+            root_active_all_negative_minimal_core_matches_independent = None
+            root_active_all_negative_elevated_cap_loss_holds = None
             root_active_all_negative_uniform_formula_matches = None
             root_active_all_negative_uniform_progression_matches = None
             root_active_all_negative_uniform_spectral_rate = None
@@ -4892,6 +5014,15 @@ def residual_shape_scan_profile() -> dict:
                 ),
                 "root_active_all_negative_uniform_cap_loss_matches_tail": (
                     root_active_all_negative_uniform_cap_loss_matches_tail
+                ),
+                "root_active_all_negative_minimal_core_count": (
+                    root_active_all_negative_minimal_core_count
+                ),
+                "root_active_all_negative_minimal_core_matches_independent": (
+                    root_active_all_negative_minimal_core_matches_independent
+                ),
+                "root_active_all_negative_elevated_cap_loss_holds": (
+                    root_active_all_negative_elevated_cap_loss_holds
                 ),
                 "root_active_all_negative_uniform_formula_matches": (
                     root_active_all_negative_uniform_formula_matches
@@ -5481,6 +5612,43 @@ def residual_shape_scan_profile() -> dict:
                     )
                 )
             )
+            for row in rows
+        ),
+        "root_active_minimal_core_matches_independent": all(
+            row["root_depth_required"] <= row["sigma"]
+            or (
+                (
+                    row[
+                        "root_active_all_negative_minimal_core_matches_independent"
+                    ]
+                    is None
+                    or row[
+                        "root_active_all_negative_minimal_core_matches_independent"
+                    ]
+                )
+                and all(
+                    spike_row["minimal_core_matches_independent"] is None
+                    or spike_row["minimal_core_matches_independent"]
+                    for spike_row in row["root_active_spike_bound_rows"]
+                )
+            )
+            for row in rows
+        ),
+        "root_active_elevated_depths_have_cap_loss": all(
+            row["root_depth_required"] <= row["sigma"]
+            or (
+                row["root_active_all_negative_elevated_cap_loss_holds"]
+                and all(
+                    spike_row["elevated_cap_loss_holds"]
+                    for spike_row in row["root_active_spike_bound_rows"]
+                )
+            )
+            for row in rows
+        ),
+        "root_active_has_minimal_frontier_core_case": any(
+            row["name"] == "root_active_near_threshold"
+            and row["root_active_all_negative_minimal_core_count"] is not None
+            and row["root_active_all_negative_minimal_core_count"] > 0
             for row in rows
         ),
         "root_active_uniform_spectral_rate_below_independent": all(
@@ -7736,6 +7904,15 @@ def run() -> dict:
             residual_shape_scan[
                 "root_active_uniform_strict_rate_matches_tail_criterion"
             ]
+        ),
+        "residual_shape_scan_root_active_minimal_core": residual_shape_scan[
+            "root_active_minimal_core_matches_independent"
+        ],
+        "residual_shape_scan_root_active_minimal_core_case": (
+            residual_shape_scan["root_active_has_minimal_frontier_core_case"]
+        ),
+        "residual_shape_scan_root_active_elevated_cap_loss": (
+            residual_shape_scan["root_active_elevated_depths_have_cap_loss"]
         ),
         "residual_shape_scan_root_active_uniform_spectral": (
             residual_shape_scan[
