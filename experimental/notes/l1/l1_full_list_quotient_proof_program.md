@@ -2228,6 +2228,186 @@ two-parameter quantitative problem as in the background-free model:
 d-ell -> infinity        or        u(P)/t(P) -> infinity.
 ```
 
+## Lemma B3. Maximal Background-Anchor Injection
+
+Status: PROVED.
+
+Assume the sunflower is maximal, so `b=|R|<ell`.  Fix the following data:
+
+```text
+d,
+R_0 subset R,
+I subset {1,...,M},
+S_i subset T_i        for i in I,
+```
+
+where every `S_i` is nonempty.  Write
+
+```text
+r = |R_0|,        a_i=|S_i|,        h=sum_{i in I} a_i,
+a_* = max_{i in I} a_i.
+```
+
+Consider non-planted listed codewords with exact background agreement
+`R_P=R_0`, exact touched-petal set `I`, exact petal supports `S_i`, and core
+defect `d`.  Then this fixed-support-pattern layer has size at most
+
+```text
+q^{max(0, d-max(r,a_*)+1)}.
+```
+
+Equivalently, the layer injects both into a largest-petal cofactor space of
+dimension `max(0,d-a_*+1)` and into the background quotient space
+
+```text
+{ V : deg V <= d-r },        W_P = L_{R_0}V,
+```
+
+with the convention that the relevant space has size `1` when the displayed
+degree bound is negative.
+
+### Proof
+
+Fix an index `i in I`.  As in Lemma 11, every codeword in the layer has
+
+```text
+W_P-c_jL_D = L_{S_j}A_j        for j in I,
+deg A_j <= d-a_j.
+```
+
+We first show that the map `P |-> A_i` is injective on the fixed layer.  If
+two codewords give the same `A_i`, write their data as `(F,W)` and `(F',W')`,
+where `F=L_D` and `F'=L_{D'}` are monic of degree `d`.  Equality of `A_i`
+gives
+
+```text
+W-W' = c_i(F-F').
+```
+
+For every `j in I\{i}`, subtracting the two petal congruences shows that
+`F-F'` vanishes on `S_j`.  On the fixed background support `R_0`, both `W`
+and `W'` vanish, so the displayed identity also gives that `F-F'` vanishes on
+`R_0`.  Hence `F-F'` is divisible by
+
+```text
+L_{R_0} prod_{j in I, j != i} L_{S_j},
+```
+
+whose degree is `r+h-a_i`.  The list condition gives
+
+```text
+r+h >= ell+d.
+```
+
+Since `a_i<=ell`, we have `r+h-a_i>=d`.  If this degree is larger than `d`,
+then `F-F'=0`.  If it equals `d`, the monicity of `F` and `F'` gives
+`deg(F-F')<d` unless `F=F'`, so again `F=F'`.  The displayed identity then
+gives `W=W'`, and hence `P=L_{C\D}W` is the same listed codeword.  Thus the
+petal cofactor map is injective, giving the bound `q^{max(0,d-a_i+1)}`;
+choosing `i` with `a_i=a_*` gives the first exponent.
+
+For the background injection, write `W=L_{R_0}V`, with `V=0` if `d<r`.  If
+two codewords have the same `V`, then they have the same `W`.  Subtracting
+the petal congruences for every `j in I` shows that `F-F'` vanishes on
+`union_{j in I} S_j`, whose size is `h`.  Because the sunflower is maximal,
+`r<ell`, and the list condition gives
+
+```text
+h >= ell+d-r > d.
+```
+
+Therefore `F=F'`; since `W` is also the same, the two listed codewords are
+equal.  The quotient space has size `q^{max(0,d-r+1)}`, proving the second
+injection and the displayed bound.
+
+### Consequences
+
+Background agreement is not just harmless; in fixed support-pattern strata it
+is an additional rank source.  The remaining residual should therefore be
+measured by the support entropy left after charging the cofactor dimension
+
+```text
+max(0, d-max(r,a_*)+1).
+```
+
+This gives a concrete finite-dimensional certificate for any future
+counterexample: it must exhibit enough choices of background and petal support
+patterns to beat this joint petal/background-anchor exponent.
+
+## Proposition B4. Maximal Deficit-Background Stratum Ledger
+
+Status: PROVED.
+
+Assume the sunflower is maximal and work at the L1 lower cutoff.  Fix
+integers
+
+```text
+E>=0,        t>=2,        u>=0,        r>=0.
+```
+
+The number of non-planted listed codewords satisfying
+
+```text
+d <= ell+E,
+|R_P| = r,
+#{i : S_i nonempty} = t,
+sum_i (ell-|S_i|) = u
+```
+
+is at most
+
+```text
+binom(b,r) binom(M,t) binom(t*ell,u) (ell+E+1) q^gamma,
+```
+
+where
+
+```text
+gamma = min(E+floor(u/t)+1, max(0,E+ell-r+1)).
+```
+
+Here `binom(b,r)=0` if `r>b`, and `binom(M,t)=0` if `t>M`.
+
+### Proof
+
+Choose the background support `R_0`, the touched-petal set `I`, and the
+missing petal points inside the `t` touched petals.  This gives at most
+
+```text
+binom(b,r) binom(M,t) binom(t*ell,u)
+```
+
+support patterns.
+
+For a fixed support pattern, let `a_*` be the largest petal support size.
+Since the total petal deficit is `u`, some touched petal has deficit at most
+`floor(u/t)`, so
+
+```text
+a_* >= ell-floor(u/t).
+```
+
+For every defect `d<=ell+E`, Lemma B3 gives the fixed-pattern bound
+
+```text
+q^{max(0,d-max(r,a_*)+1)}
+  <= q^{min(E+floor(u/t)+1, max(0,E+ell-r+1))}.
+```
+
+There are at most `ell+E+1` possible values of `d`.  Multiplying the support
+pattern count, the defect count, and the fixed-pattern bound proves the
+ledger.
+
+### Consequences
+
+Proposition B4 is the current quantitative form of the maximal-sunflower
+residual.  The already-proved bounded-average theorem is the case where
+`floor(u/t)` is bounded and the near-saturated pair certificate avoids paying
+the full support entropy.  Outside that case, any counterexample must beat the
+explicit ledger above: a large number of petal/background support patterns has
+to overcome the joint exponent supplied by the largest petal support and the
+background quotient.
+
 ## Development Ledger
 
 - **Conjecture 1 full-list primitive remainder:** CONJECTURAL.  Main proof
@@ -2295,5 +2475,11 @@ d-ell -> infinity        or        u(P)/t(P) -> infinity.
   background-free hypothesis from the bounded-excess, bounded-average-deficit
   sunflower closure; unused-background agreement is not a separate residual
   escape in maximal sunflowers.
+- **Maximal background-anchor injection:** PROVED.  Adds a second fixed-pattern
+  injection through the background quotient `W_P/L_{R_P}` and bounds strata by
+  `q^max(0,d-max(r,a_*)+1)`.
+- **Maximal deficit-background stratum ledger:** PROVED.  Gives an explicit
+  `(t,u,r)` ledger balancing petal/background support entropy against the
+  joint cofactor exponent.
 - **Mixed-petal sunflower amplification:** CONJECTURAL.  Next focused bound to
   prove or refute in the large-defect regime.

@@ -30,6 +30,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-25 - L1 maximal background-anchor stratum ledger
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/notes/l1/l1_full_list_quotient_proof_program.md` and
+  `experimental/agents-log.md`.
+- **Status:** PROVED.
+- **What is being added:** A maximal-sunflower fixed-support injection through
+  both the largest petal cofactor and the background quotient `W_P/L_{R_P}`.
+  It yields an explicit `(t,u,r)` stratum ledger balancing support entropy
+  against the joint exponent from `max(|R_P|, max_i |S_i|)`.
+- **How it is useful:** Turns the remaining large-defect / large-average
+  sunflower obstruction into a sharper finite-dimensional certificate: any
+  counterexample must beat the displayed petal/background support-entropy
+  ledger, not merely avoid the bounded-average theorem.
+- **What to do next:** Use the ledger to search for a summable entropy regime
+  or to construct a residual counterexample family with enough support entropy
+  to overwhelm the joint cofactor exponent.
+
 ### 2026-06-25 - L1 maximal sunflower background removal
 
 - **Agent/model:** Codex.
