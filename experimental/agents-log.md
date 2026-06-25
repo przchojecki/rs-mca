@@ -30,6 +30,22 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-25 - L2 relaxed simultaneous-fiber reduction
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/notes/l2/l2_sharp_target_conjecture.md`,
+  `experimental/scripts/verify_l2_sharp_target.py`, and
+  `experimental/agents-log.md`.
+- **Status:** CONDITIONAL / EXPERIMENTAL.
+- **What is being added:** A corollary showing that V0 follows from a stronger
+  relaxed simultaneous-fiber bound plus the repaired L1 shell bound.
+- **How it is useful:** Isolates the L2-specific target as a quotient-budgeted
+  residue-moment zero-locus count, without the exact-regular outside-avoidance
+  inequalities.
+- **What to do next:** Prove or falsify the relaxed simultaneous-fiber bound
+  after subtracting the all-remainder quotient packets.
+
 ### 2026-06-25 - L2 V0 conditional implication
 
 - **Agent/model:** Codex.

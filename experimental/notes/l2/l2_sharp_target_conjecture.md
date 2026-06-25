@@ -5622,6 +5622,54 @@ shell input is an imported one-row theorem. The genuinely L2-specific input is
 the regular exact-core local limit, equivalently the quotient-budgeted
 simultaneous residue-moment problem.
 
+The regular input can be relaxed once more. Define the relaxed simultaneous
+fiber count
+
+```text
+Fib_mu(U,a)=|Fib_U^cap(a)|.
+```
+
+Equivalently, by the residue-moment form above, `Fib_mu(U,a)` is the number of
+`a`-sets `S subset H` satisfying
+
+```text
+R_j(U_i,S)=0        for every i=1,...,mu and 0<=j<sigma.
+```
+
+**Corollary (relaxed simultaneous-fiber target suffices).** Fix `mu>=2` and
+the compact parameter window in V0. Suppose that, after quotient packets have
+been removed or charged to `Quot_rem_mu(n,k,a)`, there are constants
+`B_fib,N_fib` such that every received word `U` satisfies
+
+```text
+Fib_mu(U,a)
+ <= binom(n,a) q^(-mu(a-k))
+    + Quot_rem_mu(n,k,a)
+    + n^B_fib.
+```
+
+Suppose also that the repaired one-row L1 shell bound holds with exponent
+`B_L`. Then L2-Sharp V0 holds, for example with any
+
+```text
+B > max(B_fib, B_L+2(mu-1)+1, mu B_L).
+```
+
+*Proof.* The exact regular core is a subset of the relaxed simultaneous fiber:
+
+```text
+Reg_mu(U,a) <= Fib_mu(U,a).
+```
+
+Indeed, every regular exact-row tuple has a common support `S` of size `a`,
+and this `S` lies in every row fiber. Thus the relaxed-fiber hypothesis implies
+the regular exact-core hypothesis in the preceding conditional theorem with
+`B_reg=B_fib`; applying that theorem gives V0 with the displayed exponent.
+
+This is the cleanest current L2-specific proof target. It removes the
+outside-avoidance inequalities from the regular core and asks only for a
+quotient-budgeted bound on the simultaneous residue-moment zero locus.
+
 ## 5. Already proved or checked
 
 The existing L2 notes prove the following inputs.
@@ -5798,8 +5846,10 @@ following above the reserve.
 
 - A non-aligned quotient family whose interleaved contribution is not covered
   by `Quot_rem_mu(n,k,a)` and is larger than `n^B`.
-- A regular exact-row support family whose count exceeds the random term plus
-  `Quot_rem_mu(n,k,a)` by more than a polynomial factor.
+- A relaxed simultaneous residue-fiber family whose count exceeds the random
+  term plus `Quot_rem_mu(n,k,a)` by more than a polynomial factor. This would
+  also threaten the regular exact-row input unless the excess is entirely
+  removed by outside-avoidance inequalities.
 - A row-irregular over-agreement/codegree construction whose anchored shell
   count is super-polynomial despite the repaired one-row L1 bound.
 - A family of punctured domains `A=A_{U_1}(c_1)` for which the punctured-list

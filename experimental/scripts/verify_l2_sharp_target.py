@@ -9428,6 +9428,14 @@ def run() -> dict:
             "simultaneous_fiber_profile"
         ]["regular_exact_a_sets"]
         == witness["regular_irregular_profile"]["regular_exact_row_count"],
+        "rs_witness_relaxed_fiber_bounds_regular_core": witness[
+            "regular_irregular_profile"
+        ]["regular_exact_row_count"]
+        <= witness["simultaneous_fiber_profile"]["simultaneous_a_sets"]
+        and witness["regular_irregular_profile"]["regular_exact_row_count"]
+        <= witness["simultaneous_syndrome_profile"][
+            "simultaneous_syndrome_zero_a_sets"
+        ],
         "rs_witness_fiber_uniqueness": witness[
             "simultaneous_fiber_profile"
         ]["max_row_choices_per_a_set"]
