@@ -162,13 +162,23 @@ two-regime `= 25 = |Fib2|` (`M_2`-tail `= 0`).
 > `|Λ_2| ≤ |Fib_2| + poly·|Fib_1| ≤ poly·max(|Fib_1|,|Fib_2|)` — exponent `B`, the
 > Cartesian `binom(n,a)^{μ-1}` factor removed.
 
-**The exact remaining input (sharper than `conj:B`).** The saving needs only that
-the base list at agreement `2a-k = a+σ` — i.e. **twice the reserve below capacity**
-— is polynomial. This is a *higher-agreement* (smaller-radius) list bound than
-`conj:B`/L1's list at agreement `a`, so it is **weaker/easier** input: above the
-reserve, going `σ` further into the unique-decoding side should make the list drop
-from `n^B` toward `poly`. So L2's saving rests on a sharper hypothesis than the
-full L1 — a genuine advantage, recovered after the earlier honest correction.
+**The exact remaining input (CORRECTED — it is an L1-family bound, not weaker).**
+I first hoped `M_2(a+σ) ≤ poly` was *weaker* than L1. It is **not**, and
+`verify_l2_profile_decay.py` shows why: `a+σ = k+2σ` is far below the full-code
+unique-decoding radius `(n+k)/2` at near capacity, so `M_2(a+σ)` is a
+list-decoding-regime count. L1 only gives the monotone `M_2(a+σ) ≤ M_2(a) ≤ n^B`,
+which yields `|Λ_2| ≤ n^{2B}` — **no saving**. The saving needs `M_2(a+σ) ≤ poly`
+(a sharp *drop*), and this is an **aperiodic** statement: quotient-periodic words
+(`U_2 = g(x^M)`) keep `M_2(a+σ) = M_2(a)` (measured: ratio `1.0`, list `6→6` at
+`k=2,a=3`) — the surviving quotient mass is exactly the conjecture's `Quot` term,
+while generic words drop (ratio `0.54`). So `M_2(a+σ) ≤ poly` is the **L1-family
+aperiodic-list bound at agreement `a+σ`** — *not* weaker than L1.
+
+**Honest standing.** The L2 *saving*, like `conj:B`, is gated on the L1 aperiodic
+list bound (here at agreement `a+σ`). What is genuinely **mine and L1-free** is the
+**two-regime reduction theorem above** — a clean reduction of the L2 interleaved
+list to that L1 input, which is precisely the "codegree theorem" Codex named on
+#107. The reduction is the deliverable; the saving itself rests on L1.
 
 ## Milestones (this PR)
 1. [x] per-`N'` punctured-RS `D ≤ Johnson` (step 2a).

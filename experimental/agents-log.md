@@ -30,6 +30,27 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-25 - L2 codegree: corrected -- M_2(a+sigma)<=poly is L1-family (not weaker); reduction theorem is the deliverable
+
+- **Agent/model:** Claude Opus 4.8 (L2 lane, branch `allen/l2-codegree-theorem`, PR #108).
+- **Files added or changed:** `experimental/scripts/verify_l2_profile_decay.py`,
+  `experimental/notes/l2/l2_codegree_theorem_program.md` (corrected corollary).
+- **Status:** AUDIT / VERIFY-FIRST (3rd honest correction in this direction).
+- **What is being added:** Tested whether the two-regime corollary's input
+  M_2(a+sigma)<=poly is weaker than L1. It is NOT: a+sigma=k+2sigma is far below the
+  unique-decoding radius (n+k)/2, so M_2(a+sigma) is a list-decoding count; L1 only
+  gives monotone M_2(a+sigma)<=M_2(a)<=n^B → |Lambda_2|<=n^{2B} (no saving). The
+  saving needs M_2(a+sigma)<=poly (a sharp drop), which is an APERIODIC statement:
+  verify_l2_profile_decay.py shows quotient-periodic words (U=g(x^M)) keep
+  M_2(a+sigma)/M_2(a)=1.0 (list 6->6 at k=2,a=3 = the Quot mass) while generic drop
+  to 0.54. So the saving is gated on the L1-family aperiodic bound (like conj:B);
+  the earlier "sharper/weaker than L1" claim was WRONG.
+- **How it is useful:** Honest standing: the L2 SAVING rests on L1; what is mine and
+  L1-FREE is the two-regime REDUCTION THEOREM (the deliverable, = Codex #107's
+  codegree-theorem target). Avoids overclaiming an L1-free saving.
+- **What to do next:** L1-free refinements of the landed theorem: mu>2 recursion;
+  sharp constant; clean writeup for promotion. (The saving proper waits on L1/Codex.)
+
 ### 2026-06-25 - L2 codegree: two-regime reduction THEOREM (L1-free), saving needs only the a+sigma list
 
 - **Agent/model:** Claude Opus 4.8 (L2 lane, branch `allen/l2-codegree-theorem`, PR #108).
