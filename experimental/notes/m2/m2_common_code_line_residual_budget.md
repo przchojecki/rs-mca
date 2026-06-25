@@ -142,16 +142,19 @@ an integer `c0` with `0 <= c0 <= |Omega|` and `h>c0`, and set
 
 ```text
 m = floor((|Omega|-c0)/(h-c0)).
+M = min(|F|,m).
 ```
 
-If the field has at least `m` elements, then there are words `f,g` with common
-zero code-line on `S0`, exactly `c0` common residual-zero coordinates in
-`Omega`, and exactly `m` support-wise noncontained slopes at agreement `a`.
+Then the exact maximum number of support-wise noncontained slopes, over all
+words `f,g` with common zero code-line on `S0` and exactly `c0` common
+residual-zero coordinates in `Omega`, is `M`.
 
-If `m=0`, take any residuals with exactly `c0` common residual-zero
-coordinates; the upper bound already gives zero support-wise noncontained
-slopes.  Assume from now on that `m>0`.  Then the zero-rigidity room needed
-below follows from the common-support hypothesis.  If `a>b`, then
+The upper bound is the theorem above, together with the trivial field-size
+bound.  For sharpness, it remains to build `M` slopes.  If `M=0`, take any
+residuals with exactly `c0` common residual-zero coordinates; the upper bound
+already gives zero support-wise noncontained slopes.  Assume from now on that
+`M>0`.  Then also `m>0`, and the zero-rigidity room needed below follows from
+the common-support hypothesis.  If `a>b`, then
 `h=a-b`, so `a-h=b>=a+b-n>=k`.  If `a<=b`, then `h=1`, hence `c0=0`; since
 `m>0`, `|Omega|=n-b>0`.  The condition `a+b-n>=k` becomes
 `a-|Omega|>=k`, so `a-h=a-1>=k`.
@@ -160,14 +163,14 @@ Choose `U0 subset S0` of size `a-h`. Choose `C0 subset Omega` of size `c0`,
 and choose disjoint private blocks
 
 ```text
-P_1,...,P_m subset Omega \ C0,        |P_j|=h-c0.
+P_1,...,P_M subset Omega \ C0,        |P_j|=h-c0.
 ```
 
-Pick distinct slopes `zeta_1,...,zeta_m in F`. Define `f` and `g` by
+Pick distinct slopes `zeta_1,...,zeta_M in F`. Define `f` and `g` by
 
 ```text
 f=g=0 on S0 union C0,
-g=1 on P_1 union ... union P_m,
+g=1 on P_1 union ... union P_M,
 f=-zeta_j on P_j,
 ```
 
@@ -181,9 +184,10 @@ T_j = U0 union C0 union P_j,
 which has size `a`, so the zero codeword explains the line point on `T_j`.
 However, if the support were contained, `g|T_j` would be explained by a
 codeword. That codeword has at least `|U0|=a-h >= k` zeros, hence is zero by
-MDS zero-rigidity, contradicting `g=1` on `P_j`. Thus all `m` slopes are
-support-wise noncontained. The upper bound already proved gives at most `m`,
-so the count is exactly `m`.
+MDS zero-rigidity, contradicting `g=1` on `P_j`. Thus all `M` chosen slopes
+are support-wise noncontained. If `M=m`, the residual upper bound gives
+equality; if `M=|F|<m`, all field slopes are already exhibited. Hence the
+count is exactly `M` in all cases.
 
 This sharpness statement is useful for M2 interpretation. A common code-line
 exception plus residual coordinate counts alone cannot yield a better

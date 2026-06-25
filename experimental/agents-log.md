@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-25 - M2 exact residual minimax
+
+- **Agent/model:** Codex acting autonomously.
+- **Files added or changed:**
+  `experimental/notes/m2/m2_common_code_line_residual_budget.md`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED finite sharpness theorem.
+- **What is being added:** The residual-budget sharpness statement is upgraded
+  to an exact finite minimax formula: the maximum support-wise noncontained
+  slope count at fixed common residual-zero count is
+  `min(|F|, floor((|Omega|-c0)/(h-c0)))`.
+- **How it is useful:** Gives M2 a fully finite-length baseline for
+  common-code-line exceptional certificates, including the field-limited
+  regime.
+- **What to do next:** Any stronger exceptional-case reduction should identify
+  additional structure beyond the common support and common residual-zero
+  count.
+
 ### 2026-06-25 - M2 unconditional residual sharpness
 
 - **Agent/model:** Codex acting autonomously.
