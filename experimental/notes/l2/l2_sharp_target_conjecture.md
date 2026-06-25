@@ -2685,6 +2685,58 @@ subsequence. Rearranging gives the displayed upper bound for `D_*`. Choosing
 an index with minimal `d_i` gives `max_i e_i>=k-D_*`, which is the displayed
 large-overlap bound.
 
+The band also controls the neighbors of the forced large-overlap edge.
+
+**Corollary (large-overlap edge localization).** In the residual band of the
+previous corollary, let
+
+```text
+D=min_i d_i
+```
+
+and choose an index `t` with `d_t=D`. Then
+
+```text
+d_{t-1}, d_{t+1} >= k-sigma-D,
+```
+
+or equivalently
+
+```text
+e_{t-1}, e_{t+1} <= sigma+D.
+```
+
+If `D<(k-sigma)/2`, then no two minimum-dimension edges are adjacent; the
+maximum-overlap edges `e_i=k-D` are isolated in the clean cycle.
+
+Combining with the nonclearance conclusion above, any asymptotic residual
+family not cleared by the root-sharing high-reserve gate contains an edge of
+size
+
+```text
+e_t >= k - (m k - 2mu(m-2)sigma)/2 - o(n)
+```
+
+whose two neighboring edge overlaps are at most
+
+```text
+sigma + (m k - 2mu(m-2)sigma)/2 + o(n).
+```
+
+Thus a remaining residual obstruction is not only large-overlap somewhere:
+the large-overlap edge is locally flanked by quantitatively controlled
+overlaps.
+
+*Proof.* Apply the lower adjacent-dimension band
+`d_{i-1}+d_i>=k-sigma` to the pairs adjacent to `t`. This gives
+`d_{t-1},d_{t+1}>=k-sigma-D`. Since `e_i=k-d_i`, this is equivalent to
+`e_{t-1},e_{t+1}<=sigma+D`.
+
+If two minimum-dimension edges were adjacent, their adjacent sum would be
+`2D`, contradicting the lower band when `D<(k-sigma)/2`. The final displayed
+bounds follow by substituting the nonclearance upper bound for `D` from the
+previous corollary.
+
 The connected case also isolates the diagonal exactly.
 
 **Corollary (diagonal is the only zero-loss connected cluster).** Suppose

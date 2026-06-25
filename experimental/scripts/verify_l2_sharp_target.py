@@ -1799,6 +1799,32 @@ def clean_cycle_rank_profile() -> dict:
             for idx in range(cycle_len)
         ]
         min_coefficient_dimension = min(coefficient_dimensions)
+        min_coefficient_indices = [
+            idx
+            for idx, dimension in enumerate(coefficient_dimensions)
+            if dimension == min_coefficient_dimension
+        ]
+        min_dimension_neighbor_floor = (
+            k - sigma - min_coefficient_dimension
+        )
+        min_dimension_neighbor_edge_ceiling = (
+            sigma + min_coefficient_dimension
+        )
+        min_dimension_neighbor_rows = []
+        for idx in min_coefficient_indices:
+            left = (idx - 1) % cycle_len
+            right = (idx + 1) % cycle_len
+            min_dimension_neighbor_rows.append(
+                {
+                    "index": idx,
+                    "left": left,
+                    "right": right,
+                    "left_dimension": coefficient_dimensions[left],
+                    "right_dimension": coefficient_dimensions[right],
+                    "left_edge_size": edge_sizes[left],
+                    "right_edge_size": edge_sizes[right],
+                }
+            )
         min_dimension_pair_sum = min(dimension_pair_sums)
         max_dimension_pair_sum = max(dimension_pair_sums)
         max_coefficient_dimension = max(coefficient_dimensions)
@@ -2126,6 +2152,12 @@ def clean_cycle_rank_profile() -> dict:
                 "coefficient_dimensions": coefficient_dimensions,
                 "dimension_pair_sums": dimension_pair_sums,
                 "min_coefficient_dimension": min_coefficient_dimension,
+                "min_coefficient_indices": min_coefficient_indices,
+                "min_dimension_neighbor_floor": min_dimension_neighbor_floor,
+                "min_dimension_neighbor_edge_ceiling": (
+                    min_dimension_neighbor_edge_ceiling
+                ),
+                "min_dimension_neighbor_rows": min_dimension_neighbor_rows,
                 "min_dimension_pair_sum": min_dimension_pair_sum,
                 "max_dimension_pair_sum": max_dimension_pair_sum,
                 "max_coefficient_dimension": max_coefficient_dimension,
@@ -2332,6 +2364,37 @@ def clean_cycle_rank_profile() -> dict:
         "dimension_pair_private_below_reserve_band_holds": all(
             row["max_private_size"] >= row["sigma"]
             or row["max_dimension_pair_sum"] < row["k"]
+            for row in rows
+        ),
+        "min_dimension_neighbor_floor_holds": all(
+            all(
+                neighbor_row["left_dimension"]
+                >= row["min_dimension_neighbor_floor"]
+                and neighbor_row["right_dimension"]
+                >= row["min_dimension_neighbor_floor"]
+                for neighbor_row in row["min_dimension_neighbor_rows"]
+            )
+            for row in rows
+        ),
+        "min_dimension_neighbor_edge_cap_holds": all(
+            all(
+                neighbor_row["left_edge_size"]
+                <= row["min_dimension_neighbor_edge_ceiling"]
+                and neighbor_row["right_edge_size"]
+                <= row["min_dimension_neighbor_edge_ceiling"]
+                for neighbor_row in row["min_dimension_neighbor_rows"]
+            )
+            for row in rows
+        ),
+        "strictly_small_min_dimensions_are_isolated": all(
+            2 * row["min_coefficient_dimension"] >= row["k"] - row["sigma"]
+            or all(
+                neighbor_row["left_dimension"]
+                > row["min_coefficient_dimension"]
+                and neighbor_row["right_dimension"]
+                > row["min_coefficient_dimension"]
+                for neighbor_row in row["min_dimension_neighbor_rows"]
+            )
             for row in rows
         ),
         "contains_small_pair_case": any(
@@ -4532,6 +4595,15 @@ def run() -> dict:
         ],
         "clean_cycle_dimension_pair_residual_band": clean_cycles[
             "dimension_pair_private_below_reserve_band_holds"
+        ],
+        "clean_cycle_min_dimension_neighbor_floor": clean_cycles[
+            "min_dimension_neighbor_floor_holds"
+        ],
+        "clean_cycle_min_dimension_neighbor_edge_cap": clean_cycles[
+            "min_dimension_neighbor_edge_cap_holds"
+        ],
+        "clean_cycle_small_min_dimension_isolated": clean_cycles[
+            "strictly_small_min_dimensions_are_isolated"
         ],
         "clean_cycle_has_small_pair_case": clean_cycles[
             "contains_small_pair_case"

@@ -283,7 +283,8 @@ Keep entries concise and link to the relevant files.
   whenever the minimum coefficient dimension is linear.
   The residual shapes not cleared by the private-mass/root-sharing gates now
   obey the adjacent-dimension band `k-sigma <= d_{i-1}+d_i < k` and must
-  contain a quantitatively large-overlap edge.
+  contain a quantitatively large-overlap edge; the band further forces any
+  maximum-overlap edge to be flanked by overlaps at most `sigma+D`.
   Combining
   the pivot, monic, and domain gates gives a
   marked selected-syzygy tuple bound; the verifier checks that this general
