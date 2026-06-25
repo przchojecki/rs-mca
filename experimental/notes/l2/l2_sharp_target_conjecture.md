@@ -3152,6 +3152,49 @@ which is the displayed total-deviation band after division by `2`. Finally,
 if two coordinates were nonnegative, their pair sum would be nonnegative,
 contradicting `x_i+x_j<0`.
 
+This gives a sharper finite search decomposition.
+
+**Corollary (one-spike residual-shape scan).** With the notation of the
+centered-deviation normal form, set
+
+```text
+A=A(k,sigma)={x in Z: x == k mod 2 and -2sigma < x < 2sigma},
+A_-={x in A: x<0},
+A_+={x in A: x>=0}.
+```
+
+Every vector surviving the finite residual-shape certificate lies in
+
+```text
+A_-^m  union  union_{t=0}^{m-1}
+{x_t in A_+, x_j in A_- for j != t}.
+```
+
+Thus the centered residual-shape scan has at most
+
+```text
+|A_-|^m + m |A_+| |A_-|^{m-1}
+```
+
+candidate vectors before the adjacent-sum, root-floor, and parity gates are
+applied. Since `|A_-|,|A_+|<=sigma`, this is at most
+
+```text
+(m+1)sigma^m.
+```
+
+Equivalently, a surviving residual clean cycle has either every dimension
+`d_i<k/2`, or a unique spike with `d_t>=k/2` and all other dimensions below
+`k/2`. In overlap variables, all but at most one edge overlap satisfy
+`e_i>k/2`.
+
+*Proof.* The balanced-window corollary restricts every centered deviation to
+`A`. The centered-deviation normal form gives `x_i+x_j<0` for every `i<j`.
+Therefore two coordinates cannot both lie in `A_+`, since their sum would be
+nonnegative. This proves the displayed sector decomposition. The count is the
+all-negative sector plus the `m` choices of the unique nonnegative coordinate.
+The bound by `(m+1)sigma^m` follows from `|A_-|,|A_+|<=sigma`.
+
 The finite certificate is monotone in the interleaving arity.
 
 **Corollary (arity monotonicity of residual-shape certificates).** Fix

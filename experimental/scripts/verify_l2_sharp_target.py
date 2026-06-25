@@ -3103,6 +3103,25 @@ def residual_shape_scan_profile() -> dict:
             if k - 2 * sigma < 2 * dimension < k + 2 * sigma
         ]
         balanced_window = set(balanced_window_values)
+        deviation_alphabet_values = [
+            2 * dimension - k for dimension in balanced_window_values
+        ]
+        negative_deviation_values = [
+            deviation
+            for deviation in deviation_alphabet_values
+            if deviation < 0
+        ]
+        nonnegative_deviation_values = [
+            deviation
+            for deviation in deviation_alphabet_values
+            if deviation >= 0
+        ]
+        one_spike_search_size = (
+            len(negative_deviation_values) ** cycle_len
+            + cycle_len
+            * len(nonnegative_deviation_values)
+            * (len(negative_deviation_values) ** (cycle_len - 1))
+        )
         if cycle_len % 2 == 1:
             odd_lower_numerator = (
                 k
@@ -3210,14 +3229,16 @@ def residual_shape_scan_profile() -> dict:
                     for dimensions in candidates
                 ),
                 "balanced_window_values": balanced_window_values,
-                "deviation_alphabet_values": [
-                    2 * dimension - k
-                    for dimension in balanced_window_values
-                ],
+                "deviation_alphabet_values": deviation_alphabet_values,
+                "negative_deviation_values": negative_deviation_values,
+                "nonnegative_deviation_values": nonnegative_deviation_values,
                 "balanced_window_size": len(balanced_window_values),
                 "balanced_window_size_bound": 2 * sigma,
                 "balanced_window_search_size": len(balanced_window_values)
                 ** cycle_len,
+                "one_spike_search_size": one_spike_search_size,
+                "one_spike_search_size_bound": (cycle_len + 1)
+                * (sigma ** cycle_len),
                 "all_candidates_in_balanced_window": all(
                     all(dimension in balanced_window for dimension in dimensions)
                     for dimensions in candidates
@@ -3231,6 +3252,10 @@ def residual_shape_scan_profile() -> dict:
                 ),
                 "contains_single_nonnegative_deviation_candidate": any(
                     deviation_row["nonnegative_count"] == 1
+                    for deviation_row in deviation_rows
+                ),
+                "all_candidates_in_one_spike_sector": all(
+                    deviation_row["nonnegative_count"] <= 1
                     for deviation_row in deviation_rows
                 ),
                 "all_deviations_balanced": all(
@@ -3348,6 +3373,23 @@ def residual_shape_scan_profile() -> dict:
         ),
         "deviation_form_has_tight_nonnegative_case": any(
             row["contains_single_nonnegative_deviation_candidate"]
+            for row in rows
+        ),
+        "one_spike_sector_contains_candidates": all(
+            row["all_candidates_in_one_spike_sector"] for row in rows
+        ),
+        "one_spike_search_covers_candidates": all(
+            row["candidate_count"] <= row["one_spike_search_size"]
+            for row in rows
+        ),
+        "one_spike_size_bound_holds": all(
+            row["one_spike_search_size"] <= row["one_spike_search_size_bound"]
+            for row in rows
+        ),
+        "one_spike_reduces_balanced_window": any(
+            row["candidate_count"] > 0
+            and row["one_spike_search_size"]
+            < row["balanced_window_search_size"]
             for row in rows
         ),
         "pair_cap_clearance_holds": all(
@@ -5332,6 +5374,18 @@ def run() -> dict:
         ],
         "residual_shape_scan_deviation_tight_case": residual_shape_scan[
             "deviation_form_has_tight_nonnegative_case"
+        ],
+        "residual_shape_scan_one_spike_sector": residual_shape_scan[
+            "one_spike_sector_contains_candidates"
+        ],
+        "residual_shape_scan_one_spike_covers": residual_shape_scan[
+            "one_spike_search_covers_candidates"
+        ],
+        "residual_shape_scan_one_spike_size": residual_shape_scan[
+            "one_spike_size_bound_holds"
+        ],
+        "residual_shape_scan_one_spike_reduces": residual_shape_scan[
+            "one_spike_reduces_balanced_window"
         ],
         "residual_shape_scan_pair_cap_clearance": residual_shape_scan[
             "pair_cap_clearance_holds"
