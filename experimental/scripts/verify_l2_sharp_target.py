@@ -1427,10 +1427,36 @@ def clean_cycle_rank_profile() -> dict:
             for left in range(cycle_len)
             for right in range(left + 1, cycle_len)
         )
+        min_edge_size = min(edge_sizes)
+        min_edge_index = edge_sizes.index(min_edge_size)
         two_edge_lower_bound = (
             k if min_edge_pair_sum <= k else 2 * k - min_edge_pair_sum
         )
         two_edge_defect_upper_bound = max(0, min_edge_pair_sum - k)
+        private_block_bound = 1
+        for private_size in private_sizes:
+            private_block_bound *= comb(n, private_size)
+        edge_block_bound = 1
+        for edge_size in edge_sizes:
+            edge_block_bound *= comb(n, edge_size)
+        projective_functional_count = (p**k - 1) // (p - 1)
+        crude_projective_tuple_bound = (
+            projective_functional_count * edge_block_bound * private_block_bound
+        )
+        one_edge_tuple_bound = (
+            comb(n, min_edge_size)
+            * (p**min_edge_size - 1)
+            // (p - 1)
+            * private_block_bound
+        )
+        for idx, edge_size in enumerate(edge_sizes):
+            if idx != min_edge_index:
+                one_edge_tuple_bound *= comb(n, edge_size)
+        saving_ratio = Fraction(one_edge_tuple_bound, crude_projective_tuple_bound)
+        expected_saving_ratio = Fraction(
+            p**min_edge_size - 1,
+            p**k - 1,
+        )
         rows.append(
             {
                 "name": example["name"],
@@ -1439,6 +1465,8 @@ def clean_cycle_rank_profile() -> dict:
                 "a": a,
                 "edge_sizes": edge_sizes,
                 "private_sizes": private_sizes,
+                "min_edge_size": min_edge_size,
+                "min_edge_index": min_edge_index,
                 "supports": [list(support) for support in supports],
                 "closed_components": len(closed_components),
                 "overlap_edges": [list(edge) for edge in overlap_edges],
@@ -1460,6 +1488,18 @@ def clean_cycle_rank_profile() -> dict:
                 "diagonal_exponent": diagonal_exponent,
                 "exponent_gap": exponent_gap,
                 "expected_exponent_gap": expected_exponent_gap,
+                "private_block_bound": private_block_bound,
+                "edge_block_bound": edge_block_bound,
+                "crude_projective_tuple_bound": crude_projective_tuple_bound,
+                "one_edge_tuple_bound": one_edge_tuple_bound,
+                "saving_ratio": {
+                    "numerator": saving_ratio.numerator,
+                    "denominator": saving_ratio.denominator,
+                },
+                "expected_saving_ratio": {
+                    "numerator": expected_saving_ratio.numerator,
+                    "denominator": expected_saving_ratio.denominator,
+                },
             }
         )
     return {
@@ -1512,6 +1552,14 @@ def clean_cycle_rank_profile() -> dict:
         ),
         "contains_small_pair_case": any(
             row["min_edge_pair_sum"] <= row["k"] for row in rows
+        ),
+        "one_edge_tuple_bound_saves": all(
+            row["one_edge_tuple_bound"] <= row["crude_projective_tuple_bound"]
+            for row in rows
+        ),
+        "one_edge_saving_formula_holds": all(
+            row["saving_ratio"] == row["expected_saving_ratio"]
+            for row in rows
         ),
     }
 
@@ -2906,6 +2954,12 @@ def run() -> dict:
         ],
         "clean_cycle_has_small_pair_case": clean_cycles[
             "contains_small_pair_case"
+        ],
+        "clean_cycle_one_edge_tuple_saves": clean_cycles[
+            "one_edge_tuple_bound_saves"
+        ],
+        "clean_cycle_one_edge_saving_formula": clean_cycles[
+            "one_edge_saving_formula_holds"
         ],
         "functional_incidence_projective_count": functional_incidence[
             "projective_functional_count"

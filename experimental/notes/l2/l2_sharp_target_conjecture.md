@@ -1158,6 +1158,47 @@ from the functional-incidence count by using this exact sum for the
 distinguished edge and the trivial bound `N_{e_i}([ell])<=binom(n,e_i)` for
 all remaining edges.
 
+This immediately gives a clean-cycle support-tuple bound once the private
+points are included. For a fixed clean cycle shape, write
+
+```text
+p_i = a-e_{i-1}-e_i
+```
+
+for the number of private points in `S_i`.
+
+**Corollary (one-edge clean-cycle tuple bound).** Fix `m,a,k` and clean-cycle
+edge sizes `e_0,...,e_{m-1}` with private sizes `p_i>=0`. The number of
+ordered rank-deficient clean support tuples of this shape is at most
+
+```text
+  binom(n,e_t) (q^{e_t}-1)/(q-1)
+  prod_{i != t} binom(n,e_i)
+  prod_i binom(n,p_i)
+```
+
+for every distinguished edge `t`. In particular, choosing an edge of minimum
+size `e_min` improves the crude projective-functional count
+
+```text
+  (q^k-1)/(q-1) prod_i binom(n,e_i) prod_i binom(n,p_i)
+```
+
+by the exact factor
+
+```text
+(q^{e_min}-1)/(q^k-1).
+```
+
+The estimate deliberately ignores disjointness among edge and private blocks,
+so it is an upper bound for the clean tuples.
+
+*Proof.* Apply the one-edge incidence mass to the distinguished edge, bound
+each remaining edge block by `binom(n,e_i)`, and bound each private block by
+`binom(n,p_i)`. The saving factor is the quotient of the distinguished-edge
+projective factor `(q^{e_t}-1)/(q-1)` and the crude projective count
+`(q^k-1)/(q-1)`.
+
 The incidence counts are exact in the MDS uniqueness range.
 
 **Corollary (small-support uniqueness for `N_e`).** Let `r([ell])` be the

@@ -204,9 +204,13 @@ Keep entries concise and link to the relevant files.
   now exact:
   `sum_[ell] N_e([ell]) = binom(n,e)(q^e-1)/(q-1)`, so distinguishing a
   minimum-size edge replaces the crude projective factor `(q^k-1)/(q-1)` by
-  `(q^e-1)/(q-1)` before further restrictions. The incidence counts are now
-  exact in the MDS uniqueness range: if `[ell]` has minimal support size `r`
-  and `e>=r`, `r+e<=k`, then `N_e([ell])=binom(n-r,e-r)`, so for
+  `(q^e-1)/(q-1)` before further restrictions. Including the private points
+  gives an explicit clean-cycle support-tuple bound with saving factor
+  `(q^{e_min}-1)/(q^k-1)` over the crude projective-functional count; the
+  verifier records this arithmetic on the clean-cycle examples. The incidence
+  counts are now exact in the MDS uniqueness range: if `[ell]` has minimal
+  support size `r` and `e>=r`, `r+e<=k`, then
+  `N_e([ell])=binom(n-r,e-r)`, so for
   `e<=k/2` one always has `N_e([ell])<=binom(n-1,e-1)`. The clean-cycle
   disjointness now gives small-edge isolation: if one edge contains the unique
   minimal support of size `r`, all other edge overlaps must have size `>k-r`;
