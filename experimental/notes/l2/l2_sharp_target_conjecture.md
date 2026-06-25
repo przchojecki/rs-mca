@@ -4201,6 +4201,66 @@ parameters, so it also cannot increase. If the tail starts at or above
 are exactly terminal tails of `D` by the balanced-depth formula, proving the
 claim.
 
+The all-negative rate has an explicit gap below the free depth alphabet.
+
+**Corollary (all-negative adaptive free-alphabet gap).** In the all-negative
+sector, let
+
+```text
+N=|D|,        H_D={y in D:y>=R},        h=|H_D|.
+```
+
+If `h=0`, then the root-active contribution is zero. If `h>0`, then
+
+```text
+rho_ad(D) < N - h^2/(2N).
+```
+
+Equivalently, the all-negative adaptive spectral radius is separated from the
+free balanced-depth alphabet size by a fully explicit gap depending only on
+the number of root-active depth layers.
+
+*Proof.* Let `l=|L_D|=N-h`. In the nonminimal-frontier case the all-negative
+balanced progression has `Delta_D=l`, so the adaptive rate is the positive
+root of
+
+```text
+lambda^2-l lambda - h c_D = 0,
+```
+
+with `0<=c_D<=l`. Evaluating the characteristic polynomial at `N` gives
+
+```text
+N^2-lN-hc_D = h(N-c_D) >= h^2.
+```
+
+In the minimal-frontier case write `h=1+g`, where the one minimal high layer is
+`a_0=sigma+1` and `g` is the number of elevated high layers. The adaptive rate
+is the positive root of
+
+```text
+lambda^2-l lambda-(l+c_G g)=0.
+```
+
+Here `0<=c_G<=l`, and
+
+```text
+N^2-lN-(l+c_G g)
+ = h^2+g(l-c_G) >= h^2.
+```
+
+Thus in either case the characteristic polynomial is positive at `N`, while
+its positive root is `rho_ad(D)`. Therefore `rho_ad(D)<N`. Moreover
+
+```text
+N-rho_ad(D)
+ = [N^2-lN-K]/[N+rho_ad(D)-l],
+```
+
+where `K` denotes the corresponding constant term `h c_D` or `l+c_G g`.
+Since `rho_ad(D)<N`, the denominator is less than `2N`, and the numerator is
+at least `h^2`. This gives the displayed gap.
+
 The uniform envelope has a two-state recurrence.
 
 **Corollary (recurrence form of the uniform cap-degree envelope).** Fix

@@ -4539,12 +4539,56 @@ def residual_shape_scan_profile() -> dict:
             )
             root_active_all_negative_adaptive_frontier_rate = (
                 0
-                if all_negative_uniform_high_count == 0
+                if (
+                    all_negative_uniform_high_count == 0
+                    or len(low_depth_values) == 0
+                )
                 else (
                     root_active_all_negative_minimal_frontier_rate
                     if root_active_all_negative_minimal_frontier_rate
                     is not None
                     else root_active_all_negative_uniform_spectral_rate
+                )
+            )
+            if all_negative_uniform_high_count == 0:
+                root_active_all_negative_adaptive_characteristic_low = 0
+                root_active_all_negative_adaptive_characteristic_constant = 0
+            elif all_negative_minimal_frontier_parameters is not None:
+                root_active_all_negative_adaptive_characteristic_low = (
+                    all_negative_minimal_frontier_low_count
+                )
+                root_active_all_negative_adaptive_characteristic_constant = (
+                    all_negative_minimal_frontier_low_count
+                    + all_negative_minimal_frontier_cap_count
+                    * all_negative_minimal_frontier_elevated_count
+                )
+            else:
+                root_active_all_negative_adaptive_characteristic_low = (
+                    all_negative_uniform_degree_bound
+                )
+                root_active_all_negative_adaptive_characteristic_constant = (
+                    all_negative_uniform_high_count
+                    * all_negative_uniform_cap_count
+                )
+            root_active_all_negative_adaptive_free_alphabet_size = len(
+                depth_values
+            )
+            root_active_all_negative_adaptive_free_gap_numerator = (
+                root_active_all_negative_adaptive_free_alphabet_size ** 2
+                - root_active_all_negative_adaptive_characteristic_low
+                * root_active_all_negative_adaptive_free_alphabet_size
+                - root_active_all_negative_adaptive_characteristic_constant
+            )
+            root_active_all_negative_adaptive_free_gap_lower_bound = (
+                all_negative_uniform_high_count ** 2
+            )
+            root_active_all_negative_adaptive_free_gap_holds = (
+                all_negative_uniform_high_count == 0
+                or (
+                    root_active_all_negative_adaptive_free_gap_numerator
+                    >= root_active_all_negative_adaptive_free_gap_lower_bound
+                    and root_active_all_negative_adaptive_free_gap_numerator
+                    > 0
                 )
             )
             root_active_all_negative_adaptive_frontier_rate_refines_uniform = (
@@ -4902,7 +4946,10 @@ def residual_shape_scan_profile() -> dict:
                 )
                 spike_adaptive_frontier_rate = (
                     0
-                    if spike_uniform_high_count == 0
+                    if (
+                        spike_uniform_high_count == 0
+                        or len(low_allowed_depths) == 0
+                    )
                     else (
                         spike_minimal_frontier_rate
                         if spike_minimal_frontier_rate is not None
@@ -5228,6 +5275,12 @@ def residual_shape_scan_profile() -> dict:
             root_active_all_negative_adaptive_frontier_bounds_exact = None
             root_active_all_negative_adaptive_frontier_refines_uniform = None
             root_active_all_negative_adaptive_frontier_rate = None
+            root_active_all_negative_adaptive_characteristic_low = None
+            root_active_all_negative_adaptive_characteristic_constant = None
+            root_active_all_negative_adaptive_free_alphabet_size = None
+            root_active_all_negative_adaptive_free_gap_numerator = None
+            root_active_all_negative_adaptive_free_gap_lower_bound = None
+            root_active_all_negative_adaptive_free_gap_holds = None
             root_active_all_negative_adaptive_frontier_rate_refines_uniform = None
             root_active_all_negative_adaptive_frontier_rate_strict = None
             root_active_all_negative_elevated_cap_loss_holds = None
@@ -5572,6 +5625,24 @@ def residual_shape_scan_profile() -> dict:
                 ),
                 "root_active_all_negative_adaptive_frontier_rate": (
                     root_active_all_negative_adaptive_frontier_rate
+                ),
+                "root_active_all_negative_adaptive_characteristic_low": (
+                    root_active_all_negative_adaptive_characteristic_low
+                ),
+                "root_active_all_negative_adaptive_characteristic_constant": (
+                    root_active_all_negative_adaptive_characteristic_constant
+                ),
+                "root_active_all_negative_adaptive_free_alphabet_size": (
+                    root_active_all_negative_adaptive_free_alphabet_size
+                ),
+                "root_active_all_negative_adaptive_free_gap_numerator": (
+                    root_active_all_negative_adaptive_free_gap_numerator
+                ),
+                "root_active_all_negative_adaptive_free_gap_lower_bound": (
+                    root_active_all_negative_adaptive_free_gap_lower_bound
+                ),
+                "root_active_all_negative_adaptive_free_gap_holds": (
+                    root_active_all_negative_adaptive_free_gap_holds
                 ),
                 "root_active_all_negative_adaptive_frontier_rate_refines_uniform": (
                     root_active_all_negative_adaptive_frontier_rate_refines_uniform
@@ -6419,6 +6490,19 @@ def residual_shape_scan_profile() -> dict:
         "root_active_adaptive_frontier_has_strict_tail_rate": any(
             row["root_depth_required"] > row["sigma"]
             and row["root_active_adaptive_frontier_has_strict_tail_rate"]
+            for row in rows
+        ),
+        "root_active_all_negative_adaptive_free_gap": all(
+            row["root_depth_required"] <= row["sigma"]
+            or row["root_active_all_negative_adaptive_free_gap_holds"]
+            for row in rows
+        ),
+        "root_active_all_negative_adaptive_has_nonzero_free_gap": any(
+            row["root_depth_required"] > row["sigma"]
+            and row["root_active_all_negative_adaptive_free_gap_numerator"]
+            is not None
+            and row["root_active_all_negative_adaptive_free_gap_numerator"]
+            > 0
             for row in rows
         ),
         "root_active_elevated_depths_have_cap_loss": all(
@@ -8767,6 +8851,16 @@ def run() -> dict:
         "residual_shape_scan_root_active_adaptive_frontier_strict_tail": (
             residual_shape_scan[
                 "root_active_adaptive_frontier_has_strict_tail_rate"
+            ]
+        ),
+        "residual_shape_scan_root_active_all_negative_adaptive_gap": (
+            residual_shape_scan[
+                "root_active_all_negative_adaptive_free_gap"
+            ]
+        ),
+        "residual_shape_scan_root_active_all_negative_adaptive_gap_case": (
+            residual_shape_scan[
+                "root_active_all_negative_adaptive_has_nonzero_free_gap"
             ]
         ),
         "residual_shape_scan_root_active_elevated_cap_loss": (

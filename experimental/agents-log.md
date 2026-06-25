@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-25 - L2 all-negative adaptive rate gap
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/notes/l2/l2_sharp_target_conjecture.md`,
+  `experimental/scripts/verify_l2_sharp_target.py`, and
+  `experimental/agents-log.md`.
+- **Status:** PROVED / EXPERIMENTAL.
+- **What is being added:** An explicit free-alphabet gap for the all-negative
+  adaptive spectral rate: if `h` root-active depth layers exist in the
+  all-negative alphabet `D`, then `rho_ad(D) < |D|-h^2/(2|D|)`.
+- **How it is useful:** Gives the reserve comparison a quantitative target
+  depending only on the all-negative root-active depth count, after the
+  spike-tail monotonicity reduction.
+- **What to do next:** Convert the gap into a generated-field entropy
+  inequality in the residual clean-cycle window, paying attention to the
+  worst case `h=1`.
+
 ### 2026-06-25 - L2 adaptive tail-rate monotonicity
 
 - **Agent/model:** Codex.
