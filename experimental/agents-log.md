@@ -30,6 +30,23 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-25 - L2 row-affine quotient invariance
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/notes/l2/l2_sharp_target_conjecture.md`,
+  `experimental/scripts/verify_l2_sharp_target.py`, and
+  `experimental/agents-log.md`.
+- **Status:** PROVED / EXPERIMENTAL.
+- **What is being added:** A lemma proving that row-wise nonzero scaling and
+  addition of RS codewords preserve `Lambda_mu`, `Reg_mu`, and the relaxed
+  simultaneous residue-fiber count.
+- **How it is useful:** Places the relaxed V0 residue-fiber target on
+  projective classes in `F_q^H/C`, reducing irrelevant row representatives in
+  future proof searches and scanners.
+- **What to do next:** Use the quotient-coordinate normalization when attacking
+  the relaxed simultaneous-fiber bound.
+
 ### 2026-06-25 - L2 relaxed simultaneous-fiber reduction
 
 - **Agent/model:** Codex.

@@ -5670,6 +5670,61 @@ This is the cleanest current L2-specific proof target. It removes the
 outside-avoidance inequalities from the regular core and asks only for a
 quotient-budgeted bound on the simultaneous residue-moment zero locus.
 
+The relaxed target lives naturally on row classes modulo the Reed-Solomon code.
+
+**Lemma (row-affine quotient invariance).** Let `Q_i in C` and
+`alpha_i in F_q^*` for `1<=i<=mu`, and define
+
+```text
+U_i' = alpha_i U_i + Q_i.
+```
+
+Then the row-wise map
+
+```text
+c_i |-> alpha_i c_i + Q_i
+```
+
+is a bijection from `C` to `C` and preserves full agreement supports:
+
+```text
+A_{U_i'}(alpha_i c_i+Q_i)=A_{U_i}(c_i).
+```
+
+Consequently,
+
+```text
+|Lambda_mu(U',a)|=|Lambda_mu(U,a)|,
+Reg_mu(U',a)=Reg_mu(U,a),
+Fib_mu(U',a)=Fib_mu(U,a).
+```
+
+In residue-moment coordinates,
+
+```text
+R_j(U_i',S)=alpha_i R_j(U_i,S)
+```
+
+for every `a`-set `S` and every `0<=j<sigma`. Thus the simultaneous
+zero-moment locus depends only on the row classes in `F_q^H/C`, with each
+nonzero class understood projectively.
+
+*Proof.* Since `C` is a linear code, `c_i |-> alpha_i c_i+Q_i` is a bijection
+of `C`. At a point `x in H`,
+
+```text
+alpha_i c_i(x)+Q_i(x)=alpha_i U_i(x)+Q_i(x)
+```
+
+is equivalent to `c_i(x)=U_i(x)`, because `alpha_i` is nonzero. This proves
+the agreement-support identity and hence preserves the support-intersection
+formula, the exact-row regular subcount, and the relaxed simultaneous fiber.
+
+For the residue form, `R_j` is linear in the row word. If `Q_i` has degree
+`<k`, then the degree-`<a` interpolant of `Q_i` on any `S` is just `Q_i`, so
+its top syndrome and therefore all residue moments vanish. Hence
+`R_j(U_i',S)=alpha_i R_j(U_i,S)`, preserving the common zero locus.
+
 ## 5. Already proved or checked
 
 The existing L2 notes prove the following inputs.

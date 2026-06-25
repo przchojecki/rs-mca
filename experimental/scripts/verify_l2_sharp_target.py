@@ -399,6 +399,13 @@ def interleaved_count(families: list[list[frozenset[int]]], a: int) -> int:
     return count
 
 
+def affine_transform_word(
+    word: tuple[int, ...], codeword: tuple[int, ...], scalar: int, p: int
+) -> tuple[int, ...]:
+    """Apply a nonzero scalar plus an RS codeword to a received row."""
+    return tuple((scalar * value + codeword[idx]) % p for idx, value in enumerate(word))
+
+
 def support_pair_rank_profile() -> dict:
     """Brute-force the two-support feasibility rank law for one random row."""
     p, n, k, a = 7, 6, 2, 3
@@ -8232,6 +8239,35 @@ def realized_rs_k22() -> dict:
     syndrome_profile = simultaneous_syndrome_profile(
         [tuple(word1), tuple(word2)], h_values, families, k, a, p
     )
+    transformed_words = [
+        affine_transform_word(tuple(word1), codewords[7], 2, p),
+        affine_transform_word(tuple(word2), codewords[13], 5, p),
+    ]
+    transformed_families = [
+        support_families(transformed_words[0], codewords, a),
+        support_families(transformed_words[1], codewords, a),
+    ]
+    transformed_regular_profile = regular_irregular_profile(
+        transformed_families, a
+    )
+    transformed_fiber_profile = simultaneous_fiber_profile(
+        transformed_families, a, n
+    )
+    transformed_syndrome_profile = simultaneous_syndrome_profile(
+        transformed_words, h_values, transformed_families, k, a, p
+    )
+    affine_invariance_profile = {
+        "scalars": [2, 5],
+        "support_families_same": [
+            set(families[idx]) == set(transformed_families[idx])
+            for idx in range(2)
+        ],
+        "interleaved_same": interleaved_count(transformed_families, a)
+        == interleaved,
+        "regular_profile_same": transformed_regular_profile == regular_profile,
+        "fiber_profile_same": transformed_fiber_profile == fiber_profile,
+        "syndrome_profile_same": transformed_syndrome_profile == syndrome_profile,
+    }
     codegree_profile = two_row_codegree_profile(families, a)
     shell_bound = shell_codegree_bound(families, k, a)
     l1_reduction_bound = l1_shell_reduction_bound(families, n, k, a)
@@ -8270,6 +8306,7 @@ def realized_rs_k22() -> dict:
         "regular_irregular_profile": regular_profile,
         "simultaneous_fiber_profile": fiber_profile,
         "simultaneous_syndrome_profile": syndrome_profile,
+        "affine_invariance_profile": affine_invariance_profile,
         "punctured_codegree_profile": codegree_profile,
         "codegree_identity_holds": codegree_profile["codegree_sum"] == interleaved,
         "shell_codegree_bound": shell_bound,
@@ -9459,6 +9496,13 @@ def run() -> dict:
         == 0
         and witness["simultaneous_syndrome_profile"]["moment_zero_mismatches"]
         == 0,
+        "rs_witness_row_affine_invariance": all(
+            witness["affine_invariance_profile"]["support_families_same"]
+        )
+        and witness["affine_invariance_profile"]["interleaved_same"]
+        and witness["affine_invariance_profile"]["regular_profile_same"]
+        and witness["affine_invariance_profile"]["fiber_profile_same"]
+        and witness["affine_invariance_profile"]["syndrome_profile_same"],
         "rs_witness_shell_bound": witness["interleaved"] <= witness["shell_codegree_bound"]["total_bound"],
         "rs_witness_l1_shell_reduction": witness["interleaved"]
         <= witness["l1_shell_reduction_bound"]["total_bound"],
