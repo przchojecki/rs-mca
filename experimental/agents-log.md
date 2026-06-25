@@ -176,7 +176,15 @@ Keep entries concise and link to the relevant files.
   exponent gap `(m-2)r` over the diagonal and a diagonal-relative bound
   `(m^m rho_0^{-(m-2)} q^{-mu(m-2)})^r` for fixed cycle length `m`. The
   verifier checks representative full-rank `F_31` necklaces, including the
-  cross-rank formula and the below-diagonal finite ratios.
+  cross-rank formula and the below-diagonal finite ratios. The complementary
+  rank-deficient necklaces are now counted by choosing a pivot in a nontrivial
+  locator dependency, the other `m-1` edge blocks, and `q^{m-2}` normalized
+  dependency coefficients. Since the locator rank is always at least `2`, this
+  gives exponent gap at least `(m-2)(r-1)` and a diagonal-relative bound
+  `m q^{(mu+1)(m-2)} ((m-1)^{m-1} rho_0^{-(m-3)}
+  q^{-mu(m-2)})^r`. Together with the full-rank case this clears the
+  fixed-length edge-block necklace family in the polynomial-field, linear-`r`
+  regime; the verifier checks the dependency-count bound over `F_31`.
 - **How it is useful:** Turns the L2 objective from a broad "avoid Cartesian
   overcharge" principle into a concrete conjectural inequality that can be
   falsified or promoted. The `K_{2,2}` witness records that local Cartesian
@@ -187,9 +195,9 @@ Keep entries concise and link to the relevant files.
   `Reg_mu <= binom(n,a)q^{-mu(a-k)} + Quot_rem_mu + n^B`, prove/import the
   repaired one-row L1 list bound at `a=k+sigma`, and reconcile the final
   statement with the active X1/L2 bridge PR #101 before promotion.
-  For the regular-core cluster route, classify and count the remaining
-  rank-deficient cyclic necklaces whose edge-block locator span has dimension
-  below the cycle length.
+  For the regular-core cluster route, reduce more general cyclic low-overlap
+  diagrams to edge-block necklaces, or classify and count their own dependency
+  loci.
 
 ### 2026-06-23 - Cycle119 admissibility review
 

@@ -822,6 +822,138 @@ binom(n,mr)/binom(n,2r) <= (n/(2r))^{(m-2)r}
 
 because `2r>=rho_0 n`. This proves the stated bound.
 
+The complementary rank-deficient necklaces can also be counted directly.
+
+**Lemma (rank-deficient cyclic necklace count).** Keep the notation of the
+previous corollary. Let `R=rank span(L_1,...,L_m)`. The rank-corrected exponent
+gap over the diagonal first-moment exponent is
+
+```text
+(m-2)r + R - m.
+```
+
+If `R<m`, then the number of ordered rank-deficient `m`-necklaces is at most
+
+```text
+m q^{m-2} prod_{j=0}^{m-2} binom(n-jr,r).
+```
+
+Moreover `R>=2`, and hence their total contribution divided by the diagonal
+first-moment scale is at most
+
+```text
+  m q^{m-2} prod_{j=0}^{m-2} binom(n-jr,r)
+  ------------------------------------------------ q^{-mu (m-2)(r-1)}.
+                    binom(n,2r)
+```
+
+If `2r=a>=rho_0 n` and `(m-1)r<=n`, this is bounded by
+
+```text
+m q^{(mu+1)(m-2)}
+  ((m-1)^{m-1} rho_0^{-(m-3)} q^{-mu(m-2)})^r.
+```
+
+Thus, for fixed `m`, fixed arity `mu>=2`, generated field size polynomial in
+`n`, and linear `r`, the rank-deficient fixed-length necklace contribution is
+also below the diagonal scale.
+
+*Proof.* The equations around the cycle have the form
+
+```text
+P_i - P_{i-1} = lambda_i L_i.
+```
+
+The cycle closes exactly when
+
+```text
+sum_i lambda_i L_i = 0.
+```
+
+If the locator span has rank `R`, the scalar choices
+`(lambda_1,...,lambda_m)` have dimension `m-R`. After choosing `P_0`, all
+other `P_i` are determined. Hence the feasible polynomial space has dimension
+`k+m-R`, so
+
+```text
+r_cross = mk - (k+m-R) = (m-1)k - m + R.
+```
+
+As above `D=-mr` and `c=m`, so the rank-corrected exponent is
+
+```text
+m(r-1)-mr+(m-1)(r+1)-m+R = (m-1)r+R-m-1.
+```
+
+Subtracting the diagonal exponent `r-1` gives
+`(m-2)r+R-m`.
+
+Now suppose `R<m`. There is a nonzero relation
+`sum_i lambda_i L_i=0`; choose one pivot index with `lambda_j != 0` and
+normalize `lambda_j=1`. Since every `L_i` is monic, the leading coefficient
+condition is
+
+```text
+sum_{i != j} lambda_i = -1.
+```
+
+For fixed pivot `j`, there are `q^{m-2}` choices of the remaining coefficients.
+Choose the other `m-1` disjoint edge blocks in at most
+
+```text
+prod_{j=0}^{m-2} binom(n-jr,r)
+```
+
+ways. The pivot locator is then forced:
+
+```text
+L_j = - sum_{i != j} lambda_i L_i.
+```
+
+This polynomial has at most one possible `r`-element root set in `H`, and often
+none. Multiplying by the `m` pivot choices gives the displayed count bound.
+
+Finally, `R` cannot be `1`: all locator polynomials are monic, so a
+one-dimensional span would make them all equal, contradicting disjoint
+nonempty edge blocks. Thus `R>=2`, and the exponent gap is at least
+`(m-2)(r-1)`. Combining this with the count bound gives the displayed
+diagonal-relative contribution. For the coarse estimate, write the
+`m-1`-block count as
+
+```text
+binom(n,(m-1)r) ((m-1)r)!/(r!)^{m-1}.
+```
+
+The multinomial factor is at most `(m-1)^{(m-1)r}`, and
+
+```text
+binom(n,(m-1)r)/binom(n,2r) <= (n/(2r))^{(m-3)r}
+                             <= rho_0^{-(m-3)r}.
+```
+
+The remaining factor
+`q^{m-2} q^{mu(m-2)}=q^{(mu+1)(m-2)}` comes from replacing
+`q^{-mu(m-2)(r-1)}` by `q^{mu(m-2)}q^{-mu(m-2)r}`.
+
+Combining the full-rank and rank-deficient estimates clears the fixed-length
+edge-block necklace family:
+
+**Corollary (fixed-length cyclic necklace clearance).** Fix `m>=3`. In the
+model
+
+```text
+S_i=E_i union E_{i+1},       |E_i|=k-1,       a=2(k-1),
+```
+
+with pairwise disjoint edge blocks, the total contribution of all ordered
+`m`-necklaces is below the diagonal first-moment scale for fixed arity
+`mu>=2`, generated field size polynomial in `n`, and `k-1` linear in `n`.
+
+This closes the cyclic necklace subfamily left by the forest-overlap ledger.
+It does not yet classify arbitrary cyclic low-overlap diagrams: the remaining
+regular-core cluster work is to reduce more general cyclic diagrams to
+edge-block necklaces or count their own dependency loci.
+
 The connected case also isolates the diagonal exactly.
 
 **Corollary (diagonal is the only zero-loss connected cluster).** Suppose

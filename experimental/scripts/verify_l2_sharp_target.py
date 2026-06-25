@@ -6,7 +6,7 @@ settled by the support-intersection bridge: over-agreement can create
 interleaved mass, so the falsification target is whether that mass can grow like
 a Cartesian product rather than like a polynomial support-overlap codegree.
 
-The script checks seventeen finite objects.
+The script checks eighteen finite objects.
 
 1. The all-remainder quotient packet count used as Quot_rem_mu in the target.
 2. The Johnson-shell weights used in the codegree reduction.
@@ -24,7 +24,8 @@ The script checks seventeen finite objects.
 14. A cyclic low-overlap closed-part rank-deficit family.
 15. The constant locator-ratio subfamily of cyclic triangles.
 16. Full-rank fixed-length cyclic necklaces in the same low-overlap model.
-17. A realized Reed-Solomon K_{2,2} gluing over a prime-field multiplicative
+17. Rank-deficient fixed-length cyclic necklaces, counted by dependency data.
+18. A realized Reed-Solomon K_{2,2} gluing over a prime-field multiplicative
    subgroup, computed by exact list enumeration, together with its punctured
    codegree profile.
 
@@ -1252,6 +1253,71 @@ def full_rank_cyclic_necklace_profile() -> dict:
     }
 
 
+def rank_deficient_cyclic_necklace_profile() -> dict:
+    """Check the dependency-count bound for rank-deficient necklaces."""
+    p, n, mu = 31, 30, 2
+    rows = []
+    for cycle_len in range(3, 7):
+        for r in range(2, 7):
+            k = r + 1
+            a = 2 * r
+            if cycle_len > k or cycle_len * r > n:
+                continue
+            chosen_blocks_count = 1
+            for block in range(cycle_len - 1):
+                chosen_blocks_count *= comb(n - block * r, r)
+            coefficient_choices = p ** (cycle_len - 2)
+            count_bound = cycle_len * coefficient_choices * chosen_blocks_count
+            diagonal_count = comb(n, a)
+            exponent_gap_lower_bound = (cycle_len - 2) * (r - 1)
+            relative_bound = Fraction(
+                count_bound,
+                diagonal_count * p ** (mu * exponent_gap_lower_bound),
+            )
+            rows.append(
+                {
+                    "cycle_len": cycle_len,
+                    "r": r,
+                    "k": k,
+                    "a": a,
+                    "pivot_choices": cycle_len,
+                    "coefficient_choices": coefficient_choices,
+                    "chosen_blocks_count": chosen_blocks_count,
+                    "count_bound": count_bound,
+                    "diagonal_count": diagonal_count,
+                    "locator_rank_lower_bound": 2,
+                    "exponent_gap_lower_bound": exponent_gap_lower_bound,
+                    "relative_bound_to_diagonal": {
+                        "numerator": relative_bound.numerator,
+                        "denominator": relative_bound.denominator,
+                    },
+                }
+            )
+    return {
+        "p": p,
+        "n": n,
+        "mu": mu,
+        "rows": rows,
+        "cycle_lengths_seen": sorted({row["cycle_len"] for row in rows}),
+        "covers_cycle_lengths_three_through_six": {3, 4, 5, 6}
+        <= {row["cycle_len"] for row in rows},
+        "coefficient_choice_formula_holds": all(
+            row["coefficient_choices"] == p ** (row["cycle_len"] - 2)
+            for row in rows
+        ),
+        "exponent_gap_lower_bound_formula_holds": all(
+            row["exponent_gap_lower_bound"]
+            == (row["cycle_len"] - 2) * (row["r"] - 1)
+            for row in rows
+        ),
+        "relative_bound_below_diagonal": all(
+            row["relative_bound_to_diagonal"]["numerator"]
+            < row["relative_bound_to_diagonal"]["denominator"]
+            for row in rows
+        ),
+    }
+
+
 def regular_irregular_profile(families: list[list[frozenset[int]]], a: int) -> dict:
     """Split interleaved tuples by exact-row regularity.
 
@@ -2111,6 +2177,7 @@ def run() -> dict:
     cyclic_rank_deficit = cyclic_overlap_rank_deficit_profile()
     constant_ratio_triangles = constant_ratio_triangle_profile()
     full_rank_necklaces = full_rank_cyclic_necklace_profile()
+    rank_deficient_necklaces = rank_deficient_cyclic_necklace_profile()
     witness = realized_rs_k22()
     checks = {
         "quotient_budget_nonnegative": quotient_example["total"] >= 0,
@@ -2387,6 +2454,18 @@ def run() -> dict:
         "full_rank_necklace_below_diagonal": full_rank_necklaces[
             "relative_bound_below_diagonal"
         ],
+        "rank_deficient_necklace_cycle_lengths": rank_deficient_necklaces[
+            "covers_cycle_lengths_three_through_six"
+        ],
+        "rank_deficient_necklace_coefficients": rank_deficient_necklaces[
+            "coefficient_choice_formula_holds"
+        ],
+        "rank_deficient_necklace_exponent_gap": rank_deficient_necklaces[
+            "exponent_gap_lower_bound_formula_holds"
+        ],
+        "rank_deficient_necklace_below_diagonal": rank_deficient_necklaces[
+            "relative_bound_below_diagonal"
+        ],
         "kmm_grid_formula": all(d["interleaved_edges"] == d["grid_edges_at_n_min"] for d in designs),
         "rs_witness_creates_mass": witness["mass_creation"],
         "rs_witness_realizes_k22": witness["interleaved"] == witness["product_bound"] == 4,
@@ -2461,6 +2540,7 @@ def run() -> dict:
         "cyclic_overlap_rank_deficit_profile": cyclic_rank_deficit,
         "constant_ratio_triangle_profile": constant_ratio_triangles,
         "full_rank_cyclic_necklace_profile": full_rank_necklaces,
+        "rank_deficient_cyclic_necklace_profile": rank_deficient_necklaces,
         "realized_rs_k22": witness,
         "checks": checks,
         "pass": all(checks.values()),
@@ -2617,6 +2697,12 @@ def main(argv: list[str] | None = None) -> int:
             "  full-rank cyclic necklace profile: "
             f"F_{necklaces['p']}, n={necklaces['n']}, "
             f"rows={necklaces['rows']}"
+        )
+        deficient_necklaces = result["rank_deficient_cyclic_necklace_profile"]
+        print(
+            "  rank-deficient cyclic necklace profile: "
+            f"F_{deficient_necklaces['p']}, n={deficient_necklaces['n']}, "
+            f"rows={deficient_necklaces['rows']}"
         )
         print("  K_{m,m} abstract designs:")
         for d in result["kmm_designs"]:
