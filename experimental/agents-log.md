@@ -259,7 +259,13 @@ Keep entries concise and link to the relevant files.
   `d_2=max(0,s_2-k)` controlling the diagonal-relative exponent. The verifier
   checks that every non-small-pair clean-cycle example is below the diagonal
   scale, while the small-pair square is recorded as an intentionally coarse
-  case already removed by the two-edge theorem. The incidence
+  case already removed by the two-edge theorem. The two-edge theorem now also
+  has a proved private-mass reserve gate: if `p_max>=sigma=a-k`, an adjacent
+  edge pair has total size at most `k`, so `R_cyc=k`; otherwise the exponent
+  gap is at least `(m-2)sigma+p_max`. The verifier records this as top-level
+  checks, including that all observed rank defects have private mass below the
+  reserve.
+  The incidence
   counts are now exact in the MDS uniqueness range: if `[ell]` has minimal
   support size `r` and `e>=r`, `r+e<=k`, then
   `N_e([ell])=binom(n-r,e-r)`, so for

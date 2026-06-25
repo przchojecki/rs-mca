@@ -1875,6 +1875,54 @@ bound is `k`, and `R_cyc` cannot exceed the ambient dimension `k`; therefore
 `R_cyc=k`. Substituting into the clean-cycle exponent gap formula gives
 `(m-1)(a-k)`.
 
+The same two-edge lower bound has a useful reserve form. Put
+
+```text
+sigma = a-k,       p_max=max_i p_i.
+```
+
+**Corollary (private-mass reserve gate for clean cycles).** If `p_max>=sigma`,
+then `R_cyc=k`; hence there is no rank-deficient clean-cycle defect. If
+`p_max<sigma`, then the two-edge lower bound gives
+
+```text
+(m-1)(a-k)-d_2 >= (m-2)sigma+p_max,
+       d_2=max(0,s_2-k).
+```
+
+Consequently every rank-deficient clean cycle has `p_i<sigma` for every
+private block, and its two-edge diagonal-relative exponent saving is at least
+`mu((m-2)sigma+p_max)`.
+
+*Proof.* Choose an index `i` with `p_i=p_max`. Since
+
+```text
+p_i = a-e_{i-1}-e_i,
+```
+
+the adjacent pair has size
+
+```text
+e_{i-1}+e_i = a-p_max.
+```
+
+If `p_max>=sigma=a-k`, then this adjacent pair has total size at most `k`, so
+the two-edge lower bound gives `R_cyc=k`. Otherwise
+`s_2<=a-p_max`, and hence
+
+```text
+d_2=max(0,s_2-k) <= a-p_max-k = sigma-p_max.
+```
+
+Therefore
+
+```text
+(m-1)(a-k)-d_2 >= (m-1)sigma-(sigma-p_max)
+                 = (m-2)sigma+p_max.
+```
+
+The final statement is the same exponent bound multiplied by the arity `mu`.
+
 The connected case also isolates the diagonal exactly.
 
 **Corollary (diagonal is the only zero-loss connected cluster).** Suppose

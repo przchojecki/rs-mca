@@ -1469,6 +1469,7 @@ def clean_cycle_rank_profile() -> dict:
         cycle_len = example["cycle_len"]
         k = example["k"]
         a = example["a"]
+        sigma = a - k
         edge_sizes = example["edges"]
         private_sizes = [
             a - edge_sizes[idx - 1] - edge_sizes[idx]
@@ -1538,6 +1539,7 @@ def clean_cycle_rank_profile() -> dict:
         )
         min_edge_size = min(edge_sizes)
         min_edge_index = edge_sizes.index(min_edge_size)
+        max_private_size = max(private_sizes)
         two_edge_lower_bound = (
             k if min_edge_pair_sum <= k else 2 * k - min_edge_pair_sum
         )
@@ -1568,6 +1570,9 @@ def clean_cycle_rank_profile() -> dict:
         )
         two_edge_gap_lower_bound = (
             (cycle_len - 1) * (a - k) - two_edge_defect_upper_bound
+        )
+        private_mass_gap_lower_bound = (
+            (cycle_len - 2) * sigma + max_private_size
         )
         gap_power = mu * two_edge_gap_lower_bound
         if gap_power >= 0:
@@ -1699,8 +1704,10 @@ def clean_cycle_rank_profile() -> dict:
                 "cycle_len": cycle_len,
                 "k": k,
                 "a": a,
+                "sigma": sigma,
                 "edge_sizes": edge_sizes,
                 "private_sizes": private_sizes,
+                "max_private_size": max_private_size,
                 "min_edge_size": min_edge_size,
                 "min_edge_index": min_edge_index,
                 "supports": [list(support) for support in supports],
@@ -1733,6 +1740,7 @@ def clean_cycle_rank_profile() -> dict:
                 "exponent_gap": exponent_gap,
                 "expected_exponent_gap": expected_exponent_gap,
                 "two_edge_gap_lower_bound": two_edge_gap_lower_bound,
+                "private_mass_gap_lower_bound": private_mass_gap_lower_bound,
                 "private_block_bound": private_block_bound,
                 "edge_block_bound": edge_block_bound,
                 "crude_projective_tuple_bound": crude_projective_tuple_bound,
@@ -1830,8 +1838,26 @@ def clean_cycle_rank_profile() -> dict:
             for row in rows
             if row["min_edge_pair_sum"] <= row["k"]
         ),
+        "large_private_mass_forces_full_rank": all(
+            row["vanishing_sum_rank"] == row["k"]
+            for row in rows
+            if row["max_private_size"] >= row["sigma"]
+        ),
+        "rank_defect_requires_private_below_reserve": all(
+            row["rank_defect"] == 0 or row["max_private_size"] < row["sigma"]
+            for row in rows
+        ),
+        "private_mass_gap_bound_holds": all(
+            row["max_private_size"] >= row["sigma"]
+            or row["two_edge_gap_lower_bound"]
+            >= row["private_mass_gap_lower_bound"]
+            for row in rows
+        ),
         "contains_small_pair_case": any(
             row["min_edge_pair_sum"] <= row["k"] for row in rows
+        ),
+        "contains_large_private_mass_case": any(
+            row["max_private_size"] >= row["sigma"] for row in rows
         ),
         "one_edge_tuple_bound_saves": all(
             row["one_edge_tuple_bound"] <= row["crude_projective_tuple_bound"]
@@ -3503,8 +3529,20 @@ def run() -> dict:
         "clean_cycle_small_pair_full_rank": clean_cycles[
             "small_pair_forces_full_rank"
         ],
+        "clean_cycle_large_private_mass_full_rank": clean_cycles[
+            "large_private_mass_forces_full_rank"
+        ],
+        "clean_cycle_rank_defect_private_below_reserve": clean_cycles[
+            "rank_defect_requires_private_below_reserve"
+        ],
+        "clean_cycle_private_mass_gap_bound": clean_cycles[
+            "private_mass_gap_bound_holds"
+        ],
         "clean_cycle_has_small_pair_case": clean_cycles[
             "contains_small_pair_case"
+        ],
+        "clean_cycle_has_large_private_mass_case": clean_cycles[
+            "contains_large_private_mass_case"
         ],
         "clean_cycle_one_edge_tuple_saves": clean_cycles[
             "one_edge_tuple_bound_saves"
