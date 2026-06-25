@@ -1694,6 +1694,20 @@ def clean_cycle_rank_profile() -> dict:
             absorbed_gap_power - all_edge_expected_common_dim
         )
         absorbed_marked_field_margin = absorbed_gap_power - selected_domain_dim
+        doubled_full_common_dim_formula = max(
+            0,
+            cycle_len * sigma
+            - (cycle_len - 2) * k
+            - private_size_sum,
+        )
+        doubled_marked_margin_formula = (
+            2 * absorbed_gap_power
+            - cycle_len * (k - sigma)
+            - private_size_sum
+        )
+        marked_margin_private_mass_threshold = (
+            2 * absorbed_gap_power - cycle_len * (k - sigma)
+        )
         absorbed_hybrid_relative_bound = Fraction(
             all_edge_hybrid_selected_bound,
             comb(n, a) * p**absorbed_gap_power,
@@ -1809,6 +1823,13 @@ def clean_cycle_rank_profile() -> dict:
                 },
                 "absorbed_full_field_margin": absorbed_full_field_margin,
                 "absorbed_marked_field_margin": absorbed_marked_field_margin,
+                "doubled_full_common_dim_formula": (
+                    doubled_full_common_dim_formula
+                ),
+                "doubled_marked_margin_formula": doubled_marked_margin_formula,
+                "marked_margin_private_mass_threshold": (
+                    marked_margin_private_mass_threshold
+                ),
             }
         )
     return {
@@ -2021,6 +2042,24 @@ def clean_cycle_rank_profile() -> dict:
             row["name"] == "triangle_necklace"
             and row["absorbed_full_field_margin"] > 0
             and row["absorbed_marked_field_margin"] > 0
+            for row in rows
+        ),
+        "full_common_dim_mass_formula_holds": all(
+            2 * row["all_edge_expected_common_dim"]
+            == row["doubled_full_common_dim_formula"]
+            for row in rows
+        ),
+        "marked_margin_mass_formula_holds": all(
+            2 * row["absorbed_marked_field_margin"]
+            == row["doubled_marked_margin_formula"]
+            for row in rows
+        ),
+        "marked_margin_positive_iff_private_mass_below_threshold": all(
+            (row["absorbed_marked_field_margin"] > 0)
+            == (
+                row["private_size_sum"]
+                < row["marked_margin_private_mass_threshold"]
+            )
             for row in rows
         ),
     }
@@ -3690,6 +3729,15 @@ def run() -> dict:
         ],
         "clean_cycle_absorbed_field_margins_triangle": clean_cycles[
             "absorbed_field_margins_clear_triangle"
+        ],
+        "clean_cycle_full_common_dim_mass_formula": clean_cycles[
+            "full_common_dim_mass_formula_holds"
+        ],
+        "clean_cycle_marked_margin_mass_formula": clean_cycles[
+            "marked_margin_mass_formula_holds"
+        ],
+        "clean_cycle_marked_margin_threshold": clean_cycles[
+            "marked_margin_positive_iff_private_mass_below_threshold"
         ],
         "functional_incidence_projective_count": functional_incidence[
             "projective_functional_count"

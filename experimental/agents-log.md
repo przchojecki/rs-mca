@@ -276,7 +276,12 @@ Keep entries concise and link to the relevant files.
   selected-edge obstruction must have
   `d_full>=mu(m-2)sigma-o(n)` or
   `r_sel>=mu(m-2)sigma-o(n)`; otherwise the polynomial generated-field growth
-  beats the selected-edge combinatorics.
+  beats the selected-edge combinatorics. The obstruction margins are now
+  rewritten in mass variables:
+  `2d_full=max(0,m sigma-(m-2)k-P)` and
+  `2(T-r_sel)=2mu(m-2)sigma-m(k-sigma)-P`; this shows that the present coarse
+  marked-syzygy count can clear by field exponent alone only above the reserve
+  threshold `sigma/k > m/(2mu(m-2)+m)` up to lower-order terms.
   The incidence
   counts are now exact in the MDS uniqueness range: if `[ell]` has minimal
   support size `r` and `e>=r`, `r+e<=k`, then

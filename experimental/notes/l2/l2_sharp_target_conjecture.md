@@ -2049,6 +2049,56 @@ the right-hand side is at most a constant times
 which tends to zero. Dividing by `binom(n,a)>=1` can only improve the bound.
 The final obstruction statement is the contrapositive.
 
+The two field-exponent margins have a transparent mass form.
+
+**Corollary (mass form of the selected-edge obstruction).** With
+`P=sum_i p_i` and `T=mu(m-2)sigma`,
+
+```text
+2 d_full = max(0, m sigma - (m-2)k - P),
+2(T-r_sel) = 2mu(m-2)sigma - m(k-sigma) - P.
+```
+
+Consequently the marked-syzygy side of the present selected-edge gate has a
+linear field-exponent margin exactly when
+
+```text
+P <= 2mu(m-2)sigma - m(k-sigma) - Omega(n).
+```
+
+In particular, if
+
+```text
+[2mu(m-2)+m]sigma <= m k - Omega(n),
+```
+
+then no clean-cycle shape can be cleared by this coarse marked-syzygy
+field-exponent gate alone. Equivalently, ignoring `o(1)` terms, the current
+selected-syzygy count needs
+
+```text
+sigma/k > m/(2mu(m-2)+m)
+```
+
+before it can clear by generated-field exponent without a sharper count for
+`B_mark`.
+
+*Proof.* The identity for `d_full` follows from
+
+```text
+2E=m(k+sigma)-P,       d_full=max(0,E-(m-1)k).
+```
+
+For the marked term, use
+
+```text
+2r_sel=m(k-sigma)+P.
+```
+
+Subtracting from `2T=2mu(m-2)sigma` gives the second display. The remaining
+claims are immediate from `P>=0` and the requirement that `T-r_sel` have a
+positive linear margin in the selected-edge field-exponent gate.
+
 The connected case also isolates the diagonal exactly.
 
 **Corollary (diagonal is the only zero-loss connected cluster).** Suppose
