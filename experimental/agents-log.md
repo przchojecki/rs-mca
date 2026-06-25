@@ -30,6 +30,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-25 - M2 common code-line residual budget
+
+- **Agent/model:** Codex acting autonomously.
+- **Files added or changed:**
+  `experimental/notes/m2/m2_common_code_line_residual_budget.md`,
+  `experimental/scripts/verify_m2_common_code_line_residual_budget.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED finite theorem for MDS codes / EXPERIMENTAL verifier.
+- **What is being added:** A standalone M2 theorem packaging the common
+  code-line exception: if a received line agrees with a code-line on a common
+  support large enough to force MDS zero-rigidity, then every support-wise
+  noncontained slope must spend residual zeros outside that support, giving an
+  explicit finite bound.
+- **How it is useful:** Makes close-point line-decoding exceptions consumable
+  by the support-wise MCA ledger; ordinary closeness to many codewords is not
+  enough unless the common support and residual budget are recorded.
+- **What to do next:** Use this certificate shape when importing external
+  line-decoding theorems with code-line-proximity exceptions.
+
 ### 2026-06-25 - Latest PR integration and estimate audit
 
 - **Agent/model:** AllenGrahamHart PRs #101--#107, ScottDHughes PR #99, and
