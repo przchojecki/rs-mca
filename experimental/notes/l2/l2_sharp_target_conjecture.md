@@ -3383,6 +3383,48 @@ exactly the root-depth requirement that at least one coordinate satisfy
 global gate from the finite certificate, so failure makes the candidate count
 zero.
 
+Equivalently, the obstruction is a depth-packing problem.
+
+**Corollary (depth-transfer residual certificate).** In the all-negative
+sector put `y_i=-x_i>0`, and define the root-depth threshold
+
+```text
+R=k-B=2mu(m-2)sigma-(m-1)k.
+```
+
+Then adjacent feasibility is exactly
+
+```text
+y_{i-1}+y_i <= 2sigma,
+```
+
+and the root-depth gate is that some depth satisfies `y_i>=R`, unless the
+unique spike `u` itself satisfies `u<=B-k=-R`. In a spike sector of height
+`u`, the nonspike depths additionally satisfy `y_i>=u+2`.
+
+Thus the residual clean-cycle obstruction is equivalently a finite cyclic
+packing problem on positive depths: count cyclic words with adjacent depth
+sums at most `2sigma`, with at most one spike and with the root-depth gate
+above. In these variables the global pair-cap clearance criterion is simply
+the condition
+
+```text
+R >= 2sigma,
+```
+
+because all possible depths in the balanced window are strictly less than
+`2sigma`.
+
+*Proof.* The substitution `y_i=-x_i` sends the adjacent centered inequality
+`-2sigma<=x_{i-1}+x_i<0` between two negative coordinates to
+`y_{i-1}+y_i<=2sigma`. The spike constraint `u+x_i<0`, together with parity,
+is exactly `y_i>=u+2`. The root-depth condition
+`min_i x_i<=B-k` becomes `max_i y_i>=k-B=R`, unless the spike already satisfies
+the centered root condition. Since the balanced window gives `y_i<2sigma`, no
+root depth can exist when `R>=2sigma`; this is the pair-cap clearance
+inequality rewritten as
+`2(mu(m-2)-1)sigma>=(m-1)k`.
+
 The finite certificate is monotone in the interleaving arity.
 
 **Corollary (arity monotonicity of residual-shape certificates).** Fix

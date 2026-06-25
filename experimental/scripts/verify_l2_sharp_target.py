@@ -3116,6 +3116,50 @@ def residual_shape_scan_profile() -> dict:
             if adjacent_deviations_ok(current, spike, sigma)
         )
 
+    def adjacent_depths_ok(left: int, right: int, sigma: int) -> bool:
+        return left + right <= 2 * sigma
+
+    def cyclic_depth_count(
+        depths: list[int], cycle_len: int, sigma: int
+    ) -> int:
+        if not depths:
+            return 0
+        count = 0
+        for start in depths:
+            state_counts = {start: 1}
+            for _ in range(cycle_len - 1):
+                next_counts: dict[int, int] = {}
+                for current, current_count in state_counts.items():
+                    for nxt in depths:
+                        if adjacent_depths_ok(current, nxt, sigma):
+                            next_counts[nxt] = (
+                                next_counts.get(nxt, 0) + current_count
+                            )
+                state_counts = next_counts
+            count += sum(
+                current_count
+                for current, current_count in state_counts.items()
+                if adjacent_depths_ok(current, start, sigma)
+            )
+        return count
+
+    def pinned_spike_depth_count(
+        spike: int, depths: list[int], cycle_len: int, sigma: int
+    ) -> int:
+        if not depths:
+            return 0
+        state_counts = {depth: 1 for depth in depths}
+        for _ in range(cycle_len - 2):
+            next_counts: dict[int, int] = {}
+            for current, current_count in state_counts.items():
+                for nxt in depths:
+                    if adjacent_depths_ok(current, nxt, sigma):
+                        next_counts[nxt] = (
+                            next_counts.get(nxt, 0) + current_count
+                        )
+            state_counts = next_counts
+        return sum(state_counts.values())
+
     scan_cases = [
         {"name": "triangle_nonempty", "cycle_len": 3, "mu": 2, "k": 8, "sigma": 3},
         {
@@ -3164,6 +3208,7 @@ def residual_shape_scan_profile() -> dict:
             for deviation in deviation_alphabet_values
             if deviation < 0
         ]
+        depth_values = sorted(-deviation for deviation in negative_deviation_values)
         nonnegative_deviation_values = [
             deviation
             for deviation in deviation_alphabet_values
@@ -3321,6 +3366,65 @@ def residual_shape_scan_profile() -> dict:
             + cycle_len
             * sum(row["root_depth_walk_count"] for row in transfer_spike_rows)
         )
+        root_depth_required = k - root_budget
+        depth_all_negative_count = (
+            0
+            if root_budget < 4
+            else (
+                cyclic_depth_count(depth_values, cycle_len, sigma)
+                - cyclic_depth_count(
+                    [
+                        depth
+                        for depth in depth_values
+                        if depth < root_depth_required
+                    ],
+                    cycle_len,
+                    sigma,
+                )
+            )
+        )
+        depth_spike_rows = []
+        for spike_row in spike_height_rows:
+            spike = spike_row["spike"]
+            allowed_depths = sorted(
+                -deviation
+                for deviation in spike_row["allowed_negative_values"]
+            )
+            below_root_depths = [
+                depth for depth in allowed_depths if depth < root_depth_required
+            ]
+            if root_budget < 4 or not spike_row["total_compatible"]:
+                depth_walk_count = 0
+            else:
+                all_depth_walk_count = pinned_spike_depth_count(
+                    spike, allowed_depths, cycle_len, sigma
+                )
+                if spike <= root_depth_threshold:
+                    depth_walk_count = all_depth_walk_count
+                else:
+                    depth_walk_count = (
+                        all_depth_walk_count
+                        - pinned_spike_depth_count(
+                            spike,
+                            below_root_depths,
+                            cycle_len,
+                            sigma,
+                        )
+                    )
+            depth_spike_rows.append(
+                {
+                    "spike": spike,
+                    "allowed_depths": allowed_depths,
+                    "depth_walk_count": depth_walk_count,
+                }
+            )
+        depth_transfer_candidate_count = (
+            0
+            if not odd_compatible
+            else depth_all_negative_count
+            + cycle_len
+            * sum(row["depth_walk_count"] for row in depth_spike_rows)
+        )
         candidate_count = 0
         candidates = set()
         examples = []
@@ -3474,6 +3578,7 @@ def residual_shape_scan_profile() -> dict:
                 "balanced_window_values": balanced_window_values,
                 "deviation_alphabet_values": deviation_alphabet_values,
                 "negative_deviation_values": negative_deviation_values,
+                "depth_values": depth_values,
                 "nonnegative_deviation_values": nonnegative_deviation_values,
                 "balanced_window_size": len(balanced_window_values),
                 "balanced_window_size_bound": 2 * sigma,
@@ -3489,6 +3594,10 @@ def residual_shape_scan_profile() -> dict:
                 "transfer_all_negative_count": transfer_all_negative_count,
                 "transfer_spike_rows": transfer_spike_rows,
                 "transfer_candidate_count": transfer_candidate_count,
+                "root_depth_required": root_depth_required,
+                "depth_all_negative_count": depth_all_negative_count,
+                "depth_spike_rows": depth_spike_rows,
+                "depth_transfer_candidate_count": depth_transfer_candidate_count,
                 "centered_candidate_count": len(centered_candidates),
                 "centered_matches_dimension_scan": (
                     centered_candidates == candidates
@@ -3742,6 +3851,26 @@ def residual_shape_scan_profile() -> dict:
         ),
         "transfer_count_detects_empty_case": any(
             row["transfer_candidate_count"] == 0 for row in rows
+        ),
+        "depth_transfer_matches_centered_transfer": all(
+            row["depth_transfer_candidate_count"]
+            == row["transfer_candidate_count"]
+            for row in rows
+        ),
+        "depth_transfer_matches_dimension_scan": all(
+            row["depth_transfer_candidate_count"] == row["candidate_count"]
+            for row in rows
+        ),
+        "depth_pair_cap_clearance_matches_root_threshold": all(
+            (row["pair_cap_predicts_empty"])
+            == (row["root_depth_required"] >= 2 * row["sigma"])
+            for row in rows
+        ),
+        "depth_transfer_detects_nonempty_case": any(
+            row["depth_transfer_candidate_count"] > 0 for row in rows
+        ),
+        "depth_transfer_detects_empty_case": any(
+            row["depth_transfer_candidate_count"] == 0 for row in rows
         ),
         "pair_cap_clearance_holds": all(
             row["candidate_count"] == 0
@@ -5788,6 +5917,21 @@ def run() -> dict:
         ],
         "residual_shape_scan_transfer_empty": residual_shape_scan[
             "transfer_count_detects_empty_case"
+        ],
+        "residual_shape_scan_depth_transfer_matches": residual_shape_scan[
+            "depth_transfer_matches_centered_transfer"
+        ],
+        "residual_shape_scan_depth_transfer_scan": residual_shape_scan[
+            "depth_transfer_matches_dimension_scan"
+        ],
+        "residual_shape_scan_depth_pair_cap": residual_shape_scan[
+            "depth_pair_cap_clearance_matches_root_threshold"
+        ],
+        "residual_shape_scan_depth_transfer_nonempty": residual_shape_scan[
+            "depth_transfer_detects_nonempty_case"
+        ],
+        "residual_shape_scan_depth_transfer_empty": residual_shape_scan[
+            "depth_transfer_detects_empty_case"
         ],
         "residual_shape_scan_pair_cap_clearance": residual_shape_scan[
             "pair_cap_clearance_holds"

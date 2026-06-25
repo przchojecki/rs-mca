@@ -320,9 +320,12 @@ Keep entries concise and link to the relevant files.
   emptiness when the root budget is below `4`. The exact centered certificate
   is also expressed as a transfer-matrix cyclic-walk count on the finite
   deviation alphabet, matching the raw residual candidate count exactly in the
-  verifier. The certificate is also monotone in arity: for fixed `m,k,sigma`,
-  candidate sets shrink as `mu` increases, so emptiness at `mu_0` certifies
-  emptiness for all larger arities.
+  verifier. In positive depth variables `y=-x`, adjacent feasibility is the
+  packing rule `y_i+y_{i+1}<=2sigma`; the root gate is the lower bound
+  `max_i y_i>=2mu(m-2)sigma-(m-1)k`; and the pair-cap clearance threshold is
+  exactly the impossibility of reaching depth `2sigma`. The certificate is
+  also monotone in arity: for fixed `m,k,sigma`, candidate sets shrink as `mu`
+  increases, so emptiness at `mu_0` certifies emptiness for all larger arities.
   Combining
   the pivot, monic, and domain gates gives a
   marked selected-syzygy tuple bound; the verifier checks that this general
