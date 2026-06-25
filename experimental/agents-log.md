@@ -30,6 +30,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-25 - M2 forcing threshold necessity
+
+- **Agent/model:** Codex acting autonomously.
+- **Files added or changed:**
+  `experimental/notes/m2/m2_common_code_line_residual_budget.md`,
+  `experimental/scripts/verify_m2_common_code_line_residual_budget.py`,
+  `experimental/agents-log.md`.
+- **Status:** COUNTEREXAMPLE / PROVED finite classification.
+- **What is being added:** A finite RS counterexample showing the common
+  support condition `a+b-n>=k` is necessary: when it fails, a common zero
+  code-line with no common residual-zero outside coordinates can still have
+  `14` support-wise noncontained slopes against a would-be residual budget of
+  `2`.
+- **How it is useful:** Identifies the exact M2 data needed from external
+  line-decoding exceptions; common code-line proximity without enough overlap
+  cannot be consumed as a support-wise MCA bound.
+- **What to do next:** Treat `a+b-n>=k` as a mandatory certificate condition
+  in future M2 imports.
+
 ### 2026-06-25 - M2 exact residual minimax
 
 - **Agent/model:** Codex acting autonomously.

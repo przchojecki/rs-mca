@@ -196,6 +196,85 @@ must use additional structure, such as the geometry of the particular
 line-decoding theorem, the smooth-domain quotient profile, or correlations
 between the exceptional certificates.
 
+## Forcing Threshold Is Necessary
+
+The hypothesis
+
+```text
+a+b-n >= k
+```
+
+is also a real boundary, not a proof artifact.  If it fails, common code-line
+proximity can leave many support-wise noncontained slopes even when the
+residual outside the common support has no common zero.
+
+Here is a finite Reed-Solomon counterexample.  Let
+
+```text
+C = RS[F_17,{0,1,...,7},3],        a=4,
+S0={0,1,...,5},                    Omega={6,7}.
+```
+
+Then `b=6` and
+
+```text
+a+b-n = 2 < 3 = k.
+```
+
+Take the zero common code-line on `S0`, and define words
+
+```text
+f = 1_{7},        g = 1_{6}.
+```
+
+Thus `f=g=0` on `S0`, while `c0=0` and `h=max(1,a-b)=1`.  If one ignored the
+forcing threshold, the residual count would suggest the bound
+
+```text
+floor(|Omega|/h)=2.
+```
+
+In fact the support-wise noncontained slope set has size `14`:
+
+```text
+{0,3,4,6,7,8,9,10,11,12,13,14,15,16}.
+```
+
+For `z != 0`, a support containing both outside coordinates has the form
+`{r1,r2,6,7}` with `r1,r2 in S0`.  The line point `f+z g` is explained on this
+support exactly when
+
+```text
+z = ((6-r1)(6-r2)) / ((7-r1)(7-r2)).
+```
+
+The explaining polynomial is the quadratic
+
+```text
+q(X) = ((X-r1)(X-r2)) / ((7-r1)(7-r2)),
+```
+
+which vanishes at `r1,r2`, equals `1` at `7`, and equals `z` at `6`.  The
+direction `g` is not explained on the same support: a degree-`<3` polynomial
+with zeros at `r1,r2,7` must be zero, contradicting `g(6)=1`.  Hence every
+listed nonzero slope is support-wise noncontained.  The slope `z=0` is
+witnessed by any support `{r1,r2,r3,6}` with three points in `S0`; the zero
+codeword explains the line point there, while the same three-zero argument
+shows that `g` is not explained.
+
+Conversely, these are the only possibilities.  A size-`4` support that
+contains neither outside coordinate is contained.  A support containing only
+`7` cannot explain the line point, because it would require a quadratic with
+three prescribed zeros and a nonzero value at `7`.  A support containing only
+`6` explains only the slope `z=0`.  A support containing both outside
+coordinates gives exactly the displayed ratio.  Direct enumeration over
+`F_17` gives the listed `14` slopes.
+
+Thus an external M2 line-decoding import cannot replace the common-support
+condition by a weaker "close to a code-line on many coordinates" statement.
+The overlap `a+b-n` must be large enough to force the residual explaining
+codeword to vanish.
+
 ## Proof
 
 Let `z` have a support-wise noncontained witness `T`, so `|T|>=a` and
@@ -271,4 +350,4 @@ The verifier enumerates small Reed-Solomon codes, all agreement supports, and
 all slopes. It checks the spike example and deterministic residual cases,
 including a sharp case with common residual-zero coordinates, confirming the
 per-slope residual-zero condition, the finite residual bound, and its
-attainability.
+attainability. It also checks the threshold-necessity counterexample above.

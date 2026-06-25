@@ -242,19 +242,86 @@ def sharp_common_zero_residual_case() -> dict[str, Any]:
     return report
 
 
+def threshold_necessity_counterexample() -> dict[str, Any]:
+    prime = 17
+    n = 8
+    k = 3
+    agreement = 4
+    common_support = tuple(range(6))
+    zero = (0,) * n
+    f = [0] * n
+    g = [0] * n
+    f[7] = 1
+    g[6] = 1
+
+    words = codewords(prime, k, tuple(range(n)))
+    support_code = support_tables(words, n, agreement)
+    bad_slopes, witnesses = supportwise_bad_slopes(
+        tuple(f), tuple(g), prime, support_code
+    )
+
+    omega = tuple(i for i in range(n) if i not in set(common_support))
+    h = max(1, agreement - len(common_support))
+    c0 = 0
+    naive_residual_bound = (len(omega) - c0) // (h - c0)
+    overlap_floor = agreement + len(common_support) - n
+
+    formula_slopes = {
+        ((6 - r1) * (6 - r2) * pow((7 - r1) * (7 - r2), -1, prime)) % prime
+        for r1, r2 in itertools.combinations(common_support, 2)
+    }
+    expected = sorted({0} | formula_slopes)
+
+    if overlap_floor >= k:
+        raise AssertionError("threshold counterexample unexpectedly meets MDS forcing")
+    if bad_slopes != expected:
+        raise AssertionError("threshold counterexample slope set changed")
+    if len(bad_slopes) <= naive_residual_bound:
+        raise AssertionError("threshold counterexample does not violate residual bound")
+
+    return {
+        "label": "threshold_necessity_counterexample",
+        "prime": prime,
+        "n": n,
+        "k": k,
+        "agreement": agreement,
+        "common_support_size": len(common_support),
+        "omega_size": len(omega),
+        "overlap_floor": overlap_floor,
+        "h": h,
+        "c0": c0,
+        "naive_residual_bound": naive_residual_bound,
+        "bad_slope_count": len(bad_slopes),
+        "bad_slopes": bad_slopes,
+        "formula_slope_count": len(formula_slopes),
+        "witness_count": len(witnesses),
+        "threshold_holds": overlap_floor >= k,
+        "bound_violated_without_threshold": len(bad_slopes) > naive_residual_bound,
+    }
+
+
 def main() -> None:
     reports = [
         spike_case(),
         deterministic_residual_case(),
         sharp_common_zero_residual_case(),
+        threshold_necessity_counterexample(),
     ]
     for report in reports:
-        print(
-            "{label}: p={prime} n={n} k={k} agreement={agreement} "
-            "b={common_support_size} e={error_budget} s={support_defect} "
-            "h={h} c0={c0} bad={bad_slope_count} "
-            "bound={residual_bound}".format(**report)
-        )
+        if "residual_bound" in report:
+            print(
+                "{label}: p={prime} n={n} k={k} agreement={agreement} "
+                "b={common_support_size} e={error_budget} s={support_defect} "
+                "h={h} c0={c0} bad={bad_slope_count} "
+                "bound={residual_bound}".format(**report)
+            )
+        else:
+            print(
+                "{label}: p={prime} n={n} k={k} agreement={agreement} "
+                "b={common_support_size} overlap={overlap_floor} "
+                "h={h} c0={c0} bad={bad_slope_count} "
+                "naive_bound={naive_residual_bound}".format(**report)
+            )
     print("m2_common_code_line_residual_budget: PASS")
     print("CERT " + json.dumps(reports, sort_keys=True))
 
