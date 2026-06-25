@@ -611,6 +611,118 @@ def check_mixed_profile_exchange_case(
                 )
 
 
+def one_fiber_internal_kernel(fiber_size: int, source: int) -> Counter[int]:
+    return Counter(
+        {
+            exchange: comb(source, exchange) * comb(fiber_size - source, exchange)
+            for exchange in range(min(source, fiber_size - source) + 1)
+        }
+    )
+
+
+def one_fiber_deficit_one_kernel(fiber_size: int, source: int) -> Counter[int]:
+    if source == 0:
+        return Counter()
+    return Counter(
+        {
+            exchange: comb(source, exchange) * comb(fiber_size - source, exchange - 1)
+            for exchange in range(1, min(source, fiber_size - source + 1) + 1)
+        }
+    )
+
+
+def one_fiber_surplus_one_kernel(fiber_size: int, source: int) -> Counter[int]:
+    if source == fiber_size:
+        return Counter()
+    return Counter(
+        {
+            exchange: comb(source, exchange) * comb(fiber_size - source, exchange + 1)
+            for exchange in range(min(source, fiber_size - source - 1) + 1)
+        }
+    )
+
+
+def first_mixed_shell_formula(
+    fiber_size: int,
+    source_occupancy: tuple[int, ...],
+) -> Counter[int]:
+    total: Counter[int] = Counter()
+    internal_kernels = [
+        one_fiber_internal_kernel(fiber_size, source)
+        for source in source_occupancy
+    ]
+    deficit_kernels = [
+        one_fiber_deficit_one_kernel(fiber_size, source)
+        for source in source_occupancy
+    ]
+    surplus_kernels = [
+        one_fiber_surplus_one_kernel(fiber_size, source)
+        for source in source_occupancy
+    ]
+
+    for deficit_index, deficit_kernel in enumerate(deficit_kernels):
+        if not deficit_kernel:
+            continue
+        for surplus_index, surplus_kernel in enumerate(surplus_kernels):
+            if deficit_index == surplus_index or not surplus_kernel:
+                continue
+            product = multiply_polynomials(deficit_kernel, surplus_kernel)
+            for fiber_index, internal_kernel in enumerate(internal_kernels):
+                if fiber_index in (deficit_index, surplus_index):
+                    continue
+                product = multiply_polynomials(product, internal_kernel)
+            total.update(product)
+    return +total
+
+
+def check_first_mixed_shell_case(
+    fiber_count: int,
+    fiber_size: int,
+    support_size: int,
+) -> None:
+    domain_size = fiber_count * fiber_size
+    for source_occupancy in occupancy_vectors(fiber_count, fiber_size, support_size):
+        first_shell = first_mixed_shell_formula(fiber_size, source_occupancy)
+        general_kernel = mixed_profile_exchange_kernel_formula(fiber_size, source_occupancy)
+        from_general = Counter(
+            {
+                exchange: count
+                for (profile_distance, exchange), count in general_kernel.items()
+                if profile_distance == 1
+            }
+        )
+        if first_shell != from_general:
+            raise AssertionError(
+                (fiber_count, fiber_size, support_size, source_occupancy, first_shell, from_general)
+            )
+
+        internal_exchange = internal_exchange_one(source_occupancy, fiber_size)
+        expected_exchange_one = support_size * (domain_size - support_size) - internal_exchange
+        if first_shell.get(1, 0) != expected_exchange_one:
+            raise AssertionError(
+                (
+                    fiber_count,
+                    fiber_size,
+                    support_size,
+                    source_occupancy,
+                    first_shell.get(1, 0),
+                    expected_exchange_one,
+                )
+            )
+
+        total_exchange_one = internal_exchange + first_shell.get(1, 0)
+        if total_exchange_one != support_size * (domain_size - support_size):
+            raise AssertionError(
+                (
+                    fiber_count,
+                    fiber_size,
+                    support_size,
+                    source_occupancy,
+                    total_exchange_one,
+                )
+            )
+
+
 def occupancy_vectors(
     fiber_count: int,
     fiber_size: int,
@@ -1205,6 +1317,13 @@ def main() -> int:
         (5, 2, 5, 4),
     ]:
         check_mixed_profile_exchange_case(*case)
+    for case in [
+        (3, 3, 4),
+        (4, 2, 4),
+        (4, 3, 5),
+        (5, 2, 5),
+    ]:
+        check_first_mixed_shell_case(*case)
     for case in [
         (4, 3, 4),
         (4, 3, 6),

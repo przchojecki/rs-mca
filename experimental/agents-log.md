@@ -49,8 +49,10 @@ Keep entries concise and link to the relevant files.
   and co-maximal-dither one-remainder ledger, plus an exact mixed-vector
   minimum-exchange cutoff and finite profile-neighborhood enumerator for
   cross-occupancy residuals, together with a support-level mixed kernel that
-  counts target supports by both profile distance and exchange size. A small
-  verifier checks the formulas against brute-force enumeration.
+  counts target supports by both profile distance and exchange size. It also
+  factors the first mixed shell `d_occ=1` and gives the exact slack-two split
+  between internal partial-fiber motion and one-unit mixed profile transport.
+  A small verifier checks the formulas against brute-force enumeration.
 - **How it is useful:** Separates the budgeted quotient-periodic M1 support
   terms from the remaining partial-fiber / aperiodic residue-line target, and
   identifies the local low-exchange kernel the residual proof must control.
@@ -70,7 +72,9 @@ Keep entries concise and link to the relevant files.
   before residue-line or character-sum estimates enter. The support-level
   kernel gives the corresponding exact max-codegree envelope and shows that
   the remaining M1 difficulty is the aperiodic residue-line occupation inside
-  this finite local kernel, rather than hidden support-pair bookkeeping.
+  this finite local kernel, rather than hidden support-pair bookkeeping. The
+  first-shell factorization resolves the full support-pair ledger at exchange
+  one, the only strict exchange level for slack two.
 - **What to do next:** Use this theorem as the quotient ledger before attacking
   the aperiodic M1 local-limit residual.
 

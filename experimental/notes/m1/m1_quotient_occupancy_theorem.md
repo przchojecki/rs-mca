@@ -466,6 +466,74 @@ Finally, if the profile distance variable is forgotten, a target support at
 exchange `j` is just the choice of `j` source points to remove and `j`
 complement points to insert, giving `binom(s,j)binom(n-s,j)`.
 
+### Corollary 6.4. First Mixed Shell Factorization
+
+The first mixed shell `d_occ=1` has a closed one-variable factorization.  For
+one fiber with source occupancy `a_i`, define
+
+```text
+K_i(x) = sum_e binom(a_i,e) binom(m-a_i,e) x^e,
+
+D_i(x) = sum_{e>=1} binom(a_i,e) binom(m-a_i,e-1) x^e,
+
+U_i(x) = sum_{e>=0} binom(a_i,e) binom(m-a_i,e+1) x^e,
+```
+
+with the convention that out-of-range binomial coefficients vanish.  Here
+`K_i` is the internal same-occupancy kernel, `D_i` is the kernel for lowering
+the fiber occupancy by one, and `U_i` is the kernel for raising it by one.
+Then
+
+```text
+sum_j M_a(1,j) x^j
+  = sum_{i != h} D_i(x) U_h(x) prod_{ell notin {i,h}} K_ell(x).
+```
+
+In particular,
+
+```text
+M_a(1,1)
+  = sum_{i != h} a_i(m-a_h)
+  = s(n-s) - sum_i a_i(m-a_i).
+```
+
+Thus at slack `t=2`, the mixed-profile strict envelope around `a` is exactly
+
+```text
+R_a^mix(2,q)
+  = q * (s(n-s) - P(a)),
+      P(a)=sum_i a_i(m-a_i),
+```
+
+while the same-profile internal exchange-one envelope is `qP(a)`.  The full
+support layer therefore has exchange-one envelope `q s(n-s)`, split exactly
+between internal partial-fiber motion and one-unit mixed profile transport.
+
+#### Proof
+
+If `d_occ(a,c(T))=1`, the target occupancy vector is obtained from `a` by
+choosing an ordered pair of distinct fibers `(i,h)`, lowering occupancy in
+`i` by one, and raising occupancy in `h` by one.  In the lowered fiber, if
+the local exchange is `e`, one removes `e` source points and inserts `e-1`
+new points; this gives `D_i`.  In the raised fiber, one removes `e` source
+points and inserts `e+1` new points; this gives `U_h`.  Every other fiber has
+the same source and target occupancy and contributes `K_ell`.  Multiplying
+and summing over `(i,h)` gives the first formula.
+
+For the coefficient of `x`, no internal exchange can occur in the untouched
+fibers.  The lowered fiber must remove one chosen source point, and the raised
+fiber must add one chosen complement point, giving `a_i(m-a_h)` choices for
+the ordered pair `(i,h)`.  Summing over `i != h` gives
+
+```text
+sum_{i != h} a_i(m-a_h)
+  = (sum_i a_i)(sum_h (m-a_h)) - sum_i a_i(m-a_i)
+  = s(n-s) - P(a).
+```
+
+The slack-two statement is Corollary 6.3 restricted to the only strict
+exchange level `j=1`.
+
 ## Theorem 7. Sharp Exchange-One Residual Floor
 
 For an occupancy vector `a=(a_1,...,a_N)`, put
