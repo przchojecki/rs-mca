@@ -336,6 +336,66 @@ gives the displayed leading coefficient.  No exchange smaller than
 `d_occ(a,b)` can occur, so strict exchanges `0<|S\T|<t` are absent whenever
 `a != b` and `d_occ(a,b)>=t`.
 
+### Corollary 6.2. Finite Mixed-Profile Neighborhood
+
+The cutoff in Corollary 6.1 makes the mixed residual a finite-radius graph on
+occupancy profiles.  Fix an occupancy vector `a` of support size `s`, and let
+
+```text
+B_a(d) = #{ b in {0,...,m}^N :
+              sum_i b_i=s,        d_occ(a,b)=d }.
+```
+
+Then the exact profile-neighborhood enumerator is
+
+```text
+sum_{d>=0} B_a(d) y^d
+ =
+ [z^0] prod_{i=1}^N
+   ( sum_{u=0}^{a_i} y^u z^{-u}
+     + sum_{v=1}^{m-a_i} z^v ).
+```
+
+In particular,
+
+```text
+B_a(d) <= binom(N+d-1,d)^2,
+```
+
+and the number of occupancy vectors `b != a` that can contribute to the
+strict M1 overlap range at slack `t` is at most
+
+```text
+sum_{d=1}^{t-1} binom(N+d-1,d)^2.
+```
+
+Equivalently, after quotient-periodic profiles have been separated, the
+profile-level strict-overlap graph has maximum degree bounded by this explicit
+finite-radius composition count.  Thus the remaining mixed partial-fiber
+residual is local in `d_occ`: all covariance outside this profile ball is
+absent before any character-sum or residue-line estimate is used.
+
+#### Proof
+
+For a target profile `b`, write the positive and negative parts of the
+difference as
+
+```text
+u_i = max(0,a_i-b_i),        v_i = max(0,b_i-a_i).
+```
+
+Since `sum_i a_i=sum_i b_i`, both `u` and `v` have total mass
+`d_occ(a,b)`.  In one fiber, a deficit of size `u` contributes the monomial
+`y^u z^{-u}`, while a surplus of size `v>0` contributes `z^v`; the coefficient
+of `z^0` imposes equality of total deficits and surpluses.  This gives the
+displayed enumerator.
+
+The map `b -> (u,v)` is injective.  Ignoring the upper bounds coming from `a`
+and `m-a`, the number of possible deficit vectors of total mass `d` is
+`binom(N+d-1,d)`, and the same bound holds for surplus vectors.  Multiplying
+gives the displayed upper bound.  Corollary 6.1 then removes every profile
+with `d>=t` from the strict-overlap ledger.
+
 ## Theorem 7. Sharp Exchange-One Residual Floor
 
 For an occupancy vector `a=(a_1,...,a_N)`, put

@@ -191,6 +191,22 @@ def multiply_polynomials(left: Counter[int], right: Counter[int]) -> Counter[int
     return product
 
 
+def multiply_bivariate(
+    left: Counter[tuple[int, int]],
+    right: Counter[tuple[int, int]],
+) -> Counter[tuple[int, int]]:
+    product: Counter[tuple[int, int]] = Counter()
+    for (left_balance, left_distance), left_coeff in left.items():
+        for (right_balance, right_distance), right_coeff in right.items():
+            product[
+                (
+                    left_balance + right_balance,
+                    left_distance + right_distance,
+                )
+            ] += left_coeff * right_coeff
+    return product
+
+
 def exchange_kernel_formula(
     fiber_size: int,
     source_occupancy: tuple[int, ...],
@@ -353,6 +369,103 @@ def check_minimum_exchange_all_case(
                 source_occupancy,
                 target_occupancy,
                 slack,
+            )
+
+
+def profile_neighbor_counts_formula(
+    fiber_size: int,
+    source_occupancy: tuple[int, ...],
+) -> Counter[int]:
+    kernel: Counter[tuple[int, int]] = Counter({(0, 0): 1})
+    for source in source_occupancy:
+        fiber_kernel: Counter[tuple[int, int]] = Counter()
+        for target in range(fiber_size + 1):
+            if target <= source:
+                deficit = source - target
+                fiber_kernel[(-deficit, deficit)] += 1
+            else:
+                surplus = target - source
+                fiber_kernel[(surplus, 0)] += 1
+        kernel = multiply_bivariate(kernel, fiber_kernel)
+    return +Counter(
+        {
+            distance: coefficient
+            for (balance, distance), coefficient in kernel.items()
+            if balance == 0
+        }
+    )
+
+
+def profile_neighbor_counts_brute(
+    fiber_count: int,
+    fiber_size: int,
+    support_size: int,
+    source_occupancy: tuple[int, ...],
+) -> Counter[int]:
+    counts: Counter[int] = Counter()
+    for target_occupancy in occupancy_vectors(fiber_count, fiber_size, support_size):
+        counts[occupancy_exchange_distance(source_occupancy, target_occupancy)] += 1
+    return counts
+
+
+def profile_neighborhood_bound(fiber_count: int, distance: int) -> int:
+    return comb(fiber_count + distance - 1, distance) ** 2
+
+
+def check_profile_neighborhood_case(
+    fiber_count: int,
+    fiber_size: int,
+    support_size: int,
+    slack: int,
+) -> None:
+    vectors = occupancy_vectors(fiber_count, fiber_size, support_size)
+    degree_bound = sum(
+        profile_neighborhood_bound(fiber_count, distance)
+        for distance in range(1, slack)
+    )
+    for source_occupancy in vectors:
+        formula = profile_neighbor_counts_formula(fiber_size, source_occupancy)
+        brute = profile_neighbor_counts_brute(
+            fiber_count,
+            fiber_size,
+            support_size,
+            source_occupancy,
+        )
+        if formula != brute:
+            raise AssertionError(
+                (fiber_count, fiber_size, support_size, source_occupancy, formula, brute)
+            )
+        if formula.get(0, 0) != 1:
+            raise AssertionError((fiber_count, fiber_size, support_size, source_occupancy))
+        for distance, count in formula.items():
+            bound = profile_neighborhood_bound(fiber_count, distance)
+            if count > bound:
+                raise AssertionError(
+                    (
+                        fiber_count,
+                        fiber_size,
+                        support_size,
+                        source_occupancy,
+                        distance,
+                        count,
+                        bound,
+                    )
+                )
+        strict_neighbors = sum(
+            count
+            for distance, count in formula.items()
+            if 0 < distance < slack
+        )
+        if strict_neighbors > degree_bound:
+            raise AssertionError(
+                (
+                    fiber_count,
+                    fiber_size,
+                    support_size,
+                    source_occupancy,
+                    strict_neighbors,
+                    degree_bound,
+                )
             )
 
 
@@ -936,6 +1049,13 @@ def main() -> int:
         (5, 2, 5, 3),
     ]:
         check_minimum_exchange_all_case(*case)
+    for case in [
+        (3, 3, 4, 2),
+        (4, 2, 4, 3),
+        (4, 3, 5, 3),
+        (5, 2, 5, 4),
+    ]:
+        check_profile_neighborhood_case(*case)
     for case in [
         (4, 3, 4),
         (4, 3, 6),
