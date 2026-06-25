@@ -3529,6 +3529,58 @@ def residual_shape_scan_profile() -> dict:
             )
         return total
 
+    def uniform_cap_parameters(
+        depths: list[int], root_depth: int, sigma: int
+    ) -> tuple[int, int, int]:
+        high_depths = [depth for depth in depths if depth >= root_depth]
+        low_depths = [depth for depth in depths if depth < root_depth]
+        return (
+            len(high_depths),
+            max_boundary_cap_count(low_depths, high_depths, sigma),
+            low_transfer_degree_bound(low_depths, sigma),
+        )
+
+    def path_uniform_cap_recurrence_bound(
+        vertex_count: int, high_count: int, cap_count: int, degree_bound: int
+    ) -> int:
+        if vertex_count == 0:
+            return 0
+        end_high = high_count
+        end_low = cap_count
+        for _ in range(1, vertex_count):
+            end_high, end_low = (
+                high_count * end_low,
+                cap_count * end_high + degree_bound * end_low,
+            )
+        all_low_weight = cap_count * (degree_bound ** (vertex_count - 1))
+        return end_high + end_low - all_low_weight
+
+    def cycle_uniform_cap_trace_bound(
+        vertex_count: int, high_count: int, cap_count: int, degree_bound: int
+    ) -> int:
+        matrix = ((0, cap_count), (high_count, degree_bound))
+        power = ((1, 0), (0, 1))
+        for _ in range(vertex_count):
+            power = (
+                (
+                    power[0][0] * matrix[0][0]
+                    + power[0][1] * matrix[1][0],
+                    power[0][0] * matrix[0][1]
+                    + power[0][1] * matrix[1][1],
+                ),
+                (
+                    power[1][0] * matrix[0][0]
+                    + power[1][1] * matrix[1][0],
+                    power[1][0] * matrix[0][1]
+                    + power[1][1] * matrix[1][1],
+                ),
+            )
+        return (
+            power[0][0]
+            + power[1][1]
+            - (degree_bound ** vertex_count)
+        )
+
     def triangle_all_negative_root_active_count(
         depths: list[int], root_depth: int, sigma: int
     ) -> int:
@@ -3945,6 +3997,23 @@ def residual_shape_scan_profile() -> dict:
                     cycle=True,
                 )
             )
+            (
+                all_negative_uniform_high_count,
+                all_negative_uniform_cap_count,
+                all_negative_uniform_degree_bound,
+            ) = uniform_cap_parameters(
+                depth_values, root_depth_required, sigma
+            )
+            root_active_all_negative_uniform_recurrence_bound = (
+                0
+                if root_budget < 4 or not odd_compatible
+                else cycle_uniform_cap_trace_bound(
+                    cycle_len,
+                    all_negative_uniform_high_count,
+                    all_negative_uniform_cap_count,
+                    all_negative_uniform_degree_bound,
+                )
+            )
             root_active_triangle_all_negative_count = (
                 None
                 if cycle_len != 3
@@ -4024,6 +4093,7 @@ def residual_shape_scan_profile() -> dict:
                     bridge_count = 0
                     bridge_cap_bound = 0
                     uniform_cap_bound = 0
+                    uniform_recurrence_bound = 0
                     triangle_formula_count = 0 if cycle_len == 3 else None
                     square_formula_count = 0 if cycle_len == 4 else None
                 else:
@@ -4060,6 +4130,21 @@ def residual_shape_scan_profile() -> dict:
                             root_depth_required,
                             sigma,
                             cycle=False,
+                        )
+                    )
+                    (
+                        spike_uniform_high_count,
+                        spike_uniform_cap_count,
+                        spike_uniform_degree_bound,
+                    ) = uniform_cap_parameters(
+                        allowed_depths, root_depth_required, sigma
+                    )
+                    uniform_recurrence_bound = (
+                        path_uniform_cap_recurrence_bound(
+                            cycle_len - 1,
+                            spike_uniform_high_count,
+                            spike_uniform_cap_count,
+                            spike_uniform_degree_bound,
                         )
                     )
                     triangle_formula_count = (
@@ -4132,6 +4217,7 @@ def residual_shape_scan_profile() -> dict:
                         "bridge_count": bridge_count,
                         "bridge_cap_bound": bridge_cap_bound,
                         "uniform_cap_bound": uniform_cap_bound,
+                        "uniform_recurrence_bound": uniform_recurrence_bound,
                         "triangle_formula_count": triangle_formula_count,
                         "square_formula_count": square_formula_count,
                         "spectral_rate": spectral_rate,
@@ -4187,6 +4273,14 @@ def residual_shape_scan_profile() -> dict:
                     for row in root_active_spike_bound_rows
                 )
             )
+            root_active_uniform_recurrence_bound = (
+                root_active_all_negative_uniform_recurrence_bound
+                + cycle_len
+                * sum(
+                    row["uniform_recurrence_bound"]
+                    for row in root_active_spike_bound_rows
+                )
+            )
             root_active_triangle_formula_count = (
                 None
                 if cycle_len != 3
@@ -4224,6 +4318,7 @@ def residual_shape_scan_profile() -> dict:
             root_active_all_negative_bridge_count = None
             root_active_all_negative_bridge_cap_bound = None
             root_active_all_negative_uniform_cap_bound = None
+            root_active_all_negative_uniform_recurrence_bound = None
             root_active_triangle_all_negative_count = None
             root_active_square_all_negative_count = None
             root_active_all_negative_bound = None
@@ -4238,6 +4333,7 @@ def residual_shape_scan_profile() -> dict:
             root_active_bridge_count = None
             root_active_bridge_cap_bound = None
             root_active_uniform_cap_bound = None
+            root_active_uniform_recurrence_bound = None
             root_active_triangle_formula_count = None
             root_active_square_formula_count = None
             root_active_spectral_bound = None
@@ -4475,6 +4571,9 @@ def residual_shape_scan_profile() -> dict:
                 "root_active_all_negative_uniform_cap_bound": (
                     root_active_all_negative_uniform_cap_bound
                 ),
+                "root_active_all_negative_uniform_recurrence_bound": (
+                    root_active_all_negative_uniform_recurrence_bound
+                ),
                 "root_active_triangle_all_negative_count": (
                     root_active_triangle_all_negative_count
                 ),
@@ -4504,6 +4603,9 @@ def residual_shape_scan_profile() -> dict:
                 "root_active_bridge_count": root_active_bridge_count,
                 "root_active_bridge_cap_bound": root_active_bridge_cap_bound,
                 "root_active_uniform_cap_bound": root_active_uniform_cap_bound,
+                "root_active_uniform_recurrence_bound": (
+                    root_active_uniform_recurrence_bound
+                ),
                 "root_active_triangle_formula_count": (
                     root_active_triangle_formula_count
                 ),
@@ -4946,6 +5048,18 @@ def residual_shape_scan_profile() -> dict:
             and row["root_depth_required"] > row["sigma"]
             and row["root_active_uniform_cap_bound"]
             < row["root_active_independent_set_bound"]
+            for row in rows
+        ),
+        "root_active_uniform_recurrence_matches_sum": all(
+            row["root_depth_required"] <= row["sigma"]
+            or row["root_active_uniform_recurrence_bound"]
+            == row["root_active_uniform_cap_bound"]
+            for row in rows
+        ),
+        "root_active_uniform_recurrence_bounds_capped": all(
+            row["root_depth_required"] <= row["sigma"]
+            or row["root_active_bridge_cap_bound"]
+            <= row["root_active_uniform_recurrence_bound"]
             for row in rows
         ),
         "root_active_triangle_formula_matches_exact": all(
@@ -7130,6 +7244,12 @@ def run() -> dict:
         "residual_shape_scan_root_active_uniform_strict": residual_shape_scan[
             "root_active_uniform_cap_has_strict_case"
         ],
+        "residual_shape_scan_root_active_uniform_recurrence": residual_shape_scan[
+            "root_active_uniform_recurrence_matches_sum"
+        ],
+        "residual_shape_scan_root_active_uniform_recurrence_bounds": (
+            residual_shape_scan["root_active_uniform_recurrence_bounds_capped"]
+        ),
         "residual_shape_scan_root_active_triangle_formula": residual_shape_scan[
             "root_active_triangle_formula_matches_exact"
         ],

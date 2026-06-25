@@ -3717,6 +3717,62 @@ number of low vertices is `n-k(I)`, the exponent is `n-k(I)-b(I)`, with
 `c_E<=|L_E|` and `Delta_E<=|L_E|`, so this is bounded by
 `h_E^{k(I)} |L_E|^{n-k(I)}`, the corresponding independent-set term.
 
+The uniform envelope has a two-state recurrence.
+
+**Corollary (recurrence form of the uniform cap-degree envelope).** Fix
+nonnegative integers `h,c,Delta`. For paths, let `A_n` be the total weight of
+valid length-`n` high/low words ending in a high vertex, and let `B_n` be the
+total weight of such words ending in a low vertex, with high vertices weighted
+by `h`, the first vertex of each low component weighted by `c`, and each
+later vertex of that low component weighted by `Delta`. Then
+
+```text
+A_1=h,        B_1=c,
+A_{n+1}=h B_n,
+B_{n+1}=c A_n+Delta B_n.
+```
+
+The nonempty-high path envelope is therefore
+
+```text
+P_n=A_n+B_n-c Delta^{n-1}        for n>=1,
+```
+
+where the subtracted term is the all-low word.
+
+For cycles, put
+
+```text
+T = [[0, c],
+     [h, Delta]].
+```
+
+Then the nonempty-high cycle envelope is
+
+```text
+U_n=tr(T^n)-Delta^n.
+```
+
+Consequently the uniform cap-degree bound for the root-active residual
+frontier is computable in `O(m)`: use `U_m` for the all-negative sector and
+`P_{m-1}` for each pinned spike sector, with `(h,c,Delta)` specialized to the
+corresponding depth alphabet.
+
+*Proof.* For paths, appending a high vertex is possible only after a low
+vertex and contributes weight `h`, giving `A_{n+1}=hB_n`. Appending a low
+vertex after a high vertex starts a new low component and contributes `c`;
+appending a low vertex after a low vertex extends the component and
+contributes `Delta`. This gives the recurrence for `B_{n+1}`. The only word
+with no high vertices is the all-low word, which has weight
+`c Delta^{n-1}`.
+
+For cycles, use the transfer matrix with rows indexed by the current symbol
+and columns by the next symbol: transitions `H->H` are forbidden, `H->L`
+starts a low component with weight `c`, `L->H` contributes a high vertex with
+weight `h`, and `L->L` extends a low component with weight `Delta`. Taking the
+trace of `T^n` sums cyclic words with these transition weights. The all-low
+cycle contributes `Delta^n` and is subtracted.
+
 For triangles, the transfer subtraction has a closed form.
 
 **Corollary (closed triangular root-active count).** Assume the hypotheses of

@@ -30,6 +30,22 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-25 - L2 uniform envelope recurrence
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/notes/l2/l2_sharp_target_conjecture.md`,
+  `experimental/scripts/verify_l2_sharp_target.py`, and
+  `experimental/agents-log.md`.
+- **Status:** PROVED / EXPERIMENTAL.
+- **What is being added:** A two-state path recurrence and 2x2 cycle trace
+  formula for the uniform cap-degree bridge envelope.
+- **How it is useful:** Replaces enumeration over independent root-active
+  sets by an `O(m)` recurrence, making the root-active residual bound usable
+  for longer clean cycles.
+- **What to do next:** Analyze the characteristic roots of this recurrence to
+  compare the residual frontier directly with the L2 reserve.
+
 ### 2026-06-25 - L2 uniform cap-degree envelope
 
 - **Agent/model:** Codex.
