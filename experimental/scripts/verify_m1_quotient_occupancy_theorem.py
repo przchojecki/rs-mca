@@ -183,6 +183,92 @@ def check_exchange_case(
         raise AssertionError((fiber_count, whole_fibers, fiber_size, direct_budget, formula_budget))
 
 
+def multiply_polynomials(left: Counter[int], right: Counter[int]) -> Counter[int]:
+    product: Counter[int] = Counter()
+    for left_degree, left_coeff in left.items():
+        for right_degree, right_coeff in right.items():
+            product[left_degree + right_degree] += left_coeff * right_coeff
+    return product
+
+
+def exchange_kernel_formula(
+    fiber_size: int,
+    source_occupancy: tuple[int, ...],
+    target_occupancy: tuple[int, ...],
+) -> Counter[int]:
+    kernel: Counter[int] = Counter({0: 1})
+    for source, target in zip(source_occupancy, target_occupancy):
+        fiber_kernel: Counter[int] = Counter()
+        lower = max(0, source + target - fiber_size)
+        upper = min(source, target)
+        for intersection in range(lower, upper + 1):
+            exchange = source - intersection
+            fiber_kernel[exchange] += comb(source, intersection) * comb(
+                fiber_size - source,
+                target - intersection,
+            )
+        kernel = multiply_polynomials(kernel, fiber_kernel)
+    return +kernel
+
+
+def canonical_support(
+    fiber_size: int,
+    occupancy: tuple[int, ...],
+) -> frozenset[int]:
+    points: set[int] = set()
+    for fiber, count in enumerate(occupancy):
+        for point in range(count):
+            points.add(fiber * fiber_size + point)
+    return frozenset(points)
+
+
+def supports_with_occupancy(
+    fiber_size: int,
+    occupancy: tuple[int, ...],
+) -> list[frozenset[int]]:
+    per_fiber_choices: list[list[tuple[int, ...]]] = []
+    for count in occupancy:
+        per_fiber_choices.append(list(itertools.combinations(range(fiber_size), count)))
+    supports: list[frozenset[int]] = []
+    for choices in itertools.product(*per_fiber_choices):
+        points: set[int] = set()
+        for fiber, fiber_points in enumerate(choices):
+            for point in fiber_points:
+                points.add(fiber * fiber_size + point)
+        supports.append(frozenset(points))
+    return supports
+
+
+def brute_exchange_kernel(
+    fiber_size: int,
+    source_occupancy: tuple[int, ...],
+    target_occupancy: tuple[int, ...],
+) -> Counter[int]:
+    source = canonical_support(fiber_size, source_occupancy)
+    counts: Counter[int] = Counter()
+    for target in supports_with_occupancy(fiber_size, target_occupancy):
+        counts[len(source - target)] += 1
+    return counts
+
+
+def check_exchange_kernel_case(
+    fiber_size: int,
+    source_occupancy: tuple[int, ...],
+    target_occupancy: tuple[int, ...],
+) -> None:
+    if sum(source_occupancy) != sum(target_occupancy):
+        raise AssertionError((source_occupancy, target_occupancy, "unequal support sizes"))
+    formula = exchange_kernel_formula(fiber_size, source_occupancy, target_occupancy)
+    brute = brute_exchange_kernel(fiber_size, source_occupancy, target_occupancy)
+    if formula != brute:
+        raise AssertionError((fiber_size, source_occupancy, target_occupancy, formula, brute))
+    if source_occupancy == target_occupancy:
+        exchange_one = formula.get(1, 0)
+        expected = sum(source * (fiber_size - source) for source in source_occupancy)
+        if exchange_one != expected:
+            raise AssertionError((fiber_size, source_occupancy, exchange_one, expected))
+
+
 def main() -> int:
     for case in [
         (4, 2, 3),
@@ -198,6 +284,14 @@ def main() -> int:
         (6, 2, 3, 5, 11),
     ]:
         check_exchange_case(*case)
+    for case in [
+        (3, (1, 2, 0), (2, 1, 0)),
+        (3, (1, 1, 2), (2, 0, 2)),
+        (2, (1, 0, 2, 1), (0, 1, 2, 1)),
+        (4, (0, 2, 3), (1, 1, 3)),
+        (4, (1, 2, 0), (1, 2, 0)),
+    ]:
+        check_exchange_kernel_case(*case)
     print("M1 quotient occupancy theorem verifier passed")
     return 0
 

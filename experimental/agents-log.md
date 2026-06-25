@@ -39,11 +39,13 @@ Keep entries concise and link to the relevant files.
   `experimental/agents-log.md`.
 - **Status:** PROVED / AUDIT.
 - **What is being added:** A compact theorem note giving exact quotient-fiber
-  occupancy counts, exact whole-fiber exchange profiles, and the resulting
-  strict-overlap M1 quotient budget. A small verifier checks the formulas
-  against brute-force enumeration.
+  occupancy counts, exact whole-fiber exchange profiles, the resulting
+  strict-overlap M1 quotient budget, and a fiberwise exchange-kernel formula
+  for partial-fiber residuals. A small verifier checks the formulas against
+  brute-force enumeration.
 - **How it is useful:** Separates the budgeted quotient-periodic M1 support
-  terms from the remaining partial-fiber / aperiodic residue-line target.
+  terms from the remaining partial-fiber / aperiodic residue-line target, and
+  identifies the local low-exchange kernel the residual proof must control.
 - **What to do next:** Use this theorem as the quotient ledger before attacking
   the aperiodic M1 local-limit residual.
 

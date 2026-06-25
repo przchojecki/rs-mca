@@ -200,6 +200,102 @@ support ledger is a finite, explicit term.  The non-quotient M1 target is the
 remaining support mass after these exact whole-fiber quotient ledgers are
 removed or budgeted.
 
+## Theorem 5. Fiberwise Exchange Kernel
+
+The whole-fiber quotient family is only one occupancy stratum.  The exact
+residual bookkeeping can also be written fiber by fiber.
+
+Fix two occupancy vectors
+
+```text
+a=(a_1,...,a_N),        b=(b_1,...,b_N),
+```
+
+with
+
+```text
+0 <= a_i,b_i <= m,        sum_i a_i = sum_i b_i = s.
+```
+
+Fix a support `S` satisfying
+
+```text
+|S cap B_i| = a_i        for every i.
+```
+
+Let `E_{a->b}(j;S)` be the number of supports `T` with
+
+```text
+|T cap B_i| = b_i        for every i,
+|S \ T| = j.
+```
+
+Then `E_{a->b}(j;S)` is independent of the particular support `S` with
+occupancy vector `a`, and its generating polynomial is
+
+```text
+sum_j E_{a->b}(j;S) x^j
+  = prod_{i=1}^N
+      sum_{r=max(0,a_i+b_i-m)}^{min(a_i,b_i)}
+        binom(a_i,r) binom(m-a_i,b_i-r) x^(a_i-r).
+```
+
+### Proof
+
+In fiber `B_i`, the target support `T` has `b_i` points and meets the fixed
+set `S cap B_i` in some number `r_i`.  This number must satisfy
+
+```text
+max(0,a_i+b_i-m) <= r_i <= min(a_i,b_i).
+```
+
+For fixed `r_i`, there are
+
+```text
+binom(a_i,r_i) binom(m-a_i,b_i-r_i)
+```
+
+choices: keep `r_i` of the `a_i` selected points of `S`, and choose the
+remaining `b_i-r_i` target points from the `m-a_i` unselected points of the
+fiber.  The fiber contributes `a_i-r_i` removed points to `|S \ T|`.  The
+fibers are independent, so multiplying the one-fiber generating functions and
+taking the coefficient of `x^j` gives the formula.
+
+## Corollary 6. Internal Partial-Fiber Ledger
+
+For a fixed occupancy vector `a`, the exchange kernel inside the same labeled
+occupancy stratum is
+
+```text
+K_a^int(x)
+  = prod_{i=1}^N
+      sum_{e=0}^{min(a_i,m-a_i)}
+        binom(a_i,e) binom(m-a_i,e) x^e.
+```
+
+In particular,
+
+```text
+[x] K_a^int(x) = sum_i a_i(m-a_i).
+```
+
+Thus a labeled occupancy vector has no exchange-one internal residual if and
+only if every fiber is either empty or full.  Partial fibers are therefore the
+first unavoidable source of aperiodic low-exchange mass after the whole-fiber
+quotient scales have been removed.
+
+For M1 slack `t`, the exact same-vector internal weighted strict-overlap
+ledger is
+
+```text
+R_a^int(t,q)
+  = sum_{1 <= j <= t-1} [x^j] K_a^int(x) q^(t-j).
+```
+
+This does not yet sum over all occupancy vectors or over cross-vector moves.
+It gives the local residual kernel that a proof of the aperiodic M1 bound has
+to control.
+
 ## Dyadic Dither Consequence
 
 Suppose
@@ -255,3 +351,5 @@ python3 experimental/scripts/verify_m1_quotient_occupancy_theorem.py
 
 checks the occupancy count formula, the whole-fiber exchange profile, and the
 strict-overlap quotient budget against brute-force enumeration in small cases.
+It also checks the fiberwise exchange kernel for several partial-fiber
+occupancy vectors.
