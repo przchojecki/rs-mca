@@ -604,6 +604,72 @@ family are both chargeable by explicit finite terms in the same M1 variance
 ledger.  The remaining uncharged part is the mixed partial-fiber / aperiodic
 occupancy residual.
 
+### Corollary 8.3. Maximal-Dither All-Scale Ledger
+
+The stable formula leaves a finite dyadic prefix.  For the adaptive maximal
+choice this prefix is also explicit.
+
+Assume `s=Lm+1`, put
+
+```text
+A=N-L-1,
+```
+
+and consider the one-remainder family `A_{L,1}`.  Its complete strict profile
+is
+
+```text
+H_{L,1}^{<t}(x)
+ =
+  sum_{h>=0, hm+1<t}
+    binom(L,h) binom(A,h) (m(A-h+1)-1) x^(hm+1)
+
+  + sum_{h>=1, hm<t}
+      binom(L,h) binom(A,h) (1+2mh) x^(hm)
+
+  + sum_{h>=1, hm-1<t}
+      mh binom(L,h) binom(A,h-1) x^(hm-1),
+```
+
+with the convention that infeasible binomial coefficients vanish.  The
+corresponding weighted correction is obtained by multiplying the coefficient
+of `x^j` by `q^(t-j)` and summing over `1<=j<t`.
+
+In the dyadic maximal-dither setting
+
+```text
+n=Nm,        k0=Lm,        k=k0-(t-1),
+```
+
+every dyadic quotient scale `m|k0` has `s=k+t=k0+1`, so the formula applies at
+every scale.  It simplifies outside the small prefix:
+
+```text
+m>t:        R_MAX(m,t,q) = (n-k0-1) q^(t-1),
+
+m=t:        R_MAX(m,t,q) = (n-k0-1) q^(t-1) + k0 q.
+```
+
+All remaining nonlinear terms occur only at dyadic scales
+
+```text
+2 <= m < t,        m | k0,
+```
+
+whose count is at most `floor(log2(t-1))` for `t>=3` and zero for `t<=2`.
+
+The over-dithered adjacent choice `k=k0-(t+1)` is complement-dual.  Its
+co-remainder-one ledger satisfies
+
+```text
+m>t:        R_CO_MAX(m,t,q) = (k0-1) q^(t-1),
+
+m=t:        R_CO_MAX(m,t,q) = (k0-1) q^(t-1) + (n-k0) q,
+```
+
+with the same finite small-scale prefix.  Hence a gap-one adaptive choice has
+a closed random-line quotient-remainder certificate at every dyadic scale.
+
 ## Dyadic Dither Consequence
 
 Suppose
@@ -666,4 +732,5 @@ It also checks the fiberwise exchange kernel for several partial-fiber
 occupancy vectors, the sharp exchange-one residual floor, and the large-fiber
 one-remainder formula on both sides of the exact dimension, including the
 stable weighted tail, finite dyadic prefix, and one-remainder variance
-correction.
+correction.  It also checks the maximal-dither and co-maximal-dither
+all-scale ledgers against brute-force enumeration.

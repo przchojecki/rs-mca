@@ -685,6 +685,140 @@ def check_dyadic_prefix_case(
         raise AssertionError((exact_dimension, slack, gap, prefix, expected_count))
 
 
+def maximal_dither_all_scale_formula(
+    fiber_count: int,
+    fiber_size: int,
+    whole_fibers: int,
+    slack: int,
+) -> Counter[int]:
+    empty_after_remainder = fiber_count - whole_fibers - 1
+    profile: Counter[int] = Counter()
+
+    for exchange_fibers in range(0, whole_fibers + 1):
+        exchange = exchange_fibers * fiber_size + 1
+        if exchange < slack:
+            coefficient = (
+                comb(whole_fibers, exchange_fibers)
+                * comb(empty_after_remainder, exchange_fibers)
+                * (fiber_size * (empty_after_remainder - exchange_fibers + 1) - 1)
+            )
+            profile[exchange] += coefficient
+
+    for exchange_fibers in range(1, whole_fibers + 1):
+        exchange = exchange_fibers * fiber_size
+        if exchange < slack:
+            coefficient = (
+                comb(whole_fibers, exchange_fibers)
+                * comb(empty_after_remainder, exchange_fibers)
+                * (1 + 2 * fiber_size * exchange_fibers)
+            )
+            profile[exchange] += coefficient
+
+        exchange = exchange_fibers * fiber_size - 1
+        if exchange < slack:
+            coefficient = (
+                fiber_size
+                * exchange_fibers
+                * comb(whole_fibers, exchange_fibers)
+                * comb(empty_after_remainder, exchange_fibers - 1)
+            )
+            profile[exchange] += coefficient
+
+    return +profile
+
+
+def co_maximal_dither_all_scale_formula(
+    fiber_count: int,
+    fiber_size: int,
+    whole_fibers: int,
+    slack: int,
+) -> Counter[int]:
+    return maximal_dither_all_scale_formula(
+        fiber_count,
+        fiber_size,
+        fiber_count - whole_fibers - 1,
+        slack,
+    )
+
+
+def check_maximal_all_scale_case(
+    fiber_count: int,
+    fiber_size: int,
+    whole_fibers: int,
+    slack: int,
+    field_size: int,
+) -> None:
+    formula = maximal_dither_all_scale_formula(
+        fiber_count,
+        fiber_size,
+        whole_fibers,
+        slack,
+    )
+    brute = brute_one_remainder_strict_profile(
+        fiber_count,
+        fiber_size,
+        whole_fibers,
+        1,
+        slack,
+    )
+    if formula != brute:
+        raise AssertionError((fiber_count, fiber_size, whole_fibers, slack, formula, brute))
+
+    domain_size = fiber_count * fiber_size
+    exact_dimension = whole_fibers * fiber_size
+    correction = weighted_profile(formula, slack, field_size)
+    if fiber_size > slack:
+        expected = (domain_size - exact_dimension - 1) * field_size ** (slack - 1)
+        if correction != expected:
+            raise AssertionError((domain_size, exact_dimension, slack, fiber_size, correction, expected))
+    if fiber_size == slack:
+        expected = (
+            (domain_size - exact_dimension - 1) * field_size ** (slack - 1)
+            + exact_dimension * field_size
+        )
+        if correction != expected:
+            raise AssertionError((domain_size, exact_dimension, slack, fiber_size, correction, expected))
+
+
+def check_co_maximal_all_scale_case(
+    fiber_count: int,
+    fiber_size: int,
+    whole_fibers: int,
+    slack: int,
+    field_size: int,
+) -> None:
+    formula = co_maximal_dither_all_scale_formula(
+        fiber_count,
+        fiber_size,
+        whole_fibers,
+        slack,
+    )
+    brute = brute_one_remainder_strict_profile(
+        fiber_count,
+        fiber_size,
+        whole_fibers,
+        fiber_size - 1,
+        slack,
+    )
+    if formula != brute:
+        raise AssertionError((fiber_count, fiber_size, whole_fibers, slack, formula, brute))
+
+    exact_dimension = (whole_fibers + 1) * fiber_size
+    domain_size = fiber_count * fiber_size
+    correction = weighted_profile(formula, slack, field_size)
+    if fiber_size > slack:
+        expected = (exact_dimension - 1) * field_size ** (slack - 1)
+        if correction != expected:
+            raise AssertionError((domain_size, exact_dimension, slack, fiber_size, correction, expected))
+    if fiber_size == slack:
+        expected = (
+            (exact_dimension - 1) * field_size ** (slack - 1)
+            + (domain_size - exact_dimension) * field_size
+        )
+        if correction != expected:
+            raise AssertionError((domain_size, exact_dimension, slack, fiber_size, correction, expected))
+
+
 def main() -> int:
     for case in [
         (4, 2, 3),
@@ -742,6 +876,20 @@ def main() -> int:
         (256, 17, 1),
     ]:
         check_dyadic_prefix_case(*case)
+    for case in [
+        (5, 3, 2, 5, 7),
+        (6, 4, 2, 4, 7),
+        (6, 5, 2, 4, 11),
+        (5, 6, 2, 4, 11),
+    ]:
+        check_maximal_all_scale_case(*case)
+    for case in [
+        (5, 3, 1, 5, 7),
+        (6, 4, 2, 4, 7),
+        (6, 5, 2, 4, 11),
+        (5, 6, 1, 4, 11),
+    ]:
+        check_co_maximal_all_scale_case(*case)
     print("M1 quotient occupancy theorem verifier passed")
     return 0
 

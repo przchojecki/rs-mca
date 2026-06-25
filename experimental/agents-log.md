@@ -45,8 +45,9 @@ Keep entries concise and link to the relevant files.
   floor and the large-fiber one-remainder strict budget controlling the first
   dithered quotient layer on both sides of the exact dimension, including the
   exact stable weighted tail, finite dyadic prefix, and one-remainder
-  variance-consumption term. A small verifier checks the formulas against
-  brute-force enumeration.
+  variance-consumption term. It also records the all-scale maximal-dither
+  and co-maximal-dither one-remainder ledger. A small verifier checks the
+  formulas against brute-force enumeration.
 - **How it is useful:** Separates the budgeted quotient-periodic M1 support
   terms from the remaining partial-fiber / aperiodic residue-line target, and
   identifies the local low-exchange kernel the residual proof must control.
@@ -55,7 +56,9 @@ Keep entries concise and link to the relevant files.
   large dyadic scales reduce to an explicit two-sided stable formula, so the
   remaining non-stable quotient work is confined to a finite prefix. The
   variance-consumption corollary plugs the first residual layer into the M1
-  random-line ledger with an explicit charge.
+  random-line ledger with an explicit charge. The maximal-dither corollary
+  closes the single-slack quotient-remainder ledger at every dyadic scale,
+  with only an explicitly enumerated small prefix carrying nonlinear terms.
 - **What to do next:** Use this theorem as the quotient ledger before attacking
   the aperiodic M1 local-limit residual.
 
