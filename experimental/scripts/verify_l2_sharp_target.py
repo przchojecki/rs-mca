@@ -1794,6 +1794,7 @@ def clean_cycle_rank_profile() -> dict:
         coefficient_dimensions = [
             k - edge_size for edge_size in edge_sizes
         ]
+        min_coefficient_dimension = min(coefficient_dimensions)
         max_coefficient_dimension = max(coefficient_dimensions)
         max_coefficient_indices = [
             idx
@@ -1999,11 +2000,20 @@ def clean_cycle_rank_profile() -> dict:
             - cycle_len * (k - sigma)
             - private_size_sum
         )
+        doubled_dimension_gap_margin_formula = (
+            doubled_marked_margin_formula + 2 * dimension_gap_alpha_min
+        )
         marked_margin_private_mass_threshold = (
             2 * absorbed_gap_power - cycle_len * (k - sigma)
         )
+        dimension_gap_margin_private_mass_threshold = (
+            marked_margin_private_mass_threshold + 2 * dimension_gap_alpha_min
+        )
         doubled_uniform_private_margin_floor = (
             2 * absorbed_gap_power - cycle_len * k
+        )
+        doubled_dimension_gap_uniform_private_margin_floor = (
+            doubled_uniform_private_margin_floor + 2 * dimension_gap_alpha_min
         )
         absorbed_hybrid_relative_bound = Fraction(
             all_edge_hybrid_selected_bound,
@@ -2100,6 +2110,7 @@ def clean_cycle_rank_profile() -> dict:
                 "all_edge_expected_common_dim": all_edge_expected_common_dim,
                 "all_edge_disjoint_block_count": all_edge_disjoint_block_count,
                 "coefficient_dimensions": coefficient_dimensions,
+                "min_coefficient_dimension": min_coefficient_dimension,
                 "max_coefficient_dimension": max_coefficient_dimension,
                 "max_coefficient_indices": max_coefficient_indices,
                 "comparable_pivot_indices": comparable_pivot_indices,
@@ -2183,11 +2194,20 @@ def clean_cycle_rank_profile() -> dict:
                     doubled_full_common_dim_formula
                 ),
                 "doubled_marked_margin_formula": doubled_marked_margin_formula,
+                "doubled_dimension_gap_margin_formula": (
+                    doubled_dimension_gap_margin_formula
+                ),
                 "marked_margin_private_mass_threshold": (
                     marked_margin_private_mass_threshold
                 ),
+                "dimension_gap_margin_private_mass_threshold": (
+                    dimension_gap_margin_private_mass_threshold
+                ),
                 "doubled_uniform_private_margin_floor": (
                     doubled_uniform_private_margin_floor
+                ),
+                "doubled_dimension_gap_uniform_private_margin_floor": (
+                    doubled_dimension_gap_uniform_private_margin_floor
                 ),
             }
         )
@@ -2409,6 +2429,11 @@ def clean_cycle_rank_profile() -> dict:
         "dimension_gap_alpha_at_least_two": all(
             row["dimension_gap_alpha_min"] >= 2 for row in rows
         ),
+        "dimension_gap_alpha_minimum_dimension_formula": all(
+            row["dimension_gap_alpha_min"]
+            == max(2, row["min_coefficient_dimension"])
+            for row in rows
+        ),
         "dimension_gap_field_exponent_formula_holds": all(
             row["dimension_gap_field_exponent_bound"]
             == row["selected_domain_dim"] - row["dimension_gap_alpha_min"]
@@ -2418,6 +2443,39 @@ def clean_cycle_rank_profile() -> dict:
             row["absorbed_dimension_gap_field_margin"]
             == row["absorbed_marked_field_margin"]
             + row["dimension_gap_alpha_min"]
+            for row in rows
+        ),
+        "dimension_gap_mass_formula_holds": all(
+            2 * row["absorbed_dimension_gap_field_margin"]
+            == row["doubled_dimension_gap_margin_formula"]
+            for row in rows
+        ),
+        "dimension_gap_mass_formula_refines_marked": all(
+            row["doubled_dimension_gap_margin_formula"]
+            == row["doubled_marked_margin_formula"]
+            + 2 * row["dimension_gap_alpha_min"]
+            for row in rows
+        ),
+        "dimension_gap_margin_threshold_refines_marked": all(
+            row["dimension_gap_margin_private_mass_threshold"]
+            == row["marked_margin_private_mass_threshold"]
+            + 2 * row["dimension_gap_alpha_min"]
+            for row in rows
+        ),
+        "dimension_gap_margin_positive_iff_below_threshold": all(
+            (row["absorbed_dimension_gap_field_margin"] > 0)
+            == (
+                row["private_size_sum"]
+                < row["dimension_gap_margin_private_mass_threshold"]
+            )
+            for row in rows
+        ),
+        "dimension_gap_uniform_private_margin_floor_holds": all(
+            row["max_private_size"] >= row["sigma"]
+            or (
+                2 * row["absorbed_dimension_gap_field_margin"]
+                > row["doubled_dimension_gap_uniform_private_margin_floor"]
+            )
             for row in rows
         ),
         "dimension_gap_improves_unique_fallback_examples": any(
@@ -4484,11 +4542,29 @@ def run() -> dict:
         "clean_cycle_dimension_gap_alpha_floor": clean_cycles[
             "dimension_gap_alpha_at_least_two"
         ],
+        "clean_cycle_dimension_gap_alpha_min_dim": clean_cycles[
+            "dimension_gap_alpha_minimum_dimension_formula"
+        ],
         "clean_cycle_dimension_gap_field_exponent": clean_cycles[
             "dimension_gap_field_exponent_formula_holds"
         ],
         "clean_cycle_dimension_gap_field_margin": clean_cycles[
             "dimension_gap_field_margin_improves_marked"
+        ],
+        "clean_cycle_dimension_gap_mass_formula": clean_cycles[
+            "dimension_gap_mass_formula_holds"
+        ],
+        "clean_cycle_dimension_gap_mass_refines_marked": clean_cycles[
+            "dimension_gap_mass_formula_refines_marked"
+        ],
+        "clean_cycle_dimension_gap_margin_threshold": clean_cycles[
+            "dimension_gap_margin_threshold_refines_marked"
+        ],
+        "clean_cycle_dimension_gap_margin_positive": clean_cycles[
+            "dimension_gap_margin_positive_iff_below_threshold"
+        ],
+        "clean_cycle_dimension_gap_uniform_private_floor": clean_cycles[
+            "dimension_gap_uniform_private_margin_floor_holds"
         ],
         "clean_cycle_dimension_gap_improves_fallback": clean_cycles[
             "dimension_gap_improves_unique_fallback_examples"

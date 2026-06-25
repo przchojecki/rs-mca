@@ -2427,6 +2427,48 @@ bounded by `2^{O_m(n)}` for fixed `m`. Hence the same argument as in the
 selected-edge field-exponent gate applies with `r_sel` replaced by
 `r_sel-alpha_*`. The obstruction statement is the contrapositive.
 
+This sharpened gate has an equally explicit mass form.
+
+**Corollary (root-sharing mass form of the selected-edge obstruction).** With
+`P=sum_i p_i`, `T=mu(m-2)sigma`, and the maximal-reference choice of
+`alpha_*` above,
+
+```text
+alpha_* = max(2,min_i d_i),
+2(T-(r_sel-alpha_*))
+ = 2mu(m-2)sigma - m(k-sigma) - P + 2alpha_*.
+```
+
+Consequently the marked-syzygy side after root-sharing has a linear
+field-exponent margin exactly when
+
+```text
+P <= 2mu(m-2)sigma - m(k-sigma) + 2alpha_* - Omega(n).
+```
+
+Thus root-sharing raises the private-mass threshold for the lower selected-rank
+term by exactly `2alpha_*` in doubled-margin form. In particular, even when
+some selected edge has `d_i=1`, the threshold gains four powers in doubled
+form, and if all selected edges have `d_i>=D>=2`, it gains at least `2D`.
+
+*Proof.* For each pivot `t`, the maximal-reference choice has
+`d_{u(t)}>=min_i d_i`. If `min_i d_i=1`, the pivot with `d_t=1` gives
+`alpha_{t,u}=2`, while all pivots have `alpha_{t,u}>=2`. If
+`min_i d_i>=2`, a pivot with minimal `d_t` gives
+`alpha_{t,u}=d_t=min_i d_i`, and every other pivot has
+`alpha_{t,u}>=min_i d_i`. Hence `alpha_*=max(2,min_i d_i)`.
+
+The ledger identity `2r_sel=m(k-sigma)+P` from the previous selected-edge
+reduction gives
+
+```text
+2(T-(r_sel-alpha_*))
+ = 2T - 2r_sel + 2alpha_*
+ = 2mu(m-2)sigma - m(k-sigma) - P + 2alpha_*.
+```
+
+The threshold and gain statements are immediate from positivity of this margin.
+
 The two field-exponent margins have a transparent mass form.
 
 **Corollary (mass form of the selected-edge obstruction).** With

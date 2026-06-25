@@ -276,6 +276,8 @@ Keep entries concise and link to the relevant files.
   field-exponent form with saving
   `alpha_{t,u}=min(max(d_t,2),d_u+1)`, giving a root-sharing selected-edge
   gate with `r_sel-alpha_*` in place of the older marked-syzygy exponent.
+  In mass variables this is the exact doubled-margin gain `2alpha_*`, with
+  `alpha_*=max(2,min_i d_i)` for maximal nonpivot references.
   Combining
   the pivot, monic, and domain gates gives a
   marked selected-syzygy tuple bound; the verifier checks that this general
