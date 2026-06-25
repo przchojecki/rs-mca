@@ -1690,6 +1690,10 @@ def clean_cycle_rank_profile() -> dict:
             + all_edge_marked_syzygy_count_bound
         )
         absorbed_gap_power = mu * (cycle_len - 2) * sigma
+        absorbed_full_field_margin = (
+            absorbed_gap_power - all_edge_expected_common_dim
+        )
+        absorbed_marked_field_margin = absorbed_gap_power - selected_domain_dim
         absorbed_hybrid_relative_bound = Fraction(
             all_edge_hybrid_selected_bound,
             comb(n, a) * p**absorbed_gap_power,
@@ -1803,6 +1807,8 @@ def clean_cycle_rank_profile() -> dict:
                     "numerator": absorbed_hybrid_relative_bound.numerator,
                     "denominator": absorbed_hybrid_relative_bound.denominator,
                 },
+                "absorbed_full_field_margin": absorbed_full_field_margin,
+                "absorbed_marked_field_margin": absorbed_marked_field_margin,
             }
         )
     return {
@@ -2001,6 +2007,20 @@ def clean_cycle_rank_profile() -> dict:
             row["name"] == "triangle_necklace"
             and row["absorbed_hybrid_relative_bound_to_diagonal"]["numerator"]
             < row["absorbed_hybrid_relative_bound_to_diagonal"]["denominator"]
+            for row in rows
+        ),
+        "absorbed_field_margins_positive_on_examples": all(
+            row["max_private_size"] >= row["sigma"]
+            or (
+                row["absorbed_full_field_margin"] > 0
+                and row["absorbed_marked_field_margin"] > 0
+            )
+            for row in rows
+        ),
+        "absorbed_field_margins_clear_triangle": any(
+            row["name"] == "triangle_necklace"
+            and row["absorbed_full_field_margin"] > 0
+            and row["absorbed_marked_field_margin"] > 0
             for row in rows
         ),
     }
@@ -3664,6 +3684,12 @@ def run() -> dict:
         ],
         "clean_cycle_absorbed_hybrid_clears_triangle": clean_cycles[
             "absorbed_hybrid_clears_triangle_example"
+        ],
+        "clean_cycle_absorbed_field_margins": clean_cycles[
+            "absorbed_field_margins_positive_on_examples"
+        ],
+        "clean_cycle_absorbed_field_margins_triangle": clean_cycles[
+            "absorbed_field_margins_clear_triangle"
         ],
         "functional_incidence_projective_count": functional_incidence[
             "projective_functional_count"

@@ -2003,6 +2003,52 @@ at most
 
 which is below one exactly under the displayed selected-edge inequality.
 
+There is a simple asymptotic gate for this selected-edge inequality. Put
+
+```text
+T = mu(m-2)sigma.
+```
+
+**Corollary (selected-edge field-exponent gate).** Fix `m`, `mu`, and a
+constant `c>0`. Along any generated-field sequence with `q>=n+1`, if
+
+```text
+T-d_full >= c n,             T-r_sel >= c n,
+```
+
+then the absorbed selected-edge ratio
+
+```text
+[(B_full+B_mark)/binom(n,a)] q^{-T}
+```
+
+tends to zero. Consequently any asymptotic selected-edge obstruction to the
+hybrid clean-cycle bound must satisfy
+
+```text
+d_full >= T-o(n)        or        r_sel >= T-o(n).
+```
+
+*Proof.* The selected edge blocks are disjoint and `m` is fixed, so their
+ordered choices are bounded by `2^{mn}`. The full selected-rank term is at
+most `2^{mn}q^{d_full}`. For the marked-syzygy term, the total coefficient
+dimension is `r_sel`; choosing a pivot costs only a fixed factor, and the
+marked coefficient count is at most `q^{r_sel}`. Thus
+
+```text
+B_full+B_mark <= (1+m)2^{mn}(q^{d_full}+q^{r_sel}).
+```
+
+After multiplying by `q^{-T}` and using the two displayed margin assumptions,
+the right-hand side is at most a constant times
+
+```text
+2^{mn} q^{-c n} <= 2^{mn} (n+1)^{-c n},
+```
+
+which tends to zero. Dividing by `binom(n,a)>=1` can only improve the bound.
+The final obstruction statement is the contrapositive.
+
 The connected case also isolates the diagonal exactly.
 
 **Corollary (diagonal is the only zero-loss connected cluster).** Suppose

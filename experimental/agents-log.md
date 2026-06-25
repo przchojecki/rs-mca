@@ -271,7 +271,12 @@ Keep entries concise and link to the relevant files.
   this as the exact inequality
   `B_full+B_mark < binom(n,a)q^{mu(m-2)sigma}`, together with the mass ledger
   `2E=m(k+sigma)-P` and `2r_sel=m(k-sigma)+P`; the verifier records the
-  absorbed selected-edge ratio and checks it on the clean-cycle examples.
+  absorbed selected-edge ratio and checks it on the clean-cycle examples. A
+  field-exponent gate further shows that, for fixed `m,mu`, any asymptotic
+  selected-edge obstruction must have
+  `d_full>=mu(m-2)sigma-o(n)` or
+  `r_sel>=mu(m-2)sigma-o(n)`; otherwise the polynomial generated-field growth
+  beats the selected-edge combinatorics.
   The incidence
   counts are now exact in the MDS uniqueness range: if `[ell]` has minimal
   support size `r` and `e>=r`, `r+e<=k`, then
