@@ -30,6 +30,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-25 - L2 square root-active closed form
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/notes/l2/l2_sharp_target_conjecture.md`,
+  `experimental/scripts/verify_l2_sharp_target.py`, and
+  `experimental/agents-log.md`.
+- **Status:** PROVED / EXPERIMENTAL.
+- **What is being added:** A closed formula for the exact root-active
+  residual transfer count when the clean residual cycle has length `m=4`,
+  separating one-root-active configurations from opposite-pair root-active
+  configurations.
+- **How it is useful:** Identifies the first even-cycle interaction term not
+  visible in triangles, giving a sharper local model for the near-threshold
+  L2 residual frontier.
+- **What to do next:** Bound the one-root and opposite-pair terms
+  analytically, or use them to decide whether square residuals require extra
+  quotient/aperiodic structure beyond depth packing.
+
 ### 2026-06-25 - L2 triangular root-active closed form
 
 - **Agent/model:** Codex.

@@ -3601,6 +3601,58 @@ the two positions is root-active, choose its value `y`, and choose the other
 depth from `{z in D_u: z<=2sigma-y}`. The spike constraints are already
 encoded by membership in `D_u`, giving the displayed pinned-spike formula.
 
+For squares, a second root-active depth can occur, but only opposite the
+first one. This gives the first interaction term beyond the triangular case.
+
+**Corollary (closed square root-active count).** Assume the hypotheses of the
+exact root-active transfer subtraction corollary and set `m=4`. For a finite
+positive depth alphabet `E`, put
+
+```text
+H_E={y in E: y>=R},          L_E={y in E: y<R},
+N_E(y)=|{z in E: z<=2sigma-y}|,
+M_E(b,c)=|{z in E: z<=min(2sigma-b,2sigma-c)}|.
+```
+
+Then the all-negative square contribution is exactly
+
+```text
+4 sum_{y in H_D} sum_{b,c in D, b,c<=2sigma-y} M_{L_D}(b,c)
++ 2 sum_{y,z in H_D} N_D(max(y,z))^2.
+```
+
+For a permitted spike height `u`, set `E=D_u`. The pinned spike sector of
+height `u` contributes exactly
+
+```text
+sum_{y in H_E} N_E(y)^2
++ 2 sum_{y in H_E} sum_{b in E, b<=2sigma-y} N_{L_E}(b)
++ sum_{y,z in H_E} N_E(max(y,z)).
+```
+
+The whole square root-active residual count is the all-negative contribution
+plus `4` times the sum of these pinned spike-sector contributions over
+permitted spike heights. If the odd gate fails or `B<4`, the count is `0`.
+
+*Proof.* Since `R>sigma`, root-active nonspike depths cannot be adjacent.
+In a square all-negative sector, the root-active set therefore has either one
+vertex or two opposite vertices. With a single root-active value `y`, there
+are `4` choices of its position. Its two neighbors must lie in
+`{b in D: b<=2sigma-y}`. The opposite vertex must be low and adjacent to both
+neighbors, giving the factor `M_{L_D}(b,c)`. With two root-active depths,
+they must occupy one of the two opposite pairs. For ordered values `y,z`, the
+two remaining vertices are independent choices from
+`{b in D: b<=2sigma-max(y,z)}`, giving the second displayed term.
+
+In a pinned square spike sector the nonspike depths form a path of length
+`3`. A single root-active depth can sit in the middle, contributing
+`sum_y N_E(y)^2`, or at one of the two endpoints, contributing the doubled
+endpoint term. Two root-active depths can only occupy both endpoints; for
+ordered endpoint values `y,z`, the middle depth has
+`N_E(max(y,z))` choices. These cases are disjoint and exhaustive, proving the
+pinned-spike formula. The global gates are inherited from the exact
+depth-transfer certificate.
+
 For later estimates, this exact count can be bounded by forgetting part of
 the adjacent-transfer structure. This gives a coarse but purely
 graph-theoretic upper bound near the threshold.
