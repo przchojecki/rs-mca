@@ -3895,6 +3895,13 @@ def residual_shape_scan_profile() -> dict:
             "sigma": 11,
         },
         {
+            "name": "triangle_top_layer_frontier",
+            "cycle_len": 3,
+            "mu": 4,
+            "k": 10,
+            "sigma": 3,
+        },
+        {
             "name": "triangle_uniform_cap_strict",
             "cycle_len": 3,
             "mu": 2,
@@ -4612,6 +4619,62 @@ def residual_shape_scan_profile() -> dict:
             root_active_all_negative_adaptive_free_gap_density_denominator = (
                 root_active_all_negative_adaptive_free_alphabet_size ** 2
             )
+            if depth_values:
+                all_negative_depth_tail_top = depth_values[-1]
+                all_negative_depth_tail_first_high = (
+                    tail_first_high_depth(depth_values, root_depth_required)
+                )
+                if all_negative_depth_tail_first_high is None:
+                    root_active_all_negative_tail_count_formula = 0
+                else:
+                    root_active_all_negative_tail_count_formula = (
+                        (
+                            all_negative_depth_tail_top
+                            - all_negative_depth_tail_first_high
+                        )
+                        // 2
+                    ) + 1
+                half_tail_target = (len(depth_values) + 1) // 2
+                root_active_all_negative_half_density_condition = (
+                    root_depth_required
+                    <= all_negative_depth_tail_top
+                    - 2 * (half_tail_target - 1)
+                )
+                root_active_all_negative_half_density_actual = (
+                    all_negative_uniform_high_count >= half_tail_target
+                )
+                root_active_all_negative_top_layer_condition = (
+                    root_depth_required <= all_negative_depth_tail_top
+                    and (
+                        len(depth_values) == 1
+                        or root_depth_required
+                        > all_negative_depth_tail_top - 2
+                    )
+                )
+                root_active_all_negative_top_layer_actual = (
+                    all_negative_uniform_high_count == 1
+                )
+            else:
+                all_negative_depth_tail_top = None
+                all_negative_depth_tail_first_high = None
+                root_active_all_negative_tail_count_formula = 0
+                half_tail_target = 0
+                root_active_all_negative_half_density_condition = False
+                root_active_all_negative_half_density_actual = False
+                root_active_all_negative_top_layer_condition = False
+                root_active_all_negative_top_layer_actual = False
+            root_active_all_negative_tail_count_formula_matches = (
+                root_active_all_negative_tail_count_formula
+                == all_negative_uniform_high_count
+            )
+            root_active_all_negative_half_density_condition_matches = (
+                root_active_all_negative_half_density_condition
+                == root_active_all_negative_half_density_actual
+            )
+            root_active_all_negative_top_layer_condition_matches = (
+                root_active_all_negative_top_layer_condition
+                == root_active_all_negative_top_layer_actual
+            )
             root_active_all_negative_adaptive_free_gap_holds = (
                 all_negative_uniform_high_count == 0
                 or (
@@ -5314,6 +5377,17 @@ def residual_shape_scan_profile() -> dict:
             root_active_all_negative_adaptive_free_gap_formula_matches = None
             root_active_all_negative_adaptive_free_gap_density_numerator = None
             root_active_all_negative_adaptive_free_gap_density_denominator = None
+            all_negative_depth_tail_top = None
+            all_negative_depth_tail_first_high = None
+            root_active_all_negative_tail_count_formula = None
+            root_active_all_negative_tail_count_formula_matches = None
+            half_tail_target = None
+            root_active_all_negative_half_density_condition = None
+            root_active_all_negative_half_density_actual = None
+            root_active_all_negative_half_density_condition_matches = None
+            root_active_all_negative_top_layer_condition = None
+            root_active_all_negative_top_layer_actual = None
+            root_active_all_negative_top_layer_condition_matches = None
             root_active_all_negative_adaptive_free_gap_holds = None
             root_active_all_negative_adaptive_frontier_rate_refines_uniform = None
             root_active_all_negative_adaptive_frontier_rate_strict = None
@@ -5686,6 +5760,39 @@ def residual_shape_scan_profile() -> dict:
                 ),
                 "root_active_all_negative_adaptive_free_gap_density_denominator": (
                     root_active_all_negative_adaptive_free_gap_density_denominator
+                ),
+                "root_active_all_negative_depth_tail_top": (
+                    all_negative_depth_tail_top
+                ),
+                "root_active_all_negative_depth_tail_first_high": (
+                    all_negative_depth_tail_first_high
+                ),
+                "root_active_all_negative_tail_count_formula": (
+                    root_active_all_negative_tail_count_formula
+                ),
+                "root_active_all_negative_tail_count_formula_matches": (
+                    root_active_all_negative_tail_count_formula_matches
+                ),
+                "root_active_all_negative_half_tail_target": (
+                    half_tail_target
+                ),
+                "root_active_all_negative_half_density_condition": (
+                    root_active_all_negative_half_density_condition
+                ),
+                "root_active_all_negative_half_density_actual": (
+                    root_active_all_negative_half_density_actual
+                ),
+                "root_active_all_negative_half_density_condition_matches": (
+                    root_active_all_negative_half_density_condition_matches
+                ),
+                "root_active_all_negative_top_layer_condition": (
+                    root_active_all_negative_top_layer_condition
+                ),
+                "root_active_all_negative_top_layer_actual": (
+                    root_active_all_negative_top_layer_actual
+                ),
+                "root_active_all_negative_top_layer_condition_matches": (
+                    root_active_all_negative_top_layer_condition_matches
                 ),
                 "root_active_all_negative_adaptive_free_gap_holds": (
                     root_active_all_negative_adaptive_free_gap_holds
@@ -6568,6 +6675,28 @@ def residual_shape_scan_profile() -> dict:
                 "root_active_all_negative_adaptive_free_alphabet_size"
             ]
             ** 2
+            for row in rows
+        ),
+        "root_active_all_negative_tail_count_formula": all(
+            row["root_depth_required"] <= row["sigma"]
+            or row["root_active_all_negative_tail_count_formula_matches"]
+            for row in rows
+        ),
+        "root_active_all_negative_half_density_condition": all(
+            row["root_depth_required"] <= row["sigma"]
+            or row[
+                "root_active_all_negative_half_density_condition_matches"
+            ]
+            for row in rows
+        ),
+        "root_active_all_negative_top_layer_condition": all(
+            row["root_depth_required"] <= row["sigma"]
+            or row["root_active_all_negative_top_layer_condition_matches"]
+            for row in rows
+        ),
+        "root_active_all_negative_has_top_layer_case": any(
+            row["root_depth_required"] > row["sigma"]
+            and row["root_active_all_negative_top_layer_actual"]
             for row in rows
         ),
         "root_active_elevated_depths_have_cap_loss": all(
@@ -8937,6 +9066,24 @@ def run() -> dict:
             residual_shape_scan[
                 "root_active_all_negative_adaptive_gap_density_denominator"
             ]
+        ),
+        "residual_shape_scan_root_active_tail_count_formula": (
+            residual_shape_scan[
+                "root_active_all_negative_tail_count_formula"
+            ]
+        ),
+        "residual_shape_scan_root_active_half_density_condition": (
+            residual_shape_scan[
+                "root_active_all_negative_half_density_condition"
+            ]
+        ),
+        "residual_shape_scan_root_active_top_layer_condition": (
+            residual_shape_scan[
+                "root_active_all_negative_top_layer_condition"
+            ]
+        ),
+        "residual_shape_scan_root_active_top_layer_case": (
+            residual_shape_scan["root_active_all_negative_has_top_layer_case"]
         ),
         "residual_shape_scan_root_active_elevated_cap_loss": (
             residual_shape_scan["root_active_elevated_depths_have_cap_loss"]

@@ -4336,6 +4336,69 @@ and the bound `N+rho_ad(D)-l<2N` give
 `rho_ad(D)<N-G_ad(D)/(2N)`. Since `G_ad(D)>=h^2`, dividing by `N^2` gives the
 density and worst-case forms.
 
+The size of the root-active frontier is itself an exact depth-threshold
+condition.
+
+**Corollary (tail-depth density dichotomy).** Let
+
+```text
+D={s,s+2,...,Y},        N=|D|,
+H_D={y in D:y>=R},      h=|H_D|.
+```
+
+For every integer `1<=H<=N`,
+
+```text
+h>=H        iff        R <= Y-2(H-1).
+```
+
+Consequently, if `R <= Y-2(H-1)`, then
+
+```text
+G_ad(D)/N^2 >= (H/N)^2,
+rho_ad(D) < (1-H^2/(2N^2))N.
+```
+
+If this condition fails, then every root-active depth lies in the top `H-1`
+layers of the balanced depth progression. In particular,
+
+```text
+h >= ceil(N/2)        iff        R <= Y-2(ceil(N/2)-1),
+```
+
+and this half-density case gives the uniform bound
+
+```text
+rho_ad(D) < 7N/8.
+```
+
+At the opposite extreme,
+
+```text
+h=1        iff        R <= Y and (N=1 or Y-2 < R),
+```
+
+so for `N>=2` the weakest nonzero frontier is exactly the top depth layer. If
+`R>Y`, then `h=0` and the root-active contribution is absent.
+
+*Proof.* The elements of `D` form a parity progression with step `2`. Having
+at least `H` root-active layers means that the `H`-th element down from the
+top,
+
+```text
+Y-2(H-1),
+```
+
+is still root-active, which is equivalent to
+`R<=Y-2(H-1)`. If this fails, the tail above `R` contains at most `H-1`
+progression layers. The gap estimates follow from `G_ad(D)>=h^2` in the
+exact-gap corollary. Taking `H=ceil(N/2)` gives
+`H^2/N^2>=1/4`, hence `rho_ad(D)<(1-1/8)N=7N/8`. The `h=1` statement is
+the case where the threshold leaves exactly one progression layer: either the
+alphabet already has one layer, or the threshold lies above the second-highest
+layer. The `h=0` statement is the case where the threshold lies above the top
+layer.
+
 The uniform envelope has a two-state recurrence.
 
 **Corollary (recurrence form of the uniform cap-degree envelope).** Fix

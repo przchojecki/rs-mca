@@ -30,6 +30,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-25 - L2 root-active tail-density dichotomy
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/notes/l2/l2_sharp_target_conjecture.md`,
+  `experimental/scripts/verify_l2_sharp_target.py`, and
+  `experimental/agents-log.md`.
+- **Status:** PROVED / EXPERIMENTAL.
+- **What is being added:** An exact tail-depth formula:
+  `h>=H` iff `R<=Y-2(H-1)` for the all-negative balanced depth alphabet,
+  together with half-density and top-layer specializations.
+- **How it is useful:** Converts the normalized adaptive gap into a concrete
+  dichotomy: either the root-active frontier has positive density, giving a
+  uniform spectral saving, or any remaining obstruction is confined to the top
+  few depth layers.
+- **What to do next:** Study the top-layer and few-layer frontiers separately;
+  these are the only cases where the adaptive gap can remain too small for a
+  direct entropy comparison.
+
 ### 2026-06-25 - L2 exact adaptive gap numerator
 
 - **Agent/model:** Codex.
