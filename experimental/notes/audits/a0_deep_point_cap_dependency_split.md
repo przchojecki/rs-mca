@@ -2,8 +2,8 @@
 
 ## Status
 
-PROVED simple-pole transfer and local algebra / CONDITIONAL on the supplied
-`C_+` list lower bound.
+PROVED local fiber-to-MCA cap route under Paper D's finite-field hypotheses /
+AUDIT for the original CS25 import.
 
 This note records the A0 dependency split created by the X1 deep-point route.
 It does not certify the external Crites--Stewart theorem.  Instead it isolates
@@ -11,36 +11,84 @@ which part of Paper D's universal cap no longer needs that import.
 
 ## Claim
 
-Assume `lem:fiber(ii)`, or any replacement source, gives a word `U : D -> F`
-whose list in `C+ = RS[F,D,k+1]` has size `L` at the Paper D cap radius.  Then
-the simple-pole construction below gives a line for `C=RS[F,D,k]` with at least
+Under the finite-field, coset, divisibility, and binomial hypotheses of Paper
+D's `thm:main`, the headline support-wise MCA cap has a local proof that does
+not use the imported CS25/ABF list-to-agreement theorem:
+
+```text
+emca(C,delta) >= (1/(2k)) (1 - n/q)
+```
+
+for every `delta_N <= delta < 1-rho`, where
+`q=|F|` and `delta_N = 1-rho-2/N`.  The local proof is:
+
+1. the elementary locator-fiber construction gives a `C+` list of size
+
+```text
+L >= binom(N,rho N+2)/|B| >= q/k + 1;
+```
+
+2. the simple-pole transfer and deep-point averaging give a line with at least
 
 ```text
 M >= L / (1 + k(L-1)/(q-n))
 ```
 
-bad slopes, where `q=|F|` and `n=|D|`.
+bad slopes for `C=RS[F,D,k]`;
 
-Then the Paper D hypothesis
-
-```text
-L >= q/k + 1
-```
-
-implies the same MCA cap constant as `thm:main`:
+3. the exact algebra below gives
 
 ```text
-emca(C,delta) >= M/q >= (1/(2k)) (1 - n/q).
+M/q >= (1/(2k)) (1 - n/q).
 ```
 
-Thus the headline MCA cap has a CS25-free route once the local list-lower-bound
-input is accepted.  The original CS25/ABF import still needs source
-verification for the original CA-to-list proof, the Paper B import surface, and
-any statement that explicitly cites the imported theorem.
+Thus the headline MCA cap has a CS25-free route.  The original CS25/ABF import
+still needs source verification for the original CA-to-list proof, the Paper B
+import surface, and any statement that explicitly cites the imported theorem.
+
+## Elementary Fiber Lower Bound
+
+We spell out the part of Paper D's `lem:fiber(ii)` used here.  Let
+`B subset F` be finite fields, let `D subset B^*` be a multiplicative coset of
+order `n`, let `N|n`, set `a=n/N`, and suppose `a|k`.  Put
+`rho=k/n`, `ell=rho N+2=k/a+2`, and assume `ell<=N`.  Let
+`Q=D^a`; the map `D -> Q`, `x -> x^a`, has fibers `S_b` of size `a`.
+
+For each `ell`-subset `A subset Q`, define
+
+```text
+L_A(X) = prod_{b in A}(X^a-b)
+       = X^{k+2a} - e_1(A)X^{k+a} + R_A(X),
+```
+
+where `deg R_A <= k`.  Set
+
+```text
+z_A = -e_1(A) in B,
+u_z(x) = x^{k+2a} + z x^{k+a},
+c_A(x) = -R_A(x).
+```
+
+Then `c_A in RS[B,D,k+1] subset RS[F,D,k+1]`.  On the root set
+`S_A = union_{b in A} S_b`, which has size `a ell = k+2a`, one has
+`u_{z_A}(x)=c_A(x)`.  Hence `c_A` is in the `C+` list of `u_{z_A}` at radius
+
+```text
+delta_N = 1 - (k+2a)/n = 1 - rho - 2/N.
+```
+
+For a fixed slope `z`, the map `A -> c_A` is injective on subsets with
+`z_A=z`: if `z_A=z_{A'}` and `c_A=c_{A'}`, then `R_A` and `R_{A'}` agree on
+all `n` points of `D`; since both have degree at most `k<n`, they are equal.
+The top two coefficients also agree, so `L_A=L_{A'}` and therefore `A=A'`.
+
+Since `z_A` takes at most `|B|` values as `A` ranges over the `binom(N,ell)`
+subsets, some `z in B` has at least `binom(N,ell)/|B|` distinct listed
+codewords.  This proves the local list lower bound consumed by the cap route.
 
 ## Simple-Pole Transfer
 
-Let `D subset F`, `|D|=n`, `alpha in F \ D`, `k<a<=n`, and let
+Let `D subset F`, `|D|=n`, `alpha in F \ D`, `k<m<=n`, and let
 `C=RS[F,D,k]`, `C+=RS[F,D,k+1]`, with the convention that `RS[...,k]` means
 polynomials of degree `<k`.  Given a received word `U : D -> F`, form the line
 
@@ -49,18 +97,18 @@ f_alpha(x) = U(x)/(x-alpha),
 g_alpha(x) = -1/(x-alpha).
 ```
 
-For radius `delta_a = 1-a/n`, define
+For radius `delta_m = 1-m/n`, define
 
 ```text
-List_+(U,a) = { P in F[X]_{<k+1} :
-                |{x in D : P(x)=U(x)}| >= a },
-Deep_alpha(U,a) = { P(alpha) : P in List_+(U,a) }.
+List_+(U,m) = { P in F[X]_{<k+1} :
+                |{x in D : P(x)=U(x)}| >= m },
+Deep_alpha(U,m) = { P(alpha) : P in List_+(U,m) }.
 ```
 
-Then the slopes `z` for which `f_alpha + z g_alpha` is `delta_a`-close to
-`C` are exactly `Deep_alpha(U,a)`.
+Then the slopes `z` for which `f_alpha + z g_alpha` is `delta_m`-close to
+`C` are exactly `Deep_alpha(U,m)`.
 
-Indeed, if `P in List_+(U,a)` and `z=P(alpha)`, then
+Indeed, if `P in List_+(U,m)` and `z=P(alpha)`, then
 
 ```text
 Q(X) = (P(X)-P(alpha))/(X-alpha)
@@ -73,17 +121,17 @@ f_alpha(x) + z g_alpha(x) = (U(x)-z)/(x-alpha) = Q(x).
 ```
 
 Conversely, if `f_alpha + z g_alpha` agrees with a degree-`<k` polynomial
-`Q` on a support `S` of size at least `a`, then
+`Q` on a support `S` of size at least `m`, then
 
 ```text
 P(X) = (X-alpha)Q(X) + z
 ```
 
 has degree `<k+1`, satisfies `P(alpha)=z`, and agrees with `U` on `S`.  Hence
-`z in Deep_alpha(U,a)`.
+`z in Deep_alpha(U,m)`.
 
 The support-wise MCA far condition for this line is automatic in the range
-`a>k`: if `g_alpha` agreed with a degree-`<k` polynomial `G` on any support of
+`m>k`: if `g_alpha` agreed with a degree-`<k` polynomial `G` on any support of
 size `>k`, then `(X-alpha)G(X)+1` would be a degree-`<=k` polynomial with more
 than `k` roots in `D` but value `1` at `alpha`, impossible.  Thus the same
 slopes are support-wise MCA-bad slopes.
@@ -91,7 +139,7 @@ slopes are support-wise MCA-bad slopes.
 ## Deep-Point Averaging
 
 Let `Omega = F \ D`, so `|Omega| = q-n`, and let
-`List_+(U,a) = {P_1,...,P_L}`.  For distinct `i,j`, the polynomial
+`List_+(U,m) = {P_1,...,P_L}`.  For distinct `i,j`, the polynomial
 `P_i-P_j` has degree at most `k`, so
 
 ```text
@@ -153,11 +201,10 @@ The A0 status should therefore be split:
 - **Original CS25 route:** still conditional until the external theorem is
   checked against the Paper D restatement.
 - **Headline MCA cap route:** no longer needs CS25 as a load-bearing theorem;
-  it can use `lem:fiber(ii)`, the simple-pole transfer, the deep-point
-  averaging lemma, and the algebra above.
+  it uses the elementary fiber lower bound, the simple-pole transfer, the
+  deep-point averaging lemma, and the algebra above.
 - **Promotion caveat:** Papers A--D should not be edited from this note alone.
-  A human review should first check the `lem:fiber(ii)` lower-bound proof and
-  notation compatibility with Paper D.
+  A human review should first check notation compatibility with Paper D.
 
 ## Verifier
 
@@ -166,10 +213,13 @@ Run from the repository root:
 ```sh
 python3 experimental/scripts/verify_a0_deep_point_cap_algebra.py
 python3 experimental/scripts/verify_a0_deep_point_cap_algebra.py --json
+python3 experimental/scripts/verify_x1_lem_fiber.py
 python3 experimental/scripts/verify_x1_deep_point_identity.py
 ```
 
 The verifier checks the exact rational inequality on a grid of finite
 parameters and records the symbolic residual
-`kL-q+n+k` controlling the comparison.  The X1 identity verifier independently
-brute-checks the simple-pole transfer over prime-field toy models.
+`kL-q+n+k` controlling the comparison.  The fiber verifier brute-checks the
+locator-polynomial construction over `F_17`; the X1 identity verifier
+independently brute-checks the simple-pole transfer over prime-field toy
+models.

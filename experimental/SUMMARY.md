@@ -295,7 +295,7 @@ The support material is also important:
   `a0_cs25_rational_constant_derivation.md`, and `cs25_import_audit.md` track
   the Crites-Stewart/ABF dependency for Paper D.  The original import remains
   unaudited against primary sources, but the X1 deep-point route gives a local
-  CS25-free dependency path for the headline MCA cap.
+  CS25-free proof path for the headline MCA cap.
 - `a1_paperA_finite_verification_crosswalk.md` maps Paper A finite claims to
   scripts and proof records.
 - The reserve-emitter script, reserve JSON schema, and
@@ -402,8 +402,8 @@ Recommended next work:
 
 6. Finish the A0 Crites-Stewart/ABF import audit before relying on the original
    imported route or slacked fallback as source-certified infrastructure; cite
-   the deep-point route separately for the headline MCA cap after reviewing the
-   `lem:fiber(ii)` lower bound and notation compatibility.
+   the deep-point route separately for the headline MCA cap after reviewing
+   notation compatibility.
 
 7. Choose a small set of stable lemmas for Lean formalization: support
    injection, full-support interleaving formula, complement-prefix locator
