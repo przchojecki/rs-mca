@@ -4261,6 +4261,81 @@ where `K` denotes the corresponding constant term `h c_D` or `l+c_G g`.
 Since `rho_ad(D)<N`, the denominator is less than `2N`, and the numerator is
 at least `h^2`. This gives the displayed gap.
 
+The proof records a sharper numerator which is the useful reserve quantity.
+
+**Corollary (exact adaptive gap numerator).** Keep the notation of the
+previous corollary and define `G_ad(D)` as follows. If the all-negative sector
+is not minimal-frontier, let
+
+```text
+G_ad(D)=h(N-c_D).
+```
+
+If it is minimal-frontier, write `h=1+g`, where `g` counts elevated
+root-active depths, and let `c_G` be the elevated boundary cap. Then set
+
+```text
+G_ad(D)=h^2+g(l-c_G),        l=|L_D|.
+```
+
+In both cases
+
+```text
+G_ad(D) = N^2-lN-K,
+```
+
+where `K` is the constant term in the adaptive characteristic polynomial.
+Consequently
+
+```text
+rho_ad(D) < N - G_ad(D)/(2N),
+        G_ad(D) >= h^2.
+```
+
+Equivalently, if
+
+```text
+gamma = G_ad(D)/N^2,
+```
+
+then
+
+```text
+rho_ad(D) < (1-gamma/2)N.
+```
+
+In particular a positive-density root-active frontier, `h>=beta N`, gives the
+uniform fractional saving
+
+```text
+rho_ad(D) < (1-beta^2/2)N,
+```
+
+while the worst case `h=1` has only the quadratic-scale gap
+`G_ad(D)/N^2 >= 1/N^2`.
+
+*Proof.* In the nonminimal-frontier case, the previous proof computed
+
+```text
+N^2-lN-hc_D=h(N-c_D),
+```
+
+which is the first formula. In the minimal-frontier case it computed
+
+```text
+N^2-lN-(l+c_G g)=h^2+g(l-c_G).
+```
+
+Both displays are exactly `N^2-lN-K`. The same denominator identity
+
+```text
+N-rho_ad(D) = G_ad(D)/(N+rho_ad(D)-l)
+```
+
+and the bound `N+rho_ad(D)-l<2N` give
+`rho_ad(D)<N-G_ad(D)/(2N)`. Since `G_ad(D)>=h^2`, dividing by `N^2` gives the
+density and worst-case forms.
+
 The uniform envelope has a two-state recurrence.
 
 **Corollary (recurrence form of the uniform cap-degree envelope).** Fix

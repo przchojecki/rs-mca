@@ -30,6 +30,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-25 - L2 exact adaptive gap numerator
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/notes/l2/l2_sharp_target_conjecture.md`,
+  `experimental/scripts/verify_l2_sharp_target.py`, and
+  `experimental/agents-log.md`.
+- **Status:** PROVED / EXPERIMENTAL.
+- **What is being added:** An exact characteristic-gap numerator
+  `G_ad(D)` for the all-negative adaptive rate, with
+  `rho_ad(D) < (1-G_ad(D)/(2|D|^2))|D|` and `G_ad(D)>=h^2`.
+- **How it is useful:** Refines the previous free-alphabet gap into the
+  normalized quantity `G_ad(D)/|D|^2`, which is the parameter that should be
+  compared against generated-field entropy or used to detect the weak
+  `h=1` frontier.
+- **What to do next:** Analyze whether the residual clean-cycle constraints
+  force `G_ad(D)` to have positive density in the protocol-relevant window, or
+  identify the thin-frontier cases where `G_ad(D)` is only constant.
+
 ### 2026-06-25 - L2 all-negative adaptive rate gap
 
 - **Agent/model:** Codex.
