@@ -296,6 +296,172 @@ This does not yet sum over all occupancy vectors or over cross-vector moves.
 It gives the local residual kernel that a proof of the aperiodic M1 bound has
 to control.
 
+## Theorem 7. Sharp Exchange-One Residual Floor
+
+For an occupancy vector `a=(a_1,...,a_N)`, put
+
+```text
+P(a) = [x] K_a^int(x) = sum_i a_i(m-a_i).
+```
+
+Write the support size as
+
+```text
+s = Lm+b,        0 <= b < m.
+```
+
+If `1 <= b < m`, then every occupancy vector of total size `s` satisfies
+
+```text
+P(a) >= b(m-b).
+```
+
+Equality holds exactly for one-remainder vectors: one fiber has occupancy
+`b`, while every other fiber is empty or full.
+
+If `b=0`, then
+
+```text
+P(a) >= 0,
+```
+
+with equality exactly on whole-fiber vectors.  If additionally `0<s<Nm` and
+`a` is not a whole-fiber vector, then
+
+```text
+P(a) >= 2(m-1).
+```
+
+Equality in this non-whole case means that two partial fibers have occupancies
+`1` and `m-1` (the same occupancy value when `m=2`) and every other fiber is
+empty or full.
+
+### Proof
+
+Let `f(u)=u(m-u)`.  For two partial occupancies `1<=u,v<=m-1`, if
+`u+v<=m` then replacing the two fibers by occupancies `u+v` and `0` preserves
+the total support size and changes `P` by
+
+```text
+f(u)+f(v)-f(u+v)=2uv>0.
+```
+
+If `u+v>=m`, replacing them by `m` and `u+v-m` preserves the total support
+size and changes `P` by
+
+```text
+f(u)+f(v)-f(u+v-m)=2(m-u)(m-v)>0.
+```
+
+Thus merging partial occupancies strictly decreases `P` until the partial mass
+is concentrated as much as the residue class permits.  For nonzero residue
+`b`, the terminal configuration has one partial fiber of size `b`, giving
+`b(m-b)`.  For residue zero, the minimum is `0` and occurs precisely when no
+partial fibers remain.  A non-whole residue-zero vector has at least two
+partial fibers; since every partial fiber contributes at least `m-1`, it has
+`P(a)>=2(m-1)`, with equality exactly in the stated endpoint configuration.
+
+## Theorem 8. Large-Fiber One-Remainder Budget
+
+Let
+
+```text
+s = Lm+b,        1 <= b < m,
+```
+
+and let `A_{L,b}` be the one-remainder family consisting of `L` whole fibers,
+one partial fiber of size `b`, and all other fibers empty.  Assume `t<=m`.
+For fixed `S in A_{L,b}`, the strict exchange enumerator
+
+```text
+H_{L,b}^{<t}(x)
+  = sum_{T in A_{L,b}, 0<|S\T|<t} x^|S\T|
+```
+
+is exactly
+
+```text
+H_{L,b}^{<t}(x)
+ =
+  sum_{ell=1}^{min(b,m-b,t-1)}
+    binom(b,ell) binom(m-b,ell) x^ell
+
+  + 1_{b<t} (N-L-1) binom(m,b) x^b
+  + 1_{m-b<t} L binom(m,b) x^(m-b).
+```
+
+Consequently the one-remainder strict M1 weighted ledger is
+
+```text
+R_{L,b}^{<t}(t,q)
+ =
+  sum_{ell=1}^{min(b,m-b,t-1)}
+    binom(b,ell) binom(m-b,ell) q^(t-ell)
+
+  + 1_{b<t} (N-L-1) binom(m,b) q^(t-b)
+  + 1_{m-b<t} L binom(m,b) q^(t-m+b).
+```
+
+### Proof
+
+Because `t<=m`, any strict exchange has size below one full fiber.  Thus no
+ordinary whole-fiber quotient exchange can occur.  There are only three
+possibilities.
+
+First, the partial fiber is the same in `S` and `T`; exchanging `ell` points
+inside that fiber gives
+
+```text
+binom(b,ell) binom(m-b,ell)
+```
+
+choices and exchange size `ell`.  Second, the old partial fiber is removed and
+the new partial fiber lies in one of the `N-L-1` empty fibers; this contributes
+`b` removed points and `(N-L-1)binom(m,b)` choices.  Third, the old partial
+fiber is promoted to a whole fiber, while one of the old whole fibers becomes
+the new partial fiber; this contributes `m-b` removed points and
+`L binom(m,b)` choices.  These are exactly the three displayed terms.
+
+### Dither Consequence
+
+In a quotient hierarchy with
+
+```text
+n=Nm,        k0=Lm,        k=k0-r0,        s=k+t,
+d=t-r0,
+```
+
+suppose
+
+```text
+1 <= d < t,        m >= t+d.
+```
+
+Then `b=d`, the third term above is absent, and Vandermonde gives
+
+```text
+H_{L,d}^{<t}(1)
+  = (N-L) binom(m,d) - 1
+  = ((n-k0)/m) binom(m,d) - 1.
+```
+
+Thus maximal one-slack dither, `d=1`, gives the linear residual
+
+```text
+H_{L,1}^{<t}(x) = (n-k0-1)x,
+R_{L,1}^{<t}(t,q) = (n-k0-1)q^(t-1).
+```
+
+For the adjacent slack with the same dither, `d=2`, every scale with
+`m>=t+2` has unweighted strict mass
+
+```text
+((n-k0)/m) binom(m,2) - 1 = (n-k0)(m-1)/2 - 1.
+```
+
+So a fixed dither can make the large-fiber one-remainder residual linear at
+one slack, but the next slack already restores scale-dependent residual mass.
+
 ## Dyadic Dither Consequence
 
 Suppose
@@ -333,13 +499,16 @@ real M1 difficulty:
 ```text
 M1 support ledger
   = exact whole-fiber quotient budgets
+    + one-remainder quotient budgets
     + partial-fiber / aperiodic occupancy residual.
 ```
 
-The theorem proves the first summand exactly.  It does not control the second.
-The remaining corrected-reserve M1 task is to prove that the partial-fiber and
-aperiodic residue-line support packings are small enough after the explicit
-quotient budgets above have been charged.
+The theorem proves the first summand exactly and gives the large-fiber
+one-remainder budget in the first residual layer.  It does not control the
+remaining mixed partial-fiber or aperiodic residue-line support packings.  The
+remaining corrected-reserve M1 task is to show that those residual packings are
+small enough after the explicit quotient and one-remainder budgets above have
+been charged.
 
 ## Verification
 
@@ -352,4 +521,5 @@ python3 experimental/scripts/verify_m1_quotient_occupancy_theorem.py
 checks the occupancy count formula, the whole-fiber exchange profile, and the
 strict-overlap quotient budget against brute-force enumeration in small cases.
 It also checks the fiberwise exchange kernel for several partial-fiber
-occupancy vectors.
+occupancy vectors, the sharp exchange-one residual floor, and the large-fiber
+one-remainder formula.

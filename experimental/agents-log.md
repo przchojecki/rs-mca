@@ -41,11 +41,15 @@ Keep entries concise and link to the relevant files.
 - **What is being added:** A compact theorem note giving exact quotient-fiber
   occupancy counts, exact whole-fiber exchange profiles, the resulting
   strict-overlap M1 quotient budget, and a fiberwise exchange-kernel formula
-  for partial-fiber residuals. A small verifier checks the formulas against
+  for partial-fiber residuals. It also proves the sharp exchange-one residual
+  floor and the large-fiber one-remainder strict budget controlling the first
+  dithered quotient layer. A small verifier checks the formulas against
   brute-force enumeration.
 - **How it is useful:** Separates the budgeted quotient-periodic M1 support
   terms from the remaining partial-fiber / aperiodic residue-line target, and
   identifies the local low-exchange kernel the residual proof must control.
+  The one-remainder corollary explains exactly when dimension dither leaves a
+  linear residual and when adjacent slacks restore scale-dependent mass.
 - **What to do next:** Use this theorem as the quotient ledger before attacking
   the aperiodic M1 local-limit residual.
 

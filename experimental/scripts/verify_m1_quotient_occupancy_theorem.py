@@ -269,6 +269,202 @@ def check_exchange_kernel_case(
             raise AssertionError((fiber_size, source_occupancy, exchange_one, expected))
 
 
+def occupancy_vectors(
+    fiber_count: int,
+    fiber_size: int,
+    support_size: int,
+) -> list[tuple[int, ...]]:
+    vectors: list[tuple[int, ...]] = []
+
+    def rec(index: int, remaining: int, prefix: list[int]) -> None:
+        if index == fiber_count:
+            if remaining == 0:
+                vectors.append(tuple(prefix))
+            return
+        remaining_slots = fiber_count - index - 1
+        for occupancy in range(min(fiber_size, remaining) + 1):
+            if remaining - occupancy > remaining_slots * fiber_size:
+                continue
+            prefix.append(occupancy)
+            rec(index + 1, remaining - occupancy, prefix)
+            prefix.pop()
+
+    rec(0, support_size, [])
+    return vectors
+
+
+def internal_exchange_one(occupancy: tuple[int, ...], fiber_size: int) -> int:
+    return sum(value * (fiber_size - value) for value in occupancy)
+
+
+def is_whole_fiber_vector(occupancy: tuple[int, ...], fiber_size: int) -> bool:
+    return all(value in (0, fiber_size) for value in occupancy)
+
+
+def check_exchange_one_floor_case(
+    fiber_count: int,
+    fiber_size: int,
+    support_size: int,
+) -> None:
+    residue = support_size % fiber_size
+    vectors = occupancy_vectors(fiber_count, fiber_size, support_size)
+    values = [
+        (internal_exchange_one(vector, fiber_size), vector)
+        for vector in vectors
+    ]
+    minimum = min(value for value, _ in values)
+    if residue:
+        expected = residue * (fiber_size - residue)
+        if minimum != expected:
+            raise AssertionError((fiber_count, fiber_size, support_size, minimum, expected))
+        for value, vector in values:
+            if value == expected:
+                partial = [entry for entry in vector if 0 < entry < fiber_size]
+                if partial != [residue]:
+                    raise AssertionError((fiber_count, fiber_size, support_size, vector))
+    else:
+        if minimum != 0:
+            raise AssertionError((fiber_count, fiber_size, support_size, minimum))
+        for value, vector in values:
+            if value == 0 and not is_whole_fiber_vector(vector, fiber_size):
+                raise AssertionError((fiber_count, fiber_size, support_size, vector))
+        nonwhole_values = [
+            (value, vector)
+            for value, vector in values
+            if not is_whole_fiber_vector(vector, fiber_size)
+        ]
+        if 0 < support_size < fiber_count * fiber_size and nonwhole_values:
+            expected = 2 * (fiber_size - 1)
+            nonwhole_minimum = min(value for value, _ in nonwhole_values)
+            if nonwhole_minimum != expected:
+                raise AssertionError(
+                    (fiber_count, fiber_size, support_size, nonwhole_minimum, expected)
+                )
+            for value, vector in nonwhole_values:
+                if value == expected:
+                    partial = sorted(entry for entry in vector if 0 < entry < fiber_size)
+                    if partial != [1, fiber_size - 1]:
+                        raise AssertionError((fiber_count, fiber_size, support_size, vector))
+
+
+def one_remainder_supports(
+    fiber_count: int,
+    fiber_size: int,
+    whole_fibers: int,
+    remainder_size: int,
+) -> list[frozenset[int]]:
+    supports: list[frozenset[int]] = []
+    for whole_indices in itertools.combinations(range(fiber_count), whole_fibers):
+        whole_set = set(whole_indices)
+        for partial_index in range(fiber_count):
+            if partial_index in whole_set:
+                continue
+            for partial_points in itertools.combinations(range(fiber_size), remainder_size):
+                points: set[int] = set()
+                for fiber in whole_set:
+                    for point in range(fiber_size):
+                        points.add(fiber * fiber_size + point)
+                for point in partial_points:
+                    points.add(partial_index * fiber_size + point)
+                supports.append(frozenset(points))
+    return supports
+
+
+def brute_one_remainder_strict_profile(
+    fiber_count: int,
+    fiber_size: int,
+    whole_fibers: int,
+    remainder_size: int,
+    slack: int,
+) -> Counter[int]:
+    supports = one_remainder_supports(
+        fiber_count,
+        fiber_size,
+        whole_fibers,
+        remainder_size,
+    )
+    fixed = supports[0]
+    return Counter(
+        exchange
+        for support in supports
+        for exchange in [len(fixed - support)]
+        if 0 < exchange < slack
+    )
+
+
+def one_remainder_strict_formula(
+    fiber_count: int,
+    fiber_size: int,
+    whole_fibers: int,
+    remainder_size: int,
+    slack: int,
+) -> Counter[int]:
+    if slack > fiber_size:
+        raise AssertionError((fiber_size, slack, "formula assumes slack <= fiber size"))
+    profile: Counter[int] = Counter()
+    for exchange in range(1, min(remainder_size, fiber_size - remainder_size, slack - 1) + 1):
+        profile[exchange] += comb(remainder_size, exchange) * comb(
+            fiber_size - remainder_size,
+            exchange,
+        )
+    if remainder_size < slack:
+        profile[remainder_size] += (fiber_count - whole_fibers - 1) * comb(
+            fiber_size,
+            remainder_size,
+        )
+    complement_size = fiber_size - remainder_size
+    if complement_size < slack:
+        profile[complement_size] += whole_fibers * comb(
+            fiber_size,
+            remainder_size,
+        )
+    return +profile
+
+
+def check_one_remainder_case(
+    fiber_count: int,
+    fiber_size: int,
+    whole_fibers: int,
+    remainder_size: int,
+    slack: int,
+) -> None:
+    brute = brute_one_remainder_strict_profile(
+        fiber_count,
+        fiber_size,
+        whole_fibers,
+        remainder_size,
+        slack,
+    )
+    formula = one_remainder_strict_formula(
+        fiber_count,
+        fiber_size,
+        whole_fibers,
+        remainder_size,
+        slack,
+    )
+    if brute != formula:
+        raise AssertionError(
+            (fiber_count, fiber_size, whole_fibers, remainder_size, slack, brute, formula)
+        )
+    if 1 <= remainder_size < slack and fiber_size >= slack + remainder_size:
+        expected_mass = (
+            (fiber_count - whole_fibers) * comb(fiber_size, remainder_size)
+            - 1
+        )
+        if sum(formula.values()) != expected_mass:
+            raise AssertionError(
+                (
+                    fiber_count,
+                    fiber_size,
+                    whole_fibers,
+                    remainder_size,
+                    slack,
+                    sum(formula.values()),
+                    expected_mass,
+                )
+            )
+
+
 def main() -> int:
     for case in [
         (4, 2, 3),
@@ -292,6 +488,21 @@ def main() -> int:
         (4, (1, 2, 0), (1, 2, 0)),
     ]:
         check_exchange_kernel_case(*case)
+    for case in [
+        (4, 3, 4),
+        (4, 3, 6),
+        (5, 4, 6),
+        (5, 4, 8),
+        (6, 2, 5),
+    ]:
+        check_exchange_one_floor_case(*case)
+    for case in [
+        (5, 4, 2, 1, 3),
+        (6, 5, 2, 2, 3),
+        (6, 5, 2, 2, 4),
+        (5, 3, 1, 1, 3),
+    ]:
+        check_one_remainder_case(*case)
     print("M1 quotient occupancy theorem verifier passed")
     return 0
 
