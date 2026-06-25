@@ -1489,6 +1489,68 @@ by mapping a space of dimension `sum_j(k-e_j)` into a `k`-dimensional target
 gives the displayed equality with `R_full-R_J`. The necklace specialization is
 the case `k-e_j=1` for every selected edge.
 
+The syzygy form also gives a pivot-forcing count reduction.
+
+**Corollary (pivot-forcing reduction for selected syzygies).** Fix selected
+edge sizes `e_j`, `j in J`, and write `d_j=k-e_j`. Consider marked projective
+syzygies
+
+```text
+sum_{j in J} L_j A_j=0,       deg A_j<d_j,
+```
+
+together with a pivot index `t` such that `A_t != 0`, normalized up to common
+scalar. After choosing the nonpivot edge blocks `E_j`, `j != t`, the nonpivot
+coefficient polynomials `A_j`, and the normalized pivot coefficient `A_t`, the
+pivot edge locator is forced:
+
+```text
+L_t = - (sum_{j != t} L_j A_j) / A_t.
+```
+
+Thus the remaining validity conditions are only:
+
+```text
+A_t divides -sum_{j != t} L_j A_j,
+the quotient is monic of degree e_t,
+its roots are e_t distinct points of H disjoint from the nonpivot edges.
+```
+
+In particular, if the selected nonpivot edge blocks are counted by a sequential
+disjoint product, the number of selected-edge tuples with a marked
+rank-defect syzygy is at most
+
+```text
+sum_{t in J}
+  (q^{d_t}-1)/(q-1)
+  q^{sum_{j != t} d_j}
+  prod_{j != t} binom(n-s_{j,t},e_j),
+```
+
+where `s_{j,t}` is the number of previously chosen nonpivot edge points in a
+fixed ordering. The divisibility, monicity, domain-root, and disjointness gates
+can only reduce this crude count.
+
+In the fixed-length necklace case `d_j=1`, the `A_j` are scalars. The pivot
+formula becomes the forced-locator equation from the rank-deficient necklace
+lemma; imposing the leading coefficient condition gives the sharper
+`q^{m-2}` nonpivot coefficient count used there.
+
+*Proof.* A projective syzygy has at least one nonzero coefficient polynomial;
+mark such an index `t` and normalize `A_t`. Rearranging the syzygy gives
+
+```text
+L_t A_t = -sum_{j != t} L_j A_j.
+```
+
+For fixed nonpivot data and normalized `A_t`, there is therefore at most one
+possible polynomial `L_t`, namely the displayed quotient. It corresponds to a
+valid edge block exactly when the divisibility and root-set gates hold. Counting
+all normalized `A_t`, all nonpivot coefficient polynomials, and all sequential
+nonpivot edge choices gives the displayed overcount. Every selected-rank defect
+has at least one nonzero syzygy and hence at least one marked pivot, so this
+overcount covers the lower selected-rank tuples.
+
 The incidence counts are exact in the MDS uniqueness range.
 
 **Corollary (small-support uniqueness for `N_e`).** Let `r([ell])` be the

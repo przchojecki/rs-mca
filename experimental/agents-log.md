@@ -233,7 +233,12 @@ Keep entries concise and link to the relevant files.
   `sum_j W_j`, so selected-rank defect is exactly syzygy-kernel excess beyond
   the ambient dimension. The verifier adds a small `F_7` rank-deficient
   necklace witness where the locator rank is `2<3` and the excess syzygy
-  dimension is `1`. The incidence
+  dimension is `1`. The lower-rank syzygies now have a pivot-forcing reduction:
+  after choosing a pivot coefficient `A_t`, the nonpivot edge locators, and the
+  nonpivot coefficient polynomials, the pivot locator is forced by
+  `L_t=-(sum_{j!=t}L_j A_j)/A_t`; the remaining conditions are divisibility,
+  monicity, and an `H`-root/disjointness gate. The verifier checks this forcing
+  on the `F_7` witness, recovering the pivot locator and its roots. The incidence
   counts are now exact in the MDS uniqueness range: if `[ell]` has minimal
   support size `r` and `e>=r`, `r+e<=k`, then
   `N_e([ell])=binom(n-r,e-r)`, so for

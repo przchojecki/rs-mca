@@ -6,7 +6,7 @@ settled by the support-intersection bridge: over-agreement can create
 interleaved mass, so the falsification target is whether that mass can grow like
 a Cartesian product rather than like a polynomial support-overlap codegree.
 
-The script checks twenty finite objects.
+The script checks twenty-one finite objects.
 
 1. The all-remainder quotient packet count used as Quot_rem_mu in the target.
 2. The Johnson-shell weights used in the codegree reduction.
@@ -27,7 +27,9 @@ The script checks twenty finite objects.
 17. Rank-deficient fixed-length cyclic necklaces, counted by dependency data.
 18. Clean simple cycles with arbitrary adjacent low-overlap edge sizes.
 19. The projective functional incidence reduction for clean-cycle defects.
-20. A realized Reed-Solomon K_{2,2} gluing over a prime-field multiplicative
+20. A locator-syzygy witness and pivot-forcing reduction for lower selected
+   clean-cycle rank.
+21. A realized Reed-Solomon K_{2,2} gluing over a prime-field multiplicative
    subgroup, computed by exact list enumeration, together with its punctured
    codegree profile.
 
@@ -285,6 +287,29 @@ def poly_mul(a: list[int], b: list[int], p: int) -> list[int]:
         for j, cb in enumerate(b):
             out[i + j] = (out[i + j] + ca * cb) % p
     return trim_poly(out)
+
+
+def poly_scale(poly: list[int], scalar: int, p: int) -> list[int]:
+    return trim_poly([(scalar * coeff) % p for coeff in poly])
+
+
+def poly_divmod(
+    numerator: list[int], denominator: list[int], p: int
+) -> tuple[list[int], list[int]]:
+    numerator = trim_poly(numerator[:])
+    denominator = trim_poly(denominator[:])
+    if denominator == [0]:
+        raise ValueError("polynomial division by zero")
+    quotient = [0] * max(1, len(numerator) - len(denominator) + 1)
+    denominator_degree = poly_degree(denominator)
+    denominator_lead_inv = pow(denominator[-1], -1, p)
+    while numerator != [0] and poly_degree(numerator) >= denominator_degree:
+        shift = poly_degree(numerator) - denominator_degree
+        coeff = numerator[-1] * denominator_lead_inv % p
+        quotient[shift] = coeff
+        subtract = [0] * shift + poly_scale(denominator, coeff, p)
+        numerator = poly_add(numerator, subtract, p, sign=-1)
+    return trim_poly(quotient), trim_poly(numerator)
 
 
 def monomial(power: int, coeff: int = 1) -> list[int]:
@@ -1758,12 +1783,35 @@ def locator_syzygy_witness_profile() -> dict:
     syzygy_kernel_excess = syzygy_kernel_dim - expected_generic_kernel_dim
     common_functional_dim = k - selected_rank
     expected_full_rank_common_dim = k - expected_full_rank
+    syzygy_coefficients = [[1], [5], [1]]
+    syzygy_sum = [0]
+    for locator, coeff_poly in zip(locators, syzygy_coefficients):
+        syzygy_sum = poly_add(syzygy_sum, poly_mul(locator, coeff_poly, p), p)
+    pivot = 0
+    nonpivot_sum = [0]
+    for idx, (locator, coeff_poly) in enumerate(
+        zip(locators, syzygy_coefficients)
+    ):
+        if idx == pivot:
+            continue
+        nonpivot_sum = poly_add(nonpivot_sum, poly_mul(locator, coeff_poly, p), p)
+    forced_numerator = poly_scale(nonpivot_sum, -1, p)
+    forced_locator, forcing_remainder = poly_divmod(
+        forced_numerator, syzygy_coefficients[pivot], p
+    )
+    forced_roots = [
+        idx
+        for idx, x_value in enumerate(h_values)
+        if eval_poly(tuple(forced_locator), x_value, p) == 0
+    ]
     return {
         "p": p,
         "n": n,
         "k": k,
         "edge_blocks": [sorted(edge_block) for edge_block in edge_blocks],
         "locators": locators,
+        "syzygy_coefficients": syzygy_coefficients,
+        "syzygy_sum": syzygy_sum,
         "selected_domain_dim": selected_domain_dim,
         "selected_rank": selected_rank,
         "expected_full_rank": expected_full_rank,
@@ -1778,6 +1826,14 @@ def locator_syzygy_witness_profile() -> dict:
             expected_full_rank - selected_rank == syzygy_kernel_excess
         ),
         "necklace_locator_rank_matches_selected_rank": locator_rank == selected_rank,
+        "pivot_index": pivot,
+        "forced_locator": forced_locator,
+        "forcing_remainder": forcing_remainder,
+        "forced_roots": forced_roots,
+        "syzygy_sum_zero": syzygy_sum == [0],
+        "pivot_forcing_remainder_zero": forcing_remainder == [0],
+        "pivot_forcing_recovers_locator": forced_locator == locators[pivot],
+        "pivot_forcing_roots_match": forced_roots == sorted(edge_blocks[pivot]),
     }
 
 
@@ -3277,6 +3333,18 @@ def run() -> dict:
         "locator_syzygy_witness_necklace_rank": locator_syzygy_witness[
             "necklace_locator_rank_matches_selected_rank"
         ],
+        "locator_syzygy_witness_sum_zero": locator_syzygy_witness[
+            "syzygy_sum_zero"
+        ],
+        "locator_syzygy_witness_pivot_remainder": locator_syzygy_witness[
+            "pivot_forcing_remainder_zero"
+        ],
+        "locator_syzygy_witness_pivot_locator": locator_syzygy_witness[
+            "pivot_forcing_recovers_locator"
+        ],
+        "locator_syzygy_witness_pivot_roots": locator_syzygy_witness[
+            "pivot_forcing_roots_match"
+        ],
         "kmm_grid_formula": all(d["interleaved_edges"] == d["grid_edges_at_n_min"] for d in designs),
         "rs_witness_creates_mass": witness["mass_creation"],
         "rs_witness_realizes_k22": witness["interleaved"] == witness["product_bound"] == 4,
@@ -3532,7 +3600,10 @@ def main(argv: list[str] | None = None) -> int:
             f"rank={syz['selected_rank']}, "
             f"expected_full={syz['expected_full_rank']}, "
             f"kernel={syz['syzygy_kernel_dim']}, "
-            f"excess={syz['syzygy_kernel_excess']}"
+            f"excess={syz['syzygy_kernel_excess']}, "
+            f"pivot={syz['pivot_index']}, "
+            f"forced_locator={syz['forced_locator']}, "
+            f"forced_roots={syz['forced_roots']}"
         )
         finc = result["functional_incidence_profile"]
         print(
