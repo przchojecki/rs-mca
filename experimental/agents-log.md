@@ -30,6 +30,23 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-25 - L2 balanced-depth bridge formulas
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/notes/l2/l2_sharp_target_conjecture.md`,
+  `experimental/scripts/verify_l2_sharp_target.py`, and
+  `experimental/agents-log.md`.
+- **Status:** PROVED / EXPERIMENTAL.
+- **What is being added:** A parity-progression formula for the balanced
+  residual depth alphabet and every spike tail, plus closed formulas for the
+  uniform bridge parameters on those tails.
+- **How it is useful:** Specializes the root-active bridge envelope from
+  abstract finite alphabets to the actual residual-shape alphabets, making
+  later Perron-rate and reserve comparisons explicit.
+- **What to do next:** Use the progression formulas to derive uniform
+  clearance inequalities for the remaining near-threshold L2 sectors.
+
 ### 2026-06-25 - L2 monotone bridge parameter formula
 
 - **Agent/model:** Codex.

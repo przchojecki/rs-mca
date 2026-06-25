@@ -3585,6 +3585,47 @@ def residual_shape_scan_profile() -> dict:
         )
         return len(high_depths), cap_count, degree_bound
 
+    def balanced_depth_progression(k: int, sigma: int) -> list[int]:
+        start = 1 if k % 2 else 2
+        upper = min(k - 2, 2 * sigma - 1)
+        if upper % 2 != k % 2:
+            upper -= 1
+        if upper < start:
+            return []
+        return list(range(start, upper + 1, 2))
+
+    def progression_uniform_cap_parameters(
+        depths: list[int], root_depth: int, sigma: int
+    ) -> tuple[int, int, int]:
+        if not depths:
+            return 0, 0, 0
+        start = depths[0]
+        end = depths[-1]
+
+        def count_between(lower: int, upper: int) -> int:
+            lower = max(lower, start)
+            upper = min(upper, end)
+            if upper < lower:
+                return 0
+            if lower % 2 != start % 2:
+                lower += 1
+            if upper % 2 != start % 2:
+                upper -= 1
+            if upper < lower:
+                return 0
+            return ((upper - lower) // 2) + 1
+
+        first_high = max(root_depth, start)
+        if first_high % 2 != start % 2:
+            first_high += 1
+        if first_high > end:
+            return 0, 0, count_between(start, 2 * sigma - start)
+        return (
+            count_between(first_high, end),
+            count_between(start, min(first_high - 2, 2 * sigma - first_high)),
+            count_between(start, min(first_high - 2, 2 * sigma - start)),
+        )
+
     def path_uniform_cap_recurrence_bound(
         vertex_count: int, high_count: int, cap_count: int, degree_bound: int
     ) -> int:
@@ -3771,6 +3812,13 @@ def residual_shape_scan_profile() -> dict:
             if deviation < 0
         ]
         depth_values = sorted(-deviation for deviation in negative_deviation_values)
+        balanced_depth_formula_values = balanced_depth_progression(k, sigma)
+        depth_values_match_progression = (
+            depth_values == balanced_depth_formula_values
+        )
+        depth_endpoint_sum_within_cap = (
+            not depth_values or depth_values[0] + depth_values[-1] <= 2 * sigma
+        )
         nonnegative_deviation_values = [
             deviation
             for deviation in deviation_alphabet_values
@@ -4062,6 +4110,19 @@ def residual_shape_scan_profile() -> dict:
                     all_negative_uniform_degree_bound,
                 )
             )
+            all_negative_uniform_progression_parameters = (
+                progression_uniform_cap_parameters(
+                    depth_values, root_depth_required, sigma
+                )
+            )
+            root_active_all_negative_uniform_progression_matches = (
+                all_negative_uniform_progression_parameters
+                == (
+                    all_negative_uniform_high_count,
+                    all_negative_uniform_cap_count,
+                    all_negative_uniform_degree_bound,
+                )
+            )
             root_active_all_negative_uniform_high_count = (
                 all_negative_uniform_high_count
             )
@@ -4188,6 +4249,22 @@ def residual_shape_scan_profile() -> dict:
                         spike_uniform_degree_bound,
                     )
                 )
+                spike_uniform_progression_parameters = (
+                    progression_uniform_cap_parameters(
+                        allowed_depths, root_depth_required, sigma
+                    )
+                )
+                spike_uniform_progression_matches = (
+                    spike_uniform_progression_parameters
+                    == (
+                        spike_uniform_high_count,
+                        spike_uniform_cap_count,
+                        spike_uniform_degree_bound,
+                    )
+                )
+                spike_allowed_depths_match_tail = allowed_depths == [
+                    depth for depth in depth_values if depth >= spike + 2
+                ]
                 if (
                     root_budget < 4
                     or not odd_compatible
@@ -4351,6 +4428,12 @@ def residual_shape_scan_profile() -> dict:
                         "uniform_formula_matches": (
                             spike_uniform_formula_matches
                         ),
+                        "uniform_progression_matches": (
+                            spike_uniform_progression_matches
+                        ),
+                        "allowed_depths_match_tail": (
+                            spike_allowed_depths_match_tail
+                        ),
                         "uniform_spectral_rate": uniform_spectral_rate,
                         "uniform_rate_below_independent": (
                             uniform_rate_below_independent
@@ -4459,6 +4542,7 @@ def residual_shape_scan_profile() -> dict:
             root_active_all_negative_uniform_cap_count = None
             root_active_all_negative_uniform_degree_bound = None
             root_active_all_negative_uniform_formula_matches = None
+            root_active_all_negative_uniform_progression_matches = None
             root_active_all_negative_uniform_spectral_rate = None
             root_active_all_negative_uniform_rate_below_independent = None
             root_active_all_negative_uniform_strict_root_improvement = None
@@ -4653,6 +4737,13 @@ def residual_shape_scan_profile() -> dict:
                 "deviation_alphabet_values": deviation_alphabet_values,
                 "negative_deviation_values": negative_deviation_values,
                 "depth_values": depth_values,
+                "balanced_depth_formula_values": balanced_depth_formula_values,
+                "depth_values_match_progression": (
+                    depth_values_match_progression
+                ),
+                "depth_endpoint_sum_within_cap": (
+                    depth_endpoint_sum_within_cap
+                ),
                 "nonnegative_deviation_values": nonnegative_deviation_values,
                 "balanced_window_size": len(balanced_window_values),
                 "balanced_window_size_bound": 2 * sigma,
@@ -4723,6 +4814,9 @@ def residual_shape_scan_profile() -> dict:
                 ),
                 "root_active_all_negative_uniform_formula_matches": (
                     root_active_all_negative_uniform_formula_matches
+                ),
+                "root_active_all_negative_uniform_progression_matches": (
+                    root_active_all_negative_uniform_progression_matches
                 ),
                 "root_active_triangle_all_negative_count": (
                     root_active_triangle_all_negative_count
@@ -4947,6 +5041,12 @@ def residual_shape_scan_profile() -> dict:
         ),
         "balanced_window_contains_candidates": all(
             row["all_candidates_in_balanced_window"] for row in rows
+        ),
+        "depth_values_match_balanced_progression": all(
+            row["depth_values_match_progression"] for row in rows
+        ),
+        "depth_endpoint_sum_bound_holds": all(
+            row["depth_endpoint_sum_within_cap"] for row in rows
         ),
         "balanced_window_size_bound_holds": all(
             row["balanced_window_size"] <= row["balanced_window_size_bound"]
@@ -5246,6 +5346,27 @@ def residual_shape_scan_profile() -> dict:
                     spike_row["uniform_formula_matches"]
                     for spike_row in row["root_active_spike_bound_rows"]
                 )
+            )
+            for row in rows
+        ),
+        "root_active_uniform_parameters_match_progression_formula": all(
+            row["root_depth_required"] <= row["sigma"]
+            or (
+                row[
+                    "root_active_all_negative_uniform_progression_matches"
+                ]
+                and all(
+                    spike_row["uniform_progression_matches"]
+                    for spike_row in row["root_active_spike_bound_rows"]
+                )
+            )
+            for row in rows
+        ),
+        "root_active_spike_depths_are_progression_tails": all(
+            row["root_depth_required"] <= row["sigma"]
+            or all(
+                spike_row["allowed_depths_match_tail"]
+                for spike_row in row["root_active_spike_bound_rows"]
             )
             for row in rows
         ),
@@ -7295,6 +7416,12 @@ def run() -> dict:
         "residual_shape_scan_balanced_window": residual_shape_scan[
             "balanced_window_contains_candidates"
         ],
+        "residual_shape_scan_depth_progression": residual_shape_scan[
+            "depth_values_match_balanced_progression"
+        ],
+        "residual_shape_scan_depth_endpoint_sum": residual_shape_scan[
+            "depth_endpoint_sum_bound_holds"
+        ],
         "residual_shape_scan_balanced_window_size": residual_shape_scan[
             "balanced_window_size_bound_holds"
         ],
@@ -7479,6 +7606,14 @@ def run() -> dict:
                 "root_active_uniform_parameters_match_monotone_formula"
             ]
         ),
+        "residual_shape_scan_root_active_uniform_progression_formula": (
+            residual_shape_scan[
+                "root_active_uniform_parameters_match_progression_formula"
+            ]
+        ),
+        "residual_shape_scan_root_active_spike_tails": residual_shape_scan[
+            "root_active_spike_depths_are_progression_tails"
+        ],
         "residual_shape_scan_root_active_uniform_spectral": (
             residual_shape_scan[
                 "root_active_uniform_spectral_rate_below_independent"

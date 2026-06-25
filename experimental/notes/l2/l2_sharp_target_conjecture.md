@@ -3451,7 +3451,7 @@ the required root depth is attainable by the balanced depth alphabet, there is
 already a structural residual candidate.
 
 *Proof.* Since `Y` and `s` are the largest and smallest depths in the balanced
-depth alphabet, the parity progression gives `Y+s=2sigma`. Hence every
+depth alphabet, the parity progression gives `Y+s<=2sigma`. Hence every
 adjacent depth sum in `(Y,s,...,s)` is at most `2sigma`. All centered
 deviations are negative, so the pairwise negativity gate is automatic. The
 root-depth gate holds because `Y>=R`, and the root budget assumption `B>=4`
@@ -3756,6 +3756,78 @@ transfer row sum
 
 is monotone nonincreasing in the low starting depth `z`, so the maximum row
 sum is attained at `z_0=min L_E`. The formula for `h_E` is the definition.
+
+For the actual balanced residual alphabets, the same parameters have a closed
+parity-progression form.
+
+**Corollary (balanced-depth formula for the uniform cap parameters).** Let
+`D` be the all-negative depth alphabet in the depth-transfer residual
+certificate. Then
+
+```text
+D={s,s+2,...,Y},
+```
+
+where `s` is the least positive integer congruent to `k mod 2`, and `Y` is
+the largest integer congruent to `k mod 2` with
+
+```text
+Y <= min(k-2, 2sigma-1).
+```
+
+If no such `Y>=s` exists, then `D` is empty. For a permitted spike height
+`u`, the pinned alphabet is the tail
+
+```text
+D_u={y in D: y>=u+2}.
+```
+
+Thus every nonempty alphabet appearing in the root-active bridge envelope is
+a tail
+
+```text
+E={s_E,s_E+2,...,Y}.
+```
+
+For such a tail, write
+
+```text
+N_E(A,B)=|{y in E: A<=y<=B}|.
+```
+
+Let `alpha_E` be the least element of `E` with `alpha_E>=R`, if it exists.
+If `alpha_E` exists, then
+
+```text
+h_E=N_E(alpha_E,Y),
+c_E=N_E(s_E, min(alpha_E-2, 2sigma-alpha_E)),
+Delta_E=N_E(s_E, min(alpha_E-2, 2sigma-s_E)).
+```
+
+If `alpha_E` does not exist, then `h_E=c_E=0` and
+
+```text
+Delta_E=N_E(s_E, min(Y, 2sigma-s_E)).
+```
+
+These formulas apply to `E=D` and to every nonempty spike tail `E=D_u`.
+
+*Proof.* A negative centered deviation has the form `x=2d-k<0`, so the depth
+`y=-x=k-2d` is positive and congruent to `k mod 2`. The balanced-window
+inequality `-2sigma<x<2sigma`, together with `d>=1`, is exactly
+`0<y<2sigma` and `y<=k-2`. This gives the displayed parity progression for
+`D`, and the spike constraint is `y>=u+2`, so `D_u` is a tail of the same
+progression.
+
+Now apply the monotone parameter formula to a tail `E`. If `alpha_E` exists,
+then the high depths are precisely `{y in E: y>=alpha_E}`, giving
+`h_E=N_E(alpha_E,Y)`, and the low depths are the earlier elements
+`{y in E: y<=alpha_E-2}`. The cap formula counts low depths at most
+`2sigma-alpha_E`, giving the displayed formula for `c_E`; the low-transfer
+degree is attained at the least low depth `s_E` and counts low depths at most
+`2sigma-s_E`, giving the formula for `Delta_E`. If no high depth exists, then
+`h_E=c_E=0` and all elements of `E` are low, giving the final displayed
+formula for `Delta_E`.
 
 The uniform envelope has a two-state recurrence.
 
