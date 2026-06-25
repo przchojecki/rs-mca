@@ -3615,6 +3615,67 @@ cycle and path formulas. Forgetting the internal and boundary inequalities in
 each low component gives at most `|L_E|^{|J|}` choices, which is precisely the
 root-active independent-set bound.
 
+Each bridge has a capped-transfer bound that still remembers the high
+boundary depths.
+
+**Corollary (capped bridge transfer bound).** In the bridge expansion, let
+`T_E` be the low-depth transfer matrix on `L_E`,
+
+```text
+(T_E)_{zw}=1 iff z+w<=2sigma,
+```
+
+and for a high boundary depth `alpha in H_E`, put
+
+```text
+C_E(alpha)={z in L_E: z<=2sigma-alpha}.
+```
+
+If a bridge has length `r>=1` and two high boundaries `alpha,beta`, then
+
+```text
+Bridge_E(r;alpha,beta)
+ = 1_{C_E(alpha)}^T T_E^{r-1} 1_{C_E(beta)}.
+```
+
+If it has only the left boundary `alpha`, then
+
+```text
+Bridge_E(r;alpha,*)=1_{C_E(alpha)}^T T_E^{r-1} 1_{L_E},
+```
+
+and similarly for a right boundary. Let
+
+```text
+Delta_E=max_{z in L_E} |{w in L_E: z+w<=2sigma}|.
+```
+
+Then
+
+```text
+Bridge_E(r;alpha,beta)
+ <= min(|C_E(alpha)|,|C_E(beta)|) Delta_E^{r-1},
+Bridge_E(r;alpha,*) <= |C_E(alpha)| Delta_E^{r-1},
+Bridge_E(r;*,beta) <= |C_E(beta)| Delta_E^{r-1}.
+```
+
+Since `R>sigma`, every cap `C_E(alpha)` lies below `sigma`; hence these
+bounds retain the shallow-neighbor forcing caused by root-active depths. They
+are always at most the free bridge bound `|L_E|^r`, so substituting them into
+the bridge expansion gives an upper bound between the exact transfer count
+and the independent-set bound.
+
+*Proof.* The matrix identities are just the definition of a bridge: the
+initial and terminal vectors impose the boundary inequalities, and the powers
+of `T_E` impose the internal adjacent-depth inequalities. The row sum of
+`T_E` is at most `Delta_E`, so after choosing an allowed boundary-adjacent
+start (or equivalently running the same argument from the right) there are at
+most `Delta_E^{r-1}` continuations. This gives the displayed inequalities.
+The inclusion `C_E(alpha) subset {z<sigma}` follows from
+`alpha>=R>sigma`, because `z<=2sigma-alpha<sigma`. Finally,
+`|C_E(alpha)|<=|L_E|` and `Delta_E<=|L_E|`, so every capped bridge bound is
+bounded by `|L_E|^r`.
+
 For triangles, the transfer subtraction has a closed form.
 
 **Corollary (closed triangular root-active count).** Assume the hypotheses of

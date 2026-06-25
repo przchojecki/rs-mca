@@ -30,6 +30,23 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-25 - L2 capped bridge transfer bounds
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/notes/l2/l2_sharp_target_conjecture.md`,
+  `experimental/scripts/verify_l2_sharp_target.py`, and
+  `experimental/agents-log.md`.
+- **Status:** PROVED / EXPERIMENTAL.
+- **What is being added:** A capped-transfer upper bound for every low-depth
+  bridge in the root-active expansion, retaining the endpoint caps imposed by
+  adjacent root-active depths.
+- **How it is useful:** Gives a reusable analytic upper bound between the
+  exact bridge count and the coarse independent-set count, moving the L2
+  residual frontier closer to asymptotic estimates.
+- **What to do next:** Combine these capped bridge bounds with spectral or
+  entropy estimates for the low-depth transfer matrix.
+
 ### 2026-06-25 - L2 root-active bridge expansion
 
 - **Agent/model:** Codex.
