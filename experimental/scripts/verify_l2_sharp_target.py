@@ -2875,6 +2875,142 @@ def clean_cycle_rank_profile() -> dict:
     }
 
 
+def residual_dimension_band_profile() -> dict:
+    """Check sparse packing of low dimensions in the residual clean-cycle band."""
+    examples = [
+        {
+            "name": "alternating_even_tight",
+            "cycle_len": 6,
+            "k": 12,
+            "sigma": 4,
+            "dimensions": [2, 6, 2, 6, 2, 6],
+        },
+        {
+            "name": "odd_sparse_low",
+            "cycle_len": 5,
+            "k": 14,
+            "sigma": 5,
+            "dimensions": [3, 6, 3, 7, 6],
+        },
+        {
+            "name": "no_low_dense",
+            "cycle_len": 5,
+            "k": 10,
+            "sigma": 3,
+            "dimensions": [4, 4, 4, 4, 4],
+        },
+    ]
+    rows = []
+    for example in examples:
+        cycle_len = example["cycle_len"]
+        k = example["k"]
+        sigma = example["sigma"]
+        dimensions = example["dimensions"]
+        lower_band = k - sigma
+        threshold = (lower_band - 1) // 2
+        pair_sums = [
+            dimensions[idx - 1] + dimensions[idx]
+            for idx in range(cycle_len)
+        ]
+        private_sizes = [
+            pair_sum - lower_band for pair_sum in pair_sums
+        ]
+        low_indices = [
+            idx for idx, dimension in enumerate(dimensions)
+            if dimension <= threshold
+        ]
+        low_neighbor_rows = []
+        for idx in low_indices:
+            left = (idx - 1) % cycle_len
+            right = (idx + 1) % cycle_len
+            low_neighbor_rows.append(
+                {
+                    "index": idx,
+                    "dimension": dimensions[idx],
+                    "left": left,
+                    "right": right,
+                    "left_dimension": dimensions[left],
+                    "right_dimension": dimensions[right],
+                    "left_edge_size": k - dimensions[left],
+                    "right_edge_size": k - dimensions[right],
+                }
+            )
+        independent = True
+        low_set = set(low_indices)
+        for idx in low_indices:
+            if (
+                (idx - 1) % cycle_len in low_set
+                or (idx + 1) % cycle_len in low_set
+            ):
+                independent = False
+        rows.append(
+            {
+                "name": example["name"],
+                "cycle_len": cycle_len,
+                "k": k,
+                "sigma": sigma,
+                "dimensions": dimensions,
+                "edge_sizes": [k - dimension for dimension in dimensions],
+                "lower_band": lower_band,
+                "threshold": threshold,
+                "pair_sums": pair_sums,
+                "private_sizes": private_sizes,
+                "low_indices": low_indices,
+                "low_neighbor_rows": low_neighbor_rows,
+                "low_count": len(low_indices),
+                "max_independent_count": cycle_len // 2,
+                "independent": independent,
+                "neighbor_floor": lower_band - threshold,
+                "neighbor_edge_ceiling": sigma + threshold,
+            }
+        )
+    return {
+        "rows": rows,
+        "residual_band_holds": all(
+            all(
+                row["lower_band"] <= pair_sum < row["k"]
+                for pair_sum in row["pair_sums"]
+            )
+            and all(
+                0 <= private_size < row["sigma"]
+                for private_size in row["private_sizes"]
+            )
+            for row in rows
+        ),
+        "low_edges_independent": all(row["independent"] for row in rows),
+        "low_count_bound_holds": all(
+            row["low_count"] <= row["max_independent_count"] for row in rows
+        ),
+        "neighbor_floor_holds": all(
+            all(
+                neighbor_row["left_dimension"] >= row["neighbor_floor"]
+                and neighbor_row["right_dimension"] >= row["neighbor_floor"]
+                for neighbor_row in row["low_neighbor_rows"]
+            )
+            for row in rows
+        ),
+        "neighbor_edge_cap_holds": all(
+            all(
+                neighbor_row["left_edge_size"] <= row["neighbor_edge_ceiling"]
+                and neighbor_row["right_edge_size"] <= row["neighbor_edge_ceiling"]
+                for neighbor_row in row["low_neighbor_rows"]
+            )
+            for row in rows
+        ),
+        "contains_tight_even_packing": any(
+            row["cycle_len"] % 2 == 0
+            and row["low_count"] == row["max_independent_count"]
+            for row in rows
+        ),
+        "contains_tight_odd_packing": any(
+            row["cycle_len"] % 2 == 1
+            and row["low_count"] == row["max_independent_count"]
+            for row in rows
+        ),
+        "contains_no_low_case": any(row["low_count"] == 0 for row in rows),
+    }
+
+
 def locator_syzygy_witness_profile() -> dict:
     """A small lower-rank selected-edge witness for the syzygy formulation."""
     p, n, k = 7, 6, 3
@@ -4358,6 +4494,7 @@ def run() -> dict:
     full_rank_necklaces = full_rank_cyclic_necklace_profile()
     rank_deficient_necklaces = rank_deficient_cyclic_necklace_profile()
     clean_cycles = clean_cycle_rank_profile()
+    residual_band = residual_dimension_band_profile()
     locator_syzygy_witness = locator_syzygy_witness_profile()
     functional_incidence = functional_incidence_profile()
     witness = realized_rs_k22()
@@ -4731,6 +4868,24 @@ def run() -> dict:
         "clean_cycle_odd_cycle_min_bound": clean_cycles[
             "odd_cycle_min_dimension_closure_bound_holds"
         ],
+        "residual_band_profile_valid": residual_band["residual_band_holds"],
+        "residual_band_low_edges_independent": residual_band[
+            "low_edges_independent"
+        ],
+        "residual_band_low_count_bound": residual_band[
+            "low_count_bound_holds"
+        ],
+        "residual_band_neighbor_floor": residual_band["neighbor_floor_holds"],
+        "residual_band_neighbor_edge_cap": residual_band[
+            "neighbor_edge_cap_holds"
+        ],
+        "residual_band_tight_even_packing": residual_band[
+            "contains_tight_even_packing"
+        ],
+        "residual_band_tight_odd_packing": residual_band[
+            "contains_tight_odd_packing"
+        ],
+        "residual_band_no_low_case": residual_band["contains_no_low_case"],
         "clean_cycle_has_small_pair_case": clean_cycles[
             "contains_small_pair_case"
         ],
@@ -5080,6 +5235,7 @@ def run() -> dict:
         "full_rank_cyclic_necklace_profile": full_rank_necklaces,
         "rank_deficient_cyclic_necklace_profile": rank_deficient_necklaces,
         "clean_cycle_rank_profile": clean_cycles,
+        "residual_dimension_band_profile": residual_band,
         "locator_syzygy_witness_profile": locator_syzygy_witness,
         "functional_incidence_profile": functional_incidence,
         "realized_rs_k22": witness,

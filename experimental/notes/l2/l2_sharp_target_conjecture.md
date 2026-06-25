@@ -2819,6 +2819,42 @@ displayed lower bound for `2D`. The compatibility condition follows by
 combining this lower bound with the nonclearance upper bound
 `2D<=m k-2mu(m-2)sigma+o(n)`.
 
+The residual band also gives a global packing rule for very large overlaps.
+
+**Corollary (low-dimension packing in residual clean cycles).** Assume the
+private-mass reserve gate has not applied, so
+
+```text
+k-sigma <= d_{i-1}+d_i < k
+```
+
+for every adjacent pair. Let `tau` be an integer with `2tau<k-sigma`, and set
+
+```text
+L_tau={i: d_i<=tau}.
+```
+
+Then `L_tau` is an independent set in the cycle. In particular
+
+```text
+|L_tau| <= floor(m/2).
+```
+
+Equivalently, edges with overlap `e_i>=k-tau` are never adjacent and occupy at
+most half of the clean cycle. Every such large-overlap edge has neighboring
+overlaps at most `sigma+tau`.
+
+*Proof.* If two adjacent indices `i-1,i` both belonged to `L_tau`, then
+
+```text
+d_{i-1}+d_i <= 2tau < k-sigma,
+```
+
+contradicting the lower residual band. Thus `L_tau` is independent in the
+cycle, so it has size at most `floor(m/2)`. If `d_i<=tau`, the lower band gives
+each neighboring dimension at least `k-sigma-tau`; translating by `e_j=k-d_j`
+gives neighboring overlaps at most `sigma+tau`.
+
 The connected case also isolates the diagonal exactly.
 
 **Corollary (diagonal is the only zero-loss connected cluster).** Suppose
