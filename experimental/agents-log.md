@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-25 - L1 bounded-background sunflower closure
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/notes/l1/l1_full_list_quotient_proof_program.md` and
+  `experimental/agents-log.md`.
+- **Status:** PROVED.
+- **What is being added:** A background-aware near-saturated pair count and a
+  bounded-background average-deficit closure for maximal sunflower attacks.
+  With bounded cofactor excess, bounded average petal deficit, and bounded
+  unused-background agreement, the non-planted sunflower contribution is
+  polynomially bounded.
+- **How it is useful:** Connects the earlier background-free sunflower
+  reductions back to the original maximal sunflower model and isolates growing
+  `R_P` agreement as the next explicit residual obstruction.
+- **What to do next:** Attack large-background-agreement families directly, or
+  show that they force quotient, low-defect, or another budgeted structure.
+
 ### 2026-06-25 - L1 full-list Johnson base theorem
 
 - **Agent/model:** Codex.

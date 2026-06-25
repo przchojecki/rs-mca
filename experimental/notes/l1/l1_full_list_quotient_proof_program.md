@@ -2072,6 +2072,177 @@ core defect falls far below the petal size.  Thus the sunflower proof program
 has a two-sided interpretation: bounded average deficit pins `d` to a bounded
 window below `ell`, while Theorem 22 controls bounded excess above `ell`.
 
+## Lemma B1. Background-Aware Near-Saturated Pair Count
+
+Status: PROVED.
+
+Return to the general sunflower notation of Lemma 2; the unused background
+`R` may be nonempty.  Fix integers `e0,u0 >= 0`.  The number of non-planted
+listed codewords satisfying
+
+```text
+d <= ell+e0
+```
+
+and having two touched petals `T_i,T_j` with
+
+```text
+|T_i \ S_i| <= u0,        |T_j \ S_j| <= u0
+```
+
+is at most
+
+```text
+binom(M,2) (sum_{v=0}^{u0} binom(ell,v))^2 q^{2(e0+u0+1)}.
+```
+
+This is the counted near-saturated corollary of Lemma 11 without the
+background-free hypothesis.
+
+### Proof
+
+For each codeword, choose the lexicographically first unordered pair of
+touched petals satisfying the displayed deficit bound.  Let
+
+```text
+a_i=|S_i|,        a_j=|S_j|.
+```
+
+By Lemma 11 there are polynomials `A_i,A_j` such that
+
+```text
+(c_j-c_i)L_D = L_{S_i}A_i - L_{S_j}A_j,
+```
+
+and
+
+```text
+deg A_i <= d-a_i,        deg A_j <= d-a_j.
+```
+
+Since `d<=ell+e0` and `a_i,a_j >= ell-u0`, both cofactors have degree at most
+`e0+u0`.
+
+The chosen certificate
+
+```text
+({i,j}, S_i, S_j, A_i, A_j)
+```
+
+determines `L_D` by the syzygy, hence determines `D` if the right-hand side is
+a valid missed-core locator.  It then determines
+
+```text
+W_P = c_iL_D + L_{S_i}A_i
+```
+
+and finally `P=L_{C\D}W_P`.  Certificates that do not recover a valid listed
+codeword are discarded, so this map from codewords to certificates is
+injective.
+
+There are `binom(M,2)` choices for the petal pair, at most
+`sum_{v=0}^{u0} binom(ell,v)` choices for each near-saturated petal support,
+and at most `q^{e0+u0+1}` choices for each cofactor.  Multiplying gives the
+claimed bound.
+
+### Consequences
+
+Unused background agreements do not affect the two-petal syzygy certificate.
+Thus any sunflower family with bounded cofactor excess and two
+near-saturated touched petals is already polynomially controlled, even before
+the unused background is stripped away.
+
+## Theorem B2. Bounded-Background Average-Deficit Closure
+
+Status: PROVED.
+
+Assume the sunflower is maximal, so its unused background has size
+`b=|R|<ell`, and work at the L1 lower cutoff with generated field
+`q=poly(n)`.  For a non-planted listed codeword put
+
+```text
+r(P)=|R_P|,
+t(P)=#{i : S_i nonempty},
+u(P)=sum_i (ell-|S_i|),
+```
+
+where the sum is over touched petals.  Fix integer constants `E,A,B >= 0`.
+Then the number of non-planted listed codewords satisfying
+
+```text
+d <= ell+E,        r(P) <= B,
+```
+
+and, when `t(P)>0`,
+
+```text
+u(P) <= A t(P),
+```
+
+is polynomial in `n`.
+
+Consequently, any super-polynomial maximal-sunflower family at the L1 lower
+cutoff with bounded cofactor excess `d-ell` and bounded average petal deficit
+`u(P)/t(P)` must have
+
+```text
+r(P) -> infinity.
+```
+
+### Proof
+
+For `ell>B`, no listed codeword with `r(P)<=B` can have `t(P)=0`, because the
+list condition from Lemma 2 would give
+
+```text
+r(P) >= ell+d.
+```
+
+Now consider the one-petal case `t(P)=1`.  Write the unique petal deficit as
+`u=ell-|S_i|`.  The list condition gives
+
+```text
+ell-u+r(P) >= ell+d,
+```
+
+so `d <= r(P)-u <= B`.  Thus all one-petal codewords with `r(P)<=B` lie in a
+fixed-defect layer, and Lemma 3 bounds their total contribution by a
+polynomial in `n`.
+
+It remains to treat `t=t(P)>=2`.  If `u(P)<=At`, then at least two touched
+petals have deficit at most `2A`; otherwise at least `t-1` touched petals
+would have deficit at least `2A+1`, giving
+
+```text
+u(P) >= (t-1)(2A+1) > At
+```
+
+for every `t>=2`, a contradiction.  Therefore every remaining codeword has
+two near-saturated touched petals with `u0=2A`.  Lemma B1, with `e0=E` and
+`u0=2A`, bounds these codewords by
+
+```text
+binom(M,2) (sum_{v=0}^{2A} binom(ell,v))^2 q^{2(E+2A+1)}.
+```
+
+At the L1 lower cutoff, `M=O(log n)`, `ell<=n`, and `q=poly(n)`, so this is
+polynomial in `n` for fixed `E,A`.  Adding the fixed-defect one-petal
+contribution proves the polynomial bound.
+
+For the final assertion, if a super-polynomial family had bounded
+`d-ell`, bounded `u(P)/t(P)`, and bounded `r(P)`, fixed constants `E,A,B`
+would contain it in the polynomially bounded union just proved.
+
+### Consequences
+
+This theorem connects the background-free sunflower closure back to the
+original maximal sunflower model.  After bounded cofactor excess and bounded
+average petal deficit are removed, the only new obstruction introduced by an
+unused background is a growing number of background agreements.  The next
+background-sensitive target is therefore explicit: either bound large
+`R_P`-agreement families directly, or show that they force quotient,
+low-defect, or another budgeted structure.
+
 ## Development Ledger
 
 - **Conjecture 1 full-list primitive remainder:** CONJECTURAL.  Main proof
@@ -2132,5 +2303,11 @@ window below `ell`, while Theorem 22 controls bounded excess above `ell`.
   polynomially controlled.
 - **Defect-deficit sandwich:** PROVED.  Shows bounded average petal deficit
   forces the core defect to stay within a bounded window below `ell`.
+- **Background-aware near-saturated pair count:** PROVED.  Removes the
+  background-free hypothesis from the two-near-saturated-petal certificate
+  count.
+- **Bounded-background average-deficit closure:** PROVED.  Extends the
+  sunflower closure to maximal sunflowers with bounded unused-background
+  agreement, leaving growing `R_P` agreement as an explicit residual escape.
 - **Mixed-petal sunflower amplification:** CONJECTURAL.  Next focused bound to
   prove or refute in the large-defect regime.
