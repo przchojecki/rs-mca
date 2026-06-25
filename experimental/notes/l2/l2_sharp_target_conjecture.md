@@ -1158,6 +1158,34 @@ MDS independence again forces `T=R`, so `R subset E`. Conversely, every
 `e<=k/2` and `[ell]` is counted at all, its minimal support has `r<=e`, so
 `r+e<=2e<=k`; the formula applies and is maximized at `r=1`.
 
+The disjointness in a clean cycle makes this sharper for any cycle containing a
+small edge.
+
+**Corollary (small-edge isolation).** Suppose a rank-deficient clean cycle has
+common projective functional `[ell]`, and let `r=r([ell])` be its minimal
+support size. If one edge block `E_i` has size `e_i` with
+
+```text
+r+e_i<=k,
+```
+
+then `E_i` contains the unique minimal support `R` of `[ell]`. Since the clean
+cycle edge blocks are pairwise disjoint, every other edge size satisfies
+
+```text
+e_j > k-r        for all j != i.
+```
+
+In particular, if a rank-deficient clean cycle has an edge of size
+`e_min<=k/2`, then that edge contains the minimal support of the common
+functional and all other edge overlaps have size greater than `k-r([ell])`.
+
+*Proof.* The containment of `R` in `E_i` is the small-support uniqueness
+corollary. Every other edge block `E_j` is disjoint from `E_i`, hence disjoint
+from `R`. If `e_j+r<=k`, the two disjoint representations on `R` and `E_j`
+would violate the MDS independence rule from the functional-incidence
+corollary. Therefore `e_j>k-r`.
+
 This formula gives a useful first lower bound without classifying all possible
 dependencies among the `W_i`.
 

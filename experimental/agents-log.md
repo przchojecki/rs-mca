@@ -203,8 +203,11 @@ Keep entries concise and link to the relevant files.
   sizes summing to at most `k` are impossible. The incidence counts are now
   exact in the MDS uniqueness range: if `[ell]` has minimal support size `r`
   and `e>=r`, `r+e<=k`, then `N_e([ell])=binom(n-r,e-r)`, so for
-  `e<=k/2` one always has `N_e([ell])<=binom(n-1,e-1)`. A two-edge lower
-  bound now shows
+  `e<=k/2` one always has `N_e([ell])<=binom(n-1,e-1)`. The clean-cycle
+  disjointness now gives small-edge isolation: if one edge contains the unique
+  minimal support of size `r`, all other edge overlaps must have size `>k-r`;
+  the verifier checks this through the finite incidence profile. A two-edge
+  lower bound now shows
   `R_cyc >= k-max(0,s_2-k)`, where `s_2` is the minimum pair sum of edge
   sizes; in particular, if two edge overlaps have total size at most `k`, then
   `R_cyc=k`. Thus rank-deficient clean cycles can only occur in the

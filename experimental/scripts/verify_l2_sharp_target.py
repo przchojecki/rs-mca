@@ -1614,8 +1614,17 @@ def functional_incidence_profile() -> dict:
         )
         for functional in projective_functionals
     }
+    minimal_supports = {
+        functional: (
+            representing_subsets[functional][minimal_support_size[functional]]
+            if minimal_support_size[functional] is not None
+            else []
+        )
+        for functional in projective_functionals
+    }
     small_support_formula_failures = []
     small_support_bound_failures = []
+    disjoint_minimal_support_failures = []
     for functional in projective_functionals:
         min_size = minimal_support_size[functional]
         if min_size is None:
@@ -1649,6 +1658,26 @@ def functional_incidence_profile() -> dict:
                             "bound": bound,
                         }
                     )
+            if min_size + size <= k:
+                for minimal_support in minimal_supports[functional]:
+                    minimal_set = set(minimal_support)
+                    for subset in representing_subsets[functional][size]:
+                        if minimal_set.isdisjoint(subset):
+                            disjoint_minimal_support_failures.append(
+                                {
+                                    "functional": functional,
+                                    "minimal_support": minimal_support,
+                                    "size": size,
+                                    "subset": subset,
+                                }
+                            )
+                            break
+                    if disjoint_minimal_support_failures:
+                        break
+            if disjoint_minimal_support_failures:
+                break
+        if disjoint_minimal_support_failures:
+            break
 
     minimal_support_distribution: dict[int | None, int] = {}
     for min_size in minimal_support_size.values():
@@ -1684,6 +1713,8 @@ def functional_incidence_profile() -> dict:
         "small_support_formula_holds": not small_support_formula_failures,
         "small_support_bound_failures": small_support_bound_failures,
         "small_support_bound_holds": not small_support_bound_failures,
+        "disjoint_minimal_support_failures": disjoint_minimal_support_failures,
+        "small_edge_isolation_holds": not disjoint_minimal_support_failures,
         "singleton_represented_count": len(singleton_represented),
         "domain_evaluation_count": len(domain_evaluations),
         "singleton_represented_are_domain_evaluations": set(singleton_represented)
@@ -2881,6 +2912,9 @@ def run() -> dict:
         ],
         "functional_incidence_small_support_bound": functional_incidence[
             "small_support_bound_holds"
+        ],
+        "functional_incidence_small_edge_isolation": functional_incidence[
+            "small_edge_isolation_holds"
         ],
         "kmm_grid_formula": all(d["interleaved_edges"] == d["grid_edges_at_n_min"] for d in designs),
         "rs_witness_creates_mass": witness["mass_creation"],
