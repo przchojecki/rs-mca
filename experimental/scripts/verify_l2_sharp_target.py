@@ -1616,14 +1616,16 @@ def clean_cycle_rank_profile() -> dict:
             all_edge_disjoint_block_count *= comb(n - used_points, edge_size)
             used_points += edge_size
         if all_edge_expected_common_dim == 0:
-            all_edge_full_rank_tuple_bound = 0
+            all_edge_full_rank_selected_bound = 0
         else:
-            all_edge_full_rank_tuple_bound = (
+            all_edge_full_rank_selected_bound = (
                 all_edge_disjoint_block_count
                 * (p**all_edge_expected_common_dim - 1)
                 // (p - 1)
-                * private_block_bound
             )
+        all_edge_full_rank_tuple_bound = (
+            all_edge_full_rank_selected_bound * private_block_bound
+        )
         all_edge_full_rank_gap_lower_bound = (
             (cycle_len - 1) * (a - k) - all_edge_expected_common_dim
         )
@@ -1636,6 +1638,59 @@ def clean_cycle_rank_profile() -> dict:
         else:
             all_edge_full_rank_relative_bound = Fraction(
                 all_edge_full_rank_tuple_bound * p ** (-all_edge_gap_power),
+                comb(n, a),
+            )
+        all_edge_marked_syzygy_count_bound = 0
+        coefficient_dimensions = [
+            k - edge_size for edge_size in edge_sizes
+        ]
+        for pivot in range(cycle_len):
+            nonpivot_block_count = 1
+            chosen_points = 0
+            for idx, edge_size in enumerate(edge_sizes):
+                if idx == pivot:
+                    continue
+                nonpivot_block_count *= comb(n - chosen_points, edge_size)
+                chosen_points += edge_size
+            pivot_coefficients = (
+                p ** coefficient_dimensions[pivot] - 1
+            ) // (p - 1)
+            nonpivot_coefficient_dim = sum(
+                coefficient_dimensions[idx]
+                for idx in range(cycle_len)
+                if idx != pivot
+            )
+            all_edge_marked_syzygy_count_bound += (
+                pivot_coefficients
+                * p ** (nonpivot_coefficient_dim - 1)
+                * nonpivot_block_count
+            )
+        if gap_power >= 0:
+            all_edge_marked_syzygy_relative_bound = Fraction(
+                all_edge_marked_syzygy_count_bound * private_block_bound,
+                comb(n, a) * p**gap_power,
+            )
+        else:
+            all_edge_marked_syzygy_relative_bound = Fraction(
+                all_edge_marked_syzygy_count_bound
+                * private_block_bound
+                * p ** (-gap_power),
+                comb(n, a),
+            )
+        all_edge_hybrid_selected_bound = (
+            all_edge_full_rank_selected_bound
+            + all_edge_marked_syzygy_count_bound
+        )
+        if gap_power >= 0:
+            all_edge_hybrid_relative_bound = Fraction(
+                all_edge_hybrid_selected_bound * private_block_bound,
+                comb(n, a) * p**gap_power,
+            )
+        else:
+            all_edge_hybrid_relative_bound = Fraction(
+                all_edge_hybrid_selected_bound
+                * private_block_bound
+                * p ** (-gap_power),
                 comb(n, a),
             )
         rows.append(
@@ -1702,6 +1757,9 @@ def clean_cycle_rank_profile() -> dict:
                 "all_edge_expected_selected_rank": all_edge_expected_selected_rank,
                 "all_edge_expected_common_dim": all_edge_expected_common_dim,
                 "all_edge_disjoint_block_count": all_edge_disjoint_block_count,
+                "all_edge_full_rank_selected_bound": (
+                    all_edge_full_rank_selected_bound
+                ),
                 "all_edge_full_rank_tuple_bound": all_edge_full_rank_tuple_bound,
                 "all_edge_full_rank_gap_lower_bound": (
                     all_edge_full_rank_gap_lower_bound
@@ -1709,6 +1767,18 @@ def clean_cycle_rank_profile() -> dict:
                 "all_edge_full_rank_relative_bound_to_diagonal": {
                     "numerator": all_edge_full_rank_relative_bound.numerator,
                     "denominator": all_edge_full_rank_relative_bound.denominator,
+                },
+                "all_edge_marked_syzygy_count_bound": (
+                    all_edge_marked_syzygy_count_bound
+                ),
+                "all_edge_marked_syzygy_relative_bound_to_diagonal": {
+                    "numerator": all_edge_marked_syzygy_relative_bound.numerator,
+                    "denominator": all_edge_marked_syzygy_relative_bound.denominator,
+                },
+                "all_edge_hybrid_selected_bound": all_edge_hybrid_selected_bound,
+                "all_edge_hybrid_relative_bound_to_diagonal": {
+                    "numerator": all_edge_hybrid_relative_bound.numerator,
+                    "denominator": all_edge_hybrid_relative_bound.denominator,
                 },
             }
         )
@@ -1829,6 +1899,36 @@ def clean_cycle_rank_profile() -> dict:
             row["name"] == "triangle_necklace"
             and row["all_edge_full_rank_relative_bound_to_diagonal"]["numerator"]
             < row["all_edge_full_rank_relative_bound_to_diagonal"]["denominator"]
+            for row in rows
+        ),
+        "all_edge_marked_syzygy_clears_non_small_pair_examples": all(
+            row["min_edge_pair_sum"] <= row["k"]
+            or row["all_edge_marked_syzygy_relative_bound_to_diagonal"]["numerator"]
+            < row["all_edge_marked_syzygy_relative_bound_to_diagonal"]["denominator"]
+            for row in rows
+        ),
+        "all_edge_marked_syzygy_records_small_pair_coarseness": any(
+            row["min_edge_pair_sum"] <= row["k"]
+            and row["all_edge_marked_syzygy_relative_bound_to_diagonal"]["numerator"]
+            > row["all_edge_marked_syzygy_relative_bound_to_diagonal"]["denominator"]
+            for row in rows
+        ),
+        "all_edge_hybrid_clears_non_small_pair_examples": all(
+            row["min_edge_pair_sum"] <= row["k"]
+            or row["all_edge_hybrid_relative_bound_to_diagonal"]["numerator"]
+            < row["all_edge_hybrid_relative_bound_to_diagonal"]["denominator"]
+            for row in rows
+        ),
+        "all_edge_hybrid_clears_triangle_example": any(
+            row["name"] == "triangle_necklace"
+            and row["all_edge_hybrid_relative_bound_to_diagonal"]["numerator"]
+            < row["all_edge_hybrid_relative_bound_to_diagonal"]["denominator"]
+            for row in rows
+        ),
+        "all_edge_hybrid_records_small_pair_coarseness": any(
+            row["min_edge_pair_sum"] <= row["k"]
+            and row["all_edge_hybrid_relative_bound_to_diagonal"]["numerator"]
+            > row["all_edge_hybrid_relative_bound_to_diagonal"]["denominator"]
             for row in rows
         ),
     }
@@ -3447,6 +3547,21 @@ def run() -> dict:
         ],
         "clean_cycle_all_edge_clears_triangle": clean_cycles[
             "all_edge_full_rank_clears_triangle_example"
+        ],
+        "clean_cycle_all_edge_marked_syzygy_clears": clean_cycles[
+            "all_edge_marked_syzygy_clears_non_small_pair_examples"
+        ],
+        "clean_cycle_all_edge_marked_syzygy_small_pair_coarse": clean_cycles[
+            "all_edge_marked_syzygy_records_small_pair_coarseness"
+        ],
+        "clean_cycle_all_edge_hybrid_clears": clean_cycles[
+            "all_edge_hybrid_clears_non_small_pair_examples"
+        ],
+        "clean_cycle_all_edge_hybrid_clears_triangle": clean_cycles[
+            "all_edge_hybrid_clears_triangle_example"
+        ],
+        "clean_cycle_all_edge_hybrid_small_pair_coarse": clean_cycles[
+            "all_edge_hybrid_records_small_pair_coarseness"
         ],
         "functional_incidence_projective_count": functional_incidence[
             "projective_functional_count"

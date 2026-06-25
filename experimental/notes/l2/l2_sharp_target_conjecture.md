@@ -1718,6 +1718,48 @@ count `binom(n,a)` gives the displayed relative bound. The necklace
 specialization has `a=2r`, `k=r+1`, `d=r-1`, no private blocks, and no
 unselected edges, recovering the previous formula.
 
+This gives a usable all-edge clearance test for clean-cycle defects.
+
+**Corollary (all-edge hybrid clean-cycle defect bound).** Select all
+clean-cycle edges, and put
+
+```text
+d_2=max(0,s_2-k),       s_2=min_{i<j}(e_i+e_j).
+```
+
+If `s_2<=k`, then `R_cyc=k`, so there is no rank-deficient clean-cycle
+defect. Assume now that `s_2>k`. Let `B_full` be the full selected-rank
+all-edge count
+
+```text
+  prod_i binom(n-s_i,e_i) (q^{d_full}-1)/(q-1),
+  d_full=max(0,sum_i e_i-(m-1)k),
+```
+
+where `s_i` is the number of previously chosen edge points in a fixed
+ordering. Let `B_mark` be the all-edge marked-syzygy bound from the previous
+corollary. Then the rank-deficient clean-cycle contribution of this fixed
+shape, divided by the diagonal first-moment scale, is at most
+
+```text
+  [ (B_full+B_mark) prod_i binom(n,p_i) / binom(n,a) ]
+  q^{-mu((m-1)(a-k)-d_2)}.
+```
+
+Thus the all-edge clean-cycle defect splits into a full selected-rank
+incidence part and a lower selected-rank marked-syzygy part. In applications
+the small-pair case should be removed first by the two-edge theorem; the
+marked-syzygy bound is deliberately a coarse overcount there because it also
+counts generic kernel syzygies that do not lower `R_cyc`.
+
+*Proof.* If `s_2<=k`, the two-edge lower bound gives `R_cyc=k`. Otherwise,
+partition the selected edge tuples according to whether the all-edge selected
+rank is full. The full selected-rank stratum has common functional dimension
+`d_full`, giving the projective incidence count `B_full`. Every lower
+selected-rank tuple has a nonzero excess syzygy, hence is covered by
+`B_mark`. Multiplying by the private block count and using the two-edge lower
+bound `R_cyc>=k-d_2` gives the displayed diagonal-relative contribution.
+
 The incidence counts are exact in the MDS uniqueness range.
 
 **Corollary (small-support uniqueness for `N_e`).** Let `r([ell])` be the
