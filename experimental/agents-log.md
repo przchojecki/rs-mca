@@ -251,9 +251,12 @@ Keep entries concise and link to the relevant files.
   nonconstant pivot coefficient `A_t`, divisibility by `A_t` cuts the nonpivot
   coefficient space by the rank of the residue map
   `sum L_j A_j mod A_t`, improving the monicity-only `q` saving whenever this
-  rank is `>1`. The verifier adds an `F_11` degree-two pivot example where the
-  residue rank is `2` and the combined coefficient bound improves from
-  `11^5` to `11^4`. Combining the pivot, monic, and domain gates gives a
+  rank is `>1`; summing over pivot classes gives a rank-weighted replacement
+  for the old monicity-only coefficient factor. The verifier adds an `F_11`
+  degree-two pivot example where the residue rank is `2`, the single-pivot
+  coefficient bound improves from `11^5` to `11^4`, and the rank-weighted
+  aggregate improves the projective monicity bound. Combining the pivot, monic,
+  and domain gates gives a
   marked selected-syzygy tuple bound; the verifier checks that this general
   formula exactly reproduces the earlier rank-deficient necklace count
   `m q^{m-2} prod_{h=0}^{m-2} binom(n-hr,r)`. Combining it with any

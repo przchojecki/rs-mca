@@ -2238,6 +2238,32 @@ def locator_syzygy_witness_profile() -> dict:
     rank_combined_bound = rank_p ** (
         rank_nonpivot_dimension - max(1, rank_divisibility_rank)
     )
+    rank_weighted_bound = 0
+    rank_distribution: dict[int, int] = {}
+    normalized_rank_pivots = 0
+    for degree in range(rank_coefficient_dimensions[rank_pivot]):
+        for lower_coefficients in itertools.product(range(rank_p), repeat=degree):
+            coefficient = list(lower_coefficients) + [1]
+            residue_rank = divisibility_residue_rank(
+                rank_locators,
+                rank_coefficient_dimensions,
+                rank_pivot,
+                coefficient,
+                rank_p,
+            )
+            normalized_rank_pivots += 1
+            rank_distribution[residue_rank] = (
+                rank_distribution.get(residue_rank, 0) + 1
+            )
+            rank_weighted_bound += rank_p ** (
+                rank_nonpivot_dimension - max(1, residue_rank)
+            )
+    rank_projective_pivot_count = (
+        rank_p ** rank_coefficient_dimensions[rank_pivot] - 1
+    ) // (rank_p - 1)
+    rank_monic_projective_bound = (
+        rank_projective_pivot_count * rank_p ** (rank_nonpivot_dimension - 1)
+    )
     return {
         "p": p,
         "n": n,
@@ -2300,6 +2326,11 @@ def locator_syzygy_witness_profile() -> dict:
             "monic_bound": rank_monic_bound,
             "divisibility_bound": rank_divisibility_bound,
             "combined_bound": rank_combined_bound,
+            "rank_distribution": dict(sorted(rank_distribution.items())),
+            "normalized_pivot_count": normalized_rank_pivots,
+            "projective_pivot_count": rank_projective_pivot_count,
+            "rank_weighted_bound": rank_weighted_bound,
+            "monic_projective_bound": rank_monic_projective_bound,
         },
         "syzygy_sum_zero": syzygy_sum == [0],
         "pivot_forcing_remainder_zero": forcing_remainder == [0],
@@ -2328,6 +2359,12 @@ def locator_syzygy_witness_profile() -> dict:
         ),
         "divisibility_rank_improves_monic_bound": (
             rank_combined_bound * rank_p == rank_monic_bound
+        ),
+        "rank_weighted_count_covers_projective_pivots": (
+            normalized_rank_pivots == rank_projective_pivot_count
+        ),
+        "rank_weighted_bound_improves_monic_projective": (
+            rank_weighted_bound < rank_monic_projective_bound
         ),
     }
 
@@ -3940,6 +3977,12 @@ def run() -> dict:
         ],
         "locator_syzygy_divisibility_improves_monic": locator_syzygy_witness[
             "divisibility_rank_improves_monic_bound"
+        ],
+        "locator_syzygy_rank_weighted_pivots": locator_syzygy_witness[
+            "rank_weighted_count_covers_projective_pivots"
+        ],
+        "locator_syzygy_rank_weighted_improves": locator_syzygy_witness[
+            "rank_weighted_bound_improves_monic_projective"
         ],
         "kmm_grid_formula": all(d["interleaved_edges"] == d["grid_edges_at_n_min"] for d in designs),
         "rs_witness_creates_mass": witness["mass_creation"],

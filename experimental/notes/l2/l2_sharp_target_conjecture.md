@@ -1656,6 +1656,49 @@ dimension `max(0,d_j-(b-deg gcd(A_t,L_j)))`, so the image has dimension
 `min(d_j,b-deg gcd(A_t,L_j))`. The rank of the full direct-sum map is at least
 the rank on any one summand.
 
+Summing the pointwise refinement gives a sharper marked-syzygy coefficient
+factor.
+
+**Corollary (rank-weighted marked-syzygy bound).** In the marked
+selected-syzygy tuple bound, fix a pivot `t` and fixed nonpivot edge locators.
+Put
+
+```text
+D_t=sum_{j != t} d_j.
+```
+
+Then the monicity-only coefficient factor
+
+```text
+(q^{d_t}-1)/(q-1) q^{D_t-1}
+```
+
+may be replaced by the rank-weighted factor
+
+```text
+C_t(L_{j != t})
+  = sum_{[A_t] in P(F_q[X]_{<d_t})}
+      q^{D_t - max(1,rho(t,A_t))}.
+```
+
+Consequently the marked selected-syzygy count is at most
+
+```text
+sum_t sum_{nonpivot edge tuples}
+  C_t(L_{j != t}),
+```
+
+with the same sequential disjoint choice of nonpivot edge tuples as before.
+This is never worse than the monicity-only bound and is strictly better as
+soon as some pivot coefficient class has `rho(t,A_t)>1`.
+
+*Proof.* For each fixed projective pivot coefficient class `[A_t]`, the
+divisibility-rank refinement bounds the nonpivot coefficient choices by the
+corresponding summand. Summing over all pivot coefficient classes and then
+over nonpivot edge tuples and pivots gives the displayed count. Since
+`max(1,rho(t,A_t))>=1`, each summand is bounded by the monicity-only summand;
+strict improvement occurs whenever one summand has `rho(t,A_t)>1`.
+
 The root and disjointness gate is also purely algebraic.
 
 **Corollary (domain-locator gate for forced pivots).** Let
