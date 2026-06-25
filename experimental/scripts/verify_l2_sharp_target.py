@@ -3065,6 +3065,57 @@ def residual_dimension_band_profile() -> dict:
 
 def residual_shape_scan_profile() -> dict:
     """Finite residual-dimension scans after the clean-cycle normal-form gates."""
+
+    def adjacent_deviations_ok(left: int, right: int, sigma: int) -> bool:
+        return -2 * sigma <= left + right < 0
+
+    def cyclic_walk_count(alphabet: list[int], cycle_len: int, sigma: int) -> int:
+        if not alphabet:
+            return 0
+        count = 0
+        for start in alphabet:
+            state_counts = {start: 1}
+            for _ in range(cycle_len - 1):
+                next_counts: dict[int, int] = {}
+                for current, current_count in state_counts.items():
+                    for nxt in alphabet:
+                        if adjacent_deviations_ok(current, nxt, sigma):
+                            next_counts[nxt] = (
+                                next_counts.get(nxt, 0) + current_count
+                            )
+                state_counts = next_counts
+            count += sum(
+                current_count
+                for current, current_count in state_counts.items()
+                if adjacent_deviations_ok(current, start, sigma)
+            )
+        return count
+
+    def pinned_spike_walk_count(
+        spike: int, alphabet: list[int], cycle_len: int, sigma: int
+    ) -> int:
+        if not alphabet:
+            return 0
+        state_counts = {
+            value: 1
+            for value in alphabet
+            if adjacent_deviations_ok(spike, value, sigma)
+        }
+        for _ in range(cycle_len - 2):
+            next_counts: dict[int, int] = {}
+            for current, current_count in state_counts.items():
+                for nxt in alphabet:
+                    if adjacent_deviations_ok(current, nxt, sigma):
+                        next_counts[nxt] = (
+                            next_counts.get(nxt, 0) + current_count
+                        )
+            state_counts = next_counts
+        return sum(
+            current_count
+            for current, current_count in state_counts.items()
+            if adjacent_deviations_ok(current, spike, sigma)
+        )
+
     scan_cases = [
         {"name": "triangle_nonempty", "cycle_len": 3, "mu": 2, "k": 8, "sigma": 3},
         {
@@ -3212,6 +3263,64 @@ def residual_shape_scan_profile() -> dict:
             odd_lower_numerator = None
             odd_upper_numerator = None
             odd_compatible = True
+        transfer_all_negative_count = (
+            0
+            if root_budget < 4
+            else (
+                cyclic_walk_count(
+                    negative_deviation_values, cycle_len, sigma
+                )
+                - cyclic_walk_count(
+                    [
+                        deviation
+                        for deviation in negative_deviation_values
+                        if deviation > root_depth_threshold
+                    ],
+                    cycle_len,
+                    sigma,
+                )
+            )
+        )
+        transfer_spike_rows = []
+        for spike_row in spike_height_rows:
+            spike = spike_row["spike"]
+            allowed_values = spike_row["allowed_negative_values"]
+            above_threshold_values = [
+                deviation
+                for deviation in allowed_values
+                if deviation > root_depth_threshold
+            ]
+            if root_budget < 4 or not spike_row["total_compatible"]:
+                root_depth_walk_count = 0
+            else:
+                all_walk_count = pinned_spike_walk_count(
+                    spike, allowed_values, cycle_len, sigma
+                )
+                if spike <= root_depth_threshold:
+                    root_depth_walk_count = all_walk_count
+                else:
+                    root_depth_walk_count = (
+                        all_walk_count
+                        - pinned_spike_walk_count(
+                            spike,
+                            above_threshold_values,
+                            cycle_len,
+                            sigma,
+                        )
+                    )
+            transfer_spike_rows.append(
+                {
+                    "spike": spike,
+                    "root_depth_walk_count": root_depth_walk_count,
+                }
+            )
+        transfer_candidate_count = (
+            0
+            if not odd_compatible
+            else transfer_all_negative_count
+            + cycle_len
+            * sum(row["root_depth_walk_count"] for row in transfer_spike_rows)
+        )
         candidate_count = 0
         candidates = set()
         examples = []
@@ -3377,6 +3486,9 @@ def residual_shape_scan_profile() -> dict:
                 "spike_height_search_size": spike_height_search_size,
                 "root_depth_all_negative_size": root_depth_all_negative_size,
                 "root_depth_search_size": root_depth_search_size,
+                "transfer_all_negative_count": transfer_all_negative_count,
+                "transfer_spike_rows": transfer_spike_rows,
+                "transfer_candidate_count": transfer_candidate_count,
                 "centered_candidate_count": len(centered_candidates),
                 "centered_matches_dimension_scan": (
                     centered_candidates == candidates
@@ -3616,6 +3728,20 @@ def residual_shape_scan_profile() -> dict:
             row["candidate_count"] == 0
             for row in rows
             if row["root_budget"] < 4
+        ),
+        "transfer_count_matches_dimension_scan": all(
+            row["transfer_candidate_count"] == row["candidate_count"]
+            for row in rows
+        ),
+        "transfer_count_below_root_depth_search": all(
+            row["transfer_candidate_count"] <= row["root_depth_search_size"]
+            for row in rows
+        ),
+        "transfer_count_detects_nonempty_case": any(
+            row["transfer_candidate_count"] > 0 for row in rows
+        ),
+        "transfer_count_detects_empty_case": any(
+            row["transfer_candidate_count"] == 0 for row in rows
         ),
         "pair_cap_clearance_holds": all(
             row["candidate_count"] == 0
@@ -5650,6 +5776,18 @@ def run() -> dict:
         ],
         "residual_shape_scan_root_depth_empty": residual_shape_scan[
             "root_depth_empty_when_budget_low"
+        ],
+        "residual_shape_scan_transfer_matches": residual_shape_scan[
+            "transfer_count_matches_dimension_scan"
+        ],
+        "residual_shape_scan_transfer_bounded": residual_shape_scan[
+            "transfer_count_below_root_depth_search"
+        ],
+        "residual_shape_scan_transfer_nonempty": residual_shape_scan[
+            "transfer_count_detects_nonempty_case"
+        ],
+        "residual_shape_scan_transfer_empty": residual_shape_scan[
+            "transfer_count_detects_empty_case"
         ],
         "residual_shape_scan_pair_cap_clearance": residual_shape_scan[
             "pair_cap_clearance_holds"

@@ -3327,6 +3327,62 @@ negative coordinates must be below it; subtracting the choices with every
 negative coordinate `>B-k` gives the displayed count. The exactness follows
 from the exact centered residual-shape certificate.
 
+The exact certificate can be written as a finite transfer-matrix count.
+
+**Corollary (transfer-matrix centered residual certificate).** Keep the
+notation of the root-depth refined centered certificate, and assume `B>=4`.
+For a finite set `Y` of centered deviations, let `M_Y` be the `0/1` matrix
+indexed by `Y` with
+
+```text
+(M_Y)_{xy}=1  iff  -2sigma <= x+y < 0.
+```
+
+Let `theta=B-k`. The all-negative root-depth sector contributes
+
+```text
+tr(M_{A_-}^m) - tr(M_{ {v in A_-: v>theta} }^m).
+```
+
+For a permitted spike height `u in A_+`, put
+
+```text
+Y_u=A_-(u)={v in A_-: v<=-u-2},
+Y_u^>={v in Y_u: v>theta}.
+```
+
+If `c_u(Y)` denotes the number of length-`m` cyclic words with `x_0=u`,
+all other coordinates in `Y`, and adjacent sums in `[-2sigma,0)`, then the
+spike contribution at height `u` is
+
+```text
+c_u(Y_u)                         if u<=theta,
+c_u(Y_u)-c_u(Y_u^>)              if u>theta.
+```
+
+The total number of centered residual-shape candidates is therefore
+
+```text
+tr(M_{A_-}^m) - tr(M_{ {v in A_-: v>theta} }^m)
++ m sum_u spike_contribution(u),
+```
+
+where the sum is over spike heights satisfying
+`(m-2)u+2(m-1)<=m sigma`; if the odd-cycle compatibility fails, the total is
+`0`. This count is exactly the finite residual-shape candidate count.
+
+*Proof.* The exact centered certificate already decomposes candidates into
+the all-negative sector and the `m` rotations of the single-spike sector. In
+each sector the remaining adjacent-band condition is precisely the local edge
+condition defining `M_Y`. The trace counts cyclic all-negative words. With a
+spike pinned at one coordinate, `c_u(Y)` counts the allowed paths through the
+remaining `m-1` coordinates and the two edges incident to the spike; multiplying
+by `m` accounts for the spike position. Subtracting the `>theta` alphabets is
+exactly the root-depth requirement that at least one coordinate satisfy
+`x_i<=theta`, unless the spike itself already does. The odd compatibility is a
+global gate from the finite certificate, so failure makes the candidate count
+zero.
+
 The finite certificate is monotone in the interleaving arity.
 
 **Corollary (arity monotonicity of residual-shape certificates).** Fix
