@@ -17,6 +17,10 @@ It also checks the cleared-remainder identity for the graph gate
 
 where Delta0=tau3^2 + A tau3 + B, Delta1=s tau3 + h, and
 G=h^2-Ahs+Bs^2.
+
+Finally it verifies the slope-map normal form obtained by eliminating tau3:
+
+    q1 z^2 - (p1 - q2) z - p2 = 0.
 """
 
 from __future__ import annotations
@@ -25,7 +29,11 @@ from dataclasses import dataclass
 from typing import Dict, Iterable, Tuple
 
 
-VARS = ("p10", "p11", "p20", "p21", "q10", "q11", "q20", "q21", "nu", "tau3")
+VARS = (
+    "p10", "p11", "p20", "p21",
+    "q10", "q11", "q20", "q21",
+    "z0", "z1", "nu", "tau3",
+)
 TAU3_IDX = VARS.index("tau3")
 Monomial = Tuple[int, ...]
 
@@ -151,11 +159,17 @@ def assert_equal(actual: Poly, expected: Poly, label: str) -> None:
         )
 
 
+def assert_felem_equal(actual: FElem, expected: FElem, label: str) -> None:
+    assert_equal(actual.b0, expected.b0, f"{label} base")
+    assert_equal(actual.b1, expected.b1, f"{label} alpha")
+
+
 def main() -> None:
     p1 = fvar("p1")
     p2 = fvar("p2")
     q1 = fvar("q1")
     q2 = fvar("q2")
+    z = fvar("z")
     tau3 = bvar("tau3")
 
     # Coordinates in the F-basis {[W]_E, b}:
@@ -204,8 +218,18 @@ def main() -> None:
     remainder_identity = s * s * delta.b0 - delta.b1 * multiplier - g_gate
     assert_equal(remainder_identity, Poly.zero(), "G cleared-remainder identity")
 
+    tau3_from_first_coordinate = p1 - z * q1
+    slope_quadratic = q1 * z * z - (p1 - q2) * z - p2
+    second_coordinate_residual = p2 - z * (q2 - tau3_from_first_coordinate)
+    assert_felem_equal(
+        second_coordinate_residual + slope_quadratic,
+        FElem(Poly.zero(), Poly.zero()),
+        "slope quadratic elimination",
+    )
+
     print("delta_identity_ok=True")
     print("g_remainder_identity_ok=True")
+    print("slope_quadratic_identity_ok=True")
     print(f"Delta0_deg_tau3={delta.b0.degree_in('tau3')}")
     print("Delta0_tau3^2_coeff=1")
     print(f"Delta1_deg_tau3={delta.b1.degree_in('tau3')}")

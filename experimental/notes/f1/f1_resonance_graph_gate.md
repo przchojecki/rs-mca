@@ -128,6 +128,35 @@ This is the operational form of the remaining search target. A future
 counterpacket must report which exact gate it occupies; a future positive
 proof must collapse the slope image on those exact gates.
 
+## Slope Map
+
+On the non-base graph side, the remaining problem is not just the zero set of
+`G`; it is the image size of the slope map on that zero set. The landing
+equation has coordinates
+
+```text
+p1 - tau3 = z q1,
+p2        = z(q2 - tau3).
+```
+
+Eliminating `tau3` gives the exact quadratic normal form
+
+```text
+q1 z^2 - (p1 - q2) z - p2 = 0.
+```
+
+Thus, away from denominator degeneracies, the graph-gate slope image is
+controlled by the projective coefficient map
+
+```text
+(tau1,tau2) |-> [q1 : (p1-q2) : p2].
+```
+
+The symbolic checker verifies this elimination identity. This is the algebraic
+form of the remaining graph-collapse question: on source-valid pieces of
+`G==0`, does this projective map have one-dimensional image, or can it have
+two-dimensional image and therefore `Theta(p^2)` distinct slopes?
+
 ## Verifier
 
 Run from the repository root:
@@ -166,8 +195,9 @@ The companion symbolic checker
 python3 experimental/scripts/fable_loop/local_checks/20260618_cycle18_resonance_slope_symbolic.py
 ```
 
-also verifies the cleared-remainder identity with formal coefficients, before
-any finite sampling or source-validity filtering enters.
+also verifies the cleared-remainder identity and the slope-quadratic
+elimination identity with formal coefficients, before any finite sampling or
+source-validity filtering enters.
 
 The default run mixes quick random off-`R0` samples, which exercise the
 nonzero graph gate, with a tiny forced-`Ra` nullspace sample, which exercises
