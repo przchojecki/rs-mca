@@ -660,6 +660,9 @@ def classify_sunflower_listing(
 ) -> dict[str, object]:
     core = set(sunflower["core"])
     petals = [set(petal) for petal in sunflower["petals"]]
+    petal_size = len(petals[0]) if petals else 0
+    petal_union = set().union(*petals) if petals else set()
+    background = set(range(n)) - core - petal_union
     intended_masks = {
         mask_from_indices(intended)
         for intended in sunflower["intended_agreement_sets"]
@@ -669,28 +672,72 @@ def classify_sunflower_listing(
     missing_planted = intended_masks - listed_mask_set
     extra_masks = sorted(listed_mask_set - intended_masks)
     profile_histogram: Counter[tuple[int, int, int, int, int, int]] = Counter()
+    parameter_histogram: Counter[tuple[int, int, int, int, int, int, int, int]] = (
+        Counter()
+    )
     extra_examples: list[dict[str, object]] = []
     for mask in extra_masks:
         agreement = set(mask_to_exponents(mask, n))
         petal_hits = [len(agreement & petal) for petal in petals]
+        positive_petal_hits = [hit for hit in petal_hits if hit]
+        core_hits = len(agreement & core)
+        core_defect = len(core) - core_hits
+        background_hits = len(agreement & background)
+        touched_petals = len(positive_petal_hits)
+        petal_deficit = sum(
+            len(petal) - hit
+            for hit, petal in zip(petal_hits, petals, strict=True)
+            if hit
+        )
+        max_petal_hit = max(positive_petal_hits, default=0)
+        cofactor_excess = core_defect - petal_size
+        anchor_exponent = max(
+            0,
+            core_defect - max(background_hits, max_petal_hit) + 1,
+        )
+        petal_cofactor_exponent = max(0, core_defect - max_petal_hit + 1)
+        background_quotient_exponent = max(0, core_defect - background_hits + 1)
+        list_condition_slack = (
+            background_hits + sum(petal_hits) - (petal_size + core_defect)
+        )
         profile = (
             len(agreement),
-            len(agreement & core),
+            core_hits,
             sum(petal_hits),
-            sum(1 for hit in petal_hits if hit),
-            max(petal_hits, default=0),
+            touched_petals,
+            max_petal_hit,
             sum(1 for hit, petal in zip(petal_hits, petals, strict=True)
                 if hit == len(petal)),
         )
+        parameter_profile = (
+            core_defect,
+            background_hits,
+            touched_petals,
+            petal_deficit,
+            max_petal_hit,
+            cofactor_excess,
+            anchor_exponent,
+            list_condition_slack,
+        )
         profile_histogram[profile] += 1
+        parameter_histogram[parameter_profile] += 1
         if len(extra_examples) < max_extra_examples:
             extra_examples.append({
                 "agreement_set": sorted(agreement),
                 "agreement_size": len(agreement),
-                "core_hits": len(agreement & core),
+                "core_hits": core_hits,
+                "core_defect": core_defect,
+                "background_hits": background_hits,
                 "total_petal_hits": sum(petal_hits),
                 "petal_hits": petal_hits,
-                "positive_petals": sum(1 for hit in petal_hits if hit),
+                "positive_petals": touched_petals,
+                "petal_deficit": petal_deficit,
+                "max_petal_hit": max_petal_hit,
+                "cofactor_excess": cofactor_excess,
+                "background_anchor_exponent": anchor_exponent,
+                "petal_cofactor_exponent": petal_cofactor_exponent,
+                "background_quotient_exponent": background_quotient_exponent,
+                "list_condition_slack": list_condition_slack,
                 "full_petals": [
                     index for index, (hit, petal) in enumerate(
                         zip(petal_hits, petals, strict=True),
@@ -710,6 +757,15 @@ def classify_sunflower_listing(
                 f"max_petal={profile[4]},full_petals={profile[5]}"
             ): count
             for profile, count in sorted(profile_histogram.items())
+        },
+        "extra_parameter_histogram": {
+            (
+                f"d={profile[0]},r={profile[1]},t={profile[2]},"
+                f"u={profile[3]},a_star={profile[4]},"
+                f"excess={profile[5]},anchor_exp={profile[6]},"
+                f"list_slack={profile[7]}"
+            ): count
+            for profile, count in sorted(parameter_histogram.items())
         },
         "extra_examples": extra_examples,
     }
@@ -791,6 +847,7 @@ def sample_scan(
     sunflower_rows_with_extras = 0
     sunflower_max_extra_count = 0
     sunflower_extra_profile_summary: Counter[str] = Counter()
+    sunflower_extra_parameter_summary: Counter[str] = Counter()
 
     for word in sampled_words(p, n, k, s, samples, seed, sunflower_count):
         values = word["values"]
@@ -832,6 +889,8 @@ def sample_scan(
                 sunflower_max_extra_count = max(sunflower_max_extra_count, extra_count)
             for profile, count in classification["extra_profile_histogram"].items():
                 sunflower_extra_profile_summary[profile] += int(count)
+            for profile, count in classification["extra_parameter_histogram"].items():
+                sunflower_extra_parameter_summary[profile] += int(count)
         rows.append(row)
         max_quotient = max(max_quotient, quotient)
         if primitive > max_primitive or total > max_total:
@@ -869,6 +928,9 @@ def sample_scan(
             "rows_with_extras": sunflower_rows_with_extras,
             "max_extra_count": sunflower_max_extra_count,
             "extra_profile_summary": dict(sorted(sunflower_extra_profile_summary.items())),
+            "extra_parameter_summary": dict(
+                sorted(sunflower_extra_parameter_summary.items())
+            ),
         },
     }
 
@@ -916,6 +978,7 @@ def seed_sweep_scan(
     sunflower_rows_with_extras = 0
     sunflower_max_extra_count = 0
     profile_summary: Counter[str] = Counter()
+    parameter_summary: Counter[str] = Counter()
     top_seed_rows: list[dict[str, object]] = []
     for seed, result in zip(range(seed_start, seed_start + seed_count), seed_results, strict=True):
         sunflower_summary = result["sunflower_summary"]
@@ -928,6 +991,8 @@ def seed_sweep_scan(
         )
         for profile, count in sunflower_summary["extra_profile_summary"].items():
             profile_summary[str(profile)] += int(count)
+        for profile, count in sunflower_summary["extra_parameter_summary"].items():
+            parameter_summary[str(profile)] += int(count)
         top_rows = result["top_rows"]
         assert isinstance(top_rows, list)
         top_seed_rows.append({
@@ -973,6 +1038,7 @@ def seed_sweep_scan(
             "rows_with_extras": sunflower_rows_with_extras,
             "max_extra_count": sunflower_max_extra_count,
             "extra_profile_summary": dict(sorted(profile_summary.items())),
+            "extra_parameter_summary": dict(sorted(parameter_summary.items())),
         },
     }
 

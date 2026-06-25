@@ -30,6 +30,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-25 - L1 sunflower residual scanner parameters
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/scripts/scan_l1_full_list_quotient_conjecture.py`,
+  `experimental/notes/l1/l1_full_list_quotient_proof_program.md`, and
+  `experimental/agents-log.md`.
+- **Status:** EXPERIMENTAL / AUDIT.
+- **What is being added:** The full-list L1 sunflower scanner now reports
+  residual parameters for non-planted extras: core defect `d`, background
+  agreement `r`, touched-petal count `t`, total petal deficit `u`, largest
+  petal support `a_*`, cofactor excess, and the B3 background-anchor exponent.
+- **How it is useful:** Lets future scans attack or falsify the B3/B4
+  maximal-sunflower ledger directly, instead of inspecting raw agreement masks
+  by hand.
+- **What to do next:** Run targeted seed sweeps in sub-Johnson rows and compare
+  observed extras against the B4 support-entropy ledger before attempting a
+  summability theorem.
+
 ### 2026-06-25 - L1 maximal background-anchor stratum ledger
 
 - **Agent/model:** Codex.

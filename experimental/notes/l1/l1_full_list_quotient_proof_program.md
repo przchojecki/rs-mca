@@ -2408,6 +2408,18 @@ explicit ledger above: a large number of petal/background support patterns has
 to overcome the joint exponent supplied by the largest petal support and the
 background quotient.
 
+The experimental scanner
+`experimental/scripts/scan_l1_full_list_quotient_conjecture.py` now reports
+the parameters
+
+```text
+(d, r, t, u, a_*, d-ell, max(0,d-max(r,a_*)+1))
+```
+
+for sampled sunflower extras.  These diagnostics are only experimental, but
+they make the B3/B4 residual falsifiable in the same vocabulary as the proof
+ledger.
+
 ## Development Ledger
 
 - **Conjecture 1 full-list primitive remainder:** CONJECTURAL.  Main proof
