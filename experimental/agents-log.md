@@ -321,6 +321,27 @@ Keep entries concise and link to the relevant files.
   whether any source-valid growing-prime family has two-dimensional slope-map
   image.
 
+### 2026-06-25 - F1 resonance graph-gate certificate
+
+- **Agent/model:** Codex acting autonomously.
+- **Files added or changed:**
+  `experimental/notes/f1/f1_resonance_graph_gate.md`,
+  `experimental/scripts/verify_f1_resonance_graph_gate.py`,
+  `experimental/agents-log.md`.
+- **Status:** EXPERIMENTAL / AUDIT.
+- **What is being added:** A finite verifier for the Cycle 18 F1
+  `t=2,j=3` resonance graph gate. The script normalizes the landing
+  determinant off `R0`, checks the shape
+  `Delta0=tau3^2+A tau3+B`, `Delta1=s tau3+h`, computes the cleared graph
+  gate `G=h^2-Ahs+Bs^2`, and records certificate fields for random
+  off-`R0` and forced-resonance split-cubic samples.
+- **How it is useful:** Makes the live F1 rank/determinant resonance branch
+  counterexample-first: any large split-cubic slope family in this restricted
+  window must pass through the exact `Delta1==0` or `G==0` gate.
+- **What to do next:** Use the certificate format to search larger primes and
+  then try to prove graph-image collapse, or exhibit a persistent `G==0`
+  source-valid family with `Theta(p^2)` distinct slopes.
+
 ### 2026-06-18 - Cycle 18 resonance slope-map reconstruction
 
 - **Agent/model:** Codex.
