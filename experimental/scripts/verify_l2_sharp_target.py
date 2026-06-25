@@ -6,7 +6,7 @@ settled by the support-intersection bridge: over-agreement can create
 interleaved mass, so the falsification target is whether that mass can grow like
 a Cartesian product rather than like a polynomial support-overlap codegree.
 
-The script checks sixteen finite objects.
+The script checks seventeen finite objects.
 
 1. The all-remainder quotient packet count used as Quot_rem_mu in the target.
 2. The Johnson-shell weights used in the codegree reduction.
@@ -23,7 +23,8 @@ The script checks sixteen finite objects.
 13. The rank-corrected ledger for low-overlap closure-component intersections.
 14. A cyclic low-overlap closed-part rank-deficit family.
 15. The constant locator-ratio subfamily of cyclic triangles.
-16. A realized Reed-Solomon K_{2,2} gluing over a prime-field multiplicative
+16. Full-rank fixed-length cyclic necklaces in the same low-overlap model.
+17. A realized Reed-Solomon K_{2,2} gluing over a prime-field multiplicative
    subgroup, computed by exact list enumeration, together with its punctured
    codegree profile.
 
@@ -1141,6 +1142,116 @@ def constant_ratio_triangle_profile() -> dict:
     }
 
 
+def full_rank_cyclic_necklace_profile() -> dict:
+    """Check full-rank cyclic low-overlap necklaces beyond triangles."""
+    p, n, mu = 31, 30, 2
+    h_values = subgroup(p, n)
+    rows = []
+    for cycle_len in range(3, 7):
+        for r in range(2, 7):
+            k = r + 1
+            a = 2 * r
+            if cycle_len > k or cycle_len * r > n:
+                continue
+            edge_blocks = [
+                set(range(block * r, (block + 1) * r))
+                for block in range(cycle_len)
+            ]
+            supports = [
+                tuple(sorted(edge_blocks[idx] | edge_blocks[(idx + 1) % cycle_len]))
+                for idx in range(cycle_len)
+            ]
+            closed_components = closure_components(supports, k)
+            part_unions = component_unions(supports, closed_components)
+            overlap_edges = component_overlap_edges(part_unions)
+            union_size = len(set().union(*[set(support) for support in supports]))
+            global_excess = union_size - cycle_len * a
+            cross_rank = cross_constraint_rank(p, h_values, k, part_unions)
+            locator_rows = []
+            for edge_block in edge_blocks:
+                roots = [h_values[idx] for idx in sorted(edge_block)]
+                locator = poly_from_roots(p, roots)
+                locator_rows.append(locator + [0] * (k - len(locator)))
+            locator_rank = matrix_rank_mod(locator_rows, p)
+            expected_cross_rank = (cycle_len - 1) * k - cycle_len + locator_rank
+            product_diagonal_exponent = cycle_len * (a - k)
+            rank_corrected_exponent = (
+                product_diagonal_exponent + global_excess + cross_rank
+            )
+            diagonal_exponent = a - k
+            exponent_gap = rank_corrected_exponent - diagonal_exponent
+            expected_gap = (cycle_len - 2) * r
+            family_count = 1
+            for block in range(cycle_len):
+                family_count *= comb(n - block * r, r)
+            diagonal_count = comb(n, a)
+            relative_to_diagonal = Fraction(
+                family_count,
+                diagonal_count * p ** (mu * exponent_gap),
+            )
+            rows.append(
+                {
+                    "cycle_len": cycle_len,
+                    "r": r,
+                    "k": k,
+                    "a": a,
+                    "supports": [list(support) for support in supports],
+                    "closed_components": len(closed_components),
+                    "overlap_edges": [list(edge) for edge in overlap_edges],
+                    "overlap_is_forest": is_forest(overlap_edges, len(part_unions)),
+                    "union_size": union_size,
+                    "global_excess": global_excess,
+                    "locator_rank": locator_rank,
+                    "cross_constraint_rank": cross_rank,
+                    "expected_cross_constraint_rank": expected_cross_rank,
+                    "product_diagonal_exponent": product_diagonal_exponent,
+                    "rank_corrected_exponent": rank_corrected_exponent,
+                    "diagonal_exponent": diagonal_exponent,
+                    "exponent_gap": exponent_gap,
+                    "expected_exponent_gap": expected_gap,
+                    "family_count": family_count,
+                    "diagonal_count": diagonal_count,
+                    "relative_to_diagonal": {
+                        "numerator": relative_to_diagonal.numerator,
+                        "denominator": relative_to_diagonal.denominator,
+                    },
+                }
+            )
+    return {
+        "p": p,
+        "n": n,
+        "mu": mu,
+        "rows": rows,
+        "cycle_lengths_seen": sorted({row["cycle_len"] for row in rows}),
+        "covers_cycle_lengths_three_through_six": {3, 4, 5, 6}
+        <= {row["cycle_len"] for row in rows},
+        "all_closed_parts_singleton": all(
+            row["closed_components"] == row["cycle_len"] for row in rows
+        ),
+        "all_overlap_graphs_cyclic": all(
+            len(row["overlap_edges"]) == row["cycle_len"]
+            and not row["overlap_is_forest"]
+            for row in rows
+        ),
+        "all_locators_full_rank": all(
+            row["locator_rank"] == row["cycle_len"] for row in rows
+        ),
+        "cross_rank_formula_holds": all(
+            row["cross_constraint_rank"] == row["expected_cross_constraint_rank"]
+            for row in rows
+        ),
+        "exponent_gap_formula_holds": all(
+            row["exponent_gap"] == row["expected_exponent_gap"]
+            for row in rows
+        ),
+        "relative_bound_below_diagonal": all(
+            row["relative_to_diagonal"]["numerator"]
+            < row["relative_to_diagonal"]["denominator"]
+            for row in rows
+        ),
+    }
+
+
 def regular_irregular_profile(families: list[list[frozenset[int]]], a: int) -> dict:
     """Split interleaved tuples by exact-row regularity.
 
@@ -1999,6 +2110,7 @@ def run() -> dict:
     closure_signature = closure_signature_profile()
     cyclic_rank_deficit = cyclic_overlap_rank_deficit_profile()
     constant_ratio_triangles = constant_ratio_triangle_profile()
+    full_rank_necklaces = full_rank_cyclic_necklace_profile()
     witness = realized_rs_k22()
     checks = {
         "quotient_budget_nonnegative": quotient_example["total"] >= 0,
@@ -2254,6 +2366,27 @@ def run() -> dict:
         "constant_ratio_triangle_combined_bound_clears": constant_ratio_triangles[
             "combined_bound_relative_below_diagonal"
         ],
+        "full_rank_necklace_closed_parts": full_rank_necklaces[
+            "all_closed_parts_singleton"
+        ],
+        "full_rank_necklace_cycle_lengths": full_rank_necklaces[
+            "covers_cycle_lengths_three_through_six"
+        ],
+        "full_rank_necklace_cyclic_overlap": full_rank_necklaces[
+            "all_overlap_graphs_cyclic"
+        ],
+        "full_rank_necklace_locator_rank": full_rank_necklaces[
+            "all_locators_full_rank"
+        ],
+        "full_rank_necklace_cross_rank": full_rank_necklaces[
+            "cross_rank_formula_holds"
+        ],
+        "full_rank_necklace_exponent_gap": full_rank_necklaces[
+            "exponent_gap_formula_holds"
+        ],
+        "full_rank_necklace_below_diagonal": full_rank_necklaces[
+            "relative_bound_below_diagonal"
+        ],
         "kmm_grid_formula": all(d["interleaved_edges"] == d["grid_edges_at_n_min"] for d in designs),
         "rs_witness_creates_mass": witness["mass_creation"],
         "rs_witness_realizes_k22": witness["interleaved"] == witness["product_bound"] == 4,
@@ -2327,6 +2460,7 @@ def run() -> dict:
         "closure_signature_profile": closure_signature,
         "cyclic_overlap_rank_deficit_profile": cyclic_rank_deficit,
         "constant_ratio_triangle_profile": constant_ratio_triangles,
+        "full_rank_cyclic_necklace_profile": full_rank_necklaces,
         "realized_rs_k22": witness,
         "checks": checks,
         "pass": all(checks.values()),
@@ -2477,6 +2611,12 @@ def main(argv: list[str] | None = None) -> int:
             "  constant-ratio triangle profile: "
             f"F_{const_ratio['p']}, n={const_ratio['n']}, "
             f"rows={const_ratio['rows']}"
+        )
+        necklaces = result["full_rank_cyclic_necklace_profile"]
+        print(
+            "  full-rank cyclic necklace profile: "
+            f"F_{necklaces['p']}, n={necklaces['n']}, "
+            f"rows={necklaces['rows']}"
         )
         print("  K_{m,m} abstract designs:")
         for d in result["kmm_designs"]:

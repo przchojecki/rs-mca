@@ -722,6 +722,106 @@ constant-ratio count and its exponent `2r-2`. The displayed estimates are
 exactly the two relative bounds just proved. Finally,
 `binom(2r,r)<=4^r`.
 
+The same mechanism clears the full-rank part of every fixed cyclic necklace.
+
+**Corollary (full-rank cyclic necklace clearance).** Fix `m>=3`, put
+`r=k-1` and `a=2r`, and let `E_1,...,E_m` be pairwise disjoint `r`-subsets of
+`H`, with indices taken modulo `m`. Define
+
+```text
+S_i = E_i union E_{i+1}.
+```
+
+Let `L_i` be the locator polynomial of `E_i`. Assume that
+`L_1,...,L_m` are linearly independent in the degree-`<k` polynomial space
+(in particular `m<=k`). Then the cyclic tuple has rank-corrected exponent
+
+```text
+(m-1)r - 1,
+```
+
+so its exponent gap over the diagonal first-moment exponent `a-k=r-1` is
+
+```text
+(m-2)r.
+```
+
+Consequently the total contribution of all ordered full-rank `m`-necklaces,
+divided by the diagonal first-moment scale, is at most
+
+```text
+  prod_{j=0}^{m-1} binom(n-jr,r)
+  -------------------------------- q^{-mu (m-2)r}.
+             binom(n,2r)
+```
+
+If `2r=a>=rho_0 n` and `mr<=n`, this is bounded by
+
+```text
+(m^m rho_0^{-(m-2)} q^{-mu(m-2)})^r.
+```
+
+For fixed `m` and generated-field size polynomial in `n`, this is below the
+diagonal scale when `r` is linear in `n`. Thus the low-overlap cyclic issue is
+not all cycles: after the triangle, every fixed full-rank cyclic necklace is
+also count-cleared. The remaining cyclic obstruction is the structured
+rank-deficient case, where the edge-block locator span has dimension `<m`.
+
+*Proof.* Since `|S_i cap S_{i-1}|=r=k-1`, the equality of the closed-part
+polynomials on `E_i` gives
+
+```text
+P_i - P_{i-1} = lambda_i L_i
+```
+
+for some scalar `lambda_i`. Summing around the cycle gives
+
+```text
+sum_i lambda_i L_i = 0.
+```
+
+By the full-rank assumption all `lambda_i` vanish, so
+`P_1=...=P_m`. Hence the feasible polynomial choices have dimension `k`
+inside the original `mk` coefficients, and
+
+```text
+r_cross = mk-k = (m-1)k.
+```
+
+The `k`-closure has `m` singleton parts, the union size is `mr`, and the global
+excess is `D=mr-ma=-mr`. Therefore
+
+```text
+c(a-k)+D+r_cross
+  = m(r-1)-mr+(m-1)(r+1)
+  = (m-1)r-1.
+```
+
+Subtracting the diagonal exponent `r-1` gives the gap `(m-2)r`.
+
+The ordered block count is
+
+```text
+prod_{j=0}^{m-1} binom(n-jr,r).
+```
+
+Dividing by `binom(n,2r)` and multiplying by the entropy gain
+`q^{-mu(m-2)r}` gives the displayed relative contribution. For the coarse
+bound, rewrite the block count as
+
+```text
+binom(n,mr) (mr)!/(r!)^m.
+```
+
+The multinomial factor is at most `m^{mr}`. Also
+
+```text
+binom(n,mr)/binom(n,2r) <= (n/(2r))^{(m-2)r}
+                         <= rho_0^{-(m-2)r},
+```
+
+because `2r>=rho_0 n`. This proves the stated bound.
+
 The connected case also isolates the diagonal exactly.
 
 **Corollary (diagonal is the only zero-loss connected cluster).** Suppose

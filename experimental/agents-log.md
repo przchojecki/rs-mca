@@ -169,7 +169,14 @@ Keep entries concise and link to the relevant files.
   verifier enumerates the `F_17` cases and checks the resulting bound.
   Combining the generic and constant-ratio cases gives a full clearance
   corollary for symmetric three-block cyclic triangles, with exact and bounded
-  diagonal-relative ratios checked in the verifier.
+  diagonal-relative ratios checked in the verifier. The same low-overlap
+  mechanism is now extended to fixed-length cyclic necklaces: if the
+  edge-block locator polynomials have full rank, then the cycle forces all
+  closed-part polynomials to collapse to one degree-`<k` polynomial, giving an
+  exponent gap `(m-2)r` over the diagonal and a diagonal-relative bound
+  `(m^m rho_0^{-(m-2)} q^{-mu(m-2)})^r` for fixed cycle length `m`. The
+  verifier checks representative full-rank `F_31` necklaces, including the
+  cross-rank formula and the below-diagonal finite ratios.
 - **How it is useful:** Turns the L2 objective from a broad "avoid Cartesian
   overcharge" principle into a concrete conjectural inequality that can be
   falsified or promoted. The `K_{2,2}` witness records that local Cartesian
@@ -180,6 +187,9 @@ Keep entries concise and link to the relevant files.
   `Reg_mu <= binom(n,a)q^{-mu(a-k)} + Quot_rem_mu + n^B`, prove/import the
   repaired one-row L1 list bound at `a=k+sigma`, and reconcile the final
   statement with the active X1/L2 bridge PR #101 before promotion.
+  For the regular-core cluster route, classify and count the remaining
+  rank-deficient cyclic necklaces whose edge-block locator span has dimension
+  below the cycle length.
 
 ### 2026-06-23 - Cycle119 admissibility review
 
