@@ -21,8 +21,9 @@ The graph gate is
 
     G = h^2 - A h s + B s^2,
 
-where Delta0 = tau3^2 + A tau3 + B. If G is nonzero, the graph branch is
-curve-sized over B and cannot produce a two-dimensional slope image.
+where Delta0 = tau3^2 + A tau3 + B. If Delta1 is not identically zero and
+G is nonzero, the whole common-zero branch is curve-sized over B and cannot
+produce a two-dimensional slope image.
 
 The default run uses random off-R0 samples to exercise the graph algebra and a
 tiny forced-Ra sample to hit the exact resonance gates quickly. Larger forced
@@ -101,6 +102,10 @@ def pdegree(poly: Poly2) -> int:
     return max(i + j for i, j in poly)
 
 
+def is_zero_poly(poly: Poly2) -> bool:
+    return not poly
+
+
 def coeff_poly(
     coeffs: Dict[Exp3, FElement],
     component: int,
@@ -162,6 +167,21 @@ def count_g_zero_pairs(g_poly: Poly2, p: int) -> int:
     return sum(1 for x in range(p) for y in range(p) if peval(g_poly, x, y, p) == 0)
 
 
+def nonzero_gate_bound(delta1_zero: bool, s_poly: Poly2, g_poly: Poly2, p: int) -> int | None:
+    """Return a crude B^3 common-zero bound when the exact gates are inactive."""
+    if delta1_zero or is_zero_poly(g_poly):
+        return None
+    g_degree = pdegree(g_poly)
+    if is_zero_poly(s_poly):
+        # Then Delta1=h is nonzero of degree <=2; h=0 has <=2p base pairs,
+        # and monic quadratic Delta0 gives at most two tau3 values.
+        return 4 * p
+    # On s != 0, all common zeros lie over G=0, giving <=deg(G)*p
+    # base pairs. On s=0, the exceptional locus is contained in one line,
+    # with at most two tau3 values from the monic quadratic Delta0.
+    return g_degree * p + 2 * p
+
+
 def split_triple_stats(
     p: int,
     E: List[FElement],
@@ -182,6 +202,8 @@ def split_triple_stats(
     delta1_zero = all_alpha_coeffs_zero(coeffs, p)
     g_zero = not g_poly
     g_zero_pairs = p * p if g_zero else count_g_zero_pairs(g_poly, p)
+    g_schwartz_bound = p * p if g_zero else pdegree(g_poly) * p
+    active_bound = nonzero_gate_bound(delta1_zero, s_poly, g_poly, p)
 
     if coeffs.get((0, 0, 2), c11.zero) != c11.one:
         raise AssertionError("normalized tau3^2 coefficient is not 1")
@@ -190,6 +212,8 @@ def split_triple_stats(
             raise AssertionError("alpha component has tau3^2 term")
     if pdegree(g_poly) > 4:
         raise AssertionError("graph gate degree exceeded 4")
+    if not g_zero and g_zero_pairs > g_schwartz_bound:
+        raise AssertionError("G-zero pair count exceeds Schwartz-Zippel bound")
 
     direct_slopes = {}
     graph_slopes = {}
@@ -250,12 +274,16 @@ def split_triple_stats(
 
     if not delta1_zero and not g_zero and graph_common > g_zero_pairs:
         raise AssertionError("graph branch exceeds the G-zero pair count")
+    if active_bound is not None and split_landings > active_bound:
+        raise AssertionError("nonzero-gate split landings exceed the active finite bound")
 
     return {
         "Delta1_zero": delta1_zero,
         "G_zero": g_zero,
         "G_degree": pdegree(g_poly),
         "G_zero_pairs": g_zero_pairs,
+        "G_schwartz_bound": g_schwartz_bound,
+        "nonzero_gate_bound": active_bound,
         "split_triples_examined": n * (n - 1) * (n - 2) // 6,
         "split_landings": split_landings,
         "C2": len(direct_slopes),
@@ -422,7 +450,7 @@ def main() -> None:
                 "mode={record_mode} p={p} seed={seed} checked={checked} off_R0={off_R0_checked} "
                 "best_C2={C2} graph_C2={graph_C2} split_landings={split_landings} "
                 "Delta1_zero={Delta1_zero} G_zero={G_zero} G_degree={G_degree} "
-                "G_zero_pairs={G_zero_pairs} graph_common={graph_common} "
+                "G_zero_pairs={G_zero_pairs} active_bound={nonzero_gate_bound} graph_common={graph_common} "
                 "exceptional_common={exceptional_common}".format(
                     record_mode=record["mode"],
                     checked=record["checked"],
@@ -446,7 +474,7 @@ def main() -> None:
                 "mode={record_mode} p={p} seed={seed} checked={checked} off_R0={off_R0_checked} "
                 "best_C2={C2} graph_C2={graph_C2} split_landings={split_landings} "
                 "Delta1_zero={Delta1_zero} G_zero={G_zero} G_degree={G_degree} "
-                "G_zero_pairs={G_zero_pairs} graph_common={graph_common} "
+                "G_zero_pairs={G_zero_pairs} active_bound={nonzero_gate_bound} graph_common={graph_common} "
                 "exceptional_common={exceptional_common}".format(
                     record_mode=record["mode"],
                     checked=record["checked"],

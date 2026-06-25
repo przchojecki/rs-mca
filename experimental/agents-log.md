@@ -334,7 +334,9 @@ Keep entries concise and link to the relevant files.
   determinant off `R0`, checks the shape
   `Delta0=tau3^2+A tau3+B`, `Delta1=s tau3+h`, computes the cleared graph
   gate `G=h^2-Ahs+Bs^2`, and records certificate fields for random
-  off-`R0` and forced-resonance split-cubic samples.
+  off-`R0` and forced-resonance split-cubic samples. It also records the
+  active finite bound showing that if neither exact gate is active then the
+  branch is curve-sized.
 - **How it is useful:** Makes the live F1 rank/determinant resonance branch
   counterexample-first: any large split-cubic slope family in this restricted
   window must pass through the exact `Delta1==0` or `G==0` gate.

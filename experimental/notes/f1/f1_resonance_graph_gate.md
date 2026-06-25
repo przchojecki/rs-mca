@@ -58,13 +58,30 @@ G = h^2 - A h s + B s^2 = 0.
 ```
 
 Since `deg G <= 4`, a nonzero `G` leaves only `O(p)` base pairs
-`(tau1,tau2)` and therefore cannot by itself produce a two-dimensional
-`Theta(p^2)` slope image. A large split-cubic counterpacket must pass through
-one of the exact gates
+`(tau1,tau2)` on the graph branch and therefore cannot by itself produce a
+two-dimensional `Theta(p^2)` slope image. A large split-cubic counterpacket
+must pass through one of the exact gates
 
 ```text
 Delta1 == 0        or        G == 0.
 ```
+
+More explicitly, if `Delta1` is not the zero polynomial and `G` is not the
+zero polynomial, then the common-zero locus
+
+```text
+Delta0 = Delta1 = 0
+```
+
+inside `B^3` has `O(p)` points. A crude uniform bound is `<= 6p` when
+`s` is nonzero, because the graph part has at most `deg(G) p <= 4p`
+base pairs by Schwartz-Zippel and the exceptional locus `s=h=0` lies over at
+most one base line, with at most two `tau3` values from the monic quadratic
+`Delta0`. If `s` is identically zero, then `h` is a nonzero polynomial of
+degree at most `2`; the exceptional branch contributes at most `4p` points.
+Since the distinct slope count is bounded by the number of landing triples,
+the nonzero-gate branch is curve-sized before any slope-fiber collapse is
+used.
 
 ## Verifier
 
@@ -83,11 +100,14 @@ each off-`R0` landing polynomial, and verifies:
 - `Delta1 = s tau3 + h` recovers every graph value `tau3=-h/s`;
 - every graph-branch common zero passes through `G=0`;
 - whenever `G` is nonzero, the observed graph branch is bounded by the
-  finite `G`-zero pair count.
+  finite `G`-zero pair count;
+- whenever both exact gates are inactive, the observed split-triple landings
+  are bounded by the explicit nonzero-gate finite bound.
 
 The final `CERT` line records the best sampled branch in a machine-readable
 form with fields such as `p`, `q_gen`, `q_line`, `Delta1_zero`, `G_zero`,
-`G_degree`, `G_zero_pairs`, `C2`, `graph_C2`, and split-triple counts.
+`G_degree`, `G_zero_pairs`, `nonzero_gate_bound`, `C2`, `graph_C2`, and
+split-triple counts.
 
 The default run mixes quick random off-`R0` samples, which exercise the
 nonzero graph gate, with a tiny forced-`Ra` nullspace sample, which exercises
