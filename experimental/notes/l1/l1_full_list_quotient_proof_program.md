@@ -114,6 +114,91 @@ The intended proof is by contradiction.
    quotient and aperiodic extension budgets.  The leftover packing term is
    `O(log n)` at the intended cutoff and is absorbed by `n^B`.
 
+## Theorem J. Full-List Johnson Region
+
+Status: PROVED.
+
+Let `H` be any Reed--Solomon evaluation domain of size `n`, and let
+`C = RS[H,k]`.  For every received word `U : H -> F_q`, define
+
+```text
+ImgFib_U(s) = { P in F_q[X] : deg P < k and
+                |{x in H : U(x)=P(x)}| >= s }.
+```
+
+Then:
+
+1. If `2s > n+k-1`, then `|ImgFib_U(s)| <= 1`.
+2. If `s^2 > n(k-1)`, then
+
+```text
+|ImgFib_U(s)| <= n(n-k+1) / (s^2 - n(k-1)).
+```
+
+In particular, because `Q_1^list(U,s) <= |ImgFib_U(s)|`, Conjecture 1 holds
+with a polynomial primitive remainder throughout the ordinary Johnson region
+`s^2 > n(k-1)`, without using any quotient-budget term.
+
+### Proof
+
+Let `P_1,...,P_L` be the distinct polynomials in `ImgFib_U(s)`, and write
+
+```text
+A_i = { x in H : U(x)=P_i(x) }.
+```
+
+If `L=0`, there is nothing to prove.  Assume `L>0`.
+Then `|A_i| >= s` for every `i`.  Distinct degree-`<k` polynomials agree on at
+most `k-1` points, hence
+
+```text
+|A_i cap A_j| <= k-1        for i != j.
+```
+
+The unique-decoding claim follows immediately: two listed codewords would have
+`|A_i cap A_j| >= 2s-n`, contradicting `2s-n > k-1`.
+
+For the Johnson bound, put
+
+```text
+m_x = #{ i : x in A_i },        I = sum_x m_x.
+```
+
+Then `I >= Ls`, while the pairwise-intersection bound gives
+
+```text
+sum_x binom(m_x,2) <= binom(L,2)(k-1).
+```
+
+By Cauchy--Schwarz,
+
+```text
+I^2 <= n sum_x m_x^2
+    = n(I + 2 sum_x binom(m_x,2))
+    <= n(I + L(L-1)(k-1)).
+```
+
+Since also `I <= Ln`, we get
+
+```text
+L^2 s^2 <= n(Ln + L(L-1)(k-1)).
+```
+
+After dividing by `L` and rearranging,
+
+```text
+L(s^2 - n(k-1)) <= n(n-k+1).
+```
+
+When `s^2 > n(k-1)`, this is the claimed bound.
+
+### Role In The L1 Program
+
+The theorem supplies a proved base region for the full-list quotient program.
+The remaining L1 difficulty is not ordinary pairwise packing; it is the
+sub-Johnson range where `s^2 <= n(k-1)`.  In that range the quotient ledger,
+sunflower reductions, and aperiodic extension counts below are genuinely needed.
+
 ## First Lemma Target
 
 The first obstruction family isolated by the falsification scans is a

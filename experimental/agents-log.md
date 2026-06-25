@@ -30,6 +30,26 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-25 - L1 full-list Johnson base theorem
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/notes/l1/l1_full_list_quotient_proof_program.md`,
+  `experimental/scripts/scan_l1_full_list_quotient_conjecture.py`, and
+  `experimental/agents-log.md`.
+- **Status:** PROVED / EXPERIMENTAL.
+- **What is being added:** A proved arbitrary-word full-list Johnson-region
+  theorem: if `s^2 > n(k-1)`, every received word has
+  `|ImgFib_U(s)| <= n(n-k+1)/(s^2-n(k-1))`, with uniqueness when
+  `2s > n+k-1`. The full-list scanner now reports this proved profile and
+  whether exact/sample maxima fall under it.
+- **How it is useful:** Gives the L1 quotient-budgeted full-list program a
+  theorem-backed base region and separates it from the genuinely open
+  sub-Johnson sunflower/aperiodic extension regime.
+- **What to do next:** Use this as the base case for the L1 PR, then attack
+  the sub-Johnson mixed-petal amplification bound without counting
+  Johnson-covered scans as new evidence.
+
 ### 2026-06-25 - Latest PR integration and estimate audit
 
 - **Agent/model:** AllenGrahamHart PRs #101--#107, ScottDHughes PR #99, and

@@ -273,6 +273,50 @@ def entropy_report(p: int, n: int, k: int, s: int, epsilon: float) -> dict[str, 
     }
 
 
+def johnson_full_list_profile(n: int, k: int, s: int) -> dict[str, object]:
+    """Return the proved arbitrary-word full-list Johnson bound, if active."""
+    denominator = s * s - n * (k - 1)
+    numerator = n * (n - k + 1)
+    unique_decoding = 2 * s > n + k - 1
+    profile: dict[str, object] = {
+        "status": "PROVED/FULL_LIST_JOHNSON_REGION",
+        "condition": "s^2 > n(k-1)",
+        "unique_decoding_condition": "2s > n+k-1",
+        "unique_decoding": unique_decoding,
+        "johnson_denominator": denominator,
+        "johnson_numerator": numerator,
+        "in_johnson_region": denominator > 0,
+        "bound": None,
+        "bound_reason": "outside-johnson-region",
+    }
+    if unique_decoding:
+        profile["bound"] = 1
+        profile["bound_reason"] = "unique-decoding"
+    elif denominator > 0:
+        profile["bound"] = numerator // denominator
+        profile["bound_reason"] = "second-moment-johnson"
+    return profile
+
+
+def johnson_bound_report(
+    profile: dict[str, object],
+    max_total: int,
+    max_primitive: int,
+) -> dict[str, object]:
+    bound = profile.get("bound")
+    if not isinstance(bound, int):
+        return {
+            "johnson_bound_checked": False,
+            "johnson_bound_holds_for_max_list": None,
+            "johnson_bound_holds_for_max_primitive": None,
+        }
+    return {
+        "johnson_bound_checked": True,
+        "johnson_bound_holds_for_max_list": max_total <= bound,
+        "johnson_bound_holds_for_max_primitive": max_primitive <= bound,
+    }
+
+
 def empty_ledger(n: int) -> dict[int, int]:
     return {divisor: 0 for divisor in positive_divisors(n)}
 
@@ -291,6 +335,7 @@ def exact_syndrome_scan(
     low_weight_ball = ball_size(n, r, p)
     min_distance = n - k + 1
     entropy = entropy_report(p, n, k, s, epsilon)
+    johnson_profile = johnson_full_list_profile(n, k, s)
     threshold = n ** alert_power
 
     if 2 * r < min_distance:
@@ -314,10 +359,16 @@ def exact_syndrome_scan(
         max_primitive = 1 if primitive_syndromes else 0
         max_quotient = 1 if quotient_syndromes else 0
         primitive_alert = bool(entropy["reserve_cleared"]) and max_primitive > threshold
+        johnson_report = johnson_bound_report(
+            johnson_profile,
+            1 if low_weight_ball else 0,
+            max_primitive,
+        )
         return {
             "status": "EXPERIMENTAL/FULL_LIST_EXACT_SYNDROME_SCAN",
             "mode": "exact-syndrome",
             "params": {"p": p, "n": n, "k": k, "s": s, **entropy},
+            "johnson_full_list_profile": johnson_profile,
             "low_weight_ball_size": low_weight_ball,
             "occupied_syndromes": low_weight_ball,
             "minimum_distance": min_distance,
@@ -333,6 +384,7 @@ def exact_syndrome_scan(
             },
             "primitive_alert_threshold": round(threshold, 6),
             "primitive_alert": primitive_alert,
+            **johnson_report,
             "max_primitive_examples": (
                 [primitive_example] if primitive_example is not None else []
             ),
@@ -387,10 +439,12 @@ def exact_syndrome_scan(
             })
 
     primitive_alert = bool(entropy["reserve_cleared"]) and max_primitive > threshold
+    johnson_report = johnson_bound_report(johnson_profile, max_total, max_primitive)
     return {
         "status": "EXPERIMENTAL/FULL_LIST_EXACT_SYNDROME_SCAN",
         "mode": "exact-syndrome",
         "params": {"p": p, "n": n, "k": k, "s": s, **entropy},
+        "johnson_full_list_profile": johnson_profile,
         "low_weight_ball_size": low_weight_ball,
         "occupied_syndromes": len(syndromes),
         "minimum_distance": min_distance,
@@ -402,6 +456,7 @@ def exact_syndrome_scan(
         "primitive_count_histogram": dict(sorted(primitive_histogram.items())),
         "primitive_alert_threshold": round(threshold, 6),
         "primitive_alert": primitive_alert,
+        **johnson_report,
         "max_primitive_examples": examples,
     }
 
@@ -725,6 +780,7 @@ def sample_scan(
 ) -> dict[str, object]:
     domain = subgroup(p, n)
     entropy = entropy_report(p, n, k, s, epsilon)
+    johnson_profile = johnson_full_list_profile(n, k, s)
     threshold = n ** alert_power
     max_total = 0
     max_primitive = 0
@@ -793,16 +849,19 @@ def sample_scan(
 
     primitive_alert = bool(entropy["reserve_cleared"]) and max_primitive > threshold
     rows.sort(key=lambda row: (int(row["primitive"]), int(row["list_size"])), reverse=True)
+    johnson_report = johnson_bound_report(johnson_profile, max_total, max_primitive)
     return {
         "status": "EXPERIMENTAL/FULL_LIST_SAMPLE_SCAN",
         "mode": "sample",
         "params": {"p": p, "n": n, "k": k, "s": s, "decoder": decoder, **entropy},
+        "johnson_full_list_profile": johnson_profile,
         "words_scanned": len(rows),
         "max_list_size": max_total,
         "max_primitive_exact": max_primitive,
         "max_quotient_budget": max_quotient,
         "primitive_alert_threshold": round(threshold, 6),
         "primitive_alert": primitive_alert,
+        **johnson_report,
         "top_rows": rows[: min(12, len(rows))],
         "max_primitive_examples": examples,
         "sunflower_summary": {
@@ -848,6 +907,7 @@ def seed_sweep_scan(
         raise ValueError("seed_count must be positive")
 
     entropy = entropy_report(p, n, k, s, epsilon)
+    johnson_profile = johnson_full_list_profile(n, k, s)
     max_list_size = max(int(result["max_list_size"]) for result in seed_results)
     max_primitive = max(int(result["max_primitive_exact"]) for result in seed_results)
     max_quotient = max(int(result["max_quotient_budget"]) for result in seed_results)
@@ -899,12 +959,14 @@ def seed_sweep_scan(
             "sunflowers_per_seed": sunflower_count,
             **entropy,
         },
+        "johnson_full_list_profile": johnson_profile,
         "words_scanned": sum(int(result["words_scanned"]) for result in seed_results),
         "max_list_size": max_list_size,
         "max_primitive_exact": max_primitive,
         "max_quotient_budget": max_quotient,
         "primitive_alert_threshold": n ** alert_power,
         "primitive_alert": primitive_alert,
+        **johnson_bound_report(johnson_profile, max_list_size, max_primitive),
         "top_seed_rows": top_seed_rows[:max_examples],
         "sunflower_summary": {
             "rows": sunflower_rows,
