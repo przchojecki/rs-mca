@@ -30,6 +30,23 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-25 - L1 maximal sunflower residual frontier
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/notes/l1/l1_full_list_quotient_proof_program.md` and
+  `experimental/agents-log.md`.
+- **Status:** PROVED.
+- **What is being added:** A residual-frontier theorem combining the Johnson
+  over-agreement gate with the two sunflower anchor gates. With bounded
+  cofactor excess, any super-polynomial maximal-sunflower family must lie
+  below the Johnson gate and have both anchor deficits unbounded.
+- **How it is useful:** Gives the L1 sunflower route a precise stopping point
+  and identifies the next proof or counterexample target without adding a new
+  broad obstruction class.
+- **What to do next:** Attack the stated frontier directly: low-overagreement
+  extras with `G_2` and `G_R` both growing, or genuinely growing `d-ell`.
+
 ### 2026-06-25 - L1 Johnson over-agreement gate
 
 - **Agent/model:** Codex.

@@ -3057,6 +3057,94 @@ charged directly to the proved full-list Johnson profile.  The scanner reports
 `johnson_slack_needed` and whether each sampled extra is already
 `johnson_covered`.
 
+## Theorem B11. Maximal Sunflower Residual Frontier
+
+Status: PROVED.
+
+Assume the sunflower is maximal and work at the L1 lower cutoff with generated
+field `q=poly(n)`.  Use the notation of Theorem B7 and Corollary B10.  Fix
+integer constants
+
+```text
+E,V_2,V_R >= 0.
+```
+
+Then the number of non-planted listed codewords satisfying
+
+```text
+d <= ell+E
+```
+
+and at least one of the three gate conditions
+
+```text
+lambda(P) >= lambda_J,
+G_2(P) <= V_2,
+G_R(P) <= V_R
+```
+
+is polynomial in `n`.  More explicitly, it is bounded by
+
+```text
+n(n-k+1) / ((s+lambda_J)^2 - n(k-1))
+  + binom(M,2) (sum_{v=0}^{V_2} binom(2ell,v)) q^{2E+V_2+2}
+  + M (sum_{w+v<=V_R} binom(b,ell-w) binom(ell,v)) q^{2E+V_R+2}.
+```
+
+If `2(s+lambda_J)>n+k-1`, the first summand may be replaced by `1`.
+
+Consequently, any super-polynomial maximal-sunflower family at the L1 lower
+cutoff must, after passing to an infinite subfamily, satisfy at least one of
+the following:
+
+```text
+d-ell -> infinity,
+```
+
+or
+
+```text
+d <= ell+E for some fixed E,        lambda(P) < lambda_J,
+G_2(P) -> infinity,        G_R(P) -> infinity.
+```
+
+If the second alternative also has bounded touched-petal count, then the
+finite-width tradeoff of Corollary B9 is an additional necessary condition:
+
+```text
+2 max(0,d-ell+G_R(P)) + (t(P)-1)G_2(P) <= 2(t(P)-1)ell.
+```
+
+### Proof
+
+The codewords with `lambda(P)>=lambda_J` are bounded by Corollary B10.  The
+codewords with `G_2(P)<=V_2` or `G_R(P)<=V_R`, under `d<=ell+E`, are bounded
+by Theorem B7.  Taking the union bound gives the displayed estimate.  Each
+summand is polynomial at the lower cutoff for fixed `E,V_2,V_R` and
+`q=poly(n)`.
+
+For the residual assertion, suppose a super-polynomial maximal-sunflower
+family had bounded cofactor excess, i.e. `d<=ell+E` for some fixed `E`.  If either
+`lambda(P)>=lambda_J` occurs on a super-polynomial subfamily, or `G_2` or
+`G_R` is bounded on such a subfamily, the polynomial bound above gives a
+contradiction.  Hence any bounded-cofactor-excess residual subfamily must lie
+below the Johnson gate and must have both gates unbounded.  The finite-width
+inequality is exactly Corollary B9.
+
+### Consequences
+
+This theorem is the current maximal-sunflower stopping point for the L1 proof
+program.  With bounded cofactor excess, the remaining high-value sunflower
+target is no longer the broad mixed-petal family; it is the residual frontier
+
+```text
+lambda(P) < lambda_J,        G_2(P)->infinity,        G_R(P)->infinity,
+```
+
+or else genuinely growing positive cofactor excess `d-ell`.  A future proof
+should attack that frontier directly, while a future counterexample search
+should try to populate it.
+
 ## Development Ledger
 
 - **Conjecture 1 full-list primitive remainder:** CONJECTURAL.  Main proof
@@ -3149,5 +3237,7 @@ charged directly to the proved full-list Johnson profile.  The scanner reports
   gates.
 - **Johnson over-agreement gate:** PROVED.  Removes sunflower extras whose
   agreement slack already puts them in the ordinary Johnson region.
+- **Maximal sunflower residual frontier:** PROVED.  Combines the Johnson and
+  two-gate controls into the current precise residual target.
 - **Mixed-petal sunflower amplification:** CONJECTURAL.  Next focused bound to
   prove or refute in the large-defect regime.
