@@ -1199,6 +1199,54 @@ each remaining edge block by `binom(n,e_i)`, and bound each private block by
 projective factor `(q^{e_t}-1)/(q-1)` and the crude projective count
 `(q^k-1)/(q-1)`.
 
+Combining this support count with the two-edge rank lower bound gives a direct
+diagonal comparison.
+
+**Corollary (diagonal-relative one-edge clean-cycle bound).** Keep the notation
+of the previous corollary, and put
+
+```text
+s_2 = min_{i<j} (e_i+e_j),       d_2=max(0,s_2-k).
+```
+
+For any distinguished edge `t`, the random-model contribution of
+rank-deficient clean cycles of this fixed shape, divided by the diagonal
+first-moment scale
+
+```text
+binom(n,a) q^{-mu(a-k)},
+```
+
+is at most
+
+```text
+  [ binom(n,e_t) (q^{e_t}-1)/(q-1)
+    prod_{i != t} binom(n,e_i)
+    prod_i binom(n,p_i)
+    / binom(n,a) ]
+  q^{-mu((m-1)(a-k)-d_2)}.
+```
+
+If a sharper lower bound `R_cyc>=k-d` is available for the same shape, the same
+formula holds with `d` in place of `d_2`.
+
+*Proof.* The clean-cycle rank formula gives exponent gap over the diagonal
+
+```text
+(m-1)(a-k) + R_cyc-k.
+```
+
+The two-edge lower bound gives `R_cyc>=k-d_2`, hence the gap is at least
+`(m-1)(a-k)-d_2`. Multiplying the one-edge tuple bound by this probability
+saving and dividing by `binom(n,a)` gives the displayed expression.
+
+This criterion is intentionally coarse for symmetric triangles with all edge
+sizes close to `k`; those are already cleared above by the generic and
+constant-ratio triangle counts. Its role is to turn the one-edge incidence
+saving into a quick clearance test for asymmetric or private-mass clean cycles,
+and to isolate the remaining near-necklace regime that still needs sharper
+incidence structure.
+
 The incidence counts are exact in the MDS uniqueness range.
 
 **Corollary (small-support uniqueness for `N_e`).** Let `r([ell])` be the

@@ -207,7 +207,11 @@ Keep entries concise and link to the relevant files.
   `(q^e-1)/(q-1)` before further restrictions. Including the private points
   gives an explicit clean-cycle support-tuple bound with saving factor
   `(q^{e_min}-1)/(q^k-1)` over the crude projective-functional count; the
-  verifier records this arithmetic on the clean-cycle examples. The incidence
+  verifier records this arithmetic on the clean-cycle examples. Combining this
+  count with the two-edge lower bound gives a diagonal-relative clean-cycle
+  contribution bound; the verifier records that this coarse criterion clears
+  the nontriangle `F_31` examples while deliberately flagging the symmetric
+  triangle as a case handled by the sharper triangle lemmas above. The incidence
   counts are now exact in the MDS uniqueness range: if `[ell]` has minimal
   support size `r` and `e>=r`, `r+e<=k`, then
   `N_e([ell])=binom(n-r,e-r)`, so for

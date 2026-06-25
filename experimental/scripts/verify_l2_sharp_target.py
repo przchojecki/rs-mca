@@ -1457,6 +1457,20 @@ def clean_cycle_rank_profile() -> dict:
             p**min_edge_size - 1,
             p**k - 1,
         )
+        two_edge_gap_lower_bound = (
+            (cycle_len - 1) * (a - k) - two_edge_defect_upper_bound
+        )
+        gap_power = mu * two_edge_gap_lower_bound
+        if gap_power >= 0:
+            one_edge_relative_bound = Fraction(
+                one_edge_tuple_bound,
+                comb(n, a) * p**gap_power,
+            )
+        else:
+            one_edge_relative_bound = Fraction(
+                one_edge_tuple_bound * p ** (-gap_power),
+                comb(n, a),
+            )
         rows.append(
             {
                 "name": example["name"],
@@ -1488,6 +1502,7 @@ def clean_cycle_rank_profile() -> dict:
                 "diagonal_exponent": diagonal_exponent,
                 "exponent_gap": exponent_gap,
                 "expected_exponent_gap": expected_exponent_gap,
+                "two_edge_gap_lower_bound": two_edge_gap_lower_bound,
                 "private_block_bound": private_block_bound,
                 "edge_block_bound": edge_block_bound,
                 "crude_projective_tuple_bound": crude_projective_tuple_bound,
@@ -1499,6 +1514,10 @@ def clean_cycle_rank_profile() -> dict:
                 "expected_saving_ratio": {
                     "numerator": expected_saving_ratio.numerator,
                     "denominator": expected_saving_ratio.denominator,
+                },
+                "one_edge_relative_bound_to_diagonal": {
+                    "numerator": one_edge_relative_bound.numerator,
+                    "denominator": one_edge_relative_bound.denominator,
                 },
             }
         )
@@ -1559,6 +1578,18 @@ def clean_cycle_rank_profile() -> dict:
         ),
         "one_edge_saving_formula_holds": all(
             row["saving_ratio"] == row["expected_saving_ratio"]
+            for row in rows
+        ),
+        "one_edge_relative_bound_clears_nontriangle_examples": all(
+            row["name"] == "triangle_necklace"
+            or row["one_edge_relative_bound_to_diagonal"]["numerator"]
+            < row["one_edge_relative_bound_to_diagonal"]["denominator"]
+            for row in rows
+        ),
+        "one_edge_relative_bound_records_triangle_coarseness": any(
+            row["name"] == "triangle_necklace"
+            and row["one_edge_relative_bound_to_diagonal"]["numerator"]
+            > row["one_edge_relative_bound_to_diagonal"]["denominator"]
             for row in rows
         ),
     }
@@ -2960,6 +2991,12 @@ def run() -> dict:
         ],
         "clean_cycle_one_edge_saving_formula": clean_cycles[
             "one_edge_saving_formula_holds"
+        ],
+        "clean_cycle_one_edge_relative_clears_nontriangle": clean_cycles[
+            "one_edge_relative_bound_clears_nontriangle_examples"
+        ],
+        "clean_cycle_one_edge_triangle_coarse": clean_cycles[
+            "one_edge_relative_bound_records_triangle_coarseness"
         ],
         "functional_incidence_projective_count": functional_incidence[
             "projective_functional_count"
