@@ -290,6 +290,9 @@ Keep entries concise and link to the relevant files.
   Iterating the residual band gives parity propagation bounds and, for odd
   clean cycles, the closure constraint
   `2D >= k - ((m+1)/2)sigma + (m-1)/2`.
+  This yields the odd-cycle clearance threshold
+  `sigma/k > 2(m-1)/(4mu(m-2)-(m+1))`, improving the coarse high-reserve
+  window exactly when `2mu(m-2)>m(m+1)/2`.
   More generally, any dimensions `d_i<=tau` with `2tau<k-sigma` form an
   independent set, so very large-overlap residual edges occupy at most half of
   the cycle.

@@ -2798,6 +2798,26 @@ k - ((m+1)/2)sigma + (m-1)/2
 If this inequality fails with a linear margin, odd residual clean cycles are
 cleared by the existing private-mass/root-sharing gates.
 
+Equivalently, when
+
+```text
+4mu(m-2) > m+1,
+```
+
+odd residual clean cycles are cleared if
+
+```text
+sigma/k > 2(m-1)/(4mu(m-2)-(m+1))
+```
+
+with a fixed positive margin. This threshold is not always stronger than the
+coarse high-reserve window, but it is a separate parity obstruction and it
+improves the coarse window exactly when
+
+```text
+2mu(m-2) > m(m+1)/2.
+```
+
 *Proof.* The case `r=0` is `d_t=D`. Assume
 `d_{t+2r}<=D+r(sigma-1)`. The lower residual band gives
 
@@ -2818,6 +2838,16 @@ The same induction applies in the opposite orientation. If `m` is odd, take
 displayed lower bound for `2D`. The compatibility condition follows by
 combining this lower bound with the nonclearance upper bound
 `2D<=m k-2mu(m-2)sigma+o(n)`.
+Rearranging the compatibility condition gives
+
+```text
+[2mu(m-2)-(m+1)/2] sigma <= (m-1)k+o(n).
+```
+
+When the coefficient of `sigma` is positive, this is equivalent to the
+displayed threshold. Comparing
+`2(m-1)/(4mu(m-2)-(m+1))` with the coarse threshold
+`m/(2mu(m-2))` gives the final condition after cross-multiplication.
 
 The residual band also gives a global packing rule for very large overlaps.
 

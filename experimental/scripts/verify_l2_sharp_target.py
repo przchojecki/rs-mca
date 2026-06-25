@@ -2964,8 +2964,26 @@ def residual_dimension_band_profile() -> dict:
                 "neighbor_edge_ceiling": sigma + threshold,
             }
         )
+    odd_threshold_rows = []
+    for cycle_len, mu in ((3, 2), (5, 2), (5, 3), (7, 3), (7, 4)):
+        denominator = 4 * mu * (cycle_len - 2) - (cycle_len + 1)
+        threshold = Fraction(2 * (cycle_len - 1), denominator)
+        coarse_threshold = Fraction(cycle_len, 2 * mu * (cycle_len - 2))
+        odd_threshold_rows.append(
+            {
+                "cycle_len": cycle_len,
+                "mu": mu,
+                "denominator": denominator,
+                "threshold": fraction_record(threshold),
+                "coarse_high_reserve_threshold": fraction_record(
+                    coarse_threshold
+                ),
+                "improves_coarse": threshold < coarse_threshold,
+            }
+        )
     return {
         "rows": rows,
+        "odd_threshold_rows": odd_threshold_rows,
         "residual_band_holds": all(
             all(
                 row["lower_band"] <= pair_sum < row["k"]
@@ -3008,6 +3026,40 @@ def residual_dimension_band_profile() -> dict:
             for row in rows
         ),
         "contains_no_low_case": any(row["low_count"] == 0 for row in rows),
+        "odd_threshold_denominators_positive": all(
+            row["denominator"] > 0 for row in odd_threshold_rows
+        ),
+        "odd_threshold_formula_holds": all(
+            row["threshold"]
+            == fraction_record(
+                Fraction(
+                    2 * (row["cycle_len"] - 1),
+                    4 * row["mu"] * (row["cycle_len"] - 2)
+                    - (row["cycle_len"] + 1),
+                )
+            )
+            for row in odd_threshold_rows
+        ),
+        "odd_threshold_compares_to_coarse": all(
+            row["improves_coarse"]
+            == (
+                Fraction(
+                    row["threshold"]["numerator"],
+                    row["threshold"]["denominator"],
+                )
+                < Fraction(
+                    row["coarse_high_reserve_threshold"]["numerator"],
+                    row["coarse_high_reserve_threshold"]["denominator"],
+                )
+            )
+            for row in odd_threshold_rows
+        ),
+        "odd_threshold_has_improving_high_arity_case": any(
+            row["improves_coarse"] for row in odd_threshold_rows
+        ),
+        "odd_threshold_has_nonimproving_low_arity_case": any(
+            not row["improves_coarse"] for row in odd_threshold_rows
+        ),
     }
 
 
@@ -4886,6 +4938,21 @@ def run() -> dict:
             "contains_tight_odd_packing"
         ],
         "residual_band_no_low_case": residual_band["contains_no_low_case"],
+        "residual_band_odd_threshold_denominators": residual_band[
+            "odd_threshold_denominators_positive"
+        ],
+        "residual_band_odd_threshold_formula": residual_band[
+            "odd_threshold_formula_holds"
+        ],
+        "residual_band_odd_threshold_comparison": residual_band[
+            "odd_threshold_compares_to_coarse"
+        ],
+        "residual_band_odd_threshold_improves": residual_band[
+            "odd_threshold_has_improving_high_arity_case"
+        ],
+        "residual_band_odd_threshold_nonimproves": residual_band[
+            "odd_threshold_has_nonimproving_low_arity_case"
+        ],
         "clean_cycle_has_small_pair_case": clean_cycles[
             "contains_small_pair_case"
         ],
