@@ -1961,6 +1961,48 @@ prod_i binom(n,p_i) <= n^{sum_i p_i} <= n^{m p_max} <= q^{mu p_max}.
 Cancelling this against the `q^{-mu p_max}` factor leaves the displayed
 bound.
 
+The absorbed bound gives a precise selected-edge target. Let
+
+```text
+P=sum_i p_i,       E=sum_i e_i,       r_sel=sum_i(k-e_i).
+```
+
+Then the clean-cycle identities give
+
+```text
+2E = m(k+sigma)-P,             2r_sel = m(k-sigma)+P.
+```
+
+The full selected-rank part has projective dimension
+
+```text
+d_full=max(0,E-(m-1)k),
+```
+
+and the lower selected-rank part is counted by the marked-syzygy bound
+`B_mark`. Thus, after private-block absorption, a fixed clean-cycle shape is
+cleared below the diagonal scale as soon as
+
+```text
+B_full+B_mark < binom(n,a) q^{mu(m-2)sigma}.
+```
+
+This is the exact selected-edge inequality left by the present reduction. It
+has no private-block factor: private mass now enters only through the ledger
+variables `P` and `r_sel`.
+
+*Proof.* Summing the identities `p_i=a-e_{i-1}-e_i` over the cycle gives
+`P=ma-2E`, hence the first display. Since
+`r_sel=mk-E`, substituting `a=k+sigma` gives the second display. The
+private-block absorption corollary says the diagonal-relative contribution is
+at most
+
+```text
+[(B_full+B_mark)/binom(n,a)] q^{-mu(m-2)sigma},
+```
+
+which is below one exactly under the displayed selected-edge inequality.
+
 The connected case also isolates the diagonal exactly.
 
 **Corollary (diagonal is the only zero-loss connected cluster).** Suppose

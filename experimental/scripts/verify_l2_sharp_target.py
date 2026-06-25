@@ -1541,6 +1541,7 @@ def clean_cycle_rank_profile() -> dict:
         min_edge_index = edge_sizes.index(min_edge_size)
         max_private_size = max(private_sizes)
         private_size_sum = sum(private_sizes)
+        edge_mass_ledger_value = cycle_len * a - private_size_sum
         private_block_absorption_bound = n ** (cycle_len * max_private_size)
         two_edge_lower_bound = (
             k if min_edge_pair_sum <= k else 2 * k - min_edge_pair_sum
@@ -1688,6 +1689,11 @@ def clean_cycle_rank_profile() -> dict:
             all_edge_full_rank_selected_bound
             + all_edge_marked_syzygy_count_bound
         )
+        absorbed_gap_power = mu * (cycle_len - 2) * sigma
+        absorbed_hybrid_relative_bound = Fraction(
+            all_edge_hybrid_selected_bound,
+            comb(n, a) * p**absorbed_gap_power,
+        )
         if gap_power >= 0:
             all_edge_hybrid_relative_bound = Fraction(
                 all_edge_hybrid_selected_bound * private_block_bound,
@@ -1711,6 +1717,7 @@ def clean_cycle_rank_profile() -> dict:
                 "private_sizes": private_sizes,
                 "max_private_size": max_private_size,
                 "private_size_sum": private_size_sum,
+                "edge_mass_ledger_value": edge_mass_ledger_value,
                 "min_edge_size": min_edge_size,
                 "min_edge_index": min_edge_index,
                 "supports": [list(support) for support in supports],
@@ -1792,6 +1799,10 @@ def clean_cycle_rank_profile() -> dict:
                     "numerator": all_edge_hybrid_relative_bound.numerator,
                     "denominator": all_edge_hybrid_relative_bound.denominator,
                 },
+                "absorbed_hybrid_relative_bound_to_diagonal": {
+                    "numerator": absorbed_hybrid_relative_bound.numerator,
+                    "denominator": absorbed_hybrid_relative_bound.denominator,
+                },
             }
         )
     return {
@@ -1864,6 +1875,16 @@ def clean_cycle_rank_profile() -> dict:
         ),
         "private_block_absorption_inequality_holds": all(
             row["private_block_bound"] <= row["private_block_absorption_bound"]
+            for row in rows
+        ),
+        "edge_private_mass_ledger_holds": all(
+            2 * row["edge_total"] == row["edge_mass_ledger_value"]
+            for row in rows
+        ),
+        "selected_domain_mass_ledger_holds": all(
+            2 * row["selected_domain_dim"]
+            == row["cycle_len"] * (row["k"] - row["sigma"])
+            + row["private_size_sum"]
             for row in rows
         ),
         "contains_small_pair_case": any(
@@ -1968,6 +1989,18 @@ def clean_cycle_rank_profile() -> dict:
             row["min_edge_pair_sum"] <= row["k"]
             and row["all_edge_hybrid_relative_bound_to_diagonal"]["numerator"]
             > row["all_edge_hybrid_relative_bound_to_diagonal"]["denominator"]
+            for row in rows
+        ),
+        "absorbed_hybrid_clears_private_below_reserve_examples": all(
+            row["max_private_size"] >= row["sigma"]
+            or row["absorbed_hybrid_relative_bound_to_diagonal"]["numerator"]
+            < row["absorbed_hybrid_relative_bound_to_diagonal"]["denominator"]
+            for row in rows
+        ),
+        "absorbed_hybrid_clears_triangle_example": any(
+            row["name"] == "triangle_necklace"
+            and row["absorbed_hybrid_relative_bound_to_diagonal"]["numerator"]
+            < row["absorbed_hybrid_relative_bound_to_diagonal"]["denominator"]
             for row in rows
         ),
     }
@@ -3557,6 +3590,12 @@ def run() -> dict:
         "clean_cycle_private_block_absorption": clean_cycles[
             "private_block_absorption_inequality_holds"
         ],
+        "clean_cycle_edge_private_mass_ledger": clean_cycles[
+            "edge_private_mass_ledger_holds"
+        ],
+        "clean_cycle_selected_domain_mass_ledger": clean_cycles[
+            "selected_domain_mass_ledger_holds"
+        ],
         "clean_cycle_has_small_pair_case": clean_cycles[
             "contains_small_pair_case"
         ],
@@ -3619,6 +3658,12 @@ def run() -> dict:
         ],
         "clean_cycle_all_edge_hybrid_small_pair_coarse": clean_cycles[
             "all_edge_hybrid_records_small_pair_coarseness"
+        ],
+        "clean_cycle_absorbed_hybrid_clears": clean_cycles[
+            "absorbed_hybrid_clears_private_below_reserve_examples"
+        ],
+        "clean_cycle_absorbed_hybrid_clears_triangle": clean_cycles[
+            "absorbed_hybrid_clears_triangle_example"
         ],
         "functional_incidence_projective_count": functional_incidence[
             "projective_functional_count"

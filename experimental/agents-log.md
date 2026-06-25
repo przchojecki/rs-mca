@@ -267,7 +267,11 @@ Keep entries concise and link to the relevant files.
   reserve. Under the field-size headroom `q^mu>=n^m`, this `p_max` saving
   absorbs the entire private-block product
   `prod_i binom(n,p_i)<=n^{m p_max}`; the remaining hybrid clean-cycle target
-  is therefore the selected-edge incidence/syzygy count.
+  is therefore the selected-edge incidence/syzygy count. The note now states
+  this as the exact inequality
+  `B_full+B_mark < binom(n,a)q^{mu(m-2)sigma}`, together with the mass ledger
+  `2E=m(k+sigma)-P` and `2r_sel=m(k-sigma)+P`; the verifier records the
+  absorbed selected-edge ratio and checks it on the clean-cycle examples.
   The incidence
   counts are now exact in the MDS uniqueness range: if `[ell]` has minimal
   support size `r` and `e>=r`, `r+e<=k`, then
