@@ -281,7 +281,10 @@ Keep entries concise and link to the relevant files.
   `2d_full=max(0,m sigma-(m-2)k-P)` and
   `2(T-r_sel)=2mu(m-2)sigma-m(k-sigma)-P`; this shows that the present coarse
   marked-syzygy count can clear by field exponent alone only above the reserve
-  threshold `sigma/k > m/(2mu(m-2)+m)` up to lower-order terms.
+  threshold `sigma/k > m/(2mu(m-2)+m)` up to lower-order terms. A uniform
+  high-reserve corollary now proves that every fixed clean `m`-cycle clears
+  with the present hybrid bound when `sigma/k > m/(2mu(m-2))` with positive
+  margin and `q^mu>=n^m`.
   The incidence
   counts are now exact in the MDS uniqueness range: if `[ell]` has minimal
   support size `r` and `e>=r`, `r+e<=k`, then

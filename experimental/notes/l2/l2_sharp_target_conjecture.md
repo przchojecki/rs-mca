@@ -2099,6 +2099,53 @@ Subtracting from `2T=2mu(m-2)sigma` gives the second display. The remaining
 claims are immediate from `P>=0` and the requirement that `T-r_sel` have a
 positive linear margin in the selected-edge field-exponent gate.
 
+This gives a uniform high-reserve clean-cycle clearance regime.
+
+**Corollary (uniform clean-cycle clearance in the high-reserve window).** Fix
+`m>=3`, `mu>=2`, and suppose `k`, `sigma`, and `n` all grow linearly with
+`n`. Along generated-field sequences with `q>=n+1` and `q^mu>=n^m`, assume
+there is a constant `c>0` such that
+
+```text
+2mu(m-2)sigma - m k >= c n.
+```
+
+Then every clean simple `m`-cycle shape is either full rank by the
+private-mass reserve gate or has absorbed hybrid contribution tending to zero
+relative to the diagonal scale.
+
+Equivalently, for the present coarse marked-syzygy bound, uniform fixed-`m`
+clean-cycle clearance follows in the window
+
+```text
+sigma/k > m/(2mu(m-2))
+```
+
+with a fixed positive margin.
+
+*Proof.* If `p_max>=sigma`, the private-mass reserve gate gives `R_cyc=k`.
+Otherwise `P=sum_i p_i < m sigma`, so the mass formula gives
+
+```text
+2(T-r_sel)
+  = 2mu(m-2)sigma - m(k-sigma) - P
+  > 2mu(m-2)sigma - m k
+  >= c n.
+```
+
+Thus `T-r_sel` has a positive linear margin. The full selected-rank margin is
+also linear: if `d_full=0`, then `T-d_full=T`, while if `d_full>0`, the mass
+formula gives
+
+```text
+2(T-d_full)
+ = [2mu(m-2)-m]sigma + (m-2)k + P,
+```
+
+which is linear and positive for `m>=3`, `mu>=2`. The selected-edge
+field-exponent gate then clears the absorbed hybrid ratio. The displayed
+reserve window is the same condition divided by `k`, with a fixed margin.
+
 The connected case also isolates the diagonal exactly.
 
 **Corollary (diagonal is the only zero-loss connected cluster).** Suppose

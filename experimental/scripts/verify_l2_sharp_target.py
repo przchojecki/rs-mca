@@ -1708,6 +1708,9 @@ def clean_cycle_rank_profile() -> dict:
         marked_margin_private_mass_threshold = (
             2 * absorbed_gap_power - cycle_len * (k - sigma)
         )
+        doubled_uniform_private_margin_floor = (
+            2 * absorbed_gap_power - cycle_len * k
+        )
         absorbed_hybrid_relative_bound = Fraction(
             all_edge_hybrid_selected_bound,
             comb(n, a) * p**absorbed_gap_power,
@@ -1829,6 +1832,9 @@ def clean_cycle_rank_profile() -> dict:
                 "doubled_marked_margin_formula": doubled_marked_margin_formula,
                 "marked_margin_private_mass_threshold": (
                     marked_margin_private_mass_threshold
+                ),
+                "doubled_uniform_private_margin_floor": (
+                    doubled_uniform_private_margin_floor
                 ),
             }
         )
@@ -2059,6 +2065,14 @@ def clean_cycle_rank_profile() -> dict:
             == (
                 row["private_size_sum"]
                 < row["marked_margin_private_mass_threshold"]
+            )
+            for row in rows
+        ),
+        "uniform_private_below_reserve_margin_floor_holds": all(
+            row["max_private_size"] >= row["sigma"]
+            or (
+                2 * row["absorbed_marked_field_margin"]
+                > row["doubled_uniform_private_margin_floor"]
             )
             for row in rows
         ),
@@ -3738,6 +3752,9 @@ def run() -> dict:
         ],
         "clean_cycle_marked_margin_threshold": clean_cycles[
             "marked_margin_positive_iff_private_mass_below_threshold"
+        ],
+        "clean_cycle_uniform_private_margin_floor": clean_cycles[
+            "uniform_private_below_reserve_margin_floor_holds"
         ],
         "functional_incidence_projective_count": functional_incidence[
             "projective_functional_count"
