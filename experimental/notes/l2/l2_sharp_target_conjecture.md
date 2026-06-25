@@ -1767,6 +1767,41 @@ sum_{deg A_t=b} q^{-max(1,rho(t,A_t))}
 
 Substitute `N_b(r)<=B_b(r)`, sum over `b`, and multiply by `q^{D_t}`.
 
+There is a simpler form in the comparable-dimension regime that exposes the
+polynomial edge-size cost.
+
+**Corollary (comparable-dimension root-sharing bound).** With the same fixed
+nonpivot index `u`, assume `d_t<=d_u`. Then
+
+```text
+C_t(L_{j != t})
+ <= q^{D_t} [ q^{-1} + (d_t-1)
+              + (1-q^{-1}) sum_{s=1}^{d_t-2}
+                    (d_t-1-s) binom(e_u,s) ],
+```
+
+Thus, in the comparable-dimension regime `d_t<=d_u`, the pivot coefficient
+field factor is replaced by a polynomial in the nonpivot edge size. For fixed
+`d_t`, this costs only `O(e_u^{max(d_t-2,0)})` instead of the monicity-only
+`q^{d_t-1}` factor.
+
+*Proof.* Start from the root-sharing bound for exact degree `b`. Since
+`d_t<=d_u`, the tail `r>=b` telescopes:
+
+```text
+q^{b-d_u}+sum_{r=b}^{d_u-1}(q^{-r}-q^{-(r+1)})q^b = 1
+```
+
+for `b>=1`, while the `b=0` contribution is `q^{-1}`. For `1<=r<b`, the
+low-rank term contributes
+
+```text
+(q^{-r}-q^{-(r+1)}) binom(e_u,b-r) q^r
+ = (1-q^{-1}) binom(e_u,b-r).
+```
+
+Summing over `b`, and putting `s=b-r`, gives the displayed expression.
+
 The root and disjointness gate is also purely algebraic.
 
 **Corollary (domain-locator gate for forced pivots).** Let

@@ -2323,6 +2323,33 @@ def locator_syzygy_witness_profile() -> dict:
         scaled_degree_bound = scaled_degree_bound.numerator
         root_sharing_degree_bounds[str(degree)] = scaled_degree_bound
         root_sharing_rank_weighted_bound += scaled_degree_bound
+    comparable_dimension_bound = 0
+    comparable_dimension_shell_bounds = {}
+    if rank_coefficient_dimensions[rank_pivot] <= rank_reference_dimension:
+        for degree in range(rank_coefficient_dimensions[rank_pivot]):
+            if degree == 0:
+                shell_sum = Fraction(1, rank_p)
+            else:
+                shared_bound = sum(
+                    comb(rank_reference_edge_size, shared_roots)
+                    for shared_roots in range(
+                        1,
+                        min(rank_reference_edge_size, degree - 1) + 1,
+                    )
+                )
+                shell_sum = Fraction(1, 1) + (
+                    Fraction(rank_p - 1, rank_p) * shared_bound
+                )
+            scaled_shell_bound = (
+                shell_sum * rank_p**rank_nonpivot_dimension
+            )
+            if scaled_shell_bound.denominator != 1:
+                raise ValueError("expected integral comparable-dimension bound")
+            scaled_shell_bound = scaled_shell_bound.numerator
+            comparable_dimension_shell_bounds[str(degree)] = (
+                scaled_shell_bound
+            )
+            comparable_dimension_bound += scaled_shell_bound
     return {
         "p": p,
         "n": n,
@@ -2400,6 +2427,10 @@ def locator_syzygy_witness_profile() -> dict:
             "low_rank_rarity_checks": low_rank_rarity_checks,
             "root_sharing_degree_bounds": root_sharing_degree_bounds,
             "root_sharing_rank_weighted_bound": root_sharing_rank_weighted_bound,
+            "comparable_dimension_shell_bounds": (
+                comparable_dimension_shell_bounds
+            ),
+            "comparable_dimension_bound": comparable_dimension_bound,
         },
         "syzygy_sum_zero": syzygy_sum == [0],
         "pivot_forcing_remainder_zero": forcing_remainder == [0],
@@ -2446,6 +2477,12 @@ def locator_syzygy_witness_profile() -> dict:
         ),
         "root_sharing_bound_improves_monic_projective": (
             root_sharing_rank_weighted_bound < rank_monic_projective_bound
+        ),
+        "comparable_dimension_bound_covers_root_sharing": (
+            root_sharing_rank_weighted_bound <= comparable_dimension_bound
+        ),
+        "comparable_dimension_bound_improves_monic": (
+            comparable_dimension_bound < rank_monic_projective_bound
         ),
     }
 
@@ -4076,6 +4113,12 @@ def run() -> dict:
         ],
         "locator_syzygy_root_sharing_improves": locator_syzygy_witness[
             "root_sharing_bound_improves_monic_projective"
+        ],
+        "locator_syzygy_comparable_dim_bound": locator_syzygy_witness[
+            "comparable_dimension_bound_covers_root_sharing"
+        ],
+        "locator_syzygy_comparable_dim_improves": locator_syzygy_witness[
+            "comparable_dimension_bound_improves_monic"
         ],
         "kmm_grid_formula": all(d["interleaved_edges"] == d["grid_edges_at_n_min"] for d in designs),
         "rs_witness_creates_mass": witness["mass_creation"],

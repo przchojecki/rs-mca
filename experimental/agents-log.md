@@ -261,7 +261,10 @@ Keep entries concise and link to the relevant files.
   edge `u`; the verifier checks this bound by exact degree in the same `F_11`
   witness. Summing these cumulative low-rank bounds gives a closed
   root-sharing upper bound for the rank-weighted coefficient factor; in the
-  witness this bound still improves the projective monicity bound. Combining
+  witness this bound still improves the projective monicity bound. A direct
+  root-sharing expansion now shows that, when `d_t<=d_u`, the old
+  monicity-only pivot factor `q^{d_t-1}` is replaced by a binomial-shell cost
+  of order `O(e_u^{max(d_t-2,0)})`. Combining
   the pivot, monic, and domain gates gives a
   marked selected-syzygy tuple bound; the verifier checks that this general
   formula exactly reproduces the earlier rank-deficient necklace count
