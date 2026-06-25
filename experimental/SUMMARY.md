@@ -402,8 +402,8 @@ Recommended next work:
 
 6. Finish the A0 Crites-Stewart/ABF import audit before relying on the original
    imported route or slacked fallback as source-certified infrastructure; cite
-   the deep-point route separately for the headline MCA cap after local X1
-   review.
+   the deep-point route separately for the headline MCA cap after reviewing the
+   `lem:fiber(ii)` lower bound and notation compatibility.
 
 7. Choose a small set of stable lemmas for Lean formalization: support
    injection, full-support interleaving formula, complement-prefix locator

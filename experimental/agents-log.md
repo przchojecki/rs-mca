@@ -39,16 +39,17 @@ Keep entries concise and link to the relevant files.
   `experimental/notes/audits/cs25_import_audit.md`,
   `experimental/scripts/verify_a0_deep_point_cap_algebra.py`,
   `experimental/SUMMARY.md`, `experimental/agents-log.md`.
-- **Status:** PROVED local algebra / CONDITIONAL on existing X1 local lemmas.
+- **Status:** PROVED simple-pole transfer and local algebra / CONDITIONAL on
+  the supplied `C_+` list lower bound.
 - **What is being added:** A dependency split for Paper D's universal cap:
   the original CS25 route remains externally unaudited, but the headline MCA
-  cap constant follows from the local deep-point route via an exact algebraic
-  inequality.
+  cap constant follows from a locally proved simple-pole transfer, elementary
+  deep-point averaging, and an exact algebraic inequality.
 - **How it is useful:** Narrows A0. Future citations can distinguish the
   source-conditional CS25 proof from the local deep-point proof instead of
   treating the entire negative-side cap as blocked on the external import.
-- **What to do next:** Human-review the X1 deep-point identity and
-  `lem:fiber(ii)` before promoting the dependency split into Papers A--D.
+- **What to do next:** Human-review the `lem:fiber(ii)` lower-bound proof and
+  notation compatibility before promoting the dependency split into Papers A--D.
 
 ### 2026-06-25 - Latest PR integration and estimate audit
 

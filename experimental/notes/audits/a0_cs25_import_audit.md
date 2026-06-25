@@ -90,8 +90,9 @@ Indeed, after cancelling `(q-n)/q`, the comparison is equivalent to
 kL - q + n + k >= 0,
 ```
 
-which follows from `kL >= q+k`.  Thus `lem:fiber(ii)` plus the deep-point
-identity can produce the same `emca` lower bound without invoking CS25.
+which follows from `kL >= q+k`.  Thus `lem:fiber(ii)` plus the simple-pole
+transfer and deep-point averaging can produce the same `emca` lower bound
+without invoking CS25.
 See `experimental/notes/audits/a0_deep_point_cap_dependency_split.md` and
 `experimental/scripts/verify_a0_deep_point_cap_algebra.py`.
 
