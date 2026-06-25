@@ -3230,6 +3230,35 @@ def residual_shape_scan_profile() -> dict:
             )
         )
 
+    def recurrence_integer_rate(high_count: int, low_count: int) -> int:
+        if high_count + low_count == 0:
+            return 0
+        rate = 1
+        while rate * rate < low_count * rate + high_count * low_count:
+            rate += 1
+        return rate
+
+    def path_recurrence_spectral_bound(
+        vertex_count: int, high_count: int, low_count: int
+    ) -> int:
+        if vertex_count == 0:
+            return 1
+        alphabet_size = high_count + low_count
+        if alphabet_size == 0:
+            return 0
+        rate = recurrence_integer_rate(high_count, low_count)
+        return alphabet_size * (rate ** vertex_count)
+
+    def recurrence_saves_free_alphabet(
+        high_count: int, low_count: int
+    ) -> bool:
+        alphabet_size = high_count + low_count
+        return (
+            high_count > 0
+            and alphabet_size * alphabet_size
+            > low_count * alphabet_size + high_count * low_count
+        )
+
     scan_cases = [
         {"name": "triangle_nonempty", "cycle_len": 3, "mu": 2, "k": 8, "sigma": 3},
         {
@@ -3524,6 +3553,23 @@ def residual_shape_scan_profile() -> dict:
                 )
                 - (len(low_depth_values) ** cycle_len)
             )
+            root_active_all_negative_spectral_rate = recurrence_integer_rate(
+                len(high_depth_values),
+                len(low_depth_values),
+            )
+            root_active_all_negative_spectral_bound = (
+                path_recurrence_spectral_bound(
+                    cycle_len,
+                    len(high_depth_values),
+                    len(low_depth_values),
+                )
+            )
+            root_active_all_negative_spectral_saves = (
+                recurrence_saves_free_alphabet(
+                    len(high_depth_values),
+                    len(low_depth_values),
+                )
+            )
             root_active_spike_bound_rows = []
             for depth_spike_row in depth_spike_rows:
                 allowed_depths = depth_spike_row["allowed_depths"]
@@ -3541,6 +3587,9 @@ def residual_shape_scan_profile() -> dict:
                 if spike <= root_depth_threshold:
                     bound = len(allowed_depths) ** (cycle_len - 1)
                     recurrence_bound = bound
+                    spectral_rate = None
+                    spectral_bound = bound
+                    spectral_saves_free_alphabet = None
                 else:
                     bound = independent_set_weight_bound(
                         cycle_len - 1,
@@ -3557,11 +3606,31 @@ def residual_shape_scan_profile() -> dict:
                         )
                         - (len(low_allowed_depths) ** (cycle_len - 1))
                     )
+                    spectral_rate = recurrence_integer_rate(
+                        len(high_allowed_depths),
+                        len(low_allowed_depths),
+                    )
+                    spectral_bound = path_recurrence_spectral_bound(
+                        cycle_len - 1,
+                        len(high_allowed_depths),
+                        len(low_allowed_depths),
+                    )
+                    spectral_saves_free_alphabet = (
+                        recurrence_saves_free_alphabet(
+                            len(high_allowed_depths),
+                            len(low_allowed_depths),
+                        )
+                    )
                 root_active_spike_bound_rows.append(
                     {
                         "spike": spike,
                         "bound": bound,
                         "recurrence_bound": recurrence_bound,
+                        "spectral_rate": spectral_rate,
+                        "spectral_bound": spectral_bound,
+                        "spectral_saves_free_alphabet": (
+                            spectral_saves_free_alphabet
+                        ),
                         "high_depth_count": len(high_allowed_depths),
                         "low_depth_count": len(low_allowed_depths),
                     }
@@ -3579,14 +3648,26 @@ def residual_shape_scan_profile() -> dict:
                     for row in root_active_spike_bound_rows
                 )
             )
+            root_active_spectral_bound = (
+                root_active_all_negative_spectral_bound
+                + cycle_len
+                * sum(
+                    row["spectral_bound"]
+                    for row in root_active_spike_bound_rows
+                )
+            )
         else:
             high_depth_values = []
             low_depth_values = []
             root_active_all_negative_bound = None
             root_active_all_negative_recurrence_bound = None
+            root_active_all_negative_spectral_rate = None
+            root_active_all_negative_spectral_bound = None
+            root_active_all_negative_spectral_saves = None
             root_active_spike_bound_rows = []
             root_active_independent_set_bound = None
             root_active_recurrence_bound = None
+            root_active_spectral_bound = None
         min_depth = min(depth_values) if depth_values else None
         max_depth = max(depth_values) if depth_values else None
         canonical_depth_witness_condition = (
@@ -3806,11 +3887,21 @@ def residual_shape_scan_profile() -> dict:
                 "root_active_all_negative_recurrence_bound": (
                     root_active_all_negative_recurrence_bound
                 ),
+                "root_active_all_negative_spectral_rate": (
+                    root_active_all_negative_spectral_rate
+                ),
+                "root_active_all_negative_spectral_bound": (
+                    root_active_all_negative_spectral_bound
+                ),
+                "root_active_all_negative_spectral_saves": (
+                    root_active_all_negative_spectral_saves
+                ),
                 "root_active_spike_bound_rows": root_active_spike_bound_rows,
                 "root_active_independent_set_bound": (
                     root_active_independent_set_bound
                 ),
                 "root_active_recurrence_bound": root_active_recurrence_bound,
+                "root_active_spectral_bound": root_active_spectral_bound,
                 "centered_candidate_count": len(centered_candidates),
                 "centered_matches_dimension_scan": (
                     centered_candidates == candidates
@@ -4171,6 +4262,29 @@ def residual_shape_scan_profile() -> dict:
             row["root_depth_required"] <= row["sigma"]
             or row["depth_transfer_candidate_count"]
             <= row["root_active_recurrence_bound"]
+            for row in rows
+        ),
+        "root_active_spectral_bounds_recurrence": all(
+            row["root_depth_required"] <= row["sigma"]
+            or row["root_active_recurrence_bound"]
+            <= row["root_active_spectral_bound"]
+            for row in rows
+        ),
+        "root_active_spectral_has_near_threshold_case": any(
+            row["name"] == "root_active_near_threshold"
+            and row["root_depth_required"] > row["sigma"]
+            and row["root_active_recurrence_bound"]
+            <= row["root_active_spectral_bound"]
+            for row in rows
+        ),
+        "root_active_spectral_saves_free_alphabet_case": any(
+            row["name"] == "root_active_near_threshold"
+            and row["root_active_all_negative_spectral_saves"]
+            and any(
+                spike_row["spectral_saves_free_alphabet"]
+                for spike_row in row["root_active_spike_bound_rows"]
+                if spike_row["spectral_saves_free_alphabet"] is not None
+            )
             for row in rows
         ),
         "pair_cap_clearance_holds": all(
@@ -6263,6 +6377,15 @@ def run() -> dict:
         ],
         "residual_shape_scan_root_active_recurrence_bounds": residual_shape_scan[
             "root_active_recurrence_bounds_transfer"
+        ],
+        "residual_shape_scan_root_active_spectral": residual_shape_scan[
+            "root_active_spectral_bounds_recurrence"
+        ],
+        "residual_shape_scan_root_active_spectral_case": residual_shape_scan[
+            "root_active_spectral_has_near_threshold_case"
+        ],
+        "residual_shape_scan_root_active_spectral_saving": residual_shape_scan[
+            "root_active_spectral_saves_free_alphabet_case"
         ],
         "residual_shape_scan_pair_cap_clearance": residual_shape_scan[
             "pair_cap_clearance_holds"

@@ -3569,6 +3569,65 @@ and the path formula. For cycles, either a fixed vertex is unmarked, giving
 path of length `n-3`, giving `h l^2 P_{n-3}`. Subtracting the all-unmarked
 term enforces the nonempty root-active condition.
 
+The recurrence also gives a closed growth envelope for the remaining frontier.
+
+**Corollary (spectral growth envelope for root-active bounds).** Let
+`h,l>=0`, and let `Lambda>=1` satisfy
+
+```text
+Lambda^2 >= l Lambda + h l.
+```
+
+Put `A=max(1,h+l)`. Then the path polynomials in the preceding corollary obey
+
+```text
+P_n <= A Lambda^n        for n>=0.
+```
+
+For `n>=3`, the cycle polynomial satisfies
+
+```text
+C_n <= P_n <= A Lambda^n.
+```
+
+Consequently, when `R>sigma`, the all-negative root-active residual frontier
+is bounded by `( |H|+|L| )Lambda(|H|,|L|)^m`, for any admissible
+`Lambda(|H|,|L|)`, whenever `|H|+|L|>0` (and by `0` otherwise). A
+non-root-satisfying spike sector of length `m-1` has the same bound with
+`(H,L)` replaced by `(H_u,L_u)` and exponent `m-1`; a root-satisfying spike
+sector is still handled by the trivial `|D_u|^{m-1}` bound.
+
+*Proof.* The path claim is immediate for `P_0` and `P_1`. If it holds at
+lengths `n-1` and `n-2`, then
+
+```text
+P_n=l P_{n-1}+h l P_{n-2}
+   <= A Lambda^{n-2}(l Lambda+h l)
+   <= A Lambda^n.
+```
+
+For nonnegative weights, every independent set of the cycle `C_n` is also an
+independent set of the path obtained by deleting one cyclic edge, so
+`C_n<=P_n`. The final residual-frontier bounds substitute
+`h=|H|, l=|L|` and the corresponding spike-sector counts.
+
+In particular, if `h>0`, the optimal recurrence rate
+
+```text
+rho(h,l)=(l+sqrt(l^2+4hl))/2
+```
+
+is strictly smaller than the free alphabet size `h+l`, since
+
+```text
+(h+l)^2-(l(h+l)+hl)=h^2>0.
+```
+
+Thus every non-root-satisfying root-active sector with at least one
+root-active depth gains an exponential-in-`m` saving over the unconstrained
+alphabet count. If `h=0`, the required nonempty root-active sector contributes
+zero after the all-low term is subtracted.
+
 The finite certificate is monotone in the interleaving arity.
 
 **Corollary (arity monotonicity of residual-shape certificates).** Fix

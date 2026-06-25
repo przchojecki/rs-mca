@@ -30,6 +30,26 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-25 - L2 root-active spectral envelope
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/notes/l2/l2_sharp_target_conjecture.md`,
+  `experimental/scripts/verify_l2_sharp_target.py`, and
+  `experimental/agents-log.md`.
+- **Status:** PROVED / EXPERIMENTAL.
+- **What is being added:** A spectral-growth envelope for the root-active
+  independent-set recurrence in the residual depth-transfer certificate,
+  together with verifier fields checking integer rates satisfying
+  `Lambda^2>=l Lambda+h l` and exact strict-saving certificates against the
+  free alphabet size.
+- **How it is useful:** Converts the near-threshold L2 residual frontier from
+  exact recurrence counts into an analytic growth bound, making the remaining
+  proof target easier to compare across cycle length and depth.
+- **What to do next:** Use the envelope to identify whether the surviving L2
+  root-active frontier is asymptotically harmless, or whether sharper
+  edge-constraint retention is needed.
+
 ### 2026-06-24 - L2 sharp target exactification
 
 - **Agent/model:** Codex.
