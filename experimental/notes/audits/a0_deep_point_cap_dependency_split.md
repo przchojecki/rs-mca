@@ -130,11 +130,14 @@ P(X) = (X-alpha)Q(X) + z
 has degree `<k+1`, satisfies `P(alpha)=z`, and agrees with `U` on `S`.  Hence
 `z in Deep_alpha(U,m)`.
 
-The support-wise MCA far condition for this line is automatic in the range
-`m>k`: if `g_alpha` agreed with a degree-`<k` polynomial `G` on any support of
+The support-wise MCA obstruction for this line is automatic in the range
+`m>k`.  If `g_alpha` agreed with a degree-`<k` polynomial `G` on any support of
 size `>k`, then `(X-alpha)G(X)+1` would be a degree-`<=k` polynomial with more
-than `k` roots in `D` but value `1` at `alpha`, impossible.  Thus the same
-slopes are support-wise MCA-bad slopes.
+than `k` roots in `D` but value `1` at `alpha`, impossible.  Therefore, on the
+support `S` of size at least `m` supplied above, the endpoints
+`f_alpha,g_alpha` cannot be simultaneously explained by two codewords of `C`:
+simultaneous explanation would in particular explain `g_alpha` on `S`.  Hence
+each slope in `Deep_alpha(U,m)` is MCA-bad in Paper D's support-wise sense.
 
 ## Deep-Point Averaging
 
