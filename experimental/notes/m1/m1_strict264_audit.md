@@ -98,6 +98,25 @@ Cycle84 slots; the `≥7` minimal target is the conservative survivor count.
    archive `#96`). So the exact "7" (or `2187`) cannot be recomputed here from first
    principles; this audit certifies the mechanism + admissibility and flags the count
    as slot-model-dependent (same honest boundary as the Cycle120 numerator `N`).
+5. **END-TO-END LD_sw realization on a genuine RS code — DONE**
+   (`verify_m1_strict264_end_to_end.py`). The previous items verify the locator
+   *algebra* in isolation; this item ties it to **actual retained codewords** of a
+   real Reed–Solomon code, reproducing the standalone-proof transfer
+   (`m1_cycle120_standalone_ldsw_proof.md`, Lemma 1):
+   `LD_sw(RS[F,D,k], n−j) ≥ #{P_J(β):J}`. On `RS[F_97, D, 10]` (`n=16, k=10, j=4,
+   σ=2`, redundancy `6=n−k`, `β∉D`), full enumeration of a fixed-jet class (size 4)
+   verifies the entire pipeline: (a) the parity check `(Hw)_m=Σ_x xᵐw(x)/L_D'(x)` has
+   `kernel = RS[F,D,k]` (rank `j+σ`, deg-`<k` evals in kernel); (b) the quotient
+   `Q_m` is common across the class (one received line); (c) `Hg=B` and
+   `He_J=A+z_J B` with `z_J=1/P_J(β)`; (d) `c_J=f+z_J g−e_J` is a genuine codeword
+   (`Hc_J=0` **and** it is the evaluation of a deg-`<k` polynomial); (e) the line
+   point `r_J=f+z_J g` agrees with `c_J` on **exactly** the `n−j=12` points of `D\J`
+   (and differs on all `j` points of `J`); (f) distinct `P_J(β)` give distinct slopes
+   — `LD_sw(C,12) ≥ 4` for this single line. **Convention note (honest):** Lemma 1 (and
+   this realization) fixes the **top `σ`** coefficients of `P_J`, which is exactly
+   what makes `Q_m` common; the strict264 σ=8 *deployment* uses the **two-ended**
+   variant (top `σ−1` + endpoint), whose admissibility is item 3. Both share this LD_sw
+   transfer pipeline; this item realizes the proven (top-`σ`) form on a real code.
 
 ## Honest scope
 - **VERIFIED (arithmetic):** the M2-bridge gate (7 slopes ⟹ `>2^-128`, `δ*≤31/64`)
@@ -109,21 +128,26 @@ Cycle84 slots; the `≥7` minimal target is the conservative survivor count.
   — common parity-check identity `ℓ(P_J·A)=A(β)`, invertible triangular recovery,
   one common `ℓ` per fixed-jet class with distinct slopes, and the σ=8 degree /
   endpoint / noncontainment constraints (`verify_m1_strict264_admissibility.py`).
+- **VERIFIED (end-to-end, genuine RS code):** the LD_sw transfer
+  `LD_sw(C,n−j) ≥ #{P_J(β)}` realized as actual codewords agreeing on `D\J`, one
+  common received line, noncontained (`verify_m1_strict264_end_to_end.py`).
 - **OUT OF SCOPE (needs the rejected-archive slot spec):** the exact survivor count
   `≥7` / `2187` for the actual `F_17^32` row — slot-model-dependent.
 
 ## Audit verdict (interim)
 The strict264 obstruction is **structurally sound and admissible**: every checkable
 layer — the bridge arithmetic, the slack-8 parameters, the retained-slope drop
-mechanism, and the two-ended common-`ℓ` construction at `(248,8,256)` — passes
-independent verification. The single remaining gap is the *exact* survivor count
-`≥7`, which is governed by the Cycle84 7-slot model not present in the repo. The
-audit neither confirms nor refutes the precise "7"; it certifies everything around
-it and isolates the one slot-model-dependent number.
+mechanism, the two-ended common-`ℓ` construction at `(248,8,256)`, and the LD_sw
+transfer realized end-to-end on a genuine RS code — passes independent verification.
+The single remaining gap is the *exact* survivor count `≥7`, which is governed by the
+Cycle84 7-slot model not present in the repo. The audit neither confirms nor refutes
+the precise "7"; it certifies everything around it and isolates the one
+slot-model-dependent number.
 
 ## Reproducibility
 ```bash
 python3 experimental/scripts/verify_m1_strict264_bridge.py
 python3 experimental/scripts/verify_m1_strict264_mechanism.py
 python3 experimental/scripts/verify_m1_strict264_admissibility.py
+python3 experimental/scripts/verify_m1_strict264_end_to_end.py
 ```

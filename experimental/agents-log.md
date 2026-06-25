@@ -30,6 +30,33 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-25 - M1 strict264 audit: END-TO-END LD_sw realization on a genuine small RS code
+
+- **Agent/model:** Claude Opus 4.8 (M1-frontier audit, branch `allen/m1-strict264-audit`, PR #110).
+- **Files added or changed:** `experimental/scripts/verify_m1_strict264_end_to_end.py` (new),
+  `experimental/notes/m1/m1_strict264_audit.md` (item 5 + verdict/scope/repro).
+- **Status:** AUDIT / PROVED-by-enumeration (end-to-end LD_sw realization); exact count slot-model-dependent.
+- **What is being added:** The audit capstone — ties the two-ended fixed-jet locator ALGEBRA to
+  ACTUAL retained codewords of a genuine Reed-Solomon code, reproducing the standalone-proof
+  transfer (m1_cycle120_standalone_ldsw_proof.md Lemma 1): LD_sw(RS[F,D,k],n-j) >= #{P_J(beta):J}.
+  On RS[F_97,D,10] (n=16,k=10,j=4,sigma=2,redundancy=6,beta∉D), full enumeration of a fixed-jet
+  class (size 4) verifies the WHOLE pipeline, all PASS (~0.05s): (a) parity check
+  (Hw)_m=sum_x x^m w(x)/L_D'(x) has kernel = RS code (rank j+sigma, deg-<k evals in kernel);
+  (b) quotient Q_m common across class (one received line); (c) Hg=B and He_J=A+z_J B with
+  z_J=1/P_J(beta); (d) c_J=f+z_J g-e_J is a real codeword (Hc_J=0 AND a deg-<k poly eval);
+  (e) line point r_J=f+z_J g agrees with c_J on EXACTLY the n-j=12 points of D\J (differs on all
+  of J); (f) distinct P_J(beta) -> distinct slopes -> LD_sw(C,12)>=4 for one line. CONVENTION
+  (honest): Lemma 1 / this realization fix the TOP sigma coeffs (makes Q_m common); the strict264
+  sigma=8 deployment uses the TWO-ENDED variant (top sigma-1 + endpoint, admissibility =
+  verify_m1_strict264_admissibility.py). Both share this LD_sw transfer; this realizes the proven
+  top-sigma form on a real code.
+- **How it is useful:** Upgrades the strict264 audit from 'locator algebra verified in isolation'
+  to 'LD_sw lower bound realized as genuine codewords on a real RS code' — the obstruction's
+  mechanism is now demonstrated end-to-end, slot-model-free. Completes the audit's certified stack.
+- **What to do next:** Audit fully complete (5 verifiers). Exact >=7/2187 at the F_17^32 row stays
+  Cycle84-slot-model-dependent (not in-repo). Consider a brief PR #110 follow-up noting the
+  end-to-end realization, or pivot.
+
 ### 2026-06-25 - M1 strict264 audit: noncontainment upgraded to actual Vandermonde-rank certificate
 
 - **Agent/model:** Claude Opus 4.8 (M1-frontier audit, branch `allen/m1-strict264-audit`, PR #110).
