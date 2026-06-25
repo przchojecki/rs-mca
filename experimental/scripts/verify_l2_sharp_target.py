@@ -3163,6 +3163,13 @@ def residual_shape_scan_profile() -> dict:
     scan_cases = [
         {"name": "triangle_nonempty", "cycle_len": 3, "mu": 2, "k": 8, "sigma": 3},
         {
+            "name": "root_active_near_threshold",
+            "cycle_len": 3,
+            "mu": 2,
+            "k": 16,
+            "sigma": 11,
+        },
+        {
             "name": "even_pair_cap_nonempty",
             "cycle_len": 6,
             "mu": 2,
@@ -3507,6 +3514,12 @@ def residual_shape_scan_profile() -> dict:
                     "nonnegative_count": sum(
                         deviation >= 0 for deviation in deviations
                     ),
+                    "root_active_depth_indices": [
+                        idx
+                        for idx, deviation in enumerate(deviations)
+                        if deviation < 0
+                        and -deviation >= root_depth_required
+                    ],
                 }
             )
         centered_candidates = set()
@@ -3682,6 +3695,41 @@ def residual_shape_scan_profile() -> dict:
                 "all_candidates_satisfy_root_depth": all(
                     root_budget >= 4
                     and min(deviation_row["deviations"]) <= root_depth_threshold
+                    for deviation_row in deviation_rows
+                ),
+                "all_deep_root_active_sets_independent": all(
+                    root_depth_required <= sigma
+                    or all(
+                        not (
+                            idx in set(
+                                deviation_row["root_active_depth_indices"]
+                            )
+                            and (idx + 1) % cycle_len
+                            in set(
+                                deviation_row["root_active_depth_indices"]
+                            )
+                        )
+                        for idx in range(cycle_len)
+                    )
+                    for deviation_row in deviation_rows
+                ),
+                "all_deep_root_active_neighbors_shallow": all(
+                    root_depth_required <= sigma
+                    or all(
+                        (
+                            deviation_row["deviations"][neighbor] >= 0
+                            or -deviation_row["deviations"][neighbor]
+                            <= 2 * sigma
+                            + deviation_row["deviations"][active_idx]
+                        )
+                        for active_idx in deviation_row[
+                            "root_active_depth_indices"
+                        ]
+                        for neighbor in (
+                            (active_idx - 1) % cycle_len,
+                            (active_idx + 1) % cycle_len,
+                        )
+                    )
                     for deviation_row in deviation_rows
                 ),
                 "all_deviations_balanced": all(
@@ -3919,6 +3967,19 @@ def residual_shape_scan_profile() -> dict:
                 not row["canonical_depth_witness_condition"]
                 or row["candidate_count"] > 0
             )
+            for row in rows
+        ),
+        "root_active_depth_sets_independent": all(
+            row["all_deep_root_active_sets_independent"] for row in rows
+        ),
+        "root_active_depth_neighbors_shallow": all(
+            row["all_deep_root_active_neighbors_shallow"] for row in rows
+        ),
+        "root_active_has_near_threshold_nonempty_case": any(
+            row["name"] == "root_active_near_threshold"
+            and row["candidate_count"] > 0
+            and row["root_depth_required"] > row["sigma"]
+            and row["root_depth_required"] < 2 * row["sigma"]
             for row in rows
         ),
         "pair_cap_clearance_holds": all(
@@ -5990,6 +6051,15 @@ def run() -> dict:
         ],
         "residual_shape_scan_canonical_depth_explains": residual_shape_scan[
             "canonical_depth_witness_explains_nonempty_examples"
+        ],
+        "residual_shape_scan_root_active_independent": residual_shape_scan[
+            "root_active_depth_sets_independent"
+        ],
+        "residual_shape_scan_root_active_neighbors": residual_shape_scan[
+            "root_active_depth_neighbors_shallow"
+        ],
+        "residual_shape_scan_root_active_near_threshold": residual_shape_scan[
+            "root_active_has_near_threshold_nonempty_case"
         ],
         "residual_shape_scan_pair_cap_clearance": residual_shape_scan[
             "pair_cap_clearance_holds"

@@ -3459,6 +3459,33 @@ removes the exceptional empty case. The odd gate is assumed when needed.
 Therefore the exact centered residual-shape certificate contains this vector
 and all of its cyclic rotations.
 
+Near the depth threshold, root-active depths are forced to be sparse.
+
+**Corollary (root-active depth packing).** In a depth-transfer residual
+candidate, call a nonspike depth `y_i` root-active if
+
+```text
+y_i >= R=2mu(m-2)sigma-(m-1)k.
+```
+
+If `R>sigma`, then no two adjacent nonspike depths are both root-active. More
+precisely, if `y_i` is root-active and a neighboring coordinate is also a
+nonspike depth `y_j`, then
+
+```text
+y_j <= 2sigma-y_i <= 2sigma-R < sigma.
+```
+
+Thus, in the all-negative sector, root-active depths form an independent set
+in the cycle; in a one-spike sector, they form an independent set in the path
+obtained by deleting the spike.
+
+*Proof.* This is immediate from the depth-packing edge condition
+`y_i+y_j<=2sigma` on every adjacent pair of nonspike depths. If both adjacent
+depths were root-active, their sum would be at least `2R>2sigma`, a
+contradiction. The displayed neighbor bound is the same inequality solved for
+`y_j`.
+
 The finite certificate is monotone in the interleaving arity.
 
 **Corollary (arity monotonicity of residual-shape certificates).** Fix
