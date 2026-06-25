@@ -1837,6 +1837,58 @@ factor `C_t(L_{j != t})` for each fixed nonpivot edge tuple, then sum over
 the same nonpivot edge choices. The monicity-only bound remains valid, so one
 may take the minimum of the two upper bounds.
 
+The same root-sharing argument also controls the non-comparable case, with a
+loss depending only on the dimension gap to the reference nonpivot edge.
+
+**Corollary (dimension-gap root-sharing bound).** With the same fixed nonpivot
+index `u`, assume `d_u>=1` and put `D_t=sum_{j != t}d_j`. Define
+
+```text
+H^gap_{t,u}
+ = q^{-1}
+   + min(d_t-1,d_u-1)
+   + 1_{d_t>d_u} sum_{h=0}^{d_t-d_u-1} q^h
+   + (1-q^{-1}) sum_{s=1}^{d_t-2}
+       min(d_u-1,d_t-1-s) binom(e_u,s).
+```
+
+Then
+
+```text
+C_t(L_{j != t}) <= q^{D_t} H^gap_{t,u}.
+```
+
+When `d_t<=d_u`, this is exactly the comparable-dimension bound above. When
+`d_t>d_u`, the only field-size growth beyond the common `q^{D_t}` factor is
+`sum_{h=0}^{d_t-d_u-1}q^h`; the loss is controlled by the dimension gap
+`d_t-d_u`, rather than by the full pivot dimension `d_t`.
+
+Consequently, in the marked selected-syzygy tuple bound one may use the
+minimum of the monicity-only factor and `q^{D_t}H^gap_{t,u}` for any fixed
+reference nonpivot edge `u`.
+
+*Proof.* Start from the root-sharing bound for the rank-weighted factor and
+sum by the exact pivot-coefficient degree `b`. For `b=0`, the layer-cake sum
+telescopes to `q^{-1}`. For `1<=b<d_u`, the layers `r>=b` telescope to `1`,
+and the low-rank layers contribute
+
+```text
+(1-q^{-1}) sum_{s=1}^{b-1} binom(e_u,s).
+```
+
+For `b>=d_u`, the full-rank contribution is `q^{b-d_u}`, and the low-rank
+layers contribute
+
+```text
+(1-q^{-1}) sum_{s=b-d_u+1}^{b-1} binom(e_u,s).
+```
+
+Summing over `0<=b<d_t` gives the displayed baseline terms. Reindexing the
+low-rank contribution by the shared-root count `s` shows that a fixed
+`binom(e_u,s)` appears for exactly
+`min(d_u-1,d_t-1-s)` possible degree layers, proving the formula. The tuple
+bound follows by summing over the same nonpivot edge choices.
+
 The comparable-dimension hypothesis fails for at most one pivot.
 
 **Corollary (all-pivot coverage except a unique smallest edge).** Select all
@@ -1849,8 +1901,9 @@ Equivalently, the root-sharing improvement applies to every pivot unless the
 edge `E_t` is the unique smallest edge overlap. If the smallest edge size
 occurs at least twice, every pivot admits a comparable-dimension reference.
 Thus the all-edge marked-syzygy bound may be root-sharing-refined at all
-pivots except possibly one unique-smallest-edge pivot, where the monicity-only
-factor remains a valid fallback.
+pivots except possibly one unique-smallest-edge pivot. At that pivot the
+dimension-gap root-sharing bound still applies, and the monicity-only factor
+remains a valid fallback.
 
 *Proof.* The chosen reference has dimension
 `d_{u(t)}=max_{u != t}d_u`. The condition `d_t<=d_{u(t)}` fails exactly when

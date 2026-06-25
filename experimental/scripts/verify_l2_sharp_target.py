@@ -564,6 +564,76 @@ def comparable_root_sharing_shell_factor(
     return factor
 
 
+def root_sharing_layer_cake_factor(
+    q: int,
+    pivot_dimension: int,
+    reference_dimension: int,
+    reference_edge_size: int,
+) -> Fraction:
+    """Layer-cake root-sharing factor before the dimension-gap simplification."""
+    if pivot_dimension <= 0:
+        return Fraction(0, 1)
+    if reference_dimension <= 0:
+        raise ValueError("reference dimension must be positive")
+    factor = Fraction(0, 1)
+    for degree in range(pivot_dimension):
+        degree_factor = Fraction(q**degree, q**reference_dimension)
+        for rank_cutoff in range(1, reference_dimension):
+            if degree <= rank_cutoff:
+                low_rank_bound = q**degree
+            else:
+                shared_roots = degree - rank_cutoff
+                low_rank_bound = (
+                    0
+                    if shared_roots > reference_edge_size
+                    else comb(reference_edge_size, shared_roots)
+                    * q**rank_cutoff
+                )
+            degree_factor += (
+                Fraction(1, q**rank_cutoff)
+                - Fraction(1, q ** (rank_cutoff + 1))
+            ) * low_rank_bound
+        factor += degree_factor
+    return factor
+
+
+def dimension_gap_root_sharing_shell_factor(
+    q: int,
+    pivot_dimension: int,
+    reference_dimension: int,
+    reference_edge_size: int,
+) -> Fraction:
+    """Closed root-sharing factor for arbitrary d_t versus reference d_u."""
+    if pivot_dimension <= 0:
+        return Fraction(0, 1)
+    if reference_dimension <= 0:
+        raise ValueError("reference dimension must be positive")
+    factor = Fraction(1, q)
+    factor += min(pivot_dimension - 1, reference_dimension - 1)
+    if pivot_dimension > reference_dimension:
+        for excess_degree in range(pivot_dimension - reference_dimension):
+            factor += q**excess_degree
+    for shared_roots in range(1, pivot_dimension - 1):
+        multiplicity = min(
+            reference_dimension - 1,
+            pivot_dimension - 1 - shared_roots,
+        )
+        if multiplicity > 0:
+            factor += (
+                Fraction(q - 1, q)
+                * multiplicity
+                * comb(reference_edge_size, shared_roots)
+            )
+    return factor
+
+
+def fraction_record(value: Fraction) -> dict[str, int]:
+    return {
+        "numerator": value.numerator,
+        "denominator": value.denominator,
+    }
+
+
 def high_overlap_components(supports: list[tuple[int, ...]], k: int) -> list[set[int]]:
     parent = list(range(len(supports)))
 
@@ -1696,6 +1766,7 @@ def clean_cycle_rank_profile() -> dict:
             )
         all_edge_marked_syzygy_count_bound = 0
         all_edge_comparable_syzygy_count_bound = 0
+        all_edge_dimension_gap_syzygy_count_bound = 0
         coefficient_dimensions = [
             k - edge_size for edge_size in edge_sizes
         ]
@@ -1707,6 +1778,7 @@ def clean_cycle_rank_profile() -> dict:
         ]
         comparable_pivot_indices = []
         monicity_fallback_pivot_indices = []
+        dimension_gap_factor_rows = []
         for pivot in range(cycle_len):
             nonpivot_block_count = 1
             chosen_points = 0
@@ -1736,6 +1808,29 @@ def clean_cycle_rank_profile() -> dict:
                 key=lambda idx: coefficient_dimensions[idx],
             )
             comparable_coefficient_factor = monicity_coefficient_factor
+            dimension_gap_shell_factor = (
+                dimension_gap_root_sharing_shell_factor(
+                    p,
+                    coefficient_dimensions[pivot],
+                    coefficient_dimensions[reference],
+                    edge_sizes[reference],
+                )
+            )
+            layer_cake_shell_factor = root_sharing_layer_cake_factor(
+                p,
+                coefficient_dimensions[pivot],
+                coefficient_dimensions[reference],
+                edge_sizes[reference],
+            )
+            dimension_gap_fraction = (
+                dimension_gap_shell_factor * p**nonpivot_coefficient_dim
+            )
+            if dimension_gap_fraction.denominator != 1:
+                raise ValueError("expected integral dimension-gap factor")
+            dimension_gap_coefficient_factor = min(
+                monicity_coefficient_factor,
+                dimension_gap_fraction.numerator,
+            )
             if coefficient_dimensions[pivot] <= coefficient_dimensions[reference]:
                 comparable_pivot_indices.append(pivot)
                 shell_factor = comparable_root_sharing_shell_factor(
@@ -1756,6 +1851,29 @@ def clean_cycle_rank_profile() -> dict:
                 monicity_fallback_pivot_indices.append(pivot)
             all_edge_comparable_syzygy_count_bound += (
                 comparable_coefficient_factor * nonpivot_block_count
+            )
+            all_edge_dimension_gap_syzygy_count_bound += (
+                dimension_gap_coefficient_factor * nonpivot_block_count
+            )
+            dimension_gap_factor_rows.append(
+                {
+                    "pivot": pivot,
+                    "reference": reference,
+                    "pivot_dimension": coefficient_dimensions[pivot],
+                    "reference_dimension": coefficient_dimensions[reference],
+                    "dimension_gap": (
+                        coefficient_dimensions[pivot]
+                        - coefficient_dimensions[reference]
+                    ),
+                    "shell_factor": fraction_record(
+                        dimension_gap_shell_factor
+                    ),
+                    "layer_cake_factor": fraction_record(
+                        layer_cake_shell_factor
+                    ),
+                    "coefficient_factor": dimension_gap_coefficient_factor,
+                    "monicity_coefficient_factor": monicity_coefficient_factor,
+                }
             )
         if gap_power >= 0:
             all_edge_marked_syzygy_relative_bound = Fraction(
@@ -1781,6 +1899,19 @@ def clean_cycle_rank_profile() -> dict:
                 * p ** (-gap_power),
                 comb(n, a),
             )
+        if gap_power >= 0:
+            all_edge_dimension_gap_syzygy_relative_bound = Fraction(
+                all_edge_dimension_gap_syzygy_count_bound
+                * private_block_bound,
+                comb(n, a) * p**gap_power,
+            )
+        else:
+            all_edge_dimension_gap_syzygy_relative_bound = Fraction(
+                all_edge_dimension_gap_syzygy_count_bound
+                * private_block_bound
+                * p ** (-gap_power),
+                comb(n, a),
+            )
         all_edge_hybrid_selected_bound = (
             all_edge_full_rank_selected_bound
             + all_edge_marked_syzygy_count_bound
@@ -1788,6 +1919,10 @@ def clean_cycle_rank_profile() -> dict:
         all_edge_comparable_hybrid_selected_bound = (
             all_edge_full_rank_selected_bound
             + all_edge_comparable_syzygy_count_bound
+        )
+        all_edge_dimension_gap_hybrid_selected_bound = (
+            all_edge_full_rank_selected_bound
+            + all_edge_dimension_gap_syzygy_count_bound
         )
         absorbed_gap_power = mu * (cycle_len - 2) * sigma
         absorbed_full_field_margin = (
@@ -1817,6 +1952,10 @@ def clean_cycle_rank_profile() -> dict:
         )
         absorbed_comparable_hybrid_relative_bound = Fraction(
             all_edge_comparable_hybrid_selected_bound,
+            comb(n, a) * p**absorbed_gap_power,
+        )
+        absorbed_dimension_gap_hybrid_relative_bound = Fraction(
+            all_edge_dimension_gap_hybrid_selected_bound,
             comb(n, a) * p**absorbed_gap_power,
         )
         if gap_power >= 0:
@@ -1906,6 +2045,7 @@ def clean_cycle_rank_profile() -> dict:
                 "max_coefficient_indices": max_coefficient_indices,
                 "comparable_pivot_indices": comparable_pivot_indices,
                 "monicity_fallback_pivot_indices": monicity_fallback_pivot_indices,
+                "dimension_gap_factor_rows": dimension_gap_factor_rows,
                 "all_edge_full_rank_selected_bound": (
                     all_edge_full_rank_selected_bound
                 ),
@@ -1923,6 +2063,9 @@ def clean_cycle_rank_profile() -> dict:
                 "all_edge_comparable_syzygy_count_bound": (
                     all_edge_comparable_syzygy_count_bound
                 ),
+                "all_edge_dimension_gap_syzygy_count_bound": (
+                    all_edge_dimension_gap_syzygy_count_bound
+                ),
                 "all_edge_marked_syzygy_relative_bound_to_diagonal": {
                     "numerator": all_edge_marked_syzygy_relative_bound.numerator,
                     "denominator": all_edge_marked_syzygy_relative_bound.denominator,
@@ -1933,9 +2076,20 @@ def clean_cycle_rank_profile() -> dict:
                         all_edge_comparable_syzygy_relative_bound.denominator
                     ),
                 },
+                "all_edge_dimension_gap_syzygy_relative_bound_to_diagonal": {
+                    "numerator": (
+                        all_edge_dimension_gap_syzygy_relative_bound.numerator
+                    ),
+                    "denominator": (
+                        all_edge_dimension_gap_syzygy_relative_bound.denominator
+                    ),
+                },
                 "all_edge_hybrid_selected_bound": all_edge_hybrid_selected_bound,
                 "all_edge_comparable_hybrid_selected_bound": (
                     all_edge_comparable_hybrid_selected_bound
+                ),
+                "all_edge_dimension_gap_hybrid_selected_bound": (
+                    all_edge_dimension_gap_hybrid_selected_bound
                 ),
                 "all_edge_hybrid_relative_bound_to_diagonal": {
                     "numerator": all_edge_hybrid_relative_bound.numerator,
@@ -1948,6 +2102,14 @@ def clean_cycle_rank_profile() -> dict:
                 "absorbed_comparable_hybrid_relative_bound_to_diagonal": {
                     "numerator": absorbed_comparable_hybrid_relative_bound.numerator,
                     "denominator": absorbed_comparable_hybrid_relative_bound.denominator,
+                },
+                "absorbed_dimension_gap_hybrid_relative_bound_to_diagonal": {
+                    "numerator": (
+                        absorbed_dimension_gap_hybrid_relative_bound.numerator
+                    ),
+                    "denominator": (
+                        absorbed_dimension_gap_hybrid_relative_bound.denominator
+                    ),
                 },
                 "absorbed_full_field_margin": absorbed_full_field_margin,
                 "absorbed_marked_field_margin": absorbed_marked_field_margin,
@@ -2141,6 +2303,40 @@ def clean_cycle_rank_profile() -> dict:
             <= row["all_edge_hybrid_selected_bound"]
             for row in rows
         ),
+        "dimension_gap_shell_matches_layer_cake": all(
+            factor_row["shell_factor"] == factor_row["layer_cake_factor"]
+            for row in rows
+            for factor_row in row["dimension_gap_factor_rows"]
+        ),
+        "dimension_gap_reduces_to_comparable_when_covered": all(
+            factor_row["shell_factor"]
+            == fraction_record(
+                comparable_root_sharing_shell_factor(
+                    p,
+                    factor_row["pivot_dimension"],
+                    row["edge_sizes"][factor_row["reference"]],
+                )
+            )
+            for row in rows
+            for factor_row in row["dimension_gap_factor_rows"]
+            if factor_row["dimension_gap"] <= 0
+        ),
+        "dimension_gap_syzygy_saves_comparable": all(
+            row["all_edge_dimension_gap_syzygy_count_bound"]
+            <= row["all_edge_comparable_syzygy_count_bound"]
+            for row in rows
+        ),
+        "dimension_gap_hybrid_saves_comparable": all(
+            row["all_edge_dimension_gap_hybrid_selected_bound"]
+            <= row["all_edge_comparable_hybrid_selected_bound"]
+            for row in rows
+        ),
+        "dimension_gap_improves_unique_fallback_examples": any(
+            row["monicity_fallback_pivot_indices"]
+            and row["all_edge_dimension_gap_syzygy_count_bound"]
+            < row["all_edge_comparable_syzygy_count_bound"]
+            for row in rows
+        ),
         "comparable_pivots_cover_all_except_unique_max": all(
             (
                 row["monicity_fallback_pivot_indices"]
@@ -2177,6 +2373,16 @@ def clean_cycle_rank_profile() -> dict:
             < row["all_edge_comparable_syzygy_relative_bound_to_diagonal"]["denominator"]
             for row in rows
         ),
+        "all_edge_dimension_gap_syzygy_clears_non_small_pair_examples": all(
+            row["min_edge_pair_sum"] <= row["k"]
+            or row["all_edge_dimension_gap_syzygy_relative_bound_to_diagonal"][
+                "numerator"
+            ]
+            < row["all_edge_dimension_gap_syzygy_relative_bound_to_diagonal"][
+                "denominator"
+            ]
+            for row in rows
+        ),
         "all_edge_hybrid_clears_non_small_pair_examples": all(
             row["min_edge_pair_sum"] <= row["k"]
             or row["all_edge_hybrid_relative_bound_to_diagonal"]["numerator"]
@@ -2208,10 +2414,35 @@ def clean_cycle_rank_profile() -> dict:
             * row["absorbed_comparable_hybrid_relative_bound_to_diagonal"]["denominator"]
             for row in rows
         ),
+        "absorbed_dimension_gap_hybrid_saves_comparable": all(
+            row["absorbed_dimension_gap_hybrid_relative_bound_to_diagonal"][
+                "numerator"
+            ]
+            * row["absorbed_comparable_hybrid_relative_bound_to_diagonal"][
+                "denominator"
+            ]
+            <= row["absorbed_comparable_hybrid_relative_bound_to_diagonal"][
+                "numerator"
+            ]
+            * row["absorbed_dimension_gap_hybrid_relative_bound_to_diagonal"][
+                "denominator"
+            ]
+            for row in rows
+        ),
         "absorbed_comparable_hybrid_clears_private_below_reserve_examples": all(
             row["max_private_size"] >= row["sigma"]
             or row["absorbed_comparable_hybrid_relative_bound_to_diagonal"]["numerator"]
             < row["absorbed_comparable_hybrid_relative_bound_to_diagonal"]["denominator"]
+            for row in rows
+        ),
+        "absorbed_dimension_gap_hybrid_clears_private_below_reserve_examples": all(
+            row["max_private_size"] >= row["sigma"]
+            or row["absorbed_dimension_gap_hybrid_relative_bound_to_diagonal"][
+                "numerator"
+            ]
+            < row["absorbed_dimension_gap_hybrid_relative_bound_to_diagonal"][
+                "denominator"
+            ]
             for row in rows
         ),
         "absorbed_hybrid_clears_triangle_example": any(
@@ -4146,6 +4377,21 @@ def run() -> dict:
         "clean_cycle_comparable_hybrid_saves": clean_cycles[
             "all_edge_comparable_hybrid_saves"
         ],
+        "clean_cycle_dimension_gap_shell_formula": clean_cycles[
+            "dimension_gap_shell_matches_layer_cake"
+        ],
+        "clean_cycle_dimension_gap_reduces_to_comparable": clean_cycles[
+            "dimension_gap_reduces_to_comparable_when_covered"
+        ],
+        "clean_cycle_dimension_gap_syzygy_saves": clean_cycles[
+            "dimension_gap_syzygy_saves_comparable"
+        ],
+        "clean_cycle_dimension_gap_hybrid_saves": clean_cycles[
+            "dimension_gap_hybrid_saves_comparable"
+        ],
+        "clean_cycle_dimension_gap_improves_fallback": clean_cycles[
+            "dimension_gap_improves_unique_fallback_examples"
+        ],
         "clean_cycle_comparable_pivot_coverage": clean_cycles[
             "comparable_pivots_cover_all_except_unique_max"
         ],
@@ -4157,6 +4403,9 @@ def run() -> dict:
         ],
         "clean_cycle_comparable_syzygy_clears": clean_cycles[
             "all_edge_comparable_syzygy_clears_non_small_pair_examples"
+        ],
+        "clean_cycle_dimension_gap_syzygy_clears": clean_cycles[
+            "all_edge_dimension_gap_syzygy_clears_non_small_pair_examples"
         ],
         "clean_cycle_all_edge_hybrid_clears": clean_cycles[
             "all_edge_hybrid_clears_non_small_pair_examples"
@@ -4176,8 +4425,14 @@ def run() -> dict:
         "clean_cycle_absorbed_comparable_hybrid_saves": clean_cycles[
             "absorbed_comparable_hybrid_saves"
         ],
+        "clean_cycle_absorbed_dimension_gap_hybrid_saves": clean_cycles[
+            "absorbed_dimension_gap_hybrid_saves_comparable"
+        ],
         "clean_cycle_absorbed_comparable_hybrid_clears": clean_cycles[
             "absorbed_comparable_hybrid_clears_private_below_reserve_examples"
+        ],
+        "clean_cycle_absorbed_dimension_gap_hybrid_clears": clean_cycles[
+            "absorbed_dimension_gap_hybrid_clears_private_below_reserve_examples"
         ],
         "clean_cycle_absorbed_field_margins": clean_cycles[
             "absorbed_field_margins_positive_on_examples"

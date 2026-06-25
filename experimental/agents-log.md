@@ -269,7 +269,10 @@ Keep entries concise and link to the relevant files.
   verifier as a drop-in replacement for the monicity-only `B_mark` factor.
   The comparable-dimension condition covers every pivot except possibly the
   unique maximum `d_i`, equivalently a unique smallest edge overlap; the
-  verifier records this all-pivot coverage/fallback criterion. Combining
+  verifier records this all-pivot coverage/fallback criterion. The fallback is
+  also sharpened by a dimension-gap root-sharing bound, so its remaining
+  field-size loss depends on `d_t-d_u` against a maximal nonpivot reference
+  rather than the full pivot dimension `d_t`. Combining
   the pivot, monic, and domain gates gives a
   marked selected-syzygy tuple bound; the verifier checks that this general
   formula exactly reproduces the earlier rank-deficient necklace count
