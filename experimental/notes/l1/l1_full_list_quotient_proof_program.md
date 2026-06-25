@@ -229,22 +229,30 @@ have size `N`, let `U_A : A -> F_q`, and consider distinct codewords in the
 punctured code obtained by restricting degree-`<k` polynomials to `A`.  Put
 
 ```text
+k_A = min(k,N).
+```
+
+The punctured code has dimension `k_A`, and two distinct punctured codewords
+agree on at most `k_A-1` points.  Put
+
+```text
 N_A,>=a(U_A) = #{ c in RS[A,k] : |{x in A : U_A(x)=c(x)}| >= a },
 N_A,=a(U_A)  = #{ c in RS[A,k] : |{x in A : U_A(x)=c(x)}| = a }.
 ```
 
-If `a^2 > N(k-1)`, then
+If `a^2 > N(k_A-1)`, then
 
 ```text
-N_A,>=a(U_A) <= N(N-k+1) / (a^2 - N(k-1)),
-N_A,=a(U_A)  <= N(N-k+1) / (a^2 - N(k-1)).
+N_A,>=a(U_A) <= N(N-k_A+1) / (a^2 - N(k_A-1)),
+N_A,=a(U_A)  <= N(N-k_A+1) / (a^2 - N(k_A-1)).
 ```
 
-If `2a > N+k-1`, then `N_A,>=a(U_A) <= 1`.
+If `2a > N+k_A-1`, then `N_A,>=a(U_A) <= 1`.
 
 This is not a new proof: it is Theorem J applied to the evaluation domain
-`A`.  It is recorded separately because punctured domains are the natural
-objects in codegree decompositions and interleaved-list reductions.
+`A`, with `k` replaced by the effective punctured dimension `k_A`.  It is
+recorded separately because punctured domains are the natural objects in
+codegree decompositions and interleaved-list reductions.
 
 ### Abel Profile Ledger
 
@@ -278,18 +286,19 @@ telescoping gives the displayed formula.
 
 ### Johnson-Covered Weighted Tail
 
-On a punctured domain of size `N`, define the Johnson tail envelope
+On a punctured domain of size `N`, put `k_A=min(k,N)` and define the Johnson
+tail envelope
 
 ```text
 J_N,k(a) =
-  1                                           if 2a > N+k-1,
-  N(N-k+1) / (a^2 - N(k-1))                  otherwise,
+  1                                               if 2a > N+k_A-1,
+  N(N-k_A+1) / (a^2 - N(k_A-1))                  otherwise,
 ```
 
-for agreement levels satisfying `a^2 > N(k-1)`.  Let
+for agreement levels satisfying `a^2 > N(k_A-1)`.  Let
 
 ```text
-a_0 >= s,        a_0^2 > N(k-1),
+a_0 >= s,        a_0^2 > N(k_A-1),
 ```
 
 and let `w(a)` be nondecreasing and nonnegative for `a_0 <= a <= N`.  Then

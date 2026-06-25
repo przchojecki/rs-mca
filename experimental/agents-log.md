@@ -30,6 +30,22 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-25 - L1 punctured profile effective dimension
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/notes/l1/l1_full_list_quotient_proof_program.md` and
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** The punctured Johnson profile and weighted-tail
+  formulas now use the effective punctured RS dimension `k_A=min(k,N)`.
+- **How it is useful:** Prevents misuse of the punctured profile ledger on
+  small punctures `N<k`, where the restricted code is the full space on `A`
+  and the old displayed formula with `k` could have a wrong sign.
+- **What to do next:** When consuming the ledger in L2 or other stratified
+  reductions, always evaluate the Johnson envelope with `k_A`, not the ambient
+  `k`, after puncturing.
+
 ### 2026-06-25 - L1 Johnson-covered weighted tail
 
 - **Agent/model:** Codex.
