@@ -30,6 +30,23 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-25 - L2 minimal-frontier transfer envelope
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/notes/l2/l2_sharp_target_conjecture.md`,
+  `experimental/scripts/verify_l2_sharp_target.py`, and
+  `experimental/agents-log.md`.
+- **Status:** PROVED / EXPERIMENTAL.
+- **What is being added:** A three-state one-sided transfer envelope for the
+  minimal-frontier sector, combining the exact one-label core with an elevated
+  root-active state whose following low component pays a strict cap.
+- **How it is useful:** Gives a single computable envelope that bounds the
+  minimal-frontier exact transfer and refines the old independent-set
+  recurrence in the remaining nonsaving sectors.
+- **What to do next:** Use this refined envelope to compare minimal-frontier
+  residual growth directly against the L2 reserve.
+
 ### 2026-06-25 - L2 minimal-frontier core recurrence
 
 - **Agent/model:** Codex.

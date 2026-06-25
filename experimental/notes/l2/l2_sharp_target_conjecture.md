@@ -3969,6 +3969,65 @@ Finally, `rho_ind(h,l)` is strictly increasing in `h` for `l>0`; here
 `l>0` by the nontrivial-tail assumption, so `h_E>1` gives the displayed
 strict inequality.
 
+The core and elevated remainder can be packaged in one transfer envelope.
+
+**Corollary (one-sided minimal-frontier envelope).** Keep the
+minimal-frontier notation and set
+
+```text
+l=|L_E|,       g=|G_E|,       c_G=max_{gamma in G_E} |C_E(gamma)|,
+```
+
+with `c_G=0` if `G_E` is empty. On the state set `{A,G,L}`, where `A`
+denotes the single minimal root-active depth `a_0`, `G` denotes an elevated
+root-active depth in `G_E`, and `L` denotes a low depth, define
+
+```text
+T_min =
+[[0, 0, l  ],
+ [0, 0, c_G],
+ [1, g, l  ]].
+```
+
+Rows are current states and columns are next states. Then the all-negative
+cycle contribution on `E` is bounded by
+
+```text
+tr(T_min^n)-l^n.
+```
+
+For a path of length `n`, put `v_1=(1,g,l)` and `v_{n+1}=v_n T_min`; the
+corresponding pinned-sector contribution is bounded by
+
+```text
+sum(v_n)-l^n.
+```
+
+These bounds contain the exact one-label core from the previous corollary.
+They are dominated by the old independent-set recurrence with high weight
+`1+g` and low weight `l`; the domination is strict whenever `g>0`, `c_G<l`,
+and the sector has room for an elevated root-active depth followed by a low
+vertex.
+
+*Proof.* High-high adjacencies are impossible because every root-active depth
+is greater than `sigma`. A transition `L->A` chooses the unique minimal
+root-active label, while `L->G` chooses one of the `g` elevated labels. A
+transition `A->L` has all `l` low choices, since `a_0+z<=2sigma` for every
+`z in L_E`. A transition `G->L` uses the uniform elevated cap `c_G`, which is
+strictly smaller than `l` by the minimal-frontier core split when `g>0`.
+Low-low transitions have `l` choices.
+
+For cycles, orient each low component and charge the first low vertex after
+an elevated boundary to the `G->L` cap. The other low choices are deliberately
+overcounted by `l`, so the trace gives an upper bound; when no elevated label
+appears, the transfer is exactly the one-label core. The path recurrence is
+the same one-sided scan with initial weights `v_1`.
+
+If the states `A` and `G` are merged into a single high state and `c_G` is
+replaced by `l`, this transfer becomes the old independent-set recurrence
+with high weight `1+g` and low weight `l`. Since `c_G<=l`, the displayed
+minimal-frontier envelope is dominated by that old recurrence.
+
 The uniform envelope has a two-state recurrence.
 
 **Corollary (recurrence form of the uniform cap-degree envelope).** Fix
