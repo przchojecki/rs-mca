@@ -52,6 +52,9 @@ Keep entries concise and link to the relevant files.
   counts target supports by both profile distance and exchange size. It also
   factors the first mixed shell `d_occ=1` and gives the exact slack-two split
   between internal partial-fiber motion and one-unit mixed profile transport.
+  A signed-shell factorization then separates all profile-distance shells and
+  gives the exact slack-three support ledger through the `d_occ=0,1,2`
+  exchange-two split.
   A small verifier checks the formulas against brute-force enumeration.
 - **How it is useful:** Separates the budgeted quotient-periodic M1 support
   terms from the remaining partial-fiber / aperiodic residue-line target, and
@@ -74,7 +77,10 @@ Keep entries concise and link to the relevant files.
   the remaining M1 difficulty is the aperiodic residue-line occupation inside
   this finite local kernel, rather than hidden support-pair bookkeeping. The
   first-shell factorization resolves the full support-pair ledger at exchange
-  one, the only strict exchange level for slack two.
+  one, the only strict exchange level for slack two. The signed-shell
+  factorization resolves the full exchange-two support ledger needed at slack
+  three, leaving only the aperiodic residue-line occupation of those explicit
+  shells to bound.
 - **What to do next:** Use this theorem as the quotient ledger before attacking
   the aperiodic M1 local-limit residual.
 

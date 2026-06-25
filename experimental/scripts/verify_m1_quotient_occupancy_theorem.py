@@ -723,6 +723,167 @@ def check_first_mixed_shell_case(
             )
 
 
+def one_fiber_signed_change_kernel(
+    fiber_size: int,
+    source: int,
+    change: int,
+) -> Counter[int]:
+    target = source + change
+    if target < 0 or target > fiber_size:
+        return Counter()
+    lower = max(0, source + target - fiber_size)
+    upper = min(source, target)
+    return Counter(
+        {
+            source - intersection: comb(source, intersection)
+            * comb(fiber_size - source, target - intersection)
+            for intersection in range(lower, upper + 1)
+        }
+    )
+
+
+def signed_shell_kernel(
+    fiber_size: int,
+    source_occupancy: tuple[int, ...],
+    shell_distance: int,
+) -> Counter[int]:
+    total: Counter[int] = Counter()
+
+    def rec(
+        fiber_index: int,
+        balance: int,
+        negative_mass: int,
+        polynomial: Counter[int],
+    ) -> None:
+        if negative_mass > shell_distance:
+            return
+        if fiber_index == len(source_occupancy):
+            if balance == 0 and negative_mass == shell_distance:
+                total.update(polynomial)
+            return
+
+        source = source_occupancy[fiber_index]
+        for change in range(-source, fiber_size - source + 1):
+            next_negative_mass = negative_mass + max(0, -change)
+            if next_negative_mass > shell_distance:
+                continue
+            local = one_fiber_signed_change_kernel(fiber_size, source, change)
+            if not local:
+                continue
+            rec(
+                fiber_index + 1,
+                balance + change,
+                next_negative_mass,
+                multiply_polynomials(polynomial, local),
+            )
+
+    rec(0, 0, 0, Counter({0: 1}))
+    return +total
+
+
+def check_signed_shell_case(
+    fiber_count: int,
+    fiber_size: int,
+    support_size: int,
+    max_shell: int,
+    field_size: int,
+) -> None:
+    domain_size = fiber_count * fiber_size
+    for source_occupancy in occupancy_vectors(fiber_count, fiber_size, support_size):
+        general_kernel = mixed_profile_exchange_kernel_formula(fiber_size, source_occupancy)
+        for shell_distance in range(max_shell + 1):
+            shell = signed_shell_kernel(
+                fiber_size,
+                source_occupancy,
+                shell_distance,
+            )
+            from_general = Counter(
+                {
+                    exchange: count
+                    for (profile_distance, exchange), count in general_kernel.items()
+                    if profile_distance == shell_distance
+                }
+            )
+            if shell != from_general:
+                raise AssertionError(
+                    (
+                        fiber_count,
+                        fiber_size,
+                        support_size,
+                        source_occupancy,
+                        shell_distance,
+                        shell,
+                        from_general,
+                    )
+                )
+
+        shell_zero = signed_shell_kernel(fiber_size, source_occupancy, 0)
+        shell_one = signed_shell_kernel(fiber_size, source_occupancy, 1)
+        shell_two = signed_shell_kernel(fiber_size, source_occupancy, 2)
+
+        exchange_two_split = (
+            shell_zero.get(2, 0)
+            + shell_one.get(2, 0)
+            + shell_two.get(2, 0)
+        )
+        expected_exchange_two = comb(support_size, 2) * comb(
+            domain_size - support_size,
+            2,
+        )
+        if exchange_two_split != expected_exchange_two:
+            raise AssertionError(
+                (
+                    fiber_count,
+                    fiber_size,
+                    support_size,
+                    source_occupancy,
+                    exchange_two_split,
+                    expected_exchange_two,
+                )
+            )
+
+        direct_mixed_slack_three = sum(
+            count * (field_size ** (3 - exchange))
+            for (profile_distance, exchange), count in general_kernel.items()
+            if profile_distance > 0 and exchange in (1, 2)
+        )
+        shell_mixed_slack_three = (
+            shell_one.get(1, 0) * (field_size ** 2)
+            + (shell_one.get(2, 0) + shell_two.get(2, 0)) * field_size
+        )
+        if direct_mixed_slack_three != shell_mixed_slack_three:
+            raise AssertionError(
+                (
+                    fiber_count,
+                    fiber_size,
+                    support_size,
+                    source_occupancy,
+                    direct_mixed_slack_three,
+                    shell_mixed_slack_three,
+                )
+            )
+
+        full_slack_three = (
+            support_size * (domain_size - support_size) * (field_size ** 2)
+            + expected_exchange_two * field_size
+        )
+        split_slack_three = (
+            (shell_zero.get(1, 0) + shell_one.get(1, 0)) * (field_size ** 2)
+            + exchange_two_split * field_size
+        )
+        if split_slack_three != full_slack_three:
+            raise AssertionError(
+                (
+                    fiber_count,
+                    fiber_size,
+                    support_size,
+                    source_occupancy,
+                    split_slack_three,
+                    full_slack_three,
+                )
+            )
+
+
 def occupancy_vectors(
     fiber_count: int,
     fiber_size: int,
@@ -1324,6 +1485,13 @@ def main() -> int:
         (5, 2, 5),
     ]:
         check_first_mixed_shell_case(*case)
+    for case in [
+        (3, 3, 4, 3, 5),
+        (4, 2, 4, 3, 5),
+        (4, 3, 5, 3, 7),
+        (5, 2, 5, 3, 7),
+    ]:
+        check_signed_shell_case(*case)
     for case in [
         (4, 3, 4),
         (4, 3, 6),

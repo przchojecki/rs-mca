@@ -534,6 +534,94 @@ sum_{i != h} a_i(m-a_h)
 The slack-two statement is Corollary 6.3 restricted to the only strict
 exchange level `j=1`.
 
+### Corollary 6.5. Signed-Shell Factorization and Slack Three
+
+The local mixed support kernel can also be decomposed into exact signed
+occupancy-transfer shells.  For one fiber with source occupancy `a_i` and an
+integer change
+
+```text
+-a_i <= u <= m-a_i,
+```
+
+put
+
+```text
+L_i^u(x)
+ =
+ sum_{r=max(0,2a_i+u-m)}^{min(a_i,a_i+u)}
+   binom(a_i,r) binom(m-a_i,a_i+u-r) x^(a_i-r).
+```
+
+This is the one-fiber exchange kernel for changing the target occupancy from
+`a_i` to `a_i+u`.  For `d>=0`, define the signed shell polynomial
+
+```text
+Phi_{a,d}(x) = sum_j M_a(d,j)x^j.
+```
+
+Then
+
+```text
+Phi_{a,d}(x)
+ =
+ sum_{u in Z^N:
+      sum_i u_i=0,
+      sum_i max(0,-u_i)=d}
+   prod_i L_i^{u_i}(x),
+```
+
+where terms with `u_i` outside `[-a_i,m-a_i]` are omitted.
+
+In particular, the full-support-layer mixed strict envelope at slack three is
+
+```text
+R_a^mix(3,q)
+ = q^2 [x]Phi_{a,1}(x)
+   + q ( [x^2]Phi_{a,1}(x) + [x^2]Phi_{a,2}(x) ).
+```
+
+Together with the internal shell `Phi_{a,0}=K_a^int`, this gives an exact
+exchange-two split:
+
+```text
+[x^2]Phi_{a,0} + [x^2]Phi_{a,1} + [x^2]Phi_{a,2}
+  = binom(s,2) binom(n-s,2).
+```
+
+Thus the complete full-support slack-three envelope around `a` is
+
+```text
+q^2 s(n-s) + q binom(s,2)binom(n-s,2),
+```
+
+with the `d_occ=0,1,2` contributions separated exactly.  The corrected M1
+residual at slack three is therefore not a hidden support-pair problem: after
+this shell split, the remaining question is how much of these explicit local
+shells is occupied by the aperiodic residue-line subfamily.
+
+#### Proof
+
+Fix a target support `T` and write `u_i=|T cap B_i|-a_i`.  The equality
+`|T|=|S|` is exactly `sum_i u_i=0`, and the profile distance is
+
+```text
+d_occ(a,c(T)) = sum_i max(0,-u_i).
+```
+
+For fixed `u_i`, the target occupancy in fiber `i` is `a_i+u_i`.  Choosing
+`r` points in the local intersection gives precisely the displayed polynomial
+`L_i^u(x)`, with exchange exponent `a_i-r`.  Multiplication over fibers and
+summation over signed changes of negative mass `d` gives the formula for
+`Phi_{a,d}`.
+
+At slack three the strict exchange levels are `j=1,2`.  Since `d_occ<=j`,
+the mixed part uses only `(d,j)=(1,1),(1,2),(2,2)`, giving the displayed
+weighted formula.  Forgetting the profile shell, exchange two is simply the
+choice of two source points and two complement points, so the sum over
+`d=0,1,2` is `binom(s,2)binom(n-s,2)`.  The exchange-one split was proved in
+Corollary 6.4.
+
 ## Theorem 7. Sharp Exchange-One Residual Floor
 
 For an occupancy vector `a=(a_1,...,a_N)`, put
