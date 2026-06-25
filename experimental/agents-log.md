@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-25 - L1 background-petal anchor certificate
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/notes/l1/l1_full_list_quotient_proof_program.md`,
+  `experimental/scripts/scan_l1_full_list_quotient_conjecture.py`, and
+  `experimental/agents-log.md`.
+- **Status:** PROVED / EXPERIMENTAL.
+- **What is being added:** A background-petal anchor certificate for maximal
+  sunflower extras: the background support, one touched petal support, and two
+  cofactors determine the missed-core locator. The scanner now reports the
+  best background-petal combined deficit and its exponent.
+- **How it is useful:** Complements the two-petal anchor theorem by controlling
+  bounded-cofactor-excess extras with large background agreement, without
+  fixing all petal supports.
+- **What to do next:** In sunflower stress scans, focus on extras where
+  `d-ell`, best two-petal deficit, and best background-petal deficit all grow.
+
 ### 2026-06-25 - L1 two-anchor sunflower certificate
 
 - **Agent/model:** Codex.

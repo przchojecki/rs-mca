@@ -2656,6 +2656,114 @@ two_anchor_exponent = 2(d-ell)+best_two_petal_deficit+2,
 
 for sampled sunflower extras with at least two touched petals.
 
+## Lemma B6. Background-Petal Anchor Certificate
+
+Status: PROVED.
+
+Assume the sunflower is maximal, so its unused background has size
+`b=|R|<ell`.  Fix integers `E,V >= 0`.  The number of non-planted listed
+codewords satisfying
+
+```text
+d <= ell+E
+```
+
+and having a touched petal `T_i` for which
+
+```text
+(ell-|R_P|) + (ell-|S_i|) <= V
+```
+
+is at most
+
+```text
+M (sum_{w+v<=V} binom(b,ell-w) binom(ell,v)) q^{2E+V+2},
+```
+
+with the convention that `binom(b,ell-w)=0` unless `0<=ell-w<=b`.
+
+### Proof
+
+For each codeword in the displayed class, choose the smallest touched-petal
+index `i` satisfying the displayed inequality.  Put
+
+```text
+R_0=R_P,        r=|R_0|,        w=ell-r,
+S_i=A_P(U) cap T_i,        v=ell-|S_i|.
+```
+
+Since `W_P` vanishes on `R_0`, there is a polynomial `B` such that
+
+```text
+W_P = L_{R_0}B,        deg B <= d-r.
+```
+
+Here `B=0` if `d<r`.  By Lemma 2, the chosen petal support satisfies
+`|S_i|<=d`, and there is a polynomial `A_i` satisfying
+
+```text
+W_P-c_iL_D = L_{S_i}A_i,        deg A_i <= d-|S_i|.
+```
+
+The bounds `d<=ell+E`, `r=ell-w`, and `|S_i|=ell-v` give
+
+```text
+deg B <= E+w,        deg A_i <= E+v.
+```
+
+The certificate
+
+```text
+(i, R_0, S_i, B, A_i)
+```
+
+determines the missed-core locator by
+
+```text
+c_iL_D = L_{R_0}B - L_{S_i}A_i.
+```
+
+If the right-hand side does not recover a valid monic locator `L_D` with roots
+inside `C`, the certificate is discarded.  Otherwise it determines `D`, then
+`W_P=L_{R_0}B`, and finally `P=L_{C\D}W_P`.  Hence the certificate map is
+injective.
+
+For fixed `w,v`, there are at most `M` choices of `i`,
+`binom(b,ell-w)` choices of `R_0`, and `binom(ell,v)` choices of `S_i`.  The
+two cofactors contribute at most
+
+```text
+q^{E+w+1} q^{E+v+1} = q^{2E+w+v+2} <= q^{2E+V+2}.
+```
+
+Summing over `w+v<=V` proves the estimate.
+
+### Consequences
+
+For fixed `E,V`, this is polynomial at the L1 lower cutoff: `M=O(log n)`,
+`b<ell<=n`, and the sum over `w+v<=V` is polynomial because `V` is fixed.
+Indeed, when `binom(b,ell-w)` is nonzero, its complementary lower index is
+`b-(ell-w) <= w <= V`.
+Thus bounded cofactor excess and bounded background-petal combined deficit
+cannot produce a super-polynomial maximal-sunflower family.
+
+Together, Lemma B5 and Lemma B6 leave a sharper maximal-sunflower residual.
+With bounded `d-ell`, a counterexample must force both diagnostics to grow:
+
+```text
+best_two_petal_deficit -> infinity,
+best_background_petal_deficit -> infinity.
+```
+
+The scanner reports the second diagnostic as
+
+```text
+best_background_petal_deficit
+  = (ell-background_hits) + (ell-max_petal_hit),
+background_petal_exponent
+  = 2(d-ell)+best_background_petal_deficit+2.
+```
+
 ## Development Ledger
 
 - **Conjecture 1 full-list primitive remainder:** CONJECTURAL.  Main proof
@@ -2733,5 +2841,9 @@ for sampled sunflower extras with at least two touched petals.
   extras with bounded cofactor excess and bounded best two-petal deficit,
   sharpening the average-deficit closure and adding a targeted scanner
   diagnostic.
+- **Background-petal anchor certificate:** PROVED.  Counts maximal-sunflower
+  extras with bounded cofactor excess and bounded background-petal combined
+  deficit, using the background quotient and one petal cofactor without fixing
+  all petal supports.
 - **Mixed-petal sunflower amplification:** CONJECTURAL.  Next focused bound to
   prove or refute in the large-defect regime.
