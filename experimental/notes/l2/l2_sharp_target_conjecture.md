@@ -4028,6 +4028,53 @@ replaced by `l`, this transfer becomes the old independent-set recurrence
 with high weight `1+g` and low weight `l`. Since `c_G<=l`, the displayed
 minimal-frontier envelope is dominated by that old recurrence.
 
+The three-state envelope also has a two-term characteristic rate.
+
+**Corollary (spectral rate of the minimal-frontier envelope).** With
+`l,g,c_G` as above, the nonzero eigenvalues of `T_min` are the roots of
+
+```text
+lambda^2 - l lambda - (l+c_G g)=0.
+```
+
+Thus the minimal-frontier envelope has exponential rate
+
+```text
+rho_front(l,g,c_G)
+  = (l + sqrt(l^2+4(l+c_G g)))/2.
+```
+
+The old independent-set envelope on the same tail has high weight `1+g` and
+rate
+
+```text
+rho_old(l,g)
+  = (l + sqrt(l^2+4l(1+g)))/2.
+```
+
+Since `c_G<=l`, one has `rho_front(l,g,c_G)<=rho_old(l,g)`. The inequality is
+strict whenever `g>0` and `c_G<l`.
+
+*Proof.* Compute the characteristic polynomial of
+
+```text
+T_min =
+[[0, 0, l  ],
+ [0, 0, c_G],
+ [1, g, l  ]].
+```
+
+It is
+
+```text
+lambda (lambda^2-l lambda-(l+c_G g)).
+```
+
+The Perron root is therefore the displayed positive root. The old
+independent-set rate is obtained by merging `A` and `G` into one high state,
+which replaces `l+c_G g` by `l+l g=l(1+g)`. The comparison and strictness are
+then immediate from monotonicity of the positive root in the constant term.
+
 The uniform envelope has a two-state recurrence.
 
 **Corollary (recurrence form of the uniform cap-degree envelope).** Fix

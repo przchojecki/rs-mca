@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-25 - L2 minimal-frontier spectral rate
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/notes/l2/l2_sharp_target_conjecture.md`,
+  `experimental/scripts/verify_l2_sharp_target.py`, and
+  `experimental/agents-log.md`.
+- **Status:** PROVED / EXPERIMENTAL.
+- **What is being added:** A characteristic-root formula for the three-state
+  minimal-frontier transfer envelope: the nonzero roots satisfy
+  `lambda^2-l lambda-(l+c_G g)=0`.
+- **How it is useful:** Converts the refined minimal-frontier envelope into a
+  spectral comparison, showing its rate is at most the old high-weight
+  independent-set rate and is strictly smaller when elevated depths have a
+  genuine cap.
+- **What to do next:** Compare this minimal-frontier rate with the generated
+  field reserve in the remaining residual windows.
+
 ### 2026-06-25 - L2 minimal-frontier transfer envelope
 
 - **Agent/model:** Codex.
