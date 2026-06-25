@@ -2240,8 +2240,10 @@ def locator_syzygy_witness_profile() -> dict:
     )
     rank_weighted_bound = 0
     rank_distribution: dict[int, int] = {}
+    rank_degree_distribution: dict[int, dict[int, int]] = {}
     normalized_rank_pivots = 0
     for degree in range(rank_coefficient_dimensions[rank_pivot]):
+        rank_degree_distribution[degree] = {}
         for lower_coefficients in itertools.product(range(rank_p), repeat=degree):
             coefficient = list(lower_coefficients) + [1]
             residue_rank = divisibility_residue_rank(
@@ -2255,6 +2257,9 @@ def locator_syzygy_witness_profile() -> dict:
             rank_distribution[residue_rank] = (
                 rank_distribution.get(residue_rank, 0) + 1
             )
+            rank_degree_distribution[degree][residue_rank] = (
+                rank_degree_distribution[degree].get(residue_rank, 0) + 1
+            )
             rank_weighted_bound += rank_p ** (
                 rank_nonpivot_dimension - max(1, residue_rank)
             )
@@ -2264,6 +2269,35 @@ def locator_syzygy_witness_profile() -> dict:
     rank_monic_projective_bound = (
         rank_projective_pivot_count * rank_p ** (rank_nonpivot_dimension - 1)
     )
+    rank_reference_nonpivot = next(
+        idx for idx in range(len(rank_edge_blocks)) if idx != rank_pivot
+    )
+    rank_reference_edge_size = len(rank_edge_blocks[rank_reference_nonpivot])
+    rank_reference_dimension = rank_coefficient_dimensions[rank_reference_nonpivot]
+    low_rank_rarity_checks = []
+    for degree, counts in rank_degree_distribution.items():
+        for rank_cutoff in range(rank_reference_dimension):
+            actual = sum(
+                count for rank, count in counts.items() if rank <= rank_cutoff
+            )
+            if degree <= rank_cutoff:
+                bound = rank_p**degree
+            else:
+                shared_roots = degree - rank_cutoff
+                bound = (
+                    0
+                    if shared_roots > rank_reference_edge_size
+                    else comb(rank_reference_edge_size, shared_roots)
+                    * rank_p**rank_cutoff
+                )
+            low_rank_rarity_checks.append(
+                {
+                    "degree": degree,
+                    "rank_cutoff": rank_cutoff,
+                    "actual": actual,
+                    "bound": bound,
+                }
+            )
     return {
         "p": p,
         "n": n,
@@ -2327,10 +2361,18 @@ def locator_syzygy_witness_profile() -> dict:
             "divisibility_bound": rank_divisibility_bound,
             "combined_bound": rank_combined_bound,
             "rank_distribution": dict(sorted(rank_distribution.items())),
+            "rank_degree_distribution": {
+                str(degree): dict(sorted(counts.items()))
+                for degree, counts in sorted(rank_degree_distribution.items())
+            },
             "normalized_pivot_count": normalized_rank_pivots,
             "projective_pivot_count": rank_projective_pivot_count,
             "rank_weighted_bound": rank_weighted_bound,
             "monic_projective_bound": rank_monic_projective_bound,
+            "reference_nonpivot": rank_reference_nonpivot,
+            "reference_edge_size": rank_reference_edge_size,
+            "reference_dimension": rank_reference_dimension,
+            "low_rank_rarity_checks": low_rank_rarity_checks,
         },
         "syzygy_sum_zero": syzygy_sum == [0],
         "pivot_forcing_remainder_zero": forcing_remainder == [0],
@@ -2365,6 +2407,12 @@ def locator_syzygy_witness_profile() -> dict:
         ),
         "rank_weighted_bound_improves_monic_projective": (
             rank_weighted_bound < rank_monic_projective_bound
+        ),
+        "low_rank_rarity_bounds_hold": all(
+            check["actual"] <= check["bound"] for check in low_rank_rarity_checks
+        ),
+        "degree_two_pivots_have_full_residue_rank": (
+            rank_degree_distribution[2] == {2: rank_p**2}
         ),
     }
 
@@ -3983,6 +4031,12 @@ def run() -> dict:
         ],
         "locator_syzygy_rank_weighted_improves": locator_syzygy_witness[
             "rank_weighted_bound_improves_monic_projective"
+        ],
+        "locator_syzygy_low_rank_rarity": locator_syzygy_witness[
+            "low_rank_rarity_bounds_hold"
+        ],
+        "locator_syzygy_degree_two_full_rank": locator_syzygy_witness[
+            "degree_two_pivots_have_full_residue_rank"
         ],
         "kmm_grid_formula": all(d["interleaved_edges"] == d["grid_edges_at_n_min"] for d in designs),
         "rs_witness_creates_mass": witness["mass_creation"],

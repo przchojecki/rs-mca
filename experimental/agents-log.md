@@ -255,8 +255,11 @@ Keep entries concise and link to the relevant files.
   for the old monicity-only coefficient factor. The verifier adds an `F_11`
   degree-two pivot example where the residue rank is `2`, the single-pivot
   coefficient bound improves from `11^5` to `11^4`, and the rank-weighted
-  aggregate improves the projective monicity bound. Combining the pivot, monic,
-  and domain gates gives a
+  aggregate improves the projective monicity bound. Low residue rank is now
+  identified as a root-sharing event: exact degree-`b` pivot coefficients with
+  rank `<=r<d_u` are bounded by `binom(e_u,b-r)q^r` against any fixed nonpivot
+  edge `u`; the verifier checks this bound by exact degree in the same `F_11`
+  witness. Combining the pivot, monic, and domain gates gives a
   marked selected-syzygy tuple bound; the verifier checks that this general
   formula exactly reproduces the earlier rank-deficient necklace count
   `m q^{m-2} prod_{h=0}^{m-2} binom(n-hr,r)`. Combining it with any

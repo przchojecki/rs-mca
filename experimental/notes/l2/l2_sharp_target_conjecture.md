@@ -1699,6 +1699,36 @@ over nonpivot edge tuples and pivots gives the displayed count. Since
 `max(1,rho(t,A_t))>=1`, each summand is bounded by the monicity-only summand;
 strict improvement occurs whenever one summand has `rho(t,A_t)>1`.
 
+Low residue rank is itself a constrained root-sharing event.
+
+**Corollary (low-rank pivot rarity).** Fix one nonpivot index `u != t`.
+Let `N_b(r)` be the number of projective pivot coefficient classes `[A_t]`
+with monic representative of exact degree `b` and residue rank
+`rho(t,A_t)<=r`. If `0<=r<d_u`, then
+
+```text
+N_b(r) <= q^b                         if b<=r,
+N_b(r) <= binom(e_u,b-r) q^r          if b>r.
+```
+
+Here `binom(e_u,b-r)=0` when `b-r>e_u`. In particular, low-rank pivot
+coefficients of degree `b` must share at least `b-r` roots with the nonpivot
+edge locator `L_u`.
+
+*Proof.* The divisibility-rank lower bound gives
+
+```text
+rho(t,A_t) >= min(d_u, b - deg gcd(A_t,L_u)).
+```
+
+When `b<=r`, the trivial count of monic degree-`b` representatives is `q^b`.
+Assume `b>r` and `r<d_u`. If `rho(t,A_t)<=r`, then
+`b-deg gcd(A_t,L_u)<=r`, so `deg gcd(A_t,L_u)>=b-r`. Since `L_u` is a
+squarefree locator of degree `e_u`, such an `A_t` is divisible by the locator
+of some `(b-r)`-subset of `E_u`. For each chosen subset, there are at most
+`q^r` monic degree-`b` multiples. A union bound over the subsets gives the
+second display.
+
 The root and disjointness gate is also purely algebraic.
 
 **Corollary (domain-locator gate for forced pivots).** Let
