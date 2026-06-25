@@ -573,6 +573,37 @@ min(v2(k0), floor(log2(t+e-1))).
 For maximal one-slack dither `e=1`, the unresolved dyadic prefix is contained
 in `m<=t` and has size at most `min(v2(k0), floor(log2 t))`.
 
+### Corollary 8.2. One-Remainder Variance Consumption
+
+The one-remainder family has size
+
+```text
+|A_{L,b}| = binom(N,L)(N-L)binom(m,b).
+```
+
+Let
+
+```text
+p_z = q^(-t)(1-q^(-t)).
+```
+
+The slope-resolved max-codegree bound from
+`m1_average_support_collinearity.md` gives
+
+```text
+E[1 - |Bad_t(A_{L,b};f,g)|/q]
+  <= (1-p_z)/(|A_{L,b}| p_z)
+     + (4/|A_{L,b}|) R_{L,b}^{<t}(t,q),
+```
+
+whenever `t<=m`.  In the stable large-scale range, `R_{L,b}^{<t}(t,q)` is the
+explicit `R_st(t,r0,m,q)` from Corollary 8.1.
+
+Thus the whole-fiber quotient family and the first one-remainder residual
+family are both chargeable by explicit finite terms in the same M1 variance
+ledger.  The remaining uncharged part is the mixed partial-fiber / aperiodic
+occupancy residual.
+
 ## Dyadic Dither Consequence
 
 Suppose
@@ -634,4 +665,5 @@ strict-overlap quotient budget against brute-force enumeration in small cases.
 It also checks the fiberwise exchange kernel for several partial-fiber
 occupancy vectors, the sharp exchange-one residual floor, and the large-fiber
 one-remainder formula on both sides of the exact dimension, including the
-stable weighted tail and finite dyadic prefix.
+stable weighted tail, finite dyadic prefix, and one-remainder variance
+correction.

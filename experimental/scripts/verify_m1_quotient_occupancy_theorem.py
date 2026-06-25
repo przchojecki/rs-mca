@@ -381,6 +381,19 @@ def one_remainder_supports(
     return supports
 
 
+def one_remainder_family_size(
+    fiber_count: int,
+    fiber_size: int,
+    whole_fibers: int,
+    remainder_size: int,
+) -> int:
+    return (
+        comb(fiber_count, whole_fibers)
+        * (fiber_count - whole_fibers)
+        * comb(fiber_size, remainder_size)
+    )
+
+
 def brute_one_remainder_strict_profile(
     fiber_count: int,
     fiber_size: int,
@@ -457,6 +470,24 @@ def check_one_remainder_case(
         raise AssertionError(
             (fiber_count, fiber_size, whole_fibers, remainder_size, slack, brute, formula)
         )
+    family_size = one_remainder_family_size(
+        fiber_count,
+        fiber_size,
+        whole_fibers,
+        remainder_size,
+    )
+    brute_size = len(
+        one_remainder_supports(
+            fiber_count,
+            fiber_size,
+            whole_fibers,
+            remainder_size,
+        )
+    )
+    if brute_size != family_size:
+        raise AssertionError(
+            (fiber_count, fiber_size, whole_fibers, remainder_size, brute_size, family_size)
+        )
     if 1 <= remainder_size < slack and fiber_size >= slack + remainder_size:
         expected_mass = (
             (fiber_count - whole_fibers) * comb(fiber_size, remainder_size)
@@ -499,6 +530,34 @@ def weighted_profile(profile: Counter[int], slack: int, field_size: int) -> int:
         coefficient * (field_size ** (slack - exchange))
         for exchange, coefficient in profile.items()
     )
+
+
+def one_remainder_variance_terms(
+    fiber_count: int,
+    fiber_size: int,
+    whole_fibers: int,
+    remainder_size: int,
+    slack: int,
+    field_size: int,
+) -> tuple[int, int]:
+    family_size = one_remainder_family_size(
+        fiber_count,
+        fiber_size,
+        whole_fibers,
+        remainder_size,
+    )
+    correction = weighted_profile(
+        one_remainder_strict_formula(
+            fiber_count,
+            fiber_size,
+            whole_fibers,
+            remainder_size,
+            slack,
+        ),
+        slack,
+        field_size,
+    )
+    return family_size, correction
 
 
 def stable_tail_formula(
@@ -591,6 +650,24 @@ def check_stable_tail_case(
         )
     if weighted != weighted_profile(brute, slack, field_size):
         raise AssertionError((profile, weighted, weighted_profile(brute, slack, field_size)))
+    family_size, correction = one_remainder_variance_terms(
+        fiber_count,
+        fiber_size,
+        whole_fibers,
+        remainder_size,
+        slack,
+        field_size,
+    )
+    if correction != weighted:
+        raise AssertionError((correction, weighted))
+    expected_family_size = one_remainder_family_size(
+        fiber_count,
+        fiber_size,
+        whole_fibers,
+        remainder_size,
+    )
+    if family_size != expected_family_size:
+        raise AssertionError((family_size, expected_family_size))
 
 
 def check_dyadic_prefix_case(
