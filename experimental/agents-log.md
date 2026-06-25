@@ -30,6 +30,23 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-25 - L2 minimal-frontier core recurrence
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/notes/l2/l2_sharp_target_conjecture.md`,
+  `experimental/scripts/verify_l2_sharp_target.py`, and
+  `experimental/agents-log.md`.
+- **Status:** PROVED / EXPERIMENTAL.
+- **What is being added:** A recurrence and Perron-rate envelope for the
+  one-label minimal-frontier core, obtained by specializing the root-active
+  independent-set recurrence to high weight `1`.
+- **How it is useful:** Replaces the nonsaving frontier's old
+  `|H_E|`-weighted rate by `rho_min(l)` for the exact core, with strict
+  improvement whenever elevated root-active depths exist.
+- **What to do next:** Combine this one-label core recurrence with the
+  elevated cap-loss remainder to form a single refined residual envelope.
+
 ### 2026-06-25 - L2 minimal-frontier bridge core
 
 - **Agent/model:** Codex.

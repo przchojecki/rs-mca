@@ -4216,9 +4216,35 @@ def residual_shape_scan_profile() -> dict:
                         require_nonempty=True,
                     )
                 )
+                all_negative_minimal_core_recurrence = (
+                    cycle_independent_recurrence(
+                        cycle_len,
+                        1,
+                        len(low_depth_values),
+                    )
+                    - (len(low_depth_values) ** cycle_len)
+                )
+                all_negative_minimal_core_rate = recurrence_integer_rate(
+                    1,
+                    len(low_depth_values),
+                )
+                all_negative_minimal_core_rate_below_independent = (
+                    all_negative_minimal_core_rate
+                    <= recurrence_integer_rate(
+                        len(high_depth_values),
+                        len(low_depth_values),
+                    )
+                )
+                all_negative_minimal_core_real_strict = (
+                    all_negative_uniform_high_count > 1
+                )
             else:
                 all_negative_minimal_core_exact = None
                 all_negative_minimal_core_independent = None
+                all_negative_minimal_core_recurrence = None
+                all_negative_minimal_core_rate = None
+                all_negative_minimal_core_rate_below_independent = None
+                all_negative_minimal_core_real_strict = None
             root_active_all_negative_uniform_high_count = (
                 all_negative_uniform_high_count
             )
@@ -4245,6 +4271,21 @@ def residual_shape_scan_profile() -> dict:
                 if all_negative_minimal_core_exact is None
                 else all_negative_minimal_core_exact
                 == all_negative_minimal_core_independent
+            )
+            root_active_all_negative_minimal_core_matches_recurrence = (
+                None
+                if all_negative_minimal_core_exact is None
+                else all_negative_minimal_core_exact
+                == all_negative_minimal_core_recurrence
+            )
+            root_active_all_negative_minimal_core_rate = (
+                all_negative_minimal_core_rate
+            )
+            root_active_all_negative_minimal_core_rate_below_independent = (
+                all_negative_minimal_core_rate_below_independent
+            )
+            root_active_all_negative_minimal_core_real_strict = (
+                all_negative_minimal_core_real_strict
             )
             root_active_all_negative_elevated_cap_loss_holds = (
                 elevated_boundary_cap_loss_holds(
@@ -4427,9 +4468,35 @@ def residual_shape_scan_profile() -> dict:
                             require_nonempty=True,
                         )
                     )
+                    spike_minimal_core_recurrence = (
+                        path_independent_recurrence(
+                            cycle_len - 1,
+                            1,
+                            len(low_allowed_depths),
+                        )
+                        - (len(low_allowed_depths) ** (cycle_len - 1))
+                    )
+                    spike_minimal_core_rate = recurrence_integer_rate(
+                        1,
+                        len(low_allowed_depths),
+                    )
+                    spike_minimal_core_rate_below_independent = (
+                        spike_minimal_core_rate
+                        <= recurrence_integer_rate(
+                            len(high_allowed_depths),
+                            len(low_allowed_depths),
+                        )
+                    )
+                    spike_minimal_core_real_strict = (
+                        spike_uniform_high_count > 1
+                    )
                 else:
                     spike_minimal_core_exact = None
                     spike_minimal_core_independent = None
+                    spike_minimal_core_recurrence = None
+                    spike_minimal_core_rate = None
+                    spike_minimal_core_rate_below_independent = None
+                    spike_minimal_core_real_strict = None
                 if (
                     root_budget < 4
                     or not odd_compatible
@@ -4615,6 +4682,19 @@ def residual_shape_scan_profile() -> dict:
                             else spike_minimal_core_exact
                             == spike_minimal_core_independent
                         ),
+                        "minimal_core_matches_recurrence": (
+                            None
+                            if spike_minimal_core_exact is None
+                            else spike_minimal_core_exact
+                            == spike_minimal_core_recurrence
+                        ),
+                        "minimal_core_rate": spike_minimal_core_rate,
+                        "minimal_core_rate_below_independent": (
+                            spike_minimal_core_rate_below_independent
+                        ),
+                        "minimal_core_real_strict": (
+                            spike_minimal_core_real_strict
+                        ),
                         "elevated_cap_loss_holds": (
                             elevated_boundary_cap_loss_holds(
                                 allowed_depths,
@@ -4734,6 +4814,10 @@ def residual_shape_scan_profile() -> dict:
             root_active_all_negative_uniform_cap_loss_matches_tail = None
             root_active_all_negative_minimal_core_count = None
             root_active_all_negative_minimal_core_matches_independent = None
+            root_active_all_negative_minimal_core_matches_recurrence = None
+            root_active_all_negative_minimal_core_rate = None
+            root_active_all_negative_minimal_core_rate_below_independent = None
+            root_active_all_negative_minimal_core_real_strict = None
             root_active_all_negative_elevated_cap_loss_holds = None
             root_active_all_negative_uniform_formula_matches = None
             root_active_all_negative_uniform_progression_matches = None
@@ -5020,6 +5104,18 @@ def residual_shape_scan_profile() -> dict:
                 ),
                 "root_active_all_negative_minimal_core_matches_independent": (
                     root_active_all_negative_minimal_core_matches_independent
+                ),
+                "root_active_all_negative_minimal_core_matches_recurrence": (
+                    root_active_all_negative_minimal_core_matches_recurrence
+                ),
+                "root_active_all_negative_minimal_core_rate": (
+                    root_active_all_negative_minimal_core_rate
+                ),
+                "root_active_all_negative_minimal_core_rate_below_independent": (
+                    root_active_all_negative_minimal_core_rate_below_independent
+                ),
+                "root_active_all_negative_minimal_core_real_strict": (
+                    root_active_all_negative_minimal_core_real_strict
                 ),
                 "root_active_all_negative_elevated_cap_loss_holds": (
                     root_active_all_negative_elevated_cap_loss_holds
@@ -5630,6 +5726,58 @@ def residual_shape_scan_profile() -> dict:
                     spike_row["minimal_core_matches_independent"] is None
                     or spike_row["minimal_core_matches_independent"]
                     for spike_row in row["root_active_spike_bound_rows"]
+                )
+            )
+            for row in rows
+        ),
+        "root_active_minimal_core_matches_recurrence": all(
+            row["root_depth_required"] <= row["sigma"]
+            or (
+                (
+                    row[
+                        "root_active_all_negative_minimal_core_matches_recurrence"
+                    ]
+                    is None
+                    or row[
+                        "root_active_all_negative_minimal_core_matches_recurrence"
+                    ]
+                )
+                and all(
+                    spike_row["minimal_core_matches_recurrence"] is None
+                    or spike_row["minimal_core_matches_recurrence"]
+                    for spike_row in row["root_active_spike_bound_rows"]
+                )
+            )
+            for row in rows
+        ),
+        "root_active_minimal_core_rate_below_independent": all(
+            row["root_depth_required"] <= row["sigma"]
+            or (
+                (
+                    row[
+                        "root_active_all_negative_minimal_core_rate_below_independent"
+                    ]
+                    is None
+                    or row[
+                        "root_active_all_negative_minimal_core_rate_below_independent"
+                    ]
+                )
+                and all(
+                    spike_row["minimal_core_rate_below_independent"] is None
+                    or spike_row["minimal_core_rate_below_independent"]
+                    for spike_row in row["root_active_spike_bound_rows"]
+                )
+            )
+            for row in rows
+        ),
+        "root_active_minimal_core_has_real_strict_case": any(
+            row["root_depth_required"] > row["sigma"]
+            and (
+                row["root_active_all_negative_minimal_core_real_strict"]
+                or any(
+                    spike_row["minimal_core_real_strict"]
+                    for spike_row in row["root_active_spike_bound_rows"]
+                    if spike_row["minimal_core_real_strict"] is not None
                 )
             )
             for row in rows
@@ -7908,6 +8056,17 @@ def run() -> dict:
         "residual_shape_scan_root_active_minimal_core": residual_shape_scan[
             "root_active_minimal_core_matches_independent"
         ],
+        "residual_shape_scan_root_active_minimal_core_recurrence": (
+            residual_shape_scan["root_active_minimal_core_matches_recurrence"]
+        ),
+        "residual_shape_scan_root_active_minimal_core_rate": (
+            residual_shape_scan[
+                "root_active_minimal_core_rate_below_independent"
+            ]
+        ),
+        "residual_shape_scan_root_active_minimal_core_strict": (
+            residual_shape_scan["root_active_minimal_core_has_real_strict_case"]
+        ),
         "residual_shape_scan_root_active_minimal_core_case": (
             residual_shape_scan["root_active_has_minimal_frontier_core_case"]
         ),

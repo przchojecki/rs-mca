@@ -3930,6 +3930,45 @@ If `gamma in G_E`, then `gamma>=sigma+3` because the depths have step size
 `2`. The top low depth `sigma-1` is not in `C_E(gamma)`, since
 `gamma+sigma-1>=2sigma+2`. Hence `|C_E(gamma)|<|L_E|`.
 
+The one-label core has its own recurrence and rate.
+
+**Corollary (minimal-frontier core recurrence).** In the minimal-frontier
+case `alpha_E=sigma+1`, put `l=|L_E|`. Let
+
+```text
+P_n^{min}=P_n(1,l)-l^n,        C_n^{min}=C_n(1,l)-l^n,
+```
+
+where `P_n(h,l)` and `C_n(h,l)` are the path and cycle independent-set
+polynomials from the root-active recurrence corollary. Then `P_n^{min}` and
+`C_n^{min}` count exactly the minimal-frontier core on paths and cycles,
+respectively. Their characteristic rate is
+
+```text
+rho_min(l)=(l+sqrt(l^2+4l))/2.
+```
+
+If the full root-active tail has `h_E=|H_E|>1`, then
+
+```text
+rho_min(l) < rho_ind(h_E,l).
+```
+
+Thus even in the nonsaving `alpha_E=sigma+1` frontier, the exact one-label
+core has smaller rate than the old independent-set envelope whenever an
+elevated root-active depth is present; the elevated remainder is already
+covered by the cap-loss part of the previous split.
+
+*Proof.* The previous corollary identifies the core with independent sets
+whose marked vertices all carry the single label `a_0`, while every unmarked
+vertex has `l` low choices. This is precisely the independent-set polynomial
+with high weight `1`, with the all-low word subtracted to enforce nonempty
+root-active support. The recurrence and characteristic root are the
+root-active recurrence and spectral corollaries specialized to `h=1`.
+Finally, `rho_ind(h,l)` is strictly increasing in `h` for `l>0`; here
+`l>0` by the nontrivial-tail assumption, so `h_E>1` gives the displayed
+strict inequality.
+
 The uniform envelope has a two-state recurrence.
 
 **Corollary (recurrence form of the uniform cap-degree envelope).** Fix
