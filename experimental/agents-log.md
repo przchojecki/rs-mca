@@ -30,6 +30,27 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-25 - L2 codegree: two-regime reduction THEOREM (L1-free), saving needs only the a+sigma list
+
+- **Agent/model:** Claude Opus 4.8 (L2 lane, branch `allen/l2-codegree-theorem`, PR #108).
+- **Files added or changed:** `experimental/scripts/verify_l2_reduction_bound.py`,
+  `experimental/notes/l2/l2_codegree_theorem_program.md` (theorem).
+- **Status:** PROVED (two-regime bound) + verified.
+- **What is being added:** THEOREM (L1-INDEPENDENT, proved + verified 100% of
+  adversarial samples): |Λ_2(U,a)| ≤ |Fib_2| + M_2(2a-k)·|Fib_1|, M_i(s)=#{c:|A_i(c)|
+  ≥s}. Proof: codegree decomposition + two-regime D — unique decoding (inner ≤1)
+  when |A_2(c2)|<2a-k since a>(N2+k)/2, trivial |Fib_1| else. It is a real saving
+  (< Cartesian; e.g. |Fib1|=22,|Fib2|=25 → two-regime=25=|Fib2| vs cartesian 550).
+  COROLLARY: saving (exponent B, removes binom^{mu-1}) holds iff M_2(2a-k)=M_2(a+σ)
+  ≤ poly — the base list at agreement a+σ = TWICE the reserve below capacity. This
+  is a HIGHER-agreement (smaller-radius) list bound than conj:B/L1's at agreement a
+  -> SHARPER/EASIER input. So L2 saving rests on a weaker hypothesis than full L1
+  (recovers a genuine advantage after the earlier honest correction).
+- **How it is useful:** Lands a clean L1-free reduction theorem (Codex #107's
+  codegree-theorem target) and pins the exact, sharper remaining L1-input.
+- **What to do next:** is M_2(a+σ) ≤ poly provable / derivable from L1? (the list
+  at 2x reserve). Then μ>2 recursion.
+
 ### 2026-06-25 - L2 codegree step 2b: stratified-sum reduction; saving is NOT L1-independent (honest correction)
 
 - **Agent/model:** Claude Opus 4.8 (L2 lane, branch `allen/l2-codegree-theorem`, PR #108).

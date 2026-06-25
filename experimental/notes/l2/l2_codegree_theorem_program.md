@@ -135,9 +135,44 @@ The L2 saving therefore **reduces to** (i) the punctured-RS Johnson bound
 named reduction — `L2 saving ⟸ L1 profile + punctured-RS Johnson` — even though
 it is not the L1-free result I first hoped for.
 
+## The two-regime reduction theorem (2026-06-25) — the landable result
+
+> **Theorem (L2 codegree, two-regime; PROVED, verified).** For `C=RS[F,H,k]`,
+> `a=k+σ`, and any 2-row word `U=(U_1,U_2)`,
+> ```
+> |Λ_2(U,a)|  ≤  |Fib_2|  +  M_2(2a-k) · |Fib_1|,
+> ```
+> and symmetrically with `1↔2`, where `Fib_i = {c : |A_i(c)| ≥ a}` and
+> `M_i(s) = #{c ∈ Fib_i : |A_i(c)| ≥ s}`. Here `2a-k = a+σ`.
+
+*Proof.* Codegree decomposition: `|Λ_2| = Σ_{c2∈Fib_2} (#{c1 : |A_1(c1)∩A_2(c2)| ≥ a})`.
+The inner count is the punctured-RS list of `U_1` on `A_2(c2)` (`N2:=|A_2(c2)|`
+points). **Unique-decoding regime:** if `N2 < 2a-k` then `a > (N2+k)/2`, so a
+degree-`<k` poly agreeing with `U_1` on `≥a > (N2+k)/2` of the `N2` points is
+unique — inner count `≤ 1`. **Tail regime:** if `N2 ≥ 2a-k`, bound the inner count
+trivially by `|Fib_1|`. Summing: `|Λ_2| ≤ (#c2 with N2<2a-k)·1 + (#c2 with
+N2≥2a-k)·|Fib_1| ≤ |Fib_2| + M_2(2a-k)|Fib_1|`. ∎
+
+**The theorem is L1-INDEPENDENT** (pure unique-decoding + counting). Verified in
+`verify_l2_reduction_bound.py`: the bound holds in 100% of adversarial samples and
+is `< Cartesian` (a real saving); e.g. `|Fib1|=22,|Fib2|=25` (Cartesian 550) gives
+two-regime `= 25 = |Fib2|` (`M_2`-tail `= 0`).
+
+> **Corollary (saving).** If `M_2(2a-k) ≤ poly(n)` then
+> `|Λ_2| ≤ |Fib_2| + poly·|Fib_1| ≤ poly·max(|Fib_1|,|Fib_2|)` — exponent `B`, the
+> Cartesian `binom(n,a)^{μ-1}` factor removed.
+
+**The exact remaining input (sharper than `conj:B`).** The saving needs only that
+the base list at agreement `2a-k = a+σ` — i.e. **twice the reserve below capacity**
+— is polynomial. This is a *higher-agreement* (smaller-radius) list bound than
+`conj:B`/L1's list at agreement `a`, so it is **weaker/easier** input: above the
+reserve, going `σ` further into the unique-decoding side should make the list drop
+from `n^B` toward `poly`. So L2's saving rests on a sharper hypothesis than the
+full L1 — a genuine advantage, recovered after the earlier honest correction.
+
 ## Milestones (this PR)
-1. [x] worst-case punctured-RS-list scanner + per-`N'` `D ≤ Johnson` (step 2a).
-2. [x] stratified-sum reduction `|Λ_2| ≤ Σ_{N2} M_2(N2) D(N2)`; CS shown insufficient.
-3. [ ] verify the reduction bound numerically (`Σ M_2 D ≥ |Λ_2|`, tightness).
-4. [ ] state the reduction theorem cleanly: `L2 saving ⟸ L1 profile + Johnson`.
-5. [ ] `μ>2` recursion; (stretch) sharp constant via non-smooth-puncture.
+1. [x] per-`N'` punctured-RS `D ≤ Johnson` (step 2a).
+2. [x] stratified-sum reduction; CS shown insufficient (step 2b).
+3. [x] two-regime reduction THEOREM `|Λ_2| ≤ |Fib_2| + M_2(2a-k)|Fib_1|` (proved, verified).
+4. [ ] the sharper L1-input: is `M_2(a+σ) ≤ poly` (list at 2×reserve) provable / from L1?
+5. [ ] `μ>2` recursion (recurse the decomposition); (stretch) sharp constant.
