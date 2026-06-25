@@ -296,6 +296,46 @@ This does not yet sum over all occupancy vectors or over cross-vector moves.
 It gives the local residual kernel that a proof of the aperiodic M1 bound has
 to control.
 
+### Corollary 6.1. Mixed-Vector Minimum Exchange
+
+The fiberwise kernel also gives an exact cutoff for exchanges between distinct
+occupancy vectors.  For two equal-size occupancy vectors `a,b`, define
+
+```text
+d_occ(a,b) = sum_i max(0,a_i-b_i) = (1/2) sum_i |a_i-b_i|.
+```
+
+Then the minimum exponent appearing in the cross-vector exchange kernel
+`E_{a->b}(x)` of Theorem 5 is exactly `d_occ(a,b)`.  Moreover the leading
+coefficient is
+
+```text
+prod_{i:a_i>=b_i} binom(a_i,b_i)
+*
+prod_{i:b_i>a_i} binom(m-a_i,b_i-a_i).
+```
+
+Consequently, if `a != b` and `d_occ(a,b) >= t`, then the cross-vector pair
+has no strict-overlap contribution at M1 slack `t`.
+
+#### Proof
+
+In fiber `i`, the smallest possible contribution to `|S\T|` is obtained by
+maximizing the local intersection `|S cap T cap B_i|`, hence by taking
+
+```text
+r_i = min(a_i,b_i).
+```
+
+The local exchange is therefore `a_i-min(a_i,b_i)=max(0,a_i-b_i)`, and summing
+over fibers gives `d_occ(a,b)`.  The choices at this minimum are independent
+across fibers.  If `a_i>=b_i`, choose which `b_i` of the `a_i` source points
+remain.  If `b_i>a_i`, all source points remain and the extra `b_i-a_i` target
+points are chosen from the `m-a_i` complement.  Multiplying these local counts
+gives the displayed leading coefficient.  No exchange smaller than
+`d_occ(a,b)` can occur, so strict exchanges `0<|S\T|<t` are absent whenever
+`a != b` and `d_occ(a,b)>=t`.
+
 ## Theorem 7. Sharp Exchange-One Residual Floor
 
 For an occupancy vector `a=(a_1,...,a_N)`, put

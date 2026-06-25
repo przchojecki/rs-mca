@@ -46,8 +46,9 @@ Keep entries concise and link to the relevant files.
   dithered quotient layer on both sides of the exact dimension, including the
   exact stable weighted tail, finite dyadic prefix, and one-remainder
   variance-consumption term. It also records the all-scale maximal-dither
-  and co-maximal-dither one-remainder ledger. A small verifier checks the
-  formulas against brute-force enumeration.
+  and co-maximal-dither one-remainder ledger, plus an exact mixed-vector
+  minimum-exchange cutoff for cross-occupancy residuals. A small verifier
+  checks the formulas against brute-force enumeration.
 - **How it is useful:** Separates the budgeted quotient-periodic M1 support
   terms from the remaining partial-fiber / aperiodic residue-line target, and
   identifies the local low-exchange kernel the residual proof must control.
@@ -59,6 +60,9 @@ Keep entries concise and link to the relevant files.
   random-line ledger with an explicit charge. The maximal-dither corollary
   closes the single-slack quotient-remainder ledger at every dyadic scale,
   with only an explicitly enumerated small prefix carrying nonlinear terms.
+  The mixed-vector cutoff shows that cross-occupancy strict-overlap residuals
+  are confined to occupancy vectors with `d_occ<t`, eliminating all farther
+  profile pairs from the M1 strict-overlap ledger.
 - **What to do next:** Use this theorem as the quotient ledger before attacking
   the aperiodic M1 local-limit residual.
 

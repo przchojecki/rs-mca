@@ -269,6 +269,93 @@ def check_exchange_kernel_case(
             raise AssertionError((fiber_size, source_occupancy, exchange_one, expected))
 
 
+def occupancy_exchange_distance(
+    source_occupancy: tuple[int, ...],
+    target_occupancy: tuple[int, ...],
+) -> int:
+    return sum(
+        max(0, source - target)
+        for source, target in zip(source_occupancy, target_occupancy)
+    )
+
+
+def leading_min_exchange_coefficient(
+    fiber_size: int,
+    source_occupancy: tuple[int, ...],
+    target_occupancy: tuple[int, ...],
+) -> int:
+    coefficient = 1
+    for source, target in zip(source_occupancy, target_occupancy):
+        if source >= target:
+            coefficient *= comb(source, target)
+        else:
+            coefficient *= comb(fiber_size - source, target - source)
+    return coefficient
+
+
+def check_minimum_exchange_case(
+    fiber_size: int,
+    source_occupancy: tuple[int, ...],
+    target_occupancy: tuple[int, ...],
+    slack: int,
+) -> None:
+    formula = exchange_kernel_formula(fiber_size, source_occupancy, target_occupancy)
+    brute = brute_exchange_kernel(fiber_size, source_occupancy, target_occupancy)
+    if formula != brute:
+        raise AssertionError((fiber_size, source_occupancy, target_occupancy, formula, brute))
+
+    expected_minimum = occupancy_exchange_distance(source_occupancy, target_occupancy)
+    actual_minimum = min(formula)
+    if actual_minimum != expected_minimum:
+        raise AssertionError(
+            (fiber_size, source_occupancy, target_occupancy, actual_minimum, expected_minimum)
+        )
+
+    expected_leading = leading_min_exchange_coefficient(
+        fiber_size,
+        source_occupancy,
+        target_occupancy,
+    )
+    if formula[expected_minimum] != expected_leading:
+        raise AssertionError(
+            (
+                fiber_size,
+                source_occupancy,
+                target_occupancy,
+                formula[expected_minimum],
+                expected_leading,
+            )
+        )
+
+    if source_occupancy != target_occupancy and expected_minimum >= slack:
+        strict_mass = sum(
+            coefficient
+            for exchange, coefficient in formula.items()
+            if 0 < exchange < slack
+        )
+        if strict_mass:
+            raise AssertionError(
+                (fiber_size, source_occupancy, target_occupancy, slack, strict_mass)
+            )
+
+
+def check_minimum_exchange_all_case(
+    fiber_count: int,
+    fiber_size: int,
+    support_size: int,
+    slack: int,
+) -> None:
+    vectors = occupancy_vectors(fiber_count, fiber_size, support_size)
+    for source_occupancy in vectors:
+        for target_occupancy in vectors:
+            check_minimum_exchange_case(
+                fiber_size,
+                source_occupancy,
+                target_occupancy,
+                slack,
+            )
+
+
 def occupancy_vectors(
     fiber_count: int,
     fiber_size: int,
@@ -842,6 +929,13 @@ def main() -> int:
         (4, (1, 2, 0), (1, 2, 0)),
     ]:
         check_exchange_kernel_case(*case)
+    for case in [
+        (3, 3, 4, 2),
+        (4, 2, 4, 2),
+        (4, 3, 5, 3),
+        (5, 2, 5, 3),
+    ]:
+        check_minimum_exchange_all_case(*case)
     for case in [
         (4, 3, 4),
         (4, 3, 6),
