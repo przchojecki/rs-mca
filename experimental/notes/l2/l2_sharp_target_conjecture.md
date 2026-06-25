@@ -1601,6 +1601,61 @@ solutions; otherwise its fiber over the nonzero value `-c` has codimension
 one, giving at most `q^{sum_{j != t}d_j-1}` choices. Summing over normalized
 nonzero `A_t` gives the stated coefficient bound.
 
+The divisibility gate can save more than the single monicity equation.
+
+**Corollary (divisibility-rank refinement for marked syzygies).** Fix the
+nonpivot edge locators `L_j`, `j != t`, and a normalized nonzero pivot
+coefficient `A_t` of degree `b`. Let
+
+```text
+Psi_{t,A_t}: direct_sum_{j != t} F_q[X]_{<d_j}
+             -> F_q[X]/(A_t)
+```
+
+be the residue map
+
+```text
+(A_j)_{j != t} |-> sum_{j != t} L_j A_j mod A_t.
+```
+
+If `rho(t,A_t)` is the rank of this linear map, then the number of nonpivot
+coefficient choices for which `A_t` divides `sum_{j != t}L_jA_j` is exactly
+
+```text
+q^{sum_{j != t} d_j - rho(t,A_t)}.
+```
+
+After also imposing the monicity equation, the number of nonpivot coefficient
+choices is at most
+
+```text
+q^{sum_{j != t} d_j - max(1,rho(t,A_t))}.
+```
+
+Moreover
+
+```text
+rho(t,A_t) >= max_{j != t} min(d_j, b - deg gcd(A_t,L_j)).
+```
+
+Thus any nonconstant pivot coefficient whose residue action has rank `>1`
+improves the previous monicity-only marked-syzygy bound by additional powers
+of `q`.
+
+*Proof.* The divisibility condition is exactly `Psi_{t,A_t}((A_j))=0`, so its
+solution set is the kernel of a linear map of rank `rho(t,A_t)`. This gives
+the exact kernel size. The monicity condition cuts out a subset of the affine
+hyperplane counted in the monic gate, so the intersection is bounded by the
+smaller of the divisibility-kernel bound and the monicity bound, namely the
+displayed `max(1,rho(t,A_t))` saving.
+
+For the lower bound on `rho`, restrict `Psi_{t,A_t}` to one nonpivot summand.
+Multiplication by `L_j` modulo `A_t` has kernel consisting of polynomials
+divisible by `A_t/gcd(A_t,L_j)`. Inside `F_q[X]_{<d_j}`, this kernel has
+dimension `max(0,d_j-(b-deg gcd(A_t,L_j)))`, so the image has dimension
+`min(d_j,b-deg gcd(A_t,L_j))`. The rank of the full direct-sum map is at least
+the rank on any one summand.
+
 The root and disjointness gate is also purely algebraic.
 
 **Corollary (domain-locator gate for forced pivots).** Let

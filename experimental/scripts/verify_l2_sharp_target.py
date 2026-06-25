@@ -518,6 +518,38 @@ def matrix_rank_mod(matrix: list[list[int]], p: int) -> int:
     return rank
 
 
+def polynomial_residue_vector(
+    poly: list[int], modulus: list[int], p: int
+) -> list[int]:
+    """Return the residue of poly modulo modulus as a fixed-length vector."""
+    _, residue = poly_divmod(poly, modulus, p)
+    degree = poly_degree(modulus)
+    return [poly_coeff(residue, idx) for idx in range(degree)]
+
+
+def divisibility_residue_rank(
+    locators: list[list[int]],
+    coefficient_dimensions: list[int],
+    pivot: int,
+    pivot_coefficient: list[int],
+    p: int,
+) -> int:
+    """Rank of the nonpivot coefficient map modulo the pivot coefficient."""
+    rows = []
+    for idx, locator in enumerate(locators):
+        if idx == pivot:
+            continue
+        for power in range(coefficient_dimensions[idx]):
+            rows.append(
+                polynomial_residue_vector(
+                    poly_mul(locator, monomial(power), p),
+                    pivot_coefficient,
+                    p,
+                )
+            )
+    return matrix_rank_mod(rows, p)
+
+
 def high_overlap_components(supports: list[tuple[int, ...]], k: int) -> list[set[int]]:
     parent = list(range(len(supports)))
 
@@ -2158,6 +2190,54 @@ def locator_syzygy_witness_profile() -> dict:
         for idx, locator in enumerate(locators)
         if idx != pivot
     ]
+
+    rank_p, rank_n, rank_k = 11, 10, 6
+    rank_h_values = subgroup(rank_p, rank_n)
+    rank_edge_blocks = [set(block) for block in ((0, 1, 2), (3, 4, 5), (6, 7, 8))]
+    rank_locators = [
+        poly_from_roots(rank_p, [rank_h_values[idx] for idx in sorted(edge_block)])
+        for edge_block in rank_edge_blocks
+    ]
+    rank_coefficient_dimensions = [
+        rank_k - len(edge_block) for edge_block in rank_edge_blocks
+    ]
+    rank_pivot = 0
+    rank_pivot_coefficient = [1, 0, 1]
+    rank_pivot_degree = poly_degree(rank_pivot_coefficient)
+    rank_nonpivot_dimension = sum(
+        rank_coefficient_dimensions[idx]
+        for idx in range(len(rank_edge_blocks))
+        if idx != rank_pivot
+    )
+    rank_divisibility_rank = divisibility_residue_rank(
+        rank_locators,
+        rank_coefficient_dimensions,
+        rank_pivot,
+        rank_pivot_coefficient,
+        rank_p,
+    )
+    rank_gcd_degrees = [
+        poly_degree(poly_gcd(rank_pivot_coefficient, locator, rank_p))
+        for idx, locator in enumerate(rank_locators)
+        if idx != rank_pivot
+    ]
+    rank_lower_bound_terms = [
+        min(
+            rank_coefficient_dimensions[idx],
+            rank_pivot_degree
+            - poly_degree(poly_gcd(rank_pivot_coefficient, rank_locators[idx], rank_p)),
+        )
+        for idx in range(len(rank_edge_blocks))
+        if idx != rank_pivot
+    ]
+    rank_lower_bound = max(rank_lower_bound_terms)
+    rank_monic_bound = rank_p ** (rank_nonpivot_dimension - 1)
+    rank_divisibility_bound = rank_p ** (
+        rank_nonpivot_dimension - rank_divisibility_rank
+    )
+    rank_combined_bound = rank_p ** (
+        rank_nonpivot_dimension - max(1, rank_divisibility_rank)
+    )
     return {
         "p": p,
         "n": n,
@@ -2200,6 +2280,27 @@ def locator_syzygy_witness_profile() -> dict:
         "expected_domain_locator": expected_domain_locator,
         "forced_domain_remainder": forced_domain_remainder,
         "nonpivot_gcds": nonpivot_gcds,
+        "divisibility_rank_example": {
+            "p": rank_p,
+            "n": rank_n,
+            "k": rank_k,
+            "edge_blocks": [
+                sorted(edge_block) for edge_block in rank_edge_blocks
+            ],
+            "locators": rank_locators,
+            "pivot_index": rank_pivot,
+            "pivot_coefficient": rank_pivot_coefficient,
+            "pivot_degree": rank_pivot_degree,
+            "coefficient_dimensions": rank_coefficient_dimensions,
+            "nonpivot_coefficient_dimension": rank_nonpivot_dimension,
+            "residue_rank": rank_divisibility_rank,
+            "gcd_degrees": rank_gcd_degrees,
+            "rank_lower_bound_terms": rank_lower_bound_terms,
+            "rank_lower_bound": rank_lower_bound,
+            "monic_bound": rank_monic_bound,
+            "divisibility_bound": rank_divisibility_bound,
+            "combined_bound": rank_combined_bound,
+        },
         "syzygy_sum_zero": syzygy_sum == [0],
         "pivot_forcing_remainder_zero": forcing_remainder == [0],
         "pivot_forcing_recovers_locator": forced_locator == locators[pivot],
@@ -2218,6 +2319,15 @@ def locator_syzygy_witness_profile() -> dict:
         "forced_locator_divides_domain": forced_domain_remainder == [0],
         "forced_locator_coprime_to_nonpivots": all(
             gcd == [1] for gcd in nonpivot_gcds
+        ),
+        "divisibility_rank_example_has_nonconstant_pivot": (
+            rank_pivot_degree == 2
+        ),
+        "divisibility_rank_matches_lower_bound": (
+            rank_divisibility_rank == rank_lower_bound
+        ),
+        "divisibility_rank_improves_monic_bound": (
+            rank_combined_bound * rank_p == rank_monic_bound
         ),
     }
 
@@ -3821,6 +3931,15 @@ def run() -> dict:
         ],
         "locator_syzygy_witness_disjoint_gcd": locator_syzygy_witness[
             "forced_locator_coprime_to_nonpivots"
+        ],
+        "locator_syzygy_divisibility_nonconstant": locator_syzygy_witness[
+            "divisibility_rank_example_has_nonconstant_pivot"
+        ],
+        "locator_syzygy_divisibility_rank_bound": locator_syzygy_witness[
+            "divisibility_rank_matches_lower_bound"
+        ],
+        "locator_syzygy_divisibility_improves_monic": locator_syzygy_witness[
+            "divisibility_rank_improves_monic_bound"
         ],
         "kmm_grid_formula": all(d["interleaved_edges"] == d["grid_edges_at_n_min"] for d in designs),
         "rs_witness_creates_mass": witness["mass_creation"],

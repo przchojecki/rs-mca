@@ -247,7 +247,13 @@ Keep entries concise and link to the relevant files.
   the domain locator `L_H` and is coprime to every nonpivot locator; for
   multiplicative subgroups this is the `L_t|X^n-1` divisor gate. The verifier
   checks this on the `F_7` witness by reducing modulo `X^6-1` and computing
-  gcds `[1],[1]`. Combining the pivot, monic, and domain gates gives a
+  gcds `[1],[1]`. The divisibility gate is now rank-refined: for a fixed
+  nonconstant pivot coefficient `A_t`, divisibility by `A_t` cuts the nonpivot
+  coefficient space by the rank of the residue map
+  `sum L_j A_j mod A_t`, improving the monicity-only `q` saving whenever this
+  rank is `>1`. The verifier adds an `F_11` degree-two pivot example where the
+  residue rank is `2` and the combined coefficient bound improves from
+  `11^5` to `11^4`. Combining the pivot, monic, and domain gates gives a
   marked selected-syzygy tuple bound; the verifier checks that this general
   formula exactly reproduces the earlier rank-deficient necklace count
   `m q^{m-2} prod_{h=0}^{m-2} binom(n-hr,r)`. Combining it with any
