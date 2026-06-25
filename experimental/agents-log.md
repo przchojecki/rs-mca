@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-25 - L2 adaptive tail-rate monotonicity
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/notes/l2/l2_sharp_target_conjecture.md`,
+  `experimental/scripts/verify_l2_sharp_target.py`, and
+  `experimental/agents-log.md`.
+- **Status:** PROVED / EXPERIMENTAL.
+- **What is being added:** A monotonicity corollary showing that terminal
+  spike-tail depth alphabets have adaptive spectral rate at most the
+  all-negative depth alphabet.
+- **How it is useful:** Removes the maximum over spike sectors from the
+  frontier-adaptive spectral reduction, so the next L2 reserve comparison only
+  needs the all-negative adaptive rate.
+- **What to do next:** Prove an explicit upper bound for the all-negative
+  adaptive rate in terms of `k`, `sigma`, and the root depth `R`, then compare
+  it with the generated-field entropy margin.
+
 ### 2026-06-25 - L2 adaptive spectral reduction
 
 - **Agent/model:** Codex.

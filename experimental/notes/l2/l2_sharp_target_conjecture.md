@@ -4152,6 +4152,55 @@ has length `m-1`; since `Lambda>=1`, the latter are bounded by the same
 `Lambda^m` scale. Summing the all-negative sector and the `m` rotations of
 each permitted spike height gives the displayed bound.
 
+For the balanced residual alphabets, the maximum sector rate is actually the
+all-negative one.
+
+**Corollary (spike-tail spectral monotonicity).** Let
+
+```text
+D={s,s+2,...,Y}
+```
+
+be the all-negative depth alphabet, and let `E={s_E,s_E+2,...,Y}` be any
+terminal balanced tail of `D`. Then
+
+```text
+rho_ad(E) <= rho_ad(D).
+```
+
+Consequently every spike-tail alphabet `D_u={y in D:y>=u+2}` has adaptive
+rate at most the all-negative rate, and the spectral reduction above may take
+
+```text
+rho_* = rho_ad(D)
+```
+
+rather than the maximum over all spike sectors.
+
+*Proof.* Passing from a balanced tail to a later terminal tail only removes
+initial depth layers. In a nonminimal-frontier tail, until all low depths are
+removed, the parameters
+
+```text
+h_E, c_E, Delta_E
+```
+
+are weakly nonincreasing: the high alphabet does not grow, the boundary cap
+loses low layers, and the low-transfer row degree loses possible starts and
+targets. The Perron root
+`rho_cap(h_E,c_E,Delta_E)` is increasing in these nonnegative parameters, so
+the rate cannot increase. Once there are no high depths or no low depths, the
+root-active path/cycle envelope has rate `0`.
+
+In a minimal-frontier tail, while low depths remain the first high depth stays
+`sigma+1`; deleting initial low layers weakly decreases `l_E` and the elevated
+cap `c_{G,E}`, while the elevated count `g_E` does not increase. The formula
+for `rho_front(l_E,g_E,c_{G,E})` is increasing in these nonnegative
+parameters, so it also cannot increase. If the tail starts at or above
+`sigma+1`, no low layer remains and the rate is again `0`. The spike alphabets
+are exactly terminal tails of `D` by the balanced-depth formula, proving the
+claim.
+
 The uniform envelope has a two-state recurrence.
 
 **Corollary (recurrence form of the uniform cap-degree envelope).** Fix
