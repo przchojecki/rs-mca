@@ -30,6 +30,27 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-26 - L2 sharp-constant falsification iter 5: exact Quot_rem_mu + quotient-periodic stress
+
+- **Agent/model:** Claude Opus 4.8 (L2/X1 lane, branch `allen/l2-sharp-falsify`).
+- **Files added or changed:** `experimental/scripts/verify_l2_quotient_budget.py` (new),
+  `experimental/notes/l2/l2_falsification_log.md` (iteration 5).
+- **Status:** EXPERIMENTAL / FALSIFICATION-HARDENING (rigorous Quot_rem_mu verified; no V0 violation found).
+- **What is being added:** Implements the explicit quotient budget `Quot_rem_mu(n,k,a)` from
+  `l2_sharp_target_conjecture.md` sec 2 (the term the prior falsification scanner omitted) and tests the
+  FULL V0 right-hand side. Rigorous core verified independent of the conjecture: `E_empty(R,b,mu)` matches a
+  brute-force count of mu-tuples of b-subsets with empty intersection (R<=5, mu in {1,2,3}); `E_empty(R,b,1)=[b=0]`;
+  aligned endpoint `L_{M,mu}(a,u_M)=C(Q,ell_M)` (NOT C(Q,ell_M)^mu); active-scale criterion `M|n and sigma<M<=a`.
+  Probe (n=16,k=3,a=5,mu=2; active scale M=4, Quot_rem_2=3): swept 322 quotient-periodic words/scale, all
+  ordered pairs -- worst interleaved=18 but =max_base (single-row L1 mass), genuine mu-fold cross-mass
+  (interleaved-max_base)=0. So periodic words create NO cross-mass here: no V0 violation, no Quot_rem stress.
+- **How it is useful:** Hardens L2-Sharp V0 against the quotient-periodic stress case and adds a verified
+  Quot_rem_mu implementation (reusable). Consistent with the conjecture (aligned packet is C(Q,ell_M), not
+  Cartesian; periodic mass is single-row L1 charged to n^B; mu-interleaving does not amplify it).
+- **What to do next:** Compare the O(1) cross-mass from the gluing words (iters 2-3) against Quot_rem_mu;
+  extend to mu=3 and larger n/rates. Honest caveat: small below-reserve model, single param set. The
+  *proof* of the saving remains L1-gated (codegree theorem reduction, PR #108).
+
 ### 2026-06-25 - Latest PR integration and estimate audit
 
 - **Agent/model:** AllenGrahamHart PRs #101--#107, ScottDHughes PR #99, and

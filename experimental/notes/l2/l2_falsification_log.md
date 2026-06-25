@@ -147,8 +147,39 @@ content, now reduced to standard RS list-decoding on punctured domains.
 4. If `interleaved ≤ max_base` keeps holding, attempt to *prove* it (it would be
    the clean structural statement reducing L2's aperiodic part to L1).
 
+## Iteration 5 — exact `Quot_rem_μ` + quotient-periodic stress (planned-item 3)
+
+Implemented the explicit quotient budget `Quot_rem_μ(n,k,a)` from
+`l2_sharp_target_conjecture.md` §2 and tested the **full** V0 right-hand side on
+quotient-periodic words (the stress case the packets target).
+Scanner: `experimental/scripts/verify_l2_quotient_budget.py`.
+
+**Rigorous core (conjecture-independent, all verified):**
+- `E_empty(R,b,μ) = Σ_j (−1)^j C(R,j) C(R−j,b−j)^μ` matches a **brute-force** count of
+  ordered μ-tuples of `b`-subsets of `[R]` with empty common intersection
+  (`R≤5`, all `b`, `μ∈{1,2,3}`); and `E_empty(R,b,1)=[b=0]`.
+- Aligned endpoint `L_{M,μ}(a,u_M)=C(Q,ℓ_M)` (the note's key non-Cartesian fact —
+  it is `C(Q,ℓ_M)`, **not** `C(Q,ℓ_M)^μ`).
+- Active-scale criterion: a scale `M` contributes iff `M|n` and `σ<M≤a`.
+
+**Probe (n=16,k=3,a=5,μ=2; only active scale `M=4`, `Quot_rem_2 = 3`):** swept 322
+quotient-periodic words per scale (all linear `g(x^M)=g₀+g₁x^M` + random full
+coset-assignments), precomputed fibers, all ordered pairs.
+- worst `interleaved = 18`, but `= max_base` — **entirely single-row (L1) mass**.
+- worst **genuine μ-fold cross-mass** `interleaved − max_base = 0`: quotient-periodic
+  words create **no** cross-mass here (`interleaved ≤ max_base` always), so they do
+  **not** violate V0 and do not even stress `Quot_rem_μ` (cross-mass `0 ≤ 3`).
+
+**Reading (honest).** Consistent with the conjecture: the large interleaved counts
+from periodic words are the single-row quotient (L1) list charged to `n^B`, and the
+aligned packet is `C(Q,ℓ_M)` not `C(Q,ℓ_M)^μ` — no Cartesian blow-up. The
+μ-interleaving does **not** amplify periodic mass (cross-mass `=0`). Caveat: one
+small below-reserve parameter set, `μ=2`; periodic words give cross-mass `0` here,
+while the *gluing* words of iters 2–3 are the ones that create `O(1)` cross-mass —
+comparing that `O(1)` to `Quot_rem_μ` (here `3`) is the natural next check.
+
 ## Reproducibility
 ```bash
 python3 experimental/scripts/verify_l2_falsify_interleaved.py
-python3 experimental/scripts/verify_l2_falsify_interleaved.py --json
+python3 experimental/scripts/verify_l2_quotient_budget.py
 ```
