@@ -57,6 +57,18 @@ After clearing denominators, the graph branch must satisfy
 G = h^2 - A h s + B s^2 = 0.
 ```
 
+The point of this polynomial is exact. It is the cleared remainder in the
+identity
+
+```text
+s^2 Delta0 = Delta1 * (s tau3 + A s - h) + G.
+```
+
+Equivalently, on the open locus `s != 0`, `G=s^2 Delta0(-h/s)`. Thus `G`
+is the resultant/divisibility gate for the graph branch: once `Delta1=0`
+forces `tau3=-h/s`, common zeros of `Delta0` can persist in dimension two
+only if this cleared remainder vanishes identically.
+
 Since `deg G <= 4`, a nonzero `G` leaves only `O(p)` base pairs
 `(tau1,tau2)` on the graph branch and therefore cannot by itself produce a
 two-dimensional `Theta(p^2)` slope image. A large split-cubic counterpacket
@@ -97,6 +109,8 @@ each off-`R0` landing polynomial, and verifies:
 - direct determinant values agree with the interpolated quadratic `Delta`;
 - the normalized `tau3^2` coefficient is exactly `1`;
 - the `alpha` component has no `tau3^2` term;
+- the cleared-remainder identity
+  `s^2 Delta0 = Delta1*(s tau3 + A s - h) + G` holds coefficientwise;
 - `Delta1 = s tau3 + h` recovers every graph value `tau3=-h/s`;
 - every graph-branch common zero passes through `G=0`;
 - whenever `G` is nonzero, the observed graph branch is bounded by the
@@ -106,8 +120,17 @@ each off-`R0` landing polynomial, and verifies:
 
 The final `CERT` line records the best sampled branch in a machine-readable
 form with fields such as `p`, `q_gen`, `q_line`, `Delta1_zero`, `G_zero`,
-`G_degree`, `G_zero_pairs`, `nonzero_gate_bound`, `C2`, `graph_C2`, and
-split-triple counts.
+`G_degree`, `G_zero_pairs`, `nonzero_gate_bound`, `remainder_identity`,
+`C2`, `graph_C2`, and split-triple counts.
+
+The companion symbolic checker
+
+```sh
+python3 experimental/scripts/fable_loop/local_checks/20260618_cycle18_resonance_slope_symbolic.py
+```
+
+also verifies the cleared-remainder identity with formal coefficients, before
+any finite sampling or source-validity filtering enters.
 
 The default run mixes quick random off-`R0` samples, which exercise the
 nonzero graph gate, with a tiny forced-`Ra` nullspace sample, which exercises

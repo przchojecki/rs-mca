@@ -25,6 +25,12 @@ where Delta0 = tau3^2 + A tau3 + B. If Delta1 is not identically zero and
 G is nonzero, the whole common-zero branch is curve-sized over B and cannot
 produce a two-dimensional slope image.
 
+The script also checks the cleared-remainder identity
+
+    s^2 Delta0 = Delta1 * (s tau3 + A s - h) + G,
+
+so G is the exact resultant/divisibility obstruction for the graph branch.
+
 The default run uses random off-R0 samples to exercise the graph algebra and a
 tiny forced-Ra sample to hit the exact resonance gates quickly. Larger forced
 nullspace scans should be run separately when hunting counterpackets.
@@ -159,6 +165,25 @@ def graph_gate(coeffs: Dict[Exp3, FElement], p: int) -> Tuple[Poly2, Poly2, Poly
     return a_poly, b_poly, s_poly, h_poly, g_poly
 
 
+def assert_remainder_identity(a_poly: Poly2, b_poly: Poly2, s_poly: Poly2, h_poly: Poly2, g_poly: Poly2, p: int) -> None:
+    """Check s^2 Delta0 = Delta1*(s*tau3 + A*s - h) + G coefficientwise."""
+    s_sq = pmul(s_poly, s_poly, p)
+    # tau3^0 coefficient:
+    # left B*s^2; right h*(A*s-h)+G.
+    quotient_const = psub(pmul(a_poly, s_poly, p), h_poly, p)
+    rhs_const = padd(pmul(h_poly, quotient_const, p), g_poly, p)
+    lhs_const = pmul(b_poly, s_sq, p)
+    if lhs_const != rhs_const:
+        raise AssertionError("G remainder identity failed in tau3^0")
+
+    # tau3^1 coefficient:
+    # left A*s^2; right s*(A*s-h)+h*s.
+    rhs_linear = padd(pmul(s_poly, quotient_const, p), pmul(h_poly, s_poly, p), p)
+    lhs_linear = pmul(a_poly, s_sq, p)
+    if lhs_linear != rhs_linear:
+        raise AssertionError("G remainder identity failed in tau3^1")
+
+
 def all_alpha_coeffs_zero(coeffs: Dict[Exp3, FElement], p: int) -> bool:
     return all(value[1] % p == 0 for value in coeffs.values())
 
@@ -199,6 +224,7 @@ def split_triple_stats(
     LDres = c11.residue2(LD, E)
     Bres = c11.residue2(bnum, E)
     a_poly, b_poly, s_poly, h_poly, g_poly = graph_gate(coeffs, p)
+    assert_remainder_identity(a_poly, b_poly, s_poly, h_poly, g_poly, p)
     delta1_zero = all_alpha_coeffs_zero(coeffs, p)
     g_zero = not g_poly
     g_zero_pairs = p * p if g_zero else count_g_zero_pairs(g_poly, p)
@@ -284,6 +310,7 @@ def split_triple_stats(
         "G_zero_pairs": g_zero_pairs,
         "G_schwartz_bound": g_schwartz_bound,
         "nonzero_gate_bound": active_bound,
+        "remainder_identity": True,
         "split_triples_examined": n * (n - 1) * (n - 2) // 6,
         "split_landings": split_landings,
         "C2": len(direct_slopes),

@@ -11,6 +11,12 @@ variable, and verifies:
     Delta = (p1 - tau3)(q2 - tau3) - p2 q1
 
 has base component monic quadratic in `tau3` and alpha component degree <= 1.
+It also checks the cleared-remainder identity for the graph gate
+
+    s^2 Delta0 = Delta1 * (s tau3 + A s - h) + G,
+
+where Delta0=tau3^2 + A tau3 + B, Delta1=s tau3 + h, and
+G=h^2-Ahs+Bs^2.
 """
 
 from __future__ import annotations
@@ -191,8 +197,15 @@ def main() -> None:
 
     s = delta.b1.coeff_of_power("tau3", 1)
     h = delta.b1.coeff_of_power("tau3", 0)
+    a_coeff = delta.b0.coeff_of_power("tau3", 1)
+    b_coeff = delta.b0.coeff_of_power("tau3", 0)
+    g_gate = h * h - a_coeff * h * s + b_coeff * s * s
+    multiplier = s * tau + a_coeff * s - h
+    remainder_identity = s * s * delta.b0 - delta.b1 * multiplier - g_gate
+    assert_equal(remainder_identity, Poly.zero(), "G cleared-remainder identity")
 
     print("delta_identity_ok=True")
+    print("g_remainder_identity_ok=True")
     print(f"Delta0_deg_tau3={delta.b0.degree_in('tau3')}")
     print("Delta0_tau3^2_coeff=1")
     print(f"Delta1_deg_tau3={delta.b1.degree_in('tau3')}")

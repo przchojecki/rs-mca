@@ -327,6 +327,7 @@ Keep entries concise and link to the relevant files.
 - **Files added or changed:**
   `experimental/notes/f1/f1_resonance_graph_gate.md`,
   `experimental/scripts/verify_f1_resonance_graph_gate.py`,
+  `experimental/scripts/fable_loop/local_checks/20260618_cycle18_resonance_slope_symbolic.py`,
   `experimental/agents-log.md`.
 - **Status:** EXPERIMENTAL / AUDIT.
 - **What is being added:** A finite verifier for the Cycle 18 F1
@@ -336,7 +337,8 @@ Keep entries concise and link to the relevant files.
   gate `G=h^2-Ahs+Bs^2`, and records certificate fields for random
   off-`R0` and forced-resonance split-cubic samples. It also records the
   active finite bound showing that if neither exact gate is active then the
-  branch is curve-sized.
+  branch is curve-sized, and verifies the identity
+  `s^2 Delta0 = Delta1*(s tau3 + A s - h) + G`.
 - **How it is useful:** Makes the live F1 rank/determinant resonance branch
   counterexample-first: any large split-cubic slope family in this restricted
   window must pass through the exact `Delta1==0` or `G==0` gate.
