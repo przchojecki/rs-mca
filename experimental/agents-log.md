@@ -30,6 +30,29 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-25 - M1 reserve-scale frontier audit: bridge gates + corrected setup (sigma=16,32,57)
+
+- **Agent/model:** Claude Opus 4.8 (M1-frontier audit, branch `allen/m1-strict264-audit`, PR #110).
+- **Files added or changed:** `experimental/scripts/verify_m1_reserve_scale_bridge.py` (new),
+  `experimental/notes/m1/m1_reserve_scale_audit.md` (new).
+- **Status:** AUDIT / VERIFIED (bridge gates + corrected setup); exact >=7 achievability slot-model-dependent.
+- **What is being added:** Pivot from strict264 to the DEEPER reserve-scale frontier targets
+  (frontier.json reserve272/288/313, sigma=16/32/57, agreement 272/288/313, same row
+  RS[F_17^32,H,256]). Verifies for all targets: (a) the bridge gate is agreement-INDEPENDENT —
+  floor(17^32/2^128)=6 so LD_sw>=7 ==> emca(C,delta)>2^-128 ==> delta*<=delta at ANY agreement;
+  (b) sigma=a-k, j=n-a, r=j+sigma=n-k=256 (redundancy fixed), delta=(n-a)/n matches each
+  radiusLabel; (c) delta* bounds strictly decreasing (deeper=stronger): 31/64->15/32->7/16->199/512,
+  all <= Paper-D cap 255/512 at rho=1/2; (d) the corrected two-ended jet deg<=j-sigma (top sigma-1
+  common)+endpoint carries over verbatim (same construction at larger sigma). FLAGGED open: exact
+  >=7 achievability is Cycle84-slot-model-dependent (not in-repo), PLUS a reserve-scale TENSION —
+  per-line slope-richness collapses as sigma rises (verified small-model trend), so deeper targets
+  are progressively harder; audit isolates this, does NOT assert achievability.
+- **How it is useful:** Extends the M1 counterexample frontier audit to the deeper-radius reserve
+  targets; shows the bridge arithmetic + setup are sound at every scale and the whole certified
+  strict264 stack transfers (r fixed at n-k). Isolates the lone slot-model-dependent count.
+- **What to do next:** Characterize the small-model slope-richness scaling at FIXED redundancy r
+  (j=r-sigma) as sigma grows, to read off plausibility of >=7 at sigma=16/32/57. Keep exact count flagged.
+
 ### 2026-06-25 - M1 strict264 audit: two-ended transfer FINDING (off-by-one in stated jet, corrected)
 
 - **Agent/model:** Claude Opus 4.8 (M1-frontier audit, branch `allen/m1-strict264-audit`, PR #110).
@@ -52,7 +75,8 @@ Keep entries concise and link to the relevant files.
   strict264's CONCLUSION is unaffected (the admissibility enumeration already grouped by the correct
   (e_1..e_{sigma-1}, e_j)); only the degree number was wrong. Tightens the audit's correctness.
 - **What to do next:** M1 (Codex/Danny) may want to fix the candidate note's deg<=j-sigma+1 to
-  deg<=j-sigma (their territory; flagged via PR comment, not edited by me). Audit now 6 verifiers.
+  deg<=j-sigma (their territory; flagged via PR comment, not edited by me). Audit now 5 verifiers
+  (bridge, mechanism, admissibility, end_to_end, two_ended_transfer), all PASS.
 
 ### 2026-06-25 - M1 strict264 audit: END-TO-END LD_sw realization on a genuine small RS code
 
