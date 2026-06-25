@@ -1699,6 +1699,14 @@ def clean_cycle_rank_profile() -> dict:
         coefficient_dimensions = [
             k - edge_size for edge_size in edge_sizes
         ]
+        max_coefficient_dimension = max(coefficient_dimensions)
+        max_coefficient_indices = [
+            idx
+            for idx, dimension in enumerate(coefficient_dimensions)
+            if dimension == max_coefficient_dimension
+        ]
+        comparable_pivot_indices = []
+        monicity_fallback_pivot_indices = []
         for pivot in range(cycle_len):
             nonpivot_block_count = 1
             chosen_points = 0
@@ -1729,6 +1737,7 @@ def clean_cycle_rank_profile() -> dict:
             )
             comparable_coefficient_factor = monicity_coefficient_factor
             if coefficient_dimensions[pivot] <= coefficient_dimensions[reference]:
+                comparable_pivot_indices.append(pivot)
                 shell_factor = comparable_root_sharing_shell_factor(
                     p,
                     coefficient_dimensions[pivot],
@@ -1743,6 +1752,8 @@ def clean_cycle_rank_profile() -> dict:
                     monicity_coefficient_factor,
                     comparable_fraction.numerator,
                 )
+            else:
+                monicity_fallback_pivot_indices.append(pivot)
             all_edge_comparable_syzygy_count_bound += (
                 comparable_coefficient_factor * nonpivot_block_count
             )
@@ -1890,6 +1901,11 @@ def clean_cycle_rank_profile() -> dict:
                 "all_edge_expected_selected_rank": all_edge_expected_selected_rank,
                 "all_edge_expected_common_dim": all_edge_expected_common_dim,
                 "all_edge_disjoint_block_count": all_edge_disjoint_block_count,
+                "coefficient_dimensions": coefficient_dimensions,
+                "max_coefficient_dimension": max_coefficient_dimension,
+                "max_coefficient_indices": max_coefficient_indices,
+                "comparable_pivot_indices": comparable_pivot_indices,
+                "monicity_fallback_pivot_indices": monicity_fallback_pivot_indices,
                 "all_edge_full_rank_selected_bound": (
                     all_edge_full_rank_selected_bound
                 ),
@@ -2123,6 +2139,36 @@ def clean_cycle_rank_profile() -> dict:
         "all_edge_comparable_hybrid_saves": all(
             row["all_edge_comparable_hybrid_selected_bound"]
             <= row["all_edge_hybrid_selected_bound"]
+            for row in rows
+        ),
+        "comparable_pivots_cover_all_except_unique_max": all(
+            (
+                row["monicity_fallback_pivot_indices"]
+                == (
+                    row["max_coefficient_indices"]
+                    if len(row["max_coefficient_indices"]) == 1
+                    else []
+                )
+            )
+            for row in rows
+        ),
+        "comparable_pivot_count_formula_holds": all(
+            len(row["comparable_pivot_indices"])
+            == row["cycle_len"]
+            - (1 if len(row["max_coefficient_indices"]) == 1 else 0)
+            for row in rows
+        ),
+        "unique_smallest_edge_matches_unique_fallback": all(
+            (
+                len(
+                    [
+                        edge_size for edge_size in row["edge_sizes"]
+                        if edge_size == row["min_edge_size"]
+                    ]
+                )
+                == 1
+            )
+            == (len(row["monicity_fallback_pivot_indices"]) == 1)
             for row in rows
         ),
         "all_edge_comparable_syzygy_clears_non_small_pair_examples": all(
@@ -4099,6 +4145,15 @@ def run() -> dict:
         ],
         "clean_cycle_comparable_hybrid_saves": clean_cycles[
             "all_edge_comparable_hybrid_saves"
+        ],
+        "clean_cycle_comparable_pivot_coverage": clean_cycles[
+            "comparable_pivots_cover_all_except_unique_max"
+        ],
+        "clean_cycle_comparable_pivot_count": clean_cycles[
+            "comparable_pivot_count_formula_holds"
+        ],
+        "clean_cycle_unique_small_edge_fallback": clean_cycles[
+            "unique_smallest_edge_matches_unique_fallback"
         ],
         "clean_cycle_comparable_syzygy_clears": clean_cycles[
             "all_edge_comparable_syzygy_clears_non_small_pair_examples"

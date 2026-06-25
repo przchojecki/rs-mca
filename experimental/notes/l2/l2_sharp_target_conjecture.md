@@ -1837,6 +1837,27 @@ factor `C_t(L_{j != t})` for each fixed nonpivot edge tuple, then sum over
 the same nonpivot edge choices. The monicity-only bound remains valid, so one
 may take the minimum of the two upper bounds.
 
+The comparable-dimension hypothesis fails for at most one pivot.
+
+**Corollary (all-pivot coverage except a unique smallest edge).** Select all
+edges of a clean cycle and write `d_i=k-e_i`. For each pivot `t`, choose a
+nonpivot reference `u(t)` with maximal `d_u` among `u != t`. Then the
+comparable-dimension marked-syzygy bound applies to pivot `t` unless `d_t` is
+the unique maximum of the list `(d_i)_i`.
+
+Equivalently, the root-sharing improvement applies to every pivot unless the
+edge `E_t` is the unique smallest edge overlap. If the smallest edge size
+occurs at least twice, every pivot admits a comparable-dimension reference.
+Thus the all-edge marked-syzygy bound may be root-sharing-refined at all
+pivots except possibly one unique-smallest-edge pivot, where the monicity-only
+factor remains a valid fallback.
+
+*Proof.* The chosen reference has dimension
+`d_{u(t)}=max_{u != t}d_u`. The condition `d_t<=d_{u(t)}` fails exactly when
+`d_t` is strictly larger than every other `d_u`, i.e. when it is the unique
+maximum. Since `d_i=k-e_i`, unique maximum `d_i` is the same as unique minimum
+edge size `e_i`.
+
 The root and disjointness gate is also purely algebraic.
 
 **Corollary (domain-locator gate for forced pivots).** Let

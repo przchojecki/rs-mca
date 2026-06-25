@@ -266,7 +266,10 @@ Keep entries concise and link to the relevant files.
   monicity-only pivot factor `q^{d_t-1}` is replaced by a binomial-shell cost
   of order `O(e_u^{max(d_t-2,0)})`; this is now lifted to a tuple-level
   comparable-dimension marked-syzygy bound and wired into the clean-cycle
-  verifier as a drop-in replacement for the monicity-only `B_mark` factor. Combining
+  verifier as a drop-in replacement for the monicity-only `B_mark` factor.
+  The comparable-dimension condition covers every pivot except possibly the
+  unique maximum `d_i`, equivalently a unique smallest edge overlap; the
+  verifier records this all-pivot coverage/fallback criterion. Combining
   the pivot, monic, and domain gates gives a
   marked selected-syzygy tuple bound; the verifier checks that this general
   formula exactly reproduces the earlier rank-deficient necklace count
