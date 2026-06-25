@@ -30,6 +30,34 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-25 - M1 strict264 audit: σ=8 two-ended ADMISSIBILITY + slope-richness drop verified
+
+- **Agent/model:** Claude Opus 4.8 (M1-frontier audit, branch `allen/m1-strict264-audit`, PR #110).
+- **Files added or changed:** `experimental/scripts/verify_m1_strict264_admissibility.py`,
+  `experimental/notes/m1/m1_strict264_audit.md` (admissibility item 3 + survivor-combinatorics
+  item 4 + interim verdict).
+- **Status:** AUDIT / PROVED-by-enumeration (admissibility + per-line richness drop);
+  exact count slot-model-dependent.
+- **What is being added:** Small-model audit (F_97, order-16 D, β∉D, j=5, σ=3; 4368 J,
+  64 multi-member classes) of the σ=8 two-ended construction's core algebra: (a) the
+  common parity-check identity ℓ(P_J·A)=A(β) for every J and every A (deg<σ), where ℓ is
+  the two-ended triangular recovery (endpoint [X^0]=c·a_0 → a_0; top [X^{j+t}] →
+  back-substitute a_{σ-1..1}); diagonal (c,1,…,1) ⟹ invertible (needs only c≠0). (b) ℓ is
+  COMMON across a fixed-jet class — uses only shared (e_1..e_{σ-1},c,β); verified on all 64
+  classes the same ℓ serves every member with distinct slopes z_J=-1/P_J(β). (c) σ=8
+  structural consistency: deg(P_J−P_J')≤241, selected degrees {0,249,…,255} (|·|=8),
+  j+1=249≤r=256 (noncontainment). Plus a slope-richness sweep showing the per-line image of
+  the count drop: at fixed (p,m,j) the max distinct slopes one common line carries collapses
+  σ=2→σ=3 (e.g. (193,32,5): 44→3) — the per-line shadow of the global ~5e10(σ=7)→O(1)(σ=8).
+- **How it is useful:** Certifies the strict264 obstruction is structurally admissible at the
+  deployed (j,σ,r)=(248,8,256), not just qualitatively plausible. Closes the audit's
+  admissibility layer; isolates the lone remaining gap (exact ≥7/2187) as Cycle84-slot-model
+  dependent (rejected archive #96, not in-repo).
+- **What to do next:** Audit verdict is interim-complete (everything checkable passes). If the
+  Cycle84 7-slot spec ever lands in-repo, recompute the exact survivor count; otherwise the
+  '7' stays flagged as the single slot-model-dependent number. Optionally post a judicious
+  verified audit comment on PR #110 / Przemek's frontier.
+
 ### 2026-06-25 - M1 strict264 audit: retained-slope mechanism verified (count drops with slack)
 
 - **Agent/model:** Claude Opus 4.8 (M1-frontier audit, branch `allen/m1-strict264-audit`, PR #110).

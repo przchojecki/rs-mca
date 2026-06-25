@@ -64,22 +64,59 @@ Cycle84 slots; the `≥7` minimal target is the conservative survivor count.
    `P_J(β) ↔` distinct slope) is checked. The *exact* survivor count at `σ=8`
    for the real row is governed by how the 8 constraints meet the 7-slot Cycle84
    combinatorics — see item 3.
-3. **The count ≥7 at the deployed parameters** — depends on the **Cycle84
-   seven-slot color-filtered model**, whose spec is NOT in-repo (it lived in the
-   rejected archive `#96`). So the exact "7" (or `2187`) cannot be recomputed
-   here from first principles; this audit checks the mechanism + admissibility and
-   flags the count as slot-model-dependent (same honest boundary as the Cycle120
-   numerator `N`).
+3. **The σ=8 two-ended ADMISSIBILITY (small-model, L1-free) — DONE**
+   (`verify_m1_strict264_admissibility.py`). Full enumeration (`F_97`, order-16
+   `D`, `β` a non-`D` point, `j=5`, `σ=3`) verifies the construction's core algebra:
+   * **The common parity-check identity** `ℓ(P_J·A) = A(β)` for every `J` and every
+     `A` with `deg A < σ`, where `ℓ` is the *two-ended triangular recovery*: the
+     endpoint coefficient `[X^0](P_J A) = c·a_0` recovers `a_0`, and the top
+     selected coefficients `[X^{j+t}](P_J A) = a_t + Σ_{i>t}(-1)^{i-t}e_{i-t}a_i`
+     (`t=1..σ-1`) back-substitute `a_{σ-1},…,a_1`. Diagonal `(c,1,…,1)` ⟹ invertible
+     (needs only `c≠0` — the nonzero endpoint).
+   * **`ℓ` is common across a fixed-jet class:** it uses only the shared
+     `(e_1..e_{σ-1}, c, β)`, so one `ℓ` serves every `J` in the class. Verified on
+     all 64 multi-member classes — the *same* `ℓ` recovers `A(β)` from every member,
+     and the bad slopes `z_J = -1/P_J(β)` are distinct across the class.
+   * **σ=8 structural consistency:** `deg(P_J−P_J') ≤ j−σ+1 = 241`, selected degrees
+     `{0,249,…,255}` (exactly `σ=8` of them), `j+1 = 249 ≤ r = 256` (noncontainment).
+   The construction is therefore admissible at the deployed `(j,σ,r)=(248,8,256)`.
+4. **Survivor combinatorics — PARTIAL (checkable part DONE; exact count NOT).**
+   The *per-line* image of the count drop is verified
+   (`verify_m1_strict264_admissibility.py`, slope-richness table): at fixed `(p,m,j)`
+   the maximum number of distinct slopes one common line can carry **collapses** as
+   slack `σ` rises by one — e.g. `(193,32,5)`: `σ=2 → 44` slopes, `σ=3 → 3`. This is
+   the per-line shadow of the global `~5·10^10` (σ=7) `→` `O(1)` (σ=8) drop. The
+   **exact count ≥7 / `2187 = 3^7`** at the deployed parameters depends on the
+   **Cycle84 seven-slot color-filtered model**, whose spec is NOT in-repo (rejected
+   archive `#96`). So the exact "7" (or `2187`) cannot be recomputed here from first
+   principles; this audit certifies the mechanism + admissibility and flags the count
+   as slot-model-dependent (same honest boundary as the Cycle120 numerator `N`).
 
 ## Honest scope
-- VERIFIED: the M2-bridge gate (7 slopes ⟹ `>2^-128`, `δ*≤31/64`) and the slack-8
-  two-ended parameters.
-- TO AUDIT: the retained-slope mechanism (count drops with slack) on small models,
-  and the σ=8 two-ended admissibility (degree/endpoint conditions).
-- OUT OF SCOPE (needs the rejected-archive slot spec): the exact survivor count
-  `≥7` / `2187` for the actual `F_17^32` row.
+- **VERIFIED (arithmetic):** the M2-bridge gate (7 slopes ⟹ `>2^-128`, `δ*≤31/64`)
+  and the slack-8 two-ended parameters `(j,σ,r)=(248,8,256)`.
+- **VERIFIED (mechanism, small-model):** the retained-slope count drops with slack
+  (`10→2→1→1`, `verify_m1_strict264_mechanism.py`) and its per-line image — slope
+  richness collapses `σ=2 → σ=3` (`verify_m1_strict264_admissibility.py`).
+- **VERIFIED (admissibility, small-model):** the σ=8 two-ended construction's algebra
+  — common parity-check identity `ℓ(P_J·A)=A(β)`, invertible triangular recovery,
+  one common `ℓ` per fixed-jet class with distinct slopes, and the σ=8 degree /
+  endpoint / noncontainment constraints (`verify_m1_strict264_admissibility.py`).
+- **OUT OF SCOPE (needs the rejected-archive slot spec):** the exact survivor count
+  `≥7` / `2187` for the actual `F_17^32` row — slot-model-dependent.
+
+## Audit verdict (interim)
+The strict264 obstruction is **structurally sound and admissible**: every checkable
+layer — the bridge arithmetic, the slack-8 parameters, the retained-slope drop
+mechanism, and the two-ended common-`ℓ` construction at `(248,8,256)` — passes
+independent verification. The single remaining gap is the *exact* survivor count
+`≥7`, which is governed by the Cycle84 7-slot model not present in the repo. The
+audit neither confirms nor refutes the precise "7"; it certifies everything around
+it and isolates the one slot-model-dependent number.
 
 ## Reproducibility
 ```bash
 python3 experimental/scripts/verify_m1_strict264_bridge.py
+python3 experimental/scripts/verify_m1_strict264_mechanism.py
+python3 experimental/scripts/verify_m1_strict264_admissibility.py
 ```
