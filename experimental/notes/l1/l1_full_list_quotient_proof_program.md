@@ -222,6 +222,60 @@ by stratified codegree reductions: any later argument may sum over agreement
 sizes using this proved Johnson tail wherever the punctured or unpunctured
 profile lies inside the ordinary Johnson region.
 
+### Punctured Profile-Tail Form
+
+The same statement holds on every punctured evaluation set.  Let `A subset H`
+have size `N`, let `U_A : A -> F_q`, and consider distinct codewords in the
+punctured code obtained by restricting degree-`<k` polynomials to `A`.  Put
+
+```text
+N_A,>=a(U_A) = #{ c in RS[A,k] : |{x in A : U_A(x)=c(x)}| >= a },
+N_A,=a(U_A)  = #{ c in RS[A,k] : |{x in A : U_A(x)=c(x)}| = a }.
+```
+
+If `a^2 > N(k-1)`, then
+
+```text
+N_A,>=a(U_A) <= N(N-k+1) / (a^2 - N(k-1)),
+N_A,=a(U_A)  <= N(N-k+1) / (a^2 - N(k-1)).
+```
+
+If `2a > N+k-1`, then `N_A,>=a(U_A) <= 1`.
+
+This is not a new proof: it is Theorem J applied to the evaluation domain
+`A`.  It is recorded separately because punctured domains are the natural
+objects in codegree decompositions and interleaved-list reductions.
+
+### Abel Profile Ledger
+
+Let
+
+```text
+T(a)=N_{>=a}(U),        E(a)=N_{=a}(U)
+```
+
+for `a=s,...,n`, and let `w(a)` be any nondecreasing nonnegative weight on
+this interval.  Then
+
+```text
+sum_{a=s}^n E(a) w(a)
+  = T(s)w(s) + sum_{a=s+1}^n T(a)(w(a)-w(a-1)).
+```
+
+The same identity holds on a punctured domain `A` with `n` replaced by `N`.
+Consequently, whenever a stratified reduction charges each listed codeword by
+a monotone cost depending only on its agreement size, it may use the Johnson
+tail bounds above for every agreement level in the ordinary Johnson region and
+leave only the genuinely sub-Johnson levels to the non-pairwise L1 machinery.
+
+The identity is just summation by parts: since
+
+```text
+E(a)=T(a)-T(a+1),        T(n+1)=0,
+```
+
+telescoping gives the displayed formula.
+
 ## First Lemma Target
 
 The first obstruction family isolated by the falsification scans is a

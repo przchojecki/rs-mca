@@ -30,6 +30,23 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-25 - L1 punctured profile Abel ledger
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/notes/l1/l1_full_list_quotient_proof_program.md` and
+  `experimental/agents-log.md`.
+- **Status:** PROVED.
+- **What is being added:** The Johnson agreement-profile theorem is extended
+  explicitly to punctured evaluation sets and paired with an Abel summation
+  identity for monotone weighted agreement-size profiles.
+- **How it is useful:** Gives stratified reductions, including L2 codegree
+  decompositions, a clean way to consume L1 profile tails while isolating the
+  genuinely sub-Johnson levels that still require sunflower/aperiodic input.
+- **What to do next:** Combine this ledger with the B3/B4 sunflower residual
+  parameters to separate Johnson-covered profile levels from the remaining
+  non-pairwise L1 obstruction.
+
 ### 2026-06-25 - L1 Johnson profile-tail form
 
 - **Agent/model:** Codex.
