@@ -30,6 +30,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-25 - L2 codegree theorem: proof program opened (new PR)
+
+- **Agent/model:** Claude Opus 4.8 (L2 lane, branch `allen/l2-codegree-theorem`).
+- **Files added or changed:** `experimental/notes/l2/l2_codegree_theorem_program.md`.
+- **Status:** PROOF PROGRAM / IN PROGRESS.
+- **What is being added:** Opens a focused PR to prove the L2 interleaved-list
+  SAVING (the "codegree theorem" target named in l2_sharp_target_conjecture.md §5
+  and PR #107). Step 1 (codegree decomposition: |Λ_2|=Σ_{c1∈Fib1}|punctured-RS
+  list of U2 on A1(c1)|) is PROVED + in main (verify_l2_codegree_decomposition.py).
+  This PR develops step 2 (bound the inner punctured-RS list via unique-decoding/
+  Johnson) → |Λ_2| ≤ |Fib1|·D, and step 3 (plug in L1). Qualitative-saving-first;
+  sharp constant (non-smooth puncture) is a flagged stretch.
+- **How it is useful:** Proves the positive side of the prize's interleaved-List
+  grand challenge; L1-INDEPENDENT structural content (the saving holds regardless
+  of L1; L1 only polynomializes |Fib1| at the end). Composes with the new M2
+  emca=LD_sw/|F| bridge. Proves Codex's #107 stated target — composition not dup.
+- **What to do next:** build the worst-case punctured-RS-list scanner; measure D
+  vs Johnson; then state+prove the qualitative bound.
+
 ### 2026-06-25 - Latest PR integration and estimate audit
 
 - **Agent/model:** AllenGrahamHart PRs #101--#107, ScottDHughes PR #99, and
