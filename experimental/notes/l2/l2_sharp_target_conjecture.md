@@ -1126,6 +1126,38 @@ linear dependence among the evaluation functionals supported on
 `E union F`. Reed-Solomon evaluation functionals on at most `k` distinct
 points are independent, so this is impossible when `e+f<=k`.
 
+The incidence counts are exact in the MDS uniqueness range.
+
+**Corollary (small-support uniqueness for `N_e`).** Let `r([ell])` be the
+minimum size of a subset `R subset H` such that
+`[ell] in span{ev_x:x in R}`. If `e<r([ell])`, then `N_e([ell])=0`. If
+`r([ell])=r`, `e>=r`, and `r+e<=k`, then the minimal support `R` is unique and
+
+```text
+N_e([ell]) = binom(n-r,e-r)
+```
+
+In particular, for `e<=k/2`,
+
+```text
+N_e([ell]) <= binom(n-1,e-1)
+```
+
+for every projective functional `[ell]`.
+
+*Proof.* The case `e<r([ell])` is the definition of minimal support. Assume
+now that `e>=r` and `r+e<=k`. If `R` and `R'` were two distinct minimal
+supports of size `r`, then the two representations would give a nontrivial
+dependence on `R union R'`, whose size is at most `2r<=r+e<=k`; this
+contradicts MDS independence. Thus `R` is unique.
+
+Now let `E` be any `e`-set counted by `N_e([ell])`. Choose a support
+`T subset E` for a representation of `[ell]`. Since `|R union T|<=r+e<=k`,
+MDS independence again forces `T=R`, so `R subset E`. Conversely, every
+`e`-set containing `R` is counted. This gives the binomial formula. When
+`e<=k/2` and `[ell]` is counted at all, its minimal support has `r<=e`, so
+`r+e<=2e<=k`; the formula applies and is maximized at `r=1`.
+
 This formula gives a useful first lower bound without classifying all possible
 dependencies among the `W_i`.
 

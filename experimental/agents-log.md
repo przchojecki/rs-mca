@@ -200,7 +200,11 @@ Keep entries concise and link to the relevant files.
   rank-deficient edge-block tuples are bounded by
   `sum_[ell] prod_i N_{e_i}([ell])`; the verifier checks the small finite
   incidence profile over `F_7` and confirms that disjoint representations of
-  sizes summing to at most `k` are impossible. A two-edge lower bound now shows
+  sizes summing to at most `k` are impossible. The incidence counts are now
+  exact in the MDS uniqueness range: if `[ell]` has minimal support size `r`
+  and `e>=r`, `r+e<=k`, then `N_e([ell])=binom(n-r,e-r)`, so for
+  `e<=k/2` one always has `N_e([ell])<=binom(n-1,e-1)`. A two-edge lower
+  bound now shows
   `R_cyc >= k-max(0,s_2-k)`, where `s_2` is the minimum pair sum of edge
   sizes; in particular, if two edge overlaps have total size at most `k`, then
   `R_cyc=k`. Thus rank-deficient clean cycles can only occur in the

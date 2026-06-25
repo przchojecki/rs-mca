@@ -1603,6 +1603,58 @@ def functional_incidence_profile() -> dict:
         for functional, counts in representation_counts[1].items()
         if counts
     ]
+    minimal_support_size = {
+        functional: next(
+            (
+                size
+                for size in sorted(subsets_by_size)
+                if representation_counts[size][functional]
+            ),
+            None,
+        )
+        for functional in projective_functionals
+    }
+    small_support_formula_failures = []
+    small_support_bound_failures = []
+    for functional in projective_functionals:
+        min_size = minimal_support_size[functional]
+        if min_size is None:
+            continue
+        for size in subsets_by_size:
+            actual = representation_counts[size][functional]
+            if min_size + size <= k:
+                expected = (
+                    comb(n - min_size, size - min_size)
+                    if size >= min_size
+                    else 0
+                )
+                if actual != expected:
+                    small_support_formula_failures.append(
+                        {
+                            "functional": functional,
+                            "minimal_support": min_size,
+                            "size": size,
+                            "actual": actual,
+                            "expected": expected,
+                        }
+                    )
+            if 2 * size <= k:
+                bound = comb(n - 1, size - 1)
+                if actual > bound:
+                    small_support_bound_failures.append(
+                        {
+                            "functional": functional,
+                            "size": size,
+                            "actual": actual,
+                            "bound": bound,
+                        }
+                    )
+
+    minimal_support_distribution: dict[int | None, int] = {}
+    for min_size in minimal_support_size.values():
+        minimal_support_distribution[min_size] = (
+            minimal_support_distribution.get(min_size, 0) + 1
+        )
     domain_evaluations = {
         projective_normalize(
             tuple(pow(x, degree, p) for degree in range(k)), p
@@ -1617,10 +1669,21 @@ def functional_incidence_profile() -> dict:
         "projective_functional_count": len(projective_functionals),
         "expected_projective_functional_count": (p**k - 1) // (p - 1),
         "representation_count_distribution": distribution,
+        "minimal_support_distribution": {
+            "none" if size is None else str(size): count
+            for size, count in sorted(
+                minimal_support_distribution.items(),
+                key=lambda item: -1 if item[0] is None else item[0],
+            )
+        },
         "max_representation_counts": {
             size: max(counts.values())
             for size, counts in representation_counts.items()
         },
+        "small_support_formula_failures": small_support_formula_failures,
+        "small_support_formula_holds": not small_support_formula_failures,
+        "small_support_bound_failures": small_support_bound_failures,
+        "small_support_bound_holds": not small_support_bound_failures,
         "singleton_represented_count": len(singleton_represented),
         "domain_evaluation_count": len(domain_evaluations),
         "singleton_represented_are_domain_evaluations": set(singleton_represented)
@@ -2812,6 +2875,12 @@ def run() -> dict:
         and functional_incidence["singleton_represented_are_domain_evaluations"],
         "functional_incidence_small_disjoint_forbidden": functional_incidence[
             "small_disjoint_representations_forbidden"
+        ],
+        "functional_incidence_small_support_formula": functional_incidence[
+            "small_support_formula_holds"
+        ],
+        "functional_incidence_small_support_bound": functional_incidence[
+            "small_support_bound_holds"
         ],
         "kmm_grid_formula": all(d["interleaved_edges"] == d["grid_edges_at_n_min"] for d in designs),
         "rs_witness_creates_mass": witness["mass_creation"],
