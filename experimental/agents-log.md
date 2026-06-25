@@ -30,6 +30,29 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-25 - M1 reserve-scale audit: free-dimension non-degeneracy + corrected richness framing
+
+- **Agent/model:** Claude Opus 4.8 (M1-frontier audit, branch `allen/m1-strict264-audit`, PR #110).
+- **Files added or changed:** `experimental/scripts/verify_m1_reserve_scale_richness.py` (new),
+  `experimental/notes/m1/m1_reserve_scale_audit.md` (corrected open-question + status + repro).
+- **Status:** AUDIT / VERIFIED (free-dim non-degeneracy) + HONEST CORRECTION of an earlier framing.
+- **What is being added:** A fixed-redundancy (r=j+sigma) richness experiment that CORRECTS the
+  earlier 'reserve tension' (slope-richness collapses as sigma rises => deeper targets harder).
+  Two-sided honest result: (a) FIELD-INDEPENDENT — the free dimension free_dim=j-sigma=r-2sigma is
+  0 only at the degenerate sigma=r/2 (locator unique); reserve targets sit at free_dim=240/224/192/142
+  (ratios 0.94..0.55), FAR from 0, so the degenerate-uniqueness obstruction is RULED OUT (the
+  10->2->1->1 collapse cited earlier was the sigma~j degenerate limit, which reserve sigma do NOT
+  reach). (b) HONEST NEGATIVE — the small-model richness sweep is INCONCLUSIVE for the 17^32 row:
+  distinct slopes are F_p values so the count is field-capped (<=p<=257 << 17^32), and over tiny
+  domains it collapses to 1 while free_dim>0 (field/domain artifact, not structural). Two verify-first
+  catches this turn: my conclusion text initially overclaimed 'structural room for >=7 remains', and a
+  bogus 'max slopes <= |D|' check (distinct P_J(beta) are field values, bounded by p not |D|) — both fixed.
+- **How it is useful:** Replaces an overstated tension with the correct picture: reserve targets are
+  NOT structurally degenerate (ample free dimension), but the exact >=7 is genuinely beyond small-model
+  reach and stays Cycle84-slot-model-dependent. Keeps the audit honest about what it can/can't decide.
+- **What to do next:** Reserve audit checkable parts done (gate, setup, corrected jet, free-dim
+  non-degeneracy). Exact count slot-model-dependent. Consider strict264-2187 candidate or pivot to L2/X1.
+
 ### 2026-06-25 - M1 reserve-scale frontier audit: bridge gates + corrected setup (sigma=16,32,57)
 
 - **Agent/model:** Claude Opus 4.8 (M1-frontier audit, branch `allen/m1-strict264-audit`, PR #110).

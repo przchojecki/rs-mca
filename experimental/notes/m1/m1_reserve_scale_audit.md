@@ -1,9 +1,12 @@
 # M1 reserve-scale frontier audit: deeper slack targets (σ = 16, 32, 57)
 
-- **Status:** AUDIT / IN PROGRESS. The bridge gates and the corrected slack-σ
-  two-ended setup are VERIFIED for all three reserve targets; the "≥7 retained
-  slopes" achievability is the open audit question (slot-model-dependent, with an
-  added slope-richness tension that makes deeper targets progressively harder).
+- **Status:** AUDIT / CHECKABLE PARTS DONE. The bridge gates, the corrected slack-σ
+  two-ended setup, and the free-dimension non-degeneracy are VERIFIED for all three
+  reserve targets; the exact "≥7 retained slopes" achievability remains the open
+  question (Cycle84-slot-model-dependent, not in-repo). An earlier "slope-richness
+  tension makes deeper targets harder" framing was **corrected**: the reserve `σ` are
+  far from the degenerate `σ≈r/2` limit, so there is no structural obstruction; small
+  models are simply field/domain-capped and inconclusive (see the open-question section).
 - **Agent/model:** Claude Opus 4.8 (M1-frontier audit, branch `allen/m1-strict264-audit`, PR #110).
 - **Date:** 2026-06-25.
 - **Targets (Przemek's frontier `site/data/frontier.json`):** beyond `strict264-min`
@@ -41,32 +44,46 @@ deeper targets trade co-support `j` for slack `σ`.
    end-to-end LD_sw transfer on a genuine RS code) transfers verbatim to each reserve
    scale — it is the *same construction* at larger `σ`, with `r` fixed.
 
-## The open question (slot-model-dependent + a real tension)
+## The open question (slot-model-dependent) — and a corrected framing
 
 The exact **≥7 achievability** at each reserve scale is governed by the **Cycle84
 seven-slot color-filtered model**, whose spec is NOT in-repo (rejected archive `#96`)
 — the same boundary as strict264 and the Cycle120 numerator `N`.
 
-**Reserve-scale tension (new, and the reason these are nontrivial):** the per-line
-slope-richness *collapses* as slack `σ` rises (verified small-model trend,
-`verify_m1_strict264_admissibility.py` slope-richness table and
-`verify_m1_strict264_mechanism.py` `10→2→1→1`). So the deeper targets are
-progressively **harder**: whether `≥7` distinct retained slopes survive at `σ=16`,
-`32`, `57` is exactly what this audit isolates. This audit does **not** assert
-achievability; it certifies the gate + setup and flags the count.
+**Corrected framing (`verify_m1_reserve_scale_richness.py`).** An earlier draft of
+this note claimed a "reserve-scale tension": that slope-richness *collapses* as `σ`
+rises, making deeper targets progressively harder. A fixed-redundancy experiment
+shows that framing was **overstated**:
+- **Field-independent fact:** the free dimension of a fixed-jet class is
+  `free_dim = j−σ = r−2σ`, which is `0` only at the degenerate limit `σ=r/2`
+  (`j=σ`, the locator forced unique). The reserve targets sit at
+  `free_dim = 240, 224, 192, 142` (ratios `0.94, 0.88, 0.75, 0.55`) — all far from
+  `0`. So the **degenerate-uniqueness obstruction is ruled out**; the `10→2→1→1`
+  collapse cited earlier was the `σ→j` degenerate limit, which the reserve `σ` do
+  **not** reach.
+- **Honest negative:** the small-model richness sweep is **inconclusive** for the
+  real row. Distinct slopes are values in `F_p`, so the count is field-capped
+  (`≤ p ≤ 257 ≪ 17^32`), and over the tiny domains used it collapses to `1` while
+  `free_dim` is still `> 0` — a field/domain artifact, not a structural law. A
+  `512`-point smooth domain over `F_{17^32}` is far beyond what is enumerable here.
+
+**Net:** the reserve targets are **not** structurally degenerate (free dimension is
+ample), but neither the small model nor any in-repo computation can establish or
+refute the exact `≥7`; that remains **Cycle84-slot-model-dependent**. This audit
+certifies the gate + setup, rules out the degenerate obstruction, and flags the
+count — it does **not** assert achievability.
 
 ## Next audit steps
 
-- Characterize the small-model slope-richness scaling at **fixed redundancy** `r`
-  (so `j=r−σ`), as `σ` grows toward `r/2` and beyond, to give a plausibility read on
-  whether `≥7` can survive at each reserve `σ` (subject to field/domain size). The
-  real row has a huge field `17^32`, so the binding constraint is the slot structure,
-  not the field — flag accordingly.
-- Keep the exact `≥7` count flagged as Cycle84-slot-model-dependent.
+- The checkable parts are done (gate, setup, corrected jet, free-dimension
+  non-degeneracy). The exact `≥7` count stays flagged as Cycle84-slot-model-dependent
+  (not in-repo). Remaining moves: audit the `strict264-2187` candidate's `2187=3^7`
+  shape if the slot spec ever lands, or pivot.
 
 ## Reproducibility
 ```bash
 python3 experimental/scripts/verify_m1_reserve_scale_bridge.py
+python3 experimental/scripts/verify_m1_reserve_scale_richness.py
 # shared strict264 stack (the construction is identical at larger sigma):
 python3 experimental/scripts/verify_m1_strict264_two_ended_transfer.py
 python3 experimental/scripts/verify_m1_strict264_end_to_end.py
