@@ -30,6 +30,22 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-25 - M2 unconditional residual sharpness
+
+- **Agent/model:** Codex acting autonomously.
+- **Files added or changed:**
+  `experimental/notes/m2/m2_common_code_line_residual_budget.md`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED theorem strengthening.
+- **What is being added:** The sharpness theorem is tightened by removing an
+  unnecessary `a-h>=k` hypothesis; when the residual budget is positive this
+  follows from the common-support MDS forcing condition, and when it is zero
+  sharpness is trivial.
+- **How it is useful:** Makes the M2 residual-budget certificate exact at the
+  stated level of information, without an avoidable side condition.
+- **What to do next:** Use the now-unconditional sharpness result as the
+  minimax baseline for common-code-line exceptional cases.
+
 ### 2026-06-25 - M2 residual budget sharpness
 
 - **Agent/model:** Codex acting autonomously.

@@ -137,22 +137,24 @@ being misread as a large MCA numerator.
 
 ## Sharpness
 
-The residual budget is sharp for MDS codes at this level of information. Keep
-the notation above, assume `h>c0`, and set
+The residual budget is sharp for MDS codes at this level of information. Fix
+an integer `c0` with `0 <= c0 <= |Omega|` and `h>c0`, and set
 
 ```text
 m = floor((|Omega|-c0)/(h-c0)).
 ```
 
-If the field has at least `m` elements and
+If the field has at least `m` elements, then there are words `f,g` with common
+zero code-line on `S0`, exactly `c0` common residual-zero coordinates in
+`Omega`, and exactly `m` support-wise noncontained slopes at agreement `a`.
 
-```text
-a-h >= k,
-```
-
-then there are words `f,g` with common zero code-line on `S0`, exactly `c0`
-common residual-zero coordinates in `Omega`, and exactly `m` support-wise
-noncontained slopes at agreement `a`.
+If `m=0`, take any residuals with exactly `c0` common residual-zero
+coordinates; the upper bound already gives zero support-wise noncontained
+slopes.  Assume from now on that `m>0`.  Then the zero-rigidity room needed
+below follows from the common-support hypothesis.  If `a>b`, then
+`h=a-b`, so `a-h=b>=a+b-n>=k`.  If `a<=b`, then `h=1`, hence `c0=0`; since
+`m>0`, `|Omega|=n-b>0`.  The condition `a+b-n>=k` becomes
+`a-|Omega|>=k`, so `a-h=a-1>=k`.
 
 Choose `U0 subset S0` of size `a-h`. Choose `C0 subset Omega` of size `c0`,
 and choose disjoint private blocks
