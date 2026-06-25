@@ -1419,6 +1419,76 @@ Substituting `R_J=R` gives the rank-stratified contribution bound. The final
 display is the full selected-rank specialization with the trivial sequential
 upper bound for `C_J(R)`.
 
+The selected-rank strata have a concrete locator-syzygy form.
+
+**Corollary (locator-syzygy form of selected-rank defect).** For each selected
+edge `E_j`, write
+
+```text
+L_j(X)=prod_{x in E_j}(X-x).
+```
+
+Then `W_j=L_j F_q[X]_{<k-e_j}` inside `F_q[X]_{<k}`. The linear map
+
+```text
+Phi_J: direct_sum_{j in J} F_q[X]_{<k-e_j} -> F_q[X]_{<k},
+       (A_j)_j |-> sum_{j in J} L_j A_j
+```
+
+has image `sum_{j in J} W_j`, so
+
+```text
+R_J = rank Phi_J.
+```
+
+Its kernel is exactly the space of degree-bounded locator syzygies
+
+```text
+sum_{j in J} L_j A_j = 0,       deg A_j < k-e_j.
+```
+
+Consequently
+
+```text
+dim ker Phi_J = sum_{j in J}(k-e_j) - R_J.
+```
+
+If
+
+```text
+R_full = min(k, sum_{j in J}(k-e_j)),
+```
+
+then the selected-rank defect is exactly the syzygy excess:
+
+```text
+R_full-R_J
+ = dim ker Phi_J - max(0, sum_{j in J}(k-e_j)-k).
+```
+
+Thus lower selected-rank strata are not mysterious extra probability loss:
+they are precisely the loci where the edge locators admit more
+degree-bounded syzygies than the ambient dimension forces.
+
+In the fixed-length necklace case `e_j=k-1`, each `A_j` is a scalar. The
+syzygy condition becomes
+
+```text
+sum_{j in J} lambda_j L_j = 0,
+```
+
+so the selected-rank defect is exactly the locator-span dependency counted in
+the rank-deficient necklace lemma.
+
+*Proof.* The identity `W_j=L_j F_q[X]_{<k-e_j}` is just divisibility by the
+locator of the edge set. Therefore `Phi_J` is the direct-sum presentation of
+`sum_j W_j`, proving `R_J=rank Phi_J`. Its kernel consists precisely of tuples
+whose weighted locator sum vanishes, which gives the syzygy description and
+the kernel dimension formula. Subtracting the generic kernel dimension forced
+by mapping a space of dimension `sum_j(k-e_j)` into a `k`-dimensional target
+gives the displayed equality with `R_full-R_J`. The necklace specialization is
+the case `k-e_j=1` for every selected edge.
+
 The incidence counts are exact in the MDS uniqueness range.
 
 **Corollary (small-support uniqueness for `N_e`).** Let `r([ell])` be the

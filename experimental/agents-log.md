@@ -227,7 +227,13 @@ Keep entries concise and link to the relevant files.
   precisely the locator/vanishing-space dependency loci counted separately in
   the triangle and necklace lemmas. The verifier records that all current
   clean-cycle examples are full selected-rank and that the all-edge full-rank
-  sieve clears even the symmetric triangle example. The incidence
+  sieve clears even the symmetric triangle example. The lower-rank strata now
+  have an explicit locator-syzygy form: the map
+  `(A_j)_j -> sum_j L_j A_j`, with `deg A_j<k-e_j`, has image
+  `sum_j W_j`, so selected-rank defect is exactly syzygy-kernel excess beyond
+  the ambient dimension. The verifier adds a small `F_7` rank-deficient
+  necklace witness where the locator rank is `2<3` and the excess syzygy
+  dimension is `1`. The incidence
   counts are now exact in the MDS uniqueness range: if `[ell]` has minimal
   support size `r` and `e>=r`, `r+e<=k`, then
   `N_e([ell])=binom(n-r,e-r)`, so for

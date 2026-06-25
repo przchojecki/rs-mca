@@ -1406,6 +1406,12 @@ def clean_cycle_rank_profile() -> dict:
                 basis_poly = poly_mul(locator, monomial(power), p)
                 vanishing_basis.append(basis_poly + [0] * (k - len(basis_poly)))
         vanishing_sum_rank = matrix_rank_mod(vanishing_basis, p)
+        selected_domain_dim = sum(k - edge_size for edge_size in edge_sizes)
+        syzygy_kernel_dim = selected_domain_dim - vanishing_sum_rank
+        expected_generic_syzygy_kernel_dim = max(0, selected_domain_dim - k)
+        syzygy_kernel_excess = (
+            syzygy_kernel_dim - expected_generic_syzygy_kernel_dim
+        )
         dual_intersection_dim = evaluation_span_intersection_dimension(
             p, h_values, k, edge_blocks
         )
@@ -1552,6 +1558,12 @@ def clean_cycle_rank_profile() -> dict:
                 "two_edge_defect_upper_bound": two_edge_defect_upper_bound,
                 "two_edge_common_functional_dim": two_edge_common_functional_dim,
                 "vanishing_sum_rank": vanishing_sum_rank,
+                "selected_domain_dim": selected_domain_dim,
+                "syzygy_kernel_dim": syzygy_kernel_dim,
+                "expected_generic_syzygy_kernel_dim": (
+                    expected_generic_syzygy_kernel_dim
+                ),
+                "syzygy_kernel_excess": syzygy_kernel_excess,
                 "rank_defect": rank_defect,
                 "dual_intersection_dimension": dual_intersection_dim,
                 "cross_constraint_rank": cross_rank,
@@ -1693,6 +1705,14 @@ def clean_cycle_rank_profile() -> dict:
             row["vanishing_sum_rank"] == row["all_edge_expected_selected_rank"]
             for row in rows
         ),
+        "selected_syzygy_kernel_formula_holds": all(
+            row["syzygy_kernel_dim"]
+            == row["selected_domain_dim"] - row["vanishing_sum_rank"]
+            for row in rows
+        ),
+        "selected_syzygy_no_excess_on_examples": all(
+            row["syzygy_kernel_excess"] == 0 for row in rows
+        ),
         "all_edge_full_rank_tuple_bound_saves_on_examples": all(
             row["all_edge_full_rank_tuple_bound"] <= row["two_edge_tuple_bound"]
             for row in rows
@@ -1708,6 +1728,56 @@ def clean_cycle_rank_profile() -> dict:
             < row["all_edge_full_rank_relative_bound_to_diagonal"]["denominator"]
             for row in rows
         ),
+    }
+
+
+def locator_syzygy_witness_profile() -> dict:
+    """A small lower-rank selected-edge witness for the syzygy formulation."""
+    p, n, k = 7, 6, 3
+    h_values = subgroup(p, n)
+    edge_blocks = [set(block) for block in ((0, 1), (2, 5), (3, 4))]
+    locators = [
+        poly_from_roots(p, [h_values[idx] for idx in sorted(edge_block)])
+        for edge_block in edge_blocks
+    ]
+    locator_rows = [
+        locator + [0] * (k - len(locator))
+        for locator in locators
+    ]
+    vanishing_basis = []
+    for edge_block, locator in zip(edge_blocks, locators):
+        for power in range(k - len(edge_block)):
+            basis_poly = poly_mul(locator, monomial(power), p)
+            vanishing_basis.append(basis_poly + [0] * (k - len(basis_poly)))
+    selected_rank = matrix_rank_mod(vanishing_basis, p)
+    locator_rank = matrix_rank_mod(locator_rows, p)
+    selected_domain_dim = sum(k - len(edge_block) for edge_block in edge_blocks)
+    expected_full_rank = min(k, selected_domain_dim)
+    syzygy_kernel_dim = selected_domain_dim - selected_rank
+    expected_generic_kernel_dim = max(0, selected_domain_dim - k)
+    syzygy_kernel_excess = syzygy_kernel_dim - expected_generic_kernel_dim
+    common_functional_dim = k - selected_rank
+    expected_full_rank_common_dim = k - expected_full_rank
+    return {
+        "p": p,
+        "n": n,
+        "k": k,
+        "edge_blocks": [sorted(edge_block) for edge_block in edge_blocks],
+        "locators": locators,
+        "selected_domain_dim": selected_domain_dim,
+        "selected_rank": selected_rank,
+        "expected_full_rank": expected_full_rank,
+        "locator_rank": locator_rank,
+        "syzygy_kernel_dim": syzygy_kernel_dim,
+        "expected_generic_kernel_dim": expected_generic_kernel_dim,
+        "syzygy_kernel_excess": syzygy_kernel_excess,
+        "common_functional_dim": common_functional_dim,
+        "expected_full_rank_common_dim": expected_full_rank_common_dim,
+        "has_nontrivial_syzygy_excess": syzygy_kernel_excess > 0,
+        "rank_defect_equals_syzygy_excess": (
+            expected_full_rank - selected_rank == syzygy_kernel_excess
+        ),
+        "necklace_locator_rank_matches_selected_rank": locator_rank == selected_rank,
     }
 
 
@@ -2818,6 +2888,7 @@ def run() -> dict:
     full_rank_necklaces = full_rank_cyclic_necklace_profile()
     rank_deficient_necklaces = rank_deficient_cyclic_necklace_profile()
     clean_cycles = clean_cycle_rank_profile()
+    locator_syzygy_witness = locator_syzygy_witness_profile()
     functional_incidence = functional_incidence_profile()
     witness = realized_rs_k22()
     checks = {
@@ -3155,6 +3226,12 @@ def run() -> dict:
         "clean_cycle_all_edge_selected_rank_full": clean_cycles[
             "all_edge_selected_rank_full_on_examples"
         ],
+        "clean_cycle_selected_syzygy_formula": clean_cycles[
+            "selected_syzygy_kernel_formula_holds"
+        ],
+        "clean_cycle_selected_syzygy_no_excess": clean_cycles[
+            "selected_syzygy_no_excess_on_examples"
+        ],
         "clean_cycle_all_edge_tuple_saves": clean_cycles[
             "all_edge_full_rank_tuple_bound_saves_on_examples"
         ],
@@ -3190,6 +3267,15 @@ def run() -> dict:
         ],
         "functional_incidence_two_edge_disjoint_formula": functional_incidence[
             "two_edge_disjoint_incidence_formula_holds"
+        ],
+        "locator_syzygy_witness_has_excess": locator_syzygy_witness[
+            "has_nontrivial_syzygy_excess"
+        ],
+        "locator_syzygy_witness_rank_defect": locator_syzygy_witness[
+            "rank_defect_equals_syzygy_excess"
+        ],
+        "locator_syzygy_witness_necklace_rank": locator_syzygy_witness[
+            "necklace_locator_rank_matches_selected_rank"
         ],
         "kmm_grid_formula": all(d["interleaved_edges"] == d["grid_edges_at_n_min"] for d in designs),
         "rs_witness_creates_mass": witness["mass_creation"],
@@ -3267,6 +3353,7 @@ def run() -> dict:
         "full_rank_cyclic_necklace_profile": full_rank_necklaces,
         "rank_deficient_cyclic_necklace_profile": rank_deficient_necklaces,
         "clean_cycle_rank_profile": clean_cycles,
+        "locator_syzygy_witness_profile": locator_syzygy_witness,
         "functional_incidence_profile": functional_incidence,
         "realized_rs_k22": witness,
         "checks": checks,
@@ -3436,6 +3523,16 @@ def main(argv: list[str] | None = None) -> int:
             "  clean simple-cycle rank profile: "
             f"F_{clean_cycles['p']}, n={clean_cycles['n']}, "
             f"rows={clean_cycles['rows']}"
+        )
+        syz = result["locator_syzygy_witness_profile"]
+        print(
+            "  locator syzygy witness: "
+            f"F_{syz['p']}, n={syz['n']}, k={syz['k']}, "
+            f"blocks={syz['edge_blocks']}, locators={syz['locators']}, "
+            f"rank={syz['selected_rank']}, "
+            f"expected_full={syz['expected_full_rank']}, "
+            f"kernel={syz['syzygy_kernel_dim']}, "
+            f"excess={syz['syzygy_kernel_excess']}"
         )
         finc = result["functional_incidence_profile"]
         print(
