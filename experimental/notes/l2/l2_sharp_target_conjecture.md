@@ -1802,6 +1802,41 @@ low-rank term contributes
 
 Summing over `b`, and putting `s=b-r`, gives the displayed expression.
 
+This directly refines the marked-syzygy tuple bound.
+
+**Corollary (comparable-dimension marked-syzygy tuple bound).** Fix a pivot
+`t`, and suppose there is a nonpivot index `u != t` with `d_t<=d_u`. Put
+
+```text
+H_{t,u}=q^{-1} + (d_t-1)
+        + (1-q^{-1}) sum_{s=1}^{d_t-2}
+             (d_t-1-s) binom(e_u,s).
+```
+
+Then the pivot-`t` contribution to the marked selected-syzygy tuple bound is
+at most
+
+```text
+q^{sum_{j != t} d_j} H_{t,u}
+prod_{j != t} binom(n-s_{j,t},e_j),
+```
+
+with the same sequential disjoint nonpivot edge count as before. Therefore in
+the full marked-syzygy count one may replace the old pivot coefficient factor
+
+```text
+(q^{d_t}-1)/(q-1) q^{sum_{j != t}d_j-1}
+```
+
+by the minimum of this comparable-dimension root-sharing factor and the old
+monicity-only factor, for every pivot admitting such a reference nonpivot
+edge.
+
+*Proof.* Apply the comparable-dimension root-sharing bound to the coefficient
+factor `C_t(L_{j != t})` for each fixed nonpivot edge tuple, then sum over
+the same nonpivot edge choices. The monicity-only bound remains valid, so one
+may take the minimum of the two upper bounds.
+
 The root and disjointness gate is also purely algebraic.
 
 **Corollary (domain-locator gate for forced pivots).** Let

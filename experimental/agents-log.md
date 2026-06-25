@@ -264,7 +264,9 @@ Keep entries concise and link to the relevant files.
   witness this bound still improves the projective monicity bound. A direct
   root-sharing expansion now shows that, when `d_t<=d_u`, the old
   monicity-only pivot factor `q^{d_t-1}` is replaced by a binomial-shell cost
-  of order `O(e_u^{max(d_t-2,0)})`. Combining
+  of order `O(e_u^{max(d_t-2,0)})`; this is now lifted to a tuple-level
+  comparable-dimension marked-syzygy bound and wired into the clean-cycle
+  verifier as a drop-in replacement for the monicity-only `B_mark` factor. Combining
   the pivot, monic, and domain gates gives a
   marked selected-syzygy tuple bound; the verifier checks that this general
   formula exactly reproduces the earlier rank-deficient necklace count
