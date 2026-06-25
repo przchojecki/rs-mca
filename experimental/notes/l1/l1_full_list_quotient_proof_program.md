@@ -199,6 +199,29 @@ The remaining L1 difficulty is not ordinary pairwise packing; it is the
 sub-Johnson range where `s^2 <= n(k-1)`.  In that range the quotient ledger,
 sunflower reductions, and aperiodic extension counts below are genuinely needed.
 
+### Profile-Tail Form
+
+For `a>k`, let
+
+```text
+N_{>=a}(U) = #{ P : deg P < k and |A_P(U)| >= a },
+N_{=a}(U)  = #{ P : deg P < k and |A_P(U)| = a }.
+```
+
+Then the same proof gives, for every `a` with `a^2 > n(k-1)`,
+
+```text
+N_{>=a}(U) <= n(n-k+1) / (a^2 - n(k-1)),
+N_{=a}(U)  <= n(n-k+1) / (a^2 - n(k-1)).
+```
+
+If `2a > n+k-1`, then `N_{>=a}(U) <= 1`, and hence `N_{=a}(U) <= 1`.
+
+This is just Theorem J applied with threshold `s=a`, but it is the form needed
+by stratified codegree reductions: any later argument may sum over agreement
+sizes using this proved Johnson tail wherever the punctured or unpunctured
+profile lies inside the ordinary Johnson region.
+
 ## First Lemma Target
 
 The first obstruction family isolated by the falsification scans is a

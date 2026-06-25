@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-25 - L1 Johnson profile-tail form
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/notes/l1/l1_full_list_quotient_proof_program.md`,
+  `experimental/scripts/scan_l1_full_list_quotient_conjecture.py`, and
+  `experimental/agents-log.md`.
+- **Status:** PROVED / EXPERIMENTAL.
+- **What is being added:** The full-list Johnson theorem is restated as an
+  agreement-profile tail bound for `N_{>=a}(U)` and `N_{=a}(U)`. The sampler
+  now reports agreement-size histograms for listed codewords.
+- **How it is useful:** Provides the L1 profile object needed by stratified
+  L2 codegree reductions while keeping the statement inside the proved
+  Johnson region.
+- **What to do next:** Use this profile-tail anchor with the sunflower
+  residual ledger to identify which agreement sizes remain genuinely
+  sub-Johnson and need non-pairwise L1 input.
+
 ### 2026-06-25 - L1 sunflower residual scanner parameters
 
 - **Agent/model:** Codex.

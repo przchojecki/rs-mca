@@ -856,6 +856,10 @@ def sample_scan(
         ledger = empty_ledger(n)
         for agreement_mask in listed.values():
             ledger[stabilizer_order(agreement_mask, n)] += 1
+        agreement_size_histogram = Counter(
+            len(mask_to_exponents(agreement_mask, n))
+            for agreement_mask in listed.values()
+        )
         total = len(listed)
         primitive = ledger.get(1, 0)
         quotient = total - primitive
@@ -864,6 +868,10 @@ def sample_scan(
             "list_size": total,
             "primitive": primitive,
             "quotient_budget": quotient,
+            "agreement_size_histogram": dict(sorted(agreement_size_histogram.items())),
+            "max_agreement_size": (
+                max(agreement_size_histogram) if agreement_size_histogram else 0
+            ),
             "exact_stabilizer_counts": {
                 str(order): count for order, count in ledger.items() if count
             },
