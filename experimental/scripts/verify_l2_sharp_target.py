@@ -3094,6 +3094,8 @@ def residual_shape_scan_profile() -> dict:
         sigma = scan_case["sigma"]
         lower_band = k - sigma
         root_floor_constant = 2 * mu * (cycle_len - 2) * sigma - cycle_len * k
+        root_budget = -root_floor_constant
+        root_depth_threshold = root_budget - k
         pair_cap_clearance_lhs = 2 * (mu * (cycle_len - 2) - 1) * sigma
         pair_cap_clearance_rhs = (cycle_len - 1) * k
         pair_cap_predicts_empty = pair_cap_clearance_lhs >= pair_cap_clearance_rhs
@@ -3129,27 +3131,72 @@ def residual_shape_scan_profile() -> dict:
                 for deviation in negative_deviation_values
                 if deviation <= -spike - 2
             ]
+            root_depth_allowed_negative_values = [
+                deviation
+                for deviation in allowed_negative_values
+                if deviation <= root_depth_threshold
+            ]
+            root_depth_above_threshold_values = [
+                deviation
+                for deviation in allowed_negative_values
+                if deviation > root_depth_threshold
+            ]
             total_compatible = (
                 (cycle_len - 2) * spike + 2 * (cycle_len - 1)
                 <= cycle_len * sigma
             )
+            if not total_compatible or root_budget < 4:
+                root_depth_sector_size = 0
+            elif spike <= root_depth_threshold:
+                root_depth_sector_size = len(allowed_negative_values) ** (
+                    cycle_len - 1
+                )
+            else:
+                root_depth_sector_size = (
+                    len(allowed_negative_values) ** (cycle_len - 1)
+                    - len(root_depth_above_threshold_values) ** (cycle_len - 1)
+                )
             spike_height_rows.append(
                 {
                     "spike": spike,
                     "allowed_negative_values": allowed_negative_values,
                     "allowed_negative_count": len(allowed_negative_values),
+                    "root_depth_allowed_negative_count": len(
+                        root_depth_allowed_negative_values
+                    ),
                     "total_compatible": total_compatible,
                     "sector_size": (
                         len(allowed_negative_values) ** (cycle_len - 1)
                         if total_compatible
                         else 0
                     ),
+                    "root_depth_sector_size": root_depth_sector_size,
                 }
             )
         spike_height_search_size = (
             len(negative_deviation_values) ** cycle_len
             + cycle_len
             * sum(row["sector_size"] for row in spike_height_rows)
+        )
+        root_depth_all_negative_size = (
+            0
+            if root_budget < 4
+            else (
+                len(negative_deviation_values) ** cycle_len
+                - len(
+                    [
+                        deviation
+                        for deviation in negative_deviation_values
+                        if deviation > root_depth_threshold
+                    ]
+                )
+                ** cycle_len
+            )
+        )
+        root_depth_search_size = (
+            root_depth_all_negative_size
+            + cycle_len
+            * sum(row["root_depth_sector_size"] for row in spike_height_rows)
         )
         if cycle_len % 2 == 1:
             odd_lower_numerator = (
@@ -3232,6 +3279,7 @@ def residual_shape_scan_profile() -> dict:
                 }
             )
         centered_candidates = set()
+        root_depth_centered_candidates = set()
 
         def maybe_add_centered_candidate(deviations: tuple[int, ...]) -> None:
             adjacent_ok = all(
@@ -3251,10 +3299,28 @@ def residual_shape_scan_profile() -> dict:
                 tuple((k + deviation) // 2 for deviation in deviations)
             )
 
+        def maybe_add_root_depth_candidate(
+            deviations: tuple[int, ...]
+        ) -> None:
+            if root_budget < 4 or min(deviations) > root_depth_threshold:
+                return
+            adjacent_ok = all(
+                -2 * sigma <= deviations[idx - 1] + deviations[idx] < 0
+                for idx in range(cycle_len)
+            )
+            if not adjacent_ok:
+                return
+            if not odd_compatible:
+                return
+            root_depth_centered_candidates.add(
+                tuple((k + deviation) // 2 for deviation in deviations)
+            )
+
         for deviations in itertools.product(
             negative_deviation_values, repeat=cycle_len
         ):
             maybe_add_centered_candidate(deviations)
+            maybe_add_root_depth_candidate(deviations)
         for spike_index in range(cycle_len):
             for spike_row in spike_height_rows:
                 if not spike_row["total_compatible"]:
@@ -3265,7 +3331,9 @@ def residual_shape_scan_profile() -> dict:
                 ):
                     deviations_list = list(negative_deviations)
                     deviations_list.insert(spike_index, spike_row["spike"])
-                    maybe_add_centered_candidate(tuple(deviations_list))
+                    deviations = tuple(deviations_list)
+                    maybe_add_centered_candidate(deviations)
+                    maybe_add_root_depth_candidate(deviations)
         rows.append(
             {
                 "name": scan_case["name"],
@@ -3277,6 +3345,8 @@ def residual_shape_scan_profile() -> dict:
                 "candidate_count": candidate_count,
                 "examples": examples,
                 "root_floor_constant": root_floor_constant,
+                "root_budget": root_budget,
+                "root_depth_threshold": root_depth_threshold,
                 "pair_cap_clearance_lhs": pair_cap_clearance_lhs,
                 "pair_cap_clearance_rhs": pair_cap_clearance_rhs,
                 "pair_cap_predicts_empty": pair_cap_predicts_empty,
@@ -3305,9 +3375,15 @@ def residual_shape_scan_profile() -> dict:
                 * (sigma ** cycle_len),
                 "spike_height_rows": spike_height_rows,
                 "spike_height_search_size": spike_height_search_size,
+                "root_depth_all_negative_size": root_depth_all_negative_size,
+                "root_depth_search_size": root_depth_search_size,
                 "centered_candidate_count": len(centered_candidates),
                 "centered_matches_dimension_scan": (
                     centered_candidates == candidates
+                ),
+                "root_depth_candidate_count": len(root_depth_centered_candidates),
+                "root_depth_matches_dimension_scan": (
+                    root_depth_centered_candidates == candidates
                 ),
                 "all_candidates_in_balanced_window": all(
                     all(dimension in balanced_window for dimension in dimensions)
@@ -3346,6 +3422,11 @@ def residual_shape_scan_profile() -> dict:
                         for other_deviation in deviation_row["deviations"]
                         if other_deviation != deviation
                     )
+                    for deviation_row in deviation_rows
+                ),
+                "all_candidates_satisfy_root_depth": all(
+                    root_budget >= 4
+                    and min(deviation_row["deviations"]) <= root_depth_threshold
                     for deviation_row in deviation_rows
                 ),
                 "all_deviations_balanced": all(
@@ -3511,6 +3592,30 @@ def residual_shape_scan_profile() -> dict:
             row["candidate_count"] > 0
             and row["spike_height_search_size"] < row["checked"]
             for row in rows
+        ),
+        "root_depth_contains_candidates": all(
+            row["all_candidates_satisfy_root_depth"] for row in rows
+        ),
+        "root_depth_scan_matches_dimension_scan": all(
+            row["root_depth_matches_dimension_scan"] for row in rows
+        ),
+        "root_depth_scan_count_matches": all(
+            row["root_depth_candidate_count"] == row["candidate_count"]
+            for row in rows
+        ),
+        "root_depth_refines_spike_height": all(
+            row["root_depth_search_size"] <= row["spike_height_search_size"]
+            for row in rows
+        ),
+        "root_depth_has_strict_reduction": any(
+            row["candidate_count"] > 0
+            and row["root_depth_search_size"] < row["spike_height_search_size"]
+            for row in rows
+        ),
+        "root_depth_empty_when_budget_low": all(
+            row["candidate_count"] == 0
+            for row in rows
+            if row["root_budget"] < 4
         ),
         "pair_cap_clearance_holds": all(
             row["candidate_count"] == 0
@@ -5527,6 +5632,24 @@ def run() -> dict:
         ],
         "residual_shape_scan_centered_reduces": residual_shape_scan[
             "centered_scan_reduces_raw_search"
+        ],
+        "residual_shape_scan_root_depth_contains": residual_shape_scan[
+            "root_depth_contains_candidates"
+        ],
+        "residual_shape_scan_root_depth_matches": residual_shape_scan[
+            "root_depth_scan_matches_dimension_scan"
+        ],
+        "residual_shape_scan_root_depth_count": residual_shape_scan[
+            "root_depth_scan_count_matches"
+        ],
+        "residual_shape_scan_root_depth_refines": residual_shape_scan[
+            "root_depth_refines_spike_height"
+        ],
+        "residual_shape_scan_root_depth_strict": residual_shape_scan[
+            "root_depth_has_strict_reduction"
+        ],
+        "residual_shape_scan_root_depth_empty": residual_shape_scan[
+            "root_depth_empty_when_budget_low"
         ],
         "residual_shape_scan_pair_cap_clearance": residual_shape_scan[
             "pair_cap_clearance_holds"

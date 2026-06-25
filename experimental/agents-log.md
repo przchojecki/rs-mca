@@ -315,9 +315,11 @@ Keep entries concise and link to the relevant files.
   `(m-2)u+2(m-1)>m sigma`. The centered spike-height scan is now recorded as
   an exact equivalent certificate, with the same candidate set as the raw
   dimension-vector scan after applying the adjacent, root-floor, and parity
-  gates. The certificate is also monotone in arity: for fixed `m,k,sigma`,
-  candidate sets shrink as `mu` increases, so emptiness at `mu_0` certifies
-  emptiness for all larger arities.
+  gates. The root-floor gate is folded into this centered scan via the
+  root-depth threshold `min_i x_i <= mk-2mu(m-2)sigma-k`, with immediate
+  emptiness when the root budget is below `4`. The certificate is also
+  monotone in arity: for fixed `m,k,sigma`, candidate sets shrink as `mu`
+  increases, so emptiness at `mu_0` certifies emptiness for all larger arities.
   Combining
   the pivot, monic, and domain gates gives a
   marked selected-syzygy tuple bound; the verifier checks that this general

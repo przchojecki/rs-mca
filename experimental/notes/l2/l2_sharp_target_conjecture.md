@@ -3283,6 +3283,50 @@ centered search and the finite residual-shape search have the same candidate
 set under the displayed bijection, and the final clearance statement is the
 finite residual-shape certificate.
 
+The root-floor gate can be built into the centered sectors.
+
+**Corollary (root-depth refined centered certificate).** In the exact centered
+certificate, put
+
+```text
+B=m k - 2mu(m-2)sigma.
+```
+
+If `B<4`, the centered search is empty. If `B>=4`, the root-floor gate is
+equivalent to
+
+```text
+min_i x_i <= B-k.
+```
+
+Thus the all-negative sector may be restricted to vectors having at least one
+coordinate `<=B-k`. In a spike sector of height `u`, with negative alphabet
+`A_-(u)`, the remaining coordinates may be counted from
+
+```text
+|A_-(u)|^{m-1} - |{v in A_-(u): v>B-k}|^{m-1}
+```
+
+unless `u<=B-k`, in which case the spike itself already satisfies the
+root-depth condition and all `|A_-(u)|^{m-1}` choices remain. Together with
+the spike-height compatibility, this gives an exact root-depth-refined
+centered certificate equivalent to the finite residual-shape certificate.
+
+*Proof.* The centered root condition is
+
+```text
+2mu(m-2)sigma - m k + max(4,k+min_i x_i) <= 0,
+```
+
+or equivalently `max(4,k+min_i x_i)<=B`. If `B<4` this is impossible. If
+`B>=4`, it is equivalent to `k+min_i x_i<=B`, namely
+`min_i x_i<=B-k`. In the all-negative sector this simply requires at least
+one coordinate below the root-depth threshold. In a spike sector, either the
+spike value `u` is already below the threshold, or at least one of the
+negative coordinates must be below it; subtracting the choices with every
+negative coordinate `>B-k` gives the displayed count. The exactness follows
+from the exact centered residual-shape certificate.
+
 The finite certificate is monotone in the interleaving arity.
 
 **Corollary (arity monotonicity of residual-shape certificates).** Fix
