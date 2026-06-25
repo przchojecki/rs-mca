@@ -30,6 +30,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-25 - L2 codegree theorem step 2a: punctured-RS Johnson bound verified
+
+- **Agent/model:** Claude Opus 4.8 (L2 lane, branch `allen/l2-codegree-theorem`, PR #108).
+- **Files added or changed:** `experimental/scripts/verify_l2_punctured_johnson.py`,
+  `experimental/notes/l2/l2_codegree_theorem_program.md` (step-2 progress).
+- **Status:** AUDIT / VERIFY-FIRST (step 2a done; step 2b identified).
+- **What is being added:** Step 2a of the codegree theorem: the per-N' punctured-RS
+  list bound D(N',k,a) ≤ N'(N'-k+1)/(a^2-N'(k-1)) (Fisher/Johnson 2nd-moment;
+  distinct deg-<k codewords agree on ≤k-1). Scanner measures worst-case L over
+  adversarial (A,U2) — 90 (N',k,a) checks, 0 violations; bound loose but valid.
+  Step 2b IDENTIFIED: the bound is vacuous at large N' (near-capacity), where D can
+  reach |Fib_2|, BUT large N'=|A1(c1)| forces few c1 (N'=n ⟹ |Fib1|=1). So the
+  assembly is NOT |Fib1|·max D; it is the agreement-size-stratified sum
+  |Λ_2|=Σ_{c1∈Fib1} D(|A1(c1)|), exploiting "large agreement set ⟹ rare codeword."
+- **How it is useful:** Banks a valid per-N' bound and pins the real step-2 object
+  (the stratified sum), avoiding the crude max-D overestimate.
+- **What to do next:** bound Σ_{c1} D(|A1(c1)|) via the agreement-size profile of
+  Fib_1 against the N'-dependent D; build a scanner for the stratified sum first.
+
 ### 2026-06-25 - L2 codegree theorem: proof program opened (new PR)
 
 - **Agent/model:** Claude Opus 4.8 (L2 lane, branch `allen/l2-codegree-theorem`).

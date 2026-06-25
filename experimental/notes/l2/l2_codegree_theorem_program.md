@@ -77,9 +77,38 @@ and control the product of `D`'s across rows.
 - **Coordination.** This proves the target Codex named on #107 (their conjecture +
   `Quot_align_μ` budget; my codegree theorem). Composition, not duplication.
 
+## Step 2 progress (2026-06-25)
+
+**Step 2a — per-`N'` Johnson bound (DONE, verified).**
+`verify_l2_punctured_johnson.py` measures the worst-case inner list `L` over
+adversarial `(A, U2)` (`A` of size `N'`, random / glued / core-overlap words) and
+confirms across **90 `(N',k,a)` checks, 0 violations**:
+```
+   D(N',k,a) := max_{A,U2} L  ≤  N'(N'-k+1) / (a^2 - N'(k-1))   (when a^2 > N'(k-1)),
+   = 1 when a > (N'+k)/2 ;  = 1 at N'=a.
+```
+Derivation: distinct deg-`<k` codewords agree on `≤ k-1` pts, so the list's
+agreement sets are `≥ a`, pairwise `≤ k-1`; the Fisher/Johnson second-moment
+inequality gives the bound. (Loose but valid: measured `L` is often `≪` Johnson.)
+
+**Step 2b — the assembly is NOT `|Fib_1|·max D` (the real subtlety).** The Johnson
+bound is **vacuous at large `N'`** (the near-capacity prize regime: `a≈k`, `N'≈n`,
+so `a^2 < N'(k-1)`). There `D` can be as large as the full base list `|Fib_2|`.
+BUT large `N' = |A_1(c_1)|` forces **few such `c_1`**: at `N'=n` (`A_1(c_1)=H`,
+`c_1=U_1` a codeword) the row-1 fiber collapses to `|Fib_1|=1`. So the crude
+`|Λ_2| ≤ |Fib_1|·max_c D` loses the saving; the correct object is the
+**agreement-size-stratified sum**
+```
+   |Λ_2|  =  Σ_{c_1 ∈ Fib_1} D(|A_1(c_1)|),
+```
+exploiting the tradeoff "large agreement set ⟹ rare codeword." Bounding this sum
+(the agreement-size profile of `Fib_1` against the `N'`-dependent `D`) is the next
+increment. The `N'=a` end (`D=1`, many `c_1`) and the `N'=n` end (`D=|Fib_2|`, one
+`c_1`) both give small contributions; the interior is the work.
+
 ## Milestones (this PR)
-1. [ ] worst-case punctured-RS-list scanner + measured `D` vs Johnson.
-2. [ ] qualitative bound `D ≤ Johnson(n,k,a)` (proved, verified).
-3. [ ] assemble `|Λ_2| ≤ |Fib_1|·D` (codegree theorem, qualitative), L1-independent.
+1. [x] worst-case punctured-RS-list scanner + measured `D` vs Johnson (step 2a).
+2. [ ] the agreement-size-stratified sum `Σ_{c1} D(|A_1(c1)|)` (step 2b) — bound it.
+3. [ ] assemble the codegree theorem (qualitative saving), L1-independent, verify.
 4. [ ] `μ>2` recursion constants.
 5. [ ] (stretch) sharp constant via non-smooth-puncture analysis.
