@@ -675,7 +675,7 @@ def classify_sunflower_listing(
     parameter_histogram: Counter[
         tuple[
             int, int, int, int, int, int, int, int, int, int,
-            int, int, int, int, int, int, int,
+            int, int, int, int, int, int, int, int,
         ]
     ] = Counter()
     extra_examples: list[dict[str, object]] = []
@@ -757,6 +757,17 @@ def classify_sunflower_listing(
             if second_petal_hit > 0
             else (1 if remaining_after_largest == 0 else -1)
         )
+        width_gate_slack = (
+            2 * (touched_petals - 1) * petal_size
+            - (
+                (touched_petals - 1) * best_two_petal_deficit
+                + 2 * max(0, cofactor_excess + best_background_petal_deficit)
+            )
+            if touched_petals >= 2
+            and best_two_petal_deficit >= 0
+            and best_background_petal_deficit >= 0
+            else -1
+        )
         list_condition_slack = (
             background_hits + sum(petal_hits) - (petal_size + core_defect)
         )
@@ -786,6 +797,7 @@ def classify_sunflower_listing(
             best_anchor_exponent,
             width_floor_a1,
             width_floor_a2,
+            width_gate_slack,
             list_condition_slack,
         )
         profile_histogram[profile] += 1
@@ -835,6 +847,9 @@ def classify_sunflower_listing(
                 "width_floor_a2": (
                     width_floor_a2 if width_floor_a2 >= 0 else None
                 ),
+                "width_gate_slack": (
+                    width_gate_slack if width_gate_slack >= 0 else None
+                ),
                 "petal_cofactor_exponent": petal_cofactor_exponent,
                 "background_quotient_exponent": background_quotient_exponent,
                 "list_condition_slack": list_condition_slack,
@@ -867,7 +882,8 @@ def classify_sunflower_listing(
                 f"anchor_exp={profile[9]},two_anchor_exp={profile[10]},"
                 f"bg_petal_exp={profile[11]},gate_def={profile[12]},"
                 f"gate_exp={profile[13]},width1={profile[14]},"
-                f"width2={profile[15]},list_slack={profile[16]}"
+                f"width2={profile[15]},width_gate_slack={profile[16]},"
+                f"list_slack={profile[17]}"
             ): count
             for profile, count in sorted(parameter_histogram.items())
         },

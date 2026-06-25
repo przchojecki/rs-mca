@@ -2920,6 +2920,70 @@ width_floor_a1,
 width_floor_a2.
 ```
 
+## Corollary B9. Finite-Width Two-Gate Tradeoff
+
+Status: PROVED.
+
+Keep the maximal-sunflower hypotheses and notation of Lemma B8 and Theorem B7.
+Then every non-planted listed codeword satisfies
+
+```text
+2 max(0,d-ell+G_R(P)) + (t(P)-1)G_2(P) <= 2(t(P)-1)ell.
+```
+
+Consequently, for any fixed width bound `T>=2`, every codeword with
+`t(P)<=T` satisfies
+
+```text
+2 max(0,d-ell+G_R(P)) + (t(P)-1)G_2(P) <= 2(T-1)ell.
+```
+
+### Proof
+
+Let `v_(1)<=v_(2)` be the two smallest touched-petal deficits, and put
+`a_2=ell-v_(2)`.  Lemma B8 gives
+
+```text
+max(0,d-ell+G_R(P)) <= (t(P)-1)a_2.
+```
+
+Since
+
+```text
+G_2(P)=v_(1)+v_(2) <= 2v_(2),
+```
+
+we have
+
+```text
+a_2 = ell-v_(2) <= ell-G_2(P)/2.
+```
+
+Combining the two displays gives
+
+```text
+max(0,d-ell+G_R(P)) <= (t(P)-1)(ell-G_2(P)/2),
+```
+
+which is the first displayed inequality after multiplying by `2`.  The
+`t(P)<=T` version follows immediately.
+
+### Consequences
+
+This is the finite-width obstruction left by the two gates.  In a bounded
+cofactor-excess window, a bounded-width residual cannot make both `G_2` and
+`G_R` independently large relative to `ell`; increasing `G_2` consumes the
+second-largest petal support available to pay for `G_R`.
+
+The scanner reports the exact nonnegative slack in this inequality as
+
+```text
+width_gate_slack
+  = 2(t-1)ell
+    - ((t-1)best_two_petal_deficit
+       + 2 max(0,d-ell+best_background_petal_deficit)).
+```
+
 ## Development Ledger
 
 - **Conjecture 1 full-list primitive remainder:** CONJECTURAL.  Main proof
@@ -3007,5 +3071,8 @@ width_floor_a2.
 - **Largest-petal width floor:** PROVED.  Shows the current two-gate residual
   must either spread across many petals or keep the top two petal supports
   large enough to meet the list condition.
+- **Finite-width two-gate tradeoff:** PROVED.  Shows bounded-width residuals
+  must satisfy an explicit tradeoff between the two-petal and background-petal
+  gates.
 - **Mixed-petal sunflower amplification:** CONJECTURAL.  Next focused bound to
   prove or refute in the large-defect regime.

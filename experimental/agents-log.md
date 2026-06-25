@@ -30,6 +30,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-25 - L1 finite-width two-gate tradeoff
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/notes/l1/l1_full_list_quotient_proof_program.md`,
+  `experimental/scripts/scan_l1_full_list_quotient_conjecture.py`, and
+  `experimental/agents-log.md`.
+- **Status:** PROVED / EXPERIMENTAL.
+- **What is being added:** A finite-width tradeoff inequality for maximal
+  sunflower extras relating touched-petal width, the two-petal gate, and the
+  background-petal gate. The scanner now reports the exact slack in this
+  inequality.
+- **How it is useful:** Refines the remaining L1 sunflower residual: bounded
+  width cannot make both anchor gates independently large relative to the
+  petal scale.
+- **What to do next:** In residual searches, prioritize examples with small
+  width-gate slack or examples whose width grows fast enough to evade this
+  tradeoff.
+
 ### 2026-06-25 - L1 largest-petal width floor
 
 - **Agent/model:** Codex.
