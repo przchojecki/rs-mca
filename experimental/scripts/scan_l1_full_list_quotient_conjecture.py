@@ -672,14 +672,15 @@ def classify_sunflower_listing(
     missing_planted = intended_masks - listed_mask_set
     extra_masks = sorted(listed_mask_set - intended_masks)
     profile_histogram: Counter[tuple[int, int, int, int, int, int]] = Counter()
-    parameter_histogram: Counter[tuple[int, int, int, int, int, int, int, int]] = (
-        Counter()
-    )
+    parameter_histogram: Counter[
+        tuple[int, int, int, int, int, int, int, int, int, int, int]
+    ] = Counter()
     extra_examples: list[dict[str, object]] = []
     for mask in extra_masks:
         agreement = set(mask_to_exponents(mask, n))
         petal_hits = [len(agreement & petal) for petal in petals]
         positive_petal_hits = [hit for hit in petal_hits if hit]
+        positive_petal_hits_desc = sorted(positive_petal_hits, reverse=True)
         core_hits = len(agreement & core)
         core_defect = len(core) - core_hits
         background_hits = len(agreement & background)
@@ -689,11 +690,29 @@ def classify_sunflower_listing(
             for hit, petal in zip(petal_hits, petals, strict=True)
             if hit
         )
-        max_petal_hit = max(positive_petal_hits, default=0)
+        max_petal_hit = positive_petal_hits_desc[0] if positive_petal_hits_desc else 0
+        second_petal_hit = (
+            positive_petal_hits_desc[1] if len(positive_petal_hits_desc) >= 2 else 0
+        )
+        positive_petal_deficits = sorted(
+            len(petal) - hit
+            for hit, petal in zip(petal_hits, petals, strict=True)
+            if hit
+        )
+        best_two_petal_deficit = (
+            positive_petal_deficits[0] + positive_petal_deficits[1]
+            if len(positive_petal_deficits) >= 2
+            else -1
+        )
         cofactor_excess = core_defect - petal_size
         anchor_exponent = max(
             0,
             core_defect - max(background_hits, max_petal_hit) + 1,
+        )
+        two_anchor_exponent = (
+            2 * cofactor_excess + best_two_petal_deficit + 2
+            if best_two_petal_deficit >= 0
+            else -1
         )
         petal_cofactor_exponent = max(0, core_defect - max_petal_hit + 1)
         background_quotient_exponent = max(0, core_defect - background_hits + 1)
@@ -715,8 +734,11 @@ def classify_sunflower_listing(
             touched_petals,
             petal_deficit,
             max_petal_hit,
+            second_petal_hit,
+            best_two_petal_deficit,
             cofactor_excess,
             anchor_exponent,
+            two_anchor_exponent,
             list_condition_slack,
         )
         profile_histogram[profile] += 1
@@ -733,8 +755,17 @@ def classify_sunflower_listing(
                 "positive_petals": touched_petals,
                 "petal_deficit": petal_deficit,
                 "max_petal_hit": max_petal_hit,
+                "second_petal_hit": second_petal_hit,
+                "best_two_petal_deficit": (
+                    best_two_petal_deficit
+                    if best_two_petal_deficit >= 0
+                    else None
+                ),
                 "cofactor_excess": cofactor_excess,
                 "background_anchor_exponent": anchor_exponent,
+                "two_anchor_exponent": (
+                    two_anchor_exponent if two_anchor_exponent >= 0 else None
+                ),
                 "petal_cofactor_exponent": petal_cofactor_exponent,
                 "background_quotient_exponent": background_quotient_exponent,
                 "list_condition_slack": list_condition_slack,
@@ -762,8 +793,9 @@ def classify_sunflower_listing(
             (
                 f"d={profile[0]},r={profile[1]},t={profile[2]},"
                 f"u={profile[3]},a_star={profile[4]},"
-                f"excess={profile[5]},anchor_exp={profile[6]},"
-                f"list_slack={profile[7]}"
+                f"second={profile[5]},pair_def={profile[6]},"
+                f"excess={profile[7]},anchor_exp={profile[8]},"
+                f"two_anchor_exp={profile[9]},list_slack={profile[10]}"
             ): count
             for profile, count in sorted(parameter_histogram.items())
         },

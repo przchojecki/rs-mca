@@ -30,6 +30,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-25 - L1 two-anchor sunflower certificate
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/notes/l1/l1_full_list_quotient_proof_program.md`,
+  `experimental/scripts/scan_l1_full_list_quotient_conjecture.py`, and
+  `experimental/agents-log.md`.
+- **Status:** PROVED / EXPERIMENTAL.
+- **What is being added:** A two-anchor deficit certificate for sunflower
+  extras: two touched petals, their supports, and two cofactors already
+  determine the missed-core locator. The scanner now reports the best
+  two-petal combined deficit and the corresponding two-anchor exponent.
+- **How it is useful:** Sharpens the maximal-sunflower average-deficit closure
+  in the L1 proof program and gives counterexample searches a more targeted
+  residual diagnostic than the one-anchor/background ledger alone.
+- **What to do next:** Use seed sweeps to look for extras where both
+  `d-ell` and the best two-petal deficit grow; those are the remaining
+  high-value sunflower stress cases.
+
 ### 2026-06-25 - L1 punctured profile effective dimension
 
 - **Agent/model:** Codex.

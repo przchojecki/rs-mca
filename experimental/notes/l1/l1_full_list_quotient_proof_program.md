@@ -2539,6 +2539,123 @@ for sampled sunflower extras.  These diagnostics are only experimental, but
 they make the B3/B4 residual falsifiable in the same vocabulary as the proof
 ledger.
 
+## Lemma B5. Two-Anchor Deficit Certificate
+
+Status: PROVED.
+
+Return to the general sunflower notation of Lemma 2; the unused background may
+be nonempty.  Fix integers `E,V >= 0`.  The number of non-planted listed
+codewords satisfying
+
+```text
+d <= ell+E
+```
+
+and having two touched petals whose combined deficit is at most `V` is at most
+
+```text
+binom(M,2) (sum_{v=0}^{V} binom(2ell,v)) q^{2E+V+2}.
+```
+
+More explicitly, if the two touched petals are `T_i,T_j` and
+
+```text
+v_i = ell-|S_i|,        v_j = ell-|S_j|,
+```
+
+then the certificate uses only the pair `{i,j}`, the two support subsets
+`S_i,S_j`, and the two cofactors in the syzygy
+
+```text
+(c_j-c_i)L_D = L_{S_i}A_i - L_{S_j}A_j.
+```
+
+### Proof
+
+For each codeword in the displayed class, choose the lexicographically first
+unordered pair of touched petals with `v_i+v_j <= V`.  By Lemma 11 there are
+polynomials `A_i,A_j` such that
+
+```text
+deg A_i <= d-|S_i|,        deg A_j <= d-|S_j|,
+```
+
+and
+
+```text
+(c_j-c_i)L_D = L_{S_i}A_i - L_{S_j}A_j.
+```
+
+Since `d<=ell+E`, these degree bounds give
+
+```text
+deg A_i <= E+v_i,        deg A_j <= E+v_j.
+```
+
+For a fixed petal pair and fixed supports `S_i,S_j`, the two cofactors
+determine `L_D` by the syzygy.  If the right-hand side is not a scalar multiple
+of a valid missed-core locator, the certificate is discarded.  Otherwise it
+determines `D`, then
+
+```text
+W_P = c_iL_D + L_{S_i}A_i,
+```
+
+and finally `P=L_{C\D}W_P`.  Thus the certificate map is injective.
+
+For a fixed unordered petal pair, the number of choices for the two support
+subsets with total deficit `v` is at most `binom(2ell,v)`.  For such a pair of
+supports, the cofactors contribute at most
+
+```text
+q^{E+v_i+1} q^{E+v_j+1} = q^{2E+v+2}
+```
+
+choices.  Summing over `0<=v<=V` and bounding every cofactor term by
+`q^{2E+V+2}` gives the displayed estimate.
+
+### Average-Deficit Corollary
+
+Assume now that the sunflower is maximal, so `b<ell`, and work at the L1 lower
+cutoff with generated field `q=poly(n)`.  Fix integer constants `E,A >= 0`.  The
+number of non-planted listed codewords satisfying
+
+```text
+d <= ell+E,        u(P) <= A t(P)
+```
+
+is at most
+
+```text
+binom(M,2) (sum_{v=0}^{2A} binom(2ell,v)) q^{2E+2A+2}.
+```
+
+Indeed, Lemma 4 gives `t(P)>=2` in a maximal sunflower.  Among the `t(P)`
+touched petals, the two smallest petal deficits have sum at most
+`2u(P)/t(P) <= 2A`.  Lemma B5 with `V=2A` gives the bound.  Since
+`M=O(log n)`, `ell<=n`, and `q=poly(n)`, this is polynomial in `n` for fixed
+`E,A`.
+
+### Consequences
+
+Lemma B5 sharpens Theorem B2: bounded average deficit is controlled by one
+two-petal certificate with total pair deficit at most `2A`, rather than by two
+separately `2A`-near-saturated petals.  The residual target is therefore more
+focused.  A maximal-sunflower counterexample with bounded cofactor excess must
+force the best two-petal combined deficit to grow, unless it escapes through
+growing `d-ell`.  This is stronger than the earlier average-deficit residual:
+if the best two-petal deficit grows, then `u(P)/t(P)->infinity`, but not
+conversely.
+
+The scanner now reports this diagnostic as
+
+```text
+best_two_petal_deficit,
+two_anchor_exponent = 2(d-ell)+best_two_petal_deficit+2,
+```
+
+for sampled sunflower extras with at least two touched petals.
+
 ## Development Ledger
 
 - **Conjecture 1 full-list primitive remainder:** CONJECTURAL.  Main proof
@@ -2612,5 +2729,9 @@ ledger.
 - **Maximal deficit-background stratum ledger:** PROVED.  Gives an explicit
   `(t,u,r)` ledger balancing petal/background support entropy against the
   joint cofactor exponent.
+- **Two-anchor deficit certificate:** PROVED.  Counts maximal-sunflower
+  extras with bounded cofactor excess and bounded best two-petal deficit,
+  sharpening the average-deficit closure and adding a targeted scanner
+  diagnostic.
 - **Mixed-petal sunflower amplification:** CONJECTURAL.  Next focused bound to
   prove or refute in the large-defect regime.
