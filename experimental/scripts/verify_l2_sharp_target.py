@@ -3122,6 +3122,35 @@ def residual_shape_scan_profile() -> dict:
             * len(nonnegative_deviation_values)
             * (len(negative_deviation_values) ** (cycle_len - 1))
         )
+        spike_height_rows = []
+        for spike in nonnegative_deviation_values:
+            allowed_negative_values = [
+                deviation
+                for deviation in negative_deviation_values
+                if deviation <= -spike - 2
+            ]
+            total_compatible = (
+                (cycle_len - 2) * spike + 2 * (cycle_len - 1)
+                <= cycle_len * sigma
+            )
+            spike_height_rows.append(
+                {
+                    "spike": spike,
+                    "allowed_negative_values": allowed_negative_values,
+                    "allowed_negative_count": len(allowed_negative_values),
+                    "total_compatible": total_compatible,
+                    "sector_size": (
+                        len(allowed_negative_values) ** (cycle_len - 1)
+                        if total_compatible
+                        else 0
+                    ),
+                }
+            )
+        spike_height_search_size = (
+            len(negative_deviation_values) ** cycle_len
+            + cycle_len
+            * sum(row["sector_size"] for row in spike_height_rows)
+        )
         if cycle_len % 2 == 1:
             odd_lower_numerator = (
                 k
@@ -3239,6 +3268,8 @@ def residual_shape_scan_profile() -> dict:
                 "one_spike_search_size": one_spike_search_size,
                 "one_spike_search_size_bound": (cycle_len + 1)
                 * (sigma ** cycle_len),
+                "spike_height_rows": spike_height_rows,
+                "spike_height_search_size": spike_height_search_size,
                 "all_candidates_in_balanced_window": all(
                     all(dimension in balanced_window for dimension in dimensions)
                     for dimensions in candidates
@@ -3256,6 +3287,26 @@ def residual_shape_scan_profile() -> dict:
                 ),
                 "all_candidates_in_one_spike_sector": all(
                     deviation_row["nonnegative_count"] <= 1
+                    for deviation_row in deviation_rows
+                ),
+                "all_spikes_have_allowed_height": all(
+                    all(
+                        (cycle_len - 2) * deviation
+                        + 2 * (cycle_len - 1)
+                        <= cycle_len * sigma
+                        for deviation in deviation_row["deviations"]
+                        if deviation >= 0
+                    )
+                    for deviation_row in deviation_rows
+                ),
+                "all_nonspikes_below_spike_complement": all(
+                    all(
+                        other_deviation <= -deviation - 2
+                        for deviation in deviation_row["deviations"]
+                        if deviation >= 0
+                        for other_deviation in deviation_row["deviations"]
+                        if other_deviation != deviation
+                    )
                     for deviation_row in deviation_rows
                 ),
                 "all_deviations_balanced": all(
@@ -3390,6 +3441,24 @@ def residual_shape_scan_profile() -> dict:
             row["candidate_count"] > 0
             and row["one_spike_search_size"]
             < row["balanced_window_search_size"]
+            for row in rows
+        ),
+        "spike_height_contains_candidates": all(
+            row["all_spikes_have_allowed_height"]
+            and row["all_nonspikes_below_spike_complement"]
+            for row in rows
+        ),
+        "spike_height_search_covers_candidates": all(
+            row["candidate_count"] <= row["spike_height_search_size"]
+            for row in rows
+        ),
+        "spike_height_refines_one_spike": all(
+            row["spike_height_search_size"] <= row["one_spike_search_size"]
+            for row in rows
+        ),
+        "spike_height_has_strict_reduction": any(
+            row["candidate_count"] > 0
+            and row["spike_height_search_size"] < row["one_spike_search_size"]
             for row in rows
         ),
         "pair_cap_clearance_holds": all(
@@ -5386,6 +5455,18 @@ def run() -> dict:
         ],
         "residual_shape_scan_one_spike_reduces": residual_shape_scan[
             "one_spike_reduces_balanced_window"
+        ],
+        "residual_shape_scan_spike_height_contains": residual_shape_scan[
+            "spike_height_contains_candidates"
+        ],
+        "residual_shape_scan_spike_height_covers": residual_shape_scan[
+            "spike_height_search_covers_candidates"
+        ],
+        "residual_shape_scan_spike_height_refines": residual_shape_scan[
+            "spike_height_refines_one_spike"
+        ],
+        "residual_shape_scan_spike_height_strict": residual_shape_scan[
+            "spike_height_has_strict_reduction"
         ],
         "residual_shape_scan_pair_cap_clearance": residual_shape_scan[
             "pair_cap_clearance_holds"

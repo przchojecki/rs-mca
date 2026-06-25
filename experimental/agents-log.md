@@ -310,8 +310,10 @@ Keep entries concise and link to the relevant files.
   negativity, adjacent sums in `[-2sigma,0)`, total sum in `[-m sigma,0)`, and
   have at most one nonnegative coordinate. This yields a one-spike scan
   decomposition with at most `(m+1)sigma^m` centered vectors before the
-  remaining gates. The certificate is also monotone in arity: for fixed
-  `m,k,sigma`, candidate sets shrink as `mu` increases, so emptiness at
+  remaining gates; refining by spike height `u` further restricts all other
+  deviations to `<=-u-2` and forbids spikes with
+  `(m-2)u+2(m-1)>m sigma`. The certificate is also monotone in arity: for
+  fixed `m,k,sigma`, candidate sets shrink as `mu` increases, so emptiness at
   `mu_0` certifies emptiness for all larger arities.
   Combining
   the pivot, monic, and domain gates gives a

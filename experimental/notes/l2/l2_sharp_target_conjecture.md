@@ -3195,6 +3195,50 @@ nonnegative. This proves the displayed sector decomposition. The count is the
 all-negative sector plus the `m` choices of the unique nonnegative coordinate.
 The bound by `(m+1)sigma^m` follows from `|A_-|,|A_+|<=sigma`.
 
+The spike sector can be refined by the spike height.
+
+**Corollary (spike-height refined residual-shape scan).** In the one-spike
+sector, suppose the unique nonnegative deviation has value `u in A_+`. Then
+every other coordinate lies in
+
+```text
+A_-(u)={v in A_-: v<=-u-2}.
+```
+
+Moreover, a spike of height `u` can occur only if
+
+```text
+(m-2)u + 2(m-1) <= m sigma.
+```
+
+Consequently the centered residual-shape scan may be restricted to at most
+
+```text
+|A_-|^m
++ m sum_{u in A_+, (m-2)u+2(m-1)<=m sigma} |A_-(u)|^{m-1}
+```
+
+candidate vectors before the adjacent-sum, root-floor, and parity gates are
+applied.
+
+*Proof.* If `x_t=u>=0` is the unique spike, pairwise negativity gives
+`u+x_j<0` for every `j != t`. Since all deviations have the same parity, the
+left-hand side is an even integer, so `u+x_j<=-2`; hence
+`x_j<=-u-2`.
+
+The largest possible total deviation with spike height `u` occurs when every
+other coordinate is as large as allowed by this bound, namely `-u-2`. Thus
+
+```text
+sum_i x_i <= u+(m-1)(-u-2)=-(m-2)u-2(m-1).
+```
+
+The centered-deviation normal form also gives `sum_i x_i>=-m sigma`. If a
+spike of height `u` occurs, these two inequalities must be compatible, giving
+the displayed spike-height bound. The counting formula follows by summing the
+allowed negative choices over the remaining `m-1` coordinates and over the
+`m` possible spike positions.
+
 The finite certificate is monotone in the interleaving arity.
 
 **Corollary (arity monotonicity of residual-shape certificates).** Fix
