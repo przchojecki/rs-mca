@@ -3626,6 +3626,23 @@ def residual_shape_scan_profile() -> dict:
             count_between(start, min(first_high - 2, 2 * sigma - start)),
         )
 
+    def tail_strict_rate_criterion(
+        depths: list[int], root_depth: int, sigma: int
+    ) -> bool:
+        high_depths = [depth for depth in depths if depth >= root_depth]
+        low_depths = [depth for depth in depths if depth < root_depth]
+        return bool(
+            high_depths
+            and low_depths
+            and min(high_depths) >= sigma + 2
+        )
+
+    def tail_first_high_depth(
+        depths: list[int], root_depth: int
+    ) -> int | None:
+        high_depths = [depth for depth in depths if depth >= root_depth]
+        return min(high_depths) if high_depths else None
+
     def path_uniform_cap_recurrence_bound(
         vertex_count: int, high_count: int, cap_count: int, degree_bound: int
     ) -> int:
@@ -4123,6 +4140,24 @@ def residual_shape_scan_profile() -> dict:
                     all_negative_uniform_degree_bound,
                 )
             )
+            all_negative_tail_strict_rate_criterion = (
+                tail_strict_rate_criterion(
+                    depth_values, root_depth_required, sigma
+                )
+            )
+            all_negative_tail_cap_loss_matches = (
+                not (
+                    all_negative_uniform_high_count > 0
+                    and len(low_depth_values) > 0
+                )
+                or (
+                    (
+                        all_negative_uniform_cap_count
+                        < len(low_depth_values)
+                    )
+                    == all_negative_tail_strict_rate_criterion
+                )
+            )
             root_active_all_negative_uniform_high_count = (
                 all_negative_uniform_high_count
             )
@@ -4131,6 +4166,15 @@ def residual_shape_scan_profile() -> dict:
             )
             root_active_all_negative_uniform_degree_bound = (
                 all_negative_uniform_degree_bound
+            )
+            root_active_all_negative_uniform_first_high_depth = (
+                tail_first_high_depth(depth_values, root_depth_required)
+            )
+            root_active_all_negative_uniform_tail_strict_criterion = (
+                all_negative_tail_strict_rate_criterion
+            )
+            root_active_all_negative_uniform_cap_loss_matches_tail = (
+                all_negative_tail_cap_loss_matches
             )
             root_active_all_negative_uniform_recurrence_bound = (
                 0
@@ -4265,6 +4309,22 @@ def residual_shape_scan_profile() -> dict:
                 spike_allowed_depths_match_tail = allowed_depths == [
                     depth for depth in depth_values if depth >= spike + 2
                 ]
+                spike_tail_strict_rate_criterion = tail_strict_rate_criterion(
+                    allowed_depths, root_depth_required, sigma
+                )
+                spike_tail_cap_loss_matches = (
+                    not (
+                        spike_uniform_high_count > 0
+                        and len(low_allowed_depths) > 0
+                    )
+                    or (
+                        (
+                            spike_uniform_cap_count
+                            < len(low_allowed_depths)
+                        )
+                        == spike_tail_strict_rate_criterion
+                    )
+                )
                 if (
                     root_budget < 4
                     or not odd_compatible
@@ -4425,6 +4485,9 @@ def residual_shape_scan_profile() -> dict:
                         "uniform_high_count": spike_uniform_high_count,
                         "uniform_cap_count": spike_uniform_cap_count,
                         "uniform_degree_bound": spike_uniform_degree_bound,
+                        "uniform_first_high_depth": tail_first_high_depth(
+                            allowed_depths, root_depth_required
+                        ),
                         "uniform_formula_matches": (
                             spike_uniform_formula_matches
                         ),
@@ -4433,6 +4496,12 @@ def residual_shape_scan_profile() -> dict:
                         ),
                         "allowed_depths_match_tail": (
                             spike_allowed_depths_match_tail
+                        ),
+                        "uniform_tail_strict_criterion": (
+                            spike_tail_strict_rate_criterion
+                        ),
+                        "uniform_cap_loss_matches_tail": (
+                            spike_tail_cap_loss_matches
                         ),
                         "uniform_spectral_rate": uniform_spectral_rate,
                         "uniform_rate_below_independent": (
@@ -4541,6 +4610,9 @@ def residual_shape_scan_profile() -> dict:
             root_active_all_negative_uniform_high_count = None
             root_active_all_negative_uniform_cap_count = None
             root_active_all_negative_uniform_degree_bound = None
+            root_active_all_negative_uniform_first_high_depth = None
+            root_active_all_negative_uniform_tail_strict_criterion = None
+            root_active_all_negative_uniform_cap_loss_matches_tail = None
             root_active_all_negative_uniform_formula_matches = None
             root_active_all_negative_uniform_progression_matches = None
             root_active_all_negative_uniform_spectral_rate = None
@@ -4811,6 +4883,15 @@ def residual_shape_scan_profile() -> dict:
                 ),
                 "root_active_all_negative_uniform_degree_bound": (
                     root_active_all_negative_uniform_degree_bound
+                ),
+                "root_active_all_negative_uniform_first_high_depth": (
+                    root_active_all_negative_uniform_first_high_depth
+                ),
+                "root_active_all_negative_uniform_tail_strict_criterion": (
+                    root_active_all_negative_uniform_tail_strict_criterion
+                ),
+                "root_active_all_negative_uniform_cap_loss_matches_tail": (
+                    root_active_all_negative_uniform_cap_loss_matches_tail
                 ),
                 "root_active_all_negative_uniform_formula_matches": (
                     root_active_all_negative_uniform_formula_matches
@@ -5367,6 +5448,38 @@ def residual_shape_scan_profile() -> dict:
             or all(
                 spike_row["allowed_depths_match_tail"]
                 for spike_row in row["root_active_spike_bound_rows"]
+            )
+            for row in rows
+        ),
+        "root_active_uniform_cap_loss_matches_tail_criterion": all(
+            row["root_depth_required"] <= row["sigma"]
+            or (
+                row["root_active_all_negative_uniform_cap_loss_matches_tail"]
+                and all(
+                    spike_row["uniform_cap_loss_matches_tail"]
+                    for spike_row in row["root_active_spike_bound_rows"]
+                )
+            )
+            for row in rows
+        ),
+        "root_active_uniform_strict_rate_matches_tail_criterion": all(
+            row["root_depth_required"] <= row["sigma"]
+            or (
+                row[
+                    "root_active_all_negative_uniform_strict_root_improvement"
+                ]
+                == row[
+                    "root_active_all_negative_uniform_tail_strict_criterion"
+                ]
+                and all(
+                    spike_row["uniform_strict_root_improvement"]
+                    == spike_row["uniform_tail_strict_criterion"]
+                    for spike_row in row["root_active_spike_bound_rows"]
+                    if (
+                        spike_row["uniform_strict_root_improvement"]
+                        is not None
+                    )
+                )
             )
             for row in rows
         ),
@@ -7614,6 +7727,16 @@ def run() -> dict:
         "residual_shape_scan_root_active_spike_tails": residual_shape_scan[
             "root_active_spike_depths_are_progression_tails"
         ],
+        "residual_shape_scan_root_active_uniform_cap_loss_tail": (
+            residual_shape_scan[
+                "root_active_uniform_cap_loss_matches_tail_criterion"
+            ]
+        ),
+        "residual_shape_scan_root_active_uniform_strict_tail": (
+            residual_shape_scan[
+                "root_active_uniform_strict_rate_matches_tail_criterion"
+            ]
+        ),
         "residual_shape_scan_root_active_uniform_spectral": (
             residual_shape_scan[
                 "root_active_uniform_spectral_rate_below_independent"

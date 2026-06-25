@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-25 - L2 balanced-tail strict-rate criterion
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/notes/l2/l2_sharp_target_conjecture.md`,
+  `experimental/scripts/verify_l2_sharp_target.py`, and
+  `experimental/agents-log.md`.
+- **Status:** PROVED / EXPERIMENTAL.
+- **What is being added:** A criterion for when a balanced residual tail gives
+  a strict Perron-rate saving: the first root-active depth must be at least
+  `sigma+2`; the only nonsaving nontrivial tails start at the minimal
+  frontier layer `sigma+1`.
+- **How it is useful:** Isolates the residual sectors where the bridge
+  envelope has genuine exponential-rate gain from the minimal-frontier sectors
+  that may need exact transfer estimates.
+- **What to do next:** Combine this criterion with the progression formulas to
+  bound or separately enumerate the minimal-frontier sectors.
+
 ### 2026-06-25 - L2 balanced-depth bridge formulas
 
 - **Agent/model:** Codex.

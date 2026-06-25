@@ -3829,6 +3829,63 @@ degree is attained at the least low depth `s_E` and counts low depths at most
 `h_E=c_E=0` and all elements of `E` are low, giving the final displayed
 formula for `Delta_E`.
 
+This identifies exactly when the uniform bridge envelope gains a real
+exponential-rate saving over the independent-set envelope.
+
+**Corollary (balanced-tail strict-rate criterion).** Keep the notation of the
+balanced-depth formula, and let `E={s_E,s_E+2,...,Y}` be one of the nonempty
+balanced tails. Suppose both
+
+```text
+H_E={y in E: y>=R},        L_E={y in E: y<R}
+```
+
+are nonempty, and let `alpha_E=min H_E`. Put `l_E=|L_E|`. Then
+
+```text
+c_E=l_E      iff alpha_E=sigma+1,
+c_E<l_E      iff alpha_E>=sigma+2.
+```
+
+Moreover, when `alpha_E=sigma+1`, one also has `Delta_E=l_E`. Consequently
+the Perron rate of the uniform cap-degree envelope is strictly smaller than
+the independent-set rate for this tail exactly when
+
+```text
+alpha_E>=sigma+2.
+```
+
+Thus the only nonempty balanced tails with no real rate gain are the
+minimal-frontier tails whose first root-active depth is the first integer
+layer above `sigma`.
+
+*Proof.* Since `R>sigma`, the first high depth satisfies `alpha_E>sigma`.
+The low depths are exactly the progression elements in
+`[s_E,alpha_E-2]`. The cap formula from the previous corollary reduces to
+
+```text
+c_E=N_E(s_E,2sigma-alpha_E),
+```
+
+because `alpha_E>sigma` implies `2sigma-alpha_E<=alpha_E-1`, and parity puts
+the effective cutoff at most `alpha_E-2`. Hence the cap includes every low
+depth exactly when `2sigma-alpha_E>=alpha_E-2`, equivalently
+`alpha_E<=sigma+1`. Since `alpha_E>sigma`, this is the case
+`alpha_E=sigma+1`; otherwise `alpha_E>=sigma+2` and the top low layer is
+missing from the cap.
+
+If `alpha_E=sigma+1`, then the low-depth transfer cutoff at the least low
+depth is at least the top low depth:
+
+```text
+2sigma-s_E >= sigma-1 = alpha_E-2,
+```
+
+so `Delta_E=l_E`. The spectral-rate corollary says that the uniform Perron
+root is strictly smaller than the independent-set root exactly when
+`c_E<l_E` or `Delta_E<l_E` in a nontrivial tail. The previous paragraphs show
+this happens exactly for `alpha_E>=sigma+2`.
+
 The uniform envelope has a two-state recurrence.
 
 **Corollary (recurrence form of the uniform cap-degree envelope).** Fix
