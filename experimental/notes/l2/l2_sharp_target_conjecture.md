@@ -2768,6 +2768,57 @@ d_{t+2} <= k-1-d_{t+1} <= sigma+D-1.
 The same argument on the left gives the bound for `d_{t-2}`. Translating by
 `e_i=k-d_i` gives the equivalent overlap lower bound.
 
+Iterating gives a useful parity propagation rule.
+
+**Corollary (alternating residual-band propagation).** Keep the residual-band
+hypotheses, and let `d_t=D=min_i d_i`. For every `r>=0`, as long as the
+indices are read along either orientation of the cycle before returning to
+`t`,
+
+```text
+d_{t +/- 2r} <= D+r(sigma-1),
+d_{t +/- (2r+1)} >= k-D-(r+1)sigma+r.
+```
+
+In particular, if the clean cycle has odd length `m`, then
+
+```text
+2D >= k - ((m+1)/2)sigma + (m-1)/2.
+```
+
+Combining with root-sharing nonclearance, any odd residual clean-cycle family
+not cleared by the root-sharing high-reserve gate must satisfy the
+compatibility condition
+
+```text
+k - ((m+1)/2)sigma + (m-1)/2
+ <= m k - 2mu(m-2)sigma + o(n).
+```
+
+If this inequality fails with a linear margin, odd residual clean cycles are
+cleared by the existing private-mass/root-sharing gates.
+
+*Proof.* The case `r=0` is `d_t=D`. Assume
+`d_{t+2r}<=D+r(sigma-1)`. The lower residual band gives
+
+```text
+d_{t+2r+1} >= k-sigma-d_{t+2r}
+             >= k-D-(r+1)sigma+r.
+```
+
+Then the strict upper residual band and integrality give
+
+```text
+d_{t+2r+2} <= k-1-d_{t+2r+1}
+             <= D+(r+1)(sigma-1).
+```
+
+The same induction applies in the opposite orientation. If `m` is odd, take
+`2r+1=m`, so the odd-distance lower bound returns to `t`; this gives the
+displayed lower bound for `2D`. The compatibility condition follows by
+combining this lower bound with the nonclearance upper bound
+`2D<=m k-2mu(m-2)sigma+o(n)`.
+
 The connected case also isolates the diagonal exactly.
 
 **Corollary (diagonal is the only zero-loss connected cluster).** Suppose

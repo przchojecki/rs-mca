@@ -287,6 +287,9 @@ Keep entries concise and link to the relevant files.
   maximum-overlap edge to be flanked by overlaps at most `sigma+D`.
   If the private-mass gate has not applied, this local structure propagates
   one more step: second-neighbor dimensions are at most `sigma+D-1`.
+  Iterating the residual band gives parity propagation bounds and, for odd
+  clean cycles, the closure constraint
+  `2D >= k - ((m+1)/2)sigma + (m-1)/2`.
   Combining
   the pivot, monic, and domain gates gives a
   marked selected-syzygy tuple bound; the verifier checks that this general

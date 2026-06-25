@@ -1817,6 +1817,7 @@ def clean_cycle_rank_profile() -> dict:
             k - sigma - min_coefficient_dimension + 1
         )
         min_dimension_neighbor_rows = []
+        min_dimension_propagation_rows = []
         for idx in min_coefficient_indices:
             left = (idx - 1) % cycle_len
             right = (idx + 1) % cycle_len
@@ -1839,6 +1840,39 @@ def clean_cycle_rank_profile() -> dict:
                     "right2_edge_size": edge_sizes[right2],
                 }
             )
+            for direction in (-1, 1):
+                for distance in range(cycle_len):
+                    reached = (idx + direction * distance) % cycle_len
+                    row = {
+                        "index": idx,
+                        "direction": direction,
+                        "distance": distance,
+                        "reached": reached,
+                        "dimension": coefficient_dimensions[reached],
+                    }
+                    if distance % 2 == 0:
+                        half_distance = distance // 2
+                        row["upper_bound"] = (
+                            min_coefficient_dimension
+                            + half_distance * (sigma - 1)
+                        )
+                    else:
+                        half_distance = (distance - 1) // 2
+                        row["lower_bound"] = (
+                            k
+                            - min_coefficient_dimension
+                            - (half_distance + 1) * sigma
+                            + half_distance
+                        )
+                    min_dimension_propagation_rows.append(row)
+        if cycle_len % 2 == 1:
+            odd_cycle_min_dimension_lower_numerator = (
+                k
+                - ((cycle_len + 1) // 2) * sigma
+                + (cycle_len - 1) // 2
+            )
+        else:
+            odd_cycle_min_dimension_lower_numerator = None
         min_dimension_pair_sum = min(dimension_pair_sums)
         max_dimension_pair_sum = max(dimension_pair_sums)
         max_coefficient_dimension = max(coefficient_dimensions)
@@ -2178,6 +2212,12 @@ def clean_cycle_rank_profile() -> dict:
                     min_dimension_second_neighbor_edge_floor
                 ),
                 "min_dimension_neighbor_rows": min_dimension_neighbor_rows,
+                "min_dimension_propagation_rows": (
+                    min_dimension_propagation_rows
+                ),
+                "odd_cycle_min_dimension_lower_numerator": (
+                    odd_cycle_min_dimension_lower_numerator
+                ),
                 "min_dimension_pair_sum": min_dimension_pair_sum,
                 "max_dimension_pair_sum": max_dimension_pair_sum,
                 "max_coefficient_dimension": max_coefficient_dimension,
@@ -2436,6 +2476,35 @@ def clean_cycle_rank_profile() -> dict:
                 and neighbor_row["right2_edge_size"]
                 >= row["min_dimension_second_neighbor_edge_floor"]
                 for neighbor_row in row["min_dimension_neighbor_rows"]
+            )
+            for row in rows
+        ),
+        "min_dimension_even_distance_upper_bounds_hold": all(
+            row["max_private_size"] >= row["sigma"]
+            or all(
+                propagation_row["distance"] % 2 == 1
+                or propagation_row["dimension"]
+                <= propagation_row["upper_bound"]
+                for propagation_row in row["min_dimension_propagation_rows"]
+            )
+            for row in rows
+        ),
+        "min_dimension_odd_distance_lower_bounds_hold": all(
+            row["max_private_size"] >= row["sigma"]
+            or all(
+                propagation_row["distance"] % 2 == 0
+                or propagation_row["dimension"]
+                >= propagation_row["lower_bound"]
+                for propagation_row in row["min_dimension_propagation_rows"]
+            )
+            for row in rows
+        ),
+        "odd_cycle_min_dimension_closure_bound_holds": all(
+            row["max_private_size"] >= row["sigma"]
+            or row["cycle_len"] % 2 == 0
+            or (
+                2 * row["min_coefficient_dimension"]
+                >= row["odd_cycle_min_dimension_lower_numerator"]
             )
             for row in rows
         ),
@@ -4652,6 +4721,15 @@ def run() -> dict:
         ],
         "clean_cycle_second_neighbor_edge_floor": clean_cycles[
             "min_dimension_second_neighbor_edge_floor_holds"
+        ],
+        "clean_cycle_even_distance_propagation": clean_cycles[
+            "min_dimension_even_distance_upper_bounds_hold"
+        ],
+        "clean_cycle_odd_distance_propagation": clean_cycles[
+            "min_dimension_odd_distance_lower_bounds_hold"
+        ],
+        "clean_cycle_odd_cycle_min_bound": clean_cycles[
+            "odd_cycle_min_dimension_closure_bound_holds"
         ],
         "clean_cycle_has_small_pair_case": clean_cycles[
             "contains_small_pair_case"
