@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-25 - L2 exact root-active transfer subtraction
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/notes/l2/l2_sharp_target_conjecture.md`,
+  `experimental/scripts/verify_l2_sharp_target.py`, and
+  `experimental/agents-log.md`.
+- **Status:** PROVED / EXPERIMENTAL.
+- **What is being added:** An exact transfer-subtraction formula for the
+  root-active residual depth frontier when `R>sigma`, counting full transfer
+  words minus low-depth transfer words in the all-negative and spike sectors.
+- **How it is useful:** Strengthens the L2 residual frontier analysis from a
+  coarse independent-set bound to an exact finite-transfer count, identifying
+  precisely where later asymptotic estimates must be applied.
+- **What to do next:** Seek analytic bounds for these exact transfer matrices
+  that retain enough adjacent-depth structure to close the residual
+  near-threshold regime.
+
 ### 2026-06-25 - L2 root-active spectral envelope
 
 - **Agent/model:** Codex.

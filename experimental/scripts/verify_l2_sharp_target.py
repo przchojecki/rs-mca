@@ -3521,6 +3521,7 @@ def residual_shape_scan_profile() -> dict:
                 {
                     "spike": spike,
                     "allowed_depths": allowed_depths,
+                    "total_compatible": spike_row["total_compatible"],
                     "depth_walk_count": depth_walk_count,
                 }
             )
@@ -3538,6 +3539,20 @@ def residual_shape_scan_profile() -> dict:
             low_depth_values = [
                 depth for depth in depth_values if depth < root_depth_required
             ]
+            root_active_all_negative_full_transfer_count = (
+                0
+                if root_budget < 4 or not odd_compatible
+                else cyclic_depth_count(depth_values, cycle_len, sigma)
+            )
+            root_active_all_negative_low_transfer_count = (
+                0
+                if root_budget < 4 or not odd_compatible
+                else cyclic_depth_count(low_depth_values, cycle_len, sigma)
+            )
+            root_active_all_negative_transfer_count = (
+                root_active_all_negative_full_transfer_count
+                - root_active_all_negative_low_transfer_count
+            )
             root_active_all_negative_bound = independent_set_weight_bound(
                 cycle_len,
                 len(high_depth_values),
@@ -3584,6 +3599,27 @@ def residual_shape_scan_profile() -> dict:
                     if depth < root_depth_required
                 ]
                 spike = depth_spike_row["spike"]
+                if (
+                    root_budget < 4
+                    or not odd_compatible
+                    or not depth_spike_row["total_compatible"]
+                ):
+                    full_transfer_count = 0
+                    low_transfer_count = 0
+                    exact_transfer_count = 0
+                else:
+                    full_transfer_count = pinned_spike_depth_count(
+                        spike, allowed_depths, cycle_len, sigma
+                    )
+                    low_transfer_count = pinned_spike_depth_count(
+                        spike, low_allowed_depths, cycle_len, sigma
+                    )
+                    if spike <= root_depth_threshold:
+                        exact_transfer_count = full_transfer_count
+                    else:
+                        exact_transfer_count = (
+                            full_transfer_count - low_transfer_count
+                        )
                 if spike <= root_depth_threshold:
                     bound = len(allowed_depths) ** (cycle_len - 1)
                     recurrence_bound = bound
@@ -3626,6 +3662,9 @@ def residual_shape_scan_profile() -> dict:
                         "spike": spike,
                         "bound": bound,
                         "recurrence_bound": recurrence_bound,
+                        "full_transfer_count": full_transfer_count,
+                        "low_transfer_count": low_transfer_count,
+                        "exact_transfer_count": exact_transfer_count,
                         "spectral_rate": spectral_rate,
                         "spectral_bound": spectral_bound,
                         "spectral_saves_free_alphabet": (
@@ -3648,6 +3687,14 @@ def residual_shape_scan_profile() -> dict:
                     for row in root_active_spike_bound_rows
                 )
             )
+            root_active_exact_transfer_count = (
+                root_active_all_negative_transfer_count
+                + cycle_len
+                * sum(
+                    row["exact_transfer_count"]
+                    for row in root_active_spike_bound_rows
+                )
+            )
             root_active_spectral_bound = (
                 root_active_all_negative_spectral_bound
                 + cycle_len
@@ -3659,6 +3706,9 @@ def residual_shape_scan_profile() -> dict:
         else:
             high_depth_values = []
             low_depth_values = []
+            root_active_all_negative_full_transfer_count = None
+            root_active_all_negative_low_transfer_count = None
+            root_active_all_negative_transfer_count = None
             root_active_all_negative_bound = None
             root_active_all_negative_recurrence_bound = None
             root_active_all_negative_spectral_rate = None
@@ -3667,6 +3717,7 @@ def residual_shape_scan_profile() -> dict:
             root_active_spike_bound_rows = []
             root_active_independent_set_bound = None
             root_active_recurrence_bound = None
+            root_active_exact_transfer_count = None
             root_active_spectral_bound = None
         min_depth = min(depth_values) if depth_values else None
         max_depth = max(depth_values) if depth_values else None
@@ -3884,6 +3935,15 @@ def residual_shape_scan_profile() -> dict:
                 "high_depth_values": high_depth_values,
                 "low_depth_values": low_depth_values,
                 "root_active_all_negative_bound": root_active_all_negative_bound,
+                "root_active_all_negative_full_transfer_count": (
+                    root_active_all_negative_full_transfer_count
+                ),
+                "root_active_all_negative_low_transfer_count": (
+                    root_active_all_negative_low_transfer_count
+                ),
+                "root_active_all_negative_transfer_count": (
+                    root_active_all_negative_transfer_count
+                ),
                 "root_active_all_negative_recurrence_bound": (
                     root_active_all_negative_recurrence_bound
                 ),
@@ -3901,6 +3961,9 @@ def residual_shape_scan_profile() -> dict:
                     root_active_independent_set_bound
                 ),
                 "root_active_recurrence_bound": root_active_recurrence_bound,
+                "root_active_exact_transfer_count": (
+                    root_active_exact_transfer_count
+                ),
                 "root_active_spectral_bound": root_active_spectral_bound,
                 "centered_candidate_count": len(centered_candidates),
                 "centered_matches_dimension_scan": (
@@ -4262,6 +4325,25 @@ def residual_shape_scan_profile() -> dict:
             row["root_depth_required"] <= row["sigma"]
             or row["depth_transfer_candidate_count"]
             <= row["root_active_recurrence_bound"]
+            for row in rows
+        ),
+        "root_active_exact_transfer_matches_depth_transfer": all(
+            row["root_depth_required"] <= row["sigma"]
+            or row["root_active_exact_transfer_count"]
+            == row["depth_transfer_candidate_count"]
+            for row in rows
+        ),
+        "root_active_exact_transfer_refines_independent_bound": all(
+            row["root_depth_required"] <= row["sigma"]
+            or row["root_active_exact_transfer_count"]
+            <= row["root_active_independent_set_bound"]
+            for row in rows
+        ),
+        "root_active_exact_transfer_has_strict_refinement": any(
+            row["name"] == "root_active_near_threshold"
+            and row["root_depth_required"] > row["sigma"]
+            and row["root_active_exact_transfer_count"]
+            < row["root_active_independent_set_bound"]
             for row in rows
         ),
         "root_active_spectral_bounds_recurrence": all(
@@ -6377,6 +6459,15 @@ def run() -> dict:
         ],
         "residual_shape_scan_root_active_recurrence_bounds": residual_shape_scan[
             "root_active_recurrence_bounds_transfer"
+        ],
+        "residual_shape_scan_root_active_exact_transfer": residual_shape_scan[
+            "root_active_exact_transfer_matches_depth_transfer"
+        ],
+        "residual_shape_scan_root_active_exact_refines": residual_shape_scan[
+            "root_active_exact_transfer_refines_independent_bound"
+        ],
+        "residual_shape_scan_root_active_exact_strict": residual_shape_scan[
+            "root_active_exact_transfer_has_strict_refinement"
         ],
         "residual_shape_scan_root_active_spectral": residual_shape_scan[
             "root_active_spectral_bounds_recurrence"

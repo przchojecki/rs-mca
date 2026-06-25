@@ -3486,7 +3486,72 @@ depths were root-active, their sum would be at least `2R>2sigma`, a
 contradiction. The displayed neighbor bound is the same inequality solved for
 `y_j`.
 
-This gives a coarse but purely graph-theoretic upper bound near the threshold.
+Before bounding, one can keep the exact transfer count.
+
+**Corollary (exact root-active transfer subtraction).** Assume `B>=4`, the
+odd-cycle compatibility gate holds when needed, and `R>sigma`. For a finite
+positive depth alphabet `Y`, let `A_Y` be the `0/1` matrix indexed by `Y` with
+
+```text
+(A_Y)_{yz}=1  iff  y+z<=2sigma.
+```
+
+Let `D` be the all-negative depth alphabet and put
+
+```text
+L={y in D: y<R}.
+```
+
+Then the all-negative root-active contribution is exactly
+
+```text
+tr(A_D^m)-tr(A_L^m).
+```
+
+For a permitted spike height `u`, put
+
+```text
+D_u={y in D: y>=u+2},        L_u={y in D_u: y<R}.
+```
+
+If
+
+```text
+Q_u(Y)=1^T A_Y^{m-2} 1
+```
+
+is the pinned-spike path count through the `m-1` nonspike depths, then the
+spike sector with that pinned height contributes exactly
+
+```text
+Q_u(D_u)-Q_u(L_u).
+```
+
+Thus the exact root-active residual count is
+
+```text
+tr(A_D^m)-tr(A_L^m)
++ m sum_u ( Q_u(D_u)-Q_u(L_u) ),
+```
+
+where the sum is over the spike heights satisfying the spike-height
+compatibility. If `B<4` or the odd gate fails, the count is `0`.
+
+*Proof.* In the depth-transfer certificate, the root-depth gate is the
+existence of a nonspike depth `y_i>=R`, except when the spike itself satisfies
+`u<=-R`. Under the present assumption `R>sigma>0`, no nonnegative spike height
+can satisfy `u<=-R`, so every surviving sector must contain a root-active
+nonspike depth. The full transfer count on `D` counts all depth words obeying
+the adjacent packing inequalities; the transfer count on `L` counts exactly
+those with no root-active depth. Subtracting gives the displayed all-negative
+formula. The same subtraction on `D_u` and `L_u` gives the pinned-spike
+formula, because the spike constraints are already absorbed into the lower
+bound `y>=u+2`. The empty `B<4` and odd-incompatible cases are the global
+gates from the exact depth-transfer certificate.
+
+For later estimates, this exact count can be bounded by forgetting part of
+the adjacent-transfer structure. This gives a coarse but purely
+graph-theoretic upper bound near the threshold.
 
 **Corollary (root-active independent-set bound).** Assume `R>sigma`. Let
 
