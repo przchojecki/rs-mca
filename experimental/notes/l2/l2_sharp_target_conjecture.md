@@ -1318,6 +1318,107 @@ It makes the small-pair obstruction exact: if two edge overlaps have total size
 at most `k`, no rank-deficient clean cycle can use those two disjoint edge
 blocks.
 
+For three or more selected edges, the same idea must be rank-stratified: MDS
+independence alone does not prevent locator dependencies among the selected
+vanishing spaces.
+
+**Corollary (rank-stratified multi-edge incidence sieve).** Let
+`J subset {0,...,m-1}` be a set of selected clean-cycle edge indices. For
+`j in J`, put
+
+```text
+W_j={Q in F_q[X]_{<k}: Q|_{E_j}=0},       U_j=span{ev_x:x in E_j}.
+```
+
+For a fixed selected edge tuple, set
+
+```text
+R_J = dim sum_{j in J} W_j.
+```
+
+Then the projective nonzero functionals represented on every selected edge are
+exactly the projective points of `cap_{j in J} U_j`, and their number is
+
+```text
+(q^{k-R_J}-1)/(q-1).
+```
+
+Consequently, if `C_J(R)` denotes the number of ordered disjoint selected-edge
+tuples of the prescribed sizes with `R_J=R`, then the number of
+rank-deficient clean support tuples in that selected-rank stratum is at most
+
+```text
+  C_J(R) (q^{k-R}-1)/(q-1)
+  prod_{i notin J} binom(n,e_i)
+  prod_i binom(n,p_i).
+```
+
+Their random-model contribution relative to the diagonal first-moment scale is
+at most the same combinatorial factor divided by `binom(n,a)`, multiplied by
+
+```text
+q^{-mu((m-1)(a-k)+R-k)}.
+```
+
+In particular, on the full selected-rank stratum
+
+```text
+R = min(k, sum_{j in J}(k-e_j)),
+```
+
+write
+
+```text
+d_J = k-R = max(0, sum_{j in J} e_j - (|J|-1)k).
+```
+
+In any fixed ordering of `J`, the selected-edge count can be bounded by the
+sequential disjoint choice
+
+```text
+prod_{j in J} binom(n-s_j,e_j),       s_j=sum_{h in J, h before j} e_h,
+```
+
+and the diagonal-relative full-rank contribution is bounded by
+
+```text
+  [ prod_{j in J} binom(n-s_j,e_j)
+    (q^{d_J}-1)/(q-1)
+    prod_{i notin J} binom(n,e_i)
+    prod_i binom(n,p_i)
+    / binom(n,a) ]
+  q^{-mu((m-1)(a-k)-d_J)}.
+```
+
+Thus the multi-edge sieve splits the clean-cycle problem into a full-rank
+selected-edge part with an explicit entropy bound and lower-rank selected-edge
+loci where one must count locator/vanishing-space dependencies. The symmetric
+triangle and fixed-length necklace lemmas above are examples of carrying out
+that lower-rank count in concrete families.
+
+*Proof.* The identity follows from annihilators:
+
+```text
+(sum_{j in J} W_j)^perp = cap_{j in J} U_j.
+```
+
+Since the ambient polynomial space has dimension `k`, this intersection has
+dimension `k-R_J`. Projectivizing gives `(q^{k-R_J}-1)/(q-1)` common
+nonzero functional classes for each selected edge tuple. The stratum count
+then follows by summing over the `C_J(R)` selected tuples and bounding all
+unselected edge and private blocks trivially.
+
+For the probability factor, the full clean-cycle rank satisfies
+`R_cyc>=R_J`, so the clean-cycle exponent gap over diagonal is at least
+
+```text
+(m-1)(a-k)+R_J-k.
+```
+
+Substituting `R_J=R` gives the rank-stratified contribution bound. The final
+display is the full selected-rank specialization with the trivial sequential
+upper bound for `C_J(R)`.
+
 The incidence counts are exact in the MDS uniqueness range.
 
 **Corollary (small-support uniqueness for `N_e`).** Let `r([ell])` be the

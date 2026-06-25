@@ -219,7 +219,15 @@ Keep entries concise and link to the relevant files.
   formula in the `F_7` incidence profile and records that the resulting
   two-edge clean-cycle bound further sharpens every tested example, forbids the
   small-pair shape outright, and still leaves the symmetric triangle to the
-  specialized triangle counts. The incidence
+  specialized triangle counts. This is now extended to a rank-stratified
+  multi-edge incidence sieve: for selected edges `J`, the common functional
+  mass is exactly `(q^{k-R_J}-1)/(q-1)`, where
+  `R_J=dim sum_{j in J} W_j`; the full selected-rank stratum has an explicit
+  sequential disjoint-block bound, while lower selected-rank strata are
+  precisely the locator/vanishing-space dependency loci counted separately in
+  the triangle and necklace lemmas. The verifier records that all current
+  clean-cycle examples are full selected-rank and that the all-edge full-rank
+  sieve clears even the symmetric triangle example. The incidence
   counts are now exact in the MDS uniqueness range: if `[ell]` has minimal
   support size `r` and `e>=r`, `r+e<=k`, then
   `N_e([ell])=binom(n-r,e-r)`, so for

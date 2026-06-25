@@ -1497,6 +1497,38 @@ def clean_cycle_rank_profile() -> dict:
                 two_edge_tuple_bound * p ** (-gap_power),
                 comb(n, a),
             )
+        all_edge_expected_selected_rank = min(
+            k, sum(k - edge_size for edge_size in edge_sizes)
+        )
+        all_edge_expected_common_dim = k - all_edge_expected_selected_rank
+        all_edge_disjoint_block_count = 1
+        used_points = 0
+        for edge_size in edge_sizes:
+            all_edge_disjoint_block_count *= comb(n - used_points, edge_size)
+            used_points += edge_size
+        if all_edge_expected_common_dim == 0:
+            all_edge_full_rank_tuple_bound = 0
+        else:
+            all_edge_full_rank_tuple_bound = (
+                all_edge_disjoint_block_count
+                * (p**all_edge_expected_common_dim - 1)
+                // (p - 1)
+                * private_block_bound
+            )
+        all_edge_full_rank_gap_lower_bound = (
+            (cycle_len - 1) * (a - k) - all_edge_expected_common_dim
+        )
+        all_edge_gap_power = mu * all_edge_full_rank_gap_lower_bound
+        if all_edge_gap_power >= 0:
+            all_edge_full_rank_relative_bound = Fraction(
+                all_edge_full_rank_tuple_bound,
+                comb(n, a) * p**all_edge_gap_power,
+            )
+        else:
+            all_edge_full_rank_relative_bound = Fraction(
+                all_edge_full_rank_tuple_bound * p ** (-all_edge_gap_power),
+                comb(n, a),
+            )
         rows.append(
             {
                 "name": example["name"],
@@ -1551,6 +1583,17 @@ def clean_cycle_rank_profile() -> dict:
                 "two_edge_relative_bound_to_diagonal": {
                     "numerator": two_edge_relative_bound.numerator,
                     "denominator": two_edge_relative_bound.denominator,
+                },
+                "all_edge_expected_selected_rank": all_edge_expected_selected_rank,
+                "all_edge_expected_common_dim": all_edge_expected_common_dim,
+                "all_edge_disjoint_block_count": all_edge_disjoint_block_count,
+                "all_edge_full_rank_tuple_bound": all_edge_full_rank_tuple_bound,
+                "all_edge_full_rank_gap_lower_bound": (
+                    all_edge_full_rank_gap_lower_bound
+                ),
+                "all_edge_full_rank_relative_bound_to_diagonal": {
+                    "numerator": all_edge_full_rank_relative_bound.numerator,
+                    "denominator": all_edge_full_rank_relative_bound.denominator,
                 },
             }
         )
@@ -1644,6 +1687,25 @@ def clean_cycle_rank_profile() -> dict:
             row["name"] == "triangle_necklace"
             and row["two_edge_relative_bound_to_diagonal"]["numerator"]
             > row["two_edge_relative_bound_to_diagonal"]["denominator"]
+            for row in rows
+        ),
+        "all_edge_selected_rank_full_on_examples": all(
+            row["vanishing_sum_rank"] == row["all_edge_expected_selected_rank"]
+            for row in rows
+        ),
+        "all_edge_full_rank_tuple_bound_saves_on_examples": all(
+            row["all_edge_full_rank_tuple_bound"] <= row["two_edge_tuple_bound"]
+            for row in rows
+        ),
+        "all_edge_full_rank_relative_clears_examples": all(
+            row["all_edge_full_rank_relative_bound_to_diagonal"]["numerator"]
+            < row["all_edge_full_rank_relative_bound_to_diagonal"]["denominator"]
+            for row in rows
+        ),
+        "all_edge_full_rank_clears_triangle_example": any(
+            row["name"] == "triangle_necklace"
+            and row["all_edge_full_rank_relative_bound_to_diagonal"]["numerator"]
+            < row["all_edge_full_rank_relative_bound_to_diagonal"]["denominator"]
             for row in rows
         ),
     }
@@ -3089,6 +3151,18 @@ def run() -> dict:
         ],
         "clean_cycle_two_edge_triangle_coarse": clean_cycles[
             "two_edge_relative_bound_records_triangle_coarseness"
+        ],
+        "clean_cycle_all_edge_selected_rank_full": clean_cycles[
+            "all_edge_selected_rank_full_on_examples"
+        ],
+        "clean_cycle_all_edge_tuple_saves": clean_cycles[
+            "all_edge_full_rank_tuple_bound_saves_on_examples"
+        ],
+        "clean_cycle_all_edge_relative_clears": clean_cycles[
+            "all_edge_full_rank_relative_clears_examples"
+        ],
+        "clean_cycle_all_edge_clears_triangle": clean_cycles[
+            "all_edge_full_rank_clears_triangle_example"
         ],
         "functional_incidence_projective_count": functional_incidence[
             "projective_functional_count"
