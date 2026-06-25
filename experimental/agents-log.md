@@ -30,6 +30,23 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-25 - M1 quotient occupancy theorem
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_quotient_occupancy_theorem.md`,
+  `experimental/scripts/verify_m1_quotient_occupancy_theorem.py`, and
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** A compact theorem note giving exact quotient-fiber
+  occupancy counts, exact whole-fiber exchange profiles, and the resulting
+  strict-overlap M1 quotient budget. A small verifier checks the formulas
+  against brute-force enumeration.
+- **How it is useful:** Separates the budgeted quotient-periodic M1 support
+  terms from the remaining partial-fiber / aperiodic residue-line target.
+- **What to do next:** Use this theorem as the quotient ledger before attacking
+  the aperiodic M1 local-limit residual.
+
 ### 2026-06-25 - Latest PR integration and estimate audit
 
 - **Agent/model:** AllenGrahamHart PRs #101--#107, ScottDHughes PR #99, and
