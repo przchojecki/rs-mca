@@ -250,7 +250,10 @@ Keep entries concise and link to the relevant files.
   gcds `[1],[1]`. Combining the pivot, monic, and domain gates gives a
   marked selected-syzygy tuple bound; the verifier checks that this general
   formula exactly reproduces the earlier rank-deficient necklace count
-  `m q^{m-2} prod_{h=0}^{m-2} binom(n-hr,r)`. The incidence
+  `m q^{m-2} prod_{h=0}^{m-2} binom(n-hr,r)`. Combining it with any
+  lower bound `R_cyc>=k-d` gives a diagonal-relative marked-syzygy contribution
+  bound; the verifier checks that for necklaces this relative form is exactly
+  the previously proved rank-deficient necklace bound. The incidence
   counts are now exact in the MDS uniqueness range: if `[ell]` has minimal
   support size `r` and `e>=r`, `r+e<=k`, then
   `N_e([ell])=binom(n-r,e-r)`, so for

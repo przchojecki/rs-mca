@@ -1344,9 +1344,17 @@ def rank_deficient_cyclic_necklace_profile() -> dict:
                 )
             diagonal_count = comb(n, a)
             exponent_gap_lower_bound = (cycle_len - 2) * (r - 1)
+            marked_syzygy_defect_bound = r - 1
+            marked_syzygy_gap_lower_bound = (
+                (cycle_len - 1) * (a - k) - marked_syzygy_defect_bound
+            )
             relative_bound = Fraction(
                 count_bound,
                 diagonal_count * p ** (mu * exponent_gap_lower_bound),
+            )
+            marked_syzygy_relative_bound = Fraction(
+                marked_syzygy_count_bound,
+                diagonal_count * p ** (mu * marked_syzygy_gap_lower_bound),
             )
             rows.append(
                 {
@@ -1361,10 +1369,18 @@ def rank_deficient_cyclic_necklace_profile() -> dict:
                     "marked_syzygy_count_bound": marked_syzygy_count_bound,
                     "diagonal_count": diagonal_count,
                     "locator_rank_lower_bound": 2,
+                    "marked_syzygy_defect_bound": marked_syzygy_defect_bound,
+                    "marked_syzygy_gap_lower_bound": (
+                        marked_syzygy_gap_lower_bound
+                    ),
                     "exponent_gap_lower_bound": exponent_gap_lower_bound,
                     "relative_bound_to_diagonal": {
                         "numerator": relative_bound.numerator,
                         "denominator": relative_bound.denominator,
+                    },
+                    "marked_syzygy_relative_bound_to_diagonal": {
+                        "numerator": marked_syzygy_relative_bound.numerator,
+                        "denominator": marked_syzygy_relative_bound.denominator,
                     },
                 }
             )
@@ -1382,6 +1398,16 @@ def rank_deficient_cyclic_necklace_profile() -> dict:
         ),
         "marked_syzygy_count_matches_necklace_bound": all(
             row["marked_syzygy_count_bound"] == row["count_bound"]
+            for row in rows
+        ),
+        "marked_syzygy_gap_matches_necklace_bound": all(
+            row["marked_syzygy_gap_lower_bound"]
+            == row["exponent_gap_lower_bound"]
+            for row in rows
+        ),
+        "marked_syzygy_relative_matches_necklace_bound": all(
+            row["marked_syzygy_relative_bound_to_diagonal"]
+            == row["relative_bound_to_diagonal"]
             for row in rows
         ),
         "exponent_gap_lower_bound_formula_holds": all(
@@ -3345,6 +3371,14 @@ def run() -> dict:
         "rank_deficient_necklace_marked_syzygy_count": rank_deficient_necklaces[
             "marked_syzygy_count_matches_necklace_bound"
         ],
+        "rank_deficient_necklace_marked_syzygy_gap": rank_deficient_necklaces[
+            "marked_syzygy_gap_matches_necklace_bound"
+        ],
+        "rank_deficient_necklace_marked_syzygy_relative": (
+            rank_deficient_necklaces[
+                "marked_syzygy_relative_matches_necklace_bound"
+            ]
+        ),
         "rank_deficient_necklace_exponent_gap": rank_deficient_necklaces[
             "exponent_gap_lower_bound_formula_holds"
         ],

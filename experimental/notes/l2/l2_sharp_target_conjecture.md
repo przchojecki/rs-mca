@@ -1676,6 +1676,48 @@ quantity is an upper bound. In the necklace case each `d_j=1`, so
 nonpivot block product is the stated sequential product; summing over the `m`
 pivots gives the necklace formula.
 
+Combining this selected-edge count with the clean-cycle rank ledger gives a
+diagonal-relative version.
+
+**Corollary (diagonal-relative marked-syzygy bound).** Let `B_J` denote the
+marked selected-syzygy bound from the previous corollary. Suppose a lower bound
+
+```text
+R_cyc >= k-d
+```
+
+is available for the same clean-cycle shape. Then the random-model contribution
+of clean support tuples whose selected edges admit a marked syzygy, divided by
+the diagonal first-moment scale, is at most
+
+```text
+  [ B_J
+    prod_{i notin J} binom(n,e_i)
+    prod_i binom(n,p_i)
+    / binom(n,a) ]
+  q^{-mu((m-1)(a-k)-d)}.
+```
+
+One may take `d=max(0,s_2-k)` from the two-edge lower bound. In the fixed-length
+necklace case, taking `J` to be all edges and using `R_cyc>=2` gives
+`d=k-2=r-1`; the displayed bound is exactly the rank-deficient necklace
+relative contribution proved above.
+
+*Proof.* The marked selected-syzygy bound counts the selected edge data, while
+the unselected edge and private blocks are bounded trivially by the two
+products in the display. The clean-cycle rank formula gives exponent gap over
+diagonal
+
+```text
+(m-1)(a-k)+R_cyc-k.
+```
+
+Using `R_cyc>=k-d` gives the probability saving
+`q^{-mu((m-1)(a-k)-d)}`. Dividing the support count by the diagonal support
+count `binom(n,a)` gives the displayed relative bound. The necklace
+specialization has `a=2r`, `k=r+1`, `d=r-1`, no private blocks, and no
+unselected edges, recovering the previous formula.
+
 The incidence counts are exact in the MDS uniqueness range.
 
 **Corollary (small-support uniqueness for `N_e`).** Let `r([ell])` be the
