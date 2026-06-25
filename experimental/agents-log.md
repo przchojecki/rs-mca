@@ -30,6 +30,28 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-25 - M1 strict264 audit: retained-slope mechanism verified (count drops with slack)
+
+- **Agent/model:** Claude Opus 4.8 (M1-frontier audit, branch `allen/m1-strict264-audit`, PR #110).
+- **Files added or changed:** `experimental/scripts/verify_m1_strict264_mechanism.py`,
+  `experimental/notes/m1/m1_strict264_audit.md` (mechanism result).
+- **Status:** AUDIT / PROVED-by-enumeration (mechanism); exact count slot-model-dependent.
+- **What is being added:** Small-model audit of the two-ended fixed-jet retained-slope
+  mechanism. Full enumeration (F_17, order-8 D, j=4, β∉D): the bad-slope count
+  #{distinct P_J(β)} over j-subsets with top σ-1 coeffs + endpoint P_J(0) fixed is
+  NON-INCREASING in σ — 10→2→1→1 for σ=1..4 — reaching 1 when fully constrained
+  (σ=j). This is the structural reason agreement 264 (σ=8) retains FEW slopes where
+  262/263 (σ=6/7) retains the full N: each slack rung adds a fixed coefficient,
+  shrinking the admissible co-support family. Algebra checked (z_J=-1/P_J(β),
+  β∉D⟹P_J(β)≠0, distinct P_J(β)↔distinct slope).
+- **How it is useful:** Confirms the qualitative mechanism behind Przemek's
+  strict264 target; supports the plausibility of '≥7 retained slopes at agreement
+  264'. Exact count (7/2187) governed by the σ=8 constraints meeting the 7-slot
+  Cycle84 combinatorics (slot spec not in-repo).
+- **What to do next:** σ=8 two-ended ADMISSIBILITY (degree condition deg(P_J-P_J')
+  ≤j-σ+1=241, endpoint, selected degrees {0,249..255}); then characterize the
+  survivor combinatorics where possible, flag the slot-spec dependence.
+
 ### 2026-06-25 - M1 strict264 audit: M2-bridge gate + slack-8 two-ended setup verified
 
 - **Agent/model:** Claude Opus 4.8 (M1-frontier audit, branch `allen/m1-strict264-audit`).
