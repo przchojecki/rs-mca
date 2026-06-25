@@ -954,6 +954,109 @@ It does not yet classify arbitrary cyclic low-overlap diagrams: the remaining
 regular-core cluster work is to reduce more general cyclic diagrams to
 edge-block necklaces or count their own dependency loci.
 
+The necklace computation is a special case of an exact rank formula for clean
+simple cycles.
+
+**Lemma (clean simple-cycle rank formula).** Let `S_0,...,S_{m-1}` be distinct
+`a`-subsets forming a clean low-overlap cycle: indices are modulo `m`,
+
+```text
+E_i = S_i cap S_{i+1}
+```
+
+has size `e_i` with `0<e_i<k`, the edge sets `E_i` are pairwise disjoint, and
+there are no other intersections among the `S_i`. Put
+
+```text
+W_i = { Q in F_q[X]_{<k} : Q|_{E_i}=0 }.
+```
+
+Let
+
+```text
+R_cyc = dim(W_0 + ... + W_{m-1}).
+```
+
+Then the cross-component equality rank is
+
+```text
+r_cross = sum_i e_i + R_cyc - k.
+```
+
+Consequently the rank-corrected random-row exponent is
+
+```text
+m(a-k) + R_cyc - k,
+```
+
+and its gap over the diagonal first-moment exponent `a-k` is
+
+```text
+(m-1)(a-k) + R_cyc - k.
+```
+
+Thus every clean simple cyclic low-overlap diagram is controlled exactly by the
+single subspace-rank invariant `R_cyc`. The equal edge-block necklace is the
+case `e_i=k-1` and `W_i=<L_i>`, so `R_cyc` is precisely the locator-span rank
+used above.
+
+*Proof.* Since all edge intersections have size `<k` and there are no other
+intersections, the `k`-closure has `m` singleton parts. Also
+
+```text
+|S_0 union ... union S_{m-1}| = ma - sum_i e_i,
+```
+
+so `D=-sum_i e_i`. Write the closed-part polynomials as
+`P_0,...,P_{m-1}`. The equality condition on `E_i` is exactly
+
+```text
+P_{i+1}-P_i in W_i.
+```
+
+Set `Delta_i=P_{i+1}-P_i`. After choosing `P_0`, the tuple is determined by
+`(Delta_0,...,Delta_{m-1})`, and the only cycle-closing condition is
+
+```text
+Delta_0 + ... + Delta_{m-1} = 0.
+```
+
+The kernel of the sum map
+
+```text
+W_0 x ... x W_{m-1} -> F_q[X]_{<k}
+```
+
+has dimension
+
+```text
+sum_i dim W_i - R_cyc = sum_i (k-e_i) - R_cyc.
+```
+
+Therefore the feasible polynomial space has dimension
+
+```text
+k + sum_i(k-e_i) - R_cyc.
+```
+
+Subtracting this from the original `mk` polynomial coefficients gives
+
+```text
+r_cross
+  = mk - (k + sum_i(k-e_i) - R_cyc)
+  = sum_i e_i + R_cyc - k.
+```
+
+The rank-corrected closure ledger then gives exponent
+
+```text
+m(a-k) + D + r_cross
+  = m(a-k) - sum_i e_i + sum_i e_i + R_cyc - k
+  = m(a-k) + R_cyc - k.
+```
+
+Subtracting the diagonal exponent `a-k` gives the stated gap.
+
 The connected case also isolates the diagonal exactly.
 
 **Corollary (diagonal is the only zero-loss connected cluster).** Suppose

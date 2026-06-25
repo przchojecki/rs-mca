@@ -184,7 +184,14 @@ Keep entries concise and link to the relevant files.
   `m q^{(mu+1)(m-2)} ((m-1)^{m-1} rho_0^{-(m-3)}
   q^{-mu(m-2)})^r`. Together with the full-rank case this clears the
   fixed-length edge-block necklace family in the polynomial-field, linear-`r`
-  regime; the verifier checks the dependency-count bound over `F_31`.
+  regime; the verifier checks the dependency-count bound over `F_31`. The
+  cyclic analysis is now generalized to clean simple cycles with arbitrary
+  adjacent edge sizes `e_i<k`: if
+  `W_i={Q in F_q[X]_<k : Q|_{E_i}=0}` and
+  `R_cyc=dim(W_0+...+W_{m-1})`, then the cross-rank is exactly
+  `sum_i e_i+R_cyc-k` and the exponent gap over diagonal is
+  `(m-1)(a-k)+R_cyc-k`. The verifier checks uneven and private-mass cycle
+  examples over `F_31`.
 - **How it is useful:** Turns the L2 objective from a broad "avoid Cartesian
   overcharge" principle into a concrete conjectural inequality that can be
   falsified or promoted. The `K_{2,2}` witness records that local Cartesian
@@ -195,9 +202,9 @@ Keep entries concise and link to the relevant files.
   `Reg_mu <= binom(n,a)q^{-mu(a-k)} + Quot_rem_mu + n^B`, prove/import the
   repaired one-row L1 list bound at `a=k+sigma`, and reconcile the final
   statement with the active X1/L2 bridge PR #101 before promotion.
-  For the regular-core cluster route, reduce more general cyclic low-overlap
-  diagrams to edge-block necklaces, or classify and count their own dependency
-  loci.
+  For the regular-core cluster route, bound or count the subspace-rank
+  invariant `R_cyc` for clean cycle types, then extend the reduction to cyclic
+  diagrams with chords, shared edge intersections, or larger closure parts.
 
 ### 2026-06-23 - Cycle119 admissibility review
 

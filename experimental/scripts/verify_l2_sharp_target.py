@@ -6,7 +6,7 @@ settled by the support-intersection bridge: over-agreement can create
 interleaved mass, so the falsification target is whether that mass can grow like
 a Cartesian product rather than like a polynomial support-overlap codegree.
 
-The script checks eighteen finite objects.
+The script checks nineteen finite objects.
 
 1. The all-remainder quotient packet count used as Quot_rem_mu in the target.
 2. The Johnson-shell weights used in the codegree reduction.
@@ -25,7 +25,8 @@ The script checks eighteen finite objects.
 15. The constant locator-ratio subfamily of cyclic triangles.
 16. Full-rank fixed-length cyclic necklaces in the same low-overlap model.
 17. Rank-deficient fixed-length cyclic necklaces, counted by dependency data.
-18. A realized Reed-Solomon K_{2,2} gluing over a prime-field multiplicative
+18. Clean simple cycles with arbitrary adjacent low-overlap edge sizes.
+19. A realized Reed-Solomon K_{2,2} gluing over a prime-field multiplicative
    subgroup, computed by exact list enumeration, together with its punctured
    codegree profile.
 
@@ -1318,6 +1319,133 @@ def rank_deficient_cyclic_necklace_profile() -> dict:
     }
 
 
+def clean_cycle_rank_profile() -> dict:
+    """Check the exact rank formula for clean simple low-overlap cycles."""
+    p, n, mu = 31, 30, 2
+    h_values = subgroup(p, n)
+    examples = [
+        {"name": "triangle_necklace", "cycle_len": 3, "k": 5, "a": 8, "edges": [4, 4, 4]},
+        {"name": "private_mass_square", "cycle_len": 4, "k": 5, "a": 9, "edges": [4, 4, 4, 4]},
+        {"name": "uneven_square", "cycle_len": 4, "k": 6, "a": 10, "edges": [5, 4, 5, 3]},
+        {"name": "uneven_pentagon", "cycle_len": 5, "k": 6, "a": 10, "edges": [5, 5, 4, 4, 3]},
+    ]
+    rows = []
+    for example in examples:
+        cycle_len = example["cycle_len"]
+        k = example["k"]
+        a = example["a"]
+        edge_sizes = example["edges"]
+        private_sizes = [
+            a - edge_sizes[idx - 1] - edge_sizes[idx]
+            for idx in range(cycle_len)
+        ]
+        if any(size < 0 for size in private_sizes):
+            raise ValueError(f"negative private size in {example['name']}")
+        cursor = 0
+        edge_blocks = []
+        for edge_size in edge_sizes:
+            edge_blocks.append(set(range(cursor, cursor + edge_size)))
+            cursor += edge_size
+        private_blocks = []
+        for private_size in private_sizes:
+            private_blocks.append(set(range(cursor, cursor + private_size)))
+            cursor += private_size
+        if cursor > n:
+            raise ValueError(f"example {example['name']} exceeds n={n}")
+        supports = []
+        for idx in range(cycle_len):
+            support = (
+                edge_blocks[idx - 1]
+                | edge_blocks[idx]
+                | private_blocks[idx]
+            )
+            supports.append(tuple(sorted(support)))
+        closed_components = closure_components(supports, k)
+        part_unions = component_unions(supports, closed_components)
+        overlap_edges = component_overlap_edges(part_unions)
+        union_size = len(set().union(*[set(support) for support in supports]))
+        edge_total = sum(edge_sizes)
+        expected_union_size = cycle_len * a - edge_total
+        vanishing_basis = []
+        for edge_block in edge_blocks:
+            roots = [h_values[idx] for idx in sorted(edge_block)]
+            locator = poly_from_roots(p, roots)
+            for power in range(k - len(edge_block)):
+                basis_poly = poly_mul(locator, monomial(power), p)
+                vanishing_basis.append(basis_poly + [0] * (k - len(basis_poly)))
+        vanishing_sum_rank = matrix_rank_mod(vanishing_basis, p)
+        cross_rank = cross_constraint_rank(p, h_values, k, part_unions)
+        expected_cross_rank = edge_total + vanishing_sum_rank - k
+        product_diagonal_exponent = cycle_len * (a - k)
+        rank_corrected_exponent = (
+            product_diagonal_exponent - edge_total + cross_rank
+        )
+        expected_rank_corrected_exponent = (
+            cycle_len * (a - k) + vanishing_sum_rank - k
+        )
+        diagonal_exponent = a - k
+        exponent_gap = rank_corrected_exponent - diagonal_exponent
+        expected_exponent_gap = (cycle_len - 1) * (a - k) + vanishing_sum_rank - k
+        rows.append(
+            {
+                "name": example["name"],
+                "cycle_len": cycle_len,
+                "k": k,
+                "a": a,
+                "edge_sizes": edge_sizes,
+                "private_sizes": private_sizes,
+                "supports": [list(support) for support in supports],
+                "closed_components": len(closed_components),
+                "overlap_edges": [list(edge) for edge in overlap_edges],
+                "overlap_is_forest": is_forest(overlap_edges, len(part_unions)),
+                "union_size": union_size,
+                "expected_union_size": expected_union_size,
+                "edge_total": edge_total,
+                "vanishing_sum_rank": vanishing_sum_rank,
+                "cross_constraint_rank": cross_rank,
+                "expected_cross_constraint_rank": expected_cross_rank,
+                "product_diagonal_exponent": product_diagonal_exponent,
+                "rank_corrected_exponent": rank_corrected_exponent,
+                "expected_rank_corrected_exponent": expected_rank_corrected_exponent,
+                "diagonal_exponent": diagonal_exponent,
+                "exponent_gap": exponent_gap,
+                "expected_exponent_gap": expected_exponent_gap,
+            }
+        )
+    return {
+        "p": p,
+        "n": n,
+        "mu": mu,
+        "rows": rows,
+        "all_clean_cycles": all(
+            row["closed_components"] == row["cycle_len"]
+            and len(row["overlap_edges"]) == row["cycle_len"]
+            and not row["overlap_is_forest"]
+            and row["union_size"] == row["expected_union_size"]
+            for row in rows
+        ),
+        "cross_rank_formula_holds": all(
+            row["cross_constraint_rank"] == row["expected_cross_constraint_rank"]
+            for row in rows
+        ),
+        "rank_corrected_exponent_formula_holds": all(
+            row["rank_corrected_exponent"]
+            == row["expected_rank_corrected_exponent"]
+            for row in rows
+        ),
+        "exponent_gap_formula_holds": all(
+            row["exponent_gap"] == row["expected_exponent_gap"]
+            for row in rows
+        ),
+        "contains_uneven_edges": any(
+            len(set(row["edge_sizes"])) > 1 for row in rows
+        ),
+        "contains_private_mass": any(
+            any(size > 0 for size in row["private_sizes"]) for row in rows
+        ),
+    }
+
+
 def regular_irregular_profile(families: list[list[frozenset[int]]], a: int) -> dict:
     """Split interleaved tuples by exact-row regularity.
 
@@ -2178,6 +2306,7 @@ def run() -> dict:
     constant_ratio_triangles = constant_ratio_triangle_profile()
     full_rank_necklaces = full_rank_cyclic_necklace_profile()
     rank_deficient_necklaces = rank_deficient_cyclic_necklace_profile()
+    clean_cycles = clean_cycle_rank_profile()
     witness = realized_rs_k22()
     checks = {
         "quotient_budget_nonnegative": quotient_example["total"] >= 0,
@@ -2466,6 +2595,14 @@ def run() -> dict:
         "rank_deficient_necklace_below_diagonal": rank_deficient_necklaces[
             "relative_bound_below_diagonal"
         ],
+        "clean_cycle_shape": clean_cycles["all_clean_cycles"],
+        "clean_cycle_cross_rank": clean_cycles["cross_rank_formula_holds"],
+        "clean_cycle_rank_corrected_exponent": clean_cycles[
+            "rank_corrected_exponent_formula_holds"
+        ],
+        "clean_cycle_exponent_gap": clean_cycles["exponent_gap_formula_holds"],
+        "clean_cycle_has_uneven_edges": clean_cycles["contains_uneven_edges"],
+        "clean_cycle_has_private_mass": clean_cycles["contains_private_mass"],
         "kmm_grid_formula": all(d["interleaved_edges"] == d["grid_edges_at_n_min"] for d in designs),
         "rs_witness_creates_mass": witness["mass_creation"],
         "rs_witness_realizes_k22": witness["interleaved"] == witness["product_bound"] == 4,
@@ -2541,6 +2678,7 @@ def run() -> dict:
         "constant_ratio_triangle_profile": constant_ratio_triangles,
         "full_rank_cyclic_necklace_profile": full_rank_necklaces,
         "rank_deficient_cyclic_necklace_profile": rank_deficient_necklaces,
+        "clean_cycle_rank_profile": clean_cycles,
         "realized_rs_k22": witness,
         "checks": checks,
         "pass": all(checks.values()),
@@ -2703,6 +2841,12 @@ def main(argv: list[str] | None = None) -> int:
             "  rank-deficient cyclic necklace profile: "
             f"F_{deficient_necklaces['p']}, n={deficient_necklaces['n']}, "
             f"rows={deficient_necklaces['rows']}"
+        )
+        clean_cycles = result["clean_cycle_rank_profile"]
+        print(
+            "  clean simple-cycle rank profile: "
+            f"F_{clean_cycles['p']}, n={clean_cycles['n']}, "
+            f"rows={clean_cycles['rows']}"
         )
         print("  K_{m,m} abstract designs:")
         for d in result["kmm_designs"]:
