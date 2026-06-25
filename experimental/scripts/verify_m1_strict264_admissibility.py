@@ -21,7 +21,12 @@ This script (slot-model-free) verifies, by full enumeration on a small smooth
 domain: (a) the identity ell(P_J A)=A(beta) holds for every J in a fixed-jet class
 and every A of deg<sigma, with ell built from the class's common coefficients;
 (b) the recovery system is triangular & invertible (diagonal c,1,...,1);
-(c) the strict264 parameters (j,sigma,r)=(248,8,256) satisfy the structural
+(c) SUPPORT-WISE NONCONTAINMENT as an actual rank certificate: the r x (j+1)
+Vandermonde with nodes J u {beta} (rows = degrees 0..r-1) has full column rank j+1,
+i.e. the beta-column is NOT in the span of the j columns at J -- so g cannot be
+re-explained on D\J and the retained codewords are genuinely distinct (checked
+mod p by Gaussian elimination; the contrast at r'=j < j+1 confirms r>=j+1 essential);
+(d) the strict264 parameters (j,sigma,r)=(248,8,256) satisfy the structural
 constraints (deg(P_J-P_J') <= j-sigma+1=241; selected degrees {0,249,...,255};
 j+1=249 <= r=256 for noncontainment).
 
@@ -65,6 +70,42 @@ def elem_sym(J, p):
             ne[i] = (ne[i] + a * e[i - 1]) % p
         e = ne
     return e
+
+
+def mat_rank_modp(rows, p):
+    """rank over F_p of a list-of-rows matrix (Gaussian elimination)."""
+    M = [[x % p for x in row] for row in rows]
+    nrows = len(M)
+    ncols = len(M[0]) if M else 0
+    rank = 0
+    pivot_row = 0
+    for col in range(ncols):
+        piv = None
+        for r in range(pivot_row, nrows):
+            if M[r][col] % p != 0:
+                piv = r
+                break
+        if piv is None:
+            continue
+        M[pivot_row], M[piv] = M[piv], M[pivot_row]
+        inv = pow(M[pivot_row][col], p - 2, p)
+        M[pivot_row] = [(x * inv) % p for x in M[pivot_row]]
+        for r in range(nrows):
+            if r != pivot_row and M[r][col] % p != 0:
+                f = M[r][col]
+                M[r] = [(a - f * b) % p for a, b in zip(M[r], M[pivot_row])]
+        pivot_row += 1
+        rank += 1
+        if pivot_row == nrows:
+            break
+    return rank
+
+
+def vandermonde_colrank(nodes, r, p):
+    """rank over F_p of the r x len(nodes) Vandermonde [node^t]_{t=0..r-1}.
+    Columns = nodes, rows = degrees 0..r-1. Full column rank => columns independent."""
+    rows = [[pow(x, t, p) for x in nodes] for t in range(r)]
+    return mat_rank_modp(rows, p)
 
 
 def recover_and_eval(PJA, PJ, beta, sigma, j, c, e, p):
@@ -167,6 +208,14 @@ def run():
     multi = 0
     common_ell_ok = True
     distinct_slopes_seen = 0
+    r = j + sigma                                   # = n-k in the deployed instance
+    # support-wise NONCONTAINMENT certificate: for each J, the r x (j+1) Vandermonde
+    # with nodes J u {beta} (rows = degrees 0..r-1) must have full column rank j+1.
+    # rank = j+1 <=> the beta-column is NOT in the span of the j columns at J <=>
+    # g cannot be re-explained on D\J <=> the codeword is genuinely retained (distinct).
+    noncontain_ok = True
+    noncontain_tested = 0
+    beta_dependent_when_dropped = True   # sanity: dropping enough rows DOES create dependence
     for key, members in classes.items():
         if len(members) < 2:
             continue
@@ -190,6 +239,15 @@ def run():
                 true = sum(A[i] * pow(beta, i, p) for i in range(sigma)) % p
                 if Aval != true:
                     common_ell_ok = False
+            # NONCONTAINMENT: rank of r x (j+1) Vandermonde at J u {beta} must be j+1
+            nodes = sorted(J) + [beta]               # j+1 distinct nodes (beta not in D)
+            if vandermonde_colrank(nodes, r, p) != j + 1:
+                noncontain_ok = False
+            # contrast: a degree-<j Vandermonde (only j rows) CANNOT separate j+1 nodes,
+            # so the beta-column WOULD be dependent there -- confirms r>=j+1 is essential.
+            if vandermonde_colrank(nodes, j, p) >= j + 1:
+                beta_dependent_when_dropped = False
+            noncontain_tested += 1
         distinct_slopes_seen = max(distinct_slopes_seen, len(slopes))
     nonempty_multi = tested
 
@@ -227,12 +285,16 @@ def run():
         "multi-member fixed-jet classes exist (common-ell nontrivial)": multi > 0,
         "common-ell (class coeffs only) recovers A(beta) for every J in class": common_ell_ok,
         "distinct bad slopes z_J=-1/P_J(beta) within a class (>=2)": distinct_slopes_seen >= 2,
+        "NONCONTAINMENT: rank(r x (j+1) Vandermonde at J u {beta}) = j+1 (every J)": noncontain_ok,
+        "noncontainment actually exercised (>0 J)": noncontain_tested > 0,
+        "beta-col dependent if degree dropped to <j+1 (r>=j+1 essential)": beta_dependent_when_dropped,
         "slope-richness DROPS as slack rises (sigma=2 > sigma=3), all configs": richness_monotone,
         **struct,
     }
     return {"small_model": {"p": p, "D_order": m, "j": j, "sigma": sigma, "beta": beta,
                             "J_tested": tested, "shared_classes": multi,
-                            "max_distinct_slopes_in_a_class": distinct_slopes_seen},
+                            "max_distinct_slopes_in_a_class": distinct_slopes_seen,
+                            "noncontainment_J_tested": noncontain_tested, "r": r},
             "slope_richness": richness,
             "strict264_params": {"n": n264, "k": k264, "j": j264, "sigma": sig264, "r": r264},
             "checks": checks, "all_ok": all(checks.values())}

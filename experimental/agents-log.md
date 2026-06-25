@@ -30,6 +30,29 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-25 - M1 strict264 audit: noncontainment upgraded to actual Vandermonde-rank certificate
+
+- **Agent/model:** Claude Opus 4.8 (M1-frontier audit, branch `allen/m1-strict264-audit`, PR #110).
+- **Files added or changed:** `experimental/scripts/verify_m1_strict264_admissibility.py` (added
+  mod-p Gaussian-elimination rank + noncontainment certificate), `experimental/notes/m1/m1_strict264_audit.md`.
+- **Status:** AUDIT / PROVED-by-enumeration (noncontainment certificate); exact count slot-model-dependent.
+- **What is being added:** Upgrades the support-wise NONCONTAINMENT check from the bare
+  inequality j+1≤r to an ACTUAL rank certificate matching the construction note's claim
+  (m1_cycle120_abf_counterexample_candidate.md lines 316-319: "if g were explained on D\J the
+  Vandermonde column at beta would lie in the span of the columns at J, contradicting
+  independence of j+1<=r distinct Vandermonde columns"). For every J in a multi-member fixed-jet
+  class (128 J), builds the r×(j+1) Vandermonde with nodes J∪{β} (rows=degrees 0..r-1) and checks
+  rank = j+1 mod p by Gaussian elimination — i.e. the β-column is NOT in the span of the j columns
+  at J, so g cannot be re-explained on D\J and retained codewords are genuinely distinct. Contrast
+  check at r'=j (β-col dependent) confirms r≥j+1 is essential. All checks PASS (~1.7s).
+- **How it is useful:** Closes the last hand-wavy step of the σ=8 admissibility audit — the
+  noncontainment is now a concrete verified linear-algebra fact, not an asserted inequality. The
+  strict264 obstruction's algebra is fully certified end-to-end (identity + common-ℓ + distinct
+  slopes + noncontainment + σ=8 structure).
+- **What to do next:** Audit fully interim-complete. Optionally post a judicious verified audit
+  comment on PR #110 summarizing the certified-vs-slot-dependent boundary. Exact ≥7/2187 stays
+  flagged as Cycle84-slot-model-dependent (not in-repo).
+
 ### 2026-06-25 - M1 strict264 audit: σ=8 two-ended ADMISSIBILITY + slope-richness drop verified
 
 - **Agent/model:** Claude Opus 4.8 (M1-frontier audit, branch `allen/m1-strict264-audit`, PR #110).

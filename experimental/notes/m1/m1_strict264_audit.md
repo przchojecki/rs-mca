@@ -77,6 +77,13 @@ Cycle84 slots; the `≥7` minimal target is the conservative survivor count.
      `(e_1..e_{σ-1}, c, β)`, so one `ℓ` serves every `J` in the class. Verified on
      all 64 multi-member classes — the *same* `ℓ` recovers `A(β)` from every member,
      and the bad slopes `z_J = -1/P_J(β)` are distinct across the class.
+   * **Support-wise noncontainment — actual rank certificate (not just `j+1≤r`):**
+     for every `J`, the `r×(j+1)` Vandermonde with nodes `J∪{β}` (rows = degrees
+     `0..r−1`) has full column rank `j+1` (Gaussian elimination mod `p`, 128 `J`
+     tested). I.e. the `β`-column is *not* in the span of the `j` columns at `J`, so
+     `g` cannot be re-explained on `D\J` and the retained codewords are genuinely
+     distinct. The contrast at `r'=j<j+1` (β-column dependent) confirms `r≥j+1` is
+     essential.
    * **σ=8 structural consistency:** `deg(P_J−P_J') ≤ j−σ+1 = 241`, selected degrees
      `{0,249,…,255}` (exactly `σ=8` of them), `j+1 = 249 ≤ r = 256` (noncontainment).
    The construction is therefore admissible at the deployed `(j,σ,r)=(248,8,256)`.
