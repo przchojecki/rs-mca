@@ -115,6 +115,37 @@ def _load_scanner():
     return importlib.import_module("verify_l2_falsify_interleaved")
 
 
+def grid_scaling_vs_budget(S):
+    """Run the worst cross-mass family (grid gluing, k=2,a=4) across scale and test
+    the FULL V0 bound with the exact Quot_rem_mu: confirm
+    interleaved - binom(n,a)q^{-mu(a-k)} - Quot_rem_mu  stays POLYNOMIAL (<= n)."""
+    points = [(13, 12, 2), (17, 16, 2), (41, 20, 2), (73, 24, 2), (97, 48, 2)]
+    mu = 2
+    rows = []
+    bound_holds = True
+    residual_poly = True
+    for (p, n, k) in points:
+        a = k + 2
+        H, cws, _ = S.build(p, n, k)
+        g = S.grid_witness(p, n, k, a, H, cws)
+        if g is None:
+            continue
+        inter = g["interleaved"]
+        rand_term = comb(n, a) * (p ** (-mu * (a - k)))
+        Qrem = quot_rem_mu(n, k, a, mu)
+        residual = inter - rand_term - Qrem               # the part charged to n^B
+        rows.append({"p": p, "n": n, "a": a, "interleaved": inter,
+                     "max_base": g["max_base"], "rand_term": round(rand_term, 4),
+                     "Quot_rem_mu": Qrem, "residual_to_nB": round(residual, 3),
+                     "n_over_a": n // a})
+        # V0 holds with n^B (B=1 proxy): interleaved <= rand + Quot_rem + n
+        if inter > rand_term + Qrem + n:
+            bound_holds = False
+        if residual > n:                                  # residual must be poly (<= n)
+            residual_poly = False
+    return {"rows": rows, "bound_holds": bound_holds, "residual_poly": residual_poly}
+
+
 def run():
     checks = {}
 
@@ -160,17 +191,25 @@ def run():
             crit_ok = False
     checks["active-scale criterion: M|n and sigma<M<=a"] = crit_ok
 
-    # ---- falsification probe: quotient-periodic words vs full V0 RHS ----
+    # ---- falsification probe: quotient-periodic words + grid attack vs full V0 RHS ----
     probe = {"available": False}
+    grid = {"available": False}
     try:
         S = _load_scanner()
         probe = quotient_periodic_probe(S)
+        grid = grid_scaling_vs_budget(S)
+        grid["available"] = True
+        checks["grid attack: full V0 bound holds at scale (interleaved <= rand+Quot_rem+n)"] = \
+            grid["bound_holds"]
+        checks["grid attack: residual charged to n^B stays polynomial (<= n)"] = \
+            grid["residual_poly"]
     except Exception as e:  # honest: don't fail the rigorous checks if the probe can't run
         probe = {"available": False, "error": repr(e)}
+        grid = {"available": False, "error": repr(e)}
 
     all_ok = all(checks.values())
     return {"checks": checks, "all_ok": all_ok,
-            "aligned_examples": aligned_examples[:6], "probe": probe}
+            "aligned_examples": aligned_examples[:6], "probe": probe, "grid": grid}
 
 
 def quotient_periodic_probe(S):
@@ -268,6 +307,14 @@ def main():
         print(f"    [{pr['note']}]")
     else:
         print(f"  quotient-periodic probe unavailable: {pr.get('error')}")
+    print()
+    gr = out.get("grid", {})
+    if gr.get("available"):
+        print("  grid gluing attack (worst cross-mass, k=2,a=4) vs FULL V0 bound at scale:")
+        print(f"    {'n':>4}{'a':>3}{'interlvd':>9}{'rand':>7}{'Quot_rem':>9}{'resid->n^B':>11}{'n/a':>5}")
+        for r in gr["rows"]:
+            print(f"    {r['n']:>4}{r['a']:>3}{r['interleaved']:>9}{r['rand_term']:>7}"
+                  f"{r['Quot_rem_mu']:>9}{r['residual_to_nB']:>11}{r['n_over_a']:>5}")
     print()
     print("RESULT:", "PASS (Quot_rem_mu implementation verified; probe recorded)"
           if out["all_ok"] else "FAIL")

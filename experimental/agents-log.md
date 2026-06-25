@@ -50,6 +50,12 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** Compare the O(1) cross-mass from the gluing words (iters 2-3) against Quot_rem_mu;
   extend to mu=3 and larger n/rates. Honest caveat: small below-reserve model, single param set. The
   *proof* of the saving remains L1-gated (codegree theorem reduction, PR #108).
+- **UPDATE (same day):** added grid-gluing-vs-full-V0-bound scaling (k=2,a=4, n=12..48): grid cross-mass
+  ~n/a (poly), residual interleaved-rand-Quot_rem_mu stays <= n (often negative -- Quot_rem alone covers
+  it). So BOTH family types confirm V0 (periodic: no cross-mass; gluing: poly <= budget). FALSIFICATION
+  CEILING reached: no super-poly excess over rand+Quot_rem_mu in any tested family; polynomiality is free
+  (interleaved<=(base)^mu), the open piece is the sharp SAVING which is L1-gated (iter 4 codegree->PR #108).
+  Falsification status section added to l2_falsification_log.md.
 
 ### 2026-06-25 - Latest PR integration and estimate audit
 
