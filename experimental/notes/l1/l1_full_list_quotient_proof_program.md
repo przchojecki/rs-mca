@@ -2152,7 +2152,7 @@ Thus any sunflower family with bounded cofactor excess and two
 near-saturated touched petals is already polynomially controlled, even before
 the unused background is stripped away.
 
-## Theorem B2. Bounded-Background Average-Deficit Closure
+## Theorem B2. Maximal Average-Deficit Closure With Background
 
 Status: PROVED.
 
@@ -2161,19 +2161,18 @@ Assume the sunflower is maximal, so its unused background has size
 `q=poly(n)`.  For a non-planted listed codeword put
 
 ```text
-r(P)=|R_P|,
 t(P)=#{i : S_i nonempty},
 u(P)=sum_i (ell-|S_i|),
 ```
 
-where the sum is over touched petals.  Fix integer constants `E,A,B >= 0`.
+where the sum is over touched petals.  Fix integer constants `E,A >= 0`.
 Then the number of non-planted listed codewords satisfying
 
 ```text
-d <= ell+E,        r(P) <= B,
+d <= ell+E
 ```
 
-and, when `t(P)>0`,
+and
 
 ```text
 u(P) <= A t(P),
@@ -2182,66 +2181,52 @@ u(P) <= A t(P),
 is polynomial in `n`.
 
 Consequently, any super-polynomial maximal-sunflower family at the L1 lower
-cutoff with bounded cofactor excess `d-ell` and bounded average petal deficit
-`u(P)/t(P)` must have
+cutoff with bounded cofactor excess `d-ell` must have
 
 ```text
-r(P) -> infinity.
+u(P)/t(P) -> infinity.
 ```
 
 ### Proof
 
-For `ell>B`, no listed codeword with `r(P)<=B` can have `t(P)=0`, because the
-list condition from Lemma 2 would give
+By Lemma 4, maximal sunflowers have no non-planted listed codewords with fewer
+than two touched petals.  Thus `t=t(P)>=2`.
 
-```text
-r(P) >= ell+d.
-```
-
-Now consider the one-petal case `t(P)=1`.  Write the unique petal deficit as
-`u=ell-|S_i|`.  The list condition gives
-
-```text
-ell-u+r(P) >= ell+d,
-```
-
-so `d <= r(P)-u <= B`.  Thus all one-petal codewords with `r(P)<=B` lie in a
-fixed-defect layer, and Lemma 3 bounds their total contribution by a
-polynomial in `n`.
-
-It remains to treat `t=t(P)>=2`.  If `u(P)<=At`, then at least two touched
-petals have deficit at most `2A`; otherwise at least `t-1` touched petals
-would have deficit at least `2A+1`, giving
+If `u(P)<=At`, then at least two touched petals have deficit at most `2A`;
+otherwise at least `t-1` touched petals would have deficit at least `2A+1`,
+giving
 
 ```text
 u(P) >= (t-1)(2A+1) > At
 ```
 
-for every `t>=2`, a contradiction.  Therefore every remaining codeword has
-two near-saturated touched petals with `u0=2A`.  Lemma B1, with `e0=E` and
-`u0=2A`, bounds these codewords by
+for every `t>=2`, a contradiction.  Therefore every codeword in the displayed
+class has two near-saturated touched petals with `u0=2A`.  Lemma B1, with
+`e0=E` and `u0=2A`, bounds these codewords by
 
 ```text
 binom(M,2) (sum_{v=0}^{2A} binom(ell,v))^2 q^{2(E+2A+1)}.
 ```
 
 At the L1 lower cutoff, `M=O(log n)`, `ell<=n`, and `q=poly(n)`, so this is
-polynomial in `n` for fixed `E,A`.  Adding the fixed-defect one-petal
-contribution proves the polynomial bound.
+polynomial in `n` for fixed `E,A`.
 
 For the final assertion, if a super-polynomial family had bounded
-`d-ell`, bounded `u(P)/t(P)`, and bounded `r(P)`, fixed constants `E,A,B`
-would contain it in the polynomially bounded union just proved.
+`d-ell` and bounded `u(P)/t(P)`, fixed constants `E,A` would contain it in
+the polynomially bounded union just proved.
 
 ### Consequences
 
-This theorem connects the background-free sunflower closure back to the
-original maximal sunflower model.  After bounded cofactor excess and bounded
-average petal deficit are removed, the only new obstruction introduced by an
-unused background is a growing number of background agreements.  The next
-background-sensitive target is therefore explicit: either bound large
-`R_P`-agreement families directly, or show that they force quotient,
-low-defect, or another budgeted structure.
+This theorem removes the artificial background-free hypothesis from the
+average-deficit sunflower closure.  Unused-background agreements do not create
+a separate residual regime once the sunflower is maximal: with bounded
+cofactor excess, bounded average petal deficit is already polynomially
+controlled.  The remaining maximal-sunflower obstruction is therefore the same
+two-parameter quantitative problem as in the background-free model:
+
+```text
+d-ell -> infinity        or        u(P)/t(P) -> infinity.
+```
 
 ## Development Ledger
 
@@ -2306,8 +2291,9 @@ low-defect, or another budgeted structure.
 - **Background-aware near-saturated pair count:** PROVED.  Removes the
   background-free hypothesis from the two-near-saturated-petal certificate
   count.
-- **Bounded-background average-deficit closure:** PROVED.  Extends the
-  sunflower closure to maximal sunflowers with bounded unused-background
-  agreement, leaving growing `R_P` agreement as an explicit residual escape.
+- **Maximal average-deficit closure with background:** PROVED.  Removes the
+  background-free hypothesis from the bounded-excess, bounded-average-deficit
+  sunflower closure; unused-background agreement is not a separate residual
+  escape in maximal sunflowers.
 - **Mixed-petal sunflower amplification:** CONJECTURAL.  Next focused bound to
   prove or refute in the large-defect regime.

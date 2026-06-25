@@ -30,6 +30,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-25 - L1 maximal sunflower background removal
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/notes/l1/l1_full_list_quotient_proof_program.md` and
+  `experimental/agents-log.md`.
+- **Status:** PROVED.
+- **What is being added:** The bounded-background sunflower closure is
+  strengthened to a maximal-sunflower closure with no bound on
+  unused-background agreement. In a maximal sunflower, bounded cofactor excess
+  and bounded average petal deficit already give a polynomial contribution.
+- **How it is useful:** Removes growing `R_P` agreement as a separate residual
+  obstruction in the sunflower route. The remaining obstruction is again the
+  sharper two-parameter problem: growing `d-ell` or growing average petal
+  deficit `u(P)/t(P)`.
+- **What to do next:** Attack the two remaining quantitative regimes directly,
+  starting with a certificate or counting bound for growing average petal
+  deficit at bounded cofactor excess.
+
 ### 2026-06-25 - L1 bounded-background sunflower closure
 
 - **Agent/model:** Codex.
