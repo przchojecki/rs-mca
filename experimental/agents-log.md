@@ -238,7 +238,11 @@ Keep entries concise and link to the relevant files.
   nonpivot coefficient polynomials, the pivot locator is forced by
   `L_t=-(sum_{j!=t}L_j A_j)/A_t`; the remaining conditions are divisibility,
   monicity, and an `H`-root/disjointness gate. The verifier checks this forcing
-  on the `F_7` witness, recovering the pivot locator and its roots. The incidence
+  on the `F_7` witness, recovering the pivot locator and its roots. The monic
+  leading-coefficient gate now gives a uniform one-`q` coefficient saving in
+  the pivot count; in the necklace case this recovers exactly the
+  `q^{m-2}` coefficient factor, and the verifier records the `F_7` crude
+  coefficient count dropping from `49` to `7`. The incidence
   counts are now exact in the MDS uniqueness range: if `[ell]` has minimal
   support size `r` and `e>=r`, `r+e<=k`, then
   `N_e([ell])=binom(n-r,e-r)`, so for

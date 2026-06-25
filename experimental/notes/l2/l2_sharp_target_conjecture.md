@@ -1551,6 +1551,56 @@ nonpivot edge choices gives the displayed overcount. Every selected-rank defect
 has at least one nonzero syzygy and hence at least one marked pivot, so this
 overcount covers the lower selected-rank tuples.
 
+The monicity gate always saves one coefficient dimension in this pivot count.
+
+**Corollary (monic leading-coefficient gate).** Keep the notation of the
+pivot-forcing reduction, fix a pivot `t`, and fix a normalized pivot
+coefficient `A_t` of degree `b` and leading coefficient `c`. Put
+
+```text
+D=e_t+b,        N=sum_{j != t} L_j A_j.
+```
+
+If the forced quotient
+
+```text
+L_t=-N/A_t
+```
+
+is a monic polynomial of degree `e_t`, then the coefficient of `X^D` in `N`
+must be `-c`. For fixed nonpivot edge blocks, this is one affine linear
+condition on the nonpivot coefficient polynomials `(A_j)_{j != t}`. Therefore
+the number of nonpivot coefficient choices surviving the monicity gate is at
+most
+
+```text
+q^{sum_{j != t} d_j - 1}.
+```
+
+After summing over normalized pivot coefficients, the coefficient factor in the
+pivot-forcing overcount improves from
+
+```text
+(q^{d_t}-1)/(q-1) q^{sum_{j != t} d_j}
+```
+
+to
+
+```text
+(q^{d_t}-1)/(q-1) q^{sum_{j != t} d_j - 1}.
+```
+
+In the fixed-length necklace case `d_j=1` for all selected edges, this is
+exactly the `q^{m-2}` coefficient count in the rank-deficient necklace lemma.
+
+*Proof.* If `L_t` is monic of degree `e_t`, then `L_t A_t` has degree `D` and
+leading coefficient `c`. Since `L_t A_t=-N`, the coefficient of `X^D` in `N`
+is `-c`, which is nonzero. As the nonpivot coefficients vary, this coefficient
+of `N` is a linear functional. If the functional is zero, there are no
+solutions; otherwise its fiber over the nonzero value `-c` has codimension
+one, giving at most `q^{sum_{j != t}d_j-1}` choices. Summing over normalized
+nonzero `A_t` gives the stated coefficient bound.
+
 The incidence counts are exact in the MDS uniqueness range.
 
 **Corollary (small-support uniqueness for `N_e`).** Let `r([ell])` be the

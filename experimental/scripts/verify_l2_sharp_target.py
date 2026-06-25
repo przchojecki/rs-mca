@@ -312,6 +312,10 @@ def poly_divmod(
     return trim_poly(quotient), trim_poly(numerator)
 
 
+def poly_coeff(poly: list[int], degree: int) -> int:
+    return poly[degree] if degree < len(poly) else 0
+
+
 def monomial(power: int, coeff: int = 1) -> list[int]:
     out = [0] * (power + 1)
     out[power] = coeff
@@ -1804,6 +1808,29 @@ def locator_syzygy_witness_profile() -> dict:
         for idx, x_value in enumerate(h_values)
         if eval_poly(tuple(forced_locator), x_value, p) == 0
     ]
+    coefficient_dimensions = [k - len(edge_block) for edge_block in edge_blocks]
+    pivot_coefficient_degree = poly_degree(syzygy_coefficients[pivot])
+    pivot_leading_coefficient = syzygy_coefficients[pivot][
+        pivot_coefficient_degree
+    ]
+    forced_leading_degree = pivot_coefficient_degree + len(edge_blocks[pivot])
+    nonpivot_leading_coefficient = poly_coeff(nonpivot_sum, forced_leading_degree)
+    expected_nonpivot_leading_coefficient = (-pivot_leading_coefficient) % p
+    normalized_pivot_coefficients = (
+        p ** coefficient_dimensions[pivot] - 1
+    ) // (p - 1)
+    nonpivot_coefficient_dimension = sum(
+        coefficient_dimensions[idx]
+        for idx in range(len(edge_blocks))
+        if idx != pivot
+    )
+    crude_pivot_coefficient_choices = (
+        normalized_pivot_coefficients * p**nonpivot_coefficient_dimension
+    )
+    monic_gate_coefficient_bound = (
+        normalized_pivot_coefficients
+        * p ** (nonpivot_coefficient_dimension - 1)
+    )
     return {
         "p": p,
         "n": n,
@@ -1830,10 +1857,32 @@ def locator_syzygy_witness_profile() -> dict:
         "forced_locator": forced_locator,
         "forcing_remainder": forcing_remainder,
         "forced_roots": forced_roots,
+        "coefficient_dimensions": coefficient_dimensions,
+        "pivot_coefficient_degree": pivot_coefficient_degree,
+        "pivot_leading_coefficient": pivot_leading_coefficient,
+        "forced_leading_degree": forced_leading_degree,
+        "nonpivot_leading_coefficient": nonpivot_leading_coefficient,
+        "expected_nonpivot_leading_coefficient": (
+            expected_nonpivot_leading_coefficient
+        ),
+        "normalized_pivot_coefficients": normalized_pivot_coefficients,
+        "nonpivot_coefficient_dimension": nonpivot_coefficient_dimension,
+        "crude_pivot_coefficient_choices": crude_pivot_coefficient_choices,
+        "monic_gate_coefficient_bound": monic_gate_coefficient_bound,
         "syzygy_sum_zero": syzygy_sum == [0],
         "pivot_forcing_remainder_zero": forcing_remainder == [0],
         "pivot_forcing_recovers_locator": forced_locator == locators[pivot],
         "pivot_forcing_roots_match": forced_roots == sorted(edge_blocks[pivot]),
+        "monic_leading_gate_holds": (
+            nonpivot_leading_coefficient == expected_nonpivot_leading_coefficient
+        ),
+        "monic_gate_saves_q": (
+            crude_pivot_coefficient_choices
+            == p * monic_gate_coefficient_bound
+        ),
+        "monic_gate_matches_necklace_count": (
+            monic_gate_coefficient_bound == p ** (len(edge_blocks) - 2)
+        ),
     }
 
 
@@ -3345,6 +3394,15 @@ def run() -> dict:
         "locator_syzygy_witness_pivot_roots": locator_syzygy_witness[
             "pivot_forcing_roots_match"
         ],
+        "locator_syzygy_witness_monic_leading": locator_syzygy_witness[
+            "monic_leading_gate_holds"
+        ],
+        "locator_syzygy_witness_monic_saves_q": locator_syzygy_witness[
+            "monic_gate_saves_q"
+        ],
+        "locator_syzygy_witness_monic_necklace_count": locator_syzygy_witness[
+            "monic_gate_matches_necklace_count"
+        ],
         "kmm_grid_formula": all(d["interleaved_edges"] == d["grid_edges_at_n_min"] for d in designs),
         "rs_witness_creates_mass": witness["mass_creation"],
         "rs_witness_realizes_k22": witness["interleaved"] == witness["product_bound"] == 4,
@@ -3603,7 +3661,8 @@ def main(argv: list[str] | None = None) -> int:
             f"excess={syz['syzygy_kernel_excess']}, "
             f"pivot={syz['pivot_index']}, "
             f"forced_locator={syz['forced_locator']}, "
-            f"forced_roots={syz['forced_roots']}"
+            f"forced_roots={syz['forced_roots']}, "
+            f"monic_bound={syz['monic_gate_coefficient_bound']}"
         )
         finc = result["functional_incidence_profile"]
         print(
