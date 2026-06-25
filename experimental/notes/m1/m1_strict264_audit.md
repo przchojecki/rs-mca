@@ -84,9 +84,16 @@ Cycle84 slots; the `≥7` minimal target is the conservative survivor count.
      `g` cannot be re-explained on `D\J` and the retained codewords are genuinely
      distinct. The contrast at `r'=j<j+1` (β-column dependent) confirms `r≥j+1` is
      essential.
-   * **σ=8 structural consistency:** `deg(P_J−P_J') ≤ j−σ+1 = 241`, selected degrees
-     `{0,249,…,255}` (exactly `σ=8` of them), `j+1 = 249 ≤ r = 256` (noncontainment).
-   The construction is therefore admissible at the deployed `(j,σ,r)=(248,8,256)`.
+   * **σ=8 structural consistency:** `deg(P_J−P_J') ≤ j−σ = 240` (the top `σ−1 = 7`
+     elementary-symmetric functions `e_1..e_7` common — the verifier groups by
+     `(e_1..e_{σ−1}, e_j)`, the valid reading), selected degrees `{0,249,…,255}`
+     (exactly `σ=8` of them), `j+1 = 249 ≤ r = 256` (noncontainment).
+     **Correction:** earlier drafts (and the candidate note, lines 286–287) wrote
+     `deg ≤ j−σ+1 = 241`; that is an **off-by-one** — it frees `e_{σ−1}` and breaks
+     the common line (see item 6). The admissibility enumeration above already used
+     the correct grouping, so the result is unaffected.
+   The construction is therefore admissible at the deployed `(j,σ,r)=(248,8,256)`,
+   **with the corrected degree condition `deg ≤ 240` (top `σ−1` common) + endpoint**.
 4. **Survivor combinatorics — PARTIAL (checkable part DONE; exact count NOT).**
    The *per-line* image of the count drop is verified
    (`verify_m1_strict264_admissibility.py`, slope-richness table): at fixed `(p,m,j)`
@@ -112,11 +119,29 @@ Cycle84 slots; the `≥7` minimal target is the conservative survivor count.
    (`Hc_J=0` **and** it is the evaluation of a deg-`<k` polynomial); (e) the line
    point `r_J=f+z_J g` agrees with `c_J` on **exactly** the `n−j=12` points of `D\J`
    (and differs on all `j` points of `J`); (f) distinct `P_J(β)` give distinct slopes
-   — `LD_sw(C,12) ≥ 4` for this single line. **Convention note (honest):** Lemma 1 (and
-   this realization) fixes the **top `σ`** coefficients of `P_J`, which is exactly
-   what makes `Q_m` common; the strict264 σ=8 *deployment* uses the **two-ended**
-   variant (top `σ−1` + endpoint), whose admissibility is item 3. Both share this LD_sw
-   transfer pipeline; this item realizes the proven (top-`σ`) form on a real code.
+   — `LD_sw(C,12) ≥ 4` for this single line. **Convention note (honest):** Lemma 1's
+   hypothesis `deg(P_J−P_J')≤j−σ` fixes the top `σ−1` elementary-symmetric functions
+   `e_1..e_{σ−1}` (this realization over-fixes by grouping on `e_1..e_σ`, harmless);
+   that is what makes `Q_m` common. The deployment adds the endpoint (item 3, item 6).
+6. **Two-ended transfer — VERIFIED FINDING (off-by-one in the stated jet)**
+   (`verify_m1_strict264_two_ended_transfer.py`). The LD_sw transfer needs the
+   common-line part `A_J := H e_J − z_J B` (`z_J=1/P_J(β)`, `B_m=β^m`) to be common
+   across the jet class — only then does a single received line `f+z g` exist
+   (`Hf = A_common`). Since `A_m = −Q_m(β)` and `Q_{j+t}` depends on `e_1..e_t`, the
+   **top** row `m=j+σ−1` depends on `e_{σ−1}`. Full enumeration on `RS[F_97,D,8]`
+   (`j=5, σ=3`) decides three readings:
+   * **`e_1..e_{σ−1}` common** (Lemma 1): `A_J` common across all 1000 classes ✓.
+   * **`e_1..e_{σ−1}, e_j` common** (Lemma 1 + endpoint): `A_J` common (64 classes) ✓.
+   * **`e_1..e_{σ−2}, e_j` common, `e_{σ−1}` free** (the candidate note's *literal*
+     `deg ≤ j−σ+1` reading): `A_J` is **NOT common** — it varies in **exactly the top
+     parity row** `m=j+σ−1`, so no single line fits. ✗
+   **Conclusion:** the deployed two-ended construction is valid **iff `e_{σ−1}` is
+   fixed too**, i.e. the correct jet is `deg ≤ j−σ` (top `σ−1` common) **+ endpoint**;
+   the literal `deg ≤ j−σ+1` in the candidate note (and earlier drafts) is an
+   off-by-one that breaks the common line. With the corrected jet, the construction
+   reduces to the proven Lemma 1 transfer (item 5) on the endpoint-fixed sub-family.
+   strict264's conclusion is unaffected (the admissibility enumeration already used
+   the correct grouping); only the stated degree condition is corrected `241 → 240`.
 
 ## Honest scope
 - **VERIFIED (arithmetic):** the M2-bridge gate (7 slopes ⟹ `>2^-128`, `δ*≤31/64`)
@@ -131,18 +156,27 @@ Cycle84 slots; the `≥7` minimal target is the conservative survivor count.
 - **VERIFIED (end-to-end, genuine RS code):** the LD_sw transfer
   `LD_sw(C,n−j) ≥ #{P_J(β)}` realized as actual codewords agreeing on `D\J`, one
   common received line, noncontained (`verify_m1_strict264_end_to_end.py`).
+- **VERIFIED (transfer finding, correction):** the two-ended jet must fix
+  `e_1..e_{σ−1}` (top `σ−1`, `deg ≤ j−σ`) **+ endpoint**; the literal `deg ≤ j−σ+1`
+  (freeing `e_{σ−1}`) breaks the common line in the top parity row
+  (`verify_m1_strict264_two_ended_transfer.py`). Stated degree condition corrected
+  `241 → 240`; strict264's conclusion is unaffected.
 - **OUT OF SCOPE (needs the rejected-archive slot spec):** the exact survivor count
   `≥7` / `2187` for the actual `F_17^32` row — slot-model-dependent.
 
 ## Audit verdict (interim)
 The strict264 obstruction is **structurally sound and admissible**: every checkable
 layer — the bridge arithmetic, the slack-8 parameters, the retained-slope drop
-mechanism, the two-ended common-`ℓ` construction at `(248,8,256)`, and the LD_sw
-transfer realized end-to-end on a genuine RS code — passes independent verification.
-The single remaining gap is the *exact* survivor count `≥7`, which is governed by the
-Cycle84 7-slot model not present in the repo. The audit neither confirms nor refutes
-the precise "7"; it certifies everything around it and isolates the one
-slot-model-dependent number.
+mechanism, the two-ended common-`ℓ` construction at `(248,8,256)` (with the
+**corrected jet** `deg ≤ 240` + endpoint), and the LD_sw transfer realized
+end-to-end on a genuine RS code — passes independent verification. The audit also
+**caught and corrected an off-by-one** in the stated jet (`241 → 240`): the literal
+condition would free `e_{σ−1}` and break the common received line; the construction
+is valid only with `e_{σ−1}` fixed, after which it reduces to the proven Lemma 1
+transfer. The single remaining gap is the *exact* survivor count `≥7`, governed by
+the Cycle84 7-slot model not present in the repo. The audit neither confirms nor
+refutes the precise "7"; it certifies everything around it (now including the
+corrected jet) and isolates the one slot-model-dependent number.
 
 ## Reproducibility
 ```bash
@@ -150,4 +184,5 @@ python3 experimental/scripts/verify_m1_strict264_bridge.py
 python3 experimental/scripts/verify_m1_strict264_mechanism.py
 python3 experimental/scripts/verify_m1_strict264_admissibility.py
 python3 experimental/scripts/verify_m1_strict264_end_to_end.py
+python3 experimental/scripts/verify_m1_strict264_two_ended_transfer.py
 ```

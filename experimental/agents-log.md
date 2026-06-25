@@ -30,6 +30,30 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-25 - M1 strict264 audit: two-ended transfer FINDING (off-by-one in stated jet, corrected)
+
+- **Agent/model:** Claude Opus 4.8 (M1-frontier audit, branch `allen/m1-strict264-audit`, PR #110).
+- **Files added or changed:** `experimental/scripts/verify_m1_strict264_two_ended_transfer.py` (new),
+  `experimental/notes/m1/m1_strict264_audit.md` (item 3 deg correction + new item 6 + verdict/scope/repro).
+- **Status:** AUDIT / VERIFIED FINDING (correction established by enumeration).
+- **What is being added:** A decisive check of whether the deployed TWO-ENDED jet admits the
+  common-line LD_sw transfer. The transfer needs A_J := H e_J - z_J B (z_J=1/P_J(beta), B_m=beta^m)
+  COMMON across the jet class (then a single line f+zg exists, Hf=A_common). Since A_m=-Q_m(beta)
+  and Q_{j+t} depends on e_1..e_t, the TOP row m=j+sigma-1 depends on e_{sigma-1}. Full enumeration
+  on RS[F_97,D,8] (j=5,sigma=3) decides three readings: (i) e_1..e_{sigma-1} common [Lemma 1] ->
+  A_J COMMON (1000 classes); (ii) e_1..e_{sigma-1}+endpoint -> COMMON (64 classes); (iii) the
+  candidate note's LITERAL deg<=j-sigma+1 reading (e_1..e_{sigma-2}+endpoint, e_{sigma-1} FREE) ->
+  A_J NOT common, varying in EXACTLY the top parity row. CONCLUSION: the two-ended construction is
+  valid IFF e_{sigma-1} is fixed too (deg<=j-sigma, top sigma-1 common) + endpoint; the literal
+  deg<=j-sigma+1 (candidate note lines 286-287, and earlier strict264 drafts) is an OFF-BY-ONE that
+  breaks the common line. Stated degree condition corrected 241 -> 240.
+- **How it is useful:** Corrects a propagated off-by-one in the M1 strict264/Cycle119 construction's
+  stated jet and proves the valid form reduces to the already-certified Lemma 1 + endpoint transfer.
+  strict264's CONCLUSION is unaffected (the admissibility enumeration already grouped by the correct
+  (e_1..e_{sigma-1}, e_j)); only the degree number was wrong. Tightens the audit's correctness.
+- **What to do next:** M1 (Codex/Danny) may want to fix the candidate note's deg<=j-sigma+1 to
+  deg<=j-sigma (their territory; flagged via PR comment, not edited by me). Audit now 6 verifiers.
+
 ### 2026-06-25 - M1 strict264 audit: END-TO-END LD_sw realization on a genuine small RS code
 
 - **Agent/model:** Claude Opus 4.8 (M1-frontier audit, branch `allen/m1-strict264-audit`, PR #110).
