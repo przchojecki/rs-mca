@@ -3259,6 +3259,29 @@ def residual_shape_scan_profile() -> dict:
             > low_count * alphabet_size + high_count * low_count
         )
 
+    def root_active_neighbor_count(
+        depths: list[int], root_depth: int, sigma: int
+    ) -> int:
+        return sum(depth <= 2 * sigma - root_depth for depth in depths)
+
+    def triangle_all_negative_root_active_count(
+        depths: list[int], root_depth: int, sigma: int
+    ) -> int:
+        return 3 * sum(
+            root_active_neighbor_count(depths, depth, sigma) ** 2
+            for depth in depths
+            if depth >= root_depth
+        )
+
+    def triangle_spike_root_active_count(
+        depths: list[int], root_depth: int, sigma: int
+    ) -> int:
+        return 2 * sum(
+            root_active_neighbor_count(depths, depth, sigma)
+            for depth in depths
+            if depth >= root_depth
+        )
+
     scan_cases = [
         {"name": "triangle_nonempty", "cycle_len": 3, "mu": 2, "k": 8, "sigma": 3},
         {
@@ -3553,6 +3576,17 @@ def residual_shape_scan_profile() -> dict:
                 root_active_all_negative_full_transfer_count
                 - root_active_all_negative_low_transfer_count
             )
+            root_active_triangle_all_negative_count = (
+                None
+                if cycle_len != 3
+                else (
+                    0
+                    if root_budget < 4 or not odd_compatible
+                    else triangle_all_negative_root_active_count(
+                        depth_values, root_depth_required, sigma
+                    )
+                )
+            )
             root_active_all_negative_bound = independent_set_weight_bound(
                 cycle_len,
                 len(high_depth_values),
@@ -3607,6 +3641,7 @@ def residual_shape_scan_profile() -> dict:
                     full_transfer_count = 0
                     low_transfer_count = 0
                     exact_transfer_count = 0
+                    triangle_formula_count = 0 if cycle_len == 3 else None
                 else:
                     full_transfer_count = pinned_spike_depth_count(
                         spike, allowed_depths, cycle_len, sigma
@@ -3620,6 +3655,17 @@ def residual_shape_scan_profile() -> dict:
                         exact_transfer_count = (
                             full_transfer_count - low_transfer_count
                         )
+                    triangle_formula_count = (
+                        None
+                        if cycle_len != 3
+                        else (
+                            len(allowed_depths) ** (cycle_len - 1)
+                            if spike <= root_depth_threshold
+                            else triangle_spike_root_active_count(
+                                allowed_depths, root_depth_required, sigma
+                            )
+                        )
+                    )
                 if spike <= root_depth_threshold:
                     bound = len(allowed_depths) ** (cycle_len - 1)
                     recurrence_bound = bound
@@ -3665,6 +3711,7 @@ def residual_shape_scan_profile() -> dict:
                         "full_transfer_count": full_transfer_count,
                         "low_transfer_count": low_transfer_count,
                         "exact_transfer_count": exact_transfer_count,
+                        "triangle_formula_count": triangle_formula_count,
                         "spectral_rate": spectral_rate,
                         "spectral_bound": spectral_bound,
                         "spectral_saves_free_alphabet": (
@@ -3695,6 +3742,16 @@ def residual_shape_scan_profile() -> dict:
                     for row in root_active_spike_bound_rows
                 )
             )
+            root_active_triangle_formula_count = (
+                None
+                if cycle_len != 3
+                else root_active_triangle_all_negative_count
+                + cycle_len
+                * sum(
+                    row["triangle_formula_count"]
+                    for row in root_active_spike_bound_rows
+                )
+            )
             root_active_spectral_bound = (
                 root_active_all_negative_spectral_bound
                 + cycle_len
@@ -3709,6 +3766,7 @@ def residual_shape_scan_profile() -> dict:
             root_active_all_negative_full_transfer_count = None
             root_active_all_negative_low_transfer_count = None
             root_active_all_negative_transfer_count = None
+            root_active_triangle_all_negative_count = None
             root_active_all_negative_bound = None
             root_active_all_negative_recurrence_bound = None
             root_active_all_negative_spectral_rate = None
@@ -3718,6 +3776,7 @@ def residual_shape_scan_profile() -> dict:
             root_active_independent_set_bound = None
             root_active_recurrence_bound = None
             root_active_exact_transfer_count = None
+            root_active_triangle_formula_count = None
             root_active_spectral_bound = None
         min_depth = min(depth_values) if depth_values else None
         max_depth = max(depth_values) if depth_values else None
@@ -3944,6 +4003,9 @@ def residual_shape_scan_profile() -> dict:
                 "root_active_all_negative_transfer_count": (
                     root_active_all_negative_transfer_count
                 ),
+                "root_active_triangle_all_negative_count": (
+                    root_active_triangle_all_negative_count
+                ),
                 "root_active_all_negative_recurrence_bound": (
                     root_active_all_negative_recurrence_bound
                 ),
@@ -3963,6 +4025,9 @@ def residual_shape_scan_profile() -> dict:
                 "root_active_recurrence_bound": root_active_recurrence_bound,
                 "root_active_exact_transfer_count": (
                     root_active_exact_transfer_count
+                ),
+                "root_active_triangle_formula_count": (
+                    root_active_triangle_formula_count
                 ),
                 "root_active_spectral_bound": root_active_spectral_bound,
                 "centered_candidate_count": len(centered_candidates),
@@ -4344,6 +4409,22 @@ def residual_shape_scan_profile() -> dict:
             and row["root_depth_required"] > row["sigma"]
             and row["root_active_exact_transfer_count"]
             < row["root_active_independent_set_bound"]
+            for row in rows
+        ),
+        "root_active_triangle_formula_matches_exact": all(
+            row["root_depth_required"] <= row["sigma"]
+            or row["cycle_len"] != 3
+            or row["root_active_triangle_formula_count"]
+            == row["root_active_exact_transfer_count"]
+            for row in rows
+        ),
+        "root_active_triangle_formula_has_near_threshold_case": any(
+            row["name"] == "root_active_near_threshold"
+            and row["cycle_len"] == 3
+            and row["root_depth_required"] > row["sigma"]
+            and row["root_active_triangle_formula_count"]
+            == row["depth_transfer_candidate_count"]
+            and row["root_active_triangle_formula_count"] > 0
             for row in rows
         ),
         "root_active_spectral_bounds_recurrence": all(
@@ -6468,6 +6549,12 @@ def run() -> dict:
         ],
         "residual_shape_scan_root_active_exact_strict": residual_shape_scan[
             "root_active_exact_transfer_has_strict_refinement"
+        ],
+        "residual_shape_scan_root_active_triangle_formula": residual_shape_scan[
+            "root_active_triangle_formula_matches_exact"
+        ],
+        "residual_shape_scan_root_active_triangle_case": residual_shape_scan[
+            "root_active_triangle_formula_has_near_threshold_case"
         ],
         "residual_shape_scan_root_active_spectral": residual_shape_scan[
             "root_active_spectral_bounds_recurrence"

@@ -3549,6 +3549,58 @@ formula, because the spike constraints are already absorbed into the lower
 bound `y>=u+2`. The empty `B<4` and odd-incompatible cases are the global
 gates from the exact depth-transfer certificate.
 
+For triangles, the transfer subtraction has a closed form.
+
+**Corollary (closed triangular root-active count).** Assume the hypotheses of
+the exact root-active transfer subtraction corollary and set `m=3`. For
+`y in D`, define
+
+```text
+N_D(y)=|{z in D: z<=2sigma-y}|.
+```
+
+Then the all-negative triangular contribution is exactly
+
+```text
+3 sum_{y in D, y>=R} N_D(y)^2.
+```
+
+For a permitted spike height `u`, define `D_u` as above and
+
+```text
+N_u(y)=|{z in D_u: z<=2sigma-y}|.
+```
+
+The pinned spike sector of height `u` contributes exactly
+
+```text
+2 sum_{y in D_u, y>=R} N_u(y).
+```
+
+Thus the whole triangular root-active residual count is
+
+```text
+3 sum_{y in D, y>=R} N_D(y)^2
++ 3 sum_u 2 sum_{y in D_u, y>=R} N_u(y),
+```
+
+with the outer spike sum over the permitted spike heights. If the odd gate
+fails or `B<4`, the count is `0`.
+
+*Proof.* Since `R>sigma`, two root-active nonspike depths cannot be adjacent.
+In a triangle every pair of nonspike depths is adjacent in the all-negative
+sector, so there is exactly one root-active depth. Choose its position, choose
+its value `y>=R`, and choose the two neighboring depths from
+`{z in D: z<=2sigma-y}`. These two neighbors are automatically adjacent to
+each other because each is at most `2sigma-y<sigma`, so their sum is strictly
+less than `2sigma`. This proves the all-negative formula.
+
+In a triangular spike sector there are only two nonspike depths joined by one
+edge. Again there is exactly one root-active nonspike depth; choose which of
+the two positions is root-active, choose its value `y`, and choose the other
+depth from `{z in D_u: z<=2sigma-y}`. The spike constraints are already
+encoded by membership in `D_u`, giving the displayed pinned-spike formula.
+
 For later estimates, this exact count can be bounded by forgetting part of
 the adjacent-transfer structure. This gives a coarse but purely
 graph-theoretic upper bound near the threshold.

@@ -30,6 +30,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-25 - L2 triangular root-active closed form
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/notes/l2/l2_sharp_target_conjecture.md`,
+  `experimental/scripts/verify_l2_sharp_target.py`, and
+  `experimental/agents-log.md`.
+- **Status:** PROVED / EXPERIMENTAL.
+- **What is being added:** A closed formula for the exact root-active
+  residual transfer count when the clean residual cycle has length `m=3`,
+  expressed through shallow-neighbor counts around the unique root-active
+  depth.
+- **How it is useful:** Turns the first nontrivial residual clean-cycle case
+  into an explicit local count, making the near-threshold triangle obstruction
+  easier to compare against later analytic estimates.
+- **What to do next:** Use the formula to identify whether triangular
+  residuals are already below the L2 reserve, or whether quotient/aperiodic
+  structure must further reduce the shallow-neighbor counts.
+
 ### 2026-06-25 - L2 exact root-active transfer subtraction
 
 - **Agent/model:** Codex.
