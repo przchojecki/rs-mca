@@ -298,7 +298,9 @@ Keep entries concise and link to the relevant files.
   the cycle. These gates are now consolidated as a residual clean-cycle normal
   form identifying the exact large-overlap/parity obstruction still left by the
   current L2 route; for fixed `m,mu,k,sigma` this normal form becomes a finite
-  residual-shape scan over integer dimension vectors.
+  residual-shape scan over integer dimension vectors. The finite certificate is
+  monotone in arity: for fixed `m,k,sigma`, candidate sets shrink as `mu`
+  increases, so emptiness at `mu_0` certifies emptiness for all larger arities.
   Combining
   the pivot, monic, and domain gates gives a
   marked selected-syzygy tuple bound; the verifier checks that this general

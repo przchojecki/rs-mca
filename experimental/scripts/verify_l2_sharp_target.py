@@ -3069,8 +3069,10 @@ def residual_shape_scan_profile() -> dict:
         {"name": "triangle_nonempty", "cycle_len": 3, "mu": 2, "k": 8, "sigma": 3},
         {"name": "odd_mu2_nonempty", "cycle_len": 5, "mu": 2, "k": 14, "sigma": 5},
         {"name": "odd_mu3_empty", "cycle_len": 5, "mu": 3, "k": 14, "sigma": 5},
+        {"name": "odd_mu4_empty", "cycle_len": 5, "mu": 4, "k": 14, "sigma": 5},
     ]
     rows = []
+    candidate_sets: dict[tuple[int, int, int, int], set[tuple[int, ...]]] = {}
     for scan_case in scan_cases:
         cycle_len = scan_case["cycle_len"]
         mu = scan_case["mu"]
@@ -3093,6 +3095,7 @@ def residual_shape_scan_profile() -> dict:
             odd_upper_numerator = None
             odd_compatible = True
         candidate_count = 0
+        candidates = set()
         examples = []
         checked = 0
         for dimensions in itertools.product(range(1, k), repeat=cycle_len):
@@ -3121,6 +3124,7 @@ def residual_shape_scan_profile() -> dict:
                 for idx in range(cycle_len)
             ]
             candidate_count += 1
+            candidates.add(dimensions)
             if len(examples) < 4:
                 examples.append(
                     {
@@ -3149,12 +3153,42 @@ def residual_shape_scan_profile() -> dict:
                 "odd_compatible": odd_compatible,
             }
         )
+        candidate_sets[(cycle_len, k, sigma, mu)] = candidates
+    monotone_rows = []
+    for cycle_len, k, sigma in sorted(
+        {key[:3] for key in candidate_sets}
+    ):
+        mu_values = sorted(
+            mu
+            for c_len, c_k, c_sigma, mu in candidate_sets
+            if (c_len, c_k, c_sigma) == (cycle_len, k, sigma)
+        )
+        for lower_mu, upper_mu in zip(mu_values, mu_values[1:]):
+            lower_set = candidate_sets[(cycle_len, k, sigma, lower_mu)]
+            upper_set = candidate_sets[(cycle_len, k, sigma, upper_mu)]
+            monotone_rows.append(
+                {
+                    "cycle_len": cycle_len,
+                    "k": k,
+                    "sigma": sigma,
+                    "lower_mu": lower_mu,
+                    "upper_mu": upper_mu,
+                    "lower_count": len(lower_set),
+                    "upper_count": len(upper_set),
+                    "upper_subset_lower": upper_set <= lower_set,
+                }
+            )
     return {
         "rows": rows,
+        "monotone_rows": monotone_rows,
         "has_nonempty_case": any(row["candidate_count"] > 0 for row in rows),
         "has_empty_case": any(row["candidate_count"] == 0 for row in rows),
         "odd_mu3_case_empty": any(
             row["name"] == "odd_mu3_empty" and row["candidate_count"] == 0
+            for row in rows
+        ),
+        "odd_mu4_case_empty": any(
+            row["name"] == "odd_mu4_empty" and row["candidate_count"] == 0
             for row in rows
         ),
         "odd_mu2_case_nonempty": any(
@@ -3173,6 +3207,12 @@ def residual_shape_scan_profile() -> dict:
                 for example in row["examples"]
             )
             for row in rows
+        ),
+        "arity_monotonicity_holds": all(
+            row["upper_subset_lower"] for row in monotone_rows
+        ),
+        "arity_monotonicity_strict_example": any(
+            row["upper_count"] < row["lower_count"] for row in monotone_rows
         ),
     }
 
@@ -5095,11 +5135,20 @@ def run() -> dict:
         "residual_shape_scan_odd_mu3_empty": residual_shape_scan[
             "odd_mu3_case_empty"
         ],
+        "residual_shape_scan_odd_mu4_empty": residual_shape_scan[
+            "odd_mu4_case_empty"
+        ],
         "residual_shape_scan_odd_mu2_nonempty": residual_shape_scan[
             "odd_mu2_case_nonempty"
         ],
         "residual_shape_scan_private_sizes": residual_shape_scan[
             "all_examples_satisfy_recorded_private_sizes"
+        ],
+        "residual_shape_scan_arity_monotone": residual_shape_scan[
+            "arity_monotonicity_holds"
+        ],
+        "residual_shape_scan_arity_strict": residual_shape_scan[
+            "arity_monotonicity_strict_example"
         ],
         "clean_cycle_has_small_pair_case": clean_cycles[
             "contains_small_pair_case"

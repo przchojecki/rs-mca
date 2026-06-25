@@ -2975,6 +2975,32 @@ length, alternating propagation also gives the displayed parity compatibility.
 Thus any surviving residual shape gives an integer vector in the finite search.
 The contrapositive proves the certificate.
 
+The finite certificate is monotone in the interleaving arity.
+
+**Corollary (arity monotonicity of residual-shape certificates).** Fix
+`m>=3`, `k`, and `sigma>0`. As the arity `mu` increases, the residual-shape
+candidate sets in the preceding finite certificate are nested decreasing. In
+particular, if the finite search is empty at some arity `mu_0`, then it is
+empty for every integer arity `mu>=mu_0`.
+
+*Proof.* The adjacent-band constraints and pairwise cap are independent of
+`mu`. The root-floor nonclearance inequality
+
+```text
+2mu(m-2)sigma - m k + 2max(2,min_i d_i) <= 0
+```
+
+gets only harder as `mu` increases, since `m>=3` and `sigma>0`. In odd length,
+the parity compatibility has the right-hand side
+
+```text
+m k - 2mu(m-2)sigma,
+```
+
+which also decreases with `mu`. Thus every vector surviving at a larger arity
+also survives at every smaller arity. The emptiness statement is the
+contrapositive.
+
 The connected case also isolates the diagonal exactly.
 
 **Corollary (diagonal is the only zero-loss connected cluster).** Suppose
