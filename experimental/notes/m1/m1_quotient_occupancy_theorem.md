@@ -361,6 +361,19 @@ partial fibers remain.  A non-whole residue-zero vector has at least two
 partial fibers; since every partial fiber contributes at least `m-1`, it has
 `P(a)>=2(m-1)`, with equality exactly in the stated endpoint configuration.
 
+### Corollary 7.1. One-Remainder Isolation Gap
+
+In the nonzero-residue case `1<=b<m`, if `a` is not a one-remainder vector,
+then
+
+```text
+P(a) >= b(m-b)+2.
+```
+
+Indeed, the compression proof above reaches the one-remainder minimizer by at
+least one strict merge.  Each merge lowers `P` by either `2uv` or
+`2(m-u)(m-v)`, hence by a positive even integer.
+
 ## Theorem 8. Large-Fiber One-Remainder Budget
 
 Let
@@ -462,6 +475,51 @@ For the adjacent slack with the same dither, `d=2`, every scale with
 So a fixed dither can make the large-fiber one-remainder residual linear at
 one slack, but the next slack already restores scale-dependent residual mass.
 
+### Complementary Dither Consequence
+
+The same formula gives the near-full remainder side.  In the quotient
+hierarchy above, suppose instead
+
+```text
+d=r0-t,        1 <= d < t,        m >= t+d.
+```
+
+Then `s=k0-d=(L0-1)m+(m-d)`, where `L0=k0/m`.  Thus `b=m-d`, `L=L0-1`,
+and the complete strict profile is
+
+```text
+H_{L,m-d}^{<t}(x)
+ =
+  sum_{ell=1}^d binom(d,ell) binom(m-d,ell) x^ell
+  + (L0-1) binom(m,d) x^d.
+```
+
+Its unweighted strict mass is
+
+```text
+H_{L,m-d}^{<t}(1)
+  = L0 binom(m,d)-1
+  = (k0/m) binom(m,d)-1.
+```
+
+In particular, the near-full maximal dither `d=1` gives the linear residual
+
+```text
+H_{L,m-1}^{<t}(x) = (k0-1)x,
+R_{L,m-1}^{<t}(t,q) = (k0-1)q^(t-1).
+```
+
+Therefore, for every dyadic scale `m|k0` with `m>=t+d`, the large-scale
+one-remainder quotient layer is explicit on both sides of the exact dimension:
+
+```text
+t-r0=d>0:        ((n-k0)/m) binom(m,d)-1,
+r0-t=d>0:        (k0/m) binom(m,d)-1.
+```
+
+Only the finite prefix `m<t+d` remains outside these stable large-fiber
+formulas.
+
 ## Dyadic Dither Consequence
 
 Suppose
@@ -522,4 +580,4 @@ checks the occupancy count formula, the whole-fiber exchange profile, and the
 strict-overlap quotient budget against brute-force enumeration in small cases.
 It also checks the fiberwise exchange kernel for several partial-fiber
 occupancy vectors, the sharp exchange-one residual floor, and the large-fiber
-one-remainder formula.
+one-remainder formula on both sides of the exact dimension.

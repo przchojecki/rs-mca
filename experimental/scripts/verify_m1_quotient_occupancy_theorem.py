@@ -318,10 +318,21 @@ def check_exchange_one_floor_case(
         if minimum != expected:
             raise AssertionError((fiber_count, fiber_size, support_size, minimum, expected))
         for value, vector in values:
+            partial = [entry for entry in vector if 0 < entry < fiber_size]
             if value == expected:
-                partial = [entry for entry in vector if 0 < entry < fiber_size]
                 if partial != [residue]:
                     raise AssertionError((fiber_count, fiber_size, support_size, vector))
+            elif partial != [residue] and value < expected + 2:
+                raise AssertionError(
+                    (
+                        fiber_count,
+                        fiber_size,
+                        support_size,
+                        vector,
+                        value,
+                        expected + 2,
+                    )
+                )
     else:
         if minimum != 0:
             raise AssertionError((fiber_count, fiber_size, support_size, minimum))
@@ -463,6 +474,24 @@ def check_one_remainder_case(
                     expected_mass,
                 )
             )
+    complement_size = fiber_size - remainder_size
+    if 1 <= complement_size < slack and fiber_size >= slack + complement_size:
+        expected_mass = (
+            (whole_fibers + 1) * comb(fiber_size, complement_size)
+            - 1
+        )
+        if sum(formula.values()) != expected_mass:
+            raise AssertionError(
+                (
+                    fiber_count,
+                    fiber_size,
+                    whole_fibers,
+                    remainder_size,
+                    slack,
+                    sum(formula.values()),
+                    expected_mass,
+                )
+            )
 
 
 def main() -> int:
@@ -501,6 +530,9 @@ def main() -> int:
         (6, 5, 2, 2, 3),
         (6, 5, 2, 2, 4),
         (5, 3, 1, 1, 3),
+        (6, 5, 2, 4, 3),
+        (7, 6, 3, 4, 4),
+        (7, 6, 2, 5, 3),
     ]:
         check_one_remainder_case(*case)
     print("M1 quotient occupancy theorem verifier passed")
