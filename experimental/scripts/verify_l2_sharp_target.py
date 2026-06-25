@@ -3097,6 +3097,12 @@ def residual_shape_scan_profile() -> dict:
         pair_cap_clearance_lhs = 2 * (mu * (cycle_len - 2) - 1) * sigma
         pair_cap_clearance_rhs = (cycle_len - 1) * k
         pair_cap_predicts_empty = pair_cap_clearance_lhs >= pair_cap_clearance_rhs
+        balanced_window_values = [
+            dimension
+            for dimension in range(1, k)
+            if k - 2 * sigma < 2 * dimension < k + 2 * sigma
+        ]
+        balanced_window = set(balanced_window_values)
         if cycle_len % 2 == 1:
             odd_lower_numerator = (
                 k
@@ -3172,8 +3178,21 @@ def residual_shape_scan_profile() -> dict:
                     (2 * min(dimensions) for dimensions in candidates),
                     default=None,
                 ),
+                "candidate_max_twice_dimension": max(
+                    (2 * max(dimensions) for dimensions in candidates),
+                    default=None,
+                ),
                 "all_candidates_satisfy_pair_cap_lower_bound": all(
                     2 * min(dimensions) > k - 2 * sigma
+                    for dimensions in candidates
+                ),
+                "balanced_window_values": balanced_window_values,
+                "balanced_window_size": len(balanced_window_values),
+                "balanced_window_size_bound": 2 * sigma,
+                "balanced_window_search_size": len(balanced_window_values)
+                ** cycle_len,
+                "all_candidates_in_balanced_window": all(
+                    all(dimension in balanced_window for dimension in dimensions)
                     for dimensions in candidates
                 ),
                 "odd_lower_numerator": odd_lower_numerator,
@@ -3238,6 +3257,18 @@ def residual_shape_scan_profile() -> dict:
         ),
         "pair_cap_lower_bound_holds": all(
             row["all_candidates_satisfy_pair_cap_lower_bound"]
+            for row in rows
+        ),
+        "balanced_window_contains_candidates": all(
+            row["all_candidates_in_balanced_window"] for row in rows
+        ),
+        "balanced_window_size_bound_holds": all(
+            row["balanced_window_size"] <= row["balanced_window_size_bound"]
+            for row in rows
+        ),
+        "balanced_window_has_nontrivial_reduction": any(
+            row["candidate_count"] > 0
+            and row["balanced_window_search_size"] < row["checked"]
             for row in rows
         ),
         "pair_cap_clearance_holds": all(
@@ -5195,6 +5226,15 @@ def run() -> dict:
         ],
         "residual_shape_scan_pair_cap_lower_bound": residual_shape_scan[
             "pair_cap_lower_bound_holds"
+        ],
+        "residual_shape_scan_balanced_window": residual_shape_scan[
+            "balanced_window_contains_candidates"
+        ],
+        "residual_shape_scan_balanced_window_size": residual_shape_scan[
+            "balanced_window_size_bound_holds"
+        ],
+        "residual_shape_scan_balanced_window_reduces": residual_shape_scan[
+            "balanced_window_has_nontrivial_reduction"
         ],
         "residual_shape_scan_pair_cap_clearance": residual_shape_scan[
             "pair_cap_clearance_holds"

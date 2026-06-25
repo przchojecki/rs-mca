@@ -3049,6 +3049,58 @@ high-reserve threshold is the inequality
 
 which is equivalent to `mu(m-2)>m`.
 
+The same pair-cap argument gives a structural reduction even below the
+clearance threshold.
+
+**Corollary (balanced-window residual-shape reduction).** Any vector surviving
+the finite residual-shape certificate satisfies
+
+```text
+k-2sigma < 2d_i < k+2sigma
+```
+
+for every index `i`. Equivalently, every surviving edge overlap
+`e_i=k-d_i` also satisfies
+
+```text
+k-2sigma < 2e_i < k+2sigma.
+```
+
+Thus the finite certificate search may be restricted from all `1<=d_i<k` to
+the balanced coordinate window
+
+```text
+W(k,sigma)={d in Z: 1<=d<k and k-2sigma < 2d < k+2sigma},
+```
+
+which has size at most `2sigma`. In particular, for fixed cycle length `m`,
+the residual-shape scan has at most `(2sigma)^m` coordinate vectors before the
+root-floor and odd-parity gates are applied.
+
+*Proof.* Fix an index `i`. The lower adjacent band gives
+
+```text
+d_{i-1} >= k-sigma-d_i,
+d_{i+1} >= k-sigma-d_i.
+```
+
+The global pairwise cap gives `d_{i-1}+d_{i+1}<k`; hence
+
+```text
+2(k-sigma-d_i) <= d_{i-1}+d_{i+1} < k,
+```
+
+so `k-2sigma < 2d_i`. Applying this lower bound to `d_{i-1}` and then using
+the strict upper adjacent band `d_{i-1}+d_i<k` gives
+
+```text
+2d_i < k+2sigma.
+```
+
+Since `e_i=k-d_i`, the same two inequalities are equivalent to the displayed
+balanced window for the overlaps. The size bound follows because the open
+interval `((k-2sigma)/2,(k+2sigma)/2)` has length `2sigma`.
+
 The finite certificate is monotone in the interleaving arity.
 
 **Corollary (arity monotonicity of residual-shape certificates).** Fix

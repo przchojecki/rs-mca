@@ -302,9 +302,13 @@ Keep entries concise and link to the relevant files.
   converted into an analytic pair-cap clearance threshold
   `2(mu(m-2)-1)sigma >= (m-1)k`, using the two neighbors of a minimum
   dimension and the global small-pair cap; this gives an even-cycle clearance
-  mechanism beyond the earlier odd parity obstruction. It is also monotone in
-  arity: for fixed `m,k,sigma`, candidate sets shrink as `mu` increases, so
-  emptiness at `mu_0` certifies emptiness for all larger arities.
+  mechanism beyond the earlier odd parity obstruction. The same argument gives
+  a balanced-window reduction: every surviving residual dimension and overlap
+  lies in the width-`2sigma` window around `k/2`, so the finite coordinate scan
+  can be restricted to at most `(2sigma)^m` vectors before root-floor and
+  parity gates. It is also monotone in arity: for fixed `m,k,sigma`, candidate
+  sets shrink as `mu` increases, so emptiness at `mu_0` certifies emptiness for
+  all larger arities.
   Combining
   the pivot, monic, and domain gates gives a
   marked selected-syzygy tuple bound; the verifier checks that this general
