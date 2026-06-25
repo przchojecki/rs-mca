@@ -673,7 +673,9 @@ def classify_sunflower_listing(
     extra_masks = sorted(listed_mask_set - intended_masks)
     profile_histogram: Counter[tuple[int, int, int, int, int, int]] = Counter()
     parameter_histogram: Counter[
-        tuple[int, int, int, int, int, int, int, int, int, int, int, int, int]
+        tuple[
+            int, int, int, int, int, int, int, int, int, int, int, int, int, int, int
+        ]
     ] = Counter()
     extra_examples: list[dict[str, object]] = []
     for mask in extra_masks:
@@ -724,6 +726,22 @@ def classify_sunflower_listing(
             if best_background_petal_deficit >= 0
             else -1
         )
+        valid_anchor_deficits = [
+            value
+            for value in (best_two_petal_deficit, best_background_petal_deficit)
+            if value >= 0
+        ]
+        best_anchor_deficit = (
+            min(valid_anchor_deficits) if valid_anchor_deficits else -1
+        )
+        valid_anchor_exponents = [
+            value
+            for value in (two_anchor_exponent, background_petal_exponent)
+            if value >= 0
+        ]
+        best_anchor_exponent = (
+            min(valid_anchor_exponents) if valid_anchor_exponents else -1
+        )
         petal_cofactor_exponent = max(0, core_defect - max_petal_hit + 1)
         background_quotient_exponent = max(0, core_defect - background_hits + 1)
         list_condition_slack = (
@@ -751,6 +769,8 @@ def classify_sunflower_listing(
             anchor_exponent,
             two_anchor_exponent,
             background_petal_exponent,
+            best_anchor_deficit,
+            best_anchor_exponent,
             list_condition_slack,
         )
         profile_histogram[profile] += 1
@@ -788,6 +808,12 @@ def classify_sunflower_listing(
                     if background_petal_exponent >= 0
                     else None
                 ),
+                "best_anchor_deficit": (
+                    best_anchor_deficit if best_anchor_deficit >= 0 else None
+                ),
+                "best_anchor_exponent": (
+                    best_anchor_exponent if best_anchor_exponent >= 0 else None
+                ),
                 "petal_cofactor_exponent": petal_cofactor_exponent,
                 "background_quotient_exponent": background_quotient_exponent,
                 "list_condition_slack": list_condition_slack,
@@ -818,7 +844,8 @@ def classify_sunflower_listing(
                 f"second={profile[5]},pair_def={profile[6]},"
                 f"bg_pair_def={profile[7]},excess={profile[8]},"
                 f"anchor_exp={profile[9]},two_anchor_exp={profile[10]},"
-                f"bg_petal_exp={profile[11]},list_slack={profile[12]}"
+                f"bg_petal_exp={profile[11]},gate_def={profile[12]},"
+                f"gate_exp={profile[13]},list_slack={profile[14]}"
             ): count
             for profile, count in sorted(parameter_histogram.items())
         },

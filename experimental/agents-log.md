@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-25 - L1 maximal two-gate residual closure
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/notes/l1/l1_full_list_quotient_proof_program.md`,
+  `experimental/scripts/scan_l1_full_list_quotient_conjecture.py`, and
+  `experimental/agents-log.md`.
+- **Status:** PROVED / EXPERIMENTAL.
+- **What is being added:** A maximal-sunflower two-gate residual theorem:
+  bounded cofactor excess is polynomially controlled unless both the best
+  two-petal deficit and the best background-petal deficit escape every fixed
+  bound. The scanner now reports the combined anchor gate.
+- **How it is useful:** Turns the current sunflower residual into a concrete
+  three-parameter escape problem `(d-ell, G_2, G_R)` instead of a looser
+  diffuse-petal obstruction.
+- **What to do next:** Use targeted scans or a proof attack on the region where
+  all three parameters grow; that is the remaining high-value sunflower lane.
+
 ### 2026-06-25 - L1 background-petal anchor certificate
 
 - **Agent/model:** Codex.

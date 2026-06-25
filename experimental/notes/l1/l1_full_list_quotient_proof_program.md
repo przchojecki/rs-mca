@@ -2764,6 +2764,85 @@ background_petal_exponent
   = 2(d-ell)+best_background_petal_deficit+2.
 ```
 
+## Theorem B7. Maximal Two-Gate Residual Closure
+
+Status: PROVED.
+
+Assume the sunflower is maximal and work at the L1 lower cutoff with generated
+field `q=poly(n)`.  For a non-planted listed codeword, let
+
+```text
+v_i = ell-|S_i|
+```
+
+on touched petals, and let `v_(1)<=v_(2)` be the two smallest touched-petal
+deficits.  Lemma 4 gives at least two touched petals, so these are defined.
+Put
+
+```text
+G_2(P) = v_(1)+v_(2),
+G_R(P) = (ell-|R_P|)+v_(1).
+```
+
+Fix integer constants `E,V_2,V_R >= 0`.  The number of non-planted listed
+codewords satisfying
+
+```text
+d <= ell+E
+```
+
+and
+
+```text
+G_2(P) <= V_2        or        G_R(P) <= V_R
+```
+
+is polynomial in `n`.  More explicitly, it is at most
+
+```text
+binom(M,2) (sum_{v=0}^{V_2} binom(2ell,v)) q^{2E+V_2+2}
+  + M (sum_{w+v<=V_R} binom(b,ell-w) binom(ell,v)) q^{2E+V_R+2}.
+```
+
+Consequently, any super-polynomial maximal-sunflower family at the L1 lower
+cutoff with bounded cofactor excess `d-ell` must satisfy
+
+```text
+G_2(P) -> infinity        and        G_R(P) -> infinity.
+```
+
+### Proof
+
+The first summand is exactly Lemma B5 applied with `V=V_2`.  The second
+summand is Lemma B6 applied with `V=V_R`.  Their union contains every codeword
+in the displayed class, and both summands are polynomial at the L1 lower
+cutoff for fixed `E,V_2,V_R`.
+
+For the final assertion, if a super-polynomial family had bounded `d-ell` and
+one of `G_2,G_R` bounded along an infinite subfamily, fixed constants
+`E,V_2,V_R` would put that subfamily inside the polynomially bounded union
+above, a contradiction.
+
+### Consequences
+
+The current maximal-sunflower residual is now a three-parameter escape:
+
+```text
+d-ell,
+G_2(P),
+G_R(P).
+```
+
+Every bounded region in this parameter space is polynomially controlled.  The
+remaining mixed-petal amplification problem is therefore not just "diffuse
+petals"; it must simultaneously have growing cofactor dimension, or it must
+evade both low-dimensional anchor certificates.  The scanner records this
+combined gate as
+
+```text
+best_anchor_exponent = min(two_anchor_exponent, background_petal_exponent).
+```
+
 ## Development Ledger
 
 - **Conjecture 1 full-list primitive remainder:** CONJECTURAL.  Main proof
@@ -2845,5 +2924,8 @@ background_petal_exponent
   extras with bounded cofactor excess and bounded background-petal combined
   deficit, using the background quotient and one petal cofactor without fixing
   all petal supports.
+- **Maximal two-gate residual closure:** PROVED.  Combines the two-petal and
+  background-petal anchor certificates: bounded cofactor excess is polynomial
+  unless both anchor deficits escape every fixed bound.
 - **Mixed-petal sunflower amplification:** CONJECTURAL.  Next focused bound to
   prove or refute in the large-defect regime.
