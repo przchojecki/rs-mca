@@ -3717,6 +3717,46 @@ number of low vertices is `n-k(I)`, the exponent is `n-k(I)-b(I)`, with
 `c_E<=|L_E|` and `Delta_E<=|L_E|`, so this is bounded by
 `h_E^{k(I)} |L_E|^{n-k(I)}`, the corresponding independent-set term.
 
+The three parameters in the uniform envelope are explicit order statistics of
+the depth alphabet; no transfer-matrix optimization is hidden here.
+
+**Corollary (monotone formula for the uniform cap parameters).** Let `E` be a
+finite positive depth alphabet, and assume `R>sigma`. Put
+
+```text
+H_E={y in E: y>=R},        L_E={y in E: y<R}.
+```
+
+If `H_E` is nonempty, let `alpha_0=min H_E`; otherwise set `c_E=0`. If
+`L_E` is nonempty, let `z_0=min L_E`; otherwise set `Delta_E=0`. Then
+
+```text
+h_E=|H_E|,
+c_E=|{z in L_E: z<=2sigma-alpha_0}|        if H_E nonempty,
+Delta_E=|{w in L_E: w<=2sigma-z_0}|        if L_E nonempty.
+```
+
+These values are exactly the parameters used in the uniform cap-degree
+envelope. In particular, for every permitted spike height `u`, the pinned
+sector parameters are obtained by applying the same formulas to `E=D_u`.
+
+*Proof.* The boundary cap size
+
+```text
+|C_E(alpha)|=|{z in L_E: z<=2sigma-alpha}|
+```
+
+is monotone nonincreasing in the root-active boundary depth `alpha`; hence its
+maximum over `H_E` is attained at `alpha_0=min H_E`. Similarly, the low-depth
+transfer row sum
+
+```text
+|{w in L_E: z+w<=2sigma}|
+```
+
+is monotone nonincreasing in the low starting depth `z`, so the maximum row
+sum is attained at `z_0=min L_E`. The formula for `h_E` is the definition.
+
 The uniform envelope has a two-state recurrence.
 
 **Corollary (recurrence form of the uniform cap-degree envelope).** Fix

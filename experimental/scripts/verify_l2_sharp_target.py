@@ -3562,6 +3562,29 @@ def residual_shape_scan_profile() -> dict:
             low_transfer_degree_bound(low_depths, sigma),
         )
 
+    def monotone_uniform_cap_parameters(
+        depths: list[int], root_depth: int, sigma: int
+    ) -> tuple[int, int, int]:
+        high_depths = [depth for depth in depths if depth >= root_depth]
+        low_depths = [depth for depth in depths if depth < root_depth]
+        cap_count = (
+            0
+            if not high_depths
+            else sum(
+                depth <= 2 * sigma - min(high_depths)
+                for depth in low_depths
+            )
+        )
+        degree_bound = (
+            0
+            if not low_depths
+            else sum(
+                depth <= 2 * sigma - min(low_depths)
+                for depth in low_depths
+            )
+        )
+        return len(high_depths), cap_count, degree_bound
+
     def path_uniform_cap_recurrence_bound(
         vertex_count: int, high_count: int, cap_count: int, degree_bound: int
     ) -> int:
@@ -4026,6 +4049,19 @@ def residual_shape_scan_profile() -> dict:
             ) = uniform_cap_parameters(
                 depth_values, root_depth_required, sigma
             )
+            all_negative_uniform_formula_parameters = (
+                monotone_uniform_cap_parameters(
+                    depth_values, root_depth_required, sigma
+                )
+            )
+            root_active_all_negative_uniform_formula_matches = (
+                all_negative_uniform_formula_parameters
+                == (
+                    all_negative_uniform_high_count,
+                    all_negative_uniform_cap_count,
+                    all_negative_uniform_degree_bound,
+                )
+            )
             root_active_all_negative_uniform_high_count = (
                 all_negative_uniform_high_count
             )
@@ -4138,6 +4174,19 @@ def residual_shape_scan_profile() -> dict:
                     spike_uniform_degree_bound,
                 ) = uniform_cap_parameters(
                     allowed_depths, root_depth_required, sigma
+                )
+                spike_uniform_formula_parameters = (
+                    monotone_uniform_cap_parameters(
+                        allowed_depths, root_depth_required, sigma
+                    )
+                )
+                spike_uniform_formula_matches = (
+                    spike_uniform_formula_parameters
+                    == (
+                        spike_uniform_high_count,
+                        spike_uniform_cap_count,
+                        spike_uniform_degree_bound,
+                    )
                 )
                 if (
                     root_budget < 4
@@ -4299,6 +4348,9 @@ def residual_shape_scan_profile() -> dict:
                         "uniform_high_count": spike_uniform_high_count,
                         "uniform_cap_count": spike_uniform_cap_count,
                         "uniform_degree_bound": spike_uniform_degree_bound,
+                        "uniform_formula_matches": (
+                            spike_uniform_formula_matches
+                        ),
                         "uniform_spectral_rate": uniform_spectral_rate,
                         "uniform_rate_below_independent": (
                             uniform_rate_below_independent
@@ -4406,6 +4458,7 @@ def residual_shape_scan_profile() -> dict:
             root_active_all_negative_uniform_high_count = None
             root_active_all_negative_uniform_cap_count = None
             root_active_all_negative_uniform_degree_bound = None
+            root_active_all_negative_uniform_formula_matches = None
             root_active_all_negative_uniform_spectral_rate = None
             root_active_all_negative_uniform_rate_below_independent = None
             root_active_all_negative_uniform_strict_root_improvement = None
@@ -4667,6 +4720,9 @@ def residual_shape_scan_profile() -> dict:
                 ),
                 "root_active_all_negative_uniform_degree_bound": (
                     root_active_all_negative_uniform_degree_bound
+                ),
+                "root_active_all_negative_uniform_formula_matches": (
+                    root_active_all_negative_uniform_formula_matches
                 ),
                 "root_active_triangle_all_negative_count": (
                     root_active_triangle_all_negative_count
@@ -5177,6 +5233,17 @@ def residual_shape_scan_profile() -> dict:
                     <= spike_row["low_depth_count"]
                     and spike_row["uniform_degree_bound"]
                     <= spike_row["low_depth_count"]
+                    for spike_row in row["root_active_spike_bound_rows"]
+                )
+            )
+            for row in rows
+        ),
+        "root_active_uniform_parameters_match_monotone_formula": all(
+            row["root_depth_required"] <= row["sigma"]
+            or (
+                row["root_active_all_negative_uniform_formula_matches"]
+                and all(
+                    spike_row["uniform_formula_matches"]
                     for spike_row in row["root_active_spike_bound_rows"]
                 )
             )
@@ -7405,6 +7472,11 @@ def run() -> dict:
         "residual_shape_scan_root_active_uniform_parameters": (
             residual_shape_scan[
                 "root_active_uniform_parameters_within_low_alphabet"
+            ]
+        ),
+        "residual_shape_scan_root_active_uniform_parameter_formula": (
+            residual_shape_scan[
+                "root_active_uniform_parameters_match_monotone_formula"
             ]
         ),
         "residual_shape_scan_root_active_uniform_spectral": (

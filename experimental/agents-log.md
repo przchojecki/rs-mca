@@ -30,6 +30,23 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-25 - L2 monotone bridge parameter formula
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/notes/l2/l2_sharp_target_conjecture.md`,
+  `experimental/scripts/verify_l2_sharp_target.py`, and
+  `experimental/agents-log.md`.
+- **Status:** PROVED / EXPERIMENTAL.
+- **What is being added:** A monotone order-statistic formula for the three
+  uniform cap-degree bridge parameters `h`, `c`, and `Delta` in any residual
+  depth alphabet.
+- **How it is useful:** Removes a black-box maximization from the root-active
+  bridge envelope, so later rate and reserve estimates can be stated directly
+  in terms of the least high depth and least low depth in each sector.
+- **What to do next:** Use the explicit parameter formulas to bound the
+  Perron root uniformly across the remaining near-threshold sectors.
+
 ### 2026-06-25 - L2 uniform envelope spectral rate
 
 - **Agent/model:** Codex.
