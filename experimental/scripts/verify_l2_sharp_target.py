@@ -2015,6 +2015,11 @@ def clean_cycle_rank_profile() -> dict:
         doubled_dimension_gap_uniform_private_margin_floor = (
             doubled_uniform_private_margin_floor + 2 * dimension_gap_alpha_min
         )
+        doubled_dimension_gap_uniform_floor_formula = (
+            2 * absorbed_gap_power
+            - cycle_len * k
+            + 2 * dimension_gap_alpha_min
+        )
         absorbed_hybrid_relative_bound = Fraction(
             all_edge_hybrid_selected_bound,
             comb(n, a) * p**absorbed_gap_power,
@@ -2208,6 +2213,9 @@ def clean_cycle_rank_profile() -> dict:
                 ),
                 "doubled_dimension_gap_uniform_private_margin_floor": (
                     doubled_dimension_gap_uniform_private_margin_floor
+                ),
+                "doubled_dimension_gap_uniform_floor_formula": (
+                    doubled_dimension_gap_uniform_floor_formula
                 ),
             }
         )
@@ -2459,6 +2467,17 @@ def clean_cycle_rank_profile() -> dict:
         "dimension_gap_margin_threshold_refines_marked": all(
             row["dimension_gap_margin_private_mass_threshold"]
             == row["marked_margin_private_mass_threshold"]
+            + 2 * row["dimension_gap_alpha_min"]
+            for row in rows
+        ),
+        "dimension_gap_uniform_floor_formula_holds": all(
+            row["doubled_dimension_gap_uniform_private_margin_floor"]
+            == row["doubled_dimension_gap_uniform_floor_formula"]
+            for row in rows
+        ),
+        "dimension_gap_uniform_floor_refines_marked": all(
+            row["doubled_dimension_gap_uniform_private_margin_floor"]
+            == row["doubled_uniform_private_margin_floor"]
             + 2 * row["dimension_gap_alpha_min"]
             for row in rows
         ),
@@ -4559,6 +4578,12 @@ def run() -> dict:
         ],
         "clean_cycle_dimension_gap_margin_threshold": clean_cycles[
             "dimension_gap_margin_threshold_refines_marked"
+        ],
+        "clean_cycle_dimension_gap_uniform_floor_formula": clean_cycles[
+            "dimension_gap_uniform_floor_formula_holds"
+        ],
+        "clean_cycle_dimension_gap_uniform_floor_refines": clean_cycles[
+            "dimension_gap_uniform_floor_refines_marked"
         ],
         "clean_cycle_dimension_gap_margin_positive": clean_cycles[
             "dimension_gap_margin_positive_iff_below_threshold"

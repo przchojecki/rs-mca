@@ -2566,6 +2566,57 @@ which is linear and positive for `m>=3`, `mu>=2`. The selected-edge
 field-exponent gate then clears the absorbed hybrid ratio. The displayed
 reserve window is the same condition divided by `k`, with a fixed margin.
 
+The root-sharing gate improves this high-reserve clearance for shapes whose
+selected edges have nontrivial coefficient dimension.
+
+**Corollary (root-sharing high-reserve clean-cycle clearance).** Fix
+`m>=3`, `mu>=2`, and suppose `k`, `sigma`, and `n` all grow linearly with
+`n`. For a clean simple `m`-cycle shape with `d_i=k-e_i>=1` for every selected
+edge, put
+
+```text
+D_* = max(2,min_i(k-e_i)).
+```
+
+Along generated-field sequences with `q>=n+1` and `q^mu>=n^m`, if there is a
+constant `c>0` such that
+
+```text
+2mu(m-2)sigma - m k + 2D_* >= c n,
+```
+
+then that clean-cycle shape is either full rank by the private-mass reserve
+gate or has dimension-gap-root-sharing absorbed hybrid contribution tending to
+zero relative to the diagonal scale. If the displayed inequality holds
+uniformly over a family of clean-cycle shapes, the whole family is cleared.
+
+Equivalently, if `D_*/k>=beta` along the family, root-sharing gives clearance
+in the window
+
+```text
+sigma/k > (m-2beta)/(2mu(m-2))
+```
+
+with a fixed positive margin. For `beta=0` this recovers the previous coarse
+high-reserve window; positive `beta` is a genuine widening of the clean-cycle
+clearance range.
+
+*Proof.* If `p_max>=sigma`, the private-mass reserve gate gives `R_cyc=k`.
+Otherwise `P=sum_i p_i<m sigma`. The root-sharing mass form gives
+
+```text
+2(T-(r_sel-alpha_*))
+ = 2mu(m-2)sigma - m(k-sigma) - P + 2alpha_*
+ > 2mu(m-2)sigma - m k + 2D_*
+ >= c n,
+```
+
+because `alpha_*=D_*` for the maximal-reference choice. The full selected-rank
+margin is unchanged and is linear positive by the same argument as in the
+previous high-reserve corollary. The root-sharing selected-edge exponent gate
+therefore clears the absorbed hybrid ratio. Dividing the displayed condition by
+`k` and using `D_*/k>=beta` gives the stated rate window with margin.
+
 The connected case also isolates the diagonal exactly.
 
 **Corollary (diagonal is the only zero-loss connected cluster).** Suppose

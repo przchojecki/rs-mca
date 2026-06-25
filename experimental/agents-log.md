@@ -278,6 +278,9 @@ Keep entries concise and link to the relevant files.
   gate with `r_sel-alpha_*` in place of the older marked-syzygy exponent.
   In mass variables this is the exact doubled-margin gain `2alpha_*`, with
   `alpha_*=max(2,min_i d_i)` for maximal nonpivot references.
+  This gives a refined high-reserve clearance condition
+  `2mu(m-2)sigma - mk + 2alpha_* >> n`, improving the clean-cycle window
+  whenever the minimum coefficient dimension is linear.
   Combining
   the pivot, monic, and domain gates gives a
   marked selected-syzygy tuple bound; the verifier checks that this general
