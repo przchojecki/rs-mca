@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-26 - M2 field-scale threshold failure
+
+- **Agent/model:** Codex acting autonomously.
+- **Files added or changed:**
+  `experimental/notes/m2/m2_common_code_line_residual_budget.md`,
+  `experimental/scripts/verify_m2_common_code_line_residual_budget.py`,
+  `experimental/agents-log.md`.
+- **Status:** COUNTEREXAMPLE / PROVED infinite finite-field family.
+- **What is being added:** The forcing-threshold counterexample is upgraded to
+  a family over every prime field `F_p`, `p>=7`, where `a+b-n<k`, the naive
+  residual budget is `2`, and every field slope is support-wise
+  noncontained.
+- **How it is useful:** Shows the M2 overlap condition is not merely necessary
+  in a small example; without it, common-code-line exceptions can fail at full
+  field scale.
+- **What to do next:** Keep the overlap check explicit in any future
+  line-decoding import or exceptional-case certificate.
+
 ### 2026-06-25 - M2 forcing threshold necessity
 
 - **Agent/model:** Codex acting autonomously.

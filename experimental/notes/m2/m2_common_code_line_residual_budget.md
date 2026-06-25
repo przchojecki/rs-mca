@@ -208,7 +208,59 @@ is also a real boundary, not a proof artifact.  If it fails, common code-line
 proximity can leave many support-wise noncontained slopes even when the
 residual outside the common support has no common zero.
 
-Here is a finite Reed-Solomon counterexample.  Let
+In fact the failure can be maximal.  Let `p>=7` be prime and take
+
+```text
+C = RS[F_p,F_p,3],        a=4,
+S0=F_p \ {0,1},           Omega={0,1}.
+```
+
+Then `n=p`, `b=p-2`, and
+
+```text
+a+b-n = 2 < 3 = k.
+```
+
+Take the zero common code-line on `S0`, and define
+
+```text
+f = 1_{1},        g = 1_{0}.
+```
+
+Again `c0=0` and `h=1`, so the would-be residual budget is `2`.  But every
+slope `z in F_p` is support-wise noncontained at agreement `4`.
+
+For `z=0`, choose any three points `r1,r2,r3 in S0` and the support
+`{r1,r2,r3,0}`.  The zero codeword explains the line point there, while any
+quadratic explaining `g` would have three roots and the nonzero value `1` at
+`0`, impossible.
+
+For `z != 0`, choose distinct `u,v in F_p^* \ {1}` with `uv=z`.  This is
+possible for `p>=7`: avoid `u=1`, `u=z`, and the at most two roots of
+`u^2=z`.  Put
+
+```text
+r1 = u/(u-1),        r2 = v/(v-1).
+```
+
+Then `r1,r2 in S0`, they are distinct, and
+
+```text
+((0-r1)(0-r2)) / ((1-r1)(1-r2)) = uv = z.
+```
+
+The quadratic
+
+```text
+q(X)=((X-r1)(X-r2))/((1-r1)(1-r2))
+```
+
+explains `f+z g` on `{r1,r2,0,1}`.  The same support is not contained,
+because any quadratic explaining `g` would vanish at `r1,r2,1` and be
+nonzero at `0`.  Thus all `p` slopes are bad although the residual count is
+`2`.
+
+The verifier also records the following compact subdomain instance.  Let
 
 ```text
 C = RS[F_17,{0,1,...,7},3],        a=4,
@@ -350,4 +402,5 @@ The verifier enumerates small Reed-Solomon codes, all agreement supports, and
 all slopes. It checks the spike example and deterministic residual cases,
 including a sharp case with common residual-zero coordinates, confirming the
 per-slope residual-zero condition, the finite residual bound, and its
-attainability. It also checks the threshold-necessity counterexample above.
+attainability. It also checks the field-scale threshold-necessity family and
+the compact `F_17` counterexample above.

@@ -300,11 +300,91 @@ def threshold_necessity_counterexample() -> dict[str, Any]:
     }
 
 
+def threshold_failure_family_case(prime: int) -> dict[str, Any]:
+    if prime < 7:
+        raise AssertionError("threshold family needs at least five usable units")
+
+    n = prime
+    k = 3
+    agreement = 4
+    common_support = tuple(i for i in range(prime) if i not in (0, 1))
+    f = tuple(1 if i == 1 else 0 for i in range(n))
+    g = tuple(1 if i == 0 else 0 for i in range(n))
+    words = codewords(prime, k, tuple(range(n)))
+
+    def support_is_bad(slope: int, support: tuple[int, ...]) -> bool:
+        restrictions = {restriction(word, support) for word in words}
+        line_word = word_add(f, word_scale(slope, g, prime), prime)
+        contained = (
+            restriction(f, support) in restrictions
+            and restriction(g, support) in restrictions
+        )
+        return restriction(line_word, support) in restrictions and not contained
+
+    witnesses: dict[int, tuple[int, ...]] = {}
+    zero_support = (2, 3, 4, 0)
+    if not support_is_bad(0, zero_support):
+        raise AssertionError("zero slope is not witnessed in threshold family")
+    witnesses[0] = zero_support
+
+    for slope in range(1, prime):
+        support = None
+        for unit in range(1, prime):
+            if unit == 1:
+                continue
+            other = (slope * pow(unit, -1, prime)) % prime
+            if other in (0, 1) or other == unit:
+                continue
+            r1 = (unit * pow(unit - 1, -1, prime)) % prime
+            r2 = (other * pow(other - 1, -1, prime)) % prime
+            candidate = (r1, r2, 0, 1)
+            if r1 in (0, 1) or r2 in (0, 1) or r1 == r2:
+                continue
+            if support_is_bad(slope, candidate):
+                support = candidate
+                break
+        if support is None:
+            raise AssertionError(f"slope {slope} has no threshold-family witness")
+        witnesses[slope] = support
+
+    omega = (0, 1)
+    h = max(1, agreement - len(common_support))
+    c0 = 0
+    naive_residual_bound = len(omega) // h
+    overlap_floor = agreement + len(common_support) - n
+
+    if overlap_floor >= k:
+        raise AssertionError("threshold family unexpectedly meets MDS forcing")
+    if len(witnesses) != prime:
+        raise AssertionError("threshold family did not witness every slope")
+
+    return {
+        "label": f"threshold_failure_family_p{prime}",
+        "prime": prime,
+        "n": n,
+        "k": k,
+        "agreement": agreement,
+        "common_support_size": len(common_support),
+        "omega_size": len(omega),
+        "overlap_floor": overlap_floor,
+        "h": h,
+        "c0": c0,
+        "naive_residual_bound": naive_residual_bound,
+        "bad_slope_count": len(witnesses),
+        "threshold_holds": overlap_floor >= k,
+        "bound_violated_without_threshold": len(witnesses) > naive_residual_bound,
+        "sample_witnesses": {str(key): witnesses[key] for key in range(min(prime, 5))},
+    }
+
+
 def main() -> None:
     reports = [
         spike_case(),
         deterministic_residual_case(),
         sharp_common_zero_residual_case(),
+        threshold_failure_family_case(7),
+        threshold_failure_family_case(11),
+        threshold_failure_family_case(17),
         threshold_necessity_counterexample(),
     ]
     for report in reports:
