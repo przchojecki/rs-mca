@@ -3063,6 +3063,120 @@ def residual_dimension_band_profile() -> dict:
     }
 
 
+def residual_shape_scan_profile() -> dict:
+    """Finite residual-dimension scans after the clean-cycle normal-form gates."""
+    scan_cases = [
+        {"name": "triangle_nonempty", "cycle_len": 3, "mu": 2, "k": 8, "sigma": 3},
+        {"name": "odd_mu2_nonempty", "cycle_len": 5, "mu": 2, "k": 14, "sigma": 5},
+        {"name": "odd_mu3_empty", "cycle_len": 5, "mu": 3, "k": 14, "sigma": 5},
+    ]
+    rows = []
+    for scan_case in scan_cases:
+        cycle_len = scan_case["cycle_len"]
+        mu = scan_case["mu"]
+        k = scan_case["k"]
+        sigma = scan_case["sigma"]
+        lower_band = k - sigma
+        root_floor_constant = 2 * mu * (cycle_len - 2) * sigma - cycle_len * k
+        if cycle_len % 2 == 1:
+            odd_lower_numerator = (
+                k
+                - ((cycle_len + 1) // 2) * sigma
+                + (cycle_len - 1) // 2
+            )
+            odd_upper_numerator = (
+                cycle_len * k - 2 * mu * (cycle_len - 2) * sigma
+            )
+            odd_compatible = odd_lower_numerator <= odd_upper_numerator
+        else:
+            odd_lower_numerator = None
+            odd_upper_numerator = None
+            odd_compatible = True
+        candidate_count = 0
+        examples = []
+        checked = 0
+        for dimensions in itertools.product(range(1, k), repeat=cycle_len):
+            checked += 1
+            adjacent_band = all(
+                lower_band <= dimensions[idx - 1] + dimensions[idx] < k
+                for idx in range(cycle_len)
+            )
+            if not adjacent_band:
+                continue
+            pairwise_cap = all(
+                dimensions[left] + dimensions[right] < k
+                for left in range(cycle_len)
+                for right in range(left + 1, cycle_len)
+            )
+            if not pairwise_cap:
+                continue
+            dimension_floor = max(2, min(dimensions))
+            root_floor = root_floor_constant + 2 * dimension_floor
+            if root_floor > 0:
+                continue
+            if not odd_compatible:
+                continue
+            private_sizes = [
+                dimensions[idx - 1] + dimensions[idx] - lower_band
+                for idx in range(cycle_len)
+            ]
+            candidate_count += 1
+            if len(examples) < 4:
+                examples.append(
+                    {
+                        "dimensions": list(dimensions),
+                        "edge_sizes": [
+                            k - dimension for dimension in dimensions
+                        ],
+                        "private_sizes": private_sizes,
+                        "dimension_floor": dimension_floor,
+                        "root_floor": root_floor,
+                    }
+                )
+        rows.append(
+            {
+                "name": scan_case["name"],
+                "cycle_len": cycle_len,
+                "mu": mu,
+                "k": k,
+                "sigma": sigma,
+                "checked": checked,
+                "candidate_count": candidate_count,
+                "examples": examples,
+                "root_floor_constant": root_floor_constant,
+                "odd_lower_numerator": odd_lower_numerator,
+                "odd_upper_numerator": odd_upper_numerator,
+                "odd_compatible": odd_compatible,
+            }
+        )
+    return {
+        "rows": rows,
+        "has_nonempty_case": any(row["candidate_count"] > 0 for row in rows),
+        "has_empty_case": any(row["candidate_count"] == 0 for row in rows),
+        "odd_mu3_case_empty": any(
+            row["name"] == "odd_mu3_empty" and row["candidate_count"] == 0
+            for row in rows
+        ),
+        "odd_mu2_case_nonempty": any(
+            row["name"] == "odd_mu2_nonempty" and row["candidate_count"] > 0
+            for row in rows
+        ),
+        "all_examples_satisfy_recorded_private_sizes": all(
+            all(
+                example["private_sizes"]
+                == [
+                    example["dimensions"][idx - 1]
+                    + example["dimensions"][idx]
+                    - (row["k"] - row["sigma"])
+                    for idx in range(row["cycle_len"])
+                ]
+                for example in row["examples"]
+            )
+            for row in rows
+        ),
+    }
+
+
 def locator_syzygy_witness_profile() -> dict:
     """A small lower-rank selected-edge witness for the syzygy formulation."""
     p, n, k = 7, 6, 3
@@ -4547,6 +4661,7 @@ def run() -> dict:
     rank_deficient_necklaces = rank_deficient_cyclic_necklace_profile()
     clean_cycles = clean_cycle_rank_profile()
     residual_band = residual_dimension_band_profile()
+    residual_shape_scan = residual_shape_scan_profile()
     locator_syzygy_witness = locator_syzygy_witness_profile()
     functional_incidence = functional_incidence_profile()
     witness = realized_rs_k22()
@@ -4971,6 +5086,21 @@ def run() -> dict:
                 residual_band["odd_threshold_formula_holds"],
             ]
         ),
+        "residual_shape_scan_has_nonempty_case": residual_shape_scan[
+            "has_nonempty_case"
+        ],
+        "residual_shape_scan_has_empty_case": residual_shape_scan[
+            "has_empty_case"
+        ],
+        "residual_shape_scan_odd_mu3_empty": residual_shape_scan[
+            "odd_mu3_case_empty"
+        ],
+        "residual_shape_scan_odd_mu2_nonempty": residual_shape_scan[
+            "odd_mu2_case_nonempty"
+        ],
+        "residual_shape_scan_private_sizes": residual_shape_scan[
+            "all_examples_satisfy_recorded_private_sizes"
+        ],
         "clean_cycle_has_small_pair_case": clean_cycles[
             "contains_small_pair_case"
         ],
@@ -5321,6 +5451,7 @@ def run() -> dict:
         "rank_deficient_cyclic_necklace_profile": rank_deficient_necklaces,
         "clean_cycle_rank_profile": clean_cycles,
         "residual_dimension_band_profile": residual_band,
+        "residual_shape_scan_profile": residual_shape_scan,
         "locator_syzygy_witness_profile": locator_syzygy_witness,
         "functional_incidence_profile": functional_incidence,
         "realized_rs_k22": witness,

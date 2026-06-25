@@ -2937,6 +2937,44 @@ propagation corollaries. The independence statement is the low-dimension
 packing corollary. The odd-cycle compatibility and threshold are exactly the
 alternating propagation corollary.
 
+For fixed parameters this normal form is finite and checkable.
+
+**Corollary (finite residual-shape certificate).** Fix `m`, `mu`, `k`, and
+`sigma`. To certify that the current clean-cycle gates leave no residual shape
+at these parameters, it is enough to check that there is no integer vector
+
+```text
+(d_0,...,d_{m-1}),       1<=d_i<k,
+```
+
+satisfying all of the following constraints:
+
+```text
+k-sigma <= d_{i-1}+d_i < k                         for every i,
+d_i+d_j < k                                        for every i<j,
+2mu(m-2)sigma - m k + 2max(2,min_i d_i) <= 0,
+```
+
+and, when `m` is odd,
+
+```text
+k - ((m+1)/2)sigma + (m-1)/2
+ <= m k - 2mu(m-2)sigma.
+```
+
+If the finite search is empty, then every clean simple `m`-cycle shape at
+these parameters is either full rank by the small-pair gate, cleared by the
+private-mass reserve gate, or cleared by the dimension-gap root-sharing
+high-reserve gate.
+
+*Proof.* If a residual shape survived all three gates, the residual normal
+form would supply the first adjacent-band constraint, the small-pair gate would
+force `d_i+d_j<k` for every pair, and nonclearance by the root-sharing
+high-reserve gate would force the displayed root-floor inequality. In odd
+length, alternating propagation also gives the displayed parity compatibility.
+Thus any surviving residual shape gives an integer vector in the finite search.
+The contrapositive proves the certificate.
+
 The connected case also isolates the diagonal exactly.
 
 **Corollary (diagonal is the only zero-loss connected cluster).** Suppose
