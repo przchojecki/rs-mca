@@ -520,6 +520,59 @@ r0-t=d>0:        (k0/m) binom(m,d)-1.
 Only the finite prefix `m<t+d` remains outside these stable large-fiber
 formulas.
 
+### Corollary 8.1. Stable Weighted Tail and Finite Prefix
+
+Keep the fixed-dither notation above, let
+
+```text
+e=|t-r0|,        1 <= e < t,
+```
+
+and assume `m|k0` and `m>=t+e`.  Define
+
+```text
+C_+(m) = (n-k0)/m - 1,        if t-r0=e,
+C_-(m) = k0/m - 1,            if r0-t=e.
+```
+
+Then the stable one-remainder strict profile is
+
+```text
+H_st(t,r0,m;x)
+ =
+  sum_{ell=1}^e binom(e,ell) binom(m-e,ell) x^ell
+  + C_{sign}(m) binom(m,e) x^e,
+```
+
+where `C_{sign}` is `C_+` in the under-dithered case and `C_-` in the
+over-dithered case.  Consequently the exact stable weighted M1 ledger is
+
+```text
+R_st(t,r0,m,q)
+ =
+  sum_{ell=1}^e binom(e,ell) binom(m-e,ell) q^(t-ell)
+  + C_{sign}(m) binom(m,e) q^(t-e).
+```
+
+This is the term that can be charged explicitly in the random-line variance
+ledger at every stable large scale.
+
+If the quotient scales are dyadic, the only nontrivial dyadic scales not
+covered by this stable formula are
+
+```text
+2 <= m < t+e,        m | k0.
+```
+
+Their number is at most
+
+```text
+min(v2(k0), floor(log2(t+e-1))).
+```
+
+For maximal one-slack dither `e=1`, the unresolved dyadic prefix is contained
+in `m<=t` and has size at most `min(v2(k0), floor(log2 t))`.
+
 ## Dyadic Dither Consequence
 
 Suppose
@@ -580,4 +633,5 @@ checks the occupancy count formula, the whole-fiber exchange profile, and the
 strict-overlap quotient budget against brute-force enumeration in small cases.
 It also checks the fiberwise exchange kernel for several partial-fiber
 occupancy vectors, the sharp exchange-one residual floor, and the large-fiber
-one-remainder formula on both sides of the exact dimension.
+one-remainder formula on both sides of the exact dimension, including the
+stable weighted tail and finite dyadic prefix.

@@ -494,6 +494,120 @@ def check_one_remainder_case(
             )
 
 
+def weighted_profile(profile: Counter[int], slack: int, field_size: int) -> int:
+    return sum(
+        coefficient * (field_size ** (slack - exchange))
+        for exchange, coefficient in profile.items()
+    )
+
+
+def stable_tail_formula(
+    domain_size: int,
+    exact_dimension: int,
+    dither: int,
+    slack: int,
+    fiber_size: int,
+    field_size: int,
+) -> tuple[Counter[int], int]:
+    gap = abs(slack - dither)
+    if not (1 <= gap < slack):
+        raise AssertionError((domain_size, exact_dimension, dither, slack, gap))
+    if exact_dimension % fiber_size or domain_size % fiber_size:
+        raise AssertionError((domain_size, exact_dimension, fiber_size))
+    if fiber_size < slack + gap:
+        raise AssertionError((fiber_size, slack, gap, "unstable scale"))
+
+    if slack > dither:
+        coefficient_blocks = (domain_size - exact_dimension) // fiber_size - 1
+    else:
+        coefficient_blocks = exact_dimension // fiber_size - 1
+
+    profile: Counter[int] = Counter()
+    for exchange in range(1, gap + 1):
+        profile[exchange] += comb(gap, exchange) * comb(
+            fiber_size - gap,
+            exchange,
+        )
+    profile[gap] += coefficient_blocks * comb(fiber_size, gap)
+    return +profile, weighted_profile(profile, slack, field_size)
+
+
+def dyadic_divisors(value: int) -> list[int]:
+    divisors: list[int] = []
+    scale = 2
+    while scale <= value and value % scale == 0:
+        divisors.append(scale)
+        scale *= 2
+    return divisors
+
+
+def v2(value: int) -> int:
+    exponent = 0
+    while value and value % 2 == 0:
+        exponent += 1
+        value //= 2
+    return exponent
+
+
+def floor_log2(value: int) -> int:
+    if value <= 0:
+        raise AssertionError(value)
+    return value.bit_length() - 1
+
+
+def check_stable_tail_case(
+    domain_size: int,
+    exact_dimension: int,
+    dither: int,
+    slack: int,
+    fiber_size: int,
+    field_size: int,
+) -> None:
+    profile, weighted = stable_tail_formula(
+        domain_size,
+        exact_dimension,
+        dither,
+        slack,
+        fiber_size,
+        field_size,
+    )
+    if slack > dither:
+        remainder_size = slack - dither
+        whole_fibers = exact_dimension // fiber_size
+    else:
+        remainder_size = fiber_size - (dither - slack)
+        whole_fibers = exact_dimension // fiber_size - 1
+    fiber_count = domain_size // fiber_size
+    brute = brute_one_remainder_strict_profile(
+        fiber_count,
+        fiber_size,
+        whole_fibers,
+        remainder_size,
+        slack,
+    )
+    if profile != brute:
+        raise AssertionError(
+            (domain_size, exact_dimension, dither, slack, fiber_size, profile, brute)
+        )
+    if weighted != weighted_profile(brute, slack, field_size):
+        raise AssertionError((profile, weighted, weighted_profile(brute, slack, field_size)))
+
+
+def check_dyadic_prefix_case(
+    exact_dimension: int,
+    slack: int,
+    gap: int,
+) -> None:
+    prefix = [
+        scale
+        for scale in dyadic_divisors(exact_dimension)
+        if scale < slack + gap
+    ]
+    expected_count = min(v2(exact_dimension), floor_log2(slack + gap - 1))
+    if len(prefix) != expected_count:
+        raise AssertionError((exact_dimension, slack, gap, prefix, expected_count))
+
+
 def main() -> int:
     for case in [
         (4, 2, 3),
@@ -535,6 +649,22 @@ def main() -> int:
         (7, 6, 2, 5, 3),
     ]:
         check_one_remainder_case(*case)
+    for case in [
+        (64, 32, 4, 5, 8, 7),
+        (64, 32, 6, 5, 8, 7),
+        (96, 48, 5, 7, 12, 11),
+        (128, 32, 6, 8, 16, 13),
+        (128, 64, 10, 7, 16, 13),
+    ]:
+        check_stable_tail_case(*case)
+    for case in [
+        (32, 5, 1),
+        (32, 5, 2),
+        (64, 8, 3),
+        (128, 13, 4),
+        (256, 17, 1),
+    ]:
+        check_dyadic_prefix_case(*case)
     print("M1 quotient occupancy theorem verifier passed")
     return 0
 

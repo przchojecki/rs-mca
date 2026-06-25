@@ -43,14 +43,16 @@ Keep entries concise and link to the relevant files.
   strict-overlap M1 quotient budget, and a fiberwise exchange-kernel formula
   for partial-fiber residuals. It also proves the sharp exchange-one residual
   floor and the large-fiber one-remainder strict budget controlling the first
-  dithered quotient layer on both sides of the exact dimension. A small
-  verifier checks the formulas against brute-force enumeration.
+  dithered quotient layer on both sides of the exact dimension, including the
+  exact stable weighted tail and finite dyadic prefix. A small verifier checks
+  the formulas against brute-force enumeration.
 - **How it is useful:** Separates the budgeted quotient-periodic M1 support
   terms from the remaining partial-fiber / aperiodic residue-line target, and
   identifies the local low-exchange kernel the residual proof must control.
   The one-remainder corollary explains exactly when dimension dither leaves a
   linear residual, when adjacent slacks restore scale-dependent mass, and which
-  large dyadic scales reduce to an explicit two-sided stable formula.
+  large dyadic scales reduce to an explicit two-sided stable formula, so the
+  remaining non-stable quotient work is confined to a finite prefix.
 - **What to do next:** Use this theorem as the quotient ledger before attacking
   the aperiodic M1 local-limit residual.
 
