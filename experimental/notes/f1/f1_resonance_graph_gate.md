@@ -157,6 +157,18 @@ form of the remaining graph-collapse question: on source-valid pieces of
 `G==0`, does this projective map have one-dimensional image, or can it have
 two-dimensional image and therefore `Theta(p^2)` distinct slopes?
 
+The finite verifier also computes this projective image on graph-branch
+landings. For every nondegenerate projective coefficient triple, the quadratic
+has at most two roots in `F`, so the graph-branch slope count satisfies
+
+```text
+graph_C2 <= 2 * #image([q1 : (p1-q2) : p2]) + degenerate_graph_C2.
+```
+
+Thus a positive graph-collapse proof may bound the projective image, while a
+counterpacket must exhibit a source-valid `G==0` family with a two-dimensional
+projective image.
+
 ## Verifier
 
 Run from the repository root:
@@ -178,6 +190,8 @@ each off-`R0` landing polynomial, and verifies:
 - every landing is classified by the gate partition above;
 - the exceptional branch is bounded by the explicit `<=2p` or `<=4p`
   lower-dimensional estimate whenever `Delta1` is nonzero;
+- graph-branch slopes satisfy the projective quadratic root-count bound from
+  the image of `[q1 : (p1-q2) : p2]`;
 - whenever `G` is nonzero, the observed graph branch is bounded by the
   finite `G`-zero pair count;
 - whenever both exact gates are inactive, the observed split-triple landings
@@ -187,7 +201,7 @@ The final `CERT` line records the best sampled branch in a machine-readable
 form with fields such as `p`, `q_gen`, `q_line`, `Delta1_zero`, `G_zero`,
 `G_degree`, `G_zero_pairs`, `nonzero_gate_bound`, `exceptional_bound`,
 `remainder_identity`, `gate_status`, `base_gate_C2`, `graph_C2`,
-`exceptional_C2`, and split-triple counts.
+`graph_projective_image_size`, `exceptional_C2`, and split-triple counts.
 
 The companion symbolic checker
 

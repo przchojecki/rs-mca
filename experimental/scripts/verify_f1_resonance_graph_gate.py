@@ -34,6 +34,8 @@ Every split-triple landing is then classified into the base-valued gate
 Delta1==0, the graph gate s!=0 and G=0, or the exceptional locus s=h=0.
 The exceptional locus is independently curve-sized whenever Delta1 is not
 identically zero.
+On the graph branch, the verifier also records the projective coefficient
+image [q1:(p1-q2):p2] controlling the slope quadratic.
 
 The default run uses random off-R0 samples to exercise the graph algebra and a
 tiny forced-Ra sample to hit the exact resonance gates quickly. Larger forced
@@ -169,6 +171,29 @@ def graph_gate(coeffs: Dict[Exp3, FElement], p: int) -> Tuple[Poly2, Poly2, Poly
     return a_poly, b_poly, s_poly, h_poly, g_poly
 
 
+def decompose_in_wb(residue, Wres, Bres, r0):
+    """Write residue = c1*Wres + c2*Bres in the off-R0 basis."""
+    return (
+        c11.fdiv(c11.wedge(residue, Bres), r0),
+        c11.fdiv(c11.wedge(Wres, residue), r0),
+    )
+
+
+def projective_normalize(triple):
+    for coord in triple:
+        if coord != c11.zero:
+            inv = c11.finv(coord)
+            return tuple(c11.fmul(x, inv) for x in triple)
+    return None
+
+
+def slope_quadratic_value(q1, p1, q2, p2, slope):
+    return c11.fsub(
+        c11.fsub(c11.fmul(q1, c11.fmul(slope, slope)), c11.fmul(c11.fsub(p1, q2), slope)),
+        p2,
+    )
+
+
 def assert_remainder_identity(a_poly: Poly2, b_poly: Poly2, s_poly: Poly2, h_poly: Poly2, g_poly: Poly2, p: int) -> None:
     """Check s^2 Delta0 = Delta1*(s*tau3 + A*s - h) + G coefficientwise."""
     s_sq = pmul(s_poly, s_poly, p)
@@ -265,6 +290,9 @@ def split_triple_stats(
     direct_slopes = {}
     base_gate_slopes = {}
     graph_slopes = {}
+    graph_projective_images = set()
+    graph_nondegenerate_slopes = set()
+    graph_degenerate_slopes = set()
     exceptional_slopes = {}
     split_landings = 0
     base_gate_common = 0
@@ -314,12 +342,31 @@ def split_triple_stats(
             raise AssertionError("Delta zero but direct slope test failed")
         direct_slopes[slope] = direct_slopes.get(slope, 0) + 1
 
+        Q = c12.q_formula_j3(W, n, D1, D2, tau1, tau2)
+        LT = c11.trim([c11.fneg(tau3), tau2, c11.fneg(tau1), c11.one])
+        LTres = c11.residue2(LT, E)
+        Qres = c11.residue2(Q, E)
+        Pres = c11.rsub(c11.rmul(Wres, LTres, E), c11.rmul(LDres, Qres, E))
+        Bpp = c11.rmul(Bres, LTres, E)
+        p1_minus_tau3, p2 = decompose_in_wb(Pres, Wres, Bres, r0)
+        q1, q2_minus_tau3 = decompose_in_wb(Bpp, Wres, Bres, r0)
+        p1 = c11.fadd(p1_minus_tau3, tau3)
+        q2 = c11.fadd(q2_minus_tau3, tau3)
+        if slope_quadratic_value(q1, p1, q2, p2, slope) != c11.zero:
+            raise AssertionError("direct slope failed the projective slope quadratic")
+
         if delta1_zero:
             base_gate_common += 1
             base_gate_slopes[slope] = base_gate_slopes.get(slope, 0) + 1
         elif s_val % p:
             graph_common += 1
             graph_slopes[slope] = graph_slopes.get(slope, 0) + 1
+            projective = projective_normalize((q1, c11.fsub(p1, q2), p2))
+            if projective is None:
+                graph_degenerate_slopes.add(slope)
+            else:
+                graph_projective_images.add(projective)
+                graph_nondegenerate_slopes.add(slope)
             if not g_zero and peval(g_poly, x, y, p) != 0:
                 raise AssertionError("graph common zero did not pass G=0")
         elif h_val % p == 0:
@@ -332,6 +379,8 @@ def split_triple_stats(
         raise AssertionError("gate partition did not cover all landings")
     if not delta1_zero and not g_zero and graph_common > g_zero_pairs:
         raise AssertionError("graph branch exceeds the G-zero pair count")
+    if len(graph_nondegenerate_slopes) > 2 * len(graph_projective_images):
+        raise AssertionError("graph slopes exceed the projective quadratic root-count bound")
     if exceptional_bound is not None and exceptional_common > exceptional_bound:
         raise AssertionError("exceptional branch exceeds the finite exceptional bound")
     if active_bound is not None and split_landings > active_bound:
@@ -359,6 +408,10 @@ def split_triple_stats(
         "base_gate_C2": len(base_gate_slopes),
         "graph_common": graph_common,
         "graph_C2": len(graph_slopes),
+        "graph_projective_image_size": len(graph_projective_images),
+        "graph_nondegenerate_C2": len(graph_nondegenerate_slopes),
+        "graph_degenerate_C2": len(graph_degenerate_slopes),
+        "graph_projective_root_bound": 2 * len(graph_projective_images) + len(graph_degenerate_slopes),
         "exceptional_common": exceptional_common,
         "exceptional_C2": len(exceptional_slopes),
         "max_slope_fiber": max(direct_slopes.values()) if direct_slopes else 0,
@@ -523,7 +576,8 @@ def main() -> None:
                 "gate={gate_status} Delta1_zero={Delta1_zero} G_zero={G_zero} G_degree={G_degree} "
                 "G_zero_pairs={G_zero_pairs} active_bound={nonzero_gate_bound} "
                 "exceptional_bound={exceptional_bound} "
-                "base={base_gate_common} graph={graph_common} exceptional={exceptional_common}".format(
+                "base={base_gate_common} graph={graph_common} graph_img={graph_projective_image_size} "
+                "exceptional={exceptional_common}".format(
                     record_mode=record["mode"],
                     checked=record["checked"],
                     off_R0_checked=record["off_R0_checked"],
@@ -548,7 +602,8 @@ def main() -> None:
                 "gate={gate_status} Delta1_zero={Delta1_zero} G_zero={G_zero} G_degree={G_degree} "
                 "G_zero_pairs={G_zero_pairs} active_bound={nonzero_gate_bound} "
                 "exceptional_bound={exceptional_bound} "
-                "base={base_gate_common} graph={graph_common} exceptional={exceptional_common}".format(
+                "base={base_gate_common} graph={graph_common} graph_img={graph_projective_image_size} "
+                "exceptional={exceptional_common}".format(
                     record_mode=record["mode"],
                     checked=record["checked"],
                     off_R0_checked=record["off_R0_checked"],

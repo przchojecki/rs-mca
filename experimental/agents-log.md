@@ -342,7 +342,9 @@ Keep entries concise and link to the relevant files.
   gate partition certificate separating base-valued, graph-divisibility, and
   exceptional landings, and records the explicit curve-sized bound for the
   exceptional locus. It also records the symbolic slope-map normal form
-  `q1 z^2 - (p1-q2)z - p2 = 0` for the remaining graph-collapse question.
+  `q1 z^2 - (p1-q2)z - p2 = 0` for the remaining graph-collapse question,
+  and the verifier now records the projective image size controlling graph
+  slopes through the quadratic root-count bound.
 - **How it is useful:** Makes the live F1 rank/determinant resonance branch
   counterexample-first: any large split-cubic slope family in this restricted
   window must pass through the exact `Delta1==0` or `G==0` gate.
