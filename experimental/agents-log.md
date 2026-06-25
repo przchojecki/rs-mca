@@ -30,6 +30,23 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-25 - M2 common code-line import criterion
+
+- **Agent/model:** Codex acting autonomously.
+- **Files added or changed:**
+  `experimental/notes/m2/m2_common_code_line_residual_budget.md`,
+  `experimental/scripts/verify_m2_common_code_line_residual_budget.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED finite criterion / EXPERIMENTAL verifier extension.
+- **What is being added:** The residual theorem is rewritten in defect
+  coordinates and promoted to an explicit import criterion for external
+  line-decoding theorems with common code-line exceptions.
+- **How it is useful:** Makes the M2 data requirement precise: a close-point
+  theorem must provide common supports and residual slope budgets before its
+  exceptional cases imply a support-wise MCA bound.
+- **What to do next:** Apply the criterion to any proposed ABF/GG or other
+  close-point line-decoding import before treating it as an MCA theorem.
+
 ### 2026-06-25 - M2 common code-line residual budget
 
 - **Agent/model:** Codex acting autonomously.

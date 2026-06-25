@@ -55,6 +55,86 @@ Consequently, if `h>c0`, then
   <= floor((|Omega|-c0)/(h-c0)).
 ```
 
+## Defect-Coordinate Form
+
+It is often clearer to parameterize the exception by its defect outside the
+common support.  Let
+
+```text
+e = n-a,        s = |Omega| = n-b.
+```
+
+Then the MDS forcing condition is
+
+```text
+a+b-n >= k        <=>        n-e-s >= k.
+```
+
+For an `[n,k]` MDS code, writing `r=n-k`, this says `e+s <= r`: the common
+code-line exception can spend only redundancy coordinates.  The residual
+zero threshold becomes
+
+```text
+h = max(1,a-b) = max(1,s-e).
+```
+
+Hence the same theorem gives
+
+```text
+#{support-wise noncontained slopes}
+  <= floor((s-c0)/(max(1,s-e)-c0))
+```
+
+whenever the denominator is positive.  In the generic no-common-residual-zero
+case `c0=0`, this specializes to
+
+```text
+<= s                         if s <= e,
+<= floor(s/(s-e))            if s > e.
+```
+
+Thus a code-line-proximity exception is not a free pass for M2.  It consumes a
+visible residual slope budget, and the budget is controlled by how many
+coordinates the common code-line support omits relative to the decoding error
+allowance.
+
+## Import Criterion
+
+This gives a finite certificate shape for external line-decoding theorems with
+exceptional code-line alternatives.  For a received line `f+z g`, let `Z_sw`
+be the support-wise noncontained slope set at agreement `a`.  Suppose an
+external argument supplies:
+
+1. an unexceptional slope set `Z0` with `|Z0| <= A`;
+2. common code-line certificates
+
+```text
+(c_f,j, c_g,j, S_j)        for j=1,...,J
+```
+
+each satisfying the theorem's hypotheses, with residual budgets `B_j`; and
+3. a residual-threshold cover
+
+```text
+Z_sw subset Z0 union R_1 union ... union R_J,
+```
+
+where `R_j` is the slope set satisfying the residual-zero inequality attached
+to the `j`th certificate.
+
+Then
+
+```text
+|Z_sw| <= A + B_1 + ... + B_J.
+```
+
+The proof is just the union bound plus the theorem above, applied to each
+residual-threshold set.  The point is the data requirement: an imported
+close-point line-decoding theorem must output a common support and a residual
+budget, not only the assertion that many line points are close to some
+codeword.  This is the local M2 check that prevents the spike separation from
+being misread as a large MCA numerator.
+
 ## Proof
 
 Let `z` have a support-wise noncontained witness `T`, so `|T|>=a` and
@@ -128,5 +208,5 @@ python3 experimental/scripts/verify_m2_common_code_line_residual_budget.py
 
 The verifier enumerates small Reed-Solomon codes, all agreement supports, and
 all slopes. It checks the spike example and deterministic residual cases,
-confirming both the per-slope residual-zero condition and the finite residual
-bound.
+including a case with common residual-zero coordinates, confirming both the
+per-slope residual-zero condition and the finite residual bound.

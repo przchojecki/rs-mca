@@ -99,9 +99,15 @@ def residual_report(
     omega = tuple(i for i in range(n) if i not in set(common_support))
     h = max(1, agreement - len(common_support))
     c0 = sum(1 for i in omega if f_res[i] == 0 and g_res[i] == 0)
+    error_budget = n - agreement
+    support_defect = len(omega)
+    defect_h = max(1, support_defect - error_budget)
+    if defect_h != h:
+        raise AssertionError("defect-coordinate residual threshold mismatch")
     residual_bound = None
     if h > c0:
         residual_bound = (len(omega) - c0) // (h - c0)
+    generic_no_common_bound = support_defect // defect_h
 
     residual_zero_counts = {
         slope: sum((f_res[i] + slope * g_res[i]) % prime == 0 for i in omega)
@@ -120,11 +126,14 @@ def residual_report(
         "n": n,
         "k": k,
         "agreement": agreement,
+        "error_budget": error_budget,
         "common_support_size": len(common_support),
+        "support_defect": support_defect,
         "omega_size": len(omega),
         "h": h,
         "c0": c0,
         "residual_bound": residual_bound,
+        "generic_no_common_bound": generic_no_common_bound,
         "bad_slope_count": len(bad_slopes),
         "bad_slopes": bad_slopes,
         "witness_count": len(witnesses),
@@ -197,13 +206,47 @@ def deterministic_residual_case() -> dict[str, Any]:
     return report
 
 
+def common_zero_residual_case() -> dict[str, Any]:
+    prime = 17
+    n = 10
+    k = 3
+    agreement = 8
+    common_support = tuple(range(5))
+    zero = (0,) * n
+    f = [0] * n
+    g = [0] * n
+    # Here e=2, s=5, so h=s-e=3. One outside coordinate is a common
+    # residual zero, leaving the finite residual budget (5-1)/(3-1)=2.
+    for index, value in zip(range(6, 10), (1, 2, 3, 4)):
+        f[index] = value
+        g[index] = 1
+    report = residual_report(
+        label="one_common_residual_zero",
+        prime=prime,
+        n=n,
+        k=k,
+        agreement=agreement,
+        common_support=common_support,
+        f=tuple(f),
+        g=tuple(g),
+        c_f=zero,
+        c_g=zero,
+    )
+    if report["h"] != 3 or report["c0"] != 1 or report["residual_bound"] != 2:
+        raise AssertionError("common residual-zero case has wrong residual budget")
+    if report["bad_slope_count"] > 2:
+        raise AssertionError("common residual-zero case violated the expected bound")
+    return report
+
+
 def main() -> None:
-    reports = [spike_case(), deterministic_residual_case()]
+    reports = [spike_case(), deterministic_residual_case(), common_zero_residual_case()]
     for report in reports:
         print(
             "{label}: p={prime} n={n} k={k} agreement={agreement} "
-            "b={common_support_size} omega={omega_size} h={h} c0={c0} "
-            "bad={bad_slope_count} bound={residual_bound}".format(**report)
+            "b={common_support_size} e={error_budget} s={support_defect} "
+            "h={h} c0={c0} bad={bad_slope_count} "
+            "bound={residual_bound}".format(**report)
         )
     print("m2_common_code_line_residual_budget: PASS")
     print("CERT " + json.dumps(reports, sort_keys=True))
