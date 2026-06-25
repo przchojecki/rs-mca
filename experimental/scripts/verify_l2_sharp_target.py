@@ -312,6 +312,23 @@ def poly_divmod(
     return trim_poly(quotient), trim_poly(numerator)
 
 
+def poly_monic(poly: list[int], p: int) -> list[int]:
+    poly = trim_poly(poly[:])
+    if poly == [0]:
+        return [0]
+    inv = pow(poly[-1], -1, p)
+    return poly_scale(poly, inv, p)
+
+
+def poly_gcd(a: list[int], b: list[int], p: int) -> list[int]:
+    a = trim_poly(a[:])
+    b = trim_poly(b[:])
+    while b != [0]:
+        _, remainder = poly_divmod(a, b, p)
+        a, b = b, remainder
+    return poly_monic(a, p)
+
+
 def poly_coeff(poly: list[int], degree: int) -> int:
     return poly[degree] if degree < len(poly) else 0
 
@@ -1831,6 +1848,14 @@ def locator_syzygy_witness_profile() -> dict:
         normalized_pivot_coefficients
         * p ** (nonpivot_coefficient_dimension - 1)
     )
+    domain_locator = poly_from_roots(p, h_values)
+    _, forced_domain_remainder = poly_divmod(domain_locator, forced_locator, p)
+    expected_domain_locator = x_power_minus_alpha(n, 1, p)
+    nonpivot_gcds = [
+        poly_gcd(forced_locator, locator, p)
+        for idx, locator in enumerate(locators)
+        if idx != pivot
+    ]
     return {
         "p": p,
         "n": n,
@@ -1869,6 +1894,10 @@ def locator_syzygy_witness_profile() -> dict:
         "nonpivot_coefficient_dimension": nonpivot_coefficient_dimension,
         "crude_pivot_coefficient_choices": crude_pivot_coefficient_choices,
         "monic_gate_coefficient_bound": monic_gate_coefficient_bound,
+        "domain_locator": domain_locator,
+        "expected_domain_locator": expected_domain_locator,
+        "forced_domain_remainder": forced_domain_remainder,
+        "nonpivot_gcds": nonpivot_gcds,
         "syzygy_sum_zero": syzygy_sum == [0],
         "pivot_forcing_remainder_zero": forcing_remainder == [0],
         "pivot_forcing_recovers_locator": forced_locator == locators[pivot],
@@ -1882,6 +1911,11 @@ def locator_syzygy_witness_profile() -> dict:
         ),
         "monic_gate_matches_necklace_count": (
             monic_gate_coefficient_bound == p ** (len(edge_blocks) - 2)
+        ),
+        "domain_locator_matches_subgroup": domain_locator == expected_domain_locator,
+        "forced_locator_divides_domain": forced_domain_remainder == [0],
+        "forced_locator_coprime_to_nonpivots": all(
+            gcd == [1] for gcd in nonpivot_gcds
         ),
     }
 
@@ -3403,6 +3437,15 @@ def run() -> dict:
         "locator_syzygy_witness_monic_necklace_count": locator_syzygy_witness[
             "monic_gate_matches_necklace_count"
         ],
+        "locator_syzygy_witness_domain_locator": locator_syzygy_witness[
+            "domain_locator_matches_subgroup"
+        ],
+        "locator_syzygy_witness_domain_divisor": locator_syzygy_witness[
+            "forced_locator_divides_domain"
+        ],
+        "locator_syzygy_witness_disjoint_gcd": locator_syzygy_witness[
+            "forced_locator_coprime_to_nonpivots"
+        ],
         "kmm_grid_formula": all(d["interleaved_edges"] == d["grid_edges_at_n_min"] for d in designs),
         "rs_witness_creates_mass": witness["mass_creation"],
         "rs_witness_realizes_k22": witness["interleaved"] == witness["product_bound"] == 4,
@@ -3662,7 +3705,9 @@ def main(argv: list[str] | None = None) -> int:
             f"pivot={syz['pivot_index']}, "
             f"forced_locator={syz['forced_locator']}, "
             f"forced_roots={syz['forced_roots']}, "
-            f"monic_bound={syz['monic_gate_coefficient_bound']}"
+            f"monic_bound={syz['monic_gate_coefficient_bound']}, "
+            f"domain_rem={syz['forced_domain_remainder']}, "
+            f"nonpivot_gcds={syz['nonpivot_gcds']}"
         )
         finc = result["functional_incidence_profile"]
         print(

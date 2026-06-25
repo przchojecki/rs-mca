@@ -1601,6 +1601,41 @@ solutions; otherwise its fiber over the nonzero value `-c` has codimension
 one, giving at most `q^{sum_{j != t}d_j-1}` choices. Summing over normalized
 nonzero `A_t` gives the stated coefficient bound.
 
+The root and disjointness gate is also purely algebraic.
+
+**Corollary (domain-locator gate for forced pivots).** Let
+
+```text
+L_H(X)=prod_{x in H}(X-x).
+```
+
+Assume the pivot-forcing quotient `L_t=-(sum_{j != t}L_j A_j)/A_t` is already
+a monic polynomial of degree `e_t`. Then `L_t` is the locator of a valid pivot
+edge block disjoint from the selected nonpivot edge blocks if and only if
+
+```text
+L_t divides L_H
+```
+
+and
+
+```text
+gcd(L_t,L_j)=1        for every j != t.
+```
+
+Equivalently, for a multiplicative subgroup domain of size `n`, this is the
+divisor gate `L_t | X^n-1` together with the same coprimality conditions.
+
+Thus the pivot-forcing reduction leaves only three explicit polynomial gates:
+divisibility by the pivot coefficient `A_t`, monicity of the quotient, and the
+domain-locator/coprimality gate above.
+
+*Proof.* A monic polynomial of degree `e_t` is the locator of an `e_t`-subset
+of `H` exactly when it is a degree-`e_t` divisor of the squarefree domain
+locator `L_H`. This is the condition `L_t | L_H`. The pivot edge is disjoint
+from a nonpivot edge `E_j` exactly when the two locator polynomials share no
+root, which is equivalent to `gcd(L_t,L_j)=1`.
+
 The incidence counts are exact in the MDS uniqueness range.
 
 **Corollary (small-support uniqueness for `N_e`).** Let `r([ell])` be the

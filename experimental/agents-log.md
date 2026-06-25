@@ -242,7 +242,12 @@ Keep entries concise and link to the relevant files.
   leading-coefficient gate now gives a uniform one-`q` coefficient saving in
   the pivot count; in the necklace case this recovers exactly the
   `q^{m-2}` coefficient factor, and the verifier records the `F_7` crude
-  coefficient count dropping from `49` to `7`. The incidence
+  coefficient count dropping from `49` to `7`. The root/disjointness gate is
+  now also algebraic: a forced pivot locator is valid exactly when it divides
+  the domain locator `L_H` and is coprime to every nonpivot locator; for
+  multiplicative subgroups this is the `L_t|X^n-1` divisor gate. The verifier
+  checks this on the `F_7` witness by reducing modulo `X^6-1` and computing
+  gcds `[1],[1]`. The incidence
   counts are now exact in the MDS uniqueness range: if `[ell]` has minimal
   support size `r` and `e>=r`, `r+e<=k`, then
   `N_e([ell])=binom(n-r,e-r)`, so for
