@@ -3676,6 +3676,47 @@ The inclusion `C_E(alpha) subset {z<sigma}` follows from
 `|C_E(alpha)|<=|L_E|` and `Delta_E<=|L_E|`, so every capped bridge bound is
 bounded by `|L_E|^r`.
 
+The capped bridge bounds have a uniform envelope depending only on three
+numbers.
+
+**Corollary (uniform cap-degree bridge envelope).** In the notation of the
+capped bridge transfer bound, put
+
+```text
+h_E=|H_E|,        c_E=max_{alpha in H_E} |C_E(alpha)|.
+```
+
+Let `k(I)=|I|`, and let `b(I)` be the number of low components of the
+complement of `I` in the relevant cycle or path. Then the all-negative cycle
+sector is bounded by
+
+```text
+sum_{empty != I independent in C_m}
+h_D^{k(I)} c_D^{b(I)} Delta_D^{m-k(I)-b(I)}.
+```
+
+For a permitted spike height `u`, with `E=D_u`, the pinned spike sector is
+bounded by
+
+```text
+sum_{empty != I independent in P_{m-1}}
+h_E^{k(I)} c_E^{b(I)} Delta_E^{m-1-k(I)-b(I)}.
+```
+
+These uniform cap-degree bounds dominate the exact capped bridge expansion
+and are dominated by the root-active independent-set bound.
+
+*Proof.* In every bridge component of length `r`, the capped bridge transfer
+bound gives at most `c_E Delta_E^{r-1}` choices, because every low component
+in the complement of a nonempty independent set has at least one high
+boundary. After choosing the root-active set `I`, there are `h_E^{k(I)}`
+choices for its high-depth labels. Multiplying the bridge bounds over all
+low components gives `c_E^{b(I)} Delta_E^{sum(r_J-1)}`. Since the total
+number of low vertices is `n-k(I)`, the exponent is `n-k(I)-b(I)`, with
+`n=m` in the cycle sector and `n=m-1` in a pinned spike sector. Finally,
+`c_E<=|L_E|` and `Delta_E<=|L_E|`, so this is bounded by
+`h_E^{k(I)} |L_E|^{n-k(I)}`, the corresponding independent-set term.
+
 For triangles, the transfer subtraction has a closed form.
 
 **Corollary (closed triangular root-active count).** Assume the hypotheses of

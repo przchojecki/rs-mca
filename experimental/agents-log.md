@@ -30,6 +30,23 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-25 - L2 uniform cap-degree envelope
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/notes/l2/l2_sharp_target_conjecture.md`,
+  `experimental/scripts/verify_l2_sharp_target.py`, and
+  `experimental/agents-log.md`.
+- **Status:** PROVED / EXPERIMENTAL.
+- **What is being added:** A uniform envelope for the capped bridge expansion
+  depending only on the number of high depths, the maximum boundary cap, and
+  the maximum low-depth transfer degree.
+- **How it is useful:** Collapses the bridge estimate to a small set of
+  parameters, making it easier to compare residual growth across cycle
+  lengths without summing over every high-depth assignment.
+- **What to do next:** Convert the uniform envelope into a recurrence or
+  spectral bound for long residual cycles.
+
 ### 2026-06-25 - L2 capped bridge transfer bounds
 
 - **Agent/model:** Codex.

@@ -3309,6 +3309,16 @@ def residual_shape_scan_profile() -> dict:
             return len(low_depths)
         return sum(depth <= 2 * sigma - boundary_high for depth in low_depths)
 
+    def max_boundary_cap_count(
+        low_depths: list[int], high_depths: list[int], sigma: int
+    ) -> int:
+        if not high_depths:
+            return 0
+        return max(
+            boundary_cap_count(low_depths, high_depth, sigma)
+            for high_depth in high_depths
+        )
+
     def bridge_component_cap_bound(
         low_depths: list[int],
         component_length: int,
@@ -3481,6 +3491,44 @@ def residual_shape_scan_profile() -> dict:
                 total += component_product
         return total
 
+    def root_active_uniform_cap_degree_bound_count(
+        vertex_count: int,
+        depths: list[int],
+        root_depth: int,
+        sigma: int,
+        *,
+        cycle: bool,
+    ) -> int:
+        high_depths = [depth for depth in depths if depth >= root_depth]
+        low_depths = [depth for depth in depths if depth < root_depth]
+        high_count = len(high_depths)
+        if high_count == 0:
+            return 0
+        cap_count = max_boundary_cap_count(low_depths, high_depths, sigma)
+        degree_bound = low_transfer_degree_bound(low_depths, sigma)
+        total = 0
+        for mask in range(1, 1 << vertex_count):
+            if not independent_mask(mask, vertex_count, cycle=cycle):
+                continue
+            high_vertex_count = mask.bit_count()
+            high_assignments = {
+                idx: 0 for idx in range(vertex_count) if (mask >> idx) & 1
+            }
+            low_components = low_path_components(
+                mask,
+                vertex_count,
+                high_assignments,
+                cycle=cycle,
+            )
+            low_vertex_count = vertex_count - high_vertex_count
+            component_count = len(low_components)
+            total += (
+                (high_count ** high_vertex_count)
+                * (cap_count ** component_count)
+                * (degree_bound ** (low_vertex_count - component_count))
+            )
+        return total
+
     def triangle_all_negative_root_active_count(
         depths: list[int], root_depth: int, sigma: int
     ) -> int:
@@ -3564,6 +3612,13 @@ def residual_shape_scan_profile() -> dict:
             "mu": 2,
             "k": 16,
             "sigma": 11,
+        },
+        {
+            "name": "triangle_uniform_cap_strict",
+            "cycle_len": 3,
+            "mu": 2,
+            "k": 19,
+            "sigma": 13,
         },
         {
             "name": "square_root_active_near_threshold",
@@ -3879,6 +3934,17 @@ def residual_shape_scan_profile() -> dict:
                     cycle=True,
                 )
             )
+            root_active_all_negative_uniform_cap_bound = (
+                0
+                if root_budget < 4 or not odd_compatible
+                else root_active_uniform_cap_degree_bound_count(
+                    cycle_len,
+                    depth_values,
+                    root_depth_required,
+                    sigma,
+                    cycle=True,
+                )
+            )
             root_active_triangle_all_negative_count = (
                 None
                 if cycle_len != 3
@@ -3957,6 +4023,7 @@ def residual_shape_scan_profile() -> dict:
                     exact_transfer_count = 0
                     bridge_count = 0
                     bridge_cap_bound = 0
+                    uniform_cap_bound = 0
                     triangle_formula_count = 0 if cycle_len == 3 else None
                     square_formula_count = 0 if cycle_len == 4 else None
                 else:
@@ -3985,6 +4052,15 @@ def residual_shape_scan_profile() -> dict:
                         root_depth_required,
                         sigma,
                         cycle=False,
+                    )
+                    uniform_cap_bound = (
+                        root_active_uniform_cap_degree_bound_count(
+                            cycle_len - 1,
+                            allowed_depths,
+                            root_depth_required,
+                            sigma,
+                            cycle=False,
+                        )
                     )
                     triangle_formula_count = (
                         None
@@ -4055,6 +4131,7 @@ def residual_shape_scan_profile() -> dict:
                         "exact_transfer_count": exact_transfer_count,
                         "bridge_count": bridge_count,
                         "bridge_cap_bound": bridge_cap_bound,
+                        "uniform_cap_bound": uniform_cap_bound,
                         "triangle_formula_count": triangle_formula_count,
                         "square_formula_count": square_formula_count,
                         "spectral_rate": spectral_rate,
@@ -4102,6 +4179,14 @@ def residual_shape_scan_profile() -> dict:
                     for row in root_active_spike_bound_rows
                 )
             )
+            root_active_uniform_cap_bound = (
+                root_active_all_negative_uniform_cap_bound
+                + cycle_len
+                * sum(
+                    row["uniform_cap_bound"]
+                    for row in root_active_spike_bound_rows
+                )
+            )
             root_active_triangle_formula_count = (
                 None
                 if cycle_len != 3
@@ -4138,6 +4223,7 @@ def residual_shape_scan_profile() -> dict:
             root_active_all_negative_transfer_count = None
             root_active_all_negative_bridge_count = None
             root_active_all_negative_bridge_cap_bound = None
+            root_active_all_negative_uniform_cap_bound = None
             root_active_triangle_all_negative_count = None
             root_active_square_all_negative_count = None
             root_active_all_negative_bound = None
@@ -4151,6 +4237,7 @@ def residual_shape_scan_profile() -> dict:
             root_active_exact_transfer_count = None
             root_active_bridge_count = None
             root_active_bridge_cap_bound = None
+            root_active_uniform_cap_bound = None
             root_active_triangle_formula_count = None
             root_active_square_formula_count = None
             root_active_spectral_bound = None
@@ -4385,6 +4472,9 @@ def residual_shape_scan_profile() -> dict:
                 "root_active_all_negative_bridge_cap_bound": (
                     root_active_all_negative_bridge_cap_bound
                 ),
+                "root_active_all_negative_uniform_cap_bound": (
+                    root_active_all_negative_uniform_cap_bound
+                ),
                 "root_active_triangle_all_negative_count": (
                     root_active_triangle_all_negative_count
                 ),
@@ -4413,6 +4503,7 @@ def residual_shape_scan_profile() -> dict:
                 ),
                 "root_active_bridge_count": root_active_bridge_count,
                 "root_active_bridge_cap_bound": root_active_bridge_cap_bound,
+                "root_active_uniform_cap_bound": root_active_uniform_cap_bound,
                 "root_active_triangle_formula_count": (
                     root_active_triangle_formula_count
                 ),
@@ -4835,6 +4926,25 @@ def residual_shape_scan_profile() -> dict:
             row["candidate_count"] > 0
             and row["root_depth_required"] > row["sigma"]
             and row["root_active_bridge_cap_bound"]
+            < row["root_active_independent_set_bound"]
+            for row in rows
+        ),
+        "root_active_uniform_cap_bounds_capped": all(
+            row["root_depth_required"] <= row["sigma"]
+            or row["root_active_bridge_cap_bound"]
+            <= row["root_active_uniform_cap_bound"]
+            for row in rows
+        ),
+        "root_active_uniform_cap_refines_independent_bound": all(
+            row["root_depth_required"] <= row["sigma"]
+            or row["root_active_uniform_cap_bound"]
+            <= row["root_active_independent_set_bound"]
+            for row in rows
+        ),
+        "root_active_uniform_cap_has_strict_case": any(
+            row["candidate_count"] > 0
+            and row["root_depth_required"] > row["sigma"]
+            and row["root_active_uniform_cap_bound"]
             < row["root_active_independent_set_bound"]
             for row in rows
         ),
@@ -7010,6 +7120,15 @@ def run() -> dict:
         ],
         "residual_shape_scan_root_active_capped_strict": residual_shape_scan[
             "root_active_capped_bridge_has_strict_case"
+        ],
+        "residual_shape_scan_root_active_uniform_cap": residual_shape_scan[
+            "root_active_uniform_cap_bounds_capped"
+        ],
+        "residual_shape_scan_root_active_uniform_refines": residual_shape_scan[
+            "root_active_uniform_cap_refines_independent_bound"
+        ],
+        "residual_shape_scan_root_active_uniform_strict": residual_shape_scan[
+            "root_active_uniform_cap_has_strict_case"
         ],
         "residual_shape_scan_root_active_triangle_formula": residual_shape_scan[
             "root_active_triangle_formula_matches_exact"
