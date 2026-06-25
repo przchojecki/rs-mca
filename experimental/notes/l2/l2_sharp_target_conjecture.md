@@ -3527,6 +3527,48 @@ set is chosen, this bound forgets the remaining adjacent-sum constraints and
 only records whether each unmarked coordinate lies in `L` or `L_u`. This gives
 the displayed independence-polynomial upper bounds.
 
+These independence-polynomial bounds have a two-term recurrence.
+
+**Corollary (recurrence form of the root-active bound).** For nonnegative
+weights `h,l`, define the path polynomials
+
+```text
+P_0=1,        P_1=l+h,
+P_n=l P_{n-1}+h l P_{n-2}        for n>=2.
+```
+
+Then
+
+```text
+P_n=sum_{I independent in P_n} h^{|I|}l^{n-|I|}.
+```
+
+For the cycle, for `n>=3`,
+
+```text
+C_n=l P_{n-1}+h l^2 P_{n-3}
+```
+
+satisfies
+
+```text
+C_n=sum_{I independent in C_n} h^{|I|}l^{n-|I|}.
+```
+
+Consequently the all-negative part of the root-active bound is
+`C_m-|L|^m`, and each non-root-satisfying spike sector is bounded by
+`P_{m-1}(|H_u|,|L_u|)-|L_u|^{m-1}`. This gives an `O(m)` recurrence
+calculation of the near-threshold residual bound.
+
+*Proof.* For paths, split independent sets by whether the first vertex is
+unmarked or marked. If it is unmarked, it contributes weight `l` and leaves a
+path of length `n-1`. If it is marked, the next vertex must be unmarked, giving
+weight `h l` and leaving a path of length `n-2`. This proves the recurrence
+and the path formula. For cycles, either a fixed vertex is unmarked, giving
+`l P_{n-1}`, or it is marked, forcing its two neighbors unmarked and leaving a
+path of length `n-3`, giving `h l^2 P_{n-3}`. Subtracting the all-unmarked
+term enforces the nonempty root-active condition.
+
 The finite certificate is monotone in the interleaving arity.
 
 **Corollary (arity monotonicity of residual-shape certificates).** Fix

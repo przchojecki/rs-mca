@@ -3191,6 +3191,45 @@ def residual_shape_scan_profile() -> dict:
                 )
         return total
 
+    def path_independent_recurrence(
+        vertex_count: int, high_count: int, low_count: int
+    ) -> int:
+        if vertex_count == 0:
+            return 1
+        if vertex_count == 1:
+            return low_count + high_count
+        previous_two = 1
+        previous_one = low_count + high_count
+        for _ in range(2, vertex_count + 1):
+            current = (
+                low_count * previous_one
+                + high_count * low_count * previous_two
+            )
+            previous_two, previous_one = previous_one, current
+        return previous_one
+
+    def cycle_independent_recurrence(
+        vertex_count: int, high_count: int, low_count: int
+    ) -> int:
+        if vertex_count == 0:
+            return 1
+        if vertex_count == 1:
+            return low_count + high_count
+        if vertex_count == 2:
+            return low_count * low_count + 2 * high_count * low_count
+        return (
+            low_count
+            * path_independent_recurrence(
+                vertex_count - 1, high_count, low_count
+            )
+            + high_count
+            * low_count
+            * low_count
+            * path_independent_recurrence(
+                vertex_count - 3, high_count, low_count
+            )
+        )
+
     scan_cases = [
         {"name": "triangle_nonempty", "cycle_len": 3, "mu": 2, "k": 8, "sigma": 3},
         {
@@ -3477,6 +3516,14 @@ def residual_shape_scan_profile() -> dict:
                 cycle=True,
                 require_nonempty=True,
             )
+            root_active_all_negative_recurrence_bound = (
+                cycle_independent_recurrence(
+                    cycle_len,
+                    len(high_depth_values),
+                    len(low_depth_values),
+                )
+                - (len(low_depth_values) ** cycle_len)
+            )
             root_active_spike_bound_rows = []
             for depth_spike_row in depth_spike_rows:
                 allowed_depths = depth_spike_row["allowed_depths"]
@@ -3493,6 +3540,7 @@ def residual_shape_scan_profile() -> dict:
                 spike = depth_spike_row["spike"]
                 if spike <= root_depth_threshold:
                     bound = len(allowed_depths) ** (cycle_len - 1)
+                    recurrence_bound = bound
                 else:
                     bound = independent_set_weight_bound(
                         cycle_len - 1,
@@ -3501,10 +3549,19 @@ def residual_shape_scan_profile() -> dict:
                         cycle=False,
                         require_nonempty=True,
                     )
+                    recurrence_bound = (
+                        path_independent_recurrence(
+                            cycle_len - 1,
+                            len(high_allowed_depths),
+                            len(low_allowed_depths),
+                        )
+                        - (len(low_allowed_depths) ** (cycle_len - 1))
+                    )
                 root_active_spike_bound_rows.append(
                     {
                         "spike": spike,
                         "bound": bound,
+                        "recurrence_bound": recurrence_bound,
                         "high_depth_count": len(high_allowed_depths),
                         "low_depth_count": len(low_allowed_depths),
                     }
@@ -3514,12 +3571,22 @@ def residual_shape_scan_profile() -> dict:
                 + cycle_len
                 * sum(row["bound"] for row in root_active_spike_bound_rows)
             )
+            root_active_recurrence_bound = (
+                root_active_all_negative_recurrence_bound
+                + cycle_len
+                * sum(
+                    row["recurrence_bound"]
+                    for row in root_active_spike_bound_rows
+                )
+            )
         else:
             high_depth_values = []
             low_depth_values = []
             root_active_all_negative_bound = None
+            root_active_all_negative_recurrence_bound = None
             root_active_spike_bound_rows = []
             root_active_independent_set_bound = None
+            root_active_recurrence_bound = None
         min_depth = min(depth_values) if depth_values else None
         max_depth = max(depth_values) if depth_values else None
         canonical_depth_witness_condition = (
@@ -3736,10 +3803,14 @@ def residual_shape_scan_profile() -> dict:
                 "high_depth_values": high_depth_values,
                 "low_depth_values": low_depth_values,
                 "root_active_all_negative_bound": root_active_all_negative_bound,
+                "root_active_all_negative_recurrence_bound": (
+                    root_active_all_negative_recurrence_bound
+                ),
                 "root_active_spike_bound_rows": root_active_spike_bound_rows,
                 "root_active_independent_set_bound": (
                     root_active_independent_set_bound
                 ),
+                "root_active_recurrence_bound": root_active_recurrence_bound,
                 "centered_candidate_count": len(centered_candidates),
                 "centered_matches_dimension_scan": (
                     centered_candidates == candidates
@@ -4088,6 +4159,18 @@ def residual_shape_scan_profile() -> dict:
             and row["depth_transfer_candidate_count"]
             < row["root_active_independent_set_bound"]
             and row["depth_transfer_candidate_count"] > 0
+            for row in rows
+        ),
+        "root_active_recurrence_matches_independent_bound": all(
+            row["root_depth_required"] <= row["sigma"]
+            or row["root_active_recurrence_bound"]
+            == row["root_active_independent_set_bound"]
+            for row in rows
+        ),
+        "root_active_recurrence_bounds_transfer": all(
+            row["root_depth_required"] <= row["sigma"]
+            or row["depth_transfer_candidate_count"]
+            <= row["root_active_recurrence_bound"]
             for row in rows
         ),
         "pair_cap_clearance_holds": all(
@@ -6174,6 +6257,12 @@ def run() -> dict:
         ],
         "residual_shape_scan_root_active_bound_strict": residual_shape_scan[
             "root_active_independent_bound_has_strict_case"
+        ],
+        "residual_shape_scan_root_active_recurrence": residual_shape_scan[
+            "root_active_recurrence_matches_independent_bound"
+        ],
+        "residual_shape_scan_root_active_recurrence_bounds": residual_shape_scan[
+            "root_active_recurrence_bounds_transfer"
         ],
         "residual_shape_scan_pair_cap_clearance": residual_shape_scan[
             "pair_cap_clearance_holds"

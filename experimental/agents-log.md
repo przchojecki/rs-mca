@@ -330,9 +330,10 @@ Keep entries concise and link to the relevant files.
   when the required depth exceeds `sigma`, adjacent root-active depths are
   impossible and their nonspike neighbors are forced below `sigma`; this gives
   an independent-set polynomial upper bound for the near-threshold residual
-  transfer count. The certificate is also monotone in arity: for fixed
-  `m,k,sigma`, candidate sets shrink as `mu` increases, so emptiness at
-  `mu_0` certifies emptiness for all larger arities.
+  transfer count, with a two-term path recurrence and cycle recurrence for
+  computing the bound without enumerating independent sets. The certificate is
+  also monotone in arity: for fixed `m,k,sigma`, candidate sets shrink as `mu`
+  increases, so emptiness at `mu_0` certifies emptiness for all larger arities.
   Combining
   the pivot, monic, and domain gates gives a
   marked selected-syzygy tuple bound; the verifier checks that this general
