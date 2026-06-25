@@ -2298,6 +2298,31 @@ def locator_syzygy_witness_profile() -> dict:
                     "bound": bound,
                 }
             )
+    root_sharing_rank_weighted_bound = 0
+    root_sharing_degree_bounds = {}
+    for degree in range(rank_coefficient_dimensions[rank_pivot]):
+        degree_bound = Fraction(rank_p**degree, rank_p**rank_reference_dimension)
+        for rank_cutoff in range(1, rank_reference_dimension):
+            if degree <= rank_cutoff:
+                low_rank_bound = rank_p**degree
+            else:
+                shared_roots = degree - rank_cutoff
+                low_rank_bound = (
+                    0
+                    if shared_roots > rank_reference_edge_size
+                    else comb(rank_reference_edge_size, shared_roots)
+                    * rank_p**rank_cutoff
+                )
+            degree_bound += (
+                Fraction(1, rank_p**rank_cutoff)
+                - Fraction(1, rank_p ** (rank_cutoff + 1))
+            ) * low_rank_bound
+        scaled_degree_bound = degree_bound * rank_p**rank_nonpivot_dimension
+        if scaled_degree_bound.denominator != 1:
+            raise ValueError("expected integral root-sharing bound")
+        scaled_degree_bound = scaled_degree_bound.numerator
+        root_sharing_degree_bounds[str(degree)] = scaled_degree_bound
+        root_sharing_rank_weighted_bound += scaled_degree_bound
     return {
         "p": p,
         "n": n,
@@ -2373,6 +2398,8 @@ def locator_syzygy_witness_profile() -> dict:
             "reference_edge_size": rank_reference_edge_size,
             "reference_dimension": rank_reference_dimension,
             "low_rank_rarity_checks": low_rank_rarity_checks,
+            "root_sharing_degree_bounds": root_sharing_degree_bounds,
+            "root_sharing_rank_weighted_bound": root_sharing_rank_weighted_bound,
         },
         "syzygy_sum_zero": syzygy_sum == [0],
         "pivot_forcing_remainder_zero": forcing_remainder == [0],
@@ -2413,6 +2440,12 @@ def locator_syzygy_witness_profile() -> dict:
         ),
         "degree_two_pivots_have_full_residue_rank": (
             rank_degree_distribution[2] == {2: rank_p**2}
+        ),
+        "root_sharing_bound_covers_rank_weighted": (
+            rank_weighted_bound <= root_sharing_rank_weighted_bound
+        ),
+        "root_sharing_bound_improves_monic_projective": (
+            root_sharing_rank_weighted_bound < rank_monic_projective_bound
         ),
     }
 
@@ -4037,6 +4070,12 @@ def run() -> dict:
         ],
         "locator_syzygy_degree_two_full_rank": locator_syzygy_witness[
             "degree_two_pivots_have_full_residue_rank"
+        ],
+        "locator_syzygy_root_sharing_covers": locator_syzygy_witness[
+            "root_sharing_bound_covers_rank_weighted"
+        ],
+        "locator_syzygy_root_sharing_improves": locator_syzygy_witness[
+            "root_sharing_bound_improves_monic_projective"
         ],
         "kmm_grid_formula": all(d["interleaved_edges"] == d["grid_edges_at_n_min"] for d in designs),
         "rs_witness_creates_mass": witness["mass_creation"],

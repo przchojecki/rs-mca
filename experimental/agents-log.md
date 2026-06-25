@@ -259,7 +259,10 @@ Keep entries concise and link to the relevant files.
   identified as a root-sharing event: exact degree-`b` pivot coefficients with
   rank `<=r<d_u` are bounded by `binom(e_u,b-r)q^r` against any fixed nonpivot
   edge `u`; the verifier checks this bound by exact degree in the same `F_11`
-  witness. Combining the pivot, monic, and domain gates gives a
+  witness. Summing these cumulative low-rank bounds gives a closed
+  root-sharing upper bound for the rank-weighted coefficient factor; in the
+  witness this bound still improves the projective monicity bound. Combining
+  the pivot, monic, and domain gates gives a
   marked selected-syzygy tuple bound; the verifier checks that this general
   formula exactly reproduces the earlier rank-deficient necklace count
   `m q^{m-2} prod_{h=0}^{m-2} binom(n-hr,r)`. Combining it with any

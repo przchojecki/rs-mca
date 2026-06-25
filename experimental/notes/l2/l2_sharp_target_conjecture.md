@@ -1729,6 +1729,44 @@ of some `(b-r)`-subset of `E_u`. For each chosen subset, there are at most
 `q^r` monic degree-`b` multiples. A union bound over the subsets gives the
 second display.
 
+Combining the cumulative rank counts gives a closed rank-weighted coefficient
+bound.
+
+**Corollary (root-sharing bound for the rank-weighted factor).** Fix
+`u != t`, and put `D_t=sum_{j != t}d_j`. For `0<=b<d_t` and
+`1<=r<d_u`, define
+
+```text
+B_b(r)=q^b                         if b<=r,
+B_b(r)=binom(e_u,b-r)q^r           if b>r.
+```
+
+Then
+
+```text
+C_t(L_{j != t})
+ <= q^{D_t} sum_{b=0}^{d_t-1}
+      [ q^{b-d_u}
+        + sum_{r=1}^{d_u-1} (q^{-r}-q^{-(r+1)}) B_b(r) ].
+```
+
+Thus the rank-weighted marked-syzygy factor has an explicit root-sharing
+upper bound. It is independent of the detailed residue-rank distribution and
+improves the monicity-only factor whenever the resulting right-hand side is
+smaller.
+
+*Proof.* For exact degree `b`, let `N_b(r)` be the cumulative count from the
+low-rank rarity corollary. Since `rho>=d_u` contributes at most `q^{-d_u}`,
+the elementary layer-cake identity gives
+
+```text
+sum_{deg A_t=b} q^{-max(1,rho(t,A_t))}
+ <= q^{b-d_u}
+    + sum_{r=1}^{d_u-1} (q^{-r}-q^{-(r+1)}) N_b(r).
+```
+
+Substitute `N_b(r)<=B_b(r)`, sum over `b`, and multiply by `q^{D_t}`.
+
 The root and disjointness gate is also purely algebraic.
 
 **Corollary (domain-locator gate for forced pivots).** Let
