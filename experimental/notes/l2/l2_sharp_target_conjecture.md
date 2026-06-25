@@ -1636,6 +1636,46 @@ locator `L_H`. This is the condition `L_t | L_H`. The pivot edge is disjoint
 from a nonpivot edge `E_j` exactly when the two locator polynomials share no
 root, which is equivalent to `gcd(L_t,L_j)=1`.
 
+Combining the pivot, monic, and domain gates gives the following general
+marked-syzygy overcount.
+
+**Corollary (marked selected-syzygy tuple bound).** Fix selected edge sizes
+`e_j`, coefficient dimensions `d_j=k-e_j`, and a fixed ordering of
+the nonpivot set `J` with `t` removed for every pivot `t`. The number of
+selected edge tuples admitting a marked projective syzygy is at most
+
+```text
+sum_{t in J}
+  (q^{d_t}-1)/(q-1)
+  q^{sum_{j != t} d_j - 1}
+  prod_{j != t} binom(n-s_{j,t},e_j),
+```
+
+where `s_{j,t}` is the number of nonpivot edge points chosen before `j` in the
+fixed ordering for pivot `t`.
+
+The same expression remains a valid upper bound after imposing the divisibility
+by `A_t`, domain-locator, and coprimality gates, since those gates only remove
+choices. Thus every lower selected-rank tuple is covered by a sum of explicit
+marked pivot-forcing data.
+
+For fixed-length necklaces, `d_j=1` and the displayed bound becomes
+
+```text
+m q^{m-2} prod_{h=0}^{m-2} binom(n-hr,r),
+```
+
+which is exactly the rank-deficient necklace count used above.
+
+*Proof.* The pivot-forcing reduction counts normalized nonzero `A_t`, nonpivot
+edge blocks, and nonpivot coefficient polynomials. The monic leading
+coefficient gate reduces the nonpivot coefficient count by one power of `q`.
+The divisibility and domain gates only discard choices, so the displayed
+quantity is an upper bound. In the necklace case each `d_j=1`, so
+`(q^{d_t}-1)/(q-1)=1`, the nonpivot coefficient factor is `q^{m-2}`, and the
+nonpivot block product is the stated sequential product; summing over the `m`
+pivots gives the necklace formula.
+
 The incidence counts are exact in the MDS uniqueness range.
 
 **Corollary (small-support uniqueness for `N_e`).** Let `r([ell])` be the

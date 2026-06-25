@@ -247,7 +247,10 @@ Keep entries concise and link to the relevant files.
   the domain locator `L_H` and is coprime to every nonpivot locator; for
   multiplicative subgroups this is the `L_t|X^n-1` divisor gate. The verifier
   checks this on the `F_7` witness by reducing modulo `X^6-1` and computing
-  gcds `[1],[1]`. The incidence
+  gcds `[1],[1]`. Combining the pivot, monic, and domain gates gives a
+  marked selected-syzygy tuple bound; the verifier checks that this general
+  formula exactly reproduces the earlier rank-deficient necklace count
+  `m q^{m-2} prod_{h=0}^{m-2} binom(n-hr,r)`. The incidence
   counts are now exact in the MDS uniqueness range: if `[ell]` has minimal
   support size `r` and `e>=r`, `r+e<=k`, then
   `N_e([ell])=binom(n-r,e-r)`, so for

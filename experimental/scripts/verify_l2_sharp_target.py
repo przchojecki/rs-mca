@@ -1316,6 +1316,32 @@ def rank_deficient_cyclic_necklace_profile() -> dict:
                 chosen_blocks_count *= comb(n - block * r, r)
             coefficient_choices = p ** (cycle_len - 2)
             count_bound = cycle_len * coefficient_choices * chosen_blocks_count
+            selected_edge_sizes = [r] * cycle_len
+            coefficient_dimensions = [
+                k - edge_size for edge_size in selected_edge_sizes
+            ]
+            marked_syzygy_count_bound = 0
+            for pivot in range(cycle_len):
+                nonpivot_block_count = 1
+                chosen_points = 0
+                for idx, edge_size in enumerate(selected_edge_sizes):
+                    if idx == pivot:
+                        continue
+                    nonpivot_block_count *= comb(n - chosen_points, edge_size)
+                    chosen_points += edge_size
+                pivot_coefficients = (
+                    p ** coefficient_dimensions[pivot] - 1
+                ) // (p - 1)
+                nonpivot_coefficient_dim = sum(
+                    coefficient_dimensions[idx]
+                    for idx in range(cycle_len)
+                    if idx != pivot
+                )
+                marked_syzygy_count_bound += (
+                    pivot_coefficients
+                    * p ** (nonpivot_coefficient_dim - 1)
+                    * nonpivot_block_count
+                )
             diagonal_count = comb(n, a)
             exponent_gap_lower_bound = (cycle_len - 2) * (r - 1)
             relative_bound = Fraction(
@@ -1332,6 +1358,7 @@ def rank_deficient_cyclic_necklace_profile() -> dict:
                     "coefficient_choices": coefficient_choices,
                     "chosen_blocks_count": chosen_blocks_count,
                     "count_bound": count_bound,
+                    "marked_syzygy_count_bound": marked_syzygy_count_bound,
                     "diagonal_count": diagonal_count,
                     "locator_rank_lower_bound": 2,
                     "exponent_gap_lower_bound": exponent_gap_lower_bound,
@@ -1351,6 +1378,10 @@ def rank_deficient_cyclic_necklace_profile() -> dict:
         <= {row["cycle_len"] for row in rows},
         "coefficient_choice_formula_holds": all(
             row["coefficient_choices"] == p ** (row["cycle_len"] - 2)
+            for row in rows
+        ),
+        "marked_syzygy_count_matches_necklace_bound": all(
+            row["marked_syzygy_count_bound"] == row["count_bound"]
             for row in rows
         ),
         "exponent_gap_lower_bound_formula_holds": all(
@@ -3310,6 +3341,9 @@ def run() -> dict:
         ],
         "rank_deficient_necklace_coefficients": rank_deficient_necklaces[
             "coefficient_choice_formula_holds"
+        ],
+        "rank_deficient_necklace_marked_syzygy_count": rank_deficient_necklaces[
+            "marked_syzygy_count_matches_necklace_bound"
         ],
         "rank_deficient_necklace_exponent_gap": rank_deficient_necklaces[
             "exponent_gap_lower_bound_formula_holds"
