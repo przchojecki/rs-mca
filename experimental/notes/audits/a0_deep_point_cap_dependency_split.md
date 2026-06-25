@@ -16,7 +16,7 @@ D's `thm:main`, the headline support-wise MCA cap has a local proof that does
 not use the imported CS25/ABF list-to-agreement theorem:
 
 ```text
-emca(C,delta) >= (1/(2k)) (1 - n/q)
+emca(C,delta) > (1/(2k)) (1 - n/q)
 ```
 
 for every `delta_N <= delta < 1-rho`, where
@@ -39,7 +39,7 @@ bad slopes for `C=RS[F,D,k]`;
 3. the exact algebra below gives
 
 ```text
-M/q >= (1/(2k)) (1 - n/q).
+M/q > (1/(2k)) (1 - n/q).
 ```
 
 Thus the headline MCA cap has a CS25-free route.  The original CS25/ABF import
@@ -175,27 +175,34 @@ MCA-bad slopes.
 
 ## Algebra
 
-The desired comparison is
+The density supplied by averaging is
 
 ```text
-L(q-n) / ( q(q-n+k(L-1)) ) >= (q-n)/(2kq).
+L(q-n) / ( q(q-n+k(L-1)) ).
+```
+
+The desired strict comparison with Paper D's cap constant is
+
+```text
+L(q-n) / ( q(q-n+k(L-1)) ) > (q-n)/(2kq).
 ```
 
 Since `q>n`, this is equivalent to
 
 ```text
-2kL >= q-n+k(L-1),
+2kL > q-n+k(L-1),
 ```
 
 or
 
 ```text
-kL - q + n + k >= 0.
+kL - q + n + k > 0.
 ```
 
 The Paper D fiber hypothesis `L >= q/k+1` gives `kL >= q+k`, so the last
 quantity is at least `n+2k`, hence positive.  This proves the local cap
-constant directly from the simple-pole construction.
+constant strictly at `delta_N`.  Support-wise MCA monotonicity then extends the
+same strict lower bound to every `delta_N <= delta < 1-rho`.
 
 ## Dependency Consequence
 

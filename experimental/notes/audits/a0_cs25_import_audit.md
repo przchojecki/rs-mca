@@ -82,13 +82,13 @@ The local algebra is:
 ```text
 L >= q/k + 1,
 M >= L/(1+k(L-1)/(q-n))
-  ==>  M/q >= (1/(2k))(1-n/q).
+  ==>  M/q > (1/(2k))(1-n/q).
 ```
 
-Indeed, after cancelling `(q-n)/q`, the comparison is equivalent to
+Indeed, after cancelling `(q-n)/q`, the strict comparison is equivalent to
 
 ```text
-kL - q + n + k >= 0,
+kL - q + n + k > 0,
 ```
 
 which follows from `kL >= q+k`.  Thus the elementary fiber lower bound plus the

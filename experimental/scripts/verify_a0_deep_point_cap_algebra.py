@@ -30,12 +30,15 @@ def certificate(q: int, n: int, k: int, list_size: int) -> dict[str, Any]:
     residual = k * list_size - q + n + k
     deep_density = deep_point_density(q, n, k, list_size)
     target = cap_bound(q, n, k)
-    inequality_holds = deep_density >= target
+    weak_inequality_holds = deep_density >= target
+    strict_inequality_holds = deep_density > target
 
     if fiber_hypothesis and residual <= 0:
         raise AssertionError("fiber hypothesis should force a positive residual")
-    if (residual >= 0) != inequality_holds:
-        raise AssertionError("residual sign does not match density comparison")
+    if (residual >= 0) != weak_inequality_holds:
+        raise AssertionError("residual sign does not match weak density comparison")
+    if (residual > 0) != strict_inequality_holds:
+        raise AssertionError("residual sign does not match strict density comparison")
 
     return {
         "q": q,
@@ -48,7 +51,8 @@ def certificate(q: int, n: int, k: int, list_size: int) -> dict[str, Any]:
         "deep_density_den": deep_density.denominator,
         "cap_bound_num": target.numerator,
         "cap_bound_den": target.denominator,
-        "deep_density_ge_cap_bound": inequality_holds,
+        "deep_density_ge_cap_bound": weak_inequality_holds,
+        "deep_density_gt_cap_bound": strict_inequality_holds,
     }
 
 
@@ -62,7 +66,7 @@ def grid_certificates() -> list[dict[str, Any]]:
                     row = certificate(q, n, k, list_size)
                     if not row["fiber_hypothesis_kL_ge_q_plus_k"]:
                         raise AssertionError("chosen list size should meet fiber hypothesis")
-                    if not row["deep_density_ge_cap_bound"]:
+                    if not row["deep_density_gt_cap_bound"]:
                         raise AssertionError("deep-point route failed the cap bound")
                     rows.append(row)
     return rows
@@ -93,7 +97,7 @@ def run() -> dict[str, Any]:
         "status": "PASS",
         "claim": (
             "L >= q/k+1 and M >= L/(1+k(L-1)/(q-n)) imply "
-            "M/q >= (1/(2k))(1-n/q)"
+            "M/q > (1/(2k))(1-n/q)"
         ),
         "grid_case_count": len(grid),
         "grid_min_residual": min(
@@ -119,14 +123,14 @@ def main() -> None:
     for row in result["boundary_examples"]:
         print(
             "{label}: q={q} n={n} k={k} L={list_size} residual={residual} "
-            "deep>=cap={ok}".format(
+            "deep>cap={ok}".format(
                 label=row["label"],
                 q=row["q"],
                 n=row["n"],
                 k=row["k"],
                 list_size=row["list_size"],
                 residual=row["residual_kL_minus_q_plus_n_plus_k"],
-                ok=row["deep_density_ge_cap_bound"],
+                ok=row["deep_density_gt_cap_bound"],
             )
         )
 
