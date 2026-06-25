@@ -135,6 +135,61 @@ budget, not only the assertion that many line points are close to some
 codeword.  This is the local M2 check that prevents the spike separation from
 being misread as a large MCA numerator.
 
+## Sharpness
+
+The residual budget is sharp for MDS codes at this level of information. Keep
+the notation above, assume `h>c0`, and set
+
+```text
+m = floor((|Omega|-c0)/(h-c0)).
+```
+
+If the field has at least `m` elements and
+
+```text
+a-h >= k,
+```
+
+then there are words `f,g` with common zero code-line on `S0`, exactly `c0`
+common residual-zero coordinates in `Omega`, and exactly `m` support-wise
+noncontained slopes at agreement `a`.
+
+Choose `U0 subset S0` of size `a-h`. Choose `C0 subset Omega` of size `c0`,
+and choose disjoint private blocks
+
+```text
+P_1,...,P_m subset Omega \ C0,        |P_j|=h-c0.
+```
+
+Pick distinct slopes `zeta_1,...,zeta_m in F`. Define `f` and `g` by
+
+```text
+f=g=0 on S0 union C0,
+g=1 on P_1 union ... union P_m,
+f=-zeta_j on P_j,
+```
+
+and put arbitrary non-common residual values on unused points of `Omega`.
+For each `j`, the line point `f+zeta_j g` vanishes on
+
+```text
+T_j = U0 union C0 union P_j,
+```
+
+which has size `a`, so the zero codeword explains the line point on `T_j`.
+However, if the support were contained, `g|T_j` would be explained by a
+codeword. That codeword has at least `|U0|=a-h >= k` zeros, hence is zero by
+MDS zero-rigidity, contradicting `g=1` on `P_j`. Thus all `m` slopes are
+support-wise noncontained. The upper bound already proved gives at most `m`,
+so the count is exactly `m`.
+
+This sharpness statement is useful for M2 interpretation. A common code-line
+exception plus residual coordinate counts alone cannot yield a better
+support-wise numerator than the displayed residual budget. Any improvement
+must use additional structure, such as the geometry of the particular
+line-decoding theorem, the smooth-domain quotient profile, or correlations
+between the exceptional certificates.
+
 ## Proof
 
 Let `z` have a support-wise noncontained witness `T`, so `|T|>=a` and
@@ -208,5 +263,6 @@ python3 experimental/scripts/verify_m2_common_code_line_residual_budget.py
 
 The verifier enumerates small Reed-Solomon codes, all agreement supports, and
 all slopes. It checks the spike example and deterministic residual cases,
-including a case with common residual-zero coordinates, confirming both the
-per-slope residual-zero condition and the finite residual bound.
+including a sharp case with common residual-zero coordinates, confirming the
+per-slope residual-zero condition, the finite residual bound, and its
+attainability.

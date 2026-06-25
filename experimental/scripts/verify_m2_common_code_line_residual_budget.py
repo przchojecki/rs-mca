@@ -206,7 +206,7 @@ def deterministic_residual_case() -> dict[str, Any]:
     return report
 
 
-def common_zero_residual_case() -> dict[str, Any]:
+def sharp_common_zero_residual_case() -> dict[str, Any]:
     prime = 17
     n = 10
     k = 3
@@ -216,12 +216,15 @@ def common_zero_residual_case() -> dict[str, Any]:
     f = [0] * n
     g = [0] * n
     # Here e=2, s=5, so h=s-e=3. One outside coordinate is a common
-    # residual zero, leaving the finite residual budget (5-1)/(3-1)=2.
-    for index, value in zip(range(6, 10), (1, 2, 3, 4)):
-        f[index] = value
-        g[index] = 1
+    # residual zero, leaving the sharp finite residual budget
+    # (5-1)/(3-1)=2. Two private blocks of size h-c0=2 realize it.
+    block_slopes = (3, 11)
+    for slope, block in zip(block_slopes, ((6, 7), (8, 9))):
+        for index in block:
+            f[index] = (-slope) % prime
+            g[index] = 1
     report = residual_report(
-        label="one_common_residual_zero",
+        label="sharp_one_common_residual_zero",
         prime=prime,
         n=n,
         k=k,
@@ -234,13 +237,17 @@ def common_zero_residual_case() -> dict[str, Any]:
     )
     if report["h"] != 3 or report["c0"] != 1 or report["residual_bound"] != 2:
         raise AssertionError("common residual-zero case has wrong residual budget")
-    if report["bad_slope_count"] > 2:
-        raise AssertionError("common residual-zero case violated the expected bound")
+    if report["bad_slopes"] != sorted(block_slopes):
+        raise AssertionError("common residual-zero case did not attain the bound")
     return report
 
 
 def main() -> None:
-    reports = [spike_case(), deterministic_residual_case(), common_zero_residual_case()]
+    reports = [
+        spike_case(),
+        deterministic_residual_case(),
+        sharp_common_zero_residual_case(),
+    ]
     for report in reports:
         print(
             "{label}: p={prime} n={n} k={k} agreement={agreement} "

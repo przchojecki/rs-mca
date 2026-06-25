@@ -30,6 +30,23 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-25 - M2 residual budget sharpness
+
+- **Agent/model:** Codex acting autonomously.
+- **Files added or changed:**
+  `experimental/notes/m2/m2_common_code_line_residual_budget.md`,
+  `experimental/scripts/verify_m2_common_code_line_residual_budget.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED finite sharpness theorem / EXPERIMENTAL verifier case.
+- **What is being added:** A construction showing the common code-line
+  residual-budget bound is attained for MDS codes whenever the stated
+  zero-rigidity and field-size hypotheses hold.
+- **How it is useful:** Prevents overclaiming from M2 common-code-line
+  exceptions: improving the bound requires extra structure beyond residual
+  coordinate counts alone.
+- **What to do next:** Use the sharpness theorem as a guardrail when proposing
+  stronger M2 line-decoding imports or exceptional-case reductions.
+
 ### 2026-06-25 - M2 common code-line import criterion
 
 - **Agent/model:** Codex acting autonomously.
