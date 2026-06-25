@@ -1319,6 +1319,36 @@ def rank_deficient_cyclic_necklace_profile() -> dict:
     }
 
 
+def evaluation_span_intersection_dimension(
+    p: int,
+    h_values: list[int],
+    k: int,
+    edge_blocks: list[set[int]],
+) -> int:
+    """Dimension of the common intersection of edge evaluation spans."""
+    offsets = []
+    cursor = 0
+    edge_lists = [sorted(edge_block) for edge_block in edge_blocks]
+    for edge_list in edge_lists:
+        offsets.append(cursor)
+        cursor += len(edge_list)
+    rows = []
+    for edge_idx in range(1, len(edge_blocks)):
+        for degree in range(k):
+            row = [0] * cursor
+            for local_idx, idx in enumerate(edge_lists[0]):
+                column = offsets[0] + local_idx
+                row[column] = (row[column] - pow(h_values[idx], degree, p)) % p
+            for local_idx, idx in enumerate(edge_lists[edge_idx]):
+                column = offsets[edge_idx] + local_idx
+                row[column] = (
+                    row[column]
+                    + pow(h_values[idx], degree, p)
+                ) % p
+            rows.append(row)
+    return cursor - matrix_rank_mod(rows, p)
+
+
 def clean_cycle_rank_profile() -> dict:
     """Check the exact rank formula for clean simple low-overlap cycles."""
     p, n, mu = 31, 30, 2
@@ -1375,6 +1405,10 @@ def clean_cycle_rank_profile() -> dict:
                 basis_poly = poly_mul(locator, monomial(power), p)
                 vanishing_basis.append(basis_poly + [0] * (k - len(basis_poly)))
         vanishing_sum_rank = matrix_rank_mod(vanishing_basis, p)
+        dual_intersection_dim = evaluation_span_intersection_dimension(
+            p, h_values, k, edge_blocks
+        )
+        rank_defect = k - vanishing_sum_rank
         cross_rank = cross_constraint_rank(p, h_values, k, part_unions)
         expected_cross_rank = edge_total + vanishing_sum_rank - k
         product_diagonal_exponent = cycle_len * (a - k)
@@ -1395,6 +1429,7 @@ def clean_cycle_rank_profile() -> dict:
         two_edge_lower_bound = (
             k if min_edge_pair_sum <= k else 2 * k - min_edge_pair_sum
         )
+        two_edge_defect_upper_bound = max(0, min_edge_pair_sum - k)
         rows.append(
             {
                 "name": example["name"],
@@ -1412,7 +1447,10 @@ def clean_cycle_rank_profile() -> dict:
                 "edge_total": edge_total,
                 "min_edge_pair_sum": min_edge_pair_sum,
                 "two_edge_rank_lower_bound": two_edge_lower_bound,
+                "two_edge_defect_upper_bound": two_edge_defect_upper_bound,
                 "vanishing_sum_rank": vanishing_sum_rank,
+                "rank_defect": rank_defect,
+                "dual_intersection_dimension": dual_intersection_dim,
                 "cross_constraint_rank": cross_rank,
                 "expected_cross_constraint_rank": expected_cross_rank,
                 "product_diagonal_exponent": product_diagonal_exponent,
@@ -1456,6 +1494,14 @@ def clean_cycle_rank_profile() -> dict:
         ),
         "two_edge_lower_bound_holds": all(
             row["vanishing_sum_rank"] >= row["two_edge_rank_lower_bound"]
+            for row in rows
+        ),
+        "dual_defect_formula_holds": all(
+            row["dual_intersection_dimension"] == row["rank_defect"]
+            for row in rows
+        ),
+        "two_edge_defect_bound_holds": all(
+            row["rank_defect"] <= row["two_edge_defect_upper_bound"]
             for row in rows
         ),
         "small_pair_forces_full_rank": all(
@@ -2628,6 +2674,10 @@ def run() -> dict:
         "clean_cycle_has_private_mass": clean_cycles["contains_private_mass"],
         "clean_cycle_two_edge_lower_bound": clean_cycles[
             "two_edge_lower_bound_holds"
+        ],
+        "clean_cycle_dual_defect": clean_cycles["dual_defect_formula_holds"],
+        "clean_cycle_two_edge_defect_bound": clean_cycles[
+            "two_edge_defect_bound_holds"
         ],
         "clean_cycle_small_pair_full_rank": clean_cycles[
             "small_pair_forces_full_rank"

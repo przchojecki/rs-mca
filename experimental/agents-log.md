@@ -191,7 +191,11 @@ Keep entries concise and link to the relevant files.
   `R_cyc=dim(W_0+...+W_{m-1})`, then the cross-rank is exactly
   `sum_i e_i+R_cyc-k` and the exponent gap over diagonal is
   `(m-1)(a-k)+R_cyc-k`. The verifier checks uneven and private-mass cycle
-  examples over `F_31`. A two-edge lower bound now shows
+  examples over `F_31`. The clean-cycle defect is now identified dually:
+  `k-R_cyc=dim(U_0 cap ... cap U_{m-1})`, where `U_i` is the span of
+  evaluation functionals on edge overlap `E_i`; equivalently, rank deficiency
+  requires a nonzero linear functional on degree-`<k` polynomials supported on
+  every edge overlap. A two-edge lower bound now shows
   `R_cyc >= k-max(0,s_2-k)`, where `s_2` is the minimum pair sum of edge
   sizes; in particular, if two edge overlaps have total size at most `k`, then
   `R_cyc=k`. Thus rank-deficient clean cycles can only occur in the

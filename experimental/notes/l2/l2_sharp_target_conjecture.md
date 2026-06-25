@@ -1057,6 +1057,36 @@ m(a-k) + D + r_cross
 
 Subtracting the diagonal exponent `a-k` gives the stated gap.
 
+There is an equivalent dual form that makes the remaining dependency locus more
+concrete.
+
+**Lemma (dual form of the clean-cycle defect).** Let `V=F_q[X]_{<k}` and, for
+each edge set `E_i`, let
+
+```text
+U_i = span{ ev_x : x in E_i } subset V^*
+```
+
+where `ev_x(Q)=Q(x)`. Then
+
+```text
+k - R_cyc = dim(U_0 cap ... cap U_{m-1}).
+```
+
+Equivalently, `R_cyc<k` exactly when there is a nonzero linear functional on
+degree-`<k` polynomials that can be represented by weights supported on every
+edge overlap `E_i`.
+
+*Proof.* By definition `W_i` is the kernel of the evaluation map on `E_i`.
+Since `e_i<k`, the evaluations at points of `E_i` are linearly independent on
+`V`, so the annihilator of `W_i` in `V^*` is exactly `U_i`. Therefore
+
+```text
+(W_0+...+W_{m-1})^perp = U_0 cap ... cap U_{m-1}.
+```
+
+Taking dimensions in the `k`-dimensional space `V` gives the identity.
+
 This formula gives a useful first lower bound without classifying all possible
 dependencies among the `W_i`.
 
