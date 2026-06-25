@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-25 - L1 Johnson over-agreement gate
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/notes/l1/l1_full_list_quotient_proof_program.md`,
+  `experimental/scripts/scan_l1_full_list_quotient_conjecture.py`, and
+  `experimental/agents-log.md`.
+- **Status:** PROVED / EXPERIMENTAL.
+- **What is being added:** A Johnson over-agreement gate for sunflower extras:
+  once the agreement slack reaches the first Johnson-covered level, the full
+  list is controlled by Theorem J. The scanner now reports the required
+  Johnson slack and counts Johnson-covered sunflower extras.
+- **How it is useful:** Separates high-overagreement sunflower extras from the
+  genuine sub-Johnson residual, so the two-gate/width analysis only has to
+  handle low-overagreement extras.
+- **What to do next:** Combine this gate with residual scans to focus proof
+  effort on extras with agreement slack below the Johnson threshold.
+
 ### 2026-06-25 - L1 finite-width two-gate tradeoff
 
 - **Agent/model:** Codex.

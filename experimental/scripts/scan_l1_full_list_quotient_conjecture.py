@@ -23,7 +23,7 @@ import json
 import random
 import sys
 from collections import Counter, defaultdict
-from math import comb, lgamma, log2
+from math import comb, isqrt, lgamma, log2
 from typing import Iterable
 
 
@@ -296,6 +296,14 @@ def johnson_full_list_profile(n: int, k: int, s: int) -> dict[str, object]:
         profile["bound"] = numerator // denominator
         profile["bound_reason"] = "second-moment-johnson"
     return profile
+
+
+def johnson_slack_needed(n: int, k: int, s: int) -> int:
+    """Minimum slack needed to move threshold s into the Johnson region."""
+    threshold = n * (k - 1)
+    if s * s > threshold:
+        return 0
+    return isqrt(threshold) + 1 - s
 
 
 def johnson_bound_report(
@@ -661,6 +669,9 @@ def classify_sunflower_listing(
     core = set(sunflower["core"])
     petals = [set(petal) for petal in sunflower["petals"]]
     petal_size = len(petals[0]) if petals else 0
+    k = len(core) + 1
+    s = len(core) + petal_size
+    johnson_slack = johnson_slack_needed(n, k, s)
     petal_union = set().union(*petals) if petals else set()
     background = set(range(n)) - core - petal_union
     intended_masks = {
@@ -679,8 +690,15 @@ def classify_sunflower_listing(
         ]
     ] = Counter()
     extra_examples: list[dict[str, object]] = []
+    johnson_covered_extras = 0
     for mask in extra_masks:
         agreement = set(mask_to_exponents(mask, n))
+        agreement_size = len(agreement)
+        agreement_slack = agreement_size - s
+        johnson_covered = agreement_slack >= johnson_slack
+        johnson_unique_covered = 2 * agreement_size > n + k - 1
+        if johnson_covered:
+            johnson_covered_extras += 1
         petal_hits = [len(agreement & petal) for petal in petals]
         positive_petal_hits = [hit for hit in petal_hits if hit]
         positive_petal_hits_desc = sorted(positive_petal_hits, reverse=True)
@@ -772,7 +790,7 @@ def classify_sunflower_listing(
             background_hits + sum(petal_hits) - (petal_size + core_defect)
         )
         profile = (
-            len(agreement),
+            agreement_size,
             core_hits,
             sum(petal_hits),
             touched_petals,
@@ -805,7 +823,11 @@ def classify_sunflower_listing(
         if len(extra_examples) < max_extra_examples:
             extra_examples.append({
                 "agreement_set": sorted(agreement),
-                "agreement_size": len(agreement),
+                "agreement_size": agreement_size,
+                "agreement_slack": agreement_slack,
+                "johnson_slack_needed": johnson_slack,
+                "johnson_covered": johnson_covered,
+                "johnson_unique_covered": johnson_unique_covered,
                 "core_hits": core_hits,
                 "core_defect": core_defect,
                 "background_hits": background_hits,
@@ -865,6 +887,8 @@ def classify_sunflower_listing(
         "planted_present_count": len(planted_present),
         "planted_missing_count": len(missing_planted),
         "extra_count": len(extra_masks),
+        "johnson_slack_needed": johnson_slack,
+        "johnson_covered_extra_count": johnson_covered_extras,
         "extra_profile_histogram": {
             (
                 f"agreement={profile[0]},core={profile[1]},"
@@ -966,6 +990,7 @@ def sample_scan(
     sunflower_rows = 0
     sunflower_rows_with_extras = 0
     sunflower_max_extra_count = 0
+    sunflower_johnson_covered_extras = 0
     sunflower_extra_profile_summary: Counter[str] = Counter()
     sunflower_extra_parameter_summary: Counter[str] = Counter()
 
@@ -1015,6 +1040,9 @@ def sample_scan(
             if extra_count:
                 sunflower_rows_with_extras += 1
                 sunflower_max_extra_count = max(sunflower_max_extra_count, extra_count)
+            sunflower_johnson_covered_extras += int(
+                classification["johnson_covered_extra_count"]
+            )
             for profile, count in classification["extra_profile_histogram"].items():
                 sunflower_extra_profile_summary[profile] += int(count)
             for profile, count in classification["extra_parameter_histogram"].items():
@@ -1055,6 +1083,7 @@ def sample_scan(
             "rows": sunflower_rows,
             "rows_with_extras": sunflower_rows_with_extras,
             "max_extra_count": sunflower_max_extra_count,
+            "johnson_covered_extra_count": sunflower_johnson_covered_extras,
             "extra_profile_summary": dict(sorted(sunflower_extra_profile_summary.items())),
             "extra_parameter_summary": dict(
                 sorted(sunflower_extra_parameter_summary.items())
@@ -1105,6 +1134,7 @@ def seed_sweep_scan(
     sunflower_rows = 0
     sunflower_rows_with_extras = 0
     sunflower_max_extra_count = 0
+    sunflower_johnson_covered_extras = 0
     profile_summary: Counter[str] = Counter()
     parameter_summary: Counter[str] = Counter()
     top_seed_rows: list[dict[str, object]] = []
@@ -1116,6 +1146,9 @@ def seed_sweep_scan(
         sunflower_max_extra_count = max(
             sunflower_max_extra_count,
             int(sunflower_summary["max_extra_count"]),
+        )
+        sunflower_johnson_covered_extras += int(
+            sunflower_summary.get("johnson_covered_extra_count", 0)
         )
         for profile, count in sunflower_summary["extra_profile_summary"].items():
             profile_summary[str(profile)] += int(count)
@@ -1165,6 +1198,7 @@ def seed_sweep_scan(
             "rows": sunflower_rows,
             "rows_with_extras": sunflower_rows_with_extras,
             "max_extra_count": sunflower_max_extra_count,
+            "johnson_covered_extra_count": sunflower_johnson_covered_extras,
             "extra_profile_summary": dict(sorted(profile_summary.items())),
             "extra_parameter_summary": dict(sorted(parameter_summary.items())),
         },

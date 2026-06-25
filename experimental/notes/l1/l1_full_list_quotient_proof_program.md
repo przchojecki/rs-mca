@@ -2984,6 +2984,79 @@ width_gate_slack
        + 2 max(0,d-ell+best_background_petal_deficit)).
 ```
 
+## Corollary B10. Johnson Over-Agreement Gate
+
+Status: PROVED.
+
+Return to the full-list setting of Theorem J.  Let
+
+```text
+lambda_J = min { lambda >= 0 : (s+lambda)^2 > n(k-1) }.
+```
+
+For any received word `U`, the number of listed codewords with agreement slack
+at least `lambda_J`,
+
+```text
+|A_P(U)| - s >= lambda_J,
+```
+
+is at most
+
+```text
+n(n-k+1) / ((s+lambda_J)^2 - n(k-1)).
+```
+
+If `2(s+lambda_J)>n+k-1`, this tail has size at most `1`.
+
+In the sunflower notation, the agreement slack is
+
+```text
+lambda(P) = |A_P(U)|-s = |R_P| + sum_i |S_i| - (ell+d).
+```
+
+Thus every super-polynomial sunflower obstruction outside the ordinary Johnson
+region may be assumed to satisfy
+
+```text
+lambda(P) < lambda_J.
+```
+
+### Proof
+
+The codewords with `|A_P(U)|-s >= lambda_J` are exactly
+
+```text
+ImgFib_U(s+lambda_J).
+```
+
+The definition of `lambda_J` puts this threshold in the Johnson region, so
+Theorem J gives the displayed bound.  The uniqueness assertion is the
+unique-decoding part of the same theorem.
+
+For the sunflower identity, Lemma 2 gives
+
+```text
+|A_P(U)| = (k-1-d) + |R_P| + sum_i |S_i|,
+```
+
+while `s=k+ell-1`; subtracting gives the formula for `lambda(P)`.
+
+### Consequences
+
+The maximal-sunflower residual now has an additional global gate.  The
+two-gate and finite-width analysis is only needed for low-overagreement
+extras:
+
+```text
+lambda(P) < lambda_J.
+```
+
+High-overagreement sunflower extras are not a separate obstruction; they are
+charged directly to the proved full-list Johnson profile.  The scanner reports
+`johnson_slack_needed` and whether each sampled extra is already
+`johnson_covered`.
+
 ## Development Ledger
 
 - **Conjecture 1 full-list primitive remainder:** CONJECTURAL.  Main proof
@@ -3074,5 +3147,7 @@ width_gate_slack
 - **Finite-width two-gate tradeoff:** PROVED.  Shows bounded-width residuals
   must satisfy an explicit tradeoff between the two-petal and background-petal
   gates.
+- **Johnson over-agreement gate:** PROVED.  Removes sunflower extras whose
+  agreement slack already puts them in the ordinary Johnson region.
 - **Mixed-petal sunflower amplification:** CONJECTURAL.  Next focused bound to
   prove or refute in the large-defect regime.
