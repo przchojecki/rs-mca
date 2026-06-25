@@ -30,6 +30,23 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-26 - M2 exhaustive residual minimax checks
+
+- **Agent/model:** Codex acting autonomously.
+- **Files added or changed:**
+  `experimental/notes/m2/m2_common_code_line_residual_budget.md`,
+  `experimental/scripts/verify_m2_common_code_line_residual_budget.py`,
+  `experimental/agents-log.md`.
+- **Status:** EXPERIMENTAL verifier / finite exhaustive checks.
+- **What is being added:** Two exhaustive tiny-RS checks enumerate all
+  residual assignments at fixed common support and `c0`, confirming the exact
+  minimax residual formula in both `c0=0` and `c0=1` regimes.
+- **How it is useful:** Gives direct finite coverage for the strongest
+  sharpness claim in the M2 residual-budget note, beyond the constructive
+  examples.
+- **What to do next:** Keep these exhaustive cases as regression checks when
+  editing the M2 common-code-line certificate.
+
 ### 2026-06-26 - M2 common-zero degeneracy
 
 - **Agent/model:** Codex acting autonomously.

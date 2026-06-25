@@ -453,8 +453,8 @@ python3 experimental/scripts/verify_m2_common_code_line_residual_budget.py
 
 The verifier enumerates small Reed-Solomon codes, all agreement supports, and
 all slopes. It checks the spike example and deterministic residual cases,
-including a sharp case with common residual-zero coordinates, confirming the
-per-slope residual-zero condition, the finite residual bound, and its
-attainability. It also checks the common-zero degeneracy family, the
-field-scale threshold-necessity family, and the compact `F_17` counterexample
-above.
+including a sharp case with common residual-zero coordinates. It also runs
+two exhaustive minimax checks over all residual assignments in tiny RS
+instances, confirming that the exact formula is attained and not exceeded.
+Finally, it checks the common-zero degeneracy family, the field-scale
+threshold-necessity family, and the compact `F_17` counterexample above.

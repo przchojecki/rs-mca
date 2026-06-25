@@ -242,6 +242,75 @@ def sharp_common_zero_residual_case() -> dict[str, Any]:
     return report
 
 
+def exhaustive_minimax_case(
+    *,
+    label: str,
+    prime: int,
+    n: int,
+    k: int,
+    agreement: int,
+    common_support_size: int,
+    common_zero_count: int,
+) -> dict[str, Any]:
+    common_support = tuple(range(common_support_size))
+    omega = tuple(i for i in range(n) if i not in set(common_support))
+    h = max(1, agreement - common_support_size)
+    if agreement + common_support_size - n < k:
+        raise AssertionError("exhaustive minimax case does not meet MDS forcing")
+    if h <= common_zero_count:
+        raise AssertionError("exhaustive minimax case needs positive denominator")
+
+    expected = min(prime, (len(omega) - common_zero_count) // (h - common_zero_count))
+    words = codewords(prime, k, tuple(range(n)))
+    support_code = support_tables(words, n, agreement)
+    max_bad = -1
+    maximizer: dict[str, Any] | None = None
+    assignment_count = 0
+
+    for values in itertools.product(range(prime), repeat=2 * len(omega)):
+        f = [0] * n
+        g = [0] * n
+        c0 = 0
+        for index, coord in enumerate(omega):
+            f_value = values[2 * index]
+            g_value = values[2 * index + 1]
+            f[coord] = f_value
+            g[coord] = g_value
+            if f_value == 0 and g_value == 0:
+                c0 += 1
+        if c0 != common_zero_count:
+            continue
+        assignment_count += 1
+        bad_slopes, _ = supportwise_bad_slopes(tuple(f), tuple(g), prime, support_code)
+        if len(bad_slopes) > max_bad:
+            max_bad = len(bad_slopes)
+            maximizer = {
+                "f_on_omega": [f[i] for i in omega],
+                "g_on_omega": [g[i] for i in omega],
+                "bad_slopes": bad_slopes,
+            }
+
+    if max_bad != expected:
+        raise AssertionError(
+            f"exhaustive minimax {label} found max {max_bad}, expected {expected}"
+        )
+    return {
+        "label": label,
+        "prime": prime,
+        "n": n,
+        "k": k,
+        "agreement": agreement,
+        "common_support_size": common_support_size,
+        "omega_size": len(omega),
+        "h": h,
+        "c0": common_zero_count,
+        "expected_minimax": expected,
+        "exhaustive_max_bad_slope_count": max_bad,
+        "assignment_count": assignment_count,
+        "sample_maximizer": maximizer,
+    }
+
+
 def threshold_necessity_counterexample() -> dict[str, Any]:
     prime = 17
     n = 8
@@ -448,6 +517,24 @@ def main() -> None:
         spike_case(),
         deterministic_residual_case(),
         sharp_common_zero_residual_case(),
+        exhaustive_minimax_case(
+            label="exhaustive_minimax_no_common_zero",
+            prime=5,
+            n=5,
+            k=2,
+            agreement=4,
+            common_support_size=3,
+            common_zero_count=0,
+        ),
+        exhaustive_minimax_case(
+            label="exhaustive_minimax_one_common_zero",
+            prime=7,
+            n=6,
+            k=2,
+            agreement=5,
+            common_support_size=3,
+            common_zero_count=1,
+        ),
         common_zero_degeneracy_case(11),
         common_zero_degeneracy_case(17),
         threshold_failure_family_case(7),
@@ -462,6 +549,13 @@ def main() -> None:
                 "b={common_support_size} e={error_budget} s={support_defect} "
                 "h={h} c0={c0} bad={bad_slope_count} "
                 "bound={residual_bound}".format(**report)
+            )
+        elif "expected_minimax" in report:
+            print(
+                "{label}: p={prime} n={n} k={k} agreement={agreement} "
+                "b={common_support_size} omega={omega_size} h={h} c0={c0} "
+                "max={exhaustive_max_bad_slope_count} expected={expected_minimax} "
+                "assignments={assignment_count}".format(**report)
             )
         else:
             count = report.get("bad_slope_count", report.get("certified_bad_slope_count"))
