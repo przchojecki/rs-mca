@@ -295,7 +295,9 @@ Keep entries concise and link to the relevant files.
   window exactly when `2mu(m-2)>m(m+1)/2`.
   More generally, any dimensions `d_i<=tau` with `2tau<k-sigma` form an
   independent set, so very large-overlap residual edges occupy at most half of
-  the cycle.
+  the cycle. These gates are now consolidated as a residual clean-cycle normal
+  form identifying the exact large-overlap/parity obstruction still left by the
+  current L2 route.
   Combining
   the pivot, monic, and domain gates gives a
   marked selected-syzygy tuple bound; the verifier checks that this general

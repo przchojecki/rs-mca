@@ -2885,6 +2885,58 @@ cycle, so it has size at most `floor(m/2)`. If `d_i<=tau`, the lower band gives
 each neighboring dimension at least `k-sigma-tau`; translating by `e_j=k-d_j`
 gives neighboring overlaps at most `sigma+tau`.
 
+The preceding reductions can be packaged as a normal form for the clean-cycle
+obstruction left by the present L2 route.
+
+**Corollary (residual clean-cycle normal form).** Fix `m`, `mu`, and a clean
+simple `m`-cycle shape with positive selected-edge coefficient dimensions
+`d_i=k-e_i`. After the small-pair full-rank gate and the private-mass reserve
+gate, any asymptotic family not cleared by the dimension-gap root-sharing
+high-reserve gate must satisfy all of the following:
+
+```text
+p_i=d_{i-1}+d_i-(k-sigma),
+k-sigma <= d_{i-1}+d_i < k,
+D_* <= (m k - 2mu(m-2)sigma)/2 + o(n),
+max_i e_i >= k - (m k - 2mu(m-2)sigma)/2 - o(n).
+```
+
+If `D=min_i d_i` and `d_t=D`, then
+
+```text
+d_{t-1},d_{t+1} >= k-sigma-D,
+d_{t-2},d_{t+2} <= sigma+D-1
+```
+
+whenever the indicated indices are interpreted in the residual band. For any
+integer `tau` with `2tau<k-sigma`, the set `{i: d_i<=tau}` is independent and
+has size at most `floor(m/2)`.
+
+If `m` is odd, the same residual family must also satisfy
+
+```text
+k - ((m+1)/2)sigma + (m-1)/2
+ <= m k - 2mu(m-2)sigma + o(n),
+```
+
+or, equivalently when `4mu(m-2)>m+1`, it can survive only below the explicit
+odd-cycle threshold
+
+```text
+sigma/k <= 2(m-1)/(4mu(m-2)-(m+1)) + o(1).
+```
+
+Thus the unresolved clean-cycle part of the present L2 route is concentrated
+in residual-band shapes with sparse very-large-overlap edges and, in odd
+length, the displayed parity compatibility.
+
+*Proof.* The first two displays are the residual dimension-band corollary and
+the contrapositive of root-sharing high-reserve clearance. The neighbor and
+second-neighbor bounds are the large-overlap localization and two-step
+propagation corollaries. The independence statement is the low-dimension
+packing corollary. The odd-cycle compatibility and threshold are exactly the
+alternating propagation corollary.
+
 The connected case also isolates the diagonal exactly.
 
 **Corollary (diagonal is the only zero-loss connected cluster).** Suppose

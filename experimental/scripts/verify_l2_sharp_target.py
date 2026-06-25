@@ -4953,6 +4953,24 @@ def run() -> dict:
         "residual_band_odd_threshold_nonimproves": residual_band[
             "odd_threshold_has_nonimproving_low_arity_case"
         ],
+        "residual_clean_cycle_normal_form_components": all(
+            [
+                clean_cycles["small_pair_forces_full_rank"],
+                clean_cycles["large_private_mass_forces_full_rank"],
+                clean_cycles["dimension_pair_private_ledger_holds"],
+                clean_cycles["dimension_pair_private_below_reserve_band_holds"],
+                clean_cycles["dimension_gap_uniform_floor_formula_holds"],
+                clean_cycles["dimension_gap_nonclearance_floor_decomposition"],
+                clean_cycles["min_dimension_neighbor_floor_holds"],
+                clean_cycles["min_dimension_second_neighbor_ceiling_holds"],
+                clean_cycles["min_dimension_even_distance_upper_bounds_hold"],
+                clean_cycles["min_dimension_odd_distance_lower_bounds_hold"],
+                clean_cycles["odd_cycle_min_dimension_closure_bound_holds"],
+                residual_band["low_edges_independent"],
+                residual_band["low_count_bound_holds"],
+                residual_band["odd_threshold_formula_holds"],
+            ]
+        ),
         "clean_cycle_has_small_pair_case": clean_cycles[
             "contains_small_pair_case"
         ],
