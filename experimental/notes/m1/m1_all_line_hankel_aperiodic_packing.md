@@ -298,6 +298,31 @@ have been removed.  Thus repeated-slope high-overlap structure is completely
 charged to constant root-slice packets; the residual slope fibers are
 one-exchange independent and must be controlled by a different mechanism.
 
+## Residual One-Exchange Degree Bound
+
+After the same-slope root-slice packets are peeled, the remaining `t=2`
+one-exchange graph has bounded local degree.  More precisely, every residual
+aperiodic locator has strict one-exchange degree at most `j`.
+
+Fix a residual complement `T`.  Any strict one-exchange neighbor is obtained by
+choosing one deleted root `r in T`, putting `R=T\{r}`, and replacing `r` by one
+new root.  The residual graph has no same-slope edge by the peeling corollary.
+If the determinant polynomial `Delta_R` were identically zero, the
+zero-determinant dichotomy would make every noncontained point of that slice
+constant-slope, hence any residual edge on the slice would have been peeled.
+Thus a residual edge through this core lies on a nonzero quadratic slice.
+
+But a nonzero quadratic slice has at most two roots in the ambient field, and
+one of them is the original point `r`.  For this fixed core `R`, there is
+therefore at most one residual neighbor.  Since `T` has only `j` choices of the
+deleted root `r`, the residual strict one-exchange degree is at most `j`.
+
+This is still not the final slope-image packing theorem.  It is, however, an
+exact local sparsity result: after quotient-periodic locators, contained
+locators, and constant root-slice packets are charged, the high-overlap graph
+on the remaining `t=2` aperiodic determinant locus has degree `O(j)`, not
+`O(j(n-j))`.
+
 ## Verifier
 
 The companion verifier
@@ -326,6 +351,8 @@ enumerates small cyclic-domain cases.  For each case it:
   slices account for all same-slope strict edges;
 - peels root-slice members and checks that the residual aperiodic family has
   no same-slope one-exchange edges;
+- reports the residual strict one-exchange count and verifies the residual
+  maximum degree bound `<= j`;
 - runs one deterministic arbitrary-line probe which hits the rank-one
   zero-determinant branch and verifies that it is classified by the same
   constant/contained zero-slice ledger.
@@ -345,14 +372,16 @@ repeated pairs inside one constant-slope rank-two zero-determinant slice with
 on `112` nonzero quadratic slices; there are no zero-determinant
 different-slope edge slices in this audit row.  After peeling the root-slice
 members, the residual family has `86` aperiodic locators, all `16` residual
-slopes still occur, the maximum residual slope fiber drops to `9`, and the
-residual same-slope one-exchange edge count is `0`.
+slopes still occur, the maximum residual slope fiber drops to `9`, the
+residual strict edge count drops to `88`, the residual maximum strict degree
+is `4=j`, and the residual same-slope one-exchange edge count is `0`.
 
 The arbitrary `F_17`, `j=4`, `t=2` rank-one probe has `176` aperiodic locators,
 all `17` slopes, and `16` zero-determinant slices.  Four of those zero slices
 have rank-one direction pencil; the verifier classifies all zero slices in the
-probe as constant-slope.  These are exactly the profile quantities a packing
-proof must shrink or explain structurally.
+probe as constant-slope, and the residual maximum strict degree is again
+`4=j`.  These are exactly the profile quantities a packing proof must shrink
+or explain structurally.
 
 This is an audit/verifier for the M1 target, not a proof of the desired
 polynomial all-line bound.  Its purpose is to make future counterexample-first

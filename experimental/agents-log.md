@@ -49,8 +49,8 @@ Keep entries concise and link to the relevant files.
   nonzero quadratic-slice roots or lie on zero-determinant slices, classifies
   each zero-determinant slice by the direction-pencil rank as contained,
   or constant-slope using the Hankel overlap identity, peels root-slice packets
-  from fixed-slope fibers, and cross-checks every reported bad slope by direct
-  RS interpolation.
+  from fixed-slope fibers, proves the residual `t=2` one-exchange degree bound
+  `<= j`, and cross-checks every reported bad slope by direct RS interpolation.
 - **How it is useful:** This turns the MCA half of the prize into a concrete
   counterexample-first object: after tangent and quotient-periodic locators
   are charged, the remaining all-line obstruction is the aperiodic split-locator
@@ -60,8 +60,9 @@ Keep entries concise and link to the relevant files.
   next finite-degree object to bound.  The zero-slice dichotomy shows the
   exceptional branch is either contained or already a constant-slope root-slice
   packet.  The root-slice peeling check leaves a residual aperiodic family with
-  no same-slope one-exchange edges, isolating the remaining slope-fiber
-  problem.  The arbitrary probe shows the rank-one zero-slice branch is not
+  no same-slope one-exchange edges and maximum strict degree at most `j`,
+  isolating the remaining slope-fiber problem as a sparse nonzero-quadratic
+  graph.  The arbitrary probe shows the rank-one zero-slice branch is not
   merely formal, while still being classified by the contained/constant ledger.
 - **What to do next:** Extend the verifier to richer line families and prove
   structural bounds for the aperiodic slope image, starting with `t=2` and

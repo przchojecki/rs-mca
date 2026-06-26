@@ -292,6 +292,8 @@ def root_slice_profile(
             "root_slice_residual_locators": len(locator_rows),
             "root_slice_residual_slopes": len({slope for _, slope in locator_rows}),
             "root_slice_residual_max_slope_fiber": max(slope_fibers.values(), default=0),
+            "root_slice_residual_strict_pairs": 0,
+            "root_slice_residual_max_strict_degree": 0,
             "root_slice_residual_same_slope_edges": 0,
         }
 
@@ -339,6 +341,8 @@ def root_slice_profile(
         if tuple(sorted(complement)) not in root_slice_members
     ]
     residual_same_slope_edges = 0
+    residual_strict_pairs = 0
+    residual_degrees = [0] * len(residual_rows)
     residual_slope_fibers: dict[int, int] = {}
     for _, slope in residual_rows:
         residual_slope_fibers[slope] = residual_slope_fibers.get(slope, 0) + 1
@@ -346,13 +350,17 @@ def root_slice_profile(
         left_set = set(residual_rows[left][0])
         left_slope = residual_rows[left][1]
         for right in range(left + 1, len(residual_rows)):
-            if left_slope != residual_rows[right][1]:
-                continue
             right_set = set(residual_rows[right][0])
             if len(left_set - right_set) == 1 and len(right_set - left_set) == 1:
-                residual_same_slope_edges += 1
+                residual_strict_pairs += 1
+                residual_degrees[left] += 1
+                residual_degrees[right] += 1
+                if left_slope == residual_rows[right][1]:
+                    residual_same_slope_edges += 1
     if residual_same_slope_edges:
         raise AssertionError("root-slice peeling left a same-slope strict edge")
+    if max(residual_degrees, default=0) > j:
+        raise AssertionError("residual one-exchange degree exceeded the t=2 core bound")
 
     return {
         "root_slices": len(slice_keys),
@@ -364,6 +372,8 @@ def root_slice_profile(
         "root_slice_residual_locators": len(residual_rows),
         "root_slice_residual_slopes": len(residual_slope_fibers),
         "root_slice_residual_max_slope_fiber": max(residual_slope_fibers.values(), default=0),
+        "root_slice_residual_strict_pairs": residual_strict_pairs,
+        "root_slice_residual_max_strict_degree": max(residual_degrees, default=0),
         "root_slice_residual_same_slope_edges": residual_same_slope_edges,
     }
 
@@ -722,6 +732,10 @@ def verify_word_pair(
         "root_slice_residual_max_slope_fiber": (
             root_profile["root_slice_residual_max_slope_fiber"]
         ),
+        "root_slice_residual_strict_pairs": root_profile["root_slice_residual_strict_pairs"],
+        "root_slice_residual_max_strict_degree": (
+            root_profile["root_slice_residual_max_strict_degree"]
+        ),
         "root_slice_residual_same_slope_edges": (
             root_profile["root_slice_residual_same_slope_edges"]
         ),
@@ -774,6 +788,12 @@ def verify_case(case: Case) -> dict[str, object]:
         "max_root_slice_residual_slopes": max(row["root_slice_residual_slopes"] for row in rows),
         "max_root_slice_residual_slope_fiber": max(
             row["root_slice_residual_max_slope_fiber"] for row in rows
+        ),
+        "max_root_slice_residual_strict_pairs": max(
+            row["root_slice_residual_strict_pairs"] for row in rows
+        ),
+        "max_root_slice_residual_strict_degree": max(
+            row["root_slice_residual_max_strict_degree"] for row in rows
         ),
         "max_different_slope_strict_pairs": max(row["different_slope_strict_pairs"] for row in rows),
         "max_zero_determinant_slices": max(row["zero_determinant_slices"] for row in rows),
@@ -849,6 +869,8 @@ def main() -> None:
                 "root_residual_locators={root_slice_residual_locators} "
                 "root_residual_slopes={root_slice_residual_slopes} "
                 "root_residual_fiber_max={root_slice_residual_max_slope_fiber} "
+                "root_residual_strict={root_slice_residual_strict_pairs} "
+                "root_residual_degree_max={root_slice_residual_max_strict_degree} "
                 "root_residual_same_slope={root_slice_residual_same_slope_edges} "
                 "different_slope_strict={different_slope_strict_pairs} "
                 "different_slope_cores={different_slope_cores} "
@@ -882,6 +904,8 @@ def main() -> None:
             f"max_root_residual_locators={summary['max_root_slice_residual_locators']} "
             f"max_root_residual_slopes={summary['max_root_slice_residual_slopes']} "
             f"max_root_residual_fiber={summary['max_root_slice_residual_slope_fiber']} "
+            f"max_root_residual_strict={summary['max_root_slice_residual_strict_pairs']} "
+            f"max_root_residual_degree={summary['max_root_slice_residual_strict_degree']} "
             f"max_different_slope_strict={summary['max_different_slope_strict_pairs']} "
             f"max_zero_det_slices={summary['max_zero_determinant_slices']} "
             f"max_edge_zero_det_slices={summary['max_edge_zero_determinant_slices']} "
@@ -903,12 +927,14 @@ def main() -> None:
         "zero_det_rank1={zero_det_direction_rank1_slices} "
         "zero_det_constant={zero_det_constant_slices} "
         "zero_det_injective={zero_det_injective_slices} "
+        "root_residual_degree_max={root_slice_residual_max_strict_degree} "
         "root_residual_same_slope={root_slice_residual_same_slope_edges} "
         "direct_checks={direct_checks}".format(**rank_one_probe)
     )
     all_rows = [row for summary in summaries for row in summary["rows"]] + [rank_one_probe]
     max_aperiodic = max(row["aperiodic_slopes"] for row in all_rows)
     max_strict_degree = max(row["aperiodic_max_strict_degree"] for row in all_rows)
+    max_residual_degree = max(row["root_slice_residual_max_strict_degree"] for row in all_rows)
     max_rank_one_zero = max(row["zero_det_direction_rank1_slices"] for row in all_rows)
     total_lines = sum(len(summary["case"].seeds) for summary in summaries) + 1
     print(
@@ -917,6 +943,7 @@ def main() -> None:
         f"rank_one_probes=1 "
         f"max_aperiodic_slopes={max_aperiodic} "
         f"max_strict_degree={max_strict_degree} "
+        f"max_root_residual_degree={max_residual_degree} "
         f"max_rank_one_zero_slices={max_rank_one_zero}"
     )
 
