@@ -215,6 +215,55 @@ B > d1:
   gives no unsafe distance.
 ```
 
+## Projective-Slope Convention Audit
+
+The theorem above is deliberately finite-slope: the sampler is `z in F`, and
+the probability denominator is `q_line=|F|`.  If an external line-decoding or
+MCA convention instead samples the projective line `P^1(F)`, there is one extra
+point, represented in an affine chart as the direction word `g` at infinity.
+
+Let
+
+```text
+LD_sw^P(C,a)
+```
+
+be the corresponding support-wise noncontained count over `P^1(F)`.  For every
+received line,
+
+```text
+finite bad slopes <= projective bad points <= finite bad slopes + 1.
+```
+
+Taking maxima gives the universal one-point transfer
+
+```text
+LD_sw(C,a) <= LD_sw^P(C,a) <= LD_sw(C,a)+1.
+```
+
+Therefore, in the exact tangent range `0 <= d <= d0`,
+
+```text
+d+1 <= LD_sw^P(C,n-d) <= d+2.
+```
+
+If the projective sampler is uniform on `P^1(F)`, its integer budget is
+
+```text
+B_P = floor((q_line+1)/2^eps_bits).
+```
+
+Consequently:
+
+```text
+d+2 <= B_P       => projective convention is within budget at distance d;
+d+1 > B_P        => projective convention is unsafe at distance d;
+d+1 <= B_P < d+2 => only the possible infinity point is undecided.
+```
+
+This is only a convention audit.  It does not alter finite-slope rows on the
+public board, whose denominator is `q_line`.
+
 ## Active `F_17^32` Row
 
 For
@@ -233,7 +282,8 @@ k = 256,
 a0 = ceil((2n+k)/3) = 427,
 d0 = floor((n-k)/3) = 85,
 d1 = n-k-1 = 255,
-B = floor(17^32 / 2^128) = 6.
+B = floor(17^32 / 2^128) = 6,
+B_P = floor((17^32+1) / 2^128) = 6.
 ```
 
 Since
@@ -254,6 +304,20 @@ support-wise convention, while integer radius `5` is safe.  Equivalently,
 closed real radii `delta < 3/256` are safe for the finite-slope support-wise
 object, and `delta = 3/256` is already unsafe; under a strict-ball convention
 the endpoint `3/256` is safe but any larger radius is unsafe.
+
+Under a projective-slope `P^1(F_17^32)` convention, the same row has the
+one-point bracket
+
+```text
+distance 4 / agreement 508: projective count <= 6, within budget;
+distance 5 / agreement 507: finite count is 6, projective count is 6 or 7;
+distance 6 / agreement 506: finite count is already 7, unsafe.
+```
+
+Thus projective conventions would certify safety at agreement `508`, while
+agreement `507` depends on whether the infinity point is bad for an extremal
+line.
+
 
 The old agreement-353 target is superseded: the tangent floor alone gives
 
