@@ -259,6 +259,20 @@ ROW_CUT_RESONANCE_CASES = (
         "expected_rank": 0,
         "expected_landings": 15,
     },
+    {
+        "name": "j4 nonstar c2 row cut",
+        "p": 7,
+        "domain": (1, 2, 3, 4, 5, 6),
+        "j": 4,
+        "rows": (
+            ((0, 0), (0, 0), (1, 0), (0, 0), (0, 0)),
+        ),
+        "expected_rank": 1,
+        "expected_landings": 6,
+        "expected_full_star_count": 0,
+        "expected_star_free_bound": 15,
+        "expected_max_root_slice": 4,
+    },
 )
 
 GLOBAL_MONIC_RANK_ONE_CASES = (
@@ -1179,6 +1193,14 @@ def run_row_cut_resonance_case(params: dict[str, object]) -> dict[str, object]:
         locator for roots, locator in landing_locators if alpha is not None and alpha in roots
     ]
     star_span_rank = matrix_rank(field, star_locators)
+    root_slice_counts = {
+        root: sum(1 for roots, _locator in landing_locators if root in roots)
+        for root in domain
+    }
+    full_star_size = comb(len(domain) - 1, j - 1)
+    full_star_count = sum(1 for count in root_slice_counts.values() if count == full_star_size)
+    max_root_slice = max(root_slice_counts.values(), default=0)
+    star_free_bound = len(domain) * comb(len(domain) - 1, j - 2) // j
     evaluation_row = (
         [field.pow(alpha, degree) for degree in range(j + 1)]
         if alpha is not None
@@ -1224,6 +1246,38 @@ def run_row_cut_resonance_case(params: dict[str, object]) -> dict[str, object]:
         )
     if alpha is not None and rank == 1 and not row_is_evaluation:
         mismatches.append({"type": "row_cut_not_evaluation"})
+    if "expected_full_star_count" in params and full_star_count != params["expected_full_star_count"]:
+        mismatches.append(
+            {
+                "type": "row_cut_full_star_count",
+                "expected": params["expected_full_star_count"],
+                "actual": full_star_count,
+            }
+        )
+    if "expected_star_free_bound" in params and star_free_bound != params["expected_star_free_bound"]:
+        mismatches.append(
+            {
+                "type": "row_cut_star_free_bound_value",
+                "expected": params["expected_star_free_bound"],
+                "actual": star_free_bound,
+            }
+        )
+    if "expected_max_root_slice" in params and max_root_slice != params["expected_max_root_slice"]:
+        mismatches.append(
+            {
+                "type": "row_cut_max_root_slice",
+                "expected": params["expected_max_root_slice"],
+                "actual": max_root_slice,
+            }
+        )
+    if rank == 1 and full_star_count == 0 and landings > star_free_bound:
+        mismatches.append(
+            {
+                "type": "row_cut_star_free_bound",
+                "landings": landings,
+                "bound": star_free_bound,
+            }
+        )
 
     return {
         "name": params["name"],
@@ -1235,6 +1289,9 @@ def run_row_cut_resonance_case(params: dict[str, object]) -> dict[str, object]:
         "rank_one_bound": rank_one_bound,
         "star_span_rank": star_span_rank,
         "row_is_evaluation": row_is_evaluation,
+        "full_star_count": full_star_count,
+        "max_root_slice": max_root_slice,
+        "star_free_bound": star_free_bound,
         "passed": not mismatches,
         "mismatches": mismatches[:5],
     }
@@ -1935,7 +1992,10 @@ def main() -> int:
                 f"rank={record['rank']}, landings={record['landings']} "
                 f"<= {record['rank_one_bound']}, "
                 f"star span={record['star_span_rank']}, "
-                f"evaluation row={record['row_is_evaluation']}"
+                f"evaluation row={record['row_is_evaluation']}, "
+                f"full stars={record['full_star_count']}, "
+                f"max root slice={record['max_root_slice']}, "
+                f"star-free bound={record['star_free_bound']}"
             )
         for record in global_monic_records:
             flag = "PASS" if record["passed"] else "FAIL"

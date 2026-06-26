@@ -1409,6 +1409,93 @@ multiples of `X-alpha` is a scalar multiple of
 For a squarefree `D`-split locator, `L_T(alpha)=0` holds exactly when
 `alpha in T`.
 
+## Corollary 22: Root-Slice Recursion For Row Cuts
+
+Let
+
+```text
+h=(h_0,...,h_j)
+```
+
+be a nonzero row cut on monic degree-`j` locators, and fix `beta in D`.
+Define its contraction at `beta` by
+
+```text
+C_beta(h)=(h_1-beta h_0, h_2-beta h_1, ..., h_j-beta h_{j-1}).
+```
+
+Then the row-cut condition on locators containing `beta` is exactly the
+lower-degree row cut
+
+```text
+C_beta(h) ell_U = 0
+```
+
+on monic degree-`j-1` locators `L_U`, where
+
+```text
+T={beta} union U,        L_T(X)=(X-beta)L_U(X).
+```
+
+Assume now that `|D \ {beta}| >= j` for every `beta in D` and that the
+row-cut packet contains no full fixed-root star. Then the number `N_h` of
+squarefree `D`-split monic degree-`j` locators satisfying `h ell_T=0` obeys
+
+```text
+N_h <= (|D|/j) binom(|D|-1,j-2)
+     = ((j-1)/j) binom(|D|,j-1).
+```
+
+Thus, once full fixed-root stars have been moved to the fixed-root ledger by
+Corollary 21, every remaining rank-one row-cut packet gains a uniform
+`(j-1)/j` factor over the bare one-root-loss bound.
+
+## Proof
+
+For `T={beta} union U`, write
+
+```text
+L_U(X)=m_0+m_1X+...+m_{j-1}X^{j-1}.
+```
+
+The coefficient vector of
+
+```text
+L_T(X)=(X-beta)L_U(X)
+```
+
+is
+
+```text
+(-beta m_0, m_0-beta m_1, ..., m_{j-2}-beta m_{j-1}, m_{j-1}).
+```
+
+Taking the dot product with `h` gives
+
+```text
+h ell_T = sum_{a=0}^{j-1} (h_{a+1}-beta h_a)m_a
+        = C_beta(h) ell_U.
+```
+
+This proves the recursion.
+
+If the packet contains no full fixed-root star, then by Corollary 21 no
+contracted row `C_beta(h)` is zero. Therefore, for each fixed `beta`, the
+number of landing locators containing `beta` is at most
+
+```text
+binom(|D|-1,j-2)
+```
+
+by Corollary 20 applied on `D \ {beta}` with degree `j-1`. Counting incidences
+`(beta,T)` with `beta in T` gives
+
+```text
+j N_h <= |D| binom(|D|-1,j-2),
+```
+
+which is the displayed bound.
+
 ## Why This Helps F1
 
 The naive extension-field lift is already false: genuinely `F`-valued lines
@@ -1480,7 +1567,10 @@ same one-root-loss order; improving further requires extra structure, such as
 quotient-periodic removal or an aperiodic packing input. Corollary 21 shows
 that the full-star extremizer itself is not a new obstruction: a row cut
 containing a whole fixed-root star must be the evaluation cut `L_T(alpha)=0`,
-which is already in the fixed-root ledger.
+which is already in the fixed-root ledger. Corollary 22 then gives a
+root-slice recursion and a star-free count, so row-cut packets without a full
+star are smaller than the bare one-root-loss packet by a fixed `(j-1)/j`
+factor.
 
 ## Verification
 
@@ -1518,4 +1608,5 @@ line-section checks exercise the two-point, common-kernel, and common-image
 cases in Corollary 18. The constructed `j=4` and `j=5` rank-two fixed-root
 fibers also audit the rank-two row-cut bound used in Corollary 19. A
 constructed `j=4` fixed-root row cut audits the one-root-loss bound in
-Corollary 20 and the full-star inverse statement of Corollary 21.
+Corollary 20 and the full-star inverse statement of Corollary 21. A
+non-star `j=4` row cut audits the root-slice count of Corollary 22.

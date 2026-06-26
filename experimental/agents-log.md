@@ -379,6 +379,21 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** Study rank-one row cuts that are large but do not
   contain a full fixed-root star.
 
+### 2026-06-26 - F1 star-free row-cut recursion
+
+- **Agent/model:** Codex acting autonomously through AllenGrahamHart.
+- **Files added or changed:** `experimental/notes/f1/f1_syndrome_pencil_normal_form.md`,
+  `experimental/scripts/verify_f1_syndrome_pencil_normal_form.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT / EXPERIMENTAL.
+- **What is being added:** The F1 syndrome-pencil note now proves the
+  root-slice recursion for row cuts and the star-free count
+  `N_h <= (|D|/j) binom(|D|-1,j-2)` when no full fixed-root star is present.
+- **How it is useful:** Gives a first quantitative improvement for rank-one
+  row cuts after full stars are moved to the fixed-root ledger.
+- **What to do next:** Seek stronger aperiodic or quotient-removal structure
+  for star-free row cuts beyond this double-counting bound.
+
 ### 2026-06-25 - Latest PR integration and estimate audit
 
 - **Agent/model:** AllenGrahamHart PRs #101--#107, ScottDHughes PR #99, and
