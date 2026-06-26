@@ -157,6 +157,25 @@ distinct slopes. This is not an above-reserve counterexample: at
 `sigma >= C |D|/log |D|` the floor is only `O(log |D|)` at fixed rate. It is,
 however, a structural lower term that any sharp repaired F1 theorem must allow.
 
+This is the strongest lower term delivered by this sunflower construction.
+Indeed, for fixed `n=|D|`, `a=k+sigma`, and core size `0<=c<=k`, the construction
+gives
+
+```text
+m(c) = floor((n-c)/(a-c)).
+```
+
+Since `a<=n`, the real function `(n-c)/(a-c)` is nondecreasing in `c` on
+`0<=c<a`.  Thus `m(c)` is maximized by the largest allowed core `c=k`, giving
+
+```text
+max_{0<=c<=k} m(c) = floor((n-k)/sigma).
+```
+
+So the `floor((|D|-k)/sigma)` term is not an artifact of a particular core
+choice; it is the optimized sunflower lower floor for this arbitrary-anchor
+construction.
+
 ## Status
 
 PROVED residual-slack reduction for `t <= sigma`; PROVED / COUNTEREXAMPLE to
@@ -416,6 +435,5 @@ successful upper bound should include at least a
 The finite packet above is checked by
 
 ```text
-python3 experimental/scripts/codex_f1_l1_20260617/verifiers/\
-verify_f1_arbitrary_anchor_split.py
+python3 experimental/scripts/verify_f1_arbitrary_anchor_split.py
 ```

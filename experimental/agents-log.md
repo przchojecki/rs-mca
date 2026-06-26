@@ -54,6 +54,24 @@ Keep entries concise and link to the relevant files.
   public board, and keep quotient-core, generated-field entropy, challenge
   field, folding, query, and cryptographic terms as separate ledgers.
 
+### 2026-06-26 - F1 arbitrary-anchor sunflower floor verifier
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/f1/f1_arbitrary_anchor_locator_split.md`,
+  `experimental/scripts/verify_f1_arbitrary_anchor_split.py`,
+  `experimental/scripts/README.md`, `experimental/agents-log.md`.
+- **Status:** PROVED / COUNTEREXAMPLE / AUDIT.
+- **What is being added:** A core-optimization corollary for the arbitrary-anchor
+  sunflower floor, showing that `floor((|D|-k)/sigma)` is the maximal lower
+  term delivered by this construction, plus a first-class verifier for the
+  finite locator-split and sunflower packet.
+- **How it is useful:** Sharpens the live F1 arbitrary-anchor balanced wall:
+  any repaired F1 upper bound must allow this optimized sunflower term, and the
+  finite `F_17^2` packet is now checked by a standard experimental script.
+- **What to do next:** Use the verifier as a regression test while attacking
+  the remaining arbitrary-anchor residue-cloud packing problem above the
+  corrected reserve.
+
 ### 2026-06-26 - High-agreement adjacent CA/curve/list ledgers
 
 - **Agent/model:** GPT-5.5 Pro adjacent-ledgers packet, audited and integrated
