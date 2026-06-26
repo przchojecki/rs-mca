@@ -61,13 +61,17 @@ Keep entries concise and link to the relevant files.
   `experimental/scripts/verify_f1_arbitrary_anchor_split.py`,
   `experimental/scripts/README.md`, `experimental/agents-log.md`.
 - **Status:** PROVED / COUNTEREXAMPLE / AUDIT.
-- **What is being added:** A core-optimization corollary for the arbitrary-anchor
-  sunflower floor, showing that `floor((|D|-k)/sigma)` is the maximal lower
-  term delivered by this construction, plus a first-class verifier for the
-  finite locator-split and sunflower packet.
+- **What is being added:** A core-optimization corollary and a
+  `k`-degenerate support-packing sharpening for the arbitrary-anchor lower
+  floor, showing that `floor((|D|-k)/sigma)` is the maximal freely attached
+  support-packing term delivered by this construction, plus a first-class
+  verifier for the finite locator-split, sunflower, and non-sunflower
+  degenerate packets.
 - **How it is useful:** Sharpens the live F1 arbitrary-anchor balanced wall:
   any repaired F1 upper bound must allow this optimized sunflower term, and the
-  finite `F_17^2` packet is now checked by a standard experimental script.
+  remaining super-floor obstruction must come from dense overlap cycles rather
+  than interpolation-free support packing. The finite `F_17^2` packets are now
+  checked by a standard experimental script.
 - **What to do next:** Use the verifier as a regression test while attacking
   the remaining arbitrary-anchor residue-cloud packing problem above the
   corrected reserve.

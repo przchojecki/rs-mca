@@ -176,11 +176,80 @@ So the `floor((|D|-k)/sigma)` term is not an artifact of a particular core
 choice; it is the optimized sunflower lower floor for this arbitrary-anchor
 construction.
 
+## Degenerate Support-Packing Sharpening
+
+The same floor exhausts a larger interpolation-free support-packing mechanism.
+Call an ordered family of `a`-subsets
+
+```text
+S_1,...,S_m subset D
+```
+
+`k`-degenerate if, for each `i>1`,
+
+```text
+|S_i cap (S_1 union ... union S_{i-1})| <= k.
+```
+
+For every `k`-degenerate family and every choice of distinct slopes
+`z_1,...,z_m in F`, there is an anchor word `w:D->F` such that the same
+balanced datum `(E,N,w)` has support-wise noncontained witnesses for all
+slopes `z_i` on the supports `S_i`.
+
+Indeed, build the anchor inductively.  Suppose `w` has already been defined
+on the union of the previous supports.  On
+
+```text
+J_i = S_i cap (S_1 union ... union S_{i-1})
+```
+
+we need a degree-`<k` polynomial `P_i` satisfying
+
+```text
+E(x) P_i(x) + z_i N(x) = w(x),        x in J_i.
+```
+
+Since `E` is nonzero on `D` and `|J_i|<=k`, ordinary interpolation gives such
+a `P_i`.  Then
+
+```text
+Q_i = z_i N + E P_i
+```
+
+has degree `<k+t=a`, agrees with the old anchor on `J_i`, and defines the
+new anchor values on `S_i \ J_i`.  The same divisibility argument as above
+shows every active support is noncontained: if the direction were explained
+by a degree-`<k` polynomial `G` on `S_i`, then `E G+N` would have degree `<a`
+and `a` roots, forcing `E|N`, impossible because `deg N < deg E` and
+`[N]_E != 0`.
+
+This broader construction has the same exact packing ceiling.  A
+`k`-degenerate family satisfies
+
+```text
+|S_1 union ... union S_m| >= a + (m-1)(a-k) = k + m sigma,
+```
+
+so necessarily
+
+```text
+m <= floor((|D|-k)/sigma).
+```
+
+The sunflower with core size `k` attains this ceiling.  Therefore the
+`floor((|D|-k)/sigma)` term is not merely the best common-core sunflower
+floor; it is the exact maximum for every ordered support family whose slopes
+can be added freely by at most `k` old interpolation constraints at each step.
+Any larger arbitrary-anchor obstruction must use a dense overlap cycle, where
+each remaining support meets the previous union in more than `k` points and
+the compatibility equations no longer decouple by interpolation.
+
 ## Status
 
 PROVED residual-slack reduction for `t <= sigma`; PROVED / COUNTEREXAMPLE to
 the naive promotion of the monic-anchor base-core reduction to arbitrary
-balanced anchors.
+balanced anchors; PROVED `k`-degenerate support-packing sharpening of the
+sunflower lower floor.
 
 This does not refute the repaired F1 conjecture above the corrected reserve.
 For `t<sigma`, it routes the datum to the extension list ledger with residual
@@ -426,9 +495,11 @@ S |-> [Q_S^w]_E,
 
 where `Q_S^w` is the unique degree-`<a` interpolant of the arbitrary anchor
 word `w` on `S`. Bounding rich intersections of this cloud with residue lines
-is the actual arbitrary-anchor problem. The sunflower floor shows that even a
-successful upper bound should include at least a
-`floor((|D|-k)/sigma)` arbitrary-anchor term.
+is the actual arbitrary-anchor problem. The degenerate support-packing theorem
+shows that even a successful upper bound should include at least a
+`floor((|D|-k)/sigma)` arbitrary-anchor term, while any super-floor
+counterpacket must come from dense overlap cycles rather than freely attached
+supports.
 
 ## Reproducibility
 

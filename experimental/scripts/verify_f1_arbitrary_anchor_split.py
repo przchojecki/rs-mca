@@ -9,6 +9,8 @@ F_17[t]/(t^2-3).  It verifies:
   different support-wise bad slopes under an arbitrary anchor;
 * the core-k sunflower construction realizes floor((n-k)/sigma) bad slopes;
 * the core-k choice maximizes the sunflower floor among all core sizes c<=k.
+* a non-sunflower k-degenerate support packing also realizes the same
+  floor, confirming that the remaining obstruction must use dense overlaps.
 """
 
 from __future__ import annotations
@@ -150,6 +152,26 @@ def quotient_for_zero_core(
     return poly_add([slope], poly_mul(e_poly, r_poly))
 
 
+def quotient_for_anchor_constraints(
+    e_poly: Poly,
+    slope: Element,
+    overlap: tuple[int, ...],
+    anchor: dict[int, Element],
+    k: int,
+) -> Poly:
+    """Return Q=slope+E*P matching an existing anchor on overlap."""
+    if len(overlap) > k:
+        raise AssertionError("too many old constraints for free interpolation")
+    p_values = [
+        div(sub(anchor[x], slope), poly_eval(e_poly, elt(x)))
+        for x in overlap
+    ]
+    p_poly = interpolate(overlap, p_values) if overlap else [ZERO]
+    if poly_degree(p_poly) >= k:
+        raise AssertionError("interpolant should have degree < k")
+    return poly_add([slope], poly_mul(e_poly, p_poly))
+
+
 def verify_core_optimization(n: int, k: int, sigma: int) -> dict[str, object]:
     a = k + sigma
     floors = {c: (n - c) // (a - c) for c in range(k + 1)}
@@ -259,12 +281,81 @@ def verify_sunflower_floor_packet(e_poly: Poly, k: int, sigma: int) -> dict[str,
     return {"core": core, "supports": supports, "slope_count": len(slopes)}
 
 
+def verify_degenerate_support_packet(e_poly: Poly, k: int, sigma: int) -> dict[str, object]:
+    """Check a k-degenerate extremal packet that has no common sunflower core."""
+    a = k + sigma
+    domain = tuple(range(1, 17))
+    supports = (
+        (1, 2, 3, 4, 5),
+        (1, 2, 3, 6, 7),
+        (1, 4, 6, 8, 9),
+        (2, 5, 8, 10, 11),
+        (3, 7, 10, 12, 13),
+        (4, 9, 12, 14, 15),
+    )
+    slopes = tuple(elt(i) for i in range(len(supports)))
+    expected_floor = (len(domain) - k) // sigma
+    if len(supports) != expected_floor:
+        raise AssertionError((len(supports), expected_floor))
+    if set(supports[0]).intersection(*map(set, supports[1:])):
+        raise AssertionError("packet should not be a common-core sunflower")
+
+    anchor: dict[int, Element] = {}
+    q_polys = []
+    seen: set[int] = set()
+    union_sizes = []
+    overlap_sizes = []
+    for support, slope in zip(supports, slopes):
+        if len(support) != a:
+            raise AssertionError("wrong support size")
+        overlap = tuple(x for x in support if x in seen)
+        if len(overlap) > k:
+            raise AssertionError("support family is not k-degenerate")
+        q_poly = quotient_for_anchor_constraints(e_poly, slope, overlap, anchor, k)
+        if poly_degree(q_poly) >= a:
+            raise AssertionError("degenerate witness degree too large")
+        q_polys.append(q_poly)
+
+        for x in overlap:
+            if poly_eval(q_poly, elt(x)) != anchor[x]:
+                raise AssertionError("new witness failed old anchor constraint")
+        for x in support:
+            value = poly_eval(q_poly, elt(x))
+            if x in anchor and anchor[x] != value:
+                raise AssertionError("anchor conflict in degenerate packet")
+            anchor[x] = value
+        seen.update(support)
+        union_sizes.append(len(seen))
+        overlap_sizes.append(len(overlap))
+
+    if len(seen) != k + len(supports) * sigma:
+        raise AssertionError("extremal degenerate packet should add exactly sigma each step")
+
+    for support, slope, q_poly in zip(supports, slopes, q_polys):
+        if not all(poly_eval(q_poly, elt(x)) == anchor[x] for x in support):
+            raise AssertionError("degenerate witness does not match anchor")
+        q_minus_slope = poly_sub(q_poly, [slope])
+        if not all(poly_eval(q_minus_slope, root) == ZERO for root in (ZERO, ALPHA)):
+            raise AssertionError("degenerate witness has wrong residue modulo E")
+        if not direction_not_low_degree(e_poly, support, k):
+            raise AssertionError("degenerate support should be noncontained")
+
+    return {
+        "supports": supports,
+        "slope_count": len(slopes),
+        "union_size": len(seen),
+        "union_sizes": tuple(union_sizes),
+        "overlap_sizes": tuple(overlap_sizes),
+    }
+
+
 @dataclass(frozen=True)
 class Verification:
     core_optimization: dict[str, object]
     core_grid_checks: int
     locator_split: dict[str, object]
     sunflower: dict[str, object]
+    degenerate_support: dict[str, object]
 
 
 def verify() -> Verification:
@@ -279,6 +370,7 @@ def verify() -> Verification:
         core_grid_checks=verify_core_optimization_grid(),
         locator_split=verify_locator_split_packet(e_poly, k, sigma),
         sunflower=verify_sunflower_floor_packet(e_poly, k, sigma),
+        degenerate_support=verify_degenerate_support_packet(e_poly, k, sigma),
     )
 
 
@@ -298,6 +390,12 @@ def main() -> None:
     print(
         "sunflower floor: "
         f"{result.sunflower['slope_count']} slopes on core {result.sunflower['core']}"
+    )
+    print(
+        "degenerate support floor: "
+        f"{result.degenerate_support['slope_count']} slopes, "
+        f"union size {result.degenerate_support['union_size']}, "
+        f"overlaps={result.degenerate_support['overlap_sizes']}"
     )
 
 
