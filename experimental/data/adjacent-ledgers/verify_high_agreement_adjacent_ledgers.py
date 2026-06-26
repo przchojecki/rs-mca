@@ -174,6 +174,24 @@ def linear_map_values(matrix: list[list[int]], prime: int) -> list[tuple[int, ..
     return values
 
 
+def rank_budget(base: int, rank: int, target: int) -> int:
+    if base <= 1:
+        raise ValueError("base must be > 1")
+    if rank < 0:
+        raise ValueError("negative rank")
+    return (base**rank) // target
+
+
+def line_plus_list_numerator(n: int, agreement: int) -> int:
+    return n - agreement + 2
+
+
+def curve_plus_list_numerator(n: int, agreement: int, degree: int) -> int:
+    if degree <= 0:
+        raise ValueError("degree must be positive")
+    return degree * (n - agreement + 1) + 1
+
+
 def check_challenge_pullback_ledgers(target: int) -> None:
     identity = list(range(8))
     assert adversarial_fiber_envelope(identity, 3) == Fraction(3, 8)
@@ -225,6 +243,31 @@ def check_challenge_pullback_ledgers(target: int) -> None:
     assert (17**31) // target == 0
     assert (17**32) // target == 6
 
+
+def check_rank_aware_active_budgets(n: int, target: int) -> None:
+    full_rank_budget = rank_budget(17, 32, target)
+    rank_loss_budget = rank_budget(17, 31, target)
+    assert full_rank_budget == 6
+    assert rank_loss_budget == 0
+
+    assert line_plus_list_numerator(n, 507) == 7
+    assert line_plus_list_numerator(n, 508) == 6
+    assert line_plus_list_numerator(n, 507) > full_rank_budget
+    assert line_plus_list_numerator(n, 508) <= full_rank_budget
+    assert line_plus_list_numerator(n, 512) > rank_loss_budget
+
+    # Rank 32 reproduces the printed curve-plus-list thresholds.
+    assert curve_plus_list_numerator(n, 510, 2) == 7
+    assert curve_plus_list_numerator(n, 511, 2) == 5
+    assert curve_plus_list_numerator(n, 510, 2) > full_rank_budget
+    assert curve_plus_list_numerator(n, 511, 2) <= full_rank_budget
+    assert curve_plus_list_numerator(n, 512, 6) == 7
+    assert curve_plus_list_numerator(n, 512, 6) > full_rank_budget
+
+    for degree in range(1, 11):
+        assert curve_plus_list_numerator(n, 512, degree) > rank_loss_budget
+
+
 def main() -> None:
     n = 512
     k = 256
@@ -232,6 +275,7 @@ def main() -> None:
     target = 2 ** 128
     budget = q // target
     check_challenge_pullback_ledgers(target)
+    check_rank_aware_active_budgets(n, target)
 
     print("Field and target")
     print(f"q = 17^32 = {q}")
@@ -283,8 +327,20 @@ def main() -> None:
     print()
 
     print("Challenge-map rank ledger")
-    print(f"full F_17-rank 32 budget: floor(17^32 / 2^128) = {(17**32)//target}")
-    print(f"rank-loss to 31 budget: floor(17^31 / 2^128) = {(17**31)//target}")
+    print(
+        "full F_17-rank 32 budget: "
+        f"floor(17^32 / 2^128) = {rank_budget(17, 32, target)}"
+    )
+    print(
+        "rank-loss to 31 budget: "
+        f"floor(17^31 / 2^128) = {rank_budget(17, 31, target)}"
+    )
+    print(
+        "line+list rank-32 threshold: "
+        f"a=507 numerator {line_plus_list_numerator(n, 507)} unsafe, "
+        f"a=508 numerator {line_plus_list_numerator(n, 508)} safe"
+    )
+    print("rank <= 31: no positive-numerator adjacent ledger meets 2^-128")
     print("challenge pullback ledgers: PASS")
 
 if __name__ == "__main__":

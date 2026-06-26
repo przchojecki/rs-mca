@@ -39,11 +39,13 @@ Keep entries concise and link to the relevant files.
 - **Status:** PROVED / AUDIT / PROTOCOL-LEDGER.
 - **What is being added:** The high-agreement line/curve parameter ledgers now
   include exact challenge-map pullback accounting: maximum-fiber, largest-fiber
-  envelope, bounded-degree rational map, and finite-linear rank certificates.
+  envelope, bounded-degree rational map, finite-linear rank certificates, and
+  the rank-aware combined-numerator budget test.
 - **How it is useful:** Prevents silently replacing the analyzed line/curve
   field denominator by a larger challenge field.  For the active
   `F_17^32` row, full `F_17`-linear rank gives budget `6`, while rank loss to
-  `31` gives budget `0` at the `2^-128` target.
+  `31` gives budget `0` at the `2^-128` target; hence the printed line/list
+  and curve/list thresholds survive only under full-rank parameter sampling.
 - **What to do next:** Match actual protocol challenge maps to these
   certificates before crediting extension-field denominators or adding
   query/folding/cryptographic losses.

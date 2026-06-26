@@ -177,6 +177,33 @@ projections, and other rank-deficient maps therefore recover only their image
 denominator; they do not justify silently dividing by the full challenge-field
 size.
 
+Equivalently, for any protocol ledger that charges a total integer
+bad-parameter numerator `N` against this same sampler, a rank-`r` linear
+challenge map over `F_17` gives the target condition
+
+```text
+N <= floor(17^r / 2^128).
+```
+
+For the active line-plus-list ledger,
+
+```text
+N_line+list(a) = 514-a.
+```
+
+For the degree-`d` curve-plus-list ledger,
+
+```text
+N_curve+list,d(a) = d*(513-a) + 1.
+```
+
+At full rank `r=32`, these reproduce the printed thresholds.  At every
+rank `r<=31`, the effective budget is zero, so no positive-numerator coding
+ledger of this form can meet a `2^-128` target.  This is a rank-aware
+protocol-ledger statement, not a new coding theorem: it applies only after the
+protocol reduction has identified which printed coding numerators are charged
+to the same sampled parameter.
+
 The result is not a general SNARK theorem.  It is a coding-ledger theorem for
 protocol reductions that consume exactly the printed coding terms over the
 printed field, plus any separately added query/folding/cryptographic errors.
