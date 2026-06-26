@@ -414,6 +414,59 @@ any exist, are obtained by adding the same root `xi_T` and deleting one root of
 `T`.  This upgrades the residual graph from bounded-degree to packet-local:
 each residual locator is incident to at most one top packet.
 
+## Top-Packet Lift Gate
+
+The common anchor also lifts every nontrivial top packet to a single
+denominator equation one degree higher.  Let `W` be a residual top packet, and
+for `x in W` write
+
+```text
+T_x = W\{x}.
+```
+
+Let
+
+```text
+h_v(W) = H_{1,j+1}(v)ell_W
+```
+
+be the one-row Hankel pairing of the `(j+1)`-point locator `L_W` with the
+denominator syndrome `v`.  Since
+
+```text
+L_W(X)=(X-x)L_{T_x}(X),
+```
+
+if
+
+```text
+H_{2,j}(v)ell_{T_x}=(beta_0(x),beta_1(x)),
+```
+
+then the shift identity gives
+
+```text
+h_v(W)=beta_1(x)-x beta_0(x).        (TP1)
+```
+
+This quantity is independent of the omitted root `x`.  If `T_x` is a vertex of
+a nontrivial residual top packet, then it has a residual neighbor inside the
+same `W`, and the common companion anchor says `beta_0(x) != 0` and
+`beta_1(x)/beta_0(x)=x`.  Hence (TP1) vanishes.
+
+Therefore every residual top packet satisfies the lifted denominator gate
+
+```text
+H_{1,j+1}(v)ell_W=0.                 (TP2)
+```
+
+Moreover, for each residual member `T_x subset W`, equation (TP2) is exactly the
+statement that the companion anchor of `T_x` is the omitted root `x`, provided
+`beta_0(x) != 0`.  Thus the residual top-packet search is no longer over
+arbitrary `(j+1)`-sets: possible packets first lie in the one-row denominator
+kernel (TP2), and then their `j`-subsets must pass the residual determinant and
+aperiodicity gates.
+
 ## Residual Triangle Classification
 
 The residual graph can still have triangles, but their type is forced.  In the
@@ -487,6 +540,11 @@ locator can therefore sit in two distinct top packets.  The residual graph is
 exactly a disjoint union of slope-injective top cliques, together with isolated
 residual locators.
 
+Each nontrivial top packet also satisfies the lifted denominator gate
+`H_{1,j+1}(v)ell_W=0`.  Thus large residual cliques must be visible one degree
+up in the denominator Hankel kernel before the numerator/determinant gates are
+even considered.
+
 Thus the residual high-overlap obstruction has been localized further: pair
 packets with `m_W=2` are isolated at triangle level, while every surviving
 triangle and every large local clique is carried by a slope-injective
@@ -525,6 +583,9 @@ enumerates small cyclic-domain cases.  For each case it:
 - checks the quadratic companion map for every nonzero quadratic edge slice;
 - verifies the common companion anchor `xi_T=beta_1/beta_0` for every oriented
   residual edge endpoint;
+- verifies that every nontrivial residual top packet satisfies the lifted
+  denominator gate `H_{1,j+1}(v)ell_W=0`, with omitted-root anchors on its
+  residual members;
 - classifies every residual triangle and asserts that no star triangle remains
   after root-slice peeling;
 - forms the residual top-packet ledger and checks that it accounts exactly for
@@ -561,7 +622,9 @@ large, with maximum packet size `5`; these packets account for all `88`
 residual edges, all `68` residual triangles, and the local residual degree
 formula.  The maximum top-packet incidence of a residual locator is `1` in
 this row, so the audited top packets are disjoint; the common-anchor check
-certifies all `176=2*88` oriented residual edge endpoints.
+certifies all `176=2*88` oriented residual edge endpoints.  The lifted
+denominator gate is checked on all `14` residual top packets, with `56`
+omitted-root anchor checks across their residual members.
 
 The arbitrary `F_17`, `j=4`, `t=2` rank-one probe has `176` aperiodic locators,
 all `17` slopes, and `16` zero-determinant slices.  Four of those zero slices
@@ -573,8 +636,10 @@ top-packet ledger has `17` packets: `3` large packets and `14` pair packets,
 with maximum packet size `5`, accounting for `40` residual edges and `24`
 triangles, with maximum top-packet incidence again `1`, so the audited top
 packets are disjoint.  The common-anchor check certifies all `80=2*40`
-oriented residual edge endpoints in the probe.  These are exactly the profile
-quantities a packing proof must shrink or explain structurally.
+oriented residual edge endpoints in the probe.  The lifted denominator gate is
+checked on all `17` residual top packets, with `42` omitted-root anchor checks.
+These are exactly the profile quantities a packing proof must shrink or
+explain structurally.
 
 This is an audit/verifier for the M1 target, not a proof of the desired
 polynomial all-line bound.  Its purpose is to make future counterexample-first

@@ -52,11 +52,12 @@ Keep entries concise and link to the relevant files.
   from fixed-slope fibers, proves the residual `t=2` one-exchange degree bound
   `<= j`, certifies the quadratic companion map for residual different-slope
   edges, proves the common companion anchor `xi_T=beta_1/beta_0` for oriented
-  residual edge endpoints, classifies residual triangles as top-type after
-  excluding star triangles, forms the residual top-packet edge/triangle/degree
-  ledger, verifies top-packet hypergraph linearity and vertex-disjointness on
-  residual locators, and cross-checks every reported bad slope by direct RS
-  interpolation.
+  residual edge endpoints, proves the lifted denominator gate
+  `H_{1,j+1}(v)ell_W=0` for every nontrivial residual top packet, classifies
+  residual triangles as top-type after excluding star triangles, forms the
+  residual top-packet edge/triangle/degree ledger, verifies top-packet
+  hypergraph linearity and vertex-disjointness on residual locators, and
+  cross-checks every reported bad slope by direct RS interpolation.
 - **How it is useful:** This turns the MCA half of the prize into a concrete
   counterexample-first object: after tangent and quotient-periodic locators
   are charged, the remaining all-line obstruction is the aperiodic split-locator
@@ -74,10 +75,12 @@ Keep entries concise and link to the relevant files.
   edges, triangles, and endpoint degrees by slope-injective `(j+1)`-packets.
   The common companion anchor shows every residual locator has at most one
   added-root anchor, so these packets are vertex-disjoint on the residual
-  locator side and their two-sections are disjoint top cliques.  The arbitrary
-  probe shows the rank-one zero-slice branch is not merely formal, while still
-  being classified by the
-  contained/constant ledger.
+  locator side and their two-sections are disjoint top cliques.  The lifted
+  denominator gate moves every nontrivial residual top packet one degree up
+  into the one-row Hankel kernel of the denominator syndrome before the
+  numerator/determinant gates are applied.  The arbitrary probe shows the
+  rank-one zero-slice branch is not merely formal, while still being
+  classified by the contained/constant ledger.
 - **What to do next:** Extend the verifier to richer line families and prove
   structural bounds for the aperiodic slope image, starting with `t=2` and
   quotient scales already separated by the existing M1 quotient ledgers.
