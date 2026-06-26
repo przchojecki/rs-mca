@@ -44,13 +44,16 @@ Keep entries concise and link to the relevant files.
   that sweeps twelve deterministic line samples, verifies the `t=2`
   determinant gate, reports strict one-exchange profiles for residual
   aperiodic locators, proves same-slope strict edges extend to fixed-slope
-  root slices, and cross-checks every reported bad slope by direct RS
-  interpolation.
+  root slices, verifies that different-slope strict edges are either isolated
+  nonzero quadratic-slice roots or lie on zero-determinant slices, and
+  cross-checks every reported bad slope by direct RS interpolation.
 - **How it is useful:** This turns the MCA half of the prize into a concrete
   counterexample-first object: after tangent and quotient-periodic locators
   are charged, the remaining all-line obstruction is the aperiodic split-locator
   slope image in the Hankel pencil.  The root-slice lemma separates same-slope
-  strict collisions from the genuinely residual slope-image packing problem.
+  strict collisions from the genuinely residual slope-image packing problem,
+  while the quadratic-slice check isolates different-slope collisions as the
+  next finite-degree object to bound.
 - **What to do next:** Extend the verifier to richer line families and prove
   structural bounds for the aperiodic slope image, starting with `t=2` and
   quotient scales already separated by the existing M1 quotient ledgers.

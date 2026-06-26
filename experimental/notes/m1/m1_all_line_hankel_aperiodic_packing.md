@@ -189,6 +189,43 @@ belong to root-slice/tangent-style ledgers, while the genuinely aperiodic
 packing problem is the slope image of determinant-locus packets after these
 root slices and the quotient-periodic classes are charged.
 
+## Different-Slope One-Exchange Quadratic Slice
+
+The different-slope part of the one-exchange profile has a complementary
+finite-degree constraint.  Keep `t=2` and a fixed `(j-1)`-root core `R`.  With
+
+```text
+ell_x = ell_{R union {x}} = s_R-xp_R,
+```
+
+the two Hankel vectors
+
+```text
+a(x)=H_{2,j}(u)ell_x,        b(x)=H_{2,j}(v)ell_x
+```
+
+are affine functions of `x`.  Hence the determinant
+
+```text
+Delta_R(x)=det[a(x) b(x)]
+```
+
+is a polynomial in `x` of degree at most two.  Therefore a one-root slice has
+only two determinant roots unless `Delta_R` is identically zero.  In
+particular, a different-slope strict one-exchange edge is either:
+
+1. the whole determinant root set of a nonzero quadratic slice; or
+2. part of an exceptional zero-determinant root slice, where every exchanged
+   root passes the determinant gate and the slope map along the slice must be
+   controlled separately.
+
+The verifier checks this dichotomy on every `(j-1)`-core slice in the finite
+audit rows by evaluating `Delta_R` on the ambient prime field.  Thus the
+residual `t=2` M1 packing target is further localized: after quotient-periodic
+classes and same-slope root slices are charged, different-slope strict edges
+can only accumulate through zero-determinant root slices or through many
+isolated nonzero quadratic slices.
+
 ## Verifier
 
 The companion verifier
@@ -209,7 +246,9 @@ enumerates small cyclic-domain cases.  For each case it:
 - in the `t=2` rows, verifies the determinant gate and reports the strict
   one-exchange profile of the aperiodic locator family;
 - checks that every same-slope strict one-exchange edge extends to the full
-  fixed-slope root slice predicted by the lemma above.
+  fixed-slope root slice predicted by the lemma above;
+- verifies that different-slope strict edges obey the quadratic root-slice
+  dichotomy above.
 
 The default audit currently checks three cyclic-domain parameter rows and
 twelve deterministic line samples.  The largest observed residual aperiodic
@@ -218,7 +257,9 @@ checks on every reported support-wise bad slope.  In the full-domain
 `F_17`, `j=4`, `t=2` row, the residual aperiodic locus has maximum slope
 fiber `16`, strict one-exchange degree `15`, and `190` strict one-exchange
 pairs.  Of these strict edges, `78` are same-slope edges, and the verifier
-certifies that they are covered by fixed-slope root slices.  These are exactly
+certifies that they are covered by fixed-slope root slices.  The remaining
+`112` different-slope strict edges lie on `112` nonzero quadratic slices and
+there are no zero-determinant edge slices in this audit row.  These are exactly
 the profile quantities a packing proof must shrink or explain structurally.
 
 This is an audit/verifier for the M1 target, not a proof of the desired

@@ -159,6 +159,19 @@ def determinant_gate_t2(a_vec: tuple[int, ...], b_vec: tuple[int, ...], p: int) 
     return (a_vec[0] * b_vec[1] - a_vec[1] * b_vec[0]) % p == 0
 
 
+def determinant_value_t2(
+    u: tuple[int, ...],
+    v: tuple[int, ...],
+    complement: tuple[int, ...],
+    j: int,
+    p: int,
+) -> int:
+    ell = locator(complement, p)
+    a_vec = hankel_apply(u, 2, j, ell, p)
+    b_vec = hankel_apply(v, 2, j, ell, p)
+    return (a_vec[0] * b_vec[1] - a_vec[1] * b_vec[0]) % p
+
+
 def strict_exchange_profile(
     locator_rows: list[tuple[tuple[int, ...], int]], t: int
 ) -> dict[str, int]:
@@ -267,6 +280,94 @@ def root_slice_profile(
         "same_slope_edges_covered": same_slope_edges,
         "max_root_slice_noncontained": max_noncontained,
         "max_root_slice_aperiodic_members": max_aperiodic_members,
+    }
+
+
+def quadratic_slice_profile(
+    locator_rows: list[tuple[tuple[int, ...], int]],
+    domain: tuple[int, ...],
+    u: tuple[int, ...],
+    v: tuple[int, ...],
+    t: int,
+    j: int,
+    p: int,
+) -> dict[str, int]:
+    if t != 2:
+        return {
+            "different_slope_strict_pairs": 0,
+            "different_slope_cores": 0,
+            "quadratic_slices_checked": 0,
+            "zero_determinant_slices": 0,
+            "edge_zero_determinant_slices": 0,
+            "nonzero_quadratic_edge_slices": 0,
+            "max_determinant_roots_nonzero": 0,
+        }
+
+    different_slope_edges: dict[tuple[int, ...], list[frozenset[int]]] = {}
+    for left in range(len(locator_rows)):
+        left_set = set(locator_rows[left][0])
+        left_slope = locator_rows[left][1]
+        for right in range(left + 1, len(locator_rows)):
+            right_set = set(locator_rows[right][0])
+            if left_slope == locator_rows[right][1]:
+                continue
+            if len(left_set - right_set) == 1 and len(right_set - left_set) == 1:
+                core = tuple(sorted(left_set & right_set))
+                if len(core) != j - 1:
+                    raise AssertionError("one-exchange core has wrong size")
+                exchanged = frozenset(
+                    (next(iter(left_set - right_set)), next(iter(right_set - left_set)))
+                )
+                different_slope_edges.setdefault(core, []).append(exchanged)
+
+    zero_determinant_slices = 0
+    edge_zero_determinant_slices = 0
+    nonzero_quadratic_edge_slices = 0
+    max_determinant_roots_nonzero = 0
+    checked = 0
+    domain_set = set(domain)
+
+    for core in combinations(domain, j - 1):
+        checked += 1
+        core_tuple = tuple(sorted(core))
+        field_roots = {
+            x
+            for x in range(p)
+            if determinant_value_t2(u, v, tuple(sorted(core_tuple + (x,))), j, p) == 0
+        }
+        zero_slice = len(field_roots) > 2
+        if zero_slice:
+            if len(field_roots) != p:
+                raise AssertionError("quadratic slice has too many roots without vanishing")
+            zero_determinant_slices += 1
+        else:
+            if len(field_roots) > 2:
+                raise AssertionError("nonzero determinant slice has more than two roots")
+            max_determinant_roots_nonzero = max(max_determinant_roots_nonzero, len(field_roots))
+
+        edge_roots = different_slope_edges.get(core_tuple, [])
+        if not edge_roots:
+            continue
+        if zero_slice:
+            edge_zero_determinant_slices += 1
+            continue
+
+        domain_roots = field_roots & domain_set
+        if len(domain_roots) != 2:
+            raise AssertionError("different-slope edge did not exhaust nonzero quadratic roots")
+        for exchanged in edge_roots:
+            if exchanged != domain_roots:
+                raise AssertionError("different-slope edge is not the quadratic root set")
+        nonzero_quadratic_edge_slices += 1
+
+    return {
+        "different_slope_strict_pairs": sum(len(edges) for edges in different_slope_edges.values()),
+        "different_slope_cores": len(different_slope_edges),
+        "quadratic_slices_checked": checked,
+        "zero_determinant_slices": zero_determinant_slices,
+        "edge_zero_determinant_slices": edge_zero_determinant_slices,
+        "nonzero_quadratic_edge_slices": nonzero_quadratic_edge_slices,
+        "max_determinant_roots_nonzero": max_determinant_roots_nonzero,
     }
 
 
@@ -401,6 +502,12 @@ def verify_case_seed(case: Case, seed: int) -> dict[str, object]:
     root_profile = root_slice_profile(aperiodic_locator_rows, domain, u, v, t, j, p)
     if root_profile["same_slope_edges_covered"] != exchange_profile["same_slope_strict_pairs"]:
         raise AssertionError("root-slice coverage missed same-slope strict edges")
+    quadratic_profile = quadratic_slice_profile(aperiodic_locator_rows, domain, u, v, t, j, p)
+    expected_different_slope = (
+        exchange_profile["strict_pairs"] - exchange_profile["same_slope_strict_pairs"]
+    )
+    if quadratic_profile["different_slope_strict_pairs"] != expected_different_slope:
+        raise AssertionError("quadratic-slice profile missed different-slope strict edges")
 
     return {
         "name": case.name,
@@ -428,6 +535,13 @@ def verify_case_seed(case: Case, seed: int) -> dict[str, object]:
         "same_slope_edges_covered": root_profile["same_slope_edges_covered"],
         "max_root_slice_noncontained": root_profile["max_root_slice_noncontained"],
         "max_root_slice_aperiodic_members": root_profile["max_root_slice_aperiodic_members"],
+        "different_slope_strict_pairs": quadratic_profile["different_slope_strict_pairs"],
+        "different_slope_cores": quadratic_profile["different_slope_cores"],
+        "quadratic_slices_checked": quadratic_profile["quadratic_slices_checked"],
+        "zero_determinant_slices": quadratic_profile["zero_determinant_slices"],
+        "edge_zero_determinant_slices": quadratic_profile["edge_zero_determinant_slices"],
+        "nonzero_quadratic_edge_slices": quadratic_profile["nonzero_quadratic_edge_slices"],
+        "max_determinant_roots_nonzero": quadratic_profile["max_determinant_roots_nonzero"],
         "determinant_checks": determinant_checks,
         "direct_checks": direct_checks,
     }
@@ -446,6 +560,11 @@ def verify_case(case: Case) -> dict[str, object]:
         "max_aperiodic_strict_degree": max(row["aperiodic_max_strict_degree"] for row in rows),
         "max_root_slices": max(row["root_slices"] for row in rows),
         "max_root_slice_noncontained": max(row["max_root_slice_noncontained"] for row in rows),
+        "max_different_slope_strict_pairs": max(row["different_slope_strict_pairs"] for row in rows),
+        "max_zero_determinant_slices": max(row["zero_determinant_slices"] for row in rows),
+        "max_edge_zero_determinant_slices": max(row["edge_zero_determinant_slices"] for row in rows),
+        "max_nonzero_quadratic_edge_slices": max(row["nonzero_quadratic_edge_slices"] for row in rows),
+        "max_determinant_roots_nonzero": max(row["max_determinant_roots_nonzero"] for row in rows),
         "total_direct_checks": sum(row["direct_checks"] for row in rows),
     }
 
@@ -473,6 +592,13 @@ def main() -> None:
                 "root_slices={root_slices} "
                 "root_slice_noncontained_max={max_root_slice_noncontained} "
                 "root_slice_aperiodic_max={max_root_slice_aperiodic_members} "
+                "different_slope_strict={different_slope_strict_pairs} "
+                "different_slope_cores={different_slope_cores} "
+                "quadratic_slices={quadratic_slices_checked} "
+                "zero_det_slices={zero_determinant_slices} "
+                "edge_zero_det_slices={edge_zero_determinant_slices} "
+                "nonzero_quad_edge_slices={nonzero_quadratic_edge_slices} "
+                "max_nonzero_det_roots={max_determinant_roots_nonzero} "
                 "det_checks={determinant_checks} direct_checks={direct_checks}".format(**row)
             )
         print(
@@ -485,6 +611,11 @@ def main() -> None:
             f"max_strict_degree={summary['max_aperiodic_strict_degree']} "
             f"max_root_slices={summary['max_root_slices']} "
             f"max_root_slice_noncontained={summary['max_root_slice_noncontained']} "
+            f"max_different_slope_strict={summary['max_different_slope_strict_pairs']} "
+            f"max_zero_det_slices={summary['max_zero_determinant_slices']} "
+            f"max_edge_zero_det_slices={summary['max_edge_zero_determinant_slices']} "
+            f"max_nonzero_quad_edge_slices={summary['max_nonzero_quadratic_edge_slices']} "
+            f"max_nonzero_det_roots={summary['max_determinant_roots_nonzero']} "
             f"direct_checks={summary['total_direct_checks']}"
         )
     max_aperiodic = max(summary["max_aperiodic_slopes"] for summary in summaries)
