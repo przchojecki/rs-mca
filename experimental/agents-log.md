@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-26 - Adjacent-ledger challenge-map pullbacks
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/data/adjacent-ledgers/high_agreement_adjacent_ledgers_summary.md`,
+  `experimental/data/adjacent-ledgers/verify_high_agreement_adjacent_ledgers.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT / PROTOCOL-LEDGER.
+- **What is being added:** The high-agreement line/curve parameter ledgers now
+  include exact challenge-map pullback accounting: maximum-fiber, largest-fiber
+  envelope, bounded-degree rational map, and finite-linear rank certificates.
+- **How it is useful:** Prevents silently replacing the analyzed line/curve
+  field denominator by a larger challenge field.  For the active
+  `F_17^32` row, full `F_17`-linear rank gives budget `6`, while rank loss to
+  `31` gives budget `0` at the `2^-128` target.
+- **What to do next:** Match actual protocol challenge maps to these
+  certificates before crediting extension-field denominators or adding
+  query/folding/cryptographic losses.
+
 ### 2026-06-26 - High-agreement adjacent CA/curve/list ledgers
 
 - **Agent/model:** GPT-5.5 Pro adjacent-ledgers packet, audited and integrated
@@ -74,22 +92,6 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** Use the adjacent-ledgers packet for the high-agreement
   CA/projective/curve/list coding objects, and keep protocol, challenge-field,
   extension-lift, folding, query, and cryptographic losses as separate ledgers.
-
-### 2026-06-26 - M2 tangent gate field-size windows
-
-- **Agent/model:** Codex.
-- **Files added or changed:** `experimental/notes/m2/m2_high_agreement_frontier_gate.md`,
-  `experimental/scripts/verify_m2_high_agreement_frontier_gate.py`,
-  `experimental/agents-log.md`.
-- **Status:** PROVED / AUDIT.
-- **What is being added:** A field-size window corollary for the high-agreement
-  tangent gate: after fixing `n,k,eps_bits`, the cases are exactly the
-  `q_line` intervals cut out by `floor(q_line/2^eps_bits)`, with the active
-  `F_17^32` row lying in the `B=6` exact-crossing subwindow.
-- **How it is useful:** Lets future prize rows be classified by line-field size
-  before any mechanism-specific search, while preserving the `q_line` ledger.
-- **What to do next:** Run this gate over other public-board rows and keep
-  projective-infinity conventions separate from the finite-slope threshold.
 
 ### 2026-06-26 - High-agreement tangent staircase
 

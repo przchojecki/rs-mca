@@ -120,6 +120,63 @@ d=3,4,5: safe with list only at a = 512
 d>=6: no safe grid point with the list term
 ```
 
+## Challenge-map pullback ledger
+
+The line and curve statements above are sampler statements over their actual
+parameter set `X`: finite slopes, projective slopes, or finite curve
+parameters.  A protocol challenge set `K` inherits such a statement only
+through an explicit map
+
+```text
+phi : K -> X.
+```
+
+If a theorem bounds the bad parameter set by `L`, the pulled-back failure
+probability is
+
+```text
+|phi^{-1}(Bad)| / |K|.
+```
+
+Thus, if every fiber has size at most `m`, then
+
+```text
+Pr_chal[bad] <= min(|K|, L*m) / |K|.
+```
+
+The exact size-only envelope is sharper.  If the nonzero fiber sizes of `phi`
+are
+
+```text
+s_1 >= s_2 >= ... >= s_M > 0,
+```
+
+then the worst bad set of at most `L` parameters has probability exactly
+
+```text
+(s_1 + ... + s_min(L,M)) / |K|.
+```
+
+A degree certificate gives one common usable form: a nonconstant polynomial
+map, or a reduced rational map to `P^1`, of degree `D` has every fiber of size
+at most `D`.  A linear certificate gives another: if `phi:F_q^e -> V` is
+`F_q`-linear of rank `r`, then every nonempty fiber has size `q^(e-r)`, the
+image has size `q^r`, and the effective denominator is exactly `q^r`.
+
+For the active `F_17^32` row, this rank ledger is unforgiving:
+
+```text
+floor(17^32 / 2^128) = 6,
+floor(17^31 / 2^128) = 0.
+```
+
+So a full-rank `F_17`-linear challenge map into the analyzed slope field keeps
+the printed budget `6`, while any rank loss to at most `31` dimensions gives
+no positive bad-parameter budget at `2^-128`.  Trace maps, coordinate
+projections, and other rank-deficient maps therefore recover only their image
+denominator; they do not justify silently dividing by the full challenge-field
+size.
+
 The result is not a general SNARK theorem.  It is a coding-ledger theorem for
 protocol reductions that consume exactly the printed coding terms over the
 printed field, plus any separately added query/folding/cryptographic errors.
