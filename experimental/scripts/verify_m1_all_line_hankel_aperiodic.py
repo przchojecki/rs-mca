@@ -153,11 +153,21 @@ def slope_from_gate(a_vec: tuple[int, ...], b_vec: tuple[int, ...], p: int) -> i
     return slope
 
 
-def word_value(kind: str, x: int, p: int) -> int:
+def word_value(kind: str, x: int, p: int, seed: int) -> int:
     if kind == "f":
-        return (pow(x, 13, p) + 3 * pow(x, 7, p) + 5 * x + 4) % p
+        return (
+            (seed + 1) * pow(x, 13, p)
+            + (2 * seed + 3) * pow(x, 7, p)
+            + (seed + 5) * x
+            + 4
+        ) % p
     if kind == "g":
-        return (2 * pow(x, 14, p) + pow(x, 11, p) + 6 * pow(x, 3, p) + 1) % p
+        return (
+            (seed + 2) * pow(x, 14, p)
+            + (3 * seed + 1) * pow(x, 11, p)
+            + (seed + 6) * pow(x, 3, p)
+            + 1
+        ) % p
     raise AssertionError(kind)
 
 
@@ -205,16 +215,17 @@ class Case:
     j: int
     t: int
     charged_fiber_sizes: tuple[int, ...]
+    seeds: tuple[int, ...]
 
 
-def verify_case(case: Case) -> dict[str, object]:
+def verify_case_seed(case: Case, seed: int) -> dict[str, object]:
     p, n, j, t = case.p, case.n, case.j, case.t
     k = n - j - t
     if k <= 0:
         raise AssertionError("invalid k")
     domain, exponents, _ = cyclic_domain(p, n)
-    f = {x: word_value("f", x, p) for x in domain}
-    g = {x: word_value("g", x, p) for x in domain}
+    f = {x: word_value("f", x, p, seed) for x in domain}
+    g = {x: word_value("g", x, p, seed) for x in domain}
     u = syndrome(f, domain, j + t, p)
     v = syndrome(g, domain, j + t, p)
 
@@ -264,6 +275,7 @@ def verify_case(case: Case) -> dict[str, object]:
 
     return {
         "name": case.name,
+        "seed": seed,
         "p": p,
         "n": n,
         "k": k,
@@ -283,23 +295,50 @@ def verify_case(case: Case) -> dict[str, object]:
     }
 
 
+def verify_case(case: Case) -> dict[str, object]:
+    rows = [verify_case_seed(case, seed) for seed in case.seeds]
+    return {
+        "case": case,
+        "rows": rows,
+        "max_bad_slopes": max(row["bad_slopes"] for row in rows),
+        "max_quotient_slopes": max(row["quotient_slopes"] for row in rows),
+        "max_aperiodic_slopes": max(row["aperiodic_slopes"] for row in rows),
+        "total_direct_checks": sum(row["direct_checks"] for row in rows),
+    }
+
+
 def main() -> None:
     cases = (
-        Case("F17_full_j4_t2", p=17, n=16, j=4, t=2, charged_fiber_sizes=(2, 4, 8)),
-        Case("F17_order8_j3_t2", p=17, n=8, j=3, t=2, charged_fiber_sizes=(2, 4)),
-        Case("F13_order12_j4_t2", p=13, n=12, j=4, t=2, charged_fiber_sizes=(2, 3, 4, 6)),
+        Case("F17_full_j4_t2", p=17, n=16, j=4, t=2, charged_fiber_sizes=(2, 4, 8), seeds=(0, 1, 2, 3)),
+        Case("F17_order8_j3_t2", p=17, n=8, j=3, t=2, charged_fiber_sizes=(2, 4), seeds=(0, 1, 2, 3)),
+        Case("F13_order12_j4_t2", p=13, n=12, j=4, t=2, charged_fiber_sizes=(2, 3, 4, 6), seeds=(0, 1, 2, 3)),
     )
-    rows = [verify_case(case) for case in cases]
-    for row in rows:
+    summaries = [verify_case(case) for case in cases]
+    for summary in summaries:
+        case = summary["case"]
+        for row in summary["rows"]:
+            print(
+                "{name} seed={seed}: p={p} n={n} k={k} j={j} t={t} "
+                "split={split_locators} bad_locators={bad_locators} "
+                "bad_slopes={bad_slopes} quotient_locators={quotient_locators} "
+                "quotient_slopes={quotient_slopes} aperiodic_locators={aperiodic_locators} "
+                "aperiodic_slopes={aperiodic_slopes} contained_core={contained_core_locators} "
+                "direct_checks={direct_checks}".format(**row)
+            )
         print(
-            "{name}: p={p} n={n} k={k} j={j} t={t} split={split_locators} "
-            "bad_locators={bad_locators} bad_slopes={bad_slopes} "
-            "quotient_locators={quotient_locators} quotient_slopes={quotient_slopes} "
-            "aperiodic_locators={aperiodic_locators} aperiodic_slopes={aperiodic_slopes} "
-            "contained_core={contained_core_locators} direct_checks={direct_checks}".format(**row)
+            f"{case.name}: seeds={len(case.seeds)} "
+            f"max_bad_slopes={summary['max_bad_slopes']} "
+            f"max_quotient_slopes={summary['max_quotient_slopes']} "
+            f"max_aperiodic_slopes={summary['max_aperiodic_slopes']} "
+            f"direct_checks={summary['total_direct_checks']}"
         )
-    max_aperiodic = max(row["aperiodic_slopes"] for row in rows)
-    print(f"m1_all_line_hankel_aperiodic: PASS cases={len(rows)} max_aperiodic_slopes={max_aperiodic}")
+    max_aperiodic = max(summary["max_aperiodic_slopes"] for summary in summaries)
+    total_lines = sum(len(summary["case"].seeds) for summary in summaries)
+    print(
+        "m1_all_line_hankel_aperiodic: PASS "
+        f"cases={len(summaries)} line_samples={total_lines} "
+        f"max_aperiodic_slopes={max_aperiodic}"
+    )
 
 
 if __name__ == "__main__":

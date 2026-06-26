@@ -106,12 +106,18 @@ python3 experimental/scripts/verify_m1_all_line_hankel_aperiodic.py
 
 enumerates small cyclic-domain cases.  For each case it:
 
-- computes syndromes and Hankel windows for a deterministic all-line word;
+- computes syndromes and Hankel windows for a deterministic family of all-line
+  words;
 - enumerates all split complements `T`;
 - applies the projective slope gate for `t=2`;
 - cross-checks every bad slope by direct RS interpolation on `D\T`;
 - labels whole-fiber quotient-periodic complements at the selected scales;
 - reports the aperiodic slope image after charged locators are removed.
+
+The default audit currently checks three cyclic-domain parameter rows and
+twelve deterministic line samples.  The largest observed residual aperiodic
+slope image in this smoke packet has size `16`, after direct interpolation
+checks on every reported support-wise bad slope.
 
 This is an audit/verifier for the M1 target, not a proof of the desired
 polynomial all-line bound.  Its purpose is to make future counterexample-first
