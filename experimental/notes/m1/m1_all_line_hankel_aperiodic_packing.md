@@ -275,6 +275,20 @@ The verifier certifies this split by checking the three determinant
 coefficients of `Delta_R`, computing the direction-pencil rank, and then
 classifying the slope multiset on every zero-determinant slice.
 
+## Root-Slice Peeling Corollary
+
+For `t=2`, the fixed-slope one-exchange graph can be peeled exactly.  For each
+same-slope strict edge, include the full fixed-slope root slice supplied by the
+root-slice lemma, and remove every aperiodic locator lying in one of these
+packets.  The remaining aperiodic locator family has no same-slope
+one-exchange edge.
+
+Indeed, any same-slope one-exchange edge in the residual family would generate
+one of the root slices used in the peeling step, so both of its endpoints would
+have been removed.  Thus repeated-slope high-overlap structure is completely
+charged to constant root-slice packets; the residual slope fibers are
+one-exchange independent and must be controlled by a different mechanism.
+
 ## Verifier
 
 The companion verifier
@@ -300,7 +314,9 @@ enumerates small cyclic-domain cases.  For each case it:
   dichotomy above;
 - verifies that every zero-determinant slice is constant-slope or
   slope-injective via the direction-pencil rank, and that constant zero slices
-  account for all same-slope strict edges.
+  account for all same-slope strict edges;
+- peels root-slice members and checks that the residual aperiodic family has
+  no same-slope one-exchange edges.
 
 The default audit currently checks three cyclic-domain parameter rows and
 twelve deterministic line samples.  The largest observed residual aperiodic
@@ -313,8 +329,11 @@ certifies that they are exactly the repeated pairs inside one constant-slope
 rank-two zero-determinant slice with `13` aperiodic members.  The remaining
 `112` different-slope strict edges lie on `112` nonzero quadratic slices; there
 are no rank-one slope-injective zero slices and no zero-determinant
-different-slope edge slices in this audit row.  These are exactly the profile
-quantities a packing proof must shrink or explain structurally.
+different-slope edge slices in this audit row.  After peeling the root-slice
+members, the residual family has `86` aperiodic locators, all `16` residual
+slopes still occur, the maximum residual slope fiber drops to `9`, and the
+residual same-slope one-exchange edge count is `0`.  These are exactly the
+profile quantities a packing proof must shrink or explain structurally.
 
 This is an audit/verifier for the M1 target, not a proof of the desired
 polynomial all-line bound.  Its purpose is to make future counterexample-first

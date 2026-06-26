@@ -47,8 +47,8 @@ Keep entries concise and link to the relevant files.
   root slices, verifies that different-slope strict edges are either isolated
   nonzero quadratic-slice roots or lie on zero-determinant slices, classifies
   each zero-determinant slice by the direction-pencil rank as contained,
-  constant-slope, or slope-injective, and cross-checks every reported bad slope
-  by direct RS interpolation.
+  constant-slope, or slope-injective, peels root-slice packets from fixed-slope
+  fibers, and cross-checks every reported bad slope by direct RS interpolation.
 - **How it is useful:** This turns the MCA half of the prize into a concrete
   counterexample-first object: after tangent and quotient-periodic locators
   are charged, the remaining all-line obstruction is the aperiodic split-locator
@@ -57,7 +57,9 @@ Keep entries concise and link to the relevant files.
   while the quadratic-slice check isolates different-slope collisions as the
   next finite-degree object to bound.  The zero-slice dichotomy shows the
   exceptional branch is either contained, already a constant-slope root-slice
-  packet, or rank-one and injective on nonconstant slope fibers.
+  packet, or rank-one and injective on nonconstant slope fibers.  The
+  root-slice peeling check leaves a residual aperiodic family with no
+  same-slope one-exchange edges, isolating the remaining slope-fiber problem.
 - **What to do next:** Extend the verifier to richer line families and prove
   structural bounds for the aperiodic slope image, starting with `t=2` and
   quotient scales already separated by the existing M1 quotient ledgers.

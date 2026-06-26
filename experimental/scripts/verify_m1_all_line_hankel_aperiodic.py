@@ -278,11 +278,20 @@ def root_slice_profile(
     p: int,
 ) -> dict[str, int]:
     if t != 2:
+        slope_fibers: dict[int, int] = {}
+        for _, slope in locator_rows:
+            slope_fibers[slope] = slope_fibers.get(slope, 0) + 1
         return {
             "root_slices": 0,
             "same_slope_edges_covered": 0,
             "max_root_slice_noncontained": 0,
             "max_root_slice_aperiodic_members": 0,
+            "root_slice_slope_count": 0,
+            "root_slice_members": 0,
+            "root_slice_residual_locators": len(locator_rows),
+            "root_slice_residual_slopes": len({slope for _, slope in locator_rows}),
+            "root_slice_residual_max_slope_fiber": max(slope_fibers.values(), default=0),
+            "root_slice_residual_same_slope_edges": 0,
         }
 
     row_map = {tuple(sorted(complement)): slope for complement, slope in locator_rows}
@@ -304,6 +313,7 @@ def root_slice_profile(
 
     max_noncontained = 0
     max_aperiodic_members = 0
+    root_slice_members: set[tuple[int, ...]] = set()
     for core, slope in slice_keys:
         noncontained_count = 0
         aperiodic_member_count = 0
@@ -318,14 +328,42 @@ def root_slice_profile(
                 noncontained_count += 1
             if row_map.get(complement) == slope:
                 aperiodic_member_count += 1
+                root_slice_members.add(complement)
         max_noncontained = max(max_noncontained, noncontained_count)
         max_aperiodic_members = max(max_aperiodic_members, aperiodic_member_count)
+
+    residual_rows = [
+        (complement, slope)
+        for complement, slope in locator_rows
+        if tuple(sorted(complement)) not in root_slice_members
+    ]
+    residual_same_slope_edges = 0
+    residual_slope_fibers: dict[int, int] = {}
+    for _, slope in residual_rows:
+        residual_slope_fibers[slope] = residual_slope_fibers.get(slope, 0) + 1
+    for left in range(len(residual_rows)):
+        left_set = set(residual_rows[left][0])
+        left_slope = residual_rows[left][1]
+        for right in range(left + 1, len(residual_rows)):
+            if left_slope != residual_rows[right][1]:
+                continue
+            right_set = set(residual_rows[right][0])
+            if len(left_set - right_set) == 1 and len(right_set - left_set) == 1:
+                residual_same_slope_edges += 1
+    if residual_same_slope_edges:
+        raise AssertionError("root-slice peeling left a same-slope strict edge")
 
     return {
         "root_slices": len(slice_keys),
         "same_slope_edges_covered": same_slope_edges,
         "max_root_slice_noncontained": max_noncontained,
         "max_root_slice_aperiodic_members": max_aperiodic_members,
+        "root_slice_slope_count": len({slope for _, slope in slice_keys}),
+        "root_slice_members": len(root_slice_members),
+        "root_slice_residual_locators": len(residual_rows),
+        "root_slice_residual_slopes": len(residual_slope_fibers),
+        "root_slice_residual_max_slope_fiber": max(residual_slope_fibers.values(), default=0),
+        "root_slice_residual_same_slope_edges": residual_same_slope_edges,
     }
 
 
@@ -677,6 +715,16 @@ def verify_case_seed(case: Case, seed: int) -> dict[str, object]:
         "same_slope_edges_covered": root_profile["same_slope_edges_covered"],
         "max_root_slice_noncontained": root_profile["max_root_slice_noncontained"],
         "max_root_slice_aperiodic_members": root_profile["max_root_slice_aperiodic_members"],
+        "root_slice_slope_count": root_profile["root_slice_slope_count"],
+        "root_slice_members": root_profile["root_slice_members"],
+        "root_slice_residual_locators": root_profile["root_slice_residual_locators"],
+        "root_slice_residual_slopes": root_profile["root_slice_residual_slopes"],
+        "root_slice_residual_max_slope_fiber": (
+            root_profile["root_slice_residual_max_slope_fiber"]
+        ),
+        "root_slice_residual_same_slope_edges": (
+            root_profile["root_slice_residual_same_slope_edges"]
+        ),
         "different_slope_strict_pairs": quadratic_profile["different_slope_strict_pairs"],
         "different_slope_cores": quadratic_profile["different_slope_cores"],
         "quadratic_slices_checked": quadratic_profile["quadratic_slices_checked"],
@@ -714,6 +762,12 @@ def verify_case(case: Case) -> dict[str, object]:
         "max_aperiodic_strict_degree": max(row["aperiodic_max_strict_degree"] for row in rows),
         "max_root_slices": max(row["root_slices"] for row in rows),
         "max_root_slice_noncontained": max(row["max_root_slice_noncontained"] for row in rows),
+        "max_root_slice_members": max(row["root_slice_members"] for row in rows),
+        "max_root_slice_residual_locators": max(row["root_slice_residual_locators"] for row in rows),
+        "max_root_slice_residual_slopes": max(row["root_slice_residual_slopes"] for row in rows),
+        "max_root_slice_residual_slope_fiber": max(
+            row["root_slice_residual_max_slope_fiber"] for row in rows
+        ),
         "max_different_slope_strict_pairs": max(row["different_slope_strict_pairs"] for row in rows),
         "max_zero_determinant_slices": max(row["zero_determinant_slices"] for row in rows),
         "max_edge_zero_determinant_slices": max(row["edge_zero_determinant_slices"] for row in rows),
@@ -757,8 +811,14 @@ def main() -> None:
                 "strict_degree_max={aperiodic_max_strict_degree} "
                 "same_slope_strict={aperiodic_same_slope_strict_pairs} "
                 "root_slices={root_slices} "
+                "root_slice_slopes={root_slice_slope_count} "
+                "root_slice_members={root_slice_members} "
                 "root_slice_noncontained_max={max_root_slice_noncontained} "
                 "root_slice_aperiodic_max={max_root_slice_aperiodic_members} "
+                "root_residual_locators={root_slice_residual_locators} "
+                "root_residual_slopes={root_slice_residual_slopes} "
+                "root_residual_fiber_max={root_slice_residual_max_slope_fiber} "
+                "root_residual_same_slope={root_slice_residual_same_slope_edges} "
                 "different_slope_strict={different_slope_strict_pairs} "
                 "different_slope_cores={different_slope_cores} "
                 "quadratic_slices={quadratic_slices_checked} "
@@ -787,6 +847,10 @@ def main() -> None:
             f"max_strict_degree={summary['max_aperiodic_strict_degree']} "
             f"max_root_slices={summary['max_root_slices']} "
             f"max_root_slice_noncontained={summary['max_root_slice_noncontained']} "
+            f"max_root_slice_members={summary['max_root_slice_members']} "
+            f"max_root_residual_locators={summary['max_root_slice_residual_locators']} "
+            f"max_root_residual_slopes={summary['max_root_slice_residual_slopes']} "
+            f"max_root_residual_fiber={summary['max_root_slice_residual_slope_fiber']} "
             f"max_different_slope_strict={summary['max_different_slope_strict_pairs']} "
             f"max_zero_det_slices={summary['max_zero_determinant_slices']} "
             f"max_edge_zero_det_slices={summary['max_edge_zero_determinant_slices']} "
