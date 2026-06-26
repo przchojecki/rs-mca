@@ -14,6 +14,8 @@ F_17[t]/(t^2-3).  It verifies:
 * high-overlap pairs are possible exactly when 1/E is degree-<k on the
   overlap; the F_17^2 packet has four such four-point gates and no contained
   five-point support.
+* a gated four-point core realizes 12 bad slopes, beating the free
+  support-packing floor of 6 in this finite packet.
 """
 
 from __future__ import annotations
@@ -448,6 +450,55 @@ def verify_high_overlap_pair_gate(e_poly: Poly, k: int, sigma: int) -> dict[str,
     }
 
 
+def verify_gated_core_floor_packet(e_poly: Poly, k: int, sigma: int) -> dict[str, object]:
+    a = k + sigma
+    domain = tuple(range(1, 17))
+    gated_core = (1, 6, 11, 16)
+    c = len(gated_core)
+    if c <= k or c >= a:
+        raise AssertionError("expected a genuinely dense proper core")
+    if not residue_is_low_degree_on_subset(e_poly, gated_core, k):
+        raise AssertionError("core should pass the residue low-degree gate")
+
+    support_floor = (len(domain) - k) // sigma
+    gated_floor = (len(domain) - c) // (a - c)
+    if support_floor != 6 or gated_floor != 12 or gated_floor <= support_floor:
+        raise AssertionError((support_floor, gated_floor))
+
+    petals = tuple(x for x in domain if x not in gated_core)
+    supports = tuple(tuple(sorted(gated_core + (petal,))) for petal in petals)
+    slopes = tuple(elt(i) for i in range(gated_floor))
+    if len(supports) != gated_floor:
+        raise AssertionError("wrong gated-core support count")
+
+    anchor = {x: ZERO for x in gated_core}
+    q_polys = []
+    for support, slope, petal in zip(supports, slopes, petals):
+        q_poly = quotient_for_anchor_constraints(e_poly, slope, gated_core, anchor, k)
+        if poly_degree(q_poly) >= a:
+            raise AssertionError("gated-core witness degree too large")
+        if not all(poly_eval(q_poly, elt(x)) == ZERO for x in gated_core):
+            raise AssertionError("gated-core witness failed core anchor")
+        anchor[petal] = poly_eval(q_poly, elt(petal))
+        q_polys.append(q_poly)
+
+    for support, slope, q_poly in zip(supports, slopes, q_polys):
+        if not all(poly_eval(q_poly, elt(x)) == anchor[x] for x in support):
+            raise AssertionError("gated-core witness does not match anchor")
+        q_minus_slope = poly_sub(q_poly, [slope])
+        if not all(poly_eval(q_minus_slope, root) == ZERO for root in (ZERO, ALPHA)):
+            raise AssertionError("gated-core witness has wrong residue modulo E")
+        if not direction_not_low_degree(e_poly, support, k):
+            raise AssertionError("gated-core support should be noncontained")
+
+    return {
+        "core": gated_core,
+        "slope_count": len(slopes),
+        "free_packing_floor": support_floor,
+        "gated_floor": gated_floor,
+    }
+
+
 @dataclass(frozen=True)
 class Verification:
     core_optimization: dict[str, object]
@@ -456,6 +507,7 @@ class Verification:
     sunflower: dict[str, object]
     degenerate_support: dict[str, object]
     high_overlap_gate: dict[str, object]
+    gated_core: dict[str, object]
 
 
 def verify() -> Verification:
@@ -472,6 +524,7 @@ def verify() -> Verification:
         sunflower=verify_sunflower_floor_packet(e_poly, k, sigma),
         degenerate_support=verify_degenerate_support_packet(e_poly, k, sigma),
         high_overlap_gate=verify_high_overlap_pair_gate(e_poly, k, sigma),
+        gated_core=verify_gated_core_floor_packet(e_poly, k, sigma),
     )
 
 
@@ -503,6 +556,11 @@ def main() -> None:
         f"{len(result.high_overlap_gate['gated_overlaps'])} four-point gates, "
         f"{result.high_overlap_gate['high_overlap_pair_count']} support pairs, "
         f"contained supports={result.high_overlap_gate['contained_supports']}"
+    )
+    print(
+        "gated core floor: "
+        f"{result.gated_core['slope_count']} slopes on core {result.gated_core['core']} "
+        f"(free floor {result.gated_core['free_packing_floor']})"
     )
 
 

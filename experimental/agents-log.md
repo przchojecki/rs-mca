@@ -66,14 +66,18 @@ Keep entries concise and link to the relevant files.
   floor, showing that `floor((|D|-k)/sigma)` is the maximal freely attached
   support-packing term delivered by this construction.  A high-overlap pair
   gate then proves that distinct slopes sharing more than `k` anchor points
-  require `N/E` to be degree-`<k` on the overlap.  The first-class verifier
-  checks the finite locator-split, sunflower, non-sunflower degenerate, and
-  high-overlap gate packets.
+  require `N/E` to be degree-`<k` on the overlap.  A gated-core lower-floor
+  theorem shows that such dense cores can beat the free-packing floor; in the
+  finite packet a four-point gated core realizes 12 slopes versus the
+  sunflower/free-packing floor 6.  The first-class verifier checks the finite
+  locator-split, sunflower, non-sunflower degenerate, high-overlap gate, and
+  gated-core packets.
 - **How it is useful:** Sharpens the live F1 arbitrary-anchor balanced wall:
   any repaired F1 upper bound must allow this optimized sunflower term, and the
-  remaining super-floor obstruction must come from dense overlap cycles rather
+  remaining super-floor obstruction must come from dense-overlap packets rather
   than interpolation-free support packing.  The pair gate identifies the exact
-  residue-direction test every high-overlap edge in such a cycle must pass.
+  residue-direction test every high-overlap edge in such a packet must pass,
+  while the gated-core example shows the dense-overlap term is not vacuous.
   The finite `F_17^2` packets are now checked by a standard experimental
   script.
 - **What to do next:** Use the verifier as a regression test while attacking
