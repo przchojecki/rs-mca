@@ -856,6 +856,95 @@ If `alpha notin D`, Corollary 11 gives no landing complement away from
 monic coefficient away from `a+zb=0`, so again there are no landing
 complements away from the scalar-zero slope.
 
+## Corollary 14: Regular Fixed-Slope Fibers Lose Two Roots
+
+Assume `t=2`, but now allow arbitrary complement size `j >= 2`. Fix a slope
+`z`, put
+
+```text
+P_z = H_{2,j}(u) + z H_{2,j}(v),
+```
+
+and let `A_z` be the `2 x j` matrix formed from the first `j` columns of
+`P_z`, acting on the non-monic coefficients `(c_0,...,c_{j-1})` of a monic
+degree-`j` locator.
+
+If
+
+```text
+rank A_z = 2,
+```
+
+then the number of squarefree `D`-split monic degree-`j` locators satisfying
+
+```text
+P_z ell_T = 0
+```
+
+is at most
+
+```text
+binom(|D|, j-2).
+```
+
+The same bound holds after imposing noncontainment
+`H_{2,j}(v)ell_T != 0`.
+
+Moreover, as `z` varies, the slopes with `rank A_z <= 1` number at most two
+unless `rank A_z <= 1` identically in `z`. Hence outside at most two
+monic-rank-defective slopes, or outside the global defective branch, every
+fixed-slope fiber has the displayed codimension-two split-locator size.
+
+## Proof
+
+If the affine monic system is inconsistent, there is nothing to prove.
+Otherwise its solution set is an affine family
+
+```text
+P_0(X) + V,
+```
+
+where `P_0` is monic of degree `j`, `V` is a vector space of polynomials of
+degree `< j`, and
+
+```text
+dim V = j-2.
+```
+
+Let `L_T` be any landing locator in this family, with `T subset D` and
+`|T|=j`. The evaluation map
+
+```text
+ev_T: V -> F^T
+```
+
+is injective: if `Q in V` vanishes on every point of `T`, then `Q` has at
+least `j` distinct roots but degree `< j`, so `Q=0`. Thus some subset
+`R subset T` of size `j-2` already makes
+
+```text
+ev_R: V -> F^R
+```
+
+an isomorphism. Choose the first such `R` in any fixed ordering of the
+`(j-2)`-subsets of `T`.
+
+For a fixed `R`, the equations
+
+```text
+P(x)=0,        x in R,
+```
+
+determine the element `P in P_0+V` uniquely, because `ev_R` is invertible on
+`V`. Therefore the above choice injects landing locators into the
+`(j-2)`-subsets of `D`, giving the claimed bound.
+
+The noncontainment condition only deletes landing locators. The defective
+slope assertion is the same minor argument as in Corollary 10: the `2 x 2`
+minors of the affine-linear matrix `A_z` are quadratic polynomials in `z`; if
+one is not identically zero, the simultaneous zero set is contained in its at
+most two roots.
+
 ## Why This Helps F1
 
 The naive extension-field lift is already false: genuinely `F`-valued lines
@@ -900,7 +989,11 @@ fixed-root star to a contracted `j=2` fiber, with at most one additional
 zero-contraction slope unless the contraction vanishes globally. Corollary 13
 uses noncontainment to bound the whole fixed-root star branch by
 `1+binom(|D|-1,2)` slopes, so it is polynomial and no longer part of the
-aperiodic obstruction.
+aperiodic obstruction. Corollary 14 then removes the special role of `j=3`
+from the regular fixed-slope analysis: for every complement size, a
+monic-rank-two slope loses two roots, leaving only the two exceptional
+monic-rank-defective slopes or the global defective branch as the genuine
+same-slope obstruction.
 
 ## Verification
 
@@ -928,3 +1021,5 @@ monic-rank-defective rank-two, and rank-zero branches, plus global
 monic-rank-one finite-root, outside-domain, and infinity checks for
 Corollary 11. The finite-root check also verifies the contracted `j=2` star
 bound of Corollary 12 and the noncontained slope-count bound of Corollary 13.
+Finally, constructed `j=4` and `j=5` fixed-root fibers verify the arbitrary
+`j` codimension-two bound of Corollary 14.

@@ -18,6 +18,7 @@ import argparse
 import itertools
 import json
 from dataclasses import dataclass
+from math import comb
 from typing import Iterable, Sequence
 
 Element = tuple[int, int]
@@ -159,6 +160,35 @@ J3_FIBER_ONLY_CASES = (
         "expected_rank": 0,
         "expected_monic_rank": 0,
         "expected_landings": 20,
+    },
+)
+
+GENERAL_FIXED_SLOPE_CASES = (
+    {
+        "name": "j4 rank-two fiber through two fixed roots",
+        "p": 11,
+        "domain": (1, 2, 3, 4, 5, 6, 7, 8, 9, 10),
+        "j": 4,
+        "rows": (
+            ((1, 0), (2, 0), (4, 0), (8, 0), (5, 0)),
+            ((1, 0), (5, 0), (3, 0), (4, 0), (9, 0)),
+        ),
+        "expected_rank": 2,
+        "expected_monic_rank": 2,
+        "expected_landings": 28,
+    },
+    {
+        "name": "j5 rank-two fiber through two fixed roots",
+        "p": 11,
+        "domain": (1, 2, 3, 4, 5, 6, 7, 8, 9, 10),
+        "j": 5,
+        "rows": (
+            ((1, 0), (2, 0), (4, 0), (8, 0), (5, 0), (10, 0)),
+            ((1, 0), (5, 0), (3, 0), (4, 0), (9, 0), (1, 0)),
+        ),
+        "expected_rank": 2,
+        "expected_monic_rank": 2,
+        "expected_landings": 56,
     },
 )
 
@@ -780,6 +810,70 @@ def run_j3_fiber_case(params: dict[str, object]) -> dict[str, object]:
     }
 
 
+def run_general_fixed_slope_case(params: dict[str, object]) -> dict[str, object]:
+    p = int(params["p"])
+    j = int(params["j"])
+    field = QuadraticField(p=p, d=least_nonsquare(p))
+    domain = [field.element(int(value)) for value in params["domain"]]
+    rows = [[tuple(entry) for entry in row] for row in params["rows"]]
+    monic_rows = [row[:j] for row in rows]
+    rank = matrix_rank(field, rows)
+    monic_rank = matrix_rank(field, monic_rows)
+    landings = 0
+    for roots in itertools.combinations(domain, j):
+        locator = locator_coefficients(field, roots)
+        if all(dot(field, row, locator) == field.zero for row in rows):
+            landings += 1
+
+    regular_bound = comb(len(domain), j - 2)
+    mismatches: list[dict[str, object]] = []
+    if rank != params["expected_rank"]:
+        mismatches.append(
+            {
+                "type": "general_fiber_rank",
+                "expected": params["expected_rank"],
+                "actual": rank,
+            }
+        )
+    if monic_rank != params["expected_monic_rank"]:
+        mismatches.append(
+            {
+                "type": "general_fiber_monic_rank",
+                "expected": params["expected_monic_rank"],
+                "actual": monic_rank,
+            }
+        )
+    if landings != params["expected_landings"]:
+        mismatches.append(
+            {
+                "type": "general_fiber_landing_count",
+                "expected": params["expected_landings"],
+                "actual": landings,
+            }
+        )
+    if monic_rank == 2 and landings > regular_bound:
+        mismatches.append(
+            {
+                "type": "general_monic_rank2_bound",
+                "landings": landings,
+                "bound": regular_bound,
+            }
+        )
+
+    return {
+        "name": params["name"],
+        "field": f"F_{p}[u]/(u^2-{field.d})",
+        "domain_size": len(domain),
+        "j": j,
+        "rank": rank,
+        "monic_rank": monic_rank,
+        "landings": landings,
+        "regular_bound": regular_bound,
+        "passed": not mismatches,
+        "mismatches": mismatches[:5],
+    }
+
+
 def run_global_monic_rank_one_case(params: dict[str, object]) -> dict[str, object]:
     p = int(params["p"])
     field = QuadraticField(p=p, d=least_nonsquare(p))
@@ -1364,6 +1458,9 @@ def main() -> int:
     quadric_records = [run_quadric_case(case) for case in QUADRIC_ONLY_CASES]
     j2_fiber_records = [run_j2_fiber_case(case) for case in J2_FIBER_ONLY_CASES]
     j3_fiber_records = [run_j3_fiber_case(case) for case in J3_FIBER_ONLY_CASES]
+    general_fixed_slope_records = [
+        run_general_fixed_slope_case(case) for case in GENERAL_FIXED_SLOPE_CASES
+    ]
     global_monic_records = [
         run_global_monic_rank_one_case(case) for case in GLOBAL_MONIC_RANK_ONE_CASES
     ]
@@ -1374,6 +1471,7 @@ def main() -> int:
             + quadric_records
             + j2_fiber_records
             + j3_fiber_records
+            + general_fixed_slope_records
             + global_monic_records
         )
     )
@@ -1385,6 +1483,7 @@ def main() -> int:
         "quadric_only_cases": quadric_records,
         "j2_fiber_only_cases": j2_fiber_records,
         "j3_fiber_only_cases": j3_fiber_records,
+        "general_fixed_slope_cases": general_fixed_slope_records,
         "global_monic_rank_one_cases": global_monic_records,
     }
     if args.json:
@@ -1430,6 +1529,14 @@ def main() -> int:
                 f"  [{flag}] {record['name']}: {record['field']}, "
                 f"|D|={record['domain_size']}, rank={record['rank']}, "
                 f"monic_rank={record['monic_rank']}, landings={record['landings']}"
+            )
+        for record in general_fixed_slope_records:
+            flag = "PASS" if record["passed"] else "FAIL"
+            print(
+                f"  [{flag}] {record['name']}: {record['field']}, "
+                f"|D|={record['domain_size']}, j={record['j']}, "
+                f"monic_rank={record['monic_rank']}, landings={record['landings']} "
+                f"<= {record['regular_bound']}"
             )
         for record in global_monic_records:
             flag = "PASS" if record["passed"] else "FAIL"

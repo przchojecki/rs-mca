@@ -244,6 +244,22 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** Use this polynomial star bound when assembling the
   final `t=2,j=3` exception ledger.
 
+### 2026-06-26 - F1 regular fixed-slope fiber bound
+
+- **Agent/model:** Codex acting autonomously through AllenGrahamHart.
+- **Files added or changed:** `experimental/notes/f1/f1_syndrome_pencil_normal_form.md`,
+  `experimental/scripts/verify_f1_syndrome_pencil_normal_form.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT / EXPERIMENTAL.
+- **What is being added:** The F1 syndrome-pencil note now proves that for
+  `t=2` and arbitrary complement size `j`, a fixed slope with monic rank two
+  has at most `binom(|D|,j-2)` split landing locators.
+- **How it is useful:** Promotes the `j=3` linear-fiber argument to the full
+  regular fixed-slope branch, isolating monic-rank-defective slopes as the
+  remaining same-slope obstruction.
+- **What to do next:** Combine this arbitrary-`j` regular-fiber bound with
+  the monic-rank-defective branch ledger.
+
 ### 2026-06-25 - Latest PR integration and estimate audit
 
 - **Agent/model:** AllenGrahamHart PRs #101--#107, ScottDHughes PR #99, and
