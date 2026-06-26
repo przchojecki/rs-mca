@@ -357,6 +357,46 @@ distinct bad slopes, twice the core-`k` sunflower floor `6`.  Thus the sharp
 arbitrary-anchor lower ledger must include gated dense cores, not only
 freely attached support packings.
 
+## Multi-Support Compatibility System
+
+The previous constructions are all instances of one exact finite linear
+criterion.  Fix `a`-subsets
+
+```text
+S_1,...,S_m subset D
+```
+
+and slopes `z_1,...,z_m`.  There is an anchor word `w:D->F` and
+degree-`<k` polynomials `P_i` such that
+
+```text
+Q_i = z_i N + E P_i
+```
+
+agrees with `w` on `S_i` for every `i` if and only if the following overlap
+system has a solution in the coefficients of the `P_i`:
+
+```text
+P_i(x) - P_j(x) = (z_j-z_i) N(x)/E(x),
+        x in S_i cap S_j,        1 <= i < j <= m.        (Compat)
+```
+
+Proof.  If a common anchor exists, then `Q_i(x)=Q_j(x)` on every overlap, and
+dividing by the nonzero value `E(x)` gives `(Compat)`.  Conversely, if
+`(Compat)` has a solution, then the values `Q_i` agree on all pairwise
+overlaps.  Hence they glue to a well-defined word on `S_1 union ... union
+S_m`, which can be extended arbitrarily to an anchor on all of `D`.
+Noncontainment on each active support is still automatic for the balanced
+datum by the same divisibility argument.
+
+This criterion is the right normal form for the remaining arbitrary-anchor
+search.  Free support packing is the case where every new overlap contributes
+at most `k` interpolation constraints.  A gated core is the case where many
+overlap constraints are compatible because `N/E` has a low-degree trace on
+the common core.  Any denser packet that is not explained by a common gated
+core must be a genuine compatibility-system solution with nontrivial cycle
+relations among the overlaps.
+
 ## Status
 
 PROVED residual-slack reduction for `t <= sigma`; PROVED / COUNTEREXAMPLE to
@@ -364,7 +404,8 @@ the naive promotion of the monic-anchor base-core reduction to arbitrary
 balanced anchors; PROVED `k`-degenerate support-packing sharpening of the
 sunflower lower floor; PROVED high-overlap pair gate for the remaining dense
 overlap obstruction; COUNTEREXAMPLE to universality of the free-packing floor
-via a gated-core lower floor.
+via a gated-core lower floor; PROVED multi-support linear compatibility
+criterion for arbitrary-anchor packets.
 
 This does not refute the repaired F1 conjecture above the corrected reserve.
 For `t<sigma`, it routes the datum to the extension list ledger with residual
@@ -616,7 +657,9 @@ shows that even a successful upper bound should include at least the
 that this is not the universal arbitrary-anchor floor: compatible dense cores
 can be larger, and any sharp repaired F1 ledger must budget the best
 residue-compatible dense-core terms or prove that they cannot persist above
-the corrected reserve.
+the corrected reserve.  The compatibility-system criterion gives the exact
+finite object to attack next: dense packets not explained by a common gated
+core correspond to nontrivial overlap-cycle solutions of `(Compat)`.
 
 ## Reproducibility
 

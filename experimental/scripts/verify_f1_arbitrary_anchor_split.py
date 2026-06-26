@@ -16,6 +16,8 @@ F_17[t]/(t^2-3).  It verifies:
   five-point support.
 * a gated four-point core realizes 12 bad slopes, beating the free
   support-packing floor of 6 in this finite packet.
+* the exact multi-support compatibility linear system is solvable on the
+  constructed packets and rejects a blocked high-overlap pair.
 """
 
 from __future__ import annotations
@@ -112,6 +114,13 @@ def poly_degree(poly: Poly) -> int:
     return len(trim(poly)) - 1
 
 
+def elt_pow(x: Element, exponent: int) -> Element:
+    value = ONE
+    for _ in range(exponent):
+        value = mul(value, x)
+    return value
+
+
 def interpolate(points: tuple[int, ...], values: list[Element]) -> Poly:
     result: Poly = [ZERO]
     for i, xi_raw in enumerate(points):
@@ -164,6 +173,76 @@ def residue_is_low_degree_on_subset(
         poly_eval(candidate, elt(x)) == inv(poly_eval(e_poly, elt(x)))
         for x in subset[k:]
     )
+
+
+def linear_rank_and_consistency(matrix: list[list[Element]]) -> tuple[bool, int]:
+    """Return consistency and coefficient rank for an augmented F-matrix."""
+    if not matrix:
+        return True, 0
+    rows = [row[:] for row in matrix]
+    row_count = len(rows)
+    col_count = len(rows[0]) - 1
+    rank = 0
+    for col in range(col_count):
+        pivot = None
+        for idx in range(rank, row_count):
+            if rows[idx][col] != ZERO:
+                pivot = idx
+                break
+        if pivot is None:
+            continue
+        rows[rank], rows[pivot] = rows[pivot], rows[rank]
+        inv_pivot = inv(rows[rank][col])
+        rows[rank] = [mul(value, inv_pivot) for value in rows[rank]]
+        for idx in range(row_count):
+            if idx == rank or rows[idx][col] == ZERO:
+                continue
+            factor = rows[idx][col]
+            rows[idx] = [
+                sub(rows[idx][j], mul(factor, rows[rank][j]))
+                for j in range(col_count + 1)
+            ]
+        rank += 1
+
+    for row in rows:
+        if all(value == ZERO for value in row[:col_count]) and row[-1] != ZERO:
+            return False, rank
+    return True, rank
+
+
+def compatibility_system_stats(
+    e_poly: Poly,
+    supports: tuple[tuple[int, ...], ...],
+    slopes: tuple[Element, ...],
+    k: int,
+) -> dict[str, int | bool]:
+    """Solve P_i-P_j=(z_j-z_i)/E on all support overlaps."""
+    if len(supports) != len(slopes):
+        raise AssertionError("support and slope counts differ")
+    variable_count = len(supports) * k
+    rows: list[list[Element]] = []
+    equation_count = 0
+    for i in range(len(supports)):
+        for j in range(i + 1, len(supports)):
+            overlap = sorted(set(supports[i]).intersection(supports[j]))
+            for x_raw in overlap:
+                x = elt(x_raw)
+                row = [ZERO for _ in range(variable_count + 1)]
+                for degree in range(k):
+                    power = elt_pow(x, degree)
+                    row[i * k + degree] = add(row[i * k + degree], power)
+                    row[j * k + degree] = sub(row[j * k + degree], power)
+                row[-1] = div(sub(slopes[j], slopes[i]), poly_eval(e_poly, x))
+                rows.append(row)
+                equation_count += 1
+    consistent, rank = linear_rank_and_consistency(rows)
+    return {
+        "consistent": consistent,
+        "rank": rank,
+        "equations": equation_count,
+        "variables": variable_count,
+        "nullity": variable_count - rank if consistent else -1,
+    }
 
 
 def quotient_for_zero_core(
@@ -496,6 +575,54 @@ def verify_gated_core_floor_packet(e_poly: Poly, k: int, sigma: int) -> dict[str
         "slope_count": len(slopes),
         "free_packing_floor": support_floor,
         "gated_floor": gated_floor,
+        "supports": supports,
+        "slopes": slopes,
+    }
+
+
+def verify_compatibility_system(e_poly: Poly, k: int, sigma: int) -> dict[str, object]:
+    a = k + sigma
+    core = (1, 6, 11, 16)
+    domain = tuple(range(1, 17))
+    gated_supports = tuple(tuple(sorted(core + (x,))) for x in domain if x not in core)
+    gated_slopes = tuple(elt(i) for i in range(len(gated_supports)))
+    gated_stats = compatibility_system_stats(e_poly, gated_supports, gated_slopes, k)
+    if not gated_stats["consistent"]:
+        raise AssertionError("gated-core compatibility system should be solvable")
+
+    degenerate_supports = (
+        (1, 2, 3, 4, 5),
+        (1, 2, 3, 6, 7),
+        (1, 4, 6, 8, 9),
+        (2, 5, 8, 10, 11),
+        (3, 7, 10, 12, 13),
+        (4, 9, 12, 14, 15),
+    )
+    degenerate_slopes = tuple(elt(i) for i in range(len(degenerate_supports)))
+    degenerate_stats = compatibility_system_stats(
+        e_poly, degenerate_supports, degenerate_slopes, k
+    )
+    if not degenerate_stats["consistent"]:
+        raise AssertionError("k-degenerate compatibility system should be solvable")
+
+    blocked_supports = (
+        (1, 2, 3, 4, 5),
+        (1, 2, 3, 4, 6),
+    )
+    blocked_slopes = (ZERO, ONE)
+    if len(set(blocked_supports[0]).intersection(blocked_supports[1])) != k + 1:
+        raise AssertionError("blocked pair should share k+1 points")
+    blocked_stats = compatibility_system_stats(e_poly, blocked_supports, blocked_slopes, k)
+    if blocked_stats["consistent"]:
+        raise AssertionError("blocked high-overlap pair should be inconsistent")
+
+    if a != len(blocked_supports[0]):
+        raise AssertionError("blocked support size mismatch")
+
+    return {
+        "gated": gated_stats,
+        "degenerate": degenerate_stats,
+        "blocked": blocked_stats,
     }
 
 
@@ -508,6 +635,7 @@ class Verification:
     degenerate_support: dict[str, object]
     high_overlap_gate: dict[str, object]
     gated_core: dict[str, object]
+    compatibility: dict[str, object]
 
 
 def verify() -> Verification:
@@ -525,6 +653,7 @@ def verify() -> Verification:
         degenerate_support=verify_degenerate_support_packet(e_poly, k, sigma),
         high_overlap_gate=verify_high_overlap_pair_gate(e_poly, k, sigma),
         gated_core=verify_gated_core_floor_packet(e_poly, k, sigma),
+        compatibility=verify_compatibility_system(e_poly, k, sigma),
     )
 
 
@@ -561,6 +690,12 @@ def main() -> None:
         "gated core floor: "
         f"{result.gated_core['slope_count']} slopes on core {result.gated_core['core']} "
         f"(free floor {result.gated_core['free_packing_floor']})"
+    )
+    print(
+        "compatibility system: "
+        f"gated rank={result.compatibility['gated']['rank']} "
+        f"degenerate rank={result.compatibility['degenerate']['rank']} "
+        f"blocked consistent={result.compatibility['blocked']['consistent']}"
     )
 
 

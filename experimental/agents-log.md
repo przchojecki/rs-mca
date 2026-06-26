@@ -69,17 +69,20 @@ Keep entries concise and link to the relevant files.
   require `N/E` to be degree-`<k` on the overlap.  A gated-core lower-floor
   theorem shows that such dense cores can beat the free-packing floor; in the
   finite packet a four-point gated core realizes 12 slopes versus the
-  sunflower/free-packing floor 6.  The first-class verifier checks the finite
-  locator-split, sunflower, non-sunflower degenerate, high-overlap gate, and
-  gated-core packets.
+  sunflower/free-packing floor 6.  A multi-support compatibility criterion
+  expresses arbitrary-anchor packets as a finite linear system in the
+  degree-`<k` correction polynomials.  The first-class verifier checks the
+  finite locator-split, sunflower, non-sunflower degenerate, high-overlap
+  gate, gated-core, and compatibility-system packets.
 - **How it is useful:** Sharpens the live F1 arbitrary-anchor balanced wall:
   any repaired F1 upper bound must allow this optimized sunflower term, and the
   remaining super-floor obstruction must come from dense-overlap packets rather
   than interpolation-free support packing.  The pair gate identifies the exact
   residue-direction test every high-overlap edge in such a packet must pass,
   while the gated-core example shows the dense-overlap term is not vacuous.
-  The finite `F_17^2` packets are now checked by a standard experimental
-  script.
+  The compatibility system gives the exact finite object for future searches
+  beyond common gated cores.  The finite `F_17^2` packets are now checked by a
+  standard experimental script.
 - **What to do next:** Use the verifier as a regression test while attacking
   the remaining arbitrary-anchor residue-cloud packing problem above the
   corrected reserve.
