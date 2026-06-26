@@ -153,6 +153,45 @@ def slope_from_gate(a_vec: tuple[int, ...], b_vec: tuple[int, ...], p: int) -> i
     return slope
 
 
+def determinant_gate_t2(a_vec: tuple[int, ...], b_vec: tuple[int, ...], p: int) -> bool:
+    if len(a_vec) != 2 or len(b_vec) != 2:
+        raise AssertionError("determinant gate is only for t=2")
+    return (a_vec[0] * b_vec[1] - a_vec[1] * b_vec[0]) % p == 0
+
+
+def strict_exchange_profile(
+    locator_rows: list[tuple[tuple[int, ...], int]], t: int
+) -> dict[str, int]:
+    strict_pairs = 0
+    same_slope_strict_pairs = 0
+    degrees = [0] * len(locator_rows)
+    slope_fibers: dict[int, int] = {}
+    for _, slope in locator_rows:
+        slope_fibers[slope] = slope_fibers.get(slope, 0) + 1
+
+    for left in range(len(locator_rows)):
+        set_left = set(locator_rows[left][0])
+        slope_left = locator_rows[left][1]
+        for right in range(left + 1, len(locator_rows)):
+            set_right = set(locator_rows[right][0])
+            exchange = len(set_left - set_right)
+            if exchange != len(set_right - set_left):
+                raise AssertionError("equal-size complements should have symmetric exchange")
+            if 0 < exchange < t:
+                strict_pairs += 1
+                degrees[left] += 1
+                degrees[right] += 1
+                if slope_left == locator_rows[right][1]:
+                    same_slope_strict_pairs += 1
+
+    return {
+        "strict_pairs": strict_pairs,
+        "max_strict_degree": max(degrees, default=0),
+        "same_slope_strict_pairs": same_slope_strict_pairs,
+        "max_slope_fiber": max(slope_fibers.values(), default=0),
+    }
+
+
 def word_value(kind: str, x: int, p: int, seed: int) -> int:
     if kind == "f":
         return (
@@ -237,6 +276,8 @@ def verify_case_seed(case: Case, seed: int) -> dict[str, object]:
     aperiodic_locators = 0
     contained_core = 0
     direct_checks = 0
+    determinant_checks = 0
+    aperiodic_locator_rows: list[tuple[tuple[int, ...], int]] = []
 
     for complement in combinations(domain, j):
         ell = locator(complement, p)
@@ -246,6 +287,11 @@ def verify_case_seed(case: Case, seed: int) -> dict[str, object]:
             contained_core += 1
             continue
         slope = slope_from_gate(a_vec, b_vec, p)
+        if t == 2:
+            determinant_ok = determinant_gate_t2(a_vec, b_vec, p)
+            if determinant_ok != (slope is not None):
+                raise AssertionError("t=2 determinant gate disagrees with projective slope gate")
+            determinant_checks += 1
         if slope is None:
             continue
 
@@ -265,6 +311,7 @@ def verify_case_seed(case: Case, seed: int) -> dict[str, object]:
         else:
             aperiodic_locators += 1
             aperiodic_slopes.add(slope)
+            aperiodic_locator_rows.append((complement, slope))
 
     if not aperiodic_slopes <= bad_slopes:
         raise AssertionError("aperiodic slopes escaped bad slope set")
@@ -272,6 +319,7 @@ def verify_case_seed(case: Case, seed: int) -> dict[str, object]:
         raise AssertionError("quotient slopes escaped bad slope set")
     if bad_locators != quotient_locators + aperiodic_locators:
         raise AssertionError("charged/aperiodic locator partition failed")
+    exchange_profile = strict_exchange_profile(aperiodic_locator_rows, t)
 
     return {
         "name": case.name,
@@ -291,6 +339,11 @@ def verify_case_seed(case: Case, seed: int) -> dict[str, object]:
         "quotient_slopes": len(quotient_slopes),
         "aperiodic_locators": aperiodic_locators,
         "aperiodic_slopes": len(aperiodic_slopes),
+        "aperiodic_max_slope_fiber": exchange_profile["max_slope_fiber"],
+        "aperiodic_strict_pairs": exchange_profile["strict_pairs"],
+        "aperiodic_max_strict_degree": exchange_profile["max_strict_degree"],
+        "aperiodic_same_slope_strict_pairs": exchange_profile["same_slope_strict_pairs"],
+        "determinant_checks": determinant_checks,
         "direct_checks": direct_checks,
     }
 
@@ -303,6 +356,9 @@ def verify_case(case: Case) -> dict[str, object]:
         "max_bad_slopes": max(row["bad_slopes"] for row in rows),
         "max_quotient_slopes": max(row["quotient_slopes"] for row in rows),
         "max_aperiodic_slopes": max(row["aperiodic_slopes"] for row in rows),
+        "max_aperiodic_slope_fiber": max(row["aperiodic_max_slope_fiber"] for row in rows),
+        "max_aperiodic_strict_pairs": max(row["aperiodic_strict_pairs"] for row in rows),
+        "max_aperiodic_strict_degree": max(row["aperiodic_max_strict_degree"] for row in rows),
         "total_direct_checks": sum(row["direct_checks"] for row in rows),
     }
 
@@ -323,21 +379,30 @@ def main() -> None:
                 "bad_slopes={bad_slopes} quotient_locators={quotient_locators} "
                 "quotient_slopes={quotient_slopes} aperiodic_locators={aperiodic_locators} "
                 "aperiodic_slopes={aperiodic_slopes} contained_core={contained_core_locators} "
-                "direct_checks={direct_checks}".format(**row)
+                "aperiodic_fiber_max={aperiodic_max_slope_fiber} "
+                "strict_pairs={aperiodic_strict_pairs} "
+                "strict_degree_max={aperiodic_max_strict_degree} "
+                "same_slope_strict={aperiodic_same_slope_strict_pairs} "
+                "det_checks={determinant_checks} direct_checks={direct_checks}".format(**row)
             )
         print(
             f"{case.name}: seeds={len(case.seeds)} "
             f"max_bad_slopes={summary['max_bad_slopes']} "
             f"max_quotient_slopes={summary['max_quotient_slopes']} "
             f"max_aperiodic_slopes={summary['max_aperiodic_slopes']} "
+            f"max_aperiodic_fiber={summary['max_aperiodic_slope_fiber']} "
+            f"max_strict_pairs={summary['max_aperiodic_strict_pairs']} "
+            f"max_strict_degree={summary['max_aperiodic_strict_degree']} "
             f"direct_checks={summary['total_direct_checks']}"
         )
     max_aperiodic = max(summary["max_aperiodic_slopes"] for summary in summaries)
+    max_strict_degree = max(summary["max_aperiodic_strict_degree"] for summary in summaries)
     total_lines = sum(len(summary["case"].seeds) for summary in summaries)
     print(
         "m1_all_line_hankel_aperiodic: PASS "
         f"cases={len(summaries)} line_samples={total_lines} "
-        f"max_aperiodic_slopes={max_aperiodic}"
+        f"max_aperiodic_slopes={max_aperiodic} "
+        f"max_strict_degree={max_strict_degree}"
     )
 
 

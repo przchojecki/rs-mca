@@ -41,8 +41,10 @@ Keep entries concise and link to the relevant files.
   all-line aperiodic residue-packing target.  It uses the Hankel-pencil test
   to partition split complement locators into contained/tangent-core,
   whole-fiber quotient-periodic, and aperiodic slope images, with a verifier
-  that sweeps twelve deterministic line samples and cross-checks every
-  reported bad slope by direct RS interpolation.
+  that sweeps twelve deterministic line samples, verifies the `t=2`
+  determinant gate, reports strict one-exchange profiles for residual
+  aperiodic locators, and cross-checks every reported bad slope by direct RS
+  interpolation.
 - **How it is useful:** This turns the MCA half of the prize into a concrete
   counterexample-first object: after tangent and quotient-periodic locators
   are charged, the remaining all-line obstruction is the aperiodic split-locator

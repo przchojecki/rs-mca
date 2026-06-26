@@ -96,6 +96,45 @@ Thus the residual M1 problem is no longer a question about support-wise MCA
 definitions.  It is the slope image of the aperiodic split-locator incidence
 inside the Hankel pencil.
 
+## The `t=2` Determinant And Strict-Exchange Profile
+
+In the first nontrivial slack window `t=2`, put
+
+```text
+a_T = H_{2,j}(u) ell_T,        b_T = H_{2,j}(v) ell_T  in F^2.
+```
+
+Then a split complement contributes a noncontained bad slope if and only if
+
+```text
+b_T != 0,        det[a_T b_T] = 0.
+```
+
+When this holds, the slope is the unique scalar
+
+```text
+z_T = -a_{T,i}/b_{T,i}
+```
+
+for any coordinate `i` with `b_{T,i} != 0`.  Thus the residual aperiodic M1
+object in this window is the image of a rational slope map on the aperiodic
+part of the split-locator determinant locus.
+
+The support-overlap form of the same object is also explicit.  Since
+`S=D\T` has size `n-j=k+t`, two supports have strict high overlap
+`|S cap S'|>k` exactly when the complements satisfy
+
+```text
+|T \ T'| = |T' \ T| < t.
+```
+
+For `t=2`, this is the one-exchange graph on complement locators.  After
+quotient-periodic locators are charged, the verifier reports the one-exchange
+profile of the remaining aperiodic determinant locus: total strict edges,
+maximum strict degree, maximum slope-fiber size, and same-slope strict edges.
+These are not the final M1 theorem, but they are the finite statistics that a
+packing or inverse theorem must eventually control uniformly.
+
 ## Verifier
 
 The companion verifier
@@ -112,12 +151,18 @@ enumerates small cyclic-domain cases.  For each case it:
 - applies the projective slope gate for `t=2`;
 - cross-checks every bad slope by direct RS interpolation on `D\T`;
 - labels whole-fiber quotient-periodic complements at the selected scales;
-- reports the aperiodic slope image after charged locators are removed.
+- reports the aperiodic slope image after charged locators are removed;
+- in the `t=2` rows, verifies the determinant gate and reports the strict
+  one-exchange profile of the aperiodic locator family.
 
 The default audit currently checks three cyclic-domain parameter rows and
 twelve deterministic line samples.  The largest observed residual aperiodic
 slope image in this smoke packet has size `16`, after direct interpolation
-checks on every reported support-wise bad slope.
+checks on every reported support-wise bad slope.  In the full-domain
+`F_17`, `j=4`, `t=2` row, the residual aperiodic locus has maximum slope
+fiber `16`, strict one-exchange degree `15`, and `190` strict one-exchange
+pairs; these are exactly the profile quantities a packing proof must shrink or
+explain structurally.
 
 This is an audit/verifier for the M1 target, not a proof of the desired
 polynomial all-line bound.  Its purpose is to make future counterexample-first
