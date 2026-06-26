@@ -192,6 +192,25 @@ def curve_plus_list_numerator(n: int, agreement: int, degree: int) -> int:
     return degree * (n - agreement + 1) + 1
 
 
+def shared_sampler_union_envelope(
+    challenge_to_parameter: list[Any], bad_parameter_counts: list[int]
+) -> Fraction:
+    return adversarial_fiber_envelope(
+        challenge_to_parameter, sum(bad_parameter_counts)
+    )
+
+
+def separate_sampler_union_bound(
+    ledgers: list[tuple[list[Any], int]]
+) -> Fraction:
+    total = Fraction(0, 1)
+    for challenge_to_parameter, bad_parameter_count in ledgers:
+        total += adversarial_fiber_envelope(
+            challenge_to_parameter, bad_parameter_count
+        )
+    return min(Fraction(1, 1), total)
+
+
 def check_challenge_pullback_ledgers(target: int) -> None:
     identity = list(range(8))
     assert adversarial_fiber_envelope(identity, 3) == Fraction(3, 8)
@@ -268,6 +287,49 @@ def check_rank_aware_active_budgets(n: int, target: int) -> None:
         assert curve_plus_list_numerator(n, 512, degree) > rank_loss_budget
 
 
+def check_challenge_composition_ledgers(n: int, target: int) -> None:
+    full_rank_budget = rank_budget(17, 32, target)
+    rank_loss_budget = rank_budget(17, 31, target)
+
+    # The active line-plus-list ledger is a shared-sampler union numerator;
+    # use a small uniform sampler to test the envelope shape, and the rank
+    # budget below for the actual F_17^32 denominator.
+    line_508 = n - 508 + 1
+    list_508 = 1
+    assert line_508 == 5
+    assert shared_sampler_union_envelope(
+        list(range(17**2)), [line_508, list_508]
+    ) == Fraction(6, 17**2)
+    assert line_508 + list_508 <= full_rank_budget
+    assert line_508 + list_508 > rank_loss_budget
+
+    # Separate challenge maps are union-bounded by a sum of envelopes; their
+    # denominators do not multiply for a union event.
+    identity_5 = list(range(5))
+    identity_7 = list(range(7))
+    separate = separate_sampler_union_bound([(identity_5, 1), (identity_7, 1)])
+    assert separate == Fraction(1, 5) + Fraction(1, 7)
+    assert separate != Fraction(1, 35)
+
+    # When all terms use the same uniform sampler, combining numerators before
+    # applying the envelope agrees with summing only in the uniform case.
+    shared_uniform = shared_sampler_union_envelope(identity_7, [2, 3])
+    assert shared_uniform == Fraction(5, 7)
+    assert shared_uniform == (
+        adversarial_fiber_envelope(identity_7, 2)
+        + adversarial_fiber_envelope(identity_7, 3)
+    )
+
+    # For a nonuniform sampler, the single combined envelope is sharper than
+    # summing separate worst-case envelopes for each ledger term.
+    nonuniform = [0, 0, 0, 1, 1, 2, 3, 4]
+    assert shared_sampler_union_envelope(nonuniform, [1, 1]) == Fraction(5, 8)
+    assert (
+        adversarial_fiber_envelope(nonuniform, 1)
+        + adversarial_fiber_envelope(nonuniform, 1)
+    ) == Fraction(3, 4)
+
+
 def main() -> None:
     n = 512
     k = 256
@@ -276,6 +338,7 @@ def main() -> None:
     budget = q // target
     check_challenge_pullback_ledgers(target)
     check_rank_aware_active_budgets(n, target)
+    check_challenge_composition_ledgers(n, target)
 
     print("Field and target")
     print(f"q = 17^32 = {q}")
@@ -341,6 +404,7 @@ def main() -> None:
         f"a=508 numerator {line_plus_list_numerator(n, 508)} safe"
     )
     print("rank <= 31: no positive-numerator adjacent ledger meets 2^-128")
+    print("shared/separate challenge composition ledgers: PASS")
     print("challenge pullback ledgers: PASS")
 
 if __name__ == "__main__":

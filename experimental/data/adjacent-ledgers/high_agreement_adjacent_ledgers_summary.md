@@ -204,6 +204,38 @@ protocol-ledger statement, not a new coding theorem: it applies only after the
 protocol reduction has identified which printed coding numerators are charged
 to the same sampled parameter.
 
+The same envelope also fixes how multiple adjacent terms compose.  If several
+bad-parameter ledgers are charged to the same challenge and the same sampler
+with total integer numerator
+
+```text
+N = N_1 + ... + N_s,
+```
+
+then the shared-challenge union bound is the single envelope evaluated at `N`.
+For a rank-`r` linear sampler this is
+
+```text
+min(N,17^r) / 17^r.
+```
+
+This is the calculation used by the line-plus-list and curve-plus-list rows
+above.  If instead the protocol uses separate challenge maps
+
+```text
+phi_i : K_i -> X_i,
+```
+
+the union bound is the sum of the separate envelopes,
+
+```text
+Pr[any bad term] <= Envelope(phi_1,N_1) + ... + Envelope(phi_s,N_s).
+```
+
+Those denominators do not multiply for a union event; a product denominator is
+available only for an intersection-style event with independence that the
+protocol proof actually consumes.
+
 The result is not a general SNARK theorem.  It is a coding-ledger theorem for
 protocol reductions that consume exactly the printed coding terms over the
 printed field, plus any separately added query/folding/cryptographic errors.
