@@ -192,6 +192,84 @@ def strict_exchange_profile(
     }
 
 
+def fixed_slope_incidence(
+    u: tuple[int, ...],
+    v: tuple[int, ...],
+    complement: tuple[int, ...],
+    slope: int,
+    t: int,
+    j: int,
+    p: int,
+) -> tuple[bool, bool]:
+    ell = locator(complement, p)
+    a_vec = hankel_apply(u, t, j, ell, p)
+    b_vec = hankel_apply(v, t, j, ell, p)
+    incident = all((a + slope * b) % p == 0 for a, b in zip(a_vec, b_vec))
+    noncontained = any(b != 0 for b in b_vec)
+    return incident, noncontained
+
+
+def root_slice_profile(
+    locator_rows: list[tuple[tuple[int, ...], int]],
+    domain: tuple[int, ...],
+    u: tuple[int, ...],
+    v: tuple[int, ...],
+    t: int,
+    j: int,
+    p: int,
+) -> dict[str, int]:
+    if t != 2:
+        return {
+            "root_slices": 0,
+            "same_slope_edges_covered": 0,
+            "max_root_slice_noncontained": 0,
+            "max_root_slice_aperiodic_members": 0,
+        }
+
+    row_map = {tuple(sorted(complement)): slope for complement, slope in locator_rows}
+    slice_keys: set[tuple[tuple[int, ...], int]] = set()
+    same_slope_edges = 0
+    for left in range(len(locator_rows)):
+        left_set = set(locator_rows[left][0])
+        left_slope = locator_rows[left][1]
+        for right in range(left + 1, len(locator_rows)):
+            right_set = set(locator_rows[right][0])
+            if left_slope != locator_rows[right][1]:
+                continue
+            if len(left_set - right_set) == 1 and len(right_set - left_set) == 1:
+                same_slope_edges += 1
+                core = tuple(sorted(left_set & right_set))
+                if len(core) != j - 1:
+                    raise AssertionError("one-exchange core has wrong size")
+                slice_keys.add((core, left_slope))
+
+    max_noncontained = 0
+    max_aperiodic_members = 0
+    for core, slope in slice_keys:
+        noncontained_count = 0
+        aperiodic_member_count = 0
+        for x in domain:
+            if x in core:
+                continue
+            complement = tuple(sorted(core + (x,)))
+            incident, noncontained = fixed_slope_incidence(u, v, complement, slope, t, j, p)
+            if not incident:
+                raise AssertionError("same-slope edge did not extend to full root slice")
+            if noncontained:
+                noncontained_count += 1
+            if row_map.get(complement) == slope:
+                aperiodic_member_count += 1
+        max_noncontained = max(max_noncontained, noncontained_count)
+        max_aperiodic_members = max(max_aperiodic_members, aperiodic_member_count)
+
+    return {
+        "root_slices": len(slice_keys),
+        "same_slope_edges_covered": same_slope_edges,
+        "max_root_slice_noncontained": max_noncontained,
+        "max_root_slice_aperiodic_members": max_aperiodic_members,
+    }
+
+
 def word_value(kind: str, x: int, p: int, seed: int) -> int:
     if kind == "f":
         return (
@@ -320,6 +398,9 @@ def verify_case_seed(case: Case, seed: int) -> dict[str, object]:
     if bad_locators != quotient_locators + aperiodic_locators:
         raise AssertionError("charged/aperiodic locator partition failed")
     exchange_profile = strict_exchange_profile(aperiodic_locator_rows, t)
+    root_profile = root_slice_profile(aperiodic_locator_rows, domain, u, v, t, j, p)
+    if root_profile["same_slope_edges_covered"] != exchange_profile["same_slope_strict_pairs"]:
+        raise AssertionError("root-slice coverage missed same-slope strict edges")
 
     return {
         "name": case.name,
@@ -343,6 +424,10 @@ def verify_case_seed(case: Case, seed: int) -> dict[str, object]:
         "aperiodic_strict_pairs": exchange_profile["strict_pairs"],
         "aperiodic_max_strict_degree": exchange_profile["max_strict_degree"],
         "aperiodic_same_slope_strict_pairs": exchange_profile["same_slope_strict_pairs"],
+        "root_slices": root_profile["root_slices"],
+        "same_slope_edges_covered": root_profile["same_slope_edges_covered"],
+        "max_root_slice_noncontained": root_profile["max_root_slice_noncontained"],
+        "max_root_slice_aperiodic_members": root_profile["max_root_slice_aperiodic_members"],
         "determinant_checks": determinant_checks,
         "direct_checks": direct_checks,
     }
@@ -359,6 +444,8 @@ def verify_case(case: Case) -> dict[str, object]:
         "max_aperiodic_slope_fiber": max(row["aperiodic_max_slope_fiber"] for row in rows),
         "max_aperiodic_strict_pairs": max(row["aperiodic_strict_pairs"] for row in rows),
         "max_aperiodic_strict_degree": max(row["aperiodic_max_strict_degree"] for row in rows),
+        "max_root_slices": max(row["root_slices"] for row in rows),
+        "max_root_slice_noncontained": max(row["max_root_slice_noncontained"] for row in rows),
         "total_direct_checks": sum(row["direct_checks"] for row in rows),
     }
 
@@ -383,6 +470,9 @@ def main() -> None:
                 "strict_pairs={aperiodic_strict_pairs} "
                 "strict_degree_max={aperiodic_max_strict_degree} "
                 "same_slope_strict={aperiodic_same_slope_strict_pairs} "
+                "root_slices={root_slices} "
+                "root_slice_noncontained_max={max_root_slice_noncontained} "
+                "root_slice_aperiodic_max={max_root_slice_aperiodic_members} "
                 "det_checks={determinant_checks} direct_checks={direct_checks}".format(**row)
             )
         print(
@@ -393,6 +483,8 @@ def main() -> None:
             f"max_aperiodic_fiber={summary['max_aperiodic_slope_fiber']} "
             f"max_strict_pairs={summary['max_aperiodic_strict_pairs']} "
             f"max_strict_degree={summary['max_aperiodic_strict_degree']} "
+            f"max_root_slices={summary['max_root_slices']} "
+            f"max_root_slice_noncontained={summary['max_root_slice_noncontained']} "
             f"direct_checks={summary['total_direct_checks']}"
         )
     max_aperiodic = max(summary["max_aperiodic_slopes"] for summary in summaries)

@@ -135,6 +135,60 @@ maximum strict degree, maximum slope-fiber size, and same-slope strict edges.
 These are not the final M1 theorem, but they are the finite statistics that a
 packing or inverse theorem must eventually control uniformly.
 
+## Same-Slope One-Exchange Root Slice
+
+The same-slope part of the strict one-exchange profile has an exact structural
+explanation.  Fix `t=2` and a slope `z`, and write
+
+```text
+A_z = H_{2,j}(u)+zH_{2,j}(v).
+```
+
+Let `R subset D` have size `j-1`, and write
+
+```text
+L_R(X)=c_0+c_1X+...+c_{j-1}X^{j-1}.
+```
+
+For `x notin R`,
+
+```text
+L_{R union {x}}(X) = X L_R(X) - x L_R(X).
+```
+
+Thus its locator vector is affine in `x`:
+
+```text
+ell_{R union {x}} = s_R - x p_R,
+```
+
+where `s_R` is the coefficient vector of `X L_R` and `p_R` is the coefficient
+vector of `L_R`, padded to length `j+1`.  If two distinct exchanged roots
+`x,y` give the same slope `z`, then
+
+```text
+A_z(s_R-xp_R)=0,        A_z(s_R-yp_R)=0.
+```
+
+Subtracting gives `A_z p_R=0`, and then also `A_z s_R=0`.  Therefore
+
+```text
+A_z ell_{R union {w}}=0        for every w in D\R.
+```
+
+So every same-slope strict one-exchange edge lies in a full fixed-slope
+root-slice incidence packet.  The only remaining support-wise filter on that
+slice is noncontainment, namely whether
+
+```text
+H_{2,j}(v) ell_{R union {w}} != 0.
+```
+
+This separates two jobs in the M1 proof search: same-slope strict collisions
+belong to root-slice/tangent-style ledgers, while the genuinely aperiodic
+packing problem is the slope image of determinant-locus packets after these
+root slices and the quotient-periodic classes are charged.
+
 ## Verifier
 
 The companion verifier
@@ -153,7 +207,9 @@ enumerates small cyclic-domain cases.  For each case it:
 - labels whole-fiber quotient-periodic complements at the selected scales;
 - reports the aperiodic slope image after charged locators are removed;
 - in the `t=2` rows, verifies the determinant gate and reports the strict
-  one-exchange profile of the aperiodic locator family.
+  one-exchange profile of the aperiodic locator family;
+- checks that every same-slope strict one-exchange edge extends to the full
+  fixed-slope root slice predicted by the lemma above.
 
 The default audit currently checks three cyclic-domain parameter rows and
 twelve deterministic line samples.  The largest observed residual aperiodic
@@ -161,8 +217,9 @@ slope image in this smoke packet has size `16`, after direct interpolation
 checks on every reported support-wise bad slope.  In the full-domain
 `F_17`, `j=4`, `t=2` row, the residual aperiodic locus has maximum slope
 fiber `16`, strict one-exchange degree `15`, and `190` strict one-exchange
-pairs; these are exactly the profile quantities a packing proof must shrink or
-explain structurally.
+pairs.  Of these strict edges, `78` are same-slope edges, and the verifier
+certifies that they are covered by fixed-slope root slices.  These are exactly
+the profile quantities a packing proof must shrink or explain structurally.
 
 This is an audit/verifier for the M1 target, not a proof of the desired
 polynomial all-line bound.  Its purpose is to make future counterexample-first
