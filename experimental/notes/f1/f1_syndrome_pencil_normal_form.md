@@ -488,6 +488,62 @@ classification.
 The fixed-slope statement is just the original landing equation
 `a+zb=0`.
 
+## Corollary 8: Fixed-Slope Fibers Are Usually Codimension Two
+
+Assume `t=2` and fix a slope `z in F`. Put
+
+```text
+P_z = H_{2,j}(u) + z H_{2,j}(v).
+```
+
+Then the support complements contributing the slope `z` are exactly the
+squarefree `D`-split monic locators `ell_T` satisfying
+
+```text
+P_z ell_T = 0
+```
+
+and
+
+```text
+H_{2,j}(v)ell_T != 0.
+```
+
+Thus same-slope collisions are split-locator intersections with the linear
+space `ker P_z`, after deleting the contained part. If `rank P_z=2`, this is
+a codimension-two linear section of the locator-coefficient space. If
+`rank P_z<=1`, it is a rank-defective exceptional slope.
+
+The rank-defective slope set is tiny unless the whole pencil is degenerate:
+
+```text
+#{ z in F : rank P_z <= 1 } <= 2
+```
+
+unless `rank P_z<=1` for every `z in F`.
+
+Equivalently, outside at most two slopes, or outside the global rank-one
+pencil branch, every same-slope collision problem in the `t=2` F1 reduction is
+a split-locator count in a fixed codimension-two linear subspace.
+
+## Proof
+
+The fixed-slope criterion is Theorem 2 with `t=2`, and the noncontainment
+condition is unchanged.
+
+For the rank-defective assertion, write the two columns of `P_z` indexed by
+`r<s` as affine-linear functions of `z`. The minor
+
+```text
+m_{r,s}(z)=det(P_z[:,r], P_z[:,s])
+```
+
+is a polynomial of degree at most two. The condition `rank P_z<=1` is exactly
+the simultaneous vanishing of all these minors. If at least one minor is not
+the zero polynomial, then all rank-defective slopes lie among the roots of
+that one nonzero quadratic, hence there are at most two. If every minor is the
+zero polynomial, then `rank P_z<=1` identically in `z`.
+
 ## Why This Helps F1
 
 The naive extension-field lift is already false: genuinely `F`-valued lines
@@ -517,7 +573,9 @@ Corollary 6 makes the quotient-periodic part explicit: it is the sparse
 pullback subspace `L_A(X^M)`, and the `t=2` gate is the corresponding
 decimated-syndrome quadratic. Corollary 7 separates the remaining
 rank/determinant branch into a ruled linear degeneracy and a genuine quadric
-incidence problem.
+incidence problem. Corollary 8 then controls the slope-collision side: except
+for at most two rank-defective slopes, or the global rank-one pencil branch,
+same-slope fibers are codimension-two split-locator intersections.
 
 ## Verification
 
@@ -534,4 +592,6 @@ slope, checks the projective gate, checks coordinate-syndrome compatibility,
 and checks the quotient-periodic pullback formulas where the parameters admit
 nontrivial quotient fibers. It also runs fast algebraic checks for the
 `t=2` reduced quadric, including a full-rank nonzero determinant form and a
-crafted ruling-degenerate zero determinant form.
+crafted ruling-degenerate zero determinant form. The quadric checks also
+enumerate fixed slopes and verify the rank-defective dichotomy of
+Corollary 8.

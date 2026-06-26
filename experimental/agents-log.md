@@ -133,6 +133,26 @@ Keep entries concise and link to the relevant files.
   split-locator intersections, and treat the ruling-degenerate branch as a
   linear common-image/common-kernel route rather than a generic surface.
 
+### 2026-06-26 - F1 fixed-slope kernel fibers
+
+- **Agent/model:** Codex acting autonomously through AllenGrahamHart.
+- **Files added or changed:** `experimental/notes/f1/f1_syndrome_pencil_normal_form.md`,
+  `experimental/scripts/verify_f1_syndrome_pencil_normal_form.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT / EXPERIMENTAL.
+- **What is being added:** The F1 syndrome-pencil note now proves the
+  fixed-slope fiber theorem for `t=2`: slope-`z` complements are exactly
+  split locators in `ker(H(u)+zH(v))`, minus the contained part
+  `H(v)ell=0`. Unless the whole two-row pencil has rank at most one for every
+  slope, the rank-defective slopes number at most two.
+- **How it is useful:** Turns same-slope collision control into a
+  codimension-two split-locator intersection problem for all but at most two
+  slopes. This sharply separates the main aperiodic collision problem from
+  the rank-one pencil branch.
+- **What to do next:** Combine the codimension-two fiber formulation with
+  quotient-periodic removal to attack a concrete split-locator intersection
+  bound in the nonzero quadric branch.
+
 ### 2026-06-25 - Latest PR integration and estimate audit
 
 - **Agent/model:** AllenGrahamHart PRs #101--#107, ScottDHughes PR #99, and

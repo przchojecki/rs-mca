@@ -39,6 +39,7 @@ QUADRIC_ONLY_CASES = (
         "v": ((2, 6), (4, 5), (8, 7), (9, 1), (15, 12)),
         "expected_rank": 4,
         "expected_zero": False,
+        "expected_global_rank_defective": False,
     },
     {
         "name": "kernel-ruling zero quadric",
@@ -48,6 +49,17 @@ QUADRIC_ONLY_CASES = (
         "v": ((2, 0), (0, 0), (0, 0), (0, 0), (2, 0)),
         "expected_rank": 2,
         "expected_zero": True,
+        "expected_global_rank_defective": False,
+    },
+    {
+        "name": "global rank-one pencil",
+        "p": 17,
+        "j": 3,
+        "u": ((1, 0), (0, 0), (0, 0), (0, 0), (0, 0)),
+        "v": ((2, 0), (0, 0), (0, 0), (0, 0), (0, 0)),
+        "expected_rank": 1,
+        "expected_zero": True,
+        "expected_global_rank_defective": True,
     },
 )
 
@@ -414,6 +426,21 @@ def is_zero_quadratic(
     return all(value == field.zero for value in coeffs.values())
 
 
+def pencil_at_slope(
+    field: QuadraticField,
+    left: Matrix,
+    right: Matrix,
+    slope: Element,
+) -> Matrix:
+    return [
+        [
+            field.add(left[row][col], field.mul(slope, right[row][col]))
+            for col in range(len(left[0]))
+        ]
+        for row in range(len(left))
+    ]
+
+
 def standard_basis(field: QuadraticField, width: int) -> list[list[Element]]:
     basis = []
     for index in range(width):
@@ -430,10 +457,18 @@ def run_quadric_case(params: dict[str, object]) -> dict[str, object]:
     field = QuadraticField(p=p, d=least_nonsquare(p))
     u = [tuple(value) for value in params["u"]]
     v = [tuple(value) for value in params["v"]]
-    rows = hankel_matrix(u, t, j) + hankel_matrix(v, t, j)
+    left = hankel_matrix(u, t, j)
+    right = hankel_matrix(v, t, j)
+    rows = left + right
     rank = matrix_rank(field, rows)
     coeffs = determinant_quadratic_coefficients(field, rows)
     zero_quadric = is_zero_quadratic(field, coeffs)
+    rank_defective_slopes = [
+        slope
+        for slope in field.elements()
+        if matrix_rank(field, pencil_at_slope(field, left, right, slope)) <= 1
+    ]
+    global_rank_defective = len(rank_defective_slopes) == field.p * field.p
 
     mismatches: list[dict[str, object]] = []
     if rank != params["expected_rank"]:
@@ -450,6 +485,22 @@ def run_quadric_case(params: dict[str, object]) -> dict[str, object]:
         )
     if zero_quadric and rank > 2:
         mismatches.append({"type": "zero_quadric_rank_bound", "rank": rank})
+    if global_rank_defective != params["expected_global_rank_defective"]:
+        mismatches.append(
+            {
+                "type": "global_rank_defective",
+                "expected": params["expected_global_rank_defective"],
+                "actual": global_rank_defective,
+            }
+        )
+    if not global_rank_defective and len(rank_defective_slopes) > 2:
+        mismatches.append(
+            {
+                "type": "rank_defective_bound",
+                "rank_defective_slopes": rank_defective_slopes[:5],
+                "count": len(rank_defective_slopes),
+            }
+        )
 
     samples = standard_basis(field, j + 1)
     width = j + 1
@@ -478,6 +529,8 @@ def run_quadric_case(params: dict[str, object]) -> dict[str, object]:
         "j": j,
         "rank": rank,
         "zero_quadric": zero_quadric,
+        "rank_defective_slope_count": len(rank_defective_slopes),
+        "global_rank_defective": global_rank_defective,
         "passed": not mismatches,
         "mismatches": mismatches[:5],
     }
@@ -745,7 +798,9 @@ def main() -> int:
             flag = "PASS" if record["passed"] else "FAIL"
             print(
                 f"  [{flag}] {record['name']}: {record['field']}, j={record['j']}, "
-                f"rank={record['rank']}, zero_quadric={record['zero_quadric']}"
+                f"rank={record['rank']}, zero_quadric={record['zero_quadric']}, "
+                f"rank-defective slopes={record['rank_defective_slope_count']}, "
+                f"global_rank_defective={record['global_rank_defective']}"
             )
         print(f"RESULT: {'PASS' if passed else 'FAIL'}")
     return 0 if passed else 1
