@@ -467,6 +467,44 @@ arbitrary `(j+1)`-sets: possible packets first lie in the one-row denominator
 kernel (TP2), and then their `j`-subsets must pass the residual determinant and
 aperiodicity gates.
 
+The same lift holds for the numerator.  Write
+
+```text
+H_{2,j}(u)ell_{T_x}=(alpha_0(x),alpha_1(x)).
+```
+
+Since `T_x` is a residual bad locator, the determinant gate gives
+
+```text
+alpha_0(x)beta_1(x)-alpha_1(x)beta_0(x)=0.
+```
+
+For a nontrivial residual top packet, the denominator anchor has
+`beta_0(x) != 0` and `beta_1(x)=x beta_0(x)`.  Hence
+
+```text
+alpha_1(x)=x alpha_0(x),
+```
+
+and the same shift identity gives
+
+```text
+H_{1,j+1}(u)ell_W=alpha_1(x)-x alpha_0(x)=0.       (TP3)
+```
+
+Thus every nontrivial residual top packet lies in the common lifted Hankel
+kernel
+
+```text
+H_{1,j+1}(u)ell_W = H_{1,j+1}(v)ell_W = 0.
+```
+
+Equivalently, in the one-degree-up `t=1`, `j+1` window, residual top packets
+are contained/tangent-core locators for the same all-line pencil.  The
+remaining M1 obstruction is therefore not arbitrary top-packet geometry: it is
+the question of how many residual `j`-faces of such lifted common-kernel
+locators can also pass the original `t=2` aperiodic determinant gates.
+
 ## Residual Triangle Classification
 
 The residual graph can still have triangles, but their type is forced.  In the
@@ -540,10 +578,10 @@ locator can therefore sit in two distinct top packets.  The residual graph is
 exactly a disjoint union of slope-injective top cliques, together with isolated
 residual locators.
 
-Each nontrivial top packet also satisfies the lifted denominator gate
-`H_{1,j+1}(v)ell_W=0`.  Thus large residual cliques must be visible one degree
-up in the denominator Hankel kernel before the numerator/determinant gates are
-even considered.
+Each nontrivial top packet also satisfies the common lifted gate
+`H_{1,j+1}(u)ell_W=H_{1,j+1}(v)ell_W=0`.  Thus large residual cliques must be
+visible one degree up in the common Hankel kernel before the original
+`t=2` residual determinant gates are even considered.
 
 Thus the residual high-overlap obstruction has been localized further: pair
 packets with `m_W=2` are isolated at triangle level, while every surviving
@@ -586,6 +624,8 @@ enumerates small cyclic-domain cases.  For each case it:
 - verifies that every nontrivial residual top packet satisfies the lifted
   denominator gate `H_{1,j+1}(v)ell_W=0`, with omitted-root anchors on its
   residual members;
+- verifies the common lifted gate `H_{1,j+1}(u)ell_W=0` and the matching
+  numerator omitted-root anchors;
 - classifies every residual triangle and asserts that no star triangle remains
   after root-slice peeling;
 - forms the residual top-packet ledger and checks that it accounts exactly for
@@ -624,7 +664,9 @@ formula.  The maximum top-packet incidence of a residual locator is `1` in
 this row, so the audited top packets are disjoint; the common-anchor check
 certifies all `176=2*88` oriented residual edge endpoints.  The lifted
 denominator gate is checked on all `14` residual top packets, with `56`
-omitted-root anchor checks across their residual members.
+omitted-root anchor checks across their residual members; the common lifted
+numerator gate has the same `14` packet checks and `56` numerator anchor
+checks.
 
 The arbitrary `F_17`, `j=4`, `t=2` rank-one probe has `176` aperiodic locators,
 all `17` slopes, and `16` zero-determinant slices.  Four of those zero slices
@@ -638,8 +680,9 @@ triangles, with maximum top-packet incidence again `1`, so the audited top
 packets are disjoint.  The common-anchor check certifies all `80=2*40`
 oriented residual edge endpoints in the probe.  The lifted denominator gate is
 checked on all `17` residual top packets, with `42` omitted-root anchor checks.
-These are exactly the profile quantities a packing proof must shrink or
-explain structurally.
+The common lifted numerator gate has the same `17` packet checks and `42`
+numerator anchor checks.  These are exactly the profile quantities a packing
+proof must shrink or explain structurally.
 
 This is an audit/verifier for the M1 target, not a proof of the desired
 polynomial all-line bound.  Its purpose is to make future counterexample-first

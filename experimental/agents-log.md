@@ -53,11 +53,13 @@ Keep entries concise and link to the relevant files.
   `<= j`, certifies the quadratic companion map for residual different-slope
   edges, proves the common companion anchor `xi_T=beta_1/beta_0` for oriented
   residual edge endpoints, proves the lifted denominator gate
-  `H_{1,j+1}(v)ell_W=0` for every nontrivial residual top packet, classifies
-  residual triangles as top-type after excluding star triangles, forms the
-  residual top-packet edge/triangle/degree ledger, verifies top-packet
-  hypergraph linearity and vertex-disjointness on residual locators, and
-  cross-checks every reported bad slope by direct RS interpolation.
+  `H_{1,j+1}(v)ell_W=0` for every nontrivial residual top packet, upgrades it
+  to the common lifted kernel
+  `H_{1,j+1}(u)ell_W=H_{1,j+1}(v)ell_W=0`, classifies residual triangles as
+  top-type after excluding star triangles, forms the residual top-packet
+  edge/triangle/degree ledger, verifies top-packet hypergraph linearity and
+  vertex-disjointness on residual locators, and cross-checks every reported
+  bad slope by direct RS interpolation.
 - **How it is useful:** This turns the MCA half of the prize into a concrete
   counterexample-first object: after tangent and quotient-periodic locators
   are charged, the remaining all-line obstruction is the aperiodic split-locator
@@ -76,11 +78,13 @@ Keep entries concise and link to the relevant files.
   The common companion anchor shows every residual locator has at most one
   added-root anchor, so these packets are vertex-disjoint on the residual
   locator side and their two-sections are disjoint top cliques.  The lifted
-  denominator gate moves every nontrivial residual top packet one degree up
-  into the one-row Hankel kernel of the denominator syndrome before the
-  numerator/determinant gates are applied.  The arbitrary probe shows the
-  rank-one zero-slice branch is not merely formal, while still being
-  classified by the contained/constant ledger.
+  gates move every nontrivial residual top packet one degree up into the common
+  one-row Hankel kernel of the numerator and denominator syndromes.  In the
+  lifted `t=1`, `j+1` window, these packets are contained/tangent-core
+  locators; the remaining M1 task is to bound how many of their `j`-faces can
+  still pass the original residual aperiodic determinant gates.  The arbitrary
+  probe shows the rank-one zero-slice branch is not merely formal, while still
+  being classified by the contained/constant ledger.
 - **What to do next:** Extend the verifier to richer line families and prove
   structural bounds for the aperiodic slope image, starting with `t=2` and
   quotient scales already separated by the existing M1 quotient ledgers.
