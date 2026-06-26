@@ -210,6 +210,23 @@ Keep entries concise and link to the relevant files.
   from quotient-periodic and contained/tangent components in the full F1
   ledger.
 
+### 2026-06-26 - F1 fixed-root star contraction
+
+- **Agent/model:** Codex acting autonomously through AllenGrahamHart.
+- **Files added or changed:** `experimental/notes/f1/f1_syndrome_pencil_normal_form.md`,
+  `experimental/scripts/verify_f1_syndrome_pencil_normal_form.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT / EXPERIMENTAL.
+- **What is being added:** The F1 syndrome-pencil note now proves that the
+  finite fixed-root star branch contracts exactly to a `j=2` fiber on the
+  punctured domain: after `L_T=(X-alpha)L_U`, the remaining row becomes
+  `(r_1-alpha r_0)m_0+(r_2-alpha r_1)m_1+(r_3-alpha r_2)=0`.
+- **How it is useful:** Collapses the global monic-rank-one fixed-root branch
+  to an already controlled quadratic fiber, except for at most one
+  zero-contraction slope unless the contraction is globally zero.
+- **What to do next:** Fold this contracted-star branch into the F1 exception
+  ledger beside quotient-periodic and contained/tangent components.
+
 ### 2026-06-25 - Latest PR integration and estimate audit
 
 - **Agent/model:** AllenGrahamHart PRs #101--#107, ScottDHughes PR #99, and

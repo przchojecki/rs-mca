@@ -569,6 +569,18 @@ def pencil_at_slope(
     ]
 
 
+def contract_row_at_root(
+    field: QuadraticField,
+    row: Sequence[Element],
+    alpha: Element,
+) -> list[Element]:
+    return [
+        field.sub(row[1], field.mul(alpha, row[0])),
+        field.sub(row[2], field.mul(alpha, row[1])),
+        field.sub(row[3], field.mul(alpha, row[2])),
+    ]
+
+
 def standard_basis(field: QuadraticField, width: int) -> list[list[Element]]:
     basis = []
     for index in range(width):
@@ -784,6 +796,9 @@ def run_global_monic_rank_one_case(params: dict[str, object]) -> dict[str, objec
     scalar_zero_slope_count = 0
     max_nonzero_landings = 0
     max_scalar_zero_landings = 0
+    contraction_zero_slope_count = 0
+    max_contracted_landings = 0
+    max_zero_contraction_landings = 0
 
     for slope in field.elements():
         pencil = pencil_at_slope(field, left, right, slope)
@@ -845,6 +860,35 @@ def run_global_monic_rank_one_case(params: dict[str, object]) -> dict[str, objec
                         "landings": len(landings),
                     }
                 )
+            if alpha_in_domain:
+                contracted = contract_row_at_root(field, pencil[1], alpha)
+                contracted_zero = is_zero_vector(field, contracted)
+                if contracted_zero:
+                    contraction_zero_slope_count += 1
+                    max_zero_contraction_landings = max(
+                        max_zero_contraction_landings, len(landings)
+                    )
+                    expected_star = (len(domain) - 1) * (len(domain) - 2) // 2
+                    if len(landings) != expected_star:
+                        mismatches.append(
+                            {
+                                "type": "zero_contraction_star_count",
+                                "slope": slope,
+                                "landings": len(landings),
+                                "expected": expected_star,
+                            }
+                        )
+                else:
+                    max_contracted_landings = max(max_contracted_landings, len(landings))
+                    if len(landings) > len(domain) - 1:
+                        mismatches.append(
+                            {
+                                "type": "contracted_j2_bound",
+                                "slope": slope,
+                                "landings": len(landings),
+                                "bound": len(domain) - 1,
+                            }
+                        )
         else:
             scalar = row0[3]
             expected_row = [field.mul(scalar, value) for value in infinity_vector]
@@ -882,6 +926,9 @@ def run_global_monic_rank_one_case(params: dict[str, object]) -> dict[str, objec
         "scalar_zero_slope_count": scalar_zero_slope_count,
         "max_nonzero_landings": max_nonzero_landings,
         "max_scalar_zero_landings": max_scalar_zero_landings,
+        "contraction_zero_slope_count": contraction_zero_slope_count,
+        "max_contracted_landings": max_contracted_landings,
+        "max_zero_contraction_landings": max_zero_contraction_landings,
         "passed": not mismatches,
         "mismatches": mismatches[:5],
     }
@@ -1317,7 +1364,10 @@ def main() -> int:
                 f"|D|={record['domain_size']}, kind={record['kind']}, "
                 f"nonzero slopes={record['nonzero_slope_count']}, "
                 f"scalar-zero slopes={record['scalar_zero_slope_count']}, "
-                f"max nonzero landings={record['max_nonzero_landings']}"
+                f"max nonzero landings={record['max_nonzero_landings']}, "
+                f"contraction-zero slopes={record['contraction_zero_slope_count']}, "
+                f"max contracted landings={record['max_contracted_landings']}, "
+                f"max zero-contraction landings={record['max_zero_contraction_landings']}"
             )
         print(f"RESULT: {'PASS' if passed else 'FAIL'}")
     return 0 if passed else 1

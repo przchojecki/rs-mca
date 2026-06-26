@@ -747,6 +747,65 @@ and its dot product with the monic locator vector
 claims. The case `s=0` gives first row `(0,0,0,(a+zb)t^3)`, whose dot product
 with a monic locator is nonzero whenever `a+zb != 0`.
 
+## Corollary 12: Fixed-Root Stars Contract To `j=2`
+
+Keep the finite-root case of Corollary 11, assume `alpha in D`, and consider
+a slope with `a+zb != 0`. Every landing complement has the form
+
+```text
+T = {alpha} union U,        |U|=2.
+```
+
+Write
+
+```text
+L_U(X)=X^2+m_1X+m_0.
+```
+
+If the second row of `P_z` is
+
+```text
+r=(r_0,r_1,r_2,r_3),
+```
+
+then the remaining landing equation is exactly
+
+```text
+(r_1-alpha r_0)m_0
+  + (r_2-alpha r_1)m_1
+  + (r_3-alpha r_2) = 0.                    (4)
+```
+
+Thus the fixed-root star is a contracted `j=2` fiber on the punctured domain
+`D \ {alpha}`.
+
+Consequently, if the contracted row in (4) is nonzero, the number of landing
+complements at this slope is at most `|D|-1`. If the contracted row is zero,
+the whole star through `alpha` lands, giving at most `binom(|D|-1,2)`
+complements before noncontainment is imposed.
+
+Finally, unless the contracted row is identically zero as a function of the
+slope, the zero-contraction slopes number at most one.
+
+## Proof
+
+For `T={alpha} union U`,
+
+```text
+L_T(X)=(X-alpha)L_U(X)
+```
+
+and therefore the coefficient vector of `L_T` is
+
+```text
+(-alpha m_0, m_0-alpha m_1, m_1-alpha, 1).
+```
+
+Taking the dot product with `r` gives (4). The finite bound is exactly the
+rank-one `j=2` argument from Corollary 9 applied on `D \ {alpha}`. The
+contracted row is affine-linear in `z`, so if one component is not the zero
+linear polynomial, all simultaneous zeros lie at the root of that component.
+
 ## Why This Helps F1
 
 The naive extension-field lift is already false: genuinely `F`-valued lines
@@ -786,7 +845,9 @@ for `j=3`, the monic-rank-two branch is already linear-sized, so only the
 monic-rank-defective slopes remain as the first genuinely new incidence
 branch. Corollary 11 then identifies the global monic-rank-one branch as a
 fixed-root star or empty branch, leaving only the scalar-zero slope and the
-non-global exceptional slopes as special cases.
+non-global exceptional slopes as special cases. Corollary 12 reduces that
+fixed-root star to a contracted `j=2` fiber, with at most one additional
+zero-contraction slope unless the contraction vanishes globally.
 
 ## Verification
 
@@ -812,4 +873,5 @@ branches of the bound are exercised. It also includes constructed `j=3`
 fixed-slope fibers for the monic-rank-two line, monic-rank-one plane,
 monic-rank-defective rank-two, and rank-zero branches, plus global
 monic-rank-one finite-root, outside-domain, and infinity checks for
-Corollary 11.
+Corollary 11. The finite-root check also verifies the contracted `j=2` star
+bound of Corollary 12.
