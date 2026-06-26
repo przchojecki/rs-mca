@@ -42,7 +42,34 @@ This unifies two lanes' reserve notions and suggests why `reserve313` is placed 
 there. It is a direction to pursue (does the retained-slope structure provably transition
 to quotient-periodic at `σ ~ n/log n`?), not a proven statement.
 
+## Small-model evidence (supports the heuristic)
+
+`verify_m1_cosupport_periodicity.py` tests the transition directly on a smooth domain
+(`D` = order-16 subgroup of `F_97`, `β∉D`, `j=8`; small-model cutoff `m/log₂m = 4`). For
+the two-ended fixed-jet construction it classifies each retained co-support `J` (slope
+`z_J=-1/P_J(β)`, agreement set `D\J`) by its multiplicative stabilizer
+`Stab(J)={h∈D:hJ=J}` — aperiodic (`|Stab|=1`, the L1 `Q_1` analogue) vs quotient-periodic
+(`|Stab|>1`, the `Q_{d>1}` analogue):
+
+| σ | ≥ cutoff(4)? | retained | aperiodic `Q_1` | periodic `Q_{d>1}` |
+|---|---|---|---|---|
+| 1 | no | 96 | **96** | 0 |
+| 2 | no | 16 | 16 | 0 |
+| 3 | no | 3 | 3 | 0 |
+| 4 | **yes** | 2 | **0** | 2 (frac 1.0) |
+| 5–8 | yes | 1 | 1 | 0 |
+
+The transition matches the heuristic: **below** the `n/log n` cutoff the aperiodic
+retained count is large (`96` at `σ=1`, the regime where the M1 `LD_sw` counterexample
+lives); **at** the cutoff (`σ=4`) the retained mass is *entirely quotient-periodic*; and
+**above** it the aperiodic count collapses to `≤1`. So `max aperiodic` drops `96 → 1`
+across the cutoff. This is **supporting evidence**, not a proof — the model is small
+(`m=16`, crude cutoff), and the M1 (`LD_sw`, line) vs L1 (single-word) object mismatch
+still means this is a structural coincidence at the threshold, suggestive of a real
+mechanism worth a proper proof.
+
 ## Reproducibility
 ```bash
 python3 experimental/scripts/verify_l1_m1_reserve_connection.py
+python3 experimental/scripts/verify_m1_cosupport_periodicity.py
 ```

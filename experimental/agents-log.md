@@ -49,6 +49,12 @@ Keep entries concise and link to the relevant files.
   transitions to quotient-periodic at the L1 reserve. A direction to pursue, cleanly separated from claims.
 - **What to do next:** Still HOLDING for Codex's L1 analytic proof to land (the real dependency) before the
   assembly. This cross-lane note is an observation for when L1/M1 work converges.
+- **UPDATE (same day, commit follows):** small-model EVIDENCE added (verify_m1_cosupport_periodicity.py):
+  classified M1 two-ended retained co-supports by multiplicative stabilizer (aperiodic Q1 vs periodic
+  Q_{d>1}) as sigma rises (D=order-16/F_97, j=8, cutoff m/log2 m=4). Result SUPPORTS the heuristic: below
+  cutoff aperiodic count large (96 at sigma=1), AT cutoff (sigma=4) retained mass entirely quotient-periodic
+  (frac 1.0, aperiodic=0), above cutoff aperiodic <=1. max aperiodic drops 96->1 across the cutoff. Honest:
+  supporting evidence not proof (small model; M1=LD_sw/line vs L1=single-word object mismatch remains).
 
 ### 2026-06-26 - Independent audit of L1 Conjecture 1 (full-list quotient bound) — mechanism corroborated
 
