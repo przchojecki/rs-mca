@@ -309,6 +309,12 @@ def root_slice_profile(
             "root_slice_residual_triangles": 0,
             "root_slice_residual_top_triangles": 0,
             "root_slice_residual_star_triangles": 0,
+            "root_slice_residual_top_packets": 0,
+            "root_slice_residual_large_top_packets": 0,
+            "root_slice_residual_pair_top_packets": 0,
+            "root_slice_residual_max_top_packet": 0,
+            "root_slice_residual_top_packet_edges": 0,
+            "root_slice_residual_top_packet_triangles": 0,
         }
 
     row_map = {tuple(sorted(complement)): slope for complement, slope in locator_rows}
@@ -358,6 +364,7 @@ def root_slice_profile(
     residual_strict_pairs = 0
     residual_degrees = [0] * len(residual_rows)
     residual_adj = [set() for _ in residual_rows]
+    residual_top_packets: dict[tuple[int, ...], set[int]] = {}
     residual_slope_fibers: dict[int, int] = {}
     for _, slope in residual_rows:
         residual_slope_fibers[slope] = residual_slope_fibers.get(slope, 0) + 1
@@ -372,6 +379,10 @@ def root_slice_profile(
                 residual_degrees[right] += 1
                 residual_adj[left].add(right)
                 residual_adj[right].add(left)
+                top_packet = tuple(sorted(left_set | right_set))
+                if len(top_packet) != j + 1:
+                    raise AssertionError("residual edge had wrong top-packet size")
+                residual_top_packets.setdefault(top_packet, set()).update((left, right))
                 if left_slope == residual_rows[right][1]:
                     residual_same_slope_edges += 1
     if residual_same_slope_edges:
@@ -402,6 +413,28 @@ def root_slice_profile(
     if residual_star_triangles:
         raise AssertionError("root-slice peeling left a star triangle")
 
+    top_packet_edges = 0
+    top_packet_triangles = 0
+    large_top_packets = 0
+    pair_top_packets = 0
+    max_top_packet = 0
+    for vertices in residual_top_packets.values():
+        size = len(vertices)
+        max_top_packet = max(max_top_packet, size)
+        top_packet_edges += size * (size - 1) // 2
+        top_packet_triangles += size * (size - 1) * (size - 2) // 6
+        if size == 2:
+            pair_top_packets += 1
+        elif size >= 3:
+            large_top_packets += 1
+        slopes = {residual_rows[idx][1] for idx in vertices}
+        if len(slopes) != size:
+            raise AssertionError("residual top packet was not slope-injective")
+    if top_packet_edges != residual_strict_pairs:
+        raise AssertionError("residual top-packet edge ledger was not exact")
+    if top_packet_triangles != residual_top_triangles:
+        raise AssertionError("residual top-packet triangle ledger was not exact")
+
     return {
         "root_slices": len(slice_keys),
         "same_slope_edges_covered": same_slope_edges,
@@ -418,6 +451,12 @@ def root_slice_profile(
         "root_slice_residual_triangles": residual_triangles,
         "root_slice_residual_top_triangles": residual_top_triangles,
         "root_slice_residual_star_triangles": residual_star_triangles,
+        "root_slice_residual_top_packets": len(residual_top_packets),
+        "root_slice_residual_large_top_packets": large_top_packets,
+        "root_slice_residual_pair_top_packets": pair_top_packets,
+        "root_slice_residual_max_top_packet": max_top_packet,
+        "root_slice_residual_top_packet_edges": top_packet_edges,
+        "root_slice_residual_top_packet_triangles": top_packet_triangles,
     }
 
 
@@ -794,6 +833,14 @@ def verify_word_pair(
         "root_slice_residual_triangles": root_profile["root_slice_residual_triangles"],
         "root_slice_residual_top_triangles": root_profile["root_slice_residual_top_triangles"],
         "root_slice_residual_star_triangles": root_profile["root_slice_residual_star_triangles"],
+        "root_slice_residual_top_packets": root_profile["root_slice_residual_top_packets"],
+        "root_slice_residual_large_top_packets": root_profile["root_slice_residual_large_top_packets"],
+        "root_slice_residual_pair_top_packets": root_profile["root_slice_residual_pair_top_packets"],
+        "root_slice_residual_max_top_packet": root_profile["root_slice_residual_max_top_packet"],
+        "root_slice_residual_top_packet_edges": root_profile["root_slice_residual_top_packet_edges"],
+        "root_slice_residual_top_packet_triangles": (
+            root_profile["root_slice_residual_top_packet_triangles"]
+        ),
         "different_slope_strict_pairs": quadratic_profile["different_slope_strict_pairs"],
         "different_slope_cores": quadratic_profile["different_slope_cores"],
         "quadratic_slices_checked": quadratic_profile["quadratic_slices_checked"],
@@ -859,6 +906,24 @@ def verify_case(case: Case) -> dict[str, object]:
         ),
         "max_root_slice_residual_star_triangles": max(
             row["root_slice_residual_star_triangles"] for row in rows
+        ),
+        "max_root_slice_residual_top_packets": max(
+            row["root_slice_residual_top_packets"] for row in rows
+        ),
+        "max_root_slice_residual_large_top_packets": max(
+            row["root_slice_residual_large_top_packets"] for row in rows
+        ),
+        "max_root_slice_residual_pair_top_packets": max(
+            row["root_slice_residual_pair_top_packets"] for row in rows
+        ),
+        "max_root_slice_residual_top_packet_size": max(
+            row["root_slice_residual_max_top_packet"] for row in rows
+        ),
+        "max_root_slice_residual_top_packet_edges": max(
+            row["root_slice_residual_top_packet_edges"] for row in rows
+        ),
+        "max_root_slice_residual_top_packet_triangles": max(
+            row["root_slice_residual_top_packet_triangles"] for row in rows
         ),
         "max_different_slope_strict_pairs": max(row["different_slope_strict_pairs"] for row in rows),
         "max_zero_determinant_slices": max(row["zero_determinant_slices"] for row in rows),
@@ -941,6 +1006,12 @@ def main() -> None:
                 "root_residual_triangles={root_slice_residual_triangles} "
                 "root_residual_top_triangles={root_slice_residual_top_triangles} "
                 "root_residual_star_triangles={root_slice_residual_star_triangles} "
+                "root_residual_top_packets={root_slice_residual_top_packets} "
+                "root_residual_large_top_packets={root_slice_residual_large_top_packets} "
+                "root_residual_pair_top_packets={root_slice_residual_pair_top_packets} "
+                "root_residual_top_packet_max={root_slice_residual_max_top_packet} "
+                "root_residual_top_packet_edges={root_slice_residual_top_packet_edges} "
+                "root_residual_top_packet_triangles={root_slice_residual_top_packet_triangles} "
                 "different_slope_strict={different_slope_strict_pairs} "
                 "different_slope_cores={different_slope_cores} "
                 "quadratic_slices={quadratic_slices_checked} "
@@ -979,6 +1050,12 @@ def main() -> None:
             f"max_root_residual_triangles={summary['max_root_slice_residual_triangles']} "
             f"max_root_residual_top_triangles={summary['max_root_slice_residual_top_triangles']} "
             f"max_root_residual_star_triangles={summary['max_root_slice_residual_star_triangles']} "
+            f"max_root_residual_top_packets={summary['max_root_slice_residual_top_packets']} "
+            f"max_root_residual_large_top_packets={summary['max_root_slice_residual_large_top_packets']} "
+            f"max_root_residual_pair_top_packets={summary['max_root_slice_residual_pair_top_packets']} "
+            f"max_root_residual_top_packet_size={summary['max_root_slice_residual_top_packet_size']} "
+            f"max_root_residual_top_packet_edges={summary['max_root_slice_residual_top_packet_edges']} "
+            f"max_root_residual_top_packet_triangles={summary['max_root_slice_residual_top_packet_triangles']} "
             f"max_different_slope_strict={summary['max_different_slope_strict_pairs']} "
             f"max_zero_det_slices={summary['max_zero_determinant_slices']} "
             f"max_edge_zero_det_slices={summary['max_edge_zero_determinant_slices']} "
@@ -1006,6 +1083,12 @@ def main() -> None:
         "root_residual_triangles={root_slice_residual_triangles} "
         "root_residual_top_triangles={root_slice_residual_top_triangles} "
         "root_residual_star_triangles={root_slice_residual_star_triangles} "
+        "root_residual_top_packets={root_slice_residual_top_packets} "
+        "root_residual_large_top_packets={root_slice_residual_large_top_packets} "
+        "root_residual_pair_top_packets={root_slice_residual_pair_top_packets} "
+        "root_residual_top_packet_max={root_slice_residual_max_top_packet} "
+        "root_residual_top_packet_edges={root_slice_residual_top_packet_edges} "
+        "root_residual_top_packet_triangles={root_slice_residual_top_packet_triangles} "
         "quad_companion_checks={quadratic_companion_checks} "
         "direct_checks={direct_checks}".format(**rank_one_probe)
     )
@@ -1016,6 +1099,20 @@ def main() -> None:
     max_residual_triangles = max(row["root_slice_residual_triangles"] for row in all_rows)
     max_residual_top_triangles = max(row["root_slice_residual_top_triangles"] for row in all_rows)
     max_residual_star_triangles = max(row["root_slice_residual_star_triangles"] for row in all_rows)
+    max_residual_top_packets = max(row["root_slice_residual_top_packets"] for row in all_rows)
+    max_residual_large_top_packets = max(
+        row["root_slice_residual_large_top_packets"] for row in all_rows
+    )
+    max_residual_pair_top_packets = max(
+        row["root_slice_residual_pair_top_packets"] for row in all_rows
+    )
+    max_residual_top_packet = max(row["root_slice_residual_max_top_packet"] for row in all_rows)
+    max_residual_top_packet_edges = max(
+        row["root_slice_residual_top_packet_edges"] for row in all_rows
+    )
+    max_residual_top_packet_triangles = max(
+        row["root_slice_residual_top_packet_triangles"] for row in all_rows
+    )
     max_companion_checks = max(row["quadratic_companion_checks"] for row in all_rows)
     max_rank_one_zero = max(row["zero_det_direction_rank1_slices"] for row in all_rows)
     total_lines = sum(len(summary["case"].seeds) for summary in summaries) + 1
@@ -1029,6 +1126,12 @@ def main() -> None:
         f"max_root_residual_triangles={max_residual_triangles} "
         f"max_root_residual_top_triangles={max_residual_top_triangles} "
         f"max_root_residual_star_triangles={max_residual_star_triangles} "
+        f"max_root_residual_top_packets={max_residual_top_packets} "
+        f"max_root_residual_large_top_packets={max_residual_large_top_packets} "
+        f"max_root_residual_pair_top_packets={max_residual_pair_top_packets} "
+        f"max_root_residual_top_packet_size={max_residual_top_packet} "
+        f"max_root_residual_top_packet_edges={max_residual_top_packet_edges} "
+        f"max_root_residual_top_packet_triangles={max_residual_top_packet_triangles} "
         f"max_quad_companion_checks={max_companion_checks} "
         f"max_rank_one_zero_slices={max_rank_one_zero}"
     )

@@ -373,6 +373,37 @@ prove is that the first possible cycles after peeling are already forced into
 `(j+1)`-set packets, so any future packing argument can focus on controlling
 these top packets rather than arbitrary star fibers.
 
+## Residual Top-Packet Ledger
+
+The top-packet accounting is exact.  Let `R_res` be the residual aperiodic
+locator family after root-slice peeling.  For every `(j+1)`-set `W subset D`,
+put
+
+```text
+m_W = #{T in R_res : T subset W}.
+```
+
+Every residual one-exchange edge `{T,T'}` has the unique top packet
+`W=T union T'`, so
+
+```text
+# residual edges = sum_W binom(m_W,2).
+```
+
+Inside one top packet, all `j`-subsets of `W` are mutually adjacent in the
+Johnson graph.  The no-same-slope residual property therefore makes every
+top packet slope-injective.  Since star triangles have been ruled out, the
+residual triangle count is also exactly
+
+```text
+# residual triangles = sum_W binom(m_W,3).
+```
+
+Thus the residual high-overlap obstruction has been localized further: pair
+packets with `m_W=2` are isolated at triangle level, while every surviving
+triangle and every large local clique is carried by a slope-injective
+`(j+1)`-top packet.
+
 ## Verifier
 
 The companion verifier
@@ -406,6 +437,8 @@ enumerates small cyclic-domain cases.  For each case it:
 - checks the quadratic companion map for every nonzero quadratic edge slice;
 - classifies every residual triangle and asserts that no star triangle remains
   after root-slice peeling;
+- forms the residual top-packet ledger and checks that it accounts exactly for
+  all residual edges and top triangles;
 - runs one deterministic arbitrary-line probe which hits the rank-one
   zero-determinant branch and verifies that it is classified by the same
   constant/contained zero-slice ledger.
@@ -430,16 +463,20 @@ the root-slice members, the residual family has `86` aperiodic locators, all
 `9`, the residual strict edge count drops to `88`, the residual maximum strict
 degree is `4=j`, and the residual same-slope one-exchange edge count is `0`.
 The residual graph has `68` triangles in this row; all `68` are top triangles
-and none are star triangles.
+and none are star triangles.  Its top-packet ledger has `14` packets, all
+large, with maximum packet size `5`; these packets account for all `88`
+residual edges and all `68` residual triangles.
 
 The arbitrary `F_17`, `j=4`, `t=2` rank-one probe has `176` aperiodic locators,
 all `17` slopes, and `16` zero-determinant slices.  Four of those zero slices
 have rank-one direction pencil; the verifier classifies all zero slices in the
 probe as constant-slope, and the residual maximum strict degree is again
 `4=j`.  The probe also performs `360` companion-map checks on its nonzero
-quadratic edge slices and has `24` residual triangles, all top-type.  These are
-exactly the profile quantities a packing proof must shrink or explain
-structurally.
+quadratic edge slices and has `24` residual triangles, all top-type.  Its
+top-packet ledger has `17` packets: `3` large packets and `14` pair packets,
+with maximum packet size `5`, accounting for `40` residual edges and `24`
+triangles.  These are exactly the profile quantities a packing proof must
+shrink or explain structurally.
 
 This is an audit/verifier for the M1 target, not a proof of the desired
 polynomial all-line bound.  Its purpose is to make future counterexample-first
