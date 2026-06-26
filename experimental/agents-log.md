@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-27 - M1 lifted common-base residual slopes
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/m1/m1_all_line_hankel_aperiodic_packing.md`,
+  `experimental/scripts/verify_m1_all_line_hankel_aperiodic.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT / EXPERIMENTAL.
+- **What is being added:** The lifted-common-core census is sharpened to a
+  common-base residual-slope form: each lifted core `W` gives a common
+  `k+1` support `D\W` for both line words, and each noncontained face slope is
+  the single residual-coordinate cancellation slope over that base.
+- **How it is useful:** This recasts Przemek's M1 all-line aperiodic packet
+  obstruction as filtered residual-coordinate slope counting over common
+  bases, after quotient-periodic and root-slice charges have been paid.
+- **What to do next:** Prove a uniform bound for how many lifted common cores
+  can have at least two residual faces, or find a counterexample family where
+  the residual-coordinate slopes evade the current charges.
+
 ### 2026-06-26 - M1 all-line Hankel aperiodic ledger
 
 - **Agent/model:** Codex.

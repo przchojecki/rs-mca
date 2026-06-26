@@ -539,6 +539,46 @@ on those remaining faces inside `W`.  Conversely every residual top packet
 arises this way.  Thus the residual packet problem is precisely the problem of
 bounding lifted common cores with residual face count at least two.
 
+## Common-Base Residual-Slope Form
+
+The lifted common-core condition has a direct interpolation meaning.  For
+`t=2`, if a `(j+1)`-set `W` satisfies
+
+```text
+H_{1,j+1}(u)ell_W=H_{1,j+1}(v)ell_W=0,
+```
+
+then
+
+```text
+S_0=D\W
+```
+
+has size `k+1`, and both restrictions `f|S_0` and `g|S_0` are explained by
+degree `<k` polynomials.  Let these interpolants be `F_0` and `G_0`.
+
+For a face `T_x=W\{x}`, its support is `S_x=S_0 union {x}`.  On the base
+`S_0`, the line word `f+zg` already agrees with `F_0+zG_0` for every slope
+`z`.  Thus the only remaining incidence condition on `S_x` is the single
+coordinate equation at `x`:
+
+```text
+f(x)+z g(x)=F_0(x)+zG_0(x).
+```
+
+If `g(x)-G_0(x) != 0`, the finite bad slope on that face is exactly
+
+```text
+z_x=-(f(x)-F_0(x))/(g(x)-G_0(x)).
+```
+
+If `g(x)-G_0(x)=0`, then the denominator residual vanishes and the face is in
+the contained/tangent-core denominator ledger rather than the noncontained
+aperiodic slope ledger.  Consequently the lifted-core obstruction can be read
+without the Hankel vectors: it is a filtered residual-coordinate slope-counting
+problem over common `k+1` bases, after quotient-periodic faces and
+fixed-slope root-slice faces have been charged.
+
 ## Residual Triangle Classification
 
 The residual graph can still have triangles, but their type is forced.  In the
@@ -668,6 +708,9 @@ enumerates small cyclic-domain cases.  For each case it:
   removed by root-slice peeling;
 - enumerates all lifted common cores and asserts that residual top packets are
   exactly the lifted common cores with at least two residual faces;
+- verifies that each lifted common core is a common `k+1` base for `f` and
+  `g`, and that every noncontained lifted face has the residual-coordinate
+  cancellation slope `-(f(x)-F_0(x))/(g(x)-G_0(x))`;
 - classifies every residual triangle and asserts that no star triangle remains
   after root-slice peeling;
 - forms the residual top-packet ledger and checks that it accounts exactly for
@@ -713,7 +756,9 @@ automatic determinant gate; `67` faces are noncontained, `64` are aperiodic,
 `56` remain residual, and `8` are aperiodic faces removed by root-slice
 peeling.  In this row the lifted-common-core census has exactly `14` cores,
 all `14` of which have at least two residual faces and hence are precisely the
-`14` residual top packets.
+`14` residual top packets.  The common-base check certifies all `14` lifted
+cores as common `k+1` bases for `f` and `g`, and the residual-slope check
+certifies the cancellation formula on all `67` noncontained lifted faces.
 
 The arbitrary `F_17`, `j=4`, `t=2` rank-one probe has `176` aperiodic locators,
 all `17` slopes, and `16` zero-determinant slices.  Four of those zero slices
@@ -734,7 +779,9 @@ aperiodic faces removed by root-slice peeling.  These are exactly the profile
 quantities a packing proof must shrink or explain structurally.  The full
 lifted-common-core census in the probe has `31` cores: `17` are residual
 packets, `2` have exactly one residual face, and the others have no residual
-faces after the quotient and root-slice charges.
+faces after the quotient and root-slice charges.  These `31` lifted cores are
+all common `k+1` bases for `f` and `g`, and the verifier checks the
+residual-coordinate slope formula on all `140` noncontained lifted faces.
 
 This is an audit/verifier for the M1 target, not a proof of the desired
 polynomial all-line bound.  Its purpose is to make future counterexample-first

@@ -285,6 +285,9 @@ def root_slice_profile(
     domain: tuple[int, ...],
     u: tuple[int, ...],
     v: tuple[int, ...],
+    f: dict[int, int],
+    g: dict[int, int],
+    k: int,
     t: int,
     j: int,
     p: int,
@@ -338,6 +341,8 @@ def root_slice_profile(
             "root_slice_lifted_common_core_residual_singletons": 0,
             "root_slice_lifted_common_core_residual_packets": 0,
             "root_slice_lifted_common_core_max_residual_faces": 0,
+            "root_slice_lifted_common_core_common_base_checks": 0,
+            "root_slice_lifted_common_core_residual_slope_checks": 0,
         }
 
     row_map = {tuple(sorted(complement)): slope for complement, slope in locator_rows}
@@ -566,6 +571,8 @@ def root_slice_profile(
     lifted_common_core_residual_singletons = 0
     lifted_common_core_residual_packets = 0
     lifted_common_core_max_residual_faces = 0
+    lifted_common_core_common_base_checks = 0
+    lifted_common_core_residual_slope_checks = 0
     for core in combinations(domain, j + 1):
         core_key = tuple(sorted(core))
         core_locator = locator(core_key, p)
@@ -574,6 +581,16 @@ def root_slice_profile(
         if hankel_apply(v, 1, j + 1, core_locator, p)[0] != 0:
             continue
         lifted_common_cores += 1
+        base_support = tuple(x for x in domain if x not in set(core_key))
+        if len(base_support) != k + 1:
+            raise AssertionError("lifted common core had wrong base support size")
+        if not is_explained_on_support(f, base_support, k, p):
+            raise AssertionError("lifted common core was not an f common base")
+        if not is_explained_on_support(g, base_support, k, p):
+            raise AssertionError("lifted common core was not a g common base")
+        f_base = interpolate(base_support[:k], tuple(f[x] for x in base_support[:k]), p)
+        g_base = interpolate(base_support[:k], tuple(g[x] for x in base_support[:k]), p)
+        lifted_common_core_common_base_checks += 1
         residual_face_indices = set()
         noncontained_faces = 0
         aperiodic_faces = 0
@@ -590,11 +607,22 @@ def root_slice_profile(
             if not determinant_gate_t2(a_vec, b_vec, p):
                 raise AssertionError("lifted common core face failed determinant gate")
             if all(value == 0 for value in b_vec):
+                residual_g = (g[omitted_root] - poly_eval(g_base, omitted_root, p)) % p
+                if residual_g != 0:
+                    raise AssertionError("contained lifted common face had nonzero g residual")
                 continue
             noncontained_faces += 1
             slope = slope_from_gate(a_vec, b_vec, p)
             if slope is None:
                 raise AssertionError("noncontained lifted common face had no slope")
+            residual_f = (f[omitted_root] - poly_eval(f_base, omitted_root, p)) % p
+            residual_g = (g[omitted_root] - poly_eval(g_base, omitted_root, p)) % p
+            if residual_g == 0:
+                raise AssertionError("noncontained lifted common face had zero g residual")
+            residual_slope = (-residual_f * inv_mod(residual_g, p)) % p
+            if slope != residual_slope:
+                raise AssertionError("lifted common face slope was not the residual slope")
+            lifted_common_core_residual_slope_checks += 1
             if face in row_map:
                 if row_map[face] != slope:
                     raise AssertionError("lifted common face slope disagreed with row map")
@@ -686,6 +714,12 @@ def root_slice_profile(
         "root_slice_lifted_common_core_residual_packets": lifted_common_core_residual_packets,
         "root_slice_lifted_common_core_max_residual_faces": (
             lifted_common_core_max_residual_faces
+        ),
+        "root_slice_lifted_common_core_common_base_checks": (
+            lifted_common_core_common_base_checks
+        ),
+        "root_slice_lifted_common_core_residual_slope_checks": (
+            lifted_common_core_residual_slope_checks
         ),
     }
 
@@ -1005,7 +1039,7 @@ def verify_word_pair(
     if bad_locators != quotient_locators + aperiodic_locators:
         raise AssertionError("charged/aperiodic locator partition failed")
     exchange_profile = strict_exchange_profile(aperiodic_locator_rows, t)
-    root_profile = root_slice_profile(aperiodic_locator_rows, domain, u, v, t, j, p)
+    root_profile = root_slice_profile(aperiodic_locator_rows, domain, u, v, f, g, k, t, j, p)
     if root_profile["same_slope_edges_covered"] != exchange_profile["same_slope_strict_pairs"]:
         raise AssertionError("root-slice coverage missed same-slope strict edges")
     quadratic_profile = quadratic_slice_profile(aperiodic_locator_rows, domain, u, v, t, j, p)
@@ -1137,6 +1171,12 @@ def verify_word_pair(
         ),
         "root_slice_lifted_common_core_max_residual_faces": (
             root_profile["root_slice_lifted_common_core_max_residual_faces"]
+        ),
+        "root_slice_lifted_common_core_common_base_checks": (
+            root_profile["root_slice_lifted_common_core_common_base_checks"]
+        ),
+        "root_slice_lifted_common_core_residual_slope_checks": (
+            root_profile["root_slice_lifted_common_core_residual_slope_checks"]
         ),
         "different_slope_strict_pairs": quadratic_profile["different_slope_strict_pairs"],
         "different_slope_cores": quadratic_profile["different_slope_cores"],
@@ -1291,6 +1331,12 @@ def verify_case(case: Case) -> dict[str, object]:
         "max_root_slice_lifted_common_core_residual_faces_per_core": max(
             row["root_slice_lifted_common_core_max_residual_faces"] for row in rows
         ),
+        "max_root_slice_lifted_common_core_common_base_checks": max(
+            row["root_slice_lifted_common_core_common_base_checks"] for row in rows
+        ),
+        "max_root_slice_lifted_common_core_residual_slope_checks": max(
+            row["root_slice_lifted_common_core_residual_slope_checks"] for row in rows
+        ),
         "max_different_slope_strict_pairs": max(row["different_slope_strict_pairs"] for row in rows),
         "max_zero_determinant_slices": max(row["zero_determinant_slices"] for row in rows),
         "max_edge_zero_determinant_slices": max(row["edge_zero_determinant_slices"] for row in rows),
@@ -1401,6 +1447,8 @@ def main() -> None:
                 "lifted_common_residual_singletons={root_slice_lifted_common_core_residual_singletons} "
                 "lifted_common_residual_packets={root_slice_lifted_common_core_residual_packets} "
                 "lifted_common_residual_faces_per_core={root_slice_lifted_common_core_max_residual_faces} "
+                "lifted_common_base_checks={root_slice_lifted_common_core_common_base_checks} "
+                "lifted_common_residual_slope_checks={root_slice_lifted_common_core_residual_slope_checks} "
                 "different_slope_strict={different_slope_strict_pairs} "
                 "different_slope_cores={different_slope_cores} "
                 "quadratic_slices={quadratic_slices_checked} "
@@ -1468,6 +1516,8 @@ def main() -> None:
             f"max_lifted_common_residual_singletons={summary['max_root_slice_lifted_common_core_residual_singletons']} "
             f"max_lifted_common_residual_packets={summary['max_root_slice_lifted_common_core_residual_packets']} "
             f"max_lifted_common_residual_faces_per_core={summary['max_root_slice_lifted_common_core_residual_faces_per_core']} "
+            f"max_lifted_common_base_checks={summary['max_root_slice_lifted_common_core_common_base_checks']} "
+            f"max_lifted_common_residual_slope_checks={summary['max_root_slice_lifted_common_core_residual_slope_checks']} "
             f"max_different_slope_strict={summary['max_different_slope_strict_pairs']} "
             f"max_zero_det_slices={summary['max_zero_determinant_slices']} "
             f"max_edge_zero_det_slices={summary['max_edge_zero_determinant_slices']} "
@@ -1524,6 +1574,8 @@ def main() -> None:
         "lifted_common_residual_singletons={root_slice_lifted_common_core_residual_singletons} "
         "lifted_common_residual_packets={root_slice_lifted_common_core_residual_packets} "
         "lifted_common_residual_faces_per_core={root_slice_lifted_common_core_max_residual_faces} "
+        "lifted_common_base_checks={root_slice_lifted_common_core_common_base_checks} "
+        "lifted_common_residual_slope_checks={root_slice_lifted_common_core_residual_slope_checks} "
         "quad_companion_checks={quadratic_companion_checks} "
         "direct_checks={direct_checks}".format(**rank_one_probe)
     )
@@ -1615,6 +1667,12 @@ def main() -> None:
     max_lifted_common_residual_faces_per_core = max(
         row["root_slice_lifted_common_core_max_residual_faces"] for row in all_rows
     )
+    max_lifted_common_base_checks = max(
+        row["root_slice_lifted_common_core_common_base_checks"] for row in all_rows
+    )
+    max_lifted_common_residual_slope_checks = max(
+        row["root_slice_lifted_common_core_residual_slope_checks"] for row in all_rows
+    )
     max_companion_checks = max(row["quadratic_companion_checks"] for row in all_rows)
     max_rank_one_zero = max(row["zero_det_direction_rank1_slices"] for row in all_rows)
     total_lines = sum(len(summary["case"].seeds) for summary in summaries) + 1
@@ -1657,6 +1715,8 @@ def main() -> None:
         f"max_lifted_common_residual_singletons={max_lifted_common_residual_singletons} "
         f"max_lifted_common_residual_packets={max_lifted_common_residual_packets} "
         f"max_lifted_common_residual_faces_per_core={max_lifted_common_residual_faces_per_core} "
+        f"max_lifted_common_base_checks={max_lifted_common_base_checks} "
+        f"max_lifted_common_residual_slope_checks={max_lifted_common_residual_slope_checks} "
         f"max_quad_companion_checks={max_companion_checks} "
         f"max_rank_one_zero_slices={max_rank_one_zero}"
     )
