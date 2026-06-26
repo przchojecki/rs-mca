@@ -14,8 +14,8 @@
     "tag": "proved",
     "label": "proof record",
     "radiusLabel": "125/256",
-    "proof": "Cycle116 agreement-262 transfer reaches the printed ABF closed support threshold.",
-    "nonclaims": "Not ordinary list decoding; not protocol soundness; not exact delta*_C.",
+    "proof": "Cycle116 agreement-262 transfer reaches the printed ABF closed support threshold. The emca(C,125/256) > 2^-128 threshold is independently unconditional via the moving-root tangent floor, which gives LD_sw(C,262) >= n-a+1 = 251 >= 7 with no Cycle84 input.",
+    "nonclaims": "The > 2^-128 gate / delta*_C <= 125/256 is unconditional (tangent floor, LD_sw(C,262) >= 251); only the printed 52747567092 figure (exact ~2^-95 density) imports the Cycle84 numerator. Not ordinary list decoding; not protocol soundness; not exact delta*_C.",
     "links": [
       {
         "label": "Cycle120 scope note",
@@ -38,8 +38,8 @@
     "tag": "proved",
     "label": "proof record",
     "radiusLabel": "249/512",
-    "proof": "Two-ended locator theorem: common top-six coefficients plus common nonzero constant coefficient.",
-    "nonclaims": "Finite/source-scoped theorem; imports the Cycle84 numerator; not an official prize solve by itself.",
+    "proof": "Two-ended locator theorem: common top-six coefficients plus common nonzero constant coefficient. The strict threshold delta*_C <= 249/512 (emca(C,249/512) > 2^-128 at a=263) is independently unconditional via the moving-root tangent floor, which gives LD_sw(C,263) >= n-a+1 = 250 >= 7.",
+    "nonclaims": "The strict delta*_C <= 249/512 gate is unconditional (tangent floor, LD_sw(C,263) >= 250); the Cycle84 numerator is imported only for the exact 52747567092 count / ~2^-95 density. Finite/source-scoped; not an official prize solve by itself.",
     "links": [
       {
         "label": "Cycle119 review",
