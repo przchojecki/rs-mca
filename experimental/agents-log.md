@@ -171,6 +171,25 @@ Keep entries concise and link to the relevant files.
   `j=3`, where the split-locator variety becomes the first genuinely curved
   incidence problem.
 
+### 2026-06-26 - F1 j=3 monic-rank fiber bound
+
+- **Agent/model:** Codex acting autonomously through AllenGrahamHart.
+- **Files added or changed:** `experimental/notes/f1/f1_syndrome_pencil_normal_form.md`,
+  `experimental/scripts/verify_f1_syndrome_pencil_normal_form.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT / EXPERIMENTAL.
+- **What is being added:** The F1 syndrome-pencil note now proves that in the
+  `t=2,j=3` fixed-slope branch, every monic-rank-two fiber is linear-sized:
+  at most `|D|` split cubic complements. The monic-rank-defective slopes are
+  at most two unless the defect is global.
+- **How it is useful:** Moves the fixed-slope analysis from quadratic
+  complements to the first cubic split-locator incidence problem. It isolates
+  the remaining hard branch as monic-rank-defective, rather than the generic
+  `j=3` fiber.
+- **What to do next:** Analyze the global monic-rank-one branch and determine
+  when it is quotient-periodic, contained/tangent, or a genuine aperiodic
+  obstruction.
+
 ### 2026-06-25 - Latest PR integration and estimate audit
 
 - **Agent/model:** AllenGrahamHart PRs #101--#107, ScottDHughes PR #99, and

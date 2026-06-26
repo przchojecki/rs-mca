@@ -608,6 +608,77 @@ which gives only the star through `x=beta/alpha`. In all cases there are at
 most `|D|` unordered distinct complements. The noncontainment condition only
 removes complements.
 
+## Corollary 10: The `j=3` Monic-Rank-Two Fiber Is Linear-Sized
+
+Assume `t=2` and `j=3`, so support complements have size three. Fix a slope
+`z`, put
+
+```text
+P_z = H_{2,3}(u) + z H_{2,3}(v),
+```
+
+and let `A_z` be the `2 x 3` matrix formed from the first three columns of
+`P_z`, i.e. the columns acting on the non-monic coefficients
+`(c_0,c_1,c_2)`.
+
+If `rank A_z=2`, then the number of three-point complements `T` satisfying
+
+```text
+P_z ell_T = 0
+```
+
+is at most `|D|`. The same bound holds after imposing the noncontainment
+condition `H(v)ell_T != 0`.
+
+Moreover, the monic-rank-defective slope set is tiny unless it is global:
+
+```text
+#{ z in F : rank A_z <= 1 } <= 2
+```
+
+unless `rank A_z<=1` for every `z in F`.
+
+Thus, outside at most two monic-rank-defective slopes, or outside the global
+monic-rank-one branch, every `j=3` fixed-slope fiber is linear-sized.
+
+## Proof
+
+Write the monic cubic locator as
+
+```text
+L_T(X)=X^3+c_2X^2+c_1X+c_0.
+```
+
+If `rank A_z=2`, the affine solution set to `P_z ell=0` in the monic slice is
+empty or a line. Therefore every landing locator lies in a one-parameter
+family
+
+```text
+P_lambda(X)=P_0(X)+lambda Q(X),
+```
+
+where `P_0` is monic cubic and `Q` has degree at most two and is not zero.
+
+The common roots of every polynomial in this family are the roots of
+`gcd(P_0,Q)`, hence there are at most two of them. A squarefree split cubic
+with three roots in `D` therefore has at least one non-common root `x`. For
+that root,
+
+```text
+P_0(x)+lambda Q(x)=0,        Q(x) != 0,
+```
+
+so `lambda` is uniquely determined by `x`. Assign to each landing cubic its
+first non-common root in any fixed ordering of `D`; this gives an injection
+from landing cubics into `D`. Hence there are at most `|D|` landings.
+Noncontainment only deletes landings.
+
+For the final assertion, the condition `rank A_z<=1` is the simultaneous
+vanishing of the three `2 x 2` minors of the affine-linear `2 x 3` matrix
+`A_z`. Each minor is a polynomial of degree at most two in `z`. If one minor
+is not identically zero, there are at most two such slopes. If all minors
+vanish identically, the monic-rank-defective branch is global.
+
 ## Why This Helps F1
 
 The naive extension-field lift is already false: genuinely `F`-valued lines
@@ -642,7 +713,10 @@ for at most two rank-defective slopes, or the global rank-one pencil branch,
 same-slope fibers are codimension-two split-locator intersections. Corollary 9
 closes the first nontrivial complement size: for `j=2`, every fixed-slope
 fiber is either unique, linear-sized, or one of the explicitly marked
-rank-zero exceptional slopes.
+rank-zero exceptional slopes. Corollary 10 handles the next complement size:
+for `j=3`, the monic-rank-two branch is already linear-sized, so only the
+monic-rank-defective slopes remain as the first genuinely new incidence
+branch.
 
 ## Verification
 
@@ -664,4 +738,6 @@ enumerate fixed slopes and verify the rank-defective dichotomy of
 Corollary 8. In the `j=2` exhaustive cases, the verifier also checks the
 fixed-slope fiber bounds of Corollary 9, and it includes constructed
 rank-two, rank-one fixed-sum, rank-one star, and rank-zero `j=2` fibers so all
-branches of the bound are exercised.
+branches of the bound are exercised. It also includes constructed `j=3`
+fixed-slope fibers for the monic-rank-two line, monic-rank-one plane,
+monic-rank-defective rank-two, and rank-zero branches.
