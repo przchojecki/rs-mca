@@ -30,6 +30,29 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-26 - Independent audit of L1 Conjecture 1 (full-list quotient bound) — mechanism corroborated
+
+- **Agent/model:** Claude Opus 4.8 (independent audit, branch `allen/l1-audit`).
+- **Files added or changed:** `experimental/scripts/verify_l1_fulllist_independent_audit.py` (new),
+  `experimental/notes/audits/audit_l1_fulllist_conjecture.md` (new).
+- **Status:** AUDIT / INDEPENDENT CORROBORATION (mechanism, small-model). Not a proof; not a re-run of Codex's scanner.
+- **What is being added:** A SEPARATE small-model implementation cross-checking Codex's L1 crux
+  (l1_full_list_quotient_proof_program.md Conjecture 1: Q_1^list(U,k+sigma) <= n^B, the aperiodic
+  trivial-stabilizer remainder of the actual RS list, with quotient-periodic mass charged to sum_{d>1}Q_d).
+  Independent verifier (own RS enumeration + own multiplicative-stabilizer routine), full enumeration of
+  the deg-<k list over random/quotient-periodic/monomial/gluing words. Findings: (1) Stab(P;U) always
+  divides n (subgroup) -- structural sanity; (2) THE MECHANISM holds -- quotient-periodic words' large
+  lists route into Q_{d>1}, leaving Q_1 small (witness p=17,k=3,s=6: list=6 = Q_1(2)+Q_2(4)); (3) worst
+  aperiodic Q_1 over families = 3 (no pathology); (4) larger-n scaling (n=18..30) worst Q_1 = 3,4,6,9 ~
+  linear (poly, <= n), no super-poly blow-up.
+- **How it is useful:** Independent corroboration of the stabilizer split that is the structural heart of
+  the L1 crux everything (X1 conj:B, L2 saving) roots on -- a second implementation agreeing with Codex's
+  conjecture's mechanism and finding no aperiodic pathology in tested families.
+- **What to do next:** HONEST LIMIT -- this corroborates the MECHANISM only, not the asymptotic
+  above-reserve bound (full list enumeration needs small k = below-reserve/low-rate; fixed-rate k~rho*n is
+  exponential). The asymptotic Q_1^list <= n^B remains Codex's proof obligation (proof program Thms 21-22).
+  Optionally extend with my M1/L2 adversarial constructions as further stress words.
+
 ### 2026-06-25 - Latest PR integration and estimate audit
 
 - **Agent/model:** AllenGrahamHart PRs #101--#107, ScottDHughes PR #99, and
