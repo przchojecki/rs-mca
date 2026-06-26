@@ -45,7 +45,8 @@ Keep entries concise and link to the relevant files.
   determinant gate, reports strict one-exchange profiles for residual
   aperiodic locators, proves same-slope strict edges extend to fixed-slope
   root slices, verifies that different-slope strict edges are either isolated
-  nonzero quadratic-slice roots or lie on zero-determinant slices, and
+  nonzero quadratic-slice roots or lie on zero-determinant slices, classifies
+  each zero-determinant slice as constant-slope or slope-injective, and
   cross-checks every reported bad slope by direct RS interpolation.
 - **How it is useful:** This turns the MCA half of the prize into a concrete
   counterexample-first object: after tangent and quotient-periodic locators
@@ -53,7 +54,9 @@ Keep entries concise and link to the relevant files.
   slope image in the Hankel pencil.  The root-slice lemma separates same-slope
   strict collisions from the genuinely residual slope-image packing problem,
   while the quadratic-slice check isolates different-slope collisions as the
-  next finite-degree object to bound.
+  next finite-degree object to bound.  The zero-slice dichotomy shows the
+  exceptional branch is either already a constant-slope root-slice packet or
+  contributes no repeated-slope fiber.
 - **What to do next:** Extend the verifier to richer line families and prove
   structural bounds for the aperiodic slope image, starting with `t=2` and
   quotient scales already separated by the existing M1 quotient ledgers.

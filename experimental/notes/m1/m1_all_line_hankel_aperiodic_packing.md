@@ -226,6 +226,33 @@ classes and same-slope root slices are charged, different-slope strict edges
 can only accumulate through zero-determinant root slices or through many
 isolated nonzero quadratic slices.
 
+## Zero-Determinant Slice Slope Dichotomy
+
+The exceptional zero-determinant branch also has an exact local dichotomy.
+Assume `Delta_R` vanishes identically on the one-root slice for a fixed core
+`R`.  For every `x` with `b(x) != 0`, the determinant gate gives a unique slope
+`z(x)`.  If two distinct exchanged roots `x,y` have the same slope `z`, then
+the same subtraction argument as above gives
+
+```text
+(H_{2,j}(u)+zH_{2,j}(v))p_R=0,
+(H_{2,j}(u)+zH_{2,j}(v))s_R=0.
+```
+
+Consequently every noncontained member of the zero-determinant slice has the
+same slope `z`.  If no such repeated slope occurs, the slope map on the
+noncontained members is injective.  Thus zero-determinant one-root slices split
+into:
+
+1. constant-slope root-slice packets, already handled by the same-slope
+   root-slice ledger; or
+2. slope-injective zero slices, which create different-slope edges but no
+   repeated-slope fiber.
+
+The verifier certifies this split by checking the three determinant
+coefficients of `Delta_R` and then classifying the slope multiset on every
+zero-determinant slice.
+
 ## Verifier
 
 The companion verifier
@@ -248,7 +275,10 @@ enumerates small cyclic-domain cases.  For each case it:
 - checks that every same-slope strict one-exchange edge extends to the full
   fixed-slope root slice predicted by the lemma above;
 - verifies that different-slope strict edges obey the quadratic root-slice
-  dichotomy above.
+  dichotomy above;
+- verifies that every zero-determinant slice is constant-slope or
+  slope-injective, and that constant zero slices account for all same-slope
+  strict edges.
 
 The default audit currently checks three cyclic-domain parameter rows and
 twelve deterministic line samples.  The largest observed residual aperiodic
@@ -257,10 +287,12 @@ checks on every reported support-wise bad slope.  In the full-domain
 `F_17`, `j=4`, `t=2` row, the residual aperiodic locus has maximum slope
 fiber `16`, strict one-exchange degree `15`, and `190` strict one-exchange
 pairs.  Of these strict edges, `78` are same-slope edges, and the verifier
-certifies that they are covered by fixed-slope root slices.  The remaining
-`112` different-slope strict edges lie on `112` nonzero quadratic slices and
-there are no zero-determinant edge slices in this audit row.  These are exactly
-the profile quantities a packing proof must shrink or explain structurally.
+certifies that they are exactly the repeated pairs inside one constant-slope
+zero-determinant slice with `13` aperiodic members.  The remaining `112`
+different-slope strict edges lie on `112` nonzero quadratic slices; there are
+no slope-injective zero slices and no zero-determinant different-slope edge
+slices in this audit row.  These are exactly the profile quantities a packing
+proof must shrink or explain structurally.
 
 This is an audit/verifier for the M1 target, not a proof of the desired
 polynomial all-line bound.  Its purpose is to make future counterexample-first
