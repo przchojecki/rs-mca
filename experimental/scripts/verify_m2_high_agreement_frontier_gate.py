@@ -28,6 +28,7 @@ class Gate:
     eps_bits: int
     target_unit: int
     q_line_window: str
+    projective_q_line_window: str
     exact_start: int
     exact_distance_limit: int
     lower_floor_distance_limit: int
@@ -43,6 +44,13 @@ class Gate:
     first_safe_distance: int | None
     first_unsafe_grid_radius: str | None
     largest_safe_grid_radius: str | None
+    projective_status: str
+    projective_last_unsafe_agreement: int | None
+    projective_first_safe_agreement: int | None
+    projective_last_unsafe_distance: int | None
+    projective_first_safe_distance: int | None
+    projective_first_unsafe_grid_radius: str | None
+    projective_largest_safe_grid_radius: str | None
 
 
 def ceil_div(num: int, den: int) -> int:
@@ -51,15 +59,95 @@ def ceil_div(num: int, den: int) -> int:
 
 def q_line_window(n: int, k: int, q_line: int, eps_bits: int) -> str:
     target_unit = 1 << eps_bits
-    exact_distance_limit = (n - k) // 3
-    lower_floor_distance_limit = n - k - 1
-    if q_line < target_unit:
+    return budget_window(
+        q_line // target_unit, (n - k) // 3, n - k - 1
+    )
+
+
+def projective_q_line_window(n: int, k: int, q_line: int, eps_bits: int) -> str:
+    target_unit = 1 << eps_bits
+    return budget_window(
+        (q_line + 1) // target_unit, (n - k) // 3, n - k - 1
+    )
+
+
+def budget_window(
+    budget: int, exact_distance_limit: int, lower_floor_distance_limit: int
+) -> str:
+    if budget == 0:
         return "budget_zero_q_line_window"
-    if q_line < (exact_distance_limit + 1) * target_unit:
+    if budget <= exact_distance_limit:
         return "exact_crossing_q_line_window"
-    if q_line < (lower_floor_distance_limit + 1) * target_unit:
+    if budget <= lower_floor_distance_limit:
         return "exact_safe_then_gap_q_line_window"
     return "tangent_floor_never_crosses_q_line_window"
+
+
+def threshold_summary(
+    n: int,
+    exact_start: int,
+    exact_distance_limit: int,
+    lower_floor_distance_limit: int,
+    budget: int,
+) -> tuple[str, int | None, int | None, int | None, int | None, str | None, str | None]:
+    if budget == 0:
+        return (
+            "no_safe_agreement_in_exact_tangent_range",
+            n,
+            None,
+            0,
+            None,
+            "0",
+            None,
+        )
+
+    if budget <= exact_distance_limit:
+        first_safe = n - budget + 1
+        last_unsafe = first_safe - 1
+        return (
+            "crossing_inside_exact_tangent_range",
+            last_unsafe,
+            first_safe,
+            n - last_unsafe,
+            n - first_safe,
+            str(Fraction(n - last_unsafe, n)),
+            str(Fraction(n - first_safe, n)),
+        )
+
+    if budget <= lower_floor_distance_limit:
+        unsafe_agreement = n - budget
+        return (
+            "safe_exact_range_then_tangent_unsafe_floor",
+            unsafe_agreement,
+            exact_start,
+            budget,
+            exact_distance_limit,
+            str(Fraction(budget, n)),
+            str(Fraction(exact_distance_limit, n)),
+        )
+
+    return (
+        "tangent_floor_never_crosses_budget",
+        None,
+        exact_start,
+        None,
+        n - exact_start,
+        None,
+        str(Fraction(n - exact_start, n)),
+    )
+
+
+def q_line_window_bounds(
+    budget: int, target_unit: int, offset: int
+) -> tuple[int, int]:
+    return budget * target_unit - offset, (budget + 1) * target_unit - offset
+
+
+def assert_q_line_budget_window(
+    q_line: int, budget: int, target_unit: int, offset: int
+) -> None:
+    lower, upper = q_line_window_bounds(budget, target_unit, offset)
+    assert lower <= q_line < upper
 
 
 def projective_exact_distances(
@@ -95,95 +183,38 @@ def tangent_gate(label: str, n: int, k: int, q_line: int, eps_bits: int) -> Gate
     budget = q_line // target_unit
     projective_budget = (q_line + 1) // target_unit
     window = q_line_window(n, k, q_line, eps_bits)
+    projective_window = projective_q_line_window(n, k, q_line, eps_bits)
 
     projective_last_safe, projective_first_unsafe = projective_exact_distances(
         exact_distance_limit, projective_budget
     )
 
-    if budget == 0:
-        status = "no_safe_agreement_in_exact_tangent_range"
-        return Gate(
-            label=label,
-            n=n,
-            k=k,
-            q_line=q_line,
-            eps_bits=eps_bits,
-            target_unit=target_unit,
-            q_line_window=window,
-            exact_start=exact_start,
-            exact_distance_limit=exact_distance_limit,
-            lower_floor_distance_limit=lower_floor_distance_limit,
-            budget=budget,
-            projective_budget=projective_budget,
-            exact_start_count=exact_start_count,
-            projective_last_safe_distance_in_exact_range=projective_last_safe,
-            projective_first_unsafe_distance_in_exact_range=projective_first_unsafe,
-            status=status,
-            last_unsafe_agreement=n,
-            first_safe_agreement=None,
-            last_unsafe_distance=0,
-            first_safe_distance=None,
-            first_unsafe_grid_radius="0",
-            largest_safe_grid_radius=None,
-        )
-
-    if budget < exact_start_count:
-        first_safe = n - budget + 1
-        last_unsafe = first_safe - 1
-        assert last_unsafe >= exact_start
-        assert n - last_unsafe + 1 == budget + 1
-        assert n - first_safe + 1 == budget
-        return Gate(
-            label=label,
-            n=n,
-            k=k,
-            q_line=q_line,
-            eps_bits=eps_bits,
-            target_unit=target_unit,
-            q_line_window=window,
-            exact_start=exact_start,
-            exact_distance_limit=exact_distance_limit,
-            lower_floor_distance_limit=lower_floor_distance_limit,
-            budget=budget,
-            projective_budget=projective_budget,
-            exact_start_count=exact_start_count,
-            projective_last_safe_distance_in_exact_range=projective_last_safe,
-            projective_first_unsafe_distance_in_exact_range=projective_first_unsafe,
-            status="crossing_inside_exact_tangent_range",
-            last_unsafe_agreement=last_unsafe,
-            first_safe_agreement=first_safe,
-            last_unsafe_distance=n - last_unsafe,
-            first_safe_distance=n - first_safe,
-            first_unsafe_grid_radius=str(Fraction(n - last_unsafe, n)),
-            largest_safe_grid_radius=str(Fraction(n - first_safe, n)),
-        )
-
-    if budget <= lower_floor_distance_limit:
-        unsafe_agreement = n - budget
-        return Gate(
-            label=label,
-            n=n,
-            k=k,
-            q_line=q_line,
-            eps_bits=eps_bits,
-            target_unit=target_unit,
-            q_line_window=window,
-            exact_start=exact_start,
-            exact_distance_limit=exact_distance_limit,
-            lower_floor_distance_limit=lower_floor_distance_limit,
-            budget=budget,
-            projective_budget=projective_budget,
-            exact_start_count=exact_start_count,
-            projective_last_safe_distance_in_exact_range=projective_last_safe,
-            projective_first_unsafe_distance_in_exact_range=projective_first_unsafe,
-            status="safe_exact_range_then_tangent_unsafe_floor",
-            last_unsafe_agreement=unsafe_agreement,
-            first_safe_agreement=exact_start,
-            last_unsafe_distance=budget,
-            first_safe_distance=exact_distance_limit,
-            first_unsafe_grid_radius=str(Fraction(budget, n)),
-            largest_safe_grid_radius=str(Fraction(exact_distance_limit, n)),
-        )
+    (
+        status,
+        last_unsafe_agreement,
+        first_safe_agreement,
+        last_unsafe_distance,
+        first_safe_distance,
+        first_unsafe_grid_radius,
+        largest_safe_grid_radius,
+    ) = threshold_summary(
+        n, exact_start, exact_distance_limit, lower_floor_distance_limit, budget
+    )
+    (
+        projective_status,
+        projective_last_unsafe_agreement,
+        projective_first_safe_agreement,
+        projective_last_unsafe_distance,
+        projective_first_safe_distance,
+        projective_first_unsafe_grid_radius,
+        projective_largest_safe_grid_radius,
+    ) = threshold_summary(
+        n,
+        exact_start,
+        exact_distance_limit,
+        lower_floor_distance_limit,
+        projective_budget,
+    )
 
     return Gate(
         label=label,
@@ -193,6 +224,7 @@ def tangent_gate(label: str, n: int, k: int, q_line: int, eps_bits: int) -> Gate
         eps_bits=eps_bits,
         target_unit=target_unit,
         q_line_window=window,
+        projective_q_line_window=projective_window,
         exact_start=exact_start,
         exact_distance_limit=exact_distance_limit,
         lower_floor_distance_limit=lower_floor_distance_limit,
@@ -201,13 +233,20 @@ def tangent_gate(label: str, n: int, k: int, q_line: int, eps_bits: int) -> Gate
         exact_start_count=exact_start_count,
         projective_last_safe_distance_in_exact_range=projective_last_safe,
         projective_first_unsafe_distance_in_exact_range=projective_first_unsafe,
-        status="tangent_floor_never_crosses_budget",
-        last_unsafe_agreement=None,
-        first_safe_agreement=exact_start,
-        last_unsafe_distance=None,
-        first_safe_distance=n - exact_start,
-        first_unsafe_grid_radius=None,
-        largest_safe_grid_radius=str(Fraction(n - exact_start, n)),
+        status=status,
+        last_unsafe_agreement=last_unsafe_agreement,
+        first_safe_agreement=first_safe_agreement,
+        last_unsafe_distance=last_unsafe_distance,
+        first_safe_distance=first_safe_distance,
+        first_unsafe_grid_radius=first_unsafe_grid_radius,
+        largest_safe_grid_radius=largest_safe_grid_radius,
+        projective_status=projective_status,
+        projective_last_unsafe_agreement=projective_last_unsafe_agreement,
+        projective_first_safe_agreement=projective_first_safe_agreement,
+        projective_last_unsafe_distance=projective_last_unsafe_distance,
+        projective_first_safe_distance=projective_first_safe_distance,
+        projective_first_unsafe_grid_radius=projective_first_unsafe_grid_radius,
+        projective_largest_safe_grid_radius=projective_largest_safe_grid_radius,
     )
 
 
@@ -226,6 +265,9 @@ def check_gate(gate: Gate) -> None:
     assert gate.q_line_window == q_line_window(
         gate.n, gate.k, gate.q_line, gate.eps_bits
     )
+    assert gate.projective_q_line_window == projective_q_line_window(
+        gate.n, gate.k, gate.q_line, gate.eps_bits
+    )
     assert gate.exact_start == ceil_div(2 * gate.n + gate.k, 3)
     assert gate.exact_distance_limit == (gate.n - gate.k) // 3
     assert gate.lower_floor_distance_limit == gate.n - gate.k - 1
@@ -236,6 +278,18 @@ def check_gate(gate: Gate) -> None:
         assert gate.n - 2 * d - 1 >= gate.k
     assert gate.budget == gate.q_line // gate.target_unit
     assert gate.projective_budget == (gate.q_line + 1) // gate.target_unit
+    assert gate.q_line_window == budget_window(
+        gate.budget, gate.exact_distance_limit, gate.lower_floor_distance_limit
+    )
+    assert gate.projective_q_line_window == budget_window(
+        gate.projective_budget,
+        gate.exact_distance_limit,
+        gate.lower_floor_distance_limit,
+    )
+    assert_q_line_budget_window(gate.q_line, gate.budget, gate.target_unit, 0)
+    assert_q_line_budget_window(
+        gate.q_line, gate.projective_budget, gate.target_unit, 1
+    )
     expected_projective = projective_exact_distances(
         gate.exact_distance_limit, gate.projective_budget
     )
@@ -295,6 +349,43 @@ def check_gate(gate: Gate) -> None:
     else:
         raise AssertionError(f"unknown status {gate.status}")
 
+    if gate.projective_status == "crossing_inside_exact_tangent_range":
+        assert gate.projective_last_unsafe_agreement is not None
+        assert gate.projective_first_safe_agreement is not None
+        assert (
+            gate.projective_last_unsafe_agreement + 1
+            == gate.projective_first_safe_agreement
+        )
+        assert gate.projective_last_unsafe_agreement >= gate.exact_start
+        assert 1 <= gate.projective_budget <= gate.exact_distance_limit
+        assert gate.projective_q_line_window == "exact_crossing_q_line_window"
+        assert gate.n - gate.projective_last_unsafe_agreement + 1 == (
+            gate.projective_budget + 1
+        )
+        assert (
+            gate.n - gate.projective_first_safe_agreement + 1
+            == gate.projective_budget
+        )
+    elif gate.projective_status == "safe_exact_range_then_tangent_unsafe_floor":
+        assert gate.projective_budget > gate.exact_distance_limit
+        assert gate.projective_budget <= gate.lower_floor_distance_limit
+        assert gate.projective_q_line_window == "exact_safe_then_gap_q_line_window"
+        assert gate.projective_first_safe_agreement == gate.exact_start
+        assert gate.projective_first_safe_distance == gate.exact_distance_limit
+        assert gate.projective_last_unsafe_agreement == gate.n - gate.projective_budget
+        assert gate.projective_last_unsafe_distance == gate.projective_budget
+    elif gate.projective_status == "tangent_floor_never_crosses_budget":
+        assert gate.projective_budget > gate.exact_distance_limit
+        assert gate.projective_budget > gate.lower_floor_distance_limit
+        assert gate.projective_q_line_window == "tangent_floor_never_crosses_q_line_window"
+        assert gate.projective_first_safe_agreement == gate.exact_start
+    elif gate.projective_status == "no_safe_agreement_in_exact_tangent_range":
+        assert gate.projective_budget == 0
+        assert gate.projective_q_line_window == "budget_zero_q_line_window"
+        assert gate.projective_last_unsafe_agreement == gate.n
+    else:
+        raise AssertionError(f"unknown projective status {gate.projective_status}")
+
 
 def default_cases() -> list[Gate]:
     return [
@@ -334,6 +425,13 @@ def default_cases() -> list[Gate]:
             q_line=7,
             eps_bits=3,
         ),
+        tangent_gate(
+            label="toy finite and projective budget zero",
+            n=20,
+            k=8,
+            q_line=6,
+            eps_bits=3,
+        ),
     ]
 
 
@@ -345,6 +443,7 @@ def print_human(gates: list[Gate]) -> None:
         print(f"  eps_bits={gate.eps_bits}")
         print(f"  target_unit=2^eps_bits={gate.target_unit}")
         print(f"  q_line_window={gate.q_line_window}")
+        print(f"  projective_q_line_window={gate.projective_q_line_window}")
         print(f"  exact_start={gate.exact_start}")
         print(f"  exact_distance_limit={gate.exact_distance_limit}")
         print(f"  lower_floor_distance_limit={gate.lower_floor_distance_limit}")
@@ -352,6 +451,7 @@ def print_human(gates: list[Gate]) -> None:
         print(f"  budget=floor(q_line/2^eps_bits)={gate.budget}")
         print(f"  projective_budget=floor((q_line+1)/2^eps_bits)={gate.projective_budget}")
         print(f"  status={gate.status}")
+        print(f"  projective_status={gate.projective_status}")
         if gate.last_unsafe_agreement is not None:
             print(
                 "  last_unsafe_agreement="
@@ -387,6 +487,20 @@ def print_human(gates: list[Gate]) -> None:
                 "  projective_exact_range_unsafe_from_distance="
                 f"{gate.projective_first_unsafe_distance_in_exact_range}"
             )
+        if gate.projective_last_unsafe_agreement is not None:
+            print(
+                "  projective_last_unsafe_agreement="
+                f"{gate.projective_last_unsafe_agreement}, "
+                f"distance={gate.projective_last_unsafe_distance}, "
+                f"grid_radius={gate.projective_first_unsafe_grid_radius}"
+            )
+        if gate.projective_first_safe_agreement is not None:
+            print(
+                "  projective_first_safe_agreement="
+                f"{gate.projective_first_safe_agreement}, "
+                f"distance={gate.projective_first_safe_distance}, "
+                f"grid_radius={gate.projective_largest_safe_grid_radius}"
+            )
         print()
 
 
@@ -420,17 +534,27 @@ def main() -> None:
         assert active.projective_budget == 6
         assert active.target_unit == 1 << 128
         assert active.q_line_window == "exact_crossing_q_line_window"
+        assert active.projective_q_line_window == "exact_crossing_q_line_window"
         assert 6 * active.target_unit <= active.q_line
         assert active.q_line < 7 * active.target_unit
+        assert 6 * active.target_unit - 1 <= active.q_line
+        assert active.q_line < 7 * active.target_unit - 1
         assert active.projective_last_safe_distance_in_exact_range == 5
         assert active.projective_first_unsafe_distance_in_exact_range == 6
         assert active.status == "crossing_inside_exact_tangent_range"
+        assert active.projective_status == "crossing_inside_exact_tangent_range"
         assert active.last_unsafe_agreement == 506
         assert active.first_safe_agreement == 507
+        assert active.projective_last_unsafe_agreement == 506
+        assert active.projective_first_safe_agreement == 507
         assert active.last_unsafe_distance == 6
         assert active.first_safe_distance == 5
+        assert active.projective_last_unsafe_distance == 6
+        assert active.projective_first_safe_distance == 5
         assert active.first_unsafe_grid_radius == "3/256"
         assert active.largest_safe_grid_radius == "5/512"
+        assert active.projective_first_unsafe_grid_radius == "3/256"
+        assert active.projective_largest_safe_grid_radius == "5/512"
 
     if args.json:
         payload: list[dict[str, Any]] = [asdict(gate) for gate in gates]

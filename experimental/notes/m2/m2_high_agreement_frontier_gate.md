@@ -344,6 +344,32 @@ but with denominator `q_line+1`.  It is within budget exactly when
 d+1 <= B_P.
 ```
 
+Consequently the projective sampler has the same four row-level cases as the
+finite sampler, with `B` replaced by `B_P`.  In terms of the finite field size
+`q_line`, the exact-crossing subwindow for budget `b` is shifted by one:
+
+```text
+bQ - 1 <= q_line < (b+1)Q - 1.
+```
+
+Thus:
+
+```text
+0 < q_line < Q-1:
+  no projective agreement level is within budget;
+
+Q-1 <= q_line < (d0+1)Q-1:
+  the projective target crossing lies inside the exact tangent-star range;
+
+(d0+1)Q-1 <= q_line < (d1+1)Q-1:
+  the exact tangent-star range is projectively safe, but the finite tangent
+  floor already proves a later projective-unsafe distance;
+
+(d1+1)Q-1 <= q_line:
+  the tangent floor never crosses the projective target in the list-decoding
+  range k+1 <= a <= n.
+```
+
 This is still only a convention audit.  It does not alter finite-slope rows on
 the public board, whose denominator is `q_line`.
 
@@ -375,7 +401,15 @@ Since
 1 <= 6 <= 85,
 ```
 
-the exact tangent range contains the crossing:
+both the finite and projective exact tangent-star ranges contain the crossing.
+Equivalently,
+
+```text
+6*2^128     <= 17^32 < 7*2^128,
+6*2^128 - 1 <= 17^32 < 7*2^128 - 1.
+```
+
+For the finite sampler:
 
 ```text
 LD_sw(C,506) = 7       unsafe,
