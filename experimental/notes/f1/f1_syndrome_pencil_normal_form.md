@@ -254,6 +254,55 @@ lies on the one-dimensional line spanned by `b_T`; the scalar is forced by any
 nonzero coordinate of `b_T`. The displayed minors are the usual rank-one
 criterion for the two-column matrix `[a_T b_T]`.
 
+## Corollary 5: Compatibility With Extension Coordinates
+
+Let `B subset F` be a finite field extension, let `D subset B`, and choose a
+`B`-basis `omega_1,...,omega_e` of `F`. For `y:D->F`, write
+
+```text
+y = sum_i y_i omega_i,        y_i:D->B.
+```
+
+Then syndrome formation commutes with coordinate expansion:
+
+```text
+Syn_F(y) = sum_i Syn_B(y_i) omega_i.
+```
+
+Consequently, if `M_z` is the multiplication-by-`z` matrix in this basis, then
+the F1 Hankel-pencil condition over `F`,
+
+```text
+(H_F(Syn_F(f)) + z H_F(Syn_F(g))) ell_T = 0,
+```
+
+is exactly the coordinate/interleaved base-field condition
+
+```text
+H_B(Syn_B(Phi(f)) + M_z Syn_B(Phi(g))) ell_T = 0
+```
+
+in the `e` base coordinates.
+
+Thus the syndrome-pencil normal form is the support-level version of the
+previous extension-coordinate transfer theorem: extension-line MCA over `F`
+is a multiplication-slice incidence problem inside the `e`-interleaved
+base-code syndrome space.
+
+## Proof
+
+For `x in D subset B`, both `lambda_x` and `x^m` lie in `B`. Hence
+
+```text
+Syn_F(y)_m
+  = sum_x lambda_x x^m sum_i y_i(x) omega_i
+  = sum_i (sum_x lambda_x x^m y_i(x)) omega_i
+  = sum_i Syn_B(y_i)_m omega_i.
+```
+
+The line identity follows from `B`-linearity of coordinate expansion and from
+the definition of `M_z`.
+
 ## Why This Helps F1
 
 The naive extension-field lift is already false: genuinely `F`-valued lines
@@ -270,6 +319,7 @@ with H(v)ell != 0.
 For `D subset B` and `F/B` an extension, this is a basis-free statement over
 the actual line field `F`. Combined with the coordinate-transfer note, it is
 also the base-field multiplication-slice problem in the `e`-interleaved code.
+Corollary 5 makes this compatibility exact at the syndrome-pencil level.
 
 The remaining positive F1 theorem should therefore be an inverse-incidence
 bound in the reduced space `V`: after quotient-periodic locator families and

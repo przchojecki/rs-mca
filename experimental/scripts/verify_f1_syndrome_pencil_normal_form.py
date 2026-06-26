@@ -150,6 +150,18 @@ def dual_weights(field: QuadraticField, points: Sequence[Element]) -> list[Eleme
     return weights
 
 
+def base_dual_weights(p: int, points: Sequence[int]) -> list[int]:
+    weights = []
+    for i, xi in enumerate(points):
+        denominator = 1
+        for j, xj in enumerate(points):
+            if i == j:
+                continue
+            denominator = (denominator * (xi - xj)) % p
+        weights.append(pow(denominator, -1, p))
+    return weights
+
+
 def syndrome(
     field: QuadraticField,
     points: Sequence[Element],
@@ -162,6 +174,22 @@ def syndrome(
         total = field.zero
         for x, lam, y in zip(points, weights, word):
             total = field.add(total, field.mul(field.mul(lam, field.pow(x, m)), y))
+        out.append(total)
+    return out
+
+
+def base_syndrome(
+    p: int,
+    points: Sequence[int],
+    weights: Sequence[int],
+    values: Sequence[int],
+    r: int,
+) -> list[int]:
+    out = []
+    for m in range(r):
+        total = 0
+        for x, lam, value in zip(points, weights, values):
+            total = (total + lam * pow(x, m, p) * value) % p
         out.append(total)
     return out
 
@@ -309,12 +337,21 @@ def run_case(params: dict[str, int]) -> dict[str, object]:
     base_points = subgroup_points(p, n)
     points = [field.element(x) for x in base_points]
     weights = dual_weights(field, points)
+    base_weights = base_dual_weights(p, base_points)
     f_word = deterministic_word(field, points, salt=1)
     g_word = deterministic_word(field, points, salt=4)
     u = syndrome(field, points, weights, f_word, r)
     v = syndrome(field, points, weights, g_word, r)
+    coordinate_syndrome_passed = True
+    for word, syn in ((f_word, u), (g_word, v)):
+        for coord in (0, 1):
+            base_values = [value[coord] for value in word]
+            base_syn = base_syndrome(p, base_points, base_weights, base_values, r)
+            coordinate_syndrome_passed &= base_syn == [value[coord] for value in syn]
 
     mismatches: list[dict[str, object]] = []
+    if not coordinate_syndrome_passed:
+        mismatches.append({"type": "coordinate_syndrome"})
     bad_slopes: set[Element] = set()
     support_count = 0
     slope_tests = 0
@@ -409,6 +446,7 @@ def run_case(params: dict[str, int]) -> dict[str, object]:
         "slope_tests": slope_tests,
         "bad_slope_count": len(bad_slopes),
         "projective_gate_supports": projective_gate_supports,
+        "coordinate_syndrome_passed": coordinate_syndrome_passed,
         "max_reduced_dimension": max_reduced_dimension,
         "dimension_bound": 2 * t,
         "passed": not mismatches,
@@ -442,6 +480,7 @@ def main() -> int:
                 f"{record['slope_tests']} slope/support tests, "
                 f"{record['bad_slope_count']} bad slopes, "
                 f"{record['projective_gate_supports']} gated supports, "
+                f"coordinate syndrome={'OK' if record['coordinate_syndrome_passed'] else 'FAIL'}, "
                 f"max dim(V)={record['max_reduced_dimension']} <= {record['dimension_bound']}"
             )
         print(f"RESULT: {'PASS' if passed else 'FAIL'}")

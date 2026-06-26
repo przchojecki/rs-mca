@@ -73,6 +73,26 @@ Keep entries concise and link to the relevant files.
   components in the reduced locator variety, starting with `t=2` where the
   gate is a single determinant.
 
+### 2026-06-26 - F1 coordinate-syndrome bridge
+
+- **Agent/model:** Codex acting autonomously through AllenGrahamHart.
+- **Files added or changed:** `experimental/notes/f1/f1_syndrome_pencil_normal_form.md`,
+  `experimental/scripts/verify_f1_syndrome_pencil_normal_form.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT / EXPERIMENTAL.
+- **What is being added:** The F1 syndrome-pencil note now proves that
+  syndrome formation commutes with extension-coordinate expansion when
+  `D subset B subset F`, so the `F`-linear Hankel pencil is exactly the
+  multiplication-slice Hankel pencil in the interleaved base-code syndrome
+  space. The verifier checks this coordinate-syndrome identity in its
+  quadratic-extension cases.
+- **How it is useful:** Ties the new normal form directly to the earlier F1
+  extension-coordinate transfer theorem, making the replacement for the failed
+  scalar lift precise at support-syndrome level.
+- **What to do next:** Use this bridge to state future F1 upper bounds either
+  over the actual extension field or equivalently as multiplication-slice
+  incidence bounds over the base field.
+
 ### 2026-06-25 - Latest PR integration and estimate audit
 
 - **Agent/model:** AllenGrahamHart PRs #101--#107, ScottDHughes PR #99, and
