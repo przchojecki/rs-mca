@@ -1288,6 +1288,58 @@ If the rank is at most one, the line-packet sieve has reached a genuine
 one-row recurrence resonance rather than a quadric-line issue; this is the
 remaining subcase.
 
+## Corollary 20: Rank-One Row Cuts Lose One Root
+
+Keep the row-cut resonant case of Corollary 19. If the killed-row equations
+have rank zero on the monic locator slice, then the common-image condition is
+global and the zero reduced quadric branch of Corollary 17 applies.
+
+Otherwise the nonempty resonant packet is contained in one affine hyperplane
+
+```text
+h ell_T = 0
+```
+
+on monic degree-`j` locators. The number of squarefree `D`-split locators in
+this packet is at most
+
+```text
+binom(|D|,j-1),
+```
+
+and hence the packet contributes at most that many bad slopes.
+
+This one-root-loss order is unavoidable for a bare row cut: the equation
+`L_T(alpha)=0` with `alpha in D` leaves exactly the fixed-root star through
+`alpha`, of size `binom(|D|-1,j-1)`.
+
+## Proof
+
+Rank zero means both killed-row affine equations vanish on the full monic
+slice. Equivalently the killed row functional annihilates the two Hankel
+windows on the whole coefficient space, so the reduced image has the same
+common-image direction globally. This is the zero reduced quadric branch
+already handled by Corollary 17.
+
+In rank one, the common-image packet is cut out, on the monic slice, by one
+nonzero affine linear equation. If the equation is inconsistent there is
+nothing to prove. Otherwise its solution set is an affine family
+
+```text
+P_0(X)+V
+```
+
+with `dim V <= j-1` and every `Q in V` of degree `< j`. For each squarefree
+split `L_T` in the family, evaluation `V -> F^T` is injective because a
+nonzero polynomial of degree `<j` cannot vanish on all `j` distinct roots of
+`T`. Hence some `(j-1)`-subset `R subset T` already gives an injective
+evaluation map on `V`. Choosing the first such `R` injects the landing
+locators into the `(j-1)`-subsets of `D`, because a fixed `R` determines the
+unique element of `P_0+V` vanishing on `R`. This gives
+`binom(|D|,j-1)`.
+
+Finally, Corollary 4 gives at most one noncontained slope per locator.
+
 ## Why This Helps F1
 
 The naive extension-field lift is already false: genuinely `F`-valued lines
@@ -1353,7 +1405,10 @@ many slopes: common-image ruling lines. Non-ruling lines and common-kernel
 ruling lines are already bounded. Corollary 19 then reduces common-image
 packets to a row-cut rank test: rank-two row cuts are bounded by
 `binom(|D|,j-2)`, leaving only rank-one row-cut resonance as the line-level
-subcase still needing a packing argument.
+subcase still needing a packing argument. Corollary 20 bounds that bare
+rank-one row cut by `binom(|D|,j-1)` and shows the fixed-root star has the
+same one-root-loss order; improving further requires extra structure, such as
+quotient-periodic removal or an aperiodic packing input.
 
 ## Verification
 
@@ -1389,4 +1444,6 @@ ledger obtained by combining those audited pieces. The reduced-quadric audit
 also checks the common-kernel ruling used in Corollary 17. Separate reduced
 line-section checks exercise the two-point, common-kernel, and common-image
 cases in Corollary 18. The constructed `j=4` and `j=5` rank-two fixed-root
-fibers also audit the rank-two row-cut bound used in Corollary 19.
+fibers also audit the rank-two row-cut bound used in Corollary 19. A
+constructed `j=4` fixed-root row cut audits the one-root-loss bound in
+Corollary 20.

@@ -344,6 +344,24 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** Analyze the row-cut resonant case, especially whether
   quotient-periodic or contained components account for the large packets.
 
+### 2026-06-26 - F1 rank-one row-cut bound
+
+- **Agent/model:** Codex acting autonomously through AllenGrahamHart.
+- **Files added or changed:** `experimental/notes/f1/f1_syndrome_pencil_normal_form.md`,
+  `experimental/scripts/verify_f1_syndrome_pencil_normal_form.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT / EXPERIMENTAL.
+- **What is being added:** The F1 syndrome-pencil note now proves that a
+  rank-one row-cut resonance contains at most `binom(|D|,j-1)` split
+  locators, with fixed-root stars showing the one-root-loss order is
+  unavoidable for a bare row cut.
+- **How it is useful:** Gives the common-image obstruction a final elementary
+  reduction: after rank-two row cuts, the remaining row-cut resonance is
+  exactly a one-root-loss hyperplane section needing extra aperiodic or
+  quotient-removal input.
+- **What to do next:** Look for project-specific structure that improves the
+  sharp bare row-cut bound after quotient-periodic components are removed.
+
 ### 2026-06-25 - Latest PR integration and estimate audit
 
 - **Agent/model:** AllenGrahamHart PRs #101--#107, ScottDHughes PR #99, and

@@ -234,6 +234,31 @@ GENERAL_FIXED_SLOPE_CASES = (
     },
 )
 
+ROW_CUT_RESONANCE_CASES = (
+    {
+        "name": "j4 fixed-root row cut",
+        "p": 7,
+        "domain": (1, 2, 3, 4, 5, 6),
+        "j": 4,
+        "rows": (
+            ((1, 0), (2, 0), (4, 0), (1, 0), (2, 0)),
+        ),
+        "expected_rank": 1,
+        "expected_landings": 10,
+    },
+    {
+        "name": "j4 unrestricted zero row cut",
+        "p": 7,
+        "domain": (1, 2, 3, 4, 5, 6),
+        "j": 4,
+        "rows": (
+            ((0, 0), (0, 0), (0, 0), (0, 0), (0, 0)),
+        ),
+        "expected_rank": 0,
+        "expected_landings": 15,
+    },
+)
+
 GLOBAL_MONIC_RANK_ONE_CASES = (
     {
         "name": "global finite root star",
@@ -1112,6 +1137,59 @@ def run_general_fixed_slope_case(params: dict[str, object]) -> dict[str, object]
     }
 
 
+def run_row_cut_resonance_case(params: dict[str, object]) -> dict[str, object]:
+    p = int(params["p"])
+    j = int(params["j"])
+    field = QuadraticField(p=p, d=least_nonsquare(p))
+    domain = [field.element(int(value)) for value in params["domain"]]
+    rows = [[tuple(entry) for entry in row] for row in params["rows"]]
+    rank = matrix_rank(field, rows)
+    landings = 0
+    for roots in itertools.combinations(domain, j):
+        locator = locator_coefficients(field, roots)
+        if all(dot(field, row, locator) == field.zero for row in rows):
+            landings += 1
+
+    rank_one_bound = comb(len(domain), j - 1)
+    mismatches: list[dict[str, object]] = []
+    if rank != params["expected_rank"]:
+        mismatches.append(
+            {
+                "type": "row_cut_rank",
+                "expected": params["expected_rank"],
+                "actual": rank,
+            }
+        )
+    if landings != params["expected_landings"]:
+        mismatches.append(
+            {
+                "type": "row_cut_landing_count",
+                "expected": params["expected_landings"],
+                "actual": landings,
+            }
+        )
+    if rank == 1 and landings > rank_one_bound:
+        mismatches.append(
+            {
+                "type": "row_cut_rank_one_bound",
+                "landings": landings,
+                "bound": rank_one_bound,
+            }
+        )
+
+    return {
+        "name": params["name"],
+        "field": f"F_{p}[u]/(u^2-{field.d})",
+        "domain_size": len(domain),
+        "j": j,
+        "rank": rank,
+        "landings": landings,
+        "rank_one_bound": rank_one_bound,
+        "passed": not mismatches,
+        "mismatches": mismatches[:5],
+    }
+
+
 def run_global_monic_rank_one_case(params: dict[str, object]) -> dict[str, object]:
     p = int(params["p"])
     j = int(params.get("j", 3))
@@ -1704,6 +1782,9 @@ def main() -> int:
     general_fixed_slope_records = [
         run_general_fixed_slope_case(case) for case in GENERAL_FIXED_SLOPE_CASES
     ]
+    row_cut_records = [
+        run_row_cut_resonance_case(case) for case in ROW_CUT_RESONANCE_CASES
+    ]
     global_monic_records = [
         run_global_monic_rank_one_case(case) for case in GLOBAL_MONIC_RANK_ONE_CASES
     ]
@@ -1716,6 +1797,7 @@ def main() -> int:
             + j2_fiber_records
             + j3_fiber_records
             + general_fixed_slope_records
+            + row_cut_records
             + global_monic_records
         )
     )
@@ -1729,6 +1811,7 @@ def main() -> int:
         "j2_fiber_only_cases": j2_fiber_records,
         "j3_fiber_only_cases": j3_fiber_records,
         "general_fixed_slope_cases": general_fixed_slope_records,
+        "row_cut_resonance_cases": row_cut_records,
         "global_monic_rank_one_cases": global_monic_records,
     }
     if args.json:
@@ -1793,6 +1876,14 @@ def main() -> int:
                 f"|D|={record['domain_size']}, j={record['j']}, "
                 f"monic_rank={record['monic_rank']}, landings={record['landings']} "
                 f"<= {record['regular_bound']}"
+            )
+        for record in row_cut_records:
+            flag = "PASS" if record["passed"] else "FAIL"
+            print(
+                f"  [{flag}] {record['name']}: {record['field']}, "
+                f"|D|={record['domain_size']}, j={record['j']}, "
+                f"rank={record['rank']}, landings={record['landings']} "
+                f"<= {record['rank_one_bound']}"
             )
         for record in global_monic_records:
             flag = "PASS" if record["passed"] else "FAIL"
