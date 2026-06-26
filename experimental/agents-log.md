@@ -52,7 +52,7 @@ Keep entries concise and link to the relevant files.
   from fixed-slope fibers, proves the residual `t=2` one-exchange degree bound
   `<= j`, certifies the quadratic companion map for residual different-slope
   edges, classifies residual triangles as top-type after excluding star
-  triangles, forms the residual top-packet edge/triangle ledger, and
+  triangles, forms the residual top-packet edge/triangle/degree ledger, and
   cross-checks every reported bad slope by direct RS interpolation.
 - **How it is useful:** This turns the MCA half of the prize into a concrete
   counterexample-first object: after tangent and quotient-periodic locators
@@ -68,9 +68,9 @@ Keep entries concise and link to the relevant files.
   graph whose edges are forced by core-wise quadratic involutions.  The
   residual triangle check shows the first surviving cycles are top packets,
   not star fibers, and the top-packet ledger accounts exactly for residual
-  edges and triangles by slope-injective `(j+1)`-packets.  The arbitrary probe
-  shows the rank-one zero-slice branch is not merely formal, while still being
-  classified by the contained/constant ledger.
+  edges, triangles, and endpoint degrees by slope-injective `(j+1)`-packets.
+  The arbitrary probe shows the rank-one zero-slice branch is not merely
+  formal, while still being classified by the contained/constant ledger.
 - **What to do next:** Extend the verifier to richer line families and prove
   structural bounds for the aperiodic slope image, starting with `t=2` and
   quotient scales already separated by the existing M1 quotient ledgers.
