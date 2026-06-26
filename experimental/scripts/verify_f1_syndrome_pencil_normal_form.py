@@ -162,6 +162,35 @@ J3_FIBER_ONLY_CASES = (
     },
 )
 
+GLOBAL_MONIC_RANK_ONE_CASES = (
+    {
+        "name": "global finite root star",
+        "p": 7,
+        "domain": (1, 2, 3, 4, 5, 6),
+        "alpha": 2,
+        "u": ((1, 0), (2, 0), (4, 0), (1, 0), (3, 0)),
+        "v": ((3, 0), (6, 0), (5, 0), (3, 0), (4, 0)),
+        "kind": "finite",
+    },
+    {
+        "name": "global finite root outside domain",
+        "p": 7,
+        "domain": (1, 2, 3, 4, 5, 6),
+        "alpha": 0,
+        "u": ((1, 0), (0, 0), (0, 0), (0, 0), (3, 0)),
+        "v": ((2, 0), (0, 0), (0, 0), (0, 0), (4, 0)),
+        "kind": "finite",
+    },
+    {
+        "name": "global infinity root",
+        "p": 7,
+        "domain": (1, 2, 3, 4, 5, 6),
+        "u": ((0, 0), (0, 0), (0, 0), (1, 0), (3, 0)),
+        "v": ((0, 0), (0, 0), (0, 0), (2, 0), (4, 0)),
+        "kind": "infinity",
+    },
+)
+
 
 @dataclass(frozen=True)
 class QuadraticField:
@@ -730,6 +759,134 @@ def run_j3_fiber_case(params: dict[str, object]) -> dict[str, object]:
     }
 
 
+def run_global_monic_rank_one_case(params: dict[str, object]) -> dict[str, object]:
+    p = int(params["p"])
+    field = QuadraticField(p=p, d=least_nonsquare(p))
+    domain = [field.element(int(value)) for value in params["domain"]]
+    u = [tuple(value) for value in params["u"]]
+    v = [tuple(value) for value in params["v"]]
+    left = hankel_matrix(u, 2, 3)
+    right = hankel_matrix(v, 2, 3)
+    triples = [
+        (roots, locator_coefficients(field, roots))
+        for roots in itertools.combinations(domain, 3)
+    ]
+    kind = str(params["kind"])
+    alpha = field.element(int(params["alpha"])) if kind == "finite" else None
+    alpha_in_domain = alpha in domain if alpha is not None else False
+    finite_vector = None
+    if alpha is not None:
+        finite_vector = [field.pow(alpha, degree) for degree in range(4)]
+    infinity_vector = [field.zero, field.zero, field.zero, field.one]
+
+    mismatches: list[dict[str, object]] = []
+    nonzero_slope_count = 0
+    scalar_zero_slope_count = 0
+    max_nonzero_landings = 0
+    max_scalar_zero_landings = 0
+
+    for slope in field.elements():
+        pencil = pencil_at_slope(field, left, right, slope)
+        monic_rank = matrix_rank(field, [row[:3] for row in pencil])
+        if monic_rank > 1:
+            mismatches.append(
+                {"type": "global_monic_rank", "slope": slope, "monic_rank": monic_rank}
+            )
+            continue
+
+        landings = [
+            roots
+            for roots, locator in triples
+            if all(dot(field, row, locator) == field.zero for row in pencil)
+        ]
+        row0 = pencil[0]
+        if kind == "finite":
+            assert finite_vector is not None and alpha is not None
+            scalar = row0[0]
+            expected_row = [field.mul(scalar, value) for value in finite_vector]
+            if row0 != expected_row:
+                mismatches.append(
+                    {
+                        "type": "finite_twisted_row",
+                        "slope": slope,
+                        "row0": row0,
+                        "expected": expected_row,
+                    }
+                )
+                continue
+            if scalar == field.zero:
+                scalar_zero_slope_count += 1
+                max_scalar_zero_landings = max(max_scalar_zero_landings, len(landings))
+                continue
+            nonzero_slope_count += 1
+            max_nonzero_landings = max(max_nonzero_landings, len(landings))
+            if not alpha_in_domain and landings:
+                mismatches.append(
+                    {
+                        "type": "outside_root_landing",
+                        "slope": slope,
+                        "landings": landings[:5],
+                    }
+                )
+            if alpha_in_domain and any(alpha not in roots for roots in landings):
+                mismatches.append(
+                    {
+                        "type": "finite_root_star_violation",
+                        "slope": slope,
+                        "alpha": alpha,
+                        "landings": landings[:5],
+                    }
+                )
+            if alpha_in_domain and len(landings) > (len(domain) - 1) * (len(domain) - 2) // 2:
+                mismatches.append(
+                    {
+                        "type": "finite_root_star_bound",
+                        "slope": slope,
+                        "landings": len(landings),
+                    }
+                )
+        else:
+            scalar = row0[3]
+            expected_row = [field.mul(scalar, value) for value in infinity_vector]
+            if row0 != expected_row:
+                mismatches.append(
+                    {
+                        "type": "infinity_twisted_row",
+                        "slope": slope,
+                        "row0": row0,
+                        "expected": expected_row,
+                    }
+                )
+                continue
+            if scalar == field.zero:
+                scalar_zero_slope_count += 1
+                max_scalar_zero_landings = max(max_scalar_zero_landings, len(landings))
+                continue
+            nonzero_slope_count += 1
+            max_nonzero_landings = max(max_nonzero_landings, len(landings))
+            if landings:
+                mismatches.append(
+                    {
+                        "type": "infinity_nonzero_landing",
+                        "slope": slope,
+                        "landings": landings[:5],
+                    }
+                )
+
+    return {
+        "name": params["name"],
+        "field": f"F_{p}[u]/(u^2-{field.d})",
+        "domain_size": len(domain),
+        "kind": kind,
+        "nonzero_slope_count": nonzero_slope_count,
+        "scalar_zero_slope_count": scalar_zero_slope_count,
+        "max_nonzero_landings": max_nonzero_landings,
+        "max_scalar_zero_landings": max_scalar_zero_landings,
+        "passed": not mismatches,
+        "mismatches": mismatches[:5],
+    }
+
+
 def divisors(value: int) -> list[int]:
     return [candidate for candidate in range(2, value) if value % candidate == 0]
 
@@ -1086,9 +1243,18 @@ def main() -> int:
     quadric_records = [run_quadric_case(case) for case in QUADRIC_ONLY_CASES]
     j2_fiber_records = [run_j2_fiber_case(case) for case in J2_FIBER_ONLY_CASES]
     j3_fiber_records = [run_j3_fiber_case(case) for case in J3_FIBER_ONLY_CASES]
+    global_monic_records = [
+        run_global_monic_rank_one_case(case) for case in GLOBAL_MONIC_RANK_ONE_CASES
+    ]
     passed = all(
         record["passed"]
-        for record in records + quadric_records + j2_fiber_records + j3_fiber_records
+        for record in (
+            records
+            + quadric_records
+            + j2_fiber_records
+            + j3_fiber_records
+            + global_monic_records
+        )
     )
     certificate = {
         "status": "AUDIT / EXPERIMENTAL",
@@ -1098,6 +1264,7 @@ def main() -> int:
         "quadric_only_cases": quadric_records,
         "j2_fiber_only_cases": j2_fiber_records,
         "j3_fiber_only_cases": j3_fiber_records,
+        "global_monic_rank_one_cases": global_monic_records,
     }
     if args.json:
         print(json.dumps(certificate, indent=2))
@@ -1142,6 +1309,15 @@ def main() -> int:
                 f"  [{flag}] {record['name']}: {record['field']}, "
                 f"|D|={record['domain_size']}, rank={record['rank']}, "
                 f"monic_rank={record['monic_rank']}, landings={record['landings']}"
+            )
+        for record in global_monic_records:
+            flag = "PASS" if record["passed"] else "FAIL"
+            print(
+                f"  [{flag}] {record['name']}: {record['field']}, "
+                f"|D|={record['domain_size']}, kind={record['kind']}, "
+                f"nonzero slopes={record['nonzero_slope_count']}, "
+                f"scalar-zero slopes={record['scalar_zero_slope_count']}, "
+                f"max nonzero landings={record['max_nonzero_landings']}"
             )
         print(f"RESULT: {'PASS' if passed else 'FAIL'}")
     return 0 if passed else 1

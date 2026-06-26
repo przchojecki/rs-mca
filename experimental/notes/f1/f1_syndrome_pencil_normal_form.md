@@ -679,6 +679,74 @@ vanishing of the three `2 x 2` minors of the affine-linear `2 x 3` matrix
 is not identically zero, there are at most two such slopes. If all minors
 vanish identically, the monic-rank-defective branch is global.
 
+## Corollary 11: Global `j=3` Monic-Rank-One Is A Fixed-Root Readout
+
+Assume `t=2` and `j=3`. Suppose the monic-rank defect is global as a
+polynomial identity in the slope, i.e.
+
+```text
+rank A_z <= 1        for every z
+```
+
+where `A_z` is the `2 x 3` matrix from Corollary 10. Then the first four
+syndrome entries of the pencil lie on one fixed twisted-cubic line:
+
+```text
+(u_0,u_1,u_2,u_3)=a(s^3,s^2t,st^2,t^3),
+(v_0,v_1,v_2,v_3)=b(s^3,s^2t,st^2,t^3)
+```
+
+for some `[s:t] in P^1(F)` and scalars `a,b in F`.
+
+If `s != 0`, put `alpha=t/s`. For every slope with
+`a+zb != 0`, the first row of the landing equation is
+
+```text
+(a+zb) s^3 L_T(alpha)=0.
+```
+
+Thus every split complement landing at such a slope must contain the fixed
+point `alpha`. In particular:
+
+- if `alpha notin D`, there are no such split complements;
+- if `alpha in D`, all such split complements lie in the star through
+  `alpha`, so there are at most `binom(|D|-1,2)` of them before the second
+  row and noncontainment condition are imposed.
+
+If `s=0`, then the first row is zero on the non-monic coefficients and equals
+`(a+zb)t^3` on the monic coefficient. Hence every slope with `a+zb != 0` has
+no landing split complement at all.
+
+So the global monic-rank-one branch is not a new aperiodic incidence surface:
+outside at most one scalar-zero slope, it is either empty or a fixed-root
+star.
+
+## Proof
+
+The global hypothesis says that the projective line spanned by
+`(u_0,u_1,u_2,u_3)` and `(v_0,v_1,v_2,v_3)` lies in the projective cone of
+rank-one `2 x 3` Hankel matrices. This cone is the twisted cubic
+
+```text
+[s:t] -> [s^3:s^2t:st^2:t^3],
+```
+
+and it contains no projective line. Equivalently, a direct two-point
+calculation shows that the sum of two non-proportional points of the above
+form violates one of the `2 x 2` Hankel minors. Hence the two pencil vectors
+are scalar multiples of one fixed twisted-cubic point.
+
+For `s != 0`, the first row of `P_z` is
+
+```text
+(a+zb)s^3(1,alpha,alpha^2,alpha^3),
+```
+
+and its dot product with the monic locator vector
+`(c_0,c_1,c_2,1)` is `(a+zb)s^3 L_T(alpha)`. This proves the finite-root
+claims. The case `s=0` gives first row `(0,0,0,(a+zb)t^3)`, whose dot product
+with a monic locator is nonzero whenever `a+zb != 0`.
+
 ## Why This Helps F1
 
 The naive extension-field lift is already false: genuinely `F`-valued lines
@@ -716,7 +784,9 @@ fiber is either unique, linear-sized, or one of the explicitly marked
 rank-zero exceptional slopes. Corollary 10 handles the next complement size:
 for `j=3`, the monic-rank-two branch is already linear-sized, so only the
 monic-rank-defective slopes remain as the first genuinely new incidence
-branch.
+branch. Corollary 11 then identifies the global monic-rank-one branch as a
+fixed-root star or empty branch, leaving only the scalar-zero slope and the
+non-global exceptional slopes as special cases.
 
 ## Verification
 
@@ -740,4 +810,6 @@ fixed-slope fiber bounds of Corollary 9, and it includes constructed
 rank-two, rank-one fixed-sum, rank-one star, and rank-zero `j=2` fibers so all
 branches of the bound are exercised. It also includes constructed `j=3`
 fixed-slope fibers for the monic-rank-two line, monic-rank-one plane,
-monic-rank-defective rank-two, and rank-zero branches.
+monic-rank-defective rank-two, and rank-zero branches, plus global
+monic-rank-one finite-root, outside-domain, and infinity checks for
+Corollary 11.

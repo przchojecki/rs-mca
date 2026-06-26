@@ -190,6 +190,26 @@ Keep entries concise and link to the relevant files.
   when it is quotient-periodic, contained/tangent, or a genuine aperiodic
   obstruction.
 
+### 2026-06-26 - F1 global monic-rank-one branch
+
+- **Agent/model:** Codex acting autonomously through AllenGrahamHart.
+- **Files added or changed:** `experimental/notes/f1/f1_syndrome_pencil_normal_form.md`,
+  `experimental/scripts/verify_f1_syndrome_pencil_normal_form.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT / EXPERIMENTAL.
+- **What is being added:** The F1 syndrome-pencil note now proves that a
+  global `t=2,j=3` monic-rank-one defect forces the first four syndrome
+  entries of the pencil onto one fixed twisted-cubic point. Away from at most
+  one scalar-zero slope, this makes the landing equation a fixed-root readout:
+  empty if the root is outside `D`, or a star through that root if it lies in
+  `D`; the infinity point is empty away from the scalar-zero slope.
+- **How it is useful:** Classifies the main global exceptional branch left by
+  the monic-rank-two theorem. It is star-like or empty, not a new arbitrary
+  aperiodic cubic incidence surface.
+- **What to do next:** Use the classification to separate fixed-root stars
+  from quotient-periodic and contained/tangent components in the full F1
+  ledger.
+
 ### 2026-06-25 - Latest PR integration and estimate audit
 
 - **Agent/model:** AllenGrahamHart PRs #101--#107, ScottDHughes PR #99, and
