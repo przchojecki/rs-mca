@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import itertools
 from collections import Counter, defaultdict
+from fractions import Fraction
 from math import comb, factorial
 
 
@@ -1246,6 +1247,55 @@ def check_diagonal_shell_coefficient_case(
                 )
 
 
+def slope_missing_bound(
+    support_count: int,
+    slack: int,
+    field_size: int,
+    shell_weight: int,
+) -> Fraction:
+    p_numerator = field_size**slack - 1
+    p_denominator = field_size ** (2 * slack)
+    p_z = Fraction(p_numerator, p_denominator)
+    return Fraction(1, support_count) * (1 - p_z) / p_z + Fraction(
+        4 * shell_weight,
+        support_count,
+    )
+
+
+def check_finite_slack_threshold_case(
+    slack: int,
+    field_size: int,
+    threshold: int,
+) -> None:
+    q_power = field_size**slack
+    if q_power < 2:
+        raise AssertionError((slack, field_size, q_power))
+
+    support_count = 4 * threshold * q_power
+    shell_weight = support_count // (4 * threshold)
+    bound = slope_missing_bound(
+        support_count,
+        slack,
+        field_size,
+        shell_weight,
+    )
+    if bound > Fraction(2, threshold):
+        raise AssertionError((slack, field_size, threshold, bound))
+
+    first_moment_small_count = q_power // (threshold + 1)
+    first_moment_bound = Fraction(first_moment_small_count, q_power)
+    if first_moment_bound >= Fraction(1, threshold):
+        raise AssertionError(
+            (
+                slack,
+                field_size,
+                threshold,
+                first_moment_small_count,
+                first_moment_bound,
+            )
+        )
+
+
 def occupancy_vectors(
     fiber_count: int,
     fiber_size: int,
@@ -1874,6 +1924,13 @@ def main() -> int:
         (5, 2, 5, 3),
     ]:
         check_diagonal_shell_coefficient_case(*case)
+    for case in [
+        (2, 5, 3),
+        (3, 5, 4),
+        (4, 7, 5),
+        (5, 3, 6),
+    ]:
+        check_finite_slack_threshold_case(*case)
     for case in [
         (4, 3, 4),
         (4, 3, 6),

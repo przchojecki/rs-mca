@@ -807,6 +807,71 @@ where `alpha` marks removed source points and `beta` marks inserted complement
 points.  Extracting `alpha^d beta^d` imposes exchange `d` and equal support
 size, giving the formula.
 
+### Corollary 6.9. Finite-Slack Occupation Threshold
+
+The shell criterion gives a concrete finite-threshold test for any residual
+support family `A`.  Keep the notation of Corollary 6.6 and set
+
+```text
+W_t(A,q)
+ = sum_{1<=j<t} sum_{0<=d<=j} Gamma_{d,j}(A) q^(t-j).
+```
+
+The first-moment upper bound from `m1_average_support_collinearity.md` gives
+
+```text
+E |Bad_t(A;f,g)|/q <= M/q^t.
+```
+
+On the other hand, assume `q^t>=2` and let `R>=1`.  If
+
+```text
+M >= 2R q^t,        W_t(A,q) <= M/(4R),
+```
+
+then
+
+```text
+E[1 - |Bad_t(A;f,g)|/q] <= 2/R.
+```
+
+Consequently, for a sequence of fixed-slack instances over polynomial-size
+fields, a residual family with
+
+```text
+M/q^t -> infinity,        W_t(A,q)/M -> 0
+```
+
+has `|Bad_t(A;f,g)|/q -> 1` in probability.  Conversely, if `M/q^t -> 0`,
+then the expected bad-slope density from `A` tends to zero.
+
+Thus the remaining aperiodic M1 local-limit input can be stated in purely
+local shell terms: after quotient and one-remainder floors have been charged,
+one must either show the residual support mass is below the `q^t` first-moment
+threshold, or prove that any above-threshold residual has large local shell
+occupation `W_t(A,q)` and is therefore itself an obstruction.
+
+#### Proof
+
+The first displayed bound is the first-moment estimate for a fixed support
+family.  For the second direction, Corollary 6.6 gives
+
+```text
+E[1 - |Bad_t(A;f,g)|/q]
+ <= (1-p_z)/(M p_z) + 4W_t(A,q)/M,
+        p_z=q^(-t)(1-q^(-t)).
+```
+
+Since `q^t>=2`, one has `p_z >= 1/(2q^t)`.  Therefore
+
+```text
+(1-p_z)/(M p_z) <= 2q^t/M <= 1/R,
+```
+
+and the shell-weight hypothesis gives `4W_t(A,q)/M <= 1/R`.  Adding the two
+terms gives `2/R`.  The asymptotic statements follow by taking `R` tending to
+infinity and applying Markov's inequality to the missing-slope density.
+
 ## Theorem 7. Sharp Exchange-One Residual Floor
 
 For an occupancy vector `a=(a_1,...,a_N)`, put

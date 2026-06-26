@@ -59,7 +59,10 @@ Keep entries concise and link to the relevant files.
   The slack-three coefficients are also reduced to closed occupancy-moment
   formulas, avoiding coefficient extraction in the first nontrivial
   two-exchange case. The diagonal coefficient `[x^d]Phi_{a,d}` is now explicit
-  for every shell distance `d` as a no-same-fiber remove/add product.
+  for every shell distance `d` as a no-same-fiber remove/add product. A
+  finite-slack occupation threshold packages the first-moment and shell
+  variance estimates into explicit conditions on residual support mass and
+  shell weight.
   A small verifier checks the formulas against brute-force enumeration.
 - **How it is useful:** Separates the budgeted quotient-periodic M1 support
   terms from the remaining partial-fiber / aperiodic residue-line target, and
@@ -90,7 +93,9 @@ Keep entries concise and link to the relevant files.
   `Gamma_{d,j}` immediately bound the missing-slope density. The closed
   slack-three formulas make the low-slack shell envelope directly evaluable
   from the occupancy vector. The diagonal shell formula isolates the leading
-  `q^(t-d)` term of each profile-distance shell.
+  `q^(t-d)` term of each profile-distance shell. The occupation threshold
+  states the remaining M1 input as a concrete local alternative: residual mass
+  below `q^t`, or large local shell occupation.
 - **What to do next:** Use this theorem as the quotient ledger before attacking
   the aperiodic M1 local-limit residual.
 
