@@ -219,6 +219,17 @@ def determinant_coefficients_t2(
     )
 
 
+def quadratic_companion_root(coeffs: tuple[int, int, int], root: int, p: int) -> int | None:
+    if poly_eval(list(coeffs), root, p) != 0:
+        raise AssertionError("quadratic companion root was not a root")
+    if all(coeff == 0 for coeff in coeffs):
+        return None
+    _, c1, c2 = coeffs
+    if c2 == 0:
+        return None
+    return ((-c1 * inv_mod(c2, p)) - root) % p
+
+
 def strict_exchange_profile(
     locator_rows: list[tuple[tuple[int, ...], int]], t: int
 ) -> dict[str, int]:
@@ -405,6 +416,7 @@ def quadratic_slice_profile(
             "max_zero_det_slope_image": 0,
             "max_zero_det_aperiodic_members": 0,
             "nonzero_quadratic_edge_slices": 0,
+            "quadratic_companion_checks": 0,
             "max_determinant_roots_nonzero": 0,
         }
 
@@ -439,6 +451,7 @@ def quadratic_slice_profile(
     max_zero_det_slope_image = 0
     max_zero_det_aperiodic_members = 0
     nonzero_quadratic_edge_slices = 0
+    quadratic_companion_checks = 0
     max_determinant_roots_nonzero = 0
     checked = 0
     domain_set = set(domain)
@@ -528,6 +541,12 @@ def quadratic_slice_profile(
         for exchanged in edge_roots:
             if exchanged != domain_roots:
                 raise AssertionError("different-slope edge is not the quadratic root set")
+            left, right = tuple(exchanged)
+            if quadratic_companion_root(det_coeffs, left, p) != right:
+                raise AssertionError("left exchanged root did not map to its companion")
+            if quadratic_companion_root(det_coeffs, right, p) != left:
+                raise AssertionError("right exchanged root did not map to its companion")
+            quadratic_companion_checks += 2
         nonzero_quadratic_edge_slices += 1
 
     return {
@@ -547,6 +566,7 @@ def quadratic_slice_profile(
         "max_zero_det_slope_image": max_zero_det_slope_image,
         "max_zero_det_aperiodic_members": max_zero_det_aperiodic_members,
         "nonzero_quadratic_edge_slices": nonzero_quadratic_edge_slices,
+        "quadratic_companion_checks": quadratic_companion_checks,
         "max_determinant_roots_nonzero": max_determinant_roots_nonzero,
     }
 
@@ -757,6 +777,7 @@ def verify_word_pair(
         "max_zero_det_slope_image": quadratic_profile["max_zero_det_slope_image"],
         "max_zero_det_aperiodic_members": quadratic_profile["max_zero_det_aperiodic_members"],
         "nonzero_quadratic_edge_slices": quadratic_profile["nonzero_quadratic_edge_slices"],
+        "quadratic_companion_checks": quadratic_profile["quadratic_companion_checks"],
         "max_determinant_roots_nonzero": quadratic_profile["max_determinant_roots_nonzero"],
         "determinant_checks": determinant_checks,
         "direct_checks": direct_checks,
@@ -812,6 +833,7 @@ def verify_case(case: Case) -> dict[str, object]:
         ),
         "max_zero_det_aperiodic_members": max(row["max_zero_det_aperiodic_members"] for row in rows),
         "max_nonzero_quadratic_edge_slices": max(row["nonzero_quadratic_edge_slices"] for row in rows),
+        "max_quadratic_companion_checks": max(row["quadratic_companion_checks"] for row in rows),
         "max_determinant_roots_nonzero": max(row["max_determinant_roots_nonzero"] for row in rows),
         "total_direct_checks": sum(row["direct_checks"] for row in rows),
     }
@@ -887,6 +909,7 @@ def main() -> None:
                 "zero_det_slope_image_max={max_zero_det_slope_image} "
                 "zero_det_repeated_pairs={zero_det_aperiodic_repeated_slope_pairs} "
                 "nonzero_quad_edge_slices={nonzero_quadratic_edge_slices} "
+                "quad_companion_checks={quadratic_companion_checks} "
                 "max_nonzero_det_roots={max_determinant_roots_nonzero} "
                 "det_checks={determinant_checks} direct_checks={direct_checks}".format(**row)
             )
@@ -917,6 +940,7 @@ def main() -> None:
             f"max_zero_det_rank2={summary['max_zero_det_direction_rank2_slices']} "
             f"max_zero_det_aperiodic={summary['max_zero_det_aperiodic_members']} "
             f"max_nonzero_quad_edge_slices={summary['max_nonzero_quadratic_edge_slices']} "
+            f"max_quad_companion_checks={summary['max_quadratic_companion_checks']} "
             f"max_nonzero_det_roots={summary['max_determinant_roots_nonzero']} "
             f"direct_checks={summary['total_direct_checks']}"
         )
@@ -929,12 +953,14 @@ def main() -> None:
         "zero_det_injective={zero_det_injective_slices} "
         "root_residual_degree_max={root_slice_residual_max_strict_degree} "
         "root_residual_same_slope={root_slice_residual_same_slope_edges} "
+        "quad_companion_checks={quadratic_companion_checks} "
         "direct_checks={direct_checks}".format(**rank_one_probe)
     )
     all_rows = [row for summary in summaries for row in summary["rows"]] + [rank_one_probe]
     max_aperiodic = max(row["aperiodic_slopes"] for row in all_rows)
     max_strict_degree = max(row["aperiodic_max_strict_degree"] for row in all_rows)
     max_residual_degree = max(row["root_slice_residual_max_strict_degree"] for row in all_rows)
+    max_companion_checks = max(row["quadratic_companion_checks"] for row in all_rows)
     max_rank_one_zero = max(row["zero_det_direction_rank1_slices"] for row in all_rows)
     total_lines = sum(len(summary["case"].seeds) for summary in summaries) + 1
     print(
@@ -944,6 +970,7 @@ def main() -> None:
         f"max_aperiodic_slopes={max_aperiodic} "
         f"max_strict_degree={max_strict_degree} "
         f"max_root_residual_degree={max_residual_degree} "
+        f"max_quad_companion_checks={max_companion_checks} "
         f"max_rank_one_zero_slices={max_rank_one_zero}"
     )
 

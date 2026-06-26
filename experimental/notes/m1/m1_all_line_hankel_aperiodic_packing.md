@@ -323,6 +323,33 @@ locators, and constant root-slice packets are charged, the high-overlap graph
 on the remaining `t=2` aperiodic determinant locus has degree `O(j)`, not
 `O(j(n-j))`.
 
+## Quadratic Companion Map
+
+The residual edges are not merely sparse; they are algebraically forced.  For
+each one-root core `R`, write
+
+```text
+Delta_R(X)=c_0+c_1X+c_2X^2.
+```
+
+After zero-determinant slices are charged, any residual strict edge through
+the core `R` must lie on a nonzero quadratic slice.  If one endpoint replaces
+the deleted root by `x`, then the other endpoint, when it exists, replaces it
+by
+
+```text
+psi_R(x)=-c_1/c_2-x.        (c_2 != 0)
+```
+
+If `c_2=0`, the nonzero slice is linear and cannot contain two distinct
+exchanged roots.  Thus the residual one-exchange graph is a subgraph of the
+union, over all `(j-1)`-cores `R`, of the involutions `psi_R` restricted to
+the determinant roots in `D\R`.
+
+This companion-map form is the local object a future packing proof should
+control: long residual slope structure would have to persist through many
+compatible quadratic involutions, not through arbitrary one-root exchanges.
+
 ## Verifier
 
 The companion verifier
@@ -353,6 +380,7 @@ enumerates small cyclic-domain cases.  For each case it:
   no same-slope one-exchange edges;
 - reports the residual strict one-exchange count and verifies the residual
   maximum degree bound `<= j`;
+- checks the quadratic companion map for every nonzero quadratic edge slice;
 - runs one deterministic arbitrary-line probe which hits the rank-one
   zero-determinant branch and verifies that it is classified by the same
   constant/contained zero-slice ledger.
@@ -370,18 +398,20 @@ same-slope edges, and the verifier certifies that they are exactly the
 repeated pairs inside one constant-slope rank-two zero-determinant slice with
 `13` aperiodic members.  The remaining `112` different-slope strict edges lie
 on `112` nonzero quadratic slices; there are no zero-determinant
-different-slope edge slices in this audit row.  After peeling the root-slice
-members, the residual family has `86` aperiodic locators, all `16` residual
-slopes still occur, the maximum residual slope fiber drops to `9`, the
-residual strict edge count drops to `88`, the residual maximum strict degree
-is `4=j`, and the residual same-slope one-exchange edge count is `0`.
+different-slope edge slices in this audit row, and the companion-map check
+certifies both directions of all `112` nonzero quadratic edges.  After peeling
+the root-slice members, the residual family has `86` aperiodic locators, all
+`16` residual slopes still occur, the maximum residual slope fiber drops to
+`9`, the residual strict edge count drops to `88`, the residual maximum strict
+degree is `4=j`, and the residual same-slope one-exchange edge count is `0`.
 
 The arbitrary `F_17`, `j=4`, `t=2` rank-one probe has `176` aperiodic locators,
 all `17` slopes, and `16` zero-determinant slices.  Four of those zero slices
 have rank-one direction pencil; the verifier classifies all zero slices in the
 probe as constant-slope, and the residual maximum strict degree is again
-`4=j`.  These are exactly the profile quantities a packing proof must shrink
-or explain structurally.
+`4=j`.  The probe also performs `360` companion-map checks on its nonzero
+quadratic edge slices.  These are exactly the profile quantities a packing
+proof must shrink or explain structurally.
 
 This is an audit/verifier for the M1 target, not a proof of the desired
 polynomial all-line bound.  Its purpose is to make future counterexample-first
