@@ -30,6 +30,27 @@ CASES = (
     {"p": 17, "n": 8, "k": 4, "agreement": 6},
 )
 
+QUADRIC_ONLY_CASES = (
+    {
+        "name": "full-rank determinant quadric",
+        "p": 17,
+        "j": 3,
+        "u": ((3, 1), (5, 2), (7, 4), (11, 8), (13, 3)),
+        "v": ((2, 6), (4, 5), (8, 7), (9, 1), (15, 12)),
+        "expected_rank": 4,
+        "expected_zero": False,
+    },
+    {
+        "name": "kernel-ruling zero quadric",
+        "p": 17,
+        "j": 3,
+        "u": ((1, 0), (0, 0), (0, 0), (0, 0), (1, 0)),
+        "v": ((2, 0), (0, 0), (0, 0), (0, 0), (2, 0)),
+        "expected_rank": 2,
+        "expected_zero": True,
+    },
+)
+
 
 @dataclass(frozen=True)
 class QuadraticField:
@@ -339,6 +360,129 @@ def hankel_matrix(vector: Sequence[Element], t: int, j: int) -> Matrix:
     return [[vector[m + ell] for ell in range(j + 1)] for m in range(t)]
 
 
+def dot(field: QuadraticField, left: Sequence[Element], right: Sequence[Element]) -> Element:
+    total = field.zero
+    for x, y in zip(left, right):
+        total = field.add(total, field.mul(x, y))
+    return total
+
+
+def determinant_from_rows(
+    field: QuadraticField,
+    rows: Sequence[Sequence[Element]],
+    vector: Sequence[Element],
+) -> Element:
+    a0 = dot(field, rows[0], vector)
+    a1 = dot(field, rows[1], vector)
+    b0 = dot(field, rows[2], vector)
+    b1 = dot(field, rows[3], vector)
+    return field.sub(field.mul(a0, b1), field.mul(a1, b0))
+
+
+def determinant_quadratic_coefficients(
+    field: QuadraticField,
+    rows: Sequence[Sequence[Element]],
+) -> dict[tuple[int, int], Element]:
+    width = len(rows[0])
+    coeffs: dict[tuple[int, int], Element] = {}
+    a0, a1, b0, b1 = rows
+    for i in range(width):
+        coeffs[(i, i)] = field.sub(field.mul(a0[i], b1[i]), field.mul(a1[i], b0[i]))
+        for j in range(i + 1, width):
+            left = field.add(field.mul(a0[i], b1[j]), field.mul(a0[j], b1[i]))
+            right = field.add(field.mul(a1[i], b0[j]), field.mul(a1[j], b0[i]))
+            coeffs[(i, j)] = field.sub(left, right)
+    return coeffs
+
+
+def eval_quadratic_coefficients(
+    field: QuadraticField,
+    coeffs: dict[tuple[int, int], Element],
+    vector: Sequence[Element],
+) -> Element:
+    total = field.zero
+    for (i, j), coeff in coeffs.items():
+        monomial = field.mul(vector[i], vector[j])
+        total = field.add(total, field.mul(coeff, monomial))
+    return total
+
+
+def is_zero_quadratic(
+    field: QuadraticField,
+    coeffs: dict[tuple[int, int], Element],
+) -> bool:
+    return all(value == field.zero for value in coeffs.values())
+
+
+def standard_basis(field: QuadraticField, width: int) -> list[list[Element]]:
+    basis = []
+    for index in range(width):
+        vector = [field.zero] * width
+        vector[index] = field.one
+        basis.append(vector)
+    return basis
+
+
+def run_quadric_case(params: dict[str, object]) -> dict[str, object]:
+    p = int(params["p"])
+    j = int(params["j"])
+    t = 2
+    field = QuadraticField(p=p, d=least_nonsquare(p))
+    u = [tuple(value) for value in params["u"]]
+    v = [tuple(value) for value in params["v"]]
+    rows = hankel_matrix(u, t, j) + hankel_matrix(v, t, j)
+    rank = matrix_rank(field, rows)
+    coeffs = determinant_quadratic_coefficients(field, rows)
+    zero_quadric = is_zero_quadratic(field, coeffs)
+
+    mismatches: list[dict[str, object]] = []
+    if rank != params["expected_rank"]:
+        mismatches.append(
+            {"type": "quadric_rank", "expected": params["expected_rank"], "actual": rank}
+        )
+    if zero_quadric != params["expected_zero"]:
+        mismatches.append(
+            {
+                "type": "quadric_zero",
+                "expected": params["expected_zero"],
+                "actual": zero_quadric,
+            }
+        )
+    if zero_quadric and rank > 2:
+        mismatches.append({"type": "zero_quadric_rank_bound", "rank": rank})
+
+    samples = standard_basis(field, j + 1)
+    width = j + 1
+    samples.extend(
+        vector_add(field, samples[left], samples[right])
+        for left in range(width)
+        for right in range(left + 1, width)
+    )
+    for sample in samples:
+        det_value = determinant_from_rows(field, rows, sample)
+        coeff_value = eval_quadratic_coefficients(field, coeffs, sample)
+        if det_value != coeff_value:
+            mismatches.append(
+                {
+                    "type": "quadric_coefficient_eval",
+                    "sample": sample,
+                    "determinant": det_value,
+                    "coefficients": coeff_value,
+                }
+            )
+            break
+
+    return {
+        "name": params["name"],
+        "field": f"F_{p}[u]/(u^2-{field.d})",
+        "j": j,
+        "rank": rank,
+        "zero_quadric": zero_quadric,
+        "passed": not mismatches,
+        "mismatches": mismatches[:5],
+    }
+
+
 def divisors(value: int) -> list[int]:
     return [candidate for candidate in range(2, value) if value % candidate == 0]
 
@@ -571,12 +715,14 @@ def main() -> int:
     args = parser.parse_args()
 
     records = [run_case(case) for case in CASES]
-    passed = all(record["passed"] for record in records)
+    quadric_records = [run_quadric_case(case) for case in QUADRIC_ONLY_CASES]
+    passed = all(record["passed"] for record in records + quadric_records)
     certificate = {
         "status": "AUDIT / EXPERIMENTAL",
         "theorem": "F1 syndrome-pencil normal form",
         "passed": passed,
         "cases": records,
+        "quadric_only_cases": quadric_records,
     }
     if args.json:
         print(json.dumps(certificate, indent=2))
@@ -594,6 +740,12 @@ def main() -> int:
                 f"coordinate syndrome={'OK' if record['coordinate_syndrome_passed'] else 'FAIL'}, "
                 f"quotient checks={record['quotient_periodic_checks']}, "
                 f"max dim(V)={record['max_reduced_dimension']} <= {record['dimension_bound']}"
+            )
+        for record in quadric_records:
+            flag = "PASS" if record["passed"] else "FAIL"
+            print(
+                f"  [{flag}] {record['name']}: {record['field']}, j={record['j']}, "
+                f"rank={record['rank']}, zero_quadric={record['zero_quadric']}"
             )
         print(f"RESULT: {'PASS' if passed else 'FAIL'}")
     return 0 if passed else 1

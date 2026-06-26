@@ -375,6 +375,119 @@ Reading coefficients gives the sparse locator vector. Substituting this sparse
 vector into the Hankel product gives the decimated formula. The final `t=2`
 criterion is Corollary 4 applied to the two decimated vectors.
 
+## Corollary 7: The Reduced `t=2` Gate Is A Quadric
+
+Assume `t=2`. Let `E=F^{j+1}` be the locator-coefficient space, and define
+
+```text
+R:E -> Mat_{2 x 2}(F),        R(ell) = [ a(ell)  b(ell) ],
+```
+
+where
+
+```text
+a(ell)=H_{2,j}(u)ell,        b(ell)=H_{2,j}(v)ell.
+```
+
+Let `W=R(E)`. The bad-slope landing gate is the pullback of the determinant
+quadric
+
+```text
+det : W subset Mat_{2 x 2}(F) -> F.
+```
+
+Equivalently,
+
+```text
+q(ell)
+  = a_0(ell)b_1(ell) - a_1(ell)b_0(ell).
+```
+
+The common-core quotient of Corollary 3 is exactly the passage from `E` to
+`W`, and `dim W <= 4`.
+
+If `q` is not identically zero on `W`, then the `t=2` gate is a genuine
+quadric hypersurface in the reduced moving image. If `q` is identically zero
+on `W`, then `dim W <= 2`; when `dim W=2`, the projective line `P(W)` lies in
+one of the two rulings of the rank-one quadric:
+
+- either all matrices in `W` have image contained in one fixed line in `F^2`;
+- or all matrices in `W` have kernel containing one fixed line in `F^2`.
+
+Thus the degenerate rank/determinant branch is not an arbitrary high-
+dimensional exceptional set. It is a ruled linear artifact. Outside that
+artifact, `t=2` F1 becomes an incidence problem between projected split
+locators and one explicit quadric in a space of dimension at most four.
+
+For a fixed slope `z`, the fiber is the linear section
+
+```text
+a(ell) + z b(ell) = 0.
+```
+
+Hence the global `t=2` problem splits into:
+
+```text
+determinant incidence:       q(ell)=0,
+slope-fiber collision:       ell lies in a two-equation linear section.
+```
+
+## Proof
+
+Corollary 4 says exactly that the landing gate is
+
+```text
+det [ a(ell) b(ell) ] = 0,
+```
+
+and Corollary 3 says the kernel of `R` is the common core
+`ker H(u) cap ker H(v)`. Hence the gate descends to `W=R(E)`, whose dimension
+is at most four.
+
+It remains only to record the elementary linear-algebra classification of the
+identically-zero case. The determinant quadric in `Mat_{2 x 2}` is smooth: in
+coordinates
+
+```text
+(A_0,A_1,B_0,B_1)
+```
+
+its gradient is
+
+```text
+(B_1,-B_0,-A_1,A_0),
+```
+
+which vanishes only at the zero matrix. Therefore no three-dimensional linear
+subspace is contained in the determinant-zero cone, so `dim W<=2`.
+
+If `dim W=2`, choose a rank-one matrix in `W` and change bases in the source
+and target so it is
+
+```text
+[[1,0],[0,0]].
+```
+
+For any other matrix
+
+```text
+[[a,b],[c,d]]
+```
+
+in `W`, the vanishing of its determinant and of the determinant after adding
+the first matrix force
+
+```text
+d=0,        bc=0.
+```
+
+Thus either `b=0` for the whole second generator, giving a common kernel line,
+or `c=0`, giving a common image line. This is exactly the two-ruling
+classification.
+
+The fixed-slope statement is just the original landing equation
+`a+zb=0`.
+
 ## Why This Helps F1
 
 The naive extension-field lift is already false: genuinely `F`-valued lines
@@ -402,7 +515,9 @@ program: first count split locators satisfying the determinant equations, then
 control collisions of the resulting rational slope map `T -> z_T`.
 Corollary 6 makes the quotient-periodic part explicit: it is the sparse
 pullback subspace `L_A(X^M)`, and the `t=2` gate is the corresponding
-decimated-syndrome quadratic.
+decimated-syndrome quadratic. Corollary 7 separates the remaining
+rank/determinant branch into a ruled linear degeneracy and a genuine quadric
+incidence problem.
 
 ## Verification
 
@@ -417,4 +532,6 @@ quadratic-extension cases. It compares the Hankel-pencil criterion against
 direct interpolation on every support complement and every extension-field
 slope, checks the projective gate, checks coordinate-syndrome compatibility,
 and checks the quotient-periodic pullback formulas where the parameters admit
-nontrivial quotient fibers.
+nontrivial quotient fibers. It also runs fast algebraic checks for the
+`t=2` reduced quadric, including a full-rank nonzero determinant form and a
+crafted ruling-degenerate zero determinant form.

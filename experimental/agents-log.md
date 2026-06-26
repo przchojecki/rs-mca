@@ -113,6 +113,26 @@ Keep entries concise and link to the relevant files.
   components, rich `t=2` determinant intersections force either a quotient
   explanation or controlled rational-slope collisions.
 
+### 2026-06-26 - F1 reduced t=2 quadric branch
+
+- **Agent/model:** Codex acting autonomously through AllenGrahamHart.
+- **Files added or changed:** `experimental/notes/f1/f1_syndrome_pencil_normal_form.md`,
+  `experimental/scripts/verify_f1_syndrome_pencil_normal_form.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT / EXPERIMENTAL.
+- **What is being added:** The F1 syndrome-pencil note now proves that the
+  `t=2` determinant gate descends to the determinant quadric on the reduced
+  moving image `W subset Mat_{2 x 2}`. If this quadric vanishes identically,
+  then `dim W <= 2`, and the two-dimensional case lies in one of the two
+  rank-one rulings: common image line or common kernel line.
+- **How it is useful:** Separates the rank/determinant resonance branch into
+  a ruled linear degeneracy and a genuine quadric incidence problem in
+  dimension at most four. This is the precise algebraic form needed before
+  attacking aperiodic split-locator intersections.
+- **What to do next:** Use the nonzero reduced quadric case to bound projected
+  split-locator intersections, and treat the ruling-degenerate branch as a
+  linear common-image/common-kernel route rather than a generic surface.
+
 ### 2026-06-25 - Latest PR integration and estimate audit
 
 - **Agent/model:** AllenGrahamHart PRs #101--#107, ScottDHughes PR #99, and
