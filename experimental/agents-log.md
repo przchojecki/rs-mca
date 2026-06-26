@@ -46,8 +46,9 @@ Keep entries concise and link to the relevant files.
   aperiodic locators, proves same-slope strict edges extend to fixed-slope
   root slices, verifies that different-slope strict edges are either isolated
   nonzero quadratic-slice roots or lie on zero-determinant slices, classifies
-  each zero-determinant slice as constant-slope or slope-injective, and
-  cross-checks every reported bad slope by direct RS interpolation.
+  each zero-determinant slice by the direction-pencil rank as contained,
+  constant-slope, or slope-injective, and cross-checks every reported bad slope
+  by direct RS interpolation.
 - **How it is useful:** This turns the MCA half of the prize into a concrete
   counterexample-first object: after tangent and quotient-periodic locators
   are charged, the remaining all-line obstruction is the aperiodic split-locator
@@ -55,8 +56,8 @@ Keep entries concise and link to the relevant files.
   strict collisions from the genuinely residual slope-image packing problem,
   while the quadratic-slice check isolates different-slope collisions as the
   next finite-degree object to bound.  The zero-slice dichotomy shows the
-  exceptional branch is either already a constant-slope root-slice packet or
-  contributes no repeated-slope fiber.
+  exceptional branch is either contained, already a constant-slope root-slice
+  packet, or rank-one and injective on nonconstant slope fibers.
 - **What to do next:** Extend the verifier to richer line families and prove
   structural bounds for the aperiodic slope image, starting with `t=2` and
   quotient scales already separated by the existing M1 quotient ledgers.

@@ -230,19 +230,41 @@ isolated nonzero quadratic slices.
 
 The exceptional zero-determinant branch also has an exact local dichotomy.
 Assume `Delta_R` vanishes identically on the one-root slice for a fixed core
-`R`.  For every `x` with `b(x) != 0`, the determinant gate gives a unique slope
-`z(x)`.  If two distinct exchanged roots `x,y` have the same slope `z`, then
-the same subtraction argument as above gives
+`R`.  Write
+
+```text
+a(x)=a_s-xa_p,        b(x)=b_s-xb_p,
+```
+
+where `a_s=H(u)s_R`, `a_p=H(u)p_R`, and similarly for `b`.  If the direction
+pencil `span{b_s,b_p}` has rank two in `F^2`, then the identities
+
+```text
+det[a_s b_s]=0,
+det[a_p b_s]+det[a_s b_p]=0,
+det[a_p b_p]=0
+```
+
+force `a_s=-z b_s` and `a_p=-z b_p` for a single scalar `z`.  Thus every
+noncontained point of the slice has the same slope.
+
+If instead `span{b_s,b_p}` has rank zero, the whole slice is contained and
+contributes no noncontained slopes.  In the remaining rank-one case, all
+nonzero `b(x)` lie on one line in `F^2`, and `z(x)` is a fractional-linear
+ratio of two affine scalar functions.  Hence it is either constant or injective
+on the noncontained points of the slice.
+
+Equivalently, if two distinct exchanged roots `x,y` have the same slope `z`,
+then the same subtraction argument as above gives
 
 ```text
 (H_{2,j}(u)+zH_{2,j}(v))p_R=0,
 (H_{2,j}(u)+zH_{2,j}(v))s_R=0.
 ```
 
-Consequently every noncontained member of the zero-determinant slice has the
-same slope `z`.  If no such repeated slope occurs, the slope map on the
-noncontained members is injective.  Thus zero-determinant one-root slices split
-into:
+Consequently every noncontained member of that zero-determinant slice has the
+same slope `z`.  If no such repeated slope occurs, the slope map is injective.
+Thus zero-determinant one-root slices split into:
 
 1. constant-slope root-slice packets, already handled by the same-slope
    root-slice ledger; or
@@ -250,8 +272,8 @@ into:
    repeated-slope fiber.
 
 The verifier certifies this split by checking the three determinant
-coefficients of `Delta_R` and then classifying the slope multiset on every
-zero-determinant slice.
+coefficients of `Delta_R`, computing the direction-pencil rank, and then
+classifying the slope multiset on every zero-determinant slice.
 
 ## Verifier
 
@@ -277,8 +299,8 @@ enumerates small cyclic-domain cases.  For each case it:
 - verifies that different-slope strict edges obey the quadratic root-slice
   dichotomy above;
 - verifies that every zero-determinant slice is constant-slope or
-  slope-injective, and that constant zero slices account for all same-slope
-  strict edges.
+  slope-injective via the direction-pencil rank, and that constant zero slices
+  account for all same-slope strict edges.
 
 The default audit currently checks three cyclic-domain parameter rows and
 twelve deterministic line samples.  The largest observed residual aperiodic
@@ -288,11 +310,11 @@ checks on every reported support-wise bad slope.  In the full-domain
 fiber `16`, strict one-exchange degree `15`, and `190` strict one-exchange
 pairs.  Of these strict edges, `78` are same-slope edges, and the verifier
 certifies that they are exactly the repeated pairs inside one constant-slope
-zero-determinant slice with `13` aperiodic members.  The remaining `112`
-different-slope strict edges lie on `112` nonzero quadratic slices; there are
-no slope-injective zero slices and no zero-determinant different-slope edge
-slices in this audit row.  These are exactly the profile quantities a packing
-proof must shrink or explain structurally.
+rank-two zero-determinant slice with `13` aperiodic members.  The remaining
+`112` different-slope strict edges lie on `112` nonzero quadratic slices; there
+are no rank-one slope-injective zero slices and no zero-determinant
+different-slope edge slices in this audit row.  These are exactly the profile
+quantities a packing proof must shrink or explain structurally.
 
 This is an audit/verifier for the M1 target, not a proof of the desired
 polynomial all-line bound.  Its purpose is to make future counterexample-first
