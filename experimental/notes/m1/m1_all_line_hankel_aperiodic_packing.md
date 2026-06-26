@@ -316,24 +316,36 @@ enumerates small cyclic-domain cases.  For each case it:
   slope-injective via the direction-pencil rank, and that constant zero slices
   account for all same-slope strict edges;
 - peels root-slice members and checks that the residual aperiodic family has
-  no same-slope one-exchange edges.
+  no same-slope one-exchange edges;
+- runs one deterministic arbitrary-line probe which hits the rank-one
+  zero-determinant branch and verifies that it is classified by the same
+  constant/injective zero-slice ledger.
 
-The default audit currently checks three cyclic-domain parameter rows and
-twelve deterministic line samples.  The largest observed residual aperiodic
-slope image in this smoke packet has size `16`, after direct interpolation
-checks on every reported support-wise bad slope.  In the full-domain
-`F_17`, `j=4`, `t=2` row, the residual aperiodic locus has maximum slope
-fiber `16`, strict one-exchange degree `15`, and `190` strict one-exchange
-pairs.  Of these strict edges, `78` are same-slope edges, and the verifier
-certifies that they are exactly the repeated pairs inside one constant-slope
-rank-two zero-determinant slice with `13` aperiodic members.  The remaining
-`112` different-slope strict edges lie on `112` nonzero quadratic slices; there
-are no rank-one slope-injective zero slices and no zero-determinant
-different-slope edge slices in this audit row.  After peeling the root-slice
-members, the residual family has `86` aperiodic locators, all `16` residual
-slopes still occur, the maximum residual slope fiber drops to `9`, and the
-residual same-slope one-exchange edge count is `0`.  These are exactly the
-profile quantities a packing proof must shrink or explain structurally.
+The default audit currently checks three cyclic-domain parameter rows, twelve
+deterministic polynomial-family line samples, and one deterministic arbitrary
+line probe.  The largest observed residual aperiodic slope image in this smoke
+packet has size `17`, after direct interpolation checks on every reported
+support-wise bad slope.
+
+In the polynomial-family full-domain `F_17`, `j=4`, `t=2` row, the residual
+aperiodic locus has maximum slope fiber `16`, strict one-exchange degree `15`,
+and `190` strict one-exchange pairs.  Of these strict edges, `78` are
+same-slope edges, and the verifier certifies that they are exactly the
+repeated pairs inside one constant-slope rank-two zero-determinant slice with
+`13` aperiodic members.  The remaining `112` different-slope strict edges lie
+on `112` nonzero quadratic slices; there are no rank-one slope-injective zero
+slices and no zero-determinant different-slope edge slices in this audit row.
+After peeling the root-slice members, the residual family has `86` aperiodic
+locators, all `16` residual slopes still occur, the maximum residual slope
+fiber drops to `9`, and the residual same-slope one-exchange edge count is
+`0`.
+
+The arbitrary `F_17`, `j=4`, `t=2` rank-one probe has `176` aperiodic locators,
+all `17` slopes, and `16` zero-determinant slices.  Four of those zero slices
+have rank-one direction pencil; the verifier classifies all zero slices in the
+probe as constant-slope and finds no slope-injective zero slice.  These are
+exactly the profile quantities a packing proof must shrink or explain
+structurally.
 
 This is an audit/verifier for the M1 target, not a proof of the desired
 polynomial all-line bound.  Its purpose is to make future counterexample-first

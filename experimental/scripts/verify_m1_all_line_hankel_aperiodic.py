@@ -12,7 +12,8 @@ Hankel-pencil gate
 removes contained/tangent-core locators with H(v)ell_T=0, labels whole-fiber
 quotient-periodic complements on cyclic multiplicative domains, and reports the
 remaining aperiodic slope image.  Every reported bad slope is cross-checked by
-direct Reed-Solomon interpolation on the support D \\ T.
+direct Reed-Solomon interpolation on the support D \\ T.  A deterministic
+arbitrary-line probe exercises the rank-one zero-determinant branch.
 """
 
 from __future__ import annotations
@@ -611,14 +612,19 @@ class Case:
     seeds: tuple[int, ...]
 
 
-def verify_case_seed(case: Case, seed: int) -> dict[str, object]:
+def verify_word_pair(
+    case: Case,
+    seed: object,
+    f: dict[int, int],
+    g: dict[int, int],
+) -> dict[str, object]:
     p, n, j, t = case.p, case.n, case.j, case.t
     k = n - j - t
     if k <= 0:
         raise AssertionError("invalid k")
     domain, exponents, _ = cyclic_domain(p, n)
-    f = {x: word_value("f", x, p, seed) for x in domain}
-    g = {x: word_value("g", x, p, seed) for x in domain}
+    if set(f) != set(domain) or set(g) != set(domain):
+        raise AssertionError("word pair is not defined on the cyclic domain")
     u = syndrome(f, domain, j + t, p)
     v = syndrome(g, domain, j + t, p)
 
@@ -749,6 +755,13 @@ def verify_case_seed(case: Case, seed: int) -> dict[str, object]:
     }
 
 
+def verify_case_seed(case: Case, seed: int) -> dict[str, object]:
+    domain, _, _ = cyclic_domain(case.p, case.n)
+    f = {x: word_value("f", x, case.p, seed) for x in domain}
+    g = {x: word_value("g", x, case.p, seed) for x in domain}
+    return verify_word_pair(case, seed, f, g)
+
+
 def verify_case(case: Case) -> dict[str, object]:
     rows = [verify_case_seed(case, seed) for seed in case.seeds]
     return {
@@ -790,6 +803,29 @@ def verify_case(case: Case) -> dict[str, object]:
     }
 
 
+def verify_rank_one_zero_slice_probe() -> dict[str, object]:
+    case = Case(
+        "F17_full_j4_t2_rank1_probe",
+        p=17,
+        n=16,
+        j=4,
+        t=2,
+        charged_fiber_sizes=(2, 4, 8),
+        seeds=(),
+    )
+    domain, _, _ = cyclic_domain(case.p, case.n)
+    f_values = (5, 15, 0, 16, 8, 10, 8, 10, 3, 6, 15, 11, 7, 2, 10, 0)
+    g_values = (7, 14, 9, 12, 5, 14, 7, 2, 10, 9, 10, 4, 9, 6, 8, 4)
+    f = dict(zip(domain, f_values, strict=True))
+    g = dict(zip(domain, g_values, strict=True))
+    row = verify_word_pair(case, "rank1-probe", f, g)
+    if row["zero_det_direction_rank1_slices"] < 1:
+        raise AssertionError("rank-one zero-slice probe did not hit rank one")
+    if row["zero_det_injective_slices"] != 0:
+        raise AssertionError("rank-one probe unexpectedly produced an injective zero slice")
+    return row
+
+
 def main() -> None:
     cases = (
         Case("F17_full_j4_t2", p=17, n=16, j=4, t=2, charged_fiber_sizes=(2, 4, 8), seeds=(0, 1, 2, 3)),
@@ -797,6 +833,7 @@ def main() -> None:
         Case("F13_order12_j4_t2", p=13, n=12, j=4, t=2, charged_fiber_sizes=(2, 3, 4, 6), seeds=(0, 1, 2, 3)),
     )
     summaries = [verify_case(case) for case in cases]
+    rank_one_probe = verify_rank_one_zero_slice_probe()
     for summary in summaries:
         case = summary["case"]
         for row in summary["rows"]:
@@ -865,14 +902,28 @@ def main() -> None:
             f"max_nonzero_det_roots={summary['max_determinant_roots_nonzero']} "
             f"direct_checks={summary['total_direct_checks']}"
         )
-    max_aperiodic = max(summary["max_aperiodic_slopes"] for summary in summaries)
-    max_strict_degree = max(summary["max_aperiodic_strict_degree"] for summary in summaries)
-    total_lines = sum(len(summary["case"].seeds) for summary in summaries)
+    print(
+        "{name} seed={seed}: p={p} n={n} k={k} j={j} t={t} "
+        "aperiodic_locators={aperiodic_locators} aperiodic_slopes={aperiodic_slopes} "
+        "zero_det_slices={zero_determinant_slices} "
+        "zero_det_rank1={zero_det_direction_rank1_slices} "
+        "zero_det_constant={zero_det_constant_slices} "
+        "zero_det_injective={zero_det_injective_slices} "
+        "root_residual_same_slope={root_slice_residual_same_slope_edges} "
+        "direct_checks={direct_checks}".format(**rank_one_probe)
+    )
+    all_rows = [row for summary in summaries for row in summary["rows"]] + [rank_one_probe]
+    max_aperiodic = max(row["aperiodic_slopes"] for row in all_rows)
+    max_strict_degree = max(row["aperiodic_max_strict_degree"] for row in all_rows)
+    max_rank_one_zero = max(row["zero_det_direction_rank1_slices"] for row in all_rows)
+    total_lines = sum(len(summary["case"].seeds) for summary in summaries) + 1
     print(
         "m1_all_line_hankel_aperiodic: PASS "
         f"cases={len(summaries)} line_samples={total_lines} "
+        f"rank_one_probes=1 "
         f"max_aperiodic_slopes={max_aperiodic} "
-        f"max_strict_degree={max_strict_degree}"
+        f"max_strict_degree={max_strict_degree} "
+        f"max_rank_one_zero_slices={max_rank_one_zero}"
     )
 
 

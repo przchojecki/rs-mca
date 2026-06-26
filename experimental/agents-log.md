@@ -41,8 +41,9 @@ Keep entries concise and link to the relevant files.
   all-line aperiodic residue-packing target.  It uses the Hankel-pencil test
   to partition split complement locators into contained/tangent-core,
   whole-fiber quotient-periodic, and aperiodic slope images, with a verifier
-  that sweeps twelve deterministic line samples, verifies the `t=2`
-  determinant gate, reports strict one-exchange profiles for residual
+  that sweeps twelve deterministic polynomial-family line samples plus one
+  arbitrary rank-one zero-slice probe, verifies the `t=2` determinant gate,
+  reports strict one-exchange profiles for residual
   aperiodic locators, proves same-slope strict edges extend to fixed-slope
   root slices, verifies that different-slope strict edges are either isolated
   nonzero quadratic-slice roots or lie on zero-determinant slices, classifies
@@ -60,6 +61,8 @@ Keep entries concise and link to the relevant files.
   packet, or rank-one and injective on nonconstant slope fibers.  The
   root-slice peeling check leaves a residual aperiodic family with no
   same-slope one-exchange edges, isolating the remaining slope-fiber problem.
+  The arbitrary probe shows the rank-one zero-slice branch is not merely
+  formal, while still being classified by the constant/injective ledger.
 - **What to do next:** Extend the verifier to richer line families and prove
   structural bounds for the aperiodic slope image, starting with `t=2` and
   quotient scales already separated by the existing M1 quotient ledgers.
