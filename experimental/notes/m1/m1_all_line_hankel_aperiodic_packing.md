@@ -473,6 +473,41 @@ So the M1 residual slope problem has two separate pieces: lifted common-core
 face counting for `R_lifted`, and isolated anchor-escape slope counting for
 `R_escape`.
 
+## Residual Slope-Image Ledger
+
+The anchor ledger also splits the residual slope image itself.  Define
+
+```text
+Z_res  = {z_T : T in R_res},
+Z_lift = {z_T : T in R_lifted},
+Z_esc  = {z_T : T in R_escape}.
+```
+
+Then exactly
+
+```text
+Z_res = Z_lift union Z_esc.          (SL1)
+```
+
+There is no third slope source after quotient-periodic locators,
+contained/tangent locators, and fixed-slope root slices have been charged.
+
+The lifted side has a local injectivity property.  If `W` is a lifted common
+core and `T_x,T_y subset W` are two distinct residual faces, then `T_x` and
+`T_y` are one-exchange neighbors.  If they had the same residual slope, the
+same-slope root-slice lemma would put both in a fixed-slope root-slice packet,
+so they would have been peeled before `R_res` was formed.  Hence the residual
+faces of each lifted common core have pairwise distinct slopes.
+
+Thus a future slope-image proof can work with two explicit objects:
+
+1. injective residual-coordinate slopes inside lifted common cores; and
+2. isolated anchor-escape slopes.
+
+This is sharper than a locator count.  The lifted core may have many
+noncontained or aperiodic faces before peeling, but after the root-slice charge
+it contributes at most one residual face to any fixed slope.
+
 ## Top-Packet Lift Gate
 
 The common anchor also lifts every nontrivial top packet to a single
@@ -759,6 +794,9 @@ enumerates small cyclic-domain cases.  For each case it:
 - verifies the full residual anchor ledger: addable in-domain anchors lift to
   common cores, while beta0-zero, in-support, and outside-domain anchor escapes
   are isolated residual locators;
+- verifies the residual slope-image ledger `Z_res=Z_lift union Z_esc` and
+  checks that residual faces inside each lifted common core have pairwise
+  distinct slopes;
 - verifies that every nontrivial residual top packet satisfies the lifted
   denominator gate `H_{1,j+1}(v)ell_W=0`, with omitted-root anchors on its
   residual members;
@@ -812,7 +850,11 @@ this row, so the audited top packets are disjoint; the common-anchor check
 certifies all `176=2*88` oriented residual edge endpoints.  The residual anchor
 ledger partitions the `86` residual locators into `56` addable lifted-core
 faces and `30` isolated anchor escapes: `5` with `beta_0=0`, `21` with
-`xi_T in T`, and `4` with `xi_T notin D`.  The lifted
+`xi_T in T`, and `4` with `xi_T notin D`.  On slope images, the `16` residual
+slopes split as `16` lifted-core slopes and `13` escape slopes, with all `13`
+escape slopes already overlapping the lifted side in this row.  The verifier
+also checks `88` residual face-pairs inside lifted common cores and finds
+local residual slope fiber max `1`.  The lifted
 denominator gate is checked on all `14` residual top packets, with `56`
 omitted-root anchor checks across their residual members; the common lifted
 numerator gate has the same `14` packet checks and `56` numerator anchor
@@ -838,7 +880,10 @@ packets are disjoint.  The common-anchor check certifies all `80=2*40`
 oriented residual edge endpoints in the probe.  The residual anchor ledger
 splits the `69` residual locators into `44` lifted-core residual faces and
 `25` isolated anchor escapes: `4` with `beta_0=0`, `19` with `xi_T in T`, and
-`2` with `xi_T notin D`.  The lifted denominator gate is
+`2` with `xi_T notin D`.  The `16` residual slopes split as `16` lifted-core
+slopes and `16` escape slopes, with complete overlap between the two sources
+in this probe; the lifted-core residual slope fiber max is again `1`, checked
+across `40` residual face-pairs.  The lifted denominator gate is
 checked on all `17` residual top packets, with `42` omitted-root anchor checks.
 The common lifted numerator gate has the same `17` packet checks and `42`
 numerator anchor checks.  Across all `85=17*5` lifted `j`-faces in the probe,

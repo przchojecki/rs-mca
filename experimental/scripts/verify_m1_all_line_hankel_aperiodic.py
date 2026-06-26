@@ -340,6 +340,10 @@ def root_slice_profile(
             "root_slice_residual_anchor_outside_domain": 0,
             "root_slice_residual_anchor_lift_gate_checks": 0,
             "root_slice_residual_anchor_isolated_checks": 0,
+            "root_slice_residual_lifted_slopes": 0,
+            "root_slice_residual_escape_slopes": 0,
+            "root_slice_residual_lifted_escape_slope_overlap": 0,
+            "root_slice_residual_escape_new_slopes": 0,
             "root_slice_lifted_common_cores": 0,
             "root_slice_lifted_common_core_noncontained_faces": 0,
             "root_slice_lifted_common_core_aperiodic_faces": 0,
@@ -350,6 +354,8 @@ def root_slice_profile(
             "root_slice_lifted_common_core_max_residual_faces": 0,
             "root_slice_lifted_common_core_common_base_checks": 0,
             "root_slice_lifted_common_core_residual_slope_checks": 0,
+            "root_slice_lifted_common_core_residual_slope_pair_checks": 0,
+            "root_slice_lifted_common_core_residual_slope_fiber_max": 0,
         }
 
     row_map = {tuple(sorted(complement)): slope for complement, slope in locator_rows}
@@ -457,6 +463,7 @@ def root_slice_profile(
     residual_anchor_lift_gate_checks = 0
     residual_anchor_isolated_checks = 0
     residual_anchor_lifted_face_indices: set[int] = set()
+    residual_anchor_escape_indices: set[int] = set()
     for idx, (complement, _) in enumerate(residual_rows):
         complement_set = set(complement)
         complement_locator = locator(complement, p)
@@ -464,6 +471,7 @@ def root_slice_profile(
         b_vec = hankel_apply(v, t, j, complement_locator, p)
         if b_vec[0] == 0:
             residual_anchor_escape_beta0_zero += 1
+            residual_anchor_escape_indices.add(idx)
             if residual_adj[idx]:
                 raise AssertionError("beta0-zero anchor escape had a residual neighbor")
             residual_anchor_isolated_checks += 1
@@ -471,12 +479,14 @@ def root_slice_profile(
         anchor = b_vec[1] * inv_mod(b_vec[0], p) % p
         if anchor in complement_set:
             residual_anchor_escape_in_support += 1
+            residual_anchor_escape_indices.add(idx)
             if residual_adj[idx]:
                 raise AssertionError("in-support anchor escape had a residual neighbor")
             residual_anchor_isolated_checks += 1
             continue
         if anchor not in domain_set:
             residual_anchor_escape_outside_domain += 1
+            residual_anchor_escape_indices.add(idx)
             if residual_adj[idx]:
                 raise AssertionError("outside-domain anchor escape had a residual neighbor")
             residual_anchor_isolated_checks += 1
@@ -626,6 +636,8 @@ def root_slice_profile(
     lifted_common_core_max_residual_faces = 0
     lifted_common_core_common_base_checks = 0
     lifted_common_core_residual_slope_checks = 0
+    lifted_common_core_residual_slope_pair_checks = 0
+    lifted_common_core_residual_slope_fiber_max = 0
     lifted_common_core_residual_face_indices: set[int] = set()
     for core in combinations(domain, j + 1):
         core_key = tuple(sorted(core))
@@ -646,6 +658,7 @@ def root_slice_profile(
         g_base = interpolate(base_support[:k], tuple(g[x] for x in base_support[:k]), p)
         lifted_common_core_common_base_checks += 1
         residual_face_indices = set()
+        residual_face_slopes = []
         noncontained_faces = 0
         aperiodic_faces = 0
         peeled_faces = 0
@@ -686,8 +699,21 @@ def root_slice_profile(
             residual_idx = residual_index.get(face)
             if residual_idx is not None:
                 residual_face_indices.add(residual_idx)
+                residual_face_slopes.append(slope)
                 lifted_common_core_residual_face_indices.add(residual_idx)
         residual_face_count = len(residual_face_indices)
+        if residual_face_count != len(residual_face_slopes):
+            raise AssertionError("lifted common core residual slope ledger lost a face")
+        if len(set(residual_face_slopes)) != residual_face_count:
+            raise AssertionError("lifted common core had a repeated residual slope")
+        lifted_common_core_residual_slope_pair_checks += (
+            residual_face_count * (residual_face_count - 1) // 2
+        )
+        for residual_slope in set(residual_face_slopes):
+            lifted_common_core_residual_slope_fiber_max = max(
+                lifted_common_core_residual_slope_fiber_max,
+                residual_face_slopes.count(residual_slope),
+            )
         lifted_common_core_noncontained_faces += noncontained_faces
         lifted_common_core_aperiodic_faces += aperiodic_faces
         lifted_common_core_residual_faces += residual_face_count
@@ -716,6 +742,19 @@ def root_slice_profile(
         raise AssertionError("anchor-lifted faces disagreed with lifted common residual faces")
     if residual_anchor_lifted_faces + residual_anchor_escape_locators != len(residual_rows):
         raise AssertionError("residual anchor ledger did not partition residual locators")
+    residual_slope_set = {slope for _, slope in residual_rows}
+    residual_lifted_slope_set = {
+        residual_rows[idx][1] for idx in residual_anchor_lifted_face_indices
+    }
+    residual_escape_slope_set = {
+        residual_rows[idx][1] for idx in residual_anchor_escape_indices
+    }
+    if residual_slope_set != residual_lifted_slope_set | residual_escape_slope_set:
+        raise AssertionError("residual slope image did not split by anchor ledger")
+    residual_lifted_escape_slope_overlap = len(
+        residual_lifted_slope_set & residual_escape_slope_set
+    )
+    residual_escape_new_slopes = len(residual_escape_slope_set - residual_lifted_slope_set)
 
     top_packet_overlap_pairs = 0
     top_packet_overlap_max = 0
@@ -774,6 +813,12 @@ def root_slice_profile(
         "root_slice_residual_anchor_outside_domain": residual_anchor_escape_outside_domain,
         "root_slice_residual_anchor_lift_gate_checks": residual_anchor_lift_gate_checks,
         "root_slice_residual_anchor_isolated_checks": residual_anchor_isolated_checks,
+        "root_slice_residual_lifted_slopes": len(residual_lifted_slope_set),
+        "root_slice_residual_escape_slopes": len(residual_escape_slope_set),
+        "root_slice_residual_lifted_escape_slope_overlap": (
+            residual_lifted_escape_slope_overlap
+        ),
+        "root_slice_residual_escape_new_slopes": residual_escape_new_slopes,
         "root_slice_lifted_common_cores": lifted_common_cores,
         "root_slice_lifted_common_core_noncontained_faces": (
             lifted_common_core_noncontained_faces
@@ -793,6 +838,12 @@ def root_slice_profile(
         ),
         "root_slice_lifted_common_core_residual_slope_checks": (
             lifted_common_core_residual_slope_checks
+        ),
+        "root_slice_lifted_common_core_residual_slope_pair_checks": (
+            lifted_common_core_residual_slope_pair_checks
+        ),
+        "root_slice_lifted_common_core_residual_slope_fiber_max": (
+            lifted_common_core_residual_slope_fiber_max
         ),
     }
 
@@ -1244,6 +1295,14 @@ def verify_word_pair(
         "root_slice_residual_anchor_isolated_checks": (
             root_profile["root_slice_residual_anchor_isolated_checks"]
         ),
+        "root_slice_residual_lifted_slopes": root_profile["root_slice_residual_lifted_slopes"],
+        "root_slice_residual_escape_slopes": root_profile["root_slice_residual_escape_slopes"],
+        "root_slice_residual_lifted_escape_slope_overlap": (
+            root_profile["root_slice_residual_lifted_escape_slope_overlap"]
+        ),
+        "root_slice_residual_escape_new_slopes": (
+            root_profile["root_slice_residual_escape_new_slopes"]
+        ),
         "root_slice_lifted_common_cores": root_profile["root_slice_lifted_common_cores"],
         "root_slice_lifted_common_core_noncontained_faces": (
             root_profile["root_slice_lifted_common_core_noncontained_faces"]
@@ -1271,6 +1330,12 @@ def verify_word_pair(
         ),
         "root_slice_lifted_common_core_residual_slope_checks": (
             root_profile["root_slice_lifted_common_core_residual_slope_checks"]
+        ),
+        "root_slice_lifted_common_core_residual_slope_pair_checks": (
+            root_profile["root_slice_lifted_common_core_residual_slope_pair_checks"]
+        ),
+        "root_slice_lifted_common_core_residual_slope_fiber_max": (
+            root_profile["root_slice_lifted_common_core_residual_slope_fiber_max"]
         ),
         "different_slope_strict_pairs": quadratic_profile["different_slope_strict_pairs"],
         "different_slope_cores": quadratic_profile["different_slope_cores"],
@@ -1422,6 +1487,18 @@ def verify_case(case: Case) -> dict[str, object]:
         "max_root_slice_residual_anchor_isolated_checks": max(
             row["root_slice_residual_anchor_isolated_checks"] for row in rows
         ),
+        "max_root_slice_residual_lifted_slopes": max(
+            row["root_slice_residual_lifted_slopes"] for row in rows
+        ),
+        "max_root_slice_residual_escape_slopes": max(
+            row["root_slice_residual_escape_slopes"] for row in rows
+        ),
+        "max_root_slice_residual_lifted_escape_slope_overlap": max(
+            row["root_slice_residual_lifted_escape_slope_overlap"] for row in rows
+        ),
+        "max_root_slice_residual_escape_new_slopes": max(
+            row["root_slice_residual_escape_new_slopes"] for row in rows
+        ),
         "max_root_slice_lifted_common_cores": max(
             row["root_slice_lifted_common_cores"] for row in rows
         ),
@@ -1451,6 +1528,12 @@ def verify_case(case: Case) -> dict[str, object]:
         ),
         "max_root_slice_lifted_common_core_residual_slope_checks": max(
             row["root_slice_lifted_common_core_residual_slope_checks"] for row in rows
+        ),
+        "max_root_slice_lifted_common_core_residual_slope_pair_checks": max(
+            row["root_slice_lifted_common_core_residual_slope_pair_checks"] for row in rows
+        ),
+        "max_root_slice_lifted_common_core_residual_slope_fiber": max(
+            row["root_slice_lifted_common_core_residual_slope_fiber_max"] for row in rows
         ),
         "max_different_slope_strict_pairs": max(row["different_slope_strict_pairs"] for row in rows),
         "max_zero_determinant_slices": max(row["zero_determinant_slices"] for row in rows),
@@ -1561,6 +1644,10 @@ def main() -> None:
                 "root_residual_anchor_outside_domain={root_slice_residual_anchor_outside_domain} "
                 "root_residual_anchor_lift_checks={root_slice_residual_anchor_lift_gate_checks} "
                 "root_residual_anchor_isolated_checks={root_slice_residual_anchor_isolated_checks} "
+                "root_residual_lifted_slopes={root_slice_residual_lifted_slopes} "
+                "root_residual_escape_slopes={root_slice_residual_escape_slopes} "
+                "root_residual_lifted_escape_slope_overlap={root_slice_residual_lifted_escape_slope_overlap} "
+                "root_residual_escape_new_slopes={root_slice_residual_escape_new_slopes} "
                 "lifted_common_cores={root_slice_lifted_common_cores} "
                 "lifted_common_noncontained_faces={root_slice_lifted_common_core_noncontained_faces} "
                 "lifted_common_aperiodic_faces={root_slice_lifted_common_core_aperiodic_faces} "
@@ -1571,6 +1658,8 @@ def main() -> None:
                 "lifted_common_residual_faces_per_core={root_slice_lifted_common_core_max_residual_faces} "
                 "lifted_common_base_checks={root_slice_lifted_common_core_common_base_checks} "
                 "lifted_common_residual_slope_checks={root_slice_lifted_common_core_residual_slope_checks} "
+                "lifted_common_residual_slope_pair_checks={root_slice_lifted_common_core_residual_slope_pair_checks} "
+                "lifted_common_residual_slope_fiber_max={root_slice_lifted_common_core_residual_slope_fiber_max} "
                 "different_slope_strict={different_slope_strict_pairs} "
                 "different_slope_cores={different_slope_cores} "
                 "quadratic_slices={quadratic_slices_checked} "
@@ -1637,6 +1726,10 @@ def main() -> None:
             f"max_root_residual_anchor_outside_domain={summary['max_root_slice_residual_anchor_outside_domain']} "
             f"max_root_residual_anchor_lift_checks={summary['max_root_slice_residual_anchor_lift_gate_checks']} "
             f"max_root_residual_anchor_isolated_checks={summary['max_root_slice_residual_anchor_isolated_checks']} "
+            f"max_root_residual_lifted_slopes={summary['max_root_slice_residual_lifted_slopes']} "
+            f"max_root_residual_escape_slopes={summary['max_root_slice_residual_escape_slopes']} "
+            f"max_root_residual_lifted_escape_slope_overlap={summary['max_root_slice_residual_lifted_escape_slope_overlap']} "
+            f"max_root_residual_escape_new_slopes={summary['max_root_slice_residual_escape_new_slopes']} "
             f"max_lifted_common_cores={summary['max_root_slice_lifted_common_cores']} "
             f"max_lifted_common_noncontained_faces={summary['max_root_slice_lifted_common_core_noncontained_faces']} "
             f"max_lifted_common_aperiodic_faces={summary['max_root_slice_lifted_common_core_aperiodic_faces']} "
@@ -1647,6 +1740,8 @@ def main() -> None:
             f"max_lifted_common_residual_faces_per_core={summary['max_root_slice_lifted_common_core_residual_faces_per_core']} "
             f"max_lifted_common_base_checks={summary['max_root_slice_lifted_common_core_common_base_checks']} "
             f"max_lifted_common_residual_slope_checks={summary['max_root_slice_lifted_common_core_residual_slope_checks']} "
+            f"max_lifted_common_residual_slope_pair_checks={summary['max_root_slice_lifted_common_core_residual_slope_pair_checks']} "
+            f"max_lifted_common_residual_slope_fiber={summary['max_root_slice_lifted_common_core_residual_slope_fiber']} "
             f"max_different_slope_strict={summary['max_different_slope_strict_pairs']} "
             f"max_zero_det_slices={summary['max_zero_determinant_slices']} "
             f"max_edge_zero_det_slices={summary['max_edge_zero_determinant_slices']} "
@@ -1703,6 +1798,10 @@ def main() -> None:
         "root_residual_anchor_outside_domain={root_slice_residual_anchor_outside_domain} "
         "root_residual_anchor_lift_checks={root_slice_residual_anchor_lift_gate_checks} "
         "root_residual_anchor_isolated_checks={root_slice_residual_anchor_isolated_checks} "
+        "root_residual_lifted_slopes={root_slice_residual_lifted_slopes} "
+        "root_residual_escape_slopes={root_slice_residual_escape_slopes} "
+        "root_residual_lifted_escape_slope_overlap={root_slice_residual_lifted_escape_slope_overlap} "
+        "root_residual_escape_new_slopes={root_slice_residual_escape_new_slopes} "
         "lifted_common_cores={root_slice_lifted_common_cores} "
         "lifted_common_noncontained_faces={root_slice_lifted_common_core_noncontained_faces} "
         "lifted_common_aperiodic_faces={root_slice_lifted_common_core_aperiodic_faces} "
@@ -1713,6 +1812,8 @@ def main() -> None:
         "lifted_common_residual_faces_per_core={root_slice_lifted_common_core_max_residual_faces} "
         "lifted_common_base_checks={root_slice_lifted_common_core_common_base_checks} "
         "lifted_common_residual_slope_checks={root_slice_lifted_common_core_residual_slope_checks} "
+        "lifted_common_residual_slope_pair_checks={root_slice_lifted_common_core_residual_slope_pair_checks} "
+        "lifted_common_residual_slope_fiber_max={root_slice_lifted_common_core_residual_slope_fiber_max} "
         "quad_companion_checks={quadratic_companion_checks} "
         "direct_checks={direct_checks}".format(**rank_one_probe)
     )
@@ -1803,6 +1904,18 @@ def main() -> None:
     max_residual_anchor_isolated_checks = max(
         row["root_slice_residual_anchor_isolated_checks"] for row in all_rows
     )
+    max_residual_lifted_slopes = max(
+        row["root_slice_residual_lifted_slopes"] for row in all_rows
+    )
+    max_residual_escape_slopes = max(
+        row["root_slice_residual_escape_slopes"] for row in all_rows
+    )
+    max_residual_lifted_escape_slope_overlap = max(
+        row["root_slice_residual_lifted_escape_slope_overlap"] for row in all_rows
+    )
+    max_residual_escape_new_slopes = max(
+        row["root_slice_residual_escape_new_slopes"] for row in all_rows
+    )
     max_lifted_common_cores = max(row["root_slice_lifted_common_cores"] for row in all_rows)
     max_lifted_common_noncontained_faces = max(
         row["root_slice_lifted_common_core_noncontained_faces"] for row in all_rows
@@ -1830,6 +1943,12 @@ def main() -> None:
     )
     max_lifted_common_residual_slope_checks = max(
         row["root_slice_lifted_common_core_residual_slope_checks"] for row in all_rows
+    )
+    max_lifted_common_residual_slope_pair_checks = max(
+        row["root_slice_lifted_common_core_residual_slope_pair_checks"] for row in all_rows
+    )
+    max_lifted_common_residual_slope_fiber = max(
+        row["root_slice_lifted_common_core_residual_slope_fiber_max"] for row in all_rows
     )
     max_companion_checks = max(row["quadratic_companion_checks"] for row in all_rows)
     max_rank_one_zero = max(row["zero_det_direction_rank1_slices"] for row in all_rows)
@@ -1872,6 +1991,10 @@ def main() -> None:
         f"max_root_residual_anchor_outside_domain={max_residual_anchor_outside_domain} "
         f"max_root_residual_anchor_lift_checks={max_residual_anchor_lift_checks} "
         f"max_root_residual_anchor_isolated_checks={max_residual_anchor_isolated_checks} "
+        f"max_root_residual_lifted_slopes={max_residual_lifted_slopes} "
+        f"max_root_residual_escape_slopes={max_residual_escape_slopes} "
+        f"max_root_residual_lifted_escape_slope_overlap={max_residual_lifted_escape_slope_overlap} "
+        f"max_root_residual_escape_new_slopes={max_residual_escape_new_slopes} "
         f"max_lifted_common_cores={max_lifted_common_cores} "
         f"max_lifted_common_noncontained_faces={max_lifted_common_noncontained_faces} "
         f"max_lifted_common_aperiodic_faces={max_lifted_common_aperiodic_faces} "
@@ -1882,6 +2005,8 @@ def main() -> None:
         f"max_lifted_common_residual_faces_per_core={max_lifted_common_residual_faces_per_core} "
         f"max_lifted_common_base_checks={max_lifted_common_base_checks} "
         f"max_lifted_common_residual_slope_checks={max_lifted_common_residual_slope_checks} "
+        f"max_lifted_common_residual_slope_pair_checks={max_lifted_common_residual_slope_pair_checks} "
+        f"max_lifted_common_residual_slope_fiber={max_lifted_common_residual_slope_fiber} "
         f"max_quad_companion_checks={max_companion_checks} "
         f"max_rank_one_zero_slices={max_rank_one_zero}"
     )

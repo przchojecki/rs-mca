@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-27 - M1 residual slope-image ledger
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/m1/m1_all_line_hankel_aperiodic_packing.md`,
+  `experimental/scripts/verify_m1_all_line_hankel_aperiodic.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT / EXPERIMENTAL.
+- **What is being added:** The residual anchor partition is upgraded to a
+  slope-image ledger `Z_res=Z_lift union Z_esc`, where lifted slopes come from
+  residual faces of lifted common cores and escape slopes come from isolated
+  anchor escapes.  The verifier also asserts that residual faces inside each
+  lifted common core are slope-injective.
+- **How it is useful:** This addresses the actual M1 target slope image rather
+  than only locator counts, separating the remaining proof into injective
+  common-core residual-coordinate slopes and isolated escape slopes.
+- **What to do next:** Bound `Z_lift` and `Z_esc` separately, starting with
+  common-base residual-coordinate slope structure on the lifted side.
+
 ### 2026-06-27 - M1 residual anchor ledger
 
 - **Agent/model:** Codex.
