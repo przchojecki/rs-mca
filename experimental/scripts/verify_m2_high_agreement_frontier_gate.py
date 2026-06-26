@@ -6,7 +6,8 @@ staircase.  It checks how the exact identity
 
     LD_sw(C,a) = n-a+1     for a >= ceil((2n+k)/3)
 
-interacts with an integer target budget floor(q_line / 2^eps_bits).
+and its projective tangent-star corollary interact with the integer target
+budgets floor(q_line / 2^eps_bits) and floor((q_line+1) / 2^eps_bits).
 """
 
 from __future__ import annotations
@@ -33,9 +34,8 @@ class Gate:
     budget: int
     projective_budget: int
     exact_start_count: int
-    projective_safe_distance_in_exact_range: int | None
-    projective_ambiguous_distance_in_exact_range: int | None
-    projective_unsafe_distance_in_exact_range: int | None
+    projective_last_safe_distance_in_exact_range: int | None
+    projective_first_unsafe_distance_in_exact_range: int | None
     status: str
     last_unsafe_agreement: int | None
     first_safe_agreement: int | None
@@ -62,6 +62,20 @@ def q_line_window(n: int, k: int, q_line: int, eps_bits: int) -> str:
     return "tangent_floor_never_crosses_q_line_window"
 
 
+def projective_exact_distances(
+    exact_distance_limit: int, projective_budget: int
+) -> tuple[int | None, int | None]:
+    """Projective exact range has LD_sw^P(C,n-d)=d+1."""
+
+    last_safe = None
+    if projective_budget >= 1:
+        last_safe = min(exact_distance_limit, projective_budget - 1)
+    first_unsafe = projective_budget
+    if not (0 <= first_unsafe <= exact_distance_limit):
+        first_unsafe = None
+    return last_safe, first_unsafe
+
+
 def tangent_gate(label: str, n: int, k: int, q_line: int, eps_bits: int) -> Gate:
     if not (0 <= k < n):
         raise ValueError("expected 0 <= k < n")
@@ -82,15 +96,9 @@ def tangent_gate(label: str, n: int, k: int, q_line: int, eps_bits: int) -> Gate
     projective_budget = (q_line + 1) // target_unit
     window = q_line_window(n, k, q_line, eps_bits)
 
-    projective_safe = None
-    if projective_budget >= 2:
-        projective_safe = min(exact_distance_limit, projective_budget - 2)
-    projective_ambiguous = projective_budget - 1
-    if not (0 <= projective_ambiguous <= exact_distance_limit):
-        projective_ambiguous = None
-    projective_unsafe = projective_budget
-    if not (0 <= projective_unsafe <= exact_distance_limit):
-        projective_unsafe = None
+    projective_last_safe, projective_first_unsafe = projective_exact_distances(
+        exact_distance_limit, projective_budget
+    )
 
     if budget == 0:
         status = "no_safe_agreement_in_exact_tangent_range"
@@ -108,9 +116,8 @@ def tangent_gate(label: str, n: int, k: int, q_line: int, eps_bits: int) -> Gate
             budget=budget,
             projective_budget=projective_budget,
             exact_start_count=exact_start_count,
-            projective_safe_distance_in_exact_range=projective_safe,
-            projective_ambiguous_distance_in_exact_range=projective_ambiguous,
-            projective_unsafe_distance_in_exact_range=projective_unsafe,
+            projective_last_safe_distance_in_exact_range=projective_last_safe,
+            projective_first_unsafe_distance_in_exact_range=projective_first_unsafe,
             status=status,
             last_unsafe_agreement=n,
             first_safe_agreement=None,
@@ -140,9 +147,8 @@ def tangent_gate(label: str, n: int, k: int, q_line: int, eps_bits: int) -> Gate
             budget=budget,
             projective_budget=projective_budget,
             exact_start_count=exact_start_count,
-            projective_safe_distance_in_exact_range=projective_safe,
-            projective_ambiguous_distance_in_exact_range=projective_ambiguous,
-            projective_unsafe_distance_in_exact_range=projective_unsafe,
+            projective_last_safe_distance_in_exact_range=projective_last_safe,
+            projective_first_unsafe_distance_in_exact_range=projective_first_unsafe,
             status="crossing_inside_exact_tangent_range",
             last_unsafe_agreement=last_unsafe,
             first_safe_agreement=first_safe,
@@ -168,9 +174,8 @@ def tangent_gate(label: str, n: int, k: int, q_line: int, eps_bits: int) -> Gate
             budget=budget,
             projective_budget=projective_budget,
             exact_start_count=exact_start_count,
-            projective_safe_distance_in_exact_range=projective_safe,
-            projective_ambiguous_distance_in_exact_range=projective_ambiguous,
-            projective_unsafe_distance_in_exact_range=projective_unsafe,
+            projective_last_safe_distance_in_exact_range=projective_last_safe,
+            projective_first_unsafe_distance_in_exact_range=projective_first_unsafe,
             status="safe_exact_range_then_tangent_unsafe_floor",
             last_unsafe_agreement=unsafe_agreement,
             first_safe_agreement=exact_start,
@@ -194,9 +199,8 @@ def tangent_gate(label: str, n: int, k: int, q_line: int, eps_bits: int) -> Gate
         budget=budget,
         projective_budget=projective_budget,
         exact_start_count=exact_start_count,
-        projective_safe_distance_in_exact_range=projective_safe,
-        projective_ambiguous_distance_in_exact_range=projective_ambiguous,
-        projective_unsafe_distance_in_exact_range=projective_unsafe,
+        projective_last_safe_distance_in_exact_range=projective_last_safe,
+        projective_first_unsafe_distance_in_exact_range=projective_first_unsafe,
         status="tangent_floor_never_crosses_budget",
         last_unsafe_agreement=None,
         first_safe_agreement=exact_start,
@@ -228,20 +232,28 @@ def check_gate(gate: Gate) -> None:
     assert gate.exact_start == gate.n - gate.exact_distance_limit
     assert gate.exact_start_count == gate.n - gate.exact_start + 1
     assert gate.exact_start_count == gate.exact_distance_limit + 1
+    for d in range(1, gate.exact_distance_limit + 1):
+        assert gate.n - 2 * d - 1 >= gate.k
     assert gate.budget == gate.q_line // gate.target_unit
     assert gate.projective_budget == (gate.q_line + 1) // gate.target_unit
-    if gate.projective_safe_distance_in_exact_range is not None:
-        d = gate.projective_safe_distance_in_exact_range
+    expected_projective = projective_exact_distances(
+        gate.exact_distance_limit, gate.projective_budget
+    )
+    assert (
+        gate.projective_last_safe_distance_in_exact_range,
+        gate.projective_first_unsafe_distance_in_exact_range,
+    ) == expected_projective
+    if gate.projective_last_safe_distance_in_exact_range is not None:
+        d = gate.projective_last_safe_distance_in_exact_range
         assert 0 <= d <= gate.exact_distance_limit
-        assert d + 2 <= gate.projective_budget
-    if gate.projective_ambiguous_distance_in_exact_range is not None:
-        d = gate.projective_ambiguous_distance_in_exact_range
-        assert 0 <= d <= gate.exact_distance_limit
-        assert d + 1 == gate.projective_budget
-    if gate.projective_unsafe_distance_in_exact_range is not None:
-        d = gate.projective_unsafe_distance_in_exact_range
+        assert d + 1 <= gate.projective_budget
+        if d < gate.exact_distance_limit:
+            assert d + 2 > gate.projective_budget
+    if gate.projective_first_unsafe_distance_in_exact_range is not None:
+        d = gate.projective_first_unsafe_distance_in_exact_range
         assert 0 <= d <= gate.exact_distance_limit
         assert d + 1 > gate.projective_budget
+        assert d == gate.projective_budget
 
     if gate.status == "crossing_inside_exact_tangent_range":
         assert gate.last_unsafe_agreement is not None
@@ -365,20 +377,15 @@ def print_human(gates: list[Gate]) -> None:
             gap_start = gate.exact_distance_limit + 1
             gap_end = gate.budget - 1
             print(f"  unresolved_distance_gap={gap_start}..{gap_end}")
-        if gate.projective_safe_distance_in_exact_range is not None:
+        if gate.projective_last_safe_distance_in_exact_range is not None:
             print(
                 "  projective_exact_range_safe_through_distance="
-                f"{gate.projective_safe_distance_in_exact_range}"
+                f"{gate.projective_last_safe_distance_in_exact_range}"
             )
-        if gate.projective_ambiguous_distance_in_exact_range is not None:
-            print(
-                "  projective_exact_range_ambiguous_distance="
-                f"{gate.projective_ambiguous_distance_in_exact_range}"
-            )
-        if gate.projective_unsafe_distance_in_exact_range is not None:
+        if gate.projective_first_unsafe_distance_in_exact_range is not None:
             print(
                 "  projective_exact_range_unsafe_from_distance="
-                f"{gate.projective_unsafe_distance_in_exact_range}"
+                f"{gate.projective_first_unsafe_distance_in_exact_range}"
             )
         print()
 
@@ -415,9 +422,8 @@ def main() -> None:
         assert active.q_line_window == "exact_crossing_q_line_window"
         assert 6 * active.target_unit <= active.q_line
         assert active.q_line < 7 * active.target_unit
-        assert active.projective_safe_distance_in_exact_range == 4
-        assert active.projective_ambiguous_distance_in_exact_range == 5
-        assert active.projective_unsafe_distance_in_exact_range == 6
+        assert active.projective_last_safe_distance_in_exact_range == 5
+        assert active.projective_first_unsafe_distance_in_exact_range == 6
         assert active.status == "crossing_inside_exact_tangent_range"
         assert active.last_unsafe_agreement == 506
         assert active.first_safe_agreement == 507

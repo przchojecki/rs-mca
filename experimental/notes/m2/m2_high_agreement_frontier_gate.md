@@ -8,9 +8,10 @@ Date: 2026-06-26.
 
 ## Purpose
 
-The tangent staircase changes the finite-row frontier.  This note packages its
-consequence as a row-level gate and records what remains open after the
-`506/507` threshold for the active `F_17^32` row.
+The integrated tangent staircase and tangent-star theorem change the active
+finite-row frontier.  This note packages their consequence as a row-level gate,
+records the endpoint conventions, and checks that the same high-agreement
+threshold survives the projective-slope convention.
 
 The object here is finite-slope support-wise line decoding:
 
@@ -41,6 +42,11 @@ LD_sw(C,a) = n - a + 1.
 This is not only a tangent lower bound in that range.  The upper bound uses the
 common-code-line residual budget, so it counts all finite support-wise
 noncontained slopes.
+
+The integrated tangent-star refinement proves the extremal structure: whenever
+equality holds and `n-a+1>=2`, an extremal finite-slope line has a common
+code-line support `S0` of size `a-1`, and each finite bad slope is obtained by
+moving exactly one residual root outside `S0`.
 
 ## Proof-Dependency Audit
 
@@ -287,17 +293,43 @@ received line,
 finite bad slopes <= projective bad points <= finite bad slopes + 1.
 ```
 
-Taking maxima gives the universal one-point transfer
+The tangent-star structure removes the apparent one-point loss in the exact
+range:
 
 ```text
-LD_sw(C,a) <= LD_sw^P(C,a) <= LD_sw(C,a)+1.
+LD_sw^P(C,n-d) = d+1        for every 0 <= d <= d0.
 ```
 
-Therefore, in the exact tangent range `0 <= d <= d0`,
+Proof.  The finite lower bound gives `LD_sw^P(C,n-d) >= d+1`.  For the upper
+bound, set `a=n-d`.  If a line has at most `d` finite bad slopes, adding the
+single point at infinity gives at most `d+1` projective bad points.
+
+It remains to rule out the case of `d+1` finite bad slopes plus a bad infinity
+point.  For `d=0`, a full-support bad infinity point means `g` is a codeword;
+then any finite full-support codeword point `f+zg` would force `f` to be a
+codeword as well, so the finite point would be contained.  Thus the projective
+count is still at most one.
+
+For `d>=1`, the tangent-star theorem applies to any line with `d+1` finite bad
+slopes.  After subtracting the common code line, there is a set `S0` with
 
 ```text
-d+1 <= LD_sw^P(C,n-d) <= d+2.
+|S0| = a-1 = n-d-1
 ```
+
+on which the direction word is zero, and every coordinate in
+`Omega=D\S0` has nonzero direction residual.  Any support `T` of size `a`
+meets `S0` in at least
+
+```text
+|T|-|Omega| = (n-d)-(d+1) = n-2d-1
+```
+
+points.  Since `d <= floor((n-k)/3)` and `d>=1`, this is at least `k`.
+Therefore any degree-`<k` codeword agreeing with the direction word on `T`
+would be forced to be zero on those `k` points of `S0`; but `T` must also
+contain at least one point of `Omega`, where the direction residual is nonzero.
+So infinity is not a bad projective point for a finite extremizer.
 
 If the projective sampler is uniform on `P^1(F)`, its integer budget is
 
@@ -305,16 +337,15 @@ If the projective sampler is uniform on `P^1(F)`, its integer budget is
 B_P = floor((q_line+1)/2^eps_bits).
 ```
 
-Consequently:
+Thus in the exact range the projective convention has the same count `d+1`,
+but with denominator `q_line+1`.  It is within budget exactly when
 
 ```text
-d+2 <= B_P       => projective convention is within budget at distance d;
-d+1 > B_P        => projective convention is unsafe at distance d;
-d+1 <= B_P < d+2 => only the possible infinity point is undecided.
+d+1 <= B_P.
 ```
 
-This is only a convention audit.  It does not alter finite-slope rows on the
-public board, whose denominator is `q_line`.
+This is still only a convention audit.  It does not alter finite-slope rows on
+the public board, whose denominator is `q_line`.
 
 ## Active `F_17^32` Row
 
@@ -357,19 +388,15 @@ closed real radii `delta < 3/256` are safe for the finite-slope support-wise
 object, and `delta = 3/256` is already unsafe; under a strict-ball convention
 the endpoint `3/256` is safe but any larger radius is unsafe.
 
-Under a projective-slope `P^1(F_17^32)` convention, the same row has the
-one-point bracket
+Under a projective-slope `P^1(F_17^32)` convention, the projective exactness
+argument gives the same high-agreement counts in the exact range:
 
 ```text
-distance 4 / agreement 508: projective count <= 6, within budget;
-distance 5 / agreement 507: finite count is 6, projective count is 6 or 7;
-distance 6 / agreement 506: finite count is already 7, unsafe.
+LD_sw^P(C,507) = 6       within projective budget;
+LD_sw^P(C,506) = 7       unsafe.
 ```
 
-Thus projective conventions would certify safety at agreement `508`, while
-agreement `507` depends on whether the infinity point is bad for an extremal
-line.
-
+So the `506/507` gate survives the projective-slope convention for this row.
 
 The old agreement-353 target is superseded: the tangent floor alone gives
 
@@ -394,9 +421,11 @@ The remaining useful frontier is therefore not "find seven slopes at agreement
 remaining lanes are:
 
 ```text
-1. audit/formalize the tangent staircase and common residual budget;
-2. state whether a projective-infinity slope is included in any external MCA
-   convention, and if so account for it separately;
+1. formalize the tangent-star and projective-exactness corollaries if they are
+   promoted out of experimental notes;
+2. decide whether external CA, curve-MCA, or protocol conventions really use
+   the finite/projective line-decoding object handled here, or a different
+   object;
 3. keep q_gen, q_line, and q_chal separate when translating the finite row to
    protocol or prize language;
 4. study lower agreements a < ceil((2n+k)/3), where the tangent floor is only
