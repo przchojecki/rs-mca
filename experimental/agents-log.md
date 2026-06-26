@@ -58,7 +58,8 @@ Keep entries concise and link to the relevant files.
   shell codegrees directly into the M1 random-line missing-slope estimate.
   The slack-three coefficients are also reduced to closed occupancy-moment
   formulas, avoiding coefficient extraction in the first nontrivial
-  two-exchange case.
+  two-exchange case. The diagonal coefficient `[x^d]Phi_{a,d}` is now explicit
+  for every shell distance `d` as a no-same-fiber remove/add product.
   A small verifier checks the formulas against brute-force enumeration.
 - **How it is useful:** Separates the budgeted quotient-periodic M1 support
   terms from the remaining partial-fiber / aperiodic residue-line target, and
@@ -88,7 +89,8 @@ Keep entries concise and link to the relevant files.
   input for the random-line ledger: bounds on local shell occupation
   `Gamma_{d,j}` immediately bound the missing-slope density. The closed
   slack-three formulas make the low-slack shell envelope directly evaluable
-  from the occupancy vector.
+  from the occupancy vector. The diagonal shell formula isolates the leading
+  `q^(t-d)` term of each profile-distance shell.
 - **What to do next:** Use this theorem as the quotient ledger before attacking
   the aperiodic M1 local-limit residual.
 

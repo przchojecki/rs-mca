@@ -1182,6 +1182,70 @@ def check_closed_slack_three_coefficients_case(
             )
 
 
+def multiply_bidegree(
+    left: Counter[tuple[int, int]],
+    right: Counter[tuple[int, int]],
+) -> Counter[tuple[int, int]]:
+    product: Counter[tuple[int, int]] = Counter()
+    for (left_removed, left_added), left_coeff in left.items():
+        for (right_removed, right_added), right_coeff in right.items():
+            product[
+                (
+                    left_removed + right_removed,
+                    left_added + right_added,
+                )
+            ] += left_coeff * right_coeff
+    return product
+
+
+def diagonal_shell_coefficient_formula(
+    fiber_size: int,
+    source_occupancy: tuple[int, ...],
+    shell_distance: int,
+) -> int:
+    product: Counter[tuple[int, int]] = Counter({(0, 0): 1})
+    for source in source_occupancy:
+        local: Counter[tuple[int, int]] = Counter()
+        for removed in range(source + 1):
+            local[(removed, 0)] += comb(source, removed)
+        for added in range(1, fiber_size - source + 1):
+            local[(0, added)] += comb(fiber_size - source, added)
+        product = multiply_bidegree(product, local)
+    return product[(shell_distance, shell_distance)]
+
+
+def check_diagonal_shell_coefficient_case(
+    fiber_count: int,
+    fiber_size: int,
+    support_size: int,
+    max_shell: int,
+) -> None:
+    for source_occupancy in occupancy_vectors(fiber_count, fiber_size, support_size):
+        for shell_distance in range(max_shell + 1):
+            shell = signed_shell_kernel(
+                fiber_size,
+                source_occupancy,
+                shell_distance,
+            )
+            formula = diagonal_shell_coefficient_formula(
+                fiber_size,
+                source_occupancy,
+                shell_distance,
+            )
+            if formula != shell.get(shell_distance, 0):
+                raise AssertionError(
+                    (
+                        fiber_count,
+                        fiber_size,
+                        support_size,
+                        source_occupancy,
+                        shell_distance,
+                        formula,
+                        shell.get(shell_distance, 0),
+                    )
+                )
+
+
 def occupancy_vectors(
     fiber_count: int,
     fiber_size: int,
@@ -1803,6 +1867,13 @@ def main() -> int:
         (5, 2, 5, 7),
     ]:
         check_closed_slack_three_coefficients_case(*case)
+    for case in [
+        (3, 3, 4, 3),
+        (4, 2, 4, 3),
+        (4, 3, 5, 3),
+        (5, 2, 5, 3),
+    ]:
+        check_diagonal_shell_coefficient_case(*case)
     for case in [
         (4, 3, 4),
         (4, 3, 6),

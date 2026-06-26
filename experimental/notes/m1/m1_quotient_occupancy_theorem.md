@@ -761,6 +761,52 @@ fiber, degree zero in the surplus fiber, and one internal exchange in a third
 fiber.  These give the three displayed summands.  The `d=2` coefficient is
 then forced by the exchange-two split of Corollary 6.5.
 
+### Corollary 6.8. Diagonal Shell Coefficient
+
+For every shell distance `d`, the leading exchange coefficient of the signed
+shell has a single coefficient-extraction formula:
+
+```text
+[x^d]Phi_{a,d}(x)
+ =
+ [alpha^d beta^d]
+   prod_i ( (1+alpha)^{a_i} + (1+beta)^{m-a_i} - 1 ).
+```
+
+Equivalently, `[x^d]Phi_{a,d}` counts pairs `(R,A)` where `R subset S`,
+`A subset D\S`, `|R|=|A|=d`, and no quotient fiber contains both a removed
+point from `R` and an added point from `A`.
+
+Thus the largest-q term contributed by shell distance `d` at slack `t>d` is
+explicit:
+
+```text
+q^(t-d) [alpha^d beta^d]
+   prod_i ( (1+alpha)^{a_i} + (1+beta)^{m-a_i} - 1 ).
+```
+
+All off-diagonal terms `[x^j]Phi_{a,d}` with `j>d` are exactly the terms where
+at least one fiber has both a removal and an insertion, i.e. internal
+partial-fiber churn on top of the profile transport.
+
+#### Proof
+
+For a target support `T`, exchange size `j` is the number of removed source
+points.  The shell distance is `d_occ(a,c(T))`.  Since always
+`d_occ(a,c(T))<=|S\T|`, equality `j=d` holds exactly when no fiber contains
+both a removed source point and an inserted complement point.  In each fiber
+there are then only three possibilities: do nothing, remove a nonempty subset
+of the `a_i` source points, or insert a nonempty subset of the `m-a_i`
+complement points.  The one-fiber generating function for these choices is
+
+```text
+(1+alpha)^{a_i} + (1+beta)^{m-a_i} - 1,
+```
+
+where `alpha` marks removed source points and `beta` marks inserted complement
+points.  Extracting `alpha^d beta^d` imposes exchange `d` and equal support
+size, giving the formula.
+
 ## Theorem 7. Sharp Exchange-One Residual Floor
 
 For an occupancy vector `a=(a_1,...,a_N)`, put
