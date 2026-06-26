@@ -30,6 +30,26 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-27 - M1 projective residual lift ledger
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/m1/m1_all_line_hankel_aperiodic_packing.md`,
+  `experimental/scripts/verify_m1_all_line_hankel_aperiodic.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT / EXPERIMENTAL.
+- **What is being added:** The residual-anchor ledger is upgraded to a
+  projective lift ledger: every finite anchor `xi_T=beta_1/beta_0` makes
+  `L_T(X)(X-xi_T)` satisfy both one-row lifted Hankel gates, even when the
+  lift is repeated-root or off-domain.  Beta0-zero escapes are checked as
+  infinity anchors.
+- **How it is useful:** This turns the isolated escape side into explicit
+  boundary cases of the lifted common-core geometry, narrowing the M1 residue
+  packing task to squarefree in-domain common cores plus repeated-root,
+  off-domain, and infinity-anchor boundary lifts.
+- **What to do next:** Bound the slope images of the boundary lifts, or prove
+  that their slopes are forced to overlap the squarefree lifted-core side
+  after the existing quotient and root-slice charges.
+
 ### 2026-06-27 - M1 residual slope-image ledger
 
 - **Agent/model:** Codex.

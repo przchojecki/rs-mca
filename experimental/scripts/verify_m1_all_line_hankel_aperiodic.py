@@ -340,6 +340,10 @@ def root_slice_profile(
             "root_slice_residual_anchor_outside_domain": 0,
             "root_slice_residual_anchor_lift_gate_checks": 0,
             "root_slice_residual_anchor_isolated_checks": 0,
+            "root_slice_residual_anchor_finite_lift_checks": 0,
+            "root_slice_residual_anchor_repeated_lift_checks": 0,
+            "root_slice_residual_anchor_offdomain_lift_checks": 0,
+            "root_slice_residual_anchor_infinity_checks": 0,
             "root_slice_residual_lifted_slopes": 0,
             "root_slice_residual_escape_slopes": 0,
             "root_slice_residual_lifted_escape_slope_overlap": 0,
@@ -462,6 +466,10 @@ def root_slice_profile(
     residual_anchor_escape_outside_domain = 0
     residual_anchor_lift_gate_checks = 0
     residual_anchor_isolated_checks = 0
+    residual_anchor_finite_lift_checks = 0
+    residual_anchor_repeated_lift_checks = 0
+    residual_anchor_offdomain_lift_checks = 0
+    residual_anchor_infinity_checks = 0
     residual_anchor_lifted_face_indices: set[int] = set()
     residual_anchor_escape_indices: set[int] = set()
     for idx, (complement, _) in enumerate(residual_rows):
@@ -472,14 +480,29 @@ def root_slice_profile(
         if b_vec[0] == 0:
             residual_anchor_escape_beta0_zero += 1
             residual_anchor_escape_indices.add(idx)
+            if a_vec[0] != 0 or b_vec[1] == 0:
+                raise AssertionError("infinity anchor did not have the expected first-row gate")
             if residual_adj[idx]:
                 raise AssertionError("beta0-zero anchor escape had a residual neighbor")
+            residual_anchor_infinity_checks += 1
             residual_anchor_isolated_checks += 1
             continue
         anchor = b_vec[1] * inv_mod(b_vec[0], p) % p
+        top_packet = tuple(sorted(complement + (anchor,)))
+        top_locator = locator(top_packet, p)
+        if hankel_apply(v, 1, j + 1, top_locator, p)[0] != 0:
+            raise AssertionError("finite residual anchor missed denominator lift gate")
+        if (b_vec[1] - anchor * b_vec[0]) % p != 0:
+            raise AssertionError("finite residual anchor missed denominator anchor")
+        if hankel_apply(u, 1, j + 1, top_locator, p)[0] != 0:
+            raise AssertionError("finite residual anchor missed numerator lift gate")
+        if (a_vec[1] - anchor * a_vec[0]) % p != 0:
+            raise AssertionError("finite residual anchor missed numerator anchor")
+        residual_anchor_finite_lift_checks += 1
         if anchor in complement_set:
             residual_anchor_escape_in_support += 1
             residual_anchor_escape_indices.add(idx)
+            residual_anchor_repeated_lift_checks += 1
             if residual_adj[idx]:
                 raise AssertionError("in-support anchor escape had a residual neighbor")
             residual_anchor_isolated_checks += 1
@@ -487,20 +510,11 @@ def root_slice_profile(
         if anchor not in domain_set:
             residual_anchor_escape_outside_domain += 1
             residual_anchor_escape_indices.add(idx)
+            residual_anchor_offdomain_lift_checks += 1
             if residual_adj[idx]:
                 raise AssertionError("outside-domain anchor escape had a residual neighbor")
             residual_anchor_isolated_checks += 1
             continue
-        top_packet = tuple(sorted(complement + (anchor,)))
-        top_locator = locator(top_packet, p)
-        if hankel_apply(v, 1, j + 1, top_locator, p)[0] != 0:
-            raise AssertionError("addable residual anchor missed denominator lift gate")
-        if (b_vec[1] - anchor * b_vec[0]) % p != 0:
-            raise AssertionError("addable residual anchor missed denominator anchor")
-        if hankel_apply(u, 1, j + 1, top_locator, p)[0] != 0:
-            raise AssertionError("addable residual anchor missed numerator lift gate")
-        if (a_vec[1] - anchor * a_vec[0]) % p != 0:
-            raise AssertionError("addable residual anchor missed numerator anchor")
         residual_anchor_lift_gate_checks += 1
         residual_anchor_lifted_faces += 1
         residual_anchor_lifted_face_indices.add(idx)
@@ -742,6 +756,18 @@ def root_slice_profile(
         raise AssertionError("anchor-lifted faces disagreed with lifted common residual faces")
     if residual_anchor_lifted_faces + residual_anchor_escape_locators != len(residual_rows):
         raise AssertionError("residual anchor ledger did not partition residual locators")
+    if residual_anchor_finite_lift_checks != (
+        residual_anchor_lifted_faces
+        + residual_anchor_escape_in_support
+        + residual_anchor_escape_outside_domain
+    ):
+        raise AssertionError("finite residual-anchor lifts did not match finite anchors")
+    if residual_anchor_repeated_lift_checks != residual_anchor_escape_in_support:
+        raise AssertionError("repeated-root lift ledger missed in-support escapes")
+    if residual_anchor_offdomain_lift_checks != residual_anchor_escape_outside_domain:
+        raise AssertionError("off-domain lift ledger missed outside-domain escapes")
+    if residual_anchor_infinity_checks != residual_anchor_escape_beta0_zero:
+        raise AssertionError("infinity-anchor ledger missed beta0-zero escapes")
     residual_slope_set = {slope for _, slope in residual_rows}
     residual_lifted_slope_set = {
         residual_rows[idx][1] for idx in residual_anchor_lifted_face_indices
@@ -813,6 +839,16 @@ def root_slice_profile(
         "root_slice_residual_anchor_outside_domain": residual_anchor_escape_outside_domain,
         "root_slice_residual_anchor_lift_gate_checks": residual_anchor_lift_gate_checks,
         "root_slice_residual_anchor_isolated_checks": residual_anchor_isolated_checks,
+        "root_slice_residual_anchor_finite_lift_checks": (
+            residual_anchor_finite_lift_checks
+        ),
+        "root_slice_residual_anchor_repeated_lift_checks": (
+            residual_anchor_repeated_lift_checks
+        ),
+        "root_slice_residual_anchor_offdomain_lift_checks": (
+            residual_anchor_offdomain_lift_checks
+        ),
+        "root_slice_residual_anchor_infinity_checks": residual_anchor_infinity_checks,
         "root_slice_residual_lifted_slopes": len(residual_lifted_slope_set),
         "root_slice_residual_escape_slopes": len(residual_escape_slope_set),
         "root_slice_residual_lifted_escape_slope_overlap": (
@@ -1295,6 +1331,18 @@ def verify_word_pair(
         "root_slice_residual_anchor_isolated_checks": (
             root_profile["root_slice_residual_anchor_isolated_checks"]
         ),
+        "root_slice_residual_anchor_finite_lift_checks": (
+            root_profile["root_slice_residual_anchor_finite_lift_checks"]
+        ),
+        "root_slice_residual_anchor_repeated_lift_checks": (
+            root_profile["root_slice_residual_anchor_repeated_lift_checks"]
+        ),
+        "root_slice_residual_anchor_offdomain_lift_checks": (
+            root_profile["root_slice_residual_anchor_offdomain_lift_checks"]
+        ),
+        "root_slice_residual_anchor_infinity_checks": (
+            root_profile["root_slice_residual_anchor_infinity_checks"]
+        ),
         "root_slice_residual_lifted_slopes": root_profile["root_slice_residual_lifted_slopes"],
         "root_slice_residual_escape_slopes": root_profile["root_slice_residual_escape_slopes"],
         "root_slice_residual_lifted_escape_slope_overlap": (
@@ -1487,6 +1535,18 @@ def verify_case(case: Case) -> dict[str, object]:
         "max_root_slice_residual_anchor_isolated_checks": max(
             row["root_slice_residual_anchor_isolated_checks"] for row in rows
         ),
+        "max_root_slice_residual_anchor_finite_lift_checks": max(
+            row["root_slice_residual_anchor_finite_lift_checks"] for row in rows
+        ),
+        "max_root_slice_residual_anchor_repeated_lift_checks": max(
+            row["root_slice_residual_anchor_repeated_lift_checks"] for row in rows
+        ),
+        "max_root_slice_residual_anchor_offdomain_lift_checks": max(
+            row["root_slice_residual_anchor_offdomain_lift_checks"] for row in rows
+        ),
+        "max_root_slice_residual_anchor_infinity_checks": max(
+            row["root_slice_residual_anchor_infinity_checks"] for row in rows
+        ),
         "max_root_slice_residual_lifted_slopes": max(
             row["root_slice_residual_lifted_slopes"] for row in rows
         ),
@@ -1644,6 +1704,10 @@ def main() -> None:
                 "root_residual_anchor_outside_domain={root_slice_residual_anchor_outside_domain} "
                 "root_residual_anchor_lift_checks={root_slice_residual_anchor_lift_gate_checks} "
                 "root_residual_anchor_isolated_checks={root_slice_residual_anchor_isolated_checks} "
+                "root_residual_anchor_finite_lift_checks={root_slice_residual_anchor_finite_lift_checks} "
+                "root_residual_anchor_repeated_lift_checks={root_slice_residual_anchor_repeated_lift_checks} "
+                "root_residual_anchor_offdomain_lift_checks={root_slice_residual_anchor_offdomain_lift_checks} "
+                "root_residual_anchor_infinity_checks={root_slice_residual_anchor_infinity_checks} "
                 "root_residual_lifted_slopes={root_slice_residual_lifted_slopes} "
                 "root_residual_escape_slopes={root_slice_residual_escape_slopes} "
                 "root_residual_lifted_escape_slope_overlap={root_slice_residual_lifted_escape_slope_overlap} "
@@ -1726,6 +1790,10 @@ def main() -> None:
             f"max_root_residual_anchor_outside_domain={summary['max_root_slice_residual_anchor_outside_domain']} "
             f"max_root_residual_anchor_lift_checks={summary['max_root_slice_residual_anchor_lift_gate_checks']} "
             f"max_root_residual_anchor_isolated_checks={summary['max_root_slice_residual_anchor_isolated_checks']} "
+            f"max_root_residual_anchor_finite_lift_checks={summary['max_root_slice_residual_anchor_finite_lift_checks']} "
+            f"max_root_residual_anchor_repeated_lift_checks={summary['max_root_slice_residual_anchor_repeated_lift_checks']} "
+            f"max_root_residual_anchor_offdomain_lift_checks={summary['max_root_slice_residual_anchor_offdomain_lift_checks']} "
+            f"max_root_residual_anchor_infinity_checks={summary['max_root_slice_residual_anchor_infinity_checks']} "
             f"max_root_residual_lifted_slopes={summary['max_root_slice_residual_lifted_slopes']} "
             f"max_root_residual_escape_slopes={summary['max_root_slice_residual_escape_slopes']} "
             f"max_root_residual_lifted_escape_slope_overlap={summary['max_root_slice_residual_lifted_escape_slope_overlap']} "
@@ -1798,6 +1866,10 @@ def main() -> None:
         "root_residual_anchor_outside_domain={root_slice_residual_anchor_outside_domain} "
         "root_residual_anchor_lift_checks={root_slice_residual_anchor_lift_gate_checks} "
         "root_residual_anchor_isolated_checks={root_slice_residual_anchor_isolated_checks} "
+        "root_residual_anchor_finite_lift_checks={root_slice_residual_anchor_finite_lift_checks} "
+        "root_residual_anchor_repeated_lift_checks={root_slice_residual_anchor_repeated_lift_checks} "
+        "root_residual_anchor_offdomain_lift_checks={root_slice_residual_anchor_offdomain_lift_checks} "
+        "root_residual_anchor_infinity_checks={root_slice_residual_anchor_infinity_checks} "
         "root_residual_lifted_slopes={root_slice_residual_lifted_slopes} "
         "root_residual_escape_slopes={root_slice_residual_escape_slopes} "
         "root_residual_lifted_escape_slope_overlap={root_slice_residual_lifted_escape_slope_overlap} "
@@ -1904,6 +1976,18 @@ def main() -> None:
     max_residual_anchor_isolated_checks = max(
         row["root_slice_residual_anchor_isolated_checks"] for row in all_rows
     )
+    max_residual_anchor_finite_lift_checks = max(
+        row["root_slice_residual_anchor_finite_lift_checks"] for row in all_rows
+    )
+    max_residual_anchor_repeated_lift_checks = max(
+        row["root_slice_residual_anchor_repeated_lift_checks"] for row in all_rows
+    )
+    max_residual_anchor_offdomain_lift_checks = max(
+        row["root_slice_residual_anchor_offdomain_lift_checks"] for row in all_rows
+    )
+    max_residual_anchor_infinity_checks = max(
+        row["root_slice_residual_anchor_infinity_checks"] for row in all_rows
+    )
     max_residual_lifted_slopes = max(
         row["root_slice_residual_lifted_slopes"] for row in all_rows
     )
@@ -1991,6 +2075,10 @@ def main() -> None:
         f"max_root_residual_anchor_outside_domain={max_residual_anchor_outside_domain} "
         f"max_root_residual_anchor_lift_checks={max_residual_anchor_lift_checks} "
         f"max_root_residual_anchor_isolated_checks={max_residual_anchor_isolated_checks} "
+        f"max_root_residual_anchor_finite_lift_checks={max_residual_anchor_finite_lift_checks} "
+        f"max_root_residual_anchor_repeated_lift_checks={max_residual_anchor_repeated_lift_checks} "
+        f"max_root_residual_anchor_offdomain_lift_checks={max_residual_anchor_offdomain_lift_checks} "
+        f"max_root_residual_anchor_infinity_checks={max_residual_anchor_infinity_checks} "
         f"max_root_residual_lifted_slopes={max_residual_lifted_slopes} "
         f"max_root_residual_escape_slopes={max_residual_escape_slopes} "
         f"max_root_residual_lifted_escape_slope_overlap={max_residual_lifted_escape_slope_overlap} "
