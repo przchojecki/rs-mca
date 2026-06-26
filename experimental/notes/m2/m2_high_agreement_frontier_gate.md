@@ -448,6 +448,29 @@ denominator is justified only for maps whose largest-fiber envelope is small
 enough, such as an injection or a bounded-degree map into the field actually
 used for the line experiment.
 
+A particularly common protocol certificate is linear.  Suppose the challenge
+space is the `e`-dimensional vector space `K = F_q^e`, the slope coordinates
+live in an `F_q`-vector space `V`, and
+
+```text
+phi : F_q^e -> V
+```
+
+is `F_q`-linear of rank `r`.  Then every nonempty fiber has size `q^(e-r)`,
+the image has size `q^r`, and the exact envelope becomes
+
+```text
+Pr_chal[bad] <= min(L, q^r) / q^r.
+```
+
+Equality is possible for every `L <= q^r` by choosing any `L` image points as
+bad.  Thus a linear challenge-to-slope map contributes exactly its image-rank
+denominator.  A trace map, coordinate projection, or any rank-one projection
+from an extension challenge space to base-field slopes buys only a base-field
+denominator.  An extension-field denominator is justified only when the slope
+object is itself analyzed in enough extension coordinates, or the
+challenge-to-slope map has correspondingly large rank/injective fibers.
+
 A common sufficient certificate is a bounded-degree rational map.  If
 `phi:K -> K` is a nonconstant polynomial of degree `D`, then every finite
 fiber has size at most `D`, hence

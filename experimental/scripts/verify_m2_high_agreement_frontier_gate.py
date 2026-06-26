@@ -16,7 +16,7 @@ import argparse
 import json
 from dataclasses import asdict, dataclass
 from fractions import Fraction
-from itertools import combinations
+from itertools import combinations, product
 from typing import Any
 
 
@@ -212,6 +212,61 @@ def brute_adversarial_fiber_envelope(
                 challenge_pullback_probability(challenge_to_slope, set(bad_tuple)),
             )
     return best
+
+
+def matrix_rank_mod(matrix: list[list[int]], prime: int) -> int:
+    if prime <= 1:
+        raise ValueError("expected prime > 1")
+    if not matrix:
+        return 0
+    width = len(matrix[0])
+    rows = [[entry % prime for entry in row] for row in matrix]
+    for row in rows:
+        if len(row) != width:
+            raise ValueError("ragged matrix")
+
+    rank = 0
+    for col in range(width):
+        pivot = None
+        for row_idx in range(rank, len(rows)):
+            if rows[row_idx][col] != 0:
+                pivot = row_idx
+                break
+        if pivot is None:
+            continue
+        rows[rank], rows[pivot] = rows[pivot], rows[rank]
+        inv = pow(rows[rank][col], -1, prime)
+        rows[rank] = [(entry * inv) % prime for entry in rows[rank]]
+        for row_idx in range(len(rows)):
+            if row_idx == rank or rows[row_idx][col] == 0:
+                continue
+            factor = rows[row_idx][col]
+            rows[row_idx] = [
+                (entry - factor * pivot_entry) % prime
+                for entry, pivot_entry in zip(rows[row_idx], rows[rank])
+            ]
+        rank += 1
+        if rank == len(rows):
+            break
+    return rank
+
+
+def linear_map_values(matrix: list[list[int]], prime: int) -> list[tuple[int, ...]]:
+    if not matrix:
+        raise ValueError("expected at least one output row")
+    domain_dim = len(matrix[0])
+    for row in matrix:
+        if len(row) != domain_dim:
+            raise ValueError("ragged matrix")
+
+    values: list[tuple[int, ...]] = []
+    for vector in product(range(prime), repeat=domain_dim):
+        image = tuple(
+            sum(row[col] * vector[col] for col in range(domain_dim)) % prime
+            for row in matrix
+        )
+        values.append(image)
+    return values
 
 
 def challenge_pullback_bound(
@@ -565,6 +620,48 @@ def check_adversarial_fiber_envelope() -> None:
     ) == Fraction(2, prime)
 
 
+def check_linear_challenge_map_ledger() -> None:
+    prime = 5
+
+    rank_one_projection = [[1, 0, 0]]
+    rank_one_values = linear_map_values(rank_one_projection, prime)
+    rank_one = matrix_rank_mod(rank_one_projection, prime)
+    assert rank_one == 1
+    assert len(rank_one_values) == prime**3
+    assert fiber_sizes_descending(rank_one_values) == [prime**2] * prime
+    assert adversarial_fiber_envelope(rank_one_values, 2) == Fraction(2, prime)
+    assert challenge_pullback_bound(
+        len(rank_one_values), 2, max_fiber_size(rank_one_values)
+    ) == Fraction(2, prime**rank_one)
+
+    rank_two_projection = [[1, 0, 0], [0, 1, 0]]
+    rank_two_values = linear_map_values(rank_two_projection, prime)
+    rank_two = matrix_rank_mod(rank_two_projection, prime)
+    assert rank_two == 2
+    assert fiber_sizes_descending(rank_two_values) == [prime] * (prime**2)
+    assert adversarial_fiber_envelope(rank_two_values, 3) == Fraction(3, prime**2)
+    assert challenge_pullback_bound(
+        len(rank_two_values), 3, max_fiber_size(rank_two_values)
+    ) == Fraction(3, prime**rank_two)
+
+    full_rank = [[1, 0, 0], [0, 1, 0], [0, 0, 1]]
+    full_rank_values = linear_map_values(full_rank, prime)
+    rank_three = matrix_rank_mod(full_rank, prime)
+    assert rank_three == 3
+    assert max_fiber_size(full_rank_values) == 1
+    assert adversarial_fiber_envelope(full_rank_values, 4) == Fraction(4, prime**3)
+    assert challenge_pullback_bound(
+        len(full_rank_values), 4, max_fiber_size(full_rank_values)
+    ) == Fraction(4, prime**rank_three)
+
+    dependent_rows = [[1, 2, 0], [2, 4, 0], [0, 0, 1]]
+    dependent_values = linear_map_values(dependent_rows, prime)
+    dependent_rank = matrix_rank_mod(dependent_rows, prime)
+    assert dependent_rank == 2
+    assert fiber_sizes_descending(dependent_values) == [prime] * (prime**2)
+    assert adversarial_fiber_envelope(dependent_values, 5) == Fraction(1, prime)
+
+
 def check_rational_challenge_map_degree_ledger() -> None:
     prime = 17
 
@@ -739,6 +836,7 @@ def main() -> None:
         check_gate(gate)
     check_challenge_pullback_ledger()
     check_adversarial_fiber_envelope()
+    check_linear_challenge_map_ledger()
     check_rational_challenge_map_degree_ledger()
 
     active = gates[0] if not custom else None
