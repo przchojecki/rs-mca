@@ -64,14 +64,18 @@ Keep entries concise and link to the relevant files.
 - **What is being added:** A core-optimization corollary and a
   `k`-degenerate support-packing sharpening for the arbitrary-anchor lower
   floor, showing that `floor((|D|-k)/sigma)` is the maximal freely attached
-  support-packing term delivered by this construction, plus a first-class
-  verifier for the finite locator-split, sunflower, and non-sunflower
-  degenerate packets.
+  support-packing term delivered by this construction.  A high-overlap pair
+  gate then proves that distinct slopes sharing more than `k` anchor points
+  require `N/E` to be degree-`<k` on the overlap.  The first-class verifier
+  checks the finite locator-split, sunflower, non-sunflower degenerate, and
+  high-overlap gate packets.
 - **How it is useful:** Sharpens the live F1 arbitrary-anchor balanced wall:
   any repaired F1 upper bound must allow this optimized sunflower term, and the
   remaining super-floor obstruction must come from dense overlap cycles rather
-  than interpolation-free support packing. The finite `F_17^2` packets are now
-  checked by a standard experimental script.
+  than interpolation-free support packing.  The pair gate identifies the exact
+  residue-direction test every high-overlap edge in such a cycle must pass.
+  The finite `F_17^2` packets are now checked by a standard experimental
+  script.
 - **What to do next:** Use the verifier as a regression test while attacking
   the remaining arbitrary-anchor residue-cloud packing problem above the
   corrected reserve.

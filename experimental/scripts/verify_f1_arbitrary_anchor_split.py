@@ -11,12 +11,16 @@ F_17[t]/(t^2-3).  It verifies:
 * the core-k choice maximizes the sunflower floor among all core sizes c<=k.
 * a non-sunflower k-degenerate support packing also realizes the same
   floor, confirming that the remaining obstruction must use dense overlaps.
+* high-overlap pairs are possible exactly when 1/E is degree-<k on the
+  overlap; the F_17^2 packet has four such four-point gates and no contained
+  five-point support.
 """
 
 from __future__ import annotations
 
 from dataclasses import dataclass
 from fractions import Fraction
+from itertools import combinations
 
 Element = tuple[int, int]
 Poly = list[Element]
@@ -144,6 +148,22 @@ def direction_not_low_degree(e_poly: Poly, support: tuple[int, ...], k: int) -> 
     )
 
 
+def residue_is_low_degree_on_subset(
+    e_poly: Poly, subset: tuple[int, ...], k: int
+) -> bool:
+    """Return whether x -> 1/E(x) is degree < k on subset."""
+    if len(subset) <= k:
+        return True
+    values_on_seed = [inv(poly_eval(e_poly, elt(x))) for x in subset[:k]]
+    candidate = interpolate(subset[:k], values_on_seed)
+    if poly_degree(candidate) >= k:
+        raise AssertionError("seed interpolant should have degree < k")
+    return all(
+        poly_eval(candidate, elt(x)) == inv(poly_eval(e_poly, elt(x)))
+        for x in subset[k:]
+    )
+
+
 def quotient_for_zero_core(
     e_poly: Poly, slope: Element, core: tuple[int, ...]
 ) -> Poly:
@@ -160,15 +180,17 @@ def quotient_for_anchor_constraints(
     k: int,
 ) -> Poly:
     """Return Q=slope+E*P matching an existing anchor on overlap."""
-    if len(overlap) > k:
-        raise AssertionError("too many old constraints for free interpolation")
     p_values = [
         div(sub(anchor[x], slope), poly_eval(e_poly, elt(x)))
         for x in overlap
     ]
-    p_poly = interpolate(overlap, p_values) if overlap else [ZERO]
+    seed_size = min(len(overlap), k)
+    p_poly = interpolate(overlap[:seed_size], p_values[:seed_size]) if overlap else [ZERO]
     if poly_degree(p_poly) >= k:
         raise AssertionError("interpolant should have degree < k")
+    for x, value in zip(overlap, p_values):
+        if poly_eval(p_poly, elt(x)) != value:
+            raise AssertionError("old anchor constraints fail the low-degree gate")
     return poly_add([slope], poly_mul(e_poly, p_poly))
 
 
@@ -349,6 +371,83 @@ def verify_degenerate_support_packet(e_poly: Poly, k: int, sigma: int) -> dict[s
     }
 
 
+def verify_high_overlap_pair_gate(e_poly: Poly, k: int, sigma: int) -> dict[str, object]:
+    a = k + sigma
+    domain = tuple(range(1, 17))
+
+    gated_overlaps = tuple(
+        subset
+        for subset in combinations(domain, k + 1)
+        if residue_is_low_degree_on_subset(e_poly, subset, k)
+    )
+    expected_overlaps = (
+        (1, 6, 11, 16),
+        (2, 4, 13, 15),
+        (4, 6, 8, 12),
+        (5, 9, 11, 13),
+    )
+    if gated_overlaps != expected_overlaps:
+        raise AssertionError(gated_overlaps)
+
+    contained_supports = tuple(
+        support
+        for support in combinations(domain, a)
+        if residue_is_low_degree_on_subset(e_poly, support, k)
+    )
+    if contained_supports:
+        raise AssertionError("full active supports should stay noncontained")
+
+    pairs_per_gate = (len(domain) - (k + 1)) * (len(domain) - (k + 1) - 1) // 2
+    high_overlap_pair_count = len(gated_overlaps) * pairs_per_gate
+    counted_pair_count = sum(
+        len(tuple(combinations(tuple(x for x in domain if x not in overlap), 2)))
+        for overlap in gated_overlaps
+    )
+    expected_pair_count = 264
+    if counted_pair_count != high_overlap_pair_count:
+        raise AssertionError((counted_pair_count, high_overlap_pair_count))
+    if high_overlap_pair_count != expected_pair_count:
+        raise AssertionError((high_overlap_pair_count, expected_pair_count))
+
+    overlap = gated_overlaps[0]
+    support_s = tuple(sorted(overlap + (2,)))
+    support_t = tuple(sorted(overlap + (3,)))
+    if len(set(support_s).intersection(support_t)) != k + 1:
+        raise AssertionError("expected a high-overlap pair")
+
+    q_s: Poly = [ZERO]
+    anchor = {x: ZERO for x in support_s}
+    q_t = quotient_for_anchor_constraints(e_poly, ONE, overlap, anchor, k)
+    for x in overlap:
+        if poly_eval(q_t, elt(x)) != ZERO:
+            raise AssertionError("high-overlap witness failed the gate")
+    for x in support_t:
+        value = poly_eval(q_t, elt(x))
+        if x in anchor and anchor[x] != value:
+            raise AssertionError("high-overlap anchor conflict")
+        anchor[x] = value
+
+    if not all(poly_eval(q_s, elt(x)) == anchor[x] for x in support_s):
+        raise AssertionError("slope 0 high-overlap witness fails")
+    if not all(poly_eval(q_t, elt(x)) == anchor[x] for x in support_t):
+        raise AssertionError("slope 1 high-overlap witness fails")
+    if not direction_not_low_degree(e_poly, support_s, k):
+        raise AssertionError("support_s should be noncontained")
+    if not direction_not_low_degree(e_poly, support_t, k):
+        raise AssertionError("support_t should be noncontained")
+
+    blocked_overlap = (1, 2, 3, 4)
+    if residue_is_low_degree_on_subset(e_poly, blocked_overlap, k):
+        raise AssertionError("blocked overlap unexpectedly passed the gate")
+
+    return {
+        "gated_overlaps": gated_overlaps,
+        "contained_supports": len(contained_supports),
+        "high_overlap_pair_count": high_overlap_pair_count,
+        "example_supports": (support_s, support_t),
+    }
+
+
 @dataclass(frozen=True)
 class Verification:
     core_optimization: dict[str, object]
@@ -356,6 +455,7 @@ class Verification:
     locator_split: dict[str, object]
     sunflower: dict[str, object]
     degenerate_support: dict[str, object]
+    high_overlap_gate: dict[str, object]
 
 
 def verify() -> Verification:
@@ -371,6 +471,7 @@ def verify() -> Verification:
         locator_split=verify_locator_split_packet(e_poly, k, sigma),
         sunflower=verify_sunflower_floor_packet(e_poly, k, sigma),
         degenerate_support=verify_degenerate_support_packet(e_poly, k, sigma),
+        high_overlap_gate=verify_high_overlap_pair_gate(e_poly, k, sigma),
     )
 
 
@@ -396,6 +497,12 @@ def main() -> None:
         f"{result.degenerate_support['slope_count']} slopes, "
         f"union size {result.degenerate_support['union_size']}, "
         f"overlaps={result.degenerate_support['overlap_sizes']}"
+    )
+    print(
+        "high-overlap gate: "
+        f"{len(result.high_overlap_gate['gated_overlaps'])} four-point gates, "
+        f"{result.high_overlap_gate['high_overlap_pair_count']} support pairs, "
+        f"contained supports={result.high_overlap_gate['contained_supports']}"
     )
 
 

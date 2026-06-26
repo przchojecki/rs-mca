@@ -244,12 +244,61 @@ Any larger arbitrary-anchor obstruction must use a dense overlap cycle, where
 each remaining support meets the previous union in more than `k` points and
 the compatibility equations no longer decouple by interpolation.
 
+## High-Overlap Pair Gate
+
+The dense-overlap condition has an exact local test.  Fix two `a`-subsets
+`S,T subset D` and two distinct slopes `z_S != z_T`.  Put
+
+```text
+J = S cap T.
+```
+
+There is an anchor word `w` and degree-`<k` polynomials `P_S,P_T` such that
+
+```text
+Q_S = z_S N + E P_S,        Q_T = z_T N + E P_T
+```
+
+agree with `w` on `S` and `T`, respectively, if and only if the function
+
+```text
+x |-> N(x)/E(x),        x in J,
+```
+
+is the restriction to `J` of a degree-`<k` polynomial.  For `|J|<=k` this is
+automatic, recovering the free interpolation used above.  For `|J|>k` it is a
+genuine residue-direction gate.
+
+The proof is just the overlap equation.  If the two witnesses agree on `J`,
+then for every `x in J`
+
+```text
+E(x)(P_T(x)-P_S(x)) = (z_S-z_T)N(x),
+```
+
+so `(P_T-P_S)/(z_S-z_T)` is a degree-`<k` interpolant for `N/E` on `J`.
+Conversely, if `R_J` is such an interpolant, then taking `P_S=0` and
+`P_T=(z_S-z_T)R_J` makes `Q_S` and `Q_T` agree on `J`; the anchor is then
+defined by these two witnesses on `S union T`.  Noncontainment on the full
+supports is automatic in the balanced datum: if `N/E` agreed with a
+degree-`<k` polynomial on all of an `a`-subset, then `E P-N` would have
+degree `<a` and `a` roots, hence would vanish identically, contradicting
+`deg N < deg E` and `[N]_E != 0`.
+
+Thus any super-floor arbitrary-anchor packet must be supported on a dense
+overlap graph whose high-overlap edges all pass this residue-direction gate.
+In the explicit `F_17^2` packet below with `k=3` and `a=5`, exactly four
+four-point overlaps pass the gate for `N=1` and `E=X(X-alpha)`, while no
+five-point support is contained.  The verifier records this as the first
+finite dense-overlap audit target.
+
 ## Status
 
 PROVED residual-slack reduction for `t <= sigma`; PROVED / COUNTEREXAMPLE to
 the naive promotion of the monic-anchor base-core reduction to arbitrary
 balanced anchors; PROVED `k`-degenerate support-packing sharpening of the
-sunflower lower floor.
+sunflower lower floor; PROVED high-overlap pair gate for the remaining dense
+cycle obstruction.
 
 This does not refute the repaired F1 conjecture above the corrected reserve.
 For `t<sigma`, it routes the datum to the extension list ledger with residual
@@ -498,8 +547,8 @@ word `w` on `S`. Bounding rich intersections of this cloud with residue lines
 is the actual arbitrary-anchor problem. The degenerate support-packing theorem
 shows that even a successful upper bound should include at least a
 `floor((|D|-k)/sigma)` arbitrary-anchor term, while any super-floor
-counterpacket must come from dense overlap cycles rather than freely attached
-supports.
+counterpacket must come from dense overlap cycles whose high-overlap edges pass
+the residue-direction low-degree gate.
 
 ## Reproducibility
 
