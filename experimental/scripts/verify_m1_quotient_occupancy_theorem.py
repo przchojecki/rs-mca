@@ -884,6 +884,180 @@ def check_signed_shell_case(
             )
 
 
+def exact_supports(
+    domain_size: int,
+    support_size: int,
+) -> list[frozenset[int]]:
+    return [
+        frozenset(support)
+        for support in itertools.combinations(range(domain_size), support_size)
+    ]
+
+
+def shell_codegree_bounds(
+    fiber_count: int,
+    fiber_size: int,
+    family: list[frozenset[int]],
+    slack: int,
+) -> tuple[Counter[int], Counter[tuple[int, int]]]:
+    ordinary_gamma: Counter[int] = Counter()
+    shell_gamma: Counter[tuple[int, int]] = Counter()
+    occupancies = {
+        support: occupancy_vector_from_support(fiber_count, fiber_size, support)
+        for support in family
+    }
+
+    for source in family:
+        ordinary_counts: Counter[int] = Counter()
+        shell_counts: Counter[tuple[int, int]] = Counter()
+        source_occupancy = occupancies[source]
+        for target in family:
+            if target == source:
+                continue
+            exchange = len(source - target)
+            if not (0 < exchange < slack):
+                continue
+            profile_distance = occupancy_exchange_distance(
+                source_occupancy,
+                occupancies[target],
+            )
+            if profile_distance > exchange:
+                raise AssertionError((source, target, profile_distance, exchange))
+            ordinary_counts[exchange] += 1
+            shell_counts[(profile_distance, exchange)] += 1
+
+        for exchange, count in ordinary_counts.items():
+            ordinary_gamma[exchange] = max(ordinary_gamma[exchange], count)
+        for key, count in shell_counts.items():
+            shell_gamma[key] = max(shell_gamma[key], count)
+
+    return ordinary_gamma, shell_gamma
+
+
+def full_shell_envelope_bounds(
+    fiber_count: int,
+    fiber_size: int,
+    family: list[frozenset[int]],
+    slack: int,
+) -> Counter[tuple[int, int]]:
+    envelope: Counter[tuple[int, int]] = Counter()
+    for support in family:
+        occupancy = occupancy_vector_from_support(fiber_count, fiber_size, support)
+        for profile_distance in range(slack):
+            shell = signed_shell_kernel(fiber_size, occupancy, profile_distance)
+            for exchange in range(1, slack):
+                envelope[(profile_distance, exchange)] = max(
+                    envelope[(profile_distance, exchange)],
+                    shell.get(exchange, 0),
+                )
+    return envelope
+
+
+def support_family_samples(
+    fiber_count: int,
+    fiber_size: int,
+    support_size: int,
+) -> list[list[frozenset[int]]]:
+    domain_size = fiber_count * fiber_size
+    full = exact_supports(domain_size, support_size)
+    samples = [full]
+    containing_zero = [support for support in full if 0 in support]
+    if containing_zero:
+        samples.append(containing_zero)
+    partial_first_fiber = [
+        support
+        for support in full
+        if 0 < len({point for point in support if point < fiber_size}) < fiber_size
+    ]
+    if partial_first_fiber:
+        samples.append(partial_first_fiber)
+    return samples
+
+
+def check_shell_variance_criterion_case(
+    fiber_count: int,
+    fiber_size: int,
+    support_size: int,
+    slack: int,
+    field_size: int,
+) -> None:
+    for family in support_family_samples(fiber_count, fiber_size, support_size):
+        ordinary_gamma, shell_gamma = shell_codegree_bounds(
+            fiber_count,
+            fiber_size,
+            family,
+            slack,
+        )
+        envelope = full_shell_envelope_bounds(
+            fiber_count,
+            fiber_size,
+            family,
+            slack,
+        )
+
+        for exchange in range(1, slack):
+            shell_sum = sum(
+                shell_gamma.get((profile_distance, exchange), 0)
+                for profile_distance in range(exchange + 1)
+            )
+            if ordinary_gamma.get(exchange, 0) > shell_sum:
+                raise AssertionError(
+                    (
+                        fiber_count,
+                        fiber_size,
+                        support_size,
+                        slack,
+                        len(family),
+                        exchange,
+                        ordinary_gamma.get(exchange, 0),
+                        shell_sum,
+                    )
+                )
+
+        for key, count in shell_gamma.items():
+            if count > envelope.get(key, 0):
+                raise AssertionError(
+                    (
+                        fiber_count,
+                        fiber_size,
+                        support_size,
+                        slack,
+                        len(family),
+                        key,
+                        count,
+                        envelope.get(key, 0),
+                    )
+                )
+
+        ordinary_weight = sum(
+            count * (field_size ** (slack - exchange))
+            for exchange, count in ordinary_gamma.items()
+        )
+        shell_weight = sum(
+            count * (field_size ** (slack - exchange))
+            for (_profile_distance, exchange), count in shell_gamma.items()
+        )
+        envelope_weight = sum(
+            envelope.get((profile_distance, exchange), 0)
+            * (field_size ** (slack - exchange))
+            for exchange in range(1, slack)
+            for profile_distance in range(exchange + 1)
+        )
+        if not (ordinary_weight <= shell_weight <= envelope_weight):
+            raise AssertionError(
+                (
+                    fiber_count,
+                    fiber_size,
+                    support_size,
+                    slack,
+                    len(family),
+                    ordinary_weight,
+                    shell_weight,
+                    envelope_weight,
+                )
+            )
+
+
 def occupancy_vectors(
     fiber_count: int,
     fiber_size: int,
@@ -1492,6 +1666,12 @@ def main() -> int:
         (5, 2, 5, 3, 7),
     ]:
         check_signed_shell_case(*case)
+    for case in [
+        (3, 3, 4, 3, 5),
+        (4, 2, 4, 3, 5),
+        (4, 3, 5, 3, 7),
+    ]:
+        check_shell_variance_criterion_case(*case)
     for case in [
         (4, 3, 4),
         (4, 3, 6),

@@ -622,6 +622,71 @@ choice of two source points and two complement points, so the sum over
 `d=0,1,2` is `binom(s,2)binom(n-s,2)`.  The exchange-one split was proved in
 Corollary 6.4.
 
+### Corollary 6.6. Shell-Resolved Variance Criterion
+
+Let `A` be any deterministic family of supports of size `s=k+t`, and let
+`M=|A|`.  For `S,T in A`, write `a(S)` for the occupancy vector of `S`, and
+define the shell codegree
+
+```text
+Gamma_{d,j}(A)
+ = max_{S in A}
+   #{ T in A : T != S,
+      d_occ(a(S),a(T))=d,        |S\T|=j }.
+```
+
+Only shells with `0<=d<=j<t` can enter the strict M1 variance range.  Put
+
+```text
+p_z=q^(-t)(1-q^(-t)).
+```
+
+Then the slope-resolved random-line estimate of
+`m1_average_support_collinearity.md` gives
+
+```text
+E[1 - |Bad_t(A;f,g)|/q]
+ <= (1-p_z)/(M p_z)
+    + (4/M) sum_{1<=j<t} sum_{0<=d<=j}
+        Gamma_{d,j}(A) q^(t-j).
+```
+
+Moreover, if `Phi_{a,d}` is the signed-shell polynomial of Corollary 6.5, then
+
+```text
+Gamma_{d,j}(A)
+ <= max_{S in A} [x^j] Phi_{a(S),d}(x).
+```
+
+More generally, any aperiodic-occupation estimate of the form
+
+```text
+Gamma_{d,j}(A) <= Theta_{d,j}
+```
+
+immediately gives the same bound with `Theta_{d,j}` substituted in the shell
+sum.  Thus the exact shell ledger isolates the missing analytic M1 input: one
+must prove that the actual aperiodic residue-line family has small local
+occupation inside the finite shells `Phi_{a,d}`.
+
+#### Proof
+
+For a fixed source support `S`, the strict exchange codegree at level `j`
+decomposes disjointly by the profile distance `d=d_occ(a(S),a(T))`.  Since
+Corollary 6.3 gives `d<=j`, only `0<=d<=j` can occur.  Therefore the ordinary
+maximum exchange codegree satisfies
+
+```text
+Gamma_j(A)
+ <= sum_{0<=d<=j} Gamma_{d,j}(A).
+```
+
+Substituting this into the max-codegree form of the slope-resolved variance
+bound in `m1_average_support_collinearity.md` gives the displayed estimate.
+The coefficient bound follows because `Phi_{a,d}` counts all supports in the
+full support layer at shell distance `d` and exchange `j`; any subfamily `A`
+can only delete such targets.
+
 ## Theorem 7. Sharp Exchange-One Residual Floor
 
 For an occupancy vector `a=(a_1,...,a_N)`, put

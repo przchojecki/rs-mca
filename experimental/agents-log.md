@@ -54,7 +54,8 @@ Keep entries concise and link to the relevant files.
   between internal partial-fiber motion and one-unit mixed profile transport.
   A signed-shell factorization then separates all profile-distance shells and
   gives the exact slack-three support ledger through the `d_occ=0,1,2`
-  exchange-two split.
+  exchange-two split. A shell-resolved variance criterion plugs these local
+  shell codegrees directly into the M1 random-line missing-slope estimate.
   A small verifier checks the formulas against brute-force enumeration.
 - **How it is useful:** Separates the budgeted quotient-periodic M1 support
   terms from the remaining partial-fiber / aperiodic residue-line target, and
@@ -80,7 +81,9 @@ Keep entries concise and link to the relevant files.
   one, the only strict exchange level for slack two. The signed-shell
   factorization resolves the full exchange-two support ledger needed at slack
   three, leaving only the aperiodic residue-line occupation of those explicit
-  shells to bound.
+  shells to bound. The variance criterion states this as a direct sufficient
+  input for the random-line ledger: bounds on local shell occupation
+  `Gamma_{d,j}` immediately bound the missing-slope density.
 - **What to do next:** Use this theorem as the quotient ledger before attacking
   the aperiodic M1 local-limit residual.
 
