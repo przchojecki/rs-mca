@@ -33,8 +33,8 @@ class Gate:
     first_safe_agreement: int | None
     last_unsafe_distance: int | None
     first_safe_distance: int | None
-    unsafe_radius: str | None
-    safe_radius: str | None
+    first_unsafe_grid_radius: str | None
+    largest_safe_grid_radius: str | None
 
 
 def ceil_div(num: int, den: int) -> int:
@@ -70,8 +70,8 @@ def tangent_gate(label: str, n: int, k: int, q_line: int, eps_bits: int) -> Gate
             first_safe_agreement=None,
             last_unsafe_distance=0,
             first_safe_distance=None,
-            unsafe_radius="0",
-            safe_radius=None,
+            first_unsafe_grid_radius="0",
+            largest_safe_grid_radius=None,
         )
 
     if budget < exact_start_count:
@@ -94,8 +94,8 @@ def tangent_gate(label: str, n: int, k: int, q_line: int, eps_bits: int) -> Gate
             first_safe_agreement=first_safe,
             last_unsafe_distance=n - last_unsafe,
             first_safe_distance=n - first_safe,
-            unsafe_radius=str(Fraction(n - last_unsafe, n)),
-            safe_radius=str(Fraction(n - first_safe, n)),
+            first_unsafe_grid_radius=str(Fraction(n - last_unsafe, n)),
+            largest_safe_grid_radius=str(Fraction(n - first_safe, n)),
         )
 
     return Gate(
@@ -112,8 +112,8 @@ def tangent_gate(label: str, n: int, k: int, q_line: int, eps_bits: int) -> Gate
         first_safe_agreement=exact_start,
         last_unsafe_distance=None,
         first_safe_distance=n - exact_start,
-        unsafe_radius=None,
-        safe_radius=str(Fraction(n - exact_start, n)),
+        first_unsafe_grid_radius=None,
+        largest_safe_grid_radius=str(Fraction(n - exact_start, n)),
     )
 
 
@@ -192,13 +192,22 @@ def print_human(gates: list[Gate]) -> None:
             print(
                 "  last_unsafe_agreement="
                 f"{gate.last_unsafe_agreement}, distance={gate.last_unsafe_distance}, "
-                f"radius={gate.unsafe_radius}"
+                f"grid_radius={gate.first_unsafe_grid_radius}"
             )
         if gate.first_safe_agreement is not None:
             print(
                 "  first_safe_agreement="
                 f"{gate.first_safe_agreement}, distance={gate.first_safe_distance}, "
-                f"radius={gate.safe_radius}"
+                f"grid_radius={gate.largest_safe_grid_radius}"
+            )
+        if gate.status == "crossing_inside_exact_tangent_range":
+            print(
+                "  closed_ball_safe_condition="
+                f"delta < {gate.first_unsafe_grid_radius}"
+            )
+            print(
+                "  strict_ball_safe_endpoint="
+                f"delta = {gate.first_unsafe_grid_radius}"
             )
         print()
 
@@ -233,8 +242,8 @@ def main() -> None:
         assert active.first_safe_agreement == 507
         assert active.last_unsafe_distance == 6
         assert active.first_safe_distance == 5
-        assert active.unsafe_radius == "3/256"
-        assert active.safe_radius == "5/512"
+        assert active.first_unsafe_grid_radius == "3/256"
+        assert active.largest_safe_grid_radius == "5/512"
 
     if args.json:
         payload: list[dict[str, Any]] = [asdict(gate) for gate in gates]

@@ -500,8 +500,9 @@ Keep entries concise and link to the relevant files.
   row-level finite-slope gate.  The note proves the integer crossing criterion
   `B=floor(q_line/2^eps_bits)` inside the exact range
   `a>=ceil((2n+k)/3)`, records the active `F_17^32` consequence
-  `LD_sw(C,506)=7` and `LD_sw(C,507)=6`, and clarifies that agreement `353` is
-  no longer a frontier for the finite-slope support-wise object.
+  `LD_sw(C,506)=7` and `LD_sw(C,507)=6`, records the closed/strict endpoint
+  convention at grid radius `3/256`, and clarifies that agreement `353` is no
+  longer a frontier for the finite-slope support-wise object.
 - **How it is useful:** Turns the newest tangent theorem into a reviewable
   calculator for deciding whether a finite row's `2^-128` crossing lies inside
   the exact tangent range, below it, or outside it.  It also narrows the next

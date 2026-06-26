@@ -79,6 +79,17 @@ LD_sw(C,n-B+1)   = B        within budget.
 Equivalently, the largest safe integer Hamming radius in the exact tangent
 range is `B-1`, while integer radius `B` is already unsafe.
 
+For closed Hamming balls with real radius `delta`, the integer distance allowed
+is `floor(delta n)`.  In the crossing-inside-exact-range case this means:
+
+```text
+closed ball:  safe for delta < B/n, unsafe at delta = B/n;
+strict ball:  safe at delta = B/n, unsafe for every delta > B/n.
+```
+
+Thus `B/n` is the safe real-radius supremum under the closed-ball convention,
+but it is not attained there.
+
 There are two boundary cases:
 
 ```text
@@ -124,8 +135,12 @@ LD_sw(C,507) = 6       within budget.
 ```
 
 Thus the closed grid radius `6/512 = 3/256` is unsafe under the finite-slope
-support-wise convention, while integer radius `5` is safe.  The old
-agreement-353 target is superseded: the tangent floor alone gives
+support-wise convention, while integer radius `5` is safe.  Equivalently,
+closed real radii `delta < 3/256` are safe for the finite-slope support-wise
+object, and `delta = 3/256` is already unsafe; under a strict-ball convention
+the endpoint `3/256` is safe but any larger radius is unsafe.
+
+The old agreement-353 target is superseded: the tangent floor alone gives
 
 ```text
 LD_sw(C,353) >= 512 - 353 + 1 = 160.
@@ -148,7 +163,9 @@ remaining lanes are:
 3. keep q_gen, q_line, and q_chal separate when translating the finite row to
    protocol or prize language;
 4. study lower agreements a < ceil((2n+k)/3), where the tangent floor is only
-   a lower bound and quotient/aperiodic mechanisms may still matter;
+   a lower bound and quotient/aperiodic mechanisms may still matter for
+   mechanism ledgers and other target budgets, though not for the active row's
+   `2^-128` finite-slope threshold because agreement `506` is already unsafe;
 5. run the same gate calculation for other prize rows to decide whether their
    budget crossing lies inside or below the exact tangent range.
 ```
