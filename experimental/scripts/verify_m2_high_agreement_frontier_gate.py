@@ -164,6 +164,36 @@ def projective_exact_distances(
     return last_safe, first_unsafe
 
 
+def challenge_pullback_probability(
+    challenge_to_slope: list[int], bad_slopes: set[int]
+) -> Fraction:
+    if not challenge_to_slope:
+        raise ValueError("expected at least one challenge")
+    bad_challenges = sum(1 for slope in challenge_to_slope if slope in bad_slopes)
+    return Fraction(bad_challenges, len(challenge_to_slope))
+
+
+def max_fiber_size(challenge_to_slope: list[int]) -> int:
+    if not challenge_to_slope:
+        raise ValueError("expected at least one challenge")
+    fibers: dict[int, int] = {}
+    for slope in challenge_to_slope:
+        fibers[slope] = fibers.get(slope, 0) + 1
+    return max(fibers.values())
+
+
+def challenge_pullback_bound(
+    challenge_count: int, bad_count: int, max_fiber: int
+) -> Fraction:
+    if challenge_count <= 0:
+        raise ValueError("expected positive challenge_count")
+    if bad_count < 0:
+        raise ValueError("expected nonnegative bad_count")
+    if max_fiber <= 0:
+        raise ValueError("expected positive max_fiber")
+    return Fraction(min(challenge_count, bad_count * max_fiber), challenge_count)
+
+
 def tangent_gate(label: str, n: int, k: int, q_line: int, eps_bits: int) -> Gate:
     if not (0 <= k < n):
         raise ValueError("expected 0 <= k < n")
@@ -387,6 +417,34 @@ def check_gate(gate: Gate) -> None:
         raise AssertionError(f"unknown projective status {gate.projective_status}")
 
 
+def check_challenge_pullback_ledger() -> None:
+    identity = list(range(8))
+    bad = {1, 3, 6}
+    assert challenge_pullback_probability(identity, bad) == Fraction(3, 8)
+    assert max_fiber_size(identity) == 1
+    assert challenge_pullback_bound(len(identity), len(bad), 1) == Fraction(3, 8)
+
+    two_to_one = [0, 0, 1, 1, 2, 2, 3, 3]
+    bad = {1, 3}
+    assert challenge_pullback_probability(two_to_one, bad) == Fraction(1, 2)
+    assert max_fiber_size(two_to_one) == 2
+    assert challenge_pullback_bound(len(two_to_one), len(bad), 2) == Fraction(1, 2)
+
+    constant = [5] * 8
+    bad = {5}
+    assert challenge_pullback_probability(constant, bad) == Fraction(1, 1)
+    assert max_fiber_size(constant) == 8
+    assert challenge_pullback_bound(len(constant), len(bad), 8) == Fraction(1, 1)
+
+    active = active_row()
+    assert challenge_pullback_bound(
+        active.q_line, active.budget, 1
+    ) == Fraction(active.budget, active.q_line)
+    assert challenge_pullback_bound(
+        active.q_line + 1, active.projective_budget, 1
+    ) == Fraction(active.projective_budget, active.q_line + 1)
+
+
 def default_cases() -> list[Gate]:
     return [
         active_row(),
@@ -524,6 +582,7 @@ def main() -> None:
 
     for gate in gates:
         check_gate(gate)
+    check_challenge_pullback_ledger()
 
     active = gates[0] if not custom else None
     if active is not None:

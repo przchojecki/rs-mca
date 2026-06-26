@@ -373,6 +373,43 @@ Q-1 <= q_line < (d0+1)Q-1:
 This is still only a convention audit.  It does not alter finite-slope rows on
 the public board, whose denominator is `q_line`.
 
+## Challenge-Field Pullback Ledger
+
+The finite and projective gates above are slope-sampler statements.  A protocol
+challenge field `K` only inherits such a statement through an explicit map
+
+```text
+phi : K -> F            or            phi : K -> P^1(F).
+```
+
+Let `X` be the sampled slope set, let `Bad subset X` be the bad-slope set at a
+fixed agreement threshold, and put `L=|Bad|`.  If challenges are uniform on
+`K`, then the exact pulled-back failure probability is
+
+```text
+|phi^{-1}(Bad)| / |K|.
+```
+
+Consequently, if every fiber of `phi` has size at most `m`, then
+
+```text
+Pr_chal[bad] <= min(|K|, L*m) / |K|.
+```
+
+This is the whole `q_chal` ledger.  One may divide by `q_chal=|K|` only after
+proving a fiber bound for the actual challenge-to-slope map.  In particular:
+
+```text
+injective phi:       Pr_chal[bad] <= L/|K|;
+uniform m-to-1 phi:  Pr_chal[bad] = L/|X| when phi is onto X;
+constant phi:        a one-slope bad set can pull back to probability 1.
+```
+
+Thus a larger challenge field is not a free denominator.  The active
+`506/507` gate controls protocol soundness only after the protocol ledger
+identifies whether challenges sample finite slopes, projective slopes, or some
+nonuniform image, and supplies the corresponding maximum-fiber bound.
+
 ## Active `F_17^32` Row
 
 For
@@ -460,8 +497,8 @@ remaining lanes are:
 2. decide whether external CA, curve-MCA, or protocol conventions really use
    the finite/projective line-decoding object handled here, or a different
    object;
-3. keep q_gen, q_line, and q_chal separate when translating the finite row to
-   protocol or prize language;
+3. when translating to protocol or prize language, prove the actual
+   challenge-to-slope fiber bound before replacing `q_line` by `q_chal`;
 4. study lower agreements a < ceil((2n+k)/3), where the tangent floor is only
    a lower bound and quotient/aperiodic mechanisms may still matter for
    mechanism ledgers and other target budgets, though not for the active row's
