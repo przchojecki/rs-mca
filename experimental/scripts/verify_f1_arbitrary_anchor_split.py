@@ -164,6 +164,16 @@ def verify_core_optimization(n: int, k: int, sigma: int) -> dict[str, object]:
     return {"floors": floors, "optimized": optimized}
 
 
+def verify_core_optimization_grid(max_n: int = 80) -> int:
+    checked = 0
+    for n in range(2, max_n + 1):
+        for k in range(1, n):
+            for sigma in range(1, n - k + 1):
+                verify_core_optimization(n, k, sigma)
+                checked += 1
+    return checked
+
+
 def verify_locator_split_packet(e_poly: Poly, k: int, sigma: int) -> dict[str, object]:
     a = k + sigma
     support_s = (1, 3, 4, 7, 9)
@@ -252,6 +262,7 @@ def verify_sunflower_floor_packet(e_poly: Poly, k: int, sigma: int) -> dict[str,
 @dataclass(frozen=True)
 class Verification:
     core_optimization: dict[str, object]
+    core_grid_checks: int
     locator_split: dict[str, object]
     sunflower: dict[str, object]
 
@@ -265,6 +276,7 @@ def verify() -> Verification:
         raise AssertionError("E should be nonzero on D=F_17^*")
     return Verification(
         core_optimization=verify_core_optimization(n, k, sigma),
+        core_grid_checks=verify_core_optimization_grid(),
         locator_split=verify_locator_split_packet(e_poly, k, sigma),
         sunflower=verify_sunflower_floor_packet(e_poly, k, sigma),
     )
@@ -278,6 +290,7 @@ def main() -> None:
         f"max={result.core_optimization['optimized']} "
         f"floors={result.core_optimization['floors']}"
     )
+    print(f"core optimization grid checks: {result.core_grid_checks}")
     print(
         "locator split: supports="
         f"{result.locator_split['support_s']} and {result.locator_split['support_t']}"
