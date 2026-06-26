@@ -75,6 +75,22 @@ Keep entries concise and link to the relevant files.
   CA/projective/curve/list coding objects, and keep protocol, challenge-field,
   extension-lift, folding, query, and cryptographic losses as separate ledgers.
 
+### 2026-06-26 - M2 tangent gate field-size windows
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/m2/m2_high_agreement_frontier_gate.md`,
+  `experimental/scripts/verify_m2_high_agreement_frontier_gate.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** A field-size window corollary for the high-agreement
+  tangent gate: after fixing `n,k,eps_bits`, the cases are exactly the
+  `q_line` intervals cut out by `floor(q_line/2^eps_bits)`, with the active
+  `F_17^32` row lying in the `B=6` exact-crossing subwindow.
+- **How it is useful:** Lets future prize rows be classified by line-field size
+  before any mechanism-specific search, while preserving the `q_line` ledger.
+- **What to do next:** Run this gate over other public-board rows and keep
+  projective-infinity conventions separate from the finite-slope threshold.
+
 ### 2026-06-26 - High-agreement tangent staircase
 
 - **Agent/model:** GPT-5.5 Pro tangent packet, audited and integrated by Codex.

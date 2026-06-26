@@ -25,6 +25,8 @@ class Gate:
     k: int
     q_line: int
     eps_bits: int
+    target_unit: int
+    q_line_window: str
     exact_start: int
     exact_distance_limit: int
     lower_floor_distance_limit: int
@@ -47,6 +49,19 @@ def ceil_div(num: int, den: int) -> int:
     return -(-num // den)
 
 
+def q_line_window(n: int, k: int, q_line: int, eps_bits: int) -> str:
+    target_unit = 1 << eps_bits
+    exact_distance_limit = (n - k) // 3
+    lower_floor_distance_limit = n - k - 1
+    if q_line < target_unit:
+        return "budget_zero_q_line_window"
+    if q_line < (exact_distance_limit + 1) * target_unit:
+        return "exact_crossing_q_line_window"
+    if q_line < (lower_floor_distance_limit + 1) * target_unit:
+        return "exact_safe_then_gap_q_line_window"
+    return "tangent_floor_never_crosses_q_line_window"
+
+
 def tangent_gate(label: str, n: int, k: int, q_line: int, eps_bits: int) -> Gate:
     if not (0 <= k < n):
         raise ValueError("expected 0 <= k < n")
@@ -55,6 +70,7 @@ def tangent_gate(label: str, n: int, k: int, q_line: int, eps_bits: int) -> Gate
     if eps_bits < 0:
         raise ValueError("expected nonnegative eps_bits")
 
+    target_unit = 1 << eps_bits
     exact_start = ceil_div(2 * n + k, 3)
     exact_distance_limit = (n - k) // 3
     lower_floor_distance_limit = n - k - 1
@@ -62,8 +78,9 @@ def tangent_gate(label: str, n: int, k: int, q_line: int, eps_bits: int) -> Gate
     assert k + 1 <= exact_start <= n
     exact_start_count = n - exact_start + 1
     assert exact_start_count == exact_distance_limit + 1
-    budget = q_line // (1 << eps_bits)
-    projective_budget = (q_line + 1) // (1 << eps_bits)
+    budget = q_line // target_unit
+    projective_budget = (q_line + 1) // target_unit
+    window = q_line_window(n, k, q_line, eps_bits)
 
     projective_safe = None
     if projective_budget >= 2:
@@ -83,6 +100,8 @@ def tangent_gate(label: str, n: int, k: int, q_line: int, eps_bits: int) -> Gate
             k=k,
             q_line=q_line,
             eps_bits=eps_bits,
+            target_unit=target_unit,
+            q_line_window=window,
             exact_start=exact_start,
             exact_distance_limit=exact_distance_limit,
             lower_floor_distance_limit=lower_floor_distance_limit,
@@ -113,6 +132,8 @@ def tangent_gate(label: str, n: int, k: int, q_line: int, eps_bits: int) -> Gate
             k=k,
             q_line=q_line,
             eps_bits=eps_bits,
+            target_unit=target_unit,
+            q_line_window=window,
             exact_start=exact_start,
             exact_distance_limit=exact_distance_limit,
             lower_floor_distance_limit=lower_floor_distance_limit,
@@ -139,6 +160,8 @@ def tangent_gate(label: str, n: int, k: int, q_line: int, eps_bits: int) -> Gate
             k=k,
             q_line=q_line,
             eps_bits=eps_bits,
+            target_unit=target_unit,
+            q_line_window=window,
             exact_start=exact_start,
             exact_distance_limit=exact_distance_limit,
             lower_floor_distance_limit=lower_floor_distance_limit,
@@ -163,6 +186,8 @@ def tangent_gate(label: str, n: int, k: int, q_line: int, eps_bits: int) -> Gate
         k=k,
         q_line=q_line,
         eps_bits=eps_bits,
+        target_unit=target_unit,
+        q_line_window=window,
         exact_start=exact_start,
         exact_distance_limit=exact_distance_limit,
         lower_floor_distance_limit=lower_floor_distance_limit,
@@ -193,14 +218,18 @@ def active_row() -> Gate:
 
 
 def check_gate(gate: Gate) -> None:
+    assert gate.target_unit == 1 << gate.eps_bits
+    assert gate.q_line_window == q_line_window(
+        gate.n, gate.k, gate.q_line, gate.eps_bits
+    )
     assert gate.exact_start == ceil_div(2 * gate.n + gate.k, 3)
     assert gate.exact_distance_limit == (gate.n - gate.k) // 3
     assert gate.lower_floor_distance_limit == gate.n - gate.k - 1
     assert gate.exact_start == gate.n - gate.exact_distance_limit
     assert gate.exact_start_count == gate.n - gate.exact_start + 1
     assert gate.exact_start_count == gate.exact_distance_limit + 1
-    assert gate.budget == gate.q_line // (1 << gate.eps_bits)
-    assert gate.projective_budget == (gate.q_line + 1) // (1 << gate.eps_bits)
+    assert gate.budget == gate.q_line // gate.target_unit
+    assert gate.projective_budget == (gate.q_line + 1) // gate.target_unit
     if gate.projective_safe_distance_in_exact_range is not None:
         d = gate.projective_safe_distance_in_exact_range
         assert 0 <= d <= gate.exact_distance_limit
@@ -220,26 +249,36 @@ def check_gate(gate: Gate) -> None:
         assert gate.last_unsafe_agreement + 1 == gate.first_safe_agreement
         assert gate.last_unsafe_agreement >= gate.exact_start
         assert 1 <= gate.budget <= gate.exact_distance_limit
+        assert gate.q_line_window == "exact_crossing_q_line_window"
+        assert gate.target_unit <= gate.q_line
+        assert gate.q_line < (gate.exact_distance_limit + 1) * gate.target_unit
+        assert gate.budget * gate.target_unit <= gate.q_line
+        assert gate.q_line < (gate.budget + 1) * gate.target_unit
         assert gate.n - gate.last_unsafe_agreement + 1 == gate.budget + 1
         assert gate.n - gate.first_safe_agreement + 1 == gate.budget
-        assert (gate.budget + 1) * (1 << gate.eps_bits) > gate.q_line
-        assert gate.budget * (1 << gate.eps_bits) <= gate.q_line
     elif gate.status == "safe_exact_range_then_tangent_unsafe_floor":
         assert gate.budget > gate.exact_distance_limit
         assert gate.budget <= gate.lower_floor_distance_limit
+        assert gate.q_line_window == "exact_safe_then_gap_q_line_window"
+        assert (gate.exact_distance_limit + 1) * gate.target_unit <= gate.q_line
+        assert gate.q_line < (gate.lower_floor_distance_limit + 1) * gate.target_unit
+        assert gate.budget * gate.target_unit <= gate.q_line
+        assert gate.q_line < (gate.budget + 1) * gate.target_unit
         assert gate.first_safe_agreement == gate.exact_start
         assert gate.first_safe_distance == gate.exact_distance_limit
         assert gate.last_unsafe_agreement == gate.n - gate.budget
         assert gate.last_unsafe_distance == gate.budget
-        assert (gate.budget + 1) * (1 << gate.eps_bits) > gate.q_line
-        assert gate.budget * (1 << gate.eps_bits) <= gate.q_line
     elif gate.status == "tangent_floor_never_crosses_budget":
         assert gate.budget > gate.exact_distance_limit
         assert gate.budget > gate.lower_floor_distance_limit
         assert gate.budget >= gate.exact_start_count
+        assert gate.q_line_window == "tangent_floor_never_crosses_q_line_window"
+        assert (gate.lower_floor_distance_limit + 1) * gate.target_unit <= gate.q_line
         assert gate.first_safe_agreement == gate.exact_start
     elif gate.status == "no_safe_agreement_in_exact_tangent_range":
         assert gate.budget == 0
+        assert gate.q_line_window == "budget_zero_q_line_window"
+        assert 0 < gate.q_line < gate.target_unit
         assert gate.last_unsafe_agreement == gate.n
     else:
         raise AssertionError(f"unknown status {gate.status}")
@@ -292,6 +331,8 @@ def print_human(gates: list[Gate]) -> None:
         print(f"  n={gate.n} k={gate.k}")
         print(f"  q_line={gate.q_line}")
         print(f"  eps_bits={gate.eps_bits}")
+        print(f"  target_unit=2^eps_bits={gate.target_unit}")
+        print(f"  q_line_window={gate.q_line_window}")
         print(f"  exact_start={gate.exact_start}")
         print(f"  exact_distance_limit={gate.exact_distance_limit}")
         print(f"  lower_floor_distance_limit={gate.lower_floor_distance_limit}")
@@ -370,6 +411,10 @@ def main() -> None:
         assert active.lower_floor_distance_limit == 255
         assert active.budget == 6
         assert active.projective_budget == 6
+        assert active.target_unit == 1 << 128
+        assert active.q_line_window == "exact_crossing_q_line_window"
+        assert 6 * active.target_unit <= active.q_line
+        assert active.q_line < 7 * active.target_unit
         assert active.projective_safe_distance_in_exact_range == 4
         assert active.projective_ambiguous_distance_in_exact_range == 5
         assert active.projective_unsafe_distance_in_exact_range == 6

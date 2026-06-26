@@ -215,6 +215,58 @@ B > d1:
   gives no unsafe distance.
 ```
 
+## Field-Size Window Corollary
+
+Let
+
+```text
+Q = 2^eps_bits.
+```
+
+For fixed `n,k,eps_bits`, the tangent gate depends on the line field size only
+through the integer budget
+
+```text
+B = floor(q_line/Q).
+```
+
+Thus the four cases above are equivalently the following disjoint `q_line`
+windows:
+
+```text
+0 < q_line < Q:
+  no finite agreement level is within budget;
+
+Q <= q_line < (d0+1)Q:
+  the target crossing lies inside the exact tangent range;
+
+(d0+1)Q <= q_line < (d1+1)Q:
+  the exact tangent range is safe, but the moving-root floor proves a later
+  unsafe distance and leaves the gap d0+1,...,B-1;
+
+(d1+1)Q <= q_line:
+  the moving-root tangent floor never crosses the target in the list-decoding
+  range k+1 <= a <= n.
+```
+
+More finely, for any integer `b` with `1 <= b <= d0`, the exact crossing occurs
+at budget `B=b` precisely when
+
+```text
+bQ <= q_line < (b+1)Q.
+```
+
+In that subwindow one has
+
+```text
+LD_sw(C,n-b)   = b+1,
+LD_sw(C,n-b+1) = b.
+```
+
+This corollary is only integer arithmetic applied to the row-level gate, but it
+is useful when comparing candidate rows: it says exactly which field sizes put
+the `2^-eps_bits` threshold inside the proved high-agreement staircase.
+
 ## Projective-Slope Convention Audit
 
 The theorem above is deliberately finite-slope: the sampler is `z in F`, and
