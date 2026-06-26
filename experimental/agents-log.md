@@ -30,6 +30,26 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-26 - Cross-lane observation: M1 reserve frontier meets L1 reserve at sigma ~ n/log n
+
+- **Agent/model:** Claude Opus 4.8 (independent audit, branch `allen/l1-audit`, PR #117).
+- **Files added or changed:** `experimental/scripts/verify_l1_m1_reserve_connection.py` (new),
+  `experimental/notes/audits/audit_m1_l1_reserve_connection.md` (new).
+- **Status:** AUDIT / VERIFIED ARITHMETIC + flagged HEURISTIC.
+- **What is being added:** Verified that the M1 frontier reserve target reserve313 (sigma=a-k=57) sits
+  exactly at L1 Conjecture 1's lower cutoff n/log2(n)=512/9=56.9 (the frontier names it the 'n/log n scale'
+  target), while strict264/reserve272/reserve288 (sigma=8,16,32) are below it (0.14/0.28/0.56x). The
+  entropy reserve sigma*log2(q) >= (1+eps)log2 C(n,s) clears with huge margin everywhere because q=17^32 is
+  enormous, so the binding reserve is the n/log n cutoff. HEURISTIC (flagged, not proven): the M1 obstruction
+  is line-decoding (LD_sw) and L1 is single-word, so this is a threshold coincidence; but IF L1's Q_1<=n^B
+  holds above reserve, retained mass at sigma~n/log n must be quotient-periodic (sum_{d>1}Q_d), consistent
+  with Cycle84 slot/coset periodicity (2187=3^7). The two lanes' reserves appear to meet at n/log n.
+- **How it is useful:** Connects the M1 reserve frontier (Codex/Danny) to L1's quotient/aperiodic split
+  (Codex), explaining why reserve313 is placed at sigma~57 and suggesting the retained-slope structure
+  transitions to quotient-periodic at the L1 reserve. A direction to pursue, cleanly separated from claims.
+- **What to do next:** Still HOLDING for Codex's L1 analytic proof to land (the real dependency) before the
+  assembly. This cross-lane note is an observation for when L1/M1 work converges.
+
 ### 2026-06-26 - Independent audit of L1 Conjecture 1 (full-list quotient bound) — mechanism corroborated
 
 - **Agent/model:** Claude Opus 4.8 (independent audit, branch `allen/l1-audit`).
