@@ -318,6 +318,8 @@ def root_slice_profile(
             "root_slice_residual_top_packet_degree_sum": 0,
             "root_slice_residual_top_packet_degree_max": 0,
             "root_slice_residual_top_packet_incidence_max": 0,
+            "root_slice_residual_top_packet_overlap_pairs": 0,
+            "root_slice_residual_top_packet_overlap_max": 0,
         }
 
     row_map = {tuple(sorted(complement)): slope for complement, slope in locator_rows}
@@ -423,7 +425,8 @@ def root_slice_profile(
     max_top_packet = 0
     top_packet_degrees = [0] * len(residual_rows)
     top_packet_incidences = [0] * len(residual_rows)
-    for vertices in residual_top_packets.values():
+    top_packet_vertex_sets = list(residual_top_packets.values())
+    for vertices in top_packet_vertex_sets:
         size = len(vertices)
         max_top_packet = max(max_top_packet, size)
         top_packet_edges += size * (size - 1) // 2
@@ -444,6 +447,16 @@ def root_slice_profile(
         raise AssertionError("residual top-packet triangle ledger was not exact")
     if top_packet_degrees != residual_degrees:
         raise AssertionError("residual top-packet degree ledger was not exact")
+    top_packet_overlap_pairs = 0
+    top_packet_overlap_max = 0
+    for left in range(len(top_packet_vertex_sets)):
+        for right in range(left + 1, len(top_packet_vertex_sets)):
+            overlap = len(top_packet_vertex_sets[left] & top_packet_vertex_sets[right])
+            top_packet_overlap_max = max(top_packet_overlap_max, overlap)
+            if overlap:
+                top_packet_overlap_pairs += 1
+            if overlap > 1:
+                raise AssertionError("residual top-packet hypergraph was not linear")
 
     return {
         "root_slices": len(slice_keys),
@@ -470,6 +483,8 @@ def root_slice_profile(
         "root_slice_residual_top_packet_degree_sum": sum(top_packet_degrees),
         "root_slice_residual_top_packet_degree_max": max(top_packet_degrees, default=0),
         "root_slice_residual_top_packet_incidence_max": max(top_packet_incidences, default=0),
+        "root_slice_residual_top_packet_overlap_pairs": top_packet_overlap_pairs,
+        "root_slice_residual_top_packet_overlap_max": top_packet_overlap_max,
     }
 
 
@@ -863,6 +878,12 @@ def verify_word_pair(
         "root_slice_residual_top_packet_incidence_max": (
             root_profile["root_slice_residual_top_packet_incidence_max"]
         ),
+        "root_slice_residual_top_packet_overlap_pairs": (
+            root_profile["root_slice_residual_top_packet_overlap_pairs"]
+        ),
+        "root_slice_residual_top_packet_overlap_max": (
+            root_profile["root_slice_residual_top_packet_overlap_max"]
+        ),
         "different_slope_strict_pairs": quadratic_profile["different_slope_strict_pairs"],
         "different_slope_cores": quadratic_profile["different_slope_cores"],
         "quadratic_slices_checked": quadratic_profile["quadratic_slices_checked"],
@@ -956,6 +977,12 @@ def verify_case(case: Case) -> dict[str, object]:
         "max_root_slice_residual_top_packet_incidence": max(
             row["root_slice_residual_top_packet_incidence_max"] for row in rows
         ),
+        "max_root_slice_residual_top_packet_overlap_pairs": max(
+            row["root_slice_residual_top_packet_overlap_pairs"] for row in rows
+        ),
+        "max_root_slice_residual_top_packet_overlap": max(
+            row["root_slice_residual_top_packet_overlap_max"] for row in rows
+        ),
         "max_different_slope_strict_pairs": max(row["different_slope_strict_pairs"] for row in rows),
         "max_zero_determinant_slices": max(row["zero_determinant_slices"] for row in rows),
         "max_edge_zero_determinant_slices": max(row["edge_zero_determinant_slices"] for row in rows),
@@ -1046,6 +1073,8 @@ def main() -> None:
                 "root_residual_top_packet_degree_sum={root_slice_residual_top_packet_degree_sum} "
                 "root_residual_top_packet_degree_max={root_slice_residual_top_packet_degree_max} "
                 "root_residual_top_packet_incidence_max={root_slice_residual_top_packet_incidence_max} "
+                "root_residual_top_packet_overlap_pairs={root_slice_residual_top_packet_overlap_pairs} "
+                "root_residual_top_packet_overlap_max={root_slice_residual_top_packet_overlap_max} "
                 "different_slope_strict={different_slope_strict_pairs} "
                 "different_slope_cores={different_slope_cores} "
                 "quadratic_slices={quadratic_slices_checked} "
@@ -1093,6 +1122,8 @@ def main() -> None:
             f"max_root_residual_top_packet_degree_sum={summary['max_root_slice_residual_top_packet_degree_sum']} "
             f"max_root_residual_top_packet_degree={summary['max_root_slice_residual_top_packet_degree']} "
             f"max_root_residual_top_packet_incidence={summary['max_root_slice_residual_top_packet_incidence']} "
+            f"max_root_residual_top_packet_overlap_pairs={summary['max_root_slice_residual_top_packet_overlap_pairs']} "
+            f"max_root_residual_top_packet_overlap={summary['max_root_slice_residual_top_packet_overlap']} "
             f"max_different_slope_strict={summary['max_different_slope_strict_pairs']} "
             f"max_zero_det_slices={summary['max_zero_determinant_slices']} "
             f"max_edge_zero_det_slices={summary['max_edge_zero_determinant_slices']} "
@@ -1129,6 +1160,8 @@ def main() -> None:
         "root_residual_top_packet_degree_sum={root_slice_residual_top_packet_degree_sum} "
         "root_residual_top_packet_degree_max={root_slice_residual_top_packet_degree_max} "
         "root_residual_top_packet_incidence_max={root_slice_residual_top_packet_incidence_max} "
+        "root_residual_top_packet_overlap_pairs={root_slice_residual_top_packet_overlap_pairs} "
+        "root_residual_top_packet_overlap_max={root_slice_residual_top_packet_overlap_max} "
         "quad_companion_checks={quadratic_companion_checks} "
         "direct_checks={direct_checks}".format(**rank_one_probe)
     )
@@ -1162,6 +1195,12 @@ def main() -> None:
     max_residual_top_packet_incidence = max(
         row["root_slice_residual_top_packet_incidence_max"] for row in all_rows
     )
+    max_residual_top_packet_overlap_pairs = max(
+        row["root_slice_residual_top_packet_overlap_pairs"] for row in all_rows
+    )
+    max_residual_top_packet_overlap = max(
+        row["root_slice_residual_top_packet_overlap_max"] for row in all_rows
+    )
     max_companion_checks = max(row["quadratic_companion_checks"] for row in all_rows)
     max_rank_one_zero = max(row["zero_det_direction_rank1_slices"] for row in all_rows)
     total_lines = sum(len(summary["case"].seeds) for summary in summaries) + 1
@@ -1184,6 +1223,8 @@ def main() -> None:
         f"max_root_residual_top_packet_degree_sum={max_residual_top_packet_degree_sum} "
         f"max_root_residual_top_packet_degree={max_residual_top_packet_degree} "
         f"max_root_residual_top_packet_incidence={max_residual_top_packet_incidence} "
+        f"max_root_residual_top_packet_overlap_pairs={max_residual_top_packet_overlap_pairs} "
+        f"max_root_residual_top_packet_overlap={max_residual_top_packet_overlap} "
         f"max_quad_companion_checks={max_companion_checks} "
         f"max_rank_one_zero_slices={max_rank_one_zero}"
     )

@@ -409,6 +409,12 @@ This is just the edge identity refined by endpoint.  It is useful because a
 large residual degree cannot be spread invisibly through unrelated cores; it
 must be witnessed by top packets incident to that locator.
 
+The packet family is also linear as a hypergraph on residual locators: two
+distinct top packets share at most one residual locator.  Indeed, if two
+different `(j+1)`-sets `W,W'` contained two distinct `j`-subsets `T,T'`, then
+`W=T union T'=W'`.  Consequently the residual graph is the two-section of a
+linear hypergraph whose hyperedges are slope-injective top packets.
+
 Thus the residual high-overlap obstruction has been localized further: pair
 packets with `m_W=2` are isolated at triangle level, while every surviving
 triangle and every large local clique is carried by a slope-injective
@@ -450,6 +456,7 @@ enumerates small cyclic-domain cases.  For each case it:
 - forms the residual top-packet ledger and checks that it accounts exactly for
   all residual edges and top triangles;
 - checks the residual degree formula from the incident top packets;
+- verifies that the top-packet hypergraph is linear;
 - runs one deterministic arbitrary-line probe which hits the rank-one
   zero-determinant branch and verifies that it is classified by the same
   constant/contained zero-slice ledger.
@@ -478,7 +485,7 @@ and none are star triangles.  Its top-packet ledger has `14` packets, all
 large, with maximum packet size `5`; these packets account for all `88`
 residual edges, all `68` residual triangles, and the local residual degree
 formula.  The maximum top-packet incidence of a residual locator is `1` in
-this row.
+this row, so the audited top packets are disjoint.
 
 The arbitrary `F_17`, `j=4`, `t=2` rank-one probe has `176` aperiodic locators,
 all `17` slopes, and `16` zero-determinant slices.  Four of those zero slices
@@ -488,8 +495,9 @@ probe as constant-slope, and the residual maximum strict degree is again
 quadratic edge slices and has `24` residual triangles, all top-type.  Its
 top-packet ledger has `17` packets: `3` large packets and `14` pair packets,
 with maximum packet size `5`, accounting for `40` residual edges and `24`
-triangles, with maximum top-packet incidence again `1`.  These are exactly the
-profile quantities a packing proof must shrink or explain structurally.
+triangles, with maximum top-packet incidence again `1`, so the audited top
+packets are disjoint.  These are exactly the profile quantities a packing
+proof must shrink or explain structurally.
 
 This is an audit/verifier for the M1 target, not a proof of the desired
 polynomial all-line bound.  Its purpose is to make future counterexample-first
