@@ -42,6 +42,60 @@ This is not only a tangent lower bound in that range.  The upper bound uses the
 common-code-line residual budget, so it counts all finite support-wise
 noncontained slopes.
 
+## Proof-Dependency Audit
+
+The gate uses the tangent staircase in the following exact form.
+
+1. **Moving-root lower floor.**  For `k+1 <= a <= n`, fix `A subset D` with
+   `|A|=a-1`, set `B_A(X)=prod_{x in A}(X-x)`, and take
+
+   ```text
+   f = (X B_A)_{>=k},
+   g = -(B_A)_{>=k}.
+   ```
+
+   For every `t in D\A`, the slope `t` is explained on `A union {t}` by the
+   locator `(X-t)B_A(X)`.  Noncontainment uses `|A|=a-1 >= k`: a degree-`<k`
+   explanation of `g` on `A union {t}` would be forced to equal `(B_A)_{<k}`
+   on `A`, and then would force `B_A(t)=0`, contradiction.
+
+2. **Two-slope common-code-line recovery.**  If two finite bad slopes at
+   agreement at least `a` have supports `S_1,S_2`, then
+
+   ```text
+   |S_1 cap S_2| >= 2a-n.
+   ```
+
+   Under `3a-2n >= k`, one has `2a-n >= k`, so the two explaining codewords
+   recover a common code line on the intersection.
+
+3. **Residual-budget upper bound.**  Let `S_0` be a maximal common support for
+   that recovered code line, write `b=|S_0|`, `s=n-a`, and `d=n-b`.  Since
+   `b >= 2a-n`,
+
+   ```text
+   a+b-n >= 3a-2n >= k,
+   ```
+
+   so the common-code-line residual budget applies.  Maximality of `S_0` gives
+   no common residual-zero coordinate outside `S_0`.  If `b>=a`, every
+   noncontained slope needs an outside residual zero and there are at most
+   `d<=s` such coordinates.  If `b<a`, each noncontained slope needs
+
+   ```text
+   h = a-b = d-s
+   ```
+
+   private outside residual zeros, and `s<d<=2s`, hence
+
+   ```text
+   floor(d/(d-s)) <= s+1 = n-a+1.
+   ```
+
+Together with the moving-root lower floor, this proves the exact identity in
+the high-agreement range.  No quotient-periodic or smooth-domain assumption is
+used in this exact range.
+
 ## Row-Level Gate
 
 Fix a target `2^-eps_bits` and a line field size `q_line`.  Put
@@ -145,6 +199,12 @@ The old agreement-353 target is superseded: the tangent floor alone gives
 ```text
 LD_sw(C,353) >= 512 - 353 + 1 = 160.
 ```
+
+By monotonicity of `LD_sw(C,a)` in the agreement threshold, every lower
+agreement `a <= 506` is also unsafe for the active row once `LD_sw(C,506)=7` is
+known.  Thus the finite-slope support-wise `2^-128` threshold for this row is
+fully pinned by the `506/507` gate, even though the exact tangent formula itself
+only starts at agreement `427`.
 
 ## What Remains After This Gate
 
