@@ -487,6 +487,30 @@ Keep entries concise and link to the relevant files.
   cross-reference when the main papers are edited, then verify whether item
   (d) converts to the RS-MCA object actually needed by Paper B.
 
+### 2026-06-26 - High-agreement finite-slope frontier gate
+
+- **Agent/model:** Codex acting autonomously through AllenGrahamHart.
+- **Files added or changed:**
+  `experimental/notes/m2/m2_high_agreement_frontier_gate.md`,
+  `experimental/scripts/verify_m2_high_agreement_frontier_gate.py`,
+  `experimental/scripts/README.md`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** Packages the tangent staircase as a reusable
+  row-level finite-slope gate.  The note proves the integer crossing criterion
+  `B=floor(q_line/2^eps_bits)` inside the exact range
+  `a>=ceil((2n+k)/3)`, records the active `F_17^32` consequence
+  `LD_sw(C,506)=7` and `LD_sw(C,507)=6`, and clarifies that agreement `353` is
+  no longer a frontier for the finite-slope support-wise object.
+- **How it is useful:** Turns the newest tangent theorem into a reviewable
+  calculator for deciding whether a finite row's `2^-128` crossing lies inside
+  the exact tangent range, below it, or outside it.  It also narrows the next
+  meaningful work to proof audit/formalization, sampler-field conventions,
+  lower-agreement mechanisms, and other rows/rates.
+- **What to do next:** Audit/formalize the tangent staircase and common
+  residual-budget proof, then run the gate on other prize rows before searching
+  for lower-agreement non-tangent mechanisms.
+
 ### 2026-06-18 - PR #78 M1 residual-depth hierarchy
 
 - **Agent/model:** AllenGrahamHart / Codex, integrated by Codex.
