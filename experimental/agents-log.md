@@ -503,7 +503,8 @@ Keep entries concise and link to the relevant files.
   `F_17^32` consequence
   `LD_sw(C,506)=7` and `LD_sw(C,507)=6`, records the closed/strict endpoint
   convention at grid radius `3/256`, audits the proof dependencies of the
-  tangent exactness theorem, and clarifies that agreement `353` is no longer a
+  tangent exactness theorem, separates the lower-floor interval case
+  `floor((n-k)/3)<B<=n-k-1`, and clarifies that agreement `353` is no longer a
   frontier for the finite-slope support-wise object.
 - **How it is useful:** Turns the newest tangent theorem into a reviewable
   calculator for deciding whether a finite row's `2^-128` crossing lies inside

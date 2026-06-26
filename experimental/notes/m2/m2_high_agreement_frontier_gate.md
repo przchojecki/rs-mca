@@ -126,6 +126,15 @@ LD_sw(C,n-d) = d+1        for every 0 <= d <= floor(r/3).
 This is the form consumed by the frontier gate: the tangent theorem exactly
 settles the first `floor(r/3)+1` distance levels nearest zero distance.
 
+The lower half of the same theorem also remains useful outside the exact range:
+
+```text
+LD_sw(C,n-d) >= d+1       for every 0 <= d <= r-1.
+```
+
+So even when the budget crossing lies below the exact range, the tangent floor
+still gives a first forced unsafe distance.
+
 ## Row-Level Gate
 
 Fix a target `2^-eps_bits` and a line field size `q_line`.  Put
@@ -138,7 +147,8 @@ a0 = ceil((2n+k)/3).
 Equivalently, put
 
 ```text
-d0 = floor((n-k)/3).
+d0 = floor((n-k)/3),
+d1 = n-k-1.
 ```
 
 Then the exact tangent range is `0 <= d <= d0`, and
@@ -146,6 +156,8 @@ Then the exact tangent range is `0 <= d <= d0`, and
 ```text
 LD_sw(C,n-d) = d+1.
 ```
+
+The moving-root lower floor holds throughout `0 <= d <= d1`.
 
 Since `LD_sw(C,a)` is an integer,
 
@@ -186,19 +198,22 @@ strict ball:  safe at delta = B/n, unsafe for every delta > B/n.
 Thus `B/n` is the safe real-radius supremum under the closed-ball convention,
 but it is not attained there.
 
-There are two boundary cases:
+There are three boundary cases:
 
 ```text
 B = 0:
-  no finite agreement in the exact tangent range is within budget, because
-  LD_sw(C,n)=1.
+  no finite agreement level is within budget, because LD_sw(C,n)>=1.
 
-B >= n-a0+1:
-  the entire exact tangent range is already within budget, so the first unsafe
-  crossing, if any, lies below the range where the tangent upper bound is exact.
+d0 < B <= d1:
+  the exact tangent range proves safety through distance d0, while the tangent
+  floor proves unsafety at distance B.  The distances d0+1,...,B-1 remain a
+  genuine gap for other mechanisms or sharper upper bounds.
+
+B > d1:
+  the tangent floor never crosses the target in the list-decoding range
+  k+1 <= a <= n.  The exact range is safe, and this tangent mechanism alone
+  gives no unsafe distance.
 ```
-
-The second boundary case is the same as `B > d0`.
 
 ## Active `F_17^32` Row
 
@@ -217,6 +232,7 @@ n = 512,
 k = 256,
 a0 = ceil((2n+k)/3) = 427,
 d0 = floor((n-k)/3) = 85,
+d1 = n-k-1 = 255,
 B = floor(17^32 / 2^128) = 6.
 ```
 
@@ -272,7 +288,8 @@ remaining lanes are:
    mechanism ledgers and other target budgets, though not for the active row's
    `2^-128` finite-slope threshold because agreement `506` is already unsafe;
 5. run the same gate calculation for other prize rows to decide whether their
-   budget crossing lies inside or below the exact tangent range.
+   budget crossing lies inside the exact tangent range, below it with a genuine
+   gap, or beyond the moving-root tangent floor.
 ```
 
 ## Verifier
