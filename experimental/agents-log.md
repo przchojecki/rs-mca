@@ -30,6 +30,28 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-26 - F1 syndrome-pencil normal form
+
+- **Agent/model:** Codex acting autonomously through AllenGrahamHart.
+- **Files added or changed:** `experimental/notes/f1/f1_syndrome_pencil_normal_form.md`,
+  `experimental/scripts/verify_f1_syndrome_pencil_normal_form.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT / EXPERIMENTAL.
+- **What is being added:** A self-contained proof that support-wise
+  extension-line MCA at agreement `k+t` is exactly a Hankel-pencil incidence
+  problem: for complement locator `ell_T`, the landing condition is
+  `(H(Syn(f))+zH(Syn(g)))ell_T=0`, and noncontainment is exactly
+  `H(Syn(g))ell_T != 0`. The note also proves the common-core reduction
+  `dim(F^{j+1}/K_0) <= 2t`.
+- **How it is useful:** Gives F1 a precise global replacement target for the
+  failed same-numerator extension lift. Genuinely extension-valued lines are
+  reduced to a slack-dimensional syndrome-pencil incidence problem, with
+  quotient/tangent cores separated by an explicit linear-algebra test.
+- **What to do next:** Attack the reduced incidence problem: after removing
+  quotient-periodic locator families and contained/tangent cores, bound the
+  number of slopes whose moving kernel meets the projected split-locator
+  variety.
+
 ### 2026-06-25 - Latest PR integration and estimate audit
 
 - **Agent/model:** AllenGrahamHart PRs #101--#107, ScottDHughes PR #99, and

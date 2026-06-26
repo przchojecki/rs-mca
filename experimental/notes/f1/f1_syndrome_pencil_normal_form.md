@@ -1,0 +1,234 @@
+# F1 Syndrome-Pencil Normal Form
+
+Status: PROVED / AUDIT.
+
+This note extracts a self-contained theorem from the Cycle49
+syndrome-transverse-secant audit. It does not prove F1. Its purpose is to
+replace the informal "extension-line residue cloud" language by an exact
+Hankel-pencil incidence problem with a proved noncontainment test.
+
+The result applies over any field. In the F1 setting one takes
+`B subset F`, `D subset B`, and studies `RS[F,D,k]`; genuinely `F`-valued
+lines are then handled over the actual line field `F`.
+
+## Set-Up
+
+Let `F` be a field, let
+
+```text
+D = {x_1,...,x_n} subset F
+```
+
+have distinct points, and let
+
+```text
+C = RS[F,D,k],        r = n-k.
+```
+
+For each `x_i`, put
+
+```text
+lambda_i = 1 / product_{h != i} (x_i - x_h).
+```
+
+For a word `y:D->F`, define its Reed-Solomon syndrome by
+
+```text
+Syn(y)_m = sum_i lambda_i x_i^m y(x_i),        0 <= m < r.
+```
+
+The standard duality identity says `Syn(y)=0` if and only if `y in C`.
+
+For a complement `T subset D` of size `j`, let
+
+```text
+L_T(X) = product_{x in T} (X-x)
+       = ell_0 + ell_1 X + ... + ell_j X^j,    ell_j = 1.
+```
+
+Let `ell_T=(ell_0,...,ell_j)^T`. If `t=r-j`, define the Hankel window
+
+```text
+H_{t,j}(w)_{m,l} = w_{m+l},        0 <= m < t, 0 <= l <= j
+```
+
+for every `w in F^r`.
+
+Finally, let `W_T` be the span of the parity-check columns indexed by `T`:
+
+```text
+W_T = span_F { lambda_x (1,x,x^2,...,x^{r-1}) : x in T } subset F^r.
+```
+
+Equivalently, `w in W_T` means that `w` is the syndrome of a word supported on
+`T`.
+
+## Theorem 1: Hankel Recurrence For A Support Complement
+
+For every `w in F^r`,
+
+```text
+w in W_T    if and only if    H_{t,j}(w) ell_T = 0.
+```
+
+## Proof
+
+If
+
+```text
+w_m = sum_{x in T} c_x x^m,
+```
+
+then, for `0 <= m < t`,
+
+```text
+(H_{t,j}(w) ell_T)_m
+  = sum_{l=0}^j ell_l w_{m+l}
+  = sum_{x in T} c_x x^m L_T(x)
+  = 0.
+```
+
+Thus `W_T` lies in the displayed recurrence space.
+
+Conversely, because `ell_j=1`, the recurrence
+
+```text
+sum_{l=0}^j ell_l w_{m+l}=0,        0 <= m < r-j,
+```
+
+determines all coordinates `w_j,...,w_{r-1}` from the first `j` coordinates.
+Hence its solution space has dimension at most `j`. The columns indexed by the
+distinct points of `T` form a Vandermonde system of rank `j`, so
+`dim W_T=j`. The two spaces are equal.
+
+## Theorem 2: Exact Line-Incidence And Noncontainment Test
+
+Let `f,g:D->F`, write
+
+```text
+u = Syn(f),        v = Syn(g),
+```
+
+and let `S=D\T`, so `|S|=n-j=k+t`. For a slope `z in F`, the line point
+
+```text
+f + z g
+```
+
+is explained by a degree-`<k` codeword on `S` if and only if
+
+```text
+(H_{t,j}(u) + z H_{t,j}(v)) ell_T = 0.          (1)
+```
+
+Moreover, this explanation is support-wise noncontained for the line `f+zg`
+on `S` if and only if, in addition to (1),
+
+```text
+H_{t,j}(v) ell_T != 0.                          (2)
+```
+
+Consequently the support-wise MCA bad slopes at agreement `k+t` are exactly
+the slopes `z` for which there exists a squarefree `D`-split monic locator
+`L_T` of degree `j=r-t` satisfying (1) and (2).
+
+## Proof
+
+The word `f+zg` is explained on `S` if and only if there exists a codeword
+`c in C` such that `f+zg-c` is supported on `T`. Taking syndromes and using
+`Syn(c)=0`, this is equivalent to
+
+```text
+u + z v in W_T.
+```
+
+Theorem 1 turns this into (1).
+
+The same support `S` simultaneously explains `f` and `g` if and only if
+
+```text
+u in W_T        and        v in W_T.
+```
+
+Assume (1). If `v in W_T`, then `u=(u+zv)-zv` also lies in `W_T`, so the line
+is contained on `S`. Conversely, simultaneous explanation implies `v in W_T`.
+By Theorem 1, `v in W_T` is exactly `H_{t,j}(v)ell_T=0`. Thus noncontainment
+is precisely (2).
+
+## Corollary 3: Common-Core Dimension Reduction
+
+For fixed line syndromes `u,v`, set
+
+```text
+K_0 = ker H_{t,j}(u) cap ker H_{t,j}(v) subset F^{j+1}.
+```
+
+Then every active locator vector `ell_T` is tested only through its image in
+
+```text
+V = F^{j+1}/K_0,
+```
+
+and
+
+```text
+dim V <= 2t.
+```
+
+Thus the F1 incidence problem at slack `t` is not an incidence problem in the
+full `j`-dimensional locator coefficient space. After deleting the common
+contained/tangent core, the moving part lives in a space whose dimension is
+bounded only by the slack.
+
+## Proof
+
+The equations in Theorem 2 only use `H(u)ell_T` and `H(v)ell_T`, so adding an
+element of `K_0` to `ell_T` changes neither the landing condition nor the
+noncontainment test.
+
+Also,
+
+```text
+codim K_0
+  = rank [ H_{t,j}(u) ; H_{t,j}(v) ]
+  <= rank H_{t,j}(u) + rank H_{t,j}(v)
+  <= 2t,
+```
+
+because each Hankel window has `t` rows.
+
+## Why This Helps F1
+
+The naive extension-field lift is already false: genuinely `F`-valued lines
+can create slopes that no `B`-valued theorem sees. The theorem here gives the
+replacement target:
+
+```text
+count z in F for which a Hankel pencil
+H(u)+zH(v)
+has a squarefree D-split locator in its kernel,
+with H(v)ell != 0.
+```
+
+For `D subset B` and `F/B` an extension, this is a basis-free statement over
+the actual line field `F`. Combined with the coordinate-transfer note, it is
+also the base-field multiplication-slice problem in the `e`-interleaved code.
+
+The remaining positive F1 theorem should therefore be an inverse-incidence
+bound in the reduced space `V`: after quotient-periodic locator families and
+contained/tangent cores are separated, the number of slopes whose moving
+kernel meets the projected `D`-split locator variety should be polynomial in
+`n` above the corrected reserve.
+
+## Verification
+
+The companion verifier
+
+```text
+experimental/scripts/verify_f1_syndrome_pencil_normal_form.py
+```
+
+checks Theorem 2 and Corollary 3 by exhaustive enumeration over small
+quadratic-extension cases. It compares the Hankel-pencil criterion against
+direct interpolation on every support complement and every extension-field
+slope.
