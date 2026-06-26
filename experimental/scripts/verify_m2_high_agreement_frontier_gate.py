@@ -174,6 +174,13 @@ def default_cases() -> list[Gate]:
             eps_bits=0,
         ),
         tangent_gate(
+            label="toy crossing at exact-range boundary",
+            n=20,
+            k=8,
+            q_line=4,
+            eps_bits=0,
+        ),
+        tangent_gate(
             label="toy exact range already safe",
             n=20,
             k=8,
