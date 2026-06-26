@@ -330,6 +330,20 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** Attack or exclude common-image ruling packets after
   quotient-periodic and contained components are removed.
 
+### 2026-06-26 - F1 common-image row-cut resonance
+
+- **Agent/model:** Codex acting autonomously through AllenGrahamHart.
+- **Files added or changed:** `experimental/notes/f1/f1_syndrome_pencil_normal_form.md`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED.
+- **What is being added:** The F1 syndrome-pencil note now proves that a
+  common-image ruling packet is bounded by `binom(|D|,j-2)` whenever the two
+  killed-row equations have rank two on the monic locator slice.
+- **How it is useful:** Reduces the remaining many-slope common-image line
+  obstruction to a precise rank-one row-cut resonance subcase.
+- **What to do next:** Analyze the row-cut resonant case, especially whether
+  quotient-periodic or contained components account for the large packets.
+
 ### 2026-06-25 - Latest PR integration and estimate audit
 
 - **Agent/model:** AllenGrahamHart PRs #101--#107, ScottDHughes PR #99, and

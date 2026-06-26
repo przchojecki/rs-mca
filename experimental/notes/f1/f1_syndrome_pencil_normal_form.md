@@ -1233,6 +1233,61 @@ projective coordinate on the line unless the packet has collapsed to one
 point. Therefore this ruling family is the only line packet not controlled by
 the preceding alternatives.
 
+## Corollary 19: Common-Image Packets Reduce To Row-Cut Resonance
+
+Keep the common-image line-packet case of Corollary 18. Let
+`eta=(eta_0,eta_1) != 0` be a row functional killing the fixed image line in
+`F^2`. Define the two scalar rows
+
+```text
+h_u = eta_0 H_{2,j}(u)_{0,*} + eta_1 H_{2,j}(u)_{1,*},
+h_v = eta_0 H_{2,j}(v)_{0,*} + eta_1 H_{2,j}(v)_{1,*}.
+```
+
+Every split locator whose reduced image lies in this common-image packet
+satisfies
+
+```text
+h_u ell_T = 0,        h_v ell_T = 0.          (7)
+```
+
+If the two equations (7) have rank two on the monic locator slice, then the
+packet contains at most
+
+```text
+binom(|D|,j-2)
+```
+
+split locators, and hence contributes at most that many slopes.
+
+Consequently the only common-image line packets not already bounded by the
+degree-two line sieve are the **row-cut resonant** packets where the killed
+rows `h_u,h_v` have rank at most one on the monic locator slice.
+
+## Proof
+
+If `R(ell_T)` lies in the common-image line, both columns
+`a(ell_T)` and `b(ell_T)` lie in the fixed image line. Applying `eta` gives
+(7).
+
+On the monic locator slice, rank two of (7) means the solution set is empty or
+an affine family
+
+```text
+P_0(X)+V
+```
+
+with `dim V <= j-2` and `deg V < j`. The evaluation-injection argument from
+Corollary 14 applies verbatim: choose, for each split locator in the family,
+the first `(j-2)`-subset of its roots on which evaluation is injective for
+`V`. A fixed subset determines the polynomial uniquely, so the split locators
+inject into the `(j-2)`-subsets of `D`. This gives the displayed bound. Each
+locator has at most one noncontained slope by Corollary 4.
+
+If the rank is at most one, the line-packet sieve has reached a genuine
+one-row recurrence resonance rather than a quadric-line issue; this is the
+remaining subcase.
+
 ## Why This Helps F1
 
 The naive extension-field lift is already false: genuinely `F`-valued lines
@@ -1295,7 +1350,10 @@ remaining branch: the open case is the nonzero determinant quadric incidence
 after quotient-periodic and contained components have been removed. Corollary
 18 further isolates the only line packet inside that branch that can carry
 many slopes: common-image ruling lines. Non-ruling lines and common-kernel
-ruling lines are already bounded.
+ruling lines are already bounded. Corollary 19 then reduces common-image
+packets to a row-cut rank test: rank-two row cuts are bounded by
+`binom(|D|,j-2)`, leaving only rank-one row-cut resonance as the line-level
+subcase still needing a packing argument.
 
 ## Verification
 
@@ -1330,4 +1388,5 @@ and infinity branches of Corollary 15. Corollary 16 is the formal branch
 ledger obtained by combining those audited pieces. The reduced-quadric audit
 also checks the common-kernel ruling used in Corollary 17. Separate reduced
 line-section checks exercise the two-point, common-kernel, and common-image
-cases in Corollary 18.
+cases in Corollary 18. The constructed `j=4` and `j=5` rank-two fixed-root
+fibers also audit the rank-two row-cut bound used in Corollary 19.
