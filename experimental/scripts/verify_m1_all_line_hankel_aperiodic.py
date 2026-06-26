@@ -306,6 +306,9 @@ def root_slice_profile(
             "root_slice_residual_strict_pairs": 0,
             "root_slice_residual_max_strict_degree": 0,
             "root_slice_residual_same_slope_edges": 0,
+            "root_slice_residual_triangles": 0,
+            "root_slice_residual_top_triangles": 0,
+            "root_slice_residual_star_triangles": 0,
         }
 
     row_map = {tuple(sorted(complement)): slope for complement, slope in locator_rows}
@@ -354,6 +357,7 @@ def root_slice_profile(
     residual_same_slope_edges = 0
     residual_strict_pairs = 0
     residual_degrees = [0] * len(residual_rows)
+    residual_adj = [set() for _ in residual_rows]
     residual_slope_fibers: dict[int, int] = {}
     for _, slope in residual_rows:
         residual_slope_fibers[slope] = residual_slope_fibers.get(slope, 0) + 1
@@ -366,12 +370,37 @@ def root_slice_profile(
                 residual_strict_pairs += 1
                 residual_degrees[left] += 1
                 residual_degrees[right] += 1
+                residual_adj[left].add(right)
+                residual_adj[right].add(left)
                 if left_slope == residual_rows[right][1]:
                     residual_same_slope_edges += 1
     if residual_same_slope_edges:
         raise AssertionError("root-slice peeling left a same-slope strict edge")
     if max(residual_degrees, default=0) > j:
         raise AssertionError("residual one-exchange degree exceeded the t=2 core bound")
+
+    residual_triangles = 0
+    residual_top_triangles = 0
+    residual_star_triangles = 0
+    for left in range(len(residual_rows)):
+        for middle in residual_adj[left]:
+            if middle <= left:
+                continue
+            for right in residual_adj[left] & residual_adj[middle]:
+                if right <= middle:
+                    continue
+                residual_triangles += 1
+                sets = [set(residual_rows[idx][0]) for idx in (left, middle, right)]
+                common = set.intersection(*sets)
+                union = set.union(*sets)
+                if len(common) == j - 1:
+                    residual_star_triangles += 1
+                elif len(common) == j - 2 and len(union) == j + 1:
+                    residual_top_triangles += 1
+                else:
+                    raise AssertionError("residual triangle had unknown Johnson type")
+    if residual_star_triangles:
+        raise AssertionError("root-slice peeling left a star triangle")
 
     return {
         "root_slices": len(slice_keys),
@@ -386,6 +415,9 @@ def root_slice_profile(
         "root_slice_residual_strict_pairs": residual_strict_pairs,
         "root_slice_residual_max_strict_degree": max(residual_degrees, default=0),
         "root_slice_residual_same_slope_edges": residual_same_slope_edges,
+        "root_slice_residual_triangles": residual_triangles,
+        "root_slice_residual_top_triangles": residual_top_triangles,
+        "root_slice_residual_star_triangles": residual_star_triangles,
     }
 
 
@@ -759,6 +791,9 @@ def verify_word_pair(
         "root_slice_residual_same_slope_edges": (
             root_profile["root_slice_residual_same_slope_edges"]
         ),
+        "root_slice_residual_triangles": root_profile["root_slice_residual_triangles"],
+        "root_slice_residual_top_triangles": root_profile["root_slice_residual_top_triangles"],
+        "root_slice_residual_star_triangles": root_profile["root_slice_residual_star_triangles"],
         "different_slope_strict_pairs": quadratic_profile["different_slope_strict_pairs"],
         "different_slope_cores": quadratic_profile["different_slope_cores"],
         "quadratic_slices_checked": quadratic_profile["quadratic_slices_checked"],
@@ -815,6 +850,15 @@ def verify_case(case: Case) -> dict[str, object]:
         ),
         "max_root_slice_residual_strict_degree": max(
             row["root_slice_residual_max_strict_degree"] for row in rows
+        ),
+        "max_root_slice_residual_triangles": max(
+            row["root_slice_residual_triangles"] for row in rows
+        ),
+        "max_root_slice_residual_top_triangles": max(
+            row["root_slice_residual_top_triangles"] for row in rows
+        ),
+        "max_root_slice_residual_star_triangles": max(
+            row["root_slice_residual_star_triangles"] for row in rows
         ),
         "max_different_slope_strict_pairs": max(row["different_slope_strict_pairs"] for row in rows),
         "max_zero_determinant_slices": max(row["zero_determinant_slices"] for row in rows),
@@ -894,6 +938,9 @@ def main() -> None:
                 "root_residual_strict={root_slice_residual_strict_pairs} "
                 "root_residual_degree_max={root_slice_residual_max_strict_degree} "
                 "root_residual_same_slope={root_slice_residual_same_slope_edges} "
+                "root_residual_triangles={root_slice_residual_triangles} "
+                "root_residual_top_triangles={root_slice_residual_top_triangles} "
+                "root_residual_star_triangles={root_slice_residual_star_triangles} "
                 "different_slope_strict={different_slope_strict_pairs} "
                 "different_slope_cores={different_slope_cores} "
                 "quadratic_slices={quadratic_slices_checked} "
@@ -929,6 +976,9 @@ def main() -> None:
             f"max_root_residual_fiber={summary['max_root_slice_residual_slope_fiber']} "
             f"max_root_residual_strict={summary['max_root_slice_residual_strict_pairs']} "
             f"max_root_residual_degree={summary['max_root_slice_residual_strict_degree']} "
+            f"max_root_residual_triangles={summary['max_root_slice_residual_triangles']} "
+            f"max_root_residual_top_triangles={summary['max_root_slice_residual_top_triangles']} "
+            f"max_root_residual_star_triangles={summary['max_root_slice_residual_star_triangles']} "
             f"max_different_slope_strict={summary['max_different_slope_strict_pairs']} "
             f"max_zero_det_slices={summary['max_zero_determinant_slices']} "
             f"max_edge_zero_det_slices={summary['max_edge_zero_determinant_slices']} "
@@ -953,6 +1003,9 @@ def main() -> None:
         "zero_det_injective={zero_det_injective_slices} "
         "root_residual_degree_max={root_slice_residual_max_strict_degree} "
         "root_residual_same_slope={root_slice_residual_same_slope_edges} "
+        "root_residual_triangles={root_slice_residual_triangles} "
+        "root_residual_top_triangles={root_slice_residual_top_triangles} "
+        "root_residual_star_triangles={root_slice_residual_star_triangles} "
         "quad_companion_checks={quadratic_companion_checks} "
         "direct_checks={direct_checks}".format(**rank_one_probe)
     )
@@ -960,6 +1013,9 @@ def main() -> None:
     max_aperiodic = max(row["aperiodic_slopes"] for row in all_rows)
     max_strict_degree = max(row["aperiodic_max_strict_degree"] for row in all_rows)
     max_residual_degree = max(row["root_slice_residual_max_strict_degree"] for row in all_rows)
+    max_residual_triangles = max(row["root_slice_residual_triangles"] for row in all_rows)
+    max_residual_top_triangles = max(row["root_slice_residual_top_triangles"] for row in all_rows)
+    max_residual_star_triangles = max(row["root_slice_residual_star_triangles"] for row in all_rows)
     max_companion_checks = max(row["quadratic_companion_checks"] for row in all_rows)
     max_rank_one_zero = max(row["zero_det_direction_rank1_slices"] for row in all_rows)
     total_lines = sum(len(summary["case"].seeds) for summary in summaries) + 1
@@ -970,6 +1026,9 @@ def main() -> None:
         f"max_aperiodic_slopes={max_aperiodic} "
         f"max_strict_degree={max_strict_degree} "
         f"max_root_residual_degree={max_residual_degree} "
+        f"max_root_residual_triangles={max_residual_triangles} "
+        f"max_root_residual_top_triangles={max_residual_top_triangles} "
+        f"max_root_residual_star_triangles={max_residual_star_triangles} "
         f"max_quad_companion_checks={max_companion_checks} "
         f"max_rank_one_zero_slices={max_rank_one_zero}"
     )

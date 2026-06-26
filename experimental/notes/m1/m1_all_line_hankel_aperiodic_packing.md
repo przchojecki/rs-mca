@@ -350,6 +350,29 @@ This companion-map form is the local object a future packing proof should
 control: long residual slope structure would have to persist through many
 compatible quadratic involutions, not through arbitrary one-root exchanges.
 
+## Residual Triangle Classification
+
+The residual graph can still have triangles, but their type is forced.  In the
+Johnson graph on `j`-subsets, every triangle is one of two kinds:
+
+1. a star triangle, where the three vertices share a common `(j-1)`-core and
+   vary over three different exchanged roots; or
+2. a top triangle, where the three vertices are the `j`-subsets of one
+   `(j+1)`-set obtained by omitting three different elements.
+
+Star triangles cannot survive in the residual `t=2` graph.  For a fixed
+`(j-1)`-core, a nonzero determinant slice has at most two roots, while a
+zero-determinant slice is contained or constant-slope and has already been
+charged to the root-slice ledger.  Hence three residual vertices with one
+common `(j-1)`-core are impossible.
+
+Therefore every residual triangle is a top triangle.  This does not yet prove
+that the whole residual graph is a disjoint union of top cliques; the local
+Hankel algebra can admit non-top two-edge corners in isolation.  What it does
+prove is that the first possible cycles after peeling are already forced into
+`(j+1)`-set packets, so any future packing argument can focus on controlling
+these top packets rather than arbitrary star fibers.
+
 ## Verifier
 
 The companion verifier
@@ -381,6 +404,8 @@ enumerates small cyclic-domain cases.  For each case it:
 - reports the residual strict one-exchange count and verifies the residual
   maximum degree bound `<= j`;
 - checks the quadratic companion map for every nonzero quadratic edge slice;
+- classifies every residual triangle and asserts that no star triangle remains
+  after root-slice peeling;
 - runs one deterministic arbitrary-line probe which hits the rank-one
   zero-determinant branch and verifies that it is classified by the same
   constant/contained zero-slice ledger.
@@ -404,14 +429,17 @@ the root-slice members, the residual family has `86` aperiodic locators, all
 `16` residual slopes still occur, the maximum residual slope fiber drops to
 `9`, the residual strict edge count drops to `88`, the residual maximum strict
 degree is `4=j`, and the residual same-slope one-exchange edge count is `0`.
+The residual graph has `68` triangles in this row; all `68` are top triangles
+and none are star triangles.
 
 The arbitrary `F_17`, `j=4`, `t=2` rank-one probe has `176` aperiodic locators,
 all `17` slopes, and `16` zero-determinant slices.  Four of those zero slices
 have rank-one direction pencil; the verifier classifies all zero slices in the
 probe as constant-slope, and the residual maximum strict degree is again
 `4=j`.  The probe also performs `360` companion-map checks on its nonzero
-quadratic edge slices.  These are exactly the profile quantities a packing
-proof must shrink or explain structurally.
+quadratic edge slices and has `24` residual triangles, all top-type.  These are
+exactly the profile quantities a packing proof must shrink or explain
+structurally.
 
 This is an audit/verifier for the M1 target, not a proof of the desired
 polynomial all-line bound.  Its purpose is to make future counterexample-first
