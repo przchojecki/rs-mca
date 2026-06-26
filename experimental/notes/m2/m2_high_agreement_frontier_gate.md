@@ -410,6 +410,34 @@ Thus a larger challenge field is not a free denominator.  The active
 identifies whether challenges sample finite slopes, projective slopes, or some
 nonuniform image, and supplies the corresponding maximum-fiber bound.
 
+A common sufficient certificate is a bounded-degree rational map.  If
+`phi:K -> K` is a nonconstant polynomial of degree `D`, then every finite
+fiber has size at most `D`, hence
+
+```text
+Pr_chal[bad] <= min(|K|, L*D) / |K|.
+```
+
+More generally, if `phi:K -> P^1(K)` is represented by a nonconstant rational
+function
+
+```text
+phi(x) = P(x)/Q(x),        max(deg P, deg Q) = D,
+```
+
+with `P,Q` not both zero and with no common factor after cancellation, then
+every projective fiber has size at most `D`: finite fibers are roots of
+`P-yQ`, and the infinity fiber is the zero set of `Q`.  Therefore the same
+degree-loss bound holds with projective slopes:
+
+```text
+Pr_chal[bad] <= min(|K|, L*D) / |K|.
+```
+
+This is often the usable protocol form of the ledger: a degree-`D`
+challenge-to-slope map lets one divide by `q_chal` only after paying the
+factor `D`.
+
 ## Active `F_17^32` Row
 
 For

@@ -173,10 +173,10 @@ def challenge_pullback_probability(
     return Fraction(bad_challenges, len(challenge_to_slope))
 
 
-def max_fiber_size(challenge_to_slope: list[int]) -> int:
+def max_fiber_size(challenge_to_slope: list[Any]) -> int:
     if not challenge_to_slope:
         raise ValueError("expected at least one challenge")
-    fibers: dict[int, int] = {}
+    fibers: dict[Any, int] = {}
     for slope in challenge_to_slope:
         fibers[slope] = fibers.get(slope, 0) + 1
     return max(fibers.values())
@@ -192,6 +192,49 @@ def challenge_pullback_bound(
     if max_fiber <= 0:
         raise ValueError("expected positive max_fiber")
     return Fraction(min(challenge_count, bad_count * max_fiber), challenge_count)
+
+
+def poly_eval_mod(coeffs: list[int], x: int, prime: int) -> int:
+    total = 0
+    power = 1
+    for coeff in coeffs:
+        total = (total + coeff * power) % prime
+        power = (power * x) % prime
+    return total
+
+
+def poly_degree(coeffs: list[int]) -> int:
+    for idx in range(len(coeffs) - 1, -1, -1):
+        if coeffs[idx] != 0:
+            return idx
+    raise ValueError("zero polynomial has no degree")
+
+
+def polynomial_map_values(coeffs: list[int], prime: int) -> list[int]:
+    degree = poly_degree([c % prime for c in coeffs])
+    if degree <= 0:
+        raise ValueError("expected nonconstant polynomial")
+    return [poly_eval_mod(coeffs, x, prime) for x in range(prime)]
+
+
+def rational_map_values(
+    numerator: list[int], denominator: list[int], prime: int
+) -> list[int | str]:
+    degree = max(
+        poly_degree([c % prime for c in numerator]),
+        poly_degree([c % prime for c in denominator]),
+    )
+    if degree <= 0:
+        raise ValueError("expected nonconstant rational map")
+    values: list[int | str] = []
+    for x in range(prime):
+        den = poly_eval_mod(denominator, x, prime)
+        if den == 0:
+            values.append("inf")
+        else:
+            num = poly_eval_mod(numerator, x, prime)
+            values.append((num * pow(den, -1, prime)) % prime)
+    return values
 
 
 def tangent_gate(label: str, n: int, k: int, q_line: int, eps_bits: int) -> Gate:
@@ -445,6 +488,35 @@ def check_challenge_pullback_ledger() -> None:
     ) == Fraction(active.projective_budget, active.q_line + 1)
 
 
+def check_rational_challenge_map_degree_ledger() -> None:
+    prime = 17
+
+    # phi(x)=x^3+2x+1 has degree 3, so every fiber has size at most 3.
+    polynomial_values = polynomial_map_values([1, 2, 0, 1], prime)
+    polynomial_degree = 3
+    polynomial_fiber = max_fiber_size(polynomial_values)
+    assert polynomial_fiber <= polynomial_degree
+    polynomial_bad = {polynomial_values[0], polynomial_values[5]}
+    assert challenge_pullback_probability(
+        polynomial_values, polynomial_bad
+    ) <= challenge_pullback_bound(prime, len(polynomial_bad), polynomial_degree)
+
+    # phi(x)=(x^2+1)/(x-3) maps to P^1(F_17) and has degree 2.
+    rational_values = rational_map_values([1, 0, 1], [-3, 1], prime)
+    rational_degree = 2
+    rational_fiber = max_fiber_size(rational_values)
+    assert rational_fiber <= rational_degree
+    rational_bad = {rational_values[4], "inf"}
+    assert challenge_pullback_probability(
+        rational_values, rational_bad
+    ) <= challenge_pullback_bound(prime, len(rational_bad), rational_degree)
+
+    # A constant map shows why nonconstancy is necessary for a degree ledger.
+    constant_values = [9] * prime
+    assert max_fiber_size(constant_values) == prime
+    assert challenge_pullback_probability(constant_values, {9}) == Fraction(1, 1)
+
+
 def default_cases() -> list[Gate]:
     return [
         active_row(),
@@ -583,6 +655,7 @@ def main() -> None:
     for gate in gates:
         check_gate(gate)
     check_challenge_pullback_ledger()
+    check_rational_challenge_map_degree_ledger()
 
     active = gates[0] if not custom else None
     if active is not None:
