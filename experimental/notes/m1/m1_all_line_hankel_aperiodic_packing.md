@@ -526,6 +526,19 @@ common core; it is the residual part of a full bad-face simplex over that
 core.  The only remaining filters on the faces are the charged
 quotient-periodic predicate and the fixed-slope root-slice peeling.
 
+This gives an exact top-packet census.  Enumerate all `(j+1)`-sets `W` with
+
+```text
+H_{1,j+1}(u)ell_W=H_{1,j+1}(v)ell_W=0.
+```
+
+For each such lifted common core, remove contained faces, quotient-periodic
+faces, and faces peeled by fixed-slope root slices.  If at least two residual
+faces remain, then they form exactly one residual top packet, namely the clique
+on those remaining faces inside `W`.  Conversely every residual top packet
+arises this way.  Thus the residual packet problem is precisely the problem of
+bounding lifted common cores with residual face count at least two.
+
 ## Residual Triangle Classification
 
 The residual graph can still have triangles, but their type is forced.  In the
@@ -653,6 +666,8 @@ enumerates small cyclic-domain cases.  For each case it:
   numerator/denominator anchor identities and the automatic determinant gate,
   and counts how many such faces are noncontained, aperiodic, residual, or
   removed by root-slice peeling;
+- enumerates all lifted common cores and asserts that residual top packets are
+  exactly the lifted common cores with at least two residual faces;
 - classifies every residual triangle and asserts that no star triangle remains
   after root-slice peeling;
 - forms the residual top-packet ledger and checks that it accounts exactly for
@@ -696,7 +711,9 @@ numerator gate has the same `14` packet checks and `56` numerator anchor
 checks.  Across all `70=14*5` lifted `j`-faces, the verifier checks the
 automatic determinant gate; `67` faces are noncontained, `64` are aperiodic,
 `56` remain residual, and `8` are aperiodic faces removed by root-slice
-peeling.
+peeling.  In this row the lifted-common-core census has exactly `14` cores,
+all `14` of which have at least two residual faces and hence are precisely the
+`14` residual top packets.
 
 The arbitrary `F_17`, `j=4`, `t=2` rank-one probe has `176` aperiodic locators,
 all `17` slopes, and `16` zero-determinant slices.  Four of those zero slices
@@ -714,7 +731,10 @@ The common lifted numerator gate has the same `17` packet checks and `42`
 numerator anchor checks.  Across all `85=17*5` lifted `j`-faces in the probe,
 `84` are noncontained, `81` are aperiodic, `42` remain residual, and `39` are
 aperiodic faces removed by root-slice peeling.  These are exactly the profile
-quantities a packing proof must shrink or explain structurally.
+quantities a packing proof must shrink or explain structurally.  The full
+lifted-common-core census in the probe has `31` cores: `17` are residual
+packets, `2` have exactly one residual face, and the others have no residual
+faces after the quotient and root-slice charges.
 
 This is an audit/verifier for the M1 target, not a proof of the desired
 polynomial all-line bound.  Its purpose is to make future counterexample-first
