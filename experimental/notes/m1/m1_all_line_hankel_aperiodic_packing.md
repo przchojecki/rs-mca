@@ -414,6 +414,65 @@ any exist, are obtained by adding the same root `xi_T` and deleting one root of
 `T`.  This upgrades the residual graph from bounded-degree to packet-local:
 each residual locator is incident to at most one top packet.
 
+## Residual Anchor Ledger
+
+The same anchor accounts for isolated residual locators as well as top
+packets.  For a residual locator `T`, write
+
+```text
+H_{2,j}(v)ell_T=(beta_0,beta_1).
+```
+
+If `beta_0 != 0`, set
+
+```text
+xi_T=beta_1/beta_0.
+```
+
+There are two cases.
+
+First suppose `xi_T in D\T`.  Put `W=T union {xi_T}`.  The denominator lift
+identity gives
+
+```text
+H_{1,j+1}(v)ell_W=beta_1-xi_T beta_0=0.
+```
+
+Since `T` is a residual bad locator, `H_{2,j}(u)ell_T=-z_T H_{2,j}(v)ell_T`.
+Writing `H_{2,j}(u)ell_T=(alpha_0,alpha_1)`, this also gives
+
+```text
+H_{1,j+1}(u)ell_W=alpha_1-xi_T alpha_0=0.
+```
+
+Thus every residual locator with an addable in-domain anchor is a residual
+face of a lifted common core.
+
+In the remaining cases the locator is isolated in the residual one-exchange
+graph.  If `beta_0=0`, the common-companion formula gives no finite addable
+root.  If `xi_T in T`, the only possible companion root is already deleted by
+the locator.  If `xi_T notin D`, no domain one-exchange can add it.  In all
+three cases any residual neighbor would contradict the common companion-anchor
+lemma.
+
+Therefore the residual locator family has the exact disjoint ledger
+
+```text
+R_res = R_lifted disjoint union R_escape,
+```
+
+where `R_lifted` is the set of residual faces lying in lifted common cores and
+`R_escape` is the set of isolated anchor escapes.  The escape side splits into
+the three explicit local causes
+
+```text
+beta_0=0,        xi_T in T,        xi_T notin D.
+```
+
+So the M1 residual slope problem has two separate pieces: lifted common-core
+face counting for `R_lifted`, and isolated anchor-escape slope counting for
+`R_escape`.
+
 ## Top-Packet Lift Gate
 
 The common anchor also lifts every nontrivial top packet to a single
@@ -697,6 +756,9 @@ enumerates small cyclic-domain cases.  For each case it:
 - checks the quadratic companion map for every nonzero quadratic edge slice;
 - verifies the common companion anchor `xi_T=beta_1/beta_0` for every oriented
   residual edge endpoint;
+- verifies the full residual anchor ledger: addable in-domain anchors lift to
+  common cores, while beta0-zero, in-support, and outside-domain anchor escapes
+  are isolated residual locators;
 - verifies that every nontrivial residual top packet satisfies the lifted
   denominator gate `H_{1,j+1}(v)ell_W=0`, with omitted-root anchors on its
   residual members;
@@ -747,7 +809,10 @@ large, with maximum packet size `5`; these packets account for all `88`
 residual edges, all `68` residual triangles, and the local residual degree
 formula.  The maximum top-packet incidence of a residual locator is `1` in
 this row, so the audited top packets are disjoint; the common-anchor check
-certifies all `176=2*88` oriented residual edge endpoints.  The lifted
+certifies all `176=2*88` oriented residual edge endpoints.  The residual anchor
+ledger partitions the `86` residual locators into `56` addable lifted-core
+faces and `30` isolated anchor escapes: `5` with `beta_0=0`, `21` with
+`xi_T in T`, and `4` with `xi_T notin D`.  The lifted
 denominator gate is checked on all `14` residual top packets, with `56`
 omitted-root anchor checks across their residual members; the common lifted
 numerator gate has the same `14` packet checks and `56` numerator anchor
@@ -770,7 +835,10 @@ top-packet ledger has `17` packets: `3` large packets and `14` pair packets,
 with maximum packet size `5`, accounting for `40` residual edges and `24`
 triangles, with maximum top-packet incidence again `1`, so the audited top
 packets are disjoint.  The common-anchor check certifies all `80=2*40`
-oriented residual edge endpoints in the probe.  The lifted denominator gate is
+oriented residual edge endpoints in the probe.  The residual anchor ledger
+splits the `69` residual locators into `44` lifted-core residual faces and
+`25` isolated anchor escapes: `4` with `beta_0=0`, `19` with `xi_T in T`, and
+`2` with `xi_T notin D`.  The lifted denominator gate is
 checked on all `17` residual top packets, with `42` omitted-root anchor checks.
 The common lifted numerator gate has the same `17` packet checks and `42`
 numerator anchor checks.  Across all `85=17*5` lifted `j`-faces in the probe,

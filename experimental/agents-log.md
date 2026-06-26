@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-27 - M1 residual anchor ledger
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/m1/m1_all_line_hankel_aperiodic_packing.md`,
+  `experimental/scripts/verify_m1_all_line_hankel_aperiodic.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT / EXPERIMENTAL.
+- **What is being added:** An exact residual-anchor partition for the
+  root-slice-peeled `t=2` M1 locator family.  A residual locator whose anchor
+  `xi_T=beta_1/beta_0` is addable in the domain lifts to a common `(j+1)`-core;
+  beta0-zero, in-support, and outside-domain anchors are certified as isolated
+  residual locators.
+- **How it is useful:** This accounts for both top-packet and isolated
+  residual locators in one ledger, reducing the remaining M1 obstruction to
+  lifted common-core face counting plus isolated anchor-escape slope counting.
+- **What to do next:** Bound the two resulting slope sources separately:
+  common-base residual faces and anchor escapes.
+
 ### 2026-06-27 - M1 lifted common-base residual slopes
 
 - **Agent/model:** Codex.
