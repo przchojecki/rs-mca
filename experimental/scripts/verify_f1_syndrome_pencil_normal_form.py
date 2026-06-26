@@ -632,6 +632,34 @@ def is_zero_quadratic(
     return all(value == field.zero for value in coeffs.values())
 
 
+def has_common_kernel_ruling(field: QuadraticField, rows: Sequence[Sequence[Element]]) -> bool:
+    a0, a1, b0, b1 = rows
+    zero = [field.zero] * len(a0)
+    if list(b0) == zero and list(b1) == zero:
+        return True
+    for slope in field.elements():
+        if (
+            vector_add(field, a0, scalar_vector_mul(field, slope, b0)) == zero
+            and vector_add(field, a1, scalar_vector_mul(field, slope, b1)) == zero
+        ):
+            return True
+    return False
+
+
+def has_common_image_ruling(field: QuadraticField, rows: Sequence[Sequence[Element]]) -> bool:
+    a0, a1, b0, b1 = rows
+    zero = [field.zero] * len(a0)
+    if list(a0) == zero and list(b0) == zero:
+        return True
+    for ratio in field.elements():
+        if (
+            scalar_vector_mul(field, ratio, a0) == list(a1)
+            and scalar_vector_mul(field, ratio, b0) == list(b1)
+        ):
+            return True
+    return False
+
+
 def pencil_at_slope(
     field: QuadraticField,
     left: Matrix,
@@ -680,6 +708,8 @@ def run_quadric_case(params: dict[str, object]) -> dict[str, object]:
     rank = matrix_rank(field, rows)
     coeffs = determinant_quadratic_coefficients(field, rows)
     zero_quadric = is_zero_quadratic(field, coeffs)
+    common_kernel_ruling = has_common_kernel_ruling(field, rows)
+    common_image_ruling = has_common_image_ruling(field, rows)
     rank_defective_slopes = [
         slope
         for slope in field.elements()
@@ -702,6 +732,14 @@ def run_quadric_case(params: dict[str, object]) -> dict[str, object]:
         )
     if zero_quadric and rank > 2:
         mismatches.append({"type": "zero_quadric_rank_bound", "rank": rank})
+    if zero_quadric and rank >= 2 and not (common_kernel_ruling or common_image_ruling):
+        mismatches.append(
+            {
+                "type": "zero_quadric_ruling_missing",
+                "common_kernel": common_kernel_ruling,
+                "common_image": common_image_ruling,
+            }
+        )
     if global_rank_defective != params["expected_global_rank_defective"]:
         mismatches.append(
             {
@@ -746,6 +784,8 @@ def run_quadric_case(params: dict[str, object]) -> dict[str, object]:
         "j": j,
         "rank": rank,
         "zero_quadric": zero_quadric,
+        "common_kernel_ruling": common_kernel_ruling,
+        "common_image_ruling": common_image_ruling,
         "rank_defective_slope_count": len(rank_defective_slopes),
         "global_rank_defective": global_rank_defective,
         "passed": not mismatches,
@@ -1553,6 +1593,8 @@ def main() -> int:
             print(
                 f"  [{flag}] {record['name']}: {record['field']}, j={record['j']}, "
                 f"rank={record['rank']}, zero_quadric={record['zero_quadric']}, "
+                f"common_kernel={record['common_kernel_ruling']}, "
+                f"common_image={record['common_image_ruling']}, "
                 f"rank-defective slopes={record['rank_defective_slope_count']}, "
                 f"global_rank_defective={record['global_rank_defective']}"
             )

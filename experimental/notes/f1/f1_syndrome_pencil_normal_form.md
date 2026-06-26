@@ -1126,6 +1126,65 @@ the remaining regular bad slopes as the image of the noncontained determinant
 gate on split locators. Corollary 6 supplies the quotient-periodic
 specialization when `D` is a subgroup.
 
+## Corollary 17: The Zero Reduced Quadric Has No New Branch
+
+Keep the assumptions `t=2` and `j >= 2`, and let
+
+```text
+W = R(F^{j+1}) subset Mat_{2 x 2}(F)
+```
+
+be the reduced moving image from Corollary 7. Suppose the determinant
+vanishes identically on `W`.
+
+Then the zero-quadric branch contributes no new aperiodic F1 obstruction:
+
+- if `dim W <= 1`, all noncontained bad locators in this reduced branch have
+  the same slope, so the branch contributes at most one bad slope;
+- if `dim W=2` and `P(W)` lies in the common-kernel ruling, then again all
+  noncontained bad locators have one fixed slope;
+- if `dim W=2` and `P(W)` lies in the common-image ruling, then the whole
+  pencil has global monic-rank defect and Corollary 15 applies.
+
+Consequently the unresolved non-global determinant incidence branch in
+Corollary 16 may be taken to have determinant not identically zero on the
+reduced image `W`.
+
+## Proof
+
+If `dim W <= 1`, then every nonzero matrix in `W` is a scalar multiple of one
+rank-one matrix. If its second column is zero there is no noncontained bad
+slope; otherwise the column ratio, and hence the slope `z` with `a+zb=0`, is
+fixed.
+
+Now assume `dim W=2`. By Corollary 7, `P(W)` lies in one of the two rulings
+of the determinant quadric.
+
+In the common-kernel ruling there is a fixed nonzero vector `(lambda,mu)` such
+that
+
+```text
+lambda a(ell) + mu b(ell) = 0
+```
+
+for every reduced locator image `[a(ell) b(ell)]`. If `lambda=0`, then
+`b(ell)=0` for every image and noncontainment removes the branch. If
+`lambda != 0`, every noncontained bad locator has the single slope
+`z=mu/lambda`.
+
+In the common-image ruling, all matrices in `W` have image in one fixed line
+of `F^2`. Thus the two rows of both Hankel windows are proportional with the
+same ratio:
+
+```text
+H_{2,j}(u)_{1,*}=c H_{2,j}(u)_{0,*},
+H_{2,j}(v)_{1,*}=c H_{2,j}(v)_{0,*}
+```
+
+for some `c in F`, with the endpoint case meaning that the zeroth rows
+vanish. Hence the non-monic block `A_z` has rank at most one for every `z`,
+so the global monic-rank defect case of Corollary 15 applies.
+
 ## Why This Helps F1
 
 The naive extension-field lift is already false: genuinely `F`-valued lines
@@ -1183,7 +1242,9 @@ slopes, non-global monic-rank-defective slopes, global fixed-root stars, and
 quotient-periodic pullbacks are now explicit ledger entries. The unresolved
 positive F1 estimate is therefore concentrated in one named place, the
 aperiodic non-global determinant incidence branch in the reduced `t=2`
-quadric.
+quadric. Corollary 17 removes the identically-zero reduced quadric from that
+remaining branch: the open case is the nonzero determinant quadric incidence
+after quotient-periodic and contained components have been removed.
 
 ## Verification
 
@@ -1215,4 +1276,5 @@ Finally, constructed `j=4` and `j=5` fixed-root fibers verify the arbitrary
 `j` codimension-two bound of Corollary 14. Additional `j=4` global
 monic-rank-one cases verify the fixed-root, contained-star, outside-domain,
 and infinity branches of Corollary 15. Corollary 16 is the formal branch
-ledger obtained by combining those audited pieces.
+ledger obtained by combining those audited pieces. The reduced-quadric audit
+also checks the common-kernel ruling used in Corollary 17.

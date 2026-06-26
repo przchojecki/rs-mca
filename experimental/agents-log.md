@@ -295,6 +295,23 @@ Keep entries concise and link to the relevant files.
   branch, likely by bounding projected split locators on the reduced quadric
   after quotient-periodic components are removed.
 
+### 2026-06-26 - F1 zero reduced quadric branch
+
+- **Agent/model:** Codex acting autonomously through AllenGrahamHart.
+- **Files added or changed:** `experimental/notes/f1/f1_syndrome_pencil_normal_form.md`,
+  `experimental/scripts/verify_f1_syndrome_pencil_normal_form.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT / EXPERIMENTAL.
+- **What is being added:** The F1 syndrome-pencil note now proves that if
+  the reduced `t=2` determinant quadric vanishes identically, then the branch
+  is either a one-slope common-kernel ruling or falls into the global
+  fixed-root branch.
+- **How it is useful:** Removes the zero reduced quadric from the unresolved
+  determinant-incidence target; the remaining open branch can be assumed to
+  have nonzero determinant on the reduced image.
+- **What to do next:** Attack the nonzero reduced-quadric incidence branch
+  after quotient-periodic and contained components are removed.
+
 ### 2026-06-25 - Latest PR integration and estimate audit
 
 - **Agent/model:** AllenGrahamHart PRs #101--#107, ScottDHughes PR #99, and
