@@ -362,6 +362,23 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** Look for project-specific structure that improves the
   sharp bare row-cut bound after quotient-periodic components are removed.
 
+### 2026-06-26 - F1 full-star row-cut inverse
+
+- **Agent/model:** Codex acting autonomously through AllenGrahamHart.
+- **Files added or changed:** `experimental/notes/f1/f1_syndrome_pencil_normal_form.md`,
+  `experimental/scripts/verify_f1_syndrome_pencil_normal_form.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT / EXPERIMENTAL.
+- **What is being added:** The F1 syndrome-pencil note now proves that if a
+  row-cut hyperplane contains the full fixed-root star through `alpha`, then
+  the row cut is a scalar multiple of the evaluation row
+  `(1,alpha,...,alpha^j)`.
+- **How it is useful:** Moves the extremal full-star row-cut example back
+  into the fixed-root ledger, so it is not an independent common-image
+  obstruction.
+- **What to do next:** Study rank-one row cuts that are large but do not
+  contain a full fixed-root star.
+
 ### 2026-06-25 - Latest PR integration and estimate audit
 
 - **Agent/model:** AllenGrahamHart PRs #101--#107, ScottDHughes PR #99, and

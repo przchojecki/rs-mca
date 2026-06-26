@@ -240,11 +240,13 @@ ROW_CUT_RESONANCE_CASES = (
         "p": 7,
         "domain": (1, 2, 3, 4, 5, 6),
         "j": 4,
+        "alpha": 2,
         "rows": (
             ((1, 0), (2, 0), (4, 0), (1, 0), (2, 0)),
         ),
         "expected_rank": 1,
         "expected_landings": 10,
+        "expected_star_span_rank": 4,
     },
     {
         "name": "j4 unrestricted zero row cut",
@@ -754,6 +756,25 @@ def matrix_determinant_2x2(field: QuadraticField, matrix: Matrix) -> Element:
     )
 
 
+def is_scalar_multiple(
+    field: QuadraticField,
+    left: Sequence[Element],
+    right: Sequence[Element],
+) -> bool:
+    pivot = None
+    for index, value in enumerate(right):
+        if value != field.zero:
+            pivot = index
+            break
+    if pivot is None:
+        return all(value == field.zero for value in left)
+    scalar = field.div(left[pivot], right[pivot])
+    return all(
+        left_value == field.mul(scalar, right_value)
+        for left_value, right_value in zip(left, right)
+    )
+
+
 def pencil_at_slope(
     field: QuadraticField,
     left: Matrix,
@@ -1145,12 +1166,29 @@ def run_row_cut_resonance_case(params: dict[str, object]) -> dict[str, object]:
     rows = [[tuple(entry) for entry in row] for row in params["rows"]]
     rank = matrix_rank(field, rows)
     landings = 0
+    landing_locators = []
     for roots in itertools.combinations(domain, j):
         locator = locator_coefficients(field, roots)
         if all(dot(field, row, locator) == field.zero for row in rows):
             landings += 1
+            landing_locators.append((roots, locator))
 
     rank_one_bound = comb(len(domain), j - 1)
+    alpha = field.element(int(params["alpha"])) if "alpha" in params else None
+    star_locators = [
+        locator for roots, locator in landing_locators if alpha is not None and alpha in roots
+    ]
+    star_span_rank = matrix_rank(field, star_locators)
+    evaluation_row = (
+        [field.pow(alpha, degree) for degree in range(j + 1)]
+        if alpha is not None
+        else []
+    )
+    row_is_evaluation = (
+        bool(rows)
+        and alpha is not None
+        and is_scalar_multiple(field, rows[0], evaluation_row)
+    )
     mismatches: list[dict[str, object]] = []
     if rank != params["expected_rank"]:
         mismatches.append(
@@ -1176,6 +1214,16 @@ def run_row_cut_resonance_case(params: dict[str, object]) -> dict[str, object]:
                 "bound": rank_one_bound,
             }
         )
+    if "expected_star_span_rank" in params and star_span_rank != params["expected_star_span_rank"]:
+        mismatches.append(
+            {
+                "type": "row_cut_star_span_rank",
+                "expected": params["expected_star_span_rank"],
+                "actual": star_span_rank,
+            }
+        )
+    if alpha is not None and rank == 1 and not row_is_evaluation:
+        mismatches.append({"type": "row_cut_not_evaluation"})
 
     return {
         "name": params["name"],
@@ -1185,6 +1233,8 @@ def run_row_cut_resonance_case(params: dict[str, object]) -> dict[str, object]:
         "rank": rank,
         "landings": landings,
         "rank_one_bound": rank_one_bound,
+        "star_span_rank": star_span_rank,
+        "row_is_evaluation": row_is_evaluation,
         "passed": not mismatches,
         "mismatches": mismatches[:5],
     }
@@ -1883,7 +1933,9 @@ def main() -> int:
                 f"  [{flag}] {record['name']}: {record['field']}, "
                 f"|D|={record['domain_size']}, j={record['j']}, "
                 f"rank={record['rank']}, landings={record['landings']} "
-                f"<= {record['rank_one_bound']}"
+                f"<= {record['rank_one_bound']}, "
+                f"star span={record['star_span_rank']}, "
+                f"evaluation row={record['row_is_evaluation']}"
             )
         for record in global_monic_records:
             flag = "PASS" if record["passed"] else "FAIL"
