@@ -325,6 +325,11 @@ def root_slice_profile(
             "root_slice_residual_top_anchor_checks": 0,
             "root_slice_residual_top_common_lift_gate_checks": 0,
             "root_slice_residual_top_numerator_anchor_checks": 0,
+            "root_slice_residual_top_face_gate_checks": 0,
+            "root_slice_residual_top_face_noncontained": 0,
+            "root_slice_residual_top_face_aperiodic": 0,
+            "root_slice_residual_top_face_residual": 0,
+            "root_slice_residual_top_face_peeled": 0,
         }
 
     row_map = {tuple(sorted(complement)): slope for complement, slope in locator_rows}
@@ -370,6 +375,9 @@ def root_slice_profile(
         for complement, slope in locator_rows
         if tuple(sorted(complement)) not in root_slice_members
     ]
+    residual_index = {
+        tuple(sorted(complement)): idx for idx, (complement, _) in enumerate(residual_rows)
+    }
     residual_same_slope_edges = 0
     residual_strict_pairs = 0
     residual_degrees = [0] * len(residual_rows)
@@ -456,6 +464,11 @@ def root_slice_profile(
     top_anchor_checks = 0
     top_common_lift_gate_checks = 0
     top_numerator_anchor_checks = 0
+    top_face_gate_checks = 0
+    top_face_noncontained = 0
+    top_face_aperiodic = 0
+    top_face_residual = 0
+    top_face_peeled = 0
     for top_packet, vertices in residual_top_packets.items():
         size = len(vertices)
         max_top_packet = max(max_top_packet, size)
@@ -477,6 +490,39 @@ def root_slice_profile(
         if top_numerator_gate != 0:
             raise AssertionError("residual top packet failed the numerator lift gate")
         top_common_lift_gate_checks += 1
+        residual_faces_in_packet = 0
+        for omitted_root in top_packet:
+            face = tuple(sorted(set(top_packet) - {omitted_root}))
+            face_locator = locator(face, p)
+            a_vec = hankel_apply(u, t, j, face_locator, p)
+            b_vec = hankel_apply(v, t, j, face_locator, p)
+            if (b_vec[1] - omitted_root * b_vec[0]) % p != 0:
+                raise AssertionError("lifted top face failed the denominator anchor")
+            if (a_vec[1] - omitted_root * a_vec[0]) % p != 0:
+                raise AssertionError("lifted top face failed the numerator anchor")
+            if not determinant_gate_t2(a_vec, b_vec, p):
+                raise AssertionError("lifted top face failed the determinant gate")
+            top_face_gate_checks += 1
+            if all(value == 0 for value in b_vec):
+                continue
+            top_face_noncontained += 1
+            slope = slope_from_gate(a_vec, b_vec, p)
+            if slope is None:
+                raise AssertionError("noncontained lifted top face had no slope")
+            if face in row_map:
+                if row_map[face] != slope:
+                    raise AssertionError("lifted top face slope disagreed with aperiodic row")
+                top_face_aperiodic += 1
+            if face in root_slice_members:
+                top_face_peeled += 1
+            residual_idx = residual_index.get(face)
+            if residual_idx is not None:
+                if residual_idx not in vertices:
+                    raise AssertionError("residual face was assigned to the wrong top packet")
+                residual_faces_in_packet += 1
+                top_face_residual += 1
+        if residual_faces_in_packet != size:
+            raise AssertionError("top packet vertices did not match residual lifted faces")
         for idx in vertices:
             complement = residual_rows[idx][0]
             omitted = tuple(set(top_packet) - set(complement))
@@ -548,6 +594,11 @@ def root_slice_profile(
         "root_slice_residual_top_anchor_checks": top_anchor_checks,
         "root_slice_residual_top_common_lift_gate_checks": top_common_lift_gate_checks,
         "root_slice_residual_top_numerator_anchor_checks": top_numerator_anchor_checks,
+        "root_slice_residual_top_face_gate_checks": top_face_gate_checks,
+        "root_slice_residual_top_face_noncontained": top_face_noncontained,
+        "root_slice_residual_top_face_aperiodic": top_face_aperiodic,
+        "root_slice_residual_top_face_residual": top_face_residual,
+        "root_slice_residual_top_face_peeled": top_face_peeled,
     }
 
 
@@ -962,6 +1013,21 @@ def verify_word_pair(
         "root_slice_residual_top_numerator_anchor_checks": (
             root_profile["root_slice_residual_top_numerator_anchor_checks"]
         ),
+        "root_slice_residual_top_face_gate_checks": (
+            root_profile["root_slice_residual_top_face_gate_checks"]
+        ),
+        "root_slice_residual_top_face_noncontained": (
+            root_profile["root_slice_residual_top_face_noncontained"]
+        ),
+        "root_slice_residual_top_face_aperiodic": (
+            root_profile["root_slice_residual_top_face_aperiodic"]
+        ),
+        "root_slice_residual_top_face_residual": (
+            root_profile["root_slice_residual_top_face_residual"]
+        ),
+        "root_slice_residual_top_face_peeled": (
+            root_profile["root_slice_residual_top_face_peeled"]
+        ),
         "different_slope_strict_pairs": quadratic_profile["different_slope_strict_pairs"],
         "different_slope_cores": quadratic_profile["different_slope_cores"],
         "quadratic_slices_checked": quadratic_profile["quadratic_slices_checked"],
@@ -1076,6 +1142,21 @@ def verify_case(case: Case) -> dict[str, object]:
         "max_root_slice_residual_top_numerator_anchor_checks": max(
             row["root_slice_residual_top_numerator_anchor_checks"] for row in rows
         ),
+        "max_root_slice_residual_top_face_gate_checks": max(
+            row["root_slice_residual_top_face_gate_checks"] for row in rows
+        ),
+        "max_root_slice_residual_top_face_noncontained": max(
+            row["root_slice_residual_top_face_noncontained"] for row in rows
+        ),
+        "max_root_slice_residual_top_face_aperiodic": max(
+            row["root_slice_residual_top_face_aperiodic"] for row in rows
+        ),
+        "max_root_slice_residual_top_face_residual": max(
+            row["root_slice_residual_top_face_residual"] for row in rows
+        ),
+        "max_root_slice_residual_top_face_peeled": max(
+            row["root_slice_residual_top_face_peeled"] for row in rows
+        ),
         "max_different_slope_strict_pairs": max(row["different_slope_strict_pairs"] for row in rows),
         "max_zero_determinant_slices": max(row["zero_determinant_slices"] for row in rows),
         "max_edge_zero_determinant_slices": max(row["edge_zero_determinant_slices"] for row in rows),
@@ -1173,6 +1254,11 @@ def main() -> None:
                 "root_residual_top_anchor_checks={root_slice_residual_top_anchor_checks} "
                 "root_residual_top_common_lift_gate_checks={root_slice_residual_top_common_lift_gate_checks} "
                 "root_residual_top_numerator_anchor_checks={root_slice_residual_top_numerator_anchor_checks} "
+                "root_residual_top_face_gate_checks={root_slice_residual_top_face_gate_checks} "
+                "root_residual_top_face_noncontained={root_slice_residual_top_face_noncontained} "
+                "root_residual_top_face_aperiodic={root_slice_residual_top_face_aperiodic} "
+                "root_residual_top_face_residual={root_slice_residual_top_face_residual} "
+                "root_residual_top_face_peeled={root_slice_residual_top_face_peeled} "
                 "different_slope_strict={different_slope_strict_pairs} "
                 "different_slope_cores={different_slope_cores} "
                 "quadratic_slices={quadratic_slices_checked} "
@@ -1227,6 +1313,11 @@ def main() -> None:
             f"max_root_residual_top_anchor_checks={summary['max_root_slice_residual_top_anchor_checks']} "
             f"max_root_residual_top_common_lift_gate_checks={summary['max_root_slice_residual_top_common_lift_gate_checks']} "
             f"max_root_residual_top_numerator_anchor_checks={summary['max_root_slice_residual_top_numerator_anchor_checks']} "
+            f"max_root_residual_top_face_gate_checks={summary['max_root_slice_residual_top_face_gate_checks']} "
+            f"max_root_residual_top_face_noncontained={summary['max_root_slice_residual_top_face_noncontained']} "
+            f"max_root_residual_top_face_aperiodic={summary['max_root_slice_residual_top_face_aperiodic']} "
+            f"max_root_residual_top_face_residual={summary['max_root_slice_residual_top_face_residual']} "
+            f"max_root_residual_top_face_peeled={summary['max_root_slice_residual_top_face_peeled']} "
             f"max_different_slope_strict={summary['max_different_slope_strict_pairs']} "
             f"max_zero_det_slices={summary['max_zero_determinant_slices']} "
             f"max_edge_zero_det_slices={summary['max_edge_zero_determinant_slices']} "
@@ -1270,6 +1361,11 @@ def main() -> None:
         "root_residual_top_anchor_checks={root_slice_residual_top_anchor_checks} "
         "root_residual_top_common_lift_gate_checks={root_slice_residual_top_common_lift_gate_checks} "
         "root_residual_top_numerator_anchor_checks={root_slice_residual_top_numerator_anchor_checks} "
+        "root_residual_top_face_gate_checks={root_slice_residual_top_face_gate_checks} "
+        "root_residual_top_face_noncontained={root_slice_residual_top_face_noncontained} "
+        "root_residual_top_face_aperiodic={root_slice_residual_top_face_aperiodic} "
+        "root_residual_top_face_residual={root_slice_residual_top_face_residual} "
+        "root_residual_top_face_peeled={root_slice_residual_top_face_peeled} "
         "quad_companion_checks={quadratic_companion_checks} "
         "direct_checks={direct_checks}".format(**rank_one_probe)
     )
@@ -1324,6 +1420,21 @@ def main() -> None:
     max_residual_top_numerator_anchor_checks = max(
         row["root_slice_residual_top_numerator_anchor_checks"] for row in all_rows
     )
+    max_residual_top_face_gate_checks = max(
+        row["root_slice_residual_top_face_gate_checks"] for row in all_rows
+    )
+    max_residual_top_face_noncontained = max(
+        row["root_slice_residual_top_face_noncontained"] for row in all_rows
+    )
+    max_residual_top_face_aperiodic = max(
+        row["root_slice_residual_top_face_aperiodic"] for row in all_rows
+    )
+    max_residual_top_face_residual = max(
+        row["root_slice_residual_top_face_residual"] for row in all_rows
+    )
+    max_residual_top_face_peeled = max(
+        row["root_slice_residual_top_face_peeled"] for row in all_rows
+    )
     max_companion_checks = max(row["quadratic_companion_checks"] for row in all_rows)
     max_rank_one_zero = max(row["zero_det_direction_rank1_slices"] for row in all_rows)
     total_lines = sum(len(summary["case"].seeds) for summary in summaries) + 1
@@ -1353,6 +1464,11 @@ def main() -> None:
         f"max_root_residual_top_anchor_checks={max_residual_top_anchor_checks} "
         f"max_root_residual_top_common_lift_gate_checks={max_residual_top_common_lift_gate_checks} "
         f"max_root_residual_top_numerator_anchor_checks={max_residual_top_numerator_anchor_checks} "
+        f"max_root_residual_top_face_gate_checks={max_residual_top_face_gate_checks} "
+        f"max_root_residual_top_face_noncontained={max_residual_top_face_noncontained} "
+        f"max_root_residual_top_face_aperiodic={max_residual_top_face_aperiodic} "
+        f"max_root_residual_top_face_residual={max_residual_top_face_residual} "
+        f"max_root_residual_top_face_peeled={max_residual_top_face_peeled} "
         f"max_quad_companion_checks={max_companion_checks} "
         f"max_rank_one_zero_slices={max_rank_one_zero}"
     )

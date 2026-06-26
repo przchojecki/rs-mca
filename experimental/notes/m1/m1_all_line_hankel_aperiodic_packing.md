@@ -505,6 +505,27 @@ remaining M1 obstruction is therefore not arbitrary top-packet geometry: it is
 the question of how many residual `j`-faces of such lifted common-kernel
 locators can also pass the original `t=2` aperiodic determinant gates.
 
+In fact, the original determinant gate is automatic on every `j`-face of such
+a lifted core.  If `W` satisfies the common lifted gate and `T_x=W\{x}`, then
+the two shift identities give
+
+```text
+H_{2,j}(u)ell_{T_x}=(alpha_0(x),x alpha_0(x)),
+H_{2,j}(v)ell_{T_x}=(beta_0(x),x beta_0(x)).
+```
+
+These two vectors are always proportional.  Hence each `j`-face of `W` is
+either contained, when `beta_0(x)=0`, or contributes the finite bad slope
+
+```text
+z_x=-alpha_0(x)/beta_0(x).
+```
+
+Thus a nontrivial residual top packet is not merely contained in a lifted
+common core; it is the residual part of a full bad-face simplex over that
+core.  The only remaining filters on the faces are the charged
+quotient-periodic predicate and the fixed-slope root-slice peeling.
+
 ## Residual Triangle Classification
 
 The residual graph can still have triangles, but their type is forced.  In the
@@ -581,7 +602,9 @@ residual locators.
 Each nontrivial top packet also satisfies the common lifted gate
 `H_{1,j+1}(u)ell_W=H_{1,j+1}(v)ell_W=0`.  Thus large residual cliques must be
 visible one degree up in the common Hankel kernel before the original
-`t=2` residual determinant gates are even considered.
+`t=2` residual determinant gates are even considered.  Once this lifted gate
+holds, the determinant gates on all `j`-faces of `W` are automatic; the
+residual packet is the subfamily of noncontained, aperiodic, unpeeled faces.
 
 Thus the residual high-overlap obstruction has been localized further: pair
 packets with `m_W=2` are isolated at triangle level, while every surviving
@@ -626,6 +649,10 @@ enumerates small cyclic-domain cases.  For each case it:
   residual members;
 - verifies the common lifted gate `H_{1,j+1}(u)ell_W=0` and the matching
   numerator omitted-root anchors;
+- checks every `j`-face of each lifted top packet, verifying the omitted-root
+  numerator/denominator anchor identities and the automatic determinant gate,
+  and counts how many such faces are noncontained, aperiodic, residual, or
+  removed by root-slice peeling;
 - classifies every residual triangle and asserts that no star triangle remains
   after root-slice peeling;
 - forms the residual top-packet ledger and checks that it accounts exactly for
@@ -666,7 +693,10 @@ certifies all `176=2*88` oriented residual edge endpoints.  The lifted
 denominator gate is checked on all `14` residual top packets, with `56`
 omitted-root anchor checks across their residual members; the common lifted
 numerator gate has the same `14` packet checks and `56` numerator anchor
-checks.
+checks.  Across all `70=14*5` lifted `j`-faces, the verifier checks the
+automatic determinant gate; `67` faces are noncontained, `64` are aperiodic,
+`56` remain residual, and `8` are aperiodic faces removed by root-slice
+peeling.
 
 The arbitrary `F_17`, `j=4`, `t=2` rank-one probe has `176` aperiodic locators,
 all `17` slopes, and `16` zero-determinant slices.  Four of those zero slices
@@ -681,8 +711,10 @@ packets are disjoint.  The common-anchor check certifies all `80=2*40`
 oriented residual edge endpoints in the probe.  The lifted denominator gate is
 checked on all `17` residual top packets, with `42` omitted-root anchor checks.
 The common lifted numerator gate has the same `17` packet checks and `42`
-numerator anchor checks.  These are exactly the profile quantities a packing
-proof must shrink or explain structurally.
+numerator anchor checks.  Across all `85=17*5` lifted `j`-faces in the probe,
+`84` are noncontained, `81` are aperiodic, `42` remain residual, and `39` are
+aperiodic faces removed by root-slice peeling.  These are exactly the profile
+quantities a packing proof must shrink or explain structurally.
 
 This is an audit/verifier for the M1 target, not a proof of the desired
 polynomial all-line bound.  Its purpose is to make future counterexample-first
