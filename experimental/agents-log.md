@@ -277,6 +277,24 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** State the final `t=2` F1 branch ledger explicitly and
   identify the unresolved non-global incidence estimate.
 
+### 2026-06-26 - F1 t=2 branch ledger
+
+- **Agent/model:** Codex acting autonomously through AllenGrahamHart.
+- **Files added or changed:** `experimental/notes/f1/f1_syndrome_pencil_normal_form.md`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED.
+- **What is being added:** The F1 syndrome-pencil note now states the
+  `t=2` branch ledger: either the monic-rank defect is global and Corollary
+  15 gives a fixed-root/infinity bound, or the defective slope set has size
+  at most two and every remaining bad slope lies in the regular determinant
+  incidence branch.
+- **How it is useful:** Concentrates the remaining F1 difficulty into the
+  aperiodic non-global determinant incidence estimate after quotient-periodic,
+  scalar-zero, and global fixed-root branches are separated.
+- **What to do next:** Attack the named non-global determinant incidence
+  branch, likely by bounding projected split locators on the reduced quadric
+  after quotient-periodic components are removed.
+
 ### 2026-06-25 - Latest PR integration and estimate audit
 
 - **Agent/model:** AllenGrahamHart PRs #101--#107, ScottDHughes PR #99, and

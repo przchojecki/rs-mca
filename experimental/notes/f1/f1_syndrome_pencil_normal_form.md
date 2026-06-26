@@ -1065,6 +1065,67 @@ evaluation-injection argument as in Corollary 14, with dimension `j-2`, gives
 `binom(|D|-1,j-2)`. If the contracted row is zero, every `U` in the punctured
 domain lands before noncontainment is checked.
 
+## Corollary 16: The `t=2` Branch Ledger
+
+Assume `t=2` and `j >= 2`. For each slope put
+
+```text
+P_z = H_{2,j}(u) + zH_{2,j}(v),
+```
+
+and let `A_z` be the `2 x j` non-monic block of `P_z`. Let `Bad` be the set
+of noncontained bad slopes. Then exactly one of the following alternatives
+holds.
+
+1. **Global monic-rank defect.** If `rank A_z <= 1` for every `z`, then
+   Corollary 15 applies. The branch is empty, an infinity branch, or a
+   fixed-root star. In particular, if the fixed root is `alpha in D`, then
+
+   ```text
+   |Bad| <= 1 + binom(|D|-1,j-1),
+   ```
+
+   while if the fixed point is infinity or `alpha notin D`, then `|Bad| <= 1`.
+
+2. **Non-global monic-rank defect.** Otherwise the defective slope set
+
+   ```text
+   Z_def = { z in F : rank A_z <= 1 }
+   ```
+
+   has size at most two. Every bad slope outside `Z_def` lies in the regular
+   branch `rank A_z=2`, and at each such fixed slope the number of landing
+   complements is at most
+
+   ```text
+   binom(|D|,j-2).
+   ```
+
+   Thus all bad slopes outside the two exceptional defective slopes come from
+   the non-global determinant incidence problem: squarefree `D`-split monic
+   locators whose projective gate of Corollary 4 is noncontained and whose
+   induced slope has `rank A_z=2`.
+
+If in addition `D=H` is a multiplicative subgroup and the complement is
+quotient-periodic, the quotient part of this ledger is exactly the sparse
+pullback/decimated determinant branch of Corollary 6. Hence, after quotient
+cores are budgeted separately, the remaining `t=2` F1 obstruction is the
+aperiodic non-global determinant incidence branch in the reduced space of
+Corollary 7.
+
+## Proof
+
+If `rank A_z <= 1` identically, Corollary 15 gives the fixed rational-normal
+readout and the displayed slope counts.
+
+Otherwise at least one `2 x 2` minor of `A_z` is a nonzero quadratic
+polynomial in `z`. All slopes with `rank A_z <= 1` are roots of this one
+quadratic, so `|Z_def| <= 2`. For `z notin Z_def`, Corollary 14 applies and
+gives the fixed-slope landing bound `binom(|D|,j-2)`. Corollary 4 identifies
+the remaining regular bad slopes as the image of the noncontained determinant
+gate on split locators. Corollary 6 supplies the quotient-periodic
+specialization when `D` is a subgroup.
+
 ## Why This Helps F1
 
 The naive extension-field lift is already false: genuinely `F`-valued lines
@@ -1114,10 +1175,15 @@ from the regular fixed-slope analysis: for every complement size, a
 monic-rank-two slope loses two roots, leaving only the two exceptional
 monic-rank-defective slopes or the global defective branch as the genuine
 same-slope obstruction. Corollary 15 then identifies that global defective
-branch in every degree as a fixed-root star, with polynomial noncontained
+branch in every degree as a fixed-root star, with an explicit noncontained
 slope count, so the remaining F1 obstruction is pushed back to the non-global
 quadric/rank-defective incidence rather than an uncontrolled all-depth
-same-slope family.
+same-slope family. Corollary 16 records this as a branch ledger: scalar-zero
+slopes, non-global monic-rank-defective slopes, global fixed-root stars, and
+quotient-periodic pullbacks are now explicit ledger entries. The unresolved
+positive F1 estimate is therefore concentrated in one named place, the
+aperiodic non-global determinant incidence branch in the reduced `t=2`
+quadric.
 
 ## Verification
 
@@ -1148,4 +1214,5 @@ bound of Corollary 12 and the noncontained slope-count bound of Corollary 13.
 Finally, constructed `j=4` and `j=5` fixed-root fibers verify the arbitrary
 `j` codimension-two bound of Corollary 14. Additional `j=4` global
 monic-rank-one cases verify the fixed-root, contained-star, outside-domain,
-and infinity branches of Corollary 15.
+and infinity branches of Corollary 15. Corollary 16 is the formal branch
+ledger obtained by combining those audited pieces.
