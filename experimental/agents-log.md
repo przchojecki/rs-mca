@@ -499,7 +499,8 @@ Keep entries concise and link to the relevant files.
 - **What is being added:** Packages the tangent staircase as a reusable
   row-level finite-slope gate.  The note proves the integer crossing criterion
   `B=floor(q_line/2^eps_bits)` inside the exact range
-  `a>=ceil((2n+k)/3)`, records the active `F_17^32` consequence
+  `a>=ceil((2n+k)/3)` equivalently `d<=floor((n-k)/3)`, records the active
+  `F_17^32` consequence
   `LD_sw(C,506)=7` and `LD_sw(C,507)=6`, records the closed/strict endpoint
   convention at grid radius `3/256`, audits the proof dependencies of the
   tangent exactness theorem, and clarifies that agreement `353` is no longer a

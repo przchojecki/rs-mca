@@ -26,6 +26,7 @@ class Gate:
     q_line: int
     eps_bits: int
     exact_start: int
+    exact_distance_limit: int
     budget: int
     exact_start_count: int
     status: str
@@ -50,8 +51,11 @@ def tangent_gate(label: str, n: int, k: int, q_line: int, eps_bits: int) -> Gate
         raise ValueError("expected nonnegative eps_bits")
 
     exact_start = ceil_div(2 * n + k, 3)
+    exact_distance_limit = (n - k) // 3
+    assert exact_start == n - exact_distance_limit
     assert k + 1 <= exact_start <= n
     exact_start_count = n - exact_start + 1
+    assert exact_start_count == exact_distance_limit + 1
     budget = q_line // (1 << eps_bits)
 
     if budget == 0:
@@ -63,6 +67,7 @@ def tangent_gate(label: str, n: int, k: int, q_line: int, eps_bits: int) -> Gate
             q_line=q_line,
             eps_bits=eps_bits,
             exact_start=exact_start,
+            exact_distance_limit=exact_distance_limit,
             budget=budget,
             exact_start_count=exact_start_count,
             status=status,
@@ -87,6 +92,7 @@ def tangent_gate(label: str, n: int, k: int, q_line: int, eps_bits: int) -> Gate
             q_line=q_line,
             eps_bits=eps_bits,
             exact_start=exact_start,
+            exact_distance_limit=exact_distance_limit,
             budget=budget,
             exact_start_count=exact_start_count,
             status="crossing_inside_exact_tangent_range",
@@ -105,6 +111,7 @@ def tangent_gate(label: str, n: int, k: int, q_line: int, eps_bits: int) -> Gate
         q_line=q_line,
         eps_bits=eps_bits,
         exact_start=exact_start,
+        exact_distance_limit=exact_distance_limit,
         budget=budget,
         exact_start_count=exact_start_count,
         status="exact_tangent_range_already_within_budget",
@@ -129,7 +136,10 @@ def active_row() -> Gate:
 
 def check_gate(gate: Gate) -> None:
     assert gate.exact_start == ceil_div(2 * gate.n + gate.k, 3)
+    assert gate.exact_distance_limit == (gate.n - gate.k) // 3
+    assert gate.exact_start == gate.n - gate.exact_distance_limit
     assert gate.exact_start_count == gate.n - gate.exact_start + 1
+    assert gate.exact_start_count == gate.exact_distance_limit + 1
     assert gate.budget == gate.q_line // (1 << gate.eps_bits)
 
     if gate.status == "crossing_inside_exact_tangent_range":
@@ -137,11 +147,13 @@ def check_gate(gate: Gate) -> None:
         assert gate.first_safe_agreement is not None
         assert gate.last_unsafe_agreement + 1 == gate.first_safe_agreement
         assert gate.last_unsafe_agreement >= gate.exact_start
+        assert 1 <= gate.budget <= gate.exact_distance_limit
         assert gate.n - gate.last_unsafe_agreement + 1 == gate.budget + 1
         assert gate.n - gate.first_safe_agreement + 1 == gate.budget
         assert (gate.budget + 1) * (1 << gate.eps_bits) > gate.q_line
         assert gate.budget * (1 << gate.eps_bits) <= gate.q_line
     elif gate.status == "exact_tangent_range_already_within_budget":
+        assert gate.budget > gate.exact_distance_limit
         assert gate.budget >= gate.exact_start_count
         assert gate.first_safe_agreement == gate.exact_start
     elif gate.status == "no_safe_agreement_in_exact_tangent_range":
@@ -185,6 +197,7 @@ def print_human(gates: list[Gate]) -> None:
         print(f"  q_line={gate.q_line}")
         print(f"  eps_bits={gate.eps_bits}")
         print(f"  exact_start={gate.exact_start}")
+        print(f"  exact_distance_limit={gate.exact_distance_limit}")
         print(f"  exact_start_count={gate.exact_start_count}")
         print(f"  budget=floor(q_line/2^eps_bits)={gate.budget}")
         print(f"  status={gate.status}")
@@ -236,6 +249,7 @@ def main() -> None:
     active = gates[0] if not custom else None
     if active is not None:
         assert active.exact_start == 427
+        assert active.exact_distance_limit == 85
         assert active.budget == 6
         assert active.status == "crossing_inside_exact_tangent_range"
         assert active.last_unsafe_agreement == 506

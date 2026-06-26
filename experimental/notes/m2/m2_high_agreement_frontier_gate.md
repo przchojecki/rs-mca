@@ -96,6 +96,36 @@ Together with the moving-root lower floor, this proves the exact identity in
 the high-agreement range.  No quotient-periodic or smooth-domain assumption is
 used in this exact range.
 
+## Distance-Coordinate Form
+
+It is often cleaner to write the agreement threshold as
+
+```text
+a = n-d,
+```
+
+where `d` is the integer Hamming distance allowed by a closed ball on the
+length-`n` grid.  The exactness condition becomes
+
+```text
+3(n-d)-2n >= k,
+```
+
+or equivalently
+
+```text
+d <= floor((n-k)/3).
+```
+
+Thus, with redundancy `r=n-k`, the exact tangent staircase says
+
+```text
+LD_sw(C,n-d) = d+1        for every 0 <= d <= floor(r/3).
+```
+
+This is the form consumed by the frontier gate: the tangent theorem exactly
+settles the first `floor(r/3)+1` distance levels nearest zero distance.
+
 ## Row-Level Gate
 
 Fix a target `2^-eps_bits` and a line field size `q_line`.  Put
@@ -103,6 +133,18 @@ Fix a target `2^-eps_bits` and a line field size `q_line`.  Put
 ```text
 B = floor(q_line / 2^eps_bits),
 a0 = ceil((2n+k)/3).
+```
+
+Equivalently, put
+
+```text
+d0 = floor((n-k)/3).
+```
+
+Then the exact tangent range is `0 <= d <= d0`, and
+
+```text
+LD_sw(C,n-d) = d+1.
 ```
 
 Since `LD_sw(C,a)` is an integer,
@@ -120,7 +162,7 @@ LD_sw(C,a) <= B.
 Therefore, if
 
 ```text
-1 <= B < n - a0 + 1,
+1 <= B <= d0,
 ```
 
 then the exact tangent range contains the target crossing and gives
@@ -156,6 +198,8 @@ B >= n-a0+1:
   crossing, if any, lies below the range where the tangent upper bound is exact.
 ```
 
+The second boundary case is the same as `B > d0`.
+
 ## Active `F_17^32` Row
 
 For
@@ -172,13 +216,14 @@ the gate data are
 n = 512,
 k = 256,
 a0 = ceil((2n+k)/3) = 427,
+d0 = floor((n-k)/3) = 85,
 B = floor(17^32 / 2^128) = 6.
 ```
 
 Since
 
 ```text
-1 <= 6 < 512 - 427 + 1 = 86,
+1 <= 6 <= 85,
 ```
 
 the exact tangent range contains the crossing:
