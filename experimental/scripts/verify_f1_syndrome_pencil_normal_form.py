@@ -63,6 +63,53 @@ QUADRIC_ONLY_CASES = (
     },
 )
 
+J2_FIBER_ONLY_CASES = (
+    {
+        "name": "rank-two unique split quadratic",
+        "p": 7,
+        "domain": (1, 2, 3, 4, 5, 6),
+        "rows": (
+            ((1, 0), (0, 0), (1, 0)),
+            ((0, 0), (1, 0), (5, 0)),
+        ),
+        "expected_rank": 2,
+        "expected_landings": 1,
+    },
+    {
+        "name": "rank-one fixed-sum fiber",
+        "p": 7,
+        "domain": (1, 2, 3, 4, 5, 6),
+        "rows": (
+            ((0, 0), (1, 0), (5, 0)),
+            ((0, 0), (0, 0), (0, 0)),
+        ),
+        "expected_rank": 1,
+        "expected_landings": 2,
+    },
+    {
+        "name": "rank-one star fiber",
+        "p": 7,
+        "domain": (1, 2, 3, 4, 5, 6),
+        "rows": (
+            ((1, 0), (1, 0), (1, 0)),
+            ((0, 0), (0, 0), (0, 0)),
+        ),
+        "expected_rank": 1,
+        "expected_landings": 5,
+    },
+    {
+        "name": "rank-zero unrestricted fiber",
+        "p": 7,
+        "domain": (1, 2, 3, 4, 5, 6),
+        "rows": (
+            ((0, 0), (0, 0), (0, 0)),
+            ((0, 0), (0, 0), (0, 0)),
+        ),
+        "expected_rank": 0,
+        "expected_landings": 15,
+    },
+)
+
 
 @dataclass(frozen=True)
 class QuadraticField:
@@ -536,6 +583,49 @@ def run_quadric_case(params: dict[str, object]) -> dict[str, object]:
     }
 
 
+def run_j2_fiber_case(params: dict[str, object]) -> dict[str, object]:
+    p = int(params["p"])
+    field = QuadraticField(p=p, d=least_nonsquare(p))
+    domain = [field.element(int(value)) for value in params["domain"]]
+    rows = [[tuple(entry) for entry in row] for row in params["rows"]]
+    rank = matrix_rank(field, rows)
+    landings = 0
+    for x, y in itertools.combinations(domain, 2):
+        locator = locator_coefficients(field, [x, y])
+        if all(dot(field, row, locator) == field.zero for row in rows):
+            landings += 1
+
+    mismatches: list[dict[str, object]] = []
+    if rank != params["expected_rank"]:
+        mismatches.append(
+            {"type": "j2_fiber_rank", "expected": params["expected_rank"], "actual": rank}
+        )
+    if landings != params["expected_landings"]:
+        mismatches.append(
+            {
+                "type": "j2_fiber_landing_count",
+                "expected": params["expected_landings"],
+                "actual": landings,
+            }
+        )
+    if rank == 2 and landings > 1:
+        mismatches.append({"type": "j2_rank2_bound", "landings": landings})
+    if rank == 1 and landings > len(domain):
+        mismatches.append(
+            {"type": "j2_rank1_bound", "landings": landings, "n": len(domain)}
+        )
+
+    return {
+        "name": params["name"],
+        "field": f"F_{p}[u]/(u^2-{field.d})",
+        "domain_size": len(domain),
+        "rank": rank,
+        "landings": landings,
+        "passed": not mismatches,
+        "mismatches": mismatches[:5],
+    }
+
+
 def divisors(value: int) -> list[int]:
     return [candidate for candidate in range(2, value) if value % candidate == 0]
 
@@ -625,6 +715,66 @@ def quotient_periodic_checks(
     return checks, mismatches
 
 
+def fixed_slope_j2_checks(
+    field: QuadraticField,
+    points: Sequence[Element],
+    u: Sequence[Element],
+    v: Sequence[Element],
+    n: int,
+    j: int,
+    t: int,
+) -> tuple[dict[str, int], list[dict[str, object]]]:
+    if j != 2 or t != 2:
+        return {"checks": 0, "max_rank2_landings": 0, "max_rank1_landings": 0}, []
+
+    left = hankel_matrix(u, t, j)
+    right = hankel_matrix(v, t, j)
+    complements = [
+        locator_coefficients(field, [points[left_index], points[right_index]])
+        for left_index, right_index in itertools.combinations(range(n), 2)
+    ]
+    mismatches: list[dict[str, object]] = []
+    max_rank2_landings = 0
+    max_rank1_landings = 0
+    checks = 0
+
+    for slope in field.elements():
+        pencil = pencil_at_slope(field, left, right, slope)
+        rank = matrix_rank(field, pencil)
+        landings = sum(
+            1
+            for locator in complements
+            if all(dot(field, row, locator) == field.zero for row in pencil)
+        )
+        checks += 1
+        if rank == 2:
+            max_rank2_landings = max(max_rank2_landings, landings)
+            if landings > 1:
+                mismatches.append(
+                    {
+                        "type": "j2_rank2_fiber_bound",
+                        "slope": slope,
+                        "landings": landings,
+                    }
+                )
+        elif rank == 1:
+            max_rank1_landings = max(max_rank1_landings, landings)
+            if landings > n:
+                mismatches.append(
+                    {
+                        "type": "j2_rank1_fiber_bound",
+                        "slope": slope,
+                        "landings": landings,
+                        "n": n,
+                    }
+                )
+    return {
+        "checks": checks,
+        "max_rank2_landings": max_rank2_landings,
+        "max_rank1_landings": max_rank1_landings,
+    }, mismatches
+
+
 def run_case(params: dict[str, int]) -> dict[str, object]:
     p = params["p"]
     n = params["n"]
@@ -664,6 +814,10 @@ def run_case(params: dict[str, int]) -> dict[str, object]:
         field, points, u, v, n, j, t
     )
     mismatches.extend(quotient_mismatches)
+    j2_fiber_summary, j2_fiber_mismatches = fixed_slope_j2_checks(
+        field, points, u, v, n, j, t
+    )
+    mismatches.extend(j2_fiber_mismatches)
 
     for complement in itertools.combinations(range(n), j):
         support = tuple(index for index in range(n) if index not in complement)
@@ -755,6 +909,9 @@ def run_case(params: dict[str, int]) -> dict[str, object]:
         "projective_gate_supports": projective_gate_supports,
         "coordinate_syndrome_passed": coordinate_syndrome_passed,
         "quotient_periodic_checks": quotient_checks,
+        "j2_fiber_checks": j2_fiber_summary["checks"],
+        "j2_max_rank2_landings": j2_fiber_summary["max_rank2_landings"],
+        "j2_max_rank1_landings": j2_fiber_summary["max_rank1_landings"],
         "max_reduced_dimension": max_reduced_dimension,
         "dimension_bound": 2 * t,
         "passed": not mismatches,
@@ -769,13 +926,15 @@ def main() -> int:
 
     records = [run_case(case) for case in CASES]
     quadric_records = [run_quadric_case(case) for case in QUADRIC_ONLY_CASES]
-    passed = all(record["passed"] for record in records + quadric_records)
+    j2_fiber_records = [run_j2_fiber_case(case) for case in J2_FIBER_ONLY_CASES]
+    passed = all(record["passed"] for record in records + quadric_records + j2_fiber_records)
     certificate = {
         "status": "AUDIT / EXPERIMENTAL",
         "theorem": "F1 syndrome-pencil normal form",
         "passed": passed,
         "cases": records,
         "quadric_only_cases": quadric_records,
+        "j2_fiber_only_cases": j2_fiber_records,
     }
     if args.json:
         print(json.dumps(certificate, indent=2))
@@ -792,6 +951,9 @@ def main() -> int:
                 f"{record['projective_gate_supports']} gated supports, "
                 f"coordinate syndrome={'OK' if record['coordinate_syndrome_passed'] else 'FAIL'}, "
                 f"quotient checks={record['quotient_periodic_checks']}, "
+                f"j2 fiber checks={record['j2_fiber_checks']}, "
+                f"j2 rank2 max={record['j2_max_rank2_landings']}, "
+                f"j2 rank1 max={record['j2_max_rank1_landings']}, "
                 f"max dim(V)={record['max_reduced_dimension']} <= {record['dimension_bound']}"
             )
         for record in quadric_records:
@@ -801,6 +963,13 @@ def main() -> int:
                 f"rank={record['rank']}, zero_quadric={record['zero_quadric']}, "
                 f"rank-defective slopes={record['rank_defective_slope_count']}, "
                 f"global_rank_defective={record['global_rank_defective']}"
+            )
+        for record in j2_fiber_records:
+            flag = "PASS" if record["passed"] else "FAIL"
+            print(
+                f"  [{flag}] {record['name']}: {record['field']}, "
+                f"|D|={record['domain_size']}, rank={record['rank']}, "
+                f"landings={record['landings']}"
             )
         print(f"RESULT: {'PASS' if passed else 'FAIL'}")
     return 0 if passed else 1

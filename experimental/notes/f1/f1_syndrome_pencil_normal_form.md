@@ -544,6 +544,70 @@ the zero polynomial, then all rank-defective slopes lie among the roots of
 that one nonzero quadratic, hence there are at most two. If every minor is the
 zero polynomial, then `rank P_z<=1` identically in `z`.
 
+## Corollary 9: The `j=2` Fixed-Slope Fiber Is Linear-Sized
+
+Assume `t=2` and `j=2`, so support complements have size two. Fix a slope
+`z`, and put
+
+```text
+P_z = H_{2,2}(u) + z H_{2,2}(v).
+```
+
+Let `D` be the evaluation set. Then the number of two-point complements
+`T={x,y}` satisfying the landing equation
+
+```text
+P_z ell_T = 0
+```
+
+obeys the following bounds:
+
+- if `rank P_z=2`, there is at most one such complement;
+- if `rank P_z=1`, there are at most `|D|` such complements;
+- if `rank P_z=0`, this is a rank-zero exceptional slope and the landing
+  equation imposes no restriction.
+
+The same bounds hold after imposing the noncontainment condition
+`H(v)ell_T != 0`.
+
+## Proof
+
+For `T={x,y}`, the monic locator vector is
+
+```text
+ell_T = (xy, -(x+y), 1).
+```
+
+If `rank P_z=2`, the homogeneous kernel of `P_z` is one-dimensional. Its
+intersection with the affine monic slice `ell_2=1` is empty or a single point,
+so at most one monic locator, and hence at most one complement, can land.
+
+If `rank P_z=1`, the landing equation is one nonzero linear equation
+
+```text
+alpha c_0 + beta c_1 + gamma = 0
+```
+
+in the locator coefficients. Substituting `c_0=xy` and `c_1=-(x+y)` gives
+
+```text
+alpha xy - beta(x+y) + gamma = 0.              (3)
+```
+
+If `alpha=0` and `beta!=0`, then (3) fixes the sum `x+y`, giving at most one
+partner for each `x` and hence at most `|D|/2` unordered complements. If
+`alpha!=0`, then for every `x` except possibly `x=beta/alpha`, equation (3)
+determines at most one `y`. At the exceptional `x`, either no `y` works or
+the equation factors as
+
+```text
+(alpha x - beta)(alpha y - beta)=0,
+```
+
+which gives only the star through `x=beta/alpha`. In all cases there are at
+most `|D|` unordered distinct complements. The noncontainment condition only
+removes complements.
+
 ## Why This Helps F1
 
 The naive extension-field lift is already false: genuinely `F`-valued lines
@@ -575,7 +639,10 @@ decimated-syndrome quadratic. Corollary 7 separates the remaining
 rank/determinant branch into a ruled linear degeneracy and a genuine quadric
 incidence problem. Corollary 8 then controls the slope-collision side: except
 for at most two rank-defective slopes, or the global rank-one pencil branch,
-same-slope fibers are codimension-two split-locator intersections.
+same-slope fibers are codimension-two split-locator intersections. Corollary 9
+closes the first nontrivial complement size: for `j=2`, every fixed-slope
+fiber is either unique, linear-sized, or one of the explicitly marked
+rank-zero exceptional slopes.
 
 ## Verification
 
@@ -594,4 +661,7 @@ nontrivial quotient fibers. It also runs fast algebraic checks for the
 `t=2` reduced quadric, including a full-rank nonzero determinant form and a
 crafted ruling-degenerate zero determinant form. The quadric checks also
 enumerate fixed slopes and verify the rank-defective dichotomy of
-Corollary 8.
+Corollary 8. In the `j=2` exhaustive cases, the verifier also checks the
+fixed-slope fiber bounds of Corollary 9, and it includes constructed
+rank-two, rank-one fixed-sum, rank-one star, and rank-zero `j=2` fibers so all
+branches of the bound are exercised.

@@ -153,6 +153,24 @@ Keep entries concise and link to the relevant files.
   quotient-periodic removal to attack a concrete split-locator intersection
   bound in the nonzero quadric branch.
 
+### 2026-06-26 - F1 j=2 fixed-slope fiber bound
+
+- **Agent/model:** Codex acting autonomously through AllenGrahamHart.
+- **Files added or changed:** `experimental/notes/f1/f1_syndrome_pencil_normal_form.md`,
+  `experimental/scripts/verify_f1_syndrome_pencil_normal_form.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT / EXPERIMENTAL.
+- **What is being added:** The F1 syndrome-pencil note now proves the first
+  concrete split-locator fiber bound in the reduced `t=2` branch: when
+  `j=2`, a rank-two fixed-slope pencil has at most one split complement, while
+  a rank-one fixed-slope pencil has at most `|D|` split complements.
+- **How it is useful:** Gives a direct finite packing estimate for the first
+  nontrivial complement size, separating unique nonexceptional fibers from the
+  linear-sized rank-one exceptional fibers.
+- **What to do next:** Extend this style of fixed-slope intersection bound to
+  `j=3`, where the split-locator variety becomes the first genuinely curved
+  incidence problem.
+
 ### 2026-06-25 - Latest PR integration and estimate audit
 
 - **Agent/model:** AllenGrahamHart PRs #101--#107, ScottDHughes PR #99, and
