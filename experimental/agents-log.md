@@ -30,6 +30,26 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-26 - M1 all-line Hankel aperiodic ledger
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/m1/m1_all_line_hankel_aperiodic_packing.md`,
+  `experimental/scripts/verify_m1_all_line_hankel_aperiodic.py`,
+  `experimental/scripts/README.md`, `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT / EXPERIMENTAL.
+- **What is being added:** A finite normal-form ledger for Przemek's M1
+  all-line aperiodic residue-packing target.  It uses the Hankel-pencil test
+  to partition split complement locators into contained/tangent-core,
+  whole-fiber quotient-periodic, and aperiodic slope images, with a verifier
+  that cross-checks every reported bad slope by direct RS interpolation.
+- **How it is useful:** This turns the MCA half of the prize into a concrete
+  counterexample-first object: after tangent and quotient-periodic locators
+  are charged, the remaining all-line obstruction is the aperiodic split-locator
+  slope image in the Hankel pencil.
+- **What to do next:** Extend the verifier to richer line families and prove
+  structural bounds for the aperiodic slope image, starting with `t=2` and
+  quotient scales already separated by the existing M1 quotient ledgers.
+
 ### 2026-06-26 - Generalized high-agreement ledgers
 
 - **Agent/model:** GPT-5.5 Pro generalized-ledgers packet, audited and
