@@ -197,6 +197,63 @@ codim K_0
 
 because each Hankel window has `t` rows.
 
+## Corollary 4: Projective Slope Gate
+
+For a complement `T`, put
+
+```text
+a_T = H_{t,j}(u) ell_T,        b_T = H_{t,j}(v) ell_T    in F^t.
+```
+
+Then `T` contributes a noncontained bad slope if and only if
+
+```text
+b_T != 0
+```
+
+and `a_T` is a scalar multiple of `b_T`. When this happens, the slope is
+unique and is given by
+
+```text
+z_T = - a_{T,m} / b_{T,m}
+```
+
+for any coordinate `m` with `b_{T,m} != 0`.
+
+Equivalently, `T` passes the slope gate exactly when
+
+```text
+a_{T,m} b_{T,l} - a_{T,l} b_{T,m} = 0
+        for all 0 <= m < l < t,
+```
+
+and `b_T != 0`.
+
+In particular:
+
+- for `t=1`, every complement with `b_T != 0` contributes one slope;
+- for `t=2`, the whole landing gate is the single determinant
+
+```text
+a_{T,0} b_{T,1} - a_{T,1} b_{T,0} = 0,
+```
+
+with the noncontainment condition `b_T != 0`.
+
+## Proof
+
+The landing equation from Theorem 2 is
+
+```text
+a_T + z b_T = 0.
+```
+
+If `b_T=0`, any landing is contained, by Theorem 2, so `T` contributes no
+noncontained slope. If `b_T != 0`, a solution `z` exists exactly when `a_T`
+lies on the one-dimensional line spanned by `b_T`; the scalar is forced by any
+nonzero coordinate of `b_T`. The displayed minors are the usual rank-one
+criterion for the two-column matrix `[a_T b_T]`.
+
 ## Why This Helps F1
 
 The naive extension-field lift is already false: genuinely `F`-valued lines
@@ -218,7 +275,9 @@ The remaining positive F1 theorem should therefore be an inverse-incidence
 bound in the reduced space `V`: after quotient-periodic locator families and
 contained/tangent cores are separated, the number of slopes whose moving
 kernel meets the projected `D`-split locator variety should be polynomial in
-`n` above the corrected reserve.
+`n` above the corrected reserve. Corollary 4 is the finite gate for that
+program: first count split locators satisfying the determinant equations, then
+control collisions of the resulting rational slope map `T -> z_T`.
 
 ## Verification
 

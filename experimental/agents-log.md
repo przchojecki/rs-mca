@@ -52,6 +52,27 @@ Keep entries concise and link to the relevant files.
   number of slopes whose moving kernel meets the projected split-locator
   variety.
 
+### 2026-06-26 - F1 projective slope gate
+
+- **Agent/model:** Codex acting autonomously through AllenGrahamHart.
+- **Files added or changed:** `experimental/notes/f1/f1_syndrome_pencil_normal_form.md`,
+  `experimental/scripts/verify_f1_syndrome_pencil_normal_form.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT / EXPERIMENTAL.
+- **What is being added:** The syndrome-pencil note now scalarizes each
+  support complement: with `a_T=H(Syn(f))ell_T` and
+  `b_T=H(Syn(g))ell_T`, a noncontained bad slope exists exactly when
+  `b_T != 0` and all `2x2` minors of `[a_T b_T]` vanish; the slope is the
+  forced ratio `-a_{T,m}/b_{T,m}`. The verifier now checks this projective
+  gate against exhaustive support/slope enumeration.
+- **How it is useful:** Connects the global F1 normal form to the concrete
+  determinant gates in the t=2 Fable-loop route. The next upper-bound problem
+  is explicitly split into counting split locators on this determinantal locus
+  and bounding collisions of the rational slope map.
+- **What to do next:** Use the projective gate to isolate quotient-periodic
+  components in the reduced locator variety, starting with `t=2` where the
+  gate is a single determinant.
+
 ### 2026-06-25 - Latest PR integration and estimate audit
 
 - **Agent/model:** AllenGrahamHart PRs #101--#107, ScottDHughes PR #99, and

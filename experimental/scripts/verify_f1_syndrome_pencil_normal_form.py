@@ -204,6 +204,23 @@ def is_zero_vector(field: QuadraticField, vector: Sequence[Element]) -> bool:
     return all(value == field.zero for value in vector)
 
 
+def projective_slope(
+    field: QuadraticField,
+    a_vector: Sequence[Element],
+    b_vector: Sequence[Element],
+) -> Element | None:
+    if is_zero_vector(field, b_vector):
+        return None
+    pivot = next(index for index, value in enumerate(b_vector) if value != field.zero)
+    scalar = field.div(a_vector[pivot], b_vector[pivot])
+    if all(
+        a_value == field.mul(scalar, b_value)
+        for a_value, b_value in zip(a_vector, b_vector)
+    ):
+        return field.neg(scalar)
+    return None
+
+
 def interpolate_values(
     field: QuadraticField,
     xs: Sequence[Element],
@@ -302,6 +319,7 @@ def run_case(params: dict[str, int]) -> dict[str, object]:
     support_count = 0
     slope_tests = 0
     max_reduced_dimension = 0
+    projective_gate_supports = 0
 
     for complement in itertools.combinations(range(n), j):
         support = tuple(index for index in range(n) if index not in complement)
@@ -325,6 +343,7 @@ def run_case(params: dict[str, int]) -> dict[str, object]:
 
         f_explained = explained_on_support(field, points, f_word, support, k)
         g_explained = explained_on_support(field, points, g_word, support, k)
+        support_bad_slopes: set[Element] = set()
 
         for z in field.elements():
             line_word = [
@@ -352,6 +371,29 @@ def run_case(params: dict[str, int]) -> dict[str, object]:
                 continue
             if pencil_bad:
                 bad_slopes.add(z)
+                support_bad_slopes.add(z)
+
+        gated_slope = projective_slope(field, hu, hv)
+        if gated_slope is None:
+            if support_bad_slopes:
+                mismatches.append(
+                    {
+                        "type": "projective_gate_missing",
+                        "complement": complement,
+                        "support_bad_slopes": sorted(support_bad_slopes),
+                    }
+                )
+        else:
+            projective_gate_supports += 1
+            if support_bad_slopes != {gated_slope}:
+                mismatches.append(
+                    {
+                        "type": "projective_gate_slope",
+                        "complement": complement,
+                        "gated_slope": gated_slope,
+                        "support_bad_slopes": sorted(support_bad_slopes),
+                    }
+                )
         support_count += 1
 
     return {
@@ -366,6 +408,7 @@ def run_case(params: dict[str, int]) -> dict[str, object]:
         "support_complements": support_count,
         "slope_tests": slope_tests,
         "bad_slope_count": len(bad_slopes),
+        "projective_gate_supports": projective_gate_supports,
         "max_reduced_dimension": max_reduced_dimension,
         "dimension_bound": 2 * t,
         "passed": not mismatches,
@@ -398,6 +441,7 @@ def main() -> int:
                 f"agreement={params['agreement']}, j={params['j']}, t={params['t']}: "
                 f"{record['slope_tests']} slope/support tests, "
                 f"{record['bad_slope_count']} bad slopes, "
+                f"{record['projective_gate_supports']} gated supports, "
                 f"max dim(V)={record['max_reduced_dimension']} <= {record['dimension_bound']}"
             )
         print(f"RESULT: {'PASS' if passed else 'FAIL'}")
