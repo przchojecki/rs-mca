@@ -498,13 +498,7 @@ def quadratic_slice_profile(
             elif max(slope_counts.values()) == noncontained_count:
                 zero_det_constant_slices += 1
             else:
-                if direction_rank == 2:
-                    raise AssertionError("rank-two zero determinant slice was not constant")
-                if direction_rank == 0:
-                    raise AssertionError("rank-zero zero determinant slice was noncontained")
-                if any(count > 1 for count in slope_counts.values()):
-                    raise AssertionError("zero determinant slice has a mixed repeated slope")
-                zero_det_injective_slices += 1
+                raise AssertionError("zero determinant slice was not constant-slope")
         else:
             if len(field_roots) > 2:
                 raise AssertionError("nonzero determinant slice has more than two roots")

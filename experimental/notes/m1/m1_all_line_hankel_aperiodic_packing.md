@@ -249,10 +249,21 @@ force `a_s=-z b_s` and `a_p=-z b_p` for a single scalar `z`.  Thus every
 noncontained point of the slice has the same slope.
 
 If instead `span{b_s,b_p}` has rank zero, the whole slice is contained and
-contributes no noncontained slopes.  In the remaining rank-one case, all
-nonzero `b(x)` lie on one line in `F^2`, and `z(x)` is a fractional-linear
-ratio of two affine scalar functions.  Hence it is either constant or injective
-on the noncontained points of the slice.
+contributes no noncontained slopes.  The remaining rank-one case is also
+constant-slope because the two locator vectors are not arbitrary affine
+vectors: for every syndrome `y`,
+
+```text
+H_{2,j}(y)s_R=(S_0,S_1),        H_{2,j}(y)p_R=(P_0,S_0).
+```
+
+Thus, writing `b_s=(B_0,B_1)` and `b_p=(C,B_0)`, rank one gives
+`CB_1=B_0^2`.  The three zero-determinant identities force `a_s` and `a_p` to
+lie on the same one-dimensional direction as `b_s` and `b_p`; the displayed
+Hankel overlap then forces the two scalar ratios to agree.  The edge cases
+`B_0=0` say that one of `b_s,b_p` vanishes, and the same identities force the
+matching `a` vector to vanish, again giving a single slope on every
+noncontained point.
 
 Equivalently, if two distinct exchanged roots `x,y` have the same slope `z`,
 then the same subtraction argument as above gives
@@ -263,17 +274,15 @@ then the same subtraction argument as above gives
 ```
 
 Consequently every noncontained member of that zero-determinant slice has the
-same slope `z`.  If no such repeated slope occurs, the slope map is injective.
-Thus zero-determinant one-root slices split into:
+same slope `z`.  Thus zero-determinant one-root slices split into:
 
 1. constant-slope root-slice packets, already handled by the same-slope
    root-slice ledger; or
-2. slope-injective zero slices, which create different-slope edges but no
-   repeated-slope fiber.
+2. contained/tangent slices, which contribute no noncontained aperiodic slope.
 
 The verifier certifies this split by checking the three determinant
 coefficients of `Delta_R`, computing the direction-pencil rank, and then
-classifying the slope multiset on every zero-determinant slice.
+checking that every noncontained zero-determinant slice is constant-slope.
 
 ## Root-Slice Peeling Corollary
 
@@ -312,14 +321,14 @@ enumerates small cyclic-domain cases.  For each case it:
   fixed-slope root slice predicted by the lemma above;
 - verifies that different-slope strict edges obey the quadratic root-slice
   dichotomy above;
-- verifies that every zero-determinant slice is constant-slope or
-  slope-injective via the direction-pencil rank, and that constant zero slices
-  account for all same-slope strict edges;
+- verifies that every zero-determinant slice is constant-slope or contained
+  via the direction-pencil rank and Hankel overlap, and that constant zero
+  slices account for all same-slope strict edges;
 - peels root-slice members and checks that the residual aperiodic family has
   no same-slope one-exchange edges;
 - runs one deterministic arbitrary-line probe which hits the rank-one
   zero-determinant branch and verifies that it is classified by the same
-  constant/injective zero-slice ledger.
+  constant/contained zero-slice ledger.
 
 The default audit currently checks three cyclic-domain parameter rows, twelve
 deterministic polynomial-family line samples, and one deterministic arbitrary
@@ -333,19 +342,17 @@ and `190` strict one-exchange pairs.  Of these strict edges, `78` are
 same-slope edges, and the verifier certifies that they are exactly the
 repeated pairs inside one constant-slope rank-two zero-determinant slice with
 `13` aperiodic members.  The remaining `112` different-slope strict edges lie
-on `112` nonzero quadratic slices; there are no rank-one slope-injective zero
-slices and no zero-determinant different-slope edge slices in this audit row.
-After peeling the root-slice members, the residual family has `86` aperiodic
-locators, all `16` residual slopes still occur, the maximum residual slope
-fiber drops to `9`, and the residual same-slope one-exchange edge count is
-`0`.
+on `112` nonzero quadratic slices; there are no zero-determinant
+different-slope edge slices in this audit row.  After peeling the root-slice
+members, the residual family has `86` aperiodic locators, all `16` residual
+slopes still occur, the maximum residual slope fiber drops to `9`, and the
+residual same-slope one-exchange edge count is `0`.
 
 The arbitrary `F_17`, `j=4`, `t=2` rank-one probe has `176` aperiodic locators,
 all `17` slopes, and `16` zero-determinant slices.  Four of those zero slices
 have rank-one direction pencil; the verifier classifies all zero slices in the
-probe as constant-slope and finds no slope-injective zero slice.  These are
-exactly the profile quantities a packing proof must shrink or explain
-structurally.
+probe as constant-slope.  These are exactly the profile quantities a packing
+proof must shrink or explain structurally.
 
 This is an audit/verifier for the M1 target, not a proof of the desired
 polynomial all-line bound.  Its purpose is to make future counterexample-first
