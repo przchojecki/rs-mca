@@ -16,6 +16,7 @@ import argparse
 import json
 from dataclasses import asdict, dataclass
 from fractions import Fraction
+from itertools import combinations
 from typing import Any
 
 
@@ -165,7 +166,7 @@ def projective_exact_distances(
 
 
 def challenge_pullback_probability(
-    challenge_to_slope: list[int], bad_slopes: set[int]
+    challenge_to_slope: list[Any], bad_slopes: set[Any]
 ) -> Fraction:
     if not challenge_to_slope:
         raise ValueError("expected at least one challenge")
@@ -173,13 +174,44 @@ def challenge_pullback_probability(
     return Fraction(bad_challenges, len(challenge_to_slope))
 
 
-def max_fiber_size(challenge_to_slope: list[Any]) -> int:
+def fiber_sizes_descending(challenge_to_slope: list[Any]) -> list[int]:
     if not challenge_to_slope:
         raise ValueError("expected at least one challenge")
     fibers: dict[Any, int] = {}
     for slope in challenge_to_slope:
         fibers[slope] = fibers.get(slope, 0) + 1
-    return max(fibers.values())
+    return sorted(fibers.values(), reverse=True)
+
+
+def max_fiber_size(challenge_to_slope: list[Any]) -> int:
+    return fiber_sizes_descending(challenge_to_slope)[0]
+
+
+def adversarial_fiber_envelope(
+    challenge_to_slope: list[Any], bad_count: int
+) -> Fraction:
+    if bad_count < 0:
+        raise ValueError("expected nonnegative bad_count")
+    fibers = fiber_sizes_descending(challenge_to_slope)
+    return Fraction(sum(fibers[:bad_count]), len(challenge_to_slope))
+
+
+def brute_adversarial_fiber_envelope(
+    challenge_to_slope: list[Any], bad_count: int
+) -> Fraction:
+    if not challenge_to_slope:
+        raise ValueError("expected at least one challenge")
+    if bad_count < 0:
+        raise ValueError("expected nonnegative bad_count")
+    slopes = list(set(challenge_to_slope))
+    best = Fraction(0, 1)
+    for size in range(min(bad_count, len(slopes)) + 1):
+        for bad_tuple in combinations(slopes, size):
+            best = max(
+                best,
+                challenge_pullback_probability(challenge_to_slope, set(bad_tuple)),
+            )
+    return best
 
 
 def challenge_pullback_bound(
@@ -464,18 +496,21 @@ def check_challenge_pullback_ledger() -> None:
     identity = list(range(8))
     bad = {1, 3, 6}
     assert challenge_pullback_probability(identity, bad) == Fraction(3, 8)
+    assert fiber_sizes_descending(identity) == [1] * 8
     assert max_fiber_size(identity) == 1
     assert challenge_pullback_bound(len(identity), len(bad), 1) == Fraction(3, 8)
 
     two_to_one = [0, 0, 1, 1, 2, 2, 3, 3]
     bad = {1, 3}
     assert challenge_pullback_probability(two_to_one, bad) == Fraction(1, 2)
+    assert fiber_sizes_descending(two_to_one) == [2, 2, 2, 2]
     assert max_fiber_size(two_to_one) == 2
     assert challenge_pullback_bound(len(two_to_one), len(bad), 2) == Fraction(1, 2)
 
     constant = [5] * 8
     bad = {5}
     assert challenge_pullback_probability(constant, bad) == Fraction(1, 1)
+    assert fiber_sizes_descending(constant) == [8]
     assert max_fiber_size(constant) == 8
     assert challenge_pullback_bound(len(constant), len(bad), 8) == Fraction(1, 1)
 
@@ -486,6 +521,48 @@ def check_challenge_pullback_ledger() -> None:
     assert challenge_pullback_bound(
         active.q_line + 1, active.projective_budget, 1
     ) == Fraction(active.projective_budget, active.q_line + 1)
+
+
+def check_adversarial_fiber_envelope() -> None:
+    identity = list(range(8))
+    assert adversarial_fiber_envelope(identity, 3) == Fraction(3, 8)
+    assert adversarial_fiber_envelope(identity, 3) == brute_adversarial_fiber_envelope(
+        identity, 3
+    )
+
+    two_to_one = [0, 0, 1, 1, 2, 2, 3, 3]
+    assert adversarial_fiber_envelope(two_to_one, 2) == Fraction(1, 2)
+    assert adversarial_fiber_envelope(two_to_one, 2) == (
+        brute_adversarial_fiber_envelope(two_to_one, 2)
+    )
+
+    nonuniform = [0, 0, 0, 1, 1, 2, 3, 4]
+    assert fiber_sizes_descending(nonuniform) == [3, 2, 1, 1, 1]
+    assert adversarial_fiber_envelope(nonuniform, 2) == Fraction(5, 8)
+    assert adversarial_fiber_envelope(nonuniform, 2) == (
+        brute_adversarial_fiber_envelope(nonuniform, 2)
+    )
+    assert challenge_pullback_bound(8, 2, max_fiber_size(nonuniform)) == Fraction(3, 4)
+
+    constant = [5] * 8
+    assert adversarial_fiber_envelope(constant, 1) == Fraction(1, 1)
+    assert adversarial_fiber_envelope(constant, 1) == (
+        brute_adversarial_fiber_envelope(constant, 1)
+    )
+
+    # A uniform projection from a larger challenge set to base slopes recovers
+    # the base-slope denominator, not the larger challenge denominator.
+    prime = 5
+    extension_degree = 3
+    uniform_projection = [x % prime for x in range(prime**extension_degree)]
+    assert len(uniform_projection) == prime**extension_degree
+    assert fiber_sizes_descending(uniform_projection) == [
+        prime ** (extension_degree - 1)
+    ] * prime
+    assert adversarial_fiber_envelope(uniform_projection, 2) == Fraction(2, prime)
+    assert challenge_pullback_bound(
+        len(uniform_projection), 2, max_fiber_size(uniform_projection)
+    ) == Fraction(2, prime)
 
 
 def check_rational_challenge_map_degree_ledger() -> None:
@@ -500,6 +577,9 @@ def check_rational_challenge_map_degree_ledger() -> None:
     assert challenge_pullback_probability(
         polynomial_values, polynomial_bad
     ) <= challenge_pullback_bound(prime, len(polynomial_bad), polynomial_degree)
+    assert adversarial_fiber_envelope(
+        polynomial_values, len(polynomial_bad)
+    ) <= challenge_pullback_bound(prime, len(polynomial_bad), polynomial_degree)
 
     # phi(x)=(x^2+1)/(x-3) maps to P^1(F_17) and has degree 2.
     rational_values = rational_map_values([1, 0, 1], [-3, 1], prime)
@@ -509,6 +589,9 @@ def check_rational_challenge_map_degree_ledger() -> None:
     rational_bad = {rational_values[4], "inf"}
     assert challenge_pullback_probability(
         rational_values, rational_bad
+    ) <= challenge_pullback_bound(prime, len(rational_bad), rational_degree)
+    assert adversarial_fiber_envelope(
+        rational_values, len(rational_bad)
     ) <= challenge_pullback_bound(prime, len(rational_bad), rational_degree)
 
     # A constant map shows why nonconstancy is necessary for a degree ledger.
@@ -655,6 +738,7 @@ def main() -> None:
     for gate in gates:
         check_gate(gate)
     check_challenge_pullback_ledger()
+    check_adversarial_fiber_envelope()
     check_rational_challenge_map_degree_ledger()
 
     active = gates[0] if not custom else None

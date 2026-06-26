@@ -410,6 +410,44 @@ Thus a larger challenge field is not a free denominator.  The active
 identifies whether challenges sample finite slopes, projective slopes, or some
 nonuniform image, and supplies the corresponding maximum-fiber bound.
 
+There is also an exact size-only version.  For `x in X`, write
+
+```text
+s_x = |phi^{-1}(x)|.
+```
+
+Order the nonzero fiber sizes as
+
+```text
+s_1 >= s_2 >= ... >= s_M > 0.
+```
+
+Then, among all bad sets with at most `L` slopes, the largest pulled-back
+failure probability is exactly
+
+```text
+(s_1 + ... + s_min(L,M)) / |K|.
+```
+
+Indeed, a bad set pulls back to the sum of its selected fiber sizes, so the
+extremizer chooses the `L` largest fibers.  The maximum-fiber bound above is
+the coarser corollary `s_1 + ... + s_L <= L*m`.
+
+This exact envelope is the right audit when a theorem supplies only a bad-slope
+count.  For example, if `phi` is a uniform surjection from a larger challenge
+set onto a slope set `X`, then each fiber has size `|K|/|X|`, and the worst
+size-`L` bad set has probability
+
+```text
+L / |X|,
+```
+
+not `L / |K|`.  Thus mapping extension challenges down to base-field slopes
+does not by itself buy an extension-field denominator.  The `q_chal`
+denominator is justified only for maps whose largest-fiber envelope is small
+enough, such as an injection or a bounded-degree map into the field actually
+used for the line experiment.
+
 A common sufficient certificate is a bounded-degree rational map.  If
 `phi:K -> K` is a nonconstant polynomial of degree `D`, then every finite
 fiber has size at most `D`, hence
