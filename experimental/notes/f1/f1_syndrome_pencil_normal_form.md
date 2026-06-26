@@ -806,6 +806,56 @@ rank-one `j=2` argument from Corollary 9 applied on `D \ {alpha}`. The
 contracted row is affine-linear in `z`, so if one component is not the zero
 linear polynomial, all simultaneous zeros lie at the root of that component.
 
+## Corollary 13: Global Fixed-Root Stars Have Polynomial Slope Count
+
+Keep the finite fixed-root setting of Corollary 12 with `alpha in D`. Outside
+the possible scalar-zero slope `a+zb=0`, the number of noncontained bad slopes
+coming from the fixed-root star is at most
+
+```text
+binom(|D|-1,2).
+```
+
+Including the scalar-zero slope gives the unconditional bound
+
+```text
+1 + binom(|D|-1,2).
+```
+
+If `alpha notin D`, the corresponding bound is `1`: only the scalar-zero
+slope can remain. If the fixed point is infinity, the same bound is `1`.
+
+## Proof
+
+Assume `alpha in D` and `a+zb != 0`. By Corollary 11 every landing complement
+has the form
+
+```text
+T={alpha} union U,        |U|=2.
+```
+
+By Corollary 12 the remaining landing equation is
+
+```text
+C_0(z)m_0 + C_1(z)m_1 + C_2(z)=0,              (5)
+```
+
+where the coefficients are affine-linear in `z`, and
+`L_U(X)=X^2+m_1X+m_0`.
+
+For a fixed pair `U`, either (5) is a nonzero affine-linear equation in `z`,
+which contributes at most one slope, or (5) is identically zero in `z`. In the
+identically-zero case both the `u`-row and the `v`-row contractions vanish.
+Since `L_T(alpha)=0`, both rows of `H(v)ell_T` vanish, so this pair is
+contained and is removed by the noncontainment condition. Hence each remaining
+pair contributes at most one noncontained slope, giving
+`binom(|D|-1,2)`.
+
+If `alpha notin D`, Corollary 11 gives no landing complement away from
+`a+zb=0`. If the fixed point is infinity, the first row is nonzero on the
+monic coefficient away from `a+zb=0`, so again there are no landing
+complements away from the scalar-zero slope.
+
 ## Why This Helps F1
 
 The naive extension-field lift is already false: genuinely `F`-valued lines
@@ -847,7 +897,10 @@ branch. Corollary 11 then identifies the global monic-rank-one branch as a
 fixed-root star or empty branch, leaving only the scalar-zero slope and the
 non-global exceptional slopes as special cases. Corollary 12 reduces that
 fixed-root star to a contracted `j=2` fiber, with at most one additional
-zero-contraction slope unless the contraction vanishes globally.
+zero-contraction slope unless the contraction vanishes globally. Corollary 13
+uses noncontainment to bound the whole fixed-root star branch by
+`1+binom(|D|-1,2)` slopes, so it is polynomial and no longer part of the
+aperiodic obstruction.
 
 ## Verification
 
@@ -874,4 +927,4 @@ fixed-slope fibers for the monic-rank-two line, monic-rank-one plane,
 monic-rank-defective rank-two, and rank-zero branches, plus global
 monic-rank-one finite-root, outside-domain, and infinity checks for
 Corollary 11. The finite-root check also verifies the contracted `j=2` star
-bound of Corollary 12.
+bound of Corollary 12 and the noncontained slope-count bound of Corollary 13.

@@ -227,6 +227,23 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** Fold this contracted-star branch into the F1 exception
   ledger beside quotient-periodic and contained/tangent components.
 
+### 2026-06-26 - F1 fixed-root star slope bound
+
+- **Agent/model:** Codex acting autonomously through AllenGrahamHart.
+- **Files added or changed:** `experimental/notes/f1/f1_syndrome_pencil_normal_form.md`,
+  `experimental/scripts/verify_f1_syndrome_pencil_normal_form.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT / EXPERIMENTAL.
+- **What is being added:** The F1 syndrome-pencil note now proves that the
+  finite fixed-root star branch contributes at most
+  `1 + binom(|D|-1,2)` noncontained slopes: all-slope contracted pairs have
+  `H(v)ell=0` and are removed by noncontainment.
+- **How it is useful:** Converts the global monic-rank-one fixed-root branch
+  from a possible all-slope obstruction into an explicit polynomial-size
+  exception family.
+- **What to do next:** Use this polynomial star bound when assembling the
+  final `t=2,j=3` exception ledger.
+
 ### 2026-06-25 - Latest PR integration and estimate audit
 
 - **Agent/model:** AllenGrahamHart PRs #101--#107, ScottDHughes PR #99, and
