@@ -303,6 +303,78 @@ Syn_F(y)_m
 The line identity follows from `B`-linearity of coordinate expansion and from
 the definition of `M_z`.
 
+## Corollary 6: Quotient-Periodic Locator Restriction
+
+Assume now that `D=H` is a multiplicative subgroup of `F^*` of order `n`. Let
+`M|n`, write
+
+```text
+pi_M(x)=x^M,        H_M=pi_M(H),
+```
+
+and let `A subset H_M` have size `j'`. Put `T=pi_M^{-1}(A)`, so
+`|T|=j=M j'`. If
+
+```text
+L_A(Y) = c_0 + c_1 Y + ... + c_{j'} Y^{j'},
+```
+
+then
+
+```text
+L_T(X) = L_A(X^M).
+```
+
+Equivalently, the locator vector `ell_T` is supported only in degrees
+divisible by `M`:
+
+```text
+ell_{M s}=c_s,        ell_l=0 if M does not divide l.
+```
+
+For every syndrome vector `w`, the Hankel product becomes the decimated
+syndrome window
+
+```text
+(H_{t,j}(w) ell_T)_m
+  = sum_{s=0}^{j'} c_s w_{m+M s},        0 <= m < t.
+```
+
+In particular, for `t=2`, a quotient-periodic complement contributes a
+noncontained slope exactly when
+
+```text
+(B_0,B_1) != (0,0)
+```
+
+and
+
+```text
+A_0 B_1 - A_1 B_0 = 0,
+```
+
+where
+
+```text
+A_m = sum_s c_s u_{m+M s},        B_m = sum_s c_s v_{m+M s},
+        m=0,1.
+```
+
+The slope, when it exists, is `-A_m/B_m` for any nonzero `B_m`.
+
+## Proof
+
+The fiber over `a in H_M` is the set of roots in `H` of `X^M-a`. Hence the
+locator of the union of fibers over `A` is
+
+```text
+prod_{a in A} (X^M-a) = L_A(X^M).
+```
+
+Reading coefficients gives the sparse locator vector. Substituting this sparse
+vector into the Hankel product gives the decimated formula. The final `t=2`
+criterion is Corollary 4 applied to the two decimated vectors.
+
 ## Why This Helps F1
 
 The naive extension-field lift is already false: genuinely `F`-valued lines
@@ -328,6 +400,9 @@ kernel meets the projected `D`-split locator variety should be polynomial in
 `n` above the corrected reserve. Corollary 4 is the finite gate for that
 program: first count split locators satisfying the determinant equations, then
 control collisions of the resulting rational slope map `T -> z_T`.
+Corollary 6 makes the quotient-periodic part explicit: it is the sparse
+pullback subspace `L_A(X^M)`, and the `t=2` gate is the corresponding
+decimated-syndrome quadratic.
 
 ## Verification
 
@@ -340,4 +415,6 @@ experimental/scripts/verify_f1_syndrome_pencil_normal_form.py
 checks Theorem 2 and Corollary 3 by exhaustive enumeration over small
 quadratic-extension cases. It compares the Hankel-pencil criterion against
 direct interpolation on every support complement and every extension-field
-slope.
+slope, checks the projective gate, checks coordinate-syndrome compatibility,
+and checks the quotient-periodic pullback formulas where the parameters admit
+nontrivial quotient fibers.

@@ -93,6 +93,26 @@ Keep entries concise and link to the relevant files.
   over the actual extension field or equivalently as multiplication-slice
   incidence bounds over the base field.
 
+### 2026-06-26 - F1 quotient-periodic gate restriction
+
+- **Agent/model:** Codex acting autonomously through AllenGrahamHart.
+- **Files added or changed:** `experimental/notes/f1/f1_syndrome_pencil_normal_form.md`,
+  `experimental/scripts/verify_f1_syndrome_pencil_normal_form.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT / EXPERIMENTAL.
+- **What is being added:** The F1 syndrome-pencil note now proves the exact
+  restriction of the pencil gate to multiplicative quotient-periodic
+  complements: if `T=pi_M^{-1}(A)`, then `L_T(X)=L_A(X^M)`, the locator vector
+  is supported only in degrees divisible by `M`, and the `t=2` bad-slope gate
+  is the decimated-syndrome determinant
+  `A_0 B_1 - A_1 B_0 = 0`.
+- **How it is useful:** Makes the quotient-periodic exceptional component
+  explicit inside the new F1 normal form. This separates pullback/quotient
+  locators from the genuinely aperiodic reduced-incidence problem.
+- **What to do next:** Prove that after removing these sparse pullback
+  components, rich `t=2` determinant intersections force either a quotient
+  explanation or controlled rational-slope collisions.
+
 ### 2026-06-25 - Latest PR integration and estimate audit
 
 - **Agent/model:** AllenGrahamHart PRs #101--#107, ScottDHughes PR #99, and

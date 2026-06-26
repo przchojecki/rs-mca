@@ -27,6 +27,7 @@ CASES = (
     {"p": 5, "n": 4, "k": 2, "agreement": 3},
     {"p": 7, "n": 6, "k": 3, "agreement": 5},
     {"p": 7, "n": 6, "k": 2, "agreement": 4},
+    {"p": 17, "n": 8, "k": 4, "agreement": 6},
 )
 
 
@@ -220,6 +221,22 @@ def hankel_product(
     return out
 
 
+def decimated_hankel_product(
+    field: QuadraticField,
+    vector: Sequence[Element],
+    quotient_locator: Sequence[Element],
+    fiber_size: int,
+    t: int,
+) -> list[Element]:
+    out = []
+    for m in range(t):
+        total = field.zero
+        for s, coeff in enumerate(quotient_locator):
+            total = field.add(total, field.mul(vector[m + fiber_size * s], coeff))
+        out.append(total)
+    return out
+
+
 def vector_add(field: QuadraticField, left: Sequence[Element], right: Sequence[Element]) -> list[Element]:
     return [field.add(x, y) for x, y in zip(left, right)]
 
@@ -322,6 +339,95 @@ def hankel_matrix(vector: Sequence[Element], t: int, j: int) -> Matrix:
     return [[vector[m + ell] for ell in range(j + 1)] for m in range(t)]
 
 
+def divisors(value: int) -> list[int]:
+    return [candidate for candidate in range(2, value) if value % candidate == 0]
+
+
+def quotient_periodic_checks(
+    field: QuadraticField,
+    points: Sequence[Element],
+    u: Sequence[Element],
+    v: Sequence[Element],
+    n: int,
+    j: int,
+    t: int,
+) -> tuple[int, list[dict[str, object]]]:
+    mismatches: list[dict[str, object]] = []
+    checks = 0
+    for fiber_size in divisors(n):
+        if j % fiber_size != 0:
+            continue
+        quotient_size = j // fiber_size
+        quotient_fibers: dict[Element, list[int]] = {}
+        for index, point in enumerate(points):
+            quotient_fibers.setdefault(field.pow(point, fiber_size), []).append(index)
+        if any(len(fiber) != fiber_size for fiber in quotient_fibers.values()):
+            mismatches.append(
+                {
+                    "type": "quotient_fiber_size",
+                    "fiber_size": fiber_size,
+                    "fiber_sizes": sorted(len(fiber) for fiber in quotient_fibers.values()),
+                }
+            )
+            continue
+        quotient_points = sorted(quotient_fibers)
+        if quotient_size == 0 or quotient_size > len(quotient_points):
+            continue
+        for quotient_subset in itertools.combinations(quotient_points, quotient_size):
+            complement = tuple(
+                sorted(
+                    index
+                    for quotient_point in quotient_subset
+                    for index in quotient_fibers[quotient_point]
+                )
+            )
+            direct_locator = locator_coefficients(
+                field,
+                [points[index] for index in complement],
+            )
+            quotient_locator = locator_coefficients(field, quotient_subset)
+            pullback_locator = [field.zero] * (j + 1)
+            for s, coeff in enumerate(quotient_locator):
+                pullback_locator[fiber_size * s] = coeff
+            direct_u = hankel_product(field, u, direct_locator, t)
+            direct_v = hankel_product(field, v, direct_locator, t)
+            decimated_u = decimated_hankel_product(field, u, quotient_locator, fiber_size, t)
+            decimated_v = decimated_hankel_product(field, v, quotient_locator, fiber_size, t)
+            checks += 1
+            if direct_locator != pullback_locator:
+                mismatches.append(
+                    {
+                        "type": "quotient_locator_pullback",
+                        "fiber_size": fiber_size,
+                        "quotient_subset": quotient_subset,
+                        "direct_locator": direct_locator,
+                        "pullback_locator": pullback_locator,
+                    }
+                )
+            if direct_u != decimated_u or direct_v != decimated_v:
+                mismatches.append(
+                    {
+                        "type": "quotient_decimated_hankel",
+                        "fiber_size": fiber_size,
+                        "quotient_subset": quotient_subset,
+                    }
+                )
+            if t == 2:
+                direct_slope = projective_slope(field, direct_u, direct_v)
+                decimated_slope = projective_slope(field, decimated_u, decimated_v)
+                if direct_slope != decimated_slope:
+                    mismatches.append(
+                        {
+                            "type": "quotient_projective_slope",
+                            "fiber_size": fiber_size,
+                            "quotient_subset": quotient_subset,
+                            "direct_slope": direct_slope,
+                            "decimated_slope": decimated_slope,
+                        }
+                    )
+    return checks, mismatches
+
+
 def run_case(params: dict[str, int]) -> dict[str, object]:
     p = params["p"]
     n = params["n"]
@@ -357,6 +463,10 @@ def run_case(params: dict[str, int]) -> dict[str, object]:
     slope_tests = 0
     max_reduced_dimension = 0
     projective_gate_supports = 0
+    quotient_checks, quotient_mismatches = quotient_periodic_checks(
+        field, points, u, v, n, j, t
+    )
+    mismatches.extend(quotient_mismatches)
 
     for complement in itertools.combinations(range(n), j):
         support = tuple(index for index in range(n) if index not in complement)
@@ -447,6 +557,7 @@ def run_case(params: dict[str, int]) -> dict[str, object]:
         "bad_slope_count": len(bad_slopes),
         "projective_gate_supports": projective_gate_supports,
         "coordinate_syndrome_passed": coordinate_syndrome_passed,
+        "quotient_periodic_checks": quotient_checks,
         "max_reduced_dimension": max_reduced_dimension,
         "dimension_bound": 2 * t,
         "passed": not mismatches,
@@ -481,6 +592,7 @@ def main() -> int:
                 f"{record['bad_slope_count']} bad slopes, "
                 f"{record['projective_gate_supports']} gated supports, "
                 f"coordinate syndrome={'OK' if record['coordinate_syndrome_passed'] else 'FAIL'}, "
+                f"quotient checks={record['quotient_periodic_checks']}, "
                 f"max dim(V)={record['max_reduced_dimension']} <= {record['dimension_bound']}"
             )
         print(f"RESULT: {'PASS' if passed else 'FAIL'}")
