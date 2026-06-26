@@ -945,6 +945,126 @@ minors of the affine-linear matrix `A_z` are quadratic polynomials in `z`; if
 one is not identically zero, the simultaneous zero set is contained in its at
 most two roots.
 
+## Corollary 15: Global Monic-Rank-One Is Always A Fixed-Root Star
+
+Assume `t=2` and `j >= 2`. Suppose the monic-rank defect is global as a
+polynomial identity in the slope:
+
+```text
+rank A_z <= 1        for every z,
+```
+
+where `A_z` is the `2 x j` matrix from Corollary 14. Then the first `j+1`
+syndrome entries of the pencil lie on one fixed rational-normal point:
+
+```text
+(u_0,...,u_j)=a(s^j,s^{j-1}t,...,st^{j-1},t^j),
+(v_0,...,v_j)=b(s^j,s^{j-1}t,...,st^{j-1},t^j)
+```
+
+for some `[s:t] in P^1(F)` and scalars `a,b in F`.
+
+If `s != 0`, put `alpha=t/s`. For every slope with `a+zb != 0`, the first
+row of the landing equation is
+
+```text
+(a+zb)s^j L_T(alpha)=0.
+```
+
+Thus every split complement landing at such a slope must contain the fixed
+point `alpha`. Consequently:
+
+- if `alpha notin D`, there are no non-scalar-zero landing complements;
+- if `alpha in D`, all such landing complements lie in the star
+  `T={alpha} union U`, with `|U|=j-1`.
+
+In the case `alpha in D`, the number of noncontained non-scalar-zero slopes
+coming from this whole global branch is at most
+
+```text
+binom(|D|-1,j-1),
+```
+
+and including the possible scalar-zero slope gives
+
+```text
+1 + binom(|D|-1,j-1).
+```
+
+If `alpha notin D`, or if `s=0`, the corresponding total bound is `1`.
+
+At any fixed non-scalar-zero slope in the fixed-root case, a nonzero
+contracted row leaves at most `binom(|D|-1,j-2)` landing complements, while a
+zero contracted row leaves the whole fixed-root star before noncontainment is
+imposed.
+
+## Proof
+
+The global hypothesis says that the projective line spanned by
+`(u_0,...,u_j)` and `(v_0,...,v_j)` lies in the projective variety cut out by
+the `2 x 2` minors of
+
+```text
+[ w_0  w_1  ...  w_{j-1} ]
+[ w_1  w_2  ...  w_j     ].
+```
+
+This variety is the degree-`j` rational normal curve
+
+```text
+[s:t] -> [s^j:s^{j-1}t:...:st^{j-1}:t^j].
+```
+
+Indeed, if `w_0 != 0`, the adjacent minors force a single ratio
+`w_{m+1}/w_m`; if the first nonzero coordinate occurred strictly between
+`w_0` and `w_j`, the minor using the previous column would force its square
+to vanish. Hence the only remaining endpoint case is `[0:...:0:1]`. Since a
+rational normal curve contains no projective line for `j >= 2`, the two
+pencil vectors are scalar multiples of one fixed rational-normal point.
+
+For `s != 0`, the first row of `P_z` is
+
+```text
+(a+zb)s^j(1,alpha,...,alpha^j),
+```
+
+and its dot product with the monic locator vector is
+`(a+zb)s^j L_T(alpha)`. This proves the fixed-root or empty landing
+alternative away from the scalar-zero slope. If `s=0`, the first row has only
+the monic coordinate nonzero, so no monic locator can land away from the
+scalar-zero slope.
+
+It remains to count noncontained slopes in the fixed-root case
+`alpha in D`. Write
+
+```text
+T={alpha} union U,        L_T(X)=(X-alpha)L_U(X),
+```
+
+where `L_U(X)=m_0+m_1X+...+m_{j-1}X^{j-1}` is monic. If
+`r=(r_0,...,r_j)` is the second row of `P_z`, then
+
+```text
+r . ell_T = sum_{h=0}^{j-1} (r_{h+1}-alpha r_h)m_h.       (6)
+```
+
+For a fixed `U`, the right side is affine-linear in `z`. If it is not the
+zero affine-linear function, it contributes at most one slope. If it is
+identically zero, then the corresponding contractions for both `u` and `v`
+vanish. Since `L_T(alpha)=0`, the first row of `H(v)ell_T` also vanishes, and
+(6) gives the second row. Thus `H(v)ell_T=0`, so this landing is contained
+and is removed by noncontainment.
+
+Therefore each choice of `U subset D \ {alpha}` with `|U|=j-1` contributes at
+most one noncontained non-scalar-zero slope. There are
+`binom(|D|-1,j-1)` such choices.
+
+For the fixed-slope landing bound, a nonzero contracted row is one affine
+linear equation on monic degree-`j-1` locators over `D \ {alpha}`. The same
+evaluation-injection argument as in Corollary 14, with dimension `j-2`, gives
+`binom(|D|-1,j-2)`. If the contracted row is zero, every `U` in the punctured
+domain lands before noncontainment is checked.
+
 ## Why This Helps F1
 
 The naive extension-field lift is already false: genuinely `F`-valued lines
@@ -993,7 +1113,11 @@ aperiodic obstruction. Corollary 14 then removes the special role of `j=3`
 from the regular fixed-slope analysis: for every complement size, a
 monic-rank-two slope loses two roots, leaving only the two exceptional
 monic-rank-defective slopes or the global defective branch as the genuine
-same-slope obstruction.
+same-slope obstruction. Corollary 15 then identifies that global defective
+branch in every degree as a fixed-root star, with polynomial noncontained
+slope count, so the remaining F1 obstruction is pushed back to the non-global
+quadric/rank-defective incidence rather than an uncontrolled all-depth
+same-slope family.
 
 ## Verification
 
@@ -1022,4 +1146,6 @@ monic-rank-one finite-root, outside-domain, and infinity checks for
 Corollary 11. The finite-root check also verifies the contracted `j=2` star
 bound of Corollary 12 and the noncontained slope-count bound of Corollary 13.
 Finally, constructed `j=4` and `j=5` fixed-root fibers verify the arbitrary
-`j` codimension-two bound of Corollary 14.
+`j` codimension-two bound of Corollary 14. Additional `j=4` global
+monic-rank-one cases verify the fixed-root, contained-star, outside-domain,
+and infinity branches of Corollary 15.

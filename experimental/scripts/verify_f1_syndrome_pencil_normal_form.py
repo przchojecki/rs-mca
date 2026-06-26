@@ -228,6 +228,45 @@ GLOBAL_MONIC_RANK_ONE_CASES = (
         "v": ((0, 0), (0, 0), (0, 0), (2, 0), (4, 0)),
         "kind": "infinity",
     },
+    {
+        "name": "global j4 finite root star",
+        "p": 7,
+        "domain": (1, 2, 3, 4, 5, 6),
+        "j": 4,
+        "alpha": 2,
+        "u": ((1, 0), (2, 0), (4, 0), (1, 0), (2, 0), (3, 0)),
+        "v": ((3, 0), (6, 0), (5, 0), (3, 0), (6, 0), (4, 0)),
+        "kind": "finite",
+    },
+    {
+        "name": "global j4 finite root contained star",
+        "p": 7,
+        "domain": (1, 2, 3, 4, 5, 6),
+        "j": 4,
+        "alpha": 2,
+        "u": ((1, 0), (2, 0), (4, 0), (1, 0), (2, 0), (4, 0)),
+        "v": ((3, 0), (6, 0), (5, 0), (3, 0), (6, 0), (5, 0)),
+        "kind": "finite",
+    },
+    {
+        "name": "global j4 finite root outside domain",
+        "p": 7,
+        "domain": (1, 2, 3, 4, 5, 6),
+        "j": 4,
+        "alpha": 0,
+        "u": ((1, 0), (0, 0), (0, 0), (0, 0), (0, 0), (3, 0)),
+        "v": ((2, 0), (0, 0), (0, 0), (0, 0), (0, 0), (4, 0)),
+        "kind": "finite",
+    },
+    {
+        "name": "global j4 infinity root",
+        "p": 7,
+        "domain": (1, 2, 3, 4, 5, 6),
+        "j": 4,
+        "u": ((0, 0), (0, 0), (0, 0), (0, 0), (1, 0), (3, 0)),
+        "v": ((0, 0), (0, 0), (0, 0), (0, 0), (2, 0), (4, 0)),
+        "kind": "infinity",
+    },
 )
 
 
@@ -614,9 +653,8 @@ def contract_row_at_root(
     alpha: Element,
 ) -> list[Element]:
     return [
-        field.sub(row[1], field.mul(alpha, row[0])),
-        field.sub(row[2], field.mul(alpha, row[1])),
-        field.sub(row[3], field.mul(alpha, row[2])),
+        field.sub(row[index + 1], field.mul(alpha, row[index]))
+        for index in range(len(row) - 1)
     ]
 
 
@@ -876,23 +914,24 @@ def run_general_fixed_slope_case(params: dict[str, object]) -> dict[str, object]
 
 def run_global_monic_rank_one_case(params: dict[str, object]) -> dict[str, object]:
     p = int(params["p"])
+    j = int(params.get("j", 3))
     field = QuadraticField(p=p, d=least_nonsquare(p))
     domain = [field.element(int(value)) for value in params["domain"]]
     u = [tuple(value) for value in params["u"]]
     v = [tuple(value) for value in params["v"]]
-    left = hankel_matrix(u, 2, 3)
-    right = hankel_matrix(v, 2, 3)
-    triples = [
+    left = hankel_matrix(u, 2, j)
+    right = hankel_matrix(v, 2, j)
+    complements = [
         (roots, locator_coefficients(field, roots))
-        for roots in itertools.combinations(domain, 3)
+        for roots in itertools.combinations(domain, j)
     ]
     kind = str(params["kind"])
     alpha = field.element(int(params["alpha"])) if kind == "finite" else None
     alpha_in_domain = alpha in domain if alpha is not None else False
     finite_vector = None
     if alpha is not None:
-        finite_vector = [field.pow(alpha, degree) for degree in range(4)]
-    infinity_vector = [field.zero, field.zero, field.zero, field.one]
+        finite_vector = [field.pow(alpha, degree) for degree in range(j + 1)]
+    infinity_vector = [field.zero] * j + [field.one]
 
     mismatches: list[dict[str, object]] = []
     nonzero_slope_count = 0
@@ -904,12 +943,11 @@ def run_global_monic_rank_one_case(params: dict[str, object]) -> dict[str, objec
     max_zero_contraction_landings = 0
     noncontained_slopes: set[Element] = set()
     nonzero_noncontained_slopes: set[Element] = set()
-    all_slope_pairs_removed = 0
-    right = hankel_matrix(v, 2, 3)
+    all_slope_subsets_removed = 0
 
     for slope in field.elements():
         pencil = pencil_at_slope(field, left, right, slope)
-        monic_rank = matrix_rank(field, [row[:3] for row in pencil])
+        monic_rank = matrix_rank(field, [row[:j] for row in pencil])
         if monic_rank > 1:
             mismatches.append(
                 {"type": "global_monic_rank", "slope": slope, "monic_rank": monic_rank}
@@ -918,7 +956,7 @@ def run_global_monic_rank_one_case(params: dict[str, object]) -> dict[str, objec
 
         landings = [
             (roots, locator)
-            for roots, locator in triples
+            for roots, locator in complements
             if all(dot(field, row, locator) == field.zero for row in pencil)
         ]
         noncontained_landings = [
@@ -968,7 +1006,8 @@ def run_global_monic_rank_one_case(params: dict[str, object]) -> dict[str, objec
                         "landings": [roots for roots, _locator in landings[:5]],
                     }
                 )
-            if alpha_in_domain and len(landings) > (len(domain) - 1) * (len(domain) - 2) // 2:
+            expected_star = comb(len(domain) - 1, j - 1) if alpha_in_domain else 0
+            if alpha_in_domain and len(landings) > expected_star:
                 mismatches.append(
                     {
                         "type": "finite_root_star_bound",
@@ -984,7 +1023,6 @@ def run_global_monic_rank_one_case(params: dict[str, object]) -> dict[str, objec
                     max_zero_contraction_landings = max(
                         max_zero_contraction_landings, len(landings)
                     )
-                    expected_star = (len(domain) - 1) * (len(domain) - 2) // 2
                     if len(landings) != expected_star:
                         mismatches.append(
                             {
@@ -996,27 +1034,28 @@ def run_global_monic_rank_one_case(params: dict[str, object]) -> dict[str, objec
                         )
                 else:
                     max_contracted_landings = max(max_contracted_landings, len(landings))
-                    if len(landings) > len(domain) - 1:
+                    contracted_bound = comb(len(domain) - 1, j - 2)
+                    if len(landings) > contracted_bound:
                         mismatches.append(
                             {
-                                "type": "contracted_j2_bound",
+                                "type": "contracted_fixed_root_bound",
                                 "slope": slope,
                                 "landings": len(landings),
-                                "bound": len(domain) - 1,
+                                "bound": contracted_bound,
                             }
                         )
                 for roots, locator in landings:
                     if alpha not in roots:
                         continue
                     other_roots = [root for root in roots if root != alpha]
-                    if len(other_roots) != 2:
+                    if len(other_roots) != j - 1:
                         continue
                     contracted_constant = contract_row_at_root(field, left[1], alpha)
                     contracted_slope = contract_row_at_root(field, right[1], alpha)
-                    pair_locator = locator_coefficients(field, other_roots)
+                    residual_locator = locator_coefficients(field, other_roots)
                     if (
-                        dot(field, contracted_constant, pair_locator) == field.zero
-                        and dot(field, contracted_slope, pair_locator) == field.zero
+                        dot(field, contracted_constant, residual_locator) == field.zero
+                        and dot(field, contracted_slope, residual_locator) == field.zero
                     ):
                         if any(dot(field, row, locator) != field.zero for row in right):
                             mismatches.append(
@@ -1026,9 +1065,9 @@ def run_global_monic_rank_one_case(params: dict[str, object]) -> dict[str, objec
                                 }
                             )
                         else:
-                            all_slope_pairs_removed += 1
+                            all_slope_subsets_removed += 1
         else:
-            scalar = row0[3]
+            scalar = row0[j]
             expected_row = [field.mul(scalar, value) for value in infinity_vector]
             if row0 != expected_row:
                 mismatches.append(
@@ -1057,7 +1096,7 @@ def run_global_monic_rank_one_case(params: dict[str, object]) -> dict[str, objec
                     }
                 )
     if kind == "finite" and alpha_in_domain:
-        bound = (len(domain) - 1) * (len(domain) - 2) // 2
+        bound = comb(len(domain) - 1, j - 1)
         if len(nonzero_noncontained_slopes) > bound:
             mismatches.append(
                 {
@@ -1086,6 +1125,7 @@ def run_global_monic_rank_one_case(params: dict[str, object]) -> dict[str, objec
         "name": params["name"],
         "field": f"F_{p}[u]/(u^2-{field.d})",
         "domain_size": len(domain),
+        "j": j,
         "kind": kind,
         "nonzero_slope_count": nonzero_slope_count,
         "scalar_zero_slope_count": scalar_zero_slope_count,
@@ -1096,7 +1136,7 @@ def run_global_monic_rank_one_case(params: dict[str, object]) -> dict[str, objec
         "max_zero_contraction_landings": max_zero_contraction_landings,
         "noncontained_slope_count": len(noncontained_slopes),
         "nonzero_noncontained_slope_count": len(nonzero_noncontained_slopes),
-        "all_slope_pairs_removed": all_slope_pairs_removed,
+        "all_slope_subsets_removed": all_slope_subsets_removed,
         "passed": not mismatches,
         "mismatches": mismatches[:5],
     }
@@ -1542,7 +1582,7 @@ def main() -> int:
             flag = "PASS" if record["passed"] else "FAIL"
             print(
                 f"  [{flag}] {record['name']}: {record['field']}, "
-                f"|D|={record['domain_size']}, kind={record['kind']}, "
+                f"|D|={record['domain_size']}, j={record['j']}, kind={record['kind']}, "
                 f"nonzero slopes={record['nonzero_slope_count']}, "
                 f"scalar-zero slopes={record['scalar_zero_slope_count']}, "
                 f"max nonzero landings={record['max_nonzero_landings']}, "
@@ -1551,7 +1591,7 @@ def main() -> int:
                 f"max zero-contraction landings={record['max_zero_contraction_landings']}, "
                 f"noncontained slopes={record['noncontained_slope_count']}, "
                 f"nonzero noncontained slopes={record['nonzero_noncontained_slope_count']}, "
-                f"all-slope pairs removed={record['all_slope_pairs_removed']}"
+                f"all-slope subsets removed={record['all_slope_subsets_removed']}"
             )
         print(f"RESULT: {'PASS' if passed else 'FAIL'}")
     return 0 if passed else 1

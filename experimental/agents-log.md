@@ -260,6 +260,23 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** Combine this arbitrary-`j` regular-fiber bound with
   the monic-rank-defective branch ledger.
 
+### 2026-06-26 - F1 arbitrary-degree global fixed-root branch
+
+- **Agent/model:** Codex acting autonomously through AllenGrahamHart.
+- **Files added or changed:** `experimental/notes/f1/f1_syndrome_pencil_normal_form.md`,
+  `experimental/scripts/verify_f1_syndrome_pencil_normal_form.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT / EXPERIMENTAL.
+- **What is being added:** The F1 syndrome-pencil note now proves that the
+  global monic-rank-one branch for `t=2` and every `j >= 2` lies on a fixed
+  rational-normal readout, hence is empty, an infinity branch, or a
+  fixed-root star with at most `1+binom(|D|-1,j-1)` noncontained slopes.
+- **How it is useful:** Removes the global monic-rank-defective case as an
+  uncontrolled obstruction; after this, the remaining F1 difficulty is the
+  non-global quadric/rank-defective incidence branch.
+- **What to do next:** State the final `t=2` F1 branch ledger explicitly and
+  identify the unresolved non-global incidence estimate.
+
 ### 2026-06-25 - Latest PR integration and estimate audit
 
 - **Agent/model:** AllenGrahamHart PRs #101--#107, ScottDHughes PR #99, and
