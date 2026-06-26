@@ -1185,6 +1185,54 @@ for some `c in F`, with the endpoint case meaning that the zeroth rows
 vanish. Hence the non-monic block `A_z` has rank at most one for every `z`,
 so the global monic-rank defect case of Corollary 15 applies.
 
+## Corollary 18: Line Packets In The Reduced Quadric
+
+Keep `t=2`, and let `Q` be the determinant quadric in the reduced image
+`W subset Mat_{2 x 2}(F)`. Let `L=P(U)` be a projective line in `P(W)`,
+where `U subset W` is a two-dimensional linear subspace. Then:
+
+- if `Q` does not contain `L`, the packet contributes at most two reduced
+  image points, hence at most two bad slopes;
+- if `L subset Q` and `L` is in the common-kernel ruling, the packet
+  contributes at most one bad slope;
+- if `L subset Q` and `L` is in the common-image ruling, the determinant
+  equation alone gives no slope bound: the slope map on `L` is a projective
+  coordinate map and can be nonconstant.
+
+Thus any many-slope line packet inside the remaining nonzero reduced quadric
+must lie on a common-image ruling line. All other line packets are already
+bounded by the determinant degree or by a fixed kernel slope.
+
+## Proof
+
+If `Q` does not contain `L`, then `Q cap L` is the zero set of a nonzero
+homogeneous quadratic on `P^1`, so it has at most two points over `F`. Each
+noncontained reduced image point determines at most one slope by Corollary 4.
+
+If `L subset Q`, then by the ruling classification used in Corollary 7 the
+line has either a common kernel or a common image. In the common-kernel case
+there is a fixed nonzero `(lambda,mu)` such that
+
+```text
+lambda a + mu b = 0
+```
+
+for every image `[a b]` in the line. If `lambda=0`, then `b=0` and
+noncontainment removes the packet. Otherwise every noncontained point has the
+single slope `z=mu/lambda`.
+
+In the common-image case, after choosing a basis of the fixed image line,
+points of `L` are represented by pairs of scalars `[A:B]`:
+
+```text
+[a b] = [A e  B e].
+```
+
+The noncontained slope is `z=-A/B` when `B != 0`, which is a nonconstant
+projective coordinate on the line unless the packet has collapsed to one
+point. Therefore this ruling family is the only line packet not controlled by
+the preceding alternatives.
+
 ## Why This Helps F1
 
 The naive extension-field lift is already false: genuinely `F`-valued lines
@@ -1244,7 +1292,10 @@ positive F1 estimate is therefore concentrated in one named place, the
 aperiodic non-global determinant incidence branch in the reduced `t=2`
 quadric. Corollary 17 removes the identically-zero reduced quadric from that
 remaining branch: the open case is the nonzero determinant quadric incidence
-after quotient-periodic and contained components have been removed.
+after quotient-periodic and contained components have been removed. Corollary
+18 further isolates the only line packet inside that branch that can carry
+many slopes: common-image ruling lines. Non-ruling lines and common-kernel
+ruling lines are already bounded.
 
 ## Verification
 
@@ -1277,4 +1328,6 @@ Finally, constructed `j=4` and `j=5` fixed-root fibers verify the arbitrary
 monic-rank-one cases verify the fixed-root, contained-star, outside-domain,
 and infinity branches of Corollary 15. Corollary 16 is the formal branch
 ledger obtained by combining those audited pieces. The reduced-quadric audit
-also checks the common-kernel ruling used in Corollary 17.
+also checks the common-kernel ruling used in Corollary 17. Separate reduced
+line-section checks exercise the two-point, common-kernel, and common-image
+cases in Corollary 18.

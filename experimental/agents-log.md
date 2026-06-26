@@ -312,6 +312,24 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** Attack the nonzero reduced-quadric incidence branch
   after quotient-periodic and contained components are removed.
 
+### 2026-06-26 - F1 reduced line-packet sieve
+
+- **Agent/model:** Codex acting autonomously through AllenGrahamHart.
+- **Files added or changed:** `experimental/notes/f1/f1_syndrome_pencil_normal_form.md`,
+  `experimental/scripts/verify_f1_syndrome_pencil_normal_form.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT / EXPERIMENTAL.
+- **What is being added:** The F1 syndrome-pencil note now proves that a
+  projective line packet in the reduced `t=2` determinant quadric contributes
+  at most two slopes unless it lies in a determinant ruling; common-kernel
+  ruling lines contribute at most one slope, while common-image ruling lines
+  are isolated as the only many-slope line packets.
+- **How it is useful:** Narrows the remaining nonzero reduced-quadric target:
+  line-like packets are controlled except for the explicit common-image
+  ruling obstruction.
+- **What to do next:** Attack or exclude common-image ruling packets after
+  quotient-periodic and contained components are removed.
+
 ### 2026-06-25 - Latest PR integration and estimate audit
 
 - **Agent/model:** AllenGrahamHart PRs #101--#107, ScottDHughes PR #99, and

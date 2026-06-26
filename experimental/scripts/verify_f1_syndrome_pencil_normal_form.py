@@ -65,6 +65,48 @@ QUADRIC_ONLY_CASES = (
     },
 )
 
+REDUCED_LINE_SECTION_CASES = (
+    {
+        "name": "transverse determinant line",
+        "p": 5,
+        "generators": (
+            (((1, 0), (0, 0)), ((0, 0), (0, 0))),
+            (((0, 0), (0, 0)), ((0, 0), (1, 0))),
+        ),
+        "expected_contained": False,
+        "expected_zero_points": 2,
+        "expected_slope_count": 1,
+        "expected_common_kernel": False,
+        "expected_common_image": False,
+    },
+    {
+        "name": "common-kernel ruling line",
+        "p": 5,
+        "generators": (
+            (((1, 0), (4, 0)), ((0, 0), (0, 0))),
+            (((0, 0), (0, 0)), ((1, 0), (4, 0))),
+        ),
+        "expected_contained": True,
+        "expected_zero_points": 26,
+        "expected_slope_count": 1,
+        "expected_common_kernel": True,
+        "expected_common_image": False,
+    },
+    {
+        "name": "common-image ruling line",
+        "p": 5,
+        "generators": (
+            (((1, 0), (0, 0)), ((0, 0), (0, 0))),
+            (((0, 0), (1, 0)), ((0, 0), (0, 0))),
+        ),
+        "expected_contained": True,
+        "expected_zero_points": 26,
+        "expected_slope_count": 25,
+        "expected_common_kernel": False,
+        "expected_common_image": True,
+    },
+)
+
 J2_FIBER_ONLY_CASES = (
     {
         "name": "rank-two unique split quadratic",
@@ -660,6 +702,33 @@ def has_common_image_ruling(field: QuadraticField, rows: Sequence[Sequence[Eleme
     return False
 
 
+def projective_line_parameters(field: QuadraticField) -> list[tuple[Element, Element]]:
+    return [(field.one, value) for value in field.elements()] + [(field.zero, field.one)]
+
+
+def line_matrix(
+    field: QuadraticField,
+    first: Matrix,
+    second: Matrix,
+    left: Element,
+    right: Element,
+) -> Matrix:
+    return [
+        [
+            field.add(field.mul(left, first[row][col]), field.mul(right, second[row][col]))
+            for col in range(2)
+        ]
+        for row in range(2)
+    ]
+
+
+def matrix_determinant_2x2(field: QuadraticField, matrix: Matrix) -> Element:
+    return field.sub(
+        field.mul(matrix[0][0], matrix[1][1]),
+        field.mul(matrix[0][1], matrix[1][0]),
+    )
+
+
 def pencil_at_slope(
     field: QuadraticField,
     left: Matrix,
@@ -788,6 +857,97 @@ def run_quadric_case(params: dict[str, object]) -> dict[str, object]:
         "common_image_ruling": common_image_ruling,
         "rank_defective_slope_count": len(rank_defective_slopes),
         "global_rank_defective": global_rank_defective,
+        "passed": not mismatches,
+        "mismatches": mismatches[:5],
+    }
+
+
+def run_reduced_line_case(params: dict[str, object]) -> dict[str, object]:
+    p = int(params["p"])
+    field = QuadraticField(p=p, d=least_nonsquare(p))
+    generators = [
+        [[tuple(entry) for entry in row] for row in generator]
+        for generator in params["generators"]
+    ]
+    first, second = generators
+    rows = [
+        [first[0][0], second[0][0]],
+        [first[1][0], second[1][0]],
+        [first[0][1], second[0][1]],
+        [first[1][1], second[1][1]],
+    ]
+    common_kernel = has_common_kernel_ruling(field, rows)
+    common_image = has_common_image_ruling(field, rows)
+    zero_points = 0
+    slopes: set[Element] = set()
+    for left, right in projective_line_parameters(field):
+        matrix = line_matrix(field, first, second, left, right)
+        if matrix_determinant_2x2(field, matrix) != field.zero:
+            continue
+        zero_points += 1
+        slope = projective_slope(
+            field,
+            [matrix[0][0], matrix[1][0]],
+            [matrix[0][1], matrix[1][1]],
+        )
+        if slope is not None:
+            slopes.add(slope)
+
+    contained = zero_points == field.p * field.p + 1
+    mismatches: list[dict[str, object]] = []
+    if contained != params["expected_contained"]:
+        mismatches.append(
+            {
+                "type": "line_contained",
+                "expected": params["expected_contained"],
+                "actual": contained,
+            }
+        )
+    if zero_points != params["expected_zero_points"]:
+        mismatches.append(
+            {
+                "type": "line_zero_points",
+                "expected": params["expected_zero_points"],
+                "actual": zero_points,
+            }
+        )
+    if len(slopes) != params["expected_slope_count"]:
+        mismatches.append(
+            {
+                "type": "line_slope_count",
+                "expected": params["expected_slope_count"],
+                "actual": len(slopes),
+            }
+        )
+    if common_kernel != params["expected_common_kernel"]:
+        mismatches.append(
+            {
+                "type": "line_common_kernel",
+                "expected": params["expected_common_kernel"],
+                "actual": common_kernel,
+            }
+        )
+    if common_image != params["expected_common_image"]:
+        mismatches.append(
+            {
+                "type": "line_common_image",
+                "expected": params["expected_common_image"],
+                "actual": common_image,
+            }
+        )
+    if not contained and zero_points > 2:
+        mismatches.append({"type": "line_transverse_bound", "zero_points": zero_points})
+    if contained and common_kernel and len(slopes) > 1:
+        mismatches.append({"type": "line_common_kernel_slope_bound", "slopes": len(slopes)})
+
+    return {
+        "name": params["name"],
+        "field": f"F_{p}[u]/(u^2-{field.d})",
+        "contained_in_quadric": contained,
+        "zero_points": zero_points,
+        "slope_count": len(slopes),
+        "common_kernel_ruling": common_kernel,
+        "common_image_ruling": common_image,
         "passed": not mismatches,
         "mismatches": mismatches[:5],
     }
@@ -1536,6 +1696,9 @@ def main() -> int:
 
     records = [run_case(case) for case in CASES]
     quadric_records = [run_quadric_case(case) for case in QUADRIC_ONLY_CASES]
+    reduced_line_records = [
+        run_reduced_line_case(case) for case in REDUCED_LINE_SECTION_CASES
+    ]
     j2_fiber_records = [run_j2_fiber_case(case) for case in J2_FIBER_ONLY_CASES]
     j3_fiber_records = [run_j3_fiber_case(case) for case in J3_FIBER_ONLY_CASES]
     general_fixed_slope_records = [
@@ -1549,6 +1712,7 @@ def main() -> int:
         for record in (
             records
             + quadric_records
+            + reduced_line_records
             + j2_fiber_records
             + j3_fiber_records
             + general_fixed_slope_records
@@ -1561,6 +1725,7 @@ def main() -> int:
         "passed": passed,
         "cases": records,
         "quadric_only_cases": quadric_records,
+        "reduced_line_section_cases": reduced_line_records,
         "j2_fiber_only_cases": j2_fiber_records,
         "j3_fiber_only_cases": j3_fiber_records,
         "general_fixed_slope_cases": general_fixed_slope_records,
@@ -1597,6 +1762,15 @@ def main() -> int:
                 f"common_image={record['common_image_ruling']}, "
                 f"rank-defective slopes={record['rank_defective_slope_count']}, "
                 f"global_rank_defective={record['global_rank_defective']}"
+            )
+        for record in reduced_line_records:
+            flag = "PASS" if record["passed"] else "FAIL"
+            print(
+                f"  [{flag}] {record['name']}: {record['field']}, "
+                f"contained={record['contained_in_quadric']}, "
+                f"zero points={record['zero_points']}, slopes={record['slope_count']}, "
+                f"common_kernel={record['common_kernel_ruling']}, "
+                f"common_image={record['common_image_ruling']}"
             )
         for record in j2_fiber_records:
             flag = "PASS" if record["passed"] else "FAIL"
