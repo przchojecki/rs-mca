@@ -1058,6 +1058,130 @@ def check_shell_variance_criterion_case(
             )
 
 
+def choose2(value: int) -> int:
+    return comb(value, 2)
+
+
+def closed_slack_three_coefficients(
+    fiber_count: int,
+    fiber_size: int,
+    support_size: int,
+    source_occupancy: tuple[int, ...],
+) -> dict[str, int]:
+    domain_size = fiber_count * fiber_size
+    p_values = [
+        source * (fiber_size - source)
+        for source in source_occupancy
+    ]
+    p_total = sum(p_values)
+    internal_two = sum(
+        choose2(source) * choose2(fiber_size - source)
+        for source in source_occupancy
+    )
+    internal_two += sum(
+        p_values[left] * p_values[right]
+        for left in range(fiber_count)
+        for right in range(left + 1, fiber_count)
+    )
+
+    first_mixed_two = 0
+    for deficit_index, deficit_source in enumerate(source_occupancy):
+        for surplus_index, surplus_source in enumerate(source_occupancy):
+            if deficit_index == surplus_index:
+                continue
+            deficit_complement = fiber_size - deficit_source
+            surplus_complement = fiber_size - surplus_source
+            first_mixed_two += (
+                choose2(deficit_source) * deficit_complement * surplus_complement
+                + deficit_source * surplus_source * choose2(surplus_complement)
+                + deficit_source
+                * surplus_complement
+                * (
+                    p_total
+                    - p_values[deficit_index]
+                    - p_values[surplus_index]
+                )
+            )
+
+    johnson_two = choose2(support_size) * choose2(domain_size - support_size)
+    second_mixed_two = johnson_two - internal_two - first_mixed_two
+    return {
+        "internal_one": p_total,
+        "first_mixed_one": support_size * (domain_size - support_size) - p_total,
+        "internal_two": internal_two,
+        "first_mixed_two": first_mixed_two,
+        "second_mixed_two": second_mixed_two,
+        "johnson_two": johnson_two,
+    }
+
+
+def check_closed_slack_three_coefficients_case(
+    fiber_count: int,
+    fiber_size: int,
+    support_size: int,
+    field_size: int,
+) -> None:
+    domain_size = fiber_count * fiber_size
+    for source_occupancy in occupancy_vectors(fiber_count, fiber_size, support_size):
+        closed = closed_slack_three_coefficients(
+            fiber_count,
+            fiber_size,
+            support_size,
+            source_occupancy,
+        )
+        shell_zero = signed_shell_kernel(fiber_size, source_occupancy, 0)
+        shell_one = signed_shell_kernel(fiber_size, source_occupancy, 1)
+        shell_two = signed_shell_kernel(fiber_size, source_occupancy, 2)
+
+        expected = {
+            "internal_one": shell_zero.get(1, 0),
+            "first_mixed_one": shell_one.get(1, 0),
+            "internal_two": shell_zero.get(2, 0),
+            "first_mixed_two": shell_one.get(2, 0),
+            "second_mixed_two": shell_two.get(2, 0),
+            "johnson_two": choose2(support_size) * choose2(
+                domain_size - support_size,
+            ),
+        }
+        if closed != expected:
+            raise AssertionError(
+                (
+                    fiber_count,
+                    fiber_size,
+                    support_size,
+                    source_occupancy,
+                    closed,
+                    expected,
+                )
+            )
+
+        closed_weighted = (
+            field_size**2
+            * (closed["internal_one"] + closed["first_mixed_one"])
+            + field_size
+            * (
+                closed["internal_two"]
+                + closed["first_mixed_two"]
+                + closed["second_mixed_two"]
+            )
+        )
+        johnson_weighted = (
+            field_size**2 * support_size * (domain_size - support_size)
+            + field_size * closed["johnson_two"]
+        )
+        if closed_weighted != johnson_weighted:
+            raise AssertionError(
+                (
+                    fiber_count,
+                    fiber_size,
+                    support_size,
+                    source_occupancy,
+                    closed_weighted,
+                    johnson_weighted,
+                )
+            )
+
+
 def occupancy_vectors(
     fiber_count: int,
     fiber_size: int,
@@ -1672,6 +1796,13 @@ def main() -> int:
         (4, 3, 5, 3, 7),
     ]:
         check_shell_variance_criterion_case(*case)
+    for case in [
+        (3, 3, 4, 5),
+        (4, 2, 4, 5),
+        (4, 3, 5, 7),
+        (5, 2, 5, 7),
+    ]:
+        check_closed_slack_three_coefficients_case(*case)
     for case in [
         (4, 3, 4),
         (4, 3, 6),

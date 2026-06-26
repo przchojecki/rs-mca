@@ -687,6 +687,80 @@ The coefficient bound follows because `Phi_{a,d}` counts all supports in the
 full support layer at shell distance `d` and exchange `j`; any subfamily `A`
 can only delete such targets.
 
+### Corollary 6.7. Closed Slack-Three Coefficient Ledger
+
+For slack three, the shell coefficients in Corollary 6.5 have closed
+occupancy-moment formulas.  Put
+
+```text
+p_i = a_i(m-a_i),        P=sum_i p_i,        s=sum_i a_i,
+```
+
+and
+
+```text
+I_2(a)
+ = sum_i binom(a_i,2)binom(m-a_i,2)
+   + sum_{i<h} p_i p_h.
+```
+
+Then
+
+```text
+[x]Phi_{a,0}=P,
+[x]Phi_{a,1}=s(n-s)-P,
+[x^2]Phi_{a,0}=I_2(a).
+```
+
+The first mixed exchange-two coefficient is
+
+```text
+F_{1,2}(a)
+ =
+ sum_{i != h}
+   [
+     binom(a_i,2)(m-a_i)(m-a_h)
+     + a_i a_h binom(m-a_h,2)
+     + a_i(m-a_h)(P-p_i-p_h)
+   ].
+```
+
+Finally,
+
+```text
+[x^2]Phi_{a,1}=F_{1,2}(a),
+
+[x^2]Phi_{a,2}
+ = binom(s,2)binom(n-s,2) - I_2(a) - F_{1,2}(a).
+```
+
+Consequently the complete support-layer slack-three variance envelope around
+`a` can be evaluated from these closed expressions, with no remaining
+coefficient extraction:
+
+```text
+q^2 s(n-s) + q binom(s,2)binom(n-s,2)
+ =
+ q^2( P + s(n-s)-P )
+ + q( I_2(a) + F_{1,2}(a)
+      + binom(s,2)binom(n-s,2)-I_2(a)-F_{1,2}(a) ).
+```
+
+#### Proof
+
+The identities for `[x]Phi_{a,0}` and `[x]Phi_{a,1}` are Corollaries 6 and
+6.4.  For `[x^2]Phi_{a,0}`, either one fiber exchanges two points internally,
+contributing `binom(a_i,2)binom(m-a_i,2)`, or two distinct fibers each
+exchange one point internally, contributing `p_i p_h`.
+
+For `[x^2]Phi_{a,1}`, use the first-shell factorization from Corollary 6.4.
+For an ordered deficit-surplus pair `(i,h)`, degree two can occur in exactly
+three ways: degree two in the deficit fiber and degree zero in the surplus
+fiber; degree one in each of those two fibers; or degree one in the deficit
+fiber, degree zero in the surplus fiber, and one internal exchange in a third
+fiber.  These give the three displayed summands.  The `d=2` coefficient is
+then forced by the exchange-two split of Corollary 6.5.
+
 ## Theorem 7. Sharp Exchange-One Residual Floor
 
 For an occupancy vector `a=(a_1,...,a_N)`, put
