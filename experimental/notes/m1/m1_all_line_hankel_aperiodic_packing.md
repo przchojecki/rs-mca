@@ -350,6 +350,70 @@ This companion-map form is the local object a future packing proof should
 control: long residual slope structure would have to persist through many
 compatible quadratic involutions, not through arbitrary one-root exchanges.
 
+## Common Companion Anchor
+
+The companion map is actually anchored at each residual locator.  Fix a
+residual locator `T` with slope `z`, and put
+
+```text
+b_T = H_{2,j}(v)ell_T = (beta_0,beta_1) != 0.
+```
+
+For `r in T`, write `R=T\{r}` and let `m_R` be the coefficient vector of
+`L_R`, padded to length `j+1`.  Since
+
+```text
+L_T(X)=(X-r)L_R(X)
+```
+
+and `(H(u)+zH(v))ell_T=0`, the Hankel shift gives
+
+```text
+(H(u)+zH(v))m_R = c_R(1,r)
+```
+
+for some scalar `c_R`.  If `c_R=0`, then the whole root slice through `R` has
+the same slope `z`, so every noncontained point of that slice was already
+removed by the root-slice peeling.
+
+Otherwise vary the exchanged root by writing
+
+```text
+ell_{R union {x}} = ell_T + (r-x)m_R.
+```
+
+Set `lambda=r-x`.  Using `H(u)ell_T=-zH(v)ell_T`, the determinant on this
+one-root slice is
+
+```text
+Delta_R(x)
+ = lambda det((H(u)+zH(v))m_R, b_T)
+   + lambda^2 det((H(u)+zH(v))m_R, H(v)m_R).
+```
+
+If `H(v)m_R=(B_0,B_1)`, then `beta_0=B_1-rB_0`, and the displayed identity
+becomes
+
+```text
+Delta_R(x) = lambda c_R[(beta_1-r beta_0)+lambda beta_0].
+```
+
+Thus, after root-slice peeling, every finite different-slope companion of `T`
+has the same added root
+
+```text
+xi_T = beta_1/beta_0,
+```
+
+when `beta_0 != 0`.  If `beta_0=0`, then `beta_1 != 0` and the nonpeeled slice
+is linear with only the original root `x=r`, so it gives no strict residual
+neighbor.
+
+Consequently all residual one-exchange neighbors of a fixed locator `T`, if
+any exist, are obtained by adding the same root `xi_T` and deleting one root of
+`T`.  This upgrades the residual graph from bounded-degree to packet-local:
+each residual locator is incident to at most one top packet.
+
 ## Residual Triangle Classification
 
 The residual graph can still have triangles, but their type is forced.  In the
@@ -367,11 +431,11 @@ charged to the root-slice ledger.  Hence three residual vertices with one
 common `(j-1)`-core are impossible.
 
 Therefore every residual triangle is a top triangle.  This does not yet prove
-that the whole residual graph is a disjoint union of top cliques; the local
-Hankel algebra can admit non-top two-edge corners in isolation.  What it does
-prove is that the first possible cycles after peeling are already forced into
-`(j+1)`-set packets, so any future packing argument can focus on controlling
-these top packets rather than arbitrary star fibers.
+that large top packets are small in number, but combined with the common
+companion anchor it does prove that the residual graph is a disjoint union of
+top-packet cliques and isolated residual locators.  Thus any future packing
+argument can focus on controlling these top packets rather than arbitrary star
+fibers or branching two-edge corners.
 
 ## Residual Top-Packet Ledger
 
@@ -415,6 +479,14 @@ different `(j+1)`-sets `W,W'` contained two distinct `j`-subsets `T,T'`, then
 `W=T union T'=W'`.  Consequently the residual graph is the two-section of a
 linear hypergraph whose hyperedges are slope-injective top packets.
 
+The common companion anchor strengthens this from linearity to
+vertex-disjointness on the residual locator side.  If a residual locator `T`
+has a neighbor, every neighbor adds the same root `xi_T`; hence every residual
+edge through `T` lies in the single top packet `T union {xi_T}`.  No residual
+locator can therefore sit in two distinct top packets.  The residual graph is
+exactly a disjoint union of slope-injective top cliques, together with isolated
+residual locators.
+
 Thus the residual high-overlap obstruction has been localized further: pair
 packets with `m_W=2` are isolated at triangle level, while every surviving
 triangle and every large local clique is carried by a slope-injective
@@ -451,12 +523,15 @@ enumerates small cyclic-domain cases.  For each case it:
 - reports the residual strict one-exchange count and verifies the residual
   maximum degree bound `<= j`;
 - checks the quadratic companion map for every nonzero quadratic edge slice;
+- verifies the common companion anchor `xi_T=beta_1/beta_0` for every oriented
+  residual edge endpoint;
 - classifies every residual triangle and asserts that no star triangle remains
   after root-slice peeling;
 - forms the residual top-packet ledger and checks that it accounts exactly for
   all residual edges and top triangles;
 - checks the residual degree formula from the incident top packets;
-- verifies that the top-packet hypergraph is linear;
+- verifies that the top-packet hypergraph is linear and vertex-disjoint on
+  residual locators;
 - runs one deterministic arbitrary-line probe which hits the rank-one
   zero-determinant branch and verifies that it is classified by the same
   constant/contained zero-slice ledger.
@@ -485,7 +560,8 @@ and none are star triangles.  Its top-packet ledger has `14` packets, all
 large, with maximum packet size `5`; these packets account for all `88`
 residual edges, all `68` residual triangles, and the local residual degree
 formula.  The maximum top-packet incidence of a residual locator is `1` in
-this row, so the audited top packets are disjoint.
+this row, so the audited top packets are disjoint; the common-anchor check
+certifies all `176=2*88` oriented residual edge endpoints.
 
 The arbitrary `F_17`, `j=4`, `t=2` rank-one probe has `176` aperiodic locators,
 all `17` slopes, and `16` zero-determinant slices.  Four of those zero slices
@@ -496,8 +572,9 @@ quadratic edge slices and has `24` residual triangles, all top-type.  Its
 top-packet ledger has `17` packets: `3` large packets and `14` pair packets,
 with maximum packet size `5`, accounting for `40` residual edges and `24`
 triangles, with maximum top-packet incidence again `1`, so the audited top
-packets are disjoint.  These are exactly the profile quantities a packing
-proof must shrink or explain structurally.
+packets are disjoint.  The common-anchor check certifies all `80=2*40`
+oriented residual edge endpoints in the probe.  These are exactly the profile
+quantities a packing proof must shrink or explain structurally.
 
 This is an audit/verifier for the M1 target, not a proof of the desired
 polynomial all-line bound.  Its purpose is to make future counterexample-first
