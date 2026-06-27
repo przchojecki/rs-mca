@@ -355,7 +355,11 @@ Keep entries concise and link to the relevant files.
   denominator `D_C` is root-free and has a unique parameter satisfying either
   `D_C W_{v-lambda_C u}=N_C mod T^{d+t+2}` or the paired first-difference
   congruences modulo `T^{d+t+1}`.  The parameter is either constant, hence a
-  fixed-slice charge, or genuinely moving.
+  fixed-slice charge, or genuinely moving.  Constant-parameter positive
+  components are exactly high-dimensional fixed-slice recurrence spaces:
+  fixed `lambda` gives `dim {D:R_{t+2}(D;v-lambda u)=0}>=2`, and fixed
+  `theta` gives the analogous simultaneous
+  `Delta_theta u, Delta_theta v` recurrence space of dimension at least `2`.
 - **What to do next:** Bound or charge the unique-neighbor nondegenerate
   star-free shadow ledger, then charge the four base endpoint spaces, the
   resulting short-annihilator endpoint systems, finite-exception endpoint
@@ -364,7 +368,8 @@ Keep entries concise and link to the relevant files.
   low-dimensional common endpoint recurrence spaces, the corresponding
   primitive reciprocal-domain-pole-free denominator families, their endpoint
   collision charges, positive-dimensional moving denominator certificates,
-  root-free multipliers, and the common-root-free
+  nonconstant-parameter moving components, root-free multipliers, and the
+  common-root-free
   fixed-kernel and first-difference moving-certificate loci to
   fixed-slope/root-slice, quotient-periodic, endpoint, or active-codegree
   ledgers.

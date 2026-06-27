@@ -5931,6 +5931,74 @@ to obtain the unique `theta_C` and the two congruences (MoveD).  A rational
 function on `C` is constant exactly when it belongs to the constant field;
 otherwise it is a moving parameter.  This proves the stated dichotomy.
 
+## Corollary 67: Constant-Parameter Components Are High-Dimensional Fixed Slices
+
+Fix an order `d<h`.
+
+### Fixed-Kernel Slices
+
+For a finite parameter `lambda`, define the order-`d` fixed-kernel recurrence
+space
+
+```text
+K_{d,lambda}={D in F^{d+1} : R_{t+2}(D;v-lambda u)=0}.
+```
+
+If an irreducible positive-dimensional component from Corollary 66 has
+constant fixed-kernel parameter `lambda_C=lambda`, then
+
+```text
+dim K_{d,lambda} >= 2.
+```
+
+Conversely, the projectivization `P(K_{d,lambda})` is exactly the
+denominator landing slice with fixed parameter `lambda`; its root-free,
+primitive, order-`d`, and base-free parts are obtained by imposing the
+corresponding open conditions.
+
+Thus constant-parameter fixed-kernel components are precisely
+high-dimensional fixed-slice short-recurrence spaces for the combined syndrome
+`v-lambda u`.
+
+### First-Difference Slices
+
+For a finite parameter `theta`, define
+
+```text
+D_{d,theta}={D in F^{d+1} :
+  R_{t+1}(D;Delta_theta u)=0 and R_{t+1}(D;Delta_theta v)=0 }.
+```
+
+If an irreducible positive-dimensional component from Corollary 66 has
+constant first-difference parameter `theta_C=theta`, then
+
+```text
+dim D_{d,theta} >= 2.
+```
+
+Conversely, `P(D_{d,theta})` is exactly the denominator landing slice with
+fixed first-difference parameter `theta`, again up to the same root-free,
+primitive, order, and base-free opens.
+
+Consequently, after high-dimensional fixed-slice recurrence spaces are charged,
+every positive-dimensional primitive landing component left by Corollary 65 has
+genuinely nonconstant parameter.  The remaining moving-denominator obstruction
+is therefore not a constant fixed-slope artifact.
+
+### Proof
+
+For fixed `lambda`, the equation `R_{t+2}(D;v-lambda u)=0` is linear in the
+coefficients of `D`, and by Corollary 63 it is exactly the fixed-parameter
+landing slice.  A positive-dimensional projective component contained in this
+linear slice forces the underlying vector space to have dimension at least
+two.  The open conditions only remove closed exceptional subsets, so the
+converse description is immediate.
+
+The first-difference case is the same with the two simultaneous linear
+conditions for `Delta_theta u` and `Delta_theta v`.  The final statement is the
+constant/moving dichotomy from Corollary 66 after the constant slices have
+been charged.
+
 ## Non-Claims
 
 This note does not prove
@@ -6083,4 +6151,6 @@ closure threshold; it does not bound the resulting primitive rank-one landing
 loci. Corollary 65 bounds only zero-dimensional landing layers; it does not
 exclude positive-dimensional primitive landing components. Corollary 66 turns
 those components into moving denominator certificates, but does not classify or
-bound those certificates.
+bound those certificates. Corollary 67 identifies constant-parameter
+components with high-dimensional fixed-slice recurrence spaces; it does not
+bound the genuinely moving-parameter components.
