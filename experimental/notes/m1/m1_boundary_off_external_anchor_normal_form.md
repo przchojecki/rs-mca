@@ -5332,7 +5332,7 @@ then
 N_1(T)D_2(T)=N_2(T)D_1(T).
 ```
 
-Consequently every degree-`<=s` truncated rational-denominator certificate for
+Consequently every order-`<=s` truncated rational-denominator certificate for
 the same scalar syndrome series determines the same reduced rational function.
 In particular, after reducing `N_i/D_i`, the reduced denominator divides every
 certificate denominator `D_i=Q_i^*`.
@@ -5463,16 +5463,19 @@ space, so this gives the claimed upper bound.
 
 ## Corollary 61: Primitive Denominators Remain Valid Certificates
 
-In the half-window setting of Corollary 60, let `D=D_0M` be a degree-`<h`
-certificate denominator for a scalar syndrome series or for a pair of series,
-where `D_0` is the primitive reduced denominator from Corollary 59.  Then
-`D_0` itself is a certificate denominator.  More precisely, if
+In the half-window setting of Corollary 60, let `D=D_0M` be an order-`<h`
+certificate denominator for a scalar syndrome series or for a pair of series.
+Here the order is the locator degree `e` in `Q(X)` and the congruence modulus
+`T^{e+s}`; the ordinary `T`-degree of the reversed denominator `D=Q^*` may be
+smaller.  Let `D_0` be the primitive reduced denominator from Corollary 59.
+Then `D_0` itself is a certificate denominator.  More precisely, if
 
 ```text
-D(T)W_w(T)=N(T)       mod T^{e+s},        deg D=e,
+D(T)W_w(T)=N(T)       mod T^{e+s},
 ```
 
-and the reduced rational function is `N_0/D_0`, then
+where `e` is the certificate order, and the reduced rational function is
+`N_0/D_0`, then
 
 ```text
 D_0(T)W_w(T)=N_0(T)       mod T^{delta+s},        delta=deg D_0.
@@ -5483,7 +5486,7 @@ vector denominator `D_0`.
 
 If `D` is root-free in the sense of Corollary 58, then `D_0` is also
 root-free.  Thus, in the half-window range, existence of a root-free
-degree-`<h` certificate is equivalent to existence of a root-free primitive
+order-`<h` certificate is equivalent to existence of a root-free primitive
 certificate denominator of degree `<h`; multipliers affect the number of
 certificates, but not the existence of the underlying endpoint-short
 obstruction.
@@ -5506,7 +5509,7 @@ Corollary 58.
 
 ## Corollary 62: Parameter Collisions Are Base Endpoint Denominators
 
-Let `D(T)` be a denominator with `D(0)!=0` and `deg D=e<h`.
+Let `D(T)` be an order-`e` reversed denominator with `D(0)!=0` and `e<h`.
 
 ### Fixed-Kernel Parameters
 
@@ -5599,8 +5602,8 @@ fall into the charged base endpoint intersection.
 
 ## Corollary 63: Base-Free Primitive Parameters Are Rank-One Landings
 
-Let `D(T)` be a denominator of degree `d<h`.  For a syndrome series `w`, define
-the tail coefficient vector
+Let `D(T)` be an order-`d` reversed denominator with `d<h`.  For a syndrome
+series `w`, define the tail coefficient vector
 
 ```text
 R_s(D;w)=([T^d]D(T)W_w(T), ..., [T^{d+s-1}]D(T)W_w(T)) in F^s.
@@ -5742,15 +5745,15 @@ Equivalently, in the nonvacuous range `h>0`,
 h <= t+2.
 ```
 
-Then every degree-`<h` endpoint-short denominator certificate lies in the
+Then every order-`<h` endpoint-short denominator certificate lies in the
 half-window range of Corollaries 59--63.
 
 More explicitly:
 
 * fixed-kernel certificates use the window length `s=t+2`; since
-  `e<h<=t+2`, every certificate degree satisfies `e<=s`;
+  `e<h<=t+2`, every certificate order satisfies `e<=s`;
 * first-difference certificates use the window length `s=t+1`; since
-  `e<h<=t+2`, every certificate degree satisfies `e<=t+1=s`.
+  `e<h<=t+2`, every certificate order satisfies `e<=t+1=s`.
 
 Therefore, at every threshold where the four short endpoint injectivity checks
 from Corollary 53 are row-count feasible, the remaining root-free
@@ -5766,7 +5769,7 @@ unavailable.
 
 ### Proof
 
-If `h=0`, there are no nonzero degree-`<h` certificates, so the statement is
+If `h=0`, there are no nonzero order-`<h` certificates, so the statement is
 vacuous.  Otherwise, Corollary 55 gives `h<=t+2`.
 
 For a fixed-kernel certificate, the window length is `s=t+2`.  Since
@@ -5780,16 +5783,15 @@ obstruction from Corollary 55.
 
 ## Corollary 65: Zero-Dimensional Landing Layers Have Explicit Size
 
-Fix a degree `d<h`, and let
+Fix an order `d<h`, and let
 
 ```text
-P_d=P({denominators D(T) of degree <=d})
+P_d=P({order-d reversed denominators D(T)=a_0+...+a_dT^d})
 ```
 
-be the projective denominator coefficient space.  The exact-degree condition
-`deg D=d`, the reciprocal-domain root-free condition from Corollary 58, and
-the base-free conditions from Corollaries 62--63 are all open conditions on
-`P_d`.
+be the projective denominator coefficient space.  The order condition
+`D(0)!=0`, the reciprocal-domain root-free condition from Corollary 58, and the
+base-free conditions from Corollaries 62--63 are all open conditions on `P_d`.
 
 Let `L_d^K` be the projective rank-one landing locus cut out by the fixed-kernel
 minors
@@ -5819,7 +5821,7 @@ geometric points, counted without multiplicity.  The same bound holds for
 `L_d^D`.
 
 Consequently, at the endpoint-short threshold of Corollary 64, if every
-degree layer `0<=d<h` of the base-free primitive fixed-kernel landing locus is
+order layer `0<=d<h` of the base-free primitive fixed-kernel landing locus is
 zero-dimensional, then after the endpoint and collision charges of Corollary
 62 the remaining fixed-kernel bad parameters contribute at most
 
@@ -5843,7 +5845,7 @@ Corollary 63, so the collinearity equations are homogeneous quadrics on
 
 A zero-dimensional projective subvariety of `P^d` cut out by quadrics has
 degree at most `2^d` by the standard projective Bezout bound; hence it has at
-most `2^d` geometric points.  This proves the degree-layer bounds.  Corollary
+most `2^d` geometric points.  This proves the order-layer bounds.  Corollary
 62 makes the parameter-to-primitive-denominator map injective after the base
 endpoint collision charges, so summing over `0<=d<h` gives the displayed
 `2^h-1` bound.  If the zero-dimensionality hypothesis fails, the failure is

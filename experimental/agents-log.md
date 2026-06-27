@@ -321,10 +321,10 @@ Keep entries concise and link to the relevant files.
   residue-denominator obstruction remains.  A half-window uniqueness lemma now
   compresses these families: if two denominator certificates
   `D_i W_w=N_i mod T^{e_i+s}` have `s>=max(e_1,e_2)`, then
-  `N_1D_2=N_2D_1`, so all degree-`<=s` certificates share one reduced rational
+  `N_1D_2=N_2D_1`, so all order-`<=s` certificates share one reduced rational
   function; componentwise, common certificates for a pair share one primitive
   vector denominator dividing every certificate denominator.  If that
-  primitive denominator has degree `delta`, every degree-`<h` certificate lies
+  primitive denominator has degree `delta`, every order-`<h` certificate lies
   in the multiplier ledger `D_0M`, `deg M<=h-1-delta`; over `F_q` this costs
   at most `(q^{h-delta}-1)/(q-1)` projective multipliers before root-free and
   truncation cuts.  The primitive denominator itself remains a certificate
@@ -344,10 +344,10 @@ Keep entries concise and link to the relevant files.
   reduction covers the entire row-count feasible endpoint-short closure
   threshold: if `h=c-b` and `b>=max(0,c-(t+2))`, then `h<=t+2`; fixed-kernel
   windows have `s=t+2`, and first-difference windows have `s=t+1` with every
-  degree `e<h` satisfying `e<=s`.  Thus the longer vector-Pade range is not an
-  extra obstruction at the Corollary 55 threshold.  Degree-layer finite
+  order `e<h` satisfying `e<=s`.  Thus the longer vector-Pade range is not an
+  extra obstruction at the Corollary 55 threshold.  Order-layer finite
   landing is also explicit: the rank-one landing equations in `P_d` are
-  homogeneous quadrics, so a zero-dimensional remaining degree-`d` layer has
+  homogeneous quadrics, so a zero-dimensional remaining order-`d` layer has
   at most `2^d` geometric points by Bezout.  Summing over `d<h` gives
   `2^h-1` bad parameters per family after endpoint collision charges, unless
   a positive-dimensional primitive rank-one landing component remains.
