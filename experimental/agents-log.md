@@ -47,7 +47,9 @@ Keep entries concise and link to the relevant files.
   image of the active locator family, and the common-image ruled branch is
   converted into explicit lower/upper row-cut equations on the shadow locator.
   The anchor quadrics are also expanded into constant, mixed, and quadratic
-  Hankel-wedge coefficients, giving a concrete ruled-shadow test.
+  Hankel-wedge coefficients, giving a concrete ruled-shadow test.  The
+  common-kernel ruled branch is further identified as a fixed-slope boundary
+  kernel slice, or as a boundary-contained pencil in the endpoint case.
 - **How it is useful:** This sharpens one of the two live residual objects in
   the non-fixed variable-line branch.  It does not prove the final M1 bound,
   but it turns the boundary image into a precise quadratic-anchor/ruled-branch

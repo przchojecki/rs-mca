@@ -480,6 +480,64 @@ evaluation `V -> F^S` is injective because a nonzero polynomial of degree
 `(j-1-d)`-subsets of `D`, because a fixed `R` determines the unique member of
 `P_0+V` vanishing on `R`.
 
+## Corollary 6: Common-Kernel Ruled Shadows Are Fixed-Slope Pencils
+
+Keep a ruled shadow `S` in the common-kernel branch, and write
+
+```text
+P_z = H_{t,j}(u) + z H_{t,j}(v).
+```
+
+If the common-kernel relation has `lambda != 0`, put `z=mu/lambda`. Then
+
+```text
+P_z ell_S^0 = 0,        P_z ell_S^+ = 0.             (FS)
+```
+
+Consequently every external-anchor locator over this shadow satisfies
+
+```text
+P_z ell_{S,beta}=0        for every beta in F.
+```
+
+Thus the finite common-kernel ruled branch is contained in a fixed-slope
+two-dimensional kernel slice spanned by `ell_S^0` and `ell_S^+`. It is not a
+new moving-anchor branch; any future bound may charge it to the fixed-slope or
+root-slice ledger once the corresponding one-outside boundary slice is allowed
+in that ledger.
+
+If instead `lambda=0`, then
+
+```text
+H_{t,j}(v) ell_S^0 = 0,        H_{t,j}(v) ell_S^+ = 0,
+```
+
+so every external-anchor locator over `S` lies in the boundary-contained
+pencil for the direction endpoint `g`.
+
+### Proof
+
+The common-kernel relation is
+
+```text
+lambda a_S(beta) + mu b_S(beta) = 0
+```
+
+for every `beta`. If `lambda != 0`, divide by `lambda` and set
+`z=mu/lambda`; then
+
+```text
+a_S(beta)+z b_S(beta)=P_z ell_{S,beta}=0
+```
+
+for every `beta`. Since `ell_{S,beta}=ell_S^+-beta ell_S^0`, the constant and
+linear coefficients in `beta` vanish separately, proving (FS). The displayed
+fixed-slope assertion follows by linearity.
+
+If `lambda=0`, then `mu != 0`, so `b_S(beta)=0` for every `beta`. Expanding
+`b_S(beta)=H(v)ell_S^+-beta H(v)ell_S^0` and comparing coefficients gives the
+boundary-contained alternative.
+
 ## Non-Claims
 
 This note does not prove
