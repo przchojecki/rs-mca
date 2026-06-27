@@ -506,6 +506,25 @@ def affine_line_key(points: list[tuple[int, int]], p: int) -> tuple[int, int, in
     raise AssertionError("distinct points did not define a line")
 
 
+def two_root_line_model(
+    line_key: tuple[int, int, int], p: int
+) -> tuple[str, int, int | None]:
+    normal_sum, normal_product, constant = line_key
+    if normal_sum == 0 and normal_product == 0:
+        raise AssertionError("line key vanished")
+    if normal_product == 0:
+        total = constant * inv_mod(normal_sum, p) % p
+        return "sum_mobius", total, None
+
+    inv_product = inv_mod(normal_product, p)
+    center = (-normal_sum * inv_product) % p
+    offset = constant * inv_product % p
+    multiplier = (center * center + offset) % p
+    if multiplier == 0:
+        return "fixed_root", center, None
+    return "product_mobius", center, multiplier
+
+
 def strict_exchange_profile(
     locator_rows: list[tuple[tuple[int, ...], int]], t: int
 ) -> dict[str, int]:
@@ -669,7 +688,12 @@ def two_exchange_quadratic_slice_profile(
             "two_exchange_same_slope_line_clusters": 0,
             "two_exchange_same_slope_fixed_root_lines": 0,
             "two_exchange_same_slope_mobius_lines": 0,
+            "two_exchange_same_slope_product_mobius_lines": 0,
+            "two_exchange_same_slope_sum_mobius_lines": 0,
             "two_exchange_same_slope_line_two_exchange_pairs": 0,
+            "two_exchange_same_slope_mobius_two_exchange_pairs": 0,
+            "two_exchange_same_slope_mobius_pair_checks": 0,
+            "two_exchange_same_slope_mobius_member_max": 0,
             "two_exchange_same_slope_plane_clusters": 0,
             "two_exchange_same_slope_plane_lifts": 0,
             "two_exchange_same_slope_plane_two_exchange_pairs": 0,
@@ -710,7 +734,12 @@ def two_exchange_quadratic_slice_profile(
     same_slope_line_clusters = 0
     same_slope_fixed_root_lines = 0
     same_slope_mobius_lines = 0
+    same_slope_product_mobius_lines = 0
+    same_slope_sum_mobius_lines = 0
     same_slope_line_two_exchange_pairs = 0
+    same_slope_mobius_two_exchange_pairs = 0
+    same_slope_mobius_pair_checks = 0
+    same_slope_mobius_member_max = 0
     same_slope_plane_clusters = 0
     same_slope_plane_lifts = 0
     same_slope_plane_two_exchange_pairs = 0
@@ -842,12 +871,15 @@ def two_exchange_quadratic_slice_profile(
                 same_slope_line_clusters += 1
                 same_slope_line_two_exchange_pairs += cluster_two_exchange_pairs
                 line_key = affine_line_key([(entry[2], entry[3]) for entry in entries], p)
+                line_model, line_parameter, line_multiplier = two_root_line_model(line_key, p)
                 common_roots = set(entries[0][:2])
                 for entry in entries[1:]:
                     common_roots &= set(entry[:2])
                 if common_roots:
                     same_slope_fixed_root_lines += 1
                     fixed_root = next(iter(common_roots))
+                    if line_model != "fixed_root" or line_parameter != fixed_root:
+                        raise AssertionError("fixed-root line model disagreed with common root")
                     for _x, _y, root_sum, root_product in entries:
                         if (root_product - fixed_root * root_sum + fixed_root * fixed_root) % p:
                             raise AssertionError("fixed-root two-exchange line had wrong equation")
@@ -855,6 +887,48 @@ def two_exchange_quadratic_slice_profile(
                         raise AssertionError("fixed-root line contributed a two-exchange pair")
                 else:
                     same_slope_mobius_lines += 1
+                    same_slope_mobius_two_exchange_pairs += cluster_two_exchange_pairs
+                    same_slope_mobius_member_max = max(
+                        same_slope_mobius_member_max, len(entries)
+                    )
+                    if line_model == "product_mobius":
+                        same_slope_product_mobius_lines += 1
+                        if line_multiplier is None or line_multiplier == 0:
+                            raise AssertionError("product Mobius line had zero multiplier")
+                        for x, y, _root_sum, _root_product in entries:
+                            if (
+                                (x - line_parameter)
+                                * (y - line_parameter)
+                                - line_multiplier
+                            ) % p:
+                                raise AssertionError("product Mobius line missed a pair")
+                            if x == line_parameter or y == line_parameter:
+                                raise AssertionError("product Mobius pair hit its pole")
+                            if (
+                                line_parameter
+                                + line_multiplier * inv_mod((x - line_parameter) % p, p)
+                                - y
+                            ) % p:
+                                raise AssertionError("product Mobius involution missed y")
+                            if (
+                                line_parameter
+                                + line_multiplier * inv_mod((y - line_parameter) % p, p)
+                                - x
+                            ) % p:
+                                raise AssertionError("product Mobius involution missed x")
+                            same_slope_mobius_pair_checks += 2
+                    elif line_model == "sum_mobius":
+                        same_slope_sum_mobius_lines += 1
+                        for x, y, root_sum, _root_product in entries:
+                            if root_sum != line_parameter:
+                                raise AssertionError("sum Mobius line missed a pair")
+                            if (line_parameter - x - y) % p:
+                                raise AssertionError("sum Mobius involution missed y")
+                            if (line_parameter - y - x) % p:
+                                raise AssertionError("sum Mobius involution missed x")
+                            same_slope_mobius_pair_checks += 2
+                    else:
+                        raise AssertionError("non-common line was not Mobius")
                 for _x, _y, root_sum, root_product in entries:
                     if (line_key[0] * root_sum + line_key[1] * root_product - line_key[2]) % p:
                         raise AssertionError("same-slope two-exchange line key missed a point")
@@ -899,9 +973,18 @@ def two_exchange_quadratic_slice_profile(
         "two_exchange_same_slope_line_clusters": same_slope_line_clusters,
         "two_exchange_same_slope_fixed_root_lines": same_slope_fixed_root_lines,
         "two_exchange_same_slope_mobius_lines": same_slope_mobius_lines,
+        "two_exchange_same_slope_product_mobius_lines": (
+            same_slope_product_mobius_lines
+        ),
+        "two_exchange_same_slope_sum_mobius_lines": same_slope_sum_mobius_lines,
         "two_exchange_same_slope_line_two_exchange_pairs": (
             same_slope_line_two_exchange_pairs
         ),
+        "two_exchange_same_slope_mobius_two_exchange_pairs": (
+            same_slope_mobius_two_exchange_pairs
+        ),
+        "two_exchange_same_slope_mobius_pair_checks": same_slope_mobius_pair_checks,
+        "two_exchange_same_slope_mobius_member_max": same_slope_mobius_member_max,
         "two_exchange_same_slope_plane_clusters": same_slope_plane_clusters,
         "two_exchange_same_slope_plane_lifts": same_slope_plane_lifts,
         "two_exchange_same_slope_plane_two_exchange_pairs": (
@@ -2915,8 +2998,23 @@ def verify_word_pair(
         "two_exchange_same_slope_mobius_lines": two_exchange_profile[
             "two_exchange_same_slope_mobius_lines"
         ],
+        "two_exchange_same_slope_product_mobius_lines": two_exchange_profile[
+            "two_exchange_same_slope_product_mobius_lines"
+        ],
+        "two_exchange_same_slope_sum_mobius_lines": two_exchange_profile[
+            "two_exchange_same_slope_sum_mobius_lines"
+        ],
         "two_exchange_same_slope_line_two_exchange_pairs": two_exchange_profile[
             "two_exchange_same_slope_line_two_exchange_pairs"
+        ],
+        "two_exchange_same_slope_mobius_two_exchange_pairs": two_exchange_profile[
+            "two_exchange_same_slope_mobius_two_exchange_pairs"
+        ],
+        "two_exchange_same_slope_mobius_pair_checks": two_exchange_profile[
+            "two_exchange_same_slope_mobius_pair_checks"
+        ],
+        "two_exchange_same_slope_mobius_member_max": two_exchange_profile[
+            "two_exchange_same_slope_mobius_member_max"
         ],
         "two_exchange_same_slope_plane_clusters": two_exchange_profile[
             "two_exchange_same_slope_plane_clusters"
@@ -3360,8 +3458,23 @@ def verify_case(case: Case) -> dict[str, object]:
         "max_two_exchange_same_slope_mobius_lines": max(
             row["two_exchange_same_slope_mobius_lines"] for row in rows
         ),
+        "max_two_exchange_same_slope_product_mobius_lines": max(
+            row["two_exchange_same_slope_product_mobius_lines"] for row in rows
+        ),
+        "max_two_exchange_same_slope_sum_mobius_lines": max(
+            row["two_exchange_same_slope_sum_mobius_lines"] for row in rows
+        ),
         "max_two_exchange_same_slope_line_two_exchange_pairs": max(
             row["two_exchange_same_slope_line_two_exchange_pairs"] for row in rows
+        ),
+        "max_two_exchange_same_slope_mobius_two_exchange_pairs": max(
+            row["two_exchange_same_slope_mobius_two_exchange_pairs"] for row in rows
+        ),
+        "max_two_exchange_same_slope_mobius_pair_checks": max(
+            row["two_exchange_same_slope_mobius_pair_checks"] for row in rows
+        ),
+        "max_two_exchange_same_slope_mobius_member": max(
+            row["two_exchange_same_slope_mobius_member_max"] for row in rows
         ),
         "max_two_exchange_same_slope_plane_clusters": max(
             row["two_exchange_same_slope_plane_clusters"] for row in rows
@@ -4330,6 +4443,40 @@ def verify_t3_same_slope_two_exchange_probe() -> dict[str, object]:
     return row
 
 
+def verify_two_exchange_line_geometry_models() -> dict[str, int]:
+    p = 13
+
+    fixed_root_points = [((3 + x) % p, (3 * x) % p) for x in (1, 2, 4)]
+    fixed_key = affine_line_key(fixed_root_points, p)
+    if two_root_line_model(fixed_key, p) != ("fixed_root", 3, None):
+        raise AssertionError("fixed-root line model failed")
+
+    product_points = []
+    center, multiplier = 4, 5
+    for x in (0, 1, 2, 6):
+        y = (center + multiplier * inv_mod((x - center) % p, p)) % p
+        product_points.append(((x + y) % p, x * y % p))
+    product_key = affine_line_key(product_points, p)
+    if two_root_line_model(product_key, p) != ("product_mobius", center, multiplier):
+        raise AssertionError("product Mobius line model failed")
+
+    sum_points = []
+    total = 7
+    for x in (0, 1, 3, 5):
+        y = (total - x) % p
+        sum_points.append((total, x * y % p))
+    sum_key = affine_line_key(sum_points, p)
+    if two_root_line_model(sum_key, p) != ("sum_mobius", total, None):
+        raise AssertionError("sum Mobius line model failed")
+
+    return {
+        "field": p,
+        "fixed_root_checks": len(fixed_root_points),
+        "product_mobius_checks": len(product_points),
+        "sum_mobius_checks": len(sum_points),
+    }
+
+
 def main() -> None:
     cases = (
         Case("F17_full_j4_t2", p=17, n=16, j=4, t=2, charged_fiber_sizes=(2, 4, 8), seeds=(0, 1, 2, 3)),
@@ -4413,6 +4560,7 @@ def main() -> None:
     j4_pair_product_floor_argument = verify_j4_pair_product_floor_argument()
     rank_one_probe = verify_rank_one_zero_slice_probe()
     t3_same_slope_probe = verify_t3_same_slope_two_exchange_probe()
+    line_geometry_models = verify_two_exchange_line_geometry_models()
     print(
         "F13_order12_j4_t2_boundary_model: "
         f"seeds={boundary_product_model['seeds']} "
@@ -4506,7 +4654,12 @@ def main() -> None:
                 "two_exchange_same_slope_lines={two_exchange_same_slope_line_clusters} "
                 "two_exchange_same_slope_fixed_lines={two_exchange_same_slope_fixed_root_lines} "
                 "two_exchange_same_slope_mobius_lines={two_exchange_same_slope_mobius_lines} "
+                "two_exchange_same_slope_product_mobius_lines={two_exchange_same_slope_product_mobius_lines} "
+                "two_exchange_same_slope_sum_mobius_lines={two_exchange_same_slope_sum_mobius_lines} "
                 "two_exchange_same_slope_line_two_pairs={two_exchange_same_slope_line_two_exchange_pairs} "
+                "two_exchange_same_slope_mobius_two_pairs={two_exchange_same_slope_mobius_two_exchange_pairs} "
+                "two_exchange_same_slope_mobius_pair_checks={two_exchange_same_slope_mobius_pair_checks} "
+                "two_exchange_same_slope_mobius_member_max={two_exchange_same_slope_mobius_member_max} "
                 "two_exchange_same_slope_planes={two_exchange_same_slope_plane_clusters} "
                 "two_exchange_same_slope_plane_lifts={two_exchange_same_slope_plane_lifts} "
                 "two_exchange_same_slope_plane_two_pairs={two_exchange_same_slope_plane_two_exchange_pairs} "
@@ -4685,7 +4838,12 @@ def main() -> None:
             f"max_two_exchange_same_slope_lines={summary['max_two_exchange_same_slope_line_clusters']} "
             f"max_two_exchange_same_slope_fixed_lines={summary['max_two_exchange_same_slope_fixed_root_lines']} "
             f"max_two_exchange_same_slope_mobius_lines={summary['max_two_exchange_same_slope_mobius_lines']} "
+            f"max_two_exchange_same_slope_product_mobius_lines={summary['max_two_exchange_same_slope_product_mobius_lines']} "
+            f"max_two_exchange_same_slope_sum_mobius_lines={summary['max_two_exchange_same_slope_sum_mobius_lines']} "
             f"max_two_exchange_same_slope_line_two_pairs={summary['max_two_exchange_same_slope_line_two_exchange_pairs']} "
+            f"max_two_exchange_same_slope_mobius_two_pairs={summary['max_two_exchange_same_slope_mobius_two_exchange_pairs']} "
+            f"max_two_exchange_same_slope_mobius_pair_checks={summary['max_two_exchange_same_slope_mobius_pair_checks']} "
+            f"max_two_exchange_same_slope_mobius_member={summary['max_two_exchange_same_slope_mobius_member']} "
             f"max_two_exchange_same_slope_planes={summary['max_two_exchange_same_slope_plane_clusters']} "
             f"max_two_exchange_same_slope_plane_lifts={summary['max_two_exchange_same_slope_plane_lifts']} "
             f"max_two_exchange_same_slope_plane_two_pairs={summary['max_two_exchange_same_slope_plane_two_exchange_pairs']} "
@@ -4973,7 +5131,12 @@ def main() -> None:
         "two_exchange_different_slope={two_exchange_different_slope_pairs} "
         "two_exchange_same_slope_lines={two_exchange_same_slope_line_clusters} "
         "two_exchange_same_slope_fixed_lines={two_exchange_same_slope_fixed_root_lines} "
+        "two_exchange_same_slope_mobius_lines={two_exchange_same_slope_mobius_lines} "
+        "two_exchange_same_slope_product_mobius_lines={two_exchange_same_slope_product_mobius_lines} "
+        "two_exchange_same_slope_sum_mobius_lines={two_exchange_same_slope_sum_mobius_lines} "
         "two_exchange_same_slope_line_two_pairs={two_exchange_same_slope_line_two_exchange_pairs} "
+        "two_exchange_same_slope_mobius_two_pairs={two_exchange_same_slope_mobius_two_exchange_pairs} "
+        "two_exchange_same_slope_mobius_pair_checks={two_exchange_same_slope_mobius_pair_checks} "
         "two_exchange_same_slope_planes={two_exchange_same_slope_plane_clusters} "
         "two_exchange_same_slope_plane_lifts={two_exchange_same_slope_plane_lifts} "
         "two_exchange_same_slope_plane_two_pairs={two_exchange_same_slope_plane_two_exchange_pairs} "
@@ -4981,6 +5144,13 @@ def main() -> None:
         "two_exchange_same_slope_lift_checks={two_exchange_same_slope_lift_checks} "
         "two_exchange_minor_checks={two_exchange_minor_polynomial_checks} "
         "direct_checks={direct_checks}".format(**t3_same_slope_probe)
+    )
+    print(
+        "two_exchange_line_geometry_models: "
+        f"field={line_geometry_models['field']} "
+        f"fixed_root_checks={line_geometry_models['fixed_root_checks']} "
+        f"product_mobius_checks={line_geometry_models['product_mobius_checks']} "
+        f"sum_mobius_checks={line_geometry_models['sum_mobius_checks']}"
     )
     all_rows = [row for summary in summaries for row in summary["rows"]] + [
         rank_one_probe,
@@ -5033,8 +5203,23 @@ def main() -> None:
     max_two_exchange_same_slope_mobius_lines = max(
         row["two_exchange_same_slope_mobius_lines"] for row in all_rows
     )
+    max_two_exchange_same_slope_product_mobius_lines = max(
+        row["two_exchange_same_slope_product_mobius_lines"] for row in all_rows
+    )
+    max_two_exchange_same_slope_sum_mobius_lines = max(
+        row["two_exchange_same_slope_sum_mobius_lines"] for row in all_rows
+    )
     max_two_exchange_same_slope_line_two_exchange_pairs = max(
         row["two_exchange_same_slope_line_two_exchange_pairs"] for row in all_rows
+    )
+    max_two_exchange_same_slope_mobius_two_exchange_pairs = max(
+        row["two_exchange_same_slope_mobius_two_exchange_pairs"] for row in all_rows
+    )
+    max_two_exchange_same_slope_mobius_pair_checks = max(
+        row["two_exchange_same_slope_mobius_pair_checks"] for row in all_rows
+    )
+    max_two_exchange_same_slope_mobius_member = max(
+        row["two_exchange_same_slope_mobius_member_max"] for row in all_rows
     )
     max_two_exchange_same_slope_plane_clusters = max(
         row["two_exchange_same_slope_plane_clusters"] for row in all_rows
@@ -5373,6 +5558,7 @@ def main() -> None:
         f"cases={len(summaries)} line_samples={total_lines} "
         f"rank_one_probes=1 "
         f"t3_same_slope_probes=1 "
+        f"line_geometry_probes=1 "
         f"max_aperiodic_slopes={max_aperiodic} "
         f"max_one_exchange_pairs={max_one_exchange_pairs} "
         f"max_same_slope_one_exchange={max_same_slope_one_exchange_pairs} "
@@ -5391,7 +5577,12 @@ def main() -> None:
         f"max_two_exchange_same_slope_lines={max_two_exchange_same_slope_line_clusters} "
         f"max_two_exchange_same_slope_fixed_lines={max_two_exchange_same_slope_fixed_root_lines} "
         f"max_two_exchange_same_slope_mobius_lines={max_two_exchange_same_slope_mobius_lines} "
+        f"max_two_exchange_same_slope_product_mobius_lines={max_two_exchange_same_slope_product_mobius_lines} "
+        f"max_two_exchange_same_slope_sum_mobius_lines={max_two_exchange_same_slope_sum_mobius_lines} "
         f"max_two_exchange_same_slope_line_two_pairs={max_two_exchange_same_slope_line_two_exchange_pairs} "
+        f"max_two_exchange_same_slope_mobius_two_pairs={max_two_exchange_same_slope_mobius_two_exchange_pairs} "
+        f"max_two_exchange_same_slope_mobius_pair_checks={max_two_exchange_same_slope_mobius_pair_checks} "
+        f"max_two_exchange_same_slope_mobius_member={max_two_exchange_same_slope_mobius_member} "
         f"max_two_exchange_same_slope_planes={max_two_exchange_same_slope_plane_clusters} "
         f"max_two_exchange_same_slope_plane_lifts={max_two_exchange_same_slope_plane_lifts} "
         f"max_two_exchange_same_slope_plane_two_pairs={max_two_exchange_same_slope_plane_two_exchange_pairs} "

@@ -30,6 +30,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-27 - M1 two-exchange line involution models
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/m1/m1_all_line_hankel_aperiodic_packing.md`,
+  `experimental/scripts/verify_m1_all_line_hankel_aperiodic.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT / EXPERIMENTAL.
+- **What is being added:** One-dimensional same-slope `t=3` two-exchange
+  line components are classified as fixed-root root-slice lines, product
+  Möbius involutions `(x-alpha)(y-alpha)=kappa`, or fixed-sum involutions
+  `x+y=s_0`.
+- **How it is useful:** This finishes the local structural split after the
+  affine-plane lift: same-slope two-exchange structure is now either charged
+  recursively, reduced to fixed-root one-exchange slices, or localized to a
+  single explicit involution on exchanged roots.
+- **What to do next:** Bound or rule out persistent non-fixed involution
+  components after quotient/root-slice charging, and then turn to the
+  different-slope two-exchange branch.
+
 ### 2026-06-27 - M1 same-slope two-exchange affine lift
 
 - **Agent/model:** Codex.
