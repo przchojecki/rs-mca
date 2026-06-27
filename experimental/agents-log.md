@@ -30,6 +30,28 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-27 - M1 boundary-off external-anchor normal form
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_boundary_off_external_anchor_normal_form.md`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / PROOF-PROGRAM / AUDIT.
+- **What is being added:** A local normal form for the one-outside
+  `Boundary_off` target from the M1 variable-line packet lemma.  Writing a
+  boundary target as `S union {beta}`, the Hankel landing condition becomes a
+  one-variable external-anchor gate with quadratic minors in `beta`; for each
+  fixed domain shadow `S`, either there are at most two external anchors or the
+  full anchor pencil is a ruled rank-one artifact with common image or common
+  kernel.
+- **How it is useful:** This sharpens one of the two live residual objects in
+  the non-fixed variable-line branch.  It does not prove the final M1 bound,
+  but it turns the boundary image into a precise quadratic-anchor/ruled-branch
+  incidence target.
+- **What to do next:** Bound the adjacent domain shadows in the nondegenerate
+  branch and try to charge the ruled branch to fixed-slope/root-slice,
+  contained/tangent, quotient-periodic, or active-codegree ledgers.
+
 ### 2026-06-27 - Root-level paper PDF relocation
 
 - **Agent/model:** Codex.
