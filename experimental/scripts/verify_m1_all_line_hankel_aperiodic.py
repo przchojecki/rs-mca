@@ -2287,6 +2287,22 @@ def two_exchange_quadratic_slice_profile(
     ):
         raise AssertionError("non-fixed variable line target sharp bound failed")
     if (
+        det_proper_line_variable_nonfixed_active_two_packets
+        > det_proper_line_variable_nonfixed_packet_pair_checks
+    ):
+        raise AssertionError("active two-packets exceeded packet-edge energy")
+    det_proper_line_variable_nonfixed_active_target_edge_bound = (
+        det_proper_line_variable_nonfixed_active_domain_singleton_zero_free_escape_lower
+        + det_proper_line_variable_nonfixed_active_domain_singleton_free_escape_full_target_budget
+        + det_proper_line_variable_nonfixed_quotient_defects
+        + 2 * det_proper_line_variable_nonfixed_packet_pair_checks
+    )
+    if (
+        det_proper_line_variable_nonfixed_new_slope_checks
+        > det_proper_line_variable_nonfixed_active_target_edge_bound
+    ):
+        raise AssertionError("non-fixed variable line target edge bound failed")
+    if (
         det_proper_line_variable_nonfixed_new_slope_checks
         > det_proper_line_variable_nonfixed_active_edge_bound
     ):

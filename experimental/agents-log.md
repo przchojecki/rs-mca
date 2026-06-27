@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-27 - M1 absorb active two-packets
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/m1/m1_all_line_hankel_aperiodic_packing.md`,
+  `experimental/scripts/verify_m1_all_line_hankel_aperiodic.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** Fully active two-point non-fixed packets are absorbed
+  into the packet-edge energy because each such packet has an injected
+  different-slope packet edge.  The verifier asserts the resulting bound with
+  `2E_pkt` and no separate `P_2` term.
+- **How it is useful:** This removes one residual object from the current
+  non-fixed variable-line M1 reduction, leaving quotient defects, zero-lower
+  singletons, target images, and packet-edge energy.
+- **What to do next:** Bound the remaining target images and zero-lower regime,
+  or connect packet-edge energy to the global different-slope two-exchange
+  ledger.
+
 ### 2026-06-27 - M1 zero-lower singleton range
 
 - **Agent/model:** Codex.

@@ -997,6 +997,21 @@ new slopes are paid by different-slope edge energy, quotient defects,
 fully-active two-packets, zero-lower singletons, and two explicit singleton
 target images.
 
+The fully-active two-packet term is optional in a polynomial accounting.  Every
+fully active two-point non-fixed packet has exactly one injected packet edge,
+so `P_2 <= E_pkt`.  Thus (VN-T) implies the slightly coarser but cleaner bound
+
+```text
+|Z_varline^new|
+  <= Z_0 + Q_def + 2E_pkt
+     + 2 binom(j,2) binom(n-j,2) |Target_cb|
+     + (j-1) binom(n-j+1,2) |Target_off|.           (VN-E)
+```
+
+The verifier also asserts (VN-E).  This leaves only quotient defects,
+zero-lower singletons, target images, and different-slope packet-edge energy as
+the non-fixed variable-line residual objects.
+
 ## Different-Slope One-Exchange Quadratic Slice
 
 The different-slope part of the one-exchange profile has a complementary
