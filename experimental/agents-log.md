@@ -283,7 +283,11 @@ Keep entries concise and link to the relevant files.
   tail now has a first-cutoff rule: every later root-free residual is contained
   in the four residual families at the first half-window depth, so primitive
   denominator charges are paid once at that cutoff while earlier depths remain
-  longer-Pade obligations.
+  longer-Pade obligations.  This is now packaged as a mixed-ladder closure
+  ledger: after those pre-half residuals and the first half-window primitive
+  targets are charged, only the bottom finite parameter systems, total size at
+  most `2h` on the remaining ledger, are needed for the consecutive
+  fixed-kernel/common-image frontier systems.
   The common-image three-shift ledger now has the analogous sliding-window
   reduction: for an image line `[y]`, the allowed deeper residuals form a space
   `W_y` of dimension at most one, nonzero only on the `q+1` extended geometric

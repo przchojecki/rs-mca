@@ -4977,6 +4977,67 @@ does not put them in the half-window range, so this corollary makes no
 primitive-denominator claim for them.  The final overlap statements are
 Corollaries 40.12 and 40.13 applied at the relevant cutoff or tail depth.
 
+## Corollary 40.15: Mixed Ladders Close From Pre-Half Residuals And One Cutoff
+
+Let `R` be a nonempty finite set of positive consecutive-frontier depths and
+put
+
+```text
+r_0=min R,
+R_pre={ r in R : h>t+r },
+R_hw ={ r in R : h<=t+r }.
+```
+
+Work after fixed-root/root-slice short recurrence pieces have been charged.
+Assume the following residual charges have also been made:
+
+1. for every pre-half-window depth `r in R_pre`, the four root-free recurrence
+   families from Corollary 40.7 at depth `r`;
+2. if `R_hw` is nonempty, the four root-free recurrence families at
+   `r_hw=min R_hw`, equivalently the four primitive
+   reciprocal-domain-pole-free denominator targets at `r_hw`.
+
+Then there are no uncharged failures of the four short frontier checks at any
+depth `r in R`.  Consequently the remaining finite fixed-kernel and
+consecutive common-image frontier ledgers at all depths in `R` close after
+charging only the bottom finite parameter systems
+
+```text
+E_{r_0,>b} union Theta_{r_0,>b},
+```
+
+of total size at most `2h` on the remaining ledger.
+
+Thus a mixed finite ladder has the explicit closure ledger
+
+```text
+fixed-root/root-slice pieces
++ pre-half-window longer-Pade residual families
++ four primitive denominator targets at the first half-window rung, if any
++ at most 2h bottom finite parameter systems.
+```
+
+There is no primitive-denominator charge at each half-window depth, no
+`|R_hw|` multiplier, and no projective image-line multiplier in the
+consecutive common-image part.
+
+### Proof
+
+After the fixed-root/root-slice pieces are charged, Corollary 40.7 says every
+remaining short-frontier failure is one of the four root-free residual
+families at its depth.  At depths in `R_pre`, those families are charged by
+hypothesis.  At depths in `R_hw`, Corollary 40.14 puts every root-free
+residual into one of the four cutoff families at `r_hw`, which are charged by
+hypothesis.  Hence no uncharged short-frontier failure remains at any depth in
+`R`.
+
+In particular the four short checks hold on the remaining ledger at the bottom
+depth `r_0`.  Corollary 40.9 then nests all deeper bad finite parameter
+systems into the bottom systems `E_{r_0,>b}` and `Theta_{r_0,>b}`, and
+Corollary 40.4 gives their total charge at most `2h` on that remaining
+ledger.  Corollary 40.3 closes the uncharged finite fixed-kernel and
+consecutive common-image ledgers after those bottom systems are charged.
+
 ## Corollary 41: The Global Common-Image Ledger Is Endpoint-Only
 
 Let `GCI` be the set of monic degree-`c` split core locators `L` for which
@@ -7645,6 +7706,9 @@ bound the deepest paired residual itself.
 Corollary 40.14 identifies the first half-window cutoff for primitive
 denominator charges; it does not count the cutoff primitive denominators or
 resolve the pre-half-window longer-Pade residuals.
+Corollary 40.15 packages the mixed-ladder closure ledger; it does not prove
+the pre-half residual charges or bound the first half-window primitive
+denominator targets.
 Corollary 41 packages the common-image branch into endpoint-type ledgers; it
 does not prove the endpoint rank hypotheses needed for the displayed
 `(q+2)binom(n,b)` bound. Corollary 42 packages the globally full core ledger
