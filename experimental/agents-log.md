@@ -140,7 +140,10 @@ Keep entries concise and link to the relevant files.
   `W(A,C)-Y(W(B,C)+W(A,D))+Y^2 W(B,D)`, where `A,C` come from
   `(X-beta)X L_R` and `B,D` from `(X-beta)L_R`.  Hence an identically
   vanishing core-line is exactly three lower-dimensional Hankel-wedge
-  coefficient equations.
+  coefficient equations.  When the whole rank-one anchor gate vanishes on the
+  core-line, the obstruction is classified one level lower: it is either a
+  `u`- or `v`-endpoint containment, a common-image line, or a fixed projective
+  kernel with `C=lambda A` and `D=lambda B` for the two core-shift locators.
 - **What to do next:** Bound or charge the unique-neighbor nondegenerate
   star-free shadow ledger, and charge the ruled exceptional low-rank loci to
   fixed-slope/root-slice, endpoint, projective, quotient-periodic, or

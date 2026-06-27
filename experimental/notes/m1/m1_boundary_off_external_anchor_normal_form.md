@@ -2042,6 +2042,97 @@ W(A-YB,C-YD)
 which is `(CoreCoeff)`.  Since `p_R` has degree at most two in `Y`, it is
 identically zero exactly when the three displayed coefficients vanish.
 
+## Corollary 24: Full Core-Lines Are Lower Ruled Pencils
+
+Fix an `(m-1)`-core `R` and an external anchor `beta`.  Put
+
+```text
+M_1=(X-beta)X L_R,        M_0=(X-beta)L_R,
+A=H(u)M_1,               B=H(u)M_0,
+C=H(v)M_1,               D=H(v)M_0.
+```
+
+Suppose the whole external-anchor gate vanishes identically on the core-line,
+meaning
+
+```text
+rank [ A-YB   C-YD ] <= 1
+```
+
+as a polynomial identity in `Y`, or equivalently
+
+```text
+(A-YB) wedge (C-YD) = 0 in Lambda^2(F^t)[Y].       (FullCore)
+```
+
+Then at least one of the following lower ruled alternatives holds.
+
+```text
+u-endpoint:
+  A=B=0.
+
+v-endpoint:
+  C=D=0.
+
+common image:
+  span{A,B,C,D} has dimension <= 1.
+
+fixed projective kernel:
+  span{A,B} has dimension 2 and there is lambda in F with
+  C=lambda A and D=lambda B.
+```
+
+In the last case the same projective column-kernel line kills both lower
+anchor shifts `M_1` and `M_0`:
+
+```text
+(-lambda) H(u)M_i + H(v)M_i = 0,      i=0,1,
+```
+
+with the evident endpoint interpretation when `lambda=0`.  Thus a full
+core-line gate is already a lower-dimensional ruled pencil: it is an endpoint
+containment, a fixed image line, or a fixed projective slope for the two
+core-shift locators.
+
+### Proof
+
+Let `U=span{A,B}`.
+
+If `dim U=0`, then `A=B=0`, giving the `u`-endpoint alternative.
+
+If `dim U=1`, write `A=a_1 e` and `B=a_0 e` with `e!=0`.  Then
+
+```text
+A-YB=(a_1-Ya_0)e.
+```
+
+Since the scalar polynomial `a_1-Ya_0` is nonzero, (FullCore) and the fact
+that `F[Y]` is a domain imply
+
+```text
+e wedge (C-YD)=0.
+```
+
+Hence `C,D in F e`, so the common-image alternative holds.
+
+It remains to handle `dim U=2`.  First reduce (FullCore) modulo `U`.  If
+bars denote images in `F^t/U`, the constant and quadratic coefficients give
+`A wedge bar(C)=0` and `B wedge bar(D)=0`, so `bar(C)=bar(D)=0`.  Hence
+`C,D in U`.  Write
+
+```text
+C=aA+bB,        D=cA+dB.
+```
+
+Expanding (FullCore) in the basis wedge `A wedge B` gives
+
+```text
+b = 0,        c = 0,        d-a = 0.
+```
+
+Therefore `C=aA` and `D=aB`, which is the fixed projective-kernel
+alternative with `lambda=a`.  These cases exhaust the possibilities.
+
 ## Non-Claims
 
 This note does not prove
@@ -2093,3 +2184,6 @@ number of such core-lines or the common zero set of all anchor minors.
 Corollary 23 identifies those identically vanishing core-lines as explicit
 lower-dimensional Hankel-wedge coefficient equations; it does not bound their
 common zero set.
+Corollary 24 classifies core-lines on which the full rank-one anchor gate
+holds identically; it does not bound how many cores fall into the lower
+endpoint, common-image, or fixed-kernel ruled ledgers.
