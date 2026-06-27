@@ -1319,24 +1319,44 @@ def is_quotient_periodic(
     exponents: dict[int, int],
     charged_fiber_sizes: tuple[int, ...],
 ) -> bool:
+    return bool(
+        quotient_periodic_scales(complement, domain, exponents, charged_fiber_sizes)
+    )
+
+
+def quotient_periodic_scale_residues(
+    complement: tuple[int, ...],
+    domain: tuple[int, ...],
+    exponents: dict[int, int],
+    fiber_size: int,
+) -> tuple[int, ...] | None:
     n = len(domain)
     comp = set(complement)
-    for m in charged_fiber_sizes:
-        if m <= 1 or m >= n or n % m or len(comp) % m:
-            continue
-        quotient_size = n // m
-        ok = True
-        for residue in range(quotient_size):
-            fiber = {
-                x for x in domain
-                if exponents[x] % quotient_size == residue
-            }
-            if bool(fiber & comp) and not fiber <= comp:
-                ok = False
-                break
-        if ok:
-            return True
-    return False
+    if fiber_size <= 1 or fiber_size >= n or n % fiber_size or len(comp) % fiber_size:
+        return None
+    quotient_size = n // fiber_size
+    residues = []
+    for residue in range(quotient_size):
+        fiber = {x for x in domain if exponents[x] % quotient_size == residue}
+        if fiber & comp:
+            if not fiber <= comp:
+                return None
+            residues.append(residue)
+    return tuple(residues)
+
+
+def quotient_periodic_scales(
+    complement: tuple[int, ...],
+    domain: tuple[int, ...],
+    exponents: dict[int, int],
+    charged_fiber_sizes: tuple[int, ...],
+) -> tuple[int, ...]:
+    return tuple(
+        fiber_size
+        for fiber_size in charged_fiber_sizes
+        if quotient_periodic_scale_residues(complement, domain, exponents, fiber_size)
+        is not None
+    )
 
 
 @dataclass(frozen=True)
@@ -2074,6 +2094,8 @@ def verify_full_domain_monomial_boundary_model(
     zero_sum_product_counts: dict[int, int] = {}
     quotient_zero_sum_locators = 0
     quotient_product_counts: dict[int, int] = {}
+    quotient_scale_counts: dict[int, int] = {}
+    quotient_scale_product_sets: dict[int, set[int]] = {}
     residual_product_counts: dict[int, int] = {}
     residual_product_slopes: dict[int, set[int]] = {}
     sign = -1 if j % 2 else 1
@@ -2093,6 +2115,11 @@ def verify_full_domain_monomial_boundary_model(
         slope = slope_from_gate(a_vec, b_vec, p)
         bad = slope is not None and any(value != 0 for value in b_vec)
         zero_sum = complement_sum == 0
+        quotient_scales = quotient_periodic_scales(
+            complement, domain, exponents, charged_fiber_sizes
+        )
+        if quotient_scales and not zero_sum:
+            raise AssertionError("full-domain quotient-periodic locator was not zero-sum")
         if bad != zero_sum:
             raise AssertionError("monomial boundary bad locus was not zero-sum")
         if not zero_sum:
@@ -2133,7 +2160,28 @@ def verify_full_domain_monomial_boundary_model(
         expected_slope = -inv_mod(expected_b0, p) % p
         if slope != expected_slope:
             raise AssertionError("monomial boundary product slope formula failed")
-        if is_quotient_periodic(complement, domain, exponents, charged_fiber_sizes):
+        if quotient_scales:
+            for fiber_size in quotient_scales:
+                residues = quotient_periodic_scale_residues(
+                    complement, domain, exponents, fiber_size
+                )
+                if residues is None:
+                    raise AssertionError("missing quotient scale residue list")
+                quotient_product = 1
+                for residue in residues:
+                    quotient_product = (
+                        quotient_product * pow(domain[residue], fiber_size, p)
+                    ) % p
+                if len(residues) * (fiber_size + 1) % 2:
+                    quotient_product = (-quotient_product) % p
+                if quotient_product != complement_product:
+                    raise AssertionError("quotient fiber product formula failed")
+                quotient_scale_counts[fiber_size] = (
+                    quotient_scale_counts.get(fiber_size, 0) + 1
+                )
+                quotient_scale_product_sets.setdefault(fiber_size, set()).add(
+                    complement_product
+                )
             quotient_product_counts[complement_product] = (
                 quotient_product_counts.get(complement_product, 0) + 1
             )
@@ -2204,6 +2252,28 @@ def verify_full_domain_monomial_boundary_model(
     }
     if zero_sum_product_set != normalized_product_image:
         raise AssertionError("general normalized product image failed")
+    quotient_scale_checks = 0
+    quotient_scale_product_fibers = 0
+    for fiber_size, image in quotient_scale_product_sets.items():
+        if j % fiber_size:
+            raise AssertionError("quotient scale did not divide boundary size")
+        quotient_size = n // fiber_size
+        selected_fibers = j // fiber_size
+        expected_scale_count = comb(quotient_size, selected_fibers)
+        if quotient_scale_counts[fiber_size] != expected_scale_count:
+            raise AssertionError("quotient scale count formula failed")
+        expected_scale_image = set()
+        for residues in combinations(range(quotient_size), selected_fibers):
+            scale_product = 1
+            for residue in residues:
+                scale_product = scale_product * pow(domain[residue], fiber_size, p) % p
+            if selected_fibers * (fiber_size + 1) % 2:
+                scale_product = (-scale_product) % p
+            expected_scale_image.add(scale_product)
+        if image != expected_scale_image:
+            raise AssertionError("quotient scale product image formula failed")
+        quotient_scale_checks += quotient_scale_counts[fiber_size]
+        quotient_scale_product_fibers += len(image)
     if j == 4 and 2 in charged_fiber_sizes:
         j4_cubic_parameters = {
             (r, s)
@@ -2281,6 +2351,8 @@ def verify_full_domain_monomial_boundary_model(
         "normalized_parameters": normalized_parameter_count,
         "normalized_product_values": len(normalized_product_values),
         "quotient_zero_sum_locators": quotient_zero_sum_locators,
+        "quotient_scale_checks": quotient_scale_checks,
+        "quotient_scale_product_fibers": quotient_scale_product_fibers,
         "quotient_product_fibers": quotient_product_fibers,
         "quotient_product_cosets": quotient_product_cosets,
         "quotient_residual_product_overlap": len(quotient_product_set & residual_product_set),
@@ -2364,6 +2436,8 @@ def main() -> None:
             f"normalized_parameters={model['normalized_parameters']} "
             f"normalized_product_values={model['normalized_product_values']} "
             f"quotient_zero_sum_locators={model['quotient_zero_sum_locators']} "
+            f"quotient_scale_checks={model['quotient_scale_checks']} "
+            f"quotient_scale_product_fibers={model['quotient_scale_product_fibers']} "
             f"quotient_product_fibers={model['quotient_product_fibers']} "
             f"quotient_product_cosets={model['quotient_product_cosets']} "
             f"quotient_residual_product_overlap={model['quotient_residual_product_overlap']} "

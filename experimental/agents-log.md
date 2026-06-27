@@ -30,6 +30,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-27 - M1 quotient-fiber product ledger
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/m1/m1_all_line_hankel_aperiodic_packing.md`,
+  `experimental/scripts/verify_m1_all_line_hankel_aperiodic.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT / EXPERIMENTAL.
+- **What is being added:** The full-domain monomial boundary model now records
+  the exact product formula for quotient-periodic locators: if
+  `T=union a_i K_m` is a union of `c=j/m` cosets of the size-`m` subgroup,
+  then `sum(T)=0` and `prod(T)=(-1)^{c(m+1)} prod_i a_i^m`.  The verifier
+  checks the formula, the scale count `binom((p-1)/m,j/m)`, and the
+  scale-specific product image in the audited rows.
+- **How it is useful:** This separates the charged quotient product ledger
+  from the residual product image in the fixed-anchor M1 boundary obstruction,
+  making clear which product cosets are paid by quotient-periodic locators.
+- **What to do next:** Use the quotient product ledger together with the
+  normalized residual product map to bound the non-quotient `j=4` cubic image.
+
 ### 2026-06-27 - M1 general zero-sum product normal form
 
 - **Agent/model:** Codex.

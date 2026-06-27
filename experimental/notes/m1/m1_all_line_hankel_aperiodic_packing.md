@@ -792,6 +792,40 @@ of this normalized product map.  The verifier asserts this uniform normal form
 in every audited full-domain monomial row, and then checks the low-dimensional
 specializations below.
 
+The quotient-periodic part has its own exact product ledger.  Let `K_m` be
+the multiplicative subgroup of `F_p^*` of size `m>1`, and suppose a locator is
+a union of `c=j/m` whole `K_m`-cosets,
+
+```text
+T = union_{i=1}^c a_i K_m.
+```
+
+Each coset has sum zero, so every such quotient-periodic locator is
+automatically on the zero-sum boundary locus.  Also
+
+```text
+prod_{x in aK_m} x = a^m prod_{x in K_m}x = (-1)^{m+1}a^m,
+```
+
+hence
+
+```text
+prod(T) = (-1)^{c(m+1)} prod_{i=1}^c a_i^m.        (EA5)
+```
+
+Thus a charged scale `m` contributes the `c`-subset product image inside the
+`m`th-power subgroup `(F_p^*)^m`, with the displayed sign.  The verifier checks
+this scale-by-scale product formula and the scale count
+
+```text
+binom((p-1)/m, j/m)
+```
+
+for every charged scale present in the audited rows.  These are scale-specific
+ledgers: a locator can be periodic at more than one charged scale, so
+scale-counts may overlap, while the charged locator ledger itself remains the
+union of the charged scales.
+
 For `j=3`, the normalized product-coset problem is one-dimensional.  Every
 zero-sum triple can be scaled to
 
@@ -808,7 +842,7 @@ r in {-1,1,-2,-1/2}.
 For the remaining parameters,
 
 ```text
-prod(T) = lambda^3(-r(1+r)).        (EA5)
+prod(T) = lambda^3(-r(1+r)).        (EA6)
 ```
 
 Thus the full zero-sum product image is exactly the cube-closure of the
@@ -843,7 +877,7 @@ For `r,s in F_p^*`, the allowed parameter set is cut out by
 and on this set
 
 ```text
-prod(T) = lambda^4(-rs(1+r+s)).       (EA6)
+prod(T) = lambda^4(-rs(1+r+s)).       (EA7)
 ```
 
 The ordered parameter count is
@@ -870,7 +904,7 @@ The same full-domain model has a closed zero-sum count for every `j`.  For
 
 ```text
 #{T subset F_p^*: |T|=j, sum(T)=0}
-  = (binom(p-1,j) + (p-1)(-1)^j)/p.       (EA7)
+  = (binom(p-1,j) + (p-1)(-1)^j)/p.       (EA8)
 ```
 
 Indeed, averaging over additive characters gives the trivial-character term
@@ -882,10 +916,10 @@ prod_{x in F_p^*}(1+Y psi(x))
 ```
 
 is `(-1)^j`, because after adjoining the missing `x=0` factor one has
-`prod_{x in F_p}(1+Y psi(x))=1+Y^p`.  This proves (EA7).  The verifier asserts
+`prod_{x in F_p}(1+Y psi(x))=1+Y^p`.  This proves (EA8).  The verifier asserts
 this general formula in every audited full-domain monomial row.
 
-Specializing (EA7) to triples gives
+Specializing (EA8) to triples gives
 
 ```text
 #{T subset F_p^*: |T|=3, sum(T)=0} = (p-1)(p-5)/6.
@@ -895,7 +929,7 @@ Indeed the number of zero-sum three-subsets of `F_p` is
 `(p-1)(p-2)/6`, and the triples containing `0` are exactly
 `{0,a,-a}`, giving `(p-1)/2` exclusions.
 
-Specializing (EA7) to four-subsets gives
+Specializing (EA8) to four-subsets gives
 
 ```text
 #{T subset F_p^*: |T|=4, sum(T)=0}
@@ -1347,6 +1381,9 @@ enumerates small cyclic-domain cases.  For each case it:
 - checks the general full-domain zero-sum product normal form: after scaling
   one root to `1`, the product image is the `j`th-power closure of the
   normalized `(j-2)`-variable map;
+- checks the quotient-fiber product ledger scale by scale: a union of
+  `j/m` whole size-`m` cosets is automatically zero-sum and has product
+  `(-1)^{(j/m)(m+1)}` times a `j/m`-subset product in `(F_p^*)^m`;
 - checks the `j=3` product-coset reduction: every zero-sum triple normalizes to
   `{1,r,-1-r}`, the product image is the cube-closure of `-r(1+r)`, and an
   active size-`3` quotient charge has cube-subgroup product image;
