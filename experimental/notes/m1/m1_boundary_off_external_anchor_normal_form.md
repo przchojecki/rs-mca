@@ -5466,7 +5466,8 @@ Thus the refined mixed-ladder closure has no `|R_hw|` denominator multiplier,
 no projective image-line multiplier, and no hidden cross-family overlap inside
 the half-window tail.  The unresolved inputs are exactly the pre-half-window
 residual ledgers, the cutoff primitive denominators and their allowed
-multipliers, and the named cutoff overlap residual systems.
+multipliers, and the cutoff overlap ledgers.  Corollary 40.24 below refines
+the latter into at most five half-window primitive/multiplier ledgers.
 
 ### Proof
 
@@ -5481,6 +5482,108 @@ Therefore no uncharged root-free residual from Corollary 40.7 remains at any
 depth in `R`.  Corollary 40.15 then gives the closure from the bottom finite
 parameter systems, with total size at most `2h` by Corollary 40.4 and nesting
 by Corollary 40.9.
+
+## Corollary 40.24: Cutoff Overlap Charges Have Half-Window Multiplier Ledgers
+
+Keep the notation of Corollary 40.23 and assume `R_hw` is nonempty.  Put
+
+```text
+r_hw=min R_hw,        s=t+r_hw-1.
+```
+
+Work over `F_q`.  Consider the five cutoff overlap systems
+
+```text
+Omega_EP:   H_{s+1}(u)Q=0,        H_{s+1}(v)Q=0,
+
+Omega_u:    H_{s+1}(u)Q=0,        H_s(v)Q=0,
+Omega_v:    H_s(u)Q=0,            H_{s+1}(v)Q=0,
+
+Omega_uS:   H_{s+1}(u)Q=0,        H_s(Sv)Q=0,
+Omega_vS:   H_s(Su)Q=0,           H_{s+1}(v)Q=0.
+```
+
+The first is the endpoint-pair residual from Corollaries 40.19 and 40.21; the
+last four are the one-sided endpoint residuals from Corollary 40.20.
+
+Attach to these systems the following paired parent windows:
+
+```text
+Parent(Omega_EP)       = (u,v) at window s+1,
+Parent(Omega_u)        = Parent(Omega_v)  = (u,v) at window s,
+Parent(Omega_uS)       = Parent(Omega_vS) = (S u,S v) at window s.
+```
+
+For each active overlap system `Omega`, let `D_Omega` be the primitive vector
+denominator supplied by Corollary 59 for its paired parent window, and put
+
+```text
+delta_Omega=deg D_Omega.
+```
+
+Then every projective root-free certificate-denominator class for `Omega` is
+represented by
+
+```text
+D_Omega(T) M(T),        deg M<=h-1-delta_Omega,
+```
+
+where `M` has no reciprocal-domain zero.  Hence
+
+```text
+|Cert(Omega)| <= (q^{h-delta_Omega}-1)/(q-1).
+```
+
+Summing over active cutoff overlap systems gives the crude uniform bound
+
+```text
+sum_{Omega active} |Cert(Omega)| <= 5 (q^h-1)/(q-1).    (OverlapMult)
+```
+
+For the four one-sided systems, the extra endpoint row is an additional
+linear condition on the multiplier `M`.  Thus `D_Omega` is a primitive
+denominator for the paired parent ledger; it need not itself be a full
+one-sided certificate.  The assertion is that the one-sided certificate set is
+contained in this explicit half-window multiplier ledger.
+
+### Proof
+
+Since `r_hw` is the first half-window depth, `h<=t+r_hw=s+1`.  Every
+certificate denominator under consideration has degree `e<h`, hence
+
+```text
+e<=h-1<=s.
+```
+
+Thus all five cutoff overlap systems lie in the half-window range for their
+paired parent windows.
+
+For `Omega_EP`, the paired parent window is exactly the endpoint-pair system
+with window length `s+1`, so Corollaries 59 and 60 give the primitive vector
+denominator and its multiplier ledger directly.
+
+For `Omega_u` and `Omega_v`, the displayed equations include the shorter
+paired parent equations
+
+```text
+H_s(u)Q=0,        H_s(v)Q=0.
+```
+
+Corollary 59 applied to this parent pair gives a single primitive vector
+denominator dividing every certificate denominator, and Corollary 60 gives
+the multiplier ledger.  The extra row in `H_{s+1}(u)` or `H_{s+1}(v)` only
+cuts out a subset of that ledger.
+
+For `Omega_uS`, the equation `H_{s+1}(u)Q=0` contains the shifted rows
+`H_s(Su)Q=0`; together with `H_s(Sv)Q=0`, this puts the certificate in the
+paired parent `(S u,S v)` at window `s`.  The proof for `Omega_vS` is the same,
+using that `H_{s+1}(v)Q=0` contains `H_s(Sv)Q=0`.  Applying Corollaries 59 and
+60 to this shifted paired parent gives the same multiplier ledger conclusion.
+
+In every case root-freeness passes from the certificate denominator to both
+the primitive parent denominator and the multiplier by Corollary 58.  The
+projective multiplier count is the one in Corollary 60, and summing over at
+most five overlap systems gives (OverlapMult).
 
 ## Corollary 41: The Global Common-Image Ledger Is Endpoint-Only
 
@@ -8171,7 +8274,10 @@ Corollary 40.22 makes the charged half-window tail family-disjoint; it does
 not bound the endpoint-pair or one-sided overlap charges it assumes removed.
 Corollary 40.23 packages the refined mixed-ladder closure; it does not prove
 the pre-half residual, cutoff primitive-denominator, or cutoff overlap
-charges it lists as inputs.
+charges it lists as inputs. Corollary 40.24 compresses the cutoff overlap
+charges into at most five half-window multiplier ledgers; it does not bound the
+parent primitive overlap denominators or prove that the one-sided extra rows
+leave few multipliers.
 Corollary 41 packages the common-image branch into endpoint-type ledgers; it
 does not prove the endpoint rank hypotheses needed for the displayed
 `(q+2)binom(n,b)` bound. Corollary 42 packages the globally full core ledger

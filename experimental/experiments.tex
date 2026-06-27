@@ -2108,9 +2108,20 @@ and their multiplier ledgers are charged, the remaining half-window tail is
 family-disjoint: every uncharged projective certificate-denominator class, and
 hence every primitive denominator class, has a unique residual-family label, so
 the depth-independent family sum is an ordinary disjoint denominator ledger.
+The named cutoff overlap charges are themselves half-window Pade ledgers.  At
+the cutoff depth \(r_{\rm hw}\), the endpoint-pair residual uses the paired
+parent \((u,v)\) at window \(t+r_{\rm hw}\), and the four one-sided residuals
+use either the paired parent \((u,v)\) or the shifted paired parent \((Su,Sv)\)
+at window \(t+r_{\rm hw}-1\).  Thus each active overlap system has one parent
+primitive vector denominator and an explicit projective multiplier ledger of
+size at most
+\((q^{h-\delta}-1)/(q-1)\); the four one-sided systems may impose one extra
+linear row on that multiplier ledger.  Crude summation gives at most
+\(5(q^h-1)/(q-1)\) ambient projective certificate-denominator classes for all
+cutoff overlap charges before those extra rows are imposed.
 In refined mixed-ladder form, after the
-pre-half-window residuals, the named cutoff overlap residuals, and the cutoff
-family multiplier ledgers are charged, the only remaining finite frontier
+pre-half-window residuals, the cutoff overlap multiplier ledgers, and the
+cutoff family multiplier ledgers are charged, the only remaining finite frontier
 charge is the bottom finite parameter set
 \(E_{r_0,>b}\cup\Theta_{r_0,>b}\), of size at most \(2h\) on the remaining
 ledger.

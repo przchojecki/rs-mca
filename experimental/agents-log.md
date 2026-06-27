@@ -310,9 +310,18 @@ Keep entries concise and link to the relevant files.
   and their multiplier ledgers are charged, the remaining half-window tail is
   family-disjoint: each uncharged projective certificate-denominator class,
   and hence each primitive denominator class, has a unique residual-family
-  label.  The refined mixed-ladder closure now records the final consumable
-  ledger: after pre-half residuals, cutoff overlap residuals, and cutoff
-  family multiplier ledgers are charged, the only remaining finite
+  label.  The named cutoff overlap charges are now also compressed into
+  half-window Pade ledgers: at the cutoff depth `r_hw`, the endpoint-pair
+  residual uses the paired parent `(u,v)` at window `t+r_hw`, while the four
+  one-sided residuals use `(u,v)` or `(S u,S v)` at window `t+r_hw-1`.  Each
+  active overlap system has one parent primitive vector denominator and an
+  explicit multiplier ledger of size at most `(q^(h-delta)-1)/(q-1)`, with the
+  one-sided extra row cutting this ledger further; crudely, all five overlap
+  charges have ambient size at most
+  `5(q^h-1)/(q-1)` before those extra cuts.  The refined mixed-ladder closure
+  now records the final consumable ledger: after pre-half residuals, cutoff
+  overlap multiplier ledgers, and cutoff family multiplier ledgers are charged,
+  the only remaining finite
   frontier charge is the bottom set `E_{r_0,>b} union Theta_{r_0,>b}`, of size
   at most `2h`.
   The common-image three-shift ledger now has the analogous sliding-window
