@@ -30,6 +30,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-27 - M1 active common-core partition
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/m1/m1_all_line_hankel_aperiodic_packing.md`,
+  `experimental/scripts/verify_m1_all_line_hankel_aperiodic.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT / EXPERIMENTAL.
+- **What is being added:** The active residual-ratio ledger is strengthened
+  from a covering bound to an exact partition: each residual lifted face has
+  the unique active common core `T union {xi_T}`, where
+  `xi_T=beta_1/beta_0`, and `Z_lift` is exactly the union of the active
+  ratio images.
+- **How it is useful:** This removes possible overcounting between common
+  bases and makes the no-loss lifted-side recursion genuinely additive at the
+  face level.
+- **What to do next:** Use the exact partition to seek a direct bound on
+  active common cores or on the active ratio image, beyond the coarser
+  endpoint one-row fiber bound.
+
 ### 2026-06-27 - M1 active residual-ratio ledger
 
 - **Agent/model:** Codex.

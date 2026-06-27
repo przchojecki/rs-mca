@@ -1893,19 +1893,27 @@ A_W={x in W : T_x remains residual after contained/tangent,
 ```
 
 Then the residual faces carried by `W` are exactly `{T_x : x in A_W}`, and the
-slope of `T_x` is `rho_W(x)`.  Moreover `rho_W` is injective on `A_W` after
-the root-slice peeling.  Indeed, if two distinct residual coordinates
-`x,y in A_W` had the same ratio `rho_W(x)=rho_W(y)=z`, then the two faces
-`T_x` and `T_y` would form a same-slope one-exchange edge inside `W`.  The
-root-slice theorem above promotes every such same-slope edge to its full
-fixed-slope root slice, and the peeling step removes that slice.  Hence no
-repeated residual ratio can survive.
+slope of `T_x` is `rho_W(x)`.  These active faces are also unique across
+lifted common cores.  If a residual lifted face `T` is carried by
+`W=T union {x}`, then the denominator anchor identity gives
+`H_{2,j}(v)ell_T=(beta_0,x beta_0)` with `beta_0 != 0`, so the projective
+companion anchor of `T` is `xi_T=beta_1/beta_0=x`.  Thus any lifted common
+core carrying `T` must be `T union {xi_T}`.
 
-Thus the lifted slope image is counted by active residual coordinates, not by
-all common bases:
+Moreover `rho_W` is injective on `A_W` after the root-slice peeling.  Indeed,
+if two distinct residual coordinates `x,y in A_W` had the same ratio
+`rho_W(x)=rho_W(y)=z`, then the two faces `T_x` and `T_y` would form a
+same-slope one-exchange edge inside `W`.  The root-slice theorem above
+promotes every such same-slope edge to its full fixed-slope root slice, and
+the peeling step removes that slice.  Hence no repeated residual ratio can
+survive.
+
+Thus the lifted residual locators are partitioned by active residual
+coordinates, and their slope image is exactly the active ratio image:
 
 ```text
-Z_lift subset union_W rho_W(A_W),
+R_lifted = disjoint_union_W {W\{x} : x in A_W},
+Z_lift = union_W rho_W(A_W),
 |rho_W(A_W)|=|A_W|=|R_W|,
 |Z_lift| <= sum_W |A_W| <= (j+1)N_active.          (LR3)
 ```
@@ -2406,8 +2414,9 @@ enumerates small cyclic-domain cases.  For each case it:
   `g`, and that every noncontained lifted face has the residual-coordinate
   cancellation slope `-(f(x)-F_0(x))/(g(x)-G_0(x))`;
 - counts inactive common cores and checks that the active residual-ratio
-  ledger accounts for exactly the residual lifted faces, with no repeated
-  ratios inside an active common core after root-slice peeling;
+  ledger partitions the residual lifted faces, with exact active-ratio slope
+  image `Z_lift` and no repeated ratios inside an active common core after
+  root-slice peeling;
 - classifies every residual triangle and asserts that no star triangle remains
   after root-slice peeling;
 - forms the residual top-packet ledger and checks that it accounts exactly for

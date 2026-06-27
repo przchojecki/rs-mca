@@ -1151,6 +1151,7 @@ def root_slice_profile(
     lifted_common_core_residual_slope_pair_checks = 0
     lifted_common_core_residual_slope_fiber_max = 0
     lifted_common_core_residual_face_indices: set[int] = set()
+    lifted_common_core_active_ratio_slope_set: set[int] = set()
     lifted_u_t1_cores = 0
     lifted_v_t1_cores = 0
     for core in combinations(domain, j + 1):
@@ -1222,6 +1223,7 @@ def root_slice_profile(
                 residual_face_slopes.append(slope)
                 lifted_common_core_residual_face_indices.add(residual_idx)
                 lifted_common_core_active_ratio_checks += 1
+                lifted_common_core_active_ratio_slope_set.add(slope)
         residual_face_count = len(residual_face_indices)
         if residual_face_count != len(residual_face_slopes):
             raise AssertionError("lifted common core residual slope ledger lost a face")
@@ -1261,6 +1263,8 @@ def root_slice_profile(
         raise AssertionError("anchor-lifted face count missed lifted common residual faces")
     if residual_anchor_lifted_face_indices != lifted_common_core_residual_face_indices:
         raise AssertionError("anchor-lifted faces disagreed with lifted common residual faces")
+    if len(lifted_common_core_residual_face_indices) != lifted_common_core_residual_faces:
+        raise AssertionError("a lifted residual face was counted by two active common cores")
     if lifted_common_core_active_ratio_checks != lifted_common_core_residual_faces:
         raise AssertionError("active residual-ratio ledger lost a lifted common face")
     if residual_anchor_lifted_faces + residual_anchor_escape_locators != len(residual_rows):
@@ -1658,6 +1662,8 @@ def root_slice_profile(
     residual_lifted_slope_set = {
         residual_rows[idx][1] for idx in residual_anchor_lifted_face_indices
     }
+    if lifted_common_core_active_ratio_slope_set != residual_lifted_slope_set:
+        raise AssertionError("active residual-ratio slope image was not exact")
     residual_escape_slope_set = {
         residual_rows[idx][1] for idx in residual_anchor_escape_indices
     }
