@@ -287,7 +287,13 @@ Keep entries concise and link to the relevant files.
   `Q(parameter,X)=L_A(X)R(parameter,X)`, the certificate becomes the
   corresponding lower-order moving certificate for `Delta_A`-differenced
   syndrome data.  Thus the genuine moving-certificate obstruction can be
-  taken common-root-free over `D` after fixed-root/root-slice charges.
+  taken common-root-free over `D` after fixed-root/root-slice charges.  These
+  reductions now give a short-injectivity closure criterion: if
+  `H_{t+2,h-1}(u)`, `H_{t+2,h-1}(v)`, `J_0^(h)`, and `J_+^(h)` are injective,
+  then the base endpoint checks hold and
+  `|Lambda_{K,>b}|, |Theta_{D,>b}| <= h`; after charging those at most `2h`
+  endpointized exceptional systems, Corollaries 42 and 43 apply to the
+  uncharged endpointized global full-core and all-anchor full-core ledgers.
 - **What to do next:** Bound or charge the unique-neighbor nondegenerate
   star-free shadow ledger, then charge the four base endpoint spaces, the
   resulting short-annihilator endpoint systems, finite-exception endpoint

@@ -4892,6 +4892,74 @@ operators commute, this gives (MoveStripD).  Taking `A` to be the full
 `D`-root divisor common to all coefficient polynomials of `Q` leaves a
 nonzero moving certificate with no common root in `D`.
 
+## Corollary 53: Four Short Injectivity Checks Close The Endpointized Charge
+
+Keep `h=c-b`.  Assume the four short endpoint systems are injective:
+
+```text
+ker H_{t+2,h-1}(u)=0,
+ker H_{t+2,h-1}(v)=0,
+ker J_0^(h)=0,
+ker J_+^(h)=0.                                      (ShortInj)
+```
+
+Then the four base endpoint checks (BaseEP) from Corollary 45 hold:
+
+```text
+dim ker H_{t+2,c-1}(u) <= b,
+dim ker H_{t+2,c-1}(v) <= b,
+dim ker J_0            <= b,
+dim ker J_+            <= b.
+```
+
+Moreover the endpointized finite-exception sets satisfy
+
+```text
+|Lambda_{K,>b}| <= h,        |Theta_{D,>b}| <= h.    (ShortClose)
+```
+
+Consequently, after charging the at most `2h` endpointized exceptional
+systems indexed by
+
+```text
+Lambda_{K,>b} union Theta_{D,>b},
+```
+
+every remaining endpointized system in Corollary 42 has direction dimension at
+most `b`.  Hence the endpointized global full-core and all-anchor full-core
+bounds of Corollaries 42 and 43 apply to the uncharged ledger, with the
+root-free refinements after common-root global core pieces are charged.
+
+Thus the endpointized charge can be closed by four short injectivity checks;
+failure of those checks is exactly the short-annihilator obstruction analyzed
+in Corollaries 46--52.
+
+### Proof
+
+Corollary 46 says that if any one of the four base endpoint direction spaces
+had dimension `>b`, then the corresponding short system in (ShortInj) would
+have nonzero kernel.  Therefore (ShortInj) implies (BaseEP).
+
+For fixed-kernel parameters, Corollary 48 applies because both
+`H_{t+2,h-1}(u)` and `H_{t+2,h-1}(v)` are injective.  Hence
+
+```text
+|Lambda_h| <= h.
+```
+
+Since Corollary 46 gives `Lambda_{K,>b} subset Lambda_h`, the first estimate
+in (ShortClose) follows.
+
+For first-difference parameters, Corollary 48 applies because both `J_0^(h)`
+and `J_+^(h)` are injective.  Hence `|Theta_h|<=h`, and Corollary 46 gives
+`Theta_{D,>b} subset Theta_h`, proving the second estimate in (ShortClose).
+
+The systems `U`, `V`, and `D_infty=J_0` from Corollary 42 have direction
+dimension at most `b` by (BaseEP).  Outside the finite sets
+`Lambda_{K,>b}` and `Theta_{D,>b}`, the systems `K_lambda` and `D_theta` have
+direction dimension at most `b` by definition.  Therefore, once those finite
+exceptional systems are charged, the hypotheses of Corollaries 42 and 43 hold.
+
 ## Non-Claims
 
 This note does not prove
@@ -5020,3 +5088,5 @@ turns fixed-kernel short parameters into a finite/persistent pencil dichotomy;
 it does not rule out the persistent moving short-recurrence certificate.
 Corollary 52 strips common domain-root factors from moving short certificates;
 it does not rule out the resulting common-root-free moving certificates.
+Corollary 53 is a conditional closure criterion; it does not prove the four
+short endpoint systems are injective.
