@@ -62,13 +62,17 @@ Keep entries concise and link to the relevant files.
   common-kernel and endpoint-contained ruled ledgers get the same treatment:
   fixed-slope and endpoint row-cut systems with direction dimensions `d_z` and
   `d_infty` contribute at most `binom(n,d_z)` and `binom(n,d_infty)` shadows.
+  For finite slopes, the low-rank locus also satisfies a determinantal
+  dichotomy: at rank threshold `b`, either there are at most `m-b` exceptional
+  slopes with `d_z>b`, or the row-cut pencil is persistently low-rank.
 - **How it is useful:** This sharpens one of the two live residual objects in
   the non-fixed variable-line branch.  It does not prove the final M1 bound,
   but it turns the boundary image into a precise quadratic-anchor/ruled-branch
   incidence target and states exactly which reduced shadow estimates would
   close this boundary-off piece in the polynomial-field regime.  It also
   isolates low-rank Hankel row-cut loci as the remaining ruled-branch
-  obstructions.
+  obstructions and separates finite exceptional slopes from persistent
+  low-rank pencil degeneracy.
 - **What to do next:** Bound the adjacent domain shadows in the nondegenerate
   branch and try to charge the ruled branch to fixed-slope/root-slice,
   contained/tangent, quotient-periodic, or active-codegree ledgers.

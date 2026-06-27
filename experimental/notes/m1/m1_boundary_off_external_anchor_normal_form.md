@@ -913,6 +913,63 @@ This proves (KR). The endpoint proof gives (CR), summing over finite slopes
 gives (KRsum), and substituting these bounds plus Corollary 10 into Corollary
 9 gives (RR).
 
+## Corollary 12: Finite-Slope Low-Rank Dichotomy
+
+Keep the finite-slope row-cut matrix from Corollary 11.  Let
+
+```text
+R_z : F^m -> F^{2t}
+```
+
+be the homogeneous matrix on the lower coefficients of a monic degree-`m`
+shadow locator, so that
+
+```text
+d_z = dim ker R_z.
+```
+
+The entries of `R_z` are affine-linear functions of `z`.  Fix an integer
+`b` with `0<=b<m`, and define the low-rank finite-slope locus
+
+```text
+Z_{>b} = { z in F : d_z > b }.
+```
+
+Then one of the following alternatives holds.
+
+```text
+finite-exception alternative:
+  |Z_{>b}| <= m-b;
+
+persistent low-rank alternative:
+  d_z > b for every z in F.
+```
+
+More precisely, if some `(m-b) x (m-b)` minor of `R_z` is not the zero
+polynomial in `z`, then the finite-exception alternative holds.  If every
+such minor vanishes identically, then the persistent low-rank alternative
+holds.
+
+In particular, for `b=0`, either there are at most `m` finite slopes with a
+nontrivial shift-pair direction kernel, or every finite slope has one.
+
+### Proof
+
+Since `d_z=dim ker R_z`, the condition `d_z>b` is equivalent to
+
+```text
+rank R_z < m-b.
+```
+
+This is equivalent to the vanishing at `z` of every `(m-b) x (m-b)` minor of
+`R_z`.  Each such minor is a polynomial in `z` of degree at most `m-b`, because
+the entries of `R_z` are affine-linear in `z`.
+
+If at least one of these minors is a nonzero polynomial, then every
+`z in Z_{>b}` is a root of that polynomial, so `|Z_{>b}| <= m-b`.  If all of
+the minors vanish identically, then `rank R_z < m-b` for every `z`, hence
+`d_z>b` for every `z`.
+
 ## Non-Claims
 
 This note does not prove
@@ -931,4 +988,7 @@ proved. Corollary 10 does not prove that the common-image row-cut ranks are
 large; it identifies the low-rank image-line locus as the remaining obstruction
 inside that branch. Corollary 11 similarly does not prove large ranks for the
 fixed-slope or contained row-cut systems; it records the exact rank certificates
-needed for those ruled ledgers.
+needed for those ruled ledgers. Corollary 12 does not rule out the persistent
+low-rank alternative; it shows that this persistent alternative is the only way
+for the finite-slope row-rank obstruction to involve more than `m-b` slopes at
+a fixed rank threshold.
