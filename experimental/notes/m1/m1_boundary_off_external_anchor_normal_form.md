@@ -5851,6 +5851,86 @@ endpoint collision charges, so summing over `0<=d<h` gives the displayed
 `2^h-1` bound.  If the zero-dimensionality hypothesis fails, the failure is
 precisely a positive-dimensional primitive rank-one landing component.
 
+## Corollary 66: Positive-Dimensional Landings Are Moving Denominator Certificates
+
+Fix an order `d<h`, and work over an algebraic closure.  Let `C` be an
+irreducible positive-dimensional component of the remaining base-free
+root-free fixed-kernel landing locus from Corollary 63, after restricting to
+the primitive denominator open set.  Let
+
+```text
+K=F(C)
+```
+
+be its function field.  Then the generic point of `C` gives:
+
+* an order-`d` denominator
+
+```text
+D_C(T)=a_0+a_1T+...+a_dT^d in K[T],        a_0!=0,
+```
+
+  with no reciprocal-domain zeros over `K`;
+* a unique parameter `lambda_C in K`;
+* a numerator `N_C(T)` of degree `<d`;
+
+such that
+
+```text
+D_C(T) W_{v-lambda_C u}(T)=N_C(T)       mod T^{d+t+2}.        (MoveK)
+```
+
+Moreover `lambda_C` is constant on `C` if and only if the component lies in a
+fixed-parameter landing slice.  Otherwise `lambda_C` is a genuinely moving
+parameter certificate.
+
+Similarly, if `C` is an irreducible positive-dimensional component of the
+remaining base-free root-free first-difference landing locus, then the generic
+point gives an order-`d` denominator `D_C(T)` with no reciprocal-domain zeros,
+a unique `theta_C in K`, and numerators `N_{C,u},N_{C,v}` of degree `<d` such
+that
+
+```text
+D_C(T) W_{Delta_{theta_C} u}(T)=N_{C,u}(T)       mod T^{d+t+1},
+D_C(T) W_{Delta_{theta_C} v}(T)=N_{C,v}(T)       mod T^{d+t+1}.        (MoveD)
+```
+
+Again `theta_C` is either constant on the component or is a genuinely moving
+first-difference parameter.
+
+Consequently, after the finite Bezout ledger of Corollary 65 is applied, every
+remaining positive-dimensional primitive denominator obstruction is an
+explicit moving denominator certificate over a function field.  Classifying or
+charging M1 in this branch is therefore equivalent to ruling out, absorbing
+into fixed-parameter endpoint charges, or otherwise controlling the moving
+certificates (MoveK) and (MoveD).
+
+### Proof
+
+At the generic point of a component meeting the order, root-free, base-free,
+and primitive opens, the denominator coefficients define `D_C(T)` with
+`a_0!=0` and no reciprocal-domain zero.  In the fixed-kernel case, Corollary 63
+gives
+
+```text
+V_{D_C} in K U_{D_C},        U_{D_C}!=0.
+```
+
+Hence there is a unique `lambda_C in K` with `V_{D_C}=lambda_C U_{D_C}`.  By
+the same corollary, this is exactly the order-`d` denominator congruence
+(MoveK), with `N_C` equal to the truncation of `D_C W_{v-lambda_Cu}` in
+degrees `<d`.
+
+The first-difference case is identical, using
+
+```text
+A_{D_C} in K B_{D_C},        B_{D_C}!=0,
+```
+
+to obtain the unique `theta_C` and the two congruences (MoveD).  A rational
+function on `C` is constant exactly when it belongs to the constant field;
+otherwise it is a moving parameter.  This proves the stated dichotomy.
+
 ## Non-Claims
 
 This note does not prove
@@ -6001,4 +6081,6 @@ landing loci; it does not prove those loci have the required size. Corollary
 64 shows that the longer vector-Pade range disappears at the endpoint-short
 closure threshold; it does not bound the resulting primitive rank-one landing
 loci. Corollary 65 bounds only zero-dimensional landing layers; it does not
-exclude positive-dimensional primitive landing components.
+exclude positive-dimensional primitive landing components. Corollary 66 turns
+those components into moving denominator certificates, but does not classify or
+bound those certificates.

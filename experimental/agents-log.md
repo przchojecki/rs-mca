@@ -350,7 +350,12 @@ Keep entries concise and link to the relevant files.
   homogeneous quadrics, so a zero-dimensional remaining order-`d` layer has
   at most `2^d` geometric points by Bezout.  Summing over `d<h` gives
   `2^h-1` bad parameters per family after endpoint collision charges, unless
-  a positive-dimensional primitive rank-one landing component remains.
+  a positive-dimensional primitive rank-one landing component remains.  Such a
+  component is now certificate-form: over its function field, the generic
+  denominator `D_C` is root-free and has a unique parameter satisfying either
+  `D_C W_{v-lambda_C u}=N_C mod T^{d+t+2}` or the paired first-difference
+  congruences modulo `T^{d+t+1}`.  The parameter is either constant, hence a
+  fixed-slice charge, or genuinely moving.
 - **What to do next:** Bound or charge the unique-neighbor nondegenerate
   star-free shadow ledger, then charge the four base endpoint spaces, the
   resulting short-annihilator endpoint systems, finite-exception endpoint
@@ -358,7 +363,7 @@ Keep entries concise and link to the relevant files.
   short endpoint annihilator failures, root-free short-annihilator families,
   low-dimensional common endpoint recurrence spaces, the corresponding
   primitive reciprocal-domain-pole-free denominator families, their endpoint
-  collision charges, positive-dimensional rank-one landing components,
+  collision charges, positive-dimensional moving denominator certificates,
   root-free multipliers, and the common-root-free
   fixed-kernel and first-difference moving-certificate loci to
   fixed-slope/root-slice, quotient-periodic, endpoint, or active-codegree
