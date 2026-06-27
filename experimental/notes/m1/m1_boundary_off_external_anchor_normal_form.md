@@ -6159,10 +6159,11 @@ J_0^(h),               J_+^(h).
 ```
 
 Consequently, if those four short endpoint systems are injective, then there
-are no positive-dimensional primitive rank-one landing components after the
-fixed-root, base endpoint, collision, and constant-slice charges.  In that
-case the primitive denominator contribution is only the finite Bezout ledger
-from Corollary 65 plus the multiplier ledger from Corollary 60.
+are no nonconstant positive-dimensional primitive rank-one landing components
+after the fixed-root, base endpoint, collision, and constant-slice charges.  In
+that case the genuinely moving primitive denominator contribution is removed;
+the remaining fixed-parameter positive slices are the finite/persistent
+constant-slice ledger of Corollary 70.
 
 ### Proof
 
@@ -6276,6 +6277,87 @@ The first-difference proof is identical with the stacked pencil `A_d-ZB_d`.
 At the endpoint-short threshold the row counts needed for these `d x d` minors
 are available because `d<h<=t+2` and therefore `d<=t+1<=2(t+1)`.  Summing the
 finite alternative over `1<=d<h` gives the displayed bound.
+
+## Corollary 71: Short Injectivity Leaves Only Finite Parameter Ledgers
+
+Keep `h=c-b`, assume the endpoint-short threshold of Corollary 64, and assume
+the four short endpoint systems from Corollary 53 are injective:
+
+```text
+ker H_{t+2,h-1}(u)=0,
+ker H_{t+2,h-1}(v)=0,
+ker J_0^(h)=0,
+ker J_+^(h)=0.                                      (ShortInj)
+```
+
+After the fixed-root/root-slice charges, base endpoint denominator charges,
+and parameter-collision charges, the remaining primitive endpoint-short
+denominator obstruction has the following finite parameter ledger in each of
+the fixed-kernel and first-difference families:
+
+1. the zero-dimensional base-free primitive landing layers contribute at most
+
+```text
+2^h-1
+```
+
+parameters, as in Corollary 65;
+
+2. the constant-parameter positive-dimensional landing slices contribute at
+most
+
+```text
+h(h-1)/2
+```
+
+parameters, as in Corollary 70; and
+
+3. there are no nonconstant positive-dimensional moving primitive landing
+components.
+
+Thus, for the denominator-geometric accounting left after the standard charges,
+the primitive endpoint-short parameter ledger is finite, with the explicit
+per-family bound
+
+```text
+(2^h-1)+h(h-1)/2,
+```
+
+before attaching the multiplier ledger of Corollary 60 to each primitive
+denominator.  This is a geometric finite-ledger statement.  It is not an
+improvement over Corollary 53's sharper direct exceptional-parameter bound
+`|Lambda_{K,>b}|, |Theta_{D,>b}| <= h` under the same short injectivity
+hypotheses.
+
+### Proof
+
+At the endpoint-short threshold, Corollary 64 puts every order `d<h` primitive
+denominator in the half-window range.  Therefore Corollaries 63--66 apply to
+the base-free root-free primitive denominator classes after the fixed-root,
+base endpoint, and collision charges.
+
+The four short injectivity checks imply that the order-`d` endpoint maps
+appearing in Corollaries 69 and 70 have no kernel.  Indeed, `U_d` and `V_d`
+are the restrictions of `H_{t+2,h-1}(u)` and `H_{t+2,h-1}(v)` to
+order-`d` denominators.  Likewise `B_d` and `A_d` are the restrictions of
+`J_0^(h)` and `J_+^(h)` to the same order layer.
+
+Now take a positive-dimensional primitive landing component.  If its parameter
+is nonconstant, Corollary 68 turns it into a persistent one-parameter kernel.
+Corollary 69 says such a persistent kernel forces nonzero endpoint kernels for
+the corresponding order-`d` maps, contradicting (ShortInj).  Hence nonconstant
+moving components do not occur.
+
+It remains to account for constant-parameter positive slices and
+zero-dimensional layers.  Corollary 70 gives, for each order `1<=d<h`, at most
+`d` constant-slice parameters unless the corresponding endpoint maps have
+two-dimensional kernels.  Under (ShortInj) those two-dimensional endpoint
+kernel alternatives are impossible, so the constant slices contribute at most
+`sum_{d=1}^{h-1}d=h(h-1)/2` parameters per family.  Corollary 65 gives the
+separate Bezout ledger `sum_{d=0}^{h-1}2^d=2^h-1` for zero-dimensional
+base-free primitive landing layers.  Finally, Corollary 60 supplies only the
+explicit multiplier ledger attached to each primitive denominator, completing
+the finite parameter accounting.
 
 ## Non-Claims
 
@@ -6438,3 +6520,8 @@ Corollary 69 shows persistent kernels force endpoint rank failure in the
 row-count feasible range; it does not prove the four endpoint systems are
 always injective. Corollary 70 bounds constant-parameter positive slices only
 after endpoint maps with two-dimensional short kernels have been charged.
+Corollary 71 packages the primitive endpoint-short denominator obstruction
+under the four short injectivity checks into a finite parameter ledger; it does
+not prove those checks, improve Corollary 53's sharper `h` exceptional-parameter
+bound, or eliminate the multiplier ledger attached to each primitive
+denominator.

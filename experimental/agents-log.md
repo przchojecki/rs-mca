@@ -378,7 +378,14 @@ Keep entries concise and link to the relevant files.
   endpoint maps `U_d,V_d` have two-dimensional kernels; likewise for fixed
   `theta` and the stacked maps `A_d,B_d`.  After charging those two-dimensional
   endpoint-kernel cases, constant positive slices cost at most `h(h-1)/2`
-  parameters per family.
+  parameters per family.  These alternatives now combine into a finite
+  endpoint-short denominator ledger under the four short injectivity checks:
+  nonconstant positive-dimensional primitive landing components are ruled out
+  by endpoint rank failure, constant positive slices cost at most `h(h-1)/2`
+  parameters per family, and zero-dimensional primitive landing layers cost at
+  most `2^h-1`, before attaching the explicit multiplier ledger for each
+  primitive denominator.  This packages the denominator geometry; it does not
+  improve the direct `h` exceptional-parameter bound from short injectivity.
 - **What to do next:** Bound or charge the unique-neighbor nondegenerate
   star-free shadow ledger, then charge the four base endpoint spaces, the
   resulting short-annihilator endpoint systems, finite-exception endpoint

@@ -2351,6 +2351,22 @@ kernels, constant-parameter positive slices contribute at most
 \sum_{d=1}^{h-1}d=\frac{h(h-1)}2
 \]
 parameters in each family.
+Combining these last alternatives gives a finite endpoint-short denominator
+ledger under the same four short injectivity checks.  Nonconstant
+positive-dimensional primitive landing components are impossible, because they
+would be persistent one-parameter kernels and hence would force endpoint rank
+failure.  Constant-parameter positive slices contribute at most
+\(h(h-1)/2\) parameters per family, while the zero-dimensional primitive
+landing layers contribute at most \(2^h-1\).  Thus the
+denominator-geometric accounting left after fixed-root, base endpoint, and
+collision charges is finite, with per-family bound
+\[
+  (2^h-1)+\frac{h(h-1)}2,
+\]
+before the explicit multiplier ledger attached to each primitive denominator.
+This packages the geometry behind the endpoint-short route; it does not
+improve the direct \(|\Lambda_{K,>b}|,|\Theta_{D,>b}|\le h\) closure bound
+that already follows from short injectivity.
 
 In the ruled part, the common-kernel branch has a fixed projective boundary slope,
 while the common-image branch forces the shadow locator \(L_S\) to satisfy the
