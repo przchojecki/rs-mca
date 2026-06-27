@@ -2120,6 +2120,36 @@ one-row locator-fiber theorem immediately bounds the lifted-common term in
 The verifier reports `|Fib_1(f)|`, `|Fib_1(g)|`, and their common-core count
 for the audited rows.
 
+Putting (M1R3) together with the polynomial-field boundary closure (M1R6)
+removes the two slack-two-specific terms which are not higher-slack root
+images.  For every finite field instance,
+
+```text
+|AperSlope(f,g;2,j)|
+  <= |Z_3|
+     + (j+1) min(|Fib_1(f)|, |Fib_1(g)|)
+     + (|F|+1)^2.                                  (M1R7)
+```
+
+Consequently, in the polynomial-field window `|F| <= n^C`, the `t=2`
+all-line aperiodic packing target follows from two inputs:
+
+1. a polynomial bound for the higher-slack core slope image `Z_3`; and
+2. a polynomial one-row locator-fiber bound for every endpoint word.
+
+More explicitly, if `|Z_3| <= n^B3` and
+`|Fib_1(y)| <= n^B1` uniformly for endpoint words `y`, then
+
+```text
+|AperSlope(f,g;2,j)| <= n^B3 + n^(B1+1) + O(n^(2C)).
+```
+
+This is the current clean route to the slack-two part of Przemek's all-line
+target.  The boundary and lifted-core geometry established above proves that
+there is no multiplicative recursion loss at this rung: the lifted term is
+additive through `Fib_1`, root slices are charged upward to `Z_3`, and boundary
+escapes cost only the polynomial field-size term.
+
 ## Verifier
 
 The companion verifier
@@ -2209,6 +2239,8 @@ enumerates small cyclic-domain cases.  For each case it:
 - computes the active-anchor boundary budget
   `(|F|+1)A_boundary <= (|F|+1)^2` and asserts the polynomial-field reduction
   `|AperSlope| <= |Z_3| + (j+1)N_common + (|F|+1)A_boundary`;
+- asserts the two-input polynomial-field reduction
+  `|AperSlope| <= |Z_3| + (j+1)min(|Fib_1(f)|,|Fib_1(g)|) + (|F|+1)^2`;
 - reports the endpoint `t=1` locator-fiber counts `|Fib_1(f)|` and
   `|Fib_1(g)|`, and checks `N_common <= min(|Fib_1(f)|,|Fib_1(g)|)`;
 - checks the `F_13`, `n=12`, `j=4`, `t=2` boundary-only row as a counterexample

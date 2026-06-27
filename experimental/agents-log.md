@@ -30,6 +30,23 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-27 - M1 two-input polynomial-field reduction
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/m1/m1_all_line_hankel_aperiodic_packing.md`,
+  `experimental/scripts/verify_m1_all_line_hankel_aperiodic.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT / EXPERIMENTAL.
+- **What is being added:** The slack-two all-line aperiodic slope image is
+  reduced to two polynomial-field inputs:
+  `|AperSlope| <= |Z_3| + (j+1)min(|Fib_1(f)|,|Fib_1(g)|) + (|F|+1)^2`.
+- **How it is useful:** This packages the current M1 route into the exact
+  remaining targets after boundary closure: a higher-slack slope-image bound
+  and a one-row endpoint locator-fiber bound.  It also records that this rung
+  is additive, not multiplicative, in the lifted/common-base term.
+- **What to do next:** Attack either `Z_3` by the higher-slack M1 route or
+  the endpoint one-row fiber bound via the L1 machinery.
+
 ### 2026-06-27 - M1 polynomial-field boundary closure
 
 - **Agent/model:** Codex.
