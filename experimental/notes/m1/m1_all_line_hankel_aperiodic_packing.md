@@ -959,6 +959,26 @@ active domain-singleton term is paid by the two target images.  Outside that
 range, the only remaining singleton obstruction is the explicit `Z_0` class,
 not the general product-Mobius/fixed-sum packet geometry.
 
+The zero-forced class is itself range-limited by the model.  In the `t=3`
+two-exchange ledger,
+
+```text
+free_escape_lower =
+  max(0,n-2j-1)     on product-Mobius singleton lines,
+  max(0,n-2j+1)     on fixed-sum singleton lines.
+```
+
+Consequently
+
+```text
+Z_0 <= 1_{n<=2j+1} S_prod + 1_{n<=2j-1} S_sum,       (DSZ)
+```
+
+where `S_prod` and `S_sum` are the active domain-singleton counts in the two
+non-fixed line models.  In particular `Z_0=0` throughout the range
+`n>2j+1`.  The verifier asserts (DSZ), so the zero-lower term is now a
+short-range exceptional regime rather than an all-line residual object.
+
 Finally combine this with the active-new variable-line inequality (VN).  Let
 `Q_def` be the quotient-defect count, `P_2` the fully active two-point packet
 count, and `E_pkt` the injected non-fixed packet-edge image.  The genuinely new

@@ -2248,6 +2248,23 @@ def two_exchange_quadratic_slice_profile(
         > det_proper_line_variable_nonfixed_active_domain_singleton_count_budget
     ):
         raise AssertionError("active singleton count budget failed")
+    det_proper_line_variable_nonfixed_active_domain_singleton_zero_threshold_bound = (
+        (
+            det_proper_line_variable_nonfixed_active_domain_singleton_product
+            if len(domain) <= 2 * j + 1
+            else 0
+        )
+        + (
+            det_proper_line_variable_nonfixed_active_domain_singleton_sum
+            if len(domain) <= 2 * j - 1
+            else 0
+        )
+    )
+    if (
+        det_proper_line_variable_nonfixed_active_domain_singleton_zero_free_escape_lower
+        > det_proper_line_variable_nonfixed_active_domain_singleton_zero_threshold_bound
+    ):
+        raise AssertionError("active singleton zero-lower threshold bound failed")
     det_proper_line_variable_nonfixed_active_domain_singleton_full_target_count_budget = (
         det_proper_line_variable_nonfixed_active_domain_singleton_zero_free_escape_lower
         + det_proper_line_variable_nonfixed_active_domain_singleton_free_escape_full_target_budget

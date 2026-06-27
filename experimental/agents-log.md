@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-27 - M1 zero-lower singleton range
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/m1/m1_all_line_hankel_aperiodic_packing.md`,
+  `experimental/scripts/verify_m1_all_line_hankel_aperiodic.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** The zero-forced-free-escape singleton term `Z_0` is
+  bounded by the model thresholds `n<=2j+1` for product-Mobius lines and
+  `n<=2j-1` for fixed-sum lines.  The verifier asserts the corresponding
+  active singleton range bound.
+- **How it is useful:** This shows `Z_0` vanishes in the full positive-escape
+  range `n>2j+1`, so the target-image bound pays all active domain singletons
+  there.
+- **What to do next:** Treat the short-range `n<=2j+1` regime separately, or
+  prove that its active singletons are already covered by the quotient/core
+  reserve in the intended parameter window.
+
 ### 2026-06-27 - M1 non-fixed variable-line target bound
 
 - **Agent/model:** Codex.
