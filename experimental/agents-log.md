@@ -253,9 +253,17 @@ Keep entries concise and link to the relevant files.
   `ker H_{t+2,c-1}(u)`, `ker H_{t+2,c-1}(v)`, `ker J_0`, and `ker J_+` have
   dimension `<=b`, then both persistent alternatives are impossible and the
   finite bad-parameter sets satisfy `|Lambda_{K,>b}|, |Theta_{D,>b}| <= c-b`.
+  The endpoint checks now have a short-annihilator certificate form: with
+  `h=c-b`, any high-dimensional endpointized charge contains a nonzero
+  degree-`<h` annihilator.  Hence `Lambda_{K,>b}` and `Theta_{D,>b}` are
+  contained in the short systems `ker H_{t+2,h-1}(v-lambda u)!=0` and
+  `ker J_theta^(h)!=0`, and failure of a base endpoint check forces one of
+  `H_{t+2,h-1}(u)`, `H_{t+2,h-1}(v)`, `J_0^(h)`, or `J_+^(h)` to have
+  nonzero kernel.
 - **What to do next:** Bound or charge the unique-neighbor nondegenerate
   star-free shadow ledger, then charge the four base endpoint spaces, the
-  finite-exception endpoint systems, and the moving-certificate loci to
+  resulting short-annihilator endpoint systems, finite-exception endpoint
+  systems, and moving-certificate loci to
   fixed-slope/root-slice, quotient-periodic, endpoint, or active-codegree
   ledgers.
 

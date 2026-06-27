@@ -4268,6 +4268,103 @@ the finite bad sets just bounded.  Therefore, after those finite exceptional
 systems are charged, every remaining endpointized system in Corollary 42 has
 direction dimension at most `b`, proving the final claim.
 
+## Corollary 46: High-Dimensional Endpoint Charges Have Short-Annihilator Certificates
+
+Put
+
+```text
+h=c-b.
+```
+
+For a finite first-difference parameter `theta`, let
+
+```text
+J_theta^(h) Q =
+  ( H_{t+1,h-1}(Delta_theta u)Q,
+    H_{t+1,h-1}(Delta_theta v)Q ),
+        deg Q<h,
+```
+
+and define the two endpoint-intersection short systems
+
+```text
+J_0^(h) Q =
+  ( H_{t+1,h-1}(u)Q,
+    H_{t+1,h-1}(v)Q ),
+
+J_+^(h) Q =
+  ( H_{t+1,h-1}(u^+)Q,
+    H_{t+1,h-1}(v^+)Q ).
+```
+
+Then every endpointized high-dimensional charge from Corollaries 42 and 45
+has a short annihilator:
+
+```text
+dim ker H_{t+2,c-1}(w)>b
+  => ker H_{t+2,h-1}(w) != 0,
+
+dim ker H_{t+2,c-1}(v-lambda u)>b
+  => ker H_{t+2,h-1}(v-lambda u) != 0,
+
+dim ker J_theta>b
+  => ker J_theta^(h) != 0.
+```
+
+In particular,
+
+```text
+Lambda_{K,>b}
+ subset { lambda : ker H_{t+2,h-1}(v-lambda u) != 0 },
+
+Theta_{D,>b}
+ subset { theta : ker J_theta^(h) != 0 }.
+```
+
+Failure of the base endpoint hypothesis (BaseEP) from Corollary 45 forces at
+least one of the four short systems
+
+```text
+H_{t+2,h-1}(u),        H_{t+2,h-1}(v),
+J_0^(h),               J_+^(h)
+```
+
+to have a nonzero kernel.  Equivalently, if these four short systems are
+injective, then (BaseEP) holds, and Corollary 45 gives the finite-exception
+closure for the endpointized global full-core ledgers.
+
+Thus the remaining endpointized high-dimensional charge is not an opaque
+large-kernel condition: it always exposes a degree-`<c-b` annihilator for the
+corresponding endpoint, fixed-kernel, or first-difference syndrome window.
+
+### Proof
+
+We use a single linear-algebra observation.  Let `A:F^c->Y` be any linear map,
+and let `P_h subset F^c` be the coordinate subspace of vectors supported in
+degrees `<h=c-b`.  If `dim ker A>b`, then
+
+```text
+dim(ker A cap P_h) >= dim ker A + dim P_h - c
+                  >= (b+1)+(c-b)-c
+                  = 1.
+```
+
+Hence `ker A` contains a nonzero vector of degree `<h`.
+
+Apply this observation to the matrices
+
+```text
+H_{t+2,c-1}(w),        H_{t+2,c-1}(v-lambda u),
+J_theta,              J_0,              J_+.
+```
+
+When the nonzero vector is supported in degrees `<h`, the corresponding
+equations are exactly the short Hankel systems displayed above.  The inclusion
+statements for `Lambda_{K,>b}` and `Theta_{D,>b}` follow from the definitions
+of those bad-parameter sets.  The final assertion is the contrapositive:
+if all four base short systems are injective, none of the four base endpoint
+spaces can have dimension `>b`.
+
 ## Non-Claims
 
 This note does not prove
@@ -4379,4 +4476,8 @@ separate nondegenerate unique-neighbor shadow ledger. Corollary 44 makes the
 first-difference endpoint charges determinantal; it does not rule out the
 persistent first-difference moving-kernel alternative. Corollary 45 reduces
 the endpointized finite-exception charge to four base endpoint checks; it does
-not prove those base endpoint dimensions are always at most `b`.
+not prove those base endpoint dimensions are always at most `b`. Corollary 46
+turns high-dimensional endpointized charges into degree-`<c-b`
+short-annihilator certificates; it does not prove those short systems are
+always injective or that the resulting short annihilators are already
+quotient-periodic/root-slice charges.

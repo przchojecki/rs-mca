@@ -1984,6 +1984,31 @@ persistent.  Hence the high-dimensional finite-parameter sets satisfy
 After charging these at most \(2(c-b)\) endpointized exceptional systems,
 the preceding global full-core and all-anchor full-core bounds apply to the
 remaining ledgers.
+The base checks and exceptional parameters have a short-annihilator
+certificate form.  Put \(h=c-b\).  Any endpointized matrix on degree-\(<c\)
+directions with kernel dimension \(>b\) has a nonzero kernel vector supported
+in degrees \(<h\).  Consequently
+\[
+\Lambda_{K,>b}\subseteq
+\{\lambda:\ker H_{t+2,h-1}(v-\lambda u)\ne0\},
+\]
+and
+\[
+\Theta_{D,>b}\subseteq
+\{\theta:\ker J_\theta^{(h)}\ne0\},
+\quad
+J_\theta^{(h)}Q=
+\bigl(H_{t+1,h-1}(\Delta_\theta u)Q,\,
+      H_{t+1,h-1}(\Delta_\theta v)Q\bigr).
+\]
+Likewise, failure of one of the four base endpoint checks forces a nonzero
+kernel in one of
+\[
+H_{t+2,h-1}(u),\quad H_{t+2,h-1}(v),\quad
+J_0^{(h)},\quad J_+^{(h)}.
+\]
+Thus the next endpoint obstruction is a short-denominator recurrence
+certificate, not an unstructured large-kernel event.
 
 In the ruled part, the common-kernel branch has a fixed projective boundary slope,
 while the common-image branch forces the shadow locator \(L_S\) to satisfy the
