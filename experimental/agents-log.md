@@ -30,6 +30,23 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-27 - M1 repeated and infinity escape one-row forms
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/m1/m1_all_line_hankel_aperiodic_packing.md`,
+  `experimental/scripts/verify_m1_all_line_hankel_aperiodic.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT / EXPERIMENTAL.
+- **What is being added:** The two remaining isolated boundary escape types
+  now have pinned one-row formulas.  Repeated-root escapes use the
+  domain-pole twist of `(X-xi)L_T`, and infinity escapes use the shifted
+  one-row quotient for `L_T`.
+- **How it is useful:** Together with the existing off-domain external-pole
+  reduction, this turns every isolated escape in the slack-two M1 ledger into
+  a one-row Hankel object rather than an unstructured leftover case.
+- **What to do next:** Use the three one-row descriptions to bound the
+  isolated escape slope image uniformly.
+
 ### 2026-06-27 - M1 root slices as a higher-slack core pencil
 
 - **Agent/model:** Codex.

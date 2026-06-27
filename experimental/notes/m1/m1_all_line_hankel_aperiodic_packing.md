@@ -608,6 +608,72 @@ projective lift ledger.  Consequently the isolated escape side is not an
 unstructured remainder: it consists of repeated-root, off-domain, and
 infinity-anchor boundary lifts inside the common projective one-row kernel.
 
+## Repeated And Infinity Anchor One-Row Forms
+
+The other two boundary escape types also have pinned one-row descriptions.
+First consider a repeated-root escape, so the finite anchor `xi_T=xi` lies in
+`T`.  Put
+
+```text
+P_T(X)=(X-xi)L_T(X),
+```
+
+which has a double root at `xi`.  As above,
+
+```text
+H_{1,j+1}(u)P_T=H_{1,j+1}(v)P_T=0.
+```
+
+Although the twist by `(X-xi)^{-1}` has a pole at `xi in D`, the polynomial
+`P_T` vanishes at `xi`, so its value there is irrelevant in the one-row
+pairing.  Define the domain-pole twist by assigning any value at `xi` and
+using
+
+```text
+u^xi(x)=u(x)/(x-xi),        v^xi(x)=v(x)/(x-xi)        (x != xi).
+```
+
+Then
+
+```text
+H_{1,j+1}(u^xi)P_T=(H_{2,j}(u)L_T)_0,
+H_{1,j+1}(v^xi)P_T=(H_{2,j}(v)L_T)_0.
+```
+
+The repeated-root escape has `(H_{2,j}(v)L_T)_0 != 0`, and its slope is again
+the pinned one-row twisted slope
+
+```text
+z_T=-H_{1,j+1}(u^xi)P_T/H_{1,j+1}(v^xi)P_T.        (RA1)
+```
+
+For an infinity escape, `beta_0=0`, so the padded locator `L_T` itself lies in
+the common one-row kernel:
+
+```text
+H_{1,j}(u)L_T=H_{1,j}(v)L_T=0.
+```
+
+Residual noncontainment gives `beta_1 != 0`, and the determinant gate forces
+`alpha_0=0`.  Hence the slope is determined by the shifted one-row quotient
+
+```text
+z_T=- (H_{2,j}(u)L_T)_1 / (H_{2,j}(v)L_T)_1.        (IA1)
+```
+
+Equivalently, `H_{1,j}(u^+ + z_T v^+)L_T=0`, where `u^+_m=u_{m+1}` and
+`v^+_m=v_{m+1}`.  Thus every isolated escape type is now a pinned one-row
+object:
+
+```text
+off-domain anchor     -> external-pole twisted one-row fiber;
+repeated anchor       -> domain-pole twisted one-row fiber with double root;
+infinity anchor       -> shifted one-row fiber at infinity.
+```
+
+The verifier asserts (RA1) for every repeated-root escape and (IA1) for every
+infinity escape, in addition to the off-domain twisted identity (EA1).
+
 ## Projective Lift-Fiber Ledger
 
 The projective lift map has no hidden multiplicity beyond the squarefree
@@ -1962,6 +2028,9 @@ enumerates small cyclic-domain cases.  For each case it:
   residual locator with anchor `xi` has the same slope as the one-row
   Hankel-pencil gate for the twisted line `u/(X-xi),v/(X-xi)` on
   `(X-xi)L_T`;
+- verifies the repeated-root and infinity-anchor one-row reductions: repeated
+  escapes use the domain-pole twisted gate on `(X-xi)L_T`, while infinity
+  escapes use the shifted one-row quotient for `L_T`;
 - checks the external-anchor top-coefficient form: on `B=D\T`, the first
   Hankel row equals the top interpolation coefficient, the anchor equation
   locks the top two coefficients by `xi-sum(B)`, and the residual slope

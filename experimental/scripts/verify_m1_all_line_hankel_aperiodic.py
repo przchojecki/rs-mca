@@ -701,7 +701,7 @@ def root_slice_profile(
     external_twist_syndromes: dict[int, tuple[tuple[int, ...], tuple[int, ...]]] = {}
     residual_anchor_lifted_face_indices: set[int] = set()
     residual_anchor_escape_indices: set[int] = set()
-    for idx, (complement, _) in enumerate(residual_rows):
+    for idx, (complement, line_slope) in enumerate(residual_rows):
         complement_set = set(complement)
         complement_locator = locator(complement, p)
         a_vec = hankel_apply(u, t, j, complement_locator, p)
@@ -754,6 +754,14 @@ def root_slice_profile(
             residual_projective_lift_boundary_indices.add(idx)
             if a_vec[0] != 0 or b_vec[1] == 0:
                 raise AssertionError("infinity anchor did not have the expected first-row gate")
+            infinity_slope = (-a_vec[1] * inv_mod(b_vec[1], p)) % p
+            if infinity_slope != line_slope:
+                raise AssertionError("infinity-anchor shifted one-row slope disagreed")
+            shifted_line = tuple(
+                (u[row + 1] + line_slope * v[row + 1]) % p for row in range(j + 1)
+            )
+            if hankel_apply(shifted_line, 1, j, complement_locator, p)[0] != 0:
+                raise AssertionError("infinity-anchor shifted one-row gate failed")
             if residual_adj[idx]:
                 raise AssertionError("beta0-zero anchor escape had a residual neighbor")
             residual_anchor_infinity_checks += 1
@@ -775,6 +783,31 @@ def root_slice_profile(
             residual_anchor_escape_in_support += 1
             residual_anchor_escape_indices.add(idx)
             residual_projective_lift_boundary_indices.add(idx)
+            repeated_twisted_f = {
+                x: 0 if x == anchor else f[x] * inv_mod((x - anchor) % p, p) % p
+                for x in domain
+            }
+            repeated_twisted_g = {
+                x: 0 if x == anchor else g[x] * inv_mod((x - anchor) % p, p) % p
+                for x in domain
+            }
+            repeated_twisted_u = syndrome(repeated_twisted_f, domain, j + 2, p)
+            repeated_twisted_v = syndrome(repeated_twisted_g, domain, j + 2, p)
+            repeated_twisted_a = hankel_apply(repeated_twisted_u, 1, j + 1, top_locator, p)
+            repeated_twisted_b = hankel_apply(repeated_twisted_v, 1, j + 1, top_locator, p)
+            if repeated_twisted_a[0] != a_vec[0] or repeated_twisted_b[0] != b_vec[0]:
+                raise AssertionError("repeated-anchor twist did not recover first row")
+            repeated_twisted_slope = slope_from_gate(repeated_twisted_a, repeated_twisted_b, p)
+            if repeated_twisted_b[0] == 0:
+                raise AssertionError("repeated-anchor twisted denominator vanished")
+            if repeated_twisted_slope != line_slope:
+                raise AssertionError("repeated-anchor twist changed the residual slope")
+            repeated_twisted_line = tuple(
+                (repeated_twisted_u[row] + line_slope * repeated_twisted_v[row]) % p
+                for row in range(j + 2)
+            )
+            if hankel_apply(repeated_twisted_line, 1, j + 1, top_locator, p)[0] != 0:
+                raise AssertionError("repeated-anchor slope missed pinned t=1 gate")
             residual_anchor_repeated_lift_checks += 1
             if residual_adj[idx]:
                 raise AssertionError("in-support anchor escape had a residual neighbor")
@@ -787,7 +820,6 @@ def root_slice_profile(
             residual_external_anchor_locators[anchor] = (
                 residual_external_anchor_locators.get(anchor, 0) + 1
             )
-            line_slope = residual_rows[idx][1]
             residual_external_anchor_slopes.setdefault(anchor, set()).add(line_slope)
             anchor_slope_key = (anchor, line_slope)
             residual_external_anchor_slope_locators[anchor_slope_key] = (
