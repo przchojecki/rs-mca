@@ -30,6 +30,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-27 - M1 overlap-aware escape slopes
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/m1/m1_all_line_hankel_aperiodic_packing.md`,
+  `experimental/scripts/verify_m1_all_line_hankel_aperiodic.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT / EXPERIMENTAL.
+- **What is being added:** The residual slope split is sharpened from
+  `Z_res = Z_lift union Z_esc` to the exact count
+  `|Z_res| = |Z_lift| + |Z_esc \ Z_lift|`.  The verifier now asserts
+  overlap-aware residual and recursive bounds using the new escape image
+  instead of charging every escape slope.
+- **How it is useful:** Boundary escapes which already occur as active
+  common-core residual ratios no longer consume a separate M1 budget.  The
+  remaining boundary obstruction is only the genuinely new escape slope image.
+- **What to do next:** Seek a structural bound for `Z_esc \ Z_lift`, or prove
+  that in important strata every escape slope is already realized by the
+  active lifted image.
+
 ### 2026-06-27 - M1 active common-core partition
 
 - **Agent/model:** Codex.

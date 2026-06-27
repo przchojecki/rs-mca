@@ -1694,6 +1694,21 @@ Z_res = Z_lift union Z_esc.          (SL1)
 
 There is no third slope source after quotient-periodic locators,
 contained/tangent locators, and fixed-slope root slices have been charged.
+Consequently the boundary term can be made overlap-aware.  Put
+
+```text
+Z_esc^new = Z_esc \ Z_lift.
+```
+
+Then
+
+```text
+|Z_res| = |Z_lift| + |Z_esc^new|.     (SL2)
+```
+
+Thus an isolated escape slope already realized by an active lifted common
+core need not be charged a second time.  Only the new escape image
+`Z_esc^new` is a genuinely separate residual boundary cost.
 
 The lifted side has a local injectivity property.  If `W` is a lifted common
 core and `T_x,T_y subset W` are two distinct residual faces, then `T_x` and
@@ -1705,7 +1720,7 @@ faces of each lifted common core have pairwise distinct slopes.
 Thus a future slope-image proof can work with two explicit objects:
 
 1. injective residual-coordinate slopes inside lifted common cores; and
-2. isolated anchor-escape slopes.
+2. isolated anchor-escape slopes not already in the lifted image.
 
 This is sharper than a locator count.  The lifted core may have many
 noncontained or aperiodic faces before peeling, but after the root-slice charge
@@ -2151,6 +2166,20 @@ The active-core version is stronger:
 |AperSlope(f,g;2,j)| <= |Z_3| + (j+1)N_active + |Z_esc|.       (M1R2'')
 ```
 
+Using the overlap-aware boundary image from (SL2), the sharper active version
+is
+
+```text
+|AperSlope(f,g;2,j)| <= |Z_3| + (j+1)N_active + |Z_esc^new|,
+Z_esc^new = Z_esc \ Z_lift.                         (M1R2''')
+```
+
+This does not assert that boundary escapes are harmless.  It says that the
+only boundary slopes still needing a separate estimate are those not already
+seen by active lifted common cores.  In rows where boundary escapes and lifted
+cores have the same slope image, the residual boundary term disappears from
+the slope-image bound.
+
 The price is that `Z_3` is a larger raw higher-slack slope image than the
 actually peeled root-slice slope set.  The gain is conceptual: root slices are
 not a new obstruction type, but a `t=3`, degree-`j-1` core-locator problem.
@@ -2237,7 +2266,10 @@ discarding inactive common bases:
 It is still implied by the two-input bound because `N_active <= N_common <=
 min(|Fib_1(f)|,|Fib_1(g)|)`, but it is the more faithful local obstruction:
 to improve the slack-two estimate one can bound active residual common cores,
-not all one-row common bases.
+not all one-row common bases.  The overlap-aware version keeps the same
+polynomial-field fallback but replaces the exact boundary term by
+`|Z_esc^new|`, the escape slopes not already realized by active common-core
+ratios.
 
 ## Verifier
 
@@ -2315,10 +2347,16 @@ enumerates small cyclic-domain cases.  For each case it:
 - asserts the lifted-side recursion bound
   `|Z_res| <= (j+1)N_common + |Z_esc|`, with `N_common` the audited count of
   one-degree-up common bases;
+- computes the new escape slope image `Z_esc \ Z_lift` and asserts the
+  overlap-aware lifted-side bounds
+  `|Z_res| <= (j+1)N_common + |Z_esc \ Z_lift|` and
+  `|Z_res| <= (j+1)N_active + |Z_esc \ Z_lift|`;
 - asserts the total `t=2` slope-image reduction
   `|AperSlope| <= |Z_root| + (j+1)N_common + |Z_esc|`;
 - checks the higher-slack root-slice reduction `Z_root subset Z_3` and the
   recursive bound `|AperSlope| <= |Z_3| + (j+1)N_common + |Z_esc|`;
+- asserts the recursive overlap-aware active bound
+  `|AperSlope| <= |Z_3| + (j+1)N_active + |Z_esc \ Z_lift|`;
 - computes the boundary arrangement budget `B_boundary` and asserts
   `|Z_esc| <= B_boundary` and
   `|AperSlope| <= |Z_3| + (j+1)N_common + B_boundary`;
