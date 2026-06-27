@@ -327,15 +327,23 @@ Keep entries concise and link to the relevant files.
   primitive denominator has degree `delta`, every degree-`<h` certificate lies
   in the multiplier ledger `D_0M`, `deg M<=h-1-delta`; over `F_q` this costs
   at most `(q^{h-delta}-1)/(q-1)` projective multipliers before root-free and
-  truncation cuts.
+  truncation cuts.  The primitive denominator itself remains a certificate
+  after cancelling the invertible multiplier.  Parameter collisions are also
+  endpoint charges: if two distinct `lambda` values share a denominator for
+  `v-lambda u`, then that denominator works for both `u` and `v` at depth
+  `t+2`; if two distinct `theta` values share a common denominator for
+  `(Delta_theta u, Delta_theta v)`, it works for both `u` and `v` at depth
+  `t+1`.  After charging those base endpoint intersections, bad parameters
+  inject into primitive denominator classes.
 - **What to do next:** Bound or charge the unique-neighbor nondegenerate
   star-free shadow ledger, then charge the four base endpoint spaces, the
   resulting short-annihilator endpoint systems, finite-exception endpoint
   systems, their projective short-locator landing varieties, the one-sided
   short endpoint annihilator failures, root-free short-annihilator families,
   low-dimensional common endpoint recurrence spaces, the corresponding
-  primitive reciprocal-domain-pole-free denominator families, their root-free
-  multipliers, the longer vector-Pade range, and the common-root-free
+  primitive reciprocal-domain-pole-free denominator families, their endpoint
+  collision charges, root-free multipliers, the longer vector-Pade range, and
+  the common-root-free
   fixed-kernel and first-difference moving-certificate loci to
   fixed-slope/root-slice, quotient-periodic, endpoint, or active-codegree
   ledgers.

@@ -2215,6 +2215,27 @@ and the root-free and truncation conditions only cut this ledger down.  Hence
 the half-window denominator problem is reduced to bounding primitive
 reciprocal-domain-pole-free denominators, then paying this explicit multiplier
 factor.
+The primitive denominator itself still witnesses the obstruction: if
+\(D=D_0M\) is a certificate and \(D_0\) is the reduced primitive denominator,
+then \(M(0)\ne0\), so \(D_0W-N_0\) is divisible by the same initial power of
+\(T\) after cancelling \(M\).  Thus multipliers affect certificate counting,
+not existence.  Parameter collisions also collapse to base endpoint charges.
+If the same denominator works for two distinct fixed-kernel parameters
+\(\lambda_1,\lambda_2\), then subtracting
+\[
+W_{v-\lambda_1u}-W_{v-\lambda_2u}=(\lambda_2-\lambda_1)W_u
+\]
+shows that the denominator works for both \(u\) and \(v\) at depth \(t+2\).
+Similarly, if the same common denominator works for two distinct
+first-difference parameters \(\theta_1,\theta_2\), then
+\[
+W_{\Delta_{\theta_1}w}-W_{\Delta_{\theta_2}w}
+      =(\theta_2-\theta_1)W_w
+\]
+for \(w=u,v\), so the denominator lies in the base intersection
+\(\ker H_{t+1,h-1}(u)\cap\ker H_{t+1,h-1}(v)\).  After charging these base
+endpoint intersections, bad parameters inject into primitive denominator
+classes.
 
 In the ruled part, the common-kernel branch has a fixed projective boundary slope,
 while the common-image branch forces the shadow locator \(L_S\) to satisfy the

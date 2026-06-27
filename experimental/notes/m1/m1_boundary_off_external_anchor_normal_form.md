@@ -5461,6 +5461,142 @@ size
 The root-free and truncation conditions only remove points from this projective
 space, so this gives the claimed upper bound.
 
+## Corollary 61: Primitive Denominators Remain Valid Certificates
+
+In the half-window setting of Corollary 60, let `D=D_0M` be a degree-`<h`
+certificate denominator for a scalar syndrome series or for a pair of series,
+where `D_0` is the primitive reduced denominator from Corollary 59.  Then
+`D_0` itself is a certificate denominator.  More precisely, if
+
+```text
+D(T)W_w(T)=N(T)       mod T^{e+s},        deg D=e,
+```
+
+and the reduced rational function is `N_0/D_0`, then
+
+```text
+D_0(T)W_w(T)=N_0(T)       mod T^{delta+s},        delta=deg D_0.
+```
+
+The same holds componentwise for a pair of syndrome series with the primitive
+vector denominator `D_0`.
+
+If `D` is root-free in the sense of Corollary 58, then `D_0` is also
+root-free.  Thus, in the half-window range, existence of a root-free
+degree-`<h` certificate is equivalent to existence of a root-free primitive
+certificate denominator of degree `<h`; multipliers affect the number of
+certificates, but not the existence of the underlying endpoint-short
+obstruction.
+
+### Proof
+
+By Corollary 59, reducing `N/D` gives the same rational function `N_0/D_0`;
+hence `D=D_0M` and `N=N_0M`.  Since `D=Q^*` is a reversed denominator with
+nonzero constant term, `M(0)!=0`, so multiplication by `M` is invertible in
+`F[[T]]`.  From
+
+```text
+M(D_0W_w-N_0)=DW_w-N
+```
+
+and the divisibility of `DW_w-N` by `T^{e+s}`, it follows that
+`D_0W_w-N_0` is divisible by `T^{e+s}`, hence by `T^{delta+s}`.  The
+componentwise statement is identical.  Root-freeness passes to factors by
+Corollary 58.
+
+## Corollary 62: Parameter Collisions Are Base Endpoint Denominators
+
+Let `D(T)` be a denominator with `D(0)!=0` and `deg D=e<h`.
+
+### Fixed-Kernel Parameters
+
+Suppose two distinct parameters `lambda_1,lambda_2` satisfy
+
+```text
+D(T)W_{v-lambda_i u}(T)=N_i(T)       mod T^{e+t+2},
+deg N_i<e,        i=1,2.
+```
+
+Then `D` is a common base endpoint denominator for `u` and `v`:
+
+```text
+D(T)W_u(T)= (N_1-N_2)/(lambda_2-lambda_1)       mod T^{e+t+2},
+```
+
+and
+
+```text
+D(T)W_v(T)= (lambda_2 N_1-lambda_1 N_2)/(lambda_2-lambda_1)
+        mod T^{e+t+2}.
+```
+
+Equivalently, in locator language, the corresponding reversed locator lies in
+
+```text
+ker H_{t+2,h-1}(u) cap ker H_{t+2,h-1}(v).
+```
+
+### First-Difference Parameters
+
+Suppose two distinct parameters `theta_1,theta_2` satisfy, for both
+`w=u` and `w=v`,
+
+```text
+D(T)W_{Delta_{theta_i} w}(T)=N_{i,w}(T)       mod T^{e+t+1},
+deg N_{i,w}<e,        i=1,2.
+```
+
+Then `D` is a common base endpoint denominator for `u` and `v` at depth
+`t+1`:
+
+```text
+D(T)W_u(T)= (N_{1,u}-N_{2,u})/(theta_2-theta_1)       mod T^{e+t+1},
+```
+
+and
+
+```text
+D(T)W_v(T)= (N_{1,v}-N_{2,v})/(theta_2-theta_1)       mod T^{e+t+1}.
+```
+
+Equivalently, the reversed locator lies in
+
+```text
+ker H_{t+1,h-1}(u) cap ker H_{t+1,h-1}(v).
+```
+
+Consequently, after charging primitive denominators already lying in the
+appropriate base endpoint intersections, the map from bad parameters to
+primitive denominators is injective separately for the fixed-kernel family and
+for the first-difference family.  Any remaining parameter multiplicity is
+therefore an endpoint charge, not a new residue-line obstruction.
+
+### Proof
+
+For fixed-kernel parameters,
+
+```text
+W_{v-lambda_1u}-W_{v-lambda_2u}=(lambda_2-lambda_1)W_u.
+```
+
+Subtracting the two congruences gives the displayed congruence for `D W_u`;
+substituting back into either congruence gives the displayed congruence for
+`D W_v`.  These are exactly the denominator forms of the two Hankel endpoint
+equations.
+
+For first-difference parameters,
+
+```text
+W_{Delta_{theta_1}w}-W_{Delta_{theta_2}w}
+        =(theta_2-theta_1)W_w.
+```
+
+Applying this identity for `w=u` and `w=v` gives the two displayed base
+endpoint congruences.  The final injectivity statement follows from Corollary
+61: if two uncharged parameters shared a primitive denominator, that primitive
+denominator would itself be a certificate for both parameters and hence would
+fall into the charged base endpoint intersection.
+
 ## Non-Claims
 
 This note does not prove
@@ -5602,4 +5738,8 @@ of reciprocal-domain denominator poles. Corollary 59 gives uniqueness and
 primitive-denominator compression only in the half-window range; it does not
 bound the primitive denominators or the longer vector-Pade range. Corollary 60
 only bounds the multiplier ledger attached to a fixed primitive denominator;
-it does not bound how many primitive denominators occur.
+it does not bound how many primitive denominators occur. Corollary 61 removes
+multiplier artifacts from existence questions, but not from certificate
+counting. Corollary 62 charges parameter collisions to base endpoint
+denominators; it does not bound the remaining injective set of primitive
+denominators.
