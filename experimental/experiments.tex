@@ -1866,6 +1866,26 @@ Thus \(G_u=H_{t+2,c-1}(u)\), \(G_v=H_{t+2,c-1}(v)\), and
 \(G_\lambda=H_{t+2,c-1}(v-\lambda u)\).  This is a lossless residual-depth
 frontier shift from \((t,j)\) to \((t+2,j-2)\), not a new kind of row-rank
 condition.
+The three-shift common-image ledger has a parallel sliding-window reduction.
+For a projective image line \([y]\), let \(W_y\subseteq \F^{t+2}\) be the set
+of length-\((t+2)\) vectors whose three consecutive length-\(t\) windows all
+lie in \(\F y\).  Then \(\dim W_y\le1\), and \(W_y\ne0\) only for the
+extended geometric shift lines
+\[
+  [1:r:r^2:\cdots:r^{t-1}]\quad(r\in\F),
+  \qquad [0:\cdots:0:1].
+\]
+Moreover
+\[
+\ker C_y^G
+=\{Q: H_{t+2,c-1}(u)Q\in W_y,\,
+        H_{t+2,c-1}(v)Q\in W_y\}.
+\]
+Thus every common-image line off this \(q+1\)-point shift curve collapses to
+the deeper endpoint intersection
+\(\ker H_{t+2,c-1}(u)\cap\ker H_{t+2,c-1}(v)\); after that endpoint
+intersection is charged, only the shift-persistent image lines require a
+separate common-image charge.
 
 In the ruled part, the common-kernel branch has a fixed projective boundary slope,
 while the common-image branch forces the shadow locator \(L_S\) to satisfy the

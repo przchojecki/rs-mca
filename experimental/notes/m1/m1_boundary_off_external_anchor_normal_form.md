@@ -3698,6 +3698,112 @@ systems and the deeper Hankel system impose the same equations on `Q`.
 The identities for `G_u`, `G_v`, and `G_lambda` follow by applying the same
 calculation to `w=u`, `w=v`, and `w=v-lambda u`.
 
+## Corollary 39: Three-Shift Common-Image Lines Are Shift-Persistent Or Endpoint
+
+Keep `c=m-1` and assume `t>=2`.  For a nonzero image vector `y in F^t`, define
+the sliding-persistence subspace
+
+```text
+W_y={ z in F^{t+2} :
+        (z_i,z_{i+1},...,z_{i+t-1}) in F y for i=0,1,2 }.
+```
+
+Then `dim W_y<=1`.  Moreover `W_y` is nonzero only for the extended geometric
+shift lines
+
+```text
+[y]=[1:r:r^2:...:r^(t-1)]        with r in F,
+```
+
+or for the point at infinity
+
+```text
+[y]=[0:0:...:0:1].
+```
+
+For these `q+1` projective lines over `F_q`, the space `W_y` is one-dimensional.
+For every other projective image line, `W_y=0`.
+
+Let
+
+```text
+Z_w(Q)=H_{t+2,c-1}(w)Q in F^{t+2}.
+```
+
+For the three-shift common-image direction map `C_y^G` from Corollary 37,
+
+```text
+ker C_y^G
+ = { Q : Z_u(Q) in W_y and Z_v(Q) in W_y }.          (GCIShift)
+```
+
+Consequently, for every image line off the extended geometric shift curve,
+
+```text
+ker C_y^G
+ = ker H_{t+2,c-1}(u) cap ker H_{t+2,c-1}(v).        (GCIOff)
+```
+
+Thus the non-shift-persistent part of the three-shift common-image ledger is
+not an independent projective low-rank obstruction.  After the deeper endpoint
+intersection has been charged, the only common-image lines that still need a
+separate three-shift charge are the `q+1` extended geometric shift lines.
+
+### Proof
+
+The condition `z in W_y` means that there are scalars `a_0,a_1,a_2` such that
+
+```text
+(z_i,z_{i+1},...,z_{i+t-1})=a_i y,        i=0,1,2.
+```
+
+Writing `y=(y_0,...,y_{t-1})`, the overlaps of consecutive windows give
+
+```text
+a_0 y_s = a_1 y_{s-1},
+a_1 y_s = a_2 y_{s-1},        1<=s<=t-1.             (Overlap)
+```
+
+Since `y` is nonzero and `t>=2`, some adjacent pair `(y_{s-1},y_s)` is nonzero.
+For this `s`, the two linear equations in (Overlap) are independent equations
+on `(a_0,a_1,a_2)`.  Hence the solution space for the scalars has dimension at
+most one, and therefore `dim W_y<=1`.
+
+Assume now that `W_y` is nonzero, and choose a nonzero scalar triple
+`(a_0,a_1,a_2)` satisfying (Overlap).  If `a_0!=0` and `a_1=0`, then (Overlap)
+forces `y_1=...=y_{t-1}=0`, so `[y]=[1:0:...:0]`, the case `r=0`.  If
+`a_0!=0` and `a_1!=0`, then (Overlap) gives
+
+```text
+y_s = r y_{s-1},        r=a_1/a_0,
+```
+
+for every `s`.  Since `y` is nonzero, this gives
+`[y]=[1:r:r^2:...:r^(t-1)]`; the second equation in (Overlap) then forces
+`a_2/a_1=r`.
+
+It remains to consider `a_0=0`.  If `a_1!=0`, the first equation in (Overlap)
+forces `y_0=...=y_{t-2}=0`, while the second forces also `y_{t-1}=0`, a
+contradiction.  Thus `a_1=0`.  Since the triple is nonzero, `a_2!=0`, and the
+second equation in (Overlap) gives `y_0=...=y_{t-2}=0`; hence
+`[y]=[0:...:0:1]`.
+
+Conversely, if `[y]=[1:r:...:r^(t-1)]`, then
+
+```text
+z=(1,r,r^2,...,r^(t+1))
+```
+
+spans a nonzero `W_y` (with the evident interpretation at `r=0`).  If
+`[y]=[0:...:0:1]`, then `z=(0,...,0,1) in F^{t+2}` spans a nonzero `W_y`.
+Together with the dimension bound, these cases have `dim W_y=1`.
+
+Finally, the `i`-th length-`t` window of `Z_w(Q)=H_{t+2,c-1}(w)Q` is exactly
+`H_{t,j}(w)X^iQ`.  Therefore `y wedge H_{t,j}(w)X^iQ=0` for
+`w in {u,v}` and `i=0,1,2` is equivalent to
+`Z_u(Q),Z_v(Q) in W_y`, proving (GCIShift).  If `[y]` is off the extended
+geometric shift curve then `W_y=0`, giving (GCIOff).
+
 ## Non-Claims
 
 This note does not prove
@@ -3792,4 +3898,6 @@ Corollary 37 makes those charges determinantal; it still leaves endpoint
 three-shift low rank and persistent moving certificates as explicit ledgers to
 charge. Corollary 38 identifies the endpoint and fixed-kernel three-shift
 ledgers with deeper Hankel windows; it does not prove those deeper windows have
-large rank in every instance.
+large rank in every instance. Corollary 39 reduces the non-shift-persistent
+common-image lines to the deeper endpoint intersection; it still leaves that
+intersection and the `q+1` extended geometric shift lines to be charged.

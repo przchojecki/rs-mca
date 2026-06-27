@@ -220,11 +220,17 @@ Keep entries concise and link to the relevant files.
   fixed-kernel three-shift ledgers are now identified with exact deeper Hankel
   windows: `H_{t,j}(w)X^iQ=0` for `i=0,1,2` is equivalent to
   `H_{t+2,c-1}(w)Q=0`, so `G_lambda=H_{t+2,c-1}(v-lambda u)`.  This records a
-  lossless residual-depth frontier shift from `(t,j)` to `(t+2,j-2)`.
+  lossless residual-depth frontier shift from `(t,j)` to `(t+2,j-2)`.  The
+  common-image three-shift ledger now has the analogous sliding-window
+  reduction: for an image line `[y]`, the allowed deeper residuals form a space
+  `W_y` of dimension at most one, nonzero only on the `q+1` extended geometric
+  shift lines.  Off that shift curve, `ker C_y^G` is just
+  `ker H_{t+2,c-1}(u) cap ker H_{t+2,c-1}(v)`.
 - **What to do next:** Bound or charge the unique-neighbor nondegenerate
-  star-free shadow ledger, and charge the ruled exceptional low-rank loci to
-  fixed-slope/root-slice, endpoint, projective, quotient-periodic, or
-  active-codegree ledgers.
+  star-free shadow ledger, then charge the remaining global ruled ledgers: the
+  deeper endpoint intersection, the `q+1` shift-persistent common-image lines,
+  and the moving-certificate loci, to fixed-slope/root-slice,
+  quotient-periodic, endpoint, or active-codegree ledgers.
 
 ### 2026-06-27 - Root-level paper PDF relocation
 
