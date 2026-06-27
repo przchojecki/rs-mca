@@ -30,6 +30,23 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-27 - M1 root-residual overlap reduction
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/m1/m1_all_line_hankel_aperiodic_packing.md`,
+  `experimental/scripts/verify_m1_all_line_hankel_aperiodic.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT / EXPERIMENTAL.
+- **What is being added:** The slack-two aperiodic slope ledger now charges
+  only root-slice slopes not already present in the residual slope image:
+  `|AperSlope| <= |Z_3 \ Z_res| + N_face + |Z_esc \ Z_lift|`.
+- **How it is useful:** This removes double counting at the root/residual
+  boundary and sharpens the best audited local M1 reduction on the full
+  `F_17` rows and the rank-one zero-slice probe.
+- **What to do next:** Seek a structural bound for `Z_3 \ Z_res`, or prove
+  that large portions of the higher-slack root-slice image are always already
+  realized residually in the all-line setting.
+
 ### 2026-06-27 - M1 face-exact active reduction
 
 - **Agent/model:** Codex.

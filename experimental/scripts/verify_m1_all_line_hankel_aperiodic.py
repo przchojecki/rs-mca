@@ -531,9 +531,11 @@ def root_slice_profile(
             "max_root_slice_noncontained": 0,
             "max_root_slice_aperiodic_members": 0,
             "root_slice_slope_count": 0,
+            "root_slice_new_slope_count": 0,
             "root_slice_total_slope_bound": 0,
             "root_slice_t3_core_locators": 0,
             "root_slice_t3_slope_count": 0,
+            "root_slice_t3_new_slope_count": 0,
             "root_slice_recursive_slope_bound": 0,
             "root_slice_members": 0,
             "root_slice_residual_locators": len(locator_rows),
@@ -630,6 +632,8 @@ def root_slice_profile(
             "root_slice_recursive_new_escape_bound": 0,
             "root_slice_recursive_active_new_escape_bound": 0,
             "root_slice_recursive_active_face_new_escape_bound": 0,
+            "root_slice_exact_active_face_bound": 0,
+            "root_slice_recursive_active_face_new_root_bound": 0,
             "root_slice_two_input_field_bound": 0,
             "root_slice_lifted_u_t1_cores": 0,
             "root_slice_lifted_v_t1_cores": 0,
@@ -1662,9 +1666,17 @@ def root_slice_profile(
     }
     if not root_slice_member_slope_set <= root_slice_slope_set:
         raise AssertionError("root-slice members used a slope outside the slice ledger")
+    if root_slice_member_slope_set != root_slice_slope_set:
+        raise AssertionError("root-slice slope ledger was not exact")
     aperiodic_slope_set = {slope for _, slope in locator_rows}
     if aperiodic_slope_set != root_slice_member_slope_set | residual_slope_set:
         raise AssertionError("aperiodic slope image did not split into root and residual ledgers")
+    root_slice_new_slope_set = root_slice_member_slope_set - residual_slope_set
+    root_slice_t3_new_slope_set = root_slice_t3_slope_set - residual_slope_set
+    if not root_slice_new_slope_set <= root_slice_t3_new_slope_set:
+        raise AssertionError("new root-slice slopes escaped new t=3 slopes")
+    if len(aperiodic_slope_set) != len(residual_slope_set) + len(root_slice_new_slope_set):
+        raise AssertionError("aperiodic slope image did not have exact root/residual overlap")
     residual_lifted_slope_set = {
         residual_rows[idx][1] for idx in residual_anchor_lifted_face_indices
     }
@@ -1752,6 +1764,13 @@ def root_slice_profile(
     total_reduction_bound = len(root_slice_slope_set) + residual_recursion_bound
     if len(aperiodic_slope_set) > total_reduction_bound:
         raise AssertionError("aperiodic slope image exceeded t=2 reduction bound")
+    exact_active_face_bound = (
+        len(root_slice_new_slope_set)
+        + lifted_common_core_residual_faces
+        + residual_escape_new_slopes
+    )
+    if len(aperiodic_slope_set) > exact_active_face_bound:
+        raise AssertionError("aperiodic slope image exceeded exact active-face bound")
     recursive_reduction_bound = len(root_slice_t3_slope_set) + residual_recursion_bound
     if len(aperiodic_slope_set) > recursive_reduction_bound:
         raise AssertionError("aperiodic slope image exceeded recursive t=3 reduction bound")
@@ -1797,6 +1816,13 @@ def root_slice_profile(
     )
     if len(aperiodic_slope_set) > recursive_active_face_new_escape_bound:
         raise AssertionError("aperiodic slope image exceeded active-face new-escape bound")
+    recursive_active_face_new_root_bound = (
+        len(root_slice_t3_new_slope_set)
+        + lifted_common_core_residual_faces
+        + residual_escape_new_slopes
+    )
+    if len(aperiodic_slope_set) > recursive_active_face_new_root_bound:
+        raise AssertionError("aperiodic slope image exceeded active-face new-root bound")
     two_input_field_bound = (
         len(root_slice_t3_slope_set)
         + (j + 1) * min(lifted_u_t1_cores, lifted_v_t1_cores)
@@ -1824,9 +1850,11 @@ def root_slice_profile(
         "max_root_slice_noncontained": max_noncontained,
         "max_root_slice_aperiodic_members": max_aperiodic_members,
         "root_slice_slope_count": len({slope for _, slope in slice_keys}),
+        "root_slice_new_slope_count": len(root_slice_new_slope_set),
         "root_slice_total_slope_bound": total_reduction_bound,
         "root_slice_t3_core_locators": root_slice_t3_core_locators,
         "root_slice_t3_slope_count": len(root_slice_t3_slope_set),
+        "root_slice_t3_new_slope_count": len(root_slice_t3_new_slope_set),
         "root_slice_recursive_slope_bound": recursive_reduction_bound,
         "root_slice_members": len(root_slice_members),
         "root_slice_residual_locators": len(residual_rows),
@@ -1991,6 +2019,10 @@ def root_slice_profile(
         ),
         "root_slice_recursive_active_face_new_escape_bound": (
             recursive_active_face_new_escape_bound
+        ),
+        "root_slice_exact_active_face_bound": exact_active_face_bound,
+        "root_slice_recursive_active_face_new_root_bound": (
+            recursive_active_face_new_root_bound
         ),
         "root_slice_two_input_field_bound": two_input_field_bound,
         "root_slice_lifted_u_t1_cores": lifted_u_t1_cores,
@@ -2406,9 +2438,11 @@ def verify_word_pair(
         "max_root_slice_noncontained": root_profile["max_root_slice_noncontained"],
         "max_root_slice_aperiodic_members": root_profile["max_root_slice_aperiodic_members"],
         "root_slice_slope_count": root_profile["root_slice_slope_count"],
+        "root_slice_new_slope_count": root_profile["root_slice_new_slope_count"],
         "root_slice_total_slope_bound": root_profile["root_slice_total_slope_bound"],
         "root_slice_t3_core_locators": root_profile["root_slice_t3_core_locators"],
         "root_slice_t3_slope_count": root_profile["root_slice_t3_slope_count"],
+        "root_slice_t3_new_slope_count": root_profile["root_slice_t3_new_slope_count"],
         "root_slice_recursive_slope_bound": root_profile[
             "root_slice_recursive_slope_bound"
         ],
@@ -2667,6 +2701,12 @@ def verify_word_pair(
         "root_slice_recursive_active_face_new_escape_bound": (
             root_profile["root_slice_recursive_active_face_new_escape_bound"]
         ),
+        "root_slice_exact_active_face_bound": (
+            root_profile["root_slice_exact_active_face_bound"]
+        ),
+        "root_slice_recursive_active_face_new_root_bound": (
+            root_profile["root_slice_recursive_active_face_new_root_bound"]
+        ),
         "root_slice_two_input_field_bound": root_profile[
             "root_slice_two_input_field_bound"
         ],
@@ -2763,11 +2803,17 @@ def verify_case(case: Case) -> dict[str, object]:
         "max_root_slice_total_slope_bound": max(
             row["root_slice_total_slope_bound"] for row in rows
         ),
+        "max_root_slice_new_slope_count": max(
+            row["root_slice_new_slope_count"] for row in rows
+        ),
         "max_root_slice_t3_core_locators": max(
             row["root_slice_t3_core_locators"] for row in rows
         ),
         "max_root_slice_t3_slope_count": max(
             row["root_slice_t3_slope_count"] for row in rows
+        ),
+        "max_root_slice_t3_new_slope_count": max(
+            row["root_slice_t3_new_slope_count"] for row in rows
         ),
         "max_root_slice_recursive_slope_bound": max(
             row["root_slice_recursive_slope_bound"] for row in rows
@@ -3045,6 +3091,12 @@ def verify_case(case: Case) -> dict[str, object]:
         ),
         "max_root_slice_recursive_active_face_new_escape_bound": max(
             row["root_slice_recursive_active_face_new_escape_bound"] for row in rows
+        ),
+        "max_root_slice_exact_active_face_bound": max(
+            row["root_slice_exact_active_face_bound"] for row in rows
+        ),
+        "max_root_slice_recursive_active_face_new_root_bound": max(
+            row["root_slice_recursive_active_face_new_root_bound"] for row in rows
         ),
         "max_root_slice_two_input_field_bound": max(
             row["root_slice_two_input_field_bound"] for row in rows
@@ -3819,9 +3871,11 @@ def main() -> None:
                 "same_slope_strict={aperiodic_same_slope_strict_pairs} "
                 "root_slices={root_slices} "
                 "root_slice_slopes={root_slice_slope_count} "
+                "root_slice_new_slopes={root_slice_new_slope_count} "
                 "root_total_slope_bound={root_slice_total_slope_bound} "
                 "root_t3_core_locators={root_slice_t3_core_locators} "
                 "root_t3_slopes={root_slice_t3_slope_count} "
+                "root_t3_new_slopes={root_slice_t3_new_slope_count} "
                 "root_recursive_slope_bound={root_slice_recursive_slope_bound} "
                 "root_slice_members={root_slice_members} "
                 "root_slice_noncontained_max={max_root_slice_noncontained} "
@@ -3919,6 +3973,8 @@ def main() -> None:
                 "root_recursive_new_escape_bound={root_slice_recursive_new_escape_bound} "
                 "root_recursive_active_new_escape_bound={root_slice_recursive_active_new_escape_bound} "
                 "root_recursive_active_face_new_escape_bound={root_slice_recursive_active_face_new_escape_bound} "
+                "root_exact_active_face_bound={root_slice_exact_active_face_bound} "
+                "root_recursive_active_face_new_root_bound={root_slice_recursive_active_face_new_root_bound} "
                 "root_two_input_field_bound={root_slice_two_input_field_bound} "
                 "lifted_u_t1_cores={root_slice_lifted_u_t1_cores} "
                 "lifted_v_t1_cores={root_slice_lifted_v_t1_cores} "
@@ -3967,8 +4023,10 @@ def main() -> None:
             f"max_root_slices={summary['max_root_slices']} "
             f"max_root_slice_noncontained={summary['max_root_slice_noncontained']} "
             f"max_root_total_slope_bound={summary['max_root_slice_total_slope_bound']} "
+            f"max_root_new_slopes={summary['max_root_slice_new_slope_count']} "
             f"max_root_t3_core_locators={summary['max_root_slice_t3_core_locators']} "
             f"max_root_t3_slopes={summary['max_root_slice_t3_slope_count']} "
+            f"max_root_t3_new_slopes={summary['max_root_slice_t3_new_slope_count']} "
             f"max_root_recursive_slope_bound={summary['max_root_slice_recursive_slope_bound']} "
             f"max_root_slice_members={summary['max_root_slice_members']} "
             f"max_root_residual_locators={summary['max_root_slice_residual_locators']} "
@@ -4063,6 +4121,8 @@ def main() -> None:
             f"max_root_recursive_new_escape_bound={summary['max_root_slice_recursive_new_escape_bound']} "
             f"max_root_recursive_active_new_escape_bound={summary['max_root_slice_recursive_active_new_escape_bound']} "
             f"max_root_recursive_active_face_new_escape_bound={summary['max_root_slice_recursive_active_face_new_escape_bound']} "
+            f"max_root_exact_active_face_bound={summary['max_root_slice_exact_active_face_bound']} "
+            f"max_root_recursive_active_face_new_root_bound={summary['max_root_slice_recursive_active_face_new_root_bound']} "
             f"max_root_two_input_field_bound={summary['max_root_slice_two_input_field_bound']} "
             f"max_lifted_u_t1_cores={summary['max_root_slice_lifted_u_t1_cores']} "
             f"max_lifted_v_t1_cores={summary['max_root_slice_lifted_v_t1_cores']} "
@@ -4099,6 +4159,10 @@ def main() -> None:
     print(
         "{name} seed={seed}: p={p} n={n} k={k} j={j} t={t} "
         "aperiodic_locators={aperiodic_locators} aperiodic_slopes={aperiodic_slopes} "
+        "root_slice_slopes={root_slice_slope_count} "
+        "root_slice_new_slopes={root_slice_new_slope_count} "
+        "root_t3_slopes={root_slice_t3_slope_count} "
+        "root_t3_new_slopes={root_slice_t3_new_slope_count} "
         "zero_det_slices={zero_determinant_slices} "
         "zero_det_rank1={zero_det_direction_rank1_slices} "
         "zero_det_constant={zero_det_constant_slices} "
@@ -4193,6 +4257,8 @@ def main() -> None:
         "root_recursive_new_escape_bound={root_slice_recursive_new_escape_bound} "
         "root_recursive_active_new_escape_bound={root_slice_recursive_active_new_escape_bound} "
         "root_recursive_active_face_new_escape_bound={root_slice_recursive_active_face_new_escape_bound} "
+        "root_exact_active_face_bound={root_slice_exact_active_face_bound} "
+        "root_recursive_active_face_new_root_bound={root_slice_recursive_active_face_new_root_bound} "
         "root_two_input_field_bound={root_slice_two_input_field_bound} "
         "lifted_u_t1_cores={root_slice_lifted_u_t1_cores} "
         "lifted_v_t1_cores={root_slice_lifted_v_t1_cores} "
@@ -4218,8 +4284,10 @@ def main() -> None:
     max_aperiodic = max(row["aperiodic_slopes"] for row in all_rows)
     max_strict_degree = max(row["aperiodic_max_strict_degree"] for row in all_rows)
     max_total_slope_bound = max(row["root_slice_total_slope_bound"] for row in all_rows)
+    max_root_new_slopes = max(row["root_slice_new_slope_count"] for row in all_rows)
     max_root_t3_core_locators = max(row["root_slice_t3_core_locators"] for row in all_rows)
     max_root_t3_slopes = max(row["root_slice_t3_slope_count"] for row in all_rows)
+    max_root_t3_new_slopes = max(row["root_slice_t3_new_slope_count"] for row in all_rows)
     max_recursive_slope_bound = max(
         row["root_slice_recursive_slope_bound"] for row in all_rows
     )
@@ -4475,6 +4543,12 @@ def main() -> None:
     max_recursive_active_face_new_escape_bound = max(
         row["root_slice_recursive_active_face_new_escape_bound"] for row in all_rows
     )
+    max_exact_active_face_bound = max(
+        row["root_slice_exact_active_face_bound"] for row in all_rows
+    )
+    max_recursive_active_face_new_root_bound = max(
+        row["root_slice_recursive_active_face_new_root_bound"] for row in all_rows
+    )
     max_two_input_field_bound = max(
         row["root_slice_two_input_field_bound"] for row in all_rows
     )
@@ -4532,8 +4606,10 @@ def main() -> None:
         f"rank_one_probes=1 "
         f"max_aperiodic_slopes={max_aperiodic} "
         f"max_total_slope_bound={max_total_slope_bound} "
+        f"max_root_new_slopes={max_root_new_slopes} "
         f"max_root_t3_core_locators={max_root_t3_core_locators} "
         f"max_root_t3_slopes={max_root_t3_slopes} "
+        f"max_root_t3_new_slopes={max_root_t3_new_slopes} "
         f"max_recursive_slope_bound={max_recursive_slope_bound} "
         f"max_strict_degree={max_strict_degree} "
         f"max_root_residual_slope_core_checks={max_residual_slope_core_checks} "
@@ -4624,6 +4700,8 @@ def main() -> None:
         f"max_root_recursive_new_escape_bound={max_recursive_new_escape_bound} "
         f"max_root_recursive_active_new_escape_bound={max_recursive_active_new_escape_bound} "
         f"max_root_recursive_active_face_new_escape_bound={max_recursive_active_face_new_escape_bound} "
+        f"max_root_exact_active_face_bound={max_exact_active_face_bound} "
+        f"max_root_recursive_active_face_new_root_bound={max_recursive_active_face_new_root_bound} "
         f"max_root_two_input_field_bound={max_two_input_field_bound} "
         f"max_lifted_u_t1_cores={max_lifted_u_t1_cores} "
         f"max_lifted_v_t1_cores={max_lifted_v_t1_cores} "

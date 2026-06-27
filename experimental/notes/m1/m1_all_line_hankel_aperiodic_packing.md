@@ -2196,7 +2196,37 @@ Indeed, the root-slice contribution is charged to `Z_3`, the lifted residual
 contribution has slope image contained in the active coordinate set counted
 by `N_face`, and the only boundary contribution not already counted is
 `Z_esc^new`.  Since `N_face <= (j+1)N_active`, (M1R2'''') implies
-(M1R2''') and is the sharpest audited local reduction currently in this note.
+(M1R2''') and is the sharpest reduction before accounting for overlap between
+the root-slice and residual slope images.
+
+There is a final overlap saving at the root/residual boundary.  The root
+slice and residual slope images cover the aperiodic image by union, so only
+root-slice slopes absent from the residual image must be charged separately.
+Put
+
+```text
+Z_root^new = Z_root \ Z_res,
+Z_3^new    = Z_3 \ Z_res.
+```
+
+Then the exact root/residual slope ledger is
+
+```text
+|AperSlope(f,g;2,j)| = |Z_res| + |Z_root^new|,
+```
+
+and, using `Z_root subset Z_3`,
+
+```text
+|AperSlope(f,g;2,j)| <= |Z_3^new| + N_face + |Z_esc^new|.       (M1R2''''')
+```
+
+Equivalently, this is (M1R2'''') with already-residual higher-slack
+root-slice slopes removed before charging the recursive term.  The verifier
+asserts the exact disjoint count and the recursive `Z_3\Z_res` version in
+every audited row.  In the current `F_17` full-domain rows the face-exact
+recursive bound drops from `57` to `56`; in the rank-one zero-slice probe it
+drops from `47` to `45`.
 
 This does not assert that boundary escapes are harmless.  It says that the
 only boundary slopes still needing a separate estimate are those not already
@@ -2386,6 +2416,8 @@ enumerates small cyclic-domain cases.  For each case it:
   `|AperSlope| <= |Z_3| + (j+1)N_active + |Z_esc \ Z_lift|`;
 - asserts the sharper face-exact recursive bound
   `|AperSlope| <= |Z_3| + N_face + |Z_esc \ Z_lift|`;
+- asserts the root/residual overlap refinement
+  `|AperSlope| <= |Z_3 \ Z_res| + N_face + |Z_esc \ Z_lift|`;
 - computes the boundary arrangement budget `B_boundary` and asserts
   `|Z_esc| <= B_boundary` and
   `|AperSlope| <= |Z_3| + (j+1)N_common + B_boundary`;
