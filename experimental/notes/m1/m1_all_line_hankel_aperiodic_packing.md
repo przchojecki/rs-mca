@@ -854,6 +854,15 @@ and after restricting to active domain singletons.  In the `F_13`, `n=12`,
 one contained pair, one contained-boundary edge, one boundary-edge injection,
 and no off-domain singleton root.
 
+The verifier also projects each contained-boundary edge to its contained target
+`T_c` and records the target image size and maximum target multiplicity.  In
+the current audit rows, and in the active singleton witness above, this target
+multiplicity is `1` both before and after the active-domain-singleton
+restriction.  This is not yet a general proof of a contained/tangent budget,
+but it localizes the next step: either prove that the contained-boundary edge
+image is target-injective in the relevant ledger, or find a configuration where
+several aperiodic singleton edges charge the same contained/tangent target.
+
 ## Different-Slope One-Exchange Quadratic Slice
 
 The different-slope part of the one-exchange profile has a complementary

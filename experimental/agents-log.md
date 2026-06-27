@@ -30,6 +30,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-27 - M1 contained-boundary target multiplicity
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/m1/m1_all_line_hankel_aperiodic_packing.md`,
+  `experimental/scripts/verify_m1_all_line_hankel_aperiodic.py`,
+  `experimental/agents-log.md`.
+- **Status:** AUDIT / EXPERIMENTAL.
+- **What is being added:** The contained-boundary edge ledger now also projects
+  each edge to its contained/tangent target and records target image size and
+  maximum target multiplicity, before and after restricting to active domain
+  singletons.
+- **How it is useful:** This tests whether the contained-boundary charge can be
+  paid directly by the contained/tangent target budget rather than only by a
+  larger edge-image budget.  The current audit and active `F_13`, `n=12`,
+  `j=5` witness have target multiplicity `1`.
+- **What to do next:** Prove target-injectivity for the relevant ledger, or
+  search for a configuration where several aperiodic singleton edges charge
+  the same contained/tangent target.
+
 ### 2026-06-27 - M1 contained-boundary edge injection
 
 - **Agent/model:** Codex.
