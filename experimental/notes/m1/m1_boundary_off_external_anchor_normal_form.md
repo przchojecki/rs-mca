@@ -4841,6 +4841,85 @@ Thus a primitive denominator common to both paired targets gives a common
 root-free witness for the ordinary and shifted pairs, hence an endpoint-pair
 residual by (PairOverlap).
 
+## Corollary 40.13: Consecutive Paired Residual Stacks Collapse To The Deepest Pair
+
+Fix `r>=1` and `L>=0`, put `s=t+r-1`, and let `S` denote the syndrome shift.
+For `i>=0`, define `RF_{r,i}(u,v)` to be the root-free degree-`<h` witness set
+cut out by
+
+```text
+H_s(S^i u)Q=H_s(S^i v)Q=0.
+```
+
+Then
+
+```text
+cap_{i=0}^L RF_{r,i}(u,v) = RF_{r+L,0}(u,v).        (PairStack)
+```
+
+The right-hand side is interpreted at depth `r+L`, with window length
+`t+(r+L)-1=s+L`.
+
+Equivalently, for every degree-`<h` polynomial `Q`,
+
+```text
+H_s(S^i u)Q=H_s(S^i v)Q=0        for all 0<=i<=L
+```
+
+if and only if
+
+```text
+H_{s+L}(u)Q=H_{s+L}(v)Q=0.
+```
+
+Consequently, a consecutive block of shifted paired residuals has only one
+common root-free obstruction: the deepest paired residual at depth `r+L`.
+After that deepest paired residual is charged, the block has no common
+uncharged root-free witness.  In the half-window range, any primitive
+denominator common to all `L+1` shifted paired primitive-denominator targets
+belongs to the deepest paired denominator charge.
+
+For `L=1`, the identity says
+
+```text
+RF_{r,0}(u,v) cap RF_{r,1}(u,v) = RF_{r+1,0}(u,v),
+```
+
+which is Corollary 40.12, since `RF_{r+1,0}(u,v)=RF_r(u) cap RF_r(v)`.
+
+### Proof
+
+For a fixed shift `i`, the equations
+
+```text
+H_s(S^i w)Q=0
+```
+
+are exactly the recurrence rows
+
+```text
+i,i+1,...,i+s-1
+```
+
+of the unshifted syndrome `w`.  As `i` runs from `0` to `L`, these consecutive
+row intervals cover exactly
+
+```text
+0,1,...,s+L-1.
+```
+
+Thus imposing the paired equations for every `0<=i<=L` is equivalent to
+imposing
+
+```text
+H_{s+L}(u)Q=H_{s+L}(v)Q=0.
+```
+
+This is precisely the paired residual at depth `r+L`, because
+`s+L=t+(r+L)-1`.  Root-freeness is again a property of the same witness `Q`.
+The primitive-denominator statement follows from Corollary 61 as in
+Corollary 40.12.
+
 ## Corollary 41: The Global Common-Image Ledger Is Endpoint-Only
 
 Let `GCI` be the set of monic degree-`c` split core locators `L` for which
@@ -7504,6 +7583,8 @@ targets.
 Corollary 40.12 identifies the overlap of the ordinary and shifted paired
 root-free residuals with the endpoint-pair residual; it does not bound that
 endpoint-pair residual.
+Corollary 40.13 packages consecutive paired-overlap losslessness; it does not
+bound the deepest paired residual itself.
 Corollary 41 packages the common-image branch into endpoint-type ledgers; it
 does not prove the endpoint rank hypotheses needed for the displayed
 `(q+2)binom(n,b)` bound. Corollary 42 packages the globally full core ledger

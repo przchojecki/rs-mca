@@ -276,7 +276,9 @@ Keep entries concise and link to the relevant files.
   denominator targets.  The ordinary and shifted paired residual targets now
   have an exact overlap rule: their common root-free witnesses are precisely
   the endpoint-pair residual witnesses, so any common primitive denominator in
-  the half-window range is an endpoint-pair charge.
+  the half-window range is an endpoint-pair charge.  Consecutive blocks of
+  shifted paired residuals likewise collapse to the deepest paired residual, so
+  common primitive denominators across a block are charged once.
   The common-image three-shift ledger now has the analogous sliding-window
   reduction: for an image line `[y]`, the allowed deeper residuals form a space
   `W_y` of dimension at most one, nonzero only on the `q+1` extended geometric
