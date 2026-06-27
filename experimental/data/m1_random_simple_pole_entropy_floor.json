@@ -1,0 +1,60 @@
+{
+  "status": "PROVED / FINITE-SLOPE LOWER-BOUND / AUDIT",
+  "row": "RS[F_17^32,H,256]",
+  "field": "F_17[z]/(z^32 - 3)",
+  "domain": "H=<z>, |H|=512",
+  "predicate": "finite-slope support-wise LD/MCA",
+  "q": "17^32",
+  "qExact": "2367911594760467245844106297320951247361",
+  "n": 512,
+  "k": 256,
+  "degreeConvention": "base code deg < k; numerator deg <= k",
+  "records": [
+    {
+      "agreement": 257,
+      "badSlopesLower": "17^32",
+      "badSlopesLowerExact": "2367911594760467245844106297320951247361",
+      "missingFiniteSlopes": "0"
+    },
+    {
+      "agreement": 258,
+      "badSlopesLower": "17^32",
+      "badSlopesLowerExact": "2367911594760467245844106297320951247361",
+      "missingFiniteSlopes": "0"
+    },
+    {
+      "agreement": 259,
+      "badSlopesLower": "17^32 - 68904",
+      "badSlopesLowerExact": "2367911594760467245844106297320951178457",
+      "missingFiniteSlopes": "68904"
+    },
+    {
+      "agreement": 260,
+      "badSlopesLower": "33439260151101646297506087371119470",
+      "badSlopesLowerExact": "33439260151101646297506087371119470",
+      "missingFiniteSlopes": "2367878155500316144197808791233580127891",
+      "gt": "2^114"
+    }
+  ],
+  "methodStopChecks": [
+    {
+      "agreement": 261,
+      "badSlopesLowerExact": "1"
+    },
+    {
+      "agreement": 262,
+      "badSlopesLowerExact": "1"
+    }
+  ],
+  "denominatorCheck": {
+    "floor(q/2^128)": 6
+  },
+  "nonclaims": [
+    "not a safe-side bound",
+    "not ordinary list decoding",
+    "not interleaved list size",
+    "not protocol soundness",
+    "finite slopes only",
+    "separate existence statements"
+  ]
+}

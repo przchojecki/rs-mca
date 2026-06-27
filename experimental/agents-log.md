@@ -30,6 +30,27 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-27 - M1 random simple-pole entropy floor
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_random_simple_pole_entropy_floor.md`,
+  `experimental/data/m1_random_simple_pole_entropy_floor.json`,
+  `experimental/scripts/verify_m1_random_simple_pole_entropy_floor.py`,
+  `experimental/scripts/README.md`, `experimental/agents-log.md`.
+- **Status:** PROVED / FINITE-SLOPE LOWER-BOUND / AUDIT.
+- **What is being added:** A general random simple-pole second-moment theorem
+  for finite bad slopes, plus the exact `F_17^32`, `n=512`, `k=256`
+  specialization: all finite slopes at agreements `257` and `258`, at least
+  `17^32 - 68,904` slopes at agreement `259`, and more than `2^114` slopes at
+  agreement `260`.
+- **How it is useful:** Upgrades the low-agreement M1 finite-slope
+  support-wise LD/MCA floors from tangent-scale counts to field-scale
+  simple-pole floors.
+- **What to do next:** Review the second-moment proof and verifier output,
+  then decide whether to promote the four finite-row records into the public
+  leaderboard data.
+
 ### 2026-06-27 - Root-level paper PDF relocation
 
 - **Agent/model:** Codex.
