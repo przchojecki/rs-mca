@@ -2236,6 +2236,27 @@ for \(w=u,v\), so the denominator lies in the base intersection
 \(\ker H_{t+1,h-1}(u)\cap\ker H_{t+1,h-1}(v)\).  After charging these base
 endpoint intersections, bad parameters inject into primitive denominator
 classes.
+The remaining primitive denominators have an explicit rank-one landing form.
+For a degree-\(d\) denominator \(D\), write
+\[
+R_s(D;w)=([T^d]DW_w,\ldots,[T^{d+s-1}]DW_w).
+\]
+For fixed-kernel parameters, with
+\[
+U_D=R_{t+2}(D;u),\qquad V_D=R_{t+2}(D;v),
+\]
+one has \(D\) supporting \(\lambda\) exactly when \(V_D=\lambda U_D\).
+Outside the base endpoint intersection \(U_D=V_D=0\), this is the unique
+rank-one landing \(V_D\in \F U_D\).  For first differences, set
+\[
+B_D=(R_{t+1}(D;u),R_{t+1}(D;v)),\quad
+A_D=(R_{t+1}(D;Su),R_{t+1}(D;Sv)).
+\]
+Then \(D\) supports \(\theta\) exactly when \(A_D=\theta B_D\), and outside
+\(B_D=0\) this is the unique landing \(A_D\in\F B_D\).  The entries are linear
+in the coefficients of \(D\), so after endpoint charges the remaining primitive
+denominator families are explicit \(2\times2\)-minor incidence loci, plus the
+root-free open condition.
 
 In the ruled part, the common-kernel branch has a fixed projective boundary slope,
 while the common-image branch forces the shadow locator \(L_S\) to satisfy the

@@ -5597,6 +5597,131 @@ endpoint congruences.  The final injectivity statement follows from Corollary
 denominator would itself be a certificate for both parameters and hence would
 fall into the charged base endpoint intersection.
 
+## Corollary 63: Base-Free Primitive Parameters Are Rank-One Landings
+
+Let `D(T)` be a denominator of degree `d<h`.  For a syndrome series `w`, define
+the tail coefficient vector
+
+```text
+R_s(D;w)=([T^d]D(T)W_w(T), ..., [T^{d+s-1}]D(T)W_w(T)) in F^s.
+```
+
+Then `D` is a denominator certificate for `w` through window length `s` if and
+only if
+
+```text
+R_s(D;w)=0.
+```
+
+### Fixed-Kernel Parameters
+
+Set
+
+```text
+U_D=R_{t+2}(D;u),        V_D=R_{t+2}(D;v).
+```
+
+Then `D` supports a finite fixed-kernel parameter `lambda` if and only if
+
+```text
+V_D=lambda U_D.                                      (FKLand)
+```
+
+If `D` is not in the base endpoint intersection
+
+```text
+U_D=0,        V_D=0,
+```
+
+then any supported `lambda` is unique, `U_D!=0`, and the condition is the
+rank-one landing condition
+
+```text
+V_D in F U_D.
+```
+
+### First-Difference Parameters
+
+Let `S w` denote the shifted syndrome `(S w)_a=w_{a+1}`.  Set
+
+```text
+B_D=(R_{t+1}(D;u), R_{t+1}(D;v)) in F^{2(t+1)},
+A_D=(R_{t+1}(D;S u), R_{t+1}(D;S v)) in F^{2(t+1)}.
+```
+
+Then `D` supports a finite first-difference parameter `theta` if and only if
+
+```text
+A_D=theta B_D.                                      (FDLand)
+```
+
+If `D` is not in the base endpoint intersection
+
+```text
+B_D=0,
+```
+
+then any supported `theta` is unique, `B_D!=0`, and the condition is the
+rank-one landing condition
+
+```text
+A_D in F B_D.
+```
+
+Consequently, after the base endpoint denominators from Corollary 62 are
+charged, the remaining primitive denominator families are contained in two
+explicit determinantal incidence loci in the denominator coefficients:
+
+```text
+V_D in F U_D,        U_D!=0,
+```
+
+for fixed-kernel parameters, and
+
+```text
+A_D in F B_D,        B_D!=0,
+```
+
+for first-difference parameters.  The entries of these vectors are linear in
+the coefficients of `D`, so the landings are cut out by the corresponding
+`2 x 2` minors, together with the root-free open condition from Corollary 58
+and the primitive-denominator condition from Corollary 61.
+
+### Proof
+
+The congruence
+
+```text
+D(T)W_w(T)=N(T)       mod T^{d+s},        deg N<d,
+```
+
+is equivalent to the vanishing of the coefficients of `D W_w` in degrees
+`d,d+1,...,d+s-1`, which is exactly `R_s(D;w)=0`.
+
+For fixed-kernel parameters, apply this equivalence to
+`w=v-lambda u`.  Linearity of `R_s` gives
+
+```text
+R_{t+2}(D;v-lambda u)=V_D-lambda U_D,
+```
+
+which proves (FKLand).  If `U_D=0`, then a supported finite `lambda` forces
+`V_D=0`, i.e. the base endpoint intersection.  Outside that intersection
+`U_D!=0`, and the scalar `lambda` is unique.
+
+For first-difference parameters, use
+
+```text
+Delta_theta w=S w-theta w.
+```
+
+The two denominator equations for `u` and `v` are therefore equivalent to
+`A_D-theta B_D=0`, proving (FDLand).  If `B_D=0`, support forces `A_D=0` and
+the denominator is in the base endpoint intersection already charged in
+Corollary 62.  Otherwise `B_D!=0`, and the scalar `theta` is unique.  The
+determinantal description is the standard collinearity equations for two
+vectors.
+
 ## Non-Claims
 
 This note does not prove
@@ -5742,4 +5867,5 @@ it does not bound how many primitive denominators occur. Corollary 61 removes
 multiplier artifacts from existence questions, but not from certificate
 counting. Corollary 62 charges parameter collisions to base endpoint
 denominators; it does not bound the remaining injective set of primitive
-denominators.
+denominators. Corollary 63 turns that remaining set into explicit rank-one
+landing loci; it does not prove those loci have the required size.

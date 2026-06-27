@@ -334,7 +334,13 @@ Keep entries concise and link to the relevant files.
   `t+2`; if two distinct `theta` values share a common denominator for
   `(Delta_theta u, Delta_theta v)`, it works for both `u` and `v` at depth
   `t+1`.  After charging those base endpoint intersections, bad parameters
-  inject into primitive denominator classes.
+  inject into primitive denominator classes.  The remaining primitive
+  denominator classes are explicit rank-one landings: for fixed-kernel
+  parameters, `V_D=lambda U_D` with
+  `U_D=R_{t+2}(D;u)`, `V_D=R_{t+2}(D;v)` outside `U_D=V_D=0`; for
+  first-difference parameters, `A_D=theta B_D` in the doubled
+  `(u,v)` window outside `B_D=0`.  These are `2 x 2` minor loci in the
+  denominator coefficients plus the root-free open condition.
 - **What to do next:** Bound or charge the unique-neighbor nondegenerate
   star-free shadow ledger, then charge the four base endpoint spaces, the
   resulting short-annihilator endpoint systems, finite-exception endpoint
@@ -342,8 +348,8 @@ Keep entries concise and link to the relevant files.
   short endpoint annihilator failures, root-free short-annihilator families,
   low-dimensional common endpoint recurrence spaces, the corresponding
   primitive reciprocal-domain-pole-free denominator families, their endpoint
-  collision charges, root-free multipliers, the longer vector-Pade range, and
-  the common-root-free
+  collision charges, rank-one landing loci, root-free multipliers, the longer
+  vector-Pade range, and the common-root-free
   fixed-kernel and first-difference moving-certificate loci to
   fixed-slope/root-slice, quotient-periodic, endpoint, or active-codegree
   ledgers.
