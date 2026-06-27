@@ -30,6 +30,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-27 - M1 active singleton count target budget
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/m1/m1_all_line_hankel_aperiodic_packing.md`,
+  `experimental/scripts/verify_m1_all_line_hankel_aperiodic.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** The active domain-singleton count is now bounded by
+  the zero-forced-free-escape singleton count plus the forced free-escape
+  total, and hence by the contained/tangent and one-outside target budgets plus
+  that explicit zero-lower exception.
+- **How it is useful:** This turns the active singleton term in the non-fixed
+  variable-line slope ledger into a target-image problem whenever the local
+  free-escape lower bound is positive; the only residual singleton class is
+  the concrete `free_escape_lower=0` regime.
+- **What to do next:** Analyze the zero-lower regime, or combine this count
+  budget with the active-new variable-line inequality to state the final
+  non-fixed variable-line contribution bound.
+
 ### 2026-06-27 - M1 off-domain singleton boundary targets
 
 - **Agent/model:** Codex.

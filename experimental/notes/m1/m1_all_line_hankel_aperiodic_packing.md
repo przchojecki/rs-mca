@@ -933,6 +933,32 @@ image problem, not an unstructured count of singleton lines: bound the
 contained/tangent target image and the one-outside boundary target image in the
 same quotient-aware M1 ledger.
 
+This target budget pays the singleton count itself except in the zero-forced
+case.  For an active domain singleton, either `free_escape_lower=0`, or
+`free_escape_lower>=1` pays the one active singleton.  Hence
+
+```text
+#{active domain singletons}
+  <= #{active domain singletons with free_escape_lower=0}
+     + free_escape_lower_total.                       (DS0)
+```
+
+Substituting (DS') into (DS0) gives the active singleton contribution in the
+form needed by the variable-line slope ledger:
+
+```text
+#{active domain singletons}
+  <= Z_0
+     + 2 binom(j,2) binom(n-j,2) |Target_cb|
+     + (j-1) binom(n-j+1,2) |Target_off|,            (DS1)
+```
+
+where `Z_0` is the zero-forced-free-escape singleton count.  Thus in any
+range where the local escape lower bound is uniformly positive, the whole
+active domain-singleton term is paid by the two target images.  Outside that
+range, the only remaining singleton obstruction is the explicit `Z_0` class,
+not the general product-Mobius/fixed-sum packet geometry.
+
 ## Different-Slope One-Exchange Quadratic Slice
 
 The different-slope part of the one-exchange profile has a complementary
