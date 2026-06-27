@@ -841,6 +841,8 @@ def two_exchange_quadratic_slice_profile(
             "two_exchange_det_proper_line_variable_unanchored": 0,
             "two_exchange_det_proper_line_variable_domain_pair_max": 0,
             "two_exchange_det_proper_line_variable_domain_pair_checks": 0,
+            "two_exchange_det_proper_line_variable_nonfixed_packet_pair_max": 0,
+            "two_exchange_det_proper_line_variable_nonfixed_packet_pair_checks": 0,
             "two_exchange_det_proper_line_variable_charged_slope_checks": 0,
         }
     if j < 2:
@@ -930,6 +932,8 @@ def two_exchange_quadratic_slice_profile(
     det_proper_line_variable_unanchored = 0
     det_proper_line_variable_domain_pair_max = 0
     det_proper_line_variable_domain_pair_checks = 0
+    det_proper_line_variable_nonfixed_packet_pair_max = 0
+    det_proper_line_variable_nonfixed_packet_pair_checks = 0
     det_proper_line_variable_slope_sets: list[set[int]] = []
     det_proper_line_variable_charged_slope_checks = 0
     det_charged_line_slope_set = set(charged_root_slope_set)
@@ -1133,6 +1137,7 @@ def two_exchange_quadratic_slice_profile(
 
             line_slopes: set[int] = set()
             line_aperiodic_slopes: set[int] = set()
+            line_aperiodic_complements: list[tuple[int, ...]] = []
             line_noncontained = 0
             line_aperiodic = 0
             line_domain_pairs = 0
@@ -1173,6 +1178,7 @@ def two_exchange_quadratic_slice_profile(
                     raise AssertionError("line-component slope disagreed with row slope")
                 line_aperiodic += 1
                 line_aperiodic_slopes.add(slope)
+                line_aperiodic_complements.append(complement)
             if len(line_slopes) <= 1:
                 det_line_constant_slope += 1
             else:
@@ -1215,6 +1221,37 @@ def two_exchange_quadratic_slice_profile(
                         det_proper_line_variable_anchored += 1
                     else:
                         det_proper_line_variable_unanchored += 1
+                    packet_pairs = 0
+                    for left_complement, right_complement in combinations(
+                        line_aperiodic_complements, 2
+                    ):
+                        left_set = set(left_complement)
+                        right_set = set(right_complement)
+                        if (
+                            len(left_set - right_set) != 2
+                            or len(right_set - left_set) != 2
+                        ):
+                            raise AssertionError(
+                                "non-fixed variable line packet was not two-exchange"
+                            )
+                        left_slope = row_map[left_complement]
+                        right_slope = row_map[right_complement]
+                        if left_slope == right_slope:
+                            raise AssertionError(
+                                "non-fixed variable line packet repeated a slope"
+                            )
+                        packet_pairs += 1
+                    if packet_pairs != line_aperiodic * (line_aperiodic - 1) // 2:
+                        raise AssertionError(
+                            "non-fixed variable line packet pair count changed"
+                        )
+                    det_proper_line_variable_nonfixed_packet_pair_max = max(
+                        det_proper_line_variable_nonfixed_packet_pair_max,
+                        packet_pairs,
+                    )
+                    det_proper_line_variable_nonfixed_packet_pair_checks += (
+                        packet_pairs
+                    )
                 det_proper_line_variable_domain_pair_max = max(
                     det_proper_line_variable_domain_pair_max, line_domain_pairs
                 )
@@ -1360,6 +1397,8 @@ def two_exchange_quadratic_slice_profile(
         raise AssertionError("same-slope affine ledger missed a two-exchange pair")
     if not same_slope_line_keys <= det_line_keys:
         raise AssertionError("same-slope line cluster was not a determinantal line")
+    if det_proper_line_variable_nonfixed_packet_pair_checks > different_slope_pairs:
+        raise AssertionError("non-fixed variable line packets overcharged two-exchange pairs")
     det_proper_line_variable_new_slopes = (
         det_proper_line_variable_aperiodic_slopes - det_charged_line_slope_set
     )
@@ -1471,6 +1510,12 @@ def two_exchange_quadratic_slice_profile(
         ),
         "two_exchange_det_proper_line_variable_domain_pair_checks": (
             det_proper_line_variable_domain_pair_checks
+        ),
+        "two_exchange_det_proper_line_variable_nonfixed_packet_pair_max": (
+            det_proper_line_variable_nonfixed_packet_pair_max
+        ),
+        "two_exchange_det_proper_line_variable_nonfixed_packet_pair_checks": (
+            det_proper_line_variable_nonfixed_packet_pair_checks
         ),
         "two_exchange_det_proper_line_variable_charged_slope_checks": (
             det_proper_line_variable_charged_slope_checks
@@ -3659,6 +3704,16 @@ def verify_word_pair(
                 "two_exchange_det_proper_line_variable_domain_pair_checks"
             ]
         ),
+        "two_exchange_det_proper_line_variable_nonfixed_packet_pair_max": (
+            two_exchange_profile[
+                "two_exchange_det_proper_line_variable_nonfixed_packet_pair_max"
+            ]
+        ),
+        "two_exchange_det_proper_line_variable_nonfixed_packet_pair_checks": (
+            two_exchange_profile[
+                "two_exchange_det_proper_line_variable_nonfixed_packet_pair_checks"
+            ]
+        ),
         "two_exchange_det_proper_line_variable_charged_slope_checks": (
             two_exchange_profile[
                 "two_exchange_det_proper_line_variable_charged_slope_checks"
@@ -5184,6 +5239,10 @@ def verify_t3_same_slope_two_exchange_probe() -> dict[str, object]:
         raise AssertionError("same-slope probe gained an unanchored variable line")
     if row["two_exchange_det_proper_line_variable_domain_pair_max"] != 3:
         raise AssertionError("same-slope probe variable-line domain packet changed")
+    if row["two_exchange_det_proper_line_variable_nonfixed_packet_pair_max"] != 3:
+        raise AssertionError("same-slope probe variable-line packet pair max changed")
+    if row["two_exchange_det_proper_line_variable_nonfixed_packet_pair_checks"] != 6:
+        raise AssertionError("same-slope probe variable-line packet pair count changed")
     if row["two_exchange_det_proper_line_variable_new_slope_max"] != 0:
         raise AssertionError("same-slope probe gained a per-line new residual slope")
     return row
@@ -5231,6 +5290,10 @@ def verify_t3_variable_new_slope_probe() -> dict[str, object]:
         raise AssertionError("variable new-slope probe gained an unanchored line")
     if row["two_exchange_det_proper_line_variable_domain_pair_max"] != 3:
         raise AssertionError("variable new-slope probe domain packet changed")
+    if row["two_exchange_det_proper_line_variable_nonfixed_packet_pair_max"] != 3:
+        raise AssertionError("variable new-slope probe packet pair max changed")
+    if row["two_exchange_det_proper_line_variable_nonfixed_packet_pair_checks"] != 3:
+        raise AssertionError("variable new-slope probe packet pair count changed")
     return row
 
 
@@ -5495,6 +5558,8 @@ def main() -> None:
                 "two_exchange_det_proper_line_variable_unanchored={two_exchange_det_proper_line_variable_unanchored} "
                 "two_exchange_det_proper_line_variable_domain_pair_max={two_exchange_det_proper_line_variable_domain_pair_max} "
                 "two_exchange_det_proper_line_variable_domain_pair_checks={two_exchange_det_proper_line_variable_domain_pair_checks} "
+                "two_exchange_det_proper_line_variable_nonfixed_packet_pair_max={two_exchange_det_proper_line_variable_nonfixed_packet_pair_max} "
+                "two_exchange_det_proper_line_variable_nonfixed_packet_pair_checks={two_exchange_det_proper_line_variable_nonfixed_packet_pair_checks} "
                 "two_exchange_det_proper_line_variable_charged_slope_checks={two_exchange_det_proper_line_variable_charged_slope_checks} "
                 "root_slices={root_slices} "
                 "root_slice_slopes={root_slice_slope_count} "
@@ -6028,6 +6093,8 @@ def main() -> None:
         "two_exchange_det_proper_line_variable_unanchored={two_exchange_det_proper_line_variable_unanchored} "
         "two_exchange_det_proper_line_variable_domain_pair_max={two_exchange_det_proper_line_variable_domain_pair_max} "
         "two_exchange_det_proper_line_variable_domain_pair_checks={two_exchange_det_proper_line_variable_domain_pair_checks} "
+        "two_exchange_det_proper_line_variable_nonfixed_packet_pair_max={two_exchange_det_proper_line_variable_nonfixed_packet_pair_max} "
+        "two_exchange_det_proper_line_variable_nonfixed_packet_pair_checks={two_exchange_det_proper_line_variable_nonfixed_packet_pair_checks} "
         "two_exchange_det_proper_line_variable_charged_slope_checks={two_exchange_det_proper_line_variable_charged_slope_checks} "
         "two_exchange_minor_checks={two_exchange_minor_polynomial_checks} "
         "direct_checks={direct_checks}".format(**t3_same_slope_probe)
@@ -6049,6 +6116,8 @@ def main() -> None:
         "two_exchange_det_proper_line_variable_unanchored={two_exchange_det_proper_line_variable_unanchored} "
         "two_exchange_det_proper_line_variable_domain_pair_max={two_exchange_det_proper_line_variable_domain_pair_max} "
         "two_exchange_det_proper_line_variable_domain_pair_checks={two_exchange_det_proper_line_variable_domain_pair_checks} "
+        "two_exchange_det_proper_line_variable_nonfixed_packet_pair_max={two_exchange_det_proper_line_variable_nonfixed_packet_pair_max} "
+        "two_exchange_det_proper_line_variable_nonfixed_packet_pair_checks={two_exchange_det_proper_line_variable_nonfixed_packet_pair_checks} "
         "direct_checks={direct_checks}".format(**t3_variable_new_slope_probe)
     )
     print(
@@ -6261,6 +6330,14 @@ def main() -> None:
     )
     max_two_exchange_det_proper_line_variable_domain_pair_checks = max(
         row["two_exchange_det_proper_line_variable_domain_pair_checks"]
+        for row in all_rows
+    )
+    max_two_exchange_det_proper_line_variable_nonfixed_packet_pair = max(
+        row["two_exchange_det_proper_line_variable_nonfixed_packet_pair_max"]
+        for row in all_rows
+    )
+    max_two_exchange_det_proper_line_variable_nonfixed_packet_pair_checks = max(
+        row["two_exchange_det_proper_line_variable_nonfixed_packet_pair_checks"]
         for row in all_rows
     )
     max_two_exchange_det_proper_line_variable_charged_slope_checks = max(
@@ -6658,6 +6735,8 @@ def main() -> None:
         f"max_two_exchange_det_proper_line_variable_unanchored={max_two_exchange_det_proper_line_variable_unanchored} "
         f"max_two_exchange_det_proper_line_variable_domain_pair={max_two_exchange_det_proper_line_variable_domain_pair} "
         f"max_two_exchange_det_proper_line_variable_domain_pair_checks={max_two_exchange_det_proper_line_variable_domain_pair_checks} "
+        f"max_two_exchange_det_proper_line_variable_nonfixed_packet_pair={max_two_exchange_det_proper_line_variable_nonfixed_packet_pair} "
+        f"max_two_exchange_det_proper_line_variable_nonfixed_packet_pair_checks={max_two_exchange_det_proper_line_variable_nonfixed_packet_pair_checks} "
         f"max_two_exchange_det_proper_line_variable_charged_slope_checks={max_two_exchange_det_proper_line_variable_charged_slope_checks} "
         f"max_total_slope_bound={max_total_slope_bound} "
         f"max_root_new_slopes={max_root_new_slopes} "

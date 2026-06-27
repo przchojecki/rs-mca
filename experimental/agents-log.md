@@ -30,6 +30,23 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-27 - M1 variable-line packet edge charge
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/m1/m1_all_line_hankel_aperiodic_packing.md`,
+  `experimental/scripts/verify_m1_all_line_hankel_aperiodic.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT / EXPERIMENTAL.
+- **What is being added:** Non-fixed variable proper-line packets now carry an
+  exact different-slope two-exchange edge charge: a packet of size `m`
+  contributes `binom(m,2)` strict different-slope two-exchange edges.
+- **How it is useful:** This converts large residual variable-line slope
+  packets into quadratic edge energy already visible in the two-exchange
+  determinantal ledger.  The audited same-slope and residual-witness probes
+  charge `6` and `3` packet edges respectively.
+- **What to do next:** Use the different-slope two-exchange quadratic-slice
+  ledger to bound the total edge energy of anchored variable-line packets.
+
 ### 2026-06-27 - M1 anchored variable-line packet bound
 
 - **Agent/model:** Codex.

@@ -639,6 +639,32 @@ anchored versus unanchored variable proper lines and the largest packet
 packet size `3`; the residual witness has one new slope inside such an
 anchored packet.
 
+There is a second exact charge on non-fixed variable packets.  Because the
+product-Mobius and fixed-sum models are involutions, two distinct unordered
+pairs in `P_L^nc(R)` are disjoint.  The corresponding complements
+
+```text
+R union {x,y}
+```
+
+therefore differ by exactly two roots, so they form a strict two-exchange pair
+at slack `t=3`.  Since the variable proper-line slope map is injective, these
+pairs have different slopes.  Thus a non-fixed variable-line aperiodic packet
+of size `m` contributes
+
+```text
+binom(m,2)
+```
+
+different-slope two-exchange edges.  The verifier checks this directly for
+every non-fixed variable proper line and asserts that the total packet-edge
+charge is bounded by the global different-slope two-exchange ledger.  In the
+same-slope probe the two non-fixed variable packets have size `3` and charge
+`6` different-slope two-exchange edges in total; in the residual witness probe
+the single packet has size `3` and charges `3` such edges.  This reframes the
+remaining residual slope problem as an edge-energy packing question for
+anchored involution packets.
+
 ## Different-Slope One-Exchange Quadratic Slice
 
 The different-slope part of the one-exchange profile has a complementary
@@ -3005,6 +3031,9 @@ cores, have packet size `3`, and leave no new slope after charges.  In the
 residual witness probe, the single product-Mobius variable line is also
 anchored, has packet size `3`, and leaves one new slope.  No audited variable
 proper non-fixed line is currently unanchored.
+The packet-edge check charges these packets to different-slope two-exchange
+edges: `6` packet edges in the same-slope probe and `3` packet edges in the
+residual witness probe.
 
 The `F_13`, `n=12`, `j=4`, `t=2` row is kept as a boundary-only counterexample
 to the tempting squarefree-absorption shortcut.  In all four deterministic
