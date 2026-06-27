@@ -1997,6 +1997,18 @@ After those depth-indexed systems are charged, all uncharged finite
 fixed-kernel and consecutive common-image frontier ledgers at depths in \(R\)
 have direction dimension at most \(b\).  Thus a ladder of consecutive
 frontiers pays a sum over rungs, not a product of losses.
+When one of the four short frontier checks fails, the failure is itself
+structured: it is a short denominator recurrence for \(u\), for \(v\), for the
+ordinary pair \((u,v)\), or for the shifted pair \((Su,Sv)\).  Equivalently,
+for \(Q^*(T)=D(T)\),
+\[
+  D(T)W_w(T)\equiv N(T)\pmod {T^{e+s}},
+  \qquad \deg N<e,
+\]
+componentwise in the paired cases.  Domain-root factors strip losslessly by
+the same \(\Delta_A\) identity as before, so short frontier failures split
+into fixed-root/root-slice charges plus root-free denominator-recurrence
+obstructions.
 Equivalently, the full three-shift common-image branch is endpoint-only.  If
 \(\mathrm{GCI}\) denotes the monic split core locators satisfying some
 three-shift common-image line, then

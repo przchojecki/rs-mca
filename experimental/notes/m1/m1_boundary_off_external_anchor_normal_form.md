@@ -4433,6 +4433,83 @@ finite set `R` gives (LadderAdd).  The ledger is indexed by `(depth,parameter)`
 because the same field element can label different linear systems at different
 frontier depths; counting depth-indexed systems is the conservative charge.
 
+## Corollary 40.6: Short Frontier Failures Are Denominator Recurrences
+
+Keep `h=c-b` and `r>=1`.  Failure of one of the four short frontier checks
+(ShortFront_r) from Corollary 40.4 is exactly one of the following short
+annihilator alternatives.
+
+```text
+Endpoint-u:
+  exists 0!=Q, deg Q<h, with H_{t+r,h-1}(u)Q=0;
+
+Endpoint-v:
+  exists 0!=Q, deg Q<h, with H_{t+r,h-1}(v)Q=0;
+
+Ordinary stacked endpoint:
+  exists 0!=Q, deg Q<h, with
+  H_{t+r-1,h-1}(u)Q=0 and H_{t+r-1,h-1}(v)Q=0;
+
+Shifted stacked endpoint:
+  exists 0!=Q, deg Q<h, with
+  H_{t+r-1,h-1}(S u)Q=0 and H_{t+r-1,h-1}(S v)Q=0.
+```
+
+Each alternative is a denominator recurrence.  If
+
+```text
+Q(X)=q_0+...+q_eX^e,        D(T)=Q^*(T)=q_e+...+q_0T^e,
+```
+
+then `H_{s,h-1}(w)Q=0` is equivalent to
+
+```text
+D(T)W_w(T) = N(T)       mod T^{e+s},        deg N<e.
+```
+
+For the two stacked alternatives this congruence holds componentwise for the
+two displayed syndrome series.
+
+Moreover, domain-root factors strip losslessly.  If `Q=L_A R` with
+`|A|=a<h`, then the four alternatives become the corresponding lower-order
+recurrences
+
+```text
+Endpoint-u:
+  H_{t+r,h-a-1}(Delta_A u)R=0;
+
+Endpoint-v:
+  H_{t+r,h-a-1}(Delta_A v)R=0;
+
+Ordinary stacked endpoint:
+  H_{t+r-1,h-a-1}(Delta_A u)R=0 and
+  H_{t+r-1,h-a-1}(Delta_A v)R=0;
+
+Shifted stacked endpoint:
+  H_{t+r-1,h-a-1}(S Delta_A u)R=0 and
+  H_{t+r-1,h-a-1}(S Delta_A v)R=0.
+```
+
+Thus a short frontier failure splits into fixed-root/root-slice charges plus a
+root-free short denominator-recurrence obstruction for `u`, for `v`, for
+`(u,v)`, or for the shifted pair `(S u,S v)`.
+
+### Proof
+
+The four alternatives are just the negations of the four injectivity checks in
+(ShortFront_r).  Corollary 56 gives the denominator-recurrence congruence for
+each scalar Hankel equation, and the stacked cases are the componentwise
+application to the two displayed series.
+
+The stripping statement is Corollary 49 with the appropriate window length
+`s`.  For the shifted stacked case, use the identity
+
+```text
+Delta_alpha(S w)=S(Delta_alpha w),
+```
+
+and iterate over the multiset `A`.
+
 ## Corollary 41: The Global Common-Image Ledger Is Endpoint-Only
 
 Let `GCI` be the set of monic degree-`c` split core locators `L` for which
@@ -7077,6 +7154,9 @@ remove the row-count restrictions for that route.
 Corollary 40.5 sums the depthwise charges over a finite frontier ladder; it
 does not prove the short checks uniformly over all depths or replace the
 remaining endpoint and nondegenerate ledgers.
+Corollary 40.6 identifies failures of those short checks as denominator
+recurrences and strips domain-root factors; it does not bound the remaining
+root-free recurrence families.
 Corollary 41 packages the common-image branch into endpoint-type ledgers; it
 does not prove the endpoint rank hypotheses needed for the displayed
 `(q+2)binom(n,b)` bound. Corollary 42 packages the globally full core ledger

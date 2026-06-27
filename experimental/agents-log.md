@@ -250,7 +250,10 @@ Keep entries concise and link to the relevant files.
   short checks, the depth-indexed charge is additive, at most `2h|R|`, and
   after those systems are charged all remaining finite fixed-kernel and
   consecutive common-image frontier ledgers at depths in `R` have dimension
-  `<=b`.  The
+  `<=b`.  Failure of any short frontier check is now identified as a short
+  denominator recurrence for `u`, `v`, `(u,v)`, or `(S u,S v)`, with
+  domain-root factors stripping losslessly into fixed-root/root-slice charges
+  and a root-free recurrence residual.  The
   common-image three-shift ledger now has the analogous sliding-window
   reduction: for an image line `[y]`, the allowed deeper residuals form a space
   `W_y` of dimension at most one, nonzero only on the `q+1` extended geometric
