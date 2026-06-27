@@ -2074,6 +2074,32 @@ def two_exchange_quadratic_slice_profile(
         * contained_boundary_target_neighbor_bound
     ):
         raise AssertionError("active contained target budget bound failed")
+    det_proper_line_variable_nonfixed_active_domain_singleton_free_escape_edge_budget = (
+        2
+        * det_proper_line_variable_nonfixed_active_domain_singleton_contained_boundary_edges
+        + det_proper_line_variable_nonfixed_active_domain_singleton_off_domain_roots
+    )
+    if (
+        det_proper_line_variable_nonfixed_active_domain_singleton_free_escape_roots
+        != det_proper_line_variable_nonfixed_active_domain_singleton_free_escape_edge_budget
+    ):
+        raise AssertionError("active singleton free escape split changed")
+    if (
+        det_proper_line_variable_nonfixed_active_domain_singleton_free_escape_lower
+        > det_proper_line_variable_nonfixed_active_domain_singleton_free_escape_edge_budget
+    ):
+        raise AssertionError("active singleton free escape edge budget failed")
+    det_proper_line_variable_nonfixed_active_domain_singleton_free_escape_target_budget = (
+        2
+        * det_proper_line_variable_nonfixed_active_domain_singleton_contained_boundary_target_image
+        * contained_boundary_target_neighbor_bound
+        + det_proper_line_variable_nonfixed_active_domain_singleton_off_domain_roots
+    )
+    if (
+        det_proper_line_variable_nonfixed_active_domain_singleton_free_escape_lower
+        > det_proper_line_variable_nonfixed_active_domain_singleton_free_escape_target_budget
+    ):
+        raise AssertionError("active singleton free escape target budget failed")
     if (
         det_proper_line_variable_nonfixed_new_slope_checks
         > det_proper_line_variable_nonfixed_active_edge_bound

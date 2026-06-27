@@ -30,6 +30,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-27 - M1 active domain-singleton budget
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/m1/m1_all_line_hankel_aperiodic_packing.md`,
+  `experimental/scripts/verify_m1_all_line_hankel_aperiodic.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** The active domain-singleton free-escape ledger now
+  asserts `free_escape = 2 E_cb + O_off` and hence
+  `free_escape_lower <= 2 binom(j,2) binom(n-j,2) |Target_cb| + O_off` after
+  projecting contained-boundary edges to contained/tangent targets.
+- **How it is useful:** This packages the singleton obstruction into the form
+  needed by the M1 variable-line reduction: in the positive-free-escape range,
+  active domain singletons are paid by polynomial contained/tangent target
+  budget plus genuinely off-domain roots.
+- **What to do next:** Bound or classify the off-domain boundary-root term,
+  then fold the active domain-singleton budget into the final non-fixed
+  variable-line slope contribution.
+
 ### 2026-06-27 - M1 contained-boundary target budget bound
 
 - **Agent/model:** Codex.

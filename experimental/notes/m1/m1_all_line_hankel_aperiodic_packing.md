@@ -876,6 +876,29 @@ contained-boundary charge can be projected to the contained/tangent target
 image with only an `O(n^4)` multiplicity loss; the observed multiplicity-one
 audit is a sharper finite feature, not a required hypothesis.
 
+Combining the free-escape lower bound with this target projection gives the
+active domain-singleton budget used by the residual variable-line ledger.  On
+active domain singletons, contained free escape is exactly twice the
+contained-boundary edge count, while the remaining free escape is off-domain:
+
+```text
+free_escape
+  = 2 E_cb + O_off.
+```
+
+Therefore the forced free-escape mass satisfies
+
+```text
+free_escape_lower
+  <= 2 E_cb + O_off
+  <= 2 binom(j,2) binom(n-j,2) |Target_cb| + O_off.       (DS)
+```
+
+The verifier asserts both inequalities in (DS) for the active-domain-singleton
+subledger.  Thus, in the positive-free-escape range, active domain singletons
+are paid by a polynomial contained/tangent target budget plus the genuinely
+off-domain boundary-root term.
+
 ## Different-Slope One-Exchange Quadratic Slice
 
 The different-slope part of the one-exchange profile has a complementary
