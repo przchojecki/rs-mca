@@ -100,6 +100,10 @@ Keep entries concise and link to the relevant files.
   anchor minors are quadratic, repeated full stars are classified exactly: two
   distinct full stars force a scalar multiple of
   `L_S(alpha_1)L_S(alpha_2)`, and three force the minor to vanish identically.
+  The full-star proof now isolates the finite interpolation input as a
+  quadratic cofactor Vandermonde lemma: degree-`<=2` functions on monic
+  degree-`r` locators are determined by the degree-`r` cofactors of any
+  `(r+2)`-set.
 - **How it is useful:** This sharpens one of the two live residual objects in
   the non-fixed variable-line branch.  It does not prove the final M1 bound,
   but it turns the boundary image into a precise quadratic-anchor/ruled-branch
@@ -122,7 +126,9 @@ Keep entries concise and link to the relevant files.
   low-exchange information alone.  The full-anchor-star test then removes the
   most obvious Hankel degeneracy from that residual by charging it to
   fixed-root/root-slice factors, with repeated full-star factors completely
-  classified for each anchor minor.
+  classified for each anchor minor.  The cofactor interpolation lemma makes
+  this finite-star step auditable as a standalone quadratic interpolation
+  fact.
 - **What to do next:** Bound or charge the unique-neighbor nondegenerate
   star-free shadow ledger, and charge the ruled exceptional low-rank loci to
   fixed-slope/root-slice, endpoint, projective, quotient-periodic, or
