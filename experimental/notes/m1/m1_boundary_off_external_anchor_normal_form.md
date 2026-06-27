@@ -3629,6 +3629,75 @@ finite-slope, image-line, and moving-certificate bad global ledgers have been
 charged.  The root-free replacement is the Corollary 30.1 incidence argument
 applied to these three-shift strata.
 
+## Corollary 38: Three-Shift Endpoint Ledgers Are Exact Frontier Shifts
+
+Put `c=m-1`.  For any syndrome vector `w`, the three-shift endpoint system on
+degree-`<c` core directions
+
+```text
+H_{t,j}(w)X^i Q = 0,        i=0,1,2,                  (ThreeShift_w)
+```
+
+is exactly the single deeper Hankel system
+
+```text
+H_{t+2,c-1}(w) Q = 0.                                (FrontierShift)
+```
+
+Consequently the endpoint direction matrices `G_u,G_v` from Corollary 37 are
+ordinary Hankel windows:
+
+```text
+G_u = H_{t+2,c-1}(u),        G_v = H_{t+2,c-1}(v),
+```
+
+and the three-shift fixed-kernel pencil is the deeper Hankel pencil
+
+```text
+G_lambda = H_{t+2,c-1}(v-lambda u).
+```
+
+Thus the endpoint and fixed-kernel global full-core charges do not create a new
+type of row-rank condition.  They are precisely the original Hankel-pencil
+kernel condition shifted from `(t,j)` to `(t+2,c-1)=(t+2,j-2)`.
+
+In particular, if a lower-depth theory supplies a rank bound for
+`H_{t+2,c-1}(w)` on degree-`<c` locators, then the endpoint and fixed-kernel
+charges in Corollaries 36 and 37 consume that bound without any additional
+square-root or one-root loss.
+
+### Proof
+
+Write
+
+```text
+Q(X)=q_0+q_1X+...+q_{c-1}X^{c-1}.
+```
+
+The `a`-th row of `H_{t,j}(w)X^i Q` is
+
+```text
+sum_{h=0}^{c-1} w_{a+i+h} q_h,        0<=a<t,  i=0,1,2.
+```
+
+For fixed `i`, these are the deeper Hankel rows with indices
+
+```text
+i, i+1, ..., i+t-1.
+```
+
+As `i` runs through `0,1,2`, the union of these intervals is exactly
+
+```text
+0,1,...,t+1.
+```
+
+These are precisely the rows of `H_{t+2,c-1}(w)Q`.  Hence the three shifted
+systems and the deeper Hankel system impose the same equations on `Q`.
+
+The identities for `G_u`, `G_v`, and `G_lambda` follow by applying the same
+calculation to `w=u`, `w=v`, and `w=v-lambda u`.
+
 ## Non-Claims
 
 This note does not prove
@@ -3721,4 +3790,6 @@ classifies globally full core-lines into three-shift ruled ledgers, but it does
 not prove the required high-dimensional three-shift row-rank charges are small.
 Corollary 37 makes those charges determinantal; it still leaves endpoint
 three-shift low rank and persistent moving certificates as explicit ledgers to
-charge.
+charge. Corollary 38 identifies the endpoint and fixed-kernel three-shift
+ledgers with deeper Hankel windows; it does not prove those deeper windows have
+large rank in every instance.

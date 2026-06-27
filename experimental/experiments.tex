@@ -1855,6 +1855,17 @@ three-shift common-image map has homogeneous linear entries in \(y\), so the
 bad image-line locus is cut out by \((c-b)\times(c-b)\) minors of degree
 \(c-b\); unless it is persistent, it has at most
 \((c-b)q^{t-1}/(q-1)\) projective lines.
+The endpoint and fixed-kernel three-shift ledgers are exact frontier shifts.
+For any syndrome vector \(w\) and any degree-\(<c\) core direction \(Q\),
+\[
+H_{t,j}(w)X^iQ=0\quad(i=0,1,2)
+\qquad\Longleftrightarrow\qquad
+H_{t+2,c-1}(w)Q=0.
+\]
+Thus \(G_u=H_{t+2,c-1}(u)\), \(G_v=H_{t+2,c-1}(v)\), and
+\(G_\lambda=H_{t+2,c-1}(v-\lambda u)\).  This is a lossless residual-depth
+frontier shift from \((t,j)\) to \((t+2,j-2)\), not a new kind of row-rank
+condition.
 
 In the ruled part, the common-kernel branch has a fixed projective boundary slope,
 while the common-image branch forces the shadow locator \(L_S\) to satisfy the

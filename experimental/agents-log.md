@@ -216,7 +216,11 @@ Keep entries concise and link to the relevant files.
   three-shift endpoint systems low-rank, and moving kernels satisfy the endpoint
   ladder `G_v q_0=0`, `G_v q_i-G_u q_{i-1}=0`, `G_u q_D=0`.  The three-shift
   common-image bad lines are cut out by homogeneous minors with at most
-  `(c-b)q^(t-1)/(q-1)` projective lines unless persistent.
+  `(c-b)q^(t-1)/(q-1)` projective lines unless persistent.  The endpoint and
+  fixed-kernel three-shift ledgers are now identified with exact deeper Hankel
+  windows: `H_{t,j}(w)X^iQ=0` for `i=0,1,2` is equivalent to
+  `H_{t+2,c-1}(w)Q=0`, so `G_lambda=H_{t+2,c-1}(v-lambda u)`.  This records a
+  lossless residual-depth frontier shift from `(t,j)` to `(t+2,j-2)`.
 - **What to do next:** Bound or charge the unique-neighbor nondegenerate
   star-free shadow ledger, and charge the ruled exceptional low-rank loci to
   fixed-slope/root-slice, endpoint, projective, quotient-periodic, or
