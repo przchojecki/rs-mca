@@ -1681,7 +1681,14 @@ with \(A,B,C,D\) as above, either \(A=B=0\) or \(C=D=0\), or
 \(\mathrm{span}\{A,B,C,D\}\) is a fixed image line, or
 \(\mathrm{span}\{A,B\}\) has dimension \(2\) and \(C=\lambda A\),
 \(D=\lambda B\).  In the last case a fixed projective column-kernel line kills
-both lower anchor shifts \((X-\beta)XL_R\) and \((X-\beta)L_R\).
+both lower anchor shifts \((X-\beta)XL_R\) and \((X-\beta)L_R\).  This also
+upgrades the per-minor core-line bound to the full rank-one gate: for fixed
+\(\beta\), after charging the cores on which the whole gate is identically
+rank one, every remaining \((j-2)\)-core has at most two rank-one extensions.
+Hence the uncharged full-gate shadows for that anchor are bounded by
+\[
+  \frac{2}{j-1}\binom{n}{j-2}.
+\]
 
 In the ruled part, the common-kernel branch has a fixed projective boundary slope,
 while the common-image branch forces the shadow locator \(L_S\) to satisfy the

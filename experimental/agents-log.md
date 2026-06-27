@@ -144,6 +144,10 @@ Keep entries concise and link to the relevant files.
   core-line, the obstruction is classified one level lower: it is either a
   `u`- or `v`-endpoint containment, a common-image line, or a fixed projective
   kernel with `C=lambda A` and `D=lambda B` for the two core-shift locators.
+  The core-line reduction is now stated for the full rank-one gate, not just a
+  fixed minor: for each external anchor `beta`, after charging cores on which
+  the whole gate is identically rank one, the remaining rank-one shadows are
+  bounded by `(2/m) binom(n,m-1)`.
 - **What to do next:** Bound or charge the unique-neighbor nondegenerate
   star-free shadow ledger, and charge the ruled exceptional low-rank loci to
   fixed-slope/root-slice, endpoint, projective, quotient-periodic, or

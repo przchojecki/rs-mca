@@ -2133,6 +2133,68 @@ b = 0,        c = 0,        d-a = 0.
 Therefore `C=aA` and `D=aB`, which is the fixed projective-kernel
 alternative with `lambda=a`.  These cases exhaust the possibilities.
 
+## Corollary 25: Full-Gate Core-Line Reduction
+
+Fix an external anchor `beta`.  For an `(m-1)`-core `R`, let
+
+```text
+M_R(Y) = [ A-YB   C-YD ]
+```
+
+be the lower core-line matrix from Corollary 24.  Define the full-gate
+core-line ledger
+
+```text
+FullCoreGate(beta)
+ = { R subset D : |R|=m-1 and rank M_R(Y)<=1 identically in Y }.
+```
+
+Then the actual rank-one anchor gate has the core-line bound
+
+```text
+|{ S subset D : |S|=m, rank M_S(beta)<=1,
+                 no (m-1)-subset of S lies in FullCoreGate(beta) }|
+ <= (2/m) binom(n,m-1).                              (FGCL)
+```
+
+Thus, for each fixed external anchor, the star-free boundary-off gate splits
+into
+
+```text
+full core-line gates, classified by Corollary 24,
++ a one-root-loss residual of size at most (2/m) binom(n,m-1).
+```
+
+In particular, the common zero set of all row-pair minors has no larger
+core-line residual than a single nonzero quadratic minor: if a core-line is
+not identically rank one, one of its minors cuts the line to at most two
+extensions.
+
+### Proof
+
+Fix `R notin FullCoreGate(beta)`.  Then not all `2 x 2` minors of `M_R(Y)`
+vanish identically as polynomials in `Y`.  Choose one nonzero minor
+`p_R(Y)`.  By Corollary 23, it has degree at most two.  Every extension
+`S=R union {x}` satisfying the full rank-one gate is a zero of this particular
+nonzero quadratic, hence there are at most two such `x in D\R`.
+
+Now count incidences
+
+```text
+(R,S) with R subset S, |R|=m-1, |S|=m,
+rank M_S(beta)<=1,
+```
+
+among the displayed shadows `S` having no core in `FullCoreGate(beta)`.  Each
+such `S` has exactly `m` cores, all outside `FullCoreGate(beta)`, and each
+core has at most two rank-one extensions.  Therefore
+
+```text
+m |Z_rem(beta)| <= 2 binom(n,m-1),
+```
+
+which proves (FGCL).
+
 ## Non-Claims
 
 This note does not prove
@@ -2187,3 +2249,6 @@ common zero set.
 Corollary 24 classifies core-lines on which the full rank-one anchor gate
 holds identically; it does not bound how many cores fall into the lower
 endpoint, common-image, or fixed-kernel ruled ledgers.
+Corollary 25 applies the core-line reduction to the full rank-one gate rather
+than to one fixed minor; it still leaves the full core-line ledgers from
+Corollary 24 to be bounded or charged separately.
