@@ -361,8 +361,11 @@ def root_slice_profile(
             "root_slice_residual_external_anchor_values": (),
             "root_slice_residual_external_anchor_locator_max": 0,
             "root_slice_residual_external_anchor_slope_max": 0,
+            "root_slice_residual_external_anchor_slope_fibers": 0,
+            "root_slice_residual_external_anchor_slope_fiber_max": 0,
             "root_slice_residual_external_anchor_twist_checks": 0,
             "root_slice_residual_external_anchor_interpolation_checks": 0,
+            "root_slice_residual_external_anchor_pinned_t1_checks": 0,
             "root_slice_residual_anchor_lift_gate_checks": 0,
             "root_slice_residual_anchor_isolated_checks": 0,
             "root_slice_residual_anchor_projective_lift_checks": 0,
@@ -512,8 +515,10 @@ def root_slice_profile(
     residual_projective_lift_boundary_indices: set[int] = set()
     residual_external_anchor_locators: dict[int, int] = {}
     residual_external_anchor_slopes: dict[int, set[int]] = {}
+    residual_external_anchor_slope_locators: dict[tuple[int, int], int] = {}
     residual_external_anchor_twist_checks = 0
     residual_external_anchor_interpolation_checks = 0
+    residual_external_anchor_pinned_t1_checks = 0
     external_twist_syndromes: dict[int, tuple[tuple[int, ...], tuple[int, ...]]] = {}
     residual_anchor_lifted_face_indices: set[int] = set()
     residual_anchor_escape_indices: set[int] = set()
@@ -603,8 +608,11 @@ def root_slice_profile(
             residual_external_anchor_locators[anchor] = (
                 residual_external_anchor_locators.get(anchor, 0) + 1
             )
-            residual_external_anchor_slopes.setdefault(anchor, set()).add(
-                residual_rows[idx][1]
+            line_slope = residual_rows[idx][1]
+            residual_external_anchor_slopes.setdefault(anchor, set()).add(line_slope)
+            anchor_slope_key = (anchor, line_slope)
+            residual_external_anchor_slope_locators[anchor_slope_key] = (
+                residual_external_anchor_slope_locators.get(anchor_slope_key, 0) + 1
             )
             if anchor not in external_twist_syndromes:
                 twisted_f = {
@@ -625,8 +633,17 @@ def root_slice_profile(
             if twisted_a[0] != a_vec[0] or twisted_b[0] != b_vec[0]:
                 raise AssertionError("external-anchor twist did not recover first row")
             twisted_slope = slope_from_gate(twisted_a, twisted_b, p)
-            if twisted_slope != residual_rows[idx][1]:
+            if twisted_b[0] == 0:
+                raise AssertionError("external-anchor twisted denominator vanished")
+            if twisted_slope != line_slope:
                 raise AssertionError("external-anchor twist changed the residual slope")
+            twisted_line = tuple(
+                (twisted_u[row] + line_slope * twisted_v[row]) % p
+                for row in range(j + 2)
+            )
+            if hankel_apply(twisted_line, 1, j + 1, top_locator, p)[0] != 0:
+                raise AssertionError("external-anchor slope missed pinned t=1 gate")
+            residual_external_anchor_pinned_t1_checks += 1
             residual_external_anchor_twist_checks += 1
             support = tuple(x for x in domain if x not in complement_set)
             if len(support) != k + 2:
@@ -642,7 +659,6 @@ def root_slice_profile(
                 raise AssertionError("external-anchor f top coefficients were not locked")
             if coeff_at(g_interp, k) != ((anchor - support_sum) * g_top) % p:
                 raise AssertionError("external-anchor g top coefficients were not locked")
-            line_slope = residual_rows[idx][1]
             line_interp = interpolate(
                 support,
                 tuple((f[x] + line_slope * g[x]) % p for x in support),
@@ -916,6 +932,14 @@ def root_slice_profile(
         raise AssertionError("off-domain lift ledger missed outside-domain escapes")
     if residual_anchor_infinity_checks != residual_anchor_escape_beta0_zero:
         raise AssertionError("infinity-anchor ledger missed beta0-zero escapes")
+    if sum(residual_external_anchor_slope_locators.values()) != residual_anchor_escape_outside_domain:
+        raise AssertionError("external-anchor slope fibers missed off-domain escapes")
+    if len(residual_external_anchor_slope_locators) != sum(
+        len(slopes) for slopes in residual_external_anchor_slopes.values()
+    ):
+        raise AssertionError("external-anchor slope fiber keys disagreed with slope image")
+    if residual_external_anchor_pinned_t1_checks != residual_anchor_escape_outside_domain:
+        raise AssertionError("external-anchor pinned t=1 checks missed off-domain escapes")
     residual_projective_lift_fibers: dict[tuple[int, ...], set[int]] = {}
     for idx, key in enumerate(residual_projective_lift_keys):
         if key is None:
@@ -1123,11 +1147,20 @@ def root_slice_profile(
             (len(slopes) for slopes in residual_external_anchor_slopes.values()),
             default=0,
         ),
+        "root_slice_residual_external_anchor_slope_fibers": len(
+            residual_external_anchor_slope_locators
+        ),
+        "root_slice_residual_external_anchor_slope_fiber_max": max(
+            residual_external_anchor_slope_locators.values(), default=0
+        ),
         "root_slice_residual_external_anchor_twist_checks": (
             residual_external_anchor_twist_checks
         ),
         "root_slice_residual_external_anchor_interpolation_checks": (
             residual_external_anchor_interpolation_checks
+        ),
+        "root_slice_residual_external_anchor_pinned_t1_checks": (
+            residual_external_anchor_pinned_t1_checks
         ),
         "root_slice_residual_anchor_lift_gate_checks": residual_anchor_lift_gate_checks,
         "root_slice_residual_anchor_isolated_checks": residual_anchor_isolated_checks,
@@ -1687,11 +1720,20 @@ def verify_word_pair(
         "root_slice_residual_external_anchor_slope_max": (
             root_profile["root_slice_residual_external_anchor_slope_max"]
         ),
+        "root_slice_residual_external_anchor_slope_fibers": (
+            root_profile["root_slice_residual_external_anchor_slope_fibers"]
+        ),
+        "root_slice_residual_external_anchor_slope_fiber_max": (
+            root_profile["root_slice_residual_external_anchor_slope_fiber_max"]
+        ),
         "root_slice_residual_external_anchor_twist_checks": (
             root_profile["root_slice_residual_external_anchor_twist_checks"]
         ),
         "root_slice_residual_external_anchor_interpolation_checks": (
             root_profile["root_slice_residual_external_anchor_interpolation_checks"]
+        ),
+        "root_slice_residual_external_anchor_pinned_t1_checks": (
+            root_profile["root_slice_residual_external_anchor_pinned_t1_checks"]
         ),
         "root_slice_residual_anchor_lift_gate_checks": (
             root_profile["root_slice_residual_anchor_lift_gate_checks"]
@@ -1954,11 +1996,20 @@ def verify_case(case: Case) -> dict[str, object]:
         "max_root_slice_residual_external_anchor_slope": max(
             row["root_slice_residual_external_anchor_slope_max"] for row in rows
         ),
+        "max_root_slice_residual_external_anchor_slope_fibers": max(
+            row["root_slice_residual_external_anchor_slope_fibers"] for row in rows
+        ),
+        "max_root_slice_residual_external_anchor_slope_fiber": max(
+            row["root_slice_residual_external_anchor_slope_fiber_max"] for row in rows
+        ),
         "max_root_slice_residual_external_anchor_twist_checks": max(
             row["root_slice_residual_external_anchor_twist_checks"] for row in rows
         ),
         "max_root_slice_residual_external_anchor_interpolation_checks": max(
             row["root_slice_residual_external_anchor_interpolation_checks"] for row in rows
+        ),
+        "max_root_slice_residual_external_anchor_pinned_t1_checks": max(
+            row["root_slice_residual_external_anchor_pinned_t1_checks"] for row in rows
         ),
         "max_root_slice_residual_anchor_lift_gate_checks": max(
             row["root_slice_residual_anchor_lift_gate_checks"] for row in rows
@@ -2117,10 +2168,22 @@ def verify_boundary_only_projective_lift_probe(summary: dict[str, object]) -> No
         ):
             raise AssertionError("boundary-only probe slopes did not share one anchor")
         if (
+            row["root_slice_residual_external_anchor_slope_fibers"]
+            != row["root_slice_residual_slopes"]
+        ):
+            raise AssertionError("boundary-only probe had wrong anchor-slope fibers")
+        if row["root_slice_residual_external_anchor_slope_fiber_max"] != 4:
+            raise AssertionError("boundary-only probe had wrong anchor-slope fiber size")
+        if (
             row["root_slice_residual_external_anchor_twist_checks"]
             != row["root_slice_residual_locators"]
         ):
             raise AssertionError("boundary-only probe missed external twist checks")
+        if (
+            row["root_slice_residual_external_anchor_pinned_t1_checks"]
+            != row["root_slice_residual_locators"]
+        ):
+            raise AssertionError("boundary-only probe missed pinned t=1 checks")
         if (
             row["root_slice_residual_external_anchor_interpolation_checks"]
             != row["root_slice_residual_locators"]
@@ -2792,8 +2855,11 @@ def main() -> None:
                 "root_residual_external_anchors={root_slice_residual_external_anchors} "
                 "root_residual_external_anchor_locator_max={root_slice_residual_external_anchor_locator_max} "
                 "root_residual_external_anchor_slope_max={root_slice_residual_external_anchor_slope_max} "
+                "root_residual_external_anchor_slope_fibers={root_slice_residual_external_anchor_slope_fibers} "
+                "root_residual_external_anchor_slope_fiber_max={root_slice_residual_external_anchor_slope_fiber_max} "
                 "root_residual_external_anchor_twist_checks={root_slice_residual_external_anchor_twist_checks} "
                 "root_residual_external_anchor_interpolation_checks={root_slice_residual_external_anchor_interpolation_checks} "
+                "root_residual_external_anchor_pinned_t1_checks={root_slice_residual_external_anchor_pinned_t1_checks} "
                 "root_residual_anchor_lift_checks={root_slice_residual_anchor_lift_gate_checks} "
                 "root_residual_anchor_isolated_checks={root_slice_residual_anchor_isolated_checks} "
                 "root_residual_anchor_projective_lift_checks={root_slice_residual_anchor_projective_lift_checks} "
@@ -2899,8 +2965,11 @@ def main() -> None:
             f"max_root_residual_external_anchors={summary['max_root_slice_residual_external_anchors']} "
             f"max_root_residual_external_anchor_locator={summary['max_root_slice_residual_external_anchor_locator']} "
             f"max_root_residual_external_anchor_slope={summary['max_root_slice_residual_external_anchor_slope']} "
+            f"max_root_residual_external_anchor_slope_fibers={summary['max_root_slice_residual_external_anchor_slope_fibers']} "
+            f"max_root_residual_external_anchor_slope_fiber={summary['max_root_slice_residual_external_anchor_slope_fiber']} "
             f"max_root_residual_external_anchor_twist_checks={summary['max_root_slice_residual_external_anchor_twist_checks']} "
             f"max_root_residual_external_anchor_interpolation_checks={summary['max_root_slice_residual_external_anchor_interpolation_checks']} "
+            f"max_root_residual_external_anchor_pinned_t1_checks={summary['max_root_slice_residual_external_anchor_pinned_t1_checks']} "
             f"max_root_residual_anchor_lift_checks={summary['max_root_slice_residual_anchor_lift_gate_checks']} "
             f"max_root_residual_anchor_isolated_checks={summary['max_root_slice_residual_anchor_isolated_checks']} "
             f"max_root_residual_anchor_projective_lift_checks={summary['max_root_slice_residual_anchor_projective_lift_checks']} "
@@ -2996,8 +3065,11 @@ def main() -> None:
         "root_residual_external_anchors={root_slice_residual_external_anchors} "
         "root_residual_external_anchor_locator_max={root_slice_residual_external_anchor_locator_max} "
         "root_residual_external_anchor_slope_max={root_slice_residual_external_anchor_slope_max} "
+        "root_residual_external_anchor_slope_fibers={root_slice_residual_external_anchor_slope_fibers} "
+        "root_residual_external_anchor_slope_fiber_max={root_slice_residual_external_anchor_slope_fiber_max} "
         "root_residual_external_anchor_twist_checks={root_slice_residual_external_anchor_twist_checks} "
         "root_residual_external_anchor_interpolation_checks={root_slice_residual_external_anchor_interpolation_checks} "
+        "root_residual_external_anchor_pinned_t1_checks={root_slice_residual_external_anchor_pinned_t1_checks} "
         "root_residual_anchor_lift_checks={root_slice_residual_anchor_lift_gate_checks} "
         "root_residual_anchor_isolated_checks={root_slice_residual_anchor_isolated_checks} "
         "root_residual_anchor_projective_lift_checks={root_slice_residual_anchor_projective_lift_checks} "
@@ -3141,11 +3213,20 @@ def main() -> None:
     max_residual_external_anchor_slope = max(
         row["root_slice_residual_external_anchor_slope_max"] for row in all_rows
     )
+    max_residual_external_anchor_slope_fibers = max(
+        row["root_slice_residual_external_anchor_slope_fibers"] for row in all_rows
+    )
+    max_residual_external_anchor_slope_fiber = max(
+        row["root_slice_residual_external_anchor_slope_fiber_max"] for row in all_rows
+    )
     max_residual_external_anchor_twist_checks = max(
         row["root_slice_residual_external_anchor_twist_checks"] for row in all_rows
     )
     max_residual_external_anchor_interpolation_checks = max(
         row["root_slice_residual_external_anchor_interpolation_checks"] for row in all_rows
+    )
+    max_residual_external_anchor_pinned_t1_checks = max(
+        row["root_slice_residual_external_anchor_pinned_t1_checks"] for row in all_rows
     )
     max_residual_anchor_lift_checks = max(
         row["root_slice_residual_anchor_lift_gate_checks"] for row in all_rows
@@ -3289,8 +3370,11 @@ def main() -> None:
         f"max_root_residual_external_anchors={max_residual_external_anchors} "
         f"max_root_residual_external_anchor_locator={max_residual_external_anchor_locator} "
         f"max_root_residual_external_anchor_slope={max_residual_external_anchor_slope} "
+        f"max_root_residual_external_anchor_slope_fibers={max_residual_external_anchor_slope_fibers} "
+        f"max_root_residual_external_anchor_slope_fiber={max_residual_external_anchor_slope_fiber} "
         f"max_root_residual_external_anchor_twist_checks={max_residual_external_anchor_twist_checks} "
         f"max_root_residual_external_anchor_interpolation_checks={max_residual_external_anchor_interpolation_checks} "
+        f"max_root_residual_external_anchor_pinned_t1_checks={max_residual_external_anchor_pinned_t1_checks} "
         f"max_root_residual_anchor_lift_checks={max_residual_anchor_lift_checks} "
         f"max_root_residual_anchor_isolated_checks={max_residual_anchor_isolated_checks} "
         f"max_root_residual_anchor_projective_lift_checks={max_residual_anchor_projective_lift_checks} "

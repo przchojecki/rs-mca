@@ -671,6 +671,42 @@ This is the first structural replacement for anchor counting: after the
 quotient, tangent, and root-slice charges, one must bound the image of (EA1)
 for each fixed external pole `xi`, not merely count how many such poles occur.
 
+## Fixed-Anchor Slope-Fiber Reduction
+
+The fixed external-anchor term can be made one step more explicit.  Fix
+`xi in F\D` and a finite slope `z`.  For an off-domain residual locator
+`T`, put `P_T=(X-xi)L_T` as above.  Then `T` lies over the fixed
+anchor-slope pair `(xi,z)` if and only if `P_T` is a degree `j+1` polynomial
+with pinned root `xi`, all other roots in `D`, and
+
+```text
+H_{1,j+1}(u)P_T = 0,
+H_{1,j+1}(v)P_T = 0,
+H_{1,j+1}(u^xi+zv^xi)P_T = 0,
+H_{1,j+1}(v^xi)P_T != 0,              (EA1F)
+```
+
+with the usual residual filters: noncontained, not quotient-periodic, and not
+removed by a fixed-slope root slice.  The first two equations say that the
+projective lift is in the common one-row Hankel kernel; the third equation is
+the pinned twisted `t=1` incidence for the slope `z`; and the last inequality
+keeps the slope finite and noncontained in the twisted one-row reduction.
+
+Thus the isolated off-domain boundary image is exactly the set of slopes for
+which one of these pinned split-locator fibers is nonempty:
+
+```text
+Z_ext(xi) = { z : F_{xi,z} != empty }.
+```
+
+This does not yet bound `|Z_ext(xi)|`; the `F_13` boundary model shows that a
+single external anchor can have several nonempty slope fibers, and each slope
+fiber can contain several locators.  In that row, all off-domain locators have
+`xi=0`, and the verifier splits the `24` locators into exactly six
+anchor-slope fibers of size four.  Its value is that the remaining boundary
+problem is now a concrete pinned one-row split-locator fiber problem, rather
+than an unstructured collection of isolated residual locators.
+
 ## External-Anchor Top-Coefficient Form
 
 The twisted one-row reduction has an equivalent interpolation form.  Let
@@ -1530,6 +1566,9 @@ enumerates small cyclic-domain cases.  For each case it:
 - verifies the full residual anchor ledger: addable in-domain anchors lift to
   common cores, while beta0-zero, in-support, and outside-domain anchor escapes
   are isolated residual locators;
+- for every off-domain external anchor, groups escape locators by
+  `(anchor,slope)` and verifies the pinned twisted `t=1` equation
+  `H_{1,j+1}(u^xi+zv^xi)P_T=0`;
 - verifies the homogeneous projective residual lift ledger: every residual
   locator maps to the common one-row lifted Hankel kernel through
   `beta_0 X L_T-beta_1 L_T`, with finite anchors, repeated-root lifts,

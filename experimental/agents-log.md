@@ -30,6 +30,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-27 - M1 fixed-anchor slope-fiber reduction
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/m1/m1_all_line_hankel_aperiodic_packing.md`,
+  `experimental/scripts/verify_m1_all_line_hankel_aperiodic.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT / EXPERIMENTAL.
+- **What is being added:** For each off-domain external anchor `xi` and slope
+  `z`, the isolated boundary locators are identified with pinned split
+  polynomials `P_T=(X-xi)L_T` satisfying the common one-row kernel equations
+  and the twisted `t=1` gate `H_{1,j+1}(u^xi+zv^xi)P_T=0`.  The verifier
+  groups off-domain escapes by `(anchor,slope)` and checks the pinned gate.
+- **How it is useful:** This turns the remaining fixed-anchor escape term into
+  an explicit slope-fiber problem.  In the `F_13` boundary row it recovers six
+  anchor-slope fibers of size four over the single external anchor `0`.
+- **What to do next:** Try to bound the number of nonempty pinned
+  anchor-slope fibers, or prove a product/top-coefficient theorem explaining
+  when such fibers can be large.
+
 ### 2026-06-27 - M1 lifted-side recursion bound
 
 - **Agent/model:** Codex.
