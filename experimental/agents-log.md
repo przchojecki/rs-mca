@@ -305,7 +305,10 @@ Keep entries concise and link to the relevant files.
   endpoint residuals with one series in the longer `t+r` window and the other
   in the paired `t+r-1` window.  The scalar-scalar tail overlap is the cutoff
   endpoint-pair residual, completing the pairwise overlap classification for
-  the unlabelled four-family tail budget.
+  the unlabelled four-family tail budget.  After those named overlap residuals
+  and their multiplier ledgers are charged, the remaining half-window tail is
+  family-disjoint: each uncharged primitive denominator class has a unique
+  residual-family label.
   The common-image three-shift ledger now has the analogous sliding-window
   reduction: for an image line `[y]`, the allowed deeper residuals form a space
   `W_y` of dimension at most one, nonzero only on the `q+1` extended geometric

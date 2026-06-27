@@ -5357,6 +5357,42 @@ therefore removes the common scalar-tail denominator class.  The final
 pairwise classification combines this scalar-scalar case with the paired-tail
 and scalar-paired classifications already proved.
 
+## Corollary 40.22: After Overlap Charges The Half-Window Tail Is Family-Disjoint
+
+Keep the notation of Corollary 40.18.  Charge the following cutoff overlap
+residual systems, together with their multiplier ledgers:
+
+1. the cutoff endpoint-pair residual from Corollaries 40.19 and 40.21;
+2. the four one-sided cutoff endpoint residual systems from Corollary 40.20.
+
+On the remaining ledger, every primitive denominator class in the
+half-window tail belongs to at most one of the four residual families
+
+```text
+u,        v,        (u,v),        (S u,S v).
+```
+
+Thus the uncharged unlabelled half-window tail is family-disjoint.  Its
+denominator-class count is bounded by the same depth-independent sum
+
+```text
+sum_{F active} (q^{h-delta_F}-1)/(q-1)
+```
+
+from Corollary 40.18, but now with no hidden cross-family intersections: every
+remaining class has a unique family label.
+
+### Proof
+
+Suppose an uncharged tail denominator class belonged to two distinct residual
+families.  If both families are scalar, Corollary 40.21 puts the class in the
+charged endpoint-pair residual.  If both families are paired, Corollary 40.19
+puts the class in the same charged endpoint-pair residual.  If one family is
+scalar and the other is paired, Corollary 40.20 puts the class in one of the
+charged one-sided endpoint residual systems.  All cases contradict that the
+class is uncharged.  Hence every uncharged class has at most one family label.
+The displayed count is then Corollary 40.18 applied family by family.
+
 ## Corollary 41: The Global Common-Image Ledger Is Endpoint-Only
 
 Let `GCI` be the set of monic degree-`c` split core locators `L` for which
@@ -8042,6 +8078,8 @@ Corollary 40.20 identifies scalar-paired tail overlaps with one-sided endpoint
 residual charges; it does not bound those one-sided residual systems.
 Corollary 40.21 identifies scalar-scalar tail overlap with the endpoint-pair
 residual; it does not bound that residual.
+Corollary 40.22 makes the charged half-window tail family-disjoint; it does
+not bound the endpoint-pair or one-sided overlap charges it assumes removed.
 Corollary 41 packages the common-image branch into endpoint-type ledgers; it
 does not prove the endpoint rank hypotheses needed for the displayed
 `(q+2)binom(n,b)` bound. Corollary 42 packages the globally full core ledger
