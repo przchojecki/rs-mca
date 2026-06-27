@@ -30,6 +30,23 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-27 - M1 full-domain zero-sum boundary counts
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/m1/m1_all_line_hankel_aperiodic_packing.md`,
+  `experimental/scripts/verify_m1_all_line_hankel_aperiodic.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT / EXPERIMENTAL.
+- **What is being added:** Closed zero-sum counts are recorded for the
+  full-domain monomial boundary model: `(p-1)(p-5)/6` for `j=3`, and
+  `(p-1)(p^2-9p+26)/24` for `j=4`.  After charging antipodal pairs in the
+  `j=4` case, the residual zero-sum count is `(p-1)(p-5)(p-7)/24`.
+- **How it is useful:** These counts normalize the fixed-anchor product-image
+  floor: they separate locator volume from product/coset image size and make
+  the quotient charge quantitatively explicit.
+- **What to do next:** Compare these exact counts with product-coset counts
+  to formulate a candidate positive fixed-anchor product-image bound.
+
 ### 2026-06-27 - M1 product-image power-coset symmetry
 
 - **Agent/model:** Codex.

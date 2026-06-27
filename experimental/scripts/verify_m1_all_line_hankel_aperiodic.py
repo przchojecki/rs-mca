@@ -2142,10 +2142,28 @@ def verify_full_domain_monomial_boundary_model(
     )
     if j == 4 and 2 in charged_fiber_sizes:
         antipodal_pair_count = (p - 1) // 2
+        expected_zero_sum = (p - 1) * (p * p - 9 * p + 26) // 24
+        expected_quotient = antipodal_pair_count * (antipodal_pair_count - 1) // 2
+        expected_residual = (p - 1) * (p - 5) * (p - 7) // 24
+        if zero_sum_locators != expected_zero_sum:
+            raise AssertionError("j=4 zero-sum boundary count formula failed")
         if quotient_zero_sum_locators != antipodal_pair_count * (antipodal_pair_count - 1) // 2:
             raise AssertionError("j=4 quotient zero-sum count was not antipodal-pair count")
+        if quotient_zero_sum_locators != expected_quotient:
+            raise AssertionError("j=4 quotient boundary count formula failed")
+        if sum(residual_product_counts.values()) != expected_residual:
+            raise AssertionError("j=4 residual boundary count formula failed")
         if quotient_product_fibers != antipodal_pair_count:
             raise AssertionError("j=4 quotient products were not the square subgroup")
+    if j == 3:
+        expected_zero_sum = (p - 1) * (p - 5) // 6
+        if zero_sum_locators != expected_zero_sum:
+            raise AssertionError("j=3 zero-sum boundary count formula failed")
+        if all(3 % size for size in charged_fiber_sizes):
+            if quotient_zero_sum_locators != 0:
+                raise AssertionError("j=3 boundary count had an impossible quotient charge")
+            if sum(residual_product_counts.values()) != expected_zero_sum:
+                raise AssertionError("j=3 residual boundary count formula failed")
     return {
         "p": p,
         "j": j,

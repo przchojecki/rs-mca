@@ -772,6 +772,37 @@ In the audited rows, the residual product images decompose as follows:
 (p,j)=(17,3):  |(F_p^*)^j|=16,  1 residual coset.
 ```
 
+The same full-domain model has closed zero-sum counts in the audited
+small-slack cases.  For triples,
+
+```text
+#{T subset F_p^*: |T|=3, sum(T)=0} = (p-1)(p-5)/6.
+```
+
+Indeed the number of zero-sum three-subsets of `F_p` is
+`(p-1)(p-2)/6`, and the triples containing `0` are exactly
+`{0,a,-a}`, giving `(p-1)/2` exclusions.
+
+For four-subsets,
+
+```text
+#{T subset F_p^*: |T|=4, sum(T)=0}
+  = (p-1)(p^2-9p+26)/24.
+```
+
+Here the zero-sum four-subsets of `F_p` are counted by choosing three
+nonzero differences, giving `(p-1)(p-2)(p-3)/24`, and subtracting the
+zero-containing triples above.  When the antipodal quotient family is charged,
+the residual zero-sum count becomes
+
+```text
+(p-1)(p-5)(p-7)/24,
+```
+
+because the charged antipodal families are the `binom((p-1)/2,2)` choices of
+two pairs `{a,-a}` and `{b,-b}`.  The verifier asserts these formulas in the
+full-domain monomial audits.
+
 For `j=4`, the quotient-periodic zero-sum part has an exact form.  Since the
 charged fiber size `2` is present in the full-domain audits, quotient-charged
 four-subsets are precisely unions of two antipodal pairs
@@ -1201,6 +1232,9 @@ enumerates small cyclic-domain cases.  For each case it:
   the product image of the deleted roots;
 - verifies the `j`th-power coset symmetry of the charged and residual product
   images in that family;
+- asserts the closed zero-sum boundary counts for the `j=3` and `j=4`
+  full-domain monomial cases, including the residual count after antipodal
+  quotient charging;
 - checks the `j=4` antipodal quotient charge in that family: quotient-charged
   zero-sum four-subsets are exactly unions `{a,-a,b,-b}`, whose products form
   the square subgroup;
