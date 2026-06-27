@@ -300,7 +300,10 @@ Keep entries concise and link to the relevant files.
   families contributing zero.  Any primitive denominator class common to the
   ordinary paired and shifted paired tails is now identified with an
   endpoint-pair residual certificate at the first half-window depth, so paired
-  tail overlaps are endpoint-pair charges rather than new tail budget.
+  tail overlaps are endpoint-pair charges rather than new tail budget.  The
+  scalar-paired tail overlaps are also classified: they are one-sided cutoff
+  endpoint residuals with one series in the longer `t+r` window and the other
+  in the paired `t+r-1` window.
   The common-image three-shift ledger now has the analogous sliding-window
   reduction: for an image line `[y]`, the allowed deeper residuals form a space
   `W_y` of dimension at most one, nonzero only on the `q+1` extended geometric

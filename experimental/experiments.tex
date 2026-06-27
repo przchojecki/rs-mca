@@ -2093,7 +2093,11 @@ denominator-class budget for the half-window tail.  The ordinary and shifted
 paired tails also have controlled overlap: any denominator class appearing in
 both is already an endpoint-pair certificate at the first half-window rung, so
 after the endpoint-pair residual is charged their intersection contributes no
-new tail budget.
+new tail budget.  Scalar-paired tail intersections are likewise explicit: they
+are one-sided cutoff endpoint residuals, with one endpoint in the longer
+\(t+r\) window and the other in the paired \(t+r-1\) window.  After these
+one-sided residuals are charged, scalar-paired intersections also contribute no
+new unlabelled tail denominator classes.
 Equivalently, the full three-shift common-image branch is endpoint-only.  If
 \(\mathrm{GCI}\) denotes the monic split core locators satisfying some
 three-shift common-image line, then

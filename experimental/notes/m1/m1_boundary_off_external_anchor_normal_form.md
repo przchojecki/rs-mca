@@ -5180,8 +5180,9 @@ tail depth `r in R_hw`.  Then
 
 The unlabelled set of denominator classes is bounded by the same right-hand
 side, and may be smaller because a denominator class can be charged in more
-than one family only through the overlap mechanisms of Corollaries 40.12 and
-40.13.
+than one family.  The paired-family overlaps are the endpoint-pair charges of
+Corollaries 40.12 and 40.13; the scalar-paired overlaps are the one-sided
+endpoint residuals isolated in Corollary 40.20 below.
 
 Thus the half-window tail has a single denominator budget depending only on
 the four cutoff primitive denominators, not on the number of depths in
@@ -5249,6 +5250,67 @@ H_{s+1}(u)Q=H_{s+1}(v)Q=0.
 Since `s+1=t+r_hw`, this is the displayed endpoint-pair certificate at the
 cutoff depth.  Therefore any common paired-tail denominator is charged when
 the cutoff endpoint-pair residual and its multiplier ledger are charged.
+
+## Corollary 40.20: Scalar-Paired Tail Overlaps Are One-Sided Endpoint Residuals
+
+Keep the notation of Corollary 40.19 and put
+
+```text
+s=t+r_hw-1,        H_m(w)=H_{m,h-1}(w).
+```
+
+Let `TailPrim(u)` and `TailPrim(v)` denote the unlabelled primitive
+denominator classes occurring somewhere in the half-window tail for the scalar
+residual families `u` and `v`; keep the paired notation
+`TailPrim(u,v)` and `TailPrim(Su,Sv)` from Corollary 40.19.
+
+Every primitive denominator class common to a scalar half-window tail and a
+paired half-window tail is a cutoff certificate for one of the following
+one-sided endpoint residual systems:
+
+```text
+H_{s+1}(u)Q=0,        H_s(v)Q=0,                    (u | u,v)
+H_s(u)Q=0,            H_{s+1}(v)Q=0,                (v | u,v)
+H_{s+1}(u)Q=0,        H_s(S v)Q=0,                  (u | Su,Sv)
+H_s(S u)Q=0,          H_{s+1}(v)Q=0.                (v | Su,Sv)
+```
+
+More explicitly:
+
+* `TailPrim(u) cap TailPrim(u,v)` is contained in `(u | u,v)`;
+* `TailPrim(v) cap TailPrim(u,v)` is contained in `(v | u,v)`;
+* `TailPrim(u) cap TailPrim(Su,Sv)` is contained in `(u | Su,Sv)`;
+* `TailPrim(v) cap TailPrim(Su,Sv)` is contained in `(v | Su,Sv)`.
+
+Consequently, after these one-sided cutoff residual systems and their
+multiplier ledgers are charged, scalar-paired tail intersections contribute no
+new unlabelled half-window tail denominator classes.
+
+### Proof
+
+Consider `TailPrim(u) cap TailPrim(u,v)`.  By Corollary 40.16, a common tail
+denominator class gives a cutoff-depth scalar certificate for `u` and a
+cutoff-depth ordinary paired certificate for `(u,v)`.  With `s=t+r_hw-1`, the
+scalar certificate is
+
+```text
+H_{s+1}(u)Q=0,
+```
+
+and the ordinary paired certificate is
+
+```text
+H_s(u)Q=H_s(v)Q=0.
+```
+
+The `H_s(u)` rows are contained in the `H_{s+1}(u)` rows, so the intersection
+is exactly the first one-sided system displayed above.  The case
+`TailPrim(v) cap TailPrim(u,v)` is symmetric.
+
+For `TailPrim(u) cap TailPrim(Su,Sv)`, the scalar certificate
+`H_{s+1}(u)Q=0` contains the shifted `u` rows `H_s(Su)Q=0`, leaving the
+additional shifted `v` condition `H_s(Sv)Q=0`.  This gives `(u | Su,Sv)`.
+The `v` scalar case is identical with `u` and `v` interchanged.
 
 ## Corollary 41: The Global Common-Image Ledger Is Endpoint-Only
 
@@ -7931,6 +7993,8 @@ Corollary 40.18 sums those ambient ledgers over the four residual families; it
 does not turn the denominator-class budget into an MCA slope count.
 Corollary 40.19 identifies paired-tail overlaps with endpoint-pair residual
 charges; it does not bound the endpoint-pair residual.
+Corollary 40.20 identifies scalar-paired tail overlaps with one-sided endpoint
+residual charges; it does not bound those one-sided residual systems.
 Corollary 41 packages the common-image branch into endpoint-type ledgers; it
 does not prove the endpoint rank hypotheses needed for the displayed
 `(q+2)binom(n,b)` bound. Corollary 42 packages the globally full core ledger
