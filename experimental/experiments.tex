@@ -2201,6 +2201,20 @@ certificate denominator.  In this range the root-free endpoint-short
 obstruction is reduced to primitive reciprocal-domain-pole-free denominators
 and root-free multipliers; outside it, the remaining obstruction is a genuine
 longer vector-Pade problem.
+If the primitive denominator has degree \(\delta\), then every degree-\(<h\)
+certificate denominator lies in
+\[
+D(T)=D_0(T)M(T),\qquad \deg M\le h-1-\delta.
+\]
+Thus, over \(\F_q\), the projective multiplier ledger attached to a fixed
+primitive denominator has size at most
+\[
+1+q+\cdots+q^{h-1-\delta}=\frac{q^{h-\delta}-1}{q-1},
+\]
+and the root-free and truncation conditions only cut this ledger down.  Hence
+the half-window denominator problem is reduced to bounding primitive
+reciprocal-domain-pole-free denominators, then paying this explicit multiplier
+factor.
 
 In the ruled part, the common-kernel branch has a fixed projective boundary slope,
 while the common-image branch forces the shadow locator \(L_S\) to satisfy the

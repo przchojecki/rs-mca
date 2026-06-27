@@ -5399,6 +5399,68 @@ component denominators, and therefore divides every common denominator
 certificate.  The endpoint interpretations are Corollaries 56--58 with
 `s=t+2` for fixed-kernel witnesses and `s=t+1` for first-difference witnesses.
 
+## Corollary 60: Half-Window Certificates Lie In A Multiplier Ledger
+
+Assume the half-window hypothesis of Corollary 59 for all degree-`<h`
+denominator certificates under consideration; equivalently, every certificate
+degree `e<h` also satisfies `e<=s`.  Let `D_0(T)` be the primitive reduced
+denominator supplied by Corollary 59 for a scalar syndrome series, or the
+primitive vector denominator in the two-series case.  Write
+
+```text
+delta=deg D_0.
+```
+
+Then every degree-`<h` certificate denominator `D(T)=Q^*(T)` lies in the
+multiplier ledger
+
+```text
+D(T)=D_0(T) M(T),        deg M <= h-1-delta.        (Mult)
+```
+
+If the certificate is root-free, then `M` has no zeros on the reciprocal
+domain `D^vee` from Corollary 58, with the point at infinity tested in the
+actual degree of the multiplier.  Hence, over a finite field `F_q`, the
+projective number of root-free degree-`<h` certificate denominators attached
+to a fixed primitive denominator is at most
+
+```text
+(q^{h-delta}-1)/(q-1).
+```
+
+The actual certificate set is a subset of this multiplier ledger, because the
+truncation congruence may impose additional linear conditions on `M`.
+
+Consequently, in the half-window endpoint-short range, the denominator-family
+problem splits into two parts:
+
+1. bound the primitive reciprocal-domain-pole-free denominators `D_0`;
+2. pay only the explicit multiplier factor above for each such primitive
+   denominator.
+
+### Proof
+
+By Corollary 59, the reduced scalar rational function, or reduced vector
+rational function in the two-series case, is independent of the chosen
+certificate.  Therefore its primitive denominator `D_0` divides every
+certificate denominator `D=Q^*`.  Since `deg D<=deg Q<h`, the quotient
+`M=D/D_0` satisfies `deg M<=h-1-delta`, proving (Mult).
+
+If `D` has no reciprocal-domain zeros and `D_0` divides `D`, then `D_0` and
+`M` separately have no reciprocal-domain zeros, with each factor read in its
+own projective degree.  Conversely, any zero of `M` on `D^vee` would be a zero
+of `D`, contradicting root-freeness.
+
+The projective space of nonzero multipliers of degree at most `h-1-delta` has
+size
+
+```text
+1+q+...+q^{h-1-delta}=(q^{h-delta}-1)/(q-1).
+```
+
+The root-free and truncation conditions only remove points from this projective
+space, so this gives the claimed upper bound.
+
 ## Non-Claims
 
 This note does not prove
@@ -5538,5 +5600,6 @@ Corollary 57 rewrites those recurrences as truncated rational-denominator
 certificates; and Corollary 58 identifies the root-free condition with absence
 of reciprocal-domain denominator poles. Corollary 59 gives uniqueness and
 primitive-denominator compression only in the half-window range; it does not
-bound the primitive denominators, their root-free multipliers, or the longer
-vector-Pade range.
+bound the primitive denominators or the longer vector-Pade range. Corollary 60
+only bounds the multiplier ledger attached to a fixed primitive denominator;
+it does not bound how many primitive denominators occur.

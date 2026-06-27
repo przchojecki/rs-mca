@@ -323,7 +323,11 @@ Keep entries concise and link to the relevant files.
   `D_i W_w=N_i mod T^{e_i+s}` have `s>=max(e_1,e_2)`, then
   `N_1D_2=N_2D_1`, so all degree-`<=s` certificates share one reduced rational
   function; componentwise, common certificates for a pair share one primitive
-  vector denominator dividing every certificate denominator.
+  vector denominator dividing every certificate denominator.  If that
+  primitive denominator has degree `delta`, every degree-`<h` certificate lies
+  in the multiplier ledger `D_0M`, `deg M<=h-1-delta`; over `F_q` this costs
+  at most `(q^{h-delta}-1)/(q-1)` projective multipliers before root-free and
+  truncation cuts.
 - **What to do next:** Bound or charge the unique-neighbor nondegenerate
   star-free shadow ledger, then charge the four base endpoint spaces, the
   resulting short-annihilator endpoint systems, finite-exception endpoint
