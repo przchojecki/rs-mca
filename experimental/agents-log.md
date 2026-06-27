@@ -147,7 +147,11 @@ Keep entries concise and link to the relevant files.
   The core-line reduction is now stated for the full rank-one gate, not just a
   fixed minor: for each external anchor `beta`, after charging cores on which
   the whole gate is identically rank one, the remaining rank-one shadows are
-  bounded by `(2/m) binom(n,m-1)`.
+  bounded by `(2/m) binom(n,m-1)`.  Those charged full core-line ledgers also
+  have row-rank certificates one level lower: endpoint, fixed-kernel, and
+  projective-image systems on monic degree-`m-1` core locators contribute at
+  most `binom(n,e)` split cores per direction dimension `e`, so bounded lower
+  direction dimension gives a polynomial full-core charge.
 - **What to do next:** Bound or charge the unique-neighbor nondegenerate
   star-free shadow ledger, and charge the ruled exceptional low-rank loci to
   fixed-slope/root-slice, endpoint, projective, quotient-periodic, or

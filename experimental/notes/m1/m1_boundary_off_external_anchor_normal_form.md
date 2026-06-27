@@ -2195,6 +2195,97 @@ m |Z_rem(beta)| <= 2 binom(n,m-1),
 
 which proves (FGCL).
 
+## Corollary 26: Full Core-Line Ledgers Have Row-Rank Certificates
+
+Keep the fixed external anchor `beta`, and put `c=m-1`.  For a monic
+degree-`c` core locator `L_R`, write
+
+```text
+M_0=(X-beta)L_R,        M_1=(X-beta)X L_R.
+```
+
+The full core-line alternatives from Corollary 24 are contained in the
+following affine row-cut systems on the monic degree-`c` coefficient slice.
+
+```text
+u-endpoint:
+  H(u)M_0=0,        H(u)M_1=0.
+
+v-endpoint:
+  H(v)M_0=0,        H(v)M_1=0.
+
+finite fixed kernel lambda in F:
+  (H(v)-lambda H(u))M_0=0,
+  (H(v)-lambda H(u))M_1=0.
+
+common image line I=[y] in P(F^t):
+  y wedge H(u)M_i=0 and y wedge H(v)M_i=0,     i=0,1.
+```
+
+Let the direction dimensions of these affine systems be
+
+```text
+e_u(beta),  e_v(beta),  e_lambda(beta),  e_I(beta),
+```
+
+omitting an empty system from the count.  If full core-lines are assigned
+arbitrarily to one of the alternatives supplied by Corollary 24, then
+
+```text
+|FullCoreGate(beta)|
+ <= binom(n,e_u(beta)) + binom(n,e_v(beta))
+    + sum_{lambda in F} binom(n,e_lambda(beta))
+    + sum_{I in P(F^t)} binom(n,e_I(beta)).          (FCRR)
+```
+
+In particular, if every uncharged lower system has direction dimension at most
+`b`, then
+
+```text
+|FullCoreGate(beta)|
+ <= ( 2 + q + (q^t-1)/(q-1) ) binom(n,b).            (FCB)
+```
+
+The corresponding full-core boundary shadows for this fixed `beta` are bounded
+by the extra extension factor
+
+```text
+(n-m+1) |FullCoreGate(beta)| <= n |FullCoreGate(beta)|.
+```
+
+Thus Corollary 25 plus (FCRR) reduces the fixed-anchor full rank-one gate to a
+one-root-loss residual and explicit lower endpoint, projective-image, and
+fixed-kernel row-rank ledgers on degree-`m-1` core locators.
+
+### Proof
+
+Corollary 24 puts every full core-line into one of the displayed alternatives:
+endpoint containment, common image, or fixed projective kernel.  Each
+displayed alternative is an affine linear system in the lower coefficients of
+the monic degree-`c` locator `L_R`, because multiplication by `(X-beta)` and
+by `X` are linear operations after the leading coefficient of `L_R` is fixed.
+
+Consider one such nonempty affine solution space `P_0+V`, and put
+`e=dim V`.  For every squarefree `D`-split core locator `L_R` in this affine
+space, the evaluation map
+
+```text
+V -> F^R
+```
+
+is injective: a nonzero element of `V` is represented by a polynomial of
+degree `<c`, and therefore cannot vanish at all `c` distinct roots of `R`.
+Choose the first `e`-subset of `R` on which evaluation is injective.  As in
+Corollaries 10 and 11, this choice injects the split core locators in
+`P_0+V` into the `e`-subsets of `D`, giving at most `binom(n,e)` such cores.
+
+Applying this bound to the two endpoint systems, every finite fixed-kernel
+slope `lambda`, and every projective image line `I` proves (FCRR).  The
+bounded-dimension estimate (FCB) follows from
+`|F|=q` and `|P(F^t)|=(q^t-1)/(q-1)`.  Finally, a fixed `(m-1)`-core has at
+most `n-(m-1)=n-m+1` extensions to an `m`-shadow, proving the displayed
+shadow bound.
+
 ## Non-Claims
 
 This note does not prove
@@ -2252,3 +2343,6 @@ endpoint, common-image, or fixed-kernel ruled ledgers.
 Corollary 25 applies the core-line reduction to the full rank-one gate rather
 than to one fixed minor; it still leaves the full core-line ledgers from
 Corollary 24 to be bounded or charged separately.
+Corollary 26 gives row-rank certificates for those full core-line ledgers; it
+does not prove that the exceptional lower systems all have bounded direction
+dimension without separate endpoint, image-line, or fixed-kernel charges.
