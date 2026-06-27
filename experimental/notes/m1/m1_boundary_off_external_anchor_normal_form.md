@@ -1516,6 +1516,59 @@ sum_S binom(deg_A(S),2),
 
 and (PS) gives the claimed exchange-ledger bound.
 
+## Corollary 19: Unique-Neighbor Shadows Are Not Controlled By Low Exchange
+
+Let `A` be a family of `j`-subsets of `D` with
+
+```text
+E_1(A)=E_2(A)=E_3(A)=0.
+```
+
+Equivalently, every two distinct members of `A` have exchange distance at
+least `4`.  Then every first boundary shadow of `A` is unique:
+
+```text
+deg_A(S) <= 1        for every |S|=j-1.
+```
+
+Consequently the first boundary-shadow image has the exact size
+
+```text
+|Shadow_1(A)|
+  = |A| binom(j,2)(n-j),                             (US)
+```
+
+where
+
+```text
+Shadow_1(A)
+  = { S subset D :
+      |S|=j-1 and there exists T in A with |S cap T|=j-2 }.
+```
+
+Thus the unique-neighbor shadow ledger in Corollary 18 is genuinely necessary:
+it cannot be bounded using only the first three exchange profiles.  Any closure
+of the nondegenerate boundary branch must use additional structure, such as
+the Hankel anchor equations, quotient/aperiodic restrictions, or a separate
+bound on the number of isolated active locators.
+
+### Proof
+
+If a shadow `S` had two distinct active neighbors `T,T' in A`, then
+Corollary 18's pair count shows that `T` and `T'` must have exchange distance
+at most `3`.  This contradicts the assumption `E_1=E_2=E_3=0`.  Hence every
+shadow has degree at most one.
+
+For each fixed `T in A`, a first boundary shadow adjacent to `T` is obtained by
+deleting two points of `T` and adding one point of `D\T`.  This gives exactly
+
+```text
+binom(j,2)(n-j)
+```
+
+shadows over `T`.  Since no shadow is shared by two members of `A`, summing
+over `T` proves (US).
+
 ## Non-Claims
 
 This note does not prove
@@ -1551,4 +1604,6 @@ Corollary 17 is conditional on those explicit low-rank charges and endpoint
 rank hypotheses; it is not an unconditional ruled-branch theorem.
 Corollary 18 does not bound the unique-neighbor nondegenerate shadows; it
 separates them from the popular shadows that are already controlled by the
-first three active exchange profiles.
+first three active exchange profiles. Corollary 19 is a sharpness statement for
+the exchange-profile method; it does not assert that such separated families
+occur as active Hankel locators in the M1 problem.
