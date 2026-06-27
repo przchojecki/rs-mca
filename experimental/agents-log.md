@@ -234,10 +234,16 @@ Keep entries concise and link to the relevant files.
   these reductions, the whole three-shift common-image branch is now the union
   of `E_deep`, `E_infty`, and the `q` first-difference endpoint ledgers
   `E_theta`; under direction dimension `<=b`, this gives the endpoint-only
-  bound `(q+2)binom(n,b)` before the usual root-free replacement.
+  bound `(q+2)binom(n,b)` before the usual root-free replacement.  Combining
+  this with the globally full core classification gives an endpointized global
+  full-core closure: the ledger is covered by `U`, `V`, `D_infty`, the `q`
+  finite fixed-kernel endpoint systems `K_lambda`, and the `q`
+  first-difference endpoint systems `D_theta`, giving
+  `(2q+3)binom(n,b)` under direction dimension `<=b`, with the usual root-free
+  replacement after common-root pieces are charged.
 - **What to do next:** Bound or charge the unique-neighbor nondegenerate
   star-free shadow ledger, then charge the remaining global ruled ledgers: the
-  endpoint-only common-image ledgers and the moving-certificate loci, to
+  endpointized global full-core ledgers and the moving-certificate loci, to
   fixed-slope/root-slice, quotient-periodic, endpoint, or active-codegree
   ledgers.
 

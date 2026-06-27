@@ -3959,6 +3959,77 @@ The count follows from the usual row-rank split-locator bound applied to the
 `q+2` affine endpoint systems.  The root-free refinement is again the
 common-root slice replacement from Corollary 30.1 and Corollary 36.
 
+## Corollary 42: Endpointized Global Full-Core Closure
+
+Put `c=m-1` and fix `0<=b<c`.  Define the following affine charge systems on
+monic degree-`c` split core locators:
+
+```text
+U={ L : H_{t+2,c}(u)L=0 },
+V={ L : H_{t+2,c}(v)L=0 },
+
+K_lambda={ L : H_{t+2,c}(v-lambda u)L=0 },        lambda in F,
+
+D_theta={ L : H_{t+1,c}(Delta_theta u)L=0
+              and H_{t+1,c}(Delta_theta v)L=0 },  theta in F,
+
+D_infty={ L : H_{t+1,c}(u)L=0 and H_{t+1,c}(v)L=0 }.
+```
+
+Assume each of the associated homogeneous direction spaces has dimension at
+most `b`.  Then the globally full core ledger satisfies
+
+```text
+|GlobalFullCore| <= (2q+3) binom(n,b).              (EndpointGFC)
+```
+
+After common-root global core pieces have been charged and `1<=b<=n/2`, the
+same root-free replacement gives
+
+```text
+|GlobalFullCore| <= (2q+3) (b/c) binom(n,b).        (EndpointGFC_rf)
+```
+
+Thus the globally full common-image alternative no longer contributes a
+projective image-line factor.  It is absorbed into the same endpoint-type
+ledger family as the endpoint and fixed-kernel alternatives.
+
+### Proof
+
+Let `L` be a globally full core.  By Corollary 36, `L` satisfies at least one
+of the following three-shift alternatives.
+
+If `L` satisfies the `u` endpoint, then Corollary 38 in affine degree `c`
+places `L` in `U`; if it satisfies the `v` endpoint, it lies in `V`.
+
+If `L` satisfies the fixed-kernel alternative with finite slope `lambda`, then
+Corollary 38 applied to `v-lambda u` places `L` in `K_lambda`.
+
+It remains to consider the common-image alternative.  By Corollary 41, `L`
+lies in
+
+```text
+E_deep union E_infty union union_{theta in F} E_theta.
+```
+
+The set `E_deep` is contained in `U cap V`, hence has already been charged by
+the endpoint systems.  The set `E_infty` is exactly `D_infty`, and the sets
+`E_theta` are exactly the first-difference systems `D_theta`.
+
+Therefore `GlobalFullCore` is contained in the union of the `2q+3` affine
+systems
+
+```text
+U, V, D_infty, {K_lambda}_{lambda in F}, {D_theta}_{theta in F}.
+```
+
+Each system has direction dimension at most `b` by hypothesis, so the standard
+split-locator row-rank bound gives at most `binom(n,b)` split cores in each
+system.  Summing gives (EndpointGFC).  The root-free estimate is the same
+common-root slice replacement used in Corollaries 30.1, 36, and 41, applied to
+each positive-dimensional affine charge system after its common-root pieces
+have been removed.
+
 ## Non-Claims
 
 This note does not prove
@@ -4061,4 +4132,6 @@ endpoint intersections; it does not prove all those endpoint intersections
 have small dimension without a separate endpoint or quotient-periodic charge.
 Corollary 41 packages the common-image branch into endpoint-type ledgers; it
 does not prove the endpoint rank hypotheses needed for the displayed
-`(q+2)binom(n,b)` bound.
+`(q+2)binom(n,b)` bound. Corollary 42 packages the globally full core ledger
+after endpointized charges; it is still conditional on bounding those
+endpoint-type charge dimensions and on charging the moving-certificate loci.
