@@ -210,7 +210,12 @@ Keep entries concise and link to the relevant files.
   `H(v)X^iL_R=lambda H(u)X^iL_R` for `i=0,1,2`.  Thus they admit the same
   endpoint/common-image/fixed-kernel row-rank bounds, with
   `(2+q+(q^t-1)/(q-1))binom(n,b)` in bounded dimension and the usual root-free
-  `b/c` improvement after common-root charges.
+  `b/c` improvement after common-root charges.  The high-dimensional three-shift
+  charges are now determinantal too: finite slopes obey the same `c-b`
+  finite-exception/persistent dichotomy, persistent slopes force both
+  three-shift endpoint systems low-rank, and the three-shift common-image bad
+  lines are cut out by homogeneous minors with at most `(c-b)q^(t-1)/(q-1)`
+  projective lines unless persistent.
 - **What to do next:** Bound or charge the unique-neighbor nondegenerate
   star-free shadow ledger, and charge the ruled exceptional low-rank loci to
   fixed-slope/root-slice, endpoint, projective, quotient-periodic, or

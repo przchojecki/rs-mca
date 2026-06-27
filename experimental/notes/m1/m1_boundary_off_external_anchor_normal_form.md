@@ -3484,6 +3484,125 @@ q(n-m+1)|GlobalFullCore^{<=b}|.
 
 This gives the displayed all-anchor incidence bound.
 
+## Corollary 37: Three-Shift Global Ledgers Have Determinantal Charges
+
+Put `c=m-1` and fix `0<=b<c`.  For a finite slope `lambda in F`, let
+
+```text
+G_lambda: F^c -> F^{3t}
+```
+
+be the homogeneous direction matrix for the three-shift fixed-kernel system
+
+```text
+(H(v)-lambda H(u)) X^i Q = 0,        i=0,1,2,
+```
+
+and put
+
+```text
+g_lambda=dim ker G_lambda.
+```
+
+Then the bad slope set
+
+```text
+E_{G,>b}={ lambda in F : g_lambda>b }
+```
+
+has the following dichotomy.
+
+```text
+finite global-slope alternative:
+  |E_{G,>b}| <= c-b;
+
+persistent global-slope alternative:
+  g_lambda>b for every lambda in F.
+```
+
+More precisely, if some `(c-b) x (c-b)` minor of `G_lambda` is not the zero
+polynomial in `lambda`, the finite alternative holds.  If every such minor
+vanishes identically, then the endpoint three-shift systems
+
+```text
+H(u)X^i Q=0,        H(v)X^i Q=0,        i=0,1,2,
+```
+
+both have direction dimension `>b`, and there are `b+1` independent moving
+three-shift kernels over `F(lambda)`.
+
+Similarly, for a projective image line `I=[y] in P(F^t)`, let
+
+```text
+C_y^G: F^c -> Lambda^2(F^t)^6
+```
+
+be the direction map
+
+```text
+Q |-> ( y wedge H(u)X^i Q, y wedge H(v)X^i Q )_{i=0,1,2},
+```
+
+and put `g_I=dim ker C_y^G`.  The bad image-line locus
+
+```text
+P_{G,img,>b}={ [y] in P(F^t) : g_[y]>b }
+```
+
+is cut out by homogeneous `(c-b) x (c-b)` minors of degree `c-b` in `y`.  If at
+least one such minor is nonzero, then
+
+```text
+|P_{G,img,>b}| <= ((c-b) q^(t-1))/(q-1).              (GPI)
+```
+
+If all such minors vanish identically, there are `b+1` independent moving
+three-shift image directions over `F(y_0,...,y_{t-1})`.
+
+Consequently, after charging endpoint systems with direction dimension `>b`,
+the finite bad slopes `E_{G,>b}`, the projective bad image-line locus
+`P_{G,img,>b}`, and the persistent moving-certificate alternatives, the
+globally full core ledger from Corollary 36 contributes at most
+
+```text
+( 2 + q + (q^t-1)/(q-1) ) binom(n,b)
+```
+
+split cores, with the root-free `b/c` improvement after common-root global core
+pieces are charged.
+
+### Proof
+
+The matrix `G_lambda` has the affine form
+
+```text
+G_lambda=G_v-lambda G_u,
+```
+
+where `G_w` is the direction matrix for the endpoint equations
+`H(w)X^iQ=0`, `i=0,1,2`.  Thus `g_lambda>b` is equivalent to
+`rank G_lambda<c-b`, i.e. to vanishing of all `(c-b) x (c-b)` minors.  These
+minors have degree at most `c-b` in `lambda`.
+
+If one minor is nonzero, it has at most `c-b` roots.  If every minor vanishes
+identically, the constant and top-degree coefficients show that all
+`(c-b) x (c-b)` minors of both `G_v` and `G_u` vanish, so both endpoint kernels
+have dimension `>b`.  Over `F(lambda)`, persistent minor vanishing is equivalent
+to kernel dimension at least `b+1`; clearing denominators gives the moving
+three-shift kernels.
+
+For the image-line statement, the entries of `C_y^G` are homogeneous linear
+forms in `y`.  Hence its `(c-b) x (c-b)` minors are homogeneous of degree
+`c-b`, and the same projective Schwartz-Zippel count as in Corollaries 16 and
+29 gives (GPI) when one minor is nonzero.  If all minors vanish identically,
+rank-nullity over `F(y_0,...,y_{t-1})` gives `b+1` moving image directions, and
+the converse is immediate.
+
+The final bounded-rank count is exactly Corollary 36 after the endpoint,
+finite-slope, image-line, and moving-certificate bad global ledgers have been
+charged.  The root-free replacement is the Corollary 30.1 incidence argument
+applied to these three-shift strata.
+
 ## Non-Claims
 
 This note does not prove
@@ -3574,3 +3693,6 @@ Corollary 35 does not classify globally full core-lines; it shows that all
 other full-core lines have anchor multiplicity at most two. Corollary 36
 classifies globally full core-lines into three-shift ruled ledgers, but it does
 not prove the required high-dimensional three-shift row-rank charges are small.
+Corollary 37 makes those charges determinantal; it still leaves endpoint
+three-shift low rank and persistent moving certificates as explicit ledgers to
+charge.
