@@ -473,43 +473,53 @@ So the M1 residual slope problem has two separate pieces: lifted common-core
 face counting for `R_lifted`, and isolated anchor-escape slope counting for
 `R_escape`.
 
-## Projective Residual Lift Ledger
+## Homogeneous Projective Residual Lift Ledger
 
-The escape cases are still boundary cases of the same lifted Hankel geometry.
-For a residual locator `T`, write
+Every residual locator has a projective lift into the same common one-row
+Hankel kernel.  For a residual locator `T`, write
 
 ```text
 H_{2,j}(v)ell_T=(beta_0,beta_1),        H_{2,j}(u)ell_T=(alpha_0,alpha_1).
 ```
 
-If `beta_0 != 0`, set `xi_T=beta_1/beta_0`.  Then the formal one-root lift
+Let `s_T` be the coefficient vector of `X L_T`, and let `p_T` be the
+coefficient vector of `L_T` padded to degree `j+1`.  Since `T` is residual
+and noncontained, `(beta_0,beta_1) != 0`.  Put
 
 ```text
-L_T(X)(X-xi_T)
+[xi:eta]=[beta_1:beta_0] in P^1(F).
+```
+
+Then the homogeneous projective lift
+
+```text
+ell_T^proj = eta s_T - xi p_T
 ```
 
 satisfies both one-row gates
 
 ```text
-H_{1,j+1}(v)ell_{T,xi_T}=0,        H_{1,j+1}(u)ell_{T,xi_T}=0.        (PL1)
+H_{1,j+1}(v)ell_T^proj=0,        H_{1,j+1}(u)ell_T^proj=0.        (PL1)
 ```
 
-Indeed the denominator identity is `beta_1-xi_T beta_0=0`, and the numerator
-identity follows from the residual bad-slope relation
-`(alpha_0,alpha_1)=-z_T(beta_0,beta_1)`.
+Indeed the denominator identity is `eta beta_1-xi beta_0=0`, and the numerator
+identity is `eta alpha_1-xi alpha_0=0`, which follows from the residual
+determinant gate.
 
-Thus finite anchors split into three lifted types:
+When `eta != 0`, this is a nonzero scalar multiple of
+`L_T(X)(X-xi_T)`, where `xi_T=xi/eta=beta_1/beta_0`.  Thus finite anchors
+split into three lifted types:
 
 1. `xi_T in D\T`: a squarefree in-domain lifted common core;
 2. `xi_T in T`: a repeated-root degenerate lift, hence an isolated escape;
 3. `xi_T notin D`: an off-domain finite lift, hence an isolated escape.
 
 If `beta_0=0`, then residual noncontainment gives `beta_1 != 0`, and the
-bad-slope equation gives `alpha_0=0`.  No finite `xi` can make
-`beta_1-xi beta_0` vanish, so this is the projective infinity-anchor boundary
-of the same lift ledger.  Consequently the isolated escape side is not an
+lift is the padded vector `L_T` itself, up to a nonzero scalar.  Thus
+beta0-zero escapes are exactly the infinity-anchor boundary of the same
+projective lift ledger.  Consequently the isolated escape side is not an
 unstructured remainder: it consists of repeated-root, off-domain, and
-infinity-anchor boundary lifts.
+infinity-anchor boundary lifts inside the common projective one-row kernel.
 
 ## Residual Slope-Image Ledger
 
@@ -832,10 +842,10 @@ enumerates small cyclic-domain cases.  For each case it:
 - verifies the full residual anchor ledger: addable in-domain anchors lift to
   common cores, while beta0-zero, in-support, and outside-domain anchor escapes
   are isolated residual locators;
-- verifies the projective residual lift ledger: every finite anchor satisfies
-  both one-row lifted Hankel gates, repeated-root and off-domain anchors are
-  separated as finite boundary lifts, and beta0-zero escapes are checked as
-  infinity anchors;
+- verifies the homogeneous projective residual lift ledger: every residual
+  locator maps to the common one-row lifted Hankel kernel through
+  `beta_0 X L_T-beta_1 L_T`, with finite anchors, repeated-root lifts,
+  off-domain lifts, and infinity anchors separated afterward;
 - verifies the residual slope-image ledger `Z_res=Z_lift union Z_esc` and
   checks that residual faces inside each lifted common core have pairwise
   distinct slopes;
@@ -892,10 +902,12 @@ this row, so the audited top packets are disjoint; the common-anchor check
 certifies all `176=2*88` oriented residual edge endpoints.  The residual anchor
 ledger partitions the `86` residual locators into `56` addable lifted-core
 faces and `30` isolated anchor escapes: `5` with `beta_0=0`, `21` with
-`xi_T in T`, and `4` with `xi_T notin D`.  The projective lift ledger checks
-`81` finite residual-anchor lifts: `56` squarefree in-domain lifts, `21`
-repeated-root boundary lifts, and `4` off-domain boundary lifts; the remaining
-`5` escapes are infinity anchors.  On slope images, the `16` residual slopes
+`xi_T in T`, and `4` with `xi_T notin D`.  The homogeneous projective lift
+ledger checks all `86` residual locators in the common one-row lifted kernel.
+Among these, `81` finite residual-anchor lifts split as `56` squarefree
+in-domain lifts, `21` repeated-root boundary lifts, and `4` off-domain
+boundary lifts; the remaining `5` escapes are infinity anchors.  On slope
+images, the `16` residual slopes
 split as `16` lifted-core slopes and `13` escape slopes, with all `13` escape
 slopes already overlapping the lifted side in this row.  The verifier also
 checks `88` residual face-pairs inside lifted common cores and finds local
@@ -925,9 +937,11 @@ packets are disjoint.  The common-anchor check certifies all `80=2*40`
 oriented residual edge endpoints in the probe.  The residual anchor ledger
 splits the `69` residual locators into `44` lifted-core residual faces and
 `25` isolated anchor escapes: `4` with `beta_0=0`, `19` with `xi_T in T`, and
-`2` with `xi_T notin D`.  The `65` finite residual-anchor lifts split as `44`
-squarefree in-domain, `19` repeated-root, and `2` off-domain boundary lifts;
-the remaining `4` escapes are infinity anchors.  The `16` residual slopes
+`2` with `xi_T notin D`.  The homogeneous projective lift ledger checks all
+`69` residual locators in the common one-row lifted kernel.  The `65` finite
+residual-anchor lifts split as `44` squarefree in-domain, `19` repeated-root,
+and `2` off-domain boundary lifts; the remaining `4` escapes are infinity
+anchors.  The `16` residual slopes
 split as `16` lifted-core slopes and `16` escape slopes, with complete overlap
 between the two sources in this probe; the lifted-core residual slope fiber
 max is again `1`, checked across `40` residual face-pairs.  The lifted

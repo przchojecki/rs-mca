@@ -30,6 +30,26 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-27 - M1 homogeneous residual lift ledger
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/m1/m1_all_line_hankel_aperiodic_packing.md`,
+  `experimental/scripts/verify_m1_all_line_hankel_aperiodic.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT / EXPERIMENTAL.
+- **What is being added:** The projective residual lift is made homogeneous:
+  every residual locator `T` with `H(v)ell_T=(beta_0,beta_1)` maps through
+  `beta_0 X L_T-beta_1 L_T` into the common one-row Hankel kernel for both
+  numerator and denominator syndromes.  The beta0-zero case is now the same
+  statement with an infinity anchor.
+- **How it is useful:** This removes the last separate case distinction at
+  the lift stage: the full residual M1 family, including isolated escapes, is
+  a filtered boundary/squarefree slice of a common projective lifted-kernel
+  incidence problem.
+- **What to do next:** Use this projective-kernel incidence form to bound the
+  slope image, starting with overlap or exclusion results for repeated-root,
+  off-domain, and infinity-anchor boundary lifts.
+
 ### 2026-06-27 - M1 projective residual lift ledger
 
 - **Agent/model:** Codex.
