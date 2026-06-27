@@ -5393,6 +5393,75 @@ charged one-sided endpoint residual systems.  All cases contradict that the
 class is uncharged.  Hence every uncharged class has at most one family label.
 The displayed count is then Corollary 40.18 applied family by family.
 
+## Corollary 40.23: Refined Mixed-Ladder Closure With A Disjoint Tail Budget
+
+Let `R` be a nonempty finite set of positive consecutive-frontier depths, and
+use the notation
+
+```text
+r_0=min R,
+R_pre={ r in R : h>t+r },
+R_hw ={ r in R : h<=t+r }.
+```
+
+Work over `F_q`, after fixed-root/root-slice short recurrence pieces have been
+charged.  First charge the following residual ledgers:
+
+1. for each `r in R_pre`, the four root-free recurrence families from
+   Corollary 40.7;
+2. if `R_hw` is nonempty, the cutoff endpoint-pair residual and the four
+   one-sided cutoff endpoint residuals from Corollaries 40.19--40.21.
+
+After these charges, the remaining half-window tail denominator ledger is
+family-disjoint by Corollary 40.22.  It is then charged by the following
+family ledgers: if `R_hw` is nonempty, for each active residual family `F` at
+`r_hw=min R_hw`, the projective multiplier ledger attached to its cutoff
+primitive denominator `D_F`, of size at most
+
+```text
+(q^{h-delta_F}-1)/(q-1),        delta_F=deg D_F.
+```
+
+The total family-labelled tail denominator budget is
+
+```text
+TailBudget_hw <= sum_{F active} (q^{h-delta_F}-1)/(q-1)
+              <= 4(q^h-1)/(q-1),                   (RefinedTailBudget)
+```
+
+with absent cutoff families contributing zero.
+
+After these residual charges, all four short frontier checks hold at every
+depth in `R` on the remaining ledger.  Hence the remaining finite fixed-kernel
+and consecutive common-image frontier ledgers at all depths in `R` close after
+charging only the bottom finite parameter systems
+
+```text
+E_{r_0,>b} union Theta_{r_0,>b},
+```
+
+of total size at most `2h` on the remaining ledger.
+
+Thus the refined mixed-ladder closure has no `|R_hw|` denominator multiplier,
+no projective image-line multiplier, and no hidden cross-family overlap inside
+the half-window tail.  The unresolved inputs are exactly the pre-half-window
+residual ledgers, the cutoff primitive denominators and their allowed
+multipliers, and the named cutoff overlap residual systems.
+
+### Proof
+
+The pre-half-window depths are charged by item 1.  Corollary 40.22 says that,
+after the overlap systems in item 2 are charged, the remaining half-window tail
+classes are family-disjoint.  In that tail, Corollary 40.17 puts every
+residual family into the multiplier ledger of its cutoff primitive
+denominator, and those family ledgers charge all remaining tail classes.
+Corollary 40.18 gives the displayed depth-independent tail budget.
+
+Therefore no uncharged root-free residual from Corollary 40.7 remains at any
+depth in `R`.  Corollary 40.15 then gives the closure from the bottom finite
+parameter systems, with total size at most `2h` by Corollary 40.4 and nesting
+by Corollary 40.9.
+
 ## Corollary 41: The Global Common-Image Ledger Is Endpoint-Only
 
 Let `GCI` be the set of monic degree-`c` split core locators `L` for which
@@ -8080,6 +8149,9 @@ Corollary 40.21 identifies scalar-scalar tail overlap with the endpoint-pair
 residual; it does not bound that residual.
 Corollary 40.22 makes the charged half-window tail family-disjoint; it does
 not bound the endpoint-pair or one-sided overlap charges it assumes removed.
+Corollary 40.23 packages the refined mixed-ladder closure; it does not prove
+the pre-half residual, cutoff primitive-denominator, or cutoff overlap
+charges it lists as inputs.
 Corollary 41 packages the common-image branch into endpoint-type ledgers; it
 does not prove the endpoint rank hypotheses needed for the displayed
 `(q+2)binom(n,b)` bound. Corollary 42 packages the globally full core ledger

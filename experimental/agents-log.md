@@ -308,7 +308,11 @@ Keep entries concise and link to the relevant files.
   the unlabelled four-family tail budget.  After those named overlap residuals
   and their multiplier ledgers are charged, the remaining half-window tail is
   family-disjoint: each uncharged primitive denominator class has a unique
-  residual-family label.
+  residual-family label.  The refined mixed-ladder closure now records the
+  final consumable ledger: after pre-half residuals, cutoff overlap residuals,
+  and cutoff family multiplier ledgers are charged, the only remaining finite
+  frontier charge is the bottom set `E_{r_0,>b} union Theta_{r_0,>b}`, of size
+  at most `2h`.
   The common-image three-shift ledger now has the analogous sliding-window
   reduction: for an image line `[y]`, the allowed deeper residuals form a space
   `W_y` of dimension at most one, nonzero only on the `q+1` extended geometric
