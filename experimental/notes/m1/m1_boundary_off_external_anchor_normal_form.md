@@ -5722,6 +5722,62 @@ Corollary 62.  Otherwise `B_D!=0`, and the scalar `theta` is unique.  The
 determinantal description is the standard collinearity equations for two
 vectors.
 
+## Corollary 64: The Endpoint-Short Threshold Is Entirely Half-Window
+
+Let
+
+```text
+h=c-b.
+```
+
+Assume the endpoint-short closure threshold from Corollary 55:
+
+```text
+b >= b_min=max(0,c-(t+2)).
+```
+
+Equivalently, in the nonvacuous range `h>0`,
+
+```text
+h <= t+2.
+```
+
+Then every degree-`<h` endpoint-short denominator certificate lies in the
+half-window range of Corollaries 59--63.
+
+More explicitly:
+
+* fixed-kernel certificates use the window length `s=t+2`; since
+  `e<h<=t+2`, every certificate degree satisfies `e<=s`;
+* first-difference certificates use the window length `s=t+1`; since
+  `e<h<=t+2`, every certificate degree satisfies `e<=t+1=s`.
+
+Therefore, at every threshold where the four short endpoint injectivity checks
+from Corollary 53 are row-count feasible, the remaining root-free
+endpoint-short obstruction has no longer vector-Pade part.  After fixed-root,
+base endpoint, and parameter-collision charges, the only uncharged
+endpoint-short denominator families are primitive reciprocal-domain-pole-free
+rank-one landing loci from Corollary 63, with the explicit multiplier ledger
+from Corollary 60.
+
+Below this threshold, the single endpoint maps cannot be injective by row
+count, so the short-injectivity closure route of Corollary 53 is already
+unavailable.
+
+### Proof
+
+If `h=0`, there are no nonzero degree-`<h` certificates, so the statement is
+vacuous.  Otherwise, Corollary 55 gives `h<=t+2`.
+
+For a fixed-kernel certificate, the window length is `s=t+2`.  Since
+`e<h<=t+2`, we have `e<=s`, so the half-window hypothesis holds.
+
+For a first-difference certificate, the window length is `s=t+1`.  Since
+`e<h` and `h<=t+2`, we have `e<=h-1<=t+1=s`, so the half-window hypothesis
+again holds.  Corollaries 59--63 then apply to every endpoint-short
+certificate.  The below-threshold statement is exactly the row-count
+obstruction from Corollary 55.
+
 ## Non-Claims
 
 This note does not prove
@@ -5868,4 +5924,7 @@ multiplier artifacts from existence questions, but not from certificate
 counting. Corollary 62 charges parameter collisions to base endpoint
 denominators; it does not bound the remaining injective set of primitive
 denominators. Corollary 63 turns that remaining set into explicit rank-one
-landing loci; it does not prove those loci have the required size.
+landing loci; it does not prove those loci have the required size. Corollary
+64 shows that the longer vector-Pade range disappears at the endpoint-short
+closure threshold; it does not bound the resulting primitive rank-one landing
+loci.

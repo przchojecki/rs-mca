@@ -340,7 +340,12 @@ Keep entries concise and link to the relevant files.
   `U_D=R_{t+2}(D;u)`, `V_D=R_{t+2}(D;v)` outside `U_D=V_D=0`; for
   first-difference parameters, `A_D=theta B_D` in the doubled
   `(u,v)` window outside `B_D=0`.  These are `2 x 2` minor loci in the
-  denominator coefficients plus the root-free open condition.
+  denominator coefficients plus the root-free open condition.  This half-window
+  reduction covers the entire row-count feasible endpoint-short closure
+  threshold: if `h=c-b` and `b>=max(0,c-(t+2))`, then `h<=t+2`; fixed-kernel
+  windows have `s=t+2`, and first-difference windows have `s=t+1` with every
+  degree `e<h` satisfying `e<=s`.  Thus the longer vector-Pade range is not an
+  extra obstruction at the Corollary 55 threshold.
 - **What to do next:** Bound or charge the unique-neighbor nondegenerate
   star-free shadow ledger, then charge the four base endpoint spaces, the
   resulting short-annihilator endpoint systems, finite-exception endpoint
@@ -348,8 +353,8 @@ Keep entries concise and link to the relevant files.
   short endpoint annihilator failures, root-free short-annihilator families,
   low-dimensional common endpoint recurrence spaces, the corresponding
   primitive reciprocal-domain-pole-free denominator families, their endpoint
-  collision charges, rank-one landing loci, root-free multipliers, the longer
-  vector-Pade range, and the common-root-free
+  collision charges, rank-one landing loci, root-free multipliers, and the
+  common-root-free
   fixed-kernel and first-difference moving-certificate loci to
   fixed-slope/root-slice, quotient-periodic, endpoint, or active-codegree
   ledgers.
