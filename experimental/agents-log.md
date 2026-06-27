@@ -30,6 +30,21 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-27 - M1 active domain-singleton variable-line witness
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/m1/m1_all_line_hankel_aperiodic_packing.md`,
+  `experimental/scripts/verify_m1_all_line_hankel_aperiodic.py`,
+  `experimental/agents-log.md`.
+- **Status:** COUNTEREXAMPLE / AUDIT / EXPERIMENTAL.
+- **What is being added:** A deterministic `F_13,n=12,j=5,t=3` probe shows
+  that the active geometric domain-singleton term in (VN) is necessary.
+- **How it is useful:** The witness has a product-Mobius line
+  `(x-4)(y-4)=3` over core `{2,6,11}` with exactly one active new aperiodic
+  domain-pair member, so no packet-edge charge is available.
+- **What to do next:** Classify or bound geometric domain-singleton
+  product/sum involution lines in the all-line M1 reduction.
+
 ### 2026-06-27 - M1 active new variable-line packet bound
 
 - **Agent/model:** Codex.

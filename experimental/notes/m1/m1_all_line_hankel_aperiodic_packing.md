@@ -711,10 +711,9 @@ removed by the charged quotient ledger; it is not new aperiodic mass.  Thus
 after quotient-periodic locators are charged, the uncharged singleton
 obstruction is only the geometric domain-singleton case `d_i=m_i=1`, plus the
 different-slope edge energy.  The verifier checks (VQ) globally and
-core-by-core.  In the current deterministic probes both the geometric
-domain-singleton term and the quotient-defect term are `0`, so the
-non-fixed packet slope counts are still paid entirely by twice the packet-edge
-count.
+core-by-core.  In the three packet-edge probes below both the geometric
+domain-singleton term and the quotient-defect term are `0`, so the non-fixed
+packet slope counts are still paid entirely by twice the packet-edge count.
 
 For the actual residual variable-line ledger one can sharpen further by
 counting only active new slopes.  Let `r_i` be the number of aperiodic slopes
@@ -732,10 +731,25 @@ members are active new slopes, and packets with `m_i=1` reduce as in (VQ).
 Together with packet-edge injectivity, (VN) charges active new non-fixed
 variable-line slopes to the global different-slope two-exchange edge ledger,
 up to true domain singletons, quotient defects, and fully active two-point
-packets.  The verifier checks this globally and core-by-core.  In the current
-probes the active new counts are `0`, `1`, and `2`, with sharp injected-edge
-bounds `6`, `3`, and `3`; the active singleton, active domain-singleton,
-active two-packet, and quotient-defect terms are all `0`.
+packets.  The verifier checks this globally and core-by-core.  In the three
+packet-edge probes the active new counts are `0`, `1`, and `2`, with sharp
+injected-edge bounds `6`, `3`, and `3`; the active singleton,
+active domain-singleton, active two-packet, and quotient-defect terms are all
+`0`.
+
+The geometric domain-singleton term in (VN) is necessary.  A deterministic
+`F_13`, `n=12`, `j=5`, `t=3` probe has core `R={2,6,11}` and a product-Mobius
+proper variable line
+
+```text
+s+3p=0,     equivalently     (x-4)(y-4)=3.
+```
+
+The parameter `4` is not in the core, and exactly one noncontained domain pair
+on this line lies in the cyclic domain packet: `{1,3}`.  Its complement
+`{1,2,3,6,11}` is aperiodic and contributes the active new slope `11`.  There
+are no packet edges to charge, so this row is paid exactly by the
+domain-singleton term: `r=d=m=1`.
 
 ## Different-Slope One-Exchange Quadratic Slice
 
@@ -3110,12 +3124,13 @@ parameter `6` is not in the core.  The packet has three aperiodic slopes
 The packet-edge check charges these packets to different-slope two-exchange
 edges: `6` packet edges in the same-slope probe and `3` packet edges in the
 residual witness probe and the unanchored probe respectively.
-The stronger singleton-plus-edge bound is also checked: no audited
-non-fixed variable packet is a singleton, so the packet slope counts are paid
-entirely by twice the packet-edge count in these rows.
-The refined quotient-aware version is checked as well: the audited rows have
-no geometric domain-singleton packets and no quotient defects inside the
-non-fixed variable-line packets.
+The stronger singleton-plus-edge bound is also checked: in these three
+packet-edge probes no non-fixed variable packet is a singleton, so the packet
+slope counts are paid entirely by twice the packet-edge count.  The separate
+active domain-singleton probe shows that this is not a structural no-singleton
+theorem: a product-Mobius line over core `{2,6,11}` has one active new
+aperiodic domain-pair member and no packet edge.  Across these rows the
+quotient-defect term remains `0`.
 
 The `F_13`, `n=12`, `j=4`, `t=2` row is kept as a boundary-only counterexample
 to the tempting squarefree-absorption shortcut.  In all four deterministic
