@@ -297,7 +297,10 @@ Keep entries concise and link to the relevant files.
   before the deeper truncation equations are imposed.  Summing over the four
   residual families gives a family-labelled half-window tail budget
   `sum_F (q^(h-delta_F)-1)/(q-1) <= 4(q^h-1)/(q-1)`, with absent cutoff
-  families contributing zero.
+  families contributing zero.  Any primitive denominator class common to the
+  ordinary paired and shifted paired tails is now identified with an
+  endpoint-pair residual certificate at the first half-window depth, so paired
+  tail overlaps are endpoint-pair charges rather than new tail budget.
   The common-image three-shift ledger now has the analogous sliding-window
   reduction: for an image line `[y]`, the allowed deeper residuals form a space
   `W_y` of dimension at most one, nonzero only on the `q+1` extended geometric

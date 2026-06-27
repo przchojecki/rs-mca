@@ -5206,6 +5206,50 @@ Since each active `delta_F` is nonnegative, every summand is at most
 to unlabelled classes can only identify classes and therefore cannot increase
 the count.  The paired-overlap statement records Corollaries 40.12 and 40.13.
 
+## Corollary 40.19: Paired Tail Overlaps Are Endpoint-Pair Charges
+
+Keep the half-window tail notation above.  Let `TailPrim(u,v)` and
+`TailPrim(Su,Sv)` be the unlabelled primitive denominator classes that occur
+somewhere in the half-window tail for the ordinary paired residual family and
+the shifted paired residual family.
+
+If a denominator class `D` lies in both sets, then `D` is an endpoint-pair
+certificate at the first half-window depth:
+
+```text
+H_{t+r_hw,h-1}(u)Q=H_{t+r_hw,h-1}(v)Q=0
+```
+
+for the reversed locator `Q` attached to `D`.  Consequently, after charging
+the endpoint-pair residual at the cutoff depth, the ordinary paired tail and
+the shifted paired tail have no common uncharged primitive denominator class.
+Equivalently, paired-family intersections in the half-window tail are not a
+new tail budget; they are endpoint-pair residual multiplier charges.
+
+### Proof
+
+Suppose `D` occurs in the ordinary paired tail at depth `r_1 in R_hw` and in
+the shifted paired tail at depth `r_2 in R_hw`.  By Corollary 40.16, the same
+denominator `D` is a valid cutoff-depth certificate for the ordinary paired
+family and also for the shifted paired family.  Thus the corresponding
+root-free locator `Q` satisfies
+
+```text
+H_s(u)Q=H_s(v)Q=0,
+H_s(S u)Q=H_s(S v)Q=0,        s=t+r_hw-1.
+```
+
+Corollary 40.12 identifies this intersection with the endpoint-pair residual,
+namely
+
+```text
+H_{s+1}(u)Q=H_{s+1}(v)Q=0.
+```
+
+Since `s+1=t+r_hw`, this is the displayed endpoint-pair certificate at the
+cutoff depth.  Therefore any common paired-tail denominator is charged when
+the cutoff endpoint-pair residual and its multiplier ledger are charged.
+
 ## Corollary 41: The Global Common-Image Ledger Is Endpoint-Only
 
 Let `GCI` be the set of monic degree-`c` split core locators `L` for which
@@ -7885,6 +7929,8 @@ cutoff primitive denominator; it does not prove which multiplier classes
 satisfy the deeper recurrence equations.
 Corollary 40.18 sums those ambient ledgers over the four residual families; it
 does not turn the denominator-class budget into an MCA slope count.
+Corollary 40.19 identifies paired-tail overlaps with endpoint-pair residual
+charges; it does not bound the endpoint-pair residual.
 Corollary 41 packages the common-image branch into endpoint-type ledgers; it
 does not prove the endpoint rank hypotheses needed for the displayed
 `(q+2)binom(n,b)` bound. Corollary 42 packages the globally full core ledger
