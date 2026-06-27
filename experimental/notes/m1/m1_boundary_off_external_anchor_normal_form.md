@@ -5038,6 +5038,58 @@ Corollary 40.4 gives their total charge at most `2h` on that remaining
 ledger.  Corollary 40.3 closes the uncharged finite fixed-kernel and
 consecutive common-image ledgers after those bottom systems are charged.
 
+## Corollary 40.16: Deeper Half-Window Primitive Denominators Refine The Cutoff
+
+Keep the notation of Corollary 40.14, and fix one of the four residual
+families
+
+```text
+u,        v,        (u,v),        (S u,S v).
+```
+
+Assume this family has a root-free half-window witness at the cutoff depth
+`r_hw`, and let `D_hw(T)` be its primitive reduced denominator from
+Corollary 40.8.  If the same family has a root-free witness at a deeper
+half-window depth `r in R_hw`, and `D_r(T)` is the primitive reduced
+denominator at that deeper depth, then
+
+```text
+D_hw(T) divides D_r(T).                             (TailDiv)
+```
+
+Moreover, writing
+
+```text
+D_r(T)=D_hw(T)M_r(T),
+```
+
+the multiplier satisfies
+
+```text
+deg M_r <= h-1-deg D_hw,
+```
+
+and has no reciprocal-domain zero whenever `D_r` is root-free.  Thus deeper
+half-window primitive denominators do not introduce new primitive bases: they
+lie inside the multiplier ledger attached to the cutoff primitive denominator
+for the same residual family.
+
+### Proof
+
+By Corollary 40.10 applied to the half-window tail, every deeper witness in
+the fixed family is also a cutoff-depth witness for that family.  Corollary 61
+applied at the deeper depth says that the deeper primitive denominator `D_r`
+itself is a valid root-free certificate at depth `r`.  Therefore `D_r` is also
+a valid certificate at the cutoff depth `r_hw`.
+
+At the cutoff depth, Corollary 59 gives a single reduced scalar or vector
+rational function for the family, and Corollary 60 says that every
+cutoff-depth certificate denominator is divisible by the cutoff primitive
+denominator `D_hw`.  Applying this to the certificate denominator `D_r` gives
+(TailDiv) and the displayed degree bound for the quotient.  If `D_r` is
+root-free, Corollary 58 passes reciprocal-domain-pole-freeness to both
+factors, so `M_r` has no reciprocal-domain zero.
+
 ## Corollary 41: The Global Common-Image Ledger Is Endpoint-Only
 
 Let `GCI` be the set of monic degree-`c` split core locators `L` for which
@@ -7709,6 +7761,9 @@ resolve the pre-half-window longer-Pade residuals.
 Corollary 40.15 packages the mixed-ladder closure ledger; it does not prove
 the pre-half residual charges or bound the first half-window primitive
 denominator targets.
+Corollary 40.16 proves tail primitive denominators refine the cutoff
+denominator; it does not count the cutoff primitive bases or the allowed
+multiplier refinements.
 Corollary 41 packages the common-image branch into endpoint-type ledgers; it
 does not prove the endpoint rank hypotheses needed for the displayed
 `(q+2)binom(n,b)` bound. Corollary 42 packages the globally full core ledger

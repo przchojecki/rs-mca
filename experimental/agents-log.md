@@ -287,7 +287,11 @@ Keep entries concise and link to the relevant files.
   ledger: after those pre-half residuals and the first half-window primitive
   targets are charged, only the bottom finite parameter systems, total size at
   most `2h` on the remaining ledger, are needed for the consecutive
-  fixed-kernel/common-image frontier systems.
+  fixed-kernel/common-image frontier systems.  The half-window tail also has
+  primitive-denominator divisibility: every deeper primitive denominator in
+  the same residual family is a multiple of the first half-window primitive
+  denominator, so deeper denominators are refinements inside the cutoff
+  multiplier ledger rather than new primitive bases.
   The common-image three-shift ledger now has the analogous sliding-window
   reduction: for an image line `[y]`, the allowed deeper residuals form a space
   `W_y` of dimension at most one, nonzero only on the `q+1` extended geometric
