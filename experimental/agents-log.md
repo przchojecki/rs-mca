@@ -96,7 +96,10 @@ Keep entries concise and link to the relevant files.
   A quadratic full-anchor-star test shows that, for a fixed external anchor,
   any row-pair minor vanishing on all shadows through a domain root `alpha`
   has the evaluation factor `L_S(alpha)`; hence full anchor stars are
-  fixed-root/root-slice charges rather than a new aperiodic residual.
+  fixed-root/root-slice charges rather than a new aperiodic residual.  Since
+  anchor minors are quadratic, repeated full stars are classified exactly: two
+  distinct full stars force a scalar multiple of
+  `L_S(alpha_1)L_S(alpha_2)`, and three force the minor to vanish identically.
 - **How it is useful:** This sharpens one of the two live residual objects in
   the non-fixed variable-line branch.  It does not prove the final M1 bound,
   but it turns the boundary image into a precise quadratic-anchor/ruled-branch
@@ -118,7 +121,8 @@ Keep entries concise and link to the relevant files.
   and the separated-family lemma shows that residual cannot be removed using
   low-exchange information alone.  The full-anchor-star test then removes the
   most obvious Hankel degeneracy from that residual by charging it to
-  fixed-root/root-slice factors.
+  fixed-root/root-slice factors, with repeated full-star factors completely
+  classified for each anchor minor.
 - **What to do next:** Bound or charge the unique-neighbor nondegenerate
   star-free shadow ledger, and charge the ruled exceptional low-rank loci to
   fixed-slope/root-slice, endpoint, projective, quotient-periodic, or
