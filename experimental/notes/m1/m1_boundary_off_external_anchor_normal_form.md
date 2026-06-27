@@ -2593,6 +2593,88 @@ dimension is at least `b+1`.  Choose `b+1` independent kernel vectors over
 `K` and clear denominators to get (LowerPIC).  The converse is rank-nullity
 over `K`.
 
+## Corollary 30: Fixed-Anchor Full-Core Closure After Lower Rank Charges
+
+Fix an external anchor `beta`, put `c=m-1`, and choose `0<=b<c`.  Assign each
+full core-line in `FullCoreGate(beta)` to one of the lower alternatives from
+Corollary 24:
+
+```text
+u-endpoint, v-endpoint, finite fixed kernel, or projective common image.
+```
+
+Let `ChargedCore(beta)` be the set of assigned full cores lying in one of the
+following exceptional lower ledgers:
+
+```text
+endpoint systems with e_u(beta)>b or e_v(beta)>b;
+finite fixed-kernel slopes lambda with e_lambda(beta)>b;
+projective image lines I with e_I(beta)>b;
+persistent moving-kernel or moving-image certificate ledgers.
+```
+
+Assume every uncharged lower endpoint system has direction dimension at most
+`b`.  Then the uncharged fixed-anchor full rank-one shadows
+
+```text
+Z_beta^{<=b}
+ = { S subset D : |S|=m, rank M_S(beta)<=1,
+                  no (m-1)-core of S lies in ChargedCore(beta) }
+```
+
+satisfy
+
+```text
+|Z_beta^{<=b}|
+ <= (2/m) binom(n,m-1)
+    + (n-m+1) ( 2 + q + (q^t-1)/(q-1) ) binom(n,b).  (FAC)
+```
+
+If both lower endpoint dimensions are at most `b`, then Corollary 28 rules out
+the persistent lower fixed-kernel alternative, and Corollary 27 gives
+
+```text
+|{lambda : e_lambda(beta)>b}| <= c-b
+```
+
+for the finite fixed-kernel exceptional slopes.  If the lower common-image
+minors are not all identically zero, Corollary 29 gives
+
+```text
+|{I : e_I(beta)>b}| <= ((c-b) q^(t-1))/(q-1)
+```
+
+for the projective image-line exceptional locus.  Thus, after these explicitly
+named lower exceptional ledgers are charged, the fixed-anchor full gate is
+reduced to the one-root-loss residual from Corollary 25 plus bounded-rank
+lower row-cut ledgers.
+
+### Proof
+
+Split the shadows in `Z_beta^{<=b}` into two classes.
+
+First, suppose no `(m-1)`-core of `S` lies in `FullCoreGate(beta)`.  Corollary
+25 bounds these shadows by
+
+```text
+(2/m) binom(n,m-1).
+```
+
+Second, suppose `S` has at least one core in `FullCoreGate(beta)`.  Since
+`S` has no core in `ChargedCore(beta)`, each assigned full core that we count
+lies in a lower row-cut system of direction dimension at most `b`.  Corollary
+26 bounds the number of such uncharged full cores by
+
+```text
+( 2 + q + (q^t-1)/(q-1) ) binom(n,b),
+```
+
+and each core extends to at most `n-m+1` shadows.  Adding the two classes gives
+(FAC).
+
+The final assertions are just Corollaries 28, 27, and 29 applied to the lower
+fixed-kernel and lower common-image exceptional sets.
+
 ## Non-Claims
 
 This note does not prove
@@ -2662,3 +2744,6 @@ those endpoint ledgers without a separate charge.
 Corollary 29 makes the lower common-image ledger projective-determinantal; it
 does not bound the split cores on the exceptional low-rank image lines or rule
 out the moving-image certificate without a separate charge.
+Corollary 30 packages the fixed-anchor full-core analysis after lower
+rank-ledger charges; it still leaves the one-root-loss residual and the
+explicit charged exceptional ledgers as separate obligations.

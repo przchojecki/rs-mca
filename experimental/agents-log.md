@@ -167,7 +167,12 @@ Keep entries concise and link to the relevant files.
   full-core ledger is now also projective-determinantal: low-rank image lines
   are cut out by homogeneous minors in `[y]`, outside that locus each image
   line contributes at most `binom(n,b)` cores, and the fully persistent case is
-  recorded as a moving-image core certificate.
+  recorded as a moving-image core certificate.  These lower ledgers are now
+  packaged into a fixed-anchor full-core closure criterion: after lower
+  endpoint, fixed-kernel, projective-image, and moving-certificate charges, the
+  remaining full-gate shadows for that anchor are bounded by the Corollary 25
+  one-root-loss residual plus
+  `(n-m+1)(2+q+(q^t-1)/(q-1)) binom(n,b)`.
 - **What to do next:** Bound or charge the unique-neighbor nondegenerate
   star-free shadow ledger, and charge the ruled exceptional low-rank loci to
   fixed-slope/root-slice, endpoint, projective, quotient-periodic, or

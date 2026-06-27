@@ -1737,6 +1737,17 @@ homogeneous \((c-b)\times(c-b)\) minors in projective \(y\); if it is not
 identically persistent it has at most \((c-b)q^{t-1}/(q-1)\) projective lines.
 Outside it, the lower common-image full-core ledger contributes at most
 \(((q^t-1)/(q-1))\binom{n}{b}\) cores before the same extension factor.
+Combining these lower ledgers gives a fixed-anchor closure criterion: after
+charging lower endpoint systems with dimension \(>b\), lower fixed-kernel
+slopes with dimension \(>b\), projective image lines with dimension \(>b\), and
+the persistent moving-certificate ledgers, the remaining full-gate shadows for
+that anchor are bounded by
+\[
+  \frac{2}{j-1}\binom{n}{j-2}
+  +(n-j+2)\left(2+q+\frac{q^t-1}{q-1}\right)\binom{n}{b}.
+\]
+This is a fixed-anchor closure statement for the full-core ruled pieces; the
+one-root-loss residual remains a separate boundary-shadow obligation.
 
 In the ruled part, the common-kernel branch has a fixed projective boundary slope,
 while the common-image branch forces the shadow locator \(L_S\) to satisfy the
