@@ -1971,6 +1971,89 @@ def verify_boundary_only_projective_lift_probe(summary: dict[str, object]) -> No
             raise AssertionError("boundary-only probe slopes were absorbed by lifted side")
 
 
+def verify_f13_boundary_zero_sum_product_model(case: Case) -> dict[str, int]:
+    if (
+        case.name != "F13_order12_j4_t2"
+        or case.p != 13
+        or case.n != 12
+        or case.j != 4
+        or case.t != 2
+    ):
+        raise AssertionError("zero-sum product model was called on the wrong case")
+    domain, exponents, _ = cyclic_domain(case.p, case.n)
+    expected_residual_products = {1: 4, 3: 4, 7: 4, 8: 4, 9: 4, 11: 4}
+    checked_seeds = 0
+    for seed in case.seeds:
+        f = {x: word_value("f", x, case.p, seed) for x in domain}
+        g = {x: word_value("g", x, case.p, seed) for x in domain}
+        u = syndrome(f, domain, case.j + case.t, case.p)
+        v = syndrome(g, domain, case.j + case.t, case.p)
+        expected_numerator_top = (2 * seed + 3) % case.p
+        expected_denominator_factor = (3 * seed + 1) % case.p
+        zero_sum_locators = 0
+        quotient_zero_sum_locators = 0
+        residual_product_counts: dict[int, int] = {}
+        residual_product_slopes: dict[int, set[int]] = {}
+        for complement in combinations(domain, case.j):
+            complement_sum = sum(complement) % case.p
+            complement_product = 1
+            for root in complement:
+                complement_product = complement_product * root % case.p
+            ell = locator(complement, case.p)
+            a_vec = hankel_apply(u, case.t, case.j, ell, case.p)
+            b_vec = hankel_apply(v, case.t, case.j, ell, case.p)
+            slope = slope_from_gate(a_vec, b_vec, case.p)
+            bad = slope is not None and any(value != 0 for value in b_vec)
+            zero_sum = complement_sum == 0
+            if bad != zero_sum:
+                raise AssertionError("F13 boundary model bad locus was not zero-sum")
+            if not zero_sum:
+                continue
+            zero_sum_locators += 1
+            if a_vec != (expected_numerator_top, 0):
+                raise AssertionError("F13 zero-sum numerator top row had wrong form")
+            expected_denominator_top = (
+                expected_denominator_factor * complement_product
+            ) % case.p
+            if b_vec != (expected_denominator_top, 0):
+                raise AssertionError("F13 zero-sum denominator top row had wrong form")
+            expected_slope = (
+                -expected_numerator_top * inv_mod(expected_denominator_top, case.p)
+            ) % case.p
+            if slope != expected_slope:
+                raise AssertionError("F13 zero-sum product slope formula failed")
+            if is_quotient_periodic(
+                complement, domain, exponents, case.charged_fiber_sizes
+            ):
+                quotient_zero_sum_locators += 1
+                continue
+            residual_product_counts[complement_product] = (
+                residual_product_counts.get(complement_product, 0) + 1
+            )
+            residual_product_slopes.setdefault(complement_product, set()).add(slope)
+        if zero_sum_locators != 39:
+            raise AssertionError("F13 boundary model had wrong zero-sum count")
+        if quotient_zero_sum_locators != 15:
+            raise AssertionError("F13 boundary model had wrong quotient zero-sum count")
+        if residual_product_counts != expected_residual_products:
+            raise AssertionError("F13 residual product fibers had wrong sizes")
+        if any(len(slopes) != 1 for slopes in residual_product_slopes.values()):
+            raise AssertionError("F13 residual product fiber had multiple slopes")
+        if len({next(iter(slopes)) for slopes in residual_product_slopes.values()}) != 6:
+            raise AssertionError("F13 residual product fibers did not give six slopes")
+        checked_seeds += 1
+    if checked_seeds != 4:
+        raise AssertionError("F13 boundary model did not check four seeds")
+    return {
+        "seeds": checked_seeds,
+        "zero_sum_locators": 39,
+        "quotient_zero_sum_locators": 15,
+        "residual_zero_sum_locators": 24,
+        "residual_product_fibers": len(expected_residual_products),
+        "residual_product_fiber_size": max(expected_residual_products.values()),
+    }
+
+
 def verify_rank_one_zero_slice_probe() -> dict[str, object]:
     case = Case(
         "F17_full_j4_t2_rank1_probe",
@@ -2005,7 +2088,19 @@ def main() -> None:
         summary for summary in summaries if summary["case"].name == "F13_order12_j4_t2"
     )
     verify_boundary_only_projective_lift_probe(boundary_only_summary)
+    boundary_product_model = verify_f13_boundary_zero_sum_product_model(
+        boundary_only_summary["case"]
+    )
     rank_one_probe = verify_rank_one_zero_slice_probe()
+    print(
+        "F13_order12_j4_t2_boundary_model: "
+        f"seeds={boundary_product_model['seeds']} "
+        f"zero_sum_locators={boundary_product_model['zero_sum_locators']} "
+        f"quotient_zero_sum_locators={boundary_product_model['quotient_zero_sum_locators']} "
+        f"residual_zero_sum_locators={boundary_product_model['residual_zero_sum_locators']} "
+        f"residual_product_fibers={boundary_product_model['residual_product_fibers']} "
+        f"residual_product_fiber_size={boundary_product_model['residual_product_fiber_size']}"
+    )
     for summary in summaries:
         case = summary["case"]
         for row in summary["rows"]:

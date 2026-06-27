@@ -30,6 +30,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-27 - M1 exact F13 boundary product model
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/m1/m1_all_line_hankel_aperiodic_packing.md`,
+  `experimental/scripts/verify_m1_all_line_hankel_aperiodic.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT / EXPERIMENTAL.
+- **What is being added:** The `F_13`, `n=12`, `j=4`, `t=2` boundary-only
+  row is upgraded from an aggregate counterexample to an exact finite model.
+  For every seed, bad locators are exactly the zero-sum four-subsets of
+  `F_13^*`; the common external anchor is `0`; and the bad slope is
+  `-(2s+3)/((3s+1)prod(T))`.
+- **How it is useful:** This identifies the six residual boundary slopes as
+  a product/top-coefficient image inside a single external anchor.  It gives a
+  concrete floor model for any proposed per-anchor M1 boundary bound.
+- **What to do next:** Use the product model as a test case for fixed-pole
+  slope-image bounds, especially arguments that try to control products or
+  top interpolation coefficients after quotient-periodic subsets are charged.
+
 ### 2026-06-27 - M1 external-anchor twisted reduction
 
 - **Agent/model:** Codex.

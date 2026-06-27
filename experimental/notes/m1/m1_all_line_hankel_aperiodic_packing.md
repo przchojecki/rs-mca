@@ -709,6 +709,52 @@ cancels `c_{k+1}` and then cancels `c_k` automatically by (EA2).  Hence
 `u+z_T v` has degree `< k` on `B`.  The verifier checks this coefficient
 identity and the resulting degree drop for every off-domain residual locator.
 
+## Exact F13 Boundary Product Model
+
+The `F_13`, `n=12`, `j=4`, `t=2` boundary-only row is not only a numerical
+counterexample.  It has a closed finite model.  Write `D=F_13^*`, and let
+`T subset D` have size `4`.  For seed `s in {0,1,2,3}`, the words used by the
+verifier restrict on `D` to polynomials whose relevant top terms are
+
+```text
+u_s(X) = (2s+3)X^7 + lower terms,
+v_s(X) = (3s+1)X^11 + lower terms.
+```
+
+The verifier checks the following exact assertions for every seed.  A locator
+`T` is bad if and only if
+
+```text
+sum_{x in T} x = 0.
+```
+
+For such a zero-sum `T`, the common external anchor is `xi=0`, and
+
+```text
+H_{2,4}(u_s)L_T = (2s+3, 0),
+H_{2,4}(v_s)L_T = ((3s+1)prod_{x in T}x, 0).
+```
+
+Thus the bad slope is the product slope
+
+```text
+z_T = -(2s+3) / ((3s+1)prod_{x in T}x).        (EA3)
+```
+
+There are `39` zero-sum four-subsets of `F_13^*`.  The quotient-periodic
+charge removes `15` of them.  The `24` residual boundary locators split into
+six product fibers
+
+```text
+prod(T) in {1,3,7,8,9,11},
+```
+
+with exactly four residual locators in each product fiber; each product fiber
+has one slope by (EA3).  This explains the boundary-only row's six slopes as
+a product image inside one external anchor.  It is a concrete model for the
+next task: a fixed-anchor proof must control product/top-coefficient images,
+not just the number of external anchors.
+
 ## Residual Slope-Image Ledger
 
 The anchor ledger also splits the residual slope image itself.  Define
@@ -1054,6 +1100,9 @@ enumerates small cyclic-domain cases.  For each case it:
   Hankel row equals the top interpolation coefficient, the anchor equation
   locks the top two coefficients by `xi-sum(B)`, and the residual slope
   cancels both top coefficients;
+- verifies the exact `F_13` boundary product model: bad locators are exactly
+  the zero-sum four-subsets, quotient charging removes `15` of the `39`, and
+  the `24` residual locators split into six four-element product fibers;
 - verifies the residual slope-image ledger `Z_res=Z_lift union Z_esc` and
   checks that residual faces inside each lifted common core have pairwise
   distinct slopes;
