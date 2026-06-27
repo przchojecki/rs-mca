@@ -30,6 +30,26 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-27 - M1 anchored variable-line packet bound
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/m1/m1_all_line_hankel_aperiodic_packing.md`,
+  `experimental/scripts/verify_m1_all_line_hankel_aperiodic.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT / EXPERIMENTAL.
+- **What is being added:** The variable proper-line residual is refined to an
+  exact involution-packet bound: on each variable proper line, injectivity gives
+  `|Z_L^new| <= |Z_L| <= |P_L^nc(R)|`, where `P_L^nc(R)` is the set of
+  noncontained domain-pair points on the product-Mobius or fixed-sum
+  involution.
+- **How it is useful:** This replaces the crude field-line size with the
+  actual anchored packet size in the audited `t=3` obstruction.  The verifier
+  now records anchored versus unanchored non-fixed variable lines; all audited
+  examples are anchored, with maximum packet size `3`.
+- **What to do next:** Prove a uniform packing or recursive charge for anchored
+  product-Mobius/fixed-sum packets, and continue searching for unanchored
+  variable-line obstructions.
+
 ### 2026-06-27 - M1 variable proper-line residual obstruction
 
 - **Agent/model:** Codex.

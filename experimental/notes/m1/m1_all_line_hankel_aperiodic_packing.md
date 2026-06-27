@@ -606,6 +606,39 @@ involution
 Its aperiodic domain-pair slopes are `{1,8,9}`; the current root/full/fixed-root
 charges cover `{1,8}`, leaving the single new residual slope `9`.
 
+There is still a useful exact packet bound for this residual branch.  For a
+proper non-fixed determinant line `L`, let
+
+```text
+P_L^nc(R) = { {x,y} subset D\R : (x+y,xy) lies on L and
+              H_{3,j}(v) ell_{R union {x,y}} != 0 }.
+```
+
+The line model gives an involution on possible exchanged roots:
+
+```text
+product:   x |-> alpha + kappa/(x-alpha),
+sum:       x |-> s_0-x.
+```
+
+The slope map on a variable proper line is injective on noncontained line
+points, so the aperiodic slope image on `L` is exactly the image of the
+aperiodic subpacket inside `P_L^nc(R)`.  Hence
+
+```text
+|Z_L^new| <= |Z_L| <= |P_L^nc(R)|.
+```
+
+This is small as a local line statement; the remaining global M1 problem is to
+sum or recursively charge these one-dimensional packets without losing a
+factor per rung.  In all audited variable proper non-fixed lines so far, the
+involution parameter is anchored in the core `R`: for the product case
+`alpha in R`, and for the fixed-sum case `s_0 in R`.  The verifier records
+anchored versus unanchored variable proper lines and the largest packet
+`|P_L^nc(R)|`.  Both the same-slope probe and the residual witness have maximum
+packet size `3`; the residual witness has one new slope inside such an
+anchored packet.
+
 ## Different-Slope One-Exchange Quadratic Slice
 
 The different-slope part of the one-exchange profile has a complementary
@@ -2966,6 +2999,12 @@ core `{1,6,8}`, equivalently `(x-8)(y-8)=1`; its aperiodic slopes are
 `{1,8,9}` and only `9` is new.  This is the counterexample-first check: the
 residual variable proper-line branch is real, but it is now isolated to a
 single one-dimensional projective-linear slope image in the audited window.
+The verifier also records the induced involution packet size.  In the
+same-slope probe, both variable proper non-fixed lines are anchored in their
+cores, have packet size `3`, and leave no new slope after charges.  In the
+residual witness probe, the single product-Mobius variable line is also
+anchored, has packet size `3`, and leaves one new slope.  No audited variable
+proper non-fixed line is currently unanchored.
 
 The `F_13`, `n=12`, `j=4`, `t=2` row is kept as a boundary-only counterexample
 to the tempting squarefree-absorption shortcut.  In all four deterministic
