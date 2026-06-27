@@ -30,6 +30,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-27 - M1 active residual-ratio ledger
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/m1/m1_all_line_hankel_aperiodic_packing.md`,
+  `experimental/scripts/verify_m1_all_line_hankel_aperiodic.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT / EXPERIMENTAL.
+- **What is being added:** The active common-core term is rewritten as an
+  exact residual-coordinate ratio ledger: for each active lifted common core
+  `W`, surviving residual faces are the coordinates `x` where
+  `rho_W(x)=-(f(x)-F_0(x))/(g(x)-G_0(x))` survives the prior charges, and
+  root-slice peeling makes `rho_W` injective on that active set.
+- **How it is useful:** This localizes the M1 all-line obstruction to active
+  residual ratios instead of all one-row common bases, sharpening the no-loss
+  explanation behind `|Z_lift| <= (j+1)N_active`.
+- **What to do next:** Seek a structural bound on the number of active
+  residual-ratio cores, or prove that the active ratio sets are controlled by
+  the endpoint one-row fiber theorem used in the two-input reduction.
+
 ### 2026-06-27 - M1 active common-core reduction
 
 - **Agent/model:** Codex.

@@ -629,6 +629,7 @@ def root_slice_profile(
             "root_slice_lifted_v_t1_cores": 0,
             "root_slice_lifted_common_cores": 0,
             "root_slice_lifted_common_active_cores": 0,
+            "root_slice_lifted_common_inactive_cores": 0,
             "root_slice_lifted_common_core_noncontained_faces": 0,
             "root_slice_lifted_common_core_aperiodic_faces": 0,
             "root_slice_lifted_common_core_residual_faces": 0,
@@ -638,6 +639,7 @@ def root_slice_profile(
             "root_slice_lifted_common_core_max_residual_faces": 0,
             "root_slice_lifted_common_core_common_base_checks": 0,
             "root_slice_lifted_common_core_residual_slope_checks": 0,
+            "root_slice_lifted_common_core_active_ratio_checks": 0,
             "root_slice_lifted_common_core_residual_slope_pair_checks": 0,
             "root_slice_lifted_common_core_residual_slope_fiber_max": 0,
         }
@@ -1145,6 +1147,7 @@ def root_slice_profile(
     lifted_common_core_max_residual_faces = 0
     lifted_common_core_common_base_checks = 0
     lifted_common_core_residual_slope_checks = 0
+    lifted_common_core_active_ratio_checks = 0
     lifted_common_core_residual_slope_pair_checks = 0
     lifted_common_core_residual_slope_fiber_max = 0
     lifted_common_core_residual_face_indices: set[int] = set()
@@ -1218,6 +1221,7 @@ def root_slice_profile(
                 residual_face_indices.add(residual_idx)
                 residual_face_slopes.append(slope)
                 lifted_common_core_residual_face_indices.add(residual_idx)
+                lifted_common_core_active_ratio_checks += 1
         residual_face_count = len(residual_face_indices)
         if residual_face_count != len(residual_face_slopes):
             raise AssertionError("lifted common core residual slope ledger lost a face")
@@ -1257,6 +1261,8 @@ def root_slice_profile(
         raise AssertionError("anchor-lifted face count missed lifted common residual faces")
     if residual_anchor_lifted_face_indices != lifted_common_core_residual_face_indices:
         raise AssertionError("anchor-lifted faces disagreed with lifted common residual faces")
+    if lifted_common_core_active_ratio_checks != lifted_common_core_residual_faces:
+        raise AssertionError("active residual-ratio ledger lost a lifted common face")
     if residual_anchor_lifted_faces + residual_anchor_escape_locators != len(residual_rows):
         raise AssertionError("residual anchor ledger did not partition residual locators")
     if residual_anchor_projective_lift_checks != len(residual_rows):
@@ -1676,6 +1682,7 @@ def root_slice_profile(
     lifted_common_active_cores = (
         lifted_common_core_residual_singletons + lifted_common_core_residual_packets
     )
+    lifted_common_inactive_cores = lifted_common_cores - lifted_common_active_cores
     active_lifted_core_slope_bound = (j + 1) * lifted_common_active_cores
     residual_recursion_bound = lifted_core_slope_bound + len(residual_escape_slope_set)
     residual_active_recursion_bound = (
@@ -1936,6 +1943,7 @@ def root_slice_profile(
         "root_slice_lifted_v_t1_cores": lifted_v_t1_cores,
         "root_slice_lifted_common_cores": lifted_common_cores,
         "root_slice_lifted_common_active_cores": lifted_common_active_cores,
+        "root_slice_lifted_common_inactive_cores": lifted_common_inactive_cores,
         "root_slice_lifted_common_core_noncontained_faces": (
             lifted_common_core_noncontained_faces
         ),
@@ -1954,6 +1962,9 @@ def root_slice_profile(
         ),
         "root_slice_lifted_common_core_residual_slope_checks": (
             lifted_common_core_residual_slope_checks
+        ),
+        "root_slice_lifted_common_core_active_ratio_checks": (
+            lifted_common_core_active_ratio_checks
         ),
         "root_slice_lifted_common_core_residual_slope_pair_checks": (
             lifted_common_core_residual_slope_pair_checks
@@ -2593,6 +2604,9 @@ def verify_word_pair(
         "root_slice_lifted_common_active_cores": (
             root_profile["root_slice_lifted_common_active_cores"]
         ),
+        "root_slice_lifted_common_inactive_cores": (
+            root_profile["root_slice_lifted_common_inactive_cores"]
+        ),
         "root_slice_lifted_common_core_noncontained_faces": (
             root_profile["root_slice_lifted_common_core_noncontained_faces"]
         ),
@@ -2619,6 +2633,9 @@ def verify_word_pair(
         ),
         "root_slice_lifted_common_core_residual_slope_checks": (
             root_profile["root_slice_lifted_common_core_residual_slope_checks"]
+        ),
+        "root_slice_lifted_common_core_active_ratio_checks": (
+            root_profile["root_slice_lifted_common_core_active_ratio_checks"]
         ),
         "root_slice_lifted_common_core_residual_slope_pair_checks": (
             root_profile["root_slice_lifted_common_core_residual_slope_pair_checks"]
@@ -2954,6 +2971,9 @@ def verify_case(case: Case) -> dict[str, object]:
         "max_root_slice_lifted_common_active_cores": max(
             row["root_slice_lifted_common_active_cores"] for row in rows
         ),
+        "max_root_slice_lifted_common_inactive_cores": max(
+            row["root_slice_lifted_common_inactive_cores"] for row in rows
+        ),
         "max_root_slice_lifted_common_core_noncontained_faces": max(
             row["root_slice_lifted_common_core_noncontained_faces"] for row in rows
         ),
@@ -2980,6 +3000,9 @@ def verify_case(case: Case) -> dict[str, object]:
         ),
         "max_root_slice_lifted_common_core_residual_slope_checks": max(
             row["root_slice_lifted_common_core_residual_slope_checks"] for row in rows
+        ),
+        "max_root_slice_lifted_common_core_active_ratio_checks": max(
+            row["root_slice_lifted_common_core_active_ratio_checks"] for row in rows
         ),
         "max_root_slice_lifted_common_core_residual_slope_pair_checks": max(
             row["root_slice_lifted_common_core_residual_slope_pair_checks"] for row in rows
@@ -3805,6 +3828,7 @@ def main() -> None:
                 "lifted_v_t1_cores={root_slice_lifted_v_t1_cores} "
                 "lifted_common_cores={root_slice_lifted_common_cores} "
                 "lifted_common_active_cores={root_slice_lifted_common_active_cores} "
+                "lifted_common_inactive_cores={root_slice_lifted_common_inactive_cores} "
                 "lifted_common_noncontained_faces={root_slice_lifted_common_core_noncontained_faces} "
                 "lifted_common_aperiodic_faces={root_slice_lifted_common_core_aperiodic_faces} "
                 "lifted_common_residual_faces={root_slice_lifted_common_core_residual_faces} "
@@ -3814,6 +3838,7 @@ def main() -> None:
                 "lifted_common_residual_faces_per_core={root_slice_lifted_common_core_max_residual_faces} "
                 "lifted_common_base_checks={root_slice_lifted_common_core_common_base_checks} "
                 "lifted_common_residual_slope_checks={root_slice_lifted_common_core_residual_slope_checks} "
+                "lifted_common_active_ratio_checks={root_slice_lifted_common_core_active_ratio_checks} "
                 "lifted_common_residual_slope_pair_checks={root_slice_lifted_common_core_residual_slope_pair_checks} "
                 "lifted_common_residual_slope_fiber_max={root_slice_lifted_common_core_residual_slope_fiber_max} "
                 "different_slope_strict={different_slope_strict_pairs} "
@@ -3941,6 +3966,7 @@ def main() -> None:
             f"max_lifted_v_t1_cores={summary['max_root_slice_lifted_v_t1_cores']} "
             f"max_lifted_common_cores={summary['max_root_slice_lifted_common_cores']} "
             f"max_lifted_common_active_cores={summary['max_root_slice_lifted_common_active_cores']} "
+            f"max_lifted_common_inactive_cores={summary['max_root_slice_lifted_common_inactive_cores']} "
             f"max_lifted_common_noncontained_faces={summary['max_root_slice_lifted_common_core_noncontained_faces']} "
             f"max_lifted_common_aperiodic_faces={summary['max_root_slice_lifted_common_core_aperiodic_faces']} "
             f"max_lifted_common_residual_faces={summary['max_root_slice_lifted_common_core_residual_faces']} "
@@ -3950,6 +3976,7 @@ def main() -> None:
             f"max_lifted_common_residual_faces_per_core={summary['max_root_slice_lifted_common_core_residual_faces_per_core']} "
             f"max_lifted_common_base_checks={summary['max_root_slice_lifted_common_core_common_base_checks']} "
             f"max_lifted_common_residual_slope_checks={summary['max_root_slice_lifted_common_core_residual_slope_checks']} "
+            f"max_lifted_common_active_ratio_checks={summary['max_root_slice_lifted_common_core_active_ratio_checks']} "
             f"max_lifted_common_residual_slope_pair_checks={summary['max_root_slice_lifted_common_core_residual_slope_pair_checks']} "
             f"max_lifted_common_residual_slope_fiber={summary['max_root_slice_lifted_common_core_residual_slope_fiber']} "
             f"max_different_slope_strict={summary['max_different_slope_strict_pairs']} "
@@ -4063,6 +4090,7 @@ def main() -> None:
         "lifted_v_t1_cores={root_slice_lifted_v_t1_cores} "
         "lifted_common_cores={root_slice_lifted_common_cores} "
         "lifted_common_active_cores={root_slice_lifted_common_active_cores} "
+        "lifted_common_inactive_cores={root_slice_lifted_common_inactive_cores} "
         "lifted_common_noncontained_faces={root_slice_lifted_common_core_noncontained_faces} "
         "lifted_common_aperiodic_faces={root_slice_lifted_common_core_aperiodic_faces} "
         "lifted_common_residual_faces={root_slice_lifted_common_core_residual_faces} "
@@ -4072,6 +4100,7 @@ def main() -> None:
         "lifted_common_residual_faces_per_core={root_slice_lifted_common_core_max_residual_faces} "
         "lifted_common_base_checks={root_slice_lifted_common_core_common_base_checks} "
         "lifted_common_residual_slope_checks={root_slice_lifted_common_core_residual_slope_checks} "
+        "lifted_common_active_ratio_checks={root_slice_lifted_common_core_active_ratio_checks} "
         "lifted_common_residual_slope_pair_checks={root_slice_lifted_common_core_residual_slope_pair_checks} "
         "lifted_common_residual_slope_fiber_max={root_slice_lifted_common_core_residual_slope_fiber_max} "
         "quad_companion_checks={quadratic_companion_checks} "
@@ -4329,6 +4358,9 @@ def main() -> None:
     max_lifted_common_active_cores = max(
         row["root_slice_lifted_common_active_cores"] for row in all_rows
     )
+    max_lifted_common_inactive_cores = max(
+        row["root_slice_lifted_common_inactive_cores"] for row in all_rows
+    )
     max_lifted_common_noncontained_faces = max(
         row["root_slice_lifted_common_core_noncontained_faces"] for row in all_rows
     )
@@ -4355,6 +4387,9 @@ def main() -> None:
     )
     max_lifted_common_residual_slope_checks = max(
         row["root_slice_lifted_common_core_residual_slope_checks"] for row in all_rows
+    )
+    max_lifted_common_active_ratio_checks = max(
+        row["root_slice_lifted_common_core_active_ratio_checks"] for row in all_rows
     )
     max_lifted_common_residual_slope_pair_checks = max(
         row["root_slice_lifted_common_core_residual_slope_pair_checks"] for row in all_rows
@@ -4462,6 +4497,7 @@ def main() -> None:
         f"max_lifted_v_t1_cores={max_lifted_v_t1_cores} "
         f"max_lifted_common_cores={max_lifted_common_cores} "
         f"max_lifted_common_active_cores={max_lifted_common_active_cores} "
+        f"max_lifted_common_inactive_cores={max_lifted_common_inactive_cores} "
         f"max_lifted_common_noncontained_faces={max_lifted_common_noncontained_faces} "
         f"max_lifted_common_aperiodic_faces={max_lifted_common_aperiodic_faces} "
         f"max_lifted_common_residual_faces={max_lifted_common_residual_faces} "
@@ -4471,6 +4507,7 @@ def main() -> None:
         f"max_lifted_common_residual_faces_per_core={max_lifted_common_residual_faces_per_core} "
         f"max_lifted_common_base_checks={max_lifted_common_base_checks} "
         f"max_lifted_common_residual_slope_checks={max_lifted_common_residual_slope_checks} "
+        f"max_lifted_common_active_ratio_checks={max_lifted_common_active_ratio_checks} "
         f"max_lifted_common_residual_slope_pair_checks={max_lifted_common_residual_slope_pair_checks} "
         f"max_lifted_common_residual_slope_fiber={max_lifted_common_residual_slope_fiber} "
         f"max_quad_companion_checks={max_companion_checks} "

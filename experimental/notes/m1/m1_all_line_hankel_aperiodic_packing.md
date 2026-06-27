@@ -1876,6 +1876,46 @@ without the Hankel vectors: it is a filtered residual-coordinate slope-counting
 problem over common `k+1` bases, after quotient-periodic faces and
 fixed-slope root-slice faces have been charged.
 
+## Active Residual-Ratio Ledger
+
+The residual-coordinate form gives an exact active-core ledger.  For a lifted
+common core `W`, write
+
+```text
+rho_W(x)=-(f(x)-F_0(x))/(g(x)-G_0(x))
+```
+
+whenever the denominator is nonzero, and put `T_x=W\{x}`.  Let
+
+```text
+A_W={x in W : T_x remains residual after contained/tangent,
+              quotient-periodic, and root-slice charges}.
+```
+
+Then the residual faces carried by `W` are exactly `{T_x : x in A_W}`, and the
+slope of `T_x` is `rho_W(x)`.  Moreover `rho_W` is injective on `A_W` after
+the root-slice peeling.  Indeed, if two distinct residual coordinates
+`x,y in A_W` had the same ratio `rho_W(x)=rho_W(y)=z`, then the two faces
+`T_x` and `T_y` would form a same-slope one-exchange edge inside `W`.  The
+root-slice theorem above promotes every such same-slope edge to its full
+fixed-slope root slice, and the peeling step removes that slice.  Hence no
+repeated residual ratio can survive.
+
+Thus the lifted slope image is counted by active residual coordinates, not by
+all common bases:
+
+```text
+Z_lift subset union_W rho_W(A_W),
+|rho_W(A_W)|=|A_W|=|R_W|,
+|Z_lift| <= sum_W |A_W| <= (j+1)N_active.          (LR3)
+```
+
+This is the local no-loss statement for the lifted side of the all-line
+packing reduction.  Inactive common bases have `A_W=empty`; active bases with
+one surviving coordinate contribute one isolated residual ratio; active bases
+with at least two surviving coordinates are exactly the residual top-packet
+cores below.
+
 ## Residual Triangle Classification
 
 The residual graph can still have triangles, but their type is forced.  In the
@@ -2365,6 +2405,9 @@ enumerates small cyclic-domain cases.  For each case it:
 - verifies that each lifted common core is a common `k+1` base for `f` and
   `g`, and that every noncontained lifted face has the residual-coordinate
   cancellation slope `-(f(x)-F_0(x))/(g(x)-G_0(x))`;
+- counts inactive common cores and checks that the active residual-ratio
+  ledger accounts for exactly the residual lifted faces, with no repeated
+  ratios inside an active common core after root-slice peeling;
 - classifies every residual triangle and asserts that no star triangle remains
   after root-slice peeling;
 - forms the residual top-packet ledger and checks that it accounts exactly for
