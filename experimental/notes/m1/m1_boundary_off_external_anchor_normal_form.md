@@ -187,6 +187,57 @@ A nonzero polynomial of degree at most two over a field has at most two roots.
 All external anchors satisfying (EAG) are common roots of the minors, so they
 are roots of any one nonzero minor.
 
+## Corollary 2.1: Explicit Coefficient Ledger For The Anchor Quadrics
+
+For fixed `S` and row indices `alpha<gamma`, write
+
+```text
+A = A_u(S),        B = B_u(S),
+C = A_v(S),        D = B_v(S).
+```
+
+For two row-vectors `P,Q in F^t`, put
+
+```text
+W_{alpha,gamma}(P,Q)=P_alpha Q_gamma - P_gamma Q_alpha.
+```
+
+Then the external-anchor minor has the exact coefficient expansion
+
+```text
+Q_{alpha,gamma,S}(Y)
+  = W(A,C)
+    - Y ( W(B,C) + W(A,D) )
+    + Y^2 W(B,D),                                  (CQ)
+```
+
+where `W` means `W_{alpha,gamma}`.
+
+Consequently, the ruled condition for a shadow `S` is equivalent to the
+simultaneous vanishing, for every `alpha<gamma`, of the three coefficient
+families
+
+```text
+W(A_u(S),A_v(S)) = 0,
+W(B_u(S),A_v(S)) + W(A_u(S),B_v(S)) = 0,
+W(B_u(S),B_v(S)) = 0.                              (Rcoef)
+```
+
+In the special case `t=2`, this is a three-scalar test for whether the
+external-anchor line over `S` is ruled.
+
+### Proof
+
+The minor is
+
+```text
+Q(Y)=W(A-YB,C-YD).
+```
+
+Expanding by bilinearity and skew-symmetry of `W` gives (CQ). A polynomial of
+degree at most two is identically zero if and only if its three coefficients
+vanish, giving (Rcoef). When `t=2` there is only one row pair.
+
 ## Corollary 3: The Degenerate Branch Is Ruled
 
 Fix `S subset D`, `|S|=j-1`, and suppose every minor
