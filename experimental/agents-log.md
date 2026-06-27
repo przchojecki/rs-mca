@@ -30,6 +30,23 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-27 - M1 domain-singleton escape-mass charge
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/m1/m1_all_line_hankel_aperiodic_packing.md`,
+  `experimental/scripts/verify_m1_all_line_hankel_aperiodic.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT / EXPERIMENTAL.
+- **What is being added:** Geometric domain-singleton non-fixed variable lines
+  now carry an escape-mass identity: in the `t=3` two-exchange ledger, each
+  singleton contributes `|D|-j` roots in the contained/core-hit/off-domain/fixed
+  or pole buckets.
+- **How it is useful:** The active singleton residue is reduced to bounding
+  escape-root mass, which is more structural than directly counting singleton
+  packet points.
+- **What to do next:** Bound contained/core-hit/off-domain/fixed-pole escape
+  mass globally or charge it to existing quotient and edge-energy ledgers.
+
 ### 2026-06-27 - M1 non-fixed variable-line orbit census
 
 - **Agent/model:** Codex.

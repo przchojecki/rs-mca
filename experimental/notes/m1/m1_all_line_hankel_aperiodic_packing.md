@@ -778,6 +778,28 @@ noncontained=2, contained=2, core-hit=3, off-domain=0, fixed/pole=2.
 Across the current audit, active domain singletons occur only in the
 product-Mobius branch; no fixed-sum active domain singleton has appeared.
 
+The same census gives a local escape-mass charge.  If `d_L=1`, then the
+noncontained domain two-cycle bucket has two roots, so all other roots of
+`A=D\R` lie in the four escape buckets:
+
+```text
+contained domain two-cycles, core-hit roots, off-domain roots, fixed/pole roots.
+```
+
+Since `|R|=j-2` in the `t=3` two-exchange ledger, `|A|-2=|D|-j`.  Thus each
+geometric domain singleton contributes exactly `|D|-j` escaped roots:
+
+```text
+(|D|-j) * #{domain-singleton packets} = escape-root mass on those packets.
+```
+
+The verifier checks this identity for every audited non-fixed variable proper
+line with `d_L=1`, and separately for active domain singletons.  In the
+`F_13`, `n=12`, `j=5` witness the escape mass is `7`, split as
+`contained=2`, `core-hit=3`, `off-domain=0`, `fixed/pole=2`.  This reduces
+the remaining singleton problem to bounding escape-root mass rather than
+counting isolated packet points directly.
+
 ## Different-Slope One-Exchange Quadratic Slice
 
 The different-slope part of the one-exchange profile has a complementary
