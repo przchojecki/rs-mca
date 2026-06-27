@@ -236,7 +236,13 @@ Keep entries concise and link to the relevant files.
   first-difference parameters have the same determinant dichotomy:
   `J_theta^(r)` has at most `c-b` high-dimensional parameters unless the
   ordinary and shifted stacked endpoint maps are both high-dimensional and a
-  moving first-difference ladder appears.  The
+  moving first-difference ladder appears.  These pieces now package into an
+  additive consecutive-frontier closure: under the four endpoint checks
+  `ker H_{t+r,c-1}(u)`, `ker H_{t+r,c-1}(v)`, `ker B^(r)`, and `ker A^(r)`
+  having dimension `<=b`, charging at most `2(c-b)` finite parameter systems
+  leaves all uncharged finite fixed-kernel and consecutive common-image
+  frontier ledgers with direction dimension `<=b`, with no `r`-dependent or
+  projective-image-line multiplier.  The
   common-image three-shift ledger now has the analogous sliding-window
   reduction: for an image line `[y]`, the allowed deeper residuals form a space
   `W_y` of dimension at most one, nonzero only on the `q+1` extended geometric

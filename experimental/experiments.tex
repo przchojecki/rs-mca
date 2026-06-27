@@ -1960,6 +1960,20 @@ dimension \(>b\).  In the persistent case a moving first-difference kernel
 satisfies the corresponding endpoint ladder.  Thus the shift-persistent
 first-difference ledgers also avoid a multiplicative per-frontier parameter
 loss.
+Combining these alternatives gives an additive consecutive-frontier closure.
+If
+\[
+\dim\ker H_{t+r,c-1}(u),\ \dim\ker H_{t+r,c-1}(v),\
+\dim\ker B^{(r)},\ \dim\ker A^{(r)} \le b,
+\]
+where \(B^{(r)}\) is the ordinary stacked endpoint map for \((u,v)\) and
+\(A^{(r)}\) is the shifted stacked endpoint map for \((Su,Sv)\), then the
+persistent alternatives are impossible.  After charging at most \(c-b\)
+fixed-kernel slopes and at most \(c-b\) first-difference parameters, every
+uncharged finite fixed-kernel and consecutive common-image frontier ledger has
+direction dimension at most \(b\).  Thus this frontier step costs at most
+\(2(c-b)\) finite parameter systems and no projective image-line multiplier,
+independent of the number \(r\) of consecutive shifts.
 Equivalently, the full three-shift common-image branch is endpoint-only.  If
 \(\mathrm{GCI}\) denotes the monic split core locators satisfying some
 three-shift common-image line, then

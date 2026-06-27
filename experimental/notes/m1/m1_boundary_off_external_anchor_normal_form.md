@@ -4247,6 +4247,73 @@ The moving-kernel and coefficient-ladder statements are the same
 rank-nullity-over-`F(theta)` argument as in Corollary 38.2, applied to
 `A^(r)-theta B^(r)`.
 
+## Corollary 40.3: Consecutive Frontier Closure Has Additive Parameter Cost
+
+Keep `0<=b<c` and let `r>=1`.  Assume the four consecutive frontier endpoint
+checks
+
+```text
+dim ker H_{t+r,c-1}(u) <= b,
+dim ker H_{t+r,c-1}(v) <= b,
+dim ker B^(r) <= b,
+dim ker A^(r) <= b,                                  (FrontGood_r)
+```
+
+where `A^(r)` and `B^(r)` are the stacked shifted and ordinary endpoint maps
+from Corollary 40.2.
+
+Then the consecutive frontier ledgers have the following closure.
+
+1. The high-dimensional fixed-kernel slope set satisfies
+
+```text
+|E_{r,>b}| <= c-b.
+```
+
+2. The high-dimensional first-difference parameter set satisfies
+
+```text
+|Theta_{r,>b}| <= c-b.
+```
+
+3. The common-image stack from Corollary 40.1 has no projective image-line
+multiplier.  Off the `q+1` extended geometric shift lines, it is contained in
+
+```text
+ker H_{t+r,c-1}(u) cap ker H_{t+r,c-1}(v),
+```
+
+which has direction dimension at most `b`.  The infinity shift line is the
+ordinary endpoint stack `ker B^(r)`, also of dimension at most `b`.  A finite
+shift line `theta` has direction dimension at most `b` unless
+`theta in Theta_{r,>b}`.
+
+Consequently, after charging at most
+
+```text
+2(c-b)
+```
+
+finite parameter systems, namely `E_{r,>b}` and `Theta_{r,>b}`, every
+uncharged finite fixed-kernel and consecutive common-image frontier ledger has
+direction dimension at most `b`.  The charge is additive at the frontier
+depth: it does not acquire a factor depending on the number of consecutive
+shifts `r`, nor a factor from the projective image-line space.
+
+### Proof
+
+The first two estimates are Corollaries 38.2 and 40.2, because (FrontGood_r)
+rules out the persistent alternatives in both dichotomies.
+
+For the common-image stack, Corollary 40.1 says that every image line off the
+extended geometric shift curve gives exactly the deeper endpoint intersection.
+This intersection has dimension at most `b` because it is contained in each of
+`ker H_{t+r,c-1}(u)` and `ker H_{t+r,c-1}(v)`.  The infinity line gives
+`ker B^(r)`, which has dimension at most `b` by (FrontGood_r).  A finite shift
+line gives `ker J_theta^(r)`, so it is high-dimensional only when
+`theta in Theta_{r,>b}`.  Removing the two finite bad-parameter sets leaves
+only direction spaces of dimension at most `b`.
+
 ## Corollary 41: The Global Common-Image Ledger Is Endpoint-Only
 
 Let `GCI` be the set of monic degree-`c` split core locators `L` for which
@@ -6882,6 +6949,9 @@ first-difference, or infinity endpoint ledgers.
 Corollary 40.2 gives the finite/persistent dichotomy for the resulting
 first-difference parameters; it does not prove the ordinary or shifted stacked
 endpoint maps are low-dimensional in the persistent alternative.
+Corollary 40.3 packages these consecutive-frontier ledgers under four endpoint
+rank hypotheses; it does not prove those endpoint hypotheses or close the
+separate nondegenerate shadow ledger.
 Corollary 41 packages the common-image branch into endpoint-type ledgers; it
 does not prove the endpoint rank hypotheses needed for the displayed
 `(q+2)binom(n,b)` bound. Corollary 42 packages the globally full core ledger
