@@ -372,6 +372,13 @@ Keep entries concise and link to the relevant files.
   similarly the stacked first-difference pencil forces nonzero kernels for
   `A_d` and `B_d`.  At the Corollary 64 threshold this means the four short
   endpoint injectivity checks rule out the persistent moving branch entirely.
+  Constant-parameter positive slices have the analogous finite/persistent
+  dichotomy at rank threshold `d-1`: for each order `1<=d<h`, either there are
+  at most `d` fixed `lambda` values with `dim K_{d,lambda}>=2`, or both
+  endpoint maps `U_d,V_d` have two-dimensional kernels; likewise for fixed
+  `theta` and the stacked maps `A_d,B_d`.  After charging those two-dimensional
+  endpoint-kernel cases, constant positive slices cost at most `h(h-1)/2`
+  parameters per family.
 - **What to do next:** Bound or charge the unique-neighbor nondegenerate
   star-free shadow ledger, then charge the four base endpoint spaces, the
   resulting short-annihilator endpoint systems, finite-exception endpoint
@@ -381,7 +388,7 @@ Keep entries concise and link to the relevant files.
   primitive reciprocal-domain-pole-free denominator families, their endpoint
   collision charges, positive-dimensional moving denominator certificates,
   persistent one-parameter recurrence kernels, root-free multipliers, and the
-  common-root-free
+  endpoint maps with two-dimensional short kernels, and the common-root-free
   fixed-kernel and first-difference moving-certificate loci to
   fixed-slope/root-slice, quotient-periodic, endpoint, or active-codegree
   ledgers.

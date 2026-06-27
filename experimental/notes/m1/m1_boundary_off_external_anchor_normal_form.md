@@ -6181,6 +6181,102 @@ short endpoint system, so injectivity of the four Corollary 53 systems rules
 out all such persistent kernels.  The final statement combines this with
 Corollaries 60, 65, 67, and 68.
 
+## Corollary 70: Constant-Slice Parameters Have A Finite/Persistent Dichotomy
+
+Fix an order `1<=d<h`, and keep the endpoint-short threshold of Corollary 64.
+
+### Fixed-Kernel Slices
+
+Let
+
+```text
+KBad_d={lambda : dim K_{d,lambda} >= 2},
+```
+
+where `K_{d,lambda}` is the fixed-kernel recurrence space from Corollary 67.
+Equivalently, `lambda in KBad_d` if and only if
+
+```text
+rank(V_d-lambda U_d) <= d-1.
+```
+
+Then either
+
+```text
+|KBad_d| <= d,
+```
+
+or the pencil is persistently rank-deficient at level `d`:
+
+```text
+rank(V_d-ZU_d) <= d-1        over F(Z).
+```
+
+In the persistent case both endpoint maps have two-dimensional kernel:
+
+```text
+dim ker U_d >= 2,        dim ker V_d >= 2.
+```
+
+### First-Difference Slices
+
+Let
+
+```text
+DBad_d={theta : dim D_{d,theta} >= 2},
+```
+
+where `D_{d,theta}` is the simultaneous first-difference recurrence space from
+Corollary 67.  Equivalently,
+
+```text
+rank(A_d-theta B_d) <= d-1.
+```
+
+Then either
+
+```text
+|DBad_d| <= d,
+```
+
+or the stacked first-difference pencil is persistently rank-deficient:
+
+```text
+rank(A_d-ZB_d) <= d-1        over F(Z),
+```
+
+and in that case
+
+```text
+dim ker A_d >= 2,        dim ker B_d >= 2.
+```
+
+Consequently, after charging endpoint maps with two-dimensional short kernels,
+the constant-parameter positive-dimensional landing slices contribute at most
+
+```text
+sum_{d=1}^{h-1} d = h(h-1)/2
+```
+
+parameters in each of the fixed-kernel and first-difference families.
+
+### Proof
+
+For fixed-kernel slices, `dim K_{d,lambda}>=2` is equivalent to rank at most
+`d-1` for the `(t+2) x (d+1)` matrix `V_d-lambda U_d`, hence to vanishing of
+all its `d x d` minors.  Each such minor is a polynomial in `lambda` of degree
+at most `d`.  If one minor is nonzero, it has at most `d` roots, proving the
+finite alternative.  If all `d x d` minors vanish identically in `Z`, then the
+pencil has rank at most `d-1` over `F(Z)`.  The constant and top-degree
+coefficients of these minors are the corresponding minors of `V_d` and `U_d`
+up to sign, so all `d x d` minors of both endpoint matrices vanish.  Since the
+domain dimension is `d+1`, both endpoint kernels have dimension at least two.
+
+The first-difference proof is identical with the stacked pencil `A_d-ZB_d`.
+At the endpoint-short threshold the row counts needed for these `d x d` minors
+are available because `d<h<=t+2` and therefore `d<=t+1<=2(t+1)`.  Summing the
+finite alternative over `1<=d<h` gives the displayed bound.
+
 ## Non-Claims
 
 This note does not prove
@@ -6340,4 +6436,5 @@ nonconstant components into persistent one-parameter kernels; it does not rule
 out those persistent kernels or prove the required open conditions are empty.
 Corollary 69 shows persistent kernels force endpoint rank failure in the
 row-count feasible range; it does not prove the four endpoint systems are
-always injective.
+always injective. Corollary 70 bounds constant-parameter positive slices only
+after endpoint maps with two-dimensional short kernels have been charged.
