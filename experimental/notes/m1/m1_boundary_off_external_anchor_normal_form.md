@@ -1904,6 +1904,76 @@ immediately.  For `s=2`, the quotient has degree at most zero, so it is a
 constant.  For `s>=3`, a nonzero product of three distinct linear factors
 cannot divide a degree-`<=2` polynomial, so `P=0`.
 
+## Corollary 22: Core-Line Free Anchor Zeros Have One More Slice Saving
+
+Keep `m=j-1`, fix an external anchor `beta`, and fix one row-pair anchor minor
+
+```text
+P=P_{rho,beta}
+```
+
+as in Corollary 20.  For an `(m-1)`-set `R subset D`, define the core-line
+restriction
+
+```text
+p_R(Y)=P(L_{R,Y}),        L_{R,Y}(X)=(X-Y)L_R(X),
+```
+
+more explicitly,
+
+```text
+p_R(x)=P(L_{R union {x}})        for x in D\R.
+```
+
+Here `p_R` is a polynomial in the added root `x` of degree at most two.  Let
+
+```text
+Core(P)={ R subset D : |R|=m-1 and p_R is identically zero }.
+```
+
+After the full core-lines `R in Core(P)` have been charged to their own
+ledger, the remaining `D`-split zeros of `P` satisfy
+
+```text
+|{ S subset D : |S|=m, P(L_S)=0,
+                 no (m-1)-subset of S lies in Core(P) }|
+ <= (2/m) binom(n,m-1).                              (CL)
+```
+
+Thus a fixed nonzero anchor minor has only a one-root-loss zero set after both
+fixed-root full stars and identically vanishing core-lines have been removed.
+The residual obstruction is no longer a full `m`-shadow family for that minor;
+it is the explicitly named core-line degeneracy plus the bounded two-roots-per
+core remainder.
+
+### Proof
+
+For fixed `R`, the locator
+
+```text
+L_{R union {x}}(X)=(X-x)L_R(X)
+```
+
+depends affine-linearly on `x` in coefficient coordinates.  Since `P` has
+degree at most two in those coordinates, `p_R(x)` has degree at most two.
+
+If `R notin Core(P)`, then `p_R` is a nonzero degree-`<=2` polynomial, so it
+has at most two roots in `D\R`.  Count incidences
+
+```text
+(R,S) with R subset S, |R|=m-1, |S|=m, P(L_S)=0,
+```
+
+among zeros `S` with no core in `Core(P)`.  Each such `S` has exactly `m`
+cores `R=S\{x}`, and every one of them is outside `Core(P)`.  Each
+nondegenerate core contributes at most two extensions.  Therefore
+
+```text
+m |Z_rem| <= 2 binom(n,m-1),
+```
+
+which proves (CL).
+
 ## Non-Claims
 
 This note does not prove
@@ -1949,3 +2019,6 @@ full anchor stars into fixed-root/root-slice algebraic factors; it does not
 bound the remaining star-free unique-neighbor nondegenerate shadows.
 Corollary 21 classifies repeated full-star factors of a single anchor minor;
 it does not prove that the star-free zero set of that minor is small.
+Corollary 22 is again per fixed anchor minor: it bounds the zeros left after
+identically vanishing core-lines have been charged, but it does not bound the
+number of such core-lines or the common zero set of all anchor minors.

@@ -1654,6 +1654,15 @@ quadratic, two distinct full stars force the exact product
 to vanish identically.  The finite interpolation input is the quadratic
 cofactor Vandermonde lemma: degree-\(\le2\) functions on monic degree-\(r\)
 locators are determined by the degree-\(r\) cofactors of any \((r+2)\)-set.
+There is also a complementary core-line bound for each fixed anchor minor:
+after charging the \((j-2)\)-cores \(R\) for which
+\(x\mapsto P(L_{R\cup\{x\}})\) vanishes identically, the remaining split zeros
+of that minor are bounded by
+\[
+  \frac{2}{j-1}\binom{n}{j-2}.
+\]
+This is still a per-minor statement, but it turns the star-free fixed-anchor
+zero set into a one-root-loss ledger plus explicit core-line degeneracies.
 
 In the ruled part, the common-kernel branch has a fixed projective boundary slope,
 while the common-image branch forces the shadow locator \(L_S\) to satisfy the

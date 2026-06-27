@@ -104,6 +104,10 @@ Keep entries concise and link to the relevant files.
   quadratic cofactor Vandermonde lemma: degree-`<=2` functions on monic
   degree-`r` locators are determined by the degree-`r` cofactors of any
   `(r+2)`-set.
+  A complementary core-line bound is added for each fixed anchor minor: after
+  charging `(m-1)`-cores on which the one-root extension polynomial vanishes
+  identically, the remaining split zeros contribute at most
+  `(2/m) binom(n,m-1)`.
 - **How it is useful:** This sharpens one of the two live residual objects in
   the non-fixed variable-line branch.  It does not prove the final M1 bound,
   but it turns the boundary image into a precise quadratic-anchor/ruled-branch
@@ -128,7 +132,9 @@ Keep entries concise and link to the relevant files.
   fixed-root/root-slice factors, with repeated full-star factors completely
   classified for each anchor minor.  The cofactor interpolation lemma makes
   this finite-star step auditable as a standalone quadratic interpolation
-  fact.
+  fact.  The core-line bound further reduces each fixed-anchor minor's
+  star-free zero set to a one-root-loss ledger plus explicit identically
+  vanishing core-line degeneracies.
 - **What to do next:** Bound or charge the unique-neighbor nondegenerate
   star-free shadow ledger, and charge the ruled exceptional low-rank loci to
   fixed-slope/root-slice, endpoint, projective, quotient-periodic, or
