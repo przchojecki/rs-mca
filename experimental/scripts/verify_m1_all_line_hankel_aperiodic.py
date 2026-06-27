@@ -819,6 +819,10 @@ def two_exchange_quadratic_slice_profile(
             "two_exchange_det_proper_line_slope_max": 0,
             "two_exchange_det_proper_line_aperiodic_max": 0,
             "two_exchange_det_proper_line_core_max": 0,
+            "two_exchange_det_proper_line_variable_injective": 0,
+            "two_exchange_det_proper_line_variable_pole_max": 0,
+            "two_exchange_det_proper_line_variable_aperiodic_slope_max": 0,
+            "two_exchange_det_proper_line_variable_injective_checks": 0,
         }
     if j < 2:
         raise AssertionError("two-exchange slices need j>=2")
@@ -894,6 +898,10 @@ def two_exchange_quadratic_slice_profile(
     det_proper_line_slope_max = 0
     det_proper_line_aperiodic_max = 0
     det_proper_line_core_max = 0
+    det_proper_line_variable_injective = 0
+    det_proper_line_variable_pole_max = 0
+    det_proper_line_variable_aperiodic_slope_max = 0
+    det_proper_line_variable_injective_checks = 0
     all_affine_line_keys = affine_line_keys(p)
     for core in combinations(domain, j - 2):
         core_tuple = tuple(sorted(core))
@@ -1092,6 +1100,8 @@ def two_exchange_quadratic_slice_profile(
                 raise AssertionError("unknown two-root line model")
 
             line_slopes: set[int] = set()
+            line_aperiodic_slopes: set[int] = set()
+            line_noncontained = 0
             line_aperiodic = 0
             for root_sum, root_product in line_points:
                 a_vec = tuple(
@@ -1114,6 +1124,7 @@ def two_exchange_quadratic_slice_profile(
                 )
                 if all(value == 0 for value in b_vec):
                     continue
+                line_noncontained += 1
                 slope = slope_from_gate(a_vec, b_vec, p)
                 if slope is None:
                     raise AssertionError("determinantal line point had no slope")
@@ -1127,6 +1138,7 @@ def two_exchange_quadratic_slice_profile(
                 if row_slope != slope:
                     raise AssertionError("line-component slope disagreed with row slope")
                 line_aperiodic += 1
+                line_aperiodic_slopes.add(slope)
             if len(line_slopes) <= 1:
                 det_line_constant_slope += 1
             else:
@@ -1150,6 +1162,24 @@ def two_exchange_quadratic_slice_profile(
                 det_proper_line_constant_slope += 1
             else:
                 det_proper_line_variable_slope += 1
+                if line_noncontained != len(line_slopes):
+                    raise AssertionError("variable proper line was not slope-injective")
+                if line_aperiodic != len(line_aperiodic_slopes):
+                    raise AssertionError(
+                        "variable proper line had repeated aperiodic slopes"
+                    )
+                line_poles = len(line_points) - line_noncontained
+                if line_poles > 1:
+                    raise AssertionError("variable proper line had multiple poles")
+                det_proper_line_variable_injective += 1
+                det_proper_line_variable_pole_max = max(
+                    det_proper_line_variable_pole_max, line_poles
+                )
+                det_proper_line_variable_aperiodic_slope_max = max(
+                    det_proper_line_variable_aperiodic_slope_max,
+                    len(line_aperiodic_slopes),
+                )
+                det_proper_line_variable_injective_checks += line_noncontained
             det_proper_line_slope_max = max(
                 det_proper_line_slope_max, len(line_slopes)
             )
@@ -1343,6 +1373,18 @@ def two_exchange_quadratic_slice_profile(
             det_proper_line_aperiodic_max
         ),
         "two_exchange_det_proper_line_core_max": det_proper_line_core_max,
+        "two_exchange_det_proper_line_variable_injective": (
+            det_proper_line_variable_injective
+        ),
+        "two_exchange_det_proper_line_variable_pole_max": (
+            det_proper_line_variable_pole_max
+        ),
+        "two_exchange_det_proper_line_variable_aperiodic_slope_max": (
+            det_proper_line_variable_aperiodic_slope_max
+        ),
+        "two_exchange_det_proper_line_variable_injective_checks": (
+            det_proper_line_variable_injective_checks
+        ),
     }
 
 
@@ -3460,6 +3502,22 @@ def verify_word_pair(
         "two_exchange_det_proper_line_core_max": two_exchange_profile[
             "two_exchange_det_proper_line_core_max"
         ],
+        "two_exchange_det_proper_line_variable_injective": two_exchange_profile[
+            "two_exchange_det_proper_line_variable_injective"
+        ],
+        "two_exchange_det_proper_line_variable_pole_max": two_exchange_profile[
+            "two_exchange_det_proper_line_variable_pole_max"
+        ],
+        "two_exchange_det_proper_line_variable_aperiodic_slope_max": (
+            two_exchange_profile[
+                "two_exchange_det_proper_line_variable_aperiodic_slope_max"
+            ]
+        ),
+        "two_exchange_det_proper_line_variable_injective_checks": (
+            two_exchange_profile[
+                "two_exchange_det_proper_line_variable_injective_checks"
+            ]
+        ),
         "root_slices": root_profile["root_slices"],
         "same_slope_edges_covered": root_profile["same_slope_edges_covered"],
         "max_root_slice_noncontained": root_profile["max_root_slice_noncontained"],
@@ -3997,6 +4055,20 @@ def verify_case(case: Case) -> dict[str, object]:
         ),
         "max_two_exchange_det_proper_line_core": max(
             row["two_exchange_det_proper_line_core_max"] for row in rows
+        ),
+        "max_two_exchange_det_proper_line_variable_injective": max(
+            row["two_exchange_det_proper_line_variable_injective"] for row in rows
+        ),
+        "max_two_exchange_det_proper_line_variable_pole": max(
+            row["two_exchange_det_proper_line_variable_pole_max"] for row in rows
+        ),
+        "max_two_exchange_det_proper_line_variable_aperiodic_slope": max(
+            row["two_exchange_det_proper_line_variable_aperiodic_slope_max"]
+            for row in rows
+        ),
+        "max_two_exchange_det_proper_line_variable_injective_checks": max(
+            row["two_exchange_det_proper_line_variable_injective_checks"]
+            for row in rows
         ),
         "max_root_slices": max(row["root_slices"] for row in rows),
         "max_root_slice_noncontained": max(row["max_root_slice_noncontained"] for row in rows),
@@ -5198,6 +5270,10 @@ def main() -> None:
                 "two_exchange_det_proper_line_slope_max={two_exchange_det_proper_line_slope_max} "
                 "two_exchange_det_proper_line_aperiodic_max={two_exchange_det_proper_line_aperiodic_max} "
                 "two_exchange_det_proper_line_core_max={two_exchange_det_proper_line_core_max} "
+                "two_exchange_det_proper_line_variable_injective={two_exchange_det_proper_line_variable_injective} "
+                "two_exchange_det_proper_line_variable_pole_max={two_exchange_det_proper_line_variable_pole_max} "
+                "two_exchange_det_proper_line_variable_aperiodic_slope_max={two_exchange_det_proper_line_variable_aperiodic_slope_max} "
+                "two_exchange_det_proper_line_variable_injective_checks={two_exchange_det_proper_line_variable_injective_checks} "
                 "root_slices={root_slices} "
                 "root_slice_slopes={root_slice_slope_count} "
                 "root_slice_new_slopes={root_slice_new_slope_count} "
@@ -5408,6 +5484,10 @@ def main() -> None:
             f"max_two_exchange_det_proper_line_slope={summary['max_two_exchange_det_proper_line_slope']} "
             f"max_two_exchange_det_proper_line_aperiodic={summary['max_two_exchange_det_proper_line_aperiodic']} "
             f"max_two_exchange_det_proper_line_core={summary['max_two_exchange_det_proper_line_core']} "
+            f"max_two_exchange_det_proper_line_variable_injective={summary['max_two_exchange_det_proper_line_variable_injective']} "
+            f"max_two_exchange_det_proper_line_variable_pole={summary['max_two_exchange_det_proper_line_variable_pole']} "
+            f"max_two_exchange_det_proper_line_variable_aperiodic_slope={summary['max_two_exchange_det_proper_line_variable_aperiodic_slope']} "
+            f"max_two_exchange_det_proper_line_variable_injective_checks={summary['max_two_exchange_det_proper_line_variable_injective_checks']} "
             f"max_root_slices={summary['max_root_slices']} "
             f"max_root_slice_noncontained={summary['max_root_slice_noncontained']} "
             f"max_root_total_slope_bound={summary['max_root_slice_total_slope_bound']} "
@@ -5711,6 +5791,10 @@ def main() -> None:
         "two_exchange_det_proper_line_variable={two_exchange_det_proper_line_variable_slope} "
         "two_exchange_det_proper_line_slope_max={two_exchange_det_proper_line_slope_max} "
         "two_exchange_det_proper_line_core_max={two_exchange_det_proper_line_core_max} "
+        "two_exchange_det_proper_line_variable_injective={two_exchange_det_proper_line_variable_injective} "
+        "two_exchange_det_proper_line_variable_pole_max={two_exchange_det_proper_line_variable_pole_max} "
+        "two_exchange_det_proper_line_variable_aperiodic_slope_max={two_exchange_det_proper_line_variable_aperiodic_slope_max} "
+        "two_exchange_det_proper_line_variable_injective_checks={two_exchange_det_proper_line_variable_injective_checks} "
         "two_exchange_minor_checks={two_exchange_minor_polynomial_checks} "
         "direct_checks={direct_checks}".format(**t3_same_slope_probe)
     )
@@ -5882,6 +5966,20 @@ def main() -> None:
     )
     max_two_exchange_det_proper_line_core = max(
         row["two_exchange_det_proper_line_core_max"] for row in all_rows
+    )
+    max_two_exchange_det_proper_line_variable_injective = max(
+        row["two_exchange_det_proper_line_variable_injective"] for row in all_rows
+    )
+    max_two_exchange_det_proper_line_variable_pole = max(
+        row["two_exchange_det_proper_line_variable_pole_max"] for row in all_rows
+    )
+    max_two_exchange_det_proper_line_variable_aperiodic_slope = max(
+        row["two_exchange_det_proper_line_variable_aperiodic_slope_max"]
+        for row in all_rows
+    )
+    max_two_exchange_det_proper_line_variable_injective_checks = max(
+        row["two_exchange_det_proper_line_variable_injective_checks"]
+        for row in all_rows
     )
     max_total_slope_bound = max(row["root_slice_total_slope_bound"] for row in all_rows)
     max_root_new_slopes = max(row["root_slice_new_slope_count"] for row in all_rows)
@@ -6261,6 +6359,10 @@ def main() -> None:
         f"max_two_exchange_det_proper_line_slope={max_two_exchange_det_proper_line_slope} "
         f"max_two_exchange_det_proper_line_aperiodic={max_two_exchange_det_proper_line_aperiodic} "
         f"max_two_exchange_det_proper_line_core={max_two_exchange_det_proper_line_core} "
+        f"max_two_exchange_det_proper_line_variable_injective={max_two_exchange_det_proper_line_variable_injective} "
+        f"max_two_exchange_det_proper_line_variable_pole={max_two_exchange_det_proper_line_variable_pole} "
+        f"max_two_exchange_det_proper_line_variable_aperiodic_slope={max_two_exchange_det_proper_line_variable_aperiodic_slope} "
+        f"max_two_exchange_det_proper_line_variable_injective_checks={max_two_exchange_det_proper_line_variable_injective_checks} "
         f"max_total_slope_bound={max_total_slope_bound} "
         f"max_root_new_slopes={max_root_new_slopes} "
         f"max_root_t3_core_locators={max_root_t3_core_locators} "

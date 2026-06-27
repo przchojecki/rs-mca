@@ -551,6 +551,24 @@ product-Mobius line, and one fixed-sum line.  The two non-fixed proper lines
 are exactly the two variable-slope components; their largest slope image has
 size `12`.
 
+The variable proper-line branch is also slope-injective.  On a proper
+determinant line, restrict `(s,p)` to an affine parameter `lambda`.  Each
+coordinate of `H_{3,j}(u)ell` and `H_{3,j}(v)ell` is affine-linear in
+`lambda`, so the finite slope map is a fractional-linear function
+
+```text
+lambda |-> -(a lambda+b)/(c lambda+d).
+```
+
+If this map is not constant, then its projective determinant is nonzero and it
+is injective on `P^1(F)`.  Therefore the affine line has at most one contained
+pole, all finite noncontained line points have distinct slopes, and the actual
+aperiodic domain-pair members on that line also have distinct slopes.  The
+verifier asserts this for every variable proper determinant line.  In the
+`F_13`, `n=12`, `j=5`, `t=3` probe, both variable proper lines are injective;
+each has one pole, `12` finite slopes, and only `3` aperiodic domain-pair
+slopes.
+
 ## Different-Slope One-Exchange Quadratic Slice
 
 The different-slope part of the one-exchange profile has a complementary
@@ -2676,6 +2694,9 @@ enumerates small cyclic-domain cases.  For each case it:
   models, separates full determinant planes from proper line components,
   checks constant full-plane lifts to the `(t+2,j-2)` Hankel core image, and
   asserts that each non-plane core has at most two proper line components;
+- in the `t=3` rows, checks that every variable proper determinant line has
+  injective finite slope map, at most one contained pole, and no repeated
+  aperiodic domain-pair slopes;
 - in the `t=2` rows, verifies the determinant gate and reports the strict
   one-exchange profile of the aperiodic locator family;
 - in the `t=2` rows, checks that every same-slope strict one-exchange edge
@@ -2892,7 +2913,9 @@ full determinant plane, already lifted to `H_{5,3}`.  The proper line branch
 has only `37` components: `35` fixed-root lines, one product-Mobius line, and
 one fixed-sum line.  The two non-fixed proper components are exactly the two
 variable-slope lines, and every non-plane core has at most one proper line in
-this probe, below the asserted degree-two maximum.
+this probe, below the asserted degree-two maximum.  Both variable proper lines
+are slope-injective: each has one contained pole, `12` finite line slopes,
+and `3` actual aperiodic domain-pair slope values.
 
 The `F_13`, `n=12`, `j=4`, `t=2` row is kept as a boundary-only counterexample
 to the tempting squarefree-absorption shortcut.  In all four deterministic

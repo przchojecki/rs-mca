@@ -30,6 +30,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-27 - M1 variable proper-line injectivity
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/m1/m1_all_line_hankel_aperiodic_packing.md`,
+  `experimental/scripts/verify_m1_all_line_hankel_aperiodic.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT / EXPERIMENTAL.
+- **What is being added:** Variable proper `t=3` two-exchange determinant
+  lines are now checked to have injective finite slope maps, at most one
+  contained pole, and no repeated aperiodic domain-pair slopes.
+- **How it is useful:** The remaining product-Mobius/fixed-sum proper-line
+  obstruction is slope-injective, so it is not a hidden high-multiplicity
+  slope fiber.  In the `F_13,n=12,j=5,t=3` probe, the two variable proper
+  lines each have one pole, `12` finite line slopes, and `3` aperiodic
+  domain-pair slopes.
+- **What to do next:** Bound how many aperiodic domain-pair members can lie on
+  quotient-clean product-Mobius or fixed-sum proper lines, or charge such
+  lines to a higher recursive locator object.
+
 ### 2026-06-27 - M1 proper determinant-line bound
 
 - **Agent/model:** Codex.
