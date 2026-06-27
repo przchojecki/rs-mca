@@ -134,7 +134,13 @@ Keep entries concise and link to the relevant files.
   this finite-star step auditable as a standalone quadratic interpolation
   fact.  The core-line bound further reduces each fixed-anchor minor's
   star-free zero set to a one-root-loss ledger plus explicit identically
-  vanishing core-line degeneracies.
+  vanishing core-line degeneracies.  Those core-line degeneracies now have an
+  explicit lower anchor-coefficient ledger: for a fixed `(m-1)`-core `R`, the
+  restricted minor along `R union {Y}` expands as
+  `W(A,C)-Y(W(B,C)+W(A,D))+Y^2 W(B,D)`, where `A,C` come from
+  `(X-beta)X L_R` and `B,D` from `(X-beta)L_R`.  Hence an identically
+  vanishing core-line is exactly three lower-dimensional Hankel-wedge
+  coefficient equations.
 - **What to do next:** Bound or charge the unique-neighbor nondegenerate
   star-free shadow ledger, and charge the ruled exceptional low-rank loci to
   fixed-slope/root-slice, endpoint, projective, quotient-periodic, or

@@ -1662,7 +1662,19 @@ of that minor are bounded by
   \frac{2}{j-1}\binom{n}{j-2}.
 \]
 This is still a per-minor statement, but it turns the star-free fixed-anchor
-zero set into a one-root-loss ledger plus explicit core-line degeneracies.
+zero set into a one-root-loss ledger plus explicit core-line degeneracies.  The
+degeneracies themselves have the same coefficient-ledger form one level lower:
+for fixed \(R\), write
+\[
+  (X-\beta)(X-Y)L_R=(X-\beta)X L_R-Y(X-\beta)L_R.
+\]
+If \(A,C\) are the \(H(u),H(v)\) images of \((X-\beta)X L_R\), and \(B,D\) are
+the corresponding images of \((X-\beta)L_R\), then the restricted minor is
+\[
+  W(A,C)-Y\{W(B,C)+W(A,D)\}+Y^2W(B,D).
+\]
+Thus an identically vanishing core-line is exactly the simultaneous vanishing
+of these three lower-dimensional Hankel-wedge coefficients.
 
 In the ruled part, the common-kernel branch has a fixed projective boundary slope,
 while the common-image branch forces the shadow locator \(L_S\) to satisfy the

@@ -1974,6 +1974,74 @@ m |Z_rem| <= 2 binom(n,m-1),
 
 which proves (CL).
 
+## Corollary 23: Core-Line Degeneracy Has A Lower Anchor-Coefficient Ledger
+
+Keep the notation of Corollary 22.  For a fixed `(m-1)`-core `R`, write
+
+```text
+L_R(X)=prod_{alpha in R}(X-alpha).
+```
+
+The one-root extension with external anchor `beta` is
+
+```text
+(X-beta)(X-Y)L_R(X)
+ = (X-beta)X L_R(X) - Y (X-beta)L_R(X).
+```
+
+Let
+
+```text
+A = H(u) coeffs((X-beta)X L_R),
+B = H(u) coeffs((X-beta)L_R),
+C = H(v) coeffs((X-beta)X L_R),
+D = H(v) coeffs((X-beta)L_R),
+```
+
+with the usual zero padding into the boundary locator window.  Then every
+row-pair restriction from Corollary 22 has the explicit quadratic form
+
+```text
+p_R(Y)
+ = W(A,C) - Y( W(B,C)+W(A,D) ) + Y^2 W(B,D).          (CoreCoeff)
+```
+
+Consequently
+
+```text
+R in Core(P_{rho,beta})
+```
+
+if and only if the three lower-dimensional Hankel-wedge coefficients
+
+```text
+W(A,C),      W(B,C)+W(A,D),      W(B,D)
+```
+
+vanish for that row pair.  Thus the full core-line obstruction left by
+Corollary 22 is not an unstructured zero-set condition: it is exactly a
+three-coefficient anchor ledger on the `(m-1)`-core locator `L_R`.
+
+### Proof
+
+The displayed identity for `(X-beta)(X-Y)L_R` says that the boundary locator
+along the core-line is `M_1 - Y M_0`, where
+
+```text
+M_1=(X-beta)X L_R,       M_0=(X-beta)L_R.
+```
+
+Applying the two Hankel maps gives `A-YB` and `C-YD`.  Expanding the row-pair
+wedge bilinearly gives
+
+```text
+W(A-YB,C-YD)
+ = W(A,C) - Y( W(B,C)+W(A,D) ) + Y^2 W(B,D),
+```
+
+which is `(CoreCoeff)`.  Since `p_R` has degree at most two in `Y`, it is
+identically zero exactly when the three displayed coefficients vanish.
+
 ## Non-Claims
 
 This note does not prove
@@ -2022,3 +2090,6 @@ it does not prove that the star-free zero set of that minor is small.
 Corollary 22 is again per fixed anchor minor: it bounds the zeros left after
 identically vanishing core-lines have been charged, but it does not bound the
 number of such core-lines or the common zero set of all anchor minors.
+Corollary 23 identifies those identically vanishing core-lines as explicit
+lower-dimensional Hankel-wedge coefficient equations; it does not bound their
+common zero set.
