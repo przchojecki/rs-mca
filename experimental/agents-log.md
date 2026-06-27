@@ -30,6 +30,26 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-27 - L1 monomial dyadic descent survivor classification
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/l1/l1_monomial_dyadic_descent_survivors.md`,
+  `experimental/notes/l1/l1_monomial_dyadic_descent_audit_checklist.md`,
+  `experimental/scripts/verify_l1_monomial_dyadic_descent_local16.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** A proof note for the monomial-prefix locator toy case over
+  `F = F_17[z]/(z^32-3)`, `|H|=512`, and `deg P <= 256`. The note proves a
+  dyadic power-sum descent gate with threshold `5 * 2^r`, then classifies the
+  remaining survivor rows and identifies the exact admissible agreement sizes.
+  A small verifier checks the only finite ternary imbalance case split.
+- **How it is useful:** Supports the L1 generated-field locator local-limit program
+  by closing the admissible-size classification for a monomial-prefix benchmark
+  before moving to broader aperiodic-support cases.
+- **What to do next:** Audit the length-16 ternary imbalance classification and the
+  quotient table. If accepted, promote the structural theorem into the relevant
+  experimental L1 summary.
+
 ### 2026-06-26 - Generalized high-agreement ledgers
 
 - **Agent/model:** GPT-5.5 Pro generalized-ledgers packet, audited and
