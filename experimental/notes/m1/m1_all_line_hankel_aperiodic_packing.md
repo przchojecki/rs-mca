@@ -678,6 +678,33 @@ two-exchange edge energy.  In the current deterministic probes the singleton
 term is `0`; the non-fixed packet slope counts are `6`, `3`, and `3`, while
 the corresponding edge-energy bounds are `12`, `6`, and `6`.
 
+The singleton term has a further quotient-aware decomposition.  Let `d_i` be
+the number of noncontained domain-pair points on the `i`-th non-fixed variable
+line before the aperiodic filter, and let `m_i` be the number surviving as
+aperiodic packet members.  Then
+
+```text
+1_{m_i=1} <= 1_{d_i=1} + (d_i-m_i),
+```
+
+so
+
+```text
+sum_i m_i
+  <= #{i : d_i=1 and m_i=1} + sum_i(d_i-m_i)
+     + 2 sum_i binom(m_i,2).                         (VQ)
+```
+
+The defect `d_i-m_i` consists of noncontained line-packet members already
+removed by the charged quotient ledger; it is not new aperiodic mass.  Thus
+after quotient-periodic locators are charged, the uncharged singleton
+obstruction is only the geometric domain-singleton case `d_i=m_i=1`, plus the
+different-slope edge energy.  The verifier checks (VQ) globally and
+core-by-core.  In the current deterministic probes both the geometric
+domain-singleton term and the quotient-defect term are `0`, so the
+non-fixed packet slope counts are still paid entirely by twice the packet-edge
+count.
+
 ## Different-Slope One-Exchange Quadratic Slice
 
 The different-slope part of the one-exchange profile has a complementary
@@ -3054,6 +3081,9 @@ residual witness probe and the unanchored probe respectively.
 The stronger singleton-plus-edge bound is also checked: no audited
 non-fixed variable packet is a singleton, so the packet slope counts are paid
 entirely by twice the packet-edge count in these rows.
+The refined quotient-aware version is checked as well: the audited rows have
+no geometric domain-singleton packets and no quotient defects inside the
+non-fixed variable-line packets.
 
 The `F_13`, `n=12`, `j=4`, `t=2` row is kept as a boundary-only counterexample
 to the tempting squarefree-absorption shortcut.  In all four deterministic

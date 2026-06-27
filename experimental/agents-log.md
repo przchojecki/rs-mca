@@ -30,6 +30,23 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-27 - M1 variable-line quotient-aware singleton reduction
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/m1/m1_all_line_hankel_aperiodic_packing.md`,
+  `experimental/scripts/verify_m1_all_line_hankel_aperiodic.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT / EXPERIMENTAL.
+- **What is being added:** The non-fixed variable-line singleton term is split
+  into geometric domain-singleton packets and charged quotient defects:
+  `sum_i m_i <= #{i:d_i=m_i=1} + sum_i(d_i-m_i) + 2 sum_i binom(m_i,2)`.
+- **How it is useful:** This shows that, once quotient-periodic packet members
+  are charged, the only singleton residue left in the variable-line M1 branch
+  is the true domain-singleton case; all packets of size at least two remain
+  controlled by different-slope two-exchange edge energy.
+- **What to do next:** Classify or bound geometric domain-singleton non-fixed
+  variable lines, and separately bound the global different-slope edge energy.
+
 ### 2026-06-27 - M1 variable-line singleton plus edge bound
 
 - **Agent/model:** Codex.
