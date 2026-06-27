@@ -1799,6 +1799,36 @@ def verify_case(case: Case) -> dict[str, object]:
     }
 
 
+def verify_boundary_only_projective_lift_probe(summary: dict[str, object]) -> None:
+    case = summary["case"]
+    if case.name != "F13_order12_j4_t2":
+        raise AssertionError("boundary-only probe was called on the wrong case")
+    for row in summary["rows"]:
+        if row["root_slice_residual_slopes"] == 0:
+            raise AssertionError("boundary-only probe had no residual slopes")
+        if row["root_slice_lifted_common_cores"] != 0:
+            raise AssertionError("boundary-only probe unexpectedly had lifted common cores")
+        if row["root_slice_residual_lifted_slopes"] != 0:
+            raise AssertionError("boundary-only probe unexpectedly had lifted slopes")
+        if row["root_slice_residual_projective_squarefree_fibers"] != 0:
+            raise AssertionError("boundary-only probe had squarefree projective fibers")
+        if (
+            row["root_slice_residual_projective_boundary_singletons"]
+            != row["root_slice_residual_locators"]
+        ):
+            raise AssertionError("boundary-only probe did not have singleton boundary fibers")
+        if (
+            row["root_slice_residual_anchor_outside_domain"]
+            != row["root_slice_residual_locators"]
+        ):
+            raise AssertionError("boundary-only probe was not purely off-domain")
+        if (
+            row["root_slice_residual_escape_new_slopes"]
+            != row["root_slice_residual_slopes"]
+        ):
+            raise AssertionError("boundary-only probe slopes were absorbed by lifted side")
+
+
 def verify_rank_one_zero_slice_probe() -> dict[str, object]:
     case = Case(
         "F17_full_j4_t2_rank1_probe",
@@ -1829,6 +1859,10 @@ def main() -> None:
         Case("F13_order12_j4_t2", p=13, n=12, j=4, t=2, charged_fiber_sizes=(2, 3, 4, 6), seeds=(0, 1, 2, 3)),
     )
     summaries = [verify_case(case) for case in cases]
+    boundary_only_summary = next(
+        summary for summary in summaries if summary["case"].name == "F13_order12_j4_t2"
+    )
+    verify_boundary_only_projective_lift_probe(boundary_only_summary)
     rank_one_probe = verify_rank_one_zero_slice_probe()
     for summary in summaries:
         case = summary["case"]

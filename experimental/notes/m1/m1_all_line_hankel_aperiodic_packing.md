@@ -573,6 +573,28 @@ projective lifts can only contribute isolated slopes, while every residual
 edge and every residual top packet comes from a squarefree in-domain fiber of
 the unique projective lifted-kernel map.
 
+## Boundary-Only Counterexample To Squarefree Absorption
+
+The boundary side cannot simply be absorbed into the squarefree lifted-core
+side.  The verifier includes a deterministic `F_13`, `n=12`, `j=4`, `t=2`
+cyclic-domain row where, after quotient and root-slice charges, the residual
+family has no squarefree projective lift fibers and no lifted common cores, but
+still has a nonempty residual slope image.
+
+In each seed of this row, all `24` residual locators are off-domain
+projective boundary singleton fibers, the squarefree lifted slope image is
+empty, and the `6` residual slopes are all new boundary slopes:
+
+```text
+Z_lift = empty,        |Z_esc|=|Z_res|=6.
+```
+
+Thus the projective lift-fiber reduction has two genuinely necessary terms:
+squarefree in-domain fibers and boundary singleton fibers.  A proof of M1 may
+bound the two terms by different arguments, but it cannot close the residual
+slope image by discarding or absorbing the boundary term into the squarefree
+one.
+
 ## Residual Slope-Image Ledger
 
 The anchor ledger also splits the residual slope image itself.  Define
@@ -905,6 +927,8 @@ enumerates small cyclic-domain cases.  For each case it:
   the lift-fiber ledger: boundary fibers are singleton, nontrivial fibers are
   squarefree in-domain top packets, and the fiber pair count equals the
   residual strict edge count;
+- checks the `F_13`, `n=12`, `j=4`, `t=2` boundary-only row as a counterexample
+  to absorbing all residual slopes into squarefree lifted-core fibers;
 - verifies the residual slope-image ledger `Z_res=Z_lift union Z_esc` and
   checks that residual faces inside each lifted common core have pairwise
   distinct slopes;
@@ -938,6 +962,14 @@ deterministic polynomial-family line samples, and one deterministic arbitrary
 line probe.  The largest observed residual aperiodic slope image in this smoke
 packet has size `17`, after direct interpolation checks on every reported
 support-wise bad slope.
+
+The `F_13`, `n=12`, `j=4`, `t=2` row is kept as a boundary-only counterexample
+to the tempting squarefree-absorption shortcut.  In all four deterministic
+seeds it has `24` residual locators, all of them off-domain projective
+boundary singleton fibers; it has no lifted common cores, no squarefree
+projective lift fibers, and no lifted slopes.  Nevertheless it has `6`
+residual slopes, all coming from `6` new escape slopes.  The verifier asserts
+these features explicitly.
 
 In the polynomial-family full-domain `F_17`, `j=4`, `t=2` row, the residual
 aperiodic locus has maximum slope fiber `16`, strict one-exchange degree `15`,

@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-27 - M1 boundary-only projective counterexample
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/m1/m1_all_line_hankel_aperiodic_packing.md`,
+  `experimental/scripts/verify_m1_all_line_hankel_aperiodic.py`,
+  `experimental/agents-log.md`.
+- **Status:** COUNTEREXAMPLE / AUDIT / EXPERIMENTAL.
+- **What is being added:** The `F_13`, `n=12`, `j=4`, `t=2` row is recorded
+  as a counterexample to the shortcut that all residual slopes can be absorbed
+  into squarefree lifted-core fibers.  In every seed, all `24` residual
+  locators are off-domain boundary singleton fibers, with no lifted common
+  cores or squarefree fibers, yet `6` residual slopes remain.
+- **How it is useful:** This clarifies the remaining M1 route: the
+  projective fiber reduction has two necessary slope-image terms, squarefree
+  in-domain fibers and boundary singleton fibers.
+- **What to do next:** Develop a separate bound for the boundary singleton
+  slope image, rather than trying to discard it or absorb it into lifted cores.
+
 ### 2026-06-27 - M1 projective lift-fiber ledger
 
 - **Agent/model:** Codex.
