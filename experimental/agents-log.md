@@ -186,7 +186,12 @@ Keep entries concise and link to the relevant files.
   `>b` is cut out by minors of total degree at most `2(c-b)`.  If it is not
   identically persistent, it has at most `2(c-b)q` anchor-slope pairs; the
   persistent case is recorded as moving two-parameter core certificates over
-  `F(beta,lambda)`.
+  `F(beta,lambda)`.  The lower common-image exceptions now have the analogous
+  global anchor-image incidence form over `F x P(F^t)`: the bad pairs
+  `(beta,[y])` are cut out by minors of total degree at most `2(c-b)`, giving at
+  most `2(c-b)q^t/(q-1)` rational anchor-image pairs unless the incidence is
+  identically persistent, in which case it is recorded as moving certificates
+  over `F(beta,y)`.
 - **What to do next:** Bound or charge the unique-neighbor nondegenerate
   star-free shadow ledger, and charge the ruled exceptional low-rank loci to
   fixed-slope/root-slice, endpoint, projective, quotient-periodic, or

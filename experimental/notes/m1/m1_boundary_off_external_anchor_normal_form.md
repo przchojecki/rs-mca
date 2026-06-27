@@ -3031,6 +3031,137 @@ split cores for that pair.  There are at most `q^2` anchor-slope pairs.  Each
 core extends to at most `n-m+1` boundary shadows.  The root-free improvement is
 Corollary 30.1 applied to each good pair.
 
+## Corollary 33: Lower Common-Image Bad Anchor-Line Incidence Is Determinantal
+
+Put `c=m-1` and fix `0<=b<c`.  For an anchor `beta in F` and a projective image
+line `I=[y] in P(F^t)`, let
+
+```text
+C_{beta,y}^core: F^c -> Lambda^2(F^t)^4
+```
+
+be the homogeneous direction map
+
+```text
+Q |-> ( y wedge H(u)(X-beta)Q,
+        y wedge H(u)(X-beta)XQ,
+        y wedge H(v)(X-beta)Q,
+        y wedge H(v)(X-beta)XQ ).
+```
+
+Let
+
+```text
+e(beta,[y])=dim ker C_{beta,y}^core
+```
+
+and define the bad anchor-image incidence
+
+```text
+B_img,>b={ (beta,[y]) in F x P(F^t) : e(beta,[y])>b }.
+```
+
+Then `B_img,>b` is cut out by the `(c-b) x (c-b)` minors of
+`C_{beta,y}^core`.  Each entry of this matrix has degree at most one in `beta`
+and is homogeneous linear in `y`.  Hence each such minor has beta-degree at most
+`c-b`, is homogeneous of degree `c-b` in `y`, and has total degree at most
+`2(c-b)`.
+
+Consequently one of the following alternatives holds.
+
+```text
+finite anchor-image incidence alternative:
+  |B_img,>b| <= (2(c-b) q^t)/(q-1);
+
+persistent anchor-image alternative:
+  e(beta,[y])>b for every beta in F and every [y] in P(F^t).
+```
+
+More precisely, the finite incidence alternative holds whenever at least one
+`(c-b) x (c-b)` minor is not the zero polynomial in `F[beta,y_0,...,y_{t-1}]`.
+If every such minor vanishes identically, then over
+`K=F(beta,y_0,...,y_{t-1})` there are `b+1` independent moving image-core
+directions
+
+```text
+Q_0(beta,y),...,Q_b(beta,y) in F[beta,y]^c
+```
+
+satisfying, after clearing denominators,
+
+```text
+y wedge H(u)(X-beta)Q_i(beta,y,X)=0,
+y wedge H(u)(X-beta)XQ_i(beta,y,X)=0,
+y wedge H(v)(X-beta)Q_i(beta,y,X)=0,
+y wedge H(v)(X-beta)XQ_i(beta,y,X)=0.                (PairPIC)
+```
+
+Conversely, `b+1` `K`-independent moving directions satisfying (PairPIC) force
+the persistent anchor-image alternative.
+
+Thus, after charging the bad incidence `B_img,>b`, the uncharged lower
+common-image full-core ledger over all anchors and projective image lines
+contributes at most
+
+```text
+q ((q^t-1)/(q-1)) binom(n,b)
+```
+
+split cores, and at most
+
+```text
+q (n-m+1) ((q^t-1)/(q-1)) binom(n,b)
+```
+
+boundary shadows before the lower root-free refinement.  After common-root
+lower core pieces have been charged and `1<=b<=n/2`, the same split-core term
+improves to
+
+```text
+q ((q^t-1)/(q-1)) (b/c) binom(n,b).
+```
+
+### Proof
+
+For fixed `Q`, each vector
+
+```text
+H(w)(X-beta)Q,        H(w)(X-beta)XQ
+```
+
+is affine-linear in `beta`.  Wedging with `y` makes every coordinate of
+`C_{beta,y}^core` homogeneous linear in `y` and degree at most one in `beta`.
+Thus an `r x r` minor, with `r=c-b`, has beta-degree at most `r`, homogeneous
+`y`-degree `r`, and total degree at most `2r`.
+
+The condition `e(beta,[y])>b` is equivalent to
+
+```text
+rank C_{beta,y}^core < c-b,
+```
+
+and hence to the vanishing of all `r x r` minors.  If one such minor `P` is not
+the zero polynomial, then the bad incidence is contained in the projectivization
+in `y` of the affine zero set of `P(beta,y)`.  The affine Schwartz-Zippel bound
+in the `t+1` variables `(beta,y)` gives at most `2r q^t` affine zeros.  Since
+`P` is homogeneous in `y`, every projective bad pair has `q-1` nonzero affine
+representatives.  Therefore
+
+```text
+|B_img,>b| <= (2r q^t)/(q-1).
+```
+
+If every `r x r` minor vanishes identically, then the rank over
+`K=F(beta,y_0,...,y_{t-1})` is `<r`, so the kernel dimension is at least `b+1`.
+Choosing independent kernel vectors and clearing denominators gives (PairPIC).
+The converse is rank-nullity over `K`.
+
+Outside the charged bad incidence, each anchor-image pair has direction
+dimension at most `b`, so Corollary 26 gives at most `binom(n,b)` split cores
+for that pair.  There are `q((q^t-1)/(q-1))` such pairs, and each core extends
+to at most `n-m+1` boundary shadows.  The root-free improvement is Corollary
+30.1 applied pairwise.
+
 ## Non-Claims
 
 This note does not prove
@@ -3111,4 +3242,7 @@ persistent endpoint-anchor alternative; that persistent case remains an
 explicit moving-certificate ledger. Corollary 32 does not prove that the
 two-parameter fixed-kernel bad pair locus is empty or small enough for M1 by
 itself; it makes that locus determinantal and separates the finite pair-locus
-case from the moving two-parameter certificate case.
+case from the moving two-parameter certificate case. Corollary 33 similarly
+does not prove that the common-image bad anchor-line incidence is empty; it
+turns that incidence into a finite determinantal charge or a moving
+anchor-image certificate.
