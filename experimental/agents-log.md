@@ -75,6 +75,10 @@ Keep entries concise and link to the relevant files.
   `H(v)` shifted endpoint row-cut systems have direction dimension `>b`, and a
   moving kernel gives an explicit coefficient ladder from the `u` endpoint to
   the `v` endpoint.
+  The common-image low-rank locus is likewise made projective-determinantal:
+  for image line `[y]`, `d_I>b` is cut out by minors of the wedge map
+  `Q -> y wedge H(w)ell_Q^sigma`; outside that locus, the common-image
+  contribution is at most `q ((q^t-1)/(q-1)) binom(n,b)`.
 - **How it is useful:** This sharpens one of the two live residual objects in
   the non-fixed variable-line branch.  It does not prove the final M1 bound,
   but it turns the boundary image into a precise quadratic-anchor/ruled-branch
@@ -86,7 +90,8 @@ Keep entries concise and link to the relevant files.
   bounded-rank part and a concrete algebraic certificate for the persistent
   part.  It further shows that the persistent finite-slope case is not a new
   free-floating obstruction: it must be charged through endpoint low-rank
-  ledgers.
+  ledgers.  The common-image branch is similarly reduced to a bounded-rank
+  polynomial residual plus an explicit projective low-rank locus.
 - **What to do next:** Bound the adjacent domain shadows in the nondegenerate
   branch and try to charge the ruled branch to fixed-slope/root-slice,
   contained/tangent, quotient-periodic, or active-codegree ledgers.

@@ -1190,6 +1190,121 @@ and compare coefficients of powers of `z`.  If the first nonzero coefficient
 of `Q` occurs at degree `s>0`, divide by `z^s` in the polynomial ring before
 applying the comparison.  This gives (EL).
 
+## Corollary 16: Common-Image Low-Rank Is A Projective Determinantal Locus
+
+Let `m=j-1`.  For a nonzero vector `y in F^t`, let `I=[y]` be the projective
+image line it spans.  Define the homogeneous common-image matrix
+
+```text
+C_y : F^m -> (wedge^2 F^t)^4
+```
+
+by
+
+```text
+Q |-> ( y wedge H_{t,j}(u) ell_Q^0,
+        y wedge H_{t,j}(u) ell_Q^+,
+        y wedge H_{t,j}(v) ell_Q^0,
+        y wedge H_{t,j}(v) ell_Q^+ ).
+```
+
+Then
+
+```text
+ker C_y = V_I,        d_I = dim ker C_y.             (CI)
+```
+
+In particular, for `0<=b<m`, the low-rank image-line locus
+
+```text
+P_img,>b = { [y] in P^{t-1}(F) : d_[y] > b }
+```
+
+is cut out by the `(m-b) x (m-b)` minors of any matrix for `C_y`.  These
+minors are homogeneous polynomials of degree `m-b` in the coordinates of `y`.
+
+If at least one such minor is not the zero polynomial, then
+
+```text
+|P_img,>b| <= ((m-b) q^(t-1))/(q-1).                (PI)
+```
+
+If every such minor vanishes identically, then over
+`K=F(y_0,...,y_{t-1})` there are `b+1` independent moving-image directions
+
+```text
+Q_0(y),...,Q_b(y) in K^m
+```
+
+such that, after clearing denominators,
+
+```text
+y wedge H_{t,j}(u) ell_{Q_i(y)}^0 = 0,
+y wedge H_{t,j}(u) ell_{Q_i(y)}^+ = 0,
+y wedge H_{t,j}(v) ell_{Q_i(y)}^0 = 0,
+y wedge H_{t,j}(v) ell_{Q_i(y)}^+ = 0              (PIC)
+```
+
+as polynomial identities.  Conversely, `b+1` independent moving-image
+directions satisfying these identities force all `(m-b) x (m-b)` minors of
+`C_y` to vanish identically.
+
+Consequently, after charging the projective low-rank image-line locus
+`P_img,>b`, the bounded-rank common-image shadow ledger satisfies
+
+```text
+|Sh_img^{<=b}| <= ((q^t-1)/(q-1)) binom(n,b),
+```
+
+and its boundary-off target contribution is at most
+
+```text
+q ((q^t-1)/(q-1)) binom(n,b).                       (CIB)
+```
+
+For bounded slack `t`, bounded `b`, and polynomial field size `q<=n^B_F`, this
+bounded-rank common-image residual is polynomial.  The only remaining
+common-image obstruction is the explicitly determinantal projective low-rank
+locus, or the identically persistent moving-image certificate (PIC).
+
+### Proof
+
+A vector `Q` lies in the direction space for the image line `I=[y]` exactly
+when each of the four Hankel images
+
+```text
+H(u)ell_Q^0, H(u)ell_Q^+, H(v)ell_Q^0, H(v)ell_Q^+
+```
+
+lies in `I`.  This is equivalent to the vanishing of its wedge with `y`, which
+proves (CI).  Scaling `y` scales every row of `C_y` uniformly and does not
+change the kernel, so the condition is projective.
+
+The entries of `C_y` are homogeneous linear forms in the coordinates of `y`.
+The condition `d_[y]>b` is equivalent to
+
+```text
+rank C_y < m-b,
+```
+
+and hence to the vanishing of all `(m-b) x (m-b)` minors.  Those minors are
+homogeneous of degree `m-b`.
+
+If one of these minors is a nonzero homogeneous polynomial `P(y)` of degree
+`m-b`, the affine Schwartz-Zippel bound gives at most `(m-b)q^(t-1)` zeros in
+`F^t`.  Dividing nonzero zeros into projective lines gives (PI).
+
+If all minors vanish identically, then over the rational function field
+`K=F(y_0,...,y_{t-1})` the rank of `C_y` is `<m-b`, so the kernel dimension is
+at least `b+1`.  Choose `b+1` independent kernel vectors over `K` and clear
+denominators to obtain polynomial vectors satisfying (PIC).  The converse is
+the same rank-nullity argument over `K`.
+
+Finally, for all image lines outside `P_img,>b`, Corollary 10 gives at most
+`binom(n,b)` split shadows per line.  There are `(q^t-1)/(q-1)` projective
+image lines in `F^t`; multiplying and then using the external-anchor factor
+`q` from Corollary 9 proves (CIB).
+
 ## Non-Claims
 
 This note does not prove
@@ -1218,4 +1333,6 @@ prove that the persistent polynomial-kernel certificates cannot occur; it
 turns that case into an explicit algebraic certificate to rule out, classify,
 or charge. Corollary 15 shows that such certificates force endpoint low-rank
 ledgers; it does not prove those endpoint ledgers are small without a separate
-charge.
+charge. Corollary 16 similarly makes the common-image low-rank locus
+projective and determinantal; it does not bound the split shadows supported on
+the exceptional projective low-rank lines without charging that locus.
