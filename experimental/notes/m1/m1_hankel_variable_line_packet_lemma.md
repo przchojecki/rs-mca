@@ -400,6 +400,48 @@ a=k+t >= n/2+1 > (n+1)/2,
 
 so the positive-slack rate-half assertion follows.
 
+## Rate-Half Variable-Line Closure Criterion
+
+The previous corollary turns the rate-half positive-slack variable-line problem
+into two explicit residual estimates.  Suppose `k>=n/2`, `t>=1`, and the
+quotient-defect and contained/tangent target ledgers satisfy
+
+```text
+Q_def <= n^B_Q,        |Tangent_cb| <= n^B_T.
+```
+
+Suppose also that the two live residual objects satisfy
+
+```text
+E_2^neq(A_var) <= n^B_E,        |Boundary_off| <= n^B_O.
+```
+
+Then the non-fixed variable-line active-new contribution obeys
+
+```text
+sum_L r_L
+  <= n^B_Q + 2 n^B_E + n^(B_T+4) + n^(B_O+3).       (PC)
+```
+
+In particular, once quotient defects and contained/tangent targets have already
+been paid by their own ledgers, polynomial bounds for the active
+different-slope two-exchange codegree and the one-outside boundary target
+image imply a polynomial bound for the whole non-fixed variable-line branch.
+No zero-lower singleton term remains in this rate-half positive-slack range.
+
+### Proof
+
+In the rate-half positive-slack range the high-agreement corollary gives
+`Z_0=0`, so (RL-HA) applies.  Since `0<=j<=n`,
+
+```text
+2 binom(j,2) binom(n-j,2) <= n^4,
+(j-1) binom(n-j+1,2) <= n^3.
+```
+
+Substituting these two crude polynomial bounds and the four displayed
+hypotheses into (RL-HA) proves (PC).
+
 ## Use In M1
 
 The lemma identifies what the all-line M1 proof still has to do in this branch.
@@ -427,4 +469,7 @@ The high-agreement corollary removes the zero-lower class whenever
 `a>(n+1)/2`, hence throughout the positive-slack rate-half window
 `k>=n/2`, `t>=1`.  In that range, after quotient and contained/tangent charges,
 the next M1 step is exactly to bound the active codegree and one-outside target
-image inside the quotient-aware residue-line ledger.
+image inside the quotient-aware residue-line ledger.  The closure criterion
+makes the exponent bookkeeping explicit: any polynomial estimates for those
+two live residual objects close the non-fixed variable-line branch up to a
+fixed `n^3`/`n^4` bookkeeping loss.

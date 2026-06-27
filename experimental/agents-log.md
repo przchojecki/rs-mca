@@ -165,14 +165,16 @@ Keep entries concise and link to the relevant files.
   packet-edge term with the active different-slope two-exchange codegree
   subledger, and the zero-lower class is eliminated in the high-agreement range
   `a>(n+1)/2`, hence throughout the positive-slack rate-half window
-  `k>=n/2`, `t>=1`.
+  `k>=n/2`, `t>=1`. The note also records an explicit polynomial closure
+  criterion for the rate-half variable-line branch.
 - **How it is useful:** This extracts a reviewable M1 reduction from the
   closed all-line packet without promoting an all-line theorem; it isolates the
   next target-image problem for the aperiodic residue-packing route.
 - **What to do next:** In the high-agreement/rate-half positive-slack range,
   bound the one-outside singleton target image and the active two-exchange
-  codegree in the quotient-aware residue-line ledger; treat lower-agreement
-  zero-lower classes separately.
+  codegree in the quotient-aware residue-line ledger; the closure criterion
+  then pays the non-fixed variable-line branch with only fixed polynomial
+  bookkeeping losses. Treat lower-agreement zero-lower classes separately.
 
 ### 2026-06-26 - Generalized high-agreement ledgers
 
