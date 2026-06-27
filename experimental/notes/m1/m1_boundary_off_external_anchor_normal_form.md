@@ -4381,6 +4381,58 @@ Thus (FrontGood_r) holds.  Corollary 40.3 then gives the closure and the
 The row-count constraints are the necessary conditions for injectivity of maps
 from an `h`-dimensional domain to the displayed codomains.
 
+## Corollary 40.5: Finite Frontier Ladders Charge Additively
+
+Keep `h=c-b`, and let `R` be a finite set of positive consecutive-frontier
+depths.  Assume that the four short frontier checks (ShortFront_r) from
+Corollary 40.4 hold for every `r in R`.
+
+For each `r in R`, let `E_{r,>b}` be the high-dimensional fixed-kernel slope
+set from Corollary 38.2, and let `Theta_{r,>b}` be the high-dimensional
+first-difference parameter set from Corollary 40.2.  Form the depth-indexed
+bad-system ledger
+
+```text
+Bad_R =
+  { (r,lambda) : r in R, lambda in E_{r,>b} }
+  union
+  { (r,theta) : r in R, theta in Theta_{r,>b} }.
+```
+
+Then
+
+```text
+|Bad_R| <= 2h |R|.                                  (LadderAdd)
+```
+
+After charging the systems indexed by `Bad_R`, every uncharged finite
+fixed-kernel frontier ledger and every uncharged consecutive common-image
+frontier ledger at every depth `r in R` has direction dimension at most `b`.
+Thus a finite consecutive-frontier ladder has additive parameter cost
+
+```text
+sum_{r in R} 2h,
+```
+
+not a multiplicative loss over rungs.  In particular, for a contiguous ladder
+`R={1,2,...,L}`, the cost is at most `2hL` finite parameter systems, with no
+projective image-line multiplier at any rung.
+
+### Proof
+
+For each fixed `r in R`, Corollary 40.4 gives
+
+```text
+|E_{r,>b}| <= h,        |Theta_{r,>b}| <= h,
+```
+
+and says that, after charging those systems, all remaining finite
+fixed-kernel and consecutive common-image frontier ledgers at that depth have
+direction dimension at most `b`.  Summing these depthwise estimates over the
+finite set `R` gives (LadderAdd).  The ledger is indexed by `(depth,parameter)`
+because the same field element can label different linear systems at different
+frontier depths; counting depth-indexed systems is the conservative charge.
+
 ## Corollary 41: The Global Common-Image Ledger Is Endpoint-Only
 
 Let `GCI` be the set of monic degree-`c` split core locators `L` for which
@@ -7022,6 +7074,9 @@ separate nondegenerate shadow ledger.
 Corollary 40.4 reduces those endpoint hypotheses to four short frontier
 injectivity checks; it does not prove the short checks in every instance or
 remove the row-count restrictions for that route.
+Corollary 40.5 sums the depthwise charges over a finite frontier ladder; it
+does not prove the short checks uniformly over all depths or replace the
+remaining endpoint and nondegenerate ledgers.
 Corollary 41 packages the common-image branch into endpoint-type ledgers; it
 does not prove the endpoint rank hypotheses needed for the displayed
 `(q+2)binom(n,b)` bound. Corollary 42 packages the globally full core ledger

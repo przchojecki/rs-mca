@@ -246,7 +246,11 @@ Keep entries concise and link to the relevant files.
   version: with `h=c-b`, injectivity of the four degree-`<h` maps
   `H_{t+r,h-1}(u)`, `H_{t+r,h-1}(v)`, `B_h^(r)`, and `A_h^(r)` implies the
   endpoint hypotheses and closes the same ledger after at most `2h` finite
-  parameter charges.  The
+  parameter charges.  For any finite ladder of depths `R` satisfying these
+  short checks, the depth-indexed charge is additive, at most `2h|R|`, and
+  after those systems are charged all remaining finite fixed-kernel and
+  consecutive common-image frontier ledgers at depths in `R` have dimension
+  `<=b`.  The
   common-image three-shift ledger now has the analogous sliding-window
   reduction: for an image line `[y]`, the allowed deeper residuals form a space
   `W_y` of dimension at most one, nonzero only on the `q+1` extended geometric

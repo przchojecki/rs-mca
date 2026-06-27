@@ -1985,6 +1985,18 @@ above are at most \(b\).  Therefore the same consecutive frontier closure
 holds after charging at most \(2h\) finite parameter systems.  The row-count
 thresholds for this short route are \(h\le t+r\) for the single endpoint maps
 and \(h\le2(t+r-1)\) for the stacked maps.
+For a finite ladder of depths \(R\), if these four short checks hold for every
+\(r\in R\), the charge is additive:
+\[
+  |\{(r,\lambda):r\in R,\ \lambda\in E_{r,>b}\}
+    \cup
+    \{(r,\theta):r\in R,\ \theta\in\Theta_{r,>b}\}|
+  \le 2h|R|.
+\]
+After those depth-indexed systems are charged, all uncharged finite
+fixed-kernel and consecutive common-image frontier ledgers at depths in \(R\)
+have direction dimension at most \(b\).  Thus a ladder of consecutive
+frontiers pays a sum over rungs, not a product of losses.
 Equivalently, the full three-shift common-image branch is endpoint-only.  If
 \(\mathrm{GCI}\) denotes the monic split core locators satisfying some
 three-shift common-image line, then
