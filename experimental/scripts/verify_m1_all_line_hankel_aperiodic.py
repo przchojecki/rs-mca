@@ -2070,6 +2070,7 @@ def verify_full_domain_monomial_boundary_model(
     v = syndrome(g, domain, j + t, p)
     zero_sum_locators = 0
     quotient_zero_sum_locators = 0
+    quotient_product_counts: dict[int, int] = {}
     residual_product_counts: dict[int, int] = {}
     residual_product_slopes: dict[int, set[int]] = {}
     sign = -1 if j % 2 else 1
@@ -2098,6 +2099,14 @@ def verify_full_domain_monomial_boundary_model(
         if slope != expected_slope:
             raise AssertionError("monomial boundary product slope formula failed")
         if is_quotient_periodic(complement, domain, exponents, charged_fiber_sizes):
+            quotient_product_counts[complement_product] = (
+                quotient_product_counts.get(complement_product, 0) + 1
+            )
+            if j == 4 and 2 in charged_fiber_sizes:
+                complement_set = set(complement)
+                antipodal_union = all((-root) % p in complement_set for root in complement)
+                if not antipodal_union:
+                    raise AssertionError("j=4 quotient zero-sum locator was not antipodal")
             quotient_zero_sum_locators += 1
             continue
         residual_product_counts[complement_product] = (
@@ -2111,11 +2120,19 @@ def verify_full_domain_monomial_boundary_model(
     )
     if residual_slope_count != len(residual_product_counts):
         raise AssertionError("monomial product fibers did not inject to slopes")
+    quotient_product_fibers = len(quotient_product_counts)
+    if j == 4 and 2 in charged_fiber_sizes:
+        antipodal_pair_count = (p - 1) // 2
+        if quotient_zero_sum_locators != antipodal_pair_count * (antipodal_pair_count - 1) // 2:
+            raise AssertionError("j=4 quotient zero-sum count was not antipodal-pair count")
+        if quotient_product_fibers != antipodal_pair_count:
+            raise AssertionError("j=4 quotient products were not the square subgroup")
     return {
         "p": p,
         "j": j,
         "zero_sum_locators": zero_sum_locators,
         "quotient_zero_sum_locators": quotient_zero_sum_locators,
+        "quotient_product_fibers": quotient_product_fibers,
         "residual_zero_sum_locators": sum(residual_product_counts.values()),
         "residual_product_fibers": len(residual_product_counts),
         "residual_product_fiber_size": max(residual_product_counts.values(), default=0),
@@ -2188,6 +2205,7 @@ def main() -> None:
             f"p={model['p']} j={model['j']} "
             f"zero_sum_locators={model['zero_sum_locators']} "
             f"quotient_zero_sum_locators={model['quotient_zero_sum_locators']} "
+            f"quotient_product_fibers={model['quotient_product_fibers']} "
             f"residual_zero_sum_locators={model['residual_zero_sum_locators']} "
             f"residual_product_fibers={model['residual_product_fibers']} "
             f"residual_product_fiber_size={model['residual_product_fiber_size']}"

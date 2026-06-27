@@ -30,6 +30,26 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-27 - M1 antipodal quotient charge in product model
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/m1/m1_all_line_hankel_aperiodic_packing.md`,
+  `experimental/scripts/verify_m1_all_line_hankel_aperiodic.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT / EXPERIMENTAL.
+- **What is being added:** In the full-domain monomial boundary family with
+  `j=4`, the quotient-charged zero-sum locators are identified exactly as
+  unions of two antipodal pairs `{a,-a,b,-b}`.  Their product image is the
+  square subgroup, and the verifier asserts this in the audited full-domain
+  cases.
+- **How it is useful:** This separates the obvious square-product floor from
+  the genuinely residual boundary product image.  The field-size residual
+  floor in `F_17` remains after the antipodal square family has already been
+  charged.
+- **What to do next:** Study the residual zero-sum product image after the
+  antipodal quotient family is removed, aiming for a positive bound compatible
+  with the fixed-anchor floor.
+
 ### 2026-06-27 - M1 fixed-anchor field-size floor
 
 - **Agent/model:** Codex.

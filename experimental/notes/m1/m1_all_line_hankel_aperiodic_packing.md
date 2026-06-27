@@ -753,6 +753,21 @@ boundary slope image is the product image of the remaining zero-sum
 `(p,j)=(13,4),(17,4),(17,3)`.  The corresponding residual product-image
 sizes after quotient charging are `6`, `16`, and `16`.
 
+For `j=4`, the quotient-periodic zero-sum part has an exact form.  Since the
+charged fiber size `2` is present in the full-domain audits, quotient-charged
+four-subsets are precisely unions of two antipodal pairs
+
+```text
+T={a,-a,b,-b}.
+```
+
+These are zero-sum and have product `(ab)^2`, so their product image is exactly
+the square subgroup of `F_p^*`.  Conversely, the verifier checks that every
+quotient-charged zero-sum four-subset in the audited full-domain cases is such
+an antipodal-pair union.  Thus the residual product image is not the obvious
+square-family contribution; that square contribution is already removed by the
+quotient charge.
+
 ## Fixed-Anchor Field-Size Floor
 
 The monomial boundary family also gives a sharp scale warning.  In the audited
@@ -1165,6 +1180,9 @@ enumerates small cyclic-domain cases.  For each case it:
 - audits the full-domain monomial boundary family, where `X^{p-2-j}` versus
   `X^{p-2}` has bad locators exactly on the zero-sum locus and slopes given by
   the product image of the deleted roots;
+- checks the `j=4` antipodal quotient charge in that family: quotient-charged
+  zero-sum four-subsets are exactly unions `{a,-a,b,-b}`, whose products form
+  the square subgroup;
 - asserts the `F_17` fixed-anchor field-size floor: in the full-domain
   monomial cases `j=3,4`, one external anchor carries all `16` nonzero slopes
   after quotient charging;
