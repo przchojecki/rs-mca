@@ -30,6 +30,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-27 - M1 domain-singleton free-escape lower bound
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/m1/m1_all_line_hankel_aperiodic_packing.md`,
+  `experimental/scripts/verify_m1_all_line_hankel_aperiodic.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT / EXPERIMENTAL.
+- **What is being added:** The domain-singleton escape census is split into
+  bounded algebraic escape and free escape.  Core-hit roots are bounded by
+  `|R|`, fixed/pole roots by `3` in the product-Mobius model and by `1` in
+  the fixed-sum model, so a singleton forces
+  `free >= max(0, |D|-j-|R|-tau_L)` contained/off-domain escape roots.
+- **How it is useful:** This further reduces Przemek's all-line aperiodic
+  residue-packing target: after quotient-periodic, edge, core-hit, and
+  fixed/pole charges, the remaining active singleton cost must come from
+  contained/off-domain escape mass.
+- **What to do next:** Bound contained/off-domain free escape globally, or
+  charge it to the all-line residue packing ledger.
+
 ### 2026-06-27 - M1 domain-singleton escape-mass charge
 
 - **Agent/model:** Codex.

@@ -800,6 +800,31 @@ line with `d_L=1`, and separately for active domain singletons.  In the
 the remaining singleton problem to bounding escape-root mass rather than
 counting isolated packet points directly.
 
+The escape mass also has a bounded algebraic part.  Core-hit roots are bounded
+by `|R|`, because each such root maps to a distinct core root under the
+line involution.  Fixed/pole roots are bounded by the line model: a
+product-Mobius line `(x-c)(y-c)=mu` has one pole and at most two fixed roots,
+while a fixed-sum line `x+y=s` has at most one fixed root and no pole.  Hence,
+with `tau_L=3` for product-Mobius lines and `tau_L=1` for fixed-sum lines,
+the free escape mass
+
+```text
+free_L := contained_L + offdomain_L
+```
+
+on a geometric domain singleton satisfies
+
+```text
+free_L >= max(0, |D|-j-|R|-tau_L).                  (VS)
+```
+
+In the `t=3` two-exchange ledger, `|R|=j-2`, so (VS) becomes
+`max(0, |D|-2j-1)` for product-Mobius singletons and
+`max(0, |D|-2j+1)` for fixed-sum singletons.  The verifier checks this lower
+bound for every audited non-fixed variable line and separately for active
+domain singletons.  In the `F_13`, `n=12`, `j=5` product-Mobius witness the
+actual free escape mass is `2`, and the forced lower bound is `1`.
+
 ## Different-Slope One-Exchange Quadratic Slice
 
 The different-slope part of the one-exchange profile has a complementary
