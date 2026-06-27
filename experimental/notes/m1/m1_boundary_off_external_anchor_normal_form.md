@@ -4314,6 +4314,73 @@ line gives `ker J_theta^(r)`, so it is high-dimensional only when
 `theta in Theta_{r,>b}`.  Removing the two finite bad-parameter sets leaves
 only direction spaces of dimension at most `b`.
 
+## Corollary 40.4: Four Short Frontier Checks Close The Consecutive Ledger
+
+Keep `h=c-b` and `r>=1`.  Define the short stacked endpoint maps
+
+```text
+B_h^(r)(Q)=(H_{t+r-1,h-1}(u)Q, H_{t+r-1,h-1}(v)Q),
+A_h^(r)(Q)=(H_{t+r-1,h-1}(S u)Q, H_{t+r-1,h-1}(S v)Q),
+```
+
+on degree-`<h` directions.  Assume the four short frontier checks are
+injective:
+
+```text
+ker H_{t+r,h-1}(u)=0,
+ker H_{t+r,h-1}(v)=0,
+ker B_h^(r)=0,
+ker A_h^(r)=0.                                      (ShortFront_r)
+```
+
+Then the endpoint hypotheses (FrontGood_r) from Corollary 40.3 hold.  Hence
+the consecutive frontier ledger closes after charging at most
+
+```text
+2h
+```
+
+finite parameter systems: at most `h` fixed-kernel slopes and at most `h`
+first-difference parameters.  All remaining finite fixed-kernel and
+consecutive common-image frontier ledgers have direction dimension at most
+`b`, with no `r`-dependent multiplier and no projective image-line multiplier.
+
+The short checks are dimensionally feasible only if
+
+```text
+h<=t+r             for the two single endpoint checks,
+h<=2(t+r-1)        for the two stacked endpoint checks.
+```
+
+Outside these row-count ranges the corresponding short injectivity check is
+impossible, so this particular closure route must be replaced by an endpoint
+or short-annihilator charge.
+
+### Proof
+
+It is enough to show that (ShortFront_r) implies (FrontGood_r).  Consider the
+single endpoint map `H_{t+r,c-1}(u):F^c -> F^{t+r}`.  If its kernel had
+dimension greater than `b`, then it would meet the coordinate subspace of
+degree-`<h` directions nontrivially, since
+
+```text
+dim ker H_{t+r,c-1}(u) + h > b + (c-b) = c.
+```
+
+That nonzero intersection vector would lie in `ker H_{t+r,h-1}(u)`,
+contradicting (ShortFront_r).  Hence
+`dim ker H_{t+r,c-1}(u)<=b`.  The same argument applies to `v`.
+
+For the stacked maps, replace the endpoint map above by
+`B^(r):F^c -> F^{2(t+r-1)}` and `A^(r):F^c -> F^{2(t+r-1)}`.  A
+kernel of dimension greater than `b` would again meet degree-`<h` directions
+nontrivially, contradicting injectivity of `B_h^(r)` or `A_h^(r)`.
+Thus (FrontGood_r) holds.  Corollary 40.3 then gives the closure and the
+`2(c-b)=2h` finite-parameter charge.
+
+The row-count constraints are the necessary conditions for injectivity of maps
+from an `h`-dimensional domain to the displayed codomains.
+
 ## Corollary 41: The Global Common-Image Ledger Is Endpoint-Only
 
 Let `GCI` be the set of monic degree-`c` split core locators `L` for which
@@ -6952,6 +7019,9 @@ endpoint maps are low-dimensional in the persistent alternative.
 Corollary 40.3 packages these consecutive-frontier ledgers under four endpoint
 rank hypotheses; it does not prove those endpoint hypotheses or close the
 separate nondegenerate shadow ledger.
+Corollary 40.4 reduces those endpoint hypotheses to four short frontier
+injectivity checks; it does not prove the short checks in every instance or
+remove the row-count restrictions for that route.
 Corollary 41 packages the common-image branch into endpoint-type ledgers; it
 does not prove the endpoint rank hypotheses needed for the displayed
 `(q+2)binom(n,b)` bound. Corollary 42 packages the globally full core ledger
