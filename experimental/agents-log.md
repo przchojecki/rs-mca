@@ -49,7 +49,10 @@ Keep entries concise and link to the relevant files.
   The anchor quadrics are also expanded into constant, mixed, and quadratic
   Hankel-wedge coefficients, giving a concrete ruled-shadow test.  The
   common-kernel ruled branch is further identified as a fixed-slope boundary
-  kernel slice, or as a boundary-contained pencil in the endpoint case.
+  kernel slice, or as a boundary-contained pencil in the endpoint case.  On
+  the common-image side, full shadow stars are shown to be evaluation row cuts,
+  and star-free rank-one row cuts gain a fixed root-slice factor over the bare
+  one-root-loss bound.
 - **How it is useful:** This sharpens one of the two live residual objects in
   the non-fixed variable-line branch.  It does not prove the final M1 bound,
   but it turns the boundary image into a precise quadratic-anchor/ruled-branch
