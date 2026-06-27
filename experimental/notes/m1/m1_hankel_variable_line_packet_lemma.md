@@ -350,6 +350,10 @@ Equivalently, product-Mobius zero-lower singletons can occur only when
 `a <= (n+1)/2`, and fixed-sum zero-lower singletons can occur only when
 `a <= (n-1)/2`.
 
+Since `a=k+t`, this includes every positive-slack row with `k>=n/2` and
+`t>=1`.  In particular, the rate-half positive-slack M1 window has no
+zero-lower singleton residual.
+
 Consequently, in the range `a>(n+1)/2`,
 
 ```text
@@ -388,7 +392,13 @@ n <= 2(n-a)-1,        equivalently        a <= (n-1)/2.
 ```
 
 Both indicators therefore vanish when `a>(n+1)/2`.  Substituting `Z_0=0` into
-(RL) gives (RL-HA).
+(RL) gives (RL-HA).  Finally, if `k>=n/2` and `t>=1`, then
+
+```text
+a=k+t >= n/2+1 > (n+1)/2,
+```
+
+so the positive-slack rate-half assertion follows.
 
 ## Use In M1
 
@@ -414,6 +424,7 @@ Thus the non-fixed variable-line branch has been reduced to quotient defects,
 active different-slope two-exchange codegree, charged contained/tangent
 targets, one-outside boundary targets, and the short-range zero-lower class.
 The high-agreement corollary removes the zero-lower class whenever
-`a>(n+1)/2`.  In that range, after quotient and contained/tangent charges, the
-next M1 step is exactly to bound the active codegree and one-outside target
+`a>(n+1)/2`, hence throughout the positive-slack rate-half window
+`k>=n/2`, `t>=1`.  In that range, after quotient and contained/tangent charges,
+the next M1 step is exactly to bound the active codegree and one-outside target
 image inside the quotient-aware residue-line ledger.
