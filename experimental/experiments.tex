@@ -1710,6 +1710,16 @@ independent polynomial vectors \(Q_i(z,X)\), \(\deg_X Q_i<m\), with
 \]
 as polynomial identities in \(z\).  The remaining persistent case is therefore
 an explicit moving-kernel certificate to classify or rule out.
+Moreover, persistence forces endpoint low rank: the constant and degree-\(r\)
+coefficients of the \(r\times r\) determinantal minors show that the \(H(u)\)
+and \(H(v)\) endpoint row-cut systems both have direction dimension \(>b\),
+where \(r=m-b\).  Equivalently, if either endpoint has direction dimension at
+most \(b\), the persistent alternative is impossible and the finite-exception
+closure applies.  A moving kernel \(Q(z)=\sum q_i z^i\) also gives the ladder
+\[
+R_uq_0=0,\qquad R_uq_i+R_vq_{i-1}=0,\qquad R_vq_D=0,
+\]
+so persistent finite-slope degeneracy starts and ends in endpoint kernels.
 
 \textbf{Status.}  This is a proved local packet lemma under the Hankel-pencil
 normal form and its non-fixed variable-line hypotheses.  It is not the final

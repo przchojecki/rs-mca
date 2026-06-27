@@ -1107,6 +1107,89 @@ Conversely, if `b+1` `K`-independent vectors satisfy (PK), then
 `dim_K ker R_z>=b+1`, so `rank_K R_z<m-b`.  Hence all `(m-b) x (m-b)` minors
 are zero in `K`, and therefore vanish as polynomials in `F[z]`.
 
+## Corollary 15: Persistent Finite-Slope Low Rank Forces Endpoint Low Rank
+
+Write
+
+```text
+R_z = R_u + z R_v,
+```
+
+where `R_u` is the homogeneous row-cut matrix for the shifted pair
+
+```text
+H_{t,j}(u) ell_Q^0 = 0,        H_{t,j}(u) ell_Q^+ = 0,
+```
+
+and `R_v` is the endpoint matrix for
+
+```text
+H_{t,j}(v) ell_Q^0 = 0,        H_{t,j}(v) ell_Q^+ = 0.
+```
+
+Let
+
+```text
+d_0 = dim ker R_u,        d_infty = dim ker R_v.
+```
+
+If the finite-slope row-cut pencil is identically persistent at threshold
+`b`, then
+
+```text
+d_0 > b,        d_infty > b.                         (EP)
+```
+
+Equivalently, if either endpoint row-cut system has direction dimension at
+most `b`, then the persistent low-rank alternative in Corollary 12 is
+impossible.  In that case the finite-exception alternative holds, so the
+bounded-rank closure of Corollary 13 applies after charging the at most
+`m-b` exceptional fixed slopes.
+
+At the level of the polynomial-kernel certificate, every nonzero moving kernel
+
+```text
+Q(z)=q_0+q_1z+...+q_Dz^D
+```
+
+can be divided by a power of `z` so that `q_0 != 0`, and then its coefficients
+satisfy the endpoint ladder
+
+```text
+R_u q_0 = 0,
+R_u q_i + R_v q_{i-1} = 0        for 1<=i<=D,
+R_v q_D = 0.                                         (EL)
+```
+
+Thus a persistent moving kernel necessarily starts in the `u`-endpoint kernel
+and ends in the `v`-endpoint kernel.
+
+### Proof
+
+Put `r=m-b`.  Persistent low rank at threshold `b` says that every `r x r`
+minor of the affine pencil `R_u+zR_v` vanishes identically as a polynomial in
+`z`.  The constant coefficient of such a minor is the corresponding `r x r`
+minor of `R_u`, while the coefficient of `z^r` is the corresponding
+`r x r` minor of `R_v`.  Hence every `r x r` minor of both endpoint matrices
+vanishes, so
+
+```text
+rank R_u < r,        rank R_v < r.
+```
+
+Since the domain dimension is `m`, this is exactly `d_0>b` and `d_infty>b`.
+The contrapositive and the appeal to Corollary 13 are immediate.
+
+For the ladder, substitute `Q(z)=sum_i q_i z^i` into
+
+```text
+(R_u+zR_v)Q(z)=0
+```
+
+and compare coefficients of powers of `z`.  If the first nonzero coefficient
+of `Q` occurs at degree `s>0`, divide by `z^s` in the polynomial ring before
+applying the comparison.  This gives (EL).
+
 ## Non-Claims
 
 This note does not prove
@@ -1133,4 +1216,6 @@ fixed-slope shadows; it separates them from the bounded-rank residual so they
 can be charged to the fixed-slope/root-slice ledger. Corollary 14 does not
 prove that the persistent polynomial-kernel certificates cannot occur; it
 turns that case into an explicit algebraic certificate to rule out, classify,
-or charge.
+or charge. Corollary 15 shows that such certificates force endpoint low-rank
+ledgers; it does not prove those endpoint ledgers are small without a separate
+charge.

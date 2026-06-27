@@ -71,6 +71,10 @@ Keep entries concise and link to the relevant files.
   If the persistent alternative is present algebraically, it is equivalent over
   `F(z)` to `b+1` independent polynomial moving-kernel certificates killed by
   both shifted Hankel equations.
+  The persistent alternative also forces endpoint low rank: both the `H(u)` and
+  `H(v)` shifted endpoint row-cut systems have direction dimension `>b`, and a
+  moving kernel gives an explicit coefficient ladder from the `u` endpoint to
+  the `v` endpoint.
 - **How it is useful:** This sharpens one of the two live residual objects in
   the non-fixed variable-line branch.  It does not prove the final M1 bound,
   but it turns the boundary image into a precise quadratic-anchor/ruled-branch
@@ -80,7 +84,9 @@ Keep entries concise and link to the relevant files.
   obstructions and separates finite exceptional slopes from persistent
   low-rank pencil degeneracy, giving a polynomial closure route for the
   bounded-rank part and a concrete algebraic certificate for the persistent
-  part.
+  part.  It further shows that the persistent finite-slope case is not a new
+  free-floating obstruction: it must be charged through endpoint low-rank
+  ledgers.
 - **What to do next:** Bound the adjacent domain shadows in the nondegenerate
   branch and try to charge the ruled branch to fixed-slope/root-slice,
   contained/tangent, quotient-periodic, or active-codegree ledgers.
