@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-27 - M1 non-fixed variable-line target bound
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/m1/m1_all_line_hankel_aperiodic_packing.md`,
+  `experimental/scripts/verify_m1_all_line_hankel_aperiodic.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** The active-new non-fixed variable-line contribution
+  is now bounded by one combined ledger: zero-lower active singletons,
+  quotient defects, fully active two-packets, injected packet-edge energy, and
+  polynomial fibers over contained/tangent and one-outside singleton targets.
+- **How it is useful:** This packages the current M1 variable-line branch into
+  a single target inequality after root/full-plane/fixed-root charges, making
+  clear which residual objects remain to be bounded for the all-line theorem.
+- **What to do next:** Bound `Z_0`, the target images, and active two-packets in
+  the quotient-aware M1 regime, or connect them to existing boundary and
+  contained/tangent arrangements.
+
 ### 2026-06-27 - M1 active singleton count target budget
 
 - **Agent/model:** Codex.

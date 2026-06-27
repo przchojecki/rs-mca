@@ -959,6 +959,24 @@ active domain-singleton term is paid by the two target images.  Outside that
 range, the only remaining singleton obstruction is the explicit `Z_0` class,
 not the general product-Mobius/fixed-sum packet geometry.
 
+Finally combine this with the active-new variable-line inequality (VN).  Let
+`Q_def` be the quotient-defect count, `P_2` the fully active two-point packet
+count, and `E_pkt` the injected non-fixed packet-edge image.  The genuinely new
+non-fixed variable-line slope contribution satisfies
+
+```text
+|Z_varline^new|
+  <= Z_0 + Q_def + P_2 + E_pkt
+     + 2 binom(j,2) binom(n-j,2) |Target_cb|
+     + (j-1) binom(n-j+1,2) |Target_off|.           (VN-T)
+```
+
+The verifier asserts (VN-T) globally.  This is the current closed form of the
+non-fixed variable-line reduction: after root/full-plane/fixed-root charges,
+new slopes are paid by different-slope edge energy, quotient defects,
+fully-active two-packets, zero-lower singletons, and two explicit singleton
+target images.
+
 ## Different-Slope One-Exchange Quadratic Slice
 
 The different-slope part of the one-exchange profile has a complementary
