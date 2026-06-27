@@ -1,0 +1,763 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1.1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{enumitem}
+\usepackage{booktabs}
+\usepackage{xcolor}
+\definecolor{linkblue}{RGB}{25,60,120}
+\usepackage[colorlinks=true,linkcolor=linkblue,citecolor=linkblue,urlcolor=linkblue]{hyperref}
+\usepackage[capitalize]{cleveref}
+\emergencystretch=2em
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{fact}[theorem]{Fact}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{problem}[theorem]{Open Problem}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\B}{B}
+\newcommand{\RS}{\mathrm{RS}}
+\newcommand{\eca}{\varepsilon_{\mathrm{ca}}}
+\newcommand{\emca}{\varepsilon_{\mathrm{mca}}}
+\newcommand{\dmin}{\delta_{\min}}
+\newcommand{\dist}{\Delta}
+\newcommand{\distS}{\Delta_S}
+\newcommand{\Lst}{\Lambda}
+\newcommand{\Hb}{\mathrm{H}_2}
+\newcommand{\eone}{e_1}
+
+\title{A Universal Field-Size Cap for Mutual Correlated Agreement\\ on Smooth Reed--Solomon Domains}
+\author{Przemek Chojecki\\ \small ulam.ai}
+\date{June 12, 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We prove a field-size-universal upper bound on the proximity parameter achievable in the grand mutual-correlated-agreement (MCA) challenge of Arnon--Boneh--Fenzi \cite{ABF26}. Let $\F$ be any finite field with $|\F|<2^{256}$, let $D$ be a smooth multiplicative evaluation domain of order $n$ contained in a subfield $\B\subseteq\F$ (with $\B=\F$ allowed), and let $C=\RS[\F,D,k]$ have $k=\rho n\le2^{40}$ and $\rho\in\{1/2,1/4,1/8,1/16\}$. If $2^{10}\mid n$ for $\rho\in\{1/2,1/4,1/8\}$, and $2^{11}\mid n$ for $\rho=1/16$, then
+\[
+\emca(C,\delta)
+\;>\;\frac{1}{2k}\Bigl(1-\frac n{|\F|}\Bigr)
+\;\ge\;2^{-86}\;\gg\;2^{-128}
+\]
+for every $\delta\in[1-\rho-2^{-9},1-\rho)$ at rates $1/2,1/4,1/8$, and for every $\delta\in[1-\rho-2^{-10},1-\rho)$ at rate $1/16$. The same lower bound holds for $\eca(C,\delta)$ on the integer-admissible subinterval ending at $1-\rho-1/n$. If $|\F|\ge2n$, the displayed lower bound improves to $2^{-42}$. Consequently $\delta^*_C(2^{-128})\le 1-\rho-2^{-9}$ for $\rho\in\{1/2,1/4,1/8\}$ and $\delta^*_C(2^{-128})\le 1-\rho-2^{-10}$ for $\rho=1/16$, throughout the $|\F|<2^{256}$ challenge envelope.
+
+The mechanism composes a pigeonhole lower bound on quotient-locator list fibers---a slack-two and subfield-pigeonhole sharpening of \cite[Main Thm.\,(d)]{Cho26a}---with a self-contained deep-point list-to-correlated-agreement conversion. This conversion is the same shallow consequence previously imported from Crites--Stewart \cite[Thm.~2]{CS25}, but it is proved here directly with the integer-radius condition. The composition itself was first carried out, conditionally and with weaker constants, in the universal-cap theorem of \cite{Cho26b} (error $2^{-42}$ at gap $2^{-11}$, assuming $|\F|\ge2n$); the present note sharpens the gap, removes the field-size condition, and extends the cap to extension fields. No value-set or equidistribution input is used, so the per-fiber collision problem isolated in \cite{Cho26b} is routed around rather than solved. We instantiate the bound at the KoalaBear-sextic parameters of \cite[\S6.3]{ABF26}, including the interleaved rows of their Tables~2--3, give an independent slacked variant through \cite[Thm.~1.9]{BCHKS25}, and prove a two-radius refinement of the subfield-confinement theorem of \cite{Cho26b}, showing that over extension fields every explicit base-rational locator line is inert: the conversion-certified MCA failure must be witnessed by genuinely $\F$-valued lines.
+\end{abstract}
+
+\section{Introduction}\label{sec:intro}
+
+Proximity testing for Reed--Solomon codes underlies the soundness of modern SNARKs, and the sharpest available soundness accounting is phrased through \emph{mutual correlated agreement} (MCA): a random linear combination $f_1+\gamma f_2$ being $\delta$-close to the code should force $f_1,f_2$ to be simultaneously explained by codewords on a \emph{common} agreement set, except with small probability $\emca(C,\delta)$ over $\gamma$. The survey of Arnon, Boneh and Fenzi \cite{ABF26} crystallizes the state of the art into a \emph{grand MCA challenge}: for $C=\RS[\F,L,k]$ over a smooth domain $L$, with rate $\rho\in\{1/2,1/4,1/8,1/16\}$, degree $k\le2^{40}$, and field size $|\F|<2^{256}$, determine the largest proximity parameter $\delta^*$ at which $\emca(C,\delta)\le2^{-128}$ can hold.
+
+Positive results reach the Johnson bound $1-\sqrt\rho$. On the negative side, \cite{Cho26b} showed $\delta^*_C(2^{-128})<1-\rho-1/64$ for all prime fields of size up to roughly $2^{150}$ (per-rate reaches between $2^{150.6}$ and $2^{161.8}$), by exhibiting quotient-locator witnesses whose bad-slope sets are value sets of restricted symmetric sums over small subgroups; it further proved a \emph{conditional} universal cap over every field of size at most $2^{256}$ --- error $2^{-42}$ at gap $2^{-11}$, assuming $|\F|\ge2n$ --- by composing quotient-core lists with the same conversion isolated and proved directly here (its universal-cap theorem). Above the value-set reach, what remained open was the \emph{error-one} question, identified there with the \emph{per-fiber collision problem}: controlling, at a \emph{fixed} large prime, the collisions of characteristic-zero locator values under reduction. Extension fields, the setting actually deployed (\cite[\S6.3]{ABF26} works over a sextic extension of KoalaBear), posed an additional obstruction: by the subfield-confinement theorem of \cite{Cho26b}, refined in \cref{sec:subfield}, every explicit witness of \cite{Cho26a,Cho26b} is $\B$-rational and contributes only $p^{-5}<2^{-154}$ over the deployed extension.
+
+This note sharpens the universal cap --- gap $2^{-9}$ (resp.\ $2^{-10}$) in place of $2^{-11}$, error $2^{-86}$ with no condition relating $n$ and $|\F|$, and extension fields handled directly --- for every field below $2^{256}$ at once, by changing what is counted.
+
+
+\begin{theorem}[informal; see \cref{thm:main,cor:grand}]\label{thm:informal}
+Let $\F$ be any finite field with $|\F|<2^{256}$, let $D\subseteq\F^\times$ be a smooth multiplicative evaluation domain of order $n$, and let $C=\RS[\F,D,k]$ have $k=\rho n\le2^{40}$ with $\rho\in\{1/2,1/4,1/8,1/16\}$. Assume $2^{10}\mid n$ for $\rho\in\{1/2,1/4,1/8\}$, and $2^{11}\mid n$ for $\rho=1/16$. Then
+\[
+\emca(C,\delta)>2^{-86}\gg2^{-128}
+\]
+for every $\delta\in[1-\rho-2^{-9},1-\rho)$ at rates $1/2,1/4,1/8$, and for every $\delta\in[1-\rho-2^{-10},1-\rho)$ at rate $1/16$. The same lower bound holds for $\eca(C,\delta)$ on the integer-admissible subinterval ending at $1-\rho-1/n$. If $|\F|\ge2n$, the lower bound is $>2^{-42}$. Hence $\delta^*_C(2^{-128})\le1-\rho-2^{-9}$ for $\rho\in\{1/2,1/4,1/8\}$ and $\delta^*_C(2^{-128})\le1-\rho-2^{-10}$ for $\rho=1/16$.
+\end{theorem}
+
+The proof composes two ingredients. The first (\cref{lem:fiber}) is a pigeonhole lower bound on list sizes at a single received word: the quotient locators of \cite{Cho26a} attach to each $\ell$-subset $A$ of the order-$N$ quotient coset $Q=D^{a}$ a codeword $c_A$ at distance $\le1-\rho-t/N$ from the word $u_{z_A}=x^{k+ta}+z_Ax^{k+(t-1)a}$, where $z_A=-\eone(A)$; pigeonholing the $\binom N\ell$ subsets over their $\le|\B|$ slope values produces one word $u_z$ carrying a list of size $\binom N\ell/|\B|$. Two refinements of \cite[Main Thm.\,(d)]{Cho26a} matter here: we run the construction at \emph{slack two} ($t=2$), so that the listed codewords have degree $\le k$ and live in $\RS[\F,D,k+1]$ without any divisibility demand on $k+1$ (which is odd in all challenge instantiations, while $a$ is a $2$-power); and we pigeonhole over the \emph{subfield} $\B$ containing $D$ rather than over $\F$, which is what makes the extension-field case go through. The second ingredient is the direct deep-point conversion of \cref{thm:A}: in the integer-error range $f<n-k-1$, if $\eca(C,\delta)$ is below $\eta(\frac1k-\frac n{k|\F|})$, then \emph{every} list of $\RS[\F,D,k+1]$ at radius $\delta$ has size at most $\lceil|\F|\,\eca/(1-\eta)\rceil$. Taking $\eta=\frac12$, the heavy fiber of \cref{lem:fiber} violates this whenever $\binom N\ell\ge|\B|(|\F|/k+1)$ --- an inequality with hundreds of bits of slack throughout the challenge envelope --- and the contrapositive yields $\eca(C,\delta)>\frac1{2k}(1-n/|\F|)$ throughout the integer-admissible range. The MCA cap then persists up to capacity by support-wise MCA monotonicity.
+
+No value-set counting, exponential-sum estimate, or equidistribution hypothesis enters: pigeonhole fibers exist over every field unconditionally, and \cref{thm:A} converts list mass into correlated-agreement error directly. The cost of this route, relative to the error-one results of \cite{Cho26a,Cho26b} below $2^{150}$, is an error of order $1/k$ rather than $1-o(1)$, and a gap $2^{-9}$ at the first three prize rates (uniformly $2^{-10}$ across all four), rather than the fixed gap $1/64$; \cref{sec:discussion} quantifies the trade-off and what remains open.
+
+Beyond the universal cap (\cref{cor:grand}, with a two-tier summary combining it with \cite{Cho26b}), we prove: a deployed-parameter corollary at the KoalaBear-sextic instantiation of \cite[\S6.3]{ABF26}, with $\emca>2^{-22}$ at gap $2^{-7}$ and the same $\eca$ lower bound on the integer-admissible subinterval (\cref{cor:deployed}), extended to every interleaved row of \cite[Tables~2--3]{ABF26} via an interleaving-transfer lemma (\cref{lem:inter,cor:rows}); an independent slacked variant through \cite[Thm.~1.9]{BCHKS25} for robustness (\cref{prop:slacked}); and a subfield-confinement lemma (\cref{lem:confine}) showing that for lines with $\B$-valued words over an extension $\F/\B$, every CA- or MCA-bad slope lies in $\B$. The latter has a structural consequence (\cref{cor:Fvalued}): at deployed parameters the lines certifying \cref{cor:deployed} are necessarily \emph{not} $\B$-rational, so the failure proved here is fiber-borne and currently non-constructive; exhibiting explicit certifying lines is posed as \cref{prob:explicit}.
+
+\paragraph{Roadmap.} \Cref{sec:prelim} fixes definitions, aligned with \cite[Defs.~4.1, 4.3]{ABF26}, proves the direct deep-point conversion used for the main cap, and records the separate BCHKS/ABF slacked fallback. \Cref{sec:fiber} proves the fiber and interleaving lemmas, \cref{sec:main} the main theorem, \cref{sec:grand} the challenge-level and deployed corollaries, \cref{sec:subfield} subfield confinement. \Cref{sec:discussion} discusses scope, limits, calibration against the conjectural picture of \cite{Cho26b}, and open problems. Throughout, companion results of \cite{Cho26a,Cho26b} are cited by their printed theorem names rather than numbers, since the numbering of those manuscripts is not yet frozen.
+
+\section{Preliminaries}\label{sec:prelim}
+
+\paragraph{Codes and distances.} Throughout, $\B\subseteq\F$ are finite fields, $q:=|\F|$, and $D=\alpha H\subseteq\B^\times$ is a multiplicative coset of a cyclic subgroup $H$ of order $n$; we write $D$ for the evaluation domain (denoted $L$ in \cite{ABF26}). The subgroup case is $\alpha=1$, and taking $\B=\F$ is always allowed. For $k\le n$,
+\[
+\RS[\F,D,k]\;:=\;\bigl\{(p(x))_{x\in D}\;:\;p\in\F[X],\ \deg p<k\bigr\}\subseteq\F^n,
+\qquad \rho:=k/n .
+\]
+For $u,v\in\F^n$, $\dist(u,v)$ is the relative Hamming distance, $\dist(u,C):=\min_{c\in C}\dist(u,c)$, and the relative minimum distance of $C=\RS[\F,D,k]$ is $\dmin(C)=1-\rho+1/n$. For $S\subseteq D$, $\distS(u,v)$ and $\distS(u,C)$ denote the corresponding restricted relative distances on $S$. Lists are denoted
+\[
+\Lst(C,\delta,u):=\{c\in C:\dist(u,c)\le\delta\},\qquad \Lst(C,\delta):=\max_{u\in\F^n}|\Lst(C,\delta,u)| .
+\]
+For $s\ge1$ the $s$-interleaved code is $C^{\equiv s}:=\{(c^{(1)},\dots,c^{(s)}):c^{(i)}\in C\}\subseteq(\F^n)^s$ with the column distance $\dist_s(F,G):=\frac1n\,\bigl|\{j:\exists i,\ f^{(i)}_j\ne g^{(i)}_j\}\bigr|$, and $\dist_s(F,C^{\equiv s}):=\min_{\mathbf c\in C^{\equiv s}}\dist_s(F,\mathbf c)$.
+
+\begin{definition}[correlated agreement error; {\cite[Def.~4.1]{ABF26}} up to notation]\label{def:ca}
+For $0\le\delta_{\mathrm{fld}}\le\delta_{\mathrm{int}}<1$,
+\[
+\eca(C,\delta_{\mathrm{fld}},\delta_{\mathrm{int}})\;:=\;\max_{f_1,f_2\in\F^n}\ \Pr_{\gamma\leftarrow\F}\Bigl[\ \dist(f_1+\gamma f_2,\,C)\le\delta_{\mathrm{fld}}\ \wedge\ \dist_2\bigl((f_1,f_2),\,C^{\equiv2}\bigr)>\delta_{\mathrm{int}}\ \Bigr],
+\]
+and the no-proximity-loss version is $\eca(C,\delta):=\eca(C,\delta,\delta)$. A slope $\gamma$ realizing the event for a fixed pair $(f_1,f_2)$ is called \emph{CA-bad} for that pair.
+\end{definition}
+
+\begin{definition}[mutual correlated agreement error, support-wise; {\cite[Def.~4.3]{ABF26}} up to notation]\label{def:mca}
+For $\delta\in(0,1)$,
+\[
+\emca(C,\delta):=\max_{f_1,f_2\in\F^n}\Pr_{\gamma\leftarrow\F}\left[
+\begin{array}{l}
+\exists S\subseteq D,\ |S|\ge(1-\delta)n,\ \distS(f_1+\gamma f_2,C)=0,\\[2pt]
+\text{and }\distS\bigl((f_1,f_2),C^{\equiv2}\bigr)>0
+\end{array}
+\right].
+\]
+Equivalently, $\gamma$ is MCA-bad for $(f_1,f_2)$ if some large agreement set $S$ explains the point $f_1+\gamma f_2$, but the same set $S$ does not simultaneously explain $f_1$ and $f_2$ by two codewords of $C$.
+\end{definition}
+
+\begin{definition}[challenge threshold]\label{def:dstar}
+Following the grand MCA challenge of \cite[\S1]{ABF26}, for $\varepsilon^*\in(0,1)$ set
+$\delta^*_C(\varepsilon^*):=\sup\{\delta\in(0,1-\rho):\emca(C,\delta)\le\varepsilon^*\}$, with $\sup\emptyset:=0$.
+\end{definition}
+
+\begin{fact}[{cf.\ \cite[Fact~4.5]{ABF26}}]\label{fact:chain}
+For every $\delta\in(0,1)$: $\eca(C,\delta)\le\emca(C,\delta)$.
+\end{fact}
+
+\begin{proof}
+Fix $(f_1,f_2)$ and let $\gamma$ be CA-bad: $\dist(f_1+\gamma f_2,C)\le\delta$ and $\dist_2((f_1,f_2),C^{\equiv2})>\delta$. Choose $S\subseteq D$ of size at least $(1-\delta)n$ on which $f_1+\gamma f_2$ agrees with a codeword of $C$. Since $(f_1,f_2)$ is not $\delta$-close to $C^{\equiv2}$, there is no set of size at least $(1-\delta)n$ on which $f_1$ and $f_2$ are simultaneously explained by codewords of $C$; in particular this fails on the chosen $S$. Thus $\gamma$ is MCA-bad for the same pair. Taking maxima over pairs gives the claim.
+\end{proof}
+
+\begin{lemma}[support-wise MCA monotonicity]\label{lem:mca-monotone}
+For every linear code $C\subseteq\F^D$, the function
+\[
+        \delta\longmapsto \emca(C,\delta)
+\]
+is nondecreasing.
+\end{lemma}
+
+\begin{proof}
+Fix a pair $(f_1,f_2)$ and suppose that $\gamma$ is MCA-bad at radius $\delta$. Then there is a set $S\subseteq D$ with
+\[
+        |S|\ge (1-\delta)n
+\]
+such that $f_1+\gamma f_2$ is explained by $C$ on $S$, but $(f_1,f_2)$ is not simultaneously explained by two codewords of $C$ on the same $S$. If $\delta'\ge\delta$, then
+\[
+        |S|\ge (1-\delta)n\ge (1-\delta')n,
+\]
+so the same set $S$ witnesses that $\gamma$ is MCA-bad at radius $\delta'$. Taking the maximum over pairs gives the claim.
+\end{proof}
+
+\paragraph{Conversion theorem.} The main composition below uses the deep-point list-to-CA conversion proved here directly. This is the same consequence previously imported from Crites--Stewart, with the integer-radius admissibility condition made explicit; see \cref{rem:import}. We keep the slacked BCHKS/ABF fallback as a separate imported route.
+
+\begin{theorem}[deep-point list-to-CA conversion]
+\label{thm:A}
+Let $C=\RS[\F,D,k]$, let $C^+:=\RS[\F,D,k+1]$, let
+$q:=|\F|$ and $n:=|D|$.  Let $\delta\in(0,1)$ and set
+$f_\delta:=\lfloor \delta n\rfloor$.  Assume
+\[
+        f_\delta < n-k-1 .
+\]
+For any $\eta\in[0,1)$, if
+\[
+        \eca(C,\delta)
+        \le
+        \eta\Bigl(\frac1k-\frac n{kq}\Bigr),
+\]
+then
+\[
+        \Lst(C^+,\delta)
+        \le
+        \Bigl\lceil
+        \frac{q\,\eca(C,\delta)}{1-\eta}
+        \Bigr\rceil .
+\]
+\end{theorem}
+
+\begin{proof}
+Put $\epsilon:=\eca(C,\delta)$ and $f=f_\delta$.
+Let $U:D\to\F$ be any received word and suppose that
+$P_1,\ldots,P_L\in\F[X]_{<k+1}$ are distinct polynomials whose
+restrictions to $D$ all lie in the Hamming ball of relative radius
+$\delta$ around $U$.  Since distances are integral, each $P_i$ agrees
+with $U$ on at least
+\[
+        a:=n-f
+\]
+points of $D$.  The hypothesis $f<n-k-1$ gives $a>k+1$, in particular
+$a>k$.
+
+Let $\Omega:=\F\setminus D$, so $|\Omega|=q-n$.  For each
+$\alpha\in\Omega$ define the simple-pole line
+\[
+        f_\alpha(x)=\frac{U(x)}{x-\alpha},
+        \qquad
+        g_\alpha(x)=-\frac1{x-\alpha}
+        \qquad (x\in D).
+\]
+If $P_i$ agrees with $U$ on a set $S_i$ of size at least $a$, then for
+$z_i(\alpha):=P_i(\alpha)$ and every $x\in S_i$,
+\[
+        f_\alpha(x)+z_i(\alpha)g_\alpha(x)
+        =\frac{P_i(x)-P_i(\alpha)}{x-\alpha}.
+\]
+The right-hand side is the restriction of a polynomial of degree $<k$.
+Thus each distinct value among the $P_i(\alpha)$ gives a slope for
+which the line point is $\delta$-close to $C$.
+
+We next check the correlated-agreement far condition.  If a polynomial
+$G\in\F[X]_{<k}$ agreed with $g_\alpha$ on more than $k$ points of $D$,
+then
+\[
+        (X-\alpha)G(X)+1
+\]
+would be a polynomial of degree at most $k$ with more than $k$ roots,
+but its value at $X=\alpha$ is $1$, a contradiction.  Hence
+$(f_\alpha,g_\alpha)$ is not $\delta$-close to $C^{\equiv2}$, because
+any common explanation on a support of size at least $a>k$ would in
+particular explain $g_\alpha$ there.  Therefore the distinct values of
+$P_i(\alpha)$ are CA-bad slopes.
+
+It remains to lower-bound the number of distinct values for some
+$\alpha$.  For $i\ne j$, the polynomial $P_i-P_j$ is nonzero of degree
+at most $k$, so it has at most $k$ roots in $\Omega$.  Let $M(\alpha)$
+be the number of distinct values among $P_1(\alpha),\ldots,P_L(\alpha)$.
+Over all $\alpha\in\Omega$, the total number of colliding unordered pairs
+$(i,j)$ with $P_i(\alpha)=P_j(\alpha)$ is at most $k\binom L2$.
+Equivalently, if the fiber sizes of the map $i\mapsto P_i(\alpha)$ are
+$m_v(\alpha)$, then
+\[
+        \sum_{\alpha\in\Omega}\sum_v \binom{m_v(\alpha)}2
+        \le k\binom L2 .
+\]
+Averaging this collision count and using Cauchy--Schwarz gives the standard
+coarse bound
+\[
+        M(\alpha)\ge \frac{L(q-n)}{q-n+kL}
+\]
+for some $\alpha\in\Omega$.
+Consequently
+\[
+        \epsilon
+        \ge
+        \frac1q\cdot \frac{L(q-n)}{q-n+kL}.
+\]
+Solving this inequality for $L$ gives
+\[
+        L
+        \le
+        \frac{\epsilon q(q-n)}{q-n-k\epsilon q},
+\]
+provided $\epsilon<(q-n)/(kq)$.  Under the stated hypothesis,
+$\epsilon\le\eta(q-n)/(kq)$ with $\eta<1$, so the denominator is at
+least $(1-\eta)(q-n)$ and hence
+\[
+        L\le \frac{q\epsilon}{1-\eta}.
+\]
+Since $U$ and the list were arbitrary, the displayed ceiling bounds the
+maximum list size of $C^+$ at radius $\delta$.
+\end{proof}
+
+\begin{remark}[relation to Crites--Stewart]
+The displayed conversion is the only consequence of Crites--Stewart
+needed by the universal-cap argument.  Earlier drafts imported it from
+\cite[Thm.~2]{CS25}; the proof above is included to make the main cap
+self-contained.  The separate slacked fallback through BCHKS/ABF remains
+an independent imported route.
+\end{remark}
+
+\begin{theorem}[{\cite[Thm.~1.9]{BCHKS25}}, as stated in {\cite[Thm.~5.2]{ABF26}}]\label{thm:B}
+Let $C=\RS[\F,D,k]$, let $\rho=k/n$, and let $\delta\in(0,1-\rho)$ satisfy $\delta+2/n\le 1-\rho-1/n$. If
+\[
+\eca\Bigl(C,\ \delta+\tfrac2n,\ 1-\rho-\tfrac1n\Bigr)\;<\;\frac1{2n},
+\qquad\text{then}\qquad
+\Lst(C,\delta)\;<\;|\F| .
+\]
+\end{theorem}
+
+\begin{remark}[on imports and radius conventions]\label{rem:import}
+\Cref{thm:A} is the only Crites--Stewart-type consequence used by the main cap, and it is now proved above by the simple-pole deep-point argument.  The important admissibility condition is the integer-radius condition
+\[
+        \lfloor \delta n\rfloor < n-k-1 .
+\]
+Consequently, the no-loss CA lower bound proved below should be read only in this admissible range. The Proximity-Prize MCA cap is unaffected: we prove the lower bound at the endpoint
+\[
+        \delta_N:=1-\rho-\frac2N
+\]
+and then use support-wise MCA monotonicity to extend the MCA failure to all larger sub-capacity radii.
+
+\Cref{thm:B} remains a separate slacked fallback imported through the BCHKS/ABF route. It is not needed for the main field-size-universal MCA cap.
+\end{remark}
+
+\section{Locator fibers and interleaving transfer}\label{sec:fiber}
+
+Fix $N\mid n$, set $a:=n/N$, and let $Q:=D^{a}:=\{x^a:x\in D\}\subseteq\B^\times$, a multiplicative coset of order $N$. The $a$-th power map $D\to Q$ is surjective and its fibers $S_b:=\{x\in D:x^a=b\}$ have exactly $a$ elements each. Since $a\mid n\mid|\B|-1$, the characteristic of $\F$ does not divide $a$, so $X^a-b$ is separable for $b\ne0$ and its full root set inside $D$ is $S_b$ whenever $b\in Q$. For a set $A$, $e_j(A)$ denotes the $j$-th elementary symmetric function of its elements.
+
+\begin{lemma}[locator fibers are lists]\label{lem:fiber}
+Let $\B\subseteq\F$, let $D\subseteq\B^\times$ be a multiplicative coset of order $n$, and let $k$ satisfy $a\mid k$ and $\rho=k/n$. Write $\ell_1:=\rho N+1$ and $\ell_2:=\rho N+2$.
+\begin{enumerate}[label=\textup{(\roman*)}]
+\item If $\ell_1\le N$, there exists $z\in\B$ such that, with $u_z:=\bigl(x^{k+a}+z\,x^{k}\bigr)_{x\in D}\in\F^n$,
+\[
+\bigl|\Lst\bigl(\RS[\F,D,k],\ 1-\rho-\tfrac1N,\ u_z\bigr)\bigr|\;\ge\;\binom{N}{\ell_1}\Big/|\B| .
+\]
+\item If $\ell_2\le N$, there exists $z\in\B$ such that, with $u_z:=\bigl(x^{k+2a}+z\,x^{k+a}\bigr)_{x\in D}\in\F^n$,
+\[
+\bigl|\Lst\bigl(\RS[\F,D,k+1],\ 1-\rho-\tfrac2N,\ u_z\bigr)\bigr|\;\ge\;\binom{N}{\ell_2}\Big/|\B| .
+\]
+\end{enumerate}
+In both cases the words $u_z$ are $\B$-valued and all listed codewords lie in $\RS[\B,D,k]$ \textup(resp.\ $\RS[\B,D,k+1]$\textup).
+\end{lemma}
+
+\begin{proof}
+We prove (ii); part (i) is the identical computation one degree rung lower and is \cite[Main Thm.\,(d)]{Cho26a} sharpened by pigeonholing over $\B$ in place of $\F$.
+
+Let $A\subseteq Q$ with $|A|=\ell_2$, and put
+\[
+L_A(X)\;:=\;\prod_{b\in A}\bigl(X^a-b\bigr)\;=\;\sum_{j=0}^{\ell_2}(-1)^j e_j(A)\,X^{a(\ell_2-j)}\;=\;X^{k+2a}-e_1(A)\,X^{k+a}+R_A(X),
+\]
+where $a\ell_2=k+2a$, $a(\ell_2-1)=k+a$, and $R_A$ collects the terms with $j\ge2$, so $\deg R_A\le a(\ell_2-2)=k$. The polynomial $L_A$ is squarefree with root set $S_A:=\bigcup_{b\in A}S_b\subseteq D$ of size $a\ell_2=k+2a$.
+
+Set $z_A:=-e_1(A)\in\B$ and $c_A:=\bigl(-R_A(x)\bigr)_{x\in D}$. Since $\deg R_A\le k$, we have $c_A\in\RS[\B,D,k+1]\subseteq\RS[\F,D,k+1]$. For every $x\in S_A$,
+\[
+0=L_A(x)=x^{k+2a}+z_A\,x^{k+a}+R_A(x),\qquad\text{i.e.}\qquad u_{z_A}(x)=c_A(x),
+\]
+so $u_{z_A}$ and $c_A$ agree on at least $k+2a$ points of $D$ and $\dist(u_{z_A},c_A)\le1-\rho-2/N$.
+
+The map $A\mapsto c_A$ is injective on the $\ell_2$-subsets of $Q$ sharing a common slope value: if $z_A=z_{A'}$ and $c_A=c_{A'}$, then $R_A$ and $R_{A'}$ are polynomials of degree $\le k<n$ agreeing on all $n$ points of $D$, hence equal as polynomials; then $L_A=L_{A'}$, so $S_A=S_{A'}$, and $A=\{x^a:x\in S_A\}=A'$.
+
+Finally, $z_A=-e_1(A)$ takes at most $|\B|$ values as $A$ ranges over the $\binom{N}{\ell_2}$ subsets; some $z\in\B$ is attained by at least $\binom{N}{\ell_2}/|\B|$ of them, and the corresponding codewords $c_A$ are pairwise distinct elements of $\Lst(\RS[\F,D,k+1],\,1-\rho-2/N,\,u_z)$.
+\end{proof}
+
+\begin{remark}[why slack two]\label{rem:slacktwo}
+Part (i) applied to $C^+=\RS[\F,D,k+1]$ directly would require $a\mid k+1$; in every challenge instantiation $a$ is a power of two and $k+1$ is odd, so this fails. At slack two the listed codewords have degree $\le k$, i.e.\ lie in $C^+$, while the divisibility demand stays on $k$. This is exactly the interface needed by \cref{thm:A}, whose list conclusion concerns $C^+$ while its hypothesis concerns $C$.
+\end{remark}
+
+\begin{remark}[the subfield pigeonhole elsewhere]\label{rem:subpigeon}
+The same one-line strengthening --- pigeonholing locator data over the field of definition $\B$ rather than over $\F$ --- also upgrades the coefficient-pigeonhole bound of \cite{Cho26b} to the generated field: the prefix map $\Phi_\sigma$ there has image in $\B^\sigma$ whenever $D\subseteq\B$, since the elementary symmetric prefixes of subsets of $D$ are $\B$-valued. This is the form consumed by the ``necessary'' half of the list-profile conjecture of \cite{Cho26b}, which states the entropy floor at the generated field $\tau^{*}(\rho,q_D)$; \cref{lem:fiber} supplies the missing subfield step.
+\end{remark}
+
+\begin{remark}[lists, not lines]\label{rem:lines}
+The words $u_z$ of \cref{lem:fiber} lie on the $\B$-rational line $f+zg$ with $f=(x^{k+ta})_{x\in D}$, $g=(x^{k+(t-1)a})_{x\in D}$, but the lemma is purely a statement about lists at a received word and no line structure is used in \cref{sec:main}. This matters: by \cref{cor:Fvalued} below, over a proper extension $\F\supsetneq\B$ the lines that end up certifying the CA failure cannot be these (or any) $\B$-rational lines.
+\end{remark}
+
+\begin{lemma}[interleaving transfer]\label{lem:inter}
+For every linear code $C\subseteq\F^n$, every $s\ge1$ and every $\delta\in(0,1)$:
+\[
+\eca\bigl(C^{\equiv s},\delta\bigr)\ \ge\ \eca(C,\delta),
+\qquad
+\emca\bigl(C^{\equiv s},\delta\bigr)\ \ge\ \emca(C,\delta).
+\]
+\end{lemma}
+
+\begin{proof}
+For $h\in\F^n$ write $h^{\Delta}:=(h,\dots,h)\in(\F^n)^s$. For any codeword tuple $\mathbf c=(c^{(1)},\dots,c^{(s)})\in C^{\equiv s}$, the columns where $h^\Delta$ and $\mathbf c$ agree are $\bigcap_i\{j:c^{(i)}_j=h_j\}\subseteq\{j:c^{(1)}_j=h_j\}$, so $\dist_s(h^\Delta,C^{\equiv s})\ge\dist(h,C)$; taking $c^{(1)}=\dots=c^{(s)}$ gives equality:
+$\dist_s(h^\Delta,C^{\equiv s})=\dist(h,C)$.
+
+Fix $(f_1,f_2)$ attaining $\eca(C,\delta)$ (resp.\ $\emca$) and consider the pair $(f_1^\Delta,f_2^\Delta)$ for $C^{\equiv s}$, with the slope $\gamma$ acting row-wise, so $f_1^\Delta+\gamma f_2^\Delta=(f_1+\gamma f_2)^\Delta$. By the displayed equality, $\dist_s\bigl((f_1+\gamma f_2)^\Delta,C^{\equiv s}\bigr)\le\delta$ iff $\dist(f_1+\gamma f_2,C)\le\delta$. For the correlated condition, the pair $(f_1^\Delta,f_2^\Delta)$ viewed as a $2s$-row interleaved word has rows $f_1$ ($s$ times) and $f_2$ ($s$ times); by the same column argument its distance to $(C^{\equiv s})^{\equiv2}=C^{\equiv2s}$ equals $\dist_2((f_1,f_2),C^{\equiv2})$. For the MCA condition, a common set $S$ explains $f_1^\Delta$ and $f_2^\Delta$ iff it explains $f_1$ and $f_2$. Hence $\gamma$ is CA-bad (resp.\ MCA-bad) for $(f_1^\Delta,f_2^\Delta)$ iff it is so for $(f_1,f_2)$, and the maxima over pairs can only grow.
+\end{proof}
+
+\section{The main theorem}\label{sec:main}
+
+\begin{theorem}[universal cap]\label{thm:main}
+Let $\B\subseteq\F$ be finite fields, let $q=|\F|$, let $D\subseteq\B^\times$ be a multiplicative coset of order $n$, and let $k$ have $\rho=k/n\in(0,1)$; set $C:=\RS[\F,D,k]$. Let $N\mid n$ satisfy $a:=n/N\mid k$ and $(1-\rho)N\ge3$. If
+\begin{equation}\label{eq:hyp}
+        \binom{N}{\rho N+2}
+        \ge
+        |\B|\Bigl(\frac qk+1\Bigr),
+\end{equation}
+then, writing
+\[
+        \delta_N:=1-\rho-\frac2N,
+\]
+we have
+\[
+\eca(C,\delta)
+>
+\frac1{2k}\Bigl(1-\frac nq\Bigr)
+\]
+for every integer-admissible radius
+\[
+        \delta_N\le \delta < 1-\rho-\frac1n .
+\]
+In particular,
+\[
+        \emca(C,\delta)
+        >
+        \frac1{2k}\Bigl(1-\frac nq\Bigr)
+\]
+for every
+\[
+        \delta_N\le \delta < 1-\rho .
+\]
+Consequently,
+\[
+        \delta^*_C(\varepsilon^*)
+        \le
+        1-\rho-\frac2N
+\]
+for every
+\[
+        \varepsilon^*
+        \le
+        \frac1{2k}\Bigl(1-\frac nq\Bigr).
+\]
+\end{theorem}
+
+\begin{proof}
+Note first that $\rho N=k/a\in\mathbb Z$, $\ell_2=\rho N+2\le N-1$ by $(1-\rho)N\ge3$, and $\delta_N=1-\rho-2/N>0$ for the same reason. Also $k+1\le n$.
+
+Fix
+\[
+        \delta\in[\delta_N,\,1-\rho-\tfrac1n).
+\]
+Then
+\[
+        \lfloor \delta n\rfloor < n-k-1,
+\]
+so \cref{thm:A} is applicable.
+
+Suppose toward a contradiction that
+\[
+        \eca(C,\delta)
+        \le
+        \frac1{2k}\Bigl(1-\frac nq\Bigr).
+\]
+Apply \cref{thm:A} with $\eta=\frac12$. Its hypothesis holds, so
+\[
+        \Lst(C^+,\delta)
+        \le
+        \Bigl\lceil 2q\cdot \eca(C,\delta)\Bigr\rceil
+        \le
+        \Bigl\lceil\frac{q-n}{k}\Bigr\rceil
+        <
+        \frac{q-n}{k}+1
+        \le
+        \frac qk+1 .
+\]
+On the other hand, by \cref{lem:fiber}(ii) and monotonicity of lists in the radius, since $\delta\ge\delta_N$,
+\[
+        \Lst(C^+,\delta)
+        \ge
+        \bigl|\Lst(C^+,\delta_N,u_z)\bigr|
+        \ge
+        \binom{N}{\ell_2}\Big/|\B|
+        \ge
+        \frac qk+1
+\]
+by \eqref{eq:hyp}. This is a contradiction. Hence
+\[
+        \eca(C,\delta)
+        >
+        \frac1{2k}\Bigl(1-\frac nq\Bigr)
+\]
+for every $\delta\in[\delta_N,1-\rho-1/n)$.
+
+In particular, the above holds at $\delta=\delta_N$. By \cref{fact:chain},
+\[
+        \emca(C,\delta_N)
+        \ge
+        \eca(C,\delta_N)
+        >
+        \frac1{2k}\Bigl(1-\frac nq\Bigr).
+\]
+By support-wise MCA monotonicity, \cref{lem:mca-monotone}, the same lower bound for $\emca(C,\delta)$ holds for every
+\[
+        \delta\in[\delta_N,1-\rho).
+\]
+Thus no sub-capacity radius
+\[
+        \delta\ge 1-\rho-\frac2N
+\]
+is $\varepsilon^*$-admissible whenever
+\[
+        \varepsilon^*
+        \le
+        \frac1{2k}\Bigl(1-\frac nq\Bigr),
+\]
+which proves the claimed bound on $\delta^*_C(\varepsilon^*)$.
+\end{proof}
+
+\begin{remark}[constants]\label{rem:eta}
+Choosing $\eta=1-\theta$ in \cref{thm:A} improves the conclusion to $\eca>\frac{1-\theta}k(1-\frac nq)$ at the price of strengthening \eqref{eq:hyp} to $\binom N{\rho N+2}\ge|\B|\bigl(\frac q{\theta k}+1\bigr)$; given the hundreds of bits of slack in \eqref{eq:hyp} throughout the challenge envelope (\cref{tab:numerics}), the error constant is effectively $(1-o(1))/k$. We fix $\eta=\frac12$ for cleanliness.
+\end{remark}
+
+\begin{remark}[scope]\label{rem:scope}
+No smoothness is assumed beyond the existence of a single divisor $N\mid n$ with $a=n/N\mid k$ and \eqref{eq:hyp}. The theorem applies verbatim to $2$-adic, mixed-radix, or any other FFT-friendly multiplicative domain, and --- via the subfield pigeonhole --- to any extension field $\F\supseteq\B$ with $D\subseteq\B$.
+
+The deep-point conversion is an integer-radius theorem with the condition $\lfloor\delta n\rfloor<n-k-1$. Therefore the no-loss CA lower bound is stated only for
+\[
+        \delta < 1-\rho-\frac1n .
+\]
+The MCA threshold cap is stronger in the range needed for the Proximity Prize: once the support-wise MCA lower bound is proved at
+\[
+        \delta_N=1-\rho-\frac2N,
+\]
+monotonicity of support-wise MCA extends it to every larger $\delta<1-\rho$.
+\end{remark}
+
+\section{Consequences for the grand MCA challenge}\label{sec:grand}
+
+\begin{corollary}[universal field-size cap for the challenge envelope]\label{cor:grand}
+Let $\rho\in\{\frac12,\frac14,\frac18,\frac1{16}\}$ and set
+\[
+N_\rho:=1024\quad(\rho\in\{\tfrac12,\tfrac14,\tfrac18\}),\qquad N_{1/16}:=2048 .
+\]
+Let $\F$ be any finite field with $q<2^{256}$, let $\B\subseteq\F$ be any subfield, let $D\subseteq\B^\times$ be a multiplicative coset of order $n$ with $N_\rho\mid n$, and let $k=\rho n\le2^{40}$. Then $C=\RS[\F,D,k]$ satisfies
+\[
+\emca(C,\delta)
+>
+\frac1{2k}\Bigl(1-\frac nq\Bigr)
+\ge
+2^{-86}
+\gg
+2^{-128}
+\]
+for every
+\[
+        \delta\in
+        \Bigl[1-\rho-\frac2{N_\rho},\,1-\rho\Bigr).
+\]
+Moreover, the same lower bound holds for $\eca(C,\delta)$ throughout the integer-admissible subinterval
+\[
+        \delta\in
+        \Bigl[1-\rho-\frac2{N_\rho},\,1-\rho-\frac1n\Bigr).
+\]
+If $q\ge2n$, the lower bound improves to $\ge2^{-42}$. In particular,
+\[
+\delta^*_C(2^{-128})\;\le\;1-\rho-2^{-9}\quad(\rho\in\{\tfrac12,\tfrac14,\tfrac18\}),
+\qquad
+\delta^*_C(2^{-128})\;\le\;1-\rho-2^{-10}\quad(\rho=\tfrac1{16}).
+\]
+\end{corollary}
+
+\begin{proof}
+We verify the hypotheses of \cref{thm:main} with $N=N_\rho$. Divisibility: $a=n/N_\rho$ divides $k$ because $k/a=\rho N_\rho\in\mathbb Z$ (equal to $512,256,128,128$ respectively); $(1-\rho)N_\rho\ge128\ge3$. For \eqref{eq:hyp}, the entropy bound $\binom N\ell\ge2^{N\Hb(\ell/N)}/(N+1)$ together with the conservative evaluations of $\Hb$ recorded in \cref{tab:numerics} gives $\log_2\binom{N_\rho}{\rho N_\rho+2}\ge552$ in all four cases, while
+\[
+|\B|\Bigl(\frac qk+1\Bigr)\;\le\;q\Bigl(\frac qk+1\Bigr)\;\le\;q^2+q\;<\;2^{512}+2^{256}\;<\;2^{513}\;\le\;2^{552},
+\]
+so \eqref{eq:hyp} holds with at least $39$ bits to spare (and over $500$ bits at rate $\frac12$). Since $D\subseteq\F^\times$, we have $n\le q-1$; for fixed $n$, the function $1-n/q$ is minimized at $q=n+1$, hence $1-n/q\ge1/(n+1)$. Also $n=k/\rho\le16k\le2^{44}$. Therefore
+\[
+\frac1{2k}\Bigl(1-\frac nq\Bigr)\ge\frac1{2k(n+1)}>2^{-86}.
+\]
+If $q\ge2n$ then $1-n/q\ge1/2$, giving the sharper $1/(4k)\ge2^{-42}$. The gap is $2/N_\rho=2^{-9}$ for $\rho\in\{1/2,1/4,1/8\}$ and $2/N_\rho=2^{-10}$ for $\rho=1/16$. \Cref{thm:main} gives the MCA lower bound throughout the stated sub-capacity interval, and gives the CA lower bound on the integer-admissible subinterval ending at $1-\rho-1/n$.
+\end{proof}
+
+\begin{table}[ht]
+\centering
+\begin{tabular}{ccccccc}
+\toprule
+$\rho$ & $N_\rho$ & $\ell_2=\rho N_\rho+2$ & $\Hb(\ell_2/N_\rho)\ge$ & $\log_2\binom{N_\rho}{\ell_2}\ge$ & needed & gap $2/N_\rho$\\
+\midrule
+$1/2$  & $1024$ & $514$ & $0.99998$ & $1013$ & $513$ & $2^{-9}$\\
+$1/4$  & $1024$ & $258$ & $0.8143$  & $823$  & $513$ & $2^{-9}$\\
+$1/8$  & $1024$ & $130$ & $0.5490$  & $552$  & $513$ & $2^{-9}$\\
+$1/16$ & $2048$ & $130$ & $0.34105$ & $687$  & $513$ & $2^{-10}$\\
+\bottomrule
+\end{tabular}
+\caption{Numerics for \cref{cor:grand}: $\log_2\binom{N}{\ell}\ge N\Hb(\ell/N)-\log_2(N+1)$, rounded down. The ``needed'' column is the universal upper bound $\log_2\bigl(|\B|(q/k+1)\bigr)<513$ valid throughout the envelope $q<2^{256}$, $k\ge1$.}
+\label{tab:numerics}
+\end{table}
+
+\begin{remark}[hypothesis $N_\rho\mid n$]
+For the $2$-adic domains of the challenge this holds whenever $n\ge2^{10}$ (resp.\ $2^{11}$), i.e.\ for all but very small instances. For mixed-radix smooth $n$, replace $N_\rho$ by any divisor $N\mid n$ of comparable size with $\rho N\in\mathbb Z$; the entropy count in \cref{tab:numerics} is insensitive to the exact value of $N$ at fixed $\log_2 N$.
+\end{remark}
+
+\begin{remark}[two-tier answer to the grand challenge]\label{rem:twotier}
+Combining \cref{cor:grand} with the grand-challenge cap of \cite[Prop.\ ``Grand-challenge cap'']{Cho26b} (gap $\frac1{64}$, prime fields up to $\approx2^{150}$, via value-set coverage) yields the current state of the negative side for smooth multiplicative domains:
+\[
+\delta^*_C(2^{-128})\;\le\;
+\begin{cases}
+1-\rho-\frac1{64}, & \F\ \text{prime},\ q\lesssim2^{150},\\[2pt]
+1-\rho-2^{-9}, & \rho\in\{\frac12,\frac14,\frac18\},\ \text{every}\ \F,\ q<2^{256},\\[2pt]
+1-\rho-2^{-10}, & \rho=\frac1{16},\ \text{every}\ \F,\ q<2^{256}.
+\end{cases}
+\]
+Together with the positive results collected in \cite[Table~1]{ABF26}, this pins the grand MCA threshold between the Johnson region and the explicit capacity-edge caps above, throughout the stated challenge envelope. The second and third tiers supersede the conditional cap of \cite[Thm.\ ``Universal cap'']{Cho26b} ($\delta^*<1-\rho-2^{-11}$ under $|\F|\ge2n$), which was the previous state in this band.
+\end{remark}
+
+\begin{corollary}[deployed parameters: KoalaBear sextic]\label{cor:deployed}
+Let $\B=\F_p$ with $p=2^{31}-2^{24}+1$, let $\F=\F_{p^6}$ (so $q=p^6\approx2^{185.93}$), let $D\subseteq\B^\times$ be the subgroup of order $n=2^{21}$, and let $k=2^{20}$, $\rho=\frac12$, as in \cite[\S6.3]{ABF26}. Then
+\[
+\emca\bigl(\RS[\F_{p^6},D,2^{20}],\,\delta\bigr)
+>
+\bigl(1-2^{-164}\bigr)\,2^{-21}
+>
+2^{-22}
+\]
+for every
+\[
+        \delta\in\Bigl[\frac12-2^{-7},\,\frac12\Bigr).
+\]
+Moreover, the same lower bound holds for $\eca$ throughout the integer-admissible subinterval
+\[
+        \delta\in
+        \Bigl[\frac12-2^{-7},\,\frac12-2^{-21}\Bigr).
+\]
+\end{corollary}
+
+\begin{proof}
+Apply \cref{thm:main} with $N=256$, $a=2^{13}\mid k$, $(1-\rho)N=128\ge3$, gap $2/N=2^{-7}$. Hypothesis \eqref{eq:hyp}: $\log_2\binom{256}{130}\ge256\cdot\Hb(130/256)-\log_2257\ge256\cdot0.99982-8.01>247$, while $|\B|(q/k+1)<2^{31}\,(2^{166}+1)<2^{198}$. The error bound is $\frac1{2k}(1-n/q)$ with $n/q=2^{21}/p^6<2^{-164}$. \Cref{thm:main} gives the stated MCA bound on $[\frac12-2^{-7},\frac12)$ and the stated CA bound on $[\frac12-2^{-7},\frac12-2^{-21})$.
+\end{proof}
+
+\begin{corollary}[all interleaved rows of {\cite[Tables 2--3]{ABF26}}]\label{cor:rows}
+In the setting of \cref{cor:deployed}, for each $s=2^j$ with $0\le j\le12$ let $C_s:=\RS[\F_{p^6},D_s,k_s]$ with $|D_s|=n_s=2^{21}/s$ and $k_s=2^{20}/s$ (rate $\frac12$, $s\,n_s=2^{21}$ as deployed). Then for every $\delta\in\bigl[\frac12-2^{-7},\,\frac12\bigr)$,
+\[
+\emca\bigl(C_s^{\equiv s},\delta\bigr)
+>
+\frac s{2^{21}}\bigl(1-2^{-164}\bigr)
+\ge
+2^{-21}\bigl(1-2^{-164}\bigr).
+\]
+Moreover, the same lower bound holds for $\eca(C_s^{\equiv s},\delta)$ on the integer-admissible subinterval
+\[
+        \delta\in
+        \Bigl[\frac12-2^{-7},\,\frac12-\frac1{n_s}\Bigr).
+\]
+Every row of the deployed parameter family therefore fails the $2^{-128}$ target at gap $2^{-7}$ below capacity.
+\end{corollary}
+
+\begin{proof}
+For each $s\le2^{12}$: $256\mid n_s$ (as $n_s\ge2^9$), $a_s=n_s/256=2^{13}/s$ divides $k_s=2^{20}/s$, and $(1-\rho)\cdot256=128\ge3$. Hypothesis \eqref{eq:hyp} for $C_s$: $|\B|(q/k_s+1)<2^{31}(2^{166}\,s+1)<2^{198}\,s\le2^{210}\le2^{247}\le\binom{256}{130}$. \Cref{thm:main} gives the MCA lower bound for $C_s$ throughout $[\frac12-2^{-7},\frac12)$, and the CA lower bound throughout $[\frac12-2^{-7},\frac12-1/n_s)$. \Cref{lem:inter} transfers the corresponding lower bounds to the $s$-interleaved code.
+\end{proof}
+
+\begin{proposition}[independent slacked variant via \cref{thm:B}]\label{prop:slacked}
+In the setting of \cref{thm:main}, assume instead $(1-\rho)N\ge2$, $n\ge3N$, and
+\[
+\binom{N}{\rho N+1}\;\ge\;|\B|\cdot q .
+\]
+Then
+\[
+\eca\Bigl(C,\ 1-\rho-\frac1N+\frac2n,\ 1-\rho-\frac1n\Bigr)\;\ge\;\frac1{2n}.
+\]
+In particular, with $N=N_\rho$ as in \cref{cor:grand} and $n\ge3N_\rho$, every challenge-envelope instantiation satisfies this slacked CA lower bound, and $\frac1{2n}\ge2^{-45}\gg2^{-128}$.
+\end{proposition}
+
+\begin{proof}
+Set $\delta_0:=1-\rho-\frac1N$. By $(1-\rho)N\ge2$, $\delta_0\in(0,1-\rho)$. By $n\ge3N$, we also have $\delta_0+2/n\le1-\rho-1/n$, so the parameters in \cref{thm:B} are admissible. By \cref{lem:fiber}(i), some $u_z$ carries at least $\binom N{\rho N+1}/|\B|\ge q$ codewords of $C$ within radius $\delta_0$, so $\Lst(C,\delta_0)\ge q$. The contrapositive of \cref{thm:B} gives
+\[
+\eca\Bigl(C,\delta_0+\frac2n,1-\rho-\frac1n\Bigr)\ge\frac1{2n}.
+\]
+For the numerical claim, the worst case of $\log_2\binom{N_\rho}{\rho N_\rho+1}$ over the four rates is at $\rho=1/8$, where the entropy bound used in \cref{tab:numerics} certifies $\log_2\binom{1024}{129}\ge1024\,\Hb(129/1024)-\log_2 1025\ge549$ (the exact value is $\approx554.7$); hence $\binom{N_\rho}{\rho N_\rho+1}\ge2^{549}>2^{512}>|\B|q$ throughout $q<2^{256}$. Finally $n=k/\rho\le16k\le2^{44}$, so $1/(2n)\ge2^{-45}$.
+\end{proof}
+
+\begin{remark}
+\Cref{prop:slacked} is logically independent of \cref{thm:A} and yields a weaker error ($\frac1{2n}$ versus $\frac1{2k}$) in the \emph{maximally slacked} form of correlated agreement --- the internal radius sits at capacity minus $\frac1n$ --- which is the weakest failure mode one can certify. That even this fails by $83$ orders of magnitude (in bits) above the $2^{-128}$ target gives a separate fallback route through the imported BCHKS/ABF theorem.
+\end{remark}
+
+\section{Subfield confinement and the shape of certifying lines}\label{sec:subfield}
+
+The deployed instantiations run the protocol over an extension $\F/\B$ while keeping the domain in the base: $D\subseteq\B$. The subfield-confinement theorem of \cite[Thm.\ ``Subfield confinement'']{Cho26b} pins down where bad slopes can live for lines whose words are base-rational: all support-wise MCA-bad slopes lie in $\B$. The following lemma refines this by tracking two radii, so that it also covers the proximity-loss form of correlated agreement (\cref{def:ca}); part (b) is the statement of \cite{Cho26b}, reproved here for completeness in the present notation.
+
+\begin{lemma}[subfield confinement; refines {\cite{Cho26b}}]\label{lem:confine}
+Let $\B\subseteq\F$ be finite fields, $D\subseteq\B^\times$, $C=\RS[\F,D,k]$, and let $f,g\in\B^n\subseteq\F^n$ be $\B$-valued words. Then:
+\begin{enumerate}[label=\textup{(\alph*)}]
+\item for any $0\le\delta_{\mathrm{fld}}\le\delta_{\mathrm{int}}<1$, every CA-bad slope for $(f,g)$ at radii $(\delta_{\mathrm{fld}},\delta_{\mathrm{int}})$ lies in $\B$;
+\item for any $\delta\in(0,1)$, every MCA-bad slope for $(f,g)$ at radius $\delta$ lies in $\B$.
+\end{enumerate}
+Consequently the bad-slope set of any $\B$-valued pair has density at most $|\B|/q$ in $\F$. The same holds for pairs $(\lambda f,\lambda g)$ with $\lambda\in\F^\times$ and $f,g$ $\B$-valued, by $\F$-linearity of $C$.
+\end{lemma}
+
+\begin{proof}
+Fix a $\B$-basis $1=\beta_0,\beta_1,\dots,\beta_{m-1}$ of $\F$. Every word $w\in\F^n$ decomposes uniquely as $w=\sum_i\beta_i w_i$ with $w_i\in\B^n$, and every codeword $c\in\RS[\F,D,k]$ decomposes as $c=\sum_i\beta_i c_i$ with $c_i\in\RS[\B,D,k]$: write the coefficient vector of the underlying polynomial in the basis and evaluate at $D\subseteq\B$.
+
+Let $z\in\F\setminus\B$, say $z=\sum_iz_i\beta_i$ with $z_{i^*}\ne0$ for some $i^*\ge1$. We first record the support-wise consequence. Suppose that $c\in C$ agrees with $f+zg$ on some set $S\subseteq D$. Since $f_j,g_j\in\B$, the basis components of $(f+zg)_j$ are $f_j+z_0g_j$ (component $0$) and $z_ig_j$ (components $i\ge1$). Agreement on $S$ holds componentwise, so on $S$:
+\[
+f+z_0g=c_0,\qquad z_{i^*}\,g=c_{i^*}.
+\]
+Hence $g$ agrees on $S$ with $z_{i^*}^{-1}c_{i^*}\in C$, and then $f=(f+z_0g)-z_0g$ agrees on $S$ with $c_0-z_0z_{i^*}^{-1}c_{i^*}\in C$. Thus every support on which the line point $f+zg$ is explained by $C$ also explains the pair $(f,g)$ on that same support.
+
+For CA, if $\dist(f+zg,C)\le\delta_{\mathrm{fld}}$, choose such an $S$ with $|S|\ge(1-\delta_{\mathrm{fld}})n$; the preceding paragraph gives $\dist_2((f,g),C^{\equiv2})\le\delta_{\mathrm{fld}}\le\delta_{\mathrm{int}}$, so $z$ is not CA-bad. For MCA, the preceding paragraph rules out every possible bad support $S$ in the support-wise definition. Hence $z$ is not MCA-bad either.
+\end{proof}
+
+\begin{corollary}[certifying lines over extensions are genuinely $\F$-valued]\label{cor:Fvalued}
+At the parameters of \cref{cor:deployed}, $|\B|/q=p^{-5}<2^{-154}$. Hence any pair $(f,g)$ whose CA- or MCA-bad-slope density at some radius
+\[
+        \delta\in
+        \Bigl[\frac12-2^{-7},\,\frac12\Bigr)
+\]
+exceeds $2^{-154}$ contains a word that is not $\B$-valued, even after removing a common scalar factor. In particular, any pair attaining the MCA lower bound $>2^{-22}$ of \cref{cor:deployed} is genuinely $\F$-valued. On the integer-admissible subinterval
+\[
+        \delta\in
+        \Bigl[\frac12-2^{-7},\,\frac12-2^{-21}\Bigr),
+\]
+the same statement applies to pairs attaining the CA lower bound. All explicit failure witnesses currently known on these domains (the locator lines of \cite{Cho26a,Cho26b} and the fiber words of \cref{lem:fiber}) are $\B$-rational and are therefore inert here: the failure certified by \cref{cor:deployed} is fiber-borne and, at present, non-constructive.
+\end{corollary}
+
+\begin{proof}
+Immediate from \cref{lem:confine} and \cref{cor:deployed}: a $\B$-valued pair, up to common scalar, has CA- and MCA-bad-slope density at most $|\B|/q=p^{-5}<2^{-154}<2^{-22}$. Thus any pair witnessing the deployed lower bound cannot be of this form.
+\end{proof}
+
+\begin{remark}
+\Cref{lem:confine,cor:Fvalued} sharpen the division of labor between the two grand challenges of \cite{ABF26} over deployed extensions: the \emph{list} side does not deflate ($\RS[\B,D,k]\subseteq\RS[\F,D,k]$, so all base-field list lower bounds, including \cref{lem:fiber}, persist verbatim), while every sub-$2^{-128}$ \emph{MCA} attack by explicit base-rational witnesses is killed by confinement --- and yet MCA still fails at $2^{-22}$, through lines whose existence \cref{thm:A} extracts non-constructively from the surviving list mass. The deflation and decoupling corollaries of \cite{Cho26b} record the same division at the no-loss radius, using the same corrected rounding $p^{-5}=2^{-154.94\ldots}<2^{-154}$ as in \cref{cor:Fvalued}. Exhibiting such lines explicitly is \cref{prob:explicit}.
+\end{remark}
+
+\section{Discussion}\label{sec:discussion}
+
+\paragraph{Values versus fibers.}
+Above the per-rate value-set reach of \cite{Cho26b} (roughly $2^{150}$--$2^{162}$), the value route --- showing that the slope multiset $\eone(\ell^\wedge Q)$ covers a $2^{-128}$ fraction of $\F$ at a fixed large prime --- runs into the per-fiber collision problem (\cite[Rem.\ ``The remaining band'']{Cho26b}): characteristic-zero locator values can collide arbitrarily badly under reduction at a worst-case prime. \cite{Cho26b} therefore closed the band at the $\delta^*$ grade only conditionally and with weaker constants --- error $2^{-42}$ at gap $2^{-11}$, assuming $|\F|\ge2n$, via quotient-core lists and the same conversion \cref{thm:A} --- leaving the \emph{error-one} grade open. The present route also never counts values, and improves each parameter of that cap: pigeonhole guarantees one heavy fiber regardless of how the values $\eone(A)$ distribute, \cref{thm:A} converts heavy fibers into correlated-agreement error directly, and the subfield pigeonhole carries the construction to extension fields with no condition relating $n$ and $|\F|$. The cost relative to the error-one results of \cite{Cho26a,Cho26b} below $2^{150}$ is quantitative: error $\approx\frac1{2k}$ instead of $1-o(1)$, and gap $2^{-9}$ (uniformly $2^{-10}$ across all four rates) instead of $\frac1{64}$. For the prize question --- is $\emca\le2^{-128}$ achievable above the stated gaps? --- this cost is immaterial.
+
+\paragraph{Limits of the method.}
+Hypothesis \eqref{eq:hyp} needs $N\,\Hb(\rho)\gtrsim2\log_2q-\log_2k$, so the smallest certifiable gap is
+\[
+\frac2N\;\approx\;\frac{2\,\Hb(\rho)}{2\log_2q-\log_2k}\;\approx\;\frac{\Hb(\rho)}{\log_2 q},
+\]
+and the certified error is capped at $\approx\frac1k$ by the shape of \cref{thm:A} (any $\eta<1$). Since $q$ enters only as the size of the field from which the line challenge $\gamma$ is drawn, this is also a protocol-facing floor: enlarging the challenge field cannot push a deep-point-conversion failure below gap $\approx\Hb(\rho)/\log_2 q_{\mathrm{line}}$, which quantitatively bounds the ``larger challenge field'' fallback in certificate frameworks. The construction also needs $N\le n$, i.e.\ $\log_2q\lesssim\Hb(\rho)\,n/2$; this covers the entire cryptographic regime $\mathrm{poly}(n)\le q\le2^{o(n)}$, but for $q\ge2^{\Hb(\rho)n/2}$ the method is vacuous and the value-route caps of \cite{Cho26a,Cho26b} are the only ones known. Within the band, the \emph{error-one} question at gap $\frac1{64}$ (\cref{prob:errorone}) remains exactly as open as before: the present result bounds $\delta^*$, not the failure profile near capacity.
+
+\paragraph{Comparison with the cyclotomic sieve.}
+The sieve of \cite{Cho26a} produces, for infinitely many primes, failures of error $(\log p)^{-6}$ at gap $\Theta(1/\log p)$, but its prime set is given by Siegel--Walfisz and is ineffective. \Cref{cor:grand} trades error strength for universality: every field below $2^{256}$, fully effective, and elementary given \cref{thm:A}. The two results triangulate the failure landscape from different directions.
+
+\paragraph{Pressure on the packing conjecture.}
+By the exact normal form of \cite{Cho26b}, $\emca(C,\delta)=\max_t\Lambda^{\mathrm{NC}}_t(\delta)/q$, where $\Lambda^{\mathrm{NC}}$ is a noncontained residue-line packing number. \Cref{cor:deployed} therefore forces $\max_t\Lambda^{\mathrm{NC}}\ge(q-n)/2k\approx2^{164}$ at gap $2^{-7}$ on the deployed sextic --- superpolynomially many noncontained residue lines at $n=2^{21}$. This puts no direct pressure on the final MCA conjecture of \cite[Conj.\ ``Final floor- and quotient-corrected MCA asymptotic'']{Cho26b}: at gap $2^{-7}$ both of its corrected-reserve hypotheses fail ($\sigma=2^{14}$ lies below $Cn/\log_2n\approx2^{16.6}$, and $\sigma\log_2 q_{\mathrm{gen}}=2^{14}\cdot31\approx2^{19}$ is far below $\log_2\binom n{k+\sigma}\approx2^{21}$), so the conjectured ceiling of the form $\bigl(n^{1+o(1)}+2^{(\beta/\Hb)\,Q_{\Hb}(\eta)}\bigr)/q$ is simply not asserted there --- the packing mass extracted through \cref{thm:A} lives in the region the framework already marks as below-floor. The genuine structural question this note raises for the framework of \cite{Cho26b} is whether conversion-extracted fiber mass persists \emph{above} the corrected reserve: whether, at reserves where the conjecture does apply, the fiber route still produces packings beyond the $n^{1+o(1)}$ aperiodic term plus the quotient-periodic term, which would force an additional fiber-borne term into the conjectured ceiling. This is open.
+
+\paragraph{Verification caveat.}
+The main cap no longer depends on importing the Crites--Stewart theorem: \cref{thm:A} proves the needed deep-point list-to-CA conversion directly, including the integer-radius condition $f<n-k-1$.  \Cref{thm:B} remains a separate slacked fallback imported through the BCHKS/ABF route, and readers using that fallback should consult the underlying source directly.  The main composition is deliberately shallow: it uses the self-contained conversion, the locator-fiber pigeonhole, and support-wise MCA monotonicity.
+
+\paragraph{Open problems.}
+
+\begin{problem}\label{prob:explicit}
+Exhibit explicit pairs $(f,g)$ over $\F_{p^6}$ (KoalaBear sextic, parameters of \cref{cor:deployed}) with MCA-bad-slope density $>2^{-22}$ at gap $2^{-7}$. On the integer-admissible subinterval, ask for the corresponding CA-bad-slope density as well. By \cref{cor:Fvalued} such pairs exist and are not $\B$-rational; the natural candidates are residue-line normal forms of \cite{Cho26b} with denominator $E\in\F[X]$ not defined over $\B$.
+\end{problem}
+
+\begin{problem}\label{prob:errorone}
+Error one in the band: does $\emca(C,1-\rho-\frac1{64})=1-o(1)$ hold for all primes $2^{150}\le p\le2^{256}$? This is the per-fiber collision problem proper; \cref{cor:grand} caps $\delta^*$ there but says nothing above error $\approx\frac1{2k}$.
+\end{problem}
+
+\begin{problem}
+Improve the threshold of \cref{thm:A}: any strengthening of the hypothesis range $\eca\le\eta/k$ toward $\eca\le\eta\cdot\mathrm{polylog}(q)/k$, or of the list conclusion, immediately tightens the certified error of \cref{thm:main} toward $1/\mathrm{poly}\log$; the gap, by contrast, is governed by the binomial in \eqref{eq:hyp} and would need a denser fiber construction to shrink.
+\end{problem}
+
+\begin{problem}
+Beyond multiplicative smoothness: \cref{lem:fiber} uses only that $D$ is a union of complete fibers of a low-degree map with lacunary power structure. Carry the composition to isogeny-smooth domains --- in particular the circle-group domains of Circle STARKs over $p=2^{31}-1$, where Chebyshev locators $\prod_b(T_{2^j}(x)-x_b)$ play the role of $\prod_b(X^a-b)$ --- to obtain the same universal cap for that deployed family.
+\end{problem}
+
+\paragraph{Acknowledgements.} This note builds on the Crites--Stewart conversion perspective \cite{CS25}, the BCHKS theorem \cite{BCHKS25}, and the locator framework of \cite{Cho26a,Cho26b}, following the synthesis of Arnon--Boneh--Fenzi \cite{ABF26}; it proves the main conversion needed here directly, sharpens the conditional universal-cap theorem, and refines the subfield-confinement theorem of \cite{Cho26b}.
+
+
+\begin{thebibliography}{BCHKS25}
+
+\bibitem[ABF26]{ABF26}
+G.~Arnon, D.~Boneh, and G.~Fenzi.
+\newblock Open problems in list decoding and correlated agreement.
+\newblock IACR Cryptology ePrint Archive, Report 2026/680, 2026.
+\newblock \url{https://eprint.iacr.org/2026/680}.
+
+\bibitem[BCHKS25]{BCHKS25}
+E.~Ben-Sasson, D.~Carmon, U.~Hab{\"o}ck, S.~Kopparty, and S.~Saraf.
+\newblock On proximity gaps for Reed--Solomon codes.
+\newblock IACR Cryptology ePrint Archive, Report 2025/2055, 2025.
+\newblock \url{https://eprint.iacr.org/2025/2055}.
+
+\bibitem[Cho26a]{Cho26a}
+P.~Chojecki.
+\newblock Capacity-edge obstructions to Reed--Solomon mutual correlated agreement over smooth multiplicative domains.
+\newblock Manuscript, 2026.
+
+\bibitem[Cho26b]{Cho26b}
+P.~Chojecki.
+\newblock Slack, quotient cores, and the entropy gap for smooth-domain Reed--Solomon codes: list fibers, cyclotomic rigidity, Galois-amplified collisions, and the corrected slack mutual-correlated-agreement theory.
+\newblock Manuscript, merged corrected edition, 2026.
+
+\bibitem[CS25]{CS25}
+E.~Crites and A.~Stewart.
+\newblock On Reed--Solomon proximity gaps conjectures.
+\newblock IACR Cryptology ePrint Archive, Report 2025/2046, 2025.
+\newblock \url{https://eprint.iacr.org/2025/2046}.
+
+\end{thebibliography}
+
+\end{document}
