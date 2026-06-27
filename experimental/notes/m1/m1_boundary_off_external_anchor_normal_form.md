@@ -5778,6 +5778,77 @@ again holds.  Corollaries 59--63 then apply to every endpoint-short
 certificate.  The below-threshold statement is exactly the row-count
 obstruction from Corollary 55.
 
+## Corollary 65: Zero-Dimensional Landing Layers Have Explicit Size
+
+Fix a degree `d<h`, and let
+
+```text
+P_d=P({denominators D(T) of degree <=d})
+```
+
+be the projective denominator coefficient space.  The exact-degree condition
+`deg D=d`, the reciprocal-domain root-free condition from Corollary 58, and
+the base-free conditions from Corollaries 62--63 are all open conditions on
+`P_d`.
+
+Let `L_d^K` be the projective rank-one landing locus cut out by the fixed-kernel
+minors
+
+```text
+U_i(D)V_j(D)-U_j(D)V_i(D)=0,
+```
+
+where `U_D=R_{t+2}(D;u)` and `V_D=R_{t+2}(D;v)`.  Let `L_d^D` be the
+first-difference landing locus cut out by the minors
+
+```text
+A_i(D)B_j(D)-A_j(D)B_i(D)=0,
+```
+
+where `A_D,B_D` are the doubled vectors from Corollary 63.  These minors are
+homogeneous quadrics in the denominator coefficients.
+
+If the projective closure of the base-free root-free part of `L_d^K` is
+zero-dimensional over the algebraic closure, then it has at most
+
+```text
+2^d
+```
+
+geometric points, counted without multiplicity.  The same bound holds for
+`L_d^D`.
+
+Consequently, at the endpoint-short threshold of Corollary 64, if every
+degree layer `0<=d<h` of the base-free primitive fixed-kernel landing locus is
+zero-dimensional, then after the endpoint and collision charges of Corollary
+62 the remaining fixed-kernel bad parameters contribute at most
+
+```text
+sum_{d=0}^{h-1} 2^d = 2^h-1.
+```
+
+The identical bound holds for the first-difference bad parameters under the
+same zero-dimensionality hypothesis for the first-difference landing layers.
+
+Thus the remaining primitive-denominator task is sharpened to a dichotomy:
+either the rank-one landing layers are finite and explicitly bounded by the
+displayed Bezout ledger, or there is a positive-dimensional primitive
+rank-one landing component to classify or charge.
+
+### Proof
+
+The maps `D -> U_D,V_D,A_D,B_D` are linear in the denominator coefficients by
+Corollary 63, so the collinearity equations are homogeneous quadrics on
+`P_d`.  Open conditions can only remove points from the projective closure.
+
+A zero-dimensional projective subvariety of `P^d` cut out by quadrics has
+degree at most `2^d` by the standard projective Bezout bound; hence it has at
+most `2^d` geometric points.  This proves the degree-layer bounds.  Corollary
+62 makes the parameter-to-primitive-denominator map injective after the base
+endpoint collision charges, so summing over `0<=d<h` gives the displayed
+`2^h-1` bound.  If the zero-dimensionality hypothesis fails, the failure is
+precisely a positive-dimensional primitive rank-one landing component.
+
 ## Non-Claims
 
 This note does not prove
@@ -5927,4 +5998,5 @@ denominators. Corollary 63 turns that remaining set into explicit rank-one
 landing loci; it does not prove those loci have the required size. Corollary
 64 shows that the longer vector-Pade range disappears at the endpoint-short
 closure threshold; it does not bound the resulting primitive rank-one landing
-loci.
+loci. Corollary 65 bounds only zero-dimensional landing layers; it does not
+exclude positive-dimensional primitive landing components.

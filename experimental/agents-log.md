@@ -345,7 +345,12 @@ Keep entries concise and link to the relevant files.
   threshold: if `h=c-b` and `b>=max(0,c-(t+2))`, then `h<=t+2`; fixed-kernel
   windows have `s=t+2`, and first-difference windows have `s=t+1` with every
   degree `e<h` satisfying `e<=s`.  Thus the longer vector-Pade range is not an
-  extra obstruction at the Corollary 55 threshold.
+  extra obstruction at the Corollary 55 threshold.  Degree-layer finite
+  landing is also explicit: the rank-one landing equations in `P_d` are
+  homogeneous quadrics, so a zero-dimensional remaining degree-`d` layer has
+  at most `2^d` geometric points by Bezout.  Summing over `d<h` gives
+  `2^h-1` bad parameters per family after endpoint collision charges, unless
+  a positive-dimensional primitive rank-one landing component remains.
 - **What to do next:** Bound or charge the unique-neighbor nondegenerate
   star-free shadow ledger, then charge the four base endpoint spaces, the
   resulting short-annihilator endpoint systems, finite-exception endpoint
@@ -353,8 +358,8 @@ Keep entries concise and link to the relevant files.
   short endpoint annihilator failures, root-free short-annihilator families,
   low-dimensional common endpoint recurrence spaces, the corresponding
   primitive reciprocal-domain-pole-free denominator families, their endpoint
-  collision charges, rank-one landing loci, root-free multipliers, and the
-  common-root-free
+  collision charges, positive-dimensional rank-one landing components,
+  root-free multipliers, and the common-root-free
   fixed-kernel and first-difference moving-certificate loci to
   fixed-slope/root-slice, quotient-periodic, endpoint, or active-codegree
   ledgers.
