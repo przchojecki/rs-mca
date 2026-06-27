@@ -751,6 +751,33 @@ on this line lies in the cyclic domain packet: `{1,3}`.  Its complement
 are no packet edges to charge, so this row is paid exactly by the
 domain-singleton term: `r=d=m=1`.
 
+This singleton obstruction has an exact involution-orbit census.  For a
+non-fixed variable line `L` with involution `iota_L` and core `R`, put
+`A=D\R`.  The available roots in `A` split into five buckets:
+
+```text
+noncontained domain two-cycles: x in A, iota_L(x) in A,
+                                H_{3,j}(v)ell_{R union {x,iota_L(x)}} != 0;
+contained domain two-cycles:    x in A, iota_L(x) in A,
+                                H_{3,j}(v)ell_{R union {x,iota_L(x)}} = 0;
+core-hit roots:                 x in A, iota_L(x) in R;
+off-domain roots:               x in A, iota_L(x) notin D;
+fixed/pole roots:               iota_L(x)=x or iota_L(x) is undefined.
+```
+
+The first bucket has size exactly `2d_L`, where `d_L=|P_L^nc(R)|` is the
+noncontained domain-pair packet size.  Hence a geometric domain singleton is
+precisely the case where this first bucket has two roots.  The verifier
+asserts this census for every audited non-fixed variable proper line.  In the
+active domain-singleton witness the bucket sizes are
+
+```text
+noncontained=2, contained=2, core-hit=3, off-domain=0, fixed/pole=2.
+```
+
+Across the current audit, active domain singletons occur only in the
+product-Mobius branch; no fixed-sum active domain singleton has appeared.
+
 ## Different-Slope One-Exchange Quadratic Slice
 
 The different-slope part of the one-exchange profile has a complementary

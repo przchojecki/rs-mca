@@ -30,6 +30,22 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-27 - M1 non-fixed variable-line orbit census
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/m1/m1_all_line_hankel_aperiodic_packing.md`,
+  `experimental/scripts/verify_m1_all_line_hankel_aperiodic.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT / EXPERIMENTAL.
+- **What is being added:** Every non-fixed variable proper line now has an
+  audited involution-root census: noncontained domain two-cycles, contained
+  domain two-cycles, core-hit roots, off-domain roots, and fixed/pole roots.
+- **How it is useful:** It identifies geometric domain singletons exactly as
+  the case where the noncontained domain two-cycle bucket has two roots, and
+  classifies the current active singleton witness as product-Mobius.
+- **What to do next:** Bound the product/sum domain-singleton census globally
+  or relate it to quotient and edge-energy reserves.
+
 ### 2026-06-27 - M1 active domain-singleton variable-line witness
 
 - **Agent/model:** Codex.
