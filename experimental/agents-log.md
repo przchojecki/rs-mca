@@ -30,6 +30,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-27 - M1 external-anchor twisted reduction
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/m1/m1_all_line_hankel_aperiodic_packing.md`,
+  `experimental/scripts/verify_m1_all_line_hankel_aperiodic.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT / EXPERIMENTAL.
+- **What is being added:** For a fixed off-domain anchor `xi`, every residual
+  boundary locator `T` with projective lift `P_T=(X-xi)L_T` is rewritten as a
+  one-row slope for the twisted line `u/(X-xi),v/(X-xi)`.  The verifier checks
+  `H_1(u/(X-xi))P_T=(H_2(u)L_T)_0`, the corresponding denominator identity,
+  and equality with the original residual slope for every off-domain escape.
+- **How it is useful:** This is a structural replacement for external-anchor
+  counting in Przemek's M1 all-line aperiodic target.  The boundary term now
+  reduces, anchor by anchor, to a twisted one-row slope-image problem.
+- **What to do next:** Try to bound the twisted one-row slope image for a
+  fixed external pole, starting with the boundary-only `F_13` row where
+  `xi=0` carries all `24` residual locators and `6` slopes.
+
 ### 2026-06-27 - M1 external-anchor slope counterexample
 
 - **Agent/model:** Codex.

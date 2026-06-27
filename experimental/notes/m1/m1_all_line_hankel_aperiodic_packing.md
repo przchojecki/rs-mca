@@ -617,6 +617,60 @@ external anchors themselves.  The verifier asserts this concentration in the
 boundary-only row: one external anchor, `24` locators on that anchor, and `6`
 distinct residual slopes on that same anchor.
 
+## External-Anchor Twisted One-Row Reduction
+
+There is still useful structure inside a fixed external anchor.  Fix
+`xi in F\D`, and let `T` be a residual off-domain boundary locator with
+anchor `xi_T=xi`.  Put
+
+```text
+P_T(X) = (X-xi)L_T(X).
+```
+
+Then the projective lift ledger gives the two one-row common-kernel equations
+
+```text
+H_{1,j+1}(u)P_T = 0,        H_{1,j+1}(v)P_T = 0.
+```
+
+Now twist the line values on the domain by the external pole:
+
+```text
+u^{xi}(x)=u(x)/(x-xi),        v^{xi}(x)=v(x)/(x-xi),        x in D.
+```
+
+Since `xi notin D`, this is well-defined.  If
+
+```text
+H_{2,j}(u)L_T=(alpha_0,alpha_1),
+H_{2,j}(v)L_T=(beta_0,beta_1),
+```
+
+then the identities `P_T=(X-xi)L_T` give
+
+```text
+H_{1,j+1}(u^{xi})P_T = alpha_0,
+H_{1,j+1}(v^{xi})P_T = beta_0.
+```
+
+The residual off-domain case has `beta_0 != 0`, so its original bad slope is
+exactly the one-row twisted slope
+
+```text
+z_T = -alpha_0/beta_0
+    = -H_{1,j+1}(u^{xi})P_T / H_{1,j+1}(v^{xi})P_T.        (EA1)
+```
+
+Conversely, for a `j`-subset `T subset D` and fixed `xi notin D`, the two
+untwisted one-row equations for `P_T=(X-xi)L_T`, together with
+`H_{1,j+1}(v^{xi})P_T != 0`, imply the original `t=2` determinant gate and
+the slope formula above.  Thus the per-external-anchor boundary term reduces
+to a one-row twisted slope-image problem over external-root lifted locators.
+
+This is the first structural replacement for anchor counting: after the
+quotient, tangent, and root-slice charges, one must bound the image of (EA1)
+for each fixed external pole `xi`, not merely count how many such poles occur.
+
 ## Residual Slope-Image Ledger
 
 The anchor ledger also splits the residual slope image itself.  Define
@@ -954,6 +1008,10 @@ enumerates small cyclic-domain cases.  For each case it:
 - checks the same boundary-only row as a counterexample to bounding boundary
   slopes merely by the number of external anchors: all `24` residual boundary
   locators share one external anchor but produce `6` residual slopes;
+- verifies the external-anchor twisted one-row reduction: every off-domain
+  residual locator with anchor `xi` has the same slope as the one-row
+  Hankel-pencil gate for the twisted line `u/(X-xi),v/(X-xi)` on
+  `(X-xi)L_T`;
 - verifies the residual slope-image ledger `Z_res=Z_lift union Z_esc` and
   checks that residual faces inside each lifted common core have pairwise
   distinct slopes;
