@@ -160,7 +160,10 @@ Keep entries concise and link to the relevant files.
   `c-b` slopes have direction dimension `>b` on degree-`c=m-1` core locators,
   or the lower core pencil is persistently low-rank for every slope.  Outside
   the exceptional slopes, this gives a `q binom(n,b)` core bound before the
-  extension factor to shadows.
+  extension factor to shadows.  The persistent lower-kernel alternative is now
+  certificate-form as well: it forces both lower endpoint core systems to have
+  direction dimension `>b`, and moving core kernels satisfy the endpoint ladder
+  `R_v q_0=0`, `R_v q_i-R_u q_{i-1}=0`, `R_u q_D=0`.
 - **What to do next:** Bound or charge the unique-neighbor nondegenerate
   star-free shadow ledger, and charge the ruled exceptional low-rank loci to
   fixed-slope/root-slice, endpoint, projective, quotient-periodic, or

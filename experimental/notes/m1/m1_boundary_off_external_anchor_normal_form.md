@@ -2377,6 +2377,105 @@ For every non-exceptional slope, Corollary 26 gives at most `binom(n,b)` split
 cores.  There are at most `q` finite slopes.  Finally, each split core extends
 to at most `n-m+1` degree-`m` shadows, giving the displayed shadow bound.
 
+## Corollary 28: Persistent Lower Fixed-Kernel Rank Forces Endpoint Low Rank
+
+Keep the notation of Corollary 27, and write
+
+```text
+R_lambda^core(beta)=R_v^core(beta)-lambda R_u^core(beta),
+```
+
+where `R_u^core(beta)` and `R_v^core(beta)` are the endpoint row-cut matrices
+for
+
+```text
+H(u)M_0=H(u)M_1=0,        H(v)M_0=H(v)M_1=0,
+```
+
+with `M_0=(X-beta)L_R` and `M_1=(X-beta)X L_R`.  Put
+
+```text
+e_u(beta)=dim ker R_u^core(beta),
+e_v(beta)=dim ker R_v^core(beta).
+```
+
+If the lower fixed-kernel pencil is persistent at threshold `b`, meaning every
+`(c-b) x (c-b)` minor of `R_lambda^core(beta)` vanishes identically in
+`lambda`, then
+
+```text
+e_u(beta)>b,        e_v(beta)>b.                    (LowerEP)
+```
+
+Equivalently, if either lower endpoint system has direction dimension at most
+`b`, the persistent lower-kernel alternative in Corollary 27 is impossible for
+this `beta`; only the finite-exception alternative can occur.
+
+The persistent alternative is also certificate-form.  Over `K=F(lambda)`,
+there are `b+1` independent moving core directions
+
+```text
+Q_0(lambda),...,Q_b(lambda) in F[lambda]^c
+```
+
+satisfying
+
+```text
+(H(v)-lambda H(u))(X-beta)Q_i(lambda,X)=0,
+(H(v)-lambda H(u))(X-beta)X Q_i(lambda,X)=0         (LowerMK)
+```
+
+as polynomial identities.  Conversely, `b+1` `K`-independent moving core
+directions satisfying (LowerMK) force the persistent lower-kernel alternative.
+
+For a single moving kernel
+
+```text
+Q(lambda)=q_0+q_1 lambda+...+q_D lambda^D
+```
+
+with `q_0!=0`, the coefficient ladder is
+
+```text
+R_v^core q_0 = 0,
+R_v^core q_i - R_u^core q_{i-1} = 0       for 1<=i<=D,
+R_u^core q_D = 0.                                      (LowerEL)
+```
+
+Thus a persistent lower moving kernel starts in the `v`-endpoint core kernel
+and ends in the `u`-endpoint core kernel.
+
+### Proof
+
+Put `r=c-b`.  Persistent low rank says every `r x r` minor of
+`R_v^core-lambda R_u^core` is the zero polynomial in `lambda`.  The constant
+coefficient of such a minor is the corresponding `r x r` minor of
+`R_v^core`, while the coefficient of `lambda^r` is, up to sign, the
+corresponding `r x r` minor of `R_u^core`.  Hence every `r x r` minor of both
+endpoint matrices vanishes, so both endpoint ranks are `<r`.  Since the
+domain dimension is `c`, this is exactly `e_u(beta)>b` and `e_v(beta)>b`.
+
+Over `K=F(lambda)`, the same persistent minor vanishing is equivalent to
+
+```text
+rank_K R_lambda^core(beta) < c-b,
+```
+
+and therefore to `dim_K ker R_lambda^core(beta)>=b+1`.  Choosing `b+1`
+independent kernel vectors over `K` and clearing denominators gives the
+polynomial moving core directions.  These are exactly the two displayed
+Hankel equations (LowerMK).  The converse is rank-nullity over `K`.
+
+Finally substitute `Q(lambda)=sum_i q_i lambda^i` into
+
+```text
+(R_v^core-lambda R_u^core)Q(lambda)=0
+```
+
+and compare powers of `lambda`.  If the first nonzero coefficient has positive
+degree, divide by the corresponding power of `lambda` first.  This gives
+(LowerEL).
+
 ## Non-Claims
 
 This note does not prove
@@ -2440,3 +2539,6 @@ dimension without separate endpoint, image-line, or fixed-kernel charges.
 Corollary 27 isolates the finite fixed-kernel part of the lower full-core
 ledger; it still leaves the finite exceptional slopes or the persistent
 lower-kernel alternative to be charged separately.
+Corollary 28 shows that the persistent lower-kernel alternative forces lower
+endpoint low-rank ledgers and has moving-core certificates; it does not bound
+those endpoint ledgers without a separate charge.
