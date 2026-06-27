@@ -4960,6 +4960,80 @@ dimension at most `b` by (BaseEP).  Outside the finite sets
 direction dimension at most `b` by definition.  Therefore, once those finite
 exceptional systems are charged, the hypotheses of Corollaries 42 and 43 hold.
 
+## Corollary 54: Short Injectivity Is A Concrete Hankel-Minor Target
+
+Let
+
+```text
+H_{s,h-1}(w): F^h -> F^s
+```
+
+be the short Hankel map on degree-`<h` directions.
+
+1. The single-syndrome short endpoint map `H_{s,h-1}(w)` can be injective only
+   if `h<=s`.  If `h<=s`, its injectivity locus is a nonempty determinantal
+   open condition in the syndrome entries of `w`.
+
+2. The stacked two-syndrome short endpoint map
+
+```text
+Q |-> (H_{s,h-1}(a)Q, H_{s,h-1}(b)Q)
+```
+
+   can be injective only if `h<=2s`.  If `h<=2s`, its injectivity locus is a
+   nonempty determinantal open condition in the entries of `(a,b)`.
+
+Consequently, the short closure criterion of Corollary 53 is dimensionally
+available only in the range
+
+```text
+h<=t+2        for the single endpoint maps H_{t+2,h-1}(u), H_{t+2,h-1}(v),
+h<=2(t+1)    for the stacked maps J_0^(h), J_+^(h).
+```
+
+In those ranges, the four short injectivity checks are explicit nonvanishing
+conditions on `h x h` Hankel minors.  Outside those ranges, failure of the
+corresponding short injectivity check is forced by row count and must be
+handled by the short-annihilator/moving-certificate ledgers rather than by
+Corollary 53.
+
+### Proof
+
+The necessity of `h<=s` and `h<=2s` is just row rank.
+
+For the single-syndrome sufficiency, assume `h<=s` and choose the first `h`
+rows.  Set the syndrome entries by
+
+```text
+w_m=1 if m=h-1,        w_m=0 otherwise
+```
+
+for `0<=m<=2h-2`.  The resulting `h x h` Hankel submatrix has entries
+`w_{a+b}` and is the anti-identity matrix, hence has determinant `+/-1`.
+Thus the corresponding minor is not the zero polynomial in the entries of
+`w`, so the injectivity locus is a nonempty determinantal open set.
+
+For the stacked map, the case `h<=s` follows from the first part using the
+first block.  Suppose `s<h<=2s`, and put `r=h-s`.  For the first block choose
+
+```text
+a_m=1 if m=s-1,        a_m=0 otherwise.
+```
+
+Then the first `s` rows of `H_{s,h-1}(a)` form an anti-identity on the first
+`s` columns and vanish on the remaining `r` columns.  For the second block
+choose
+
+```text
+b_m=1 if m=h-1,        b_m=0 otherwise.
+```
+
+Use the first `r` rows of `H_{s,h-1}(b)`.  On the first `s` columns these rows
+vanish, while on the last `r` columns they form an anti-identity.  The
+resulting `h x h` minor of the stacked matrix is block anti-triangular with
+determinant `+/-1`.  Therefore the relevant determinant is not identically
+zero, and the stacked injectivity locus is nonempty and determinantal open.
+
 ## Non-Claims
 
 This note does not prove
@@ -5089,4 +5163,6 @@ it does not rule out the persistent moving short-recurrence certificate.
 Corollary 52 strips common domain-root factors from moving short certificates;
 it does not rule out the resulting common-root-free moving certificates.
 Corollary 53 is a conditional closure criterion; it does not prove the four
-short endpoint systems are injective.
+short endpoint systems are injective. Corollary 54 gives feasibility and
+nonempty determinantal targets for those injectivity checks; it does not prove
+the actual syndromes lie in the open injectivity loci.

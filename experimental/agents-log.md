@@ -294,6 +294,10 @@ Keep entries concise and link to the relevant files.
   `|Lambda_{K,>b}|, |Theta_{D,>b}| <= h`; after charging those at most `2h`
   endpointized exceptional systems, Corollaries 42 and 43 apply to the
   uncharged endpointized global full-core and all-anchor full-core ledgers.
+  These injectivity checks are explicit Hankel-minor targets: a single
+  `H_{s,h-1}` can be injective iff row count permits `h<=s`, while a stacked
+  two-syndrome map can be injective iff `h<=2s`; in the feasible ranges the
+  injectivity loci are nonempty determinantal open sets.
 - **What to do next:** Bound or charge the unique-neighbor nondegenerate
   star-free shadow ledger, then charge the four base endpoint spaces, the
   resulting short-annihilator endpoint systems, finite-exception endpoint

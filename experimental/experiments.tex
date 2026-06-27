@@ -2124,6 +2124,18 @@ After charging these at most \(2h\) endpointized exceptional systems, every
 remaining endpointized system in the global full-core ledger has direction
 dimension at most \(b\), so the endpointized global full-core and all-anchor
 full-core bounds apply.
+The four short injectivity checks are explicit Hankel-minor targets.  A single
+short map \(H_{s,h-1}(w):\F^h\to\F^s\) can be injective only if \(h\le s\),
+and for \(h\le s\) the injectivity locus is a nonempty determinantal open
+condition.  A stacked pair
+\[
+Q\mapsto (H_{s,h-1}(a)Q,\ H_{s,h-1}(b)Q)
+\]
+can be injective only if \(h\le2s\), and for \(h\le2s\) its injectivity locus
+is also nonempty determinantal open.  Thus Corollary 53 is dimensionally
+available only when \(h\le t+2\) for the two single endpoint checks and
+\(h\le2(t+1)\) for \(J_0^{(h)}\) and \(J_+^{(h)}\); outside these ranges the
+short-annihilator obstruction is row-count forced.
 
 In the ruled part, the common-kernel branch has a fixed projective boundary slope,
 while the common-image branch forces the shadow locator \(L_S\) to satisfy the
