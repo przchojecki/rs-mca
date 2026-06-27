@@ -6323,11 +6323,12 @@ per-family bound
 (2^h-1)+h(h-1)/2,
 ```
 
-before attaching the multiplier ledger of Corollary 60 to each primitive
-denominator.  This is a geometric finite-ledger statement.  It is not an
-improvement over Corollary 53's sharper direct exceptional-parameter bound
-`|Lambda_{K,>b}|, |Theta_{D,>b}| <= h` under the same short injectivity
-hypotheses.
+for bad parameters.  Corollary 60 supplies an extra multiplier ledger only when
+one counts certificate witnesses rather than parameter values; Corollary 72
+below records this separation.  This is a geometric finite-ledger statement.
+It is not an improvement over Corollary 53's sharper direct
+exceptional-parameter bound `|Lambda_{K,>b}|, |Theta_{D,>b}| <= h` under the
+same short injectivity hypotheses.
 
 ### Proof
 
@@ -6355,9 +6356,60 @@ two-dimensional kernels.  Under (ShortInj) those two-dimensional endpoint
 kernel alternatives are impossible, so the constant slices contribute at most
 `sum_{d=1}^{h-1}d=h(h-1)/2` parameters per family.  Corollary 65 gives the
 separate Bezout ledger `sum_{d=0}^{h-1}2^d=2^h-1` for zero-dimensional
-base-free primitive landing layers.  Finally, Corollary 60 supplies only the
-explicit multiplier ledger attached to each primitive denominator, completing
-the finite parameter accounting.
+base-free primitive landing layers.  Multipliers do not change the parameter
+attached to an uncharged primitive denominator, as recorded in Corollary 72, so
+no Corollary 60 multiplier factor is needed for parameter counting.  This
+completes the finite parameter accounting.
+
+## Corollary 72: Multipliers Do Not Multiply Endpoint-Short Parameters
+
+Assume the half-window setting of Corollary 60, and charge the base endpoint
+denominator intersections from Corollary 62.
+
+### Fixed-Kernel Parameters
+
+Let `D=D_0M` be a degree-`<h` certificate denominator for the fixed-kernel
+parameter `lambda`, with primitive denominator `D_0` from Corollary 60.  Then
+`D_0` supports the same parameter `lambda`.  If `D_0` supported any distinct
+fixed-kernel parameter `lambda'`, then `D_0` would lie in the charged base
+endpoint denominator intersection.
+
+Consequently all uncharged multiplier certificates lying over the same
+primitive denominator have the same fixed-kernel parameter.  The multiplier
+ledger of Corollary 60 is therefore a witness-counting ledger, not a multiplier
+for the number of fixed-kernel bad parameters.
+
+### First-Difference Parameters
+
+Let `D=D_0M` be a degree-`<h` common certificate denominator for the
+first-difference parameter `theta`.  Then `D_0` supports the same parameter
+`theta`.  If `D_0` supported any distinct first-difference parameter `theta'`,
+then `D_0` would lie in the charged base endpoint denominator intersection at
+depth `t+1`.
+
+Consequently all uncharged multiplier certificates lying over the same
+primitive denominator have the same first-difference parameter.  The
+multiplier ledger of Corollary 60 is again certificate-only for parameter
+counting.
+
+Thus, after the standard collision charges, bad endpoint-short parameters
+inject into primitive denominator classes.  Counting primitive denominators
+already upper bounds the parameter sets; multipliers need be paid only for
+claims that count certificates or locator witnesses themselves.
+
+### Proof
+
+For fixed-kernel parameters, Corollary 61 says that the primitive denominator
+`D_0` remains a valid certificate after cancelling the multiplier `M`.  The
+cancelled certificate has the same combined syndrome `v-lambda u`, so it
+supports `lambda`.  If it also supported a distinct `lambda'`, Corollary 62
+would make `D_0` a common base endpoint denominator for `u` and `v`, which is
+one of the charged collision cases.
+
+The first-difference proof is identical componentwise.  Corollary 61 leaves
+`D_0` as a common certificate for `(Delta_theta u,Delta_theta v)`.  A second
+parameter `theta'` for the same primitive denominator would be a Corollary 62
+collision and hence a charged base endpoint denominator at depth `t+1`.
 
 ## Non-Claims
 
@@ -6524,4 +6576,7 @@ Corollary 71 packages the primitive endpoint-short denominator obstruction
 under the four short injectivity checks into a finite parameter ledger; it does
 not prove those checks, improve Corollary 53's sharper `h` exceptional-parameter
 bound, or eliminate the multiplier ledger attached to each primitive
-denominator.
+denominator when certificates rather than parameters are being counted.
+Corollary 72 separates parameter counts from certificate counts after collision
+charges; it does not bound the number of certificate witnesses over a primitive
+denominator beyond the Corollary 60 multiplier ledger.
