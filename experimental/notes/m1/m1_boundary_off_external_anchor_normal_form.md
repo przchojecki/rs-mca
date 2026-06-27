@@ -1305,6 +1305,94 @@ Finally, for all image lines outside `P_img,>b`, Corollary 10 gives at most
 image lines in `F^t`; multiplying and then using the external-anchor factor
 `q` from Corollary 9 proves (CIB).
 
+## Corollary 17: Ruled Boundary-Off Closure After Low-Rank Charges
+
+Fix `0<=b<m`.  Work in the reduced boundary-off target set after the
+fixed-root/full-star charges from Corollary 9.  Suppose the following
+exceptional pieces are charged to their own ledgers:
+
+```text
+E_slope = finite common-kernel slopes with d_z>b,
+E_img   = projective common-image lines with d_I>b.
+```
+
+Assume also that the endpoint-contained row-cut system has
+
+```text
+d_infty <= b.
+```
+
+Then the uncharged ruled boundary-off targets satisfy
+
+```text
+|Boundary_off^{ruled,red,<=b}|
+ <= q^2 binom(n,b)
+    + q binom(n,b)
+    + q ((q^t-1)/(q-1)) binom(n,b).                 (RBC)
+```
+
+Equivalently,
+
+```text
+|Boundary_off^{ruled,red,<=b}|
+ <= ( q^2 + q + q ((q^t-1)/(q-1)) ) binom(n,b).
+```
+
+In particular, for bounded slack `t`, bounded rank threshold `b`, and
+polynomial field size `q<=n^B_F`, the uncharged bounded-rank ruled branch is
+polynomially bounded.
+
+If the finite-slope persistent alternative is absent, Corollary 12 gives
+
+```text
+|E_slope| <= m-b.
+```
+
+If it is present, Corollaries 14 and 15 replace it by the explicit moving
+kernel/endpoint-low-rank certificate.  If the common-image projective
+persistent alternative is absent, Corollary 16 gives the hypersurface bound
+
+```text
+|E_img| <= ((m-b) q^(t-1))/(q-1).
+```
+
+Thus the ruled boundary-off branch has been reduced to:
+
+```text
+bounded-rank polynomial residual
++ exceptional fixed-slope charges
++ exceptional projective image-line charges
++ explicit persistent moving-kernel certificates.
+```
+
+### Proof
+
+The finite common-kernel slopes outside `E_slope` have `d_z<=b`.  Corollary 13
+gives their boundary-off target contribution at most
+
+```text
+q^2 binom(n,b).
+```
+
+The endpoint-contained branch has `d_infty<=b` by hypothesis.  Corollary 11
+gives at most `binom(n,b)` endpoint shadows, and Corollary 9 contributes at
+most `q` anchors over each shadow, giving
+
+```text
+q binom(n,b).
+```
+
+The common-image lines outside `E_img` have `d_I<=b`.  Corollary 16 gives their
+target contribution at most
+
+```text
+q ((q^t-1)/(q-1)) binom(n,b).
+```
+
+Adding the three ruled contributions proves (RBC).  The final claims are just
+the exceptional-locus alternatives already proved in Corollaries 12, 14, 15,
+and 16.
+
 ## Non-Claims
 
 This note does not prove
@@ -1336,3 +1424,5 @@ ledgers; it does not prove those endpoint ledgers are small without a separate
 charge. Corollary 16 similarly makes the common-image low-rank locus
 projective and determinantal; it does not bound the split shadows supported on
 the exceptional projective low-rank lines without charging that locus.
+Corollary 17 is conditional on those explicit low-rank charges and endpoint
+rank hypotheses; it is not an unconditional ruled-branch theorem.
