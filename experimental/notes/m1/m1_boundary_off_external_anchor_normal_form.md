@@ -5101,6 +5101,93 @@ identifies all four injectivity checks as explicit nonvanishing Hankel-minor
 conditions.  Corollary 53 gives the endpointized charge closure once those
 conditions hold.
 
+## Corollary 56: Root-Free Short Failures Are Denominator Recurrences
+
+Let `D subset F` be the evaluation domain.  For a polynomial
+
+```text
+Q(X)=q_0+q_1X+...+q_eX^e,        e<h,
+```
+
+say that `Q` is `D`-root-free if `Q(alpha)!=0` for every `alpha in D`.
+
+For any syndrome vector `w`, the short Hankel equation
+
+```text
+H_{s,h-1}(w)Q=0
+```
+
+is exactly the length-`s` recurrence
+
+```text
+sum_{i=0}^e q_i w_{a+i}=0,        0<=a<s.           (Rec_Q)
+```
+
+Consequently:
+
+```text
+ker H_{s,h-1}(w) != 0
+```
+
+if and only if the syndrome window of `w` admits a nonzero denominator
+recurrence of degree `<h`.
+
+After the root-stripping reduction of Corollary 49, any short endpoint
+annihilator can be written as a fixed-root/root-slice factor times a
+`D`-root-free denominator recurrence for differenced syndrome data.
+
+More explicitly:
+
+* A root-free short witness for `lambda in Lambda_h` is exactly a
+  `D`-root-free polynomial `Q` of degree `<h` satisfying
+
+```text
+sum_i q_i (v_{a+i}-lambda u_{a+i})=0,        0<=a<t+2.
+```
+
+  Thus the fixed-kernel short obstruction is a root-free denominator
+  recurrence for the combined syndrome `v-lambda u`.
+
+* A root-free short witness for `theta in Theta_h` is exactly a
+  `D`-root-free polynomial `Q` of degree `<h` satisfying the two recurrences
+
+```text
+sum_i q_i (u_{a+i+1}-theta u_{a+i})=0,
+sum_i q_i (v_{a+i+1}-theta v_{a+i})=0,        0<=a<t+1.
+```
+
+  Thus the first-difference short obstruction is a common root-free
+  denominator recurrence for the differenced pair
+  `(Delta_theta u, Delta_theta v)`.
+
+Therefore the failure of the four short injectivity checks from Corollary 53
+splits into fixed-root/root-slice pieces and root-free short denominator
+recurrences.  These are the endpoint-local denominator objects that must be
+charged by quotient-periodic, aperiodic packing, endpoint, or active-codegree
+input in the M1 residue-line program.
+
+### Proof
+
+The `a`-th row of `H_{s,h-1}(w)Q` is
+
+```text
+sum_{i=0}^{h-1} w_{a+i}q_i,
+```
+
+with `q_i=0` for `i>e`.  This is exactly (Rec_Q), proving the recurrence
+equivalence.
+
+If a short annihilator has roots in `D`, Corollary 49 strips its full
+`D`-root divisor and replaces `w` by the corresponding differenced syndrome.
+The remaining factor is `D`-root-free by construction and still satisfies a
+short Hankel equation at smaller degree.
+
+The fixed-kernel and first-difference displayed recurrences are obtained by
+applying the recurrence equivalence to `w=v-lambda u` and to
+`w=Delta_theta u, Delta_theta v`, respectively.  The final statement is just
+the union of these alternatives with the fixed-root/root-slice factors
+separated by Corollary 49.
+
 ## Non-Claims
 
 This note does not prove
@@ -5234,4 +5321,6 @@ short endpoint systems are injective. Corollary 54 gives feasibility and
 nonempty determinantal targets for those injectivity checks; it does not prove
 the actual syndromes lie in the open injectivity loci. Corollary 55 identifies
 the row-count threshold for this short-injectivity route; it does not prove
-the required Hankel minors are nonzero above that threshold.
+the required Hankel minors are nonzero above that threshold. Corollary 56
+identifies the remaining root-free short failures as denominator recurrences;
+it does not bound those recurrence families.

@@ -2144,6 +2144,20 @@ For \(b<b_{\min}\), the single endpoint maps cannot be injective by row count.
 For \(b\ge b_{\min}\), all four short checks are dimensionally feasible and
 the endpointized charge is reduced to explicit nonvanishing of four
 \(h\times h\) Hankel minors plus the finite \(2h\)-exception charge.
+Finally, a short Hankel kernel is exactly a denominator recurrence.  If
+\(Q(X)=\sum_iq_iX^i\) has degree \(<h\), then
+\[
+H_{s,h-1}(w)Q=0
+\quad\Longleftrightarrow\quad
+\sum_i q_i w_{a+i}=0\quad(0\le a<s).
+\]
+After the root-stripping reductions, the remaining short failures are
+\(D\)-root-free denominator recurrences: for fixed-kernel parameters, a
+root-free \(Q\) annihilates the combined syndrome \(v-\lambda u\); for
+first-difference parameters, the same root-free \(Q\) annihilates both
+\(\Delta_\theta u\) and \(\Delta_\theta v\).  Thus the endpoint-short
+obstruction is now expressed in the same denominator language as the
+residue-line packing problem.
 
 In the ruled part, the common-kernel branch has a fixed projective boundary slope,
 while the common-image branch forces the shadow locator \(L_S\) to satisfy the

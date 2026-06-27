@@ -302,7 +302,12 @@ Keep entries concise and link to the relevant files.
   `b_min=max(0,c-(t+2))`: below it the single endpoint maps cannot be
   injective by row count, and at or above it the remaining closure target is
   explicit nonvanishing of four `h x h` Hankel minors plus the finite `2h`
-  exception charge.
+  exception charge.  The remaining short failures are now identified exactly
+  as denominator recurrences: `H_{s,h-1}(w)Q=0` is the recurrence
+  `sum_i q_i w_{a+i}=0`; after root stripping, the unresolved endpoint-short
+  obstruction is a `D`-root-free denominator recurrence for `v-lambda u` or a
+  common `D`-root-free denominator recurrence for `(Delta_theta u,
+  Delta_theta v)`.
 - **What to do next:** Bound or charge the unique-neighbor nondegenerate
   star-free shadow ledger, then charge the four base endpoint spaces, the
   resulting short-annihilator endpoint systems, finite-exception endpoint
