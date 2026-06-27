@@ -30,6 +30,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-27 - M1 singleton contained-boundary charge
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/m1/m1_all_line_hankel_aperiodic_packing.md`,
+  `experimental/scripts/verify_m1_all_line_hankel_aperiodic.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT / EXPERIMENTAL.
+- **What is being added:** The domain-singleton free-escape census now splits
+  contained-domain roots into contained/tangent pairs and off-domain roots.
+  For an active domain singleton, each contained pair gives a strict
+  two-exchange boundary edge from the active locator to a contained/tangent
+  locator.
+- **How it is useful:** This shows the current active singleton witness is
+  paid by the contained/tangent boundary ledger: it has one contained pair,
+  one contained boundary edge, and no off-domain singleton root.
+- **What to do next:** Bound off-domain singleton boundary roots, or prove a
+  global non-overlap charge from contained-boundary edges into the
+  contained/tangent ledger.
+
 ### 2026-06-27 - M1 domain-singleton free-escape lower bound
 
 - **Agent/model:** Codex.

@@ -825,6 +825,31 @@ bound for every audited non-fixed variable line and separately for active
 domain singletons.  In the `F_13`, `n=12`, `j=5` product-Mobius witness the
 actual free escape mass is `2`, and the forced lower bound is `1`.
 
+The contained part of free escape is pair-valued.  If `x in A` and
+`iota_L(x) in A` land in the contained bucket, then both roots give the same
+contained/tangent complement
+
+```text
+T_c = R union {x,iota_L(x)},       H_{3,j}(v)ell_{T_c}=0.
+```
+
+Thus the verifier asserts
+
+```text
+contained-domain roots = 2 * contained-domain pairs.
+```
+
+When the same line is a domain singleton with one aperiodic member
+`T_a=R union {x_0,iota_L(x_0)}`, each contained pair gives a strict
+two-exchange boundary edge from `T_a` to a contained/tangent locator `T_c`.
+Consequently the free-escape bucket splits into contained-boundary charge and
+off-domain boundary roots.  Line-locally, the only free-escape roots not
+represented by contained/tangent boundary edges are off-domain roots; a global
+argument must still control overlap of these boundary charges.  In the
+`F_13`, `n=12`, `j=5` active singleton witness the free escape is entirely
+contained-boundary: one contained pair, one contained boundary edge, and no
+off-domain singleton root.
+
 ## Different-Slope One-Exchange Quadratic Slice
 
 The different-slope part of the one-exchange profile has a complementary
