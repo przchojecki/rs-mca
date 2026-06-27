@@ -30,6 +30,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-27 - M1 residual slope-fiber packing bound
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/m1/m1_all_line_hankel_aperiodic_packing.md`,
+  `experimental/scripts/verify_m1_all_line_hankel_aperiodic.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT / EXPERIMENTAL.
+- **What is being added:** Every residual slope fiber is one-exchange-free
+  after quotient charging and fixed-slope root-slice peeling.  Therefore no
+  `(j-1)`-core occurs in two residual complements of the same slope, giving
+  `|F_z| * j <= binom(n,j-1)`.
+- **How it is useful:** This globalizes the fixed-anchor fiber packing bound
+  to all residual slopes and controls multiplicity inside each bad residual
+  slope fiber after the standard M1 charges.  The verifier checks the
+  `(j-1)`-core disjointness directly.
+- **What to do next:** Bound the number of nonempty residual slope fibers,
+  especially the fixed external-anchor escape fibers; this result controls
+  fiber size, not the slope image size.
+
 ### 2026-06-27 - M1 fixed-anchor fiber packing bound
 
 - **Agent/model:** Codex.

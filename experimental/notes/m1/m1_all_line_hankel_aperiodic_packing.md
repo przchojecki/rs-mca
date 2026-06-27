@@ -298,6 +298,29 @@ have been removed.  Thus repeated-slope high-overlap structure is completely
 charged to constant root-slice packets; the residual slope fibers are
 one-exchange independent and must be controlled by a different mechanism.
 
+## Residual Slope-Fiber Packing Bound
+
+The residual one-exchange independence gives a global multiplicity bound
+inside every residual slope fiber.  Fix a residual slope `z` and let
+
+```text
+F_z={T in R_res : z_T=z}.
+```
+
+If two distinct complements `T,T' in F_z` shared a `(j-1)`-core, then they
+would be same-slope strict one-exchange neighbors in the residual family,
+contradicting the root-slice peeling corollary.  Hence each `(j-1)`-subset of
+the domain occurs in at most one member of `F_z`.  Counting incidences
+`(R,T)` with `R subset T`, `|R|=j-1`, gives
+
+```text
+|F_z| j <= binom(n,j-1).
+```
+
+This is a fiber-multiplicity theorem, not a slope-image theorem: it bounds how
+many residual locators can carry one fixed slope, but it does not yet bound
+the number of nonempty residual slope fibers.
+
 ## Residual One-Exchange Degree Bound
 
 After the same-slope root-slice packets are peeled, the remaining `t=2`
@@ -1575,6 +1598,8 @@ enumerates small cyclic-domain cases.  For each case it:
   slices account for all same-slope strict edges;
 - peels root-slice members and checks that the residual aperiodic family has
   no same-slope one-exchange edges;
+- checks residual slope-fiber core disjointness, hence the global packing
+  bound `|F_z| j <= binom(n,j-1)` for every residual slope `z`;
 - reports the residual strict one-exchange count and verifies the residual
   maximum degree bound `<= j`;
 - checks the quadratic companion map for every nonzero quadratic edge slice;
