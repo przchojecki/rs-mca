@@ -2371,6 +2371,60 @@ def verify_full_domain_monomial_boundary_model(
     }
 
 
+def verify_j4_pair_product_floor_argument(primes: tuple[int, ...] = (53, 59, 61)) -> dict[str, int]:
+    min_ordered_pair_representations = None
+    min_good_representations = None
+    max_excluded_representations = 0
+    for p in primes:
+        inv2 = inv_mod(2, p)
+        pair_products: list[tuple[int, int, int]] = []
+        for x in range(p):
+            if x in (0, 1, inv2):
+                continue
+            pair_products.append((x * (1 - x) % p, x, (1 - x) % p))
+        for target in range(1, p):
+            ordered_pair_representations = 0
+            excluded_representations = 0
+            good_representations = 0
+            for left_product, x, one_minus_x in pair_products:
+                for right_product, u, _one_minus_u in pair_products:
+                    if left_product * right_product % p != target:
+                        continue
+                    ordered_pair_representations += 1
+                    candidate = (x, one_minus_x, (-u) % p, (u - 1) % p)
+                    candidate_set = set(candidate)
+                    antipodal = all((-root) % p in candidate_set for root in candidate)
+                    if 0 in candidate_set or len(candidate_set) != 4 or antipodal:
+                        excluded_representations += 1
+                    else:
+                        good_representations += 1
+            if ordered_pair_representations <= 24:
+                raise AssertionError("j=4 pair-product representation lower bound failed")
+            if excluded_representations > 24:
+                raise AssertionError("j=4 pair-product exclusion bound failed")
+            if good_representations == 0:
+                raise AssertionError("j=4 pair-product floor had no residual witness")
+            min_ordered_pair_representations = (
+                ordered_pair_representations
+                if min_ordered_pair_representations is None
+                else min(min_ordered_pair_representations, ordered_pair_representations)
+            )
+            min_good_representations = (
+                good_representations
+                if min_good_representations is None
+                else min(min_good_representations, good_representations)
+            )
+            max_excluded_representations = max(
+                max_excluded_representations, excluded_representations
+            )
+    return {
+        "prime_count": len(primes),
+        "min_ordered_pair_representations": min_ordered_pair_representations or 0,
+        "min_good_representations": min_good_representations or 0,
+        "max_excluded_representations": max_excluded_representations,
+    }
+
+
 def verify_rank_one_zero_slice_probe() -> dict[str, object]:
     case = Case(
         "F17_full_j4_t2_rank1_probe",
@@ -2457,6 +2511,7 @@ def main() -> None:
             raise AssertionError("j=4 residual product floor audit had wrong parameters")
         if model["residual_product_fibers"] != model["p"] - 1:
             raise AssertionError("j=4 residual product floor audit was not field-sized")
+    j4_pair_product_floor_argument = verify_j4_pair_product_floor_argument()
     rank_one_probe = verify_rank_one_zero_slice_probe()
     print(
         "F13_order12_j4_t2_boundary_model: "
@@ -2502,6 +2557,13 @@ def main() -> None:
         "j4_residual_product_floor: "
         f"small_primes={','.join(str(model['p']) for model in j4_residual_product_floor_models)} "
         f"field_sized_cases={len(j4_residual_product_floor_models)}"
+    )
+    print(
+        "j4_pair_product_floor_argument: "
+        f"prime_count={j4_pair_product_floor_argument['prime_count']} "
+        f"min_ordered_pair_reps={j4_pair_product_floor_argument['min_ordered_pair_representations']} "
+        f"min_good_reps={j4_pair_product_floor_argument['min_good_representations']} "
+        f"max_excluded_reps={j4_pair_product_floor_argument['max_excluded_representations']}"
     )
     for summary in summaries:
         case = summary["case"]

@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-27 - M1 quartic pair-product proof audit
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/m1/m1_all_line_hankel_aperiodic_packing.md`,
+  `experimental/scripts/verify_m1_all_line_hankel_aperiodic.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT / EXPERIMENTAL.
+- **What is being added:** The `j=4` residual field-size floor proof is
+  clarified to count ordered pair parameters `(x,u)`, not raw product values
+  in `A={x(1-x)}`.  A new verifier audit checks the pair-product proof
+  constants at `p=53,59,61`, confirming that representation counts exceed the
+  `24` collision/antipodal exclusions.
+- **How it is useful:** This strengthens the proof spine of the quartic
+  fixed-anchor floor by making the large-prime character-sum step and finite
+  threshold audit explicit.
+- **What to do next:** Use this proof-audited floor as the lower-bound scale
+  when formulating a positive fixed-anchor product-image theorem for M1.
+
 ### 2026-06-27 - M1 j=4 residual field-size floor
 
 - **Agent/model:** Codex.

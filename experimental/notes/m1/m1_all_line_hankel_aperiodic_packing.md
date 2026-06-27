@@ -931,10 +931,24 @@ T={x,1-x,-u,u-1}
 
 has sum zero and product `y`.  It is residual unless the two pairs collide or
 form the antipodal quotient family.  For fixed `y`, the number of ordered
-pair-product representations is at least `p-11-2sqrt(p)`: write `A` as the
-nonzero values with `chi(1-4a)=1`, expand the multiplicative convolution with
-the quadratic character, and apply the Hasse-Weil bound for the associated
-quadratic double cover
+parameter pairs `(x,u)` with
+
+```text
+x(1-x)u(1-u)=y,        x,u notin {0,1,1/2},
+```
+
+is at least `p-11-2sqrt(p)`.  To see this, let
+`n(a)=1+chi(1-4a)-1_{a=1/4}` be the number of allowed `x` with
+`x(1-x)=a`.  Expanding
+
+```text
+sum_{a in F_p^*} n(a)n(y/a)
+```
+
+leaves the main term `p-3`, the quadratic character convolution, and a
+deliberately loose eight-point allowance for the two excluded repeated-root
+fibers.  The convolution is bounded by the Hasse-Weil estimate for the
+associated quadratic double cover:
 
 ```text
 |sum_{a in F_p^*} chi((1-4a)(1-4y/a))| <= 2sqrt(p).
@@ -950,6 +964,10 @@ finite remaining primes
 ```text
 p=17,19,23,29,31,37,41,43,47.
 ```
+
+The verifier also audits the pair-product argument at `p=53,59,61`: in these
+rows every nonzero `y` has more than `24` ordered pair representations, at
+most `24` exclusions, and at least one residual witness.
 
 Thus, for every prime `p>=17`, the `j=4` full-domain monomial boundary model
 has residual product image all of `F_p^*` after quotient charging.  One fixed
@@ -1453,6 +1471,9 @@ enumerates small cyclic-domain cases.  For each case it:
   charging: the residual product image is all of `F_p^*` for every audited
   prime `17 <= p < 53`, while the note proves the large-prime range by a
   pair-product character-sum bound;
+- audits the large-prime pair-product proof at `p=53,59,61`, checking that
+  ordered pair-product representations beat the collision and antipodal
+  exclusions for every nonzero target product;
 - asserts the general additive-character count for zero-sum `j`-subsets of
   `F_p^*`, including the `j=3` and `j=4` specializations and the residual
   count after antipodal quotient charging;
