@@ -234,6 +234,58 @@ higher-slack core-locator image `Z_3`.  This turns the same-slope part of the
 `t=2` problem into a recursive or inductive input rather than an independent
 packet count.
 
+## Arbitrary-Slack Same-Slope One-Exchange Lift
+
+The root-slice lift is not special to `t=2`; only the later quadratic
+different-slope analysis is.  Fix any slack `t>=1`, a slope `z`, and put
+
+```text
+A_z = H_{t,j}(u)+zH_{t,j}(v).
+```
+
+Let `R subset D` have size `j-1`, and suppose two distinct one-root extensions
+`R union {x}` and `R union {y}` have the same noncontained slope `z`.  With
+
+```text
+ell_{R union {w}} = s_R-wp_R,
+```
+
+the two equations
+
+```text
+A_z(s_R-xp_R)=0,        A_z(s_R-yp_R)=0
+```
+
+again imply
+
+```text
+A_z p_R=0,        A_z s_R=0.
+```
+
+The padded equation gives the shift-`0` through shift-`t-1` Hankel relations
+for `L_R`; the shifted equation gives shift-`1` through shift-`t`.  Together
+they are exactly
+
+```text
+(H_{t+1,j-1}(u)+zH_{t+1,j-1}(v))ell_R=0.        (RS(t))
+```
+
+The denominator vector in this `(t+1,j-1)` pencil cannot vanish for a genuine
+same-slope one-exchange edge, because if `H_{t+1,j-1}(v)ell_R=0` then every
+member `R union {w}` of the root slice has
+`H_{t,j}(v)ell_{R union {w}}=0`, contradicting noncontainment at the two
+endpoints.  Therefore every same-slope one-exchange collision at slack `t`
+is charged to the next-slack core-locator slope image.
+
+This does not handle all strict overlaps when `t>2`; pairs differing in two
+or more roots are new higher-slack objects.  It does prove that the
+one-exchange same-slope part is recursively exact at every slack, so repeated
+one-root collision structure never needs a separate nonrecursive budget.  The
+verifier audits this general lift on every row.  In the nontrivial
+`F_13`, `n=12`, `j=5`, `t=3` row, all `84` same-slope one-exchange edges are
+covered by `3` root slices and `3` slope values in the `t=4`, `j=4`
+core-locator image.
+
 ## Different-Slope One-Exchange Quadratic Slice
 
 The different-slope part of the one-exchange profile has a complementary
@@ -2338,14 +2390,17 @@ enumerates small cyclic-domain cases.  For each case it:
 - computes syndromes and Hankel windows for a deterministic family of all-line
   words;
 - enumerates all split complements `T`;
-- applies the projective slope gate for `t=2`;
+- applies the projective slope gate, with the determinant-gate cross-check in
+  the `t=2` rows;
 - cross-checks every bad slope by direct RS interpolation on `D\T`;
 - labels whole-fiber quotient-periodic complements at the selected scales;
 - reports the aperiodic slope image after charged locators are removed;
+- for every row, counts one-exchange pairs and verifies the arbitrary-slack
+  same-slope lift into the `(t+1,j-1)` Hankel core image;
 - in the `t=2` rows, verifies the determinant gate and reports the strict
   one-exchange profile of the aperiodic locator family;
-- checks that every same-slope strict one-exchange edge extends to the full
-  fixed-slope root slice predicted by the lemma above;
+- in the `t=2` rows, checks that every same-slope strict one-exchange edge
+  extends to the full fixed-slope root slice predicted by the lemma above;
 - verifies that different-slope strict edges obey the quadratic root-slice
   dichotomy above;
 - verifies that every zero-determinant slice is constant-slope or contained
@@ -2527,11 +2582,13 @@ enumerates small cyclic-domain cases.  For each case it:
   zero-determinant branch and verifies that it is classified by the same
   constant/contained zero-slice ledger.
 
-The default audit currently checks three cyclic-domain parameter rows, twelve
-deterministic polynomial-family line samples, and one deterministic arbitrary
-line probe.  The largest observed residual aperiodic slope image in this smoke
-packet has size `17`, after direct interpolation checks on every reported
-support-wise bad slope.
+The default audit currently checks four cyclic-domain parameter rows,
+seventeen deterministic polynomial-family line samples, and one deterministic
+arbitrary line probe.  Three rows exercise the full `t=2` residual reducer,
+while the `F_13`, `n=12`, `j=5`, `t=3` row exercises the arbitrary-slack
+same-slope one-exchange lift.  The largest observed residual aperiodic slope
+image in this smoke packet has size `17`, after direct interpolation checks on
+every reported support-wise bad slope.
 
 The `F_13`, `n=12`, `j=4`, `t=2` row is kept as a boundary-only counterexample
 to the tempting squarefree-absorption shortcut.  In all four deterministic

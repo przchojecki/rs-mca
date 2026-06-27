@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-27 - M1 arbitrary-slack root-slice lift
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/m1/m1_all_line_hankel_aperiodic_packing.md`,
+  `experimental/scripts/verify_m1_all_line_hankel_aperiodic.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT / EXPERIMENTAL.
+- **What is being added:** The same-slope one-exchange root-slice lift is
+  generalized from `t=2` to arbitrary slack `t`: every such collision maps to
+  the `(t+1,j-1)` Hankel core-locator image.  The verifier now audits this
+  on all rows, including a nontrivial `F_13`, `j=5`, `t=3` row.
+- **How it is useful:** This makes the recursive root-slice mechanism a
+  genuine higher-slack invariant rather than a slack-two-only observation,
+  directly supporting the all-line aperiodic residue-packing route for M1.
+- **What to do next:** Analyze higher-slack multi-exchange overlaps
+  separately; the new lemma covers one-root exchanges but not all strict
+  overlaps when `t>2`.
+
 ### 2026-06-27 - M1 root-residual overlap reduction
 
 - **Agent/model:** Codex.

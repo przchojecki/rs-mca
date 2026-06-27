@@ -463,7 +463,9 @@ def strict_exchange_profile(
     locator_rows: list[tuple[tuple[int, ...], int]], t: int
 ) -> dict[str, int]:
     strict_pairs = 0
+    one_exchange_pairs = 0
     same_slope_strict_pairs = 0
+    same_slope_one_exchange_pairs = 0
     degrees = [0] * len(locator_rows)
     slope_fibers: dict[int, int] = {}
     for _, slope in locator_rows:
@@ -483,11 +485,17 @@ def strict_exchange_profile(
                 degrees[right] += 1
                 if slope_left == locator_rows[right][1]:
                     same_slope_strict_pairs += 1
+            if exchange == 1:
+                one_exchange_pairs += 1
+                if slope_left == locator_rows[right][1]:
+                    same_slope_one_exchange_pairs += 1
 
     return {
         "strict_pairs": strict_pairs,
+        "one_exchange_pairs": one_exchange_pairs,
         "max_strict_degree": max(degrees, default=0),
         "same_slope_strict_pairs": same_slope_strict_pairs,
+        "same_slope_one_exchange_pairs": same_slope_one_exchange_pairs,
         "max_slope_fiber": max(slope_fibers.values(), default=0),
     }
 
@@ -507,6 +515,87 @@ def fixed_slope_incidence(
     incident = all((a + slope * b) % p == 0 for a, b in zip(a_vec, b_vec))
     noncontained = any(b != 0 for b in b_vec)
     return incident, noncontained
+
+
+def same_slope_one_exchange_lift_profile(
+    locator_rows: list[tuple[tuple[int, ...], int]],
+    domain: tuple[int, ...],
+    u: tuple[int, ...],
+    v: tuple[int, ...],
+    t: int,
+    j: int,
+    p: int,
+) -> dict[str, int]:
+    if j <= 0:
+        raise AssertionError("invalid root-slice boundary size")
+    row_map = {tuple(sorted(complement)): slope for complement, slope in locator_rows}
+    slice_keys: set[tuple[tuple[int, ...], int]] = set()
+    same_slope_edges = 0
+    for left in range(len(locator_rows)):
+        left_set = set(locator_rows[left][0])
+        left_slope = locator_rows[left][1]
+        for right in range(left + 1, len(locator_rows)):
+            right_set = set(locator_rows[right][0])
+            if left_slope != locator_rows[right][1]:
+                continue
+            if len(left_set - right_set) == 1 and len(right_set - left_set) == 1:
+                same_slope_edges += 1
+                core = tuple(sorted(left_set & right_set))
+                if len(core) != j - 1:
+                    raise AssertionError("one-exchange core has wrong size")
+                slice_keys.add((core, left_slope))
+
+    next_slope_set: set[int] = set()
+    next_core_locators = 0
+    for core in combinations(domain, j - 1):
+        core_locator = locator(tuple(sorted(core)), p)
+        next_a = hankel_apply(u, t + 1, j - 1, core_locator, p)
+        next_b = hankel_apply(v, t + 1, j - 1, core_locator, p)
+        next_slope = slope_from_gate(next_a, next_b, p)
+        if next_slope is None:
+            continue
+        next_core_locators += 1
+        next_slope_set.add(next_slope)
+
+    max_noncontained = 0
+    max_aperiodic_members = 0
+    lifted_member_checks = 0
+    for core, slope in slice_keys:
+        core_locator = locator(core, p)
+        next_a = hankel_apply(u, t + 1, j - 1, core_locator, p)
+        next_b = hankel_apply(v, t + 1, j - 1, core_locator, p)
+        if slope_from_gate(next_a, next_b, p) != slope:
+            raise AssertionError("same-slope one-exchange edge missed the t+1 root lift")
+        noncontained_count = 0
+        aperiodic_member_count = 0
+        for x in domain:
+            if x in core:
+                continue
+            complement = tuple(sorted(core + (x,)))
+            incident, noncontained = fixed_slope_incidence(u, v, complement, slope, t, j, p)
+            if not incident:
+                raise AssertionError("same-slope one-exchange edge did not extend to its root slice")
+            if noncontained:
+                noncontained_count += 1
+            if row_map.get(complement) == slope:
+                aperiodic_member_count += 1
+            lifted_member_checks += 1
+        max_noncontained = max(max_noncontained, noncontained_count)
+        max_aperiodic_members = max(max_aperiodic_members, aperiodic_member_count)
+
+    slice_slope_set = {slope for _, slope in slice_keys}
+    if not slice_slope_set <= next_slope_set:
+        raise AssertionError("same-slope root-slice slopes escaped the t+1 core image")
+    return {
+        "same_slope_one_exchange_edges": same_slope_edges,
+        "same_slope_one_exchange_root_slices": len(slice_keys),
+        "same_slope_one_exchange_root_slopes": len(slice_slope_set),
+        "same_slope_one_exchange_next_core_locators": next_core_locators,
+        "same_slope_one_exchange_next_slopes": len(next_slope_set),
+        "same_slope_one_exchange_member_checks": lifted_member_checks,
+        "same_slope_one_exchange_noncontained_max": max_noncontained,
+        "same_slope_one_exchange_aperiodic_members_max": max_aperiodic_members,
+    }
 
 
 def root_slice_profile(
@@ -2396,16 +2485,26 @@ def verify_word_pair(
     if bad_locators != quotient_locators + aperiodic_locators:
         raise AssertionError("charged/aperiodic locator partition failed")
     exchange_profile = strict_exchange_profile(aperiodic_locator_rows, t)
+    one_exchange_lift_profile = same_slope_one_exchange_lift_profile(
+        aperiodic_locator_rows, domain, u, v, t, j, p
+    )
+    if (
+        one_exchange_lift_profile["same_slope_one_exchange_edges"]
+        != exchange_profile["same_slope_one_exchange_pairs"]
+    ):
+        raise AssertionError("same-slope one-exchange lift missed an edge")
     root_profile = root_slice_profile(aperiodic_locator_rows, domain, u, v, f, g, k, t, j, p)
-    if root_profile["same_slope_edges_covered"] != exchange_profile["same_slope_strict_pairs"]:
+    if t == 2 and root_profile["same_slope_edges_covered"] != exchange_profile["same_slope_strict_pairs"]:
         raise AssertionError("root-slice coverage missed same-slope strict edges")
     quadratic_profile = quadratic_slice_profile(aperiodic_locator_rows, domain, u, v, t, j, p)
     expected_different_slope = (
         exchange_profile["strict_pairs"] - exchange_profile["same_slope_strict_pairs"]
     )
-    if quadratic_profile["different_slope_strict_pairs"] != expected_different_slope:
+    if t == 2 and quadratic_profile["different_slope_strict_pairs"] != expected_different_slope:
         raise AssertionError("quadratic-slice profile missed different-slope strict edges")
     if (
+        t == 2
+        and
         quadratic_profile["zero_det_aperiodic_repeated_slope_pairs"]
         != exchange_profile["same_slope_strict_pairs"]
     ):
@@ -2431,8 +2530,33 @@ def verify_word_pair(
         "aperiodic_slopes": len(aperiodic_slopes),
         "aperiodic_max_slope_fiber": exchange_profile["max_slope_fiber"],
         "aperiodic_strict_pairs": exchange_profile["strict_pairs"],
+        "aperiodic_one_exchange_pairs": exchange_profile["one_exchange_pairs"],
         "aperiodic_max_strict_degree": exchange_profile["max_strict_degree"],
         "aperiodic_same_slope_strict_pairs": exchange_profile["same_slope_strict_pairs"],
+        "aperiodic_same_slope_one_exchange_pairs": exchange_profile[
+            "same_slope_one_exchange_pairs"
+        ],
+        "same_slope_one_exchange_root_slices": one_exchange_lift_profile[
+            "same_slope_one_exchange_root_slices"
+        ],
+        "same_slope_one_exchange_root_slopes": one_exchange_lift_profile[
+            "same_slope_one_exchange_root_slopes"
+        ],
+        "same_slope_one_exchange_next_core_locators": one_exchange_lift_profile[
+            "same_slope_one_exchange_next_core_locators"
+        ],
+        "same_slope_one_exchange_next_slopes": one_exchange_lift_profile[
+            "same_slope_one_exchange_next_slopes"
+        ],
+        "same_slope_one_exchange_member_checks": one_exchange_lift_profile[
+            "same_slope_one_exchange_member_checks"
+        ],
+        "same_slope_one_exchange_noncontained_max": one_exchange_lift_profile[
+            "same_slope_one_exchange_noncontained_max"
+        ],
+        "same_slope_one_exchange_aperiodic_members_max": one_exchange_lift_profile[
+            "same_slope_one_exchange_aperiodic_members_max"
+        ],
         "root_slices": root_profile["root_slices"],
         "same_slope_edges_covered": root_profile["same_slope_edges_covered"],
         "max_root_slice_noncontained": root_profile["max_root_slice_noncontained"],
@@ -2797,7 +2921,34 @@ def verify_case(case: Case) -> dict[str, object]:
         "max_aperiodic_slopes": max(row["aperiodic_slopes"] for row in rows),
         "max_aperiodic_slope_fiber": max(row["aperiodic_max_slope_fiber"] for row in rows),
         "max_aperiodic_strict_pairs": max(row["aperiodic_strict_pairs"] for row in rows),
+        "max_aperiodic_one_exchange_pairs": max(
+            row["aperiodic_one_exchange_pairs"] for row in rows
+        ),
         "max_aperiodic_strict_degree": max(row["aperiodic_max_strict_degree"] for row in rows),
+        "max_aperiodic_same_slope_one_exchange_pairs": max(
+            row["aperiodic_same_slope_one_exchange_pairs"] for row in rows
+        ),
+        "max_same_slope_one_exchange_root_slices": max(
+            row["same_slope_one_exchange_root_slices"] for row in rows
+        ),
+        "max_same_slope_one_exchange_root_slopes": max(
+            row["same_slope_one_exchange_root_slopes"] for row in rows
+        ),
+        "max_same_slope_one_exchange_next_core_locators": max(
+            row["same_slope_one_exchange_next_core_locators"] for row in rows
+        ),
+        "max_same_slope_one_exchange_next_slopes": max(
+            row["same_slope_one_exchange_next_slopes"] for row in rows
+        ),
+        "max_same_slope_one_exchange_member_checks": max(
+            row["same_slope_one_exchange_member_checks"] for row in rows
+        ),
+        "max_same_slope_one_exchange_noncontained": max(
+            row["same_slope_one_exchange_noncontained_max"] for row in rows
+        ),
+        "max_same_slope_one_exchange_aperiodic_members": max(
+            row["same_slope_one_exchange_aperiodic_members_max"] for row in rows
+        ),
         "max_root_slices": max(row["root_slices"] for row in rows),
         "max_root_slice_noncontained": max(row["max_root_slice_noncontained"] for row in rows),
         "max_root_slice_total_slope_bound": max(
@@ -3722,6 +3873,7 @@ def main() -> None:
         Case("F17_full_j4_t2", p=17, n=16, j=4, t=2, charged_fiber_sizes=(2, 4, 8), seeds=(0, 1, 2, 3)),
         Case("F17_order8_j3_t2", p=17, n=8, j=3, t=2, charged_fiber_sizes=(2, 4), seeds=(0, 1, 2, 3)),
         Case("F13_order12_j4_t2", p=13, n=12, j=4, t=2, charged_fiber_sizes=(2, 3, 4, 6), seeds=(0, 1, 2, 3)),
+        Case("F13_order12_j5_t3", p=13, n=12, j=5, t=3, charged_fiber_sizes=(2, 3, 4, 6), seeds=(0, 1, 2, 3)),
     )
     summaries = [verify_case(case) for case in cases]
     boundary_only_summary = next(
@@ -3867,8 +4019,17 @@ def main() -> None:
                 "aperiodic_slopes={aperiodic_slopes} contained_core={contained_core_locators} "
                 "aperiodic_fiber_max={aperiodic_max_slope_fiber} "
                 "strict_pairs={aperiodic_strict_pairs} "
+                "one_exchange_pairs={aperiodic_one_exchange_pairs} "
                 "strict_degree_max={aperiodic_max_strict_degree} "
                 "same_slope_strict={aperiodic_same_slope_strict_pairs} "
+                "same_slope_one_exchange={aperiodic_same_slope_one_exchange_pairs} "
+                "same_slope_lift_slices={same_slope_one_exchange_root_slices} "
+                "same_slope_lift_slopes={same_slope_one_exchange_root_slopes} "
+                "same_slope_lift_next_cores={same_slope_one_exchange_next_core_locators} "
+                "same_slope_lift_next_slopes={same_slope_one_exchange_next_slopes} "
+                "same_slope_lift_member_checks={same_slope_one_exchange_member_checks} "
+                "same_slope_lift_noncontained_max={same_slope_one_exchange_noncontained_max} "
+                "same_slope_lift_aperiodic_max={same_slope_one_exchange_aperiodic_members_max} "
                 "root_slices={root_slices} "
                 "root_slice_slopes={root_slice_slope_count} "
                 "root_slice_new_slopes={root_slice_new_slope_count} "
@@ -4019,7 +4180,16 @@ def main() -> None:
             f"max_aperiodic_slopes={summary['max_aperiodic_slopes']} "
             f"max_aperiodic_fiber={summary['max_aperiodic_slope_fiber']} "
             f"max_strict_pairs={summary['max_aperiodic_strict_pairs']} "
+            f"max_one_exchange_pairs={summary['max_aperiodic_one_exchange_pairs']} "
             f"max_strict_degree={summary['max_aperiodic_strict_degree']} "
+            f"max_same_slope_one_exchange={summary['max_aperiodic_same_slope_one_exchange_pairs']} "
+            f"max_same_slope_lift_slices={summary['max_same_slope_one_exchange_root_slices']} "
+            f"max_same_slope_lift_slopes={summary['max_same_slope_one_exchange_root_slopes']} "
+            f"max_same_slope_lift_next_cores={summary['max_same_slope_one_exchange_next_core_locators']} "
+            f"max_same_slope_lift_next_slopes={summary['max_same_slope_one_exchange_next_slopes']} "
+            f"max_same_slope_lift_member_checks={summary['max_same_slope_one_exchange_member_checks']} "
+            f"max_same_slope_lift_noncontained={summary['max_same_slope_one_exchange_noncontained']} "
+            f"max_same_slope_lift_aperiodic={summary['max_same_slope_one_exchange_aperiodic_members']} "
             f"max_root_slices={summary['max_root_slices']} "
             f"max_root_slice_noncontained={summary['max_root_slice_noncontained']} "
             f"max_root_total_slope_bound={summary['max_root_slice_total_slope_bound']} "
@@ -4159,6 +4329,13 @@ def main() -> None:
     print(
         "{name} seed={seed}: p={p} n={n} k={k} j={j} t={t} "
         "aperiodic_locators={aperiodic_locators} aperiodic_slopes={aperiodic_slopes} "
+        "one_exchange_pairs={aperiodic_one_exchange_pairs} "
+        "same_slope_one_exchange={aperiodic_same_slope_one_exchange_pairs} "
+        "same_slope_lift_slices={same_slope_one_exchange_root_slices} "
+        "same_slope_lift_slopes={same_slope_one_exchange_root_slopes} "
+        "same_slope_lift_next_cores={same_slope_one_exchange_next_core_locators} "
+        "same_slope_lift_next_slopes={same_slope_one_exchange_next_slopes} "
+        "same_slope_lift_member_checks={same_slope_one_exchange_member_checks} "
         "root_slice_slopes={root_slice_slope_count} "
         "root_slice_new_slopes={root_slice_new_slope_count} "
         "root_t3_slopes={root_slice_t3_slope_count} "
@@ -4283,6 +4460,25 @@ def main() -> None:
     all_rows = [row for summary in summaries for row in summary["rows"]] + [rank_one_probe]
     max_aperiodic = max(row["aperiodic_slopes"] for row in all_rows)
     max_strict_degree = max(row["aperiodic_max_strict_degree"] for row in all_rows)
+    max_one_exchange_pairs = max(row["aperiodic_one_exchange_pairs"] for row in all_rows)
+    max_same_slope_one_exchange_pairs = max(
+        row["aperiodic_same_slope_one_exchange_pairs"] for row in all_rows
+    )
+    max_same_slope_lift_slices = max(
+        row["same_slope_one_exchange_root_slices"] for row in all_rows
+    )
+    max_same_slope_lift_slopes = max(
+        row["same_slope_one_exchange_root_slopes"] for row in all_rows
+    )
+    max_same_slope_lift_next_cores = max(
+        row["same_slope_one_exchange_next_core_locators"] for row in all_rows
+    )
+    max_same_slope_lift_next_slopes = max(
+        row["same_slope_one_exchange_next_slopes"] for row in all_rows
+    )
+    max_same_slope_lift_member_checks = max(
+        row["same_slope_one_exchange_member_checks"] for row in all_rows
+    )
     max_total_slope_bound = max(row["root_slice_total_slope_bound"] for row in all_rows)
     max_root_new_slopes = max(row["root_slice_new_slope_count"] for row in all_rows)
     max_root_t3_core_locators = max(row["root_slice_t3_core_locators"] for row in all_rows)
@@ -4605,6 +4801,13 @@ def main() -> None:
         f"cases={len(summaries)} line_samples={total_lines} "
         f"rank_one_probes=1 "
         f"max_aperiodic_slopes={max_aperiodic} "
+        f"max_one_exchange_pairs={max_one_exchange_pairs} "
+        f"max_same_slope_one_exchange={max_same_slope_one_exchange_pairs} "
+        f"max_same_slope_lift_slices={max_same_slope_lift_slices} "
+        f"max_same_slope_lift_slopes={max_same_slope_lift_slopes} "
+        f"max_same_slope_lift_next_cores={max_same_slope_lift_next_cores} "
+        f"max_same_slope_lift_next_slopes={max_same_slope_lift_next_slopes} "
+        f"max_same_slope_lift_member_checks={max_same_slope_lift_member_checks} "
         f"max_total_slope_bound={max_total_slope_bound} "
         f"max_root_new_slopes={max_root_new_slopes} "
         f"max_root_t3_core_locators={max_root_t3_core_locators} "
