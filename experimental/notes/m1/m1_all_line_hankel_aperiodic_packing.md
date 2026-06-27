@@ -569,6 +569,26 @@ verifier asserts this for every variable proper determinant line.  In the
 each has one pole, `12` finite slopes, and only `3` aperiodic domain-pair
 slopes.
 
+For accounting, separate the variable proper-line aperiodic slope set
+`Z_varline` from the part already charged by earlier ledgers:
+
+```text
+Z_varline^new =
+  Z_varline \ (Z_root union Z_full-plane union Z_fixed-root-line).
+```
+
+Here `Z_root` is the one-exchange root-slice slope set, `Z_full-plane` is the
+constant full-plane slope set charged to `H_{5,j-2}`, and `Z_fixed-root-line`
+is the slope set on fixed-root proper determinant lines.  This definition is
+just a ledger identity, but it makes the remaining product-Mobius/fixed-sum
+branch measurable: only `Z_varline^new` would be a genuinely new
+two-exchange line contribution after the current charges.
+
+In the `F_13`, `n=12`, `j=5`, `t=3` probe, `Z_varline={4,5,9}` and
+`Z_varline^new` is empty.  Thus the two variable proper lines contribute no
+new slope values beyond the already charged root/full/fixed-root ledgers in
+this audit row.
+
 ## Different-Slope One-Exchange Quadratic Slice
 
 The different-slope part of the one-exchange profile has a complementary
@@ -2697,6 +2717,9 @@ enumerates small cyclic-domain cases.  For each case it:
 - in the `t=3` rows, checks that every variable proper determinant line has
   injective finite slope map, at most one contained pole, and no repeated
   aperiodic domain-pair slopes;
+- in the `t=3` rows, reports the variable proper-line aperiodic slope set
+  left after root-slice, constant full-plane, and fixed-root proper-line
+  charges;
 - in the `t=2` rows, verifies the determinant gate and reports the strict
   one-exchange profile of the aperiodic locator family;
 - in the `t=2` rows, checks that every same-slope strict one-exchange edge
@@ -2915,7 +2938,9 @@ one fixed-sum line.  The two non-fixed proper components are exactly the two
 variable-slope lines, and every non-plane core has at most one proper line in
 this probe, below the asserted degree-two maximum.  Both variable proper lines
 are slope-injective: each has one contained pole, `12` finite line slopes,
-and `3` actual aperiodic domain-pair slope values.
+and `3` actual aperiodic domain-pair slope values.  Their union has `3`
+aperiodic slope values, all already charged by root-slice/full-plane/fixed-root
+ledgers, so the variable proper-line new-slope count is `0`.
 
 The `F_13`, `n=12`, `j=4`, `t=2` row is kept as a boundary-only counterexample
 to the tempting squarefree-absorption shortcut.  In all four deterministic

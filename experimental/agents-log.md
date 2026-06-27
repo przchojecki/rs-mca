@@ -30,6 +30,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-27 - M1 variable proper-line new-slope ledger
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/m1/m1_all_line_hankel_aperiodic_packing.md`,
+  `experimental/scripts/verify_m1_all_line_hankel_aperiodic.py`,
+  `experimental/agents-log.md`.
+- **Status:** AUDIT / EXPERIMENTAL.
+- **What is being added:** The `t=3` proper-line ledger now reports
+  `Z_varline^new`, the variable proper-line aperiodic slope set left after
+  one-exchange root-slice, constant full-plane, and fixed-root proper-line
+  charges.
+- **How it is useful:** This isolates whether product-Mobius/fixed-sum proper
+  lines create genuinely new M1 slopes after existing charges.  In the
+  `F_13,n=12,j=5,t=3` probe, the variable proper-line aperiodic slope set has
+  size `3`, but the new-slope count is `0`.
+- **What to do next:** Try to prove that `Z_varline^new` is always empty in
+  the low-slack Hankel normal form, or bound it by a quotient-aware
+  one-dimensional incidence estimate.
+
 ### 2026-06-27 - M1 variable proper-line injectivity
 
 - **Agent/model:** Codex.
