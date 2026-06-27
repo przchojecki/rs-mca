@@ -83,6 +83,9 @@ Keep entries concise and link to the relevant files.
   with `d_I>b`, and assuming `d_infty<=b`, the uncharged ruled boundary-off
   targets are bounded by
   `(q^2 + q + q((q^t-1)/(q-1))) binom(n,b)`.
+  On the nondegenerate side, popular adjacent shadows are charged to the first
+  three active exchange profiles: `Boundary_off^quad` is bounded by twice the
+  unique-neighbor nondegenerate shadows plus `2(N_1E_1+N_2E_2+N_3E_3)`.
 - **How it is useful:** This sharpens one of the two live residual objects in
   the non-fixed variable-line branch.  It does not prove the final M1 bound,
   but it turns the boundary image into a precise quadratic-anchor/ruled-branch
@@ -97,10 +100,13 @@ Keep entries concise and link to the relevant files.
   ledgers.  The common-image branch is similarly reduced to a bounded-rank
   polynomial residual plus an explicit projective low-rank locus.  The latest
   combined corollary packages these into a single bounded-rank ruled-branch
-  closure criterion.
-- **What to do next:** Bound the adjacent domain shadows in the nondegenerate
-  branch and try to charge the ruled branch to fixed-slope/root-slice,
-  contained/tangent, quotient-periodic, or active-codegree ledgers.
+  closure criterion.  The nondegenerate branch is also sharpened: popular
+  shadows are now active-codegree terms, leaving unique-neighbor shadows as
+  the named residual.
+- **What to do next:** Bound or charge the unique-neighbor nondegenerate
+  shadow ledger, and charge the ruled exceptional low-rank loci to
+  fixed-slope/root-slice, endpoint, projective, quotient-periodic, or
+  active-codegree ledgers.
 
 ### 2026-06-27 - Root-level paper PDF relocation
 

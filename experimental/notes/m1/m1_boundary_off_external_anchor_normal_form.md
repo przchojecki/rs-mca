@@ -1393,6 +1393,129 @@ Adding the three ruled contributions proves (RBC).  The final claims are just
 the exceptional-locus alternatives already proved in Corollaries 12, 14, 15,
 and 16.
 
+## Corollary 18: Popular Nondegenerate Shadows Are Low-Exchange Ledgers
+
+Let `A` be any family of `j`-subsets of `D`.  Define the boundary-shadow
+degree
+
+```text
+deg_A(S)=#{ T in A : |S cap T|=j-2 },
+        |S|=j-1.
+```
+
+For `h>=1`, let
+
+```text
+E_h(A)=#{ {T,T'} subset A : T != T' and |T\T'|=|T'\T|=h }
+```
+
+be the unordered exchange profile of `A`.  Then
+
+```text
+sum_{|S|=j-1} binom(deg_A(S),2)
+ <= N_1 E_1(A) + N_2 E_2(A) + N_3 E_3(A),          (PS)
+```
+
+where, with the convention that invalid binomial coefficients are zero,
+
+```text
+N_1 = (j-1) binom(n-j-1,1) + binom(j-1,2),
+N_2 = binom(n-j-2,1) + 4(j-2),
+N_3 = 9.
+```
+
+No exchange level `h>=4` can share such a boundary shadow.
+
+Now take `A=A_var`, the active all-domain family from Corollary 4, and let
+`Iso_quad` be the nondegenerate quadratic-anchor shadows with `deg_A(S)=1`.
+Then
+
+```text
+|Boundary_off^quad|
+ <= 2 |Iso_quad|
+    + 2 ( N_1 E_1(A_var) + N_2 E_2(A_var) + N_3 E_3(A_var) ).      (NQ)
+```
+
+Thus the nondegenerate quadratic-anchor branch is reduced to a unique-neighbor
+shadow ledger plus the first three active exchange profiles.  In the M1
+variable-line program, those exchange profiles are the same kind of
+low-exchange active-codegree objects already isolated by the packet lemma.
+
+### Proof
+
+Fix distinct `T,T' in A` and put
+
+```text
+h=|T\T'|=|T'\T|,        I=T cap T',
+A_0=T\T',               B_0=T'\T,
+O=D\(T union T').
+```
+
+Then `|I|=j-h`, `|A_0|=|B_0|=h`, and `|O|=n-j-h`.  Count the `(j-1)`-sets `S`
+with
+
+```text
+|S cap T|=|S cap T'|=j-2.
+```
+
+Write
+
+```text
+x=|S cap I|,        a=|S cap A_0|,
+b=|S cap B_0|,      o=|S cap O|.
+```
+
+The two intersection equations give
+
+```text
+x+a=j-2,        x+b=j-2,
+```
+
+so `a=b=r`.  Since `|S|=j-1`,
+
+```text
+j-1 = x+a+b+o = j-2+r+o,
+```
+
+and hence `r+o=1`.  There are only two cases.
+
+If `r=0` and `o=1`, then `x=j-2`; this contributes
+
+```text
+binom(j-h,j-2)(n-j-h)
+```
+
+common boundary shadows.  This term is nonzero only for `h<=2`.
+
+If `r=1` and `o=0`, then `x=j-3`; this contributes
+
+```text
+binom(j-h,j-3) h^2
+```
+
+common boundary shadows.  This term is nonzero only for `h<=3`.
+
+Therefore a pair at exchange level `h` has at most
+
+```text
+N_h = binom(j-h,j-2)(n-j-h) + binom(j-h,j-3) h^2
+```
+
+common boundary shadows, and `N_h=0` for `h>=4`.  Substituting `h=1,2,3` gives
+the displayed values of `N_1,N_2,N_3`.  Summing over unordered active pairs
+proves (PS).
+
+A nondegenerate boundary target has at most two external anchors over its
+shadow by Corollary 2.  Split its shadow according to whether `deg_A(S)=1` or
+`deg_A(S)>=2`.  The first class contributes at most `2|Iso_quad|`.  The second
+has cardinality at most
+
+```text
+sum_S binom(deg_A(S),2),
+```
+
+and (PS) gives the claimed exchange-ledger bound.
+
 ## Non-Claims
 
 This note does not prove
@@ -1426,3 +1549,6 @@ projective and determinantal; it does not bound the split shadows supported on
 the exceptional projective low-rank lines without charging that locus.
 Corollary 17 is conditional on those explicit low-rank charges and endpoint
 rank hypotheses; it is not an unconditional ruled-branch theorem.
+Corollary 18 does not bound the unique-neighbor nondegenerate shadows; it
+separates them from the popular shadows that are already controlled by the
+first three active exchange profiles.
