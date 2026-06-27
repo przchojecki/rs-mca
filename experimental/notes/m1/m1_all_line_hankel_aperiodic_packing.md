@@ -469,6 +469,52 @@ rank-two cluster with `36` pair-extensions, and this cluster lifts to the
 `H_{5,3}` core pencil.  A separate finite-field line-geometry probe checks
 the two non-fixed involution models directly.
 
+## Two-Exchange Determinantal Line Components
+
+The same line classification applies to every affine line contained in the
+two-exchange determinantal locus, not only to same-slope clusters.  Fix a
+`(j-2)` core `R` and suppose that an affine line
+
+```text
+a s + b p = c
+```
+
+in the pair-symmetric plane is contained in the common zero set of the three
+quadratic minors from (TE3).  Then every noncontained point of this line gives
+a well-defined slope, and the possible root pairs on the line are exactly one
+of the three models above:
+
+```text
+fixed root:       p=rs-r^2,
+product Mobius:   (x-alpha)(y-alpha)=kappa != 0,
+fixed sum:        x+y=s_0.
+```
+
+Moreover the slope map on the line is a projective-linear ratio.  Indeed
+`H_{3,j}(u)ell` and `H_{3,j}(v)ell` are affine-linear functions of `(s,p)`;
+after restricting `(s,p)` to an affine line, each coordinate is affine-linear
+in one parameter.  On the noncontained locus the common projective ratio
+
+```text
+z=-a_i/b_i
+```
+
+is therefore the ratio of two affine-linear functions.  Hence a determinant
+line component is not an uncontrolled two-dimensional packing object: it is a
+single explicit involution on exchanged roots together with a projective-linear
+slope image.
+
+The verifier now enumerates every affine line in the `(s,p)` plane for every
+audited `t=3` core, checks whether all three quadratic minors vanish on the
+line, classifies the line as fixed-root, product-Mobius, or fixed-sum, and
+records whether its slope image is constant or variable.  In the
+`F_13`, `n=12`, `j=5`, `t=3` probe, the largest seed has `219`
+determinantal affine lines: `48` fixed-root lines, `157` product-Mobius lines,
+and `14` fixed-sum lines.  Most have constant slope, but `2` are variable
+slope lines with slope image size up to `12`.  Thus the non-fixed line branch
+is a genuine remaining M1 object: it is now localized to explicit involutions
+and projective-linear slope images, but it cannot simply be discarded.
+
 ## Different-Slope One-Exchange Quadratic Slice
 
 The different-slope part of the one-exchange profile has a complementary
@@ -2588,6 +2634,10 @@ enumerates small cyclic-domain cases.  For each case it:
   lines, classifying line clusters as fixed-root, product-Möbius, or
   fixed-sum involution components, and checking that affine-rank-two clusters
   lift to the `(t+2,j-2)` Hankel core image;
+- in the `t=3` rows, enumerates every affine line in each two-exchange
+  determinantal slice, checks whether all three quadratic minors vanish on the
+  line, classifies determinant-line components by the same three root-pair
+  models, and records constant versus variable slope images;
 - in the `t=2` rows, verifies the determinant gate and reports the strict
   one-exchange profile of the aperiodic locator family;
 - in the `t=2` rows, checks that every same-slope strict one-exchange edge
@@ -2795,7 +2845,10 @@ pairs, `378` are same-slope.  The verifier splits the same-slope clusters
 into `35` fixed-root affine lines, contributing no two-exchange pairs, and one
 affine-rank-two cluster with `36` pair-extensions.  That one plane accounts
 for all `378` same-slope two-exchange pairs and lifts to the `H_{5,3}` core
-pencil.
+pencil.  The same row also exposes the determinant-line branch: the verifier
+finds up to `219` determinantal affine lines, split as `48` fixed-root,
+`157` product-Mobius, and `14` fixed-sum components.  Two of these line
+components have variable slope image, with maximum slope-image size `12`.
 
 The `F_13`, `n=12`, `j=4`, `t=2` row is kept as a boundary-only counterexample
 to the tempting squarefree-absorption shortcut.  In all four deterministic

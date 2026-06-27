@@ -525,6 +525,93 @@ def two_root_line_model(
     return "product_mobius", center, multiplier
 
 
+def affine_line_points(line_key: tuple[int, int, int], p: int) -> list[tuple[int, int]]:
+    normal_sum, normal_product, constant = line_key
+    if normal_sum == 0 and normal_product == 0:
+        raise AssertionError("line key vanished")
+    if normal_product:
+        inv_product = inv_mod(normal_product, p)
+        return [
+            (root_sum, (constant - normal_sum * root_sum) * inv_product % p)
+            for root_sum in range(p)
+        ]
+    inv_sum = inv_mod(normal_sum, p)
+    root_sum = constant * inv_sum % p
+    return [(root_sum, root_product) for root_product in range(p)]
+
+
+def affine_line_keys(p: int) -> list[tuple[int, int, int]]:
+    keys = []
+    for normal_sum in range(p):
+        for normal_product in range(p):
+            if normal_sum == 0 and normal_product == 0:
+                continue
+            if normal_sum:
+                scale = inv_mod(normal_sum, p)
+            else:
+                scale = inv_mod(normal_product, p)
+            normalized = (normal_sum * scale % p, normal_product * scale % p)
+            if normalized != (normal_sum, normal_product):
+                continue
+            for constant in range(p):
+                keys.append((normal_sum, normal_product, constant))
+    return keys
+
+
+def two_exchange_minor_coefficients(
+    a_pad: tuple[int, ...],
+    a_shift: tuple[int, ...],
+    a_square_shift: tuple[int, ...],
+    b_pad: tuple[int, ...],
+    b_shift: tuple[int, ...],
+    b_square_shift: tuple[int, ...],
+    row: int,
+    col: int,
+    p: int,
+) -> tuple[int, int, int, int, int, int]:
+    return (
+        coord_det(a_square_shift, b_square_shift, row, col, p),
+        (
+            -coord_det(a_shift, b_square_shift, row, col, p)
+            - coord_det(a_square_shift, b_shift, row, col, p)
+        )
+        % p,
+        (
+            coord_det(a_pad, b_square_shift, row, col, p)
+            + coord_det(a_square_shift, b_pad, row, col, p)
+        )
+        % p,
+        coord_det(a_shift, b_shift, row, col, p),
+        (
+            -coord_det(a_shift, b_pad, row, col, p)
+            - coord_det(a_pad, b_shift, row, col, p)
+        )
+        % p,
+        coord_det(a_pad, b_pad, row, col, p),
+    )
+
+
+def two_exchange_minor_value(
+    coeffs: tuple[int, int, int, int, int, int], s: int, q: int, p: int
+) -> int:
+    (
+        const,
+        coeff_sum,
+        coeff_product,
+        coeff_sum_sq,
+        coeff_sum_product,
+        coeff_product_sq,
+    ) = coeffs
+    return (
+        const
+        + coeff_sum * s
+        + coeff_product * q
+        + coeff_sum_sq * s * s
+        + coeff_sum_product * s * q
+        + coeff_product_sq * q * q
+    ) % p
+
+
 def strict_exchange_profile(
     locator_rows: list[tuple[tuple[int, ...], int]], t: int
 ) -> dict[str, int]:
@@ -699,6 +786,15 @@ def two_exchange_quadratic_slice_profile(
             "two_exchange_same_slope_plane_two_exchange_pairs": 0,
             "two_exchange_same_slope_affine_member_max": 0,
             "two_exchange_same_slope_lift_checks": 0,
+            "two_exchange_det_line_components": 0,
+            "two_exchange_det_line_fixed_root": 0,
+            "two_exchange_det_line_product_mobius": 0,
+            "two_exchange_det_line_sum_mobius": 0,
+            "two_exchange_det_line_constant_slope": 0,
+            "two_exchange_det_line_variable_slope": 0,
+            "two_exchange_det_line_slope_max": 0,
+            "two_exchange_det_line_aperiodic_max": 0,
+            "two_exchange_det_line_point_checks": 0,
         }
     if j < 2:
         raise AssertionError("two-exchange slices need j>=2")
@@ -746,6 +842,17 @@ def two_exchange_quadratic_slice_profile(
     same_slope_affine_member_max = 0
     same_slope_lift_checks = 0
     same_slope_cluster_two_exchange_pairs = 0
+    same_slope_line_keys: set[tuple[tuple[int, ...], tuple[int, int, int]]] = set()
+    det_line_keys: set[tuple[tuple[int, ...], tuple[int, int, int]]] = set()
+    det_line_components = 0
+    det_line_fixed_root = 0
+    det_line_product_mobius = 0
+    det_line_sum_mobius = 0
+    det_line_constant_slope = 0
+    det_line_variable_slope = 0
+    det_line_slope_max = 0
+    det_line_aperiodic_max = 0
+    det_line_point_checks = 0
     for core in combinations(domain, j - 2):
         core_tuple = tuple(sorted(core))
         core_locator = locator(core_tuple, p)
@@ -765,11 +872,29 @@ def two_exchange_quadratic_slice_profile(
         slice_aperiodic = 0
         slice_slopes: set[int] = set()
         same_slope_entries: dict[int, list[tuple[int, int, int, int]]] = {}
+        minor_coefficients = [
+            two_exchange_minor_coefficients(
+                a_pad,
+                a_shift,
+                a_square_shift,
+                b_pad,
+                b_shift,
+                b_square_shift,
+                row,
+                col,
+                p,
+            )
+            for row, col in combinations(range(t), 2)
+        ]
+        pair_coordinate_to_complement: dict[tuple[int, int], tuple[int, ...]] = {}
         available = tuple(x for x in domain if x not in core_tuple)
         for x, y in combinations(available, 2):
             root_sum = (x + y) % p
             root_product = x * y % p
             complement = tuple(sorted(core_tuple + (x, y)))
+            if (root_sum, root_product) in pair_coordinate_to_complement:
+                raise AssertionError("two domain pairs had the same elementary coordinates")
+            pair_coordinate_to_complement[(root_sum, root_product)] = complement
             expected_locator = locator(complement, p)
             slice_locator = [
                 (
@@ -806,30 +931,10 @@ def two_exchange_quadratic_slice_profile(
                 raise AssertionError("two-exchange denominator slice formula failed")
 
             all_minors_zero = True
-            for row, col in combinations(range(t), 2):
-                coeff_const = coord_det(a_square_shift, b_square_shift, row, col, p)
-                coeff_sum = (
-                    -coord_det(a_shift, b_square_shift, row, col, p)
-                    - coord_det(a_square_shift, b_shift, row, col, p)
-                ) % p
-                coeff_product = (
-                    coord_det(a_pad, b_square_shift, row, col, p)
-                    + coord_det(a_square_shift, b_pad, row, col, p)
-                ) % p
-                coeff_sum_sq = coord_det(a_shift, b_shift, row, col, p)
-                coeff_sum_product = (
-                    -coord_det(a_shift, b_pad, row, col, p)
-                    - coord_det(a_pad, b_shift, row, col, p)
-                ) % p
-                coeff_product_sq = coord_det(a_pad, b_pad, row, col, p)
-                polynomial_value = (
-                    coeff_const
-                    + coeff_sum * root_sum
-                    + coeff_product * root_product
-                    + coeff_sum_sq * root_sum * root_sum
-                    + coeff_sum_product * root_sum * root_product
-                    + coeff_product_sq * root_product * root_product
-                ) % p
+            for coeffs, (row, col) in zip(minor_coefficients, combinations(range(t), 2), strict=True):
+                polynomial_value = two_exchange_minor_value(
+                    coeffs, root_sum, root_product, p
+                )
                 minor_value = coord_det(a_vec, b_vec, row, col, p)
                 if polynomial_value != minor_value:
                     raise AssertionError("two-exchange minor polynomial certificate failed")
@@ -855,6 +960,70 @@ def two_exchange_quadratic_slice_profile(
         max_slice_aperiodic = max(max_slice_aperiodic, slice_aperiodic)
         max_slice_slope_image = max(max_slice_slope_image, len(slice_slopes))
 
+        for line_key in affine_line_keys(p):
+            line_points = affine_line_points(line_key, p)
+            if not all(
+                two_exchange_minor_value(coeffs, root_sum, root_product, p) == 0
+                for root_sum, root_product in line_points
+                for coeffs in minor_coefficients
+            ):
+                continue
+            det_line_components += 1
+            det_line_keys.add((core_tuple, line_key))
+            line_model, _line_parameter, _line_multiplier = two_root_line_model(line_key, p)
+            if line_model == "fixed_root":
+                det_line_fixed_root += 1
+            elif line_model == "product_mobius":
+                det_line_product_mobius += 1
+            elif line_model == "sum_mobius":
+                det_line_sum_mobius += 1
+            else:
+                raise AssertionError("unknown two-root line model")
+
+            line_slopes: set[int] = set()
+            line_aperiodic = 0
+            for root_sum, root_product in line_points:
+                a_vec = tuple(
+                    (
+                        a_square_shift[idx]
+                        - root_sum * a_shift[idx]
+                        + root_product * a_pad[idx]
+                    )
+                    % p
+                    for idx in range(t)
+                )
+                b_vec = tuple(
+                    (
+                        b_square_shift[idx]
+                        - root_sum * b_shift[idx]
+                        + root_product * b_pad[idx]
+                    )
+                    % p
+                    for idx in range(t)
+                )
+                if all(value == 0 for value in b_vec):
+                    continue
+                slope = slope_from_gate(a_vec, b_vec, p)
+                if slope is None:
+                    raise AssertionError("determinantal line point had no slope")
+                line_slopes.add(slope)
+                complement = pair_coordinate_to_complement.get((root_sum, root_product))
+                if complement is None:
+                    continue
+                row_slope = row_map.get(complement)
+                if row_slope is None:
+                    continue
+                if row_slope != slope:
+                    raise AssertionError("line-component slope disagreed with row slope")
+                line_aperiodic += 1
+            if len(line_slopes) <= 1:
+                det_line_constant_slope += 1
+            else:
+                det_line_variable_slope += 1
+            det_line_slope_max = max(det_line_slope_max, len(line_slopes))
+            det_line_aperiodic_max = max(det_line_aperiodic_max, line_aperiodic)
+            det_line_point_checks += len(line_points)
+
         for slope, entries in same_slope_entries.items():
             if len(entries) < 2:
                 continue
@@ -871,6 +1040,7 @@ def two_exchange_quadratic_slice_profile(
                 same_slope_line_clusters += 1
                 same_slope_line_two_exchange_pairs += cluster_two_exchange_pairs
                 line_key = affine_line_key([(entry[2], entry[3]) for entry in entries], p)
+                same_slope_line_keys.add((core_tuple, line_key))
                 line_model, line_parameter, line_multiplier = two_root_line_model(line_key, p)
                 common_roots = set(entries[0][:2])
                 for entry in entries[1:]:
@@ -958,6 +1128,8 @@ def two_exchange_quadratic_slice_profile(
 
     if same_slope_cluster_two_exchange_pairs != same_slope_pairs:
         raise AssertionError("same-slope affine ledger missed a two-exchange pair")
+    if not same_slope_line_keys <= det_line_keys:
+        raise AssertionError("same-slope line cluster was not a determinantal line")
 
     return {
         "two_exchange_pairs": two_exchange_pairs,
@@ -992,6 +1164,15 @@ def two_exchange_quadratic_slice_profile(
         ),
         "two_exchange_same_slope_affine_member_max": same_slope_affine_member_max,
         "two_exchange_same_slope_lift_checks": same_slope_lift_checks,
+        "two_exchange_det_line_components": det_line_components,
+        "two_exchange_det_line_fixed_root": det_line_fixed_root,
+        "two_exchange_det_line_product_mobius": det_line_product_mobius,
+        "two_exchange_det_line_sum_mobius": det_line_sum_mobius,
+        "two_exchange_det_line_constant_slope": det_line_constant_slope,
+        "two_exchange_det_line_variable_slope": det_line_variable_slope,
+        "two_exchange_det_line_slope_max": det_line_slope_max,
+        "two_exchange_det_line_aperiodic_max": det_line_aperiodic_max,
+        "two_exchange_det_line_point_checks": det_line_point_checks,
     }
 
 
@@ -3031,6 +3212,33 @@ def verify_word_pair(
         "two_exchange_same_slope_lift_checks": two_exchange_profile[
             "two_exchange_same_slope_lift_checks"
         ],
+        "two_exchange_det_line_components": two_exchange_profile[
+            "two_exchange_det_line_components"
+        ],
+        "two_exchange_det_line_fixed_root": two_exchange_profile[
+            "two_exchange_det_line_fixed_root"
+        ],
+        "two_exchange_det_line_product_mobius": two_exchange_profile[
+            "two_exchange_det_line_product_mobius"
+        ],
+        "two_exchange_det_line_sum_mobius": two_exchange_profile[
+            "two_exchange_det_line_sum_mobius"
+        ],
+        "two_exchange_det_line_constant_slope": two_exchange_profile[
+            "two_exchange_det_line_constant_slope"
+        ],
+        "two_exchange_det_line_variable_slope": two_exchange_profile[
+            "two_exchange_det_line_variable_slope"
+        ],
+        "two_exchange_det_line_slope_max": two_exchange_profile[
+            "two_exchange_det_line_slope_max"
+        ],
+        "two_exchange_det_line_aperiodic_max": two_exchange_profile[
+            "two_exchange_det_line_aperiodic_max"
+        ],
+        "two_exchange_det_line_point_checks": two_exchange_profile[
+            "two_exchange_det_line_point_checks"
+        ],
         "root_slices": root_profile["root_slices"],
         "same_slope_edges_covered": root_profile["same_slope_edges_covered"],
         "max_root_slice_noncontained": root_profile["max_root_slice_noncontained"],
@@ -3490,6 +3698,33 @@ def verify_case(case: Case) -> dict[str, object]:
         ),
         "max_two_exchange_same_slope_lift_checks": max(
             row["two_exchange_same_slope_lift_checks"] for row in rows
+        ),
+        "max_two_exchange_det_line_components": max(
+            row["two_exchange_det_line_components"] for row in rows
+        ),
+        "max_two_exchange_det_line_fixed_root": max(
+            row["two_exchange_det_line_fixed_root"] for row in rows
+        ),
+        "max_two_exchange_det_line_product_mobius": max(
+            row["two_exchange_det_line_product_mobius"] for row in rows
+        ),
+        "max_two_exchange_det_line_sum_mobius": max(
+            row["two_exchange_det_line_sum_mobius"] for row in rows
+        ),
+        "max_two_exchange_det_line_constant_slope": max(
+            row["two_exchange_det_line_constant_slope"] for row in rows
+        ),
+        "max_two_exchange_det_line_variable_slope": max(
+            row["two_exchange_det_line_variable_slope"] for row in rows
+        ),
+        "max_two_exchange_det_line_slope": max(
+            row["two_exchange_det_line_slope_max"] for row in rows
+        ),
+        "max_two_exchange_det_line_aperiodic": max(
+            row["two_exchange_det_line_aperiodic_max"] for row in rows
+        ),
+        "max_two_exchange_det_line_point_checks": max(
+            row["two_exchange_det_line_point_checks"] for row in rows
         ),
         "max_root_slices": max(row["root_slices"] for row in rows),
         "max_root_slice_noncontained": max(row["max_root_slice_noncontained"] for row in rows),
@@ -4665,6 +4900,15 @@ def main() -> None:
                 "two_exchange_same_slope_plane_two_pairs={two_exchange_same_slope_plane_two_exchange_pairs} "
                 "two_exchange_same_slope_affine_member_max={two_exchange_same_slope_affine_member_max} "
                 "two_exchange_same_slope_lift_checks={two_exchange_same_slope_lift_checks} "
+                "two_exchange_det_lines={two_exchange_det_line_components} "
+                "two_exchange_det_line_fixed={two_exchange_det_line_fixed_root} "
+                "two_exchange_det_line_product_mobius={two_exchange_det_line_product_mobius} "
+                "two_exchange_det_line_sum_mobius={two_exchange_det_line_sum_mobius} "
+                "two_exchange_det_line_constant={two_exchange_det_line_constant_slope} "
+                "two_exchange_det_line_variable={two_exchange_det_line_variable_slope} "
+                "two_exchange_det_line_slope_max={two_exchange_det_line_slope_max} "
+                "two_exchange_det_line_aperiodic_max={two_exchange_det_line_aperiodic_max} "
+                "two_exchange_det_line_point_checks={two_exchange_det_line_point_checks} "
                 "root_slices={root_slices} "
                 "root_slice_slopes={root_slice_slope_count} "
                 "root_slice_new_slopes={root_slice_new_slope_count} "
@@ -4849,6 +5093,15 @@ def main() -> None:
             f"max_two_exchange_same_slope_plane_two_pairs={summary['max_two_exchange_same_slope_plane_two_exchange_pairs']} "
             f"max_two_exchange_same_slope_affine_member={summary['max_two_exchange_same_slope_affine_member']} "
             f"max_two_exchange_same_slope_lift_checks={summary['max_two_exchange_same_slope_lift_checks']} "
+            f"max_two_exchange_det_lines={summary['max_two_exchange_det_line_components']} "
+            f"max_two_exchange_det_line_fixed={summary['max_two_exchange_det_line_fixed_root']} "
+            f"max_two_exchange_det_line_product_mobius={summary['max_two_exchange_det_line_product_mobius']} "
+            f"max_two_exchange_det_line_sum_mobius={summary['max_two_exchange_det_line_sum_mobius']} "
+            f"max_two_exchange_det_line_constant={summary['max_two_exchange_det_line_constant_slope']} "
+            f"max_two_exchange_det_line_variable={summary['max_two_exchange_det_line_variable_slope']} "
+            f"max_two_exchange_det_line_slope={summary['max_two_exchange_det_line_slope']} "
+            f"max_two_exchange_det_line_aperiodic={summary['max_two_exchange_det_line_aperiodic']} "
+            f"max_two_exchange_det_line_point_checks={summary['max_two_exchange_det_line_point_checks']} "
             f"max_root_slices={summary['max_root_slices']} "
             f"max_root_slice_noncontained={summary['max_root_slice_noncontained']} "
             f"max_root_total_slope_bound={summary['max_root_slice_total_slope_bound']} "
@@ -5142,6 +5395,10 @@ def main() -> None:
         "two_exchange_same_slope_plane_two_pairs={two_exchange_same_slope_plane_two_exchange_pairs} "
         "two_exchange_same_slope_affine_member_max={two_exchange_same_slope_affine_member_max} "
         "two_exchange_same_slope_lift_checks={two_exchange_same_slope_lift_checks} "
+        "two_exchange_det_lines={two_exchange_det_line_components} "
+        "two_exchange_det_line_fixed={two_exchange_det_line_fixed_root} "
+        "two_exchange_det_line_variable={two_exchange_det_line_variable_slope} "
+        "two_exchange_det_line_slope_max={two_exchange_det_line_slope_max} "
         "two_exchange_minor_checks={two_exchange_minor_polynomial_checks} "
         "direct_checks={direct_checks}".format(**t3_same_slope_probe)
     )
@@ -5235,6 +5492,33 @@ def main() -> None:
     )
     max_two_exchange_same_slope_lift_checks = max(
         row["two_exchange_same_slope_lift_checks"] for row in all_rows
+    )
+    max_two_exchange_det_line_components = max(
+        row["two_exchange_det_line_components"] for row in all_rows
+    )
+    max_two_exchange_det_line_fixed_root = max(
+        row["two_exchange_det_line_fixed_root"] for row in all_rows
+    )
+    max_two_exchange_det_line_product_mobius = max(
+        row["two_exchange_det_line_product_mobius"] for row in all_rows
+    )
+    max_two_exchange_det_line_sum_mobius = max(
+        row["two_exchange_det_line_sum_mobius"] for row in all_rows
+    )
+    max_two_exchange_det_line_constant_slope = max(
+        row["two_exchange_det_line_constant_slope"] for row in all_rows
+    )
+    max_two_exchange_det_line_variable_slope = max(
+        row["two_exchange_det_line_variable_slope"] for row in all_rows
+    )
+    max_two_exchange_det_line_slope = max(
+        row["two_exchange_det_line_slope_max"] for row in all_rows
+    )
+    max_two_exchange_det_line_aperiodic = max(
+        row["two_exchange_det_line_aperiodic_max"] for row in all_rows
+    )
+    max_two_exchange_det_line_point_checks = max(
+        row["two_exchange_det_line_point_checks"] for row in all_rows
     )
     max_total_slope_bound = max(row["root_slice_total_slope_bound"] for row in all_rows)
     max_root_new_slopes = max(row["root_slice_new_slope_count"] for row in all_rows)
@@ -5588,6 +5872,15 @@ def main() -> None:
         f"max_two_exchange_same_slope_plane_two_pairs={max_two_exchange_same_slope_plane_two_exchange_pairs} "
         f"max_two_exchange_same_slope_affine_member={max_two_exchange_same_slope_affine_member} "
         f"max_two_exchange_same_slope_lift_checks={max_two_exchange_same_slope_lift_checks} "
+        f"max_two_exchange_det_lines={max_two_exchange_det_line_components} "
+        f"max_two_exchange_det_line_fixed={max_two_exchange_det_line_fixed_root} "
+        f"max_two_exchange_det_line_product_mobius={max_two_exchange_det_line_product_mobius} "
+        f"max_two_exchange_det_line_sum_mobius={max_two_exchange_det_line_sum_mobius} "
+        f"max_two_exchange_det_line_constant={max_two_exchange_det_line_constant_slope} "
+        f"max_two_exchange_det_line_variable={max_two_exchange_det_line_variable_slope} "
+        f"max_two_exchange_det_line_slope={max_two_exchange_det_line_slope} "
+        f"max_two_exchange_det_line_aperiodic={max_two_exchange_det_line_aperiodic} "
+        f"max_two_exchange_det_line_point_checks={max_two_exchange_det_line_point_checks} "
         f"max_total_slope_bound={max_total_slope_bound} "
         f"max_root_new_slopes={max_root_new_slopes} "
         f"max_root_t3_core_locators={max_root_t3_core_locators} "

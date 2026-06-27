@@ -30,6 +30,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-27 - M1 two-exchange determinant-line components
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/m1/m1_all_line_hankel_aperiodic_packing.md`,
+  `experimental/scripts/verify_m1_all_line_hankel_aperiodic.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT / EXPERIMENTAL.
+- **What is being added:** The `t=3` two-exchange verifier now enumerates
+  affine lines contained in the three-quadratic determinantal locus over each
+  `(j-2)` core, classifies them as fixed-root, product-Mobius, or fixed-sum
+  components, and records constant versus variable slope images.
+- **How it is useful:** This extends the line classification from same-slope
+  clusters to the different-slope line-component branch: every such component
+  is an explicit one-parameter involution with projective-linear slope image,
+  not an arbitrary two-dimensional packing set.
+- **What to do next:** Prove a quotient/root-slice bound for variable
+  determinant-line slope images, or show they must be charged to a higher
+  recursive object in the final M1 ledger.
+
 ### 2026-06-27 - M1 two-exchange line involution models
 
 - **Agent/model:** Codex.
