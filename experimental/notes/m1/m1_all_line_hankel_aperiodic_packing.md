@@ -843,12 +843,16 @@ When the same line is a domain singleton with one aperiodic member
 `T_a=R union {x_0,iota_L(x_0)}`, each contained pair gives a strict
 two-exchange boundary edge from `T_a` to a contained/tangent locator `T_c`.
 Consequently the free-escape bucket splits into contained-boundary charge and
-off-domain boundary roots.  Line-locally, the only free-escape roots not
-represented by contained/tangent boundary edges are off-domain roots; a global
-argument must still control overlap of these boundary charges.  In the
-`F_13`, `n=12`, `j=5` active singleton witness the free escape is entirely
-contained-boundary: one contained pair, one contained boundary edge, and no
-off-domain singleton root.
+off-domain boundary roots.  These contained-boundary edges are globally
+injective as edge keys: the unordered pair `{T_a,T_c}` determines the
+two-exchange core `T_a cap T_c` and the unique affine line through the
+corresponding pair-coordinate points, so no other non-fixed variable line can
+charge the same boundary edge.  The verifier stores these keys and asserts
+that the boundary-edge image size equals the boundary-edge count, both before
+and after restricting to active domain singletons.  In the `F_13`, `n=12`,
+`j=5` active singleton witness the free escape is entirely contained-boundary:
+one contained pair, one contained-boundary edge, one boundary-edge injection,
+and no off-domain singleton root.
 
 ## Different-Slope One-Exchange Quadratic Slice
 

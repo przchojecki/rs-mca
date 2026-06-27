@@ -889,6 +889,7 @@ def two_exchange_quadratic_slice_profile(
             "two_exchange_det_proper_line_variable_nonfixed_domain_singleton_contained_domain_pairs": 0,
             "two_exchange_det_proper_line_variable_nonfixed_domain_singleton_off_domain_roots": 0,
             "two_exchange_det_proper_line_variable_nonfixed_domain_singleton_contained_boundary_edges": 0,
+            "two_exchange_det_proper_line_variable_nonfixed_domain_singleton_contained_boundary_edge_injections": 0,
             "two_exchange_det_proper_line_variable_nonfixed_active_domain_singleton_product": 0,
             "two_exchange_det_proper_line_variable_nonfixed_active_domain_singleton_sum": 0,
             "two_exchange_det_proper_line_variable_nonfixed_active_domain_singleton_escape_roots": 0,
@@ -898,6 +899,7 @@ def two_exchange_quadratic_slice_profile(
             "two_exchange_det_proper_line_variable_nonfixed_active_domain_singleton_contained_domain_pairs": 0,
             "two_exchange_det_proper_line_variable_nonfixed_active_domain_singleton_off_domain_roots": 0,
             "two_exchange_det_proper_line_variable_nonfixed_active_domain_singleton_contained_boundary_edges": 0,
+            "two_exchange_det_proper_line_variable_nonfixed_active_domain_singleton_contained_boundary_edge_injections": 0,
             "two_exchange_det_proper_line_variable_nonfixed_new_slope_checks": 0,
             "two_exchange_det_proper_line_variable_nonfixed_new_slope_image": 0,
             "two_exchange_det_proper_line_variable_nonfixed_active_singletons": 0,
@@ -1036,6 +1038,9 @@ def two_exchange_quadratic_slice_profile(
     det_proper_line_variable_nonfixed_domain_singleton_contained_domain_pairs = 0
     det_proper_line_variable_nonfixed_domain_singleton_off_domain_roots = 0
     det_proper_line_variable_nonfixed_domain_singleton_contained_boundary_edges = 0
+    det_proper_line_variable_nonfixed_domain_singleton_contained_boundary_edge_keys: set[
+        tuple[tuple[int, ...], tuple[int, ...]]
+    ] = set()
     det_proper_line_variable_nonfixed_active_domain_singleton_product = 0
     det_proper_line_variable_nonfixed_active_domain_singleton_sum = 0
     det_proper_line_variable_nonfixed_active_domain_singleton_escape_roots = 0
@@ -1045,11 +1050,28 @@ def two_exchange_quadratic_slice_profile(
     det_proper_line_variable_nonfixed_active_domain_singleton_contained_domain_pairs = 0
     det_proper_line_variable_nonfixed_active_domain_singleton_off_domain_roots = 0
     det_proper_line_variable_nonfixed_active_domain_singleton_contained_boundary_edges = 0
+    det_proper_line_variable_nonfixed_active_domain_singleton_contained_boundary_edge_keys: set[
+        tuple[tuple[int, ...], tuple[int, ...]]
+    ] = set()
     det_proper_line_variable_nonfixed_packet_edge_keys: set[
         tuple[tuple[int, ...], tuple[int, ...]]
     ] = set()
     det_proper_line_variable_nonfixed_packet_records: list[
-        tuple[tuple[int, ...], str, int, int, set[int], int, int, int, int, int, int, int]
+        tuple[
+            tuple[int, ...],
+            str,
+            int,
+            int,
+            set[int],
+            int,
+            int,
+            int,
+            int,
+            int,
+            int,
+            int,
+            set[tuple[tuple[int, ...], tuple[int, ...]]],
+        ]
     ] = []
     det_proper_line_variable_nonfixed_singletons = 0
     det_proper_line_variable_nonfixed_domain_singletons = 0
@@ -1459,6 +1481,9 @@ def two_exchange_quadratic_slice_profile(
                     if line_free_escape_roots < line_free_escape_lower:
                         raise AssertionError("non-fixed line missed free escape lower bound")
                     line_contained_boundary_edges = 0
+                    line_contained_boundary_edge_keys: set[
+                        tuple[tuple[int, ...], tuple[int, ...]]
+                    ] = set()
                     if line_domain_pairs == 1:
                         if line_escape_roots != len(available) - 2:
                             raise AssertionError(
@@ -1487,12 +1512,36 @@ def two_exchange_quadratic_slice_profile(
                                     raise AssertionError(
                                         "contained boundary edge was not two-exchange"
                                     )
+                                edge_key = tuple(
+                                    sorted((active_complement, contained_complement))
+                                )
+                                if edge_key in line_contained_boundary_edge_keys:
+                                    raise AssertionError(
+                                        "contained boundary edge repeated on one line"
+                                    )
+                                line_contained_boundary_edge_keys.add(edge_key)
+                                if (
+                                    edge_key
+                                    in det_proper_line_variable_nonfixed_domain_singleton_contained_boundary_edge_keys
+                                ):
+                                    raise AssertionError(
+                                        "contained boundary edge was charged twice"
+                                    )
+                                det_proper_line_variable_nonfixed_domain_singleton_contained_boundary_edge_keys.add(
+                                    edge_key
+                                )
                                 line_contained_boundary_edges += 1
                         if line_contained_boundary_edges != (
                             line_contained_domain_pairs if line_aperiodic == 1 else 0
                         ):
                             raise AssertionError(
                                 "contained boundary edge count changed"
+                            )
+                        if line_contained_boundary_edges != len(
+                            line_contained_boundary_edge_keys
+                        ):
+                            raise AssertionError(
+                                "contained boundary edge keys changed"
                             )
                         det_proper_line_variable_nonfixed_domain_singleton_escape_roots += (
                             line_escape_roots
@@ -1584,6 +1633,7 @@ def two_exchange_quadratic_slice_profile(
                             line_contained_domain_pairs,
                             line_off_domain_roots,
                             line_contained_boundary_edges,
+                            set(line_contained_boundary_edge_keys),
                         )
                     )
                     core_nonfixed_variable_aperiodic += line_aperiodic
@@ -1781,6 +1831,14 @@ def two_exchange_quadratic_slice_profile(
         != det_proper_line_variable_nonfixed_packet_pair_checks
     ):
         raise AssertionError("non-fixed variable line packet edge injection lost a charge")
+    det_proper_line_variable_nonfixed_domain_singleton_contained_boundary_edge_injections = len(
+        det_proper_line_variable_nonfixed_domain_singleton_contained_boundary_edge_keys
+    )
+    if (
+        det_proper_line_variable_nonfixed_domain_singleton_contained_boundary_edge_injections
+        != det_proper_line_variable_nonfixed_domain_singleton_contained_boundary_edges
+    ):
+        raise AssertionError("domain singleton contained boundary injection lost a charge")
     det_proper_line_variable_nonfixed_edge_bound = (
         det_proper_line_variable_nonfixed_singletons
         + 2 * det_proper_line_variable_nonfixed_packet_pair_checks
@@ -1827,6 +1885,7 @@ def two_exchange_quadratic_slice_profile(
         line_contained_domain_pairs,
         line_off_domain_roots,
         line_contained_boundary_edges,
+        line_contained_boundary_edge_keys,
     ) in det_proper_line_variable_nonfixed_packet_records:
         active_new_slopes = line_aperiodic_slopes - det_charged_line_slope_set
         active_new_count = len(active_new_slopes)
@@ -1861,6 +1920,17 @@ def two_exchange_quadratic_slice_profile(
                 det_proper_line_variable_nonfixed_active_domain_singleton_contained_boundary_edges += (
                     line_contained_boundary_edges
                 )
+                for edge_key in line_contained_boundary_edge_keys:
+                    if (
+                        edge_key
+                        in det_proper_line_variable_nonfixed_active_domain_singleton_contained_boundary_edge_keys
+                    ):
+                        raise AssertionError(
+                            "active contained boundary edge was charged twice"
+                        )
+                    det_proper_line_variable_nonfixed_active_domain_singleton_contained_boundary_edge_keys.add(
+                        edge_key
+                    )
                 if line_model == "product_mobius":
                     det_proper_line_variable_nonfixed_active_domain_singleton_product += 1
                 elif line_model == "sum_mobius":
@@ -1901,6 +1971,16 @@ def two_exchange_quadratic_slice_profile(
         + det_proper_line_variable_nonfixed_active_two_packets
         + det_proper_line_variable_nonfixed_packet_pair_checks
     )
+    det_proper_line_variable_nonfixed_active_domain_singleton_contained_boundary_edge_injections = len(
+        det_proper_line_variable_nonfixed_active_domain_singleton_contained_boundary_edge_keys
+    )
+    if (
+        det_proper_line_variable_nonfixed_active_domain_singleton_contained_boundary_edge_injections
+        != det_proper_line_variable_nonfixed_active_domain_singleton_contained_boundary_edges
+    ):
+        raise AssertionError(
+            "active contained boundary injection lost a charge"
+        )
     if (
         det_proper_line_variable_nonfixed_new_slope_checks
         > det_proper_line_variable_nonfixed_active_edge_bound
@@ -2096,6 +2176,9 @@ def two_exchange_quadratic_slice_profile(
         "two_exchange_det_proper_line_variable_nonfixed_domain_singleton_contained_boundary_edges": (
             det_proper_line_variable_nonfixed_domain_singleton_contained_boundary_edges
         ),
+        "two_exchange_det_proper_line_variable_nonfixed_domain_singleton_contained_boundary_edge_injections": (
+            det_proper_line_variable_nonfixed_domain_singleton_contained_boundary_edge_injections
+        ),
         "two_exchange_det_proper_line_variable_nonfixed_active_domain_singleton_product": (
             det_proper_line_variable_nonfixed_active_domain_singleton_product
         ),
@@ -2122,6 +2205,9 @@ def two_exchange_quadratic_slice_profile(
         ),
         "two_exchange_det_proper_line_variable_nonfixed_active_domain_singleton_contained_boundary_edges": (
             det_proper_line_variable_nonfixed_active_domain_singleton_contained_boundary_edges
+        ),
+        "two_exchange_det_proper_line_variable_nonfixed_active_domain_singleton_contained_boundary_edge_injections": (
+            det_proper_line_variable_nonfixed_active_domain_singleton_contained_boundary_edge_injections
         ),
         "two_exchange_det_proper_line_variable_nonfixed_new_slope_checks": (
             det_proper_line_variable_nonfixed_new_slope_checks
@@ -4459,6 +4545,11 @@ def verify_word_pair(
                 "two_exchange_det_proper_line_variable_nonfixed_domain_singleton_contained_boundary_edges"
             ]
         ),
+        "two_exchange_det_proper_line_variable_nonfixed_domain_singleton_contained_boundary_edge_injections": (
+            two_exchange_profile[
+                "two_exchange_det_proper_line_variable_nonfixed_domain_singleton_contained_boundary_edge_injections"
+            ]
+        ),
         "two_exchange_det_proper_line_variable_nonfixed_active_domain_singleton_product": (
             two_exchange_profile[
                 "two_exchange_det_proper_line_variable_nonfixed_active_domain_singleton_product"
@@ -4502,6 +4593,11 @@ def verify_word_pair(
         "two_exchange_det_proper_line_variable_nonfixed_active_domain_singleton_contained_boundary_edges": (
             two_exchange_profile[
                 "two_exchange_det_proper_line_variable_nonfixed_active_domain_singleton_contained_boundary_edges"
+            ]
+        ),
+        "two_exchange_det_proper_line_variable_nonfixed_active_domain_singleton_contained_boundary_edge_injections": (
+            two_exchange_profile[
+                "two_exchange_det_proper_line_variable_nonfixed_active_domain_singleton_contained_boundary_edge_injections"
             ]
         ),
         "two_exchange_det_proper_line_variable_nonfixed_new_slope_checks": (
@@ -6420,6 +6516,8 @@ def verify_t3_active_domain_singleton_probe() -> dict[str, object]:
         raise AssertionError("active domain-singleton probe singleton off-domain roots changed")
     if row["two_exchange_det_proper_line_variable_nonfixed_domain_singleton_contained_boundary_edges"] != 1:
         raise AssertionError("active domain-singleton probe singleton boundary edge changed")
+    if row["two_exchange_det_proper_line_variable_nonfixed_domain_singleton_contained_boundary_edge_injections"] != 1:
+        raise AssertionError("active domain-singleton probe singleton boundary injection changed")
     if row["two_exchange_det_proper_line_variable_nonfixed_active_domain_singleton_product"] != 1:
         raise AssertionError("active domain-singleton probe active product singleton changed")
     if row["two_exchange_det_proper_line_variable_nonfixed_active_domain_singleton_sum"] != 0:
@@ -6438,6 +6536,8 @@ def verify_t3_active_domain_singleton_probe() -> dict[str, object]:
         raise AssertionError("active domain-singleton probe active singleton off-domain roots changed")
     if row["two_exchange_det_proper_line_variable_nonfixed_active_domain_singleton_contained_boundary_edges"] != 1:
         raise AssertionError("active domain-singleton probe active singleton boundary edge changed")
+    if row["two_exchange_det_proper_line_variable_nonfixed_active_domain_singleton_contained_boundary_edge_injections"] != 1:
+        raise AssertionError("active domain-singleton probe active singleton boundary injection changed")
     if row["two_exchange_det_proper_line_variable_nonfixed_new_slope_checks"] != 1:
         raise AssertionError("active domain-singleton probe active new slope changed")
     if row["two_exchange_det_proper_line_variable_nonfixed_new_slope_image"] != 1:
@@ -7431,6 +7531,7 @@ def main() -> None:
         "two_exchange_det_proper_line_variable_nonfixed_domain_singleton_contained_domain_pairs={two_exchange_det_proper_line_variable_nonfixed_domain_singleton_contained_domain_pairs} "
         "two_exchange_det_proper_line_variable_nonfixed_domain_singleton_off_domain_roots={two_exchange_det_proper_line_variable_nonfixed_domain_singleton_off_domain_roots} "
         "two_exchange_det_proper_line_variable_nonfixed_domain_singleton_contained_boundary_edges={two_exchange_det_proper_line_variable_nonfixed_domain_singleton_contained_boundary_edges} "
+        "two_exchange_det_proper_line_variable_nonfixed_domain_singleton_contained_boundary_edge_injections={two_exchange_det_proper_line_variable_nonfixed_domain_singleton_contained_boundary_edge_injections} "
         "two_exchange_det_proper_line_variable_nonfixed_active_domain_singleton_product={two_exchange_det_proper_line_variable_nonfixed_active_domain_singleton_product} "
         "two_exchange_det_proper_line_variable_nonfixed_active_domain_singleton_sum={two_exchange_det_proper_line_variable_nonfixed_active_domain_singleton_sum} "
         "two_exchange_det_proper_line_variable_nonfixed_active_domain_singleton_escape_roots={two_exchange_det_proper_line_variable_nonfixed_active_domain_singleton_escape_roots} "
@@ -7440,6 +7541,7 @@ def main() -> None:
         "two_exchange_det_proper_line_variable_nonfixed_active_domain_singleton_contained_domain_pairs={two_exchange_det_proper_line_variable_nonfixed_active_domain_singleton_contained_domain_pairs} "
         "two_exchange_det_proper_line_variable_nonfixed_active_domain_singleton_off_domain_roots={two_exchange_det_proper_line_variable_nonfixed_active_domain_singleton_off_domain_roots} "
         "two_exchange_det_proper_line_variable_nonfixed_active_domain_singleton_contained_boundary_edges={two_exchange_det_proper_line_variable_nonfixed_active_domain_singleton_contained_boundary_edges} "
+        "two_exchange_det_proper_line_variable_nonfixed_active_domain_singleton_contained_boundary_edge_injections={two_exchange_det_proper_line_variable_nonfixed_active_domain_singleton_contained_boundary_edge_injections} "
         "two_exchange_det_proper_line_variable_nonfixed_active_sharp_edge_bound={two_exchange_det_proper_line_variable_nonfixed_active_sharp_edge_bound} "
         "two_exchange_det_proper_line_variable_nonfixed_domain_singletons={two_exchange_det_proper_line_variable_nonfixed_domain_singletons} "
         "direct_checks={direct_checks}".format(**t3_active_domain_singleton_probe)
@@ -7748,6 +7850,12 @@ def main() -> None:
         ]
         for row in all_rows
     )
+    max_two_exchange_det_proper_line_variable_nonfixed_domain_singleton_contained_boundary_edge_injections = max(
+        row[
+            "two_exchange_det_proper_line_variable_nonfixed_domain_singleton_contained_boundary_edge_injections"
+        ]
+        for row in all_rows
+    )
     max_two_exchange_det_proper_line_variable_nonfixed_active_domain_singleton_product = max(
         row[
             "two_exchange_det_proper_line_variable_nonfixed_active_domain_singleton_product"
@@ -7799,6 +7907,12 @@ def main() -> None:
     max_two_exchange_det_proper_line_variable_nonfixed_active_domain_singleton_contained_boundary_edges = max(
         row[
             "two_exchange_det_proper_line_variable_nonfixed_active_domain_singleton_contained_boundary_edges"
+        ]
+        for row in all_rows
+    )
+    max_two_exchange_det_proper_line_variable_nonfixed_active_domain_singleton_contained_boundary_edge_injections = max(
+        row[
+            "two_exchange_det_proper_line_variable_nonfixed_active_domain_singleton_contained_boundary_edge_injections"
         ]
         for row in all_rows
     )
@@ -8290,6 +8404,7 @@ def main() -> None:
         f"max_two_exchange_det_proper_line_variable_nonfixed_domain_singleton_contained_domain_pairs={max_two_exchange_det_proper_line_variable_nonfixed_domain_singleton_contained_domain_pairs} "
         f"max_two_exchange_det_proper_line_variable_nonfixed_domain_singleton_off_domain_roots={max_two_exchange_det_proper_line_variable_nonfixed_domain_singleton_off_domain_roots} "
         f"max_two_exchange_det_proper_line_variable_nonfixed_domain_singleton_contained_boundary_edges={max_two_exchange_det_proper_line_variable_nonfixed_domain_singleton_contained_boundary_edges} "
+        f"max_two_exchange_det_proper_line_variable_nonfixed_domain_singleton_contained_boundary_edge_injections={max_two_exchange_det_proper_line_variable_nonfixed_domain_singleton_contained_boundary_edge_injections} "
         f"max_two_exchange_det_proper_line_variable_nonfixed_active_domain_singleton_product={max_two_exchange_det_proper_line_variable_nonfixed_active_domain_singleton_product} "
         f"max_two_exchange_det_proper_line_variable_nonfixed_active_domain_singleton_sum={max_two_exchange_det_proper_line_variable_nonfixed_active_domain_singleton_sum} "
         f"max_two_exchange_det_proper_line_variable_nonfixed_active_domain_singleton_escape_roots={max_two_exchange_det_proper_line_variable_nonfixed_active_domain_singleton_escape_roots} "
@@ -8299,6 +8414,7 @@ def main() -> None:
         f"max_two_exchange_det_proper_line_variable_nonfixed_active_domain_singleton_contained_domain_pairs={max_two_exchange_det_proper_line_variable_nonfixed_active_domain_singleton_contained_domain_pairs} "
         f"max_two_exchange_det_proper_line_variable_nonfixed_active_domain_singleton_off_domain_roots={max_two_exchange_det_proper_line_variable_nonfixed_active_domain_singleton_off_domain_roots} "
         f"max_two_exchange_det_proper_line_variable_nonfixed_active_domain_singleton_contained_boundary_edges={max_two_exchange_det_proper_line_variable_nonfixed_active_domain_singleton_contained_boundary_edges} "
+        f"max_two_exchange_det_proper_line_variable_nonfixed_active_domain_singleton_contained_boundary_edge_injections={max_two_exchange_det_proper_line_variable_nonfixed_active_domain_singleton_contained_boundary_edge_injections} "
         f"max_two_exchange_det_proper_line_variable_nonfixed_new_slope_checks={max_two_exchange_det_proper_line_variable_nonfixed_new_slope_checks} "
         f"max_two_exchange_det_proper_line_variable_nonfixed_new_slope_image={max_two_exchange_det_proper_line_variable_nonfixed_new_slope_image} "
         f"max_two_exchange_det_proper_line_variable_nonfixed_active_singletons={max_two_exchange_det_proper_line_variable_nonfixed_active_singletons} "

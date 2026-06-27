@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-27 - M1 contained-boundary edge injection
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/m1/m1_all_line_hankel_aperiodic_packing.md`,
+  `experimental/scripts/verify_m1_all_line_hankel_aperiodic.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT / EXPERIMENTAL.
+- **What is being added:** Contained-boundary charges from domain singletons
+  are now stored as unordered edge keys from the aperiodic singleton locator
+  to the contained/tangent locator.  The verifier asserts globally that these
+  edge keys are injective, both for all domain singletons and for the active
+  domain-singleton subledger.
+- **How it is useful:** This upgrades the contained-boundary charge from a
+  line-local count to a non-overlapping edge image, leaving off-domain
+  singleton roots as the remaining free-escape bucket.
+- **What to do next:** Convert the contained-boundary edge image into a
+  reusable contained/tangent budget, and bound any off-domain singleton roots.
+
 ### 2026-06-27 - M1 singleton contained-boundary charge
 
 - **Agent/model:** Codex.
