@@ -4087,6 +4087,107 @@ q(n-m+1)(2q+3) binom(n,b).
 Adding the two cases proves (EndpointAllFull).  The root-free version is
 identical, using (EndpointGFC_rf) in place of (EndpointGFC).
 
+## Corollary 44: First-Difference Endpoint Charges Are Determinantal
+
+Put `c=m-1` and fix `0<=b<c`.  For a syndrome vector `w`, write
+
+```text
+w^+_a=w_{a+1},        Delta_theta w = w^+ - theta w.
+```
+
+For `theta in F`, let `J_theta` be the stacked first-difference endpoint
+direction matrix on degree-`<c` core directions:
+
+```text
+J_theta Q =
+  ( H_{t+1,c-1}(Delta_theta u)Q,
+    H_{t+1,c-1}(Delta_theta v)Q ).
+```
+
+Put `d_theta=dim ker J_theta`, and define
+
+```text
+Theta_{>b}={ theta in F : d_theta>b }.
+```
+
+Then one of the following alternatives holds.
+
+```text
+finite first-difference alternative:
+  |Theta_{>b}| <= c-b;
+
+persistent first-difference alternative:
+  d_theta>b for every theta in F.
+```
+
+More precisely, the finite alternative holds whenever at least one
+`(c-b) x (c-b)` minor of `J_theta` is not the zero polynomial in `theta`.  If
+every such minor vanishes identically, then both endpoint-intersection systems
+
+```text
+H_{t+1,c-1}(u)Q=H_{t+1,c-1}(v)Q=0,
+H_{t+1,c-1}(u^+)Q=H_{t+1,c-1}(v^+)Q=0
+```
+
+have direction dimension `>b`, and there are `b+1` independent moving
+first-difference endpoint kernels over `F(theta)`.
+
+For a single nonzero moving kernel
+
+```text
+Q(theta)=q_0+q_1 theta+...+q_D theta^D,
+```
+
+after dividing by the first nonzero power of `theta` if necessary, its
+coefficients satisfy the endpoint ladder
+
+```text
+J_+ q_0 = 0,
+J_+ q_i - J_0 q_{i-1} = 0        for 1<=i<=D,
+J_0 q_D = 0,                                          (FDEL)
+```
+
+where
+
+```text
+J_+ Q=(H_{t+1,c-1}(u^+)Q, H_{t+1,c-1}(v^+)Q),
+J_0 Q=(H_{t+1,c-1}(u)Q,  H_{t+1,c-1}(v)Q).
+```
+
+Thus persistent first-difference degeneracy is not a new free endpointized
+charge: it starts in the shifted endpoint intersection and ends in the
+ordinary endpoint intersection.
+
+### Proof
+
+The matrix has affine form
+
+```text
+J_theta=J_+ - theta J_0.
+```
+
+The condition `d_theta>b` is equivalent to `rank J_theta<c-b`, i.e. to
+vanishing of all `(c-b) x (c-b)` minors.  Each such minor is a polynomial of
+degree at most `c-b` in `theta`.  If one minor is nonzero, it has at most
+`c-b` roots, giving the finite alternative.
+
+If all minors vanish identically, then the constant and top-degree
+coefficients of those minors show that all `(c-b) x (c-b)` minors of both
+`J_+` and `J_0` vanish.  Hence both endpoint-intersection systems have
+direction dimension `>b`.  Over `F(theta)`, persistent minor vanishing is
+equivalent to kernel dimension at least `b+1`; clearing denominators gives
+`b+1` independent polynomial moving kernels.
+
+Substituting `Q(theta)=sum_i q_i theta^i` into
+
+```text
+(J_+ - theta J_0)Q(theta)=0
+```
+
+and comparing powers of `theta` gives (FDEL).  If the first nonzero coefficient
+of `Q` occurs at positive degree, divide by the corresponding power of
+`theta` first.
+
 ## Non-Claims
 
 This note does not prove
@@ -4194,4 +4295,6 @@ after endpointized charges; it is still conditional on bounding those
 endpoint-type charge dimensions and on charging the moving-certificate loci.
 Corollary 43 propagates that endpointized bound to the all-anchor full-core
 incidence; it does not remove the Corollary 25 one-root-loss residual or the
-separate nondegenerate unique-neighbor shadow ledger.
+separate nondegenerate unique-neighbor shadow ledger. Corollary 44 makes the
+first-difference endpoint charges determinantal; it does not rule out the
+persistent first-difference moving-kernel alternative.

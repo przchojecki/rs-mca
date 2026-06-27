@@ -244,10 +244,14 @@ Keep entries concise and link to the relevant files.
   all-anchor full-core incidence: after endpointized global charges,
   `|Z_all^{endpoint,<=b}| <= ((2q)/m+2(n-m+1))binom(n,m-1)
   + q(n-m+1)(2q+3)binom(n,b)`, with the final term gaining `b/c` after
-  common-root global core pieces are charged.
+  common-root global core pieces are charged.  The first-difference endpoint
+  systems `D_theta` now have their own finite-exception/persistent dichotomy:
+  either at most `c-b` parameters have direction dimension `>b`, or
+  `J_theta=J_+-theta J_0` is persistently low-rank with moving kernels obeying
+  the endpoint ladder `J_+q_0=0`, `J_+q_i-J_0q_{i-1}=0`, `J_0q_D=0`.
 - **What to do next:** Bound or charge the unique-neighbor nondegenerate
   star-free shadow ledger, then charge the remaining global ruled ledgers: the
-  endpointized charge systems and moving-certificate loci, to
+  endpointized finite-exception and moving-certificate loci, to
   fixed-slope/root-slice, quotient-periodic, endpoint, or active-codegree
   ledgers.
 
