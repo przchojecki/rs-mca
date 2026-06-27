@@ -4365,6 +4365,116 @@ of those bad-parameter sets.  The final assertion is the contrapositive:
 if all four base short systems are injective, none of the four base endpoint
 spaces can have dimension `>b`.
 
+## Corollary 47: Short Bad Parameters Come From Projective Landing Varieties
+
+Keep `h=c-b`.  For a nonzero degree-`<h` polynomial direction `Q`, put
+
+```text
+U_h(Q)=H_{t+2,h-1}(u)Q,        V_h(Q)=H_{t+2,h-1}(v)Q,
+```
+
+and
+
+```text
+P_0^h(Q)=(H_{t+1,h-1}(u)Q,   H_{t+1,h-1}(v)Q),
+P_+^h(Q)=(H_{t+1,h-1}(u^+)Q, H_{t+1,h-1}(v^+)Q).
+```
+
+Define the short parameter sets
+
+```text
+Lambda_h={ lambda in F :
+             exists Q !=0, deg Q<h, V_h(Q)=lambda U_h(Q) },
+
+Theta_h ={ theta in F :
+             exists Q !=0, deg Q<h, P_+^h(Q)=theta P_0^h(Q) }.
+```
+
+By Corollary 46,
+
+```text
+Lambda_{K,>b} subset Lambda_h,        Theta_{D,>b} subset Theta_h.
+```
+
+Let the common short endpoint kernels be
+
+```text
+C_K^h={ [Q] in P^{h-1} : U_h(Q)=0 and V_h(Q)=0 },
+
+C_D^h={ [Q] in P^{h-1} : P_0^h(Q)=0 and P_+^h(Q)=0 }.
+```
+
+If `C_K^h` is nonempty, then `Lambda_h=F`.  If `C_K^h` is empty, then every
+`lambda in Lambda_h` is obtained from a projective short locator in
+
+```text
+P_K^h={ [Q] in P^{h-1} :
+          U_h(Q) != 0 and rank[ U_h(Q)  V_h(Q) ] <= 1 },
+```
+
+and the scalar is unique:
+
+```text
+V_h(Q)=lambda(Q) U_h(Q).
+```
+
+Consequently, when `C_K^h` is empty,
+
+```text
+|Lambda_{K,>b}| <= |Lambda_h| <= |P_K^h|.            (ShortK)
+```
+
+Similarly, if `C_D^h` is nonempty, then `Theta_h=F`.  If `C_D^h` is empty,
+then every `theta in Theta_h` is obtained from a projective short locator in
+
+```text
+P_D^h={ [Q] in P^{h-1} :
+          P_0^h(Q) != 0 and rank[ P_0^h(Q)  P_+^h(Q) ] <= 1 },
+```
+
+with unique scalar
+
+```text
+P_+^h(Q)=theta(Q) P_0^h(Q),
+```
+
+and hence
+
+```text
+|Theta_{D,>b}| <= |Theta_h| <= |P_D^h|.              (ShortD)
+```
+
+Thus the finite endpointized bad parameters are controlled by projective
+rank-one landing varieties for short annihilators, apart from the explicit
+common short endpoint kernels `C_K^h` and `C_D^h`.
+
+### Proof
+
+The inclusions from `Lambda_{K,>b}` and `Theta_{D,>b}` are exactly Corollary
+46.
+
+For the fixed-kernel statement, `lambda in Lambda_h` means there is a nonzero
+`Q` with
+
+```text
+V_h(Q)-lambda U_h(Q)=0.
+```
+
+If `U_h(Q)=0`, then also `V_h(Q)=0`, so `[Q] in C_K^h`.  Thus, when `C_K^h`
+is empty, every witness must have `U_h(Q)!=0`.  In that case the relation
+forces `U_h(Q)` and `V_h(Q)` to be collinear, so `[Q] in P_K^h`.  Since
+`U_h(Q)!=0`, the scalar `lambda` is unique.  Scaling `Q` does not change the
+scalar, so this gives a well-defined map from `P_K^h` onto `Lambda_h`, proving
+(ShortK).  If `C_K^h` is nonempty, the same common kernel vector satisfies
+`V_h(Q)-lambda U_h(Q)=0` for every `lambda`, so `Lambda_h=F`.
+
+The first-difference proof is identical with the stacked vectors `P_0^h(Q)`
+and `P_+^h(Q)`.  If `P_0^h(Q)=0`, then a valid witness has `P_+^h(Q)=0`, hence
+lies in `C_D^h`.  Away from `C_D^h`, every witness has `P_0^h(Q)!=0`, the
+relation `P_+^h(Q)=theta P_0^h(Q)` is a rank-one landing condition, and
+`theta` is unique.  A common short first-difference endpoint kernel gives a
+witness for every `theta`.
+
 ## Non-Claims
 
 This note does not prove
@@ -4480,4 +4590,6 @@ not prove those base endpoint dimensions are always at most `b`. Corollary 46
 turns high-dimensional endpointized charges into degree-`<c-b`
 short-annihilator certificates; it does not prove those short systems are
 always injective or that the resulting short annihilators are already
-quotient-periodic/root-slice charges.
+quotient-periodic/root-slice charges. Corollary 47 organizes the short bad
+parameters as images of projective short-locator landing varieties, except for
+common short endpoint kernels; it does not bound those landing varieties.

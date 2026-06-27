@@ -259,11 +259,16 @@ Keep entries concise and link to the relevant files.
   contained in the short systems `ker H_{t+2,h-1}(v-lambda u)!=0` and
   `ker J_theta^(h)!=0`, and failure of a base endpoint check forces one of
   `H_{t+2,h-1}(u)`, `H_{t+2,h-1}(v)`, `J_0^(h)`, or `J_+^(h)` to have
-  nonzero kernel.
+  nonzero kernel.  These short bad parameters are now organized as projective
+  landing images: absent a common short endpoint kernel, each finite
+  fixed-kernel parameter is the unique scalar from a short projective locator
+  `[Q]` with `rank[U_h(Q) V_h(Q)]<=1`, and each first-difference parameter is
+  the unique scalar from `[Q]` with `rank[P_0^h(Q) P_+^h(Q)]<=1`.
 - **What to do next:** Bound or charge the unique-neighbor nondegenerate
   star-free shadow ledger, then charge the four base endpoint spaces, the
   resulting short-annihilator endpoint systems, finite-exception endpoint
-  systems, and moving-certificate loci to
+  systems, their projective short-locator landing varieties, and the
+  moving-certificate loci to
   fixed-slope/root-slice, quotient-periodic, endpoint, or active-codegree
   ledgers.
 
