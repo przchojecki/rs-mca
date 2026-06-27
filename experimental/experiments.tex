@@ -2119,6 +2119,15 @@ size at most
 linear row on that multiplier ledger.  Crude summation gives at most
 \(5(q^h-1)/(q-1)\) ambient projective certificate-denominator classes for all
 cutoff overlap charges before those extra rows are imposed.
+This overlap budget is not independent of the family budget.  Each overlap
+denominator is divisible by the least common multiple of the primitive
+denominators for the cutoff families it intersects: the endpoint-pair overlap
+uses \(\operatorname{lcm}(D_u,D_v,D_{uv},D_S)\), while the four one-sided
+overlaps use \(\operatorname{lcm}(D_u,D_{uv})\),
+\(\operatorname{lcm}(D_v,D_{uv})\), \(\operatorname{lcm}(D_u,D_S)\), and
+\(\operatorname{lcm}(D_v,D_S)\).  Thus the overlap ledgers are intersection
+ledgers of the existing family primitives, and their multiplier counts improve
+with the lcm degree.
 In refined mixed-ladder form, after the
 pre-half-window residuals, the cutoff overlap multiplier ledgers, and the
 cutoff family multiplier ledgers are charged, the only remaining finite frontier

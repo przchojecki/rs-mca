@@ -318,10 +318,15 @@ Keep entries concise and link to the relevant files.
   explicit multiplier ledger of size at most `(q^(h-delta)-1)/(q-1)`, with the
   one-sided extra row cutting this ledger further; crudely, all five overlap
   charges have ambient size at most
-  `5(q^h-1)/(q-1)` before those extra cuts.  The refined mixed-ladder closure
-  now records the final consumable ledger: after pre-half residuals, cutoff
-  overlap multiplier ledgers, and cutoff family multiplier ledgers are charged,
-  the only remaining finite
+  `5(q^h-1)/(q-1)` before those extra cuts.  These overlap ledgers now refine
+  the lcms of the existing cutoff family primitives: the endpoint-pair overlap
+  uses `lcm(D_u,D_v,D_uv,D_S)`, and the one-sided overlaps use
+  `lcm(D_u,D_uv)`, `lcm(D_v,D_uv)`, `lcm(D_u,D_S)`, and `lcm(D_v,D_S)`.
+  Thus overlap costs are intersection ledgers of the four family primitives and
+  improve with the lcm degrees.  The refined mixed-ladder closure now records
+  the final consumable ledger: after pre-half residuals, cutoff overlap
+  multiplier ledgers, and cutoff family multiplier ledgers are charged, the
+  only remaining finite
   frontier charge is the bottom set `E_{r_0,>b} union Theta_{r_0,>b}`, of size
   at most `2h`.
   The common-image three-shift ledger now has the analogous sliding-window

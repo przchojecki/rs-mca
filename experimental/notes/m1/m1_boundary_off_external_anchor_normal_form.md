@@ -5467,7 +5467,9 @@ no projective image-line multiplier, and no hidden cross-family overlap inside
 the half-window tail.  The unresolved inputs are exactly the pre-half-window
 residual ledgers, the cutoff primitive denominators and their allowed
 multipliers, and the cutoff overlap ledgers.  Corollary 40.24 below refines
-the latter into at most five half-window primitive/multiplier ledgers.
+the latter into at most five half-window primitive/multiplier ledgers, and
+Corollary 40.25 sharpens those overlap ledgers to lcms of the cutoff family
+primitive denominators.
 
 ### Proof
 
@@ -5584,6 +5586,95 @@ In every case root-freeness passes from the certificate denominator to both
 the primitive parent denominator and the multiplier by Corollary 58.  The
 projective multiplier count is the one in Corollary 60, and summing over at
 most five overlap systems gives (OverlapMult).
+
+## Corollary 40.25: Cutoff Overlap Ledgers Refine Family LCM Ledgers
+
+Keep the notation of Corollaries 40.18 and 40.24.  For the four cutoff family
+primitive denominators write
+
+```text
+D_u,        D_v,        D_uv,        D_S
+```
+
+for the scalar `u`, scalar `v`, ordinary paired `(u,v)`, and shifted paired
+`(S u,S v)` families when they are active.  If a family is inactive, no
+overlap system containing it is active.
+
+For an active overlap system define the family-lcm denominator
+
+```text
+L_EP = lcm(D_u,D_v,D_uv,D_S),
+L_u  = lcm(D_u,D_uv),
+L_v  = lcm(D_v,D_uv),
+L_uS = lcm(D_u,D_S),
+L_vS = lcm(D_v,D_S),
+```
+
+attached respectively to
+
+```text
+Omega_EP,        Omega_u,        Omega_v,        Omega_uS,        Omega_vS.
+```
+
+Then every projective root-free certificate-denominator class for `Omega` is
+represented by
+
+```text
+L_Omega(T) M(T),        deg M<=h-1-deg L_Omega,
+```
+
+where `M` has no reciprocal-domain zero.  Consequently, writing
+`ell_Omega=deg L_Omega`,
+
+```text
+|Cert(Omega)| <= (q^{h-ell_Omega}-1)/(q-1)
+```
+
+for each active overlap system.  Thus the cutoff overlap budget can be charged
+to intersections of the existing cutoff family multiplier ledgers, with no
+independent primitive denominator beyond the four family primitives.
+
+In particular, the endpoint-pair overlap is smallest when any one of the four
+cutoff family primitive denominators is large, because every endpoint-pair
+certificate is simultaneously a scalar `u`, scalar `v`, ordinary paired, and
+shifted paired cutoff certificate.
+
+### Proof
+
+Let `D` be a root-free certificate denominator for one of the five overlap
+systems.  By Corollary 40.24, `D` lies in the multiplier ledger of its paired
+parent primitive denominator.  The same certificate also satisfies the
+equations of every cutoff family listed in the corresponding lcm.
+
+For `Omega_u`, the equations
+
+```text
+H_{s+1}(u)Q=0,        H_s(v)Q=0
+```
+
+make `D` both a scalar `u` certificate and an ordinary paired `(u,v)`
+certificate.  Hence Corollary 59, applied to those two cutoff families, shows
+that both `D_u` and `D_uv` divide `D`, so `L_u=lcm(D_u,D_uv)` divides `D`.
+The `Omega_v`, `Omega_uS`, and `Omega_vS` cases are identical with the family
+labels changed as displayed.
+
+For `Omega_EP`, the equations
+
+```text
+H_{s+1}(u)Q=0,        H_{s+1}(v)Q=0
+```
+
+imply the scalar `u` and scalar `v` cutoff equations, the ordinary paired
+cutoff equations `H_s(u)Q=H_s(v)Q=0`, and the shifted paired cutoff equations
+`H_s(Su)Q=H_s(Sv)Q=0`.  Therefore all four primitive denominators
+`D_u,D_v,D_uv,D_S` divide `D`, so `L_EP` divides `D`.
+
+Since `D` has degree `<h`, each active `L_Omega` has degree `<h`, and the
+quotient multiplier satisfies `deg M<=h-1-deg L_Omega`.  Root-freeness passes
+to `M` by Corollary 58.  Counting projective nonzero multipliers of degree at
+most `h-1-deg L_Omega` gives the displayed bound.  The actual overlap
+certificate set may be smaller because the remaining truncation rows impose
+additional linear conditions.
 
 ## Corollary 41: The Global Common-Image Ledger Is Endpoint-Only
 
@@ -8277,7 +8368,10 @@ the pre-half residual, cutoff primitive-denominator, or cutoff overlap
 charges it lists as inputs. Corollary 40.24 compresses the cutoff overlap
 charges into at most five half-window multiplier ledgers; it does not bound the
 parent primitive overlap denominators or prove that the one-sided extra rows
-leave few multipliers.
+leave few multipliers. Corollary 40.25 shows those overlap ledgers refine lcms
+of the cutoff family primitive denominators; it does not bound those family
+primitive denominators themselves or prove the lcm degrees are large enough for
+the desired M1 reserve.
 Corollary 41 packages the common-image branch into endpoint-type ledgers; it
 does not prove the endpoint rank hypotheses needed for the displayed
 `(q+2)binom(n,b)` bound. Corollary 42 packages the globally full core ledger
