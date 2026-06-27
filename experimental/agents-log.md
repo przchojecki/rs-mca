@@ -224,7 +224,11 @@ Keep entries concise and link to the relevant files.
   identity now has the general consecutive-shift form
   `H_{t,c+r-1}(w)X^iQ=0` for `0<=i<=r` iff `H_{t+r,c-1}(w)Q=0`, so a
   consecutive frontier stack consumes a deeper endpoint rank bound once rather
-  than introducing a per-shift algebraic loss.  The
+  than introducing a per-shift algebraic loss.  The common-image reduction is
+  now stable under the same consecutive shifts: the sliding space in
+  `F^{t+r}` is nonzero only on the same `q+1` extended geometric shift lines,
+  so off that curve the stack is the deeper endpoint intersection and on the
+  curve it is a first-difference or infinity endpoint ledger.  The
   common-image three-shift ledger now has the analogous sliding-window
   reduction: for an image line `[y]`, the allowed deeper residuals form a space
   `W_y` of dimension at most one, nonzero only on the `q+1` extended geometric

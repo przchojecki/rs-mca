@@ -3945,6 +3945,117 @@ bounded-rank count then follows by summing the `q+1` endpoint-intersection
 ledgers, and the root-free replacement is the same common-root slice argument
 used in Corollary 30.1 and Corollary 36.
 
+## Corollary 40.1: Consecutive Common-Image Stacks Are Endpoint-Only
+
+Let `r>=1`, keep `t>=2`, and let `Q` range over degree-`<c` directions.  For a
+nonzero image vector `y in F^t`, define
+
+```text
+W_y^(r)={ z in F^{t+r} :
+          (z_i,z_{i+1},...,z_{i+t-1}) in F y for 0<=i<=r }.
+```
+
+Then `dim W_y^(r)<=1`.  Moreover `W_y^(r)` is nonzero only for the extended
+geometric shift lines
+
+```text
+[y]=[1:theta:theta^2:...:theta^(t-1)]        with theta in F,
+```
+
+or for the point at infinity
+
+```text
+[y]=[0:0:...:0:1].
+```
+
+For these `q+1` projective lines over `F_q`, the space `W_y^(r)` is
+one-dimensional.
+
+Let
+
+```text
+Z_w^(r)(Q)=H_{t+r,c-1}(w)Q in F^{t+r}.
+```
+
+The consecutive common-image stack
+
+```text
+y wedge H_{t,c+r-1}(u)X^iQ = 0,
+y wedge H_{t,c+r-1}(v)X^iQ = 0,        0<=i<=r,
+```
+
+is equivalent to
+
+```text
+Z_u^(r)(Q) in W_y^(r),        Z_v^(r)(Q) in W_y^(r).       (CI_r)
+```
+
+Consequently, for every image line off the extended geometric shift curve,
+the consecutive common-image stack is just the deeper endpoint intersection
+
+```text
+ker H_{t+r,c-1}(u) cap ker H_{t+r,c-1}(v).
+```
+
+For a finite shift-persistent line `y_theta=(1,theta,...,theta^(t-1))`,
+
+```text
+ker C_[y_theta]^(r)
+ = ker H_{t+r-1,c-1}(Delta_theta u)
+   cap ker H_{t+r-1,c-1}(Delta_theta v).            (ShiftFinite_r)
+```
+
+For the point at infinity,
+
+```text
+ker C_[y_infty]^(r)
+ = ker H_{t+r-1,c-1}(u)
+   cap ker H_{t+r-1,c-1}(v).                        (ShiftInfinity_r)
+```
+
+Thus a consecutive common-image frontier stack never creates a fresh
+projective image-line family.  After the deeper endpoint intersection is
+charged, only the `q` first-difference endpoint ledgers and the infinity
+endpoint ledger remain, exactly as in the three-shift case.
+
+### Proof
+
+The first two consecutive windows of any `z in W_y^(r)` satisfy the overlap
+equations
+
+```text
+a_0 y_s = a_1 y_{s-1},        1<=s<=t-1,
+```
+
+for scalars `a_0,a_1`.  These are the same equations used in Corollary 39, and
+already imply `dim W_y^(r)<=1` and the displayed list of possible projective
+lines.  The geometric vector
+
+```text
+(1,theta,theta^2,...,theta^(t+r-1))
+```
+
+spans `W_y^(r)` for finite `theta`, and the last basis vector in `F^{t+r}`
+spans the infinity case.
+
+By Corollary 38.1, the `i`-th length-`t` window of `Z_w^(r)(Q)` is exactly
+`H_{t,c+r-1}(w)X^iQ`.  Therefore the common-image equations for all
+`0<=i<=r` are equivalent to `Z_u^(r)(Q),Z_v^(r)(Q) in W_y^(r)`, proving
+(CI_r).  Off the shift curve `W_y^(r)=0`, giving the deeper endpoint
+intersection.
+
+For finite `theta`, a vector `z in F^{t+r}` lies in the span of
+`(1,theta,...,theta^(t+r-1))` if and only if
+
+```text
+z_{a+1}-theta z_a=0,        0<=a<=t+r-2.
+```
+
+Applied to `z=Z_w^(r)(Q)`, these are exactly the rows of
+`H_{t+r-1,c-1}(Delta_theta w)Q`.  Applying this for `w=u` and `w=v` gives
+(ShiftFinite_r).  The infinity case says that the first `t+r-1` entries of
+`Z_w^(r)(Q)` vanish, which is exactly `H_{t+r-1,c-1}(w)Q=0`.
+
 ## Corollary 41: The Global Common-Image Ledger Is Endpoint-Only
 
 Let `GCI` be the set of monic degree-`c` split core locators `L` for which
@@ -6572,6 +6683,9 @@ extended geometric shift lines to be charged.
 Corollary 40 identifies those shift-persistent lines with first-difference
 endpoint intersections; it does not prove all those endpoint intersections
 have small dimension without a separate endpoint or quotient-periodic charge.
+Corollary 40.1 shows the same endpoint-only common-image reduction for
+consecutive shift stacks; it does not bound the resulting deeper endpoint,
+first-difference, or infinity endpoint ledgers.
 Corollary 41 packages the common-image branch into endpoint-type ledgers; it
 does not prove the endpoint rank hypotheses needed for the displayed
 `(q+2)binom(n,b)` bound. Corollary 42 packages the globally full core ledger

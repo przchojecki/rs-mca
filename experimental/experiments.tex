@@ -1916,6 +1916,25 @@ while the infinity line gives
 Hence the residual common-image charge is no longer a projective image-line
 family: it is the \(q\) first-difference endpoint intersections plus the
 ordinary endpoint intersection.
+This endpoint-only behavior is also stable under consecutive frontier stacks.
+For \(r\ge1\), if \(W_y^{(r)}\subseteq\F^{t+r}\) consists of vectors whose
+consecutive length-\(t\) windows all lie in \(\F y\), then
+\(\dim W_y^{(r)}\le1\), and \(W_y^{(r)}\ne0\) only for the same \(q+1\)
+extended geometric shift lines.  Off that shift curve the common-image stack
+is the deeper endpoint intersection
+\[
+  \ker H_{t+r,c-1}(u)\cap\ker H_{t+r,c-1}(v),
+\]
+while a finite shift line \([1:\theta:\cdots:\theta^{t-1}]\) gives the
+first-difference endpoint intersection
+\[
+  \ker H_{t+r-1,c-1}(\Delta_\theta u)
+  \cap
+  \ker H_{t+r-1,c-1}(\Delta_\theta v),
+\]
+and the infinity line gives the ordinary endpoint intersection at depth
+\(t+r-1\).  Thus no new projective image-line family appears at deeper
+consecutive frontiers.
 Equivalently, the full three-shift common-image branch is endpoint-only.  If
 \(\mathrm{GCI}\) denotes the monic split core locators satisfying some
 three-shift common-image line, then
