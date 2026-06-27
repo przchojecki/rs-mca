@@ -2035,6 +2035,29 @@ a new `t=2` packing problem: it is charged additively to the one-degree-up
 residual locators.  Thus the non-recursive term still needing a separate M1
 bound is precisely the isolated boundary/escape slope image.
 
+There is a sharper active version which is useful in degenerate endpoint
+cases.  For a lifted common core `W`, let `R_W` be the set of its `j`-faces
+which remain residual after the contained/tangent, quotient-periodic, and
+root-slice charges.  Define
+
+```text
+N_active = #{W : H_{1,j+1}(u)ell_W=H_{1,j+1}(v)ell_W=0
+                  and R_W != empty }.
+```
+
+The component theorem gives disjoint lifted-core components, and the
+residual-coordinate slope formula makes each `R_W` slope-injective.  Hence
+
+```text
+|Z_lift| <= sum_W |R_W| <= (j+1)N_active,       (LR2)
+```
+
+where `N_active <= N_common`.  This distinction matters when one endpoint has
+many one-row bases, for example because it is already close to a codeword:
+inactive common bases do not contribute lifted residual slopes and should not
+be treated as an obstruction.  The verifier counts `N_active` as the sum of
+common cores with either one residual face or a residual top-packet.
+
 ## `t=2` M1 Slope-Image Reduction
 
 Combining the root-slice peeling and the lifted-side recursion gives a single
@@ -2072,6 +2095,12 @@ Using (RS3), the same bound has a recursive form
 
 ```text
 |AperSlope(f,g;2,j)| <= |Z_3| + (j+1)N_common + |Z_esc|.       (M1R2')
+```
+
+The active-core version is stronger:
+
+```text
+|AperSlope(f,g;2,j)| <= |Z_3| + (j+1)N_active + |Z_esc|.       (M1R2'')
 ```
 
 The price is that `Z_3` is a larger raw higher-slack slope image than the
@@ -2149,6 +2178,18 @@ target.  The boundary and lifted-core geometry established above proves that
 there is no multiplicative recursion loss at this rung: the lifted term is
 additive through `Fib_1`, root slices are charged upward to `Z_3`, and boundary
 escapes cost only the polynomial field-size term.
+
+The sharper active-field version keeps the same boundary closure while
+discarding inactive common bases:
+
+```text
+|AperSlope(f,g;2,j)| <= |Z_3| + (j+1)N_active + (|F|+1)^2.      (M1R8)
+```
+
+It is still implied by the two-input bound because `N_active <= N_common <=
+min(|Fib_1(f)|,|Fib_1(g)|)`, but it is the more faithful local obstruction:
+to improve the slack-two estimate one can bound active residual common cores,
+not all one-row common bases.
 
 ## Verifier
 
@@ -2241,6 +2282,8 @@ enumerates small cyclic-domain cases.  For each case it:
   `|AperSlope| <= |Z_3| + (j+1)N_common + (|F|+1)A_boundary`;
 - asserts the two-input polynomial-field reduction
   `|AperSlope| <= |Z_3| + (j+1)min(|Fib_1(f)|,|Fib_1(g)|) + (|F|+1)^2`;
+- counts active lifted common cores and asserts the sharper active-field
+  reduction `|AperSlope| <= |Z_3| + (j+1)N_active + (|F|+1)^2`;
 - reports the endpoint `t=1` locator-fiber counts `|Fib_1(f)|` and
   `|Fib_1(g)|`, and checks `N_common <= min(|Fib_1(f)|,|Fib_1(g)|)`;
 - checks the `F_13`, `n=12`, `j=4`, `t=2` boundary-only row as a counterexample

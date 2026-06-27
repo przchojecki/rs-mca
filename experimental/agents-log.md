@@ -30,6 +30,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-27 - M1 active common-core reduction
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/m1/m1_all_line_hankel_aperiodic_packing.md`,
+  `experimental/scripts/verify_m1_all_line_hankel_aperiodic.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT / EXPERIMENTAL.
+- **What is being added:** The lifted-common term is sharpened from all common
+  one-row bases `N_common` to active common cores `N_active`, those with at
+  least one residual face after contained, quotient, and root-slice charges.
+  The note records
+  `|AperSlope| <= |Z_3| + (j+1)N_active + (|F|+1)^2`.
+- **How it is useful:** This avoids charging inactive common bases, which can
+  be numerous in degenerate endpoint cases but do not contribute lifted
+  residual slopes.  It gives a more faithful local obstruction inside the M1
+  all-line route.
+- **What to do next:** Seek structural bounds for active common cores, or
+  continue with the coarser two-input route through endpoint one-row fibers.
+
 ### 2026-06-27 - M1 two-input polynomial-field reduction
 
 - **Agent/model:** Codex.
