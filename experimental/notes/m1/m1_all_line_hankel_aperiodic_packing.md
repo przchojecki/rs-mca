@@ -716,6 +716,27 @@ domain-singleton term and the quotient-defect term are `0`, so the
 non-fixed packet slope counts are still paid entirely by twice the packet-edge
 count.
 
+For the actual residual variable-line ledger one can sharpen further by
+counting only active new slopes.  Let `r_i` be the number of aperiodic slopes
+on the `i`-th non-fixed variable packet which are not already in
+`Z_root union Z_full-plane union Z_fixed-root-line`.  Since `r_i<=m_i`,
+
+```text
+r_i <= 1_{d_i=m_i=r_i=1} + (d_i-m_i)
+       + 1_{m_i=2 and r_i=2} + binom(m_i,2).          (VN)
+```
+
+Indeed, packets with `m_i>=3` are paid by their own packet edges because
+`m_i<=binom(m_i,2)`, packets with `m_i=2` need one extra unit only if both
+members are active new slopes, and packets with `m_i=1` reduce as in (VQ).
+Together with packet-edge injectivity, (VN) charges active new non-fixed
+variable-line slopes to the global different-slope two-exchange edge ledger,
+up to true domain singletons, quotient defects, and fully active two-point
+packets.  The verifier checks this globally and core-by-core.  In the current
+probes the active new counts are `0`, `1`, and `2`, with sharp injected-edge
+bounds `6`, `3`, and `3`; the active singleton, active domain-singleton,
+active two-packet, and quotient-defect terms are all `0`.
+
 ## Different-Slope One-Exchange Quadratic Slice
 
 The different-slope part of the one-exchange profile has a complementary

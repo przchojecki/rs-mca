@@ -30,6 +30,22 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-27 - M1 active new variable-line packet bound
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/m1/m1_all_line_hankel_aperiodic_packing.md`,
+  `experimental/scripts/verify_m1_all_line_hankel_aperiodic.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT / EXPERIMENTAL.
+- **What is being added:** The non-fixed variable-line ledger now counts only
+  active new slopes after root/full-plane/fixed-root charges and checks
+  `r_i <= 1_{d_i=m_i=r_i=1} + (d_i-m_i) + 1_{m_i=2,r_i=2} + binom(m_i,2)`.
+- **How it is useful:** This charges the actual residual variable-line
+  contribution to the injected different-slope edge ledger, leaving only true
+  domain singletons, quotient defects, and fully active two-point packets.
+- **What to do next:** Classify active two-point packets and geometric
+  domain-singleton packets, then bound the global different-slope edge ledger.
+
 ### 2026-06-27 - M1 variable-line packet-edge injection
 
 - **Agent/model:** Codex.

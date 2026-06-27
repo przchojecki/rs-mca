@@ -844,6 +844,15 @@ def two_exchange_quadratic_slice_profile(
             "two_exchange_det_proper_line_variable_nonfixed_packet_pair_max": 0,
             "two_exchange_det_proper_line_variable_nonfixed_packet_pair_checks": 0,
             "two_exchange_det_proper_line_variable_nonfixed_packet_edge_injections": 0,
+            "two_exchange_det_proper_line_variable_nonfixed_new_slope_checks": 0,
+            "two_exchange_det_proper_line_variable_nonfixed_new_slope_image": 0,
+            "two_exchange_det_proper_line_variable_nonfixed_active_singletons": 0,
+            "two_exchange_det_proper_line_variable_nonfixed_active_domain_singletons": 0,
+            "two_exchange_det_proper_line_variable_nonfixed_active_two_packets": 0,
+            "two_exchange_det_proper_line_variable_nonfixed_active_edge_bound": 0,
+            "two_exchange_det_proper_line_variable_nonfixed_active_sharp_edge_bound": 0,
+            "two_exchange_det_proper_line_variable_nonfixed_active_core_slope_max": 0,
+            "two_exchange_det_proper_line_variable_nonfixed_active_core_sharp_bound_max": 0,
             "two_exchange_det_proper_line_variable_nonfixed_singletons": 0,
             "two_exchange_det_proper_line_variable_nonfixed_domain_singletons": 0,
             "two_exchange_det_proper_line_variable_nonfixed_quotient_defects": 0,
@@ -959,6 +968,9 @@ def two_exchange_quadratic_slice_profile(
     det_proper_line_variable_nonfixed_packet_edge_keys: set[
         tuple[tuple[int, ...], tuple[int, ...]]
     ] = set()
+    det_proper_line_variable_nonfixed_packet_records: list[
+        tuple[tuple[int, ...], int, int, set[int], int]
+    ] = []
     det_proper_line_variable_nonfixed_singletons = 0
     det_proper_line_variable_nonfixed_domain_singletons = 0
     det_proper_line_variable_nonfixed_quotient_defects = 0
@@ -1306,6 +1318,15 @@ def two_exchange_quadratic_slice_profile(
                     det_proper_line_variable_nonfixed_aperiodic_slope_checks += (
                         line_aperiodic
                     )
+                    det_proper_line_variable_nonfixed_packet_records.append(
+                        (
+                            core_tuple,
+                            line_domain_pairs,
+                            line_aperiodic,
+                            set(line_aperiodic_slopes),
+                            packet_pairs,
+                        )
+                    )
                     core_nonfixed_variable_aperiodic += line_aperiodic
                     core_nonfixed_variable_packet_pairs += packet_pairs
                     quotient_defects = line_domain_pairs - line_aperiodic
@@ -1528,6 +1549,98 @@ def two_exchange_quadratic_slice_profile(
             len(slope_set - det_charged_line_slope_set)
             for slope_set in det_proper_line_variable_slope_sets
         )
+    det_proper_line_variable_nonfixed_new_slope_set: set[int] = set()
+    det_proper_line_variable_nonfixed_new_slope_checks = 0
+    det_proper_line_variable_nonfixed_active_singletons = 0
+    det_proper_line_variable_nonfixed_active_domain_singletons = 0
+    det_proper_line_variable_nonfixed_active_two_packets = 0
+    active_core_rows: dict[tuple[int, ...], dict[str, int]] = {}
+    for (
+        core_tuple,
+        line_domain_pairs,
+        line_aperiodic,
+        line_aperiodic_slopes,
+        packet_pairs,
+    ) in det_proper_line_variable_nonfixed_packet_records:
+        active_new_slopes = line_aperiodic_slopes - det_charged_line_slope_set
+        active_new_count = len(active_new_slopes)
+        quotient_defects = line_domain_pairs - line_aperiodic
+        if quotient_defects < 0:
+            raise AssertionError("non-fixed active packet had negative quotient defect")
+        det_proper_line_variable_nonfixed_new_slope_set.update(active_new_slopes)
+        det_proper_line_variable_nonfixed_new_slope_checks += active_new_count
+        if line_aperiodic == 1 and active_new_count == 1:
+            det_proper_line_variable_nonfixed_active_singletons += 1
+            if line_domain_pairs == 1:
+                det_proper_line_variable_nonfixed_active_domain_singletons += 1
+        if line_aperiodic == 2 and active_new_count == 2:
+            det_proper_line_variable_nonfixed_active_two_packets += 1
+
+        core_row = active_core_rows.setdefault(
+            core_tuple,
+            {
+                "new": 0,
+                "active_singletons": 0,
+                "active_domain_singletons": 0,
+                "active_two_packets": 0,
+                "quotient_defects": 0,
+                "packet_pairs": 0,
+            },
+        )
+        core_row["new"] += active_new_count
+        core_row["quotient_defects"] += quotient_defects
+        core_row["packet_pairs"] += packet_pairs
+        if line_aperiodic == 1 and active_new_count == 1:
+            core_row["active_singletons"] += 1
+            if line_domain_pairs == 1:
+                core_row["active_domain_singletons"] += 1
+        if line_aperiodic == 2 and active_new_count == 2:
+            core_row["active_two_packets"] += 1
+
+    det_proper_line_variable_nonfixed_active_edge_bound = (
+        det_proper_line_variable_nonfixed_active_singletons
+        + 2 * det_proper_line_variable_nonfixed_packet_pair_checks
+    )
+    det_proper_line_variable_nonfixed_active_sharp_edge_bound = (
+        det_proper_line_variable_nonfixed_active_domain_singletons
+        + det_proper_line_variable_nonfixed_quotient_defects
+        + det_proper_line_variable_nonfixed_active_two_packets
+        + det_proper_line_variable_nonfixed_packet_pair_checks
+    )
+    if (
+        det_proper_line_variable_nonfixed_new_slope_checks
+        > det_proper_line_variable_nonfixed_active_edge_bound
+    ):
+        raise AssertionError("non-fixed active variable-line packets exceeded edge bound")
+    if (
+        det_proper_line_variable_nonfixed_new_slope_checks
+        > det_proper_line_variable_nonfixed_active_sharp_edge_bound
+    ):
+        raise AssertionError("non-fixed active variable-line packets exceeded sharp edge bound")
+    det_proper_line_variable_nonfixed_active_core_slope_max = 0
+    det_proper_line_variable_nonfixed_active_core_sharp_bound_max = 0
+    for core_row in active_core_rows.values():
+        core_active_edge_bound = (
+            core_row["active_singletons"] + 2 * core_row["packet_pairs"]
+        )
+        core_active_sharp_edge_bound = (
+            core_row["active_domain_singletons"]
+            + core_row["quotient_defects"]
+            + core_row["active_two_packets"]
+            + core_row["packet_pairs"]
+        )
+        if core_row["new"] > core_active_edge_bound:
+            raise AssertionError("non-fixed active core exceeded edge bound")
+        if core_row["new"] > core_active_sharp_edge_bound:
+            raise AssertionError("non-fixed active core exceeded sharp edge bound")
+        det_proper_line_variable_nonfixed_active_core_slope_max = max(
+            det_proper_line_variable_nonfixed_active_core_slope_max,
+            core_row["new"],
+        )
+        det_proper_line_variable_nonfixed_active_core_sharp_bound_max = max(
+            det_proper_line_variable_nonfixed_active_core_sharp_bound_max,
+            core_active_sharp_edge_bound,
+        )
 
     return {
         "two_exchange_pairs": two_exchange_pairs,
@@ -1640,6 +1753,33 @@ def two_exchange_quadratic_slice_profile(
         ),
         "two_exchange_det_proper_line_variable_nonfixed_packet_edge_injections": (
             det_proper_line_variable_nonfixed_packet_edge_injections
+        ),
+        "two_exchange_det_proper_line_variable_nonfixed_new_slope_checks": (
+            det_proper_line_variable_nonfixed_new_slope_checks
+        ),
+        "two_exchange_det_proper_line_variable_nonfixed_new_slope_image": len(
+            det_proper_line_variable_nonfixed_new_slope_set
+        ),
+        "two_exchange_det_proper_line_variable_nonfixed_active_singletons": (
+            det_proper_line_variable_nonfixed_active_singletons
+        ),
+        "two_exchange_det_proper_line_variable_nonfixed_active_domain_singletons": (
+            det_proper_line_variable_nonfixed_active_domain_singletons
+        ),
+        "two_exchange_det_proper_line_variable_nonfixed_active_two_packets": (
+            det_proper_line_variable_nonfixed_active_two_packets
+        ),
+        "two_exchange_det_proper_line_variable_nonfixed_active_edge_bound": (
+            det_proper_line_variable_nonfixed_active_edge_bound
+        ),
+        "two_exchange_det_proper_line_variable_nonfixed_active_sharp_edge_bound": (
+            det_proper_line_variable_nonfixed_active_sharp_edge_bound
+        ),
+        "two_exchange_det_proper_line_variable_nonfixed_active_core_slope_max": (
+            det_proper_line_variable_nonfixed_active_core_slope_max
+        ),
+        "two_exchange_det_proper_line_variable_nonfixed_active_core_sharp_bound_max": (
+            det_proper_line_variable_nonfixed_active_core_sharp_bound_max
         ),
         "two_exchange_det_proper_line_variable_nonfixed_singletons": (
             det_proper_line_variable_nonfixed_singletons
@@ -3870,6 +4010,51 @@ def verify_word_pair(
                 "two_exchange_det_proper_line_variable_nonfixed_packet_edge_injections"
             ]
         ),
+        "two_exchange_det_proper_line_variable_nonfixed_new_slope_checks": (
+            two_exchange_profile[
+                "two_exchange_det_proper_line_variable_nonfixed_new_slope_checks"
+            ]
+        ),
+        "two_exchange_det_proper_line_variable_nonfixed_new_slope_image": (
+            two_exchange_profile[
+                "two_exchange_det_proper_line_variable_nonfixed_new_slope_image"
+            ]
+        ),
+        "two_exchange_det_proper_line_variable_nonfixed_active_singletons": (
+            two_exchange_profile[
+                "two_exchange_det_proper_line_variable_nonfixed_active_singletons"
+            ]
+        ),
+        "two_exchange_det_proper_line_variable_nonfixed_active_domain_singletons": (
+            two_exchange_profile[
+                "two_exchange_det_proper_line_variable_nonfixed_active_domain_singletons"
+            ]
+        ),
+        "two_exchange_det_proper_line_variable_nonfixed_active_two_packets": (
+            two_exchange_profile[
+                "two_exchange_det_proper_line_variable_nonfixed_active_two_packets"
+            ]
+        ),
+        "two_exchange_det_proper_line_variable_nonfixed_active_edge_bound": (
+            two_exchange_profile[
+                "two_exchange_det_proper_line_variable_nonfixed_active_edge_bound"
+            ]
+        ),
+        "two_exchange_det_proper_line_variable_nonfixed_active_sharp_edge_bound": (
+            two_exchange_profile[
+                "two_exchange_det_proper_line_variable_nonfixed_active_sharp_edge_bound"
+            ]
+        ),
+        "two_exchange_det_proper_line_variable_nonfixed_active_core_slope_max": (
+            two_exchange_profile[
+                "two_exchange_det_proper_line_variable_nonfixed_active_core_slope_max"
+            ]
+        ),
+        "two_exchange_det_proper_line_variable_nonfixed_active_core_sharp_bound_max": (
+            two_exchange_profile[
+                "two_exchange_det_proper_line_variable_nonfixed_active_core_sharp_bound_max"
+            ]
+        ),
         "two_exchange_det_proper_line_variable_nonfixed_singletons": (
             two_exchange_profile[
                 "two_exchange_det_proper_line_variable_nonfixed_singletons"
@@ -5446,6 +5631,24 @@ def verify_t3_same_slope_two_exchange_probe() -> dict[str, object]:
         raise AssertionError("same-slope probe variable-line packet pair count changed")
     if row["two_exchange_det_proper_line_variable_nonfixed_packet_edge_injections"] != 6:
         raise AssertionError("same-slope probe packet-edge injection count changed")
+    if row["two_exchange_det_proper_line_variable_nonfixed_new_slope_checks"] != 0:
+        raise AssertionError("same-slope probe gained active non-fixed new slopes")
+    if row["two_exchange_det_proper_line_variable_nonfixed_new_slope_image"] != 0:
+        raise AssertionError("same-slope probe gained a non-fixed new slope image")
+    if row["two_exchange_det_proper_line_variable_nonfixed_active_singletons"] != 0:
+        raise AssertionError("same-slope probe gained an active singleton")
+    if row["two_exchange_det_proper_line_variable_nonfixed_active_domain_singletons"] != 0:
+        raise AssertionError("same-slope probe gained an active domain singleton")
+    if row["two_exchange_det_proper_line_variable_nonfixed_active_two_packets"] != 0:
+        raise AssertionError("same-slope probe gained an active two-packet")
+    if row["two_exchange_det_proper_line_variable_nonfixed_active_edge_bound"] != 12:
+        raise AssertionError("same-slope probe active edge bound changed")
+    if row["two_exchange_det_proper_line_variable_nonfixed_active_sharp_edge_bound"] != 6:
+        raise AssertionError("same-slope probe active sharp edge bound changed")
+    if row["two_exchange_det_proper_line_variable_nonfixed_active_core_slope_max"] != 0:
+        raise AssertionError("same-slope probe active core slope max changed")
+    if row["two_exchange_det_proper_line_variable_nonfixed_active_core_sharp_bound_max"] != 3:
+        raise AssertionError("same-slope probe active core sharp bound changed")
     if row["two_exchange_det_proper_line_variable_nonfixed_singletons"] != 0:
         raise AssertionError("same-slope probe gained a singleton variable-line packet")
     if row["two_exchange_det_proper_line_variable_nonfixed_domain_singletons"] != 0:
@@ -5517,6 +5720,24 @@ def verify_t3_variable_new_slope_probe() -> dict[str, object]:
         raise AssertionError("variable new-slope probe packet pair count changed")
     if row["two_exchange_det_proper_line_variable_nonfixed_packet_edge_injections"] != 3:
         raise AssertionError("variable new-slope probe packet-edge injection count changed")
+    if row["two_exchange_det_proper_line_variable_nonfixed_new_slope_checks"] != 1:
+        raise AssertionError("variable new-slope probe active new slope count changed")
+    if row["two_exchange_det_proper_line_variable_nonfixed_new_slope_image"] != 1:
+        raise AssertionError("variable new-slope probe active new slope image changed")
+    if row["two_exchange_det_proper_line_variable_nonfixed_active_singletons"] != 0:
+        raise AssertionError("variable new-slope probe gained an active singleton")
+    if row["two_exchange_det_proper_line_variable_nonfixed_active_domain_singletons"] != 0:
+        raise AssertionError("variable new-slope probe gained an active domain singleton")
+    if row["two_exchange_det_proper_line_variable_nonfixed_active_two_packets"] != 0:
+        raise AssertionError("variable new-slope probe gained an active two-packet")
+    if row["two_exchange_det_proper_line_variable_nonfixed_active_edge_bound"] != 6:
+        raise AssertionError("variable new-slope probe active edge bound changed")
+    if row["two_exchange_det_proper_line_variable_nonfixed_active_sharp_edge_bound"] != 3:
+        raise AssertionError("variable new-slope probe active sharp edge bound changed")
+    if row["two_exchange_det_proper_line_variable_nonfixed_active_core_slope_max"] != 1:
+        raise AssertionError("variable new-slope probe active core slope max changed")
+    if row["two_exchange_det_proper_line_variable_nonfixed_active_core_sharp_bound_max"] != 3:
+        raise AssertionError("variable new-slope probe active core sharp bound changed")
     if row["two_exchange_det_proper_line_variable_nonfixed_singletons"] != 0:
         raise AssertionError("variable new-slope probe gained a singleton packet")
     if row["two_exchange_det_proper_line_variable_nonfixed_domain_singletons"] != 0:
@@ -5586,6 +5807,24 @@ def verify_t3_unanchored_variable_line_probe() -> dict[str, object]:
         raise AssertionError("unanchored variable-line probe packet pair count changed")
     if row["two_exchange_det_proper_line_variable_nonfixed_packet_edge_injections"] != 3:
         raise AssertionError("unanchored variable-line probe packet-edge injection count changed")
+    if row["two_exchange_det_proper_line_variable_nonfixed_new_slope_checks"] != 2:
+        raise AssertionError("unanchored variable-line probe active new slope count changed")
+    if row["two_exchange_det_proper_line_variable_nonfixed_new_slope_image"] != 2:
+        raise AssertionError("unanchored variable-line probe active new slope image changed")
+    if row["two_exchange_det_proper_line_variable_nonfixed_active_singletons"] != 0:
+        raise AssertionError("unanchored variable-line probe gained an active singleton")
+    if row["two_exchange_det_proper_line_variable_nonfixed_active_domain_singletons"] != 0:
+        raise AssertionError("unanchored variable-line probe gained an active domain singleton")
+    if row["two_exchange_det_proper_line_variable_nonfixed_active_two_packets"] != 0:
+        raise AssertionError("unanchored variable-line probe gained an active two-packet")
+    if row["two_exchange_det_proper_line_variable_nonfixed_active_edge_bound"] != 6:
+        raise AssertionError("unanchored variable-line probe active edge bound changed")
+    if row["two_exchange_det_proper_line_variable_nonfixed_active_sharp_edge_bound"] != 3:
+        raise AssertionError("unanchored variable-line probe active sharp edge bound changed")
+    if row["two_exchange_det_proper_line_variable_nonfixed_active_core_slope_max"] != 2:
+        raise AssertionError("unanchored variable-line probe active core slope max changed")
+    if row["two_exchange_det_proper_line_variable_nonfixed_active_core_sharp_bound_max"] != 3:
+        raise AssertionError("unanchored variable-line probe active core sharp bound changed")
     if row["two_exchange_det_proper_line_variable_nonfixed_singletons"] != 0:
         raise AssertionError("unanchored variable-line probe gained a singleton packet")
     if row["two_exchange_det_proper_line_variable_nonfixed_domain_singletons"] != 0:
@@ -5872,6 +6111,15 @@ def main() -> None:
                 "two_exchange_det_proper_line_variable_nonfixed_packet_pair_max={two_exchange_det_proper_line_variable_nonfixed_packet_pair_max} "
                 "two_exchange_det_proper_line_variable_nonfixed_packet_pair_checks={two_exchange_det_proper_line_variable_nonfixed_packet_pair_checks} "
                 "two_exchange_det_proper_line_variable_nonfixed_packet_edge_injections={two_exchange_det_proper_line_variable_nonfixed_packet_edge_injections} "
+                "two_exchange_det_proper_line_variable_nonfixed_new_slope_checks={two_exchange_det_proper_line_variable_nonfixed_new_slope_checks} "
+                "two_exchange_det_proper_line_variable_nonfixed_new_slope_image={two_exchange_det_proper_line_variable_nonfixed_new_slope_image} "
+                "two_exchange_det_proper_line_variable_nonfixed_active_singletons={two_exchange_det_proper_line_variable_nonfixed_active_singletons} "
+                "two_exchange_det_proper_line_variable_nonfixed_active_domain_singletons={two_exchange_det_proper_line_variable_nonfixed_active_domain_singletons} "
+                "two_exchange_det_proper_line_variable_nonfixed_active_two_packets={two_exchange_det_proper_line_variable_nonfixed_active_two_packets} "
+                "two_exchange_det_proper_line_variable_nonfixed_active_edge_bound={two_exchange_det_proper_line_variable_nonfixed_active_edge_bound} "
+                "two_exchange_det_proper_line_variable_nonfixed_active_sharp_edge_bound={two_exchange_det_proper_line_variable_nonfixed_active_sharp_edge_bound} "
+                "two_exchange_det_proper_line_variable_nonfixed_active_core_slope_max={two_exchange_det_proper_line_variable_nonfixed_active_core_slope_max} "
+                "two_exchange_det_proper_line_variable_nonfixed_active_core_sharp_bound_max={two_exchange_det_proper_line_variable_nonfixed_active_core_sharp_bound_max} "
                 "two_exchange_det_proper_line_variable_nonfixed_singletons={two_exchange_det_proper_line_variable_nonfixed_singletons} "
                 "two_exchange_det_proper_line_variable_nonfixed_domain_singletons={two_exchange_det_proper_line_variable_nonfixed_domain_singletons} "
                 "two_exchange_det_proper_line_variable_nonfixed_quotient_defects={two_exchange_det_proper_line_variable_nonfixed_quotient_defects} "
@@ -6417,6 +6665,15 @@ def main() -> None:
         "two_exchange_det_proper_line_variable_nonfixed_packet_pair_max={two_exchange_det_proper_line_variable_nonfixed_packet_pair_max} "
         "two_exchange_det_proper_line_variable_nonfixed_packet_pair_checks={two_exchange_det_proper_line_variable_nonfixed_packet_pair_checks} "
         "two_exchange_det_proper_line_variable_nonfixed_packet_edge_injections={two_exchange_det_proper_line_variable_nonfixed_packet_edge_injections} "
+        "two_exchange_det_proper_line_variable_nonfixed_new_slope_checks={two_exchange_det_proper_line_variable_nonfixed_new_slope_checks} "
+        "two_exchange_det_proper_line_variable_nonfixed_new_slope_image={two_exchange_det_proper_line_variable_nonfixed_new_slope_image} "
+        "two_exchange_det_proper_line_variable_nonfixed_active_singletons={two_exchange_det_proper_line_variable_nonfixed_active_singletons} "
+        "two_exchange_det_proper_line_variable_nonfixed_active_domain_singletons={two_exchange_det_proper_line_variable_nonfixed_active_domain_singletons} "
+        "two_exchange_det_proper_line_variable_nonfixed_active_two_packets={two_exchange_det_proper_line_variable_nonfixed_active_two_packets} "
+        "two_exchange_det_proper_line_variable_nonfixed_active_edge_bound={two_exchange_det_proper_line_variable_nonfixed_active_edge_bound} "
+        "two_exchange_det_proper_line_variable_nonfixed_active_sharp_edge_bound={two_exchange_det_proper_line_variable_nonfixed_active_sharp_edge_bound} "
+        "two_exchange_det_proper_line_variable_nonfixed_active_core_slope_max={two_exchange_det_proper_line_variable_nonfixed_active_core_slope_max} "
+        "two_exchange_det_proper_line_variable_nonfixed_active_core_sharp_bound_max={two_exchange_det_proper_line_variable_nonfixed_active_core_sharp_bound_max} "
         "two_exchange_det_proper_line_variable_nonfixed_singletons={two_exchange_det_proper_line_variable_nonfixed_singletons} "
         "two_exchange_det_proper_line_variable_nonfixed_domain_singletons={two_exchange_det_proper_line_variable_nonfixed_domain_singletons} "
         "two_exchange_det_proper_line_variable_nonfixed_quotient_defects={two_exchange_det_proper_line_variable_nonfixed_quotient_defects} "
@@ -6450,6 +6707,15 @@ def main() -> None:
         "two_exchange_det_proper_line_variable_nonfixed_packet_pair_max={two_exchange_det_proper_line_variable_nonfixed_packet_pair_max} "
         "two_exchange_det_proper_line_variable_nonfixed_packet_pair_checks={two_exchange_det_proper_line_variable_nonfixed_packet_pair_checks} "
         "two_exchange_det_proper_line_variable_nonfixed_packet_edge_injections={two_exchange_det_proper_line_variable_nonfixed_packet_edge_injections} "
+        "two_exchange_det_proper_line_variable_nonfixed_new_slope_checks={two_exchange_det_proper_line_variable_nonfixed_new_slope_checks} "
+        "two_exchange_det_proper_line_variable_nonfixed_new_slope_image={two_exchange_det_proper_line_variable_nonfixed_new_slope_image} "
+        "two_exchange_det_proper_line_variable_nonfixed_active_singletons={two_exchange_det_proper_line_variable_nonfixed_active_singletons} "
+        "two_exchange_det_proper_line_variable_nonfixed_active_domain_singletons={two_exchange_det_proper_line_variable_nonfixed_active_domain_singletons} "
+        "two_exchange_det_proper_line_variable_nonfixed_active_two_packets={two_exchange_det_proper_line_variable_nonfixed_active_two_packets} "
+        "two_exchange_det_proper_line_variable_nonfixed_active_edge_bound={two_exchange_det_proper_line_variable_nonfixed_active_edge_bound} "
+        "two_exchange_det_proper_line_variable_nonfixed_active_sharp_edge_bound={two_exchange_det_proper_line_variable_nonfixed_active_sharp_edge_bound} "
+        "two_exchange_det_proper_line_variable_nonfixed_active_core_slope_max={two_exchange_det_proper_line_variable_nonfixed_active_core_slope_max} "
+        "two_exchange_det_proper_line_variable_nonfixed_active_core_sharp_bound_max={two_exchange_det_proper_line_variable_nonfixed_active_core_sharp_bound_max} "
         "two_exchange_det_proper_line_variable_nonfixed_singletons={two_exchange_det_proper_line_variable_nonfixed_singletons} "
         "two_exchange_det_proper_line_variable_nonfixed_domain_singletons={two_exchange_det_proper_line_variable_nonfixed_domain_singletons} "
         "two_exchange_det_proper_line_variable_nonfixed_quotient_defects={two_exchange_det_proper_line_variable_nonfixed_quotient_defects} "
@@ -6478,6 +6744,15 @@ def main() -> None:
         "two_exchange_det_proper_line_variable_nonfixed_packet_pair_max={two_exchange_det_proper_line_variable_nonfixed_packet_pair_max} "
         "two_exchange_det_proper_line_variable_nonfixed_packet_pair_checks={two_exchange_det_proper_line_variable_nonfixed_packet_pair_checks} "
         "two_exchange_det_proper_line_variable_nonfixed_packet_edge_injections={two_exchange_det_proper_line_variable_nonfixed_packet_edge_injections} "
+        "two_exchange_det_proper_line_variable_nonfixed_new_slope_checks={two_exchange_det_proper_line_variable_nonfixed_new_slope_checks} "
+        "two_exchange_det_proper_line_variable_nonfixed_new_slope_image={two_exchange_det_proper_line_variable_nonfixed_new_slope_image} "
+        "two_exchange_det_proper_line_variable_nonfixed_active_singletons={two_exchange_det_proper_line_variable_nonfixed_active_singletons} "
+        "two_exchange_det_proper_line_variable_nonfixed_active_domain_singletons={two_exchange_det_proper_line_variable_nonfixed_active_domain_singletons} "
+        "two_exchange_det_proper_line_variable_nonfixed_active_two_packets={two_exchange_det_proper_line_variable_nonfixed_active_two_packets} "
+        "two_exchange_det_proper_line_variable_nonfixed_active_edge_bound={two_exchange_det_proper_line_variable_nonfixed_active_edge_bound} "
+        "two_exchange_det_proper_line_variable_nonfixed_active_sharp_edge_bound={two_exchange_det_proper_line_variable_nonfixed_active_sharp_edge_bound} "
+        "two_exchange_det_proper_line_variable_nonfixed_active_core_slope_max={two_exchange_det_proper_line_variable_nonfixed_active_core_slope_max} "
+        "two_exchange_det_proper_line_variable_nonfixed_active_core_sharp_bound_max={two_exchange_det_proper_line_variable_nonfixed_active_core_sharp_bound_max} "
         "two_exchange_det_proper_line_variable_nonfixed_singletons={two_exchange_det_proper_line_variable_nonfixed_singletons} "
         "two_exchange_det_proper_line_variable_nonfixed_domain_singletons={two_exchange_det_proper_line_variable_nonfixed_domain_singletons} "
         "two_exchange_det_proper_line_variable_nonfixed_quotient_defects={two_exchange_det_proper_line_variable_nonfixed_quotient_defects} "
@@ -6712,6 +6987,42 @@ def main() -> None:
     )
     max_two_exchange_det_proper_line_variable_nonfixed_packet_edge_injections = max(
         row["two_exchange_det_proper_line_variable_nonfixed_packet_edge_injections"]
+        for row in all_rows
+    )
+    max_two_exchange_det_proper_line_variable_nonfixed_new_slope_checks = max(
+        row["two_exchange_det_proper_line_variable_nonfixed_new_slope_checks"]
+        for row in all_rows
+    )
+    max_two_exchange_det_proper_line_variable_nonfixed_new_slope_image = max(
+        row["two_exchange_det_proper_line_variable_nonfixed_new_slope_image"]
+        for row in all_rows
+    )
+    max_two_exchange_det_proper_line_variable_nonfixed_active_singletons = max(
+        row["two_exchange_det_proper_line_variable_nonfixed_active_singletons"]
+        for row in all_rows
+    )
+    max_two_exchange_det_proper_line_variable_nonfixed_active_domain_singletons = max(
+        row["two_exchange_det_proper_line_variable_nonfixed_active_domain_singletons"]
+        for row in all_rows
+    )
+    max_two_exchange_det_proper_line_variable_nonfixed_active_two_packets = max(
+        row["two_exchange_det_proper_line_variable_nonfixed_active_two_packets"]
+        for row in all_rows
+    )
+    max_two_exchange_det_proper_line_variable_nonfixed_active_edge_bound = max(
+        row["two_exchange_det_proper_line_variable_nonfixed_active_edge_bound"]
+        for row in all_rows
+    )
+    max_two_exchange_det_proper_line_variable_nonfixed_active_sharp_edge_bound = max(
+        row["two_exchange_det_proper_line_variable_nonfixed_active_sharp_edge_bound"]
+        for row in all_rows
+    )
+    max_two_exchange_det_proper_line_variable_nonfixed_active_core_slope = max(
+        row["two_exchange_det_proper_line_variable_nonfixed_active_core_slope_max"]
+        for row in all_rows
+    )
+    max_two_exchange_det_proper_line_variable_nonfixed_active_core_sharp_bound = max(
+        row["two_exchange_det_proper_line_variable_nonfixed_active_core_sharp_bound_max"]
         for row in all_rows
     )
     max_two_exchange_det_proper_line_variable_nonfixed_singletons = max(
@@ -7149,6 +7460,15 @@ def main() -> None:
         f"max_two_exchange_det_proper_line_variable_nonfixed_packet_pair={max_two_exchange_det_proper_line_variable_nonfixed_packet_pair} "
         f"max_two_exchange_det_proper_line_variable_nonfixed_packet_pair_checks={max_two_exchange_det_proper_line_variable_nonfixed_packet_pair_checks} "
         f"max_two_exchange_det_proper_line_variable_nonfixed_packet_edge_injections={max_two_exchange_det_proper_line_variable_nonfixed_packet_edge_injections} "
+        f"max_two_exchange_det_proper_line_variable_nonfixed_new_slope_checks={max_two_exchange_det_proper_line_variable_nonfixed_new_slope_checks} "
+        f"max_two_exchange_det_proper_line_variable_nonfixed_new_slope_image={max_two_exchange_det_proper_line_variable_nonfixed_new_slope_image} "
+        f"max_two_exchange_det_proper_line_variable_nonfixed_active_singletons={max_two_exchange_det_proper_line_variable_nonfixed_active_singletons} "
+        f"max_two_exchange_det_proper_line_variable_nonfixed_active_domain_singletons={max_two_exchange_det_proper_line_variable_nonfixed_active_domain_singletons} "
+        f"max_two_exchange_det_proper_line_variable_nonfixed_active_two_packets={max_two_exchange_det_proper_line_variable_nonfixed_active_two_packets} "
+        f"max_two_exchange_det_proper_line_variable_nonfixed_active_edge_bound={max_two_exchange_det_proper_line_variable_nonfixed_active_edge_bound} "
+        f"max_two_exchange_det_proper_line_variable_nonfixed_active_sharp_edge_bound={max_two_exchange_det_proper_line_variable_nonfixed_active_sharp_edge_bound} "
+        f"max_two_exchange_det_proper_line_variable_nonfixed_active_core_slope={max_two_exchange_det_proper_line_variable_nonfixed_active_core_slope} "
+        f"max_two_exchange_det_proper_line_variable_nonfixed_active_core_sharp_bound={max_two_exchange_det_proper_line_variable_nonfixed_active_core_sharp_bound} "
         f"max_two_exchange_det_proper_line_variable_nonfixed_singletons={max_two_exchange_det_proper_line_variable_nonfixed_singletons} "
         f"max_two_exchange_det_proper_line_variable_nonfixed_domain_singletons={max_two_exchange_det_proper_line_variable_nonfixed_domain_singletons} "
         f"max_two_exchange_det_proper_line_variable_nonfixed_quotient_defects={max_two_exchange_det_proper_line_variable_nonfixed_quotient_defects} "
