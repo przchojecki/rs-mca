@@ -2476,6 +2476,123 @@ and compare powers of `lambda`.  If the first nonzero coefficient has positive
 degree, divide by the corresponding power of `lambda` first.  This gives
 (LowerEL).
 
+## Corollary 29: Lower Common-Image Lines Are Projective-Determinantal
+
+Keep `beta` fixed and put `c=m-1`.  For a nonzero vector `y in F^t`, let
+`I=[y]` be the projective image line.  Define the lower common-image direction
+map
+
+```text
+C_y^core(beta): F^c -> Lambda^2(F^t)^4
+```
+
+by sending a degree-`<c` direction `Q` to
+
+```text
+( y wedge H(u)(X-beta)Q,
+  y wedge H(u)(X-beta)XQ,
+  y wedge H(v)(X-beta)Q,
+  y wedge H(v)(X-beta)XQ ).
+```
+
+Let
+
+```text
+e_I(beta)=dim ker C_y^core(beta).
+```
+
+This is the direction dimension of the lower common-image row-cut system from
+Corollary 26 for the image line `I`.  For `0<=b<c`, the projective low-rank
+line locus
+
+```text
+P_core,img,>b(beta)={ [y] in P^{t-1}(F) : e_[y](beta)>b }
+```
+
+is cut out by the `(c-b) x (c-b)` minors of any matrix for `C_y^core(beta)`.
+These minors are homogeneous polynomials of degree `c-b` in the coordinates of
+`y`.
+
+If at least one such minor is not the zero polynomial, then
+
+```text
+|P_core,img,>b(beta)| <= ((c-b) q^(t-1))/(q-1).      (LowerPI)
+```
+
+Outside this projective low-rank locus, the lower common-image part of
+`FullCoreGate(beta)` contributes at most
+
+```text
+((q^t-1)/(q-1)) binom(n,b)
+```
+
+split cores, and hence at most
+
+```text
+(n-m+1) ((q^t-1)/(q-1)) binom(n,b)
+```
+
+degree-`m` boundary shadows for this fixed anchor.
+
+If every `(c-b) x (c-b)` minor vanishes identically, then over
+`K=F(y_0,...,y_{t-1})` there are `b+1` independent moving-image core
+directions
+
+```text
+Q_0(y),...,Q_b(y) in K^c
+```
+
+which, after clearing denominators, satisfy
+
+```text
+y wedge H(u)(X-beta)Q_i(y)=0,
+y wedge H(u)(X-beta)XQ_i(y)=0,
+y wedge H(v)(X-beta)Q_i(y)=0,
+y wedge H(v)(X-beta)XQ_i(y)=0.                     (LowerPIC)
+```
+
+Conversely, `b+1` independent moving-image core directions satisfying
+(LowerPIC) force all `(c-b) x (c-b)` minors of `C_y^core(beta)` to vanish
+identically.
+
+### Proof
+
+A direction `Q` lies in the lower common-image direction space for `I=[y]`
+exactly when each of the four lower Hankel images
+
+```text
+H(u)(X-beta)Q, H(u)(X-beta)XQ,
+H(v)(X-beta)Q, H(v)(X-beta)XQ
+```
+
+lies in the line `I`.  This is equivalent to the vanishing of its wedge with
+`y`, proving the identification with `ker C_y^core(beta)`.
+
+The entries of `C_y^core(beta)` are homogeneous linear forms in the coordinates
+of `y`, and scaling `y` does not change the kernel.  The condition
+`e_[y](beta)>b` is equivalent to
+
+```text
+rank C_y^core(beta) < c-b,
+```
+
+and hence to the vanishing of all `(c-b) x (c-b)` minors.  Those minors are
+homogeneous of degree `c-b`.
+
+If one such minor is a nonzero homogeneous polynomial of degree `c-b`, the
+affine Schwartz-Zippel bound gives at most `(c-b)q^(t-1)` zeros in `F^t`.
+Dividing nonzero zeros into projective lines gives (LowerPI).
+
+For image lines outside `P_core,img,>b(beta)`, Corollary 26 gives at most
+`binom(n,b)` split cores per line.  There are `(q^t-1)/(q-1)` projective
+lines in `F^t`, and each core extends to at most `n-m+1` degree-`m` shadows.
+
+If all minors vanish identically, then over the rational function field
+`K=F(y_0,...,y_{t-1})` the rank of `C_y^core(beta)` is `<c-b`, so the kernel
+dimension is at least `b+1`.  Choose `b+1` independent kernel vectors over
+`K` and clear denominators to get (LowerPIC).  The converse is rank-nullity
+over `K`.
+
 ## Non-Claims
 
 This note does not prove
@@ -2542,3 +2659,6 @@ lower-kernel alternative to be charged separately.
 Corollary 28 shows that the persistent lower-kernel alternative forces lower
 endpoint low-rank ledgers and has moving-core certificates; it does not bound
 those endpoint ledgers without a separate charge.
+Corollary 29 makes the lower common-image ledger projective-determinantal; it
+does not bound the split cores on the exceptional low-rank image lines or rule
+out the moving-image certificate without a separate charge.

@@ -163,7 +163,11 @@ Keep entries concise and link to the relevant files.
   extension factor to shadows.  The persistent lower-kernel alternative is now
   certificate-form as well: it forces both lower endpoint core systems to have
   direction dimension `>b`, and moving core kernels satisfy the endpoint ladder
-  `R_v q_0=0`, `R_v q_i-R_u q_{i-1}=0`, `R_u q_D=0`.
+  `R_v q_0=0`, `R_v q_i-R_u q_{i-1}=0`, `R_u q_D=0`.  The lower common-image
+  full-core ledger is now also projective-determinantal: low-rank image lines
+  are cut out by homogeneous minors in `[y]`, outside that locus each image
+  line contributes at most `binom(n,b)` cores, and the fully persistent case is
+  recorded as a moving-image core certificate.
 - **What to do next:** Bound or charge the unique-neighbor nondegenerate
   star-free shadow ledger, and charge the ruled exceptional low-rank loci to
   fixed-slope/root-slice, endpoint, projective, quotient-periodic, or
