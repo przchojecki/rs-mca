@@ -1100,6 +1100,21 @@ def root_slice_profile(
             raise AssertionError("external-anchor projective classes were not injective")
         if not residual_external_anchor_slopes[anchor] <= finite_rich_slopes:
             raise AssertionError("residual external slopes escaped rich slope image")
+        if len(kernel_basis) == 1:
+            if len(rich_points) > 1 or len(finite_rich_slopes) > 1:
+                raise AssertionError("fixed-anchor projective point had too many rich slopes")
+        if len(kernel_basis) == 2:
+            fixed_roots = sum(
+                all(poly_eval(list(vector), x, p) == 0 for vector in kernel_basis)
+                for x in domain
+            )
+            if fixed_roots >= j:
+                raise AssertionError("fixed-anchor pencil had too many fixed roots")
+            pencil_bound = (len(domain) - fixed_roots) // (j - fixed_roots)
+            if len(rich_points) > pencil_bound:
+                raise AssertionError("fixed-anchor pencil exceeded rich-point bound")
+            if len(finite_rich_slopes) > pencil_bound:
+                raise AssertionError("fixed-anchor pencil exceeded rich-slope bound")
         residual_external_anchor_rich_points += len(rich_points)
         residual_external_anchor_finite_rich_slopes += len(finite_rich_slopes)
         residual_external_anchor_rich_residual_classes += len(residual_classes)

@@ -791,6 +791,40 @@ This is the incidence form of the remaining fixed-anchor M1 task.  In the
 the antipodal family, leaving the `24` residual rich points and `6` residual
 slopes recorded in the product model.
 
+## Low-Dimensional Fixed-Anchor Pencils
+
+The fixed-anchor arrangement is already controlled when `dim V_xi <= 2`.
+If `dim V_xi=1`, then `P(V_xi)` is a single point, so there is at most one
+rich point and at most one finite slope.
+
+Now suppose `dim V_xi=2`, so `P(V_xi)` is a projective line.  Let
+
+```text
+r_xi = #{x in D : P(x)=0 for every P in V_xi}
+```
+
+be the number of fixed domain roots of the pencil.  Necessarily `r_xi<j`;
+otherwise every polynomial in the pencil would be divisible by
+`(X-xi)prod_{x in R}(X-x)` with `|R|=j`, a degree `j+1` polynomial, forcing
+`dim V_xi=1`.
+
+For every non-fixed `x in D`, the condition `P(x)=0` is a nonzero linear
+condition on the two-dimensional space `V_xi`, hence it selects exactly one
+projective point of the pencil.  Therefore two distinct rich points cannot
+use the same non-fixed domain root.  Since each `j`-rich point already has the
+`r_xi` fixed roots and must use at least `j-r_xi` non-fixed roots, the rich
+points are bounded by
+
+```text
+#{j-rich points in P(V_xi)} <= floor((n-r_xi)/(j-r_xi)).        (EA1L)
+```
+
+The finite fixed-anchor slope image is no larger than the set of rich points,
+so it satisfies the same bound.  Thus low-dimensional external-anchor
+kernels do not contribute an uncontrolled boundary term; the remaining
+fixed-anchor difficulty starts at projective dimension at least two, i.e.
+`dim V_xi >= 3`.
+
 ## External-Anchor Top-Coefficient Form
 
 The twisted one-row reduction has an equivalent interpolation form.  Let
@@ -1661,6 +1695,9 @@ enumerates small cyclic-domain cases.  For each case it:
 - rewrites each fixed external-anchor term as a projective root-hyperplane
   arrangement, checking the pinned common-kernel dimension, the `j`-rich
   points, and their finite twisted slope image;
+- checks the low-dimensional fixed-anchor pencil theorem: when
+  `dim V_xi <= 2`, fixed roots partition the remaining rich roots and give
+  the bound `floor((n-r_xi)/(j-r_xi))`;
 - verifies the homogeneous projective residual lift ledger: every residual
   locator maps to the common one-row lifted Hankel kernel through
   `beta_0 X L_T-beta_1 L_T`, with finite anchors, repeated-root lifts,

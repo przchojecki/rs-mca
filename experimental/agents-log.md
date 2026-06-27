@@ -30,6 +30,27 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-27 - M1 low-dimensional fixed-anchor pencil bound
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/m1/m1_all_line_hankel_aperiodic_packing.md`,
+  `experimental/scripts/verify_m1_all_line_hankel_aperiodic.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT / EXPERIMENTAL.
+- **What is being added:** If the fixed external-anchor common kernel
+  `V_xi` has dimension at most two, then its `j`-rich points and finite
+  slopes are bounded.  For `dim V_xi=2`, if `r_xi` domain roots are fixed
+  by the pencil, then `r_xi<j` and the number of rich points is at most
+  `floor((n-r_xi)/(j-r_xi))`.
+- **How it is useful:** This closes the projective-point and projective-line
+  cases of the fixed-anchor rich-point arrangement, so the remaining
+  fixed-anchor M1 boundary difficulty starts only when `dim V_xi >= 3`.
+  The verifier asserts this bound for every audited external anchor in that
+  range.
+- **What to do next:** Attack the first genuinely higher-dimensional case,
+  especially projective planes `dim V_xi=3`, using pair-incidence or
+  quotient-aware root-arrangement bounds.
+
 ### 2026-06-27 - M1 fixed-anchor rich-point arrangement reduction
 
 - **Agent/model:** Codex.
