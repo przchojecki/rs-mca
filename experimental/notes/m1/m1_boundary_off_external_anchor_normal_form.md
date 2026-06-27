@@ -1393,6 +1393,128 @@ Adding the three ruled contributions proves (RBC).  The final claims are just
 the exceptional-locus alternatives already proved in Corollaries 12, 14, 15,
 and 16.
 
+## Corollary 17.1: Root-Free Row-Rank Ledgers Gain A Slice Factor
+
+Let `m=j-1`, and let
+
+```text
+A = P_0 + V
+```
+
+be an affine solution space of monic degree-`m` shadow locators inside any one
+of the row-rank ledgers from Corollaries 10 and 11.  Put `d=dim V`, and let
+`Sh(A)` be a set of squarefree `D`-split shadow locators assigned to this
+stratum.
+
+For `alpha in D`, write
+
+```text
+ev_alpha : V -> F,        Q |-> Q(alpha).
+```
+
+Assume `d>=1` and that the common-root part of the stratum has already been
+charged to the fixed-root/root-slice ledger, in the following precise sense:
+whenever some assigned locator in `Sh(A)` vanishes at `alpha`, the functional
+`ev_alpha` is nonzero on `V`.  Then
+
+```text
+|Sh(A)| <= (n/m) binom(n-1,d-1)
+        = (d/m) binom(n,d).                         (RF)
+```
+
+If `d=0`, the previous row-rank bound gives the conservative estimate
+
+```text
+|Sh(A)| <= 1.
+```
+
+Consequently the ruled row-rank target ledger from Corollary 11 can be
+sharpened, after common-root charges, to
+
+```text
+|Boundary_off^{ruled,red,rootfree}|
+ <= q ( sum_{z in Z_ker} Phi_m(d_z)
+        + Phi_m(d_infty)
+        + sum_{I in P_img} Phi_m(d_I) ),             (RFR)
+```
+
+where
+
+```text
+Phi_m(0)=1,        Phi_m(d)=(d/m) binom(n,d) for d>=1.
+```
+
+In particular, in the bounded-rank range `d_z,d_infty,d_I<=b` with
+`1<=b<=n/2`, the uncharged root-free ruled residual satisfies
+
+```text
+|Boundary_off^{ruled,red,rootfree,<=b}|
+ <= ( q^2 + q + q ((q^t-1)/(q-1)) )
+    (b/m) binom(n,b).                                (RFR_b)
+```
+
+Thus the bounded-rank ruled branch carries a genuine root-slice saving after
+the common-root pieces have been removed.  For `b<m`, this is sharper than the
+bare `binom(n,b)` row-rank estimate used in Corollary 17.
+
+### Proof
+
+For a fixed `alpha in D`, let `Sh_alpha(A)` be the assigned split locators in
+`Sh(A)` that vanish at `alpha`.  If this set is empty, there is nothing to
+count.  Otherwise the hypothesis says that `ev_alpha` is nonzero on `V`, so
+the locators in `A` that vanish at `alpha` form an affine subspace whose
+direction space is
+
+```text
+W_alpha = ker(ev_alpha:V->F),
+```
+
+with `dim W_alpha=d-1`.
+
+Fix `L_S in Sh_alpha(A)`.  Since every `Q in W_alpha` has degree `<m` and
+vanishes at `alpha`, the evaluation map
+
+```text
+W_alpha -> F^{S\{alpha}}
+```
+
+is injective: a nonzero `Q` cannot vanish on `alpha` and on all `m-1` other
+roots of `S`.  Therefore some `(d-1)`-subset `R subset S\{alpha}` gives an
+injective evaluation map on `W_alpha`; choose the first such `R` in a fixed
+ordering of `D`.
+
+This choice injects `Sh_alpha(A)` into the `(d-1)`-subsets of `D\{alpha}`.
+Indeed, if two locators in the same affine slice vanish on `alpha` and on the
+same chosen `R`, their difference lies in `W_alpha` and vanishes on `R`, so it
+is zero.  Hence
+
+```text
+|Sh_alpha(A)| <= binom(n-1,d-1).
+```
+
+Counting incidences `(alpha,S)` with `alpha in S` gives
+
+```text
+m |Sh(A)| = sum_{alpha in D} |Sh_alpha(A)|
+          <= n binom(n-1,d-1),
+```
+
+which proves (RF).  The case `d=0` is the old row-rank injection bound
+`binom(n,0)=1`.
+
+Apply (RF) separately to every finite-slope, endpoint, and projective
+image-line row-rank stratum in Corollary 11.  The extra factor `q` in (RFR) is
+the external-anchor multiplicity from Corollary 9.  Finally, if
+`1<=d<=b<=n/2`, then
+
+```text
+Phi_m(d)=(d/m)binom(n,d) <= (b/m)binom(n,b),
+```
+
+because `d binom(n,d)` is increasing for `d<=n/2`.  Substituting this bound
+into (RFR), and using at most `q` finite slopes and `(q^t-1)/(q-1)`
+projective image lines, proves (RFR_b).
+
 ## Corollary 18: Popular Nondegenerate Shadows Are Low-Exchange Ledgers
 
 Let `A` be any family of `j`-subsets of `D`.  Define the boundary-shadow
@@ -1602,6 +1724,9 @@ projective and determinantal; it does not bound the split shadows supported on
 the exceptional projective low-rank lines without charging that locus.
 Corollary 17 is conditional on those explicit low-rank charges and endpoint
 rank hypotheses; it is not an unconditional ruled-branch theorem.
+Corollary 17.1 does not remove the low-rank exceptional loci; it only sharpens
+the bounded-rank row-rank ledgers after common-root subledgers have already
+been charged to fixed-root/root-slice ledgers.
 Corollary 18 does not bound the unique-neighbor nondegenerate shadows; it
 separates them from the popular shadows that are already controlled by the
 first three active exchange profiles. Corollary 19 is a sharpness statement for

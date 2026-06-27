@@ -83,6 +83,10 @@ Keep entries concise and link to the relevant files.
   with `d_I>b`, and assuming `d_infty<=b`, the uncharged ruled boundary-off
   targets are bounded by
   `(q^2 + q + q((q^t-1)/(q-1))) binom(n,b)`.
+  A root-free row-rank refinement shows that, after common-root subledgers are
+  charged to fixed-root/root-slice ledgers, any positive-dimensional affine
+  row-rank stratum of direction dimension `d` contributes at most
+  `(d/m) binom(n,d)` split shadows instead of the bare `binom(n,d)`.
   On the nondegenerate side, popular adjacent shadows are charged to the first
   three active exchange profiles: `Boundary_off^quad` is bounded by twice the
   unique-neighbor nondegenerate shadows plus `2(N_1E_1+N_2E_2+N_3E_3)`.
@@ -103,10 +107,12 @@ Keep entries concise and link to the relevant files.
   ledgers.  The common-image branch is similarly reduced to a bounded-rank
   polynomial residual plus an explicit projective low-rank locus.  The latest
   combined corollary packages these into a single bounded-rank ruled-branch
-  closure criterion.  The nondegenerate branch is also sharpened: popular
-  shadows are now active-codegree terms, leaving unique-neighbor shadows as
-  the named residual, and the separated-family lemma shows that residual cannot
-  be removed using low-exchange information alone.
+  closure criterion, and the root-free refinement gives that bounded-rank
+  residual a fixed-root saving once common-root pieces have been charged.  The
+  nondegenerate branch is also sharpened: popular shadows are now
+  active-codegree terms, leaving unique-neighbor shadows as the named residual,
+  and the separated-family lemma shows that residual cannot be removed using
+  low-exchange information alone.
 - **What to do next:** Bound or charge the unique-neighbor nondegenerate
   shadow ledger, and charge the ruled exceptional low-rank loci to
   fixed-slope/root-slice, endpoint, projective, quotient-periodic, or
