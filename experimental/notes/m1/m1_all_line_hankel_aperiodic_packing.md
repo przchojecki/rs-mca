@@ -861,6 +861,19 @@ size-`3` quotient charge leaves one residual cube coset.  In the audited
 bijective, so the single external anchor already sees all `16` nonzero
 products.
 
+This gives an infinite field-size floor.  Suppose `p >= 11` and
+`p == 2 mod 3`.  Then the cube map on `F_p^*` is bijective, and no size-`3`
+quotient subgroup exists.  Since `{1,2,-3}` is a distinct nonzero zero-sum
+triple, the zero-sum product image is nonempty.  Multiplying that triple by
+`lambda` preserves zero-sum and multiplies the product by `lambda^3`; because
+the cube map is onto, every nonzero product occurs.  There is no quotient
+charge in size `3`, so the residual product image is all of `F_p^*`.
+
+Consequently, for the monomial boundary line with `j=3`, one fixed external
+anchor `xi=0` carries all `p-1` nonzero slopes for every prime
+`p >= 11`, `p == 2 mod 3`.  The verifier audits this infinite-family theorem
+at `p=11,17,23,29`.
+
 For `j=4`, the normalized product image is a binary cubic modulo fourth
 powers.  Every zero-sum four-subset can be scaled and ordered as
 
@@ -1387,6 +1400,9 @@ enumerates small cyclic-domain cases.  For each case it:
 - checks the `j=3` product-coset reduction: every zero-sum triple normalizes to
   `{1,r,-1-r}`, the product image is the cube-closure of `-r(1+r)`, and an
   active size-`3` quotient charge has cube-subgroup product image;
+- asserts the `j=3` cube-bijective field-size floor: for audited primes
+  `p=11,17,23,29` with `p == 2 mod 3`, there is no size-`3` quotient charge
+  and the residual product image is all of `F_p^*`;
 - checks the `j=4` product-coset reduction: every zero-sum quadruple
   normalizes to `{1,r,s,-1-r-s}`, with product image the fourth-power closure
   of the binary cubic `-rs(1+r+s)`;

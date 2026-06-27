@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-27 - M1 j=3 cube-bijective field-size floor
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/m1/m1_all_line_hankel_aperiodic_packing.md`,
+  `experimental/scripts/verify_m1_all_line_hankel_aperiodic.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT / EXPERIMENTAL.
+- **What is being added:** For every prime `p >= 11` with `p == 2 mod 3`,
+  the full-domain monomial boundary model with `j=3` has residual product
+  image all of `F_p^*`: the cube map is bijective and no size-`3` quotient
+  charge exists.  The verifier audits the theorem at `p=11,17,23,29`.
+- **How it is useful:** This upgrades the fixed-anchor M1 boundary floor from
+  a single `F_17` example to an infinite family: one external anchor can carry
+  `p-1` residual nonzero slopes even after quotient-periodic locators are
+  removed.
+- **What to do next:** Find the analogous saturation or obstruction theorem
+  for the `j=4` binary cubic image after antipodal quotient charging.
+
 ### 2026-06-27 - M1 quotient-fiber product ledger
 
 - **Agent/model:** Codex.

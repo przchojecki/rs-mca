@@ -2314,6 +2314,11 @@ def verify_full_domain_monomial_boundary_model(
         expected_zero_sum = (p - 1) * (p - 5) // 6
         if zero_sum_locators != expected_zero_sum:
             raise AssertionError("j=3 zero-sum boundary count formula failed")
+        if (p - 1) % 3 and p >= 11:
+            if zero_sum_product_set != set(domain):
+                raise AssertionError("j=3 cube-bijective product floor failed")
+            if quotient_zero_sum_locators == 0 and residual_product_set != set(domain):
+                raise AssertionError("j=3 cube-bijective residual floor failed")
         repeated_parameters = {1 % p, (-2) % p, (-inv_mod(2, p)) % p}
         j3_quadratic_parameters = {
             r
@@ -2407,6 +2412,11 @@ def main() -> None:
         verify_full_domain_monomial_boundary_model(17, 4, (2, 4, 8)),
         verify_full_domain_monomial_boundary_model(17, 3, (2, 4, 8)),
     )
+    j3_bijective_cube_floor_models = (
+        verify_full_domain_monomial_boundary_model(11, 3, (2, 5)),
+        verify_full_domain_monomial_boundary_model(23, 3, (2, 11)),
+        verify_full_domain_monomial_boundary_model(29, 3, (2, 4, 7, 14)),
+    )
     monomial_boundary_floor_cases = 0
     for model in monomial_boundary_models:
         if model["p"] == 17 and model["j"] in (3, 4):
@@ -2415,6 +2425,17 @@ def main() -> None:
             monomial_boundary_floor_cases += 1
     if monomial_boundary_floor_cases != 2:
         raise AssertionError("monomial boundary floor missed an F17 toy case")
+    j3_bijective_cube_floor_models = (
+        next(model for model in monomial_boundary_models if model["p"] == 17 and model["j"] == 3),
+        *j3_bijective_cube_floor_models,
+    )
+    for model in j3_bijective_cube_floor_models:
+        if (model["p"] - 1) % 3 == 0 or model["p"] < 11:
+            raise AssertionError("j=3 cube-bijective floor model had wrong prime")
+        if model["quotient_zero_sum_locators"] != 0:
+            raise AssertionError("j=3 cube-bijective floor had quotient charge")
+        if model["residual_product_fibers"] != model["p"] - 1:
+            raise AssertionError("j=3 cube-bijective floor was not field-sized")
     rank_one_probe = verify_rank_one_zero_slice_probe()
     print(
         "F13_order12_j4_t2_boundary_model: "
@@ -2450,6 +2471,11 @@ def main() -> None:
         "full_domain_monomial_boundary_floor: "
         f"field_sized_cases={monomial_boundary_floor_cases} "
         "p=17 residual_product_fibers=16"
+    )
+    print(
+        "j3_bijective_cube_floor: "
+        f"primes={','.join(str(model['p']) for model in j3_bijective_cube_floor_models)} "
+        f"field_sized_cases={len(j3_bijective_cube_floor_models)}"
     )
     for summary in summaries:
         case = summary["case"]
