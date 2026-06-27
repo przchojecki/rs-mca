@@ -2675,6 +2675,124 @@ and each core extends to at most `n-m+1` shadows.  Adding the two classes gives
 The final assertions are just Corollaries 28, 27, and 29 applied to the lower
 fixed-kernel and lower common-image exceptional sets.
 
+## Corollary 30.1: Lower Root-Free Full-Core Ledgers Gain A Slice Factor
+
+Keep `beta` fixed and put `c=m-1`.  Let
+
+```text
+A=P_0+V
+```
+
+be an affine solution space of monic degree-`c` core locators inside any one of
+the lower full-core row-rank ledgers from Corollary 26.  Put `e=dim V`, and
+let `Core(A)` be a set of squarefree `D`-split core locators assigned to this
+stratum.
+
+For `alpha in D`, write
+
+```text
+ev_alpha:V -> F,        Q |-> Q(alpha).
+```
+
+Assume `e>=1` and that the common-root part of the lower stratum has already
+been charged to the fixed-root/root-slice ledger, in the following precise
+sense: whenever some assigned core in `Core(A)` vanishes at `alpha`, the
+functional `ev_alpha` is nonzero on `V`.  Then
+
+```text
+|Core(A)| <= (n/c) binom(n-1,e-1)
+          = (e/c) binom(n,e).                       (LowerRF)
+```
+
+If `e=0`, the row-rank injection bound gives the conservative estimate
+
+```text
+|Core(A)| <= 1.
+```
+
+Define
+
+```text
+Psi_c(0)=1,        Psi_c(e)=(e/c) binom(n,e) for e>=1.
+```
+
+After common-root charges, Corollary 26 sharpens to
+
+```text
+|FullCoreGate^{rootfree}(beta)|
+ <= Psi_c(e_u(beta)) + Psi_c(e_v(beta))
+    + sum_{lambda in F} Psi_c(e_lambda(beta))
+    + sum_{I in P(F^t)} Psi_c(e_I(beta)).           (LowerFCRF)
+```
+
+Consequently, in the bounded-rank range `1<=b<=n/2`, if every uncharged lower
+system has direction dimension at most `b`, then
+
+```text
+|FullCoreGate^{rootfree,<=b}(beta)|
+ <= ( 2 + q + (q^t-1)/(q-1) ) (b/c) binom(n,b),
+```
+
+and the fixed-anchor closure of Corollary 30 improves to
+
+```text
+|Z_beta^{rootfree,<=b}|
+ <= (2/m) binom(n,m-1)
+    + (n-m+1) ( 2 + q + (q^t-1)/(q-1) )
+      (b/c) binom(n,b).                             (FAC_RF)
+```
+
+Thus, once common-root lower core pieces are charged, the bounded-rank
+full-core term carries a genuine root-slice saving.  The one-root-loss
+residual from Corollary 25 is unchanged.
+
+### Proof
+
+For fixed `alpha in D`, let `Core_alpha(A)` be the assigned split cores in
+`Core(A)` that vanish at `alpha`.  If this set is empty there is nothing to
+count.  Otherwise the hypothesis says `ev_alpha` is nonzero on `V`, so the
+cores in `A` that vanish at `alpha` form an affine subspace whose direction
+space is
+
+```text
+W_alpha=ker(ev_alpha:V->F),
+```
+
+with `dim W_alpha=e-1`.
+
+Fix `L_R in Core_alpha(A)`.  Since every `Q in W_alpha` has degree `<c` and
+vanishes at `alpha`, the evaluation map
+
+```text
+W_alpha -> F^{R\{alpha}}
+```
+
+is injective: a nonzero `Q` cannot vanish on `alpha` and on all `c-1` other
+roots of `R`.  Choose the first `(e-1)`-subset of `R\{alpha}` on which
+evaluation is injective.  This injects `Core_alpha(A)` into the
+`(e-1)`-subsets of `D\{alpha}`, so
+
+```text
+|Core_alpha(A)| <= binom(n-1,e-1).
+```
+
+Counting incidences `(alpha,R)` with `alpha in R` gives
+
+```text
+c |Core(A)| = sum_{alpha in D} |Core_alpha(A)|
+             <= n binom(n-1,e-1),
+```
+
+which proves (LowerRF).  The case `e=0` is the old row-rank injection bound.
+
+Apply (LowerRF) to each lower endpoint, finite fixed-kernel, and projective
+image-line stratum from Corollary 26 to get (LowerFCRF).  If
+`1<=e<=b<=n/2`, then `Psi_c(e)<= (b/c)binom(n,b)` because
+`e binom(n,e)` is increasing for `e<=n/2`.  Summing over two endpoints, at
+most `q` finite slopes, and `(q^t-1)/(q-1)` projective image lines gives the
+bounded-rank estimate.  Multiplying by the extension factor `n-m+1` and adding
+the unchanged Corollary 25 residual gives (FAC_RF).
+
 ## Non-Claims
 
 This note does not prove
@@ -2747,3 +2865,6 @@ out the moving-image certificate without a separate charge.
 Corollary 30 packages the fixed-anchor full-core analysis after lower
 rank-ledger charges; it still leaves the one-root-loss residual and the
 explicit charged exceptional ledgers as separate obligations.
+Corollary 30.1 adds a root-free slice saving only after lower common-root core
+subledgers have already been charged; it does not remove the Corollary 25
+one-root-loss residual.

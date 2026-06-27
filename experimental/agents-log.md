@@ -172,7 +172,11 @@ Keep entries concise and link to the relevant files.
   endpoint, fixed-kernel, projective-image, and moving-certificate charges, the
   remaining full-gate shadows for that anchor are bounded by the Corollary 25
   one-root-loss residual plus
-  `(n-m+1)(2+q+(q^t-1)/(q-1)) binom(n,b)`.
+  `(n-m+1)(2+q+(q^t-1)/(q-1)) binom(n,b)`.  A lower root-free refinement now
+  shows that, after common-root lower core pieces are charged, any positive
+  direction dimension `e` contributes at most `(e/c) binom(n,e)` cores for
+  `c=m-1`; hence the bounded-rank full-core term gains a `b/c` factor in the
+  range `1<=b<=n/2`.
 - **What to do next:** Bound or charge the unique-neighbor nondegenerate
   star-free shadow ledger, and charge the ruled exceptional low-rank loci to
   fixed-slope/root-slice, endpoint, projective, quotient-periodic, or
