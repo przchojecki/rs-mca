@@ -5999,6 +5999,91 @@ conditions for `Delta_theta u` and `Delta_theta v`.  The final statement is the
 constant/moving dichotomy from Corollary 66 after the constant slices have
 been charged.
 
+## Corollary 68: Nonconstant Moving Components Are Persistent One-Parameter Kernels
+
+Fix an order `d<h`, and work over an algebraic closure.  Let `Z` be an
+indeterminate.
+
+### Fixed-Kernel Pencil
+
+Define the one-parameter linear pencil
+
+```text
+M_d^K(Z): F(Z)^{d+1} -> F(Z)^{t+2},
+M_d^K(Z)D = R_{t+2}(D;v-Zu).
+```
+
+If a positive-dimensional primitive landing component from Corollary 66 has
+genuinely nonconstant fixed-kernel parameter `lambda_C`, then
+
+```text
+ker M_d^K(Z) != 0        over F(Z).                 (PersK)
+```
+
+Equivalently, the order-`d` recurrence pencil for `v-Zu` has a persistent
+generic denominator over the parameter line.  When full column rank is
+row-count possible, this says that all full-column minors of `M_d^K(Z)` vanish
+as polynomials in `Z`; when `d+1>t+2`, the kernel is row-count forced and the
+remaining content is in the root-free, primitive, and base-free opens.
+
+Conversely, any nonzero vector in `ker M_d^K(Z)` whose root-free, primitive,
+order-`d`, and base-free conditions are not identically violated gives, after
+clearing denominators and restricting to a nonempty open subset of the
+parameter line, a positive-dimensional fixed-kernel landing family.
+
+### First-Difference Pencil
+
+Define the stacked one-parameter pencil
+
+```text
+M_d^D(Z): F(Z)^{d+1} -> F(Z)^{2(t+1)},
+M_d^D(Z)D =
+  (R_{t+1}(D;Delta_Z u), R_{t+1}(D;Delta_Z v)).
+```
+
+If a positive-dimensional primitive landing component from Corollary 66 has
+genuinely nonconstant first-difference parameter `theta_C`, then
+
+```text
+ker M_d^D(Z) != 0        over F(Z).                 (PersD)
+```
+
+Equivalently, all full-column minors of the stacked first-difference recurrence
+pencil vanish whenever full column rank is row-count possible.  Conversely, a
+nonzero generic kernel vector satisfying the same nonempty open conditions
+gives a positive-dimensional first-difference landing family over the
+parameter line.
+
+Thus, after the constant-parameter slices of Corollary 67 are charged, the only
+remaining positive-dimensional primitive denominator obstruction is a
+persistent one-parameter short-recurrence kernel for the fixed-kernel pencil
+`v-Zu` or the first-difference pencil `(Delta_Z u, Delta_Z v)`.
+
+### Proof
+
+Let `C` be a component with nonconstant fixed-kernel parameter `lambda_C` and
+function field `K=F(C)`.  Since the constant field is algebraically closed,
+`lambda_C` is transcendental over `F`, so `F(lambda_C)` is isomorphic to
+`F(Z)`.  Corollary 66 gives a nonzero vector
+
+```text
+D_C in K^{d+1}
+```
+
+with `M_d^K(lambda_C)D_C=0`.  Kernel dimension over a matrix field is unchanged
+after extending scalars, so `M_d^K(Z)` already has nonzero kernel over `F(Z)`.
+The full-column-minor formulation is the standard rank criterion, with the
+row-count-forced exception as stated.
+
+Conversely, a vector in `ker M_d^K(Z)` gives a rational denominator family over
+the parameter line.  Clearing common denominators in `Z` and restricting away
+from their poles gives a regular family.  If the root-free, primitive,
+order-`d`, and base-free open conditions are not identically violated, a
+nonempty open subset is a positive-dimensional landing family.
+
+The first-difference proof is identical using the stacked matrix `M_d^D(Z)` and
+the parameter `theta_C`.
+
 ## Non-Claims
 
 This note does not prove
@@ -6153,4 +6238,6 @@ exclude positive-dimensional primitive landing components. Corollary 66 turns
 those components into moving denominator certificates, but does not classify or
 bound those certificates. Corollary 67 identifies constant-parameter
 components with high-dimensional fixed-slice recurrence spaces; it does not
-bound the genuinely moving-parameter components.
+bound the genuinely moving-parameter components. Corollary 68 turns
+nonconstant components into persistent one-parameter kernels; it does not rule
+out those persistent kernels or prove the required open conditions are empty.

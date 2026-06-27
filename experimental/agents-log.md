@@ -360,6 +360,13 @@ Keep entries concise and link to the relevant files.
   fixed `lambda` gives `dim {D:R_{t+2}(D;v-lambda u)=0}>=2`, and fixed
   `theta` gives the analogous simultaneous
   `Delta_theta u, Delta_theta v` recurrence space of dimension at least `2`.
+  Nonconstant components descend to persistent one-parameter kernels: with
+  `Z` indeterminate, a nonconstant fixed-kernel component forces
+  `ker(D -> R_{t+2}(D;v-Zu)) != 0` over `F(Z)`, and a nonconstant
+  first-difference component forces the analogous stacked
+  `(Delta_Z u, Delta_Z v)` kernel over `F(Z)`.  Conversely such a generic
+  kernel gives a landing family when the root-free, primitive, order, and
+  base-free opens are nonempty.
 - **What to do next:** Bound or charge the unique-neighbor nondegenerate
   star-free shadow ledger, then charge the four base endpoint spaces, the
   resulting short-annihilator endpoint systems, finite-exception endpoint
@@ -368,7 +375,7 @@ Keep entries concise and link to the relevant files.
   low-dimensional common endpoint recurrence spaces, the corresponding
   primitive reciprocal-domain-pole-free denominator families, their endpoint
   collision charges, positive-dimensional moving denominator certificates,
-  nonconstant-parameter moving components, root-free multipliers, and the
+  persistent one-parameter recurrence kernels, root-free multipliers, and the
   common-root-free
   fixed-kernel and first-difference moving-certificate loci to
   fixed-slope/root-slice, quotient-periodic, endpoint, or active-codegree
