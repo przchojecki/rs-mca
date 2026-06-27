@@ -1105,6 +1105,36 @@ now asserts this arrangement containment and rank-stratified cover for
 repeated-root and infinity escapes, in addition to the earlier external-anchor
 checks.
 
+Define `B_arr(V,m)` to be this rank-stratified bound for a boundary
+arrangement with kernel `V` and required richness `m`.  For the active
+residual boundary anchors put
+
+```text
+B_boundary =
+    sum_{xi in F\D active} B_arr(V_ext(xi),j)
+  + sum_{xi in D active}   B_arr(V_rep(xi),j-1)
+  +                         B_arr(V_inf,j)        if infinity is active.
+```
+
+Then (BA1) gives the explicit escape bound
+
+```text
+|Z_esc| <= B_boundary.                         (BA2)
+```
+
+Combining (BA2) with the lifted-side recursion and the higher-slack
+root-slice reduction gives the audited all-line slack-two bound
+
+```text
+|AperSlope(f,g;2,j)| <= |Z_3| + (j+1)N_common + B_boundary.       (M1R4)
+```
+
+This is not yet the final M1 reserve-scale theorem: `B_boundary` may still be
+too crude if it counts large heavy flats.  Its role is to replace the
+unstructured escape term by a single explicit arrangement budget.  The
+remaining boundary work is now to prove quotient-aware or dimension-sensitive
+savings for `B_boundary`.
+
 ## External-Anchor Top-Coefficient Form
 
 The twisted one-row reduction has an equivalent interpolation form.  Let
@@ -1971,6 +2001,17 @@ The price is that `Z_3` is a larger raw higher-slack slope image than the
 actually peeled root-slice slope set.  The gain is conceptual: root slices are
 not a new obstruction type, but a `t=3`, degree-`j-1` core-locator problem.
 
+Using the boundary arrangement budget (BA2), this becomes the fully explicit
+audited reduction
+
+```text
+|AperSlope(f,g;2,j)| <= |Z_3| + (j+1)N_common + B_boundary.      (M1R4)
+```
+
+Thus the remaining proof inputs are a higher-slack slope-image bound for
+`Z_3`, a one-row common-base bound for `N_common`, and a quotient-aware
+boundary-arrangement bound for `B_boundary`.
+
 The middle term is not a new slack-two object.  Define the one-degree-up
 one-row locator fiber of a word `y` by
 
@@ -2074,6 +2115,9 @@ enumerates small cyclic-domain cases.  For each case it:
   `|AperSlope| <= |Z_root| + (j+1)N_common + |Z_esc|`;
 - checks the higher-slack root-slice reduction `Z_root subset Z_3` and the
   recursive bound `|AperSlope| <= |Z_3| + (j+1)N_common + |Z_esc|`;
+- computes the boundary arrangement budget `B_boundary` and asserts
+  `|Z_esc| <= B_boundary` and
+  `|AperSlope| <= |Z_3| + (j+1)N_common + B_boundary`;
 - reports the endpoint `t=1` locator-fiber counts `|Fib_1(f)|` and
   `|Fib_1(g)|`, and checks `N_common <= min(|Fib_1(f)|,|Fib_1(g)|)`;
 - checks the `F_13`, `n=12`, `j=4`, `t=2` boundary-only row as a counterexample

@@ -30,6 +30,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-27 - M1 boundary arrangement budget
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/m1/m1_all_line_hankel_aperiodic_packing.md`,
+  `experimental/scripts/verify_m1_all_line_hankel_aperiodic.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT / EXPERIMENTAL.
+- **What is being added:** The isolated escape slope image now has an explicit
+  rank-stratified boundary budget `B_boundary`, obtained by summing the
+  arrangement covers over active off-domain, repeated-root, and infinity
+  boundary anchors.  The note records
+  `|AperSlope(f,g;2,j)| <= |Z_3| + (j+1)N_common + B_boundary`.
+- **How it is useful:** This replaces the previously unbounded `|Z_esc|` term
+  in the recursive M1 reduction by a concrete heavy-flat ledger.  The
+  remaining boundary task is therefore a quotient-aware estimate for
+  `B_boundary`.
+- **What to do next:** Sharpen `B_boundary` by exploiting quotient charging,
+  fixed domain symmetries, or low-dimensional boundary kernels.
+
 ### 2026-06-27 - M1 all-boundary arrangement reduction
 
 - **Agent/model:** Codex.
