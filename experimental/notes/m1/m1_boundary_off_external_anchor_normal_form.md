@@ -6084,6 +6084,103 @@ nonempty open subset is a positive-dimensional landing family.
 The first-difference proof is identical using the stacked matrix `M_d^D(Z)` and
 the parameter `theta_C`.
 
+## Corollary 69: Persistent Pencils Force Endpoint Rank Failure
+
+Fix an order `d<h`.
+
+### Fixed-Kernel Pencil
+
+Let
+
+```text
+U_d(D)=R_{t+2}(D;u),        V_d(D)=R_{t+2}(D;v),
+```
+
+so that
+
+```text
+M_d^K(Z)=V_d-ZU_d.
+```
+
+Assume `d+1<=t+2`, so full column rank is row-count possible.  If
+
+```text
+ker M_d^K(Z) != 0        over F(Z),
+```
+
+then both endpoint maps fail to be injective:
+
+```text
+ker U_d != 0,        ker V_d != 0.
+```
+
+Equivalently, a persistent fixed-kernel denominator pencil of order `d` forces
+short endpoint annihilators for both `u` and `v`.
+
+### First-Difference Pencil
+
+Let
+
+```text
+B_d(D)=(R_{t+1}(D;u), R_{t+1}(D;v)),
+A_d(D)=(R_{t+1}(D;S u), R_{t+1}(D;S v)),
+```
+
+so that
+
+```text
+M_d^D(Z)=A_d-ZB_d.
+```
+
+Assume `d+1<=2(t+1)`, so full column rank is row-count possible.  If
+
+```text
+ker M_d^D(Z) != 0        over F(Z),
+```
+
+then both endpoint intersection maps fail to be injective:
+
+```text
+ker A_d != 0,        ker B_d != 0.
+```
+
+Equivalently, a persistent first-difference denominator pencil of order `d`
+forces a common short endpoint annihilator for `(S u,S v)` and a common short
+endpoint annihilator for `(u,v)`.
+
+At the endpoint-short threshold of Corollary 64, every order `d<h` satisfies
+the two row-count hypotheses above.  Therefore any persistent one-parameter
+kernel left by Corollary 68 forces failure of one of the four short endpoint
+injectivity checks from Corollary 53:
+
+```text
+H_{t+2,h-1}(u),        H_{t+2,h-1}(v),
+J_0^(h),               J_+^(h).
+```
+
+Consequently, if those four short endpoint systems are injective, then there
+are no positive-dimensional primitive rank-one landing components after the
+fixed-root, base endpoint, collision, and constant-slice charges.  In that
+case the primitive denominator contribution is only the finite Bezout ledger
+from Corollary 65 plus the multiplier ledger from Corollary 60.
+
+### Proof
+
+For the fixed-kernel pencil, `ker M_d^K(Z)!=0` and `d+1<=t+2` imply that every
+`(d+1) x (d+1)` minor of `V_d-ZU_d` vanishes as a polynomial in `Z`.  The
+constant coefficient of such a minor is the corresponding minor of `V_d`, and
+the top-degree coefficient is, up to sign, the corresponding minor of `U_d`.
+Thus all full-column minors of both `U_d` and `V_d` vanish, so neither endpoint
+map has full column rank.
+
+The first-difference argument is identical for the stacked pencil `A_d-ZB_d`.
+At the endpoint-short threshold, `d<h<=t+2`, so `d+1<=t+2` for fixed-kernel
+systems and `d+1<=t+2<=2(t+1)` for first-difference systems.  A kernel vector
+for any order `d<h` is also a nonzero vector in the corresponding order-`<h`
+short endpoint system, so injectivity of the four Corollary 53 systems rules
+out all such persistent kernels.  The final statement combines this with
+Corollaries 60, 65, 67, and 68.
+
 ## Non-Claims
 
 This note does not prove
@@ -6241,3 +6338,6 @@ components with high-dimensional fixed-slice recurrence spaces; it does not
 bound the genuinely moving-parameter components. Corollary 68 turns
 nonconstant components into persistent one-parameter kernels; it does not rule
 out those persistent kernels or prove the required open conditions are empty.
+Corollary 69 shows persistent kernels force endpoint rank failure in the
+row-count feasible range; it does not prove the four endpoint systems are
+always injective.

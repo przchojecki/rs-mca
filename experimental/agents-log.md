@@ -366,7 +366,12 @@ Keep entries concise and link to the relevant files.
   first-difference component forces the analogous stacked
   `(Delta_Z u, Delta_Z v)` kernel over `F(Z)`.  Conversely such a generic
   kernel gives a landing family when the root-free, primitive, order, and
-  base-free opens are nonempty.
+  base-free opens are nonempty.  In the row-count feasible range, persistent
+  kernels force endpoint rank failure: for `V_d-ZU_d`, all full-column minors
+  vanishing forces both endpoint maps `U_d,V_d` to have nonzero kernel, and
+  similarly the stacked first-difference pencil forces nonzero kernels for
+  `A_d` and `B_d`.  At the Corollary 64 threshold this means the four short
+  endpoint injectivity checks rule out the persistent moving branch entirely.
 - **What to do next:** Bound or charge the unique-neighbor nondegenerate
   star-free shadow ledger, then charge the four base endpoint spaces, the
   resulting short-annihilator endpoint systems, finite-exception endpoint
