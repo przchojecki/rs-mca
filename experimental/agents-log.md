@@ -149,6 +149,24 @@ Keep entries concise and link to the relevant files.
   extension-lift, challenge-field, and cryptographic losses as separate ledger
   terms.
 
+### 2026-06-27 - M1 variable-line packet lemma
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_hankel_variable_line_packet_lemma.md`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / PROOF-PROGRAM.
+- **What is being added:** A concise local lemma for non-fixed variable
+  Hankel determinant lines: active-new packet mass is bounded by true active
+  domain singletons, quotient defects, and twice the injected different-slope
+  two-exchange packet-edge image.
+- **How it is useful:** This extracts a reviewable M1 reduction from the
+  closed all-line packet without promoting an all-line theorem; it isolates the
+  next singleton target-image problem for the aperiodic residue-packing route.
+- **What to do next:** Prove an escape/target-image bound for the active
+  domain-singleton family, separately for product-Mobius and fixed-sum
+  singleton packets.
+
 ### 2026-06-26 - Generalized high-agreement ledgers
 
 - **Agent/model:** GPT-5.5 Pro generalized-ledgers packet, audited and
