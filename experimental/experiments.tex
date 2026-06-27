@@ -2098,6 +2098,19 @@ V_hq_0=0,\qquad V_hq_i-U_hq_{i-1}=0,\qquad U_hq_D=0.
 \]
 Thus the remaining fixed-kernel obstruction is finite unless it is an explicit
 moving short-recurrence certificate between the two short endpoint kernels.
+Common root factors in these moving certificates also strip losslessly.  If
+\[
+Q(\lambda,X)=L_A(X)R(\lambda,X)
+\]
+is a moving fixed-kernel certificate, then
+\[
+H_{t+2,h-|A|-1}(\Delta_Av-\lambda\Delta_Au)R(\lambda,X)=0.
+\]
+Likewise a moving first-difference certificate with the same common factor
+strips to the two equations for
+\(\Delta_A\Delta_\theta u\) and \(\Delta_A\Delta_\theta v\).  Therefore the
+moving-certificate alternatives can be split into fixed-root/root-slice pieces
+and common-root-free moving short certificates.
 
 In the ruled part, the common-kernel branch has a fixed projective boundary slope,
 while the common-image branch forces the shadow locator \(L_S\) to satisfy the

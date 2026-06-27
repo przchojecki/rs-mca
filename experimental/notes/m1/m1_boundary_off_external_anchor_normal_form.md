@@ -4818,6 +4818,80 @@ lowest power of `lambda` appearing in `Q` if necessary.  The final bound on
 `Lambda_{K,>b}` follows from Corollary 46, which gives
 `Lambda_{K,>b} subset Lambda_h`.
 
+## Corollary 52: Moving Short Certificates Have Lossless Common-Root Stripping
+
+Let `A=(alpha_1,...,alpha_e)` be a list of field elements, with `e<h`, and
+put `L_A` and `Delta_A` as in Corollary 49.
+
+Suppose a moving short fixed-kernel certificate has a common `L_A` factor:
+
+```text
+Q(lambda,X)=L_A(X)R(lambda,X),        deg_X R<h-e,
+```
+
+and satisfies the polynomial identity
+
+```text
+H_{t+2,h-1}(v-lambda u)Q(lambda,X)=0
+```
+
+over `F[lambda]`.  Then
+
+```text
+H_{t+2,h-e-1}(Delta_A v - lambda Delta_A u)R(lambda,X)=0.    (MoveStripK)
+```
+
+In particular, after stripping the full common `D`-root divisor of the moving
+certificate, the remaining fixed-kernel moving short certificate has no root in
+`D` common to all parameter values.
+
+Similarly, suppose a moving short first-difference certificate has a common
+`L_A` factor:
+
+```text
+Q(theta,X)=L_A(X)R(theta,X),        deg_X R<h-e,
+```
+
+and satisfies
+
+```text
+H_{t+1,h-1}(Delta_theta u)Q(theta,X)=0,
+H_{t+1,h-1}(Delta_theta v)Q(theta,X)=0
+```
+
+as polynomial identities in `theta`.  Then
+
+```text
+H_{t+1,h-e-1}(Delta_A Delta_theta u)R(theta,X)=0,
+H_{t+1,h-e-1}(Delta_A Delta_theta v)R(theta,X)=0.             (MoveStripD)
+```
+
+Thus common domain-root factors in the moving-certificate alternatives are not
+new obstructions: they are fixed-root/root-slice pieces plus lower-order moving
+certificates for differenced syndrome data.  The genuinely new moving
+short-certificate obstruction may be assumed common-root-free over `D`.
+
+### Proof
+
+Corollary 49 is an identity of coefficient vectors and therefore remains valid
+over the polynomial coefficient rings `F[lambda]` and `F[theta]`.
+
+For the fixed-kernel moving certificate, apply (Strip) with
+`w=v-lambda u` and with coefficients in `F[lambda]`.  Linearity of `Delta_A`
+over `F[lambda]` gives
+
+```text
+Delta_A(v-lambda u)=Delta_A v - lambda Delta_A u,
+```
+
+so the stripped identity is exactly (MoveStripK).
+
+For the first-difference moving certificate, apply (Strip) over `F[theta]`
+separately to `w=Delta_theta u` and `w=Delta_theta v`.  Since the difference
+operators commute, this gives (MoveStripD).  Taking `A` to be the full
+`D`-root divisor common to all coefficient polynomials of `Q` leaves a
+nonzero moving certificate with no common root in `D`.
+
 ## Non-Claims
 
 This note does not prove
@@ -4944,3 +5018,5 @@ first-difference short parameters with roots of common endpoint recurrences;
 it does not bound the dimension of that common recurrence space. Corollary 51
 turns fixed-kernel short parameters into a finite/persistent pencil dichotomy;
 it does not rule out the persistent moving short-recurrence certificate.
+Corollary 52 strips common domain-root factors from moving short certificates;
+it does not rule out the resulting common-root-free moving certificates.

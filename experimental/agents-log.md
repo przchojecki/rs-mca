@@ -282,15 +282,20 @@ Keep entries concise and link to the relevant files.
   now have the matching finite/persistent pencil dichotomy: either
   `|Lambda_h|<=h`, or every `h x h` minor of `V_h-lambda U_h` vanishes
   identically and there is a moving short kernel with coefficient ladder
-  `V_hq_0=0`, `V_hq_i-U_hq_{i-1}=0`, `U_hq_D=0`.
+  `V_hq_0=0`, `V_hq_i-U_hq_{i-1}=0`, `U_hq_D=0`.  Common root factors in
+  moving short certificates now strip losslessly too: if
+  `Q(parameter,X)=L_A(X)R(parameter,X)`, the certificate becomes the
+  corresponding lower-order moving certificate for `Delta_A`-differenced
+  syndrome data.  Thus the genuine moving-certificate obstruction can be
+  taken common-root-free over `D` after fixed-root/root-slice charges.
 - **What to do next:** Bound or charge the unique-neighbor nondegenerate
   star-free shadow ledger, then charge the four base endpoint spaces, the
   resulting short-annihilator endpoint systems, finite-exception endpoint
   systems, their projective short-locator landing varieties, the one-sided
   short endpoint annihilator failures, root-free short-annihilator families,
   low-dimensional common endpoint recurrence spaces, and the
-  fixed-kernel and first-difference moving-certificate loci to
-  fixed-slope/root-slice, quotient-periodic, endpoint, or active-codegree
+  common-root-free fixed-kernel and first-difference moving-certificate loci
+  to fixed-slope/root-slice, quotient-periodic, endpoint, or active-codegree
   ledgers.
 
 ### 2026-06-27 - Root-level paper PDF relocation
