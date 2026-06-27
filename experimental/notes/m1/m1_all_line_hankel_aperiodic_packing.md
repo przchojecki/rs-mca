@@ -747,6 +747,50 @@ anchor-slope fiber.  This is a multiplicity bound for one fiber, not a bound
 on the number of nonempty slope fibers.  The remaining task is still to bound
 how many slopes `z` have `F_{xi,z} != empty`.
 
+## Fixed-Anchor Rich-Point Arrangement
+
+The fixed-anchor problem has an exact projective-incidence form.  Fix
+`xi in F\D` and let `V_xi` be the vector space of degree `<=j+1`
+coefficient vectors `P` satisfying
+
+```text
+P(xi)=0,        H_{1,j+1}(u)P=0,        H_{1,j+1}(v)P=0.
+```
+
+For each domain point `x in D`, let
+
+```text
+R_x={ [P] in P(V_xi) : P(x)=0 }
+```
+
+be the corresponding root hyperplane in the projective common kernel.  Since a
+nonzero `P in V_xi` already has the root `xi`, it can vanish on at most `j`
+points of `D` unless it is zero.  Thus the fixed-anchor split locators are
+exactly the `j`-rich points of this arrangement:
+
+```text
+T subset D, |T|=j, P=(X-xi)L_T
+        <->  [P] in P(V_xi) lying on the j hyperplanes {R_x : x in T}.
+```
+
+On these rich points the slope map is the projective linear ratio
+
+```text
+[P] -> - H_{1,j+1}(u^xi)P / H_{1,j+1}(v^xi)P,
+```
+
+with the finite-slope condition `H_{1,j+1}(v^xi)P != 0`.  The residual
+off-domain boundary term is therefore not an arbitrary collection of isolated
+locators: it is the image, after quotient/root-slice residual filters, of the
+`j`-rich points in a root-hyperplane arrangement inside `P(V_xi)`.
+
+This is the incidence form of the remaining fixed-anchor M1 task.  In the
+`F_13`, `n=12`, `j=4` boundary row, the single anchor `xi=0` has
+`dim V_xi=4`, hence `|P(V_xi)|=2380`; among these projective points there are
+`39` four-rich points and `9` finite rich slopes.  Quotient charging removes
+the antipodal family, leaving the `24` residual rich points and `6` residual
+slopes recorded in the product model.
+
 ## External-Anchor Top-Coefficient Form
 
 The twisted one-row reduction has an equivalent interpolation form.  Let
@@ -1614,6 +1658,9 @@ enumerates small cyclic-domain cases.  For each case it:
 - verifies that every fixed `(anchor,slope)` fiber is one-exchange-free by
   checking disjointness of its `(j-1)`-cores, hence satisfies the packing
   bound `|F_{xi,z}| * j <= binom(n,j-1)`;
+- rewrites each fixed external-anchor term as a projective root-hyperplane
+  arrangement, checking the pinned common-kernel dimension, the `j`-rich
+  points, and their finite twisted slope image;
 - verifies the homogeneous projective residual lift ledger: every residual
   locator maps to the common one-row lifted Hankel kernel through
   `beta_0 X L_T-beta_1 L_T`, with finite anchors, repeated-root lifts,

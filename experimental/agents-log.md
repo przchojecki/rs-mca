@@ -30,6 +30,29 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-27 - M1 fixed-anchor rich-point arrangement reduction
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/m1/m1_all_line_hankel_aperiodic_packing.md`,
+  `experimental/scripts/verify_m1_all_line_hankel_aperiodic.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT / EXPERIMENTAL.
+- **What is being added:** For a fixed external anchor `xi`, the off-domain
+  boundary problem is rewritten as a projective root-hyperplane arrangement
+  inside the pinned common kernel
+  `P(xi)=H_{1,j+1}(u)P=H_{1,j+1}(v)P=0`.  Fixed-anchor split locators are
+  exactly the `j`-rich points, and the slope map is the projective linear
+  ratio from the twisted one-row forms.
+- **How it is useful:** This turns the remaining M1 boundary term from
+  anchor-slope bookkeeping into a concrete rich-point/slope-projection
+  incidence problem.  The verifier checks the incidence model directly; in
+  the `F_13` boundary row it finds `2380` projective kernel points, `39`
+  rich points, `9` finite rich slopes, and `24` residual rich classes after
+  quotient charging.
+- **What to do next:** Prove a quotient-aware bound for the finite slope image
+  of these rich points, or identify a counterexample family showing the
+  necessary reserve scale.
+
 ### 2026-06-27 - M1 residual slope-fiber packing bound
 
 - **Agent/model:** Codex.
