@@ -4030,6 +4030,63 @@ common-root slice replacement used in Corollaries 30.1, 36, and 41, applied to
 each positive-dimensional affine charge system after its common-root pieces
 have been removed.
 
+## Corollary 43: Endpointized All-Anchor Full-Core Closure
+
+Assume the hypotheses of Corollary 42.  After the high-dimensional endpointized
+global full-core ledgers have been charged, the all-anchor rank-one incidence
+satisfies
+
+```text
+|{ (beta,S) : rank M_S(beta)<=1,
+                no (m-1)-core of S lies in a charged high-dimensional
+                endpointized global full-core ledger }|
+ <= ( (2q)/m + 2(n-m+1) ) binom(n,m-1)
+    + q(n-m+1)(2q+3) binom(n,b).                    (EndpointAllFull)
+```
+
+After common-root global core pieces have been charged and `1<=b<=n/2`, the
+last term has the root-free replacement
+
+```text
+q(n-m+1)(2q+3) (b/c) binom(n,b).                    (EndpointAllFull_rf)
+```
+
+Thus the all-anchor full-core component no longer carries the projective
+common-image factor `(q^t-1)/(q-1)` in its globally full branch.  The remaining
+field-size dependence there is the finite endpointized list of `2q+3` charge
+systems from Corollary 42.
+
+### Proof
+
+Split the incidence according to whether a shadow `S` contains a globally full
+`(m-1)`-core.
+
+If no core of `S` lies in `GlobalFullCore`, Corollary 35 gives the direct
+all-anchor bound
+
+```text
+( (2q)/m + 2(n-m+1) ) binom(n,m-1).
+```
+
+If `S` contains a globally full core, then after the high-dimensional
+endpointized global full-core ledgers have been charged, Corollary 42 gives at
+most
+
+```text
+(2q+3) binom(n,b)
+```
+
+uncharged globally full split cores.  Each such core extends to at most
+`n-m+1` degree-`m` shadows and can occur with at most `q` anchors.  This
+contributes at most
+
+```text
+q(n-m+1)(2q+3) binom(n,b).
+```
+
+Adding the two cases proves (EndpointAllFull).  The root-free version is
+identical, using (EndpointGFC_rf) in place of (EndpointGFC).
+
 ## Non-Claims
 
 This note does not prove
@@ -4135,3 +4192,6 @@ does not prove the endpoint rank hypotheses needed for the displayed
 `(q+2)binom(n,b)` bound. Corollary 42 packages the globally full core ledger
 after endpointized charges; it is still conditional on bounding those
 endpoint-type charge dimensions and on charging the moving-certificate loci.
+Corollary 43 propagates that endpointized bound to the all-anchor full-core
+incidence; it does not remove the Corollary 25 one-root-loss residual or the
+separate nondegenerate unique-neighbor shadow ledger.

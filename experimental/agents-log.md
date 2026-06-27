@@ -240,10 +240,14 @@ Keep entries concise and link to the relevant files.
   finite fixed-kernel endpoint systems `K_lambda`, and the `q`
   first-difference endpoint systems `D_theta`, giving
   `(2q+3)binom(n,b)` under direction dimension `<=b`, with the usual root-free
-  replacement after common-root pieces are charged.
+  replacement after common-root pieces are charged.  This now propagates to the
+  all-anchor full-core incidence: after endpointized global charges,
+  `|Z_all^{endpoint,<=b}| <= ((2q)/m+2(n-m+1))binom(n,m-1)
+  + q(n-m+1)(2q+3)binom(n,b)`, with the final term gaining `b/c` after
+  common-root global core pieces are charged.
 - **What to do next:** Bound or charge the unique-neighbor nondegenerate
   star-free shadow ledger, then charge the remaining global ruled ledgers: the
-  endpointized global full-core ledgers and the moving-certificate loci, to
+  endpointized charge systems and moving-certificate loci, to
   fixed-slope/root-slice, quotient-periodic, endpoint, or active-codegree
   ledgers.
 
