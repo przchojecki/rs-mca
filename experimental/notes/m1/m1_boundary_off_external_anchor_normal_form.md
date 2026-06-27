@@ -2910,6 +2910,127 @@ Over `K=F(beta)`, persistent minor vanishing is equivalent to
 clearing denominators gives the polynomial moving endpoint-core directions.
 These are exactly (EndMK).  The converse is rank-nullity over `K`.
 
+## Corollary 32: Lower Fixed-Kernel Bad Anchor-Slope Pairs Are Determinantal
+
+Put `c=m-1` and fix `0<=b<c`.  For an anchor `beta in F` and a finite lower
+fixed-kernel slope `lambda in F`, let
+
+```text
+R_{beta,lambda}^core: F^c -> F^{2t}
+```
+
+be the homogeneous direction matrix on degree-`<c` core directions for
+
+```text
+(H(v)-lambda H(u))(X-beta)Q = 0,
+(H(v)-lambda H(u))(X-beta)XQ = 0.                    (CoreKer_pair)
+```
+
+Let
+
+```text
+e(beta,lambda)=dim ker R_{beta,lambda}^core
+```
+
+and define the bad anchor-slope locus
+
+```text
+B_{ker,>b}={ (beta,lambda) in F^2 : e(beta,lambda)>b }.
+```
+
+Then `B_{ker,>b}` is cut out by the `(c-b) x (c-b)` minors of
+`R_{beta,lambda}^core`.  Each entry of this matrix has bidegree at most `(1,1)`
+in `(beta,lambda)`, and each such minor has total degree at most `2(c-b)`.
+Consequently one of the following alternatives holds.
+
+```text
+finite pair-locus alternative:
+  |B_{ker,>b}| <= 2(c-b) q;
+
+two-parameter persistent lower-kernel alternative:
+  e(beta,lambda)>b for every (beta,lambda) in F^2.
+```
+
+More precisely, the finite pair-locus alternative holds whenever at least one
+`(c-b) x (c-b)` minor is not the zero polynomial in `F[beta,lambda]`.  If every
+such minor vanishes identically, then over `K=F(beta,lambda)` there are `b+1`
+independent moving core directions
+
+```text
+Q_0(beta,lambda),...,Q_b(beta,lambda) in F[beta,lambda]^c
+```
+
+satisfying
+
+```text
+(H(v)-lambda H(u))(X-beta)Q_i(beta,lambda,X)=0,
+(H(v)-lambda H(u))(X-beta)XQ_i(beta,lambda,X)=0.      (PairMK)
+```
+
+Conversely, `b+1` `K`-independent moving directions satisfying (PairMK) force
+the two-parameter persistent alternative.
+
+Thus, after charging the bad pair locus `B_{ker,>b}`, the uncharged finite
+fixed-kernel full-core ledger over all anchors and finite slopes contributes at
+most
+
+```text
+q^2 binom(n,b)
+```
+
+split cores, and at most
+
+```text
+q^2 (n-m+1) binom(n,b)
+```
+
+boundary shadows before the lower root-free refinement.  After common-root
+lower core pieces have been charged and `1<=b<=n/2`, the same term improves to
+
+```text
+q^2 (b/c) binom(n,b)
+```
+
+split cores.
+
+### Proof
+
+Expanding the two equations in (CoreKer_pair) gives
+
+```text
+(H(v)-lambda H(u))(X-beta)Q
+ = H(v)XQ - beta H(v)Q - lambda H(u)XQ + beta lambda H(u)Q,
+
+(H(v)-lambda H(u))(X-beta)XQ
+ = H(v)X^2Q - beta H(v)XQ
+   - lambda H(u)X^2Q + beta lambda H(u)XQ.
+```
+
+Therefore every entry of the direction matrix is bilinear in
+`(beta,lambda)`, with bidegree at most `(1,1)` and total degree at most `2`.
+The condition `e(beta,lambda)>b` is equivalent to
+
+```text
+rank R_{beta,lambda}^core < c-b,
+```
+
+and hence to the vanishing of all `(c-b) x (c-b)` minors.  These minors have
+total degree at most `2(c-b)`.
+
+If one minor is a nonzero polynomial, the common bad locus is contained in the
+zero set of that one polynomial.  The elementary two-variable finite-field
+Schwartz-Zippel bound gives at most `2(c-b)q` zeros in `F^2`, proving the finite
+pair-locus alternative.  If every minor vanishes identically, then the rank over
+`K=F(beta,lambda)` is `<c-b`, so the kernel over `K` has dimension at least
+`b+1`.  Choosing independent kernel vectors and clearing denominators gives
+(PairMK).  The converse is rank-nullity over `K`.
+
+Outside the charged bad pair locus, each fixed pair `(beta,lambda)` has
+direction dimension at most `b`, so Corollary 26 gives at most `binom(n,b)`
+split cores for that pair.  There are at most `q^2` anchor-slope pairs.  Each
+core extends to at most `n-m+1` boundary shadows.  The root-free improvement is
+Corollary 30.1 applied to each good pair.
+
 ## Non-Claims
 
 This note does not prove
@@ -2987,4 +3108,7 @@ subledgers have already been charged; it does not remove the Corollary 25
 one-root-loss residual.
 Corollary 31 bounds the number of endpoint-bad anchors only outside the
 persistent endpoint-anchor alternative; that persistent case remains an
-explicit moving-certificate ledger.
+explicit moving-certificate ledger. Corollary 32 does not prove that the
+two-parameter fixed-kernel bad pair locus is empty or small enough for M1 by
+itself; it makes that locus determinantal and separates the finite pair-locus
+case from the moving two-parameter certificate case.

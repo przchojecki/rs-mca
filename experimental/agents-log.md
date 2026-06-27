@@ -180,7 +180,13 @@ Keep entries concise and link to the relevant files.
   anchor-dichotomy: for each endpoint `w`, either at most `c-b` anchors have
   endpoint core dimension `>b`, or the affine endpoint-anchor pencil is
   persistently low-rank and admits moving endpoint-core certificates over
-  `F(beta)`.
+  `F(beta)`.  The lower finite fixed-kernel exceptions are also now global in
+  the anchor-slope plane: for `(beta,lambda)`, the lower direction matrix has
+  entries of bidegree at most `(1,1)`, so the locus with core direction dimension
+  `>b` is cut out by minors of total degree at most `2(c-b)`.  If it is not
+  identically persistent, it has at most `2(c-b)q` anchor-slope pairs; the
+  persistent case is recorded as moving two-parameter core certificates over
+  `F(beta,lambda)`.
 - **What to do next:** Bound or charge the unique-neighbor nondegenerate
   star-free shadow ledger, and charge the ruled exceptional low-rank loci to
   fixed-slope/root-slice, endpoint, projective, quotient-periodic, or
