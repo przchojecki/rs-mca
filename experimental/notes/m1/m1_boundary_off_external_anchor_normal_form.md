@@ -970,6 +970,66 @@ If at least one of these minors is a nonzero polynomial, then every
 the minors vanish identically, then `rank R_z < m-b` for every `z`, hence
 `d_z>b` for every `z`.
 
+## Corollary 13: Bounded-Rank Finite-Slope Closure After Exceptional Charges
+
+Fix `b<m`, and suppose the finite-exception alternative of Corollary 12 holds:
+
+```text
+Z_{>b} = { z in F : d_z > b },        |Z_{>b}| <= m-b.
+```
+
+Split the finite common-kernel shadow ledger as
+
+```text
+Sh_ker = Sh_ker^{<=b} union Sh_ker^{>b},
+```
+
+where `Sh_ker^{<=b}` contains the shadows assigned to slopes with `d_z<=b`,
+and `Sh_ker^{>b}` contains the shadows assigned to the exceptional slopes
+`Z_{>b}`. Then
+
+```text
+|Sh_ker^{<=b}| <= q binom(n,b).                     (BK)
+```
+
+Consequently, the bounded-rank finite common-kernel targets contribute at most
+
+```text
+q^2 binom(n,b)                                      (BKT)
+```
+
+to the reduced boundary-off target count.
+
+In particular, if `q<=n^B_F` and `b` is bounded independently of `n`, then the
+bounded-rank finite common-kernel residual is polynomial:
+
+```text
+|Boundary_off,ker^{<=b}| <= n^(2B_F+b).
+```
+
+Thus, away from the persistent low-rank alternative, the only finite-slope
+common-kernel shadows not closed by a bounded-rank estimate are the at most
+`m-b` exceptional fixed slopes. These are precisely the pieces that must be
+charged to the fixed-slope/root-slice ledger rather than left inside the
+aperiodic boundary-off residual.
+
+### Proof
+
+For each finite slope with `d_z<=b`, Corollary 11 gives
+
+```text
+|Sh_ker(z)| <= binom(n,d_z) <= binom(n,b).
+```
+
+There are at most `q` finite slopes, proving (BK).  Corollary 9 then allows at
+most `q` external anchors over each shadow, giving (BKT).  The displayed
+polynomial bound follows from `q<=n^B_F` and `binom(n,b)<=n^b`.
+
+The remaining finite slopes have `d_z>b`, hence lie in `Z_{>b}`; by the
+finite-exception alternative there are at most `m-b` of them.  No smallness
+claim is made for their split-shadow count here.  The conclusion is only that
+they have been isolated as a finite fixed-slope charge.
+
 ## Non-Claims
 
 This note does not prove
@@ -991,4 +1051,6 @@ fixed-slope or contained row-cut systems; it records the exact rank certificates
 needed for those ruled ledgers. Corollary 12 does not rule out the persistent
 low-rank alternative; it shows that this persistent alternative is the only way
 for the finite-slope row-rank obstruction to involve more than `m-b` slopes at
-a fixed rank threshold.
+a fixed rank threshold. Corollary 13 does not bound the exceptional high-rank
+fixed-slope shadows; it separates them from the bounded-rank residual so they
+can be charged to the fixed-slope/root-slice ledger.

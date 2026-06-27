@@ -65,6 +65,9 @@ Keep entries concise and link to the relevant files.
   For finite slopes, the low-rank locus also satisfies a determinantal
   dichotomy: at rank threshold `b`, either there are at most `m-b` exceptional
   slopes with `d_z>b`, or the row-cut pencil is persistently low-rank.
+  If the persistent alternative is absent, then after the exceptional slopes
+  are charged to the fixed-slope/root-slice ledger, the bounded-rank finite
+  common-kernel residual contributes at most `q^2 binom(n,b)` boundary targets.
 - **How it is useful:** This sharpens one of the two live residual objects in
   the non-fixed variable-line branch.  It does not prove the final M1 bound,
   but it turns the boundary image into a precise quadratic-anchor/ruled-branch
@@ -72,7 +75,8 @@ Keep entries concise and link to the relevant files.
   close this boundary-off piece in the polynomial-field regime.  It also
   isolates low-rank Hankel row-cut loci as the remaining ruled-branch
   obstructions and separates finite exceptional slopes from persistent
-  low-rank pencil degeneracy.
+  low-rank pencil degeneracy, giving a polynomial closure route for the
+  bounded-rank part.
 - **What to do next:** Bound the adjacent domain shadows in the nondegenerate
   branch and try to charge the ruled branch to fixed-slope/root-slice,
   contained/tangent, quotient-periodic, or active-codegree ledgers.
