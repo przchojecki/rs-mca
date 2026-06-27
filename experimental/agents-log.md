@@ -176,7 +176,11 @@ Keep entries concise and link to the relevant files.
   shows that, after common-root lower core pieces are charged, any positive
   direction dimension `e` contributes at most `(e/c) binom(n,e)` cores for
   `c=m-1`; hence the bounded-rank full-core term gains a `b/c` factor in the
-  range `1<=b<=n/2`.
+  range `1<=b<=n/2`.  The lower endpoint charges now also have an
+  anchor-dichotomy: for each endpoint `w`, either at most `c-b` anchors have
+  endpoint core dimension `>b`, or the affine endpoint-anchor pencil is
+  persistently low-rank and admits moving endpoint-core certificates over
+  `F(beta)`.
 - **What to do next:** Bound or charge the unique-neighbor nondegenerate
   star-free shadow ledger, and charge the ruled exceptional low-rank loci to
   fixed-slope/root-slice, endpoint, projective, quotient-periodic, or

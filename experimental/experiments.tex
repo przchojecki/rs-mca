@@ -1758,6 +1758,16 @@ most
 split cores, rather than \(\binom{n}{e}\).  Thus in the range
 \(1\le b\le n/2\), the bounded-rank term in the fixed-anchor closure gains a
 factor \(b/c\); the one-root-loss residual is unchanged.
+The endpoint charges themselves also have an anchor dichotomy.  For
+\(w\in\{u,v\}\), the lower endpoint direction matrix is affine in \(\beta\):
+\[
+R_w^{\rm core}(\beta)=R_{w,+}^{\rm core}-\beta R_{w,0}^{\rm core},
+\]
+corresponding to the two shifted systems
+\((H(w)XQ,H(w)X^2Q)\) and \((H(w)Q,H(w)XQ)\).  Hence either at most \(c-b\)
+anchors have endpoint core direction dimension \(>b\), or the endpoint-anchor
+pencil is persistently low-rank for every \(\beta\), with moving endpoint-core
+certificates over \(F(\beta)\).
 
 In the ruled part, the common-kernel branch has a fixed projective boundary slope,
 while the common-image branch forces the shadow locator \(L_S\) to satisfy the

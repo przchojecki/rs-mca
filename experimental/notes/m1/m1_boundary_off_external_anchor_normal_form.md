@@ -2793,6 +2793,123 @@ most `q` finite slopes, and `(q^t-1)/(q-1)` projective image lines gives the
 bounded-rank estimate.  Multiplying by the extension factor `n-m+1` and adding
 the unchanged Corollary 25 residual gives (FAC_RF).
 
+## Corollary 31: Lower Endpoint Bad Anchors Have A Finite-Exception Dichotomy
+
+Fix `w in {u,v}` and put `c=m-1`.  For each anchor `beta in F`, let
+
+```text
+R_w^core(beta): F^c -> F^{2t}
+```
+
+be the homogeneous direction matrix on degree-`<c` core directions for the
+lower endpoint system
+
+```text
+H(w)(X-beta)Q = 0,
+H(w)(X-beta)XQ = 0.                                (End_beta)
+```
+
+Let
+
+```text
+e_w(beta)=dim ker R_w^core(beta).
+```
+
+Fix `0<=b<c`, and define the bad-anchor endpoint locus
+
+```text
+B_{w,>b}={ beta in F : e_w(beta)>b }.
+```
+
+Then one of the following alternatives holds.
+
+```text
+finite-anchor alternative:
+  |B_{w,>b}| <= c-b;
+
+persistent endpoint-anchor alternative:
+  e_w(beta)>b for every beta in F.
+```
+
+More precisely, write
+
+```text
+R_w^core(beta)=R_{w,+}^core - beta R_{w,0}^core,
+```
+
+where `R_{w,0}^core` is the direction matrix for
+
+```text
+H(w)Q=0,        H(w)XQ=0,
+```
+
+and `R_{w,+}^core` is the direction matrix for
+
+```text
+H(w)XQ=0,       H(w)X^2Q=0.
+```
+
+If some `(c-b) x (c-b)` minor of `R_w^core(beta)` is not the zero polynomial
+in `beta`, then the finite-anchor alternative holds.  If every such minor
+vanishes identically, then the persistent endpoint-anchor alternative holds;
+in that case
+
+```text
+dim ker R_{w,0}^core > b,        dim ker R_{w,+}^core > b.   (EndCoeff)
+```
+
+The persistent alternative is also certificate-form.  Over `K=F(beta)`, there
+are `b+1` independent moving endpoint-core directions
+
+```text
+Q_0(beta),...,Q_b(beta) in F[beta]^c
+```
+
+satisfying
+
+```text
+H(w)(X-beta)Q_i(beta,X)=0,
+H(w)(X-beta)XQ_i(beta,X)=0.                         (EndMK)
+```
+
+Conversely, `b+1` `K`-independent moving directions satisfying (EndMK) force
+the persistent endpoint-anchor alternative.
+
+Thus, unless the endpoint-anchor pencil is persistently low-rank, each
+endpoint contributes at most `c-b` anchors to the charged endpoint part of
+Corollary 30.
+
+### Proof
+
+The identities
+
+```text
+(X-beta)Q = XQ - beta Q,
+(X-beta)XQ = X^2Q - beta XQ
+```
+
+show that the endpoint direction matrix has the displayed affine form in
+`beta`.  The condition `e_w(beta)>b` is equivalent to
+
+```text
+rank R_w^core(beta) < c-b,
+```
+
+and hence to the vanishing at `beta` of all `(c-b) x (c-b)` minors.  Each such
+minor is a polynomial of degree at most `c-b`.
+
+If one minor is nonzero, it has at most `c-b` roots, proving the
+finite-anchor alternative.  If every such minor is the zero polynomial, then
+the rank is `<c-b` for every `beta`, proving persistence.  The constant and
+top-degree coefficients of all `(c-b) x (c-b)` minors are, up to sign, the
+corresponding minors of `R_{w,+}^core` and `R_{w,0}^core`, so both coefficient
+endpoint matrices have rank `<c-b`.  This proves (EndCoeff).
+
+Over `K=F(beta)`, persistent minor vanishing is equivalent to
+`dim_K ker R_w^core(beta)>=b+1`.  Choosing `b+1` independent kernel vectors and
+clearing denominators gives the polynomial moving endpoint-core directions.
+These are exactly (EndMK).  The converse is rank-nullity over `K`.
+
 ## Non-Claims
 
 This note does not prove
@@ -2868,3 +2985,6 @@ explicit charged exceptional ledgers as separate obligations.
 Corollary 30.1 adds a root-free slice saving only after lower common-root core
 subledgers have already been charged; it does not remove the Corollary 25
 one-root-loss residual.
+Corollary 31 bounds the number of endpoint-bad anchors only outside the
+persistent endpoint-anchor alternative; that persistent case remains an
+explicit moving-certificate ledger.
