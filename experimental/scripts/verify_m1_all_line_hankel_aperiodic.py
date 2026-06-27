@@ -5098,6 +5098,41 @@ def verify_t3_same_slope_two_exchange_probe() -> dict[str, object]:
     return row
 
 
+def verify_t3_variable_new_slope_probe() -> dict[str, object]:
+    case = Case(
+        "F13_order12_j5_t3_variable_new_slope_probe",
+        p=13,
+        n=12,
+        j=5,
+        t=3,
+        charged_fiber_sizes=(2, 3, 4, 6),
+        seeds=(),
+    )
+    domain, _, _ = cyclic_domain(case.p, case.n)
+    f_values = (12, 4, 1, 0, 9, 4, 6, 6, 8, 5, 2, 11)
+    g_values = (3, 4, 7, 0, 3, 9, 7, 0, 1, 1, 11, 7)
+    f = dict(zip(domain, f_values, strict=True))
+    g = dict(zip(domain, g_values, strict=True))
+    row = verify_word_pair(case, "variable-new-slope-probe", f, g)
+    if row["aperiodic_locators"] != 48:
+        raise AssertionError("variable new-slope probe aperiodic count changed")
+    if row["two_exchange_det_full_planes"] != 1:
+        raise AssertionError("variable new-slope probe full-plane count changed")
+    if row["two_exchange_det_full_plane_lifts"] != 1:
+        raise AssertionError("variable new-slope probe full-plane lift changed")
+    if row["two_exchange_det_proper_lines"] != 32:
+        raise AssertionError("variable new-slope probe proper-line count changed")
+    if row["two_exchange_det_proper_line_product_mobius"] != 1:
+        raise AssertionError("variable new-slope probe lost its product-Mobius line")
+    if row["two_exchange_det_proper_line_variable_slope"] != 1:
+        raise AssertionError("variable new-slope probe lost its variable line")
+    if row["two_exchange_det_proper_line_variable_aperiodic_slopes"] != 3:
+        raise AssertionError("variable new-slope probe aperiodic variable slopes changed")
+    if row["two_exchange_det_proper_line_variable_new_slopes"] != 1:
+        raise AssertionError("variable new-slope probe lost the new residual slope")
+    return row
+
+
 def verify_two_exchange_line_geometry_models() -> dict[str, int]:
     p = 13
 
@@ -5215,6 +5250,7 @@ def main() -> None:
     j4_pair_product_floor_argument = verify_j4_pair_product_floor_argument()
     rank_one_probe = verify_rank_one_zero_slice_probe()
     t3_same_slope_probe = verify_t3_same_slope_two_exchange_probe()
+    t3_variable_new_slope_probe = verify_t3_variable_new_slope_probe()
     line_geometry_models = verify_two_exchange_line_geometry_models()
     print(
         "F13_order12_j4_t2_boundary_model: "
@@ -5884,6 +5920,19 @@ def main() -> None:
         "direct_checks={direct_checks}".format(**t3_same_slope_probe)
     )
     print(
+        "{name} seed={seed}: p={p} n={n} k={k} j={j} t={t} "
+        "aperiodic_locators={aperiodic_locators} "
+        "aperiodic_slopes={aperiodic_slopes} "
+        "two_exchange_det_full_planes={two_exchange_det_full_planes} "
+        "two_exchange_det_full_plane_lifts={two_exchange_det_full_plane_lifts} "
+        "two_exchange_det_proper_lines={two_exchange_det_proper_lines} "
+        "two_exchange_det_proper_line_product_mobius={two_exchange_det_proper_line_product_mobius} "
+        "two_exchange_det_proper_line_variable={two_exchange_det_proper_line_variable_slope} "
+        "two_exchange_det_proper_line_variable_aperiodic_slopes={two_exchange_det_proper_line_variable_aperiodic_slopes} "
+        "two_exchange_det_proper_line_variable_new_slopes={two_exchange_det_proper_line_variable_new_slopes} "
+        "direct_checks={direct_checks}".format(**t3_variable_new_slope_probe)
+    )
+    print(
         "two_exchange_line_geometry_models: "
         f"field={line_geometry_models['field']} "
         f"fixed_root_checks={line_geometry_models['fixed_root_checks']} "
@@ -5893,6 +5942,7 @@ def main() -> None:
     all_rows = [row for summary in summaries for row in summary["rows"]] + [
         rank_one_probe,
         t3_same_slope_probe,
+        t3_variable_new_slope_probe,
     ]
     max_aperiodic = max(row["aperiodic_slopes"] for row in all_rows)
     max_strict_degree = max(row["aperiodic_max_strict_degree"] for row in all_rows)
@@ -6393,12 +6443,13 @@ def main() -> None:
     )
     max_companion_checks = max(row["quadratic_companion_checks"] for row in all_rows)
     max_rank_one_zero = max(row["zero_det_direction_rank1_slices"] for row in all_rows)
-    total_lines = sum(len(summary["case"].seeds) for summary in summaries) + 2
+    total_lines = sum(len(summary["case"].seeds) for summary in summaries) + 3
     print(
         "m1_all_line_hankel_aperiodic: PASS "
         f"cases={len(summaries)} line_samples={total_lines} "
         f"rank_one_probes=1 "
         f"t3_same_slope_probes=1 "
+        f"t3_variable_new_slope_probes=1 "
         f"line_geometry_probes=1 "
         f"max_aperiodic_slopes={max_aperiodic} "
         f"max_one_exchange_pairs={max_one_exchange_pairs} "

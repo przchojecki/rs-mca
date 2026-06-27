@@ -30,6 +30,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-27 - M1 variable proper-line residual obstruction
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/m1/m1_all_line_hankel_aperiodic_packing.md`,
+  `experimental/scripts/verify_m1_all_line_hankel_aperiodic.py`,
+  `experimental/agents-log.md`.
+- **Status:** COUNTEREXAMPLE / AUDIT / EXPERIMENTAL.
+- **What is being added:** A deterministic `F_13,n=12,j=5,t=3` probe shows
+  that `Z_varline^new` need not be empty: after one full-plane lift and
+  fixed-root charges, one product-Mobius variable proper line leaves one new
+  residual slope.
+- **How it is useful:** This rules out the tempting stronger claim that the
+  variable proper-line branch always disappears after the current charges,
+  while keeping the obstruction localized to a one-dimensional
+  projective-linear slope image.
+- **What to do next:** Bound or recursively charge the residual
+  product-Mobius/fixed-sum proper-line slope image, rather than trying to
+  prove it is always empty.
+
 ### 2026-06-27 - M1 variable proper-line new-slope ledger
 
 - **Agent/model:** Codex.
@@ -45,9 +64,8 @@ Keep entries concise and link to the relevant files.
   lines create genuinely new M1 slopes after existing charges.  In the
   `F_13,n=12,j=5,t=3` probe, the variable proper-line aperiodic slope set has
   size `3`, but the new-slope count is `0`.
-- **What to do next:** Try to prove that `Z_varline^new` is always empty in
-  the low-slack Hankel normal form, or bound it by a quotient-aware
-  one-dimensional incidence estimate.
+- **What to do next:** Superseded by the variable proper-line residual
+  obstruction entry above; the empty-new-slope phenomenon is not structural.
 
 ### 2026-06-27 - M1 variable proper-line injectivity
 

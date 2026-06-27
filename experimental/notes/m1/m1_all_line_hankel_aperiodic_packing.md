@@ -584,10 +584,27 @@ just a ledger identity, but it makes the remaining product-Mobius/fixed-sum
 branch measurable: only `Z_varline^new` would be a genuinely new
 two-exchange line contribution after the current charges.
 
-In the `F_13`, `n=12`, `j=5`, `t=3` probe, `Z_varline={4,5,9}` and
-`Z_varline^new` is empty.  Thus the two variable proper lines contribute no
-new slope values beyond the already charged root/full/fixed-root ledgers in
-this audit row.
+In the same-slope `F_13`, `n=12`, `j=5`, `t=3` probe, `Z_varline={4,5,9}`
+and `Z_varline^new` is empty.  A separate deterministic probe shows this
+emptiness is not structural.  In that row there are `48` aperiodic locators,
+one constant full determinant plane lifting to `H_{5,3}`, and `32` proper
+determinant lines.  The proper branch has one product-Mobius variable line;
+its aperiodic slope image has size `3`, and one of those slopes remains in
+`Z_varline^new` after root/full-plane/fixed-root charges.  Thus the current
+charging ledger localizes the residual obstruction but does not eliminate it:
+the next M1 step must bound or recursively charge the product-Mobius/fixed-sum
+variable proper-line residual.
+
+Concretely, the residual witness has core `R={1,6,8}` and line equation
+`s+8p=3` in the elementary pair coordinates.  This is the product-Mobius
+involution
+
+```text
+(x-8)(y-8)=1.
+```
+
+Its aperiodic domain-pair slopes are `{1,8,9}`; the current root/full/fixed-root
+charges cover `{1,8}`, leaving the single new residual slope `9`.
 
 ## Different-Slope One-Exchange Quadratic Slice
 
@@ -2940,7 +2957,15 @@ this probe, below the asserted degree-two maximum.  Both variable proper lines
 are slope-injective: each has one contained pole, `12` finite line slopes,
 and `3` actual aperiodic domain-pair slope values.  Their union has `3`
 aperiodic slope values, all already charged by root-slice/full-plane/fixed-root
-ledgers, so the variable proper-line new-slope count is `0`.
+ledgers, so the variable proper-line new-slope count is `0` in this row.
+A companion variable-new-slope probe has `48` aperiodic locators, one
+constant full determinant plane, `32` proper determinant lines, one variable
+product-Mobius proper line, `3` variable-line aperiodic slopes, and one
+new slope after the current charges.  The witness line is `s+8p=3` over the
+core `{1,6,8}`, equivalently `(x-8)(y-8)=1`; its aperiodic slopes are
+`{1,8,9}` and only `9` is new.  This is the counterexample-first check: the
+residual variable proper-line branch is real, but it is now isolated to a
+single one-dimensional projective-linear slope image in the audited window.
 
 The `F_13`, `n=12`, `j=4`, `t=2` row is kept as a boundary-only counterexample
 to the tempting squarefree-absorption shortcut.  In all four deterministic
