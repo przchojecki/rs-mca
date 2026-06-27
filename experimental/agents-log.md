@@ -30,6 +30,27 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-27 - M1 polynomial-field boundary closure
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/m1/m1_all_line_hankel_aperiodic_packing.md`,
+  `experimental/scripts/verify_m1_all_line_hankel_aperiodic.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT / EXPERIMENTAL.
+- **What is being added:** The isolated boundary escape term is bounded by
+  active projective boundary anchors:
+  `|Z_esc| <= (|F|+1)A_boundary <= (|F|+1)^2`.  The note records the resulting
+  recursive reduction
+  `|AperSlope| <= |Z_3| + (j+1)N_common + (|F|+1)A_boundary`.
+- **How it is useful:** In the polynomial-field window this removes boundary
+  escapes as an obstruction to Przemek's all-line aperiodic packing target,
+  leaving the higher-slack slope image and one-row common-base terms as the
+  main remaining inputs.  The full-domain monomial floors show the field-size
+  factor is unavoidable in general.
+- **What to do next:** Focus on polynomial bounds for `Z_3` and `N_common`,
+  while using the sharper boundary arrangement budgets only for reserve-scale
+  refinements.
+
 ### 2026-06-27 - M1 boundary slope-image budget
 
 - **Agent/model:** Codex.

@@ -1168,6 +1168,50 @@ This refinement is invisible in rows where all heavy flats are points or
 projective lines, but it prevents higher-dimensional heavy planes and larger
 flats from being charged by their full point count.
 
+## Polynomial-Field Boundary Closure
+
+There is also a coarser but more global boundary consequence.  Let
+`A_boundary` be the number of active projective boundary anchors after the
+quotient, tangent/contained, and root-slice charges:
+
+```text
+A_boundary =
+    #{xi in F\D : Z_ext(xi) nonempty}
+  + #{xi in D   : Z_rep(xi) nonempty}
+  + 1_{Z_inf nonempty}.
+```
+
+For each fixed boundary anchor, the corresponding escape slopes are the image
+of a projective linear ratio on a subset of one projective kernel.  Hence one
+anchor contributes at most `|F|+1` projective slope values, and therefore at
+most `|F|+1` finite values.  Since the possible finite off-domain anchors,
+repeated anchors, and the infinity anchor together number at most `|F|+1`,
+
+```text
+|Z_esc| <= (|F|+1)A_boundary <= (|F|+1)^2.        (BA4)
+```
+
+Combining (BA4) with the recursive slack-two reduction gives
+
+```text
+|AperSlope(f,g;2,j)| <= |Z_3| + (j+1)N_common
+                         + (|F|+1)A_boundary
+                       <= |Z_3| + (j+1)N_common
+                         + (|F|+1)^2.             (M1R6)
+```
+
+Thus in the polynomial-field window `|F| <= n^C`, the isolated boundary term
+is automatically polynomial in `n`.  The remaining nontrivial M1 inputs for a
+polynomial all-line packing theorem are then the higher-slack slope image
+`Z_3` and the one-row/common-base term `N_common`; sharper boundary-arrangement
+work is only needed for reserve-scale constants or for field-size regimes not
+controlled by `|F|=poly(n)`.
+
+The field-size factor in (BA4) is real.  The full-domain monomial boundary
+families below have one active external anchor carrying all nonzero slopes for
+infinite prime families, so no q-independent `O(A_boundary)` escape theorem
+can hold after quotient charging.
+
 ## External-Anchor Top-Coefficient Form
 
 The twisted one-row reduction has an equivalent interpolation form.  Let
@@ -2162,6 +2206,9 @@ enumerates small cyclic-domain cases.  For each case it:
 - computes the slope-image boundary budget `B_boundary^slope` by charging each
   heavy flat by at most `|F|+1` slope values, and asserts the sharper
   `|AperSlope| <= |Z_3| + (j+1)N_common + B_boundary^slope`;
+- computes the active-anchor boundary budget
+  `(|F|+1)A_boundary <= (|F|+1)^2` and asserts the polynomial-field reduction
+  `|AperSlope| <= |Z_3| + (j+1)N_common + (|F|+1)A_boundary`;
 - reports the endpoint `t=1` locator-fiber counts `|Fib_1(f)|` and
   `|Fib_1(g)|`, and checks `N_common <= min(|Fib_1(f)|,|Fib_1(g)|)`;
 - checks the `F_13`, `n=12`, `j=4`, `t=2` boundary-only row as a counterexample

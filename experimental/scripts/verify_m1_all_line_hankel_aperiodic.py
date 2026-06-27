@@ -615,8 +615,13 @@ def root_slice_profile(
             "root_slice_residual_recursion_bound": 0,
             "root_slice_residual_boundary_arrangement_bound": 0,
             "root_slice_residual_boundary_slope_bound": 0,
+            "root_slice_residual_boundary_active_anchors": 0,
+            "root_slice_residual_boundary_anchor_slope_bound": 0,
+            "root_slice_residual_boundary_field_slope_bound": 0,
             "root_slice_recursive_arrangement_bound": 0,
             "root_slice_recursive_boundary_slope_bound": 0,
+            "root_slice_recursive_boundary_anchor_slope_bound": 0,
+            "root_slice_recursive_boundary_field_slope_bound": 0,
             "root_slice_lifted_u_t1_cores": 0,
             "root_slice_lifted_v_t1_cores": 0,
             "root_slice_lifted_common_cores": 0,
@@ -1654,11 +1659,26 @@ def root_slice_profile(
         residual_lifted_slope_set & residual_escape_slope_set
     )
     residual_escape_new_slopes = len(residual_escape_slope_set - residual_lifted_slope_set)
+    residual_boundary_active_anchors = (
+        len(residual_external_anchor_locators)
+        + len(residual_repeated_anchor_locators)
+        + (1 if residual_infinity_projective_classes else 0)
+    )
+    if residual_boundary_active_anchors > p + 1:
+        raise AssertionError("boundary active anchors exceeded the projective line")
+    residual_boundary_anchor_slope_bound = residual_boundary_active_anchors * (p + 1)
+    residual_boundary_field_slope_bound = (p + 1) * (p + 1)
     lifted_core_slope_bound = (j + 1) * lifted_common_cores
     residual_recursion_bound = lifted_core_slope_bound + len(residual_escape_slope_set)
     residual_arrangement_bound = lifted_core_slope_bound + residual_boundary_arrangement_bound
     residual_boundary_slope_bound = (
         lifted_core_slope_bound + residual_boundary_slope_arrangement_bound
+    )
+    residual_anchor_slope_bound = (
+        lifted_core_slope_bound + residual_boundary_anchor_slope_bound
+    )
+    residual_field_slope_bound = (
+        lifted_core_slope_bound + residual_boundary_field_slope_bound
     )
     if len(residual_lifted_slope_set) > lifted_common_core_residual_faces:
         raise AssertionError("lifted residual slopes exceeded lifted residual faces")
@@ -1666,6 +1686,10 @@ def root_slice_profile(
         raise AssertionError("lifted residual faces exceeded the common-core face bound")
     if len(residual_slope_set) > residual_recursion_bound:
         raise AssertionError("residual slope image exceeded lifted-recursion bound")
+    if len(residual_escape_slope_set) > residual_boundary_anchor_slope_bound:
+        raise AssertionError("escape slopes exceeded boundary active-anchor bound")
+    if len(residual_escape_slope_set) > residual_boundary_field_slope_bound:
+        raise AssertionError("escape slopes exceeded boundary field-size bound")
     if len(residual_escape_slope_set) > residual_boundary_arrangement_bound:
         raise AssertionError("escape slopes exceeded boundary arrangement bound")
     if len(residual_escape_slope_set) > residual_boundary_slope_arrangement_bound:
@@ -1674,6 +1698,10 @@ def root_slice_profile(
         raise AssertionError("residual slopes exceeded boundary arrangement reduction")
     if len(residual_slope_set) > residual_boundary_slope_bound:
         raise AssertionError("residual slopes exceeded boundary slope-image reduction")
+    if len(residual_slope_set) > residual_anchor_slope_bound:
+        raise AssertionError("residual slopes exceeded boundary active-anchor reduction")
+    if len(residual_slope_set) > residual_field_slope_bound:
+        raise AssertionError("residual slopes exceeded boundary field-size reduction")
     total_reduction_bound = len(root_slice_slope_set) + residual_recursion_bound
     if len(aperiodic_slope_set) > total_reduction_bound:
         raise AssertionError("aperiodic slope image exceeded t=2 reduction bound")
@@ -1688,6 +1716,16 @@ def root_slice_profile(
     )
     if len(aperiodic_slope_set) > recursive_boundary_slope_bound:
         raise AssertionError("aperiodic slope image exceeded boundary-slope recursive bound")
+    recursive_anchor_slope_bound = (
+        len(root_slice_t3_slope_set) + residual_anchor_slope_bound
+    )
+    if len(aperiodic_slope_set) > recursive_anchor_slope_bound:
+        raise AssertionError("aperiodic slope image exceeded active-anchor recursive bound")
+    recursive_field_slope_bound = (
+        len(root_slice_t3_slope_set) + residual_field_slope_bound
+    )
+    if len(aperiodic_slope_set) > recursive_field_slope_bound:
+        raise AssertionError("aperiodic slope image exceeded field-size recursive bound")
 
     top_packet_overlap_pairs = 0
     top_packet_overlap_max = 0
@@ -1847,8 +1885,17 @@ def root_slice_profile(
         "root_slice_residual_boundary_slope_bound": (
             residual_boundary_slope_arrangement_bound
         ),
+        "root_slice_residual_boundary_active_anchors": residual_boundary_active_anchors,
+        "root_slice_residual_boundary_anchor_slope_bound": (
+            residual_boundary_anchor_slope_bound
+        ),
+        "root_slice_residual_boundary_field_slope_bound": (
+            residual_boundary_field_slope_bound
+        ),
         "root_slice_recursive_arrangement_bound": recursive_arrangement_bound,
         "root_slice_recursive_boundary_slope_bound": recursive_boundary_slope_bound,
+        "root_slice_recursive_boundary_anchor_slope_bound": recursive_anchor_slope_bound,
+        "root_slice_recursive_boundary_field_slope_bound": recursive_field_slope_bound,
         "root_slice_lifted_u_t1_cores": lifted_u_t1_cores,
         "root_slice_lifted_v_t1_cores": lifted_v_t1_cores,
         "root_slice_lifted_common_cores": lifted_common_cores,
@@ -2473,11 +2520,26 @@ def verify_word_pair(
         "root_slice_residual_boundary_slope_bound": (
             root_profile["root_slice_residual_boundary_slope_bound"]
         ),
+        "root_slice_residual_boundary_active_anchors": (
+            root_profile["root_slice_residual_boundary_active_anchors"]
+        ),
+        "root_slice_residual_boundary_anchor_slope_bound": (
+            root_profile["root_slice_residual_boundary_anchor_slope_bound"]
+        ),
+        "root_slice_residual_boundary_field_slope_bound": (
+            root_profile["root_slice_residual_boundary_field_slope_bound"]
+        ),
         "root_slice_recursive_arrangement_bound": (
             root_profile["root_slice_recursive_arrangement_bound"]
         ),
         "root_slice_recursive_boundary_slope_bound": (
             root_profile["root_slice_recursive_boundary_slope_bound"]
+        ),
+        "root_slice_recursive_boundary_anchor_slope_bound": (
+            root_profile["root_slice_recursive_boundary_anchor_slope_bound"]
+        ),
+        "root_slice_recursive_boundary_field_slope_bound": (
+            root_profile["root_slice_recursive_boundary_field_slope_bound"]
         ),
         "root_slice_lifted_u_t1_cores": root_profile["root_slice_lifted_u_t1_cores"],
         "root_slice_lifted_v_t1_cores": root_profile["root_slice_lifted_v_t1_cores"],
@@ -2801,11 +2863,26 @@ def verify_case(case: Case) -> dict[str, object]:
         "max_root_slice_residual_boundary_slope_bound": max(
             row["root_slice_residual_boundary_slope_bound"] for row in rows
         ),
+        "max_root_slice_residual_boundary_active_anchors": max(
+            row["root_slice_residual_boundary_active_anchors"] for row in rows
+        ),
+        "max_root_slice_residual_boundary_anchor_slope_bound": max(
+            row["root_slice_residual_boundary_anchor_slope_bound"] for row in rows
+        ),
+        "max_root_slice_residual_boundary_field_slope_bound": max(
+            row["root_slice_residual_boundary_field_slope_bound"] for row in rows
+        ),
         "max_root_slice_recursive_arrangement_bound": max(
             row["root_slice_recursive_arrangement_bound"] for row in rows
         ),
         "max_root_slice_recursive_boundary_slope_bound": max(
             row["root_slice_recursive_boundary_slope_bound"] for row in rows
+        ),
+        "max_root_slice_recursive_boundary_anchor_slope_bound": max(
+            row["root_slice_recursive_boundary_anchor_slope_bound"] for row in rows
+        ),
+        "max_root_slice_recursive_boundary_field_slope_bound": max(
+            row["root_slice_recursive_boundary_field_slope_bound"] for row in rows
         ),
         "max_root_slice_lifted_u_t1_cores": max(
             row["root_slice_lifted_u_t1_cores"] for row in rows
@@ -3653,8 +3730,13 @@ def main() -> None:
                 "root_residual_recursion_bound={root_slice_residual_recursion_bound} "
                 "root_residual_boundary_arrangement_bound={root_slice_residual_boundary_arrangement_bound} "
                 "root_residual_boundary_slope_bound={root_slice_residual_boundary_slope_bound} "
+                "root_residual_boundary_active_anchors={root_slice_residual_boundary_active_anchors} "
+                "root_residual_boundary_anchor_slope_bound={root_slice_residual_boundary_anchor_slope_bound} "
+                "root_residual_boundary_field_slope_bound={root_slice_residual_boundary_field_slope_bound} "
                 "root_recursive_arrangement_bound={root_slice_recursive_arrangement_bound} "
                 "root_recursive_boundary_slope_bound={root_slice_recursive_boundary_slope_bound} "
+                "root_recursive_boundary_anchor_slope_bound={root_slice_recursive_boundary_anchor_slope_bound} "
+                "root_recursive_boundary_field_slope_bound={root_slice_recursive_boundary_field_slope_bound} "
                 "lifted_u_t1_cores={root_slice_lifted_u_t1_cores} "
                 "lifted_v_t1_cores={root_slice_lifted_v_t1_cores} "
                 "lifted_common_cores={root_slice_lifted_common_cores} "
@@ -3780,8 +3862,13 @@ def main() -> None:
             f"max_root_residual_recursion_bound={summary['max_root_slice_residual_recursion_bound']} "
             f"max_root_residual_boundary_arrangement_bound={summary['max_root_slice_residual_boundary_arrangement_bound']} "
             f"max_root_residual_boundary_slope_bound={summary['max_root_slice_residual_boundary_slope_bound']} "
+            f"max_root_residual_boundary_active_anchors={summary['max_root_slice_residual_boundary_active_anchors']} "
+            f"max_root_residual_boundary_anchor_slope_bound={summary['max_root_slice_residual_boundary_anchor_slope_bound']} "
+            f"max_root_residual_boundary_field_slope_bound={summary['max_root_slice_residual_boundary_field_slope_bound']} "
             f"max_root_recursive_arrangement_bound={summary['max_root_slice_recursive_arrangement_bound']} "
             f"max_root_recursive_boundary_slope_bound={summary['max_root_slice_recursive_boundary_slope_bound']} "
+            f"max_root_recursive_boundary_anchor_slope_bound={summary['max_root_slice_recursive_boundary_anchor_slope_bound']} "
+            f"max_root_recursive_boundary_field_slope_bound={summary['max_root_slice_recursive_boundary_field_slope_bound']} "
             f"max_lifted_u_t1_cores={summary['max_root_slice_lifted_u_t1_cores']} "
             f"max_lifted_v_t1_cores={summary['max_root_slice_lifted_v_t1_cores']} "
             f"max_lifted_common_cores={summary['max_root_slice_lifted_common_cores']} "
@@ -3893,8 +3980,13 @@ def main() -> None:
         "root_residual_recursion_bound={root_slice_residual_recursion_bound} "
         "root_residual_boundary_arrangement_bound={root_slice_residual_boundary_arrangement_bound} "
         "root_residual_boundary_slope_bound={root_slice_residual_boundary_slope_bound} "
+        "root_residual_boundary_active_anchors={root_slice_residual_boundary_active_anchors} "
+        "root_residual_boundary_anchor_slope_bound={root_slice_residual_boundary_anchor_slope_bound} "
+        "root_residual_boundary_field_slope_bound={root_slice_residual_boundary_field_slope_bound} "
         "root_recursive_arrangement_bound={root_slice_recursive_arrangement_bound} "
         "root_recursive_boundary_slope_bound={root_slice_recursive_boundary_slope_bound} "
+        "root_recursive_boundary_anchor_slope_bound={root_slice_recursive_boundary_anchor_slope_bound} "
+        "root_recursive_boundary_field_slope_bound={root_slice_recursive_boundary_field_slope_bound} "
         "lifted_u_t1_cores={root_slice_lifted_u_t1_cores} "
         "lifted_v_t1_cores={root_slice_lifted_v_t1_cores} "
         "lifted_common_cores={root_slice_lifted_common_cores} "
@@ -4128,11 +4220,26 @@ def main() -> None:
     max_residual_boundary_slope_bound = max(
         row["root_slice_residual_boundary_slope_bound"] for row in all_rows
     )
+    max_residual_boundary_active_anchors = max(
+        row["root_slice_residual_boundary_active_anchors"] for row in all_rows
+    )
+    max_residual_boundary_anchor_slope_bound = max(
+        row["root_slice_residual_boundary_anchor_slope_bound"] for row in all_rows
+    )
+    max_residual_boundary_field_slope_bound = max(
+        row["root_slice_residual_boundary_field_slope_bound"] for row in all_rows
+    )
     max_recursive_arrangement_bound = max(
         row["root_slice_recursive_arrangement_bound"] for row in all_rows
     )
     max_recursive_boundary_slope_bound = max(
         row["root_slice_recursive_boundary_slope_bound"] for row in all_rows
+    )
+    max_recursive_boundary_anchor_slope_bound = max(
+        row["root_slice_recursive_boundary_anchor_slope_bound"] for row in all_rows
+    )
+    max_recursive_boundary_field_slope_bound = max(
+        row["root_slice_recursive_boundary_field_slope_bound"] for row in all_rows
     )
     max_lifted_u_t1_cores = max(row["root_slice_lifted_u_t1_cores"] for row in all_rows)
     max_lifted_v_t1_cores = max(row["root_slice_lifted_v_t1_cores"] for row in all_rows)
@@ -4256,8 +4363,13 @@ def main() -> None:
         f"max_root_residual_recursion_bound={max_residual_recursion_bound} "
         f"max_root_residual_boundary_arrangement_bound={max_residual_boundary_arrangement_bound} "
         f"max_root_residual_boundary_slope_bound={max_residual_boundary_slope_bound} "
+        f"max_root_residual_boundary_active_anchors={max_residual_boundary_active_anchors} "
+        f"max_root_residual_boundary_anchor_slope_bound={max_residual_boundary_anchor_slope_bound} "
+        f"max_root_residual_boundary_field_slope_bound={max_residual_boundary_field_slope_bound} "
         f"max_root_recursive_arrangement_bound={max_recursive_arrangement_bound} "
         f"max_root_recursive_boundary_slope_bound={max_recursive_boundary_slope_bound} "
+        f"max_root_recursive_boundary_anchor_slope_bound={max_recursive_boundary_anchor_slope_bound} "
+        f"max_root_recursive_boundary_field_slope_bound={max_recursive_boundary_field_slope_bound} "
         f"max_lifted_u_t1_cores={max_lifted_u_t1_cores} "
         f"max_lifted_v_t1_cores={max_lifted_v_t1_cores} "
         f"max_lifted_common_cores={max_lifted_common_cores} "
