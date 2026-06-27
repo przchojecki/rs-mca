@@ -1420,6 +1420,48 @@ packets with `m_W=2` are isolated at triangle level, while every surviving
 triangle and every large local clique is carried by a slope-injective
 `(j+1)`-top packet.
 
+## Residual Component Theorem
+
+The preceding local statements combine into an exact component theorem for the
+`t=2` residual one-exchange graph.  Let `G_res` have vertices the residual
+aperiodic locators left after quotient-periodic charging and root-slice
+peeling, and join two vertices when their supports have strict overlap
+`>k`, equivalently when their `j`-point complements differ by one exchange.
+Then every connected component of `G_res` is one of the following:
+
+1. an isolated residual locator; or
+2. the full clique on the residual `j`-faces of a unique squarefree
+   `(j+1)`-set `W subset D` satisfying
+   `H_{1,j+1}(u)ell_W=H_{1,j+1}(v)ell_W=0`.
+
+In case (2), the component is exactly one projective lifted-kernel fiber and
+one top packet, and its vertices have pairwise distinct slopes.  Every
+projective boundary lift, including off-domain external-anchor lifts, repeated
+root lifts, and infinity lifts, is in case (1).
+
+The proof is the ledger assembled above.  The common companion anchor puts all
+neighbors of a residual locator in the single packet obtained by adjoining its
+anchor.  The no-star-triangle and top-packet identities make each nontrivial
+component a clique inside one `(j+1)`-packet.  The projective lift-fiber ledger
+identifies that packet with one squarefree lifted-kernel fiber, while boundary
+projective fibers are singleton fibers and hence isolated.  Finally,
+root-slice peeling removes all same-slope residual edges, so every nontrivial
+component is slope-injective.
+
+Consequently the residual `t=2` slope image has no hidden high-overlap graph
+structure left to control.  It splits into slope-injective lifted-core clique
+components and isolated escape vertices:
+
+```text
+Z_res =
+  union_{squarefree lifted cores W} Z_W
+  union Z_iso,
+```
+
+where `|Z_W|` is exactly the number of residual faces of `W`.  The remaining
+M1 work is therefore a counting/slope-image problem for these lifted cores and
+isolated boundary escapes, not a general Johnson-graph packing problem.
+
 ## Verifier
 
 The companion verifier
@@ -1467,6 +1509,10 @@ enumerates small cyclic-domain cases.  For each case it:
   the lift-fiber ledger: boundary fibers are singleton, nontrivial fibers are
   squarefree in-domain top packets, and the fiber pair count equals the
   residual strict edge count;
+- computes the connected components of the residual one-exchange graph and
+  verifies the component theorem: every nontrivial component is one
+  slope-injective squarefree lifted-core clique, and every projective boundary
+  lift is isolated;
 - checks the `F_13`, `n=12`, `j=4`, `t=2` boundary-only row as a counterexample
   to absorbing all residual slopes into squarefree lifted-core fibers;
 - checks the same boundary-only row as a counterexample to bounding boundary

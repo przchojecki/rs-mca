@@ -30,6 +30,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-27 - M1 residual component theorem
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/m1/m1_all_line_hankel_aperiodic_packing.md`,
+  `experimental/scripts/verify_m1_all_line_hankel_aperiodic.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT / EXPERIMENTAL.
+- **What is being added:** In the `t=2` M1 residual one-exchange graph, after
+  quotient-periodic charging and root-slice peeling, every nontrivial
+  connected component is exactly one slope-injective squarefree lifted-core
+  clique.  Projective boundary lifts, including off-domain external-anchor
+  escapes, repeated-root lifts, and infinity lifts, are isolated vertices.
+- **How it is useful:** This turns the remaining local M1 packing problem into
+  a count of lifted-core clique faces plus isolated boundary escapes, rather
+  than an arbitrary Johnson-graph collision problem.
+- **What to do next:** Use this component theorem to seek an upper bound for
+  the number of lifted common cores with residual faces and for the isolated
+  fixed-anchor boundary slope image.
+
 ### 2026-06-27 - M1 j=3 cubic-character residual floor
 
 - **Agent/model:** Codex.

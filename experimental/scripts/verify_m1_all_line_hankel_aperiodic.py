@@ -950,6 +950,75 @@ def root_slice_profile(
         != len(residual_projective_lift_boundary_indices)
     ):
         raise AssertionError("boundary projective lift singleton count missed escapes")
+
+    residual_component_count = 0
+    residual_nontrivial_components = 0
+    residual_isolated_components = 0
+    residual_boundary_isolated_components = 0
+    residual_component_clique_edges = 0
+    residual_component_max = 0
+    visited_components: set[int] = set()
+    for start in range(len(residual_rows)):
+        if start in visited_components:
+            continue
+        stack = [start]
+        component: set[int] = set()
+        visited_components.add(start)
+        while stack:
+            idx = stack.pop()
+            component.add(idx)
+            for neighbor in residual_adj[idx]:
+                if neighbor not in visited_components:
+                    visited_components.add(neighbor)
+                    stack.append(neighbor)
+        residual_component_count += 1
+        residual_component_max = max(residual_component_max, len(component))
+        if len(component) == 1:
+            residual_isolated_components += 1
+            idx = next(iter(component))
+            if idx in residual_projective_lift_boundary_indices:
+                residual_boundary_isolated_components += 1
+            continue
+
+        residual_nontrivial_components += 1
+        edge_count = sum(len(residual_adj[idx] & component) for idx in component) // 2
+        expected_edges = len(component) * (len(component) - 1) // 2
+        if edge_count != expected_edges:
+            raise AssertionError("residual component was not a clique")
+        residual_component_clique_edges += edge_count
+        if component & residual_projective_lift_boundary_indices:
+            raise AssertionError("boundary projective lift appeared in a nontrivial component")
+        if component - residual_projective_lift_squarefree_indices:
+            raise AssertionError("nontrivial component was not squarefree lifted")
+        keys = {residual_projective_lift_keys[idx] for idx in component}
+        if len(keys) != 1:
+            raise AssertionError("nontrivial component did not have one projective lift")
+        lift_key = next(iter(keys))
+        if lift_key is None or residual_projective_lift_fibers[lift_key] != component:
+            raise AssertionError("nontrivial component was not one projective lift fiber")
+        union = set()
+        for idx in component:
+            union.update(residual_rows[idx][0])
+        top_packet = tuple(sorted(union))
+        if len(top_packet) != j + 1:
+            raise AssertionError("nontrivial component did not have one top packet")
+        if residual_top_packets.get(top_packet) != component:
+            raise AssertionError("nontrivial component disagreed with top-packet ledger")
+        top_locator = locator(top_packet, p)
+        if hankel_apply(u, 1, j + 1, top_locator, p)[0] != 0:
+            raise AssertionError("nontrivial component missed numerator lifted gate")
+        if hankel_apply(v, 1, j + 1, top_locator, p)[0] != 0:
+            raise AssertionError("nontrivial component missed denominator lifted gate")
+        slopes = {residual_rows[idx][1] for idx in component}
+        if len(slopes) != len(component):
+            raise AssertionError("nontrivial component was not slope-injective")
+    if residual_nontrivial_components != len(residual_top_packets):
+        raise AssertionError("residual components missed a top packet")
+    if residual_component_clique_edges != residual_strict_pairs:
+        raise AssertionError("residual component cliques did not account for every edge")
+    if residual_boundary_isolated_components != len(residual_projective_lift_boundary_indices):
+        raise AssertionError("boundary projective lift components were not all isolated")
+
     residual_slope_set = {slope for _, slope in residual_rows}
     residual_lifted_slope_set = {
         residual_rows[idx][1] for idx in residual_anchor_lifted_face_indices
@@ -1004,6 +1073,14 @@ def root_slice_profile(
         "root_slice_residual_top_packet_incidence_max": max(top_packet_incidences, default=0),
         "root_slice_residual_top_packet_overlap_pairs": top_packet_overlap_pairs,
         "root_slice_residual_top_packet_overlap_max": top_packet_overlap_max,
+        "root_slice_residual_components": residual_component_count,
+        "root_slice_residual_nontrivial_components": residual_nontrivial_components,
+        "root_slice_residual_isolated_components": residual_isolated_components,
+        "root_slice_residual_boundary_isolated_components": (
+            residual_boundary_isolated_components
+        ),
+        "root_slice_residual_component_max": residual_component_max,
+        "root_slice_residual_component_clique_edges": residual_component_clique_edges,
         "root_slice_residual_common_companion_checks": common_companion_checks,
         "root_slice_residual_top_lift_gate_checks": top_lift_gate_checks,
         "root_slice_residual_top_anchor_checks": top_anchor_checks,
@@ -1519,6 +1596,22 @@ def verify_word_pair(
         "root_slice_residual_top_packet_overlap_max": (
             root_profile["root_slice_residual_top_packet_overlap_max"]
         ),
+        "root_slice_residual_components": root_profile["root_slice_residual_components"],
+        "root_slice_residual_nontrivial_components": (
+            root_profile["root_slice_residual_nontrivial_components"]
+        ),
+        "root_slice_residual_isolated_components": (
+            root_profile["root_slice_residual_isolated_components"]
+        ),
+        "root_slice_residual_boundary_isolated_components": (
+            root_profile["root_slice_residual_boundary_isolated_components"]
+        ),
+        "root_slice_residual_component_max": (
+            root_profile["root_slice_residual_component_max"]
+        ),
+        "root_slice_residual_component_clique_edges": (
+            root_profile["root_slice_residual_component_clique_edges"]
+        ),
         "root_slice_residual_common_companion_checks": (
             root_profile["root_slice_residual_common_companion_checks"]
         ),
@@ -1764,6 +1857,24 @@ def verify_case(case: Case) -> dict[str, object]:
         ),
         "max_root_slice_residual_top_packet_overlap": max(
             row["root_slice_residual_top_packet_overlap_max"] for row in rows
+        ),
+        "max_root_slice_residual_components": max(
+            row["root_slice_residual_components"] for row in rows
+        ),
+        "max_root_slice_residual_nontrivial_components": max(
+            row["root_slice_residual_nontrivial_components"] for row in rows
+        ),
+        "max_root_slice_residual_isolated_components": max(
+            row["root_slice_residual_isolated_components"] for row in rows
+        ),
+        "max_root_slice_residual_boundary_isolated_components": max(
+            row["root_slice_residual_boundary_isolated_components"] for row in rows
+        ),
+        "max_root_slice_residual_component_size": max(
+            row["root_slice_residual_component_max"] for row in rows
+        ),
+        "max_root_slice_residual_component_clique_edges": max(
+            row["root_slice_residual_component_clique_edges"] for row in rows
         ),
         "max_root_slice_residual_common_companion_checks": max(
             row["root_slice_residual_common_companion_checks"] for row in rows
@@ -2627,6 +2738,12 @@ def main() -> None:
                 "root_residual_top_packet_incidence_max={root_slice_residual_top_packet_incidence_max} "
                 "root_residual_top_packet_overlap_pairs={root_slice_residual_top_packet_overlap_pairs} "
                 "root_residual_top_packet_overlap_max={root_slice_residual_top_packet_overlap_max} "
+                "root_residual_components={root_slice_residual_components} "
+                "root_residual_nontrivial_components={root_slice_residual_nontrivial_components} "
+                "root_residual_isolated_components={root_slice_residual_isolated_components} "
+                "root_residual_boundary_isolated_components={root_slice_residual_boundary_isolated_components} "
+                "root_residual_component_max={root_slice_residual_component_max} "
+                "root_residual_component_clique_edges={root_slice_residual_component_clique_edges} "
                 "root_residual_common_companion_checks={root_slice_residual_common_companion_checks} "
                 "root_residual_top_lift_gate_checks={root_slice_residual_top_lift_gate_checks} "
                 "root_residual_top_anchor_checks={root_slice_residual_top_anchor_checks} "
@@ -2726,6 +2843,12 @@ def main() -> None:
             f"max_root_residual_top_packet_incidence={summary['max_root_slice_residual_top_packet_incidence']} "
             f"max_root_residual_top_packet_overlap_pairs={summary['max_root_slice_residual_top_packet_overlap_pairs']} "
             f"max_root_residual_top_packet_overlap={summary['max_root_slice_residual_top_packet_overlap']} "
+            f"max_root_residual_components={summary['max_root_slice_residual_components']} "
+            f"max_root_residual_nontrivial_components={summary['max_root_slice_residual_nontrivial_components']} "
+            f"max_root_residual_isolated_components={summary['max_root_slice_residual_isolated_components']} "
+            f"max_root_residual_boundary_isolated_components={summary['max_root_slice_residual_boundary_isolated_components']} "
+            f"max_root_residual_component_size={summary['max_root_slice_residual_component_size']} "
+            f"max_root_residual_component_clique_edges={summary['max_root_slice_residual_component_clique_edges']} "
             f"max_root_residual_common_companion_checks={summary['max_root_slice_residual_common_companion_checks']} "
             f"max_root_residual_top_lift_gate_checks={summary['max_root_slice_residual_top_lift_gate_checks']} "
             f"max_root_residual_top_anchor_checks={summary['max_root_slice_residual_top_anchor_checks']} "
@@ -2815,6 +2938,12 @@ def main() -> None:
         "root_residual_top_packet_incidence_max={root_slice_residual_top_packet_incidence_max} "
         "root_residual_top_packet_overlap_pairs={root_slice_residual_top_packet_overlap_pairs} "
         "root_residual_top_packet_overlap_max={root_slice_residual_top_packet_overlap_max} "
+        "root_residual_components={root_slice_residual_components} "
+        "root_residual_nontrivial_components={root_slice_residual_nontrivial_components} "
+        "root_residual_isolated_components={root_slice_residual_isolated_components} "
+        "root_residual_boundary_isolated_components={root_slice_residual_boundary_isolated_components} "
+        "root_residual_component_max={root_slice_residual_component_max} "
+        "root_residual_component_clique_edges={root_slice_residual_component_clique_edges} "
         "root_residual_common_companion_checks={root_slice_residual_common_companion_checks} "
         "root_residual_top_lift_gate_checks={root_slice_residual_top_lift_gate_checks} "
         "root_residual_top_anchor_checks={root_slice_residual_top_anchor_checks} "
@@ -2903,6 +3032,24 @@ def main() -> None:
     )
     max_residual_top_packet_overlap = max(
         row["root_slice_residual_top_packet_overlap_max"] for row in all_rows
+    )
+    max_residual_components = max(
+        row["root_slice_residual_components"] for row in all_rows
+    )
+    max_residual_nontrivial_components = max(
+        row["root_slice_residual_nontrivial_components"] for row in all_rows
+    )
+    max_residual_isolated_components = max(
+        row["root_slice_residual_isolated_components"] for row in all_rows
+    )
+    max_residual_boundary_isolated_components = max(
+        row["root_slice_residual_boundary_isolated_components"] for row in all_rows
+    )
+    max_residual_component_size = max(
+        row["root_slice_residual_component_max"] for row in all_rows
+    )
+    max_residual_component_clique_edges = max(
+        row["root_slice_residual_component_clique_edges"] for row in all_rows
     )
     max_residual_common_companion_checks = max(
         row["root_slice_residual_common_companion_checks"] for row in all_rows
@@ -3076,6 +3223,12 @@ def main() -> None:
         f"max_root_residual_top_packet_incidence={max_residual_top_packet_incidence} "
         f"max_root_residual_top_packet_overlap_pairs={max_residual_top_packet_overlap_pairs} "
         f"max_root_residual_top_packet_overlap={max_residual_top_packet_overlap} "
+        f"max_root_residual_components={max_residual_components} "
+        f"max_root_residual_nontrivial_components={max_residual_nontrivial_components} "
+        f"max_root_residual_isolated_components={max_residual_isolated_components} "
+        f"max_root_residual_boundary_isolated_components={max_residual_boundary_isolated_components} "
+        f"max_root_residual_component_size={max_residual_component_size} "
+        f"max_root_residual_component_clique_edges={max_residual_component_clique_edges} "
         f"max_root_residual_common_companion_checks={max_residual_common_companion_checks} "
         f"max_root_residual_top_lift_gate_checks={max_residual_top_lift_gate_checks} "
         f"max_root_residual_top_anchor_checks={max_residual_top_anchor_checks} "
