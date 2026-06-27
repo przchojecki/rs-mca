@@ -3756,6 +3756,98 @@ which is precisely the row set of `H_{t+r,c-1}(w)Q`.  Hence the stacked
 shift system and the deeper Hankel system impose the same equations.  Applying
 the identity to `w=v-lambda u` gives the fixed-kernel pencil statement.
 
+## Corollary 38.2: Consecutive Fixed-Kernel Charges Have No Extra Slope Loss
+
+Keep `0<=b<c`, let `r>=0`, and put
+
+```text
+G_u^(r)=H_{t+r,c-1}(u),        G_v^(r)=H_{t+r,c-1}(v).
+```
+
+For a finite slope `lambda`, let
+
+```text
+G_lambda^(r)=G_v^(r)-lambda G_u^(r)
+            =H_{t+r,c-1}(v-lambda u),
+```
+
+and write
+
+```text
+g_lambda^(r)=dim ker G_lambda^(r).
+```
+
+The bad finite-slope set
+
+```text
+E_{r,>b}={ lambda in F : g_lambda^(r)>b }
+```
+
+has the following dichotomy.
+
+```text
+finite consecutive-slope alternative:
+  |E_{r,>b}| <= c-b;
+
+persistent consecutive-slope alternative:
+  g_lambda^(r)>b for every lambda.
+```
+
+More precisely, if some `(c-b) x (c-b)` minor of `G_lambda^(r)` is not the
+zero polynomial in `lambda`, the finite alternative holds.  If every such
+minor vanishes identically, then both deeper endpoint maps have direction
+dimension `>b`:
+
+```text
+dim ker G_u^(r)>b,        dim ker G_v^(r)>b.
+```
+
+In the persistent case there are `b+1` independent moving kernels over
+`F(lambda)`.  For a single nonzero moving kernel
+
+```text
+Q(lambda)=q_0+q_1 lambda+...+q_D lambda^D,
+```
+
+after dividing by the first nonzero power of `lambda` if necessary, its
+coefficients satisfy the deeper endpoint ladder
+
+```text
+G_v^(r) q_0 = 0,
+G_v^(r) q_i - G_u^(r) q_{i-1} = 0        for 1<=i<=D,
+G_u^(r) q_D = 0.                                      (FrontierLadder_r)
+```
+
+Thus a consecutive fixed-kernel frontier stack has the same finite exceptional
+slope cost `c-b` as the three-shift case.  Iterating the frontier does not
+introduce a new multiplicative slope loss; the only persistent alternative is
+again a deeper endpoint-rank failure plus an explicit moving-kernel ladder.
+
+### Proof
+
+By Corollary 38.1, the consecutive fixed-kernel stack is exactly the single
+deeper pencil `G_lambda^(r)=G_v^(r)-lambda G_u^(r)`.  The condition
+`g_lambda^(r)>b` is equivalent to `rank G_lambda^(r)<c-b`, hence to the
+vanishing of all `(c-b) x (c-b)` minors of this matrix.  Each such minor is a
+polynomial in `lambda` of degree at most `c-b`.
+
+If one minor is nonzero, it has at most `c-b` roots, giving the finite
+alternative.  If all these minors vanish identically, then the constant and
+top-degree coefficients of each minor show that all `(c-b) x (c-b)` minors of
+both `G_v^(r)` and `G_u^(r)` vanish.  Therefore both endpoint maps have kernel
+dimension greater than `b`.
+
+Over `F(lambda)`, persistent vanishing of all `(c-b) x (c-b)` minors means
+`dim ker G_lambda^(r)>=b+1`.  Clearing denominators gives moving kernels.
+Substituting `Q(lambda)=sum_i q_i lambda^i` into
+
+```text
+(G_v^(r)-lambda G_u^(r))Q(lambda)=0
+```
+
+and comparing powers of `lambda` gives (FrontierLadder_r), after the same
+initial-power division used in Corollary 37.
+
 ## Corollary 39: Three-Shift Common-Image Lines Are Shift-Persistent Or Endpoint
 
 Keep `c=m-1` and assume `t>=2`.  For a nonzero image vector `y in F^t`, define
@@ -6677,9 +6769,11 @@ ledgers with deeper Hankel windows; it does not prove those deeper windows have
 large rank in every instance. Corollary 38.1 shows that consecutive frontier
 shifts are lossless identities; it does not supply the lower-depth rank,
 injectivity, or endpoint-charge bounds consumed by those identities.
-Corollary 39 reduces the non-shift-persistent common-image lines to the deeper
-endpoint intersection; it still leaves that intersection and the `q+1`
-extended geometric shift lines to be charged.
+Corollary 38.2 gives the same finite/persistent dichotomy for consecutive
+fixed-kernel slope charges; it does not bound the deeper endpoint kernels in
+the persistent alternative. Corollary 39 reduces the non-shift-persistent
+common-image lines to the deeper endpoint intersection; it still leaves that
+intersection and the `q+1` extended geometric shift lines to be charged.
 Corollary 40 identifies those shift-persistent lines with first-difference
 endpoint intersections; it does not prove all those endpoint intersections
 have small dimension without a separate endpoint or quotient-periodic charge.

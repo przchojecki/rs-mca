@@ -224,7 +224,11 @@ Keep entries concise and link to the relevant files.
   identity now has the general consecutive-shift form
   `H_{t,c+r-1}(w)X^iQ=0` for `0<=i<=r` iff `H_{t+r,c-1}(w)Q=0`, so a
   consecutive frontier stack consumes a deeper endpoint rank bound once rather
-  than introducing a per-shift algebraic loss.  The common-image reduction is
+  than introducing a per-shift algebraic loss.  The finite-slope charge now has
+  the matching no-loss dichotomy: the bad set for
+  `H_{t+r,c-1}(v-lambda u)` has size at most `c-b`, unless the deeper endpoint
+  maps for `u` and `v` both have kernel dimension `>b` and a moving-kernel
+  endpoint ladder appears.  The common-image reduction is
   now stable under the same consecutive shifts: the sliding space in
   `F^{t+r}` is nonzero only on the same `q+1` extended geometric shift lines,
   so off that curve the stack is the deeper endpoint intersection and on the

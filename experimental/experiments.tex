@@ -1877,6 +1877,18 @@ Thus a consecutive frontier descent adds \(r\) Hankel rows and removes \(r\)
 locator degrees without a per-shift algebraic loss; any lower-depth rank or
 endpoint charge bound for the deeper window is consumed once by the whole
 shift stack.
+The finite-slope charge over such a consecutive stack has the same no-loss
+form.  For
+\[
+  G_\lambda^{(r)}=H_{t+r,c-1}(v-\lambda u),
+\]
+the high-dimensional slope set
+\(\{\lambda:\dim\ker G_\lambda^{(r)}>b\}\) has size at most \(c-b\), unless
+all \((c-b)\times(c-b)\) minors vanish identically in \(\lambda\).  In that
+persistent case both deeper endpoint maps \(H_{t+r,c-1}(u)\) and
+\(H_{t+r,c-1}(v)\) have kernel dimension \(>b\), and a moving kernel satisfies
+the same endpoint ladder between those deeper windows.  Thus iterating the
+frontier does not introduce a multiplicative finite-slope loss.
 The three-shift common-image ledger has a parallel sliding-window reduction.
 For a projective image line \([y]\), let \(W_y\subseteq \F^{t+2}\) be the set
 of length-\((t+2)\) vectors whose three consecutive length-\(t\) windows all
