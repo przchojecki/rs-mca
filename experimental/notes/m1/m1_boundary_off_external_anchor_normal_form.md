@@ -4716,6 +4716,60 @@ The final statement follows from Corollary 40.8 applied at `r_0`.  Since every
 deeper root-free residual witness already lies in the bottom witness set,
 charging the bottom primitive denominator targets charges the whole ladder.
 
+## Corollary 40.11: Bottom Residual Charges Close A Finite Frontier Ladder
+
+Let `R` be a nonempty finite set of positive consecutive-frontier depths and
+put `r_0=min R`.  Work after the fixed-root/root-slice short recurrence pieces
+from Corollary 40.6 have been charged.  Charge also the four bottom root-free
+recurrence families
+
+```text
+RF_{r_0}(u),        RF_{r_0}(v),
+RF_{r_0}(u,v),      RF_{r_0}(Su,Sv).
+```
+
+Then there are no uncharged failures of the four short frontier checks at any
+depth `r in R`.  Hence the remaining finite fixed-kernel and consecutive
+common-image frontier ledgers at all depths in `R` close after charging only
+the bottom finite parameter sets
+
+```text
+E_{r_0,>b} union Theta_{r_0,>b},
+```
+
+which have total size at most `2h` on the uncharged ledger.
+
+If `h<=t+r_0`, the four bottom root-free recurrence charges may equivalently
+be recorded as the four bottom primitive reciprocal-domain-pole-free
+denominator targets from Corollary 40.8, together with their certificate
+multiplier ledgers when witnesses rather than parameter systems are counted.
+
+Thus a finite nested frontier ladder is reduced to explicit bottom-rung
+obligations:
+
+1. fixed-root/root-slice short recurrence charges;
+2. four bottom root-free primitive denominator targets;
+3. at most `2h` bottom finite parameter systems.
+
+No further `|R|` factor, projective image-line factor, or per-rung multiplier
+is introduced by the consecutive frontier descent.
+
+### Proof
+
+After fixed-root/root-slice recurrence pieces are charged, Corollary 40.7 says
+that every remaining short-frontier failure is root-free.  Corollary 40.10
+says every deeper root-free residual witness lies in the corresponding bottom
+family.  Therefore charging the four bottom root-free recurrence families
+removes all uncharged short-frontier failures at every depth in `R`.
+
+On the remaining ledger, the four short frontier checks hold at `r_0`, and
+therefore at every deeper `r in R` by Corollary 40.9.  The same corollary
+says that the deeper bad finite parameter sets are contained in the bottom
+ones.  Corollary 40.4 gives the bottom bound
+`|E_{r_0,>b}|+|Theta_{r_0,>b}|<=2h`, and Corollary 40.3 closes the uncharged
+finite fixed-kernel and consecutive common-image frontier ledgers at each
+depth.  The half-window reformulation is Corollary 40.8 at `r_0`.
+
 ## Corollary 41: The Global Common-Image Ledger Is Endpoint-Only
 
 Let `GCI` be the set of monic degree-`c` split core locators `L` for which
@@ -7373,6 +7427,9 @@ Corollary 40.9 uses nesting to charge a finite ladder at its bottom rung when
 the bottom short checks hold; it does not prove those bottom short checks.
 Corollary 40.10 shows root-free residual witnesses also nest to the bottom
 rung; it does not bound the bottom root-free residual families.
+Corollary 40.11 packages a bottom-rung closure criterion for finite nested
+frontier ladders; it does not solve the bottom root-free primitive denominator
+targets.
 Corollary 41 packages the common-image branch into endpoint-type ledgers; it
 does not prove the endpoint rank hypotheses needed for the displayed
 `(q+2)binom(n,b)` bound. Corollary 42 packages the globally full core ledger

@@ -267,7 +267,13 @@ Keep entries concise and link to the relevant files.
   The root-free residual families themselves nest too: a deeper root-free
   recurrence witness is already a bottom-depth witness for the same one of
   `u`, `v`, `(u,v)`, or `(S u,S v)`, so the bottom primitive denominator
-  targets control the whole ladder in the half-window range.
+  targets control the whole ladder in the half-window range.  These pieces now
+  give a bottom-rung closure criterion: fixed-root/root-slice short recurrence
+  charges, four bottom root-free recurrence families, and at most `2h` bottom
+  finite parameter systems close a finite nested frontier ladder without any
+  `|R|`, projective-image-line, or per-rung multiplier; in the half-window
+  range the root-free recurrence charges can be recorded as primitive
+  denominator targets.
   The common-image three-shift ledger now has the analogous sliding-window
   reduction: for an image line `[y]`, the allowed deeper residuals form a space
   `W_y` of dimension at most one, nonzero only on the `q+1` extended geometric
