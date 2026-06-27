@@ -307,15 +307,22 @@ Keep entries concise and link to the relevant files.
   `sum_i q_i w_{a+i}=0`; after root stripping, the unresolved endpoint-short
   obstruction is a `D`-root-free denominator recurrence for `v-lambda u` or a
   common `D`-root-free denominator recurrence for `(Delta_theta u,
-  Delta_theta v)`.
+  Delta_theta v)`.  Equivalently, with
+  `Q^*(T)=q_e+q_{e-1}T+...+q_0T^e` and
+  `W_w(T)=sum_a w_aT^a`, the equation `H_{s,h-1}(w)Q=0` is the truncated
+  rational-denominator certificate
+  `Q^*(T)W_w(T)=N(T) mod T^{e+s}` with `deg N<e`.  Thus the root-free
+  endpoint-short failures are Pade/residue-denominator objects for the
+  combined or differenced syndrome series.
 - **What to do next:** Bound or charge the unique-neighbor nondegenerate
   star-free shadow ledger, then charge the four base endpoint spaces, the
   resulting short-annihilator endpoint systems, finite-exception endpoint
   systems, their projective short-locator landing varieties, the one-sided
   short endpoint annihilator failures, root-free short-annihilator families,
-  low-dimensional common endpoint recurrence spaces, and the
-  common-root-free fixed-kernel and first-difference moving-certificate loci
-  to fixed-slope/root-slice, quotient-periodic, endpoint, or active-codegree
+  low-dimensional common endpoint recurrence spaces, the corresponding
+  truncated rational-denominator families, and the common-root-free
+  fixed-kernel and first-difference moving-certificate loci to
+  fixed-slope/root-slice, quotient-periodic, endpoint, or active-codegree
   ledgers.
 
 ### 2026-06-27 - Root-level paper PDF relocation

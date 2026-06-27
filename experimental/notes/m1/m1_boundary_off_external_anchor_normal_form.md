@@ -5188,6 +5188,75 @@ applying the recurrence equivalence to `w=v-lambda u` and to
 the union of these alternatives with the fixed-root/root-slice factors
 separated by Corollary 49.
 
+## Corollary 57: Short Recurrences Are Truncated Rational Denominators
+
+Keep the notation of Corollary 56, and write
+
+```text
+Q(X)=q_0+q_1X+...+q_eX^e,        q_e!=0,
+```
+
+with reversed polynomial
+
+```text
+Q^*(T)=q_e+q_{e-1}T+...+q_0T^e.
+```
+
+Let
+
+```text
+W_w(T)=sum_{a>=0} w_a T^a
+```
+
+denote the syndrome generating series, truncated wherever only finitely many
+coefficients are available.  Then
+
+```text
+H_{s,h-1}(w)Q=0
+```
+
+if and only if there is a polynomial `N_{Q,w}(T)` of degree `<e` such that
+
+```text
+Q^*(T) W_w(T) = N_{Q,w}(T)       mod T^{e+s}.        (Pade_Q)
+```
+
+Equivalently,
+
+```text
+W_w(T) = N_{Q,w}(T)/Q^*(T)       mod T^{e+s}.
+```
+
+Thus the root-free short endpoint obstruction from Corollary 56 is a
+truncated rational-denominator obstruction:
+
+* a root-free fixed-kernel witness for `lambda` gives the degree-`<=e`
+  denominator `Q^*` for the combined series `W_{v-lambda u}(T)` through order
+  `e+t+2`;
+* a root-free first-difference witness for `theta` gives the same denominator
+  `Q^*` simultaneously for `W_{Delta_theta u}(T)` and
+  `W_{Delta_theta v}(T)` through order `e+t+1`.
+
+After the fixed-root/root-slice factors have been stripped, the remaining
+endpoint-short failure is therefore a `D`-root-free Pade/residue-denominator
+certificate for the combined or differenced syndrome series.  This is the same
+kind of denominator object that appears in the all-line residue-packing
+normal form.
+
+### Proof
+
+The coefficient of `T^{a+e}` in `Q^*(T)W_w(T)` is
+
+```text
+sum_{i=0}^e q_i w_{a+i}.
+```
+
+Therefore the recurrence from Corollary 56 for `0<=a<s` is exactly the
+vanishing of all coefficients of `Q^*W_w` in degrees `e,e+1,...,e+s-1`.
+Modulo `T^{e+s}`, only coefficients in degrees `<e` remain; these form the
+polynomial `N_{Q,w}`.  The two endpoint specializations are obtained by taking
+`w=v-lambda u` and `w=Delta_theta u, Delta_theta v`, respectively.
+
 ## Non-Claims
 
 This note does not prove
@@ -5323,4 +5392,6 @@ the actual syndromes lie in the open injectivity loci. Corollary 55 identifies
 the row-count threshold for this short-injectivity route; it does not prove
 the required Hankel minors are nonzero above that threshold. Corollary 56
 identifies the remaining root-free short failures as denominator recurrences;
-it does not bound those recurrence families.
+Corollary 57 rewrites those recurrences as truncated rational-denominator
+certificates; neither result bounds the resulting root-free denominator
+families.

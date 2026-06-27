@@ -2158,6 +2158,21 @@ first-difference parameters, the same root-free \(Q\) annihilates both
 \(\Delta_\theta u\) and \(\Delta_\theta v\).  Thus the endpoint-short
 obstruction is now expressed in the same denominator language as the
 residue-line packing problem.
+Equivalently, if \(Q(X)=q_0+\cdots+q_eX^e\),
+\[
+Q^*(T)=q_e+q_{e-1}T+\cdots+q_0T^e,\qquad
+W_w(T)=\sum_{a\ge0}w_aT^a,
+\]
+then
+\[
+H_{s,h-1}(w)Q=0
+\quad\Longleftrightarrow\quad
+Q^*(T)W_w(T)\equiv N_{Q,w}(T)\pmod {T^{e+s}},
+\qquad \deg N_{Q,w}<e.
+\]
+Thus the remaining root-free fixed-kernel and first-difference failures are
+truncated Pade/residue-denominator certificates for \(v-\lambda u\) and for
+the pair \((\Delta_\theta u,\Delta_\theta v)\), respectively.
 
 In the ruled part, the common-kernel branch has a fixed projective boundary slope,
 while the common-image branch forces the shadow locator \(L_S\) to satisfy the
