@@ -163,13 +163,15 @@ Keep entries concise and link to the relevant files.
   bounded by contained-boundary and one-outside target images, up to an explicit
   zero-lower exceptional range. A residual-ledger corollary identifies the
   packet-edge term with the active different-slope two-exchange codegree
-  subledger.
+  subledger, and the zero-lower class is eliminated in the high-agreement range
+  `a>(n+1)/2`.
 - **How it is useful:** This extracts a reviewable M1 reduction from the
   closed all-line packet without promoting an all-line theorem; it isolates the
   next target-image problem for the aperiodic residue-packing route.
-- **What to do next:** Bound the one-outside singleton target image and the
-  active two-exchange codegree in the quotient-aware residue-line ledger, and
-  treat the short-range zero-lower class separately.
+- **What to do next:** In the high-agreement range, bound the one-outside
+  singleton target image and the active two-exchange codegree in the
+  quotient-aware residue-line ledger; treat the lower-agreement zero-lower class
+  separately.
 
 ### 2026-06-26 - Generalized high-agreement ledgers
 

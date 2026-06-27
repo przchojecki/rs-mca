@@ -337,6 +337,59 @@ sum_L r_L <= S_dom + Q_def + 2 E_pkt.
 
 The final sentence is exactly (SZ).
 
+## High-Agreement Zero-Lower Elimination
+
+Write the agreement as `a=n-j`.  The zero-lower term in (RL) is not a live
+obstruction in the high-agreement half of the parameter space.  More precisely,
+
+```text
+Z_0 = 0        whenever        a > (n+1)/2.          (HA0)
+```
+
+Equivalently, product-Mobius zero-lower singletons can occur only when
+`a <= (n+1)/2`, and fixed-sum zero-lower singletons can occur only when
+`a <= (n-1)/2`.
+
+Consequently, in the range `a>(n+1)/2`,
+
+```text
+sum_L r_L
+  <= Q_def + 2 E_2^neq(A_var)
+     + 2 binom(j,2) binom(n-j,2) |Tangent_cb|
+     + (j-1) binom(n-j+1,2) |Boundary_off|.         (RL-HA)
+```
+
+If the quotient-defect and contained/tangent ledgers have already been paid,
+the non-fixed variable-line branch in this range has only two residual objects:
+
+```text
+active different-slope two-exchange codegree,
+one-outside boundary target image.
+```
+
+### Proof
+
+The singleton lemma gives
+
+```text
+Z_0 <= 1_{n<=2j+1} S_prod + 1_{n<=2j-1} S_sum.
+```
+
+Substituting `j=n-a`, the product-Mobius indicator is nonzero only if
+
+```text
+n <= 2(n-a)+1,        equivalently        a <= (n+1)/2,
+```
+
+and the fixed-sum indicator is nonzero only if
+
+```text
+n <= 2(n-a)-1,        equivalently        a <= (n-1)/2.
+```
+
+Both indicators therefore vanish when `a>(n+1)/2`.  Substituting `Z_0=0` into
+(RL) gives (RL-HA).
+
 ## Use In M1
 
 The lemma identifies what the all-line M1 proof still has to do in this branch.
@@ -360,6 +413,7 @@ sum_L r_L
 Thus the non-fixed variable-line branch has been reduced to quotient defects,
 active different-slope two-exchange codegree, charged contained/tangent
 targets, one-outside boundary targets, and the short-range zero-lower class.
-The next M1 step should bound the active codegree and one-outside target image
-inside the quotient-aware residue-line ledger; in the range `n>2j+1`, the
-zero-lower term is absent.
+The high-agreement corollary removes the zero-lower class whenever
+`a>(n+1)/2`.  In that range, after quotient and contained/tangent charges, the
+next M1 step is exactly to bound the active codegree and one-outside target
+image inside the quotient-aware residue-line ledger.
