@@ -1660,6 +1660,19 @@ that the remaining boundary-off multiplicity is at worst the field-size factor
 over the three ruled shadow images and a factor \(2\) over the nondegenerate
 shadow image.
 
+The common-image shadow ledger is now rank-testable.  For each projective image
+line \(I\subset \F^t\), the lower/upper Hankel contractions define an affine
+row-cut system on monic degree-\((j-1)\) shadow locators.  If its direction
+dimension is \(d_I\), then the number of squarefree \(D\)-split shadows in that
+fixed image-line stratum is at most \(\binom{n}{d_I}\).  Hence
+\[
+|\mathrm{Sh}_{\mathrm{img}}|
+  \le \sum_I \binom{n}{d_I}.
+\]
+In bounded slack and polynomial field size, the common-image branch is therefore
+closed by bounded direction dimension; the only remaining obstruction in this
+branch is the low-rank image-line locus.
+
 \textbf{Status.}  This is a proved local packet lemma under the Hankel-pencil
 normal form and its non-fixed variable-line hypotheses.  It is not the final
 all-line M1 theorem and does not add a leaderboard row.

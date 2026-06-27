@@ -55,11 +55,17 @@ Keep entries concise and link to the relevant files.
   one-root-loss bound.  Finally, a polynomial-field closure criterion records
   that the reduced boundary-off target set is bounded by twice the
   nondegenerate shadow ledger plus `q=|F|` times the three ruled shadow ledgers.
+  The common-image shadow ledger is further made rank-testable: a fixed
+  projective image line with row-cut direction dimension `d_I` contributes at
+  most `binom(n,d_I)` split shadows, so bounded direction dimension closes that
+  branch in the bounded-slack polynomial-field window.
 - **How it is useful:** This sharpens one of the two live residual objects in
   the non-fixed variable-line branch.  It does not prove the final M1 bound,
   but it turns the boundary image into a precise quadratic-anchor/ruled-branch
   incidence target and states exactly which reduced shadow estimates would
-  close this boundary-off piece in the polynomial-field regime.
+  close this boundary-off piece in the polynomial-field regime.  It also
+  isolates the low-rank image-line locus as the remaining common-image
+  obstruction.
 - **What to do next:** Bound the adjacent domain shadows in the nondegenerate
   branch and try to charge the ruled branch to fixed-slope/root-slice,
   contained/tangent, quotient-periodic, or active-codegree ledgers.

@@ -746,6 +746,93 @@ Summing these shadow multiplicities gives (BC).
 The displayed polynomial estimate is (BC) with `q <= n^B_F` and the four
 shadow-ledger hypotheses substituted.
 
+## Corollary 10: Common-Image Row-Rank Certificate
+
+Let `m=j-1`. Fix a projective image line `I subset F^t`, put
+`E=I^perp`, and choose any basis of `E`. For `w in {u,v}` and
+`sigma in {0,+}`, let
+
+```text
+L_S -> eta H_{t,j}(w) ell_S^sigma
+```
+
+run over the lower and upper shifted common-image row cuts from Corollary 5,
+with `eta` in the chosen basis of `E`. These affine equations act on the
+monic degree-`m` shadow-locator slice
+
+```text
+L(X)=X^m+c_{m-1}X^{m-1}+...+c_0.
+```
+
+Let `A_I` be their affine solution space, let `V_I` be its direction space,
+and put
+
+```text
+d_I = dim V_I.
+```
+
+Equivalently, if `rk_I` is the rank of the homogeneous row-cut matrix on the
+`m` lower coefficients, then
+
+```text
+d_I <= m-rk_I.
+```
+
+Let `Sh_img(I)` be any set of squarefree `D`-split shadows assigned to this
+fixed image-line row-cut system after full shadow stars have already been
+charged to the fixed-root/root-slice ledger. Then
+
+```text
+|Sh_img(I)| <= binom(n,d_I).                         (IR)
+```
+
+Consequently, for any set `P_img` of projective image lines supporting the
+reduced common-image branch,
+
+```text
+|Sh_img| <= sum_{I in P_img} binom(n,d_I).           (IRsum)
+```
+
+In particular, if `d_I <= B_I` for every uncharged image line in `P_img`, then
+
+```text
+|Sh_img| <= |P_img| n^B_I,
+```
+
+and the common-image contribution to Corollary 9 is at most
+
+```text
+q |P_img| n^B_I.
+```
+
+Since `|P_img| <= (q^t-1)/(q-1)`, this branch is polynomial in the
+bounded-slack polynomial-field window once the uncharged image-line row-cut
+systems all have bounded direction dimension. Thus the remaining obstruction
+in the common-image ruled branch is exactly the low-rank image-line locus.
+
+### Proof
+
+The equations defining a fixed image line `I` are affine linear equations on
+the monic degree-`m` coefficient slice. Their solution set, if nonempty, is an
+affine space `P_0+V_I` with direction dimension `d_I`.
+
+Let `L_S` be a squarefree `D`-split locator in `P_0+V_I`. The evaluation map
+
+```text
+V_I -> F^S
+```
+
+is injective: a nonzero element of `V_I` has degree `<m`, and hence cannot
+vanish at all `m` distinct points of `S`. Therefore some `d_I`-subset
+`R subset S` already gives an injective evaluation map `V_I -> F^R`; choose
+the first such `R` in a fixed ordering of `D`.
+
+This choice injects `Sh_img(I)` into the `d_I`-subsets of `D`. Indeed, if two
+locators in `P_0+V_I` vanish on the same chosen `R`, their difference lies in
+`V_I` and vanishes on `R`, so it is zero by injectivity. This proves (IR).
+Summing over image lines gives (IRsum), and the displayed polynomial
+consequences are immediate.
+
 ## Non-Claims
 
 This note does not prove
@@ -760,4 +847,6 @@ the nondegenerate/ruled split for the boundary target image already isolated in
 the variable-line packet lemma. Corollary 9 is a closure criterion: it says
 which shadow-image estimates would imply a polynomial boundary-off bound in
 the polynomial-field regime, not that those estimates have already been
-proved.
+proved. Corollary 10 does not prove that the common-image row-cut ranks are
+large; it identifies the low-rank image-line locus as the remaining obstruction
+inside that branch.
