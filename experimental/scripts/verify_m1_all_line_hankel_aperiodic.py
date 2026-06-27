@@ -1063,6 +1063,9 @@ def two_exchange_quadratic_slice_profile(
     det_proper_line_variable_nonfixed_active_domain_singleton_contained_boundary_target_counts: dict[
         tuple[int, ...], int
     ] = {}
+    contained_boundary_target_neighbor_bound = comb(j, 2) * comb(
+        len(domain) - j, 2
+    )
     det_proper_line_variable_nonfixed_packet_edge_keys: set[
         tuple[tuple[int, ...], tuple[int, ...]]
     ] = set()
@@ -1872,6 +1875,19 @@ def two_exchange_quadratic_slice_profile(
         != det_proper_line_variable_nonfixed_domain_singleton_contained_boundary_edges
     ):
         raise AssertionError("domain singleton contained target ledger lost a charge")
+    if (
+        det_proper_line_variable_nonfixed_domain_singleton_contained_boundary_target_multiplicity
+        > contained_boundary_target_neighbor_bound
+    ):
+        raise AssertionError(
+            "domain singleton contained target multiplicity exceeded neighborhood"
+        )
+    if (
+        det_proper_line_variable_nonfixed_domain_singleton_contained_boundary_edges
+        > det_proper_line_variable_nonfixed_domain_singleton_contained_boundary_target_image
+        * contained_boundary_target_neighbor_bound
+    ):
+        raise AssertionError("domain singleton contained target budget bound failed")
     det_proper_line_variable_nonfixed_edge_bound = (
         det_proper_line_variable_nonfixed_singletons
         + 2 * det_proper_line_variable_nonfixed_packet_pair_checks
@@ -2045,6 +2061,19 @@ def two_exchange_quadratic_slice_profile(
         != det_proper_line_variable_nonfixed_active_domain_singleton_contained_boundary_edges
     ):
         raise AssertionError("active contained boundary target ledger lost a charge")
+    if (
+        det_proper_line_variable_nonfixed_active_domain_singleton_contained_boundary_target_multiplicity
+        > contained_boundary_target_neighbor_bound
+    ):
+        raise AssertionError(
+            "active contained target multiplicity exceeded neighborhood"
+        )
+    if (
+        det_proper_line_variable_nonfixed_active_domain_singleton_contained_boundary_edges
+        > det_proper_line_variable_nonfixed_active_domain_singleton_contained_boundary_target_image
+        * contained_boundary_target_neighbor_bound
+    ):
+        raise AssertionError("active contained target budget bound failed")
     if (
         det_proper_line_variable_nonfixed_new_slope_checks
         > det_proper_line_variable_nonfixed_active_edge_bound

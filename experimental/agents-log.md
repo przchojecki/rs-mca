@@ -30,6 +30,26 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-27 - M1 contained-boundary target budget bound
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/m1/m1_all_line_hankel_aperiodic_packing.md`,
+  `experimental/scripts/verify_m1_all_line_hankel_aperiodic.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** A fixed contained/tangent target can receive
+  contained-boundary edges only from strict two-exchange neighbors, giving the
+  combinatorial multiplicity bound `binom(j,2) binom(n-j,2)`.  The verifier
+  asserts this target-neighborhood bound in the all-domain and active-domain
+  singleton ledgers.
+- **How it is useful:** This shows target-injectivity is not needed to pay the
+  contained-boundary edge image by the contained/tangent target budget: the
+  projection loses only an `O(n^4)` factor, which is polynomial for the M1
+  `n^B` target.
+- **What to do next:** Bound the off-domain singleton roots, or combine this
+  contained-boundary projection with the existing contained/tangent ledger in a
+  final domain-singleton budget statement.
+
 ### 2026-06-27 - M1 contained-boundary target multiplicity
 
 - **Agent/model:** Codex.

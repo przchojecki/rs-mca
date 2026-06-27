@@ -858,10 +858,23 @@ The verifier also projects each contained-boundary edge to its contained target
 `T_c` and records the target image size and maximum target multiplicity.  In
 the current audit rows, and in the active singleton witness above, this target
 multiplicity is `1` both before and after the active-domain-singleton
-restriction.  This is not yet a general proof of a contained/tangent budget,
-but it localizes the next step: either prove that the contained-boundary edge
-image is target-injective in the relevant ledger, or find a configuration where
-several aperiodic singleton edges charge the same contained/tangent target.
+restriction.
+
+Exact target-injectivity is stronger than the polynomial M1 ledger needs.  For
+a fixed contained target `T_c`, every boundary edge over `T_c` has an aperiodic
+endpoint `T_a` at strict two-exchange distance from `T_c`: choose the two roots
+of `T_c` removed and the two roots of `D\T_c` inserted.  Hence
+
+```text
+#{boundary edges mapping to a fixed T_c}
+  <= binom(j,2) binom(n-j,2).                       (CB)
+```
+
+The verifier asserts this target-neighborhood bound for both the all-domain
+singleton ledger and the active-domain-singleton subledger.  Thus
+contained-boundary charge can be projected to the contained/tangent target
+image with only an `O(n^4)` multiplicity loss; the observed multiplicity-one
+audit is a sharper finite feature, not a required hypothesis.
 
 ## Different-Slope One-Exchange Quadratic Slice
 
