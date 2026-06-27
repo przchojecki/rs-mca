@@ -30,6 +30,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-27 - M1 off-domain singleton boundary targets
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/m1/m1_all_line_hankel_aperiodic_packing.md`,
+  `experimental/scripts/verify_m1_all_line_hankel_aperiodic.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** Active domain-singleton off-domain roots are now
+  charged to strict boundary edges from the active locator to a one-outside
+  target `B=R union {x,y}` with `y notin D`.  A fixed one-outside target has
+  at most `(j-1) binom(n-j+1,2)` all-domain active neighbors.
+- **How it is useful:** Together with the contained-boundary target projection,
+  this turns forced free escape for active domain singletons into polynomial
+  fibers over two target images: contained/tangent targets and one-outside
+  boundary targets.
+- **What to do next:** Bound the two target images in the quotient-aware M1
+  ledger, or identify which part is already covered by the boundary-arrangement
+  and contained/tangent ledgers.
+
 ### 2026-06-27 - M1 active domain-singleton budget
 
 - **Agent/model:** Codex.

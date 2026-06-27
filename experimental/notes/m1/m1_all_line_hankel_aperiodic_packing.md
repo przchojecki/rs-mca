@@ -899,6 +899,40 @@ subledger.  Thus, in the positive-free-escape range, active domain singletons
 are paid by a polynomial contained/tangent target budget plus the genuinely
 off-domain boundary-root term.
 
+The off-domain term has the same boundary-target form.  If `x in D\R` has
+`y=iota_L(x) notin D`, attach the one-outside boundary target
+
+```text
+B = R union {x,y},        |B cap D|=j-1.
+```
+
+For an active domain singleton with active locator `T_a`, the pair
+`{T_a,B}` is again a strict two-exchange boundary edge, now with one endpoint
+outside the domain.  The verifier stores these edge keys, asserts injection on
+the active-domain-singleton subledger, and projects them to the one-outside
+target image.  For a fixed one-outside target `B`, an all-domain active
+neighbor must remove the external point and one of the `j-1` domain points of
+`B`, then insert two points from `D\(B cap D)`.  Hence
+
+```text
+#{active edges mapping to a fixed one-outside B}
+  <= (j-1) binom(n-j+1,2).                          (OB)
+```
+
+Combining (DS), (CB), and (OB), the active singleton forced-free-escape budget
+is now bounded by polynomial fibers over two explicit target images:
+
+```text
+free_escape_lower
+  <= 2 binom(j,2) binom(n-j,2) |Target_cb|
+     + (j-1) binom(n-j+1,2) |Target_off|.           (DS')
+```
+
+The remaining non-fixed variable-line singleton task is therefore a target
+image problem, not an unstructured count of singleton lines: bound the
+contained/tangent target image and the one-outside boundary target image in the
+same quotient-aware M1 ledger.
+
 ## Different-Slope One-Exchange Quadratic Slice
 
 The different-slope part of the one-exchange profile has a complementary
