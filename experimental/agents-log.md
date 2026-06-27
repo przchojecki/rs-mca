@@ -191,7 +191,13 @@ Keep entries concise and link to the relevant files.
   `(beta,[y])` are cut out by minors of total degree at most `2(c-b)`, giving at
   most `2(c-b)q^t/(q-1)` rational anchor-image pairs unless the incidence is
   identically persistent, in which case it is recorded as moving certificates
-  over `F(beta,y)`.
+  over `F(beta,y)`.  These global charges now combine into an all-anchor
+  full-gate incidence closure: after endpoint-bad anchors, bad anchor-slope
+  pairs, bad anchor-image incidences, persistent certificate ledgers, and
+  common-root lower core pieces are charged, the uncharged root-free incidence
+  is bounded by
+  `q(2/m)binom(n,m-1) + q(n-m+1)(2+q+(q^t-1)/(q-1))(b/c)binom(n,b)`.
+  The anchor projection is no larger than this incidence bound.
 - **What to do next:** Bound or charge the unique-neighbor nondegenerate
   star-free shadow ledger, and charge the ruled exceptional low-rank loci to
   fixed-slope/root-slice, endpoint, projective, quotient-periodic, or

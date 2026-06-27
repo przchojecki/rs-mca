@@ -1795,6 +1795,20 @@ cut out by minors of total degree at most \(2(c-b)\).  If this incidence is not
 identically persistent, it has at most \(2(c-b)q^t/(q-1)\) rational
 anchor--image pairs; otherwise it gives moving anchor--image core certificates
 over \(F(\beta,y)\).
+Together these global charges give an all-anchor full-gate incidence closure.
+After endpoint-bad anchors, bad anchor--slope pairs, bad anchor--image
+incidences, persistent moving-certificate ledgers, and common-root lower core
+pieces are charged, the remaining root-free all-anchor incidence satisfies
+\[
+|\mathcal Z_{\rm all}^{\rm rf,\le b}|
+ \le q\,\frac{2}{m}\binom{n}{m-1}
+ +q(n-m+1)\left(2+q+\frac{q^t-1}{q-1}\right)
+    \frac{b}{c}\binom{n}{b}.
+\]
+Without the common-root/root-free charge the same bound holds with the factor
+\(b/c\) removed from the second term.  Projection to the anchor coordinate can
+only decrease this count, so this is also a conditional all-anchor support
+bound for the uncharged full-core component.
 
 In the ruled part, the common-kernel branch has a fixed projective boundary slope,
 while the common-image branch forces the shadow locator \(L_S\) to satisfy the

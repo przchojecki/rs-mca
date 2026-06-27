@@ -3162,6 +3162,99 @@ for that pair.  There are `q((q^t-1)/(q-1))` such pairs, and each core extends
 to at most `n-m+1` boundary shadows.  The root-free improvement is Corollary
 30.1 applied pairwise.
 
+## Corollary 34: All-Anchor Full-Gate Closure After Global Lower Charges
+
+Put `c=m-1`, choose `1<=b<c`, and assume `b<=n/2`.  For each anchor `beta`,
+assign every full core-line in `FullCoreGate(beta)` to one of the four lower
+alternatives from Corollary 24.  Charge the following global lower ledgers:
+
+```text
+endpoint-bad anchors:
+  beta with e_u(beta)>b or e_v(beta)>b;
+
+fixed-kernel bad pairs:
+  (beta,lambda) in B_{ker,>b};
+
+common-image bad incidences:
+  (beta,[y]) in B_img,>b;
+
+persistent moving endpoint, fixed-kernel, or common-image certificate ledgers;
+common-root lower core pieces from Corollary 30.1.
+```
+
+Let `Z_all^{rf,<=b}` be the remaining root-free all-anchor full-gate incidence:
+
+```text
+Z_all^{rf,<=b}
+ = { (beta,S) : beta in F, S subset D, |S|=m, rank M_S(beta)<=1,
+                no (m-1)-core of S is assigned to a charged lower ledger }.
+```
+
+Then
+
+```text
+|Z_all^{rf,<=b}|
+ <= q (2/m) binom(n,m-1)
+    + q (n-m+1) ( 2 + q + (q^t-1)/(q-1) )
+      (b/c) binom(n,b).                              (AllFAC_RF)
+```
+
+Let `Z_all^{<=b}` be the analogous all-anchor incidence before the common-root
+lower core pieces are charged.  Without the root-free common-root charge,
+`Z_all^{<=b}` satisfies the same bound with the second term replaced by
+
+```text
+q (n-m+1) ( 2 + q + (q^t-1)/(q-1) ) binom(n,b).      (AllFAC)
+```
+
+Moreover, outside the corresponding persistent alternatives, the charged
+low-rank parameter loci have the explicit sizes
+
+```text
+|{ endpoint-bad anchors }| <= 2(c-b),
+|B_{ker,>b}|              <= 2(c-b)q,
+|B_img,>b|                <= (2(c-b)q^t)/(q-1).      (GlobalCharges)
+```
+
+Consequently the number of anchors `beta` supporting an uncharged root-free
+full-gate shadow is also bounded by the right hand side of (AllFAC_RF).  In any
+parameter regime where this incidence bound is polynomial, the full-core
+component of the all-anchor boundary-off problem is reduced to the explicitly
+listed global charges plus the Corollary 25 one-root-loss residual.
+
+### Proof
+
+After the endpoint-bad anchors are charged, every uncharged anchor has
+
+```text
+e_u(beta)<=b,        e_v(beta)<=b.
+```
+
+After the fixed-kernel bad pairs and common-image bad incidences are charged,
+every uncharged lower fixed-kernel pair and every uncharged lower common-image
+pair has direction dimension at most `b`.  The persistent alternatives have
+also been moved to their own certificate ledgers.  Thus, for each fixed
+uncharged anchor `beta`, the hypotheses of Corollary 30 hold for the non-root
+free statement, and the hypotheses of Corollary 30.1 hold after common-root
+lower core pieces have been charged.
+
+Applying Corollary 30.1 to each anchor gives
+
+```text
+|Z_beta^{rootfree,<=b}|
+ <= (2/m) binom(n,m-1)
+    + (n-m+1) ( 2 + q + (q^t-1)/(q-1) )
+      (b/c) binom(n,b).
+```
+
+There are at most `q` anchors, so summing this inequality over anchors gives
+(AllFAC_RF).  The same summation applied to Corollary 30 gives (AllFAC).
+
+The three displayed charge sizes are exactly Corollaries 31, 32, and 33, with
+the two endpoint anchor sets union-bounded.  Finally, projecting an incidence
+set `(beta,S)` to its anchor coordinate cannot increase cardinality, so the
+same bound controls the uncharged anchor projection.
+
 ## Non-Claims
 
 This note does not prove
@@ -3245,4 +3338,6 @@ itself; it makes that locus determinantal and separates the finite pair-locus
 case from the moving two-parameter certificate case. Corollary 33 similarly
 does not prove that the common-image bad anchor-line incidence is empty; it
 turns that incidence into a finite determinantal charge or a moving
-anchor-image certificate.
+anchor-image certificate. Corollary 34 is an all-anchor incidence closure after
+explicit lower charges; it still leaves the charged loci, persistent
+certificates, and one-root-loss residual as the remaining M1 obligations.
