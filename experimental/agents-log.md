@@ -93,6 +93,10 @@ Keep entries concise and link to the relevant files.
   A separated-family sharpness lemma shows this residual is real for exchange
   bookkeeping: if `E_1=E_2=E_3=0`, then all first boundary shadows are unique
   and `|Shadow_1(A)|=|A| binom(j,2)(n-j)`.
+  A quadratic full-anchor-star test shows that, for a fixed external anchor,
+  any row-pair minor vanishing on all shadows through a domain root `alpha`
+  has the evaluation factor `L_S(alpha)`; hence full anchor stars are
+  fixed-root/root-slice charges rather than a new aperiodic residual.
 - **How it is useful:** This sharpens one of the two live residual objects in
   the non-fixed variable-line branch.  It does not prove the final M1 bound,
   but it turns the boundary image into a precise quadratic-anchor/ruled-branch
@@ -112,9 +116,11 @@ Keep entries concise and link to the relevant files.
   nondegenerate branch is also sharpened: popular shadows are now
   active-codegree terms, leaving unique-neighbor shadows as the named residual,
   and the separated-family lemma shows that residual cannot be removed using
-  low-exchange information alone.
+  low-exchange information alone.  The full-anchor-star test then removes the
+  most obvious Hankel degeneracy from that residual by charging it to
+  fixed-root/root-slice factors.
 - **What to do next:** Bound or charge the unique-neighbor nondegenerate
-  shadow ledger, and charge the ruled exceptional low-rank loci to
+  star-free shadow ledger, and charge the ruled exceptional low-rank loci to
   fixed-slope/root-slice, endpoint, projective, quotient-periodic, or
   active-codegree ledgers.
 

@@ -1641,6 +1641,15 @@ opposite direction, this residual is sharp for exchange bookkeeping: if
 \]
 So the unique-neighbor ledger cannot be removed by low-exchange estimates
 alone; it needs Hankel, quotient, aperiodic, or isolated-active-locator input.
+One immediate Hankel cleanup is available: for a fixed external anchor
+\(\beta\), each row-pair anchor minor is a quadratic polynomial on monic
+degree-\((j-1)\) shadow locators.  If such a minor vanishes on the full shadow
+star through \(\alpha\in D\), and \(|D\setminus\{\alpha\}|\ge j\), then it
+vanishes on the whole hyperplane \(L_S(\alpha)=0\).  Equivalently the minor has
+the evaluation factor \(L_S(\alpha)\), so full anchor stars are
+fixed-root/root-slice charges.  The remaining nondegenerate unique-neighbor
+residual is therefore star-free after those charges.
+
 In the ruled part, the common-kernel branch has a fixed projective boundary slope,
 while the common-image branch forces the shadow locator \(L_S\) to satisfy the
 lower and upper row-cut equations obtained by contracting both Hankel windows
