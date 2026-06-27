@@ -362,6 +362,74 @@ root-slice lift above, and `12` two-exchange pairs.  All `12` two-exchange
 pairs are different-slope and lie in the audited quadratic determinantal
 slices.
 
+## Same-Slope Two-Exchange Affine Lift
+
+The same-slope part of a two-exchange slice has an additional recursive
+dichotomy.  Fix `t=3`, a `(j-2)`-core `R`, and a finite slope `z`.  Put
+
+```text
+A_z=H_{3,j}(u)+zH_{3,j}(v)
+```
+
+and retain the three padded shift vectors `e_0,e_1,e_2` from (TE1).  Define
+
+```text
+C_i=A_z e_i in F^3        (i=0,1,2).
+```
+
+For a two-root extension with elementary coordinates `(s,p)=(x+y,xy)`, the
+fixed-slope equation is exactly
+
+```text
+C_2 - s C_1 + p C_0 = 0.                         (TE4)
+```
+
+Thus the same-slope locus over the fixed core is an affine-linear slice of
+the `(s,p)` plane.  There are only two ways it can contain more than one
+pair-extension.
+
+First, it may be contained in a line
+
+```text
+a s + b p = c.
+```
+
+If this line is `p=rs-r^2`, then every pair-extension contains the same root
+`r`; this is just the one-root root-slice structure already charged by the
+same-slope one-exchange lift.  Other lines are still one-dimensional
+Möbius-pairing components, not arbitrary two-dimensional two-root packing.
+
+Second, if the same-slope points have affine rank two, then (TE4) vanishes on
+the whole `(s,p)` plane.  Hence
+
+```text
+C_0=C_1=C_2=0.
+```
+
+But the three equations `A_z e_i=0` for `i=0,1,2` are precisely the shift
+relations `0` through `4` for the core locator `L_R`.  Therefore
+
+```text
+(H_{5,j-2}(u)+zH_{5,j-2}(v)) ell_R = 0.          (TE5)
+```
+
+The denominator in this lifted pencil cannot vanish for a genuine
+noncontained same-slope plane: if `H_{5,j-2}(v)ell_R=0`, then every two-root
+extension in the plane would have `H_{3,j}(v)ell=0`, contradicting the
+noncontained endpoints.  So every affine-rank-two same-slope two-exchange
+cluster is charged to the `(t+2,j-2)=(5,j-2)` Hankel core-locator image.
+
+The verifier checks this dichotomy on every `t=3` row by grouping aperiodic
+pair-extensions over each `(j-2)` core and slope, computing their affine rank
+in `(s,p)`, checking fixed-root line equations, and checking the lifted
+`H_{5,j-2}` gate for rank-two clusters.  A targeted
+`F_13`, `n=12`, `j=5`, `t=3` probe exercises the nontrivial branch: it has
+`582` two-exchange pairs, of which `378` are same-slope.  All `35` line
+clusters are fixed-root lines and contribute no two-exchange pairs; the
+`378` same-slope two-exchange pairs are all accounted for by one affine
+rank-two cluster with `36` pair-extensions, and this cluster lifts to the
+`H_{5,3}` core pencil.
+
 ## Different-Slope One-Exchange Quadratic Slice
 
 The different-slope part of the one-exchange profile has a complementary
@@ -2476,6 +2544,10 @@ enumerates small cyclic-domain cases.  For each case it:
 - in the `t=3` rows, counts two-exchange pairs and verifies the quadratic
   determinantal slice certificate in the pair-symmetric coordinates
   `(x+y,xy)`;
+- in the `t=3` rows, groups same-slope pair-extensions over each `(j-2)` core
+  by affine rank in `(x+y,xy)`, checking that line clusters are genuine affine
+  lines and that affine-rank-two clusters lift to the `(t+2,j-2)` Hankel core
+  image;
 - in the `t=2` rows, verifies the determinant gate and reports the strict
   one-exchange profile of the aperiodic locator family;
 - in the `t=2` rows, checks that every same-slope strict one-exchange edge
@@ -2659,16 +2731,28 @@ enumerates small cyclic-domain cases.  For each case it:
   residual locators;
 - runs one deterministic arbitrary-line probe which hits the rank-one
   zero-determinant branch and verifies that it is classified by the same
-  constant/contained zero-slice ledger.
+  constant/contained zero-slice ledger;
+- runs one deterministic `t=3` same-slope two-exchange probe which forces an
+  affine-rank-two pair plane and verifies its lift to the `H_{5,j-2}` core
+  pencil.
 
 The default audit currently checks four cyclic-domain parameter rows,
-seventeen deterministic polynomial-family line samples, and one deterministic
-arbitrary line probe.  Three rows exercise the full `t=2` residual reducer,
-while the `F_13`, `n=12`, `j=7`, `t=3` row exercises the arbitrary-slack
-same-slope one-exchange lift and the two-exchange quadratic determinantal
-slice certificate.  The largest observed residual aperiodic slope image in
-this smoke packet has size `17`, after direct interpolation checks on every
+seventeen deterministic polynomial-family line samples, one deterministic
+rank-one arbitrary line probe, and one deterministic same-slope two-exchange
+probe.  Three rows exercise the full `t=2` residual reducer, while the
+`F_13`, `n=12`, `j=7`, `t=3` row exercises the arbitrary-slack same-slope
+one-exchange lift and the two-exchange quadratic determinantal slice
+certificate.  The largest observed residual aperiodic slope image in this
+smoke packet has size `17`, after direct interpolation checks on every
 reported support-wise bad slope.
+
+The same-slope two-exchange probe uses `F_13`, `n=12`, `j=5`, `t=3`.  It has
+`55` aperiodic locators and `6` aperiodic slopes.  Among `582` two-exchange
+pairs, `378` are same-slope.  The verifier splits the same-slope clusters
+into `35` fixed-root affine lines, contributing no two-exchange pairs, and one
+affine-rank-two cluster with `36` pair-extensions.  That one plane accounts
+for all `378` same-slope two-exchange pairs and lifts to the `H_{5,3}` core
+pencil.
 
 The `F_13`, `n=12`, `j=4`, `t=2` row is kept as a boundary-only counterexample
 to the tempting squarefree-absorption shortcut.  In all four deterministic

@@ -465,6 +465,47 @@ def quadratic_companion_root(coeffs: tuple[int, int, int], root: int, p: int) ->
     return ((-c1 * inv_mod(c2, p)) - root) % p
 
 
+def affine_rank_2d(points: list[tuple[int, int]], p: int) -> int:
+    unique_points = list(dict.fromkeys(points))
+    if len(unique_points) <= 1:
+        return 0
+    base = unique_points[0]
+    differences = [
+        ((point[0] - base[0]) % p, (point[1] - base[1]) % p)
+        for point in unique_points[1:]
+    ]
+    if all(diff == (0, 0) for diff in differences):
+        return 0
+    for left, right in combinations(differences, 2):
+        if det2(left, right, p) != 0:
+            return 2
+    return 1
+
+
+def affine_line_key(points: list[tuple[int, int]], p: int) -> tuple[int, int, int]:
+    unique_points = list(dict.fromkeys(points))
+    if len(unique_points) < 2:
+        raise AssertionError("line key needs two points")
+    base = unique_points[0]
+    for point in unique_points[1:]:
+        dx = (point[0] - base[0]) % p
+        dy = (point[1] - base[1]) % p
+        if dx == 0 and dy == 0:
+            continue
+        normal_s = dy
+        normal_p = (-dx) % p
+        constant = (normal_s * base[0] + normal_p * base[1]) % p
+        for value in (normal_s, normal_p):
+            if value:
+                scale = inv_mod(value, p)
+                return (
+                    normal_s * scale % p,
+                    normal_p * scale % p,
+                    constant * scale % p,
+                )
+    raise AssertionError("distinct points did not define a line")
+
+
 def strict_exchange_profile(
     locator_rows: list[tuple[tuple[int, ...], int]], t: int
 ) -> dict[str, int]:
@@ -624,6 +665,16 @@ def two_exchange_quadratic_slice_profile(
             "two_exchange_bad_locator_checks": 0,
             "two_exchange_max_slice_aperiodic_locators": 0,
             "two_exchange_max_slice_slope_image": 0,
+            "two_exchange_same_slope_clusters": 0,
+            "two_exchange_same_slope_line_clusters": 0,
+            "two_exchange_same_slope_fixed_root_lines": 0,
+            "two_exchange_same_slope_mobius_lines": 0,
+            "two_exchange_same_slope_line_two_exchange_pairs": 0,
+            "two_exchange_same_slope_plane_clusters": 0,
+            "two_exchange_same_slope_plane_lifts": 0,
+            "two_exchange_same_slope_plane_two_exchange_pairs": 0,
+            "two_exchange_same_slope_affine_member_max": 0,
+            "two_exchange_same_slope_lift_checks": 0,
         }
     if j < 2:
         raise AssertionError("two-exchange slices need j>=2")
@@ -655,6 +706,17 @@ def two_exchange_quadratic_slice_profile(
     bad_locator_checks = 0
     max_slice_aperiodic = 0
     max_slice_slope_image = 0
+    same_slope_clusters = 0
+    same_slope_line_clusters = 0
+    same_slope_fixed_root_lines = 0
+    same_slope_mobius_lines = 0
+    same_slope_line_two_exchange_pairs = 0
+    same_slope_plane_clusters = 0
+    same_slope_plane_lifts = 0
+    same_slope_plane_two_exchange_pairs = 0
+    same_slope_affine_member_max = 0
+    same_slope_lift_checks = 0
+    same_slope_cluster_two_exchange_pairs = 0
     for core in combinations(domain, j - 2):
         core_tuple = tuple(sorted(core))
         core_locator = locator(core_tuple, p)
@@ -673,6 +735,7 @@ def two_exchange_quadratic_slice_profile(
 
         slice_aperiodic = 0
         slice_slopes: set[int] = set()
+        same_slope_entries: dict[int, list[tuple[int, int, int, int]]] = {}
         available = tuple(x for x in domain if x not in core_tuple)
         for x, y in combinations(available, 2):
             root_sum = (x + y) % p
@@ -756,9 +819,71 @@ def two_exchange_quadratic_slice_profile(
                     raise AssertionError("aperiodic two-exchange locator missed slice minors")
                 slice_aperiodic += 1
                 slice_slopes.add(row_slope)
+                same_slope_entries.setdefault(row_slope, []).append(
+                    (x, y, root_sum, root_product)
+                )
                 bad_locator_checks += 1
         max_slice_aperiodic = max(max_slice_aperiodic, slice_aperiodic)
         max_slice_slope_image = max(max_slice_slope_image, len(slice_slopes))
+
+        for slope, entries in same_slope_entries.items():
+            if len(entries) < 2:
+                continue
+            same_slope_clusters += 1
+            same_slope_affine_member_max = max(same_slope_affine_member_max, len(entries))
+            point_rank = affine_rank_2d([(entry[2], entry[3]) for entry in entries], p)
+            cluster_two_exchange_pairs = 0
+            for left, right in combinations(entries, 2):
+                if {left[0], left[1]}.isdisjoint({right[0], right[1]}):
+                    cluster_two_exchange_pairs += 1
+            same_slope_cluster_two_exchange_pairs += cluster_two_exchange_pairs
+
+            if point_rank == 1:
+                same_slope_line_clusters += 1
+                same_slope_line_two_exchange_pairs += cluster_two_exchange_pairs
+                line_key = affine_line_key([(entry[2], entry[3]) for entry in entries], p)
+                common_roots = set(entries[0][:2])
+                for entry in entries[1:]:
+                    common_roots &= set(entry[:2])
+                if common_roots:
+                    same_slope_fixed_root_lines += 1
+                    fixed_root = next(iter(common_roots))
+                    for _x, _y, root_sum, root_product in entries:
+                        if (root_product - fixed_root * root_sum + fixed_root * fixed_root) % p:
+                            raise AssertionError("fixed-root two-exchange line had wrong equation")
+                    if cluster_two_exchange_pairs:
+                        raise AssertionError("fixed-root line contributed a two-exchange pair")
+                else:
+                    same_slope_mobius_lines += 1
+                for _x, _y, root_sum, root_product in entries:
+                    if (line_key[0] * root_sum + line_key[1] * root_product - line_key[2]) % p:
+                        raise AssertionError("same-slope two-exchange line key missed a point")
+                continue
+
+            if point_rank == 2:
+                same_slope_plane_clusters += 1
+                same_slope_plane_two_exchange_pairs += cluster_two_exchange_pairs
+                next_a = hankel_apply(u, t + 2, j - 2, core_locator, p)
+                next_b = hankel_apply(v, t + 2, j - 2, core_locator, p)
+                if slope_from_gate(next_a, next_b, p) != slope:
+                    raise AssertionError("same-slope two-exchange plane missed the t+2 lift")
+                if all(value == 0 for value in next_b):
+                    raise AssertionError("same-slope two-exchange plane lift was contained")
+                same_slope_plane_lifts += 1
+                same_slope_lift_checks += len(entries)
+                for x, y, _root_sum, _root_product in entries:
+                    complement = tuple(sorted(core_tuple + (x, y)))
+                    incident, noncontained = fixed_slope_incidence(
+                        u, v, complement, slope, t, j, p
+                    )
+                    if not incident or not noncontained:
+                        raise AssertionError("same-slope plane member failed its original gate")
+                continue
+
+            raise AssertionError("same-slope two-exchange cluster had duplicate affine points")
+
+    if same_slope_cluster_two_exchange_pairs != same_slope_pairs:
+        raise AssertionError("same-slope affine ledger missed a two-exchange pair")
 
     return {
         "two_exchange_pairs": two_exchange_pairs,
@@ -770,6 +895,20 @@ def two_exchange_quadratic_slice_profile(
         "two_exchange_bad_locator_checks": bad_locator_checks,
         "two_exchange_max_slice_aperiodic_locators": max_slice_aperiodic,
         "two_exchange_max_slice_slope_image": max_slice_slope_image,
+        "two_exchange_same_slope_clusters": same_slope_clusters,
+        "two_exchange_same_slope_line_clusters": same_slope_line_clusters,
+        "two_exchange_same_slope_fixed_root_lines": same_slope_fixed_root_lines,
+        "two_exchange_same_slope_mobius_lines": same_slope_mobius_lines,
+        "two_exchange_same_slope_line_two_exchange_pairs": (
+            same_slope_line_two_exchange_pairs
+        ),
+        "two_exchange_same_slope_plane_clusters": same_slope_plane_clusters,
+        "two_exchange_same_slope_plane_lifts": same_slope_plane_lifts,
+        "two_exchange_same_slope_plane_two_exchange_pairs": (
+            same_slope_plane_two_exchange_pairs
+        ),
+        "two_exchange_same_slope_affine_member_max": same_slope_affine_member_max,
+        "two_exchange_same_slope_lift_checks": same_slope_lift_checks,
     }
 
 
@@ -2764,6 +2903,36 @@ def verify_word_pair(
         "two_exchange_max_slice_slope_image": two_exchange_profile[
             "two_exchange_max_slice_slope_image"
         ],
+        "two_exchange_same_slope_clusters": two_exchange_profile[
+            "two_exchange_same_slope_clusters"
+        ],
+        "two_exchange_same_slope_line_clusters": two_exchange_profile[
+            "two_exchange_same_slope_line_clusters"
+        ],
+        "two_exchange_same_slope_fixed_root_lines": two_exchange_profile[
+            "two_exchange_same_slope_fixed_root_lines"
+        ],
+        "two_exchange_same_slope_mobius_lines": two_exchange_profile[
+            "two_exchange_same_slope_mobius_lines"
+        ],
+        "two_exchange_same_slope_line_two_exchange_pairs": two_exchange_profile[
+            "two_exchange_same_slope_line_two_exchange_pairs"
+        ],
+        "two_exchange_same_slope_plane_clusters": two_exchange_profile[
+            "two_exchange_same_slope_plane_clusters"
+        ],
+        "two_exchange_same_slope_plane_lifts": two_exchange_profile[
+            "two_exchange_same_slope_plane_lifts"
+        ],
+        "two_exchange_same_slope_plane_two_exchange_pairs": two_exchange_profile[
+            "two_exchange_same_slope_plane_two_exchange_pairs"
+        ],
+        "two_exchange_same_slope_affine_member_max": two_exchange_profile[
+            "two_exchange_same_slope_affine_member_max"
+        ],
+        "two_exchange_same_slope_lift_checks": two_exchange_profile[
+            "two_exchange_same_slope_lift_checks"
+        ],
         "root_slices": root_profile["root_slices"],
         "same_slope_edges_covered": root_profile["same_slope_edges_covered"],
         "max_root_slice_noncontained": root_profile["max_root_slice_noncontained"],
@@ -3178,6 +3347,36 @@ def verify_case(case: Case) -> dict[str, object]:
         ),
         "max_two_exchange_slice_slope_image": max(
             row["two_exchange_max_slice_slope_image"] for row in rows
+        ),
+        "max_two_exchange_same_slope_clusters": max(
+            row["two_exchange_same_slope_clusters"] for row in rows
+        ),
+        "max_two_exchange_same_slope_line_clusters": max(
+            row["two_exchange_same_slope_line_clusters"] for row in rows
+        ),
+        "max_two_exchange_same_slope_fixed_root_lines": max(
+            row["two_exchange_same_slope_fixed_root_lines"] for row in rows
+        ),
+        "max_two_exchange_same_slope_mobius_lines": max(
+            row["two_exchange_same_slope_mobius_lines"] for row in rows
+        ),
+        "max_two_exchange_same_slope_line_two_exchange_pairs": max(
+            row["two_exchange_same_slope_line_two_exchange_pairs"] for row in rows
+        ),
+        "max_two_exchange_same_slope_plane_clusters": max(
+            row["two_exchange_same_slope_plane_clusters"] for row in rows
+        ),
+        "max_two_exchange_same_slope_plane_lifts": max(
+            row["two_exchange_same_slope_plane_lifts"] for row in rows
+        ),
+        "max_two_exchange_same_slope_plane_two_exchange_pairs": max(
+            row["two_exchange_same_slope_plane_two_exchange_pairs"] for row in rows
+        ),
+        "max_two_exchange_same_slope_affine_member": max(
+            row["two_exchange_same_slope_affine_member_max"] for row in rows
+        ),
+        "max_two_exchange_same_slope_lift_checks": max(
+            row["two_exchange_same_slope_lift_checks"] for row in rows
         ),
         "max_root_slices": max(row["root_slices"] for row in rows),
         "max_root_slice_noncontained": max(row["max_root_slice_noncontained"] for row in rows),
@@ -4098,6 +4297,39 @@ def verify_rank_one_zero_slice_probe() -> dict[str, object]:
     return row
 
 
+def verify_t3_same_slope_two_exchange_probe() -> dict[str, object]:
+    case = Case(
+        "F13_order12_j5_t3_same_slope_probe",
+        p=13,
+        n=12,
+        j=5,
+        t=3,
+        charged_fiber_sizes=(2, 3, 4, 6),
+        seeds=(),
+    )
+    domain, _, _ = cyclic_domain(case.p, case.n)
+    f_values = (11, 2, 10, 12, 6, 0, 6, 0, 8, 5, 4, 3)
+    g_values = (4, 3, 5, 8, 0, 3, 3, 3, 4, 3, 8, 9)
+    f = dict(zip(domain, f_values, strict=True))
+    g = dict(zip(domain, g_values, strict=True))
+    row = verify_word_pair(case, "same-slope-two-exchange-probe", f, g)
+    if row["two_exchange_same_slope_pairs"] != 378:
+        raise AssertionError("same-slope two-exchange probe changed")
+    if row["two_exchange_same_slope_line_clusters"] != 35:
+        raise AssertionError("same-slope probe line cluster count changed")
+    if row["two_exchange_same_slope_fixed_root_lines"] != 35:
+        raise AssertionError("same-slope probe fixed-root line count changed")
+    if row["two_exchange_same_slope_line_two_exchange_pairs"] != 0:
+        raise AssertionError("fixed-root line clusters produced two-exchange pairs")
+    if row["two_exchange_same_slope_plane_clusters"] != 1:
+        raise AssertionError("same-slope probe plane cluster count changed")
+    if row["two_exchange_same_slope_plane_lifts"] != 1:
+        raise AssertionError("same-slope probe plane lift count changed")
+    if row["two_exchange_same_slope_plane_two_exchange_pairs"] != 378:
+        raise AssertionError("same-slope probe plane did not account for the two-exchange pairs")
+    return row
+
+
 def main() -> None:
     cases = (
         Case("F17_full_j4_t2", p=17, n=16, j=4, t=2, charged_fiber_sizes=(2, 4, 8), seeds=(0, 1, 2, 3)),
@@ -4180,6 +4412,7 @@ def main() -> None:
             raise AssertionError("j=4 residual product floor audit was not field-sized")
     j4_pair_product_floor_argument = verify_j4_pair_product_floor_argument()
     rank_one_probe = verify_rank_one_zero_slice_probe()
+    t3_same_slope_probe = verify_t3_same_slope_two_exchange_probe()
     print(
         "F13_order12_j4_t2_boundary_model: "
         f"seeds={boundary_product_model['seeds']} "
@@ -4269,6 +4502,16 @@ def main() -> None:
                 "two_exchange_bad_locator_checks={two_exchange_bad_locator_checks} "
                 "two_exchange_slice_aperiodic_max={two_exchange_max_slice_aperiodic_locators} "
                 "two_exchange_slice_slope_max={two_exchange_max_slice_slope_image} "
+                "two_exchange_same_slope_clusters={two_exchange_same_slope_clusters} "
+                "two_exchange_same_slope_lines={two_exchange_same_slope_line_clusters} "
+                "two_exchange_same_slope_fixed_lines={two_exchange_same_slope_fixed_root_lines} "
+                "two_exchange_same_slope_mobius_lines={two_exchange_same_slope_mobius_lines} "
+                "two_exchange_same_slope_line_two_pairs={two_exchange_same_slope_line_two_exchange_pairs} "
+                "two_exchange_same_slope_planes={two_exchange_same_slope_plane_clusters} "
+                "two_exchange_same_slope_plane_lifts={two_exchange_same_slope_plane_lifts} "
+                "two_exchange_same_slope_plane_two_pairs={two_exchange_same_slope_plane_two_exchange_pairs} "
+                "two_exchange_same_slope_affine_member_max={two_exchange_same_slope_affine_member_max} "
+                "two_exchange_same_slope_lift_checks={two_exchange_same_slope_lift_checks} "
                 "root_slices={root_slices} "
                 "root_slice_slopes={root_slice_slope_count} "
                 "root_slice_new_slopes={root_slice_new_slope_count} "
@@ -4438,6 +4681,16 @@ def main() -> None:
             f"max_two_exchange_bad_locator_checks={summary['max_two_exchange_bad_locator_checks']} "
             f"max_two_exchange_slice_aperiodic={summary['max_two_exchange_slice_aperiodic_locators']} "
             f"max_two_exchange_slice_slope={summary['max_two_exchange_slice_slope_image']} "
+            f"max_two_exchange_same_slope_clusters={summary['max_two_exchange_same_slope_clusters']} "
+            f"max_two_exchange_same_slope_lines={summary['max_two_exchange_same_slope_line_clusters']} "
+            f"max_two_exchange_same_slope_fixed_lines={summary['max_two_exchange_same_slope_fixed_root_lines']} "
+            f"max_two_exchange_same_slope_mobius_lines={summary['max_two_exchange_same_slope_mobius_lines']} "
+            f"max_two_exchange_same_slope_line_two_pairs={summary['max_two_exchange_same_slope_line_two_exchange_pairs']} "
+            f"max_two_exchange_same_slope_planes={summary['max_two_exchange_same_slope_plane_clusters']} "
+            f"max_two_exchange_same_slope_plane_lifts={summary['max_two_exchange_same_slope_plane_lifts']} "
+            f"max_two_exchange_same_slope_plane_two_pairs={summary['max_two_exchange_same_slope_plane_two_exchange_pairs']} "
+            f"max_two_exchange_same_slope_affine_member={summary['max_two_exchange_same_slope_affine_member']} "
+            f"max_two_exchange_same_slope_lift_checks={summary['max_two_exchange_same_slope_lift_checks']} "
             f"max_root_slices={summary['max_root_slices']} "
             f"max_root_slice_noncontained={summary['max_root_slice_noncontained']} "
             f"max_root_total_slope_bound={summary['max_root_slice_total_slope_bound']} "
@@ -4709,7 +4962,30 @@ def main() -> None:
         "quad_companion_checks={quadratic_companion_checks} "
         "direct_checks={direct_checks}".format(**rank_one_probe)
     )
-    all_rows = [row for summary in summaries for row in summary["rows"]] + [rank_one_probe]
+    print(
+        "{name} seed={seed}: p={p} n={n} k={k} j={j} t={t} "
+        "aperiodic_locators={aperiodic_locators} aperiodic_slopes={aperiodic_slopes} "
+        "strict_pairs={aperiodic_strict_pairs} one_exchange_pairs={aperiodic_one_exchange_pairs} "
+        "same_slope_strict={aperiodic_same_slope_strict_pairs} "
+        "same_slope_one_exchange={aperiodic_same_slope_one_exchange_pairs} "
+        "two_exchange_pairs={two_exchange_pairs} "
+        "two_exchange_same_slope={two_exchange_same_slope_pairs} "
+        "two_exchange_different_slope={two_exchange_different_slope_pairs} "
+        "two_exchange_same_slope_lines={two_exchange_same_slope_line_clusters} "
+        "two_exchange_same_slope_fixed_lines={two_exchange_same_slope_fixed_root_lines} "
+        "two_exchange_same_slope_line_two_pairs={two_exchange_same_slope_line_two_exchange_pairs} "
+        "two_exchange_same_slope_planes={two_exchange_same_slope_plane_clusters} "
+        "two_exchange_same_slope_plane_lifts={two_exchange_same_slope_plane_lifts} "
+        "two_exchange_same_slope_plane_two_pairs={two_exchange_same_slope_plane_two_exchange_pairs} "
+        "two_exchange_same_slope_affine_member_max={two_exchange_same_slope_affine_member_max} "
+        "two_exchange_same_slope_lift_checks={two_exchange_same_slope_lift_checks} "
+        "two_exchange_minor_checks={two_exchange_minor_polynomial_checks} "
+        "direct_checks={direct_checks}".format(**t3_same_slope_probe)
+    )
+    all_rows = [row for summary in summaries for row in summary["rows"]] + [
+        rank_one_probe,
+        t3_same_slope_probe,
+    ]
     max_aperiodic = max(row["aperiodic_slopes"] for row in all_rows)
     max_strict_degree = max(row["aperiodic_max_strict_degree"] for row in all_rows)
     max_one_exchange_pairs = max(row["aperiodic_one_exchange_pairs"] for row in all_rows)
@@ -4744,6 +5020,36 @@ def main() -> None:
     )
     max_two_exchange_bad_locator_checks = max(
         row["two_exchange_bad_locator_checks"] for row in all_rows
+    )
+    max_two_exchange_same_slope_clusters = max(
+        row["two_exchange_same_slope_clusters"] for row in all_rows
+    )
+    max_two_exchange_same_slope_line_clusters = max(
+        row["two_exchange_same_slope_line_clusters"] for row in all_rows
+    )
+    max_two_exchange_same_slope_fixed_root_lines = max(
+        row["two_exchange_same_slope_fixed_root_lines"] for row in all_rows
+    )
+    max_two_exchange_same_slope_mobius_lines = max(
+        row["two_exchange_same_slope_mobius_lines"] for row in all_rows
+    )
+    max_two_exchange_same_slope_line_two_exchange_pairs = max(
+        row["two_exchange_same_slope_line_two_exchange_pairs"] for row in all_rows
+    )
+    max_two_exchange_same_slope_plane_clusters = max(
+        row["two_exchange_same_slope_plane_clusters"] for row in all_rows
+    )
+    max_two_exchange_same_slope_plane_lifts = max(
+        row["two_exchange_same_slope_plane_lifts"] for row in all_rows
+    )
+    max_two_exchange_same_slope_plane_two_exchange_pairs = max(
+        row["two_exchange_same_slope_plane_two_exchange_pairs"] for row in all_rows
+    )
+    max_two_exchange_same_slope_affine_member = max(
+        row["two_exchange_same_slope_affine_member_max"] for row in all_rows
+    )
+    max_two_exchange_same_slope_lift_checks = max(
+        row["two_exchange_same_slope_lift_checks"] for row in all_rows
     )
     max_total_slope_bound = max(row["root_slice_total_slope_bound"] for row in all_rows)
     max_root_new_slopes = max(row["root_slice_new_slope_count"] for row in all_rows)
@@ -5061,11 +5367,12 @@ def main() -> None:
     )
     max_companion_checks = max(row["quadratic_companion_checks"] for row in all_rows)
     max_rank_one_zero = max(row["zero_det_direction_rank1_slices"] for row in all_rows)
-    total_lines = sum(len(summary["case"].seeds) for summary in summaries) + 1
+    total_lines = sum(len(summary["case"].seeds) for summary in summaries) + 2
     print(
         "m1_all_line_hankel_aperiodic: PASS "
         f"cases={len(summaries)} line_samples={total_lines} "
         f"rank_one_probes=1 "
+        f"t3_same_slope_probes=1 "
         f"max_aperiodic_slopes={max_aperiodic} "
         f"max_one_exchange_pairs={max_one_exchange_pairs} "
         f"max_same_slope_one_exchange={max_same_slope_one_exchange_pairs} "
@@ -5080,6 +5387,16 @@ def main() -> None:
         f"max_two_exchange_cores={max_two_exchange_cores} "
         f"max_two_exchange_minor_checks={max_two_exchange_minor_checks} "
         f"max_two_exchange_bad_locator_checks={max_two_exchange_bad_locator_checks} "
+        f"max_two_exchange_same_slope_clusters={max_two_exchange_same_slope_clusters} "
+        f"max_two_exchange_same_slope_lines={max_two_exchange_same_slope_line_clusters} "
+        f"max_two_exchange_same_slope_fixed_lines={max_two_exchange_same_slope_fixed_root_lines} "
+        f"max_two_exchange_same_slope_mobius_lines={max_two_exchange_same_slope_mobius_lines} "
+        f"max_two_exchange_same_slope_line_two_pairs={max_two_exchange_same_slope_line_two_exchange_pairs} "
+        f"max_two_exchange_same_slope_planes={max_two_exchange_same_slope_plane_clusters} "
+        f"max_two_exchange_same_slope_plane_lifts={max_two_exchange_same_slope_plane_lifts} "
+        f"max_two_exchange_same_slope_plane_two_pairs={max_two_exchange_same_slope_plane_two_exchange_pairs} "
+        f"max_two_exchange_same_slope_affine_member={max_two_exchange_same_slope_affine_member} "
+        f"max_two_exchange_same_slope_lift_checks={max_two_exchange_same_slope_lift_checks} "
         f"max_total_slope_bound={max_total_slope_bound} "
         f"max_root_new_slopes={max_root_new_slopes} "
         f"max_root_t3_core_locators={max_root_t3_core_locators} "

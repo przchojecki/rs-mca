@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-27 - M1 same-slope two-exchange affine lift
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/m1/m1_all_line_hankel_aperiodic_packing.md`,
+  `experimental/scripts/verify_m1_all_line_hankel_aperiodic.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT / EXPERIMENTAL.
+- **What is being added:** Same-slope `t=3` two-exchange clusters over a fixed
+  `(j-2)` core are classified by affine rank in `(s,p)=(x+y,xy)`: line
+  clusters are one-dimensional components, while affine-rank-two clusters lift
+  to the `(t+2,j-2)` Hankel core-locator image.
+- **How it is useful:** This gives a recursive charge for the dangerous
+  two-dimensional same-slope two-exchange branch in the all-line M1 route,
+  reducing it to the higher-slack core image rather than a new packing object.
+- **What to do next:** Analyze the remaining one-dimensional line components,
+  especially whether non-fixed-root Möbius lines can survive quotient and
+  root-slice charges in larger `t=3` instances.
+
 ### 2026-06-27 - M1 two-exchange determinantal slices
 
 - **Agent/model:** Codex.
