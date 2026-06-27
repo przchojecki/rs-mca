@@ -5152,6 +5152,60 @@ The full projective space of such multipliers has size
 
 and the additional conditions only remove classes.  This proves (TailMult).
 
+## Corollary 40.18: The Half-Window Tail Has A Depth-Independent Denominator Budget
+
+Keep the notation of Corollary 40.17 and work over `F_q`.  Let
+
+```text
+Fam={ u, v, (u,v), (S u,S v) }.
+```
+
+For a family `F in Fam`, write `F` as active if it has a root-free witness at
+the first half-window depth `r_hw`.  For active `F`, let `D_F` be its cutoff
+primitive denominator and put
+
+```text
+delta_F=deg D_F.
+```
+
+Let `TailPrim_all` be the set of family-labelled projective primitive
+denominator classes that occur for some family `F in Fam` at some half-window
+tail depth `r in R_hw`.  Then
+
+```text
+|TailPrim_all|
+  <= sum_{F active} (q^{h-delta_F}-1)/(q-1)
+  <= 4 (q^h-1)/(q-1).                               (TailBudget)
+```
+
+The unlabelled set of denominator classes is bounded by the same right-hand
+side, and may be smaller because a denominator class can be charged in more
+than one family only through the overlap mechanisms of Corollaries 40.12 and
+40.13.
+
+Thus the half-window tail has a single denominator budget depending only on
+the four cutoff primitive denominators, not on the number of depths in
+`R_hw`.  Any improvement in the cutoff degrees `delta_F`, or any proof that a
+cutoff family is absent, immediately improves the whole tail budget.
+
+### Proof
+
+For an inactive family, Corollary 40.17 says there is no deeper half-window
+witness, so it contributes nothing to `TailPrim_all`.  For an active family
+`F`, the same corollary injects all tail primitive denominator classes for
+that family into the projective multiplier ledger attached to `D_F`, whose
+size is at most
+
+```text
+(q^{h-delta_F}-1)/(q-1).
+```
+
+Summing over the at most four labelled families gives the first inequality.
+Since each active `delta_F` is nonnegative, every summand is at most
+`(q^h-1)/(q-1)`, giving the coarse second inequality.  Passing from labelled
+to unlabelled classes can only identify classes and therefore cannot increase
+the count.  The paired-overlap statement records Corollaries 40.12 and 40.13.
+
 ## Corollary 41: The Global Common-Image Ledger Is Endpoint-Only
 
 Let `GCI` be the set of monic degree-`c` split core locators `L` for which
@@ -7829,6 +7883,8 @@ multiplier refinements.
 Corollary 40.17 bounds only the ambient multiplier ledger attached to a fixed
 cutoff primitive denominator; it does not prove which multiplier classes
 satisfy the deeper recurrence equations.
+Corollary 40.18 sums those ambient ledgers over the four residual families; it
+does not turn the denominator-class budget into an MCA slope count.
 Corollary 41 packages the common-image branch into endpoint-type ledgers; it
 does not prove the endpoint rank hypotheses needed for the displayed
 `(q+2)binom(n,b)` bound. Corollary 42 packages the globally full core ledger

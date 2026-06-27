@@ -2082,7 +2082,14 @@ primitive bases.  Over \(\F_q\), if the cutoff primitive denominator has
 degree \(\delta\), the whole half-window tail for that family has at most
 \((q^{h-\delta}-1)/(q-1)\) ambient primitive denominator classes before the
 deeper truncation equations are imposed, independent of the number of
-half-window depths.
+half-window depths.  Summed over the four residual families, the family-labelled
+tail budget is
+\[
+  \sum_F {q^{h-\delta_F}-1\over q-1}
+  \le 4{q^h-1\over q-1},
+\]
+where absent cutoff families contribute zero.  This is a depth-independent
+denominator-class budget for the half-window tail.
 Equivalently, the full three-shift common-image branch is endpoint-only.  If
 \(\mathrm{GCI}\) denotes the monic split core locators satisfying some
 three-shift common-image line, then
