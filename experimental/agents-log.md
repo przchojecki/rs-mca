@@ -52,11 +52,14 @@ Keep entries concise and link to the relevant files.
   kernel slice, or as a boundary-contained pencil in the endpoint case.  On
   the common-image side, full shadow stars are shown to be evaluation row cuts,
   and star-free rank-one row cuts gain a fixed root-slice factor over the bare
-  one-root-loss bound.
+  one-root-loss bound.  Finally, a polynomial-field closure criterion records
+  that the reduced boundary-off target set is bounded by twice the
+  nondegenerate shadow ledger plus `q=|F|` times the three ruled shadow ledgers.
 - **How it is useful:** This sharpens one of the two live residual objects in
   the non-fixed variable-line branch.  It does not prove the final M1 bound,
   but it turns the boundary image into a precise quadratic-anchor/ruled-branch
-  incidence target.
+  incidence target and states exactly which reduced shadow estimates would
+  close this boundary-off piece in the polynomial-field regime.
 - **What to do next:** Bound the adjacent domain shadows in the nondegenerate
   branch and try to charge the ruled branch to fixed-slope/root-slice,
   contained/tangent, quotient-periodic, or active-codegree ledgers.

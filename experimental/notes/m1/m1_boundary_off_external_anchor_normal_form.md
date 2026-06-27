@@ -686,6 +686,66 @@ m N_h <= n binom(n-1,m-2),
 
 which is (SF).
 
+## Corollary 9: Polynomial-Field Closure Criterion
+
+Let `q=|F|`. After fixed-root/root-slice full shadow stars from Corollary 7
+have been charged, let `Boundary_off^red` be the remaining one-outside
+boundary target set covered by Theorem 1.
+
+Let the following reduced shadow ledgers be the corresponding branch images
+(with overlaps allowed, or with any admissible branch assignment for shadows
+that satisfy more than one ruled description):
+
+```text
+Sh_quad = nondegenerate quadratic-anchor shadows,
+Sh_ker  = finite common-kernel fixed-slope ruled shadows,
+Sh_cont = boundary-contained endpoint ruled shadows,
+Sh_img  = common-image row-cut shadows after full stars are removed.
+```
+
+Then
+
+```text
+|Boundary_off^red|
+  <= 2 |Sh_quad| + q ( |Sh_ker| + |Sh_cont| + |Sh_img| ).          (BC)
+```
+
+Consequently, in a polynomial-field window `q <= n^B_F`, polynomial bounds
+
+```text
+|Sh_quad| <= n^B_Q,      |Sh_ker| <= n^B_K,
+|Sh_cont| <= n^B_C,      |Sh_img| <= n^B_I
+```
+
+imply the polynomial boundary-off bound
+
+```text
+|Boundary_off^red|
+  <= 2 n^B_Q + n^(B_F+B_K) + n^(B_F+B_C) + n^(B_F+B_I).
+```
+
+Thus the boundary-off problem is reduced, in the polynomial-field regime, to
+polynomial shadow-image estimates for the four ledgers above, together with
+the already separated fixed-root/full-star charges.
+
+### Proof
+
+For a nondegenerate shadow, Corollary 2 gives at most two external anchors
+`beta`. This contributes `2 |Sh_quad|`.
+
+For a ruled shadow, the whole external-anchor pencil may satisfy the Hankel
+gate. Without a sharper branch-specific estimate, the only uniform
+multiplicity bound over a fixed shadow is the field-size bound `q`, since
+`beta` ranges over `F\D`. Corollaries 5 and 6 classify every ruled shadow into
+the finite common-kernel fixed-slope branch, the boundary-contained endpoint
+branch, or the common-image row-cut branch. Corollary 7 moves full shadow
+stars in the common-image row-cut branch to the fixed-root/root-slice ledger;
+the remaining common-image shadows are, by definition, counted in `Sh_img`.
+Summing these shadow multiplicities gives (BC).
+
+The displayed polynomial estimate is (BC) with `q <= n^B_F` and the four
+shadow-ledger hypotheses substituted.
+
 ## Non-Claims
 
 This note does not prove
@@ -697,4 +757,7 @@ This note does not prove
 It also does not prove the all-line M1 theorem, a corrected-reserve MCA bound,
 or a prize threshold. It only proves the local external-anchor normal form and
 the nondegenerate/ruled split for the boundary target image already isolated in
-the variable-line packet lemma.
+the variable-line packet lemma. Corollary 9 is a closure criterion: it says
+which shadow-image estimates would imply a polynomial boundary-off bound in
+the polynomial-field regime, not that those estimates have already been
+proved.

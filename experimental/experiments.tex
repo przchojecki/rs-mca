@@ -1643,6 +1643,23 @@ After these full stars are moved to the fixed-root/root-slice ledger, a
 star-free rank-one row-cut packet gains the slice factor
 \((j-2)/(j-1)\) over the bare one-root-loss bound.
 
+In the polynomial-field window \(q=|\F|\le n^{B_F}\), this gives a concrete
+closure criterion.  After fixed-root/full-star boundary slices have been
+charged, if the reduced shadow ledgers for the nondegenerate quadratic branch,
+finite common-kernel fixed-slope branch, boundary-contained endpoint branch,
+and common-image row-cut branch are polynomially bounded, then
+\[
+|\mathrm{Boundary}_{\mathrm{off}}^{\mathrm{red}}|
+ \le 2|\mathrm{Sh}_{\mathrm{quad}}|
+  + q\bigl(|\mathrm{Sh}_{\mathrm{ker}}|
+          +|\mathrm{Sh}_{\mathrm{cont}}|
+          +|\mathrm{Sh}_{\mathrm{img}}|\bigr)
+\]
+is polynomial.  This does not prove those shadow-ledger estimates; it records
+that the remaining boundary-off multiplicity is at worst the field-size factor
+over the three ruled shadow images and a factor \(2\) over the nondegenerate
+shadow image.
+
 \textbf{Status.}  This is a proved local packet lemma under the Hankel-pencil
 normal form and its non-fixed variable-line hypotheses.  It is not the final
 all-line M1 theorem and does not add a leaderboard row.
