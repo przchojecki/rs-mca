@@ -155,7 +155,12 @@ Keep entries concise and link to the relevant files.
   classification proof was also audited locally: in the two-dimensional
   `span{A,B}` case the fixed-kernel conclusion now follows directly from the
   three coefficient equations `A wedge C=0`, `B wedge D=0`, and
-  `A wedge D+B wedge C=0`.
+  `A wedge D+B wedge C=0`.  The lower fixed-kernel full-core ledger now has
+  its own finite-slope low-rank dichotomy: for fixed `beta`, either at most
+  `c-b` slopes have direction dimension `>b` on degree-`c=m-1` core locators,
+  or the lower core pencil is persistently low-rank for every slope.  Outside
+  the exceptional slopes, this gives a `q binom(n,b)` core bound before the
+  extension factor to shadows.
 - **What to do next:** Bound or charge the unique-neighbor nondegenerate
   star-free shadow ledger, and charge the ruled exceptional low-rank loci to
   fixed-slope/root-slice, endpoint, projective, quotient-periodic, or

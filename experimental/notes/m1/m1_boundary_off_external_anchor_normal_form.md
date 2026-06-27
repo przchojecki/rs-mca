@@ -2293,6 +2293,90 @@ bounded-dimension estimate (FCB) follows from
 most `n-(m-1)=n-m+1` extensions to an `m`-shadow, proving the displayed
 shadow bound.
 
+## Corollary 27: Lower Fixed-Kernel Slopes Have The Same Low-Rank Dichotomy
+
+Keep `beta` fixed and put `c=m-1`.  Assume `c>=1`.  For each finite lower
+fixed-kernel slope `lambda in F`, let
+
+```text
+R_lambda^core(beta): F^c -> F^{2t}
+```
+
+be the homogeneous row-cut matrix on the lower coefficients of a monic
+degree-`c` core locator `L_R` for the system
+
+```text
+(H(v)-lambda H(u))(X-beta)L_R = 0,
+(H(v)-lambda H(u))(X-beta)X L_R = 0.                (CoreKer_lambda)
+```
+
+Let
+
+```text
+e_lambda(beta)=dim ker R_lambda^core(beta).
+```
+
+Fix `0<=b<c`, and define
+
+```text
+Z_core,>b(beta)={ lambda in F : e_lambda(beta)>b }.
+```
+
+Then one of the following alternatives holds.
+
+```text
+finite-exception alternative:
+  |Z_core,>b(beta)| <= c-b;
+
+persistent lower-kernel alternative:
+  e_lambda(beta)>b for every lambda in F.
+```
+
+More precisely, if some `(c-b) x (c-b)` minor of `R_lambda^core(beta)` is not
+the zero polynomial in `lambda`, then the finite-exception alternative holds.
+If every such minor vanishes identically, then the lower fixed-kernel
+obstruction is persistent for this `beta`.
+
+Consequently, outside the exceptional slopes `Z_core,>b(beta)`, the fixed-kernel
+part of `FullCoreGate(beta)` contributes at most
+
+```text
+q binom(n,b)
+```
+
+split cores, and at most
+
+```text
+q (n-m+1) binom(n,b)
+```
+
+boundary shadows for this fixed anchor.  The exceptional slopes are now a
+finite fixed-slope charge unless the persistent lower-kernel alternative
+occurs.
+
+### Proof
+
+Multiplication by `(X-beta)` and by `X` are fixed linear maps in the lower
+coefficients of the monic degree-`c` locator.  Therefore the homogeneous
+direction matrix for (CoreKer_lambda) has entries affine-linear in `lambda`.
+The condition `e_lambda(beta)>b` is equivalent to
+
+```text
+rank R_lambda^core(beta) < c-b,
+```
+
+which is equivalent to the vanishing of all `(c-b) x (c-b)` minors.  Each such
+minor is a polynomial in `lambda` of degree at most `c-b`.
+
+If one of those minors is nonzero, it has at most `c-b` roots, proving the
+finite-exception alternative.  If every such minor is identically zero, then
+the rank is `<c-b` for every `lambda`, hence `e_lambda(beta)>b` for every
+`lambda`.
+
+For every non-exceptional slope, Corollary 26 gives at most `binom(n,b)` split
+cores.  There are at most `q` finite slopes.  Finally, each split core extends
+to at most `n-m+1` degree-`m` shadows, giving the displayed shadow bound.
+
 ## Non-Claims
 
 This note does not prove
@@ -2353,3 +2437,6 @@ Corollary 24 to be bounded or charged separately.
 Corollary 26 gives row-rank certificates for those full core-line ledgers; it
 does not prove that the exceptional lower systems all have bounded direction
 dimension without separate endpoint, image-line, or fixed-kernel charges.
+Corollary 27 isolates the finite fixed-kernel part of the lower full-core
+ledger; it still leaves the finite exceptional slopes or the persistent
+lower-kernel alternative to be charged separately.
