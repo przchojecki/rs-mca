@@ -291,7 +291,10 @@ Keep entries concise and link to the relevant files.
   primitive-denominator divisibility: every deeper primitive denominator in
   the same residual family is a multiple of the first half-window primitive
   denominator, so deeper denominators are refinements inside the cutoff
-  multiplier ledger rather than new primitive bases.
+  multiplier ledger rather than new primitive bases.  Over `F_q`, if the
+  cutoff primitive has degree `delta`, the ambient number of tail primitive
+  denominator classes for that family is at most `(q^(h-delta)-1)/(q-1)`
+  before the deeper truncation equations are imposed.
   The common-image three-shift ledger now has the analogous sliding-window
   reduction: for an image line `[y]`, the allowed deeper residuals form a space
   `W_y` of dimension at most one, nonzero only on the `q+1` extended geometric

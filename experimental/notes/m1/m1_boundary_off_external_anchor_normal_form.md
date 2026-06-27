@@ -5090,6 +5090,68 @@ denominator `D_hw`.  Applying this to the certificate denominator `D_r` gives
 root-free, Corollary 58 passes reciprocal-domain-pole-freeness to both
 factors, so `M_r` has no reciprocal-domain zero.
 
+## Corollary 40.17: The Half-Window Tail Has One Multiplier Ledger Per Family
+
+Keep the notation of Corollary 40.16, and work over a finite field `F_q`.
+Fix one of the four residual families
+
+```text
+u,        v,        (u,v),        (S u,S v).
+```
+
+If this family has no root-free witness at the first half-window depth
+`r_hw`, then it has no root-free witness at any deeper depth in `R_hw`.
+
+Otherwise let `D_hw` be the cutoff primitive denominator and put
+
+```text
+delta=deg D_hw.
+```
+
+Let `TailPrim` be the set of projective primitive denominator classes that
+occur for this same residual family at depths `r in R_hw`.  Then every class
+in `TailPrim` is represented by
+
+```text
+D_hw(T)M(T),        deg M<=h-1-delta,
+```
+
+where `M` has no reciprocal-domain zero.  Hence
+
+```text
+|TailPrim| <= (q^{h-delta}-1)/(q-1).                (TailMult)
+```
+
+The deeper recurrence equations may cut this multiplier ledger further; the
+displayed number is only the ambient multiplier count attached to the cutoff
+primitive denominator.  In particular the number of primitive denominator
+bases needed for the half-window tail is bounded independently of
+`|R_hw|`.
+
+### Proof
+
+If a deeper root-free witness exists, Corollary 40.10 applied to the
+half-window tail puts it in the cutoff witness family, so absence at `r_hw`
+implies absence at every deeper depth.
+
+Assume a cutoff witness exists.  Corollary 40.16 says every deeper primitive
+denominator class is divisible by `D_hw`, and the quotient has degree at most
+`h-1-delta` with no reciprocal-domain zero.  Thus `TailPrim` injects into the
+projective multiplier ledger
+
+```text
+{ M != 0 : deg M<=h-1-delta } / F_q^*,
+```
+
+after restricting to the root-free and deeper-truncation subconditions.
+The full projective space of such multipliers has size
+
+```text
+1+q+...+q^{h-1-delta}=(q^{h-delta}-1)/(q-1),
+```
+
+and the additional conditions only remove classes.  This proves (TailMult).
+
 ## Corollary 41: The Global Common-Image Ledger Is Endpoint-Only
 
 Let `GCI` be the set of monic degree-`c` split core locators `L` for which
@@ -7764,6 +7826,9 @@ denominator targets.
 Corollary 40.16 proves tail primitive denominators refine the cutoff
 denominator; it does not count the cutoff primitive bases or the allowed
 multiplier refinements.
+Corollary 40.17 bounds only the ambient multiplier ledger attached to a fixed
+cutoff primitive denominator; it does not prove which multiplier classes
+satisfy the deeper recurrence equations.
 Corollary 41 packages the common-image branch into endpoint-type ledgers; it
 does not prove the endpoint rank hypotheses needed for the displayed
 `(q+2)binom(n,b)` bound. Corollary 42 packages the globally full core ledger
