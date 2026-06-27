@@ -292,25 +292,27 @@ Keep entries concise and link to the relevant files.
   the same residual family is a multiple of the first half-window primitive
   denominator, so deeper denominators are refinements inside the cutoff
   multiplier ledger rather than new primitive bases.  Over `F_q`, if the
-  cutoff primitive has degree `delta`, the ambient number of tail primitive
-  denominator classes for that family is at most `(q^(h-delta)-1)/(q-1)`
-  before the deeper truncation equations are imposed.  Summing over the four
-  residual families gives a family-labelled half-window tail budget
+  cutoff primitive has degree `delta`, the ambient number of tail projective
+  certificate-denominator classes, and hence primitive denominator classes, for
+  that family is at most `(q^(h-delta)-1)/(q-1)` before the deeper truncation
+  equations are imposed.  Summing over the four residual families gives a
+  family-labelled half-window tail budget
   `sum_F (q^(h-delta_F)-1)/(q-1) <= 4(q^h-1)/(q-1)`, with absent cutoff
-  families contributing zero.  Any primitive denominator class common to the
-  ordinary paired and shifted paired tails is now identified with an
-  endpoint-pair residual certificate at the first half-window depth, so paired
-  tail overlaps are endpoint-pair charges rather than new tail budget.  The
-  scalar-paired tail overlaps are also classified: they are one-sided cutoff
-  endpoint residuals with one series in the longer `t+r` window and the other
-  in the paired `t+r-1` window.  The scalar-scalar tail overlap is the cutoff
-  endpoint-pair residual, completing the pairwise overlap classification for
-  the unlabelled four-family tail budget.  After those named overlap residuals
+  families contributing zero.  Any projective certificate-denominator class
+  common to the ordinary paired and shifted paired tails is now identified with
+  an endpoint-pair residual certificate at the first half-window depth, so
+  paired tail overlaps are endpoint-pair charges rather than new tail budget.
+  The scalar-paired tail overlaps are also classified: they are one-sided
+  cutoff endpoint residuals with one series in the longer `t+r` window and the
+  other in the paired `t+r-1` window.  The scalar-scalar tail overlap is the
+  cutoff endpoint-pair residual, completing the pairwise overlap classification
+  for the unlabelled four-family tail budget.  After those named overlap residuals
   and their multiplier ledgers are charged, the remaining half-window tail is
-  family-disjoint: each uncharged primitive denominator class has a unique
-  residual-family label.  The refined mixed-ladder closure now records the
-  final consumable ledger: after pre-half residuals, cutoff overlap residuals,
-  and cutoff family multiplier ledgers are charged, the only remaining finite
+  family-disjoint: each uncharged projective certificate-denominator class,
+  and hence each primitive denominator class, has a unique residual-family
+  label.  The refined mixed-ladder closure now records the final consumable
+  ledger: after pre-half residuals, cutoff overlap residuals, and cutoff
+  family multiplier ledgers are charged, the only remaining finite
   frontier charge is the bottom set `E_{r_0,>b} union Theta_{r_0,>b}`, of size
   at most `2h`.
   The common-image three-shift ledger now has the analogous sliding-window

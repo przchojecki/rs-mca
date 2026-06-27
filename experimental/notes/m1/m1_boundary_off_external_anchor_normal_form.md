@@ -5108,9 +5108,10 @@ Otherwise let `D_hw` be the cutoff primitive denominator and put
 delta=deg D_hw.
 ```
 
-Let `TailPrim` be the set of projective primitive denominator classes that
+Let `TailCert` be the set of projective certificate-denominator classes, and
+let `TailPrim` be the set of projective primitive denominator classes, which
 occur for this same residual family at depths `r in R_hw`.  Then every class
-in `TailPrim` is represented by
+in `TailCert`, and hence every class in `TailPrim`, is represented by
 
 ```text
 D_hw(T)M(T),        deg M<=h-1-delta,
@@ -5119,14 +5120,15 @@ D_hw(T)M(T),        deg M<=h-1-delta,
 where `M` has no reciprocal-domain zero.  Hence
 
 ```text
+|TailCert| <= (q^{h-delta}-1)/(q-1),
 |TailPrim| <= (q^{h-delta}-1)/(q-1).                (TailMult)
 ```
 
 The deeper recurrence equations may cut this multiplier ledger further; the
 displayed number is only the ambient multiplier count attached to the cutoff
 primitive denominator.  In particular the number of primitive denominator
-bases needed for the half-window tail is bounded independently of
-`|R_hw|`.
+bases, and the number of projective certificate-denominator classes, needed for
+the half-window tail is bounded independently of `|R_hw|`.
 
 ### Proof
 
@@ -5134,10 +5136,13 @@ If a deeper root-free witness exists, Corollary 40.10 applied to the
 half-window tail puts it in the cutoff witness family, so absence at `r_hw`
 implies absence at every deeper depth.
 
-Assume a cutoff witness exists.  Corollary 40.16 says every deeper primitive
-denominator class is divisible by `D_hw`, and the quotient has degree at most
-`h-1-delta` with no reciprocal-domain zero.  Thus `TailPrim` injects into the
-projective multiplier ledger
+Assume a cutoff witness exists.  Any root-free certificate denominator at a
+deeper tail depth is also a cutoff-depth certificate denominator by the same
+nesting argument.  Corollary 60 applied at the cutoff depth says that every
+such certificate denominator is divisible by `D_hw`, and that the quotient has
+degree at most `h-1-delta`.  Corollary 58 passes reciprocal-domain
+pole-freeness to the quotient.  Thus `TailCert`, and therefore also
+`TailPrim`, injects into the projective multiplier ledger
 
 ```text
 { M != 0 : deg M<=h-1-delta } / F_q^*,
@@ -5168,11 +5173,14 @@ primitive denominator and put
 delta_F=deg D_F.
 ```
 
-Let `TailPrim_all` be the set of family-labelled projective primitive
-denominator classes that occur for some family `F in Fam` at some half-window
-tail depth `r in R_hw`.  Then
+Let `TailCert_all` and `TailPrim_all` be the sets of family-labelled
+projective certificate-denominator classes and primitive denominator classes,
+respectively, that occur for some family `F in Fam` at some half-window tail
+depth `r in R_hw`.  Then
 
 ```text
+|TailCert_all|
+  <= sum_{F active} (q^{h-delta_F}-1)/(q-1),
 |TailPrim_all|
   <= sum_{F active} (q^{h-delta_F}-1)/(q-1)
   <= 4 (q^h-1)/(q-1).                               (TailBudget)
@@ -5193,10 +5201,11 @@ cutoff family is absent, immediately improves the whole tail budget.
 ### Proof
 
 For an inactive family, Corollary 40.17 says there is no deeper half-window
-witness, so it contributes nothing to `TailPrim_all`.  For an active family
-`F`, the same corollary injects all tail primitive denominator classes for
-that family into the projective multiplier ledger attached to `D_F`, whose
-size is at most
+witness, so it contributes nothing to `TailCert_all` or `TailPrim_all`.  For
+an active family `F`, the same corollary injects all tail
+certificate-denominator classes, and therefore all tail primitive denominator
+classes, for that family into the projective multiplier ledger attached to
+`D_F`, whose size is at most
 
 ```text
 (q^{h-delta_F}-1)/(q-1).
@@ -5210,13 +5219,14 @@ the count.  The overlap references record Corollaries 40.19--40.21.
 
 ## Corollary 40.19: Paired Tail Overlaps Are Endpoint-Pair Charges
 
-Keep the half-window tail notation above.  Let `TailPrim(u,v)` and
-`TailPrim(Su,Sv)` be the unlabelled primitive denominator classes that occur
-somewhere in the half-window tail for the ordinary paired residual family and
-the shifted paired residual family.
+Keep the half-window tail notation above.  Let `TailCert(u,v)` and
+`TailCert(Su,Sv)` be the unlabelled projective certificate-denominator classes
+that occur somewhere in the half-window tail for the ordinary paired residual
+family and the shifted paired residual family; define `TailPrim(u,v)` and
+`TailPrim(Su,Sv)` analogously for primitive denominator classes.
 
-If a denominator class `D` lies in both sets, then `D` is an endpoint-pair
-certificate at the first half-window depth:
+If a denominator class `D` lies in `TailCert(u,v) cap TailCert(Su,Sv)`, then
+`D` is an endpoint-pair certificate at the first half-window depth:
 
 ```text
 H_{t+r_hw,h-1}(u)Q=H_{t+r_hw,h-1}(v)Q=0
@@ -5224,17 +5234,18 @@ H_{t+r_hw,h-1}(u)Q=H_{t+r_hw,h-1}(v)Q=0
 
 for the reversed locator `Q` attached to `D`.  Consequently, after charging
 the endpoint-pair residual at the cutoff depth, the ordinary paired tail and
-the shifted paired tail have no common uncharged primitive denominator class.
+the shifted paired tail have no common uncharged projective
+certificate-denominator class, and hence no common primitive denominator class.
 Equivalently, paired-family intersections in the half-window tail are not a
 new tail budget; they are endpoint-pair residual multiplier charges.
 
 ### Proof
 
 Suppose `D` occurs in the ordinary paired tail at depth `r_1 in R_hw` and in
-the shifted paired tail at depth `r_2 in R_hw`.  By Corollary 40.16, the same
-denominator `D` is a valid cutoff-depth certificate for the ordinary paired
-family and also for the shifted paired family.  Thus the corresponding
-root-free locator `Q` satisfies
+the shifted paired tail at depth `r_2 in R_hw`.  By row nesting in the
+half-window tail, the same denominator `D` is a valid cutoff-depth certificate
+for the ordinary paired family and also for the shifted paired family.  Thus
+the corresponding root-free locator `Q` satisfies
 
 ```text
 H_s(u)Q=H_s(v)Q=0,
@@ -5249,8 +5260,9 @@ H_{s+1}(u)Q=H_{s+1}(v)Q=0.
 ```
 
 Since `s+1=t+r_hw`, this is the displayed endpoint-pair certificate at the
-cutoff depth.  Therefore any common paired-tail denominator is charged when
-the cutoff endpoint-pair residual and its multiplier ledger are charged.
+cutoff depth.  Therefore any common paired-tail certificate denominator, and
+hence any common primitive denominator, is charged when the cutoff
+endpoint-pair residual and its multiplier ledger are charged.
 
 ## Corollary 40.20: Scalar-Paired Tail Overlaps Are One-Sided Endpoint Residuals
 
@@ -5260,14 +5272,16 @@ Keep the notation of Corollary 40.19 and put
 s=t+r_hw-1,        H_m(w)=H_{m,h-1}(w).
 ```
 
-Let `TailPrim(u)` and `TailPrim(v)` denote the unlabelled primitive
-denominator classes occurring somewhere in the half-window tail for the scalar
-residual families `u` and `v`; keep the paired notation
-`TailPrim(u,v)` and `TailPrim(Su,Sv)` from Corollary 40.19.
+Let `TailCert(u)` and `TailCert(v)` denote the unlabelled projective
+certificate-denominator classes occurring somewhere in the half-window tail for
+the scalar residual families `u` and `v`, and define `TailPrim(u)` and
+`TailPrim(v)` analogously for primitive denominator classes.  Keep the paired
+notation from Corollary 40.19.
 
-Every primitive denominator class common to a scalar half-window tail and a
-paired half-window tail is a cutoff certificate for one of the following
-one-sided endpoint residual systems:
+Every projective certificate-denominator class, hence every primitive
+denominator class, common to a scalar half-window tail and a paired
+half-window tail is a cutoff certificate for one of the following one-sided
+endpoint residual systems:
 
 ```text
 H_{s+1}(u)Q=0,        H_s(v)Q=0,                    (u | u,v)
@@ -5278,21 +5292,22 @@ H_s(S u)Q=0,          H_{s+1}(v)Q=0.                (v | Su,Sv)
 
 More explicitly:
 
-* `TailPrim(u) cap TailPrim(u,v)` is contained in `(u | u,v)`;
-* `TailPrim(v) cap TailPrim(u,v)` is contained in `(v | u,v)`;
-* `TailPrim(u) cap TailPrim(Su,Sv)` is contained in `(u | Su,Sv)`;
-* `TailPrim(v) cap TailPrim(Su,Sv)` is contained in `(v | Su,Sv)`.
+* `TailCert(u) cap TailCert(u,v)` is contained in `(u | u,v)`;
+* `TailCert(v) cap TailCert(u,v)` is contained in `(v | u,v)`;
+* `TailCert(u) cap TailCert(Su,Sv)` is contained in `(u | Su,Sv)`;
+* `TailCert(v) cap TailCert(Su,Sv)` is contained in `(v | Su,Sv)`.
 
 Consequently, after these one-sided cutoff residual systems and their
 multiplier ledgers are charged, scalar-paired tail intersections contribute no
-new unlabelled half-window tail denominator classes.
+new unlabelled half-window tail certificate-denominator classes, and hence no
+new primitive denominator classes.
 
 ### Proof
 
-Consider `TailPrim(u) cap TailPrim(u,v)`.  By Corollary 40.16, a common tail
-denominator class gives a cutoff-depth scalar certificate for `u` and a
-cutoff-depth ordinary paired certificate for `(u,v)`.  With `s=t+r_hw-1`, the
-scalar certificate is
+Consider `TailCert(u) cap TailCert(u,v)`.  By row nesting in the half-window
+tail, a common tail certificate-denominator class gives a cutoff-depth scalar
+certificate for `u` and a cutoff-depth ordinary paired certificate for
+`(u,v)`.  With `s=t+r_hw-1`, the scalar certificate is
 
 ```text
 H_{s+1}(u)Q=0,
@@ -5306,20 +5321,21 @@ H_s(u)Q=H_s(v)Q=0.
 
 The `H_s(u)` rows are contained in the `H_{s+1}(u)` rows, so the intersection
 is exactly the first one-sided system displayed above.  The case
-`TailPrim(v) cap TailPrim(u,v)` is symmetric.
+`TailCert(v) cap TailCert(u,v)` is symmetric.
 
-For `TailPrim(u) cap TailPrim(Su,Sv)`, the scalar certificate
+For `TailCert(u) cap TailCert(Su,Sv)`, the scalar certificate
 `H_{s+1}(u)Q=0` contains the shifted `u` rows `H_s(Su)Q=0`, leaving the
 additional shifted `v` condition `H_s(Sv)Q=0`.  This gives `(u | Su,Sv)`.
 The `v` scalar case is identical with `u` and `v` interchanged.
 
 ## Corollary 40.21: Scalar Tail Overlap Is Endpoint-Pair Residual
 
-Keep the notation of Corollary 40.20.  If a primitive denominator class lies
+Keep the notation of Corollary 40.20.  If a projective certificate-denominator
+class, hence a primitive denominator class, lies
 in
 
 ```text
-TailPrim(u) cap TailPrim(v),
+TailCert(u) cap TailCert(v),
 ```
 
 then it is a cutoff endpoint-pair certificate:
@@ -5330,7 +5346,8 @@ H_{t+r_hw,h-1}(u)Q=H_{t+r_hw,h-1}(v)Q=0.           (ScalarPairTail)
 
 Consequently, after the cutoff endpoint-pair residual and its multiplier
 ledger are charged, the two scalar half-window tails have no common uncharged
-primitive denominator class.
+projective certificate-denominator class, and hence no common primitive
+denominator class.
 
 Together with Corollaries 40.19 and 40.20, this gives a pairwise classification
 of overlaps in the unlabelled four-family half-window tail budget:
@@ -5343,10 +5360,9 @@ scalar-paired      -> one-sided endpoint residual.
 
 ### Proof
 
-Let a denominator class occur in both scalar tails.  By Corollary 40.16,
-viewed separately for the scalar `u` and scalar `v` families, this class is a
-valid cutoff-depth scalar certificate for both series.  Hence its reversed
-locator `Q` satisfies
+Let a denominator class occur in both scalar tails.  By row nesting in the
+half-window tail, this class is a valid cutoff-depth scalar certificate for
+both series.  Hence its reversed locator `Q` satisfies
 
 ```text
 H_{t+r_hw,h-1}(u)Q=0,        H_{t+r_hw,h-1}(v)Q=0.
@@ -5365,14 +5381,16 @@ residual systems, together with their multiplier ledgers:
 1. the cutoff endpoint-pair residual from Corollaries 40.19 and 40.21;
 2. the four one-sided cutoff endpoint residual systems from Corollary 40.20.
 
-On the remaining ledger, every primitive denominator class in the
-half-window tail belongs to at most one of the four residual families
+On the remaining ledger, every projective certificate-denominator class, and
+hence every primitive denominator class, in the half-window tail belongs to at
+most one of the four residual families
 
 ```text
 u,        v,        (u,v),        (S u,S v).
 ```
 
-Thus the uncharged unlabelled half-window tail is family-disjoint.  Its
+Thus the uncharged unlabelled half-window tail is family-disjoint both for
+certificate denominators and for primitive denominators.  Its
 denominator-class count is bounded by the same depth-independent sum
 
 ```text
@@ -5380,18 +5398,20 @@ sum_{F active} (q^{h-delta_F}-1)/(q-1)
 ```
 
 from Corollary 40.18, but now with no hidden cross-family intersections: every
-remaining class has a unique family label.
+remaining certificate-denominator class has a unique family label.
 
 ### Proof
 
-Suppose an uncharged tail denominator class belonged to two distinct residual
-families.  If both families are scalar, Corollary 40.21 puts the class in the
-charged endpoint-pair residual.  If both families are paired, Corollary 40.19
-puts the class in the same charged endpoint-pair residual.  If one family is
-scalar and the other is paired, Corollary 40.20 puts the class in one of the
-charged one-sided endpoint residual systems.  All cases contradict that the
-class is uncharged.  Hence every uncharged class has at most one family label.
-The displayed count is then Corollary 40.18 applied family by family.
+Suppose an uncharged tail certificate-denominator class belonged to two
+distinct residual families.  If both families are scalar, Corollary 40.21 puts
+the class in the charged endpoint-pair residual.  If both families are paired,
+Corollary 40.19 puts the class in the same charged endpoint-pair residual.  If
+one family is scalar and the other is paired, Corollary 40.20 puts the class in
+one of the charged one-sided endpoint residual systems.  All cases contradict
+that the class is uncharged.  Hence every uncharged certificate-denominator
+class has at most one family label.  Primitive denominator classes are a subset
+of certificate-denominator classes, and the displayed count is then
+Corollary 40.18 applied family by family.
 
 ## Corollary 40.23: Refined Mixed-Ladder Closure With A Disjoint Tail Budget
 
