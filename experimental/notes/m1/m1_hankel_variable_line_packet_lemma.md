@@ -1,4 +1,4 @@
-# M1 Hankel Variable-Line Packet Lemma
+# M1 Hankel Variable-Line Packet Lemmas
 
 **Status:** PROVED / PROOF-PROGRAM.
 
@@ -6,7 +6,7 @@
 
 **Date:** 2026-06-27.
 
-This note extracts one local lemma from the M1 all-line Hankel route.  It does
+This note extracts local lemmas from the M1 all-line Hankel route.  It does
 not prove the all-line M1 theorem.  Its purpose is to make the non-fixed
 variable-line branch small enough to state as a clean residual target after the
 Hankel-pencil normal form.
@@ -143,14 +143,171 @@ r_L <= m_L <= 2 binom(m_L,2).
 This proves (VL).  Summing (VL) over `L` and using the injected packet-edge
 image gives the displayed global bound.
 
+## Active Domain-Singleton Escape/Target Lemma
+
+The remaining term in the packet lemma is
+
+```text
+S_dom = #{ L : d_L=m_L=r_L=1 }.
+```
+
+This section gives a purely combinatorial reduction for that term.  Restrict
+to an active domain-singleton packet `L`, and let
+
+```text
+T_a = R union {x_a,iota_L(x_a)}
+```
+
+be its unique active noncontained domain locator.  Put `n=|D|`,
+`A=D\R`, and `|R|=j-2`.  For the line model define
+
+```text
+tau_L = 3  for product-Mobius lines,
+tau_L = 1  for fixed-sum lines.
+```
+
+Let `C_L` be the number of contained domain pairs on `L`, namely unordered
+pairs `{x,iota_L(x)}` with both roots in `A`, distinct, and
+
+```text
+H(v) ell_{R union {x,iota_L(x)}} = 0.
+```
+
+Let `O_L` be the number of off-domain roots `x in A` with
+`iota_L(x) notin D`.  Define the free escape mass
+
+```text
+free_L = 2 C_L + O_L.
+```
+
+Then every active domain-singleton packet satisfies
+
+```text
+free_L >= lambda_L := max(0, n-j-|R|-tau_L).          (SE)
+```
+
+Equivalently, in the two-exchange normalization `|R|=j-2`,
+
+```text
+lambda_L =
+  max(0,n-2j-1)   for product-Mobius singleton lines,
+  max(0,n-2j+1)   for fixed-sum singleton lines.
+```
+
+Now let `Target_cb` be the set of contained/tangent targets
+
+```text
+T_c = R union {x,iota_L(x)}
+```
+
+arising from contained domain pairs on active domain-singleton packets.  Let
+`Target_off` be the set of one-outside boundary targets
+
+```text
+B = R union {x,iota_L(x)},      x in D\R, iota_L(x) notin D,
+```
+
+arising from off-domain roots on active domain-singleton packets.  Then
+
+```text
+sum_{L in S_dom} lambda_L
+  <= 2 binom(j,2) binom(n-j,2) |Target_cb|
+     + (j-1) binom(n-j+1,2) |Target_off|.            (ST)
+```
+
+Consequently
+
+```text
+S_dom
+  <= Z_0
+     + 2 binom(j,2) binom(n-j,2) |Target_cb|
+     + (j-1) binom(n-j+1,2) |Target_off|,            (SS)
+```
+
+where `Z_0` is the number of active domain-singleton packets with
+`lambda_L=0`.  If `S_prod` and `S_sum` denote the active singleton counts in
+the product-Mobius and fixed-sum models, then
+
+```text
+Z_0 <= 1_{n<=2j+1} S_prod + 1_{n<=2j-1} S_sum.       (SZ)
+```
+
+In particular `Z_0=0` throughout the range `n>2j+1`.
+
+### Proof
+
+The involution on `L` partitions the available roots `A=D\R`.  Since
+`L` is a domain singleton, exactly two roots of `A` form the unique active
+noncontained domain pair.  Every other root lies in one of four escape
+buckets:
+
+```text
+contained domain pairs,
+core-hit roots with iota_L(x) in R,
+off-domain roots with iota_L(x) notin D,
+fixed or pole roots.
+```
+
+Thus the total escape-root mass is `|A|-2=n-j`.  The core-hit bucket has size
+at most `|R|`, because the involution is injective away from its pole.  The
+fixed/pole bucket has size at most `tau_L`: a product-Mobius map has one pole
+and at most two fixed roots, while a fixed-sum map has no pole and at most one
+fixed root.  Removing these two algebraic buckets leaves the free escape mass,
+which proves (SE).
+
+Contained domain escape is pair-valued, so it contributes `2 C_L` roots.  Each
+contained pair gives a strict boundary edge from the active locator `T_a` to
+the contained target `T_c`.  For a fixed contained target `T_c`, every active
+all-domain neighbor is obtained by deleting two roots of `T_c` and inserting
+two roots from `D\T_c`.  Hence the number of such edges over a fixed `T_c` is
+at most
+
+```text
+binom(j,2) binom(n-j,2).
+```
+
+Therefore the total contained-pair contribution is at most
+
+```text
+2 binom(j,2) binom(n-j,2) |Target_cb|.
+```
+
+Similarly, each off-domain root gives a one-outside boundary target `B` and a
+strict boundary edge from `T_a` to `B`.  For fixed `B`, an all-domain active
+neighbor must delete the outside point and one of the `j-1` domain roots of
+`B`, then insert two roots from the `n-j+1` domain roots outside `B cap D`.
+Thus the number of off-domain edges over fixed `B` is at most
+
+```text
+(j-1) binom(n-j+1,2).
+```
+
+This proves (ST).  Finally, each active singleton with `lambda_L>0` contributes
+one unit to the left side of (ST), while the `lambda_L=0` singletons are
+exactly the exceptional term `Z_0`.  This proves (SS).  The displayed
+formula (SZ) follows by substituting the two explicit values of `lambda_L`.
+
 ## Use In M1
 
 The lemma identifies what the all-line M1 proof still has to do in this branch.
 Packet mass of size at least two is not a new obstruction: it is paid by the
 different-slope two-exchange edge ledger.  Quotient defects are exactly the
 locators removed by the quotient-periodic ledger.  The only genuinely new
-variable-line object is the active domain-singleton family `S_dom`.
+variable-line object after the first lemma is the active domain-singleton
+family `S_dom`.
 
-The next proof step should therefore avoid broad variable-line enumeration and
-instead attack `S_dom` directly, for example by proving an escape/target-image
-bound for the product-Mobius and fixed-sum singleton cases.
+The singleton escape/target lemma reduces that family further.  Combining
+(VL) and (SS) gives
+
+```text
+sum_L r_L
+  <= Q_def + 2 E_pkt + Z_0
+     + 2 binom(j,2) binom(n-j,2) |Target_cb|
+     + (j-1) binom(n-j+1,2) |Target_off|.
+```
+
+Thus the non-fixed variable-line branch has been reduced to quotient defects,
+different-slope packet-edge energy, two explicit singleton target images, and
+the short-range zero-lower class.  The next M1 step should bound the two target
+images in the quotient-aware residue-line ledger; in the range `n>2j+1`, the
+zero-lower term is absent.
