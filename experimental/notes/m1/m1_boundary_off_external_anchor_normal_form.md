@@ -4662,6 +4662,72 @@ Applying (Strip) with `w=v-lambda u` gives (StripK), using linearity of
 gives (StripD).  Taking `A` to be the full domain-root divisor of `Q` leaves a
 factor `R` with no roots in `D`, giving the stated root-slice/root-free split.
 
+## Corollary 50: First-Difference Short Parameters Are Marked-Root Common Recurrences
+
+Keep `h=c-b`.  Define the short common endpoint recurrence space
+
+```text
+C_h^+={ P in F[X] : deg P<=h,
+        H_{t+1,h}(u)P=0 and H_{t+1,h}(v)P=0 }.
+```
+
+Then, for every `theta in F`, multiplication by `(X-theta)` gives an
+isomorphism
+
+```text
+ker J_theta^(h)
+  ~= { P in C_h^+ : P(theta)=0 },
+        Q |-> (X-theta)Q.                            (MarkedRoot)
+```
+
+Consequently,
+
+```text
+Theta_h = { theta in F : exists nonzero P in C_h^+ with P(theta)=0 }.
+```
+
+Thus the short first-difference bad parameters are exactly the field roots of
+the nonzero common endpoint recurrence polynomials of degree at most `h`.
+
+In particular, if `F=F_q` and `g=dim C_h^+`, then
+
+```text
+|Theta_h| <= min(q, h (q^g-1)/(q-1)).                (RootCountTheta)
+```
+
+If `g=0`, then `Theta_h` is empty.  If `g=1`, then `Theta_h` is contained in
+the root set of a single degree-`<=h` recurrence polynomial, so
+`|Theta_h|<=h`.
+
+### Proof
+
+Corollary 49 with `A=(theta)` gives, for every degree-`<h` polynomial `Q`,
+
+```text
+H_{t+1,h}(w)(X-theta)Q
+ = H_{t+1,h-1}(Delta_theta w)Q.                     (MR)
+```
+
+Applying (MR) to both `w=u` and `w=v` shows that `Q in ker J_theta^(h)` if and
+only if `P=(X-theta)Q` lies in `C_h^+`.  Such a `P` also satisfies
+`P(theta)=0`.
+
+Conversely, if `P in C_h^+` and `P(theta)=0`, then `P=(X-theta)Q` for a unique
+polynomial `Q` of degree `<h`.  Applying (MR) again gives
+`Q in ker J_theta^(h)`.  This proves the isomorphism and the displayed
+description of `Theta_h`.
+
+Over `F_q`, every nonzero projective class `[P] in P(C_h^+)` contributes at
+most `h` roots in `F_q`, and
+
+```text
+|P(C_h^+)|=(q^g-1)/(q-1)
+```
+
+when `g>0`.  Union-bounding the root sets and also using the trivial bound
+`|Theta_h|<=q` proves (RootCountTheta).  The cases `g=0` and `g=1` are the
+corresponding specializations.
+
 ## Non-Claims
 
 This note does not prove
@@ -4783,4 +4849,6 @@ common short endpoint kernels; it does not bound those landing varieties.
 Corollary 48 bounds the short parameter sets under one-sided short endpoint
 injectivity; it does not prove that such injectivity always holds. Corollary
 49 strips domain-root factors from short annihilators; it does not bound the
-remaining root-free short-annihilator families.
+remaining root-free short-annihilator families. Corollary 50 identifies
+first-difference short parameters with roots of common endpoint recurrences;
+it does not bound the dimension of that common recurrence space.

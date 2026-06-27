@@ -272,13 +272,20 @@ Keep entries concise and link to the relevant files.
   have a lossless root-stripping identity: if `Q=L_A R`, then
   `H_{s,d}(w)Q=H_{s,d-|A|}(Delta_A w)R`.  Thus domain-root factors move to
   fixed-root/root-slice ledgers, while the remaining endpoint obstruction is a
-  root-free short-annihilator family for differenced syndrome data.
+  root-free short-annihilator family for differenced syndrome data.  The
+  first-difference short parameters are now exactly marked roots of the common
+  endpoint recurrence space
+  `C_h^+={P: deg P<=h, H_{t+1,h}(u)P=H_{t+1,h}(v)P=0}`:
+  `ker J_theta^(h)` is isomorphic to `{P in C_h^+ : P(theta)=0}` via
+  `Q -> (X-theta)Q`.  Thus if `dim C_h^+=g` over `F_q`, then
+  `|Theta_h| <= min(q, h(q^g-1)/(q-1))`.
 - **What to do next:** Bound or charge the unique-neighbor nondegenerate
   star-free shadow ledger, then charge the four base endpoint spaces, the
   resulting short-annihilator endpoint systems, finite-exception endpoint
   systems, their projective short-locator landing varieties, the one-sided
   short endpoint annihilator failures, root-free short-annihilator families,
-  and the moving-certificate loci to fixed-slope/root-slice, quotient-periodic,
+  low-dimensional common endpoint recurrence spaces, and the
+  moving-certificate loci to fixed-slope/root-slice, quotient-periodic,
   endpoint, or active-codegree ledgers.
 
 ### 2026-06-27 - Root-level paper PDF relocation
