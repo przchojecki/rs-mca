@@ -336,6 +336,12 @@ def root_slice_profile(
             "root_slice_residual_top_packet_incidence_max": 0,
             "root_slice_residual_top_packet_overlap_pairs": 0,
             "root_slice_residual_top_packet_overlap_max": 0,
+            "root_slice_residual_components": 0,
+            "root_slice_residual_nontrivial_components": 0,
+            "root_slice_residual_isolated_components": 0,
+            "root_slice_residual_boundary_isolated_components": 0,
+            "root_slice_residual_component_max": 0,
+            "root_slice_residual_component_clique_edges": 0,
             "root_slice_residual_common_companion_checks": 0,
             "root_slice_residual_top_lift_gate_checks": 0,
             "root_slice_residual_top_anchor_checks": 0,
@@ -375,6 +381,8 @@ def root_slice_profile(
             "root_slice_residual_escape_slopes": 0,
             "root_slice_residual_lifted_escape_slope_overlap": 0,
             "root_slice_residual_escape_new_slopes": 0,
+            "root_slice_residual_lifted_core_slope_bound": 0,
+            "root_slice_residual_recursion_bound": 0,
             "root_slice_lifted_common_cores": 0,
             "root_slice_lifted_common_core_noncontained_faces": 0,
             "root_slice_lifted_common_core_aperiodic_faces": 0,
@@ -1032,6 +1040,14 @@ def root_slice_profile(
         residual_lifted_slope_set & residual_escape_slope_set
     )
     residual_escape_new_slopes = len(residual_escape_slope_set - residual_lifted_slope_set)
+    lifted_core_slope_bound = (j + 1) * lifted_common_cores
+    residual_recursion_bound = lifted_core_slope_bound + len(residual_escape_slope_set)
+    if len(residual_lifted_slope_set) > lifted_common_core_residual_faces:
+        raise AssertionError("lifted residual slopes exceeded lifted residual faces")
+    if lifted_common_core_residual_faces > lifted_core_slope_bound:
+        raise AssertionError("lifted residual faces exceeded the common-core face bound")
+    if len(residual_slope_set) > residual_recursion_bound:
+        raise AssertionError("residual slope image exceeded lifted-recursion bound")
 
     top_packet_overlap_pairs = 0
     top_packet_overlap_max = 0
@@ -1151,6 +1167,8 @@ def root_slice_profile(
             residual_lifted_escape_slope_overlap
         ),
         "root_slice_residual_escape_new_slopes": residual_escape_new_slopes,
+        "root_slice_residual_lifted_core_slope_bound": lifted_core_slope_bound,
+        "root_slice_residual_recursion_bound": residual_recursion_bound,
         "root_slice_lifted_common_cores": lifted_common_cores,
         "root_slice_lifted_common_core_noncontained_faces": (
             lifted_common_core_noncontained_faces
@@ -1725,6 +1743,12 @@ def verify_word_pair(
         "root_slice_residual_escape_new_slopes": (
             root_profile["root_slice_residual_escape_new_slopes"]
         ),
+        "root_slice_residual_lifted_core_slope_bound": (
+            root_profile["root_slice_residual_lifted_core_slope_bound"]
+        ),
+        "root_slice_residual_recursion_bound": (
+            root_profile["root_slice_residual_recursion_bound"]
+        ),
         "root_slice_lifted_common_cores": root_profile["root_slice_lifted_common_cores"],
         "root_slice_lifted_common_core_noncontained_faces": (
             root_profile["root_slice_lifted_common_core_noncontained_faces"]
@@ -1989,6 +2013,12 @@ def verify_case(case: Case) -> dict[str, object]:
         ),
         "max_root_slice_residual_escape_new_slopes": max(
             row["root_slice_residual_escape_new_slopes"] for row in rows
+        ),
+        "max_root_slice_residual_lifted_core_slope_bound": max(
+            row["root_slice_residual_lifted_core_slope_bound"] for row in rows
+        ),
+        "max_root_slice_residual_recursion_bound": max(
+            row["root_slice_residual_recursion_bound"] for row in rows
         ),
         "max_root_slice_lifted_common_cores": max(
             row["root_slice_lifted_common_cores"] for row in rows
@@ -2782,6 +2812,8 @@ def main() -> None:
                 "root_residual_escape_slopes={root_slice_residual_escape_slopes} "
                 "root_residual_lifted_escape_slope_overlap={root_slice_residual_lifted_escape_slope_overlap} "
                 "root_residual_escape_new_slopes={root_slice_residual_escape_new_slopes} "
+                "root_residual_lifted_core_slope_bound={root_slice_residual_lifted_core_slope_bound} "
+                "root_residual_recursion_bound={root_slice_residual_recursion_bound} "
                 "lifted_common_cores={root_slice_lifted_common_cores} "
                 "lifted_common_noncontained_faces={root_slice_lifted_common_core_noncontained_faces} "
                 "lifted_common_aperiodic_faces={root_slice_lifted_common_core_aperiodic_faces} "
@@ -2887,6 +2919,8 @@ def main() -> None:
             f"max_root_residual_escape_slopes={summary['max_root_slice_residual_escape_slopes']} "
             f"max_root_residual_lifted_escape_slope_overlap={summary['max_root_slice_residual_lifted_escape_slope_overlap']} "
             f"max_root_residual_escape_new_slopes={summary['max_root_slice_residual_escape_new_slopes']} "
+            f"max_root_residual_lifted_core_slope_bound={summary['max_root_slice_residual_lifted_core_slope_bound']} "
+            f"max_root_residual_recursion_bound={summary['max_root_slice_residual_recursion_bound']} "
             f"max_lifted_common_cores={summary['max_root_slice_lifted_common_cores']} "
             f"max_lifted_common_noncontained_faces={summary['max_root_slice_lifted_common_core_noncontained_faces']} "
             f"max_lifted_common_aperiodic_faces={summary['max_root_slice_lifted_common_core_aperiodic_faces']} "
@@ -2982,6 +3016,8 @@ def main() -> None:
         "root_residual_escape_slopes={root_slice_residual_escape_slopes} "
         "root_residual_lifted_escape_slope_overlap={root_slice_residual_lifted_escape_slope_overlap} "
         "root_residual_escape_new_slopes={root_slice_residual_escape_new_slopes} "
+        "root_residual_lifted_core_slope_bound={root_slice_residual_lifted_core_slope_bound} "
+        "root_residual_recursion_bound={root_slice_residual_recursion_bound} "
         "lifted_common_cores={root_slice_lifted_common_cores} "
         "lifted_common_noncontained_faces={root_slice_lifted_common_core_noncontained_faces} "
         "lifted_common_aperiodic_faces={root_slice_lifted_common_core_aperiodic_faces} "
@@ -3165,6 +3201,12 @@ def main() -> None:
     max_residual_escape_new_slopes = max(
         row["root_slice_residual_escape_new_slopes"] for row in all_rows
     )
+    max_residual_lifted_core_slope_bound = max(
+        row["root_slice_residual_lifted_core_slope_bound"] for row in all_rows
+    )
+    max_residual_recursion_bound = max(
+        row["root_slice_residual_recursion_bound"] for row in all_rows
+    )
     max_lifted_common_cores = max(row["root_slice_lifted_common_cores"] for row in all_rows)
     max_lifted_common_noncontained_faces = max(
         row["root_slice_lifted_common_core_noncontained_faces"] for row in all_rows
@@ -3267,6 +3309,8 @@ def main() -> None:
         f"max_root_residual_escape_slopes={max_residual_escape_slopes} "
         f"max_root_residual_lifted_escape_slope_overlap={max_residual_lifted_escape_slope_overlap} "
         f"max_root_residual_escape_new_slopes={max_residual_escape_new_slopes} "
+        f"max_root_residual_lifted_core_slope_bound={max_residual_lifted_core_slope_bound} "
+        f"max_root_residual_recursion_bound={max_residual_recursion_bound} "
         f"max_lifted_common_cores={max_lifted_common_cores} "
         f"max_lifted_common_noncontained_faces={max_lifted_common_noncontained_faces} "
         f"max_lifted_common_aperiodic_faces={max_lifted_common_aperiodic_faces} "

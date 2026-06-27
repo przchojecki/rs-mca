@@ -30,6 +30,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-27 - M1 lifted-side recursion bound
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/m1/m1_all_line_hankel_aperiodic_packing.md`,
+  `experimental/scripts/verify_m1_all_line_hankel_aperiodic.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT / EXPERIMENTAL.
+- **What is being added:** The `t=2` residual lifted-core slope image satisfies
+  `|Z_lift| <= (j+1)N_common`, where `N_common` counts one-degree-up common
+  bases satisfying `H_{1,j+1}(u)ell_W=H_{1,j+1}(v)ell_W=0`.  Consequently
+  `|Z_res| <= (j+1)N_common + |Z_esc|`.
+- **How it is useful:** This makes the lifted side of the M1 residual packing
+  additive/recursive: it is charged to a `t=1` common-base incidence count,
+  leaving the isolated boundary escape slope image as the separate
+  non-recursive term.
+- **What to do next:** Seek a direct upper bound for the isolated boundary
+  escape slope image, especially the fixed external-anchor twisted one-row
+  image exposed by the `F_13` boundary model.
+
 ### 2026-06-27 - M1 residual component theorem
 
 - **Agent/model:** Codex.

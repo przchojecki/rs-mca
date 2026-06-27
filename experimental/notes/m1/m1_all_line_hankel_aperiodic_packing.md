@@ -1462,6 +1462,38 @@ where `|Z_W|` is exactly the number of residual faces of `W`.  The remaining
 M1 work is therefore a counting/slope-image problem for these lifted cores and
 isolated boundary escapes, not a general Johnson-graph packing problem.
 
+## Lifted-Side Recursion Bound
+
+The component theorem gives an explicit additive recursion for the lifted side
+of the `t=2` residual slope image.  Let
+
+```text
+N_common =
+  #{W subset D : |W|=j+1,
+       H_{1,j+1}(u)ell_W = H_{1,j+1}(v)ell_W = 0}.
+```
+
+Equivalently, `N_common` is the number of `(k+1)`-point bases `S_0=D\W` on
+which both line directions are individually explained by degree `<k`
+polynomials.  Then
+
+```text
+|Z_lift| <= sum_W #{residual faces of W} <= (j+1)N_common,
+```
+
+and therefore
+
+```text
+|Z_res| <= (j+1)N_common + |Z_esc|.        (LR1)
+```
+
+Here `Z_esc` is the isolated escape slope image from the projective boundary
+fibers.  The point of (LR1) is that the lifted-core contribution is no longer
+a new `t=2` packing problem: it is charged additively to the one-degree-up
+`t=1` common-base incidence count, with no multiplication by the number of
+residual locators.  Thus the non-recursive term still needing a separate M1
+bound is precisely the isolated boundary/escape slope image.
+
 ## Verifier
 
 The companion verifier
@@ -1513,6 +1545,9 @@ enumerates small cyclic-domain cases.  For each case it:
   verifies the component theorem: every nontrivial component is one
   slope-injective squarefree lifted-core clique, and every projective boundary
   lift is isolated;
+- asserts the lifted-side recursion bound
+  `|Z_res| <= (j+1)N_common + |Z_esc|`, with `N_common` the audited count of
+  one-degree-up common bases;
 - checks the `F_13`, `n=12`, `j=4`, `t=2` boundary-only row as a counterexample
   to absorbing all residual slopes into squarefree lifted-core fibers;
 - checks the same boundary-only row as a counterexample to bounding boundary
