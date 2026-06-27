@@ -709,6 +709,50 @@ cancels `c_{k+1}` and then cancels `c_k` automatically by (EA2).  Hence
 `u+z_T v` has degree `< k` on `B`.  The verifier checks this coefficient
 identity and the resulting degree drop for every off-domain residual locator.
 
+## Full-Domain Monomial Boundary Family
+
+The product model is an instance of a general full-domain boundary family.
+Let `D=F_p^*`, take `t=2`, and let `T subset D` have size `j`.  For the
+monomial directions
+
+```text
+u(X)=A X^{p-2-j},        v(X)=B X^{p-2},        A,B != 0,
+```
+
+the full-domain Lagrange weights give the syndrome rule
+
+```text
+sum_{x in F_p^*} lambda_D(x)x^m x^d =
+  1  if m+d+1 == 0 mod p-1,
+  0  otherwise.
+```
+
+Writing `L_T(X)=prod_{x in T}(X-x)`, the two Hankel products are therefore
+
+```text
+H_{2,j}(u)L_T = A(1, -sum_{x in T}x),
+H_{2,j}(v)L_T = B((-1)^j prod_{x in T}x, 0).
+```
+
+Thus the determinant gate holds exactly on the zero-sum locus
+
+```text
+sum_{x in T} x = 0,
+```
+
+and every such locator has external anchor `xi=0` and product slope
+
+```text
+z_T = -A / (B(-1)^j prod_{x in T}x).        (EA3)
+```
+
+This family is a reusable floor model for any proposed fixed-external-anchor
+bound: after quotient-periodic zero-sum locators are charged, the residual
+boundary slope image is the product image of the remaining zero-sum
+`j`-subsets.  The verifier audits this identity for the full-domain toy cases
+`(p,j)=(13,4),(17,4),(17,3)`.  The corresponding residual product-image
+sizes after quotient charging are `6`, `16`, and `16`.
+
 ## Exact F13 Boundary Product Model
 
 The `F_13`, `n=12`, `j=4`, `t=2` boundary-only row is not only a numerical
@@ -738,7 +782,7 @@ H_{2,4}(v_s)L_T = ((3s+1)prod_{x in T}x, 0).
 Thus the bad slope is the product slope
 
 ```text
-z_T = -(2s+3) / ((3s+1)prod_{x in T}x).        (EA3)
+z_T = -(2s+3) / ((3s+1)prod_{x in T}x).
 ```
 
 There are `39` zero-sum four-subsets of `F_13^*`.  The quotient-periodic
@@ -750,10 +794,10 @@ prod(T) in {1,3,7,8,9,11},
 ```
 
 with exactly four residual locators in each product fiber; each product fiber
-has one slope by (EA3).  This explains the boundary-only row's six slopes as
-a product image inside one external anchor.  It is a concrete model for the
-next task: a fixed-anchor proof must control product/top-coefficient images,
-not just the number of external anchors.
+has one slope by the product formula.  This explains the boundary-only row's
+six slopes as a product image inside one external anchor.  It is a concrete
+model for the next task: a fixed-anchor proof must control
+product/top-coefficient images, not just the number of external anchors.
 
 ## Residual Slope-Image Ledger
 
@@ -1103,6 +1147,9 @@ enumerates small cyclic-domain cases.  For each case it:
 - verifies the exact `F_13` boundary product model: bad locators are exactly
   the zero-sum four-subsets, quotient charging removes `15` of the `39`, and
   the `24` residual locators split into six four-element product fibers;
+- audits the full-domain monomial boundary family, where `X^{p-2-j}` versus
+  `X^{p-2}` has bad locators exactly on the zero-sum locus and slopes given by
+  the product image of the deleted roots;
 - verifies the residual slope-image ledger `Z_res=Z_lift union Z_esc` and
   checks that residual faces inside each lifted common core have pairwise
   distinct slopes;

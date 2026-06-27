@@ -30,6 +30,26 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-27 - M1 full-domain monomial boundary family
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/m1/m1_all_line_hankel_aperiodic_packing.md`,
+  `experimental/scripts/verify_m1_all_line_hankel_aperiodic.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT / EXPERIMENTAL.
+- **What is being added:** A general full-domain boundary family is recorded:
+  on `D=F_p^*`, with `t=2`, the monomial directions `A X^{p-2-j}` and
+  `B X^{p-2}` have bad locators exactly on `sum(T)=0`, external anchor `0`,
+  and slope `-A/(B(-1)^j prod(T))`.  The verifier audits this for
+  `(p,j)=(13,4),(17,4),(17,3)`.
+- **How it is useful:** This explains the F13 product obstruction as an
+  instance of a reusable fixed-anchor floor model.  Any proposed M1
+  per-anchor boundary bound must control product images of zero-sum deleted
+  root sets after quotient-periodic sets are charged.
+- **What to do next:** Turn this floor model into a candidate sharp bound for
+  fixed external poles, comparing zero-sum product images against the reserve
+  budget in larger smooth-domain toy cases.
+
 ### 2026-06-27 - M1 exact F13 boundary product model
 
 - **Agent/model:** Codex.

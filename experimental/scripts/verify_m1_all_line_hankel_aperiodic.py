@@ -2054,6 +2054,74 @@ def verify_f13_boundary_zero_sum_product_model(case: Case) -> dict[str, int]:
     }
 
 
+def verify_full_domain_monomial_boundary_model(
+    p: int, j: int, charged_fiber_sizes: tuple[int, ...]
+) -> dict[str, int]:
+    n = p - 1
+    t = 2
+    if j <= 0 or p - 2 - j < 0:
+        raise AssertionError("invalid monomial boundary parameters")
+    domain, exponents, _ = cyclic_domain(p, n)
+    f_degree = p - 2 - j
+    g_degree = p - 2
+    f = {x: pow(x, f_degree, p) for x in domain}
+    g = {x: pow(x, g_degree, p) for x in domain}
+    u = syndrome(f, domain, j + t, p)
+    v = syndrome(g, domain, j + t, p)
+    zero_sum_locators = 0
+    quotient_zero_sum_locators = 0
+    residual_product_counts: dict[int, int] = {}
+    residual_product_slopes: dict[int, set[int]] = {}
+    sign = -1 if j % 2 else 1
+    for complement in combinations(domain, j):
+        complement_sum = sum(complement) % p
+        complement_product = 1
+        for root in complement:
+            complement_product = complement_product * root % p
+        ell = locator(complement, p)
+        a_vec = hankel_apply(u, t, j, ell, p)
+        b_vec = hankel_apply(v, t, j, ell, p)
+        expected_b0 = sign * complement_product % p
+        if a_vec != (1, (-complement_sum) % p):
+            raise AssertionError("monomial boundary numerator row had wrong form")
+        if b_vec != (expected_b0, 0):
+            raise AssertionError("monomial boundary denominator row had wrong form")
+        slope = slope_from_gate(a_vec, b_vec, p)
+        bad = slope is not None and any(value != 0 for value in b_vec)
+        zero_sum = complement_sum == 0
+        if bad != zero_sum:
+            raise AssertionError("monomial boundary bad locus was not zero-sum")
+        if not zero_sum:
+            continue
+        zero_sum_locators += 1
+        expected_slope = -inv_mod(expected_b0, p) % p
+        if slope != expected_slope:
+            raise AssertionError("monomial boundary product slope formula failed")
+        if is_quotient_periodic(complement, domain, exponents, charged_fiber_sizes):
+            quotient_zero_sum_locators += 1
+            continue
+        residual_product_counts[complement_product] = (
+            residual_product_counts.get(complement_product, 0) + 1
+        )
+        residual_product_slopes.setdefault(complement_product, set()).add(slope)
+    if any(len(slopes) != 1 for slopes in residual_product_slopes.values()):
+        raise AssertionError("monomial residual product fiber had multiple slopes")
+    residual_slope_count = len(
+        {next(iter(slopes)) for slopes in residual_product_slopes.values()}
+    )
+    if residual_slope_count != len(residual_product_counts):
+        raise AssertionError("monomial product fibers did not inject to slopes")
+    return {
+        "p": p,
+        "j": j,
+        "zero_sum_locators": zero_sum_locators,
+        "quotient_zero_sum_locators": quotient_zero_sum_locators,
+        "residual_zero_sum_locators": sum(residual_product_counts.values()),
+        "residual_product_fibers": len(residual_product_counts),
+        "residual_product_fiber_size": max(residual_product_counts.values(), default=0),
+    }
+
+
 def verify_rank_one_zero_slice_probe() -> dict[str, object]:
     case = Case(
         "F17_full_j4_t2_rank1_probe",
@@ -2091,6 +2159,11 @@ def main() -> None:
     boundary_product_model = verify_f13_boundary_zero_sum_product_model(
         boundary_only_summary["case"]
     )
+    monomial_boundary_models = (
+        verify_full_domain_monomial_boundary_model(13, 4, (2, 3, 4, 6)),
+        verify_full_domain_monomial_boundary_model(17, 4, (2, 4, 8)),
+        verify_full_domain_monomial_boundary_model(17, 3, (2, 4, 8)),
+    )
     rank_one_probe = verify_rank_one_zero_slice_probe()
     print(
         "F13_order12_j4_t2_boundary_model: "
@@ -2101,6 +2174,16 @@ def main() -> None:
         f"residual_product_fibers={boundary_product_model['residual_product_fibers']} "
         f"residual_product_fiber_size={boundary_product_model['residual_product_fiber_size']}"
     )
+    for model in monomial_boundary_models:
+        print(
+            "full_domain_monomial_boundary_model: "
+            f"p={model['p']} j={model['j']} "
+            f"zero_sum_locators={model['zero_sum_locators']} "
+            f"quotient_zero_sum_locators={model['quotient_zero_sum_locators']} "
+            f"residual_zero_sum_locators={model['residual_zero_sum_locators']} "
+            f"residual_product_fibers={model['residual_product_fibers']} "
+            f"residual_product_fiber_size={model['residual_product_fiber_size']}"
+        )
     for summary in summaries:
         case = summary["case"]
         for row in summary["rows"]:
