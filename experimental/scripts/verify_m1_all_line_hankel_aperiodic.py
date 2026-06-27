@@ -341,6 +341,7 @@ def root_slice_profile(
             "root_slice_residual_anchor_lift_gate_checks": 0,
             "root_slice_residual_anchor_isolated_checks": 0,
             "root_slice_residual_anchor_projective_lift_checks": 0,
+            "root_slice_residual_anchor_projective_unique_checks": 0,
             "root_slice_residual_anchor_finite_lift_checks": 0,
             "root_slice_residual_anchor_repeated_lift_checks": 0,
             "root_slice_residual_anchor_offdomain_lift_checks": 0,
@@ -468,6 +469,7 @@ def root_slice_profile(
     residual_anchor_lift_gate_checks = 0
     residual_anchor_isolated_checks = 0
     residual_anchor_projective_lift_checks = 0
+    residual_anchor_projective_unique_checks = 0
     residual_anchor_finite_lift_checks = 0
     residual_anchor_repeated_lift_checks = 0
     residual_anchor_offdomain_lift_checks = 0
@@ -494,6 +496,32 @@ def root_slice_profile(
         if hankel_apply(u, 1, j + 1, projective_lift, p)[0] != 0:
             raise AssertionError("projective residual lift missed numerator gate")
         residual_anchor_projective_lift_checks += 1
+        projective_kernel_anchors: list[tuple[str, int | None]] = []
+        for finite_anchor in range(p):
+            finite_lift = [
+                (shift_vec[col] - finite_anchor * pad_vec[col]) % p
+                for col in range(j + 2)
+            ]
+            if (
+                hankel_apply(v, 1, j + 1, finite_lift, p)[0] == 0
+                and hankel_apply(u, 1, j + 1, finite_lift, p)[0] == 0
+            ):
+                projective_kernel_anchors.append(("finite", finite_anchor))
+        if (
+            hankel_apply(v, 1, j + 1, pad_vec, p)[0] == 0
+            and hankel_apply(u, 1, j + 1, pad_vec, p)[0] == 0
+        ):
+            projective_kernel_anchors.append(("infinity", None))
+        if len(projective_kernel_anchors) != 1:
+            raise AssertionError("residual projective lift pencil was not unique")
+        expected_anchor = (
+            ("infinity", None)
+            if b_vec[0] == 0
+            else ("finite", b_vec[1] * inv_mod(b_vec[0], p) % p)
+        )
+        if projective_kernel_anchors[0] != expected_anchor:
+            raise AssertionError("unique projective anchor disagreed with beta ratio")
+        residual_anchor_projective_unique_checks += 1
         if b_vec[0] == 0:
             residual_anchor_escape_beta0_zero += 1
             residual_anchor_escape_indices.add(idx)
@@ -775,6 +803,8 @@ def root_slice_profile(
         raise AssertionError("residual anchor ledger did not partition residual locators")
     if residual_anchor_projective_lift_checks != len(residual_rows):
         raise AssertionError("projective lift ledger did not cover every residual locator")
+    if residual_anchor_projective_unique_checks != len(residual_rows):
+        raise AssertionError("projective uniqueness ledger did not cover every residual locator")
     if residual_anchor_finite_lift_checks != (
         residual_anchor_lifted_faces
         + residual_anchor_escape_in_support
@@ -860,6 +890,9 @@ def root_slice_profile(
         "root_slice_residual_anchor_isolated_checks": residual_anchor_isolated_checks,
         "root_slice_residual_anchor_projective_lift_checks": (
             residual_anchor_projective_lift_checks
+        ),
+        "root_slice_residual_anchor_projective_unique_checks": (
+            residual_anchor_projective_unique_checks
         ),
         "root_slice_residual_anchor_finite_lift_checks": (
             residual_anchor_finite_lift_checks
@@ -1356,6 +1389,9 @@ def verify_word_pair(
         "root_slice_residual_anchor_projective_lift_checks": (
             root_profile["root_slice_residual_anchor_projective_lift_checks"]
         ),
+        "root_slice_residual_anchor_projective_unique_checks": (
+            root_profile["root_slice_residual_anchor_projective_unique_checks"]
+        ),
         "root_slice_residual_anchor_finite_lift_checks": (
             root_profile["root_slice_residual_anchor_finite_lift_checks"]
         ),
@@ -1563,6 +1599,9 @@ def verify_case(case: Case) -> dict[str, object]:
         "max_root_slice_residual_anchor_projective_lift_checks": max(
             row["root_slice_residual_anchor_projective_lift_checks"] for row in rows
         ),
+        "max_root_slice_residual_anchor_projective_unique_checks": max(
+            row["root_slice_residual_anchor_projective_unique_checks"] for row in rows
+        ),
         "max_root_slice_residual_anchor_finite_lift_checks": max(
             row["root_slice_residual_anchor_finite_lift_checks"] for row in rows
         ),
@@ -1733,6 +1772,7 @@ def main() -> None:
                 "root_residual_anchor_lift_checks={root_slice_residual_anchor_lift_gate_checks} "
                 "root_residual_anchor_isolated_checks={root_slice_residual_anchor_isolated_checks} "
                 "root_residual_anchor_projective_lift_checks={root_slice_residual_anchor_projective_lift_checks} "
+                "root_residual_anchor_projective_unique_checks={root_slice_residual_anchor_projective_unique_checks} "
                 "root_residual_anchor_finite_lift_checks={root_slice_residual_anchor_finite_lift_checks} "
                 "root_residual_anchor_repeated_lift_checks={root_slice_residual_anchor_repeated_lift_checks} "
                 "root_residual_anchor_offdomain_lift_checks={root_slice_residual_anchor_offdomain_lift_checks} "
@@ -1820,6 +1860,7 @@ def main() -> None:
             f"max_root_residual_anchor_lift_checks={summary['max_root_slice_residual_anchor_lift_gate_checks']} "
             f"max_root_residual_anchor_isolated_checks={summary['max_root_slice_residual_anchor_isolated_checks']} "
             f"max_root_residual_anchor_projective_lift_checks={summary['max_root_slice_residual_anchor_projective_lift_checks']} "
+            f"max_root_residual_anchor_projective_unique_checks={summary['max_root_slice_residual_anchor_projective_unique_checks']} "
             f"max_root_residual_anchor_finite_lift_checks={summary['max_root_slice_residual_anchor_finite_lift_checks']} "
             f"max_root_residual_anchor_repeated_lift_checks={summary['max_root_slice_residual_anchor_repeated_lift_checks']} "
             f"max_root_residual_anchor_offdomain_lift_checks={summary['max_root_slice_residual_anchor_offdomain_lift_checks']} "
@@ -1897,6 +1938,7 @@ def main() -> None:
         "root_residual_anchor_lift_checks={root_slice_residual_anchor_lift_gate_checks} "
         "root_residual_anchor_isolated_checks={root_slice_residual_anchor_isolated_checks} "
         "root_residual_anchor_projective_lift_checks={root_slice_residual_anchor_projective_lift_checks} "
+        "root_residual_anchor_projective_unique_checks={root_slice_residual_anchor_projective_unique_checks} "
         "root_residual_anchor_finite_lift_checks={root_slice_residual_anchor_finite_lift_checks} "
         "root_residual_anchor_repeated_lift_checks={root_slice_residual_anchor_repeated_lift_checks} "
         "root_residual_anchor_offdomain_lift_checks={root_slice_residual_anchor_offdomain_lift_checks} "
@@ -2010,6 +2052,9 @@ def main() -> None:
     max_residual_anchor_projective_lift_checks = max(
         row["root_slice_residual_anchor_projective_lift_checks"] for row in all_rows
     )
+    max_residual_anchor_projective_unique_checks = max(
+        row["root_slice_residual_anchor_projective_unique_checks"] for row in all_rows
+    )
     max_residual_anchor_finite_lift_checks = max(
         row["root_slice_residual_anchor_finite_lift_checks"] for row in all_rows
     )
@@ -2110,6 +2155,7 @@ def main() -> None:
         f"max_root_residual_anchor_lift_checks={max_residual_anchor_lift_checks} "
         f"max_root_residual_anchor_isolated_checks={max_residual_anchor_isolated_checks} "
         f"max_root_residual_anchor_projective_lift_checks={max_residual_anchor_projective_lift_checks} "
+        f"max_root_residual_anchor_projective_unique_checks={max_residual_anchor_projective_unique_checks} "
         f"max_root_residual_anchor_finite_lift_checks={max_residual_anchor_finite_lift_checks} "
         f"max_root_residual_anchor_repeated_lift_checks={max_residual_anchor_repeated_lift_checks} "
         f"max_root_residual_anchor_offdomain_lift_checks={max_residual_anchor_offdomain_lift_checks} "

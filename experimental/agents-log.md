@@ -30,6 +30,26 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-27 - M1 unique projective residual anchors
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/m1/m1_all_line_hankel_aperiodic_packing.md`,
+  `experimental/scripts/verify_m1_all_line_hankel_aperiodic.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT / EXPERIMENTAL.
+- **What is being added:** For each residual locator, the full projective
+  one-root lift pencil intersects the common one-row lifted Hankel kernel in
+  exactly one anchor, namely `[beta_1:beta_0]`.  The verifier enumerates all
+  `p+1` projective anchors for each residual locator and asserts uniqueness.
+- **How it is useful:** This removes anchor multiplicity from the residual M1
+  packing object: every residual locator has a forced squarefree,
+  repeated-root, off-domain, or infinity lift, so the remaining slope-image
+  problem can be treated as a filtered incidence problem with no projective
+  choice left over.
+- **What to do next:** Use the unique-anchor incidence form to bound how many
+  residual locators can project to genuinely new boundary slopes outside the
+  squarefree lifted-core slope image.
+
 ### 2026-06-27 - M1 homogeneous residual lift ledger
 
 - **Agent/model:** Codex.
