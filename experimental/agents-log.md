@@ -313,14 +313,20 @@ Keep entries concise and link to the relevant files.
   rational-denominator certificate
   `Q^*(T)W_w(T)=N(T) mod T^{e+s}` with `deg N<e`.  Thus the root-free
   endpoint-short failures are Pade/residue-denominator objects for the
-  combined or differenced syndrome series.
+  combined or differenced syndrome series.  The root-free condition is also
+  the reciprocal-pole condition: for `alpha!=0`,
+  `Q(alpha)=alpha^e Q^*(1/alpha)`, while a root at `alpha=0` is a zero at the
+  projective point `infty` for the degree-`e` denominator.  Thus fixed-root
+  charges remove reciprocal-domain denominator factors before the root-free
+  residue-denominator obstruction remains.
 - **What to do next:** Bound or charge the unique-neighbor nondegenerate
   star-free shadow ledger, then charge the four base endpoint spaces, the
   resulting short-annihilator endpoint systems, finite-exception endpoint
   systems, their projective short-locator landing varieties, the one-sided
   short endpoint annihilator failures, root-free short-annihilator families,
   low-dimensional common endpoint recurrence spaces, the corresponding
-  truncated rational-denominator families, and the common-root-free
+  reciprocal-domain-pole-free truncated rational-denominator families, and the
+  common-root-free
   fixed-kernel and first-difference moving-certificate loci to
   fixed-slope/root-slice, quotient-periodic, endpoint, or active-codegree
   ledgers.

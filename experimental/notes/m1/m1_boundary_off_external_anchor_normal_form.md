@@ -5257,6 +5257,55 @@ Modulo `T^{e+s}`, only coefficients in degrees `<e` remain; these form the
 polynomial `N_{Q,w}`.  The two endpoint specializations are obtained by taking
 `w=v-lambda u` and `w=Delta_theta u, Delta_theta v`, respectively.
 
+## Corollary 58: Root-Free Denominators Avoid Reciprocal Domain Poles
+
+Let `Q` and `Q^*` be as in Corollary 57, and define the projective reciprocal
+domain
+
+```text
+D^vee={1/alpha : alpha in D, alpha!=0} union ({infty} if 0 in D).
+```
+
+Then `Q` is `D`-root-free if and only if the reversed denominator `Q^*` has no
+zero on `D^vee`, where the point `infty` is tested by the leading coefficient
+of `Q^*` in degree `e`.
+
+Equivalently, after Corollary 49 has stripped all domain-root factors from a
+short endpoint annihilator, the rational denominator `Q^*` in Corollary 57 has
+no reciprocal-domain potential poles.  Conversely, every nonzero domain root
+`alpha` of `Q` gives the denominator factor
+
+```text
+1-alpha T
+```
+
+of `Q^*(T)`, and a domain root at `alpha=0` is exactly a missing top-degree
+term of `Q^*`, i.e. a denominator zero at the projective point `infty`.
+
+Thus the fixed-root/root-slice charge in locator language is the same as
+removing reciprocal-domain denominator factors in the Pade/residue-denominator
+language.  The remaining root-free endpoint-short obstruction is a rational
+denominator whose possible poles avoid the reciprocal evaluation domain.
+
+### Proof
+
+For `alpha!=0`,
+
+```text
+Q(alpha)=alpha^e Q^*(1/alpha).
+```
+
+Hence `Q(alpha)=0` if and only if `Q^*(1/alpha)=0`.  If `0 in D`, then
+`Q(0)=q_0`; this is nonzero if and only if the coefficient of `T^e` in `Q^*`
+is nonzero, which is exactly nonvanishing at the reciprocal point `infty` in
+the degree-`e` projective denominator.  The factor statement follows from
+
+```text
+(X-alpha)^*(T)=1-alpha T        (alpha!=0)
+```
+
+and from the same top-degree coefficient test for `alpha=0`.
+
 ## Non-Claims
 
 This note does not prove
@@ -5393,5 +5442,6 @@ the row-count threshold for this short-injectivity route; it does not prove
 the required Hankel minors are nonzero above that threshold. Corollary 56
 identifies the remaining root-free short failures as denominator recurrences;
 Corollary 57 rewrites those recurrences as truncated rational-denominator
-certificates; neither result bounds the resulting root-free denominator
-families.
+certificates; and Corollary 58 identifies the root-free condition with absence
+of reciprocal-domain denominator poles. None of these results bounds the
+resulting root-free denominator families.
