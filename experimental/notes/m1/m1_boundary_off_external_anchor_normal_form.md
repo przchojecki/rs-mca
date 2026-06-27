@@ -5306,6 +5306,99 @@ the degree-`e` projective denominator.  The factor statement follows from
 
 and from the same top-degree coefficient test for `alpha=0`.
 
+## Corollary 59: Half-Window Pade Uniqueness Compresses Denominator Families
+
+Let `w` be a syndrome series, and suppose two short denominators
+
+```text
+Q_i(X)=q_{i,0}+...+q_{i,e_i}X^{e_i},        q_{i,e_i}!=0,
+```
+
+with reversed denominators `D_i(T)=Q_i^*(T)` satisfy
+
+```text
+D_i(T) W_w(T) = N_i(T)       mod T^{e_i+s},        deg N_i<e_i
+```
+
+for `i=1,2`.  If
+
+```text
+s >= max(e_1,e_2),
+```
+
+then
+
+```text
+N_1(T)D_2(T)=N_2(T)D_1(T).
+```
+
+Consequently every degree-`<=s` truncated rational-denominator certificate for
+the same scalar syndrome series determines the same reduced rational function.
+In particular, after reducing `N_i/D_i`, the reduced denominator divides every
+certificate denominator `D_i=Q_i^*`.
+
+The same statement holds componentwise for a pair of syndrome series
+`(w_1,w_2)`: if a common denominator `D_i` gives numerators
+`N_{i,1},N_{i,2}` for both series and `s>=max(e_1,e_2)`, then the reduced
+vector rational function
+
+```text
+(N_{i,1},N_{i,2})/D_i
+```
+
+is independent of the chosen common certificate, and its primitive denominator
+divides every common certificate denominator.
+
+Thus, in the half-window range, the root-free endpoint-short obstruction is
+compressed to a primitive reciprocal-domain-pole-free denominator plus
+allowable root-free multipliers.  For the fixed-kernel endpoint witnesses this
+applies whenever `e<=t+2`; for the first-difference common witnesses it
+applies whenever `e<=t+1`.  Outside this range the remaining obstruction is
+genuinely a longer vector-Pade problem rather than a uniqueness consequence.
+
+### Proof
+
+For `i=1,2`, write
+
+```text
+D_iW_w-N_i = T^{e_i+s} E_i(T)
+```
+
+in the truncated formal power series ring.  Multiplying the first congruence
+by `D_2`, the second by `D_1`, and subtracting gives
+
+```text
+N_1D_2-N_2D_1 = T^{e_2+s}D_1E_2 - T^{e_1+s}D_2E_1.
+```
+
+Hence `N_1D_2-N_2D_1` is divisible by
+
+```text
+T^{min(e_1+s,e_2+s)}.
+```
+
+On the other hand,
+
+```text
+deg(N_1D_2-N_2D_1) < e_1+e_2.
+```
+
+The hypothesis `s>=max(e_1,e_2)` gives
+
+```text
+min(e_1+s,e_2+s) >= e_1+e_2,
+```
+
+so the polynomial must be zero.  This proves equality of the two rational
+functions.  Reducing the common rational function then shows that its reduced
+denominator divides each `D_i`.
+
+For two syndrome series, apply the scalar argument to each component.  The
+common reduced vector denominator is the least common multiple of the reduced
+component denominators, and therefore divides every common denominator
+certificate.  The endpoint interpretations are Corollaries 56--58 with
+`s=t+2` for fixed-kernel witnesses and `s=t+1` for first-difference witnesses.
+
 ## Non-Claims
 
 This note does not prove
@@ -5443,5 +5536,7 @@ the required Hankel minors are nonzero above that threshold. Corollary 56
 identifies the remaining root-free short failures as denominator recurrences;
 Corollary 57 rewrites those recurrences as truncated rational-denominator
 certificates; and Corollary 58 identifies the root-free condition with absence
-of reciprocal-domain denominator poles. None of these results bounds the
-resulting root-free denominator families.
+of reciprocal-domain denominator poles. Corollary 59 gives uniqueness and
+primitive-denominator compression only in the half-window range; it does not
+bound the primitive denominators, their root-free multipliers, or the longer
+vector-Pade range.

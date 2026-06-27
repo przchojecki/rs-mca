@@ -318,15 +318,20 @@ Keep entries concise and link to the relevant files.
   `Q(alpha)=alpha^e Q^*(1/alpha)`, while a root at `alpha=0` is a zero at the
   projective point `infty` for the degree-`e` denominator.  Thus fixed-root
   charges remove reciprocal-domain denominator factors before the root-free
-  residue-denominator obstruction remains.
+  residue-denominator obstruction remains.  A half-window uniqueness lemma now
+  compresses these families: if two denominator certificates
+  `D_i W_w=N_i mod T^{e_i+s}` have `s>=max(e_1,e_2)`, then
+  `N_1D_2=N_2D_1`, so all degree-`<=s` certificates share one reduced rational
+  function; componentwise, common certificates for a pair share one primitive
+  vector denominator dividing every certificate denominator.
 - **What to do next:** Bound or charge the unique-neighbor nondegenerate
   star-free shadow ledger, then charge the four base endpoint spaces, the
   resulting short-annihilator endpoint systems, finite-exception endpoint
   systems, their projective short-locator landing varieties, the one-sided
   short endpoint annihilator failures, root-free short-annihilator families,
   low-dimensional common endpoint recurrence spaces, the corresponding
-  reciprocal-domain-pole-free truncated rational-denominator families, and the
-  common-root-free
+  primitive reciprocal-domain-pole-free denominator families, their root-free
+  multipliers, the longer vector-Pade range, and the common-root-free
   fixed-kernel and first-difference moving-certificate loci to
   fixed-slope/root-slice, quotient-periodic, endpoint, or active-codegree
   ledgers.
