@@ -4770,6 +4770,77 @@ ones.  Corollary 40.4 gives the bottom bound
 finite fixed-kernel and consecutive common-image frontier ledgers at each
 depth.  The half-window reformulation is Corollary 40.8 at `r_0`.
 
+## Corollary 40.12: Paired Residual Overlap Is Endpoint-Pair Residual
+
+Fix a frontier depth `r>=1`, put `s=t+r-1`, and write
+`H_m(w)=H_{m,h-1}(w)` in this corollary.  For every degree-`<h` polynomial
+`Q`,
+
+```text
+H_s(u)Q=H_s(v)Q=0
+and
+H_s(S u)Q=H_s(S v)Q=0
+```
+
+if and only if
+
+```text
+H_{s+1}(u)Q=H_{s+1}(v)Q=0.                          (PairOverlap)
+```
+
+Equivalently, at depth `r`,
+
+```text
+RF_r(u,v) cap RF_r(Su,Sv) = RF_r(u) cap RF_r(v)
+```
+
+as root-free witness sets.
+
+Consequently, after the endpoint-pair residual
+
+```text
+RF_r(u) cap RF_r(v)
+```
+
+has been charged, the ordinary paired residual target `(u,v)` and the shifted
+paired residual target `(S u,S v)` have no common root-free witness.  In the
+half-window range, if the same primitive denominator occurs in both paired
+primitive denominator targets, then that primitive denominator is an
+endpoint-pair residual denominator and belongs to the same endpoint-pair
+charge.
+
+### Proof
+
+The first pair of equations gives the rows
+
+```text
+0,1,...,s-1
+```
+
+of the Hankel recurrences for both `u` and `v`.  The shifted pair gives the
+rows
+
+```text
+1,2,...,s
+```
+
+because `H_s(S w)Q` is the recurrence row of `w` shifted forward by one.
+Together these two row intervals are exactly
+
+```text
+0,1,...,s,
+```
+
+which is `H_{s+1}(w)Q=0` for `w=u,v`.  The converse is immediate by taking the
+first `s` rows and the last `s` rows.  Root-freeness is a property of the same
+witness `Q`, giving the root-free identity.
+
+For primitive denominators in the half-window range, Corollary 61 says that
+the primitive denominator remains a certificate after cancelling multipliers.
+Thus a primitive denominator common to both paired targets gives a common
+root-free witness for the ordinary and shifted pairs, hence an endpoint-pair
+residual by (PairOverlap).
+
 ## Corollary 41: The Global Common-Image Ledger Is Endpoint-Only
 
 Let `GCI` be the set of monic degree-`c` split core locators `L` for which
@@ -7430,6 +7501,9 @@ rung; it does not bound the bottom root-free residual families.
 Corollary 40.11 packages a bottom-rung closure criterion for finite nested
 frontier ladders; it does not solve the bottom root-free primitive denominator
 targets.
+Corollary 40.12 identifies the overlap of the ordinary and shifted paired
+root-free residuals with the endpoint-pair residual; it does not bound that
+endpoint-pair residual.
 Corollary 41 packages the common-image branch into endpoint-type ledgers; it
 does not prove the endpoint rank hypotheses needed for the displayed
 `(q+2)binom(n,b)` bound. Corollary 42 packages the globally full core ledger
