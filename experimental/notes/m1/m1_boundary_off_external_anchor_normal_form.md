@@ -3529,7 +3529,23 @@ H(u)X^i Q=0,        H(v)X^i Q=0,        i=0,1,2,
 ```
 
 both have direction dimension `>b`, and there are `b+1` independent moving
-three-shift kernels over `F(lambda)`.
+three-shift kernels over `F(lambda)`.  For a single nonzero moving kernel
+
+```text
+Q(lambda)=q_0+q_1 lambda+...+q_D lambda^D,
+```
+
+after dividing by the first nonzero power of `lambda` if necessary, its
+coefficients satisfy the endpoint ladder
+
+```text
+G_v q_0 = 0,
+G_v q_i - G_u q_{i-1} = 0        for 1<=i<=D,
+G_u q_D = 0.                                           (GEL)
+```
+
+Thus a persistent three-shift moving kernel starts in the `v` endpoint
+three-shift kernel and ends in the `u` endpoint three-shift kernel.
 
 Similarly, for a projective image line `I=[y] in P(F^t)`, let
 
@@ -3590,6 +3606,16 @@ identically, the constant and top-degree coefficients show that all
 have dimension `>b`.  Over `F(lambda)`, persistent minor vanishing is equivalent
 to kernel dimension at least `b+1`; clearing denominators gives the moving
 three-shift kernels.
+
+Substituting `Q(lambda)=sum_i q_i lambda^i` into
+
+```text
+(G_v-lambda G_u)Q(lambda)=0
+```
+
+and comparing powers of `lambda` gives (GEL).  If the first nonzero coefficient
+of `Q` occurs at positive degree, divide by the corresponding power of
+`lambda` before comparing coefficients.
 
 For the image-line statement, the entries of `C_y^G` are homogeneous linear
 forms in `y`.  Hence its `(c-b) x (c-b)` minors are homogeneous of degree

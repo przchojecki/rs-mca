@@ -213,9 +213,10 @@ Keep entries concise and link to the relevant files.
   `b/c` improvement after common-root charges.  The high-dimensional three-shift
   charges are now determinantal too: finite slopes obey the same `c-b`
   finite-exception/persistent dichotomy, persistent slopes force both
-  three-shift endpoint systems low-rank, and the three-shift common-image bad
-  lines are cut out by homogeneous minors with at most `(c-b)q^(t-1)/(q-1)`
-  projective lines unless persistent.
+  three-shift endpoint systems low-rank, and moving kernels satisfy the endpoint
+  ladder `G_v q_0=0`, `G_v q_i-G_u q_{i-1}=0`, `G_u q_D=0`.  The three-shift
+  common-image bad lines are cut out by homogeneous minors with at most
+  `(c-b)q^(t-1)/(q-1)` projective lines unless persistent.
 - **What to do next:** Bound or charge the unique-neighbor nondegenerate
   star-free shadow ledger, and charge the ruled exceptional low-rank loci to
   fixed-slope/root-slice, endpoint, projective, quotient-periodic, or
