@@ -253,7 +253,10 @@ Keep entries concise and link to the relevant files.
   `<=b`.  Failure of any short frontier check is now identified as a short
   denominator recurrence for `u`, `v`, `(u,v)`, or `(S u,S v)`, with
   domain-root factors stripping losslessly into fixed-root/root-slice charges
-  and a root-free recurrence residual.  The
+  and a root-free recurrence residual.  Thus, for a finite frontier ladder,
+  after fixed-root/root-slice short recurrence pieces are charged, the only
+  uncharged obstruction to additive closure is a root-free recurrence in one
+  of those four families at one of the ladder depths.  The
   common-image three-shift ledger now has the analogous sliding-window
   reduction: for an image line `[y]`, the allowed deeper residuals form a space
   `W_y` of dimension at most one, nonzero only on the `q+1` extended geometric

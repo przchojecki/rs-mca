@@ -4510,6 +4510,51 @@ Delta_alpha(S w)=S(Delta_alpha w),
 
 and iterate over the multiset `A`.
 
+## Corollary 40.7: Root-Free Recurrences Are The Only Short-Frontier Residual
+
+Let `D subset F` be the evaluation domain, keep `h=c-b`, and let `R` be a
+finite set of positive consecutive-frontier depths.  For `r in R`, call a
+short frontier recurrence root-free if its witness `Q` has no root in `D`.
+
+After charging all short frontier failures whose witnesses have a domain-root
+factor, every uncharged failure of a short frontier check at a depth `r in R`
+is one of the following root-free recurrence families:
+
+```text
+H_{t+r,h-1}(u)Q=0,
+H_{t+r,h-1}(v)Q=0,
+
+H_{t+r-1,h-1}(u)Q=H_{t+r-1,h-1}(v)Q=0,
+
+H_{t+r-1,h-1}(S u)Q=H_{t+r-1,h-1}(S v)Q=0,
+```
+
+with `0!=Q`, `deg Q<h`, and `Q(alpha)!=0` for every `alpha in D`.
+
+Consequently, for a finite frontier ladder, the route to Corollary 40.5 is
+exactly:
+
+1. charge fixed-root/root-slice short recurrence pieces using Corollary 40.6;
+2. rule out, bound, or charge the four root-free recurrence families above at
+   each depth `r in R`;
+3. apply the additive depth-indexed parameter charge from Corollary 40.5 to
+   the remaining finite fixed-kernel and consecutive common-image ledgers.
+
+Thus the uncharged short-frontier obstruction is a root-free denominator
+recurrence problem, not a new frontier-rank object.
+
+### Proof
+
+Corollary 40.6 says every failure of a short frontier check is a denominator
+recurrence, and that every domain-root factor strips losslessly to a
+fixed-root/root-slice recurrence at lower order.  Iterating the stripping until
+no domain root remains leaves exactly one of the four displayed root-free
+recurrence families, unless the original failure has already been fully
+charged to fixed-root/root-slice ledgers.  Once those root-free residuals are
+absent or charged at every depth in `R`, there is no uncharged short-frontier
+failure left, so the additive closure of Corollary 40.5 applies to the
+remaining ledgers.
+
 ## Corollary 41: The Global Common-Image Ledger Is Endpoint-Only
 
 Let `GCI` be the set of monic degree-`c` split core locators `L` for which
@@ -7157,6 +7202,9 @@ remaining endpoint and nondegenerate ledgers.
 Corollary 40.6 identifies failures of those short checks as denominator
 recurrences and strips domain-root factors; it does not bound the remaining
 root-free recurrence families.
+Corollary 40.7 identifies those root-free recurrence families as the remaining
+short-frontier residual after fixed-root/root-slice charges; it does not prove
+that the root-free residual is empty or small.
 Corollary 41 packages the common-image branch into endpoint-type ledgers; it
 does not prove the endpoint rank hypotheses needed for the displayed
 `(q+2)binom(n,b)` bound. Corollary 42 packages the globally full core ledger
