@@ -303,6 +303,62 @@ def fixed_anchor_rank_stratified_bound(
     return bound
 
 
+def boundary_arrangement_profile(
+    kernel_basis: list[tuple[int, ...]],
+    root_domain: tuple[int, ...],
+    required_roots: int,
+    slope_u: tuple[int, ...],
+    slope_v: tuple[int, ...],
+    p: int,
+    label: str,
+) -> tuple[set[tuple[int, ...]], set[int], int, int]:
+    """Return rich projective points, finite slopes, point count, and rank bound."""
+
+    if not kernel_basis:
+        return set(), set(), 0, 0
+    width = len(kernel_basis[0])
+    projective_points = projective_span_points(kernel_basis, p)
+    rich_points: set[tuple[int, ...]] = set()
+    finite_rich_slopes: set[int] = set()
+    for point in projective_points:
+        root_count = sum(poly_eval(list(point), x, p) == 0 for x in root_domain)
+        if root_count > required_roots:
+            raise AssertionError(f"{label} arrangement point had too many roots")
+        if root_count != required_roots:
+            continue
+        rich_points.add(point)
+        slope_b = hankel_apply(slope_v, 1, width - 1, list(point), p)
+        if slope_b[0] == 0:
+            continue
+        slope_a = hankel_apply(slope_u, 1, width - 1, list(point), p)
+        slope = slope_from_gate(slope_a, slope_b, p)
+        if slope is None:
+            raise AssertionError(f"{label} rich point had inconsistent slope")
+        finite_rich_slopes.add(slope)
+
+    if required_roots <= 0:
+        rank_stratified_bound = len(projective_points)
+    elif len(kernel_basis) == 1:
+        rank_stratified_bound = 1
+    else:
+        fixed_roots, root_hyperplane_weights = fixed_anchor_root_hyperplane_weights(
+            kernel_basis, root_domain, p
+        )
+        if fixed_roots >= required_roots:
+            raise AssertionError(f"{label} kernel had too many fixed roots")
+        richness_deficit = required_roots - fixed_roots
+        if any(weight > richness_deficit for weight in root_hyperplane_weights.values()):
+            raise AssertionError(f"{label} root hyperplane was overfull")
+        rank_stratified_bound = fixed_anchor_rank_stratified_bound(
+            root_hyperplane_weights, len(kernel_basis), richness_deficit, p
+        )
+    if len(rich_points) > rank_stratified_bound:
+        raise AssertionError(f"{label} rich points exceeded rank-stratified bound")
+    if len(finite_rich_slopes) > rank_stratified_bound:
+        raise AssertionError(f"{label} slopes exceeded rank-stratified bound")
+    return rich_points, finite_rich_slopes, len(projective_points), rank_stratified_bound
+
+
 def projective_span_points(basis: list[tuple[int, ...]], p: int) -> set[tuple[int, ...]]:
     if not basis:
         return set()
@@ -689,6 +745,11 @@ def root_slice_profile(
     residual_external_anchor_slope_locators: dict[tuple[int, int], int] = {}
     residual_external_anchor_slope_indices: dict[tuple[int, int], list[int]] = {}
     residual_external_anchor_projective_classes: dict[int, set[tuple[int, ...]]] = {}
+    residual_repeated_anchor_locators: dict[int, int] = {}
+    residual_repeated_anchor_slopes: dict[int, set[int]] = {}
+    residual_repeated_anchor_projective_classes: dict[int, set[tuple[int, ...]]] = {}
+    residual_infinity_slopes: set[int] = set()
+    residual_infinity_projective_classes: set[tuple[int, ...]] = set()
     residual_external_anchor_slope_core_checks = 0
     residual_external_anchor_kernel_dim_max = 0
     residual_external_anchor_projective_points = 0
@@ -762,6 +823,10 @@ def root_slice_profile(
             )
             if hankel_apply(shifted_line, 1, j, complement_locator, p)[0] != 0:
                 raise AssertionError("infinity-anchor shifted one-row gate failed")
+            residual_infinity_slopes.add(line_slope)
+            residual_infinity_projective_classes.add(
+                normalize_projective_vector(complement_locator, p)
+            )
             if residual_adj[idx]:
                 raise AssertionError("beta0-zero anchor escape had a residual neighbor")
             residual_anchor_infinity_checks += 1
@@ -808,6 +873,13 @@ def root_slice_profile(
             )
             if hankel_apply(repeated_twisted_line, 1, j + 1, top_locator, p)[0] != 0:
                 raise AssertionError("repeated-anchor slope missed pinned t=1 gate")
+            residual_repeated_anchor_locators[anchor] = (
+                residual_repeated_anchor_locators.get(anchor, 0) + 1
+            )
+            residual_repeated_anchor_slopes.setdefault(anchor, set()).add(line_slope)
+            residual_repeated_anchor_projective_classes.setdefault(anchor, set()).add(
+                normalize_projective_vector(top_locator, p)
+            )
             residual_anchor_repeated_lift_checks += 1
             if residual_adj[idx]:
                 raise AssertionError("in-support anchor escape had a residual neighbor")
@@ -1314,6 +1386,68 @@ def root_slice_profile(
         residual_external_anchor_rich_points += len(rich_points)
         residual_external_anchor_finite_rich_slopes += len(finite_rich_slopes)
         residual_external_anchor_rich_residual_classes += len(residual_classes)
+    if set(residual_repeated_anchor_projective_classes) != set(residual_repeated_anchor_locators):
+        raise AssertionError("repeated-anchor projective classes missed an anchor")
+    for anchor, residual_classes in residual_repeated_anchor_projective_classes.items():
+        repeated_twisted_f = {
+            x: 0 if x == anchor else f[x] * inv_mod((x - anchor) % p, p) % p
+            for x in domain
+        }
+        repeated_twisted_g = {
+            x: 0 if x == anchor else g[x] * inv_mod((x - anchor) % p, p) % p
+            for x in domain
+        }
+        repeated_twisted_u = syndrome(repeated_twisted_f, domain, j + 2, p)
+        repeated_twisted_v = syndrome(repeated_twisted_g, domain, j + 2, p)
+        repeated_kernel_rows = [
+            tuple(pow(anchor, col, p) for col in range(j + 2)),
+            tuple(
+                0 if col == 0 else (col * pow(anchor, col - 1, p)) % p
+                for col in range(j + 2)
+            ),
+            tuple(u[col] for col in range(j + 2)),
+            tuple(v[col] for col in range(j + 2)),
+        ]
+        repeated_kernel_basis = nullspace_basis(repeated_kernel_rows, p)
+        repeated_root_domain = tuple(x for x in domain if x != anchor)
+        rich_points, finite_rich_slopes, _, _ = boundary_arrangement_profile(
+            repeated_kernel_basis,
+            repeated_root_domain,
+            j - 1,
+            repeated_twisted_u,
+            repeated_twisted_v,
+            p,
+            "repeated-anchor",
+        )
+        if not residual_classes <= rich_points:
+            raise AssertionError("residual repeated classes escaped rich arrangement")
+        if len(residual_classes) != residual_repeated_anchor_locators[anchor]:
+            raise AssertionError("repeated-anchor projective classes were not injective")
+        if not residual_repeated_anchor_slopes[anchor] <= finite_rich_slopes:
+            raise AssertionError("residual repeated slopes escaped rich slope image")
+    if residual_infinity_projective_classes:
+        infinity_kernel_rows = [
+            tuple(u[col] for col in range(j + 1)),
+            tuple(v[col] for col in range(j + 1)),
+        ]
+        infinity_kernel_basis = nullspace_basis(infinity_kernel_rows, p)
+        shifted_u = tuple(u[row + 1] for row in range(j + 1))
+        shifted_v = tuple(v[row + 1] for row in range(j + 1))
+        rich_points, finite_rich_slopes, _, _ = boundary_arrangement_profile(
+            infinity_kernel_basis,
+            domain,
+            j,
+            shifted_u,
+            shifted_v,
+            p,
+            "infinity-anchor",
+        )
+        if not residual_infinity_projective_classes <= rich_points:
+            raise AssertionError("residual infinity classes escaped rich arrangement")
+        if len(residual_infinity_projective_classes) != residual_anchor_escape_beta0_zero:
+            raise AssertionError("infinity projective classes were not injective")
+        if not residual_infinity_slopes <= finite_rich_slopes:
+            raise AssertionError("residual infinity slopes escaped rich slope image")
     if residual_external_anchor_pinned_t1_checks != residual_anchor_escape_outside_domain:
         raise AssertionError("external-anchor pinned t=1 checks missed off-domain escapes")
     residual_projective_lift_fibers: dict[tuple[int, ...], set[int]] = {}

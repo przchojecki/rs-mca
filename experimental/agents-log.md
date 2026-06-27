@@ -30,6 +30,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-27 - M1 all-boundary arrangement reduction
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/m1/m1_all_line_hankel_aperiodic_packing.md`,
+  `experimental/scripts/verify_m1_all_line_hankel_aperiodic.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT / EXPERIMENTAL.
+- **What is being added:** The isolated escape term is reduced to three
+  projective rich-point slope images: off-domain fixed anchors, repeated-root
+  in-domain anchors, and the infinity anchor.  Repeated and infinity escapes
+  now satisfy the same rank-stratified arrangement cover previously used for
+  off-domain anchors.
+- **How it is useful:** This turns `Z_esc` into a uniform boundary
+  arrangement problem.  The remaining M1 work is to sharpen or quotient-filter
+  these arrangement slope images to the final reserve scale, not to classify
+  more boundary escape types.
+- **What to do next:** Seek reserve-scale bounds for the boundary arrangement
+  slope images, starting with quotient-aware heavy-flat counts.
+
 ### 2026-06-27 - M1 repeated and infinity escape one-row forms
 
 - **Agent/model:** Codex.
