@@ -1030,6 +1030,83 @@ finite-exception alternative there are at most `m-b` of them.  No smallness
 claim is made for their split-shadow count here.  The conclusion is only that
 they have been isolated as a finite fixed-slope charge.
 
+## Corollary 14: Persistent Low-Rank Has Polynomial Kernel Certificates
+
+Keep the notation of Corollary 12, and let `K=F(z)`.  Suppose the finite-slope
+row-cut pencil is identically persistent at threshold `b`, meaning that every
+`(m-b) x (m-b)` minor of `R_z` vanishes as a polynomial in `F[z]`.  Then
+
+```text
+dim_K ker(R_z:K^m -> K^{2t}) >= b+1.
+```
+
+Equivalently, there exist `b+1` vectors
+
+```text
+Q_0(z),...,Q_b(z) in F[z]^m
+```
+
+that are linearly independent over `K` and satisfy
+
+```text
+R_z Q_i(z)=0        for 0<=i<=b.                    (PK)
+```
+
+Writing
+
+```text
+Q_i(z,X)=sum_{a=0}^{m-1} Q_{i,a}(z) X^a,
+```
+
+the certificate equations are exactly
+
+```text
+(H_{t,j}(u)+zH_{t,j}(v)) ell_{Q_i(z)}^0 = 0,
+(H_{t,j}(u)+zH_{t,j}(v)) ell_{Q_i(z)}^+ = 0         (MK)
+```
+
+as identities in `F[z]^t`.  Conversely, the existence of `b+1`
+`K`-independent polynomial vectors satisfying (PK) forces every
+`(m-b) x (m-b)` minor of `R_z` to vanish identically.
+
+Thus the persistent finite-slope obstruction is equivalent to a finite
+polynomial-kernel certificate: a moving degree-`<m` polynomial direction, or
+`b+1` independent such directions at threshold `b`, whose lower and upper
+Hankel shifts are killed by the whole pencil.
+
+### Proof
+
+Over the rational function field `K=F(z)`, the vanishing of every
+`(m-b) x (m-b)` minor is equivalent to
+
+```text
+rank_K R_z < m-b.
+```
+
+Since the domain has dimension `m`, this is equivalent to
+
+```text
+dim_K ker R_z >= b+1.
+```
+
+Choose `b+1` independent kernel vectors over `K`.  Multiplying each by a
+nonzero common denominator turns it into a vector in `F[z]^m` without changing
+`K`-linear independence, proving (PK).
+
+The rows of `R_z` are precisely the homogeneous lower-coefficient equations
+for the two shifted conditions
+
+```text
+P_z ell_Q^0=0,        P_z ell_Q^+=0,
+```
+
+with `P_z=H_{t,j}(u)+zH_{t,j}(v)`.  Substituting the polynomial coefficient
+vector `Q_i(z)` gives (MK).
+
+Conversely, if `b+1` `K`-independent vectors satisfy (PK), then
+`dim_K ker R_z>=b+1`, so `rank_K R_z<m-b`.  Hence all `(m-b) x (m-b)` minors
+are zero in `K`, and therefore vanish as polynomials in `F[z]`.
+
 ## Non-Claims
 
 This note does not prove
@@ -1053,4 +1130,7 @@ low-rank alternative; it shows that this persistent alternative is the only way
 for the finite-slope row-rank obstruction to involve more than `m-b` slopes at
 a fixed rank threshold. Corollary 13 does not bound the exceptional high-rank
 fixed-slope shadows; it separates them from the bounded-rank residual so they
-can be charged to the fixed-slope/root-slice ledger.
+can be charged to the fixed-slope/root-slice ledger. Corollary 14 does not
+prove that the persistent polynomial-kernel certificates cannot occur; it
+turns that case into an explicit algebraic certificate to rule out, classify,
+or charge.

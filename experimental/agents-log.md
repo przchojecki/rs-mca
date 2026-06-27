@@ -68,6 +68,9 @@ Keep entries concise and link to the relevant files.
   If the persistent alternative is absent, then after the exceptional slopes
   are charged to the fixed-slope/root-slice ledger, the bounded-rank finite
   common-kernel residual contributes at most `q^2 binom(n,b)` boundary targets.
+  If the persistent alternative is present algebraically, it is equivalent over
+  `F(z)` to `b+1` independent polynomial moving-kernel certificates killed by
+  both shifted Hankel equations.
 - **How it is useful:** This sharpens one of the two live residual objects in
   the non-fixed variable-line branch.  It does not prove the final M1 bound,
   but it turns the boundary image into a precise quadratic-anchor/ruled-branch
@@ -76,7 +79,8 @@ Keep entries concise and link to the relevant files.
   isolates low-rank Hankel row-cut loci as the remaining ruled-branch
   obstructions and separates finite exceptional slopes from persistent
   low-rank pencil degeneracy, giving a polynomial closure route for the
-  bounded-rank part.
+  bounded-rank part and a concrete algebraic certificate for the persistent
+  part.
 - **What to do next:** Bound the adjacent domain shadows in the nondegenerate
   branch and try to charge the ruled branch to fixed-slope/root-slice,
   contained/tangent, quotient-periodic, or active-codegree ledgers.
