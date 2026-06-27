@@ -4673,6 +4673,49 @@ values are charged, the inclusions show that no deeper high-dimensional finite
 parameter system remains.  The common-image ledgers at each depth are then
 closed by Corollary 40.3.
 
+## Corollary 40.10: Root-Free Residual Ladders Charge At The Bottom Rung
+
+Let `D subset F` be the evaluation domain, let `R` be a nonempty finite set of
+positive consecutive-frontier depths, and put `r_0=min R`.  For a depth `r`,
+let `RF_r(u)`, `RF_r(v)`, `RF_r(u,v)`, and `RF_r(Su,Sv)` denote the four
+root-free recurrence witness sets from Corollary 40.7.
+
+Then the residual witness sets are nested:
+
+```text
+RF_r(u)       subset RF_{r_0}(u),
+RF_r(v)       subset RF_{r_0}(v),
+RF_r(u,v)     subset RF_{r_0}(u,v),
+RF_r(Su,Sv)   subset RF_{r_0}(Su,Sv),        r in R.   (NestedRF)
+```
+
+Consequently, after fixed-root/root-slice recurrence pieces are charged, it is
+enough to rule out, bound, or charge the four root-free recurrence families at
+the bottom depth `r_0`.  Once those bottom residuals are absent or charged,
+there is no uncharged root-free short-frontier residual at any deeper
+`r in R`.
+
+If in addition `h<=t+r_0`, then all bottom residual families are in the
+half-window range of Corollary 40.8.  Thus the primitive
+reciprocal-domain-pole-free denominator targets at the bottom depth control
+the whole ladder.
+
+### Proof
+
+For any syndrome vector `w`, the row set of `H_{t+r_0,h-1}(w)` is contained in
+the row set of `H_{t+r,h-1}(w)` when `r>=r_0`.  Hence every witness in
+`RF_r(u)` or `RF_r(v)` is also a witness in the corresponding bottom set.
+
+For the paired ordinary residuals, the row set of `H_{t+r_0-1,h-1}(w)` is
+contained in that of `H_{t+r-1,h-1}(w)` for `w=u,v`.  This gives
+`RF_r(u,v) subset RF_{r_0}(u,v)`.  The shifted pair is identical with
+`w=Su,Sv`.  Root-freeness is a property of the same witness polynomial `Q`,
+so it is preserved under these inclusions.
+
+The final statement follows from Corollary 40.8 applied at `r_0`.  Since every
+deeper root-free residual witness already lies in the bottom witness set,
+charging the bottom primitive denominator targets charges the whole ladder.
+
 ## Corollary 41: The Global Common-Image Ledger Is Endpoint-Only
 
 Let `GCI` be the set of monic degree-`c` split core locators `L` for which
@@ -7328,6 +7371,8 @@ reciprocal-domain-pole-free denominators; it does not bound the number of
 primitive denominators.
 Corollary 40.9 uses nesting to charge a finite ladder at its bottom rung when
 the bottom short checks hold; it does not prove those bottom short checks.
+Corollary 40.10 shows root-free residual witnesses also nest to the bottom
+rung; it does not bound the bottom root-free residual families.
 Corollary 41 packages the common-image branch into endpoint-type ledgers; it
 does not prove the endpoint rank hypotheses needed for the displayed
 `(q+2)binom(n,b)` bound. Corollary 42 packages the globally full core ledger

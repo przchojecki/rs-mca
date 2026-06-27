@@ -264,6 +264,10 @@ Keep entries concise and link to the relevant files.
   satisfies the four short checks, then all deeper checks hold and
   `E_{r,>b} subset E_{r_0,>b}`, `Theta_{r,>b} subset Theta_{r_0,>b}`; charging
   the bottom bad sets of total size at most `2h` closes all depths in `R`.
+  The root-free residual families themselves nest too: a deeper root-free
+  recurrence witness is already a bottom-depth witness for the same one of
+  `u`, `v`, `(u,v)`, or `(S u,S v)`, so the bottom primitive denominator
+  targets control the whole ladder in the half-window range.
   The common-image three-shift ledger now has the analogous sliding-window
   reduction: for an image line `[y]`, the allowed deeper residuals form a space
   `W_y` of dimension at most one, nonzero only on the `q+1` extended geometric
