@@ -515,6 +515,42 @@ slope lines with slope image size up to `12`.  Thus the non-fixed line branch
 is a genuine remaining M1 object: it is now localized to explicit involutions
 and projective-linear slope images, but it cannot simply be discarded.
 
+There is one further separation which is important for using this count.  The
+raw line count includes full determinantal pair-planes: if all three quadratic
+minors vanish identically for a fixed core `R`, then every affine line in the
+`(s,p)` plane is counted.  When the resulting slope is constant, this is not a
+proper one-dimensional obstruction.  The coefficient identity
+
+```text
+H_{3,j}(u)ell_{R,s,p}+zH_{3,j}(v)ell_{R,s,p}=0
+```
+
+for all `(s,p)` is equivalent to the lifted core equation
+
+```text
+(H_{5,j-2}(u)+zH_{5,j-2}(v))ell_R=0.
+```
+
+Thus a constant full plane is charged to the same `(t+2,j-2)` Hankel core
+image as the same-slope affine-rank-two cluster above.
+
+After these full planes are separated, every remaining determinant line is a
+proper line component.  Indeed, if the common three-minor locus is not the
+whole pair plane, choose a nonzero quadratic minor `Q(s,p)`.  Any affine line
+contained in the determinant locus is a line on which `Q` vanishes.  Since
+`deg Q<=2` and `|F|>2` in the audited cases, this line equation must divide
+`Q`; hence a nonzero core has at most two proper affine line components.  The
+verifier asserts this `<=2` bound per non-plane core.  On each such proper
+line the slope image is the image of a fractional-linear map on one affine
+parameter, so a variable line contributes at most `|F|` noncontained slopes.
+
+In the `F_13`, `n=12`, `j=5`, `t=3` probe, the old `219` aggregate splits as
+one constant full plane, which lifts to `H_{5,3}`, plus `37` proper line
+components.  The proper components are `35` fixed-root lines, one
+product-Mobius line, and one fixed-sum line.  The two non-fixed proper lines
+are exactly the two variable-slope components; their largest slope image has
+size `12`.
+
 ## Different-Slope One-Exchange Quadratic Slice
 
 The different-slope part of the one-exchange profile has a complementary
@@ -2637,7 +2673,9 @@ enumerates small cyclic-domain cases.  For each case it:
 - in the `t=3` rows, enumerates every affine line in each two-exchange
   determinantal slice, checks whether all three quadratic minors vanish on the
   line, classifies determinant-line components by the same three root-pair
-  models, and records constant versus variable slope images;
+  models, separates full determinant planes from proper line components,
+  checks constant full-plane lifts to the `(t+2,j-2)` Hankel core image, and
+  asserts that each non-plane core has at most two proper line components;
 - in the `t=2` rows, verifies the determinant gate and reports the strict
   one-exchange profile of the aperiodic locator family;
 - in the `t=2` rows, checks that every same-slope strict one-exchange edge
@@ -2849,6 +2887,12 @@ pencil.  The same row also exposes the determinant-line branch: the verifier
 finds up to `219` determinantal affine lines, split as `48` fixed-root,
 `157` product-Mobius, and `14` fixed-sum components.  Two of these line
 components have variable slope image, with maximum slope-image size `12`.
+The refined ledger shows that `182` of the `219` lines come from one constant
+full determinant plane, already lifted to `H_{5,3}`.  The proper line branch
+has only `37` components: `35` fixed-root lines, one product-Mobius line, and
+one fixed-sum line.  The two non-fixed proper components are exactly the two
+variable-slope lines, and every non-plane core has at most one proper line in
+this probe, below the asserted degree-two maximum.
 
 The `F_13`, `n=12`, `j=4`, `t=2` row is kept as a boundary-only counterexample
 to the tempting squarefree-absorption shortcut.  In all four deterministic

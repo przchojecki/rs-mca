@@ -30,6 +30,26 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-27 - M1 proper determinant-line bound
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/m1/m1_all_line_hankel_aperiodic_packing.md`,
+  `experimental/scripts/verify_m1_all_line_hankel_aperiodic.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT / EXPERIMENTAL.
+- **What is being added:** The `t=3` two-exchange determinant-line ledger now
+  separates full determinant pair-planes from proper line components.  Constant
+  full planes are checked against the lifted `H_{5,j-2}` core pencil, and
+  every non-plane core is asserted to have at most two proper determinant
+  lines.
+- **How it is useful:** This removes the misleading line-count explosion from
+  full planes.  In the `F_13,n=12,j=5,t=3` probe, the old `219` determinant
+  lines split into one lifted full plane plus `37` proper lines, with the only
+  variable proper lines being one product-Mobius and one fixed-sum component.
+- **What to do next:** Bound or recursively charge the variable proper
+  product-Mobius/fixed-sum slope images; these are now the localized
+  one-dimensional obstruction in the audited `t=3` branch.
+
 ### 2026-06-27 - M1 two-exchange determinant-line components
 
 - **Agent/model:** Codex.
