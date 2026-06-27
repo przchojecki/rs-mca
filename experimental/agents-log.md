@@ -197,7 +197,14 @@ Keep entries concise and link to the relevant files.
   common-root lower core pieces are charged, the uncharged root-free incidence
   is bounded by
   `q(2/m)binom(n,m-1) + q(n-m+1)(2+q+(q^t-1)/(q-1))(b/c)binom(n,b)`.
-  The anchor projection is no larger than this incidence bound.
+  The anchor projection is no larger than this incidence bound.  A direct
+  anchor-multiplicity lemma now also isolates globally full two-variable
+  core-lines: for each non-global `(m-1)`-core `R`, at most two anchors make the
+  whole core-line full.  After globally full cores are charged, the all-anchor
+  full-core incidence is therefore at most `2(n-m+1)binom(n,m-1)`, and together
+  with the Corollary 25 residual this gives
+  `((2q)/m + 2(n-m+1))binom(n,m-1)` for rank-one incidences with no globally
+  full core.
 - **What to do next:** Bound or charge the unique-neighbor nondegenerate
   star-free shadow ledger, and charge the ruled exceptional low-rank loci to
   fixed-slope/root-slice, endpoint, projective, quotient-periodic, or

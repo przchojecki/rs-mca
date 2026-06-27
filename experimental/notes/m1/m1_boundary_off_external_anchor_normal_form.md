@@ -3255,6 +3255,94 @@ the two endpoint anchor sets union-bounded.  Finally, projecting an incidence
 set `(beta,S)` to its anchor coordinate cannot increase cardinality, so the
 same bound controls the uncharged anchor projection.
 
+## Corollary 35: Full-Core Anchor Multiplicity Collapses Unless Globally Full
+
+Fix an `(m-1)`-core `R subset D`.  For anchor and extension variables
+`beta,Y`, put
+
+```text
+N_R(beta,Y) = [ H(u)(X-beta)(X-Y)L_R    H(v)(X-beta)(X-Y)L_R ].
+```
+
+Define the globally full core-line ledger
+
+```text
+GlobalFullCore
+ = { R : rank N_R(beta,Y) <= 1 identically in F[beta,Y] }.
+```
+
+For fixed `R`, let
+
+```text
+A_R={ beta in F : R in FullCoreGate(beta) }.
+```
+
+If `R notin GlobalFullCore`, then
+
+```text
+|A_R| <= 2.                                           (CoreAnchor)
+```
+
+Consequently, after the globally full core-lines have been charged, the
+all-anchor full-core shadow incidence
+
+```text
+I_full^nonglobal
+ = { (beta,S) : beta in F, S subset D, |S|=m,
+                S contains a core R in FullCoreGate(beta)
+                with R notin GlobalFullCore }
+```
+
+satisfies
+
+```text
+|I_full^nonglobal| <= 2 (n-m+1) binom(n,m-1).          (NGFull)
+```
+
+Combining this with the Corollary 25 residual gives the direct all-anchor bound
+after globally full core-lines are charged:
+
+```text
+|{ (beta,S) : rank M_S(beta)<=1,
+                no (m-1)-core of S lies in GlobalFullCore }|
+ <= ( (2q)/m + 2(n-m+1) ) binom(n,m-1).               (DirectAllCore)
+```
+
+Thus the full-core part of the all-anchor gate has no field-size multiplicity
+except through the explicit one-root-loss residual and the globally full
+two-variable core-line obstruction.
+
+### Proof
+
+For fixed `R`, write
+
+```text
+(X-beta)(X-Y)L_R
+ = X^2 L_R - (beta+Y)X L_R + beta Y L_R.
+```
+
+Thus both Hankel images in `N_R(beta,Y)` have bidegree at most `(1,1)` in
+`(beta,Y)`.  For any row-pair minor `P_R(beta,Y)`, the coefficients of
+`P_R(beta,Y)` as a polynomial in `Y` have degree at most two in `beta`; this is
+the same coefficient ledger as Corollary 23, now with the anchor dependence
+left visible.
+
+The condition `R in FullCoreGate(beta)` says that every row-pair minor
+`P_R(beta,Y)` vanishes identically as a polynomial in `Y`.  Equivalently, all
+of its `Y`-coefficients vanish at that value of `beta`.
+
+If `R notin GlobalFullCore`, some `Y`-coefficient of some row-pair minor is a
+nonzero polynomial in `beta` of degree at most two.  Every `beta in A_R` is a
+root of this one nonzero polynomial, so `|A_R|<=2`.
+
+For (NGFull), each non-global core has at most two full-core anchors and, for
+each such anchor, at most `n-m+1` extensions to a degree-`m` shadow.  There are
+`binom(n,m-1)` split cores.  Finally, for any anchor and shadow with no globally
+full core, either no core of the shadow lies in `FullCoreGate(beta)`, which is
+counted by the Corollary 25 residual, or at least one non-global full core is
+present, which is counted by (NGFull).  Summing the residual over the at most
+`q` anchors gives (DirectAllCore).
+
 ## Non-Claims
 
 This note does not prove
@@ -3341,3 +3429,5 @@ turns that incidence into a finite determinantal charge or a moving
 anchor-image certificate. Corollary 34 is an all-anchor incidence closure after
 explicit lower charges; it still leaves the charged loci, persistent
 certificates, and one-root-loss residual as the remaining M1 obligations.
+Corollary 35 does not classify globally full core-lines; it shows that all
+other full-core lines have anchor multiplicity at most two.
