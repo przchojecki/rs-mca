@@ -30,6 +30,26 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-27 - M1 quadruple product cubic reduction
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/m1/m1_all_line_hankel_aperiodic_packing.md`,
+  `experimental/scripts/verify_m1_all_line_hankel_aperiodic.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT / EXPERIMENTAL.
+- **What is being added:** The full-domain `j=4` monomial boundary product
+  image is reduced to a binary cubic modulo fourth powers: every zero-sum
+  quadruple normalizes to `lambda{1,r,s,-1-r-s}`, so
+  `prod(T)=lambda^4(-rs(1+r+s))`; the ordered normalized parameter count is
+  `p^2-9p+26`.
+- **How it is useful:** This is the two-variable counterpart of the `j=3`
+  quadratic reduction, converting the fixed-anchor M1 boundary obstruction
+  into a concrete low-dimensional product-image problem after quotient
+  locators are charged.
+- **What to do next:** Try to bound the residual cubic product-coset image
+  after antipodal quotient charging, keeping locator charging distinct from
+  product-value overlap.
+
 ### 2026-06-27 - M1 triple product quadratic reduction
 
 - **Agent/model:** Codex.

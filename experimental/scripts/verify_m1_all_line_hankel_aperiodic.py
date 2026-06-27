@@ -2112,6 +2112,23 @@ def verify_full_domain_monomial_boundary_model(
             quadratic_value = (-r * (1 + r)) % p
             if complement_product != pow(base, 3, p) * quadratic_value % p:
                 raise AssertionError("j=3 product was not a cube times -r(1+r)")
+        if j == 4:
+            base = complement[0]
+            base_inv = inv_mod(base, p)
+            r = complement[1] * base_inv % p
+            s = complement[2] * base_inv % p
+            normalized_fourth = complement[3] * base_inv % p
+            if normalized_fourth != (-1 - r - s) % p:
+                raise AssertionError("j=4 normalized zero-sum form failed")
+            if 0 in {r, s, normalized_fourth}:
+                raise AssertionError("j=4 normalized parameter was zero")
+            if len({1 % p, r, s, normalized_fourth}) != 4:
+                raise AssertionError("j=4 normalized parameter was not distinct")
+            cubic_value = (-r * s * (1 + r + s)) % p
+            if complement_product != pow(base, 4, p) * cubic_value % p:
+                raise AssertionError(
+                    "j=4 product was not a fourth power times -rs(1+r+s)"
+                )
         expected_slope = -inv_mod(expected_b0, p) % p
         if slope != expected_slope:
             raise AssertionError("monomial boundary product slope formula failed")
@@ -2158,7 +2175,31 @@ def verify_full_domain_monomial_boundary_model(
     residual_product_cosets = (
         len(residual_product_set) // len(j_power_subgroup) if residual_product_set else 0
     )
+    zero_sum_product_cosets = (
+        len(zero_sum_product_set) // len(j_power_subgroup) if zero_sum_product_set else 0
+    )
     if j == 4 and 2 in charged_fiber_sizes:
+        j4_cubic_parameters = {
+            (r, s)
+            for r in domain
+            for s in domain
+            if (-1 - r - s) % p
+            and len({1 % p, r, s, (-1 - r - s) % p}) == 4
+        }
+        if len(j4_cubic_parameters) != p * p - 9 * p + 26:
+            raise AssertionError("j=4 normalized cubic parameter count failed")
+        j4_cubic_values = {
+            (-r * s * (1 + r + s)) % p for r, s in j4_cubic_parameters
+        }
+        if 0 in j4_cubic_values:
+            raise AssertionError("j=4 cubic product image contained zero")
+        j4_cubic_product_image = {
+            value * power % p
+            for value in j4_cubic_values
+            for power in j_power_subgroup
+        }
+        if zero_sum_product_set != j4_cubic_product_image:
+            raise AssertionError("j=4 product image was not the fourth-power cubic image")
         antipodal_pair_count = (p - 1) // 2
         expected_zero_sum = (p - 1) * (p * p - 9 * p + 26) // 24
         expected_quotient = antipodal_pair_count * (antipodal_pair_count - 1) // 2
@@ -2210,6 +2251,7 @@ def verify_full_domain_monomial_boundary_model(
         "j": j,
         "zero_sum_locators": zero_sum_locators,
         "zero_sum_product_fibers": len(zero_sum_product_counts),
+        "zero_sum_product_cosets": zero_sum_product_cosets,
         "quotient_zero_sum_locators": quotient_zero_sum_locators,
         "quotient_product_fibers": quotient_product_fibers,
         "quotient_product_cosets": quotient_product_cosets,
@@ -2290,6 +2332,7 @@ def main() -> None:
             f"j_power_subgroup={model['j_power_subgroup_size']} "
             f"zero_sum_locators={model['zero_sum_locators']} "
             f"zero_sum_product_fibers={model['zero_sum_product_fibers']} "
+            f"zero_sum_product_cosets={model['zero_sum_product_cosets']} "
             f"quotient_zero_sum_locators={model['quotient_zero_sum_locators']} "
             f"quotient_product_fibers={model['quotient_product_fibers']} "
             f"quotient_product_cosets={model['quotient_product_cosets']} "

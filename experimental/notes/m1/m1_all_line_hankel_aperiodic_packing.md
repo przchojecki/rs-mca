@@ -808,6 +808,44 @@ size-`3` quotient charge leaves one residual cube coset.  In the audited
 bijective, so the single external anchor already sees all `16` nonzero
 products.
 
+For `j=4`, the analogous normalized product image is a binary cubic modulo
+fourth powers.  Every zero-sum four-subset can be scaled and ordered as
+
+```text
+T = lambda {1,r,s,-1-r-s}.
+```
+
+For `r,s in F_p^*`, the allowed parameter set is cut out by
+
+```text
+-1-r-s != 0,        |{1,r,s,-1-r-s}| = 4,
+```
+
+and on this set
+
+```text
+prod(T) = lambda^4(-rs(1+r+s)).       (EA5)
+```
+
+The ordered parameter count is
+
+```text
+p^2 - 9p + 26.
+```
+
+Equivalently, each scaling orbit of zero-sum four-subsets contributes `4!`
+normalized ordered parameter pairs, which matches the closed count below.
+Thus the full zero-sum product image is exactly the fourth-power closure of
+the binary cubic image `c(r,s)=-rs(1+r+s)` on the allowed parameter set.  The
+verifier asserts this identity in the `(13,4)` and `(17,4)` full-domain rows.
+
+This cubic normal form is also the right way to interpret the antipodal
+quotient charge.  The charged antipodal product image is the square subgroup,
+but residual non-antipodal locators may still share product values with that
+charged image.  Hence quotient charging is a locator-level ledger operation;
+the residual boundary theorem must bound the product image of the locators
+that remain, not subtract charged product values from the cubic image.
+
 The same full-domain model has closed zero-sum counts in the audited
 small-slack cases.  For triples,
 
@@ -1271,6 +1309,9 @@ enumerates small cyclic-domain cases.  For each case it:
 - checks the `j=3` product-coset reduction: every zero-sum triple normalizes to
   `{1,r,-1-r}`, the product image is the cube-closure of `-r(1+r)`, and an
   active size-`3` quotient charge has cube-subgroup product image;
+- checks the `j=4` product-coset reduction: every zero-sum quadruple
+  normalizes to `{1,r,s,-1-r-s}`, with product image the fourth-power closure
+  of the binary cubic `-rs(1+r+s)`;
 - asserts the closed zero-sum boundary counts for the `j=3` and `j=4`
   full-domain monomial cases, including the residual count after antipodal
   quotient charging;
