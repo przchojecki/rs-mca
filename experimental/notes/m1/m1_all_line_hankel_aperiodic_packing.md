@@ -707,6 +707,23 @@ anchor-slope fibers of size four.  Its value is that the remaining boundary
 problem is now a concrete pinned one-row split-locator fiber problem, rather
 than an unstructured collection of isolated residual locators.
 
+There is also a clean packing bound inside each fixed anchor-slope fiber.
+Since off-domain projective boundary fibers are isolated components of the
+residual one-exchange graph, two distinct locators in the same `F_{xi,z}`
+cannot differ by one exchange.  Equivalently, no `(j-1)`-subset of `D` is
+contained in two different complements `T` in that fiber.  Counting
+`(T,R)` with `R subset T`, `|R|=j-1`, gives
+
+```text
+|F_{xi,z}| * j <= binom(n,j-1).        (EA1P)
+```
+
+In support language, the corresponding `(k+2)`-point supports form a packing:
+no `(k+1)`-point support is contained in two members of the same fixed
+anchor-slope fiber.  This is a multiplicity bound for one fiber, not a bound
+on the number of nonempty slope fibers.  The remaining task is still to bound
+how many slopes `z` have `F_{xi,z} != empty`.
+
 ## External-Anchor Top-Coefficient Form
 
 The twisted one-row reduction has an equivalent interpolation form.  Let
@@ -1569,6 +1586,9 @@ enumerates small cyclic-domain cases.  For each case it:
 - for every off-domain external anchor, groups escape locators by
   `(anchor,slope)` and verifies the pinned twisted `t=1` equation
   `H_{1,j+1}(u^xi+zv^xi)P_T=0`;
+- verifies that every fixed `(anchor,slope)` fiber is one-exchange-free by
+  checking disjointness of its `(j-1)`-cores, hence satisfies the packing
+  bound `|F_{xi,z}| * j <= binom(n,j-1)`;
 - verifies the homogeneous projective residual lift ledger: every residual
   locator maps to the common one-row lifted Hankel kernel through
   `beta_0 X L_T-beta_1 L_T`, with finite anchors, repeated-root lifts,

@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-27 - M1 fixed-anchor fiber packing bound
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/m1/m1_all_line_hankel_aperiodic_packing.md`,
+  `experimental/scripts/verify_m1_all_line_hankel_aperiodic.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT / EXPERIMENTAL.
+- **What is being added:** Each fixed off-domain `(anchor,slope)` fiber is
+  one-exchange-free after quotient charging and root-slice peeling.  Hence no
+  `(j-1)`-core occurs in two locator complements in the same fiber, giving
+  `|F_{xi,z}| * j <= binom(n,j-1)`.
+- **How it is useful:** This bounds multiplicity inside one pinned
+  fixed-anchor slope fiber and recasts those fibers as support packings.  The
+  verifier checks the `(j-1)`-core disjointness directly, including the six
+  size-four fibers in the `F_13` boundary row.
+- **What to do next:** Bound the number of nonempty fixed-anchor slope fibers;
+  the packing bound controls fiber size, not the slope image size.
+
 ### 2026-06-27 - M1 fixed-anchor slope-fiber reduction
 
 - **Agent/model:** Codex.
