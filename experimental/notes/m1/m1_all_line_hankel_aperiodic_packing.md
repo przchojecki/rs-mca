@@ -663,6 +663,17 @@ the single packet has size `3` and charges `3` such edges.  This reframes the
 remaining residual slope problem as an edge-energy packing question for
 non-fixed involution packets, including unanchored ones.
 
+The packet-edge charge is injective.  A charged packet edge consists of two
+aperiodic locators `T_1,T_2` differing by exactly two exchanged roots.  Their
+intersection is the unique `(j-2)` core `R`, and the two elementary pair
+coordinates `(s_1,p_1),(s_2,p_2)` determine a unique affine line in the
+two-root plane.  Thus no other non-fixed variable packet can charge the same
+global different-slope two-exchange edge.  The verifier stores the canonical
+unordered locator-pair key for each charged packet edge, checks that it is a
+global different-slope two-exchange edge, and asserts that no charged key is
+repeated.  In the current probes the injection image sizes are `6`, `3`, and
+`3`, matching the packet-edge counts exactly.
+
 Equivalently, if the non-fixed variable packets have sizes `m_i`, then
 
 ```text

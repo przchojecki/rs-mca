@@ -843,6 +843,7 @@ def two_exchange_quadratic_slice_profile(
             "two_exchange_det_proper_line_variable_domain_pair_checks": 0,
             "two_exchange_det_proper_line_variable_nonfixed_packet_pair_max": 0,
             "two_exchange_det_proper_line_variable_nonfixed_packet_pair_checks": 0,
+            "two_exchange_det_proper_line_variable_nonfixed_packet_edge_injections": 0,
             "two_exchange_det_proper_line_variable_nonfixed_singletons": 0,
             "two_exchange_det_proper_line_variable_nonfixed_domain_singletons": 0,
             "two_exchange_det_proper_line_variable_nonfixed_quotient_defects": 0,
@@ -862,6 +863,7 @@ def two_exchange_quadratic_slice_profile(
     two_exchange_pairs = 0
     same_slope_pairs = 0
     different_slope_pairs = 0
+    different_slope_edge_keys: set[tuple[tuple[int, ...], tuple[int, ...]]] = set()
     edge_cores: set[tuple[int, ...]] = set()
     for left in range(len(locator_rows)):
         left_set = set(locator_rows[left][0])
@@ -879,6 +881,16 @@ def two_exchange_quadratic_slice_profile(
                 same_slope_pairs += 1
             else:
                 different_slope_pairs += 1
+                different_slope_edge_keys.add(
+                    tuple(
+                        sorted(
+                            (
+                                tuple(sorted(locator_rows[left][0])),
+                                tuple(sorted(locator_rows[right][0])),
+                            )
+                        )
+                    )
+                )
 
     slices_checked = 0
     minor_polynomial_checks = 0
@@ -943,6 +955,10 @@ def two_exchange_quadratic_slice_profile(
     det_proper_line_variable_domain_pair_checks = 0
     det_proper_line_variable_nonfixed_packet_pair_max = 0
     det_proper_line_variable_nonfixed_packet_pair_checks = 0
+    det_proper_line_variable_nonfixed_packet_edge_injections = 0
+    det_proper_line_variable_nonfixed_packet_edge_keys: set[
+        tuple[tuple[int, ...], tuple[int, ...]]
+    ] = set()
     det_proper_line_variable_nonfixed_singletons = 0
     det_proper_line_variable_nonfixed_domain_singletons = 0
     det_proper_line_variable_nonfixed_quotient_defects = 0
@@ -1261,6 +1277,20 @@ def two_exchange_quadratic_slice_profile(
                             raise AssertionError(
                                 "non-fixed variable line packet repeated a slope"
                             )
+                        edge_key = tuple(
+                            sorted((left_complement, right_complement))
+                        )
+                        if edge_key not in different_slope_edge_keys:
+                            raise AssertionError(
+                                "non-fixed variable line packet edge missed global edge ledger"
+                            )
+                        if edge_key in det_proper_line_variable_nonfixed_packet_edge_keys:
+                            raise AssertionError(
+                                "non-fixed variable line packet edge was charged twice"
+                            )
+                        det_proper_line_variable_nonfixed_packet_edge_keys.add(
+                            edge_key
+                        )
                         packet_pairs += 1
                     if packet_pairs != line_aperiodic * (line_aperiodic - 1) // 2:
                         raise AssertionError(
@@ -1463,6 +1493,14 @@ def two_exchange_quadratic_slice_profile(
         raise AssertionError("same-slope line cluster was not a determinantal line")
     if det_proper_line_variable_nonfixed_packet_pair_checks > different_slope_pairs:
         raise AssertionError("non-fixed variable line packets overcharged two-exchange pairs")
+    det_proper_line_variable_nonfixed_packet_edge_injections = len(
+        det_proper_line_variable_nonfixed_packet_edge_keys
+    )
+    if (
+        det_proper_line_variable_nonfixed_packet_edge_injections
+        != det_proper_line_variable_nonfixed_packet_pair_checks
+    ):
+        raise AssertionError("non-fixed variable line packet edge injection lost a charge")
     det_proper_line_variable_nonfixed_edge_bound = (
         det_proper_line_variable_nonfixed_singletons
         + 2 * det_proper_line_variable_nonfixed_packet_pair_checks
@@ -1599,6 +1637,9 @@ def two_exchange_quadratic_slice_profile(
         ),
         "two_exchange_det_proper_line_variable_nonfixed_packet_pair_checks": (
             det_proper_line_variable_nonfixed_packet_pair_checks
+        ),
+        "two_exchange_det_proper_line_variable_nonfixed_packet_edge_injections": (
+            det_proper_line_variable_nonfixed_packet_edge_injections
         ),
         "two_exchange_det_proper_line_variable_nonfixed_singletons": (
             det_proper_line_variable_nonfixed_singletons
@@ -3824,6 +3865,11 @@ def verify_word_pair(
                 "two_exchange_det_proper_line_variable_nonfixed_packet_pair_checks"
             ]
         ),
+        "two_exchange_det_proper_line_variable_nonfixed_packet_edge_injections": (
+            two_exchange_profile[
+                "two_exchange_det_proper_line_variable_nonfixed_packet_edge_injections"
+            ]
+        ),
         "two_exchange_det_proper_line_variable_nonfixed_singletons": (
             two_exchange_profile[
                 "two_exchange_det_proper_line_variable_nonfixed_singletons"
@@ -5398,6 +5444,8 @@ def verify_t3_same_slope_two_exchange_probe() -> dict[str, object]:
         raise AssertionError("same-slope probe variable-line packet pair max changed")
     if row["two_exchange_det_proper_line_variable_nonfixed_packet_pair_checks"] != 6:
         raise AssertionError("same-slope probe variable-line packet pair count changed")
+    if row["two_exchange_det_proper_line_variable_nonfixed_packet_edge_injections"] != 6:
+        raise AssertionError("same-slope probe packet-edge injection count changed")
     if row["two_exchange_det_proper_line_variable_nonfixed_singletons"] != 0:
         raise AssertionError("same-slope probe gained a singleton variable-line packet")
     if row["two_exchange_det_proper_line_variable_nonfixed_domain_singletons"] != 0:
@@ -5467,6 +5515,8 @@ def verify_t3_variable_new_slope_probe() -> dict[str, object]:
         raise AssertionError("variable new-slope probe packet pair max changed")
     if row["two_exchange_det_proper_line_variable_nonfixed_packet_pair_checks"] != 3:
         raise AssertionError("variable new-slope probe packet pair count changed")
+    if row["two_exchange_det_proper_line_variable_nonfixed_packet_edge_injections"] != 3:
+        raise AssertionError("variable new-slope probe packet-edge injection count changed")
     if row["two_exchange_det_proper_line_variable_nonfixed_singletons"] != 0:
         raise AssertionError("variable new-slope probe gained a singleton packet")
     if row["two_exchange_det_proper_line_variable_nonfixed_domain_singletons"] != 0:
@@ -5534,6 +5584,8 @@ def verify_t3_unanchored_variable_line_probe() -> dict[str, object]:
         raise AssertionError("unanchored variable-line probe packet pair max changed")
     if row["two_exchange_det_proper_line_variable_nonfixed_packet_pair_checks"] != 3:
         raise AssertionError("unanchored variable-line probe packet pair count changed")
+    if row["two_exchange_det_proper_line_variable_nonfixed_packet_edge_injections"] != 3:
+        raise AssertionError("unanchored variable-line probe packet-edge injection count changed")
     if row["two_exchange_det_proper_line_variable_nonfixed_singletons"] != 0:
         raise AssertionError("unanchored variable-line probe gained a singleton packet")
     if row["two_exchange_det_proper_line_variable_nonfixed_domain_singletons"] != 0:
@@ -5819,6 +5871,7 @@ def main() -> None:
                 "two_exchange_det_proper_line_variable_domain_pair_checks={two_exchange_det_proper_line_variable_domain_pair_checks} "
                 "two_exchange_det_proper_line_variable_nonfixed_packet_pair_max={two_exchange_det_proper_line_variable_nonfixed_packet_pair_max} "
                 "two_exchange_det_proper_line_variable_nonfixed_packet_pair_checks={two_exchange_det_proper_line_variable_nonfixed_packet_pair_checks} "
+                "two_exchange_det_proper_line_variable_nonfixed_packet_edge_injections={two_exchange_det_proper_line_variable_nonfixed_packet_edge_injections} "
                 "two_exchange_det_proper_line_variable_nonfixed_singletons={two_exchange_det_proper_line_variable_nonfixed_singletons} "
                 "two_exchange_det_proper_line_variable_nonfixed_domain_singletons={two_exchange_det_proper_line_variable_nonfixed_domain_singletons} "
                 "two_exchange_det_proper_line_variable_nonfixed_quotient_defects={two_exchange_det_proper_line_variable_nonfixed_quotient_defects} "
@@ -6363,6 +6416,7 @@ def main() -> None:
         "two_exchange_det_proper_line_variable_domain_pair_checks={two_exchange_det_proper_line_variable_domain_pair_checks} "
         "two_exchange_det_proper_line_variable_nonfixed_packet_pair_max={two_exchange_det_proper_line_variable_nonfixed_packet_pair_max} "
         "two_exchange_det_proper_line_variable_nonfixed_packet_pair_checks={two_exchange_det_proper_line_variable_nonfixed_packet_pair_checks} "
+        "two_exchange_det_proper_line_variable_nonfixed_packet_edge_injections={two_exchange_det_proper_line_variable_nonfixed_packet_edge_injections} "
         "two_exchange_det_proper_line_variable_nonfixed_singletons={two_exchange_det_proper_line_variable_nonfixed_singletons} "
         "two_exchange_det_proper_line_variable_nonfixed_domain_singletons={two_exchange_det_proper_line_variable_nonfixed_domain_singletons} "
         "two_exchange_det_proper_line_variable_nonfixed_quotient_defects={two_exchange_det_proper_line_variable_nonfixed_quotient_defects} "
@@ -6395,6 +6449,7 @@ def main() -> None:
         "two_exchange_det_proper_line_variable_domain_pair_checks={two_exchange_det_proper_line_variable_domain_pair_checks} "
         "two_exchange_det_proper_line_variable_nonfixed_packet_pair_max={two_exchange_det_proper_line_variable_nonfixed_packet_pair_max} "
         "two_exchange_det_proper_line_variable_nonfixed_packet_pair_checks={two_exchange_det_proper_line_variable_nonfixed_packet_pair_checks} "
+        "two_exchange_det_proper_line_variable_nonfixed_packet_edge_injections={two_exchange_det_proper_line_variable_nonfixed_packet_edge_injections} "
         "two_exchange_det_proper_line_variable_nonfixed_singletons={two_exchange_det_proper_line_variable_nonfixed_singletons} "
         "two_exchange_det_proper_line_variable_nonfixed_domain_singletons={two_exchange_det_proper_line_variable_nonfixed_domain_singletons} "
         "two_exchange_det_proper_line_variable_nonfixed_quotient_defects={two_exchange_det_proper_line_variable_nonfixed_quotient_defects} "
@@ -6422,6 +6477,7 @@ def main() -> None:
         "two_exchange_det_proper_line_variable_domain_pair_max={two_exchange_det_proper_line_variable_domain_pair_max} "
         "two_exchange_det_proper_line_variable_nonfixed_packet_pair_max={two_exchange_det_proper_line_variable_nonfixed_packet_pair_max} "
         "two_exchange_det_proper_line_variable_nonfixed_packet_pair_checks={two_exchange_det_proper_line_variable_nonfixed_packet_pair_checks} "
+        "two_exchange_det_proper_line_variable_nonfixed_packet_edge_injections={two_exchange_det_proper_line_variable_nonfixed_packet_edge_injections} "
         "two_exchange_det_proper_line_variable_nonfixed_singletons={two_exchange_det_proper_line_variable_nonfixed_singletons} "
         "two_exchange_det_proper_line_variable_nonfixed_domain_singletons={two_exchange_det_proper_line_variable_nonfixed_domain_singletons} "
         "two_exchange_det_proper_line_variable_nonfixed_quotient_defects={two_exchange_det_proper_line_variable_nonfixed_quotient_defects} "
@@ -6652,6 +6708,10 @@ def main() -> None:
     )
     max_two_exchange_det_proper_line_variable_nonfixed_packet_pair_checks = max(
         row["two_exchange_det_proper_line_variable_nonfixed_packet_pair_checks"]
+        for row in all_rows
+    )
+    max_two_exchange_det_proper_line_variable_nonfixed_packet_edge_injections = max(
+        row["two_exchange_det_proper_line_variable_nonfixed_packet_edge_injections"]
         for row in all_rows
     )
     max_two_exchange_det_proper_line_variable_nonfixed_singletons = max(
@@ -7088,6 +7148,7 @@ def main() -> None:
         f"max_two_exchange_det_proper_line_variable_domain_pair_checks={max_two_exchange_det_proper_line_variable_domain_pair_checks} "
         f"max_two_exchange_det_proper_line_variable_nonfixed_packet_pair={max_two_exchange_det_proper_line_variable_nonfixed_packet_pair} "
         f"max_two_exchange_det_proper_line_variable_nonfixed_packet_pair_checks={max_two_exchange_det_proper_line_variable_nonfixed_packet_pair_checks} "
+        f"max_two_exchange_det_proper_line_variable_nonfixed_packet_edge_injections={max_two_exchange_det_proper_line_variable_nonfixed_packet_edge_injections} "
         f"max_two_exchange_det_proper_line_variable_nonfixed_singletons={max_two_exchange_det_proper_line_variable_nonfixed_singletons} "
         f"max_two_exchange_det_proper_line_variable_nonfixed_domain_singletons={max_two_exchange_det_proper_line_variable_nonfixed_domain_singletons} "
         f"max_two_exchange_det_proper_line_variable_nonfixed_quotient_defects={max_two_exchange_det_proper_line_variable_nonfixed_quotient_defects} "

@@ -30,6 +30,21 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-27 - M1 variable-line packet-edge injection
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/m1/m1_all_line_hankel_aperiodic_packing.md`,
+  `experimental/scripts/verify_m1_all_line_hankel_aperiodic.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT / EXPERIMENTAL.
+- **What is being added:** The non-fixed variable-line packet-edge charge is
+  made injective into the global different-slope two-exchange edge ledger.
+- **How it is useful:** This removes a possible double-counting loophole in
+  the edge-energy reduction: a charged edge determines its unique `(j-2)` core
+  and the unique affine line through its two pair-coordinate points.
+- **What to do next:** Bound the global different-slope two-exchange edge
+  energy, and classify any true geometric domain-singleton variable lines.
+
 ### 2026-06-27 - M1 variable-line quotient-aware singleton reduction
 
 - **Agent/model:** Codex.
