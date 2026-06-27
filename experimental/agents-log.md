@@ -268,14 +268,18 @@ Keep entries concise and link to the relevant files.
   map `H_{t+2,h-1}(u)` or `H_{t+2,h-1}(v)` is injective, then
   `|Lambda_h|<=h`; if either `J_0^(h)` or `J_+^(h)` is injective, then
   `|Theta_h|<=h`.  Hence any larger short exception family must expose short
-  endpoint annihilators on both sides of its pencil.
+  endpoint annihilators on both sides of its pencil.  Short annihilators now
+  have a lossless root-stripping identity: if `Q=L_A R`, then
+  `H_{s,d}(w)Q=H_{s,d-|A|}(Delta_A w)R`.  Thus domain-root factors move to
+  fixed-root/root-slice ledgers, while the remaining endpoint obstruction is a
+  root-free short-annihilator family for differenced syndrome data.
 - **What to do next:** Bound or charge the unique-neighbor nondegenerate
   star-free shadow ledger, then charge the four base endpoint spaces, the
   resulting short-annihilator endpoint systems, finite-exception endpoint
   systems, their projective short-locator landing varieties, the one-sided
-  short endpoint annihilator failures, and the moving-certificate loci to
-  fixed-slope/root-slice, quotient-periodic, endpoint, or active-codegree
-  ledgers.
+  short endpoint annihilator failures, root-free short-annihilator families,
+  and the moving-certificate loci to fixed-slope/root-slice, quotient-periodic,
+  endpoint, or active-codegree ledgers.
 
 ### 2026-06-27 - Root-level paper PDF relocation
 

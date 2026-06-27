@@ -4570,6 +4570,98 @@ coefficient cuts all `theta in Theta_h`; if `P_+^h=J_+^(h)` is injective, an
 and Corollary 46 gives (OneSideD).  The final statements are just the
 contrapositives.
 
+## Corollary 49: Short-Annihilator Root Stripping Is Lossless
+
+For `alpha in F`, write
+
+```text
+(Delta_alpha w)_a=w_{a+1}-alpha w_a.
+```
+
+For an ordered list `A=(alpha_1,...,alpha_e)`, put
+
+```text
+L_A(X)=prod_{i=1}^e (X-alpha_i),
+Delta_A=Delta_{alpha_e} ... Delta_{alpha_1}.
+```
+
+The operators `Delta_alpha` commute, so `Delta_A` depends only on the multiset
+`A`.
+
+Let `s>=1`, `d>=e`, and suppose
+
+```text
+Q(X)=L_A(X)R(X),        deg R<d+1-e.
+```
+
+Then the Hankel annihilator identity
+
+```text
+H_{s,d}(w)Q = H_{s,d-e}(Delta_A w)R                 (Strip)
+```
+
+holds.
+
+Consequently, if a short fixed-kernel witness `Q` for `lambda in Lambda_h`
+has `Q=L_A R` with `e<h`, then
+
+```text
+H_{t+2,h-e-1}(Delta_A(v-lambda u))R=0,
+```
+
+or equivalently
+
+```text
+H_{t+2,h-e-1}(Delta_A v - lambda Delta_A u)R=0.     (StripK)
+```
+
+If a short first-difference witness `Q` for `theta in Theta_h` has
+`Q=L_A R` with `e<h`, then
+
+```text
+H_{t+1,h-e-1}(Delta_A Delta_theta u)R=0,
+H_{t+1,h-e-1}(Delta_A Delta_theta v)R=0.             (StripD)
+```
+
+Thus every short annihilator with a domain-root factor is charged to the
+choice of that fixed root factor and to the same short-annihilator problem at
+smaller order for the differenced syndrome data.  The endpointized short
+obstruction splits into fixed-root/root-slice pieces and root-free short
+annihilators.
+
+### Proof
+
+It is enough to prove the case `e=1`; iteration gives the general identity.
+Write `Q=(X-alpha)R`, with
+
+```text
+R(X)=sum_i r_i X^i.
+```
+
+The coefficient of `X^i` in `Q` is `r_{i-1}-alpha r_i`, with the conventions
+`r_{-1}=0` and `r_i=0` outside the range of `R`.  Therefore the `a`-th row of
+`H_{s,d}(w)Q` is
+
+```text
+sum_i w_{a+i}(r_{i-1}-alpha r_i)
+ = sum_i (w_{a+i+1}-alpha w_{a+i}) r_i,
+```
+
+which is the `a`-th row of `H_{s,d-1}(Delta_alpha w)R`.  This proves the
+one-root identity and hence (Strip).
+
+If `Q` witnesses `lambda in Lambda_h`, then
+
+```text
+H_{t+2,h-1}(v-lambda u)Q=0.
+```
+
+Applying (Strip) with `w=v-lambda u` gives (StripK), using linearity of
+`Delta_A`.  If `Q` witnesses `theta in Theta_h`, apply (Strip) separately to
+`w=Delta_theta u` and `w=Delta_theta v`; commutativity of the `Delta` operators
+gives (StripD).  Taking `A` to be the full domain-root divisor of `Q` leaves a
+factor `R` with no roots in `D`, giving the stated root-slice/root-free split.
+
 ## Non-Claims
 
 This note does not prove
@@ -4689,4 +4781,6 @@ quotient-periodic/root-slice charges. Corollary 47 organizes the short bad
 parameters as images of projective short-locator landing varieties, except for
 common short endpoint kernels; it does not bound those landing varieties.
 Corollary 48 bounds the short parameter sets under one-sided short endpoint
-injectivity; it does not prove that such injectivity always holds.
+injectivity; it does not prove that such injectivity always holds. Corollary
+49 strips domain-root factors from short annihilators; it does not bound the
+remaining root-free short-annihilator families.

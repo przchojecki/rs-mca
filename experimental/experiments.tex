@@ -2044,6 +2044,25 @@ either \(J_0^{(h)}\) or \(J_+^{(h)}\) is injective, then
 \(|\Theta_h|\le h\), and hence \(|\Theta_{D,>b}|\le h\).  Any larger short
 exception family must therefore already expose short endpoint annihilators on
 both sides of the relevant pencil.
+Finally, short annihilators split cleanly into fixed-root and root-free parts.
+For \(\alpha\in\F\), \((\Delta_\alpha w)_a=w_{a+1}-\alpha w_a\), and if
+\(Q=(X-\alpha)R\), then
+\[
+H_{s,d}(w)Q=H_{s,d-1}(\Delta_\alpha w)R.
+\]
+Iterating, \(Q=L_A R\) gives
+\[
+H_{s,d}(w)Q=H_{s,d-|A|}(\Delta_A w)R.
+\]
+Thus a short fixed-kernel witness with a domain-root factor \(L_A\) becomes a
+short witness for the differenced pencil
+\[
+H_{t+2,h-|A|-1}(\Delta_Av-\lambda\Delta_Au)R=0,
+\]
+and a first-difference witness becomes the pair of equations for
+\(\Delta_A\Delta_\theta u\) and \(\Delta_A\Delta_\theta v\).  The remaining
+endpoint obstruction is therefore the root-free short-annihilator family after
+fixed-root/root-slice factors have been charged.
 
 In the ruled part, the common-kernel branch has a fixed projective boundary slope,
 while the common-image branch forces the shadow locator \(L_S\) to satisfy the
