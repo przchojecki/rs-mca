@@ -2115,22 +2115,29 @@ e wedge (C-YD)=0.
 
 Hence `C,D in F e`, so the common-image alternative holds.
 
-It remains to handle `dim U=2`.  First reduce (FullCore) modulo `U`.  If
-bars denote images in `F^t/U`, the constant and quadratic coefficients give
-`A wedge bar(C)=0` and `B wedge bar(D)=0`, so `bar(C)=bar(D)=0`.  Hence
-`C,D in U`.  Write
+It remains to handle `dim U=2`.  Expanding (FullCore) coefficient by
+coefficient gives
 
 ```text
-C=aA+bB,        D=cA+dB.
+A wedge C = 0,
+A wedge D + B wedge C = 0,
+B wedge D = 0.
 ```
 
-Expanding (FullCore) in the basis wedge `A wedge B` gives
+Since `A` and `B` are independent, the first and third equations force
+`C in F A` and `D in F B`.  Write
 
 ```text
-b = 0,        c = 0,        d-a = 0.
+C=aA,        D=dB.
 ```
 
-Therefore `C=aA` and `D=aB`, which is the fixed projective-kernel
+The middle equation then becomes
+
+```text
+(d-a) A wedge B = 0,
+```
+
+so `d=a`.  Therefore `C=aA` and `D=aB`, which is the fixed projective-kernel
 alternative with `lambda=a`.  These cases exhaust the possibilities.
 
 ## Corollary 25: Full-Gate Core-Line Reduction

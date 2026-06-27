@@ -151,7 +151,11 @@ Keep entries concise and link to the relevant files.
   have row-rank certificates one level lower: endpoint, fixed-kernel, and
   projective-image systems on monic degree-`m-1` core locators contribute at
   most `binom(n,e)` split cores per direction dimension `e`, so bounded lower
-  direction dimension gives a polynomial full-core charge.
+  direction dimension gives a polynomial full-core charge.  The full core-line
+  classification proof was also audited locally: in the two-dimensional
+  `span{A,B}` case the fixed-kernel conclusion now follows directly from the
+  three coefficient equations `A wedge C=0`, `B wedge D=0`, and
+  `A wedge D+B wedge C=0`.
 - **What to do next:** Bound or charge the unique-neighbor nondegenerate
   star-free shadow ledger, and charge the ruled exceptional low-rank loci to
   fixed-slope/root-slice, endpoint, projective, quotient-periodic, or
