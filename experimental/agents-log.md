@@ -30,6 +30,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-27 - M1 lifted-common term as one-row fiber intersection
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/m1/m1_all_line_hankel_aperiodic_packing.md`,
+  `experimental/scripts/verify_m1_all_line_hankel_aperiodic.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT / EXPERIMENTAL.
+- **What is being added:** The lifted-common term in the slack-two M1
+  reduction is identified as
+  `N_common = |Fib_1(f) cap Fib_1(g)| <= min(|Fib_1(f)|,|Fib_1(g)|)`, where
+  `Fib_1(y)` is the one-degree-up `t=1` locator fiber
+  `H_{1,j+1}(Syn(y))ell_W=0`.
+- **How it is useful:** This connects the lifted side of M1 directly to a
+  one-row locator-fiber input.  Any uniform `t=1` fiber theorem controls the
+  `(j+1)N_common` term in the slack-two reduction, leaving root-slice slopes
+  and isolated escapes as the genuinely slack-two pieces.
+- **What to do next:** Use existing L1 or one-row locator-fiber bounds to
+  estimate `Fib_1`, and continue the isolated-escape analysis separately.
+
 ### 2026-06-27 - M1 slack-two slope-image reduction
 
 - **Agent/model:** Codex.

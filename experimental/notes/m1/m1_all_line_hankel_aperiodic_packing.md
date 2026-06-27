@@ -1793,6 +1793,29 @@ bound for `t=2`.  The verifier now asserts this reduction directly by
 checking the root/residual slope split and the inequality (M1R2) in every
 audited row.
 
+The middle term is not a new slack-two object.  Define the one-degree-up
+one-row locator fiber of a word `y` by
+
+```text
+Fib_1(y) =
+  {W subset D : |W|=j+1, H_{1,j+1}(Syn(y))ell_W=0}.
+```
+
+Then
+
+```text
+N_common = |Fib_1(f) cap Fib_1(g)|
+         <= min(|Fib_1(f)|, |Fib_1(g)|).             (M1R3)
+```
+
+This is exactly the common-base interpretation of the Hankel equation: a
+core `W` is counted by `N_common` precisely when both endpoints are explained
+on the same `(k+1)`-point base `D\W`.  Consequently any uniform `t=1`
+one-row locator-fiber theorem immediately bounds the lifted-common term in
+(M1R2), with the only slack-two-specific work left in `Z_root` and `Z_esc`.
+The verifier reports `|Fib_1(f)|`, `|Fib_1(g)|`, and their common-core count
+for the audited rows.
+
 ## Verifier
 
 The companion verifier
@@ -1871,6 +1894,8 @@ enumerates small cyclic-domain cases.  For each case it:
   one-degree-up common bases;
 - asserts the total `t=2` slope-image reduction
   `|AperSlope| <= |Z_root| + (j+1)N_common + |Z_esc|`;
+- reports the endpoint `t=1` locator-fiber counts `|Fib_1(f)|` and
+  `|Fib_1(g)|`, and checks `N_common <= min(|Fib_1(f)|,|Fib_1(g)|)`;
 - checks the `F_13`, `n=12`, `j=4`, `t=2` boundary-only row as a counterexample
   to absorbing all residual slopes into squarefree lifted-core fibers;
 - checks the same boundary-only row as a counterexample to bounding boundary
