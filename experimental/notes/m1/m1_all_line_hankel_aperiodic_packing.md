@@ -663,6 +663,21 @@ the single packet has size `3` and charges `3` such edges.  This reframes the
 remaining residual slope problem as an edge-energy packing question for
 non-fixed involution packets, including unanchored ones.
 
+Equivalently, if the non-fixed variable packets have sizes `m_i`, then
+
+```text
+sum_i m_i <= #{i : m_i=1} + 2 sum_i binom(m_i,2).      (VE)
+```
+
+The first term is the singleton-packet residue not seen by edge energy; every
+packet of size at least two is paid by twice its different-slope edge charge.
+The verifier checks (VE) globally and core-by-core.  Thus the residual
+non-fixed variable-line slope contribution is reduced to two concrete
+subproblems: bound singleton non-fixed packets, and bound the different-slope
+two-exchange edge energy.  In the current deterministic probes the singleton
+term is `0`; the non-fixed packet slope counts are `6`, `3`, and `3`, while
+the corresponding edge-energy bounds are `12`, `6`, and `6`.
+
 ## Different-Slope One-Exchange Quadratic Slice
 
 The different-slope part of the one-exchange profile has a complementary
@@ -3036,6 +3051,9 @@ parameter `6` is not in the core.  The packet has three aperiodic slopes
 The packet-edge check charges these packets to different-slope two-exchange
 edges: `6` packet edges in the same-slope probe and `3` packet edges in the
 residual witness probe and the unanchored probe respectively.
+The stronger singleton-plus-edge bound is also checked: no audited
+non-fixed variable packet is a singleton, so the packet slope counts are paid
+entirely by twice the packet-edge count in these rows.
 
 The `F_13`, `n=12`, `j=4`, `t=2` row is kept as a boundary-only counterexample
 to the tempting squarefree-absorption shortcut.  In all four deterministic

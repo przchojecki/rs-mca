@@ -30,6 +30,23 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-27 - M1 variable-line singleton plus edge bound
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/m1/m1_all_line_hankel_aperiodic_packing.md`,
+  `experimental/scripts/verify_m1_all_line_hankel_aperiodic.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT / EXPERIMENTAL.
+- **What is being added:** The non-fixed variable-line packet ledger now
+  checks the bound `sum_i m_i <= #{i:m_i=1} + 2 sum_i binom(m_i,2)`, globally
+  and core-by-core.
+- **How it is useful:** This separates the remaining M1 residual-line task
+  into singleton packets and different-slope two-exchange edge energy.  In the
+  current deterministic `t=3` probes, the singleton term is `0`.
+- **What to do next:** Search for singleton non-fixed variable packets; if
+  they exist, classify them, otherwise prove a no-singleton or recursive-charge
+  lemma.
+
 ### 2026-06-27 - M1 unanchored variable-line obstruction
 
 - **Agent/model:** Codex.
