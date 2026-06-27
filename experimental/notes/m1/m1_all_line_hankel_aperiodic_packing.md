@@ -671,6 +671,44 @@ This is the first structural replacement for anchor counting: after the
 quotient, tangent, and root-slice charges, one must bound the image of (EA1)
 for each fixed external pole `xi`, not merely count how many such poles occur.
 
+## External-Anchor Top-Coefficient Form
+
+The twisted one-row reduction has an equivalent interpolation form.  Let
+`B=D\T`, so `|B|=k+2`, and write `R_{y,B}` for the unique polynomial of
+degree `< k+2` agreeing with a word `y` on `B`.  Put
+
+```text
+R_{y,B}(X) = c_{k+1}(y,B)X^{k+1}+c_k(y,B)X^k+...
+```
+
+For the external lift `P_T=(X-xi)L_T`, the first row of the original
+two-row Hankel product is the top coefficient
+
+```text
+(H_{2,j}(y)L_T)_0 = c_{k+1}(y,B).
+```
+
+Indeed, for `x in B`,
+`lambda_D(x)L_T(x)=1/Q_B'(x)`, where `Q_B(X)=prod_{b in B}(X-b)`;
+this is the usual Lagrange formula for the leading coefficient of
+`R_{y,B}`.  The anchor equation
+`(H_{2,j}(y)L_T)_1=xi(H_{2,j}(y)L_T)_0` is therefore exactly
+
+```text
+c_k(y,B) = (xi - sum_{b in B} b)c_{k+1}(y,B).        (EA2)
+```
+
+Thus an off-domain anchor forces the top two interpolation coefficients of
+both line directions to be locked with the same scalar.  The bad slope
+
+```text
+z_T = -c_{k+1}(u,B)/c_{k+1}(v,B)
+```
+
+cancels `c_{k+1}` and then cancels `c_k` automatically by (EA2).  Hence
+`u+z_T v` has degree `< k` on `B`.  The verifier checks this coefficient
+identity and the resulting degree drop for every off-domain residual locator.
+
 ## Residual Slope-Image Ledger
 
 The anchor ledger also splits the residual slope image itself.  Define
@@ -1012,6 +1050,10 @@ enumerates small cyclic-domain cases.  For each case it:
   residual locator with anchor `xi` has the same slope as the one-row
   Hankel-pencil gate for the twisted line `u/(X-xi),v/(X-xi)` on
   `(X-xi)L_T`;
+- checks the external-anchor top-coefficient form: on `B=D\T`, the first
+  Hankel row equals the top interpolation coefficient, the anchor equation
+  locks the top two coefficients by `xi-sum(B)`, and the residual slope
+  cancels both top coefficients;
 - verifies the residual slope-image ledger `Z_res=Z_lift union Z_esc` and
   checks that residual faces inside each lifted common core have pairwise
   distinct slopes;

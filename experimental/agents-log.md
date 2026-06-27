@@ -42,9 +42,13 @@ Keep entries concise and link to the relevant files.
   one-row slope for the twisted line `u/(X-xi),v/(X-xi)`.  The verifier checks
   `H_1(u/(X-xi))P_T=(H_2(u)L_T)_0`, the corresponding denominator identity,
   and equality with the original residual slope for every off-domain escape.
+  It also checks the equivalent top-coefficient form on `B=D\T`: the anchor
+  equation locks the top two interpolation coefficients, and the residual
+  slope cancels both.
 - **How it is useful:** This is a structural replacement for external-anchor
   counting in Przemek's M1 all-line aperiodic target.  The boundary term now
-  reduces, anchor by anchor, to a twisted one-row slope-image problem.
+  reduces, anchor by anchor, to a twisted one-row slope-image problem with an
+  explicit interpolation-coefficient form.
 - **What to do next:** Try to bound the twisted one-row slope image for a
   fixed external pole, starting with the boundary-only `F_13` row where
   `xi=0` carries all `24` residual locators and `6` slopes.
