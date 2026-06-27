@@ -30,6 +30,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-27 - M1 product-image power-coset symmetry
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/m1/m1_all_line_hankel_aperiodic_packing.md`,
+  `experimental/scripts/verify_m1_all_line_hankel_aperiodic.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT / EXPERIMENTAL.
+- **What is being added:** The full-domain monomial boundary product image is
+  shown to be closed under multiplication by `j`th powers: scaling a zero-sum
+  locator by `lambda` preserves zero-sum and quotient status while multiplying
+  `prod(T)` by `lambda^j`.  The verifier asserts that charged and residual
+  product images are unions of `(F_p^*)^j` cosets in the audited rows.
+- **How it is useful:** This reduces the fixed-anchor boundary product
+  problem to coset counting, not arbitrary product-set counting.  In the
+  audited rows the residual images are `2`, `4`, and `1` such cosets.
+- **What to do next:** Try to bound the number of residual product cosets
+  after quotient charging, which is a sharper target than raw locator or
+  product-fiber counts.
+
 ### 2026-06-27 - M1 antipodal quotient charge in product model
 
 - **Agent/model:** Codex.

@@ -2068,6 +2068,7 @@ def verify_full_domain_monomial_boundary_model(
     g = {x: pow(x, g_degree, p) for x in domain}
     u = syndrome(f, domain, j + t, p)
     v = syndrome(g, domain, j + t, p)
+    j_power_subgroup = {pow(root, j, p) for root in domain}
     zero_sum_locators = 0
     quotient_zero_sum_locators = 0
     quotient_product_counts: dict[int, int] = {}
@@ -2121,6 +2122,24 @@ def verify_full_domain_monomial_boundary_model(
     if residual_slope_count != len(residual_product_counts):
         raise AssertionError("monomial product fibers did not inject to slopes")
     quotient_product_fibers = len(quotient_product_counts)
+    quotient_product_set = set(quotient_product_counts)
+    residual_product_set = set(residual_product_counts)
+    for image_name, image in (
+        ("quotient", quotient_product_set),
+        ("residual", residual_product_set),
+    ):
+        for product in image:
+            for power in j_power_subgroup:
+                if product * power % p not in image:
+                    raise AssertionError(
+                        f"monomial {image_name} product image was not j-power closed"
+                    )
+    quotient_product_cosets = (
+        quotient_product_fibers // len(j_power_subgroup) if quotient_product_fibers else 0
+    )
+    residual_product_cosets = (
+        len(residual_product_set) // len(j_power_subgroup) if residual_product_set else 0
+    )
     if j == 4 and 2 in charged_fiber_sizes:
         antipodal_pair_count = (p - 1) // 2
         if quotient_zero_sum_locators != antipodal_pair_count * (antipodal_pair_count - 1) // 2:
@@ -2133,9 +2152,12 @@ def verify_full_domain_monomial_boundary_model(
         "zero_sum_locators": zero_sum_locators,
         "quotient_zero_sum_locators": quotient_zero_sum_locators,
         "quotient_product_fibers": quotient_product_fibers,
+        "quotient_product_cosets": quotient_product_cosets,
         "residual_zero_sum_locators": sum(residual_product_counts.values()),
         "residual_product_fibers": len(residual_product_counts),
+        "residual_product_cosets": residual_product_cosets,
         "residual_product_fiber_size": max(residual_product_counts.values(), default=0),
+        "j_power_subgroup_size": len(j_power_subgroup),
     }
 
 
@@ -2203,11 +2225,14 @@ def main() -> None:
         print(
             "full_domain_monomial_boundary_model: "
             f"p={model['p']} j={model['j']} "
+            f"j_power_subgroup={model['j_power_subgroup_size']} "
             f"zero_sum_locators={model['zero_sum_locators']} "
             f"quotient_zero_sum_locators={model['quotient_zero_sum_locators']} "
             f"quotient_product_fibers={model['quotient_product_fibers']} "
+            f"quotient_product_cosets={model['quotient_product_cosets']} "
             f"residual_zero_sum_locators={model['residual_zero_sum_locators']} "
             f"residual_product_fibers={model['residual_product_fibers']} "
+            f"residual_product_cosets={model['residual_product_cosets']} "
             f"residual_product_fiber_size={model['residual_product_fiber_size']}"
         )
     print(

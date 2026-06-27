@@ -753,6 +753,25 @@ boundary slope image is the product image of the remaining zero-sum
 `(p,j)=(13,4),(17,4),(17,3)`.  The corresponding residual product-image
 sizes after quotient charging are `6`, `16`, and `16`.
 
+The product image has a built-in coset symmetry.  Multiplying all roots in
+`T` by `lambda in F_p^*` preserves the zero-sum condition and sends
+
+```text
+prod(T) -> lambda^j prod(T).
+```
+
+It also preserves quotient-periodicity, since multiplication by `lambda`
+translates exponent classes in the cyclic full-domain model.  Consequently
+both the charged and residual product images are unions of cosets of the
+`j`th-power subgroup `(F_p^*)^j`.  The verifier asserts this coset closure.
+In the audited rows, the residual product images decompose as follows:
+
+```text
+(p,j)=(13,4):  |(F_p^*)^j|=3,   2 residual cosets;
+(p,j)=(17,4):  |(F_p^*)^j|=4,   4 residual cosets;
+(p,j)=(17,3):  |(F_p^*)^j|=16,  1 residual coset.
+```
+
 For `j=4`, the quotient-periodic zero-sum part has an exact form.  Since the
 charged fiber size `2` is present in the full-domain audits, quotient-charged
 four-subsets are precisely unions of two antipodal pairs
@@ -1180,6 +1199,8 @@ enumerates small cyclic-domain cases.  For each case it:
 - audits the full-domain monomial boundary family, where `X^{p-2-j}` versus
   `X^{p-2}` has bad locators exactly on the zero-sum locus and slopes given by
   the product image of the deleted roots;
+- verifies the `j`th-power coset symmetry of the charged and residual product
+  images in that family;
 - checks the `j=4` antipodal quotient charge in that family: quotient-charged
   zero-sum four-subsets are exactly unions `{a,-a,b,-b}`, whose products form
   the square subgroup;
