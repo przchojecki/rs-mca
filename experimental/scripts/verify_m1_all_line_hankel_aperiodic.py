@@ -2164,6 +2164,14 @@ def main() -> None:
         verify_full_domain_monomial_boundary_model(17, 4, (2, 4, 8)),
         verify_full_domain_monomial_boundary_model(17, 3, (2, 4, 8)),
     )
+    monomial_boundary_floor_cases = 0
+    for model in monomial_boundary_models:
+        if model["p"] == 17 and model["j"] in (3, 4):
+            if model["residual_product_fibers"] != model["p"] - 1:
+                raise AssertionError("F17 monomial boundary model was not field-sized")
+            monomial_boundary_floor_cases += 1
+    if monomial_boundary_floor_cases != 2:
+        raise AssertionError("monomial boundary floor missed an F17 toy case")
     rank_one_probe = verify_rank_one_zero_slice_probe()
     print(
         "F13_order12_j4_t2_boundary_model: "
@@ -2184,6 +2192,11 @@ def main() -> None:
             f"residual_product_fibers={model['residual_product_fibers']} "
             f"residual_product_fiber_size={model['residual_product_fiber_size']}"
         )
+    print(
+        "full_domain_monomial_boundary_floor: "
+        f"field_sized_cases={monomial_boundary_floor_cases} "
+        "p=17 residual_product_fibers=16"
+    )
     for summary in summaries:
         case = summary["case"]
         for row in summary["rows"]:

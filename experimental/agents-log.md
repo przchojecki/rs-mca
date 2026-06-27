@@ -30,6 +30,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-27 - M1 fixed-anchor field-size floor
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/m1/m1_all_line_hankel_aperiodic_packing.md`,
+  `experimental/scripts/verify_m1_all_line_hankel_aperiodic.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT / EXPERIMENTAL.
+- **What is being added:** The full-domain monomial boundary family is
+  sharpened into a field-size floor: in the audited `F_17` cases `j=3` and
+  `j=4`, after quotient charging the single external anchor `xi=0` carries
+  all `16` nonzero slopes.
+- **How it is useful:** This rules out constant-size or anchor-count style
+  fixed-anchor boundary targets.  A viable M1 boundary theorem must bound
+  product images at the correct scale, allowing a single anchor to contribute
+  linearly many slopes.
+- **What to do next:** Seek a positive product-image bound for fixed external
+  anchors that matches this floor while remaining small enough for the M1
+  reserve.
+
 ### 2026-06-27 - M1 full-domain monomial boundary family
 
 - **Agent/model:** Codex.

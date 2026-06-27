@@ -753,6 +753,21 @@ boundary slope image is the product image of the remaining zero-sum
 `(p,j)=(13,4),(17,4),(17,3)`.  The corresponding residual product-image
 sizes after quotient charging are `6`, `16`, and `16`.
 
+## Fixed-Anchor Field-Size Floor
+
+The monomial boundary family also gives a sharp scale warning.  In the audited
+`F_17` full-domain toy cases `j=3` and `j=4`, the residual product image after
+quotient charging is all of `F_17^*`.  Since the slope map is a nonzero scalar
+multiple of `prod(T)^{-1}`, the single external anchor `xi=0` already carries
+all `16` nonzero slopes.
+
+Thus a fixed-external-anchor boundary theorem cannot aim for a constant or
+anchor-count bound.  Even after quotient-periodic locators are charged, one
+external anchor may contribute a slope image of size comparable to the domain
+size.  The plausible target has to be a polynomial or linear-in-`q_line`
+product-image bound compatible with the M1 reserve, not a collapse of the
+boundary term to `O(1)` per anchor.
+
 ## Exact F13 Boundary Product Model
 
 The `F_13`, `n=12`, `j=4`, `t=2` boundary-only row is not only a numerical
@@ -1150,6 +1165,9 @@ enumerates small cyclic-domain cases.  For each case it:
 - audits the full-domain monomial boundary family, where `X^{p-2-j}` versus
   `X^{p-2}` has bad locators exactly on the zero-sum locus and slopes given by
   the product image of the deleted roots;
+- asserts the `F_17` fixed-anchor field-size floor: in the full-domain
+  monomial cases `j=3,4`, one external anchor carries all `16` nonzero slopes
+  after quotient charging;
 - verifies the residual slope-image ledger `Z_res=Z_lift union Z_esc` and
   checks that residual faces inside each lifted common core have pairwise
   distinct slopes;
