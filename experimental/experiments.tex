@@ -2084,6 +2084,20 @@ Over \(\F_q\), if \(g=\dim C_h^+\), this gives
 \]
 In particular, a one-dimensional common recurrence space contributes at most
 \(h\) first-difference parameters.
+The short fixed-kernel parameters have the parallel finite/persistent
+dichotomy.  For
+\[
+U_hQ=H_{t+2,h-1}(u)Q,\qquad V_hQ=H_{t+2,h-1}(v)Q,
+\]
+either some \(h\times h\) minor of \(V_h-\lambda U_h\) is nonzero, in which
+case \(|\Lambda_h|\le h\) and hence \(|\Lambda_{K,>b}|\le h\), or every such
+minor vanishes identically.  In the persistent case there is a nonzero moving
+short kernel \(Q(\lambda)=\sum_i q_i\lambda^i\), and its coefficients satisfy
+\[
+V_hq_0=0,\qquad V_hq_i-U_hq_{i-1}=0,\qquad U_hq_D=0.
+\]
+Thus the remaining fixed-kernel obstruction is finite unless it is an explicit
+moving short-recurrence certificate between the two short endpoint kernels.
 
 In the ruled part, the common-kernel branch has a fixed projective boundary slope,
 while the common-image branch forces the shadow locator \(L_S\) to satisfy the

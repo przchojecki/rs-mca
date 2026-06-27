@@ -278,15 +278,20 @@ Keep entries concise and link to the relevant files.
   `C_h^+={P: deg P<=h, H_{t+1,h}(u)P=H_{t+1,h}(v)P=0}`:
   `ker J_theta^(h)` is isomorphic to `{P in C_h^+ : P(theta)=0}` via
   `Q -> (X-theta)Q`.  Thus if `dim C_h^+=g` over `F_q`, then
-  `|Theta_h| <= min(q, h(q^g-1)/(q-1))`.
+  `|Theta_h| <= min(q, h(q^g-1)/(q-1))`.  The short fixed-kernel parameters
+  now have the matching finite/persistent pencil dichotomy: either
+  `|Lambda_h|<=h`, or every `h x h` minor of `V_h-lambda U_h` vanishes
+  identically and there is a moving short kernel with coefficient ladder
+  `V_hq_0=0`, `V_hq_i-U_hq_{i-1}=0`, `U_hq_D=0`.
 - **What to do next:** Bound or charge the unique-neighbor nondegenerate
   star-free shadow ledger, then charge the four base endpoint spaces, the
   resulting short-annihilator endpoint systems, finite-exception endpoint
   systems, their projective short-locator landing varieties, the one-sided
   short endpoint annihilator failures, root-free short-annihilator families,
   low-dimensional common endpoint recurrence spaces, and the
-  moving-certificate loci to fixed-slope/root-slice, quotient-periodic,
-  endpoint, or active-codegree ledgers.
+  fixed-kernel and first-difference moving-certificate loci to
+  fixed-slope/root-slice, quotient-periodic, endpoint, or active-codegree
+  ledgers.
 
 ### 2026-06-27 - Root-level paper PDF relocation
 

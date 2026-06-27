@@ -4728,6 +4728,96 @@ when `g>0`.  Union-bounding the root sets and also using the trivial bound
 `|Theta_h|<=q` proves (RootCountTheta).  The cases `g=0` and `g=1` are the
 corresponding specializations.
 
+## Corollary 51: Fixed-Kernel Short Parameters Have A Finite/Persistent Dichotomy
+
+Keep `h=c-b`, and write
+
+```text
+U_h Q=H_{t+2,h-1}(u)Q,        V_h Q=H_{t+2,h-1}(v)Q.
+```
+
+Then the short fixed-kernel parameter set
+
+```text
+Lambda_h={ lambda in F : ker(V_h-lambda U_h) != 0 }
+```
+
+has the following dichotomy.
+
+```text
+finite short fixed-kernel alternative:
+  |Lambda_h| <= h;
+
+persistent short fixed-kernel alternative:
+  every h x h minor of V_h-lambda U_h vanishes identically in lambda.
+```
+
+In the persistent alternative, `Lambda_h=F`, both endpoint maps have nonzero
+short kernels,
+
+```text
+ker U_h != 0,        ker V_h != 0,
+```
+
+and there is a nonzero polynomial moving short kernel
+
+```text
+Q(lambda)=q_0+q_1 lambda+...+q_D lambda^D
+```
+
+satisfying
+
+```text
+(V_h-lambda U_h)Q(lambda)=0.
+```
+
+After dividing by the first nonzero power of `lambda` if necessary, the
+coefficients satisfy the endpoint ladder
+
+```text
+V_h q_0 = 0,
+V_h q_i - U_h q_{i-1} = 0        for 1<=i<=D,
+U_h q_D = 0.                                           (ShortKEL)
+```
+
+Consequently, if the persistent short fixed-kernel alternative is absent, then
+
+```text
+|Lambda_{K,>b}| <= h = c-b.
+```
+
+If it is present, the remaining fixed-kernel endpoint obstruction is an
+explicit moving short-recurrence certificate connecting the `v` and `u` short
+endpoint kernels.
+
+### Proof
+
+The map `V_h-lambda U_h` has domain dimension `h`.  Hence
+`lambda in Lambda_h` is equivalent to rank `<h`, i.e. to the vanishing at
+`lambda` of every `h x h` minor.  Each such minor is a polynomial in `lambda`
+of degree at most `h`.
+
+If at least one `h x h` minor is not the zero polynomial, then `Lambda_h` is
+contained in the root set of that nonzero polynomial, so `|Lambda_h|<=h`.
+
+If every `h x h` minor vanishes identically, then the rank over `F(lambda)` is
+`<h`, so the kernel over `F(lambda)` is nonzero.  Choosing a nonzero rational
+kernel vector and clearing denominators gives a nonzero polynomial moving
+short kernel `Q(lambda)`.  The constant and top-degree coefficients of the
+identically vanishing minors show that all `h x h` minors of `V_h` and `U_h`
+vanish, respectively, so both endpoint maps have nonzero kernel.
+
+Substituting `Q(lambda)=sum_i q_i lambda^i` into
+
+```text
+(V_h-lambda U_h)Q(lambda)=0
+```
+
+and comparing coefficients gives (ShortKEL), after first dividing by the
+lowest power of `lambda` appearing in `Q` if necessary.  The final bound on
+`Lambda_{K,>b}` follows from Corollary 46, which gives
+`Lambda_{K,>b} subset Lambda_h`.
+
 ## Non-Claims
 
 This note does not prove
@@ -4851,4 +4941,6 @@ injectivity; it does not prove that such injectivity always holds. Corollary
 49 strips domain-root factors from short annihilators; it does not bound the
 remaining root-free short-annihilator families. Corollary 50 identifies
 first-difference short parameters with roots of common endpoint recurrences;
-it does not bound the dimension of that common recurrence space.
+it does not bound the dimension of that common recurrence space. Corollary 51
+turns fixed-kernel short parameters into a finite/persistent pencil dichotomy;
+it does not rule out the persistent moving short-recurrence certificate.
