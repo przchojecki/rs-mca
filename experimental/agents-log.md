@@ -263,12 +263,17 @@ Keep entries concise and link to the relevant files.
   landing images: absent a common short endpoint kernel, each finite
   fixed-kernel parameter is the unique scalar from a short projective locator
   `[Q]` with `rank[U_h(Q) V_h(Q)]<=1`, and each first-difference parameter is
-  the unique scalar from `[Q]` with `rank[P_0^h(Q) P_+^h(Q)]<=1`.
+  the unique scalar from `[Q]` with `rank[P_0^h(Q) P_+^h(Q)]<=1`.  A further
+  one-sided injection test shows that if either short fixed-kernel endpoint
+  map `H_{t+2,h-1}(u)` or `H_{t+2,h-1}(v)` is injective, then
+  `|Lambda_h|<=h`; if either `J_0^(h)` or `J_+^(h)` is injective, then
+  `|Theta_h|<=h`.  Hence any larger short exception family must expose short
+  endpoint annihilators on both sides of its pencil.
 - **What to do next:** Bound or charge the unique-neighbor nondegenerate
   star-free shadow ledger, then charge the four base endpoint spaces, the
   resulting short-annihilator endpoint systems, finite-exception endpoint
-  systems, their projective short-locator landing varieties, and the
-  moving-certificate loci to
+  systems, their projective short-locator landing varieties, the one-sided
+  short endpoint annihilator failures, and the moving-certificate loci to
   fixed-slope/root-slice, quotient-periodic, endpoint, or active-codegree
   ledgers.
 

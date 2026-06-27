@@ -4475,6 +4475,101 @@ relation `P_+^h(Q)=theta P_0^h(Q)` is a rank-one landing condition, and
 `theta` is unique.  A common short first-difference endpoint kernel gives a
 witness for every `theta`.
 
+## Corollary 48: One-Sided Short Endpoint Injectivity Bounds Bad Parameters
+
+Keep `h=c-b`, and keep the notation of Corollary 47.
+
+If either short fixed-kernel endpoint map
+
+```text
+H_{t+2,h-1}(u),        H_{t+2,h-1}(v)
+```
+
+is injective on degree-`<h` directions, then
+
+```text
+|Lambda_h| <= h,
+```
+
+and hence
+
+```text
+|Lambda_{K,>b}| <= h = c-b.                         (OneSideK)
+```
+
+Similarly, if either short first-difference endpoint map
+
+```text
+J_0^(h),        J_+^(h)
+```
+
+is injective, then
+
+```text
+|Theta_h| <= h,
+```
+
+and hence
+
+```text
+|Theta_{D,>b}| <= h = c-b.                          (OneSideD)
+```
+
+Equivalently, any short fixed-kernel parameter set with more than `h`
+parameters forces both
+
+```text
+ker H_{t+2,h-1}(u) != 0,        ker H_{t+2,h-1}(v) != 0,
+```
+
+and any short first-difference parameter set with more than `h` parameters
+forces both
+
+```text
+ker J_0^(h) != 0,        ker J_+^(h) != 0.
+```
+
+Thus a super-`h` endpoint exception family cannot arise from many unrelated
+short slopes: it must already expose one-sided short endpoint annihilators at
+both ends of the relevant pencil.
+
+### Proof
+
+Write
+
+```text
+A(lambda)=H_{t+2,h-1}(v-lambda u)
+         =V_h-lambda U_h
+```
+
+as a linear map from the `h`-dimensional space of degree-`<h` directions to
+`F^{t+2}`.  If `U_h` is injective, choose `h` rows on which `U_h` has nonzero
+determinant.  The same rows of `A(lambda)` have determinant a polynomial in
+`lambda` of degree at most `h`, with leading coefficient
+
+```text
+(-1)^h det U_h,rows != 0.
+```
+
+For every `lambda in Lambda_h`, the map `A(lambda)` has nonzero kernel, so all
+`h x h` minors vanish, including this nonzero degree-`<=h` polynomial.  Hence
+`|Lambda_h|<=h`.  If instead `V_h` is injective, choose `h` rows with
+`det V_h,rows!=0`; the corresponding minor has nonzero constant term and again
+has at most `h` roots.  Corollary 46 gives
+`Lambda_{K,>b} subset Lambda_h`, proving (OneSideK).
+
+For the first-difference set, write
+
+```text
+B(theta)=J_theta^(h)=P_+^h-theta P_0^h.
+```
+
+If `P_0^h=J_0^(h)` is injective, an `h x h` minor with nonzero leading
+coefficient cuts all `theta in Theta_h`; if `P_+^h=J_+^(h)` is injective, an
+`h x h` minor with nonzero constant coefficient does.  Thus `|Theta_h|<=h`,
+and Corollary 46 gives (OneSideD).  The final statements are just the
+contrapositives.
+
 ## Non-Claims
 
 This note does not prove
@@ -4593,3 +4688,5 @@ always injective or that the resulting short annihilators are already
 quotient-periodic/root-slice charges. Corollary 47 organizes the short bad
 parameters as images of projective short-locator landing varieties, except for
 common short endpoint kernels; it does not bound those landing varieties.
+Corollary 48 bounds the short parameter sets under one-sided short endpoint
+injectivity; it does not prove that such injectivity always holds.
