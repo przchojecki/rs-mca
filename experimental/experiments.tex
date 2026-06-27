@@ -1866,6 +1866,17 @@ Thus \(G_u=H_{t+2,c-1}(u)\), \(G_v=H_{t+2,c-1}(v)\), and
 \(G_\lambda=H_{t+2,c-1}(v-\lambda u)\).  This is a lossless residual-depth
 frontier shift from \((t,j)\) to \((t+2,j-2)\), not a new kind of row-rank
 condition.
+The same identity holds for every consecutive shift stack: for degree-\(<c\)
+directions \(Q\),
+\[
+  H_{t,c+r-1}(w)X^iQ=0\quad(0\le i\le r)
+  \qquad\Longleftrightarrow\qquad
+  H_{t+r,c-1}(w)Q=0.
+\]
+Thus a consecutive frontier descent adds \(r\) Hankel rows and removes \(r\)
+locator degrees without a per-shift algebraic loss; any lower-depth rank or
+endpoint charge bound for the deeper window is consumed once by the whole
+shift stack.
 The three-shift common-image ledger has a parallel sliding-window reduction.
 For a projective image line \([y]\), let \(W_y\subseteq \F^{t+2}\) be the set
 of length-\((t+2)\) vectors whose three consecutive length-\(t\) windows all

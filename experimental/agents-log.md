@@ -221,6 +221,10 @@ Keep entries concise and link to the relevant files.
   windows: `H_{t,j}(w)X^iQ=0` for `i=0,1,2` is equivalent to
   `H_{t+2,c-1}(w)Q=0`, so `G_lambda=H_{t+2,c-1}(v-lambda u)`.  This records a
   lossless residual-depth frontier shift from `(t,j)` to `(t+2,j-2)`.  The
+  identity now has the general consecutive-shift form
+  `H_{t,c+r-1}(w)X^iQ=0` for `0<=i<=r` iff `H_{t+r,c-1}(w)Q=0`, so a
+  consecutive frontier stack consumes a deeper endpoint rank bound once rather
+  than introducing a per-shift algebraic loss.  The
   common-image three-shift ledger now has the analogous sliding-window
   reduction: for an image line `[y]`, the allowed deeper residuals form a space
   `W_y` of dimension at most one, nonzero only on the `q+1` extended geometric

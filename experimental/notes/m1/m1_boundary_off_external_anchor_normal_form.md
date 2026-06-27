@@ -3698,6 +3698,64 @@ systems and the deeper Hankel system impose the same equations on `Q`.
 The identities for `G_u`, `G_v`, and `G_lambda` follow by applying the same
 calculation to `w=u`, `w=v`, and `w=v-lambda u`.
 
+## Corollary 38.1: Consecutive Shift Frontiers Iterate Losslessly
+
+Let `r>=0` and let `Q` range over degree-`<c` directions.  For any syndrome
+vector `w`, the consecutive `(r+1)`-shift system
+
+```text
+H_{t,c+r-1}(w)X^iQ=0,        0<=i<=r,                (Shift_r)
+```
+
+is exactly the single deeper Hankel system
+
+```text
+H_{t+r,c-1}(w)Q=0.                                  (Frontier_r)
+```
+
+Equivalently, a stack of consecutive shift-frontier endpoint equations adds
+`r` Hankel rows and removes `r` locator degrees, but introduces no further
+algebraic loss.  Thus any lower-depth rank, injectivity, or endpoint charge
+bound for `H_{t+r,c-1}(w)` is consumed once by the whole consecutive-shift
+stack, not once per shift.
+
+The same identity holds for fixed-kernel pencils:
+
+```text
+H_{t,c+r-1}(v-lambda u)X^iQ=0,        0<=i<=r,
+```
+
+is equivalent to
+
+```text
+H_{t+r,c-1}(v-lambda u)Q=0.
+```
+
+### Proof
+
+Write `Q(X)=sum_{h=0}^{c-1}q_hX^h`.  The `a`-th row of
+`H_{t,c+r-1}(w)X^iQ` is
+
+```text
+sum_{h=0}^{c-1} w_{a+i+h}q_h,        0<=a<t.
+```
+
+For fixed `i`, these are exactly the deeper Hankel rows with indices
+
+```text
+i, i+1, ..., i+t-1.
+```
+
+As `i` ranges from `0` to `r`, the union of these consecutive row intervals is
+
+```text
+0,1,...,t+r-1,
+```
+
+which is precisely the row set of `H_{t+r,c-1}(w)Q`.  Hence the stacked
+shift system and the deeper Hankel system impose the same equations.  Applying
+the identity to `w=v-lambda u` gives the fixed-kernel pencil statement.
+
 ## Corollary 39: Three-Shift Common-Image Lines Are Shift-Persistent Or Endpoint
 
 Keep `c=m-1` and assume `t>=2`.  For a nonzero image vector `y in F^t`, define
@@ -6505,9 +6563,12 @@ Corollary 37 makes those charges determinantal; it still leaves endpoint
 three-shift low rank and persistent moving certificates as explicit ledgers to
 charge. Corollary 38 identifies the endpoint and fixed-kernel three-shift
 ledgers with deeper Hankel windows; it does not prove those deeper windows have
-large rank in every instance. Corollary 39 reduces the non-shift-persistent
-common-image lines to the deeper endpoint intersection; it still leaves that
-intersection and the `q+1` extended geometric shift lines to be charged.
+large rank in every instance. Corollary 38.1 shows that consecutive frontier
+shifts are lossless identities; it does not supply the lower-depth rank,
+injectivity, or endpoint-charge bounds consumed by those identities.
+Corollary 39 reduces the non-shift-persistent common-image lines to the deeper
+endpoint intersection; it still leaves that intersection and the `q+1`
+extended geometric shift lines to be charged.
 Corollary 40 identifies those shift-persistent lines with first-difference
 endpoint intersections; it does not prove all those endpoint intersections
 have small dimension without a separate endpoint or quotient-periodic charge.
