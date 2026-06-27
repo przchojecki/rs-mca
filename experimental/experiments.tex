@@ -1872,7 +1872,7 @@ of length-\((t+2)\) vectors whose three consecutive length-\(t\) windows all
 lie in \(\F y\).  Then \(\dim W_y\le1\), and \(W_y\ne0\) only for the
 extended geometric shift lines
 \[
-  [1:r:r^2:\cdots:r^{t-1}]\quad(r\in\F),
+  [1:\theta:\theta^2:\cdots:\theta^{t-1}]\quad(\theta\in\F),
   \qquad [0:\cdots:0:1].
 \]
 Moreover
@@ -1886,6 +1886,39 @@ the deeper endpoint intersection
 \(\ker H_{t+2,c-1}(u)\cap\ker H_{t+2,c-1}(v)\); after that endpoint
 intersection is charged, only the shift-persistent image lines require a
 separate common-image charge.
+Those shift-persistent lines are endpoint ledgers after one more exact
+rewrite.  For finite \(\theta\), put
+\[
+  (\Delta_\theta w)_a=w_{a+1}-\theta w_a.
+\]
+Then
+\[
+\ker C_{[1:\theta:\cdots:\theta^{t-1}]}^G
+=\ker H_{t+1,c-1}(\Delta_\theta u)
+ \cap \ker H_{t+1,c-1}(\Delta_\theta v),
+\]
+while the infinity line gives
+\[
+\ker C_{[0:\cdots:0:1]}^G
+=\ker H_{t+1,c-1}(u)\cap\ker H_{t+1,c-1}(v).
+\]
+Hence the residual common-image charge is no longer a projective image-line
+family: it is the \(q\) first-difference endpoint intersections plus the
+ordinary endpoint intersection.
+Equivalently, the full three-shift common-image branch is endpoint-only.  If
+\(\mathrm{GCI}\) denotes the monic split core locators satisfying some
+three-shift common-image line, then
+\[
+\mathrm{GCI}
+=E_{\mathrm{deep}}\cup E_\infty\cup\bigcup_{\theta\in\F}E_\theta,
+\]
+where \(E_{\mathrm{deep}}\) is cut out by
+\(H_{t+2,c}(u)L=H_{t+2,c}(v)L=0\), \(E_\infty\) by
+\(H_{t+1,c}(u)L=H_{t+1,c}(v)L=0\), and \(E_\theta\) by the two
+first-difference equations above.  Thus, once these endpoint-type ledgers have
+direction dimension at most \(b\), this whole common-image branch contributes
+at most \((q+2)\binom{n}{b}\), with the same root-free \(b/c\) replacement
+after common-root core pieces are charged.
 
 In the ruled part, the common-kernel branch has a fixed projective boundary slope,
 while the common-image branch forces the shadow locator \(L_S\) to satisfy the

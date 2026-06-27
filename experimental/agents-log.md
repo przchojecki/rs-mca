@@ -225,12 +225,21 @@ Keep entries concise and link to the relevant files.
   reduction: for an image line `[y]`, the allowed deeper residuals form a space
   `W_y` of dimension at most one, nonzero only on the `q+1` extended geometric
   shift lines.  Off that shift curve, `ker C_y^G` is just
-  `ker H_{t+2,c-1}(u) cap ker H_{t+2,c-1}(v)`.
+  `ker H_{t+2,c-1}(u) cap ker H_{t+2,c-1}(v)`.  The shift-persistent lines
+  themselves are now endpoint ledgers too: for finite `theta`,
+  `ker C_[1:theta:...:theta^(t-1)]^G` equals the intersection of the two
+  first-difference kernels
+  `ker H_{t+1,c-1}(Delta_theta u) cap ker H_{t+1,c-1}(Delta_theta v)`, and the
+  infinity line is `ker H_{t+1,c-1}(u) cap ker H_{t+1,c-1}(v)`.  Combining
+  these reductions, the whole three-shift common-image branch is now the union
+  of `E_deep`, `E_infty`, and the `q` first-difference endpoint ledgers
+  `E_theta`; under direction dimension `<=b`, this gives the endpoint-only
+  bound `(q+2)binom(n,b)` before the usual root-free replacement.
 - **What to do next:** Bound or charge the unique-neighbor nondegenerate
   star-free shadow ledger, then charge the remaining global ruled ledgers: the
-  deeper endpoint intersection, the `q+1` shift-persistent common-image lines,
-  and the moving-certificate loci, to fixed-slope/root-slice,
-  quotient-periodic, endpoint, or active-codegree ledgers.
+  endpoint-only common-image ledgers and the moving-certificate loci, to
+  fixed-slope/root-slice, quotient-periodic, endpoint, or active-codegree
+  ledgers.
 
 ### 2026-06-27 - Root-level paper PDF relocation
 

@@ -3712,7 +3712,7 @@ Then `dim W_y<=1`.  Moreover `W_y` is nonzero only for the extended geometric
 shift lines
 
 ```text
-[y]=[1:r:r^2:...:r^(t-1)]        with r in F,
+[y]=[1:theta:theta^2:...:theta^(t-1)]        with theta in F,
 ```
 
 or for the point at infinity
@@ -3771,16 +3771,16 @@ most one, and therefore `dim W_y<=1`.
 
 Assume now that `W_y` is nonzero, and choose a nonzero scalar triple
 `(a_0,a_1,a_2)` satisfying (Overlap).  If `a_0!=0` and `a_1=0`, then (Overlap)
-forces `y_1=...=y_{t-1}=0`, so `[y]=[1:0:...:0]`, the case `r=0`.  If
+forces `y_1=...=y_{t-1}=0`, so `[y]=[1:0:...:0]`, the case `theta=0`.  If
 `a_0!=0` and `a_1!=0`, then (Overlap) gives
 
 ```text
-y_s = r y_{s-1},        r=a_1/a_0,
+y_s = theta y_{s-1},        theta=a_1/a_0,
 ```
 
 for every `s`.  Since `y` is nonzero, this gives
-`[y]=[1:r:r^2:...:r^(t-1)]`; the second equation in (Overlap) then forces
-`a_2/a_1=r`.
+`[y]=[1:theta:theta^2:...:theta^(t-1)]`; the second equation in (Overlap) then
+forces `a_2/a_1=theta`.
 
 It remains to consider `a_0=0`.  If `a_1!=0`, the first equation in (Overlap)
 forces `y_0=...=y_{t-2}=0`, while the second forces also `y_{t-1}=0`, a
@@ -3788,13 +3788,13 @@ contradiction.  Thus `a_1=0`.  Since the triple is nonzero, `a_2!=0`, and the
 second equation in (Overlap) gives `y_0=...=y_{t-2}=0`; hence
 `[y]=[0:...:0:1]`.
 
-Conversely, if `[y]=[1:r:...:r^(t-1)]`, then
+Conversely, if `[y]=[1:theta:...:theta^(t-1)]`, then
 
 ```text
-z=(1,r,r^2,...,r^(t+1))
+z=(1,theta,theta^2,...,theta^(t+1))
 ```
 
-spans a nonzero `W_y` (with the evident interpretation at `r=0`).  If
+spans a nonzero `W_y` (with the evident interpretation at `theta=0`).  If
 `[y]=[0:...:0:1]`, then `z=(0,...,0,1) in F^{t+2}` spans a nonzero `W_y`.
 Together with the dimension bound, these cases have `dim W_y=1`.
 
@@ -3803,6 +3803,161 @@ Finally, the `i`-th length-`t` window of `Z_w(Q)=H_{t+2,c-1}(w)Q` is exactly
 `w in {u,v}` and `i=0,1,2` is equivalent to
 `Z_u(Q),Z_v(Q) in W_y`, proving (GCIShift).  If `[y]` is off the extended
 geometric shift curve then `W_y=0`, giving (GCIOff).
+
+## Corollary 40: Shift-Persistent Lines Are First-Difference Endpoint Ledgers
+
+Keep the notation of Corollary 39.  For `theta in F`, define the first
+difference of a syndrome vector by
+
+```text
+(Delta_theta w)_a = w_{a+1}-theta w_a.
+```
+
+Let
+
+```text
+y_theta=(1,theta,theta^2,...,theta^(t-1)) in F^t.
+```
+
+Then the finite shift-persistent common-image line satisfies
+
+```text
+ker C_[y_theta]^G
+ = ker H_{t+1,c-1}(Delta_theta u)
+   cap ker H_{t+1,c-1}(Delta_theta v).              (ShiftFinite)
+```
+
+For the point at infinity `y_infty=(0,...,0,1)`, one has
+
+```text
+ker C_[y_infty]^G
+ = ker H_{t+1,c-1}(u) cap ker H_{t+1,c-1}(v).       (ShiftInfinity)
+```
+
+Consequently the `q+1` shift-persistent common-image lines from Corollary 39
+are not new projective image-line ledgers.  They are ordinary endpoint
+intersection ledgers for the `q` first-difference syndrome pairs
+`(Delta_theta u,Delta_theta v)`, together with the infinity endpoint pair
+`(u,v)`.
+
+In particular, after charging the high-dimensional spaces in (ShiftFinite) and
+(ShiftInfinity), the shift-persistent common-image part contributes at most
+
+```text
+(q+1) binom(n,b)
+```
+
+split cores at threshold `b`, with the same root-free `b/c` replacement after
+common-root global core pieces have been charged.
+
+### Proof
+
+Let `Z_w(Q)=H_{t+2,c-1}(w)Q`.  For finite `theta`, Corollary 39 says that
+`Q in ker C_[y_theta]^G` exactly when `Z_u(Q)` and `Z_v(Q)` lie in the
+one-dimensional span of
+
+```text
+(1,theta,theta^2,...,theta^(t+1)).
+```
+
+A vector `z in F^{t+2}` lies in this span if and only if
+
+```text
+z_{a+1}-theta z_a=0,        0<=a<=t.
+```
+
+For `w in {u,v}`, the left side is
+
+```text
+sum_{h=0}^{c-1} (w_{a+1+h}-theta w_{a+h}) q_h,
+```
+
+which is the `a`-th row of `H_{t+1,c-1}(Delta_theta w)Q`.  Applying this to
+both `u` and `v` proves (ShiftFinite).
+
+For `y_infty`, Corollary 39 identifies `W_y` with the span of the last basis
+vector in `F^{t+2}`.  Thus `Z_w(Q) in W_y` if and only if
+
+```text
+(Z_w(Q))_0=...=(Z_w(Q))_t=0,
+```
+
+which is exactly `H_{t+1,c-1}(w)Q=0`.  This proves (ShiftInfinity).  The
+bounded-rank count then follows by summing the `q+1` endpoint-intersection
+ledgers, and the root-free replacement is the same common-root slice argument
+used in Corollary 30.1 and Corollary 36.
+
+## Corollary 41: The Global Common-Image Ledger Is Endpoint-Only
+
+Let `GCI` be the set of monic degree-`c` split core locators `L` for which
+there exists a projective image line `[y] in P(F^t)` such that
+
+```text
+y wedge H_{t,j}(u)X^iL = 0,
+y wedge H_{t,j}(v)X^iL = 0,        i=0,1,2.          (GCI)
+```
+
+For `theta in F`, put
+
+```text
+E_theta={ L : H_{t+1,c}(Delta_theta u)L=0
+              and H_{t+1,c}(Delta_theta v)L=0 },
+```
+
+and put
+
+```text
+E_infty={ L : H_{t+1,c}(u)L=0 and H_{t+1,c}(v)L=0 },
+E_deep ={ L : H_{t+2,c}(u)L=0 and H_{t+2,c}(v)L=0 }.
+```
+
+Then
+
+```text
+GCI = E_deep union E_infty union union_{theta in F} E_theta.      (GCIEndpoint)
+```
+
+Thus the three-shift global common-image branch can be charged using only
+endpoint-type ledgers: the deeper endpoint pair, the ordinary infinity endpoint
+pair, and the `q` first-difference endpoint pairs.
+
+In particular, if the direction dimensions of `E_deep`, `E_infty`, and every
+`E_theta` are at most `b`, then
+
+```text
+|GCI| <= (q+2) binom(n,b),
+```
+
+with the same root-free `b/c` replacement after common-root global core pieces
+have been charged.
+
+### Proof
+
+For a monic degree-`c` locator `L`, define
+
+```text
+Z_w(L)=H_{t+2,c}(w)L in F^{t+2}.
+```
+
+The `i`-th length-`t` window of `Z_w(L)` is `H_{t,j}(w)X^iL`.  Hence (GCI) is
+equivalent to `Z_u(L),Z_v(L) in W_y`.
+
+If `[y]` is off the extended geometric shift curve of Corollary 39, then
+`W_y=0`, so `L in E_deep`.  If `[y]=[1:theta:...:theta^(t-1)]`, then the same
+first-difference calculation as in Corollary 40 gives `L in E_theta`, now with
+the affine degree-`c` Hankel matrices.  If `[y]=[0:...:0:1]`, the condition is
+`L in E_infty`.
+
+Conversely, `L in E_deep` makes all six three-shift Hankel images vanish, so
+`L in GCI`.  If `L in E_theta`, then each of `Z_u(L)` and `Z_v(L)` is a scalar
+multiple of `(1,theta,...,theta^(t+1))`, so the three length-`t` windows lie in
+the image line `[1:theta:...:theta^(t-1)]`.  If `L in E_infty`, the only
+possibly nonzero length-`t` window is the last one and it lies in
+`[0:...:0:1]`.  This proves (GCIEndpoint).
+
+The count follows from the usual row-rank split-locator bound applied to the
+`q+2` affine endpoint systems.  The root-free refinement is again the
+common-root slice replacement from Corollary 30.1 and Corollary 36.
 
 ## Non-Claims
 
@@ -3901,3 +4056,9 @@ ledgers with deeper Hankel windows; it does not prove those deeper windows have
 large rank in every instance. Corollary 39 reduces the non-shift-persistent
 common-image lines to the deeper endpoint intersection; it still leaves that
 intersection and the `q+1` extended geometric shift lines to be charged.
+Corollary 40 identifies those shift-persistent lines with first-difference
+endpoint intersections; it does not prove all those endpoint intersections
+have small dimension without a separate endpoint or quotient-periodic charge.
+Corollary 41 packages the common-image branch into endpoint-type ledgers; it
+does not prove the endpoint rank hypotheses needed for the displayed
+`(q+2)binom(n,b)` bound.
