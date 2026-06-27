@@ -3343,6 +3343,147 @@ counted by the Corollary 25 residual, or at least one non-global full core is
 present, which is counted by (NGFull).  Summing the residual over the at most
 `q` anchors gives (DirectAllCore).
 
+## Corollary 36: Globally Full Cores Are Three-Shift Ruled Pencils
+
+Keep the notation of Corollary 35 and put
+
+```text
+U_i=H(u)X^i L_R,        V_i=H(v)X^i L_R,        i=0,1,2.
+```
+
+If `R in GlobalFullCore`, then at least one of the following global alternatives
+holds.
+
+```text
+u three-shift endpoint:
+  U_0=U_1=U_2=0;
+
+v three-shift endpoint:
+  V_0=V_1=V_2=0;
+
+global common image:
+  dim span{U_i,V_i : i=0,1,2} <= 1;
+
+global fixed kernel:
+  there is lambda in F such that V_i=lambda U_i for i=0,1,2.
+```
+
+Thus globally full core-lines are not a new unstructured obstruction: they are
+three-shift versions of the endpoint, common-image, and fixed-kernel ruled
+ledgers.
+
+For a monic degree-`c=m-1` core locator, let the corresponding affine row-rank
+systems have direction dimensions
+
+```text
+g_u, g_v, g_lambda, g_I
+```
+
+for the two endpoints, finite slopes `lambda in F`, and projective image lines
+`I in P(F^t)`.  Assign each globally full split core to any one alternative it
+satisfies.  Then
+
+```text
+|GlobalFullCore|
+ <= binom(n,g_u)+binom(n,g_v)
+    + sum_{lambda in F} binom(n,g_lambda)
+    + sum_{I in P(F^t)} binom(n,g_I).                 (GFC_RR)
+```
+
+In particular, if all uncharged three-shift global systems have direction
+dimension at most `b`, then
+
+```text
+|GlobalFullCore^{<=b}|
+ <= ( 2 + q + (q^t-1)/(q-1) ) binom(n,b).             (GFC_B)
+```
+
+After common-root global core pieces have been charged, the same root-free
+replacement as Corollary 30.1 applies to each positive-dimensional stratum:
+`binom(n,e)` can be replaced by `(e/c)binom(n,e)`.
+
+Consequently, under the bounded-rank hypothesis above, the uncharged all-anchor
+rank-one incidence is bounded by
+
+```text
+|{ (beta,S) : rank M_S(beta)<=1,
+                no (m-1)-core of S lies in a charged high-dimensional
+                global three-shift ledger }|
+ <= ( (2q)/m + 2(n-m+1) ) binom(n,m-1)
+    + q(n-m+1) ( 2 + q + (q^t-1)/(q-1) ) binom(n,b),
+```
+
+after the high-dimensional global three-shift ledgers are charged.  In the
+root-free charged version, the final `binom(n,b)` term gains the factor `b/c`
+for `1<=b<=n/2`.
+
+### Proof
+
+Write
+
+```text
+U(beta,Y)=U_2-(beta+Y)U_1+beta Y U_0,
+V(beta,Y)=V_2-(beta+Y)V_1+beta Y V_0.
+```
+
+Since `R in GlobalFullCore`, we have
+
+```text
+U(beta,Y) wedge V(beta,Y)=0
+```
+
+as a polynomial identity.  Put `s=beta+Y` and `p=beta Y`.  The subring
+`F[s,p]` injects into `F[beta,Y]`, so equivalently
+
+```text
+(U_2-sU_1+pU_0) wedge (V_2-sV_1+pV_0)=0              (GFC)
+```
+
+in `Lambda^2(F^t)[s,p]`.
+
+Let `W=span{U_0,U_1,U_2}`.  If `dim W=0`, the `u` endpoint alternative holds.
+If `dim W=1`, then `U_2-sU_1+pU_0=f(s,p)e` for a nonzero vector `e` and a
+nonzero polynomial `f`.  Since the polynomial ring is a domain, (GFC) implies
+`e wedge (V_2-sV_1+pV_0)=0`, so all `V_i` lie in the same line `F e`; this is
+the global common-image alternative.
+
+It remains to consider `dim W>=2`.  Over the fraction field `F(s,p)`, (GFC)
+says that `V(beta,Y)=mu(s,p)U(beta,Y)` for some rational function `mu`.  Choose
+two linear functionals `phi,psi` on `F^t` for which the affine-linear
+polynomials `phi(U)` and `psi(U)` are nonproportional and `phi(U)` is
+nonconstant.  They are therefore coprime in `F[s,p]`.  From
+
+```text
+phi(V) psi(U) = psi(V) phi(U)
+```
+
+we get that `phi(U)` divides `phi(V)`.  Both are affine-linear, so
+`phi(V)=lambda phi(U)` for some constant `lambda in F`.  Then
+`V-lambda U` is still pointwise collinear with `U`, and its `phi`-coordinate is
+zero.  Over the fraction field, `V-lambda U=nu(s,p)U`; applying `phi` gives
+`0=nu(s,p)phi(U)`.  Since `phi(U)` is nonzero, `nu=0`, so `V=lambda U`.  Hence
+`V_i=lambda U_i` for `i=0,1,2`, proving the fixed-kernel alternative.  The
+`v` endpoint is the subcase `lambda=0` in this branch, and is listed separately
+because it has its own row-rank ledger.
+
+The row-rank bounds are the same evaluation-injection argument used in
+Corollary 26.  Each endpoint, fixed-kernel slope, or image line imposes an
+affine system on monic degree-`c` core locators with the displayed direction
+dimension; split cores in such a stratum inject into `g`-subsets of `D`, giving
+`binom(n,g)`.  Summing over the two endpoints, `q` finite slopes, and
+`(q^t-1)/(q-1)` image lines proves (GFC_RR) and (GFC_B).
+
+The root-free replacement is exactly the incidence proof of Corollary 30.1
+applied to these three-shift affine strata.  Finally, add the non-global
+all-anchor bound (DirectAllCore) from Corollary 35 to the contribution of
+globally full cores, which is at most
+
+```text
+q(n-m+1)|GlobalFullCore^{<=b}|.
+```
+
+This gives the displayed all-anchor incidence bound.
+
 ## Non-Claims
 
 This note does not prove
@@ -3430,4 +3571,6 @@ anchor-image certificate. Corollary 34 is an all-anchor incidence closure after
 explicit lower charges; it still leaves the charged loci, persistent
 certificates, and one-root-loss residual as the remaining M1 obligations.
 Corollary 35 does not classify globally full core-lines; it shows that all
-other full-core lines have anchor multiplicity at most two.
+other full-core lines have anchor multiplicity at most two. Corollary 36
+classifies globally full core-lines into three-shift ruled ledgers, but it does
+not prove the required high-dimensional three-shift row-rank charges are small.

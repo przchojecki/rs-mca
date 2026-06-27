@@ -204,7 +204,13 @@ Keep entries concise and link to the relevant files.
   full-core incidence is therefore at most `2(n-m+1)binom(n,m-1)`, and together
   with the Corollary 25 residual this gives
   `((2q)/m + 2(n-m+1))binom(n,m-1)` for rank-one incidences with no globally
-  full core.
+  full core.  The globally full cores themselves are now classified as
+  three-shift ruled pencils: either the `u` or `v` three-shift endpoint vanishes,
+  all six vectors `H(u)X^iL_R,H(v)X^iL_R` lie in one image line, or
+  `H(v)X^iL_R=lambda H(u)X^iL_R` for `i=0,1,2`.  Thus they admit the same
+  endpoint/common-image/fixed-kernel row-rank bounds, with
+  `(2+q+(q^t-1)/(q-1))binom(n,b)` in bounded dimension and the usual root-free
+  `b/c` improvement after common-root charges.
 - **What to do next:** Bound or charge the unique-neighbor nondegenerate
   star-free shadow ledger, and charge the ruled exceptional low-rank loci to
   fixed-slope/root-slice, endpoint, projective, quotient-periodic, or
