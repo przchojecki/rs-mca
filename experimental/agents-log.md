@@ -30,6 +30,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-27 - M1 root slices as a higher-slack core pencil
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/m1/m1_all_line_hankel_aperiodic_packing.md`,
+  `experimental/scripts/verify_m1_all_line_hankel_aperiodic.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT / EXPERIMENTAL.
+- **What is being added:** The peeled root-slice slope set `Z_root` is shown
+  to lie in the higher-slack core-locator slope image
+  `Z_3={(R,z):(H_{3,j-1}(u)+zH_{3,j-1}(v))ell_R=0,
+  H_{3,j-1}(v)ell_R!=0}`.  Hence the slack-two reduction also has the
+  recursive form `|AperSlope| <= |Z_3| + (j+1)N_common + |Z_esc|`.
+- **How it is useful:** This removes root slices as an independent
+  obstruction type.  Same-slope `t=2` packets are charged to a standard
+  higher-slack Hankel-pencil image, leaving the lifted one-row fiber term and
+  isolated escapes as the main slack-two-specific targets.
+- **What to do next:** Bound `Z_3` by an inductive or higher-slack M1 input,
+  and continue sharpening the isolated escape term.
+
 ### 2026-06-27 - M1 lifted-common term as one-row fiber intersection
 
 - **Agent/model:** Codex.

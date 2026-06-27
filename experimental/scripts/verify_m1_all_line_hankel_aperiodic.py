@@ -443,6 +443,9 @@ def root_slice_profile(
             "max_root_slice_aperiodic_members": 0,
             "root_slice_slope_count": 0,
             "root_slice_total_slope_bound": 0,
+            "root_slice_t3_core_locators": 0,
+            "root_slice_t3_slope_count": 0,
+            "root_slice_recursive_slope_bound": 0,
             "root_slice_members": 0,
             "root_slice_residual_locators": len(locator_rows),
             "root_slice_residual_slopes": len({slope for _, slope in locator_rows}),
@@ -554,10 +557,27 @@ def root_slice_profile(
                     raise AssertionError("one-exchange core has wrong size")
                 slice_keys.add((core, left_slope))
 
+    root_slice_t3_slope_set: set[int] = set()
+    root_slice_t3_core_locators = 0
+    for core in combinations(domain, j - 1):
+        core_locator = locator(tuple(sorted(core)), p)
+        t3_a = hankel_apply(u, 3, j - 1, core_locator, p)
+        t3_b = hankel_apply(v, 3, j - 1, core_locator, p)
+        t3_slope = slope_from_gate(t3_a, t3_b, p)
+        if t3_slope is None:
+            continue
+        root_slice_t3_core_locators += 1
+        root_slice_t3_slope_set.add(t3_slope)
+
     max_noncontained = 0
     max_aperiodic_members = 0
     root_slice_members: set[tuple[int, ...]] = set()
     for core, slope in slice_keys:
+        core_locator = locator(core, p)
+        t3_a = hankel_apply(u, 3, j - 1, core_locator, p)
+        t3_b = hankel_apply(v, 3, j - 1, core_locator, p)
+        if slope_from_gate(t3_a, t3_b, p) != slope:
+            raise AssertionError("root-slice slope missed the t=3 core-locator gate")
         noncontained_count = 0
         aperiodic_member_count = 0
         for x in domain:
@@ -1377,6 +1397,8 @@ def root_slice_profile(
 
     residual_slope_set = {slope for _, slope in residual_rows}
     root_slice_slope_set = {slope for _, slope in slice_keys}
+    if not root_slice_slope_set <= root_slice_t3_slope_set:
+        raise AssertionError("root-slice slopes escaped the t=3 core-locator image")
     root_slice_member_slope_set = {
         row_map[complement] for complement in root_slice_members
     }
@@ -1410,6 +1432,9 @@ def root_slice_profile(
     total_reduction_bound = len(root_slice_slope_set) + residual_recursion_bound
     if len(aperiodic_slope_set) > total_reduction_bound:
         raise AssertionError("aperiodic slope image exceeded t=2 reduction bound")
+    recursive_reduction_bound = len(root_slice_t3_slope_set) + residual_recursion_bound
+    if len(aperiodic_slope_set) > recursive_reduction_bound:
+        raise AssertionError("aperiodic slope image exceeded recursive t=3 reduction bound")
 
     top_packet_overlap_pairs = 0
     top_packet_overlap_max = 0
@@ -1431,6 +1456,9 @@ def root_slice_profile(
         "max_root_slice_aperiodic_members": max_aperiodic_members,
         "root_slice_slope_count": len({slope for _, slope in slice_keys}),
         "root_slice_total_slope_bound": total_reduction_bound,
+        "root_slice_t3_core_locators": root_slice_t3_core_locators,
+        "root_slice_t3_slope_count": len(root_slice_t3_slope_set),
+        "root_slice_recursive_slope_bound": recursive_reduction_bound,
         "root_slice_members": len(root_slice_members),
         "root_slice_residual_locators": len(residual_rows),
         "root_slice_residual_slopes": len(residual_slope_fibers),
@@ -1969,6 +1997,11 @@ def verify_word_pair(
         "max_root_slice_aperiodic_members": root_profile["max_root_slice_aperiodic_members"],
         "root_slice_slope_count": root_profile["root_slice_slope_count"],
         "root_slice_total_slope_bound": root_profile["root_slice_total_slope_bound"],
+        "root_slice_t3_core_locators": root_profile["root_slice_t3_core_locators"],
+        "root_slice_t3_slope_count": root_profile["root_slice_t3_slope_count"],
+        "root_slice_recursive_slope_bound": root_profile[
+            "root_slice_recursive_slope_bound"
+        ],
         "root_slice_members": root_profile["root_slice_members"],
         "root_slice_residual_locators": root_profile["root_slice_residual_locators"],
         "root_slice_residual_slopes": root_profile["root_slice_residual_slopes"],
@@ -2256,6 +2289,15 @@ def verify_case(case: Case) -> dict[str, object]:
         "max_root_slice_noncontained": max(row["max_root_slice_noncontained"] for row in rows),
         "max_root_slice_total_slope_bound": max(
             row["root_slice_total_slope_bound"] for row in rows
+        ),
+        "max_root_slice_t3_core_locators": max(
+            row["root_slice_t3_core_locators"] for row in rows
+        ),
+        "max_root_slice_t3_slope_count": max(
+            row["root_slice_t3_slope_count"] for row in rows
+        ),
+        "max_root_slice_recursive_slope_bound": max(
+            row["root_slice_recursive_slope_bound"] for row in rows
         ),
         "max_root_slice_members": max(row["root_slice_members"] for row in rows),
         "max_root_slice_residual_locators": max(row["root_slice_residual_locators"] for row in rows),
@@ -3242,6 +3284,9 @@ def main() -> None:
                 "root_slices={root_slices} "
                 "root_slice_slopes={root_slice_slope_count} "
                 "root_total_slope_bound={root_slice_total_slope_bound} "
+                "root_t3_core_locators={root_slice_t3_core_locators} "
+                "root_t3_slopes={root_slice_t3_slope_count} "
+                "root_recursive_slope_bound={root_slice_recursive_slope_bound} "
                 "root_slice_members={root_slice_members} "
                 "root_slice_noncontained_max={max_root_slice_noncontained} "
                 "root_slice_aperiodic_max={max_root_slice_aperiodic_members} "
@@ -3365,6 +3410,9 @@ def main() -> None:
             f"max_root_slices={summary['max_root_slices']} "
             f"max_root_slice_noncontained={summary['max_root_slice_noncontained']} "
             f"max_root_total_slope_bound={summary['max_root_slice_total_slope_bound']} "
+            f"max_root_t3_core_locators={summary['max_root_slice_t3_core_locators']} "
+            f"max_root_t3_slopes={summary['max_root_slice_t3_slope_count']} "
+            f"max_root_recursive_slope_bound={summary['max_root_slice_recursive_slope_bound']} "
             f"max_root_slice_members={summary['max_root_slice_members']} "
             f"max_root_residual_locators={summary['max_root_slice_residual_locators']} "
             f"max_root_residual_slopes={summary['max_root_slice_residual_slopes']} "
@@ -3571,6 +3619,11 @@ def main() -> None:
     max_aperiodic = max(row["aperiodic_slopes"] for row in all_rows)
     max_strict_degree = max(row["aperiodic_max_strict_degree"] for row in all_rows)
     max_total_slope_bound = max(row["root_slice_total_slope_bound"] for row in all_rows)
+    max_root_t3_core_locators = max(row["root_slice_t3_core_locators"] for row in all_rows)
+    max_root_t3_slopes = max(row["root_slice_t3_slope_count"] for row in all_rows)
+    max_recursive_slope_bound = max(
+        row["root_slice_recursive_slope_bound"] for row in all_rows
+    )
     max_residual_slope_core_checks = max(
         row["root_slice_residual_slope_core_checks"] for row in all_rows
     )
@@ -3817,6 +3870,9 @@ def main() -> None:
         f"rank_one_probes=1 "
         f"max_aperiodic_slopes={max_aperiodic} "
         f"max_total_slope_bound={max_total_slope_bound} "
+        f"max_root_t3_core_locators={max_root_t3_core_locators} "
+        f"max_root_t3_slopes={max_root_t3_slopes} "
+        f"max_recursive_slope_bound={max_recursive_slope_bound} "
         f"max_strict_degree={max_strict_degree} "
         f"max_root_residual_slope_core_checks={max_residual_slope_core_checks} "
         f"max_root_residual_degree={max_residual_degree} "

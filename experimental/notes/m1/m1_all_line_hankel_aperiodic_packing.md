@@ -189,6 +189,51 @@ belong to root-slice/tangent-style ledgers, while the genuinely aperiodic
 packing problem is the slope image of determinant-locus packets after these
 root slices and the quotient-periodic classes are charged.
 
+## Root Slices As A Higher-Slack Core Pencil
+
+The root-slice slope set is itself a standard Hankel-pencil slope image one
+degree lower.  For a `(j-1)`-core `R`, let `ell_R` be the locator vector of
+`L_R`, and define
+
+```text
+Z_3 =
+  {z : exists R subset D, |R|=j-1,
+       (H_{3,j-1}(u)+zH_{3,j-1}(v))ell_R=0,
+       H_{3,j-1}(v)ell_R != 0}.
+```
+
+Then
+
+```text
+Z_root subset Z_3.                                      (RS3)
+```
+
+Indeed, a root-slice packet for `(R,z)` satisfies
+
+```text
+(H_{2,j}(u)+zH_{2,j}(v))p_R=0,
+(H_{2,j}(u)+zH_{2,j}(v))s_R=0,
+```
+
+where `p_R` is `L_R` padded to degree `j` and `s_R` is the coefficient vector
+of `X L_R`.  The first equation gives the shift-`0` and shift-`1` Hankel
+relations for `L_R`; the second gives the shift-`1` and shift-`2` relations.
+Together they are exactly
+
+```text
+(H_{3,j-1}(u)+zH_{3,j-1}(v))ell_R=0.
+```
+
+The denominator three-row vector cannot vanish for a genuine peeled
+root-slice packet: if `H_{3,j-1}(v)ell_R=0`, then every member
+`R union {x}` of the slice has `H_{2,j}(v)ell_{R union {x}}=0`, so the whole
+slice is contained and contributes no noncontained aperiodic slope.
+
+Thus the `Z_root` term in the slack-two reduction can be replaced by the
+higher-slack core-locator image `Z_3`.  This turns the same-slope part of the
+`t=2` problem into a recursive or inductive input rather than an independent
+packet count.
+
 ## Different-Slope One-Exchange Quadratic Slice
 
 The different-slope part of the one-exchange profile has a complementary
@@ -1793,6 +1838,16 @@ bound for `t=2`.  The verifier now asserts this reduction directly by
 checking the root/residual slope split and the inequality (M1R2) in every
 audited row.
 
+Using (RS3), the same bound has a recursive form
+
+```text
+|AperSlope(f,g;2,j)| <= |Z_3| + (j+1)N_common + |Z_esc|.       (M1R2')
+```
+
+The price is that `Z_3` is a larger raw higher-slack slope image than the
+actually peeled root-slice slope set.  The gain is conceptual: root slices are
+not a new obstruction type, but a `t=3`, degree-`j-1` core-locator problem.
+
 The middle term is not a new slack-two object.  Define the one-degree-up
 one-row locator fiber of a word `y` by
 
@@ -1894,6 +1949,8 @@ enumerates small cyclic-domain cases.  For each case it:
   one-degree-up common bases;
 - asserts the total `t=2` slope-image reduction
   `|AperSlope| <= |Z_root| + (j+1)N_common + |Z_esc|`;
+- checks the higher-slack root-slice reduction `Z_root subset Z_3` and the
+  recursive bound `|AperSlope| <= |Z_3| + (j+1)N_common + |Z_esc|`;
 - reports the endpoint `t=1` locator-fiber counts `|Fib_1(f)|` and
   `|Fib_1(g)|`, and checks `N_common <= min(|Fib_1(f)|,|Fib_1(g)|)`;
 - checks the `F_13`, `n=12`, `j=4`, `t=2` boundary-only row as a counterexample
