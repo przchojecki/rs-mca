@@ -58,14 +58,17 @@ Keep entries concise and link to the relevant files.
   The common-image shadow ledger is further made rank-testable: a fixed
   projective image line with row-cut direction dimension `d_I` contributes at
   most `binom(n,d_I)` split shadows, so bounded direction dimension closes that
-  branch in the bounded-slack polynomial-field window.
+  branch in the bounded-slack polynomial-field window.  The finite
+  common-kernel and endpoint-contained ruled ledgers get the same treatment:
+  fixed-slope and endpoint row-cut systems with direction dimensions `d_z` and
+  `d_infty` contribute at most `binom(n,d_z)` and `binom(n,d_infty)` shadows.
 - **How it is useful:** This sharpens one of the two live residual objects in
   the non-fixed variable-line branch.  It does not prove the final M1 bound,
   but it turns the boundary image into a precise quadratic-anchor/ruled-branch
   incidence target and states exactly which reduced shadow estimates would
   close this boundary-off piece in the polynomial-field regime.  It also
-  isolates the low-rank image-line locus as the remaining common-image
-  obstruction.
+  isolates low-rank Hankel row-cut loci as the remaining ruled-branch
+  obstructions.
 - **What to do next:** Bound the adjacent domain shadows in the nondegenerate
   branch and try to charge the ruled branch to fixed-slope/root-slice,
   contained/tangent, quotient-periodic, or active-codegree ledgers.

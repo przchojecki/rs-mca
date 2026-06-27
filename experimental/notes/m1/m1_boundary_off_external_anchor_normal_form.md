@@ -833,6 +833,86 @@ locators in `P_0+V_I` vanish on the same chosen `R`, their difference lies in
 Summing over image lines gives (IRsum), and the displayed polynomial
 consequences are immediate.
 
+## Corollary 11: Fixed-Slope And Contained Row-Rank Certificates
+
+Let `m=j-1`. For a finite slope `z in F`, put
+
+```text
+P_z = H_{t,j}(u)+zH_{t,j}(v).
+```
+
+Consider the affine row-cut system on monic degree-`m` shadow locators
+
+```text
+P_z ell_S^0 = 0,        P_z ell_S^+ = 0.             (KR_z)
+```
+
+Let `A_z` be its affine solution space, let `V_z` be its direction space, and
+put
+
+```text
+d_z = dim V_z.
+```
+
+Let `Sh_ker(z)` be any set of finite common-kernel ruled shadows assigned to
+the slope `z`. Then
+
+```text
+|Sh_ker(z)| <= binom(n,d_z).                         (KR)
+```
+
+The endpoint contained branch has the same form with
+
+```text
+P_infty = H_{t,j}(v),
+P_infty ell_S^0 = 0,        P_infty ell_S^+ = 0.
+```
+
+If `A_infty` is the corresponding affine solution space with direction
+dimension `d_infty`, and `Sh_cont` is the boundary-contained endpoint shadow
+ledger, then
+
+```text
+|Sh_cont| <= binom(n,d_infty).                       (CR)
+```
+
+Consequently, for any set `Z_ker` of finite slopes supporting the reduced
+common-kernel branch,
+
+```text
+|Sh_ker| <= sum_{z in Z_ker} binom(n,d_z).           (KRsum)
+```
+
+Together with Corollary 10, every ruled shadow ledger in Corollary 9 is now a
+row-rank ledger:
+
+```text
+|Boundary_off^ruled,red|
+  <= q ( sum_{z in Z_ker} binom(n,d_z)
+         + binom(n,d_infty)
+         + sum_{I in P_img} binom(n,d_I) ).          (RR)
+```
+
+Thus, in the polynomial-field window, the ruled boundary-off branch is reduced
+to controlling the direction dimensions of explicit Hankel row-cut systems for
+finite slopes, the endpoint direction, and projective image lines.
+
+### Proof
+
+Corollary 6 puts every finite common-kernel shadow assigned to `z` inside the
+solution set of (KR_z), and puts the endpoint contained branch inside the
+displayed `P_infty` solution set. These are affine linear systems on the monic
+degree-`m` coefficient slice.
+
+The same evaluation-injection argument used in Corollary 10 applies verbatim.
+If `P_0+V_z` is nonempty and `L_S in P_0+V_z` is squarefree and `D`-split, then
+evaluation `V_z -> F^S` is injective because every nonzero element of `V_z`
+has degree `<m`. Choosing the first `d_z`-subset of `S` on which evaluation is
+injective gives an injection from `Sh_ker(z)` to the `d_z`-subsets of `D`.
+This proves (KR). The endpoint proof gives (CR), summing over finite slopes
+gives (KRsum), and substituting these bounds plus Corollary 10 into Corollary
+9 gives (RR).
+
 ## Non-Claims
 
 This note does not prove
@@ -849,4 +929,6 @@ which shadow-image estimates would imply a polynomial boundary-off bound in
 the polynomial-field regime, not that those estimates have already been
 proved. Corollary 10 does not prove that the common-image row-cut ranks are
 large; it identifies the low-rank image-line locus as the remaining obstruction
-inside that branch.
+inside that branch. Corollary 11 similarly does not prove large ranks for the
+fixed-slope or contained row-cut systems; it records the exact rank certificates
+needed for those ruled ledgers.

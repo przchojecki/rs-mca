@@ -1673,6 +1673,20 @@ In bounded slack and polynomial field size, the common-image branch is therefore
 closed by bounded direction dimension; the only remaining obstruction in this
 branch is the low-rank image-line locus.
 
+The finite common-kernel and endpoint-contained ruled ledgers admit the same
+rank certificate.  For a finite slope \(z\), the conditions
+\((H(u)+zH(v))\ell_S^0=(H(u)+zH(v))\ell_S^+=0\) cut out an affine row-cut
+system on monic degree-\((j-1)\) shadow locators; if its direction dimension is
+\(d_z\), then that fixed-slope shadow stratum has size at most
+\(\binom{n}{d_z}\).  The endpoint branch is the same statement with \(H(v)\)
+and dimension \(d_\infty\).  Thus the whole ruled part of the reduced
+boundary-off ledger is bounded by
+\[
+q\left(\sum_z\binom{n}{d_z}+\binom{n}{d_\infty}
+       +\sum_I\binom{n}{d_I}\right),
+\]
+so every ruled branch is now expressed as an explicit Hankel row-rank ledger.
+
 \textbf{Status.}  This is a proved local packet lemma under the Hankel-pencil
 normal form and its non-fixed variable-line hypotheses.  It is not the final
 all-line M1 theorem and does not add a leaderboard row.
