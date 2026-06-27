@@ -2070,6 +2070,7 @@ def verify_full_domain_monomial_boundary_model(
     v = syndrome(g, domain, j + t, p)
     j_power_subgroup = {pow(root, j, p) for root in domain}
     zero_sum_locators = 0
+    zero_sum_product_counts: dict[int, int] = {}
     quotient_zero_sum_locators = 0
     quotient_product_counts: dict[int, int] = {}
     residual_product_counts: dict[int, int] = {}
@@ -2096,6 +2097,21 @@ def verify_full_domain_monomial_boundary_model(
         if not zero_sum:
             continue
         zero_sum_locators += 1
+        zero_sum_product_counts[complement_product] = (
+            zero_sum_product_counts.get(complement_product, 0) + 1
+        )
+        if j == 3:
+            base = complement[0]
+            r = complement[1] * inv_mod(base, p) % p
+            normalized_third = complement[2] * inv_mod(base, p) % p
+            repeated_parameters = {1 % p, (-2) % p, (-inv_mod(2, p)) % p}
+            if r == (-1) % p or r in repeated_parameters:
+                raise AssertionError("j=3 normalized parameter was not distinct")
+            if normalized_third != (-1 - r) % p:
+                raise AssertionError("j=3 normalized zero-sum form failed")
+            quadratic_value = (-r * (1 + r)) % p
+            if complement_product != pow(base, 3, p) * quadratic_value % p:
+                raise AssertionError("j=3 product was not a cube times -r(1+r)")
         expected_slope = -inv_mod(expected_b0, p) % p
         if slope != expected_slope:
             raise AssertionError("monomial boundary product slope formula failed")
@@ -2124,7 +2140,9 @@ def verify_full_domain_monomial_boundary_model(
     quotient_product_fibers = len(quotient_product_counts)
     quotient_product_set = set(quotient_product_counts)
     residual_product_set = set(residual_product_counts)
+    zero_sum_product_set = set(zero_sum_product_counts)
     for image_name, image in (
+        ("zero-sum", zero_sum_product_set),
         ("quotient", quotient_product_set),
         ("residual", residual_product_set),
     ):
@@ -2159,6 +2177,29 @@ def verify_full_domain_monomial_boundary_model(
         expected_zero_sum = (p - 1) * (p - 5) // 6
         if zero_sum_locators != expected_zero_sum:
             raise AssertionError("j=3 zero-sum boundary count formula failed")
+        repeated_parameters = {1 % p, (-2) % p, (-inv_mod(2, p)) % p}
+        j3_quadratic_parameters = {
+            r
+            for r in domain
+            if r != (-1) % p and r not in repeated_parameters
+        }
+        j3_quadratic_values = {(-r * (1 + r)) % p for r in j3_quadratic_parameters}
+        if 0 in j3_quadratic_values:
+            raise AssertionError("j=3 quadratic product image contained zero")
+        j3_quadratic_product_image = {
+            value * power % p
+            for value in j3_quadratic_values
+            for power in j_power_subgroup
+        }
+        if zero_sum_product_set != j3_quadratic_product_image:
+            raise AssertionError("j=3 product image was not the cube-closed quadratic image")
+        expected_quotient_products = set()
+        if 3 in charged_fiber_sizes and (p - 1) % 3 == 0:
+            expected_quotient_products = set(j_power_subgroup)
+            if quotient_zero_sum_locators != (p - 1) // 3:
+                raise AssertionError("j=3 quotient zero-sum count was not the 3-coset count")
+            if quotient_product_set != expected_quotient_products:
+                raise AssertionError("j=3 quotient product image was not the cube subgroup")
         if all(3 % size for size in charged_fiber_sizes):
             if quotient_zero_sum_locators != 0:
                 raise AssertionError("j=3 boundary count had an impossible quotient charge")
@@ -2168,9 +2209,11 @@ def verify_full_domain_monomial_boundary_model(
         "p": p,
         "j": j,
         "zero_sum_locators": zero_sum_locators,
+        "zero_sum_product_fibers": len(zero_sum_product_counts),
         "quotient_zero_sum_locators": quotient_zero_sum_locators,
         "quotient_product_fibers": quotient_product_fibers,
         "quotient_product_cosets": quotient_product_cosets,
+        "quotient_residual_product_overlap": len(quotient_product_set & residual_product_set),
         "residual_zero_sum_locators": sum(residual_product_counts.values()),
         "residual_product_fibers": len(residual_product_counts),
         "residual_product_cosets": residual_product_cosets,
@@ -2218,6 +2261,7 @@ def main() -> None:
     )
     monomial_boundary_models = (
         verify_full_domain_monomial_boundary_model(13, 4, (2, 3, 4, 6)),
+        verify_full_domain_monomial_boundary_model(13, 3, (2, 3, 4, 6)),
         verify_full_domain_monomial_boundary_model(17, 4, (2, 4, 8)),
         verify_full_domain_monomial_boundary_model(17, 3, (2, 4, 8)),
     )
@@ -2245,9 +2289,11 @@ def main() -> None:
             f"p={model['p']} j={model['j']} "
             f"j_power_subgroup={model['j_power_subgroup_size']} "
             f"zero_sum_locators={model['zero_sum_locators']} "
+            f"zero_sum_product_fibers={model['zero_sum_product_fibers']} "
             f"quotient_zero_sum_locators={model['quotient_zero_sum_locators']} "
             f"quotient_product_fibers={model['quotient_product_fibers']} "
             f"quotient_product_cosets={model['quotient_product_cosets']} "
+            f"quotient_residual_product_overlap={model['quotient_residual_product_overlap']} "
             f"residual_zero_sum_locators={model['residual_zero_sum_locators']} "
             f"residual_product_fibers={model['residual_product_fibers']} "
             f"residual_product_cosets={model['residual_product_cosets']} "

@@ -750,8 +750,8 @@ This family is a reusable floor model for any proposed fixed-external-anchor
 bound: after quotient-periodic zero-sum locators are charged, the residual
 boundary slope image is the product image of the remaining zero-sum
 `j`-subsets.  The verifier audits this identity for the full-domain toy cases
-`(p,j)=(13,4),(17,4),(17,3)`.  The corresponding residual product-image
-sizes after quotient charging are `6`, `16`, and `16`.
+`(p,j)=(13,4),(13,3),(17,4),(17,3)`.  The corresponding residual
+product-image sizes after quotient charging are `6`, `4`, `16`, and `16`.
 
 The product image has a built-in coset symmetry.  Multiplying all roots in
 `T` by `lambda in F_p^*` preserves the zero-sum condition and sends
@@ -768,9 +768,45 @@ In the audited rows, the residual product images decompose as follows:
 
 ```text
 (p,j)=(13,4):  |(F_p^*)^j|=3,   2 residual cosets;
+(p,j)=(13,3):  |(F_p^*)^j|=4,   1 residual coset;
 (p,j)=(17,4):  |(F_p^*)^j|=4,   4 residual cosets;
 (p,j)=(17,3):  |(F_p^*)^j|=16,  1 residual coset.
 ```
+
+For `j=3`, the product-coset problem is one-dimensional.  Every zero-sum
+triple can be scaled to
+
+```text
+T = lambda {1,r,-1-r}.
+```
+
+For `r in F_p^*`, the nonzero and distinctness conditions exclude
+
+```text
+r in {-1,1,-2,-1/2}.
+```
+
+For the remaining parameters,
+
+```text
+prod(T) = lambda^3(-r(1+r)).        (EA4)
+```
+
+Thus the full zero-sum product image is exactly the cube-closure of the
+quadratic image `q(r)=-r(1+r)` on those allowed parameters.  The verifier
+asserts this identity at the locator level and in aggregate product images.
+
+This also identifies the size-`3` quotient charge in the triple case.  When
+`3 | p-1` and the size-`3` quotient fibers are charged, the quotient-periodic
+zero-sum triples are precisely the cosets `lambda mu_3` of the cube-root
+subgroup, and their product image is the cube subgroup `(F_p^*)^3`.  This is a
+locator charge, not a formal subtraction of product values: residual triples
+may share a product value with a charged quotient triple in larger fields.  In
+the audited `(p,j)=(13,3)` row there is no such overlap, so the active
+size-`3` quotient charge leaves one residual cube coset.  In the audited
+`(17,3)` row there is no size-`3` quotient charge and the cube map is
+bijective, so the single external anchor already sees all `16` nonzero
+products.
 
 The same full-domain model has closed zero-sum counts in the audited
 small-slack cases.  For triples,
@@ -1232,6 +1268,9 @@ enumerates small cyclic-domain cases.  For each case it:
   the product image of the deleted roots;
 - verifies the `j`th-power coset symmetry of the charged and residual product
   images in that family;
+- checks the `j=3` product-coset reduction: every zero-sum triple normalizes to
+  `{1,r,-1-r}`, the product image is the cube-closure of `-r(1+r)`, and an
+  active size-`3` quotient charge has cube-subgroup product image;
 - asserts the closed zero-sum boundary counts for the `j=3` and `j=4`
   full-domain monomial cases, including the residual count after antipodal
   quotient charging;
