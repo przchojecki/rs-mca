@@ -862,6 +862,41 @@ window.  The first fixed-anchor arrangement case not handled by the line and
 plane incidence reductions is therefore `dim V_xi>=4`, exactly where the
 `F_13` boundary row sits.
 
+## Fixed-Anchor Three-Space Bound
+
+The next case, `dim V_xi=4`, is also controlled by an incidence decomposition.
+Now `P(V_xi)` is a projective three-space, and each non-fixed domain root
+defines a projective plane.  Keep `s=j-r_xi>0`, let `M` be the number of
+distinct non-fixed root planes, and write `w(H)` for the total root weight of
+a root plane `H`.
+
+No root plane has `w(H)>s`, by the same degree argument.  Let `h_2` be the
+number of heavy planes with `w(H)=s`; each heavy plane consists entirely of
+rich points and has `|F|^2+|F|+1` projective points.
+
+For root planes which do not already account for the point through one heavy
+plane, consider projective lines obtained as pairwise intersections of root
+planes.  Let a line be heavy if the total weight of all root planes containing
+it is at least `s`, and let `h_1` be the number of such lines.  Every point on
+a heavy line is rich, and each line has `|F|+1` projective points.
+
+It remains to consider a rich point not on a heavy plane or a heavy line.  The
+root planes through it have total weight at least `s`, but no one-dimensional
+or two-dimensional span of their defining linear forms already has weight
+`>=s`.  Therefore those forms span dimension at least three, so some triple
+of root planes cuts out that point.  Hence the residual rich points are
+covered by triple intersections of distinct root planes.  This gives
+
+```text
+#{j-rich points}, |finite slope image|
+    <= h_2(|F|^2+|F|+1) + h_1(|F|+1) + binom(M,3).        (EA1P3)
+```
+
+Thus fixed-anchor kernels of dimension four are still polynomially bounded in
+the field-size window.  The unresolved incidence problem starts only at
+`dim V_xi>=5`, or at sharpening these polynomial bounds to the exact reserve
+scale needed by a final M1 theorem.
+
 ## External-Anchor Top-Coefficient Form
 
 The twisted one-row reduction has an equivalent interpolation form.  Let
@@ -1738,6 +1773,9 @@ enumerates small cyclic-domain cases.  For each case it:
 - checks the fixed-anchor projective-plane bound: when `dim V_xi=3`, rich
   points are covered by heavy root lines and pairwise intersections of
   non-heavy root lines;
+- checks the fixed-anchor three-space bound: when `dim V_xi=4`, rich points
+  are covered by heavy planes, heavy pair-intersection lines, and triple
+  intersections of root planes;
 - verifies the homogeneous projective residual lift ledger: every residual
   locator maps to the common one-row lifted Hankel kernel through
   `beta_0 X L_T-beta_1 L_T`, with finite anchors, repeated-root lifts,

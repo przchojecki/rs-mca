@@ -30,6 +30,27 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-27 - M1 fixed-anchor three-space incidence bound
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/m1/m1_all_line_hankel_aperiodic_packing.md`,
+  `experimental/scripts/verify_m1_all_line_hankel_aperiodic.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT / EXPERIMENTAL.
+- **What is being added:** The fixed-anchor rich-point arrangement is bounded
+  when `dim V_xi=4`.  In projective three-space, rich points are covered by
+  heavy root planes, heavy pair-intersection lines, and triple intersections
+  of distinct root planes, giving
+  `h_2(|F|^2+|F|+1)+h_1(|F|+1)+binom(M,3)`.
+- **How it is useful:** This covers the dimension of the `F_13` fixed-anchor
+  boundary row by an incidence theorem, so the remaining fixed-anchor
+  obstruction is either `dim V_xi>=5` or sharpening the polynomial incidence
+  bound to the reserve scale required by final M1.  The verifier asserts the
+  three-space bound for every audited external anchor with `dim V_xi=4`.
+- **What to do next:** Compare this polynomial incidence bound with the final
+  reserve budget, and look for quotient-aware refinements in the `F_13`
+  product model where the raw three-space bound is far from sharp.
+
 ### 2026-06-27 - M1 fixed-anchor projective-plane bound
 
 - **Agent/model:** Codex.

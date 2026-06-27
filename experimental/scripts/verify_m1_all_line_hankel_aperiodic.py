@@ -250,6 +250,11 @@ def nullspace_basis(rows: list[tuple[int, ...]], p: int) -> list[tuple[int, ...]
     return basis
 
 
+def rowspace_key(rows: list[tuple[int, ...]], p: int) -> tuple[tuple[int, ...], ...]:
+    rref, _ = rref_rows(rows, p)
+    return tuple(tuple(row) for row in rref)
+
+
 def projective_span_points(basis: list[tuple[int, ...]], p: int) -> set[tuple[int, ...]]:
     if not basis:
         return set()
@@ -1138,6 +1143,45 @@ def root_slice_profile(
                 raise AssertionError("fixed-anchor plane exceeded rich-point bound")
             if len(finite_rich_slopes) > plane_bound:
                 raise AssertionError("fixed-anchor plane exceeded rich-slope bound")
+        if len(kernel_basis) == 4:
+            fixed_roots = 0
+            root_plane_weights: dict[tuple[int, ...], int] = {}
+            for x in domain:
+                root_plane = tuple(poly_eval(list(vector), x, p) for vector in kernel_basis)
+                if all(value == 0 for value in root_plane):
+                    fixed_roots += 1
+                    continue
+                root_plane_key = normalize_projective_vector(list(root_plane), p)
+                root_plane_weights[root_plane_key] = root_plane_weights.get(root_plane_key, 0) + 1
+            if fixed_roots >= j:
+                raise AssertionError("fixed-anchor three-space had too many fixed roots")
+            richness_deficit = j - fixed_roots
+            if any(weight > richness_deficit for weight in root_plane_weights.values()):
+                raise AssertionError("fixed-anchor three-space root plane was overfull")
+            heavy_planes = sum(
+                1 for weight in root_plane_weights.values() if weight == richness_deficit
+            )
+            root_plane_keys = tuple(root_plane_weights)
+            heavy_line_keys: set[tuple[tuple[int, ...], ...]] = set()
+            for left in range(len(root_plane_keys)):
+                for right in range(left + 1, len(root_plane_keys)):
+                    line_key = rowspace_key([root_plane_keys[left], root_plane_keys[right]], p)
+                    line_weight = sum(
+                        weight
+                        for plane_key, weight in root_plane_weights.items()
+                        if rowspace_key([*line_key, plane_key], p) == line_key
+                    )
+                    if line_weight >= richness_deficit:
+                        heavy_line_keys.add(line_key)
+            three_space_bound = (
+                heavy_planes * (p * p + p + 1)
+                + len(heavy_line_keys) * (p + 1)
+                + comb(len(root_plane_keys), 3)
+            )
+            if len(rich_points) > three_space_bound:
+                raise AssertionError("fixed-anchor three-space exceeded rich-point bound")
+            if len(finite_rich_slopes) > three_space_bound:
+                raise AssertionError("fixed-anchor three-space exceeded rich-slope bound")
         residual_external_anchor_rich_points += len(rich_points)
         residual_external_anchor_finite_rich_slopes += len(finite_rich_slopes)
         residual_external_anchor_rich_residual_classes += len(residual_classes)
