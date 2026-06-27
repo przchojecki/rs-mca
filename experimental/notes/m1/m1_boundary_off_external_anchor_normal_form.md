@@ -300,6 +300,135 @@ the ruled branch is charged by the existing fixed-slope/root-slice,
 contained/tangent, quotient-periodic, or active-codegree ledgers, and that the
 nondegenerate quadratic branch has polynomially many adjacent domain shadows.
 
+## Corollary 4: The Nondegenerate Branch Is A Shadow-Image Problem
+
+Let `A_var` be the active all-domain locator family used in the residual
+ledger of `m1_hankel_variable_line_packet_lemma.md`. Define the first boundary
+shadow image
+
+```text
+Shadow_1(A_var)
+  = { S subset D :
+      |S|=j-1 and there exists T in A_var with |S cap T|=j-2 }.
+```
+
+Let `Shadow_1^quad(A_var)` be the subset of shadows that occur from
+nondegenerate boundary targets. Then
+
+```text
+|Boundary_off^quad| <= 2 |Shadow_1^quad(A_var)|
+                    <= 2 |Shadow_1(A_var)|.          (SH)
+```
+
+In particular, if the quotient-aware aperiodic ledger gives
+
+```text
+|Shadow_1^quad(A_var)| <= n^B,
+```
+
+then the nondegenerate quadratic-anchor part of the one-outside boundary image
+is polynomially bounded. Without using any aperiodic structure one has the
+crude sanity bound
+
+```text
+|Shadow_1(A_var)|
+  <= binom(j,2)(n-j)|A_var|.                          (SH0)
+```
+
+### Proof
+
+Theorem 1 gives an active all-domain neighbor `T in A_var` for every
+one-outside boundary target, so its domain part `S=B cap D` lies in
+`Shadow_1(A_var)`. Corollary 2 says that, on a nondegenerate shadow `S`, at
+most two external anchors `beta` can satisfy the boundary Hankel gate. This
+proves (SH).
+
+For (SH0), fix `T in A_var`. To form a shadow `S` with `|S cap T|=j-2`, choose
+the two roots of `T` that are omitted and choose the one new domain point from
+`D\T`. This gives at most `binom(j,2)(n-j)` shadows over `T`.
+
+## Corollary 5: Ruled Shadows Have Fixed-Slope Or Row-Cut Form
+
+Fix a ruled shadow `S`.
+
+In the common-kernel branch there is a nonzero pair `(lambda,mu) in F^2` such
+that
+
+```text
+lambda a_S(beta) + mu b_S(beta) = 0                  (K)
+```
+
+for every external anchor `beta`. If `lambda != 0`, every boundary target over
+this shadow with `b_S(beta) != 0` has the same finite boundary slope
+
+```text
+z = mu/lambda.
+```
+
+If `lambda=0`, then `b_S(beta)=0` for the whole external-anchor pencil.
+
+In the common-image branch, let `E_S subset (F^t)^*` be the annihilator of the
+common image line. Then for every `eta in E_S` and `w in {u,v}` the shadow
+locator `L_S` satisfies the two row-cut equations
+
+```text
+eta H_{t,j}(w) ell_S^0 = 0,
+eta H_{t,j}(w) ell_S^+ = 0.                          (RC)
+```
+
+Equivalently, common-image ruled shadows are split degree-`j-1` locators lying
+in the row-cut system cut out by the lower and upper shifted contractions of
+the two Hankel windows.
+
+More generally, fix an image line `I subset F^t`, let `E=I^perp`, and let
+`V_I` be the affine solution space on monic degree-`j-1` locators defined by
+(RC) for all `eta in E` and `w in {u,v}`. If the direction space of `V_I`
+has dimension at most `j-1-d`, with `0<=d<=j-1`, then the number of `D`-split
+shadows in this fixed-image stratum is at most
+
+```text
+binom(n,j-1-d).                                      (RCd)
+```
+
+### Proof
+
+The common-kernel assertion is just the definition of that ruling applied to
+the matrices `[a_S(beta) b_S(beta)]`. If `lambda != 0`, the equation
+`a_S(beta)+z b_S(beta)=0` holds with `z=mu/lambda`. If `lambda=0`, then
+`mu != 0` and hence `b_S(beta)=0` for all `beta`.
+
+In the common-image branch, every column of every matrix
+
+```text
+M_S(beta)=[a_S(beta) b_S(beta)]
+```
+
+lies in the fixed image line. Applying any `eta` that kills this line gives
+
+```text
+eta a_S(beta)=0,        eta b_S(beta)=0
+```
+
+for every `beta`. Since
+
+```text
+a_S(beta)=H(u)ell_S^+ - beta H(u)ell_S^0,
+b_S(beta)=H(v)ell_S^+ - beta H(v)ell_S^0,
+```
+
+the constant and linear coefficients in `beta` vanish separately. This gives
+(RC).
+
+For (RCd), write the monic shadow solutions as an affine space `P_0+V`, where
+`V` is a vector space of polynomials of degree `<j-1` and
+`dim V <= j-1-d`. For every split locator `L_S` in this affine space,
+evaluation `V -> F^S` is injective because a nonzero polynomial of degree
+`<j-1` cannot vanish on all `j-1` distinct roots of `S`. Hence some
+`(j-1-d)`-subset `R subset S` already gives an injective evaluation map on
+`V`. Choosing the first such `R` injects the split locators into the
+`(j-1-d)`-subsets of `D`, because a fixed `R` determines the unique member of
+`P_0+V` vanishing on `R`.
+
 ## Non-Claims
 
 This note does not prove
