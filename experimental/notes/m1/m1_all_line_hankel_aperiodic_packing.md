@@ -825,6 +825,43 @@ kernels do not contribute an uncontrolled boundary term; the remaining
 fixed-anchor difficulty starts at projective dimension at least two, i.e.
 `dim V_xi >= 3`.
 
+## Fixed-Anchor Projective-Plane Bound
+
+The first higher-dimensional case, `dim V_xi=3`, is still polynomially
+controlled.  Then `P(V_xi)` is a projective plane.  Let `r_xi` be the number
+of fixed domain roots, and put
+
+```text
+s = j-r_xi.
+```
+
+As before `s>0`.  For each non-fixed `x in D`, the condition `P(x)=0` is a
+projective line in `P(V_xi)`.  Several domain roots may define the same root
+line; let `w(L)` be the number of non-fixed roots producing a root line `L`,
+and let `M` be the number of distinct non-fixed root lines.
+
+No root line can have weight greater than `s`, since every point of that line
+would then vanish at `xi`, the `r_xi` fixed roots, and more than `s`
+additional domain roots, exceeding degree `j+1`.  Call a root line heavy if
+`w(L)=s`, and let `h` be the number of heavy lines.  Points on a heavy line
+are already `j`-rich, and the slope map restricted to that projective line is
+a ratio of two linear forms, so it has at most `|F|+1` values.
+
+Every remaining rich point is not on a heavy line.  It must therefore collect
+its `s` non-fixed roots from at least two distinct root lines, hence is the
+intersection point of a pair of distinct root lines.  Thus
+
+```text
+#{j-rich points}, |finite slope image|
+    <= h(|F|+1) + binom(M,2)
+    <= floor((n-r_xi)/s)(|F|+1) + binom(n-r_xi,2).        (EA1P2)
+```
+
+This closes the fixed-anchor projective-plane case in the polynomial-field
+window.  The first fixed-anchor arrangement case not handled by the line and
+plane incidence reductions is therefore `dim V_xi>=4`, exactly where the
+`F_13` boundary row sits.
+
 ## External-Anchor Top-Coefficient Form
 
 The twisted one-row reduction has an equivalent interpolation form.  Let
@@ -1698,6 +1735,9 @@ enumerates small cyclic-domain cases.  For each case it:
 - checks the low-dimensional fixed-anchor pencil theorem: when
   `dim V_xi <= 2`, fixed roots partition the remaining rich roots and give
   the bound `floor((n-r_xi)/(j-r_xi))`;
+- checks the fixed-anchor projective-plane bound: when `dim V_xi=3`, rich
+  points are covered by heavy root lines and pairwise intersections of
+  non-heavy root lines;
 - verifies the homogeneous projective residual lift ledger: every residual
   locator maps to the common one-row lifted Hankel kernel through
   `beta_0 X L_T-beta_1 L_T`, with finite anchors, repeated-root lifts,

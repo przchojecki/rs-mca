@@ -1115,6 +1115,29 @@ def root_slice_profile(
                 raise AssertionError("fixed-anchor pencil exceeded rich-point bound")
             if len(finite_rich_slopes) > pencil_bound:
                 raise AssertionError("fixed-anchor pencil exceeded rich-slope bound")
+        if len(kernel_basis) == 3:
+            fixed_roots = 0
+            root_line_weights: dict[tuple[int, ...], int] = {}
+            for x in domain:
+                root_line = tuple(poly_eval(list(vector), x, p) for vector in kernel_basis)
+                if all(value == 0 for value in root_line):
+                    fixed_roots += 1
+                    continue
+                root_line_key = normalize_projective_vector(list(root_line), p)
+                root_line_weights[root_line_key] = root_line_weights.get(root_line_key, 0) + 1
+            if fixed_roots >= j:
+                raise AssertionError("fixed-anchor plane had too many fixed roots")
+            richness_deficit = j - fixed_roots
+            heavy_root_lines = sum(
+                1 for weight in root_line_weights.values() if weight >= richness_deficit
+            )
+            if any(weight > richness_deficit for weight in root_line_weights.values()):
+                raise AssertionError("fixed-anchor plane root line was overfull")
+            plane_bound = heavy_root_lines * (p + 1) + comb(len(root_line_weights), 2)
+            if len(rich_points) > plane_bound:
+                raise AssertionError("fixed-anchor plane exceeded rich-point bound")
+            if len(finite_rich_slopes) > plane_bound:
+                raise AssertionError("fixed-anchor plane exceeded rich-slope bound")
         residual_external_anchor_rich_points += len(rich_points)
         residual_external_anchor_finite_rich_slopes += len(finite_rich_slopes)
         residual_external_anchor_rich_residual_classes += len(residual_classes)

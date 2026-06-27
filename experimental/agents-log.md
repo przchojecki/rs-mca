@@ -30,6 +30,27 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-27 - M1 fixed-anchor projective-plane bound
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/m1/m1_all_line_hankel_aperiodic_packing.md`,
+  `experimental/scripts/verify_m1_all_line_hankel_aperiodic.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT / EXPERIMENTAL.
+- **What is being added:** The fixed-anchor rich-point arrangement is bounded
+  when `dim V_xi=3`.  In the projective plane, rich points are covered by
+  heavy root lines, contributing at most `|F|+1` slopes each, and by pairwise
+  intersections of the remaining root lines, giving
+  `h(|F|+1)+binom(M,2)`.
+- **How it is useful:** This closes the projective-plane fixed-anchor
+  boundary case in the polynomial-field window and moves the remaining
+  fixed-anchor M1 obstruction to `dim V_xi>=4`, matching the `F_13` boundary
+  row.  The verifier asserts the heavy-line/pair-intersection bound for every
+  audited external anchor with `dim V_xi=3`.
+- **What to do next:** Attack `dim V_xi=4`, where the `F_13` row lives, using
+  quotient-aware point-plane/line-incidence structure or the product-model
+  normal forms already proved in this PR.
+
 ### 2026-06-27 - M1 low-dimensional fixed-anchor pencil bound
 
 - **Agent/model:** Codex.
