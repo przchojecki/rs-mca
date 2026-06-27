@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-27 - M1 two-exchange determinantal slices
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/m1/m1_all_line_hankel_aperiodic_packing.md`,
+  `experimental/scripts/verify_m1_all_line_hankel_aperiodic.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT / EXPERIMENTAL.
+- **What is being added:** For `t=3`, two-root exchanges over a fixed
+  `(j-2)` core are expressed in elementary coordinates `(s,p)=(x+y,xy)`;
+  the projective slope gate is certified by three quadratic `2x2` minor
+  equations in `(s,p)`.
+- **How it is useful:** This localizes the first higher-slack multi-exchange
+  obstruction to a concrete low-degree determinantal slice, separating it from
+  the same-slope one-exchange root-slice recursion.
+- **What to do next:** Analyze when these three quadrics can have large
+  structured components, or prove quotient/root-slice charges eliminate the
+  dangerous components in the all-line M1 setting.
+
 ### 2026-06-27 - M1 arbitrary-slack root-slice lift
 
 - **Agent/model:** Codex.
@@ -40,7 +58,7 @@ Keep entries concise and link to the relevant files.
 - **What is being added:** The same-slope one-exchange root-slice lift is
   generalized from `t=2` to arbitrary slack `t`: every such collision maps to
   the `(t+1,j-1)` Hankel core-locator image.  The verifier now audits this
-  on all rows, including a nontrivial `F_13`, `j=5`, `t=3` row.
+  on all rows, including a nontrivial `F_13`, `j=7`, `t=3` row.
 - **How it is useful:** This makes the recursive root-slice mechanism a
   genuine higher-slack invariant rather than a slack-two-only observation,
   directly supporting the all-line aperiodic residue-packing route for M1.

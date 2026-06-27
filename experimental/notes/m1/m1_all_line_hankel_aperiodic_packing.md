@@ -282,9 +282,85 @@ or more roots are new higher-slack objects.  It does prove that the
 one-exchange same-slope part is recursively exact at every slack, so repeated
 one-root collision structure never needs a separate nonrecursive budget.  The
 verifier audits this general lift on every row.  In the nontrivial
-`F_13`, `n=12`, `j=5`, `t=3` row, all `84` same-slope one-exchange edges are
-covered by `3` root slices and `3` slope values in the `t=4`, `j=4`
-core-locator image.
+`F_13`, `n=12`, `j=7`, `t=3` row, the same-slope strict pairs are precisely
+the `30` one-exchange pairs, and they are covered by `2` root slices with one
+slope value in the `t=4`, `j=6` core-locator image.
+
+## Two-Exchange Quadratic Determinantal Slices
+
+The first strict-overlap structure not covered by one-exchange root slices
+appears at `t=3`: two complements may differ by two roots.  Fix a common
+core `R subset D` of size `j-2`, and write
+
+```text
+L_R(X)=c_0+c_1X+...+c_{j-2}X^{j-2}.
+```
+
+For a two-root extension `{x,y}`, put
+
+```text
+s=x+y,        p=xy.
+```
+
+Then
+
+```text
+L_{R union {x,y}}(X)=L_R(X)(X^2-sX+p).
+```
+
+If `e_0,e_1,e_2` are the coefficient vectors of
+`L_R, X L_R, X^2 L_R`, padded to length `j+1`, then
+
+```text
+ell_{R union {x,y}} = e_2 - s e_1 + p e_0.          (TE1)
+```
+
+Consequently, for each syndrome direction `w`,
+
+```text
+H_{3,j}(w)ell_{R union {x,y}}
+ = W_2 - s W_1 + p W_0,
+W_i = H_{3,j}(w)e_i.                                (TE2)
+```
+
+Thus the `t=3` projective slope gate on a fixed two-exchange core is a
+determinantal locus in the two elementary coordinates `(s,p)`.  Writing
+
+```text
+A_i=H_{3,j}(u)e_i,        B_i=H_{3,j}(v)e_i,
+```
+
+a finite noncontained slope exists exactly when `B_2-sB_1+pB_0` is nonzero
+and all three `2x2` minors of the two vectors
+
+```text
+A_2-sA_1+pA_0,        B_2-sB_1+pB_0
+```
+
+vanish.  Each minor is a quadratic polynomial in `(s,p)`.  For any pair of
+coordinates `(r,c)`, its coefficients are
+
+```text
+det(A_2,B_2)
+ - s[det(A_1,B_2)+det(A_2,B_1)]
+ + p[det(A_0,B_2)+det(A_2,B_0)]
+ + s^2 det(A_1,B_1)
+ - sp[det(A_1,B_0)+det(A_0,B_1)]
+ + p^2 det(A_0,B_0).                                (TE3)
+```
+
+This is the two-exchange analogue of the one-root quadratic slice, but it is
+not yet a packing bound: the common zero set of three quadrics in the
+pair-symmetric plane can still have structured components.  Its value is that
+the next higher-slack obstruction is now a concrete low-degree determinantal
+slice, rather than an arbitrary set of two-root exchanges.
+
+The verifier checks (TE1), (TE2), and the quadratic-minor certificate (TE3) on
+every `t=3` row.  In the `F_13`, `n=12`, `j=7`, `t=3` audit row, the largest
+seed has `42` strict pairs: `30` same-slope one-exchange pairs handled by the
+root-slice lift above, and `12` two-exchange pairs.  All `12` two-exchange
+pairs are different-slope and lie in the audited quadratic determinantal
+slices.
 
 ## Different-Slope One-Exchange Quadratic Slice
 
@@ -2397,6 +2473,9 @@ enumerates small cyclic-domain cases.  For each case it:
 - reports the aperiodic slope image after charged locators are removed;
 - for every row, counts one-exchange pairs and verifies the arbitrary-slack
   same-slope lift into the `(t+1,j-1)` Hankel core image;
+- in the `t=3` rows, counts two-exchange pairs and verifies the quadratic
+  determinantal slice certificate in the pair-symmetric coordinates
+  `(x+y,xy)`;
 - in the `t=2` rows, verifies the determinant gate and reports the strict
   one-exchange profile of the aperiodic locator family;
 - in the `t=2` rows, checks that every same-slope strict one-exchange edge
@@ -2585,10 +2664,11 @@ enumerates small cyclic-domain cases.  For each case it:
 The default audit currently checks four cyclic-domain parameter rows,
 seventeen deterministic polynomial-family line samples, and one deterministic
 arbitrary line probe.  Three rows exercise the full `t=2` residual reducer,
-while the `F_13`, `n=12`, `j=5`, `t=3` row exercises the arbitrary-slack
-same-slope one-exchange lift.  The largest observed residual aperiodic slope
-image in this smoke packet has size `17`, after direct interpolation checks on
-every reported support-wise bad slope.
+while the `F_13`, `n=12`, `j=7`, `t=3` row exercises the arbitrary-slack
+same-slope one-exchange lift and the two-exchange quadratic determinantal
+slice certificate.  The largest observed residual aperiodic slope image in
+this smoke packet has size `17`, after direct interpolation checks on every
+reported support-wise bad slope.
 
 The `F_13`, `n=12`, `j=4`, `t=2` row is kept as a boundary-only counterexample
 to the tempting squarefree-absorption shortcut.  In all four deterministic

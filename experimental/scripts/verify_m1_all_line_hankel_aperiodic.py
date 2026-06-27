@@ -169,6 +169,12 @@ def det2(left: tuple[int, int], right: tuple[int, int], p: int) -> int:
     return (left[0] * right[1] - left[1] * right[0]) % p
 
 
+def coord_det(
+    left: tuple[int, ...], right: tuple[int, ...], row: int, col: int, p: int
+) -> int:
+    return (left[row] * right[col] - left[col] * right[row]) % p
+
+
 def determinant_value_t2(
     u: tuple[int, ...],
     v: tuple[int, ...],
@@ -595,6 +601,175 @@ def same_slope_one_exchange_lift_profile(
         "same_slope_one_exchange_member_checks": lifted_member_checks,
         "same_slope_one_exchange_noncontained_max": max_noncontained,
         "same_slope_one_exchange_aperiodic_members_max": max_aperiodic_members,
+    }
+
+
+def two_exchange_quadratic_slice_profile(
+    locator_rows: list[tuple[tuple[int, ...], int]],
+    domain: tuple[int, ...],
+    u: tuple[int, ...],
+    v: tuple[int, ...],
+    t: int,
+    j: int,
+    p: int,
+) -> dict[str, int]:
+    if t != 3:
+        return {
+            "two_exchange_pairs": 0,
+            "two_exchange_same_slope_pairs": 0,
+            "two_exchange_different_slope_pairs": 0,
+            "two_exchange_cores": 0,
+            "two_exchange_slices_checked": 0,
+            "two_exchange_minor_polynomial_checks": 0,
+            "two_exchange_bad_locator_checks": 0,
+            "two_exchange_max_slice_aperiodic_locators": 0,
+            "two_exchange_max_slice_slope_image": 0,
+        }
+    if j < 2:
+        raise AssertionError("two-exchange slices need j>=2")
+
+    row_map = {tuple(sorted(complement)): slope for complement, slope in locator_rows}
+    two_exchange_pairs = 0
+    same_slope_pairs = 0
+    different_slope_pairs = 0
+    edge_cores: set[tuple[int, ...]] = set()
+    for left in range(len(locator_rows)):
+        left_set = set(locator_rows[left][0])
+        left_slope = locator_rows[left][1]
+        for right in range(left + 1, len(locator_rows)):
+            right_set = set(locator_rows[right][0])
+            if len(left_set - right_set) != 2 or len(right_set - left_set) != 2:
+                continue
+            two_exchange_pairs += 1
+            core = tuple(sorted(left_set & right_set))
+            if len(core) != j - 2:
+                raise AssertionError("two-exchange core has wrong size")
+            edge_cores.add(core)
+            if left_slope == locator_rows[right][1]:
+                same_slope_pairs += 1
+            else:
+                different_slope_pairs += 1
+
+    slices_checked = 0
+    minor_polynomial_checks = 0
+    bad_locator_checks = 0
+    max_slice_aperiodic = 0
+    max_slice_slope_image = 0
+    for core in combinations(domain, j - 2):
+        core_tuple = tuple(sorted(core))
+        core_locator = locator(core_tuple, p)
+        if len(core_locator) != j - 1:
+            raise AssertionError("two-exchange core locator has wrong length")
+        pad_vec = core_locator + [0, 0]
+        shift_vec = [0] + core_locator + [0]
+        square_shift_vec = [0, 0] + core_locator
+        a_pad = hankel_apply(u, t, j, pad_vec, p)
+        a_shift = hankel_apply(u, t, j, shift_vec, p)
+        a_square_shift = hankel_apply(u, t, j, square_shift_vec, p)
+        b_pad = hankel_apply(v, t, j, pad_vec, p)
+        b_shift = hankel_apply(v, t, j, shift_vec, p)
+        b_square_shift = hankel_apply(v, t, j, square_shift_vec, p)
+        slices_checked += 1
+
+        slice_aperiodic = 0
+        slice_slopes: set[int] = set()
+        available = tuple(x for x in domain if x not in core_tuple)
+        for x, y in combinations(available, 2):
+            root_sum = (x + y) % p
+            root_product = x * y % p
+            complement = tuple(sorted(core_tuple + (x, y)))
+            expected_locator = locator(complement, p)
+            slice_locator = [
+                (
+                    square_shift_vec[idx]
+                    - root_sum * shift_vec[idx]
+                    + root_product * pad_vec[idx]
+                )
+                % p
+                for idx in range(j + 1)
+            ]
+            if slice_locator != expected_locator:
+                raise AssertionError("two-exchange elementary locator formula failed")
+            a_vec = tuple(
+                (
+                    a_square_shift[idx]
+                    - root_sum * a_shift[idx]
+                    + root_product * a_pad[idx]
+                )
+                % p
+                for idx in range(t)
+            )
+            b_vec = tuple(
+                (
+                    b_square_shift[idx]
+                    - root_sum * b_shift[idx]
+                    + root_product * b_pad[idx]
+                )
+                % p
+                for idx in range(t)
+            )
+            if a_vec != hankel_apply(u, t, j, slice_locator, p):
+                raise AssertionError("two-exchange numerator slice formula failed")
+            if b_vec != hankel_apply(v, t, j, slice_locator, p):
+                raise AssertionError("two-exchange denominator slice formula failed")
+
+            all_minors_zero = True
+            for row, col in combinations(range(t), 2):
+                coeff_const = coord_det(a_square_shift, b_square_shift, row, col, p)
+                coeff_sum = (
+                    -coord_det(a_shift, b_square_shift, row, col, p)
+                    - coord_det(a_square_shift, b_shift, row, col, p)
+                ) % p
+                coeff_product = (
+                    coord_det(a_pad, b_square_shift, row, col, p)
+                    + coord_det(a_square_shift, b_pad, row, col, p)
+                ) % p
+                coeff_sum_sq = coord_det(a_shift, b_shift, row, col, p)
+                coeff_sum_product = (
+                    -coord_det(a_shift, b_pad, row, col, p)
+                    - coord_det(a_pad, b_shift, row, col, p)
+                ) % p
+                coeff_product_sq = coord_det(a_pad, b_pad, row, col, p)
+                polynomial_value = (
+                    coeff_const
+                    + coeff_sum * root_sum
+                    + coeff_product * root_product
+                    + coeff_sum_sq * root_sum * root_sum
+                    + coeff_sum_product * root_sum * root_product
+                    + coeff_product_sq * root_product * root_product
+                ) % p
+                minor_value = coord_det(a_vec, b_vec, row, col, p)
+                if polynomial_value != minor_value:
+                    raise AssertionError("two-exchange minor polynomial certificate failed")
+                if minor_value:
+                    all_minors_zero = False
+                minor_polynomial_checks += 1
+
+            slope = slope_from_gate(a_vec, b_vec, p)
+            if any(value != 0 for value in b_vec) and (slope is not None) != all_minors_zero:
+                raise AssertionError("two-exchange minors disagreed with projective gate")
+            row_slope = row_map.get(complement)
+            if row_slope is not None:
+                if row_slope != slope:
+                    raise AssertionError("two-exchange row slope disagreed with slice gate")
+                if not all_minors_zero:
+                    raise AssertionError("aperiodic two-exchange locator missed slice minors")
+                slice_aperiodic += 1
+                slice_slopes.add(row_slope)
+                bad_locator_checks += 1
+        max_slice_aperiodic = max(max_slice_aperiodic, slice_aperiodic)
+        max_slice_slope_image = max(max_slice_slope_image, len(slice_slopes))
+
+    return {
+        "two_exchange_pairs": two_exchange_pairs,
+        "two_exchange_same_slope_pairs": same_slope_pairs,
+        "two_exchange_different_slope_pairs": different_slope_pairs,
+        "two_exchange_cores": len(edge_cores),
+        "two_exchange_slices_checked": slices_checked,
+        "two_exchange_minor_polynomial_checks": minor_polynomial_checks,
+        "two_exchange_bad_locator_checks": bad_locator_checks,
+        "two_exchange_max_slice_aperiodic_locators": max_slice_aperiodic,
+        "two_exchange_max_slice_slope_image": max_slice_slope_image,
     }
 
 
@@ -2493,6 +2668,15 @@ def verify_word_pair(
         != exchange_profile["same_slope_one_exchange_pairs"]
     ):
         raise AssertionError("same-slope one-exchange lift missed an edge")
+    two_exchange_profile = two_exchange_quadratic_slice_profile(
+        aperiodic_locator_rows, domain, u, v, t, j, p
+    )
+    if t == 3:
+        expected_two_exchange = (
+            exchange_profile["strict_pairs"] - exchange_profile["one_exchange_pairs"]
+        )
+        if two_exchange_profile["two_exchange_pairs"] != expected_two_exchange:
+            raise AssertionError("two-exchange profile missed a strict t=3 pair")
     root_profile = root_slice_profile(aperiodic_locator_rows, domain, u, v, f, g, k, t, j, p)
     if t == 2 and root_profile["same_slope_edges_covered"] != exchange_profile["same_slope_strict_pairs"]:
         raise AssertionError("root-slice coverage missed same-slope strict edges")
@@ -2556,6 +2740,29 @@ def verify_word_pair(
         ],
         "same_slope_one_exchange_aperiodic_members_max": one_exchange_lift_profile[
             "same_slope_one_exchange_aperiodic_members_max"
+        ],
+        "two_exchange_pairs": two_exchange_profile["two_exchange_pairs"],
+        "two_exchange_same_slope_pairs": two_exchange_profile[
+            "two_exchange_same_slope_pairs"
+        ],
+        "two_exchange_different_slope_pairs": two_exchange_profile[
+            "two_exchange_different_slope_pairs"
+        ],
+        "two_exchange_cores": two_exchange_profile["two_exchange_cores"],
+        "two_exchange_slices_checked": two_exchange_profile[
+            "two_exchange_slices_checked"
+        ],
+        "two_exchange_minor_polynomial_checks": two_exchange_profile[
+            "two_exchange_minor_polynomial_checks"
+        ],
+        "two_exchange_bad_locator_checks": two_exchange_profile[
+            "two_exchange_bad_locator_checks"
+        ],
+        "two_exchange_max_slice_aperiodic_locators": two_exchange_profile[
+            "two_exchange_max_slice_aperiodic_locators"
+        ],
+        "two_exchange_max_slice_slope_image": two_exchange_profile[
+            "two_exchange_max_slice_slope_image"
         ],
         "root_slices": root_profile["root_slices"],
         "same_slope_edges_covered": root_profile["same_slope_edges_covered"],
@@ -2948,6 +3155,29 @@ def verify_case(case: Case) -> dict[str, object]:
         ),
         "max_same_slope_one_exchange_aperiodic_members": max(
             row["same_slope_one_exchange_aperiodic_members_max"] for row in rows
+        ),
+        "max_two_exchange_pairs": max(row["two_exchange_pairs"] for row in rows),
+        "max_two_exchange_same_slope_pairs": max(
+            row["two_exchange_same_slope_pairs"] for row in rows
+        ),
+        "max_two_exchange_different_slope_pairs": max(
+            row["two_exchange_different_slope_pairs"] for row in rows
+        ),
+        "max_two_exchange_cores": max(row["two_exchange_cores"] for row in rows),
+        "max_two_exchange_slices_checked": max(
+            row["two_exchange_slices_checked"] for row in rows
+        ),
+        "max_two_exchange_minor_polynomial_checks": max(
+            row["two_exchange_minor_polynomial_checks"] for row in rows
+        ),
+        "max_two_exchange_bad_locator_checks": max(
+            row["two_exchange_bad_locator_checks"] for row in rows
+        ),
+        "max_two_exchange_slice_aperiodic_locators": max(
+            row["two_exchange_max_slice_aperiodic_locators"] for row in rows
+        ),
+        "max_two_exchange_slice_slope_image": max(
+            row["two_exchange_max_slice_slope_image"] for row in rows
         ),
         "max_root_slices": max(row["root_slices"] for row in rows),
         "max_root_slice_noncontained": max(row["max_root_slice_noncontained"] for row in rows),
@@ -3873,7 +4103,7 @@ def main() -> None:
         Case("F17_full_j4_t2", p=17, n=16, j=4, t=2, charged_fiber_sizes=(2, 4, 8), seeds=(0, 1, 2, 3)),
         Case("F17_order8_j3_t2", p=17, n=8, j=3, t=2, charged_fiber_sizes=(2, 4), seeds=(0, 1, 2, 3)),
         Case("F13_order12_j4_t2", p=13, n=12, j=4, t=2, charged_fiber_sizes=(2, 3, 4, 6), seeds=(0, 1, 2, 3)),
-        Case("F13_order12_j5_t3", p=13, n=12, j=5, t=3, charged_fiber_sizes=(2, 3, 4, 6), seeds=(0, 1, 2, 3)),
+        Case("F13_order12_j7_t3", p=13, n=12, j=7, t=3, charged_fiber_sizes=(2, 3, 4, 6), seeds=(0, 1, 2, 3)),
     )
     summaries = [verify_case(case) for case in cases]
     boundary_only_summary = next(
@@ -4030,6 +4260,15 @@ def main() -> None:
                 "same_slope_lift_member_checks={same_slope_one_exchange_member_checks} "
                 "same_slope_lift_noncontained_max={same_slope_one_exchange_noncontained_max} "
                 "same_slope_lift_aperiodic_max={same_slope_one_exchange_aperiodic_members_max} "
+                "two_exchange_pairs={two_exchange_pairs} "
+                "two_exchange_same_slope={two_exchange_same_slope_pairs} "
+                "two_exchange_different_slope={two_exchange_different_slope_pairs} "
+                "two_exchange_cores={two_exchange_cores} "
+                "two_exchange_slices_checked={two_exchange_slices_checked} "
+                "two_exchange_minor_checks={two_exchange_minor_polynomial_checks} "
+                "two_exchange_bad_locator_checks={two_exchange_bad_locator_checks} "
+                "two_exchange_slice_aperiodic_max={two_exchange_max_slice_aperiodic_locators} "
+                "two_exchange_slice_slope_max={two_exchange_max_slice_slope_image} "
                 "root_slices={root_slices} "
                 "root_slice_slopes={root_slice_slope_count} "
                 "root_slice_new_slopes={root_slice_new_slope_count} "
@@ -4190,6 +4429,15 @@ def main() -> None:
             f"max_same_slope_lift_member_checks={summary['max_same_slope_one_exchange_member_checks']} "
             f"max_same_slope_lift_noncontained={summary['max_same_slope_one_exchange_noncontained']} "
             f"max_same_slope_lift_aperiodic={summary['max_same_slope_one_exchange_aperiodic_members']} "
+            f"max_two_exchange_pairs={summary['max_two_exchange_pairs']} "
+            f"max_two_exchange_same_slope={summary['max_two_exchange_same_slope_pairs']} "
+            f"max_two_exchange_different_slope={summary['max_two_exchange_different_slope_pairs']} "
+            f"max_two_exchange_cores={summary['max_two_exchange_cores']} "
+            f"max_two_exchange_slices_checked={summary['max_two_exchange_slices_checked']} "
+            f"max_two_exchange_minor_checks={summary['max_two_exchange_minor_polynomial_checks']} "
+            f"max_two_exchange_bad_locator_checks={summary['max_two_exchange_bad_locator_checks']} "
+            f"max_two_exchange_slice_aperiodic={summary['max_two_exchange_slice_aperiodic_locators']} "
+            f"max_two_exchange_slice_slope={summary['max_two_exchange_slice_slope_image']} "
             f"max_root_slices={summary['max_root_slices']} "
             f"max_root_slice_noncontained={summary['max_root_slice_noncontained']} "
             f"max_root_total_slope_bound={summary['max_root_slice_total_slope_bound']} "
@@ -4336,6 +4584,10 @@ def main() -> None:
         "same_slope_lift_next_cores={same_slope_one_exchange_next_core_locators} "
         "same_slope_lift_next_slopes={same_slope_one_exchange_next_slopes} "
         "same_slope_lift_member_checks={same_slope_one_exchange_member_checks} "
+        "two_exchange_pairs={two_exchange_pairs} "
+        "two_exchange_same_slope={two_exchange_same_slope_pairs} "
+        "two_exchange_different_slope={two_exchange_different_slope_pairs} "
+        "two_exchange_minor_checks={two_exchange_minor_polynomial_checks} "
         "root_slice_slopes={root_slice_slope_count} "
         "root_slice_new_slopes={root_slice_new_slope_count} "
         "root_t3_slopes={root_slice_t3_slope_count} "
@@ -4478,6 +4730,20 @@ def main() -> None:
     )
     max_same_slope_lift_member_checks = max(
         row["same_slope_one_exchange_member_checks"] for row in all_rows
+    )
+    max_two_exchange_pairs = max(row["two_exchange_pairs"] for row in all_rows)
+    max_two_exchange_same_slope_pairs = max(
+        row["two_exchange_same_slope_pairs"] for row in all_rows
+    )
+    max_two_exchange_different_slope_pairs = max(
+        row["two_exchange_different_slope_pairs"] for row in all_rows
+    )
+    max_two_exchange_cores = max(row["two_exchange_cores"] for row in all_rows)
+    max_two_exchange_minor_checks = max(
+        row["two_exchange_minor_polynomial_checks"] for row in all_rows
+    )
+    max_two_exchange_bad_locator_checks = max(
+        row["two_exchange_bad_locator_checks"] for row in all_rows
     )
     max_total_slope_bound = max(row["root_slice_total_slope_bound"] for row in all_rows)
     max_root_new_slopes = max(row["root_slice_new_slope_count"] for row in all_rows)
@@ -4808,6 +5074,12 @@ def main() -> None:
         f"max_same_slope_lift_next_cores={max_same_slope_lift_next_cores} "
         f"max_same_slope_lift_next_slopes={max_same_slope_lift_next_slopes} "
         f"max_same_slope_lift_member_checks={max_same_slope_lift_member_checks} "
+        f"max_two_exchange_pairs={max_two_exchange_pairs} "
+        f"max_two_exchange_same_slope={max_two_exchange_same_slope_pairs} "
+        f"max_two_exchange_different_slope={max_two_exchange_different_slope_pairs} "
+        f"max_two_exchange_cores={max_two_exchange_cores} "
+        f"max_two_exchange_minor_checks={max_two_exchange_minor_checks} "
+        f"max_two_exchange_bad_locator_checks={max_two_exchange_bad_locator_checks} "
         f"max_total_slope_bound={max_total_slope_bound} "
         f"max_root_new_slopes={max_root_new_slopes} "
         f"max_root_t3_core_locators={max_root_t3_core_locators} "
