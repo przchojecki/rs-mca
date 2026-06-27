@@ -2344,6 +2344,8 @@ def verify_full_domain_monomial_boundary_model(
                 raise AssertionError("j=3 quotient zero-sum count was not the 3-coset count")
             if quotient_product_set != expected_quotient_products:
                 raise AssertionError("j=3 quotient product image was not the cube subgroup")
+            if p >= 31 and residual_product_set != set(domain):
+                raise AssertionError("j=3 cubic-character residual floor failed")
         if all(3 % size for size in charged_fiber_sizes):
             if quotient_zero_sum_locators != 0:
                 raise AssertionError("j=3 boundary count had an impossible quotient charge")
@@ -2473,6 +2475,12 @@ def main() -> None:
         verify_full_domain_monomial_boundary_model(23, 3, (2, 11)),
         verify_full_domain_monomial_boundary_model(29, 3, (2, 4, 7, 14)),
     )
+    j3_cubic_quotient_floor_models = (
+        verify_full_domain_monomial_boundary_model(19, 3, (2, 3, 6, 9)),
+        verify_full_domain_monomial_boundary_model(31, 3, (2, 3, 5, 6, 10, 15)),
+        verify_full_domain_monomial_boundary_model(37, 3, (2, 3, 4, 6, 9, 12, 18)),
+        verify_full_domain_monomial_boundary_model(43, 3, (2, 3, 6, 7, 14, 21)),
+    )
     j4_residual_product_floor_models = (
         verify_full_domain_monomial_boundary_model(19, 4, (2, 3, 6, 9)),
         verify_full_domain_monomial_boundary_model(23, 4, (2, 11)),
@@ -2502,6 +2510,16 @@ def main() -> None:
             raise AssertionError("j=3 cube-bijective floor had quotient charge")
         if model["residual_product_fibers"] != model["p"] - 1:
             raise AssertionError("j=3 cube-bijective floor was not field-sized")
+    j3_cubic_exception = next(
+        model for model in j3_cubic_quotient_floor_models if model["p"] == 19
+    )
+    if j3_cubic_exception["residual_product_fibers"] != 12:
+        raise AssertionError("j=3 cubic-character exception changed")
+    for model in j3_cubic_quotient_floor_models:
+        if (model["p"] - 1) % 3 or model["j"] != 3:
+            raise AssertionError("j=3 cubic-character floor model had wrong parameters")
+        if model["p"] >= 31 and model["residual_product_fibers"] != model["p"] - 1:
+            raise AssertionError("j=3 cubic-character floor was not field-sized")
     j4_residual_product_floor_models = (
         next(model for model in monomial_boundary_models if model["p"] == 17 and model["j"] == 4),
         *j4_residual_product_floor_models,
@@ -2552,6 +2570,12 @@ def main() -> None:
         "j3_bijective_cube_floor: "
         f"primes={','.join(str(model['p']) for model in j3_bijective_cube_floor_models)} "
         f"field_sized_cases={len(j3_bijective_cube_floor_models)}"
+    )
+    print(
+        "j3_cubic_quotient_floor: "
+        f"small_exception_p={j3_cubic_exception['p']} "
+        f"exception_residual_products={j3_cubic_exception['residual_product_fibers']} "
+        f"field_sized_primes={','.join(str(model['p']) for model in j3_cubic_quotient_floor_models if model['p'] >= 31)}"
     )
     print(
         "j4_residual_product_floor: "

@@ -874,6 +874,42 @@ anchor `xi=0` carries all `p-1` nonzero slopes for every prime
 `p >= 11`, `p == 2 mod 3`.  The verifier audits this infinite-family theorem
 at `p=11,17,23,29`.
 
+When `p == 1 mod 3`, the size-`3` quotient family is present, but the residual
+image is still field-sized for all `p >= 31`.  Let `H=(F_p^*)^3`, and fix a
+cubic character `psi` with kernel `H`.  For a target cube coset `gamma H`,
+the number of `r in F_p` with
+
+```text
+-r(1+r) in gamma H
+```
+
+is at least
+
+```text
+(p-2-2sqrt(p))/3.
+```
+
+Indeed, the two roots `r=0,-1` give the `p-2` main term, and the two
+nontrivial cubic-character sums
+
+```text
+sum_r psi(-r(1+r)/gamma),     sum_r psi^2(-r(1+r)/gamma)
+```
+
+are each bounded by `sqrt(p)` by the degree-two multiplicative-character Weil
+bound.  The forbidden normalized parameters are only
+
+```text
+r in {1,-2,-1/2,omega,omega^2},
+```
+
+where the first three give repeated roots and `omega,omega^2` give the charged
+quotient triple.  Since `(p-2-2sqrt(p))/3 > 5` for `p>=31`, every cube coset
+has a residual representative, hence the residual product image is all of
+`F_p^*`.  The verifier audits the first saturated cases `p=31,37,43` and
+records `p=19` as an additional small exception beyond the existing `(13,3)`
+audit row; at `p=19`, the residual image has only `12` products.
+
 For `j=4`, the normalized product image is a binary cubic modulo fourth
 powers.  Every zero-sum four-subset can be scaled and ordered as
 
@@ -1464,6 +1500,10 @@ enumerates small cyclic-domain cases.  For each case it:
 - asserts the `j=3` cube-bijective field-size floor: for audited primes
   `p=11,17,23,29` with `p == 2 mod 3`, there is no size-`3` quotient charge
   and the residual product image is all of `F_p^*`;
+- asserts the `j=3` cubic-character field-size floor: for `p == 1 mod 3`,
+  the note proves residual product saturation for `p>=31`, and the verifier
+  audits `p=31,37,43`, with small exceptions recorded by the existing `(13,3)`
+  row and by the added `p=19` row;
 - checks the `j=4` product-coset reduction: every zero-sum quadruple
   normalizes to `{1,r,s,-1-r-s}`, with product image the fourth-power closure
   of the binary cubic `-rs(1+r+s)`;

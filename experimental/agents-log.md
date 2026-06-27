@@ -30,6 +30,26 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-27 - M1 j=3 cubic-character residual floor
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/m1/m1_all_line_hankel_aperiodic_packing.md`,
+  `experimental/scripts/verify_m1_all_line_hankel_aperiodic.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT / EXPERIMENTAL.
+- **What is being added:** For primes `p == 1 mod 3`, after charging the
+  size-`3` quotient triples, the `j=3` full-domain monomial boundary residual
+  product image is all of `F_p^*` for `p>=31`.  The proof uses cubic
+  characters applied to `-r(1+r)` and excludes only five normalized parameters;
+  the verifier audits `p=31,37,43` and records `p=19` as an additional small
+  exception beyond the existing `(13,3)` audit row.
+- **How it is useful:** Together with the cube-bijective case, this completes
+  the `j=3` fixed-anchor field-size floor except for explicit small primes:
+  one external anchor carries all nonzero residual slopes in both congruence
+  classes for large enough `p`.
+- **What to do next:** Use the completed `j=3` and `j=4` floors as sharp
+  lower-bound targets for any positive fixed-anchor M1 product-image theorem.
+
 ### 2026-06-27 - M1 quartic pair-product proof audit
 
 - **Agent/model:** Codex.
