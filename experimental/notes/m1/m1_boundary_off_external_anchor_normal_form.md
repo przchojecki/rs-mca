@@ -4148,6 +4148,105 @@ Applied to `z=Z_w^(r)(Q)`, these are exactly the rows of
 (ShiftFinite_r).  The infinity case says that the first `t+r-1` entries of
 `Z_w^(r)(Q)` vanish, which is exactly `H_{t+r-1,c-1}(w)Q=0`.
 
+## Corollary 40.2: Consecutive First-Difference Charges Have No Extra Parameter Loss
+
+Keep `0<=b<c` and let `r>=1`.  Let `S` denote the syndrome shift
+`(S w)_a=w_{a+1}`.  Define the two stacked endpoint maps on degree-`<c`
+directions by
+
+```text
+B^(r)(Q)=(H_{t+r-1,c-1}(u)Q, H_{t+r-1,c-1}(v)Q),
+A^(r)(Q)=(H_{t+r-1,c-1}(S u)Q, H_{t+r-1,c-1}(S v)Q).
+```
+
+For `theta in F`, put
+
+```text
+J_theta^(r)=A^(r)-theta B^(r),
+```
+
+equivalently
+
+```text
+J_theta^(r)(Q)=
+  (H_{t+r-1,c-1}(Delta_theta u)Q,
+   H_{t+r-1,c-1}(Delta_theta v)Q).
+```
+
+Write
+
+```text
+d_theta^(r)=dim ker J_theta^(r).
+```
+
+The bad first-difference parameter set
+
+```text
+Theta_{r,>b}={ theta in F : d_theta^(r)>b }
+```
+
+has the following dichotomy.
+
+```text
+finite first-difference alternative:
+  |Theta_{r,>b}| <= c-b;
+
+persistent first-difference alternative:
+  d_theta^(r)>b for every theta.
+```
+
+More precisely, if some `(c-b) x (c-b)` minor of `J_theta^(r)` is not the zero
+polynomial in `theta`, the finite alternative holds.  If every such minor
+vanishes identically, then both stacked endpoint maps have direction dimension
+`>b`:
+
+```text
+dim ker A^(r)>b,        dim ker B^(r)>b.
+```
+
+In the persistent case there are `b+1` independent moving first-difference
+kernels over `F(theta)`.  For a single nonzero moving kernel
+
+```text
+Q(theta)=q_0+q_1 theta+...+q_D theta^D,
+```
+
+after dividing by the first nonzero power of `theta` if necessary, its
+coefficients satisfy
+
+```text
+A^(r) q_0 = 0,
+A^(r) q_i - B^(r) q_{i-1} = 0        for 1<=i<=D,
+B^(r) q_D = 0.                                      (DiffLadder_r)
+```
+
+Thus the finite shift-persistent common-image ledgers from Corollary 40.1
+also have no multiplicative parameter loss under consecutive frontier descent:
+at each depth the finite exceptional `theta` cost is at most `c-b`, unless the
+deeper ordinary and shifted endpoint intersections are themselves high
+dimensional.
+
+### Proof
+
+The affine form `J_theta^(r)=A^(r)-theta B^(r)` follows directly from
+
+```text
+Delta_theta w = S w - theta w.
+```
+
+The condition `d_theta^(r)>b` is equivalent to `rank J_theta^(r)<c-b`, hence
+to the vanishing of all `(c-b) x (c-b)` minors.  Each minor is a polynomial in
+`theta` of degree at most `c-b`.
+
+If one minor is nonzero, it has at most `c-b` roots.  If all such minors vanish
+identically, then the constant and top-degree coefficients imply that all
+`(c-b) x (c-b)` minors of both `A^(r)` and `B^(r)` vanish.  Hence both stacked
+endpoint maps have kernel dimension greater than `b`.
+
+The moving-kernel and coefficient-ladder statements are the same
+rank-nullity-over-`F(theta)` argument as in Corollary 38.2, applied to
+`A^(r)-theta B^(r)`.
+
 ## Corollary 41: The Global Common-Image Ledger Is Endpoint-Only
 
 Let `GCI` be the set of monic degree-`c` split core locators `L` for which
@@ -6780,6 +6879,9 @@ have small dimension without a separate endpoint or quotient-periodic charge.
 Corollary 40.1 shows the same endpoint-only common-image reduction for
 consecutive shift stacks; it does not bound the resulting deeper endpoint,
 first-difference, or infinity endpoint ledgers.
+Corollary 40.2 gives the finite/persistent dichotomy for the resulting
+first-difference parameters; it does not prove the ordinary or shifted stacked
+endpoint maps are low-dimensional in the persistent alternative.
 Corollary 41 packages the common-image branch into endpoint-type ledgers; it
 does not prove the endpoint rank hypotheses needed for the displayed
 `(q+2)binom(n,b)` bound. Corollary 42 packages the globally full core ledger

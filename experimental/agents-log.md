@@ -232,7 +232,11 @@ Keep entries concise and link to the relevant files.
   now stable under the same consecutive shifts: the sliding space in
   `F^{t+r}` is nonzero only on the same `q+1` extended geometric shift lines,
   so off that curve the stack is the deeper endpoint intersection and on the
-  curve it is a first-difference or infinity endpoint ledger.  The
+  curve it is a first-difference or infinity endpoint ledger.  The finite
+  first-difference parameters have the same determinant dichotomy:
+  `J_theta^(r)` has at most `c-b` high-dimensional parameters unless the
+  ordinary and shifted stacked endpoint maps are both high-dimensional and a
+  moving first-difference ladder appears.  The
   common-image three-shift ledger now has the analogous sliding-window
   reduction: for an image line `[y]`, the allowed deeper residuals form a space
   `W_y` of dimension at most one, nonzero only on the `q+1` extended geometric
