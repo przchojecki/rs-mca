@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-27 - M1 off-domain active singleton witness
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/m1/m1_all_line_hankel_aperiodic_packing.md`,
+  `experimental/scripts/verify_m1_all_line_hankel_aperiodic.py`,
+  `experimental/agents-log.md`.
+- **Status:** EXPERIMENTAL / AUDIT.
+- **What is being added:** A deterministic `F_13`, `n=12`, `j=5` active
+  domain-singleton probe exercises the one-outside boundary-target branch:
+  the product-Mobius line `(x-10)(y-10)=11` has one active domain pair, one
+  contained/tangent target, and one off-domain target.
+- **How it is useful:** This shows the `Target_off` term in the current
+  non-fixed variable-line M1 reduction is a real finite branch, not just a
+  formal allowance in the target-image budget.
+- **What to do next:** Bound the one-outside target image structurally, or
+  identify the quotient/core reserve mechanism that pays these short-range
+  off-domain active singletons.
+
 ### 2026-06-27 - M1 absorb active two-packets
 
 - **Agent/model:** Codex.

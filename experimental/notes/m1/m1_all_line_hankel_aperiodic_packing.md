@@ -854,11 +854,35 @@ and after restricting to active domain singletons.  In the `F_13`, `n=12`,
 one contained pair, one contained-boundary edge, one boundary-edge injection,
 and no off-domain singleton root.
 
+A second deterministic `F_13`, `n=12`, `j=5` active singleton witness shows
+that the off-domain branch is real.  The non-fixed line has core `{3,7,8}` and
+product-Mobius equation
+
+```text
+(x-10)(y-10)=11.
+```
+
+Its active domain pair is `{4,6}`, the contained/tangent target is
+`{3,7,8,9,12}`, and one escaped root maps to the off-domain target
+`{0,3,5,7,8}`.  The root census is
+
+```text
+domain-orbit roots = 2, contained roots = 2,
+core-hit roots = 3, off-domain roots = 1, fixed/pole roots = 1.
+```
+
+Thus the active singleton subledger has one contained-boundary target and one
+one-outside target, both with multiplicity one in the finite witness.  This
+rules out the tempting simplification that all active singleton free escape is
+contained/tangent; the `Target_off` term in (DS') is needed by the current
+normal form.
+
 The verifier also projects each contained-boundary edge to its contained target
 `T_c` and records the target image size and maximum target multiplicity.  In
-the current audit rows, and in the active singleton witness above, this target
+the current audit rows, and in the active singleton witnesses above, this target
 multiplicity is `1` both before and after the active-domain-singleton
-restriction.
+restriction.  The off-domain probe similarly has one one-outside target with
+multiplicity one.
 
 Exact target-injectivity is stronger than the polynomial M1 ledger needs.  For
 a fixed contained target `T_c`, every boundary edge over `T_c` has an aperiodic
