@@ -30,6 +30,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-27 - M1 general zero-sum product normal form
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/m1/m1_all_line_hankel_aperiodic_packing.md`,
+  `experimental/scripts/verify_m1_all_line_hankel_aperiodic.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT / EXPERIMENTAL.
+- **What is being added:** The full-domain monomial boundary model now has a
+  general normalized product theorem: every zero-sum `j`-subset scales to
+  `{1,r_1,...,r_{j-2},-1-sum r_i}`, so its product image is the `j`th-power
+  closure of `-r_1...r_{j-2}(1+sum r_i)`.  The note also records the general
+  additive-character count
+  `(binom(p-1,j)+(p-1)(-1)^j)/p` for zero-sum `j`-subsets of `F_p^*`.
+- **How it is useful:** This consolidates the `j=3` quadratic and `j=4`
+  cubic reductions into one reusable fixed-anchor boundary theorem for the M1
+  all-line residue-packing route.
+- **What to do next:** Apply the normal form to bound residual product-coset
+  images after quotient charges, beginning with the binary cubic `j=4` case.
+
 ### 2026-06-27 - M1 quadruple product cubic reduction
 
 - **Agent/model:** Codex.

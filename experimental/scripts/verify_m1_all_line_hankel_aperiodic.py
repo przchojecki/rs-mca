@@ -19,7 +19,8 @@ arbitrary-line probe exercises the rank-one zero-determinant branch.
 from __future__ import annotations
 
 from dataclasses import dataclass
-from itertools import combinations
+from itertools import combinations, product as cartesian_product
+from math import comb, factorial
 
 
 def inv_mod(x: int, p: int) -> int:
@@ -2178,6 +2179,31 @@ def verify_full_domain_monomial_boundary_model(
     zero_sum_product_cosets = (
         len(zero_sum_product_set) // len(j_power_subgroup) if zero_sum_product_set else 0
     )
+    signed_count_correction = p - 1 if j % 2 == 0 else -(p - 1)
+    expected_general_zero_sum = (comb(p - 1, j) + signed_count_correction) // p
+    if zero_sum_locators != expected_general_zero_sum:
+        raise AssertionError("general zero-sum boundary count formula failed")
+    normalized_parameter_count = 0
+    normalized_product_values: set[int] = set()
+    for parameters in cartesian_product(domain, repeat=j - 2):
+        final_parameter = (-1 - sum(parameters)) % p
+        normalized_roots = (1, *parameters, final_parameter)
+        if final_parameter and len(set(normalized_roots)) == j:
+            normalized_parameter_count += 1
+            normalized_product = final_parameter
+            for parameter in parameters:
+                normalized_product = normalized_product * parameter % p
+            normalized_product_values.add(normalized_product)
+    expected_normalized_parameters = factorial(j) * zero_sum_locators // (p - 1)
+    if normalized_parameter_count != expected_normalized_parameters:
+        raise AssertionError("general normalized zero-sum parameter count failed")
+    normalized_product_image = {
+        value * power % p
+        for value in normalized_product_values
+        for power in j_power_subgroup
+    }
+    if zero_sum_product_set != normalized_product_image:
+        raise AssertionError("general normalized product image failed")
     if j == 4 and 2 in charged_fiber_sizes:
         j4_cubic_parameters = {
             (r, s)
@@ -2252,6 +2278,8 @@ def verify_full_domain_monomial_boundary_model(
         "zero_sum_locators": zero_sum_locators,
         "zero_sum_product_fibers": len(zero_sum_product_counts),
         "zero_sum_product_cosets": zero_sum_product_cosets,
+        "normalized_parameters": normalized_parameter_count,
+        "normalized_product_values": len(normalized_product_values),
         "quotient_zero_sum_locators": quotient_zero_sum_locators,
         "quotient_product_fibers": quotient_product_fibers,
         "quotient_product_cosets": quotient_product_cosets,
@@ -2333,6 +2361,8 @@ def main() -> None:
             f"zero_sum_locators={model['zero_sum_locators']} "
             f"zero_sum_product_fibers={model['zero_sum_product_fibers']} "
             f"zero_sum_product_cosets={model['zero_sum_product_cosets']} "
+            f"normalized_parameters={model['normalized_parameters']} "
+            f"normalized_product_values={model['normalized_product_values']} "
             f"quotient_zero_sum_locators={model['quotient_zero_sum_locators']} "
             f"quotient_product_fibers={model['quotient_product_fibers']} "
             f"quotient_product_cosets={model['quotient_product_cosets']} "

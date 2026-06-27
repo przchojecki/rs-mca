@@ -773,8 +773,27 @@ In the audited rows, the residual product images decompose as follows:
 (p,j)=(17,3):  |(F_p^*)^j|=16,  1 residual coset.
 ```
 
-For `j=3`, the product-coset problem is one-dimensional.  Every zero-sum
-triple can be scaled to
+More generally, the full zero-sum product image has a normalized
+`(j-2)`-variable form.  Every zero-sum `j`-subset can be scaled and ordered as
+
+```text
+T = lambda {1,r_1,...,r_{j-2},-1-r_1-...-r_{j-2}},
+```
+
+where the displayed `j` elements are nonzero and pairwise distinct.  On this
+allowed parameter set,
+
+```text
+prod(T) = lambda^j(-r_1...r_{j-2}(1+r_1+...+r_{j-2})).       (EA4)
+```
+
+Therefore the full zero-sum product image is exactly the `j`th-power closure
+of this normalized product map.  The verifier asserts this uniform normal form
+in every audited full-domain monomial row, and then checks the low-dimensional
+specializations below.
+
+For `j=3`, the normalized product-coset problem is one-dimensional.  Every
+zero-sum triple can be scaled to
 
 ```text
 T = lambda {1,r,-1-r}.
@@ -789,7 +808,7 @@ r in {-1,1,-2,-1/2}.
 For the remaining parameters,
 
 ```text
-prod(T) = lambda^3(-r(1+r)).        (EA4)
+prod(T) = lambda^3(-r(1+r)).        (EA5)
 ```
 
 Thus the full zero-sum product image is exactly the cube-closure of the
@@ -808,8 +827,8 @@ size-`3` quotient charge leaves one residual cube coset.  In the audited
 bijective, so the single external anchor already sees all `16` nonzero
 products.
 
-For `j=4`, the analogous normalized product image is a binary cubic modulo
-fourth powers.  Every zero-sum four-subset can be scaled and ordered as
+For `j=4`, the normalized product image is a binary cubic modulo fourth
+powers.  Every zero-sum four-subset can be scaled and ordered as
 
 ```text
 T = lambda {1,r,s,-1-r-s}.
@@ -824,7 +843,7 @@ For `r,s in F_p^*`, the allowed parameter set is cut out by
 and on this set
 
 ```text
-prod(T) = lambda^4(-rs(1+r+s)).       (EA5)
+prod(T) = lambda^4(-rs(1+r+s)).       (EA6)
 ```
 
 The ordered parameter count is
@@ -846,8 +865,27 @@ charged image.  Hence quotient charging is a locator-level ledger operation;
 the residual boundary theorem must bound the product image of the locators
 that remain, not subtract charged product values from the cubic image.
 
-The same full-domain model has closed zero-sum counts in the audited
-small-slack cases.  For triples,
+The same full-domain model has a closed zero-sum count for every `j`.  For
+`0 <= j <= p-1`,
+
+```text
+#{T subset F_p^*: |T|=j, sum(T)=0}
+  = (binom(p-1,j) + (p-1)(-1)^j)/p.       (EA7)
+```
+
+Indeed, averaging over additive characters gives the trivial-character term
+`binom(p-1,j)`.  For every nontrivial additive character `psi`, the coefficient
+of `Y^j` in
+
+```text
+prod_{x in F_p^*}(1+Y psi(x))
+```
+
+is `(-1)^j`, because after adjoining the missing `x=0` factor one has
+`prod_{x in F_p}(1+Y psi(x))=1+Y^p`.  This proves (EA7).  The verifier asserts
+this general formula in every audited full-domain monomial row.
+
+Specializing (EA7) to triples gives
 
 ```text
 #{T subset F_p^*: |T|=3, sum(T)=0} = (p-1)(p-5)/6.
@@ -857,7 +895,7 @@ Indeed the number of zero-sum three-subsets of `F_p` is
 `(p-1)(p-2)/6`, and the triples containing `0` are exactly
 `{0,a,-a}`, giving `(p-1)/2` exclusions.
 
-For four-subsets,
+Specializing (EA7) to four-subsets gives
 
 ```text
 #{T subset F_p^*: |T|=4, sum(T)=0}
@@ -1306,15 +1344,18 @@ enumerates small cyclic-domain cases.  For each case it:
   the product image of the deleted roots;
 - verifies the `j`th-power coset symmetry of the charged and residual product
   images in that family;
+- checks the general full-domain zero-sum product normal form: after scaling
+  one root to `1`, the product image is the `j`th-power closure of the
+  normalized `(j-2)`-variable map;
 - checks the `j=3` product-coset reduction: every zero-sum triple normalizes to
   `{1,r,-1-r}`, the product image is the cube-closure of `-r(1+r)`, and an
   active size-`3` quotient charge has cube-subgroup product image;
 - checks the `j=4` product-coset reduction: every zero-sum quadruple
   normalizes to `{1,r,s,-1-r-s}`, with product image the fourth-power closure
   of the binary cubic `-rs(1+r+s)`;
-- asserts the closed zero-sum boundary counts for the `j=3` and `j=4`
-  full-domain monomial cases, including the residual count after antipodal
-  quotient charging;
+- asserts the general additive-character count for zero-sum `j`-subsets of
+  `F_p^*`, including the `j=3` and `j=4` specializations and the residual
+  count after antipodal quotient charging;
 - checks the `j=4` antipodal quotient charge in that family: quotient-charged
   zero-sum four-subsets are exactly unions `{a,-a,b,-b}`, whose products form
   the square subgroup;
