@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-27 - M1 j=4 residual field-size floor
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/m1/m1_all_line_hankel_aperiodic_packing.md`,
+  `experimental/scripts/verify_m1_all_line_hankel_aperiodic.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT / EXPERIMENTAL.
+- **What is being added:** For every prime `p>=17`, the full-domain monomial
+  boundary model with `j=4` has residual product image all of `F_p^*` after
+  the antipodal quotient family is charged.  The proof uses a pair-product
+  character-sum lower bound for `p>=53`, and the verifier audits
+  `p=17,19,23,29,31,37,41,43,47`.
+- **How it is useful:** This upgrades the `j=4` fixed-anchor floor from a
+  finite `F_17` example to an infinite theorem: one external anchor can carry
+  `p-1` residual slopes even after quotient-periodic locators are removed.
+- **What to do next:** Convert the floor into the positive target scale for a
+  general fixed-anchor product-image bound in the M1 residue-packing theorem.
+
 ### 2026-06-27 - M1 j=3 cube-bijective field-size floor
 
 - **Agent/model:** Codex.

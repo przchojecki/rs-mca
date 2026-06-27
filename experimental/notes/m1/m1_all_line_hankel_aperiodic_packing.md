@@ -912,6 +912,49 @@ charged image.  Hence quotient charging is a locator-level ledger operation;
 the residual boundary theorem must bound the product image of the locators
 that remain, not subtract charged product values from the cubic image.
 
+For `j=4`, the residual product image is in fact field-sized for every
+prime `p >= 17` once the antipodal quotient family is charged.  We prove this
+by a pair-product construction for large `p`, and audit the remaining finite
+range.
+
+Let
+
+```text
+A={x(1-x): x notin {0,1,1/2}}.
+```
+
+If `y=ab` with `a=x(1-x)` and `b=u(1-u)` in `A`, then
+
+```text
+T={x,1-x,-u,u-1}
+```
+
+has sum zero and product `y`.  It is residual unless the two pairs collide or
+form the antipodal quotient family.  For fixed `y`, the number of ordered
+pair-product representations is at least `p-11-2sqrt(p)`: write `A` as the
+nonzero values with `chi(1-4a)=1`, expand the multiplicative convolution with
+the quadratic character, and apply the Hasse-Weil bound for the associated
+quadratic double cover
+
+```text
+|sum_{a in F_p^*} chi((1-4a)(1-4y/a))| <= 2sqrt(p).
+```
+
+The collision or antipodal exclusions are bounded by `24` ordered pairs: they
+force `u` to be one of the six affine functions
+`-x,x+1,x-1,2-x,x,1-x`, and each resulting product equation has degree at most
+`4` in `x`.  Since `p-11-2sqrt(p)>24` for `p>=53`, every nonzero `y` has a
+non-antipodal zero-sum four-subset of product `y`.  The verifier checks the
+finite remaining primes
+
+```text
+p=17,19,23,29,31,37,41,43,47.
+```
+
+Thus, for every prime `p>=17`, the `j=4` full-domain monomial boundary model
+has residual product image all of `F_p^*` after quotient charging.  One fixed
+external anchor again carries `p-1` nonzero residual slopes.
+
 The same full-domain model has a closed zero-sum count for every `j`.  For
 `0 <= j <= p-1`,
 
@@ -1406,6 +1449,10 @@ enumerates small cyclic-domain cases.  For each case it:
 - checks the `j=4` product-coset reduction: every zero-sum quadruple
   normalizes to `{1,r,s,-1-r-s}`, with product image the fourth-power closure
   of the binary cubic `-rs(1+r+s)`;
+- asserts the `j=4` residual field-size floor after antipodal quotient
+  charging: the residual product image is all of `F_p^*` for every audited
+  prime `17 <= p < 53`, while the note proves the large-prime range by a
+  pair-product character-sum bound;
 - asserts the general additive-character count for zero-sum `j`-subsets of
   `F_p^*`, including the `j=3` and `j=4` specializations and the residual
   count after antipodal quotient charging;

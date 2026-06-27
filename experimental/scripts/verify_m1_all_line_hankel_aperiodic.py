@@ -2310,6 +2310,8 @@ def verify_full_domain_monomial_boundary_model(
             raise AssertionError("j=4 residual boundary count formula failed")
         if quotient_product_fibers != antipodal_pair_count:
             raise AssertionError("j=4 quotient products were not the square subgroup")
+        if p >= 17 and residual_product_set != set(domain):
+            raise AssertionError("j=4 residual product image was not field-sized")
     if j == 3:
         expected_zero_sum = (p - 1) * (p - 5) // 6
         if zero_sum_locators != expected_zero_sum:
@@ -2417,6 +2419,16 @@ def main() -> None:
         verify_full_domain_monomial_boundary_model(23, 3, (2, 11)),
         verify_full_domain_monomial_boundary_model(29, 3, (2, 4, 7, 14)),
     )
+    j4_residual_product_floor_models = (
+        verify_full_domain_monomial_boundary_model(19, 4, (2, 3, 6, 9)),
+        verify_full_domain_monomial_boundary_model(23, 4, (2, 11)),
+        verify_full_domain_monomial_boundary_model(29, 4, (2, 4, 7, 14)),
+        verify_full_domain_monomial_boundary_model(31, 4, (2, 3, 5, 6, 10, 15)),
+        verify_full_domain_monomial_boundary_model(37, 4, (2, 3, 4, 6, 9, 12, 18)),
+        verify_full_domain_monomial_boundary_model(41, 4, (2, 4, 5, 8, 10, 20)),
+        verify_full_domain_monomial_boundary_model(43, 4, (2, 3, 6, 7, 14, 21)),
+        verify_full_domain_monomial_boundary_model(47, 4, (2, 23)),
+    )
     monomial_boundary_floor_cases = 0
     for model in monomial_boundary_models:
         if model["p"] == 17 and model["j"] in (3, 4):
@@ -2436,6 +2448,15 @@ def main() -> None:
             raise AssertionError("j=3 cube-bijective floor had quotient charge")
         if model["residual_product_fibers"] != model["p"] - 1:
             raise AssertionError("j=3 cube-bijective floor was not field-sized")
+    j4_residual_product_floor_models = (
+        next(model for model in monomial_boundary_models if model["p"] == 17 and model["j"] == 4),
+        *j4_residual_product_floor_models,
+    )
+    for model in j4_residual_product_floor_models:
+        if model["p"] < 17 or model["p"] >= 53 or model["j"] != 4:
+            raise AssertionError("j=4 residual product floor audit had wrong parameters")
+        if model["residual_product_fibers"] != model["p"] - 1:
+            raise AssertionError("j=4 residual product floor audit was not field-sized")
     rank_one_probe = verify_rank_one_zero_slice_probe()
     print(
         "F13_order12_j4_t2_boundary_model: "
@@ -2476,6 +2497,11 @@ def main() -> None:
         "j3_bijective_cube_floor: "
         f"primes={','.join(str(model['p']) for model in j3_bijective_cube_floor_models)} "
         f"field_sized_cases={len(j3_bijective_cube_floor_models)}"
+    )
+    print(
+        "j4_residual_product_floor: "
+        f"small_primes={','.join(str(model['p']) for model in j4_residual_product_floor_models)} "
+        f"field_sized_cases={len(j4_residual_product_floor_models)}"
     )
     for summary in summaries:
         case = summary["case"]
