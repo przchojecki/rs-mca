@@ -287,6 +287,56 @@ one unit to the left side of (ST), while the `lambda_L=0` singletons are
 exactly the exceptional term `Z_0`.  This proves (SS).  The displayed
 formula (SZ) follows by substituting the two explicit values of `lambda_L`.
 
+## Residual Ledger Corollary
+
+The previous two lemmas can be stated in the same language as the existing
+M1 support-overlap and quotient ledgers.  Let `A_var` be the active aperiodic
+locator family contributed by non-fixed variable-line packets after the
+root-slice, full-plane, and fixed-root line charges have been removed.  Define
+the different-slope two-exchange codegree subledger
+
+```text
+E_2^neq(A_var)
+  = #{ {T,T'} subset A_var :
+       |T cap T'|=j-2 and z_T != z_T' }.
+```
+
+Let `Boundary_off` be the one-outside target image from the singleton lemma,
+and let `Tangent_cb` be its contained/tangent target image.  Then
+
+```text
+sum_L r_L
+  <= Q_def + 2 E_2^neq(A_var) + Z_0
+     + 2 binom(j,2) binom(n-j,2) |Tangent_cb|
+     + (j-1) binom(n-j+1,2) |Boundary_off|.         (RL)
+```
+
+In particular, if the quotient-defect and contained/tangent ledgers have
+already been budgeted, the uncharged non-fixed variable-line branch is reduced
+to three named objects:
+
+```text
+different-slope active two-exchange codegree,
+one-outside boundary target image,
+short-range zero-lower singletons.
+```
+
+The zero-lower term is absent in the range `n>2j+1`.
+
+### Proof
+
+The packet lemma injects every packet pair into the global different-slope
+two-exchange edge image.  Since both endpoints are active aperiodic locators
+in the family `A_var`, this image is a subset of `E_2^neq(A_var)`.  Hence
+`E_pkt <= E_2^neq(A_var)`.  Substitute this inequality and the singleton
+bound (SS) into the summed packet bound
+
+```text
+sum_L r_L <= S_dom + Q_def + 2 E_pkt.
+```
+
+The final sentence is exactly (SZ).
+
 ## Use In M1
 
 The lemma identifies what the all-line M1 proof still has to do in this branch.
@@ -296,18 +346,20 @@ locators removed by the quotient-periodic ledger.  The only genuinely new
 variable-line object after the first lemma is the active domain-singleton
 family `S_dom`.
 
-The singleton escape/target lemma reduces that family further.  Combining
-(VL) and (SS) gives
+The singleton escape/target lemma reduces that family further, and the
+residual-ledger corollary puts the result into the same support-overlap
+language as the existing M1 average-collinearity ledger:
 
 ```text
 sum_L r_L
-  <= Q_def + 2 E_pkt + Z_0
-     + 2 binom(j,2) binom(n-j,2) |Target_cb|
-     + (j-1) binom(n-j+1,2) |Target_off|.
+  <= Q_def + 2 E_2^neq(A_var) + Z_0
+     + 2 binom(j,2) binom(n-j,2) |Tangent_cb|
+     + (j-1) binom(n-j+1,2) |Boundary_off|.
 ```
 
 Thus the non-fixed variable-line branch has been reduced to quotient defects,
-different-slope packet-edge energy, two explicit singleton target images, and
-the short-range zero-lower class.  The next M1 step should bound the two target
-images in the quotient-aware residue-line ledger; in the range `n>2j+1`, the
+active different-slope two-exchange codegree, charged contained/tangent
+targets, one-outside boundary targets, and the short-range zero-lower class.
+The next M1 step should bound the active codegree and one-outside target image
+inside the quotient-aware residue-line ledger; in the range `n>2j+1`, the
 zero-lower term is absent.
