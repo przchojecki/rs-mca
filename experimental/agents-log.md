@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-27 - M1 unanchored variable-line obstruction
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/m1/m1_all_line_hankel_aperiodic_packing.md`,
+  `experimental/scripts/verify_m1_all_line_hankel_aperiodic.py`,
+  `experimental/agents-log.md`.
+- **Status:** COUNTEREXAMPLE / AUDIT / EXPERIMENTAL.
+- **What is being added:** A deterministic `F_13,n=12,j=5,t=3` probe shows
+  that non-fixed variable proper lines need not be anchored in the core.  The
+  witness has core `{2,11,12}` and product-Mobius line `(x-6)(y-6)=3`, with
+  `6` outside the core.
+- **How it is useful:** This corrects the anchored-only interpretation of the
+  residual packet branch.  The packet and edge-charge reductions survive
+  unchanged, but the next theorem must handle general non-fixed involution
+  packets, not just anchored ones.
+- **What to do next:** Bound unanchored and anchored product-Mobius/fixed-sum
+  packet energy using the different-slope two-exchange ledger.
+
 ### 2026-06-27 - M1 variable-line packet edge charge
 
 - **Agent/model:** Codex.
@@ -45,7 +63,7 @@ Keep entries concise and link to the relevant files.
   determinantal ledger.  The audited same-slope and residual-witness probes
   charge `6` and `3` packet edges respectively.
 - **What to do next:** Use the different-slope two-exchange quadratic-slice
-  ledger to bound the total edge energy of anchored variable-line packets.
+  ledger to bound the total edge energy of non-fixed variable-line packets.
 
 ### 2026-06-27 - M1 anchored variable-line packet bound
 
@@ -60,12 +78,12 @@ Keep entries concise and link to the relevant files.
   noncontained domain-pair points on the product-Mobius or fixed-sum
   involution.
 - **How it is useful:** This replaces the crude field-line size with the
-  actual anchored packet size in the audited `t=3` obstruction.  The verifier
-  now records anchored versus unanchored non-fixed variable lines; all audited
-  examples are anchored, with maximum packet size `3`.
-- **What to do next:** Prove a uniform packing or recursive charge for anchored
-  product-Mobius/fixed-sum packets, and continue searching for unanchored
-  variable-line obstructions.
+  actual packet size in the audited `t=3` obstruction.  At the time of this
+  entry, the audited examples were anchored, with maximum packet size `3`;
+  this anchored-only pattern is superseded by the unanchored obstruction above.
+- **What to do next:** Superseded by the unanchored variable-line obstruction:
+  prove a uniform packing or recursive charge for general non-fixed
+  product-Mobius/fixed-sum packets.
 
 ### 2026-06-27 - M1 variable proper-line residual obstruction
 

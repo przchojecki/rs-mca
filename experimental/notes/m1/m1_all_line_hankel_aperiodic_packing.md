@@ -631,13 +631,11 @@ aperiodic subpacket inside `P_L^nc(R)`.  Hence
 
 This is small as a local line statement; the remaining global M1 problem is to
 sum or recursively charge these one-dimensional packets without losing a
-factor per rung.  In all audited variable proper non-fixed lines so far, the
-involution parameter is anchored in the core `R`: for the product case
-`alpha in R`, and for the fixed-sum case `s_0 in R`.  The verifier records
-anchored versus unanchored variable proper lines and the largest packet
-`|P_L^nc(R)|`.  Both the same-slope probe and the residual witness have maximum
-packet size `3`; the residual witness has one new slope inside such an
-anchored packet.
+factor per rung.  The first two variable-line probes were anchored: for the
+product case `alpha in R`, and for the fixed-sum case `s_0 in R`.  A later
+unanchored probe shows anchoring is not structural.  The verifier therefore
+records anchored versus unanchored variable proper lines and the largest
+packet `|P_L^nc(R)|`, but the packet bound itself does not assume anchoring.
 
 There is a second exact charge on non-fixed variable packets.  Because the
 product-Mobius and fixed-sum models are involutions, two distinct unordered
@@ -663,7 +661,7 @@ same-slope probe the two non-fixed variable packets have size `3` and charge
 `6` different-slope two-exchange edges in total; in the residual witness probe
 the single packet has size `3` and charges `3` such edges.  This reframes the
 remaining residual slope problem as an edge-energy packing question for
-anchored involution packets.
+non-fixed involution packets, including unanchored ones.
 
 ## Different-Slope One-Exchange Quadratic Slice
 
@@ -3029,11 +3027,15 @@ The verifier also records the induced involution packet size.  In the
 same-slope probe, both variable proper non-fixed lines are anchored in their
 cores, have packet size `3`, and leave no new slope after charges.  In the
 residual witness probe, the single product-Mobius variable line is also
-anchored, has packet size `3`, and leaves one new slope.  No audited variable
-proper non-fixed line is currently unanchored.
+anchored, has packet size `3`, and leaves one new slope.  A separate
+unanchored probe has `12` aperiodic locators, `4` aperiodic slopes, no full
+determinant plane, and one variable product-Mobius proper line.  Its core is
+`{2,11,12}`, the line is `s+2p=12`, equivalently `(x-6)(y-6)=3`, and the
+parameter `6` is not in the core.  The packet has three aperiodic slopes
+`{0,2,9}`; the current root charge covers `0`, leaving new slopes `{2,9}`.
 The packet-edge check charges these packets to different-slope two-exchange
 edges: `6` packet edges in the same-slope probe and `3` packet edges in the
-residual witness probe.
+residual witness probe and the unanchored probe respectively.
 
 The `F_13`, `n=12`, `j=4`, `t=2` row is kept as a boundary-only counterexample
 to the tempting squarefree-absorption shortcut.  In all four deterministic

@@ -5297,6 +5297,55 @@ def verify_t3_variable_new_slope_probe() -> dict[str, object]:
     return row
 
 
+def verify_t3_unanchored_variable_line_probe() -> dict[str, object]:
+    case = Case(
+        "F13_order12_j5_t3_unanchored_variable_line_probe",
+        p=13,
+        n=12,
+        j=5,
+        t=3,
+        charged_fiber_sizes=(2, 3, 4, 6),
+        seeds=(),
+    )
+    domain, _, _ = cyclic_domain(case.p, case.n)
+    f_values = (3, 10, 10, 9, 3, 4, 11, 9, 9, 4, 2, 3)
+    g_values = (1, 8, 3, 8, 1, 7, 10, 6, 11, 12, 12, 4)
+    f = dict(zip(domain, f_values, strict=True))
+    g = dict(zip(domain, g_values, strict=True))
+    row = verify_word_pair(case, "unanchored-variable-line-probe", f, g)
+    if row["aperiodic_locators"] != 12:
+        raise AssertionError("unanchored variable-line probe aperiodic count changed")
+    if row["aperiodic_slopes"] != 4:
+        raise AssertionError("unanchored variable-line probe slope count changed")
+    if row["two_exchange_det_full_planes"] != 0:
+        raise AssertionError("unanchored variable-line probe gained a full plane")
+    if row["two_exchange_det_proper_lines"] != 6:
+        raise AssertionError("unanchored variable-line probe proper-line count changed")
+    if row["two_exchange_det_proper_line_product_mobius"] != 1:
+        raise AssertionError("unanchored variable-line probe lost its product-Mobius line")
+    if row["two_exchange_det_proper_line_variable_slope"] != 1:
+        raise AssertionError("unanchored variable-line probe lost its variable line")
+    if row["two_exchange_det_proper_line_variable_aperiodic_slopes"] != 3:
+        raise AssertionError("unanchored variable-line probe aperiodic variable slopes changed")
+    if row["two_exchange_det_proper_line_variable_new_slopes"] != 2:
+        raise AssertionError("unanchored variable-line probe new-slope count changed")
+    if row["two_exchange_det_proper_line_variable_new_slope_max"] != 2:
+        raise AssertionError("unanchored variable-line probe per-line new slopes changed")
+    if row["two_exchange_det_proper_line_variable_nonfixed"] != 1:
+        raise AssertionError("unanchored variable-line probe non-fixed count changed")
+    if row["two_exchange_det_proper_line_variable_anchored"] != 0:
+        raise AssertionError("unanchored variable-line probe became anchored")
+    if row["two_exchange_det_proper_line_variable_unanchored"] != 1:
+        raise AssertionError("unanchored variable-line probe lost its unanchored line")
+    if row["two_exchange_det_proper_line_variable_domain_pair_max"] != 3:
+        raise AssertionError("unanchored variable-line probe domain packet changed")
+    if row["two_exchange_det_proper_line_variable_nonfixed_packet_pair_max"] != 3:
+        raise AssertionError("unanchored variable-line probe packet pair max changed")
+    if row["two_exchange_det_proper_line_variable_nonfixed_packet_pair_checks"] != 3:
+        raise AssertionError("unanchored variable-line probe packet pair count changed")
+    return row
+
+
 def verify_two_exchange_line_geometry_models() -> dict[str, int]:
     p = 13
 
@@ -5415,6 +5464,7 @@ def main() -> None:
     rank_one_probe = verify_rank_one_zero_slice_probe()
     t3_same_slope_probe = verify_t3_same_slope_two_exchange_probe()
     t3_variable_new_slope_probe = verify_t3_variable_new_slope_probe()
+    t3_unanchored_variable_line_probe = verify_t3_unanchored_variable_line_probe()
     line_geometry_models = verify_two_exchange_line_geometry_models()
     print(
         "F13_order12_j4_t2_boundary_model: "
@@ -6121,6 +6171,24 @@ def main() -> None:
         "direct_checks={direct_checks}".format(**t3_variable_new_slope_probe)
     )
     print(
+        "{name} seed={seed}: p={p} n={n} k={k} j={j} t={t} "
+        "aperiodic_locators={aperiodic_locators} "
+        "aperiodic_slopes={aperiodic_slopes} "
+        "two_exchange_different_slope={two_exchange_different_slope_pairs} "
+        "two_exchange_det_proper_lines={two_exchange_det_proper_lines} "
+        "two_exchange_det_proper_line_product_mobius={two_exchange_det_proper_line_product_mobius} "
+        "two_exchange_det_proper_line_variable={two_exchange_det_proper_line_variable_slope} "
+        "two_exchange_det_proper_line_variable_aperiodic_slopes={two_exchange_det_proper_line_variable_aperiodic_slopes} "
+        "two_exchange_det_proper_line_variable_new_slopes={two_exchange_det_proper_line_variable_new_slopes} "
+        "two_exchange_det_proper_line_variable_new_slope_max={two_exchange_det_proper_line_variable_new_slope_max} "
+        "two_exchange_det_proper_line_variable_anchored={two_exchange_det_proper_line_variable_anchored} "
+        "two_exchange_det_proper_line_variable_unanchored={two_exchange_det_proper_line_variable_unanchored} "
+        "two_exchange_det_proper_line_variable_domain_pair_max={two_exchange_det_proper_line_variable_domain_pair_max} "
+        "two_exchange_det_proper_line_variable_nonfixed_packet_pair_max={two_exchange_det_proper_line_variable_nonfixed_packet_pair_max} "
+        "two_exchange_det_proper_line_variable_nonfixed_packet_pair_checks={two_exchange_det_proper_line_variable_nonfixed_packet_pair_checks} "
+        "direct_checks={direct_checks}".format(**t3_unanchored_variable_line_probe)
+    )
+    print(
         "two_exchange_line_geometry_models: "
         f"field={line_geometry_models['field']} "
         f"fixed_root_checks={line_geometry_models['fixed_root_checks']} "
@@ -6131,6 +6199,7 @@ def main() -> None:
         rank_one_probe,
         t3_same_slope_probe,
         t3_variable_new_slope_probe,
+        t3_unanchored_variable_line_probe,
     ]
     max_aperiodic = max(row["aperiodic_slopes"] for row in all_rows)
     max_strict_degree = max(row["aperiodic_max_strict_degree"] for row in all_rows)
@@ -6660,13 +6729,14 @@ def main() -> None:
     )
     max_companion_checks = max(row["quadratic_companion_checks"] for row in all_rows)
     max_rank_one_zero = max(row["zero_det_direction_rank1_slices"] for row in all_rows)
-    total_lines = sum(len(summary["case"].seeds) for summary in summaries) + 3
+    total_lines = sum(len(summary["case"].seeds) for summary in summaries) + 4
     print(
         "m1_all_line_hankel_aperiodic: PASS "
         f"cases={len(summaries)} line_samples={total_lines} "
         f"rank_one_probes=1 "
         f"t3_same_slope_probes=1 "
         f"t3_variable_new_slope_probes=1 "
+        f"t3_unanchored_variable_line_probes=1 "
         f"line_geometry_probes=1 "
         f"max_aperiodic_slopes={max_aperiodic} "
         f"max_one_exchange_pairs={max_one_exchange_pairs} "
