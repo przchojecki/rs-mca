@@ -1760,6 +1760,39 @@ a new `t=2` packing problem: it is charged additively to the one-degree-up
 residual locators.  Thus the non-recursive term still needing a separate M1
 bound is precisely the isolated boundary/escape slope image.
 
+## `t=2` M1 Slope-Image Reduction
+
+Combining the root-slice peeling and the lifted-side recursion gives a single
+conditional reduction for the full `t=2` aperiodic slope image.  Let `Z_root`
+be the slope set of the constant root-slice packets removed by the peeling
+step, let `N_common` be the lifted common-core count above, and let `Z_esc`
+be the isolated escape slope image.  Then
+
+```text
+|AperSlope(f,g;2,j)| <= |Z_root| + (j+1)N_common + |Z_esc|.        (M1R2)
+```
+
+Indeed, every aperiodic locator either lies in a peeled constant root-slice
+packet or survives in `R_res`.  The peeled part contributes only slopes in
+`Z_root`.  The residual part splits by the anchor ledger into lifted faces
+and isolated escapes, and (LR1) bounds the lifted-face slope image by
+`(j+1)N_common` while leaving exactly `Z_esc` as the boundary term.
+
+Thus, in slack two, the all-line aperiodic M1 target has been reduced to three
+separate estimates:
+
+```text
+root-slice slope count        |Z_root|,
+one-degree-up common bases    N_common,
+isolated escape slopes        |Z_esc|.
+```
+
+Bounding these three quantities by `n^B` uniformly, after quotient-periodic
+classes are charged, would prove the desired polynomial aperiodic slope-image
+bound for `t=2`.  The verifier now asserts this reduction directly by
+checking the root/residual slope split and the inequality (M1R2) in every
+audited row.
+
 ## Verifier
 
 The companion verifier
@@ -1836,6 +1869,8 @@ enumerates small cyclic-domain cases.  For each case it:
 - asserts the lifted-side recursion bound
   `|Z_res| <= (j+1)N_common + |Z_esc|`, with `N_common` the audited count of
   one-degree-up common bases;
+- asserts the total `t=2` slope-image reduction
+  `|AperSlope| <= |Z_root| + (j+1)N_common + |Z_esc|`;
 - checks the `F_13`, `n=12`, `j=4`, `t=2` boundary-only row as a counterexample
   to absorbing all residual slopes into squarefree lifted-core fibers;
 - checks the same boundary-only row as a counterexample to bounding boundary

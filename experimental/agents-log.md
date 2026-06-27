@@ -30,6 +30,27 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-27 - M1 slack-two slope-image reduction
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/m1/m1_all_line_hankel_aperiodic_packing.md`,
+  `experimental/scripts/verify_m1_all_line_hankel_aperiodic.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT / EXPERIMENTAL.
+- **What is being added:** The slack-two aperiodic slope image is reduced to
+  three explicit terms:
+  `|AperSlope(f,g;2,j)| <= |Z_root| + (j+1)N_common + |Z_esc|`.
+  Here `Z_root` is the constant root-slice slope set, `N_common` is the
+  one-degree-up lifted common-base count, and `Z_esc` is the isolated escape
+  slope image.
+- **How it is useful:** This packages the current M1 route as a concrete
+  conditional theorem: bounding the root-slice slopes, lifted common bases,
+  and isolated escape slopes after quotient charging would prove the desired
+  polynomial all-line aperiodic packing bound for `t=2`.
+- **What to do next:** Attack the three terms separately, with priority on
+  quotient-aware estimates for isolated escapes and reserve-scale bounds for
+  `N_common`.
+
 ### 2026-06-27 - M1 fixed-anchor rank-stratified incidence cover
 
 - **Agent/model:** Codex.
