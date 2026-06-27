@@ -248,10 +248,14 @@ Keep entries concise and link to the relevant files.
   systems `D_theta` now have their own finite-exception/persistent dichotomy:
   either at most `c-b` parameters have direction dimension `>b`, or
   `J_theta=J_+-theta J_0` is persistently low-rank with moving kernels obeying
-  the endpoint ladder `J_+q_0=0`, `J_+q_i-J_0q_{i-1}=0`, `J_0q_D=0`.
+  the endpoint ladder `J_+q_0=0`, `J_+q_i-J_0q_{i-1}=0`, `J_0q_D=0`.  A final
+  endpointized charge reduction now shows that if the four base endpoint spaces
+  `ker H_{t+2,c-1}(u)`, `ker H_{t+2,c-1}(v)`, `ker J_0`, and `ker J_+` have
+  dimension `<=b`, then both persistent alternatives are impossible and the
+  finite bad-parameter sets satisfy `|Lambda_{K,>b}|, |Theta_{D,>b}| <= c-b`.
 - **What to do next:** Bound or charge the unique-neighbor nondegenerate
-  star-free shadow ledger, then charge the remaining global ruled ledgers: the
-  endpointized finite-exception and moving-certificate loci, to
+  star-free shadow ledger, then charge the four base endpoint spaces, the
+  finite-exception endpoint systems, and the moving-certificate loci to
   fixed-slope/root-slice, quotient-periodic, endpoint, or active-codegree
   ledgers.
 

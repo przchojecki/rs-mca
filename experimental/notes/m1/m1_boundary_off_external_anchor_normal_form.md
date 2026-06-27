@@ -4188,6 +4188,86 @@ and comparing powers of `theta` gives (FDEL).  If the first nonzero coefficient
 of `Q` occurs at positive degree, divide by the corresponding power of
 `theta` first.
 
+## Corollary 45: Endpointized Charges Reduce To Four Base Endpoint Checks
+
+Put `c=m-1` and fix `0<=b<c`.  Let
+
+```text
+Lambda_{K,>b}
+ = { lambda in F : dim ker H_{t+2,c-1}(v-lambda u)>b },
+```
+
+and let `Theta_{D,>b}` be the first-difference bad-parameter set from
+Corollary 44.  Also define the shifted endpoint-intersection matrix
+
+```text
+J_+ Q=(H_{t+1,c-1}(u^+)Q, H_{t+1,c-1}(v^+)Q),
+```
+
+and keep
+
+```text
+J_0 Q=(H_{t+1,c-1}(u)Q, H_{t+1,c-1}(v)Q).
+```
+
+Assume the four base endpoint direction spaces satisfy
+
+```text
+dim ker H_{t+2,c-1}(u) <= b,
+dim ker H_{t+2,c-1}(v) <= b,
+dim ker J_0            <= b,
+dim ker J_+            <= b.                         (BaseEP)
+```
+
+Then the persistent fixed-kernel and persistent first-difference alternatives
+are impossible, and
+
+```text
+|Lambda_{K,>b}| <= c-b,        |Theta_{D,>b}| <= c-b.               (EPFinite)
+```
+
+Consequently, after charging the endpointized finite-exception systems indexed
+by
+
+```text
+Lambda_{K,>b} union Theta_{D,>b},
+```
+
+all remaining endpointized systems in Corollary 42 have direction dimension at
+most `b`.  Thus Corollaries 42 and 43 apply to the uncharged globally full and
+all-anchor full-core ledgers.
+
+### Proof
+
+By Corollaries 37 and 38, the fixed-kernel bad slopes are exactly the values of
+`lambda` for which the direction space of
+
+```text
+H_{t+2,c-1}(v-lambda u)
+```
+
+has dimension `>b`.  If the persistent fixed-kernel alternative occurred, then
+Corollary 37 would force both endpoint systems
+
+```text
+H_{t+2,c-1}(u),        H_{t+2,c-1}(v)
+```
+
+to have direction dimension `>b`, contradicting (BaseEP).  Hence the finite
+alternative holds, and `|Lambda_{K,>b}|<=c-b`.
+
+For the first-difference systems, Corollary 44 says that either
+`|Theta_{D,>b}|<=c-b`, or the pencil `J_theta=J_+-theta J_0` is persistently
+low-rank.  In the persistent case both `J_0` and `J_+` have direction
+dimension `>b`, again contradicting (BaseEP).  Thus the finite alternative
+holds for `Theta_{D,>b}` as well.
+
+The fixed systems `U`, `V`, and `D_infty=J_0` from Corollary 42 are good by
+(BaseEP).  The parameterized systems `K_lambda` and `D_theta` are good outside
+the finite bad sets just bounded.  Therefore, after those finite exceptional
+systems are charged, every remaining endpointized system in Corollary 42 has
+direction dimension at most `b`, proving the final claim.
+
 ## Non-Claims
 
 This note does not prove
@@ -4297,4 +4377,6 @@ Corollary 43 propagates that endpointized bound to the all-anchor full-core
 incidence; it does not remove the Corollary 25 one-root-loss residual or the
 separate nondegenerate unique-neighbor shadow ledger. Corollary 44 makes the
 first-difference endpoint charges determinantal; it does not rule out the
-persistent first-difference moving-kernel alternative.
+persistent first-difference moving-kernel alternative. Corollary 45 reduces
+the endpointized finite-exception charge to four base endpoint checks; it does
+not prove those base endpoint dimensions are always at most `b`.
