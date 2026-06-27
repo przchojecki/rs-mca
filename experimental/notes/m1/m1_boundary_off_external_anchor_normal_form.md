@@ -4555,6 +4555,66 @@ absent or charged at every depth in `R`, there is no uncharged short-frontier
 failure left, so the additive closure of Corollary 40.5 applies to the
 remaining ledgers.
 
+## Corollary 40.8: Half-Window Frontier Residuals Have Primitive Denominators
+
+Fix a frontier depth `r>=1` and assume
+
+```text
+h<=t+r.                                             (FrontHalf_r)
+```
+
+Then every root-free short-frontier residual from Corollary 40.7 is in the
+half-window Pade range.
+
+More explicitly, for each scalar residual family `u` or `v`, all root-free
+degree-`<h` certificates for that family determine one reduced rational
+function.  Its primitive denominator is reciprocal-domain-pole-free and divides
+every certificate denominator.
+
+For each paired residual family `(u,v)` or `(S u,S v)`, all root-free common
+degree-`<h` certificates determine one reduced vector rational function.  Its
+primitive vector denominator is reciprocal-domain-pole-free and divides every
+common certificate denominator.
+
+If the primitive denominator has degree `delta`, then every certificate
+denominator in the same family lies in the explicit multiplier ledger
+
+```text
+D(T)=D_0(T)M(T),        deg M<=h-1-delta.
+```
+
+The primitive denominator itself remains a valid root-free certificate after
+the multiplier is cancelled.  Thus, in the half-window frontier range, the
+root-free short-frontier residual at depth `r` is a primitive
+reciprocal-domain-pole-free denominator target for one of four objects:
+
+```text
+u,        v,        (u,v),        (S u,S v).
+```
+
+For a finite ladder `R`, the same conclusion holds simultaneously at all
+depths satisfying `h<=t+r`.
+
+### Proof
+
+For the scalar endpoint residuals, the Hankel window length is `s=t+r`.  For
+the ordinary and shifted paired residuals, the window length is `s=t+r-1`.
+Since every certificate has degree `e<h`, the hypothesis `h<=t+r` gives
+
+```text
+e<=h-1<=t+r-1,
+```
+
+so all four residual families are in the half-window range `e<=s`.
+
+Corollary 57 rewrites each recurrence as a truncated rational-denominator
+certificate.  Corollary 58 identifies root-freeness with the absence of
+reciprocal-domain denominator poles.  Corollary 59 gives the common reduced
+scalar or vector rational function and its primitive denominator in the
+half-window range.  Corollaries 60 and 61 give the multiplier ledger and show
+that cancelling a multiplier leaves the primitive denominator as a valid
+certificate.  These arguments are applied independently at each depth `r`.
+
 ## Corollary 41: The Global Common-Image Ledger Is Endpoint-Only
 
 Let `GCI` be the set of monic degree-`c` split core locators `L` for which
@@ -7205,6 +7265,9 @@ root-free recurrence families.
 Corollary 40.7 identifies those root-free recurrence families as the remaining
 short-frontier residual after fixed-root/root-slice charges; it does not prove
 that the root-free residual is empty or small.
+Corollary 40.8 compresses half-window root-free residuals to primitive
+reciprocal-domain-pole-free denominators; it does not bound the number of
+primitive denominators.
 Corollary 41 packages the common-image branch into endpoint-type ledgers; it
 does not prove the endpoint rank hypotheses needed for the displayed
 `(q+2)binom(n,b)` bound. Corollary 42 packages the globally full core ledger

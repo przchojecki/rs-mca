@@ -256,7 +256,11 @@ Keep entries concise and link to the relevant files.
   and a root-free recurrence residual.  Thus, for a finite frontier ladder,
   after fixed-root/root-slice short recurrence pieces are charged, the only
   uncharged obstruction to additive closure is a root-free recurrence in one
-  of those four families at one of the ladder depths.  The
+  of those four families at one of the ladder depths.  In the half-window range
+  `h<=t+r`, each such root-free residual compresses to a primitive
+  reciprocal-domain-pole-free denominator for one of `u`, `v`, `(u,v)`, or
+  `(S u,S v)`, with only the explicit multiplier ledger left for certificates.
+  The
   common-image three-shift ledger now has the analogous sliding-window
   reduction: for an image line `[y]`, the allowed deeper residuals form a space
   `W_y` of dimension at most one, nonzero only on the `q+1` extended geometric
