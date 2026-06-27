@@ -260,8 +260,11 @@ Keep entries concise and link to the relevant files.
   `h<=t+r`, each such root-free residual compresses to a primitive
   reciprocal-domain-pole-free denominator for one of `u`, `v`, `(u,v)`, or
   `(S u,S v)`, with only the explicit multiplier ledger left for certificates.
-  The
-  common-image three-shift ledger now has the analogous sliding-window
+  The ladder charge also sharpens by nesting: if the bottom depth `r_0=min R`
+  satisfies the four short checks, then all deeper checks hold and
+  `E_{r,>b} subset E_{r_0,>b}`, `Theta_{r,>b} subset Theta_{r_0,>b}`; charging
+  the bottom bad sets of total size at most `2h` closes all depths in `R`.
+  The common-image three-shift ledger now has the analogous sliding-window
   reduction: for an image line `[y]`, the allowed deeper residuals form a space
   `W_y` of dimension at most one, nonzero only on the `q+1` extended geometric
   shift lines.  Off that shift curve, `ker C_y^G` is just

@@ -4615,6 +4615,64 @@ half-window range.  Corollaries 60 and 61 give the multiplier ledger and show
 that cancelling a multiplier leaves the primitive denominator as a valid
 certificate.  These arguments are applied independently at each depth `r`.
 
+## Corollary 40.9: Nested Frontier Ladders Charge At The Bottom Rung
+
+Let `R` be a nonempty finite set of positive consecutive-frontier depths, and
+put
+
+```text
+r_0=min R.
+```
+
+Assume the four short frontier checks (ShortFront_r) hold at `r=r_0`.  Then
+they hold at every depth `r in R`.  Moreover the high-dimensional finite
+parameter sets are nested:
+
+```text
+E_{r,>b} subset E_{r_0,>b},
+Theta_{r,>b} subset Theta_{r_0,>b},        r in R.  (NestedBad)
+```
+
+Consequently, after charging only the bottom-rung finite parameter systems
+
+```text
+E_{r_0,>b} union Theta_{r_0,>b},
+```
+
+all uncharged finite fixed-kernel and consecutive common-image frontier
+ledgers at every depth `r in R` have direction dimension at most `b`.  Under
+the bottom short checks this costs at most
+
+```text
+2h
+```
+
+parameter values, not `2h|R|`.  Thus a nested consecutive frontier ladder
+does not merely avoid multiplicative loss; its finite parameter charge is
+paid at the bottom rung.
+
+### Proof
+
+For any syndrome vector `w`, the rows of `H_{t+r_0,h-1}(w)` are a subset of
+the rows of `H_{t+r,h-1}(w)` whenever `r>=r_0`.  Hence injectivity at `r_0`
+implies injectivity at `r`.  The same row-containment applies to the stacked
+maps `B_h^(r)` and `A_h^(r)`.  Therefore (ShortFront_r) holds for all
+`r in R`.
+
+The same row-containment gives kernel inclusions
+
+```text
+ker G_lambda^(r) subset ker G_lambda^(r_0),
+ker J_theta^(r)  subset ker J_theta^(r_0),
+```
+
+for every `r>=r_0`.  If the left-hand kernel has dimension greater than `b`,
+then so does the right-hand kernel, proving (NestedBad).  Corollary 40.4 gives
+`|E_{r_0,>b}|<=h` and `|Theta_{r_0,>b}|<=h`.  After those bottom-rung parameter
+values are charged, the inclusions show that no deeper high-dimensional finite
+parameter system remains.  The common-image ledgers at each depth are then
+closed by Corollary 40.3.
+
 ## Corollary 41: The Global Common-Image Ledger Is Endpoint-Only
 
 Let `GCI` be the set of monic degree-`c` split core locators `L` for which
@@ -7268,6 +7326,8 @@ that the root-free residual is empty or small.
 Corollary 40.8 compresses half-window root-free residuals to primitive
 reciprocal-domain-pole-free denominators; it does not bound the number of
 primitive denominators.
+Corollary 40.9 uses nesting to charge a finite ladder at its bottom rung when
+the bottom short checks hold; it does not prove those bottom short checks.
 Corollary 41 packages the common-image branch into endpoint-type ledgers; it
 does not prove the endpoint rank hypotheses needed for the displayed
 `(q+2)binom(n,b)` bound. Corollary 42 packages the globally full core ledger
