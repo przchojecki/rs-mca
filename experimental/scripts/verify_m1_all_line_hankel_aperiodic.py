@@ -346,6 +346,10 @@ def root_slice_profile(
             "root_slice_residual_anchor_beta0_zero": 0,
             "root_slice_residual_anchor_in_support": 0,
             "root_slice_residual_anchor_outside_domain": 0,
+            "root_slice_residual_external_anchors": 0,
+            "root_slice_residual_external_anchor_values": (),
+            "root_slice_residual_external_anchor_locator_max": 0,
+            "root_slice_residual_external_anchor_slope_max": 0,
             "root_slice_residual_anchor_lift_gate_checks": 0,
             "root_slice_residual_anchor_isolated_checks": 0,
             "root_slice_residual_anchor_projective_lift_checks": 0,
@@ -491,6 +495,8 @@ def root_slice_profile(
     residual_projective_lift_keys: list[tuple[int, ...] | None] = [None] * len(residual_rows)
     residual_projective_lift_squarefree_indices: set[int] = set()
     residual_projective_lift_boundary_indices: set[int] = set()
+    residual_external_anchor_locators: dict[int, int] = {}
+    residual_external_anchor_slopes: dict[int, set[int]] = {}
     residual_anchor_lifted_face_indices: set[int] = set()
     residual_anchor_escape_indices: set[int] = set()
     for idx, (complement, _) in enumerate(residual_rows):
@@ -576,6 +582,12 @@ def root_slice_profile(
             residual_anchor_escape_outside_domain += 1
             residual_anchor_escape_indices.add(idx)
             residual_projective_lift_boundary_indices.add(idx)
+            residual_external_anchor_locators[anchor] = (
+                residual_external_anchor_locators.get(anchor, 0) + 1
+            )
+            residual_external_anchor_slopes.setdefault(anchor, set()).add(
+                residual_rows[idx][1]
+            )
             residual_anchor_offdomain_lift_checks += 1
             if residual_adj[idx]:
                 raise AssertionError("outside-domain anchor escape had a residual neighbor")
@@ -950,6 +962,17 @@ def root_slice_profile(
         "root_slice_residual_anchor_beta0_zero": residual_anchor_escape_beta0_zero,
         "root_slice_residual_anchor_in_support": residual_anchor_escape_in_support,
         "root_slice_residual_anchor_outside_domain": residual_anchor_escape_outside_domain,
+        "root_slice_residual_external_anchors": len(residual_external_anchor_locators),
+        "root_slice_residual_external_anchor_values": tuple(
+            sorted(residual_external_anchor_locators)
+        ),
+        "root_slice_residual_external_anchor_locator_max": max(
+            residual_external_anchor_locators.values(), default=0
+        ),
+        "root_slice_residual_external_anchor_slope_max": max(
+            (len(slopes) for slopes in residual_external_anchor_slopes.values()),
+            default=0,
+        ),
         "root_slice_residual_anchor_lift_gate_checks": residual_anchor_lift_gate_checks,
         "root_slice_residual_anchor_isolated_checks": residual_anchor_isolated_checks,
         "root_slice_residual_anchor_projective_lift_checks": (
@@ -1458,6 +1481,18 @@ def verify_word_pair(
         "root_slice_residual_anchor_outside_domain": (
             root_profile["root_slice_residual_anchor_outside_domain"]
         ),
+        "root_slice_residual_external_anchors": (
+            root_profile["root_slice_residual_external_anchors"]
+        ),
+        "root_slice_residual_external_anchor_values": (
+            root_profile["root_slice_residual_external_anchor_values"]
+        ),
+        "root_slice_residual_external_anchor_locator_max": (
+            root_profile["root_slice_residual_external_anchor_locator_max"]
+        ),
+        "root_slice_residual_external_anchor_slope_max": (
+            root_profile["root_slice_residual_external_anchor_slope_max"]
+        ),
         "root_slice_residual_anchor_lift_gate_checks": (
             root_profile["root_slice_residual_anchor_lift_gate_checks"]
         ),
@@ -1686,6 +1721,15 @@ def verify_case(case: Case) -> dict[str, object]:
         "max_root_slice_residual_anchor_outside_domain": max(
             row["root_slice_residual_anchor_outside_domain"] for row in rows
         ),
+        "max_root_slice_residual_external_anchors": max(
+            row["root_slice_residual_external_anchors"] for row in rows
+        ),
+        "max_root_slice_residual_external_anchor_locator": max(
+            row["root_slice_residual_external_anchor_locator_max"] for row in rows
+        ),
+        "max_root_slice_residual_external_anchor_slope": max(
+            row["root_slice_residual_external_anchor_slope_max"] for row in rows
+        ),
         "max_root_slice_residual_anchor_lift_gate_checks": max(
             row["root_slice_residual_anchor_lift_gate_checks"] for row in rows
         ),
@@ -1822,6 +1866,20 @@ def verify_boundary_only_projective_lift_probe(summary: dict[str, object]) -> No
             != row["root_slice_residual_locators"]
         ):
             raise AssertionError("boundary-only probe was not purely off-domain")
+        if row["root_slice_residual_external_anchors"] != 1:
+            raise AssertionError("boundary-only probe did not have a single external anchor")
+        if row["root_slice_residual_external_anchor_values"] != (0,):
+            raise AssertionError("boundary-only probe did not use external anchor 0")
+        if (
+            row["root_slice_residual_external_anchor_locator_max"]
+            != row["root_slice_residual_locators"]
+        ):
+            raise AssertionError("boundary-only probe did not concentrate on one anchor")
+        if (
+            row["root_slice_residual_external_anchor_slope_max"]
+            != row["root_slice_residual_slopes"]
+        ):
+            raise AssertionError("boundary-only probe slopes did not share one anchor")
         if (
             row["root_slice_residual_escape_new_slopes"]
             != row["root_slice_residual_slopes"]
@@ -1917,6 +1975,9 @@ def main() -> None:
                 "root_residual_anchor_beta0_zero={root_slice_residual_anchor_beta0_zero} "
                 "root_residual_anchor_in_support={root_slice_residual_anchor_in_support} "
                 "root_residual_anchor_outside_domain={root_slice_residual_anchor_outside_domain} "
+                "root_residual_external_anchors={root_slice_residual_external_anchors} "
+                "root_residual_external_anchor_locator_max={root_slice_residual_external_anchor_locator_max} "
+                "root_residual_external_anchor_slope_max={root_slice_residual_external_anchor_slope_max} "
                 "root_residual_anchor_lift_checks={root_slice_residual_anchor_lift_gate_checks} "
                 "root_residual_anchor_isolated_checks={root_slice_residual_anchor_isolated_checks} "
                 "root_residual_anchor_projective_lift_checks={root_slice_residual_anchor_projective_lift_checks} "
@@ -2011,6 +2072,9 @@ def main() -> None:
             f"max_root_residual_anchor_beta0_zero={summary['max_root_slice_residual_anchor_beta0_zero']} "
             f"max_root_residual_anchor_in_support={summary['max_root_slice_residual_anchor_in_support']} "
             f"max_root_residual_anchor_outside_domain={summary['max_root_slice_residual_anchor_outside_domain']} "
+            f"max_root_residual_external_anchors={summary['max_root_slice_residual_external_anchors']} "
+            f"max_root_residual_external_anchor_locator={summary['max_root_slice_residual_external_anchor_locator']} "
+            f"max_root_residual_external_anchor_slope={summary['max_root_slice_residual_external_anchor_slope']} "
             f"max_root_residual_anchor_lift_checks={summary['max_root_slice_residual_anchor_lift_gate_checks']} "
             f"max_root_residual_anchor_isolated_checks={summary['max_root_slice_residual_anchor_isolated_checks']} "
             f"max_root_residual_anchor_projective_lift_checks={summary['max_root_slice_residual_anchor_projective_lift_checks']} "
@@ -2095,6 +2159,9 @@ def main() -> None:
         "root_residual_anchor_beta0_zero={root_slice_residual_anchor_beta0_zero} "
         "root_residual_anchor_in_support={root_slice_residual_anchor_in_support} "
         "root_residual_anchor_outside_domain={root_slice_residual_anchor_outside_domain} "
+        "root_residual_external_anchors={root_slice_residual_external_anchors} "
+        "root_residual_external_anchor_locator_max={root_slice_residual_external_anchor_locator_max} "
+        "root_residual_external_anchor_slope_max={root_slice_residual_external_anchor_slope_max} "
         "root_residual_anchor_lift_checks={root_slice_residual_anchor_lift_gate_checks} "
         "root_residual_anchor_isolated_checks={root_slice_residual_anchor_isolated_checks} "
         "root_residual_anchor_projective_lift_checks={root_slice_residual_anchor_projective_lift_checks} "
@@ -2208,6 +2275,15 @@ def main() -> None:
     )
     max_residual_anchor_outside_domain = max(
         row["root_slice_residual_anchor_outside_domain"] for row in all_rows
+    )
+    max_residual_external_anchors = max(
+        row["root_slice_residual_external_anchors"] for row in all_rows
+    )
+    max_residual_external_anchor_locator = max(
+        row["root_slice_residual_external_anchor_locator_max"] for row in all_rows
+    )
+    max_residual_external_anchor_slope = max(
+        row["root_slice_residual_external_anchor_slope_max"] for row in all_rows
     )
     max_residual_anchor_lift_checks = max(
         row["root_slice_residual_anchor_lift_gate_checks"] for row in all_rows
@@ -2336,6 +2412,9 @@ def main() -> None:
         f"max_root_residual_anchor_beta0_zero={max_residual_anchor_beta0_zero} "
         f"max_root_residual_anchor_in_support={max_residual_anchor_in_support} "
         f"max_root_residual_anchor_outside_domain={max_residual_anchor_outside_domain} "
+        f"max_root_residual_external_anchors={max_residual_external_anchors} "
+        f"max_root_residual_external_anchor_locator={max_residual_external_anchor_locator} "
+        f"max_root_residual_external_anchor_slope={max_residual_external_anchor_slope} "
         f"max_root_residual_anchor_lift_checks={max_residual_anchor_lift_checks} "
         f"max_root_residual_anchor_isolated_checks={max_residual_anchor_isolated_checks} "
         f"max_root_residual_anchor_projective_lift_checks={max_residual_anchor_projective_lift_checks} "

@@ -595,6 +595,28 @@ bound the two terms by different arguments, but it cannot close the residual
 slope image by discarding or absorbing the boundary term into the squarefree
 one.
 
+## External-Anchor Counterexample To Anchor Counting
+
+The boundary singleton term cannot simply be bounded by the number of
+off-domain anchors either.  For a finite off-domain boundary locator, write
+`xi_T=beta_1/beta_0 in F\D` for its external projective anchor.  In the same
+`F_13`, `n=12`, `j=4`, `t=2` row, every residual locator has the same external
+anchor `xi_T=0`.
+
+Thus all `24` residual boundary singleton locators are concentrated over one
+external anchor, there are still no squarefree lifted cores or lifted slopes,
+and the residual slope image has size `6`:
+
+```text
+#{xi_T : T residual boundary} = 1,        |Z_esc|=|Z_res|=6.
+```
+
+Consequently the boundary part in Przemek's all-line aperiodic residue-packing
+target needs a slope-image bound per external anchor, not only a count of the
+external anchors themselves.  The verifier asserts this concentration in the
+boundary-only row: one external anchor, `24` locators on that anchor, and `6`
+distinct residual slopes on that same anchor.
+
 ## Residual Slope-Image Ledger
 
 The anchor ledger also splits the residual slope image itself.  Define
@@ -929,6 +951,9 @@ enumerates small cyclic-domain cases.  For each case it:
   residual strict edge count;
 - checks the `F_13`, `n=12`, `j=4`, `t=2` boundary-only row as a counterexample
   to absorbing all residual slopes into squarefree lifted-core fibers;
+- checks the same boundary-only row as a counterexample to bounding boundary
+  slopes merely by the number of external anchors: all `24` residual boundary
+  locators share one external anchor but produce `6` residual slopes;
 - verifies the residual slope-image ledger `Z_res=Z_lift union Z_esc` and
   checks that residual faces inside each lifted common core have pairwise
   distinct slopes;
@@ -968,8 +993,9 @@ to the tempting squarefree-absorption shortcut.  In all four deterministic
 seeds it has `24` residual locators, all of them off-domain projective
 boundary singleton fibers; it has no lifted common cores, no squarefree
 projective lift fibers, and no lifted slopes.  Nevertheless it has `6`
-residual slopes, all coming from `6` new escape slopes.  The verifier asserts
-these features explicitly.
+residual slopes, all coming from `6` new escape slopes.  The verifier also
+asserts that all `24` residual locators share one external anchor, so these
+`6` escape slopes cannot be bounded by external-anchor count alone.
 
 In the polynomial-family full-domain `F_17`, `j=4`, `t=2` row, the residual
 aperiodic locus has maximum slope fiber `16`, strict one-exchange degree `15`,

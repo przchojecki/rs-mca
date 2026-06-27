@@ -30,6 +30,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-27 - M1 external-anchor slope counterexample
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/m1/m1_all_line_hankel_aperiodic_packing.md`,
+  `experimental/scripts/verify_m1_all_line_hankel_aperiodic.py`,
+  `experimental/agents-log.md`.
+- **Status:** COUNTEREXAMPLE / AUDIT / EXPERIMENTAL.
+- **What is being added:** The boundary-only `F_13`, `n=12`, `j=4`, `t=2`
+  row is refined by grouping off-domain residual locators by external anchor.
+  In every seed, all `24` residual locators share the single external anchor
+  `xi_T=0`, yet the row still has `6` residual escape slopes and no
+  squarefree lifted side.
+- **How it is useful:** This rules out the shortcut of bounding Przemek's
+  all-line aperiodic boundary term by external-anchor count alone.  The
+  remaining M1 boundary proof needs a per-external-anchor slope-image bound.
+- **What to do next:** Try to prove a structural bound for the slope image
+  carried by one fixed external anchor after quotient-periodic and tangent
+  locators have been charged.
+
 ### 2026-06-27 - M1 boundary-only projective counterexample
 
 - **Agent/model:** Codex.
