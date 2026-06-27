@@ -30,6 +30,23 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-27 - M1 boundary slope-image budget
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/m1/m1_all_line_hankel_aperiodic_packing.md`,
+  `experimental/scripts/verify_m1_all_line_hankel_aperiodic.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT / EXPERIMENTAL.
+- **What is being added:** The boundary arrangement budget is sharpened from
+  point counting to slope-image counting.  Each heavy projective flat is
+  charged by the image of a projective linear ratio, hence by at most `|F|+1`
+  slopes, giving `B_boundary^slope <= B_boundary`.
+- **How it is useful:** This prevents higher-dimensional heavy boundary flats
+  from contributing their full point count to M1.  The recursive reduction now
+  uses `|Z_3| + (j+1)N_common + B_boundary^slope`.
+- **What to do next:** Combine this slope-image budget with quotient-aware
+  heavy-flat counts or symmetry reductions.
+
 ### 2026-06-27 - M1 boundary arrangement budget
 
 - **Agent/model:** Codex.

@@ -261,6 +261,14 @@ def projective_space_size(vector_dimension: int, p: int) -> int:
     return (p**vector_dimension - 1) // (p - 1)
 
 
+def projective_linear_ratio_image_bound(vector_dimension: int, p: int) -> int:
+    if vector_dimension <= 0:
+        return 0
+    if vector_dimension == 1:
+        return 1
+    return p + 1
+
+
 def fixed_anchor_root_hyperplane_weights(
     kernel_basis: list[tuple[int, ...]], domain: tuple[int, ...], p: int
 ) -> tuple[int, dict[tuple[int, ...], int]]:
@@ -283,6 +291,8 @@ def fixed_anchor_rank_stratified_bound(
     dimension: int,
     richness_deficit: int,
     p: int,
+    *,
+    slope_image: bool = False,
 ) -> int:
     root_hyperplane_keys = tuple(root_hyperplane_weights)
     bound = 0
@@ -299,7 +309,13 @@ def fixed_anchor_rank_stratified_bound(
             )
             if flat_weight >= richness_deficit:
                 heavy_flat_keys.add(flat_key)
-        bound += len(heavy_flat_keys) * projective_space_size(dimension - rank, p)
+        flat_dimension = dimension - rank
+        if slope_image:
+            bound += len(heavy_flat_keys) * projective_linear_ratio_image_bound(
+                flat_dimension, p
+            )
+        else:
+            bound += len(heavy_flat_keys) * projective_space_size(flat_dimension, p)
     return bound
 
 
@@ -311,11 +327,11 @@ def boundary_arrangement_profile(
     slope_v: tuple[int, ...],
     p: int,
     label: str,
-) -> tuple[set[tuple[int, ...]], set[int], int, int]:
-    """Return rich projective points, finite slopes, point count, and rank bound."""
+) -> tuple[set[tuple[int, ...]], set[int], int, int, int]:
+    """Return rich points, finite slopes, point count, point bound, and slope bound."""
 
     if not kernel_basis:
-        return set(), set(), 0, 0
+        return set(), set(), 0, 0, 0
     width = len(kernel_basis[0])
     projective_points = projective_span_points(kernel_basis, p)
     rich_points: set[tuple[int, ...]] = set()
@@ -338,8 +354,10 @@ def boundary_arrangement_profile(
 
     if required_roots <= 0:
         rank_stratified_bound = len(projective_points)
+        rank_stratified_slope_bound = len(projective_points)
     elif len(kernel_basis) == 1:
         rank_stratified_bound = 1
+        rank_stratified_slope_bound = 1
     else:
         fixed_roots, root_hyperplane_weights = fixed_anchor_root_hyperplane_weights(
             kernel_basis, root_domain, p
@@ -352,11 +370,26 @@ def boundary_arrangement_profile(
         rank_stratified_bound = fixed_anchor_rank_stratified_bound(
             root_hyperplane_weights, len(kernel_basis), richness_deficit, p
         )
+        rank_stratified_slope_bound = fixed_anchor_rank_stratified_bound(
+            root_hyperplane_weights,
+            len(kernel_basis),
+            richness_deficit,
+            p,
+            slope_image=True,
+        )
     if len(rich_points) > rank_stratified_bound:
         raise AssertionError(f"{label} rich points exceeded rank-stratified bound")
     if len(finite_rich_slopes) > rank_stratified_bound:
         raise AssertionError(f"{label} slopes exceeded rank-stratified bound")
-    return rich_points, finite_rich_slopes, len(projective_points), rank_stratified_bound
+    if len(finite_rich_slopes) > rank_stratified_slope_bound:
+        raise AssertionError(f"{label} slopes exceeded heavy-flat slope-image bound")
+    return (
+        rich_points,
+        finite_rich_slopes,
+        len(projective_points),
+        rank_stratified_bound,
+        rank_stratified_slope_bound,
+    )
 
 
 def projective_span_points(basis: list[tuple[int, ...]], p: int) -> set[tuple[int, ...]]:
@@ -581,7 +614,9 @@ def root_slice_profile(
             "root_slice_residual_lifted_core_slope_bound": 0,
             "root_slice_residual_recursion_bound": 0,
             "root_slice_residual_boundary_arrangement_bound": 0,
+            "root_slice_residual_boundary_slope_bound": 0,
             "root_slice_recursive_arrangement_bound": 0,
+            "root_slice_recursive_boundary_slope_bound": 0,
             "root_slice_lifted_u_t1_cores": 0,
             "root_slice_lifted_v_t1_cores": 0,
             "root_slice_lifted_common_cores": 0,
@@ -762,6 +797,7 @@ def root_slice_profile(
     residual_external_anchor_interpolation_checks = 0
     residual_external_anchor_pinned_t1_checks = 0
     residual_boundary_arrangement_bound = 0
+    residual_boundary_slope_arrangement_bound = 0
     external_twist_syndromes: dict[int, tuple[tuple[int, ...], tuple[int, ...]]] = {}
     residual_anchor_lifted_face_indices: set[int] = set()
     residual_anchor_escape_indices: set[int] = set()
@@ -1296,6 +1332,7 @@ def root_slice_profile(
         )
         if len(kernel_basis) == 1:
             rank_stratified_bound = 1
+            rank_stratified_slope_bound = 1
         else:
             if fixed_roots >= j:
                 raise AssertionError("fixed-anchor kernel had too many fixed roots")
@@ -1305,10 +1342,19 @@ def root_slice_profile(
             rank_stratified_bound = fixed_anchor_rank_stratified_bound(
                 root_hyperplane_weights, len(kernel_basis), richness_deficit, p
             )
+            rank_stratified_slope_bound = fixed_anchor_rank_stratified_bound(
+                root_hyperplane_weights,
+                len(kernel_basis),
+                richness_deficit,
+                p,
+                slope_image=True,
+            )
         if len(rich_points) > rank_stratified_bound:
             raise AssertionError("fixed-anchor rich points exceeded rank-stratified bound")
         if len(finite_rich_slopes) > rank_stratified_bound:
             raise AssertionError("fixed-anchor slopes exceeded rank-stratified bound")
+        if len(finite_rich_slopes) > rank_stratified_slope_bound:
+            raise AssertionError("fixed-anchor slopes exceeded heavy-flat slope-image bound")
         if len(kernel_basis) == 1:
             if len(rich_points) > 1 or len(finite_rich_slopes) > 1:
                 raise AssertionError("fixed-anchor projective point had too many rich slopes")
@@ -1390,6 +1436,7 @@ def root_slice_profile(
         residual_external_anchor_finite_rich_slopes += len(finite_rich_slopes)
         residual_external_anchor_rich_residual_classes += len(residual_classes)
         residual_boundary_arrangement_bound += rank_stratified_bound
+        residual_boundary_slope_arrangement_bound += rank_stratified_slope_bound
     if set(residual_repeated_anchor_projective_classes) != set(residual_repeated_anchor_locators):
         raise AssertionError("repeated-anchor projective classes missed an anchor")
     for anchor, residual_classes in residual_repeated_anchor_projective_classes.items():
@@ -1414,7 +1461,13 @@ def root_slice_profile(
         ]
         repeated_kernel_basis = nullspace_basis(repeated_kernel_rows, p)
         repeated_root_domain = tuple(x for x in domain if x != anchor)
-        rich_points, finite_rich_slopes, _, rank_stratified_bound = boundary_arrangement_profile(
+        (
+            rich_points,
+            finite_rich_slopes,
+            _,
+            rank_stratified_bound,
+            rank_stratified_slope_bound,
+        ) = boundary_arrangement_profile(
             repeated_kernel_basis,
             repeated_root_domain,
             j - 1,
@@ -1430,6 +1483,7 @@ def root_slice_profile(
         if not residual_repeated_anchor_slopes[anchor] <= finite_rich_slopes:
             raise AssertionError("residual repeated slopes escaped rich slope image")
         residual_boundary_arrangement_bound += rank_stratified_bound
+        residual_boundary_slope_arrangement_bound += rank_stratified_slope_bound
     if residual_infinity_projective_classes:
         infinity_kernel_rows = [
             tuple(u[col] for col in range(j + 1)),
@@ -1438,7 +1492,13 @@ def root_slice_profile(
         infinity_kernel_basis = nullspace_basis(infinity_kernel_rows, p)
         shifted_u = tuple(u[row + 1] for row in range(j + 1))
         shifted_v = tuple(v[row + 1] for row in range(j + 1))
-        rich_points, finite_rich_slopes, _, rank_stratified_bound = boundary_arrangement_profile(
+        (
+            rich_points,
+            finite_rich_slopes,
+            _,
+            rank_stratified_bound,
+            rank_stratified_slope_bound,
+        ) = boundary_arrangement_profile(
             infinity_kernel_basis,
             domain,
             j,
@@ -1454,6 +1514,7 @@ def root_slice_profile(
         if not residual_infinity_slopes <= finite_rich_slopes:
             raise AssertionError("residual infinity slopes escaped rich slope image")
         residual_boundary_arrangement_bound += rank_stratified_bound
+        residual_boundary_slope_arrangement_bound += rank_stratified_slope_bound
     if residual_external_anchor_pinned_t1_checks != residual_anchor_escape_outside_domain:
         raise AssertionError("external-anchor pinned t=1 checks missed off-domain escapes")
     residual_projective_lift_fibers: dict[tuple[int, ...], set[int]] = {}
@@ -1596,6 +1657,9 @@ def root_slice_profile(
     lifted_core_slope_bound = (j + 1) * lifted_common_cores
     residual_recursion_bound = lifted_core_slope_bound + len(residual_escape_slope_set)
     residual_arrangement_bound = lifted_core_slope_bound + residual_boundary_arrangement_bound
+    residual_boundary_slope_bound = (
+        lifted_core_slope_bound + residual_boundary_slope_arrangement_bound
+    )
     if len(residual_lifted_slope_set) > lifted_common_core_residual_faces:
         raise AssertionError("lifted residual slopes exceeded lifted residual faces")
     if lifted_common_core_residual_faces > lifted_core_slope_bound:
@@ -1604,8 +1668,12 @@ def root_slice_profile(
         raise AssertionError("residual slope image exceeded lifted-recursion bound")
     if len(residual_escape_slope_set) > residual_boundary_arrangement_bound:
         raise AssertionError("escape slopes exceeded boundary arrangement bound")
+    if len(residual_escape_slope_set) > residual_boundary_slope_arrangement_bound:
+        raise AssertionError("escape slopes exceeded boundary slope-image bound")
     if len(residual_slope_set) > residual_arrangement_bound:
         raise AssertionError("residual slopes exceeded boundary arrangement reduction")
+    if len(residual_slope_set) > residual_boundary_slope_bound:
+        raise AssertionError("residual slopes exceeded boundary slope-image reduction")
     total_reduction_bound = len(root_slice_slope_set) + residual_recursion_bound
     if len(aperiodic_slope_set) > total_reduction_bound:
         raise AssertionError("aperiodic slope image exceeded t=2 reduction bound")
@@ -1615,6 +1683,11 @@ def root_slice_profile(
     recursive_arrangement_bound = len(root_slice_t3_slope_set) + residual_arrangement_bound
     if len(aperiodic_slope_set) > recursive_arrangement_bound:
         raise AssertionError("aperiodic slope image exceeded arrangement-recursive bound")
+    recursive_boundary_slope_bound = (
+        len(root_slice_t3_slope_set) + residual_boundary_slope_bound
+    )
+    if len(aperiodic_slope_set) > recursive_boundary_slope_bound:
+        raise AssertionError("aperiodic slope image exceeded boundary-slope recursive bound")
 
     top_packet_overlap_pairs = 0
     top_packet_overlap_max = 0
@@ -1771,7 +1844,11 @@ def root_slice_profile(
         "root_slice_residual_boundary_arrangement_bound": (
             residual_boundary_arrangement_bound
         ),
+        "root_slice_residual_boundary_slope_bound": (
+            residual_boundary_slope_arrangement_bound
+        ),
         "root_slice_recursive_arrangement_bound": recursive_arrangement_bound,
+        "root_slice_recursive_boundary_slope_bound": recursive_boundary_slope_bound,
         "root_slice_lifted_u_t1_cores": lifted_u_t1_cores,
         "root_slice_lifted_v_t1_cores": lifted_v_t1_cores,
         "root_slice_lifted_common_cores": lifted_common_cores,
@@ -2393,8 +2470,14 @@ def verify_word_pair(
         "root_slice_residual_boundary_arrangement_bound": (
             root_profile["root_slice_residual_boundary_arrangement_bound"]
         ),
+        "root_slice_residual_boundary_slope_bound": (
+            root_profile["root_slice_residual_boundary_slope_bound"]
+        ),
         "root_slice_recursive_arrangement_bound": (
             root_profile["root_slice_recursive_arrangement_bound"]
+        ),
+        "root_slice_recursive_boundary_slope_bound": (
+            root_profile["root_slice_recursive_boundary_slope_bound"]
         ),
         "root_slice_lifted_u_t1_cores": root_profile["root_slice_lifted_u_t1_cores"],
         "root_slice_lifted_v_t1_cores": root_profile["root_slice_lifted_v_t1_cores"],
@@ -2715,8 +2798,14 @@ def verify_case(case: Case) -> dict[str, object]:
         "max_root_slice_residual_boundary_arrangement_bound": max(
             row["root_slice_residual_boundary_arrangement_bound"] for row in rows
         ),
+        "max_root_slice_residual_boundary_slope_bound": max(
+            row["root_slice_residual_boundary_slope_bound"] for row in rows
+        ),
         "max_root_slice_recursive_arrangement_bound": max(
             row["root_slice_recursive_arrangement_bound"] for row in rows
+        ),
+        "max_root_slice_recursive_boundary_slope_bound": max(
+            row["root_slice_recursive_boundary_slope_bound"] for row in rows
         ),
         "max_root_slice_lifted_u_t1_cores": max(
             row["root_slice_lifted_u_t1_cores"] for row in rows
@@ -3563,7 +3652,9 @@ def main() -> None:
                 "root_residual_lifted_core_slope_bound={root_slice_residual_lifted_core_slope_bound} "
                 "root_residual_recursion_bound={root_slice_residual_recursion_bound} "
                 "root_residual_boundary_arrangement_bound={root_slice_residual_boundary_arrangement_bound} "
+                "root_residual_boundary_slope_bound={root_slice_residual_boundary_slope_bound} "
                 "root_recursive_arrangement_bound={root_slice_recursive_arrangement_bound} "
+                "root_recursive_boundary_slope_bound={root_slice_recursive_boundary_slope_bound} "
                 "lifted_u_t1_cores={root_slice_lifted_u_t1_cores} "
                 "lifted_v_t1_cores={root_slice_lifted_v_t1_cores} "
                 "lifted_common_cores={root_slice_lifted_common_cores} "
@@ -3688,7 +3779,9 @@ def main() -> None:
             f"max_root_residual_lifted_core_slope_bound={summary['max_root_slice_residual_lifted_core_slope_bound']} "
             f"max_root_residual_recursion_bound={summary['max_root_slice_residual_recursion_bound']} "
             f"max_root_residual_boundary_arrangement_bound={summary['max_root_slice_residual_boundary_arrangement_bound']} "
+            f"max_root_residual_boundary_slope_bound={summary['max_root_slice_residual_boundary_slope_bound']} "
             f"max_root_recursive_arrangement_bound={summary['max_root_slice_recursive_arrangement_bound']} "
+            f"max_root_recursive_boundary_slope_bound={summary['max_root_slice_recursive_boundary_slope_bound']} "
             f"max_lifted_u_t1_cores={summary['max_root_slice_lifted_u_t1_cores']} "
             f"max_lifted_v_t1_cores={summary['max_root_slice_lifted_v_t1_cores']} "
             f"max_lifted_common_cores={summary['max_root_slice_lifted_common_cores']} "
@@ -3799,7 +3892,9 @@ def main() -> None:
         "root_residual_lifted_core_slope_bound={root_slice_residual_lifted_core_slope_bound} "
         "root_residual_recursion_bound={root_slice_residual_recursion_bound} "
         "root_residual_boundary_arrangement_bound={root_slice_residual_boundary_arrangement_bound} "
+        "root_residual_boundary_slope_bound={root_slice_residual_boundary_slope_bound} "
         "root_recursive_arrangement_bound={root_slice_recursive_arrangement_bound} "
+        "root_recursive_boundary_slope_bound={root_slice_recursive_boundary_slope_bound} "
         "lifted_u_t1_cores={root_slice_lifted_u_t1_cores} "
         "lifted_v_t1_cores={root_slice_lifted_v_t1_cores} "
         "lifted_common_cores={root_slice_lifted_common_cores} "
@@ -4030,8 +4125,14 @@ def main() -> None:
     max_residual_boundary_arrangement_bound = max(
         row["root_slice_residual_boundary_arrangement_bound"] for row in all_rows
     )
+    max_residual_boundary_slope_bound = max(
+        row["root_slice_residual_boundary_slope_bound"] for row in all_rows
+    )
     max_recursive_arrangement_bound = max(
         row["root_slice_recursive_arrangement_bound"] for row in all_rows
+    )
+    max_recursive_boundary_slope_bound = max(
+        row["root_slice_recursive_boundary_slope_bound"] for row in all_rows
     )
     max_lifted_u_t1_cores = max(row["root_slice_lifted_u_t1_cores"] for row in all_rows)
     max_lifted_v_t1_cores = max(row["root_slice_lifted_v_t1_cores"] for row in all_rows)
@@ -4154,7 +4255,9 @@ def main() -> None:
         f"max_root_residual_lifted_core_slope_bound={max_residual_lifted_core_slope_bound} "
         f"max_root_residual_recursion_bound={max_residual_recursion_bound} "
         f"max_root_residual_boundary_arrangement_bound={max_residual_boundary_arrangement_bound} "
+        f"max_root_residual_boundary_slope_bound={max_residual_boundary_slope_bound} "
         f"max_root_recursive_arrangement_bound={max_recursive_arrangement_bound} "
+        f"max_root_recursive_boundary_slope_bound={max_recursive_boundary_slope_bound} "
         f"max_lifted_u_t1_cores={max_lifted_u_t1_cores} "
         f"max_lifted_v_t1_cores={max_lifted_v_t1_cores} "
         f"max_lifted_common_cores={max_lifted_common_cores} "

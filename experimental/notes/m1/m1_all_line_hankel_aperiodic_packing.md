@@ -1135,6 +1135,39 @@ unstructured escape term by a single explicit arrangement budget.  The
 remaining boundary work is now to prove quotient-aware or dimension-sensitive
 savings for `B_boundary`.
 
+There is one immediate sharpening: for slope counts, a heavy flat need not be
+charged by all of its projective points.  The slope map on every boundary
+arrangement is the ratio of two linear forms, hence its image on a projective
+flat has size at most `|F|+1`, and at most one value if the flat is a single
+point.  Replacing each heavy rank-`q` flat contribution
+
+```text
+(|F|^(d-q)-1)/(|F|-1)
+```
+
+by
+
+```text
+min((|F|^(d-q)-1)/(|F|-1), |F|+1)
+```
+
+gives a slope-image budget `B_boundary^slope` with
+
+```text
+|Z_esc| <= B_boundary^slope <= B_boundary,          (BA3)
+```
+
+and therefore
+
+```text
+|AperSlope(f,g;2,j)| <= |Z_3| + (j+1)N_common
+                         + B_boundary^slope.       (M1R5)
+```
+
+This refinement is invisible in rows where all heavy flats are points or
+projective lines, but it prevents higher-dimensional heavy planes and larger
+flats from being charged by their full point count.
+
 ## External-Anchor Top-Coefficient Form
 
 The twisted one-row reduction has an equivalent interpolation form.  Let
@@ -2008,9 +2041,17 @@ audited reduction
 |AperSlope(f,g;2,j)| <= |Z_3| + (j+1)N_common + B_boundary.      (M1R4)
 ```
 
+Using the projective-linear slope-image refinement (BA3), the sharper audited
+version is
+
+```text
+|AperSlope(f,g;2,j)| <= |Z_3| + (j+1)N_common
+                         + B_boundary^slope.       (M1R5)
+```
+
 Thus the remaining proof inputs are a higher-slack slope-image bound for
 `Z_3`, a one-row common-base bound for `N_common`, and a quotient-aware
-boundary-arrangement bound for `B_boundary`.
+boundary-arrangement bound for `B_boundary^slope`.
 
 The middle term is not a new slack-two object.  Define the one-degree-up
 one-row locator fiber of a word `y` by
@@ -2118,6 +2159,9 @@ enumerates small cyclic-domain cases.  For each case it:
 - computes the boundary arrangement budget `B_boundary` and asserts
   `|Z_esc| <= B_boundary` and
   `|AperSlope| <= |Z_3| + (j+1)N_common + B_boundary`;
+- computes the slope-image boundary budget `B_boundary^slope` by charging each
+  heavy flat by at most `|F|+1` slope values, and asserts the sharper
+  `|AperSlope| <= |Z_3| + (j+1)N_common + B_boundary^slope`;
 - reports the endpoint `t=1` locator-fiber counts `|Fib_1(f)|` and
   `|Fib_1(g)|`, and checks `N_common <= min(|Fib_1(f)|,|Fib_1(g)|)`;
 - checks the `F_13`, `n=12`, `j=4`, `t=2` boundary-only row as a counterexample
