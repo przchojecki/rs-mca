@@ -303,7 +303,9 @@ Keep entries concise and link to the relevant files.
   tail overlaps are endpoint-pair charges rather than new tail budget.  The
   scalar-paired tail overlaps are also classified: they are one-sided cutoff
   endpoint residuals with one series in the longer `t+r` window and the other
-  in the paired `t+r-1` window.
+  in the paired `t+r-1` window.  The scalar-scalar tail overlap is the cutoff
+  endpoint-pair residual, completing the pairwise overlap classification for
+  the unlabelled four-family tail budget.
   The common-image three-shift ledger now has the analogous sliding-window
   reduction: for an image line `[y]`, the allowed deeper residuals form a space
   `W_y` of dimension at most one, nonzero only on the `q+1` extended geometric
