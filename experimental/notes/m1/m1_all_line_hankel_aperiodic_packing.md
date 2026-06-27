@@ -540,6 +540,39 @@ projective lift ledger.  Consequently the isolated escape side is not an
 unstructured remainder: it consists of repeated-root, off-domain, and
 infinity-anchor boundary lifts inside the common projective one-row kernel.
 
+## Projective Lift-Fiber Ledger
+
+The projective lift map has no hidden multiplicity beyond the squarefree
+in-domain common cores.  Let
+
+```text
+Phi(T) = [eta s_T - xi p_T],
+```
+
+where `[xi:eta]=[beta_1:beta_0]` is the unique projective anchor of the
+residual locator `T`.  Then the fibers of `Phi` are exactly as follows.
+
+First, every boundary lift is a singleton fiber.  If the anchor is already in
+`T`, then the lifted polynomial has one repeated root and its distinct
+`D`-roots recover `T`.  If the finite anchor is outside `D`, then the `D`-root
+set of the lift is again exactly `T`.  If the anchor is infinity, then the
+lift is the padded locator `L_T`, so `T` is recovered from its finite roots.
+
+Second, a nontrivial fiber can only be a squarefree in-domain lifted core
+`W subset D` of size `j+1`.  In that case the possible residual preimages are
+the `j`-faces `W\{x}` which survive the quotient and root-slice charges.
+Consequently the residual strict one-exchange graph is exactly the disjoint
+union of cliques on the non-singleton squarefree projective lift fibers:
+
+```text
+E_res = disjoint union over Phi-fibers F of binom(F,2).
+```
+
+This reformulates the remaining M1 packing problem one level higher.  Boundary
+projective lifts can only contribute isolated slopes, while every residual
+edge and every residual top packet comes from a squarefree in-domain fiber of
+the unique projective lifted-kernel map.
+
 ## Residual Slope-Image Ledger
 
 The anchor ledger also splits the residual slope image itself.  Define
@@ -868,6 +901,10 @@ enumerates small cyclic-domain cases.  For each case it:
 - enumerates all `p+1` projective one-root anchors for each residual locator
   and verifies that the common lifted-kernel anchor is unique and equal to
   `[beta_1:beta_0]`;
+- groups residual locators by their normalized projective lift and verifies
+  the lift-fiber ledger: boundary fibers are singleton, nontrivial fibers are
+  squarefree in-domain top packets, and the fiber pair count equals the
+  residual strict edge count;
 - verifies the residual slope-image ledger `Z_res=Z_lift union Z_esc` and
   checks that residual faces inside each lifted common core have pairwise
   distinct slopes;
@@ -928,6 +965,10 @@ faces and `30` isolated anchor escapes: `5` with `beta_0=0`, `21` with
 ledger checks all `86` residual locators in the common one-row lifted kernel.
 It also checks uniqueness of the projective lifted-kernel anchor for all `86`
 residual locators by enumerating the `18` anchors of `P^1(F_17)`.
+The normalized projective lift map has `44` fibers: `14` squarefree in-domain
+fibers and `30` boundary singleton fibers.  Its maximum fiber size is `5`, and
+the `88` unordered pairs inside projective lift fibers account exactly for the
+`88` residual strict edges.
 Among these, `81` finite residual-anchor lifts split as `56` squarefree
 in-domain lifts, `21` repeated-root boundary lifts, and `4` off-domain
 boundary lifts; the remaining `5` escapes are infinity anchors.  On slope
@@ -963,7 +1004,10 @@ splits the `69` residual locators into `44` lifted-core residual faces and
 `25` isolated anchor escapes: `4` with `beta_0=0`, `19` with `xi_T in T`, and
 `2` with `xi_T notin D`.  The homogeneous projective lift ledger checks all
 `69` residual locators in the common one-row lifted kernel and verifies
-uniqueness of all `69` projective anchors.  The `65` finite residual-anchor
+uniqueness of all `69` projective anchors.  These locators form `44`
+projective lift fibers: `19` squarefree in-domain fibers and `25` boundary
+singletons.  The `40` unordered pairs inside projective lift fibers account
+exactly for the `40` residual strict edges.  The `65` finite residual-anchor
 lifts split as `44` squarefree in-domain, `19` repeated-root, and `2`
 off-domain boundary lifts; the remaining `4` escapes are infinity
 anchors.  The `16` residual slopes

@@ -185,6 +185,14 @@ def rank_two_vectors(first: tuple[int, int], second: tuple[int, int], p: int) ->
     return 0
 
 
+def normalize_projective_vector(vector: list[int], p: int) -> tuple[int, ...]:
+    for value in vector:
+        if value % p != 0:
+            scale = inv_mod(value, p)
+            return tuple((entry * scale) % p for entry in vector)
+    raise AssertionError("projective vector vanished")
+
+
 def slice_affine_data_t2(
     u: tuple[int, ...],
     v: tuple[int, ...],
@@ -342,6 +350,12 @@ def root_slice_profile(
             "root_slice_residual_anchor_isolated_checks": 0,
             "root_slice_residual_anchor_projective_lift_checks": 0,
             "root_slice_residual_anchor_projective_unique_checks": 0,
+            "root_slice_residual_projective_lift_fibers": 0,
+            "root_slice_residual_projective_squarefree_fibers": 0,
+            "root_slice_residual_projective_boundary_fibers": 0,
+            "root_slice_residual_projective_boundary_singletons": 0,
+            "root_slice_residual_projective_lift_fiber_max": 0,
+            "root_slice_residual_projective_lift_pair_checks": 0,
             "root_slice_residual_anchor_finite_lift_checks": 0,
             "root_slice_residual_anchor_repeated_lift_checks": 0,
             "root_slice_residual_anchor_offdomain_lift_checks": 0,
@@ -474,6 +488,9 @@ def root_slice_profile(
     residual_anchor_repeated_lift_checks = 0
     residual_anchor_offdomain_lift_checks = 0
     residual_anchor_infinity_checks = 0
+    residual_projective_lift_keys: list[tuple[int, ...] | None] = [None] * len(residual_rows)
+    residual_projective_lift_squarefree_indices: set[int] = set()
+    residual_projective_lift_boundary_indices: set[int] = set()
     residual_anchor_lifted_face_indices: set[int] = set()
     residual_anchor_escape_indices: set[int] = set()
     for idx, (complement, _) in enumerate(residual_rows):
@@ -491,6 +508,7 @@ def root_slice_profile(
         ]
         if all(value == 0 for value in projective_lift):
             raise AssertionError("projective residual lift vanished")
+        residual_projective_lift_keys[idx] = normalize_projective_vector(projective_lift, p)
         if hankel_apply(v, 1, j + 1, projective_lift, p)[0] != 0:
             raise AssertionError("projective residual lift missed denominator gate")
         if hankel_apply(u, 1, j + 1, projective_lift, p)[0] != 0:
@@ -525,6 +543,7 @@ def root_slice_profile(
         if b_vec[0] == 0:
             residual_anchor_escape_beta0_zero += 1
             residual_anchor_escape_indices.add(idx)
+            residual_projective_lift_boundary_indices.add(idx)
             if a_vec[0] != 0 or b_vec[1] == 0:
                 raise AssertionError("infinity anchor did not have the expected first-row gate")
             if residual_adj[idx]:
@@ -547,6 +566,7 @@ def root_slice_profile(
         if anchor in complement_set:
             residual_anchor_escape_in_support += 1
             residual_anchor_escape_indices.add(idx)
+            residual_projective_lift_boundary_indices.add(idx)
             residual_anchor_repeated_lift_checks += 1
             if residual_adj[idx]:
                 raise AssertionError("in-support anchor escape had a residual neighbor")
@@ -555,6 +575,7 @@ def root_slice_profile(
         if anchor not in domain_set:
             residual_anchor_escape_outside_domain += 1
             residual_anchor_escape_indices.add(idx)
+            residual_projective_lift_boundary_indices.add(idx)
             residual_anchor_offdomain_lift_checks += 1
             if residual_adj[idx]:
                 raise AssertionError("outside-domain anchor escape had a residual neighbor")
@@ -563,6 +584,7 @@ def root_slice_profile(
         residual_anchor_lift_gate_checks += 1
         residual_anchor_lifted_faces += 1
         residual_anchor_lifted_face_indices.add(idx)
+        residual_projective_lift_squarefree_indices.add(idx)
 
     residual_triangles = 0
     residual_top_triangles = 0
@@ -817,6 +839,48 @@ def root_slice_profile(
         raise AssertionError("off-domain lift ledger missed outside-domain escapes")
     if residual_anchor_infinity_checks != residual_anchor_escape_beta0_zero:
         raise AssertionError("infinity-anchor ledger missed beta0-zero escapes")
+    residual_projective_lift_fibers: dict[tuple[int, ...], set[int]] = {}
+    for idx, key in enumerate(residual_projective_lift_keys):
+        if key is None:
+            raise AssertionError("residual projective lift key was not recorded")
+        residual_projective_lift_fibers.setdefault(key, set()).add(idx)
+    projective_lift_squarefree_fibers = 0
+    projective_lift_boundary_fibers = 0
+    projective_lift_boundary_singletons = 0
+    projective_lift_pair_checks = 0
+    projective_lift_fiber_max = 0
+    for fiber in residual_projective_lift_fibers.values():
+        projective_lift_fiber_max = max(projective_lift_fiber_max, len(fiber))
+        boundary_vertices = fiber & residual_projective_lift_boundary_indices
+        squarefree_vertices = fiber & residual_projective_lift_squarefree_indices
+        if boundary_vertices:
+            projective_lift_boundary_fibers += 1
+            if len(fiber) != 1:
+                raise AssertionError("boundary projective lift fiber was not singleton")
+            if squarefree_vertices:
+                raise AssertionError("boundary and squarefree projective fibers overlapped")
+            projective_lift_boundary_singletons += 1
+            continue
+        if squarefree_vertices != fiber:
+            raise AssertionError("projective lift fiber had an unclassified residual locator")
+        projective_lift_squarefree_fibers += 1
+        projective_lift_pair_checks += len(fiber) * (len(fiber) - 1) // 2
+        if len(fiber) >= 2:
+            union = set()
+            for idx in fiber:
+                union.update(residual_rows[idx][0])
+            top_packet = tuple(sorted(union))
+            if len(top_packet) != j + 1:
+                raise AssertionError("nontrivial projective fiber was not a top packet")
+            if residual_top_packets.get(top_packet) != fiber:
+                raise AssertionError("projective lift fiber disagreed with top packet ledger")
+    if projective_lift_pair_checks != residual_strict_pairs:
+        raise AssertionError("projective lift fibers did not account for residual edges")
+    if (
+        projective_lift_boundary_singletons
+        != len(residual_projective_lift_boundary_indices)
+    ):
+        raise AssertionError("boundary projective lift singleton count missed escapes")
     residual_slope_set = {slope for _, slope in residual_rows}
     residual_lifted_slope_set = {
         residual_rows[idx][1] for idx in residual_anchor_lifted_face_indices
@@ -894,6 +958,20 @@ def root_slice_profile(
         "root_slice_residual_anchor_projective_unique_checks": (
             residual_anchor_projective_unique_checks
         ),
+        "root_slice_residual_projective_lift_fibers": len(
+            residual_projective_lift_fibers
+        ),
+        "root_slice_residual_projective_squarefree_fibers": (
+            projective_lift_squarefree_fibers
+        ),
+        "root_slice_residual_projective_boundary_fibers": (
+            projective_lift_boundary_fibers
+        ),
+        "root_slice_residual_projective_boundary_singletons": (
+            projective_lift_boundary_singletons
+        ),
+        "root_slice_residual_projective_lift_fiber_max": projective_lift_fiber_max,
+        "root_slice_residual_projective_lift_pair_checks": projective_lift_pair_checks,
         "root_slice_residual_anchor_finite_lift_checks": (
             residual_anchor_finite_lift_checks
         ),
@@ -1392,6 +1470,24 @@ def verify_word_pair(
         "root_slice_residual_anchor_projective_unique_checks": (
             root_profile["root_slice_residual_anchor_projective_unique_checks"]
         ),
+        "root_slice_residual_projective_lift_fibers": (
+            root_profile["root_slice_residual_projective_lift_fibers"]
+        ),
+        "root_slice_residual_projective_squarefree_fibers": (
+            root_profile["root_slice_residual_projective_squarefree_fibers"]
+        ),
+        "root_slice_residual_projective_boundary_fibers": (
+            root_profile["root_slice_residual_projective_boundary_fibers"]
+        ),
+        "root_slice_residual_projective_boundary_singletons": (
+            root_profile["root_slice_residual_projective_boundary_singletons"]
+        ),
+        "root_slice_residual_projective_lift_fiber_max": (
+            root_profile["root_slice_residual_projective_lift_fiber_max"]
+        ),
+        "root_slice_residual_projective_lift_pair_checks": (
+            root_profile["root_slice_residual_projective_lift_pair_checks"]
+        ),
         "root_slice_residual_anchor_finite_lift_checks": (
             root_profile["root_slice_residual_anchor_finite_lift_checks"]
         ),
@@ -1602,6 +1698,24 @@ def verify_case(case: Case) -> dict[str, object]:
         "max_root_slice_residual_anchor_projective_unique_checks": max(
             row["root_slice_residual_anchor_projective_unique_checks"] for row in rows
         ),
+        "max_root_slice_residual_projective_lift_fibers": max(
+            row["root_slice_residual_projective_lift_fibers"] for row in rows
+        ),
+        "max_root_slice_residual_projective_squarefree_fibers": max(
+            row["root_slice_residual_projective_squarefree_fibers"] for row in rows
+        ),
+        "max_root_slice_residual_projective_boundary_fibers": max(
+            row["root_slice_residual_projective_boundary_fibers"] for row in rows
+        ),
+        "max_root_slice_residual_projective_boundary_singletons": max(
+            row["root_slice_residual_projective_boundary_singletons"] for row in rows
+        ),
+        "max_root_slice_residual_projective_lift_fiber": max(
+            row["root_slice_residual_projective_lift_fiber_max"] for row in rows
+        ),
+        "max_root_slice_residual_projective_lift_pair_checks": max(
+            row["root_slice_residual_projective_lift_pair_checks"] for row in rows
+        ),
         "max_root_slice_residual_anchor_finite_lift_checks": max(
             row["root_slice_residual_anchor_finite_lift_checks"] for row in rows
         ),
@@ -1773,6 +1887,12 @@ def main() -> None:
                 "root_residual_anchor_isolated_checks={root_slice_residual_anchor_isolated_checks} "
                 "root_residual_anchor_projective_lift_checks={root_slice_residual_anchor_projective_lift_checks} "
                 "root_residual_anchor_projective_unique_checks={root_slice_residual_anchor_projective_unique_checks} "
+                "root_residual_projective_lift_fibers={root_slice_residual_projective_lift_fibers} "
+                "root_residual_projective_squarefree_fibers={root_slice_residual_projective_squarefree_fibers} "
+                "root_residual_projective_boundary_fibers={root_slice_residual_projective_boundary_fibers} "
+                "root_residual_projective_boundary_singletons={root_slice_residual_projective_boundary_singletons} "
+                "root_residual_projective_lift_fiber_max={root_slice_residual_projective_lift_fiber_max} "
+                "root_residual_projective_lift_pair_checks={root_slice_residual_projective_lift_pair_checks} "
                 "root_residual_anchor_finite_lift_checks={root_slice_residual_anchor_finite_lift_checks} "
                 "root_residual_anchor_repeated_lift_checks={root_slice_residual_anchor_repeated_lift_checks} "
                 "root_residual_anchor_offdomain_lift_checks={root_slice_residual_anchor_offdomain_lift_checks} "
@@ -1861,6 +1981,12 @@ def main() -> None:
             f"max_root_residual_anchor_isolated_checks={summary['max_root_slice_residual_anchor_isolated_checks']} "
             f"max_root_residual_anchor_projective_lift_checks={summary['max_root_slice_residual_anchor_projective_lift_checks']} "
             f"max_root_residual_anchor_projective_unique_checks={summary['max_root_slice_residual_anchor_projective_unique_checks']} "
+            f"max_root_residual_projective_lift_fibers={summary['max_root_slice_residual_projective_lift_fibers']} "
+            f"max_root_residual_projective_squarefree_fibers={summary['max_root_slice_residual_projective_squarefree_fibers']} "
+            f"max_root_residual_projective_boundary_fibers={summary['max_root_slice_residual_projective_boundary_fibers']} "
+            f"max_root_residual_projective_boundary_singletons={summary['max_root_slice_residual_projective_boundary_singletons']} "
+            f"max_root_residual_projective_lift_fiber={summary['max_root_slice_residual_projective_lift_fiber']} "
+            f"max_root_residual_projective_lift_pair_checks={summary['max_root_slice_residual_projective_lift_pair_checks']} "
             f"max_root_residual_anchor_finite_lift_checks={summary['max_root_slice_residual_anchor_finite_lift_checks']} "
             f"max_root_residual_anchor_repeated_lift_checks={summary['max_root_slice_residual_anchor_repeated_lift_checks']} "
             f"max_root_residual_anchor_offdomain_lift_checks={summary['max_root_slice_residual_anchor_offdomain_lift_checks']} "
@@ -1939,6 +2065,12 @@ def main() -> None:
         "root_residual_anchor_isolated_checks={root_slice_residual_anchor_isolated_checks} "
         "root_residual_anchor_projective_lift_checks={root_slice_residual_anchor_projective_lift_checks} "
         "root_residual_anchor_projective_unique_checks={root_slice_residual_anchor_projective_unique_checks} "
+        "root_residual_projective_lift_fibers={root_slice_residual_projective_lift_fibers} "
+        "root_residual_projective_squarefree_fibers={root_slice_residual_projective_squarefree_fibers} "
+        "root_residual_projective_boundary_fibers={root_slice_residual_projective_boundary_fibers} "
+        "root_residual_projective_boundary_singletons={root_slice_residual_projective_boundary_singletons} "
+        "root_residual_projective_lift_fiber_max={root_slice_residual_projective_lift_fiber_max} "
+        "root_residual_projective_lift_pair_checks={root_slice_residual_projective_lift_pair_checks} "
         "root_residual_anchor_finite_lift_checks={root_slice_residual_anchor_finite_lift_checks} "
         "root_residual_anchor_repeated_lift_checks={root_slice_residual_anchor_repeated_lift_checks} "
         "root_residual_anchor_offdomain_lift_checks={root_slice_residual_anchor_offdomain_lift_checks} "
@@ -2055,6 +2187,24 @@ def main() -> None:
     max_residual_anchor_projective_unique_checks = max(
         row["root_slice_residual_anchor_projective_unique_checks"] for row in all_rows
     )
+    max_residual_projective_lift_fibers = max(
+        row["root_slice_residual_projective_lift_fibers"] for row in all_rows
+    )
+    max_residual_projective_squarefree_fibers = max(
+        row["root_slice_residual_projective_squarefree_fibers"] for row in all_rows
+    )
+    max_residual_projective_boundary_fibers = max(
+        row["root_slice_residual_projective_boundary_fibers"] for row in all_rows
+    )
+    max_residual_projective_boundary_singletons = max(
+        row["root_slice_residual_projective_boundary_singletons"] for row in all_rows
+    )
+    max_residual_projective_lift_fiber = max(
+        row["root_slice_residual_projective_lift_fiber_max"] for row in all_rows
+    )
+    max_residual_projective_lift_pair_checks = max(
+        row["root_slice_residual_projective_lift_pair_checks"] for row in all_rows
+    )
     max_residual_anchor_finite_lift_checks = max(
         row["root_slice_residual_anchor_finite_lift_checks"] for row in all_rows
     )
@@ -2156,6 +2306,12 @@ def main() -> None:
         f"max_root_residual_anchor_isolated_checks={max_residual_anchor_isolated_checks} "
         f"max_root_residual_anchor_projective_lift_checks={max_residual_anchor_projective_lift_checks} "
         f"max_root_residual_anchor_projective_unique_checks={max_residual_anchor_projective_unique_checks} "
+        f"max_root_residual_projective_lift_fibers={max_residual_projective_lift_fibers} "
+        f"max_root_residual_projective_squarefree_fibers={max_residual_projective_squarefree_fibers} "
+        f"max_root_residual_projective_boundary_fibers={max_residual_projective_boundary_fibers} "
+        f"max_root_residual_projective_boundary_singletons={max_residual_projective_boundary_singletons} "
+        f"max_root_residual_projective_lift_fiber={max_residual_projective_lift_fiber} "
+        f"max_root_residual_projective_lift_pair_checks={max_residual_projective_lift_pair_checks} "
         f"max_root_residual_anchor_finite_lift_checks={max_residual_anchor_finite_lift_checks} "
         f"max_root_residual_anchor_repeated_lift_checks={max_residual_anchor_repeated_lift_checks} "
         f"max_root_residual_anchor_offdomain_lift_checks={max_residual_anchor_offdomain_lift_checks} "

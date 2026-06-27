@@ -30,6 +30,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-27 - M1 projective lift-fiber ledger
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/m1/m1_all_line_hankel_aperiodic_packing.md`,
+  `experimental/scripts/verify_m1_all_line_hankel_aperiodic.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT / EXPERIMENTAL.
+- **What is being added:** The unique projective residual lift map is grouped
+  into fibers.  Boundary lifts (repeated-root, off-domain, and infinity) are
+  proved singleton fibers, while every nontrivial fiber is a squarefree
+  in-domain lifted core and its unordered pairs account exactly for residual
+  strict edges.
+- **How it is useful:** This recasts the remaining M1 residue-packing object
+  as a projective lifted-kernel incidence problem: edges and packets only come
+  from squarefree in-domain fibers, while boundary lifts can contribute only
+  isolated slopes.
+- **What to do next:** Use the fiber form to bound the slope image by
+  separately controlling squarefree fiber slopes and singleton boundary slopes.
+
 ### 2026-06-27 - M1 unique projective residual anchors
 
 - **Agent/model:** Codex.
