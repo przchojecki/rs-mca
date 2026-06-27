@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-27 - M1 face-exact active reduction
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/m1/m1_all_line_hankel_aperiodic_packing.md`,
+  `experimental/scripts/verify_m1_all_line_hankel_aperiodic.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT / EXPERIMENTAL.
+- **What is being added:** The active lifted term is sharpened from the
+  coarse face budget `(j+1)N_active` to
+  `N_face=sum_W |A_W|`, the exact number of surviving active residual
+  coordinates in lifted common cores.  The note records
+  `|AperSlope| <= |Z_3| + N_face + |Z_esc \ Z_lift|`.
+- **How it is useful:** This is the sharpest current local M1 reduction in
+  the PR: it charges only surviving lifted residual coordinates and only
+  genuinely new boundary escape slopes.
+- **What to do next:** Bound `N_face` structurally, or replace it by an
+  endpoint one-row theorem with enough savings for the final reserve.
+
 ### 2026-06-27 - M1 overlap-aware escape slopes
 
 - **Agent/model:** Codex.

@@ -1933,6 +1933,17 @@ Z_lift = union_W rho_W(A_W),
 |Z_lift| <= sum_W |A_W| <= (j+1)N_active.          (LR3)
 ```
 
+It is useful to name the middle quantity:
+
+```text
+N_face = sum_W |A_W|.
+```
+
+This is the exact number of active residual coordinates on lifted common
+cores.  It can be much smaller than the coarse worst-case face budget
+`(j+1)N_active`, while still depending only on the active common-core
+partition.
+
 This is the local no-loss statement for the lifted side of the all-line
 packing reduction.  Inactive common bases have `A_W=empty`; active bases with
 one surviving coordinate contribute one isolated residual ratio; active bases
@@ -2174,6 +2185,19 @@ is
 Z_esc^new = Z_esc \ Z_lift.                         (M1R2''')
 ```
 
+The face-exact version is sharper still:
+
+```text
+|AperSlope(f,g;2,j)| <= |Z_3| + N_face + |Z_esc^new|,           (M1R2'''')
+N_face = sum_W |A_W|.
+```
+
+Indeed, the root-slice contribution is charged to `Z_3`, the lifted residual
+contribution has slope image contained in the active coordinate set counted
+by `N_face`, and the only boundary contribution not already counted is
+`Z_esc^new`.  Since `N_face <= (j+1)N_active`, (M1R2'''') implies
+(M1R2''') and is the sharpest audited local reduction currently in this note.
+
 This does not assert that boundary escapes are harmless.  It says that the
 only boundary slopes still needing a separate estimate are those not already
 seen by active lifted common cores.  In rows where boundary escapes and lifted
@@ -2351,12 +2375,17 @@ enumerates small cyclic-domain cases.  For each case it:
   overlap-aware lifted-side bounds
   `|Z_res| <= (j+1)N_common + |Z_esc \ Z_lift|` and
   `|Z_res| <= (j+1)N_active + |Z_esc \ Z_lift|`;
+- asserts the face-exact active-coordinate bound
+  `|Z_res| <= N_face + |Z_esc \ Z_lift|`, where
+  `N_face=sum_W |A_W|` is the surviving lifted residual face count;
 - asserts the total `t=2` slope-image reduction
   `|AperSlope| <= |Z_root| + (j+1)N_common + |Z_esc|`;
 - checks the higher-slack root-slice reduction `Z_root subset Z_3` and the
   recursive bound `|AperSlope| <= |Z_3| + (j+1)N_common + |Z_esc|`;
 - asserts the recursive overlap-aware active bound
   `|AperSlope| <= |Z_3| + (j+1)N_active + |Z_esc \ Z_lift|`;
+- asserts the sharper face-exact recursive bound
+  `|AperSlope| <= |Z_3| + N_face + |Z_esc \ Z_lift|`;
 - computes the boundary arrangement budget `B_boundary` and asserts
   `|Z_esc| <= B_boundary` and
   `|AperSlope| <= |Z_3| + (j+1)N_common + B_boundary`;

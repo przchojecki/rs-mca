@@ -615,6 +615,7 @@ def root_slice_profile(
             "root_slice_residual_recursion_bound": 0,
             "root_slice_residual_new_escape_bound": 0,
             "root_slice_residual_active_new_escape_bound": 0,
+            "root_slice_residual_active_face_new_escape_bound": 0,
             "root_slice_residual_boundary_arrangement_bound": 0,
             "root_slice_residual_boundary_slope_bound": 0,
             "root_slice_residual_boundary_active_anchors": 0,
@@ -628,6 +629,7 @@ def root_slice_profile(
             "root_slice_recursive_active_field_slope_bound": 0,
             "root_slice_recursive_new_escape_bound": 0,
             "root_slice_recursive_active_new_escape_bound": 0,
+            "root_slice_recursive_active_face_new_escape_bound": 0,
             "root_slice_two_input_field_bound": 0,
             "root_slice_lifted_u_t1_cores": 0,
             "root_slice_lifted_v_t1_cores": 0,
@@ -1702,6 +1704,9 @@ def root_slice_profile(
     residual_active_new_escape_bound = (
         active_lifted_core_slope_bound + residual_escape_new_slopes
     )
+    residual_active_face_new_escape_bound = (
+        lifted_common_core_residual_faces + residual_escape_new_slopes
+    )
     residual_arrangement_bound = lifted_core_slope_bound + residual_boundary_arrangement_bound
     residual_boundary_slope_bound = (
         lifted_core_slope_bound + residual_boundary_slope_arrangement_bound
@@ -1726,6 +1731,8 @@ def root_slice_profile(
         raise AssertionError("residual slopes exceeded new-escape recursion bound")
     if len(residual_slope_set) > residual_active_new_escape_bound:
         raise AssertionError("residual slopes exceeded active new-escape recursion bound")
+    if len(residual_slope_set) > residual_active_face_new_escape_bound:
+        raise AssertionError("residual slopes exceeded active-face new-escape bound")
     if len(residual_escape_slope_set) > residual_boundary_anchor_slope_bound:
         raise AssertionError("escape slopes exceeded boundary active-anchor bound")
     if len(residual_escape_slope_set) > residual_boundary_field_slope_bound:
@@ -1783,6 +1790,13 @@ def root_slice_profile(
     )
     if len(aperiodic_slope_set) > recursive_active_new_escape_bound:
         raise AssertionError("aperiodic slope image exceeded active new-escape bound")
+    recursive_active_face_new_escape_bound = (
+        len(root_slice_t3_slope_set)
+        + lifted_common_core_residual_faces
+        + residual_escape_new_slopes
+    )
+    if len(aperiodic_slope_set) > recursive_active_face_new_escape_bound:
+        raise AssertionError("aperiodic slope image exceeded active-face new-escape bound")
     two_input_field_bound = (
         len(root_slice_t3_slope_set)
         + (j + 1) * min(lifted_u_t1_cores, lifted_v_t1_cores)
@@ -1945,6 +1959,9 @@ def root_slice_profile(
         "root_slice_residual_recursion_bound": residual_recursion_bound,
         "root_slice_residual_new_escape_bound": residual_new_escape_bound,
         "root_slice_residual_active_new_escape_bound": residual_active_new_escape_bound,
+        "root_slice_residual_active_face_new_escape_bound": (
+            residual_active_face_new_escape_bound
+        ),
         "root_slice_residual_boundary_arrangement_bound": (
             residual_boundary_arrangement_bound
         ),
@@ -1971,6 +1988,9 @@ def root_slice_profile(
         "root_slice_recursive_new_escape_bound": recursive_new_escape_bound,
         "root_slice_recursive_active_new_escape_bound": (
             recursive_active_new_escape_bound
+        ),
+        "root_slice_recursive_active_face_new_escape_bound": (
+            recursive_active_face_new_escape_bound
         ),
         "root_slice_two_input_field_bound": two_input_field_bound,
         "root_slice_lifted_u_t1_cores": lifted_u_t1_cores,
@@ -2602,6 +2622,9 @@ def verify_word_pair(
         "root_slice_residual_active_new_escape_bound": (
             root_profile["root_slice_residual_active_new_escape_bound"]
         ),
+        "root_slice_residual_active_face_new_escape_bound": (
+            root_profile["root_slice_residual_active_face_new_escape_bound"]
+        ),
         "root_slice_residual_boundary_arrangement_bound": (
             root_profile["root_slice_residual_boundary_arrangement_bound"]
         ),
@@ -2640,6 +2663,9 @@ def verify_word_pair(
         ),
         "root_slice_recursive_active_new_escape_bound": (
             root_profile["root_slice_recursive_active_new_escape_bound"]
+        ),
+        "root_slice_recursive_active_face_new_escape_bound": (
+            root_profile["root_slice_recursive_active_face_new_escape_bound"]
         ),
         "root_slice_two_input_field_bound": root_profile[
             "root_slice_two_input_field_bound"
@@ -2975,6 +3001,9 @@ def verify_case(case: Case) -> dict[str, object]:
         "max_root_slice_residual_active_new_escape_bound": max(
             row["root_slice_residual_active_new_escape_bound"] for row in rows
         ),
+        "max_root_slice_residual_active_face_new_escape_bound": max(
+            row["root_slice_residual_active_face_new_escape_bound"] for row in rows
+        ),
         "max_root_slice_residual_boundary_arrangement_bound": max(
             row["root_slice_residual_boundary_arrangement_bound"] for row in rows
         ),
@@ -3013,6 +3042,9 @@ def verify_case(case: Case) -> dict[str, object]:
         ),
         "max_root_slice_recursive_active_new_escape_bound": max(
             row["root_slice_recursive_active_new_escape_bound"] for row in rows
+        ),
+        "max_root_slice_recursive_active_face_new_escape_bound": max(
+            row["root_slice_recursive_active_face_new_escape_bound"] for row in rows
         ),
         "max_root_slice_two_input_field_bound": max(
             row["root_slice_two_input_field_bound"] for row in rows
@@ -3872,6 +3904,7 @@ def main() -> None:
                 "root_residual_recursion_bound={root_slice_residual_recursion_bound} "
                 "root_residual_new_escape_bound={root_slice_residual_new_escape_bound} "
                 "root_residual_active_new_escape_bound={root_slice_residual_active_new_escape_bound} "
+                "root_residual_active_face_new_escape_bound={root_slice_residual_active_face_new_escape_bound} "
                 "root_residual_boundary_arrangement_bound={root_slice_residual_boundary_arrangement_bound} "
                 "root_residual_boundary_slope_bound={root_slice_residual_boundary_slope_bound} "
                 "root_residual_boundary_active_anchors={root_slice_residual_boundary_active_anchors} "
@@ -3885,6 +3918,7 @@ def main() -> None:
                 "root_recursive_active_field_slope_bound={root_slice_recursive_active_field_slope_bound} "
                 "root_recursive_new_escape_bound={root_slice_recursive_new_escape_bound} "
                 "root_recursive_active_new_escape_bound={root_slice_recursive_active_new_escape_bound} "
+                "root_recursive_active_face_new_escape_bound={root_slice_recursive_active_face_new_escape_bound} "
                 "root_two_input_field_bound={root_slice_two_input_field_bound} "
                 "lifted_u_t1_cores={root_slice_lifted_u_t1_cores} "
                 "lifted_v_t1_cores={root_slice_lifted_v_t1_cores} "
@@ -4014,6 +4048,7 @@ def main() -> None:
             f"max_root_residual_recursion_bound={summary['max_root_slice_residual_recursion_bound']} "
             f"max_root_residual_new_escape_bound={summary['max_root_slice_residual_new_escape_bound']} "
             f"max_root_residual_active_new_escape_bound={summary['max_root_slice_residual_active_new_escape_bound']} "
+            f"max_root_residual_active_face_new_escape_bound={summary['max_root_slice_residual_active_face_new_escape_bound']} "
             f"max_root_residual_boundary_arrangement_bound={summary['max_root_slice_residual_boundary_arrangement_bound']} "
             f"max_root_residual_boundary_slope_bound={summary['max_root_slice_residual_boundary_slope_bound']} "
             f"max_root_residual_boundary_active_anchors={summary['max_root_slice_residual_boundary_active_anchors']} "
@@ -4027,6 +4062,7 @@ def main() -> None:
             f"max_root_recursive_active_field_slope_bound={summary['max_root_slice_recursive_active_field_slope_bound']} "
             f"max_root_recursive_new_escape_bound={summary['max_root_slice_recursive_new_escape_bound']} "
             f"max_root_recursive_active_new_escape_bound={summary['max_root_slice_recursive_active_new_escape_bound']} "
+            f"max_root_recursive_active_face_new_escape_bound={summary['max_root_slice_recursive_active_face_new_escape_bound']} "
             f"max_root_two_input_field_bound={summary['max_root_slice_two_input_field_bound']} "
             f"max_lifted_u_t1_cores={summary['max_root_slice_lifted_u_t1_cores']} "
             f"max_lifted_v_t1_cores={summary['max_root_slice_lifted_v_t1_cores']} "
@@ -4142,6 +4178,7 @@ def main() -> None:
         "root_residual_recursion_bound={root_slice_residual_recursion_bound} "
         "root_residual_new_escape_bound={root_slice_residual_new_escape_bound} "
         "root_residual_active_new_escape_bound={root_slice_residual_active_new_escape_bound} "
+        "root_residual_active_face_new_escape_bound={root_slice_residual_active_face_new_escape_bound} "
         "root_residual_boundary_arrangement_bound={root_slice_residual_boundary_arrangement_bound} "
         "root_residual_boundary_slope_bound={root_slice_residual_boundary_slope_bound} "
         "root_residual_boundary_active_anchors={root_slice_residual_boundary_active_anchors} "
@@ -4155,6 +4192,7 @@ def main() -> None:
         "root_recursive_active_field_slope_bound={root_slice_recursive_active_field_slope_bound} "
         "root_recursive_new_escape_bound={root_slice_recursive_new_escape_bound} "
         "root_recursive_active_new_escape_bound={root_slice_recursive_active_new_escape_bound} "
+        "root_recursive_active_face_new_escape_bound={root_slice_recursive_active_face_new_escape_bound} "
         "root_two_input_field_bound={root_slice_two_input_field_bound} "
         "lifted_u_t1_cores={root_slice_lifted_u_t1_cores} "
         "lifted_v_t1_cores={root_slice_lifted_v_t1_cores} "
@@ -4392,6 +4430,9 @@ def main() -> None:
     max_residual_active_new_escape_bound = max(
         row["root_slice_residual_active_new_escape_bound"] for row in all_rows
     )
+    max_residual_active_face_new_escape_bound = max(
+        row["root_slice_residual_active_face_new_escape_bound"] for row in all_rows
+    )
     max_residual_boundary_arrangement_bound = max(
         row["root_slice_residual_boundary_arrangement_bound"] for row in all_rows
     )
@@ -4430,6 +4471,9 @@ def main() -> None:
     )
     max_recursive_active_new_escape_bound = max(
         row["root_slice_recursive_active_new_escape_bound"] for row in all_rows
+    )
+    max_recursive_active_face_new_escape_bound = max(
+        row["root_slice_recursive_active_face_new_escape_bound"] for row in all_rows
     )
     max_two_input_field_bound = max(
         row["root_slice_two_input_field_bound"] for row in all_rows
@@ -4565,6 +4609,7 @@ def main() -> None:
         f"max_root_residual_recursion_bound={max_residual_recursion_bound} "
         f"max_root_residual_new_escape_bound={max_residual_new_escape_bound} "
         f"max_root_residual_active_new_escape_bound={max_residual_active_new_escape_bound} "
+        f"max_root_residual_active_face_new_escape_bound={max_residual_active_face_new_escape_bound} "
         f"max_root_residual_boundary_arrangement_bound={max_residual_boundary_arrangement_bound} "
         f"max_root_residual_boundary_slope_bound={max_residual_boundary_slope_bound} "
         f"max_root_residual_boundary_active_anchors={max_residual_boundary_active_anchors} "
@@ -4578,6 +4623,7 @@ def main() -> None:
         f"max_root_recursive_active_field_slope_bound={max_recursive_active_field_slope_bound} "
         f"max_root_recursive_new_escape_bound={max_recursive_new_escape_bound} "
         f"max_root_recursive_active_new_escape_bound={max_recursive_active_new_escape_bound} "
+        f"max_root_recursive_active_face_new_escape_bound={max_recursive_active_face_new_escape_bound} "
         f"max_root_two_input_field_bound={max_two_input_field_bound} "
         f"max_lifted_u_t1_cores={max_lifted_u_t1_cores} "
         f"max_lifted_v_t1_cores={max_lifted_v_t1_cores} "
