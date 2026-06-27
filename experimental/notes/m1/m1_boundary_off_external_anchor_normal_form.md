@@ -5034,6 +5034,73 @@ resulting `h x h` minor of the stacked matrix is block anti-triangular with
 determinant `+/-1`.  Therefore the relevant determinant is not identically
 zero, and the stacked injectivity locus is nonempty and determinantal open.
 
+## Corollary 55: The Endpoint-Short Closure Threshold Is `b>=c-(t+2)`
+
+Keep `h=c-b` and assume `t>=0`.  Define
+
+```text
+b_min=max(0, c-(t+2)).
+```
+
+If
+
+```text
+b < c-(t+2),
+```
+
+then `h>t+2`, so neither single short endpoint map
+
+```text
+H_{t+2,h-1}(u),        H_{t+2,h-1}(v)
+```
+
+can be injective.  Hence the four-short-injectivity closure criterion of
+Corollary 53 is impossible by row count, and the endpointized charge must be
+handled through the short-annihilator ledgers.
+
+If
+
+```text
+b>=b_min,
+```
+
+then `h<=t+2`.  In this range there is no row-count obstruction to any of the
+four short injectivity checks:
+
+```text
+h<=t+2        for H_{t+2,h-1}(u), H_{t+2,h-1}(v),
+h<=2(t+1)    for J_0^(h), J_+^(h).
+```
+
+Thus, for every feasible threshold `b>=b_min`, Corollary 53 reduces the
+endpointized charge to explicit nonvanishing of four `h x h` Hankel minors
+and to charging the at most `2h` endpointized exceptional systems if those
+minor targets hold.  The threshold `b_min` is the smallest rank threshold at
+which this particular short-injectivity route can close the endpointized
+global full-core ledger.
+
+### Proof
+
+The identity `h=c-b` gives
+
+```text
+h<=t+2  <=>  b>=c-(t+2).
+```
+
+If this fails, Corollary 54 says the single endpoint maps cannot be injective,
+so Corollary 53 cannot apply.
+
+If `b>=b_min`, then `h<=t+2`.  Since `t>=0`, this implies
+
+```text
+h<=t+2<=2(t+1),
+```
+
+so the stacked short maps also pass the row-count test.  Corollary 54 then
+identifies all four injectivity checks as explicit nonvanishing Hankel-minor
+conditions.  Corollary 53 gives the endpointized charge closure once those
+conditions hold.
+
 ## Non-Claims
 
 This note does not prove
@@ -5165,4 +5232,6 @@ it does not rule out the resulting common-root-free moving certificates.
 Corollary 53 is a conditional closure criterion; it does not prove the four
 short endpoint systems are injective. Corollary 54 gives feasibility and
 nonempty determinantal targets for those injectivity checks; it does not prove
-the actual syndromes lie in the open injectivity loci.
+the actual syndromes lie in the open injectivity loci. Corollary 55 identifies
+the row-count threshold for this short-injectivity route; it does not prove
+the required Hankel minors are nonzero above that threshold.

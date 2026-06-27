@@ -297,7 +297,12 @@ Keep entries concise and link to the relevant files.
   These injectivity checks are explicit Hankel-minor targets: a single
   `H_{s,h-1}` can be injective iff row count permits `h<=s`, while a stacked
   two-syndrome map can be injective iff `h<=2s`; in the feasible ranges the
-  injectivity loci are nonempty determinantal open sets.
+  injectivity loci are nonempty determinantal open sets.  Since `h=c-b`, this
+  gives the endpoint-short closure threshold
+  `b_min=max(0,c-(t+2))`: below it the single endpoint maps cannot be
+  injective by row count, and at or above it the remaining closure target is
+  explicit nonvanishing of four `h x h` Hankel minors plus the finite `2h`
+  exception charge.
 - **What to do next:** Bound or charge the unique-neighbor nondegenerate
   star-free shadow ledger, then charge the four base endpoint spaces, the
   resulting short-annihilator endpoint systems, finite-exception endpoint
