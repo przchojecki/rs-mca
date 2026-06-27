@@ -278,7 +278,12 @@ Keep entries concise and link to the relevant files.
   the endpoint-pair residual witnesses, so any common primitive denominator in
   the half-window range is an endpoint-pair charge.  Consecutive blocks of
   shifted paired residuals likewise collapse to the deepest paired residual, so
-  common primitive denominators across a block are charged once.
+  common primitive denominators across a block are charged once.  If a ladder
+  enters the half-window range only after some initial depths, the half-window
+  tail now has a first-cutoff rule: every later root-free residual is contained
+  in the four residual families at the first half-window depth, so primitive
+  denominator charges are paid once at that cutoff while earlier depths remain
+  longer-Pade obligations.
   The common-image three-shift ledger now has the analogous sliding-window
   reduction: for an image line `[y]`, the allowed deeper residuals form a space
   `W_y` of dimension at most one, nonzero only on the `q+1` extended geometric

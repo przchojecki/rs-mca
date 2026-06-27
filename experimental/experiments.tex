@@ -2062,6 +2062,12 @@ More generally, an \((L+1)\)-block of consecutive shifted paired residuals at
 window \(t+r-1\) intersects exactly in the ordinary paired residual at depth
 \(r+L\).  Thus consecutive paired-residual overlap is paid at the deepest pair,
 not once per adjacent shift.
+If a finite ladder begins before the half-window range, there is also a sharp
+cutoff: once \(h\le t+r\) first holds, every later root-free residual is already
+contained in one of the four residual families at that first half-window rung.
+The primitive-denominator charge for the half-window tail is therefore paid
+once at the cutoff; only the earlier pre-half-window rungs remain longer-Pade
+targets.
 Equivalently, the full three-shift common-image branch is endpoint-only.  If
 \(\mathrm{GCI}\) denotes the monic split core locators satisfying some
 three-shift common-image line, then

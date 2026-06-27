@@ -4920,6 +4920,63 @@ This is precisely the paired residual at depth `r+L`, because
 The primitive-denominator statement follows from Corollary 61 as in
 Corollary 40.12.
 
+## Corollary 40.14: The Half-Window Tail Charges At Its First Half-Window Rung
+
+Let `R` be a finite set of positive consecutive-frontier depths.  Put
+
+```text
+R_hw={ r in R : h<=t+r }.
+```
+
+Assume `R_hw` is nonempty, and let
+
+```text
+r_hw=min R_hw.
+```
+
+After the fixed-root/root-slice recurrence pieces from Corollary 40.6 have
+been charged, every root-free short-frontier residual at a depth `r in R_hw`
+is already a witness in one of the four root-free residual families at the
+single cutoff depth `r_hw`:
+
+```text
+RF_r(u)       subset RF_{r_hw}(u),
+RF_r(v)       subset RF_{r_hw}(v),
+RF_r(u,v)     subset RF_{r_hw}(u,v),
+RF_r(Su,Sv)   subset RF_{r_hw}(Su,Sv).              (HalfTail)
+```
+
+Consequently the whole half-window tail of the ladder is controlled by the
+four primitive reciprocal-domain-pole-free denominator targets at `r_hw`.
+There is no separate primitive-denominator target to charge at any deeper
+depth `r in R_hw`.
+
+Thus a finite ladder splits into two explicit parts:
+
+1. the pre-half-window depths `r in R` with `h>t+r`, where the residual is a
+   longer Pade or short-annihilator target not compressed by Corollary 40.8;
+2. the half-window tail `R_hw`, where the primitive denominator charge is paid
+   once at `r_hw`.
+
+Within the half-window tail, the ordinary and shifted paired primitive targets
+at the cutoff have the overlap described in Corollary 40.12, and any
+consecutive shifted paired block in the tail has the deepest-pair overlap
+described in Corollary 40.13.
+
+### Proof
+
+Apply Corollary 40.10 to the finite subset `R_hw`.  Its minimum depth is
+`r_hw`, so row containment gives exactly the inclusions (HalfTail).  Since
+`h<=t+r_hw`, Corollary 40.8 applies at `r_hw` and converts the four cutoff
+root-free residual families into primitive reciprocal-domain-pole-free
+denominator targets.  Every deeper tail witness lies in one of those cutoff
+families, so no deeper primitive target is needed.
+
+The depths outside `R_hw` are precisely those with `h>t+r`; Corollary 40.8
+does not put them in the half-window range, so this corollary makes no
+primitive-denominator claim for them.  The final overlap statements are
+Corollaries 40.12 and 40.13 applied at the relevant cutoff or tail depth.
+
 ## Corollary 41: The Global Common-Image Ledger Is Endpoint-Only
 
 Let `GCI` be the set of monic degree-`c` split core locators `L` for which
@@ -7585,6 +7642,9 @@ root-free residuals with the endpoint-pair residual; it does not bound that
 endpoint-pair residual.
 Corollary 40.13 packages consecutive paired-overlap losslessness; it does not
 bound the deepest paired residual itself.
+Corollary 40.14 identifies the first half-window cutoff for primitive
+denominator charges; it does not count the cutoff primitive denominators or
+resolve the pre-half-window longer-Pade residuals.
 Corollary 41 packages the common-image branch into endpoint-type ledgers; it
 does not prove the endpoint rank hypotheses needed for the displayed
 `(q+2)binom(n,b)` bound. Corollary 42 packages the globally full core ledger
