@@ -8680,6 +8680,75 @@ therefore bounds that family by `RFPhi_D(h-a_F)`.  Summing over the four
 families and applying the bottom residual route of Corollary 40.43 gives the
 displayed ledgers.
 
+## Corollary 40.67: The Dual-GCD Root Bound Is Extra Structure
+
+The lower bound on the number of common roots in Corollary 40.66 is not a
+formal consequence of the moment-dual setup alone.
+
+Let `D subset F_q` have size `n`, let `s>=1`, and assume
+
+```text
+n>=s+2,        h>=2.
+```
+
+Then there is a nonzero weight vector `(mu_x)_{x in D}` such that the scalar
+annihilator
+
+```text
+Ann_mu={ P in F_q[X]_{<h} :
+         sum_{x in D} P(x) mu_x x^a=0,        0<=a<s }
+```
+
+has common gcd equal to `1`.  In particular, the scalar dual-gcd ledger gives
+`a=0` for this formal moment datum.
+
+The same obstruction occurs for the ordinary paired annihilator: there are
+nonzero weights `mu_x,nu_x` such that
+
+```text
+Ann_{mu,nu,s}^{(h)}
+```
+
+contains both `1` and `X`, hence has common gcd `1`.  If additionally
+`0 notin D`, the same is true for the shifted paired annihilator after
+replacing the moment conditions by the shifted conditions of Corollary 40.66.
+
+Therefore the dual-gcd bottom route is a genuine structural target.  It cannot
+be closed by dimension counting, by the Hankel row-span formalism, or by the
+existence of moment expansions alone; one must prove special common-root
+structure for the actual M1 bottom syndromes, or else use the half-window
+denominator route.
+
+### Proof
+
+The `s+1` linear conditions
+
+```text
+sum_{x in D} mu_x x^m=0,        0<=m<=s,
+```
+
+on the `n` unknowns `mu_x` have a nonzero solution because `n>=s+2`.  For such
+a solution, both `P=1` and `P=X` lie in `Ann_mu`: the conditions for `1` are
+the moments `0,...,s-1`, and the conditions for `X` are the moments
+`1,...,s`.  Since `gcd(1,X)=1`, the common gcd of `Ann_mu` is `1`.
+
+For the ordinary paired case, take any two nonzero solutions of the same
+homogeneous system, for instance `mu=nu` equal to the scalar solution above.
+Then `1` and `X` satisfy both the `mu` and `nu` moment conditions, so the
+paired annihilator again has common gcd `1`.
+
+For the shifted paired case with `0 notin D`, solve instead
+
+```text
+sum_{x in D} mu_x x^m=0,        1<=m<=s+1.
+```
+
+These are again at most `s+1` independent conditions on `n>=s+2` unknowns, so
+there is a nonzero solution.  The shifted conditions for `P=1` use moments
+`1,...,s`, and the shifted conditions for `P=X` use moments `2,...,s+1`.
+Taking `mu=nu` gives `1,X` in the shifted paired annihilator, so its common
+gcd is also `1`.
+
 ## Corollary 41: The Global Common-Image Ledger Is Endpoint-Only
 
 Let `GCI` be the set of monic degree-`c` split core locators `L` for which
@@ -11496,6 +11565,9 @@ bound that gcd in the actual M1 instances.
 Corollary 40.66 packages the four bottom-family dual gcds into a bottom-route
 ledger; it does not prove the required lower bounds on their non-domain root
 counts in the actual M1 instances.
+Corollary 40.67 shows those root lower bounds are extra structure by giving
+formal moment data with trivial dual gcd; it does not rule out special M1
+syndromes satisfying the needed bounds.
 Corollary 41 packages the common-image branch into endpoint-type ledgers; it
 does not prove the endpoint rank hypotheses needed for the displayed
 `(q+2)binom(n,b)` bound. Corollary 42 packages the globally full core ledger

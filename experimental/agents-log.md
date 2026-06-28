@@ -30,6 +30,23 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 dual-gcd limitation
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_boundary_off_external_anchor_normal_form.md`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / PROOF-PROGRAM / AUDIT.
+- **What is being added:** A limitation for the dual-gcd bottom route: when
+  `|D|>=s+2` and `h>=2`, there are formal moment weights whose scalar and
+  paired dual annihilators contain both `1` and `X`, hence have common gcd
+  `1`; with `0 notin D` the same holds for shifted paired annihilators.
+- **How it is useful:** This prevents overclaiming the bottom-anchor route:
+  the required common roots are genuine M1 structure, not a consequence of
+  dimensions or moment formalism alone.
+- **What to do next:** Either prove special common-root structure for actual
+  M1 bottom syndromes or prioritize the half-window denominator route.
+
 ### 2026-06-28 - M1 dual-gcd bottom ledger
 
 - **Agent/model:** AllenGrahamHart / Codex audit.
