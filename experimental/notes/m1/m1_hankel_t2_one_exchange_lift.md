@@ -1190,6 +1190,73 @@ This converts a visible productive terminal packet into a recoverable object:
 its mode set is intrinsic to the lower-boundary moments, not auxiliary
 branching data.
 
+## The Boundary Moment Is Genuine
+
+The previous recovery statement is sharp for the available terminal window.
+For an `m`-mode branch packet at row level `tau`, the packet formula gives
+only
+
+```text
+g_0,...,g_{tau+m-1}.
+```
+
+Thus every packet with `m<=tau` has the `2m` visible moments needed for (MA),
+while a boundary packet with `m=tau+1` has exactly `2m-1` moments: enough for
+the rank certificate (RC), but one moment short of intrinsic locator recovery.
+
+This missing moment is not a bookkeeping artifact.  Suppose two `m`-mode
+packets on supports `Y` and `Z`, with all amplitudes nonzero, have the same
+moments `g_0,...,g_{2m-2}`.  If `Y` and `Z` meet, their difference is a
+nonzero measure on at most `2m-1` distinct roots whose first `2m-1` moments
+vanish.  The corresponding square Vandermonde matrix is invertible, so this
+is impossible.  Hence any ambiguity at the `2m-1` moment boundary must be
+between disjoint supports.
+
+Conversely, the boundary ambiguity exists in general.  For any `2m` distinct
+roots `W`, the `(2m-1) x 2m` Vandermonde matrix of moments
+`0,...,2m-2` has a one-dimensional kernel.  No kernel coordinate can vanish,
+since any `2m-1` columns form an invertible square Vandermonde matrix.  If
+`W=Y disjoint_union Z` with `|Y|=|Z|=m`, this kernel relation gives nonzero
+amplitudes on `Y` and on `Z` which produce identical first `2m-1` moments.
+The next moment separates them, because the full `2m x 2m` Vandermonde matrix
+is invertible.
+
+More explicitly, put
+
+```text
+P_W(X)=prod_{w in W}(X-w),        omega_w=1/P_W'(w).
+```
+
+The unique relation is
+
+```text
+sum_{w in W} omega_w w^i=0,        0<=i<=2m-2.
+```
+
+Thus a packet on `Y` with amplitudes `a_y` has a disjoint `Z`-alias through
+`W=Y disjoint_union Z` if and only if there is a scalar `mu != 0` such that
+
+```text
+a_y = mu omega_y        for every y in Y.
+```
+
+Then the alias amplitudes on `Z` are `-mu omega_z`.  This follows from the
+one-dimensionality of the Vandermonde kernel, and gives a concrete
+branch-amplitude test for the boundary obstruction.
+
+For the `t=2` terminal audit this says exactly what the data show:
+mode-size-`2` packets are locator-recoverable, while mode-size-`3` packets are
+maximal-window boundary packets.  Therefore a proof of M1 cannot use rank
+visibility alone to identify these boundary modes in complete generality; it
+must either obtain one more moment from additional structure, charge possible
+disjoint aliases, or exploit the special branch-amplitude constraints to bound
+the boundary packet family directly.  The verifier now searches for
+equal-size aliases in the `F_7^*`, mode-size-`3` boundary packets and checks
+that any such alias would have to be disjoint, as the Vandermonde argument
+predicts.  In the largest current audit, only `120` of the `4320` boundary
+packets admit such an alias; the other `4200` are support-identifiable among
+domain `3`-sets despite lacking the formal Prony recovery moment.
+
 ## Root-Marked Slice Is One Row
 
 The zero-boundary subkernel in the fixed-root difference form is cut out by a
@@ -1597,7 +1664,9 @@ The minimal-annihilator recovery (MA) is checked whenever `2m` moments are
 visible.  In the largest case this recovers the locator for all `30240`
 mode-size-`2` packets, including all `28080` productive size-`2` packets; the
 mode-size-`3` packets need one additional moment beyond the current `t=2`
-window.
+window.  The boundary alias search checks all `4320` size-`3` packets:
+`4200` have no equal-size visible alias, while `120` have one disjoint alias
+with the kernel-weight amplitude profile above.
 
 The `F_7,k=2,j=2` scan is the first exact top-packet check in this file.  It
 finds twenty top triangles, all on the zero combined syndrome.  This is not an

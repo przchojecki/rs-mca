@@ -4095,6 +4095,33 @@ The lossless peeling identity is checked on \(120960\) nonempty mode subsets;
 Minimal-annihilator recovery is checked whenever \(2m\) moments are visible:
 in the largest case this recovers all \(30240\) mode-size-\(2\) locators,
 including all \(28080\) productive size-\(2\) packets.
+The mode-size-\(3\) packets need one additional moment beyond the current
+\(t=2\) window.
+This caveat is sharp.  An \(m\)-mode terminal packet at row level \(\tau\)
+has the window \(g_0,\ldots,g_{\tau+m-1}\), so \(m\le\tau\) gives the \(2m\)
+moments needed for locator recovery, while \(m=\tau+1\) gives only
+\(2m-1\).  With \(2m-1\) moments, any two different \(m\)-mode explanations
+must be disjoint: otherwise their difference is supported on at most
+\(2m-1\) roots and is killed by an invertible square Vandermonde matrix.
+Conversely, for any \(2m\) distinct roots the \((2m-1)\times 2m\)
+Vandermonde matrix has a one-dimensional kernel with no zero coordinate, so
+splitting those roots into two \(m\)-sets gives two disjoint nonzero packets
+with the same first \(2m-1\) moments.  The next moment separates them by the
+full Vandermonde determinant.  More explicitly, for
+\(W=Y\sqcup Z\), \(P_W(X)=\prod_{w\in W}(X-w)\), the alias condition is
+\[
+  a_y=\mu/P_W'(y)\qquad (y\in Y)
+\]
+for one \(\mu\ne0\), with alias amplitudes \(-\mu/P_W'(z)\) on \(Z\).
+Thus rank visibility alone cannot recover boundary packets in complete
+generality; M1 must either obtain one further structural moment, charge
+possible disjoint aliases, or use the special branch-amplitude constraints to
+bound the boundary packet family directly.  The verifier searches for such
+aliases in the \(F_7^*\), mode-size-\(3\) boundary packets and checks that any
+equal-size alias would have to be disjoint, as predicted by the Vandermonde
+argument.  In the largest current audit, only \(120\) of the \(4320\) boundary
+packets admit such an alias; the other \(4200\) are support-identifiable among
+domain \(3\)-sets despite lacking the formal Prony recovery moment.
 The common-core and two-denominator formulas persist verbatim after this
 root-free replacement.  With \(C=\gcd(D:D\in M_{\min})\), \(\gamma=\deg C\),
 and \(E_D=D/C\),

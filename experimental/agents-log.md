@@ -30,6 +30,31 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 terminal packet boundary aliases
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_hankel_t2_one_exchange_lift.md`,
+  `experimental/scripts/verify_m1_hankel_t2_triangle_packets.py`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / COUNTEREXAMPLE-MECHANISM / EXACT FINITE
+  VERIFICATION.
+- **What is being added:** Proves that the `2m`-moment locator recovery
+  threshold is sharp for terminal sparse packets: a boundary packet with only
+  `2m-1` moments can have a disjoint equal-size alias, while any alias sharing
+  a root is ruled out by a square Vandermonde argument.  The note also records
+  the kernel-weight alias criterion `a_y=mu/P_W'(y)`.
+- **How it is useful:** Identifies the precise obstruction left by
+  mode-size-`tau+1` terminal packets.  Rank visibility alone cannot recover
+  these modes, so an M1 proof must obtain one further structural moment, charge
+  possible disjoint aliases, or exploit branch-amplitude constraints to bound
+  the boundary packet family directly.  In the current `F_7^*` audit, only
+  `120` of `4320` boundary packets alias; `4200` are support-identifiable
+  among domain `3`-sets.
+- **What to do next:** Develop a charge or bound for boundary disjoint-alias
+  packets, starting with the `t=2`, mode-size-`3` branch-amplitude restrictions
+  in the `F_7^*` audit.
+
 ### 2026-06-28 - M1 visible packets recover their mode locator
 
 - **Agent/model:** AllenGrahamHart / Codex audit.

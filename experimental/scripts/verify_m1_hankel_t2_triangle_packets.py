@@ -84,6 +84,10 @@ It checks that applying the locator of any subset of branch modes peels off
 exactly those modes, with no proper-subset zero collapse.
 It also recovers the unique monic minimal annihilator from visible moments and
 checks that it is exactly the branch-mode locator.
+At the maximal rank-visible boundary, where only 2m-1 moments are available,
+it searches for equal-size support aliases and checks that every such alias is
+disjoint from the true branch-mode set and satisfies the expected
+kernel-weight amplitude criterion.
 
 It also checks the full-top zero-syndrome lemma: if all j+1 complements
 U\\{x} inside one (j+1)-top set U are active, then the combined syndrome is
@@ -218,6 +222,32 @@ def solve_square_mod(
                     rows[row][entry] - factor * rows[column][entry]
                 ) % p
     return tuple(row[-1] % p for row in rows)
+
+
+def sparse_moment_amplitudes(
+    roots: Sequence[int],
+    moments: Sequence[int],
+    p: int,
+) -> tuple[int, ...] | None:
+    size = len(roots)
+    if len(moments) < size:
+        return None
+    vandermonde = tuple(
+        tuple(pow(root, row, p) for root in roots)
+        for row in range(size)
+    )
+    amplitudes = solve_square_mod(vandermonde, moments[:size], p)
+    for row, moment in enumerate(moments):
+        if (
+            sum(
+                amplitude * pow(root, row, p)
+                for amplitude, root in zip(amplitudes, roots)
+            )
+            % p
+            != moment % p
+        ):
+            return None
+    return amplitudes
 
 
 def augmented_consistent(rows: Sequence[tuple[int, int, int]], p: int) -> bool:
@@ -406,6 +436,10 @@ def analyze_case(
     terminal_tree_productive_mode_peeling_checks = 0
     terminal_tree_mode_annihilator_checks = 0
     terminal_tree_productive_mode_annihilator_checks = 0
+    terminal_tree_boundary_alias_checks = 0
+    terminal_tree_productive_boundary_alias_checks = 0
+    terminal_tree_boundary_aliases = 0
+    terminal_tree_productive_boundary_aliases = 0
     terminal_tree_multiflag_cores = 0
     iterated_boundary_defect_histogram: Counter[int] = Counter()
     fixed_root_filtration_defect_histogram: Counter[int] = Counter()
@@ -430,6 +464,8 @@ def analyze_case(
     terminal_tree_mode_annihilator_histogram: Counter[int] = Counter()
     terminal_tree_productive_mode_annihilator_histogram: Counter[int] = Counter()
     terminal_tree_mode_annihilator_size_histogram: Counter[int] = Counter()
+    terminal_tree_boundary_alias_histogram: Counter[int] = Counter()
+    terminal_tree_productive_boundary_alias_histogram: Counter[int] = Counter()
     terminal_tree_multiflag_core_histogram: Counter[int] = Counter()
     max_active = 0
     max_edges = 0
@@ -528,6 +564,10 @@ def analyze_case(
             nonlocal terminal_tree_productive_mode_peeling_checks
             nonlocal terminal_tree_mode_annihilator_checks
             nonlocal terminal_tree_productive_mode_annihilator_checks
+            nonlocal terminal_tree_boundary_alias_checks
+            nonlocal terminal_tree_productive_boundary_alias_checks
+            nonlocal terminal_tree_boundary_aliases
+            nonlocal terminal_tree_productive_boundary_aliases
             nonlocal terminal_tree_multiflag_cores
             nonlocal max_nonzero_terminal_bottom_supports
             nonlocal max_nonzero_terminal_support_bound_slack
@@ -721,6 +761,11 @@ def analyze_case(
                 int,
                 int,
             ]:
+                nonlocal terminal_tree_boundary_alias_checks
+                nonlocal terminal_tree_productive_boundary_alias_checks
+                nonlocal terminal_tree_boundary_aliases
+                nonlocal terminal_tree_productive_boundary_aliases
+
                 if not current_core:
                     return (1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
                 current_values = [domain[index] for index in current_fixed]
@@ -1094,6 +1139,168 @@ def analyze_case(
                                         "mode_locator": list(mode_locator),
                                     }
                                 )
+                        elif len(lower_vector) == 2 * mode_count - 1:
+                            aliases: list[tuple[int, ...]] = []
+                            mode_amplitude_by_index = {
+                                root_index: amplitude
+                                for (
+                                    root_index,
+                                    _root,
+                                    _child_count,
+                                    _scalar,
+                                    amplitude,
+                                ) in mode_data
+                            }
+                            for candidate in itertools.combinations(
+                                range(n),
+                                mode_count,
+                            ):
+                                candidate_set = set(candidate)
+                                if candidate_set == child_root_indices:
+                                    continue
+                                candidate_roots = [
+                                    domain[index] for index in candidate
+                                ]
+                                amplitudes = sparse_moment_amplitudes(
+                                    candidate_roots,
+                                    lower_vector,
+                                    p,
+                                )
+                                if amplitudes is None or not all(amplitudes):
+                                    continue
+                                if child_root_indices & candidate_set:
+                                    raise AssertionError(
+                                        {
+                                            "kind": (
+                                                "terminal-branch-boundary-"
+                                                "overlapping-alias"
+                                            ),
+                                            "p": p,
+                                            "k": k,
+                                            "syndrome": list(syn),
+                                            "fixed_roots": list(fixed_roots),
+                                            "current_fixed": list(
+                                                current_fixed
+                                            ),
+                                            "current_core": list(
+                                                current_core
+                                            ),
+                                            "exit_roots": sorted(
+                                                child_root_indices
+                                            ),
+                                            "alias_roots": list(candidate),
+                                            "lower_vector": list(lower_vector),
+                                            "alias_amplitudes": list(
+                                                amplitudes
+                                            ),
+                                        }
+                                    )
+                                union = child_root_indices | candidate_set
+
+                                def derivative_at(root_index: int) -> int:
+                                    root = domain[root_index]
+                                    derivative = 1
+                                    for other_root_index in union:
+                                        if other_root_index == root_index:
+                                            continue
+                                        derivative = (
+                                            derivative
+                                            * (root - domain[other_root_index])
+                                        ) % p
+                                    return derivative
+
+                                mu_values = {
+                                    mode_amplitude_by_index[root_index]
+                                    * derivative_at(root_index)
+                                    % p
+                                    for root_index in child_root_indices
+                                }
+                                if len(mu_values) != 1 or 0 in mu_values:
+                                    raise AssertionError(
+                                        {
+                                            "kind": (
+                                                "terminal-branch-boundary-"
+                                                "alias-kernel-weight-failed"
+                                            ),
+                                            "p": p,
+                                            "k": k,
+                                            "syndrome": list(syn),
+                                            "fixed_roots": list(fixed_roots),
+                                            "current_fixed": list(
+                                                current_fixed
+                                            ),
+                                            "current_core": list(
+                                                current_core
+                                            ),
+                                            "exit_roots": sorted(
+                                                child_root_indices
+                                            ),
+                                            "alias_roots": list(candidate),
+                                            "mu_values": sorted(mu_values),
+                                        }
+                                    )
+                                mu = next(iter(mu_values))
+                                for candidate_index, amplitude in zip(
+                                    candidate,
+                                    amplitudes,
+                                ):
+                                    expected_amplitude = (
+                                        -mu
+                                        * pow(
+                                            derivative_at(candidate_index),
+                                            -1,
+                                            p,
+                                        )
+                                    ) % p
+                                    if amplitude != expected_amplitude:
+                                        raise AssertionError(
+                                            {
+                                                "kind": (
+                                                    "terminal-branch-"
+                                                    "boundary-alias-"
+                                                    "amplitude-failed"
+                                                ),
+                                                "p": p,
+                                                "k": k,
+                                                "syndrome": list(syn),
+                                                "fixed_roots": list(
+                                                    fixed_roots
+                                                ),
+                                                "current_fixed": list(
+                                                    current_fixed
+                                                ),
+                                                "current_core": list(
+                                                    current_core
+                                                ),
+                                                "exit_roots": sorted(
+                                                    child_root_indices
+                                                ),
+                                                "alias_roots": list(
+                                                    candidate
+                                                ),
+                                                "alias_root": (
+                                                    candidate_index
+                                                ),
+                                                "amplitude": amplitude,
+                                                "expected_amplitude": (
+                                                    expected_amplitude
+                                                ),
+                                            }
+                                        )
+                                aliases.append(candidate)
+                            terminal_tree_boundary_alias_checks += 1
+                            terminal_tree_boundary_aliases += len(aliases)
+                            terminal_tree_boundary_alias_histogram[
+                                len(aliases)
+                            ] += 1
+                            if productive_children >= 2:
+                                terminal_tree_productive_boundary_alias_checks += 1
+                                terminal_tree_productive_boundary_aliases += (
+                                    len(aliases)
+                                )
+                                terminal_tree_productive_boundary_alias_histogram[
+                                    len(aliases)
+                                ] += 1
                     for subset_size in range(1, mode_count + 1):
                         for subset in itertools.combinations(
                             sorted(child_root_indices),
@@ -3013,6 +3220,14 @@ def analyze_case(
         "terminal_tree_productive_mode_annihilator_checks": (
             terminal_tree_productive_mode_annihilator_checks
         ),
+        "terminal_tree_boundary_alias_checks": terminal_tree_boundary_alias_checks,
+        "terminal_tree_productive_boundary_alias_checks": (
+            terminal_tree_productive_boundary_alias_checks
+        ),
+        "terminal_tree_boundary_aliases": terminal_tree_boundary_aliases,
+        "terminal_tree_productive_boundary_aliases": (
+            terminal_tree_productive_boundary_aliases
+        ),
         "terminal_tree_multiflag_cores": terminal_tree_multiflag_cores,
         "max_iterated_boundary_chain_length": max_iterated_boundary_chain_length,
         "max_nonzero_iterated_boundary_active_cores": (
@@ -3222,6 +3437,12 @@ def analyze_case(
         "terminal_tree_mode_annihilator_size_histogram": dict(
             sorted(terminal_tree_mode_annihilator_size_histogram.items())
         ),
+        "terminal_tree_boundary_alias_histogram": dict(
+            sorted(terminal_tree_boundary_alias_histogram.items())
+        ),
+        "terminal_tree_productive_boundary_alias_histogram": dict(
+            sorted(terminal_tree_productive_boundary_alias_histogram.items())
+        ),
         "terminal_tree_multiflag_core_histogram": dict(
             sorted(terminal_tree_multiflag_core_histogram.items())
         ),
@@ -3307,6 +3528,9 @@ def print_summary(results: Sequence[dict[str, object]]) -> None:
             f"{result['max_nonzero_terminal_tree_mode_peeling_checks']} "
             f"max_nonzero_terminal_tree_mode_annihilator="
             f"{result['max_nonzero_terminal_tree_mode_annihilator_checks']} "
+            f"boundary_alias_checks="
+            f"{result['terminal_tree_boundary_alias_checks']} "
+            f"boundary_aliases={result['terminal_tree_boundary_aliases']} "
             f"max_nonzero_full_support_slack="
             f"{result['max_nonzero_full_support_ledger_slack']} "
             f"max_nonzero_top_active={result['max_nonzero_top_active_members']}"
