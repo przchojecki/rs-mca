@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 first lower aliases have an exact remainder test
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_boundary_off_external_anchor_normal_form.md`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / PROOF-PROGRAM.
+- **What is being added:** Gives an exact admissibility test for the unique
+  lower first-layer alias: compute
+  `S_Q == L_D B_1^{-1} mod Q_1`, then check its degree, root-freeness, and
+  coprimality with `B_Q=(B_1S_Q-L_D)/Q_1`.
+- **How it is useful:** Converts the nearest high-degree primitive alias
+  obstruction from an existence-over-a-family question into a single
+  checkable candidate.
+- **What to do next:** Apply this remainder test to active primitive
+  directions, and look for structural reasons the forced candidate cannot pass
+  the admissibility checks.
+
 ### 2026-06-28 - M1 first alias layer is one-sided rigid
 
 - **Agent/model:** AllenGrahamHart / Codex audit.

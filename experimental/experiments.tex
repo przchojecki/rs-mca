@@ -3360,6 +3360,14 @@ This first layer is one-sided rigid: if \(e_2=n+1-e_1<e_1\), then for fixed
 \((Q_1,B_1)\) there is at most one projective primitive direction of degree
 \(e_2\) with the same divided evaluation on \(D\), and a matching divided
 target then determines the lower-degree target values as well.
+More explicitly, for \(1\le h=n+1-e_1<e_1\), let
+\(S_Q\equiv L_D B_1^{-1}\pmod {Q_1}\) with \(\deg S_Q<e_1\).  A lower
+degree-\(h\) alias exists exactly when
+\[
+  \deg S_Q=h,\qquad \gcd(S_Q,L_D)=1,\qquad
+  B_Q=(B_1S_Q-L_D)/Q_1,\qquad \gcd(S_Q,B_Q)=1.
+\]
+Then the unique lower alias is \((S_Q,B_Q)\).
 The common-core and two-denominator formulas persist verbatim after this
 root-free replacement.  With \(C=\gcd(D:D\in M_{\min})\), \(\gamma=\deg C\),
 and \(E_D=D/C\),

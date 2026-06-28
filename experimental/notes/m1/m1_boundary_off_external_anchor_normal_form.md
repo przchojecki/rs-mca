@@ -15418,6 +15418,63 @@ decide whether the candidate is admissible.  Finally, if the divided targets
 also agree, then `w_2/Q_2=w_1/Q_1` on `D` forces `w_2` on `D` after `Q_2` is
 fixed.
 
+## Corollary 40.153: First Lower Aliases Have An Exact Remainder Test
+
+Keep Corollary 40.152, and assume
+
+```text
+1<=h=n+1-e_1<e_1.
+```
+
+Let `S_Q` be the unique representative of degree `<e_1` satisfying
+
+```text
+S_Q == L_D B_1^{-1}        mod Q_1.                (ForcedRemainder)
+```
+
+Then a primitive direction of denominator degree `h` aliases `(Q_1,B_1)` on
+`D` if and only if the following explicit candidate is admissible:
+
+```text
+deg S_Q = h,
+gcd(S_Q,L_D)=1,
+B_Q=(B_1S_Q-L_D)/Q_1,
+gcd(S_Q,B_Q)=1.                                    (RemainderTest)
+```
+
+When these conditions hold, the unique projective lower alias is represented
+by
+
+```text
+(Q_2,B_2)=(S_Q,B_Q).
+```
+
+The degree condition `deg B_Q<h` is automatic from the displayed construction.
+Thus the nearest lower-degree alias question for a fixed high-degree primitive
+direction is a single remainder computation plus root-freeness and
+coprimality checks.
+
+### Proof
+
+The congruence (ForcedRemainder) is defined because `B_1` is invertible modulo
+`Q_1`.  Corollary 40.152 shows that any degree-`h` first-layer alias must have
+`[Q_2]=[S_Q]`; hence it exists only if `deg S_Q=h` and `S_Q` is root-free on
+`D`, equivalently `gcd(S_Q,L_D)=1`.
+
+The same congruence makes `B_1S_Q-L_D` divisible by `Q_1`, so `B_Q` is a
+polynomial.  Since `deg B_1<e_1`, `deg S_Q=h`, and `e_1+h=n+1`, the numerator
+has degree at most `n`; after division by `Q_1`, the quotient has degree
+`<h`.  The remaining primitive condition is exactly `gcd(S_Q,B_Q)=1`.
+
+If these conditions hold, then
+
+```text
+B_1S_Q-B_QQ_1=L_D,
+```
+
+so `B_1/Q_1=B_Q/S_Q` on `D`, and `(S_Q,B_Q)` is an admissible primitive
+alias.  Uniqueness is Corollary 40.152.
+
 ## Corollary 41: The Global Common-Image Ledger Is Endpoint-Only
 
 Let `GCI` be the set of monic degree-`c` split core locators `L` for which
@@ -18509,6 +18566,10 @@ defect `R` gives a modular denominator class modulo `Q_1`.
 Corollary 40.152 shows that the first alias layer is one-sided rigid: below
 the fixed denominator degree, the possible alias direction is unique if it
 exists.
+Corollary 40.153 gives the corresponding exact existence test: compute
+`S_Q == L_D B_1^{-1} mod Q_1`; the lower first-layer alias exists precisely
+when this forced remainder has the right degree, avoids `D`, and is coprime
+to its forced numerator.
 Corollary 41 packages the common-image branch into endpoint-type ledgers; it
 does not prove the endpoint rank hypotheses needed for the displayed
 `(q+2)binom(n,b)` bound. Corollary 42 packages the globally full core ledger
