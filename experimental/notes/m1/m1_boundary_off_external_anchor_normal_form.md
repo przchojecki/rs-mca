@@ -12752,7 +12752,7 @@ from Corollary 40.113 plus the high-tail-line charge of Corollary 40.112.
 
 Keep the setup of Corollary 40.114, and assume `Q,B in F[X]` represent the
 denominator and reduced residue numerator of a fixed base-dimension
-residue-line datum, so `deg B<deg Q` unless `Q=1`.  Let
+residue-line datum, so `deg B<deg Q`, with `B=0` when `Q=1`.  Let
 
 ```text
 G=gcd(Q,B),
@@ -12813,6 +12813,88 @@ Q_0 A+lambda B_0=w_0        on S.
 The support-wise noncontained predicate is also unchanged, because
 `B/Q=B_0/Q_0` and `w/Q=w_0/Q_0` on `D`.  Hence the two `Lambda` sets are
 identical.  The final interpretation follows from Corollary 40.114.
+
+## Corollary 40.116: Primitive Base Residue Lines Have A k+e Packing Bound
+
+Keep the primitive-compressed setup of Corollary 40.115, and write
+
+```text
+e_0=deg Q_0,        d_0=k+e_0.
+```
+
+If `e_0=0`, then the primitive endpoint is polynomial and
+`Lambda_{Q_0,B_0}^{nc,>=a}(w_0)` is empty.  If `e_0>0`, then two distinct
+coefficients in `Lambda_{Q_0,B_0}^{nc,>=a}(w_0)` cannot be witnessed on
+supports whose intersection has size at least `d_0`.  Consequently, when
+`d_0<=a`,
+
+```text
+|Lambda_{Q_0,B_0}^{nc,>=a}(w_0)|
+ <= floor( binom(n,d_0) / binom(a,d_0) ).          (PrimitiveBasePack)
+```
+
+If in addition `2a-n>=d_0`, then
+
+```text
+|Lambda_{Q_0,B_0}^{nc,>=a}(w_0)| <= 1.             (PrimitiveBaseOneCoeff)
+```
+
+At the scalar cutoff `a=n-j=k+t`, these conditions are exactly
+
+```text
+e_0 <= t        for the packing bound,
+e_0 <= t-j      for the one-coefficient bound.
+```
+
+Thus, after primitive compression, every fixed base residue-line class with
+primitive degree at most `t` has an explicit support-packing charge, and only
+primitive classes with `e_0>t` remain outside this fixed-class packing range.
+This is the base-residue analogue of the one-row primitive packing bound, with
+dimension `k+e_0` rather than `k+e_0+1`.
+
+### Proof
+
+The polynomial endpoint has `Q_0=1` and `B_0=0`.  Then the coefficient
+`lambda` does not affect the equation `A=w_0` on `S`; whenever a witness
+exists, both the zero direction and `w_0|_S` lie in `RS[F,S,k]`, so the
+support is contained.  Hence the noncontained coefficient set is empty.
+
+Assume now that `e_0>0`, and let two distinct coefficients `lambda_1` and
+`lambda_2` have witnesses `(A_i,S_i)`.  On
+`I=S_1 cap S_2`, subtraction gives
+
+```text
+Q_0(A_1-A_2)+(lambda_1-lambda_2)B_0=0.
+```
+
+The left side has degree `<k+e_0=d_0`.  If `|I|>=d_0`, it is the zero
+polynomial.  Reducing modulo `Q_0` gives
+
+```text
+(lambda_1-lambda_2)B_0 == 0        mod Q_0,
+```
+
+which contradicts `lambda_1!=lambda_2` and `gcd(Q_0,B_0)=1`.  Thus distinct
+coefficients have witness supports intersecting in fewer than `d_0` points.
+
+When `d_0<=a`, choose an `a`-subset of each witnessing support.  No
+`d_0`-subset of `D` can lie in two chosen supports, so counting pairs
+
+```text
+(lambda,J),        J subset T_lambda,        |J|=d_0,
+```
+
+gives (PrimitiveBasePack).  If `2a-n>=d_0`, any two `a`-subsets of `D`
+intersect in at least `d_0` points, so at most one coefficient can occur.
+
+At the scalar cutoff, `a=n-j=k+t`, so `d_0<=a` is equivalent to
+`e_0<=t`.  Also
+
+```text
+2a-n=2(k+t)-(k+j+t)=k+t-j,
+```
+
+and hence `2a-n>=d_0` is equivalent to `e_0<=t-j`.
 
 ## Corollary 41: The Global Common-Image Ledger Is Endpoint-Only
 
@@ -15790,6 +15872,10 @@ problem is the active denominator/residue-line class ledger.
 Corollary 40.115 primitive-compresses that ledger: dividing by `gcd(Q,B)`
 does not change the divided direction or coefficient set, so nonprimitive
 presentations create no new active noncontained classes.
+Corollary 40.116 gives the fixed-class primitive-degree packing bound:
+a primitive base residue class of degree `e_0` has packing dimension `k+e_0`,
+so at the scalar cutoff all classes with `e_0<=t` have an explicit
+support-packing charge and the one-coefficient range is `e_0<=t-j`.
 Corollary 41 packages the common-image branch into endpoint-type ledgers; it
 does not prove the endpoint rank hypotheses needed for the displayed
 `(q+2)binom(n,b)` bound. Corollary 42 packages the globally full core ledger

@@ -2992,6 +2992,19 @@ on \(D\), and the divided direction \(B/Q\) is unchanged.  Hence
 nonprimitive residue-line presentations add no new noncontained coefficients;
 only primitive root-free residue pairs, plus the polynomial endpoint, need be
 counted in the class ledger.
+For a primitive positive class with \(e_0=\deg Q_0\), the fixed-class packing
+dimension is \(d_0=k+e_0\).  Two distinct coefficients cannot have witness
+supports meeting in \(d_0\) points, since subtracting the two equations gives
+a degree-\(<d_0\) polynomial whose reduction modulo \(Q_0\) would force
+\((\lambda_1-\lambda_2)B_0\equiv0\), contradicting
+\(\gcd(Q_0,B_0)=1\).  Hence, when \(d_0\le a\),
+\[
+  |\Lambda_{Q_0,B_0}^{\rm nc,\ge a}(w_0)|
+  \le \binom n {d_0}/\binom a {d_0}.
+\]
+At \(a=k+t\), this applies exactly for \(e_0\le t\), with a one-coefficient
+charge for \(e_0\le t-j\).  The genuinely unpacked fixed-class range is
+therefore primitive degree \(e_0>t\).
 The common-core and two-denominator formulas persist verbatim after this
 root-free replacement.  With \(C=\gcd(D:D\in M_{\min})\), \(\gamma=\deg C\),
 and \(E_D=D/C\),

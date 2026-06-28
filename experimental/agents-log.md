@@ -30,6 +30,23 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 primitive base residue classes have k+e packing
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_boundary_off_external_anchor_normal_form.md`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / PROOF-PROGRAM.
+- **What is being added:** Proves that a primitive fixed base residue-line
+  class of denominator degree `e_0` has packing dimension `d_0=k+e_0`;
+  distinct noncontained coefficients cannot share `d_0` support points.
+- **How it is useful:** Gives an explicit fixed-class packing charge for
+  `e_0<=t` at the scalar cutoff and a one-coefficient charge for `e_0<=t-j`,
+  leaving only primitive classes of degree `>t` outside this local charge.
+- **What to do next:** Attack the remaining high-primitive-degree active class
+  ledger using aperiodicity, quotient-periodic exclusion, or denominator
+  incidence constraints.
+
 ### 2026-06-28 - M1 base residue-line classes primitive-compress
 
 - **Agent/model:** AllenGrahamHart / Codex audit.
