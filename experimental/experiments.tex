@@ -3041,6 +3041,18 @@ linear multipliers \(M\).  Hence the union of the core, in-domain-anchor,
 repeated-root, and external-anchor complement fibers has size at most
 \(\binom n {j+1}\).  In particular the descended domain-anchor core fiber has
 size at most \(\binom n j/(j+1)\).
+The same disjoint complement ledger controls coefficient-core incidence.
+Choose one noncontained \(a\)-support for each coefficient and count its
+\((a-1)\)-cores.  A core repeated by two coefficients must have complement in
+the first-unpacked ledger above; otherwise its multiplicity is one.  On an
+exceptional core, at most \(j+1\) supports can contain it.  Hence
+\[
+  |\Lambda^{\rm nc,\ge a}_{Q_0,B_0}(w_0)|
+  \le { \binom n {j+1} + j |U_1(Q_0,B_0)| \over n-j}
+  \le \binom n j.
+\]
+Thus the first-unpacked fixed base class has no weighted one-exchange
+obstruction on the support-wise noncontained side.
 The common-core and two-denominator formulas persist verbatim after this
 root-free replacement.  With \(C=\gcd(D:D\in M_{\min})\), \(\gamma=\deg C\),
 and \(E_D=D/C\),

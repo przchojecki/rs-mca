@@ -30,6 +30,22 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 first-unpacked base one-exchange coefficients are q-free
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_boundary_off_external_anchor_normal_form.md`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / PROOF-PROGRAM.
+- **What is being added:** Uses the disjoint first-unpacked complement ledger
+  to bound weighted coefficient-core incidence:
+  `|Lambda| <= (binom(n,j+1)+j|U_1|)/(n-j) <= binom(n,j)`.
+- **How it is useful:** Shows the fixed first-unpacked base class has no
+  weighted one-exchange obstruction on the support-wise noncontained side;
+  all linear landing types are controlled by the unweighted complement ledger.
+- **What to do next:** Move from fixed-class incidence to active primitive
+  class counting or to higher exchange depth `u>1`.
+
 ### 2026-06-28 - M1 first-unpacked base complement ledger is disjoint
 
 - **Agent/model:** AllenGrahamHart / Codex audit.

@@ -13248,6 +13248,98 @@ binom(n,j+1)/(n-j)=binom(n,j)/(j+1)
 
 is the standard binomial recurrence.
 
+## Corollary 40.121: The First-Unpacked Base One-Exchange Coefficient Ledger Is q-Free
+
+Keep the fixed primitive first-unpacked base setup of Corollary 40.120:
+
+```text
+a=k+t=n-j,        e_0=t+1.
+```
+
+For each coefficient
+
+```text
+lambda in Lambda_{Q_0,B_0}^{nc,>=a}(w_0),
+```
+
+choose one noncontained `a`-support `T_lambda` witnessing it, which is possible
+by the truncation argument of Corollary 40.111 applied to the divided rank-one
+line.  For an `(a-1)`-subset `I subset D`, put
+
+```text
+r_I=|{ lambda : I subset T_lambda }|.
+```
+
+Let `U_1(Q_0,B_0)` be the disjoint complement ledger of Corollary 40.120.
+Then
+
+```text
+|Lambda_{Q_0,B_0}^{nc,>=a}(w_0)|
+ <= ( binom(n,j+1) + j |U_1(Q_0,B_0)| ) / (n-j).  (FirstBaseCoeffLedger)
+```
+
+In particular, by Corollary 40.120,
+
+```text
+|Lambda_{Q_0,B_0}^{nc,>=a}(w_0)| <= binom(n,j).   (FirstBaseQFree)
+```
+
+Thus the first-unpacked fixed base residue class has no weighted
+one-exchange obstruction on the support-wise noncontained side.  The
+unweighted disjoint complement ledger controls all coefficient-core
+incidence, including the core, in-domain-anchor, repeated-root, and
+external-anchor landing types.
+
+### Proof
+
+Every selected support `T_lambda` contains exactly `a` different `(a-1)`-cores,
+so
+
+```text
+sum_{|I|=a-1} r_I
+ = a |Lambda_{Q_0,B_0}^{nc,>=a}(w_0)|.             (BaseCoreCount)
+```
+
+If `r_I>=2`, choose two distinct coefficients whose selected supports contain
+`I`.  They cannot have the same selected support: two coefficients on the
+same `a`-support would force both `B_0/Q_0` and `w_0/Q_0` to restrict to
+`RS[F,T,k]`, contradicting noncontainedness exactly as in Corollary 40.111.
+Thus their two selected supports are distinct `a`-sets containing the same
+`(a-1)`-core, so their intersection is exactly `I`.  Corollary 40.118, in
+the first-unpacked case `e_0=t+1,u=1`, implies that
+
+```text
+D\I in U_1(Q_0,B_0).
+```
+
+Therefore, if `D\I` is not in `U_1(Q_0,B_0)`, then `r_I<=1`.  If
+`D\I in U_1(Q_0,B_0)`, then every selected `a`-support containing `I` is
+obtained by adding one element of the `(j+1)`-set `D\I`, and same-support
+multiplicity is again impossible; hence
+
+```text
+r_I <= j+1.
+```
+
+It follows that
+
+```text
+sum_I r_I
+ <= (binom(n,a-1)-|U_1|)
+    + (j+1)|U_1|
+ = binom(n,a-1)+j|U_1|.
+```
+
+Since `a=n-j` and `binom(n,a-1)=binom(n,j+1)`, combining this with
+(BaseCoreCount) gives (FirstBaseCoeffLedger).  Finally Corollary 40.120 gives
+`|U_1|<=binom(n,j+1)`, and therefore
+
+```text
+|Lambda|
+ <= ((j+1)binom(n,j+1))/(n-j)
+ = binom(n,j).
+```
+
 ## Corollary 41: The Global Common-Image Ledger Is Endpoint-Only
 
 Let `GCI` be the set of monic degree-`c` split core locators `L` for which
@@ -16243,6 +16335,9 @@ Corollary 40.120 packages the fixed-class first-unpacked endpoint: all
 linear-multiplier complement fibers are disjoint and together have size at
 most `binom(n,j+1)`, with the descended domain-anchor core fiber bounded by
 `binom(n,j)/(j+1)`.
+Corollary 40.121 turns that unweighted ledger into a coefficient-incidence
+bound, proving the fixed first-unpacked base class is q-free on the
+one-exchange support-wise noncontained side.
 Corollary 41 packages the common-image branch into endpoint-type ledgers; it
 does not prove the endpoint rank hypotheses needed for the displayed
 `(q+2)binom(n,b)` bound. Corollary 42 packages the globally full core ledger
