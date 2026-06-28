@@ -30,6 +30,27 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 t=2 one-exchange Hankel core lift
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_hankel_t2_one_exchange_lift.md`,
+  `experimental/scripts/verify_m1_hankel_t2_one_exchange_lift.py`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / EXACT FINITE VERIFICATION.
+- **What is being added:** Extracts the `t=2` determinant gate and proves that
+  a same-slope one-exchange collision lifts to the `t=3` Hankel recurrence on
+  the common core.  The verifier checks the determinant gate against the
+  slope-loop classifier and verifies every same-slope one-exchange lift in the
+  exact `F_5^*` and `F_7^*` tiny scans.
+- **How it is useful:** Turns the first local collision mechanism in the M1
+  Hankel packet route into a chargeable next-slack/root-slice object, reducing
+  the amount of unexplained primitive slope growth that a counterexample could
+  use.
+- **What to do next:** Optimize and run the richer `j=2` case, then extract
+  the residual top-packet or variable-line packet verifier after same-slope
+  root-slice lifts are charged.
+
 ### 2026-06-28 - M1 exact target Hankel equivalence verifier
 
 - **Agent/model:** AllenGrahamHart / Codex audit.

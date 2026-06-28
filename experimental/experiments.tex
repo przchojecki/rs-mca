@@ -3643,6 +3643,28 @@ For the original line notation \(\phi=-g\), \(Y=f\), this is Przemek's
 checks the direct and Hankel classifications over the same \(F_5^*\) and
 \(F_7^*\) quotient-normal scans, including all \(117649\) quotient pairs in
 the latter.
+The first \(t=2\) packet lemma is also extracted.  For a complement \(T\),
+write
+\[
+  a_T=H_{2,j}(\operatorname{Syn}(Y))\ell_T,\qquad
+  b_T=H_{2,j}(\operatorname{Syn}(\phi))\ell_T\in F^2 .
+\]
+Then \(T\) contributes a finite noncontained slope iff
+\[
+  b_T\ne0,\qquad a_T=\lambda b_T
+\]
+for a unique \(\lambda\).  If two one-exchange complements
+\(T_x=R\cup\{x\}\) and \(T_y=R\cup\{y\}\) contribute the same \(\lambda\), then
+with \(w_\lambda=Y-\lambda\phi\),
+\[
+  H_{3,j-1}(\operatorname{Syn}(w_\lambda))\ell_R=0.
+\]
+Thus a same-slope one-exchange collision lifts to the next-slack core/root-slice
+ledger.  The verifier
+\texttt{experimental/scripts/verify\_m1\_hankel\_t2\_one\_exchange\_lift.py}
+checks this determinant gate and core lift over exact \(F_5^*\) and \(F_7^*\)
+tiny scans, verifying \(3480\) and \(34650\) one-exchange core lifts
+respectively.
 The common-core and two-denominator formulas persist verbatim after this
 root-free replacement.  With \(C=\gcd(D:D\in M_{\min})\), \(\gamma=\deg C\),
 and \(E_D=D/C\),
