@@ -30,6 +30,22 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 one-row rational extensions primitive-compress
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_boundary_off_external_anchor_normal_form.md`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / PROOF-PROGRAM.
+- **What is being added:** For the one-row rational generator
+  `hX^k-B/Q`, the reduced denominator is exactly `Q/gcd(Q,B)`; the numerator
+  `hX^kQ-B` has the same gcd with `Q` as `B` does.
+- **How it is useful:** This prevents nonprimitive one-row scalar
+  presentations from being counted as new M1 packing objects and identifies
+  the `B=0` case with the polynomial `RS_{k+1}` endpoint.
+- **What to do next:** State the remaining one-row scalar packing problem only
+  for primitive pairs `(Q_prim,B_prim)` with `gcd(Q_prim,B_prim)=1`.
+
 ### 2026-06-28 - M1 one-row layer is a rank-one rational extension
 
 - **Agent/model:** AllenGrahamHart / Codex audit.

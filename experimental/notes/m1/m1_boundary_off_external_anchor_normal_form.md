@@ -10787,6 +10787,68 @@ Q phi_h = hQX^k-B,
 so the residue of the new generator modulo `Q` is `-B`; if `Q=1` and `B=0`,
 this specializes to the polynomial generator `hX^k`.
 
+## Corollary 40.90: One-Row Rational Extensions Have Primitive Denominator Q/gcd(Q,B)
+
+Keep the notation of Corollary 40.89.  In a positive-degree chart, let
+
+```text
+G=gcd(Q,B)
+```
+
+with the convention `G=Q` when `B=0`.  Put
+
+```text
+Q_prim=Q/G,        B_prim=B/G.
+```
+
+In a constant chart, take `Q_prim=1` and `B_prim=0`.  Then `Q_prim` is
+root-free on `D`,
+
+```text
+gcd(Q_prim,B_prim)=1,
+```
+
+and the one-row rational extension direction from Corollary 40.89 has the
+primitive form
+
+```text
+phi_h = hX^k - B_prim/Q_prim        on D.           (PrimitiveOneRow)
+```
+
+Equivalently, the numerator
+
+```text
+N_h=hX^k Q-B
+```
+
+has
+
+```text
+gcd(Q,N_h)=G,
+```
+
+so the reduced rational denominator of `phi_h` is exactly `Q_prim`.  Thus
+nonprimitive presentations of the same one-row scalar layer do not create new
+packing objects.  If `Q_prim=1`, the residual is the polynomial extension
+`RS[F,D,k+1]`; otherwise it is a primitive one-generator rational extension
+with denominator `Q_prim` and residue `-B_prim mod Q_prim`.
+
+### Proof
+
+Since `G` divides `Q` and `Q` has no root on `D`, the quotient `Q_prim` is
+also root-free on `D`.  By construction, `gcd(Q_prim,B_prim)=1`.
+
+The identity
+
+```text
+hX^k - B/Q = hX^k - B_prim/Q_prim
+```
+
+gives (PrimitiveOneRow).  For the numerator statement, a polynomial divisor
+of `Q` divides `N_h=hX^kQ-B` if and only if it divides `B`, because
+`N_h` is congruent to `-B` modulo `Q`.  Hence `gcd(Q,N_h)=gcd(Q,B)=G`.
+The final alternatives are the cases `Q_prim=1` and `deg Q_prim>0`.
+
 ## Corollary 41: The Global Common-Image Ledger Is Endpoint-Only
 
 Let `GCI` be the set of monic degree-`c` split core locators `L` for which
@@ -13672,6 +13734,10 @@ Corollary 40.89 rewrites that same layer, after dividing by the root-free
 denominator, as list decoding against the rank-one rational extension
 `RS_k+F(hX^k-B/Q)`; this is the precise all-line residue-packing object left
 by the scalar one-row residual.
+Corollary 40.90 primitive-compresses this object by replacing `Q` with
+`Q/gcd(Q,B)`; nonprimitive residue presentations therefore do not create new
+one-row packing families, and the `B=0` case is just the polynomial
+`RS_{k+1}` endpoint.
 Corollary 41 packages the common-image branch into endpoint-type ledgers; it
 does not prove the endpoint rank hypotheses needed for the displayed
 `(q+2)binom(n,b)` bound. Corollary 42 packages the globally full core ledger

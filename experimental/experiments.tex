@@ -2605,6 +2605,19 @@ Thus the one-row layer is exactly a list for the opposite endpoint word
 with the original scalar parameter \(\lambda=-\mu\).  The new generator has
 residue \(-B\bmod Q\), and in the constant case it reduces to the polynomial
 generator \(hX^k\).
+This rational generator can be primitive-compressed.  If
+\[
+  G=\gcd(Q,B),\qquad Q_{\rm prim}=Q/G,\qquad B_{\rm prim}=B/G,
+\]
+with \(G=Q\) when \(B=0\), then
+\[
+  hX^k-B/Q=hX^k-B_{\rm prim}/Q_{\rm prim},\qquad
+  \gcd(Q_{\rm prim},B_{\rm prim})=1.
+\]
+Equivalently, the numerator \(hX^kQ-B\) has gcd \(G\) with \(Q\), since it is
+congruent to \(-B\) modulo \(Q\).  Thus nonprimitive one-row presentations do
+not create new packing objects; \(Q_{\rm prim}=1\) is the polynomial
+\(\RS[F,D,k+1]\) endpoint.
 The common-core and two-denominator formulas persist verbatim after this
 root-free replacement.  With \(C=\gcd(D:D\in M_{\min})\), \(\gamma=\deg C\),
 and \(E_D=D/C\),
