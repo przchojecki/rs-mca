@@ -15822,7 +15822,7 @@ With `Pi_q` as in Corollary 40.157, define the uniform cutoff fiber budget
 
 ```text
 M_q(E)=1                                           if 2E<=n,
-M_q(E)=1+Pi_q(2E-1-n)+Pi_q(2E-n+1)                 if 2E>n.
+M_q(E)=1+Pi_q(2E-n+1)                              if 2E>n.
 ```
 
 Then
@@ -15852,29 +15852,22 @@ counted injectively by divided evaluation data, and
 
 Thus the active primitive-class problem below a denominator cutoff reduces to
 counting divided evaluation data, up to an explicit finite-domain alias
-multiplier that is trivial in the low-total-degree range.
+multiplier.  This multiplier is trivial in the low-total-degree range, and in
+the high-total-degree range it has only the same-or-upward defect-quotient
+budget: the lower-alias budget is removed by choosing a minimal-degree
+representative in each divided evaluation fiber.
 
 ### Proof
 
 If `2E<=n`, Corollary 40.150 gives injectivity on the whole degree-`<=E`
 family, so `M_q(E)=1`.
 
-Assume `2E>n`.  Fix one element `(Q,B,w)` of an evaluation fiber in
-`A_{<=E}`, with `e=deg Q<=E`.  Corollary 40.157 bounds the number of other
-elements in the same fiber and of degree at most `E` by
-
-```text
-Pi_q(e+min(E,e-1)-n) + U_q(e,E).
-```
-
-Since `e<=E`,
-
-```text
-e+min(E,e-1)-n <= 2E-1-n,
-```
-
-and the same-or-upward term is bounded by `Pi_q(2E-n+1)`.  Hence every divided
-evaluation fiber has size at most `M_q(E)`, proving (EvalFiberToClass).
+Assume `2E>n`.  In each nonempty divided evaluation fiber inside `A_{<=E}`,
+choose a representative `(Q,B,w)` of minimal denominator degree `e`.  There
+are no lower-degree aliases in that fiber.  Corollary 40.157 therefore leaves
+only the same-or-upward term `U_q(e,E)`, which is bounded by `Pi_q(2E-n+1)`.
+Thus every divided evaluation fiber has size at most `M_q(E)`, proving
+(EvalFiberToClass).
 
 For the active ledger, Corollary 40.148 gives
 
@@ -19095,7 +19088,8 @@ aliases below degree `E`.
 Corollary 40.158 converts that into an active-ledger reduction: below a
 denominator cutoff `E`, primitive classes are bounded by divided evaluation
 data times the explicit multiplier `M_q(E)`, and the coefficient ledger gains
-only the fixed-class weight `W_E`.
+only the fixed-class weight `W_E`; choosing a minimal-degree representative in
+each divided evaluation fiber removes the lower-alias budget from `M_q(E)`.
 Corollary 40.159 identifies the fully lossless low range: if
 `E<=t-j` and `2E<=n`, then the cutoff active ledger is bounded directly by
 the number of divided evaluation data.

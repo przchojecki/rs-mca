@@ -3423,7 +3423,7 @@ this gives a divided-evaluation fiber multiplier
   M_q(E)=
   \begin{cases}
     1, & 2E\le n,\\
-    1+\Pi_q(2E-1-n)+\Pi_q(2E-n+1), & 2E>n.
+    1+\Pi_q(2E-n+1), & 2E>n.
   \end{cases}
 \]
 Thus for any finite cutoff family \(\mathcal A_{\le E}\),
@@ -3437,6 +3437,8 @@ Combining this with the active ledger weights gives
   \le W_E M_q(E)\,|\operatorname{Ev}(\mathcal A_{\le E})|,
   \qquad W_E=\max_{1\le e\le E} W(e).
 \]
+The lower-defect budget drops out here because each divided evaluation fiber
+is counted from a minimal-degree representative.
 In the low one-coefficient range \(1\le E\le t-j\) with \(2E\le n\), both
 multipliers disappear:
 \[

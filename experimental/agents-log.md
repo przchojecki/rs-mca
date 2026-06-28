@@ -30,6 +30,22 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 minimal representatives sharpen cutoff alias multipliers
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_boundary_off_external_anchor_normal_form.md`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / PROOF-PROGRAM.
+- **What is being added:** Sharpens the cutoff active-ledger multiplier by
+  choosing a minimal-degree representative in each divided evaluation fiber,
+  removing the lower-alias budget from `M_q(E)`.
+- **How it is useful:** Improves the cutoff reduction from a two-budget
+  uniform multiplier to `M_q(E)=1+Pi_q(2E-n+1)` in the high-total-degree
+  range, while preserving `M_q(E)=1` when `2E<=n`.
+- **What to do next:** Use the sharpened multiplier in degree-slab active
+  primitive-class counts.
+
 ### 2026-06-28 - M1 degree-slab ledgers pay local alias multipliers
 
 - **Agent/model:** AllenGrahamHart / Codex audit.
