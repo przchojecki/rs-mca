@@ -30,6 +30,23 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 one-exchange residuals have unique multipliers
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_boundary_off_external_anchor_normal_form.md`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / PROOF-PROGRAM.
+- **What is being added:** In the unpacked one-row residual
+  `deg(Q_prim)=t+ell`, each fixed one-exchange core has multiplier space
+  `{M: deg M<=ell+1, L_I M in F B_prim mod Q_prim}` of dimension at most one.
+- **How it is useful:** One-exchange scalar collisions are therefore governed
+  by a unique projective multiplier certificate per core, not by an
+  uncontrolled family of slopes or multipliers.
+- **What to do next:** Bound or charge these projective core multipliers,
+  splitting the cases where the multiplier has domain roots, external roots,
+  or irreducible factors.
+
 ### 2026-06-28 - M1 first-unpacked one-exchange collisions are anchor landings
 
 - **Agent/model:** AllenGrahamHart / Codex audit.

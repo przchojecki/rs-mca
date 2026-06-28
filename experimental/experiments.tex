@@ -2694,6 +2694,18 @@ landing \(L_I\in F B_{\rm prim}\bmod Q_{\rm prim}\), or after scaling
 for a unique \(\beta\in F\).  If \(\beta\in D\setminus I\), this is an
 all-domain one-exchange locator landing; if \(\beta\notin D\), it is exactly
 an external-anchor boundary landing.
+More generally, write \(e_{\rm prim}=t+\ell\).  For a fixed one-exchange core
+\(I\), let
+\[
+  V_I^\ell=\{M\in F[X]_{\le \ell+1}:L_IM\in F B_{\rm prim}
+      \bmod Q_{\rm prim}\}.
+\]
+Since \(t\ge2\), \(\ell+1<e_{\rm prim}\), so reduction modulo
+\(Q_{\rm prim}\) is injective on this multiplier space.  As
+\(\gcd(L_I,Q_{\rm prim})=1\), any two nonzero elements of \(V_I^\ell\) are
+proportional.  Thus each fixed one-exchange core has at most one projective
+multiplier certificate; if it splits, it is a bounded-anchor landing, and if
+not it is an irreducible bounded-degree multiplier landing.
 The common-core and two-denominator formulas persist verbatim after this
 root-free replacement.  With \(C=\gcd(D:D\in M_{\min})\), \(\gamma=\deg C\),
 and \(E_D=D/C\),

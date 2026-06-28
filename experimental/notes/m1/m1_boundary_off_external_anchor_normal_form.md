@@ -11245,6 +11245,72 @@ the displayed finite anchor landing.  The cases `beta in D\I` and
 `beta notin D` are exactly the all-domain one-exchange and external-anchor
 boundary interpretations of the locator `L_I(X-beta)`.
 
+## Corollary 40.96: One-Exchange Residuals Have A Unique Projective Multiplier Per Core
+
+Keep the scalar cutoff and primitive positive-denominator hypotheses from
+Corollaries 40.93--40.95.  Write
+
+```text
+e_prim=t+ell,        ell>=0.
+```
+
+Fix an `(a-1)`-element core `I subset D`, and define the one-exchange
+multiplier space
+
+```text
+V_I^{ell}
+ = { M in F[X]_{<=ell+1} : L_I M in F B_prim mod Q_prim }.
+```
+
+Then
+
+```text
+dim V_I^{ell} <= 1.                                (OneExMultLine)
+```
+
+Consequently, for fixed primitive datum `(Q_prim,B_prim)` and fixed
+one-exchange core `I`, either no one-exchange coefficient collision over `I`
+exists, or all such collisions produce the same projective multiplier
+`[M] in P(V_I^{ell})`.  If that multiplier splits over `F`, it is a
+bounded-anchor landing of degree at most `ell+1`; roots in `D` are fixed-root
+or all-domain exchange pieces, while roots outside `D` are external-anchor
+pieces.  If it does not split, the residual is an irreducible bounded-degree
+multiplier landing, not an uncontrolled slope family.
+
+### Proof
+
+Since the setup is the unpacked positive-denominator residual, `Q_prim` has
+positive degree `e_prim=t+ell` and `gcd(Q_prim,B_prim)=1`.  Also `t>=2`, so
+
+```text
+ell+1 < t+ell = e_prim.
+```
+
+Thus reduction modulo `Q_prim` is injective on `F[X]_{<=ell+1}`.
+
+Let `M_1,M_2 in V_I^{ell}`.  Choose scalars `c_1,c_2` such that
+
+```text
+L_I M_i == c_i B_prim        mod Q_prim.
+```
+
+If `c_i=0`, then `L_I M_i==0 mod Q_prim`.  Since `Q_prim` is root-free on
+`D`, it is coprime to `L_I`; hence `M_i==0 mod Q_prim`.  By the degree
+injectivity just noted, `M_i=0`.  Therefore every nonzero multiplier has
+`c_i!=0`.
+
+For two nonzero multipliers,
+
+```text
+L_I(c_2 M_1-c_1 M_2) == 0        mod Q_prim.
+```
+
+Again `gcd(L_I,Q_prim)=1`, so `c_2 M_1-c_1 M_2==0 mod Q_prim`.  Its degree is
+at most `ell+1<e_prim`; hence it is the zero polynomial.  Thus any two
+nonzero elements of `V_I^{ell}` are proportional, proving (OneExMultLine).
+The final assertions follow from Corollary 40.94, which puts every
+one-exchange collision multiplier in `V_I^{ell}`.
+
 ## Corollary 41: The Global Common-Image Ledger Is Endpoint-Only
 
 Let `GCI` be the set of monic degree-`c` split core locators `L` for which
@@ -14152,6 +14218,10 @@ first unpacked layer, one-exchange collisions are linear residue landings.
 Corollary 40.95 identifies those first-unpacked one-exchange landings as
 either core landings or finite-anchor locators `L_I(X-beta)`, with
 `beta notin D` giving exactly the external-anchor boundary type.
+Corollary 40.96 extends the one-exchange analysis to all unpacked layers:
+for each fixed overlap core, the admissible low-degree multiplier space has
+dimension at most one, so one-exchange collisions have a unique projective
+multiplier certificate if they exist.
 Corollary 41 packages the common-image branch into endpoint-type ledgers; it
 does not prove the endpoint rank hypotheses needed for the displayed
 `(q+2)binom(n,b)` bound. Corollary 42 packages the globally full core ledger
