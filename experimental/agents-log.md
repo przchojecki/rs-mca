@@ -30,6 +30,23 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 divided-evaluation fibers are coefficient-lossless
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_boundary_off_external_anchor_normal_form.md`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / PROOF-PROGRAM.
+- **What is being added:** Proves that all primitive presentations with the
+  same divided evaluation datum `(B/Q,w/Q)` have the same support-wise
+  noncontained coefficient set.
+- **How it is useful:** Removes finite-domain alias multiplicity from the
+  actual slope/coefficient ledger: after choosing one representative per
+  divided-evaluation fiber, a cutoff family pays only `sum_s W(e_s)`, and in
+  the one-coefficient range pays at most `|Ev(A_{<=E})|`.
+- **What to do next:** Use the remaining tail chart as active
+  denominator/incidence geometry rather than as a multiplicative slope loss.
+
 ### 2026-06-28 - M1 cutoff tail aliases are upper defect-quotient charts
 
 - **Agent/model:** AllenGrahamHart / Codex audit.

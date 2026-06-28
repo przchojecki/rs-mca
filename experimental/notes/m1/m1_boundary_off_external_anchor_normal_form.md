@@ -16190,6 +16190,108 @@ The displayed dimension is the sum of the dimensions of those two polynomial
 spaces.  If `e_s+E<=n`, then no nonzero defect space remains, so no
 nontrivial alias exists.
 
+## Corollary 40.165: Divided-Evaluation Fibers Are Coefficient-Lossless
+
+Keep the scalar-cutoff setup of Corollary 40.148.  For a divided evaluation
+datum
+
+```text
+eta=(phi,Y)
+```
+
+on `D`, define `Lambda_eta^{nc,>=a}` to be the set of coefficients
+`lambda in F` for which there are `A in F[X]_<k` and `S subset D`,
+`|S|>=a`, such that
+
+```text
+A+lambda phi = Y        on S,
+```
+
+and the divided line is support-wise noncontained on `S`, meaning
+
+```text
+not ( phi|_S in RS[F,S,k] and Y|_S in RS[F,S,k] ).
+```
+
+If a primitive datum `(Q,B,w)` has divided evaluation datum
+
+```text
+eta=((B/Q)|_D,(w/Q)|_D),
+```
+
+then
+
+```text
+Lambda_{Q,B}^{nc,>=a}(w)=Lambda_eta^{nc,>=a}.     (FiberLambdaIdentity)
+```
+
+Consequently, for any finite active primitive family `A_prim`,
+
+```text
+Lambda(A_prim)= union_{eta in Ev(A_prim)} Lambda_eta^{nc,>=a}.        (EvLambdaUnion)
+```
+
+If one chooses a representative `s_eta=(Q_eta,B_eta,w_eta)` in each divided
+evaluation fiber, then
+
+```text
+|Lambda(A_prim)| <= sum_{eta in Ev(A_prim)} W(deg Q_eta).             (EvCoeffLedger)
+```
+
+In particular, for a cutoff family `A_{<=E}` and the minimal representatives
+`S_min` of Corollary 40.161,
+
+```text
+|Lambda(A_{<=E})| <= sum_{s in S_min} W(e_s).                         (MinRepCoeffLedger)
+```
+
+If additionally `E<=t-j`, then
+
+```text
+|Lambda(A_{<=E})| <= |Ev(A_{<=E})|.                                   (OneCoeffEvalLossless)
+```
+
+Thus finite-domain aliases inside one divided evaluation fiber do not
+multiply the noncontained coefficient ledger.  The high-minimal-degree tail
+of Corollary 40.164 is a presentation/class geometry to be attacked when one
+needs primitive denominator counts or active incidence structure, but it is
+not a multiplicative tail loss for the union of finite noncontained
+coefficients attached to a fixed divided evaluation datum.
+
+### Proof
+
+Since `Q` is root-free on `D`, the equation
+
+```text
+Q A+lambda B=w        on S
+```
+
+is equivalent after coordinate-wise division by `Q` to
+
+```text
+A+lambda (B/Q)=w/Q        on S.
+```
+
+The support-wise noncontained condition is also unchanged by the same
+division: it depends only on the two divided functions `(B/Q)|_S` and
+`(w/Q)|_S`.  This proves (FiberLambdaIdentity).
+
+Taking the union over the primitive data in `A_prim` and then replacing each
+datum by its divided evaluation fiber gives (EvLambdaUnion).  For each chosen
+representative `s_eta`, Corollary 40.148 gives the fixed-class estimate
+
+```text
+|Lambda_eta^{nc,>=a}|
+ = |Lambda_{Q_eta,B_eta}^{nc,>=a}(w_eta)|
+ <= W(deg Q_eta).
+```
+
+The union bound over `eta` proves (EvCoeffLedger).  Applying this to the
+minimal representatives of a cutoff family gives (MinRepCoeffLedger).  If
+`E<=t-j`, every minimal representative in the positive cutoff range satisfies
+`W(e_s)<=1` by Corollary 40.148, and `|S_min|=|Ev(A_{<=E})|`, proving
+(OneCoeffEvalLossless).
+
 ## Corollary 41: The Global Common-Image Ledger Is Endpoint-Only
 
 Let `GCI` be the set of monic degree-`c` split core locators `L` for which
@@ -19318,6 +19420,12 @@ Corollary 40.163 combines this with the one-coefficient range: for
 `E<=t-j`, the only possible multiplicity loss is the finite-domain alias tail.
 Corollary 40.164 identifies each tail fiber with an explicit upper
 defect-quotient chart of projective dimension `2E-n+1`.
+Corollary 40.165 then separates presentation geometry from slope counting:
+inside a divided evaluation fiber all primitive aliases have the same
+noncontained coefficient set, so cutoff coefficient ledgers pay only one
+chosen representative per divided evaluation datum.  In the one-coefficient
+range this removes the `Pi_q(2E-n+1)` tail multiplier from the actual slope
+ledger.
 Corollary 41 packages the common-image branch into endpoint-type ledgers; it
 does not prove the endpoint rank hypotheses needed for the displayed
 `(q+2)binom(n,b)` bound. Corollary 42 packages the globally full core ledger
