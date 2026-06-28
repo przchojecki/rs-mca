@@ -4376,6 +4376,22 @@ Consequently the marked frontier is stable under unmarked deletion.  For
 \(E\cup\{u\}\).  The largest \(F_7^*\) audit checks \(4320\) shifted supports
 and \(8640\) shifted boundary roots; the productive subaudit checks \(2160\)
 supports and \(4320\) roots.
+Equivalently, every face has a two-color normal form.  For
+\(E\subseteq U(S)\), \(Y\subseteq M(S)\), and
+\(A_{E,Y}=S\setminus(E\cup Y)\),
+\[
+H_{\tau+|E|+|Y|,|A_{E,Y}|}(s)\ell_{A_{E,Y}}=0
+\quad\text{if }Y=\emptyset,
+\]
+while for \(Y\ne\emptyset\) it is the sparse packet
+\[
+  \left(\sum_{y\in Y}
+    {b_y(S)y^i\over
+      \ell_E(y)\prod_{z\in Y,\ z\ne y}(y-z)}\right)_
+      {0\le i\le\tau+|E|+|Y|-1},
+\]
+which is nonzero.  Thus the internal split-support recursion has only zero
+descent faces and marked sparse-packet faces, with additive row shift.
 For fixed \(A\) and \(m\), this also gives a fixed-anchor fiber bound.  If
 \(m\le\tau\), the first \(2m\) moments recover the mode locator and
 amplitudes uniquely.  At the boundary \(m=\tau+1\), two supports in one

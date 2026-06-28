@@ -2009,6 +2009,64 @@ largest `F_7^*` audit, it checks `4320` shifted supports and `8640` shifted
 boundary roots after unmarked deletions.  The productive subaudit checks
 `2160` shifted supports and `4320` shifted boundary roots.
 
+## Two-Color Face Classification
+
+The preceding lemmas combine into one normal form for every face of the
+split-support cube.  Let `S` be active, let
+
+```text
+M=M(S),        U=U(S)=S\M,
+```
+
+and choose arbitrary subsets `E subset U` and `Y subset M`.  Put
+
+```text
+A_{E,Y}=S\(E union Y),        ell_E(X)=prod_{e in E}(X-e).
+```
+
+Then the face
+
+```text
+F_{E,Y}
+ = H_{tau+|E|+|Y|,|A_{E,Y}|}(s)ell_{A_{E,Y}}
+```
+
+is classified exactly as follows.
+
+If `Y` is empty, then
+
+```text
+F_{E,empty}=0.                                (TC0)
+```
+
+This is the original active equation when `E` is empty, and it is the
+unmarked zero descent (UZ) when `E` is nonempty.
+
+If `Y` is nonempty, then
+
+```text
+F_{E,Y}
+ = (sum_{y in Y}
+      b_y(S)y^i / (ell_E(y) prod_{z in Y,z!=y}(y-z)))
+     _{0<=i<=tau+|E|+|Y|-1}.                 (TC1)
+```
+
+In particular `F_{E,Y}` is nonzero.  The nonzero assertion follows from the
+first `|Y|` rows and the Vandermonde matrix on `Y`, since all displayed
+amplitudes are nonzero.
+
+Thus a split support has no hidden internal face type.  Every face is either
+a zero descent obtained by deleting only unmarked roots, or a nonzero sparse
+packet on the deleted marked roots after an exact additive row shift.  This
+is the local object one wants for M1: a deletion path through unmarked roots
+does not repeatedly reintroduce a packing problem, and the only packing
+frontier is the preserved marked sparse-packet frontier.
+
+The verifier audits the three pieces of this classification directly:
+`133920` marked/nonzero faces, `4320` unmarked zero faces, and `12960` mixed
+faces in the largest `F_7^*` audit, together with the shifted-frontier root
+checks above.
+
 ## Fixed Anchors Have Matching-Bounded Fibers
 
 Fix the collapsed anchor base `A` and the mode size `m`.  Then

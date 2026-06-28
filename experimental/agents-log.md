@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 split-support faces have two-color normal form
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_hankel_t2_one_exchange_lift.md`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / STRUCTURAL / DERIVED FROM EXACT FINITE AUDIT.
+- **What is being added:** Packages the marked and unmarked cube lemmas into
+  a complete two-color face classification: faces deleting no marked exits are
+  zero, while faces deleting marked exits are forced nonzero sparse packets
+  after an additive row shift.
+- **How it is useful:** Makes the internal split-support recursion explicit:
+  there is no third hidden face type and no repeated packing problem along
+  unmarked deletion chains.
+- **What to do next:** Use this normal form to bound canonical unmarked cores
+  carrying large marked frontiers, or to charge such cores to lower-core,
+  quotient-periodic, tangent, or aperiodic ledgers.
+
 ### 2026-06-28 - M1 unmarked deletion preserves marked frontier
 
 - **Agent/model:** AllenGrahamHart / Codex audit.
