@@ -68,7 +68,8 @@ syndrome, and the zero-boundary/root-marked incidence identity holds on each
 difference rung.  It also checks the set-level filtration partition behind
 that identity, and audits the induced first-zero stopping decomposition for
 ordered fixed-root deletion paths.  The path audit records the resulting
-first-zero/terminal ledger.
+first-zero/terminal ledger and reduces terminal flags to unordered bottom
+root-difference supports up to the factorial ordering factor.
 
 It also checks the full-top zero-syndrome lemma: if all j+1 complements
 U\\{x} inside one (j+1)-top set U are active, then the combined syndrome is
@@ -82,6 +83,7 @@ from __future__ import annotations
 import argparse
 import itertools
 import json
+import math
 from collections import Counter
 from typing import Sequence
 
@@ -315,11 +317,14 @@ def analyze_case(
     filtration_path_checks = 0
     filtration_zero_stop_paths = 0
     filtration_terminal_paths = 0
+    terminal_bottom_support_checks = 0
+    terminal_support_bound_capacity = 0
     iterated_boundary_defect_histogram: Counter[int] = Counter()
     fixed_root_filtration_defect_histogram: Counter[int] = Counter()
     filtration_path_defect_histogram: Counter[int] = Counter()
     filtration_path_partition_defect_histogram: Counter[int] = Counter()
     filtration_zero_stop_depth_histogram: Counter[int] = Counter()
+    terminal_support_bound_slack_histogram: Counter[int] = Counter()
     max_active = 0
     max_edges = 0
     max_triangles = 0
@@ -356,6 +361,8 @@ def analyze_case(
     max_nonzero_filtration_paths = 0
     max_nonzero_zero_stop_filtration_paths = 0
     max_nonzero_terminal_filtration_paths = 0
+    max_nonzero_terminal_bottom_supports = 0
+    max_nonzero_terminal_support_bound_slack = 0
     one_exchange_edges = 0
     star_triangles = 0
     top_triangles = 0
@@ -385,7 +392,13 @@ def analyze_case(
             nonlocal filtration_path_checks
             nonlocal filtration_zero_stop_paths
             nonlocal filtration_terminal_paths
+            nonlocal terminal_bottom_support_checks
+            nonlocal terminal_support_bound_capacity
+            nonlocal max_nonzero_terminal_bottom_supports
+            nonlocal max_nonzero_terminal_support_bound_slack
 
+            terminal_supports: set[tuple[int, ...]] = set()
+            audit_terminal_paths = 0
             for core in active_cores:
                 if not core:
                     continue
@@ -480,8 +493,77 @@ def analyze_case(
                                 "terminal_syndrome": list(terminal_syn),
                             }
                         )
+                    canonical_values = [
+                        domain[index] for index in sorted((*fixed_roots, *core))
+                    ]
+                    canonical_terminal_syn = iterated_root_difference_syndrome(
+                        syn,
+                        canonical_values,
+                        p,
+                    )
+                    if not hankel_annihilates(
+                        canonical_terminal_syn,
+                        cached_locator(()),
+                        t,
+                        p,
+                    ):
+                        case_filtration_path_defect += 1
+                        raise AssertionError(
+                            {
+                                "kind": (
+                                    "terminal-bottom-support-"
+                                    "order-independence-failed"
+                                ),
+                                "p": p,
+                                "k": k,
+                                "syndrome": list(syn),
+                                "fixed_roots": list(fixed_roots),
+                                "core": list(core),
+                                "deletion_order": list(deletion_order),
+                                "canonical_values": canonical_values,
+                                "terminal_syndrome": list(terminal_syn),
+                                "canonical_terminal_syndrome": list(
+                                    canonical_terminal_syn
+                                ),
+                            }
+                        )
+                    terminal_supports.add(core)
+                    audit_terminal_paths += 1
                     case_terminal_filtration_paths += 1
                     filtration_terminal_paths += 1
+            terminal_support_capacity = sum(
+                math.factorial(len(core)) for core in terminal_supports
+            )
+            terminal_support_bound_capacity += terminal_support_capacity
+            terminal_bottom_support_checks += len(terminal_supports)
+            terminal_support_slack = terminal_support_capacity - audit_terminal_paths
+            if terminal_support_slack < 0:
+                case_filtration_path_defect += 1
+                raise AssertionError(
+                    {
+                        "kind": "terminal-support-bound-failed",
+                        "p": p,
+                        "k": k,
+                        "syndrome": list(syn),
+                        "fixed_roots": list(fixed_roots),
+                        "terminal_supports": [
+                            list(core) for core in sorted(terminal_supports)
+                        ],
+                        "terminal_paths": audit_terminal_paths,
+                        "capacity": terminal_support_capacity,
+                        "slack": terminal_support_slack,
+                    }
+                )
+            terminal_support_bound_slack_histogram[terminal_support_slack] += 1
+            if any(syn):
+                max_nonzero_terminal_bottom_supports = max(
+                    max_nonzero_terminal_bottom_supports,
+                    len(terminal_supports),
+                )
+                max_nonzero_terminal_support_bound_slack = max(
+                    max_nonzero_terminal_support_bound_slack,
+                    terminal_support_slack,
+                )
 
         active = [
             index
@@ -2008,6 +2090,8 @@ def analyze_case(
         "filtration_path_checks": filtration_path_checks,
         "filtration_zero_stop_paths": filtration_zero_stop_paths,
         "filtration_terminal_paths": filtration_terminal_paths,
+        "terminal_bottom_support_checks": terminal_bottom_support_checks,
+        "terminal_support_bound_capacity": terminal_support_bound_capacity,
         "max_iterated_boundary_chain_length": max_iterated_boundary_chain_length,
         "max_nonzero_iterated_boundary_active_cores": (
             max_nonzero_iterated_boundary_active_cores
@@ -2027,6 +2111,12 @@ def analyze_case(
         ),
         "max_nonzero_terminal_filtration_paths": (
             max_nonzero_terminal_filtration_paths
+        ),
+        "max_nonzero_terminal_bottom_supports": (
+            max_nonzero_terminal_bottom_supports
+        ),
+        "max_nonzero_terminal_support_bound_slack": (
+            max_nonzero_terminal_support_bound_slack
         ),
         "max_nonzero_isolated_marked_boundary_slack": (
             max_nonzero_isolated_marked_boundary_slack
@@ -2119,6 +2209,9 @@ def analyze_case(
         "filtration_zero_stop_depth_histogram": dict(
             sorted(filtration_zero_stop_depth_histogram.items())
         ),
+        "terminal_support_bound_slack_histogram": dict(
+            sorted(terminal_support_bound_slack_histogram.items())
+        ),
         "nonzero_top_active_size_histogram": dict(
             sorted(nonzero_top_active_size_histogram.items())
         ),
@@ -2183,6 +2276,8 @@ def print_summary(results: Sequence[dict[str, object]]) -> None:
             f"{result['max_nonzero_zero_stop_filtration_paths']} "
             f"max_nonzero_terminal_paths="
             f"{result['max_nonzero_terminal_filtration_paths']} "
+            f"max_nonzero_terminal_supports="
+            f"{result['max_nonzero_terminal_bottom_supports']} "
             f"max_nonzero_full_support_slack="
             f"{result['max_nonzero_full_support_ledger_slack']} "
             f"max_nonzero_top_active={result['max_nonzero_top_active_members']}"

@@ -899,6 +899,34 @@ zero-free prefix condition can only enlarge the right side.  Hence all
 nonterminal ordered mass is paid by one-row deeper zero-boundary ledgers; the
 only uncharged residual in this filtration is the terminal zero-free flag set.
 
+## Terminal Flags Reduce to Bottom Supports
+
+The terminal zero-free flags are controlled by an unordered bottom support
+set.  Define
+
+```text
+Bot^{X_1}_{tau,q}(s)
+ = { C in K^{X_1}_{tau,q}(s) :
+     H_{tau,0}(Delta_{X_1 union C}s)1=0 }.
+```
+
+Then the forgetful map `(C,pi) -> C` gives
+
+```text
+|Term^{X_1}| <= q! |Bot^{X_1}_{tau,q}(s)|.        (TB)
+```
+
+Proof: if `(C,pi)` is terminal, the stopping decomposition reaches (TERM),
+so `C` lies in `Bot^{X_1}`.  The condition is independent of the order `pi`,
+because the root-difference operators commute.  For a fixed unordered `C`
+there are at most `q!` orderings.  This proves (TB).
+
+Thus the terminal residual is not a new flag-packing problem.  After
+first-zero stops are charged to deeper zero-boundary ledgers, what remains is
+the bottom root-difference support count `Bot^{X_1}` with only the explicit
+factorial ordering factor.  This is the natural object for quotient-periodic
+or aperiodic M1 input.
+
 ## Root-Marked Slice Is One Row
 
 The zero-boundary subkernel in the fixed-root difference form is cut out by a
@@ -1268,6 +1296,10 @@ The same audit verifies the ordered path partition (OZ): in the largest case
 the `102900` paths split as `29100` first-zero stops and `73800` terminal
 paths, with zero partition defect.  Among nonzero syndromes the maximum
 first-zero stop count is `140`.
+It also audits the terminal bottom-support reduction (TB): in the largest
+case the `73800` terminal paths reduce to `37080` local bottom-support
+instances with total factorial capacity `73800`, maximum nonzero local bottom
+support count `2`, and zero slack.
 
 The `F_7,k=2,j=2` scan is the first exact top-packet check in this file.  It
 finds twenty top triangles, all on the zero combined syndrome.  This is not an

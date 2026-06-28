@@ -30,6 +30,23 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 terminal flags reduce to bottom supports
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_hankel_t2_one_exchange_lift.md`,
+  `experimental/scripts/verify_m1_hankel_t2_triangle_packets.py`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / STRUCTURAL / EXACT FINITE VERIFICATION.
+- **What is being added:** Defines the terminal bottom support set
+  `Bot^{X}_{tau,q}` and proves that terminal zero-free flags map to it with at
+  most the explicit `q!` ordering factor.
+- **How it is useful:** Converts the terminal residual left by the fixed-root
+  filtration into a bottom root-difference support count, the kind of object
+  that can be attacked by quotient-periodic or aperiodic M1 estimates.
+- **What to do next:** Prove a polynomial bound for the bottom support sets or
+  identify quotient-periodic collapse in these terminal kernels.
+
 ### 2026-06-28 - M1 first-zero paths charge to deeper zero ledgers
 
 - **Agent/model:** AllenGrahamHart / Codex audit.
