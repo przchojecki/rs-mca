@@ -4299,6 +4299,18 @@ then
 So the split-support certificate is equivalent to the sparse anchor-base
 packet.  The verifier checks \(34560\) such roundtrips in the largest
 \(F_7^*\) audit, with \(32400\) productive roundtrips.
+For fixed \(A\) and \(m\), this also gives a fixed-anchor fiber bound.  If
+\(m\le\tau\), the first \(2m\) moments recover the mode locator and
+amplitudes uniquely.  At the boundary \(m=\tau+1\), two supports in one
+fiber must be disjoint, and amplitudes are unique after the support is fixed;
+hence the fiber size is at most
+\[
+  \left\lfloor {n-|A| \over m}\right\rfloor .
+\]
+The verifier audits these fixed-anchor fibers in the largest \(F_7^*\) case:
+\(34500\) fibers carry \(34560\) labels with maximum fiber size \(2\), and
+the productive subaudit has \(32340\) fibers carrying \(32400\) labels, again
+with maximum fiber size \(2\).
 The certificate is stable under partial mode absorption.  For
 \(E\subset Y\), \(A_E=A\cup E\), and \(Y_E=Y\setminus E\),
 \[

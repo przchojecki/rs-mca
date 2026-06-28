@@ -1723,6 +1723,45 @@ The verifier checks this roundtrip for every produced packet.  In the largest
 `F_7^*` audit, this gives `34560` packet-reconstruction roundtrips, with
 `32400` productive roundtrips.
 
+## Fixed Anchors Have Matching-Bounded Fibers
+
+Fix the collapsed anchor base `A` and the mode size `m`.  Then
+
+```text
+g_A=H_{tau+m,|A|}(s)ell_A
+```
+
+is fixed.  By the equivalence above, split-support certificates over this
+anchor are exactly nonzero `m`-sparse representations of `g_A` on the
+available domain `H\A`.
+
+If `m<=tau`, the first `2m` moments of `g_A` are visible, so the usual Prony
+annihilator argument recovers the mode locator and the amplitudes uniquely.
+Thus a fixed anchor has at most one `m`-mode split-support certificate below
+the boundary.
+
+At the maximal boundary `m=tau+1`, only `2m-1` moments are visible.  Still,
+two different `m`-supports in the same fixed-anchor fiber cannot meet: their
+difference would be a nonzero measure on at most `2m-1` roots with vanishing
+first `2m-1` moments, contradicting the square Vandermonde determinant.  Once
+the support is fixed, amplitudes are recovered from the first `m` moments.
+Therefore every fixed-anchor boundary fiber has size at most
+
+```text
+floor((n-|A|)/m).                              (AF)
+```
+
+This improves the earlier global boundary matching bound by removing the
+anchor roots from the available domain.  Consequently repeated production at
+one fixed anchor is either impossible below the boundary or is a matching-type
+boundary alias; it is not a new overlapping support cluster.
+
+The verifier audits the fixed-anchor fibers of the produced split-support
+certificates.  In the largest `F_7^*` audit, it sees `34500` fixed-anchor
+fibers carrying `34560` labels, with maximum fiber size `2`; the productive
+subaudit sees `32340` fibers carrying `32400` labels, again with maximum
+fiber size `2`.
+
 ## Partial Mode Absorption Is Lossless
 
 The split-support certificate is stable when packet modes are absorbed into

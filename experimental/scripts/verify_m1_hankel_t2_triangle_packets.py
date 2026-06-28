@@ -114,6 +114,9 @@ base A and packet modes Y, the total support A union Y is active and every
 one-mode deletion has the expected nonzero root-marked boundary vector.
 Conversely, it checks that those root-marked split-boundary scalars reconstruct
 the anchor-base sparse packet.
+For each fixed collapsed anchor base, it audits the sparse-representation
+fiber: below the boundary the mode support is unique, while at the boundary
+distinct supports are disjoint and obey the matching bound.
 It also checks that absorbing any subset of packet modes into the anchor gives
 the predicted smaller sparse packet, with no proper-subset zero collapse.
 Consequently it records the number of intrinsic zero-free ordered mode flags
@@ -494,6 +497,12 @@ def analyze_case(
     terminal_tree_productive_anchor_split_proper_absorption_checks = 0
     terminal_tree_anchor_split_ordered_mode_flags = 0
     terminal_tree_productive_anchor_split_ordered_mode_flags = 0
+    terminal_tree_anchor_fiber_checks = 0
+    terminal_tree_productive_anchor_fiber_checks = 0
+    terminal_tree_anchor_fiber_labels = 0
+    terminal_tree_productive_anchor_fiber_labels = 0
+    terminal_tree_anchor_fiber_max_size = 0
+    terminal_tree_productive_anchor_fiber_max_size = 0
     terminal_tree_mode_rank_checks = 0
     terminal_tree_productive_mode_rank_checks = 0
     terminal_tree_mode_peeling_checks = 0
@@ -681,6 +690,12 @@ def analyze_case(
             nonlocal terminal_tree_productive_anchor_split_proper_absorption_checks
             nonlocal terminal_tree_anchor_split_ordered_mode_flags
             nonlocal terminal_tree_productive_anchor_split_ordered_mode_flags
+            nonlocal terminal_tree_anchor_fiber_checks
+            nonlocal terminal_tree_productive_anchor_fiber_checks
+            nonlocal terminal_tree_anchor_fiber_labels
+            nonlocal terminal_tree_productive_anchor_fiber_labels
+            nonlocal terminal_tree_anchor_fiber_max_size
+            nonlocal terminal_tree_productive_anchor_fiber_max_size
             nonlocal terminal_tree_mode_rank_checks
             nonlocal terminal_tree_productive_mode_rank_checks
             nonlocal terminal_tree_mode_peeling_checks
@@ -733,6 +748,14 @@ def analyze_case(
             ] = {}
             productive_visible_packet_anchor_bases: dict[
                 tuple[int, tuple[tuple[int, int], ...]],
+                list[tuple[int, ...]],
+            ] = {}
+            anchor_split_fibers: dict[
+                tuple[int, tuple[int, ...]],
+                list[tuple[int, ...]],
+            ] = {}
+            productive_anchor_split_fibers: dict[
+                tuple[int, tuple[int, ...]],
                 list[tuple[int, ...]],
             ] = {}
             audit_terminal_paths = 0
@@ -1376,6 +1399,17 @@ def analyze_case(
                         terminal_tree_productive_anchor_split_roundtrip_checks += (
                             1
                         )
+                    anchor_fiber_key = (mode_count, anchor_base)
+                    anchor_fiber_support = tuple(sorted(child_root_indices))
+                    anchor_split_fibers.setdefault(
+                        anchor_fiber_key,
+                        [],
+                    ).append(anchor_fiber_support)
+                    if productive_children >= 2:
+                        productive_anchor_split_fibers.setdefault(
+                            anchor_fiber_key,
+                            [],
+                        ).append(anchor_fiber_support)
                     ordered_mode_flags = math.factorial(mode_count)
                     terminal_tree_anchor_split_ordered_mode_flags += (
                         ordered_mode_flags
@@ -2485,6 +2519,126 @@ def analyze_case(
             terminal_tree_anchor_base_kernel_checks += anchor_base_kernel_checks
             terminal_tree_productive_anchor_base_kernel_checks += (
                 productive_anchor_base_kernel_checks
+            )
+
+            def audit_anchor_split_fibers(
+                fibers: dict[
+                    tuple[int, tuple[int, ...]],
+                    list[tuple[int, ...]],
+                ],
+                productive: bool,
+            ) -> tuple[int, int, int]:
+                fiber_checks = 0
+                fiber_labels = 0
+                max_fiber_size = 0
+                for (mode_count, anchor_base), supports in fibers.items():
+                    unique_supports = sorted(set(supports))
+                    fiber_size = len(unique_supports)
+                    fiber_checks += 1
+                    fiber_labels += fiber_size
+                    max_fiber_size = max(max_fiber_size, fiber_size)
+                    if mode_count <= t and fiber_size > 1:
+                        raise AssertionError(
+                            {
+                                "kind": (
+                                    "productive-"
+                                    if productive
+                                    else ""
+                                )
+                                + "anchor-split-fiber-uniqueness-failed",
+                                "p": p,
+                                "k": k,
+                                "syndrome": list(syn),
+                                "fixed_roots": list(fixed_roots),
+                                "anchor_base": list(anchor_base),
+                                "mode_count": mode_count,
+                                "supports": [
+                                    list(support)
+                                    for support in unique_supports
+                                ],
+                            }
+                        )
+                    if mode_count == t + 1:
+                        for left, right in itertools.combinations(
+                            unique_supports,
+                            2,
+                        ):
+                            if set(left) & set(right):
+                                raise AssertionError(
+                                    {
+                                        "kind": (
+                                            "productive-"
+                                            if productive
+                                            else ""
+                                        )
+                                        + "anchor-split-boundary-"
+                                        "overlapping-fiber",
+                                        "p": p,
+                                        "k": k,
+                                        "syndrome": list(syn),
+                                        "fixed_roots": list(fixed_roots),
+                                        "anchor_base": list(anchor_base),
+                                        "mode_count": mode_count,
+                                        "left_support": list(left),
+                                        "right_support": list(right),
+                                    }
+                                )
+                        matching_bound = (
+                            n - len(anchor_base)
+                        ) // mode_count
+                        if fiber_size > matching_bound:
+                            raise AssertionError(
+                                {
+                                    "kind": (
+                                        "productive-"
+                                        if productive
+                                        else ""
+                                    )
+                                    + "anchor-split-boundary-"
+                                    "matching-bound-failed",
+                                    "p": p,
+                                    "k": k,
+                                    "syndrome": list(syn),
+                                    "fixed_roots": list(fixed_roots),
+                                    "anchor_base": list(anchor_base),
+                                    "mode_count": mode_count,
+                                    "fiber_size": fiber_size,
+                                    "matching_bound": matching_bound,
+                                }
+                            )
+                return fiber_checks, fiber_labels, max_fiber_size
+
+            (
+                anchor_fiber_checks,
+                anchor_fiber_labels,
+                anchor_fiber_max_size,
+            ) = audit_anchor_split_fibers(
+                anchor_split_fibers,
+                productive=False,
+            )
+            (
+                productive_anchor_fiber_checks,
+                productive_anchor_fiber_labels,
+                productive_anchor_fiber_max_size,
+            ) = audit_anchor_split_fibers(
+                productive_anchor_split_fibers,
+                productive=True,
+            )
+            terminal_tree_anchor_fiber_checks += anchor_fiber_checks
+            terminal_tree_productive_anchor_fiber_checks += (
+                productive_anchor_fiber_checks
+            )
+            terminal_tree_anchor_fiber_labels += anchor_fiber_labels
+            terminal_tree_productive_anchor_fiber_labels += (
+                productive_anchor_fiber_labels
+            )
+            terminal_tree_anchor_fiber_max_size = max(
+                terminal_tree_anchor_fiber_max_size,
+                anchor_fiber_max_size,
+            )
+            terminal_tree_productive_anchor_fiber_max_size = max(
+                terminal_tree_productive_anchor_fiber_max_size,
+                productive_anchor_fiber_max_size,
             )
             visible_packet_repeated_labels = sum(
                 1 for count in visible_packet_productions.values() if count > 1
@@ -4251,6 +4405,24 @@ def analyze_case(
         "terminal_tree_productive_anchor_split_ordered_mode_flags": (
             terminal_tree_productive_anchor_split_ordered_mode_flags
         ),
+        "terminal_tree_anchor_fiber_checks": (
+            terminal_tree_anchor_fiber_checks
+        ),
+        "terminal_tree_productive_anchor_fiber_checks": (
+            terminal_tree_productive_anchor_fiber_checks
+        ),
+        "terminal_tree_anchor_fiber_labels": (
+            terminal_tree_anchor_fiber_labels
+        ),
+        "terminal_tree_productive_anchor_fiber_labels": (
+            terminal_tree_productive_anchor_fiber_labels
+        ),
+        "terminal_tree_anchor_fiber_max_size": (
+            terminal_tree_anchor_fiber_max_size
+        ),
+        "terminal_tree_productive_anchor_fiber_max_size": (
+            terminal_tree_productive_anchor_fiber_max_size
+        ),
         "terminal_tree_mode_rank_checks": terminal_tree_mode_rank_checks,
         "terminal_tree_productive_mode_rank_checks": (
             terminal_tree_productive_mode_rank_checks
@@ -4681,6 +4853,10 @@ def print_summary(results: Sequence[dict[str, object]]) -> None:
             f"{result['terminal_tree_anchor_split_absorption_checks']} "
             f"anchor_split_ordered_flags="
             f"{result['terminal_tree_anchor_split_ordered_mode_flags']} "
+            f"anchor_fiber_checks="
+            f"{result['terminal_tree_anchor_fiber_checks']} "
+            f"anchor_fiber_max="
+            f"{result['terminal_tree_anchor_fiber_max_size']} "
             f"max_nonzero_terminal_tree_mode_size="
             f"{result['max_nonzero_terminal_tree_mode_size']} "
             f"max_nonzero_terminal_tree_mode_rank_size="

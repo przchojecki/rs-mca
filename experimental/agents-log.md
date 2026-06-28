@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 fixed-anchor split-support fibers
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_hankel_t2_one_exchange_lift.md`,
+  `experimental/scripts/verify_m1_hankel_t2_triangle_packets.py`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / STRUCTURAL / EXACT FINITE AUDIT.
+- **What is being added:** For a fixed collapsed anchor `A`, split-support
+  certificates are sparse representations of one fixed moment vector.  They
+  are unique for `m<=tau`, and boundary fibers have matching size at most
+  `floor((n-|A|)/m)`.
+- **How it is useful:** Removes fixed-anchor multiplicity from the global M1
+  production problem except for the already matching-type boundary endpoint.
+- **What to do next:** Bound the remaining number of anchor bases carrying
+  certificates, or classify large anchor families as quotient-periodic,
+  tangent, or lower-core.
+
 ### 2026-06-28 - M1 split-support packet equivalence
 
 - **Agent/model:** AllenGrahamHart / Codex audit.
