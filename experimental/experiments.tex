@@ -3307,6 +3307,26 @@ The same count also has the direct denominator-only form
 where \(d_J=\sum_{f\in J}\deg f\).  Hence the \(D\)-root split is an exact
 accounting decomposition of this denominator-coprime set: domain-root
 multiplicities do not change the raw fixed-denominator multiplier count.
+Therefore the remaining all-line residue-line ledger is an active primitive
+class count.  For any finite family \(\mathcal A_{\rm prim}\) of primitive
+base-dimension data \((Q_0,B_0,w_0)\),
+\[
+  |\Lambda(\mathcal A_{\rm prim})|
+  \le \sum_{(Q_0,B_0,w_0)\in\mathcal A_{\rm prim}} W(\deg Q_0),
+\]
+where \(W(0)=0\),
+\[
+  W(e)=\min\left\{\binom n j,
+       \left\lfloor{\binom n {k+e}\over \binom a {k+e}}\right\rfloor\right\}
+       \quad(1\le e\le t),
+  \qquad
+  W(e)=\binom n j\quad(e>t).
+\]
+If \(e\le t-j\), the weight sharpens to \(W(e)\le1\).  Thus, after primitive
+compression and the fixed-class packet normal forms, no coefficient,
+exchange-multiplier, complement-root, or domain-root/root-free multiplicity is
+left inside a single primitive class; the remaining M1 task is to bound the
+active primitive classes themselves.
 The common-core and two-denominator formulas persist verbatim after this
 root-free replacement.  With \(C=\gcd(D:D\in M_{\min})\), \(\gamma=\deg C\),
 and \(E_D=D/C\),

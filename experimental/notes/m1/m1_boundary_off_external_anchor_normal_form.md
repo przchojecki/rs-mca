@@ -15065,6 +15065,94 @@ The equality (SplitCollapse) is (ProductSplitCount) from Corollary 40.146
 combined with (DenomCoprimeCount).  The final interpretation follows from the
 canonical bijection of Corollary 40.145.
 
+## Corollary 40.148: Active Primitive Classes Are The Remaining All-Line Ledger
+
+Keep the scalar-cutoff notation
+
+```text
+a=k+t=n-j.
+```
+
+Let `A_prim` be any finite family of primitive base-dimension residue-line
+data
+
+```text
+(Q_0,B_0,w_0)
+```
+
+with `Q_0` root-free on `D`, `gcd(Q_0,B_0)=1`, `deg B_0<deg Q_0` when
+`deg Q_0>0`, and with the polynomial endpoint represented by
+`Q_0=1,B_0=0`.  For such a datum let
+
+```text
+Lambda(Q_0,B_0,w_0)=Lambda_{Q_0,B_0}^{nc,>=a}(w_0).
+```
+
+Define the active-class coefficient ledger
+
+```text
+Lambda(A_prim)= union_{(Q_0,B_0,w_0) in A_prim} Lambda(Q_0,B_0,w_0).
+```
+
+Then
+
+```text
+|Lambda(A_prim)|
+ <= sum_{(Q_0,B_0,w_0) in A_prim} W(deg Q_0),       (ActiveClassLedger)
+```
+
+where
+
+```text
+W(0)=0,
+W(e)=min( binom(n,j),
+          floor( binom(n,k+e) / binom(a,k+e) ) )  if 1<=e<=t,
+W(e)=binom(n,j)                                  if e>t.
+```
+
+In particular, the simpler bound
+
+```text
+|Lambda(A_prim)| <= binom(n,j) |{ (Q_0,B_0,w_0) in A_prim : deg Q_0>0 }|
+```
+
+always holds.  If `e<=t-j`, the corresponding weight may be sharpened to
+`W(e)<=1`.
+
+Thus, after tangent, contained, quotient-periodic, and presentation-multiplicity
+branches have been charged, the all-line M1 residue-line problem is exactly an
+active primitive-class counting problem with the displayed fixed-class weights.
+There is no further coefficient, exchange-multiplier, complement-root, or
+domain-root/root-free product multiplicity hidden inside a single primitive
+class.
+
+### Proof
+
+The union bound gives
+
+```text
+|Lambda(A_prim)| <= sum_{(Q_0,B_0,w_0) in A_prim}
+                    |Lambda(Q_0,B_0,w_0)|.
+```
+
+If `deg Q_0=0`, the datum is the polynomial endpoint and Corollary 40.116
+shows its noncontained coefficient set is empty.  If `1<=e=deg Q_0<=t`,
+Corollary 40.116 gives the primitive support-packing bound
+
+```text
+|Lambda(Q_0,B_0,w_0)|
+ <= floor( binom(n,k+e) / binom(a,k+e) ),
+```
+
+and Corollary 40.114 gives the general fixed-line bound `binom(n,j)`.  Taking
+the minimum gives the displayed `W(e)` in this range.  If `e>t`, use the same
+fixed-line bound from Corollary 40.114.  The one-coefficient sharpening for
+`e<=t-j` is the final part of Corollary 40.116.  The last paragraph is the
+interpretation of Corollaries 40.115, 40.122, 40.144, 40.145, and 40.147:
+presentation gcds compress, fixed-class exchange multipliers are disjoint,
+complement roots have only explicit root-choice charges, and residual products
+have a canonical denominator-coprime index.
+
 ## Corollary 41: The Global Common-Image Ledger Is Endpoint-Only
 
 Let `GCI` be the set of monic degree-`c` split core locators `L` for which
@@ -18140,6 +18228,9 @@ irreducible factors of `Q_0`.
 Corollary 40.147 gives the equivalent direct denominator-coprime count and
 shows that the domain-root split is an accounting decomposition of that same
 set, not an additional raw multiplier count.
+Corollary 40.148 packages the fixed-class conclusions into an active
+primitive-class ledger: after primitive compression, the remaining all-line
+problem is to count active primitive classes with explicit fixed-class weights.
 Corollary 41 packages the common-image branch into endpoint-type ledgers; it
 does not prove the endpoint rank hypotheses needed for the displayed
 `(q+2)binom(n,b)` bound. Corollary 42 packages the globally full core ledger

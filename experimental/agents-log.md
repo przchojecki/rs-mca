@@ -30,6 +30,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 active primitive classes are the remaining ledger
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_boundary_off_external_anchor_normal_form.md`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / PROOF-PROGRAM.
+- **What is being added:** Packages the fixed-class residue-line results into
+  an active primitive-class closure criterion: a finite active family
+  `A_prim` contributes at most the sum of explicit weights `W(deg Q_0)`, with
+  low-degree primitive classes using the support-packing weight and all
+  positive-degree classes bounded by `binom(n,j)`.
+- **How it is useful:** Identifies the remaining all-line M1 problem after the
+  fixed-class normal forms: bound the active primitive classes themselves;
+  coefficient, exchange-multiplier, complement-root, and product-factor
+  multiplicities have been removed inside each class.
+- **What to do next:** Attack the active primitive class count using quotient
+  periodicity, aperiodic packing, or denominator/residue-line structure.
+
 ### 2026-06-28 - M1 product split collapses to denominator coprimality
 
 - **Agent/model:** AllenGrahamHart / Codex audit.
