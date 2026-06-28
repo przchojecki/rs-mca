@@ -11896,6 +11896,73 @@ r_I <= (j+1) + sum_{beta in C, M(beta)=0}
 Summing this inequality over all `[M]` and all `C in Comp_[M]` gives
 (RootAnchorLedger).
 
+## Corollary 40.104: Root-Anchor Fibers Descend After Removing The Root
+
+Keep the notation of Corollary 40.103.  For a nonzero polynomial `N` with
+`deg N<=ell`, define the degree-dropped `j`-complement fiber
+
+```text
+Drop_[N]
+ = { C_0 subset D : |C_0|=j,
+        L_{C_0} in F L_D N B_prim^{-1}        mod Q_prim }.
+```
+
+Let `[M] in P_ell^x(Q_prim)`, and let `beta in D` be a root of `[M]`.  Choose
+the unique projective quotient `N` with
+
+```text
+[M]=[(X-beta)N].
+```
+
+Then the deletion map
+
+```text
+C |-> C\{beta}
+```
+
+is a bijection
+
+```text
+{ C in Comp_[M] : beta in C }
+   <-> { C_0 in Drop_[N] : beta notin C_0 }.       (RootDropBijection)
+```
+
+Thus every root-anchor excess incidence from Corollary 40.103 lies over a
+degree-dropped `j`-point complement residue fiber.  The weighted excess is
+therefore a lower-multiplier-degree packing target after the actual domain
+root has been charged.
+
+### Proof
+
+Since `beta in D` and `Q_prim` is root-free on `D`, the class of `X-beta` is
+invertible modulo `Q_prim`.
+
+If `C in Comp_[M]` and `beta in C`, write `C=C_0 union {beta}`.  Then
+
+```text
+L_C=(X-beta)L_{C_0}
+```
+
+and the condition `C in Comp_[M]` is
+
+```text
+(X-beta)L_{C_0} in F L_D (X-beta)N B_prim^{-1}
+        mod Q_prim.
+```
+
+Cancelling the invertible factor `X-beta` gives `C_0 in Drop_[N]`, and
+clearly `beta notin C_0`.
+
+Conversely, if `C_0 in Drop_[N]` and `beta notin C_0`, then multiplying the
+defining congruence by `X-beta` gives
+
+```text
+L_{C_0 union {beta}} in F L_D M B_prim^{-1}
+        mod Q_prim,
+```
+
+so `C_0 union {beta} in Comp_[M]`.  These two constructions are inverse.
+
 ## Corollary 41: The Global Common-Image Ledger Is Endpoint-Only
 
 Let `GCI` be the set of monic degree-`c` split core locators `L` for which
@@ -14832,6 +14899,8 @@ Corollary 40.103 shows that, when such a generator-collapse support is
 adjacent to a one-exchange exceptional complement, the added point is forced
 to be an actual root of the one-exchange multiplier; hence weighted excess
 beyond the trivial `j+1` adjacent supports is root-anchored.
+Corollary 40.104 then cancels that actual root and identifies the
+root-anchor fiber with a degree-dropped `j`-complement residue fiber.
 Corollary 41 packages the common-image branch into endpoint-type ledgers; it
 does not prove the endpoint rank hypotheses needed for the displayed
 `(q+2)binom(n,b)` bound. Corollary 42 packages the globally full core ledger

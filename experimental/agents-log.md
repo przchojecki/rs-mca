@@ -30,6 +30,23 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 root-anchor fibers descend after deleting the root
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_boundary_off_external_anchor_normal_form.md`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / PROOF-PROGRAM.
+- **What is being added:** If `[M]=[(X-beta)N]` with `beta in D`, then
+  deleting `beta` gives a bijection between complements
+  `C in Comp_[M]` containing `beta` and degree-dropped `j`-complement fibers
+  `L_C0 in F L_D N B_prim^{-1} mod Q_prim`.
+- **How it is useful:** This turns root-anchor weighted excess into a
+  lower-multiplier-degree packing target after charging the actual domain
+  root.
+- **What to do next:** Combine this degree descent with unweighted
+  small-complement residue packing to control the root-anchor excess ledger.
+
 ### 2026-06-28 - M1 adjacent collapse is root-anchored
 
 - **Agent/model:** AllenGrahamHart / Codex audit.
