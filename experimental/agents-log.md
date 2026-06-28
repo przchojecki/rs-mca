@@ -30,6 +30,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 b=2 half-height base loci descend the pencil
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_hankel_t2_one_exchange_lift.md`,
+  `experimental/experiments.tex`,
+  `experimental/scripts/verify_m1_hankel_t2_triangle_packets.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / STRUCTURAL / AUDIT.
+- **What is being added:** Proves that if the `b=2` base locus has height
+  `h>=q/2`, then the whole residual direction pencil factors as
+  `V(U,W)=ell_{B_0}V'` with `dim V'=2` and degree width `<q-h<=q/2`, while the
+  projective evaluation map is unchanged off the base locus.
+- **How it is useful:** Separates the half-height survivor into a lower-width
+  quotient-pencil descent for large base loci and a single short quotient
+  direction for large non-base fibers.
+- **What to do next:** Bound the descended quotient pencils or classify the
+  remaining half-height non-base fiber directions.
+
 ### 2026-06-28 - M1 b=2 half-height shadows give short quotient kernels
 
 - **Agent/model:** AllenGrahamHart / Codex audit.

@@ -5478,6 +5478,366 @@ def analyze_case(
                                                     "base",
                                                     basis_index=basis_index,
                                                 )
+                                            if (
+                                                2
+                                                * len(
+                                                    projective_eval_base_roots
+                                                )
+                                                >= residual_size
+                                            ):
+                                                base_root_tuple = tuple(
+                                                    sorted(
+                                                        projective_eval_base_roots
+                                                    )
+                                                )
+                                                base_locator = cached_locator(
+                                                    base_root_tuple
+                                                )
+                                                base_quotient_basis = tuple(
+                                                    divide_by_polynomial_exact_mod(
+                                                        vector,
+                                                        base_locator,
+                                                        p,
+                                                    )
+                                                    for vector in (
+                                                        direction_basis
+                                                    )
+                                                )
+                                                base_quotient_width = (
+                                                    residual_size
+                                                    - len(base_root_tuple)
+                                                )
+                                                base_quotient_rank = matrix_rank_mod(
+                                                    base_quotient_basis,
+                                                    p,
+                                                )
+                                                if (
+                                                    any(
+                                                        len(vector)
+                                                        != base_quotient_width
+                                                        for vector in (
+                                                            base_quotient_basis
+                                                        )
+                                                    )
+                                                    or base_quotient_rank
+                                                    != residual_direction_dim
+                                                ):
+                                                    raise AssertionError(
+                                                        {
+                                                            "kind": (
+                                                                "productive-"
+                                                                if productive
+                                                                else ""
+                                                            )
+                                                            + "marked-core-"
+                                                            "deficit-anchor-"
+                                                            "direction-mds-"
+                                                            "projective-"
+                                                            "base-quotient-"
+                                                            "pencil-rank-"
+                                                            "failed",
+                                                            "p": p,
+                                                            "k": k,
+                                                            "syndrome": list(
+                                                                syn
+                                                            ),
+                                                            "fixed_roots": list(
+                                                                fixed_roots
+                                                            ),
+                                                            "unmarked_core": list(
+                                                                unmarked_core
+                                                            ),
+                                                            "marked_count": (
+                                                                marked_count
+                                                            ),
+                                                            "core_deficit": (
+                                                                core_deficit
+                                                            ),
+                                                            "anchor": list(
+                                                                anchor
+                                                            ),
+                                                            "base_roots": list(
+                                                                base_root_tuple
+                                                            ),
+                                                            "quotient_width": (
+                                                                base_quotient_width
+                                                            ),
+                                                            "quotient_basis": [
+                                                                list(vector)
+                                                                for vector in (
+                                                                    base_quotient_basis
+                                                                )
+                                                            ],
+                                                            "rank": (
+                                                                base_quotient_rank
+                                                            ),
+                                                        }
+                                                    )
+                                                for root in available_roots:
+                                                    if (
+                                                        root
+                                                        in projective_eval_base_roots
+                                                    ):
+                                                        continue
+                                                    base_value = (
+                                                        polynomial_eval_mod(
+                                                            base_locator,
+                                                            domain[root],
+                                                            p,
+                                                        )
+                                                    )
+                                                    if not base_value:
+                                                        raise AssertionError(
+                                                            {
+                                                                "kind": (
+                                                                    "productive-"
+                                                                    if productive
+                                                                    else ""
+                                                                )
+                                                                + "marked-core-"
+                                                                "deficit-"
+                                                                "anchor-"
+                                                                "direction-"
+                                                                "mds-"
+                                                                "projective-"
+                                                                "base-"
+                                                                "quotient-"
+                                                                "new-base-"
+                                                                "failed",
+                                                                "p": p,
+                                                                "k": k,
+                                                                "syndrome": list(
+                                                                    syn
+                                                                ),
+                                                                "fixed_roots": list(
+                                                                    fixed_roots
+                                                                ),
+                                                                "unmarked_core": list(
+                                                                    unmarked_core
+                                                                ),
+                                                                "marked_count": (
+                                                                    marked_count
+                                                                ),
+                                                                "core_deficit": (
+                                                                    core_deficit
+                                                                ),
+                                                                "anchor": list(
+                                                                    anchor
+                                                                ),
+                                                                "base_roots": list(
+                                                                    base_root_tuple
+                                                                ),
+                                                                "root": root,
+                                                            }
+                                                        )
+                                                    quotient_values = tuple(
+                                                        polynomial_eval_mod(
+                                                            vector,
+                                                            domain[root],
+                                                            p,
+                                                        )
+                                                        for vector in (
+                                                            base_quotient_basis
+                                                        )
+                                                    )
+                                                    direction_values = tuple(
+                                                        polynomial_eval_mod(
+                                                            vector,
+                                                            domain[root],
+                                                            p,
+                                                        )
+                                                        for vector in (
+                                                            direction_basis
+                                                        )
+                                                    )
+                                                    expected_values = tuple(
+                                                        (
+                                                            base_value * value
+                                                        )
+                                                        % p
+                                                        for value in (
+                                                            quotient_values
+                                                        )
+                                                    )
+                                                    if (
+                                                        direction_values
+                                                        != expected_values
+                                                    ):
+                                                        raise AssertionError(
+                                                            {
+                                                                "kind": (
+                                                                    "productive-"
+                                                                    if productive
+                                                                    else ""
+                                                                )
+                                                                + "marked-core-"
+                                                                "deficit-"
+                                                                "anchor-"
+                                                                "direction-"
+                                                                "mds-"
+                                                                "projective-"
+                                                                "base-"
+                                                                "quotient-"
+                                                                "evaluation-"
+                                                                "failed",
+                                                                "p": p,
+                                                                "k": k,
+                                                                "syndrome": list(
+                                                                    syn
+                                                                ),
+                                                                "fixed_roots": list(
+                                                                    fixed_roots
+                                                                ),
+                                                                "unmarked_core": list(
+                                                                    unmarked_core
+                                                                ),
+                                                                "marked_count": (
+                                                                    marked_count
+                                                                ),
+                                                                "core_deficit": (
+                                                                    core_deficit
+                                                                ),
+                                                                "anchor": list(
+                                                                    anchor
+                                                                ),
+                                                                "base_roots": list(
+                                                                    base_root_tuple
+                                                                ),
+                                                                "root": root,
+                                                                "direction_values": list(
+                                                                    direction_values
+                                                                ),
+                                                                "expected_values": list(
+                                                                    expected_values
+                                                                ),
+                                                            }
+                                                        )
+                                                    pivot = next(
+                                                        (
+                                                            value
+                                                            for value in (
+                                                                quotient_values
+                                                            )
+                                                            if value % p
+                                                        ),
+                                                        None,
+                                                    )
+                                                    if pivot is None:
+                                                        raise AssertionError(
+                                                            {
+                                                                "kind": (
+                                                                    "productive-"
+                                                                    if productive
+                                                                    else ""
+                                                                )
+                                                                + "marked-core-"
+                                                                "deficit-"
+                                                                "anchor-"
+                                                                "direction-"
+                                                                "mds-"
+                                                                "projective-"
+                                                                "base-"
+                                                                "quotient-"
+                                                                "zero-fiber-"
+                                                                "failed",
+                                                                "p": p,
+                                                                "k": k,
+                                                                "syndrome": list(
+                                                                    syn
+                                                                ),
+                                                                "fixed_roots": list(
+                                                                    fixed_roots
+                                                                ),
+                                                                "unmarked_core": list(
+                                                                    unmarked_core
+                                                                ),
+                                                                "marked_count": (
+                                                                    marked_count
+                                                                ),
+                                                                "core_deficit": (
+                                                                    core_deficit
+                                                                ),
+                                                                "anchor": list(
+                                                                    anchor
+                                                                ),
+                                                                "base_roots": list(
+                                                                    base_root_tuple
+                                                                ),
+                                                                "root": root,
+                                                            }
+                                                        )
+                                                    inverse_pivot = pow(
+                                                        pivot,
+                                                        -1,
+                                                        p,
+                                                    )
+                                                    quotient_key = tuple(
+                                                        (
+                                                            value
+                                                            * inverse_pivot
+                                                        )
+                                                        % p
+                                                        for value in (
+                                                            quotient_values
+                                                        )
+                                                    )
+                                                    if (
+                                                        quotient_key
+                                                        != projective_eval_values[
+                                                            root
+                                                        ]
+                                                    ):
+                                                        raise AssertionError(
+                                                            {
+                                                                "kind": (
+                                                                    "productive-"
+                                                                    if productive
+                                                                    else ""
+                                                                )
+                                                                + "marked-core-"
+                                                                "deficit-"
+                                                                "anchor-"
+                                                                "direction-"
+                                                                "mds-"
+                                                                "projective-"
+                                                                "base-"
+                                                                "quotient-"
+                                                                "fiber-map-"
+                                                                "failed",
+                                                                "p": p,
+                                                                "k": k,
+                                                                "syndrome": list(
+                                                                    syn
+                                                                ),
+                                                                "fixed_roots": list(
+                                                                    fixed_roots
+                                                                ),
+                                                                "unmarked_core": list(
+                                                                    unmarked_core
+                                                                ),
+                                                                "marked_count": (
+                                                                    marked_count
+                                                                ),
+                                                                "core_deficit": (
+                                                                    core_deficit
+                                                                ),
+                                                                "anchor": list(
+                                                                    anchor
+                                                                ),
+                                                                "base_roots": list(
+                                                                    base_root_tuple
+                                                                ),
+                                                                "root": root,
+                                                                "quotient_key": list(
+                                                                    quotient_key
+                                                                ),
+                                                                "projective_key": list(
+                                                                    projective_eval_values[
+                                                                        root
+                                                                    ]
+                                                                ),
+                                                            }
+                                                        )
                                             for key, roots in (
                                                 projective_eval_fibers.items()
                                             ):

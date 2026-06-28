@@ -3372,6 +3372,46 @@ direction, and verifies the resulting Hankel-kernel equation after multiplying
 by the fixed anchor.  The current largest `F_7^*` scan has no `b(U,W)=2`
 produced anchor.
 
+## Half-Height Base Loci Descend the Whole b=2 Pencil
+
+There is a stronger conclusion in the base-locus half-height case.  If
+`h=|B_0|>=q/2`, then every direction in `V(U,W)=<P,Q>` is divisible by
+`ell_{B_0}`.  Hence
+
+```text
+V(U,W)=ell_{B_0} V',
+dim V'=2,
+V' subset F[X]_{<q-h},
+q-h<=q/2.                                      (PF2-base-desc)
+```
+
+Moreover the projective fiber map outside the base locus is unchanged after
+division.  For `x notin B_0`,
+
+```text
+(P(x),Q(x)) = ell_{B_0}(x) (P'(x),Q'(x)),
+ell_{B_0}(x) != 0,
+```
+
+so
+
+```text
+[P(x):Q(x)] = [P'(x):Q'(x)].
+```
+
+Thus a large base locus does not leave a genuinely two-dimensional residual
+object at degree `q`.  It descends the entire projective-packing problem to a
+two-dimensional quotient pencil of degree `<q-h<=q/2`.  The remaining base
+half-height obstruction is therefore a lower-width quotient-pencil problem,
+while a non-base half-height fiber remains a single short quotient direction as
+in (PF2-short).
+
+The verifier now checks this descent whenever `b(U,W)=2` and `|B_0|>=q/2`: it
+divides both basis directions by `ell_{B_0}`, checks that the quotient basis
+still has rank two, and verifies that the quotient projective evaluation map
+agrees with the original one off `B_0`.  The current largest `F_7^*` scan has
+no `b(U,W)=2` produced anchor.
+
 ## Bad Root Slices Are Absorbed-Anchor Rank Defects
 
 The preceding bad-root condition has an equivalent absorbed-anchor form.  Fix
