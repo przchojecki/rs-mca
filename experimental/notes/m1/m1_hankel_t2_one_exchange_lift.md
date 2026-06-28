@@ -1291,6 +1291,33 @@ Equivalently, the true packet amplitudes are root-linear:
 even an arbitrary scalar-fit problem; it is exactly the root-linear amplitude
 locus.
 
+Consequently the aliased endpoint is polynomial-sized for fixed `m`.  As
+labeled packets `(Y,(a_y))`, the full-domain root-linear alias locus is
+
+```text
+{ (Y,nu) : Y subset H, |Y|=m, nu in F^*,
+           a_y=nu y for y in Y },
+```
+
+so it has cardinality
+
+```text
+(|F|-1) binom(n,m).                              (AL)
+```
+
+The visible moment sequence identifies the unordered pair
+`{(Y,nu),(H\Y,-nu)}`, so the number of distinct visible aliased sequences is
+
+```text
+(|F|-1) binom(n,m)/2
+```
+
+when `m>=1`.  This count is independent of arbitrary `m`-tuples of
+amplitudes: the alias condition cuts the amplitude freedom from `(F^*)^m` down
+to one scalar.  Thus, for fixed slack `m=tau+1`, the actual ambiguous
+full-domain endpoint is already a polynomial ledger in the polynomial-field
+window.
+
 For the `t=2` terminal audit this says exactly what the data show:
 mode-size-`2` packets are locator-recoverable, while mode-size-`3` packets are
 maximal-window boundary packets.  Therefore a proof of M1 cannot use rank
@@ -1307,7 +1334,8 @@ audit checks (SF) directly: the constant-product scalar fits have exactly the
 same `4200/120` histogram as the moment aliases.  Since this audit is also a
 full-domain boundary case with `n=6=2m`, the root-linear test (RL) has the
 same histogram: the `120` aliased packets are precisely the root-linear
-amplitude packets.
+amplitude packets.  They occupy all `binom(6,3)=20` supports with `6=|F|-1`
+scalar multiples per support, exactly as (AL) predicts.
 
 ## Root-Marked Slice Is One Row
 

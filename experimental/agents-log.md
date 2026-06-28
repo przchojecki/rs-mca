@@ -30,6 +30,26 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 root-linear endpoint is polynomial-sized
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_hankel_t2_one_exchange_lift.md`,
+  `experimental/scripts/verify_m1_hankel_t2_triangle_packets.py`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / STRUCTURAL / EXACT FINITE VERIFICATION.
+- **What is being added:** Counts the full-domain root-linear alias locus:
+  labeled aliased boundary packets are exactly `(Y,nu)` with
+  `a_y=nu y`, hence there are `(|F|-1) binom(n,m)` of them, paired by
+  complement in visible moments.
+- **How it is useful:** Shows the only ambiguous full-domain endpoint isolated
+  so far is polynomial-sized for fixed `m=tau+1` in the polynomial-field
+  window, rather than an arbitrary `(F^*)^m` amplitude family.
+- **What to do next:** Use this polynomial endpoint ledger as the terminal
+  charge after non-aliased packets are made support-identifiable, and test
+  whether analogous low-dimensional amplitude loci occur for non-full-domain
+  boundary packets.
+
 ### 2026-06-28 - M1 full-domain aliases are root-linear
 
 - **Agent/model:** AllenGrahamHart / Codex audit.

@@ -92,6 +92,7 @@ branch-scalar form: a disjoint candidate Z aliases a mode set Y exactly when
 c_y prod_{z in Z}(y-z) is independent of y in Y.
 In the full-domain boundary case n=2m over roots of unity, it checks the
 equivalent root-linear amplitude test a_y/y = constant on Y.
+It records the resulting labeled support profile for root-linear packets.
 
 It also checks the full-top zero-syndrome lemma: if all j+1 complements
 U\\{x} inside one (j+1)-top set U are active, then the combined syndrome is
@@ -452,6 +453,9 @@ def analyze_case(
     terminal_tree_productive_boundary_root_linear_checks = 0
     terminal_tree_boundary_root_linear_hits = 0
     terminal_tree_productive_boundary_root_linear_hits = 0
+    terminal_tree_boundary_root_linear_by_support: Counter[tuple[int, ...]] = (
+        Counter()
+    )
     terminal_tree_multiflag_cores = 0
     iterated_boundary_defect_histogram: Counter[int] = Counter()
     fixed_root_filtration_defect_histogram: Counter[int] = Counter()
@@ -797,6 +801,7 @@ def analyze_case(
                 nonlocal terminal_tree_productive_boundary_root_linear_checks
                 nonlocal terminal_tree_boundary_root_linear_hits
                 nonlocal terminal_tree_productive_boundary_root_linear_hits
+                nonlocal terminal_tree_boundary_root_linear_by_support
 
                 if not current_core:
                     return (1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
@@ -1442,6 +1447,9 @@ def analyze_case(
                                 ] += 1
                                 if root_linear:
                                     terminal_tree_boundary_root_linear_hits += 1
+                                    terminal_tree_boundary_root_linear_by_support[
+                                        tuple(sorted(child_root_indices))
+                                    ] += 1
                                 if productive_children >= 2:
                                     terminal_tree_productive_boundary_root_linear_checks += (
                                         1
@@ -3431,6 +3439,9 @@ def analyze_case(
         "terminal_tree_productive_boundary_root_linear_hits": (
             terminal_tree_productive_boundary_root_linear_hits
         ),
+        "terminal_tree_boundary_root_linear_support_count": len(
+            terminal_tree_boundary_root_linear_by_support
+        ),
         "terminal_tree_multiflag_cores": terminal_tree_multiflag_cores,
         "max_iterated_boundary_chain_length": max_iterated_boundary_chain_length,
         "max_nonzero_iterated_boundary_active_cores": (
@@ -3657,6 +3668,11 @@ def analyze_case(
         ),
         "terminal_tree_productive_boundary_root_linear_histogram": dict(
             sorted(terminal_tree_productive_boundary_root_linear_histogram.items())
+        ),
+        "terminal_tree_boundary_root_linear_support_histogram": dict(
+            sorted(
+                Counter(terminal_tree_boundary_root_linear_by_support.values()).items()
+            )
         ),
         "terminal_tree_multiflag_core_histogram": dict(
             sorted(terminal_tree_multiflag_core_histogram.items())
