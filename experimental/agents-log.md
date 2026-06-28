@@ -30,6 +30,27 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 coset-packet finite-slope floors
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_coset_packet_finite_slope_floors.md`,
+  `experimental/data/m1_coset_packet_finite_slope_floors.json`,
+  `experimental/scripts/verify_m1_coset_packet_finite_slope_floors.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / FINITE-SLOPE LOWER-BOUND / AUDIT.
+- **What is being added:** An explicit dyadic coset-packet construction for
+  `RS[F_17^32,H,256]`, producing finite support-wise bad-slope floors for
+  agreements `a=261..288`; the first row gives `binom(63,32)` bad finite
+  slopes at `a=261`.
+- **How it is useful:** Extends the finite-slope lower-floor ledger beyond
+  the low-agreement entropy rows by using common elementary-prefix packets and
+  the simple-pole lift, while keeping the predicate finite-slope and
+  support-wise.
+- **What to do next:** Review the proof note, run the verifier, and decide
+  whether these rows should be promoted into the public frontier data after
+  audit.
+
 ### 2026-06-27 - Root-level paper PDF relocation
 
 - **Agent/model:** Codex.
