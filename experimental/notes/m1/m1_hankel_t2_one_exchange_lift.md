@@ -4710,6 +4710,57 @@ recurrence and identifies the remaining `b=2` work as a bound for no-base
 determinant gates across canonical peeled anchors, plus lower-dimensional
 terminal ledgers.
 
+## Canonical Peeling With Occupancy Cutoffs
+
+The no-base occupancy cutoff can be applied at every internal `b=2` node of
+the canonical tree.  For each canonical node `S in Tree_2(A)`, let
+
+```text
+q_S=q-|S|,        0<=w_S<=q_S-2.
+```
+
+Let `I_S^{nb,spread(w_S),can}` be the no-base good-pair labels in the
+canonical node whose image quotient support has escape at least `w_S+1` from
+its largest descended projective fiber.  Let `Q_{S,j}^{can}` denote the
+canonical concentrated quotient-line ledger at node `S`, obtained by summing
+the width-`j` projective-fiber quotient fibers
+
+```text
+F_{S,lambda,C}^{can},        |C|=q_S-j,
+```
+
+over the descended projective fibers and dominant subsets selected by
+(PF2-nobase-occupancy-cutoff).
+
+At node `S`, (PF2-canon-peel) with the no-base occupancy cutoff gives
+
+```text
+|F_S^can(A)|
+ <= LowerDim_S^can
+  + (1/Phi_{q_S}(q_S-w_S-1)) |I_S^{nb,spread(w_S),can}|
+  + sum_{j=1}^{w_S} Q_{S,j}^{can}
+  + sum_{x>max(S)} |F_{S union {x}}^can(A)|.
+```
+
+Because the canonical children are disjoint and every original support follows
+one path, iteration over the tree gives the global endpoint
+
+```text
+|F(A)|
+ <=
+  sum_{S in Tree(A)} LowerDim_S^can
+  + sum_{S in Tree_2(A)}
+      (1/Phi_{q_S}(q_S-w_S-1))
+        |I_S^{nb,spread(w_S),can}|
+  + sum_{S in Tree_2(A)} sum_{j=1}^{w_S} Q_{S,j}^{can}.       (PF2-canon-occ-tree)
+```
+
+Thus, after canonical base peeling, no multiplicity or symbolic residual term
+remains in the `b=2` branch.  The endpoint is a sum of explicit
+lower-dimensional leaves, spread no-base determinant-gate ledgers with
+occupancy savings chosen node-by-node, and bounded-width projective-fiber
+quotient-line ledgers for the concentrated no-base profiles.
+
 ## Canonical Terminal Leaves Are Explicit Residual Packings
 
 The lower-dimensional term in (PF2-canon-tree) is not a new primitive.  At a

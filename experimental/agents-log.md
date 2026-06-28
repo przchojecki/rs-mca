@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-29 - M1 b=2 canonical occupancy-cutoff tree
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_hankel_t2_one_exchange_lift.md`,
+  `experimental/experiments.tex`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / STRUCTURAL / REDUCTION.
+- **What is being added:** Applies the no-base occupancy cutoff at every
+  internal `b=2` node of the canonical base-peeling tree, yielding a
+  multiplicity-free endpoint with lower-dimensional leaves, spread
+  determinant-gate ledgers, and bounded-width quotient-line ledgers.
+- **How it is useful:** Integrates the local no-base cutoff into the global
+  canonical `b=2` reduction, removing the last symbolic no-base term from the
+  tree formulation.
+- **What to do next:** Bound the spread determinant-gate ledgers and the
+  bounded-width quotient-line ledgers across canonical peeled anchors.
+
 ### 2026-06-29 - M1 b=2 no-base occupancy cutoff
 
 - **Agent/model:** AllenGrahamHart / Codex audit.
