@@ -3190,6 +3190,57 @@ The verifier now checks the good-pair count, verifies that good pairs are not
 shared by two residual candidates, and asserts (PF2-good-bound) whenever
 `g_min>0`.  The current largest `F_7^*` scan has no `b(U,W)=2` produced anchor.
 
+## b=2 Good Pairs Have a Concentration Lower Bound
+
+The good-pair count can be lower-bounded from simple occupancy data.  For a
+residual support `R`, let
+
+```text
+a(R)=|R cap B_0|,
+r_lambda(R)=|R cap ev^{-1}(lambda)|,
+M(R)=max_lambda r_lambda(R).
+```
+
+Then the exact support-level count is
+
+```text
+g(R)
+ =
+binom(q-a(R),2)-sum_lambda binom(r_lambda(R),2).  (PF2-support)
+```
+
+Consequently, if every residual support in the fixed-anchor fiber satisfies
+
+```text
+a(R)<=A,        M(R)<=M,
+```
+
+then, putting `L=q-A`,
+
+```text
+g(R)
+ >=
+binom(L,2)
+ - ( floor(L/M) binom(M,2)
+     + binom(L mod M,2) ).                       (PF2-conc)
+```
+
+The bracket is the largest possible same-fiber pair count among `L` non-base
+roots when no projective fiber receives more than `M` of them.  Thus unless a
+support concentrates many roots in the base locus or in a single projective
+fiber, it contributes many good cross-fiber pairs and is strongly packing
+bounded by (PF2-good-bound).
+
+This isolates the next M1 obstruction inside the `b=2` persistent branch:
+large residual fibers must create base-heavy or projective-fiber-heavy supports.
+Those are fixed-root and quotient/aperiodic concentration phenomena rather
+than generic residual-kernel multiplicity.
+
+The verifier now checks (PF2-support) for each residual candidate and checks
+the concentration lower bound determined by the largest base occupancy and
+largest fiber occupancy seen in the fixed-anchor fiber.  The current largest
+`F_7^*` scan has no `b(U,W)=2` produced anchor.
+
 ## Bad Root Slices Are Absorbed-Anchor Rank Defects
 
 The preceding bad-root condition has an equivalent absorbed-anchor form.  Fix

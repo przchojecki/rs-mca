@@ -188,6 +188,8 @@ persistent branch for produced anchors in the usual field-size range.
 For two-dimensional residual direction spaces, it identifies the bad pairs as
 projective evaluation fibers and checks the resulting cross-fiber good-pair
 packing bound.
+It also computes support-level base/fiber occupancy and checks the resulting
+concentration lower bound for good pairs.
 For each fixed collapsed anchor base, it audits the sparse-representation
 fiber: below the boundary the mode support is unique, while at the boundary
 distinct supports are disjoint and obey the matching bound.
@@ -453,6 +455,16 @@ def binomial_or_zero(n: int, k: int) -> int:
     if n < 0 or k < 0 or k > n:
         return 0
     return math.comb(n, k)
+
+
+def capped_pair_cluster_bound(total: int, cap: int) -> int:
+    if total <= 1 or cap <= 1:
+        return 0
+    full_blocks, remainder = divmod(total, cap)
+    return (
+        full_blocks * math.comb(cap, 2)
+        + math.comb(remainder, 2)
+    )
 
 
 def hankel_divisor_matrix_mod(
@@ -5468,8 +5480,47 @@ def analyze_case(
                                             candidate_good_pair_min: int | None = (
                                                 None
                                             )
+                                            candidate_base_occupancy_max = 0
+                                            candidate_fiber_occupancy_max = 0
                                             for candidate in residual_candidates:
                                                 candidate_good_pairs = 0
+                                                candidate_base_occupancy = sum(
+                                                    1
+                                                    for root in candidate
+                                                    if root
+                                                    in projective_eval_base_roots
+                                                )
+                                                candidate_fiber_counts: dict[
+                                                    tuple[int, ...],
+                                                    int,
+                                                ] = {}
+                                                for root in candidate:
+                                                    if (
+                                                        root
+                                                        in projective_eval_base_roots
+                                                    ):
+                                                        continue
+                                                    key = projective_eval_values[
+                                                        root
+                                                    ]
+                                                    candidate_fiber_counts[key] = (
+                                                        candidate_fiber_counts.get(
+                                                            key,
+                                                            0,
+                                                        )
+                                                        + 1
+                                                    )
+                                                candidate_base_occupancy_max = max(
+                                                    candidate_base_occupancy_max,
+                                                    candidate_base_occupancy,
+                                                )
+                                                candidate_fiber_occupancy_max = max(
+                                                    candidate_fiber_occupancy_max,
+                                                    max(
+                                                        candidate_fiber_counts.values(),
+                                                        default=0,
+                                                    ),
+                                                )
                                                 for pair in itertools.combinations(
                                                     candidate,
                                                     2,
@@ -5542,6 +5593,141 @@ def analyze_case(
                                                         candidate_good_pairs,
                                                     )
                                                 )
+                                                nonbase_candidate_roots = (
+                                                    residual_size
+                                                    - candidate_base_occupancy
+                                                )
+                                                expected_candidate_good_pairs = (
+                                                    math.comb(
+                                                        nonbase_candidate_roots,
+                                                        2,
+                                                    )
+                                                    - sum(
+                                                        math.comb(count, 2)
+                                                        for count in (
+                                                            candidate_fiber_counts.values()
+                                                        )
+                                                    )
+                                                )
+                                                if (
+                                                    candidate_good_pairs
+                                                    != expected_candidate_good_pairs
+                                                ):
+                                                    raise AssertionError(
+                                                        {
+                                                            "kind": (
+                                                                "productive-"
+                                                                if productive
+                                                                else ""
+                                                            )
+                                                            + "marked-core-"
+                                                            "deficit-anchor-"
+                                                            "direction-mds-"
+                                                            "projective-"
+                                                            "candidate-good-"
+                                                            "pair-count-"
+                                                            "failed",
+                                                            "p": p,
+                                                            "k": k,
+                                                            "syndrome": list(syn),
+                                                            "fixed_roots": list(
+                                                                fixed_roots
+                                                            ),
+                                                            "unmarked_core": list(
+                                                                unmarked_core
+                                                            ),
+                                                            "marked_count": (
+                                                                marked_count
+                                                            ),
+                                                            "core_deficit": (
+                                                                core_deficit
+                                                            ),
+                                                            "anchor": list(anchor),
+                                                            "candidate": list(
+                                                                candidate
+                                                            ),
+                                                            "candidate_good_pairs": (
+                                                                candidate_good_pairs
+                                                            ),
+                                                            "expected": (
+                                                                expected_candidate_good_pairs
+                                                            ),
+                                                            "base_occupancy": (
+                                                                candidate_base_occupancy
+                                                            ),
+                                                            "fiber_counts": {
+                                                                str(key): count
+                                                                for key, count in (
+                                                                    candidate_fiber_counts.items()
+                                                                )
+                                                            },
+                                                        }
+                                                    )
+                                            if residual_candidates:
+                                                nonbase_lower_count = (
+                                                    residual_size
+                                                    - candidate_base_occupancy_max
+                                                )
+                                                concentration_good_pair_lower = (
+                                                    math.comb(
+                                                        nonbase_lower_count,
+                                                        2,
+                                                    )
+                                                    - capped_pair_cluster_bound(
+                                                        nonbase_lower_count,
+                                                        candidate_fiber_occupancy_max,
+                                                    )
+                                                )
+                                                if (
+                                                    candidate_good_pair_min
+                                                    is not None
+                                                    and candidate_good_pair_min
+                                                    < concentration_good_pair_lower
+                                                ):
+                                                    raise AssertionError(
+                                                        {
+                                                            "kind": (
+                                                                "productive-"
+                                                                if productive
+                                                                else ""
+                                                            )
+                                                            + "marked-core-"
+                                                            "deficit-anchor-"
+                                                            "direction-mds-"
+                                                            "projective-"
+                                                            "concentration-"
+                                                            "lower-bound-"
+                                                            "failed",
+                                                            "p": p,
+                                                            "k": k,
+                                                            "syndrome": list(syn),
+                                                            "fixed_roots": list(
+                                                                fixed_roots
+                                                            ),
+                                                            "unmarked_core": list(
+                                                                unmarked_core
+                                                            ),
+                                                            "marked_count": (
+                                                                marked_count
+                                                            ),
+                                                            "core_deficit": (
+                                                                core_deficit
+                                                            ),
+                                                            "anchor": list(anchor),
+                                                            "candidate_good_pair_min": (
+                                                                candidate_good_pair_min
+                                                            ),
+                                                            "base_occupancy_max": (
+                                                                candidate_base_occupancy_max
+                                                            ),
+                                                            "fiber_occupancy_max": (
+                                                                candidate_fiber_occupancy_max
+                                                            ),
+                                                            "lower_bound": (
+                                                                concentration_good_pair_lower
+                                                            ),
+                                                        }
+                                                    )
                                             if (
                                                 candidate_good_pair_min
                                                 and len(residual_candidates)

@@ -4787,6 +4787,28 @@ support contains at least \(g_{\min}>0\) good cross-fiber pairs, then
   |F(U,W)|\le \left\lfloor {G_{\rm tot}\over g_{\min}}\right\rfloor .
 \]
 The verifier checks this good-pair packing bound whenever \(b(U,W)=2\).
+For an individual residual support \(R\), with
+\[
+  a(R)=|R\cap B_0|,\qquad
+  r_\lambda(R)=|R\cap ev^{-1}(\lambda)|,
+\]
+one has
+\[
+  g(R)=\binom{q-a(R)}2-\sum_\lambda\binom{r_\lambda(R)}2 .
+\]
+Thus if \(a(R)\le A\) and every projective fiber contributes at most \(M\)
+roots to \(R\), then with \(L=q-A\),
+\[
+  g(R)\ge
+  \binom L2
+  -\left(
+    \left\lfloor {L\over M}\right\rfloor\binom M2
+    +\binom{L\bmod M}{2}
+  \right).
+\]
+So failure to obtain many good pairs is exactly concentration in the base locus
+or in a few projective fibers; the verifier checks this support-level
+occupancy formula.
 Equivalently, for each available root \(x\) the bad-slice test is the failure
 of full column rank for the absorbed-anchor matrix
 \[

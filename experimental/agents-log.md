@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 b=2 good pairs force concentration alternatives
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_hankel_t2_one_exchange_lift.md`,
+  `experimental/experiments.tex`,
+  `experimental/scripts/verify_m1_hankel_t2_triangle_packets.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / STRUCTURAL / AUDIT.
+- **What is being added:** Gives an exact support-level formula for the number
+  of good cross-fiber pairs in a `b=2` residual support and a lower bound in
+  terms of maximum base-locus occupancy and maximum projective-fiber occupancy.
+- **How it is useful:** Shows that failure of the b=2 good-pair packing bound
+  forces concentration in the base locus or in a small number of projective
+  fibers, isolating the next fixed-root/quotient/aperiodic obstruction.
+- **What to do next:** Prove base-occupancy and fiber-occupancy bounds for
+  actual M1 fixed-divisor residual supports.
+
 ### 2026-06-28 - M1 cross-fiber good pairs pack b=2 residual supports
 
 - **Agent/model:** AllenGrahamHart / Codex audit.
