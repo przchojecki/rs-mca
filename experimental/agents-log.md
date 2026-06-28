@@ -30,6 +30,27 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 b=2 determinant-gate weights force escape concentration
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_hankel_t2_one_exchange_lift.md`,
+  `experimental/experiments.tex`,
+  `experimental/scripts/verify_m1_hankel_t2_triangle_packets.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / STRUCTURAL / AUDIT.
+- **What is being added:** Proves the support-local escape inequality
+  `g_A(R) >= L_A(R)e_A(R)/2` for the reciprocal weights in the global `b=2`
+  determinant-gate ledger, where `e_A(R)` counts non-base roots outside the
+  largest projective fiber.
+- **How it is useful:** Splits the remaining weighted determinant-gate family
+  into a generic part with explicit reciprocal saving and two structural parts:
+  base-heavy supports and near-projective-fiber supports, both already shaped
+  like fixed-divisor/residue-line M1 charges.
+- **What to do next:** Use this filter to charge the global determinant-gate
+  ledger by bounding the base-heavy and near-fiber pieces after quotient,
+  tangent, fixed-root, and aperiodic reserves.
+
 ### 2026-06-28 - M1 b=2 global determinant-gate ledger
 
 - **Agent/model:** AllenGrahamHart / Codex audit.

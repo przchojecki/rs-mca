@@ -190,6 +190,10 @@ projective evaluation fibers and checks the resulting cross-fiber good-pair
 packing bound.
 It also computes support-level base/fiber occupancy and checks the resulting
 concentration lower bound for good pairs.
+It further checks the dominant-fiber escape inequality used by the weighted
+good-pair ledger: if L non-base support roots have e roots outside their
+largest projective fiber, then the support contains at least L e / 2 good
+pairs.
 Equivalently, it checks the global root-shadow-height bound: if the largest
 base locus or projective fiber has height h, every residual support has the
 good-pair lower bound forced by h.
@@ -6924,6 +6928,19 @@ def analyze_case(
                                                     residual_size
                                                     - candidate_base_occupancy
                                                 )
+                                                largest_candidate_fiber = max(
+                                                    candidate_fiber_counts.values(),
+                                                    default=0,
+                                                )
+                                                candidate_projective_escape = (
+                                                    nonbase_candidate_roots
+                                                    - largest_candidate_fiber
+                                                )
+                                                dominant_escape_lower = (
+                                                    nonbase_candidate_roots
+                                                    * candidate_projective_escape
+                                                    + 1
+                                                ) // 2
                                                 expected_candidate_good_pairs = (
                                                     math.comb(
                                                         nonbase_candidate_roots,
@@ -6981,6 +6998,66 @@ def analyze_case(
                                                             ),
                                                             "base_occupancy": (
                                                                 candidate_base_occupancy
+                                                            ),
+                                                            "fiber_counts": {
+                                                                str(key): count
+                                                                for key, count in (
+                                                                    candidate_fiber_counts.items()
+                                                                )
+                                                            },
+                                                        }
+                                                    )
+                                                if (
+                                                    candidate_good_pairs
+                                                    < dominant_escape_lower
+                                                ):
+                                                    raise AssertionError(
+                                                        {
+                                                            "kind": (
+                                                                "productive-"
+                                                                if productive
+                                                                else ""
+                                                            )
+                                                            + "marked-core-"
+                                                            "deficit-anchor-"
+                                                            "direction-mds-"
+                                                            "projective-"
+                                                            "dominant-fiber-"
+                                                            "escape-lower-"
+                                                            "bound-failed",
+                                                            "p": p,
+                                                            "k": k,
+                                                            "syndrome": list(syn),
+                                                            "fixed_roots": list(
+                                                                fixed_roots
+                                                            ),
+                                                            "unmarked_core": list(
+                                                                unmarked_core
+                                                            ),
+                                                            "marked_count": (
+                                                                marked_count
+                                                            ),
+                                                            "core_deficit": (
+                                                                core_deficit
+                                                            ),
+                                                            "anchor": list(anchor),
+                                                            "candidate": list(
+                                                                candidate
+                                                            ),
+                                                            "candidate_good_pairs": (
+                                                                candidate_good_pairs
+                                                            ),
+                                                            "nonbase_roots": (
+                                                                nonbase_candidate_roots
+                                                            ),
+                                                            "largest_fiber": (
+                                                                largest_candidate_fiber
+                                                            ),
+                                                            "projective_escape": (
+                                                                candidate_projective_escape
+                                                            ),
+                                                            "lower_bound": (
+                                                                dominant_escape_lower
                                                             ),
                                                             "fiber_counts": {
                                                                 str(key): count

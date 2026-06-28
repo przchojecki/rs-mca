@@ -5025,6 +5025,46 @@ ledger
 where \(I_A\) is the set of good pairs whose normalized determinant gate
 splits.  Closing the local \(b=2\) branch is therefore equivalent to charging
 this weighted split determinant-gate family across anchors.
+The reciprocal weights in this ledger have a sharp concentration filter.  For
+a fixed anchor \(A\) and split support \(R\), put
+\[
+  a_A(R)=|R\cap B_0|,\qquad L_A(R)=q-a_A(R),
+\]
+and let \(m_A(R)\) be the largest projective-fiber occupancy among the
+non-base roots of \(R\).  Define the projective escape
+\[
+  e_A(R)=L_A(R)-m_A(R).
+\]
+Since good pairs are exactly pairs of non-base roots lying in distinct
+projective fibers,
+\[
+  g_A(R)
+  ={1\over2}\left(L_A(R)^2-\sum_\lambda r_\lambda(R)^2\right)
+  =\sum_{\lambda<\mu}r_\lambda(R)r_\mu(R).
+\]
+In particular, using
+\(\sum_\lambda r_\lambda(R)^2\le m_A(R)L_A(R)\),
+\[
+  g_A(R)\ge {L_A(R)e_A(R)\over2},
+  \qquad
+  e_A(R)\le {2g_A(R)\over L_A(R)}.              \tag{DGW}
+\]
+Thus a determinant-gate support with a dangerous reciprocal weight is forced
+to be almost contained in the base locus together with one projective fiber.
+More quantitatively, after choosing a base-heavy cutoff \(A_0<q\) and an
+escape cutoff \(c\ge1\), every support with
+\[
+  a_A(R)\le A_0,\qquad e_A(R)\ge c
+\]
+has
+\[
+  {1\over g_A(R)}\le {2\over c(q-A_0)}.
+\]
+The complementary supports are exactly the base-heavy supports
+\(a_A(R)>A_0\) and the near-fiber supports \(e_A(R)<c\).  Hence the global
+weighted determinant-gate ledger splits into a generic part with an explicit
+reciprocal saving and two structural parts already shaped like
+fixed-divisor/projective-fiber residue-line charges.
 Equivalently, for each available root \(x\) the bad-slice test is the failure
 of full column rank for the absorbed-anchor matrix
 \[

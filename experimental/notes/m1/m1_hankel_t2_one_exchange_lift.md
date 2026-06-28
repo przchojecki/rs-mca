@@ -3993,6 +3993,70 @@ M1 residue-line packing problem.  A future proof can close the `b=2` branch by
 showing that the weighted split determinant-gate count in
 (PF2-global-ledger) is polynomial after the existing reserve charges.
 
+## Weighted Determinant-Gate Escape Filter
+
+The reciprocal weight in (PF2-global-ledger) is controlled by the same
+projective-fiber occupancy that produced the earlier good-pair packing bounds.
+For a fixed anchor `A` and residual support `R`, write
+
+```text
+a_A(R)=|R cap B_0|,
+L_A(R)=q-a_A(R),
+m_A(R)=max_lambda |R cap ev^{-1}(lambda)|,
+e_A(R)=L_A(R)-m_A(R).
+```
+
+Here `L_A(R)` is the number of non-base roots and `e_A(R)` is the number of
+non-base roots outside a largest projective fiber.  If
+`r_lambda(R)=|R cap ev^{-1}(lambda)|`, then good pairs are exactly cross-fiber
+pairs, so
+
+```text
+g_A(R)
+ = 1/2 ( L_A(R)^2 - sum_lambda r_lambda(R)^2 )
+ = sum_{lambda<mu} r_lambda(R) r_mu(R).          (PF2-weight-count)
+```
+
+Since `sum_lambda r_lambda(R)^2 <= m_A(R)L_A(R)`, this gives the escape bound
+
+```text
+g_A(R) >= L_A(R)e_A(R)/2,
+e_A(R) <= 2g_A(R)/L_A(R).                       (PF2-weight-escape)
+```
+
+Thus the only split determinant gates carrying a large reciprocal weight are
+near a single projective fiber after the base-locus roots are removed.  In
+cutoff form, fix integers `A_0<q` and `c>=1`.  Every split support with
+
+```text
+a_A(R) <= A_0,        e_A(R) >= c
+```
+
+has
+
+```text
+1/g_A(R) <= 2/(c(q-A_0)).                       (PF2-generic-weight)
+```
+
+Consequently the global weighted determinant-gate ledger decomposes into:
+
+1. a generic part with the explicit reciprocal saving (PF2-generic-weight);
+2. base-heavy supports, where `a_A(R)>A_0`;
+3. near-fiber supports, where all but fewer than `c` non-base roots lie in one
+   projective fiber.
+
+The latter two pieces are exactly fixed-divisor/projective-fiber
+residue-line charges: the base locus is the common zero set of the residual
+direction space, while each projective fiber is cut out by a nonzero direction
+`bP-aQ`.  Thus (PF2-weight-escape) is the promised bridge from the local
+weighted determinant gates to the global M1 charging problem: generic gates
+pay a denominator, and non-generic gates carry a visible residue-line slice to
+charge separately.
+
+The verifier already checks the exact count (PF2-weight-count) for every
+residual candidate in its `b(U,W)=2` branch.  It now also checks the
+dominant-fiber escape lower bound in (PF2-weight-escape).
+
 ## Bad Root Slices Are Absorbed-Anchor Rank Defects
 
 The preceding bad-root condition has an equivalent absorbed-anchor form.  Fix
