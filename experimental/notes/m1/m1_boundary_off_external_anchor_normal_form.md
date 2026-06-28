@@ -13512,12 +13512,11 @@ whole root set `R` gives a bijection
   <-> { C_0 in Comp_{u-s,[N]}(Q_0,B_0) : C_0 cap R=empty }.       (SplitRootDrop)
 ```
 
-Consequently every landing whose multiplier contains split in-domain factors
-lying in the complement is obtained uniquely from a lower-depth complement
-fiber by adjoining those roots.  After iterating this descent, the genuinely
-new exchange-`u` pieces are represented by multiplier factors with no root in
-the current complement: roots in `D\C`, external roots, and irreducible
-bounded-degree factors.
+Consequently every landing whose multiplier contains at most `u` split
+in-domain factors lying in the complement is obtained uniquely from a
+lower-depth complement fiber by adjoining those roots.  Iterating this
+descent either reaches a multiplier with no root in the current complement or
+reaches core depth.
 
 ### Proof
 
@@ -13550,6 +13549,100 @@ The class of `L_R` is invertible modulo `Q_0`, so cancellation gives
 Conversely, if `C_0 in Comp_{u-s,[N]}` and `C_0 cap R=empty`, multiply the
 defining congruence by `L_R`.  Then `C=C_0 disjoint_union R` has size `j+u`,
 contains `R`, and lies in `Comp_{u,[M]}`.  The two constructions are inverse.
+
+## Corollary 40.125: Complement-Root Stripping Reduces To Lower Depth Or Core Depth
+
+Keep the notation of Corollary 40.124.  For a complement
+
+```text
+C in Comp_{u,[M]}(Q_0,B_0),
+```
+
+let
+
+```text
+R_C={ beta in C : M(beta)=0 }.
+```
+
+Then `R_C subset D`.  If `s=|R_C|<=u`, there is a unique projective
+factorization
+
+```text
+[M]=[L_{R_C} N_C],
+```
+
+with `[N_C] in P_{u-s}^x(Q_0)` and
+
+```text
+C_0=C\R_C in Comp_{u-s,[N_C]}(Q_0,B_0),
+C_0 cap R_C=empty,
+N_C(beta)!=0        for every beta in C_0.          (ReducedFiber)
+```
+
+If instead `|R_C|>u`, then for every `u`-element subset `R subset R_C` there
+is a unique projective factorization `[M]=[L_R N_R]`, and deletion of `R`
+gives a depth-zero complement
+
+```text
+C_0=C\R in Comp_{0,[N_R]}(Q_0,B_0),
+|C_0|=j.                                           (CoreDepthResidual)
+```
+
+Conversely, for any `R subset D`, `|R|=s<=u`, and any pair
+
+```text
+C_0 in Comp_{u-s,[N]}(Q_0,B_0),
+C_0 cap R=empty,
+[N] in P_{u-s}^x(Q_0),
+```
+
+with `[L_R N] in P_u^x(Q_0)`, the complement
+
+```text
+C=C_0 disjoint_union R
+```
+
+lies in `Comp_{u,[L_R N]}(Q_0,B_0)`.  If additionally
+
+```text
+N(beta)!=0        for every beta in C_0,
+```
+
+then the complement roots of `L_RN` inside `C` are exactly `R`.
+
+Thus complement-root stripping reduces the ledger either to a lower exchange
+depth with no multiplier root left on the current complement, or to the
+core-depth ledger `u=0`.  The precise non-descending fixed-class residual is
+therefore: core-depth complement roots, in-domain roots outside the current
+complement, external roots, and irreducible bounded-degree factors.
+
+### Proof
+
+Since `[M] in P_u^x(Q_0)`, `gcd(M,Q_0)=1`; because `Q_0` is root-free on
+`D`, every domain root of `M` is distinct from the roots of `Q_0`.  Let
+`R_C` be the subset of complement points where `M` vanishes.  The split
+locator `L_{R_C}` divides `M`, and the quotient is unique up to scaling, so
+`[M]=[L_{R_C}N_C]`.
+
+When `s=|R_C|<=u`, Corollary 40.124 applied to `R_C` gives
+
+```text
+C_0=C\R_C in Comp_{u-s,[N_C]}(Q_0,B_0),
+C_0 cap R_C=empty.
+```
+
+The degree condition for `[N_C]` is exactly the one in Corollary 40.124.  The
+last condition in (ReducedFiber) is true by construction: no point of `C_0`
+remains a root of `N_C`, otherwise it would have belonged to `R_C`.
+
+When `|R_C|>u`, choose any `u`-subset `R subset R_C`.  Corollary 40.124
+applied to this `R` gives `C_0=C\R in Comp_{0,[N_R]}(Q_0,B_0)`, and
+`|C_0|=j`.
+
+Conversely, start from the displayed reduced data.  Corollary 40.124 gives
+`C=C_0 disjoint_union R in Comp_{u,[L_RN]}(Q_0,B_0)`.  Since `N` has no root
+on `C_0` and `C_0 cap R=empty`, the roots of `L_RN` that lie in `C` are
+exactly the points of `R`.  This proves both directions.
 
 ## Corollary 41: The Global Common-Image Ledger Is Endpoint-Only
 
@@ -16554,9 +16647,12 @@ exact exchange depth `u<=t`, giving a fixed-class bound `binom(n,j+u)`.
 Corollary 40.123 shows actual in-domain roots of the multiplier that lie in
 the complement descend from exchange depth `u` to `u-1` after deleting the
 root.
-Corollary 40.124 iterates this descent for any split in-domain divisor whose
-roots all lie in the complement, reducing it to a lower-depth fiber in one
-step.
+Corollary 40.124 iterates this descent for any split in-domain divisor of
+size at most the exchange depth whose roots all lie in the complement,
+reducing it to a lower-depth fiber in one step.
+Corollary 40.125 strips all complement roots available to the exchange depth,
+or lands at the core-depth ledger if more complement roots remain than the
+exchange depth permits stripping.
 Corollary 41 packages the common-image branch into endpoint-type ledgers; it
 does not prove the endpoint rank hypotheses needed for the displayed
 `(q+2)binom(n,b)` bound. Corollary 42 packages the globally full core ledger

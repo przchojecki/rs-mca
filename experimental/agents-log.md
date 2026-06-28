@@ -38,12 +38,13 @@ Keep entries concise and link to the relevant files.
   `experimental/experiments.tex`, `experimental/agents-log.md`.
 - **Status:** PROVED-LOCAL / PROOF-PROGRAM.
 - **What is being added:** Generalizes root descent: if
-  `[M]=[L_R N]` and all split roots `R subset D` lie in the complement, then
-  deleting `R` bijects the exchange-`u` fiber for `M` with the
+  `[M]=[L_R N]`, `|R|<=u`, and all split roots `R subset D` lie in the
+  complement, then deleting `R` bijects the exchange-`u` fiber for `M` with the
   exchange-`u-|R|` fiber for `N`.
 - **How it is useful:** Shows split complement-root factors are lower-depth
-  data, isolating roots outside the complement, external roots, and
-  irreducible bounded-degree factors as the genuinely new multiplier pieces.
+  data until core depth is reached, isolating core-depth complement roots,
+  roots outside the complement, external roots, and irreducible bounded-degree
+  factors as the genuinely new multiplier pieces.
 - **What to do next:** Analyze the non-descending multiplier factors or
   connect them to active M1 quotient-periodic/tangent ledgers.
 
