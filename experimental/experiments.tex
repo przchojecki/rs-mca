@@ -2211,6 +2211,19 @@ form a chain, then
 \]
 for the smallest active primitive denominator \(D_{\min}\), with the convention
 that the right-hand side is zero when \(\delta_{\min}\ge h\).
+More generally, if the surviving antichain has common core
+\[
+  C=\gcd(D:D\in M_{\min}), \qquad \gamma=\deg C,
+\]
+then multiplication by \(C\) identifies the raw tail arrangement with the
+quotient arrangement for the denominators \(D/C\) in the shorter window
+\(h-\gamma\).  If those quotient denominators are pairwise coprime, the exact
+tail term is
+\[
+  \mathrm{ArrBudget}_{hw}
+  =\sum_{\emptyset\ne I\subseteq M_{\min}}(-1)^{|I|+1}
+     \Phi_+\!\left(h-\gamma-\sum_{D\in I}\deg(D/C)\right).
+\]
 The named overlap ledgers remain useful diagnostics:
 \[
   \mathrm{OverlapSep}_{hw}

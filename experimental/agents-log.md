@@ -351,7 +351,11 @@ Keep entries concise and link to the relevant files.
   divisibility-minimal antichain of active primitives: dominated active
   families and duplicate primitive denominators contribute no new raw tail
   denominator classes, and a chain of active denominators collapses to the
-  single term `Phi(h-delta_min)`.  Since
+  single term `Phi(h-delta_min)`.  If the surviving antichain has a common
+  denominator core `C` of degree `gamma`, the whole arrangement factors through
+  the quotient denominators `D/C` in the shorter window `h-gamma`; when those
+  quotient denominators are pairwise coprime, `ArrBudget_hw` is the alternating
+  degree-only sum over `h-gamma-sum deg(D/C)`.  Since
   the named overlap systems are subsets of the same `TailUnion_hw`, the
   separation charge `OverlapSep_hw`, defined as the minimum of
   `SideHybridOverlap_hw` and `UnionRankOverlap_hw`, is now a structural

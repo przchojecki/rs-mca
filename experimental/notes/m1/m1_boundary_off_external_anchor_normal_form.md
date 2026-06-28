@@ -6475,6 +6475,70 @@ by `D_min`.  The projective divisor subspace has dimension `h-delta_min` when
 `delta_min<h`, and is zero otherwise.  This gives the displayed value of
 `ArrBudget_hw`; substituting it into Corollary 40.36 gives (ChainTailLedger).
 
+## Corollary 40.38: Common-Core Factorization Of The Raw Tail Arrangement
+
+Keep the notation of Corollary 40.37, and suppose `M_min` is nonempty.  Let
+
+```text
+C = gcd( D : D in M_min ),        gamma=deg C,
+E_D = D/C                         for D in M_min.
+```
+
+Put `h'=h-gamma`.  If `h'<=0`, then `ArrBudget_hw=0`.  If `h'>0`, multiplication
+by `C` gives a projective bijection
+
+```text
+union_{D in M_min} P({P: deg P<h and D|P})
+  =
+C * union_{D in M_min} P({Q: deg Q<h' and E_D|Q}).
+```
+
+Consequently the raw tail arrangement factors exactly through the common core:
+
+```text
+ArrBudget_hw =
+  sum_{nonempty I subset M_min} (-1)^{|I|+1}
+      Phi(h' - deg lcm(E_D : D in I)),              (CoreArrangement)
+```
+
+with the convention that `Phi(m)=0` for `m<=0` in this displayed formula.
+
+In particular, if the quotient denominators `E_D` are pairwise coprime and
+have degrees `e_D`, then
+
+```text
+ArrBudget_hw =
+  sum_{nonempty I subset M_min} (-1)^{|I|+1}
+      Phi(h' - sum_{D in I} e_D).                   (CoprimeCoreArrangement)
+```
+
+Thus a common denominator core of degree `gamma` is paid once across the whole
+raw half-window tail, and only the quotient arrangement inside the shorter
+window `h-gamma` remains.
+
+### Proof
+
+For every `D in M_min`, divisibility by `D=C E_D` is equivalent to writing
+`P=CQ` with `E_D|Q`.  The degree condition `deg P<h` is then exactly
+`deg Q<h-gamma`.  Multiplication by the nonzero polynomial `C` is an injective
+linear map from degree-`<h'` polynomials to degree-`<h` polynomials, and it
+identifies the quotient divisor subspace for `E_D` with the original divisor
+subspace for `D`.  It therefore induces the displayed projective bijection on
+the union.  If `h'<=0`, the quotient degree range has no nonzero polynomial,
+so the projective union is empty.
+
+For any nonempty subset `I`, one has
+
+```text
+lcm(C E_D : D in I) = C * lcm(E_D : D in I),
+```
+
+so the intersection dimension drops from `h-deg lcm(D:D in I)` to
+`h'-deg lcm(E_D:D in I)`.  Applying the inclusion-exclusion formula of
+Corollary 40.34 in the quotient window gives (CoreArrangement).  If the
+quotient denominators are pairwise coprime, the lcm degree is the sum of their
+degrees, giving (CoprimeCoreArrangement).
+
 ## Corollary 41: The Global Common-Image Ledger Is Endpoint-Only
 
 Let `GCI` be the set of monic degree-`c` split core locators `L` for which
@@ -9205,6 +9269,9 @@ reserve.
 Corollary 40.37 removes divisibility-dominated families from the raw tail
 arrangement; it does not prove that the surviving antichain is small or that
 the active denominators form a chain in the M1 instances.
+Corollary 40.38 factors a common denominator core out of the raw tail
+arrangement; it does not prove such a common core is large or that the quotient
+denominators are pairwise coprime in the M1 instances.
 Corollary 41 packages the common-image branch into endpoint-type ledgers; it
 does not prove the endpoint rank hypotheses needed for the displayed
 `(q+2)binom(n,b)` bound. Corollary 42 packages the globally full core ledger
