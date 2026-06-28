@@ -15926,6 +15926,65 @@ one-coefficient range of Corollary 40.148, where `W(e)<=1`.  Hence
 `W_E<=1`, proving (OneCoeffEvalLedger).  The final statement is the special
 choice `E=t-j`.
 
+## Corollary 40.160: Degree-Slab Active Ledgers Pay Local Alias Multipliers
+
+Assume `F=F_q`.  Let `A_prim` be a finite family of positive-degree primitive
+residue-line data, and let
+
+```text
+0=E_0<E_1<...<E_s
+```
+
+be cutoffs such that every datum in `A_prim` has denominator degree at most
+`E_s`.  For `r=1,...,s`, put
+
+```text
+A_r={ (Q,B,w) in A_prim : E_{r-1}<deg Q<=E_r },
+Ev_r=Ev(A_r),
+W_r=max_{E_{r-1}<e<=E_r} W(e),
+```
+
+where empty maxima contribute zero.  Then
+
+```text
+|Lambda(A_prim)|
+ <= sum_{r=1}^s W_r M_q(E_r) |Ev_r|.              (SlabEvalLedger)
+```
+
+Here `M_q` is the cutoff alias multiplier of Corollary 40.158.  In particular,
+any slab with `2E_r<=n` pays no finite-domain alias multiplier, and any slab
+lying in `E_r<=t-j` also has `W_r<=1`.
+
+Thus the active primitive ledger can be organized by degree slabs: each slab
+is charged only for the local fixed-class weight and local finite-domain alias
+budget at the top of that slab, rather than for the worst cutoff across all
+degrees.
+
+### Proof
+
+The sets `A_r` partition `A_prim`, so by Corollary 40.148,
+
+```text
+|Lambda(A_prim)|
+ <= sum_{r=1}^s |Lambda(A_r)|.
+```
+
+For each nonempty `A_r`, Corollary 40.158 gives the fiber bound
+
+```text
+|A_r| <= M_q(E_r) |Ev_r|,
+```
+
+while Corollary 40.148 gives the slab-local fixed-class bound
+
+```text
+|Lambda(A_r)| <= W_r |A_r|.
+```
+
+Combining these two inequalities and summing over `r` proves
+(SlabEvalLedger).  The last sentence follows from the definitions of `M_q` in
+Corollary 40.158 and `W` in Corollary 40.148.
+
 ## Corollary 41: The Global Common-Image Ledger Is Endpoint-Only
 
 Let `GCI` be the set of monic degree-`c` split core locators `L` for which
@@ -19040,6 +19099,8 @@ only the fixed-class weight `W_E`.
 Corollary 40.159 identifies the fully lossless low range: if
 `E<=t-j` and `2E<=n`, then the cutoff active ledger is bounded directly by
 the number of divided evaluation data.
+Corollary 40.160 gives the degree-slab version: each denominator slab pays
+only its own fixed-class weight and cutoff alias multiplier.
 Corollary 41 packages the common-image branch into endpoint-type ledgers; it
 does not prove the endpoint rank hypotheses needed for the displayed
 `(q+2)binom(n,b)` bound. Corollary 42 packages the globally full core ledger

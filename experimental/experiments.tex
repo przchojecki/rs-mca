@@ -3446,6 +3446,16 @@ multipliers disappear:
 Thus every divided evaluation datum accounts for at most one support-wise
 noncontained coefficient contribution in this low primitive-denominator
 range.
+More generally, degree slabs pay only local multipliers.  If
+\(\mathcal A_r\) is the subfamily with \(E_{r-1}<\deg Q\le E_r\), then
+\[
+  |\Lambda(\mathcal A_{\rm prim})|
+  \le \sum_r W_r M_q(E_r)\,|\operatorname{Ev}(\mathcal A_r)|,
+  \qquad
+  W_r=\max_{E_{r-1}<e\le E_r} W(e).
+\]
+Thus low alias-free slabs and high alias-prone slabs can be charged
+separately instead of using a single worst cutoff.
 The common-core and two-denominator formulas persist verbatim after this
 root-free replacement.  With \(C=\gcd(D:D\in M_{\min})\), \(\gamma=\deg C\),
 and \(E_D=D/C\),

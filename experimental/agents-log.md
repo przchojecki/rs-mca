@@ -30,6 +30,23 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 degree-slab ledgers pay local alias multipliers
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_boundary_off_external_anchor_normal_form.md`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / PROOF-PROGRAM.
+- **What is being added:** Extends the cutoff active-ledger reduction to a
+  degree-slab decomposition: each slab `E_{r-1}<deg Q<=E_r` contributes at
+  most `W_r M_q(E_r)|Ev_r|`.
+- **How it is useful:** Lets later M1 arguments charge alias-free low-degree
+  slabs and high-degree alias-prone slabs separately, avoiding a global
+  worst-cutoff multiplier.
+- **What to do next:** Choose degree slabs adapted to the active
+  quotient/aperiodic incidence problem and bound the divided evaluation images
+  on each slab.
+
 ### 2026-06-28 - M1 low one-coefficient cutoff has no multiplicity loss
 
 - **Agent/model:** AllenGrahamHart / Codex audit.
