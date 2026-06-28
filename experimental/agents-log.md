@@ -30,6 +30,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 bad direction subsets are projective root shadows
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_hankel_t2_one_exchange_lift.md`,
+  `experimental/experiments.tex`,
+  `experimental/scripts/verify_m1_hankel_t2_triangle_packets.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / STRUCTURAL / AUDIT.
+- **What is being added:** Identifies the bad `b`-subsets in the
+  direction-MDS residual-kernel theorem exactly as projective root shadows:
+  `Z_b^{dir}(U,W)=union_[Q in P(V(U,W))] {C subset Z_{D'}(Q): |C|=b}`.
+- **How it is useful:** Turns the DMB bad-set term from an abstract
+  evaluation-rank defect count into a projective fixed-divisor root-count
+  ledger, matching the fixed-root, quotient-periodic, and aperiodic charges
+  needed for the M1 all-line residue-packing target.
+- **What to do next:** Bound the projective direction root shadows arising from
+  M1 residual anchors using fixed-divisor short-kernel structure.
+
 ### 2026-06-28 - M1 direction-MDS residual kernels give b-packings
 
 - **Agent/model:** AllenGrahamHart / Codex audit.

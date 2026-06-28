@@ -2694,6 +2694,57 @@ two residual candidates are bad, and asserts (DMB).  In the current largest
 `F_7^*` audit no produced anchor has positive residual direction dimension, so
 this audit is installed for future cases but not triggered by the present data.
 
+## Bad Direction Subsets Are Projective Root Shadows
+
+The bad-set term in (DMB) is not an independent object.  It is exactly the
+projective root shadow of the residual direction space.  For nonzero
+`Q in V(U,W)`, write
+
+```text
+Z_{D'}(Q)={x in D' : Q(x)=0}.
+```
+
+Then, with `b=dim V(U,W)`,
+
+```text
+Z_b^{dir}(U,W)
+ =
+union_{[Q] in P(V(U,W))}
+  {C subset Z_{D'}(Q) : |C|=b}.                    (PRS)
+```
+
+Indeed, if `C` is direction-bad, the map `ev_C` is not injective.  Hence there
+is a nonzero `Q in V(U,W)` with `Q(x)=0` for every `x in C`, so
+`C subset Z_{D'}(Q)`.  Conversely, if `C subset Z_{D'}(Q)` for some nonzero
+`Q in V(U,W)`, then `Q` lies in the kernel of `ev_C`, so `C` is bad.  The
+condition only depends on the projective class `[Q]`.
+
+Consequently
+
+```text
+|Z_b^{dir}(U,W)|
+ <=
+sum_{[Q] in P(V(U,W))} binom(|Z_{D'}(Q)|,b).       (PRS-bound)
+```
+
+In particular, if every nonzero residual direction has fewer than `b`
+available roots, then the direction space is MDS on `D'` and (DMB-MDS) applies.
+By (DKI), every projective direction is a fixed-divisor short-kernel direction:
+
+```text
+H_{q,q+d}(s)(ell_W Q)=0.
+```
+
+Thus the higher-dimensional bad-set ledger is a projective fixed-divisor
+root-count ledger.  This is the form that can be charged against the fixed-root,
+quotient-periodic, and aperiodic pieces of the M1 all-line residue-packing
+target.
+
+The verifier now checks (PRS) whenever it audits the `0<b<q` direction-MDS
+packing.  The current largest `F_7^*` scan still has no positive-dimensional
+produced residual anchors, so the equality check is installed as a future-case
+audit rather than triggered by the present data.
+
 ## Bad Root Slices Are Absorbed-Anchor Rank Defects
 
 The preceding bad-root condition has an equivalent absorbed-anchor form.  Fix

@@ -171,6 +171,8 @@ When that residual direction space is one-dimensional, it extracts the unique
 direction polynomial and checks the resulting root-slice packing bound.
 For higher positive residual direction dimension, it audits the direction-MDS
 rank-defect packing bound on bad b-subsets.
+It also identifies those bad b-subsets with the projective root shadows of the
+residual direction space.
 For each fixed collapsed anchor base, it audits the sparse-representation
 fiber: below the boundary the mode support is unique, while at the boundary
 distinct supports are disjoint and obey the matching bound.
@@ -403,6 +405,33 @@ def polynomial_eval_mod(
     for coeff in reversed(coeffs):
         result = (result * value + coeff) % p
     return result
+
+
+def projective_span_representatives_mod(
+    basis: Sequence[Sequence[int]],
+    p: int,
+) -> tuple[tuple[int, ...], ...]:
+    if not basis:
+        return ()
+    width = len(basis[0])
+    representatives: set[tuple[int, ...]] = set()
+    for coeffs in itertools.product(range(p), repeat=len(basis)):
+        if not any(coeffs):
+            continue
+        vector = [0] * width
+        for coeff, basis_vector in zip(coeffs, basis):
+            if not coeff:
+                continue
+            for index, value in enumerate(basis_vector):
+                vector[index] = (vector[index] + coeff * value) % p
+        pivot = next((value for value in vector if value % p), None)
+        if pivot is None:
+            continue
+        inverse_pivot = pow(pivot, -1, p)
+        representatives.add(
+            tuple((value * inverse_pivot) % p for value in vector)
+        )
+    return tuple(sorted(representatives))
 
 
 def solve_square_mod(
@@ -4494,6 +4523,74 @@ def analyze_case(
                                                 < residual_direction_dim
                                             ):
                                                 bad_direction_subsets.add(subset)
+                                        projective_bad_subsets: set[
+                                            tuple[int, ...]
+                                        ] = set()
+                                        for direction in (
+                                            projective_span_representatives_mod(
+                                                direction_basis,
+                                                p,
+                                            )
+                                        ):
+                                            direction_roots = tuple(
+                                                root
+                                                for root in available_roots
+                                                if not polynomial_eval_mod(
+                                                    direction,
+                                                    domain[root],
+                                                    p,
+                                                )
+                                            )
+                                            for subset in itertools.combinations(
+                                                direction_roots,
+                                                residual_direction_dim,
+                                            ):
+                                                projective_bad_subsets.add(
+                                                    subset
+                                                )
+                                        if (
+                                            projective_bad_subsets
+                                            != bad_direction_subsets
+                                        ):
+                                            raise AssertionError(
+                                                {
+                                                    "kind": (
+                                                        "productive-"
+                                                        if productive
+                                                        else ""
+                                                    )
+                                                    + "marked-core-deficit-"
+                                                    "anchor-direction-mds-"
+                                                    "projective-shadow-failed",
+                                                    "p": p,
+                                                    "k": k,
+                                                    "syndrome": list(syn),
+                                                    "fixed_roots": list(
+                                                        fixed_roots
+                                                    ),
+                                                    "unmarked_core": list(
+                                                        unmarked_core
+                                                    ),
+                                                    "marked_count": marked_count,
+                                                    "core_deficit": core_deficit,
+                                                    "anchor": list(anchor),
+                                                    "direction_dim": (
+                                                        residual_direction_dim
+                                                    ),
+                                                    "bad_subsets": [
+                                                        list(item)
+                                                        for item in sorted(
+                                                            bad_direction_subsets
+                                                        )
+                                                    ],
+                                                    "projective_bad_subsets": [
+                                                        list(item)
+                                                        for item in sorted(
+                                                            projective_bad_subsets
+                                                        )
+                                                    ],
+                                                }
+                                            )
                                         for left, right in itertools.combinations(
                                             residual_candidates,
                                             2,

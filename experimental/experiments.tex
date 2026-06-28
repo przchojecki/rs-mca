@@ -4613,6 +4613,26 @@ identity, the bad \(b\)-subsets are exactly fixed-divisor \(b\)-root
 short-kernel slices.  The verifier now audits this rank-defect packing
 criterion whenever \(0<b<q\); the present largest \(F_7^*\) audit has no
 positive-dimensional residual anchors.
+Moreover this bad-set term is exactly the projective root shadow of
+\(V(U,W)\).  If \(Z_{D'}(Q)=\{x\in D':Q(x)=0\}\), then
+\[
+  Z_b^{\rm dir}(U,W)
+  =
+  \bigcup_{[Q]\in {\bf P}(V(U,W))}
+  \{C\subset Z_{D'}(Q): |C|=b\}.
+\]
+Thus
+\[
+  |Z_b^{\rm dir}(U,W)|
+  \le
+  \sum_{[Q]\in{\bf P}(V(U,W))}
+  \binom{|Z_{D'}(Q)|}{b},
+\]
+and direction-MDS follows whenever every nonzero residual direction has fewer
+than \(b\) available roots.  Via the divisible-kernel identity, this rewrites
+the bad-subset ledger as a projective fixed-divisor root-count ledger.
+The verifier checks this projective-shadow identity together with the
+direction-MDS packing audit.
 Equivalently, for each available root \(x\) the bad-slice test is the failure
 of full column rank for the absorbed-anchor matrix
 \[
