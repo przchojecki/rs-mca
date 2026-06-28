@@ -4296,6 +4296,17 @@ support equation.  The verifier checks this for all nonempty mode subsets; in
 the largest \(F_7^*\) audit this is \(120960\) absorption checks, with
 \(86400\) proper nonzero checks, and \(114480\) productive absorptions with
 \(82080\) proper.
+Consequently each split-support packet has an intrinsic zero-free mode cube:
+for any ordering of \(Y\), the successive boundary scalars after absorbing a
+prefix \(E_h\) are
+\[
+  a_{y_h}\ell_{E_h}(y_h)
+  \prod_{z\in Y\setminus E_h,\ z\ne y_h}(y_h-z),
+\]
+all nonzero.  Thus a size-\(m\) packet contributes \(m!\) ordered mode flags
+inside the collapsed split-support chart.  In the largest \(F_7^*\) audit the
+verifier records \(86400\) such intrinsic ordered flags, with \(82080\)
+productive.
 The common-core and two-denominator formulas persist verbatim after this
 root-free replacement.  With \(C=\gcd(D:D\in M_{\min})\), \(\gamma=\deg C\),
 and \(E_D=D/C\),

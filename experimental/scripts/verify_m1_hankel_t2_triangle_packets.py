@@ -114,6 +114,8 @@ base A and packet modes Y, the total support A union Y is active and every
 one-mode deletion has the expected nonzero root-marked boundary vector.
 It also checks that absorbing any subset of packet modes into the anchor gives
 the predicted smaller sparse packet, with no proper-subset zero collapse.
+Consequently it records the number of intrinsic zero-free ordered mode flags
+inside these collapsed split-support packets.
 Equivalently, it records support-unique boundary packets as those with no
 equal-size visible alias.
 The full-domain visible endpoint count is then support-unique labels plus one
@@ -486,6 +488,8 @@ def analyze_case(
     terminal_tree_productive_anchor_split_absorption_checks = 0
     terminal_tree_anchor_split_proper_absorption_checks = 0
     terminal_tree_productive_anchor_split_proper_absorption_checks = 0
+    terminal_tree_anchor_split_ordered_mode_flags = 0
+    terminal_tree_productive_anchor_split_ordered_mode_flags = 0
     terminal_tree_mode_rank_checks = 0
     terminal_tree_productive_mode_rank_checks = 0
     terminal_tree_mode_peeling_checks = 0
@@ -669,6 +673,8 @@ def analyze_case(
             nonlocal terminal_tree_productive_anchor_split_absorption_checks
             nonlocal terminal_tree_anchor_split_proper_absorption_checks
             nonlocal terminal_tree_productive_anchor_split_proper_absorption_checks
+            nonlocal terminal_tree_anchor_split_ordered_mode_flags
+            nonlocal terminal_tree_productive_anchor_split_ordered_mode_flags
             nonlocal terminal_tree_mode_rank_checks
             nonlocal terminal_tree_productive_mode_rank_checks
             nonlocal terminal_tree_mode_peeling_checks
@@ -933,6 +939,8 @@ def analyze_case(
                 nonlocal terminal_tree_productive_anchor_split_absorption_checks
                 nonlocal terminal_tree_anchor_split_proper_absorption_checks
                 nonlocal terminal_tree_productive_anchor_split_proper_absorption_checks
+                nonlocal terminal_tree_anchor_split_ordered_mode_flags
+                nonlocal terminal_tree_productive_anchor_split_ordered_mode_flags
 
                 if not current_core:
                     return (1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
@@ -1331,6 +1339,14 @@ def analyze_case(
                             terminal_tree_productive_anchor_split_boundary_checks += (
                                 1
                             )
+                    ordered_mode_flags = math.factorial(mode_count)
+                    terminal_tree_anchor_split_ordered_mode_flags += (
+                        ordered_mode_flags
+                    )
+                    if productive_children >= 2:
+                        terminal_tree_productive_anchor_split_ordered_mode_flags += (
+                            ordered_mode_flags
+                        )
                     for removed_anchor in anchor_base:
                         common_anchor_core = tuple(
                             anchor
@@ -4186,6 +4202,12 @@ def analyze_case(
         "terminal_tree_productive_anchor_split_proper_absorption_checks": (
             terminal_tree_productive_anchor_split_proper_absorption_checks
         ),
+        "terminal_tree_anchor_split_ordered_mode_flags": (
+            terminal_tree_anchor_split_ordered_mode_flags
+        ),
+        "terminal_tree_productive_anchor_split_ordered_mode_flags": (
+            terminal_tree_productive_anchor_split_ordered_mode_flags
+        ),
         "terminal_tree_mode_rank_checks": terminal_tree_mode_rank_checks,
         "terminal_tree_productive_mode_rank_checks": (
             terminal_tree_productive_mode_rank_checks
@@ -4612,6 +4634,8 @@ def print_summary(results: Sequence[dict[str, object]]) -> None:
             f"{result['terminal_tree_anchor_split_boundary_checks']} "
             f"anchor_split_absorptions="
             f"{result['terminal_tree_anchor_split_absorption_checks']} "
+            f"anchor_split_ordered_flags="
+            f"{result['terminal_tree_anchor_split_ordered_mode_flags']} "
             f"max_nonzero_terminal_tree_mode_size="
             f"{result['max_nonzero_terminal_tree_mode_size']} "
             f"max_nonzero_terminal_tree_mode_rank_size="

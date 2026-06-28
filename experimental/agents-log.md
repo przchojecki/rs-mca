@@ -30,6 +30,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 split-support zero-free mode cubes
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_hankel_t2_one_exchange_lift.md`,
+  `experimental/scripts/verify_m1_hankel_t2_triangle_packets.py`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / STRUCTURAL / EXACT FINITE AUDIT.
+- **What is being added:** Derives from partial absorption that every ordering
+  of the packet mode set is zero-free inside the collapsed split-support
+  chart, so a size-`m` split-support packet contains exactly `m!` intrinsic
+  ordered mode flags.
+- **How it is useful:** Makes the internal cube structure of a split-support
+  packet explicit while keeping it separate from original deletion-tree
+  multiplicity; the only zero vertex is full absorption.
+- **What to do next:** Use this finite internal cube to separate bounded
+  mode-order multiplicity from the global problem of counting split-support
+  certificates.
+
 ### 2026-06-28 - M1 split-support partial absorption
 
 - **Agent/model:** AllenGrahamHart / Codex audit.

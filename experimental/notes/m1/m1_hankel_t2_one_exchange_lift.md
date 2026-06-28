@@ -1718,6 +1718,37 @@ packet.  In the largest `F_7^*` audit this gives `120960` partial-absorption
 checks, of which `86400` are proper nonzero absorptions.  The productive
 subaudit contributes `114480` absorptions, of which `82080` are proper.
 
+## Split-Support Packets Contain Zero-Free Mode Cubes
+
+Partial absorption gives an ordered form.  For any ordering
+
+```text
+(y_1,...,y_m)
+```
+
+of the mode set `Y`, absorb the prefix
+`E_h={y_1,...,y_{h-1}}` before deleting `y_h`.  By (PA), the current boundary
+scalar is
+
+```text
+a_{y_h} ell_{E_h}(y_h)
+ prod_{z in Y\E_h, z!=y_h}(y_h-z),
+```
+
+which is nonzero.  Hence every ordering of `Y` is a zero-free mode flag inside
+the collapsed split-support chart `(A,Y)`.  The packet contributes exactly
+`m!` intrinsic ordered mode flags.
+
+This is not a new deletion-tree multiplicity claim for the original core,
+because the collapsed anchor `A` already contains the lower core.  It is the
+right intrinsic statement for the split-support certificate: its mode cube has
+all proper vertices nonzero, and the only zero vertex is the full absorption
+`A union Y`.
+
+The verifier now records this intrinsic ordered count.  In the largest
+`F_7^*` audit, the split-support packets contain `86400` zero-free ordered
+mode flags, with `82080` coming from productive packets.
+
 ## Root-Marked Slice Is One Row
 
 The zero-boundary subkernel in the fixed-root difference form is cut out by a
