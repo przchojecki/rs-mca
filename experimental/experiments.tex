@@ -4679,6 +4679,27 @@ polynomial-field window; sharper M1 work must either prove smaller root-shadow
 ledgers for the actual fixed-divisor kernels or classify the unbounded/persistent
 direction families.  The verifier now checks this projective root-count bound
 whenever the direction-MDS bad-set audit is triggered.
+There is also a sharper one-root envelope.  Let \(Z_1(U,W)\) be the bad
+one-root slice set and put \(z=|Z_1(U,W)|\).  If
+\(C\in Z_b^{\rm dir}(U,W)\), then some nonzero direction is divisible by
+\(\ell_C\), hence by \(X-x\) for every \(x\in C\).  Therefore every
+\(x\in C\) lies in \(Z_1(U,W)\), and
+\[
+  Z_b^{\rm dir}(U,W)
+  \subset \{C\subset Z_1(U,W): |C|=b\},
+  \qquad
+  |Z_b^{\rm dir}(U,W)|\le \binom zb .
+\]
+Thus
+\[
+  |F(U,W)|\binom qb
+  \le
+  \binom Nb+\binom zb\binom{N-b}{q-b}.
+\]
+If \(z<b\), the direction-MDS bound applies.  Higher-dimensional bad subsets
+are therefore charged to the one-root fixed-root ledger rather than to a new
+independent obstruction.  The verifier now checks this envelope whenever the
+direction-MDS bad-set audit is triggered.
 Equivalently, for each available root \(x\) the bad-slice test is the failure
 of full column rank for the absorbed-anchor matrix
 \[

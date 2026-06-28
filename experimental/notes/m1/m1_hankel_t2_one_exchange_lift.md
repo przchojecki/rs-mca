@@ -2841,6 +2841,56 @@ The verifier now checks the inequality (PRC) whenever it constructs the
 direction-MDS bad-set ledger.  The current largest `F_7^*` scan still has
 `b(U,W)=0` for all produced residual anchors.
 
+## Higher Bad Subsets Are Charged to One-Root Slices
+
+There is a sharper envelope when the one-root bad-slice ledger is known.  Let
+
+```text
+Z_1(U,W)={x in D' : x is a bad one-root slice}.
+```
+
+Equivalently, by the absorbed-anchor rank test below, `x in Z_1(U,W)` iff the
+matrix `A_x(U,W)` has rank `<q-1`.  If `C in Z_b^{dir}(U,W)`, then there is a
+nonzero direction
+
+```text
+Q=ell_C Q_C in Dir K(U,W).
+```
+
+For each `x in C`, the same direction is divisible by `X-x`, so the one-root
+slice at `x` has a nonzero kernel direction.  Hence
+
+```text
+Z_b^{dir}(U,W) subset { C subset Z_1(U,W) : |C|=b }.       (Z1-envelope)
+```
+
+In particular, with `z=|Z_1(U,W)|`,
+
+```text
+|Z_b^{dir}(U,W)| <= binom(z,b).                         (Z1-bound)
+```
+
+Combining this with (DMB) gives the root-slice-charged residual-fiber bound
+
+```text
+|F(U,W)| binom(q,b)
+ <= binom(N,b)+binom(z,b) binom(N-b,q-b).                (Z1-DMB)
+```
+
+If `z<b`, then `Z_b^{dir}(U,W)` is empty and the direction-MDS packing bound
+(DMB-MDS) applies.  Thus higher-dimensional residual direction spaces do not
+create an independent bad-subset reservoir: their bad `b`-sets are already
+contained in the one-root fixed-root ledger.
+
+This is the useful form for M1.  Once quotient-periodic, tangent, fixed-root,
+or aperiodic arguments bound the one-root absorbed-rank defects, every bounded
+residual direction dimension inherits a packing bound without separately
+enumerating the whole projective direction space.
+
+The verifier now checks (Z1-envelope) whenever it constructs the direction-MDS
+bad-set ledger.  The current largest `F_7^*` scan still has `Z_1(U,W)=empty`
+and `b(U,W)=0` for all produced residual anchors.
+
 ## Bad Root Slices Are Absorbed-Anchor Rank Defects
 
 The preceding bad-root condition has an equivalent absorbed-anchor form.  Fix

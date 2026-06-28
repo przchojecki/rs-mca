@@ -175,6 +175,7 @@ It also identifies those bad b-subsets with the projective root shadows of the
 residual direction space and with absorbed multi-root fixed-divisor rank
 defects.
 It then checks the resulting projective root-count bound for the bad-subset
+ledger, and that every higher bad subset is contained in the one-root bad-slice
 ledger.
 For each fixed collapsed anchor base, it audits the sparse-representation
 fiber: below the boundary the mode support is unique, while at the boundary
@@ -4760,6 +4761,54 @@ def analyze_case(
                                                     ),
                                                     "bound": (
                                                         projective_root_count_bound
+                                                    ),
+                                                }
+                                            )
+                                        root_slice_bad_direction_subsets = set(
+                                            itertools.combinations(
+                                                sorted(root_slice_bad_roots),
+                                                residual_direction_dim,
+                                            )
+                                        )
+                                        if not bad_direction_subsets.issubset(
+                                            root_slice_bad_direction_subsets
+                                        ):
+                                            raise AssertionError(
+                                                {
+                                                    "kind": (
+                                                        "productive-"
+                                                        if productive
+                                                        else ""
+                                                    )
+                                                    + "marked-core-deficit-"
+                                                    "anchor-direction-mds-"
+                                                    "root-slice-envelope-"
+                                                    "failed",
+                                                    "p": p,
+                                                    "k": k,
+                                                    "syndrome": list(syn),
+                                                    "fixed_roots": list(
+                                                        fixed_roots
+                                                    ),
+                                                    "unmarked_core": list(
+                                                        unmarked_core
+                                                    ),
+                                                    "marked_count": marked_count,
+                                                    "core_deficit": core_deficit,
+                                                    "anchor": list(anchor),
+                                                    "direction_dim": (
+                                                        residual_direction_dim
+                                                    ),
+                                                    "bad_subsets": [
+                                                        list(item)
+                                                        for item in sorted(
+                                                            bad_direction_subsets
+                                                        )
+                                                    ],
+                                                    "root_slice_bad_roots": (
+                                                        sorted(
+                                                            root_slice_bad_roots
+                                                        )
                                                     ),
                                                 }
                                             )

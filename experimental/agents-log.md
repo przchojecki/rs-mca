@@ -30,6 +30,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 higher bad subsets charge to one-root slices
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_hankel_t2_one_exchange_lift.md`,
+  `experimental/experiments.tex`,
+  `experimental/scripts/verify_m1_hankel_t2_triangle_packets.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / STRUCTURAL / AUDIT.
+- **What is being added:** Proves that every direction-bad `b`-subset is
+  contained in the one-root bad-slice set `Z_1(U,W)`, hence
+  `|Z_b^{dir}(U,W)| <= binom(|Z_1(U,W)|,b)`.
+- **How it is useful:** Charges higher-dimensional direction-MDS bad ledgers to
+  the existing one-root fixed-root/absorbed-rank ledger.  If the one-root bad
+  set has size `<b`, the direction-MDS packing bound applies automatically.
+- **What to do next:** Bound the one-root absorbed-rank defects after
+  quotient-periodic, tangent, and aperiodic charges; the higher bad-subset
+  ledgers then follow from this envelope.
+
 ### 2026-06-28 - M1 bounded residual direction has projective root closure
 
 - **Agent/model:** AllenGrahamHart / Codex audit.
