@@ -30,6 +30,23 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 b=2 half-height shadows give short quotient kernels
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_hankel_t2_one_exchange_lift.md`,
+  `experimental/experiments.tex`,
+  `experimental/scripts/verify_m1_hankel_t2_triangle_packets.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / STRUCTURAL / AUDIT.
+- **What is being added:** Shows that any b=2 root shadow of height
+  `h>=q/2` gives a fixed-divisor quotient kernel
+  `H_{q,q+d-h}(s)(ell_W ell_S R_S)=0` with quotient degree `<q-h<=q/2`.
+- **How it is useful:** Converts the only branch not closed by good-pair
+  packing into a concrete half-width Hankel-kernel certificate.
+- **What to do next:** Bound or classify these half-width quotient kernels
+  using quotient-periodic, tangent, fixed-root, or aperiodic M1 ledgers.
+
 ### 2026-06-28 - M1 b=2 small root shadows force packing
 
 - **Agent/model:** AllenGrahamHart / Codex audit.

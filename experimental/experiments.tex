@@ -4839,6 +4839,19 @@ If \(\gamma_2(q,h)>0\), then
 \]
 In particular the unclosed \(b=2\) branch requires a fixed-divisor slice of
 height at least \(q/2\); small root shadows are packing-bounded.
+If such a half-height slice \(S\) exists, it also produces a short quotient
+kernel.  For \(S=B_0\), every direction in \(\langle P,Q\rangle\) is divisible
+by \(\ell_S\); for a projective fiber \(S=ev^{-1}([a:b])\), the direction
+\(Q_S=bP-aQ\) is divisible by \(\ell_S\).  Hence
+\[
+  Q_S=\ell_S R_S,\qquad \deg R_S<q-|S|\le q/2,
+\]
+and the DKI identity gives
+\[
+  H_{q,q+d-|S|}(s)(\ell_W\ell_S R_S)=0 .
+\]
+Thus the surviving \(b=2\) obstruction is a half-width quotient Hankel kernel,
+not diffuse two-dimensional residual multiplicity.
 Equivalently, for each available root \(x\) the bad-slice test is the failure
 of full column rank for the absorbed-anchor matrix
 \[

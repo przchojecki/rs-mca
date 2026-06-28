@@ -3332,6 +3332,46 @@ The verifier now checks (PF2-height) whenever `b(U,W)=2`, using the same base
 locus and projective fibers as the exact bad-pair audit.  The current largest
 `F_7^*` scan has no `b(U,W)=2` produced anchor.
 
+## Half-Height b=2 Shadows Are Short Quotient Kernels
+
+The half-height survivor in the preceding section has a sharper algebraic
+form.  Let `S` be either the base locus `B_0` or one non-base projective fiber,
+and write `h=|S|`.  Suppose `h>=q/2`.
+
+If `S=B_0`, every direction `A in V(U,W)` vanishes on `S`; if
+`S=ev^{-1}([a:b])`, the nonzero direction
+
+```text
+Q_S=bP-aQ
+```
+
+vanishes on `S`.  In both cases there is a nonzero direction `A_S in V(U,W)`
+and a quotient polynomial `R_S` such that
+
+```text
+A_S = ell_S R_S,        deg R_S < q-h <= q/2.
+```
+
+By (DKI), this gives the short quotient Hankel kernel
+
+```text
+H_{q,q+d-h}(s)(ell_W ell_S R_S)=0.              (PF2-short)
+```
+
+Thus a `b=2` residual branch that survives the root-shadow-height packing
+bound is not merely a large-root phenomenon.  It supplies a concrete low-width
+quotient kernel, with quotient width at most half of the residual degree.  A
+proof that these half-width quotient kernels are absent or charged by the
+quotient-periodic, tangent, fixed-root, or aperiodic ledgers would close the
+`b=2` persistent branch.
+
+The verifier now checks (PF2-short) whenever `b(U,W)=2` and a base locus or
+projective fiber has height at least `q/2`: it divides the relevant residual
+direction by the shadow locator, checks the quotient width, reconstructs the
+direction, and verifies the resulting Hankel-kernel equation after multiplying
+by the fixed anchor.  The current largest `F_7^*` scan has no `b(U,W)=2`
+produced anchor.
+
 ## Bad Root Slices Are Absorbed-Anchor Rank Defects
 
 The preceding bad-root condition has an equivalent absorbed-anchor form.  Fix

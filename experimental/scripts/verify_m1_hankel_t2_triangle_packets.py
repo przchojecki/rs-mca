@@ -264,6 +264,38 @@ def multiply_polynomials_mod(
     return tuple(product)
 
 
+def divide_by_polynomial_exact_mod(
+    numerator: Sequence[int],
+    divisor: Sequence[int],
+    p: int,
+) -> tuple[int, ...]:
+    if not divisor or not any(coeff % p for coeff in divisor):
+        raise ValueError("zero divisor")
+    divisor_degree = len(divisor) - 1
+    while divisor_degree > 0 and divisor[divisor_degree] % p == 0:
+        divisor_degree -= 1
+    divisor_coeffs = [coeff % p for coeff in divisor[: divisor_degree + 1]]
+    if len(numerator) < len(divisor_coeffs):
+        if any(coeff % p for coeff in numerator):
+            raise ValueError("nonzero remainder")
+        return (0,)
+    remainder = [coeff % p for coeff in numerator]
+    quotient = [0] * (len(numerator) - len(divisor_coeffs) + 1)
+    inverse_lead = pow(divisor_coeffs[-1], -1, p)
+    for offset in range(len(quotient) - 1, -1, -1):
+        coeff = remainder[offset + len(divisor_coeffs) - 1] * inverse_lead % p
+        quotient[offset] = coeff
+        if not coeff:
+            continue
+        for index, divisor_coeff in enumerate(divisor_coeffs):
+            remainder[offset + index] = (
+                remainder[offset + index] - coeff * divisor_coeff
+            ) % p
+    if any(remainder):
+        raise ValueError("nonzero remainder")
+    return tuple(quotient)
+
+
 def root_difference_syndrome(
     syn: Sequence[int],
     root: int,
@@ -5136,6 +5168,256 @@ def analyze_case(
                                                     key,
                                                     [],
                                                 ).append(root)
+
+                                            def check_half_height_quotient_shadow(
+                                                roots: Sequence[int],
+                                                direction: Sequence[int],
+                                                shadow_kind: str,
+                                                key: tuple[int, ...]
+                                                | None = None,
+                                                basis_index: int | None = None,
+                                            ) -> None:
+                                                root_tuple = tuple(
+                                                    sorted(roots)
+                                                )
+                                                if (
+                                                    2 * len(root_tuple)
+                                                    < residual_size
+                                                ):
+                                                    return
+                                                shadow_locator = cached_locator(
+                                                    root_tuple
+                                                )
+                                                quotient_direction = (
+                                                    divide_by_polynomial_exact_mod(
+                                                        direction,
+                                                        shadow_locator,
+                                                        p,
+                                                    )
+                                                )
+                                                quotient_width = (
+                                                    residual_size
+                                                    - len(root_tuple)
+                                                )
+                                                if (
+                                                    len(quotient_direction)
+                                                    != quotient_width
+                                                    or 2 * quotient_width
+                                                    > residual_size
+                                                ):
+                                                    raise AssertionError(
+                                                        {
+                                                            "kind": (
+                                                                "productive-"
+                                                                if productive
+                                                                else ""
+                                                            )
+                                                            + "marked-core-"
+                                                            "deficit-anchor-"
+                                                            "direction-mds-"
+                                                            "projective-"
+                                                            "half-height-"
+                                                            "quotient-width-"
+                                                            "failed",
+                                                            "p": p,
+                                                            "k": k,
+                                                            "syndrome": list(
+                                                                syn
+                                                            ),
+                                                            "fixed_roots": list(
+                                                                fixed_roots
+                                                            ),
+                                                            "unmarked_core": list(
+                                                                unmarked_core
+                                                            ),
+                                                            "marked_count": (
+                                                                marked_count
+                                                            ),
+                                                            "core_deficit": (
+                                                                core_deficit
+                                                            ),
+                                                            "anchor": list(
+                                                                anchor
+                                                            ),
+                                                            "shadow_kind": (
+                                                                shadow_kind
+                                                            ),
+                                                            "key": (
+                                                                list(key)
+                                                                if key
+                                                                is not None
+                                                                else None
+                                                            ),
+                                                            "basis_index": (
+                                                                basis_index
+                                                            ),
+                                                            "shadow_roots": list(
+                                                                root_tuple
+                                                            ),
+                                                            "quotient_width": (
+                                                                quotient_width
+                                                            ),
+                                                            "residual_size": (
+                                                                residual_size
+                                                            ),
+                                                            "quotient": list(
+                                                                quotient_direction
+                                                            ),
+                                                        }
+                                                    )
+                                                reconstructed_direction = (
+                                                    multiply_polynomials_mod(
+                                                        shadow_locator,
+                                                        quotient_direction,
+                                                        p,
+                                                    )
+                                                )
+                                                if (
+                                                    reconstructed_direction
+                                                    != tuple(
+                                                        value % p
+                                                        for value in direction
+                                                    )
+                                                ):
+                                                    raise AssertionError(
+                                                        {
+                                                            "kind": (
+                                                                "productive-"
+                                                                if productive
+                                                                else ""
+                                                            )
+                                                            + "marked-core-"
+                                                            "deficit-anchor-"
+                                                            "direction-mds-"
+                                                            "projective-"
+                                                            "half-height-"
+                                                            "quotient-"
+                                                            "reconstruction-"
+                                                            "failed",
+                                                            "p": p,
+                                                            "k": k,
+                                                            "syndrome": list(
+                                                                syn
+                                                            ),
+                                                            "fixed_roots": list(
+                                                                fixed_roots
+                                                            ),
+                                                            "unmarked_core": list(
+                                                                unmarked_core
+                                                            ),
+                                                            "marked_count": (
+                                                                marked_count
+                                                            ),
+                                                            "core_deficit": (
+                                                                core_deficit
+                                                            ),
+                                                            "anchor": list(
+                                                                anchor
+                                                            ),
+                                                            "shadow_kind": (
+                                                                shadow_kind
+                                                            ),
+                                                            "key": (
+                                                                list(key)
+                                                                if key
+                                                                is not None
+                                                                else None
+                                                            ),
+                                                            "basis_index": (
+                                                                basis_index
+                                                            ),
+                                                            "shadow_roots": list(
+                                                                root_tuple
+                                                            ),
+                                                            "direction": list(
+                                                                direction
+                                                            ),
+                                                            "reconstructed": list(
+                                                                reconstructed_direction
+                                                            ),
+                                                        }
+                                                    )
+                                                short_divisor = (
+                                                    multiply_polynomials_mod(
+                                                        anchor_locator,
+                                                        shadow_locator,
+                                                        p,
+                                                    )
+                                                )
+                                                short_product = (
+                                                    multiply_polynomials_mod(
+                                                        short_divisor,
+                                                        quotient_direction,
+                                                        p,
+                                                    )
+                                                )
+                                                short_vector = hankel_apply(
+                                                    syn,
+                                                    short_product,
+                                                    residual_size,
+                                                    p,
+                                                )
+                                                if any(short_vector):
+                                                    raise AssertionError(
+                                                        {
+                                                            "kind": (
+                                                                "productive-"
+                                                                if productive
+                                                                else ""
+                                                            )
+                                                            + "marked-core-"
+                                                            "deficit-anchor-"
+                                                            "direction-mds-"
+                                                            "projective-"
+                                                            "half-height-"
+                                                            "quotient-kernel-"
+                                                            "failed",
+                                                            "p": p,
+                                                            "k": k,
+                                                            "syndrome": list(
+                                                                syn
+                                                            ),
+                                                            "fixed_roots": list(
+                                                                fixed_roots
+                                                            ),
+                                                            "unmarked_core": list(
+                                                                unmarked_core
+                                                            ),
+                                                            "marked_count": (
+                                                                marked_count
+                                                            ),
+                                                            "core_deficit": (
+                                                                core_deficit
+                                                            ),
+                                                            "anchor": list(
+                                                                anchor
+                                                            ),
+                                                            "shadow_kind": (
+                                                                shadow_kind
+                                                            ),
+                                                            "key": (
+                                                                list(key)
+                                                                if key
+                                                                is not None
+                                                                else None
+                                                            ),
+                                                            "basis_index": (
+                                                                basis_index
+                                                            ),
+                                                            "shadow_roots": list(
+                                                                root_tuple
+                                                            ),
+                                                            "shadow_locator": list(
+                                                                shadow_locator
+                                                            ),
+                                                            "quotient": list(
+                                                                quotient_direction
+                                                            ),
+                                                            "short_vector": list(
+                                                                short_vector
+                                                            ),
+                                                        }
+                                                    )
                                             for root in (
                                                 projective_eval_base_roots
                                             ):
@@ -5187,6 +5469,15 @@ def analyze_case(
                                                                 ),
                                                             }
                                                         )
+                                            for basis_index, vector in enumerate(
+                                                direction_basis
+                                            ):
+                                                check_half_height_quotient_shadow(
+                                                    projective_eval_base_roots,
+                                                    vector,
+                                                    "base",
+                                                    basis_index=basis_index,
+                                                )
                                             for key, roots in (
                                                 projective_eval_fibers.items()
                                             ):
@@ -5295,6 +5586,12 @@ def analyze_case(
                                                                 ),
                                                             }
                                                         )
+                                                check_half_height_quotient_shadow(
+                                                    roots,
+                                                    fiber_direction,
+                                                    "fiber",
+                                                    key=key,
+                                                )
                                             projective_pair_bad_subsets: set[
                                                 tuple[int, ...]
                                             ] = set()
