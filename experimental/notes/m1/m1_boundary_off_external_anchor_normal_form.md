@@ -13644,6 +13644,129 @@ Conversely, start from the displayed reduced data.  Corollary 40.124 gives
 on `C_0` and `C_0 cap R=empty`, the roots of `L_RN` that lie in `C` are
 exactly the points of `R`.  This proves both directions.
 
+## Corollary 40.126: Higher Base Coefficient Cores Charge To `U_u`
+
+Keep the primitive positive base residue-line setup at the scalar cutoff
+
+```text
+a=k+t=n-j,        e_0=deg Q_0>0,
+```
+
+and fix `u` with
+
+```text
+1<=u<=t.
+```
+
+For each coefficient
+
+```text
+lambda in Lambda_{Q_0,B_0}^{nc,>=a}(w_0),
+```
+
+choose one noncontained `a`-support `T_lambda` witnessing it.  For an
+`(a-u)`-subset `I subset D`, put
+
+```text
+r_I=|{ lambda : I subset T_lambda }|.
+```
+
+If
+
+```text
+r_u=e_0-t+u>0,
+```
+
+let `U_u(Q_0,B_0)` be the disjoint complement ledger of Corollary 40.122.
+Then
+
+```text
+|Lambda_{Q_0,B_0}^{nc,>=a}(w_0)|
+ <= ( binom(n,j+u)
+      + (binom(j+u,u)-1)|U_u(Q_0,B_0)| )
+    / binom(a,u).                                  (HigherBaseCoeffLedger)
+```
+
+In particular, using Corollary 40.122,
+
+```text
+|Lambda_{Q_0,B_0}^{nc,>=a}(w_0)| <= binom(n,j).   (HigherBaseCoeffQFree)
+```
+
+If `r_u<=0`, the same conclusion holds with `U_u` absent: no repeated
+`(a-u)`-core can occur.  Thus at every exchange depth, repeated coefficient
+cores for a fixed primitive base class are supported only on the corresponding
+small-complement residue-line ledger `U_u`; after the complement-root descent
+of Corollary 40.125, their non-descending part is exactly the residual
+multiplier ledger named there.
+
+### Proof
+
+Each selected support `T_lambda` contains exactly `binom(a,u)` subsets of
+size `a-u`, so
+
+```text
+sum_{|I|=a-u} r_I
+ = binom(a,u) |Lambda_{Q_0,B_0}^{nc,>=a}(w_0)|.    (HigherCoreCount)
+```
+
+Two distinct coefficients cannot choose the same selected `a`-support: after
+dividing by the root-free denominator `Q_0`, this is the same rank-one
+same-support argument used in Corollary 40.114.  Therefore, for every fixed
+`I`,
+
+```text
+r_I <= binom(j+u,u),                               (CoreMultiplicity)
+```
+
+because an `a`-support containing `I` is obtained by choosing the `u` added
+points from the complement `D\I`, which has size `j+u`.
+
+Suppose now that `r_I>=2`.  Choose two coefficients `lambda_1!=lambda_2`
+with witnesses `A_1,A_2 in F[X]_<k` on supports containing `I`.  On `I`,
+
+```text
+Q_0(A_1-A_2)+(lambda_1-lambda_2)B_0 = 0.
+```
+
+Thus, after scaling by the nonzero scalar `lambda_1-lambda_2`, there is a
+nonzero polynomial `M` with
+
+```text
+L_I M in F B_0        mod Q_0,
+deg M < k+e_0-(a-u)=e_0-t+u=r_u.                  (RepeatedCoreCert)
+```
+
+Since `Q_0` is root-free on `D`, the class of `L_I` is invertible modulo
+`Q_0`.  The polynomial `M` is therefore coprime to `Q_0`, since `B_0` is;
+hence if `r_u>0` and `C=D\I`, then `C in U_u(Q_0,B_0)` by the complement
+duality of Corollaries 40.118 and 40.122.  If `r_u<=0`, no such nonzero `M`
+can exist, so `r_I<=1` for every `I`.
+
+Assume `r_u>0`.  For `I` whose complement is not in `U_u`, the previous
+paragraph gives `r_I<=1`.  For `I` whose complement is in `U_u`, use
+(CoreMultiplicity).  Hence
+
+```text
+sum_I r_I
+ <= (binom(n,a-u)-|U_u|)
+    + binom(j+u,u)|U_u|.
+```
+
+Since `binom(n,a-u)=binom(n,j+u)`, combining this with (HigherCoreCount)
+gives (HigherBaseCoeffLedger).  Corollary 40.122 gives
+`|U_u|<=binom(n,j+u)`, so
+
+```text
+|Lambda|
+ <= binom(j+u,u) binom(n,j+u) / binom(a,u)
+ = binom(n,j),
+```
+
+where the last equality is the standard factorial identity with `a=n-j`.
+This proves the displayed q-free bound.  The case `r_u<=0` follows from
+`r_I<=1` and the same identity with the extra factor `1/binom(j+u,u)`.
+
 ## Corollary 41: The Global Common-Image Ledger Is Endpoint-Only
 
 Let `GCI` be the set of monic degree-`c` split core locators `L` for which
@@ -16653,6 +16776,9 @@ reducing it to a lower-depth fiber in one step.
 Corollary 40.125 strips all complement roots available to the exchange depth,
 or lands at the core-depth ledger if more complement roots remain than the
 exchange depth permits stripping.
+Corollary 40.126 lifts the unweighted `U_u` complement ledger to weighted
+coefficient-core incidence: every repeated `(a-u)` core has complement in
+`U_u`, and the resulting fixed-class count is still at most `binom(n,j)`.
 Corollary 41 packages the common-image branch into endpoint-type ledgers; it
 does not prove the endpoint rank hypotheses needed for the displayed
 `(q+2)binom(n,b)` bound. Corollary 42 packages the globally full core ledger

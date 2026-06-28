@@ -3072,6 +3072,18 @@ locator \(L_R\) belong to the complement \(C\), deleting the whole root set
 until core depth is reached; after this descent, the new pieces are
 core-depth complement roots, roots in \(D\setminus C\), external roots, and
 irreducible bounded-degree multiplier factors.
+The same \(U_u\) ledger also controls weighted coefficient-core incidence at
+exchange depth \(u\).  If one noncontained \(a\)-support is chosen for each
+coefficient, any repeated \((a-u)\)-core has complement in \(U_u\).  Counting
+these cores gives
+\[
+  |\Lambda^{\rm nc,\ge a}_{Q_0,B_0}(w_0)|
+  \le { \binom n {j+u}
+        +(\binom {j+u}u-1)|U_u(Q_0,B_0)| \over \binom a u}
+  \le \binom n j.
+\]
+Thus for a fixed primitive base class, \(U_u\) controls both unweighted
+complement landings and weighted repeated-core coefficient mass.
 The common-core and two-denominator formulas persist verbatim after this
 root-free replacement.  With \(C=\gcd(D:D\in M_{\min})\), \(\gamma=\deg C\),
 and \(E_D=D/C\),

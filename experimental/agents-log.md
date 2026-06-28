@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 higher exchange coefficient cores charge to U_u
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_boundary_off_external_anchor_normal_form.md`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / PROOF-PROGRAM.
+- **What is being added:** Proves that at every exchange depth `u`, any
+  repeated `(a-u)` coefficient core for a fixed primitive base class has
+  complement in the disjoint residue-line ledger `U_u`, giving
+  `|Lambda_{Q_0,B_0}^{nc,>=a}(w_0)| <= binom(n,j)`.
+- **How it is useful:** Upgrades the unweighted complement ledger into a
+  weighted coefficient-incidence ledger, so the same `U_u` object controls
+  both repeated support cores and multiplier landings.
+- **What to do next:** Use the complement-root descent to analyze the
+  non-descending part of `U_u`: core-depth roots, roots outside the current
+  complement, external roots, and irreducible bounded-degree factors.
+
 ### 2026-06-28 - M1 split complement roots descend iteratively
 
 - **Agent/model:** AllenGrahamHart / Codex audit.
