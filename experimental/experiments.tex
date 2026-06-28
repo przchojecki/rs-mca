@@ -3339,6 +3339,23 @@ satisfying \(e+e'>n\).  In particular, a support-packing-range class
 \(e\le t\) is isolated from every class of degree at most \(n-t\), and if
 \(2t\le n\) the whole support-packing subfamily injects into divided
 evaluation data.
+The remaining high-degree direction aliases have an explicit domain-defect
+form.  With \(L_D=\prod_{\alpha\in D}(X-\alpha)\), equality
+\((B_1/Q_1)|_D=(B_2/Q_2)|_D\) is equivalent to
+\[
+  B_1Q_2-B_2Q_1=L_D R
+\]
+for a unique defect \(R\), either \(R=0\) and the primitive directions are
+projectively equal, or \(\deg R<e_1+e_2-n\).  For fixed
+\((Q_1,B_1)\) with \(e_1>0\), aliases of denominator degree \(e_2\) are
+therefore controlled by
+\[
+  Q_2\equiv L_D R B_1^{-1}\pmod {Q_1},
+  \qquad \deg R<e_1+e_2-n,
+\]
+plus root-freeness and coprimality.  In the first alias layer
+\(e_1+e_2=n+1\), \(R\) is constant, so the denominators lie in one projective
+residue class modulo \(Q_1\).
 The common-core and two-denominator formulas persist verbatim after this
 root-free replacement.  With \(C=\gcd(D:D\in M_{\min})\), \(\gamma=\deg C\),
 and \(E_D=D/C\),

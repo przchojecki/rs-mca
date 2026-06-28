@@ -15269,6 +15269,98 @@ distinct alias has degree `e'>n-e`, hence `e'>=n-e+1`.  If `e<=t` and
 `2t<=n`, two distinct classes of degrees at most `t` cannot lie in the same
 evaluation fiber.
 
+## Corollary 40.151: High-Degree Direction Aliases Are Domain-Defect Congruences
+
+Let
+
+```text
+L_D(X)=prod_{alpha in D}(X-alpha).
+```
+
+For `i=1,2`, let `(Q_i,B_i)` be primitive residue directions with `Q_i`
+root-free on `D`, `gcd(Q_i,B_i)=1`, `deg B_i<deg Q_i` when `deg Q_i>0`,
+and with the polynomial direction represented by `Q_i=1,B_i=0`.  Put
+`e_i=deg Q_i`.  If
+
+```text
+B_1/Q_1 = B_2/Q_2        on D,
+```
+
+then there is a unique polynomial `R` such that
+
+```text
+B_1Q_2-B_2Q_1 = L_D R.                              (AliasDefect)
+```
+
+Moreover either `R=0`, in which case the primitive directions are
+projectively equal, or
+
+```text
+R != 0,        deg R < e_1+e_2-n,        e_1+e_2>n.  (DefectDegree)
+```
+
+Assume now that `e_1>0` and fix `(Q_1,B_1)`.  Since `B_1` and `L_D` are
+invertible modulo `Q_1`, the aliases `(Q_2,B_2)` of denominator degree `e_2`
+are exactly the primitive pairs obtained from nonzero defects
+
+```text
+R in F[X]_<e_1+e_2-n
+```
+
+and root-free denominators `Q_2` satisfying the congruence
+
+```text
+Q_2 == L_D R B_1^{-1}        mod Q_1,               (AliasCongruence)
+```
+
+with
+
+```text
+B_2=(B_1Q_2-L_D R)/Q_1
+```
+
+having `gcd(Q_2,B_2)=1`.  In the first alias layer `e_1+e_2=n+1`, the defect
+`R` is a nonzero constant, so the possible denominators lie in one projective
+residue class modulo `Q_1`.
+
+Thus the high-total-degree obstruction left by Corollary 40.150 is not an
+unstructured finite-domain collision: for each fixed primitive direction it is
+controlled by a short defect polynomial and a single modular denominator
+congruence.
+
+### Proof
+
+The divided equality on `D` gives
+
+```text
+B_1Q_2-B_2Q_1=0        on D,
+```
+
+because both denominators are nonzero on `D`.  The squarefree domain locator
+`L_D` therefore divides the left side, giving the unique quotient `R`.
+If `R=0`, then `B_1Q_2=B_2Q_1`; the same coprimality argument as in
+Corollary 40.149 makes the two primitive directions projectively equal.
+
+If `R!=0`, then the left side is nonzero and has degree `<e_1+e_2`; after
+dividing by `L_D`, the quotient satisfies `deg R<e_1+e_2-n`.  In particular
+`e_1+e_2>n`.
+
+For the congruence form, reduce (AliasDefect) modulo `Q_1`.  Because
+`gcd(Q_1,B_1)=1` and `Q_1` is root-free on `D`, both `B_1` and `L_D` are
+units modulo `Q_1`, and
+
+```text
+B_1Q_2 == L_D R        mod Q_1
+```
+
+is equivalent to (AliasCongruence).  Conversely, if `R` and `Q_2` satisfy
+(AliasCongruence), then `B_1Q_2-L_D R` is divisible by `Q_1`; the displayed
+quotient `B_2` has degree `<e_2`, and (AliasDefect) gives equality of
+`B_1/Q_1` and `B_2/Q_2` on `D`.  Requiring `Q_2` root-free on `D` and
+`gcd(Q_2,B_2)=1` is exactly the primitive-pair condition.  When
+`e_1+e_2=n+1`, the inequality `deg R<1` forces `R in F^*`, giving the final
+projective residue-class statement.
+
 ## Corollary 41: The Global Common-Image Ledger Is Endpoint-Only
 
 Let `GCI` be the set of monic degree-`c` split core locators `L` for which
@@ -18354,6 +18446,9 @@ Corollary 40.150 records the resulting alias gap: distinct primitive data with
 the same divided evaluation datum must have denominator degrees summing to
 more than `n`, so support-packing-range classes are isolated from all
 low/mid-degree aliases.
+Corollary 40.151 rewrites the remaining high-degree direction aliases as
+domain-defect congruences `B_1Q_2-B_2Q_1=L_D R`; for fixed `(Q_1,B_1)`, the
+defect `R` gives a modular denominator class modulo `Q_1`.
 Corollary 41 packages the common-image branch into endpoint-type ledgers; it
 does not prove the endpoint rank hypotheses needed for the displayed
 `(q+2)binom(n,b)` bound. Corollary 42 packages the globally full core ledger

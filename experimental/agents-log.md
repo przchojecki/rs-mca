@@ -30,6 +30,23 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 high-degree direction aliases are defect congruences
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_boundary_off_external_anchor_normal_form.md`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / PROOF-PROGRAM.
+- **What is being added:** Shows that a high-degree primitive direction alias
+  satisfies `B_1Q_2-B_2Q_1=L_D R` with `deg R<e_1+e_2-n`, and for fixed
+  `(Q_1,B_1)` is equivalently controlled by
+  `Q_2 == L_D R B_1^{-1} mod Q_1`.
+- **How it is useful:** Gives the remaining finite-domain aliasing obstruction
+  an explicit short-defect parameter and modular denominator congruence,
+  making the first alias layer a constant-defect problem.
+- **What to do next:** Use the defect congruence to count, rule out, or scan
+  high-degree aliases in the active primitive class ledger.
+
 ### 2026-06-28 - M1 primitive evaluation fibers have a high-degree alias gap
 
 - **Agent/model:** AllenGrahamHart / Codex audit.
