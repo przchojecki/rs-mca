@@ -4809,6 +4809,17 @@ roots to \(R\), then with \(L=q-A\),
 So failure to obtain many good pairs is exactly concentration in the base locus
 or in a few projective fibers; the verifier checks this support-level
 occupancy formula.
+These concentration alternatives are fixed-divisor slices, not new residual
+multiplicity.  Roots in \(B_0\) are common zeros of every direction in
+\(\langle P,Q\rangle\).  For a non-base projective fiber \(\lambda=[a:b]\),
+the nonzero direction \(Q_\lambda=bP-aQ\) vanishes on that fiber.  Thus any
+heavy subset \(C\) in \(B_0\) or in one projective fiber gives a divisor
+\(\ell_C\) of the relevant residual direction and hence a DKI slice
+\[
+  H_{q,q+d-|C|}(s)(\ell_W\ell_C Q_C)=0 .
+\]
+The remaining \(b=2\) M1 task is therefore to bound these fixed-root and
+projective-fiber slice ledgers.
 Equivalently, for each available root \(x\) the bad-slice test is the failure
 of full column rank for the absorbed-anchor matrix
 \[

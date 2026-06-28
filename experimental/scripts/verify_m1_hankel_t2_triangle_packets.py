@@ -5119,6 +5119,165 @@ def analyze_case(
                                                     key,
                                                     [],
                                                 ).append(root)
+                                            for root in (
+                                                projective_eval_base_roots
+                                            ):
+                                                for vector in direction_basis:
+                                                    if polynomial_eval_mod(
+                                                        vector,
+                                                        domain[root],
+                                                        p,
+                                                    ):
+                                                        raise AssertionError(
+                                                            {
+                                                                "kind": (
+                                                                    "productive-"
+                                                                    if productive
+                                                                    else ""
+                                                                )
+                                                                + "marked-core-"
+                                                                "deficit-"
+                                                                "anchor-"
+                                                                "direction-"
+                                                                "mds-"
+                                                                "projective-"
+                                                                "base-root-"
+                                                                "slice-"
+                                                                "failed",
+                                                                "p": p,
+                                                                "k": k,
+                                                                "syndrome": list(
+                                                                    syn
+                                                                ),
+                                                                "fixed_roots": list(
+                                                                    fixed_roots
+                                                                ),
+                                                                "unmarked_core": list(
+                                                                    unmarked_core
+                                                                ),
+                                                                "marked_count": (
+                                                                    marked_count
+                                                                ),
+                                                                "core_deficit": (
+                                                                    core_deficit
+                                                                ),
+                                                                "anchor": list(
+                                                                    anchor
+                                                                ),
+                                                                "root": root,
+                                                                "vector": list(
+                                                                    vector
+                                                                ),
+                                                            }
+                                                        )
+                                            for key, roots in (
+                                                projective_eval_fibers.items()
+                                            ):
+                                                fiber_direction = tuple(
+                                                    (
+                                                        key[1]
+                                                        * direction_basis[0][
+                                                            index
+                                                        ]
+                                                        - key[0]
+                                                        * direction_basis[1][
+                                                            index
+                                                        ]
+                                                    )
+                                                    % p
+                                                    for index in range(
+                                                        len(
+                                                            direction_basis[0]
+                                                        )
+                                                    )
+                                                )
+                                                if not any(
+                                                    fiber_direction
+                                                ):
+                                                    raise AssertionError(
+                                                        {
+                                                            "kind": (
+                                                                "productive-"
+                                                                if productive
+                                                                else ""
+                                                            )
+                                                            + "marked-core-"
+                                                            "deficit-anchor-"
+                                                            "direction-mds-"
+                                                            "projective-"
+                                                            "fiber-slice-"
+                                                            "zero-failed",
+                                                            "p": p,
+                                                            "k": k,
+                                                            "syndrome": list(
+                                                                syn
+                                                            ),
+                                                            "fixed_roots": list(
+                                                                fixed_roots
+                                                            ),
+                                                            "unmarked_core": list(
+                                                                unmarked_core
+                                                            ),
+                                                            "marked_count": (
+                                                                marked_count
+                                                            ),
+                                                            "core_deficit": (
+                                                                core_deficit
+                                                            ),
+                                                            "anchor": list(
+                                                                anchor
+                                                            ),
+                                                            "key": list(key),
+                                                        }
+                                                    )
+                                                for root in roots:
+                                                    if polynomial_eval_mod(
+                                                        fiber_direction,
+                                                        domain[root],
+                                                        p,
+                                                    ):
+                                                        raise AssertionError(
+                                                            {
+                                                                "kind": (
+                                                                    "productive-"
+                                                                    if productive
+                                                                    else ""
+                                                                )
+                                                                + "marked-core-"
+                                                                "deficit-"
+                                                                "anchor-"
+                                                                "direction-"
+                                                                "mds-"
+                                                                "projective-"
+                                                                "fiber-slice-"
+                                                                "failed",
+                                                                "p": p,
+                                                                "k": k,
+                                                                "syndrome": list(
+                                                                    syn
+                                                                ),
+                                                                "fixed_roots": list(
+                                                                    fixed_roots
+                                                                ),
+                                                                "unmarked_core": list(
+                                                                    unmarked_core
+                                                                ),
+                                                                "marked_count": (
+                                                                    marked_count
+                                                                ),
+                                                                "core_deficit": (
+                                                                    core_deficit
+                                                                ),
+                                                                "anchor": list(
+                                                                    anchor
+                                                                ),
+                                                                "key": list(key),
+                                                                "root": root,
+                                                                "direction": list(
+                                                                    fiber_direction
+                                                                ),
+                                                            }
+                                                        )
                                             projective_pair_bad_subsets: set[
                                                 tuple[int, ...]
                                             ] = set()

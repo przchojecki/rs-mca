@@ -3241,6 +3241,46 @@ the concentration lower bound determined by the largest base occupancy and
 largest fiber occupancy seen in the fixed-anchor fiber.  The current largest
 `F_7^*` scan has no `b(U,W)=2` produced anchor.
 
+## b=2 Concentration Is a Fixed-Divisor Slice
+
+The concentration alternatives from (PF2-conc) are not new residual
+multiplicity.  They are fixed-divisor slice ledgers.
+
+Let `V(U,W)=<P,Q>` and let `B_0` be the common zero locus of `P` and `Q` on
+the available roots.  If a residual support contains a subset `C subset B_0`,
+then every direction `A in V(U,W)` vanishes on `C`.  Since the domain roots are
+distinct, `ell_C` divides every direction `A`, and the DKI identity gives the
+fixed-root slice
+
+```text
+H_{q,q+d-|C|}(s)(ell_W ell_C A_C)=0.
+```
+
+Similarly, if `lambda=[a:b]` is a non-base projective fiber, then
+
+```text
+Q_lambda=bP-aQ
+```
+
+is a nonzero direction in `V(U,W)` and its zero set contains exactly that
+fiber off the base locus.  Any support subset `C` contained in this fiber
+therefore satisfies `ell_C | Q_lambda`, and again yields the fixed-divisor slice
+
+```text
+H_{q,q+d-|C|}(s)(ell_W ell_C Q_C)=0.
+```
+
+Thus the two ways to defeat the cross-fiber good-pair packing bound are already
+accounted for by fixed-root, quotient-periodic, or aperiodic slice ledgers.  In
+particular, the remaining `b=2` M1 work is not to handle a new kind of
+two-dimensional residual kernel, but to bound how often these fixed-divisor
+base and projective-fiber slices can occur.
+
+The verifier now checks this dictionary whenever `b(U,W)=2`: every base root is
+a zero of the whole residual direction space, and every projective fiber is cut
+out by the nonzero direction `bP-aQ`.  The current largest `F_7^*` scan has no
+`b(U,W)=2` produced anchor.
+
 ## Bad Root Slices Are Absorbed-Anchor Rank Defects
 
 The preceding bad-root condition has an equivalent absorbed-anchor form.  Fix

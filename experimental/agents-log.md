@@ -30,6 +30,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 b=2 concentration gives fixed-divisor slices
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_hankel_t2_one_exchange_lift.md`,
+  `experimental/experiments.tex`,
+  `experimental/scripts/verify_m1_hankel_t2_triangle_packets.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / STRUCTURAL / AUDIT.
+- **What is being added:** Identifies the two b=2 concentration alternatives
+  as fixed-divisor slice ledgers: base-locus roots are common zeros of the
+  residual direction space, and a projective fiber `[a:b]` is cut out by the
+  nonzero direction `bP-aQ`.
+- **How it is useful:** Removes concentration as a separate residual-kernel
+  obstruction and routes it to the existing fixed-root, quotient-periodic, and
+  aperiodic M1 slice ledgers.
+- **What to do next:** Bound the fixed-divisor base and projective-fiber slice
+  ledgers strongly enough to close the b=2 packing branch.
+
 ### 2026-06-28 - M1 b=2 good pairs force concentration alternatives
 
 - **Agent/model:** AllenGrahamHart / Codex audit.
