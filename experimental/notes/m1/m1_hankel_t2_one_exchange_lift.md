@@ -3949,6 +3949,50 @@ split-image equality, image-fiber weights, two-root quotient descent, and
 determinant normalization.  The current largest `F_7^*` scan still has no
 `b(U,W)=2` produced anchor.
 
+## Global b=2 Ledger Reduction
+
+The endpoint theorem converts the local `b=2` branch into a global ledger
+target.  Let `A_2` be any family of produced deficit anchors with
+`b(U,W)=2`.  For `A=(U,W) in A_2`, write
+
+```text
+I_A={ e good for A : Delta_{A,e}/ell_e splits over D'_A\e },
+pi_A(e)=roots_{D'_A}(L_{A,e}),
+g_A(R)=# good pairs of A contained in R.
+```
+
+Then the total residual contribution of all `b=2` anchors in the family is
+
+```text
+sum_{A in A_2} |F(A)|
+ =
+sum_{A in A_2} sum_{e in I_A} 1/g_A(pi_A(e)).   (PF2-global-ledger)
+```
+
+Equivalently, the unweighted split-good-pair count satisfies
+
+```text
+sum_{A in A_2} |I_A|
+ =
+sum_{A in A_2} sum_{R in F(A)} g_A(R).
+```
+
+Thus the remaining `b=2` task is not to control residual supports after an
+anchor has been fixed.  It is to charge the global family of determinant gates
+
+```text
+(A,e) -> Delta_{A,e}/ell_e
+```
+
+with the reciprocal weight `1/g_A(pi_A(e))` when the gate splits.  Fixed-root,
+quotient-periodic, tangent, and aperiodic residue-packing estimates can now be
+applied directly to this determinant-gate ledger.
+
+This is the precise handoff from the local fixed-anchor argument to the global
+M1 residue-line packing problem.  A future proof can close the `b=2` branch by
+showing that the weighted split determinant-gate count in
+(PF2-global-ledger) is polynomial after the existing reserve charges.
+
 ## Bad Root Slices Are Absorbed-Anchor Rank Defects
 
 The preceding bad-root condition has an equivalent absorbed-anchor form.  Fix

@@ -5014,6 +5014,17 @@ Each image point is equivalently a two-root absorbed quotient-locator or the
 same determinant gate normalized by the nonzero good-pair determinant.  The
 remaining \(b=2\) task is therefore the global charging of these good-pair
 determinant gates, not a local residual \(q\)-subset enumeration.
+For any family \(\mathcal A_2\) of \(b=2\) anchors this gives the exact global
+ledger
+\[
+  \sum_{A\in\mathcal A_2}|F(A)|
+  =
+  \sum_{A\in\mathcal A_2}\sum_{e\in I_A}
+    {1\over g_A(\pi_A(e))},
+\]
+where \(I_A\) is the set of good pairs whose normalized determinant gate
+splits.  Closing the local \(b=2\) branch is therefore equivalent to charging
+this weighted split determinant-gate family across anchors.
 Equivalently, for each available root \(x\) the bad-slice test is the failure
 of full column rank for the absorbed-anchor matrix
 \[

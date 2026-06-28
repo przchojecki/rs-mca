@@ -30,6 +30,23 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 b=2 global determinant-gate ledger
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_hankel_t2_one_exchange_lift.md`,
+  `experimental/experiments.tex`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / STRUCTURAL / SYNTHESIS.
+- **What is being added:** Sums the `b=2` fixed-anchor endpoint across a family
+  of anchors, giving an exact weighted ledger over split good-pair determinant
+  gates.
+- **How it is useful:** Identifies the precise global object left to charge in
+  the `b=2` branch of M1: weighted determinant gates after fixed-root,
+  quotient-periodic, tangent, and aperiodic reserves.
+- **What to do next:** Prove polynomial bounds for this weighted split
+  determinant-gate family in the all-line residue-packing setting.
+
 ### 2026-06-28 - M1 b=2 fixed-anchor endpoint theorem
 
 - **Agent/model:** AllenGrahamHart / Codex audit.
