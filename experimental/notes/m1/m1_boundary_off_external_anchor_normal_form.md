@@ -9811,6 +9811,87 @@ nonzero explained slope is support-wise contained by solving
 inject into `List_d(Qg,a)`.  The zero slope has no such division by `z`, so it
 is recorded as the single possible extra element.
 
+## Corollary 40.80: Scalar Lists Live In A One-Generator Multiplier Extension
+
+Keep the notation and hypotheses of Corollary 40.79, and define the multiplier
+subspace
+
+```text
+Q C_k = { Q C : C in F[X]_<k }.
+```
+
+If `Qg in RS[F,D,n-s]` is represented by `P_g`, put
+
+```text
+V_g(Q)=Q C_k + F P_g        subset F[X]_<d.
+```
+
+If `Qf in RS[F,D,n-s]` is represented by `P_f`, put
+
+```text
+V_f(Q)=Q C_k + F P_f        subset F[X]_<d.
+```
+
+Then:
+
+1. the noncontained finite slopes in the `Qg` scalar stratum inject into
+
+   ```text
+   List_d(Qf,a) cap V_g(Q);
+   ```
+
+2. the nonzero noncontained finite slopes in the `Qf` scalar stratum inject
+   into
+
+   ```text
+   List_d(Qg,a) cap V_f(Q),
+   ```
+
+   so the full finite `Qf` scalar stratum has size at most
+   `1+|List_d(Qg,a) cap V_f(Q)|`.
+
+Moreover `dim V_g(Q)<=k+1` and `dim V_f(Q)<=k+1`, with equality unless the
+corresponding endpoint is already represented by a degree-`<k` codeword after
+division by `Q`.  Equivalently, the residue of every injected list polynomial
+modulo `Q` lies on the one-dimensional line spanned by the numerator
+`P_g mod Q` or `P_f mod Q`.
+
+Thus the one-sided scalar cutoff obstruction is not an arbitrary list in the
+larger dimension-`d` supercode.  It is a list inside a one-generator extension
+of the multiplier code `Q RS[F,D,k]`.  This is a strictly sharper structural
+target for a future scalar-branch closure.
+
+### Proof
+
+For the `Qg` stratum, Corollary 40.79 maps a noncontained slope `z` to
+
+```text
+R_z=Q C_z-zP_g.
+```
+
+This polynomial belongs to `Q C_k+F P_g` and agrees with `Qf` on the explaining
+support, hence lies in `List_d(Qf,a) cap V_g(Q)`.  The injectivity proof is
+exactly the proof of Corollary 40.79.
+
+For the `Qf` stratum and a nonzero slope `z`, Corollary 40.79 maps `z` to
+
+```text
+R_z=(Q C_z-P_f)/z = Q(C_z/z) - (1/z)P_f.
+```
+
+Thus `R_z in V_f(Q)` and agrees with `Qg` on its explaining support.  Again
+the injectivity proof is unchanged, and the zero slope is the only slope not
+represented by this division.
+
+The dimension bound follows because multiplication by the nonzero polynomial
+`Q` is injective on `F[X]_<k`, so `dim Q C_k=k`.  Adjoining one vector
+`P_g` or `P_f` increases the dimension by at most one.  It fails to increase
+the dimension exactly when `P_g` or `P_f` lies in `Q C_k`, i.e. when
+`P=QC` for some `deg C<k`; since `Q` is root-free on `D`, this means the
+corresponding endpoint word is globally represented by the codeword `C`.
+The final residue-line statement is the same membership condition reduced
+modulo `Q`.
+
 ## Corollary 41: The Global Common-Image Ledger Is Endpoint-Only
 
 Let `GCI` be the set of monic degree-`c` split core locators `L` for which
@@ -12666,6 +12747,9 @@ unless additional M1 structure reduces or removes the scalar branch.
 Corollary 40.79 gives one such reduction target: scalar rational-supercode
 strata inject into ordinary lists for the multiplied opposite endpoint in the
 dimension-`d` RS supercode, up to the zero-slope exception in the `Qf` case.
+Corollary 40.80 sharpens this target to a one-generator extension of the
+multiplier code `Q RS[F,D,k]`, equivalently a one-dimensional residue line
+modulo `Q`.
 Corollary 41 packages the common-image branch into endpoint-type ledgers; it
 does not prove the endpoint rank hypotheses needed for the displayed
 `(q+2)binom(n,b)` bound. Corollary 42 packages the globally full core ledger

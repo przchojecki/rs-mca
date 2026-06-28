@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 scalar list image is a multiplier-code extension
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_boundary_off_external_anchor_normal_form.md`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / PROOF-PROGRAM.
+- **What is being added:** The scalar list injection lands not in the full
+  `RS[F,D,d]` list but in `List_d(Qf,a) cap (QF[X]_<k+F P_g)` or
+  `List_d(Qg,a) cap (QF[X]_<k+F P_f)`, a one-generator extension of the
+  multiplier code.
+- **How it is useful:** This sharpens the scalar cutoff target from generic
+  supercode list decoding to a constrained subcode-list problem with a
+  one-dimensional residue line modulo `Q`.
+- **What to do next:** Try to prove list bounds for these multiplier-code
+  extension lists, or show that a large such list forces quotient-periodic or
+  paired endpoint structure.
+
 ### 2026-06-28 - M1 scalar rational-supercode list injection
 
 - **Agent/model:** AllenGrahamHart / Codex audit.

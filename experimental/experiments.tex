@@ -2480,6 +2480,20 @@ into \(\operatorname{List}_d(Qg,a)\) by
 with only the zero slope left as a possible extra element.  Thus scalar
 cutoff-kernel failures can be attacked by ordinary RS list bounds for the
 multiplied opposite endpoint in the dimension-\(d\) supercode.
+The reduction is more constrained than a full supercode list.  In the
+\(Qg\)-stratum the injected polynomials all lie in
+\[
+  V_g(Q)=QF[X]_{<k}+F P_g,
+\]
+and in the \(Qf\)-stratum the nonzero injected polynomials lie in
+\[
+  V_f(Q)=QF[X]_{<k}+F P_f.
+\]
+These are one-generator extensions of the multiplier code \(Q\RS[F,D,k]\),
+of dimension at most \(k+1\).  Equivalently, the injected list polynomials
+have residues modulo \(Q\) lying on the line spanned by \(P_g\bmod Q\) or
+\(P_f\bmod Q\).  The scalar branch is therefore a constrained subcode-list
+problem, not an arbitrary dimension-\(d\) RS list problem.
 The common-core and two-denominator formulas persist verbatim after this
 root-free replacement.  With \(C=\gcd(D:D\in M_{\min})\), \(\gamma=\deg C\),
 and \(E_D=D/C\),
