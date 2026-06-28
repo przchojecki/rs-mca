@@ -6575,6 +6575,56 @@ degree-`<h-gamma` polynomials.  That ambient projective space has
 this bound into Corollary 40.36 gives (CommonCoreMixedLedger).  The case
 `gamma>=h` is the first sentence.
 
+## Corollary 40.40: Minimum Quotient Degree Gives A Proper-Tail Saving
+
+Keep the notation of Corollary 40.38, and suppose `M_min` is nonempty.  Put
+
+```text
+s=|M_min|,        e_min = min_{D in M_min} deg E_D.
+```
+
+Then
+
+```text
+ArrBudget_hw <= s Phi(h-gamma-e_min),              (MinQuotientTail)
+```
+
+again with the convention that `Phi(m)=0` for `m<=0` in this displayed formula.
+Consequently the direct raw-tail mixed-ladder ledger is at most
+
+```text
+s Phi(h-gamma-e_min) + 2h.                         (MinQuotientMixedLedger)
+```
+
+In particular, if `gamma+e_min>=h`, the half-window tail contributes no raw
+denominator classes.  If `s>=2`, then `e_min>=1`; hence every genuinely
+multi-family denominator antichain gains at least one quotient degree beyond
+the common-core bound of Corollary 40.39:
+
+```text
+ArrBudget_hw <= s Phi(h-gamma-1).
+```
+
+### Proof
+
+By Corollary 40.38, after factoring the common core `C`, the raw tail
+arrangement is the union over `D in M_min` of quotient divisor subspaces
+
+```text
+P({Q: deg Q<h-gamma and E_D|Q}).
+```
+
+The `D`-summand has projective size at most `Phi(h-gamma-deg E_D)`, hence at
+most `Phi(h-gamma-e_min)`.  Summing over the `s` summands gives
+(MinQuotientTail), and substituting in Corollary 40.36 gives
+(MinQuotientMixedLedger).
+
+If `gamma+e_min>=h`, the displayed bound is zero.  Finally, if `s>=2` and
+`e_min=0`, then some quotient denominator is `E_D=1`, so `D=C` divides every
+active denominator.  All other active denominators would then be dominated by
+`D`, contradicting the definition of the distinct divisibility-minimal
+antichain `M_min`.  Therefore `e_min>=1` when `s>=2`.
+
 ## Corollary 41: The Global Common-Image Ledger Is Endpoint-Only
 
 Let `GCI` be the set of monic degree-`c` split core locators `L` for which
@@ -9311,6 +9361,9 @@ denominators are pairwise coprime in the M1 instances.
 Corollary 40.39 turns the common-core degree into a one-parameter raw-tail
 bound; it does not prove the common-core degree reaches the displayed
 thresholds.
+Corollary 40.40 gives a minimum-quotient-degree saving after the common core
+is factored; it does not prove that quotient degree is large enough in the M1
+instances.
 Corollary 41 packages the common-image branch into endpoint-type ledgers; it
 does not prove the endpoint rank hypotheses needed for the displayed
 `(q+2)binom(n,b)` bound. Corollary 42 packages the globally full core ledger

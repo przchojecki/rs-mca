@@ -358,7 +358,9 @@ Keep entries concise and link to the relevant files.
   `Phi(h-gamma)+2h`; in particular the half-window tail vanishes when
   `gamma>=h`.  When those quotient denominators are pairwise coprime,
   `ArrBudget_hw` is the alternating degree-only sum over
-  `h-gamma-sum deg(D/C)`.  Since
+  `h-gamma-sum deg(D/C)`.  Without coprimality, the minimum quotient degree
+  still gives `ArrBudget_hw <= |M_min| Phi(h-gamma-e_min)`, and `e_min>=1`
+  whenever at least two minimal denominators survive.  Since
   the named overlap systems are subsets of the same `TailUnion_hw`, the
   separation charge `OverlapSep_hw`, defined as the minimum of
   `SideHybridOverlap_hw` and `UnionRankOverlap_hw`, is now a structural
