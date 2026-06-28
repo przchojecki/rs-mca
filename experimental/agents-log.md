@@ -373,7 +373,11 @@ Keep entries concise and link to the relevant files.
   is now packaged as the two-route ledger
   `min(Charge(B_0), Charge(P_pre)+ArrBudget_hw)+2h`: either prove the bottom
   longer-Pade family is small enough, or leave the pre-half family as the named
-  obstruction and prove the half-window arrangement term is small.  Since
+  obstruction and prove the half-window arrangement term is small.  In the
+  multiplicative-domain case, the raw arrangement now has a root-free
+  multiplier sharpening: each projective multiplier count `Phi(m)` can be
+  replaced by the exact full-support MDS count `RFPhi_D(m)`, giving
+  `RFArrBudget_hw<=ArrBudget_hw` and direct ledger `RFArrBudget_hw+2h`.  Since
   the named overlap systems are subsets of the same `TailUnion_hw`, the
   separation charge `OverlapSep_hw`, defined as the minimum of
   `SideHybridOverlap_hw` and `UnionRankOverlap_hw`, is now a structural

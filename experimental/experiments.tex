@@ -2266,6 +2266,23 @@ This does not bound \(B_0\) or \(P_{\mathrm{pre}}\) by itself; it makes the
 current M1 bottleneck explicit: either prove the bottom longer-Pade family is
 small enough, or leave the pre-half family as the named obstruction and prove
 the half-window arrangement term is small.
+In the multiplicative-domain case \(0\notin D\), the raw arrangement can also
+use the exact root-free multiplier count.  If \(n=|D|\), define
+\[
+  \mathrm{RFPhi}_D(m)
+  ={1\over q-1}\sum_{j=0}^{\min(n,m-1)}
+      (-1)^j\binom{n}{j}(q^{m-j}-1)
+\]
+for \(m\ge1\), and set it to zero for \(m\le0\).  Replacing each
+\(\Phi_+(h-\ell_I)\) in \(\mathrm{ArrBudget}_{hw}\) by
+\(\mathrm{RFPhi}_D(h-\ell_I)\) gives a sharper arrangement
+\(\mathrm{RFArrBudget}_{hw}\le \mathrm{ArrBudget}_{hw}\), because any allowed
+multiplier must avoid the reciprocal evaluation domain.  Thus the direct
+raw-tail ledger may be sharpened to
+\[
+  \mathrm{RFArrBudget}_{hw}+2h
+\]
+whenever this root-free multiplier count is being used.
 In the common two-denominator case \(M_{\min}=\{D_1,D_2\}\), writing
 \(C=\gcd(D_1,D_2)\), \(D_i=C E_i\), and \(e_i=\deg E_i\), the quotient
 denominators \(E_1,E_2\) are automatically coprime and

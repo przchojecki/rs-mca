@@ -6869,6 +6869,90 @@ remaining finite fixed-kernel and consecutive common-image frontier ledgers
 from `E_{r_0,>b} union Theta_{r_0,>b}`, of total size at most `2h`.  Taking the
 better of the two residual routes gives (ResidualRouteMin).
 
+## Corollary 40.45: Root-Free Multipliers Sharpen The Raw Tail Arrangement
+
+Keep the notation of Corollary 40.34 and work over `F_q`.  Assume `0 notin D`,
+as in the multiplicative-domain M1 setting, and put `n=|D|`.  For `m>=1`,
+let `RFPhi_D(m)` be the number of projective nonzero polynomials
+`M(T)` of degree `<m` with no zero on the reciprocal domain
+
+```text
+D^vee={ alpha^{-1} : alpha in D }.
+```
+
+Set `RFPhi_D(m)=0` for `m<=0`.  Then
+
+```text
+RFPhi_D(m)
+ = (1/(q-1)) sum_{j=0}^{min(n,m-1)}
+      (-1)^j binom(n,j) (q^{m-j}-1).              (RootFreePhi)
+```
+
+For every nonempty `I subset A`, keep
+
+```text
+D_I=lcm(D_F:F in I),        ell_I=deg D_I.
+```
+
+Define the root-free divisor-arrangement budget
+
+```text
+RFArrBudget_hw =
+  sum_{nonempty I subset A} (-1)^{|I|+1} RFPhi_D(h-ell_I),
+```
+
+with `RFArrBudget_hw=0` if `R_hw` is empty.  Then the unlabelled half-window
+tail certificate-denominator classes satisfy
+
+```text
+|TailUnion_hw| <= RFArrBudget_hw <= ArrBudget_hw.  (RootFreeArrangementTail)
+```
+
+Consequently the direct raw-tail mixed-ladder ledger of Corollary 40.36 may be
+sharpened, in the multiplicative-domain case, to
+
+```text
+RFArrBudget_hw + 2h,                               (RootFreeRawMixedLedger)
+```
+
+apart from whichever pre-half residual route is being used.
+
+This refinement uses only the already-required root-free condition; it is not a
+new structural estimate on which primitive denominators occur.  Its value is
+that the ambient multiplier spaces in `ArrBudget_hw` can be replaced by the
+exact MDS full-support counts on the reciprocal evaluation set.
+
+### Proof
+
+First count root-free multipliers.  For a fixed subset `J subset D^vee` of
+size `j<m`, the space of degree-`<m` polynomials vanishing on every point of
+`J` has dimension `m-j` by the Vandermonde independence of evaluations at
+distinct points.  Hence it contains `q^{m-j}-1` nonzero polynomials.  If
+`j>=m`, no nonzero degree-`<m` polynomial can vanish on all of `J`.  Inclusion-
+exclusion over the zero events at the `n` reciprocal-domain points gives the
+number of nonzero degree-`<m` polynomials with no such zero.  Dividing by
+`q-1` gives (RootFreePhi), since scalar multiples have the same zero set.
+
+For the arrangement, every active cutoff primitive denominator `D_F` is
+reciprocal-domain-pole-free, so every lcm `D_I` is also
+reciprocal-domain-pole-free.  A projective denominator class lies in the
+intersection of the divisor ledgers indexed by `I` precisely when it has a
+representative
+
+```text
+P(T)=D_I(T)M(T),        deg M<h-ell_I.
+```
+
+Because `D_I` has no zero on `D^vee`, the denominator `P` is root-free on
+`D^vee` if and only if `M` is.  Thus that intersection has projective size
+`RFPhi_D(h-ell_I)`.  Inclusion-exclusion over the active family divisor
+ledgers gives the displayed `RFArrBudget_hw` for the ambient root-free union.
+The actual half-window tail is a subset of this ambient union, proving the
+first inequality.  The root-free ambient union is a subset of the full divisor
+ambient union counted in Corollary 40.34, so its size is at most
+`ArrBudget_hw`; this gives the second inequality.  Substituting this sharper
+tail charge into Corollary 40.36 gives (RootFreeRawMixedLedger).
+
 ## Corollary 41: The Global Common-Image Ledger Is Endpoint-Only
 
 Let `GCI` be the set of monic degree-`c` split core locators `L` for which
