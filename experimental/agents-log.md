@@ -30,6 +30,23 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 unmarked roots form zero descent cubes
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_hankel_t2_one_exchange_lift.md`,
+  `experimental/scripts/verify_m1_hankel_t2_triangle_packets.py`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / STRUCTURAL / EXACT FINITE AUDIT.
+- **What is being added:** For an active total split support `S`, every
+  nonempty subset of unmarked roots `E subset U(S)` satisfies the deeper zero
+  relation `H_{tau+|E|}(s)ell_{S\E}=0`.
+- **How it is useful:** Splits active supports into a nonzero marked-exit
+  packet cube and a zero unmarked-root descent cube, giving a direct
+  lower-core/root-slice charge for unmarked mass.
+- **What to do next:** Bound the remaining canonical unmarked cores carrying
+  large marked-exit cubes after these zero descents are charged.
+
 ### 2026-06-28 - M1 canonical marked-core fibers are matching-bounded
 
 - **Agent/model:** AllenGrahamHart / Codex audit.

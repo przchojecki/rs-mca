@@ -1871,6 +1871,54 @@ supports.  In the largest `F_7^*` audit, `21540` marked-core fibers carry
 subaudit has `19380` fibers carrying `19440` full marked supports, again with
 maximum fiber size `2`.
 
+## Unmarked Roots Descend as a Zero Cube
+
+The complement of the marked exits is not inert; it is exactly a zero-boundary
+descent object.  Let `S` be active and let
+
+```text
+U=U(S)=S\M(S).
+```
+
+For every `u in U`, the definition of unmarked says
+
+```text
+H_{tau+1,|S|-1}(s)ell_{S\{u}}=0.
+```
+
+Now fix a nonempty subset `E subset U` and write `P=ell_{S\E}`.  For each
+`u in E`,
+
+```text
+ell_{S\{u}} = P ell_{E\{u}}.
+```
+
+The polynomials `ell_{E\{u}}`, for `u in E`, form a basis of all polynomials
+of degree `<|E|`.  Hence the displayed one-deletion zero identities imply
+
+```text
+H_{tau+1,|S|-|E|}(s) P Q = 0
+        for every Q with deg Q < |E|.
+```
+
+Taking `Q=1,X,...,X^{|E|-1}` gives consecutive zero rows, and therefore
+
+```text
+H_{tau+|E|,|S|-|E|}(s)ell_{S\E}=0.             (UZ)
+```
+
+Thus every active total support splits into two canonical cubes: the marked
+exits give nonzero sparse packet faces, while the unmarked roots give zero
+descent faces into deeper Hankel ledgers.  This is the structural reason that
+unmarked mass should be charged to lower-core/root-slice ledgers rather than
+counted as a new packet-producing source.
+
+The verifier audits (UZ) for every nonempty subset of unmarked roots in every
+produced total support.  In the largest `F_7^*` audit, it checks `21600`
+produced total supports and `4320` unmarked zero faces, with maximum unmarked
+count `1`.  The productive subaudit checks `19440` supports and `2160`
+unmarked zero faces, again with maximum unmarked count `1`.
+
 ## Fixed Anchors Have Matching-Bounded Fibers
 
 Fix the collapsed anchor base `A` and the mode size `m`.  Then

@@ -124,6 +124,8 @@ the complementary anchor.
 For the canonical unmarked core S\\M(S), it audits the resulting full-marked
 support fibers: below the boundary they are unique, while boundary fibers are
 matching-bounded.
+It also audits the dual zero cube: every nonempty subset of unmarked roots
+descends to a deeper zero Hankel kernel.
 For each fixed collapsed anchor base, it audits the sparse-representation
 fiber: below the boundary the mode support is unique, while at the boundary
 distinct supports are disjoint and obey the matching bound.
@@ -531,6 +533,12 @@ def analyze_case(
     terminal_tree_productive_marked_core_fiber_labels = 0
     terminal_tree_marked_core_fiber_max_size = 0
     terminal_tree_productive_marked_core_fiber_max_size = 0
+    terminal_tree_unmarked_zero_cube_support_checks = 0
+    terminal_tree_productive_unmarked_zero_cube_support_checks = 0
+    terminal_tree_unmarked_zero_cube_face_checks = 0
+    terminal_tree_productive_unmarked_zero_cube_face_checks = 0
+    terminal_tree_unmarked_zero_cube_max_unmarked_roots = 0
+    terminal_tree_productive_unmarked_zero_cube_max_unmarked_roots = 0
     terminal_tree_anchor_fiber_checks = 0
     terminal_tree_productive_anchor_fiber_checks = 0
     terminal_tree_anchor_fiber_labels = 0
@@ -748,6 +756,12 @@ def analyze_case(
             nonlocal terminal_tree_productive_marked_core_fiber_labels
             nonlocal terminal_tree_marked_core_fiber_max_size
             nonlocal terminal_tree_productive_marked_core_fiber_max_size
+            nonlocal terminal_tree_unmarked_zero_cube_support_checks
+            nonlocal terminal_tree_productive_unmarked_zero_cube_support_checks
+            nonlocal terminal_tree_unmarked_zero_cube_face_checks
+            nonlocal terminal_tree_productive_unmarked_zero_cube_face_checks
+            nonlocal terminal_tree_unmarked_zero_cube_max_unmarked_roots
+            nonlocal terminal_tree_productive_unmarked_zero_cube_max_unmarked_roots
             nonlocal terminal_tree_anchor_fiber_checks
             nonlocal terminal_tree_productive_anchor_fiber_checks
             nonlocal terminal_tree_anchor_fiber_labels
@@ -3187,6 +3201,111 @@ def analyze_case(
                 productive_marked_core_fiber_max_size,
             )
 
+            def audit_unmarked_zero_cubes(
+                supports: set[tuple[int, ...]],
+                productive: bool,
+            ) -> tuple[int, int, int]:
+                support_checks = 0
+                face_checks = 0
+                max_unmarked_roots = 0
+                for total_support in sorted(supports):
+                    marked_roots = marked_roots_for_split_support(
+                        total_support
+                    )
+                    marked_set = set(marked_roots)
+                    unmarked_roots = tuple(
+                        index
+                        for index in total_support
+                        if index not in marked_set
+                    )
+                    support_checks += 1
+                    max_unmarked_roots = max(
+                        max_unmarked_roots,
+                        len(unmarked_roots),
+                    )
+                    for deleted_count in range(1, len(unmarked_roots) + 1):
+                        for deleted_roots in itertools.combinations(
+                            unmarked_roots,
+                            deleted_count,
+                        ):
+                            deleted_set = set(deleted_roots)
+                            residual_support = tuple(
+                                index
+                                for index in total_support
+                                if index not in deleted_set
+                            )
+                            residual_vector = hankel_apply(
+                                syn,
+                                cached_locator(residual_support),
+                                t + deleted_count,
+                                p,
+                            )
+                            if any(residual_vector):
+                                raise AssertionError(
+                                    {
+                                        "kind": (
+                                            "productive-"
+                                            if productive
+                                            else ""
+                                        )
+                                        + "unmarked-zero-cube-face-"
+                                        "failed",
+                                        "p": p,
+                                        "k": k,
+                                        "syndrome": list(syn),
+                                        "fixed_roots": list(fixed_roots),
+                                        "total_split_support": list(
+                                            total_support
+                                        ),
+                                        "deleted_roots": list(deleted_roots),
+                                        "residual_support": list(
+                                            residual_support
+                                        ),
+                                        "residual_vector": list(
+                                            residual_vector
+                                        ),
+                                    }
+                                )
+                            face_checks += 1
+                return support_checks, face_checks, max_unmarked_roots
+
+            (
+                unmarked_zero_cube_support_checks,
+                unmarked_zero_cube_face_checks,
+                unmarked_zero_cube_max_unmarked_roots,
+            ) = audit_unmarked_zero_cubes(
+                total_split_supports,
+                productive=False,
+            )
+            (
+                productive_unmarked_zero_cube_support_checks,
+                productive_unmarked_zero_cube_face_checks,
+                productive_unmarked_zero_cube_max_unmarked_roots,
+            ) = audit_unmarked_zero_cubes(
+                productive_total_split_supports,
+                productive=True,
+            )
+            terminal_tree_unmarked_zero_cube_support_checks += (
+                unmarked_zero_cube_support_checks
+            )
+            terminal_tree_productive_unmarked_zero_cube_support_checks += (
+                productive_unmarked_zero_cube_support_checks
+            )
+            terminal_tree_unmarked_zero_cube_face_checks += (
+                unmarked_zero_cube_face_checks
+            )
+            terminal_tree_productive_unmarked_zero_cube_face_checks += (
+                productive_unmarked_zero_cube_face_checks
+            )
+            terminal_tree_unmarked_zero_cube_max_unmarked_roots = max(
+                terminal_tree_unmarked_zero_cube_max_unmarked_roots,
+                unmarked_zero_cube_max_unmarked_roots,
+            )
+            terminal_tree_productive_unmarked_zero_cube_max_unmarked_roots = max(
+                terminal_tree_productive_unmarked_zero_cube_max_unmarked_roots,
+                productive_unmarked_zero_cube_max_unmarked_roots,
+            )
+
             def audit_anchor_split_fibers(
                 fibers: dict[
                     tuple[int, tuple[int, ...]],
@@ -5143,6 +5262,24 @@ def analyze_case(
         "terminal_tree_productive_marked_core_fiber_max_size": (
             terminal_tree_productive_marked_core_fiber_max_size
         ),
+        "terminal_tree_unmarked_zero_cube_support_checks": (
+            terminal_tree_unmarked_zero_cube_support_checks
+        ),
+        "terminal_tree_productive_unmarked_zero_cube_support_checks": (
+            terminal_tree_productive_unmarked_zero_cube_support_checks
+        ),
+        "terminal_tree_unmarked_zero_cube_face_checks": (
+            terminal_tree_unmarked_zero_cube_face_checks
+        ),
+        "terminal_tree_productive_unmarked_zero_cube_face_checks": (
+            terminal_tree_productive_unmarked_zero_cube_face_checks
+        ),
+        "terminal_tree_unmarked_zero_cube_max_unmarked_roots": (
+            terminal_tree_unmarked_zero_cube_max_unmarked_roots
+        ),
+        "terminal_tree_productive_unmarked_zero_cube_max_unmarked_roots": (
+            terminal_tree_productive_unmarked_zero_cube_max_unmarked_roots
+        ),
         "terminal_tree_anchor_fiber_checks": (
             terminal_tree_anchor_fiber_checks
         ),
@@ -5601,6 +5738,8 @@ def print_summary(results: Sequence[dict[str, object]]) -> None:
             f"{result['terminal_tree_marked_core_fiber_checks']} "
             f"marked_core_fiber_max="
             f"{result['terminal_tree_marked_core_fiber_max_size']} "
+            f"unmarked_zero_cube_faces="
+            f"{result['terminal_tree_unmarked_zero_cube_face_checks']} "
             f"anchor_fiber_checks="
             f"{result['terminal_tree_anchor_fiber_checks']} "
             f"anchor_fiber_max="
