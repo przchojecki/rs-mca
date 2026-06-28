@@ -36,6 +36,7 @@ covered by lower-core witnesses.
 Finally it checks the isolated-vertex criterion: an active complement is
 isolated in the one-exchange graph exactly when every one-root deletion has a
 nonzero H_{3,j-1} boundary vector.
+It also records the resulting marked-boundary ledger j*|Iso| <= |B_rm|.
 
 It also checks the full-top zero-syndrome lemma: if all j+1 complements
 U\\{x} inside one (j+1)-top set U are active, then the combined syndrome is
@@ -239,6 +240,7 @@ def analyze_case(
     nonstar_component_ledger_slack_histogram: Counter[int] = Counter()
     isolated_vertex_histogram: Counter[int] = Counter()
     isolated_boundary_zero_histogram: Counter[int] = Counter()
+    isolated_marked_boundary_slack_histogram: Counter[int] = Counter()
     max_active = 0
     max_edges = 0
     max_triangles = 0
@@ -252,6 +254,8 @@ def analyze_case(
     max_nonzero_nonisolated_ledger_slack = 0
     max_nonzero_nonstar_component_ledger_slack = 0
     max_nonzero_isolated_vertices = 0
+    max_nonzero_root_marked_boundary_count = 0
+    max_nonzero_isolated_marked_boundary_slack = 0
     one_exchange_edges = 0
     star_triangles = 0
     top_triangles = 0
@@ -361,6 +365,7 @@ def analyze_case(
 
         active_set = set(active)
         case_isolated_vertices = 0
+        case_root_marked_boundaries: set[tuple[tuple[int, ...], int]] = set()
         for index in active:
             complement = complements[index]
             has_active_neighbor = any(
@@ -400,6 +405,8 @@ def analyze_case(
                     )
                 if boundary_is_zero:
                     zero_boundary_count += 1
+                else:
+                    case_root_marked_boundaries.add((core, root_index))
 
             is_isolated = not has_active_neighbor
             if is_isolated != (zero_boundary_count == 0):
@@ -418,11 +425,35 @@ def analyze_case(
                 case_isolated_vertices += 1
             isolated_boundary_zero_histogram[zero_boundary_count] += 1
 
+        isolated_marked_boundary_slack = (
+            len(case_root_marked_boundaries) - j * case_isolated_vertices
+        )
+        if isolated_marked_boundary_slack < 0:
+            raise AssertionError(
+                {
+                    "kind": "isolated-marked-boundary-ledger-failed",
+                    "p": p,
+                    "k": k,
+                    "syndrome": list(syn),
+                    "isolated_vertices": case_isolated_vertices,
+                    "root_marked_boundaries": len(case_root_marked_boundaries),
+                    "j": j,
+                }
+            )
+        isolated_marked_boundary_slack_histogram[isolated_marked_boundary_slack] += 1
         isolated_vertex_histogram[case_isolated_vertices] += 1
         if any(syn):
             max_nonzero_isolated_vertices = max(
                 max_nonzero_isolated_vertices,
                 case_isolated_vertices,
+            )
+            max_nonzero_root_marked_boundary_count = max(
+                max_nonzero_root_marked_boundary_count,
+                len(case_root_marked_boundaries),
+            )
+            max_nonzero_isolated_marked_boundary_slack = max(
+                max_nonzero_isolated_marked_boundary_slack,
+                isolated_marked_boundary_slack,
             )
 
         case_corner_histogram: Counter[str] = Counter()
@@ -868,6 +899,12 @@ def analyze_case(
             max_nonzero_nonstar_component_ledger_slack
         ),
         "max_nonzero_isolated_vertices": max_nonzero_isolated_vertices,
+        "max_nonzero_root_marked_boundary_count": (
+            max_nonzero_root_marked_boundary_count
+        ),
+        "max_nonzero_isolated_marked_boundary_slack": (
+            max_nonzero_isolated_marked_boundary_slack
+        ),
         "one_exchange_edges": one_exchange_edges,
         "star_triangles": star_triangles,
         "top_triangles": top_triangles,
@@ -904,6 +941,9 @@ def analyze_case(
         "isolated_vertex_histogram": dict(sorted(isolated_vertex_histogram.items())),
         "isolated_boundary_zero_histogram": dict(
             sorted(isolated_boundary_zero_histogram.items())
+        ),
+        "isolated_marked_boundary_slack_histogram": dict(
+            sorted(isolated_marked_boundary_slack_histogram.items())
         ),
         "nonzero_top_active_size_histogram": dict(
             sorted(nonzero_top_active_size_histogram.items())
@@ -945,6 +985,8 @@ def print_summary(results: Sequence[dict[str, object]]) -> None:
             f"{result['max_nonzero_lower_core_component_size']} "
             f"max_nonzero_edge_cores={result['max_nonzero_edge_core_count']} "
             f"max_nonzero_isolated={result['max_nonzero_isolated_vertices']} "
+            f"max_nonzero_marked_boundary="
+            f"{result['max_nonzero_root_marked_boundary_count']} "
             f"max_nonzero_top_active={result['max_nonzero_top_active_members']}"
         )
     print("PASS")

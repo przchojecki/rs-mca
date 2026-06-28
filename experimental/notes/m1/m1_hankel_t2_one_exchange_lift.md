@@ -441,6 +441,25 @@ Equivalently, each deletion core carries a nonzero scalar on the Veronese
 vector `(1,x,...,x^tau)`.  This turns isolated same-slope support mass into a
 root-marked first-boundary residual rather than an unexplained packet.
 
+Let `Iso_{tau,j}(s)` be the isolated active locators and define the
+root-marked boundary ledger
+
+```text
+B^rm_{tau+1,j-1}(s)
+ = { (C,x) : |C|=j-1, x notin C,
+             H_{tau+1,j-1}(s)ell_C = c(1,x,...,x^tau), c != 0 }.
+```
+
+Then
+
+```text
+j |Iso_{tau,j}(s)| <= |B^rm_{tau+1,j-1}(s)|.       (IL)
+```
+
+Indeed, every isolated `T` contributes all `j` marked pairs `(T\{x},x)`, and
+the map `(T,x) -> (T\{x},x)` is injective.  Thus isolated support mass is
+summable once the root-marked first-boundary ledger is controlled.
+
 ## Same-Slope Component Dichotomy
 
 Let `G_s` be the graph on active `j`-complements for a fixed combined syndrome
@@ -628,6 +647,15 @@ It also checks the isolated active locator criterion:
 | `F_7`, `H=F_7^*`, `n=6,k=1,a=3,j=3` | 2 | `0,1,2,3` |
 | `F_7`, `H=F_7^*`, `n=6,k=2,a=4,j=2` | 1 | `0,1,2` |
 | `F_7`, `H=F_7^*`, `n=6,k=3,a=5,j=1` | 1 | `0,1` |
+
+The marked-boundary ledger is also checked:
+
+| field/domain | max nonzero marked boundaries | max marked-boundary slack |
+| --- | ---: | ---: |
+| `F_5`, `H=F_5^*`, `n=4,k=1,a=3,j=1` | 1 | 0 |
+| `F_7`, `H=F_7^*`, `n=6,k=1,a=3,j=3` | 10 | 10 |
+| `F_7`, `H=F_7^*`, `n=6,k=2,a=4,j=2` | 5 | 5 |
+| `F_7`, `H=F_7^*`, `n=6,k=3,a=5,j=1` | 1 | 0 |
 
 The `F_7,k=2,j=2` scan is the first exact top-packet check in this file.  It
 finds twenty top triangles, all on the zero combined syndrome.  This is not an

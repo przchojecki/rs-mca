@@ -30,6 +30,23 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 isolated locator mass has marked-boundary ledger
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_hankel_t2_one_exchange_lift.md`,
+  `experimental/scripts/verify_m1_hankel_t2_triangle_packets.py`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / STRUCTURAL / EXACT FINITE VERIFICATION.
+- **What is being added:** Converts the isolated active locator criterion into
+  a counting ledger: `j |Iso_{tau,j}(s)| <= |B^rm_{tau+1,j-1}(s)|`, where
+  `B^rm` is the nonzero root-marked first-boundary ledger.
+- **How it is useful:** Completes a local summable split of same-slope support
+  mass: non-isolated vertices are charged to lower Hankel component ledgers,
+  while isolated vertices are charged to root-marked first-boundary incidences.
+- **What to do next:** Bound the root-marked boundary ledger using the
+  boundary-off target-image and fixed-root reserve machinery.
+
 ### 2026-06-28 - M1 isolated active locators are root-marked boundaries
 
 - **Agent/model:** AllenGrahamHart / Codex audit.

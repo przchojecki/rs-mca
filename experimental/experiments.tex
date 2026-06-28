@@ -3761,6 +3761,13 @@ The extension \(C\cup\{y\}\) is active only when either this vector is zero or
 \(y=x\).  Hence, for \(j<n\), \(T\) is isolated exactly when all deletion
 cores have nonzero root-marked boundary vectors.  Isolated mass is therefore a
 root-marked first-boundary residual, not a hidden same-slope packet.
+Writing \(B^{\rm rm}_{\tau+1,j-1}(s)\) for the root-marked boundary pairs
+\((C,x)\) with nonzero scalar \(c_0\), every isolated \(T\) contributes its
+\(j\) marked deletions injectively, so
+\[
+  j\,|\mathrm{Iso}_{\tau,j}(s)|
+  \le |B^{\rm rm}_{\tau+1,j-1}(s)|.
+\]
 This local statement globalizes across connected components.  In the active
 one-exchange graph for fixed \(w_\lambda\), if a nontrivial component has no
 lower-core corner, then every two-edge corner is a star corner.  Choosing one
@@ -3807,7 +3814,8 @@ the \(F_7^*,j=2\) nonzero audit, while the \(F_7^*,j=3\) nonzero audit uses at
 most \(5\) edge cores and \(1\) lower-core witness per syndrome.  The same
 scan checks the isolated criterion, with at most \(2\) nonzero isolated active
 locators in the \(F_7^*,j=3\) case and at most \(1\) in the other listed
-cases.
+cases; the marked-boundary ledger has maximum nonzero marked-boundary count
+\(10\) in the \(F_7^*,j=3\) audit and \(5\) in the \(F_7^*,j=2\) audit.
 The common-core and two-denominator formulas persist verbatim after this
 root-free replacement.  With \(C=\gcd(D:D\in M_{\min})\), \(\gamma=\deg C\),
 and \(E_D=D/C\),
