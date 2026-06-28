@@ -30,6 +30,23 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 first-unpacked one-exchange collisions are anchor landings
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_boundary_off_external_anchor_normal_form.md`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / PROOF-PROGRAM.
+- **What is being added:** In the first unpacked layer `deg(Q_prim)=t`, a
+  one-exchange coefficient collision has multiplier degree `<2`, hence is
+  either a core landing `L_I` or a finite-anchor landing `L_I(X-beta)` modulo
+  the primitive denominator.
+- **How it is useful:** This connects the scalar one-row residual directly to
+  the boundary-off external-anchor normal form: external `beta` gives the
+  same boundary-anchor object, while `beta in D` is an all-domain exchange.
+- **What to do next:** Charge these first-unpacked anchor landings using the
+  existing core/external-anchor ledgers, then attack higher `e_prim-t`.
+
 ### 2026-06-28 - M1 one-row collisions give short residue certificates
 
 - **Agent/model:** AllenGrahamHart / Codex audit.

@@ -11184,6 +11184,67 @@ d_prim-m = k+e_prim+1-(k+t-u)=e_prim+1-t+u.
 
 The final one-exchange claim is the case `e_prim=t` and `u=1`.
 
+## Corollary 40.95: First-Unpacked One-Exchange Collisions Are Boundary-Anchor Landings
+
+Keep the notation of Corollary 40.94, and specialize to the first unpacked
+cutoff layer
+
+```text
+e_prim=t.
+```
+
+Suppose two threshold supports `S_1,S_2` satisfy
+
+```text
+|S_1|=|S_2|=a=k+t,        |S_1 cap S_2|=a-1.
+```
+
+Put `I=S_1 cap S_2`.  Then every coefficient collision between these supports
+produces one of the following residue-line landing certificates modulo
+`Q_prim`:
+
+1. a core landing
+
+   ```text
+   L_I in F B_prim        mod Q_prim;
+   ```
+
+2. or a finite anchor landing
+
+   ```text
+   L_I(X-beta) in F B_prim        mod Q_prim
+   ```
+
+   for a unique `beta in F`.
+
+If `beta in D\I`, the finite anchor landing is an all-domain one-exchange
+locator landing.  If `beta notin D`, it is an external-anchor boundary landing
+of the same type as the boundary-off normal form at the start of this note.
+Thus the first layer not closed by support packing has no new collision
+geometry at one-exchange scale: it is precisely a core or boundary-anchor
+residue landing for the primitive denominator.
+
+### Proof
+
+Here `m=|I|=a-1` and `e_prim=t`, so Corollary 40.94 gives a nonzero
+polynomial `M` with
+
+```text
+deg M < e_prim+1-t+1 = 2
+```
+
+and
+
+```text
+L_I M in F B_prim        mod Q_prim.
+```
+
+If `deg M=0`, scaling gives the core landing `L_I in F B_prim mod Q_prim`.
+If `deg M=1`, scaling gives `M=X-beta` for a unique `beta in F`, and hence
+the displayed finite anchor landing.  The cases `beta in D\I` and
+`beta notin D` are exactly the all-domain one-exchange and external-anchor
+boundary interpretations of the locator `L_I(X-beta)`.
+
 ## Corollary 41: The Global Common-Image Ledger Is Endpoint-Only
 
 Let `GCI` be the set of monic degree-`c` split core locators `L` for which
@@ -14088,6 +14149,9 @@ covered.
 Corollary 40.94 converts any remaining one-row coefficient collision into a
 short quotient-residue certificate `L_I M in F B_prim mod Q_prim`; at the
 first unpacked layer, one-exchange collisions are linear residue landings.
+Corollary 40.95 identifies those first-unpacked one-exchange landings as
+either core landings or finite-anchor locators `L_I(X-beta)`, with
+`beta notin D` giving exactly the external-anchor boundary type.
 Corollary 41 packages the common-image branch into endpoint-type ledgers; it
 does not prove the endpoint rank hypotheses needed for the displayed
 `(q+2)binom(n,b)` bound. Corollary 42 packages the globally full core ledger
