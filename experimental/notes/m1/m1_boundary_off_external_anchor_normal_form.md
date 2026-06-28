@@ -10312,6 +10312,72 @@ which is (EnlargedQf).  Reversing the construction, (EnlargedQf) and
 `C_z=zD_y` has degree `<k` and explains the original slope.  The case `z=0`
 has no reciprocal parameter, so it remains separate.
 
+## Corollary 40.84: The Non-Standard Return Slice Is A High-Tail Line
+
+Keep the notation of Corollary 40.83.  Let
+
+```text
+tau_K: F[X]_<K -> F^{K-k}
+```
+
+be the high-tail projection recording the coefficients of degrees
+`k,k+1,...,K-1`.  Thus
+
+```text
+P in F[X]_<k        iff        tau_K(P)=0.
+```
+
+In the `Qg` non-standard scalar branch, the return condition (ReturnQg) is
+equivalent to
+
+```text
+tau_K(C'_z) = - z tau_K(H_g).                       (TailQg)
+```
+
+Consequently every surviving enlarged residue-line witness has high tail in
+the projective line spanned by `tau_K(H_g)`.  If `tau_K(H_g)=0`, then
+(ReturnQg) is simply `C'_z in F[X]_<k`, and the `Qg` branch is already the
+ordinary degree-`e` residue-line datum over the original code dimension `k`.
+If `tau_K(H_g)!=0`, the slope `z` is determined by the high tail
+`tau_K(C'_z)`.
+
+In the `Qf` non-standard scalar branch, the reciprocal return condition
+(ReturnQf) is equivalent to
+
+```text
+tau_K(C'_y) = - y tau_K(H_f).                       (TailQf)
+```
+
+Thus every surviving nonzero original slope has reciprocal parameter `y=1/z`
+and an enlarged witness whose high tail lies on the line spanned by
+`tau_K(H_f)`.  If `tau_K(H_f)=0`, the nonzero `Qf` branch is the ordinary
+degree-`e` residue-line datum over the original code dimension `k`, with the
+original zero slope still separate.  If `tau_K(H_f)!=0`, the reciprocal
+parameter `y` is determined by the high tail `tau_K(C'_y)`.
+
+Thus the non-standard scalar obstruction is an enlarged residue-line problem
+with a one-dimensional high-tail incidence, not a full enlarged-code
+residue-line list.
+
+### Proof
+
+The condition `C'_z+zH_g in F[X]_<k` is equivalent to vanishing of its
+high-tail projection:
+
+```text
+0=tau_K(C'_z+zH_g)=tau_K(C'_z)+z tau_K(H_g),
+```
+
+which is (TailQg).  If `tau_K(H_g)=0`, this says `tau_K(C'_z)=0`, i.e.
+`C'_z in F[X]_<k`; substituting this into Corollary 40.83 gives the ordinary
+degree-`e` residue-line datum over the base code dimension.  If
+`tau_K(H_g)!=0`, then any solution has `tau_K(C'_z)` equal to a scalar
+multiple of `tau_K(H_g)`, and that scalar is `-z`, so it determines `z`.
+
+The `Qf` statement is identical after replacing `z,H_g,C'_z` by the
+reciprocal parameter `y`, `H_f`, and `C'_y`.  The original slope `z=0` has no
+reciprocal parameter and is therefore unchanged from Corollary 40.83.
+
 ## Corollary 41: The Global Common-Image Ledger Is Endpoint-Only
 
 Let `GCI` be the set of monic degree-`c` split core locators `L` for which
@@ -13179,6 +13245,9 @@ after subtracting a global quotient part of the scalar endpoint.
 Corollary 40.83 classifies the complementary range `n-s>k+deg Q` as the same
 residue-line datum over the enlarged dimension `K=n-s-deg Q`, cut by an
 explicit affine return-to-`RS[F,D,k]` slice.
+Corollary 40.84 identifies that return slice with a one-dimensional high-tail
+incidence; if the quotient high tail vanishes, the non-standard case collapses
+to the ordinary base-dimension residue-line datum.
 Corollary 41 packages the common-image branch into endpoint-type ledgers; it
 does not prove the endpoint rank hypotheses needed for the displayed
 `(q+2)binom(n,b)` bound. Corollary 42 packages the globally full core ledger
