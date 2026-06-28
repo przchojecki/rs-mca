@@ -6782,6 +6782,93 @@ Corollary 40.11 then gives closure from the bottom finite parameter set, with
 total size at most `2h`.  The comparison with the half-window route is exactly
 the split used in Corollaries 40.14--40.42.
 
+## Corollary 40.44: The Ladder Residual Bottleneck Is A Two-Route Minimum
+
+Keep the notation of Corollary 40.43, and set
+
+```text
+R_pre={ r in R : h>t+r },
+R_hw ={ r in R : h<=t+r }.
+```
+
+Write
+
+```text
+B_0 =
+ RF_{r_0}(u) union RF_{r_0}(v)
+ union RF_{r_0}(u,v) union RF_{r_0}(S u,S v)
+```
+
+for the four bottom root-free residual families, and write
+
+```text
+P_pre =
+ union_{r in R_pre}
+   ( RF_r(u) union RF_r(v) union RF_r(u,v) union RF_r(S u,S v) )
+```
+
+for the pre-half-window root-free residual families.  If `R_hw` is nonempty,
+let `TailUnion_hw` be the unlabelled half-window certificate-denominator union
+from Corollary 40.34; if `R_hw` is empty, set `TailUnion_hw=emptyset`.
+
+After fixed-root/root-slice short recurrence pieces have been charged, the
+root-free residual part of the ladder has two simultaneous descriptions:
+
+1. bottom description: every root-free residual at every depth in `R` lies in
+   the corresponding bottom family inside `B_0`;
+2. split description: every root-free residual is either a pre-half residual
+   in `P_pre`, or has a half-window certificate-denominator class in
+   `TailUnion_hw`.
+
+Consequently, if `Charge(B_0)` is any admissible charge for the four bottom
+families and `Charge(P_pre)` is any admissible charge for the pre-half
+families, then the root-free residual part may be closed using either ledger
+
+```text
+Charge(B_0)
+```
+
+or
+
+```text
+Charge(P_pre) + ArrBudget_hw.
+```
+
+After adding the bottom finite frontier charge, the consumable ladder ledger is
+
+```text
+min( Charge(B_0), Charge(P_pre) + ArrBudget_hw ) + 2h.        (ResidualRouteMin)
+```
+
+This is not a new estimate for `Charge(B_0)` or `Charge(P_pre)`.  It identifies
+the precise residual bottleneck: either prove that the bottom longer-Pade
+family `B_0` is small enough, or keep `P_pre` as the named obstruction and
+prove that the half-window arrangement term is small, for example via the
+criterion `gamma+e_min>=h-L` from Corollary 40.41.
+
+### Proof
+
+The bottom description is exactly Corollary 40.10 applied to the whole set
+`R`.  It gives, for each of the four residual types and every `r in R`,
+
+```text
+RF_r(*) subset RF_{r_0}(*).
+```
+
+Thus charging `B_0` charges every root-free residual in the ladder.
+
+For the split description, the depths in `R_pre` are charged by definition of
+`P_pre`.  At depths in `R_hw`, Corollary 40.14 moves every root-free witness to
+the first half-window depth `r_hw`, and Corollary 40.34 bounds the unlabelled
+certificate-denominator classes arising from those cutoff families by
+`ArrBudget_hw`.  Thus the half-window part is charged by the raw divisor
+arrangement ledger.
+
+Once either residual ledger has been charged, Corollary 40.11 closes the
+remaining finite fixed-kernel and consecutive common-image frontier ledgers
+from `E_{r_0,>b} union Theta_{r_0,>b}`, of total size at most `2h`.  Taking the
+better of the two residual routes gives (ResidualRouteMin).
+
 ## Corollary 41: The Global Common-Image Ledger Is Endpoint-Only
 
 Let `GCI` be the set of monic degree-`c` split core locators `L` for which

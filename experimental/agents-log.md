@@ -369,6 +369,11 @@ Keep entries concise and link to the relevant files.
   also has a bottom residual route: charging the four root-free residual
   families at `r_0` removes every residual at every depth, so there is no
   `|R_pre|` factor and no half-window denominator ledger on that route.  Since
+  the same ladder also has the half-window split route, the residual bottleneck
+  is now packaged as the two-route ledger
+  `min(Charge(B_0), Charge(P_pre)+ArrBudget_hw)+2h`: either prove the bottom
+  longer-Pade family is small enough, or leave the pre-half family as the named
+  obstruction and prove the half-window arrangement term is small.  Since
   the named overlap systems are subsets of the same `TailUnion_hw`, the
   separation charge `OverlapSep_hw`, defined as the minimum of
   `SideHybridOverlap_hw` and `UnionRankOverlap_hw`, is now a structural
