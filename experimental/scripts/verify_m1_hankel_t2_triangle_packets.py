@@ -61,9 +61,11 @@ One-exchange edges inside each root-marked slice are checked to descend to
 H_{tau+1,j-2}(Delta_x s) on their common lower core.
 The remaining isolated vertices in those slices are checked by the analogous
 nonzero lower-boundary criterion and ledger.
-Finally, it checks the iterated fixed-root identity: multiplying a locator by
-prod_i (X-x_i) is the same as applying the ordered root-difference operator
-Delta_{x_m}...Delta_{x_1} to the syndrome.
+Finally, it checks the iterated fixed-root identity and the induced recursive
+first-boundary ledger: multiplying a locator by prod_i (X-x_i) is the same as
+applying the ordered root-difference operator Delta_{x_m}...Delta_{x_1} to the
+syndrome, and the zero-boundary/root-marked incidence identity holds on each
+difference rung.
 
 It also checks the full-top zero-syndrome lemma: if all j+1 complements
 U\\{x} inside one (j+1)-top set U are active, then the combined syndrome is
@@ -305,6 +307,8 @@ def analyze_case(
     residual_boundary_slack_histogram: Counter[int] = Counter()
     iterated_difference_checks = 0
     iterated_difference_defect_histogram: Counter[int] = Counter()
+    iterated_boundary_identity_checks = 0
+    iterated_boundary_defect_histogram: Counter[int] = Counter()
     max_active = 0
     max_edges = 0
     max_triangles = 0
@@ -333,6 +337,10 @@ def analyze_case(
     max_nonzero_residual_boundary_count = 0
     max_nonzero_residual_boundary_slack = 0
     max_iterated_difference_chain_length = 0
+    max_iterated_boundary_chain_length = 0
+    max_nonzero_iterated_boundary_active_cores = 0
+    max_nonzero_iterated_boundary_zero_cores = 0
+    max_nonzero_iterated_boundary_marked = 0
     one_exchange_edges = 0
     star_triangles = 0
     top_triangles = 0
@@ -1036,6 +1044,151 @@ def analyze_case(
                             }
                         )
         iterated_difference_defect_histogram[case_iterated_difference_defect] += 1
+        case_iterated_boundary_defect = 0
+        case_max_iterated_boundary_active_cores = 0
+        case_max_iterated_boundary_zero_cores = 0
+        case_max_iterated_boundary_marked = 0
+        for chain_length in range(1, j):
+            quotient_degree = j - chain_length
+            max_iterated_boundary_chain_length = max(
+                max_iterated_boundary_chain_length,
+                chain_length,
+            )
+            for fixed_roots in itertools.combinations(range(n), chain_length):
+                fixed_values = [domain[index] for index in fixed_roots]
+                fixed_root_set = set(fixed_roots)
+                diff_syn = iterated_root_difference_syndrome(
+                    syn,
+                    fixed_values,
+                    p,
+                )
+                remaining_indices = [
+                    index for index in range(n) if index not in fixed_root_set
+                ]
+                active_cores = {
+                    core
+                    for core in itertools.combinations(
+                        remaining_indices,
+                        quotient_degree,
+                    )
+                    if hankel_annihilates(diff_syn, cached_locator(core), t, p)
+                }
+                zero_boundary_cores: set[tuple[int, ...]] = set()
+                root_marked_boundaries: set[tuple[tuple[int, ...], int]] = set()
+                for boundary_core in itertools.combinations(
+                    remaining_indices,
+                    quotient_degree - 1,
+                ):
+                    boundary_core_set = set(boundary_core)
+                    boundary_vector = hankel_apply(
+                        diff_syn,
+                        cached_locator(boundary_core),
+                        t + 1,
+                        p,
+                    )
+                    available_extensions = [
+                        index
+                        for index in remaining_indices
+                        if index not in boundary_core_set
+                    ]
+                    if not any(boundary_vector):
+                        zero_boundary_cores.add(boundary_core)
+                        for extension_root in available_extensions:
+                            extension = tuple(
+                                sorted((*boundary_core, extension_root))
+                            )
+                            if extension not in active_cores:
+                                raise AssertionError(
+                                    {
+                                        "kind": (
+                                            "iterated-zero-boundary-"
+                                            "extension-inactive"
+                                        ),
+                                        "p": p,
+                                        "k": k,
+                                        "syndrome": list(syn),
+                                        "fixed_roots": list(fixed_roots),
+                                        "fixed_values": fixed_values,
+                                        "boundary_core": list(boundary_core),
+                                        "extension": list(extension),
+                                    }
+                                )
+                        continue
+                    if boundary_vector[0] == 0:
+                        continue
+                    root_value = (
+                        boundary_vector[1] * pow(boundary_vector[0], -1, p)
+                    ) % p
+                    if any(
+                        boundary_vector[row + 1]
+                        != root_value * boundary_vector[row] % p
+                        for row in range(t)
+                    ):
+                        continue
+                    root_index = domain_index_by_value.get(root_value)
+                    if (
+                        root_index is None
+                        or root_index in fixed_root_set
+                        or root_index in boundary_core_set
+                    ):
+                        continue
+                    extension = tuple(sorted((*boundary_core, root_index)))
+                    if extension not in active_cores:
+                        raise AssertionError(
+                            {
+                                "kind": (
+                                    "iterated-root-marked-boundary-"
+                                    "extension-inactive"
+                                ),
+                                "p": p,
+                                "k": k,
+                                "syndrome": list(syn),
+                                "fixed_roots": list(fixed_roots),
+                                "fixed_values": fixed_values,
+                                "boundary_core": list(boundary_core),
+                                "root_index": root_index,
+                                "root_value": root_value,
+                                "boundary_vector": list(boundary_vector),
+                            }
+                        )
+                    root_marked_boundaries.add((boundary_core, root_index))
+                incidence_defect = quotient_degree * len(active_cores) - (
+                    (n - j + 1) * len(zero_boundary_cores)
+                    + len(root_marked_boundaries)
+                )
+                iterated_boundary_identity_checks += 1
+                if incidence_defect != 0:
+                    case_iterated_boundary_defect += abs(incidence_defect)
+                    raise AssertionError(
+                        {
+                            "kind": "iterated-boundary-identity-failed",
+                            "p": p,
+                            "k": k,
+                            "syndrome": list(syn),
+                            "fixed_roots": list(fixed_roots),
+                            "fixed_values": fixed_values,
+                            "quotient_degree": quotient_degree,
+                            "active_cores": len(active_cores),
+                            "zero_boundary_cores": len(zero_boundary_cores),
+                            "root_marked_boundaries": (
+                                len(root_marked_boundaries)
+                            ),
+                            "defect": incidence_defect,
+                        }
+                    )
+                case_max_iterated_boundary_active_cores = max(
+                    case_max_iterated_boundary_active_cores,
+                    len(active_cores),
+                )
+                case_max_iterated_boundary_zero_cores = max(
+                    case_max_iterated_boundary_zero_cores,
+                    len(zero_boundary_cores),
+                )
+                case_max_iterated_boundary_marked = max(
+                    case_max_iterated_boundary_marked,
+                    len(root_marked_boundaries),
+                )
+        iterated_boundary_defect_histogram[case_iterated_boundary_defect] += 1
         isolated_marked_boundary_slack = (
             len(case_root_marked_boundaries) - j * case_isolated_vertices
         )
@@ -1105,6 +1258,18 @@ def analyze_case(
             max_nonzero_residual_boundary_slack = max(
                 max_nonzero_residual_boundary_slack,
                 residual_boundary_slack,
+            )
+            max_nonzero_iterated_boundary_active_cores = max(
+                max_nonzero_iterated_boundary_active_cores,
+                case_max_iterated_boundary_active_cores,
+            )
+            max_nonzero_iterated_boundary_zero_cores = max(
+                max_nonzero_iterated_boundary_zero_cores,
+                case_max_iterated_boundary_zero_cores,
+            )
+            max_nonzero_iterated_boundary_marked = max(
+                max_nonzero_iterated_boundary_marked,
+                case_max_iterated_boundary_marked,
             )
             max_nonzero_isolated_marked_boundary_slack = max(
                 max_nonzero_isolated_marked_boundary_slack,
@@ -1617,6 +1782,17 @@ def analyze_case(
         "max_iterated_difference_chain_length": (
             max_iterated_difference_chain_length
         ),
+        "iterated_boundary_identity_checks": iterated_boundary_identity_checks,
+        "max_iterated_boundary_chain_length": max_iterated_boundary_chain_length,
+        "max_nonzero_iterated_boundary_active_cores": (
+            max_nonzero_iterated_boundary_active_cores
+        ),
+        "max_nonzero_iterated_boundary_zero_cores": (
+            max_nonzero_iterated_boundary_zero_cores
+        ),
+        "max_nonzero_iterated_boundary_marked": (
+            max_nonzero_iterated_boundary_marked
+        ),
         "max_nonzero_isolated_marked_boundary_slack": (
             max_nonzero_isolated_marked_boundary_slack
         ),
@@ -1693,6 +1869,9 @@ def analyze_case(
         "iterated_difference_defect_histogram": dict(
             sorted(iterated_difference_defect_histogram.items())
         ),
+        "iterated_boundary_defect_histogram": dict(
+            sorted(iterated_boundary_defect_histogram.items())
+        ),
         "nonzero_top_active_size_histogram": dict(
             sorted(nonzero_top_active_size_histogram.items())
         ),
@@ -1749,6 +1928,8 @@ def print_summary(results: Sequence[dict[str, object]]) -> None:
             f"max_nonzero_isolated={result['max_nonzero_isolated_vertices']} "
             f"max_nonzero_marked_boundary="
             f"{result['max_nonzero_root_marked_boundary_count']} "
+            f"max_nonzero_iterated_boundary_marked="
+            f"{result['max_nonzero_iterated_boundary_marked']} "
             f"max_nonzero_full_support_slack="
             f"{result['max_nonzero_full_support_ledger_slack']} "
             f"max_nonzero_top_active={result['max_nonzero_top_active_members']}"

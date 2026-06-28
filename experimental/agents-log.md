@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 fixed-root rungs keep first-boundary ledger
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_hankel_t2_one_exchange_lift.md`,
+  `experimental/scripts/verify_m1_hankel_t2_triangle_packets.py`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / STRUCTURAL / EXACT FINITE VERIFICATION.
+- **What is being added:** Proves that after any fixed-root chain
+  `X=(x_1,...,x_m)` is stripped, the active kernels for
+  `Delta_{x_m}...Delta_{x_1}s` satisfy the same exact first-boundary
+  incidence identity with extension factor `n-j+1`.
+- **How it is useful:** Makes the fixed-root residual ladder recursively
+  additive: every rung splits into zero-boundary cores and root-marked
+  incidences, rather than accumulating a multiplicative packet loss.
+- **What to do next:** Use the recursive ledger to seek a uniform bound or
+  quotient-periodic collapse for the iterated marked-boundary residuals.
+
 ### 2026-06-28 - M1 fixed-root deletion iterates by root differences
 
 - **Agent/model:** AllenGrahamHart / Codex audit.

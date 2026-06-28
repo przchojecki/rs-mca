@@ -657,6 +657,79 @@ degree drops by one, and the syndrome is replaced by one more root-difference.
 Additive descent can therefore be iterated on root-slice kernels rather than
 creating a multiplicative tree of new packet types.
 
+## Recursive First-Boundary Ledger on Fixed-Root Chains
+
+The first-boundary incidence identity is stable under the same fixed-root
+deletion.  Let `X_1=(x_1,...,x_m)` be a tuple of distinct roots with `0<=m<j`,
+put
+
+```text
+d = Delta_{X_1}s,        q=j-m,        H_X=H\{x_1,...,x_m}.
+```
+
+Define the fixed-chain active slice
+
+```text
+A^{X_1}_{tau,j}(s)
+ = { T subset H : {x_1,...,x_m} subset T,
+     H_{tau,j}(s)ell_T=0 },
+```
+
+and the difference-kernel support family on the remaining domain
+
+```text
+K^{X_1}_{tau,q}(s)
+ = { C subset H_X : |C|=q, H_{tau,q}(d)ell_C=0 }.
+```
+
+For `(q-1)`-cores in `H_X`, let
+
+```text
+Z^{X_1}_{tau+1,q-1}(s)
+ = { D subset H_X : |D|=q-1,
+     H_{tau+1,q-1}(d)ell_D=0 },
+
+B^{X_1,rm}_{tau+1,q-1}(s)
+ = { (D,y) : D subset H_X, |D|=q-1, y in H_X\D,
+     H_{tau+1,q-1}(d)ell_D=c(1,y,...,y^tau), c!=0 }.
+```
+
+Then the fixed-chain deletion map gives a bijection
+
+```text
+A^{X_1}_{tau,j}(s) <--> K^{X_1}_{tau,q}(s),
+```
+
+and the active deletion incidences inside this rung satisfy
+
+```text
+q |K^{X_1}_{tau,q}(s)|
+ = (n-j+1) |Z^{X_1}_{tau+1,q-1}(s)|
+   + |B^{X_1,rm}_{tau+1,q-1}(s)|.             (RFI)
+```
+
+Equivalently,
+
+```text
+(j-m) |A^{X_1}_{tau,j}(s)|
+ = (n-j+1) |Z^{X_1}_{tau+1,j-m-1}(s)|
+   + |B^{X_1,rm}_{tau+1,j-m-1}(s)|.
+```
+
+Proof: the bijection is (IDX).  Apply the first-boundary identity (FI) to the
+ordinary active family `K^{X_1}_{tau,q}(s)` over the smaller domain `H_X` and
+the syndrome `d`.  A zero boundary `(q-1)`-core has exactly
+
+```text
+|H_X|-(q-1) = (n-m)-(j-m-1) = n-j+1
+```
+
+available extensions, giving the same extension factor as the original rung.
+The nonzero one-extension case is exactly the root-marked condition in
+`B^{X_1,rm}`.  Hence the fixed-root ladder has the same additive
+zero-boundary/root-marked split at every rung; it does not acquire a new
+multiplicative loss when a root chain has already been stripped.
+
 ## Root-Marked Slice Is One Row
 
 The zero-boundary subkernel in the fixed-root difference form is cut out by a
@@ -1008,6 +1081,10 @@ edge cores:
 The same run checks the iterated fixed-root identity (IDX) with zero defects;
 the largest listed case, `F_7`, `k=1`, `j=3`, performs `2352980` direct
 locator-versus-iterated-difference row checks up to chain length `3`.
+It also checks the recursive fixed-chain boundary identity (RFI) with zero
+defects; the same largest case performs `352947` rung identities up to chain
+length `2`, with maximum nonzero rung counts `10` active cores, `5` zero
+boundary cores, and `4` root-marked boundaries.
 
 The `F_7,k=2,j=2` scan is the first exact top-packet check in this file.  It
 finds twenty top triangles, all on the zero combined syndrome.  This is not an

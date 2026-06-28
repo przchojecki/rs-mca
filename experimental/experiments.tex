@@ -3823,6 +3823,19 @@ The fixed-root identity iterates: for distinct roots \(x_1,\ldots,x_m\),
 \]
 Thus every fixed-root deletion rung is an ordinary root-difference Hankel
 kernel, not a new packet family.
+Moreover the exact first-boundary incidence identity persists on every such
+rung.  If \(X=(x_1,\ldots,x_m)\), \(q=j-m>0\), and
+\(d=\Delta_{x_m}\cdots\Delta_{x_1}s\), then the active \(q\)-locators over
+\(H\setminus X\) satisfy
+\[
+  q|K^X_{\tau,q}(s)|
+  =
+  (n-j+1)|Z^X_{\tau+1,q-1}(s)|
+  +|B^{X,\rm rm}_{\tau+1,q-1}(s)|.
+\]
+The extension factor remains \(n-j+1\), since
+\(|H\setminus X|-(q-1)=n-j+1\).  Thus an already stripped fixed-root chain has
+the same zero-boundary/root-marked additive split as the original rung.
 This residual also has additive one-exchange descent.  If
 \(C_y=R\cup\{y\}\) and \(C_z=R\cup\{z\}\) are two root-marked cores in the
 same fixed-root slice, then both are active for
@@ -3906,7 +3919,11 @@ criterion and second-boundary ledger are checked too; the maximum nonzero
 isolated residual counts are \(6\) for \(F_7^*,j=3\), \(2\) for \(F_7^*,j=2\),
 and \(1\) in the listed \(j=1\) audits.  The verifier also checks the iterated
 root-difference identity exactly, with \(2352980\) checks in the largest
-listed case and zero defects.
+listed case and zero defects.  It also audits the recursive fixed-chain
+first-boundary identity with zero defects; the largest listed case checks
+\(352947\) rung identities up to chain length \(2\), with maximum nonzero
+rung counts \(10\) active cores, \(5\) zero-boundary cores, and \(4\)
+root-marked boundaries.
 The common-core and two-denominator formulas persist verbatim after this
 root-free replacement.  With \(C=\gcd(D:D\in M_{\min})\), \(\gamma=\deg C\),
 and \(E_D=D/C\),
