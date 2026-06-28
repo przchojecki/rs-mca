@@ -3841,6 +3841,48 @@ roots of `Delta_e` away from the pair must agree exactly with the roots of the
 two-root quotient locator `M_e`.  The current largest `F_7^*` scan still has
 no `b(U,W)=2` produced anchor.
 
+## The Determinant Gate Is the Normalized Interpolated Locator
+
+The determinant gate introduces no new polynomial.  Let
+
+```text
+D_e=
+det [[P(x),Q(x)],[P(y),Q(y)]] != 0.
+```
+
+Expanding `Delta_e(z)` along the third row gives
+
+```text
+Delta_e(z)
+ =
+D_e L_0(z)
+ +(Q(x)L_0(y)-L_0(x)Q(y)) P(z)
+ +(L_0(x)P(y)-P(x)L_0(y)) Q(z).
+```
+
+The two coefficients of `P,Q`, divided by `D_e`, are exactly the interpolation
+coefficients `alpha,beta` in (PF2-good-interp).  Hence
+
+```text
+Delta_e = D_e L_e.                              (PF2-det-normal)
+```
+
+Since `L_e=ell_e M_e`, it follows that
+
+```text
+Delta_e/ell_e = D_e M_e.                       (PF2-det-quot)
+```
+
+Thus the determinant gate, the interpolated locator, and the two-root quotient
+locator are the same object up to the nonzero scalar `D_e` and the forced
+factor `ell_e`.  The endpoint may therefore be studied either as a determinant
+gate or as the normalized quotient `M_e` without changing the root set.
+
+The verifier checks the coefficient identity (PF2-det-normal) and, after
+division by the good-pair locator, the quotient identity (PF2-det-quot) for
+every good pair.  The current largest `F_7^*` scan still has no `b(U,W)=2`
+produced anchor.
+
 ## Bad Root Slices Are Absorbed-Anchor Rank Defects
 
 The preceding bad-root condition has an equivalent absorbed-anchor form.  Fix

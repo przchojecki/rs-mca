@@ -6736,6 +6736,16 @@ def analyze_case(
                                                         p,
                                                     ),
                                                 )
+
+                                            def direction_coeff(
+                                                vector: tuple[int, ...],
+                                                index: int,
+                                            ) -> int:
+                                                return (
+                                                    vector[index]
+                                                    if index < len(vector)
+                                                    else 0
+                                                )
                                             pair_owner: dict[
                                                 tuple[int, int],
                                                 tuple[int, ...],
@@ -7259,6 +7269,114 @@ def analyze_case(
                                                         p,
                                                     )
                                                 )
+                                                left_row = affine_kernel_row(
+                                                    pair[0]
+                                                )
+                                                right_row = affine_kernel_row(
+                                                    pair[1]
+                                                )
+                                                determinant_scale = (
+                                                    left_row[1] * right_row[2]
+                                                    - left_row[2] * right_row[1]
+                                                ) % p
+                                                determinant_p_coeff = (
+                                                    left_row[2] * right_row[0]
+                                                    - left_row[0] * right_row[2]
+                                                ) % p
+                                                determinant_q_coeff = (
+                                                    left_row[0] * right_row[1]
+                                                    - left_row[1] * right_row[0]
+                                                ) % p
+                                                determinant_locator = tuple(
+                                                    (
+                                                        determinant_scale
+                                                        * residual_locator[index]
+                                                        + determinant_p_coeff
+                                                        * direction_coeff(
+                                                            direction_basis[0],
+                                                            index,
+                                                        )
+                                                        + determinant_q_coeff
+                                                        * direction_coeff(
+                                                            direction_basis[1],
+                                                            index,
+                                                        )
+                                                    )
+                                                    % p
+                                                    for index in range(
+                                                        residual_size + 1
+                                                    )
+                                                )
+                                                expected_determinant_locator = tuple(
+                                                    (
+                                                        determinant_scale * coeff
+                                                    )
+                                                    % p
+                                                    for coeff in (
+                                                        interpolated_locator
+                                                    )
+                                                )
+                                                if (
+                                                    determinant_locator
+                                                    != expected_determinant_locator
+                                                ):
+                                                    raise AssertionError(
+                                                        projective_local_error(
+                                                            "good-pair-"
+                                                            "determinant-"
+                                                            "normalization-"
+                                                            "failed",
+                                                            pair=list(pair),
+                                                            determinant=list(
+                                                                determinant_locator
+                                                            ),
+                                                            expected=list(
+                                                                expected_determinant_locator
+                                                            ),
+                                                            scale=(
+                                                                determinant_scale
+                                                            ),
+                                                        )
+                                                    )
+                                                determinant_quotient = (
+                                                    divide_by_polynomial_exact_mod(
+                                                        determinant_locator,
+                                                        pair_locator,
+                                                        p,
+                                                    )
+                                                )
+                                                expected_determinant_quotient = tuple(
+                                                    (
+                                                        determinant_scale * coeff
+                                                    )
+                                                    % p
+                                                    for coeff in (
+                                                        pair_quotient_locator
+                                                    )
+                                                )
+                                                if (
+                                                    determinant_quotient
+                                                    != expected_determinant_quotient
+                                                ):
+                                                    raise AssertionError(
+                                                        projective_local_error(
+                                                            "good-pair-"
+                                                            "determinant-"
+                                                            "quotient-"
+                                                            "normalization-"
+                                                            "failed",
+                                                            pair=list(pair),
+                                                            quotient=list(
+                                                                determinant_quotient
+                                                            ),
+                                                            expected=list(
+                                                                expected_determinant_quotient
+                                                            ),
+                                                            scale=(
+                                                                determinant_scale
+                                                            ),
+                                                        )
+                                                    )
                                                 reconstructed_from_quotient = (
                                                     multiply_polynomials_mod(
                                                         pair_locator,

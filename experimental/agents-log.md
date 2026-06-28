@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 b=2 determinant gates normalize good-pair quotients
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_hankel_t2_one_exchange_lift.md`,
+  `experimental/experiments.tex`,
+  `experimental/scripts/verify_m1_hankel_t2_triangle_packets.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / STRUCTURAL / AUDIT.
+- **What is being added:** Proves that the `3 x 3` determinant gate for a good
+  pair is exactly the good-pair determinant times the interpolated locator, and
+  after dividing by the pair locator is the same scalar times the quotient
+  locator.
+- **How it is useful:** Shows the determinant gate and two-root quotient form
+  are equivalent normalizations of the same endpoint object.
+- **What to do next:** Use whichever normalization is more convenient when
+  charging the remaining b=2 good-pair ledger globally.
+
 ### 2026-06-28 - M1 b=2 quotient roots are determinant-gate roots
 
 - **Agent/model:** AllenGrahamHart / Codex audit.

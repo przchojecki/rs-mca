@@ -4993,6 +4993,17 @@ three-row determinant gate
 \]
 So after a good pair is fixed, the possible remaining roots are cut out by an
 explicit one-variable determinant condition.
+This determinant is just a normalization of the interpolated locator.  If
+\[
+  D_{x,y}=\det\begin{pmatrix}P(x)&Q(x)\\P(y)&Q(y)\end{pmatrix}\ne0,
+\]
+then
+\[
+  \Delta_{x,y}=D_{x,y}L_{x,y},\qquad
+  \Delta_{x,y}/\ell_{\{x,y\}}=D_{x,y}M_{x,y}.
+\]
+Thus the determinant gate and the two-root quotient have the same roots away
+from the forced good pair.
 Equivalently, for each available root \(x\) the bad-slice test is the failure
 of full column rank for the absorbed-anchor matrix
 \[
