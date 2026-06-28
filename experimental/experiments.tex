@@ -2709,15 +2709,20 @@ not it is an irreducible bounded-degree multiplier landing.
 Let \(\operatorname{Exc}_\ell\) be the set of \((a-1)\)-cores for which this
 multiplier space is nonzero.  Choosing one \(a\)-subset \(T_\mu\) for each
 coefficient \(\mu\), every nonexceptional \((a-1)\)-core lies in at most one
-chosen support, while an exceptional core lies in at most \(n-a+1\) chosen
-supports.  Counting pairs \((\mu,I)\) with \(I\subset T_\mu\) and
-\(|I|=a-1\) gives
+chosen support.  If \(r_I=|\{\mu:I\subset T_\mu\}|\), the correct residual is
+the exceptional incidence mass
+\[
+  R_{\rm exc}(Y,a)=\sum_{I\in\operatorname{Exc}_\ell}r_I .
+\]
+Counting pairs \((\mu,I)\) with \(I\subset T_\mu\) and \(|I|=a-1\) gives
 \[
   |\operatorname{Mu}_h(Y,a)|\le
-  { \binom n {a-1}+(n-a)|\operatorname{Exc}_\ell| \over a } .
+  { \binom n {a-1}-|\operatorname{Exc}_\ell|+R_{\rm exc}(Y,a) \over a } .
 \]
 Thus the one-row coefficient set is an \((a-1)\)-packing apart from the
-explicit exceptional multiplier-core ledger.
+weighted exceptional multiplier-core incidence ledger; the unweighted number
+of exceptional cores alone does not control same-support coefficient
+multiplicity.
 Every nonzero exceptional multiplier is automatically primitive modulo
 \(Q_{\rm prim}\).  Indeed, if
 \[
@@ -2767,22 +2772,23 @@ is equivalent to
 \]
 Thus every exceptional agreement-core fiber is equivalently a
 \((j+1)\)-point split-complement residue-line fiber modulo \(Q_{\rm prim}\).
-Substituting this into the packing-with-exceptions bound gives the
-one-exchange one-row ledger in complement form:
+Substituting this into the weighted packing-with-exceptions bound gives the
+one-exchange one-row ledger in complement form.  With
+\[
+  R_{\rm comp}(Y,a)=\sum_{[M]}\sum_{C\in\operatorname{Comp}_{[M]}}r_{D\setminus C},
+\]
+one has
 \[
   |\operatorname{Mu}_h(Y,a)|
-  \le { \binom n {j+1}
-      +j\sum_{[M]}|\operatorname{Comp}_{[M]}|
-      \over n-j } .
+  \le { \binom n {j+1}+R_{\rm comp}(Y,a)\over n-j } .
 \]
 Therefore any bound
 \[
-  \sum_{[M]}|\operatorname{Comp}_{[M]}|\le B_{\rm comp}
+  R_{\rm comp}(Y,a)\le B_{\rm comp}
 \]
 closes this one-exchange scalar one-row contribution at
 \[
-  |\operatorname{Mu}_h(Y,a)|
-  \le { \binom n {j+1}+jB_{\rm comp}\over n-j } .
+  |\operatorname{Mu}_h(Y,a)|\le { \binom n {j+1}+B_{\rm comp}\over n-j } .
 \]
 The common-core and two-denominator formulas persist verbatim after this
 root-free replacement.  With \(C=\gcd(D:D\in M_{\min})\), \(\gamma=\deg C\),

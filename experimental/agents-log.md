@@ -30,21 +30,36 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 correction: one-row ledger needs weighted incidence
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_boundary_off_external_anchor_normal_form.md`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** AUDIT / PROVED-LOCAL / PROOF-PROGRAM.
+- **What is being added:** Corrects the previous unweighted
+  packing-with-exceptions ledger.  The valid bound uses the weighted
+  coefficient-core incidence mass `R_exc`, and in complement form the weighted
+  mass `R_comp`, not merely `sum_[M] |Comp_[M]|`.
+- **How it is useful:** This prevents a false q-free coefficient bound from
+  being consumed without a same-support multiplicity theorem.
+- **What to do next:** Bound the weighted complement incidence mass, or prove
+  a separate same-support uniqueness/multiplicity result.
+
 ### 2026-06-28 - M1 one-exchange one-row ledger in complement form
 
 - **Agent/model:** AllenGrahamHart / Codex audit.
 - **Files added or changed:**
   `experimental/notes/m1/m1_boundary_off_external_anchor_normal_form.md`,
   `experimental/experiments.tex`, `experimental/agents-log.md`.
-- **Status:** PROVED-LOCAL / PROOF-PROGRAM.
-- **What is being added:** The one-exchange one-row coefficient bound becomes
-  `(binom(n,j+1)+j sum_[M] |Comp_[M]|)/(n-j)`, where `Comp_[M]` are the
-  `(j+1)` split-complement residue-line fibers from the previous entry.
-- **How it is useful:** This gives the final explicit ledger target for this
-  branch: bound the small-complement residue-line fiber mass and the
-  one-exchange scalar one-row contribution follows.
-- **What to do next:** Prove a polynomial bound for the summed complement
-  fiber mass after quotient-periodic components are removed.
+- **Status:** PROVED-LOCAL / PROOF-PROGRAM, corrected to weighted form above.
+- **What is being added:** The one-exchange one-row coefficient bound is
+  expressed in complement form using the weighted incidence mass
+  `R_comp(Y,a)=sum_[M] sum_{C in Comp_[M]} r_{D\C}`.
+- **How it is useful:** This gives the explicit ledger target for this branch:
+  bound the weighted small-complement residue-line incidence mass.
+- **What to do next:** Prove a polynomial bound for `R_comp`, or control
+  same-support coefficient multiplicities separately.
 
 ### 2026-06-28 - M1 exceptional fibers dualize to small complements
 
@@ -96,22 +111,21 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** Bound these invertible low-degree multiplier residue
   lines, or identify quotient-periodic families among them.
 
-### 2026-06-28 - M1 one-row coefficients pack apart from multiplier cores
+### 2026-06-28 - M1 one-row coefficients reduce to exceptional core incidence
 
 - **Agent/model:** AllenGrahamHart / Codex audit.
 - **Files added or changed:**
   `experimental/notes/m1/m1_boundary_off_external_anchor_normal_form.md`,
   `experimental/experiments.tex`, `experimental/agents-log.md`.
-- **Status:** PROVED-LOCAL / PROOF-PROGRAM.
+- **Status:** PROVED-LOCAL / PROOF-PROGRAM, corrected to weighted form above.
 - **What is being added:** If `Exc_ell` is the set of `(a-1)`-cores with a
-  nonzero one-exchange multiplier certificate, then the one-row coefficient
-  set satisfies
-  `|Mu_h(Y,a)| <= (binom(n,a-1)+(n-a)|Exc_ell|)/a`.
+  nonzero one-exchange multiplier certificate, then the valid coefficient
+  bound uses `R_exc=sum_{I in Exc_ell} r_I`:
+  `|Mu_h(Y,a)| <= (binom(n,a-1)-|Exc_ell|+R_exc)/a`.
 - **How it is useful:** This converts the one-row residual into an ordinary
-  `(a-1)` support-packing term plus an explicit exceptional core ledger that
-  can be attacked by the M1 residue-line machinery.
-- **What to do next:** Bound `Exc_ell` by quotient-periodic separation,
-  external-anchor charges, or aperiodic residue-packing estimates.
+  `(a-1)` support-packing term plus an explicit weighted exceptional core
+  incidence ledger.
+- **What to do next:** Bound `R_exc`, not just the unweighted set `Exc_ell`.
 
 ### 2026-06-28 - M1 one-exchange residuals have unique multipliers
 

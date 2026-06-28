@@ -11311,7 +11311,7 @@ nonzero elements of `V_I^{ell}` are proportional, proving (OneExMultLine).
 The final assertions follow from Corollary 40.94, which puts every
 one-exchange collision multiplier in `V_I^{ell}`.
 
-## Corollary 40.97: One-Row Coefficients Pack Apart From Exceptional Multiplier Cores
+## Corollary 40.97: One-Row Coefficients Reduce To Exceptional Core Incidence Mass
 
 Keep the notation and hypotheses of Corollary 40.96.  Define the exceptional
 one-exchange core set
@@ -11321,32 +11321,37 @@ Exc_ell(Q_prim,B_prim)
  = { I subset D : |I|=a-1,        V_I^{ell} != 0 }.
 ```
 
-Let `Mu_h(Y,a)` be the coefficient set from Corollary 40.91.  Then
-
-```text
-|Mu_h(Y,a)|
- <= ( binom(n,a-1) + (n-a)|Exc_ell(Q_prim,B_prim)| ) / a.      (CorePack)
-```
-
-Equivalently, outside the explicit exceptional multiplier-core ledger, the
-chosen threshold supports form an `(a-1)`-packing.  In particular, if
-`Exc_ell(Q_prim,B_prim)` is empty, then
-
-```text
-|Mu_h(Y,a)| <= binom(n,a-1)/a.
-```
-
-### Proof
-
-For each `mu in Mu_h(Y,a)`, choose one witnessing support of size at least
-`a`, and then choose an `a`-element subset `T_mu` of it.  For an
-`(a-1)`-subset `I subset D`, let
+Let `Mu_h(Y,a)` be the coefficient set from Corollary 40.91.  For each
+`mu in Mu_h(Y,a)`, choose one witnessing support of size at least `a`, and
+then choose an `a`-element subset `T_mu` of it.  For an `(a-1)`-subset
+`I subset D`, put
 
 ```text
 r_I = |{ mu : I subset T_mu }|.
 ```
 
+Define the exceptional coefficient-core incidence mass
+
+```text
+R_exc(Y,a)=sum_{I in Exc_ell(Q_prim,B_prim)} r_I.
+```
+
 Then
+
+```text
+|Mu_h(Y,a)|
+ <= ( binom(n,a-1) - |Exc_ell(Q_prim,B_prim)| + R_exc(Y,a) ) / a
+ <= ( binom(n,a-1) + R_exc(Y,a) ) / a.             (CoreIncidenceLedger)
+```
+
+Equivalently, outside the explicit exceptional multiplier-core ledger, the
+chosen threshold supports form an `(a-1)`-packing.  The remaining quantity to
+bound is the weighted coefficient-core incidence mass over the exceptional
+cores.
+
+### Proof
+
+By construction,
 
 ```text
 sum_{|I|=a-1} r_I = a |Mu_h(Y,a)|,                 (CoreCount)
@@ -11359,23 +11364,16 @@ coefficients `mu_1,mu_2` had selected supports containing `I`, the subtraction
 argument from Corollary 40.94, applied only on the common core `I`, would give
 a nonzero `M in V_I^{ell}`, contradicting `I notin Exc_ell`.
 
-For every `I`, trivially
-
-```text
-r_I <= n-a+1,
-```
-
-because there are only `n-(a-1)=n-a+1` possible `a`-subsets of `D` containing
-`I`.  Therefore
+Therefore
 
 ```text
 sum_I r_I
  <= (binom(n,a-1)-|Exc_ell|)
-    + (n-a+1)|Exc_ell|
- = binom(n,a-1)+(n-a)|Exc_ell|.
+    + sum_{I in Exc_ell} r_I
+ = binom(n,a-1)-|Exc_ell|+R_exc(Y,a).
 ```
 
-Combining this with (CoreCount) proves (CorePack).
+Combining this with (CoreCount) proves (CoreIncidenceLedger).
 
 ## Corollary 40.98: Exceptional One-Exchange Multipliers Are Primitive Modulo Q_prim
 
@@ -11579,35 +11577,43 @@ which is exactly `C in Comp_[M]`.  The complement map is a set-theoretic
 bijection between `(a-1)`-subsets and `(j+1)`-subsets of `D`, proving the
 claim.
 
-## Corollary 40.101: The One-Exchange One-Row Ledger Is A Small-Complement Residue Ledger
+## Corollary 40.101: The One-Exchange One-Row Ledger Is A Weighted Small-Complement Residue Ledger
 
 Keep the notation of Corollaries 40.97--40.100.  At the scalar cutoff
-`a=n-j`, the one-row coefficient set satisfies
+`a=n-j`, define the weighted complement incidence mass
+
+```text
+R_comp(Y,a)
+ = sum_{[M] in P_ell^x(Q_prim)}
+     sum_{C in Comp_[M]} r_{D\C}.
+```
+
+Then
 
 ```text
 |Mu_h(Y,a)|
- <= ( binom(n,j+1)
-      + j sum_{[M] in P_ell^x(Q_prim)} |Comp_[M]| ) / (n-j).   (ComplementLedger)
+ <= ( binom(n,j+1) + R_comp(Y,a) ) / (n-j).         (WeightedComplementLedger)
 ```
 
 Equivalently, after the primitive packing charge, the only additional
-one-exchange contribution is the total mass of the `(j+1)`-point
-small-complement residue-line fibers `Comp_[M]`, with coefficient `j/(n-j)`.
-Thus a bound
+one-exchange contribution is the coefficient-weighted mass of the `(j+1)`-point
+small-complement residue-line fibers `Comp_[M]`.  Thus a bound
 
 ```text
-sum_{[M] in P_ell^x(Q_prim)} |Comp_[M]| <= B_comp
+R_comp(Y,a) <= B_comp
 ```
 
 implies
 
 ```text
-|Mu_h(Y,a)| <= ( binom(n,j+1) + j B_comp ) / (n-j).
+|Mu_h(Y,a)| <= ( binom(n,j+1) + B_comp ) / (n-j).
 ```
 
 This is the final one-exchange scalar one-row reduction: proving a small bound
-for the complement residue-line ledger closes the one-exchange part of the
-primitive high-denominator residual.
+for the weighted complement residue-line ledger closes the one-exchange part
+of the primitive high-denominator residual.  Bounding only the unweighted
+number of exceptional complement fibers is not enough unless same-support
+coefficient multiplicities are controlled separately.
 
 ### Proof
 
@@ -11615,7 +11621,7 @@ Corollary 40.97 gives
 
 ```text
 |Mu_h(Y,a)|
- <= ( binom(n,a-1) + (n-a)|Exc_ell| ) / a.
+ <= ( binom(n,a-1) - |Exc_ell| + R_exc(Y,a) ) / a.
 ```
 
 At the scalar cutoff, `a=n-j`, so
@@ -11631,7 +11637,18 @@ Corollaries 40.99 and 40.100 give the disjoint decomposition
 |Exc_ell| = sum_{[M] in P_ell^x(Q_prim)} |Comp_[M]|.
 ```
 
-Substitution gives (ComplementLedger).  The conditional bound is immediate.
+The same complement bijection gives
+
+```text
+R_exc(Y,a)
+ = sum_{[M] in P_ell^x(Q_prim)}
+     sum_{C in Comp_[M]} r_{D\C}
+ = R_comp(Y,a).
+```
+
+Substituting `binom(n,a-1)=binom(n,j+1)` and dropping the nonpositive
+`-|Exc_ell|` term gives (WeightedComplementLedger).  The conditional bound is
+immediate.
 
 ## Corollary 41: The Global Common-Image Ledger Is Endpoint-Only
 
@@ -14544,10 +14561,11 @@ Corollary 40.96 extends the one-exchange analysis to all unpacked layers:
 for each fixed overlap core, the admissible low-degree multiplier space has
 dimension at most one, so one-exchange collisions have a unique projective
 multiplier certificate if they exist.
-Corollary 40.97 converts this into a packing-with-exceptions ledger:
-one-row coefficients are bounded by
-`(binom(n,a-1)+(n-a)|Exc_ell|)/a`, where `Exc_ell` is the set of cores
-supporting a nonzero projective multiplier certificate.
+Corollary 40.97 converts this into a weighted packing-with-exceptions ledger:
+one-row coefficients are bounded by the ordinary `(a-1)` core count plus the
+coefficient-core incidence mass over exceptional multiplier cores.  It does
+not bound coefficient multiplicity from the unweighted exceptional core count
+alone.
 Corollary 40.98 shows that those exceptional multipliers are automatically
 coprime to `Q_prim`; equivalently the exceptional cores land in residue lines
 `F B_prim M^{-1}` modulo `Q_prim` for invertible low-degree multipliers.
@@ -14556,8 +14574,10 @@ ordinary split-locator residue-line fibers indexed by those projective
 low-degree multiplier classes.
 Corollary 40.100 dualizes each large agreement-core fiber to an equivalent
 small `(j+1)`-complement split-locator residue-line fiber.
-Corollary 40.101 packages the one-exchange scalar one-row ledger entirely in
-terms of the total mass of these small-complement residue fibers.
+Corollary 40.101 packages the one-exchange scalar one-row ledger in terms of
+the weighted coefficient incidence mass over these small-complement residue
+fibers; bounding unweighted fibers alone still requires a same-support
+multiplicity input.
 Corollary 41 packages the common-image branch into endpoint-type ledgers; it
 does not prove the endpoint rank hypotheses needed for the displayed
 `(q+2)binom(n,b)` bound. Corollary 42 packages the globally full core ledger
