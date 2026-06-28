@@ -7740,6 +7740,70 @@ of nonzero degree-`<d` polynomials.  The latter number is exactly
 bottom residual families and applying Corollary 40.43 gives the displayed
 bottom-route ledger.
 
+## Corollary 40.56: A Common Factor Gives A Bottom Residual-Window Bound
+
+Let `K` be a nonzero subspace of degree-`<h` polynomials over `F_q`, and let
+
+```text
+G_K = gcd( Q : Q in K ),        gamma_K=deg G_K,
+m_K = h-gamma_K.
+```
+
+If `G_K(alpha)=0` for some `alpha in D`, then `K^rf` is empty.  Otherwise
+multiplication by `G_K` identifies `K^rf` with a projective subset of the
+root-free degree-`<m_K` polynomial classes, and therefore
+
+```text
+|K^rf| <= RFPhi_D(m_K).                            (BottomCommonFactorWindow)
+```
+
+Consequently, for the four bottom residual kernels `K_0(F)`, if
+
+```text
+h-deg gcd(K_0(F)) <= L
+```
+
+for every nonzero bottom family whose common factor is root-free on `D`, then
+the bottom route closes with residual charge at most
+
+```text
+4 RFPhi_D(L),
+```
+
+and total mixed-ladder ledger at most
+
+```text
+4 RFPhi_D(L) + 2h.                                 (BottomCommonFactorMixedLedger)
+```
+
+This criterion does not require the bottom kernel to be domain-MDS.  It only
+uses the size of the residual quotient window after the common factor is
+removed.  Corollary 40.55 is the extremal case `m_K=dim K`, where the quotient
+subspace fills the whole residual window and the ideal count is exact.
+
+### Proof
+
+If `G_K` has a domain root, then every element of `K` vanishes at that root,
+so `K^rf` is empty.
+
+Assume `G_K` is root-free on `D`.  Every `Q in K` can be written uniquely as
+
+```text
+Q=G_K R,        deg R<h-gamma_K=m_K.
+```
+
+Since `G_K` has no zero on `D`, `Q` is root-free on `D` if and only if `R` is
+root-free on `D`.  Thus projective root-free classes in `K` inject into the
+projective set of all nonzero root-free polynomials of degree `<m_K`, whose
+cardinality is `RFPhi_D(m_K)` by Corollary 40.45.  This proves
+(BottomCommonFactorWindow).
+
+If each bottom residual family has residual window at most `L`, monotonicity
+of the nested root-free polynomial spaces gives
+`RFPhi_D(m_K)<=RFPhi_D(L)` for each of the at most four families.  Summing
+over those families and applying Corollary 40.43 gives the displayed
+mixed-ladder ledger.
+
 ## Corollary 41: The Global Common-Image Ledger Is Endpoint-Only
 
 Let `GCI` be the set of monic degree-`c` split core locators `L` for which
@@ -10522,6 +10586,9 @@ Corollary 40.54 bounds that projective degree using a common factor; it does
 not prove the required large common factors occur in the M1 bottom kernels.
 Corollary 40.55 shows maximal common factors force the ideal bottom count; it
 does not prove the bottom kernels have maximal common factors.
+Corollary 40.56 bounds bottom kernels by the residual quotient window after a
+common factor is removed; it does not prove those residual windows are small in
+the M1 instances.
 Corollary 41 packages the common-image branch into endpoint-type ledgers; it
 does not prove the endpoint rank hypotheses needed for the displayed
 `(q+2)binom(n,b)` bound. Corollary 42 packages the globally full core ledger

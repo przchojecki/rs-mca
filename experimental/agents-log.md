@@ -418,7 +418,11 @@ Keep entries concise and link to the relevant files.
   This is generalized to all dimensions: for a `d`-dimensional bottom kernel,
   `deg gcd(K)<=h-d`, and equality forces `K/gcd(K)` to be the full
   degree-`<d` polynomial space, hence the ideal count `RFPhi_D(d)`.
-  The non-claims section is updated through Corollary 40.55 to record that
+  A weaker but more flexible residual-window criterion now bounds any bottom
+  kernel by `RFPhi_D(h-deg gcd(K))`; thus if all four bottom kernels have
+  common-factor residual window at most `L`, the bottom route closes with
+  `4RFPhi_D(L)+2h` without a domain-MDS assumption.
+  The non-claims section is updated through Corollary 40.56 to record that
   these formulas do not by themselves bound the bottom/pre-half residuals or
   force large common cores/quotient degrees.
   Since
