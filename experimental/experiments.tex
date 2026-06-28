@@ -3793,6 +3793,22 @@ Then
 So the nonzero root-marked chart is exactly the fixed-root active slice after
 zero-boundary star cores are removed; it is not an independent same-slope
 branching family.
+The fixed-root slice itself is a standard Hankel kernel after a root
+difference.  With
+\[
+  (\Delta_x s)_i=s_{i+1}-xs_i,
+\]
+one has
+\[
+  H_{\tau,j}(s)((X-x)L)=H_{\tau,j-1}(\Delta_x s)L.
+\]
+Thus deletion of the fixed root identifies \(A^x_{\tau,j}(s)\) with
+\[
+  \{C\subset H\setminus\{x\}: |C|=j-1,\,
+    H_{\tau,j-1}(\Delta_xs)\ell_C=0\},
+\]
+and \(B^x\) is this root-slice difference kernel with the zero-boundary
+subkernel removed.
 This local statement globalizes across connected components.  In the active
 one-exchange graph for fixed \(w_\lambda\), if a nontrivial component has no
 lower-core corner, then every two-edge corner is a star corner.  Choosing one
@@ -3847,7 +3863,9 @@ coincide with the active edge cores, with maximum nonzero counts \(5\) in the
 listed \(j=1\) audits.  The rootwise fixed-root decomposition is also checked;
 the maximum nonzero fixed-root active counts are \(10\) for \(F_7^*,j=3\),
 \(5\) for \(F_7^*,j=2\), and \(1\) in the listed \(j=1\) audits, with zero
-rootwise defect in every enumerated syndrome.
+rootwise defect in every enumerated syndrome.  The root-difference Hankel
+kernel identification is checked in the same run and has the same maximum
+nonzero counts as the fixed-root active slices.
 The common-core and two-denominator formulas persist verbatim after this
 root-free replacement.  With \(C=\gcd(D:D\in M_{\min})\), \(\gamma=\deg C\),
 and \(E_D=D/C\),

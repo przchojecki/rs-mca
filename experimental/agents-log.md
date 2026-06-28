@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 fixed-root slices are root-difference Hankel kernels
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_hankel_t2_one_exchange_lift.md`,
+  `experimental/scripts/verify_m1_hankel_t2_triangle_packets.py`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / STRUCTURAL / EXACT FINITE VERIFICATION.
+- **What is being added:** Identifies each fixed-root active slice with the
+  Hankel kernel for the root-difference syndrome
+  `(Delta_x s)_i=s_{i+1}-x s_i`, via
+  `H_{tau,j}(s)((X-x)L)=H_{tau,j-1}(Delta_x s)L`.
+- **How it is useful:** Turns the root-marked residual into a concrete
+  root-slice difference-kernel problem with the zero-boundary subkernel
+  removed, matching the M1 fixed-root/root-slice proof route.
+- **What to do next:** Apply fixed-root/root-slice or quotient-aware bounds to
+  these difference kernels uniformly over the domain roots.
+
 ### 2026-06-28 - M1 root-marked chart is fixed-root residual
 
 - **Agent/model:** AllenGrahamHart / Codex audit.

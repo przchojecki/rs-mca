@@ -558,6 +558,60 @@ cores have been removed.  Consequently, any global M1 argument that charges
 fixed-root/root-slice active slices and zero-boundary edge cores also charges
 the root-marked first-boundary residual.
 
+## Fixed-Root Difference Hankel Form
+
+The fixed-root slice has an ordinary Hankel kernel form after taking a
+root-difference of the syndrome.  For `x in H`, define
+
+```text
+(Delta_x s)_i = s_{i+1} - x s_i.
+```
+
+Then multiplication by `(X-x)` gives the exact identity
+
+```text
+H_{tau,j}(s)((X-x)L)
+ = H_{tau,j-1}(Delta_x s)L.                  (DX)
+```
+
+Hence the deletion map `T -> T\{x}` gives a bijection
+
+```text
+A^x_{tau,j}(s)
+ <-->
+K^x_{tau,j-1}(s)
+ = { C subset H\{x} : |C|=j-1,
+     H_{tau,j-1}(Delta_x s)ell_C=0 }.
+```
+
+Under this bijection,
+
+```text
+Z^x_{tau+1,j-1}(s)
+ = { C in K^x_{tau,j-1}(s) :
+     H_{tau+1,j-1}(s)ell_C=0 },
+
+B^x_{tau+1,j-1}(s)
+ = K^x_{tau,j-1}(s) \ Z^x_{tau+1,j-1}(s).
+```
+
+Proof: if `L=sum_h L_h X^h`, then the `i`th row of the left side of (DX) is
+
+```text
+sum_h L_h s_{i+h+1} - x sum_h L_h s_{i+h},
+```
+
+which is exactly the `i`th row of `H_{tau,j-1}(Delta_x s)L`.  The bijection
+is then just `ell_T=(X-x)ell_C`.  The final two identities are the
+first-boundary classification: a fixed-root active core has zero boundary
+exactly in the star-core case, and otherwise has the nonzero root-marked
+boundary with mark `x`.
+
+Thus the remaining nonzero root-marked chart is a root-slice difference-kernel
+problem with a named zero-boundary subkernel removed.  This is the form in
+which fixed-root/root-slice, quotient-periodic, or aperiodic-packing bounds
+should be applied.
+
 ## Same-Slope Component Dichotomy
 
 Let `G_s` be the graph on active `j`-complements for a fixed combined syndrome
@@ -759,12 +813,12 @@ The first-boundary incidence identity (FI) is checked in the same scan.  In
 particular, the zero first-boundary cores coincide exactly with the active
 edge cores:
 
-| field/domain | max nonzero zero-boundary cores | max nonzero fixed-root active | incidence defect | rootwise defect |
-| --- | ---: | ---: | ---: | ---: |
-| `F_5`, `H=F_5^*`, `n=4,k=1,a=3,j=1` | 0 | 1 | 0 | 0 |
-| `F_7`, `H=F_7^*`, `n=6,k=1,a=3,j=3` | 5 | 10 | 0 | 0 |
-| `F_7`, `H=F_7^*`, `n=6,k=2,a=4,j=2` | 1 | 5 | 0 | 0 |
-| `F_7`, `H=F_7^*`, `n=6,k=3,a=5,j=1` | 0 | 1 | 0 | 0 |
+| field/domain | max nonzero zero-boundary cores | max nonzero fixed-root active | incidence defect | rootwise defect | root-difference defect |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| `F_5`, `H=F_5^*`, `n=4,k=1,a=3,j=1` | 0 | 1 | 0 | 0 | 0 |
+| `F_7`, `H=F_7^*`, `n=6,k=1,a=3,j=3` | 5 | 10 | 0 | 0 | 0 |
+| `F_7`, `H=F_7^*`, `n=6,k=2,a=4,j=2` | 1 | 5 | 0 | 0 | 0 |
+| `F_7`, `H=F_7^*`, `n=6,k=3,a=5,j=1` | 0 | 1 | 0 | 0 | 0 |
 
 The `F_7,k=2,j=2` scan is the first exact top-packet check in this file.  It
 finds twenty top triangles, all on the zero combined syndrome.  This is not an
