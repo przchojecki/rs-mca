@@ -112,6 +112,8 @@ forces the common (|A|-1)-core into the same Hankel kernel.
 It checks the reversible split-support certificate: for collapsed anchor
 base A and packet modes Y, the total support A union Y is active and every
 one-mode deletion has the expected nonzero root-marked boundary vector.
+Conversely, it checks that those root-marked split-boundary scalars reconstruct
+the anchor-base sparse packet.
 It also checks that absorbing any subset of packet modes into the anchor gives
 the predicted smaller sparse packet, with no proper-subset zero collapse.
 Consequently it records the number of intrinsic zero-free ordered mode flags
@@ -484,6 +486,8 @@ def analyze_case(
     terminal_tree_productive_anchor_split_support_checks = 0
     terminal_tree_anchor_split_boundary_checks = 0
     terminal_tree_productive_anchor_split_boundary_checks = 0
+    terminal_tree_anchor_split_roundtrip_checks = 0
+    terminal_tree_productive_anchor_split_roundtrip_checks = 0
     terminal_tree_anchor_split_absorption_checks = 0
     terminal_tree_productive_anchor_split_absorption_checks = 0
     terminal_tree_anchor_split_proper_absorption_checks = 0
@@ -669,6 +673,8 @@ def analyze_case(
             nonlocal terminal_tree_productive_anchor_split_support_checks
             nonlocal terminal_tree_anchor_split_boundary_checks
             nonlocal terminal_tree_productive_anchor_split_boundary_checks
+            nonlocal terminal_tree_anchor_split_roundtrip_checks
+            nonlocal terminal_tree_productive_anchor_split_roundtrip_checks
             nonlocal terminal_tree_anchor_split_absorption_checks
             nonlocal terminal_tree_productive_anchor_split_absorption_checks
             nonlocal terminal_tree_anchor_split_proper_absorption_checks
@@ -935,6 +941,8 @@ def analyze_case(
                 nonlocal terminal_tree_productive_anchor_split_support_checks
                 nonlocal terminal_tree_anchor_split_boundary_checks
                 nonlocal terminal_tree_productive_anchor_split_boundary_checks
+                nonlocal terminal_tree_anchor_split_roundtrip_checks
+                nonlocal terminal_tree_productive_anchor_split_roundtrip_checks
                 nonlocal terminal_tree_anchor_split_absorption_checks
                 nonlocal terminal_tree_productive_anchor_split_absorption_checks
                 nonlocal terminal_tree_anchor_split_proper_absorption_checks
@@ -1339,6 +1347,35 @@ def analyze_case(
                             terminal_tree_productive_anchor_split_boundary_checks += (
                                 1
                             )
+                    split_roundtrip_vector = tuple(expected)
+                    if anchor_base_vector != split_roundtrip_vector:
+                        raise AssertionError(
+                            {
+                                "kind": (
+                                    "terminal-branch-anchor-split-"
+                                    "roundtrip-failed"
+                                ),
+                                "p": p,
+                                "k": k,
+                                "syndrome": list(syn),
+                                "fixed_roots": list(fixed_roots),
+                                "current_fixed": list(current_fixed),
+                                "current_core": list(current_core),
+                                "anchor_base": list(anchor_base),
+                                "exit_roots": sorted(child_root_indices),
+                                "anchor_base_vector": list(
+                                    anchor_base_vector
+                                ),
+                                "roundtrip_vector": list(
+                                    split_roundtrip_vector
+                                ),
+                            }
+                        )
+                    terminal_tree_anchor_split_roundtrip_checks += 1
+                    if productive_children >= 2:
+                        terminal_tree_productive_anchor_split_roundtrip_checks += (
+                            1
+                        )
                     ordered_mode_flags = math.factorial(mode_count)
                     terminal_tree_anchor_split_ordered_mode_flags += (
                         ordered_mode_flags
@@ -4190,6 +4227,12 @@ def analyze_case(
         "terminal_tree_productive_anchor_split_boundary_checks": (
             terminal_tree_productive_anchor_split_boundary_checks
         ),
+        "terminal_tree_anchor_split_roundtrip_checks": (
+            terminal_tree_anchor_split_roundtrip_checks
+        ),
+        "terminal_tree_productive_anchor_split_roundtrip_checks": (
+            terminal_tree_productive_anchor_split_roundtrip_checks
+        ),
         "terminal_tree_anchor_split_absorption_checks": (
             terminal_tree_anchor_split_absorption_checks
         ),
@@ -4632,6 +4675,8 @@ def print_summary(results: Sequence[dict[str, object]]) -> None:
             f"{result['terminal_tree_anchor_split_support_checks']} "
             f"anchor_split_boundaries="
             f"{result['terminal_tree_anchor_split_boundary_checks']} "
+            f"anchor_split_roundtrips="
+            f"{result['terminal_tree_anchor_split_roundtrip_checks']} "
             f"anchor_split_absorptions="
             f"{result['terminal_tree_anchor_split_absorption_checks']} "
             f"anchor_split_ordered_flags="

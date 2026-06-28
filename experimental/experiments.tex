@@ -4283,6 +4283,22 @@ a deletion-tree artifact.  The verifier checks this in the largest \(F_7^*\)
 audit with \(34560\) split-support checks and \(73440\) root-marked
 split-boundary checks, including \(32400\) productive supports and \(69120\)
 productive boundaries.
+Conversely, an active split support with nonzero root-marked selected modes
+reconstructs the packet: if
+\[
+  H_{\tau+1,|S|-1}(s)\ell_{S\setminus\{y\}}
+  =c_y(1,y,\ldots,y^\tau)\qquad(y\in Y),
+\]
+then
+\[
+  H_{\tau+m,|A|}(s)\ell_A
+  =
+  \left(\sum_{y\in Y}{c_y\over
+    \prod_{z\in Y,\ z\ne y}(y-z)}\,y^i\right)_{0\le i\le\tau+m-1}.
+\]
+So the split-support certificate is equivalent to the sparse anchor-base
+packet.  The verifier checks \(34560\) such roundtrips in the largest
+\(F_7^*\) audit, with \(32400\) productive roundtrips.
 The certificate is stable under partial mode absorption.  For
 \(E\subset Y\), \(A_E=A\cup E\), and \(Y_E=Y\setminus E\),
 \[

@@ -1683,6 +1683,46 @@ The verifier checks (SS) and (SB) for every produced packet.  In the largest
 root-marked split-boundary checks; the productive subaudit contributes
 `32400` split supports and `69120` split-boundary checks.
 
+## Root-Marked Split Supports Reconstruct Packets
+
+Conversely, the split-support data reconstructs the packet.  Let `A` and `Y`
+be disjoint, `S=A union Y`, and suppose
+
+```text
+H_{tau,|S|}(s)ell_S=0,
+H_{tau+1,|S|-1}(s)ell_{S\{y}}
+  = c_y(1,y,...,y^tau),        c_y != 0
+```
+
+for every `y in Y`.  Put
+
+```text
+d_y=prod_{z in Y,z!=y}(y-z),        a_y=c_y/d_y.
+```
+
+Then the anchor-base vector is exactly the sparse packet
+
+```text
+H_{tau+m,|A|}(s)ell_A
+  = (sum_{y in Y} a_y y^i)_{0<=i<=tau+m-1}.       (EQ)
+```
+
+Proof: applying `ell_{Y\{y}}` to `H(s)ell_A` gives the displayed
+root-marked boundary for `S\{y}`.  For each row, these equations form the same
+diagonal Lagrange system used in (MP), whose unique solution is the sparse
+moment packet with amplitudes `a_y=c_y/d_y`.
+
+Thus the intrinsic object is an equivalence:
+
+```text
+sparse anchor-base packet
+<-> active split support plus nonzero root-marked selected modes.
+```
+
+The verifier checks this roundtrip for every produced packet.  In the largest
+`F_7^*` audit, this gives `34560` packet-reconstruction roundtrips, with
+`32400` productive roundtrips.
+
 ## Partial Mode Absorption Is Lossless
 
 The split-support certificate is stable when packet modes are absorbed into

@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 split-support packet equivalence
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_hankel_t2_one_exchange_lift.md`,
+  `experimental/scripts/verify_m1_hankel_t2_triangle_packets.py`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / STRUCTURAL / EXACT FINITE AUDIT.
+- **What is being added:** Completes the converse direction: an active split
+  support `A union Y` with nonzero root-marked boundaries on every selected
+  mode reconstructs the sparse anchor-base packet by the Lagrange formula.
+- **How it is useful:** Turns the split-support certificate into an exact
+  equivalence, giving a direct M1 target independent of deletion-tree
+  presentation.
+- **What to do next:** Bound the number of equivalent split-support
+  certificates, or classify large families as quotient-periodic, tangent, or
+  lower-core.
+
 ### 2026-06-28 - M1 split-support zero-free mode cubes
 
 - **Agent/model:** AllenGrahamHart / Codex audit.
