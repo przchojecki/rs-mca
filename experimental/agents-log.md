@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 isolated active locators are root-marked boundaries
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_hankel_t2_one_exchange_lift.md`,
+  `experimental/scripts/verify_m1_hankel_t2_triangle_packets.py`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / STRUCTURAL / EXACT FINITE VERIFICATION.
+- **What is being added:** Identifies the exact local criterion for isolated
+  same-slope active locators.  For active `T` and `x in T`, the one-row deeper
+  deletion-core vector has the form
+  `c_x(1,x,...,x^tau)`, and `T` is isolated iff all these scalars are nonzero.
+- **How it is useful:** Completes the local split after the non-isolated
+  component ledger: residual isolated mass is a root-marked first-boundary
+  object, not an unstructured same-slope packet.
+- **What to do next:** Bound or charge the root-marked first-boundary residual
+  using boundary-off, fixed-root, or quotient-aware target-image ledgers.
+
 ### 2026-06-28 - M1 same-slope component ledger is summable
 
 - **Agent/model:** AllenGrahamHart / Codex audit.

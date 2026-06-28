@@ -33,6 +33,9 @@ contains a lower-core H_{4,j-2} witness.
 The verifier also records the resulting component ledger: non-isolated active
 complements are covered by one-row edge cores, and non-star components are
 covered by lower-core witnesses.
+Finally it checks the isolated-vertex criterion: an active complement is
+isolated in the one-exchange graph exactly when every one-root deletion has a
+nonzero H_{3,j-1} boundary vector.
 
 It also checks the full-top zero-syndrome lemma: if all j+1 complements
 U\\{x} inside one (j+1)-top set U are active, then the combined syndrome is
@@ -234,6 +237,8 @@ def analyze_case(
     nonzero_component_size_histogram: Counter[str] = Counter()
     nonisolated_ledger_slack_histogram: Counter[int] = Counter()
     nonstar_component_ledger_slack_histogram: Counter[int] = Counter()
+    isolated_vertex_histogram: Counter[int] = Counter()
+    isolated_boundary_zero_histogram: Counter[int] = Counter()
     max_active = 0
     max_edges = 0
     max_triangles = 0
@@ -246,6 +251,7 @@ def analyze_case(
     max_nonzero_lower_core_witness_count = 0
     max_nonzero_nonisolated_ledger_slack = 0
     max_nonzero_nonstar_component_ledger_slack = 0
+    max_nonzero_isolated_vertices = 0
     one_exchange_edges = 0
     star_triangles = 0
     top_triangles = 0
@@ -354,6 +360,71 @@ def analyze_case(
         max_triangles = max(max_triangles, case_triangles)
 
         active_set = set(active)
+        case_isolated_vertices = 0
+        for index in active:
+            complement = complements[index]
+            has_active_neighbor = any(
+                neighbor in active_set for neighbor in one_exchange_neighbors[index]
+            )
+            zero_boundary_count = 0
+            for root_index in complement:
+                root = domain[root_index]
+                core = tuple(item for item in complement if item != root_index)
+                boundary_vector = hankel_apply(syn, cached_locator(core), t + 1, p)
+                for row in range(t):
+                    if boundary_vector[row + 1] != root * boundary_vector[row] % p:
+                        raise AssertionError(
+                            {
+                                "kind": "isolated-boundary-veronese-failed",
+                                "p": p,
+                                "k": k,
+                                "syndrome": list(syn),
+                                "complement": list(complement),
+                                "deleted_root": root_index,
+                                "root_value": root,
+                                "boundary_vector": list(boundary_vector),
+                            }
+                        )
+                boundary_is_zero = not any(boundary_vector)
+                if (boundary_vector[0] == 0) != boundary_is_zero:
+                    raise AssertionError(
+                        {
+                            "kind": "isolated-boundary-zero-scalar-mismatch",
+                            "p": p,
+                            "k": k,
+                            "syndrome": list(syn),
+                            "complement": list(complement),
+                            "deleted_root": root_index,
+                            "boundary_vector": list(boundary_vector),
+                        }
+                    )
+                if boundary_is_zero:
+                    zero_boundary_count += 1
+
+            is_isolated = not has_active_neighbor
+            if is_isolated != (zero_boundary_count == 0):
+                raise AssertionError(
+                    {
+                        "kind": "isolated-vertex-criterion-failed",
+                        "p": p,
+                        "k": k,
+                        "syndrome": list(syn),
+                        "complement": list(complement),
+                        "has_active_neighbor": has_active_neighbor,
+                        "zero_boundary_count": zero_boundary_count,
+                    }
+                )
+            if is_isolated:
+                case_isolated_vertices += 1
+            isolated_boundary_zero_histogram[zero_boundary_count] += 1
+
+        isolated_vertex_histogram[case_isolated_vertices] += 1
+        if any(syn):
+            max_nonzero_isolated_vertices = max(
+                max_nonzero_isolated_vertices,
+                case_isolated_vertices,
+            )
+
         case_corner_histogram: Counter[str] = Counter()
         case_lower_core_witnesses: set[tuple[int, ...]] = set()
         for center in active:
@@ -796,6 +867,7 @@ def analyze_case(
         "max_nonzero_nonstar_component_ledger_slack": (
             max_nonzero_nonstar_component_ledger_slack
         ),
+        "max_nonzero_isolated_vertices": max_nonzero_isolated_vertices,
         "one_exchange_edges": one_exchange_edges,
         "star_triangles": star_triangles,
         "top_triangles": top_triangles,
@@ -828,6 +900,10 @@ def analyze_case(
         ),
         "nonstar_component_ledger_slack_histogram": dict(
             sorted(nonstar_component_ledger_slack_histogram.items())
+        ),
+        "isolated_vertex_histogram": dict(sorted(isolated_vertex_histogram.items())),
+        "isolated_boundary_zero_histogram": dict(
+            sorted(isolated_boundary_zero_histogram.items())
         ),
         "nonzero_top_active_size_histogram": dict(
             sorted(nonzero_top_active_size_histogram.items())
@@ -868,6 +944,7 @@ def print_summary(results: Sequence[dict[str, object]]) -> None:
             f"max_nonzero_lower_component="
             f"{result['max_nonzero_lower_core_component_size']} "
             f"max_nonzero_edge_cores={result['max_nonzero_edge_core_count']} "
+            f"max_nonzero_isolated={result['max_nonzero_isolated_vertices']} "
             f"max_nonzero_top_active={result['max_nonzero_top_active_members']}"
         )
     print("PASS")

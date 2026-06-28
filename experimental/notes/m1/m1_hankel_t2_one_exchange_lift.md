@@ -397,6 +397,50 @@ Thus same-slope support multiplicity is paid by lower Hankel ledgers with only
 the local factor `n-j+1` for non-isolated vertices, and branching component
 count is paid by the two-row lower-core ledger.
 
+## Isolated Active Locator Criterion
+
+It remains to identify the exact local shape of the vertices not covered by
+`A^+_{tau,j}(s)`.  Let `T` be active for `H_{tau,j}(s)` and fix a root
+`x in T`.  Put `C=T\{x}`, `L=ell_C`, and
+
+```text
+c_i = sum_h L_h s_{i+h}.
+```
+
+Since `ell_T=(X-x)L`, activity of `T` gives
+
+```text
+c_{i+1}=x c_i,        0<=i<tau.
+```
+
+Thus the one-row deeper boundary vector on `C` has the root-marked form
+
+```text
+H_{tau+1,j-1}(s)ell_C
+  = c_0 (1,x,x^2,...,x^tau).                    (IB)
+```
+
+For another extension `C union {y}`, the activity equations are
+
+```text
+c_{i+1}=y c_i,        0<=i<tau.
+```
+
+If `c_0=0`, then the whole boundary vector in (IB) is zero and every extension
+of `C` is active.  If `c_0!=0`, then these equations force `y=x`; no
+one-exchange neighbor of `T` occurs through this deletion core.
+
+Consequently, assuming `j<n`, an active locator `T` is isolated in the
+one-exchange graph if and only if for every `x in T`,
+
+```text
+H_{tau+1,j-1}(s)ell_{T\{x}} != 0.
+```
+
+Equivalently, each deletion core carries a nonzero scalar on the Veronese
+vector `(1,x,...,x^tau)`.  This turns isolated same-slope support mass into a
+root-marked first-boundary residual rather than an unexplained packet.
+
 ## Same-Slope Component Dichotomy
 
 Let `G_s` be the graph on active `j`-complements for a fixed combined syndrome
@@ -575,6 +619,15 @@ The same run checks the component ledger inequalities:
 | --- | ---: | ---: | ---: | ---: |
 | `F_7`, `H=F_7^*`, `n=6,k=1,a=3,j=3` | 5 | 1 | 10 | 0 |
 | `F_7`, `H=F_7^*`, `n=6,k=2,a=4,j=2` | 1 | 0 | 0 | 0 |
+
+It also checks the isolated active locator criterion:
+
+| field/domain | max nonzero isolated active locators | deletion zero-counts seen |
+| --- | ---: | --- |
+| `F_5`, `H=F_5^*`, `n=4,k=1,a=3,j=1` | 1 | `0,1` |
+| `F_7`, `H=F_7^*`, `n=6,k=1,a=3,j=3` | 2 | `0,1,2,3` |
+| `F_7`, `H=F_7^*`, `n=6,k=2,a=4,j=2` | 1 | `0,1,2` |
+| `F_7`, `H=F_7^*`, `n=6,k=3,a=5,j=1` | 1 | `0,1` |
 
 The `F_7,k=2,j=2` scan is the first exact top-packet check in this file.  It
 finds twenty top triangles, all on the zero combined syndrome.  This is not an

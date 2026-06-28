@@ -3747,6 +3747,20 @@ into lower cores \(R\) with \(H_{\tau+2,j-2}(s)\ell_R=0\), because such an
 active lower core makes the full two-root Johnson plane over \(R\) active and
 connected.  Thus both support mass and branching component count are paid by
 lower Hankel ledgers with explicit local factors.
+The complementary isolated vertices have an exact first-boundary form.  If
+\(T\) is active, \(x\in T\), \(C=T\setminus\{x\}\), and
+\[
+  c_i=\sum_h(\ell_C)_h s_{i+h},
+\]
+then \(H_{\tau,j}(s)\ell_T=0\) implies
+\[
+  H_{\tau+1,j-1}(s)\ell_C
+  =c_0(1,x,x^2,\ldots,x^\tau).
+\]
+The extension \(C\cup\{y\}\) is active only when either this vector is zero or
+\(y=x\).  Hence, for \(j<n\), \(T\) is isolated exactly when all deletion
+cores have nonzero root-marked boundary vectors.  Isolated mass is therefore a
+root-marked first-boundary residual, not a hidden same-slope packet.
 This local statement globalizes across connected components.  In the active
 one-exchange graph for fixed \(w_\lambda\), if a nontrivial component has no
 lower-core corner, then every two-edge corner is a star corner.  Choosing one
@@ -3790,7 +3804,10 @@ components of size \(4\) and \(36\) nonzero lower-core components of size
 \(10\); the \(F_7^*,j=2\) audit has \(36\) nonzero star components of size
 \(5\) and no nonzero lower-core components.  The component ledger is exact in
 the \(F_7^*,j=2\) nonzero audit, while the \(F_7^*,j=3\) nonzero audit uses at
-most \(5\) edge cores and \(1\) lower-core witness per syndrome.
+most \(5\) edge cores and \(1\) lower-core witness per syndrome.  The same
+scan checks the isolated criterion, with at most \(2\) nonzero isolated active
+locators in the \(F_7^*,j=3\) case and at most \(1\) in the other listed
+cases.
 The common-core and two-denominator formulas persist verbatim after this
 root-free replacement.  With \(C=\gcd(D:D\in M_{\min})\), \(\gamma=\deg C\),
 and \(E_D=D/C\),
