@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 one-row scalar layer is a linear-image list
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_boundary_off_external_anchor_normal_form.md`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / PROOF-PROGRAM.
+- **What is being added:** In the `L=1` short scalar layer with nonzero
+  controlling high tail, the slope parameter is eliminated by the top
+  coefficient: `QA+lambda B=w` and `top(A)=-lambda h` become
+  `T_h(A)=w` for the injective linear map
+  `T_h(A)=QA-(top(A)/h)B`.
+- **How it is useful:** This isolates the only short scalar layer without
+  high-tail codimension saving as a concrete `k+1` dimensional linear-image
+  list, rather than a free two-parameter incidence.
+- **What to do next:** Bound these one-row linear-image lists directly, or
+  relate them to the tangent/high-agreement ledgers already charged in M1.
+
 ### 2026-06-28 - M1 short scalar return slices have dimension k+1
 
 - **Agent/model:** AllenGrahamHart / Codex audit.

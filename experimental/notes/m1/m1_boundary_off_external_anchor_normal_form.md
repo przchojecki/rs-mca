@@ -10622,6 +10622,88 @@ has dimension `k+1` and codimension `L-1` in the `K`-dimensional space
 of the kernel `F[X]_<k`.  The membership assertions are exactly the high-tail
 equations from Corollaries 40.84 and 40.86.
 
+## Corollary 40.88: The One-Row Short Scalar Layer Is A Linear-Image List
+
+Keep the notation of Corollary 40.87, and assume that
+
+```text
+L=1,        h=tau_K(H)!=0.
+```
+
+Write
+
+```text
+top(A)=tau_K(A)
+```
+
+for the coefficient of `X^k` in `A in F[X]_<k+1`.  In the four short scalar
+charts, the branch equations have the common form
+
+```text
+Q A + lambda B = w        on S,                    (OneRowList)
+top(A) = - lambda h.                               (OneRowTop)
+```
+
+Here:
+
+1. in the positive-degree `Qg` chart, `A=C'_z`, `lambda=z`,
+   `B=B_g=-R_g`, and `w=Qf`;
+2. in the positive-degree `Qf` chart, `A=C'_y`, `lambda=y=1/z`,
+   `B=B_f=-R_f`, and `w=Qg`;
+3. in the constant `Qg` chart, `Q=1`, `B=0`, `A=R_z`, `lambda=z`,
+   and `w=f`;
+4. in the constant `Qf` chart, `Q=1`, `B=0`, `A=R_y`,
+   `lambda=y=1/z`, and `w=g`.
+
+As before, the reciprocal `Qf` charts parametrize the nonzero original slopes;
+the original zero slope remains separate.
+
+Define the linear map
+
+```text
+T_h:F[X]_<k+1 -> F[X]_<k+e+1,
+T_h(A)=Q A - (top(A)/h) B.                         (OneRowImage)
+```
+
+In the constant charts this means `e=0`, `Q=1`, `B=0`, and hence `T_h(A)=A`.
+Then (OneRowList) and (OneRowTop) are equivalent to the single support-list
+condition
+
+```text
+T_h(A)=w        on S,                              (LinearImageList)
+```
+
+with the scalar parameter recovered by
+
+```text
+lambda=-top(A)/h.
+```
+
+Moreover `T_h` is injective.  Thus the only short scalar layer with no
+high-tail codimension saving is still not a free two-parameter incidence: it
+is exactly list decoding against the `k+1` dimensional linear image
+`T_h(F[X]_<k+1)`, with the slope parameter a linear functional of the list
+entry.
+
+### Proof
+
+The equation (OneRowTop) gives `lambda=-top(A)/h`.  Substituting this value
+of `lambda` into (OneRowList) gives (LinearImageList).  Conversely, if
+(LinearImageList) holds and `lambda=-top(A)/h`, then (OneRowTop) is automatic
+and (OneRowList) is exactly the definition of `T_h`.
+
+It remains to prove injectivity.  In the constant charts this is immediate
+because `T_h` is the identity on `F[X]_<k+1`.  In the positive-degree charts,
+suppose `T_h(A)=0`, and put `c=top(A)/h`.  Then
+
+```text
+Q A = c B.
+```
+
+If `c=0`, then `QA=0`, hence `A=0`.  If `c!=0`, then `Q` divides `B`; since
+`deg B<deg Q`, this forces `B=0`, and again `QA=0`, so `A=0`.  Therefore
+`ker T_h=0`.
+
 ## Corollary 41: The Global Common-Image Ledger Is Endpoint-Only
 
 Let `GCI` be the set of monic degree-`c` split core locators `L` for which
@@ -13500,6 +13582,9 @@ supercode endpoint high-tail branch, not a positive-degree residue-line datum.
 Corollary 40.87 packages all short scalar return slices as effective
 dimension-`k+1` high-tail-line subcodes of the enlarged code, with codimension
 `L-1` in a high-tail window of length `L`.
+Corollary 40.88 identifies the remaining one-row layer `L=1` as a
+dimension-`k+1` linear-image list whose slope parameter is recovered from the
+top coefficient, with the reciprocal `Qf` zero-slope exception still separate.
 Corollary 41 packages the common-image branch into endpoint-type ledgers; it
 does not prove the endpoint rank hypotheses needed for the displayed
 `(q+2)binom(n,b)` bound. Corollary 42 packages the globally full core ledger
