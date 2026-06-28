@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 rank-one coefficient ledgers are quotient-gauge invariant
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_boundary_off_external_anchor_normal_form.md`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / PROOF-PROGRAM.
+- **What is being added:** Proves that rank-one support-wise noncontained
+  coefficient sets are unchanged after adding global Reed-Solomon codewords to
+  the direction and target.
+- **How it is useful:** Shows that standard `Qg` and nonzero `Qf`
+  residue-line presentations are quotient gauges of the endpoint rank-one
+  problems `Mu_{-g}(f)` and `Mu_{-f}(g)` rather than distinct coefficient
+  ledgers.
+- **What to do next:** Use quotient-normal endpoint classes as the object to
+  pack; keep denominator charts only for active-incidence and
+  quotient-periodic structure.
+
 ### 2026-06-28 - M1 divided-evaluation fibers are coefficient-lossless
 
 - **Agent/model:** AllenGrahamHart / Codex audit.

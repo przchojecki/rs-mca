@@ -16292,6 +16292,99 @@ minimal representatives of a cutoff family gives (MinRepCoeffLedger).  If
 `W(e_s)<=1` by Corollary 40.148, and `|S_min|=|Ev(A_{<=E})|`, proving
 (OneCoeffEvalLossless).
 
+## Corollary 40.166: Rank-One Coefficients Are Quotient-Gauge Invariant
+
+Let
+
+```text
+C=RS[F,D,k].
+```
+
+Write elements of `C` as their evaluations on `D`.
+In the setup of Corollary 40.111, let `c,d in C`.  Then
+
+```text
+Mu_{phi+c}^{nc,>=a}(Y+d)=Mu_phi^{nc,>=a}(Y).       (GaugeMu)
+```
+
+Equivalently, the rank-one noncontained coefficient set depends only on the
+two quotient classes
+
+```text
+[phi], [Y] in F^D / C,
+```
+
+not on the chosen global-codeword representatives of the direction and target.
+
+Consequently, in the standard-degree scalar residue-line branch of Corollary
+40.82, all `Qg` presentations have the same quotient-normal coefficient set
+
+```text
+Lambda_{Q,-R_g}^{nc,>=a}(Qf)=Mu_{-g}^{nc,>=a}(f),                  (QgGauge)
+```
+
+because `-R_g/Q=H_g-g` on `D`.  Similarly, all nonzero-slope `Qf`
+presentations have the same reciprocal-parameter coefficient set
+
+```text
+Lambda_{Q,-R_f}^{nc,>=a}(Qg)=Mu_{-f}^{nc,>=a}(g),                  (QfGauge)
+```
+
+because `-R_f/Q=H_f-f` on `D`; this is still the reciprocal parameter
+`y=1/z`, so the original zero slope remains the separate exception from
+Corollary 40.82.
+
+Thus standard base-dimension residue-line presentations are quotient gauges
+of the two endpoint rank-one problems for the original line.  Denominators
+and residues remain useful active-incidence data for proving sharper packing
+or excluding quotient-periodic branches, but their global quotient parts do
+not create distinct noncontained coefficient ledgers.
+
+### Proof
+
+A coefficient `lambda` lies in `Mu_{phi+c}^{nc,>=a}(Y+d)` exactly when, for
+some `A in C` and some `S subset D` with `|S|>=a`,
+
+```text
+A+lambda(phi+c)=Y+d        on S.
+```
+
+This is equivalent to
+
+```text
+(A+lambda c-d)+lambda phi=Y        on S,
+```
+
+and `A+lambda c-d` is again in `C`.  The same substitution in the opposite
+direction gives the reverse implication.
+
+The support-wise noncontained condition is unchanged because, for every
+support `S`, the restrictions `c|_S` and `d|_S` lie in `RS[F,S,k]`.  Hence
+
+```text
+(phi+c)|_S in RS[F,S,k] iff phi|_S in RS[F,S,k],
+(Y+d)|_S   in RS[F,S,k] iff Y|_S   in RS[F,S,k].
+```
+
+This proves (GaugeMu).
+
+For the `Qg` branch of Corollary 40.82, division gives
+
+```text
+g=H_g+R_g/Q        on D,
+```
+
+so the divided residue direction is
+
+```text
+(-R_g)/Q=H_g-g.
+```
+
+Applying (GaugeMu) with `c=H_g` and `d=0` identifies
+`Mu_{H_g-g}^{nc,>=a}(f)` with `Mu_{-g}^{nc,>=a}(f)`, which is (QgGauge).
+The `Qf` branch is identical after swapping `f` and `g`; its coefficient is
+the reciprocal parameter `y=1/z`, so the zero-slope exception is unchanged.
+
 ## Corollary 41: The Global Common-Image Ledger Is Endpoint-Only
 
 Let `GCI` be the set of monic degree-`c` split core locators `L` for which
@@ -19426,6 +19519,11 @@ noncontained coefficient set, so cutoff coefficient ledgers pay only one
 chosen representative per divided evaluation datum.  In the one-coefficient
 range this removes the `Pi_q(2E-n+1)` tail multiplier from the actual slope
 ledger.
+Corollary 40.166 further quotients those divided data by global codeword
+gauge: rank-one coefficient sets depend only on the classes of direction and
+target modulo `RS[F,D,k]`.  Hence standard `Qg` presentations all have the
+same coefficient set as `Mu_{-g}^{nc,>=a}(f)`, while standard nonzero `Qf`
+presentations have the reciprocal set `Mu_{-f}^{nc,>=a}(g)`.
 Corollary 41 packages the common-image branch into endpoint-type ledgers; it
 does not prove the endpoint rank hypotheses needed for the displayed
 `(q+2)binom(n,b)` bound. Corollary 42 packages the globally full core ledger
