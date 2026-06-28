@@ -30,6 +30,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-29 - M1 b=2 no-base escape profiles
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_hankel_t2_one_exchange_lift.md`,
+  `experimental/experiments.tex`,
+  `experimental/scripts/verify_m1_hankel_t2_triangle_packets.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / STRUCTURAL / REDUCTION.
+- **What is being added:** Refines the no-base determinant-gate term by
+  escape profile: if `j` roots lie outside the dominant projective fiber, then
+  the reciprocal weight is at most `1/(j(q-j))`, and small-`j` profiles
+  descend to width-`j` projective-fiber quotient lines.
+- **How it is useful:** Gives a tunable route for the remaining no-base M1
+  term: keep spread profiles in the weighted determinant-gate ledger while
+  charging concentrated profiles to bounded-width quotient ledgers.
+- **What to do next:** Use the profile split to attack the remaining
+  determinant-gate count across canonical peeled anchors.
+
 ### 2026-06-29 - M1 b=2 no-base determinant saving
 
 - **Agent/model:** AllenGrahamHart / Codex audit.

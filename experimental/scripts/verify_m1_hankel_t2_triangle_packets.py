@@ -7370,56 +7370,125 @@ def analyze_case(
                                                 if (
                                                     candidate_base_occupancy == 0
                                                     and residual_size >= 2
-                                                    and candidate_good_pairs
-                                                    < residual_size - 1
                                                 ):
-                                                    raise AssertionError(
-                                                        {
-                                                            "kind": (
-                                                                "productive-"
-                                                                if productive
-                                                                else ""
-                                                            )
-                                                            + "marked-core-"
-                                                            "deficit-anchor-"
-                                                            "direction-mds-"
-                                                            "projective-"
-                                                            "nobase-good-pair-"
-                                                            "lower-bound-"
-                                                            "failed",
-                                                            "p": p,
-                                                            "k": k,
-                                                            "syndrome": list(syn),
-                                                            "fixed_roots": list(
-                                                                fixed_roots
-                                                            ),
-                                                            "unmarked_core": list(
-                                                                unmarked_core
-                                                            ),
-                                                            "marked_count": (
-                                                                marked_count
-                                                            ),
-                                                            "core_deficit": (
-                                                                core_deficit
-                                                            ),
-                                                            "anchor": list(anchor),
-                                                            "candidate": list(
-                                                                candidate
-                                                            ),
-                                                            "candidate_good_pairs": (
-                                                                candidate_good_pairs
-                                                            ),
-                                                            "lower_bound": (
-                                                                residual_size - 1
-                                                            ),
-                                                            "fiber_counts": {
-                                                                str(key): count
-                                                                for key, count in (
-                                                                    candidate_fiber_counts.items()
+                                                    if not (
+                                                        1
+                                                        <= candidate_projective_escape
+                                                        <= residual_size - 1
+                                                    ):
+                                                        raise AssertionError(
+                                                            {
+                                                                "kind": (
+                                                                    "productive-"
+                                                                    if productive
+                                                                    else ""
                                                                 )
-                                                            },
-                                                        }
+                                                                + "marked-core-"
+                                                                "deficit-anchor-"
+                                                                "direction-mds-"
+                                                                "projective-"
+                                                                "nobase-"
+                                                                "degree-gap-"
+                                                                "failed",
+                                                                "p": p,
+                                                                "k": k,
+                                                                "syndrome": list(
+                                                                    syn
+                                                                ),
+                                                                "fixed_roots": list(
+                                                                    fixed_roots
+                                                                ),
+                                                                "unmarked_core": list(
+                                                                    unmarked_core
+                                                                ),
+                                                                "marked_count": (
+                                                                    marked_count
+                                                                ),
+                                                                "core_deficit": (
+                                                                    core_deficit
+                                                                ),
+                                                                "anchor": list(
+                                                                    anchor
+                                                                ),
+                                                                "candidate": list(
+                                                                    candidate
+                                                                ),
+                                                                "projective_escape": (
+                                                                    candidate_projective_escape
+                                                                ),
+                                                                "fiber_counts": {
+                                                                    str(key): count
+                                                                    for key, count in (
+                                                                        candidate_fiber_counts.items()
+                                                                    )
+                                                                },
+                                                            }
+                                                        )
+                                                    nobase_profile_lower = (
+                                                        candidate_projective_escape
+                                                        * (
+                                                            residual_size
+                                                            - candidate_projective_escape
+                                                        )
                                                     )
+                                                    if (
+                                                        candidate_good_pairs
+                                                        < nobase_profile_lower
+                                                    ):
+                                                        raise AssertionError(
+                                                            {
+                                                                "kind": (
+                                                                    "productive-"
+                                                                    if productive
+                                                                    else ""
+                                                                )
+                                                                + "marked-core-"
+                                                                "deficit-anchor-"
+                                                                "direction-mds-"
+                                                                "projective-"
+                                                                "nobase-good-pair-"
+                                                                "profile-bound-"
+                                                                "failed",
+                                                                "p": p,
+                                                                "k": k,
+                                                                "syndrome": list(
+                                                                    syn
+                                                                ),
+                                                                "fixed_roots": list(
+                                                                    fixed_roots
+                                                                ),
+                                                                "unmarked_core": list(
+                                                                    unmarked_core
+                                                                ),
+                                                                "marked_count": (
+                                                                    marked_count
+                                                                ),
+                                                                "core_deficit": (
+                                                                    core_deficit
+                                                                ),
+                                                                "anchor": list(
+                                                                    anchor
+                                                                ),
+                                                                "candidate": list(
+                                                                    candidate
+                                                                ),
+                                                                "candidate_good_pairs": (
+                                                                    candidate_good_pairs
+                                                                ),
+                                                                "projective_escape": (
+                                                                    candidate_projective_escape
+                                                                ),
+                                                                "lower_bound": (
+                                                                    nobase_profile_lower
+                                                                ),
+                                                                "fiber_counts": {
+                                                                    str(key): count
+                                                                    for key, count in (
+                                                                        candidate_fiber_counts.items()
+                                                                    )
+                                                                },
+                                                            }
+                                                        )
                                                 if (
                                                     candidate_good_pairs
                                                     < dominant_escape_lower

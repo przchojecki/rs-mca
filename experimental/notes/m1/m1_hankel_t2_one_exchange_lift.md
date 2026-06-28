@@ -4398,6 +4398,71 @@ escape value `2/q` to the exact no-base value `1/(q-1)`.
 The verifier asserts this lower bound for every audited `b=2` no-base
 residual candidate in the existing projective-good-pair audit.
 
+## No-Base Escape Profiles Descend to Quotient Lines
+
+The previous bound can be kept profile-by-profile.  For a no-base support
+`R`, write
+
+```text
+esc_A(R)=q-m_A(R),
+```
+
+where `m_A(R)` is the largest projective-fiber occupancy in `R`.  The
+degree-gap exclusion gives
+
+```text
+1<=esc_A(R)<=q-1.
+```
+
+If `esc_A(R)=j`, then the largest projective fiber has size `q-j`, and the
+pairs between that fiber and its complement already give
+
+```text
+g_A(R)>=j(q-j).                                (PF2-nobase-profile)
+```
+
+For
+
+```text
+F^{nb}(A)={ R in F(A) : R cap B_0=empty },
+I_{A,j}^{nb}={ e in I_A^{nb} : esc_A(pi_A(e))=j },
+```
+
+the no-base part of the weighted ledger therefore satisfies
+
+```text
+|F^{nb}(A)|
+ <= sum_{j=1}^{q-1} (1/(j(q-j))) |I_{A,j}^{nb}|.  (PF2-nobase-profile-ledger)
+```
+
+The dangerous small-escape profiles also have explicit quotient certificates.
+Fix an escape cutoff `u` with `1<=u<q`.  If `esc_A(R)=j<u`, choose a dominant
+projective fiber `lambda` and put `C=R cap ev_A^{-1}(lambda)`, so
+`|C|=q-j`.  For `lambda=[a:b]`, the direction `Q_lambda=bP-aQ` vanishes on
+`C`, hence
+
+```text
+Q_lambda=ell_C Q'_lambda,        deg Q'_lambda<j,
+H(s)(ell_W ell_C Q'_lambda)=0.
+```
+
+As in the near-fiber descent, quotienting by `ell_C` puts the remaining roots
+in a width-`j` projective-fiber quotient line `F_{lambda,C}(A)`.  Consequently
+
+```text
+|F^{nb}(A)|
+ <=
+  sum_{j=u}^{q-1} (1/(j(q-j))) |I_{A,j}^{nb}|
+  + sum_{j=1}^{u-1} sum_lambda
+      sum_{C subset ev_A^{-1}(lambda), |C|=q-j}
+        |F_{lambda,C}(A)|.                     (PF2-nobase-cutoff)
+```
+
+Thus the no-base determinant-gate endpoint is not a single undifferentiated
+count.  One may either keep all profiles in the weighted determinant-gate
+ledger, or move the small-escape profiles into bounded-width quotient-line
+ledgers and leave only the larger-escape determinant gates.
+
 ## Width-Zero b=2 Ledger
 
 The fixed-width corollary is especially sharp at `w=0`.  Put
