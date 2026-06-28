@@ -4245,6 +4245,23 @@ ordering multiplicity and the already isolated boundary disjoint aliases
 remain outside this kernel-drop charge.  The verifier checks the anchor-base
 image identity for all \(34560\) packets in the largest \(F_7^*\) audit,
 including all \(32400\) productive packets.
+This kernel drop also has an exchange-distance form.  If
+\(A=I\cup U\), \(A'=I\cup V\), \(|U|=|V|=h\), and \(U\cap V=\emptyset\),
+then
+\[
+  \ell_A-\ell_{A'}=\ell_I(\ell_U-\ell_V),\qquad
+  \deg(\ell_U-\ell_V)<h.
+\]
+So an exchange-distance \(h\) collision is a bounded-degree
+balanced-difference kernel over the common anchor core.  For \(h=1\),
+\(\ell_U-\ell_V\) is a nonzero scalar, hence the collision forces
+\[
+  H_{\tau+m,|I|}(s)\ell_I=0.
+\]
+The one-exchange anchor collision is therefore already a lower-core
+Hankel-kernel event.  In the largest \(F_7^*\) audit the verifier checks
+\(30240\) such one-exchange common cores, including all \(28080\) productive
+size-\(2\) packets, with no kernel hits.
 The common-core and two-denominator formulas persist verbatim after this
 root-free replacement.  With \(C=\gcd(D:D\in M_{\min})\), \(\gamma=\deg C\),
 and \(E_D=D/C\),

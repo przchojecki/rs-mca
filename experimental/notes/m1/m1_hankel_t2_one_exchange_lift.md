@@ -1592,6 +1592,54 @@ productive packets.  Since the visible production fibers are singleton in the
 current audit, no nontrivial anchor-base kernel pairs appear there; if they do
 appear in a later scan, the verifier checks (KD) directly.
 
+## Anchor-Base Exchange Distance Charges
+
+The lower-degree kernel vector in (KD) has an exchange-distance refinement.
+Let two collapsed anchor bases of the same size be
+
+```text
+A=I union U,        A'=I union V,
+```
+
+where `I=A cap A'`, `|U|=|V|=h`, and `U cap V=empty`.  Then
+
+```text
+ell_A-ell_A' = ell_I(ell_U-ell_V),              (ED)
+```
+
+and `ell_U-ell_V` has degree `<h` because the degree-`h` leading terms
+cancel.  Therefore an exchange-distance `h` production collision gives a
+structured lower kernel vector
+
+```text
+H_{tau+m,|I|+h}(s) ell_I(ell_U-ell_V)=0,
+        deg(ell_U-ell_V)<h.                    (EK)
+```
+
+In particular, the one-exchange case `h=1` is completely charged to the
+common anchor core:
+
+```text
+ell_U-ell_V = v-u != 0,
+H_{tau+m,|I|}(s) ell_I=0.                      (OE)
+```
+
+Thus an adjacent collapsed-anchor collision cannot be a new packet-producing
+mechanism.  It is already a lower-core Hankel-kernel event at the common
+anchor base.  Higher exchange distances are similarly bounded-degree
+balanced-difference kernel events over the common anchor core; they are the
+next natural ledger if singleton production fails in larger scans.
+
+The verifier now records the one-exchange common-core checks around produced
+packets.  In the current `t=2` branch audits, all nontrivial collapsed anchor
+bases have size at most one, so the one-exchange refinement exhausts possible
+distinct-anchor-base collisions in these packets.  In the largest `F_7^*`
+case it checks `30240` one-exchange common cores, including all `28080`
+productive size-`2` packets, and finds no lower-core kernel hits.  Thus the
+current finite packets have neither repeated visible labels nor the adjacent
+anchor-base kernel event that would make such a repetition possible at this
+anchor-base size.
+
 ## Root-Marked Slice Is One Row
 
 The zero-boundary subkernel in the fixed-root difference form is cut out by a

@@ -107,6 +107,8 @@ vertices.
 It checks that every terminal packet is the direct Hankel image of its
 collapsed anchor base A=X union R; repeated labels with distinct anchor bases
 therefore force a lower-degree anchor-base kernel relation.
+It also audits the one-exchange refinement: an adjacent anchor-base collision
+forces the common (|A|-1)-core into the same Hankel kernel.
 Equivalently, it records support-unique boundary packets as those with no
 equal-size visible alias.
 The full-domain visible endpoint count is then support-unique labels plus one
@@ -467,6 +469,10 @@ def analyze_case(
     terminal_tree_productive_anchor_base_image_checks = 0
     terminal_tree_anchor_base_kernel_checks = 0
     terminal_tree_productive_anchor_base_kernel_checks = 0
+    terminal_tree_anchor_base_one_exchange_core_checks = 0
+    terminal_tree_productive_anchor_base_one_exchange_core_checks = 0
+    terminal_tree_anchor_base_one_exchange_kernel_hits = 0
+    terminal_tree_productive_anchor_base_one_exchange_kernel_hits = 0
     terminal_tree_mode_rank_checks = 0
     terminal_tree_productive_mode_rank_checks = 0
     terminal_tree_mode_peeling_checks = 0
@@ -638,6 +644,10 @@ def analyze_case(
             nonlocal terminal_tree_productive_anchor_base_image_checks
             nonlocal terminal_tree_anchor_base_kernel_checks
             nonlocal terminal_tree_productive_anchor_base_kernel_checks
+            nonlocal terminal_tree_anchor_base_one_exchange_core_checks
+            nonlocal terminal_tree_productive_anchor_base_one_exchange_core_checks
+            nonlocal terminal_tree_anchor_base_one_exchange_kernel_hits
+            nonlocal terminal_tree_productive_anchor_base_one_exchange_kernel_hits
             nonlocal terminal_tree_mode_rank_checks
             nonlocal terminal_tree_productive_mode_rank_checks
             nonlocal terminal_tree_mode_peeling_checks
@@ -890,6 +900,10 @@ def analyze_case(
                 nonlocal terminal_tree_productive_mode_anchor_reconstruction_checks
                 nonlocal terminal_tree_anchor_base_image_checks
                 nonlocal terminal_tree_productive_anchor_base_image_checks
+                nonlocal terminal_tree_anchor_base_one_exchange_core_checks
+                nonlocal terminal_tree_productive_anchor_base_one_exchange_core_checks
+                nonlocal terminal_tree_anchor_base_one_exchange_kernel_hits
+                nonlocal terminal_tree_productive_anchor_base_one_exchange_kernel_hits
 
                 if not current_core:
                     return (1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
@@ -1190,6 +1204,29 @@ def analyze_case(
                     terminal_tree_anchor_base_image_checks += 1
                     if productive_children >= 2:
                         terminal_tree_productive_anchor_base_image_checks += 1
+                    for removed_anchor in anchor_base:
+                        common_anchor_core = tuple(
+                            anchor
+                            for anchor in anchor_base
+                            if anchor != removed_anchor
+                        )
+                        common_anchor_vector = hankel_apply(
+                            syn,
+                            cached_locator(common_anchor_core),
+                            t + mode_count,
+                            p,
+                        )
+                        terminal_tree_anchor_base_one_exchange_core_checks += 1
+                        if productive_children >= 2:
+                            terminal_tree_productive_anchor_base_one_exchange_core_checks += (
+                                1
+                            )
+                        if not any(common_anchor_vector):
+                            terminal_tree_anchor_base_one_exchange_kernel_hits += 1
+                            if productive_children >= 2:
+                                terminal_tree_productive_anchor_base_one_exchange_kernel_hits += (
+                                    1
+                                )
                     reconstructed_core = tuple(
                         sorted((*lower_core, *child_root_indices))
                     )
@@ -3931,6 +3968,18 @@ def analyze_case(
         "terminal_tree_productive_anchor_base_kernel_checks": (
             terminal_tree_productive_anchor_base_kernel_checks
         ),
+        "terminal_tree_anchor_base_one_exchange_core_checks": (
+            terminal_tree_anchor_base_one_exchange_core_checks
+        ),
+        "terminal_tree_productive_anchor_base_one_exchange_core_checks": (
+            terminal_tree_productive_anchor_base_one_exchange_core_checks
+        ),
+        "terminal_tree_anchor_base_one_exchange_kernel_hits": (
+            terminal_tree_anchor_base_one_exchange_kernel_hits
+        ),
+        "terminal_tree_productive_anchor_base_one_exchange_kernel_hits": (
+            terminal_tree_productive_anchor_base_one_exchange_kernel_hits
+        ),
         "terminal_tree_mode_rank_checks": terminal_tree_mode_rank_checks,
         "terminal_tree_productive_mode_rank_checks": (
             terminal_tree_productive_mode_rank_checks
@@ -4347,6 +4396,10 @@ def print_summary(results: Sequence[dict[str, object]]) -> None:
             f"{result['terminal_tree_anchor_base_image_checks']} "
             f"anchor_base_kernel_checks="
             f"{result['terminal_tree_anchor_base_kernel_checks']} "
+            f"one_exchange_anchor_core_checks="
+            f"{result['terminal_tree_anchor_base_one_exchange_core_checks']} "
+            f"one_exchange_anchor_kernel_hits="
+            f"{result['terminal_tree_anchor_base_one_exchange_kernel_hits']} "
             f"max_nonzero_terminal_tree_mode_size="
             f"{result['max_nonzero_terminal_tree_mode_size']} "
             f"max_nonzero_terminal_tree_mode_rank_size="

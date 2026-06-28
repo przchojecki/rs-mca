@@ -30,6 +30,28 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 anchor-base exchange-distance charges
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_hankel_t2_one_exchange_lift.md`,
+  `experimental/scripts/verify_m1_hankel_t2_triangle_packets.py`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / STRUCTURAL / EXACT FINITE AUDIT.
+- **What is being added:** Refines the anchor-base kernel drop by exchange
+  distance: if `A=I union U` and `A'=I union V`, then
+  `ell_A-ell_A'=ell_I(ell_U-ell_V)` with `deg(ell_U-ell_V)<|U|`.  The
+  one-exchange case forces the common anchor core itself into the Hankel
+  kernel.  In the largest `F_7^*` audit, all `30240` one-exchange common-core
+  checks have no kernel hit, including all `28080` productive checks.
+- **How it is useful:** Charges adjacent collapsed-anchor production
+  collisions to lower-core Hankel kernels, and identifies higher exchange
+  collisions as bounded-degree balanced-difference kernel events over a common
+  anchor core.
+- **What to do next:** Bound the bounded-degree balanced-difference kernel
+  events, starting with whether their split support forces quotient-periodic
+  or tangent structure.
+
 ### 2026-06-28 - M1 anchor-base kernel drop for packet collisions
 
 - **Agent/model:** AllenGrahamHart / Codex audit.
