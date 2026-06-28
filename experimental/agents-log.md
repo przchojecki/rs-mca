@@ -30,6 +30,23 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 root-free multiplier factors are base twists
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_boundary_off_external_anchor_normal_form.md`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / PROOF-PROGRAM.
+- **What is being added:** Shows that if `[HN] in P_v^x(Q_0)` and
+  `B_H == B_0 H^{-1} mod Q_0`, then
+  `Comp_{v,[HN]}(Q_0,B_0)=Comp_{v,[N]}(Q_0,B_H)`.
+- **How it is useful:** After domain-root drop/slice reductions, split
+  external roots and irreducible bounded-degree factors become moving
+  primitive base-class twists rather than hidden coefficient multiplicity
+  inside one fixed class.
+- **What to do next:** Bound or classify the resulting family of twists
+  `B_H mod Q_0` in the active residue-line packing ledger.
+
 ### 2026-06-28 - M1 split domain roots are drop-or-slice data
 
 - **Agent/model:** AllenGrahamHart / Codex audit.

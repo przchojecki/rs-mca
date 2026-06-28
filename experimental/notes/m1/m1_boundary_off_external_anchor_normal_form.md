@@ -13861,6 +13861,81 @@ the displayed depth-zero complement with multiplier `L_{R\S_0}N`.  Its degree
 is `<r_u-u=r_0`, so this case can occur only when the corresponding core-depth
 multiplier space is nonempty.
 
+## Corollary 40.128: Root-Free Multiplier Factors Are Primitive Base Twists
+
+Keep the primitive base setup of Corollary 40.122, and let `0<=v<=t`.  Suppose
+
+```text
+[HN] in P_v^x(Q_0),
+```
+
+with `H,N in F[X]` nonzero, and assume
+
+```text
+H(alpha)!=0        for every alpha in D,
+```
+
+Let `B_H` be the unique representative of degree `<e_0` satisfying
+
+```text
+B_H == B_0 H^{-1}        mod Q_0.                  (BaseTwist)
+```
+
+Then
+
+```text
+gcd(B_H,Q_0)=1,        [N] in P_v^x(Q_0),
+```
+
+and the complement fibers are identical:
+
+```text
+Comp_{v,[HN]}(Q_0,B_0)
+ = Comp_{v,[N]}(Q_0,B_H).                          (RootFreeFactorTwist)
+```
+
+Consequently, after the split domain-root drop-or-slice reduction of
+Corollary 40.127, any remaining multiplier factor with no roots in `D`
+including split external roots and irreducible bounded-degree factors can be
+absorbed into a new primitive residue numerator `B_H`.  Such factors therefore
+belong to the moving base-class ledger; they do not create additional
+coefficient multiplicity inside the original fixed primitive class.  This is
+only a separation statement: bounding the resulting family of twists
+`B_H mod Q_0` remains part of the active residue-line packing problem.
+
+### Proof
+
+Since `[HN] in P_v^x(Q_0)`, the product `HN` is coprime to `Q_0` and has
+degree `<r_v`.  Hence both `H` and `N` are coprime to `Q_0`, `H^{-1}` exists
+in `F[X]/(Q_0)`, and `[N] in P_v^x(Q_0)`.  The displayed no-domain-root
+condition records the intended residual after Corollary 40.127; the algebraic
+fiber identity only uses this invertibility modulo `Q_0`.  The congruence
+(BaseTwist) gives `gcd(B_H,Q_0)=1` because both `B_0` and `H` are invertible
+modulo `Q_0`.
+
+In the same quotient ring,
+
+```text
+B_H^{-1} == H B_0^{-1}        mod Q_0.
+```
+
+Therefore, for any `C subset D` with `|C|=j+v`,
+
+```text
+L_C in F L_D HN B_0^{-1}        mod Q_0
+```
+
+if and only if
+
+```text
+L_C in F L_D N B_H^{-1}        mod Q_0.
+```
+
+These are exactly the defining conditions for the two displayed complement
+fibers, proving (RootFreeFactorTwist).  The interpretation follows by taking
+`H` to be the product of the root-free residual factors after the domain-root
+stratification of Corollary 40.127.
+
 ## Corollary 41: The Global Common-Image Ledger Is Endpoint-Only
 
 Let `GCI` be the set of monic degree-`c` split core locators `L` for which
@@ -16876,6 +16951,10 @@ coefficient-core incidence: every repeated `(a-u)` core has complement in
 Corollary 40.127 stratifies split in-domain multiplier factors: complement
 roots lower exchange depth, while support-side roots become explicit
 fixed-root/root-slice data.
+Corollary 40.128 shows that the remaining root-free multiplier factors can be
+absorbed into a primitive base twist `B_H == B_0H^{-1} mod Q_0`; external and
+irreducible factors are therefore moving-class data, not same-class
+coefficient multiplicity.
 Corollary 41 packages the common-image branch into endpoint-type ledgers; it
 does not prove the endpoint rank hypotheses needed for the displayed
 `(q+2)binom(n,b)` bound. Corollary 42 packages the globally full core ledger
