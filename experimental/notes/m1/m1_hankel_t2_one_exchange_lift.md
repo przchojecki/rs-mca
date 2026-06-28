@@ -2891,6 +2891,57 @@ The verifier now checks (Z1-envelope) whenever it constructs the direction-MDS
 bad-set ledger.  The current largest `F_7^*` scan still has `Z_1(U,W)=empty`
 and `b(U,W)=0` for all produced residual anchors.
 
+## Nonpersistent One-Root Pencils Close Higher Bad Ledgers
+
+The one-root envelope combines with the finite/persistent dichotomy for the
+absorbed pencil.  Recall that
+
+```text
+A_x(U,W)=B(U,W)-x C(U,W)
+```
+
+is a `q x (q-1)` affine pencil.  If it is not persistent, then some maximal
+minor is a nonzero polynomial in `x` of degree at most `q-1`.  Hence the
+one-root bad set satisfies
+
+```text
+|Z_1(U,W)| <= q-1.                               (Z1-finite)
+```
+
+By (Z1-bound), every higher bad ledger then satisfies
+
+```text
+|Z_b^{dir}(U,W)| <= binom(q-1,b).                (finite-Zb)
+```
+
+Substituting this into (DMB) gives the field-size-free fixed-anchor bound
+
+```text
+|F(U,W)| binom(q,b)
+ <= binom(N,b)+binom(q-1,b) binom(N-b,q-b).       (finite-DMB)
+```
+
+Thus the nonpersistent one-root branch closes the entire hierarchy of
+direction-MDS bad ledgers.  The only way a higher-dimensional bad-subset
+obstruction can avoid this finite bound is for the one-root absorbed pencil to
+be persistent.  But the persistent branch already has the moving-kernel
+certificate and endpoint/residual-direction containment described below, so it
+is not a separate high-dimensional bad-set phenomenon.
+
+This is stronger than the coarse projective root-count fallback in the
+polynomial-field window: the bad-subset term is controlled by `q` and `b`, not
+by the number of projective residual directions.  Therefore, for the M1
+fixed-anchor residual route, the main remaining structural target is the
+persistent one-root absorbed pencil after quotient-periodic, tangent, and
+aperiodic charges.
+
+The verifier now checks the finite one-root implication.  It detects whether
+the absorbed pencil has full column rank at some field value; in that finite
+branch it asserts `|Z_1(U,W)|<=q-1` and then checks
+`|Z_b^{dir}(U,W)|<=binom(q-1,b)` whenever the direction-MDS bad-set audit is
+triggered.  The current largest `F_7^*` scan lies in the finite branch with
+`Z_1(U,W)=empty`.
+
 ## Bad Root Slices Are Absorbed-Anchor Rank Defects
 
 The preceding bad-root condition has an equivalent absorbed-anchor form.  Fix

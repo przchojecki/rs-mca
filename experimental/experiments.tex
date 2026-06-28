@@ -4700,6 +4700,27 @@ If \(z<b\), the direction-MDS bound applies.  Higher-dimensional bad subsets
 are therefore charged to the one-root fixed-root ledger rather than to a new
 independent obstruction.  The verifier now checks this envelope whenever the
 direction-MDS bad-set audit is triggered.
+Combining this with the finite/persistent dichotomy for the absorbed pencil
+closes the finite branch.  If
+\[
+  A_x(U,W)=B(U,W)-xC(U,W)
+\]
+is not persistently rank-defective, some maximal minor is a nonzero polynomial
+of degree at most \(q-1\), so \(z=|Z_1(U,W)|\le q-1\).  Hence
+\[
+  |Z_b^{\rm dir}(U,W)|\le \binom{q-1}{b}
+\]
+and
+\[
+  |F(U,W)|\binom qb
+  \le
+  \binom Nb+\binom{q-1}{b}\binom{N-b}{q-b}.
+\]
+Thus the nonpersistent one-root branch closes the whole higher bad-subset
+hierarchy with a field-size-free bound; only the persistent one-root absorbed
+pencil remains, and that branch is the moving-kernel endpoint obstruction
+described below.  The verifier checks this finite-branch implication together
+with the direction-MDS audit.
 Equivalently, for each available root \(x\) the bad-slice test is the failure
 of full column rank for the absorbed-anchor matrix
 \[

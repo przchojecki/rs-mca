@@ -30,6 +30,26 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 nonpersistent one-root pencils close higher bad ledgers
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_hankel_t2_one_exchange_lift.md`,
+  `experimental/experiments.tex`,
+  `experimental/scripts/verify_m1_hankel_t2_triangle_packets.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / STRUCTURAL / AUDIT.
+- **What is being added:** Combines the one-root envelope with the
+  finite/persistent absorbed-pencil dichotomy: in the nonpersistent branch
+  `|Z_1(U,W)|<=q-1`, hence `|Z_b^{dir}(U,W)|<=binom(q-1,b)` and the DMB
+  residual-fiber bound has a field-size-free bad-subset term.
+- **How it is useful:** Shows that higher-dimensional direction-MDS bad ledgers
+  are closed once the one-root absorbed pencil is finite.  The remaining
+  obstruction is the persistent one-root moving-kernel branch already linked to
+  endpoint/residual-direction defects.
+- **What to do next:** Classify or exclude persistent one-root absorbed pencils
+  using quotient-periodic, tangent, and aperiodic M1 structure.
+
 ### 2026-06-28 - M1 higher bad subsets charge to one-root slices
 
 - **Agent/model:** AllenGrahamHart / Codex audit.

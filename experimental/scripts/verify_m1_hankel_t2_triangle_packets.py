@@ -177,6 +177,8 @@ defects.
 It then checks the resulting projective root-count bound for the bad-subset
 ledger, and that every higher bad subset is contained in the one-root bad-slice
 ledger.
+In the nonpersistent one-root pencil branch, it checks the resulting
+field-size-free bad-subset bound.
 For each fixed collapsed anchor base, it audits the sparse-representation
 fiber: below the boundary the mode support is unique, while at the boundary
 distinct supports are disjoint and obey the matching bound.
@@ -3998,6 +4000,7 @@ def analyze_case(
                                         )
                                     root_slice_bad_roots: set[int] = set()
                                     endpoint_defect = 0
+                                    root_slice_persistent = False
                                     if residual_size > 1:
                                         root_slice_width = residual_size - 1
                                         endpoint_columns = tuple(
@@ -4199,6 +4202,70 @@ def analyze_case(
                                             deficit_anchor_root_slice_max_bad_per_anchor,
                                             len(root_slice_bad_roots),
                                         )
+                                        root_slice_persistent = True
+                                        for probe_root in range(p):
+                                            probe_matrix = tuple(
+                                                tuple(
+                                                    (
+                                                        filtered_sequence[
+                                                            row + column + 1
+                                                        ]
+                                                        - probe_root
+                                                        * filtered_sequence[
+                                                            row + column
+                                                        ]
+                                                    )
+                                                    % p
+                                                    for column in range(
+                                                        root_slice_width
+                                                    )
+                                                )
+                                                for row in range(residual_size)
+                                            )
+                                            if (
+                                                matrix_rank_mod(
+                                                    probe_matrix,
+                                                    p,
+                                                )
+                                                == root_slice_width
+                                            ):
+                                                root_slice_persistent = False
+                                                break
+                                        if (
+                                            not root_slice_persistent
+                                            and len(root_slice_bad_roots)
+                                            > root_slice_width
+                                        ):
+                                            raise AssertionError(
+                                                {
+                                                    "kind": (
+                                                        "productive-"
+                                                        if productive
+                                                        else ""
+                                                    )
+                                                    + "marked-core-deficit-"
+                                                    "anchor-root-slice-"
+                                                    "finite-bound-failed",
+                                                    "p": p,
+                                                    "k": k,
+                                                    "syndrome": list(syn),
+                                                    "fixed_roots": list(
+                                                        fixed_roots
+                                                    ),
+                                                    "unmarked_core": list(
+                                                        unmarked_core
+                                                    ),
+                                                    "marked_count": marked_count,
+                                                    "core_deficit": core_deficit,
+                                                    "anchor": list(anchor),
+                                                    "root_slice_bad_roots": (
+                                                        sorted(
+                                                            root_slice_bad_roots
+                                                        )
+                                                    ),
+                                                    "bound": root_slice_width,
+                                                }
+                                            )
                                     for left, right in itertools.combinations(
                                         residual_candidates,
                                         2,
@@ -4812,6 +4879,61 @@ def analyze_case(
                                                     ),
                                                 }
                                             )
+                                        if not root_slice_persistent:
+                                            finite_root_slice_bound = (
+                                                binomial_or_zero(
+                                                    residual_size - 1,
+                                                    residual_direction_dim,
+                                                )
+                                            )
+                                            if (
+                                                len(bad_direction_subsets)
+                                                > finite_root_slice_bound
+                                            ):
+                                                raise AssertionError(
+                                                    {
+                                                        "kind": (
+                                                            "productive-"
+                                                            if productive
+                                                            else ""
+                                                        )
+                                                        + "marked-core-"
+                                                        "deficit-anchor-"
+                                                        "direction-mds-"
+                                                        "finite-root-slice-"
+                                                        "bound-failed",
+                                                        "p": p,
+                                                        "k": k,
+                                                        "syndrome": list(syn),
+                                                        "fixed_roots": list(
+                                                            fixed_roots
+                                                        ),
+                                                        "unmarked_core": list(
+                                                            unmarked_core
+                                                        ),
+                                                        "marked_count": (
+                                                            marked_count
+                                                        ),
+                                                        "core_deficit": (
+                                                            core_deficit
+                                                        ),
+                                                        "anchor": list(anchor),
+                                                        "direction_dim": (
+                                                            residual_direction_dim
+                                                        ),
+                                                        "bad_subset_count": len(
+                                                            bad_direction_subsets
+                                                        ),
+                                                        "bound": (
+                                                            finite_root_slice_bound
+                                                        ),
+                                                        "root_slice_bad_roots": (
+                                                            sorted(
+                                                                root_slice_bad_roots
+                                                            )
+                                                        ),
+                                                    }
+                                                )
                                         for left, right in itertools.combinations(
                                             residual_candidates,
                                             2,
