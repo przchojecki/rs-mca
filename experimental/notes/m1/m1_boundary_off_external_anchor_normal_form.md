@@ -10849,6 +10849,86 @@ of `Q` divides `N_h=hX^kQ-B` if and only if it divides `B`, because
 `N_h` is congruent to `-B` modulo `Q`.  Hence `gcd(Q,N_h)=gcd(Q,B)=G`.
 The final alternatives are the cases `Q_prim=1` and `deg Q_prim>0`.
 
+## Corollary 40.91: One-Row Primitive Extensions Have A Primitive-Degree Packing Bound
+
+Keep the notation of Corollary 40.90, and put
+
+```text
+e_prim=deg Q_prim,
+d_prim=k+e_prim+1.
+```
+
+Let `Y:D->F` be any word and let `a` be an agreement threshold.  Let
+`Mu_h(Y,a)` be the set of coefficients `mu in F` for which there exist
+`A_0 in F[X]_<k` and a support `S subset D`, `|S|>=a`, such that
+
+```text
+A_0 + mu(hX^k-B_prim/Q_prim) = Y        on S.       (PrimitiveList)
+```
+
+Then two distinct coefficients `mu_1!=mu_2` in `Mu_h(Y,a)` cannot be
+witnessed on supports whose intersection has size at least `d_prim`.
+Consequently, if `1<=d_prim<=a`, then
+
+```text
+|Mu_h(Y,a)| <= floor( binom(n,d_prim) / binom(a,d_prim) ).     (OneRowPack)
+```
+
+In particular, if `2a-n>=d_prim`, then `|Mu_h(Y,a)|<=1`.
+
+For the one-row scalar cutoff branches of Corollaries 40.88--40.90, this
+counts the possible scalar parameters `lambda=-mu` in the `Qg` charts and the
+reciprocal parameters `lambda=y=1/z=-mu` in the `Qf` charts; the original
+`Qf` zero slope remains separate.  The polynomial endpoint `Q_prim=1` has
+`d_prim=k+1`.  Positive primitive denominator degree costs only `e_prim`,
+not the unreduced degree of the original presentation.
+
+### Proof
+
+Choose witnesses `(A_i,S_i)` satisfying (PrimitiveList) for two coefficients
+`mu_1!=mu_2`, and suppose
+
+```text
+|S_1 cap S_2| >= d_prim.
+```
+
+On the intersection, subtracting the two equalities gives
+
+```text
+(A_1-A_2) + (mu_1-mu_2)(hX^k-B_prim/Q_prim) = 0.
+```
+
+Multiplying by the root-free denominator `Q_prim`, the polynomial
+
+```text
+Q_prim(A_1-A_2) + (mu_1-mu_2)(hX^k Q_prim-B_prim)
+```
+
+vanishes on at least `d_prim` points of `D`.  Its degree is `<d_prim`, so it
+is the zero polynomial.  If `e_prim=0`, then `Q_prim=1` and `B_prim=0`, so
+the coefficient of `X^k` is `(mu_1-mu_2)h`, impossible because `h!=0`.
+If `e_prim>0`, the identity implies
+
+```text
+Q_prim divides B_prim,
+```
+
+by reducing modulo `Q_prim`; this contradicts
+`gcd(Q_prim,B_prim)=1`.  Hence distinct coefficients cannot have such a large
+support intersection.
+
+Assume now that `d_prim<=a`.  For every `mu in Mu_h(Y,a)`, choose an
+`a`-element subset `T_mu` of its support.  The preceding paragraph shows that
+the family `{T_mu}` has pairwise intersections of size `<d_prim`, so no
+`d_prim`-subset of `D` lies in two selected supports.  Counting pairs
+
+```text
+(mu,J),        mu in Mu_h(Y,a),        J subset T_mu,        |J|=d_prim
+```
+
+gives (OneRowPack).  If `2a-n>=d_prim`, any two `a`-supports would have
+intersection at least `d_prim`, so at most one coefficient can occur.
+
 ## Corollary 41: The Global Common-Image Ledger Is Endpoint-Only
 
 Let `GCI` be the set of monic degree-`c` split core locators `L` for which
@@ -13738,6 +13818,11 @@ Corollary 40.90 primitive-compresses this object by replacing `Q` with
 `Q/gcd(Q,B)`; nonprimitive residue presentations therefore do not create new
 one-row packing families, and the `B=0` case is just the polynomial
 `RS_{k+1}` endpoint.
+Corollary 40.91 gives the resulting primitive-degree packing bound: distinct
+one-row scalar parameters have supports intersecting in fewer than
+`k+deg(Q_prim)+1` points, hence the coefficient set is bounded by
+`binom(n,d_prim)/binom(a,d_prim)` when `d_prim<=a` and by one coefficient in
+the pairwise-intersection range.
 Corollary 41 packages the common-image branch into endpoint-type ledgers; it
 does not prove the endpoint rank hypotheses needed for the displayed
 `(q+2)binom(n,b)` bound. Corollary 42 packages the globally full core ledger

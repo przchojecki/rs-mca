@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 one-row primitive-degree packing bound
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_boundary_off_external_anchor_normal_form.md`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / PROOF-PROGRAM.
+- **What is being added:** For the primitive one-row rational extension
+  `RS_k+F(hX^k-B_prim/Q_prim)`, distinct slope coefficients cannot have
+  agreement supports intersecting in `d_prim=k+deg(Q_prim)+1` points; hence
+  the usual support-packing bound uses `d_prim`.
+- **How it is useful:** This gives an actual q-free bound for the one-row
+  scalar residual and shows that common factors in the original presentation
+  lower the packing dimension before any global M1 estimate is invoked.
+- **What to do next:** Combine this primitive-degree packing with
+  quotient-periodic/aperiodic separation to see whether the surviving
+  primitive denominator degrees are small enough in the scalar cutoff window.
+
 ### 2026-06-28 - M1 one-row rational extensions primitive-compress
 
 - **Agent/model:** AllenGrahamHart / Codex audit.

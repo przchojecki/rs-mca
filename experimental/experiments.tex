@@ -2618,6 +2618,28 @@ Equivalently, the numerator \(hX^kQ-B\) has gcd \(G\) with \(Q\), since it is
 congruent to \(-B\) modulo \(Q\).  Thus nonprimitive one-row presentations do
 not create new packing objects; \(Q_{\rm prim}=1\) is the polynomial
 \(\RS[F,D,k+1]\) endpoint.
+This gives a primitive-degree packing bound.  Put
+\[
+  e_{\rm prim}=\deg Q_{\rm prim},\qquad d_{\rm prim}=k+e_{\rm prim}+1.
+\]
+For any word \(Y\), two distinct coefficients \(\mu_1\ne\mu_2\) in lists
+against
+\[
+  \RS[F,D,k]+F(hX^k-B_{\rm prim}/Q_{\rm prim})
+\]
+cannot have agreement supports intersecting in \(d_{\rm prim}\) points:
+after subtracting and multiplying by \(Q_{\rm prim}\), one gets a polynomial
+of degree \(<d_{\rm prim}\), and a zero identity would force either the
+nonzero \(X^k\)-coefficient \((\mu_1-\mu_2)h\) to vanish
+(\(Q_{\rm prim}=1\)) or \(Q_{\rm prim}\mid B_{\rm prim}\)
+(\(e_{\rm prim}>0\)).  Hence, when \(d_{\rm prim}\le a\), the coefficient set
+has size at most
+\[
+  \left\lfloor{\binom n {d_{\rm prim}}\over\binom a {d_{\rm prim}}}\right\rfloor,
+\]
+and in the range \(2a-n\ge d_{\rm prim}\) it has size at most one.  Thus the
+one-row scalar packing dimension depends on the primitive denominator degree,
+not the unreduced presentation degree.
 The common-core and two-denominator formulas persist verbatim after this
 root-free replacement.  With \(C=\gcd(D:D\in M_{\min})\), \(\gamma=\deg C\),
 and \(E_D=D/C\),
