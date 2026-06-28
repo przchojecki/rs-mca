@@ -404,8 +404,10 @@ Keep entries concise and link to the relevant files.
   The `d=2` case is now exact: if no evaluation functional is zero, then
   `|K^rf|=q+1-s_K`, where `s_K` is the number of distinct projective evaluation
   lines `[ev_alpha]`; hence the full `L=2` bottom-route defect is precisely
-  repeated evaluation lines.
-  The non-claims section is updated through Corollary 40.51 to record that
+  repeated evaluation lines.  The two-dimensional defect is now bounded by
+  the pair collision count `C_K`: `|K^rf|<=RFPhi_D(2)+C_K`, and each collision
+  pair is exactly a nonzero two-root stripped kernel `K_{alpha,beta}(F)`.
+  The non-claims section is updated through Corollary 40.52 to record that
   these formulas do not by themselves bound the bottom/pre-half residuals or
   force large common cores/quotient degrees.
   Since

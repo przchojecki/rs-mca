@@ -7442,6 +7442,92 @@ evaluation lines coincide, and the no-one-root condition is exactly
 `ev_alpha!=0` for every `alpha`.  The bottom-route statement sums this exact
 count over the four bottom kernels and invokes Corollary 40.43.
 
+## Corollary 40.52: Two-Dimensional Defect Is Charged By Pair Root Slices
+
+Keep the notation of Corollary 40.51, and assume `dim K=2` and
+`ev_alpha!=0` for every `alpha in D`.  Let
+
+```text
+C_K =
+ |{ {alpha,beta} subset D : alpha!=beta and [ev_alpha]=[ev_beta] }|
+```
+
+be the number of unordered projective evaluation-line collision pairs.  Then
+
+```text
+|K^rf| <= RFPhi_D(2) + C_K.                        (TwoDimPairDefect)
+```
+
+Moreover, for distinct `alpha,beta in D`,
+
+```text
+[ev_alpha]=[ev_beta]
+iff
+K(-{alpha,beta}) != 0.                             (PairRootSliceCollision)
+```
+
+Thus, by Corollary 40.49, the defect over the ideal `RFPhi_D(2)` count is
+charged by the stripped two-root kernels
+
+```text
+K_{ {alpha,beta} }(F)
+```
+
+of the corresponding bottom residual family.
+
+Consequently, suppose every nonzero bottom residual kernel has dimension at
+most two, and suppose every two-dimensional bottom kernel has no zero
+evaluation functional.  Let `C_F` be the pair-collision count for each
+two-dimensional family.  Then the bottom route closes with residual charge
+
+```text
+sum_{d_F=1} 1
++ sum_{d_F=2} ( RFPhi_D(2) + C_F ),
+```
+
+and hence with total ledger obtained by adding the bottom finite frontier
+charge `2h`.  In particular, if the total pair-root-slice collision count
+over the two-dimensional bottom families is at most `C`, the residual charge
+is at most
+
+```text
+4 RFPhi_D(2) + C.
+```
+
+### Proof
+
+Let the fibers of the projective evaluation-line map
+
+```text
+D -> P(K^*),        alpha |-> [ev_alpha]
+```
+
+have sizes `m_1,...,m_s`, where `s=s_K`.  Then
+
+```text
+|D|-s_K = sum_i (m_i-1),
+C_K     = sum_i binom(m_i,2).
+```
+
+Since `m_i-1<=binom(m_i,2)` for every `m_i>=1`, Corollary 40.51 gives
+
+```text
+|K^rf| = RFPhi_D(2)+(|D|-s_K) <= RFPhi_D(2)+C_K.
+```
+
+For the equivalence, two nonzero linear functionals on the two-dimensional
+space `K` are projectively equal exactly when they have the same one-
+dimensional kernel.  Thus `[ev_alpha]=[ev_beta]` if and only if
+
+```text
+ker ev_alpha cap ker ev_beta
+```
+
+is nonzero, which is precisely `K(-{alpha,beta})!=0`.  Corollary 40.49
+identifies this pair slice with the stripped two-root bottom kernel for the
+same residual family.  Summing the displayed upper bound over the four bottom
+families and invoking Corollary 40.43 gives the bottom-route ledger.
+
 ## Corollary 41: The Global Common-Image Ledger Is Endpoint-Only
 
 Let `GCI` be the set of monic degree-`c` split core locators `L` for which
@@ -10215,6 +10301,9 @@ instances.
 Corollary 40.51 gives an exact two-dimensional kernel count in terms of
 projective evaluation-line collisions; it does not prove those collisions are
 absent or small for the M1 bottom kernels.
+Corollary 40.52 bounds the two-dimensional collision defect by pair root-slice
+collisions; it does not prove the pair collision count is small in the M1
+instances.
 Corollary 41 packages the common-image branch into endpoint-type ledgers; it
 does not prove the endpoint rank hypotheses needed for the displayed
 `(q+2)binom(n,b)` bound. Corollary 42 packages the globally full core ledger
