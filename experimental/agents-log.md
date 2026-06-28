@@ -30,6 +30,22 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 scalar cutoff non-standard range is short denominator
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_boundary_off_external_anchor_normal_form.md`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / PROOF-PROGRAM.
+- **What is being added:** At the scalar half-window cutoff, the
+  non-standard scalar range is exactly `deg Q<j-r_hw`, and the return-slice
+  high-tail length is `j-r_hw-deg Q`; if `r_hw>=j`, there is no non-standard
+  scalar cutoff range.
+- **How it is useful:** This localizes the remaining scalar obstruction to a
+  finite short-denominator range in the actual M1 cutoff parameters.
+- **What to do next:** Attack the short-denominator high-tail incidences or
+  show that the relevant applications have `r_hw>=j`.
+
 ### 2026-06-28 - M1 non-standard scalar return slice is a high-tail line
 
 - **Agent/model:** AllenGrahamHart / Codex audit.

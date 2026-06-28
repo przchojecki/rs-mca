@@ -10378,6 +10378,79 @@ The `Qf` statement is identical after replacing `z,H_g,C'_z` by the
 reciprocal parameter `y`, `H_f`, and `C'_y`.  The original slope `z=0` has no
 reciprocal parameter and is therefore unchanged from Corollary 40.83.
 
+## Corollary 40.85: At The Scalar Cutoff, Non-Standard Means Short Denominator
+
+Specialize Corollaries 40.82--40.84 to the scalar half-window cutoff
+
+```text
+s=t+r_hw,        t=r-j,        r=n-k.
+```
+
+Let `Q` be a scalar cutoff witness of degree
+
+```text
+e=deg Q.
+```
+
+Then
+
+```text
+n-s = k+j-r_hw.                                    (CutoffDim)
+```
+
+Consequently the standard-degree condition from Corollary 40.82 becomes
+
+```text
+e >= j-r_hw,
+```
+
+while the non-standard condition from Corollary 40.83 becomes
+
+```text
+e < j-r_hw.                                       (ShortScalar)
+```
+
+In the non-standard case, the enlarged dimension and high-tail length are
+
+```text
+K = k+j-r_hw-e,
+K-k = j-r_hw-e.                                  (ShortTailLen)
+```
+
+Thus:
+
+1. if `r_hw>=j`, there is no non-standard scalar cutoff range;
+2. if `r_hw<j`, the only scalar cutoff witnesses not already ordinary
+   degree-`e` residue-line data are the short denominators
+   `e=0,1,...,j-r_hw-1`;
+3. for such a short denominator, the return slice of Corollary 40.84 is a
+   one-dimensional high-tail incidence inside `F^{j-r_hw-e}`.
+
+Therefore the scalar cutoff branch is completely split as follows.  Denominators
+of degree at least `j-r_hw` fold into the usual base-dimension residue-line
+normal form.  Denominators of degree below `j-r_hw` are enlarged residue-line
+data with an explicitly bounded high-tail window of length `j-r_hw-e`.
+
+### Proof
+
+Using `t=r-j` and `r=n-k`,
+
+```text
+n-s = n-(t+r_hw)
+    = n-(r-j+r_hw)
+    = k+j-r_hw.
+```
+
+Substituting this into the standard condition `n-s<=k+e` gives
+`k+j-r_hw<=k+e`, equivalently `e>=j-r_hw`.  The complementary strict
+inequality is `e<j-r_hw`.  In that case Corollary 40.83 gives
+
+```text
+K=n-s-e=k+j-r_hw-e,
+```
+
+and hence `K-k=j-r_hw-e`.  The three listed consequences are immediate.
+
 ## Corollary 41: The Global Common-Image Ledger Is Endpoint-Only
 
 Let `GCI` be the set of monic degree-`c` split core locators `L` for which
@@ -13248,6 +13321,9 @@ explicit affine return-to-`RS[F,D,k]` slice.
 Corollary 40.84 identifies that return slice with a one-dimensional high-tail
 incidence; if the quotient high tail vanishes, the non-standard case collapses
 to the ordinary base-dimension residue-line datum.
+Corollary 40.85 translates this at the scalar cutoff: non-standard scalar
+strata are exactly the short denominator range `deg Q<j-r_hw`, with high-tail
+window length `j-r_hw-deg Q`.
 Corollary 41 packages the common-image branch into endpoint-type ledgers; it
 does not prove the endpoint rank hypotheses needed for the displayed
 `(q+2)binom(n,b)` bound. Corollary 42 packages the globally full core ledger
