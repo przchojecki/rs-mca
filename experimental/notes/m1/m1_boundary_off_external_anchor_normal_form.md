@@ -15803,6 +15803,88 @@ and admissible aliases form a subset of its projectivization.  This gives the
 `U_q(e,E)` term.  Finally, Corollary 40.156 lifts the direction count to full
 primitive triples without adding target multiplicity.
 
+## Corollary 40.158: Cutoff Active Ledgers Reduce To Divided Evaluation Data
+
+Assume `F=F_q`, and fix a denominator cutoff `E>=1`.  Let `A_{<=E}` be a
+finite family of positive-degree primitive residue-line data
+
+```text
+(Q,B,w),        1<=deg Q<=E,
+```
+
+and let
+
+```text
+Ev(A_{<=E})={ ((B/Q)|_D,(w/Q)|_D) : (Q,B,w) in A_{<=E} }.
+```
+
+With `Pi_q` as in Corollary 40.157, define the uniform cutoff fiber budget
+
+```text
+M_q(E)=1                                           if 2E<=n,
+M_q(E)=1+Pi_q(2E-1-n)+Pi_q(2E-n+1)                 if 2E>n.
+```
+
+Then
+
+```text
+|A_{<=E}| <= M_q(E) |Ev(A_{<=E})|.                 (EvalFiberToClass)
+```
+
+In the scalar-cutoff active ledger of Corollary 40.148, put
+
+```text
+W_E=max_{1<=e<=E} W(e).
+```
+
+Then
+
+```text
+|Lambda(A_{<=E})| <= W_E M_q(E) |Ev(A_{<=E})|.      (EvalFiberLedger)
+```
+
+In particular, if `2E<=n`, then primitive classes of degree at most `E` are
+counted injectively by divided evaluation data, and
+
+```text
+|Lambda(A_{<=E})| <= W_E |Ev(A_{<=E})|.
+```
+
+Thus the active primitive-class problem below a denominator cutoff reduces to
+counting divided evaluation data, up to an explicit finite-domain alias
+multiplier that is trivial in the low-total-degree range.
+
+### Proof
+
+If `2E<=n`, Corollary 40.150 gives injectivity on the whole degree-`<=E`
+family, so `M_q(E)=1`.
+
+Assume `2E>n`.  Fix one element `(Q,B,w)` of an evaluation fiber in
+`A_{<=E}`, with `e=deg Q<=E`.  Corollary 40.157 bounds the number of other
+elements in the same fiber and of degree at most `E` by
+
+```text
+Pi_q(e+min(E,e-1)-n) + U_q(e,E).
+```
+
+Since `e<=E`,
+
+```text
+e+min(E,e-1)-n <= 2E-1-n,
+```
+
+and the same-or-upward term is bounded by `Pi_q(2E-n+1)`.  Hence every divided
+evaluation fiber has size at most `M_q(E)`, proving (EvalFiberToClass).
+
+For the active ledger, Corollary 40.148 gives
+
+```text
+|Lambda(A_{<=E})| <= sum_{(Q,B,w) in A_{<=E}} W(deg Q)
+                   <= W_E |A_{<=E}|.
+```
+
+Combining this with (EvalFiberToClass) proves (EvalFiberLedger).
+
 ## Corollary 41: The Global Common-Image Ledger Is Endpoint-Only
 
 Let `GCI` be the set of monic degree-`c` split core locators `L` for which
@@ -18910,6 +18992,10 @@ uniquely determines `w_2` on `D`.
 Corollary 40.157 packages the full-data alias controls into a cutoff fiber
 bound with two projective defect budgets: lower aliases and same-or-upward
 aliases below degree `E`.
+Corollary 40.158 converts that into an active-ledger reduction: below a
+denominator cutoff `E`, primitive classes are bounded by divided evaluation
+data times the explicit multiplier `M_q(E)`, and the coefficient ledger gains
+only the fixed-class weight `W_E`.
 Corollary 41 packages the common-image branch into endpoint-type ledgers; it
 does not prove the endpoint rank hypotheses needed for the displayed
 `(q+2)binom(n,b)` bound. Corollary 42 packages the globally full core ledger

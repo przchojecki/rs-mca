@@ -3417,6 +3417,26 @@ where \(U_q(e,E)=0\) if \(E<e\) or \(e+E\le n\), and otherwise
 \[
   U_q(e,E)=\Pi_q(2E-n+1).
 \]
+Uniformly over all positive-degree primitive classes with \(\deg Q\le E\),
+this gives a divided-evaluation fiber multiplier
+\[
+  M_q(E)=
+  \begin{cases}
+    1, & 2E\le n,\\
+    1+\Pi_q(2E-1-n)+\Pi_q(2E-n+1), & 2E>n.
+  \end{cases}
+\]
+Thus for any finite cutoff family \(\mathcal A_{\le E}\),
+\[
+  |\mathcal A_{\le E}|
+  \le M_q(E)\,|\operatorname{Ev}(\mathcal A_{\le E})|.
+\]
+Combining this with the active ledger weights gives
+\[
+  |\Lambda(\mathcal A_{\le E})|
+  \le W_E M_q(E)\,|\operatorname{Ev}(\mathcal A_{\le E})|,
+  \qquad W_E=\max_{1\le e\le E} W(e).
+\]
 The common-core and two-denominator formulas persist verbatim after this
 root-free replacement.  With \(C=\gcd(D:D\in M_{\min})\), \(\gamma=\deg C\),
 and \(E_D=D/C\),

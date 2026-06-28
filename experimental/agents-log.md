@@ -30,6 +30,23 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 cutoff active ledgers reduce to divided evaluations
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_boundary_off_external_anchor_normal_form.md`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / PROOF-PROGRAM.
+- **What is being added:** Derives a uniform cutoff multiplier `M_q(E)` from
+  the primitive alias-fiber bound and proves
+  `|A_{<=E}| <= M_q(E)|Ev(A_{<=E})|`, then combines it with the active
+  fixed-class weights to bound `|Lambda(A_{<=E})|`.
+- **How it is useful:** Turns the M1 cutoff active primitive-class problem
+  into a divided-evaluation counting problem with an explicit finite-domain
+  alias multiplier, trivial when `2E<=n`.
+- **What to do next:** Use quotient/aperiodic or Hankel incidence arguments to
+  bound the divided evaluation image `Ev(A_{<=E})`.
+
 ### 2026-06-28 - M1 cutoff primitive alias fibers have two defect budgets
 
 - **Agent/model:** AllenGrahamHart / Codex audit.
