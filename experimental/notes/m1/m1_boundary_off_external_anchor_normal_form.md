@@ -5931,6 +5931,57 @@ certificate-denominator class can only identify or delete classes, so the same
 sum bounds the denominator classes.  The displayed full-row-cut specialization
 is obtained by substituting the full ranks.
 
+## Corollary 40.29: Hybrid Rank-LCM Cutoff Overlap Budget
+
+Keep the notation of Corollaries 40.25 and 40.28, and write
+
+```text
+ell_EP = deg L_EP,
+ell_u  = deg L_u,
+ell_v  = deg L_v,
+ell_uS = deg L_uS,
+ell_vS = deg L_vS.
+```
+
+For active overlap systems, the projective root-free certificate-denominator
+classes in the cutoff overlap ledger are bounded by
+
+```text
+min( Phi(h-ell_EP), Phi(d_uv-r_EP) )
++ min( Phi(h-ell_u),  Phi(d_uv-eps_u) )
++ min( Phi(h-ell_v),  Phi(d_uv-eps_v) )
++ min( Phi(h-ell_uS), Phi(d_S-eps_uS) )
++ min( Phi(h-ell_vS), Phi(d_S-eps_vS) ).             (HybridOverlap)
+```
+
+Inactive overlap systems contribute zero, equivalently their corresponding
+summand is omitted.
+
+Thus the cutoff-overlap charge can be consumed term by term using whichever
+certificate count is smaller:
+
+1. the family-lcm multiplier ledger from Corollary 40.25; or
+2. the endpoint-row rank ledger from Corollary 40.28.
+
+In particular, a large family-lcm degree and a full endpoint-row cut are
+independent savings mechanisms, and either one improves the corresponding
+overlap summand.
+
+### Proof
+
+For each active overlap system `Omega`, Corollary 40.25 bounds its projective
+root-free certificate-denominator classes by the corresponding lcm multiplier
+count `Phi(h-ell_Omega)`.  Corollary 40.28 bounds the same set by the
+corresponding projective locator count:
+
+```text
+Phi(d_uv-r_EP),        Phi(d_uv-eps_u),        Phi(d_uv-eps_v),
+Phi(d_S-eps_uS),       Phi(d_S-eps_vS).
+```
+
+A set bounded by two quantities is bounded by their minimum.  Summing these
+termwise minima over the active overlap systems gives (HybridOverlap).
+
 ## Corollary 41: The Global Common-Image Ledger Is Endpoint-Only
 
 Let `GCI` be the set of monic degree-`c` split core locators `L` for which
@@ -8633,7 +8684,9 @@ persistence into an explicit stacked-Hankel row-span test and gives the
 two-row endpoint-pair codimension formula; it does not prove the missing rows
 are independent in the M1 instances. Corollary 40.28 packages those ranks into
 a cutoff-overlap projective budget; it does not prove the rank defects are
-absent or that the resulting budget is below the final M1 reserve.
+absent or that the resulting budget is below the final M1 reserve. Corollary
+40.29 combines the rank budget with the lcm multiplier budget by termwise
+minima; it does not prove either savings mechanism is always strong enough.
 Corollary 41 packages the common-image branch into endpoint-type ledgers; it
 does not prove the endpoint rank hypotheses needed for the displayed
 `(q+2)binom(n,b)` bound. Corollary 42 packages the globally full core ledger

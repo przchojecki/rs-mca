@@ -2155,6 +2155,17 @@ locator budget is bounded by
   \qquad \Phi(m)={q^m-1\over q-1}.
 \]
 Root-free certificate-denominator classes are bounded by the same expression.
+Combining this with the lcm multiplier ledgers gives a termwise hybrid
+overlap budget: for each overlap system one may take the minimum of the
+family-lcm multiplier count and the endpoint-row rank count.  For example, the
+endpoint-pair summand is
+\[
+  \min\!\left\{\Phi(h-\deg \operatorname{lcm}(D_u,D_v,D_{uv},D_S)),
+               \Phi(d_{uv}-r_{EP})\right\},
+\]
+and the four one-sided summands have the analogous lcm/rank minima.  Thus a
+large lcm degree and a genuine endpoint-row cut are independent ways to shrink
+the same cutoff-overlap charge.
 In refined mixed-ladder form, after the
 pre-half-window residuals, the cutoff overlap multiplier ledgers, and the
 cutoff family multiplier ledgers are charged, the only remaining finite frontier

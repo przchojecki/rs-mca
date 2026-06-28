@@ -333,10 +333,14 @@ Keep entries concise and link to the relevant files.
   a consumable cutoff-overlap budget
   `Phi(d_uv-r_EP)+Phi(d_uv-eps_u)+Phi(d_uv-eps_v)+Phi(d_S-eps_uS)+Phi(d_S-eps_vS)`,
   with `Phi(m)=(q^m-1)/(q-1)`, bounding both projective locator classes and
-  root-free certificate-denominator classes.  The refined mixed-ladder closure
-  now records the final consumable ledger: after pre-half residuals, cutoff
-  overlap multiplier ledgers, and cutoff family multiplier ledgers are charged,
-  the only remaining finite
+  root-free certificate-denominator classes.  Combining this with the lcm
+  multiplier ledgers gives a termwise hybrid budget: each overlap summand is
+  bounded by the minimum of its family-lcm multiplier count and its endpoint-row
+  rank count, so large lcm degree and genuine endpoint-row cuts are independent
+  savings mechanisms.  The refined mixed-ladder closure now records the final
+  consumable ledger: after pre-half residuals, cutoff overlap multiplier
+  ledgers, and cutoff family multiplier ledgers are charged, the only remaining
+  finite
   frontier charge is the bottom set `E_{r_0,>b} union Theta_{r_0,>b}`, of size
   at most `2h`.
   The common-image three-shift ledger now has the analogous sliding-window
