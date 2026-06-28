@@ -4734,6 +4734,19 @@ available root one-root-bad, while the produced residual support gives at least
 \(q\) available roots.  Thus the remaining persistent obstruction is genuinely
 higher-dimensional, not a line-kernel case.  The verifier checks this whenever
 full-field probing certifies persistence.
+The first surviving case, \(b(U,W)=2\), is a projective-fiber ledger.  For a
+basis \(V(U,W)=\langle P,Q\rangle\), define \(B_0=\{x:P(x)=Q(x)=0\}\) and,
+off \(B_0\), the projective evaluation map
+\[
+  x\longmapsto [P(x):Q(x)]\in{\bf P}^1 .
+\]
+A pair \(\{x,y\}\) is direction-bad exactly when one point lies in \(B_0\), or
+both points are outside \(B_0\) and have the same projective value.  Each
+non-base fiber is cut out by \(bP-aQ\) for some \([a:b]\in{\bf P}^1\), so it
+has size at most \(q-1\), and \(B_0\) also has size at most \(q-1\).  Hence the
+\(b=2\) persistent branch is a rational-fiber packing problem, not an arbitrary
+rank-defect matroid; the verifier checks this projective-fiber description
+whenever \(b(U,W)=2\).
 Equivalently, for each available root \(x\) the bad-slice test is the failure
 of full column rank for the absorbed-anchor matrix
 \[

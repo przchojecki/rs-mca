@@ -2992,6 +2992,66 @@ The verifier checks this when full-field probing certifies persistence
 and residual direction dimension at least two.  The current largest `F_7^*`
 scan has no certified persistent produced anchor.
 
+## Two-Dimensional Residual Directions Are Projective Fibers
+
+The first surviving persistent case after (PHD) is `b(U,W)=2`.  In that case
+the bad-pair ledger has a concrete projective-fiber form.  Choose a basis
+
+```text
+V(U,W)=span(P,Q),        deg P,deg Q<q.
+```
+
+For `x in D'`, put
+
+```text
+ev_x=[P(x):Q(x)] in P^1
+```
+
+when `(P(x),Q(x))` is nonzero, and put `x in B_0` when `P(x)=Q(x)=0`.
+Then the bad pairs are exactly
+
+```text
+Z_2^{dir}(U,W)
+ =
+{ {x,y}: x in B_0 or y in B_0 }
+ union
+ union_{lambda in P^1}
+   { {x,y}: x,y notin B_0, ev_x=ev_y=lambda }.       (PF2)
+```
+
+Indeed, a pair `{x,y}` is bad exactly when the two evaluation rows
+
+```text
+(P(x),Q(x)),        (P(y),Q(y))
+```
+
+have rank `<2`.  This happens if one row is zero, or if both nonzero rows are
+projectively equal.  Conversely, either condition gives rank `<2`.
+
+The fibers are ordinary rational-function fibers.  For
+`lambda=[a:b] in P^1`, the fiber is cut out by the nonzero polynomial
+
+```text
+b P(X)-a Q(X),
+```
+
+and has size at most `q-1` in `D'`; the base set `B_0` is contained in the
+zero set of the nonzero polynomial `P`, so it also has size at most `q-1`.
+Thus the `b=2` persistent residual branch is not a generic rank-defect
+matroid.  It is a projective rational-fiber packing problem, with common-root
+base points separated from equal-value fibers.
+
+Consequently, if all projective fibers and the base set have bounded size
+after quotient-periodic, tangent, fixed-root, and aperiodic charges, then
+(DMB) gives the corresponding residual-fiber bound.  In the injective,
+base-free case, `Z_2^{dir}(U,W)=empty` and the direction-MDS packing bound
+applies.
+
+The verifier now checks (PF2) whenever a produced residual anchor has
+`b(U,W)=2`: it compares the bad-pair ledger with the projective evaluation
+fibers and checks the elementary degree bound on every fiber and on `B_0`.
+The current largest `F_7^*` scan has no such produced anchor.
+
 ## Bad Root Slices Are Absorbed-Anchor Rank Defects
 
 The preceding bad-root condition has an equivalent absorbed-anchor form.  Fix

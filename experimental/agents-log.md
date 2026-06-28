@@ -30,6 +30,27 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 two-dimensional residual directions are projective fibers
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_hankel_t2_one_exchange_lift.md`,
+  `experimental/experiments.tex`,
+  `experimental/scripts/verify_m1_hankel_t2_triangle_packets.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / STRUCTURAL / AUDIT.
+- **What is being added:** For residual direction dimension `2`, identifies
+  bad pairs exactly as common-zero base points plus equal-value fibers of the
+  projective evaluation map `x -> [P(x):Q(x)]` for a basis `P,Q` of
+  `Dir K(U,W)`.
+- **How it is useful:** Turns the first genuinely higher-dimensional persistent
+  branch into a rational-fiber packing problem.  This is the form that can be
+  attacked by quotient-periodic, fixed-root, tangent, or aperiodic fiber
+  bounds.
+- **What to do next:** Bound the projective evaluation fibers for actual M1
+  fixed-divisor residual direction spaces, or classify their quotient-periodic
+  components.
+
 ### 2026-06-28 - M1 persistent one-root pencils force higher direction
 
 - **Agent/model:** AllenGrahamHart / Codex audit.

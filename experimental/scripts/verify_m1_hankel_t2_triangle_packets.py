@@ -182,6 +182,8 @@ field-size-free bad-subset bound.
 When full-field probing certifies genuine persistence, it checks that the
 persistent branch has an endpoint defect and residual direction dimension at
 least two.
+For two-dimensional residual direction spaces, it identifies the bad pairs as
+projective evaluation fibers.
 For each fixed collapsed anchor base, it audits the sparse-representation
 fiber: below the boundary the mode support is unique, while at the boundary
 distinct supports are disjoint and obey the matching bound.
@@ -4961,6 +4963,193 @@ def analyze_case(
                                                     ),
                                                 }
                                             )
+                                        if residual_direction_dim == 2:
+                                            projective_eval_base_roots: set[
+                                                int
+                                            ] = set()
+                                            projective_eval_values: dict[
+                                                int,
+                                                tuple[int, ...],
+                                            ] = {}
+                                            projective_eval_fibers: dict[
+                                                tuple[int, ...],
+                                                list[int],
+                                            ] = {}
+                                            for root in available_roots:
+                                                values = tuple(
+                                                    polynomial_eval_mod(
+                                                        vector,
+                                                        domain[root],
+                                                        p,
+                                                    )
+                                                    for vector in (
+                                                        direction_basis
+                                                    )
+                                                )
+                                                pivot = next(
+                                                    (
+                                                        value
+                                                        for value in values
+                                                        if value % p
+                                                    ),
+                                                    None,
+                                                )
+                                                if pivot is None:
+                                                    projective_eval_base_roots.add(
+                                                        root
+                                                    )
+                                                    continue
+                                                inverse_pivot = pow(
+                                                    pivot,
+                                                    -1,
+                                                    p,
+                                                )
+                                                key = tuple(
+                                                    (value * inverse_pivot) % p
+                                                    for value in values
+                                                )
+                                                projective_eval_values[root] = key
+                                                projective_eval_fibers.setdefault(
+                                                    key,
+                                                    [],
+                                                ).append(root)
+                                            projective_pair_bad_subsets: set[
+                                                tuple[int, ...]
+                                            ] = set()
+                                            for left, right in (
+                                                itertools.combinations(
+                                                    available_roots,
+                                                    2,
+                                                )
+                                            ):
+                                                if (
+                                                    left
+                                                    in projective_eval_base_roots
+                                                    or right
+                                                    in projective_eval_base_roots
+                                                    or projective_eval_values[
+                                                        left
+                                                    ]
+                                                    == projective_eval_values[
+                                                        right
+                                                    ]
+                                                ):
+                                                    projective_pair_bad_subsets.add(
+                                                        (left, right)
+                                                    )
+                                            if (
+                                                projective_pair_bad_subsets
+                                                != bad_direction_subsets
+                                            ):
+                                                raise AssertionError(
+                                                    {
+                                                        "kind": (
+                                                            "productive-"
+                                                            if productive
+                                                            else ""
+                                                        )
+                                                        + "marked-core-"
+                                                        "deficit-anchor-"
+                                                        "direction-mds-"
+                                                        "projective-fiber-"
+                                                        "failed",
+                                                        "p": p,
+                                                        "k": k,
+                                                        "syndrome": list(syn),
+                                                        "fixed_roots": list(
+                                                            fixed_roots
+                                                        ),
+                                                        "unmarked_core": list(
+                                                            unmarked_core
+                                                        ),
+                                                        "marked_count": (
+                                                            marked_count
+                                                        ),
+                                                        "core_deficit": (
+                                                            core_deficit
+                                                        ),
+                                                        "anchor": list(anchor),
+                                                        "bad_subsets": [
+                                                            list(item)
+                                                            for item in sorted(
+                                                                bad_direction_subsets
+                                                            )
+                                                        ],
+                                                        "projective_pair_bad_subsets": [
+                                                            list(item)
+                                                            for item in sorted(
+                                                                projective_pair_bad_subsets
+                                                            )
+                                                        ],
+                                                        "base_roots": sorted(
+                                                            projective_eval_base_roots
+                                                        ),
+                                                        "fibers": {
+                                                            str(key): sorted(
+                                                                roots
+                                                            )
+                                                            for key, roots in (
+                                                                projective_eval_fibers.items()
+                                                            )
+                                                        },
+                                                    }
+                                                )
+                                            max_projective_fiber_size = max(
+                                                (
+                                                    len(roots)
+                                                    for roots in (
+                                                        projective_eval_fibers.values()
+                                                    )
+                                                ),
+                                                default=0,
+                                            )
+                                            if (
+                                                max_projective_fiber_size
+                                                > residual_size - 1
+                                                or len(
+                                                    projective_eval_base_roots
+                                                )
+                                                > residual_size - 1
+                                            ):
+                                                raise AssertionError(
+                                                    {
+                                                        "kind": (
+                                                            "productive-"
+                                                            if productive
+                                                            else ""
+                                                        )
+                                                        + "marked-core-"
+                                                        "deficit-anchor-"
+                                                        "direction-mds-"
+                                                        "projective-fiber-"
+                                                        "degree-bound-failed",
+                                                        "p": p,
+                                                        "k": k,
+                                                        "syndrome": list(syn),
+                                                        "fixed_roots": list(
+                                                            fixed_roots
+                                                        ),
+                                                        "unmarked_core": list(
+                                                            unmarked_core
+                                                        ),
+                                                        "marked_count": (
+                                                            marked_count
+                                                        ),
+                                                        "core_deficit": (
+                                                            core_deficit
+                                                        ),
+                                                        "anchor": list(anchor),
+                                                        "max_fiber_size": (
+                                                            max_projective_fiber_size
+                                                        ),
+                                                        "base_roots": sorted(
+                                                            projective_eval_base_roots
+                                                        ),
+                                                        "bound": (
+                                                            residual_size - 1
+                                                        ),
+                                                    }
+                                                )
                                         if not root_slice_persistent:
                                             finite_root_slice_bound = (
                                                 binomial_or_zero(
