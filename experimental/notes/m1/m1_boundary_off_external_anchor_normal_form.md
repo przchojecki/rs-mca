@@ -7277,6 +7277,82 @@ The domain-MDS condition in Corollary 40.48 is the equality
 `K_0(F)(-J)` by the isomorphic stripped root-slice kernel gives
 (NoRootSliceExcess).
 
+## Corollary 40.50: It Suffices To Test Top Root Slices
+
+Let `K` be a `d`-dimensional subspace of degree-`<h` polynomials, and assume
+`d<=|D|`.  The following are equivalent:
+
+1. `K` is in domain-MDS position:
+
+```text
+dim K(-J)=max(d-|J|,0)        for every J subset D;
+```
+
+2. for every `J subset D` with `|J|=d`,
+
+```text
+K(-J)=0;                                           (NoTopRootSlice)
+```
+
+3. no nonzero polynomial in `K` has `d` distinct roots in `D`;
+4. for one, equivalently every, basis `Q_1,...,Q_d` of `K`, every square
+   evaluation determinant
+
+```text
+det( Q_i(alpha_j) )_{1<=i,j<=d},        {alpha_1,...,alpha_d} subset D,
+```
+
+is nonzero.
+
+Consequently, in Corollary 40.48, if each bottom kernel has dimension
+`d_F<=L<=|D|` and satisfies this top-root-slice test, then the bottom longer-
+Pade route closes with
+
+```text
+sum_F RFPhi_D(d_F)+2h <= 4 RFPhi_D(L)+2h,
+```
+
+as in (BottomMDSMixedLedger).  Equivalently, by Corollary 40.49, it is enough
+to prove that each stripped top root-slice kernel `K_J(F)` with
+`|J|=d_F` is zero.
+
+### Proof
+
+The domain-MDS condition immediately implies `K(-J)=0` for every `|J|=d`.
+That is equivalent to saying that no nonzero element of `K` vanishes on `d`
+distinct domain points.  It is also equivalent to nonvanishing of the displayed
+evaluation determinant for every `d`-set: the determinant is the matrix of the
+evaluation map
+
+```text
+ev_J: K -> F^J
+```
+
+in the chosen basis, and `K(-J)=ker ev_J`.
+
+It remains to show that the top-root-slice test implies the full domain-MDS
+profile.  Let `A subset D` have size `a<d`.  Evaluation on `A` imposes at most
+`a` independent linear conditions, so
+
+```text
+dim K(-A) >= d-a.
+```
+
+If strict inequality held, choose any `B subset D\A` of size `d-a`.  The extra
+vanishing conditions at `B` can reduce dimension by at most `d-a`, hence
+
+```text
+dim K(-(A union B)) >= dim K(-A)-(d-a) > 0.
+```
+
+This produces a nonzero element of `K` vanishing on the `d` distinct points
+`A union B`, contradicting the top-root-slice test.  Hence
+`dim K(-A)=d-a` for all `a<d`, and `K(-J)=0` for all `|J|>=d` follows from
+the `d`-subset case.  This is exactly domain-MDS position.
+
+The final bottom-route statement is Corollary 40.48, and the stripped
+top-root-slice formulation is Corollary 40.49 applied with `|J|=d_F`.
+
 ## Corollary 41: The Global Common-Image Ledger Is Endpoint-Only
 
 Let `GCI` be the set of monic degree-`c` split core locators `L` for which
@@ -10044,6 +10120,9 @@ domain-MDS position or have bounded dimension in the M1 instances.
 Corollary 40.49 identifies that domain-MDS test with the stripped
 fixed-root/root-slice rank profile; it does not prove the no-excess
 root-slice rank equalities for all root sets.
+Corollary 40.50 reduces the domain-MDS check to top root slices or evaluation
+determinants; it does not prove those determinants are nonzero in the M1
+instances.
 Corollary 41 packages the common-image branch into endpoint-type ledgers; it
 does not prove the endpoint rank hypotheses needed for the displayed
 `(q+2)binom(n,b)` bound. Corollary 42 packages the globally full core ledger

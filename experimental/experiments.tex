@@ -2348,6 +2348,18 @@ and \(K_0(F)\) is domain-MDS exactly when
 \]
 for every root set \(J\).  Thus closing the bottom route is a no-excess
 fixed-root/root-slice rank problem, not a separate denominator formalism.
+The no-excess condition has a finite top-slice test.  If a bottom kernel
+\(K\) has dimension \(d\le |D|\), then it is domain-MDS if and only if no
+nonzero \(Q\in K\) vanishes on \(d\) distinct domain points.  Equivalently, for
+a basis \(Q_1,\ldots,Q_d\) of \(K\), every \(d\times d\) evaluation determinant
+\[
+  \det(Q_i(\alpha_j))_{1\le i,j\le d},\qquad
+  \{\alpha_1,\ldots,\alpha_d\}\subset D,
+\]
+is nonzero.  By the root-slice identification, this is the same as vanishing
+of the stripped top root-slice kernels \(K_J(F)\) for \(|J|=d_F\).  Thus the
+bottom route can be attacked by finite determinant tests on the four bottom
+kernels.
 In the common two-denominator case \(M_{\min}=\{D_1,D_2\}\), writing
 \(C=\gcd(D_1,D_2)\), \(D_i=C E_i\), and \(e_i=\deg E_i\), the quotient
 denominators \(E_1,E_2\) are automatically coprime and

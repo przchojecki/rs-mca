@@ -396,7 +396,12 @@ Keep entries concise and link to the relevant files.
   identifies `K_0(F)(-J)` with the corresponding `Delta_J` bottom kernel, so
   the bottom route closes when these root-slice kernels have no excess
   dimension beyond `max(dim K_0(F)-|J|,0)`.
-  The non-claims section is updated through Corollary 40.49 to record that
+  This all-root-set test is further reduced to top root slices: a
+  `d`-dimensional bottom kernel with `d<=|D|` is domain-MDS iff no nonzero
+  element has `d` distinct domain roots, equivalently every `d x d`
+  evaluation determinant of a basis is nonzero, equivalently the stripped
+  top root-slice kernels `K_J(F)` vanish for `|J|=d_F`.
+  The non-claims section is updated through Corollary 40.50 to record that
   these formulas do not by themselves bound the bottom/pre-half residuals or
   force large common cores/quotient degrees.
   Since
