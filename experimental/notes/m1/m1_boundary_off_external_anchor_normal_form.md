@@ -7353,6 +7353,95 @@ the `d`-subset case.  This is exactly domain-MDS position.
 The final bottom-route statement is Corollary 40.48, and the stripped
 top-root-slice formulation is Corollary 40.49 applied with `|J|=d_F`.
 
+## Corollary 40.51: Two-Dimensional Bottom Kernels Are Evaluation-Line Counts
+
+Let `K` be a two-dimensional subspace of degree-`<h` polynomials over `F_q`.
+For `alpha in D`, let
+
+```text
+ev_alpha: K -> F_q,        Q |-> Q(alpha)
+```
+
+be the evaluation functional.  If `ev_alpha=0` for some `alpha in D`, then
+`K^rf` is empty.  Otherwise each `ev_alpha` defines a projective evaluation
+line
+
+```text
+[ev_alpha] in P(K^*).
+```
+
+Let
+
+```text
+s_K = |{ [ev_alpha] : alpha in D }|.
+```
+
+Then
+
+```text
+|K^rf| = q+1-s_K.                                  (TwoDimRootFreeLines)
+```
+
+Equivalently,
+
+```text
+|K^rf| = RFPhi_D(2) + (|D|-s_K)
+       = q+1-|D| + (|D|-s_K).                      (TwoDimCollisionDefect)
+```
+
+Thus a two-dimensional bottom kernel is domain-MDS exactly when all evaluation
+functionals are nonzero and the projective map
+
+```text
+D -> P(K^*),        alpha |-> [ev_alpha]
+```
+
+is injective.  In that case `|K^rf|=RFPhi_D(2)=q+1-|D|`.
+
+Applied to the four bottom residual kernels, if every nonzero bottom kernel
+has dimension at most two, no two-dimensional kernel has a zero evaluation
+functional, and `s_F` denotes the number of distinct evaluation lines for the
+two-dimensional family `F`, then the bottom route has residual charge
+
+```text
+sum_{d_F=1} 1  +  sum_{d_F=2} (q+1-s_F),
+```
+
+and the mixed ladder closes after adding the bottom finite frontier charge
+`2h`.  In particular, if all two-dimensional bottom evaluation-line maps are
+injective, this recovers the `L=2` ledger
+
+```text
+4(q+1-|D|)+2h,
+```
+
+with absent or one-dimensional families contributing less.
+
+### Proof
+
+If some `ev_alpha` is zero, then every polynomial in `K` vanishes at `alpha`,
+so no nonzero projective class is root-free.
+
+Assume all evaluation functionals are nonzero.  The projective space `P(K)` has
+`q+1` points.  For each `alpha`, the set of projective classes vanishing at
+`alpha` is the kernel point
+
+```text
+P(ker ev_alpha) subset P(K).
+```
+
+Two domain points remove the same point of `P(K)` exactly when their
+evaluation functionals are scalar multiples, i.e. when they have the same
+projective evaluation line in `P(K^*)`.  Hence the union of all vanishing
+points has size `s_K`, and the complement, which is exactly `K^rf`, has size
+`q+1-s_K`.  Since `RFPhi_D(2)=q+1-|D|`, the collision-defect formula follows.
+
+The injectivity statement is the `d=2` case of Corollary 40.50: no nonzero
+kernel element vanishes at two distinct domain points iff no two projective
+evaluation lines coincide, and the no-one-root condition is exactly
+`ev_alpha!=0` for every `alpha`.  The bottom-route statement sums this exact
+count over the four bottom kernels and invokes Corollary 40.43.
+
 ## Corollary 41: The Global Common-Image Ledger Is Endpoint-Only
 
 Let `GCI` be the set of monic degree-`c` split core locators `L` for which
@@ -10123,6 +10212,9 @@ root-slice rank equalities for all root sets.
 Corollary 40.50 reduces the domain-MDS check to top root slices or evaluation
 determinants; it does not prove those determinants are nonzero in the M1
 instances.
+Corollary 40.51 gives an exact two-dimensional kernel count in terms of
+projective evaluation-line collisions; it does not prove those collisions are
+absent or small for the M1 bottom kernels.
 Corollary 41 packages the common-image branch into endpoint-type ledgers; it
 does not prove the endpoint rank hypotheses needed for the displayed
 `(q+2)binom(n,b)` bound. Corollary 42 packages the globally full core ledger
