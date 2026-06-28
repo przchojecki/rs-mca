@@ -4463,6 +4463,26 @@ matching factor over every canonical core.  The verifier now enforces this:
 in the largest \(F_7^*\) audit there are \(21540\) marked-core fibers with
 maximum fiber size \(2\), and no nonempty boundary core occurs; any future
 nonempty boundary fiber is required to be singleton.
+The empty-core exception is exactly the boundary moment map.  For
+\(r=\tau+1\), full-marked supports \(S=M(S)\), \(|S|=r\), are precisely the
+nonzero \(r\)-sparse representations of
+\[
+  g=(s_0,\ldots,s_{2r-2}),
+  \qquad
+  g_i=\sum_{y\in S}a_y y^i,
+  \quad
+  a_y={b_y(S)\over\prod_{z\in S,\ z\ne y}(y-z)}.
+\]
+Conversely, any such representation gives the active equation after applying
+\(\ell_S\) and gives nonzero marked boundaries after applying
+\(\ell_{S\setminus\{y\}}\).  Hence distinct supports in one empty-core
+boundary fiber are disjoint, and the fiber size is at most
+\(\lfloor n/r\rfloor\).  In the full-domain case \(n=2r\), the only
+nontrivial fibers are the root-linear complement pairs
+\((Y,\nu y)\leftrightarrow(H\setminus Y,-\nu z)\).  The largest \(F_7^*\)
+audit records \(17220\) produced empty-core boundary fibers carrying
+\(17280\) labels, maximum fiber size \(2\), with \(60\) complement-pair
+checks and \(480\) root-linear produced labels.
 For fixed \(A\) and \(m\), this also gives a fixed-anchor fiber bound.  If
 \(m\le\tau\), the first \(2m\) moments recover the mode locator and
 amplitudes uniquely.  At the boundary \(m=\tau+1\), two supports in one

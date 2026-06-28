@@ -2216,6 +2216,54 @@ audits the largest `F_7^*` case has `21540` marked-core fibers and maximum
 fiber size `2`; no nonempty boundary core occurs there, and any future
 nonempty boundary core fiber is required to be singleton.
 
+## Empty-Core Endpoint Is The Boundary Moment Map
+
+It remains to identify the empty-core exception in the preceding theorem.
+Put `r=tau+1` and `U=empty`.  Then an active support `S` with
+`M(S)=S` and `|S|=r` is exactly a nonzero `r`-sparse representation of the
+fixed boundary moment vector
+
+```text
+g=(s_0,s_1,...,s_{2r-2}).
+```
+
+More explicitly, if `S` is full-marked, then
+
+```text
+g_i=sum_{y in S} a_y y^i,        0<=i<=2r-2,
+        a_y=b_y(S)/prod_{z in S, z!=y}(y-z).       (EC)
+```
+
+Conversely, if a set `Y subset H`, `|Y|=r`, and nonzero amplitudes `a_y`
+satisfy (EC) with `S` replaced by `Y`, then `Y` is active at row `tau` and
+all roots of `Y` are marked.  Indeed, applying `ell_Y` to the sparse moment
+sequence gives the `tau=r-1` active zero rows, and applying
+`ell_{Y\{y}}` leaves the nonzero geometric boundary
+
+```text
+a_y prod_{z in Y, z!=y}(y-z) (1,y,...,y^tau).
+```
+
+Therefore the only boundary ambiguity left by the canonical-core closure is
+precisely the boundary moment fiber already classified earlier.  Distinct
+supports in one fiber are disjoint, so every empty-core boundary fiber has
+size at most `floor(n/r)`.  In the full-domain root-of-unity case `n=2r`,
+the only nontrivial fibers are the root-linear complement pairs
+
+```text
+(Y, (nu y)_{y in Y})  <->  (H\Y, (-nu z)_{z in H\Y}).
+```
+
+Thus the refined canonical-core closure has no residual overlapping boundary
+cluster: nonempty cores are support-unique, and the empty core is the known
+matching/root-linear endpoint.
+
+The verifier records this endpoint separately.  In the largest `F_7^*` audit
+there are `17220` produced empty-core boundary fibers carrying `17280`
+labels, maximum fiber size `2`, with `60` produced complement-pair checks.
+In the full-domain case `n=6=2r`, all nontrivial produced pairs are
+root-linear complements; the audit records `480` root-linear produced labels.
+
 ## Fixed Anchors Have Matching-Bounded Fibers
 
 Fix the collapsed anchor base `A` and the mode size `m`.  Then

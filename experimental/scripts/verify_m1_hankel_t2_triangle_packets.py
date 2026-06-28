@@ -137,6 +137,9 @@ divided by the corresponding simple pole y-u.
 At the boundary marked size t+1, this extra simple-pole row recovers the
 marked locator whenever the unmarked core is nonempty, so the verifier checks
 that only empty-core boundary fibers can have matching ambiguity.
+For the remaining empty-core endpoint, it records the produced full-marked
+boundary fibers and, in the full-domain case n=2(t+1), checks that nontrivial
+produced pairs are root-linear complements.
 For each fixed collapsed anchor base, it audits the sparse-representation
 fiber: below the boundary the mode support is unique, while at the boundary
 distinct supports are disjoint and obey the matching bound.
@@ -548,6 +551,18 @@ def analyze_case(
     terminal_tree_productive_marked_core_nonempty_boundary_checks = 0
     terminal_tree_marked_core_nonempty_boundary_max_size = 0
     terminal_tree_productive_marked_core_nonempty_boundary_max_size = 0
+    terminal_tree_empty_core_boundary_fiber_checks = 0
+    terminal_tree_productive_empty_core_boundary_fiber_checks = 0
+    terminal_tree_empty_core_boundary_fiber_labels = 0
+    terminal_tree_productive_empty_core_boundary_fiber_labels = 0
+    terminal_tree_empty_core_boundary_fiber_max_size = 0
+    terminal_tree_productive_empty_core_boundary_fiber_max_size = 0
+    terminal_tree_empty_core_boundary_root_linear_checks = 0
+    terminal_tree_productive_empty_core_boundary_root_linear_checks = 0
+    terminal_tree_empty_core_boundary_root_linear_hits = 0
+    terminal_tree_productive_empty_core_boundary_root_linear_hits = 0
+    terminal_tree_empty_core_boundary_complement_pair_checks = 0
+    terminal_tree_productive_empty_core_boundary_complement_pair_checks = 0
     terminal_tree_core_packet_checks = 0
     terminal_tree_productive_core_packet_checks = 0
     terminal_tree_core_simple_pole_lift_checks = 0
@@ -791,6 +806,18 @@ def analyze_case(
             nonlocal terminal_tree_productive_marked_core_nonempty_boundary_checks
             nonlocal terminal_tree_marked_core_nonempty_boundary_max_size
             nonlocal terminal_tree_productive_marked_core_nonempty_boundary_max_size
+            nonlocal terminal_tree_empty_core_boundary_fiber_checks
+            nonlocal terminal_tree_productive_empty_core_boundary_fiber_checks
+            nonlocal terminal_tree_empty_core_boundary_fiber_labels
+            nonlocal terminal_tree_productive_empty_core_boundary_fiber_labels
+            nonlocal terminal_tree_empty_core_boundary_fiber_max_size
+            nonlocal terminal_tree_productive_empty_core_boundary_fiber_max_size
+            nonlocal terminal_tree_empty_core_boundary_root_linear_checks
+            nonlocal terminal_tree_productive_empty_core_boundary_root_linear_checks
+            nonlocal terminal_tree_empty_core_boundary_root_linear_hits
+            nonlocal terminal_tree_productive_empty_core_boundary_root_linear_hits
+            nonlocal terminal_tree_empty_core_boundary_complement_pair_checks
+            nonlocal terminal_tree_productive_empty_core_boundary_complement_pair_checks
             nonlocal terminal_tree_core_packet_checks
             nonlocal terminal_tree_productive_core_packet_checks
             nonlocal terminal_tree_core_simple_pole_lift_checks
@@ -3145,7 +3172,7 @@ def analyze_case(
             def audit_marked_core_fibers(
                 supports: set[tuple[int, ...]],
                 productive: bool,
-            ) -> tuple[int, int, int, int, int]:
+            ) -> tuple[int, int, int, int, int, int, int, int, int, int, int]:
                 fibers: dict[
                     tuple[int, tuple[int, ...]],
                     list[tuple[int, ...]],
@@ -3173,6 +3200,12 @@ def analyze_case(
                 max_fiber_size = 0
                 nonempty_boundary_checks = 0
                 nonempty_boundary_max_size = 0
+                empty_boundary_checks = 0
+                empty_boundary_labels = 0
+                empty_boundary_max_size = 0
+                empty_boundary_root_linear_checks = 0
+                empty_boundary_root_linear_hits = 0
+                empty_boundary_complement_pair_checks = 0
                 for (marked_count, unmarked_core), supports_in_fiber in (
                     fibers.items()
                 ):
@@ -3234,6 +3267,99 @@ def analyze_case(
                                         ],
                                     }
                                 )
+                        else:
+                            empty_boundary_checks += 1
+                            empty_boundary_labels += fiber_size
+                            empty_boundary_max_size = max(
+                                empty_boundary_max_size,
+                                fiber_size,
+                            )
+                            root_linear_supports: set[tuple[int, ...]] = set()
+                            if n == 2 * marked_count:
+                                for support in unique_supports:
+                                    support_scalars = (
+                                        marked_roots_for_split_support(
+                                            support
+                                        )
+                                    )
+                                    amplitudes = {}
+                                    for root_index in support:
+                                        root = domain[root_index]
+                                        denominator = 1
+                                        for other_root_index in support:
+                                            if other_root_index == root_index:
+                                                continue
+                                            denominator = (
+                                                denominator
+                                                * (
+                                                    root
+                                                    - domain[other_root_index]
+                                                )
+                                            ) % p
+                                        amplitudes[root_index] = (
+                                            support_scalars[root_index]
+                                            * pow(denominator, -1, p)
+                                        ) % p
+                                    root_linear_values = {
+                                        amplitude
+                                        * pow(domain[root_index], -1, p)
+                                        % p
+                                        for root_index, amplitude in (
+                                            amplitudes.items()
+                                        )
+                                    }
+                                    root_linear = (
+                                        len(root_linear_values) == 1
+                                        and 0 not in root_linear_values
+                                    )
+                                    empty_boundary_root_linear_checks += 1
+                                    if root_linear:
+                                        empty_boundary_root_linear_hits += 1
+                                        root_linear_supports.add(support)
+                                if fiber_size > 1:
+                                    for left, right in itertools.combinations(
+                                        unique_supports,
+                                        2,
+                                    ):
+                                        empty_boundary_complement_pair_checks += 1
+                                        if (
+                                            set(left) | set(right)
+                                            != set(range(n))
+                                            or set(left) & set(right)
+                                            or left not in root_linear_supports
+                                            or right not in root_linear_supports
+                                        ):
+                                            raise AssertionError(
+                                                {
+                                                    "kind": (
+                                                        "productive-"
+                                                        if productive
+                                                        else ""
+                                                    )
+                                                    + "empty-core-boundary-"
+                                                    "non-root-linear-"
+                                                    "complement-pair",
+                                                    "p": p,
+                                                    "k": k,
+                                                    "syndrome": list(syn),
+                                                    "fixed_roots": list(
+                                                        fixed_roots
+                                                    ),
+                                                    "marked_count": (
+                                                        marked_count
+                                                    ),
+                                                    "left_support": list(left),
+                                                    "right_support": list(
+                                                        right
+                                                    ),
+                                                    "root_linear_supports": [
+                                                        list(support)
+                                                        for support in sorted(
+                                                            root_linear_supports
+                                                        )
+                                                    ],
+                                                }
+                                            )
                         for left, right in itertools.combinations(
                             unique_supports,
                             2,
@@ -3289,6 +3415,12 @@ def analyze_case(
                     max_fiber_size,
                     nonempty_boundary_checks,
                     nonempty_boundary_max_size,
+                    empty_boundary_checks,
+                    empty_boundary_labels,
+                    empty_boundary_max_size,
+                    empty_boundary_root_linear_checks,
+                    empty_boundary_root_linear_hits,
+                    empty_boundary_complement_pair_checks,
                 )
 
             (
@@ -3297,6 +3429,12 @@ def analyze_case(
                 marked_core_fiber_max_size,
                 marked_core_nonempty_boundary_checks,
                 marked_core_nonempty_boundary_max_size,
+                empty_core_boundary_fiber_checks,
+                empty_core_boundary_fiber_labels,
+                empty_core_boundary_fiber_max_size,
+                empty_core_boundary_root_linear_checks,
+                empty_core_boundary_root_linear_hits,
+                empty_core_boundary_complement_pair_checks,
             ) = audit_marked_core_fibers(
                 total_split_supports,
                 productive=False,
@@ -3307,6 +3445,12 @@ def analyze_case(
                 productive_marked_core_fiber_max_size,
                 productive_marked_core_nonempty_boundary_checks,
                 productive_marked_core_nonempty_boundary_max_size,
+                productive_empty_core_boundary_fiber_checks,
+                productive_empty_core_boundary_fiber_labels,
+                productive_empty_core_boundary_fiber_max_size,
+                productive_empty_core_boundary_root_linear_checks,
+                productive_empty_core_boundary_root_linear_hits,
+                productive_empty_core_boundary_complement_pair_checks,
             ) = audit_marked_core_fibers(
                 productive_total_split_supports,
                 productive=True,
@@ -3344,6 +3488,44 @@ def analyze_case(
             terminal_tree_productive_marked_core_nonempty_boundary_max_size = max(
                 terminal_tree_productive_marked_core_nonempty_boundary_max_size,
                 productive_marked_core_nonempty_boundary_max_size,
+            )
+            terminal_tree_empty_core_boundary_fiber_checks += (
+                empty_core_boundary_fiber_checks
+            )
+            terminal_tree_productive_empty_core_boundary_fiber_checks += (
+                productive_empty_core_boundary_fiber_checks
+            )
+            terminal_tree_empty_core_boundary_fiber_labels += (
+                empty_core_boundary_fiber_labels
+            )
+            terminal_tree_productive_empty_core_boundary_fiber_labels += (
+                productive_empty_core_boundary_fiber_labels
+            )
+            terminal_tree_empty_core_boundary_fiber_max_size = max(
+                terminal_tree_empty_core_boundary_fiber_max_size,
+                empty_core_boundary_fiber_max_size,
+            )
+            terminal_tree_productive_empty_core_boundary_fiber_max_size = max(
+                terminal_tree_productive_empty_core_boundary_fiber_max_size,
+                productive_empty_core_boundary_fiber_max_size,
+            )
+            terminal_tree_empty_core_boundary_root_linear_checks += (
+                empty_core_boundary_root_linear_checks
+            )
+            terminal_tree_productive_empty_core_boundary_root_linear_checks += (
+                productive_empty_core_boundary_root_linear_checks
+            )
+            terminal_tree_empty_core_boundary_root_linear_hits += (
+                empty_core_boundary_root_linear_hits
+            )
+            terminal_tree_productive_empty_core_boundary_root_linear_hits += (
+                productive_empty_core_boundary_root_linear_hits
+            )
+            terminal_tree_empty_core_boundary_complement_pair_checks += (
+                empty_core_boundary_complement_pair_checks
+            )
+            terminal_tree_productive_empty_core_boundary_complement_pair_checks += (
+                productive_empty_core_boundary_complement_pair_checks
             )
 
             def audit_core_simple_pole_lifts(
@@ -5866,6 +6048,42 @@ def analyze_case(
         "terminal_tree_productive_marked_core_nonempty_boundary_max_size": (
             terminal_tree_productive_marked_core_nonempty_boundary_max_size
         ),
+        "terminal_tree_empty_core_boundary_fiber_checks": (
+            terminal_tree_empty_core_boundary_fiber_checks
+        ),
+        "terminal_tree_productive_empty_core_boundary_fiber_checks": (
+            terminal_tree_productive_empty_core_boundary_fiber_checks
+        ),
+        "terminal_tree_empty_core_boundary_fiber_labels": (
+            terminal_tree_empty_core_boundary_fiber_labels
+        ),
+        "terminal_tree_productive_empty_core_boundary_fiber_labels": (
+            terminal_tree_productive_empty_core_boundary_fiber_labels
+        ),
+        "terminal_tree_empty_core_boundary_fiber_max_size": (
+            terminal_tree_empty_core_boundary_fiber_max_size
+        ),
+        "terminal_tree_productive_empty_core_boundary_fiber_max_size": (
+            terminal_tree_productive_empty_core_boundary_fiber_max_size
+        ),
+        "terminal_tree_empty_core_boundary_root_linear_checks": (
+            terminal_tree_empty_core_boundary_root_linear_checks
+        ),
+        "terminal_tree_productive_empty_core_boundary_root_linear_checks": (
+            terminal_tree_productive_empty_core_boundary_root_linear_checks
+        ),
+        "terminal_tree_empty_core_boundary_root_linear_hits": (
+            terminal_tree_empty_core_boundary_root_linear_hits
+        ),
+        "terminal_tree_productive_empty_core_boundary_root_linear_hits": (
+            terminal_tree_productive_empty_core_boundary_root_linear_hits
+        ),
+        "terminal_tree_empty_core_boundary_complement_pair_checks": (
+            terminal_tree_empty_core_boundary_complement_pair_checks
+        ),
+        "terminal_tree_productive_empty_core_boundary_complement_pair_checks": (
+            terminal_tree_productive_empty_core_boundary_complement_pair_checks
+        ),
         "terminal_tree_core_packet_checks": (
             terminal_tree_core_packet_checks
         ),
@@ -6394,6 +6612,12 @@ def print_summary(results: Sequence[dict[str, object]]) -> None:
             f"{result['terminal_tree_marked_core_nonempty_boundary_checks']} "
             f"marked_core_nonempty_boundary_max="
             f"{result['terminal_tree_marked_core_nonempty_boundary_max_size']} "
+            f"empty_core_boundary_fibers="
+            f"{result['terminal_tree_empty_core_boundary_fiber_checks']} "
+            f"empty_core_boundary_max="
+            f"{result['terminal_tree_empty_core_boundary_fiber_max_size']} "
+            f"empty_core_root_linear="
+            f"{result['terminal_tree_empty_core_boundary_root_linear_hits']} "
             f"core_packets={result['terminal_tree_core_packet_checks']} "
             f"core_simple_pole_lifts="
             f"{result['terminal_tree_core_simple_pole_lift_checks']} "

@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 empty-core endpoint is the boundary moment map
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_hankel_t2_one_exchange_lift.md`,
+  `experimental/scripts/verify_m1_hankel_t2_triangle_packets.py`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / STRUCTURAL / EXACT FINITE AUDIT.
+- **What is being added:** Identifies the only remaining boundary exception:
+  empty-core full-marked supports are exactly nonzero boundary sparse-moment
+  representations.  General fibers are matchings, and full-domain nontrivial
+  fibers are root-linear complement pairs.
+- **How it is useful:** Completes the canonical-core boundary analysis:
+  nonempty cores are support-unique and the empty core is a known endpoint
+  ledger, rather than a new M1 packet mechanism.
+- **What to do next:** Use this endpoint classification when comparing the
+  canonical-core ledger against quotient-periodic and aperiodic M1 bounds.
+
 ### 2026-06-28 - M1 nonempty boundary cores are support-unique
 
 - **Agent/model:** AllenGrahamHart / Codex audit.
