@@ -30,6 +30,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 anchored packets reconstruct branch data
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_hankel_t2_one_exchange_lift.md`,
+  `experimental/scripts/verify_m1_hankel_t2_triangle_packets.py`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / STRUCTURAL / EXACT FINITE VERIFICATION.
+- **What is being added:** Shows that for a fixed lower-core anchor `(X,R)`,
+  a terminal packet label `(R,Y,(a_y))` reconstructs the branch core
+  `C=R union Y` and the first-row exit scalars
+  `c_X(y;C)=a_y prod_{z!=y}(y-z)`.
+- **How it is useful:** Localizes the remaining repeated-production problem:
+  multiplicity cannot come from ambiguity at one anchor, so repeated labels
+  must arise from different anchors or global relations between anchors.
+- **What to do next:** Bound or classify repeated production across distinct
+  anchors, especially cases forcing quotient-periodic, tangent, or lower-core
+  structure.
+
 ### 2026-06-28 - M1 visible terminal packet-type ledger
 
 - **Agent/model:** AllenGrahamHart / Codex audit.

@@ -99,6 +99,8 @@ It also reports the ambient labeled sparse-packet capacity
 binom(n,m)(p-1)^m for each boundary mode size encountered in the scan.
 For all visible terminal mode packets, it reports the same labeled capacity by
 mode size as the packet-type ledger.
+Finally, it checks that an anchored packet label reconstructs its branch core
+and all first-row exit scalars.
 Equivalently, it records support-unique boundary packets as those with no
 equal-size visible alias.
 The full-domain visible endpoint count is then support-unique labels plus one
@@ -445,6 +447,8 @@ def analyze_case(
     terminal_tree_productive_branch_pairs = 0
     terminal_tree_mode_packet_checks = 0
     terminal_tree_productive_mode_packets = 0
+    terminal_tree_mode_anchor_reconstruction_checks = 0
+    terminal_tree_productive_mode_anchor_reconstruction_checks = 0
     terminal_tree_mode_rank_checks = 0
     terminal_tree_productive_mode_rank_checks = 0
     terminal_tree_mode_peeling_checks = 0
@@ -596,6 +600,8 @@ def analyze_case(
             nonlocal terminal_tree_productive_branch_pairs
             nonlocal terminal_tree_mode_packet_checks
             nonlocal terminal_tree_productive_mode_packets
+            nonlocal terminal_tree_mode_anchor_reconstruction_checks
+            nonlocal terminal_tree_productive_mode_anchor_reconstruction_checks
             nonlocal terminal_tree_mode_rank_checks
             nonlocal terminal_tree_productive_mode_rank_checks
             nonlocal terminal_tree_mode_peeling_checks
@@ -828,6 +834,8 @@ def analyze_case(
                 nonlocal terminal_tree_productive_boundary_max_fiber_size
                 nonlocal terminal_tree_mode_sizes_seen
                 nonlocal terminal_tree_boundary_mode_sizes_seen
+                nonlocal terminal_tree_mode_anchor_reconstruction_checks
+                nonlocal terminal_tree_productive_mode_anchor_reconstruction_checks
 
                 if not current_core:
                     return (1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
@@ -1076,6 +1084,68 @@ def analyze_case(
                                 "lower_vector": list(lower_vector),
                                 "expected": expected,
                             }
+                        )
+                    reconstructed_core = tuple(
+                        sorted((*lower_core, *child_root_indices))
+                    )
+                    if reconstructed_core != current_core:
+                        raise AssertionError(
+                            {
+                                "kind": (
+                                    "terminal-branch-anchor-core-"
+                                    "reconstruction-failed"
+                                ),
+                                "p": p,
+                                "k": k,
+                                "syndrome": list(syn),
+                                "fixed_roots": list(fixed_roots),
+                                "current_fixed": list(current_fixed),
+                                "current_core": list(current_core),
+                                "lower_core": list(lower_core),
+                                "exit_roots": sorted(child_root_indices),
+                                "reconstructed_core": list(
+                                    reconstructed_core
+                                ),
+                            }
+                        )
+                    for root_index, root, _child_count, scalar, amplitude in (
+                        mode_data
+                    ):
+                        denominator = 1
+                        for other_root_index in child_root_indices:
+                            if other_root_index == root_index:
+                                continue
+                            denominator = (
+                                denominator
+                                * (root - domain[other_root_index])
+                            ) % p
+                        reconstructed_scalar = amplitude * denominator % p
+                        if reconstructed_scalar != scalar:
+                            raise AssertionError(
+                                {
+                                    "kind": (
+                                        "terminal-branch-anchor-scalar-"
+                                        "reconstruction-failed"
+                                    ),
+                                    "p": p,
+                                    "k": k,
+                                    "syndrome": list(syn),
+                                    "fixed_roots": list(fixed_roots),
+                                    "current_fixed": list(current_fixed),
+                                    "current_core": list(current_core),
+                                    "lower_core": list(lower_core),
+                                    "exit_root": root_index,
+                                    "amplitude": amplitude,
+                                    "scalar": scalar,
+                                    "reconstructed_scalar": (
+                                        reconstructed_scalar
+                                    ),
+                                }
+                            )
+                    terminal_tree_mode_anchor_reconstruction_checks += 1
+                    if productive_children >= 2:
+                        terminal_tree_productive_mode_anchor_reconstruction_checks += (
+                            1
                         )
                     if 2 * mode_count - 1 <= len(lower_vector):
                         moment_matrix = tuple(
@@ -3469,6 +3539,12 @@ def analyze_case(
         "terminal_tree_productive_mode_packets": (
             terminal_tree_productive_mode_packets
         ),
+        "terminal_tree_mode_anchor_reconstruction_checks": (
+            terminal_tree_mode_anchor_reconstruction_checks
+        ),
+        "terminal_tree_productive_mode_anchor_reconstruction_checks": (
+            terminal_tree_productive_mode_anchor_reconstruction_checks
+        ),
         "terminal_tree_mode_rank_checks": terminal_tree_mode_rank_checks,
         "terminal_tree_productive_mode_rank_checks": (
             terminal_tree_productive_mode_rank_checks
@@ -3861,6 +3937,8 @@ def print_summary(results: Sequence[dict[str, object]]) -> None:
             f"{result['max_nonzero_terminal_tree_branch_vertices']} "
             f"max_nonzero_terminal_tree_branch_pairs="
             f"{result['max_nonzero_terminal_tree_branch_pairs']} "
+            f"anchor_reconstructions="
+            f"{result['terminal_tree_mode_anchor_reconstruction_checks']} "
             f"max_nonzero_terminal_tree_mode_size="
             f"{result['max_nonzero_terminal_tree_mode_size']} "
             f"max_nonzero_terminal_tree_mode_rank_size="

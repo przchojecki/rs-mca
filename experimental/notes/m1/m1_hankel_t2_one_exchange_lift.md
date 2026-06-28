@@ -1098,6 +1098,36 @@ therefore the two-mode shadow of a stronger fact: terminal multiflag mass is
 carried by productive sparse mode packets inside lower fixed-root Hankel
 kernels.
 
+## Anchored Packets Reconstruct Branch Scalars
+
+The packet label has no hidden multiplicity at a fixed anchor.  Fix the
+fixed-root chain `X`, the lower core `R`, and the full branch mode set
+`Y=NZ_X(C)` with `C=R union Y`.  If the anchored packet label
+
+```text
+(R, Y, (a_y)_{y in Y})
+```
+
+is known, then it reconstructs the branch vertex and all outgoing first-row
+scalars:
+
+```text
+C=R union Y,
+c_X(y;C)=a_y prod_{z in Y, z!=y}(y-z).          (AR)
+```
+
+Proof: the identity is just the definition of the packet amplitudes in (MP),
+`a_y=c_X(y;C)/d_y`, where
+`d_y=prod_{z in Y,z!=y}(y-z)`.  Since the roots in `Y` are distinct, all
+`d_y` are nonzero.  Thus the anchored packet label recovers both the branch
+core `C` and each nonzero scalar cut.
+
+Consequently repeated production of a visible packet label cannot be explained
+by local ambiguity at one fixed lower core.  Any remaining multiplicity must
+come from different anchors `(X,R)` producing the same label, or from global
+relations between those anchors.  This is the next object that must be charged
+to quotient-periodic, tangent, or lower-core ledgers.
+
 ## Sparse Packets Have Rank Certificates
 
 When the packet window is long enough, the mode count is detected by a single
