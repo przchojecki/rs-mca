@@ -3843,6 +3843,15 @@ to the next fixed-root layer \(K^{X\cup\{y\}}_{\tau,q-1}(s)\).  For a
 \(D\), the single nonzero root-marked extension, or empty.  Hence the
 root-marked residual is literally the nonzero part of the next fixed-root
 incidence sequence, not a new packet family.
+Iterating this gives a first-zero stopping decomposition.  Along any ordered
+deletion path of an active fixed-chain kernel, each nonzero boundary step is
+root-marked and moves to the next fixed-root layer.  The path either first
+hits a zero-boundary star at some depth, or reaches the bottom condition
+\[
+  H_{\tau,0}(\Delta_{X\cup C}s)1=0.
+\]
+Thus the fixed-root filtration has finite depth and no independent
+multiplicative residual branch.
 This residual also has additive one-exchange descent.  If
 \(C_y=R\cup\{y\}\) and \(C_z=R\cup\{z\}\) are two root-marked cores in the
 same fixed-root slice, then both are active for
@@ -3932,7 +3941,11 @@ first-boundary identity with zero defects; the largest listed case checks
 rung counts \(10\) active cores, \(5\) zero-boundary cores, and \(4\)
 root-marked boundaries.  The set-level filtration identity behind this count
 is checked too: the largest listed case checks \(61740\) fixed-rung incidence
-pairs, with maximum nonzero incidence count \(20\) and zero defects.
+pairs, with maximum nonzero incidence count \(20\) and zero defects.  The
+same scan checks \(102900\) ordered deletion paths in the first-zero stopping
+decomposition: \(14700\), \(10080\), and \(4320\) stop at depths \(1\), \(2\),
+and \(3\), respectively, while \(73800\) reach the terminal difference
+condition; all path checks have zero defect.
 The common-core and two-denominator formulas persist verbatim after this
 root-free replacement.  With \(C=\gcd(D:D\in M_{\min})\), \(\gamma=\deg C\),
 and \(E_D=D/C\),

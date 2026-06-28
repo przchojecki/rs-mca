@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 fixed-root filtration has first-zero stopping
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_hankel_t2_one_exchange_lift.md`,
+  `experimental/scripts/verify_m1_hankel_t2_triangle_packets.py`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / STRUCTURAL / EXACT FINITE VERIFICATION.
+- **What is being added:** Iterates the fixed-root filtration identity into a
+  first-zero stopping decomposition: every ordered deletion path either first
+  hits a zero-boundary star or reaches the terminal bottom condition
+  `H_{tau,0}(Delta_{X union C}s)1=0`.
+- **How it is useful:** Gives the same-slope fixed-root ladder a finite
+  stopping structure; nonzero marked steps move to the next fixed-root layer
+  instead of creating an independently compounding packet family.
+- **What to do next:** Bound the terminal bottom-difference paths or show
+  that quotient-periodic/aperiodic structure collapses them in the M1 window.
+
 ### 2026-06-28 - M1 fixed-root filtration incidence is exact
 
 - **Agent/model:** AllenGrahamHart / Codex audit.

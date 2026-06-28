@@ -802,6 +802,53 @@ unstructured objects: it is the nonzero part of the next fixed-root incidence
 sequence, while zero-boundary cores give the whole star fiber.  This is the
 set-level form of the additive-loss mechanism.
 
+## First-Zero Stopping Decomposition
+
+Iterating (FIS) gives a finite stopping rule for every ordered deletion path.
+Let `X_1` be a fixed root chain and let
+`C in K^{X_1}_{tau,q}(s)`.  Choose an ordering
+
+```text
+C=(y_1,...,y_q).
+```
+
+Set
+
+```text
+X_h=X_1 union {y_1,...,y_{h-1}},
+C_h=C\{y_1,...,y_{h-1}},
+D_h=C_h\{y_h},
+d_h=Delta_{X_h}s.
+```
+
+Starting with `h=1`, exactly one of the following happens at each stage:
+
+1. `H_{tau+1,|D_h|}(d_h)ell_{D_h}=0`.  The path stops at the
+   zero-boundary star over `D_h`.
+2. The same boundary vector is nonzero and root-marked by `y_h`.  Then
+   `D_h in K^{X_h union {y_h}}_{tau,|D_h|}(s)`, and the path continues to
+   the next rung.
+
+If the path never stops, it reaches the terminal bottom condition
+
+```text
+H_{tau,0}(Delta_{X_1 union C}s)1=0.            (TERM)
+```
+
+Proof: assume the path has not stopped before depth `h`.  Then repeated use
+of (FIS) shows that `C_h` lies in the active kernel
+`K^{X_h}_{tau,|C_h|}(s)`.  Apply (FIS) to the incidence
+`(C_h,y_h)`.  If the deleted boundary core is zero-boundary, the path stops.
+Otherwise the same incidence is in the nonzero root-marked part, which is
+equivalent to the next fixed-root condition for `D_h`.  This proves the
+induction step.  If no zero-boundary stop occurs, after all `q` deletions the
+empty locator is active for the iterated difference syndrome, which is (TERM).
+
+Thus every ordered active-support deletion path has a first charged
+zero-boundary rung or a bottom terminal difference condition.  The filtration
+has finite depth `q`, and nonzero marked steps merely move to the next
+fixed-root layer; they do not create a parallel packet family.
+
 ## Root-Marked Slice Is One Row
 
 The zero-boundary subkernel in the fixed-root difference form is cut out by a
@@ -1161,6 +1208,12 @@ The verifier additionally checks the set-level fixed-root filtration identity
 (FIS) behind this count; in the same largest case it checks `61740` incidence
 pairs, with maximum nonzero fixed-rung incidence fiber count `20` and zero
 defects.
+Finally, it audits the induced first-zero stopping decomposition for ordered
+fixed-root deletion paths.  In the largest listed case it checks `102900`
+ordered paths with zero defects: `14700` stop first at depth `1`, `10080` at
+depth `2`, `4320` at depth `3`, and `73800` reach the terminal bottom
+difference condition.  Among nonzero syndromes the largest path count is
+`150`, with at most `30` terminal paths.
 
 The `F_7,k=2,j=2` scan is the first exact top-packet check in this file.  It
 finds twenty top triangles, all on the zero combined syndrome.  This is not an

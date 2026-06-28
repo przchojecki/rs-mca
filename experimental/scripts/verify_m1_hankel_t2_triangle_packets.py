@@ -66,7 +66,8 @@ first-boundary ledger: multiplying a locator by prod_i (X-x_i) is the same as
 applying the ordered root-difference operator Delta_{x_m}...Delta_{x_1} to the
 syndrome, and the zero-boundary/root-marked incidence identity holds on each
 difference rung.  It also checks the set-level filtration partition behind
-that identity.
+that identity, and audits the induced first-zero stopping decomposition for
+ordered fixed-root deletion paths.
 
 It also checks the full-top zero-syndrome lemma: if all j+1 complements
 U\\{x} inside one (j+1)-top set U are active, then the combined syndrome is
@@ -310,8 +311,12 @@ def analyze_case(
     iterated_difference_defect_histogram: Counter[int] = Counter()
     iterated_boundary_identity_checks = 0
     fixed_root_filtration_pair_checks = 0
+    filtration_path_checks = 0
+    filtration_terminal_paths = 0
     iterated_boundary_defect_histogram: Counter[int] = Counter()
     fixed_root_filtration_defect_histogram: Counter[int] = Counter()
+    filtration_path_defect_histogram: Counter[int] = Counter()
+    filtration_zero_stop_depth_histogram: Counter[int] = Counter()
     max_active = 0
     max_edges = 0
     max_triangles = 0
@@ -345,6 +350,8 @@ def analyze_case(
     max_nonzero_iterated_boundary_zero_cores = 0
     max_nonzero_iterated_boundary_marked = 0
     max_nonzero_fixed_root_filtration_pairs = 0
+    max_nonzero_filtration_paths = 0
+    max_nonzero_terminal_filtration_paths = 0
     one_exchange_edges = 0
     star_triangles = 0
     top_triangles = 0
@@ -358,6 +365,115 @@ def analyze_case(
     full_top_examples: list[dict[str, object]] = []
 
     for syn in itertools.product(range(p), repeat=r):
+        case_filtration_path_defect = 0
+        case_filtration_paths = 0
+        case_terminal_filtration_paths = 0
+
+        def audit_filtration_paths(
+            fixed_roots: tuple[int, ...],
+            active_cores: set[tuple[int, ...]],
+        ) -> None:
+            nonlocal case_filtration_path_defect
+            nonlocal case_filtration_paths
+            nonlocal case_terminal_filtration_paths
+            nonlocal filtration_path_checks
+            nonlocal filtration_terminal_paths
+
+            for core in active_cores:
+                if not core:
+                    continue
+                for deletion_order in itertools.permutations(core):
+                    case_filtration_paths += 1
+                    filtration_path_checks += 1
+                    current_fixed = list(fixed_roots)
+                    current_core = tuple(core)
+                    stopped = False
+                    for depth, deleted_root_index in enumerate(
+                        deletion_order,
+                        start=1,
+                    ):
+                        current_values = [
+                            domain[index] for index in current_fixed
+                        ]
+                        diff_syn = iterated_root_difference_syndrome(
+                            syn,
+                            current_values,
+                            p,
+                        )
+                        boundary_core = tuple(
+                            entry
+                            for entry in current_core
+                            if entry != deleted_root_index
+                        )
+                        boundary_vector = hankel_apply(
+                            diff_syn,
+                            cached_locator(boundary_core),
+                            t + 1,
+                            p,
+                        )
+                        if not any(boundary_vector):
+                            filtration_zero_stop_depth_histogram[depth] += 1
+                            stopped = True
+                            break
+                        deleted_root = domain[deleted_root_index]
+                        if boundary_vector[0] == 0 or any(
+                            boundary_vector[row + 1]
+                            != deleted_root * boundary_vector[row] % p
+                            for row in range(t)
+                        ):
+                            case_filtration_path_defect += 1
+                            raise AssertionError(
+                                {
+                                    "kind": (
+                                        "filtration-path-"
+                                        "nonzero-step-not-root-marked"
+                                    ),
+                                    "p": p,
+                                    "k": k,
+                                    "syndrome": list(syn),
+                                    "fixed_roots": list(fixed_roots),
+                                    "core": list(core),
+                                    "deletion_order": list(deletion_order),
+                                    "depth": depth,
+                                    "deleted_root": deleted_root_index,
+                                    "deleted_root_value": deleted_root,
+                                    "boundary_core": list(boundary_core),
+                                    "boundary_vector": list(boundary_vector),
+                                }
+                            )
+                        current_fixed.append(deleted_root_index)
+                        current_core = boundary_core
+                    if stopped:
+                        continue
+                    terminal_values = [domain[index] for index in current_fixed]
+                    terminal_syn = iterated_root_difference_syndrome(
+                        syn,
+                        terminal_values,
+                        p,
+                    )
+                    if not hankel_annihilates(
+                        terminal_syn,
+                        cached_locator(current_core),
+                        t,
+                        p,
+                    ):
+                        case_filtration_path_defect += 1
+                        raise AssertionError(
+                            {
+                                "kind": "filtration-terminal-condition-failed",
+                                "p": p,
+                                "k": k,
+                                "syndrome": list(syn),
+                                "fixed_roots": list(fixed_roots),
+                                "core": list(core),
+                                "deletion_order": list(deletion_order),
+                                "terminal_core": list(current_core),
+                                "terminal_syndrome": list(terminal_syn),
+                            }
+                        )
+                    case_terminal_filtration_paths += 1
+                    filtration_terminal_paths += 1
+
         active = [
             index
             for index, locator in enumerate(locators)
@@ -453,6 +569,10 @@ def analyze_case(
         max_triangles = max(max_triangles, case_triangles)
 
         active_set = set(active)
+        audit_filtration_paths(
+            (),
+            {complements[index] for index in active},
+        )
         case_first_boundary_zero_cores: set[tuple[int, ...]] = set()
         case_first_boundary_root_marked: set[tuple[tuple[int, ...], int]] = set()
         for core in itertools.combinations(range(n), j - 1):
@@ -1079,6 +1199,7 @@ def analyze_case(
                     )
                     if hankel_annihilates(diff_syn, cached_locator(core), t, p)
                 }
+                audit_filtration_paths(fixed_roots, active_cores)
                 zero_boundary_cores: set[tuple[int, ...]] = set()
                 root_marked_boundaries: set[tuple[tuple[int, ...], int]] = set()
                 for boundary_core in itertools.combinations(
@@ -1246,6 +1367,7 @@ def analyze_case(
         fixed_root_filtration_defect_histogram[
             case_fixed_root_filtration_defect
         ] += 1
+        filtration_path_defect_histogram[case_filtration_path_defect] += 1
         isolated_marked_boundary_slack = (
             len(case_root_marked_boundaries) - j * case_isolated_vertices
         )
@@ -1331,6 +1453,14 @@ def analyze_case(
             max_nonzero_fixed_root_filtration_pairs = max(
                 max_nonzero_fixed_root_filtration_pairs,
                 case_max_fixed_root_filtration_pairs,
+            )
+            max_nonzero_filtration_paths = max(
+                max_nonzero_filtration_paths,
+                case_filtration_paths,
+            )
+            max_nonzero_terminal_filtration_paths = max(
+                max_nonzero_terminal_filtration_paths,
+                case_terminal_filtration_paths,
             )
             max_nonzero_isolated_marked_boundary_slack = max(
                 max_nonzero_isolated_marked_boundary_slack,
@@ -1845,6 +1975,8 @@ def analyze_case(
         ),
         "iterated_boundary_identity_checks": iterated_boundary_identity_checks,
         "fixed_root_filtration_pair_checks": fixed_root_filtration_pair_checks,
+        "filtration_path_checks": filtration_path_checks,
+        "filtration_terminal_paths": filtration_terminal_paths,
         "max_iterated_boundary_chain_length": max_iterated_boundary_chain_length,
         "max_nonzero_iterated_boundary_active_cores": (
             max_nonzero_iterated_boundary_active_cores
@@ -1857,6 +1989,10 @@ def analyze_case(
         ),
         "max_nonzero_fixed_root_filtration_pairs": (
             max_nonzero_fixed_root_filtration_pairs
+        ),
+        "max_nonzero_filtration_paths": max_nonzero_filtration_paths,
+        "max_nonzero_terminal_filtration_paths": (
+            max_nonzero_terminal_filtration_paths
         ),
         "max_nonzero_isolated_marked_boundary_slack": (
             max_nonzero_isolated_marked_boundary_slack
@@ -1940,6 +2076,12 @@ def analyze_case(
         "fixed_root_filtration_defect_histogram": dict(
             sorted(fixed_root_filtration_defect_histogram.items())
         ),
+        "filtration_path_defect_histogram": dict(
+            sorted(filtration_path_defect_histogram.items())
+        ),
+        "filtration_zero_stop_depth_histogram": dict(
+            sorted(filtration_zero_stop_depth_histogram.items())
+        ),
         "nonzero_top_active_size_histogram": dict(
             sorted(nonzero_top_active_size_histogram.items())
         ),
@@ -2000,6 +2142,8 @@ def print_summary(results: Sequence[dict[str, object]]) -> None:
             f"{result['max_nonzero_iterated_boundary_marked']} "
             f"max_nonzero_fixed_root_filtration_pairs="
             f"{result['max_nonzero_fixed_root_filtration_pairs']} "
+            f"max_nonzero_terminal_paths="
+            f"{result['max_nonzero_terminal_filtration_paths']} "
             f"max_nonzero_full_support_slack="
             f"{result['max_nonzero_full_support_ledger_slack']} "
             f"max_nonzero_top_active={result['max_nonzero_top_active_members']}"
