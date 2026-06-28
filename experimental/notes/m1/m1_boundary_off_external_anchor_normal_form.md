@@ -7620,6 +7620,69 @@ map is injective on `D` and Corollary 40.51 gives the exact ideal count.  The
 bottom-route statements follow by summing over the at most four residual
 families.
 
+## Corollary 40.54: A Large Common Factor Forces Small Two-Dimensional Defect
+
+Keep the notation of Corollary 40.53, and put
+
+```text
+gamma_K=deg G.
+```
+
+If `G(alpha)=0` for some `alpha in D`, then `K^rf` is empty.  Otherwise
+`G` is root-free on `D`, the projective map of Corollary 40.53 is defined on
+all of `D`.  Since `K/G` is two-dimensional inside the space of polynomials
+of degree `<h-gamma_K`, necessarily `gamma_K<=h-2`, and
+
+```text
+r_K <= h-1-gamma_K.                                (CommonFactorDegree)
+```
+
+Consequently, for a two-dimensional bottom kernel with no zero evaluation
+functional,
+
+```text
+|K^rf| <= RFPhi_D(2)
+        + (1 - 1/(h-1-gamma_K)) |D|,               (CommonFactorTwoDim)
+```
+
+and
+
+```text
+C_K <= ((h-2-gamma_K)/2)|D|.                       (CommonFactorPairDefect)
+```
+
+In particular, if `gamma_K>=h-2`, then `r_K=1`, the evaluation-line map is
+injective on `D`, and
+
+```text
+|K^rf|=RFPhi_D(2).
+```
+
+Thus, for the `L=2` bottom route, a two-dimensional bottom kernel with a
+common factor of degree at least `h-2` contributes exactly the ideal
+root-free count, and a common factor with `h-1-gamma_K` bounded contributes
+only a bounded-degree collision defect.
+
+### Proof
+
+If `G(alpha)=0`, then both basis elements `Q_0,Q_1` vanish at `alpha`, so the
+evaluation functional on `K` is zero and no projective class in `K` is
+root-free.
+
+Assume `G` has no domain root.  Since every element of `K` has degree `<h`,
+the reduced basis elements `A=Q_0/G` and `B=Q_1/G` have degree
+`<h-gamma_K`.  Hence
+
+```text
+r_K=max(deg A,deg B) <= h-1-gamma_K.
+```
+
+Substituting this bound for `r_K` in Corollary 40.53 gives
+(CommonFactorTwoDim) and (CommonFactorPairDefect).  If
+`gamma_K>=h-2`, then the two-dimensional quotient span is contained in the
+two-dimensional space of polynomials of degree `<2`, so its reduced
+projective degree is `r_K=1`.  Corollary 40.53 gives the exact ideal count.
+
 ## Corollary 41: The Global Common-Image Ledger Is Endpoint-Only
 
 Let `GCI` be the set of monic degree-`c` split core locators `L` for which
@@ -10398,6 +10461,8 @@ collisions; it does not prove the pair collision count is small in the M1
 instances.
 Corollary 40.53 bounds two-dimensional collision defects by projective degree;
 it does not prove the bottom projective degrees are small in the M1 instances.
+Corollary 40.54 bounds that projective degree using a common factor; it does
+not prove the required large common factors occur in the M1 bottom kernels.
 Corollary 41 packages the common-image branch into endpoint-type ledgers; it
 does not prove the endpoint rank hypotheses needed for the displayed
 `(q+2)binom(n,b)` bound. Corollary 42 packages the globally full core ledger

@@ -411,8 +411,11 @@ Keep entries concise and link to the relevant files.
   map `[A:B]` of degree `r_K`; every evaluation fiber has size at most `r_K`,
   so `|K^rf|<=RFPhi_D(2)+(1-1/r_K)|D|` and
   `C_K<=((r_K-1)/2)|D|`.  Degree-one bottom kernels therefore have no
-  collision defect.
-  The non-claims section is updated through Corollary 40.53 to record that
+  collision defect.  The projective degree is now tied to the common factor:
+  if `gamma_K=deg gcd(K)`, then either the common factor has a domain root and
+  the root-free set is empty, or `r_K<=h-1-gamma_K`; in particular
+  `gamma_K>=h-2` forces the exact `RFPhi_D(2)` count.
+  The non-claims section is updated through Corollary 40.54 to record that
   these formulas do not by themselves bound the bottom/pre-half residuals or
   force large common cores/quotient degrees.
   Since
