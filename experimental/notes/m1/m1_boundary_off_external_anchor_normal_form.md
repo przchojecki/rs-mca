@@ -14123,6 +14123,53 @@ Conversely, start with such a `C_0` and multiply its defining congruence by
 `L_S`.  Then `C=C_0 disjoint_union S` has size `j+u`, contains `S`, and lies
 in `Comp_{u,[L_S H N]}(Q_0,B_0)`.  The two constructions are inverse.
 
+## Corollary 40.132: Root-Free Factors Spend Residual Multiplier Degree
+
+Keep the setup of Corollary 40.131, and put
+
+```text
+d=deg H.
+```
+
+Then the residual multiplier in (DropTwistCommute) satisfies the sharper
+degree bound
+
+```text
+deg N < r_{u-s}-d.                                (ResidualDegreeCredit)
+```
+
+Equivalently, after deleting the complement-side roots `S` and twisting by
+`H`, the lower-depth fiber is supported only by multipliers in the smaller
+projective space
+
+```text
+P(F[X]_<r_{u-s}-d)
+```
+
+that are coprime to `Q_0`.  If `d>=r_{u-s}`, the source fiber in Corollary
+40.131 is empty.  Thus every root-free factor absorbed into the moving base
+class consumes the same amount of residual multiplier degree: a split external
+linear factor spends one degree, and an irreducible root-free factor of degree
+`d` spends `d` degrees.
+
+### Proof
+
+The admissibility condition `[L_S H N] in P_u^x(Q_0)` means
+
+```text
+deg(L_S H N)<r_u.
+```
+
+Since `deg L_S=s` and `deg H=d`, this gives
+
+```text
+deg N < r_u-s-d = r_{u-s}-d.
+```
+
+The coprimality of `N` with `Q_0` is already part of Corollary 40.131.  If
+`d>=r_{u-s}`, no nonzero polynomial can satisfy the displayed degree bound,
+so the corresponding source fiber is empty.
+
 ## Corollary 41: The Global Common-Image Ledger Is Endpoint-Only
 
 Let `GCI` be the set of monic degree-`c` split core locators `L` for which
@@ -17151,6 +17198,8 @@ twisted fibers obtained by varying root-free `H` occupy disjoint
 Corollary 40.131 packages the commuting normal form: deleting complement-side
 domain roots and absorbing root-free factors into `B_H` can be done in one
 step, leaving a lower-depth residual multiplier against the twisted base.
+Corollary 40.132 records the degree credit in that normal form: a root-free
+factor of degree `d` lowers the residual multiplier budget by `d`.
 Corollary 41 packages the common-image branch into endpoint-type ledgers; it
 does not prove the endpoint rank hypotheses needed for the displayed
 `(q+2)binom(n,b)` bound. Corollary 42 packages the globally full core ledger

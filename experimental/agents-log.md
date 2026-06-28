@@ -30,6 +30,23 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 root-free factors spend residual degree
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_boundary_off_external_anchor_normal_form.md`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / PROOF-PROGRAM.
+- **What is being added:** Sharpens the commuting normal form by recording
+  the degree credit: if `[L_S H N] in P_u^x(Q_0)` and `d=deg H`, then after
+  deleting `S` and twisting by `H`, the residual multiplier satisfies
+  `deg N < r_{u-s}-d`.
+- **How it is useful:** Shows external linear factors and irreducible
+  root-free factors shrink the residual multiplier budget rather than merely
+  moving the base class.
+- **What to do next:** Use the residual degree credit when bounding the
+  remaining `N`-ledger after combined root deletion and twisting.
+
 ### 2026-06-28 - M1 complement deletion commutes with twisting
 
 - **Agent/model:** AllenGrahamHart / Codex audit.
