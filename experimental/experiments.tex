@@ -3884,8 +3884,21 @@ the deletion order, and
 \[
   |\mathrm{Term}^X|\le q!\,|\mathrm{Bot}^X_{\tau,q}(s)|.
 \]
-Thus the terminal residual is a bottom root-difference support count with an
-explicit ordering factor, not a separate flag-packing object.
+By the iterated fixed-root identity, \(\mathrm{Bot}^X_{\tau,q}(s)=
+K^X_{\tau,q}(s)\), so this is an ordering-forgetting ledger rather than a
+support saving.  The actual terminal condition is zero-freeness of the
+intermediate scalar cuts.  If \(C_h=D_h\cup\{y_h\}\) is the current active
+rung, then
+\[
+  H_{\tau+1,|D_h|}(\Delta_{X_h}s)\ell_{D_h}
+  =
+  c_h(1,y_h,\ldots,y_h^\tau),
+  \qquad
+  c_h=H_{1,|D_h|}(\Delta_{X_h}s)\ell_{D_h}.
+\]
+The ordered path is terminal exactly when \(c_1\cdots c_q\ne0\).  Hence the
+remaining terminal object is a zero-free flag problem inside the fixed-root
+support kernel.
 This residual also has additive one-exchange descent.  If
 \(C_y=R\cup\{y\}\) and \(C_z=R\cup\{z\}\) are two root-marked cores in the
 same fixed-root slice, then both are active for
@@ -3985,7 +3998,9 @@ nonzero syndromes the maximum first-zero stop count is \(140\), and the
 maximum terminal count is \(30\).  The terminal bottom-support reduction is
 also audited: the \(73800\) terminal paths reduce to \(37080\) local
 bottom-support instances with total factorial capacity \(73800\), maximum
-nonzero local bottom support count \(2\), and zero slack.
+nonzero local bottom support count \(2\), and zero slack.  The scalar-chain
+criterion is checked as well: the largest listed case has \(174600\) nonzero
+first-row scalar steps, with maximum nonzero per-syndrome count \(66\).
 The common-core and two-denominator formulas persist verbatim after this
 root-free replacement.  With \(C=\gcd(D:D\in M_{\min})\), \(\gamma=\deg C\),
 and \(E_D=D/C\),

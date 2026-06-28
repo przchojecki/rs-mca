@@ -69,7 +69,8 @@ difference rung.  It also checks the set-level filtration partition behind
 that identity, and audits the induced first-zero stopping decomposition for
 ordered fixed-root deletion paths.  The path audit records the resulting
 first-zero/terminal ledger and reduces terminal flags to unordered bottom
-root-difference supports up to the factorial ordering factor.
+root-difference supports up to the factorial ordering factor.  It also checks
+that terminality is exactly a zero-free chain of first-row boundary scalars.
 
 It also checks the full-top zero-syndrome lemma: if all j+1 complements
 U\\{x} inside one (j+1)-top set U are active, then the combined syndrome is
@@ -317,6 +318,7 @@ def analyze_case(
     filtration_path_checks = 0
     filtration_zero_stop_paths = 0
     filtration_terminal_paths = 0
+    filtration_nonzero_scalar_steps = 0
     terminal_bottom_support_checks = 0
     terminal_support_bound_capacity = 0
     iterated_boundary_defect_histogram: Counter[int] = Counter()
@@ -361,6 +363,7 @@ def analyze_case(
     max_nonzero_filtration_paths = 0
     max_nonzero_zero_stop_filtration_paths = 0
     max_nonzero_terminal_filtration_paths = 0
+    max_nonzero_filtration_nonzero_scalar_steps = 0
     max_nonzero_terminal_bottom_supports = 0
     max_nonzero_terminal_support_bound_slack = 0
     one_exchange_edges = 0
@@ -380,6 +383,7 @@ def analyze_case(
         case_filtration_paths = 0
         case_zero_stop_filtration_paths = 0
         case_terminal_filtration_paths = 0
+        case_filtration_nonzero_scalar_steps = 0
 
         def audit_filtration_paths(
             fixed_roots: tuple[int, ...],
@@ -389,9 +393,11 @@ def analyze_case(
             nonlocal case_filtration_paths
             nonlocal case_zero_stop_filtration_paths
             nonlocal case_terminal_filtration_paths
+            nonlocal case_filtration_nonzero_scalar_steps
             nonlocal filtration_path_checks
             nonlocal filtration_zero_stop_paths
             nonlocal filtration_terminal_paths
+            nonlocal filtration_nonzero_scalar_steps
             nonlocal terminal_bottom_support_checks
             nonlocal terminal_support_bound_capacity
             nonlocal max_nonzero_terminal_bottom_supports
@@ -432,6 +438,25 @@ def analyze_case(
                             p,
                         )
                         if not any(boundary_vector):
+                            if boundary_vector[0] != 0:
+                                case_filtration_path_defect += 1
+                                raise AssertionError(
+                                    {
+                                        "kind": (
+                                            "zero-boundary-nonzero-"
+                                            "first-scalar"
+                                        ),
+                                        "p": p,
+                                        "k": k,
+                                        "syndrome": list(syn),
+                                        "fixed_roots": list(fixed_roots),
+                                        "core": list(core),
+                                        "deletion_order": list(deletion_order),
+                                        "depth": depth,
+                                        "boundary_core": list(boundary_core),
+                                        "boundary_vector": list(boundary_vector),
+                                    }
+                                )
                             filtration_zero_stop_depth_histogram[depth] += 1
                             case_zero_stop_filtration_paths += 1
                             filtration_zero_stop_paths += 1
@@ -465,6 +490,8 @@ def analyze_case(
                             )
                         current_fixed.append(deleted_root_index)
                         current_core = boundary_core
+                        case_filtration_nonzero_scalar_steps += 1
+                        filtration_nonzero_scalar_steps += 1
                     if stopped:
                         continue
                     terminal_values = [domain[index] for index in current_fixed]
@@ -1574,6 +1601,10 @@ def analyze_case(
                 max_nonzero_terminal_filtration_paths,
                 case_terminal_filtration_paths,
             )
+            max_nonzero_filtration_nonzero_scalar_steps = max(
+                max_nonzero_filtration_nonzero_scalar_steps,
+                case_filtration_nonzero_scalar_steps,
+            )
             max_nonzero_isolated_marked_boundary_slack = max(
                 max_nonzero_isolated_marked_boundary_slack,
                 isolated_marked_boundary_slack,
@@ -2090,6 +2121,7 @@ def analyze_case(
         "filtration_path_checks": filtration_path_checks,
         "filtration_zero_stop_paths": filtration_zero_stop_paths,
         "filtration_terminal_paths": filtration_terminal_paths,
+        "filtration_nonzero_scalar_steps": filtration_nonzero_scalar_steps,
         "terminal_bottom_support_checks": terminal_bottom_support_checks,
         "terminal_support_bound_capacity": terminal_support_bound_capacity,
         "max_iterated_boundary_chain_length": max_iterated_boundary_chain_length,
@@ -2111,6 +2143,9 @@ def analyze_case(
         ),
         "max_nonzero_terminal_filtration_paths": (
             max_nonzero_terminal_filtration_paths
+        ),
+        "max_nonzero_filtration_nonzero_scalar_steps": (
+            max_nonzero_filtration_nonzero_scalar_steps
         ),
         "max_nonzero_terminal_bottom_supports": (
             max_nonzero_terminal_bottom_supports
@@ -2276,6 +2311,8 @@ def print_summary(results: Sequence[dict[str, object]]) -> None:
             f"{result['max_nonzero_zero_stop_filtration_paths']} "
             f"max_nonzero_terminal_paths="
             f"{result['max_nonzero_terminal_filtration_paths']} "
+            f"max_nonzero_zero_free_steps="
+            f"{result['max_nonzero_filtration_nonzero_scalar_steps']} "
             f"max_nonzero_terminal_supports="
             f"{result['max_nonzero_terminal_bottom_supports']} "
             f"max_nonzero_full_support_slack="

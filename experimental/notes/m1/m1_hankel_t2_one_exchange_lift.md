@@ -921,11 +921,44 @@ so `C` lies in `Bot^{X_1}`.  The condition is independent of the order `pi`,
 because the root-difference operators commute.  For a fixed unordered `C`
 there are at most `q!` orderings.  This proves (TB).
 
-Thus the terminal residual is not a new flag-packing problem.  After
-first-zero stops are charged to deeper zero-boundary ledgers, what remains is
-the bottom root-difference support count `Bot^{X_1}` with only the explicit
-factorial ordering factor.  This is the natural object for quotient-periodic
-or aperiodic M1 input.
+By (IDX), the bottom condition is equivalent to `C in K^{X_1}_{tau,q}(s)`.
+Thus `Bot^{X_1}_{tau,q}(s)=K^{X_1}_{tau,q}(s)`: (TB) is an ordering-forgetting
+ledger, not a support-saving estimate.  The genuine terminal residual is the
+zero-free condition on the intermediate first-boundary scalars, made explicit
+next.
+
+## Terminal Flags Are Zero-Free Scalar Chains
+
+Keep the notation of the stopping decomposition.  If
+`C_h=D_h union {y_h}` lies in `K^{X_h}_{tau,|C_h|}(s)`, then
+
+```text
+H_{tau+1,|D_h|}(Delta_{X_h}s)ell_{D_h}
+ = c_h (1,y_h,...,y_h^tau)                    (SC)
+```
+
+for the scalar
+
+```text
+c_h = H_{1,|D_h|}(Delta_{X_h}s)ell_{D_h}.
+```
+
+An ordered path `(C,(y_1,...,y_q))` is terminal if and only if
+
+```text
+c_1 c_2 ... c_q != 0.                         (ZF)
+```
+
+Proof: since `C_h` is active for `K^{X_h}`, the one-root deletion equations
+force the first-boundary vector to have the root-marked form (SC).  The
+stopping algorithm stops exactly when this whole vector is zero.  In the
+root-marked form, that is equivalent to `c_h=0`.  Hence the path never stops
+if and only if every scalar `c_h` is nonzero.
+
+Consequently the true terminal object is a zero-free flag problem inside the
+fixed-root support kernel: the support condition itself is just the ordinary
+bottom root-difference equation, while terminality is the nonvanishing of
+these explicit scalar cuts along the chosen order.
 
 ## Root-Marked Slice Is One Row
 
@@ -1300,6 +1333,9 @@ It also audits the terminal bottom-support reduction (TB): in the largest
 case the `73800` terminal paths reduce to `37080` local bottom-support
 instances with total factorial capacity `73800`, maximum nonzero local bottom
 support count `2`, and zero slack.
+The same audit checks the zero-free scalar-chain criterion (ZF); the largest
+case checks `174600` nonzero scalar steps, with maximum nonzero per-syndrome
+step count `66`.
 
 The `F_7,k=2,j=2` scan is the first exact top-packet check in this file.  It
 finds twenty top triangles, all on the zero combined syndrome.  This is not an
