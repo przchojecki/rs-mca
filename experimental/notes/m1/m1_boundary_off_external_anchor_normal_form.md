@@ -15319,9 +15319,11 @@ with
 B_2=(B_1Q_2-L_D R)/Q_1
 ```
 
-having `gcd(Q_2,B_2)=1`.  In the first alias layer `e_1+e_2=n+1`, the defect
-`R` is a nonzero constant, so the possible denominators lie in one projective
-residue class modulo `Q_1`.
+having the reduced numerator condition `deg B_2<e_2` when `e_2>0`, the
+polynomial-direction convention `B_2=0` when `e_2=0`, and
+`gcd(Q_2,B_2)=1`.  In the first alias layer `e_1+e_2=n+1`, the defect `R` is
+a nonzero constant, so the possible denominators lie in one projective residue
+class modulo `Q_1`.
 
 Thus the high-total-degree obstruction left by Corollary 40.150 is not an
 unstructured finite-domain collision: for each fixed primitive direction it is
@@ -15355,11 +15357,12 @@ B_1Q_2 == L_D R        mod Q_1
 
 is equivalent to (AliasCongruence).  Conversely, if `R` and `Q_2` satisfy
 (AliasCongruence), then `B_1Q_2-L_D R` is divisible by `Q_1`; the displayed
-quotient `B_2` has degree `<e_2`, and (AliasDefect) gives equality of
-`B_1/Q_1` and `B_2/Q_2` on `D`.  Requiring `Q_2` root-free on `D` and
-`gcd(Q_2,B_2)=1` is exactly the primitive-pair condition.  When
-`e_1+e_2=n+1`, the inequality `deg R<1` forces `R in F^*`, giving the final
-projective residue-class statement.
+quotient `B_2` has degree `<e_2` when `e_2>0`, and (AliasDefect) gives
+equality of `B_1/Q_1` and `B_2/Q_2` on `D`.  For `e_2=0`, the
+polynomial-direction convention requires `B_2=0`.  Requiring `Q_2` root-free
+on `D`, the reduced numerator condition, and `gcd(Q_2,B_2)=1` is exactly the
+primitive-pair condition.  When `e_1+e_2=n+1`, the inequality `deg R<1`
+forces `R in F^*`, giving the final projective residue-class statement.
 
 ## Corollary 40.152: The First Alias Layer Is One-Sided Rigid
 

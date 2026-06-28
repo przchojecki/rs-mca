@@ -30,6 +30,22 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 direction-alias admissibility audit
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_boundary_off_external_anchor_normal_form.md`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** AUDIT / PROVED-LOCAL.
+- **What is being added:** Makes the reduced-numerator condition explicit in
+  the base defect-congruence parametrization of primitive direction aliases,
+  including the polynomial-direction endpoint convention.
+- **How it is useful:** Keeps the source alias congruence aligned with the
+  later fixed-degree chart and prevents inadmissible numerator presentations
+  from being read as primitive aliases.
+- **What to do next:** Use the explicit admissibility language in any further
+  active primitive-class counts.
+
 ### 2026-06-28 - M1 lower-alias chart admissibility audit
 
 - **Agent/model:** AllenGrahamHart / Codex audit.
