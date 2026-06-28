@@ -5745,6 +5745,107 @@ endpoint row.  Passing from projective locator classes to root-free
 certificate-denominator classes can only remove classes, so the same
 projective count bounds the denominator classes.
 
+## Corollary 40.27: Endpoint Persistence Is A Stacked-Hankel Row-Span Test
+
+Keep the notation of Corollary 40.26.  Let
+
+```text
+M_uv = [ H_s(u) ; H_s(v) ],
+M_S  = [ H_s(Su) ; H_s(Sv) ].
+```
+
+For a row functional `rho`, write `rho in Row(M)` to mean that `rho` lies in
+the row span of `M`.  Then:
+
+1. `Omega_u` is endpoint-persistent precisely when
+
+```text
+row_s(u) in Row(M_uv).
+```
+
+2. `Omega_v` is endpoint-persistent precisely when
+
+```text
+row_s(v) in Row(M_uv).
+```
+
+3. `Omega_uS` is endpoint-persistent precisely when
+
+```text
+row_0(u) in Row(M_S).
+```
+
+4. `Omega_vS` is endpoint-persistent precisely when
+
+```text
+row_0(v) in Row(M_S).
+```
+
+Equivalently, in each case endpoint persistence is the rank equality
+
+```text
+rank [ M ; rho ] = rank M.                           (PersistRank)
+```
+
+Failure of this equality is the nonpersistent case of Corollary 40.26 and
+forces a one-dimensional cut on the parent kernel.
+
+The endpoint-pair overlap has the analogous two-row form.  With
+
+```text
+R_EP = span( row_s(u)|_{K_uv}, row_s(v)|_{K_uv} ) subset K_uv^*,
+```
+
+one has
+
+```text
+dim Omega_EP = dim K_uv - dim R_EP,
+```
+
+and therefore, over `F_q`,
+
+```text
+|P(Omega_EP)| <= (q^{dim K_uv-dim R_EP}-1)/(q-1).
+```
+
+Thus the endpoint-pair residual loses two projective dimensions from the
+ordinary paired parent unless the two missing endpoint rows have rank `<2` on
+`K_uv`; the exceptional alternatives are explicit stacked-Hankel row-span or
+row-dependence conditions.
+
+### Proof
+
+For any matrix `M` and row `rho`,
+
+```text
+ker M subset ker rho
+```
+
+if and only if `rho` belongs to the row span of `M`.  Applying this with
+`M=M_uv` and `rho=row_s(u)` says exactly that every ordinary paired cutoff
+locator already satisfies the extra `u` endpoint row.  This is the
+endpoint-persistent case for `Omega_u`.  The other three one-sided statements
+are identical with the displayed parent matrix and row.
+
+If `rho` is not in the row span, then the rank of `[M;rho]` is one larger than
+the rank of `M`, so the kernel dimension drops by one.  This is the
+nonpersistent case of Corollary 40.26.
+
+For `Omega_EP`, the endpoint-pair locator space is
+
+```text
+K_uv cap ker row_s(u) cap ker row_s(v).
+```
+
+Restricting the two rows to `K_uv`, its codimension inside `K_uv` is the rank
+of those two restricted functionals, namely `dim R_EP`.  The projective count
+then follows by counting nonzero vectors in that kernel quotient and
+projectivizing.  The alternative `dim R_EP=0` is precisely the case where both
+missing endpoint rows already lie in `Row(M_uv)`.  The alternative
+`dim R_EP=1` is precisely the case where the two restricted rows span only one
+nonzero line on `K_uv`, including the subcase where exactly one missing row is
+already in `Row(M_uv)`.
+
 ## Corollary 41: The Global Common-Image Ledger Is Endpoint-Only
 
 Let `GCI` be the set of monic degree-`c` split core locators `L` for which
@@ -8442,7 +8543,10 @@ of the cutoff family primitive denominators; it does not bound those family
 primitive denominators themselves or prove the lcm degrees are large enough for
 the desired M1 reserve. Corollary 40.26 gives a one-row saving for one-sided
 cutoff overlaps unless the parent paired kernel is endpoint-persistent; it
-does not rule out that persistence alternative.
+does not rule out that persistence alternative. Corollary 40.27 turns endpoint
+persistence into an explicit stacked-Hankel row-span test and gives the
+two-row endpoint-pair codimension formula; it does not prove the missing rows
+are independent in the M1 instances.
 Corollary 41 packages the common-image branch into endpoint-type ledgers; it
 does not prove the endpoint rank hypotheses needed for the displayed
 `(q+2)binom(n,b)` bound. Corollary 42 packages the globally full core ledger
