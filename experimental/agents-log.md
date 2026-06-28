@@ -30,6 +30,23 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 one-row coefficients pack apart from multiplier cores
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_boundary_off_external_anchor_normal_form.md`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / PROOF-PROGRAM.
+- **What is being added:** If `Exc_ell` is the set of `(a-1)`-cores with a
+  nonzero one-exchange multiplier certificate, then the one-row coefficient
+  set satisfies
+  `|Mu_h(Y,a)| <= (binom(n,a-1)+(n-a)|Exc_ell|)/a`.
+- **How it is useful:** This converts the one-row residual into an ordinary
+  `(a-1)` support-packing term plus an explicit exceptional core ledger that
+  can be attacked by the M1 residue-line machinery.
+- **What to do next:** Bound `Exc_ell` by quotient-periodic separation,
+  external-anchor charges, or aperiodic residue-packing estimates.
+
 ### 2026-06-28 - M1 one-exchange residuals have unique multipliers
 
 - **Agent/model:** AllenGrahamHart / Codex audit.

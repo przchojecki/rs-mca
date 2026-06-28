@@ -11311,6 +11311,72 @@ nonzero elements of `V_I^{ell}` are proportional, proving (OneExMultLine).
 The final assertions follow from Corollary 40.94, which puts every
 one-exchange collision multiplier in `V_I^{ell}`.
 
+## Corollary 40.97: One-Row Coefficients Pack Apart From Exceptional Multiplier Cores
+
+Keep the notation and hypotheses of Corollary 40.96.  Define the exceptional
+one-exchange core set
+
+```text
+Exc_ell(Q_prim,B_prim)
+ = { I subset D : |I|=a-1,        V_I^{ell} != 0 }.
+```
+
+Let `Mu_h(Y,a)` be the coefficient set from Corollary 40.91.  Then
+
+```text
+|Mu_h(Y,a)|
+ <= ( binom(n,a-1) + (n-a)|Exc_ell(Q_prim,B_prim)| ) / a.      (CorePack)
+```
+
+Equivalently, outside the explicit exceptional multiplier-core ledger, the
+chosen threshold supports form an `(a-1)`-packing.  In particular, if
+`Exc_ell(Q_prim,B_prim)` is empty, then
+
+```text
+|Mu_h(Y,a)| <= binom(n,a-1)/a.
+```
+
+### Proof
+
+For each `mu in Mu_h(Y,a)`, choose one witnessing support of size at least
+`a`, and then choose an `a`-element subset `T_mu` of it.  For an
+`(a-1)`-subset `I subset D`, let
+
+```text
+r_I = |{ mu : I subset T_mu }|.
+```
+
+Then
+
+```text
+sum_{|I|=a-1} r_I = a |Mu_h(Y,a)|,                 (CoreCount)
+```
+
+because each selected `a`-set contains exactly `a` different `(a-1)`-cores.
+
+If `I notin Exc_ell(Q_prim,B_prim)`, then `r_I<=1`.  Indeed, if two distinct
+coefficients `mu_1,mu_2` had selected supports containing `I`, the subtraction
+argument from Corollary 40.94, applied only on the common core `I`, would give
+a nonzero `M in V_I^{ell}`, contradicting `I notin Exc_ell`.
+
+For every `I`, trivially
+
+```text
+r_I <= n-a+1,
+```
+
+because there are only `n-(a-1)=n-a+1` possible `a`-subsets of `D` containing
+`I`.  Therefore
+
+```text
+sum_I r_I
+ <= (binom(n,a-1)-|Exc_ell|)
+    + (n-a+1)|Exc_ell|
+ = binom(n,a-1)+(n-a)|Exc_ell|.
+```
+
+Combining this with (CoreCount) proves (CorePack).
+
 ## Corollary 41: The Global Common-Image Ledger Is Endpoint-Only
 
 Let `GCI` be the set of monic degree-`c` split core locators `L` for which
@@ -14222,6 +14288,10 @@ Corollary 40.96 extends the one-exchange analysis to all unpacked layers:
 for each fixed overlap core, the admissible low-degree multiplier space has
 dimension at most one, so one-exchange collisions have a unique projective
 multiplier certificate if they exist.
+Corollary 40.97 converts this into a packing-with-exceptions ledger:
+one-row coefficients are bounded by
+`(binom(n,a-1)+(n-a)|Exc_ell|)/a`, where `Exc_ell` is the set of cores
+supporting a nonzero projective multiplier certificate.
 Corollary 41 packages the common-image branch into endpoint-type ledgers; it
 does not prove the endpoint rank hypotheses needed for the displayed
 `(q+2)binom(n,b)` bound. Corollary 42 packages the globally full core ledger
