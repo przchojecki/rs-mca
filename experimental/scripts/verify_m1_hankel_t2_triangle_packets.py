@@ -5094,6 +5094,85 @@ def analyze_case(
                                                         },
                                                     }
                                                 )
+                                            projective_base_pair_count = (
+                                                math.comb(
+                                                    len(available_roots),
+                                                    2,
+                                                )
+                                                - math.comb(
+                                                    (
+                                                        len(available_roots)
+                                                        - len(
+                                                            projective_eval_base_roots
+                                                        )
+                                                    ),
+                                                    2,
+                                                )
+                                            )
+                                            projective_fiber_pair_count = sum(
+                                                math.comb(len(roots), 2)
+                                                for roots in (
+                                                    projective_eval_fibers.values()
+                                                )
+                                            )
+                                            projective_pair_count = (
+                                                projective_base_pair_count
+                                                + projective_fiber_pair_count
+                                            )
+                                            if (
+                                                projective_pair_count
+                                                != len(bad_direction_subsets)
+                                            ):
+                                                raise AssertionError(
+                                                    {
+                                                        "kind": (
+                                                            "productive-"
+                                                            if productive
+                                                            else ""
+                                                        )
+                                                        + "marked-core-"
+                                                        "deficit-anchor-"
+                                                        "direction-mds-"
+                                                        "projective-fiber-"
+                                                        "count-failed",
+                                                        "p": p,
+                                                        "k": k,
+                                                        "syndrome": list(syn),
+                                                        "fixed_roots": list(
+                                                            fixed_roots
+                                                        ),
+                                                        "unmarked_core": list(
+                                                            unmarked_core
+                                                        ),
+                                                        "marked_count": (
+                                                            marked_count
+                                                        ),
+                                                        "core_deficit": (
+                                                            core_deficit
+                                                        ),
+                                                        "anchor": list(anchor),
+                                                        "bad_subset_count": len(
+                                                            bad_direction_subsets
+                                                        ),
+                                                        "base_pair_count": (
+                                                            projective_base_pair_count
+                                                        ),
+                                                        "fiber_pair_count": (
+                                                            projective_fiber_pair_count
+                                                        ),
+                                                        "base_roots": sorted(
+                                                            projective_eval_base_roots
+                                                        ),
+                                                        "fibers": {
+                                                            str(key): sorted(
+                                                                roots
+                                                            )
+                                                            for key, roots in (
+                                                                projective_eval_fibers.items()
+                                                            )
+                                                        },
+                                                    }
+                                                )
                                             max_projective_fiber_size = max(
                                                 (
                                                     len(roots)
@@ -5147,6 +5226,67 @@ def analyze_case(
                                                         ),
                                                         "bound": (
                                                             residual_size - 1
+                                                        ),
+                                                    }
+                                                )
+                                            nonbase_projective_root_count = (
+                                                len(available_roots)
+                                                - len(
+                                                    projective_eval_base_roots
+                                                )
+                                            )
+                                            projective_pair_envelope = (
+                                                projective_base_pair_count
+                                                + (
+                                                    max_projective_fiber_size
+                                                    - 1
+                                                )
+                                                * nonbase_projective_root_count
+                                                // 2
+                                            )
+                                            if (
+                                                len(bad_direction_subsets)
+                                                > projective_pair_envelope
+                                            ):
+                                                raise AssertionError(
+                                                    {
+                                                        "kind": (
+                                                            "productive-"
+                                                            if productive
+                                                            else ""
+                                                        )
+                                                        + "marked-core-"
+                                                        "deficit-anchor-"
+                                                        "direction-mds-"
+                                                        "projective-fiber-"
+                                                        "envelope-failed",
+                                                        "p": p,
+                                                        "k": k,
+                                                        "syndrome": list(syn),
+                                                        "fixed_roots": list(
+                                                            fixed_roots
+                                                        ),
+                                                        "unmarked_core": list(
+                                                            unmarked_core
+                                                        ),
+                                                        "marked_count": (
+                                                            marked_count
+                                                        ),
+                                                        "core_deficit": (
+                                                            core_deficit
+                                                        ),
+                                                        "anchor": list(anchor),
+                                                        "bad_subset_count": len(
+                                                            bad_direction_subsets
+                                                        ),
+                                                        "max_fiber_size": (
+                                                            max_projective_fiber_size
+                                                        ),
+                                                        "base_pair_count": (
+                                                            projective_base_pair_count
+                                                        ),
+                                                        "envelope": (
+                                                            projective_pair_envelope
                                                         ),
                                                     }
                                                 )

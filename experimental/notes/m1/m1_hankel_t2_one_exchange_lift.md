@@ -3052,6 +3052,55 @@ The verifier now checks (PF2) whenever a produced residual anchor has
 fibers and checks the elementary degree bound on every fiber and on `B_0`.
 The current largest `F_7^*` scan has no such produced anchor.
 
+## Projective Fibers Give Exact Bad-Pair Counts
+
+The `b=2` projective-fiber normal form gives an exact counting ledger.  Let
+
+```text
+N=|D'|,        s=|B_0|,
+m_lambda=|{x in D'\B_0 : ev_x=lambda}|.
+```
+
+Then
+
+```text
+|Z_2^{dir}(U,W)|
+ =
+binom(N,2)-binom(N-s,2)
+ + sum_{lambda in P^1} binom(m_lambda,2).        (PF2-count)
+```
+
+The first term counts all pairs touching the base locus `B_0`; the sum counts
+equal projective-value pairs away from the base.  These two classes are
+disjoint and exhaust (PF2).
+
+If every non-base projective fiber has size at most `M`, then
+
+```text
+|Z_2^{dir}(U,W)|
+ <= binom(N,2)-binom(N-s,2)
+    + floor((M-1)(N-s)/2).                       (PF2-envelope)
+```
+
+Combining this with (DMB) at `b=2` gives
+
+```text
+|F(U,W)| binom(q,2)
+ <= binom(N,2)-Z_2^{dir}(U,W)
+    + |Z_2^{dir}(U,W)| binom(N-2,q-2).           (PF2-DMB)
+```
+
+Thus the `b=2` residual fiber is controlled once the base locus and the
+projective evaluation fibers are controlled.  In the base-free injective case
+`s=0` and `M=1`, so `Z_2^{dir}(U,W)=empty` and the direction-MDS packing bound
+applies.  More generally, bounded fiber size gives only a linear bad-pair
+ledger outside the base locus, a sharper target than the coarse projective
+root-count fallback.
+
+The verifier now checks (PF2-count) and (PF2-envelope) whenever
+`b(U,W)=2`.  The current largest `F_7^*` scan has no positive-dimensional
+produced residual anchor.
+
 ## Bad Root Slices Are Absorbed-Anchor Rank Defects
 
 The preceding bad-root condition has an equivalent absorbed-anchor form.  Fix

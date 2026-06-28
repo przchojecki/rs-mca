@@ -4747,6 +4747,24 @@ has size at most \(q-1\), and \(B_0\) also has size at most \(q-1\).  Hence the
 \(b=2\) persistent branch is a rational-fiber packing problem, not an arbitrary
 rank-defect matroid; the verifier checks this projective-fiber description
 whenever \(b(U,W)=2\).
+Writing \(s=|B_0|\), \(m_\lambda=|\{x\notin B_0:[P(x):Q(x)]=\lambda\}|\), and
+\(N=|D'|\), this gives the exact count
+\[
+  |Z_2^{\rm dir}(U,W)|
+  =
+  \binom N2-\binom{N-s}{2}
+  +\sum_{\lambda\in{\bf P}^1}\binom{m_\lambda}{2}.
+\]
+If all non-base fibers have size at most \(M\), then
+\[
+  |Z_2^{\rm dir}(U,W)|
+  \le
+  \binom N2-\binom{N-s}{2}
+  +\left\lfloor{(M-1)(N-s)\over 2}\right\rfloor .
+\]
+Thus base-free injectivity gives direction-MDS, and bounded projective fibers
+give a linear bad-pair ledger outside the base locus.  The verifier checks the
+exact count and this envelope whenever \(b(U,W)=2\).
 Equivalently, for each available root \(x\) the bad-slice test is the failure
 of full column rank for the absorbed-anchor matrix
 \[

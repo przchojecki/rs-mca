@@ -30,6 +30,26 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 projective fibers give exact bad-pair counts
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_hankel_t2_one_exchange_lift.md`,
+  `experimental/experiments.tex`,
+  `experimental/scripts/verify_m1_hankel_t2_triangle_packets.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / STRUCTURAL / AUDIT.
+- **What is being added:** For residual direction dimension `2`, derives the
+  exact bad-pair count from the projective evaluation base locus and fiber
+  sizes, and records the max-fiber envelope for `|Z_2^{dir}|`.
+- **How it is useful:** Converts the first higher-dimensional residual bad
+  ledger into a concrete rational-fiber counting problem.  Base-free injectivity
+  gives direction-MDS, while bounded projective fibers give a linear bad-pair
+  ledger outside the base locus.
+- **What to do next:** Prove projective fiber-size bounds for the actual
+  fixed-divisor M1 direction spaces, separating quotient-periodic fibers from
+  aperiodic fibers.
+
 ### 2026-06-28 - M1 two-dimensional residual directions are projective fibers
 
 - **Agent/model:** AllenGrahamHart / Codex audit.
