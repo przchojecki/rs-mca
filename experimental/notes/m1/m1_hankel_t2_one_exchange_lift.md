@@ -1049,6 +1049,55 @@ somewhere below `(X,C)`.  Thus terminal multiplicity is now reduced one more
 step: it is carried by productive two-mode lower-boundary packets (TM), not by
 arbitrary branching in the deletion tree.
 
+## Branch Vertices Are Sparse Mode Packets
+
+The two-mode identity is the smallest case of a full branch-packet normal
+form.  Let `Y` be any subset of `NZ_X(C)` with `m=|Y|>=2`, and put
+`R=C\Y`.  Define
+
+```text
+g = H_{tau+m,|R|}(Delta_X s)ell_R.
+```
+
+For each `y in Y`, let
+
+```text
+d_y = product_{z in Y, z!=y} (y-z),
+        a_y = c_X(y;C)/d_y.
+```
+
+Then the whole lower-boundary window is the sparse moment packet
+
+```text
+g_i = sum_{y in Y} a_y y^i,        0<=i<=tau+m-1.       (MP)
+```
+
+In particular, taking `Y=NZ_X(C)` turns every terminal branch vertex into an
+explicit `m`-mode lower-boundary packet whose mode coefficients are all
+nonzero.
+
+Proof: for fixed `y in Y`, applying the locator of `Y\{y}` to `g` gives the
+boundary vector for `C\{y}`.  By (SC) this is
+
+```text
+H_{tau+1,|C|-1}(Delta_X s)ell_{C\{y}}
+  = c_X(y;C)(1,y,...,y^tau).
+```
+
+For each row `i`, the equations over all `y in Y` form a linear system for the
+window `(g_i,...,g_{i+m-1})`.  The rows are the coefficient vectors of the
+polynomials `prod_{z in Y,z!=y}(X-z)`.  These polynomials are a basis because
+their evaluations on `Y` are diagonal with nonzero entries `d_y`.  The
+Lagrange packet (MP) satisfies the system, hence by uniqueness it is the
+actual window.  Sliding `i` from `0` to `tau` gives all coordinates
+`0<=i<=tau+m-1`.
+
+A full branch packet is productive if at least two of its modes lead to
+terminal child completions.  The previous productive branch-pair statement is
+therefore the two-mode shadow of a stronger fact: terminal multiflag mass is
+carried by productive sparse mode packets inside lower fixed-root Hankel
+kernels.
+
 ## Root-Marked Slice Is One Row
 
 The zero-boundary subkernel in the fixed-root difference form is cut out by a
@@ -1436,6 +1485,12 @@ The same audit verifies the branch-pair two-mode identity (TM).  In the
 largest case it checks `43200` branch pairs with zero defects, of which
 `41040` are productive branch pairs.  Among nonzero syndromes the maximum
 number of branch pairs in one terminal tree is `6`, and all six can be
+productive.
+It also verifies the full branch-packet identity (MP).  In the largest case
+it checks `34560` branch mode packets with zero defects: `30240` have mode
+size `2` and `4320` have mode size `3`.  Of these, `32400` are productive
+mode packets.  Among nonzero syndromes the maximum mode size is `3`, and one
+terminal tree contains at most `4` mode packets, all of which can be
 productive.
 
 The `F_7,k=2,j=2` scan is the first exact top-packet check in this file.  It

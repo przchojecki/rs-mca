@@ -30,6 +30,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 branch vertices are sparse mode packets
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_hankel_t2_one_exchange_lift.md`,
+  `experimental/scripts/verify_m1_hankel_t2_triangle_packets.py`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / STRUCTURAL / EXACT FINITE VERIFICATION.
+- **What is being added:** Generalizes the terminal branch-pair normal form to
+  an all-exit sparse mode-packet identity: every branch vertex with nonzero
+  exit set `Y` gives a lower-boundary moment packet supported on the roots in
+  `Y`, with coefficients determined by the exit scalars and the Vandermonde
+  denominators.
+- **How it is useful:** Turns productive terminal branching into a sparse
+  moment-packet object, matching the inverse Littlewood-Offord style M1 target
+  more directly than pairwise branching data.
+- **What to do next:** Bound productive sparse packets or charge their
+  persistent cases to quotient-periodic/tangent ledgers.
+
 ### 2026-06-28 - M1 branch pairs have two-mode lower boundaries
 
 - **Agent/model:** AllenGrahamHart / Codex audit.

@@ -76,6 +76,8 @@ recursion whose nonzero outgoing edges are these same scalar cuts; multiflag
 terminal supports must contain an explicit branching vertex in this tree.
 Every pair of nonzero outgoing edges is checked to force a two-mode lower
 boundary vector on the core obtained by deleting both roots.
+More generally, the verifier checks the all-exit sparse mode-packet formula
+at every terminal branch vertex.
 
 It also checks the full-top zero-syndrome lemma: if all j+1 complements
 U\\{x} inside one (j+1)-top set U are active, then the combined syndrome is
@@ -330,6 +332,8 @@ def analyze_case(
     terminal_tree_branch_vertices = 0
     terminal_tree_branch_pair_checks = 0
     terminal_tree_productive_branch_pairs = 0
+    terminal_tree_mode_packet_checks = 0
+    terminal_tree_productive_mode_packets = 0
     terminal_tree_multiflag_cores = 0
     iterated_boundary_defect_histogram: Counter[int] = Counter()
     fixed_root_filtration_defect_histogram: Counter[int] = Counter()
@@ -341,6 +345,10 @@ def analyze_case(
     terminal_tree_branch_vertex_histogram: Counter[int] = Counter()
     terminal_tree_branch_pair_histogram: Counter[int] = Counter()
     terminal_tree_productive_branch_pair_histogram: Counter[int] = Counter()
+    terminal_tree_mode_packet_histogram: Counter[int] = Counter()
+    terminal_tree_productive_mode_packet_histogram: Counter[int] = Counter()
+    terminal_tree_mode_size_histogram: Counter[int] = Counter()
+    terminal_tree_productive_mode_size_histogram: Counter[int] = Counter()
     terminal_tree_multiflag_core_histogram: Counter[int] = Counter()
     max_active = 0
     max_edges = 0
@@ -385,6 +393,9 @@ def analyze_case(
     max_nonzero_terminal_tree_branch_vertices = 0
     max_nonzero_terminal_tree_branch_pairs = 0
     max_nonzero_terminal_tree_productive_branch_pairs = 0
+    max_nonzero_terminal_tree_mode_packets = 0
+    max_nonzero_terminal_tree_productive_mode_packets = 0
+    max_nonzero_terminal_tree_mode_size = 0
     max_nonzero_terminal_tree_multiflag_cores = 0
     one_exchange_edges = 0
     star_triangles = 0
@@ -424,6 +435,8 @@ def analyze_case(
             nonlocal terminal_tree_branch_vertices
             nonlocal terminal_tree_branch_pair_checks
             nonlocal terminal_tree_productive_branch_pairs
+            nonlocal terminal_tree_mode_packet_checks
+            nonlocal terminal_tree_productive_mode_packets
             nonlocal terminal_tree_multiflag_cores
             nonlocal max_nonzero_terminal_bottom_supports
             nonlocal max_nonzero_terminal_support_bound_slack
@@ -431,6 +444,9 @@ def analyze_case(
             nonlocal max_nonzero_terminal_tree_branch_vertices
             nonlocal max_nonzero_terminal_tree_branch_pairs
             nonlocal max_nonzero_terminal_tree_productive_branch_pairs
+            nonlocal max_nonzero_terminal_tree_mode_packets
+            nonlocal max_nonzero_terminal_tree_productive_mode_packets
+            nonlocal max_nonzero_terminal_tree_mode_size
             nonlocal max_nonzero_terminal_tree_multiflag_cores
 
             terminal_supports: set[tuple[int, ...]] = set()
@@ -594,9 +610,9 @@ def analyze_case(
             def terminal_deletion_tree(
                 current_fixed: tuple[int, ...],
                 current_core: tuple[int, ...],
-            ) -> tuple[int, int, int, int]:
+            ) -> tuple[int, int, int, int, int, int, int]:
                 if not current_core:
-                    return (1, 0, 0, 0)
+                    return (1, 0, 0, 0, 0, 0, 0)
                 current_values = [domain[index] for index in current_fixed]
                 diff_syn = iterated_root_difference_syndrome(
                     syn,
@@ -700,12 +716,18 @@ def analyze_case(
                 branch_count = 1 if len(nonzero_children) >= 2 else 0
                 branch_pair_count = 0
                 productive_branch_pair_count = 0
+                mode_packet_count = 0
+                productive_mode_packet_count = 0
+                max_mode_size = 0
                 for deleted_root_index, boundary_core, scalar in nonzero_children:
                     (
                         child_count,
                         child_branches,
                         child_branch_pairs,
                         child_productive_pairs,
+                        child_mode_packets,
+                        child_productive_mode_packets,
+                        child_max_mode_size,
                     ) = terminal_deletion_tree(
                         (*current_fixed, deleted_root_index),
                         boundary_core,
@@ -722,6 +744,79 @@ def analyze_case(
                     branch_count += child_branches
                     branch_pair_count += child_branch_pairs
                     productive_branch_pair_count += child_productive_pairs
+                    mode_packet_count += child_mode_packets
+                    productive_mode_packet_count += child_productive_mode_packets
+                    max_mode_size = max(max_mode_size, child_max_mode_size)
+                if len(child_results) >= 2:
+                    child_root_indices = {
+                        result[0] for result in child_results
+                    }
+                    lower_core = tuple(
+                        entry
+                        for entry in current_core
+                        if entry not in child_root_indices
+                    )
+                    mode_count = len(child_results)
+                    lower_vector = hankel_apply(
+                        diff_syn,
+                        cached_locator(lower_core),
+                        t + mode_count,
+                        p,
+                    )
+                    expected = []
+                    for row in range(t + mode_count):
+                        total = 0
+                        for root_index, _child_count, _boundary_core, scalar in (
+                            child_results
+                        ):
+                            root = domain[root_index]
+                            denominator = 1
+                            for other_root_index in child_root_indices:
+                                if other_root_index == root_index:
+                                    continue
+                                denominator = (
+                                    denominator
+                                    * (root - domain[other_root_index])
+                                ) % p
+                            total += (
+                                scalar
+                                * pow(root, row, p)
+                                * pow(denominator, -1, p)
+                            )
+                        expected.append(total % p)
+                    mode_packet_count += 1
+                    max_mode_size = max(max_mode_size, mode_count)
+                    terminal_tree_mode_size_histogram[mode_count] += 1
+                    productive_children = sum(
+                        1 for _root, child_count, _core, _scalar in child_results
+                        if child_count
+                    )
+                    if productive_children >= 2:
+                        productive_mode_packet_count += 1
+                        terminal_tree_productive_mode_size_histogram[
+                            mode_count
+                        ] += 1
+                    if lower_vector != tuple(expected):
+                        raise AssertionError(
+                            {
+                                "kind": "terminal-branch-mode-packet-failed",
+                                "p": p,
+                                "k": k,
+                                "syndrome": list(syn),
+                                "fixed_roots": list(fixed_roots),
+                                "current_fixed": list(current_fixed),
+                                "current_core": list(current_core),
+                                "exit_roots": [
+                                    root_index
+                                    for root_index, _count, _core, _scalar in (
+                                        child_results
+                                    )
+                                ],
+                                "lower_core": list(lower_core),
+                                "lower_vector": list(lower_vector),
+                                "expected": expected,
+                            }
+                        )
                 for left, right in itertools.combinations(child_results, 2):
                     (
                         left_root_index,
@@ -787,12 +882,17 @@ def analyze_case(
                     branch_count,
                     branch_pair_count,
                     productive_branch_pair_count,
+                    mode_packet_count,
+                    productive_mode_packet_count,
+                    max_mode_size,
                 )
 
             tree_recursion_defects = 0
             audit_branch_vertices = 0
             audit_branch_pairs = 0
             audit_productive_branch_pairs = 0
+            audit_mode_packets = 0
+            audit_productive_mode_packets = 0
             audit_multiflag_cores = 0
             for core in active_cores:
                 if not core:
@@ -802,6 +902,9 @@ def analyze_case(
                     branch_count,
                     branch_pair_count,
                     productive_branch_pair_count,
+                    mode_packet_count,
+                    productive_mode_packet_count,
+                    max_mode_size,
                 ) = terminal_deletion_tree(
                     fixed_roots,
                     core,
@@ -812,9 +915,15 @@ def analyze_case(
                 terminal_tree_productive_branch_pairs += (
                     productive_branch_pair_count
                 )
+                terminal_tree_mode_packet_checks += mode_packet_count
+                terminal_tree_productive_mode_packets += (
+                    productive_mode_packet_count
+                )
                 audit_branch_vertices += branch_count
                 audit_branch_pairs += branch_pair_count
                 audit_productive_branch_pairs += productive_branch_pair_count
+                audit_mode_packets += mode_packet_count
+                audit_productive_mode_packets += productive_mode_packet_count
                 if tree_count > 1:
                     terminal_tree_multiflag_cores += 1
                     audit_multiflag_cores += 1
@@ -870,11 +979,27 @@ def analyze_case(
                         max_nonzero_terminal_tree_productive_branch_pairs,
                         productive_branch_pair_count,
                     )
+                    max_nonzero_terminal_tree_mode_packets = max(
+                        max_nonzero_terminal_tree_mode_packets,
+                        mode_packet_count,
+                    )
+                    max_nonzero_terminal_tree_productive_mode_packets = max(
+                        max_nonzero_terminal_tree_productive_mode_packets,
+                        productive_mode_packet_count,
+                    )
+                    max_nonzero_terminal_tree_mode_size = max(
+                        max_nonzero_terminal_tree_mode_size,
+                        max_mode_size,
+                    )
             terminal_tree_recursion_defect_histogram[tree_recursion_defects] += 1
             terminal_tree_branch_vertex_histogram[audit_branch_vertices] += 1
             terminal_tree_branch_pair_histogram[audit_branch_pairs] += 1
             terminal_tree_productive_branch_pair_histogram[
                 audit_productive_branch_pairs
+            ] += 1
+            terminal_tree_mode_packet_histogram[audit_mode_packets] += 1
+            terminal_tree_productive_mode_packet_histogram[
+                audit_productive_mode_packets
             ] += 1
             terminal_tree_multiflag_core_histogram[audit_multiflag_cores] += 1
             if any(syn):
@@ -2454,6 +2579,10 @@ def analyze_case(
         "terminal_tree_productive_branch_pairs": (
             terminal_tree_productive_branch_pairs
         ),
+        "terminal_tree_mode_packet_checks": terminal_tree_mode_packet_checks,
+        "terminal_tree_productive_mode_packets": (
+            terminal_tree_productive_mode_packets
+        ),
         "terminal_tree_multiflag_cores": terminal_tree_multiflag_cores,
         "max_iterated_boundary_chain_length": max_iterated_boundary_chain_length,
         "max_nonzero_iterated_boundary_active_cores": (
@@ -2493,6 +2622,15 @@ def analyze_case(
         ),
         "max_nonzero_terminal_tree_productive_branch_pairs": (
             max_nonzero_terminal_tree_productive_branch_pairs
+        ),
+        "max_nonzero_terminal_tree_mode_packets": (
+            max_nonzero_terminal_tree_mode_packets
+        ),
+        "max_nonzero_terminal_tree_productive_mode_packets": (
+            max_nonzero_terminal_tree_productive_mode_packets
+        ),
+        "max_nonzero_terminal_tree_mode_size": (
+            max_nonzero_terminal_tree_mode_size
         ),
         "max_nonzero_terminal_tree_multiflag_cores": (
             max_nonzero_terminal_tree_multiflag_cores
@@ -2603,6 +2741,18 @@ def analyze_case(
         "terminal_tree_productive_branch_pair_histogram": dict(
             sorted(terminal_tree_productive_branch_pair_histogram.items())
         ),
+        "terminal_tree_mode_packet_histogram": dict(
+            sorted(terminal_tree_mode_packet_histogram.items())
+        ),
+        "terminal_tree_productive_mode_packet_histogram": dict(
+            sorted(terminal_tree_productive_mode_packet_histogram.items())
+        ),
+        "terminal_tree_mode_size_histogram": dict(
+            sorted(terminal_tree_mode_size_histogram.items())
+        ),
+        "terminal_tree_productive_mode_size_histogram": dict(
+            sorted(terminal_tree_productive_mode_size_histogram.items())
+        ),
         "terminal_tree_multiflag_core_histogram": dict(
             sorted(terminal_tree_multiflag_core_histogram.items())
         ),
@@ -2680,6 +2830,8 @@ def print_summary(results: Sequence[dict[str, object]]) -> None:
             f"{result['max_nonzero_terminal_tree_branch_vertices']} "
             f"max_nonzero_terminal_tree_branch_pairs="
             f"{result['max_nonzero_terminal_tree_branch_pairs']} "
+            f"max_nonzero_terminal_tree_mode_size="
+            f"{result['max_nonzero_terminal_tree_mode_size']} "
             f"max_nonzero_full_support_slack="
             f"{result['max_nonzero_full_support_ledger_slack']} "
             f"max_nonzero_top_active={result['max_nonzero_top_active_members']}"
