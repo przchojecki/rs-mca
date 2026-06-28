@@ -109,6 +109,9 @@ collapsed anchor base A=X union R; repeated labels with distinct anchor bases
 therefore force a lower-degree anchor-base kernel relation.
 It also audits the one-exchange refinement: an adjacent anchor-base collision
 forces the common (|A|-1)-core into the same Hankel kernel.
+It checks the reversible split-support certificate: for collapsed anchor
+base A and packet modes Y, the total support A union Y is active and every
+one-mode deletion has the expected nonzero root-marked boundary vector.
 Equivalently, it records support-unique boundary packets as those with no
 equal-size visible alias.
 The full-domain visible endpoint count is then support-unique labels plus one
@@ -473,6 +476,10 @@ def analyze_case(
     terminal_tree_productive_anchor_base_one_exchange_core_checks = 0
     terminal_tree_anchor_base_one_exchange_kernel_hits = 0
     terminal_tree_productive_anchor_base_one_exchange_kernel_hits = 0
+    terminal_tree_anchor_split_support_checks = 0
+    terminal_tree_productive_anchor_split_support_checks = 0
+    terminal_tree_anchor_split_boundary_checks = 0
+    terminal_tree_productive_anchor_split_boundary_checks = 0
     terminal_tree_mode_rank_checks = 0
     terminal_tree_productive_mode_rank_checks = 0
     terminal_tree_mode_peeling_checks = 0
@@ -648,6 +655,10 @@ def analyze_case(
             nonlocal terminal_tree_productive_anchor_base_one_exchange_core_checks
             nonlocal terminal_tree_anchor_base_one_exchange_kernel_hits
             nonlocal terminal_tree_productive_anchor_base_one_exchange_kernel_hits
+            nonlocal terminal_tree_anchor_split_support_checks
+            nonlocal terminal_tree_productive_anchor_split_support_checks
+            nonlocal terminal_tree_anchor_split_boundary_checks
+            nonlocal terminal_tree_productive_anchor_split_boundary_checks
             nonlocal terminal_tree_mode_rank_checks
             nonlocal terminal_tree_productive_mode_rank_checks
             nonlocal terminal_tree_mode_peeling_checks
@@ -904,6 +915,10 @@ def analyze_case(
                 nonlocal terminal_tree_productive_anchor_base_one_exchange_core_checks
                 nonlocal terminal_tree_anchor_base_one_exchange_kernel_hits
                 nonlocal terminal_tree_productive_anchor_base_one_exchange_kernel_hits
+                nonlocal terminal_tree_anchor_split_support_checks
+                nonlocal terminal_tree_productive_anchor_split_support_checks
+                nonlocal terminal_tree_anchor_split_boundary_checks
+                nonlocal terminal_tree_productive_anchor_split_boundary_checks
 
                 if not current_core:
                     return (1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
@@ -1204,6 +1219,104 @@ def analyze_case(
                     terminal_tree_anchor_base_image_checks += 1
                     if productive_children >= 2:
                         terminal_tree_productive_anchor_base_image_checks += 1
+                    total_split_support = tuple(
+                        sorted((*anchor_base, *child_root_indices))
+                    )
+                    total_split_vector = hankel_apply(
+                        syn,
+                        cached_locator(total_split_support),
+                        t,
+                        p,
+                    )
+                    if any(total_split_vector):
+                        raise AssertionError(
+                            {
+                                "kind": (
+                                    "terminal-branch-anchor-split-"
+                                    "support-inactive"
+                                ),
+                                "p": p,
+                                "k": k,
+                                "syndrome": list(syn),
+                                "fixed_roots": list(fixed_roots),
+                                "current_fixed": list(current_fixed),
+                                "current_core": list(current_core),
+                                "anchor_base": list(anchor_base),
+                                "exit_roots": sorted(child_root_indices),
+                                "total_split_support": list(
+                                    total_split_support
+                                ),
+                                "total_split_vector": list(
+                                    total_split_vector
+                                ),
+                            }
+                        )
+                    terminal_tree_anchor_split_support_checks += 1
+                    if productive_children >= 2:
+                        terminal_tree_productive_anchor_split_support_checks += (
+                            1
+                        )
+                    for (
+                        root_index,
+                        root,
+                        _child_count,
+                        scalar,
+                        _amplitude,
+                    ) in mode_data:
+                        boundary_support = tuple(
+                            sorted(
+                                (
+                                    *anchor_base,
+                                    *(
+                                        other_root_index
+                                        for other_root_index in child_root_indices
+                                        if other_root_index != root_index
+                                    ),
+                                )
+                            )
+                        )
+                        boundary_vector = hankel_apply(
+                            syn,
+                            cached_locator(boundary_support),
+                            t + 1,
+                            p,
+                        )
+                        expected_boundary = tuple(
+                            scalar * pow(root, row, p) % p
+                            for row in range(t + 1)
+                        )
+                        if boundary_vector != expected_boundary:
+                            raise AssertionError(
+                                {
+                                    "kind": (
+                                        "terminal-branch-anchor-split-"
+                                        "boundary-failed"
+                                    ),
+                                    "p": p,
+                                    "k": k,
+                                    "syndrome": list(syn),
+                                    "fixed_roots": list(fixed_roots),
+                                    "current_fixed": list(current_fixed),
+                                    "current_core": list(current_core),
+                                    "anchor_base": list(anchor_base),
+                                    "boundary_support": list(
+                                        boundary_support
+                                    ),
+                                    "exit_root": root_index,
+                                    "scalar": scalar,
+                                    "boundary_vector": list(
+                                        boundary_vector
+                                    ),
+                                    "expected_boundary": list(
+                                        expected_boundary
+                                    ),
+                                }
+                            )
+                        terminal_tree_anchor_split_boundary_checks += 1
+                        if productive_children >= 2:
+                            terminal_tree_productive_anchor_split_boundary_checks += (
+                                1
+                            )
                     for removed_anchor in anchor_base:
                         common_anchor_core = tuple(
                             anchor
@@ -3980,6 +4093,18 @@ def analyze_case(
         "terminal_tree_productive_anchor_base_one_exchange_kernel_hits": (
             terminal_tree_productive_anchor_base_one_exchange_kernel_hits
         ),
+        "terminal_tree_anchor_split_support_checks": (
+            terminal_tree_anchor_split_support_checks
+        ),
+        "terminal_tree_productive_anchor_split_support_checks": (
+            terminal_tree_productive_anchor_split_support_checks
+        ),
+        "terminal_tree_anchor_split_boundary_checks": (
+            terminal_tree_anchor_split_boundary_checks
+        ),
+        "terminal_tree_productive_anchor_split_boundary_checks": (
+            terminal_tree_productive_anchor_split_boundary_checks
+        ),
         "terminal_tree_mode_rank_checks": terminal_tree_mode_rank_checks,
         "terminal_tree_productive_mode_rank_checks": (
             terminal_tree_productive_mode_rank_checks
@@ -4400,6 +4525,10 @@ def print_summary(results: Sequence[dict[str, object]]) -> None:
             f"{result['terminal_tree_anchor_base_one_exchange_core_checks']} "
             f"one_exchange_anchor_kernel_hits="
             f"{result['terminal_tree_anchor_base_one_exchange_kernel_hits']} "
+            f"anchor_split_supports="
+            f"{result['terminal_tree_anchor_split_support_checks']} "
+            f"anchor_split_boundaries="
+            f"{result['terminal_tree_anchor_split_boundary_checks']} "
             f"max_nonzero_terminal_tree_mode_size="
             f"{result['max_nonzero_terminal_tree_mode_size']} "
             f"max_nonzero_terminal_tree_mode_rank_size="

@@ -1640,6 +1640,49 @@ current finite packets have neither repeated visible labels nor the adjacent
 anchor-base kernel event that would make such a repetition possible at this
 anchor-base size.
 
+## Anchor-Base Packets Are Split-Support Certificates
+
+The anchor-base packet identity is reversible.  Let `A` and `Y` be disjoint
+domain sets, `m=|Y|`, and suppose
+
+```text
+g=H_{tau+m,|A|}(s)ell_A,
+g_i=sum_{y in Y} a_y y^i        (0<=i<=tau+m-1),
+a_y != 0.
+```
+
+Then the total split support `S=A union Y` is active:
+
+```text
+H_{tau,|S|}(s)ell_S=0.                          (SS)
+```
+
+Moreover every packet mode is a nonzero root-marked boundary of the split
+support.  If `d_y=prod_{z in Y,z!=y}(y-z)` and
+`c_y=a_y d_y`, then
+
+```text
+H_{tau+1,|S|-1}(s)ell_{S\{y}}
+  = c_y(1,y,...,y^tau),       c_y != 0.          (SB)
+```
+
+Proof: applying `ell_Y` to the sparse moment sequence kills every geometric
+mode, giving (SS).  Applying `ell_{Y\{y}}` kills all modes except `y` and
+multiplies the remaining one by `d_y`, giving (SB).  The nonzero amplitude
+and distinct roots make `c_y` nonzero.
+
+Thus a visible terminal packet can be studied without reference to the
+deletion history: it is exactly a split support `A union Y` whose packet modes
+are nonzero root-marked exits, together with the sparse moment amplitudes.
+The earlier deletion-tree construction proves that terminal branch vertices
+produce such split-support certificates; this converse shows that bounding
+these certificates is a direct M1 packing target.
+
+The verifier checks (SS) and (SB) for every produced packet.  In the largest
+`F_7^*` audit, this gives `34560` split-support checks and `73440`
+root-marked split-boundary checks; the productive subaudit contributes
+`32400` split supports and `69120` split-boundary checks.
+
 ## Root-Marked Slice Is One Row
 
 The zero-boundary subkernel in the fixed-root difference form is cut out by a

@@ -30,6 +30,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 anchor-base packets are split-support certificates
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_hankel_t2_one_exchange_lift.md`,
+  `experimental/scripts/verify_m1_hankel_t2_triangle_packets.py`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / STRUCTURAL / EXACT FINITE AUDIT.
+- **What is being added:** Proves the converse anchor-base packet statement:
+  a sparse moment packet `H_{tau+m,|A|}(s)ell_A=sum_y a_y y^i` with nonzero
+  amplitudes makes `A union Y` active, and every `y in Y` is a nonzero
+  root-marked split boundary.
+- **How it is useful:** Replaces deletion-tree language by an intrinsic
+  split-support certificate.  Terminal packet production can now be attacked
+  as a direct M1 packing problem over split supports `A union Y`.
+- **What to do next:** Bound the number of such split-support certificates,
+  or prove that large families force quotient-periodic, tangent, or lower-core
+  structure.
+
 ### 2026-06-28 - M1 anchor-base exchange-distance charges
 
 - **Agent/model:** AllenGrahamHart / Codex audit.

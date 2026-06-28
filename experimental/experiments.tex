@@ -4262,6 +4262,27 @@ The one-exchange anchor collision is therefore already a lower-core
 Hankel-kernel event.  In the largest \(F_7^*\) audit the verifier checks
 \(30240\) such one-exchange common cores, including all \(28080\) productive
 size-\(2\) packets, with no kernel hits.
+The anchor-base packet condition is also reversible.  If \(A\cap Y=\emptyset\)
+and
+\[
+  H_{\tau+m,|A|}(s)\ell_A
+  =\left(\sum_{y\in Y}a_y y^i\right)_{0\le i\le\tau+m-1},
+  \qquad a_y\ne0,
+\]
+then \(S=A\cup Y\) is active,
+\[
+  H_{\tau,|S|}(s)\ell_S=0,
+\]
+and every \(y\in Y\) is a nonzero root-marked boundary:
+\[
+  H_{\tau+1,|S|-1}(s)\ell_{S\setminus\{y\}}
+  =a_y\prod_{z\in Y,\ z\ne y}(y-z)\,(1,y,\ldots,y^\tau).
+\]
+Thus the terminal packet is an intrinsic split-support certificate, not only
+a deletion-tree artifact.  The verifier checks this in the largest \(F_7^*\)
+audit with \(34560\) split-support checks and \(73440\) root-marked
+split-boundary checks, including \(32400\) productive supports and \(69120\)
+productive boundaries.
 The common-core and two-denominator formulas persist verbatim after this
 root-free replacement.  With \(C=\gcd(D:D\in M_{\min})\), \(\gamma=\deg C\),
 and \(E_D=D/C\),
