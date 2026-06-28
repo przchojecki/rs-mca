@@ -30,6 +30,23 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-29 - M1 b=2 canonical base peeling tree
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_hankel_t2_one_exchange_lift.md`,
+  `experimental/experiments.tex`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / STRUCTURAL / REDUCTION.
+- **What is being added:** Refines the common-base peeling recurrence by
+  choosing a canonical order on base roots, so each residual support follows a
+  unique peeling path and the tree bound has no factorial multiplicity.
+- **How it is useful:** Leaves the `b=2` endpoint as no-base
+  determinant-gate payments across canonical peeled anchors plus
+  lower-dimensional terminal ledgers.
+- **What to do next:** Bound the no-base determinant-gate terms uniformly
+  across canonical peeled anchors.
+
 ### 2026-06-29 - M1 b=2 common-base peeling recurrence
 
 - **Agent/model:** AllenGrahamHart / Codex audit.

@@ -4465,6 +4465,74 @@ This gives a precise route for closing the remaining base term in
 (PF2-width-zero): prove polynomial bounds for the no-base determinant-gate
 terms at every peeled width and for the lower-dimensional terminal ledgers.
 
+## Canonical Base Peeling Removes Multiplicity
+
+The level recurrence (PF2-base-level) is deliberately symmetric, and therefore
+overcounts a support by the number of ways to forget its last peeled base root.
+For a global bound it is better to choose one deterministic peeling path.
+
+Fix a total order on `B_0^*(A)`.  For each residual support `R`, write its base
+roots in increasing order
+
+```text
+R cap B_0^*(A)={x_1<...<x_t}.
+```
+
+Then `R` determines the unique chain
+
+```text
+empty, {x_1}, {x_1,x_2}, ..., {x_1,...,x_t}.
+```
+
+For an ordered initial segment `S`, let `F_S^can(A)` be the quotient supports
+whose already-peeled base roots are exactly `S` in this sense: the original
+support contains `S`, contains no base root smaller than the largest element of
+`S` outside `S`, and all remaining base roots are larger than every element of
+`S`.  The sets `F_S^can(A)` form a disjoint canonical peeling tree.
+
+At a canonical node `S` with `q_S=q-|S|`, either the quotient direction space
+has dimension `<2`, giving a lower-dimensional terminal ledger, or it has
+dimension `2`.  In the `b=2` case, the width-zero ledger partitions
+`F_S^can(A)` into:
+
+1. no-base quotient supports, paid by the no-base determinant-gate term
+   `(2/q_S)|I_S^{nb,can}|`;
+2. supports with a next base root `x>max(S)`, which enter the unique child
+   `F_{S union {x}}^can(A)`.
+
+Hence there is no branching multiplicity:
+
+```text
+|F_S^can(A)|
+ <=
+  LowerDim_S^can
+  + (2/q_S)|I_S^{nb,can}|
+  + sum_{x>max(S)} |F_{S union {x}}^can(A)|.    (PF2-canon-peel)
+```
+
+For `S=empty`, the last sum ranges over all roots of `B_0^*(A)`.
+Iterating over the canonical tree gives the multiplicity-free endpoint
+
+```text
+|F(A)|
+ <=
+  sum_{S in Tree(A)}
+    LowerDim_S^can
+  + sum_{S in Tree_2(A)}
+      (2/(q-|S|)) |I_S^{nb,can}|.              (PF2-canon-tree)
+```
+
+Here `Tree_2(A)` denotes the canonical nodes whose descended direction space
+still has dimension two.  Thus the common-base term is controlled by a
+disjoint peeling tree: every original support contributes to exactly one leaf,
+and every internal `b=2` payment is a no-base determinant-gate term with the
+same explicit saving as in (PF2-width-zero), at the descended width.
+
+This removes the factorial overcount implicit in the symmetric level
+recurrence and identifies the remaining `b=2` work as a bound for no-base
+determinant gates across canonical peeled anchors, plus lower-dimensional
+terminal ledgers.
+
 ## Bad Root Slices Are Absorbed-Anchor Rank Defects
 
 The preceding bad-root condition has an equivalent absorbed-anchor form.  Fix

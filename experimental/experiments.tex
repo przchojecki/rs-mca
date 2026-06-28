@@ -5205,6 +5205,22 @@ If the quotient direction dimension is \(<2\), the branch has dropped to the
 lower-dimensional residual ledgers.  Therefore the one-root common-base term
 unfolds into a finite base-peeling tree with no-base determinant-gate payments
 at each \(b=2\) node.
+The peeling can be made canonical to avoid multiplicity.  Fix an order on
+\(B_0^*(A)\) and always peel the least remaining base root.  Each residual
+support then follows a unique chain of base subsets.  If \(F_S^{can}(A)\) is
+the canonical quotient fiber at a peeled subset \(S\), then at a \(b=2\) node
+\[
+  |F_S^{can}(A)|
+  \le
+  L_S^{can}
+  +{2\over q-|S|}|I_S^{\mathrm{nb},can}|
+  +\sum_{x>\max S}|F_{S\cup\{x\}}^{can}(A)|,
+\]
+where \(L_S^{can}\) is the lower-dimensional terminal contribution, and for
+\(S=\emptyset\) the last sum ranges over all base roots.  Iterating gives a
+multiplicity-free tree bound: the remaining \(b=2\) task is no-base
+determinant-gate control at canonical peeled anchors, plus lower-dimensional
+terminal ledgers.
 Equivalently, for each available root \(x\) the bad-slice test is the failure
 of full column rank for the absorbed-anchor matrix
 \[
