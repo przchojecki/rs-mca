@@ -4170,6 +4170,74 @@ This is the current sharp form of the `b=2` M1 target.  It isolates exactly
 where the remaining all-line residue-packing input must enter; no further
 fixed-anchor residual enumeration is left in this branch.
 
+## Common-Base Ledger Descends by Fixed-Subset Incidence
+
+The first exceptional term in (PF2-cutoff-ledger) has an exact quotient
+incidence form.  Fix a `b=2` anchor `A`, an origin locator `L_0`, direction
+basis `P,Q`, and let
+
+```text
+B_0^*(A)=B_0 cap roots_{D'}(L_0).
+```
+
+Only roots in `B_0^*(A)` can occur as base roots of a residual support: if
+`R in F(A)` and `x in R cap B_0`, then `P(x)=Q(x)=0` and
+`L_R=L_0+alpha P+beta Q` gives `L_0(x)=L_R(x)=0`.
+
+Now fix `d>=1` and a `d`-subset `C subset B_0^*(A)`.  Define the quotient
+fiber
+
+```text
+F_C(A)={
+  R' subset D'\C :
+  |R'|=q-d and ell_C ell_{R'} in K(A)
+}.
+```
+
+Multiplication by `ell_C` gives a bijection between `F_C(A)` and the residual
+supports `R in F(A)` with `C subset R cap B_0`.  Indeed, if such an `R`
+contains `C`, then `ell_R=ell_C ell_{R\C}`.  Conversely every
+`R' in F_C(A)` gives the split support `C union R'`.
+The whole affine pencil descends after `C`: since `C subset B_0^*(A)`,
+
+```text
+L_0=ell_C L_{0,C},        P=ell_C P_C,        Q=ell_C Q_C,
+```
+
+and the quotient supports are exactly the split locators in
+
+```text
+L_{0,C}+span(P_C,Q_C)
+```
+
+with fixed divisor `ell_W ell_C`.
+
+Consequently, for `d=A_0+1`,
+
+```text
+sum_{C subset B_0^*(A), |C|=d} |F_C(A)|
+ =
+sum_{R in F(A)} binom(a_A(R),d),                (PF2-base-incidence)
+```
+
+and therefore
+
+```text
+|B_A| <=
+sum_{C subset B_0^*(A), |C|=A_0+1} |F_C(A)|.   (PF2-base-ledger)
+```
+
+Thus the common-base exceptional ledger is not a new `b=2` residual object.  It
+is an incidence sum of lower-width fixed-divisor quotient fibers.  Any
+polynomial bound for these descended fixed-divisor fibers closes the `B_A`
+term in (PF2-cutoff-ledger).
+
+The verifier checks the support-local descent used here: whenever a residual
+candidate contains base roots, those roots also vanish on the origin locator;
+after dividing by their locator, the residual support quotient is the expected
+complement locator and each direction basis vector remains in the corresponding
+fixed-divisor Hankel kernel.
+
 ## Bad Root Slices Are Absorbed-Anchor Rank Defects
 
 The preceding bad-root condition has an equivalent absorbed-anchor form.  Fix

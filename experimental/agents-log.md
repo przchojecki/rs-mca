@@ -30,6 +30,26 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 b=2 common-base ledger descends by incidence
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_hankel_t2_one_exchange_lift.md`,
+  `experimental/experiments.tex`,
+  `experimental/scripts/verify_m1_hankel_t2_triangle_packets.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / STRUCTURAL / AUDIT.
+- **What is being added:** Proves that the common-base exceptional term in the
+  `b=2` cutoff ledger is an exact fixed-subset incidence sum over descended
+  quotient fibers: supports with many base roots are counted by subsets
+  `C subset B_0 cap roots(L_0)` and quotient supports after dividing by
+  `ell_C`.
+- **How it is useful:** Turns the base-heavy ledger from the cutoff reduction
+  into lower-width fixed-divisor quotient fibers, leaving no new residual
+  enumeration in that branch.
+- **What to do next:** Bound the descended fixed-divisor quotient fibers
+  uniformly in the all-line M1 residue-packing setting.
+
 ### 2026-06-28 - M1 b=2 cutoff ledger reduction
 
 - **Agent/model:** AllenGrahamHart / Codex audit.

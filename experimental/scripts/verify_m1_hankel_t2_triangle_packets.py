@@ -197,6 +197,9 @@ pairs.
 It checks the corresponding quotient certificate: after removing the dominant
 base or projective-fiber slice of a support, the residual direction descends
 to a quotient kernel whose width is the complement size.
+For the common-base branch it also checks that base roots of any residual
+candidate are roots of the origin locator, so the whole affine pencil descends
+after that base divisor and the remaining support is the quotient locator.
 Equivalently, it checks the global root-shadow-height bound: if the largest
 base locus or projective fiber has height h, every residual support has the
 good-pair lower bound forced by h.
@@ -6919,11 +6922,14 @@ def analyze_case(
                                                     candidate
                                                 )
                                                 candidate_good_pairs = 0
-                                                candidate_base_occupancy = sum(
-                                                    1
+                                                candidate_base_roots = tuple(
+                                                    root
                                                     for root in candidate
                                                     if root
                                                     in projective_eval_base_roots
+                                                )
+                                                candidate_base_occupancy = len(
+                                                    candidate_base_roots
                                                 )
                                                 candidate_fiber_roots: dict[
                                                     tuple[int, ...],
@@ -6948,6 +6954,211 @@ def analyze_case(
                                                         candidate_fiber_roots.items()
                                                     )
                                                 }
+                                                if candidate_base_roots:
+                                                    for root in (
+                                                        candidate_base_roots
+                                                    ):
+                                                        if polynomial_eval_mod(
+                                                            residual_locator,
+                                                            domain[root],
+                                                            p,
+                                                        ):
+                                                            raise AssertionError(
+                                                                projective_local_error(
+                                                                    "base-"
+                                                                    "support-"
+                                                                    "origin-"
+                                                                    "root-"
+                                                                    "failed",
+                                                                    candidate=list(
+                                                                        candidate
+                                                                    ),
+                                                                    base_roots=list(
+                                                                        candidate_base_roots
+                                                                    ),
+                                                                    root=root,
+                                                                    origin=list(
+                                                                        residual_locator
+                                                                    ),
+                                                                )
+                                                            )
+                                                    base_slice_locator = (
+                                                        cached_locator(
+                                                            candidate_base_roots
+                                                        )
+                                                    )
+                                                    quotient_support = tuple(
+                                                        root
+                                                        for root in candidate
+                                                        if root
+                                                        not in (
+                                                            candidate_base_roots
+                                                        )
+                                                    )
+                                                    candidate_base_quotient = (
+                                                        divide_by_polynomial_exact_mod(
+                                                            candidate_locator,
+                                                            base_slice_locator,
+                                                            p,
+                                                        )
+                                                    )
+                                                    expected_base_quotient = (
+                                                        cached_locator(
+                                                            quotient_support
+                                                        )
+                                                    )
+                                                    if (
+                                                        candidate_base_quotient
+                                                        != expected_base_quotient
+                                                    ):
+                                                        raise AssertionError(
+                                                            projective_local_error(
+                                                                "base-support-"
+                                                                "quotient-"
+                                                                "locator-"
+                                                                "failed",
+                                                                candidate=list(
+                                                                    candidate
+                                                                ),
+                                                                base_roots=list(
+                                                                    candidate_base_roots
+                                                                ),
+                                                                quotient_support=list(
+                                                                    quotient_support
+                                                                ),
+                                                                quotient=list(
+                                                                    candidate_base_quotient
+                                                                ),
+                                                                expected=list(
+                                                                    expected_base_quotient
+                                                                ),
+                                                            )
+                                                        )
+                                                    base_quotient_width = (
+                                                        residual_size
+                                                        - candidate_base_occupancy
+                                                    )
+                                                    origin_base_quotient = (
+                                                        divide_by_polynomial_exact_mod(
+                                                            residual_locator,
+                                                            base_slice_locator,
+                                                            p,
+                                                        )
+                                                    )
+                                                    if len(origin_base_quotient) != (
+                                                        base_quotient_width + 1
+                                                    ):
+                                                        raise AssertionError(
+                                                            projective_local_error(
+                                                                "base-support-"
+                                                                "origin-"
+                                                                "quotient-"
+                                                                "width-"
+                                                                "failed",
+                                                                candidate=list(
+                                                                    candidate
+                                                                ),
+                                                                base_roots=list(
+                                                                    candidate_base_roots
+                                                                ),
+                                                                quotient=list(
+                                                                    origin_base_quotient
+                                                                ),
+                                                                expected_width=(
+                                                                    base_quotient_width
+                                                                    + 1
+                                                                ),
+                                                            )
+                                                        )
+                                                    for (
+                                                        basis_index,
+                                                        vector,
+                                                    ) in enumerate(
+                                                        direction_basis
+                                                    ):
+                                                        basis_base_quotient = (
+                                                            divide_by_polynomial_exact_mod(
+                                                                vector,
+                                                                base_slice_locator,
+                                                                p,
+                                                            )
+                                                        )
+                                                        if (
+                                                            len(
+                                                                basis_base_quotient
+                                                            )
+                                                            != base_quotient_width
+                                                        ):
+                                                            raise AssertionError(
+                                                                projective_local_error(
+                                                                    "base-"
+                                                                    "support-"
+                                                                    "direction-"
+                                                                    "quotient-"
+                                                                    "width-"
+                                                                    "failed",
+                                                                    candidate=list(
+                                                                        candidate
+                                                                    ),
+                                                                    base_roots=list(
+                                                                        candidate_base_roots
+                                                                    ),
+                                                                    basis_index=(
+                                                                        basis_index
+                                                                    ),
+                                                                    quotient=list(
+                                                                        basis_base_quotient
+                                                                    ),
+                                                                    expected_width=(
+                                                                        base_quotient_width
+                                                                    ),
+                                                                )
+                                                            )
+                                                        direction_product = (
+                                                            multiply_polynomials_mod(
+                                                                anchor_locator,
+                                                                multiply_polynomials_mod(
+                                                                    base_slice_locator,
+                                                                    basis_base_quotient,
+                                                                    p,
+                                                                ),
+                                                                p,
+                                                            )
+                                                        )
+                                                        direction_vector = (
+                                                            hankel_apply(
+                                                                syn,
+                                                                direction_product,
+                                                                residual_size,
+                                                                p,
+                                                            )
+                                                        )
+                                                        if any(direction_vector):
+                                                            raise AssertionError(
+                                                                projective_local_error(
+                                                                    "base-"
+                                                                    "support-"
+                                                                    "direction-"
+                                                                    "quotient-"
+                                                                    "kernel-"
+                                                                    "failed",
+                                                                    candidate=list(
+                                                                        candidate
+                                                                    ),
+                                                                    base_roots=list(
+                                                                        candidate_base_roots
+                                                                    ),
+                                                                    basis_index=(
+                                                                        basis_index
+                                                                    ),
+                                                                    quotient=list(
+                                                                        basis_base_quotient
+                                                                    ),
+                                                                    vector=list(
+                                                                        direction_vector
+                                                                    ),
+                                                                )
+                                                            )
                                                 candidate_base_occupancy_max = max(
                                                     candidate_base_occupancy_max,
                                                     candidate_base_occupancy,

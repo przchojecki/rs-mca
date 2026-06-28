@@ -5113,6 +5113,29 @@ Moreover \(\mathcal B_A\) is a common-base fixed-divisor ledger, and
 \(A_0+c-1\).  Thus, once the unweighted generic determinant-gate count and
 these two explicit quotient ledgers are polynomial after the existing reserve
 charges, the \(b=2\) branch closes.
+The common-base ledger has an exact fixed-subset incidence descent.  Let
+\[
+  B_0^*(A)=B_0\cap \operatorname{roots}_{D'}(L_0).
+\]
+If \(R\in F(A)\) and \(x\in R\cap B_0\), then \(x\in B_0^*(A)\), because the
+directions vanish at \(x\) and \(L_R=L_0+\alpha P+\beta Q\).  For
+\(C\subset B_0^*(A)\), \(|C|=d\), put
+\[
+  F_C(A)=\{R'\subset D'\setminus C:\ |R'|=q-d,
+          \ell_C\ell_{R'}\in K(A)\}.
+\]
+Multiplication by \(\ell_C\) identifies \(F_C(A)\) with the residual supports
+containing \(C\).  Hence, for \(d=A_0+1\),
+\[
+  \sum_{C\subset B_0^*(A),\, |C|=d}|F_C(A)|
+  =
+  \sum_{R\in F(A)}\binom{a_A(R)}{d},
+  \qquad
+  |\mathcal B_A|\le
+  \sum_{C\subset B_0^*(A),\, |C|=A_0+1}|F_C(A)|.
+\]
+Thus the base-heavy exceptional term is an incidence sum of lower-width
+fixed-divisor quotient fibers.
 Equivalently, for each available root \(x\) the bad-slice test is the failure
 of full column rank for the absorbed-anchor matrix
 \[
