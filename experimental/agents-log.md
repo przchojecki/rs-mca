@@ -30,6 +30,23 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 same-support multiplicity is generator collapse
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_boundary_off_external_anchor_normal_form.md`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / PROOF-PROGRAM.
+- **What is being added:** A fixed support has at most one one-row coefficient
+  unless the generator `hX^k-B_prim/Q_prim` restricts to `RS_k` on that
+  support; this collapse gives a `j`-point complement residue certificate
+  with multiplier degree `<ell+1`, plus the necessary top-coefficient
+  normalization.
+- **How it is useful:** This identifies the same-support multiplicity missing
+  from the weighted ledger as another small-complement residue-line problem.
+- **What to do next:** Bound the `j`-point generator-collapse complement
+  fibers together with the `(j+1)` one-exchange complement fibers.
+
 ### 2026-06-28 - M1 correction: one-row ledger needs weighted incidence
 
 - **Agent/model:** AllenGrahamHart / Codex audit.

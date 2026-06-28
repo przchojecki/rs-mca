@@ -11650,6 +11650,136 @@ Substituting `binom(n,a-1)=binom(n,j+1)` and dropping the nonpositive
 `-|Exc_ell|` term gives (WeightedComplementLedger).  The conditional bound is
 immediate.
 
+## Corollary 40.102: Same-Support Multiplicity Is A Generator-Collapse Complement Fiber
+
+Keep the primitive positive-denominator one-row notation, and write
+
+```text
+e_prim=t+ell,        ell>=0,
+phi_h=hX^k-B_prim/Q_prim.
+```
+
+For an `a`-subset `T subset D`, define
+
+```text
+Mu_T(Y)= { mu in F : exists A_0 in F[X]_<k
+                    with A_0+mu phi_h = Y on T }.
+```
+
+Then:
+
+1. if `phi_h|_T` is not the restriction of a degree-`<k` polynomial to `T`,
+   then `|Mu_T(Y)|<=1`;
+2. if `phi_h|_T` is the restriction of a degree-`<k` polynomial to `T`, then
+   `Mu_T(Y)` is either empty or all of `F`.
+
+Thus same-support coefficient multiplicity occurs only on generator-collapse
+supports
+
+```text
+GenColl={ T subset D : |T|=a,        phi_h|_T in RS[F,T,k] }.
+```
+
+Moreover, for `T in GenColl`, let `C=D\T`, so `|C|=j`.  Then there exists a
+nonzero polynomial `N` with
+
+```text
+deg N < ell+1
+```
+
+such that
+
+```text
+L_C in F L_D N B_prim^{-1}        mod Q_prim.       (SameSupportComplement)
+```
+
+More precisely, `T in GenColl` is equivalent to the existence of such an `N`
+for which, after scaling so that
+
+```text
+L_T N == -B_prim        mod Q_prim,
+```
+
+the quotient
+
+```text
+(L_TN+B_prim)/Q_prim
+```
+
+has coefficient `h` on `X^k`.  Therefore the same-support multiplicity
+obstruction is a `j`-point small-complement residue-line fiber with multiplier
+degree at most `ell`, plus this single top-coefficient normalization.
+
+### Proof
+
+The first two assertions are linear algebra on the restriction space over
+`T`.  If two distinct coefficients `mu_1,mu_2` lie in `Mu_T(Y)`, subtracting
+their two representations gives
+
+```text
+(A_1-A_2) + (mu_1-mu_2) phi_h = 0        on T.
+```
+
+Since `mu_1-mu_2!=0`, this says that `phi_h|_T` is represented by a
+degree-`<k` polynomial on `T`.  Conversely, if `phi_h|_T` is represented by
+some degree-`<k` polynomial `P`, then any one representation
+`A_0+mu phi_h=Y` on `T` generates all representations by replacing `mu` with
+`mu+lambda` and `A_0` with `A_0-lambda P`.  Hence the fiber is either empty
+or all of `F`.
+
+Now assume `T in GenColl`.  Choose `A in F[X]_<k` with
+
+```text
+A + phi_h = 0        on T.
+```
+
+Multiplying by `Q_prim`, the polynomial
+
+```text
+P=Q_prim(A+hX^k)-B_prim
+```
+
+vanishes on `T`.  Since
+
+```text
+deg P < k+e_prim+1 = k+t+ell+1 = a+ell+1,
+```
+
+there is a polynomial `N` with `deg N<ell+1` such that
+
+```text
+P=L_T N.
+```
+
+The polynomial `N` is nonzero; otherwise `Q_prim` would divide `B_prim`,
+contradicting `gcd(Q_prim,B_prim)=1`.  Reducing modulo `Q_prim` gives
+
+```text
+L_T N in F B_prim        mod Q_prim.
+```
+
+Since `L_T=L_D/L_C` modulo `Q_prim` and all factors are invertible there,
+this is equivalent to (SameSupportComplement).
+
+Conversely, suppose (SameSupportComplement) holds and, after scaling `N`, the
+normalization above holds.  Multiplying by the invertible class `L_C B_prim`
+gives
+
+```text
+L_T N == -B_prim        mod Q_prim.
+```
+
+Define
+
+```text
+H=(L_TN+B_prim)/Q_prim.
+```
+
+The degree bound gives `deg H<k+1`, and the normalization says that the
+coefficient of `X^k` in `H` is `h`.  Hence `A=H-hX^k` has degree `<k`.
+Since `Q_prim(A+hX^k)-B_prim=L_TN`, the polynomial `A+phi_h` vanishes on
+`T`, so `T in GenColl`.
+
 ## Corollary 41: The Global Common-Image Ledger Is Endpoint-Only
 
 Let `GCI` be the set of monic degree-`c` split core locators `L` for which
@@ -14578,6 +14708,10 @@ Corollary 40.101 packages the one-exchange scalar one-row ledger in terms of
 the weighted coefficient incidence mass over these small-complement residue
 fibers; bounding unweighted fibers alone still requires a same-support
 multiplicity input.
+Corollary 40.102 identifies that same-support multiplicity input: multiplicity
+occurs exactly when the one-row generator collapses to `RS_k` on the support,
+equivalently when a `j`-point complement satisfies another short
+small-complement residue certificate.
 Corollary 41 packages the common-image branch into endpoint-type ledgers; it
 does not prove the endpoint rank hypotheses needed for the displayed
 `(q+2)binom(n,b)` bound. Corollary 42 packages the globally full core ledger
