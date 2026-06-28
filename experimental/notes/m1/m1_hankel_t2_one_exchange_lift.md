@@ -183,6 +183,11 @@ Equivalently, `w_lambda in C`.  Full top packets are thus global-codeword
 slopes, belonging to the contained/tangent ledger rather than to residual
 primitive top-packet growth.
 
+Consequently, for `Syn(w_lambda) != 0`, a top set `U` has at most `j` active
+`j`-subcomplements.  Thus nonzero top packets are partial packets of size at
+most `j`; they cannot contain the full `(j+1)`-clique, and their local
+same-slope support multiplicity is linearly bounded by the complement size.
+
 ## Exact Verifier
 
 The script
@@ -215,11 +220,11 @@ python3 experimental/scripts/verify_m1_hankel_t2_triangle_packets.py
 enumerates the combined syndrome `Syn(w_lambda)` directly, so it can check the
 first genuine top-triangle case without a slow quotient-pair scan.
 
-| field/domain | syndromes | one-exchange edges | star triangles | top triangles | full top cliques | nonzero full top cliques |
+| field/domain | syndromes | one-exchange edges | star triangles | top triangles | full top cliques | max nonzero top active |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: |
-| `F_5`, `H=F_5^*`, `n=4,k=1,a=3,j=1` | 125 | 6 | 4 | 0 | 6 | 0 |
-| `F_7`, `H=F_7^*`, `n=6,k=2,a=4,j=2` | 2401 | 420 | 420 | 20 | 20 | 0 |
-| `F_7`, `H=F_7^*`, `n=6,k=3,a=5,j=1` | 343 | 15 | 20 | 0 | 15 | 0 |
+| `F_5`, `H=F_5^*`, `n=4,k=1,a=3,j=1` | 125 | 6 | 4 | 0 | 6 | 1 |
+| `F_7`, `H=F_7^*`, `n=6,k=2,a=4,j=2` | 2401 | 420 | 420 | 20 | 20 | 2 |
+| `F_7`, `H=F_7^*`, `n=6,k=3,a=5,j=1` | 343 | 15 | 20 | 0 | 15 | 1 |
 
 The `F_7,k=2,j=2` scan is the first exact top-packet check in this file.  It
 finds twenty top triangles, all on the zero combined syndrome.  This is not an

@@ -30,6 +30,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 nonzero top packets have bounded size
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_hankel_t2_one_exchange_lift.md`,
+  `experimental/scripts/verify_m1_hankel_t2_triangle_packets.py`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / EXACT FINITE VERIFICATION.
+- **What is being added:** Records the immediate corollary of the full-top
+  zero-syndrome lemma: at nonzero combined syndrome, a `(j+1)`-top set can
+  have at most `j` active `j`-subcomplements.  The verifier now reports the
+  nonzero top active-size profile and enforces the `<=j` cap.
+- **How it is useful:** Closes the local full-top growth mechanism in the
+  `t=2` same-slope packet route.  Residual top packets are necessarily partial
+  and linearly bounded in `j`, while full top cliques are tangent/global-codeword
+  events.
+- **What to do next:** Move the packet analysis from local top cliques to
+  variable-line components or optimize larger partial-top scans.
+
 ### 2026-06-28 - M1 full top packets are zero-syndrome
 
 - **Agent/model:** AllenGrahamHart / Codex audit.

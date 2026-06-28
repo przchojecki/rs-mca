@@ -22,6 +22,8 @@ genuine top-triangle case (F_7, k=2, t=2, j=2).
 It also checks the full-top zero-syndrome lemma: if all j+1 complements
 U\\{x} inside one (j+1)-top set U are active, then the combined syndrome is
 zero.  Thus full top packets belong to the global-codeword/tangent ledger.
+Consequently every nonzero top packet has at most j active complements; the
+script records the exact active-size profile.
 """
 
 from __future__ import annotations
@@ -105,6 +107,8 @@ def analyze_case(
     nonzero_top_triangles = 0
     full_top_cliques = 0
     nonzero_full_top_cliques = 0
+    max_nonzero_top_active_members = 0
+    nonzero_top_active_size_histogram: Counter[int] = Counter()
     star_examples: list[dict[str, object]] = []
     top_examples: list[dict[str, object]] = []
     full_top_examples: list[dict[str, object]] = []
@@ -221,6 +225,25 @@ def analyze_case(
                     }
                 )
             if not all(index in active_set for index in top_members):
+                if any(syn):
+                    active_size = sum(1 for index in top_members if index in active_set)
+                    max_nonzero_top_active_members = max(
+                        max_nonzero_top_active_members,
+                        active_size,
+                    )
+                    nonzero_top_active_size_histogram[active_size] += 1
+                    if active_size > j:
+                        raise AssertionError(
+                            {
+                                "kind": "nonzero-top-active-size-exceeds-j",
+                                "p": p,
+                                "k": k,
+                                "syndrome": list(syn),
+                                "top": list(top),
+                                "active_size": active_size,
+                                "j": j,
+                            }
+                        )
                 continue
             full_top_cliques += 1
             if any(syn):
@@ -267,9 +290,13 @@ def analyze_case(
         "nonzero_top_triangles": nonzero_top_triangles,
         "full_top_cliques": full_top_cliques,
         "nonzero_full_top_cliques": nonzero_full_top_cliques,
+        "max_nonzero_top_active_members": max_nonzero_top_active_members,
         "active_complement_histogram": dict(sorted(active_histogram.items())),
         "one_exchange_edge_histogram": dict(sorted(edge_histogram.items())),
         "triangle_histogram": dict(sorted(triangle_histogram.items())),
+        "nonzero_top_active_size_histogram": dict(
+            sorted(nonzero_top_active_size_histogram.items())
+        ),
         "star_examples": star_examples,
         "top_examples": top_examples,
         "full_top_examples": full_top_examples,
@@ -299,7 +326,8 @@ def print_summary(results: Sequence[dict[str, object]]) -> None:
             f"star_triangles={result['star_triangles']} "
             f"top_triangles={result['top_triangles']} "
             f"nonzero_top={result['nonzero_top_triangles']} "
-            f"full_top={result['full_top_cliques']}"
+            f"full_top={result['full_top_cliques']} "
+            f"max_nonzero_top_active={result['max_nonzero_top_active_members']}"
         )
     print("PASS")
 
