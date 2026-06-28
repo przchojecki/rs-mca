@@ -5275,6 +5275,20 @@ intersect only inside \(Z\), so
 \]
 Thus concentrated no-base profiles descend to fixed-width root-slice packing
 ledgers; the remaining new \(b=2\) term is the spread determinant-gate count.
+That spread term is bounded by ambient good-pair capacity at the same
+canonical node.  If \(D_S^{can}\) is the remaining domain, \(B_S\) the
+descended base locus, and \(D_{S,\lambda}\) the non-base projective fibers,
+then
+\[
+  G_S^{can}=
+  \binom{|D_S^{can}\setminus B_S|}{2}
+  -\sum_\lambda \binom{|D_{S,\lambda}|}{2}
+\]
+counts all ambient cross-fiber good pairs, and
+\(|I_S^{\mathrm{nb},spread(w_S),can}|\le G_S^{can}\).  Therefore the canonical
+\(b=2\) endpoint can be written using only lower-dimensional leaves, the
+explicit node capacities \(G_S^{can}/\Phi_{q_S}(q_S-w_S-1)\), and the
+fixed-width root-slice packing floors for the concentrated quotient lines.
 The lower-dimensional terminal term is explicit.  Let
 \(V_S=\langle P_S,Q_S\rangle\), \(b_S=\dim V_S\), and let
 \(D_S^{can}\) be the remaining domain after removing the already peeled roots

@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-29 - M1 b=2 canonical capacity endpoint
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_hankel_t2_one_exchange_lift.md`,
+  `experimental/experiments.tex`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / STRUCTURAL / REDUCTION.
+- **What is being added:** Replaces the spread split-determinant set in the
+  canonical `b=2` tree by the ambient cross-fiber good-pair capacity
+  `G_S^{can}`, and combines this with the quotient-line root-slice packing
+  bound.
+- **How it is useful:** Gives an explicit canonical `b=2` endpoint in terms
+  of lower-dimensional leaves, node capacities, and fixed-width root-slice
+  packing floors, with no symbolic split-gate set left in the formula.
+- **What to do next:** Bound the sum of the canonical node capacities and the
+  fixed-width root-slice bad-root counts globally.
+
 ### 2026-06-29 - M1 b=2 quotient-line packings
 
 - **Agent/model:** AllenGrahamHart / Codex audit.

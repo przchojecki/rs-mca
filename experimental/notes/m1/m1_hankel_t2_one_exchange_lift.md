@@ -4806,6 +4806,48 @@ remaining genuinely new `b=2` work is the spread determinant-gate count; the
 concentrated quotient-line branch has descended to fixed-width root-slice
 packings.
 
+## Explicit Capacity Form of the Canonical b=2 Endpoint
+
+The spread determinant-gate term in (PF2-canon-occ-tree) can be bounded by
+ambient good-pair capacity at the same canonical node.  For `S in Tree_2(A)`,
+let `D_S^{can}` be the canonical remaining domain, let `B_S` be the descended
+base locus, and let `D_{S,lambda}` be the non-base projective fibers.  Put
+
+```text
+G_S^{can}
+ =
+ binom(|D_S^{can}\B_S|,2)
+ - sum_lambda binom(|D_{S,lambda}|,2).          (PF2-canon-good-cap)
+```
+
+This is the number of ambient cross-fiber good pairs available at node `S`.
+Since `I_S^{nb,spread(w_S),can}` is a subset of these good-pair labels,
+
+```text
+|I_S^{nb,spread(w_S),can}| <= G_S^{can}.        (PF2-spread-cap)
+```
+
+Combining (PF2-canon-occ-tree), (PF2-spread-cap), and
+(PF2-quot-line-pack) gives the explicit capacity endpoint
+
+```text
+|F(A)|
+ <=
+  sum_{S in Tree(A)} LowerDim_S^can
+  + sum_{S in Tree_2(A)}
+      G_S^{can}/Phi_{q_S}(q_S-w_S-1)
+  + sum_{S in Tree_2(A)} sum_{j=1}^{w_S}
+      sum_lambda sum_{C subset D_{S,lambda}, |C|=q_S-j}
+        floor((N_{S,C}-z_{S,lambda,C})/(j-z_{S,lambda,C})).
+                                                        (PF2-canon-capacity)
+```
+
+Here `z_{S,lambda,C}` is the number of remaining-domain roots of the quotient
+direction `Q'_{S,lambda,C}`.  The last sum is exactly a fixed-width root-slice
+packing ledger.  Thus the canonical `b=2` branch has been reduced to explicit
+node capacities, lower-dimensional leaves, and root-slice bad-root counts; no
+split determinant-gate set remains as an unexpanded object in this endpoint.
+
 ## Canonical Terminal Leaves Are Explicit Residual Packings
 
 The lower-dimensional term in (PF2-canon-tree) is not a new primitive.  At a
