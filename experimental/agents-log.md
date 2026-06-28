@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 lower aliases start above the half-degree threshold
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_boundary_off_external_anchor_normal_form.md`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / PROOF-PROGRAM.
+- **What is being added:** Sums the lower side of the fixed-direction alias
+  chart: a degree-`e_1` primitive direction has no lower-degree alias unless
+  `2e_1>n+1`, and otherwise all lower aliases are controlled by defects in
+  `F[X]_{<2e_1-n-1}`.
+- **How it is useful:** Shows downward finite-domain aliasing only appears
+  above the half-domain threshold, with a single small projective defect-space
+  bound for all lower aliases of a fixed direction.
+- **What to do next:** Combine the lower-alias defect bound with active
+  primitive-class incidence constraints to test whether these downward aliases
+  can occur in the M1 active ledger.
+
 ### 2026-06-28 - M1 fixed-direction aliases have a defect-quotient chart
 
 - **Agent/model:** AllenGrahamHart / Codex audit.

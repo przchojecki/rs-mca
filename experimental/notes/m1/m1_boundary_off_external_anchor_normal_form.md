@@ -15573,6 +15573,84 @@ d+(e_2-e_1+1)=2e_2-n+1.
 The admissible aliases form a subset of the corresponding projective
 parameter space, proving (AliasChartCount).
 
+## Corollary 40.155: Lower Aliases Start Above The Half-Degree Threshold
+
+Keep the fixed positive-degree primitive direction `(Q_1,B_1)` of
+Corollary 40.154, with denominator degree `e_1`.  If
+
+```text
+2e_1<=n+1,
+```
+
+then `(Q_1,B_1)` has no nontrivial primitive direction alias of degree
+`e_2<e_1`.
+
+If `2e_1>n+1`, put
+
+```text
+D_low=2e_1-n-1.
+```
+
+Every lower-degree primitive direction alias is represented by a unique
+projective defect
+
+```text
+[R] in P(F[X]_<D_low)
+```
+
+through
+
+```text
+A_R=rem_{Q_1}(L_D R B_1^{-1}),
+Q_2=A_R,
+B_2=(B_1A_R-L_D R)/Q_1.                            (LowerAliasUnion)
+```
+
+The retained aliases are exactly the defects for which, with `e_2=deg A_R`,
+
+```text
+e_2<e_1,        e_1+e_2>n,
+```
+
+and `(Q_2,B_2)` satisfies the root-free and primitive conditions of
+Corollary 40.154.
+
+Consequently, over `F_q`, the total number of lower-degree primitive direction
+aliases of the fixed direction is at most
+
+```text
+(q^D_low-1)/(q-1).                                 (LowerAliasCount)
+```
+
+Thus finite-domain aliasing cannot send a primitive direction downward until
+the denominator degree crosses the half-domain threshold, and even then the
+whole downward alias set is controlled by the defect space of dimension
+`2e_1-n-1`.
+
+### Proof
+
+If a lower alias has degree `e_2<e_1`, Corollary 40.151 gives
+`e_1+e_2>n`.  Since `e_2<=e_1-1`, this implies
+
+```text
+2e_1-1 >= e_1+e_2 > n,
+```
+
+so `2e_1>n+1`.  This proves the no-lower-alias statement.
+
+Assume now that `2e_1>n+1`.  For any lower alias, Corollary 40.154 applies
+with
+
+```text
+d=e_1+e_2-n <= e_1+(e_1-1)-n = D_low.
+```
+
+Hence its defect lies in `F[X]_<D_low`, and the lower chart gives exactly
+(LowerAliasUnion).  Conversely, any retained defect in that union is a lower
+alias by Corollary 40.154.  The defect is unique up to scalar because
+`L_D R=B_1Q_2-B_2Q_1` for fixed `(Q_1,B_1)` and projective `(Q_2,B_2)`.
+Counting projective defects over `F_q` gives (LowerAliasCount).
+
 ## Corollary 41: The Global Common-Image Ledger Is Endpoint-Only
 
 Let `GCI` be the set of monic degree-`c` split core locators `L` for which
@@ -18671,6 +18749,9 @@ to its forced numerator.
 Corollary 40.154 extends this to all fixed-degree aliases of a fixed primitive
 direction by a defect-quotient chart, giving projective finite-field bounds
 in terms of `d=e_1+e_2-n` and the quotient degree.
+Corollary 40.155 sums the lower side: no primitive direction aliases downward
+unless `2e_1>n+1`, and then all lower aliases are controlled by one projective
+defect space of dimension `2e_1-n-1`.
 Corollary 41 packages the common-image branch into endpoint-type ledgers; it
 does not prove the endpoint rank hypotheses needed for the displayed
 `(q+2)binom(n,b)` bound. Corollary 42 packages the globally full core ledger

@@ -3386,6 +3386,14 @@ If \(e_2\ge e_1\), they are retained candidates
 Over \(\F_q\), this gives at most \((q^d-1)/(q-1)\) projective alias
 directions when \(e_2<e_1\), and at most
 \((q^{2e_2-n+1}-1)/(q-1)\) when \(e_2\ge e_1\).
+Summing the lower side, a fixed degree-\(e_1\) direction has no lower-degree
+alias unless \(2e_1>n+1\).  When \(2e_1>n+1\), all lower aliases are
+controlled by projective defects
+\[
+  [R]\in {\bf P}(\F[X]_{<2e_1-n-1}),
+\]
+so over \(\F_q\) their total number is at most
+\((q^{2e_1-n-1}-1)/(q-1)\).
 The common-core and two-denominator formulas persist verbatim after this
 root-free replacement.  With \(C=\gcd(D:D\in M_{\min})\), \(\gamma=\deg C\),
 and \(E_D=D/C\),
