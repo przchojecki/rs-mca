@@ -1291,6 +1291,21 @@ Equivalently, the true packet amplitudes are root-linear:
 even an arbitrary scalar-fit problem; it is exactly the root-linear amplitude
 locus.
 
+This gives a complete support-identifiability dichotomy in the full-domain
+boundary case.  The first `2m-1` moments of an `m`-mode packet on `H` either:
+
+1. determine the support `Y` uniquely among all domain `m`-sets; or
+2. the amplitudes are root-linear, `a_y=nu y`, and the only other domain
+   `m`-set giving the same visible moments is the complement `H\Y`, with
+   amplitudes `-nu z`.
+
+Indeed, any second support must be disjoint by the square Vandermonde
+argument above.  Since `|H|=2m`, a disjoint `m`-support is necessarily
+`H\Y`; the kernel-weight computation then gives exactly (RL).  Conversely
+(RL) gives the complementary alias.  Once the support is unique, the
+amplitudes are recovered from the first `m` moments by the square Vandermonde
+matrix on that support.
+
 Consequently the aliased endpoint is polynomial-sized for fixed `m`.  As
 labeled packets `(Y,(a_y))`, the full-domain root-linear alias locus is
 
@@ -1334,7 +1349,8 @@ audit checks (SF) directly: the constant-product scalar fits have exactly the
 same `4200/120` histogram as the moment aliases.  Since this audit is also a
 full-domain boundary case with `n=6=2m`, the root-linear test (RL) has the
 same histogram: the `120` aliased packets are precisely the root-linear
-amplitude packets.  They occupy all `binom(6,3)=20` supports with `6=|F|-1`
+amplitude packets.  The remaining `4200` boundary packets are support-unique.
+The root-linear packets occupy all `binom(6,3)=20` supports with `6=|F|-1`
 scalar multiples per support, exactly as (AL) predicts.
 
 ## Root-Marked Slice Is One Row

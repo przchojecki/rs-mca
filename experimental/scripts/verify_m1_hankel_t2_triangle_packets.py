@@ -93,6 +93,8 @@ c_y prod_{z in Z}(y-z) is independent of y in Y.
 In the full-domain boundary case n=2m over roots of unity, it checks the
 equivalent root-linear amplitude test a_y/y = constant on Y.
 It records the resulting labeled support profile for root-linear packets.
+Equivalently, it records support-unique boundary packets as those with no
+equal-size visible alias.
 
 It also checks the full-top zero-syndrome lemma: if all j+1 complements
 U\\{x} inside one (j+1)-top set U are active, then the combined syndrome is
@@ -456,6 +458,8 @@ def analyze_case(
     terminal_tree_boundary_root_linear_by_support: Counter[tuple[int, ...]] = (
         Counter()
     )
+    terminal_tree_boundary_support_unique = 0
+    terminal_tree_productive_boundary_support_unique = 0
     terminal_tree_multiflag_cores = 0
     iterated_boundary_defect_histogram: Counter[int] = Counter()
     fixed_root_filtration_defect_histogram: Counter[int] = Counter()
@@ -802,6 +806,8 @@ def analyze_case(
                 nonlocal terminal_tree_boundary_root_linear_hits
                 nonlocal terminal_tree_productive_boundary_root_linear_hits
                 nonlocal terminal_tree_boundary_root_linear_by_support
+                nonlocal terminal_tree_boundary_support_unique
+                nonlocal terminal_tree_productive_boundary_support_unique
 
                 if not current_core:
                     return (1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
@@ -1490,6 +1496,12 @@ def analyze_case(
                                             ),
                                         }
                                     )
+                                if not aliases:
+                                    terminal_tree_boundary_support_unique += 1
+                                    if productive_children >= 2:
+                                        terminal_tree_productive_boundary_support_unique += (
+                                            1
+                                        )
                     for subset_size in range(1, mode_count + 1):
                         for subset in itertools.combinations(
                             sorted(child_root_indices),
@@ -3442,6 +3454,12 @@ def analyze_case(
         "terminal_tree_boundary_root_linear_support_count": len(
             terminal_tree_boundary_root_linear_by_support
         ),
+        "terminal_tree_boundary_support_unique": (
+            terminal_tree_boundary_support_unique
+        ),
+        "terminal_tree_productive_boundary_support_unique": (
+            terminal_tree_productive_boundary_support_unique
+        ),
         "terminal_tree_multiflag_cores": terminal_tree_multiflag_cores,
         "max_iterated_boundary_chain_length": max_iterated_boundary_chain_length,
         "max_nonzero_iterated_boundary_active_cores": (
@@ -3766,6 +3784,8 @@ def print_summary(results: Sequence[dict[str, object]]) -> None:
             f"{result['terminal_tree_boundary_scalar_fits']} "
             f"boundary_root_linear="
             f"{result['terminal_tree_boundary_root_linear_hits']} "
+            f"boundary_support_unique="
+            f"{result['terminal_tree_boundary_support_unique']} "
             f"max_nonzero_full_support_slack="
             f"{result['max_nonzero_full_support_ledger_slack']} "
             f"max_nonzero_top_active={result['max_nonzero_top_active_members']}"

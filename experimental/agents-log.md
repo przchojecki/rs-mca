@@ -30,6 +30,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 full-domain boundary dichotomy
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_hankel_t2_one_exchange_lift.md`,
+  `experimental/scripts/verify_m1_hankel_t2_triangle_packets.py`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / STRUCTURAL / EXACT FINITE VERIFICATION.
+- **What is being added:** Proves the full-domain boundary dichotomy:
+  `2m-1` visible moments either determine the domain `m`-support uniquely, or
+  the packet is root-linear and has exactly the complementary support alias.
+- **How it is useful:** Converts the final full-domain boundary ambiguity into
+  an explicit exceptional ledger while making all other boundary packets
+  support-identifiable.  The current audit records `4200` support-unique
+  packets and `120` root-linear complementary-alias packets.
+- **What to do next:** Use support-identifiability to charge non-root-linear
+  boundary packets to recovered support ledgers, and charge the root-linear
+  complement pairs to the polynomial endpoint ledger.
+
 ### 2026-06-28 - M1 root-linear endpoint is polynomial-sized
 
 - **Agent/model:** AllenGrahamHart / Codex audit.
