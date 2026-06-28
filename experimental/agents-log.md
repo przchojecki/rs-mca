@@ -30,6 +30,23 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 deficit-weighted core closure criterion
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_hankel_t2_one_exchange_lift.md`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / STRUCTURAL.
+- **What is being added:** Extends the canonical core closure criterion from
+  the `|M(S)|<=tau+1` boundary range to all marked-frontier sizes by summing
+  the deficit-packing fiber bound
+  `floor(binom(n-|U|,d)/binom(r,d))` over `Core_r(s)`.
+- **How it is useful:** Rephrases the remaining split-support M1 obstruction
+  as a deficit-weighted canonical core ledger problem, so repeated marked
+  frontiers over one core are no longer an uncontrolled source.
+- **What to do next:** Bound the weighted `Core_r(s)` ledgers after
+  quotient-periodic, tangent, and empty-core endpoint charges.
+
 ### 2026-06-28 - M1 moment-short fibers are deficit packings
 
 - **Agent/model:** AllenGrahamHart / Codex audit.

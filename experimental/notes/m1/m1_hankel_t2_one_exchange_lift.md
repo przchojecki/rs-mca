@@ -2330,6 +2330,60 @@ moment-short canonical-core fiber.  In the largest `F_7^*` audit, it checks
 `17220` deficit-packing fibers with maximum deficit `1` and maximum fiber
 size `2`; the productive subaudit has the same counts.
 
+## Deficit-Weighted Core Closure Criterion
+
+The preceding local packing theorem removes the artificial cutoff
+`|M(S)|<=tau+1` from the earlier closure criterion.  For `m>=1`, let
+`Cert_m(s)` be the set of all split-support certificates of mode size `m`:
+
+```text
+Cert_m(s)
+ = { (S,Y) : S active, Y subset M(S), |Y|=m }.
+```
+
+For `U in Core_r(s)`, define
+
+```text
+d(U,r)=max(0,r-tau-|U|),
+P(U,r)=floor( binom(n-|U|,d(U,r)) / binom(r,d(U,r)) ).
+```
+
+Then every `m` satisfies the all-frontier closure bound
+
+```text
+|Cert_m(s)|
+ <= sum_{r>=m} binom(r,m)
+      sum_{U in Core_r(s)} P(U,r).                 (DWCC)
+```
+
+Proof: group certificates by the canonical unmarked core `U` and marked
+count `r`.  For a fixed active support `S` with `|M(S)|=r`, the marked-exit
+factorization gives exactly `binom(r,m)` mode-size `m` certificates.  For
+fixed `U` and `r`, the moment-complete theorem gives one support when
+`d(U,r)=0`, and the deficit-packing theorem gives at most `P(U,r)` supports
+when `d(U,r)>0`.  Multiplying by `binom(r,m)` and summing over all core
+ledgers proves (DWCC).
+
+The sharpened boundary criterion (CC') is the special case `r<=tau+1`:
+for `r<=tau` all cores have `d=0`; for `r=tau+1` every nonempty core has
+`d=0`, while the empty core has `d=1` and contributes
+`floor(n/(tau+1))`.  Thus the same formula now covers large marked
+frontiers without adding a new uncontrolled multiplicity term.
+
+Consequently the remaining M1 split-support task can be phrased as a
+deficit-weighted core ledger problem.  For fixed `m`, it is enough to prove a
+polynomial bound for the weighted sum
+
+```text
+sum_{r>=m} binom(r,m) sum_{U in Core_r(s)} P(U,r),
+```
+
+after quotient-periodic, tangent, and known endpoint ledgers are charged.  In
+particular, if the inner weighted core ledgers are bounded uniformly by
+`n^B`, then (DWCC) gives `|Cert_m(s)|=O_m(n^{B+m+1})`.  Any surviving
+super-polynomial obstruction must create too many weighted canonical cores;
+it cannot be hidden in repeated marked frontiers over one core.
+
 ## Empty-Core Endpoint Is The Boundary Moment Map
 
 It remains to identify the empty-core boundary exception left by the
