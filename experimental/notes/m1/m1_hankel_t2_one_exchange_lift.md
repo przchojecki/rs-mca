@@ -3883,6 +3883,72 @@ division by the good-pair locator, the quotient identity (PF2-det-quot) for
 every good pair.  The current largest `F_7^*` scan still has no `b(U,W)=2`
 produced anchor.
 
+## b=2 Fixed-Anchor Endpoint Theorem
+
+Combining the preceding sections gives the fixed-anchor endpoint for the first
+persistent positive-dimensional case.
+
+Let `(U,W)` be a deficit anchor with residual size `q`, available domain `D'`,
+and residual direction dimension `b(U,W)=2`.  Choose an origin locator
+`L_0 in K(U,W)` and a direction basis `P,Q` for `Dir K(U,W)`.  Let `B_0` be
+the common zero locus of `P,Q`, let projective fibers be defined by
+`[P(x):Q(x)]`, and let a pair be good when it avoids `B_0` and has distinct
+projective values.
+
+Then:
+
+1. The zero-good branch is empty:
+
+```text
+Z_0^{env}(U,W)=0.
+```
+
+2. Every residual support contains a good pair, and the fixed-anchor residual
+fiber is the split image of the good-pair interpolation map:
+
+```text
+F(U,W)
+ =
+{ roots_{D'}(L_e) :
+  e good, |roots_{D'}(L_e)|=q, ell_{roots_{D'}(L_e)}=L_e }.
+```
+
+3. The image fiber over `R in F(U,W)` is exactly the set of good pairs inside
+`R`, so, for the split-good-pair domain `I`,
+
+```text
+|I|=sum_{R in F(U,W)} g(R),
+|F(U,W)|=sum_{e in I} 1/g(pi(e)).
+```
+
+4. For `e={x,y}`, the interpolated locator factors as
+
+```text
+L_e=ell_e M_e,
+```
+
+where `M_e` is a degree-`q-2` quotient satisfying the absorbed fixed-divisor
+Hankel identity.  Equivalently, quotient roots are cut out by the determinant
+gate `Delta_e`, and
+
+```text
+Delta_e=D_e L_e,        Delta_e/ell_e=D_e M_e,
+D_e=det [[P(x),Q(x)],[P(y),Q(y)]] != 0.
+```
+
+Consequently the `b=2` fixed-anchor problem is no longer a diffuse residual
+`q`-subset problem.  It is a weighted good-pair image, and each image point is
+a two-root absorbed quotient-locator/determinant-gate split test of width
+`q-2`.  The remaining M1 work in this branch is global: charge these good-pair
+determinant gates across anchors using fixed-root, quotient-periodic, tangent,
+or aperiodic residue-packing input.
+
+The verifier audits every component of this endpoint theorem in finite scans:
+projective fiber normal form, zero-good vanishing, good-pair interpolation,
+split-image equality, image-fiber weights, two-root quotient descent, and
+determinant normalization.  The current largest `F_7^*` scan still has no
+`b(U,W)=2` produced anchor.
+
 ## Bad Root Slices Are Absorbed-Anchor Rank Defects
 
 The preceding bad-root condition has an equivalent absorbed-anchor form.  Fix

@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 b=2 fixed-anchor endpoint theorem
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_hankel_t2_one_exchange_lift.md`,
+  `experimental/experiments.tex`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / STRUCTURAL / SYNTHESIS.
+- **What is being added:** Records the endpoint theorem for `b=2` fixed
+  anchors: zero-good supports vanish, residual supports are the weighted split
+  image of good-pair interpolation, and each image is a two-root absorbed
+  quotient/determinant-gate split test.
+- **How it is useful:** Clarifies that the local `b=2` obstruction has been
+  reduced to a global good-pair determinant-gate ledger.
+- **What to do next:** Charge the resulting determinant gates across anchors by
+  fixed-root, quotient-periodic, tangent, or aperiodic M1 residue-packing
+  estimates.
+
 ### 2026-06-28 - M1 b=2 determinant gates normalize good-pair quotients
 
 - **Agent/model:** AllenGrahamHart / Codex audit.
