@@ -8334,6 +8334,99 @@ block.  Substituting the moment expansions gives (PairQuadrature).  Finally,
 `(S w)_m=w_{m+1}=sum_x (x mu_x)x^m`, so the shifted paired case is the same
 calculation with the displayed shifted weights.
 
+## Corollary 40.63: Full-Domain Moment Windows Become Lagrange Degree Tests
+
+Assume `D subset F_q` has size `n`, and let
+
+```text
+L_D(X)=prod_{x in D}(X-x).
+```
+
+For `beta notin D`, define the Lagrange weights
+
+```text
+lambda_beta(x)=prod_{y in D, y!=x} (beta-y)/(x-y)
+              = L_D(beta)/((beta-x)L_D'(x)),        x in D.
+```
+
+Let the scalar syndrome sequence have moment form
+
+```text
+w_m=sum_{x in D} mu_x x^m.
+```
+
+If `h=n`, then
+
+```text
+ev_beta in row H_{s,n-1}(w)
+```
+
+if and only if there is a polynomial `C` of degree `<s` such that
+
+```text
+mu_x C(x)=lambda_beta(x)        for every x in D.   (ScalarLagrangeAnchor)
+```
+
+In particular, if any `mu_x=0`, no non-domain scalar anchor exists in the
+full-domain moment window.  If all `mu_x` are nonzero, the condition is exactly
+that the unique interpolant of the values `lambda_beta(x)/mu_x` on `D` has
+degree `<s`.
+
+For a paired bottom matrix with moment weights `(mu_x,nu_x)`, the full-domain
+condition is
+
+```text
+mu_x C_u(x)+nu_x C_v(x)=lambda_beta(x)        for every x in D,       (PairLagrangeAnchor)
+```
+
+for some `deg C_u,deg C_v<s`.  For the shifted paired matrix, replace
+`(mu_x,nu_x)` by `(x mu_x,x nu_x)`.
+
+If `h>=n+1`, then no non-domain external anchor can lie in any row span coming
+from `D`-supported moment data of the form in Corollary 40.62.  Equivalently,
+all non-domain bottom-anchor certificates are confined to the short window
+`h<=n`.
+
+### Proof
+
+For every polynomial `P` of degree `<n`, Lagrange interpolation gives
+
+```text
+P(beta)=sum_{x in D} lambda_beta(x) P(x).
+```
+
+Taking `P(X)=X^b` for `0<=b<n` shows that the vector
+`(lambda_beta(x))_{x in D}` is the unique `D`-supported weight vector whose
+first `n` moments are `(1,beta,...,beta^{n-1})`: uniqueness follows from the
+invertibility of the `n x n` Vandermonde matrix on `D`.
+
+Thus the scalar identity in Corollary 40.62 with `h=n` is equivalent to
+`mu_x C(x)=lambda_beta(x)` for all `x in D`.  The paired and shifted paired
+statements are the same uniqueness argument applied to the combined weights
+`mu_x C_u(x)+nu_x C_v(x)` and, respectively,
+`x mu_x C_u(x)+x nu_x C_v(x)`.
+
+Finally suppose `h>=n+1` and a `D`-supported weight vector matched the first
+`h` moments of `beta`.  The first `n` moments force the weights to be
+`lambda_beta(x)`.  For the next moment, reduce `X^n` modulo the monic
+polynomial `L_D`:
+
+```text
+X^n = L_D(X) + R(X),        deg R<n.
+```
+
+Since `L_D(x)=0` for `x in D`,
+
+```text
+sum_{x in D} lambda_beta(x)x^n
+= sum_{x in D} lambda_beta(x)R(x)
+= R(beta)
+= beta^n-L_D(beta),
+```
+
+which is not `beta^n` because `beta notin D`.  Hence the first `n+1` moments
+cannot match.
+
 ## Corollary 41: The Global Common-Image Ledger Is Endpoint-Only
 
 Let `GCI` be the set of monic degree-`c` split core locators `L` for which
@@ -11138,6 +11231,9 @@ that the actual bottom Hankel row spaces contain enough such anchors.
 Corollary 40.62 rewrites bottom-anchor membership as a short-multiplier
 truncated moment certificate; it does not prove those moment certificates
 exist for enough non-domain anchors.
+Corollary 40.63 identifies the full-domain moment case with Lagrange
+interpolation degree tests and rules out non-domain anchors in windows
+`h>=|D|+1`; it does not solve the short-window case `h<|D|`.
 Corollary 41 packages the common-image branch into endpoint-type ledgers; it
 does not prove the endpoint rank hypotheses needed for the displayed
 `(q+2)binom(n,b)` bound. Corollary 42 packages the globally full core ledger

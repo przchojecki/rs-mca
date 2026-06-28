@@ -30,6 +30,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 full-window Lagrange anchor test
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_boundary_off_external_anchor_normal_form.md`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / PROOF-PROGRAM / AUDIT.
+- **What is being added:** In the full-domain moment window `h=|D|`, a
+  non-domain bottom anchor is equivalent to a Lagrange interpolation degree
+  test: scalar anchors require `mu_x C(x)=lambda_beta(x)` on `D`, and paired
+  anchors require `mu_x C_u(x)+nu_x C_v(x)=lambda_beta(x)`.  For `h>=|D|+1`,
+  non-domain anchors from `D`-supported moment data are impossible.
+- **How it is useful:** This sharply separates the bottom-anchor route into a
+  short-window problem and an exact full-window interpolation test, ruling out
+  one class of misleading long-window anchor searches.
+- **What to do next:** Focus any computational or analytic anchor search on
+  the genuinely short-window regime `h<|D|`, or on the displayed Lagrange
+  degree tests at `h=|D|`.
+
 ### 2026-06-28 - M1 bottom-anchor moment certificates
 
 - **Agent/model:** AllenGrahamHart / Codex audit.

@@ -2548,6 +2548,25 @@ For paired bottom windows, the same statement uses two short multipliers
 replace \((\mu_x,\nu_x)\) by \((x\mu_x,x\nu_x)\).  Thus the bottom anchor
 search is an explicit short-multiplier representation of external point
 masses by the actual syndrome moments.
+In the full-domain moment window \(h=n=|D|\), this becomes a Lagrange degree
+test.  For \(\beta\notin D\), let
+\[
+  \lambda_\beta(x)=\prod_{y\in D,\ y\ne x}{\beta-y\over x-y}
+  ={L_D(\beta)\over(\beta-x)L_D'(x)} .
+\]
+Then the scalar anchor condition is exactly
+\[
+  \mu_xC(x)=\lambda_\beta(x)\qquad(x\in D),
+\]
+so, when all \(\mu_x\ne0\), it asks for the interpolant of
+\(\lambda_\beta(x)/\mu_x\) to have degree \(<s\).  The paired condition is
+\[
+  \mu_xC_u(x)+\nu_xC_v(x)=\lambda_\beta(x)\qquad(x\in D),
+\]
+with the same shifted-weight replacement for the shifted pair.  If \(h\ge n+1\),
+no non-domain external anchor can occur from \(D\)-supported moment data,
+because the first \(n\) moments force the Lagrange weights and the next moment
+misses by \(L_D(\beta)\).
 In the common two-denominator case \(M_{\min}=\{D_1,D_2\}\), writing
 \(C=\gcd(D_1,D_2)\), \(D_i=C E_i\), and \(e_i=\deg E_i\), the quotient
 denominators \(E_1,E_2\) are automatically coprime and
