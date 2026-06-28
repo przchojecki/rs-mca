@@ -3285,6 +3285,19 @@ The residual product packet itself has a canonical \(D\)-root split.  For
 is a bijection onto \(P_v^x(Q_0)\).  Hence root-free factors and
 support-side domain-root multiplicities are not independent coordinates:
 their total product class uniquely determines both pieces.
+Over \(\mathbb F_q\) this gives an exact product-count ledger.  Let
+\(\mathrm{RFPhi}_{D,Q_0}(h)\) count projective degree-\(<h\) polynomials that
+avoid all roots in \(D\) and are coprime to \(Q_0\).  Then for \(R=r_v>0\),
+\[
+  |P_v^x(Q_0)|
+  =\sum_{s=0}^{R-1}\binom{n+s-1}{s}\,
+       \mathrm{RFPhi}_{D,Q_0}(R-s).
+\]
+Equivalently, \(\mathrm{RFPhi}_{D,Q_0}\) is obtained by inclusion-exclusion
+over the linear factors \(X-\alpha\), \(\alpha\in D\), together with the
+distinct irreducible factors of \(Q_0\).  Thus fixed-denominator residual
+counting is the usual root-free multiplier count with the denominator factors
+also excluded.
 The common-core and two-denominator formulas persist verbatim after this
 root-free replacement.  With \(C=\gcd(D:D\in M_{\min})\), \(\gamma=\deg C\),
 and \(E_D=D/C\),

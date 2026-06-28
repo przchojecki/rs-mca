@@ -14957,6 +14957,64 @@ multiplicity of each factor `X-beta` with `beta in D`, and using that both
 `H_i` have no roots in `D`, gives `m_1=m_2`.  Cancelling the common `L_m`
 then gives `[H_1]=[H_2]`.  Hence the product map is injective.
 
+## Corollary 40.146: Exact Residual Product Count With Denominator Coprimality
+
+Assume in Corollary 40.145 that `F=F_q`.  For `h in Z`, define
+`RFPhi_{D,Q_0}(h)` to be the number of projective classes `[H]` with
+
+```text
+deg H<h,        H(alpha)!=0 for every alpha in D,        gcd(H,Q_0)=1,
+```
+
+and set `RFPhi_{D,Q_0}(h)=0` for `h<=0`.  Then, for `R=r_v>0`,
+
+```text
+|P_v^x(Q_0)|
+ = sum_{s=0}^{R-1} binom(n+s-1,s) RFPhi_{D,Q_0}(R-s).   (ProductSplitCount)
+```
+
+Here `binom(n+s-1,s)` is interpreted as `1` when `s=0`.  Thus the residual
+multiplier ledger decomposes exactly into total domain-root multiplicity `s`
+and a denominator-coprime `D`-root-free quotient of remaining degree `<R-s`.
+
+More explicitly, let `Irr(Q_0)` be the set of distinct monic irreducible
+factors of `Q_0`, and put
+
+```text
+A={ X-alpha : alpha in D } union Irr(Q_0).
+```
+
+The factors in `A` are pairwise coprime.  For `J subset A`, let
+`d_J=sum_{f in J} deg f`.  Then
+
+```text
+RFPhi_{D,Q_0}(h)
+ = (1/(q-1)) sum_{J subset A} (-1)^|J| (q^max(h-d_J,0)-1).   (RFQ0IE)
+```
+
+Consequently the only difference between the usual `D`-root-free multiplier
+count and the fixed-denominator product count is the additional exclusion of
+the irreducible factors of `Q_0`.
+
+### Proof
+
+By Corollary 40.145, every class `[P] in P_v^x(Q_0)` has a unique
+factorization `[P]=[H L_m]` with `H` `D`-root-free, `gcd(H,Q_0)=1`, and
+`deg H+|m|<R`.  For fixed `s=|m|`, the number of multiplicity vectors
+`m:D->Z_{\ge0}` with total mass `s` is the stars-and-bars number
+`binom(n+s-1,s)`.  For each such `m`, the allowed quotient classes `[H]` are
+exactly counted by `RFPhi_{D,Q_0}(R-s)`.  Summing over `0<=s<R` proves
+(ProductSplitCount).
+
+For (RFQ0IE), a projective class `[H]` is counted by `RFPhi_{D,Q_0}(h)` iff
+the representative space `F_q[X]_<h` contains a nonzero polynomial not
+divisible by any factor in `A`.  Since `Q_0` is root-free on `D`, the linear
+factors `X-alpha` and the irreducible factors of `Q_0` are pairwise coprime.
+For a fixed subset `J subset A`, divisibility by `prod_{f in J} f` cuts out a
+linear subspace of dimension `max(h-d_J,0)` in `F_q[X]_<h`, with
+`q^max(h-d_J,0)-1` nonzero vectors.  Inclusion-exclusion over `A`, followed
+by quotienting nonzero vectors by `F_q^*`, gives (RFQ0IE).
+
 ## Corollary 41: The Global Common-Image Ledger Is Endpoint-Only
 
 Let `GCI` be the set of monic degree-`c` split core locators `L` for which
@@ -18026,6 +18084,9 @@ root-heavy core packet, with only explicit root-choice charges.
 Corollary 40.145 gives the canonical residual product index: every product
 class has a unique split into a `D`-root-free quotient and its domain-root
 multiplicity vector.
+Corollary 40.146 turns that split into an exact finite-field product count
+with fixed-denominator coprimality included by inclusion-exclusion over the
+irreducible factors of `Q_0`.
 Corollary 41 packages the common-image branch into endpoint-type ledgers; it
 does not prove the endpoint rank hypotheses needed for the displayed
 `(q+2)binom(n,b)` bound. Corollary 42 packages the globally full core ledger

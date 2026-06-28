@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 exact residual product count with denominator coprimality
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_boundary_off_external_anchor_normal_form.md`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / PROOF-PROGRAM.
+- **What is being added:** Uses the canonical `D`-root split to give an exact
+  finite-field count for `P_v^x(Q_0)`: sum over total domain-root
+  multiplicity `s` of `binom(n+s-1,s) RFPhi_{D,Q_0}(R-s)`, with
+  `RFPhi_{D,Q_0}` computed by inclusion-exclusion over `D` and the distinct
+  irreducible factors of `Q_0`.
+- **How it is useful:** Converts residual multiplier bookkeeping into a
+  precise product-count ledger that also charges fixed denominator
+  coprimality, rather than using a raw projective multiplier space.
+- **What to do next:** Compare this fixed-denominator product count with the
+  active all-line base-class/residue-line packing budget.
+
 ### 2026-06-28 - M1 residual products have canonical D-root split
 
 - **Agent/model:** AllenGrahamHart / Codex audit.
