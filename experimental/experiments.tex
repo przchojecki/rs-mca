@@ -3236,6 +3236,23 @@ If all root sets of sizes \(s\in I\) are allowed, this is
 \]
 Thus fixed-class complement-root bookkeeping pays for choosing charged roots
 inside the complement, but not for an additional residual-multiplier family.
+This yields an exact fixed-class root normal form.  Every exchange-\(u\)
+landing whose multiplier has at most \(u\) roots in the current complement is
+equivalent to a unique triple
+\[
+  (S,[P],C_0),\qquad
+  S\subset D,\quad |S|\le u,\quad
+  C_0\in\mathrm{Comp}_{u-|S|,[P]}(Q_0,B_0),\quad
+  C_0\cap S=\emptyset,
+\]
+with \(P\) nonvanishing on \(C_0\), via
+\((S,[P],C_0)\mapsto([L_SP],C_0\sqcup S)\).  Hence the non-core-descending
+fixed-class root residual is bounded by
+\[
+  \binom n {j+u}\sum_{s=0}^u\binom{j+u}{s},
+\]
+and the omitted case is exactly the core-depth descent when more than \(u\)
+multiplier roots lie in the complement.
 The common-core and two-denominator formulas persist verbatim after this
 root-free replacement.  With \(C=\gcd(D:D\in M_{\min})\), \(\gamma=\deg C\),
 and \(E_D=D/C\),

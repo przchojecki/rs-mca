@@ -30,6 +30,23 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 fixed-class root residual normal form
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_boundary_off_external_anchor_normal_form.md`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / PROOF-PROGRAM.
+- **What is being added:** Packages the complement-root machinery into an
+  exact normal form: every non-core-descending exchange-`u` landing is a unique
+  charged root set `S`, residual product class `[P]`, and reduced complement
+  `C_0` with `P` nonvanishing on `C_0`.
+- **How it is useful:** Converts the previous packet lemmas into a single
+  fixed-class reduction theorem and isolates the core-depth descent as the
+  only excluded root-heavy case.
+- **What to do next:** Use the normal form to state which root-free product
+  families must still be bounded for the all-line M1 residue-packing target.
+
 ### 2026-06-28 - M1 root-set stratification has only root-choice cost
 
 - **Agent/model:** AllenGrahamHart / Codex audit.

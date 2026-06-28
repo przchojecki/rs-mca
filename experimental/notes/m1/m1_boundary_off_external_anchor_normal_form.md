@@ -14688,6 +14688,88 @@ which proves (RootChoiceInsideC) after summing over `s in I`.  The final
 interpretation is Corollary 40.140 for mixed root-free/support-root residuals,
 together with Corollary 40.139 for pure domain-root residuals.
 
+## Corollary 40.142: Fixed-Class Root Residuals Have Exact Normal Form
+
+Keep the primitive base setup of Corollary 40.122, and fix `0<=u<=t`.  Let
+`NF_u(Q_0,B_0)` be the labeled set of triples `(S,[P],C_0)` such that
+
+```text
+S subset D,        s=|S|<=u,        [P] in P_{u-s}^x(Q_0),
+C_0 in Comp_{u-s,[P]}(Q_0,B_0),
+C_0 cap S=empty,
+P(beta)!=0 for every beta in C_0.
+```
+
+Let `NC_u(Q_0,B_0)` be the set of exact exchange-`u` landings
+`([M],C)` with `[M] in P_u^x(Q_0)` and `C in Comp_{u,[M]}(Q_0,B_0)` whose
+multiplier has at most `u` roots in the current complement:
+
+```text
+R_C={ beta in C : M(beta)=0 },        |R_C|<=u.
+```
+
+Then there is a bijection
+
+```text
+NC_u(Q_0,B_0) <-> NF_u(Q_0,B_0)                  (FixedClassRootNF)
+```
+
+given by
+
+```text
+([M],C) |-> (R_C,[M/L_{R_C}],C\R_C),
+(S,[P],C_0) |-> ([L_S P],C_0 disjoint_union S).
+```
+
+Under this bijection the residual multiplier `P` has no root in the reduced
+complement `C_0`.  Therefore every non-core-descending fixed primitive
+exchange landing is exactly a charged complement-root set plus a reduced
+product-class landing.  Its labeled size satisfies the root-choice bound
+
+```text
+|NC_u(Q_0,B_0)|
+ <= binom(n,j+u) sum_{s=0}^u binom(j+u,s).        (FixedClassRootNFBound)
+```
+
+The excluded landings with `|R_C|>u` are precisely the core-depth descending
+case of Corollary 40.125.
+
+### Proof
+
+Start with `([M],C) in NC_u(Q_0,B_0)`.  Corollary 40.125 gives the unique
+projective factorization
+
+```text
+[M]=[L_{R_C}P_C],
+```
+
+with `[P_C] in P_{u-|R_C|}^x(Q_0)`,
+
+```text
+C_0=C\R_C in Comp_{u-|R_C|,[P_C]}(Q_0,B_0),
+C_0 cap R_C=empty,
+P_C(beta)!=0 for every beta in C_0.
+```
+
+Thus `(R_C,[P_C],C_0)` lies in `NF_u(Q_0,B_0)`.
+
+Conversely, given `(S,[P],C_0) in NF_u(Q_0,B_0)`, the converse part of
+Corollary 40.125 shows that
+
+```text
+C=C_0 disjoint_union S
+```
+
+lies in `Comp_{u,[L_S P]}(Q_0,B_0)`.  The condition that `P` has no root on
+`C_0` makes the complement roots of `L_S P` inside `C` exactly `S`, so the
+landing lies in `NC_u(Q_0,B_0)`.  These two constructions are inverse because
+the factorization by the split root locator `L_{R_C}` is unique up to scalar.
+
+The bound is Corollary 40.141 applied with all root sets of sizes
+`0,1,...,u` and all residual product classes, with the extra condition
+`P(beta)!=0` only shrinking the ledger.  The final sentence is the
+`|R_C|>u` alternative in Corollary 40.125.
+
 ## Corollary 41: The Global Common-Image Ledger Is Endpoint-Only
 
 Let `GCI` be the set of monic degree-`c` split core locators `L` for which
@@ -17745,6 +17827,10 @@ product classes `[HN]` are distinct.
 Corollary 40.141 sums the fixed-root packets over a labeled root-set
 stratification and shows that the only remaining cost is choosing charged
 roots inside the final complement.
+Corollary 40.142 packages the fixed-class root-bearing exchange ledger into an
+exact normal form: charged complement roots plus a reduced product class with
+no root on the reduced complement, with root-heavy cases descending to core
+depth.
 Corollary 41 packages the common-image branch into endpoint-type ledgers; it
 does not prove the endpoint rank hypotheses needed for the displayed
 `(q+2)binom(n,b)` bound. Corollary 42 packages the globally full core ledger
