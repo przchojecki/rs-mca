@@ -2494,6 +2494,14 @@ of dimension at most \(k+1\).  Equivalently, the injected list polynomials
 have residues modulo \(Q\) lying on the line spanned by \(P_g\bmod Q\) or
 \(P_f\bmod Q\).  The scalar branch is therefore a constrained subcode-list
 problem, not an arbitrary dimension-\(d\) RS list problem.
+This constrained list parametrization is exact.  If \(P_g\in QF[X]_{<k}\),
+then \(g\) is already global and the \(Qg\)-scalar branch has no noncontained
+slope; otherwise each constrained list entry \(R=QC-zP_g\) has a unique
+coefficient \(z\), and \(R=Qf\) on \(a\) points is equivalent to
+\(f+zg=C\) on those points.  Dually, if \(P_f\notin QF[X]_{<k}\), the
+nonzero \(Qf\)-scalar slopes are parametrized exactly by entries
+\(R=QC+\mu P_f\) with \(\mu\ne0\), via \(z=-1/\mu\); if
+\(P_f\in QF[X]_{<k}\), the branch is contained.
 The common-core and two-denominator formulas persist verbatim after this
 root-free replacement.  With \(C=\gcd(D:D\in M_{\min})\), \(\gamma=\deg C\),
 and \(E_D=D/C\),

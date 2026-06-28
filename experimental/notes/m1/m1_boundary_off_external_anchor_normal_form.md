@@ -9892,6 +9892,135 @@ corresponding endpoint word is globally represented by the codeword `C`.
 The final residue-line statement is the same membership condition reduced
 modulo `Q`.
 
+## Corollary 40.81: Scalar Strata Are Exact Constrained Multiplier Lists
+
+Keep the notation and hypotheses of Corollary 40.80.
+
+First suppose `Qg in RS[F,D,n-s]`, represented by `P_g`.
+
+If
+
+```text
+P_g in Q C_k,
+```
+
+then `g` is a global codeword and the `Qg` scalar stratum contributes no
+support-wise noncontained finite slope.
+
+If `P_g notin Q C_k`, then
+
+```text
+V_g(Q)=Q C_k direct-sum F P_g.
+```
+
+Every `R in List_d(Qf,a) cap V_g(Q)` has a unique representation
+
+```text
+R=Q C - z P_g,        C in F[X]_<k,        z in F.
+```
+
+The coefficient map
+
+```text
+R |-> z
+```
+
+is a bijection from `List_d(Qf,a) cap V_g(Q)` to the finite slopes `z` for
+which `f+zg` is explained by a degree-`<k` codeword on at least `a` points.
+The noncontained `Qg`-scalar slopes are therefore exactly the noncontained
+subfamily of this constrained multiplier-list coefficient set.
+
+Similarly, suppose `Qf in RS[F,D,n-s]`, represented by `P_f`.  If
+`P_f in Q C_k`, then `f` is a global codeword and the `Qf` scalar stratum
+contributes no support-wise noncontained finite slope.  If `P_f notin Q C_k`,
+then
+
+```text
+V_f(Q)=Q C_k direct-sum F P_f.
+```
+
+Let
+
+```text
+List_d(Qg,a) cap V_f(Q)^{nonzero}
+```
+
+denote the entries whose unique `P_f`-coefficient is nonzero.  If
+
+```text
+R=Q C + mu P_f,        mu != 0,
+```
+
+then the coefficient map
+
+```text
+R |-> z=-1/mu
+```
+
+is a bijection from `List_d(Qg,a) cap V_f(Q)^{nonzero}` to the nonzero finite
+slopes `z` for which `f+zg` is explained by a degree-`<k` codeword on at least
+`a` points.  The possible zero slope remains the only scalar slope outside
+this exact constrained-list parametrization.
+
+### Proof
+
+If `P_g=Q C_g` with `deg C_g<k`, then `g=C_g` on `D` because `Q` is root-free.
+Whenever `f+zg=C_z` on a support `S`, we have
+
+```text
+f|_S=(C_z-zC_g)|_S,
+```
+
+with both terms degree-`<k` codewords.  Hence the slope is support-wise
+contained.  This proves the first empty-branch claim.
+
+Assume now `P_g notin Q C_k`.  The direct-sum statement is immediate from the
+definition of `V_g(Q)`.  If `R=Q C-zP_g` lies in `List_d(Qf,a)`, choose a
+support `S` of size at least `a` on which `R=Qf`.  Since `P_g=Qg` on `D`,
+
+```text
+Q(C-zg-f)=0        on S.
+```
+
+Root-freeness of `Q` on `D` gives `C=f+zg` on `S`, so slope `z` is explained.
+Conversely, any explained slope `z` with codeword representative `C_z` gives
+`R=Q C_z-zP_g` in the constrained list.  Uniqueness of the direct-sum
+coefficient makes the two constructions inverse.
+
+The `Qf` case is the same after exchanging the roles of the two endpoints and
+inverting the nonzero coefficient.  If `P_f=Q C_f`, then `f` is global, and
+any explanation `f+zg=C_z` on `S` with `z!=0` gives
+
+```text
+g|_S=((C_z-C_f)/z)|_S,
+```
+
+so nonzero explained slopes are contained; the zero slope is also contained
+because `f` is global.  Hence there is no noncontained scalar slope.
+
+If `P_f notin Q C_k` and
+
+```text
+R=Q C + mu P_f,        mu != 0,
+```
+
+agrees with `Qg` on `S`, put `z=-1/mu`.  Multiplying the identity
+`R=Qg` on `S` by `z` gives
+
+```text
+P_f+zQg=Q(zC)        on S,
+```
+
+so `f+zg=zC` on `S`.  Conversely, a nonzero explained slope `z` with
+representative `C_z` gives
+
+```text
+R=(Q C_z-P_f)/z=Q(C_z/z)-(1/z)P_f,
+```
+
+whose `P_f`-coefficient is `-1/z`.  These constructions are inverse by the
+direct-sum uniqueness.
+
 ## Corollary 41: The Global Common-Image Ledger Is Endpoint-Only
 
 Let `GCI` be the set of monic degree-`c` split core locators `L` for which
@@ -12750,6 +12879,9 @@ dimension-`d` RS supercode, up to the zero-slope exception in the `Qf` case.
 Corollary 40.80 sharpens this target to a one-generator extension of the
 multiplier code `Q RS[F,D,k]`, equivalently a one-dimensional residue line
 modulo `Q`.
+Corollary 40.81 makes the reduction exact: unless the scalar endpoint is
+already global, the relevant generator coefficient parametrizes exactly the
+explained scalar slopes, with only the zero-slope exception in the `Qf` case.
 Corollary 41 packages the common-image branch into endpoint-type ledgers; it
 does not prove the endpoint rank hypotheses needed for the displayed
 `(q+2)binom(n,b)` bound. Corollary 42 packages the globally full core ledger

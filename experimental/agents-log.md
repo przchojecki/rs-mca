@@ -30,6 +30,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 scalar constrained-list parametrization is exact
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_boundary_off_external_anchor_normal_form.md`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / PROOF-PROGRAM.
+- **What is being added:** Unless the scalar endpoint numerator already lies
+  in `QF[X]_<k`, the generator coefficient in the constrained multiplier-list
+  parametrizes exactly the explained scalar slopes; if the numerator does lie
+  in `QF[X]_<k`, the scalar branch is contained and contributes no
+  noncontained slope.
+- **How it is useful:** This turns the scalar cutoff branch into an exact
+  constrained-list target, not just an injection, making future closure
+  criteria precise.
+- **What to do next:** Bound the exact constrained-list coefficient set, or
+  prove that large coefficient sets force quotient-periodic or paired endpoint
+  structure.
+
 ### 2026-06-28 - M1 scalar list image is a multiplier-code extension
 
 - **Agent/model:** AllenGrahamHart / Codex audit.
