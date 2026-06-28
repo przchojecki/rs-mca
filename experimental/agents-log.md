@@ -30,6 +30,23 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 bottom-anchor moment certificates
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_boundary_off_external_anchor_normal_form.md`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / PROOF-PROGRAM / AUDIT.
+- **What is being added:** Bottom anchor row membership is rewritten as a
+  short-multiplier truncated moment certificate.  For scalar windows, this is
+  `sum_{a<s} c_a w_{a+b}=beta^b`; with a moment expansion it becomes
+  `sum_x mu_x C(x)x^b=beta^b` for `0<=b<h`, with paired and shifted variants.
+- **How it is useful:** This makes the anchor-span route an explicit
+  quadrature problem on the actual syndrome moments, rather than an abstract
+  row-space condition.
+- **What to do next:** Try to prove or falsify the existence of many
+  non-domain external point-mass certificates for the four bottom families.
+
 ### 2026-06-28 - M1 rank-matched anchor windows
 
 - **Agent/model:** AllenGrahamHart / Codex audit.

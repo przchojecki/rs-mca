@@ -8236,6 +8236,104 @@ is precisely the set of degree-`<h` polynomials divisible by `G_B`, namely
 `G_B` bijects root-free quotient classes of degree `<h-g` with root-free
 classes in `K`, proving the exact count.
 
+## Corollary 40.62: Bottom Anchors Are Truncated Moment Certificates
+
+Let `s>=1` and let `w` be a syndrome sequence long enough to form
+`H_{s,h-1}(w)`.  For `beta in F_q`,
+
+```text
+ev_beta in row H_{s,h-1}(w)
+```
+
+if and only if there is a polynomial
+
+```text
+C(X)=c_0+c_1X+...+c_{s-1}X^{s-1}
+```
+
+such that
+
+```text
+sum_{a=0}^{s-1} c_a w_{a+b} = beta^b,        0<=b<h.       (ScalarAnchorMoment)
+```
+
+If, on the needed range, the syndrome has a moment expansion
+
+```text
+w_m=sum_{x in D} mu_x x^m,
+```
+
+then this is equivalently the truncated quadrature identity
+
+```text
+sum_{x in D} mu_x C(x) x^b = beta^b,        0<=b<h.        (ScalarQuadrature)
+```
+
+For a stacked paired bottom matrix
+
+```text
+A=[ H_{s,h-1}(u) ; H_{s,h-1}(v) ],
+```
+
+the condition `ev_beta in row(A)` is equivalent to the existence of two
+polynomials `C_u,C_v` of degree `<s` such that
+
+```text
+sum_{a=0}^{s-1} c_{u,a} u_{a+b}
++ sum_{a=0}^{s-1} c_{v,a} v_{a+b}
+= beta^b,        0<=b<h.                            (PairAnchorMoment)
+```
+
+If
+
+```text
+u_m=sum_{x in D} mu_x x^m,        v_m=sum_{x in D} nu_x x^m,
+```
+
+then this becomes
+
+```text
+sum_{x in D} ( mu_x C_u(x)+nu_x C_v(x) ) x^b
+= beta^b,        0<=b<h.                            (PairQuadrature)
+```
+
+For the shifted paired matrix `[ H_{s,h-1}(S u) ; H_{s,h-1}(S v) ]`, the same
+formula holds after replacing the weights `(mu_x,nu_x)` by
+`(x mu_x,x nu_x)`.
+
+Thus the non-domain anchor counts in Corollary 40.61 are not abstract
+row-span coincidences: they are exactly short multiplier representations of
+external point masses by the bottom syndrome moments.  In the four bottom
+families one uses `s=t+r_0` for the scalar families and `s=t+r_0-1` for the
+ordinary and shifted paired families.
+
+### Proof
+
+A row vector is in `row H_{s,h-1}(w)` precisely when it is a linear
+combination of the rows.  Writing the coefficients as `c_0,...,c_{s-1}`, the
+`b`-th coordinate of that linear combination is
+
+```text
+sum_{a=0}^{s-1} c_a w_{a+b}.
+```
+
+Equating this row with `ev_beta=(1,beta,...,beta^{h-1})` gives
+(ScalarAnchorMoment).  If `w_m=sum_x mu_x x^m`, then
+
+```text
+sum_a c_a w_{a+b}
+= sum_a c_a sum_x mu_x x^{a+b}
+= sum_x mu_x C(x)x^b,
+```
+
+which proves (ScalarQuadrature).
+
+The stacked paired statement is the same row-space computation with two
+independent row combinations, one from the `u` block and one from the `v`
+block.  Substituting the moment expansions gives (PairQuadrature).  Finally,
+`(S w)_m=w_{m+1}=sum_x (x mu_x)x^m`, so the shifted paired case is the same
+calculation with the displayed shifted weights.
+
 ## Corollary 41: The Global Common-Image Ledger Is Endpoint-Only
 
 Let `GCI` be the set of monic degree-`c` split core locators `L` for which
@@ -11037,6 +11135,9 @@ instances.
 Corollary 40.61 turns non-domain anchor counts into bottom residual-window
 bounds and gives an exact count in the rank-matched case; it does not prove
 that the actual bottom Hankel row spaces contain enough such anchors.
+Corollary 40.62 rewrites bottom-anchor membership as a short-multiplier
+truncated moment certificate; it does not prove those moment certificates
+exist for enough non-domain anchors.
 Corollary 41 packages the common-image branch into endpoint-type ledgers; it
 does not prove the endpoint rank hypotheses needed for the displayed
 `(q+2)binom(n,b)` bound. Corollary 42 packages the globally full core ledger

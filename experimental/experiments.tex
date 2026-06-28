@@ -2530,6 +2530,24 @@ If \(g=\rho\), the row space is exactly the span of those evaluation rows and
 where \(G_B=\prod_{\beta\in B}(X-\beta)\).  Thus a rank-\(h-L\) bottom Hankel
 row space spanned by \(h-L\) non-domain anchor rows gives the exact ideal
 \(\mathrm{RFPhi}_D(L)\) contribution.
+The Hankel form also turns anchor membership into a moment certificate.  For a
+scalar bottom window \(H_{s,h-1}(w)\),
+\[
+  (1,\beta,\ldots,\beta^{h-1})\in\operatorname{row}H_{s,h-1}(w)
+\]
+if and only if there is \(C(X)=\sum_{a<s}c_aX^a\) such that
+\[
+  \sum_{a<s}c_aw_{a+b}=\beta^b\qquad(0\le b<h).
+\]
+When \(w_m=\sum_{x\in D}\mu_xx^m\), this is the truncated quadrature identity
+\[
+  \sum_{x\in D}\mu_xC(x)x^b=\beta^b\qquad(0\le b<h).
+\]
+For paired bottom windows, the same statement uses two short multipliers
+\(C_u,C_v\) and the weights \(\mu_xC_u(x)+\nu_xC_v(x)\); for the shifted pair,
+replace \((\mu_x,\nu_x)\) by \((x\mu_x,x\nu_x)\).  Thus the bottom anchor
+search is an explicit short-multiplier representation of external point
+masses by the actual syndrome moments.
 In the common two-denominator case \(M_{\min}=\{D_1,D_2\}\), writing
 \(C=\gcd(D_1,D_2)\), \(D_i=C E_i\), and \(e_i=\deg E_i\), the quotient
 denominators \(E_1,E_2\) are automatically coprime and
