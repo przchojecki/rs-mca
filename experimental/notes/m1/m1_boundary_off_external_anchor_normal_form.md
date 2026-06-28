@@ -16438,6 +16438,90 @@ Finally substitute `phi=-g` and `Y=f` into (RecipMu).  This gives
 (EndpointRecip), and the zero-slope statement is exactly the fact that
 inversion is defined only on `F^*`.
 
+## Corollary 40.168: Endpoint Quotient Denominators Are Rational-Supercode Kernels
+
+Let `y:D->F`, put `r=n-k`, let `0<=e<=r`, and let `Q in F[X]` be root-free
+on `D` with `deg Q=e`.  Put
+
+```text
+C=RS[F,D,k].
+```
+
+Then the following are equivalent.
+
+1. The endpoint quotient class `[-y] in F^D/C` has a degree-`e` denominator
+   presentation with denominator `Q`: there are `H in F[X]_<k` and `B in F[X]`
+   with `B=0` if `e=0`, `deg B<e` if `e>0`, such that
+
+   ```text
+   B/Q = H-y        on D.                           (EndpointQuot)
+   ```
+
+2. The endpoint has a root-free rational-supercode multiplier of the matching
+   dimension:
+
+   ```text
+   Qy in RS[F,D,k+e].                               (EndpointSuper)
+   ```
+
+When these conditions hold, let `P_y in F[X]_<k+e` represent `Qy` on `D`.
+Euclidean division gives
+
+```text
+P_y=QH_y+R_y,        deg H_y<k,        R_y=0 if e=0,
+deg R_y<e if e>0.
+```
+
+Then the quotient presentation is forced by
+
+```text
+H=H_y,        B=-R_y.                               (EndpointQR)
+```
+
+Equivalently, writing `w=Syn(y)`, condition (EndpointSuper) is the Hankel
+kernel condition
+
+```text
+H_{n-k-e,e}(w) Q = 0,                               (EndpointHankel)
+```
+
+where `Q` is viewed by its coefficient vector of length `e+1`.
+
+Consequently, after Corollaries 40.166--40.167, the standard endpoint
+denominator charts in the active M1 residue-line ledger are exactly the
+root-free Hankel-kernel multipliers for the two endpoint words `g` and `f`.
+The denominator-counting problem is therefore a concrete endpoint
+rational-supercode kernel problem; it is not an additional coefficient ledger.
+
+### Proof
+
+Assume (EndpointQuot).  Multiplying by the root-free denominator gives
+
+```text
+Qy=QH-B        on D.
+```
+
+The right side is represented by a polynomial of degree `<k+e`, since
+`deg Q=e`, `deg H<k`, and `deg B<e` in the positive-degree case.  For `e=0`,
+the condition says `y=H`, so the same conclusion is `Qy in RS[F,D,k]`.
+Thus (EndpointSuper) holds.
+
+Conversely, assume (EndpointSuper), and let `P_y` be the degree-`<k+e`
+representative of `Qy`.  Dividing `P_y` by the degree-`e` polynomial `Q`
+gives the displayed quotient and remainder, with `deg H_y<k` because
+`deg P_y<k+e`.  On `D`,
+
+```text
+y=H_y+R_y/Q,
+```
+
+so `B=-R_y` satisfies (EndpointQuot).  The division also proves the
+uniqueness of the displayed `H` and `B`.
+
+The Hankel form is Corollary 40.74 applied with `s=n-k-e` and `m=e+1`: the
+first `n-k-e` syndrome checks of `Qy` vanish exactly when
+`H_{n-k-e,e}(w)Q=0`.
+
 ## Corollary 41: The Global Common-Image Ledger Is Endpoint-Only
 
 Let `GCI` be the set of monic degree-`c` split core locators `L` for which
@@ -19581,6 +19665,11 @@ Corollary 40.167 glues those two endpoint charts: inversion bijects the
 nonzero part of `Mu_{-g}^{nc,>=a}(f)` with the nonzero part of
 `Mu_{-f}^{nc,>=a}(g)`, leaving only the original zero slope outside the
 reciprocal chart.
+Corollary 40.168 identifies the denominator side left by that
+quotient-normalization: a root-free denominator `Q` realizes the endpoint
+class `[-y]` exactly when `Qy in RS[F,D,k+deg Q]`, equivalently
+`H_{n-k-e,e}(Syn(y))Q=0`.  Thus active denominator counting is an endpoint
+Hankel-kernel problem, not a separate slope ledger.
 Corollary 41 packages the common-image branch into endpoint-type ledgers; it
 does not prove the endpoint rank hypotheses needed for the displayed
 `(q+2)binom(n,b)` bound. Corollary 42 packages the globally full core ledger

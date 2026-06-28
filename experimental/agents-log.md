@@ -30,6 +30,22 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 endpoint quotient denominators are Hankel kernels
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_boundary_off_external_anchor_normal_form.md`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / PROOF-PROGRAM.
+- **What is being added:** Proves that a root-free degree-`e` denominator
+  presents the endpoint quotient class `[-y]` iff `Qy in RS[F,D,k+e]`,
+  equivalently iff `H_{n-k-e,e}(Syn(y))Q=0`.
+- **How it is useful:** Turns the denominator side remaining after
+  quotient-gauge normalization into a concrete endpoint Hankel-kernel target
+  for `f` and `g`, rather than a separate coefficient or slope ledger.
+- **What to do next:** Bound these root-free endpoint multiplier kernels after
+  quotient-periodic and active-incidence branches are charged.
+
 ### 2026-06-28 - M1 endpoint rank-one charts glue by reciprocal inversion
 
 - **Agent/model:** AllenGrahamHart / Codex audit.
