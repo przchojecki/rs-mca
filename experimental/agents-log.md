@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 domain-root residuals are one packet
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_boundary_off_external_anchor_normal_form.md`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / PROOF-PROGRAM.
+- **What is being added:** Generalizes the budget-two and budget-three
+  support-root slice closures: for any residual budget `R`, all pure
+  domain-root residual multipliers of degree `<R`, with no root in the current
+  complement, form one disjoint small-complement packet.
+- **How it is useful:** Shows that support-side domain-root multiplicities are
+  not a source of field-size or multiplier multiplicity in the M1 fixed-class
+  residue ledger; the remaining difficulty is root-free moving-base packing
+  and charging root-set choices.
+- **What to do next:** Combine the lossless root shift and domain-root packet
+  theorem into a sharper fixed-class/global root-free residual reduction.
+
 ### 2026-06-28 - M1 fixed root-deletion is lossless
 
 - **Agent/model:** AllenGrahamHart / Codex audit.

@@ -14498,6 +14498,66 @@ The fibers on the right are pairwise disjoint by Corollary 40.122, so these
 fiberwise bijections glue to (LosslessRootShift).  The bound follows because
 the right side is a subset of all `(j+v)`-subsets of `D`.
 
+## Corollary 40.139: Reduced Domain-Root Residuals Are One Packet
+
+Keep the primitive denominator `Q_0`, and let `B_star` be any residue numerator
+with `gcd(B_star,Q_0)=1`.  Fix `v<=t` and put
+
+```text
+R=r_v=e_0-t+v>0.
+```
+
+For a finitely supported multiplicity vector `m:D->Z_{\ge0}`, write
+
+```text
+|m|=sum_{beta in D} m_beta,
+L_m=prod_{beta in D}(X-beta)^{m_beta},
+supp(m)={ beta in D : m_beta>0 }.
+```
+
+Define the reduced domain-root residual ledger
+
+```text
+R_dom(Q_0,B_star;R)
+ = disjoint_union_{|m|<R}
+     { C in Comp_{v,[L_m]}(Q_0,B_star) : supp(m) cap C=empty }.
+                                                        (DomainRootResidual)
+```
+
+Then the displayed union is genuinely disjoint and
+
+```text
+|R_dom(Q_0,B_star;R)| <= binom(n,j+v).             (DomainRootResidualBound)
+```
+
+Moreover, every residual multiplier fiber for `B_star` whose multiplier has
+degree `<R`, no nonconstant factor without roots in `D`, and no multiplier
+root in the current complement lies in this ledger.  Thus support-side
+domain-root multiplicities never create a new unweighted multiplier
+multiplicity: after root-free factors and complement roots are charged, all
+pure domain-root residuals occupy one small-complement packet, at every
+residual budget.
+
+### Proof
+
+For every `m` with `|m|<R`, the polynomial `L_m` has degree `<R` and is
+coprime to `Q_0`, because `Q_0` is root-free on `D`.  Hence `[L_m]` belongs
+to `P_v^x(Q_0)`.  Distinct multiplicity vectors give distinct monic
+polynomials, hence distinct projective classes.  Corollary 40.122 applies
+verbatim with `B_star` in place of `B_0`, so the fibers
+`Comp_{v,[L_m]}(Q_0,B_star)` are pairwise disjoint.  The condition
+`supp(m) cap C=empty` only shrinks each fiber, and the union is a subset of
+all `(j+v)`-subsets of `D`.  This proves (DomainRootResidualBound).
+
+For the classification statement, let `[N] in P_v^x(Q_0)` with `deg N<R`.
+If `N` has a nonconstant factor with no roots in `D`, it is a root-free
+residual and is excluded by hypothesis.  Otherwise all roots of `N` lie in
+`D`, with multiplicity, so `[N]=[L_m]` for a unique `m` with `|m|=deg N<R`.
+If a root of `N` lies in the current complement `C`, the multiplier has a
+complement root and is excluded by hypothesis, or equivalently descends by
+Corollary 40.125.  The remaining case has `supp(m) cap C=empty`, exactly the
+slice included in (DomainRootResidual).
+
 ## Corollary 41: The Global Common-Image Ledger Is Endpoint-Only
 
 Let `GCI` be the set of monic degree-`c` split core locators `L` for which
@@ -17546,6 +17606,9 @@ multiplicity at most two are disjoint and occupy one small-complement packet.
 Corollary 40.138 abstracts the exact mechanism: for any fixed complement-root
 set `S` and any residual multiplier family `T`, deletion of `S` is a lossless
 multiplier-preserving bijection to a restricted lower-depth packet.
+Corollary 40.139 shows that, after root-free factors and complement roots are
+separated, all pure support-side domain-root residuals of any residual budget
+form one disjoint small-complement packet.
 Corollary 41 packages the common-image branch into endpoint-type ledgers; it
 does not prove the endpoint rank hypotheses needed for the displayed
 `(q+2)binom(n,b)` bound. Corollary 42 packages the globally full core ledger
