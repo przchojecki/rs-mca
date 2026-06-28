@@ -2332,6 +2332,22 @@ with
 This turns the bottom longer-Pade obstruction into a concrete restricted-rank
 target on the four bottom kernels, independent of the half-window denominator
 arrangement.
+The domain-MDS condition itself is the existing root-slice rank condition in
+another form.  For \(J\subseteq D\), multiplication by
+\(L_J=\prod_{\alpha\in J}(X-\alpha)\) identifies the root slice \(K_0(F)(-J)\)
+of each bottom residual family with the stripped Hankel kernel obtained by
+replacing \(u,v\) with \(\Delta_Ju,\Delta_Jv\) and reducing the locator degree
+by \(|J|\).  Hence
+\[
+  |K_0(F)^{\mathrm{rf}}|
+  =\sum_{J\subseteq D}(-1)^{|J|}\Phi(\dim K_J(F)),
+\]
+and \(K_0(F)\) is domain-MDS exactly when
+\[
+  \dim K_J(F)=\max(\dim K_0(F)-|J|,0)
+\]
+for every root set \(J\).  Thus closing the bottom route is a no-excess
+fixed-root/root-slice rank problem, not a separate denominator formalism.
 In the common two-denominator case \(M_{\min}=\{D_1,D_2\}\), writing
 \(C=\gcd(D_1,D_2)\), \(D_i=C E_i\), and \(e_i=\deg E_i\), the quotient
 denominators \(E_1,E_2\) are automatically coprime and

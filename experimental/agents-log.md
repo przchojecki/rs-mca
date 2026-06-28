@@ -391,8 +391,12 @@ Keep entries concise and link to the relevant files.
   `K(-J)`.  If the four bottom residual kernels are in domain-MDS position
   with dimensions `d_F<=L`, then the bottom longer-Pade route closes with
   `sum_F RFPhi_D(d_F)+2h <= 4RFPhi_D(L)+2h`, without invoking the half-window
-  arrangement.
-  The non-claims section is updated through Corollary 40.48 to record that
+  arrangement.  The domain-MDS condition is then identified exactly with the
+  stripped fixed-root/root-slice rank profile: multiplication by `L_J`
+  identifies `K_0(F)(-J)` with the corresponding `Delta_J` bottom kernel, so
+  the bottom route closes when these root-slice kernels have no excess
+  dimension beyond `max(dim K_0(F)-|J|,0)`.
+  The non-claims section is updated through Corollary 40.49 to record that
   these formulas do not by themselves bound the bottom/pre-half residuals or
   force large common cores/quotient degrees.
   Since

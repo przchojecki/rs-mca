@@ -7200,6 +7200,83 @@ root-free projective points in the four displayed bottom kernels.  Applying
 `4 RFPhi_D(L)`.  Corollary 40.43 then adds only the bottom finite frontier
 charge `2h`, giving (BottomMDSMixedLedger).
 
+## Corollary 40.49: The Bottom Domain-MDS Test Is A Root-Slice Rank Test
+
+Keep the notation of Corollary 40.48.  For a subset `J subset D`, let
+
+```text
+L_J(X)=prod_{alpha in J} (X-alpha),        a=|J|,
+Delta_J=prod_{alpha in J} Delta_alpha.
+```
+
+For the four bottom residual families, define the stripped root-slice kernels
+
+```text
+K_J(u) =
+  ker H_{t+r_0,h-a-1}(Delta_J u),
+
+K_J(v) =
+  ker H_{t+r_0,h-a-1}(Delta_J v),
+
+K_J(u,v) =
+  ker H_{t+r_0-1,h-a-1}(Delta_J u)
+  cap ker H_{t+r_0-1,h-a-1}(Delta_J v),
+
+K_J(Su,Sv) =
+  ker H_{t+r_0-1,h-a-1}(S Delta_J u)
+  cap ker H_{t+r_0-1,h-a-1}(S Delta_J v),
+```
+
+with the convention that the kernel is zero when `a>=h`.  Then multiplication
+by `L_J` gives canonical linear isomorphisms
+
+```text
+K_0(F)(-J)  ~=  K_J(F),        F in {u,v,(u,v),(Su,Sv)}.      (RootSliceIso)
+```
+
+Consequently the exact bottom root-free count of Corollary 40.48 can be
+written entirely in stripped root-slice ranks:
+
+```text
+|K_0(F)^rf|
+ = sum_{J subset D} (-1)^{|J|} Phi(dim K_J(F)).     (RootSliceIE)
+```
+
+Moreover, the bottom kernel `K_0(F)` is in domain-MDS position if and only if
+
+```text
+dim K_J(F)=max(dim K_0(F)-|J|,0)        for every J subset D.  (NoRootSliceExcess)
+```
+
+Thus the hypothesis in Corollary 40.48 is exactly a fixed-root/root-slice
+rank condition: after the standard root-slice charges, the bottom longer-Pade
+route closes whenever the four stripped root-slice kernels have no excess
+dimension beyond the MDS profile.
+
+### Proof
+
+A polynomial `Q` of degree `<h` vanishes on every `alpha in J` if and only if
+`Q=L_J R` with `deg R<h-a`; for `a>=h` this leaves no nonzero `Q`.  Corollary
+40.6, equivalently the stripping identity of Corollary 49, gives
+
+```text
+H_{s,h-1}(w)(L_J R)=0
+iff
+H_{s,h-a-1}(Delta_J w)R=0.
+```
+
+For scalar families this is exactly the displayed isomorphism.  For the
+ordinary paired family, apply the same identity to both `u` and `v` and take
+the intersection of the two stripped kernels.  For the shifted paired family,
+use `Delta_alpha(Sw)=S(Delta_alpha w)` for every `alpha`, so the same
+stripping gives the displayed shifted kernels.
+
+Substituting these isomorphisms into (KernelRootFreeIE) gives (RootSliceIE).
+The domain-MDS condition in Corollary 40.48 is the equality
+`dim K_0(F)(-J)=max(dim K_0(F)-|J|,0)` for every `J`; replacing
+`K_0(F)(-J)` by the isomorphic stripped root-slice kernel gives
+(NoRootSliceExcess).
+
 ## Corollary 41: The Global Common-Image Ledger Is Endpoint-Only
 
 Let `GCI` be the set of monic degree-`c` split core locators `L` for which
@@ -9964,6 +10041,9 @@ denominators survive, or that the quotient degrees are large enough.
 Corollary 40.48 gives a bottom-route root-free count under a domain-MDS test
 on the bottom recurrence kernels; it does not prove those kernels are in
 domain-MDS position or have bounded dimension in the M1 instances.
+Corollary 40.49 identifies that domain-MDS test with the stripped
+fixed-root/root-slice rank profile; it does not prove the no-excess
+root-slice rank equalities for all root sets.
 Corollary 41 packages the common-image branch into endpoint-type ledgers; it
 does not prove the endpoint rank hypotheses needed for the displayed
 `(q+2)binom(n,b)` bound. Corollary 42 packages the globally full core ledger
