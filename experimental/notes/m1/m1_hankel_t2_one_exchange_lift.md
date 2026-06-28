@@ -1538,6 +1538,60 @@ productive subaudit has all `32400` productive labels singleton as well.  Thus
 the current finite data contain no same-syndrome repeated production of an
 unanchored visible sparse-packet label.
 
+## Same-Support Collisions Drop to Anchor-Base Kernels
+
+The same-support scalar collision has one more useful normal form.  Collapse
+the fixed roots and the lower core into the anchor base
+
+```text
+A=X union R,        d=|A|.
+```
+
+By the iterated root-difference identity,
+
+```text
+H_{tau+m,d}(s) ell_A
+ = H_{tau+m,|R|}(Delta_X s) ell_R
+ = (sum_{y in Y} a_y y^i)_{0<=i<=tau+m-1}.       (AB)
+```
+
+Thus the visible sparse packet is not merely attached to the branch vertex;
+it is the direct Hankel image of the collapsed anchor base `A`.
+
+Now suppose two same-size branch packets with the same visible moment sequence
+have collapsed anchor bases `A` and `A'` of the same degree `d`.  Then (AB)
+gives
+
+```text
+H_{tau+m,d}(s)(ell_A-ell_{A'})=0.                (KD)
+```
+
+If `A!=A'`, the polynomial `ell_A-ell_{A'}` is nonzero and has degree `<d`,
+because the two split locators are monic of degree `d`.  Therefore every
+genuine distinct-anchor-base production collision gives a nonzero lower-degree
+Hankel-kernel vector.  Equivalently, the split-anchor map
+
+```text
+A |-> H_{tau+m,d}(s) ell_A
+```
+
+is injective on the relevant split anchors unless the lower polynomial kernel
+`ker H_{tau+m,d-1}(s)` contains one of these locator differences.
+
+This is the desired localization: repeated visible production is now either
+
+1. a same collapsed anchor base, hence an ordering/fixed-root split issue
+   rather than a new packet image;
+2. a distinct-anchor-base collision charged to the lower-degree kernel (KD);
+3. at the maximal boundary, the disjoint alias scalar-fit ledger already
+   isolated above.
+
+The verifier checks (AB) for every terminal packet.  In the largest `F_7^*`
+audit this gives `34560` anchor-base image checks, including all `32400`
+productive packets.  Since the visible production fibers are singleton in the
+current audit, no nontrivial anchor-base kernel pairs appear there; if they do
+appear in a later scan, the verifier checks (KD) directly.
+
 ## Root-Marked Slice Is One Row
 
 The zero-boundary subkernel in the fixed-root difference form is cut out by a

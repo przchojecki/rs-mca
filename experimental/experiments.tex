@@ -4227,6 +4227,24 @@ The verifier now audits this production question directly: in the largest
 \(F_7^*\) case, all \(34560\) visible terminal packet productions have
 singleton same-syndrome production fibers, and all \(32400\) productive
 productions are singleton as well.
+There is also an anchor-base kernel drop.  Collapse a branch anchor to
+\(A=X\cup R\), \(d=|A|\).  The iterated difference identity gives
+\[
+  H_{\tau+m,d}(s)\ell_A
+  =H_{\tau+m,|R|}(\Delta_Xs)\ell_R
+  =\left(\sum_{y\in Y} a_y y^i\right)_{0\le i\le\tau+m-1}.
+\]
+Hence two same-size visible moment productions with distinct collapsed anchor
+bases \(A,A'\) satisfy
+\[
+  H_{\tau+m,d}(s)(\ell_A-\ell_{A'})=0,
+\]
+and \(\deg(\ell_A-\ell_{A'})<d\).  Thus a genuine distinct-anchor-base
+collision is a lower-degree Hankel-kernel vector; only same collapsed-anchor
+ordering multiplicity and the already isolated boundary disjoint aliases
+remain outside this kernel-drop charge.  The verifier checks the anchor-base
+image identity for all \(34560\) packets in the largest \(F_7^*\) audit,
+including all \(32400\) productive packets.
 The common-core and two-denominator formulas persist verbatim after this
 root-free replacement.  With \(C=\gcd(D:D\in M_{\min})\), \(\gamma=\deg C\),
 and \(E_D=D/C\),

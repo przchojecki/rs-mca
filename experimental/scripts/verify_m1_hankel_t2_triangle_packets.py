@@ -104,6 +104,9 @@ and all first-row exit scalars.
 It also counts, syndrome by syndrome, how many times the same unanchored
 visible sparse-packet label is produced by terminal deletion-tree branch
 vertices.
+It checks that every terminal packet is the direct Hankel image of its
+collapsed anchor base A=X union R; repeated labels with distinct anchor bases
+therefore force a lower-degree anchor-base kernel relation.
 Equivalently, it records support-unique boundary packets as those with no
 equal-size visible alias.
 The full-domain visible endpoint count is then support-unique labels plus one
@@ -460,6 +463,10 @@ def analyze_case(
     terminal_tree_productive_visible_packet_excess_productions = 0
     terminal_tree_visible_packet_max_fiber_size = 0
     terminal_tree_productive_visible_packet_max_fiber_size = 0
+    terminal_tree_anchor_base_image_checks = 0
+    terminal_tree_productive_anchor_base_image_checks = 0
+    terminal_tree_anchor_base_kernel_checks = 0
+    terminal_tree_productive_anchor_base_kernel_checks = 0
     terminal_tree_mode_rank_checks = 0
     terminal_tree_productive_mode_rank_checks = 0
     terminal_tree_mode_peeling_checks = 0
@@ -627,6 +634,10 @@ def analyze_case(
             nonlocal terminal_tree_productive_visible_packet_excess_productions
             nonlocal terminal_tree_visible_packet_max_fiber_size
             nonlocal terminal_tree_productive_visible_packet_max_fiber_size
+            nonlocal terminal_tree_anchor_base_image_checks
+            nonlocal terminal_tree_productive_anchor_base_image_checks
+            nonlocal terminal_tree_anchor_base_kernel_checks
+            nonlocal terminal_tree_productive_anchor_base_kernel_checks
             nonlocal terminal_tree_mode_rank_checks
             nonlocal terminal_tree_productive_mode_rank_checks
             nonlocal terminal_tree_mode_peeling_checks
@@ -673,6 +684,14 @@ def analyze_case(
             productive_visible_packet_productions: Counter[
                 tuple[int, tuple[tuple[int, int], ...]]
             ] = Counter()
+            visible_packet_anchor_bases: dict[
+                tuple[int, tuple[tuple[int, int], ...]],
+                list[tuple[int, ...]],
+            ] = {}
+            productive_visible_packet_anchor_bases: dict[
+                tuple[int, tuple[tuple[int, int], ...]],
+                list[tuple[int, ...]],
+            ] = {}
             audit_terminal_paths = 0
             for core in active_cores:
                 if not core:
@@ -869,6 +888,8 @@ def analyze_case(
                 nonlocal terminal_tree_boundary_mode_sizes_seen
                 nonlocal terminal_tree_mode_anchor_reconstruction_checks
                 nonlocal terminal_tree_productive_mode_anchor_reconstruction_checks
+                nonlocal terminal_tree_anchor_base_image_checks
+                nonlocal terminal_tree_productive_anchor_base_image_checks
 
                 if not current_core:
                     return (1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
@@ -1118,6 +1139,57 @@ def analyze_case(
                                 "expected": expected,
                             }
                         )
+                    anchor_base = tuple(
+                        sorted((*current_fixed, *lower_core))
+                    )
+                    if set(anchor_base) & child_root_indices:
+                        raise AssertionError(
+                            {
+                                "kind": (
+                                    "terminal-branch-anchor-base-overlaps-"
+                                    "modes"
+                                ),
+                                "p": p,
+                                "k": k,
+                                "syndrome": list(syn),
+                                "fixed_roots": list(fixed_roots),
+                                "current_fixed": list(current_fixed),
+                                "current_core": list(current_core),
+                                "lower_core": list(lower_core),
+                                "anchor_base": list(anchor_base),
+                                "exit_roots": sorted(child_root_indices),
+                            }
+                        )
+                    anchor_base_vector = hankel_apply(
+                        syn,
+                        cached_locator(anchor_base),
+                        t + mode_count,
+                        p,
+                    )
+                    if anchor_base_vector != lower_vector:
+                        raise AssertionError(
+                            {
+                                "kind": (
+                                    "terminal-branch-anchor-base-image-"
+                                    "failed"
+                                ),
+                                "p": p,
+                                "k": k,
+                                "syndrome": list(syn),
+                                "fixed_roots": list(fixed_roots),
+                                "current_fixed": list(current_fixed),
+                                "current_core": list(current_core),
+                                "lower_core": list(lower_core),
+                                "anchor_base": list(anchor_base),
+                                "anchor_base_vector": list(
+                                    anchor_base_vector
+                                ),
+                                "lower_vector": list(lower_vector),
+                            }
+                        )
+                    terminal_tree_anchor_base_image_checks += 1
+                    if productive_children >= 2:
+                        terminal_tree_productive_anchor_base_image_checks += 1
                     reconstructed_core = tuple(
                         sorted((*lower_core, *child_root_indices))
                     )
@@ -1196,10 +1268,18 @@ def analyze_case(
                         ),
                     )
                     visible_packet_productions[visible_packet_label] += 1
+                    visible_packet_anchor_bases.setdefault(
+                        visible_packet_label,
+                        [],
+                    ).append(anchor_base)
                     if productive_children >= 2:
                         productive_visible_packet_productions[
                             visible_packet_label
                         ] += 1
+                        productive_visible_packet_anchor_bases.setdefault(
+                            visible_packet_label,
+                            [],
+                        ).append(anchor_base)
                     if 2 * mode_count - 1 <= len(lower_vector):
                         moment_matrix = tuple(
                             tuple(
@@ -2021,6 +2101,119 @@ def analyze_case(
                         ),
                     }
                 )
+
+            def audit_anchor_base_kernel_relations(
+                anchor_bases_by_label: dict[
+                    tuple[int, tuple[tuple[int, int], ...]],
+                    list[tuple[int, ...]],
+                ],
+                productive: bool,
+            ) -> int:
+                kernel_checks = 0
+                for label, anchor_bases in anchor_bases_by_label.items():
+                    mode_count = label[0]
+                    row_count = t + mode_count
+                    for left_base, right_base in itertools.combinations(
+                        sorted(set(anchor_bases)),
+                        2,
+                    ):
+                        if len(left_base) != len(right_base):
+                            raise AssertionError(
+                                {
+                                    "kind": (
+                                        "productive-"
+                                        if productive
+                                        else ""
+                                    )
+                                    + "visible-packet-anchor-base-"
+                                    "degree-mismatch",
+                                    "p": p,
+                                    "k": k,
+                                    "syndrome": list(syn),
+                                    "fixed_roots": list(fixed_roots),
+                                    "mode_count": mode_count,
+                                    "left_anchor_base": list(left_base),
+                                    "right_anchor_base": list(right_base),
+                                }
+                            )
+                        left_locator = cached_locator(left_base)
+                        right_locator = cached_locator(right_base)
+                        locator_difference = tuple(
+                            (left - right) % p
+                            for left, right in zip(
+                                left_locator,
+                                right_locator,
+                            )
+                        )
+                        if locator_difference[-1] != 0:
+                            raise AssertionError(
+                                {
+                                    "kind": (
+                                        "productive-"
+                                        if productive
+                                        else ""
+                                    )
+                                    + "visible-packet-anchor-base-"
+                                    "leading-term-not-cancelled",
+                                    "p": p,
+                                    "k": k,
+                                    "syndrome": list(syn),
+                                    "fixed_roots": list(fixed_roots),
+                                    "mode_count": mode_count,
+                                    "left_anchor_base": list(left_base),
+                                    "right_anchor_base": list(right_base),
+                                    "locator_difference": list(
+                                        locator_difference
+                                    ),
+                                }
+                            )
+                        lower_difference = locator_difference[:-1]
+                        kernel_image = hankel_apply(
+                            syn,
+                            lower_difference,
+                            row_count,
+                            p,
+                        )
+                        if any(kernel_image):
+                            raise AssertionError(
+                                {
+                                    "kind": (
+                                        "productive-"
+                                        if productive
+                                        else ""
+                                    )
+                                    + "visible-packet-anchor-base-"
+                                    "kernel-drop-failed",
+                                    "p": p,
+                                    "k": k,
+                                    "syndrome": list(syn),
+                                    "fixed_roots": list(fixed_roots),
+                                    "mode_count": mode_count,
+                                    "left_anchor_base": list(left_base),
+                                    "right_anchor_base": list(right_base),
+                                    "lower_difference": list(
+                                        lower_difference
+                                    ),
+                                    "kernel_image": list(kernel_image),
+                                }
+                            )
+                        kernel_checks += 1
+                return kernel_checks
+
+            anchor_base_kernel_checks = audit_anchor_base_kernel_relations(
+                visible_packet_anchor_bases,
+                productive=False,
+            )
+            productive_anchor_base_kernel_checks = (
+                audit_anchor_base_kernel_relations(
+                    productive_visible_packet_anchor_bases,
+                    productive=True,
+                )
+            )
+            terminal_tree_anchor_base_kernel_checks += anchor_base_kernel_checks
+            terminal_tree_productive_anchor_base_kernel_checks += (
+                productive_anchor_base_kernel_checks
+            )
             visible_packet_repeated_labels = sum(
                 1 for count in visible_packet_productions.values() if count > 1
             )
@@ -3726,6 +3919,18 @@ def analyze_case(
         "terminal_tree_productive_visible_packet_max_fiber_size": (
             terminal_tree_productive_visible_packet_max_fiber_size
         ),
+        "terminal_tree_anchor_base_image_checks": (
+            terminal_tree_anchor_base_image_checks
+        ),
+        "terminal_tree_productive_anchor_base_image_checks": (
+            terminal_tree_productive_anchor_base_image_checks
+        ),
+        "terminal_tree_anchor_base_kernel_checks": (
+            terminal_tree_anchor_base_kernel_checks
+        ),
+        "terminal_tree_productive_anchor_base_kernel_checks": (
+            terminal_tree_productive_anchor_base_kernel_checks
+        ),
         "terminal_tree_mode_rank_checks": terminal_tree_mode_rank_checks,
         "terminal_tree_productive_mode_rank_checks": (
             terminal_tree_productive_mode_rank_checks
@@ -4138,6 +4343,10 @@ def print_summary(results: Sequence[dict[str, object]]) -> None:
             f"{result['max_nonzero_terminal_tree_visible_packet_fiber_size']} "
             f"visible_packet_excess="
             f"{result['terminal_tree_visible_packet_excess_productions']} "
+            f"anchor_base_images="
+            f"{result['terminal_tree_anchor_base_image_checks']} "
+            f"anchor_base_kernel_checks="
+            f"{result['terminal_tree_anchor_base_kernel_checks']} "
             f"max_nonzero_terminal_tree_mode_size="
             f"{result['max_nonzero_terminal_tree_mode_size']} "
             f"max_nonzero_terminal_tree_mode_rank_size="

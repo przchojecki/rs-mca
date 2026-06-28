@@ -30,6 +30,27 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 anchor-base kernel drop for packet collisions
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_hankel_t2_one_exchange_lift.md`,
+  `experimental/scripts/verify_m1_hankel_t2_triangle_packets.py`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / STRUCTURAL / EXACT FINITE AUDIT.
+- **What is being added:** Collapses a terminal branch anchor to
+  `A=X union R` and proves that the visible packet equals
+  `H_{tau+m,|A|}(s) ell_A`.  Distinct collapsed anchor bases producing the
+  same visible moment sequence therefore give a nonzero lower-degree Hankel
+  kernel vector `ell_A-ell_A'`.
+- **How it is useful:** Moves genuine repeated production across distinct
+  anchor bases into a lower-degree kernel ledger, separating it from same
+  collapsed-anchor ordering multiplicity and the already isolated boundary
+  disjoint-alias ledger.
+- **What to do next:** Bound these lower-degree locator-difference kernels or
+  show that their split-anchor points force quotient-periodic, tangent, or
+  lower-core structure.
+
 ### 2026-06-28 - M1 visible packet production fibers
 
 - **Agent/model:** AllenGrahamHart / Codex audit.
