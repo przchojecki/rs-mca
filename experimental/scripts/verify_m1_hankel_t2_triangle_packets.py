@@ -101,6 +101,9 @@ For all visible terminal mode packets, it reports the same labeled capacity by
 mode size as the packet-type ledger.
 Finally, it checks that an anchored packet label reconstructs its branch core
 and all first-row exit scalars.
+It also counts, syndrome by syndrome, how many times the same unanchored
+visible sparse-packet label is produced by terminal deletion-tree branch
+vertices.
 Equivalently, it records support-unique boundary packets as those with no
 equal-size visible alias.
 The full-domain visible endpoint count is then support-unique labels plus one
@@ -449,6 +452,14 @@ def analyze_case(
     terminal_tree_productive_mode_packets = 0
     terminal_tree_mode_anchor_reconstruction_checks = 0
     terminal_tree_productive_mode_anchor_reconstruction_checks = 0
+    terminal_tree_visible_packet_labels = 0
+    terminal_tree_productive_visible_packet_labels = 0
+    terminal_tree_visible_packet_repeated_labels = 0
+    terminal_tree_productive_visible_packet_repeated_labels = 0
+    terminal_tree_visible_packet_excess_productions = 0
+    terminal_tree_productive_visible_packet_excess_productions = 0
+    terminal_tree_visible_packet_max_fiber_size = 0
+    terminal_tree_productive_visible_packet_max_fiber_size = 0
     terminal_tree_mode_rank_checks = 0
     terminal_tree_productive_mode_rank_checks = 0
     terminal_tree_mode_peeling_checks = 0
@@ -489,6 +500,10 @@ def analyze_case(
     terminal_tree_productive_branch_pair_histogram: Counter[int] = Counter()
     terminal_tree_mode_packet_histogram: Counter[int] = Counter()
     terminal_tree_productive_mode_packet_histogram: Counter[int] = Counter()
+    terminal_tree_visible_packet_fiber_size_histogram: Counter[int] = Counter()
+    terminal_tree_productive_visible_packet_fiber_size_histogram: Counter[int] = (
+        Counter()
+    )
     terminal_tree_mode_size_histogram: Counter[int] = Counter()
     terminal_tree_productive_mode_size_histogram: Counter[int] = Counter()
     terminal_tree_mode_rank_histogram: Counter[int] = Counter()
@@ -554,6 +569,8 @@ def analyze_case(
     max_nonzero_terminal_tree_productive_branch_pairs = 0
     max_nonzero_terminal_tree_mode_packets = 0
     max_nonzero_terminal_tree_productive_mode_packets = 0
+    max_nonzero_terminal_tree_visible_packet_fiber_size = 0
+    max_nonzero_terminal_tree_productive_visible_packet_fiber_size = 0
     max_nonzero_terminal_tree_mode_size = 0
     max_nonzero_terminal_tree_mode_rank_checks = 0
     max_nonzero_terminal_tree_mode_rank_size = 0
@@ -602,6 +619,14 @@ def analyze_case(
             nonlocal terminal_tree_productive_mode_packets
             nonlocal terminal_tree_mode_anchor_reconstruction_checks
             nonlocal terminal_tree_productive_mode_anchor_reconstruction_checks
+            nonlocal terminal_tree_visible_packet_labels
+            nonlocal terminal_tree_productive_visible_packet_labels
+            nonlocal terminal_tree_visible_packet_repeated_labels
+            nonlocal terminal_tree_productive_visible_packet_repeated_labels
+            nonlocal terminal_tree_visible_packet_excess_productions
+            nonlocal terminal_tree_productive_visible_packet_excess_productions
+            nonlocal terminal_tree_visible_packet_max_fiber_size
+            nonlocal terminal_tree_productive_visible_packet_max_fiber_size
             nonlocal terminal_tree_mode_rank_checks
             nonlocal terminal_tree_productive_mode_rank_checks
             nonlocal terminal_tree_mode_peeling_checks
@@ -631,6 +656,8 @@ def analyze_case(
             nonlocal max_nonzero_terminal_tree_productive_branch_pairs
             nonlocal max_nonzero_terminal_tree_mode_packets
             nonlocal max_nonzero_terminal_tree_productive_mode_packets
+            nonlocal max_nonzero_terminal_tree_visible_packet_fiber_size
+            nonlocal max_nonzero_terminal_tree_productive_visible_packet_fiber_size
             nonlocal max_nonzero_terminal_tree_mode_size
             nonlocal max_nonzero_terminal_tree_mode_rank_checks
             nonlocal max_nonzero_terminal_tree_mode_rank_size
@@ -640,6 +667,12 @@ def analyze_case(
 
             terminal_supports: set[tuple[int, ...]] = set()
             terminal_paths_by_core: Counter[tuple[int, ...]] = Counter()
+            visible_packet_productions: Counter[
+                tuple[int, tuple[tuple[int, int], ...]]
+            ] = Counter()
+            productive_visible_packet_productions: Counter[
+                tuple[int, tuple[tuple[int, int], ...]]
+            ] = Counter()
             audit_terminal_paths = 0
             for core in active_cores:
                 if not core:
@@ -1147,6 +1180,26 @@ def analyze_case(
                         terminal_tree_productive_mode_anchor_reconstruction_checks += (
                             1
                         )
+                    visible_packet_label = (
+                        mode_count,
+                        tuple(
+                            sorted(
+                                (root_index, amplitude)
+                                for (
+                                    root_index,
+                                    _root,
+                                    _child_count,
+                                    _scalar,
+                                    amplitude,
+                                ) in mode_data
+                            )
+                        ),
+                    )
+                    visible_packet_productions[visible_packet_label] += 1
+                    if productive_children >= 2:
+                        productive_visible_packet_productions[
+                            visible_packet_label
+                        ] += 1
                     if 2 * mode_count - 1 <= len(lower_vector):
                         moment_matrix = tuple(
                             tuple(
@@ -1933,6 +1986,110 @@ def analyze_case(
                         max_nonzero_terminal_tree_mode_annihilator_checks,
                         mode_annihilator_count,
                     )
+            visible_packet_total = sum(visible_packet_productions.values())
+            if visible_packet_total != audit_mode_packets:
+                raise AssertionError(
+                    {
+                        "kind": "visible-packet-production-count-mismatch",
+                        "p": p,
+                        "k": k,
+                        "syndrome": list(syn),
+                        "fixed_roots": list(fixed_roots),
+                        "visible_packet_total": visible_packet_total,
+                        "mode_packets": audit_mode_packets,
+                    }
+                )
+            productive_visible_packet_total = sum(
+                productive_visible_packet_productions.values()
+            )
+            if productive_visible_packet_total != audit_productive_mode_packets:
+                raise AssertionError(
+                    {
+                        "kind": (
+                            "productive-visible-packet-production-"
+                            "count-mismatch"
+                        ),
+                        "p": p,
+                        "k": k,
+                        "syndrome": list(syn),
+                        "fixed_roots": list(fixed_roots),
+                        "productive_visible_packet_total": (
+                            productive_visible_packet_total
+                        ),
+                        "productive_mode_packets": (
+                            audit_productive_mode_packets
+                        ),
+                    }
+                )
+            visible_packet_repeated_labels = sum(
+                1 for count in visible_packet_productions.values() if count > 1
+            )
+            productive_visible_packet_repeated_labels = sum(
+                1
+                for count in productive_visible_packet_productions.values()
+                if count > 1
+            )
+            visible_packet_excess = sum(
+                count - 1
+                for count in visible_packet_productions.values()
+                if count > 1
+            )
+            productive_visible_packet_excess = sum(
+                count - 1
+                for count in productive_visible_packet_productions.values()
+                if count > 1
+            )
+            visible_packet_max_fiber_size = max(
+                visible_packet_productions.values(),
+                default=0,
+            )
+            productive_visible_packet_max_fiber_size = max(
+                productive_visible_packet_productions.values(),
+                default=0,
+            )
+            terminal_tree_visible_packet_labels += len(
+                visible_packet_productions
+            )
+            terminal_tree_productive_visible_packet_labels += len(
+                productive_visible_packet_productions
+            )
+            terminal_tree_visible_packet_repeated_labels += (
+                visible_packet_repeated_labels
+            )
+            terminal_tree_productive_visible_packet_repeated_labels += (
+                productive_visible_packet_repeated_labels
+            )
+            terminal_tree_visible_packet_excess_productions += (
+                visible_packet_excess
+            )
+            terminal_tree_productive_visible_packet_excess_productions += (
+                productive_visible_packet_excess
+            )
+            terminal_tree_visible_packet_max_fiber_size = max(
+                terminal_tree_visible_packet_max_fiber_size,
+                visible_packet_max_fiber_size,
+            )
+            terminal_tree_productive_visible_packet_max_fiber_size = max(
+                terminal_tree_productive_visible_packet_max_fiber_size,
+                productive_visible_packet_max_fiber_size,
+            )
+            terminal_tree_visible_packet_fiber_size_histogram.update(
+                visible_packet_productions.values()
+            )
+            terminal_tree_productive_visible_packet_fiber_size_histogram.update(
+                productive_visible_packet_productions.values()
+            )
+            if any(syn):
+                max_nonzero_terminal_tree_visible_packet_fiber_size = max(
+                    max_nonzero_terminal_tree_visible_packet_fiber_size,
+                    visible_packet_max_fiber_size,
+                )
+                max_nonzero_terminal_tree_productive_visible_packet_fiber_size = (
+                    max(
+                        max_nonzero_terminal_tree_productive_visible_packet_fiber_size,
+                        productive_visible_packet_max_fiber_size,
+                    )
+                )
             terminal_tree_recursion_defect_histogram[tree_recursion_defects] += 1
             terminal_tree_branch_vertex_histogram[audit_branch_vertices] += 1
             terminal_tree_branch_pair_histogram[audit_branch_pairs] += 1
@@ -3545,6 +3702,30 @@ def analyze_case(
         "terminal_tree_productive_mode_anchor_reconstruction_checks": (
             terminal_tree_productive_mode_anchor_reconstruction_checks
         ),
+        "terminal_tree_visible_packet_labels": (
+            terminal_tree_visible_packet_labels
+        ),
+        "terminal_tree_productive_visible_packet_labels": (
+            terminal_tree_productive_visible_packet_labels
+        ),
+        "terminal_tree_visible_packet_repeated_labels": (
+            terminal_tree_visible_packet_repeated_labels
+        ),
+        "terminal_tree_productive_visible_packet_repeated_labels": (
+            terminal_tree_productive_visible_packet_repeated_labels
+        ),
+        "terminal_tree_visible_packet_excess_productions": (
+            terminal_tree_visible_packet_excess_productions
+        ),
+        "terminal_tree_productive_visible_packet_excess_productions": (
+            terminal_tree_productive_visible_packet_excess_productions
+        ),
+        "terminal_tree_visible_packet_max_fiber_size": (
+            terminal_tree_visible_packet_max_fiber_size
+        ),
+        "terminal_tree_productive_visible_packet_max_fiber_size": (
+            terminal_tree_productive_visible_packet_max_fiber_size
+        ),
         "terminal_tree_mode_rank_checks": terminal_tree_mode_rank_checks,
         "terminal_tree_productive_mode_rank_checks": (
             terminal_tree_productive_mode_rank_checks
@@ -3667,6 +3848,12 @@ def analyze_case(
         ),
         "max_nonzero_terminal_tree_productive_mode_packets": (
             max_nonzero_terminal_tree_productive_mode_packets
+        ),
+        "max_nonzero_terminal_tree_visible_packet_fiber_size": (
+            max_nonzero_terminal_tree_visible_packet_fiber_size
+        ),
+        "max_nonzero_terminal_tree_productive_visible_packet_fiber_size": (
+            max_nonzero_terminal_tree_productive_visible_packet_fiber_size
         ),
         "max_nonzero_terminal_tree_mode_size": (
             max_nonzero_terminal_tree_mode_size
@@ -3797,6 +3984,14 @@ def analyze_case(
         ),
         "terminal_tree_productive_mode_packet_histogram": dict(
             sorted(terminal_tree_productive_mode_packet_histogram.items())
+        ),
+        "terminal_tree_visible_packet_fiber_size_histogram": dict(
+            sorted(terminal_tree_visible_packet_fiber_size_histogram.items())
+        ),
+        "terminal_tree_productive_visible_packet_fiber_size_histogram": dict(
+            sorted(
+                terminal_tree_productive_visible_packet_fiber_size_histogram.items()
+            )
         ),
         "terminal_tree_mode_size_histogram": dict(
             sorted(terminal_tree_mode_size_histogram.items())
@@ -3939,6 +4134,10 @@ def print_summary(results: Sequence[dict[str, object]]) -> None:
             f"{result['max_nonzero_terminal_tree_branch_pairs']} "
             f"anchor_reconstructions="
             f"{result['terminal_tree_mode_anchor_reconstruction_checks']} "
+            f"visible_packet_max_fiber="
+            f"{result['max_nonzero_terminal_tree_visible_packet_fiber_size']} "
+            f"visible_packet_excess="
+            f"{result['terminal_tree_visible_packet_excess_productions']} "
             f"max_nonzero_terminal_tree_mode_size="
             f"{result['max_nonzero_terminal_tree_mode_size']} "
             f"max_nonzero_terminal_tree_mode_rank_size="

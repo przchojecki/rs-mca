@@ -1484,6 +1484,60 @@ matching (BI).  The same audit checks the general matching-fiber bound (FB):
 the boundary fiber-size histogram is `4200` fibers of size `1` and `120`
 labeled packets lying in fibers of size `2`, with maximum fiber size `2`.
 
+## Visible Packet Collisions Are Scalar Collisions
+
+The preceding endpoint analysis turns repeated production into a concrete
+scalar-cut problem.  Consider two terminal branch vertices, possibly with
+different anchors `(X,R)` and `(X',R')`, producing sparse packets on mode
+supports `Y` and `Y'` of the same size `m`.  Write
+
+```text
+C=R union Y,        C'=R' union Y',
+a_y=c_X(y;C)/d_Y(y),
+a'_{y}=c_{X'}(y;C')/d_Y(y),
+```
+
+when the support is the same.  If the visible endpoint recovers the support
+(`m<=tau`, or the boundary endpoint is support-unique), then a collision of
+visible labels is equivalent to
+
+```text
+Y=Y',
+c_X(y;C)=c_{X'}(y;C')        for every y in Y.       (VC)
+```
+
+Indeed the Vandermonde recovery gives the same amplitudes, and the
+denominators `d_Y(y)` depend only on the common support.  Conversely (VC)
+obviously gives the same packet.
+
+At the maximal boundary `m=tau+1`, there is only one extra collision type:
+the disjoint alias already classified above.  Thus any visible collision is
+either the same-support scalar equality (VC), or else `Y` and `Y'` are
+disjoint and the scalar cuts satisfy the constant-product fit
+
+```text
+c_X(y;C) ell_{Y'}(y)=mu        for every y in Y,
+```
+
+with the symmetric alias amplitudes on `Y'`.  In the full-domain case
+`n=2m`, this exceptional branch is exactly the root-linear scalar condition
+
+```text
+c_X(y;C)/(y d_Y(y)) = constant        for every y in Y.
+```
+
+Therefore the remaining production problem is not an uncontrolled packet
+ambiguity.  It is the problem of bounding same-support scalar-cut collisions
+between distinct anchors, plus the already isolated boundary disjoint-alias
+ledger.
+
+The verifier now audits this production question directly for visible packet
+labels, syndrome by syndrome.  In the largest `F_7^*` audit, all `34560`
+visible terminal packet productions have singleton production fibers; the
+productive subaudit has all `32400` productive labels singleton as well.  Thus
+the current finite data contain no same-syndrome repeated production of an
+unanchored visible sparse-packet label.
+
 ## Root-Marked Slice Is One Row
 
 The zero-boundary subkernel in the fixed-root difference form is cut out by a

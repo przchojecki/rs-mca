@@ -4205,6 +4205,28 @@ supports with \(6=|F|-1\) scalar multiples each, giving \(4200+120/2=4260\)
 visible endpoint sequences.  The boundary fiber-size histogram is \(4200\)
 labels in singleton fibers and \(120\) labels in fibers of size \(2\), with
 maximum fiber size \(2=\lfloor6/3\rfloor\).
+Thus visible packet collisions have a precise scalar-cut form.  Away from the
+maximal boundary, or whenever the boundary endpoint is support-unique, two
+terminal branch packets from anchors \((X,R)\) and \((X',R')\) with common
+mode support \(Y\) collide if and only if
+\[
+  c_X(y;R\cup Y)=c_{X'}(y;R'\cup Y)\qquad(y\in Y).
+\]
+At the maximal boundary, the only additional collision is the disjoint alias:
+for \(Y'\cap Y=\emptyset\) it is exactly the scalar fit
+\[
+  c_X(y;R\cup Y)\ell_{Y'}(y)=\mu\qquad(y\in Y).
+\]
+In the full-domain case \(n=2|Y|\), this is the root-linear condition
+\[
+  {c_X(y;R\cup Y)\over y\,d_Y(y)}=\hbox{constant}\qquad(y\in Y).
+\]
+So the remaining repeated-production problem is a same-support scalar-cut
+collision problem, plus the isolated boundary disjoint-alias ledger.
+The verifier now audits this production question directly: in the largest
+\(F_7^*\) case, all \(34560\) visible terminal packet productions have
+singleton same-syndrome production fibers, and all \(32400\) productive
+productions are singleton as well.
 The common-core and two-denominator formulas persist verbatim after this
 root-free replacement.  With \(C=\gcd(D:D\in M_{\min})\), \(\gamma=\deg C\),
 and \(E_D=D/C\),

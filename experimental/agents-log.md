@@ -30,6 +30,27 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 visible packet production fibers
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_hankel_t2_one_exchange_lift.md`,
+  `experimental/scripts/verify_m1_hankel_t2_triangle_packets.py`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** STRUCTURAL / EXACT FINITE AUDIT.
+- **What is being added:** Classifies visible terminal-packet collisions as
+  same-support scalar-cut equalities, except for the already isolated maximal
+  boundary disjoint-alias scalar fit.  The verifier now counts, syndrome by
+  syndrome, the production fibers of unanchored visible sparse-packet labels;
+  in the largest `F_7^*` audit all `34560` visible productions, including all
+  `32400` productive productions, are singleton fibers.
+- **How it is useful:** Turns the remaining repeated-production problem into
+  a concrete scalar-collision target across distinct anchors, with boundary
+  aliases separated into their own ledger.
+- **What to do next:** Use the scalar-cut collision form to bound repeated
+  production across anchors, or prove that surviving collisions force
+  quotient-periodic, tangent, or lower-core structure.
+
 ### 2026-06-28 - M1 anchored packets reconstruct branch data
 
 - **Agent/model:** AllenGrahamHart / Codex audit.
