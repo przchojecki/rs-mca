@@ -4137,6 +4137,16 @@ The labeled nonzero \(m\)-mode packet family has size
 so the boundary image size is between this count divided by \(\lfloor n/m\rfloor\)
 and the count itself.  For fixed \(m=\tau+1\) and polynomial field size, the
 visible boundary sparse-packet type is therefore polynomial-sized locally.
+Together with the \(2m\)-moment recovery theorem, this gives a local
+packet-type ledger for all visible terminal branch packets at row level
+\(\tau\): the ambient labeled packet space has size at most
+\[
+  \sum_{m=2}^{\tau+1} (|F|-1)^m\binom{n}{m}.
+\]
+For fixed \(\tau\) and \(|F|=\operatorname{poly}(n)\), this rules out a new
+super-polynomial family of visible sparse packet labels.  It does not count
+how often terminal deletion trees produce a label; repeated production must
+still be charged separately.
 In the full-domain boundary case \(H=\{x:x^n=1\}\), \(n=2m\), the only
 possible disjoint domain alias is \(Z=H\setminus Y\), and
 \[

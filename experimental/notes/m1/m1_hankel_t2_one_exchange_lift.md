@@ -1315,6 +1315,30 @@ given packet; rather, it says that once terminal branching has been reduced to
 visible boundary sparse packets, the packet type itself has only polynomially
 many labels and matching-bounded moment fibers.
 
+Combining this with the `2m`-moment recovery theorem gives the local terminal
+packet-type ledger.  At row level `tau`, every terminal branch packet has a
+visible label in one of the following forms:
+
+1. `2<=m<=tau`: the first `2m` moments are visible, so the mode locator and
+   amplitudes are intrinsic to the lower-boundary vector;
+2. `m=tau+1`: the boundary endpoint has matching-type fibers of size at most
+   `floor(n/m)`, and in the full-domain case its only nontrivial fibers are
+   the root-linear complement pairs described below.
+
+Thus, for fixed `tau`, the ambient labeled packet space for all visible
+terminal branch packets has size at most
+
+```text
+sum_{m=2}^{tau+1} (|F|-1)^m binom(n,m).          (TL)
+```
+
+If `|F|=poly(n)`, this is polynomial in `n`.  This is the local packet-type
+closure supplied by the terminal sparse-packet analysis: it rules out a new
+super-polynomial family of visible sparse packet labels.  The remaining global
+M1 work is to control how many times deletion trees can produce these packet
+labels, or to charge repeated production to quotient-periodic, tangent, or
+lower-core ledgers.
+
 There is a particularly simple full-domain boundary specialization.  Suppose
 the available mode universe is the whole root-of-unity domain
 

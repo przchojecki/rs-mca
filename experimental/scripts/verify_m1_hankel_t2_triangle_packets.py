@@ -97,6 +97,8 @@ More generally, it records the boundary fiber-size histogram and checks the
 matching bound fiber_size <= floor(n/m).
 It also reports the ambient labeled sparse-packet capacity
 binom(n,m)(p-1)^m for each boundary mode size encountered in the scan.
+For all visible terminal mode packets, it reports the same labeled capacity by
+mode size as the packet-type ledger.
 Equivalently, it records support-unique boundary packets as those with no
 equal-size visible alias.
 The full-domain visible endpoint count is then support-unique labels plus one
@@ -468,6 +470,7 @@ def analyze_case(
     terminal_tree_productive_boundary_support_unique = 0
     terminal_tree_boundary_max_fiber_size = 0
     terminal_tree_productive_boundary_max_fiber_size = 0
+    terminal_tree_mode_sizes_seen: set[int] = set()
     terminal_tree_boundary_mode_sizes_seen: set[int] = set()
     terminal_tree_multiflag_cores = 0
     iterated_boundary_defect_histogram: Counter[int] = Counter()
@@ -823,6 +826,7 @@ def analyze_case(
                 nonlocal terminal_tree_productive_boundary_support_unique
                 nonlocal terminal_tree_boundary_max_fiber_size
                 nonlocal terminal_tree_productive_boundary_max_fiber_size
+                nonlocal terminal_tree_mode_sizes_seen
                 nonlocal terminal_tree_boundary_mode_sizes_seen
 
                 if not current_core:
@@ -1041,6 +1045,7 @@ def analyze_case(
                         expected.append(total % p)
                     mode_packet_count += 1
                     max_mode_size = max(max_mode_size, mode_count)
+                    terminal_tree_mode_sizes_seen.add(mode_count)
                     terminal_tree_mode_size_histogram[mode_count] += 1
                     productive_children = sum(
                         1 for _root, child_count, _core, _scalar in child_results
@@ -3523,6 +3528,10 @@ def analyze_case(
         "terminal_tree_productive_boundary_max_fiber_size": (
             terminal_tree_productive_boundary_max_fiber_size
         ),
+        "terminal_tree_mode_labeled_capacity_by_size": {
+            size: math.comb(n, size) * (p - 1) ** size
+            for size in sorted(terminal_tree_mode_sizes_seen)
+        },
         "terminal_tree_boundary_full_domain_visible_sequences": (
             terminal_tree_boundary_support_unique
             + terminal_tree_boundary_root_linear_hits // 2

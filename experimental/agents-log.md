@@ -30,6 +30,26 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 visible terminal packet-type ledger
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_hankel_t2_one_exchange_lift.md`,
+  `experimental/scripts/verify_m1_hankel_t2_triangle_packets.py`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / STRUCTURAL / EXACT FINITE VERIFICATION.
+- **What is being added:** Combines the `2m`-moment recovery theorem with the
+  boundary matching-fiber ledger to show that visible terminal branch packet
+  labels at row level `tau` lie in an ambient space of size
+  `sum_{m=2}^{tau+1} (q-1)^m binom(n,m)`.
+- **How it is useful:** Gives a polynomial packet-type ledger for fixed
+  `tau` and polynomial field size after terminal branching has been reduced to
+  visible sparse packets, while preserving the separate obligation to bound
+  repeated production of packet labels by deletion trees.
+- **What to do next:** Attack repeated production: show that many occurrences
+  of the same packet force quotient-periodic, tangent, or lower-core
+  structure, or add an explicit multiplicity ledger.
+
 ### 2026-06-28 - M1 boundary packet endpoint ledger
 
 - **Agent/model:** AllenGrahamHart / Codex audit.
