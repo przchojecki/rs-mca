@@ -10704,6 +10704,89 @@ If `c=0`, then `QA=0`, hence `A=0`.  If `c!=0`, then `Q` divides `B`; since
 `deg B<deg Q`, this forces `B=0`, and again `QA=0`, so `A=0`.  Therefore
 `ker T_h=0`.
 
+## Corollary 40.89: The One-Row Layer Is A Rank-One Rational Extension Of RS_k
+
+Keep the hypotheses and notation of Corollary 40.88.  In the positive-degree
+charts, `Q` is root-free on `D` by the inherited scalar rational-supercode
+setup; in the constant charts, take `Q=1`.  Put
+
+```text
+mu=top(A)/h,        A_0=A-mu h X^k in F[X]_<k,
+Y=w/Q              on D.
+```
+
+Define the rank-one rational extension direction
+
+```text
+phi_h(x)=h x^k - B(x)/Q(x),        x in D,
+```
+
+and the evaluation code
+
+```text
+E_h = { A_0 + mu phi_h : A_0 in F[X]_<k, mu in F } subset F^D.
+```
+
+Then the one-row list condition from Corollary 40.88 is equivalent to
+
+```text
+A_0 + mu phi_h = Y        on S.                    (RankOneRSList)
+```
+
+The original scalar parameter is recovered as
+
+```text
+lambda=-mu.
+```
+
+Thus the one-row short scalar layer is exactly list decoding the word `Y`
+against the `k+1` dimensional rank-one rational extension `E_h` of the base
+Reed-Solomon code `RS[F,D,k]`.  Coordinate-wise multiplication by `Q` carries
+`E_h` isomorphically to the linear-image code
+`T_h(F[X]_<k+1)|_D`.  In the positive-degree charts the new generator has
+denominator `Q` and numerator residue `-B mod Q`; in the constant charts it is
+the polynomial generator `hX^k`.
+
+Consequently, after the already separated reciprocal `Qf` zero-slope
+exception, the only scalar cutoff layer with no high-tail codimension saving
+is a concrete all-line residue-packing target for one-generator rational
+extensions of `RS_k`, not an arbitrary enlarged-code list.
+
+### Proof
+
+Since `mu=top(A)/h`, the polynomial
+
+```text
+A_0=A-mu h X^k
+```
+
+has degree `<k`.  On `D`,
+
+```text
+T_h(A)
+ = Q(A_0+mu h X^k)-mu B
+ = Q(A_0+mu(hX^k-B/Q))
+ = Q(A_0+mu phi_h).
+```
+
+Because `Q` is root-free on `D`, the equality `T_h(A)=w` on a support `S` is
+equivalent to (RankOneRSList).  Conversely, given `A_0 in F[X]_<k` and
+`mu in F`, set `A=A_0+mu h X^k`; then `top(A)=mu h`, and Corollary 40.88
+recovers the scalar parameter as `lambda=-mu`.
+
+The coordinate-wise multiplier by `Q` is invertible on `F^D`, so it identifies
+`E_h` with the evaluation image of `T_h`.  In every one-row cutoff chart,
+`deg T_h(A)<k+e+1=n-s<=n`, so evaluation on `D` is injective on this
+polynomial image.  Corollary 40.88 proves that `T_h` is injective on the
+`k+1` dimensional domain `F[X]_<k+1`; hence `dim E_h=k+1`.  Finally,
+
+```text
+Q phi_h = hQX^k-B,
+```
+
+so the residue of the new generator modulo `Q` is `-B`; if `Q=1` and `B=0`,
+this specializes to the polynomial generator `hX^k`.
+
 ## Corollary 41: The Global Common-Image Ledger Is Endpoint-Only
 
 Let `GCI` be the set of monic degree-`c` split core locators `L` for which
@@ -13585,6 +13668,10 @@ dimension-`k+1` high-tail-line subcodes of the enlarged code, with codimension
 Corollary 40.88 identifies the remaining one-row layer `L=1` as a
 dimension-`k+1` linear-image list whose slope parameter is recovered from the
 top coefficient, with the reciprocal `Qf` zero-slope exception still separate.
+Corollary 40.89 rewrites that same layer, after dividing by the root-free
+denominator, as list decoding against the rank-one rational extension
+`RS_k+F(hX^k-B/Q)`; this is the precise all-line residue-packing object left
+by the scalar one-row residual.
 Corollary 41 packages the common-image branch into endpoint-type ledgers; it
 does not prove the endpoint rank hypotheses needed for the displayed
 `(q+2)binom(n,b)` bound. Corollary 42 packages the globally full core ledger

@@ -2588,6 +2588,23 @@ in the positive-degree case \(\deg B<\deg Q\), while in the constant case
 \(B=0\).  Thus the one-row short scalar layer is a \(k+1\)-dimensional
 linear-image list, with the reciprocal \(Qf\)-zero-slope exception still
 separate.
+Equivalently, after dividing by the root-free \(Q\), write
+\[
+  A=A_0+\mu hX^k,\qquad A_0\in F[X]_{<k},\qquad
+  \mu=\operatorname{top}(A)/h .
+\]
+Then
+\[
+  T_h(A)/Q=A_0+\mu\bigl(hX^k-B/Q\bigr).
+\]
+Thus the one-row layer is exactly a list for the opposite endpoint word
+\(w/Q\) against the rank-one rational extension
+\[
+  \RS[F,D,k]+F\bigl(hX^k-B/Q\bigr),
+\]
+with the original scalar parameter \(\lambda=-\mu\).  The new generator has
+residue \(-B\bmod Q\), and in the constant case it reduces to the polynomial
+generator \(hX^k\).
 The common-core and two-denominator formulas persist verbatim after this
 root-free replacement.  With \(C=\gcd(D:D\in M_{\min})\), \(\gamma=\deg C\),
 and \(E_D=D/C\),

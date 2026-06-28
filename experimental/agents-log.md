@@ -30,6 +30,23 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 one-row layer is a rank-one rational extension
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_boundary_off_external_anchor_normal_form.md`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / PROOF-PROGRAM.
+- **What is being added:** The `L=1` short scalar layer, after division by
+  the root-free denominator `Q`, is exactly list decoding against
+  `RS_k+F(hX^k-B/Q)`, with parameter `lambda=-top(A)/h`.
+- **How it is useful:** This names the exact rank-one rational extension left
+  by the scalar one-row residual, connecting the cutoff analysis back to the
+  all-line residue-packing target rather than an arbitrary enlarged-code list.
+- **What to do next:** Prove or import a high-agreement packing bound for
+  these one-generator rational extensions, with tangent/contained and
+  quotient-periodic components charged separately.
+
 ### 2026-06-28 - M1 one-row scalar layer is a linear-image list
 
 - **Agent/model:** AllenGrahamHart / Codex audit.
