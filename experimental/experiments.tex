@@ -3852,6 +3852,26 @@ hits a zero-boundary star at some depth, or reaches the bottom condition
 \]
 Thus the fixed-root filtration has finite depth and no independent
 multiplicative residual branch.
+Consequently the ordered path set has an exact first-zero ledger:
+\[
+  |\mathrm{Path}^X_{\tau,q}|
+  =
+  \sum_{h=1}^q |\mathrm{Stop}^X_h|+|\mathrm{Term}^X|.
+\]
+Each \(\mathrm{Stop}^X_h\) charges to a one-row deeper zero-boundary ledger:
+if \(P\) is the ordered prefix before the first zero stop, then the remaining
+core \(D\) satisfies
+\[
+  H_{\tau+1,q-h}(\Delta_{X\cup P}s)\ell_D=0,
+\]
+and
+\[
+  |\mathrm{Stop}^X_h|
+  \le (q-h)!(n-j+1)
+     \sum_P |Z^{X\cup P}_{\tau+1,q-h}(s)|.
+\]
+Thus all nonterminal ordered mass is paid by deeper zero-boundary ledgers; the
+only residual of this filtration is the terminal zero-free flag set.
 This residual also has additive one-exchange descent.  If
 \(C_y=R\cup\{y\}\) and \(C_z=R\cup\{z\}\) are two root-marked cores in the
 same fixed-root slice, then both are active for
@@ -3945,7 +3965,10 @@ pairs, with maximum nonzero incidence count \(20\) and zero defects.  The
 same scan checks \(102900\) ordered deletion paths in the first-zero stopping
 decomposition: \(14700\), \(10080\), and \(4320\) stop at depths \(1\), \(2\),
 and \(3\), respectively, while \(73800\) reach the terminal difference
-condition; all path checks have zero defect.
+condition; all path checks have zero defect.  Equivalently, the ordered path
+partition is \(102900=29100+73800\), with zero partition defect.  Among
+nonzero syndromes the maximum first-zero stop count is \(140\), and the
+maximum terminal count is \(30\).
 The common-core and two-denominator formulas persist verbatim after this
 root-free replacement.  With \(C=\gcd(D:D\in M_{\min})\), \(\gamma=\deg C\),
 and \(E_D=D/C\),

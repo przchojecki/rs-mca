@@ -849,6 +849,56 @@ zero-boundary rung or a bottom terminal difference condition.  The filtration
 has finite depth `q`, and nonzero marked steps merely move to the next
 fixed-root layer; they do not create a parallel packet family.
 
+## Ordered First-Zero Ledger
+
+The stopping rule gives an ordered counting ledger.  Let
+`Path^{X_1}_{tau,q}(s)` be the set of pairs `(C,pi)` where
+`C in K^{X_1}_{tau,q}(s)` and `pi` is an ordering of `C`.  Let
+`Stop_h^{X_1}` be the subset whose first zero-boundary stop occurs at depth
+`h`, and let `Term^{X_1}` be the subset with no zero-boundary stop.  Then
+
+```text
+|Path^{X_1}_{tau,q}(s)|
+ = sum_{h=1}^q |Stop_h^{X_1}| + |Term^{X_1}|.       (OZ)
+```
+
+Moreover every first-zero stop is charged to a one-row deeper zero-boundary
+ledger.  If `P=(y_1,...,y_{h-1})` is the prefix before the first stop and
+`d_P=Delta_{X_1 union P}s`, the stop core `D` has size `q-h` and satisfies
+
+```text
+H_{tau+1,q-h}(d_P)ell_D=0.
+```
+
+Thus, after dropping the requirement that the prefix itself was zero-free, one
+has the upper ledger
+
+```text
+|Stop_h^{X_1}|
+ <= (q-h)! (n-j+1)
+    sum_P |Z^{X_1 union P}_{tau+1,q-h}(s)|,        (OZL)
+```
+
+where the sum is over ordered distinct prefixes `P` of length `h-1` disjoint
+from `X_1`.
+
+Proof: (OZ) is the disjoint partition by the first time the stopping
+algorithm encounters a zero boundary, with `Term` collecting the paths for
+which this never happens.  For (OZL), a path in `Stop_h` determines its
+zero-free prefix `P`, the stopped root `y_h`, the remaining core `D`, and an
+ordering of `D` after the stop.  The stopped core satisfies the displayed
+zero-boundary equation by definition.  For fixed `P` and `D`, the stopped
+root has at most
+
+```text
+|H\setminus(X_1 union P union D)| = n-j+1
+```
+
+choices, and the suffix has `(q-h)!` possible orders.  Forgetting the
+zero-free prefix condition can only enlarge the right side.  Hence all
+nonterminal ordered mass is paid by one-row deeper zero-boundary ledgers; the
+only uncharged residual in this filtration is the terminal zero-free flag set.
+
 ## Root-Marked Slice Is One Row
 
 The zero-boundary subkernel in the fixed-root difference form is cut out by a
@@ -1214,6 +1264,10 @@ ordered paths with zero defects: `14700` stop first at depth `1`, `10080` at
 depth `2`, `4320` at depth `3`, and `73800` reach the terminal bottom
 difference condition.  Among nonzero syndromes the largest path count is
 `150`, with at most `30` terminal paths.
+The same audit verifies the ordered path partition (OZ): in the largest case
+the `102900` paths split as `29100` first-zero stops and `73800` terminal
+paths, with zero partition defect.  Among nonzero syndromes the maximum
+first-zero stop count is `140`.
 
 The `F_7,k=2,j=2` scan is the first exact top-packet check in this file.  It
 finds twenty top triangles, all on the zero combined syndrome.  This is not an

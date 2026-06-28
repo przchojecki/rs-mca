@@ -67,7 +67,8 @@ applying the ordered root-difference operator Delta_{x_m}...Delta_{x_1} to the
 syndrome, and the zero-boundary/root-marked incidence identity holds on each
 difference rung.  It also checks the set-level filtration partition behind
 that identity, and audits the induced first-zero stopping decomposition for
-ordered fixed-root deletion paths.
+ordered fixed-root deletion paths.  The path audit records the resulting
+first-zero/terminal ledger.
 
 It also checks the full-top zero-syndrome lemma: if all j+1 complements
 U\\{x} inside one (j+1)-top set U are active, then the combined syndrome is
@@ -312,10 +313,12 @@ def analyze_case(
     iterated_boundary_identity_checks = 0
     fixed_root_filtration_pair_checks = 0
     filtration_path_checks = 0
+    filtration_zero_stop_paths = 0
     filtration_terminal_paths = 0
     iterated_boundary_defect_histogram: Counter[int] = Counter()
     fixed_root_filtration_defect_histogram: Counter[int] = Counter()
     filtration_path_defect_histogram: Counter[int] = Counter()
+    filtration_path_partition_defect_histogram: Counter[int] = Counter()
     filtration_zero_stop_depth_histogram: Counter[int] = Counter()
     max_active = 0
     max_edges = 0
@@ -351,6 +354,7 @@ def analyze_case(
     max_nonzero_iterated_boundary_marked = 0
     max_nonzero_fixed_root_filtration_pairs = 0
     max_nonzero_filtration_paths = 0
+    max_nonzero_zero_stop_filtration_paths = 0
     max_nonzero_terminal_filtration_paths = 0
     one_exchange_edges = 0
     star_triangles = 0
@@ -367,6 +371,7 @@ def analyze_case(
     for syn in itertools.product(range(p), repeat=r):
         case_filtration_path_defect = 0
         case_filtration_paths = 0
+        case_zero_stop_filtration_paths = 0
         case_terminal_filtration_paths = 0
 
         def audit_filtration_paths(
@@ -375,8 +380,10 @@ def analyze_case(
         ) -> None:
             nonlocal case_filtration_path_defect
             nonlocal case_filtration_paths
+            nonlocal case_zero_stop_filtration_paths
             nonlocal case_terminal_filtration_paths
             nonlocal filtration_path_checks
+            nonlocal filtration_zero_stop_paths
             nonlocal filtration_terminal_paths
 
             for core in active_cores:
@@ -413,6 +420,8 @@ def analyze_case(
                         )
                         if not any(boundary_vector):
                             filtration_zero_stop_depth_histogram[depth] += 1
+                            case_zero_stop_filtration_paths += 1
+                            filtration_zero_stop_paths += 1
                             stopped = True
                             break
                         deleted_root = domain[deleted_root_index]
@@ -1368,6 +1377,23 @@ def analyze_case(
             case_fixed_root_filtration_defect
         ] += 1
         filtration_path_defect_histogram[case_filtration_path_defect] += 1
+        path_partition_defect = case_filtration_paths - (
+            case_zero_stop_filtration_paths + case_terminal_filtration_paths
+        )
+        if path_partition_defect != 0:
+            raise AssertionError(
+                {
+                    "kind": "filtration-path-partition-failed",
+                    "p": p,
+                    "k": k,
+                    "syndrome": list(syn),
+                    "paths": case_filtration_paths,
+                    "zero_stop_paths": case_zero_stop_filtration_paths,
+                    "terminal_paths": case_terminal_filtration_paths,
+                    "defect": path_partition_defect,
+                }
+            )
+        filtration_path_partition_defect_histogram[path_partition_defect] += 1
         isolated_marked_boundary_slack = (
             len(case_root_marked_boundaries) - j * case_isolated_vertices
         )
@@ -1457,6 +1483,10 @@ def analyze_case(
             max_nonzero_filtration_paths = max(
                 max_nonzero_filtration_paths,
                 case_filtration_paths,
+            )
+            max_nonzero_zero_stop_filtration_paths = max(
+                max_nonzero_zero_stop_filtration_paths,
+                case_zero_stop_filtration_paths,
             )
             max_nonzero_terminal_filtration_paths = max(
                 max_nonzero_terminal_filtration_paths,
@@ -1976,6 +2006,7 @@ def analyze_case(
         "iterated_boundary_identity_checks": iterated_boundary_identity_checks,
         "fixed_root_filtration_pair_checks": fixed_root_filtration_pair_checks,
         "filtration_path_checks": filtration_path_checks,
+        "filtration_zero_stop_paths": filtration_zero_stop_paths,
         "filtration_terminal_paths": filtration_terminal_paths,
         "max_iterated_boundary_chain_length": max_iterated_boundary_chain_length,
         "max_nonzero_iterated_boundary_active_cores": (
@@ -1991,6 +2022,9 @@ def analyze_case(
             max_nonzero_fixed_root_filtration_pairs
         ),
         "max_nonzero_filtration_paths": max_nonzero_filtration_paths,
+        "max_nonzero_zero_stop_filtration_paths": (
+            max_nonzero_zero_stop_filtration_paths
+        ),
         "max_nonzero_terminal_filtration_paths": (
             max_nonzero_terminal_filtration_paths
         ),
@@ -2079,6 +2113,9 @@ def analyze_case(
         "filtration_path_defect_histogram": dict(
             sorted(filtration_path_defect_histogram.items())
         ),
+        "filtration_path_partition_defect_histogram": dict(
+            sorted(filtration_path_partition_defect_histogram.items())
+        ),
         "filtration_zero_stop_depth_histogram": dict(
             sorted(filtration_zero_stop_depth_histogram.items())
         ),
@@ -2142,6 +2179,8 @@ def print_summary(results: Sequence[dict[str, object]]) -> None:
             f"{result['max_nonzero_iterated_boundary_marked']} "
             f"max_nonzero_fixed_root_filtration_pairs="
             f"{result['max_nonzero_fixed_root_filtration_pairs']} "
+            f"max_nonzero_zero_stop_paths="
+            f"{result['max_nonzero_zero_stop_filtration_paths']} "
             f"max_nonzero_terminal_paths="
             f"{result['max_nonzero_terminal_filtration_paths']} "
             f"max_nonzero_full_support_slack="

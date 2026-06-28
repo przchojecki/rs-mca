@@ -30,6 +30,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 first-zero paths charge to deeper zero ledgers
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_hankel_t2_one_exchange_lift.md`,
+  `experimental/scripts/verify_m1_hankel_t2_triangle_packets.py`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / STRUCTURAL / EXACT FINITE VERIFICATION.
+- **What is being added:** Turns the fixed-root stopping decomposition into an
+  ordered first-zero ledger: ordered active paths split exactly into first-zero
+  stops and terminal zero-free flags, and every first-zero stop charges to a
+  one-row deeper zero-boundary kernel.
+- **How it is useful:** Separates the same-slope fixed-root ladder into
+  already-controlled deeper zero-boundary ledgers plus a named terminal
+  zero-free flag residual, avoiding an opaque multiplicative path count.
+- **What to do next:** Attack the terminal zero-free flags directly, or prove
+  that quotient-periodic/aperiodic M1 structure makes their bottom conditions
+  sparse.
+
 ### 2026-06-28 - M1 fixed-root filtration has first-zero stopping
 
 - **Agent/model:** AllenGrahamHart / Codex audit.
