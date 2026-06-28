@@ -2935,6 +2935,18 @@ otherwise both \(\phi_h\) and \(Y\) would restrict to \(\RS_k\) on every
 \(a\)-subset, hence on \(S\) itself by the \((k+1)\)-subset test for
 degree-\(<k\) interpolation.  Thus the same \(\binom n j/q\) density bound
 applies to agreement at least \(a\).
+Equivalently, the noncontained one-row count has a direct support injection:
+choose one noncontained \(a\)-support \(T_\mu\) for each coefficient \(\mu\).
+Two coefficients cannot choose the same \(T\), because same-support
+multiplicity would force both \(\phi_h|_T\) and \(Y|_T\) into \(\RS_k\), making
+the support contained.  Hence
+\[
+  |\operatorname{Mu}_h^{\rm nc,\ge a}(Y)|\le \binom n a=\binom n j,
+\]
+without using the one-exchange exceptional-core ledger.  The residue-line
+weighted ledgers above are therefore bookkeeping for the unrestricted
+one-row coefficient/list object; the actual support-wise noncontained
+one-row contribution is already q-free.
 The common-core and two-denominator formulas persist verbatim after this
 root-free replacement.  With \(C=\gcd(D:D\in M_{\min})\), \(\gamma=\deg C\),
 and \(E_D=D/C\),

@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 one-row noncontained branch closes by support injection
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_boundary_off_external_anchor_normal_form.md`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / PROOF-PROGRAM.
+- **What is being added:** Proves the direct bound
+  `|Mu_h^{nc,>=a}(Y)| <= binom(n,a)=binom(n,j)` by injecting each
+  noncontained coefficient into a chosen noncontained `a`-support.
+- **How it is useful:** This shows the actual support-wise noncontained
+  one-row branch is q-free without any exchange-depth or residue-packing
+  bookkeeping; the weighted residue ledgers are only for the unrestricted
+  coefficient/list object.
+- **What to do next:** Avoid spending further effort on one-row
+  noncontained exchange bookkeeping unless it is needed for another residual;
+  move to higher-row or non-one-row M1 branches.
+
 ### 2026-06-28 - M1 noncontained one-row witnesses truncate to threshold
 
 - **Agent/model:** AllenGrahamHart / Codex audit.
