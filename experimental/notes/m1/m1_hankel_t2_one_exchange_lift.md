@@ -1271,6 +1271,26 @@ cuts produced by the deletion tree.  Thus the boundary endpoint is no longer a
 generic Prony ambiguity; it is a finite squarefree-locator interpolation
 problem for the explicit scalars `c_X(y;C)`.
 
+There is a particularly simple full-domain boundary specialization.  Suppose
+the available mode universe is the whole root-of-unity domain
+
+```text
+H={x:x^n=1},        n=2m,
+```
+
+and `Z=H\Y`.  Then `P_H'(y)=n y^{-1}`, so the kernel weights are
+`omega_y=y/n`.  The complementary alias exists if and only if
+
+```text
+a_y/y = constant        for every y in Y.       (RL)
+```
+
+Equivalently, the true packet amplitudes are root-linear:
+`a_y=nu y` on `Y`, and the complementary alias has amplitudes `-nu z` on
+`H\Y`.  Thus, in the full-domain boundary case, the remaining endpoint is not
+even an arbitrary scalar-fit problem; it is exactly the root-linear amplitude
+locus.
+
 For the `t=2` terminal audit this says exactly what the data show:
 mode-size-`2` packets are locator-recoverable, while mode-size-`3` packets are
 maximal-window boundary packets.  Therefore a proof of M1 cannot use rank
@@ -1284,7 +1304,10 @@ predicts.  In the largest current audit, only `120` of the `4320` boundary
 packets admit such an alias; the other `4200` are support-identifiable among
 domain `3`-sets despite lacking the formal Prony recovery moment.  The same
 audit checks (SF) directly: the constant-product scalar fits have exactly the
-same `4200/120` histogram as the moment aliases.
+same `4200/120` histogram as the moment aliases.  Since this audit is also a
+full-domain boundary case with `n=6=2m`, the root-linear test (RL) has the
+same histogram: the `120` aliased packets are precisely the root-linear
+amplitude packets.
 
 ## Root-Marked Slice Is One Row
 

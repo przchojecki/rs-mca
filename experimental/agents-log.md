@@ -30,6 +30,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 full-domain aliases are root-linear
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_hankel_t2_one_exchange_lift.md`,
+  `experimental/scripts/verify_m1_hankel_t2_triangle_packets.py`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / STRUCTURAL / EXACT FINITE VERIFICATION.
+- **What is being added:** Specializes the boundary alias criterion to the
+  full root-of-unity domain with `n=2m`: the complementary alias exists exactly
+  when the packet amplitudes are root-linear, `a_y/y` constant on the mode set.
+- **How it is useful:** Turns the current `F_7^*`, mode-size-`3` endpoint into
+  a named amplitude locus rather than an arbitrary disjoint-alias problem.  The
+  verifier checks all `4320` boundary packets and finds the root-linear
+  histogram `4200/120`, exactly matching the alias histogram.
+- **What to do next:** Try to prove that root-linear terminal packets are
+  forced into quotient-periodic, tangent, or lower-core ledgers, or bound them
+  directly as a small exceptional endpoint family.
+
 ### 2026-06-28 - M1 boundary aliases are scalar fits
 
 - **Agent/model:** AllenGrahamHart / Codex audit.

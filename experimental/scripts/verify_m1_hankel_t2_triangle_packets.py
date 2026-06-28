@@ -90,6 +90,8 @@ disjoint from the true branch-mode set and satisfies the expected
 kernel-weight amplitude criterion.  It also checks the equivalent terminal
 branch-scalar form: a disjoint candidate Z aliases a mode set Y exactly when
 c_y prod_{z in Z}(y-z) is independent of y in Y.
+In the full-domain boundary case n=2m over roots of unity, it checks the
+equivalent root-linear amplitude test a_y/y = constant on Y.
 
 It also checks the full-top zero-syndrome lemma: if all j+1 complements
 U\\{x} inside one (j+1)-top set U are active, then the combined syndrome is
@@ -446,6 +448,10 @@ def analyze_case(
     terminal_tree_productive_boundary_scalar_fit_candidate_checks = 0
     terminal_tree_boundary_scalar_fits = 0
     terminal_tree_productive_boundary_scalar_fits = 0
+    terminal_tree_boundary_root_linear_checks = 0
+    terminal_tree_productive_boundary_root_linear_checks = 0
+    terminal_tree_boundary_root_linear_hits = 0
+    terminal_tree_productive_boundary_root_linear_hits = 0
     terminal_tree_multiflag_cores = 0
     iterated_boundary_defect_histogram: Counter[int] = Counter()
     fixed_root_filtration_defect_histogram: Counter[int] = Counter()
@@ -474,6 +480,8 @@ def analyze_case(
     terminal_tree_productive_boundary_alias_histogram: Counter[int] = Counter()
     terminal_tree_boundary_scalar_fit_histogram: Counter[int] = Counter()
     terminal_tree_productive_boundary_scalar_fit_histogram: Counter[int] = Counter()
+    terminal_tree_boundary_root_linear_histogram: Counter[int] = Counter()
+    terminal_tree_productive_boundary_root_linear_histogram: Counter[int] = Counter()
     terminal_tree_multiflag_core_histogram: Counter[int] = Counter()
     max_active = 0
     max_edges = 0
@@ -580,6 +588,10 @@ def analyze_case(
             nonlocal terminal_tree_productive_boundary_scalar_fit_candidate_checks
             nonlocal terminal_tree_boundary_scalar_fits
             nonlocal terminal_tree_productive_boundary_scalar_fits
+            nonlocal terminal_tree_boundary_root_linear_checks
+            nonlocal terminal_tree_productive_boundary_root_linear_checks
+            nonlocal terminal_tree_boundary_root_linear_hits
+            nonlocal terminal_tree_productive_boundary_root_linear_hits
             nonlocal terminal_tree_multiflag_cores
             nonlocal max_nonzero_terminal_bottom_supports
             nonlocal max_nonzero_terminal_support_bound_slack
@@ -781,6 +793,10 @@ def analyze_case(
                 nonlocal terminal_tree_productive_boundary_scalar_fit_candidate_checks
                 nonlocal terminal_tree_boundary_scalar_fits
                 nonlocal terminal_tree_productive_boundary_scalar_fits
+                nonlocal terminal_tree_boundary_root_linear_checks
+                nonlocal terminal_tree_productive_boundary_root_linear_checks
+                nonlocal terminal_tree_boundary_root_linear_hits
+                nonlocal terminal_tree_productive_boundary_root_linear_hits
 
                 if not current_core:
                     return (1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
@@ -1409,6 +1425,63 @@ def analyze_case(
                                 terminal_tree_productive_boundary_scalar_fit_histogram[
                                     scalar_fit_count
                                 ] += 1
+                            if n == 2 * mode_count:
+                                root_linear_values = {
+                                    mode_amplitude_by_index[root_index]
+                                    * pow(domain[root_index], -1, p)
+                                    % p
+                                    for root_index in child_root_indices
+                                }
+                                root_linear = (
+                                    len(root_linear_values) == 1
+                                    and 0 not in root_linear_values
+                                )
+                                terminal_tree_boundary_root_linear_checks += 1
+                                terminal_tree_boundary_root_linear_histogram[
+                                    int(root_linear)
+                                ] += 1
+                                if root_linear:
+                                    terminal_tree_boundary_root_linear_hits += 1
+                                if productive_children >= 2:
+                                    terminal_tree_productive_boundary_root_linear_checks += (
+                                        1
+                                    )
+                                    terminal_tree_productive_boundary_root_linear_histogram[
+                                        int(root_linear)
+                                    ] += 1
+                                    if root_linear:
+                                        terminal_tree_productive_boundary_root_linear_hits += (
+                                            1
+                                        )
+                                if root_linear != bool(aliases):
+                                    raise AssertionError(
+                                        {
+                                            "kind": (
+                                                "terminal-branch-boundary-"
+                                                "root-linear-mismatch"
+                                            ),
+                                            "p": p,
+                                            "k": k,
+                                            "syndrome": list(syn),
+                                            "fixed_roots": list(fixed_roots),
+                                            "current_fixed": list(
+                                                current_fixed
+                                            ),
+                                            "current_core": list(
+                                                current_core
+                                            ),
+                                            "exit_roots": sorted(
+                                                child_root_indices
+                                            ),
+                                            "aliases": [
+                                                list(alias)
+                                                for alias in aliases
+                                            ],
+                                            "root_linear_values": sorted(
+                                                root_linear_values
+                                            ),
+                                        }
+                                    )
                     for subset_size in range(1, mode_count + 1):
                         for subset in itertools.combinations(
                             sorted(child_root_indices),
@@ -3346,6 +3419,18 @@ def analyze_case(
         "terminal_tree_productive_boundary_scalar_fits": (
             terminal_tree_productive_boundary_scalar_fits
         ),
+        "terminal_tree_boundary_root_linear_checks": (
+            terminal_tree_boundary_root_linear_checks
+        ),
+        "terminal_tree_productive_boundary_root_linear_checks": (
+            terminal_tree_productive_boundary_root_linear_checks
+        ),
+        "terminal_tree_boundary_root_linear_hits": (
+            terminal_tree_boundary_root_linear_hits
+        ),
+        "terminal_tree_productive_boundary_root_linear_hits": (
+            terminal_tree_productive_boundary_root_linear_hits
+        ),
         "terminal_tree_multiflag_cores": terminal_tree_multiflag_cores,
         "max_iterated_boundary_chain_length": max_iterated_boundary_chain_length,
         "max_nonzero_iterated_boundary_active_cores": (
@@ -3567,6 +3652,12 @@ def analyze_case(
         "terminal_tree_productive_boundary_scalar_fit_histogram": dict(
             sorted(terminal_tree_productive_boundary_scalar_fit_histogram.items())
         ),
+        "terminal_tree_boundary_root_linear_histogram": dict(
+            sorted(terminal_tree_boundary_root_linear_histogram.items())
+        ),
+        "terminal_tree_productive_boundary_root_linear_histogram": dict(
+            sorted(terminal_tree_productive_boundary_root_linear_histogram.items())
+        ),
         "terminal_tree_multiflag_core_histogram": dict(
             sorted(terminal_tree_multiflag_core_histogram.items())
         ),
@@ -3657,6 +3748,8 @@ def print_summary(results: Sequence[dict[str, object]]) -> None:
             f"boundary_aliases={result['terminal_tree_boundary_aliases']} "
             f"boundary_scalar_fits="
             f"{result['terminal_tree_boundary_scalar_fits']} "
+            f"boundary_root_linear="
+            f"{result['terminal_tree_boundary_root_linear_hits']} "
             f"max_nonzero_full_support_slack="
             f"{result['max_nonzero_full_support_ledger_slack']} "
             f"max_nonzero_top_active={result['max_nonzero_top_active_members']}"
