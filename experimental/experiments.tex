@@ -4486,6 +4486,25 @@ any nonunique fixed-core fiber with \(r\) marked exits must be moment-short:
 In the largest \(F_7^*\) audit the verifier checks \(4320\)
 moment-complete core fibers, all singleton; the productive subaudit checks
 \(2160\), also all singleton.
+The complementary moment-short regime is a packing, not an arbitrary fiber.
+For fixed \(U\) and \(r\), put \(d=r-\tau-|U|\).  If \(d>0\), then two
+distinct marked frontiers \(M_1,M_2\) over the same \(U\) satisfy
+\[
+  |M_1\cap M_2|<d .
+\]
+Indeed, after deleting all unmarked roots, both frontiers represent the same
+length \(L=\tau+|U|+r\) sequence.  If \(|M_1\cap M_2|\ge d\), then
+\(|M_1\cup M_2|\le 2r-d=L\), and the Vandermonde system forces the two sparse
+representations to be identical.  Therefore each fixed-core fiber obeys
+\[
+  |\mathrm{fiber}(U,r)|
+  \le
+  \left\lfloor{\binom{n-|U|}{d}\over\binom{r}{d}}\right\rfloor .
+\]
+This recovers uniqueness for \(d\le0\) and boundary matching for \(d=1\).
+The largest \(F_7^*\) audit checks \(17220\) deficit-packing fibers, maximum
+deficit \(1\), maximum fiber size \(2\); the productive subaudit has the same
+counts.
 The empty-core exception is exactly the boundary moment map.  For
 \(r=\tau+1\), full-marked supports \(S=M(S)\), \(|S|=r\), are precisely the
 nonzero \(r\)-sparse representations of

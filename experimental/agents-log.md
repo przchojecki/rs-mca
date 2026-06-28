@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 moment-short fibers are deficit packings
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_hankel_t2_one_exchange_lift.md`,
+  `experimental/scripts/verify_m1_hankel_t2_triangle_packets.py`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / STRUCTURAL / EXACT FINITE AUDIT.
+- **What is being added:** Proves that if a fixed canonical core `U` has
+  marked count `r` and deficit `d=r-tau-|U|>0`, then two distinct marked
+  frontiers over `U` have intersection `< d`.  Hence the fiber is bounded by
+  `floor(binom(n-|U|,d)/binom(r,d))`.
+- **How it is useful:** Unifies moment-complete uniqueness and boundary
+  matching, and shows the remaining short-core obstruction is a controlled
+  packing ledger rather than arbitrary same-core branching.
+- **What to do next:** Use the deficit-packing bound to formulate global
+  core-count closure criteria for high-frontier M1 supports.
+
 ### 2026-06-28 - M1 moment-complete cores are support-unique
 
 - **Agent/model:** AllenGrahamHart / Codex audit.

@@ -2269,6 +2269,67 @@ canonical-core fiber.  In the largest `F_7^*` audit, it checks `4320`
 moment-complete core fibers, all singleton; the productive subaudit checks
 `2160`, again all singleton.
 
+## Moment-Short Fibers Are Deficit Packings
+
+The moment-short case still has a rigid form.  Fix a canonical unmarked core
+`U` and a marked count `r`, and define the moment deficit
+
+```text
+d=r-tau-|U|.
+```
+
+If `d<=0`, the preceding theorem gives uniqueness.  Assume `d>0`.  Then any
+two distinct active supports `S_1,S_2` with `U(S_i)=U` and `|M(S_i)|=r`
+satisfy
+
+```text
+|M(S_1) cap M(S_2)| < d.                         (DP0)
+```
+
+Consequently every fixed-`U`, fixed-`r` canonical-core fiber has size at most
+
+```text
+floor( binom(n-|U|,d) / binom(r,d) ).             (DP1)
+```
+
+Proof: delete all unmarked roots, so `E=U`, and put
+`L=tau+|U|+r`.  The mixed face formula gives the same fixed length-`L`
+sequence for every support in the fiber:
+
+```text
+G_U
+ = (sum_{y in M(S)} a_y y^i/ell_U(y))_{0<=i<L}.
+```
+
+Suppose two marked frontiers `M_1,M_2` in the same fiber have intersection
+size `c>=d`.  Subtracting the two displayed sparse representations gives a
+zero moment sequence supported on `M_1 union M_2`, whose size is at most
+`2r-c`.  Since
+
+```text
+2r-c <= 2r-d = tau+|U|+r = L,
+```
+
+the first `|M_1 union M_2|` rows form an invertible Vandermonde system.  All
+difference coefficients vanish, so the two sparse representations have the
+same support and amplitudes.  This contradicts distinctness.  Hence (DP0)
+holds.
+
+For (DP1), each marked support contains `binom(r,d)` different `d`-subsets,
+and no `d`-subset of `H\U` can occur in two distinct marked frontiers by
+(DP0).  There are only `binom(n-|U|,d)` available `d`-subsets.
+
+This theorem unifies the previous special cases.  The moment-complete regime
+is `d<=0`.  The boundary matching case is `d=1`, where distinct frontiers are
+disjoint and the packing bound becomes `floor((n-|U|)/r)`.  Higher deficits
+are not arbitrary same-core clusters; they are bounded packing families with
+controlled overlap.
+
+The verifier now checks this deficit-packing rule for every produced
+moment-short canonical-core fiber.  In the largest `F_7^*` audit, it checks
+`17220` deficit-packing fibers with maximum deficit `1` and maximum fiber
+size `2`; the productive subaudit has the same counts.
+
 ## Empty-Core Endpoint Is The Boundary Moment Map
 
 It remains to identify the empty-core boundary exception left by the
