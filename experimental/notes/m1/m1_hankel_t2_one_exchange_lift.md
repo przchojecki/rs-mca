@@ -4358,6 +4358,46 @@ as a small constant to keep all non-generic quotient ledgers bounded-width,
 then prove that the saved generic determinant-gate mass is polynomial after
 the remaining aperiodic/quotient-periodic charges.
 
+## Exact No-Base Good-Pair Saving
+
+The width-zero case has a sharper elementary weight than the generic cutoff
+constant.  Let `R` be a split support for a `b=2` anchor with
+
+```text
+a_A(R)=0.
+```
+
+Thus all `q` roots of `R` avoid the base locus `B_0`.  The degree-gap lemma
+shows that no single non-base projective fiber can contain all roots of `R`:
+each fiber is the zero set of a nonzero residual direction of degree `<q`.
+Hence the largest projective fiber inside `R` has size at most `q-1`.
+
+Since good pairs are exactly cross-fiber pairs,
+
+```text
+g_A(R)=sum_{lambda<mu} r_lambda(R)r_mu(R).
+```
+
+If the largest fiber has size `m`, then the pairs from that fiber to its
+complement alone give
+
+```text
+g_A(R)>=m(q-m)>=q-1,        1<=m<=q-1.          (PF2-nobase-good)
+```
+
+The bound is sharp for a `(q-1,1)` fiber split.  Therefore every no-base split
+support has reciprocal weight
+
+```text
+1/g_A(R) <= 1/(q-1),        q>=2.               (PF2-nobase-weight)
+```
+
+This improves the width-zero determinant-gate coefficient from the coarse
+escape value `2/q` to the exact no-base value `1/(q-1)`.
+
+The verifier asserts this lower bound for every audited `b=2` no-base
+residual candidate in the existing projective-good-pair audit.
+
 ## Width-Zero b=2 Ledger
 
 The fixed-width corollary is especially sharp at `w=0`.  Put
@@ -4388,13 +4428,13 @@ Then (PF2-width-w-ledger) becomes the two-term bound
 ```text
 sum_{A in A_2} |F(A)|
  <=
-  (2/q) sum_{A in A_2} |I_A^{nb}|
+  (1/(q-1)) sum_{A in A_2} |I_A^{nb}|
   + sum_{A in A_2} sum_{x in B_0^*(A)} |F_x(A)|.  (PF2-width-zero)
 ```
 
 Equivalently, after the degree-gap exclusion, the `b=2` branch has only:
 
-1. no-base split determinant gates, paid with an explicit `2/q` saving;
+1. no-base split determinant gates, paid with the sharp `1/(q-1)` saving;
 2. one-root common-base fixed-divisor quotient fibers.
 
 This is a stronger endpoint than the general fixed-width form whenever the
@@ -4430,7 +4470,7 @@ to the lower-dimensional residual ledgers already isolated earlier.  If
 ```text
 |F_S(A)|
  <=
-  (2/q_S) |I_S^{nb}|
+  (1/(q_S-1)) |I_S^{nb}|
   + sum_{x in B_0^*(A)\S} |F_{S union {x}}(A)|.   (PF2-base-peel)
 ```
 
@@ -4451,15 +4491,16 @@ level recurrence
 sum_{|S|=s} |F_S(A)|
  <=
   sum_{|S|=s, dim span(P_S,Q_S)<2} |F_S(A)|
-  + sum_{|S|=s, dim span(P_S,Q_S)=2} (2/(q-s)) |I_S^{nb}|
+  + sum_{|S|=s, dim span(P_S,Q_S)=2} (1/(q-s-1)) |I_S^{nb}|
   + (s+1) sum_{|T|=s+1} |F_T(A)|.              (PF2-base-level)
 ```
 
 Thus the common-base ledger is not merely a one-step quotient charge.  It has
 a finite peeling tree whose internal `b=2` nodes pay a no-base determinant-gate
-term with a `2/(q-s)` saving, whose edges add one common-base root, and whose
-non-`b=2` nodes fall into lower-dimensional residual ledgers.  Since
-`s<q`, the tree has depth at most `q-1`.
+term with the sharp `1/(q-s-1)` no-base saving, whose edges add one common-base
+root, and whose non-`b=2` nodes fall into lower-dimensional residual ledgers.
+Since a `b=2` descended direction space requires `q-s>=2`, the denominator is
+defined at every internal `b=2` node, and the tree has depth at most `q-1`.
 
 This gives a precise route for closing the remaining base term in
 (PF2-width-zero): prove polynomial bounds for the no-base determinant-gate
@@ -4496,7 +4537,7 @@ dimension `2`.  In the `b=2` case, the width-zero ledger partitions
 `F_S^can(A)` into:
 
 1. no-base quotient supports, paid by the no-base determinant-gate term
-   `(2/q_S)|I_S^{nb,can}|`;
+   `(1/(q_S-1))|I_S^{nb,can}|`;
 2. supports with a next base root `x>max(S)`, which enter the unique child
    `F_{S union {x}}^can(A)`.
 
@@ -4506,7 +4547,7 @@ Hence there is no branching multiplicity:
 |F_S^can(A)|
  <=
   LowerDim_S^can
-  + (2/q_S)|I_S^{nb,can}|
+  + (1/(q_S-1))|I_S^{nb,can}|
   + sum_{x>max(S)} |F_{S union {x}}^can(A)|.    (PF2-canon-peel)
 ```
 
@@ -4519,14 +4560,14 @@ Iterating over the canonical tree gives the multiplicity-free endpoint
   sum_{S in Tree(A)}
     LowerDim_S^can
   + sum_{S in Tree_2(A)}
-      (2/(q-|S|)) |I_S^{nb,can}|.              (PF2-canon-tree)
+      (1/(q-|S|-1)) |I_S^{nb,can}|.            (PF2-canon-tree)
 ```
 
 Here `Tree_2(A)` denotes the canonical nodes whose descended direction space
 still has dimension two.  Thus the common-base term is controlled by a
 disjoint peeling tree: every original support contributes to exactly one leaf,
 and every internal `b=2` payment is a no-base determinant-gate term with the
-same explicit saving as in (PF2-width-zero), at the descended width.
+same sharp no-base saving as in (PF2-width-zero), at the descended width.
 
 This removes the factorial overcount implicit in the symmetric level
 recurrence and identifies the remaining `b=2` work as a bound for no-base

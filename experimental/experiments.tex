@@ -5177,16 +5177,24 @@ quotient fibers, and width-\(w\) projective-fiber quotient-line fibers.
 At \(w=0\), the projective-fiber quotient-line term is empty by the degree
 gap: it would require \(q\) roots in one non-base projective fiber, but every
 such fiber is the zero set of a nonzero degree-\(<q\) residual direction.
+In fact the no-base reciprocal weight is sharper than the generic
+\(2/q\) cutoff.  A no-base support cannot lie in one projective fiber, so if
+the largest fiber inside the support has size \(m\), the cross-fiber good
+pairs from that fiber to its complement already give
+\[
+  g_A(R)\ge m(q-m)\ge q-1 .
+\]
 Thus
 \[
   \sum_{A\in\mathcal A_2}|F(A)|
   \le
-  {2\over q}\sum_{A\in\mathcal A_2}|I_A^{\mathrm{nb}}|
+  {1\over q-1}\sum_{A\in\mathcal A_2}|I_A^{\mathrm{nb}}|
   +\sum_{A\in\mathcal A_2}\sum_{x\in B_0^*(A)}|F_x(A)|,
 \]
 where \(I_A^{\mathrm{nb}}\) is the split-good-pair domain whose image support
 avoids \(B_0\).  Hence the width-zero endpoint is a no-base determinant-gate
-term with a \(2/q\) saving plus the one-root common-base quotient ledger.
+term with the sharp \(1/(q-1)\) saving plus the one-root common-base quotient
+ledger.
 The common-base term can be peeled.  For
 \(S\subset B_0^*(A)\), write
 \[
@@ -5198,7 +5206,7 @@ with \(|R'|=q_S\) and \(\ell_S\ell_{R'}\in K(A)\).  If
 \(\dim\langle P_S,Q_S\rangle=2\), then the width-zero ledger applies again:
 \[
   |F_S(A)|
-  \le {2\over q_S}|I_S^{\mathrm{nb}}|
+  \le {1\over q_S-1}|I_S^{\mathrm{nb}}|
      +\sum_{x\in B_0^*(A)\setminus S}|F_{S\cup\{x\}}(A)|.
 \]
 If the quotient direction dimension is \(<2\), the branch has dropped to the
@@ -5213,7 +5221,7 @@ the canonical quotient fiber at a peeled subset \(S\), then at a \(b=2\) node
   |F_S^{can}(A)|
   \le
   L_S^{can}
-  +{2\over q-|S|}|I_S^{\mathrm{nb},can}|
+  +{1\over q-|S|-1}|I_S^{\mathrm{nb},can}|
   +\sum_{x>\max S}|F_{S\cup\{x\}}^{can}(A)|,
 \]
 where \(L_S^{can}\) is the lower-dimensional terminal contribution, and for

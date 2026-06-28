@@ -30,6 +30,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-29 - M1 b=2 no-base determinant saving
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_hankel_t2_one_exchange_lift.md`,
+  `experimental/experiments.tex`,
+  `experimental/scripts/verify_m1_hankel_t2_triangle_packets.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / STRUCTURAL / REDUCTION.
+- **What is being added:** Sharpens the width-zero no-base determinant-gate
+  coefficient: a no-base split support cannot lie in one projective fiber, so
+  it contains at least `q-1` good pairs and has reciprocal weight at most
+  `1/(q-1)`.
+- **How it is useful:** Replaces the previous coarse `2/q` escape constant by
+  the sharp no-base saving throughout the common-base and canonical peeling
+  recurrences.
+- **What to do next:** Bound the resulting no-base determinant-gate count
+  across canonical peeled anchors.
+
 ### 2026-06-29 - M1 b=2 canonical terminal leaves
 
 - **Agent/model:** AllenGrahamHart / Codex audit.
