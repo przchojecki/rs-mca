@@ -15015,6 +15015,56 @@ linear subspace of dimension `max(h-d_J,0)` in `F_q[X]_<h`, with
 `q^max(h-d_J,0)-1` nonzero vectors.  Inclusion-exclusion over `A`, followed
 by quotienting nonzero vectors by `F_q^*`, gives (RFQ0IE).
 
+## Corollary 40.147: The Product Split Collapses To Denominator Coprimality
+
+Keep the finite-field setup of Corollary 40.146, and put `R=r_v>0`.  Let
+`Irr(Q_0)` be the set of distinct monic irreducible factors of `Q_0`.  For
+`J subset Irr(Q_0)`, put
+
+```text
+d_J=sum_{f in J} deg f.
+```
+
+Then
+
+```text
+|P_v^x(Q_0)|
+ = (1/(q-1)) sum_{J subset Irr(Q_0)}
+     (-1)^|J| (q^max(R-d_J,0)-1).                (DenomCoprimeCount)
+```
+
+Equivalently,
+
+```text
+sum_{s=0}^{R-1} binom(n+s-1,s) RFPhi_{D,Q_0}(R-s)
+ = (1/(q-1)) sum_{J subset Irr(Q_0)}
+     (-1)^|J| (q^max(R-d_J,0)-1).                (SplitCollapse)
+```
+
+Thus the canonical `D`-root split is an exact accounting decomposition of the
+same denominator-coprime multiplier set.  Domain-root multiplicities do not
+change the raw fixed-denominator residual multiplier count; they only expose
+which pieces descend, slice, or become root-free packets.
+
+### Proof
+
+By definition,
+
+```text
+P_v^x(Q_0)={ [P] in P(F_q[X]_<R) : gcd(P,Q_0)=1 }.
+```
+
+A class is excluded exactly when its representative is divisible by at least
+one irreducible factor of `Q_0`.  For fixed `J subset Irr(Q_0)`, divisibility
+by `prod_{f in J}f` cuts out a subspace of `F_q[X]_<R` of dimension
+`max(R-d_J,0)`, containing `q^max(R-d_J,0)-1` nonzero vectors.  Inclusion-
+exclusion over `Irr(Q_0)`, followed by quotienting by scalar multiples,
+proves (DenomCoprimeCount).
+
+The equality (SplitCollapse) is (ProductSplitCount) from Corollary 40.146
+combined with (DenomCoprimeCount).  The final interpretation follows from the
+canonical bijection of Corollary 40.145.
+
 ## Corollary 41: The Global Common-Image Ledger Is Endpoint-Only
 
 Let `GCI` be the set of monic degree-`c` split core locators `L` for which
@@ -18087,6 +18137,9 @@ multiplicity vector.
 Corollary 40.146 turns that split into an exact finite-field product count
 with fixed-denominator coprimality included by inclusion-exclusion over the
 irreducible factors of `Q_0`.
+Corollary 40.147 gives the equivalent direct denominator-coprime count and
+shows that the domain-root split is an accounting decomposition of that same
+set, not an additional raw multiplier count.
 Corollary 41 packages the common-image branch into endpoint-type ledgers; it
 does not prove the endpoint rank hypotheses needed for the displayed
 `(q+2)binom(n,b)` bound. Corollary 42 packages the globally full core ledger

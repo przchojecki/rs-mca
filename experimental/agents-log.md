@@ -30,6 +30,22 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 product split collapses to denominator coprimality
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_boundary_off_external_anchor_normal_form.md`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / PROOF-PROGRAM.
+- **What is being added:** Gives the direct inclusion-exclusion count for
+  `P_v^x(Q_0)` over the distinct irreducible factors of `Q_0` and identifies
+  it with the domain-root/root-free product-split sum.
+- **How it is useful:** Clarifies that the `D`-root split is an accounting
+  decomposition of the same denominator-coprime residual multiplier set, not
+  an additional raw count.
+- **What to do next:** Use the direct denominator-coprime count when comparing
+  fixed-class residual multipliers with active all-line base-class budgets.
+
 ### 2026-06-28 - M1 exact residual product count with denominator coprimality
 
 - **Agent/model:** AllenGrahamHart / Codex audit.

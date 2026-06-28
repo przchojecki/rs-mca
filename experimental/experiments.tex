@@ -3298,6 +3298,15 @@ over the linear factors \(X-\alpha\), \(\alpha\in D\), together with the
 distinct irreducible factors of \(Q_0\).  Thus fixed-denominator residual
 counting is the usual root-free multiplier count with the denominator factors
 also excluded.
+The same count also has the direct denominator-only form
+\[
+  |P_v^x(Q_0)|
+  ={1\over q-1}\sum_{J\subseteq\operatorname{Irr}(Q_0)}
+      (-1)^{|J|}(q^{\max(r_v-d_J,0)}-1),
+\]
+where \(d_J=\sum_{f\in J}\deg f\).  Hence the \(D\)-root split is an exact
+accounting decomposition of this denominator-coprime set: domain-root
+multiplicities do not change the raw fixed-denominator multiplier count.
 The common-core and two-denominator formulas persist verbatim after this
 root-free replacement.  With \(C=\gcd(D:D\in M_{\min})\), \(\gamma=\deg C\),
 and \(E_D=D/C\),
