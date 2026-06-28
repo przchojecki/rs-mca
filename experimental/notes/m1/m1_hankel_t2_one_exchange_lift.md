@@ -1271,6 +1271,29 @@ cuts produced by the deletion tree.  Thus the boundary endpoint is no longer a
 generic Prony ambiguity; it is a finite squarefree-locator interpolation
 problem for the explicit scalars `c_X(y;C)`.
 
+The same Vandermonde argument gives a general fiber bound without assuming
+`|H|=2m`.  Fix any domain `H` of size `n`, and consider the boundary moment
+map
+
+```text
+Psi(Y,(a_y)) = (sum_{y in Y} a_y y^i)_{0<=i<=2m-2},
+        |Y|=m,        a_y in F^*.
+```
+
+Inside any fiber of `Psi`, the supports are pairwise disjoint.  Indeed, two
+different supports in the same fiber cannot meet, by the square Vandermonde
+argument above; and once a support is fixed, its amplitudes are uniquely
+recovered from the first `m` moments.  Hence every boundary fiber has size at
+most
+
+```text
+floor(n/m).                                      (FB)
+```
+
+Equivalently, even before one classifies the disjoint aliases, the
+`2m-1`-moment endpoint has only matching-type support ambiguity.  There is no
+overlapping cluster or multiplicative support packet hidden at the boundary.
+
 There is a particularly simple full-domain boundary specialization.  Suppose
 the available mode universe is the whole root-of-unity domain
 
@@ -1382,7 +1405,9 @@ amplitude packets.  The remaining `4200` boundary packets are support-unique.
 The root-linear packets occupy all `binom(6,3)=20` supports with `6=|F|-1`
 scalar multiples per support, exactly as (AL) predicts.  Thus the visible
 full-domain endpoint has `4200+120/2=4260` distinct boundary moment sequences,
-matching (BI).
+matching (BI).  The same audit checks the general matching-fiber bound (FB):
+the boundary fiber-size histogram is `4200` fibers of size `1` and `120`
+labeled packets lying in fibers of size `2`, with maximum fiber size `2`.
 
 ## Root-Marked Slice Is One Row
 

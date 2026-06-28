@@ -93,6 +93,8 @@ c_y prod_{z in Z}(y-z) is independent of y in Y.
 In the full-domain boundary case n=2m over roots of unity, it checks the
 equivalent root-linear amplitude test a_y/y = constant on Y.
 It records the resulting labeled support profile for root-linear packets.
+More generally, it records the boundary fiber-size histogram and checks the
+matching bound fiber_size <= floor(n/m).
 Equivalently, it records support-unique boundary packets as those with no
 equal-size visible alias.
 The full-domain visible endpoint count is then support-unique labels plus one
@@ -462,6 +464,8 @@ def analyze_case(
     )
     terminal_tree_boundary_support_unique = 0
     terminal_tree_productive_boundary_support_unique = 0
+    terminal_tree_boundary_max_fiber_size = 0
+    terminal_tree_productive_boundary_max_fiber_size = 0
     terminal_tree_multiflag_cores = 0
     iterated_boundary_defect_histogram: Counter[int] = Counter()
     fixed_root_filtration_defect_histogram: Counter[int] = Counter()
@@ -492,6 +496,8 @@ def analyze_case(
     terminal_tree_productive_boundary_scalar_fit_histogram: Counter[int] = Counter()
     terminal_tree_boundary_root_linear_histogram: Counter[int] = Counter()
     terminal_tree_productive_boundary_root_linear_histogram: Counter[int] = Counter()
+    terminal_tree_boundary_fiber_size_histogram: Counter[int] = Counter()
+    terminal_tree_productive_boundary_fiber_size_histogram: Counter[int] = Counter()
     terminal_tree_multiflag_core_histogram: Counter[int] = Counter()
     max_active = 0
     max_edges = 0
@@ -602,6 +608,8 @@ def analyze_case(
             nonlocal terminal_tree_productive_boundary_root_linear_checks
             nonlocal terminal_tree_boundary_root_linear_hits
             nonlocal terminal_tree_productive_boundary_root_linear_hits
+            nonlocal terminal_tree_boundary_max_fiber_size
+            nonlocal terminal_tree_productive_boundary_max_fiber_size
             nonlocal terminal_tree_multiflag_cores
             nonlocal max_nonzero_terminal_bottom_supports
             nonlocal max_nonzero_terminal_support_bound_slack
@@ -810,6 +818,8 @@ def analyze_case(
                 nonlocal terminal_tree_boundary_root_linear_by_support
                 nonlocal terminal_tree_boundary_support_unique
                 nonlocal terminal_tree_productive_boundary_support_unique
+                nonlocal terminal_tree_boundary_max_fiber_size
+                nonlocal terminal_tree_productive_boundary_max_fiber_size
 
                 if not current_core:
                     return (1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
@@ -1419,6 +1429,37 @@ def analyze_case(
                             terminal_tree_boundary_alias_histogram[
                                 len(aliases)
                             ] += 1
+                            fiber_size = 1 + len(aliases)
+                            if fiber_size > n // mode_count:
+                                raise AssertionError(
+                                    {
+                                        "kind": (
+                                            "terminal-branch-boundary-"
+                                            "fiber-size-bound-failed"
+                                        ),
+                                        "p": p,
+                                        "k": k,
+                                        "syndrome": list(syn),
+                                        "fixed_roots": list(fixed_roots),
+                                        "current_fixed": list(current_fixed),
+                                        "current_core": list(current_core),
+                                        "exit_roots": sorted(
+                                            child_root_indices
+                                        ),
+                                        "aliases": [
+                                            list(alias) for alias in aliases
+                                        ],
+                                        "fiber_size": fiber_size,
+                                        "bound": n // mode_count,
+                                    }
+                                )
+                            terminal_tree_boundary_max_fiber_size = max(
+                                terminal_tree_boundary_max_fiber_size,
+                                fiber_size,
+                            )
+                            terminal_tree_boundary_fiber_size_histogram[
+                                fiber_size
+                            ] += 1
                             if productive_children >= 2:
                                 terminal_tree_productive_boundary_alias_checks += 1
                                 terminal_tree_productive_boundary_aliases += (
@@ -1426,6 +1467,13 @@ def analyze_case(
                                 )
                                 terminal_tree_productive_boundary_alias_histogram[
                                     len(aliases)
+                                ] += 1
+                                terminal_tree_productive_boundary_max_fiber_size = max(
+                                    terminal_tree_productive_boundary_max_fiber_size,
+                                    fiber_size,
+                                )
+                                terminal_tree_productive_boundary_fiber_size_histogram[
+                                    fiber_size
                                 ] += 1
                             terminal_tree_boundary_scalar_fits += scalar_fit_count
                             terminal_tree_boundary_scalar_fit_histogram[
@@ -3462,6 +3510,12 @@ def analyze_case(
         "terminal_tree_productive_boundary_support_unique": (
             terminal_tree_productive_boundary_support_unique
         ),
+        "terminal_tree_boundary_max_fiber_size": (
+            terminal_tree_boundary_max_fiber_size
+        ),
+        "terminal_tree_productive_boundary_max_fiber_size": (
+            terminal_tree_productive_boundary_max_fiber_size
+        ),
         "terminal_tree_boundary_full_domain_visible_sequences": (
             terminal_tree_boundary_support_unique
             + terminal_tree_boundary_root_linear_hits // 2
@@ -3698,6 +3752,12 @@ def analyze_case(
                 Counter(terminal_tree_boundary_root_linear_by_support.values()).items()
             )
         ),
+        "terminal_tree_boundary_fiber_size_histogram": dict(
+            sorted(terminal_tree_boundary_fiber_size_histogram.items())
+        ),
+        "terminal_tree_productive_boundary_fiber_size_histogram": dict(
+            sorted(terminal_tree_productive_boundary_fiber_size_histogram.items())
+        ),
         "terminal_tree_multiflag_core_histogram": dict(
             sorted(terminal_tree_multiflag_core_histogram.items())
         ),
@@ -3794,6 +3854,8 @@ def print_summary(results: Sequence[dict[str, object]]) -> None:
             f"{result['terminal_tree_boundary_support_unique']} "
             f"boundary_visible_sequences="
             f"{result['terminal_tree_boundary_full_domain_visible_sequences']} "
+            f"boundary_max_fiber="
+            f"{result['terminal_tree_boundary_max_fiber_size']} "
             f"max_nonzero_full_support_slack="
             f"{result['max_nonzero_full_support_ledger_slack']} "
             f"max_nonzero_top_active={result['max_nonzero_top_active_members']}"
