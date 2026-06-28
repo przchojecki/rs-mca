@@ -5838,6 +5838,10 @@ def analyze_case(
                                                                 ),
                                                             }
                                                         )
+                                            projective_fiber_directions: dict[
+                                                tuple[int, ...],
+                                                tuple[int, ...],
+                                            ] = {}
                                             for key, roots in (
                                                 projective_eval_fibers.items()
                                             ):
@@ -5952,6 +5956,9 @@ def analyze_case(
                                                     "fiber",
                                                     key=key,
                                                 )
+                                                projective_fiber_directions[
+                                                    key
+                                                ] = fiber_direction
                                             projective_pair_bad_subsets: set[
                                                 tuple[int, ...]
                                             ] = set()
@@ -6329,9 +6336,9 @@ def analyze_case(
                                                     if root
                                                     in projective_eval_base_roots
                                                 )
-                                                candidate_fiber_counts: dict[
+                                                candidate_fiber_roots: dict[
                                                     tuple[int, ...],
-                                                    int,
+                                                    list[int],
                                                 ] = {}
                                                 for root in candidate:
                                                     if (
@@ -6342,13 +6349,16 @@ def analyze_case(
                                                     key = projective_eval_values[
                                                         root
                                                     ]
-                                                    candidate_fiber_counts[key] = (
-                                                        candidate_fiber_counts.get(
-                                                            key,
-                                                            0,
-                                                        )
-                                                        + 1
+                                                    candidate_fiber_roots.setdefault(
+                                                        key,
+                                                        [],
+                                                    ).append(root)
+                                                candidate_fiber_counts = {
+                                                    key: len(roots)
+                                                    for key, roots in (
+                                                        candidate_fiber_roots.items()
                                                     )
+                                                }
                                                 candidate_base_occupancy_max = max(
                                                     candidate_base_occupancy_max,
                                                     candidate_base_occupancy,
@@ -6502,6 +6512,116 @@ def analyze_case(
                                                             },
                                                         }
                                                     )
+                                                if candidate_good_pairs == 0:
+                                                    support_base_roots = tuple(
+                                                        root
+                                                        for root in candidate
+                                                        if root
+                                                        in projective_eval_base_roots
+                                                    )
+                                                    support_certificate_count = 0
+                                                    if (
+                                                        2
+                                                        * len(
+                                                            support_base_roots
+                                                        )
+                                                        >= residual_size
+                                                    ):
+                                                        support_certificate_count += (
+                                                            1
+                                                        )
+                                                        for (
+                                                            basis_index,
+                                                            vector,
+                                                        ) in enumerate(
+                                                            direction_basis
+                                                        ):
+                                                            check_half_height_quotient_shadow(
+                                                                support_base_roots,
+                                                                vector,
+                                                                "support-base",
+                                                                basis_index=(
+                                                                    basis_index
+                                                                ),
+                                                            )
+                                                    for key, roots in (
+                                                        candidate_fiber_roots.items()
+                                                    ):
+                                                        if (
+                                                            2 * len(roots)
+                                                            < residual_size
+                                                        ):
+                                                            continue
+                                                        support_certificate_count += (
+                                                            1
+                                                        )
+                                                        check_half_height_quotient_shadow(
+                                                            roots,
+                                                            projective_fiber_directions[
+                                                                key
+                                                            ],
+                                                            "support-fiber",
+                                                            key=key,
+                                                        )
+                                                    if not (
+                                                        support_certificate_count
+                                                    ):
+                                                        raise AssertionError(
+                                                            {
+                                                                "kind": (
+                                                                    "productive-"
+                                                                    if productive
+                                                                    else ""
+                                                                )
+                                                                + "marked-core-"
+                                                                "deficit-"
+                                                                "anchor-"
+                                                                "direction-"
+                                                                "mds-"
+                                                                "projective-"
+                                                                "zero-good-"
+                                                                "support-"
+                                                                "certificate-"
+                                                                "failed",
+                                                                "p": p,
+                                                                "k": k,
+                                                                "syndrome": list(
+                                                                    syn
+                                                                ),
+                                                                "fixed_roots": list(
+                                                                    fixed_roots
+                                                                ),
+                                                                "unmarked_core": list(
+                                                                    unmarked_core
+                                                                ),
+                                                                "marked_count": (
+                                                                    marked_count
+                                                                ),
+                                                                "core_deficit": (
+                                                                    core_deficit
+                                                                ),
+                                                                "anchor": list(
+                                                                    anchor
+                                                                ),
+                                                                "candidate": list(
+                                                                    candidate
+                                                                ),
+                                                                "base_roots": list(
+                                                                    support_base_roots
+                                                                ),
+                                                                "fiber_roots": {
+                                                                    str(key): list(
+                                                                        roots
+                                                                    )
+                                                                    for (
+                                                                        key,
+                                                                        roots,
+                                                                    ) in (
+                                                                        candidate_fiber_roots.items()
+                                                                    )
+                                                                },
+                                                            }
+                                                        )
                                             if residual_candidates:
                                                 nonbase_lower_count = (
                                                     residual_size

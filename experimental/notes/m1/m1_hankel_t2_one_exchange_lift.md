@@ -3412,6 +3412,46 @@ still has rank two, and verifies that the quotient projective evaluation map
 agrees with the original one off `B_0`.  The current largest `F_7^*` scan has
 no `b(U,W)=2` produced anchor.
 
+## Zero-Good b=2 Supports Carry Half-Width Certificates
+
+The preceding height reductions can be localized to individual residual
+supports.  Let `R` be a residual support in the fixed-anchor fiber, and suppose
+its cross-fiber good-pair count is zero:
+
+```text
+g(R)=0.
+```
+
+Then all non-base roots of `R` lie in a single projective fiber.  Indeed, two
+non-base roots in distinct fibers would themselves be a good pair.  Writing
+
+```text
+a=|R cap B_0|,        m=max_lambda |R cap ev^{-1}(lambda)|,
+```
+
+we have `q=a+m`, hence either `a>=q/2` or `m>=q/2`.
+
+Therefore every residual support not charged by the good-pair packing sum
+carries a support-local half-width quotient certificate:
+
+1. If `a>=q/2`, then `C=R cap B_0` is a common root set for the whole direction
+   pencil, so `V(U,W)=ell_C V_C` with quotient width `<q-|C|<=q/2`.
+2. If `m>=q/2`, then for the unique occupied non-base fiber `lambda`, the
+   direction `Q_lambda` satisfies `Q_lambda=ell_C R_C` on
+   `C=R cap ev^{-1}(lambda)`, again with `deg R_C<q-|C|<=q/2`.
+
+Thus the `b=2` fixed-anchor fiber splits into a packable part, where
+`g(R)>0`, and a certified part, where each uncharged support supplies a
+half-width fixed-divisor quotient kernel.  The remaining task is no longer to
+control diffuse residual supports; it is to count or charge these explicit
+half-width certificates.
+
+The verifier now checks this support-local split whenever `b(U,W)=2`: every
+residual candidate with `g(R)=0` must have a base-heavy or fiber-heavy subset
+of size at least `q/2`, and the corresponding half-width quotient-kernel
+identity is verified directly.  The current largest `F_7^*` scan has no
+`b(U,W)=2` produced anchor.
+
 ## Bad Root Slices Are Absorbed-Anchor Rank Defects
 
 The preceding bad-root condition has an equivalent absorbed-anchor form.  Fix

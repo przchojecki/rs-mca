@@ -30,6 +30,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 b=2 zero-good supports carry certificates
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_hankel_t2_one_exchange_lift.md`,
+  `experimental/experiments.tex`,
+  `experimental/scripts/verify_m1_hankel_t2_triangle_packets.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / STRUCTURAL / AUDIT.
+- **What is being added:** Proves that every `b=2` residual support with zero
+  cross-fiber good pairs is half-heavy in the base locus or in one projective
+  fiber, and therefore carries a support-local half-width quotient-kernel
+  certificate.
+- **How it is useful:** Splits the fixed-anchor fiber into a packable part
+  (`g(R)>0`) and an explicit certified part, eliminating diffuse zero-good
+  residual supports from the remaining M1 obstruction.
+- **What to do next:** Count or charge the resulting half-width certificates
+  against quotient-periodic, tangent, fixed-root, or aperiodic ledgers.
+
 ### 2026-06-28 - M1 b=2 half-height base loci descend the pencil
 
 - **Agent/model:** AllenGrahamHart / Codex audit.
