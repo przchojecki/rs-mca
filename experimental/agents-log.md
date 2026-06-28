@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 b=2 half-certificate completions are local
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_hankel_t2_one_exchange_lift.md`,
+  `experimental/experiments.tex`,
+  `experimental/scripts/verify_m1_hankel_t2_triangle_packets.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / STRUCTURAL / AUDIT.
+- **What is being added:** Refines the `b=2` zero-good half-certificate bound:
+  base certificates complete only inside the base locus plus one projective
+  fiber, and fiber certificates complete only inside that fiber plus the base.
+- **How it is useful:** Removes the artificial all-domain completion factor
+  from the zero-good ledger and keeps the remaining M1 obstruction attached to
+  local root-shadow slices.
+- **What to do next:** Bound the local base and fiber shadow ledgers by
+  quotient-periodic, tangent, fixed-root, or aperiodic residue-packing input.
+
 ### 2026-06-28 - M1 b=2 zero-good supports are half-certificate incidences
 
 - **Agent/model:** AllenGrahamHart / Codex audit.

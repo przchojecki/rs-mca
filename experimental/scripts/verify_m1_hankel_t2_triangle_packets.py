@@ -6386,6 +6386,169 @@ def analyze_case(
                                                     ),
                                                 )
                                             )
+                                            base_half_completion_count = (
+                                                binomial_or_zero(
+                                                    (
+                                                        len(
+                                                            projective_eval_base_roots
+                                                        )
+                                                        - half_certificate_size
+                                                    ),
+                                                    (
+                                                        residual_size
+                                                        - half_certificate_size
+                                                    ),
+                                                )
+                                                + sum(
+                                                    binomial_or_zero(
+                                                        len(roots),
+                                                        nonbase_count,
+                                                    )
+                                                    * binomial_or_zero(
+                                                        (
+                                                            len(
+                                                                projective_eval_base_roots
+                                                            )
+                                                            - half_certificate_size
+                                                        ),
+                                                        (
+                                                            residual_size
+                                                            - half_certificate_size
+                                                            - nonbase_count
+                                                        ),
+                                                    )
+                                                    for roots in (
+                                                        projective_eval_fibers.values()
+                                                    )
+                                                    for nonbase_count in range(
+                                                        1,
+                                                        (
+                                                            residual_size
+                                                            - half_certificate_size
+                                                        )
+                                                        + 1,
+                                                    )
+                                                )
+                                            )
+                                            fiber_half_incidence_bound = sum(
+                                                binomial_or_zero(
+                                                    len(roots),
+                                                    half_certificate_size,
+                                                )
+                                                * sum(
+                                                    binomial_or_zero(
+                                                        (
+                                                            len(roots)
+                                                            - half_certificate_size
+                                                        ),
+                                                        same_fiber_count,
+                                                    )
+                                                    * binomial_or_zero(
+                                                        len(
+                                                            projective_eval_base_roots
+                                                        ),
+                                                        (
+                                                            residual_size
+                                                            - half_certificate_size
+                                                            - same_fiber_count
+                                                        ),
+                                                    )
+                                                    for same_fiber_count in range(
+                                                        0,
+                                                        (
+                                                            residual_size
+                                                            - half_certificate_size
+                                                        )
+                                                        + 1,
+                                                    )
+                                                )
+                                                for roots in (
+                                                    projective_eval_fibers.values()
+                                                )
+                                            )
+                                            projective_zero_good_local_bound = (
+                                                binomial_or_zero(
+                                                    len(
+                                                        projective_eval_base_roots
+                                                    ),
+                                                    half_certificate_size,
+                                                )
+                                                * base_half_completion_count
+                                                + fiber_half_incidence_bound
+                                            )
+
+                                            def projective_local_error(
+                                                suffix: str,
+                                                **extra: object,
+                                            ) -> dict[str, object]:
+                                                payload: dict[str, object] = {
+                                                    "kind": (
+                                                        (
+                                                            "productive-"
+                                                            if productive
+                                                            else ""
+                                                        )
+                                                        + "marked-core-"
+                                                        "deficit-anchor-"
+                                                        "direction-mds-"
+                                                        "projective-"
+                                                        + suffix
+                                                    ),
+                                                    "p": p,
+                                                    "k": k,
+                                                    "syndrome": list(syn),
+                                                    "fixed_roots": list(
+                                                        fixed_roots
+                                                    ),
+                                                    "unmarked_core": list(
+                                                        unmarked_core
+                                                    ),
+                                                    "marked_count": marked_count,
+                                                    "core_deficit": core_deficit,
+                                                    "anchor": list(anchor),
+                                                }
+                                                payload.update(extra)
+                                                return payload
+
+                                            if (
+                                                projective_zero_good_local_bound
+                                                > projective_zero_good_incidence_bound
+                                            ):
+                                                raise AssertionError(
+                                                    projective_local_error(
+                                                        "zero-good-local-"
+                                                        "incidence-dominance-"
+                                                        "failed",
+                                                        local_bound=(
+                                                            projective_zero_good_local_bound
+                                                        ),
+                                                        global_bound=(
+                                                            projective_zero_good_incidence_bound
+                                                        ),
+                                                    )
+                                                )
+                                            if (
+                                                projective_zero_good_envelope_count
+                                                > projective_zero_good_local_bound
+                                            ):
+                                                raise AssertionError(
+                                                    projective_local_error(
+                                                        "zero-good-local-"
+                                                        "envelope-bound-failed",
+                                                        zero_good_envelope=(
+                                                            projective_zero_good_envelope_count
+                                                        ),
+                                                        local_bound=(
+                                                            projective_zero_good_local_bound
+                                                        ),
+                                                        base_half_completion_count=(
+                                                            base_half_completion_count
+                                                        ),
+                                                        fiber_half_incidence_bound=(
+                                                            fiber_half_incidence_bound
+                                                        ),
+                                                    )
+                                                )
                                             pair_owner: dict[
                                                 tuple[int, int],
                                                 tuple[int, ...],
@@ -6802,6 +6965,28 @@ def analyze_case(
                                                         },
                                                     }
                                                 )
+                                            if (
+                                                zero_good_candidate_count
+                                                > projective_zero_good_local_bound
+                                            ):
+                                                raise AssertionError(
+                                                    projective_local_error(
+                                                        "zero-good-local-"
+                                                        "incidence-failed",
+                                                        zero_good_candidates=(
+                                                            zero_good_candidate_count
+                                                        ),
+                                                        local_bound=(
+                                                            projective_zero_good_local_bound
+                                                        ),
+                                                        base_half_completion_count=(
+                                                            base_half_completion_count
+                                                        ),
+                                                        fiber_half_incidence_bound=(
+                                                            fiber_half_incidence_bound
+                                                        ),
+                                                    )
+                                                )
                                             projective_zero_good_closure_bound = (
                                                 len(projective_good_pairs)
                                                 + projective_zero_good_envelope_count
@@ -6809,6 +6994,10 @@ def analyze_case(
                                             projective_half_certificate_closure_bound = (
                                                 len(projective_good_pairs)
                                                 + projective_zero_good_incidence_bound
+                                            )
+                                            projective_local_half_certificate_closure_bound = (
+                                                len(projective_good_pairs)
+                                                + projective_zero_good_local_bound
                                             )
                                             if (
                                                 len(residual_candidates)
@@ -6917,6 +7106,31 @@ def analyze_case(
                                                             projective_half_certificate_closure_bound
                                                         ),
                                                     }
+                                                )
+                                            if (
+                                                len(residual_candidates)
+                                                > projective_local_half_certificate_closure_bound
+                                            ):
+                                                raise AssertionError(
+                                                    projective_local_error(
+                                                        "local-half-"
+                                                        "certificate-closure-"
+                                                        "bound-failed",
+                                                        residual_candidates=(
+                                                            len(
+                                                                residual_candidates
+                                                            )
+                                                        ),
+                                                        good_pair_count=len(
+                                                            projective_good_pairs
+                                                        ),
+                                                        local_bound=(
+                                                            projective_zero_good_local_bound
+                                                        ),
+                                                        bound=(
+                                                            projective_local_half_certificate_closure_bound
+                                                        ),
+                                                    )
                                                 )
                                             if residual_candidates:
                                                 nonbase_lower_count = (

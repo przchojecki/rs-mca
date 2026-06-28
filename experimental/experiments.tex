@@ -4899,6 +4899,27 @@ projective fiber.  Therefore
 where \(N=|H\setminus(U\cup W)|\).  This rewrites the remaining zero-good
 branch as a half-width fixed-divisor certificate count times residual
 completions.
+The completion factor can be localized.  Put
+\[
+  B_c=\binom{s-c}{q-c}
+  +\sum_\lambda\sum_{r=1}^{q-c}
+    \binom{m_\lambda}{r}\binom{s-c}{q-c-r},
+\]
+and
+\[
+  F_{c,\lambda}=\sum_{r=0}^{q-c}
+    \binom{m_\lambda-c}{r}\binom{s}{q-c-r}.
+\]
+A base half-certificate completes only inside the base locus plus one
+projective fiber, and a fiber half-certificate completes only inside that
+fiber plus the base locus.  Hence
+\[
+  Z_0^{env}
+  \le
+  \binom{s}{c}B_c+\sum_\lambda\binom{m_\lambda}{c}F_{c,\lambda},
+\]
+and the same expression may replace \(Z_0^{env}\) in the fixed-anchor closure.
+Thus the zero-good branch carries no artificial all-domain completion factor.
 Equivalently, for each available root \(x\) the bad-slice test is the failure
 of full column rank for the absorbed-anchor matrix
 \[

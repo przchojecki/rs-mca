@@ -3530,6 +3530,64 @@ fibers, checks that the observed zero-good supports satisfy (PF2-half-cert),
 and asserts (PF2-half-cert-close).  The current largest `F_7^*` scan still has
 no `b(U,W)=2` produced anchor.
 
+## Half-Certificate Completions Stay in Their Own Shadows
+
+The previous incidence bound used the coarse completion factor
+`binom(N-c,q-c)`.  The zero-good structure gives a sharper local version: once
+the half-certificate is fixed, its completions cannot range over all of `D'`.
+
+For a base certificate `C subset B_0`, the remaining `q-c` roots must lie in
+`B_0\C` together with at most one projective fiber.  Thus one fixed base
+certificate has at most
+
+```text
+B_c
+ =
+ binom(s-c,q-c)
+ + sum_lambda sum_{r=1}^{q-c}
+     binom(m_lambda,r) binom(s-c,q-c-r)
+```
+
+zero-good completions.  For a fiber certificate
+`C subset ev^{-1}(lambda)`, the remaining roots must lie in
+`B_0 union (ev^{-1}(lambda)\C)`, so one fixed certificate in the `lambda`
+fiber has at most
+
+```text
+F_{c,lambda}
+ =
+ sum_{r=0}^{q-c}
+   binom(m_lambda-c,r) binom(s,q-c-r)
+```
+
+zero-good completions.  Since every zero-good support contains either a base
+`c`-certificate or a fiber `c`-certificate, the envelope satisfies
+
+```text
+Z_0^{env}(U,W)
+ <= binom(s,c) B_c
+    + sum_lambda binom(m_lambda,c) F_{c,lambda}.  (PF2-local-half-cert)
+```
+
+Consequently
+
+```text
+|F(U,W)|
+ <= G_tot
+    + binom(s,c) B_c
+    + sum_lambda binom(m_lambda,c) F_{c,lambda}.  (PF2-local-close)
+```
+
+This removes the artificial global `N`-completion loss from the zero-good
+half-certificate ledger.  Fiber certificates only need a bound for their own
+projective root shadow, while base certificates see only the base locus plus
+one projective shadow at a time.
+
+The verifier computes the local completion bound, checks that it dominates the
+exact zero-good envelope, checks that it is no larger than the coarse global
+half-certificate incidence bound, and asserts (PF2-local-close).  The current
+largest `F_7^*` scan still has no `b(U,W)=2` produced anchor.
+
 ## Bad Root Slices Are Absorbed-Anchor Rank Defects
 
 The preceding bad-root condition has an equivalent absorbed-anchor form.  Fix
