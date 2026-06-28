@@ -2330,6 +2330,55 @@ moment-short canonical-core fiber.  In the largest `F_7^*` audit, it checks
 `17220` deficit-packing fibers with maximum deficit `1` and maximum fiber
 size `2`; the productive subaudit has the same counts.
 
+## Deficit Anchors Reconstruct Moment-Short Fibers
+
+The packing proof has a constructive form.  Keep `U`, `r`, and
+`d=r-tau-|U|>0` fixed, and let `W` be a `d`-subset of the marked frontier
+`M(S)`.  Then the pair `(U,W)` determines the whole marked frontier `M(S)`.
+
+Indeed, delete all unmarked roots and put `L=tau+|U|+r`.  The mixed face
+formula gives the fixed length-`L` moment sequence
+
+```text
+G_U
+ = (sum_{y in M(S)} a_y y^i/ell_U(y))_{0<=i<L}.
+```
+
+Apply the locator `ell_W` to this sequence:
+
+```text
+(ell_W G_U)_i
+ = sum_{y in M(S)\W} a_y ell_W(y) y^i/ell_U(y),
+        0<=i<L-d.
+```
+
+The modes in `W` vanish, and every remaining amplitude is nonzero.  Since
+
+```text
+|M(S)\W|=r-d=tau+|U|,        L-d=2(r-d),
+```
+
+the Prony/Vandermonde annihilator recovers the remaining locator
+`prod_{y in M(S)\W}(X-y)` from `(ell_W G_U)`.  Thus `M(S)` is recovered as
+`W union (M(S)\W)`.
+
+Equivalently, the map
+
+```text
+(S,W),        W subset M(S), |W|=d
+    ->        (U(S),W)
+```
+
+is injective on fixed-`r` moment-short fibers.  The deficit-packing bound is
+just the counting shadow of this reconstruction.  This gives a concrete
+object for the remaining M1 short-core ledger: count admissible deficit
+anchors `(U,W)`, not repeated marked frontiers over the same core.
+
+The verifier audits this anchor injection directly, in addition to the
+pairwise-overlap packing condition.  In the largest `F_7^*` audit, it checks
+`51840` deficit-anchor labels, with at most `6` labels in any one fiber; the
+productive subaudit has the same counts.
+
 ## Deficit-Weighted Core Closure Criterion
 
 The preceding local packing theorem removes the artificial cutoff

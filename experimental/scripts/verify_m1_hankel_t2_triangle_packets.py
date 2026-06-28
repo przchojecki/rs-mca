@@ -147,6 +147,8 @@ For the remaining moment-short cores, it checks the deficit-packing rule:
 with d=r-t-|U|>0, two distinct marked frontiers over the same unmarked core
 cannot share d marked roots, hence each fiber obeys the elementary d-subset
 packing bound.
+Equivalently, it audits the deficit-anchor injection: a fixed unmarked core
+and any d marked roots determine the whole marked frontier.
 For each fixed collapsed anchor base, it audits the sparse-representation
 fiber: below the boundary the mode support is unique, while at the boundary
 distinct supports are disjoint and obey the matching bound.
@@ -580,6 +582,10 @@ def analyze_case(
     terminal_tree_productive_deficit_packing_core_max_deficit = 0
     terminal_tree_deficit_packing_core_max_fiber_size = 0
     terminal_tree_productive_deficit_packing_core_max_fiber_size = 0
+    terminal_tree_deficit_anchor_label_checks = 0
+    terminal_tree_productive_deficit_anchor_label_checks = 0
+    terminal_tree_deficit_anchor_max_labels_per_fiber = 0
+    terminal_tree_productive_deficit_anchor_max_labels_per_fiber = 0
     terminal_tree_core_packet_checks = 0
     terminal_tree_productive_core_packet_checks = 0
     terminal_tree_core_simple_pole_lift_checks = 0
@@ -845,6 +851,10 @@ def analyze_case(
             nonlocal terminal_tree_productive_deficit_packing_core_max_deficit
             nonlocal terminal_tree_deficit_packing_core_max_fiber_size
             nonlocal terminal_tree_productive_deficit_packing_core_max_fiber_size
+            nonlocal terminal_tree_deficit_anchor_label_checks
+            nonlocal terminal_tree_productive_deficit_anchor_label_checks
+            nonlocal terminal_tree_deficit_anchor_max_labels_per_fiber
+            nonlocal terminal_tree_productive_deficit_anchor_max_labels_per_fiber
             nonlocal terminal_tree_core_packet_checks
             nonlocal terminal_tree_productive_core_packet_checks
             nonlocal terminal_tree_core_simple_pole_lift_checks
@@ -3216,6 +3226,8 @@ def analyze_case(
                 int,
                 int,
                 int,
+                int,
+                int,
             ]:
                 fibers: dict[
                     tuple[int, tuple[int, ...]],
@@ -3255,6 +3267,8 @@ def analyze_case(
                 deficit_packing_checks = 0
                 deficit_packing_max_deficit = 0
                 deficit_packing_max_size = 0
+                deficit_anchor_label_checks = 0
+                deficit_anchor_max_labels = 0
                 for (marked_count, unmarked_core), supports_in_fiber in (
                     fibers.items()
                 ):
@@ -3351,6 +3365,74 @@ def analyze_case(
                             marked_count,
                             core_deficit,
                         )
+                        deficit_anchor_label_checks += packed_subsets
+                        deficit_anchor_max_labels = max(
+                            deficit_anchor_max_labels,
+                            packed_subsets,
+                        )
+                        anchor_to_support: dict[
+                            tuple[int, ...],
+                            tuple[int, ...],
+                        ] = {}
+                        for support in unique_supports:
+                            for anchor in itertools.combinations(
+                                support,
+                                core_deficit,
+                            ):
+                                previous = anchor_to_support.get(anchor)
+                                if (
+                                    previous is not None
+                                    and previous != support
+                                ):
+                                    raise AssertionError(
+                                        {
+                                            "kind": (
+                                                "productive-"
+                                                if productive
+                                                else ""
+                                            )
+                                            + "marked-core-deficit-anchor-"
+                                            "injection-failed",
+                                            "p": p,
+                                            "k": k,
+                                            "syndrome": list(syn),
+                                            "fixed_roots": list(
+                                                fixed_roots
+                                            ),
+                                            "unmarked_core": list(
+                                                unmarked_core
+                                            ),
+                                            "marked_count": marked_count,
+                                            "core_deficit": core_deficit,
+                                            "anchor": list(anchor),
+                                            "left_support": list(previous),
+                                            "right_support": list(support),
+                                        }
+                                    )
+                                anchor_to_support[anchor] = support
+                        if len(anchor_to_support) != packed_subsets:
+                            raise AssertionError(
+                                {
+                                    "kind": (
+                                        "productive-"
+                                        if productive
+                                        else ""
+                                    )
+                                    + "marked-core-deficit-anchor-"
+                                    "count-failed",
+                                    "p": p,
+                                    "k": k,
+                                    "syndrome": list(syn),
+                                    "fixed_roots": list(fixed_roots),
+                                    "unmarked_core": list(unmarked_core),
+                                    "marked_count": marked_count,
+                                    "core_deficit": core_deficit,
+                                    "anchor_count": len(
+                                        anchor_to_support
+                                    ),
+                                    "expected": packed_subsets,
+                                }
+                            )
                         available_subsets = math.comb(
                             n - len(unmarked_core),
                             core_deficit,
@@ -3589,6 +3671,8 @@ def analyze_case(
                     deficit_packing_checks,
                     deficit_packing_max_deficit,
                     deficit_packing_max_size,
+                    deficit_anchor_label_checks,
+                    deficit_anchor_max_labels,
                 )
 
             (
@@ -3608,6 +3692,8 @@ def analyze_case(
                 deficit_packing_core_checks,
                 deficit_packing_core_max_deficit,
                 deficit_packing_core_max_fiber_size,
+                deficit_anchor_label_checks,
+                deficit_anchor_max_labels_per_fiber,
             ) = audit_marked_core_fibers(
                 total_split_supports,
                 productive=False,
@@ -3629,6 +3715,8 @@ def analyze_case(
                 productive_deficit_packing_core_checks,
                 productive_deficit_packing_core_max_deficit,
                 productive_deficit_packing_core_max_fiber_size,
+                productive_deficit_anchor_label_checks,
+                productive_deficit_anchor_max_labels_per_fiber,
             ) = audit_marked_core_fibers(
                 productive_total_split_supports,
                 productive=True,
@@ -3740,6 +3828,20 @@ def analyze_case(
             terminal_tree_productive_deficit_packing_core_max_fiber_size = max(
                 terminal_tree_productive_deficit_packing_core_max_fiber_size,
                 productive_deficit_packing_core_max_fiber_size,
+            )
+            terminal_tree_deficit_anchor_label_checks += (
+                deficit_anchor_label_checks
+            )
+            terminal_tree_productive_deficit_anchor_label_checks += (
+                productive_deficit_anchor_label_checks
+            )
+            terminal_tree_deficit_anchor_max_labels_per_fiber = max(
+                terminal_tree_deficit_anchor_max_labels_per_fiber,
+                deficit_anchor_max_labels_per_fiber,
+            )
+            terminal_tree_productive_deficit_anchor_max_labels_per_fiber = max(
+                terminal_tree_productive_deficit_anchor_max_labels_per_fiber,
+                productive_deficit_anchor_max_labels_per_fiber,
             )
 
             def audit_core_simple_pole_lifts(
@@ -6328,6 +6430,18 @@ def analyze_case(
         "terminal_tree_productive_deficit_packing_core_max_fiber_size": (
             terminal_tree_productive_deficit_packing_core_max_fiber_size
         ),
+        "terminal_tree_deficit_anchor_label_checks": (
+            terminal_tree_deficit_anchor_label_checks
+        ),
+        "terminal_tree_productive_deficit_anchor_label_checks": (
+            terminal_tree_productive_deficit_anchor_label_checks
+        ),
+        "terminal_tree_deficit_anchor_max_labels_per_fiber": (
+            terminal_tree_deficit_anchor_max_labels_per_fiber
+        ),
+        "terminal_tree_productive_deficit_anchor_max_labels_per_fiber": (
+            terminal_tree_productive_deficit_anchor_max_labels_per_fiber
+        ),
         "terminal_tree_core_packet_checks": (
             terminal_tree_core_packet_checks
         ),
@@ -6872,6 +6986,10 @@ def print_summary(results: Sequence[dict[str, object]]) -> None:
             f"{result['terminal_tree_deficit_packing_core_max_deficit']} "
             f"deficit_packing_max="
             f"{result['terminal_tree_deficit_packing_core_max_fiber_size']} "
+            f"deficit_anchor_labels="
+            f"{result['terminal_tree_deficit_anchor_label_checks']} "
+            f"deficit_anchor_max="
+            f"{result['terminal_tree_deficit_anchor_max_labels_per_fiber']} "
             f"core_packets={result['terminal_tree_core_packet_checks']} "
             f"core_simple_pole_lifts="
             f"{result['terminal_tree_core_simple_pole_lift_checks']} "

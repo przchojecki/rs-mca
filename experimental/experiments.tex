@@ -4505,6 +4505,24 @@ This recovers uniqueness for \(d\le0\) and boundary matching for \(d=1\).
 The largest \(F_7^*\) audit checks \(17220\) deficit-packing fibers, maximum
 deficit \(1\), maximum fiber size \(2\); the productive subaudit has the same
 counts.
+The packing is constructive.  If \(W\subseteq M(S)\) has size
+\(d=r-\tau-|U|>0\), then deleting all unmarked roots gives a fixed length
+\(L=\tau+|U|+r\) packet \(G_U\).  Applying \(\ell_W\) kills the modes in
+\(W\) and leaves
+\[
+  (\ell_WG_U)_i
+  =
+  \sum_{y\in M(S)\setminus W}
+    {a_y\ell_W(y)y^i\over \ell_U(y)},
+  \qquad 0\le i<L-d .
+\]
+Here \(L-d=2(r-d)\), so the remaining locator
+\(\prod_{y\in M(S)\setminus W}(X-y)\) is recovered by Prony uniqueness.
+Thus \((U,W)\) determines the whole marked frontier; the map
+\((S,W)\mapsto(U(S),W)\) is injective on fixed-\(r\) moment-short fibers.
+The verifier now audits this deficit-anchor injection directly: in the largest
+\(F_7^*\) audit it checks \(51840\) deficit-anchor labels, with at most \(6\)
+labels in one fiber; the productive subaudit has the same counts.
 This gives the all-frontier closure criterion.  Let
 \(\mathcal C_m(s)\) be all split-support certificates of mode size \(m\), and
 define

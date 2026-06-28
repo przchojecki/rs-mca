@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 deficit anchors reconstruct short-core fibers
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_hankel_t2_one_exchange_lift.md`,
+  `experimental/scripts/verify_m1_hankel_t2_triangle_packets.py`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / STRUCTURAL / EXACT FINITE AUDIT.
+- **What is being added:** Shows that for deficit
+  `d=r-tau-|U|>0`, a fixed canonical core `U` plus any `d` marked roots
+  reconstructs the whole marked frontier by applying the anchor locator and
+  using a `2(r-d)`-moment Prony recovery.
+- **How it is useful:** Turns the moment-short packing bound into an explicit
+  deficit-anchor injection, giving a concrete object to count in the
+  remaining M1 short-core ledger.
+- **What to do next:** Bound admissible deficit anchors after
+  quotient-periodic, tangent, and endpoint charges.
+
 ### 2026-06-28 - M1 deficit-weighted core closure criterion
 
 - **Agent/model:** AllenGrahamHart / Codex audit.
