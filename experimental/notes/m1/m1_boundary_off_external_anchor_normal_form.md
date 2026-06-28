@@ -12432,22 +12432,37 @@ choice of `S`.  Hence some `a`-subset `T subset S` is noncontained.  The same
 identity `A_0+mu phi_h=Y` holds on `T`, so `mu in Mu_h^nc(Y,a)`.  Corollary
 40.108 gives the displayed bound.
 
-## Corollary 40.111: The One-Row Noncontained Branch Closes Without Exchange Bookkeeping
+## Corollary 40.111: Rank-One Noncontained Branches Close By Support Injection
 
-Keep the primitive one-row notation, and assume the scalar cutoff
-
-```text
-a=n-j=k+t,        t>=1.
-```
-
-Let `Mu_h^{nc,>=a}(Y)` be as in Corollary 40.110.  Then
+Let `phi:D->F` be any one-generator extension direction, let `Y:D->F`, and
+assume an agreement threshold
 
 ```text
-|Mu_h^{nc,>=a}(Y)| <= binom(n,a)=binom(n,j).       (DirectOneRowNC)
+a=n-j,        a>=k+1.
 ```
 
-Consequently the support-wise noncontained finite parameters in any one-row
-chart contribute at most
+Define `Mu_phi^{nc,>=a}(Y)` to be the set of coefficients `mu in F` for which
+there are `A_0 in F[X]_<k` and a support `S subset D`, `|S|>=a`, such that
+
+```text
+A_0+mu phi = Y        on S,
+```
+
+and the rank-one line is support-wise noncontained on `S`, meaning
+
+```text
+not ( phi|_S in RS[F,S,k] and Y|_S in RS[F,S,k] ).
+```
+
+Then
+
+```text
+|Mu_phi^{nc,>=a}(Y)| <= binom(n,a)=binom(n,j).     (RankOneNCInject)
+```
+
+Consequently, in any one-row chart where the scalar parameter is identified
+with the coefficient `mu`, the support-wise noncontained finite parameters
+contribute at most
 
 ```text
 binom(n,j)/q
@@ -12455,27 +12470,47 @@ binom(n,j)/q
 
 to line-MCA density.
 
-This direct closure does not use the one-exchange exceptional-core ledger,
-the weighted complement incidence mass, or any residue-line packing estimate.
-Those ledgers remain relevant for the unrestricted one-row coefficient/list
-object, but the actual support-wise noncontained one-row M1 contribution is
-already q-free by same-support uniqueness and threshold truncation.
+This closure is pure rank-one linear algebra.  It does not use the
+one-exchange exceptional-core ledger, the weighted complement incidence mass,
+or any residue-line packing estimate.  Those ledgers remain relevant for the
+unrestricted one-row coefficient/list object, but the actual support-wise
+noncontained one-row M1 contribution is already q-free by same-support
+uniqueness and threshold truncation.
 
 ### Proof
 
-By Corollary 40.110, every `mu in Mu_h^{nc,>=a}(Y)` has a noncontained
-`a`-support witness `T_mu`.  Choose one such `T_mu` for each `mu`.
+First, every threshold witness has a noncontained `a`-subsupport.  Indeed, if
+`mu` is witnessed on `S`, `|S|>=a`, and every `a`-subset of `S` is contained,
+then both `phi` and `Y` restrict to `RS_k` on every `a`-subset.  Since
+`a>=k+1`, the same `(k+1)`-subset interpolation test used in Corollary
+40.110 shows that `phi|_S` and `Y|_S` lie in `RS[F,S,k]`, contradicting
+noncontainedness on `S`.
+
+Thus choose one noncontained `a`-support `T_mu` for each
+`mu in Mu_phi^{nc,>=a}(Y)`.
 
 If two distinct coefficients `mu_1,mu_2` chose the same support `T`, then
-`|Mu_T(Y)|>1`.  Corollary 40.105 would force `T in DoubleColl_h(Y,a)`, i.e.
-both `phi_h|_T` and `Y|_T` lie in `RS[F,T,k]`.  That contradicts the choice
-of `T` as a noncontained support.
-
-Thus the map `mu |-> T_mu` is injective from `Mu_h^{nc,>=a}(Y)` to the set of
-`a`-subsets of `D`.  Hence
+there are `A_1,A_2 in F[X]_<k` such that
 
 ```text
-|Mu_h^{nc,>=a}(Y)| <= binom(n,a)=binom(n,j).
+A_i+mu_i phi=Y        on T.
+```
+
+Subtracting gives
+
+```text
+(A_1-A_2)+(mu_1-mu_2)phi=0        on T.
+```
+
+Since `mu_1!=mu_2`, this implies `phi|_T in RS[F,T,k]`.  Then the first
+witness equation also gives `Y|_T in RS[F,T,k]`.  This contradicts the
+choice of `T` as noncontained.
+
+Therefore the map `mu |-> T_mu` is injective from `Mu_phi^{nc,>=a}(Y)` to the
+set of `a`-subsets of `D`.  Hence
+
+```text
+|Mu_phi^{nc,>=a}(Y)| <= binom(n,a)=binom(n,j).
 ```
 
 Dividing by `q=|F|` gives the density statement.
@@ -15439,9 +15474,9 @@ primitive one-row one-exchange noncontained branch contributes at most
 Corollary 40.110 checks that exact `a`-support bookkeeping loses no
 threshold witnesses: every support-wise noncontained witness on at least `a`
 points contains a noncontained `a`-subsupport.
-Corollary 40.111 gives the simplified endpoint: the one-row noncontained
-branch injects directly into `a`-supports, so its contribution is
-`binom(n,j)/q` without exchange bookkeeping.
+Corollary 40.111 gives the simplified endpoint: any rank-one noncontained
+branch injects directly into `a`-supports, so a one-row chart contributes at
+most `binom(n,j)/q` without exchange bookkeeping.
 Corollary 41 packages the common-image branch into endpoint-type ledgers; it
 does not prove the endpoint rank hypotheses needed for the displayed
 `(q+2)binom(n,b)` bound. Corollary 42 packages the globally full core ledger
