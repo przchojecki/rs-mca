@@ -9400,6 +9400,125 @@ the stratum.  The two cutoff applications are Corollary 40.74 with
 `s=t+r_hw-1`, using `Q` for the ordinary paired kernel and `R=XQ` for the
 shifted paired kernel.
 
+## Corollary 40.76: Scalar Rational-Supercode Strata Have A Pairwise-Intersection Charge
+
+Let `C=RS[F,D,k]`, let `f,g:D->F`, and fix an agreement threshold `a`.  Suppose
+there is a polynomial `Q` of degree `e`, root-free on `D`, and put
+
+```text
+d=max(n-s, k+e).
+```
+
+Assume the pairwise support-intersection threshold
+
+```text
+2a-n >= d.                                         (ScalarInterp)
+```
+
+Then each one-sided rational-supercode stratum contributes at most one
+support-wise noncontained finite slope:
+
+1. if `Qf in RS[F,D,n-s]`, then at most one finite slope explained on at
+   least `a` points can be noncontained;
+2. if `Qg in RS[F,D,n-s]`, then at most one finite slope explained on at
+   least `a` points can be noncontained.
+
+Applied to the scalar cutoff kernels, a root-free
+
+```text
+Q in ker A_u(m)        or        Q in ker A_v(m)
+```
+
+with `s=t+r_hw` and degree `e` contributes at most one noncontained finite
+slope whenever
+
+```text
+2a-n >= max(n-(t+r_hw), k+e).
+```
+
+Thus scalar low-degree cutoff-kernel failures are one-slope charges in the
+high-agreement range where any two agreement supports have enough overlap to
+interpolate the induced degree-`<d` rational-supercode witnesses.
+
+### Proof
+
+First suppose `Qg in RS[F,D,n-s]`, represented by a polynomial `P_g` of degree
+`<n-s`.  Let two distinct slopes `z_1,z_2` be explained on supports
+`S_1,S_2` with `|S_i|>=a` by codewords `c_i`, represented by polynomials
+`C_i` of degree `<k`.  Their intersection has size at least
+
+```text
+|S_1 cap S_2| >= 2a-n >= d.
+```
+
+On this intersection,
+
+```text
+Q C_i = Qf + z_i P_g,        i=1,2.
+```
+
+Subtracting gives
+
+```text
+Q(C_2-C_1) = (z_2-z_1)P_g.
+```
+
+The two sides have degree `<k+e` and `<n-s`, respectively, so the displayed
+equality on at least `d` points is a polynomial identity.  Since `Q` is
+root-free on `D`, it follows on `D` that
+
+```text
+g = (C_2-C_1)/(z_2-z_1),
+```
+
+so `g` is globally a codeword.  For any explained slope `z` on support `S`,
+the identity `f+zg=c_z` on `S` then gives
+
+```text
+f|_S = (c_z-zg)|_S
+```
+
+with both right-hand terms codewords.  Hence every explained slope is
+support-wise contained.  In particular two noncontained slopes cannot occur.
+
+Now suppose `Qf in RS[F,D,n-s]`, represented by `P_f`.  If two distinct
+nonzero slopes `z_1,z_2` are explained on supports `S_1,S_2`, define on each
+support
+
+```text
+R_i=(Q C_i-P_f)/z_i.
+```
+
+Each `R_i` is a polynomial of degree `<d` agreeing with the word `Qg` on
+`S_i`.  On `S_1 cap S_2`, the polynomials `R_1` and `R_2` agree, so
+(ScalarInterp) makes them identical.  Therefore
+
+```text
+(Q C_1-P_f)/z_1 = (Q C_2-P_f)/z_2,
+```
+
+and hence
+
+```text
+(z_2-z_1)P_f = Q(z_2 C_1-z_1 C_2).
+```
+
+Dividing on `D` by the root-free `Q` shows that `f` is globally a codeword.
+Then every nonzero explained slope is support-wise contained on its explaining
+support.
+
+It remains only to consider the possibility that slope `0` and a nonzero
+slope are both noncontained.  If `z=0` is explained on `S_0`, then
+
+```text
+P_f = Q C_0
+```
+
+on `S_0`.  Since `|S_0|>=a>=d`, this is a polynomial identity, so `f` is
+globally a codeword.  The preceding paragraph then makes every nonzero
+explained slope contained.  Thus at most one finite slope in the `Qf`
+one-sided stratum can be noncontained.
+
 ## Corollary 41: The Global Common-Image Ledger Is Endpoint-Only
 
 Let `GCI` be the set of monic degree-`c` split core locators `L` for which
@@ -12244,6 +12363,9 @@ that those strata are small or quotient-periodic in the actual M1 instances.
 Corollary 40.75 shows paired rational-supercode strata contribute at most one
 noncontained slope above the displayed interpolation threshold; it does not
 settle scalar strata or paired strata above that threshold.
+Corollary 40.76 gives an analogous one-slope charge for scalar
+rational-supercode strata under the stronger pairwise-intersection threshold;
+it does not settle scalar strata below that threshold.
 Corollary 41 packages the common-image branch into endpoint-type ledgers; it
 does not prove the endpoint rank hypotheses needed for the displayed
 `(q+2)binom(n,b)` bound. Corollary 42 packages the globally full core ledger

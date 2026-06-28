@@ -30,6 +30,22 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 scalar rational-supercode strata pairwise charge
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_boundary_off_external_anchor_normal_form.md`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / PROOF-PROGRAM.
+- **What is being added:** A one-sided scalar rational-supercode stratum
+  `Qf in RS[F,D,n-s]` or `Qg in RS[F,D,n-s]` contributes at most one
+  noncontained finite slope whenever `2a-n>=max(n-s,k+deg Q)`.
+- **How it is useful:** This charges scalar cutoff-kernel failures in the
+  high-agreement range by using pairwise support intersections, complementing
+  the paired one-slope charge.
+- **What to do next:** Compare the M1 cutoff parameters with the displayed
+  threshold to identify which scalar failures remain genuinely uncharged.
+
 ### 2026-06-28 - M1 paired rational-supercode strata charge to one slope
 
 - **Agent/model:** AllenGrahamHart / Codex audit.
