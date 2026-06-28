@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 Hankel corners descend additively at all row levels
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_hankel_t2_one_exchange_lift.md`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / STRUCTURAL.
+- **What is being added:** Proves the row-level version of the corner descent:
+  three active `j`-locators forming a distinct-root two-edge corner for
+  `H_{tau,j}` force the lower-core recurrence `H_{tau+2,j-2}`.
+- **How it is useful:** This is the structural additive-depth mechanism behind
+  the `t=2` same-slope packet audit.  Branching does not create an independent
+  multiplicative packet; it moves two rows deeper and two roots lower in the
+  Hankel ladder.
+- **What to do next:** Use this row-level descent to organize iterated
+  same-slope packet ladders and compare the resulting lower-core charges with
+  the fixed-root/root-slice reserve.
+
 ### 2026-06-28 - M1 same-slope components are star or lower-core
 
 - **Agent/model:** AllenGrahamHart / Codex audit.

@@ -241,6 +241,63 @@ corner already charged at `H_{3,j-1}`, or a lower-core corner charged at
 `t=2` same-slope graph: branching either stays inside one star ledger or moves
 one rung down the Hankel core ladder.
 
+## General Additive Corner Descent
+
+The preceding lower-core alternative is not special to `t=2`.  It is the
+first instance of a general lossless Hankel descent.
+
+Let `tau>=1`, `j>=2`, and let `s` be a syndrome vector.  Suppose three
+`j`-complements
+
+```text
+T   = R union {x_1,x_2},
+T_1 = R union {y_1,x_2},
+T_2 = R union {x_1,y_2},
+```
+
+with `x_1 != x_2`, `y_1 != x_1`, and `y_2 != x_2` all satisfy
+
+```text
+H_{tau,j}(s)ell_T =
+H_{tau,j}(s)ell_{T_1} =
+H_{tau,j}(s)ell_{T_2} = 0.
+```
+
+Then the lower core satisfies the additive two-row descent
+
+```text
+H_{tau+2,j-2}(s)ell_R=0.                         (AD)
+```
+
+Proof: write `L=ell_R` and define
+
+```text
+c_i = sum_h L_h s_{i+h}.
+```
+
+Subtracting the equations for `T` and `T_1` gives
+
+```text
+H_{tau,j-1}(s)(X-x_2)L=0,
+```
+
+and subtracting the equations for `T` and `T_2` gives
+
+```text
+H_{tau,j-1}(s)(X-x_1)L=0.
+```
+
+Subtracting these two displayed equations gives `H_{tau,j-2}(s)L=0`, so
+`c_0,...,c_{tau-1}` vanish.  Combining this with
+`H_{tau,j-1}(s)(X-x_2)L=0` gives `c_tau=0`.  Finally the original equation
+for `T=(X-x_1)(X-x_2)L` gives `c_{tau+1}=0`.  Thus
+`c_0,...,c_{tau+1}` vanish, which is exactly (AD).
+
+The important point is that the descent adds two Hankel rows and removes two
+locator roots in one structural step.  It is additive in depth: a branching
+corner does not introduce a new independent multiplicative packet, it moves to
+the next lower-core Hankel ledger.
+
 ## Same-Slope Component Dichotomy
 
 Let `G_s` be the graph on active `j`-complements for a fixed combined syndrome

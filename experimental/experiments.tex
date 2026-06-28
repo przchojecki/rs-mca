@@ -3701,6 +3701,27 @@ fixed-root rank-one line; therefore the full-plane alternative holds and
 Thus same-slope graph branching either stays in one star ledger or descends one
 rung to a lower Hankel core; it does not create a separate non-fixed
 variable-line packet.
+The lower-core alternative is the first case of a general additive descent.
+For any \(\tau\ge1\), if three \(j\)-locators
+\[
+  T=R\cup\{x_1,x_2\},\qquad
+  T_1=R\cup\{y_1,x_2\},\qquad
+  T_2=R\cup\{x_1,y_2\}
+\]
+all satisfy \(H_{\tau,j}(s)\ell=0\), then subtracting the first two and the
+first and third equations gives
+\[
+  H_{\tau,j-1}(s)(X-x_2)\ell_R=0,\qquad
+  H_{\tau,j-1}(s)(X-x_1)\ell_R=0.
+\]
+Their difference gives \(H_{\tau,j-2}(s)\ell_R=0\); feeding this back into
+one linear equation and then into the original quadratic equation gives
+\[
+  H_{\tau+2,j-2}(s)\ell_R=0.
+\]
+Thus a distinct-root corner adds two Hankel rows and removes two locator roots
+in one lossless step.  This is the structural additive-depth mechanism behind
+the \(t=2\) corner audit.
 This local statement globalizes across connected components.  In the active
 one-exchange graph for fixed \(w_\lambda\), if a nontrivial component has no
 lower-core corner, then every two-edge corner is a star corner.  Choosing one
