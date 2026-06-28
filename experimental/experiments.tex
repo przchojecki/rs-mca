@@ -2195,9 +2195,22 @@ it is contained in the one-sided overlap union.
 This is an upper ledger rather than a sharp disjoint count: the family budget
 is paid after the overlap charges and may shrink in a finer accounting.
 For raw unlabelled denominator-class counting, however, the half-window tail is
-still bounded by \(\mathrm{FamilyBudget}_{hw}\) alone, since the overlap
-systems are subsets of the same family-labelled tail.  The overlap-separation
-term is used to remove cross-family intersections before
+bounded more sharply by the divisor arrangement of the active cutoff primitive
+denominators:
+\[
+  \mathrm{ArrBudget}_{hw}
+  =\sum_{\emptyset\ne I\subseteq A}(-1)^{|I|+1}
+     \Phi_+\!\left(h-\deg \operatorname{lcm}_{F\in I}D_F\right),
+  \qquad
+  \Phi_+(m)=\Phi(\max\{m,0\}),
+\]
+and
+\[
+  |\mathrm{TailUnion}_{hw}|
+  \le \mathrm{ArrBudget}_{hw}
+  \le \mathrm{FamilyBudget}_{hw}.
+\]
+The overlap-separation term is used to remove cross-family intersections before
 applying the family-disjoint closure; it is not an extra raw tail-count addend.
 Equivalently, the full three-shift common-image branch is endpoint-only.  If
 \(\mathrm{GCI}\) denotes the monic split core locators satisfying some

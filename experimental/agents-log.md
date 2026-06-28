@@ -351,10 +351,13 @@ Keep entries concise and link to the relevant files.
   `E_{r_0,>b} union Theta_{r_0,>b}`.  This is
   an upper ledger, since the family budget is paid after overlap charges and
   may shrink under sharper disjoint accounting.  The accounting is now split
-  from raw denominator counting: the unlabelled half-window tail is still
-  bounded by `FamilyBudget_hw` alone, while `OverlapSep_hw` is a separation
-  charge used to remove cross-family intersections before invoking the
-  family-disjoint closure.
+  from raw denominator counting: the unlabelled half-window tail is bounded by
+  the divisor-arrangement inclusion-exclusion budget
+  `ArrBudget_hw <= FamilyBudget_hw`, where intersections of the ambient family
+  multiplier subspaces are counted by lcms of the active cutoff primitive
+  denominators.  The `OverlapSep_hw` term is a separation charge used to remove
+  cross-family intersections before invoking the family-disjoint closure, not
+  an extra raw tail-count addend.
   The common-image three-shift ledger now has the analogous sliding-window
   reduction: for an image line `[y]`, the allowed deeper residuals form a space
   `W_y` of dimension at most one, nonzero only on the `q+1` extended geometric
