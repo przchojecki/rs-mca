@@ -13168,6 +13168,86 @@ For (DomainAnchorStar), sum the bijection over `beta in D`.  Each fixed
 `C_0 in CoreDrop(Q_0,B_0)` is counted once for each
 `beta in D\C_0`, namely `n-j` times.
 
+## Corollary 40.120: The First-Unpacked Base Complement Ledger Is Disjoint
+
+Keep the first unpacked base layer
+
+```text
+e_0=t+1,        u=1,
+```
+
+and define the projective linear multiplier set
+
+```text
+P_1^x(Q_0)
+ = { [M] in P(F[X]_<2) : gcd(M,Q_0)=1 }.
+```
+
+Let
+
+```text
+U_1(Q_0,B_0)
+ = disjoint_union_{[M] in P_1^x(Q_0)}
+      Comp_{1,[M]}(Q_0,B_0),
+```
+
+where `Comp_{1,[M]}` is the `(j+1)`-complement fiber from Corollary 40.118.
+Then the union is genuinely disjoint, and
+
+```text
+|U_1(Q_0,B_0)| <= binom(n,j+1).                    (FirstBaseCompBound)
+```
+
+Equivalently, for a fixed primitive first-unpacked base residue class, the
+unweighted one-exchange complement ledger is already q-free: core landings,
+all in-domain anchor landings, all repeated-domain-root landings, and all
+external-anchor landings together occupy at most the set of all
+`(j+1)`-subsets of `D`.
+
+Moreover the descended domain-anchor core fiber of Corollary 40.119 satisfies
+
+```text
+|CoreDrop(Q_0,B_0)| <= binom(n,j+1)/(n-j)
+                    = binom(n,j)/(j+1).            (CoreDropBound)
+```
+
+Thus external anchors and repeated-domain roots may still be important for
+the active primitive class geometry, but for each fixed primitive base class
+they do not create an unweighted field-size multiplier family.
+
+### Proof
+
+Here `u=1<=t`, because the standing threshold hypothesis `a=k+t>=k+1`
+forces `t>=1`.  Therefore the projective multiplier disjointness statement in
+Corollary 40.118 applies.  Each `Comp_{1,[M]}` is a subset of the set of all
+`(j+1)`-subsets of `D`, and the subsets for different `[M]` are disjoint.
+This proves the definition as a genuine disjoint union and gives
+(FirstBaseCompBound).
+
+For the domain-anchor bound, Corollary 40.119 gives
+
+```text
+sum_{beta in D}
+  |{ C in Comp_{1,[X-beta]} : beta in C }|
+ = (n-j)|CoreDrop(Q_0,B_0)|.
+```
+
+The left side counts only elements of the disjoint union `U_1(Q_0,B_0)`, so
+it is at most `|U_1(Q_0,B_0)|`.  Combining this with
+(FirstBaseCompBound) gives
+
+```text
+(n-j)|CoreDrop(Q_0,B_0)| <= binom(n,j+1).
+```
+
+The displayed equality
+
+```text
+binom(n,j+1)/(n-j)=binom(n,j)/(j+1)
+```
+
+is the standard binomial recurrence.
+
 ## Corollary 41: The Global Common-Image Ledger Is Endpoint-Only
 
 Let `GCI` be the set of monic degree-`c` split core locators `L` for which
@@ -16159,6 +16239,10 @@ Corollary 40.119 descends the domain-anchor subcase by deleting the anchor:
 it is exactly the support star over a `j`-complement core fiber, leaving the
 constant core complement fiber plus repeated-root and external-anchor landings
 as the remaining first-unpacked ledgers.
+Corollary 40.120 packages the fixed-class first-unpacked endpoint: all
+linear-multiplier complement fibers are disjoint and together have size at
+most `binom(n,j+1)`, with the descended domain-anchor core fiber bounded by
+`binom(n,j)/(j+1)`.
 Corollary 41 packages the common-image branch into endpoint-type ledgers; it
 does not prove the endpoint rank hypotheses needed for the displayed
 `(q+2)binom(n,b)` bound. Corollary 42 packages the globally full core ledger
