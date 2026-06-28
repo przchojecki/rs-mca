@@ -9629,6 +9629,94 @@ gives
 The displayed bound follows.  If `Bad_Q` consists only of the zero slope, the
 same inequality is automatic because `d<=a<=n`.
 
+## Corollary 40.78: The Scalar Packing Ledger Is Only A Log-Dimension Closure
+
+For integers `1<=d<=a<=n`, put
+
+```text
+Pack(n,a,d)=binom(n,d)/binom(a,d).
+```
+
+Then
+
+```text
+Pack(n,a,d)=prod_{i=0}^{d-1} (n-i)/(a-i).           (PackProduct)
+```
+
+Consequently:
+
+1. if `a<=alpha n` for a fixed `0<alpha<1`, then
+
+   ```text
+   Pack(n,a,d) >= alpha^{-d};
+   ```
+
+   hence a polynomial packing ledger `floor(Pack(n,a,d))<=n^B` forces
+
+   ```text
+   d <= (B log n + O(1))/log(1/alpha);
+   ```
+
+2. if `a>=alpha n` and `d<=a/2`, then
+
+   ```text
+   Pack(n,a,d) <= (2/alpha)^d.
+   ```
+
+Thus the scalar support-packing estimate from Corollary 40.77 is a polynomial
+closure only when the interpolation dimension `d` is logarithmic in `n`, up to
+fixed-rate constants.  If `a<=alpha n` and `d=omega(log n)`, the packing ledger
+is superpolynomial; if `d>=c n` for fixed `c>0`, it is exponential in `n`.
+
+In the corrected-reserve fixed-rate M1 window, with `k>=rho n` for fixed
+`rho>0` and agreement threshold `a<=alpha n< n`, every scalar
+rational-supercode stratum has
+
+```text
+d=max(n-s,k+e) >= k >= rho n.
+```
+
+Therefore Corollary 40.77 alone cannot prove the desired
+`n^{1+o(1)}` aperiodic scalar contribution in that window.  The scalar branch
+must still be closed by extra M1 structure: exclusion of the root-free scalar
+cutoff kernels, collapse into paired or endpoint-global strata, quotient or
+aperiodic denominator structure, or another active-geometry input.
+
+### Proof
+
+The product formula follows by cancelling factorials:
+
+```text
+binom(n,d)/binom(a,d)
+ = n(n-1)...(n-d+1) / (a(a-1)...(a-d+1)).
+```
+
+For each `0<=i<d`,
+
+```text
+(n-i)/(a-i) >= n/a,
+```
+
+because `n>=a`.  If `a<=alpha n`, this gives
+`Pack(n,a,d)>=(n/a)^d>=alpha^{-d}`.  If
+`floor(Pack(n,a,d))<=n^B`, then `Pack(n,a,d)<n^B+1`, and the displayed
+logarithmic upper bound on `d` follows.
+
+For the upper estimate, if `a>=alpha n` and `d<=a/2`, then
+
+```text
+a-i >= a-d+1 >= a/2 >= alpha n/2
+```
+
+for all `0<=i<d`, while `n-i<=n`.  Hence every factor in (PackProduct) is at
+most `2/alpha`, proving the upper bound.
+
+The fixed-rate M1 conclusion is just the observation that the scalar
+rational-supercode interpolation dimension satisfies `d>=k`, so it is linear
+in `n` at fixed positive rate.  The previous lower bound then makes the
+support-packing ledger exponential whenever the agreement threshold remains a
+fixed positive distance below `n`.
+
 ## Corollary 41: The Global Common-Image Ledger Is Endpoint-Only
 
 Let `GCI` be the set of monic degree-`c` split core locators `L` for which
@@ -12478,6 +12566,9 @@ rational-supercode strata under the stronger pairwise-intersection threshold;
 Corollary 40.77 extends the same local argument below that threshold to a
 q-free support-packing bound when `d<=a`; it does not prove that this packing
 ledger is small enough for the final M1 reserve or handle the `d>a` range.
+Corollary 40.78 shows this limitation is structural in the fixed-rate reserve
+window: since scalar strata have `d>=k`, pure support packing is exponential
+unless additional M1 structure reduces or removes the scalar branch.
 Corollary 41 packages the common-image branch into endpoint-type ledgers; it
 does not prove the endpoint rank hypotheses needed for the displayed
 `(q+2)binom(n,b)` bound. Corollary 42 packages the globally full core ledger

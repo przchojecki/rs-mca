@@ -2445,6 +2445,21 @@ shared \(d\)-subset, and hence
 Thus scalar cutoff-kernel failures below the one-slope range are at least
 converted into an explicit \(q\)-free support-packing charge, rather than an
 unstructured field-size slope count.
+This packing ledger has a sharp size warning.  Since
+\[
+  {\binom n d\over\binom a d}
+  =\prod_{i=0}^{d-1}{n-i\over a-i},
+\]
+if \(a\le\alpha n\) with fixed \(\alpha<1\), then the ledger is at least
+\(\alpha^{-d}\).  Thus a polynomial packing closure forces
+\(d=O(\log n)\), while fixed-rate scalar strata have
+\[
+  d=\max(n-s,k+\deg Q)\ge k=\rho n.
+\]
+Consequently pure support packing cannot close the scalar rational-supercode
+branch in the corrected-reserve fixed-rate window; the branch still needs
+active M1 structure, quotient/aperiodic collapse, paired/global endpoint
+collapse, or exclusion of the root-free scalar cutoff kernels.
 The common-core and two-denominator formulas persist verbatim after this
 root-free replacement.  With \(C=\gcd(D:D\in M_{\min})\), \(\gamma=\deg C\),
 and \(E_D=D/C\),

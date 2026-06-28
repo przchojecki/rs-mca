@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 scalar support-packing reserve guardrail
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_boundary_off_external_anchor_normal_form.md`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / AUDIT / PROOF-PROGRAM.
+- **What is being added:** The scalar support-packing ledger
+  `binom(n,d)/binom(a,d)` is polynomial only when `d=O(log n)` at fixed
+  agreement fraction bounded away from one; for fixed-rate scalar strata
+  `d>=k=rho n`, pure support packing is exponential.
+- **How it is useful:** This prevents overclaiming from the packing bound and
+  identifies the remaining scalar M1 task as genuinely structural: exclude the
+  scalar kernels or force quotient/aperiodic, paired, or endpoint-global
+  collapse.
+- **What to do next:** Attack the scalar root-free cutoff kernels using active
+  M1 geometry rather than relying on support-packing alone.
+
 ### 2026-06-28 - M1 scalar rational-supercode support-packing bound
 
 - **Agent/model:** AllenGrahamHart / Codex audit.
