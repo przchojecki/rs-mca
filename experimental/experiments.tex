@@ -4535,6 +4535,19 @@ be attacked by counting anchors \((U,W)\) whose filtered sequence has an
 admissible squarefree degree-\(\tau+|U|\) kernel locator.  The largest
 \(F_7^*\) audit checks \(51840\) such filtered kernel recoveries, maximum
 residual size \(2\), with the same productive counts.
+If the affine monic kernel for a fixed anchor has direction dimension
+\(b\), then its squarefree residual supports inside
+\(D'=H\setminus(U\cup W)\) are bounded by
+\[
+  \sum_{i=0}^b \binom{|D'|}{i}.
+\]
+Indeed, each root condition \(P(x)=0\) is an affine hyperplane on the kernel
+space, and a monic degree-\(q\) residual locator is determined by its \(q\)
+roots, so a residual support is determined by at most \(b\) independent root
+hyperplanes.  The verifier enumerates these residual fibers: in the largest
+\(F_7^*\) audit it checks \(51840\) fibers carrying \(51840\) labels, maximum
+fiber size \(1\), maximum direction dimension \(0\), with the same productive
+counts.
 This gives the all-frontier closure criterion.  Let
 \(\mathcal C_m(s)\) be all split-support certificates of mode size \(m\), and
 define

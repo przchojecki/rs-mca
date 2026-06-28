@@ -30,6 +30,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 residual kernel dimension bounds anchors
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_hankel_t2_one_exchange_lift.md`,
+  `experimental/scripts/verify_m1_hankel_t2_triangle_packets.py`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / STRUCTURAL / EXACT FINITE AUDIT.
+- **What is being added:** Proves an arrangement bound for fixed deficit
+  anchors: if the filtered monic residual-kernel space has direction
+  dimension `b`, then its squarefree residual supports are bounded by
+  `sum_{i<=b} binom(|D'|,i)`.
+- **How it is useful:** Turns the short-core residual into a rank/dimension
+  ledger.  Bounded residual-kernel dimension gives polynomial completion
+  counts for each deficit anchor.
+- **What to do next:** Prove rank lower bounds or charge high-dimensional
+  filtered kernels to quotient-periodic, tangent, root-slice, or aperiodic
+  ledgers.
+
 ### 2026-06-28 - M1 deficit anchors are residual Hankel kernels
 
 - **Agent/model:** AllenGrahamHart / Codex audit.

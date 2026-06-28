@@ -2424,6 +2424,55 @@ anchor.  In the largest `F_7^*` audit, it checks `51840` filtered kernel
 recoveries, with maximum residual size `2`; the productive subaudit has the
 same counts.
 
+## Bounded Residual-Kernel Dimension Bounds Deficit Anchors
+
+The filtered-kernel target has an immediate finite-dimensional closure
+criterion.  Fix a deficit anchor `(U,W)`, put `q=tau+|U|`, and let `D'` be
+the available domain `H\(U union W)`.  Consider the affine space of monic
+degree-`q` residual locators
+
+```text
+K(U,W)={
+  P(X)=p_0+p_1 X+...+p_{q-1}X^{q-1}+X^q :
+  H_{q,q}(h^W)P=0
+}.
+```
+
+Let `b(U,W)` be its direction dimension.  Equivalently, if `M(h^W)` is the
+`q x q` moment matrix `(h^W_{i+j})_{0<=i,j<q}`, then
+
+```text
+b(U,W)=q-rank M(h^W).
+```
+
+The number of squarefree residual supports `R subset D'`, `|R|=q`, whose
+locator lies in `K(U,W)` is at most
+
+```text
+sum_{i=0}^{b(U,W)} binom(|D'|,i).                (DKB)
+```
+
+Proof: view `K(U,W)` as an affine space of dimension `b=b(U,W)`.  For each
+root `x in D'`, the condition `P(x)=0` is an affine hyperplane in `K(U,W)`.
+If a monic degree-`q` locator `P_R` vanishes on a residual support `R` of
+size `q`, then no other monic degree-`q` polynomial can vanish on all of
+`R`; hence the hyperplanes indexed by `R` cut `K(U,W)` down to the single
+point `P_R`.  Choose a minimal independent subcollection of these
+hyperplanes.  It has size at most `b` and determines `P_R`, hence determines
+`R` as its zero set in `D'`.  Therefore distinct residual supports inject
+into subsets of `D'` of size at most `b`, proving (DKB).
+
+Thus after the deficit-anchor reduction, the only way a fixed anchor can
+carry many residual completions is through a high-dimensional filtered
+Hankel-kernel direction space.  Bounded direction dimension gives a direct
+polynomial residual-fiber bound.
+
+The verifier enumerates these squarefree residual-kernel fibers for every
+produced deficit anchor and checks (DKB).  In the largest `F_7^*` audit, it
+checks `51840` residual fibers carrying `51840` labels, with maximum fiber
+size `1` and maximum direction dimension `0`; the productive subaudit has the
+same counts.
+
 ## Deficit-Weighted Core Closure Criterion
 
 The preceding local packing theorem removes the artificial cutoff

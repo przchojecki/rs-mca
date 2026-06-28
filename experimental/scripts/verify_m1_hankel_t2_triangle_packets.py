@@ -152,6 +152,8 @@ and any d marked roots determine the whole marked frontier.
 For each such anchor, it also checks that filtering the syndrome by the
 anchor locator gives a squarefree residual Hankel kernel whose monic
 annihilator is exactly the remaining marked locator.
+It enumerates the whole squarefree residual-kernel fiber for produced
+anchors and checks the standard bounded-dimension arrangement bound.
 For each fixed collapsed anchor base, it audits the sparse-representation
 fiber: below the boundary the mode support is unique, while at the boundary
 distinct supports are disjoint and obey the matching bound.
@@ -264,6 +266,44 @@ def determinant_mod(matrix: Sequence[Sequence[int]], p: int) -> int:
                     rows[row][entry] - factor * rows[column][entry]
                 ) % p
     return determinant % p
+
+
+def matrix_rank_mod(matrix: Sequence[Sequence[int]], p: int) -> int:
+    rows = [list(row) for row in matrix if any(value % p for value in row)]
+    if not rows:
+        return 0
+    row_count = len(rows)
+    column_count = len(rows[0])
+    rank = 0
+    for column in range(column_count):
+        pivot = next(
+            (
+                row
+                for row in range(rank, row_count)
+                if rows[row][column] % p
+            ),
+            None,
+        )
+        if pivot is None:
+            continue
+        rows[rank], rows[pivot] = rows[pivot], rows[rank]
+        inverse_pivot = pow(rows[rank][column] % p, -1, p)
+        for entry in range(column, column_count):
+            rows[rank][entry] = rows[rank][entry] * inverse_pivot % p
+        for row in range(row_count):
+            if row == rank:
+                continue
+            factor = rows[row][column] % p
+            if not factor:
+                continue
+            for entry in range(column, column_count):
+                rows[row][entry] = (
+                    rows[row][entry] - factor * rows[rank][entry]
+                ) % p
+        rank += 1
+        if rank == row_count:
+            break
+    return rank
 
 
 def solve_square_mod(
@@ -593,6 +633,14 @@ def analyze_case(
     terminal_tree_productive_deficit_anchor_kernel_checks = 0
     terminal_tree_deficit_anchor_max_residual_size = 0
     terminal_tree_productive_deficit_anchor_max_residual_size = 0
+    terminal_tree_deficit_anchor_residual_fiber_checks = 0
+    terminal_tree_productive_deficit_anchor_residual_fiber_checks = 0
+    terminal_tree_deficit_anchor_residual_fiber_labels = 0
+    terminal_tree_productive_deficit_anchor_residual_fiber_labels = 0
+    terminal_tree_deficit_anchor_residual_fiber_max_size = 0
+    terminal_tree_productive_deficit_anchor_residual_fiber_max_size = 0
+    terminal_tree_deficit_anchor_residual_fiber_max_direction = 0
+    terminal_tree_productive_deficit_anchor_residual_fiber_max_direction = 0
     terminal_tree_core_packet_checks = 0
     terminal_tree_productive_core_packet_checks = 0
     terminal_tree_core_simple_pole_lift_checks = 0
@@ -866,6 +914,14 @@ def analyze_case(
             nonlocal terminal_tree_productive_deficit_anchor_kernel_checks
             nonlocal terminal_tree_deficit_anchor_max_residual_size
             nonlocal terminal_tree_productive_deficit_anchor_max_residual_size
+            nonlocal terminal_tree_deficit_anchor_residual_fiber_checks
+            nonlocal terminal_tree_productive_deficit_anchor_residual_fiber_checks
+            nonlocal terminal_tree_deficit_anchor_residual_fiber_labels
+            nonlocal terminal_tree_productive_deficit_anchor_residual_fiber_labels
+            nonlocal terminal_tree_deficit_anchor_residual_fiber_max_size
+            nonlocal terminal_tree_productive_deficit_anchor_residual_fiber_max_size
+            nonlocal terminal_tree_deficit_anchor_residual_fiber_max_direction
+            nonlocal terminal_tree_productive_deficit_anchor_residual_fiber_max_direction
             nonlocal terminal_tree_core_packet_checks
             nonlocal terminal_tree_productive_core_packet_checks
             nonlocal terminal_tree_core_simple_pole_lift_checks
@@ -3241,6 +3297,10 @@ def analyze_case(
                 int,
                 int,
                 int,
+                int,
+                int,
+                int,
+                int,
             ]:
                 fibers: dict[
                     tuple[int, tuple[int, ...]],
@@ -3284,6 +3344,10 @@ def analyze_case(
                 deficit_anchor_max_labels = 0
                 deficit_anchor_kernel_checks = 0
                 deficit_anchor_max_residual_size = 0
+                deficit_anchor_residual_fiber_checks = 0
+                deficit_anchor_residual_fiber_labels = 0
+                deficit_anchor_residual_fiber_max_size = 0
+                deficit_anchor_residual_fiber_max_direction = 0
                 for (marked_count, unmarked_core), supports_in_fiber in (
                     fibers.items()
                 ):
@@ -3572,6 +3636,125 @@ def analyze_case(
                                                 ),
                                             }
                                         )
+                                    available_roots = tuple(
+                                        root
+                                        for root in range(n)
+                                        if root not in set(unmarked_core)
+                                        and root not in set(anchor)
+                                    )
+                                    residual_candidates = []
+                                    for candidate in itertools.combinations(
+                                        available_roots,
+                                        residual_size,
+                                    ):
+                                        if hankel_annihilates(
+                                            filtered_sequence,
+                                            cached_locator(candidate),
+                                            residual_size,
+                                            p,
+                                        ):
+                                            residual_candidates.append(
+                                                candidate
+                                            )
+                                    if (
+                                        residual_support
+                                        not in residual_candidates
+                                    ):
+                                        raise AssertionError(
+                                            {
+                                                "kind": (
+                                                    "productive-"
+                                                    if productive
+                                                    else ""
+                                                )
+                                                + "marked-core-deficit-"
+                                                "anchor-residual-missing",
+                                                "p": p,
+                                                "k": k,
+                                                "syndrome": list(syn),
+                                                "fixed_roots": list(
+                                                    fixed_roots
+                                                ),
+                                                "unmarked_core": list(
+                                                    unmarked_core
+                                                ),
+                                                "marked_count": marked_count,
+                                                "core_deficit": core_deficit,
+                                                "anchor": list(anchor),
+                                                "residual_support": list(
+                                                    residual_support
+                                                ),
+                                                "candidates": [
+                                                    list(candidate)
+                                                    for candidate in (
+                                                        residual_candidates
+                                                    )
+                                                ],
+                                            }
+                                        )
+                                    residual_direction_dim = (
+                                        residual_size
+                                        - matrix_rank_mod(
+                                            moment_matrix,
+                                            p,
+                                        )
+                                    )
+                                    residual_bound = sum(
+                                        math.comb(len(available_roots), size)
+                                        for size in range(
+                                            residual_direction_dim + 1
+                                        )
+                                    )
+                                    deficit_anchor_residual_fiber_checks += 1
+                                    deficit_anchor_residual_fiber_labels += (
+                                        len(residual_candidates)
+                                    )
+                                    deficit_anchor_residual_fiber_max_size = max(
+                                        deficit_anchor_residual_fiber_max_size,
+                                        len(residual_candidates),
+                                    )
+                                    deficit_anchor_residual_fiber_max_direction = max(
+                                        deficit_anchor_residual_fiber_max_direction,
+                                        residual_direction_dim,
+                                    )
+                                    if len(residual_candidates) > residual_bound:
+                                        raise AssertionError(
+                                            {
+                                                "kind": (
+                                                    "productive-"
+                                                    if productive
+                                                    else ""
+                                                )
+                                                + "marked-core-deficit-"
+                                                "anchor-residual-bound-"
+                                                "failed",
+                                                "p": p,
+                                                "k": k,
+                                                "syndrome": list(syn),
+                                                "fixed_roots": list(
+                                                    fixed_roots
+                                                ),
+                                                "unmarked_core": list(
+                                                    unmarked_core
+                                                ),
+                                                "marked_count": marked_count,
+                                                "core_deficit": core_deficit,
+                                                "anchor": list(anchor),
+                                                "direction_dim": (
+                                                    residual_direction_dim
+                                                ),
+                                                "candidate_count": len(
+                                                    residual_candidates
+                                                ),
+                                                "bound": residual_bound,
+                                                "candidates": [
+                                                    list(candidate)
+                                                    for candidate in (
+                                                        residual_candidates
+                                                    )
+                                                ],
+                                            }
+                                        )
                         if len(anchor_to_support) != packed_subsets:
                             raise AssertionError(
                                 {
@@ -3837,6 +4020,10 @@ def analyze_case(
                     deficit_anchor_max_labels,
                     deficit_anchor_kernel_checks,
                     deficit_anchor_max_residual_size,
+                    deficit_anchor_residual_fiber_checks,
+                    deficit_anchor_residual_fiber_labels,
+                    deficit_anchor_residual_fiber_max_size,
+                    deficit_anchor_residual_fiber_max_direction,
                 )
 
             (
@@ -3860,6 +4047,10 @@ def analyze_case(
                 deficit_anchor_max_labels_per_fiber,
                 deficit_anchor_kernel_checks,
                 deficit_anchor_max_residual_size,
+                deficit_anchor_residual_fiber_checks,
+                deficit_anchor_residual_fiber_labels,
+                deficit_anchor_residual_fiber_max_size,
+                deficit_anchor_residual_fiber_max_direction,
             ) = audit_marked_core_fibers(
                 total_split_supports,
                 productive=False,
@@ -3885,6 +4076,10 @@ def analyze_case(
                 productive_deficit_anchor_max_labels_per_fiber,
                 productive_deficit_anchor_kernel_checks,
                 productive_deficit_anchor_max_residual_size,
+                productive_deficit_anchor_residual_fiber_checks,
+                productive_deficit_anchor_residual_fiber_labels,
+                productive_deficit_anchor_residual_fiber_max_size,
+                productive_deficit_anchor_residual_fiber_max_direction,
             ) = audit_marked_core_fibers(
                 productive_total_split_supports,
                 productive=True,
@@ -4024,6 +4219,34 @@ def analyze_case(
             terminal_tree_productive_deficit_anchor_max_residual_size = max(
                 terminal_tree_productive_deficit_anchor_max_residual_size,
                 productive_deficit_anchor_max_residual_size,
+            )
+            terminal_tree_deficit_anchor_residual_fiber_checks += (
+                deficit_anchor_residual_fiber_checks
+            )
+            terminal_tree_productive_deficit_anchor_residual_fiber_checks += (
+                productive_deficit_anchor_residual_fiber_checks
+            )
+            terminal_tree_deficit_anchor_residual_fiber_labels += (
+                deficit_anchor_residual_fiber_labels
+            )
+            terminal_tree_productive_deficit_anchor_residual_fiber_labels += (
+                productive_deficit_anchor_residual_fiber_labels
+            )
+            terminal_tree_deficit_anchor_residual_fiber_max_size = max(
+                terminal_tree_deficit_anchor_residual_fiber_max_size,
+                deficit_anchor_residual_fiber_max_size,
+            )
+            terminal_tree_productive_deficit_anchor_residual_fiber_max_size = max(
+                terminal_tree_productive_deficit_anchor_residual_fiber_max_size,
+                productive_deficit_anchor_residual_fiber_max_size,
+            )
+            terminal_tree_deficit_anchor_residual_fiber_max_direction = max(
+                terminal_tree_deficit_anchor_residual_fiber_max_direction,
+                deficit_anchor_residual_fiber_max_direction,
+            )
+            terminal_tree_productive_deficit_anchor_residual_fiber_max_direction = max(
+                terminal_tree_productive_deficit_anchor_residual_fiber_max_direction,
+                productive_deficit_anchor_residual_fiber_max_direction,
             )
 
             def audit_core_simple_pole_lifts(
@@ -6636,6 +6859,30 @@ def analyze_case(
         "terminal_tree_productive_deficit_anchor_max_residual_size": (
             terminal_tree_productive_deficit_anchor_max_residual_size
         ),
+        "terminal_tree_deficit_anchor_residual_fiber_checks": (
+            terminal_tree_deficit_anchor_residual_fiber_checks
+        ),
+        "terminal_tree_productive_deficit_anchor_residual_fiber_checks": (
+            terminal_tree_productive_deficit_anchor_residual_fiber_checks
+        ),
+        "terminal_tree_deficit_anchor_residual_fiber_labels": (
+            terminal_tree_deficit_anchor_residual_fiber_labels
+        ),
+        "terminal_tree_productive_deficit_anchor_residual_fiber_labels": (
+            terminal_tree_productive_deficit_anchor_residual_fiber_labels
+        ),
+        "terminal_tree_deficit_anchor_residual_fiber_max_size": (
+            terminal_tree_deficit_anchor_residual_fiber_max_size
+        ),
+        "terminal_tree_productive_deficit_anchor_residual_fiber_max_size": (
+            terminal_tree_productive_deficit_anchor_residual_fiber_max_size
+        ),
+        "terminal_tree_deficit_anchor_residual_fiber_max_direction": (
+            terminal_tree_deficit_anchor_residual_fiber_max_direction
+        ),
+        "terminal_tree_productive_deficit_anchor_residual_fiber_max_direction": (
+            terminal_tree_productive_deficit_anchor_residual_fiber_max_direction
+        ),
         "terminal_tree_core_packet_checks": (
             terminal_tree_core_packet_checks
         ),
@@ -7188,6 +7435,12 @@ def print_summary(results: Sequence[dict[str, object]]) -> None:
             f"{result['terminal_tree_deficit_anchor_kernel_checks']} "
             f"deficit_anchor_residual_max="
             f"{result['terminal_tree_deficit_anchor_max_residual_size']} "
+            f"deficit_anchor_residual_fibers="
+            f"{result['terminal_tree_deficit_anchor_residual_fiber_checks']} "
+            f"deficit_anchor_residual_fiber_max="
+            f"{result['terminal_tree_deficit_anchor_residual_fiber_max_size']} "
+            f"deficit_anchor_residual_dim_max="
+            f"{result['terminal_tree_deficit_anchor_residual_fiber_max_direction']} "
             f"core_packets={result['terminal_tree_core_packet_checks']} "
             f"core_simple_pole_lifts="
             f"{result['terminal_tree_core_simple_pole_lift_checks']} "
