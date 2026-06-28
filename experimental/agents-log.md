@@ -30,6 +30,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 four cutoff minors close half-window route
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_boundary_off_external_anchor_normal_form.md`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / PROOF-PROGRAM.
+- **What is being added:** The exact half-window injectivity target is
+  converted into four explicit full-column minor tests at the first
+  half-window cutoff depth.  If one `m x m` minor is nonzero for each cutoff
+  map with `m=h-L`, the root-free half-window ledger is at most
+  `4 RFPhi_D(L)`.
+- **How it is useful:** This gives a concrete scanner/proof target for the
+  M1 half-window route: four Hankel minor nonvanishing checks after
+  fixed-root/root-slice pieces are separated.
+- **What to do next:** Try to prove these minors are nonzero from the active
+  M1 syndrome structure, or run targeted scans to find whether a minor can
+  fail outside charged fixed-root slices.
+
 ### 2026-06-28 - M1 half-window injectivity exact after fixed-root charges
 
 - **Agent/model:** AllenGrahamHart / Codex audit.

@@ -9077,6 +9077,86 @@ stripped in Corollary 40.70.  Once those pieces are charged, the only way for
 `K_F(h-L)^rf` to be empty is `K_F(h-L)=0`.  Corollary 40.69 identifies this
 root-free emptiness with the denominator threshold `delta_F>=h-L`.
 
+## Corollary 40.72: Four Cutoff Minors Close The Half-Window Route
+
+Keep the notation of Corollaries 40.69--40.71, assume `|D|<q`, and put
+
+```text
+m=h-L,        0<=L<h.
+```
+
+At the cutoff depth `r_hw`, form the four matrices representing
+
+```text
+A_u(m),        A_v(m),        A_uv(m),        A_Suv(m)
+```
+
+on the monomial basis of degree-`<m` polynomials.  Under the standing
+half-window hypothesis `h<=t+r_hw` and `t>=2`, each of these four matrices has
+at least `m` rows:
+
+```text
+t+r_hw >= m,
+2(t+r_hw-1) >= m.
+```
+
+Suppose that, for each of the four families, at least one `m x m`
+full-column minor of `A_F(m)` is nonzero.  Equivalently,
+
+```text
+ker A_F(m)=0        for F in {u,v,(u,v),(S u,S v)}.
+```
+
+Then every active half-window primitive denominator satisfies
+
+```text
+deg D_F >= h-L.
+```
+
+Consequently, in the multiplicative-domain root-free ledger,
+
+```text
+RFArrBudget_hw <= 4 RFPhi_D(L),
+```
+
+and the residual bottleneck from Corollary 40.57 closes with
+
+```text
+min(BCF_0, Charge(P_pre)+4 RFPhi_D(L)) + 2h.        (CutoffMinorLedger)
+```
+
+Conversely, after the fixed-root/root-slice recurrence pieces have been
+charged, failure of full column rank for one of the four `A_F(m)` is exactly a
+remaining low-degree half-window obstruction for that family: either it was a
+charged common-domain-root slice, or it contains a root-free degree-`<m`
+recurrence and hence has `deg D_F<m`.
+
+Thus the half-window route has a finite, scanner-ready target at the single
+cutoff depth: prove one full-column minor nonzero for each of the four
+displayed Hankel matrices after fixed-root pieces are separated.
+
+### Proof
+
+The row-count inequalities follow from `m<=h<=t+r_hw`; for the paired maps,
+the standing `t>=2` gives `t+r_hw>=2`, hence
+
+```text
+2(t+r_hw-1) >= t+r_hw >= m.
+```
+
+Full column rank of `A_F(m)` is equivalent to nonvanishing of some `m x m`
+full-column minor, and also to `ker A_F(m)=0`.  Corollary 40.69 then gives
+`deg D_F>=m=h-L` for every active family.  Corollary 40.46 gives the
+root-free arrangement bound, and Corollary 40.57 substitutes it into the
+two-route residual minimum.
+
+For the converse on the charged-free ledger, if `ker A_F(m)` is nonzero and
+has a common root in `D`, it is one of the fixed-root/root-slice recurrence
+pieces already separated by Corollary 40.6.  If it has no common domain root,
+Corollary 40.71 gives a root-free element of `ker A_F(m)`, and Corollary 40.69
+identifies this with `deg D_F<m`.  Hence, once fixed-root pieces are removed,
+rank failure is exactly the low-degree half-window residual.
+
 ## Corollary 41: The Global Common-Image Ledger Is Endpoint-Only
 
 Let `GCI` be the set of monic degree-`c` split core locators `L` for which
@@ -11908,6 +11988,9 @@ identity in the actual M1 instances.
 Corollary 40.71 shows that, when `|D|<q`, low-degree root-free emptiness is
 equivalent to injectivity after common domain-root slices are charged; it does
 not prove the resulting injectivity in the actual M1 instances.
+Corollary 40.72 packages that injectivity target as four explicit full-column
+Hankel minor tests at the first half-window cutoff; it does not prove those
+minors are nonzero in the actual M1 instances.
 Corollary 41 packages the common-image branch into endpoint-type ledgers; it
 does not prove the endpoint rank hypotheses needed for the displayed
 `(q+2)binom(n,b)` bound. Corollary 42 packages the globally full core ledger

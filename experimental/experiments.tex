@@ -2351,6 +2351,27 @@ at most \(|D|q^{\dim K-1}<q^{\dim K}\) vectors.  Hence some nonzero
 \(K_F(h-L)\), after the fixed-root/root-slice charges from the recurrence
 stripping have been removed, the condition \(\delta_F\ge h-L\) is equivalent
 to the ordinary injectivity \(\ker A_F(h-L)=0\) on the remaining ledger.
+Equivalently, the half-window route is reduced to four explicit full-column
+minor tests at the single cutoff depth.  With \(m=h-L\), the half-window
+inequality \(h\le t+r_{hw}\) and \(t\ge2\) ensure that the scalar matrices have
+at least \(m\) rows and the paired matrices have \(2(t+r_{hw}-1)\ge m\) rows.
+If one \(m\times m\) minor of each of
+\[
+  A_u(m),\quad A_v(m),\quad A_{uv}(m),\quad A_{Suv}(m)
+\]
+is nonzero, then all active primitive denominators have degree at least
+\(h-L\), so
+\[
+  \mathrm{RFArrBudget}_{hw}\le4\,\mathrm{RFPhi}_D(L)
+\]
+and the residual ledger is
+\[
+  \min\{BCF_0,\mathrm{Charge}(P_{\rm pre})+
+  4\,\mathrm{RFPhi}_D(L)\}+2h.
+\]
+Conversely, after common domain-root slices are charged, vanishing of all
+full-column minors for one of these four maps is exactly a remaining
+low-degree root-free half-window recurrence for that family.
 The common-core and two-denominator formulas persist verbatim after this
 root-free replacement.  With \(C=\gcd(D:D\in M_{\min})\), \(\gamma=\deg C\),
 and \(E_D=D/C\),
