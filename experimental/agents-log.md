@@ -30,6 +30,27 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 two-edge same-slope corners descend additively
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_hankel_t2_one_exchange_lift.md`,
+  `experimental/scripts/verify_m1_hankel_t2_triangle_packets.py`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / EXACT FINITE VERIFICATION.
+- **What is being added:** Extracts the two-edge corner dichotomy from the
+  fixed-slope `t=2` core-plane classification.  If two active one-exchange
+  neighbors of a complement replace the same root, the corner is charged to the
+  `H_{3,j-1}` star core; if they replace two distinct roots, the corner forces
+  the lower recurrence `H_{4,j-2}(Syn(w_lambda))ell_R=0`.
+- **How it is useful:** Makes the same-slope packet recursion additive at the
+  first branching point.  Local graph branching either remains in a star ledger
+  or descends one Hankel rung; it cannot create a separate non-fixed
+  variable-line same-slope packet.
+- **What to do next:** Turn the local corner dichotomy into a global
+  component/energy charge for same-slope one-exchange components, then relate
+  the remaining lower-core events to the fixed-root/root-slice ledger.
+
 ### 2026-06-28 - M1 fixed-slope core planes are fixed-root or lower-core
 
 - **Agent/model:** AllenGrahamHart / Codex audit.

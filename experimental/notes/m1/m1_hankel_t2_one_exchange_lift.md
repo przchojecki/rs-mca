@@ -200,6 +200,47 @@ no non-fixed product-Mobius or fixed-sum variable-line component: those
 non-fixed lines belong to the different-slope all-line branch, not to residual
 same-slope packet growth.
 
+## Two-Edge Corner Dichotomy
+
+The core-plane classification gives a useful graph-local consequence.  Let
+`T` be an active complement and let `T_1,T_2` be two distinct active
+one-exchange neighbors of `T` in the same fixed-slope fiber.  Write
+
+```text
+T_1 = T\{x_1} union {y_1},        T_2 = T\{x_2} union {y_2}.
+```
+
+If `x_1=x_2`, then `T,T_1,T_2` all contain the same `(j-1)`-core
+`C=T\{x_1}`, and the one-exchange lift gives
+
+```text
+H_{3,j-1}(Syn(w_lambda))ell_C=0.
+```
+
+If `x_1 != x_2`, put
+
+```text
+R=T\{x_1,x_2}.
+```
+
+Then `T,T_1,T_2` are three active two-root extensions over the same
+`(j-2)`-core `R`.  Their added root pairs have no common root: the first two
+share `x_2`, the first and third share `x_1`, but all three cannot share a
+single root because the exchanged-in roots are outside `T`.  Therefore the
+rank-one fixed-root line alternative in the core-plane classification is
+impossible.  Rank two or inconsistency would allow at most one or no active
+pair, also impossible.  Hence the full-plane alternative holds, and
+
+```text
+H_{4,j-2}(Syn(w_lambda))ell_R=0.
+```
+
+Thus every two-edge corner in the active one-exchange graph is either a star
+corner already charged at `H_{3,j-1}`, or a lower-core corner charged at
+`H_{4,j-2}`.  This is the local no-multiplicative-branching statement for the
+`t=2` same-slope graph: branching either stays inside one star ledger or moves
+one rung down the Hankel core ladder.
+
 ## Triangle Packets
 
 The next local shape is a pairwise one-exchange triangle in one fixed-slope
@@ -316,6 +357,13 @@ against the classification above:
 | --- | ---: | ---: | ---: | ---: | ---: | ---: |
 | `F_7`, `H=F_7^*`, `n=6,k=1,a=3,j=3` | 100836 | 86436 | 1764 | 36 | 12600 | 10 |
 | `F_7`, `H=F_7^*`, `n=6,k=2,a=4,j=2` | 2400 | 2058 | 42 | 0 | 300 | 5 |
+
+It also audits the two-edge corner dichotomy:
+
+| field/domain | nonzero star corners | nonzero lower-core corners | max nonzero star corners/syndrome | max nonzero lower-core corners/syndrome |
+| --- | ---: | ---: | ---: | ---: |
+| `F_7`, `H=F_7^*`, `n=6,k=1,a=3,j=3` | 8640 | 3240 | 60 | 90 |
+| `F_7`, `H=F_7^*`, `n=6,k=2,a=4,j=2` | 1080 | 0 | 30 | 0 |
 
 The `F_7,k=2,j=2` scan is the first exact top-packet check in this file.  It
 finds twenty top triangles, all on the zero combined syndrome.  This is not an

@@ -3689,6 +3689,18 @@ The fully degenerate compatible case is exactly
 so it is already a deeper lower-core Hankel ledger.  Hence non-fixed
 product-Mobius or fixed-sum variable-line packets do not occur inside one
 fixed same-slope fiber.
+Equivalently, every two-edge corner in the active one-exchange graph has an
+additive depth charge.  If two active neighbors of \(T\) replace the same root
+of \(T\), the corner is a star and is charged to the common
+\(H_{3,j-1}\) core.  If they replace two distinct roots \(x_1,x_2\), the three
+active two-root extensions over \(R=T\setminus\{x_1,x_2\}\) cannot lie on a
+fixed-root rank-one line; therefore the full-plane alternative holds and
+\[
+  H_{4,j-2}(\operatorname{Syn}(w_\lambda))\ell_R=0.
+\]
+Thus same-slope graph branching either stays in one star ledger or descends one
+rung to a lower Hankel core; it does not create a separate non-fixed
+variable-line packet.
 The triangle-packet verifier
 \texttt{experimental/scripts/verify\_m1\_hankel\_t2\_triangle\_packets.py}
 checks the next local shape at the combined-syndrome level.  Every pairwise
@@ -3713,7 +3725,9 @@ exactly \(j=2\).
 The same verifier now also checks all nonzero core planes in the \(F_7^*\)
 \((n,k,a,j)=(6,1,3,3)\) and \((6,2,4,2)\) cases: every plane is a point,
 fixed-root line, full lower-core plane, or empty/inconsistent, with no
-non-fixed same-slope line.
+non-fixed same-slope line.  In the \(F_7^*,j=3\) case it also verifies
+\(8640\) nonzero star corners and \(3240\) nonzero lower-core corners, with
+maximal per-syndrome counts \(60\) and \(90\), respectively.
 The common-core and two-denominator formulas persist verbatim after this
 root-free replacement.  With \(C=\gcd(D:D\in M_{\min})\), \(\gamma=\deg C\),
 and \(E_D=D/C\),

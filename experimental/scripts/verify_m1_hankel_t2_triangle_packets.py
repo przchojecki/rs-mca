@@ -24,6 +24,9 @@ extensions T=R union {x,y} are solutions of two affine equations in
 (sigma,pi)=(x+y,xy).  The consecutive Hankel form rules out non-fixed affine
 lines in a fixed same-slope fiber: each core plane is empty, a point, a
 fixed-root line, or the full lower-Hankel core plane H_{4,j-2}(s) ell_R=0.
+Consequently every two-edge corner in the active one-exchange graph is either
+a star corner covered by H_{3,j-1}, or a lower-core corner covered by
+H_{4,j-2}.
 
 It also checks the full-top zero-syndrome lemma: if all j+1 complements
 U\\{x} inside one (j+1)-top set U are active, then the combined syndrome is
@@ -172,6 +175,20 @@ def analyze_case(
     support_hankels = support_hankel_records(domain, support_records(n, a), p)
     complements = [tuple(record["complement_indices"]) for record in support_hankels]
     locators = [tuple(record["locator"]) for record in support_hankels]
+    locator_cache: dict[tuple[int, ...], tuple[int, ...]] = {}
+
+    def cached_locator(core: tuple[int, ...]) -> tuple[int, ...]:
+        if core not in locator_cache:
+            locator_cache[core] = locator_coeffs(domain, core, p)
+        return locator_cache[core]
+
+    one_exchange_neighbors: list[list[int]] = [[] for _ in complements]
+    for left, right in itertools.combinations(range(len(complements)), 2):
+        if not is_one_exchange(complements[left], complements[right], j):
+            continue
+        one_exchange_neighbors[left].append(right)
+        one_exchange_neighbors[right].append(left)
+
     core_planes: list[dict[str, object]] = []
     if j >= 2:
         for core in itertools.combinations(range(n), j - 2):
@@ -191,7 +208,7 @@ def analyze_case(
                 {
                     "core": core,
                     "core_set": core_set,
-                    "core_locator": locator_coeffs(domain, core, p),
+                    "core_locator": cached_locator(core),
                     "pair_members": pair_members,
                     "added_pairs": added_pairs,
                 }
@@ -203,10 +220,14 @@ def analyze_case(
     core_plane_histogram: Counter[str] = Counter()
     nonzero_core_plane_histogram: Counter[str] = Counter()
     nonzero_core_plane_active_pair_histogram: Counter[int] = Counter()
+    corner_histogram: Counter[str] = Counter()
+    nonzero_corner_histogram: Counter[str] = Counter()
     max_active = 0
     max_edges = 0
     max_triangles = 0
     max_nonzero_core_plane_active_pairs = 0
+    max_nonzero_star_corners_per_syndrome = 0
+    max_nonzero_lower_core_corners_per_syndrome = 0
     one_exchange_edges = 0
     star_triangles = 0
     top_triangles = 0
@@ -313,6 +334,79 @@ def analyze_case(
         max_triangles = max(max_triangles, case_triangles)
 
         active_set = set(active)
+        case_corner_histogram: Counter[str] = Counter()
+        for center in active:
+            center_set = set(complements[center])
+            active_neighbors = [
+                neighbor
+                for neighbor in one_exchange_neighbors[center]
+                if neighbor in active_set
+            ]
+            for left, right in itertools.combinations(active_neighbors, 2):
+                left_deleted = tuple(sorted(center_set - set(complements[left])))
+                right_deleted = tuple(sorted(center_set - set(complements[right])))
+                if len(left_deleted) != 1 or len(right_deleted) != 1:
+                    raise AssertionError(
+                        {
+                            "kind": "unexpected-corner-deleted-size",
+                            "p": p,
+                            "k": k,
+                            "syndrome": list(syn),
+                            "center": list(complements[center]),
+                            "left": list(complements[left]),
+                            "right": list(complements[right]),
+                            "left_deleted": list(left_deleted),
+                            "right_deleted": list(right_deleted),
+                        }
+                    )
+                if left_deleted == right_deleted:
+                    case_corner_histogram["star"] += 1
+                    core = tuple(sorted(center_set - set(left_deleted)))
+                    if not hankel_annihilates(syn, cached_locator(core), t + 1, p):
+                        raise AssertionError(
+                            {
+                                "kind": "star-corner-core-lift-failed",
+                                "p": p,
+                                "k": k,
+                                "syndrome": list(syn),
+                                "center": list(complements[center]),
+                                "left": list(complements[left]),
+                                "right": list(complements[right]),
+                                "core": list(core),
+                            }
+                        )
+                    continue
+
+                case_corner_histogram["lower_core"] += 1
+                core = tuple(
+                    sorted(center_set - set(left_deleted) - set(right_deleted))
+                )
+                if not hankel_annihilates(syn, cached_locator(core), t + 2, p):
+                    raise AssertionError(
+                        {
+                            "kind": "lower-core-corner-lift-failed",
+                            "p": p,
+                            "k": k,
+                            "syndrome": list(syn),
+                            "center": list(complements[center]),
+                            "left": list(complements[left]),
+                            "right": list(complements[right]),
+                            "core": list(core),
+                        }
+                    )
+
+        corner_histogram.update(case_corner_histogram)
+        if any(syn):
+            nonzero_corner_histogram.update(case_corner_histogram)
+            max_nonzero_star_corners_per_syndrome = max(
+                max_nonzero_star_corners_per_syndrome,
+                case_corner_histogram["star"],
+            )
+            max_nonzero_lower_core_corners_per_syndrome = max(
+                max_nonzero_lower_core_corners_per_syndrome,
+                case_corner_histogram["lower_core"],
+            )
+
         for plane in core_planes:
             kind, data = classify_core_plane(syn, plane["core_locator"], p)
             core_plane_histogram[kind] += 1
@@ -503,6 +597,10 @@ def analyze_case(
         "max_one_exchange_edges_per_syndrome": max_edges,
         "max_triangles_per_syndrome": max_triangles,
         "max_nonzero_core_plane_active_pairs": max_nonzero_core_plane_active_pairs,
+        "max_nonzero_star_corners_per_syndrome": max_nonzero_star_corners_per_syndrome,
+        "max_nonzero_lower_core_corners_per_syndrome": (
+            max_nonzero_lower_core_corners_per_syndrome
+        ),
         "one_exchange_edges": one_exchange_edges,
         "star_triangles": star_triangles,
         "top_triangles": top_triangles,
@@ -520,6 +618,8 @@ def analyze_case(
         "nonzero_core_plane_active_pair_histogram": dict(
             sorted(nonzero_core_plane_active_pair_histogram.items())
         ),
+        "corner_histogram": dict(sorted(corner_histogram.items())),
+        "nonzero_corner_histogram": dict(sorted(nonzero_corner_histogram.items())),
         "nonzero_top_active_size_histogram": dict(
             sorted(nonzero_top_active_size_histogram.items())
         ),
@@ -554,6 +654,8 @@ def print_summary(results: Sequence[dict[str, object]]) -> None:
             f"nonzero_top={result['nonzero_top_triangles']} "
             f"full_top={result['full_top_cliques']} "
             f"max_nonzero_core_plane={result['max_nonzero_core_plane_active_pairs']} "
+            f"max_nonzero_lower_corners="
+            f"{result['max_nonzero_lower_core_corners_per_syndrome']} "
             f"max_nonzero_top_active={result['max_nonzero_top_active_members']}"
         )
     print("PASS")
