@@ -6353,6 +6353,50 @@ def analyze_case(
                                                     )
                                                 )
                                             )
+                                            base_root_count = len(
+                                                projective_eval_base_roots
+                                            )
+                                            projective_direction_shadow_sizes = (
+                                                tuple(
+                                                    sorted(
+                                                        base_root_count
+                                                        + len(roots)
+                                                        for roots in (
+                                                            projective_eval_fibers.values()
+                                                        )
+                                                    )
+                                                )
+                                            )
+                                            projective_max_direction_shadow_size = (
+                                                max(
+                                                    (
+                                                        base_root_count,
+                                                        *projective_direction_shadow_sizes,
+                                                    )
+                                                )
+                                            )
+                                            projective_zero_good_shadow_count = (
+                                                binomial_or_zero(
+                                                    base_root_count,
+                                                    residual_size,
+                                                )
+                                                + sum(
+                                                    binomial_or_zero(
+                                                        (
+                                                            base_root_count
+                                                            + len(roots)
+                                                        ),
+                                                        residual_size,
+                                                    )
+                                                    - binomial_or_zero(
+                                                        base_root_count,
+                                                        residual_size,
+                                                    )
+                                                    for roots in (
+                                                        projective_eval_fibers.values()
+                                                    )
+                                                )
+                                            )
                                             half_certificate_size = (
                                                 residual_size + 1
                                             ) // 2
@@ -6546,6 +6590,63 @@ def analyze_case(
                                                         ),
                                                         fiber_half_incidence_bound=(
                                                             fiber_half_incidence_bound
+                                                        ),
+                                                    )
+                                                )
+                                            if (
+                                                projective_zero_good_shadow_count
+                                                != projective_zero_good_envelope_count
+                                            ):
+                                                raise AssertionError(
+                                                    projective_local_error(
+                                                        "zero-good-shadow-"
+                                                        "identity-failed",
+                                                        shadow_count=(
+                                                            projective_zero_good_shadow_count
+                                                        ),
+                                                        envelope_count=(
+                                                            projective_zero_good_envelope_count
+                                                        ),
+                                                        base_root_count=(
+                                                            base_root_count
+                                                        ),
+                                                        shadow_sizes=(
+                                                            projective_direction_shadow_sizes
+                                                        ),
+                                                    )
+                                                )
+                                            if (
+                                                projective_max_direction_shadow_size
+                                                >= residual_size
+                                            ):
+                                                raise AssertionError(
+                                                    projective_local_error(
+                                                        "zero-good-degree-"
+                                                        "gap-failed",
+                                                        residual_size=(
+                                                            residual_size
+                                                        ),
+                                                        base_root_count=(
+                                                            base_root_count
+                                                        ),
+                                                        max_shadow_size=(
+                                                            projective_max_direction_shadow_size
+                                                        ),
+                                                        shadow_sizes=(
+                                                            projective_direction_shadow_sizes
+                                                        ),
+                                                    )
+                                                )
+                                            if projective_zero_good_envelope_count:
+                                                raise AssertionError(
+                                                    projective_local_error(
+                                                        "zero-good-envelope-"
+                                                        "degree-gap-failed",
+                                                        zero_good_envelope=(
+                                                            projective_zero_good_envelope_count
+                                                        ),
+                                                        max_shadow_size=(
+                                                            projective_max_direction_shadow_size
                                                         ),
                                                     )
                                                 )
@@ -6987,6 +7088,19 @@ def analyze_case(
                                                         ),
                                                     )
                                                 )
+                                            if zero_good_candidate_count:
+                                                raise AssertionError(
+                                                    projective_local_error(
+                                                        "zero-good-candidate-"
+                                                        "degree-gap-failed",
+                                                        zero_good_candidates=(
+                                                            zero_good_candidate_count
+                                                        ),
+                                                        max_shadow_size=(
+                                                            projective_max_direction_shadow_size
+                                                        ),
+                                                    )
+                                                )
                                             projective_zero_good_closure_bound = (
                                                 len(projective_good_pairs)
                                                 + projective_zero_good_envelope_count
@@ -6998,6 +7112,9 @@ def analyze_case(
                                             projective_local_half_certificate_closure_bound = (
                                                 len(projective_good_pairs)
                                                 + projective_zero_good_local_bound
+                                            )
+                                            projective_degree_gap_closure_bound = len(
+                                                projective_good_pairs
                                             )
                                             if (
                                                 len(residual_candidates)
@@ -7049,6 +7166,27 @@ def analyze_case(
                                                             projective_zero_good_closure_bound
                                                         ),
                                                     }
+                                                )
+                                            if (
+                                                len(residual_candidates)
+                                                > projective_degree_gap_closure_bound
+                                            ):
+                                                raise AssertionError(
+                                                    projective_local_error(
+                                                        "degree-gap-closure-"
+                                                        "bound-failed",
+                                                        residual_candidates=(
+                                                            len(
+                                                                residual_candidates
+                                                            )
+                                                        ),
+                                                        good_pair_count=(
+                                                            projective_degree_gap_closure_bound
+                                                        ),
+                                                        max_shadow_size=(
+                                                            projective_max_direction_shadow_size
+                                                        ),
+                                                    )
                                                 )
                                             if (
                                                 len(residual_candidates)

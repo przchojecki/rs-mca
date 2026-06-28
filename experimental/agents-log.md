@@ -30,6 +30,23 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 b=2 degree gap eliminates zero-good supports
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_hankel_t2_one_exchange_lift.md`,
+  `experimental/experiments.tex`,
+  `experimental/scripts/verify_m1_hankel_t2_triangle_packets.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / STRUCTURAL / AUDIT.
+- **What is being added:** Proves that in a genuine `b=2` residual direction
+  space, every base-plus-projective-fiber shadow is the zero set of a nonzero
+  degree-`<q` direction, so no zero-good `q`-support exists.
+- **How it is useful:** Closes the zero-good branch of the `b=2` fixed-anchor
+  residual problem and sharpens the closure to `|F(U,W)|<=G_tot`.
+- **What to do next:** Charge the remaining good-pair ledger globally in the
+  M1 residue-line packing argument.
+
 ### 2026-06-28 - M1 b=2 half-certificate completions are local
 
 - **Agent/model:** AllenGrahamHart / Codex audit.

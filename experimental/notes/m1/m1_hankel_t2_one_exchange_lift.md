@@ -3588,6 +3588,62 @@ exact zero-good envelope, checks that it is no larger than the coarse global
 half-certificate incidence bound, and asserts (PF2-local-close).  The current
 largest `F_7^*` scan still has no `b(U,W)=2` produced anchor.
 
+## The Degree Gap Eliminates Zero-Good b=2 Supports
+
+In a genuine `b=2` residual direction space, the preceding zero-good envelope
+is actually empty.  The local-shadow form makes the reason visible.
+
+For `lambda=[a:b] in P^1`, put
+
+```text
+S_lambda=B_0 union ev^{-1}(lambda).
+```
+
+Then `S_lambda` is contained in the zero set on `D'` of the nonzero direction
+
+```text
+Q_lambda=bP-aQ.
+```
+
+Since `P,Q` are linearly independent directions of degree `<q`, the polynomial
+`Q_lambda` is not zero and has degree `<q`.  Hence
+
+```text
+|S_lambda| <= q-1.                              (PF2-shadow-gap)
+```
+
+The base locus itself is also contained in the zero set of the nonzero
+polynomial `P`, so `|B_0|<=q-1`.  Therefore no `q`-element residual support can
+lie in the base locus, and no `q`-element support can lie in
+`B_0 union ev^{-1}(lambda)` for a single projective fiber.  Equivalently,
+
+```text
+Z_0^{env}(U,W)=0.                               (PF2-Z0-vanish)
+```
+
+Thus every residual support in a `b=2` fixed-anchor fiber contains at least one
+cross-fiber good pair.  The good-pair injection now gives the unconditional
+`b=2` fixed-anchor packing bound
+
+```text
+|F(U,W)| <= G_tot.                              (PF2-degree-gap-close)
+```
+
+This closes the zero-good branch of the `b=2` persistent residual problem.  The
+remaining `b=2` work is to sum or charge the good-pair ledger itself in the
+global M1 residue-line packing, not to control a separate uncharged
+zero-good family.
+
+The verifier rewrites the zero-good envelope as
+
+```text
+binom(s,q)+sum_lambda (binom(s+m_lambda,q)-binom(s,q)),
+```
+
+checks the shadow gap `s+m_lambda<q` for every projective fiber, asserts
+`Z_0^{env}=0`, and verifies the direct closure `|F(U,W)|<=G_tot`.  The current
+largest `F_7^*` scan still has no `b(U,W)=2` produced anchor.
+
 ## Bad Root Slices Are Absorbed-Anchor Rank Defects
 
 The preceding bad-root condition has an equivalent absorbed-anchor form.  Fix
