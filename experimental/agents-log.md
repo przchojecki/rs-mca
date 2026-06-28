@@ -30,6 +30,23 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 minimal representatives give a sharper cutoff ledger
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_boundary_off_external_anchor_normal_form.md`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / PROOF-PROGRAM.
+- **What is being added:** Gives a degree-sensitive skeleton bound: choose a
+  minimal-degree representative in each divided-evaluation fiber, then the
+  fiber pays `W(e_s)` for that representative and only `W_E U_q(e_s,E)` for
+  same-or-upward aliases.
+- **How it is useful:** Refines the uniform cutoff multiplier by preserving
+  the actual minimal denominator degrees of fibers; fibers with `e_s+E<=n`
+  become singleton within the cutoff family.
+- **What to do next:** Use the skeleton form when an incidence argument can
+  control the minimal denominator degrees of divided evaluation fibers.
+
 ### 2026-06-28 - M1 minimal representatives sharpen cutoff alias multipliers
 
 - **Agent/model:** AllenGrahamHart / Codex audit.

@@ -3458,6 +3458,20 @@ More generally, degree slabs pay only local multipliers.  If
 \]
 Thus low alias-free slabs and high alias-prone slabs can be charged
 separately instead of using a single worst cutoff.
+There is also a degree-sensitive skeleton form.  Choose one minimal-degree
+representative \(s\) in each divided-evaluation fiber of
+\(\mathcal A_{\le E}\), with \(e_s=\deg Q_s\).  Then
+\[
+  |\mathcal A_{\le E}|
+  \le \sum_s (1+U_q(e_s,E)),
+\]
+and
+\[
+  |\Lambda(\mathcal A_{\le E})|
+  \le \sum_s \bigl(W(e_s)+W_E U_q(e_s,E)\bigr).
+\]
+Thus fibers whose minimal degree satisfies \(e_s+E\le n\) are singleton inside
+the cutoff family and pay only \(W(e_s)\).
 The common-core and two-denominator formulas persist verbatim after this
 root-free replacement.  With \(C=\gcd(D:D\in M_{\min})\), \(\gamma=\deg C\),
 and \(E_D=D/C\),

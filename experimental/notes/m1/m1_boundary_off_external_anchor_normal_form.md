@@ -15978,6 +15978,59 @@ Combining these two inequalities and summing over `r` proves
 (SlabEvalLedger).  The last sentence follows from the definitions of `M_q` in
 Corollary 40.158 and `W` in Corollary 40.148.
 
+## Corollary 40.161: Minimal Representatives Give A Sharper Cutoff Ledger
+
+Assume `F=F_q`, and let `A_{<=E}` be a finite family of positive-degree
+primitive residue-line data with denominator degree at most `E`.  For each
+divided evaluation datum in `Ev(A_{<=E})`, choose one representative
+
+```text
+s=(Q_s,B_s,w_s) in A_{<=E}
+```
+
+of minimal denominator degree inside its fiber, and let `S_min` be the set of
+chosen representatives.  Put
+
+```text
+e_s=deg Q_s,        W_E=max_{1<=e<=E} W(e).
+```
+
+Then
+
+```text
+|A_{<=E}| <= sum_{s in S_min} ( 1+U_q(e_s,E) ),       (MinRepClassBound)
+```
+
+and
+
+```text
+|Lambda(A_{<=E})|
+ <= sum_{s in S_min} ( W(e_s)+W_E U_q(e_s,E) ).       (MinRepLedgerBound)
+```
+
+Here `U_q(e,E)` is the same-or-upward alias budget from Corollary 40.157.
+Thus a divided evaluation fiber whose minimal representative has
+`e_s+E<=n` is singleton inside the cutoff family, and contributes at most
+`W(e_s)` to the active ledger.
+
+This is the degree-sensitive form of Corollary 40.158: the uniform multiplier
+`M_q(E)` is recovered by replacing each `U_q(e_s,E)` by its worst-case bound
+`Pi_q(2E-n+1)` and each `W(e_s)` by `W_E`.
+
+### Proof
+
+Partition `A_{<=E}` by divided evaluation fibers.  Fix one fiber and its
+minimal-degree representative `s`.  Inside this cutoff family there are no
+aliases in the fiber of degree `<e_s`.  Corollary 40.157, applied to `s`, then
+bounds the number of other aliases in the fiber by the same-or-upward term
+`U_q(e_s,E)`.  Summing over fibers gives (MinRepClassBound).
+
+For the coefficient ledger, Corollary 40.148 bounds the contribution of the
+chosen representative by `W(e_s)`.  Every other member of the same fiber has
+degree at most `E`, hence fixed-class weight at most `W_E`, and there are at
+most `U_q(e_s,E)` such members.  Summing these fiberwise bounds gives
+(MinRepLedgerBound).  If `e_s+E<=n`, then `U_q(e_s,E)=0` by definition.
+
 ## Corollary 41: The Global Common-Image Ledger Is Endpoint-Only
 
 Let `GCI` be the set of monic degree-`c` split core locators `L` for which
@@ -19095,6 +19148,9 @@ Corollary 40.159 identifies the fully lossless low range: if
 the number of divided evaluation data.
 Corollary 40.160 gives the degree-slab version: each denominator slab pays
 only its own fixed-class weight and cutoff alias multiplier.
+Corollary 40.161 gives the sharper minimal-representative skeleton form:
+each divided evaluation fiber pays the actual fixed-class weight of its
+minimal-degree representative plus only its same-or-upward alias budget.
 Corollary 41 packages the common-image branch into endpoint-type ledgers; it
 does not prove the endpoint rank hypotheses needed for the displayed
 `(q+2)binom(n,b)` bound. Corollary 42 packages the globally full core ledger
