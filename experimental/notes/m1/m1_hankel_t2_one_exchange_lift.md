@@ -118,6 +118,88 @@ direction vector is zero, the collision has moved into the contained/tangent
 side on the core.  In both cases, a same-slope one-exchange collision is not a
 free primitive packet: it is visible in the next-slack/core ledger.
 
+## Same-Slope Core-Plane Classification
+
+There is a stronger local normal form for all two-root extensions of a fixed
+`(j-2)`-core.  Fix `R` with `|R|=j-2`, set
+
+```text
+c_i = sum_h (ell_R)_h Syn_{i+h}(w_lambda),        0<=i<=3,
+```
+
+and write a two-root extension as
+
+```text
+T=R union {x,y},        sigma=x+y,        pi=xy.
+```
+
+Since
+
+```text
+ell_T=(X^2-sigma X+pi)ell_R,
+```
+
+the same-slope activity equation
+`H_{2,j}(Syn(w_lambda))ell_T=0` is exactly
+
+```text
+c_2 - sigma c_1 + pi c_0 = 0,
+c_3 - sigma c_2 + pi c_1 = 0.                 (CP)
+```
+
+Let
+
+```text
+M_R = [[-c_1, c_0], [-c_2, c_1]]
+```
+
+be the coefficient matrix in `(sigma,pi)`.
+
+If `rank M_R=2`, then `(CP)` has at most one elementary solution, hence at
+most one unordered domain pair over the core.  If the augmented system is
+inconsistent, there are no active extensions.
+
+If `rank M_R=1` and `(CP)` is consistent, then the two rows
+
+```text
+(-c_1,c_0,-c_2),        (-c_2,c_1,-c_3)
+```
+
+are proportional.  This forces `c_0 != 0` and, for some `q in F`,
+
+```text
+c_1=q c_0,        c_2=q^2 c_0,        c_3=q^3 c_0.
+```
+
+The line of solutions is therefore
+
+```text
+pi=q sigma-q^2,
+```
+
+or equivalently `(x-q)(y-q)=0`.  Thus every active domain extension contains
+the same root `q`; this is a fixed-root/root-slice packet on the larger core
+`R union {q}` whenever `q` is an available domain root, and otherwise it has
+at most one domain member.
+
+Finally, if the coefficient matrix is zero and the system is compatible, then
+
+```text
+c_0=c_1=c_2=c_3=0,
+```
+
+which is exactly the lower-core recurrence
+
+```text
+H_{4,j-2}(Syn(w_lambda))ell_R=0.
+```
+
+In that case the whole two-root plane through `R` is active, but it is already
+visible in the deeper Hankel core ledger.  Hence a fixed same-slope fiber has
+no non-fixed product-Mobius or fixed-sum variable-line component: those
+non-fixed lines belong to the different-slope all-line branch, not to residual
+same-slope packet growth.
+
 ## Triangle Packets
 
 The next local shape is a pairwise one-exchange triangle in one fixed-slope
@@ -223,8 +305,17 @@ first genuine top-triangle case without a slow quotient-pair scan.
 | field/domain | syndromes | one-exchange edges | star triangles | top triangles | full top cliques | max nonzero top active |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: |
 | `F_5`, `H=F_5^*`, `n=4,k=1,a=3,j=1` | 125 | 6 | 4 | 0 | 6 | 1 |
+| `F_7`, `H=F_7^*`, `n=6,k=1,a=3,j=3` | 16807 | 4410 | 2940 | 420 | 15 | 3 |
 | `F_7`, `H=F_7^*`, `n=6,k=2,a=4,j=2` | 2401 | 420 | 420 | 20 | 20 | 2 |
 | `F_7`, `H=F_7^*`, `n=6,k=3,a=5,j=1` | 343 | 15 | 20 | 0 | 15 | 1 |
+
+For the cases with `j>=2`, the same verifier also checks every core plane
+against the classification above:
+
+| field/domain | nonzero core planes | point | fixed-root line | full lower-core plane | empty/inconsistent | max nonzero active extensions |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| `F_7`, `H=F_7^*`, `n=6,k=1,a=3,j=3` | 100836 | 86436 | 1764 | 36 | 12600 | 10 |
+| `F_7`, `H=F_7^*`, `n=6,k=2,a=4,j=2` | 2400 | 2058 | 42 | 0 | 300 | 5 |
 
 The `F_7,k=2,j=2` scan is the first exact top-packet check in this file.  It
 finds twenty top triangles, all on the zero combined syndrome.  This is not an

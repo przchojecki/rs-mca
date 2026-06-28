@@ -30,6 +30,28 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 fixed-slope core planes are fixed-root or lower-core
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_hankel_t2_one_exchange_lift.md`,
+  `experimental/scripts/verify_m1_hankel_t2_triangle_packets.py`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / EXACT FINITE VERIFICATION.
+- **What is being added:** Proves the fixed-slope `t=2` core-plane
+  classification.  For a fixed `(j-2)`-core, the two-root extension equations
+  in `(sigma,pi)=(x+y,xy)` are consecutive Hankel equations; any consistent
+  rank-one line is forced to be `pi=q sigma-q^2`, hence fixed-root, while the
+  fully degenerate compatible case is exactly
+  `H_{4,j-2}(Syn(w_lambda))ell_R=0`.
+- **How it is useful:** Rules out non-fixed product-Mobius/fixed-sum
+  variable-line packets inside one fixed same-slope fiber.  Positive-dimensional
+  same-slope core planes are therefore charged to fixed-root/root-slice or
+  deeper lower-core Hankel ledgers.
+- **What to do next:** Use this classification to separate residual same-slope
+  packet mass from the different-slope variable-line branch and then bound the
+  lower-core/full-plane alternatives.
+
 ### 2026-06-28 - M1 nonzero top packets have bounded size
 
 - **Agent/model:** AllenGrahamHart / Codex audit.

@@ -3665,6 +3665,30 @@ ledger.  The verifier
 checks this determinant gate and core lift over exact \(F_5^*\) and \(F_7^*\)
 tiny scans, verifying \(3480\) and \(34650\) one-exchange core lifts
 respectively.
+The same consecutive-Hankel structure classifies the whole fixed-slope
+two-root plane over any \((j-2)\)-core.  Write
+\[
+  c_i=\sum_h(\ell_R)_h\operatorname{Syn}_{i+h}(w_\lambda),
+  \qquad 0\le i\le3,
+\]
+and \(T=R\cup\{x,y\}\), \(\sigma=x+y\), \(\pi=xy\).  Then activity over \(R\)
+is
+\[
+  c_2-\sigma c_1+\pi c_0=0,\qquad
+  c_3-\sigma c_2+\pi c_1=0.
+\]
+If the coefficient matrix has rank two there is at most one domain pair; if
+the rank-one system is consistent, the rows are proportional and force
+\(c_i=c_0q^i\), so the solution line is
+\(\pi=q\sigma-q^2\), equivalently \((x-q)(y-q)=0\).  Thus the only positive
+dimensional fixed-slope core-plane packet is a fixed-root/root-slice packet.
+The fully degenerate compatible case is exactly
+\[
+  H_{4,j-2}(\operatorname{Syn}(w_\lambda))\ell_R=0,
+\]
+so it is already a deeper lower-core Hankel ledger.  Hence non-fixed
+product-Mobius or fixed-sum variable-line packets do not occur inside one
+fixed same-slope fiber.
 The triangle-packet verifier
 \texttt{experimental/scripts/verify\_m1\_hankel\_t2\_triangle\_packets.py}
 checks the next local shape at the combined-syndrome level.  Every pairwise
@@ -3686,6 +3710,10 @@ verifier enumerates all \(2401\) combined syndromes and finds \(420\) star
 triangles, \(20\) top triangles, and \(20\) full top cliques; every full top
 clique has zero combined syndrome, and the maximum nonzero top active size is
 exactly \(j=2\).
+The same verifier now also checks all nonzero core planes in the \(F_7^*\)
+\((n,k,a,j)=(6,1,3,3)\) and \((6,2,4,2)\) cases: every plane is a point,
+fixed-root line, full lower-core plane, or empty/inconsistent, with no
+non-fixed same-slope line.
 The common-core and two-denominator formulas persist verbatim after this
 root-free replacement.  With \(C=\gcd(D:D\in M_{\min})\), \(\gamma=\deg C\),
 and \(E_D=D/C\),

@@ -19,6 +19,12 @@ a top packet:
 The script enumerates all syndrome vectors in small cases, including the first
 genuine top-triangle case (F_7, k=2, t=2, j=2).
 
+It also checks the core-plane classification.  For each (j-2)-core R, active
+extensions T=R union {x,y} are solutions of two affine equations in
+(sigma,pi)=(x+y,xy).  The consecutive Hankel form rules out non-fixed affine
+lines in a fixed same-slope fiber: each core plane is empty, a point, a
+fixed-root line, or the full lower-Hankel core plane H_{4,j-2}(s) ell_R=0.
+
 It also checks the full-top zero-syndrome lemma: if all j+1 complements
 U\\{x} inside one (j+1)-top set U are active, then the combined syndrome is
 zero.  Thus full top packets belong to the global-codeword/tangent ledger.
@@ -44,6 +50,78 @@ from verify_m1_exact_target_hankel_equivalence import (
 
 def is_one_exchange(left: Sequence[int], right: Sequence[int], j: int) -> bool:
     return len(set(left) & set(right)) == j - 1
+
+
+def hankel_apply(
+    syn: Sequence[int],
+    locator: Sequence[int],
+    row_count: int,
+    p: int,
+) -> tuple[int, ...]:
+    return tuple(
+        sum(locator[offset] * syn[row + offset] for offset in range(len(locator))) % p
+        for row in range(row_count)
+    )
+
+
+def shift_locator(locator: Sequence[int], shift: int) -> tuple[int, ...]:
+    return (0,) * shift + tuple(locator)
+
+
+def rank_2_by_2(rows: Sequence[tuple[int, int]], p: int) -> int:
+    determinant = (rows[0][0] * rows[1][1] - rows[0][1] * rows[1][0]) % p
+    if determinant:
+        return 2
+    if any(value % p for row in rows for value in row):
+        return 1
+    return 0
+
+
+def augmented_consistent(rows: Sequence[tuple[int, int, int]], p: int) -> bool:
+    for left, right in itertools.combinations(rows, 2):
+        if (
+            (left[0] * right[1] - left[1] * right[0]) % p
+            or (left[0] * right[2] - left[2] * right[0]) % p
+            or (left[1] * right[2] - left[2] * right[1]) % p
+        ):
+            return False
+    return True
+
+
+def classify_core_plane(
+    syn: Sequence[int],
+    core_locator: Sequence[int],
+    p: int,
+) -> tuple[str, dict[str, int]]:
+    """Classify active two-root extensions over a fixed (j-2)-core."""
+    constant = hankel_apply(syn, shift_locator(core_locator, 2), 2, p)
+    sigma_vector = hankel_apply(syn, shift_locator(core_locator, 1), 2, p)
+    pi_vector = hankel_apply(syn, core_locator, 2, p)
+    rows = [
+        ((-sigma_vector[row]) % p, pi_vector[row] % p, (-constant[row]) % p)
+        for row in range(2)
+    ]
+    coefficient_rows = [(row[0], row[1]) for row in rows]
+    coefficient_rank = rank_2_by_2(coefficient_rows, p)
+    if coefficient_rank == 2:
+        return ("point", {})
+    if coefficient_rank == 0:
+        if any(row[2] for row in rows):
+            return ("empty_inconsistent", {})
+        return ("full_plane", {})
+    if not augmented_consistent(rows, p):
+        return ("empty_inconsistent", {})
+
+    alpha, beta, gamma = next(row for row in rows if row[0] or row[1])
+    if beta == 0:
+        return ("fixed_sum_line", {"sum": gamma * pow(alpha, -1, p) % p})
+
+    slope = (-alpha) * pow(beta, -1, p) % p
+    intercept = gamma * pow(beta, -1, p) % p
+    mu = (slope * slope + intercept) % p
+    if mu == 0:
+        return ("fixed_root_line", {"root": slope})
+    return ("product_mobius_line", {"center": slope, "mu": mu})
 
 
 def classify_triangle(
@@ -94,13 +172,41 @@ def analyze_case(
     support_hankels = support_hankel_records(domain, support_records(n, a), p)
     complements = [tuple(record["complement_indices"]) for record in support_hankels]
     locators = [tuple(record["locator"]) for record in support_hankels]
+    core_planes: list[dict[str, object]] = []
+    if j >= 2:
+        for core in itertools.combinations(range(n), j - 2):
+            core_set = set(core)
+            pair_members: list[int] = []
+            added_pairs: list[tuple[int, int]] = []
+            for index, complement in enumerate(complements):
+                complement_set = set(complement)
+                if not core_set.issubset(complement_set):
+                    continue
+                added = tuple(sorted(complement_set - core_set))
+                if len(added) != 2:
+                    continue
+                pair_members.append(index)
+                added_pairs.append(added)
+            core_planes.append(
+                {
+                    "core": core,
+                    "core_set": core_set,
+                    "core_locator": locator_coeffs(domain, core, p),
+                    "pair_members": pair_members,
+                    "added_pairs": added_pairs,
+                }
+            )
 
     active_histogram: Counter[int] = Counter()
     edge_histogram: Counter[int] = Counter()
     triangle_histogram: Counter[int] = Counter()
+    core_plane_histogram: Counter[str] = Counter()
+    nonzero_core_plane_histogram: Counter[str] = Counter()
+    nonzero_core_plane_active_pair_histogram: Counter[int] = Counter()
     max_active = 0
     max_edges = 0
     max_triangles = 0
+    max_nonzero_core_plane_active_pairs = 0
     one_exchange_edges = 0
     star_triangles = 0
     top_triangles = 0
@@ -207,6 +313,118 @@ def analyze_case(
         max_triangles = max(max_triangles, case_triangles)
 
         active_set = set(active)
+        for plane in core_planes:
+            kind, data = classify_core_plane(syn, plane["core_locator"], p)
+            core_plane_histogram[kind] += 1
+            pair_members = plane["pair_members"]
+            added_pairs = plane["added_pairs"]
+            active_positions = [
+                position
+                for position, index in enumerate(pair_members)
+                if index in active_set
+            ]
+            active_pair_count = len(active_positions)
+            if any(syn):
+                nonzero_core_plane_histogram[kind] += 1
+                nonzero_core_plane_active_pair_histogram[active_pair_count] += 1
+                max_nonzero_core_plane_active_pairs = max(
+                    max_nonzero_core_plane_active_pairs,
+                    active_pair_count,
+                )
+
+            if kind == "empty_inconsistent":
+                if active_pair_count:
+                    raise AssertionError(
+                        {
+                            "kind": "inconsistent-core-plane-has-active-pairs",
+                            "p": p,
+                            "k": k,
+                            "syndrome": list(syn),
+                            "core": list(plane["core"]),
+                            "active_pair_count": active_pair_count,
+                        }
+                    )
+            elif kind == "point":
+                if active_pair_count > 1:
+                    raise AssertionError(
+                        {
+                            "kind": "point-core-plane-has-multiple-active-pairs",
+                            "p": p,
+                            "k": k,
+                            "syndrome": list(syn),
+                            "core": list(plane["core"]),
+                            "active_pair_count": active_pair_count,
+                        }
+                    )
+            elif kind == "full_plane":
+                expected_count = len(pair_members)
+                if active_pair_count != expected_count:
+                    raise AssertionError(
+                        {
+                            "kind": "full-core-plane-missing-active-pairs",
+                            "p": p,
+                            "k": k,
+                            "syndrome": list(syn),
+                            "core": list(plane["core"]),
+                            "active_pair_count": active_pair_count,
+                            "expected_count": expected_count,
+                        }
+                    )
+                if not hankel_annihilates(syn, plane["core_locator"], t + 2, p):
+                    raise AssertionError(
+                        {
+                            "kind": "full-core-plane-lower-hankel-lift-failed",
+                            "p": p,
+                            "k": k,
+                            "syndrome": list(syn),
+                            "core": list(plane["core"]),
+                        }
+                    )
+            elif kind == "fixed_root_line":
+                root_index = next(
+                    (index for index, value in enumerate(domain) if value == data["root"]),
+                    None,
+                )
+                if active_pair_count >= 2:
+                    if root_index is None:
+                        raise AssertionError(
+                            {
+                                "kind": "fixed-root-line-root-not-in-domain",
+                                "p": p,
+                                "k": k,
+                                "syndrome": list(syn),
+                                "core": list(plane["core"]),
+                                "root": data["root"],
+                            }
+                        )
+                    for position in active_positions:
+                        if root_index not in added_pairs[position]:
+                            raise AssertionError(
+                                {
+                                    "kind": "fixed-root-line-without-common-root",
+                                    "p": p,
+                                    "k": k,
+                                    "syndrome": list(syn),
+                                    "core": list(plane["core"]),
+                                    "root": data["root"],
+                                    "added_pair": list(added_pairs[position]),
+                                }
+                            )
+            elif kind in {"fixed_sum_line", "product_mobius_line"}:
+                raise AssertionError(
+                    {
+                        "kind": "unexpected-nonfixed-same-slope-core-plane",
+                        "p": p,
+                        "k": k,
+                        "line_kind": kind,
+                        "syndrome": list(syn),
+                        "core": list(plane["core"]),
+                        "active_pair_count": active_pair_count,
+                    }
+                )
+            else:
+                raise AssertionError({"kind": "unknown-core-plane-kind", "value": kind})
+
         for top in itertools.combinations(range(n), j + 1):
             top_set = set(top)
             top_members = [
@@ -284,6 +502,7 @@ def analyze_case(
         "max_active_complements": max_active,
         "max_one_exchange_edges_per_syndrome": max_edges,
         "max_triangles_per_syndrome": max_triangles,
+        "max_nonzero_core_plane_active_pairs": max_nonzero_core_plane_active_pairs,
         "one_exchange_edges": one_exchange_edges,
         "star_triangles": star_triangles,
         "top_triangles": top_triangles,
@@ -294,6 +513,13 @@ def analyze_case(
         "active_complement_histogram": dict(sorted(active_histogram.items())),
         "one_exchange_edge_histogram": dict(sorted(edge_histogram.items())),
         "triangle_histogram": dict(sorted(triangle_histogram.items())),
+        "core_plane_histogram": dict(sorted(core_plane_histogram.items())),
+        "nonzero_core_plane_histogram": dict(
+            sorted(nonzero_core_plane_histogram.items())
+        ),
+        "nonzero_core_plane_active_pair_histogram": dict(
+            sorted(nonzero_core_plane_active_pair_histogram.items())
+        ),
         "nonzero_top_active_size_histogram": dict(
             sorted(nonzero_top_active_size_histogram.items())
         ),
@@ -327,6 +553,7 @@ def print_summary(results: Sequence[dict[str, object]]) -> None:
             f"top_triangles={result['top_triangles']} "
             f"nonzero_top={result['nonzero_top_triangles']} "
             f"full_top={result['full_top_cliques']} "
+            f"max_nonzero_core_plane={result['max_nonzero_core_plane_active_pairs']} "
             f"max_nonzero_top_active={result['max_nonzero_top_active_members']}"
         )
     print("PASS")
@@ -359,7 +586,7 @@ def parse_args() -> argparse.Namespace:
 
 def main() -> None:
     args = parse_args()
-    cases = args.cases or [(5, 1), (7, 2), (7, 3)]
+    cases = args.cases or [(5, 1), (7, 1), (7, 2), (7, 3)]
     results = [
         analyze_case(
             p=p,
