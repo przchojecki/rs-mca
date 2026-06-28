@@ -30,6 +30,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 bottom row-span certificates
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_boundary_off_external_anchor_normal_form.md`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / PROOF-PROGRAM / AUDIT.
+- **What is being added:** The bottom common-factor residual-window target is
+  recast as an exact Hankel row-span certificate: for a monic divisor `G` of
+  degree `g`, `K_0(F) subset G F_q[X]_{<h-g}` is equivalent to
+  `row(Rem_G) subset row(A_0(F))`, or the stacked rank equality
+  `rank A_0(F)=rank[A_0(F); Rem_G]`.
+- **How it is useful:** This turns the abstract gcd condition in the M1 bottom
+  route into a finite determinantal target on the actual bottom Hankel
+  matrices, matching the Hankel-pencil direction requested for M1.
+- **What to do next:** Search for or prove these row-span certificates in the
+  four bottom kernels; failure for small `L` would falsify the current bottom
+  route and redirect effort to the half-window arrangement route.
+
 ### 2026-06-28 - M1 common-factor route minimum
 
 - **Agent/model:** AllenGrahamHart / Codex audit.

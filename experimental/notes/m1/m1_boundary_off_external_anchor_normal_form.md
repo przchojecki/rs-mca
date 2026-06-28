@@ -7884,6 +7884,121 @@ charged.  The finite frontier term is still the `2h` charge from Corollary
 40.11.  This proves (CFRouteMin), and the fixed-`L` consequence follows from
 monotonicity of `RFPhi_D(m)`.
 
+## Corollary 40.58: Bottom Common-Factor Windows Are Hankel Row-Span Certificates
+
+Keep the notation of Corollary 40.57 and fix `1<=L<=h`.  For a monic
+polynomial `G` of degree `g`, let
+
+```text
+Rem_G : F_q[X]_{<h} -> F_q[X]_{<g}
+```
+
+be the remainder map modulo `G`, written as a `g x h` coefficient matrix in
+the monomial bases.  For the four bottom families, write `A_0(F)` for the
+bottom matrix defining `K_0(F)=ker A_0(F)`, namely
+
+```text
+A_0(u)     = H_{t+r_0,h-1}(u),
+A_0(v)     = H_{t+r_0,h-1}(v),
+A_0(u,v)   = [ H_{t+r_0-1,h-1}(u) ; H_{t+r_0-1,h-1}(v) ],
+A_0(Su,Sv) = [ H_{t+r_0-1,h-1}(S u) ; H_{t+r_0-1,h-1}(S v) ].
+```
+
+Then, for each bottom family `F`, the following are equivalent:
+
+1. every element of `K_0(F)` is divisible by `G`;
+2. `K_0(F) subset G F_q[X]_{<h-g}`;
+3. the remainder rows modulo `G` lie in the row span of the bottom Hankel
+   matrix:
+
+```text
+row(Rem_G) subset row(A_0(F));                     (BottomRowSpanCert)
+```
+
+4. equivalently,
+
+```text
+rank A_0(F) = rank [ A_0(F) ; Rem_G ].             (BottomRankCert)
+```
+
+Consequently, the condition
+
+```text
+h-deg gcd(K_0(F)) <= L
+```
+
+from Corollary 40.57 is equivalent, for a nonzero bottom family, to the
+existence of a monic polynomial `G_F` with `deg G_F>=h-L` satisfying
+(BottomRowSpanCert) for that family.  If such certificates exist for all
+nonzero bottom families, then:
+
+* if `G_F` has a domain root, the corresponding root-free bottom family is
+  empty;
+* otherwise that family contributes at most `RFPhi_D(h-deg G_F)`, hence at
+  most `RFPhi_D(L)`.
+
+Thus the bottom side of the refined route minimum closes with
+
+```text
+BCF_0 <= 4 RFPhi_D(L),
+```
+
+and hence with total ledger `4 RFPhi_D(L)+2h`, whenever each of the four actual
+bottom Hankel matrices admits a row-span certificate of degree at least
+`h-L`.
+
+This recasts the bottom common-factor target as a finite determinantal
+Hankel problem.  For fixed `G`, (BottomRankCert) is a rank equality.  With
+unknown coefficients of `G`, it is an explicit incidence condition between
+the bottom Hankel row space and the polynomial remainder row space.
+
+### Proof
+
+For a monic `G` of degree `g`, a polynomial `Q` of degree `<h` has
+remainder zero modulo `G` if and only if
+
+```text
+Q=G R,        deg R<h-g.
+```
+
+Thus
+
+```text
+ker Rem_G = G F_q[X]_{<h-g}.
+```
+
+Since `K_0(F)=ker A_0(F)`, conditions 1 and 2 are just the inclusion
+
+```text
+ker A_0(F) subset ker Rem_G.
+```
+
+For linear maps on a finite-dimensional vector space, kernel inclusion is
+dual to row-space containment:
+
+```text
+ker A subset ker B    iff    row(B) subset row(A).
+```
+
+Applying this with `A=A_0(F)` and `B=Rem_G` gives
+(BottomRowSpanCert), and row-space containment is equivalent to the displayed
+rank equality after stacking the rows.
+
+If `K_0(F)` is nonzero and `h-deg gcd(K_0(F))<=L`, choose `G_F` to be the
+monic common gcd itself; then `deg G_F>=h-L` and every element of `K_0(F)` is
+divisible by `G_F`, so the row-span certificate holds.  Conversely, any such
+certificate with `deg G_F>=h-L` forces
+`K_0(F) subset G_F F_q[X]_{<h-deg G_F}`, so `G_F` divides every element of
+`K_0(F)` and the common gcd has degree at least `h-L`.
+
+The root-free count consequence is the same quotient argument as Corollary
+40.56, applied with the certified divisor `G_F`: a domain root of `G_F` kills
+every root-free class, while a root-free `G_F` divides all witnesses and leaves
+only a
+degree-`<h-deg G_F` root-free quotient, which is at most the degree-`<L`
+ambient root-free count.  Summing over the four bottom families and then
+applying Corollary 40.43 gives the stated bottom-route ledger.
+
 ## Corollary 41: The Global Common-Image Ledger Is Endpoint-Only
 
 Let `GCI` be the set of monic degree-`c` split core locators `L` for which
@@ -10673,6 +10788,9 @@ Corollary 40.57 refines the ladder bottleneck by substituting the
 common-factor bottom-window charge and the root-free half-window arrangement
 charge into the two-route minimum; it does not prove either route satisfies
 the required M1 reserve bound in the actual instances.
+Corollary 40.58 identifies the bottom common-factor target with a Hankel
+row-span/rank certificate modulo a divisor of degree at least `h-L`; it does
+not prove that such divisors exist for the actual M1 bottom matrices.
 Corollary 41 packages the common-image branch into endpoint-type ledgers; it
 does not prove the endpoint rank hypotheses needed for the displayed
 `(q+2)binom(n,b)` bound. Corollary 42 packages the globally full core ledger
