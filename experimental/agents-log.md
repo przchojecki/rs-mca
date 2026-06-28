@@ -30,6 +30,23 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 one-coefficient cutoffs have only tail-alias loss
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_boundary_off_external_anchor_normal_form.md`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / PROOF-PROGRAM.
+- **What is being added:** Combines the high-minimal-degree tail split with
+  the one-coefficient fixed-class range, proving
+  `|Lambda(A_{<=E})| <= |Ev(A_{<=E})| + Pi_q(2E-n+1)|S_tail|`
+  for `1<=E<=t-j`.
+- **How it is useful:** Shows that, throughout the one-coefficient primitive
+  range, the only possible loss beyond divided-evaluation counting is
+  finite-domain aliasing over high-minimal-degree representatives.
+- **What to do next:** Bound the high-minimal-degree tail image or rule it out
+  with active M1 incidence constraints.
+
 ### 2026-06-28 - M1 skeleton ledger uses tail-local weights
 
 - **Agent/model:** AllenGrahamHart / Codex audit.

@@ -16082,6 +16082,41 @@ in Corollary 40.161.  Summing the two fiber types proves (TailEvalLedger).
 The two consequences follow immediately, using `W(e_s)<=1` in the
 one-coefficient range `e_s<=t-j`.
 
+## Corollary 40.163: One-Coefficient Cutoffs Have Only Tail-Alias Loss
+
+Keep the setup of Corollary 40.162, and assume
+
+```text
+1<=E<=t-j.
+```
+
+Then
+
+```text
+|Lambda(A_{<=E})|
+ <= |Ev(A_{<=E})| + Pi_q(2E-n+1) |S_tail|.         (OneCoeffTailLedger)
+```
+
+Equivalently, throughout the one-coefficient primitive range, fixed-class
+coefficient multiplicity is absent.  If the cutoff is above the
+low-total-degree threshold `2E<=n`, this reduces to the lossless bound of
+Corollary 40.159; if `2E>n`, the only possible loss is the finite-domain alias
+tail over minimal representatives with `e_s>n-E`.
+
+### Proof
+
+Since `E<=t-j`, every degree in the cutoff family lies in the one-coefficient
+range of Corollary 40.148.  Hence `W(e_s)<=1` and `W_{s,E}<=1` for every
+minimal representative `s`.  Applying Corollary 40.162 gives
+
+```text
+|Lambda(A_{<=E})|
+ <= |S_low| + |S_tail| (1+Pi_q(2E-n+1)).
+```
+
+Because `S_low` and `S_tail` partition `S_min`, and
+`|S_min|=|Ev(A_{<=E})|`, this is exactly (OneCoeffTailLedger).
+
 ## Corollary 41: The Global Common-Image Ledger Is Endpoint-Only
 
 Let `GCI` be the set of monic degree-`c` split core locators `L` for which
@@ -19206,6 +19241,8 @@ tail-local fixed-class weights.
 Corollary 40.162 isolates the remaining aliasing locus: nontrivial cutoff
 fibers can occur only over minimal representatives in the high-degree tail
 `e_s>n-E`.
+Corollary 40.163 combines this with the one-coefficient range: for
+`E<=t-j`, the only possible multiplicity loss is the finite-domain alias tail.
 Corollary 41 packages the common-image branch into endpoint-type ledgers; it
 does not prove the endpoint rank hypotheses needed for the displayed
 `(q+2)binom(n,b)` bound. Corollary 42 packages the globally full core ledger
