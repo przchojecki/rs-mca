@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-29 - M1 b=2 exact no-base occupancy saving
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_hankel_t2_one_exchange_lift.md`,
+  `experimental/experiments.tex`,
+  `experimental/scripts/verify_m1_hankel_t2_triangle_packets.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / STRUCTURAL / REDUCTION.
+- **What is being added:** Sharpens the no-base escape profile from the
+  dominant-fiber bound `j(q-j)` to the exact extremal cross-fiber count
+  `Phi_q(m)` for maximum projective-fiber occupancy `m`.
+- **How it is useful:** Gives stronger reciprocal savings for spread no-base
+  determinant gates, isolating the truly concentrated profiles as the ones
+  that need quotient-line descent.
+- **What to do next:** Use the exact profile weights in the remaining
+  canonical-anchor determinant-gate ledger.
+
 ### 2026-06-29 - M1 b=2 no-base escape profiles
 
 - **Agent/model:** AllenGrahamHart / Codex audit.

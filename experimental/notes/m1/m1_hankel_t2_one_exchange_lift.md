@@ -4421,6 +4421,32 @@ pairs between that fiber and its complement already give
 g_A(R)>=j(q-j).                                (PF2-nobase-profile)
 ```
 
+There is a sharper exact occupancy form.  For `1<=m<=q-1`, write
+
+```text
+q=a_m m+r_m,        0<=r_m<m,
+Phi_q(m)=1/2 (q^2-a_m m^2-r_m^2).
+```
+
+If every projective fiber in `R` has size at most `m`, then
+
+```text
+sum_lambda r_lambda(R)^2 <= a_m m^2+r_m^2,
+```
+
+because the square sum is maximized by filling as many fibers of size `m` as
+possible and one remaining fiber of size `r_m`.  Hence
+
+```text
+g_A(R)
+ =1/2 (q^2-sum_lambda r_lambda(R)^2)
+ >= Phi_q(m).                                  (PF2-nobase-occupancy)
+```
+
+Taking `m=m_A(R)=q-esc_A(R)` refines (PF2-nobase-profile); the two bounds
+agree in the concentrated range `m>=q/2`, while (PF2-nobase-occupancy) gives
+a strictly larger saving for supports with `m<q/2`.
+
 For
 
 ```text
@@ -4432,7 +4458,8 @@ the no-base part of the weighted ledger therefore satisfies
 
 ```text
 |F^{nb}(A)|
- <= sum_{j=1}^{q-1} (1/(j(q-j))) |I_{A,j}^{nb}|.  (PF2-nobase-profile-ledger)
+ <= sum_{j=1}^{q-1}
+      (1/Phi_q(q-j)) |I_{A,j}^{nb}|.          (PF2-nobase-profile-ledger)
 ```
 
 The dangerous small-escape profiles also have explicit quotient certificates.
@@ -4452,7 +4479,7 @@ in a width-`j` projective-fiber quotient line `F_{lambda,C}(A)`.  Consequently
 ```text
 |F^{nb}(A)|
  <=
-  sum_{j=u}^{q-1} (1/(j(q-j))) |I_{A,j}^{nb}|
+  sum_{j=u}^{q-1} (1/Phi_q(q-j)) |I_{A,j}^{nb}|
   + sum_{j=1}^{u-1} sum_lambda
       sum_{C subset ev_A^{-1}(lambda), |C|=q-j}
         |F_{lambda,C}(A)|.                     (PF2-nobase-cutoff)

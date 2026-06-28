@@ -7424,12 +7424,31 @@ def analyze_case(
                                                                 },
                                                             }
                                                         )
+                                                    (
+                                                        full_profile_fibers,
+                                                        profile_remainder,
+                                                    ) = divmod(
+                                                        residual_size,
+                                                        largest_candidate_fiber,
+                                                    )
                                                     nobase_profile_lower = (
-                                                        candidate_projective_escape
-                                                        * (
+                                                        (
                                                             residual_size
-                                                            - candidate_projective_escape
+                                                            * residual_size
                                                         )
+                                                        - (
+                                                            full_profile_fibers
+                                                            * largest_candidate_fiber
+                                                            * largest_candidate_fiber
+                                                        )
+                                                        - (
+                                                            profile_remainder
+                                                            * profile_remainder
+                                                        )
+                                                    ) // 2
+                                                    dominant_profile_lower = (
+                                                        candidate_projective_escape
+                                                        * largest_candidate_fiber
                                                     )
                                                     if (
                                                         candidate_good_pairs
@@ -7447,6 +7466,7 @@ def analyze_case(
                                                                 "direction-mds-"
                                                                 "projective-"
                                                                 "nobase-good-pair-"
+                                                                "occupancy-"
                                                                 "profile-bound-"
                                                                 "failed",
                                                                 "p": p,
@@ -7477,6 +7497,18 @@ def analyze_case(
                                                                 ),
                                                                 "projective_escape": (
                                                                     candidate_projective_escape
+                                                                ),
+                                                                "largest_fiber": (
+                                                                    largest_candidate_fiber
+                                                                ),
+                                                                "full_profile_fibers": (
+                                                                    full_profile_fibers
+                                                                ),
+                                                                "profile_remainder": (
+                                                                    profile_remainder
+                                                                ),
+                                                                "dominant_lower_bound": (
+                                                                    dominant_profile_lower
                                                                 ),
                                                                 "lower_bound": (
                                                                     nobase_profile_lower
