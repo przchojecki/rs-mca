@@ -14048,6 +14048,81 @@ Since `F[X]` is an integral domain and `N` is nonzero, this implies
 union is a subset of all `(j+v)`-subsets of `D`.  The final sentence is the
 injectivity statement of Corollary 40.129 applied to the same classes.
 
+## Corollary 40.131: Complement Deletion Commutes With Root-Free Twisting
+
+Keep the primitive base setup of Corollary 40.122.  Let
+
+```text
+1<=s<=u<=t,        S subset D,        |S|=s,
+```
+
+and suppose
+
+```text
+[L_S H N] in P_u^x(Q_0),
+```
+
+where `H,N in F[X]` are nonzero and `H(alpha)!=0` for every `alpha in D`.
+Let `B_H` be the primitive twist
+
+```text
+B_H == B_0 H^{-1}        mod Q_0.
+```
+
+Then `[N] in P_{u-s}^x(Q_0)`, and deleting `S` gives a bijection
+
+```text
+{ C in Comp_{u,[L_S H N]}(Q_0,B_0) : S subset C }
+  <-> { C_0 in Comp_{u-s,[N]}(Q_0,B_H) : C_0 cap S=empty }.
+                                                        (DropTwistCommute)
+```
+
+Thus the two normal-form moves from the preceding corollaries commute:
+complement-side split domain roots may be stripped while root-free multiplier
+factors are simultaneously absorbed into the moving primitive base numerator.
+The residual object after this operation is only the lower-depth multiplier
+`N` against the twisted base class `B_H`; support-side domain roots, if any,
+are contained in that residual `N` as fixed-root/root-slice data.
+
+### Proof
+
+Since `[L_SHN] in P_u^x(Q_0)`, each factor is coprime to `Q_0`, and
+
+```text
+deg N < r_u-s-deg H <= r_u-s = r_{u-s}.
+```
+
+Hence `[N] in P_{u-s}^x(Q_0)`.  Also `H^{-1}` and `B_H^{-1}` exist modulo
+`Q_0`, and
+
+```text
+B_H^{-1} == H B_0^{-1}        mod Q_0.
+```
+
+If `C in Comp_{u,[L_SHN]}(Q_0,B_0)` and `S subset C`, write
+
+```text
+C=C_0 disjoint_union S.
+```
+
+Then the defining congruence is
+
+```text
+L_{C_0}L_S in F L_D L_S H N B_0^{-1}        mod Q_0.
+```
+
+The class of `L_S` is invertible modulo `Q_0`, so cancellation gives
+
+```text
+L_{C_0} in F L_D N B_H^{-1}        mod Q_0,
+```
+
+which is exactly `C_0 in Comp_{u-s,[N]}(Q_0,B_H)`, with `C_0 cap S=empty`.
+
+Conversely, start with such a `C_0` and multiply its defining congruence by
+`L_S`.  Then `C=C_0 disjoint_union S` has size `j+u`, contains `S`, and lies
+in `Comp_{u,[L_S H N]}(Q_0,B_0)`.  The two constructions are inverse.
+
 ## Corollary 41: The Global Common-Image Ledger Is Endpoint-Only
 
 Let `GCI` be the set of monic degree-`c` split core locators `L` for which
@@ -17073,6 +17148,9 @@ actual projective factor classes.
 Corollary 40.130 adds packet disjointness: for each fixed residual `N`, the
 twisted fibers obtained by varying root-free `H` occupy disjoint
 `(j+v)`-complements and hence have total size at most `binom(n,j+v)`.
+Corollary 40.131 packages the commuting normal form: deleting complement-side
+domain roots and absorbing root-free factors into `B_H` can be done in one
+step, leaving a lower-depth residual multiplier against the twisted base.
 Corollary 41 packages the common-image branch into endpoint-type ledgers; it
 does not prove the endpoint rank hypotheses needed for the displayed
 `(q+2)binom(n,b)` bound. Corollary 42 packages the globally full core ledger

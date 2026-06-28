@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 complement deletion commutes with twisting
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_boundary_off_external_anchor_normal_form.md`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / PROOF-PROGRAM.
+- **What is being added:** Proves a one-step normal form: if
+  `[L_S H N] in P_u^x(Q_0)`, `S subset D`, `|S|<=u`, and `H` is root-free on
+  `D`, then deleting `S` identifies the fiber over `[L_S H N]` for `B_0` with
+  the lower-depth fiber over `[N]` for the twisted numerator
+  `B_H == B_0 H^{-1} mod Q_0`.
+- **How it is useful:** Packages complement-root descent and root-free
+  twisting into one commuting reduction, leaving only the lower-depth residual
+  multiplier against the moving primitive base class.
+- **What to do next:** Bound the residual multiplier ledger after this
+  combined reduction, especially the support-side root-slice components.
+
 ### 2026-06-28 - M1 fixed-residual twist packets are disjoint
 
 - **Agent/model:** AllenGrahamHart / Codex audit.
