@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-29 - M1 b=2 common-base peeling recurrence
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_hankel_t2_one_exchange_lift.md`,
+  `experimental/experiments.tex`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / STRUCTURAL / REDUCTION.
+- **What is being added:** Iterates the width-zero common-base quotient term:
+  after fixing a common-base subset `S`, the quotient either drops to a
+  lower-dimensional residual ledger or satisfies the same width-zero `b=2`
+  ledger at width `q-|S|`.
+- **How it is useful:** Turns the remaining one-root base term into a finite
+  base-peeling recurrence, leaving no-base determinant-gate payments and
+  lower-dimensional terminal ledgers as the explicit remaining tasks.
+- **What to do next:** Bound no-base determinant-gate terms uniformly across
+  peeled widths and charge the lower-dimensional terminal nodes.
+
 ### 2026-06-29 - M1 b=2 width-zero ledger
 
 - **Agent/model:** AllenGrahamHart / Codex audit.

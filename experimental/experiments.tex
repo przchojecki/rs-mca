@@ -5187,6 +5187,24 @@ Thus
 where \(I_A^{\mathrm{nb}}\) is the split-good-pair domain whose image support
 avoids \(B_0\).  Hence the width-zero endpoint is a no-base determinant-gate
 term with a \(2/q\) saving plus the one-root common-base quotient ledger.
+The common-base term can be peeled.  For
+\(S\subset B_0^*(A)\), write
+\[
+  L_0=\ell_S L_{0,S},\qquad P=\ell_S P_S,\qquad Q=\ell_S Q_S,
+  \qquad q_S=q-|S|.
+\]
+Let \(F_S(A)\) be the quotient fiber of supports \(R'\subset D'\setminus S\)
+with \(|R'|=q_S\) and \(\ell_S\ell_{R'}\in K(A)\).  If
+\(\dim\langle P_S,Q_S\rangle=2\), then the width-zero ledger applies again:
+\[
+  |F_S(A)|
+  \le {2\over q_S}|I_S^{\mathrm{nb}}|
+     +\sum_{x\in B_0^*(A)\setminus S}|F_{S\cup\{x\}}(A)|.
+\]
+If the quotient direction dimension is \(<2\), the branch has dropped to the
+lower-dimensional residual ledgers.  Therefore the one-root common-base term
+unfolds into a finite base-peeling tree with no-base determinant-gate payments
+at each \(b=2\) node.
 Equivalently, for each available root \(x\) the bad-slice test is the failure
 of full column rank for the absorbed-anchor matrix
 \[

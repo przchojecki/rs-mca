@@ -4402,6 +4402,69 @@ one-root base quotient ledger can be charged globally.  It removes the
 projective-fiber quotient-line term completely by using the same degree gap
 that eliminated zero-good supports.
 
+## Iterated Common-Base Peeling Recurrence
+
+The one-root common-base term in (PF2-width-zero) can be peeled repeatedly.
+Let `S subset B_0^*(A)` and write
+
+```text
+L_0=ell_S L_{0,S},        P=ell_S P_S,        Q=ell_S Q_S,
+K_S=L_{0,S}+span(P_S,Q_S),
+q_S=q-|S|.
+```
+
+The split quotient fiber
+
+```text
+F_S(A)={
+  R' subset D'\S :
+  |R'|=q_S and ell_S ell_{R'} in K(A)
+}
+```
+
+is the residual fiber of the descended fixed-divisor problem with affine
+locator space `K_S`.  If `dim span(P_S,Q_S)<2`, then this branch has dropped
+to the lower-dimensional residual ledgers already isolated earlier.  If
+`dim span(P_S,Q_S)=2`, the width-zero ledger applies to `K_S`:
+
+```text
+|F_S(A)|
+ <=
+  (2/q_S) |I_S^{nb}|
+  + sum_{x in B_0^*(A)\S} |F_{S union {x}}(A)|.   (PF2-base-peel)
+```
+
+Here `I_S^{nb}` is the no-base split-good-pair domain for the quotient anchor
+`K_S`.  The identity
+
+```text
+B_0^*(K_S)=B_0^*(A)\S
+```
+
+follows because division by `ell_S` is nonzero on all remaining available
+roots.
+
+Summing (PF2-base-peel) over all `s`-subsets `S subset B_0^*(A)` gives the
+level recurrence
+
+```text
+sum_{|S|=s} |F_S(A)|
+ <=
+  sum_{|S|=s, dim span(P_S,Q_S)<2} |F_S(A)|
+  + sum_{|S|=s, dim span(P_S,Q_S)=2} (2/(q-s)) |I_S^{nb}|
+  + (s+1) sum_{|T|=s+1} |F_T(A)|.              (PF2-base-level)
+```
+
+Thus the common-base ledger is not merely a one-step quotient charge.  It has
+a finite peeling tree whose internal `b=2` nodes pay a no-base determinant-gate
+term with a `2/(q-s)` saving, whose edges add one common-base root, and whose
+non-`b=2` nodes fall into lower-dimensional residual ledgers.  Since
+`s<q`, the tree has depth at most `q-1`.
+
+This gives a precise route for closing the remaining base term in
+(PF2-width-zero): prove polynomial bounds for the no-base determinant-gate
+terms at every peeled width and for the lower-dimensional terminal ledgers.
+
 ## Bad Root Slices Are Absorbed-Anchor Rank Defects
 
 The preceding bad-root condition has an equivalent absorbed-anchor form.  Fix
