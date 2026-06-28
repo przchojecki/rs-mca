@@ -6413,6 +6413,68 @@ and consecutive common-image frontier ledgers from the bottom parameter set
 `E_{r_0,>b} union Theta_{r_0,>b}`, whose size is at most `2h` by Corollary
 40.4.  This gives (RawArrangementMixedLedger).
 
+## Corollary 40.37: The Raw Tail Arrangement Reduces To A Divisor Antichain
+
+Keep the notation of Corollary 40.34.  Let `M_min` be the set of distinct
+active cutoff primitive denominators that are divisibility-minimal among the
+active family primitives:
+
+```text
+D in M_min
+iff D=D_F for some active F, and there is no active G with D_G | D and D_G != D.
+```
+
+Then
+
+```text
+union_{F in A} P(U_F) = union_{D in M_min} P(U_D),
+```
+
+where `U_D={P: deg P<h and D divides P}`.  Consequently `ArrBudget_hw` can be
+computed using only the denominator antichain `M_min`; all dominated active
+families and duplicate primitive denominators contribute no new raw
+half-window denominator classes.
+
+In particular, if the active cutoff primitive denominators form one
+divisibility chain, and `D_min` is the smallest denominator in that chain with
+`delta_min=deg D_min`, then
+
+```text
+ArrBudget_hw = Phi(h-delta_min)
+```
+
+when `delta_min<h`, and `ArrBudget_hw=0` otherwise.  The direct raw-tail
+mixed-ladder ledger of Corollary 40.36 then becomes
+
+```text
+Phi(h-delta_min) + 2h.                              (ChainTailLedger)
+```
+
+Thus any cutoff residual family whose primitive denominator is forced to be a
+multiple of another active family's primitive is automatically absorbed in the
+raw-tail denominator count.
+
+### Proof
+
+If `D_G` divides `D_F`, then every degree-`<h` polynomial divisible by `D_F`
+is also divisible by `D_G`; hence
+
+```text
+U_F subset U_G.
+```
+
+Therefore deleting such a dominated family does not change the projective
+union of divisor subspaces.  If two active families have the same primitive
+denominator, they have the same divisor subspace, so keeping one representative
+also does not change the union.  Iterating over all dominated active families
+and identifying duplicate denominators leaves exactly the distinct
+divisibility-minimal antichain `M_min` and proves the first claim.
+
+If the active denominators form a chain, `M_min` has one element, represented
+by `D_min`.  The projective divisor subspace has dimension `h-delta_min` when
+`delta_min<h`, and is zero otherwise.  This gives the displayed value of
+`ArrBudget_hw`; substituting it into Corollary 40.36 gives (ChainTailLedger).
+
 ## Corollary 41: The Global Common-Image Ledger Is Endpoint-Only
 
 Let `GCI` be the set of monic degree-`c` split core locators `L` for which
@@ -9140,6 +9202,9 @@ Corollary 40.36 gives the direct raw-tail closure without a separate overlap
 denominator charge; it does not make the overlap diagnostics unnecessary for
 family-disjoint audits or prove the raw arrangement ledger clears the final M1
 reserve.
+Corollary 40.37 removes divisibility-dominated families from the raw tail
+arrangement; it does not prove that the surviving antichain is small or that
+the active denominators form a chain in the M1 instances.
 Corollary 41 packages the common-image branch into endpoint-type ledgers; it
 does not prove the endpoint rank hypotheses needed for the displayed
 `(q+2)binom(n,b)` bound. Corollary 42 packages the globally full core ledger

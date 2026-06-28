@@ -347,13 +347,17 @@ Keep entries concise and link to the relevant files.
   `ArrBudget_hw <= FamilyBudget_hw` is the divisor-arrangement
   inclusion-exclusion budget for the raw half-window tail and intersections of
   the ambient family multiplier subspaces are counted by lcms of the active
-  cutoff primitive denominators.  Since the named overlap systems are subsets
-  of the same `TailUnion_hw`, the separation charge `OverlapSep_hw`, defined
-  as the minimum of `SideHybridOverlap_hw` and `UnionRankOverlap_hw`, is now a
-  structural diagnostic/family-disjoint route rather than an additional
-  denominator-class charge in the direct raw-tail closure.  The final `2h` is
-  the bottom finite frontier set
-  `E_{r_0,>b} union Theta_{r_0,>b}`.
+  cutoff primitive denominators.  This arrangement now reduces to the distinct
+  divisibility-minimal antichain of active primitives: dominated active
+  families and duplicate primitive denominators contribute no new raw tail
+  denominator classes, and a chain of active denominators collapses to the
+  single term `Phi(h-delta_min)`.  Since
+  the named overlap systems are subsets of the same `TailUnion_hw`, the
+  separation charge `OverlapSep_hw`, defined as the minimum of
+  `SideHybridOverlap_hw` and `UnionRankOverlap_hw`, is now a structural
+  diagnostic/family-disjoint route rather than an additional denominator-class
+  charge in the direct raw-tail closure.  The final `2h` is the bottom finite
+  frontier set `E_{r_0,>b} union Theta_{r_0,>b}`.
   The common-image three-shift ledger now has the analogous sliding-window
   reduction: for an image line `[y]`, the allowed deeper residuals form a space
   `W_y` of dimension at most one, nonzero only on the `q+1` extended geometric

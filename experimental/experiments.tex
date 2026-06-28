@@ -2200,6 +2200,17 @@ and
   \le \mathrm{ArrBudget}_{hw}
   \le \mathrm{FamilyBudget}_{hw}.
 \]
+The same arrangement may be computed after deleting every active family whose
+cutoff primitive denominator is a multiple of another active family's
+primitive denominator and after identifying duplicate primitive denominators.
+Thus only the distinct divisibility-minimal antichain of active primitive
+denominators contributes to the raw tail union; if the active denominators
+form a chain, then
+\[
+  \mathrm{ArrBudget}_{hw}=\Phi(h-\delta_{\min})
+\]
+for the smallest active primitive denominator \(D_{\min}\), with the convention
+that the right-hand side is zero when \(\delta_{\min}\ge h\).
 The named overlap ledgers remain useful diagnostics:
 \[
   \mathrm{OverlapSep}_{hw}
