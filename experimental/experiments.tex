@@ -4442,6 +4442,27 @@ one must bound supports \(U\) for which all these simple-pole packet lifts can
 hold.  The largest \(F_7^*\) audit checks \(21600\) full canonical-core
 packets and \(4320\) simple-pole lifts, with \(19440\) productive packets and
 \(2160\) productive lifts.
+There is an immediate boundary-fiber sharpening.  If \(r=\tau+1\) and
+\(U\ne\emptyset\), choose \(u\in U\).  The simple-pole lift has exactly
+\(2r\) visible moments and nonzero amplitudes \(a_y/(y-u)\), so the Prony
+annihilator recovers the marked locator uniquely.  Thus boundary matching
+over a fixed canonical core can occur only for the empty core.  Writing
+\(\mathrm{Core}_{\tau+1}^+(s)=\mathrm{Core}_{\tau+1}(s)\setminus\{\emptyset\}\)
+and \(\epsilon_\emptyset=1\) if \(\emptyset\in\mathrm{Core}_{\tau+1}(s)\),
+else \(0\), the closure criterion sharpens to
+\[
+|\mathcal C_m^{\le\tau+1}(s)|
+\le
+\sum_{r=m}^{\tau}\binom{r}{m}|\mathrm{Core}_r(s)|
++\binom{\tau+1}{m}
+  \left(|\mathrm{Core}_{\tau+1}^+(s)|
+  +\epsilon_\emptyset\left\lfloor {n\over\tau+1}\right\rfloor\right).
+\]
+So the boundary contributes only the empty-core full-marked endpoint, not a
+matching factor over every canonical core.  The verifier now enforces this:
+in the largest \(F_7^*\) audit there are \(21540\) marked-core fibers with
+maximum fiber size \(2\), and no nonempty boundary core occurs; any future
+nonempty boundary fiber is required to be singleton.
 For fixed \(A\) and \(m\), this also gives a fixed-anchor fiber bound.  If
 \(m\le\tau\), the first \(2m\) moments recover the mode locator and
 amplitudes uniquely.  At the boundary \(m=\tau+1\), two supports in one

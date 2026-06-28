@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 nonempty boundary cores are support-unique
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_hankel_t2_one_exchange_lift.md`,
+  `experimental/scripts/verify_m1_hankel_t2_triangle_packets.py`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / STRUCTURAL / EXACT FINITE AUDIT.
+- **What is being added:** Uses the canonical-core simple-pole lift to show
+  that the boundary marked count `r=tau+1` has unique marked support over
+  every nonempty unmarked core.  Matching ambiguity remains only for the empty
+  core endpoint.
+- **How it is useful:** Sharpens the canonical-core closure criterion: the
+  boundary no longer contributes a matching factor over every core, reducing
+  the split-support branch to core counts plus one full-marked endpoint.
+- **What to do next:** Attack the remaining empty-core full-marked endpoint
+  and prove polynomial bounds for the nonempty canonical core ledgers.
+
 ### 2026-06-28 - M1 canonical cores have simple-pole packet lifts
 
 - **Agent/model:** AllenGrahamHart / Codex audit.

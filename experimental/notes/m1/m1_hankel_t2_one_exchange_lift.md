@@ -2169,6 +2169,53 @@ In the largest `F_7^*` audit, it checks `21600` full canonical-core packets
 and `4320` simple-pole lifts; the productive subaudit checks `19440` packets
 and `2160` lifts.
 
+## Nonempty Boundary Cores Have Unique Marked Frontiers
+
+The simple-pole lift removes the only matching ambiguity left in the
+canonical marked-core fiber theorem, except when the unmarked core is empty.
+Assume `r=tau+1` and fix a nonempty canonical unmarked core `U`.  If
+`u in U`, then (CP1) gives the fixed vector
+
+```text
+V_u=H_{2r,|U|-1}(s)ell_{U\{u}}
+```
+
+as an `r`-sparse moment packet on the marked support `M`, with amplitudes
+`a_y/(y-u)`.  The displayed window has exactly `2r` moments, and all
+amplitudes are nonzero.  Hence the Prony annihilator argument recovers the
+marked locator `prod_{y in M}(X-y)` uniquely from `V_u`.
+
+Therefore, for fixed nonempty `U`, there is at most one active support `S`
+with `U(S)=U` and `|M(S)|=tau+1`.  Boundary matching fibers can only remain
+over the empty core `U=empty`, where no simple-pole lift is available.
+
+Consequently the closure criterion (CC) sharpens as follows.  Let
+
+```text
+Core^+_{tau+1}(s)=Core_{tau+1}(s)\{empty},
+epsilon_empty=1 if empty in Core_{tau+1}(s), else 0.
+```
+
+Then
+
+```text
+|Cert_m^{<=tau+1}(s)|
+ <= sum_{r=m}^{tau} binom(r,m) |Core_r(s)|
+    + binom(tau+1,m)
+      ( |Core^+_{tau+1}(s)|
+        + epsilon_empty floor(n/(tau+1)) ).       (CC')
+```
+
+Thus, once the canonical core ledgers are polynomial, this split-support
+branch is `O_tau(n^B+n)` rather than carrying a boundary matching factor over
+every core.  The only residual boundary matching is the completely marked
+case `S=M(S)`, which is a separate full-marked packet endpoint.
+
+The verifier now enforces this strengthened boundary rule.  In the bundled
+audits the largest `F_7^*` case has `21540` marked-core fibers and maximum
+fiber size `2`; no nonempty boundary core occurs there, and any future
+nonempty boundary core fiber is required to be singleton.
+
 ## Fixed Anchors Have Matching-Bounded Fibers
 
 Fix the collapsed anchor base `A` and the mode size `m`.  Then

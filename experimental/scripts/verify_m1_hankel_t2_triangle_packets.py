@@ -134,6 +134,9 @@ preserved and the remaining unmarked roots stay unmarked.
 It also checks the canonical-core simple-pole lift: after deleting all marked
 exits, every unmarked core root gives the same sparse packet with amplitudes
 divided by the corresponding simple pole y-u.
+At the boundary marked size t+1, this extra simple-pole row recovers the
+marked locator whenever the unmarked core is nonempty, so the verifier checks
+that only empty-core boundary fibers can have matching ambiguity.
 For each fixed collapsed anchor base, it audits the sparse-representation
 fiber: below the boundary the mode support is unique, while at the boundary
 distinct supports are disjoint and obey the matching bound.
@@ -541,6 +544,10 @@ def analyze_case(
     terminal_tree_productive_marked_core_fiber_labels = 0
     terminal_tree_marked_core_fiber_max_size = 0
     terminal_tree_productive_marked_core_fiber_max_size = 0
+    terminal_tree_marked_core_nonempty_boundary_checks = 0
+    terminal_tree_productive_marked_core_nonempty_boundary_checks = 0
+    terminal_tree_marked_core_nonempty_boundary_max_size = 0
+    terminal_tree_productive_marked_core_nonempty_boundary_max_size = 0
     terminal_tree_core_packet_checks = 0
     terminal_tree_productive_core_packet_checks = 0
     terminal_tree_core_simple_pole_lift_checks = 0
@@ -780,6 +787,14 @@ def analyze_case(
             nonlocal terminal_tree_productive_marked_core_fiber_labels
             nonlocal terminal_tree_marked_core_fiber_max_size
             nonlocal terminal_tree_productive_marked_core_fiber_max_size
+            nonlocal terminal_tree_marked_core_nonempty_boundary_checks
+            nonlocal terminal_tree_productive_marked_core_nonempty_boundary_checks
+            nonlocal terminal_tree_marked_core_nonempty_boundary_max_size
+            nonlocal terminal_tree_productive_marked_core_nonempty_boundary_max_size
+            nonlocal terminal_tree_core_packet_checks
+            nonlocal terminal_tree_productive_core_packet_checks
+            nonlocal terminal_tree_core_simple_pole_lift_checks
+            nonlocal terminal_tree_productive_core_simple_pole_lift_checks
             nonlocal terminal_tree_unmarked_zero_cube_support_checks
             nonlocal terminal_tree_productive_unmarked_zero_cube_support_checks
             nonlocal terminal_tree_unmarked_zero_cube_face_checks
@@ -3130,7 +3145,7 @@ def analyze_case(
             def audit_marked_core_fibers(
                 supports: set[tuple[int, ...]],
                 productive: bool,
-            ) -> tuple[int, int, int]:
+            ) -> tuple[int, int, int, int, int]:
                 fibers: dict[
                     tuple[int, tuple[int, ...]],
                     list[tuple[int, ...]],
@@ -3156,6 +3171,8 @@ def analyze_case(
                 fiber_checks = 0
                 fiber_labels = 0
                 max_fiber_size = 0
+                nonempty_boundary_checks = 0
+                nonempty_boundary_max_size = 0
                 for (marked_count, unmarked_core), supports_in_fiber in (
                     fibers.items()
                 ):
@@ -3187,6 +3204,36 @@ def analyze_case(
                             }
                         )
                     if marked_count == t + 1:
+                        if unmarked_core:
+                            nonempty_boundary_checks += 1
+                            nonempty_boundary_max_size = max(
+                                nonempty_boundary_max_size,
+                                fiber_size,
+                            )
+                            if fiber_size > 1:
+                                raise AssertionError(
+                                    {
+                                        "kind": (
+                                            "productive-"
+                                            if productive
+                                            else ""
+                                        )
+                                        + "marked-core-nonempty-"
+                                        "boundary-uniqueness-failed",
+                                        "p": p,
+                                        "k": k,
+                                        "syndrome": list(syn),
+                                        "fixed_roots": list(fixed_roots),
+                                        "unmarked_core": list(
+                                            unmarked_core
+                                        ),
+                                        "marked_count": marked_count,
+                                        "supports": [
+                                            list(support)
+                                            for support in unique_supports
+                                        ],
+                                    }
+                                )
                         for left, right in itertools.combinations(
                             unique_supports,
                             2,
@@ -3236,12 +3283,20 @@ def analyze_case(
                                     "matching_bound": matching_bound,
                                 }
                             )
-                return fiber_checks, fiber_labels, max_fiber_size
+                return (
+                    fiber_checks,
+                    fiber_labels,
+                    max_fiber_size,
+                    nonempty_boundary_checks,
+                    nonempty_boundary_max_size,
+                )
 
             (
                 marked_core_fiber_checks,
                 marked_core_fiber_labels,
                 marked_core_fiber_max_size,
+                marked_core_nonempty_boundary_checks,
+                marked_core_nonempty_boundary_max_size,
             ) = audit_marked_core_fibers(
                 total_split_supports,
                 productive=False,
@@ -3250,6 +3305,8 @@ def analyze_case(
                 productive_marked_core_fiber_checks,
                 productive_marked_core_fiber_labels,
                 productive_marked_core_fiber_max_size,
+                productive_marked_core_nonempty_boundary_checks,
+                productive_marked_core_nonempty_boundary_max_size,
             ) = audit_marked_core_fibers(
                 productive_total_split_supports,
                 productive=True,
@@ -3273,6 +3330,20 @@ def analyze_case(
             terminal_tree_productive_marked_core_fiber_max_size = max(
                 terminal_tree_productive_marked_core_fiber_max_size,
                 productive_marked_core_fiber_max_size,
+            )
+            terminal_tree_marked_core_nonempty_boundary_checks += (
+                marked_core_nonempty_boundary_checks
+            )
+            terminal_tree_productive_marked_core_nonempty_boundary_checks += (
+                productive_marked_core_nonempty_boundary_checks
+            )
+            terminal_tree_marked_core_nonempty_boundary_max_size = max(
+                terminal_tree_marked_core_nonempty_boundary_max_size,
+                marked_core_nonempty_boundary_max_size,
+            )
+            terminal_tree_productive_marked_core_nonempty_boundary_max_size = max(
+                terminal_tree_productive_marked_core_nonempty_boundary_max_size,
+                productive_marked_core_nonempty_boundary_max_size,
             )
 
             def audit_core_simple_pole_lifts(
@@ -5783,6 +5854,18 @@ def analyze_case(
         "terminal_tree_productive_marked_core_fiber_max_size": (
             terminal_tree_productive_marked_core_fiber_max_size
         ),
+        "terminal_tree_marked_core_nonempty_boundary_checks": (
+            terminal_tree_marked_core_nonempty_boundary_checks
+        ),
+        "terminal_tree_productive_marked_core_nonempty_boundary_checks": (
+            terminal_tree_productive_marked_core_nonempty_boundary_checks
+        ),
+        "terminal_tree_marked_core_nonempty_boundary_max_size": (
+            terminal_tree_marked_core_nonempty_boundary_max_size
+        ),
+        "terminal_tree_productive_marked_core_nonempty_boundary_max_size": (
+            terminal_tree_productive_marked_core_nonempty_boundary_max_size
+        ),
         "terminal_tree_core_packet_checks": (
             terminal_tree_core_packet_checks
         ),
@@ -6307,6 +6390,10 @@ def print_summary(results: Sequence[dict[str, object]]) -> None:
             f"{result['terminal_tree_marked_core_fiber_checks']} "
             f"marked_core_fiber_max="
             f"{result['terminal_tree_marked_core_fiber_max_size']} "
+            f"marked_core_nonempty_boundary="
+            f"{result['terminal_tree_marked_core_nonempty_boundary_checks']} "
+            f"marked_core_nonempty_boundary_max="
+            f"{result['terminal_tree_marked_core_nonempty_boundary_max_size']} "
             f"core_packets={result['terminal_tree_core_packet_checks']} "
             f"core_simple_pole_lifts="
             f"{result['terminal_tree_core_simple_pole_lift_checks']} "
