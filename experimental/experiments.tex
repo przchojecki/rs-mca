@@ -2294,6 +2294,37 @@ For instance \(\mathrm{RFPhi}_D(1)=1\) and
 \(\mathrm{RFPhi}_D(2)=q+1-n\).  Thus residual dimension one gives
 \(4+2h\), while residual dimension two gives \(4(q+1-n)+2h\), and only
 \(8+2h\) on the full multiplicative domain \(n=q-1\).
+The denominator threshold has an exact cutoff Hankel test.  At the first
+half-window depth \(r_{hw}\), define the four truncated maps on degree-\(<m\)
+directions
+\[
+\begin{aligned}
+A_u(m)&=H_{t+r_{hw},m-1}(u),&
+A_v(m)&=H_{t+r_{hw},m-1}(v),\\
+A_{uv}(m)&=(H_{t+r_{hw}-1,m-1}(u),
+            H_{t+r_{hw}-1,m-1}(v)),&
+A_{Suv}(m)&=(H_{t+r_{hw}-1,m-1}(Su),
+              H_{t+r_{hw}-1,m-1}(Sv)).
+\end{aligned}
+\]
+If \(D_F\) is the cutoff primitive denominator for family \(F\), with
+\(\delta_F=\deg D_F\), then \(\delta_F<m\) if and only if
+\(\ker A_F(m)\) contains a nonzero root-free polynomial.  Indeed the
+primitive denominator itself is a root-free cutoff certificate, and conversely
+any root-free degree-\(<m\) certificate has the same reduced Pade denominator,
+which divides its reversed denominator.  Thus, for \(0\le L<h\),
+\(\delta_F\ge h-L\) for all active families is exactly the absence of
+nonzero root-free elements in the kernels \(A_F(h-L)\).  The stronger linear
+condition \(\ker A_F(h-L)=0\) for all four families is therefore a concrete
+sufficient Hankel-rank target implying
+\[
+  \mathrm{RFArrBudget}_{hw}\le 4\,\mathrm{RFPhi}_D(L),
+\]
+and hence the residual ledger
+\[
+  \min\{BCF_0,\mathrm{Charge}(P_{\rm pre})+
+  4\,\mathrm{RFPhi}_D(L)\}+2h.
+\]
 The common-core and two-denominator formulas persist verbatim after this
 root-free replacement.  With \(C=\gcd(D:D\in M_{\min})\), \(\gamma=\deg C\),
 and \(E_D=D/C\),

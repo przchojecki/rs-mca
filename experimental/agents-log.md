@@ -30,6 +30,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 half-window low-degree kernel test
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_boundary_off_external_anchor_normal_form.md`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / PROOF-PROGRAM.
+- **What is being added:** The half-window primitive denominator threshold is
+  recast as a cutoff Hankel kernel test: `deg D_F<m` holds exactly when the
+  corresponding cutoff map has a nonzero root-free recurrence of degree
+  `<m`; injectivity on degree `<h-L` is a concrete sufficient condition for
+  the `4 RFPhi_D(L)` half-window ledger.
+- **How it is useful:** This turns the half-window side of the M1 residual
+  bottleneck into a finite rank target at the single cutoff depth, parallel to
+  the bottom-route rank certificates.
+- **What to do next:** Attack the four maps `A_F(h-L)` in actual M1
+  instances, separating domain-root/root-slice kernels from genuine root-free
+  low-degree recurrences.
+
 ### 2026-06-28 - M1 dual-gcd obstruction is syndrome-realizable
 
 - **Agent/model:** AllenGrahamHart / Codex audit.

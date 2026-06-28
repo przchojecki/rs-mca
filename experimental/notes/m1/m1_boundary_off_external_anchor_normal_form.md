@@ -8796,6 +8796,106 @@ The same argument applied to two supported words realizes arbitrary paired
 weights `(mu_x,nu_x)`.  Applying it to the shifted weights used in
 Corollary 40.67 realizes the shifted paired obstruction when `0 notin D`.
 
+## Corollary 40.69: Half-Window Denominator Degree Is A Low-Degree Kernel Test
+
+Return to the half-window notation of Corollaries 40.14--40.18, and assume
+`R_hw` is nonempty with cutoff depth `r_hw`.  For a residual family
+
+```text
+F in { u, v, (u,v), (S u,S v) },
+```
+
+let `A_F(m)` denote the cutoff Hankel recurrence map on degree-`<m`
+directions:
+
+```text
+A_u(m)       = H_{t+r_hw,m-1}(u),
+A_v(m)       = H_{t+r_hw,m-1}(v),
+A_uv(m)      = ( H_{t+r_hw-1,m-1}(u),
+                 H_{t+r_hw-1,m-1}(v) ),
+A_Suv(m)     = ( H_{t+r_hw-1,m-1}(S u),
+                 H_{t+r_hw-1,m-1}(S v) ).
+```
+
+For an active family `F`, let `D_F` be its cutoff primitive denominator and
+put `delta_F=deg D_F`.  For an inactive family set `delta_F=infty`.
+
+Then, for every `1<=m<=h`,
+
+```text
+delta_F < m
+```
+
+if and only if `ker A_F(m)` contains a nonzero polynomial `Q` with no root in
+`D`.  Equivalently,
+
+```text
+delta_F >= m
+```
+
+if and only if there is no degree-`<m` root-free cutoff recurrence in the
+family `F`.
+
+Consequently, with `m=h-L` and `0<=L<h`, the half-window denominator target
+
+```text
+delta_F >= h-L        for every active F
+```
+
+is exactly the absence of root-free low-degree cutoff kernels
+
+```text
+there is no 0!=Q in ker A_F(h-L) with Q(alpha)!=0 for all alpha in D
+```
+
+for the four families.  A useful sufficient linear test is the stronger
+condition
+
+```text
+ker A_F(h-L)=0        for every F.                  (HWLowDegreeInject)
+```
+
+Under (HWLowDegreeInject), every active primitive denominator has degree at
+least `h-L`.  In the multiplicative-domain setting of Corollary 40.45, the
+root-free half-window arrangement therefore satisfies
+
+```text
+RFArrBudget_hw <= 4 RFPhi_D(L),
+```
+
+and the residual route from Corollary 40.57 gives
+
+```text
+min(BCF_0, Charge(P_pre)+4 RFPhi_D(L)) + 2h.
+```
+
+Thus the half-window side of the M1 residual bottleneck can be attacked by a
+finite Hankel-rank problem at the single cutoff depth: prove there are no
+low-degree root-free denominator recurrences, or prove the stronger
+injectivity of the four displayed truncated maps.
+
+### Proof
+
+Assume first that `delta_F<m`.  By Corollary 40.8, equivalently Corollary 61,
+the primitive denominator remains a valid root-free certificate after
+cancelling multipliers.  Let `Q_F` be the reversal of `D_F`.  Then `Q_F` has
+degree `delta_F<m`, has no root in `D`, and lies in `ker A_F(m)`.
+
+Conversely, suppose `0!=Q in ker A_F(m)` has no root in `D`, and write
+`e=deg Q<m`.  Since `m<=h` and the cutoff is in the half-window range, this
+is one of the cutoff denominator certificates covered by Corollary 40.8.
+Corollary 59 gives a unique reduced scalar or vector rational function for
+the family, and its primitive denominator divides the reversed denominator
+`Q^*`.  Hence `delta_F<=e<m`.  This proves the equivalence.
+
+Putting `m=h-L` gives the displayed low-degree root-free kernel criterion.
+If the stronger linear injectivity condition holds, then certainly no
+root-free low-degree kernel exists, so all active `delta_F` are at least
+`h-L`.  Equivalently, the residual tail parameter of Corollary 40.46 is at
+most `L`, so that corollary gives
+`RFArrBudget_hw<=4 RFPhi_D(L)`, and Corollary 40.57 substitutes this
+half-window charge into the two-route residual minimum.
+
 ## Corollary 41: The Global Common-Image Ledger Is Endpoint-Only
 
 Let `GCI` be the set of monic degree-`c` split core locators `L` for which
@@ -11618,6 +11718,9 @@ syndromes satisfying the needed bounds.
 Corollary 40.68 shows that this trivial-gcd obstruction is realized by local
 Reed-Solomon syndrome windows after absorbing the nonzero parity-check column
 scalars; it still does not construct an active noncontained M1 counterexample.
+Corollary 40.69 identifies the half-window denominator threshold with absence
+of low-degree root-free cutoff Hankel kernels; it does not prove those kernels
+are absent in the actual M1 instances.
 Corollary 41 packages the common-image branch into endpoint-type ledgers; it
 does not prove the endpoint rank hypotheses needed for the displayed
 `(q+2)binom(n,b)` bound. Corollary 42 packages the globally full core ledger
