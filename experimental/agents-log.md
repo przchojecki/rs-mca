@@ -30,6 +30,22 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 budget-three residuals split into two packets
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_boundary_off_external_anchor_normal_form.md`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / PROOF-PROGRAM.
+- **What is being added:** Proves that at residual budget `R=3`, the
+  root-free linear/quadratic total-multiplier branch occupies one
+  small-complement packet, and the reduced no-root-free branch is the disjoint
+  packet of support-root slices of total multiplicity at most two.
+- **How it is useful:** Removes the apparent linear/quadratic multiplier
+  multiplicity from the next residual budget after the budget-two closure.
+- **What to do next:** Use these budget-two and budget-three packet closures
+  to formulate the next global fixed-class M1 ledger reduction.
+
 ### 2026-06-28 - M1 reduced budget-two residual is core-or-root-slice
 
 - **Agent/model:** AllenGrahamHart / Codex audit.

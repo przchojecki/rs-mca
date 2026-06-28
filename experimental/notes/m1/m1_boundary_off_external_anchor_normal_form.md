@@ -14327,6 +14327,120 @@ a nonconstant root-free factor and belongs to the twist packet of Corollary
 40.125.  The reduced case that remains has `beta in D\C`, exactly the
 fixed-root slice included in (BudgetTwoReduced).
 
+## Corollary 40.136: Budget-Three Root-Free Residuals Form One Packet
+
+Keep the primitive base setup of Corollary 40.122.  Fix
+
+```text
+S subset D,        |S|=s<=u,        v=u-s,
+```
+
+and assume
+
+```text
+r_v=e_0-t+v=3.
+```
+
+Let `T_rf` be any set of projective classes `[M] in P_v^x(Q_0)` such that
+`M` has a nonconstant factor with no roots in `D`.  For `[M] in T_rf`, put
+
+```text
+F_M^S={ C in Comp_{u,[L_S M]}(Q_0,B_0) : S subset C }.
+```
+
+Then the packets `F_M^S` are pairwise disjoint after deleting `S`, and
+
+```text
+sum_{[M] in T_rf} |F_M^S| <= binom(n,j+v).          (BudgetThreeRFPacket)
+```
+
+Thus the whole root-free part of the residual-budget-three branch is charged
+by one small-complement packet.  In the low-budget classification of
+Corollary 40.133, this includes both possibilities at `R=3`: a linear
+root-free factor with residual degree `<2`, and a quadratic root-free factor
+with constant residual.
+
+### Proof
+
+Since `[M] in P_v^x(Q_0)` and `Q_0` is root-free on `D`, the product
+`L_S M` is coprime to `Q_0`.  Also
+
+```text
+deg(L_S M)<s+r_v=r_u,
+```
+
+so `[L_S M] in P_u^x(Q_0)`.  If `C in F_M^S`, write
+`C=C_0 disjoint_union S`.  Cancelling `L_S` modulo `Q_0`, exactly as in
+Corollary 40.124, gives a bijection
+
+```text
+F_M^S <-> { C_0 in Comp_{v,[M]}(Q_0,B_0) : C_0 cap S=empty }.
+```
+
+The target fibers are pairwise disjoint as `[M]` varies by Corollary 40.122,
+and forgetting the restriction `C_0 cap S=empty` leaves a subset of all
+`(j+v)`-subsets of `D`.  This proves (BudgetThreeRFPacket).  The final
+description is the `R=3` case of Corollary 40.133.
+
+## Corollary 40.137: Reduced Budget-Three Residuals Are Support-Root Slices
+
+Keep the primitive denominator `Q_0`, and let `B_star` be any residue numerator
+with `gcd(B_star,Q_0)=1`.  Fix `v<=t` with
+
+```text
+r_v=e_0-t+v=3.
+```
+
+For a multiplicity vector `m:D->{0,1,2}` with
+
+```text
+|m|=sum_{beta in D} m_beta <=2,
+```
+
+write
+
+```text
+L_m=prod_{beta in D}(X-beta)^{m_beta},        supp(m)={ beta : m_beta>0 }.
+```
+
+Define the reduced budget-three residual ledger
+
+```text
+R3_red(Q_0,B_star)
+ = disjoint_union_{|m|<=2}
+     { C in Comp_{v,[L_m]}(Q_0,B_star) : supp(m) cap C=empty }.
+                                                        (BudgetThreeReduced)
+```
+
+Then the displayed union is genuinely disjoint and
+
+```text
+|R3_red(Q_0,B_star)| <= binom(n,j+v).             (BudgetThreeReducedBound)
+```
+
+Moreover, every degree-`<3` residual multiplier fiber for `B_star` that has
+no root-free nonconstant factor left and no multiplier root in the current
+complement lies in this ledger.  Consequently, after complement roots are
+descended and the root-free packet of Corollary 40.136 is charged, the
+remaining budget-three residual is only a support-root slice packet.
+
+### Proof
+
+Distinct multiplicity vectors `m` give distinct monic polynomials `L_m` of
+degree `<3`, hence distinct projective classes.  Corollary 40.122 applies
+verbatim with `B_star` in place of `B_0`, so the fibers
+`Comp_{v,[L_m]}(Q_0,B_star)` are pairwise disjoint.  The additional condition
+`supp(m) cap C=empty` only shrinks each fiber, and all displayed fibers are
+subsets of the `(j+v)`-subsets of `D`.  The bound follows.
+
+For the classification statement, let `[N] in P_v^x(Q_0)` with `deg N<3`.
+If `N` has a nonconstant factor with no roots in `D`, it belongs to the
+root-free packet of Corollary 40.136.  Otherwise all roots of `N` lie in `D`,
+with multiplicity, so `[N]=[L_m]` for a unique `m` with `|m|<=2`.  If one of
+those roots lies in the current complement, Corollary 40.125 descends it.
+The reduced case that remains has `supp(m) cap C=empty`, exactly the slice
+included in (BudgetThreeReduced).
+
 ## Corollary 41: The Global Common-Image Ledger Is Endpoint-Only
 
 Let `GCI` be the set of monic degree-`c` split core locators `L` for which
@@ -17366,6 +17480,12 @@ budget two are disjoint and have total size at most `binom(n,j+v)`.
 Corollary 40.135 closes the reduced budget-two residual for any fixed twisted
 base numerator: the core packet and all support-side domain-root slices are
 disjoint and together have size at most `binom(n,j+v)`.
+Corollary 40.136 closes the root-free residual-budget-three branch: after
+deleting fixed complement roots, all linear/quadratic root-free total
+multipliers occupy one small-complement packet.
+Corollary 40.137 closes the reduced residual-budget-three branch for a fixed
+twisted base numerator: the remaining support-root slices of total
+multiplicity at most two are disjoint and occupy one small-complement packet.
 Corollary 41 packages the common-image branch into endpoint-type ledgers; it
 does not prove the endpoint rank hypotheses needed for the displayed
 `(q+2)binom(n,b)` bound. Corollary 42 packages the globally full core ledger
