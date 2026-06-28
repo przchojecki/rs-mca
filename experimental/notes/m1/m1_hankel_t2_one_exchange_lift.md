@@ -3493,6 +3493,43 @@ fibers, checks that every zero-good residual candidate lies in this envelope,
 and asserts (PF2-Z0-close).  The current largest `F_7^*` scan has no
 `b(U,W)=2` produced anchor.
 
+## Zero-Good Supports Are Half-Certificate Incidences
+
+The zero-good envelope can be charged to half-width certificates uniformly.
+Put
+
+```text
+c=ceil(q/2),        N=|D'|,
+H_c(U,W)=binom(s,c)+sum_lambda binom(m_lambda,c).
+```
+
+Every zero-good `q`-support has all non-base roots in at most one projective
+fiber.  If it has `a` roots in the base locus and `m` roots in that occupied
+fiber, then `a+m=q`.  Hence `max(a,m)>=c`, so the support contains a
+`c`-subset either in `B_0` or in one projective fiber.  Counting incidences
+between zero-good supports and such `c`-subsets gives
+
+```text
+Z_0^{env}(U,W) <= H_c(U,W) binom(N-c,q-c).       (PF2-half-cert)
+```
+
+Combining this with the good-pair injection yields the fixed-anchor closure
+
+```text
+|F(U,W)| <= G_tot + H_c(U,W) binom(N-c,q-c).     (PF2-half-cert-close)
+```
+
+Each counted `c`-subset is one of the half-width fixed-divisor certificates
+from the previous support-local split: either a base-locus certificate shared
+by the whole pencil or a single projective-fiber quotient direction.  Thus the
+remaining zero-good term is controlled by the number of half-width
+fixed-divisor certificate subsets, times the trivial residual completions.
+
+The verifier computes `H_c(U,W)` from the same base locus and projective
+fibers, checks that the observed zero-good supports satisfy (PF2-half-cert),
+and asserts (PF2-half-cert-close).  The current largest `F_7^*` scan still has
+no `b(U,W)=2` produced anchor.
+
 ## Bad Root Slices Are Absorbed-Anchor Rank Defects
 
 The preceding bad-root condition has an equivalent absorbed-anchor form.  Fix

@@ -30,6 +30,23 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 b=2 zero-good supports are half-certificate incidences
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_hankel_t2_one_exchange_lift.md`,
+  `experimental/experiments.tex`,
+  `experimental/scripts/verify_m1_hankel_t2_triangle_packets.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / STRUCTURAL / AUDIT.
+- **What is being added:** Proves that the `b=2` zero-good envelope is bounded
+  by `H_c binom(N-c,q-c)`, where `c=ceil(q/2)` and `H_c` counts `c`-subsets in
+  the base locus or one projective fiber.
+- **How it is useful:** Rewrites the remaining zero-good fixed-anchor term as a
+  half-width fixed-divisor certificate count times residual completions.
+- **What to do next:** Bound the half-certificate ledger by quotient-periodic,
+  tangent, fixed-root, or aperiodic residue-packing estimates.
+
 ### 2026-06-28 - M1 b=2 zero-good envelope closes fixed anchors
 
 - **Agent/model:** AllenGrahamHart / Codex audit.

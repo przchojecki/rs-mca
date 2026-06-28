@@ -6353,6 +6353,39 @@ def analyze_case(
                                                     )
                                                 )
                                             )
+                                            half_certificate_size = (
+                                                residual_size + 1
+                                            ) // 2
+                                            projective_half_certificate_count = (
+                                                binomial_or_zero(
+                                                    len(
+                                                        projective_eval_base_roots
+                                                    ),
+                                                    half_certificate_size,
+                                                )
+                                                + sum(
+                                                    binomial_or_zero(
+                                                        len(roots),
+                                                        half_certificate_size,
+                                                    )
+                                                    for roots in (
+                                                        projective_eval_fibers.values()
+                                                    )
+                                                )
+                                            )
+                                            projective_zero_good_incidence_bound = (
+                                                projective_half_certificate_count
+                                                * binomial_or_zero(
+                                                    (
+                                                        len(available_roots)
+                                                        - half_certificate_size
+                                                    ),
+                                                    (
+                                                        residual_size
+                                                        - half_certificate_size
+                                                    ),
+                                                )
+                                            )
                                             pair_owner: dict[
                                                 tuple[int, int],
                                                 tuple[int, ...],
@@ -6710,9 +6743,72 @@ def analyze_case(
                                                         },
                                                     }
                                                 )
+                                            if (
+                                                zero_good_candidate_count
+                                                > projective_zero_good_incidence_bound
+                                            ):
+                                                raise AssertionError(
+                                                    {
+                                                        "kind": (
+                                                            "productive-"
+                                                            if productive
+                                                            else ""
+                                                        )
+                                                        + "marked-core-"
+                                                        "deficit-anchor-"
+                                                        "direction-mds-"
+                                                        "projective-"
+                                                        "zero-good-half-"
+                                                        "certificate-incidence-"
+                                                        "failed",
+                                                        "p": p,
+                                                        "k": k,
+                                                        "syndrome": list(syn),
+                                                        "fixed_roots": list(
+                                                            fixed_roots
+                                                        ),
+                                                        "unmarked_core": list(
+                                                            unmarked_core
+                                                        ),
+                                                        "marked_count": (
+                                                            marked_count
+                                                        ),
+                                                        "core_deficit": (
+                                                            core_deficit
+                                                        ),
+                                                        "anchor": list(anchor),
+                                                        "zero_good_candidates": (
+                                                            zero_good_candidate_count
+                                                        ),
+                                                        "half_certificate_size": (
+                                                            half_certificate_size
+                                                        ),
+                                                        "half_certificate_count": (
+                                                            projective_half_certificate_count
+                                                        ),
+                                                        "incidence_bound": (
+                                                            projective_zero_good_incidence_bound
+                                                        ),
+                                                        "base_roots": sorted(
+                                                            projective_eval_base_roots
+                                                        ),
+                                                        "fibers": {
+                                                            str(key): sorted(
+                                                                roots
+                                                            )
+                                                            for key, roots in (
+                                                                projective_eval_fibers.items()
+                                                            )
+                                                        },
+                                                    }
+                                                )
                                             projective_zero_good_closure_bound = (
                                                 len(projective_good_pairs)
                                                 + projective_zero_good_envelope_count
+                                            )
+                                            projective_half_certificate_closure_bound = (
+                                                len(projective_good_pairs)
+                                                + projective_zero_good_incidence_bound
                                             )
                                             if (
                                                 len(residual_candidates)
@@ -6762,6 +6858,63 @@ def analyze_case(
                                                         ),
                                                         "bound": (
                                                             projective_zero_good_closure_bound
+                                                        ),
+                                                    }
+                                                )
+                                            if (
+                                                len(residual_candidates)
+                                                > projective_half_certificate_closure_bound
+                                            ):
+                                                raise AssertionError(
+                                                    {
+                                                        "kind": (
+                                                            "productive-"
+                                                            if productive
+                                                            else ""
+                                                        )
+                                                        + "marked-core-"
+                                                        "deficit-anchor-"
+                                                        "direction-mds-"
+                                                        "projective-"
+                                                        "half-certificate-"
+                                                        "closure-bound-failed",
+                                                        "p": p,
+                                                        "k": k,
+                                                        "syndrome": list(syn),
+                                                        "fixed_roots": list(
+                                                            fixed_roots
+                                                        ),
+                                                        "unmarked_core": list(
+                                                            unmarked_core
+                                                        ),
+                                                        "marked_count": (
+                                                            marked_count
+                                                        ),
+                                                        "core_deficit": (
+                                                            core_deficit
+                                                        ),
+                                                        "anchor": list(anchor),
+                                                        "residual_candidates": (
+                                                            len(
+                                                                residual_candidates
+                                                            )
+                                                        ),
+                                                        "good_pair_count": (
+                                                            len(
+                                                                projective_good_pairs
+                                                            )
+                                                        ),
+                                                        "half_certificate_size": (
+                                                            half_certificate_size
+                                                        ),
+                                                        "half_certificate_count": (
+                                                            projective_half_certificate_count
+                                                        ),
+                                                        "incidence_bound": (
+                                                            projective_zero_good_incidence_bound
+                                                        ),
+                                                        "bound": (
+                                                            projective_half_certificate_closure_bound
                                                         ),
                                                     }
                                                 )
