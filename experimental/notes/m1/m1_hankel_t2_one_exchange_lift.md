@@ -1830,6 +1830,47 @@ and maximum marked count `3`.  The productive subaudit checks `19440`
 supports and `127440` nonzero faces, with `108000` orderings and the same
 maximum marked count.
 
+## Canonical Unmarked Cores Have Matching-Bounded Fibers
+
+The marked-exit cube gives a canonical anchor for an active total support:
+
+```text
+U(S)=S\M(S).
+```
+
+Fix an unmarked core `U` and an integer `r`.  Any active total support `S`
+with `U(S)=U` and `|M(S)|=r` gives, by the full marked face of (MC), an
+`r`-sparse representation of the one fixed vector
+
+```text
+g_U=H_{tau+r,|U|}(s)ell_U
+```
+
+on the available domain `H\U`, with support `M(S)` and all amplitudes
+nonzero.  Conversely, the full marked support is forced by such a
+representation together with the requirement that the displayed support is
+exactly the nonzero marked-exit set.
+
+Therefore the same sparse-moment uniqueness applies to canonical marked-core
+fibers.  If `r<=tau`, the first `2r` moments of `g_U` recover the marked
+locator and amplitudes uniquely.  If `r=tau+1`, two different marked supports
+over the same unmarked core are disjoint, and the fiber size is at most
+
+```text
+floor((n-|U|)/r).                              (UM)
+```
+
+Thus repeated large marked-exit supports over one canonical unmarked core are
+again only a boundary matching phenomenon.  The remaining global task is to
+count the unmarked cores that can carry such cubes, not to control arbitrary
+overlapping marked-support clusters over a fixed core.
+
+The verifier audits these canonical marked-core fibers for produced total
+supports.  In the largest `F_7^*` audit, `21540` marked-core fibers carry
+`21600` full marked supports, with maximum fiber size `2`.  The productive
+subaudit has `19380` fibers carrying `19440` full marked supports, again with
+maximum fiber size `2`.
+
 ## Fixed Anchors Have Matching-Bounded Fibers
 
 Fix the collapsed anchor base `A` and the mode size `m`.  Then

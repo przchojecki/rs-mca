@@ -121,6 +121,9 @@ marked subset.
 It also audits the full marked-exit cube of each produced total support:
 every nonempty subset of marked exits is a lossless sparse packet face over
 the complementary anchor.
+For the canonical unmarked core S\\M(S), it audits the resulting full-marked
+support fibers: below the boundary they are unique, while boundary fibers are
+matching-bounded.
 For each fixed collapsed anchor base, it audits the sparse-representation
 fiber: below the boundary the mode support is unique, while at the boundary
 distinct supports are disjoint and obey the matching bound.
@@ -522,6 +525,12 @@ def analyze_case(
     terminal_tree_productive_marked_exit_cube_ordered_flags = 0
     terminal_tree_marked_exit_cube_max_marked_roots = 0
     terminal_tree_productive_marked_exit_cube_max_marked_roots = 0
+    terminal_tree_marked_core_fiber_checks = 0
+    terminal_tree_productive_marked_core_fiber_checks = 0
+    terminal_tree_marked_core_fiber_labels = 0
+    terminal_tree_productive_marked_core_fiber_labels = 0
+    terminal_tree_marked_core_fiber_max_size = 0
+    terminal_tree_productive_marked_core_fiber_max_size = 0
     terminal_tree_anchor_fiber_checks = 0
     terminal_tree_productive_anchor_fiber_checks = 0
     terminal_tree_anchor_fiber_labels = 0
@@ -733,6 +742,12 @@ def analyze_case(
             nonlocal terminal_tree_productive_marked_exit_cube_ordered_flags
             nonlocal terminal_tree_marked_exit_cube_max_marked_roots
             nonlocal terminal_tree_productive_marked_exit_cube_max_marked_roots
+            nonlocal terminal_tree_marked_core_fiber_checks
+            nonlocal terminal_tree_productive_marked_core_fiber_checks
+            nonlocal terminal_tree_marked_core_fiber_labels
+            nonlocal terminal_tree_productive_marked_core_fiber_labels
+            nonlocal terminal_tree_marked_core_fiber_max_size
+            nonlocal terminal_tree_productive_marked_core_fiber_max_size
             nonlocal terminal_tree_anchor_fiber_checks
             nonlocal terminal_tree_productive_anchor_fiber_checks
             nonlocal terminal_tree_anchor_fiber_labels
@@ -3024,6 +3039,154 @@ def analyze_case(
                 productive_marked_exit_cube_max_marked_roots,
             )
 
+            def audit_marked_core_fibers(
+                supports: set[tuple[int, ...]],
+                productive: bool,
+            ) -> tuple[int, int, int]:
+                fibers: dict[
+                    tuple[int, tuple[int, ...]],
+                    list[tuple[int, ...]],
+                ] = {}
+                for total_support in supports:
+                    marked_roots = marked_roots_for_split_support(
+                        total_support
+                    )
+                    marked_support = tuple(sorted(marked_roots))
+                    if not marked_support:
+                        continue
+                    marked_set = set(marked_support)
+                    unmarked_core = tuple(
+                        index
+                        for index in total_support
+                        if index not in marked_set
+                    )
+                    fibers.setdefault(
+                        (len(marked_support), unmarked_core),
+                        [],
+                    ).append(marked_support)
+
+                fiber_checks = 0
+                fiber_labels = 0
+                max_fiber_size = 0
+                for (marked_count, unmarked_core), supports_in_fiber in (
+                    fibers.items()
+                ):
+                    unique_supports = sorted(set(supports_in_fiber))
+                    fiber_size = len(unique_supports)
+                    fiber_checks += 1
+                    fiber_labels += fiber_size
+                    max_fiber_size = max(max_fiber_size, fiber_size)
+                    if marked_count <= t and fiber_size > 1:
+                        raise AssertionError(
+                            {
+                                "kind": (
+                                    "productive-"
+                                    if productive
+                                    else ""
+                                )
+                                + "marked-core-fiber-uniqueness-"
+                                "failed",
+                                "p": p,
+                                "k": k,
+                                "syndrome": list(syn),
+                                "fixed_roots": list(fixed_roots),
+                                "unmarked_core": list(unmarked_core),
+                                "marked_count": marked_count,
+                                "supports": [
+                                    list(support)
+                                    for support in unique_supports
+                                ],
+                            }
+                        )
+                    if marked_count == t + 1:
+                        for left, right in itertools.combinations(
+                            unique_supports,
+                            2,
+                        ):
+                            if set(left) & set(right):
+                                raise AssertionError(
+                                    {
+                                        "kind": (
+                                            "productive-"
+                                            if productive
+                                            else ""
+                                        )
+                                        + "marked-core-boundary-"
+                                        "overlapping-fiber",
+                                        "p": p,
+                                        "k": k,
+                                        "syndrome": list(syn),
+                                        "fixed_roots": list(fixed_roots),
+                                        "unmarked_core": list(
+                                            unmarked_core
+                                        ),
+                                        "marked_count": marked_count,
+                                        "left_support": list(left),
+                                        "right_support": list(right),
+                                    }
+                                )
+                        matching_bound = (
+                            n - len(unmarked_core)
+                        ) // marked_count
+                        if fiber_size > matching_bound:
+                            raise AssertionError(
+                                {
+                                    "kind": (
+                                        "productive-"
+                                        if productive
+                                        else ""
+                                    )
+                                    + "marked-core-boundary-"
+                                    "matching-bound-failed",
+                                    "p": p,
+                                    "k": k,
+                                    "syndrome": list(syn),
+                                    "fixed_roots": list(fixed_roots),
+                                    "unmarked_core": list(unmarked_core),
+                                    "marked_count": marked_count,
+                                    "fiber_size": fiber_size,
+                                    "matching_bound": matching_bound,
+                                }
+                            )
+                return fiber_checks, fiber_labels, max_fiber_size
+
+            (
+                marked_core_fiber_checks,
+                marked_core_fiber_labels,
+                marked_core_fiber_max_size,
+            ) = audit_marked_core_fibers(
+                total_split_supports,
+                productive=False,
+            )
+            (
+                productive_marked_core_fiber_checks,
+                productive_marked_core_fiber_labels,
+                productive_marked_core_fiber_max_size,
+            ) = audit_marked_core_fibers(
+                productive_total_split_supports,
+                productive=True,
+            )
+            terminal_tree_marked_core_fiber_checks += (
+                marked_core_fiber_checks
+            )
+            terminal_tree_productive_marked_core_fiber_checks += (
+                productive_marked_core_fiber_checks
+            )
+            terminal_tree_marked_core_fiber_labels += (
+                marked_core_fiber_labels
+            )
+            terminal_tree_productive_marked_core_fiber_labels += (
+                productive_marked_core_fiber_labels
+            )
+            terminal_tree_marked_core_fiber_max_size = max(
+                terminal_tree_marked_core_fiber_max_size,
+                marked_core_fiber_max_size,
+            )
+            terminal_tree_productive_marked_core_fiber_max_size = max(
+                terminal_tree_productive_marked_core_fiber_max_size,
+                productive_marked_core_fiber_max_size,
+            )
+
             def audit_anchor_split_fibers(
                 fibers: dict[
                     tuple[int, tuple[int, ...]],
@@ -4962,6 +5125,24 @@ def analyze_case(
         "terminal_tree_productive_marked_exit_cube_max_marked_roots": (
             terminal_tree_productive_marked_exit_cube_max_marked_roots
         ),
+        "terminal_tree_marked_core_fiber_checks": (
+            terminal_tree_marked_core_fiber_checks
+        ),
+        "terminal_tree_productive_marked_core_fiber_checks": (
+            terminal_tree_productive_marked_core_fiber_checks
+        ),
+        "terminal_tree_marked_core_fiber_labels": (
+            terminal_tree_marked_core_fiber_labels
+        ),
+        "terminal_tree_productive_marked_core_fiber_labels": (
+            terminal_tree_productive_marked_core_fiber_labels
+        ),
+        "terminal_tree_marked_core_fiber_max_size": (
+            terminal_tree_marked_core_fiber_max_size
+        ),
+        "terminal_tree_productive_marked_core_fiber_max_size": (
+            terminal_tree_productive_marked_core_fiber_max_size
+        ),
         "terminal_tree_anchor_fiber_checks": (
             terminal_tree_anchor_fiber_checks
         ),
@@ -5416,6 +5597,10 @@ def print_summary(results: Sequence[dict[str, object]]) -> None:
             f"{result['terminal_tree_total_split_support_factorization_checks']} "
             f"marked_exit_cube_faces="
             f"{result['terminal_tree_marked_exit_cube_face_checks']} "
+            f"marked_core_fiber_checks="
+            f"{result['terminal_tree_marked_core_fiber_checks']} "
+            f"marked_core_fiber_max="
+            f"{result['terminal_tree_marked_core_fiber_max_size']} "
             f"anchor_fiber_checks="
             f"{result['terminal_tree_anchor_fiber_checks']} "
             f"anchor_fiber_max="

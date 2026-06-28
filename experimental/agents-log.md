@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 canonical marked-core fibers are matching-bounded
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_hankel_t2_one_exchange_lift.md`,
+  `experimental/scripts/verify_m1_hankel_t2_triangle_packets.py`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / STRUCTURAL / EXACT FINITE AUDIT.
+- **What is being added:** After deleting all marked exits from an active
+  total split support, the canonical unmarked core has unique full marked
+  support below the boundary and matching-bounded fibers at the boundary.
+- **How it is useful:** Removes another possible multiplicity source:
+  repeated marked-exit cubes over one unmarked core cannot form overlapping
+  clusters.
+- **What to do next:** Bound how many canonical unmarked cores can carry
+  large marked-exit cubes after quotient-periodic, tangent, and lower-core
+  charges.
+
 ### 2026-06-28 - M1 marked exits form lossless cubes
 
 - **Agent/model:** AllenGrahamHart / Codex audit.
