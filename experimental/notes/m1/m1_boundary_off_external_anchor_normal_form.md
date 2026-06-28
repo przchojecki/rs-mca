@@ -12896,6 +12896,105 @@ At the scalar cutoff, `a=n-j=k+t`, so `d_0<=a` is equivalent to
 
 and hence `2a-n>=d_0` is equivalent to `e_0<=t-j`.
 
+## Corollary 40.117: High-Degree Base Class Collisions Give Short Residue Landings
+
+Keep the primitive positive base residue-line setup of Corollary 40.116, so
+`e_0>0`, `Q_0` is root-free on `D`, and `gcd(Q_0,B_0)=1`.  Let
+`lambda_1!=lambda_2` be two coefficients witnessed by supports `S_1,S_2`:
+
+```text
+Q_0 A_i+lambda_i B_0=w_0        on S_i,        i=1,2.
+```
+
+Put
+
+```text
+I=S_1 cap S_2,        m=|I|,        delta=lambda_1-lambda_2,
+L_I(X)=prod_{alpha in I}(X-alpha).
+```
+
+Then `m<k+e_0`, and there is a nonzero polynomial `M` with
+
+```text
+deg M < k+e_0-m
+```
+
+such that
+
+```text
+L_I M in F B_0        mod Q_0.                     (BaseResidueCert)
+```
+
+Since `Q_0` is root-free on `D`, also
+
+```text
+gcd(Q_0,L_I)=1.
+```
+
+At the scalar cutoff `a=k+t`, if the two chosen witnesses have exact
+threshold size and
+
+```text
+|S_1|=|S_2|=a,        |S_1 cap S_2|=a-u,
+```
+
+then the certificate multiplier has degree
+
+```text
+deg M < e_0-t+u.                                  (BaseResidueCertDegree)
+```
+
+In particular, in the first unpacked base layer `e_0=t+1`, one-exchange
+collisions (`u=1`) give `deg M<2`: they are exactly core or finite-anchor
+residue landings modulo the primitive denominator.  Thus the high-degree
+fixed-class residual is not an uncontrolled coefficient collision problem; it
+is a bounded-degree quotient-residue landing problem on the overlap locator.
+
+### Proof
+
+On `I`, subtract the two witness equations:
+
+```text
+Q_0(A_1-A_2)+delta B_0=0.
+```
+
+Let
+
+```text
+P=Q_0(A_1-A_2)+delta B_0.
+```
+
+Then `deg P<k+e_0`.  Corollary 40.116 already shows that `m>=k+e_0` is
+impossible for distinct coefficients, so `m<k+e_0`.  Since `P` vanishes on
+`I`, there is a polynomial `M` with
+
+```text
+P=L_I M,        deg M<k+e_0-m.
+```
+
+The polynomial `P` is nonzero: if `P=0`, reducing modulo `Q_0` gives
+`delta B_0==0 mod Q_0`, contradicting `delta!=0` and
+`gcd(Q_0,B_0)=1`.  Hence `M` is nonzero.  Reducing `P=L_I M` modulo `Q_0`
+gives
+
+```text
+L_I M == delta B_0        mod Q_0,
+```
+
+which is (BaseResidueCert) after scaling by the nonzero scalar `delta^{-1}`.
+The gcd statement follows because the roots of `L_I` lie in `D`, while
+`Q_0` has no roots in `D`.
+
+For the cutoff specialization, `m=a-u=k+t-u`, so
+
+```text
+k+e_0-m = k+e_0-(k+t-u)=e_0-t+u.
+```
+
+This proves the displayed degree bound.  If `e_0=t+1` and `u=1`, then
+`deg M<2`; after scaling, `M` is either constant or linear, giving the stated
+core or finite-anchor landing.
+
 ## Corollary 41: The Global Common-Image Ledger Is Endpoint-Only
 
 Let `GCI` be the set of monic degree-`c` split core locators `L` for which
@@ -15876,6 +15975,9 @@ Corollary 40.116 gives the fixed-class primitive-degree packing bound:
 a primitive base residue class of degree `e_0` has packing dimension `k+e_0`,
 so at the scalar cutoff all classes with `e_0<=t` have an explicit
 support-packing charge and the one-coefficient range is `e_0<=t-j`.
+Corollary 40.117 converts collisions in the remaining high-degree range into
+short quotient-residue landing certificates; in the first unpacked base layer,
+one-exchange collisions are only core or finite-anchor landings.
 Corollary 41 packages the common-image branch into endpoint-type ledgers; it
 does not prove the endpoint rank hypotheses needed for the displayed
 `(q+2)binom(n,b)` bound. Corollary 42 packages the globally full core ledger

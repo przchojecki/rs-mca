@@ -30,6 +30,23 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 high-degree base collisions give residue landings
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_boundary_off_external_anchor_normal_form.md`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / PROOF-PROGRAM.
+- **What is being added:** Shows that collisions in a primitive base
+  residue-line class force short certificates `L_I M in F B_0 mod Q_0`; at
+  `a=k+t` and intersection `a-u`, one has `deg M<e_0-t+u`.
+- **How it is useful:** Converts the high-primitive-degree range `e_0>t`
+  into a bounded-degree residue-landing ledger; the first unpacked layer has
+  only core or finite-anchor one-exchange landings.
+- **What to do next:** Bound the resulting small-complement primitive landing
+  fibers, separating in-domain anchors, external anchors, and
+  quotient-periodic classes.
+
 ### 2026-06-28 - M1 primitive base residue classes have k+e packing
 
 - **Agent/model:** AllenGrahamHart / Codex audit.
