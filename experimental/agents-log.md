@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 marked exits form lossless cubes
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_hankel_t2_one_exchange_lift.md`,
+  `experimental/scripts/verify_m1_hankel_t2_triangle_packets.py`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / STRUCTURAL / EXACT FINITE AUDIT.
+- **What is being added:** For a fixed active total split support `S`, every
+  nonempty subset of the marked exits `M(S)` gives a forced nonzero sparse
+  packet face over the complementary anchor.
+- **How it is useful:** Replaces many-anchor ambiguity by a canonical
+  zero-free marked-exit cube, making large marked-exit supports the next
+  explicit M1 object to bound or classify.
+- **What to do next:** Prove quotient-periodic, tangent, lower-core, or
+  aperiodic restrictions on active supports that carry large marked-exit
+  cubes.
+
 ### 2026-06-28 - M1 total split-support marked-exit factorization
 
 - **Agent/model:** AllenGrahamHart / Codex audit.

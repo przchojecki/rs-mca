@@ -1787,6 +1787,49 @@ labels, maximum fiber size `3`, and `58320` marked-subset factorizations.  In
 both audits the maximum number of marked exits on a produced total support is
 `3`.
 
+## Marked Exits Form a Lossless Cube
+
+The preceding fixed-`S` factorization applies simultaneously to all marked
+exits.  Let
+
+```text
+M=M(S)={x in S : b_x(S) != 0}.
+```
+
+For every nonempty `Y subset M`, put `A_Y=S\Y` and
+
+```text
+d_Y(y)=prod_{z in Y,z!=y}(y-z),        a_y=b_y(S)/d_Y(y).
+```
+
+Then
+
+```text
+H_{tau+|Y|,|A_Y|}(s)ell_{A_Y}
+ = (sum_{y in Y} a_y y^i)_{0<=i<=tau+|Y|-1}.       (MC)
+```
+
+In particular every nonempty face is nonzero: the first `|Y|` rows form an
+invertible Vandermonde system on `Y`, and all amplitudes `a_y` are nonzero.
+Taking `Y=M` gives one sparse packet over the unmarked core `S\M`; absorbing a
+proper subset of `M` gives another nonzero face, while absorbing all of `M`
+returns the active equation `H_{tau,|S|}(s)ell_S=0`.
+
+Thus an active total support with `r` marked exits contains a canonical
+zero-free `r`-cube of sparse packet faces.  Large marked-exit supports are not
+merely many unrelated anchor choices; they are high-dimensional zero-free
+frontier cubes.  This is the next natural object for M1: quotient-periodic,
+tangent, lower-core, or aperiodic input must bound such cubes or classify the
+supports that carry them.
+
+The verifier audits this full marked-exit cube for produced total supports,
+including singleton faces that need not appear as terminal branch packets.  In
+the largest `F_7^*` audit, it checks `21600` produced total supports and
+`133920` nonzero marked-exit faces, with `112320` full marked-exit orderings
+and maximum marked count `3`.  The productive subaudit checks `19440`
+supports and `127440` nonzero faces, with `108000` orderings and the same
+maximum marked count.
+
 ## Fixed Anchors Have Matching-Bounded Fibers
 
 Fix the collapsed anchor base `A` and the mode size `m`.  Then

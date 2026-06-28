@@ -4316,6 +4316,21 @@ verifier audits this factorization in the largest \(F_7^*\) case:
 \(3\), and \(60480\) marked-subset factorizations are checked; the productive
 subaudit has \(23760\) fibers, \(32400\) labels, maximum fiber size \(3\),
 and \(58320\) factorizations.
+Taking all marked exits at once gives a lossless cube.  If \(M=M(S)\), then
+for every nonempty \(Y\subseteq M\),
+\[
+  H_{\tau+|Y|,|S\setminus Y|}(s)\ell_{S\setminus Y}
+  =
+  \left(\sum_{y\in Y}
+    {b_y(S)\over \prod_{z\in Y,\ z\ne y}(y-z)}y^i\right)_
+    {0\le i\le \tau+|Y|-1},
+\]
+and this face is nonzero by the Vandermonde minor on \(Y\).  Thus a support
+with \(r\) marked exits contains a canonical zero-free \(r\)-cube of sparse
+packet faces.  In the largest \(F_7^*\) audit the verifier checks \(21600\)
+produced total supports and \(133920\) nonzero marked-exit faces, with maximum
+marked count \(3\); the productive subaudit checks \(19440\) supports and
+\(127440\) faces.
 For fixed \(A\) and \(m\), this also gives a fixed-anchor fiber bound.  If
 \(m\le\tau\), the first \(2m\) moments recover the mode locator and
 amplitudes uniquely.  At the boundary \(m=\tau+1\), two supports in one
