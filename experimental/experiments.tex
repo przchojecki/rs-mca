@@ -4935,6 +4935,22 @@ so no zero-good \(q\)-support exists:
 \]
 Thus the \(b=2\) zero-good branch closes by degree, leaving only the global
 good-pair ledger to charge in the M1 packing argument.
+This closure is constructive.  Fix an origin locator
+\[
+  L_0\in K(U,W),\qquad K(U,W)=L_0+\langle P,Q\rangle .
+\]
+For a good pair \(\{x,y\}\), the matrix
+\[
+  E_{x,y}=\begin{pmatrix}P(x)&Q(x)\\ P(y)&Q(y)\end{pmatrix}
+\]
+is invertible, so the unique affine-kernel locator through that pair is
+\[
+  L_{x,y}=L_0+\alpha P+\beta Q,\qquad
+  E_{x,y}(\alpha,\beta)^T=-(L_0(x),L_0(y))^T .
+\]
+Every \(b=2\) residual support contains a good pair, and any such pair
+reconstructs its monic locator by this formula.  Thus the fixed-anchor fiber is
+an explicit image of the good-pair interpolation map.
 Equivalently, for each available root \(x\) the bad-slice test is the failure
 of full column rank for the absorbed-anchor matrix
 \[

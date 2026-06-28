@@ -3644,6 +3644,51 @@ checks the shadow gap `s+m_lambda<q` for every projective fiber, asserts
 `Z_0^{env}=0`, and verifies the direct closure `|F(U,W)|<=G_tot`.  The current
 largest `F_7^*` scan still has no `b(U,W)=2` produced anchor.
 
+## Good Pairs Interpolate the b=2 Residual Locator
+
+The degree-gap closure has a constructive form.  Fix one locator
+`L_0 in K(U,W)` as an origin for the affine kernel and write
+
+```text
+K(U,W)=L_0+span(P,Q).
+```
+
+If `{x,y}` is a good pair, then the matrix
+
+```text
+E_{x,y}=
+[[P(x),Q(x)],
+ [P(y),Q(y)]]
+```
+
+has nonzero determinant by definition.  Therefore there is at most one locator
+in the affine kernel that vanishes at both `x` and `y`; explicitly it is
+
+```text
+L_{x,y}=L_0+alpha P+beta Q,
+E_{x,y} [alpha beta]^T = -[L_0(x) L_0(y)]^T.     (PF2-good-interp)
+```
+
+If `R` is a residual support containing the good pair `{x,y}`, then its monic
+locator is exactly `L_{x,y}`.  Since the degree gap shows that every residual
+support contains at least one good pair, the fixed-anchor residual fiber is
+not merely bounded by the good-pair ledger; it is contained in the explicit
+image of the good-pair interpolation map
+
+```text
+{good pairs in D'} -> K(U,W).
+```
+
+This gives a canonical reconstruction certificate for every `b=2` residual
+support after the zero-good branch has been eliminated.  The remaining global
+M1 task can therefore treat the `b=2` branch as an explicit good-pair image
+problem.
+
+The verifier checks (PF2-good-interp) for every good pair contained in every
+enumerated `b=2` residual candidate: solving the displayed `2 x 2` system
+against a fixed origin locator must reconstruct the candidate locator exactly.
+The current largest `F_7^*` scan still has no `b(U,W)=2` produced anchor.
+
 ## Bad Root Slices Are Absorbed-Anchor Rank Defects
 
 The preceding bad-root condition has an equivalent absorbed-anchor form.  Fix

@@ -6661,6 +6661,9 @@ def analyze_case(
                                             candidate_fiber_occupancy_max = 0
                                             zero_good_candidate_count = 0
                                             for candidate in residual_candidates:
+                                                candidate_locator = cached_locator(
+                                                    candidate
+                                                )
                                                 candidate_good_pairs = 0
                                                 candidate_base_occupancy = sum(
                                                     1
@@ -6711,6 +6714,89 @@ def analyze_case(
                                                     ):
                                                         continue
                                                     candidate_good_pairs += 1
+                                                    interpolation_matrix = tuple(
+                                                        tuple(
+                                                            polynomial_eval_mod(
+                                                                vector,
+                                                                domain[root],
+                                                                p,
+                                                            )
+                                                            for vector in (
+                                                                direction_basis
+                                                            )
+                                                        )
+                                                        for root in pair
+                                                    )
+                                                    origin_values = tuple(
+                                                        polynomial_eval_mod(
+                                                            residual_locator,
+                                                            domain[root],
+                                                            p,
+                                                        )
+                                                        for root in pair
+                                                    )
+                                                    interpolation_coeffs = (
+                                                        solve_square_mod(
+                                                            interpolation_matrix,
+                                                            tuple(
+                                                                (-value) % p
+                                                                for value in (
+                                                                    origin_values
+                                                                )
+                                                            ),
+                                                            p,
+                                                        )
+                                                    )
+                                                    reconstructed_locator = tuple(
+                                                        (
+                                                            residual_locator[index]
+                                                            + sum(
+                                                                coeff
+                                                                * vector[index]
+                                                                for (
+                                                                    coeff,
+                                                                    vector,
+                                                                ) in zip(
+                                                                    interpolation_coeffs,
+                                                                    direction_basis,
+                                                                )
+                                                            )
+                                                        )
+                                                        % p
+                                                        for index in range(
+                                                            residual_size
+                                                        )
+                                                    ) + (1,)
+                                                    if (
+                                                        reconstructed_locator
+                                                        != candidate_locator
+                                                    ):
+                                                        raise AssertionError(
+                                                            projective_local_error(
+                                                                "good-pair-"
+                                                                "interpolation-"
+                                                                "failed",
+                                                                candidate=list(
+                                                                    candidate
+                                                                ),
+                                                                pair=list(pair),
+                                                                matrix=[
+                                                                    list(row)
+                                                                    for row in (
+                                                                        interpolation_matrix
+                                                                    )
+                                                                ],
+                                                                coeffs=list(
+                                                                    interpolation_coeffs
+                                                                ),
+                                                                reconstructed=list(
+                                                                    reconstructed_locator
+                                                                ),
+                                                                expected=list(
+                                                                    candidate_locator
+                                                                ),
+                                                            )
+                                                        )
                                                     previous = pair_owner.get(
                                                         pair
                                                     )

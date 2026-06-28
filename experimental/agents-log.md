@@ -30,6 +30,23 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 b=2 good pairs interpolate residual locators
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_hankel_t2_one_exchange_lift.md`,
+  `experimental/experiments.tex`,
+  `experimental/scripts/verify_m1_hankel_t2_triangle_packets.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / STRUCTURAL / AUDIT.
+- **What is being added:** Proves that after the zero-good branch is eliminated,
+  every `b=2` residual support is reconstructed from any contained good pair by
+  solving a `2 x 2` interpolation system in the residual direction basis.
+- **How it is useful:** Turns the remaining `b=2` fixed-anchor fiber into an
+  explicit image of the good-pair ledger, rather than a nonconstructive count.
+- **What to do next:** Use the good-pair interpolation image to charge the
+  remaining global `b=2` ledger in the M1 residue-line packing argument.
+
 ### 2026-06-28 - M1 b=2 degree gap eliminates zero-good supports
 
 - **Agent/model:** AllenGrahamHart / Codex audit.
