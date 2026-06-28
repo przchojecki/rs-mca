@@ -30,6 +30,23 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 full-domain paired dual anchor test
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_boundary_off_external_anchor_normal_form.md`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / PROOF-PROGRAM / AUDIT.
+- **What is being added:** Full-domain paired anchors are characterized by a
+  dual annihilator space: `lambda_beta` lies in
+  `mu P_<s + nu P_<s` iff every degree-`<n` polynomial whose `mu` and `nu`
+  weighted moments vanish through order `s-1` also vanishes at `beta`.
+- **How it is useful:** Anchor counting becomes a common-gcd degree problem
+  for an explicit low-moment annihilator space, unless the paired row space is
+  already full rank and the bottom kernel is zero.
+- **What to do next:** Bound the common gcd of this annihilator in actual M1
+  instances, or use it as a falsification target for the bottom-anchor route.
+
 ### 2026-06-28 - M1 full-window Lagrange anchor test
 
 - **Agent/model:** AllenGrahamHart / Codex audit.

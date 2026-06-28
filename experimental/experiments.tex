@@ -2567,6 +2567,21 @@ with the same shifted-weight replacement for the shifted pair.  If \(h\ge n+1\),
 no non-domain external anchor can occur from \(D\)-supported moment data,
 because the first \(n\) moments force the Lagrange weights and the next moment
 misses by \(L_D(\beta)\).
+The paired full-domain test also has a dual common-zero form.  Let
+\[
+W_{\mu,\nu,s}
+=\{(\mu_xC_u(x)+\nu_xC_v(x))_{x\in D}:\deg C_u,\deg C_v<s\}.
+\]
+Its orthogonal annihilator is the space of \(P\in F_q[X]_{<n}\) such that
+\[
+  \sum_{x\in D}P(x)\mu_xx^a=\sum_{x\in D}P(x)\nu_xx^a=0
+  \qquad(0\le a<s).
+\]
+Then a non-domain \(\beta\) is a paired anchor iff every such \(P\) vanishes at
+\(\beta\).  Equivalently, unless this annihilator is zero, the paired anchors
+are exactly the non-domain roots of its common gcd.  Thus the full-domain
+paired anchor count is reduced to bounding one explicit low-moment common
+divisor.
 In the common two-denominator case \(M_{\min}=\{D_1,D_2\}\), writing
 \(C=\gcd(D_1,D_2)\), \(D_i=C E_i\), and \(e_i=\deg E_i\), the quotient
 denominators \(E_1,E_2\) are automatically coprime and

@@ -8427,6 +8427,86 @@ sum_{x in D} lambda_beta(x)x^n
 which is not `beta^n` because `beta notin D`.  Hence the first `n+1` moments
 cannot match.
 
+## Corollary 40.64: Full-Domain Paired Anchors Have A Dual Common-Zero Test
+
+Keep the full-domain notation of Corollary 40.63 with `h=n=|D|`.  For weights
+`mu_x,nu_x` on `D`, define the paired short-multiplier value space
+
+```text
+W_{mu,nu,s}
+={ (mu_x C_u(x)+nu_x C_v(x))_{x in D} :
+   deg C_u<s, deg C_v<s } subset F_q^D.
+```
+
+Define its polynomial dual annihilator
+
+```text
+Ann_{mu,nu,s}
+={ P in F_q[X]_{<n} :
+   sum_{x in D} P(x) mu_x x^a = 0 and
+   sum_{x in D} P(x) nu_x x^a = 0,        0<=a<s }.
+```
+
+Then for `beta notin D`,
+
+```text
+lambda_beta in W_{mu,nu,s}
+```
+
+if and only if
+
+```text
+P(beta)=0        for every P in Ann_{mu,nu,s}.       (DualAnchorTest)
+```
+
+Equivalently, if `Ann_{mu,nu,s}` is nonzero and
+
+```text
+G_{mu,nu,s}=gcd( P : P in Ann_{mu,nu,s} ),
+```
+
+then the non-domain paired anchors are exactly the roots of `G_{mu,nu,s}` in
+`F_q\D`.  In particular their number is at most `deg G_{mu,nu,s}`.  If
+`Ann_{mu,nu,s}=0`, then `W_{mu,nu,s}=F_q^D`, so every non-domain `beta` passes
+the paired full-domain anchor test; in the bottom-kernel interpretation this
+is the full-row-rank case and the paired kernel is zero.
+
+The scalar full-domain test is the special case obtained by deleting the
+`nu` equations and the multiplier `C_v`.  The shifted paired test is obtained
+by replacing `(mu_x,nu_x)` with `(x mu_x,x nu_x)`.
+
+Thus the full-domain paired anchor problem is a common-zero problem for an
+explicit low-moment annihilator space.  Counting anchors is equivalent to
+bounding the degree of its common gcd, unless the bottom row space is already
+full rank.
+
+### Proof
+
+Use the standard dot product on `F_q^D`.  The orthogonal complement of
+`W_{mu,nu,s}` consists exactly of value vectors `(P(x))_{x in D}`, with
+`deg P<n`, such that
+
+```text
+sum_{x in D} P(x) mu_x C_u(x)=0,
+sum_{x in D} P(x) nu_x C_v(x)=0
+```
+
+for every `deg C_u,deg C_v<s`.  Testing on the monomials `X^a`,
+`0<=a<s`, gives precisely `Ann_{mu,nu,s}`.  Therefore
+`lambda_beta in W_{mu,nu,s}` if and only if it pairs to zero with every
+`P in Ann_{mu,nu,s}`.
+
+By Lagrange interpolation, for every `P` of degree `<n`,
+
+```text
+sum_{x in D} lambda_beta(x)P(x)=P(beta).
+```
+
+Hence the orthogonality condition is exactly (DualAnchorTest).  If the
+annihilator is nonzero, common vanishing of all its polynomials at `beta` is
+equivalent to vanishing of their gcd.  If the annihilator is zero, the
+orthogonal complement of `W_{mu,nu,s}` is zero, hence `W_{mu,nu,s}=F_q^D`.
+
 ## Corollary 41: The Global Common-Image Ledger Is Endpoint-Only
 
 Let `GCI` be the set of monic degree-`c` split core locators `L` for which
@@ -11234,6 +11314,9 @@ exist for enough non-domain anchors.
 Corollary 40.63 identifies the full-domain moment case with Lagrange
 interpolation degree tests and rules out non-domain anchors in windows
 `h>=|D|+1`; it does not solve the short-window case `h<|D|`.
+Corollary 40.64 gives a dual common-zero test for full-domain paired anchors;
+it reduces their count to a common-gcd degree but does not bound that degree
+in the actual M1 instances.
 Corollary 41 packages the common-image branch into endpoint-type ledgers; it
 does not prove the endpoint rank hypotheses needed for the displayed
 `(q+2)binom(n,b)` bound. Corollary 42 packages the globally full core ledger
