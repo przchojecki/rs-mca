@@ -6319,6 +6319,40 @@ def analyze_case(
                                                         ),
                                                     }
                                                 )
+                                            projective_zero_good_envelope_count = (
+                                                binomial_or_zero(
+                                                    len(
+                                                        projective_eval_base_roots
+                                                    ),
+                                                    residual_size,
+                                                )
+                                                + sum(
+                                                    binomial_or_zero(
+                                                        len(roots),
+                                                        nonbase_count,
+                                                    )
+                                                    * binomial_or_zero(
+                                                        len(
+                                                            projective_eval_base_roots
+                                                        ),
+                                                        (
+                                                            residual_size
+                                                            - nonbase_count
+                                                        ),
+                                                    )
+                                                    for roots in (
+                                                        projective_eval_fibers.values()
+                                                    )
+                                                    for nonbase_count in range(
+                                                        1,
+                                                        min(
+                                                            residual_size,
+                                                            len(roots),
+                                                        )
+                                                        + 1,
+                                                    )
+                                                )
+                                            )
                                             pair_owner: dict[
                                                 tuple[int, int],
                                                 tuple[int, ...],
@@ -6328,6 +6362,7 @@ def analyze_case(
                                             )
                                             candidate_base_occupancy_max = 0
                                             candidate_fiber_occupancy_max = 0
+                                            zero_good_candidate_count = 0
                                             for candidate in residual_candidates:
                                                 candidate_good_pairs = 0
                                                 candidate_base_occupancy = sum(
@@ -6513,6 +6548,7 @@ def analyze_case(
                                                         }
                                                     )
                                                 if candidate_good_pairs == 0:
+                                                    zero_good_candidate_count += 1
                                                     support_base_roots = tuple(
                                                         root
                                                         for root in candidate
@@ -6622,6 +6658,113 @@ def analyze_case(
                                                                 },
                                                             }
                                                         )
+                                            if (
+                                                zero_good_candidate_count
+                                                > projective_zero_good_envelope_count
+                                            ):
+                                                raise AssertionError(
+                                                    {
+                                                        "kind": (
+                                                            "productive-"
+                                                            if productive
+                                                            else ""
+                                                        )
+                                                        + "marked-core-"
+                                                        "deficit-anchor-"
+                                                        "direction-mds-"
+                                                        "projective-"
+                                                        "zero-good-envelope-"
+                                                        "failed",
+                                                        "p": p,
+                                                        "k": k,
+                                                        "syndrome": list(syn),
+                                                        "fixed_roots": list(
+                                                            fixed_roots
+                                                        ),
+                                                        "unmarked_core": list(
+                                                            unmarked_core
+                                                        ),
+                                                        "marked_count": (
+                                                            marked_count
+                                                        ),
+                                                        "core_deficit": (
+                                                            core_deficit
+                                                        ),
+                                                        "anchor": list(anchor),
+                                                        "zero_good_candidates": (
+                                                            zero_good_candidate_count
+                                                        ),
+                                                        "zero_good_envelope": (
+                                                            projective_zero_good_envelope_count
+                                                        ),
+                                                        "base_roots": sorted(
+                                                            projective_eval_base_roots
+                                                        ),
+                                                        "fibers": {
+                                                            str(key): sorted(
+                                                                roots
+                                                            )
+                                                            for key, roots in (
+                                                                projective_eval_fibers.items()
+                                                            )
+                                                        },
+                                                    }
+                                                )
+                                            projective_zero_good_closure_bound = (
+                                                len(projective_good_pairs)
+                                                + projective_zero_good_envelope_count
+                                            )
+                                            if (
+                                                len(residual_candidates)
+                                                > projective_zero_good_closure_bound
+                                            ):
+                                                raise AssertionError(
+                                                    {
+                                                        "kind": (
+                                                            "productive-"
+                                                            if productive
+                                                            else ""
+                                                        )
+                                                        + "marked-core-"
+                                                        "deficit-anchor-"
+                                                        "direction-mds-"
+                                                        "projective-"
+                                                        "zero-good-closure-"
+                                                        "bound-failed",
+                                                        "p": p,
+                                                        "k": k,
+                                                        "syndrome": list(syn),
+                                                        "fixed_roots": list(
+                                                            fixed_roots
+                                                        ),
+                                                        "unmarked_core": list(
+                                                            unmarked_core
+                                                        ),
+                                                        "marked_count": (
+                                                            marked_count
+                                                        ),
+                                                        "core_deficit": (
+                                                            core_deficit
+                                                        ),
+                                                        "anchor": list(anchor),
+                                                        "residual_candidates": (
+                                                            len(
+                                                                residual_candidates
+                                                            )
+                                                        ),
+                                                        "good_pair_count": (
+                                                            len(
+                                                                projective_good_pairs
+                                                            )
+                                                        ),
+                                                        "zero_good_envelope": (
+                                                            projective_zero_good_envelope_count
+                                                        ),
+                                                        "bound": (
+                                                            projective_zero_good_closure_bound
+                                                        ),
+                                                    }
+                                                )
                                             if residual_candidates:
                                                 nonbase_lower_count = (
                                                     residual_size

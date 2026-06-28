@@ -3452,6 +3452,47 @@ of size at least `q/2`, and the corresponding half-width quotient-kernel
 identity is verified directly.  The current largest `F_7^*` scan has no
 `b(U,W)=2` produced anchor.
 
+## Zero-Good Envelope Gives a b=2 Fixed-Anchor Closure
+
+The support-local split gives an explicit closure bound for the whole fixed
+anchor.  Let
+
+```text
+s=|B_0|,        m_lambda=|ev^{-1}(lambda)|.
+```
+
+The zero-good support envelope is
+
+```text
+Z_0^{env}(U,W)
+ =
+1_{s>=q} binom(s,q)
+ + sum_lambda sum_{r=1}^q binom(m_lambda,r) binom(s,q-r).       (PF2-Z0)
+```
+
+This is the exact number of `q`-subsets whose non-base roots lie in at most one
+projective fiber: either all `q` roots lie in the base locus, or there is a
+unique occupied non-base fiber and `r>=1` roots are chosen from it.  Hence every
+zero-good residual support is counted by `Z_0^{env}`.
+
+The positive-good supports are counted by good pairs.  Since no good pair can
+occur in two residual supports, choosing one good pair from each support with
+`g(R)>0` injects that part of the fiber into the total good-pair set.  Therefore
+
+```text
+|F(U,W)| <= G_tot + Z_0^{env}(U,W).              (PF2-Z0-close)
+```
+
+Together with the previous section, every term in `Z_0^{env}` is a half-width
+fixed-divisor certificate ledger whenever it actually contributes an uncharged
+residual support.  Thus the `b=2` residual problem is reduced to the good-pair
+packing term plus an explicit half-width zero-good envelope.
+
+The verifier now computes `Z_0^{env}` from the same base locus and projective
+fibers, checks that every zero-good residual candidate lies in this envelope,
+and asserts (PF2-Z0-close).  The current largest `F_7^*` scan has no
+`b(U,W)=2` produced anchor.
+
 ## Bad Root Slices Are Absorbed-Anchor Rank Defects
 
 The preceding bad-root condition has an equivalent absorbed-anchor form.  Fix

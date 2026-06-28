@@ -30,6 +30,23 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 b=2 zero-good envelope closes fixed anchors
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_hankel_t2_one_exchange_lift.md`,
+  `experimental/experiments.tex`,
+  `experimental/scripts/verify_m1_hankel_t2_triangle_packets.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / STRUCTURAL / AUDIT.
+- **What is being added:** Gives an explicit zero-good envelope
+  `Z_0^{env}` for `b=2` fixed-anchor fibers and proves
+  `|F(U,W)|<=G_tot+Z_0^{env}`.
+- **How it is useful:** Converts the `b=2` residual fiber into a good-pair
+  packing term plus a concrete half-width certificate envelope.
+- **What to do next:** Bound the zero-good envelope by quotient-periodic,
+  tangent, fixed-root, or aperiodic half-width certificate ledgers.
+
 ### 2026-06-28 - M1 b=2 zero-good supports carry certificates
 
 - **Agent/model:** AllenGrahamHart / Codex audit.
