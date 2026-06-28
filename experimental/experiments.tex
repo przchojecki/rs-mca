@@ -2551,13 +2551,19 @@ At the scalar half-window cutoff this split has a simple parameter form.  Since
   n-s=k+j-r_{hw}.
 \]
 Therefore the standard scalar range is \(\deg Q\ge j-r_{hw}\).  The only
-non-standard scalar cutoff witnesses have \(\deg Q<j-r_{hw}\), and their
-high-tail window has length
+positive-degree non-standard scalar cutoff witnesses have
+\(1\le\deg Q<j-r_{hw}\), and their high-tail window has length
 \[
   K-k=j-r_{hw}-\deg Q.
 \]
 In particular, if \(r_{hw}\ge j\), there is no non-standard scalar cutoff
 range at all.
+The constant case \(\deg Q=0\), when \(r_{hw}<j\), is separate: it says that
+one endpoint itself lies in the enlarged code \(\RS[F,D,k+j-r_{hw}]\).  If
+the endpoint has zero high tail it is global; otherwise the branch is a
+one-direction supercode list whose high tail is constrained by
+\(\tau_K(R)=-z\tau_K(P)\), with the reciprocal \(Qf\)-case again leaving the
+original zero slope separate.
 The common-core and two-denominator formulas persist verbatim after this
 root-free replacement.  With \(C=\gcd(D:D\in M_{\min})\), \(\gamma=\deg C\),
 and \(E_D=D/C\),

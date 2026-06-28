@@ -10420,16 +10420,23 @@ K-k = j-r_hw-e.                                  (ShortTailLen)
 Thus:
 
 1. if `r_hw>=j`, there is no non-standard scalar cutoff range;
-2. if `r_hw<j`, the only scalar cutoff witnesses not already ordinary
-   degree-`e` residue-line data are the short denominators
-   `e=0,1,...,j-r_hw-1`;
-3. for such a short denominator, the return slice of Corollary 40.84 is a
-   one-dimensional high-tail incidence inside `F^{j-r_hw-e}`.
+2. if `r_hw<j`, the only positive-degree scalar cutoff witnesses not already
+   ordinary degree-`e` residue-line data have
+
+   ```text
+   1 <= e <= j-r_hw-1;
+   ```
+
+3. for such a positive short denominator, the return slice of Corollary 40.84
+   is a one-dimensional high-tail incidence inside `F^{j-r_hw-e}`.
 
 Therefore the scalar cutoff branch is completely split as follows.  Denominators
 of degree at least `j-r_hw` fold into the usual base-dimension residue-line
-normal form.  Denominators of degree below `j-r_hw` are enlarged residue-line
-data with an explicitly bounded high-tail window of length `j-r_hw-e`.
+normal form.  Positive denominators of degree below `j-r_hw` are enlarged
+residue-line data with an explicitly bounded high-tail window of length
+`j-r_hw-e`.  The constant case `e=0`, when it occurs, is a separate scalar
+supercode-endpoint branch rather than a positive-degree residue-line datum; it
+is isolated in Corollary 40.86 below.
 
 ### Proof
 
@@ -10450,6 +10457,96 @@ K=n-s-e=k+j-r_hw-e,
 ```
 
 and hence `K-k=j-r_hw-e`.  The three listed consequences are immediate.
+
+## Corollary 40.86: The Constant Scalar Cutoff Branch Is A Supercode Endpoint High-Tail Branch
+
+Specialize to the scalar cutoff as in Corollary 40.85 and assume
+
+```text
+r_hw<j,        Q in F^*,        e=deg Q=0.
+```
+
+After scaling, take `Q=1`.  Put
+
+```text
+K=n-s=k+j-r_hw,
+L=K-k=j-r_hw,
+tau_K:F[X]_<K -> F^L
+```
+
+for the high-tail projection.
+
+First suppose `g in RS[F,D,K]`, represented by `P_g in F[X]_<K`.  If
+
+```text
+tau_K(P_g)=0,
+```
+
+then `g` is a global codeword and this constant `Qg` scalar branch contributes
+no support-wise noncontained finite slope.  If `tau_K(P_g)!=0`, then a finite
+slope `z` is explained on a support `S` if and only if there exists
+`R_z in F[X]_<K` such that
+
+```text
+R_z=f        on S,                                 (ConstQgList)
+tau_K(R_z)=-z tau_K(P_g).                         (ConstQgTail)
+```
+
+Equivalently, `R_z=C_z-zP_g` for a unique original explaining codeword
+`C_z in F[X]_<k`.  Thus the constant `Qg` branch is a one-direction supercode
+list for `f`, with high tails constrained to the line spanned by `tau_K(P_g)`;
+if that high tail is nonzero, it determines `z`.
+
+Similarly, suppose `f in RS[F,D,K]`, represented by `P_f in F[X]_<K`.  If
+`tau_K(P_f)=0`, then `f` is global and this constant `Qf` scalar branch
+contributes no nonzero support-wise noncontained slope; the original zero
+slope remains separate.  If `tau_K(P_f)!=0`, then nonzero original slopes
+`z` are parametrized by reciprocal parameters `y=1/z` and by polynomials
+`R_y in F[X]_<K` satisfying
+
+```text
+R_y=g        on S,                                 (ConstQfList)
+tau_K(R_y)=-y tau_K(P_f).                         (ConstQfTail)
+```
+
+The original explaining codeword is `C_z=zR_y`.  The original zero slope is
+again outside the reciprocal parametrization.
+
+Thus the `e=0` scalar cutoff case is not a denominator-residue branch.  It is
+the degree-zero endpoint-supercode analogue of Corollary 40.84: a supercode
+list cut by a one-dimensional high-tail line.
+
+### Proof
+
+For `Q=1`, the scalar condition `Qg in RS[F,D,K]` is just `g=P_g` on `D` with
+`deg P_g<K`.  If `tau_K(P_g)=0`, then `deg P_g<k`, so `g` is global and the
+same containment argument as in Corollary 40.81 gives no noncontained finite
+slope.
+
+Otherwise, if `f+zg=C_z` on `S` with `deg C_z<k`, set
+
+```text
+R_z=C_z-zP_g.
+```
+
+Then `R_z=f` on `S` and
+
+```text
+tau_K(R_z)=tau_K(C_z)-z tau_K(P_g)=-z tau_K(P_g).
+```
+
+Conversely, if `R_z` satisfies (ConstQgList) and (ConstQgTail), then
+`R_z+zP_g` has zero high tail, hence lies in `F[X]_<k`; putting
+`C_z=R_z+zP_g` gives `C_z=f+zg` on `S`.  If `tau_K(P_g)!=0`, the scalar
+`z` is determined by the displayed high-tail equation.
+
+The `Qf` case is identical after swapping endpoints and using `y=1/z`.  If
+`tau_K(P_f)=0`, then `f` is global, which kills all nonzero noncontained
+slopes but not the formal zero-slope exception.  If `f+zg=C_z` with `z!=0`,
+put `y=1/z` and `R_y=C_z/z-yP_f`; then `R_y=g` on `S` and
+`tau_K(R_y)=-y tau_K(P_f)`.  Conversely, (ConstQfList) and (ConstQfTail) make
+`R_y+yP_f` a degree-`<k` polynomial; multiplying by `z=1/y` gives the original
+explaining codeword.
 
 ## Corollary 41: The Global Common-Image Ledger Is Endpoint-Only
 
@@ -13322,8 +13419,10 @@ Corollary 40.84 identifies that return slice with a one-dimensional high-tail
 incidence; if the quotient high tail vanishes, the non-standard case collapses
 to the ordinary base-dimension residue-line datum.
 Corollary 40.85 translates this at the scalar cutoff: non-standard scalar
-strata are exactly the short denominator range `deg Q<j-r_hw`, with high-tail
-window length `j-r_hw-deg Q`.
+strata of positive denominator degree are exactly the range
+`1<=deg Q<j-r_hw`, with high-tail window length `j-r_hw-deg Q`.
+Corollary 40.86 isolates the remaining constant scalar cutoff case as a
+supercode endpoint high-tail branch, not a positive-degree residue-line datum.
 Corollary 41 packages the common-image branch into endpoint-type ledgers; it
 does not prove the endpoint rank hypotheses needed for the displayed
 `(q+2)binom(n,b)` bound. Corollary 42 packages the globally full core ledger

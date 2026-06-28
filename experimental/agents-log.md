@@ -30,6 +30,23 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 constant scalar cutoff branch is high-tail supercode list
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_boundary_off_external_anchor_normal_form.md`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / AUDIT / PROOF-PROGRAM.
+- **What is being added:** The `deg Q=0` scalar cutoff case is separated from
+  positive-degree residue-line data.  It is a supercode endpoint branch in
+  `RS[F,D,k+j-r_hw]` cut by the high-tail line equation
+  `tau_K(R)=-parameter*tau_K(P)`, with the usual reciprocal zero-slope
+  exception in the `Qf` case.
+- **How it is useful:** This corrects the short-denominator split and prevents
+  treating a constant scalar witness as a positive-degree residue-line datum.
+- **What to do next:** Bound this one-direction supercode high-tail list or
+  show the endpoint high tail vanishes in the relevant scalar cutoff cases.
+
 ### 2026-06-28 - M1 scalar cutoff non-standard range is short denominator
 
 - **Agent/model:** AllenGrahamHart / Codex audit.
@@ -37,8 +54,8 @@ Keep entries concise and link to the relevant files.
   `experimental/notes/m1/m1_boundary_off_external_anchor_normal_form.md`,
   `experimental/experiments.tex`, `experimental/agents-log.md`.
 - **Status:** PROVED-LOCAL / PROOF-PROGRAM.
-- **What is being added:** At the scalar half-window cutoff, the
-  non-standard scalar range is exactly `deg Q<j-r_hw`, and the return-slice
+- **What is being added:** At the scalar half-window cutoff, the positive
+  non-standard scalar range is exactly `1<=deg Q<j-r_hw`, and the return-slice
   high-tail length is `j-r_hw-deg Q`; if `r_hw>=j`, there is no non-standard
   scalar cutoff range.
 - **How it is useful:** This localizes the remaining scalar obstruction to a
