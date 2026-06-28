@@ -15651,6 +15651,45 @@ alias by Corollary 40.154.  The defect is unique up to scalar because
 `L_D R=B_1Q_2-B_2Q_1` for fixed `(Q_1,B_1)` and projective `(Q_2,B_2)`.
 Counting projective defects over `F_q` gives (LowerAliasCount).
 
+## Corollary 40.156: Full Primitive Aliases Lift Uniquely From Direction Aliases
+
+Fix a primitive residue-line datum `(Q_1,B_1,w_1)` with `Q_1` root-free on
+`D`, and fix a primitive direction alias `(Q_2,B_2)` satisfying
+
+```text
+B_2/Q_2 = B_1/Q_1        on D.
+```
+
+Then there is at most one target vector `w_2:D->F` for which
+
+```text
+w_2/Q_2 = w_1/Q_1        on D,                    (FullAliasTarget)
+```
+
+namely
+
+```text
+w_2(alpha)=Q_2(alpha) w_1(alpha) / Q_1(alpha),
+        alpha in D.                                (TargetLift)
+```
+
+Consequently, for a fixed primitive residue-line datum `(Q_1,B_1,w_1)`,
+forgetting `w` injects its full divided-evaluation alias fiber into the
+primitive direction-alias set of `(Q_1,B_1)`.  The defect-congruence chart,
+first-layer rigidity, exact first-lower-alias test, fixed-degree chart bound,
+and lower-alias threshold bound of Corollaries 40.151--40.155 therefore apply
+verbatim to full primitive residue-line data.  In particular, after the
+direction alias has been fixed, there is no additional target multiplicity
+inside a primitive evaluation fiber.
+
+### Proof
+
+Since `Q_1` and `Q_2` are root-free on `D`, the coordinate-wise formula
+(TargetLift) is well-defined.  It is the unique solution of
+(FullAliasTarget).  Thus any full alias over the fixed direction alias has the
+same target vector on `D`, and forgetting `w` is injective on the full alias
+fiber.  The cited direction-alias bounds then transfer immediately.
+
 ## Corollary 41: The Global Common-Image Ledger Is Endpoint-Only
 
 Let `GCI` be the set of monic degree-`c` split core locators `L` for which
@@ -18752,6 +18791,9 @@ in terms of `d=e_1+e_2-n` and the quotient degree.
 Corollary 40.155 sums the lower side: no primitive direction aliases downward
 unless `2e_1>n+1`, and then all lower aliases are controlled by one projective
 defect space of dimension `2e_1-n-1`.
+Corollary 40.156 lifts the direction-alias controls to full primitive
+residue-line triples: once `(Q_2,B_2)` is fixed, divided target agreement
+uniquely determines `w_2` on `D`.
 Corollary 41 packages the common-image branch into endpoint-type ledgers; it
 does not prove the endpoint rank hypotheses needed for the displayed
 `(q+2)binom(n,b)` bound. Corollary 42 packages the globally full core ledger

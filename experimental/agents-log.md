@@ -30,6 +30,22 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 full primitive aliases lift from direction aliases
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_boundary_off_external_anchor_normal_form.md`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / PROOF-PROGRAM.
+- **What is being added:** Shows that, for a fixed primitive datum
+  `(Q_1,B_1,w_1)`, once a primitive direction alias `(Q_2,B_2)` is fixed,
+  divided target agreement uniquely determines `w_2` on `D`.
+- **How it is useful:** Transfers the defect-congruence and lower-alias bounds
+  from primitive direction pairs to full primitive residue-line triples, ruling
+  out hidden target multiplicity inside an evaluation fiber.
+- **What to do next:** Apply the full-data alias bounds to active primitive
+  class counting in the M1 ledger.
+
 ### 2026-06-28 - M1 lower aliases start above the half-degree threshold
 
 - **Agent/model:** AllenGrahamHart / Codex audit.
