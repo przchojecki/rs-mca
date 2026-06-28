@@ -2325,6 +2325,22 @@ and hence the residual ledger
   \min\{BCF_0,\mathrm{Charge}(P_{\rm pre})+
   4\,\mathrm{RFPhi}_D(L)\}+2h.
 \]
+The exact low-degree root-free kernel obstruction also has a root-slice
+formula.  If \(K_F(m)=\ker A_F(m)\), then
+\[
+  |K_F(m)^{\rm rf}|
+  =\sum_{J\subseteq D}(-1)^{|J|}
+      \Phi(\dim K_F(m)(-J)),
+\]
+where \(K_F(m)(-J)\) denotes the subspace vanishing on \(J\).  Multiplication
+by \(L_J=\prod_{\alpha\in J}(X-\alpha)\) identifies this slice with the
+stripped cutoff kernel obtained by replacing \(u,v\) by
+\(\Delta_Ju,\Delta_Jv\) and reducing the denominator degree by \(|J|\);
+for the shifted pair one uses \(S\Delta_Ju,S\Delta_Jv\).  Thus
+\(\delta_F\ge h-L\) is equivalent to the vanishing of this finite
+inclusion-exclusion count at \(m=h-L\).  The half-window denominator target is
+therefore an exact root-slice rank identity, with plain injectivity as a
+stronger sufficient shortcut.
 The common-core and two-denominator formulas persist verbatim after this
 root-free replacement.  With \(C=\gcd(D:D\in M_{\min})\), \(\gamma=\deg C\),
 and \(E_D=D/C\),

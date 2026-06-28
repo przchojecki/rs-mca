@@ -8896,6 +8896,107 @@ most `L`, so that corollary gives
 `RFArrBudget_hw<=4 RFPhi_D(L)`, and Corollary 40.57 substitutes this
 half-window charge into the two-route residual minimum.
 
+## Corollary 40.70: Half-Window Low-Degree Kernels Have A Root-Slice Count
+
+Keep the notation of Corollary 40.69.  Put
+
+```text
+K_F(m)=ker A_F(m)
+```
+
+for one of the four cutoff families.  For `J subset D`, define
+
+```text
+K_F(m)(-J)={ Q in K_F(m) : Q(alpha)=0 for every alpha in J }.
+```
+
+Let `K_F(m)^rf` be the projective set of nonzero classes in `K_F(m)` with no
+root in `D`.  Then
+
+```text
+|K_F(m)^rf|
+ = sum_{J subset D} (-1)^{|J|} Phi(dim K_F(m)(-J)),       (HWKernelRFIE)
+```
+
+where `Phi(0)=0`, so terms with `|J|>=m` vanish.
+
+Moreover these root slices are themselves cutoff Hankel kernels after
+stripping domain roots.  If `a=|J|<m` and
+
+```text
+L_J(X)=prod_{alpha in J}(X-alpha),
+```
+
+then multiplication by `L_J` identifies `K_F(m)(-J)` with the corresponding
+stripped kernel of degree `<m-a`:
+
+```text
+K_{u,J}(m-a)
+  = ker H_{t+r_hw,m-a-1}(Delta_J u),
+
+K_{v,J}(m-a)
+  = ker H_{t+r_hw,m-a-1}(Delta_J v),
+
+K_{uv,J}(m-a)
+  = ker H_{t+r_hw-1,m-a-1}(Delta_J u)
+    cap ker H_{t+r_hw-1,m-a-1}(Delta_J v),
+
+K_{Suv,J}(m-a)
+  = ker H_{t+r_hw-1,m-a-1}(S Delta_J u)
+    cap ker H_{t+r_hw-1,m-a-1}(S Delta_J v).
+```
+
+Thus the exact half-window low-degree obstruction is computable from stripped
+root-slice ranks:
+
+```text
+|K_F(m)^rf|
+ = sum_{J subset D, |J|<m} (-1)^{|J|}
+     Phi(dim K_{F,J}(m-|J|)).                       (HWStrippedRFIE)
+```
+
+Consequently, for `m=h-L`, the family `F` satisfies `delta_F>=h-L` if and
+only if the right-hand side of (HWStrippedRFIE) is zero.  The four-family
+half-window target is therefore an exact finite root-slice rank identity, not
+only the stronger injectivity condition (HWLowDegreeInject).
+
+### Proof
+
+The first formula is inclusion-exclusion on the projective space `P(K_F(m))`
+over the events
+
+```text
+Q(alpha)=0,        alpha in D.
+```
+
+For a fixed `J`, the intersection of these events is `P(K_F(m)(-J))`, whose
+size is `Phi(dim K_F(m)(-J))`.  If `|J|>=m`, no nonzero polynomial of degree
+`<m` can vanish on all of `J`, so the term is zero.
+
+For the stripped-kernel identification, every `Q in K_F(m)(-J)` has a unique
+factorization `Q=L_J R` with `deg R<m-|J|`.  Corollary 49 gives
+
+```text
+H_{s,m-1}(w)(L_J R)=0
+iff
+H_{s,m-|J|-1}(Delta_J w)R=0
+```
+
+for each scalar Hankel equation.  Applying this componentwise gives the
+ordinary paired case.  For the shifted paired case use
+
+```text
+Delta_alpha(Sw)=S(Delta_alpha w)
+```
+
+and iterate over `J`.  Substituting these isomorphic stripped kernels into
+(HWKernelRFIE) gives (HWStrippedRFIE).
+
+Finally, Corollary 40.69 says `delta_F<h-L` if and only if
+`K_F(h-L)^rf` is nonempty.  Since a finite projective set is empty exactly
+when its cardinality is zero, (HWStrippedRFIE) gives the displayed exact
+criterion.
+
 ## Corollary 41: The Global Common-Image Ledger Is Endpoint-Only
 
 Let `GCI` be the set of monic degree-`c` split core locators `L` for which
@@ -11721,6 +11822,9 @@ scalars; it still does not construct an active noncontained M1 counterexample.
 Corollary 40.69 identifies the half-window denominator threshold with absence
 of low-degree root-free cutoff Hankel kernels; it does not prove those kernels
 are absent in the actual M1 instances.
+Corollary 40.70 gives an exact root-slice inclusion-exclusion count for those
+low-degree root-free kernels; it does not evaluate the resulting stripped-rank
+identity in the actual M1 instances.
 Corollary 41 packages the common-image branch into endpoint-type ledgers; it
 does not prove the endpoint rank hypotheses needed for the displayed
 `(q+2)binom(n,b)` bound. Corollary 42 packages the globally full core ledger

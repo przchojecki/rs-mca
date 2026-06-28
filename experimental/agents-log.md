@@ -30,6 +30,23 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 half-window root-slice kernel count
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_boundary_off_external_anchor_normal_form.md`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / PROOF-PROGRAM.
+- **What is being added:** The low-degree root-free cutoff kernels from the
+  half-window denominator test are counted exactly by inclusion-exclusion over
+  domain root slices, with each slice identified with a stripped Hankel kernel
+  for `Delta_J u`, `Delta_J v`, or the shifted pair.
+- **How it is useful:** This turns the condition `delta_F>=h-L` into an
+  exact finite root-slice rank identity that can be audited or scanned, rather
+  than only using the stronger injectivity shortcut.
+- **What to do next:** Compute or prove these stripped-rank identities for
+  the four active M1 cutoff families, starting with small `L`.
+
 ### 2026-06-28 - M1 half-window low-degree kernel test
 
 - **Agent/model:** AllenGrahamHart / Codex audit.
