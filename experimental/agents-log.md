@@ -407,7 +407,12 @@ Keep entries concise and link to the relevant files.
   repeated evaluation lines.  The two-dimensional defect is now bounded by
   the pair collision count `C_K`: `|K^rf|<=RFPhi_D(2)+C_K`, and each collision
   pair is exactly a nonzero two-root stripped kernel `K_{alpha,beta}(F)`.
-  The non-claims section is updated through Corollary 40.52 to record that
+  Factoring a two-dimensional kernel by its common divisor gives a projective
+  map `[A:B]` of degree `r_K`; every evaluation fiber has size at most `r_K`,
+  so `|K^rf|<=RFPhi_D(2)+(1-1/r_K)|D|` and
+  `C_K<=((r_K-1)/2)|D|`.  Degree-one bottom kernels therefore have no
+  collision defect.
+  The non-claims section is updated through Corollary 40.53 to record that
   these formulas do not by themselves bound the bottom/pre-half residuals or
   force large common cores/quotient degrees.
   Since

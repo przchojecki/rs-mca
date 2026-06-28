@@ -7528,6 +7528,98 @@ identifies this pair slice with the stripped two-root bottom kernel for the
 same residual family.  Summing the displayed upper bound over the four bottom
 families and invoking Corollary 40.43 gives the bottom-route ledger.
 
+## Corollary 40.53: Projective Degree Bounds The Two-Dimensional Defect
+
+Keep the notation of Corollary 40.51.  Let `K` be two-dimensional with basis
+`Q_0,Q_1`, and let
+
+```text
+G=gcd(Q_0,Q_1),        A=Q_0/G,        B=Q_1/G.
+```
+
+Put
+
+```text
+r_K=max(deg A, deg B).
+```
+
+Then `r_K>=1` and is independent of the chosen basis.  Assume
+`ev_alpha!=0` for every `alpha in D`.  The projective evaluation map
+
+```text
+phi_K : D -> P^1,        alpha |-> [A(alpha):B(alpha)]
+```
+
+has every fiber of size at most `r_K`.  Consequently
+
+```text
+|D|-s_K <= (1-1/r_K)|D|,                            (DegreeDefect)
+C_K     <= ((r_K-1)/2)|D|.                          (DegreePairDefect)
+```
+
+Therefore
+
+```text
+|K^rf| <= RFPhi_D(2) + (1-1/r_K)|D|.                (DegreeTwoDimRootFree)
+```
+
+In particular, if `r_K=1`, then the projective evaluation map is injective on
+`D`, so
+
+```text
+|K^rf|=RFPhi_D(2)=q+1-|D|.
+```
+
+Applied to the four bottom residual kernels, if every two-dimensional bottom
+kernel has projective degree at most `r` and no zero evaluation functional,
+then the total two-dimensional collision defect is at most
+
+```text
+4(1-1/r)|D|
+```
+
+for the exact line-count ledger, or at most `2(r-1)|D|` for the pair-collision
+ledger of Corollary 40.52.  Degree-one bottom kernels contribute no defect
+beyond the ideal `RFPhi_D(2)` term.
+
+### Proof
+
+Changing the basis of `K` applies an invertible linear change to the pair
+`(Q_0,Q_1)`, which does not change the common divisor of all elements of `K`
+or the degree of the induced base-point-free map after that divisor is
+removed.  Since `K` has dimension two, the reduced pair `(A,B)` is not a
+constant projective pair, so `r_K>=1`.
+
+The assumption `ev_alpha!=0` says not both `Q_0(alpha)` and `Q_1(alpha)`
+vanish.  Hence `G(alpha)!=0` and not both `A(alpha),B(alpha)` vanish, so
+`phi_K` is defined on all of `D` and has the same projective evaluation lines
+as the original kernel.
+
+For a point `[u:v] in P^1`, the fiber of `phi_K` over `[u:v]` is cut out by
+
+```text
+v A(X)-u B(X)=0.
+```
+
+This polynomial has degree at most `r_K`, and it is not identically zero
+because `(A,B)` is a reduced nonconstant projective pair.  Thus every fiber on
+`D` has size at most `r_K`.
+
+Let the nonempty fiber sizes be `m_1,...,m_s`, so `s=s_K` and
+`sum_i m_i=|D|`.  Since every `m_i<=r_K`,
+
+```text
+m_i-1 <= (1-1/r_K)m_i,
+binom(m_i,2) <= ((r_K-1)/2)m_i.
+```
+
+Summing these two inequalities over fibers gives (DegreeDefect) and
+(DegreePairDefect).  Corollary 40.51 then gives
+(DegreeTwoDimRootFree).  If `r_K=1`, every fiber has size at most one, so the
+map is injective on `D` and Corollary 40.51 gives the exact ideal count.  The
+bottom-route statements follow by summing over the at most four residual
+families.
+
 ## Corollary 41: The Global Common-Image Ledger Is Endpoint-Only
 
 Let `GCI` be the set of monic degree-`c` split core locators `L` for which
@@ -10304,6 +10396,8 @@ absent or small for the M1 bottom kernels.
 Corollary 40.52 bounds the two-dimensional collision defect by pair root-slice
 collisions; it does not prove the pair collision count is small in the M1
 instances.
+Corollary 40.53 bounds two-dimensional collision defects by projective degree;
+it does not prove the bottom projective degrees are small in the M1 instances.
 Corollary 41 packages the common-image branch into endpoint-type ledgers; it
 does not prove the endpoint rank hypotheses needed for the displayed
 `(q+2)binom(n,b)` bound. Corollary 42 packages the globally full core ledger

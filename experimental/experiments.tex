@@ -2388,6 +2388,18 @@ nonzero stripped two-root kernel by the root-slice identity.  Therefore an
 \]
 where \(C\) is the total two-root-slice collision count over the
 two-dimensional bottom families.
+Factoring a two-dimensional kernel gives a still more intrinsic control.  If
+\(K=\langle Q_0,Q_1\rangle\), \(G=\gcd(Q_0,Q_1)\), \(A=Q_0/G\),
+\(B=Q_1/G\), and \(r_K=\max(\deg A,\deg B)\), then each fiber of
+\(\alpha\mapsto[A(\alpha):B(\alpha)]\) has size at most \(r_K\).  Therefore
+\[
+  |K^{\mathrm{rf}}|
+  \le \mathrm{RFPhi}_D(2)+(1-1/r_K)|D|,
+  \qquad
+  C_K\le {r_K-1\over2}|D|.
+\]
+In particular projective-degree-one bottom kernels have no collision defect
+and contribute exactly \(\mathrm{RFPhi}_D(2)\).
 In the common two-denominator case \(M_{\min}=\{D_1,D_2\}\), writing
 \(C=\gcd(D_1,D_2)\), \(D_i=C E_i\), and \(e_i=\deg E_i\), the quotient
 denominators \(E_1,E_2\) are automatically coprime and
