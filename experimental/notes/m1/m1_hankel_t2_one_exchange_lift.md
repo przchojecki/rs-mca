@@ -298,6 +298,58 @@ locator roots in one structural step.  It is additive in depth: a branching
 corner does not introduce a new independent multiplicative packet, it moves to
 the next lower-core Hankel ledger.
 
+## General Same-Slope Component Descent
+
+The edge and corner arguments combine into a row-level graph statement.  Fix
+`tau>=1` and let `G_{tau,j}(s)` be the graph whose vertices are the active
+`j`-complements
+
+```text
+H_{tau,j}(s)ell_T=0,
+```
+
+with edges between one-exchange complements.
+
+First, every active edge lifts by one row.  If
+
+```text
+T_x=C union {x},        T_y=C union {y},        x != y,
+```
+
+are adjacent active vertices, then
+
+```text
+H_{tau+1,j-1}(s)ell_C=0.                         (ED)
+```
+
+Indeed, subtracting the two `H_{tau,j}` equations gives
+`H_{tau,j-1}(s)ell_C=0`, and substituting this into either original equation
+gives the next row.
+
+Now every nontrivial connected component of `G_{tau,j}(s)` satisfies one of
+the following alternatives:
+
+1. it is a star component: all vertices contain one common `(j-1)`-core `C`,
+   and (ED) holds for `C`;
+2. it contains a distinct-root two-edge corner, and hence a `(j-2)`-core `R`
+   satisfying
+
+```text
+H_{tau+2,j-2}(s)ell_R=0.                         (CD)
+```
+
+Proof: choose an edge in the component.  If every two-edge corner along the
+component is a star corner, the same path induction used in the `t=2`
+component dichotomy shows that all vertices contain the `(j-1)` core of that
+first edge; then (ED) applies.  Otherwise some path step gives two active
+neighbors of a vertex which delete two distinct roots, and the general
+additive corner descent gives (CD).
+
+Thus, at every row level, same-slope one-exchange components have an additive
+ledger: after lower-core corner charges, the residual components are single
+star packets, with one-row deeper Hankel cores.  This is the graph-level form
+of the no multiplicative depth loss mechanism.
+
 ## Same-Slope Component Dichotomy
 
 Let `G_s` be the graph on active `j`-complements for a fixed combined syndrome

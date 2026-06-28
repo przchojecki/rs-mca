@@ -3722,6 +3722,19 @@ one linear equation and then into the original quadratic equation gives
 Thus a distinct-root corner adds two Hankel rows and removes two locator roots
 in one lossless step.  This is the structural additive-depth mechanism behind
 the \(t=2\) corner audit.
+The corresponding row-level graph statement is also lossless.  In the active
+one-exchange graph for \(H_{\tau,j}(s)\), any active edge
+\[
+  C\cup\{x\}\ --\ C\cup\{y\}
+\]
+lifts to
+\[
+  H_{\tau+1,j-1}(s)\ell_C=0.
+\]
+Therefore every nontrivial component is either a single star packet with this
+one-row-deeper core, or it contains a distinct-root corner and hence an
+\(H_{\tau+2,j-2}\) lower-core witness.  This gives a same-slope component
+ledger at every row level: branching is paid by additive Hankel descent.
 This local statement globalizes across connected components.  In the active
 one-exchange graph for fixed \(w_\lambda\), if a nontrivial component has no
 lower-core corner, then every two-edge corner is a star corner.  Choosing one

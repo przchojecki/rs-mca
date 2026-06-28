@@ -30,6 +30,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 same-slope components have row-level additive ledgers
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_hankel_t2_one_exchange_lift.md`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / STRUCTURAL.
+- **What is being added:** Generalizes the `t=2` component dichotomy to
+  arbitrary Hankel row level.  A nontrivial component in the active
+  one-exchange graph for `H_{tau,j}` is either a star component with
+  `H_{tau+1,j-1}` on the common core, or it contains a distinct-root corner
+  forcing `H_{tau+2,j-2}` on a lower core.
+- **How it is useful:** Turns the same-slope packet recursion into an additive
+  graph ledger at every row level.  Residual components are one-row-deeper
+  star packets after the two-row lower-core branch is charged.
+- **What to do next:** Sum this component ledger over row levels and relate the
+  resulting star/lower-core charges to the M1 fixed-root and quotient-periodic
+  ledgers.
+
 ### 2026-06-28 - M1 Hankel corners descend additively at all row levels
 
 - **Agent/model:** AllenGrahamHart / Codex audit.
