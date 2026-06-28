@@ -30,6 +30,23 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 primitive evaluation fibers have a high-degree alias gap
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_boundary_off_external_anchor_normal_form.md`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / PROOF-PROGRAM.
+- **What is being added:** Records the consequence of low-total-degree
+  primitive injectivity: distinct primitive residue-line data with the same
+  divided evaluation datum must have denominator degrees `e,e'` satisfying
+  `e+e'>n`.
+- **How it is useful:** Separates the M1 active primitive ledger into a clean
+  low/support-packing range and a genuinely high-total-degree finite-domain
+  aliasing obstruction.
+- **What to do next:** Use the gap to focus active-class counting on
+  high-degree aliases or on structural arguments that rule those aliases out.
+
 ### 2026-06-28 - M1 low-total-degree primitive data are evaluation-injective
 
 - **Agent/model:** AllenGrahamHart / Codex audit.

@@ -15217,6 +15217,58 @@ and `Q_2=cQ_1` give `w_2=cw_1` on `D`.  If one datum is the polynomial
 endpoint, the same argument forces the other denominator to be constant and
 the endpoint convention gives the same conclusion.
 
+## Corollary 40.150: Primitive Evaluation Fibers Have A High-Degree Alias Gap
+
+Keep the notation of Corollary 40.149, and choose monic representatives for
+primitive denominators.  Let `A_prim` be a finite family of primitive
+residue-line data, and let
+
+```text
+E(Q,B,w)=((B/Q)|_D,(w/Q)|_D)
+```
+
+be the divided evaluation datum on `D`.  If two distinct elements of the same
+fiber of `E` have denominator degrees `e` and `e'`, then
+
+```text
+e+e' > n.                                           (AliasGap)
+```
+
+Consequently, for any primitive class of degree `e`, every distinct primitive
+alias has degree at least `n-e+1`.  In the scalar-cutoff notation
+
+```text
+a=k+t=n-j,
+```
+
+every support-packing-range class with `e<=t` is evaluation-isolated from all
+classes of degree at most `n-t`.  In particular, if `2t<=n`, then the whole
+support-packing subfamily
+
+```text
+{ (Q,B,w) in A_prim : deg Q<=t }
+```
+
+injects into divided evaluation data.
+
+Thus the low-degree active primitive ledger from Corollary 40.148 is a genuine
+rational-data ledger, not an artifact of finite-domain aliasing.  Any remaining
+failure of divided evaluation data to count primitive classes must come from
+high-total-degree aliases.
+
+### Proof
+
+If two data in the same fiber of `E` had `e+e'<=n`, Corollary 40.149 would
+make them projectively equal.  Since representatives are chosen with monic
+denominators, projective equality is equality of the primitive data.  Hence
+distinct elements in one fiber must satisfy (AliasGap).
+
+The degree-gap consequences are immediate.  If one class has degree `e`, any
+distinct alias has degree `e'>n-e`, hence `e'>=n-e+1`.  If `e<=t` and
+`e'<=n-t`, then `e+e'<=n`, contradicting (AliasGap).  Finally, when
+`2t<=n`, two distinct classes of degrees at most `t` cannot lie in the same
+evaluation fiber.
+
 ## Corollary 41: The Global Common-Image Ledger Is Endpoint-Only
 
 Let `GCI` be the set of monic degree-`c` split core locators `L` for which
@@ -18298,6 +18350,10 @@ problem is to count active primitive classes with explicit fixed-class weights.
 Corollary 40.149 proves low-total-degree evaluation injectivity for primitive
 residue-line data: if `e_1+e_2<=n`, divided agreement on `D` forces
 projective equality of the primitive cleared data.
+Corollary 40.150 records the resulting alias gap: distinct primitive data with
+the same divided evaluation datum must have denominator degrees summing to
+more than `n`, so support-packing-range classes are isolated from all
+low/mid-degree aliases.
 Corollary 41 packages the common-image branch into endpoint-type ledgers; it
 does not prove the endpoint rank hypotheses needed for the displayed
 `(q+2)binom(n,b)` bound. Corollary 42 packages the globally full core ledger
