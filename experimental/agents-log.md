@@ -30,6 +30,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 boundary packet endpoint ledger
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_hankel_t2_one_exchange_lift.md`,
+  `experimental/scripts/verify_m1_hankel_t2_triangle_packets.py`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / STRUCTURAL / EXACT FINITE VERIFICATION.
+- **What is being added:** Combines the boundary fiber matching bound with the
+  labeled packet count: the nonzero `m`-mode boundary packet family has
+  `(q-1)^m binom(n,m)` labels and fibers of size at most `floor(n/m)`.
+- **How it is useful:** Gives the terminal sparse-packet endpoint a local
+  polynomial ledger for fixed `m=tau+1` in the polynomial-field window, while
+  keeping clear that global M1 still needs to control how deletion trees
+  produce these packets.
+- **What to do next:** Feed this endpoint ledger into the terminal deletion
+  tree accounting and separate repeated production of the same visible packet
+  from genuinely new boundary packet labels.
+
 ### 2026-06-28 - M1 boundary fibers are matchings
 
 - **Agent/model:** AllenGrahamHart / Codex audit.

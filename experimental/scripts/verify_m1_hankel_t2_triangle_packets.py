@@ -95,6 +95,8 @@ equivalent root-linear amplitude test a_y/y = constant on Y.
 It records the resulting labeled support profile for root-linear packets.
 More generally, it records the boundary fiber-size histogram and checks the
 matching bound fiber_size <= floor(n/m).
+It also reports the ambient labeled sparse-packet capacity
+binom(n,m)(p-1)^m for each boundary mode size encountered in the scan.
 Equivalently, it records support-unique boundary packets as those with no
 equal-size visible alias.
 The full-domain visible endpoint count is then support-unique labels plus one
@@ -466,6 +468,7 @@ def analyze_case(
     terminal_tree_productive_boundary_support_unique = 0
     terminal_tree_boundary_max_fiber_size = 0
     terminal_tree_productive_boundary_max_fiber_size = 0
+    terminal_tree_boundary_mode_sizes_seen: set[int] = set()
     terminal_tree_multiflag_cores = 0
     iterated_boundary_defect_histogram: Counter[int] = Counter()
     fixed_root_filtration_defect_histogram: Counter[int] = Counter()
@@ -820,6 +823,7 @@ def analyze_case(
                 nonlocal terminal_tree_productive_boundary_support_unique
                 nonlocal terminal_tree_boundary_max_fiber_size
                 nonlocal terminal_tree_productive_boundary_max_fiber_size
+                nonlocal terminal_tree_boundary_mode_sizes_seen
 
                 if not current_core:
                     return (1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
@@ -1195,6 +1199,9 @@ def analyze_case(
                                     }
                                 )
                         elif len(lower_vector) == 2 * mode_count - 1:
+                            terminal_tree_boundary_mode_sizes_seen.add(
+                                mode_count
+                            )
                             aliases: list[tuple[int, ...]] = []
                             scalar_fit_count = 0
                             mode_amplitude_by_index = {
@@ -3520,6 +3527,16 @@ def analyze_case(
             terminal_tree_boundary_support_unique
             + terminal_tree_boundary_root_linear_hits // 2
         ),
+        "terminal_tree_boundary_labeled_capacity_by_size": {
+            size: math.comb(n, size) * (p - 1) ** size
+            for size in sorted(terminal_tree_boundary_mode_sizes_seen)
+        },
+        "terminal_tree_boundary_image_lower_bound_by_size": {
+            size: math.ceil(
+                math.comb(n, size) * (p - 1) ** size / (n // size)
+            )
+            for size in sorted(terminal_tree_boundary_mode_sizes_seen)
+        },
         "terminal_tree_multiflag_cores": terminal_tree_multiflag_cores,
         "max_iterated_boundary_chain_length": max_iterated_boundary_chain_length,
         "max_nonzero_iterated_boundary_active_cores": (

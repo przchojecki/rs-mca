@@ -1294,6 +1294,27 @@ Equivalently, even before one classifies the disjoint aliases, the
 `2m-1`-moment endpoint has only matching-type support ambiguity.  There is no
 overlapping cluster or multiplicative support packet hidden at the boundary.
 
+This immediately gives a local endpoint ledger.  Over a finite field `F`, the
+number of labeled nonzero `m`-mode sparse packets on `H` is
+
+```text
+(|F|-1)^m binom(n,m).                            (LC)
+```
+
+Every visible boundary moment sequence has at most `floor(n/m)` such labels
+above it by (FB).  Hence the boundary image size lies between
+
+```text
+ceil((|F|-1)^m binom(n,m) / floor(n/m))
+```
+
+and the labeled count (LC).  In particular, for fixed `m=tau+1` and
+`|F|=poly(n)`, the entire boundary sparse-packet endpoint is polynomial-sized.
+This does not by itself count how often a terminal deletion tree can produce a
+given packet; rather, it says that once terminal branching has been reduced to
+visible boundary sparse packets, the packet type itself has only polynomially
+many labels and matching-bounded moment fibers.
+
 There is a particularly simple full-domain boundary specialization.  Suppose
 the available mode universe is the whole root-of-unity domain
 
