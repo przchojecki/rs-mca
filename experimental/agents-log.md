@@ -329,10 +329,14 @@ Keep entries concise and link to the relevant files.
   is endpoint-persistent in that direction.  This persistence alternative is
   now a concrete stacked-Hankel row-span test, and the endpoint-pair overlap
   has the two-row version: its codimension inside the ordinary paired parent
-  kernel is the rank of the two restricted endpoint rows.  The refined
-  mixed-ladder closure now records the final consumable ledger: after pre-half
-  residuals, cutoff overlap multiplier ledgers, and cutoff family multiplier
-  ledgers are charged, the only remaining finite
+  kernel is the rank of the two restricted endpoint rows.  These ranks now give
+  a consumable cutoff-overlap budget
+  `Phi(d_uv-r_EP)+Phi(d_uv-eps_u)+Phi(d_uv-eps_v)+Phi(d_S-eps_uS)+Phi(d_S-eps_vS)`,
+  with `Phi(m)=(q^m-1)/(q-1)`, bounding both projective locator classes and
+  root-free certificate-denominator classes.  The refined mixed-ladder closure
+  now records the final consumable ledger: after pre-half residuals, cutoff
+  overlap multiplier ledgers, and cutoff family multiplier ledgers are charged,
+  the only remaining finite
   frontier charge is the bottom set `E_{r_0,>b} union Theta_{r_0,>b}`, of size
   at most `2h`.
   The common-image three-shift ledger now has the analogous sliding-window

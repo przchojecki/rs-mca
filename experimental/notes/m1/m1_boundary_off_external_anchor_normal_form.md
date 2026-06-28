@@ -5846,6 +5846,91 @@ missing endpoint rows already lie in `Row(M_uv)`.  The alternative
 nonzero line on `K_uv`, including the subcase where exactly one missing row is
 already in `Row(M_uv)`.
 
+## Corollary 40.28: Rank-Refined Cutoff Overlap Budget
+
+Keep the notation of Corollary 40.27 and work over `F_q`.  Put
+
+```text
+d_uv = dim K_uv,        d_S = dim K_S,
+```
+
+and define the missing-row ranks
+
+```text
+eps_u  = rank( row_s(u)|_{K_uv} ),
+eps_v  = rank( row_s(v)|_{K_uv} ),
+eps_uS = rank( row_0(u)|_{K_S} ),
+eps_vS = rank( row_0(v)|_{K_S} ),
+r_EP   = rank( row_s(u)|_{K_uv}, row_s(v)|_{K_uv} ).
+```
+
+Here each `eps_*` is either `0` or `1`, and `0<=r_EP<=2`.  Let
+
+```text
+Phi(m)=(q^m-1)/(q-1)        for m>=0.
+```
+
+Then the projective locator count in the five cutoff overlap systems is at
+most
+
+```text
+Phi(d_uv-r_EP)
++ Phi(d_uv-eps_u)
++ Phi(d_uv-eps_v)
++ Phi(d_S-eps_uS)
++ Phi(d_S-eps_vS).                                  (RankOverlap)
+```
+
+The same expression also bounds the number of projective root-free
+certificate-denominator classes supported by the cutoff overlap systems.
+
+In the full-row-cut case
+
+```text
+r_EP=2,        eps_u=eps_v=eps_uS=eps_vS=1,
+```
+
+this becomes
+
+```text
+Phi(d_uv-2) + 2 Phi(d_uv-1) + 2 Phi(d_S-1).
+```
+
+Thus every failure of the full-row-cut saving is accounted for by at least one
+explicit rank defect among
+
+```text
+r_EP<2,        eps_u=0,        eps_v=0,        eps_uS=0,        eps_vS=0.
+```
+
+Equivalently, the only way an overlap term pays its full parent projective
+kernel is through one of the row-span or row-dependence conditions isolated in
+Corollary 40.27.
+
+### Proof
+
+Corollary 40.27 gives
+
+```text
+dim Omega_EP = d_uv-r_EP.
+```
+
+Corollary 40.26 gives
+
+```text
+dim Omega_u  = d_uv-eps_u,
+dim Omega_v  = d_uv-eps_v,
+dim Omega_uS = d_S-eps_uS,
+dim Omega_vS = d_S-eps_vS.
+```
+
+For an `m`-dimensional vector space over `F_q`, its projectivization has
+`Phi(m)` points, with `Phi(0)=0`.  Summing the five projective locator counts
+gives (RankOverlap).  Mapping a projective locator class to its root-free
+certificate-denominator class can only identify or delete classes, so the same
+sum bounds the denominator classes.  The displayed full-row-cut specialization
+is obtained by substituting the full ranks.
+
 ## Corollary 41: The Global Common-Image Ledger Is Endpoint-Only
 
 Let `GCI` be the set of monic degree-`c` split core locators `L` for which
@@ -8546,7 +8631,9 @@ cutoff overlaps unless the parent paired kernel is endpoint-persistent; it
 does not rule out that persistence alternative. Corollary 40.27 turns endpoint
 persistence into an explicit stacked-Hankel row-span test and gives the
 two-row endpoint-pair codimension formula; it does not prove the missing rows
-are independent in the M1 instances.
+are independent in the M1 instances. Corollary 40.28 packages those ranks into
+a cutoff-overlap projective budget; it does not prove the rank defects are
+absent or that the resulting budget is below the final M1 reserve.
 Corollary 41 packages the common-image branch into endpoint-type ledgers; it
 does not prove the endpoint rank hypotheses needed for the displayed
 `(q+2)binom(n,b)` bound. Corollary 42 packages the globally full core ledger
