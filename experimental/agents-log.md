@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 root-marked residual edges descend
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_hankel_t2_one_exchange_lift.md`,
+  `experimental/scripts/verify_m1_hankel_t2_triangle_packets.py`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / STRUCTURAL / EXACT FINITE VERIFICATION.
+- **What is being added:** Proves that a one-exchange edge inside a fixed-root
+  root-marked residual slice forces
+  `H_{tau+1,j-2}(Delta_x s)ell_R=0` on the common lower core, and records the
+  corresponding non-isolated residual support ledger.
+- **How it is useful:** Shows that branching inside the remaining one-row
+  residual descends additively in the root-difference Hankel ladder; it is not
+  a new primitive same-slope growth source.
+- **What to do next:** Analyze the isolated vertices of the one-row residual
+  or relate the descended lower cores to quotient-periodic/root-slice charges.
+
 ### 2026-06-28 - M1 root-marked residual is one-row slice
 
 - **Agent/model:** AllenGrahamHart / Codex audit.

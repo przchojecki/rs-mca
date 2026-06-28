@@ -642,6 +642,54 @@ reduction: for each fixed root `x`, bound the squarefree support solutions of
 `H_{tau,j-1}(Delta_x s)` not lying in the first-row subkernel
 `H_{1,j-1}(s)`.
 
+## Root-Marked Edge Descent
+
+The one-row residual has the same additive one-exchange behavior.  Fix
+`x in H` and suppose `j>=2`.  Let
+
+```text
+C_y = R union {y},        C_z = R union {z},        y != z,
+```
+
+be two distinct cores in `B^x_{tau+1,j-1}(s)`.  Then their common
+`(j-2)`-core satisfies
+
+```text
+H_{tau+1,j-2}(Delta_x s)ell_R=0.              (RME)
+```
+
+Proof: by the fixed-root difference form, both `C_y` and `C_z` lie in the
+active locator family for `H_{tau,j-1}(Delta_x s)`.  Applying the same
+one-exchange subtraction as before to
+
+```text
+ell_{C_y}=(X-y)ell_R,        ell_{C_z}=(X-z)ell_R
+```
+
+gives `H_{tau+1,j-2}(Delta_x s)ell_R=0`.
+
+Consequently, if `(B^x)^+` denotes the non-isolated vertices in the
+one-exchange graph on `B^x_{tau+1,j-1}(s)` and
+
+```text
+E^x_{tau+1,j-2}(s)
+ = { R subset H\{x} : |R|=j-2,
+     R union {y}, R union {z} in B^x_{tau+1,j-1}(s)
+     for some distinct y,z notin R union {x} },
+```
+
+then
+
+```text
+|(B^x)^+| <= (n-j+1) |E^x_{tau+1,j-2}(s)|,
+```
+
+and every `R in E^x_{tau+1,j-2}(s)` lies in the lower root-difference kernel
+cut out by (RME).  Thus branching inside the root-marked residual is not a new
+primitive source: it descends one row in the root-difference Hankel ladder.
+Only isolated vertices of the one-row residual remain after these lower-core
+charges.
+
 ## Same-Slope Component Dichotomy
 
 Let `G_s` be the graph on active `j`-complements for a fixed combined syndrome
@@ -843,12 +891,12 @@ The first-boundary incidence identity (FI) is checked in the same scan.  In
 particular, the zero first-boundary cores coincide exactly with the active
 edge cores:
 
-| field/domain | max nonzero zero-boundary cores | max nonzero fixed-root active | incidence defect | rootwise defect | root-difference defect | single-row defect |
-| --- | ---: | ---: | ---: | ---: | ---: | ---: |
-| `F_5`, `H=F_5^*`, `n=4,k=1,a=3,j=1` | 0 | 1 | 0 | 0 | 0 | 0 |
-| `F_7`, `H=F_7^*`, `n=6,k=1,a=3,j=3` | 5 | 10 | 0 | 0 | 0 | 0 |
-| `F_7`, `H=F_7^*`, `n=6,k=2,a=4,j=2` | 1 | 5 | 0 | 0 | 0 | 0 |
-| `F_7`, `H=F_7^*`, `n=6,k=3,a=5,j=1` | 0 | 1 | 0 | 0 | 0 | 0 |
+| field/domain | max nonzero zero-boundary cores | max nonzero fixed-root active | residual lower cores | incidence defect | rootwise defect | root-difference defect | single-row defect |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| `F_5`, `H=F_5^*`, `n=4,k=1,a=3,j=1` | 0 | 1 | 0 | 0 | 0 | 0 | 0 |
+| `F_7`, `H=F_7^*`, `n=6,k=1,a=3,j=3` | 5 | 10 | 5 | 0 | 0 | 0 | 0 |
+| `F_7`, `H=F_7^*`, `n=6,k=2,a=4,j=2` | 1 | 5 | 1 | 0 | 0 | 0 | 0 |
+| `F_7`, `H=F_7^*`, `n=6,k=3,a=5,j=1` | 0 | 1 | 0 | 0 | 0 | 0 | 0 |
 
 The `F_7,k=2,j=2` scan is the first exact top-packet check in this file.  It
 finds twenty top triangles, all on the zero combined syndrome.  This is not an
