@@ -55,6 +55,8 @@ where A_x is the active fixed-root slice, Z_x is the zero-boundary core slice
 available to x, and B_x is the root-marked boundary slice marked by x.
 It then identifies A_x with the root-slice Hankel kernel for the difference
 syndrome Delta_x s = (s_{i+1} - x s_i)_i.
+Inside that kernel, the root-marked residual is checked to be exactly the
+single-row nonzero slice H_{1,j-1}(s) ell_C != 0.
 
 It also checks the full-top zero-syndrome lemma: if all j+1 complements
 U\\{x} inside one (j+1)-top set U are active, then the combined syndrome is
@@ -279,6 +281,7 @@ def analyze_case(
     first_boundary_incidence_defect_histogram: Counter[int] = Counter()
     fixed_root_decomposition_defect_histogram: Counter[int] = Counter()
     fixed_root_difference_defect_histogram: Counter[int] = Counter()
+    root_marked_single_row_defect_histogram: Counter[int] = Counter()
     max_active = 0
     max_edges = 0
     max_triangles = 0
@@ -299,6 +302,7 @@ def analyze_case(
     max_nonzero_fixed_root_active_count = 0
     max_nonzero_fixed_root_difference_kernel_count = 0
     max_nonzero_root_marked_per_root = 0
+    max_nonzero_root_marked_single_row_count = 0
     one_exchange_edges = 0
     star_triangles = 0
     top_triangles = 0
@@ -726,6 +730,93 @@ def analyze_case(
         fixed_root_difference_defect_histogram[
             case_max_fixed_root_difference_defect
         ] += 1
+        case_max_root_marked_single_row_defect = 0
+        case_max_root_marked_single_row_count = 0
+        for root_index in range(n):
+            diff_syn = root_difference_syndrome(syn, domain[root_index], p)
+            difference_kernel_cores = {
+                core
+                for core in itertools.combinations(
+                    (index for index in range(n) if index != root_index),
+                    j - 1,
+                )
+                if hankel_annihilates(diff_syn, cached_locator(core), t, p)
+            }
+            single_row_zero_cores = {
+                core
+                for core in difference_kernel_cores
+                if not hankel_apply(syn, cached_locator(core), 1, p)[0]
+            }
+            zero_boundary_cores = {
+                core
+                for core in case_first_boundary_zero_cores
+                if root_index not in core
+            }
+            if single_row_zero_cores != zero_boundary_cores:
+                raise AssertionError(
+                    {
+                        "kind": "single-row-zero-boundary-mismatch",
+                        "p": p,
+                        "k": k,
+                        "syndrome": list(syn),
+                        "root_index": root_index,
+                        "root_value": domain[root_index],
+                        "single_row_only": [
+                            list(core)
+                            for core in sorted(
+                                single_row_zero_cores - zero_boundary_cores
+                            )
+                        ],
+                        "zero_boundary_only": [
+                            list(core)
+                            for core in sorted(
+                                zero_boundary_cores - single_row_zero_cores
+                            )
+                        ],
+                    }
+                )
+            single_row_nonzero_cores = (
+                difference_kernel_cores - single_row_zero_cores
+            )
+            root_marked_cores = {
+                core
+                for core, marked_root_index in case_root_marked_boundaries
+                if marked_root_index == root_index
+            }
+            if single_row_nonzero_cores != root_marked_cores:
+                raise AssertionError(
+                    {
+                        "kind": "root-marked-single-row-slice-mismatch",
+                        "p": p,
+                        "k": k,
+                        "syndrome": list(syn),
+                        "root_index": root_index,
+                        "root_value": domain[root_index],
+                        "single_row_only": [
+                            list(core)
+                            for core in sorted(
+                                single_row_nonzero_cores - root_marked_cores
+                            )
+                        ],
+                        "marked_only": [
+                            list(core)
+                            for core in sorted(
+                                root_marked_cores - single_row_nonzero_cores
+                            )
+                        ],
+                    }
+                )
+            case_max_root_marked_single_row_defect = max(
+                case_max_root_marked_single_row_defect,
+                abs(len(single_row_nonzero_cores) - root_marked_counts[root_index]),
+            )
+            case_max_root_marked_single_row_count = max(
+                case_max_root_marked_single_row_count,
+                len(single_row_nonzero_cores),
+            )
+        root_marked_single_row_defect_histogram[
+            case_max_root_marked_single_row_defect
+        ] += 1
         isolated_marked_boundary_slack = (
             len(case_root_marked_boundaries) - j * case_isolated_vertices
         )
@@ -767,6 +858,10 @@ def analyze_case(
             max_nonzero_root_marked_per_root = max(
                 max_nonzero_root_marked_per_root,
                 max(root_marked_counts.values(), default=0),
+            )
+            max_nonzero_root_marked_single_row_count = max(
+                max_nonzero_root_marked_single_row_count,
+                case_max_root_marked_single_row_count,
             )
             max_nonzero_isolated_marked_boundary_slack = max(
                 max_nonzero_isolated_marked_boundary_slack,
@@ -1254,6 +1349,9 @@ def analyze_case(
             max_nonzero_fixed_root_difference_kernel_count
         ),
         "max_nonzero_root_marked_per_root": max_nonzero_root_marked_per_root,
+        "max_nonzero_root_marked_single_row_count": (
+            max_nonzero_root_marked_single_row_count
+        ),
         "max_nonzero_isolated_marked_boundary_slack": (
             max_nonzero_isolated_marked_boundary_slack
         ),
@@ -1315,6 +1413,9 @@ def analyze_case(
         "fixed_root_difference_defect_histogram": dict(
             sorted(fixed_root_difference_defect_histogram.items())
         ),
+        "root_marked_single_row_defect_histogram": dict(
+            sorted(root_marked_single_row_defect_histogram.items())
+        ),
         "nonzero_top_active_size_histogram": dict(
             sorted(nonzero_top_active_size_histogram.items())
         ),
@@ -1362,6 +1463,8 @@ def print_summary(results: Sequence[dict[str, object]]) -> None:
             f"{result['max_nonzero_fixed_root_difference_kernel_count']} "
             f"max_nonzero_root_marked_per_root="
             f"{result['max_nonzero_root_marked_per_root']} "
+            f"max_nonzero_root_marked_single_row="
+            f"{result['max_nonzero_root_marked_single_row_count']} "
             f"max_nonzero_isolated={result['max_nonzero_isolated_vertices']} "
             f"max_nonzero_marked_boundary="
             f"{result['max_nonzero_root_marked_boundary_count']} "

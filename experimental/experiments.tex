@@ -3808,7 +3808,13 @@ Thus deletion of the fixed root identifies \(A^x_{\tau,j}(s)\) with
     H_{\tau,j-1}(\Delta_xs)\ell_C=0\},
 \]
 and \(B^x\) is this root-slice difference kernel with the zero-boundary
-subkernel removed.
+subkernel removed.  Inside the difference kernel, that zero-boundary subkernel
+is just the single first-row cut
+\[
+  H_{1,j-1}(s)\ell_C=0.
+\]
+Equivalently, \(B^x\) is the nonzero slice \(H_{1,j-1}(s)\ell_C\ne0\) inside
+the root-difference Hankel kernel.
 This local statement globalizes across connected components.  In the active
 one-exchange graph for fixed \(w_\lambda\), if a nontrivial component has no
 lower-core corner, then every two-edge corner is a star corner.  Choosing one
@@ -3865,7 +3871,8 @@ the maximum nonzero fixed-root active counts are \(10\) for \(F_7^*,j=3\),
 \(5\) for \(F_7^*,j=2\), and \(1\) in the listed \(j=1\) audits, with zero
 rootwise defect in every enumerated syndrome.  The root-difference Hankel
 kernel identification is checked in the same run and has the same maximum
-nonzero counts as the fixed-root active slices.
+nonzero counts as the fixed-root active slices.  The single-row slice
+description of the root-marked residual is also checked with zero defect.
 The common-core and two-denominator formulas persist verbatim after this
 root-free replacement.  With \(C=\gcd(D:D\in M_{\min})\), \(\gamma=\deg C\),
 and \(E_D=D/C\),

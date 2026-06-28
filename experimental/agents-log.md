@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 root-marked residual is one-row slice
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_hankel_t2_one_exchange_lift.md`,
+  `experimental/scripts/verify_m1_hankel_t2_triangle_packets.py`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / STRUCTURAL / EXACT FINITE VERIFICATION.
+- **What is being added:** Sharpens the fixed-root difference-kernel form:
+  inside `K^x_{tau,j-1}(s)`, the zero-boundary subkernel is exactly the single
+  row `H_{1,j-1}(s)ell_C=0`, and the root-marked residual is the complementary
+  nonzero row slice.
+- **How it is useful:** Converts the remaining local root-marked mass into an
+  explicit rank-testable root-slice problem, rather than an opaque boundary
+  object.
+- **What to do next:** Bound this one-row nonzero slice uniformly, or show
+  that high multiplicity forces quotient-periodic or lower-core structure.
+
 ### 2026-06-28 - M1 fixed-root slices are root-difference Hankel kernels
 
 - **Agent/model:** AllenGrahamHart / Codex audit.
