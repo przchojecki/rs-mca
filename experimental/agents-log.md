@@ -30,6 +30,23 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 fixed root-deletion is lossless
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_boundary_off_external_anchor_normal_form.md`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / PROOF-PROGRAM.
+- **What is being added:** Proves that for any fixed complement-root set `S`
+  and any residual multiplier subfamily `T`, deleting `S` gives an exact
+  multiplier-preserving bijection to the lower-depth packet restricted by
+  `C_0 cap S=empty`.
+- **How it is useful:** Isolates the lossless frontier-shift invariant behind
+  the low-budget M1 packet closures; fixed root deletion contributes no
+  field-size or square-root loss.
+- **What to do next:** Use the lossless shift to separate the cost of choosing
+  root sets from the residual packing problem.
+
 ### 2026-06-28 - M1 budget-three residuals split into two packets
 
 - **Agent/model:** AllenGrahamHart / Codex audit.

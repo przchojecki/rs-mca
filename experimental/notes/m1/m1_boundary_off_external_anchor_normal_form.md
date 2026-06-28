@@ -14441,6 +14441,63 @@ those roots lies in the current complement, Corollary 40.125 descends it.
 The reduced case that remains has `supp(m) cap C=empty`, exactly the slice
 included in (BudgetThreeReduced).
 
+## Corollary 40.138: Fixed Root-Deletion Is A Lossless Packet Shift
+
+Keep the primitive base setup of Corollary 40.122.  Let
+
+```text
+0<=s<=u<=t,        S subset D,        |S|=s,        v=u-s,
+```
+
+and let `T subset P_v^x(Q_0)` be any residual multiplier subfamily.  Put
+
+```text
+U_v(T)=disjoint_union_{[N] in T} Comp_{v,[N]}(Q_0,B_0).
+```
+
+Then deletion of the fixed complement-root set `S` gives an exact
+multiplier-preserving bijection
+
+```text
+disjoint_union_{[N] in T}
+  { C in Comp_{u,[L_S N]}(Q_0,B_0) : S subset C }
+   <-> { C_0 in U_v(T) : C_0 cap S=empty }.       (LosslessRootShift)
+```
+
+In particular,
+
+```text
+sum_{[N] in T}
+ |{ C in Comp_{u,[L_S N]}(Q_0,B_0) : S subset C }|
+ <= binom(n,j+v).                                (LosslessRootShiftBound)
+```
+
+Thus a fixed complement-root frontier shift is exact: it introduces no
+additional multiplier count and no square-root or field-size loss.  Any later
+cost can only come from choosing or charging the root set `S`, or from the
+residual subfamily `T` itself.
+
+### Proof
+
+For `[N] in T`, the class `[L_S N]` belongs to `P_u^x(Q_0)` because
+`Q_0` is root-free on `D` and
+
+```text
+deg(L_S N)<s+r_v=r_u.
+```
+
+Distinct projective classes `[N]` give distinct classes `[L_S N]`.  Corollary
+40.124 gives, for each fixed `[N]`, the bijection
+
+```text
+{ C in Comp_{u,[L_S N]}(Q_0,B_0) : S subset C }
+ <-> { C_0 in Comp_{v,[N]}(Q_0,B_0) : C_0 cap S=empty }.
+```
+
+The fibers on the right are pairwise disjoint by Corollary 40.122, so these
+fiberwise bijections glue to (LosslessRootShift).  The bound follows because
+the right side is a subset of all `(j+v)`-subsets of `D`.
+
 ## Corollary 41: The Global Common-Image Ledger Is Endpoint-Only
 
 Let `GCI` be the set of monic degree-`c` split core locators `L` for which
@@ -17486,6 +17543,9 @@ multipliers occupy one small-complement packet.
 Corollary 40.137 closes the reduced residual-budget-three branch for a fixed
 twisted base numerator: the remaining support-root slices of total
 multiplicity at most two are disjoint and occupy one small-complement packet.
+Corollary 40.138 abstracts the exact mechanism: for any fixed complement-root
+set `S` and any residual multiplier family `T`, deletion of `S` is a lossless
+multiplier-preserving bijection to a restricted lower-depth packet.
 Corollary 41 packages the common-image branch into endpoint-type ledgers; it
 does not prove the endpoint rank hypotheses needed for the displayed
 `(q+2)binom(n,b)` bound. Corollary 42 packages the globally full core ledger

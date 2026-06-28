@@ -3183,6 +3183,17 @@ also one packet: the slices with multiplier
 \(\operatorname{supp}(m)\cap C=\emptyset\), are pairwise disjoint and have
 total size at most \(\binom n {j+v}\).  Thus budget three has no extra
 linear/quadratic multiplier multiplicity after complement roots are descended.
+More generally, fixed root deletion is a lossless packet shift.  For any
+residual multiplier subfamily \(T\subset P_v^x(Q_0)\) and fixed
+\(S\subset D\), \(|S|=s\), \(v=u-s\), deletion gives a bijection
+\[
+ \coprod_{[N]\in T}\{C\in\mathrm{Comp}_{u,[L_SN]}(Q_0,B_0):S\subset C\}
+ \leftrightarrow
+ \{C_0\in\coprod_{[N]\in T}\mathrm{Comp}_{v,[N]}(Q_0,B_0):C_0\cap S=\emptyset\}.
+\]
+Hence the fixed frontier shift contributes at most \(\binom n {j+v}\); any
+remaining cost comes from charging \(S\) or the residual family \(T\), not
+from the shift itself.
 The common-core and two-denominator formulas persist verbatim after this
 root-free replacement.  With \(C=\gcd(D:D\in M_{\min})\), \(\gamma=\deg C\),
 and \(E_D=D/C\),
