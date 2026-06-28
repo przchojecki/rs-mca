@@ -460,6 +460,51 @@ Indeed, every isolated `T` contributes all `j` marked pairs `(T\{x},x)`, and
 the map `(T,x) -> (T\{x},x)` is injective.  Thus isolated support mass is
 summable once the root-marked first-boundary ledger is controlled.
 
+## Full Same-Slope Active Support Ledger
+
+Combining the non-isolated and isolated charges gives a single local
+support-mass inequality.  Let
+
+```text
+E_{tau+1,j-1}(s)
+ = { C subset H : |C|=j-1,
+     C union {x}, C union {y} in A_{tau,j}(s)
+     for some distinct x,y notin C }.
+```
+
+Thus `E_{tau+1,j-1}(s)` is the set of one-row edge cores that actually occur
+in the active one-exchange graph.  By the edge descent,
+`E_{tau+1,j-1}(s) subset S_{tau+1,j-1}(s)`.  For `1<=j<n`,
+
+```text
+j |A_{tau,j}(s)|
+ <= j (n-j+1) |E_{tau+1,j-1}(s)|
+    + |B^rm_{tau+1,j-1}(s)|.                  (FL)
+```
+
+Equivalently,
+
+```text
+|A_{tau,j}(s)|
+ <= (n-j+1) |E_{tau+1,j-1}(s)|
+    + |B^rm_{tau+1,j-1}(s)| / j.
+```
+
+Proof: decompose `A_{tau,j}(s)` into its non-isolated vertices
+`A^+_{tau,j}(s)` and isolated vertices `Iso_{tau,j}(s)`.  Every
+non-isolated vertex contains at least one edge core in `E_{tau+1,j-1}(s)`,
+and each `(j-1)`-core lies in exactly `n-j+1` `j`-locators, so
+
+```text
+|A^+_{tau,j}(s)| <= (n-j+1) |E_{tau+1,j-1}(s)|.
+```
+
+The isolated part satisfies (IL).  Adding these two inequalities and
+multiplying the non-isolated part by `j` proves (FL).  Thus the whole
+same-slope active support is paid either by active lower edge cores or by
+root-marked first-boundary incidences, with no remaining primitive
+same-slope support packet at this local level.
+
 ## Same-Slope Component Dichotomy
 
 Let `G_s` be the graph on active `j`-complements for a fixed combined syndrome
@@ -656,6 +701,15 @@ The marked-boundary ledger is also checked:
 | `F_7`, `H=F_7^*`, `n=6,k=1,a=3,j=3` | 10 | 10 |
 | `F_7`, `H=F_7^*`, `n=6,k=2,a=4,j=2` | 5 | 5 |
 | `F_7`, `H=F_7^*`, `n=6,k=3,a=5,j=1` | 1 | 0 |
+
+The combined active-support ledger (FL) is checked in the same scan:
+
+| field/domain | max nonzero full-support slack |
+| --- | ---: |
+| `F_5`, `H=F_5^*`, `n=4,k=1,a=3,j=1` | 0 |
+| `F_7`, `H=F_7^*`, `n=6,k=1,a=3,j=3` | 40 |
+| `F_7`, `H=F_7^*`, `n=6,k=2,a=4,j=2` | 5 |
+| `F_7`, `H=F_7^*`, `n=6,k=3,a=5,j=1` | 0 |
 
 The `F_7,k=2,j=2` scan is the first exact top-packet check in this file.  It
 finds twenty top triangles, all on the zero combined syndrome.  This is not an

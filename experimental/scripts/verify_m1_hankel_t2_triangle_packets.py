@@ -37,6 +37,12 @@ Finally it checks the isolated-vertex criterion: an active complement is
 isolated in the one-exchange graph exactly when every one-root deletion has a
 nonzero H_{3,j-1} boundary vector.
 It also records the resulting marked-boundary ledger j*|Iso| <= |B_rm|.
+Combining the non-isolated and isolated ledgers, it checks the full active
+support ledger
+
+    j*|A| <= j*(n-j+1)*|E| + |B_rm|,
+
+where E is the set of active one-exchange edge cores.
 
 It also checks the full-top zero-syndrome lemma: if all j+1 complements
 U\\{x} inside one (j+1)-top set U are active, then the combined syndrome is
@@ -241,6 +247,7 @@ def analyze_case(
     isolated_vertex_histogram: Counter[int] = Counter()
     isolated_boundary_zero_histogram: Counter[int] = Counter()
     isolated_marked_boundary_slack_histogram: Counter[int] = Counter()
+    full_support_ledger_slack_histogram: Counter[int] = Counter()
     max_active = 0
     max_edges = 0
     max_triangles = 0
@@ -256,6 +263,7 @@ def analyze_case(
     max_nonzero_isolated_vertices = 0
     max_nonzero_root_marked_boundary_count = 0
     max_nonzero_isolated_marked_boundary_slack = 0
+    max_nonzero_full_support_ledger_slack = 0
     one_exchange_edges = 0
     star_triangles = 0
     top_triangles = 0
@@ -655,6 +663,26 @@ def analyze_case(
                     "edge_core_capacity": edge_core_capacity,
                 }
             )
+        full_support_capacity = j * edge_core_capacity + len(
+            case_root_marked_boundaries
+        )
+        full_support_demand = j * len(active)
+        full_support_ledger_slack = full_support_capacity - full_support_demand
+        if full_support_ledger_slack < 0:
+            raise AssertionError(
+                {
+                    "kind": "full-active-support-ledger-failed",
+                    "p": p,
+                    "k": k,
+                    "syndrome": list(syn),
+                    "active_complements": len(active),
+                    "edge_core_count": len(case_edge_cores),
+                    "root_marked_boundaries": len(case_root_marked_boundaries),
+                    "full_support_capacity": full_support_capacity,
+                    "full_support_demand": full_support_demand,
+                    "j": j,
+                }
+            )
         lower_component_count = case_component_histogram["lower_core"]
         nonstar_component_ledger_slack = (
             len(case_lower_core_witnesses) - lower_component_count
@@ -674,6 +702,7 @@ def analyze_case(
         nonstar_component_ledger_slack_histogram[
             nonstar_component_ledger_slack
         ] += 1
+        full_support_ledger_slack_histogram[full_support_ledger_slack] += 1
         if any(syn):
             max_nonzero_edge_core_count = max(
                 max_nonzero_edge_core_count,
@@ -690,6 +719,10 @@ def analyze_case(
             max_nonzero_nonstar_component_ledger_slack = max(
                 max_nonzero_nonstar_component_ledger_slack,
                 nonstar_component_ledger_slack,
+            )
+            max_nonzero_full_support_ledger_slack = max(
+                max_nonzero_full_support_ledger_slack,
+                full_support_ledger_slack,
             )
 
         for plane in core_planes:
@@ -905,6 +938,9 @@ def analyze_case(
         "max_nonzero_isolated_marked_boundary_slack": (
             max_nonzero_isolated_marked_boundary_slack
         ),
+        "max_nonzero_full_support_ledger_slack": (
+            max_nonzero_full_support_ledger_slack
+        ),
         "one_exchange_edges": one_exchange_edges,
         "star_triangles": star_triangles,
         "top_triangles": top_triangles,
@@ -944,6 +980,9 @@ def analyze_case(
         ),
         "isolated_marked_boundary_slack_histogram": dict(
             sorted(isolated_marked_boundary_slack_histogram.items())
+        ),
+        "full_support_ledger_slack_histogram": dict(
+            sorted(full_support_ledger_slack_histogram.items())
         ),
         "nonzero_top_active_size_histogram": dict(
             sorted(nonzero_top_active_size_histogram.items())
@@ -987,6 +1026,8 @@ def print_summary(results: Sequence[dict[str, object]]) -> None:
             f"max_nonzero_isolated={result['max_nonzero_isolated_vertices']} "
             f"max_nonzero_marked_boundary="
             f"{result['max_nonzero_root_marked_boundary_count']} "
+            f"max_nonzero_full_support_slack="
+            f"{result['max_nonzero_full_support_ledger_slack']} "
             f"max_nonzero_top_active={result['max_nonzero_top_active_members']}"
         )
     print("PASS")

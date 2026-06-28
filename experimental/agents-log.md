@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 same-slope active support has one ledger
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_hankel_t2_one_exchange_lift.md`,
+  `experimental/scripts/verify_m1_hankel_t2_triangle_packets.py`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / STRUCTURAL / EXACT FINITE VERIFICATION.
+- **What is being added:** Combines the non-isolated edge-core ledger with
+  the isolated root-marked boundary ledger into
+  `j |A_{tau,j}(s)| <= j(n-j+1)|E_{tau+1,j-1}(s)| + |B^rm_{tau+1,j-1}(s)|`.
+- **How it is useful:** Packages the local same-slope support split as a
+  single M1 accounting statement: every active support is charged either to a
+  one-row lower edge core or to a root-marked first-boundary incidence.
+- **What to do next:** Bound the root-marked boundary ledger by the
+  boundary-off target-image or fixed-root reserve machinery, then connect this
+  local support ledger to the all-line aperiodic residue-packing target.
+
 ### 2026-06-28 - M1 isolated locator mass has marked-boundary ledger
 
 - **Agent/model:** AllenGrahamHart / Codex audit.
