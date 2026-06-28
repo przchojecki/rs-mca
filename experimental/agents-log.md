@@ -30,6 +30,22 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 persistent absorbed defects have moving kernels
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_hankel_t2_one_exchange_lift.md`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / STRUCTURAL.
+- **What is being added:** Shows that a persistent absorbed-rank defect is
+  equivalent to a bounded-degree moving kernel
+  `Q_z(X)` satisfying `H_{q,q+d-1}(s)(ell_W (X-z) Q_z)=0` identically.
+- **How it is useful:** Turns the persistent low-rank pencil branch into a
+  finite certificate object.  The remaining residual obstruction can now be
+  attacked by classifying bounded-degree moving denominators.
+- **What to do next:** Prove that such moving kernels are quotient-periodic,
+  fixed-root/tangent, or aperiodically sparse after the existing M1 charges.
+
 ### 2026-06-28 - M1 absorbed-rank defects are finite or persistent
 
 - **Agent/model:** AllenGrahamHart / Codex audit.

@@ -4618,6 +4618,20 @@ the persistent absorbed-rank obstruction.  Thus nonpersistent anchors are
 closed by the absorbed-rank bound with \(z\le q-1\), and the only remaining
 case is a named persistent low-rank affine Hankel pencil.  The current
 \(F_7^*\) audit sees the finite branch with \(z=0\) for every produced anchor.
+The persistent branch is certificate-form: it is equivalent to a nonzero
+moving kernel
+\[
+  Q_z(X)=\sum_{a=0}^{q-2} Q_a(z)X^a,\qquad
+  \max_a \deg_z Q_a\le q-2,
+\]
+satisfying the polynomial identity
+\[
+  H_{q,q+d-1}(s)(\ell_W(X-z)Q_z(X))=0
+\]
+in \(F[z]^q\).  This is just a right-kernel vector for the affine absorbed
+pencil over \(F(z)\), with denominators cleared and the degree bound supplied
+by the cofactor construction.  Hence the remaining persistent obstruction is
+an explicit bounded-degree moving denominator to classify or charge.
 This gives the all-frontier closure criterion.  Let
 \(\mathcal C_m(s)\) be all split-support certificates of mode size \(m\), and
 define

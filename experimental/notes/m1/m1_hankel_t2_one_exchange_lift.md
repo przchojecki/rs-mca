@@ -2706,6 +2706,48 @@ The current verifier data land in the finite branch with room to spare: in
 the largest `F_7^*` audit, every produced anchor has `|Z_1(U,W)|=0`, hence no
 persistent absorbed-rank candidate is seen.
 
+## Persistent Absorbed Defects Have Moving-Kernel Certificates
+
+The persistent branch above is certificate-form.  Write the absorbed parameter
+as `z` and the locator variable as `X`.  A persistent absorbed-rank defect for
+`(U,W)` is equivalent to the existence of a nonzero polynomial family
+
+```text
+Q_z(X)=sum_{a=0}^{q-2} Q_a(z) X^a in F[z][X],
+deg_X Q_z < q-1,
+```
+
+such that
+
+```text
+H_{q,q+d-1}(s)(ell_W (X-z) Q_z(X)) = 0          (MKC)
+```
+
+as an identity in `F[z]^q`.  Moreover `Q_z` may be chosen with
+
+```text
+max_a deg_z Q_a <= q-2.
+```
+
+Proof: the persistent condition is `rank A_z(U,W)<q-1` over `F(z)`, where
+`A_z` is the `q x (q-1)` absorbed Hankel pencil.  Hence its right kernel over
+`F(z)` is nonzero.  Clearing denominators gives a nonzero vector
+`(Q_0(z),...,Q_{q-2}(z)) in F[z]^{q-1}` killed by `A_z`, which is exactly
+(MKC) by (ART).  Conversely, any nonzero `Q_z` satisfying (MKC) gives a
+nonzero right-kernel vector over `F(z)`, so the pencil has rank `<q-1`
+persistently.  For the degree bound, choose a full-rank `r x r` minor over
+`F(z)` with `r=rank A_z<=q-2`; the standard cofactor construction gives a
+kernel vector whose entries are `r x r` minors of an affine matrix, hence have
+`z`-degree at most `r<=q-2`.
+
+Thus the residual-anchor branch now has a finite certificate target: either
+there are at most `q-1` bad absorbed roots, or one can exhibit a bounded-degree
+moving denominator `Q_z(X)` satisfying the explicit Hankel identity (MKC).
+The next M1 task is to classify such moving kernels as quotient-periodic,
+fixed-root/tangent, or genuinely aperiodic; a proof that no primitive
+aperiodic moving kernel survives after the known charges would close this
+residual branch.
+
 ## Deficit-Weighted Core Closure Criterion
 
 The preceding local packing theorem removes the artificial cutoff
