@@ -3327,6 +3327,13 @@ compression and the fixed-class packet normal forms, no coefficient,
 exchange-multiplier, complement-root, or domain-root/root-free multiplicity is
 left inside a single primitive class; the remaining M1 task is to bound the
 active primitive classes themselves.
+There is also a low-total-degree injectivity check for these active classes.
+If two primitive data \((Q_i,B_i,w_i)\) have denominator degrees \(e_i\) with
+\(e_1+e_2\le n\), and if both divided functions \(B_i/Q_i\) and \(w_i/Q_i\)
+agree on \(D\), then the triples are projectively equal.  Indeed
+\((B_1Q_2-B_2Q_1)|_D=0\) has degree \(<e_1+e_2\le n\), so it vanishes
+identically and coprimality forces \(Q_2=cQ_1\), \(B_2=cB_1\), and
+\(w_2=cw_1\) on \(D\).
 The common-core and two-denominator formulas persist verbatim after this
 root-free replacement.  With \(C=\gcd(D:D\in M_{\min})\), \(\gamma=\deg C\),
 and \(E_D=D/C\),

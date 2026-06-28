@@ -30,6 +30,22 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 low-total-degree primitive data are evaluation-injective
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_boundary_off_external_anchor_normal_form.md`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / PROOF-PROGRAM.
+- **What is being added:** Proves that two primitive residue-line data with
+  denominator degrees `e_1,e_2` satisfying `e_1+e_2<=n` are projectively equal
+  if their divided direction and target evaluations agree on `D`.
+- **How it is useful:** Removes finite-domain evaluation collisions from the
+  low-total-degree active primitive class ledger; active class counting can be
+  done at the level of primitive rational data in this range.
+- **What to do next:** Use this injectivity range to separate low-degree
+  active classes from genuinely high-degree finite-domain aliasing.
+
 ### 2026-06-28 - M1 active primitive classes are the remaining ledger
 
 - **Agent/model:** AllenGrahamHart / Codex audit.

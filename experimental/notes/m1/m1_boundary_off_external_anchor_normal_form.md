@@ -15153,6 +15153,70 @@ presentation gcds compress, fixed-class exchange multipliers are disjoint,
 complement roots have only explicit root-choice charges, and residual products
 have a canonical denominator-coprime index.
 
+## Corollary 40.149: Low-Total-Degree Primitive Data Are Evaluation-Injective
+
+Let `D subset F` have size `n`.  For `i=1,2`, let
+
+```text
+(Q_i,B_i,w_i)
+```
+
+be primitive residue-line data with `Q_i` root-free on `D`,
+`gcd(Q_i,B_i)=1`, `deg B_i<deg Q_i` when `deg Q_i>0`, and with the polynomial
+endpoint represented by `Q_i=1,B_i=0`.  Put `e_i=deg Q_i`, and suppose
+
+```text
+e_1+e_2 <= n.
+```
+
+If the divided direction and target agree on `D`,
+
+```text
+B_1/Q_1 = B_2/Q_2        on D,
+w_1/Q_1 = w_2/Q_2        on D,
+```
+
+then the primitive data are projectively equal: there is `c in F^*` such that
+
+```text
+Q_2=c Q_1,        B_2=c B_1,        w_2=c w_1        on D.
+```
+
+In particular, after choosing monic primitive denominators, the map from
+primitive data with pairwise total denominator degree at most `n` to the
+divided evaluation data `(B/Q,w/Q)` on `D` is injective.  Thus low-total-degree
+active primitive classes cannot collide merely because rational functions are
+sampled only on the finite domain.
+
+### Proof
+
+The equality `B_1/Q_1=B_2/Q_2` on `D` gives
+
+```text
+P=B_1Q_2-B_2Q_1
+```
+
+vanishing on all points of `D`, because both denominators are nonzero on `D`.
+The degree bound is
+
+```text
+deg P < e_1+e_2 <= n
+```
+
+unless `P=0` already.  A nonzero polynomial of degree `<n` cannot vanish on
+the `n` distinct points of `D`, hence `P=0` as a polynomial:
+
+```text
+B_1Q_2=B_2Q_1.
+```
+
+Since `gcd(Q_1,B_1)=1`, this identity implies `Q_1` divides `Q_2`; symmetrically
+`Q_2` divides `Q_1`.  Hence `Q_2=cQ_1` for some `c in F^*`, and then the same
+identity gives `B_2=cB_1`.  Finally the equality `w_1/Q_1=w_2/Q_2` on `D`
+and `Q_2=cQ_1` give `w_2=cw_1` on `D`.  If one datum is the polynomial
+endpoint, the same argument forces the other denominator to be constant and
+the endpoint convention gives the same conclusion.
+
 ## Corollary 41: The Global Common-Image Ledger Is Endpoint-Only
 
 Let `GCI` be the set of monic degree-`c` split core locators `L` for which
@@ -18231,6 +18295,9 @@ set, not an additional raw multiplier count.
 Corollary 40.148 packages the fixed-class conclusions into an active
 primitive-class ledger: after primitive compression, the remaining all-line
 problem is to count active primitive classes with explicit fixed-class weights.
+Corollary 40.149 proves low-total-degree evaluation injectivity for primitive
+residue-line data: if `e_1+e_2<=n`, divided agreement on `D` forces
+projective equality of the primitive cleared data.
 Corollary 41 packages the common-image branch into endpoint-type ledgers; it
 does not prove the endpoint rank hypotheses needed for the displayed
 `(q+2)binom(n,b)` bound. Corollary 42 packages the globally full core ledger
