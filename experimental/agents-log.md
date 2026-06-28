@@ -30,6 +30,22 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 one-exchange one-row ledger in complement form
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_boundary_off_external_anchor_normal_form.md`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / PROOF-PROGRAM.
+- **What is being added:** The one-exchange one-row coefficient bound becomes
+  `(binom(n,j+1)+j sum_[M] |Comp_[M]|)/(n-j)`, where `Comp_[M]` are the
+  `(j+1)` split-complement residue-line fibers from the previous entry.
+- **How it is useful:** This gives the final explicit ledger target for this
+  branch: bound the small-complement residue-line fiber mass and the
+  one-exchange scalar one-row contribution follows.
+- **What to do next:** Prove a polynomial bound for the summed complement
+  fiber mass after quotient-periodic components are removed.
+
 ### 2026-06-28 - M1 exceptional fibers dualize to small complements
 
 - **Agent/model:** AllenGrahamHart / Codex audit.

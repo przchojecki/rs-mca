@@ -11579,6 +11579,60 @@ which is exactly `C in Comp_[M]`.  The complement map is a set-theoretic
 bijection between `(a-1)`-subsets and `(j+1)`-subsets of `D`, proving the
 claim.
 
+## Corollary 40.101: The One-Exchange One-Row Ledger Is A Small-Complement Residue Ledger
+
+Keep the notation of Corollaries 40.97--40.100.  At the scalar cutoff
+`a=n-j`, the one-row coefficient set satisfies
+
+```text
+|Mu_h(Y,a)|
+ <= ( binom(n,j+1)
+      + j sum_{[M] in P_ell^x(Q_prim)} |Comp_[M]| ) / (n-j).   (ComplementLedger)
+```
+
+Equivalently, after the primitive packing charge, the only additional
+one-exchange contribution is the total mass of the `(j+1)`-point
+small-complement residue-line fibers `Comp_[M]`, with coefficient `j/(n-j)`.
+Thus a bound
+
+```text
+sum_{[M] in P_ell^x(Q_prim)} |Comp_[M]| <= B_comp
+```
+
+implies
+
+```text
+|Mu_h(Y,a)| <= ( binom(n,j+1) + j B_comp ) / (n-j).
+```
+
+This is the final one-exchange scalar one-row reduction: proving a small bound
+for the complement residue-line ledger closes the one-exchange part of the
+primitive high-denominator residual.
+
+### Proof
+
+Corollary 40.97 gives
+
+```text
+|Mu_h(Y,a)|
+ <= ( binom(n,a-1) + (n-a)|Exc_ell| ) / a.
+```
+
+At the scalar cutoff, `a=n-j`, so
+
+```text
+binom(n,a-1)=binom(n,n-j-1)=binom(n,j+1),
+n-a=j.
+```
+
+Corollaries 40.99 and 40.100 give the disjoint decomposition
+
+```text
+|Exc_ell| = sum_{[M] in P_ell^x(Q_prim)} |Comp_[M]|.
+```
+
+Substitution gives (ComplementLedger).  The conditional bound is immediate.
+
 ## Corollary 41: The Global Common-Image Ledger Is Endpoint-Only
 
 Let `GCI` be the set of monic degree-`c` split core locators `L` for which
@@ -14502,6 +14556,8 @@ ordinary split-locator residue-line fibers indexed by those projective
 low-degree multiplier classes.
 Corollary 40.100 dualizes each large agreement-core fiber to an equivalent
 small `(j+1)`-complement split-locator residue-line fiber.
+Corollary 40.101 packages the one-exchange scalar one-row ledger entirely in
+terms of the total mass of these small-complement residue fibers.
 Corollary 41 packages the common-image branch into endpoint-type ledgers; it
 does not prove the endpoint rank hypotheses needed for the displayed
 `(q+2)binom(n,b)` bound. Corollary 42 packages the globally full core ledger
