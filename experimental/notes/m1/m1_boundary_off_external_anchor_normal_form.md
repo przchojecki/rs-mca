@@ -12336,6 +12336,49 @@ subsets of all `(j+1)`-subsets of `D`.  Substitution gives
 
 which proves (NCOneRowQFree).
 
+## Corollary 40.109: The Positive One-Row Noncontained Branch Closes At One-Exchange Scale
+
+Work in a positive primitive one-row residual chart after the primitive
+packing charge of Corollaries 40.90--40.93.  Thus
+
+```text
+a=n-j=k+t,        e_prim=t+ell,        ell>=0,
+phi_h=hX^k-B_prim/Q_prim,
+```
+
+with `Q_prim` root-free on `D`, `gcd(Q_prim,B_prim)=1`, and `t>=2`.
+Assume the only remaining coefficient collisions being charged are the
+one-exchange collisions controlled by Corollary 40.94, equivalently by
+`(a-1)`-core exceptional residue certificates.
+
+Then the support-wise noncontained scalar parameters in this one-row chart
+are q-free:
+
+```text
+|Mu_h^nc(Y,a)| <= binom(n,j).                       (OneRowNCClosure)
+```
+
+In particular, in the finite-field line-MCA normalization, this one-row
+one-exchange branch contributes at most
+
+```text
+binom(n,j)/q
+```
+
+to the density of noncontained finite parameters in the chart.  The only
+field-size family left by the unrestricted coefficient ledger is the
+local-contained double-collapse locus, where both `phi_h` and `Y` restrict to
+`RS_k` on the same support; those supports are not support-wise noncontained
+witnesses and belong to the contained/tangent charge ledger.
+
+### Proof
+
+Corollary 40.108 proves (OneRowNCClosure).  Corollary 40.89 identifies the
+coefficient `mu` with the scalar parameter in the one-row chart, after the
+separate reciprocal `Qf` zero-slope exception has already been removed.  Thus
+the same count bounds the chart's noncontained finite parameters, and
+dividing by `q=|F|` gives the displayed density contribution.
+
 ## Corollary 41: The Global Common-Image Ledger Is Endpoint-Only
 
 Let `GCI` be the set of monic degree-`c` split core locators `L` for which
@@ -15289,6 +15332,9 @@ Corollary 40.108 sharpens this for the actual support-wise noncontained
 object: by choosing noncontained witnesses, same-support multiplicity never
 contributes, and the one-exchange one-row noncontained coefficient set is
 bounded by `binom(n,j)` without assuming the double-collapse locus is empty.
+Corollary 40.109 packages this as a chart-level closure: the positive
+primitive one-row one-exchange noncontained branch contributes at most
+`binom(n,j)/q` to line-MCA density.
 Corollary 41 packages the common-image branch into endpoint-type ledgers; it
 does not prove the endpoint rank hypotheses needed for the displayed
 `(q+2)binom(n,b)` bound. Corollary 42 packages the globally full core ledger

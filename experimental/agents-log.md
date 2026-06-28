@@ -30,6 +30,23 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 one-row noncontained chart closure
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_boundary_off_external_anchor_normal_form.md`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / PROOF-PROGRAM.
+- **What is being added:** Packages the preceding one-row analysis into a
+  chart-level closure theorem: in a positive primitive one-row residual chart,
+  the one-exchange support-wise noncontained finite parameters contribute at
+  most `binom(n,j)/q` to the line-MCA density.
+- **How it is useful:** This gives a paper-ready endpoint for the one-row
+  one-exchange branch and identifies the remaining field-size family as a
+  local-contained/tangent charge, not a noncontained M1 witness family.
+- **What to do next:** Use this q-free chart closure as a base case before
+  attacking higher-exchange collisions or non-one-row scalar residual charts.
+
 ### 2026-06-28 - M1 support-wise noncontained one-row residual is q-free
 
 - **Agent/model:** AllenGrahamHart / Codex audit.
