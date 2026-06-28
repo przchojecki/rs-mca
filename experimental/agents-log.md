@@ -30,6 +30,22 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 endpoint rank-one charts glue by reciprocal inversion
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_boundary_off_external_anchor_normal_form.md`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / PROOF-PROGRAM.
+- **What is being added:** Proves that inversion bijects the nonzero
+  coefficients of `Mu_phi(Y)` with those of `Mu_{-Y}(-phi)`.
+- **How it is useful:** Identifies the quotient-normal `Qg` and reciprocal
+  `Qf` endpoint ledgers as the same projective slope ledger away from the
+  original zero slope, preventing an independent double count of standard
+  nonzero scalar branches.
+- **What to do next:** Count the quotient-normal endpoint ledger once, with a
+  separate explicit zero-slope check.
+
 ### 2026-06-28 - M1 rank-one coefficient ledgers are quotient-gauge invariant
 
 - **Agent/model:** AllenGrahamHart / Codex audit.

@@ -16385,6 +16385,59 @@ Applying (GaugeMu) with `c=H_g` and `d=0` identifies
 The `Qf` branch is identical after swapping `f` and `g`; its coefficient is
 the reciprocal parameter `y=1/z`, so the zero-slope exception is unchanged.
 
+## Corollary 40.167: Endpoint Rank-One Charts Glue By Reciprocal Inversion
+
+Keep the notation of Corollary 40.111, and put
+
+```text
+Mu_phi^{x,nc,>=a}(Y)=Mu_phi^{nc,>=a}(Y) cap F^*.
+```
+
+Then inversion is a bijection
+
+```text
+lambda |-> lambda^{-1}:
+Mu_phi^{x,nc,>=a}(Y)  <->  Mu_{-Y}^{x,nc,>=a}(-phi).              (RecipMu)
+```
+
+Consequently the two quotient-normal endpoint ledgers in Corollary 40.166
+are the two affine charts of the same projective coefficient line:
+
+```text
+lambda |-> lambda^{-1}:
+Mu_{-g}^{x,nc,>=a}(f)  <->  Mu_{-f}^{x,nc,>=a}(g).                (EndpointRecip)
+```
+
+The reciprocal `Qf` standard branch therefore contributes no independent
+nonzero original slopes beyond the inverse coordinates of the `Qg` endpoint
+ledger.  The only slope not visible in the reciprocal chart is the original
+zero slope, exactly as in Corollary 40.82.
+
+### Proof
+
+Let `lambda in F^*`.  If `lambda in Mu_phi^{nc,>=a}(Y)`, choose a witness
+`A in RS[F,D,k]` on a support `S`:
+
+```text
+A+lambda phi=Y        on S.
+```
+
+Then
+
+```text
+lambda^{-1}A + lambda^{-1}(-Y) = -phi        on S.
+```
+
+Since `lambda^{-1}A` is again a degree-`<k` codeword, this gives
+`lambda^{-1} in Mu_{-Y}^{nc,>=a}(-phi)` on the same support.  The
+support-wise noncontained condition is symmetric under swapping the two
+endpoint functions and multiplying by `-1`, so it is preserved.  Applying the
+same argument again gives the inverse map, proving (RecipMu).
+
+Finally substitute `phi=-g` and `Y=f` into (RecipMu).  This gives
+(EndpointRecip), and the zero-slope statement is exactly the fact that
+inversion is defined only on `F^*`.
+
 ## Corollary 41: The Global Common-Image Ledger Is Endpoint-Only
 
 Let `GCI` be the set of monic degree-`c` split core locators `L` for which
@@ -19524,6 +19577,10 @@ gauge: rank-one coefficient sets depend only on the classes of direction and
 target modulo `RS[F,D,k]`.  Hence standard `Qg` presentations all have the
 same coefficient set as `Mu_{-g}^{nc,>=a}(f)`, while standard nonzero `Qf`
 presentations have the reciprocal set `Mu_{-f}^{nc,>=a}(g)`.
+Corollary 40.167 glues those two endpoint charts: inversion bijects the
+nonzero part of `Mu_{-g}^{nc,>=a}(f)` with the nonzero part of
+`Mu_{-f}^{nc,>=a}(g)`, leaving only the original zero slope outside the
+reciprocal chart.
 Corollary 41 packages the common-image branch into endpoint-type ledgers; it
 does not prove the endpoint rank hypotheses needed for the displayed
 `(q+2)binom(n,b)` bound. Corollary 42 packages the globally full core ledger
