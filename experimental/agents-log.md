@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 root-set stratification has only root-choice cost
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_boundary_off_external_anchor_normal_form.md`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / PROOF-PROGRAM.
+- **What is being added:** Proves a labeled root-set ledger bound: for any
+  family of charged complement-root sets `S` and residual product classes
+  `T_S`, the total ledger is bounded by
+  `sum_S binom(n-|S|,j+u-|S|)`, equivalently
+  `binom(n,j+u) sum_s binom(j+u,s)` when all sizes in a set are allowed.
+- **How it is useful:** Separates the real cost of choosing complement-root
+  charges from residual multiplier/root-free/support-root multiplicity in the
+  fixed-class M1 ledger.
+- **What to do next:** Use this root-choice cost formula to state a compact
+  fixed-class residual reduction theorem.
+
 ### 2026-06-28 - M1 mixed root-free residual packets are product-disjoint
 
 - **Agent/model:** AllenGrahamHart / Codex audit.

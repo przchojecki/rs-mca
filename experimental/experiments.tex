@@ -3219,6 +3219,23 @@ Indeed deleting \(S\) and twisting by \(H\) identifies these fibers with the
 fixed-base product fibers \(\mathrm{Comp}_{v,[HN]}(Q_0,B_0)\).  Thus the
 post-deletion total multiplier class, not the separate root-free and
 support-root coordinates, is the packet index.
+Consequently a labeled root-set stratification has only root-choice cost.  If
+\(\mathcal S\) is any collection of \(S\subset D\), \(|S|\le u\), and
+\(T_S\subset P_{u-|S|}^x(Q_0)\) is any residual product-class family, then
+\[
+ \left|
+ \coprod_{S\in\mathcal S}\coprod_{[P]\in T_S}
+   \{C\in\mathrm{Comp}_{u,[L_SP]}(Q_0,B_0):S\subset C\}
+ \right|
+ \le
+ \sum_{S\in\mathcal S}\binom{n-|S|}{j+u-|S|}.
+\]
+If all root sets of sizes \(s\in I\) are allowed, this is
+\[
+  \binom n {j+u}\sum_{s\in I}\binom{j+u}{s}.
+\]
+Thus fixed-class complement-root bookkeeping pays for choosing charged roots
+inside the complement, but not for an additional residual-multiplier family.
 The common-core and two-denominator formulas persist verbatim after this
 root-free replacement.  With \(C=\gcd(D:D\in M_{\min})\), \(\gamma=\deg C\),
 and \(E_D=D/C\),
