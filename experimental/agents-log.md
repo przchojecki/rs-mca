@@ -30,6 +30,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 dual-gcd bottom ledger
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_boundary_off_external_anchor_normal_form.md`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / PROOF-PROGRAM / AUDIT.
+- **What is being added:** The scalar, paired, and shifted paired
+  short-window dual annihilators are packaged into a bottom-route ledger.  If
+  `a_F` is the number of distinct non-domain roots of the corresponding common
+  gcd, then the family contributes at most `RFPhi_D(h-a_F)`, with zero
+  contribution when the annihilator is zero or the gcd has a domain root.
+- **How it is useful:** The bottom common-factor route is reduced to proving
+  non-domain root lower bounds, or finding domain roots, for four explicit
+  low-moment annihilator gcds.
+- **What to do next:** Attack those four dual gcds in actual M1 bottom
+  instances; failure to produce enough roots is evidence for using the
+  half-window denominator route instead.
+
 ### 2026-06-28 - M1 short-window paired dual anchor test
 
 - **Agent/model:** AllenGrahamHart / Codex audit.

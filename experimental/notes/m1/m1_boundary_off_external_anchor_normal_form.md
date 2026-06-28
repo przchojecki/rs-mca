@@ -8592,6 +8592,94 @@ annihilating that subspace also annihilates the vector.  Applying this to
 the annihilator.  The common-gcd and zero-annihilator consequences are
 immediate.
 
+## Corollary 40.66: Dual GCD Degrees Give A Bottom-Route Ledger
+
+Assume the bottom syndrome sequences have moment expansions on the needed
+range
+
+```text
+u_m=sum_{x in D} mu_x x^m,        v_m=sum_{x in D} nu_x x^m.
+```
+
+Let `s_1=t+r_0` for the scalar bottom families and `s_2=t+r_0-1` for the
+paired bottom families.  Define four short-window annihilator spaces:
+
+```text
+Ann_u
+={ P in F_q[X]_{<h} :
+   sum_{x in D} P(x) mu_x x^a=0,        0<=a<s_1 },
+
+Ann_v
+={ P in F_q[X]_{<h} :
+   sum_{x in D} P(x) nu_x x^a=0,        0<=a<s_1 },
+
+Ann_uv
+={ P in F_q[X]_{<h} :
+   sum_{x in D} P(x) mu_x x^a=0 and
+   sum_{x in D} P(x) nu_x x^a=0,        0<=a<s_2 },
+
+Ann_Suv
+={ P in F_q[X]_{<h} :
+   sum_{x in D} P(x) mu_x x^{a+1}=0 and
+   sum_{x in D} P(x) nu_x x^{a+1}=0,    0<=a<s_2 }.
+```
+
+For each family `F in {u,v,uv,Suv}`, if `Ann_F=0`, set `a_F=infty` and
+declare the corresponding bottom family empty.  Otherwise let
+
+```text
+G_F=gcd(P : P in Ann_F).
+```
+
+If `G_F` has a root in `D`, the corresponding root-free bottom family is
+empty.  If not, let
+
+```text
+a_F = #{ beta in F_q\D : G_F(beta)=0 }.
+```
+
+Then the four bottom root-free families have residual charge at most
+
+```text
+sum_{F : Ann_F!=0, G_F root-free on D} RFPhi_D(h-a_F).      (DualGCDBottomCharge)
+```
+
+and the bottom route closes with total ledger
+
+```text
+sum_F RFPhi_D(h-a_F) + 2h,                         (DualGCDBottomLedger)
+```
+
+where empty families contribute zero.  In particular, if every nonempty
+root-free family has `a_F>=h-L`, then the bottom route closes with
+
+```text
+4 RFPhi_D(L) + 2h.
+```
+
+Thus one sufficient way to close the bottom common-factor route is to prove
+that each nonzero dual annihilator has many distinct non-domain common roots,
+or a domain common root, in these four explicit low-moment annihilator spaces.
+
+### Proof
+
+By Corollary 40.65, for the paired family `(u,v)` the anchors in `F_q` are
+exactly the common roots of `Ann_uv`; the shifted family is the same statement
+with weights `(x mu_x,x nu_x)`.  The scalar version is the scalar specialization
+of the same duality.  Thus a root of `G_F` in `D` puts a domain evaluation row
+in the corresponding bottom row span, so Corollary 40.60 empties the root-free
+family.
+
+If `Ann_F=0`, the corresponding truncated moment image is all of `F_q^h`, so
+the bottom row space has rank `h` and its kernel is zero.  Hence that
+projective bottom family is empty.
+
+In the remaining case, the `a_F` distinct non-domain roots of `G_F` are
+non-domain external-anchor rows in the bottom row span.  Corollary 40.61
+therefore bounds that family by `RFPhi_D(h-a_F)`.  Summing over the four
+families and applying the bottom residual route of Corollary 40.43 gives the
+displayed ledgers.
+
 ## Corollary 41: The Global Common-Image Ledger Is Endpoint-Only
 
 Let `GCI` be the set of monic degree-`c` split core locators `L` for which
@@ -11405,6 +11493,9 @@ in the actual M1 instances.
 Corollary 40.65 gives the corresponding short-window dual test; it reduces
 short-window anchor counting to a degree-`<h` common-gcd problem but does not
 bound that gcd in the actual M1 instances.
+Corollary 40.66 packages the four bottom-family dual gcds into a bottom-route
+ledger; it does not prove the required lower bounds on their non-domain root
+counts in the actual M1 instances.
 Corollary 41 packages the common-image branch into endpoint-type ledgers; it
 does not prove the endpoint rank hypotheses needed for the displayed
 `(q+2)binom(n,b)` bound. Corollary 42 packages the globally full core ledger
