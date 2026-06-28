@@ -30,6 +30,27 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 endpoint defects are residual directions
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_hankel_t2_one_exchange_lift.md`,
+  `experimental/experiments.tex`,
+  `experimental/scripts/verify_m1_hankel_t2_triangle_packets.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / STRUCTURAL / AUDIT.
+- **What is being added:** Shows that the endpoint matrix forced by a
+  persistent absorbed moving kernel is the first `q-1` columns of the residual
+  moment matrix, so endpoint nullity is at most the residual-kernel direction
+  dimension.
+- **How it is useful:** Collapses persistent absorbed-rank pencils into the
+  already named fixed-divisor residual direction ledger: a persistent absorbed
+  defect forces `b(U,W)>0`, so there is no independent moving-kernel branch once
+  positive-dimensional residual kernels are charged.
+- **What to do next:** Bound or classify positive-dimensional fixed-divisor
+  residual kernels via fixed-root, quotient-periodic, tangent, or aperiodic M1
+  structure.
+
 ### 2026-06-28 - M1 moving kernels force endpoint ranks
 
 - **Agent/model:** AllenGrahamHart / Codex audit.

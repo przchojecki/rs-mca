@@ -2788,6 +2788,60 @@ The verifier now audits the unshifted endpoint rank for every produced deficit
 anchor with `q>=2`.  The largest `F_7^*` audit checks `51840` such endpoint
 matrices and finds no endpoint-rank defects.
 
+## Endpoint Defects Are Residual-Direction Defects
+
+The endpoint obstruction is contained in the residual-kernel obstruction already
+isolated above.  Let
+
+```text
+M(U,W)=(h^W_{i+a})_{0<=i<q, 0<=a<q}
+```
+
+be the square residual moment matrix, and let `E(U,W)` be the endpoint matrix
+from the previous section.  Then `E(U,W)` is the first `q-1` columns of
+`M(U,W)`.  Therefore, if
+
+```text
+b(U,W)=q-rank M(U,W),
+e(U,W)=(q-1)-rank E(U,W),
+```
+
+then
+
+```text
+e(U,W) <= b(U,W).                                  (ERD)
+```
+
+Equivalently, every endpoint kernel `R` with `deg R<q-1` lies in
+
+```text
+Dir K(U,W)
+ = { Q in F[X]_{<q} : H_{q,q+d}(s)(ell_W Q)=0 }.
+```
+
+Combining this with the moving-kernel coefficient ladder gives a useful
+collapse:
+
+```text
+persistent absorbed-rank defect  =>  b(U,W)>0.
+```
+
+Thus persistent absorbed pencils do not create a second independent residual
+branch.  After the positive-dimensional fixed-divisor residual kernels
+`Dir K(U,W)` are charged to fixed-root, quotient-periodic, tangent, or aperiodic
+ledgers, the persistent absorbed branch is charged as well.  In particular, if
+`b(U,W)<=B`, the fixed-anchor residual fiber remains bounded by
+
+```text
+sum_{i=0}^B binom(|D'|,i)
+```
+
+whether or not the absorbed pencil is persistent.
+
+The verifier now asserts the endpoint-prefix identity and the inequality
+`e(U,W)<=b(U,W)` on the same endpoint-rank audit.  In the largest `F_7^*` run,
+the checked anchors have `e(U,W)=b(U,W)=0`.
+
 ## Deficit-Weighted Core Closure Criterion
 
 The preceding local packing theorem removes the artificial cutoff

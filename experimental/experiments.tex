@@ -4648,6 +4648,23 @@ column rank of this endpoint matrix therefore rules out the persistent branch
 for that anchor.  The verifier audits this endpoint rank for the produced
 deficit anchors with \(q\ge2\); in the largest \(F_7^*\) audit it checks
 \(51840\) endpoint matrices and finds no endpoint-rank defects.
+Moreover this endpoint obstruction is contained in the residual-direction
+obstruction already isolated above.  If
+\[
+  M(U,W)=(h^W_{i+a})_{0\le i<q,\ 0\le a<q}
+\]
+is the square residual moment matrix and \(E(U,W)\) is the endpoint matrix,
+then \(E(U,W)\) is the first \(q-1\) columns of \(M(U,W)\).  Hence, with
+\[
+  b(U,W)=q-\operatorname{rank}M(U,W),\qquad
+  e(U,W)=(q-1)-\operatorname{rank}E(U,W),
+\]
+one has \(e(U,W)\le b(U,W)\).  Thus a persistent absorbed-rank defect forces
+\(b(U,W)>0\), and after the positive-dimensional fixed-divisor residual kernels
+are charged there is no separate persistent absorbed-pencil branch.  The
+verifier now asserts this endpoint-prefix identity and nullity inequality on
+the same \(51840\) endpoint checks; in the largest \(F_7^*\) audit both
+nullities are zero.
 This gives the all-frontier closure criterion.  Let
 \(\mathcal C_m(s)\) be all split-support certificates of mode size \(m\), and
 define

@@ -165,7 +165,8 @@ absorbed-anchor filtered Hankel matrix.
 The resulting absorbed-rank incidence bound is asserted for every enumerated
 residual fiber.
 It also audits the endpoint-rank test forced by persistent moving kernels for
-each produced deficit anchor.
+each produced deficit anchor, and checks that endpoint defects are contained in
+the filtered residual-kernel direction space.
 For each fixed collapsed anchor base, it audits the sparse-representation
 fiber: below the boundary the mode support is unique, while at the boundary
 distinct supports are disjoint and obey the matching bound.
@@ -3822,6 +3823,7 @@ def analyze_case(
                                             }
                                         )
                                     root_slice_bad_roots: set[int] = set()
+                                    endpoint_defect = 0
                                     if residual_size > 1:
                                         root_slice_width = residual_size - 1
                                         endpoint_columns = tuple(
@@ -3847,6 +3849,55 @@ def analyze_case(
                                             )
                                             for row in range(residual_size)
                                         )
+                                        endpoint_from_filtered = tuple(
+                                            tuple(
+                                                filtered_sequence[row + column]
+                                                for column in range(
+                                                    root_slice_width
+                                                )
+                                            )
+                                            for row in range(residual_size)
+                                        )
+                                        if (
+                                            endpoint_matrix
+                                            != endpoint_from_filtered
+                                        ):
+                                            raise AssertionError(
+                                                {
+                                                    "kind": (
+                                                        "productive-"
+                                                        if productive
+                                                        else ""
+                                                    )
+                                                    + "marked-core-deficit-"
+                                                    "anchor-endpoint-prefix-"
+                                                    "identity-failed",
+                                                    "p": p,
+                                                    "k": k,
+                                                    "syndrome": list(syn),
+                                                    "fixed_roots": list(
+                                                        fixed_roots
+                                                    ),
+                                                    "unmarked_core": list(
+                                                        unmarked_core
+                                                    ),
+                                                    "marked_count": marked_count,
+                                                    "core_deficit": core_deficit,
+                                                    "anchor": list(anchor),
+                                                    "endpoint_matrix": [
+                                                        list(row)
+                                                        for row in (
+                                                            endpoint_matrix
+                                                        )
+                                                    ],
+                                                    "endpoint_from_filtered": [
+                                                        list(row)
+                                                        for row in (
+                                                            endpoint_from_filtered
+                                                        )
+                                                    ],
+                                                }
+                                            )
                                         endpoint_rank = matrix_rank_mod(
                                             endpoint_matrix,
                                             p,
@@ -4080,6 +4131,41 @@ def analyze_case(
                                             p,
                                         )
                                     )
+                                    if (
+                                        residual_size > 1
+                                        and endpoint_defect
+                                        > residual_direction_dim
+                                    ):
+                                        raise AssertionError(
+                                            {
+                                                "kind": (
+                                                    "productive-"
+                                                    if productive
+                                                    else ""
+                                                )
+                                                + "marked-core-deficit-"
+                                                "anchor-endpoint-direction-"
+                                                "inclusion-failed",
+                                                "p": p,
+                                                "k": k,
+                                                "syndrome": list(syn),
+                                                "fixed_roots": list(
+                                                    fixed_roots
+                                                ),
+                                                "unmarked_core": list(
+                                                    unmarked_core
+                                                ),
+                                                "marked_count": marked_count,
+                                                "core_deficit": core_deficit,
+                                                "anchor": list(anchor),
+                                                "endpoint_defect": (
+                                                    endpoint_defect
+                                                ),
+                                                "residual_direction_dim": (
+                                                    residual_direction_dim
+                                                ),
+                                            }
+                                        )
                                     residual_bound = sum(
                                         math.comb(len(available_roots), size)
                                         for size in range(
