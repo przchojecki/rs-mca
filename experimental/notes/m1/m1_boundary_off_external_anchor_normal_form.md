@@ -13997,6 +13997,57 @@ domain-root classes.  For linear external factors, equality of twists would
 force equality of the corresponding projective linear polynomials, hence the
 same finite root.
 
+## Corollary 40.130: Fixed-Residual Twist Packets Are Disjoint
+
+Keep the primitive base setup of Corollary 40.128.  Fix `0<=v<=t` and a
+nonzero polynomial `N`.  Let `A_N` be any set of projective classes `[H]` such
+that
+
+```text
+[HN] in P_v^x(Q_0),        H(alpha)!=0 for every alpha in D.
+```
+
+For `[H] in A_N`, put `B_H == B_0H^{-1} mod Q_0` as in Corollary 40.128.
+Then the twisted complement fibers
+
+```text
+Comp_{v,[N]}(Q_0,B_H),        [H] in A_N,
+```
+
+are pairwise disjoint.  Consequently
+
+```text
+sum_{[H] in A_N} |Comp_{v,[N]}(Q_0,B_H)|
+ <= binom(n,j+v).                                  (TwistPacketBound)
+```
+
+If, in addition, `A_N subset P(F[X]_<h)` with `h<=e_0`, then Corollary
+40.129 identifies the same packet with a projectively injective family of
+primitive base twists.  Thus, for each fixed residual `N`, root-free moving
+twists carry no unweighted complement multiplicity: the whole packet occupies
+a subset of the `(j+v)`-complements.
+
+### Proof
+
+By Corollary 40.128,
+
+```text
+Comp_{v,[N]}(Q_0,B_H)=Comp_{v,[HN]}(Q_0,B_0)
+```
+
+for each `[H] in A_N`.  If the same complement `C` lies in the twisted fibers
+for `[H_1]` and `[H_2]`, then `C` lies in the fixed-base fibers for
+`[H_1N]` and `[H_2N]`.  Corollary 40.122 gives
+
+```text
+[H_1N]=[H_2N].
+```
+
+Since `F[X]` is an integral domain and `N` is nonzero, this implies
+`[H_1]=[H_2]`.  Hence the displayed fibers are pairwise disjoint, and their
+union is a subset of all `(j+v)`-subsets of `D`.  The final sentence is the
+injectivity statement of Corollary 40.129 applied to the same classes.
+
 ## Corollary 41: The Global Common-Image Ledger Is Endpoint-Only
 
 Let `GCI` be the set of monic degree-`c` split core locators `L` for which
@@ -17019,6 +17070,9 @@ coefficient multiplicity.
 Corollary 40.129 proves that this twist map is projectively injective below
 degree `e_0`, so low-degree root-free residual factors can be counted by their
 actual projective factor classes.
+Corollary 40.130 adds packet disjointness: for each fixed residual `N`, the
+twisted fibers obtained by varying root-free `H` occupy disjoint
+`(j+v)`-complements and hence have total size at most `binom(n,j+v)`.
 Corollary 41 packages the common-image branch into endpoint-type ledgers; it
 does not prove the endpoint rank hypotheses needed for the displayed
 `(q+2)binom(n,b)` bound. Corollary 42 packages the globally full core ledger

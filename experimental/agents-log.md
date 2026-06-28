@@ -30,6 +30,23 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 fixed-residual twist packets are disjoint
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_boundary_off_external_anchor_normal_form.md`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / PROOF-PROGRAM.
+- **What is being added:** Proves that for fixed residual `N`, the fibers
+  `Comp_{v,[N]}(Q_0,B_H)` obtained from root-free twists `H` are pairwise
+  disjoint and have total size at most `binom(n,j+v)`.
+- **How it is useful:** Shows moving root-free base twists do not create
+  unweighted complement multiplicity within a fixed residual packet; their
+  fibers are just the original disjoint fixed-base product fibers
+  `Comp_{v,[HN]}(Q_0,B_0)`.
+- **What to do next:** Combine fixed-residual packet disjointness with a
+  bound on the remaining residual multipliers `N`.
+
 ### 2026-06-28 - M1 low-degree base twists are injective
 
 - **Agent/model:** AllenGrahamHart / Codex audit.
