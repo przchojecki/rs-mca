@@ -13340,6 +13340,150 @@ Since `a=n-j` and `binom(n,a-1)=binom(n,j+1)`, combining this with
  = binom(n,j).
 ```
 
+## Corollary 40.122: Higher Base Complement Ledgers Are Disjoint By Multiplier
+
+Keep the primitive positive base residue-line setup at the scalar cutoff
+
+```text
+a=k+t=n-j,        e_0>0,
+```
+
+and fix an exchange depth `u` with
+
+```text
+0<=u<=t.
+```
+
+Put
+
+```text
+r_u=e_0-t+u.
+```
+
+If `r_u<=0`, then no exact exchange-`u` collision certificate of Corollary
+40.117 exists.  If `r_u>0`, define
+
+```text
+P_u^x(Q_0)
+ = { [M] in P(F[X]_<r_u) : gcd(M,Q_0)=1 },
+```
+
+and for `[M] in P_u^x(Q_0)` define the `(j+u)`-complement fiber
+
+```text
+Comp_{u,[M]}(Q_0,B_0)
+ = { C subset D : |C|=j+u,
+      L_C in F L_D M B_0^{-1}        mod Q_0 }.       (BaseCompFiberU)
+```
+
+Then, for `u<=t`, the fibers `Comp_{u,[M]}(Q_0,B_0)` are disjoint as `[M]`
+varies in `P_u^x(Q_0)`.  Consequently the unweighted exact exchange-`u`
+complement ledger
+
+```text
+U_u(Q_0,B_0)
+ = disjoint_union_{[M] in P_u^x(Q_0)}
+      Comp_{u,[M]}(Q_0,B_0)
+```
+
+satisfies
+
+```text
+|U_u(Q_0,B_0)| <= binom(n,j+u).                    (BaseCompUBound)
+```
+
+Thus for every fixed primitive base residue class, and every exchange depth
+`u<=t`, the exact exchange-`u` complement landing ledger has no unweighted
+field-size multiplier multiplicity.  The first-unpacked statement of
+Corollary 40.120 is the case `e_0=t+1,u=1`.
+
+### Proof
+
+If `r_u<=0`, Corollary 40.117 would require a nonzero polynomial of degree
+`<r_u`, which is impossible.  Assume `r_u>0`.
+
+The disjointness proof is the same as in Corollary 40.118.  If the same
+complement `C` lies in the fibers for `[M]` and `[N]`, then for nonzero
+scalars `c,d`,
+
+```text
+L_C == c L_D M B_0^{-1}
+     == d L_D N B_0^{-1}        mod Q_0.
+```
+
+Multiplying by the invertible class `B_0 L_D^{-1}` gives
+
+```text
+cM == dN        mod Q_0.
+```
+
+Since
+
+```text
+deg(cM-dN)<r_u=e_0-t+u<=e_0=deg Q_0,
+```
+
+the congruence is a polynomial identity, so `[M]=[N]`.  Hence the union is
+disjoint.  Each fiber is a subset of all `(j+u)`-subsets of `D`, proving the
+displayed bound.
+
+## Corollary 40.123: In-Domain Multiplier Roots Descend Exchange Depth
+
+Keep the notation of Corollary 40.122, and assume
+
+```text
+1<=u<=t,        r_u>1.
+```
+
+Let `[M] in P_u^x(Q_0)` have an in-domain root factor
+
+```text
+[M]=[(X-beta)N],        beta in D,
+```
+
+with `N in F[X]_<r_u-1`.  Then `[N] in P_{u-1}^x(Q_0)`, and deletion of the
+root gives a bijection
+
+```text
+{ C in Comp_{u,[M]}(Q_0,B_0) : beta in C }
+  <-> { C_0 in Comp_{u-1,[N]}(Q_0,B_0) : beta notin C_0 }.       (BaseRootDrop)
+```
+
+Thus every landing whose multiplier root is an actual complement point is not
+a new exchange-`u` primitive family after that root is charged: it descends to
+the exchange-`u-1` complement ledger for the quotient multiplier.  Iterating,
+all split in-domain complement-root factors descend until either no such root
+remains or the core depth `u=0` is reached.
+
+### Proof
+
+Since `M` is coprime to `Q_0` and `beta in D`, both `X-beta` and `N` are
+coprime to `Q_0`; hence `[N] in P_{u-1}^x(Q_0)`.  Also
+
+```text
+deg N < r_u-1 = e_0-t+u-1 = r_{u-1}.
+```
+
+If `C in Comp_{u,[M]}` and `beta in C`, write
+
+```text
+C=C_0 union {beta}.
+```
+
+Then `L_C=(X-beta)L_{C_0}` and the defining congruence is
+
+```text
+(X-beta)L_{C_0} in F L_D (X-beta)N B_0^{-1}        mod Q_0.
+```
+
+Because `Q_0` is root-free on `D`, the class of `X-beta` is invertible
+modulo `Q_0`; cancelling it gives `C_0 in Comp_{u-1,[N]}` and
+`beta notin C_0`.
+
+Conversely, if `C_0 in Comp_{u-1,[N]}` and `beta notin C_0`, multiply the
+defining congruence by `X-beta`.  Then `C=C_0 union {beta}` has size `j+u`,
+contains `beta`, and lies in `Comp_{u,[M]}`.  The two operations are inverse.
+
 ## Corollary 41: The Global Common-Image Ledger Is Endpoint-Only
 
 Let `GCI` be the set of monic degree-`c` split core locators `L` for which
@@ -16338,6 +16482,11 @@ most `binom(n,j+1)`, with the descended domain-anchor core fiber bounded by
 Corollary 40.121 turns that unweighted ledger into a coefficient-incidence
 bound, proving the fixed first-unpacked base class is q-free on the
 one-exchange support-wise noncontained side.
+Corollary 40.122 extends the unweighted complement disjointness to every
+exact exchange depth `u<=t`, giving a fixed-class bound `binom(n,j+u)`.
+Corollary 40.123 shows actual in-domain roots of the multiplier that lie in
+the complement descend from exchange depth `u` to `u-1` after deleting the
+root.
 Corollary 41 packages the common-image branch into endpoint-type ledgers; it
 does not prove the endpoint rank hypotheses needed for the displayed
 `(q+2)binom(n,b)` bound. Corollary 42 packages the globally full core ledger

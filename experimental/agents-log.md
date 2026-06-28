@@ -30,6 +30,22 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 higher base complement ledgers are disjoint
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_boundary_off_external_anchor_normal_form.md`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / PROOF-PROGRAM.
+- **What is being added:** Extends the fixed-class complement ledger to every
+  exchange depth `u<=t`: the projective multiplier fibers are disjoint and
+  have total size at most `binom(n,j+u)`.
+- **How it is useful:** Removes unweighted multiplier multiplicity at all
+  fixed exact exchange depths, and proves in-domain complement roots descend
+  from exchange depth `u` to `u-1` after deleting the root.
+- **What to do next:** Analyze multiplier pieces with no root in the
+  complement, especially external-root and irreducible bounded-degree factors.
+
 ### 2026-06-28 - M1 first-unpacked base one-exchange coefficients are q-free
 
 - **Agent/model:** AllenGrahamHart / Codex audit.
