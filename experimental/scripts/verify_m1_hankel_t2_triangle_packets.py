@@ -6728,6 +6728,10 @@ def analyze_case(
                                             residual_candidate_set = set(
                                                 residual_candidates
                                             )
+                                            candidate_good_pair_counts: dict[
+                                                tuple[int, ...],
+                                                int,
+                                            ] = {}
                                             for candidate in residual_candidates:
                                                 candidate_locator = cached_locator(
                                                     candidate
@@ -6882,6 +6886,9 @@ def analyze_case(
                                                         candidate_good_pairs,
                                                     )
                                                 )
+                                                candidate_good_pair_counts[
+                                                    candidate
+                                                ] = candidate_good_pairs
                                                 nonbase_candidate_roots = (
                                                     residual_size
                                                     - candidate_base_occupancy
@@ -7359,6 +7366,55 @@ def analyze_case(
                                                         "image-count-failed",
                                                         split_image_pair_count=(
                                                             split_image_pair_count
+                                                        ),
+                                                        owned_pair_count=len(
+                                                            pair_owner
+                                                        ),
+                                                    )
+                                                )
+                                            image_fiber_counts = Counter(
+                                                pair_owner.values()
+                                            )
+                                            if (
+                                                dict(image_fiber_counts)
+                                                != candidate_good_pair_counts
+                                            ):
+                                                raise AssertionError(
+                                                    projective_local_error(
+                                                        "good-pair-image-"
+                                                        "fiber-count-failed",
+                                                        image_fibers={
+                                                            str(candidate): count
+                                                            for (
+                                                                candidate,
+                                                                count,
+                                                            ) in sorted(
+                                                                image_fiber_counts.items()
+                                                            )
+                                                        },
+                                                        candidate_good_pairs={
+                                                            str(candidate): count
+                                                            for (
+                                                                candidate,
+                                                                count,
+                                                            ) in sorted(
+                                                                candidate_good_pair_counts.items()
+                                                            )
+                                                        },
+                                                    )
+                                                )
+                                            if (
+                                                sum(
+                                                    candidate_good_pair_counts.values()
+                                                )
+                                                != len(pair_owner)
+                                            ):
+                                                raise AssertionError(
+                                                    projective_local_error(
+                                                        "good-pair-image-"
+                                                        "weighted-count-failed",
+                                                        good_pair_sum=sum(
+                                                            candidate_good_pair_counts.values()
                                                         ),
                                                         owned_pair_count=len(
                                                             pair_owner

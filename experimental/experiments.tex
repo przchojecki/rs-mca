@@ -4961,6 +4961,15 @@ More precisely, if \(L_{x,y}\) is the interpolated locator for a good pair, then
 \]
 So the \(b=2\) fixed-anchor fiber is exactly a split-locator image of
 two-root interpolation.
+Moreover the fiber over a support \(R\) is exactly the set of good pairs inside
+\(R\).  If \(I\) is the set of good pairs whose interpolated locator splits,
+then
+\[
+  |I|=\sum_{R\in F(U,W)}g(R),
+  \qquad
+  |F(U,W)|=\sum_{e\in I}{1\over g(\operatorname{roots}_{D'}(L_e))}.
+\]
+This is the exact weighted form of the good-pair ledger.
 Equivalently, for each available root \(x\) the bad-slice test is the failure
 of full column rank for the absorbed-anchor matrix
 \[

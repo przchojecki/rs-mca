@@ -3728,6 +3728,52 @@ appears in the image, and that the image-pair count agrees with the owned
 good-pair incidence count.  The current largest `F_7^*` scan still has no
 `b(U,W)=2` produced anchor.
 
+## Good-Pair Image Fibers Are Internal Good-Pair Sets
+
+The split-image parametrization has an exact fiber count.  Let
+
+```text
+I = { e good : L_e splits as ell_R for some R subset D', |R|=q }.
+```
+
+The map
+
+```text
+pi:I -> F(U,W),        pi(e)=roots_{D'}(L_e)
+```
+
+is surjective by (PF2-good-image).  Its fiber over `R` is exactly the set of
+good pairs contained in `R`:
+
+```text
+pi^{-1}(R) = { e subset R : e is good }.         (PF2-good-fibers)
+```
+
+One inclusion follows from construction: if `e subset R`, then interpolation
+reconstructs `ell_R`, so `pi(e)=R`.  Conversely, if `pi(e)=R`, then `L_e`
+vanishes at both roots of `e`, and `roots_{D'}(L_e)=R`, so `e subset R`.
+Thus
+
+```text
+|I| = sum_{R in F(U,W)} g(R).
+```
+
+Equivalently,
+
+```text
+|F(U,W)| = sum_{e in I} 1/g(pi(e)).
+```
+
+This is the exact weighted form behind the good-pair packing bound.  It
+identifies the remaining `b=2` ledger as a split-good-pair image with fiber
+weights given by the internal cross-fiber good-pair counts of the split
+support.
+
+The verifier counts the good pairs inside every residual candidate, counts the
+preimages of each candidate under the split-good-pair image, and checks that
+the two counts agree support by support.  The current largest `F_7^*` scan
+still has no `b(U,W)=2` produced anchor.
+
 ## Bad Root Slices Are Absorbed-Anchor Rank Defects
 
 The preceding bad-root condition has an equivalent absorbed-anchor form.  Fix

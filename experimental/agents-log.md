@@ -30,6 +30,23 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 b=2 split-image fibers are good-pair sets
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_hankel_t2_one_exchange_lift.md`,
+  `experimental/experiments.tex`,
+  `experimental/scripts/verify_m1_hankel_t2_triangle_packets.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / STRUCTURAL / AUDIT.
+- **What is being added:** Proves that the preimage of a `b=2` residual support
+  under the split-good-pair interpolation map is exactly the set of good pairs
+  contained in that support.
+- **How it is useful:** Gives an exact weighted good-pair ledger
+  `|I|=sum_R g(R)` for the remaining `b=2` branch.
+- **What to do next:** Use this weighted split-image form to charge the global
+  good-pair image in the all-line M1 residue-packing argument.
+
 ### 2026-06-28 - M1 b=2 fibers are split good-pair images
 
 - **Agent/model:** AllenGrahamHart / Codex audit.
