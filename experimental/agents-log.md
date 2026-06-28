@@ -30,6 +30,23 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 cutoff tail aliases are upper defect-quotient charts
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_boundary_off_external_anchor_normal_form.md`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / PROOF-PROGRAM.
+- **What is being added:** Identifies every nontrivial cutoff alias over a
+  minimal representative as an upper defect-quotient chart
+  `Q'=rem_{Q_s}(L_D R B_s^{-1})+Q_sH`, with projective parameter dimension
+  `2E-n+1`.
+- **How it is useful:** Turns the remaining high-minimal-degree tail from a
+  cardinality budget into an explicit algebraic object that active incidence
+  or aperiodic packing arguments can attack.
+- **What to do next:** Intersect these upper tail charts with the active M1
+  Hankel/residue-line incidence conditions.
+
 ### 2026-06-28 - M1 one-coefficient cutoffs have only tail-alias loss
 
 - **Agent/model:** AllenGrahamHart / Codex audit.

@@ -16117,6 +16117,79 @@ minimal representative `s`.  Applying Corollary 40.162 gives
 Because `S_low` and `S_tail` partition `S_min`, and
 `|S_min|=|Ev(A_{<=E})|`, this is exactly (OneCoeffTailLedger).
 
+## Corollary 40.164: Cutoff Tail Aliases Are Upper Defect-Quotient Charts
+
+Keep the setup of Corollary 40.161, and fix a minimal representative
+
+```text
+s=(Q_s,B_s,w_s) in S_min
+```
+
+with `e_s=deg Q_s`.  Every nontrivial alias in its cutoff fiber has degree
+`e'` satisfying
+
+```text
+e_s<=e'<=E,        e_s+e'>n,
+```
+
+and is obtained from a nonzero defect
+
+```text
+R in F[X]_<e_s+e'-n
+```
+
+and a quotient polynomial
+
+```text
+H in F[X]_{<=e'-e_s}
+```
+
+by the upper chart
+
+```text
+A_R=rem_{Q_s}(L_D R B_s^{-1}),
+Q'=A_R+Q_s H,
+B'=(B_sQ'-L_D R)/Q_s,                              (TailUpperChart)
+```
+
+with the retained degree, root-free, and primitive conditions of Corollary
+40.154; the target `w'` is then uniquely forced on `D` by Corollary 40.156.
+
+Consequently, for fixed `s`, all nontrivial aliases of degree at most `E`
+are contained in the projective parameter space
+
+```text
+P( F[X]_<e_s+E-n  x  F[X]_{<=E-e_s} ),
+```
+
+whose dimension is
+
+```text
+(e_s+E-n)+(E-e_s+1)=2E-n+1.                         (TailChartDim)
+```
+
+If `e_s+E<=n`, this parameter space is empty.  Thus the high-minimal-degree
+tail isolated in Corollary 40.162 is precisely an upper defect-quotient chart,
+not a new unrestricted primitive-class family.
+
+### Proof
+
+Minimality of `s` in its divided evaluation fiber rules out aliases of degree
+`<e_s`.  Hence every nontrivial cutoff alias has `e_s<=e'<=E`.  Corollary
+40.151 gives `e_s+e'>n`, and Corollary 40.154 gives exactly the upper chart
+with the displayed degree bounds on `R` and `H`.  Corollary 40.156 determines
+the target component uniquely once `(Q',B')` is fixed.
+
+For the uniform projective container, enlarge the bounds to
+
+```text
+deg R<e_s+E-n,        deg H<=E-e_s.
+```
+
+The displayed dimension is the sum of the dimensions of those two polynomial
+spaces.  If `e_s+E<=n`, then no nonzero defect space remains, so no
+nontrivial alias exists.
+
 ## Corollary 41: The Global Common-Image Ledger Is Endpoint-Only
 
 Let `GCI` be the set of monic degree-`c` split core locators `L` for which
@@ -19243,6 +19316,8 @@ fibers can occur only over minimal representatives in the high-degree tail
 `e_s>n-E`.
 Corollary 40.163 combines this with the one-coefficient range: for
 `E<=t-j`, the only possible multiplicity loss is the finite-domain alias tail.
+Corollary 40.164 identifies each tail fiber with an explicit upper
+defect-quotient chart of projective dimension `2E-n+1`.
 Corollary 41 packages the common-image branch into endpoint-type ledgers; it
 does not prove the endpoint rank hypotheses needed for the displayed
 `(q+2)binom(n,b)` bound. Corollary 42 packages the globally full core ledger

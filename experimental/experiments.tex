@@ -3490,6 +3490,19 @@ In the whole one-coefficient cutoff range \(1\le E\le t-j\), this becomes
 \]
 Thus above the half-domain threshold the only remaining loss in this range is
 finite-domain aliasing over high-minimal-degree representatives.
+For a fixed minimal representative \(s=(Q_s,B_s,w_s)\), that tail is exactly
+an upper defect-quotient chart.  Every nontrivial cutoff alias of degree
+\(e'\) has \(e_s\le e'\le E\), \(e_s+e'>n\), and is obtained from
+\[
+  R\in\F[X]_{<e_s+e'-n},\qquad H\in\F[X]_{\le e'-e_s},
+\]
+by
+\[
+  Q'=\operatorname{rem}_{Q_s}(L_D R B_s^{-1})+Q_sH,\qquad
+  B'=(B_sQ'-L_D R)/Q_s,
+\]
+with the target then forced on \(D\).  Hence all aliases over \(s\) lie in a
+projective parameter space of dimension \(2E-n+1\).
 The common-core and two-denominator formulas persist verbatim after this
 root-free replacement.  With \(C=\gcd(D:D\in M_{\min})\), \(\gamma=\deg C\),
 and \(E_D=D/C\),
