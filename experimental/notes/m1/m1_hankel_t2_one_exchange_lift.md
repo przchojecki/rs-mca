@@ -2621,6 +2621,43 @@ root-slice ranks.  In the largest `F_7^*` audit, all `259200` absorbed-anchor
 matrices tested have full column rank; the productive subaudit has the same
 counts.
 
+## Absorbed-Rank Defects Give a Residual-Fiber Closure Bound
+
+The absorbed-rank formulation gives a direct fixed-anchor closure criterion.
+Let
+
+```text
+F(U,W) = { R subset D' : |R|=q and ell_R in K(U,W) },
+N      = |D'|,
+Z_1(U,W)= { x in D' : rank A_x(U,W) < q-1 },
+z      = |Z_1(U,W)|.
+```
+
+Then, for `q>=2`,
+
+```text
+|F(U,W)|
+ <= floor( ((N-z) + z binom(N-1,q-1)) / q ).     (ARC)
+```
+
+Proof: count incidences `(R,x)` with `R in F(U,W)` and `x in R`.  There are
+`q |F(U,W)|` such incidences.  If `x notin Z_1(U,W)`, the previous section
+shows that `x` cannot lie in two distinct residual supports, so all good roots
+contribute at most `N-z` incidences.  If `x in Z_1(U,W)`, use only the trivial
+bound that `x` lies in at most `binom(N-1,q-1)` squarefree `q`-subsets of
+`D'`.  Dividing by `q` gives (ARC).
+
+Thus the residual-anchor problem is now split into two explicit pieces:
+packing over full-rank absorbed roots, and a weighted count of absorbed-rank
+defect roots.  If `z=0`, (ARC) reduces to the disjoint packing bound
+`floor(N/q)`.  If `z` is small after quotient-periodic and fixed-root charges,
+then residual completions remain polynomially controlled.
+
+The verifier asserts (ARC) for every produced deficit anchor with `q>=2`.
+In the largest `F_7^*` audit, it checks the same `51840` residual fibers and
+`259200` absorbed-root tests; all have `z=0`, so the audited bound is the
+full-rank disjoint-packing case.  The productive subaudit has the same counts.
+
 ## Deficit-Weighted Core Closure Criterion
 
 The preceding local packing theorem removes the artificial cutoff

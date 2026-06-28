@@ -162,6 +162,8 @@ root-slice charge: shared residual roots must be roots of a nonzero lower
 degree direction in this divisible short kernel.
 Equivalently, the bad-root test is checked as a full-column-rank test for the
 absorbed-anchor filtered Hankel matrix.
+The resulting absorbed-rank incidence bound is asserted for every enumerated
+residual fiber.
 For each fixed collapsed anchor base, it audits the sparse-representation
 fiber: below the boundary the mode support is unique, while at the boundary
 distinct supports are disjoint and obey the matching bound.
@@ -3957,6 +3959,60 @@ def analyze_case(
                                                         sorted(
                                                             root_slice_bad_roots
                                                         )
+                                                    ),
+                                                }
+                                            )
+                                    if residual_size > 1:
+                                        absorbed_rank_bound = (
+                                            (
+                                                len(available_roots)
+                                                - len(root_slice_bad_roots)
+                                            )
+                                            + len(root_slice_bad_roots)
+                                            * math.comb(
+                                                len(available_roots) - 1,
+                                                residual_size - 1,
+                                            )
+                                        ) // residual_size
+                                        if (
+                                            len(residual_candidates)
+                                            > absorbed_rank_bound
+                                        ):
+                                            raise AssertionError(
+                                                {
+                                                    "kind": (
+                                                        "productive-"
+                                                        if productive
+                                                        else ""
+                                                    )
+                                                    + "marked-core-deficit-"
+                                                    "anchor-absorbed-rank-"
+                                                    "bound-failed",
+                                                    "p": p,
+                                                    "k": k,
+                                                    "syndrome": list(syn),
+                                                    "fixed_roots": list(
+                                                        fixed_roots
+                                                    ),
+                                                    "unmarked_core": list(
+                                                        unmarked_core
+                                                    ),
+                                                    "marked_count": marked_count,
+                                                    "core_deficit": core_deficit,
+                                                    "anchor": list(anchor),
+                                                    "available_roots": list(
+                                                        available_roots
+                                                    ),
+                                                    "root_slice_bad_roots": (
+                                                        sorted(
+                                                            root_slice_bad_roots
+                                                        )
+                                                    ),
+                                                    "candidate_count": len(
+                                                        residual_candidates
+                                                    ),
+                                                    "absorbed_rank_bound": (
+                                                        absorbed_rank_bound
                                                     ),
                                                 }
                                             )

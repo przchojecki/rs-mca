@@ -30,6 +30,23 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 absorbed-rank defects bound residual fibers
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_hankel_t2_one_exchange_lift.md`,
+  `experimental/scripts/verify_m1_hankel_t2_triangle_packets.py`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / STRUCTURAL / EXACT FINITE AUDIT.
+- **What is being added:** Proves a fixed-anchor closure bound in terms of
+  absorbed-rank defect roots:
+  `|F(U,W)| <= floor(((N-z)+z binom(N-1,q-1))/q)`.
+- **How it is useful:** Converts the residual-fiber problem into a packing
+  term plus a weighted absorbed-rank-defect ledger.  If absorbed defects are
+  absent or polynomially charged, residual completions are controlled.
+- **What to do next:** Bound the total absorbed-rank defect ledger across
+  anchors after quotient-periodic, fixed-root, and aperiodic charges.
+
 ### 2026-06-28 - M1 bad residual root slices are absorbed-rank defects
 
 - **Agent/model:** AllenGrahamHart / Codex audit.

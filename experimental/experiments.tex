@@ -4591,6 +4591,21 @@ bound \(\lfloor |H\setminus(U\cup W)|/q\rfloor\).  The verifier checks this
 absorbed-anchor identity while computing the root-slice ranks; in the
 largest \(F_7^*\) audit all \(259200\) absorbed matrices have full column
 rank.
+Let \(Z_1(U,W)\) be the absorbed roots where this rank drops, \(z=|Z_1|\),
+and \(N=|H\setminus(U\cup W)|\).  Counting root incidences gives the
+fixed-anchor closure bound
+\[
+  |F(U,W)|
+  \le
+  \left\lfloor
+    { (N-z)+z\binom{N-1}{q-1} \over q}
+  \right\rfloor .
+\]
+Good roots contribute to at most one residual support; bad roots are charged
+by the trivial number of \(q\)-subsets through that root.  The verifier asserts
+this absorbed-rank bound for every produced anchor with \(q\ge2\); in the
+largest \(F_7^*\) audit all absorbed-root tests have \(z=0\), so the checked
+case is the disjoint-packing bound.
 This gives the all-frontier closure criterion.  Let
 \(\mathcal C_m(s)\) be all split-support certificates of mode size \(m\), and
 define
