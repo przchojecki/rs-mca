@@ -344,8 +344,11 @@ Keep entries concise and link to the relevant files.
   refined mixed-ladder closure now records the sharper
   consumable upper ledger: after pre-half residuals, the non-prehalf part is
   charged by `OverlapSep_hw + FamilyBudget_hw + 2h`, where
-  `OverlapSep_hw=min(HybridOverlap_hw,UnionRankOverlap_hw)` and the final `2h`
-  is the bottom finite frontier set `E_{r_0,>b} union Theta_{r_0,>b}`.  This is
+  `OverlapSep_hw=min(SideHybridOverlap_hw,UnionRankOverlap_hw)`;
+  `SideHybridOverlap_hw` is the four one-sided hybrid sum, omitting the
+  endpoint-pair term because it is contained in the one-sided overlap union,
+  and the final `2h` is the bottom finite frontier set
+  `E_{r_0,>b} union Theta_{r_0,>b}`.  This is
   an upper ledger, since the family budget is paid after overlap charges and
   may shrink under sharper disjoint accounting.  The accounting is now split
   from raw denominator counting: the unlabelled half-window tail is still

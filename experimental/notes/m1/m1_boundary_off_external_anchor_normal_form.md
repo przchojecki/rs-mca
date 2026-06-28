@@ -6195,11 +6195,23 @@ Keep the notation of Corollaries 40.30 and 40.32.  If `R_hw` is nonempty, let
 `UnionRankOverlap_hw` be the right-hand side of (UnionRankOverlap), and put
 
 ```text
-OverlapSep_hw = min(HybridOverlap_hw, UnionRankOverlap_hw).
+SideHybridOverlap_hw
+ = min( Phi(h-ell_u),  Phi(d_uv-eps_u) )
+ + min( Phi(h-ell_v),  Phi(d_uv-eps_v) )
+ + min( Phi(h-ell_uS), Phi(d_S-eps_uS) )
+ + min( Phi(h-ell_vS), Phi(d_S-eps_vS) ).
 ```
 
-If `R_hw` is empty, set `OverlapSep_hw=0`.  Then the proof-separation
-half-window cutoff charge in Corollary 40.30 can be replaced by
+Inactive one-sided overlap systems contribute zero, equivalently their
+corresponding summands are omitted.  Define
+
+```text
+OverlapSep_hw = min(SideHybridOverlap_hw, UnionRankOverlap_hw).
+```
+
+If `R_hw` is empty, set both `SideHybridOverlap_hw` and `OverlapSep_hw` to
+zero.  Then the proof-separation half-window cutoff charge in Corollary 40.30
+can be replaced by
 
 ```text
 OverlapSep_hw + FamilyBudget_hw,
@@ -6218,11 +6230,15 @@ closure.
 
 ### Proof
 
-Corollary 40.29 bounds the cutoff-overlap union by `HybridOverlap_hw`, while
-Corollary 40.32 bounds the same union by `UnionRankOverlap_hw`.  Therefore the
-same union is bounded by their minimum, `OverlapSep_hw`.  Substitute this
-smaller separation charge for `HybridOverlap_hw` in the proof of Corollary
-40.30.  The raw-count statement is exactly Corollary 40.31.
+Corollary 40.32 shows that the endpoint-pair overlap is contained in each of
+the four one-sided overlap systems.  Hence charging the four one-sided systems
+already charges the endpoint-pair system.  Corollary 40.29, applied only to
+those four one-sided systems, bounds their union by `SideHybridOverlap_hw`.
+Corollary 40.32 also bounds the same union by `UnionRankOverlap_hw`.  Therefore
+the union is bounded by their minimum, `OverlapSep_hw`.
+
+Substitute this smaller separation charge for `HybridOverlap_hw` in the proof
+of Corollary 40.30.  The raw-count statement is exactly Corollary 40.31.
 
 ## Corollary 41: The Global Common-Image Ledger Is Endpoint-Only
 
@@ -8936,8 +8952,9 @@ accounting; it does not improve the raw `FamilyBudget_hw` count. Corollary
 40.32 gives an inclusion-exclusion rank budget for the cutoff-overlap union;
 it does not prove the required endpoint-row ranks are generically full.
 Corollary 40.33 substitutes the smaller overlap-union separation charge into
-the mixed-ladder upper ledger; it does not change the raw tail count or solve
-the pre-half residuals.
+the mixed-ladder upper ledger and removes the redundant endpoint-pair summand
+from the hybrid side; it does not change the raw tail count or solve the
+pre-half residuals.
 Corollary 41 packages the common-image branch into endpoint-type ledgers; it
 does not prove the endpoint rank hypotheses needed for the displayed
 `(q+2)binom(n,b)` bound. Corollary 42 packages the globally full core ledger

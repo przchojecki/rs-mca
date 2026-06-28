@@ -2187,8 +2187,11 @@ families, the current consumable upper ledger is
   \mathrm{OverlapSep}_{hw}+\mathrm{FamilyBudget}_{hw}+2h,
   \qquad
   \mathrm{OverlapSep}_{hw}
-  =\min\{\mathrm{HybridOverlap}_{hw},\mathrm{UnionRankOverlap}_{hw}\}.
+  =\min\{\mathrm{SideHybridOverlap}_{hw},\mathrm{UnionRankOverlap}_{hw}\}.
 \]
+Here \(\mathrm{SideHybridOverlap}_{hw}\) is the four one-sided hybrid overlap
+sum: the endpoint-pair residual is omitted as a separate hybrid summand because
+it is contained in the one-sided overlap union.
 This is an upper ledger rather than a sharp disjoint count: the family budget
 is paid after the overlap charges and may shrink in a finer accounting.
 For raw unlabelled denominator-class counting, however, the half-window tail is
