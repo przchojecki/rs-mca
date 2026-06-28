@@ -4606,6 +4606,18 @@ by the trivial number of \(q\)-subsets through that root.  The verifier asserts
 this absorbed-rank bound for every produced anchor with \(q\ge2\); in the
 largest \(F_7^*\) audit all absorbed-root tests have \(z=0\), so the checked
 case is the disjoint-packing bound.
+The absorbed bad-root set also has a finite/persistent dichotomy.  Since
+\[
+  h^{W,x}_i=h^W_{i+1}-x h^W_i,
+\]
+the matrix \(A_x(U,W)\) is an affine \(q\times(q-1)\) pencil in \(x\).  If
+some maximal minor is not identically zero, then it has degree at most
+\(q-1\), so \(|Z_1(U,W)|\le q-1\).  Otherwise every maximal minor vanishes
+identically, equivalently the pencil has rank \(<q-1\) over \(F(x)\); this is
+the persistent absorbed-rank obstruction.  Thus nonpersistent anchors are
+closed by the absorbed-rank bound with \(z\le q-1\), and the only remaining
+case is a named persistent low-rank affine Hankel pencil.  The current
+\(F_7^*\) audit sees the finite branch with \(z=0\) for every produced anchor.
 This gives the all-frontier closure criterion.  Let
 \(\mathcal C_m(s)\) be all split-support certificates of mode size \(m\), and
 define

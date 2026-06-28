@@ -30,6 +30,22 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 absorbed-rank defects are finite or persistent
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_hankel_t2_one_exchange_lift.md`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / STRUCTURAL.
+- **What is being added:** Proves that for each fixed deficit anchor, the
+  absorbed bad-root set either has size at most `q-1`, or all maximal minors
+  of the affine absorbed Hankel pencil vanish identically.
+- **How it is useful:** Converts the absorbed-rank defect ledger into a finite
+  exceptional-root term plus one named persistent low-rank pencil obstruction.
+  Nonpersistent anchors are therefore polynomially packing-bounded.
+- **What to do next:** Classify or charge persistent absorbed-rank pencils to
+  quotient-periodic, fixed-root, tangent, or aperiodic M1 ledgers.
+
 ### 2026-06-28 - M1 absorbed-rank defects bound residual fibers
 
 - **Agent/model:** AllenGrahamHart / Codex audit.

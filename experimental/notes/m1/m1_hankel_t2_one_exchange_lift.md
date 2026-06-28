@@ -2658,6 +2658,54 @@ In the largest `F_7^*` audit, it checks the same `51840` residual fibers and
 `259200` absorbed-root tests; all have `z=0`, so the audited bound is the
 full-rank disjoint-packing case.  The productive subaudit has the same counts.
 
+## Absorbed-Rank Defects Are Finite or Persistent
+
+For a fixed deficit anchor `(U,W)`, the absorbed matrix is an affine pencil in
+the absorbed root.  Indeed, with `E=ell_W`,
+
+```text
+h^{W,x}_i = h^W_{i+1} - x h^W_i,
+```
+and hence
+
+```text
+A_x(U,W) = B(U,W) - x C(U,W)
+```
+
+is a `q x (q-1)` matrix pencil whose entries are affine functions of `x`.
+The bad-root condition `rank A_x(U,W)<q-1` is the simultaneous vanishing of
+all `(q-1) x (q-1)` minors of this pencil.  Each such minor is a polynomial in
+`x` of degree at most `q-1`.
+
+Therefore exactly one of the following holds.
+
+1. Some maximal minor is not the zero polynomial.  Then
+
+```text
+|Z_1(U,W)| <= q-1.                               (AFP)
+```
+
+2. Every maximal minor vanishes identically.  Equivalently, the pencil
+`A_x(U,W)` has rank `<q-1` over the rational function field `F(x)`.  This is
+a persistent absorbed-rank defect.
+
+Combining (AFP) with (ARC), every nonpersistent fixed anchor satisfies
+
+```text
+|F(U,W)|
+ <= floor( ((N-(q-1)) + (q-1) binom(N-1,q-1)) / q ).
+```
+
+Thus the remaining residual-anchor obstruction has a sharper form: either
+each anchor has only `q-1` bad absorbed roots and is polynomially
+packing-bounded, or the anchor carries a persistent low-rank affine Hankel
+pencil.  The latter is now the named object to classify or charge to
+quotient-periodic, fixed-root, tangent, or aperiodic ledgers.
+
+The current verifier data land in the finite branch with room to spare: in
+the largest `F_7^*` audit, every produced anchor has `|Z_1(U,W)|=0`, hence no
+persistent absorbed-rank candidate is seen.
+
 ## Deficit-Weighted Core Closure Criterion
 
 The preceding local packing theorem removes the artificial cutoff
