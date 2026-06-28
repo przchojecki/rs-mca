@@ -30,6 +30,22 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 low-degree base twists are injective
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_boundary_off_external_anchor_normal_form.md`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / PROOF-PROGRAM.
+- **What is being added:** Proves that for `1<=h<=e_0`, the map
+  `[H] |-> [B_0 H^{-1} mod Q_0]` is injective on projective classes
+  `[H] in P(F[X]_<h)` coprime to `Q_0`.
+- **How it is useful:** Counts the moving base twists from root-free
+  multiplier factors by actual low-degree factor classes; in particular,
+  distinct linear external anchors give distinct twists when `e_0>=2`.
+- **What to do next:** Use this injective twist ledger to bound the active
+  moving-class family or combine it with quotient-periodic/aperiodic charges.
+
 ### 2026-06-28 - M1 root-free multiplier factors are base twists
 
 - **Agent/model:** AllenGrahamHart / Codex audit.

@@ -13936,6 +13936,67 @@ fibers, proving (RootFreeFactorTwist).  The interpretation follows by taking
 `H` to be the product of the root-free residual factors after the domain-root
 stratification of Corollary 40.127.
 
+## Corollary 40.129: Low-Degree Base Twists Are Projectively Injective
+
+Keep the primitive base setup of Corollary 40.128, and let
+
+```text
+1<=h<=e_0.
+```
+
+For a projective class
+
+```text
+[H] in P(F[X]_<h),        gcd(H,Q_0)=1,
+```
+
+define
+
+```text
+tau([H])=[B_H],        B_H == B_0H^{-1}        mod Q_0,
+```
+
+where `B_H` is represented by its unique degree-`<e_0` residue.  Then `tau`
+is injective:
+
+```text
+tau([H_1])=tau([H_2])        implies        [H_1]=[H_2].          (TwistInjective)
+```
+
+Consequently the number of distinct primitive twists produced by root-free
+factors of degree `<h` is at most
+
+```text
+(q^h-1)/(q-1),
+```
+
+with any root restrictions, such as `H(alpha)!=0` for `alpha in D`, only
+removing classes.  In particular, when `e_0>=2`, distinct finite linear
+external factors `X-beta` give distinct primitive twists.  Thus the moving
+base-class ledger from Corollary 40.128 has no projective collapse below the
+denominator degree; it can be counted by the actual low-degree factor classes.
+
+### Proof
+
+Assume `tau([H_1])=tau([H_2])`.  Then for some `c in F^*`,
+
+```text
+B_0H_1^{-1} == c B_0H_2^{-1}        mod Q_0.
+```
+
+Since `B_0`, `H_1`, and `H_2` are invertible modulo `Q_0`, cancellation gives
+
+```text
+H_2 == c H_1        mod Q_0.
+```
+
+But `deg(H_2-cH_1)<h<=e_0=deg Q_0`, so this congruence is a polynomial
+identity.  Hence `[H_1]=[H_2]`.  The counting bound is the size of the full
+projective polynomial space `P(F[X]_<h)`, before deleting noninvertible or
+domain-root classes.  For linear external factors, equality of twists would
+force equality of the corresponding projective linear polynomials, hence the
+same finite root.
+
 ## Corollary 41: The Global Common-Image Ledger Is Endpoint-Only
 
 Let `GCI` be the set of monic degree-`c` split core locators `L` for which
@@ -16955,6 +17016,9 @@ Corollary 40.128 shows that the remaining root-free multiplier factors can be
 absorbed into a primitive base twist `B_H == B_0H^{-1} mod Q_0`; external and
 irreducible factors are therefore moving-class data, not same-class
 coefficient multiplicity.
+Corollary 40.129 proves that this twist map is projectively injective below
+degree `e_0`, so low-degree root-free residual factors can be counted by their
+actual projective factor classes.
 Corollary 41 packages the common-image branch into endpoint-type ledgers; it
 does not prove the endpoint rank hypotheses needed for the displayed
 `(q+2)binom(n,b)` bound. Corollary 42 packages the globally full core ledger
