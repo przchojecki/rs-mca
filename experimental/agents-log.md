@@ -381,7 +381,12 @@ Keep entries concise and link to the relevant files.
   Consequently the residual-tail criterion improves to
   `RFArrBudget_hw<=4RFPhi_D(L)` when `gamma+e_min>=h-L`; in particular
   `RFPhi_D(1)=1` and `RFPhi_D(2)=q+1-n`, giving ledgers `4+2h` and
-  `4(q+1-n)+2h` respectively.  Since
+  `4(q+1-n)+2h` respectively.  The common-core and two-denominator formulas
+  now also have root-free analogues: after factoring `C=gcd(M_min)`, replace
+  every `Phi(h-gamma-deg lcm(...))` term by
+  `RFPhi_D(h-gamma-deg lcm(...))`; in the two-denominator case this gives
+  `RFPhi_D(h-gamma-e_1)+RFPhi_D(h-gamma-e_2)-RFPhi_D(h-gamma-e_1-e_2)`.
+  Since
   the named overlap systems are subsets of the same `TailUnion_hw`, the
   separation charge `OverlapSep_hw`, defined as the minimum of
   `SideHybridOverlap_hw` and `UnionRankOverlap_hw`, is now a structural

@@ -2294,6 +2294,23 @@ For instance \(\mathrm{RFPhi}_D(1)=1\) and
 \(\mathrm{RFPhi}_D(2)=q+1-n\).  Thus residual dimension one gives
 \(4+2h\), while residual dimension two gives \(4(q+1-n)+2h\), and only
 \(8+2h\) on the full multiplicative domain \(n=q-1\).
+The common-core and two-denominator formulas persist verbatim after this
+root-free replacement.  With \(C=\gcd(D:D\in M_{\min})\), \(\gamma=\deg C\),
+and \(E_D=D/C\),
+\[
+  \mathrm{RFArrBudget}_{hw}
+  =\sum_{\emptyset\ne I\subseteq M_{\min}}(-1)^{|I|+1}
+     \mathrm{RFPhi}_D\!\left(
+       h-\gamma-\deg\operatorname{lcm}_{D\in I}E_D\right).
+\]
+If two minimal denominators survive, this becomes
+\[
+  \mathrm{RFArrBudget}_{hw}
+  =\mathrm{RFPhi}_D(h-\gamma-e_1)
+   +\mathrm{RFPhi}_D(h-\gamma-e_2)
+   -\mathrm{RFPhi}_D(h-\gamma-e_1-e_2),
+\]
+with the direct ledger again obtained by adding \(2h\).
 In the common two-denominator case \(M_{\min}=\{D_1,D_2\}\), writing
 \(C=\gcd(D_1,D_2)\), \(D_i=C E_i\), and \(e_i=\deg E_i\), the quotient
 denominators \(E_1,E_2\) are automatically coprime and

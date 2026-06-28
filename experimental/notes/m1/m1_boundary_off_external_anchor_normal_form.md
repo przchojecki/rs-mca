@@ -7024,6 +7024,88 @@ RFPhi_D(2)=((q^2-1)-n(q-1))/(q-1)=q+1-n.
 
 Substitution gives the two displayed ledgers.
 
+## Corollary 40.47: The Root-Free Tail Arrangement Has The Same Common-Core Formula
+
+Keep the notation of Corollaries 40.38 and 40.45, and assume `0 notin D`.
+Suppose `M_min` is nonempty.  Let
+
+```text
+C = gcd( D : D in M_min ),        gamma=deg C,
+E_D = D/C                         for D in M_min,
+h'=h-gamma.
+```
+
+If `h'<=0`, then `RFArrBudget_hw=0`.  If `h'>0`, multiplication by `C`
+identifies the root-free raw tail arrangement with the root-free quotient
+arrangement in the shorter window `h'`:
+
+```text
+RFArrBudget_hw =
+  sum_{nonempty I subset M_min} (-1)^{|I|+1}
+      RFPhi_D(h' - deg lcm(E_D : D in I)),          (RFCoreArrangement)
+```
+
+with the convention that `RFPhi_D(m)=0` for `m<=0`.
+
+In particular, if the quotient denominators `E_D` are pairwise coprime with
+degrees `e_D`, then
+
+```text
+RFArrBudget_hw =
+  sum_{nonempty I subset M_min} (-1)^{|I|+1}
+      RFPhi_D(h' - sum_{D in I} e_D).               (RFCoprimeCoreArrangement)
+```
+
+If exactly two distinct divisibility-minimal denominators survive,
+`M_min={D_1,D_2}`, and
+
+```text
+C=gcd(D_1,D_2),        E_i=D_i/C,        e_i=deg E_i,
+```
+
+then `gcd(E_1,E_2)=1` and
+
+```text
+RFArrBudget_hw =
+  RFPhi_D(h-gamma-e_1)
++ RFPhi_D(h-gamma-e_2)
+- RFPhi_D(h-gamma-e_1-e_2).                         (RFTwoDenominatorTail)
+```
+
+The corresponding direct mixed-ladder ledger is obtained by adding the bottom
+finite frontier charge `2h`.
+
+Thus the root-free replacement does not disturb the denominator-core
+invariants `gamma,e_D`: it only replaces each projective multiplier space
+`Phi(*)` in the raw common-core formula by the exact full-support count
+`RFPhi_D(*)`.
+
+### Proof
+
+Corollary 40.37 deletes dominated active denominators before the raw
+arrangement is computed.  The same deletion is valid in the root-free
+arrangement by the argument in Corollary 40.46, so we work with `M_min`.
+
+Each active primitive denominator is reciprocal-domain-pole-free.  Hence its
+common divisor `C`, every quotient denominator `E_D`, and every lcm appearing
+below are also reciprocal-domain-pole-free.  Divisibility by `D=C E_D` is
+equivalent to writing `P=CQ` with `E_D|Q`, and the degree condition is
+`deg Q<h-gamma`.  Since `C` has no zero on `D^vee`, the product `P=CQ` is
+root-free on `D^vee` if and only if `Q` is.
+
+Therefore multiplication by `C` gives a projective bijection from the
+root-free quotient divisor union in degree `<h'` to the original root-free
+divisor union in degree `<h`.  Intersections are governed by
+
+```text
+lcm(C E_D : D in I) = C * lcm(E_D : D in I),
+```
+
+so inclusion-exclusion gives (RFCoreArrangement).  Pairwise coprime quotient
+denominators turn the lcm degree into the sum of the quotient degrees, giving
+(RFCoprimeCoreArrangement).  The two-denominator case is the special case
+where the two quotients after factoring the gcd are automatically coprime.
+
 ## Corollary 41: The Global Common-Image Ledger Is Endpoint-Only
 
 Let `GCI` be the set of monic degree-`c` split core locators `L` for which
