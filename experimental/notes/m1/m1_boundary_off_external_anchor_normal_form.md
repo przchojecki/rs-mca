@@ -9854,6 +9854,19 @@ two quotient degrees clear the reserve.
 Corollary 40.43 removes any pre-half depth sum by charging the bottom
 root-free residual families once; it does not bound those bottom residual
 families.
+Corollary 40.44 packages the residual bottleneck as a two-route minimum; it
+does not estimate either the bottom longer-Pade family or the pre-half
+residual family.
+Corollary 40.45 replaces raw multiplier projective spaces by exact root-free
+multiplier counts in the multiplicative-domain case; it does not prove which
+primitive denominators occur or that the root-free arrangement clears the M1
+reserve.
+Corollary 40.46 improves the residual-tail criterion using those root-free
+counts; it still depends on proving the structural lower bound
+`gamma+e_min>=h-L`.
+Corollary 40.47 gives the root-free common-core and two-denominator formulas;
+it does not prove that a large common core exists, that only two minimal
+denominators survive, or that the quotient degrees are large enough.
 Corollary 41 packages the common-image branch into endpoint-type ledgers; it
 does not prove the endpoint rank hypotheses needed for the displayed
 `(q+2)binom(n,b)` bound. Corollary 42 packages the globally full core ledger

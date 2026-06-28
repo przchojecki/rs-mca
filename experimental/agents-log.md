@@ -386,6 +386,9 @@ Keep entries concise and link to the relevant files.
   every `Phi(h-gamma-deg lcm(...))` term by
   `RFPhi_D(h-gamma-deg lcm(...))`; in the two-denominator case this gives
   `RFPhi_D(h-gamma-e_1)+RFPhi_D(h-gamma-e_2)-RFPhi_D(h-gamma-e_1-e_2)`.
+  The non-claims section is updated through Corollary 40.47 to record that
+  these formulas do not by themselves bound the bottom/pre-half residuals or
+  force large common cores/quotient degrees.
   Since
   the named overlap systems are subsets of the same `TailUnion_hw`, the
   separation charge `OverlapSep_hw`, defined as the minimum of
