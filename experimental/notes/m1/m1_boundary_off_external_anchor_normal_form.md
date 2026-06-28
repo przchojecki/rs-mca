@@ -13484,6 +13484,73 @@ Conversely, if `C_0 in Comp_{u-1,[N]}` and `beta notin C_0`, multiply the
 defining congruence by `X-beta`.  Then `C=C_0 union {beta}` has size `j+u`,
 contains `beta`, and lies in `Comp_{u,[M]}`.  The two operations are inverse.
 
+## Corollary 40.124: Split Complement-Root Factors Descend Iteratively
+
+Keep the notation of Corollaries 40.122 and 40.123.  Let
+
+```text
+1<=s<=u<=t,
+```
+
+and let `R subset D` have size `s`, with locator
+
+```text
+L_R(X)=prod_{beta in R}(X-beta).
+```
+
+Suppose `[M] in P_u^x(Q_0)` factors projectively as
+
+```text
+[M]=[L_R N],
+```
+
+with `N in F[X]_<r_u-s`.  Then `[N] in P_{u-s}^x(Q_0)`, and deletion of the
+whole root set `R` gives a bijection
+
+```text
+{ C in Comp_{u,[M]}(Q_0,B_0) : R subset C }
+  <-> { C_0 in Comp_{u-s,[N]}(Q_0,B_0) : C_0 cap R=empty }.       (SplitRootDrop)
+```
+
+Consequently every landing whose multiplier contains split in-domain factors
+lying in the complement is obtained uniquely from a lower-depth complement
+fiber by adjoining those roots.  After iterating this descent, the genuinely
+new exchange-`u` pieces are represented by multiplier factors with no root in
+the current complement: roots in `D\C`, external roots, and irreducible
+bounded-degree factors.
+
+### Proof
+
+Since `[M] in P_u^x(Q_0)`, `gcd(M,Q_0)=1`.  Because all roots of `L_R` lie in
+`D` and `Q_0` is root-free on `D`, both `L_R` and `N` are coprime to `Q_0`.
+Also
+
+```text
+deg N < r_u-s = e_0-t+u-s = r_{u-s}.
+```
+
+Thus `[N] in P_{u-s}^x(Q_0)`.
+
+If `C in Comp_{u,[M]}` and `R subset C`, write
+
+```text
+C=C_0 disjoint_union R.
+```
+
+Then `|C_0|=j+u-s`, `C_0 cap R=empty`, and `L_C=L_{C_0}L_R`.  The defining
+condition for `Comp_{u,[M]}` is
+
+```text
+L_{C_0}L_R in F L_D L_R N B_0^{-1}        mod Q_0.
+```
+
+The class of `L_R` is invertible modulo `Q_0`, so cancellation gives
+`C_0 in Comp_{u-s,[N]}(Q_0,B_0)`.
+
+Conversely, if `C_0 in Comp_{u-s,[N]}` and `C_0 cap R=empty`, multiply the
+defining congruence by `L_R`.  Then `C=C_0 disjoint_union R` has size `j+u`,
+contains `R`, and lies in `Comp_{u,[M]}`.  The two constructions are inverse.
+
 ## Corollary 41: The Global Common-Image Ledger Is Endpoint-Only
 
 Let `GCI` be the set of monic degree-`c` split core locators `L` for which
@@ -16487,6 +16554,9 @@ exact exchange depth `u<=t`, giving a fixed-class bound `binom(n,j+u)`.
 Corollary 40.123 shows actual in-domain roots of the multiplier that lie in
 the complement descend from exchange depth `u` to `u-1` after deleting the
 root.
+Corollary 40.124 iterates this descent for any split in-domain divisor whose
+roots all lie in the complement, reducing it to a lower-depth fiber in one
+step.
 Corollary 41 packages the common-image branch into endpoint-type ledgers; it
 does not prove the endpoint rank hypotheses needed for the displayed
 `(q+2)binom(n,b)` bound. Corollary 42 packages the globally full core ledger

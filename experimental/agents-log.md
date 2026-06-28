@@ -30,6 +30,23 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 split complement roots descend iteratively
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_boundary_off_external_anchor_normal_form.md`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / PROOF-PROGRAM.
+- **What is being added:** Generalizes root descent: if
+  `[M]=[L_R N]` and all split roots `R subset D` lie in the complement, then
+  deleting `R` bijects the exchange-`u` fiber for `M` with the
+  exchange-`u-|R|` fiber for `N`.
+- **How it is useful:** Shows split complement-root factors are lower-depth
+  data, isolating roots outside the complement, external roots, and
+  irreducible bounded-degree factors as the genuinely new multiplier pieces.
+- **What to do next:** Analyze the non-descending multiplier factors or
+  connect them to active M1 quotient-periodic/tangent ledgers.
+
 ### 2026-06-28 - M1 higher base complement ledgers are disjoint
 
 - **Agent/model:** AllenGrahamHart / Codex audit.
