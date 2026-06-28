@@ -154,6 +154,9 @@ anchor locator gives a squarefree residual Hankel kernel whose monic
 annihilator is exactly the remaining marked locator.
 It enumerates the whole squarefree residual-kernel fiber for produced
 anchors and checks the standard bounded-dimension arrangement bound.
+It also checks that each filtered residual-kernel equation is exactly the
+divisible short Hankel equation obtained by multiplying back the anchor
+locator.
 For each fixed collapsed anchor base, it audits the sparse-representation
 fiber: below the boundary the mode support is unique, while at the boundary
 distinct supports are disjoint and obey the matching bound.
@@ -208,6 +211,21 @@ def hankel_apply(
 
 def shift_locator(locator: Sequence[int], shift: int) -> tuple[int, ...]:
     return (0,) * shift + tuple(locator)
+
+
+def multiply_polynomials_mod(
+    left: Sequence[int],
+    right: Sequence[int],
+    p: int,
+) -> tuple[int, ...]:
+    product = [0] * (len(left) + len(right) - 1)
+    for left_degree, left_coeff in enumerate(left):
+        for right_degree, right_coeff in enumerate(right):
+            product[left_degree + right_degree] = (
+                product[left_degree + right_degree]
+                + left_coeff * right_coeff
+            ) % p
+    return tuple(product)
 
 
 def root_difference_syndrome(
@@ -3524,9 +3542,10 @@ def analyze_case(
                                             ),
                                         }
                                     )
+                                anchor_locator = cached_locator(anchor)
                                 filtered_sequence = hankel_apply(
                                     syn,
-                                    cached_locator(anchor),
+                                    anchor_locator,
                                     2 * residual_size,
                                     p,
                                 )
@@ -3647,12 +3666,71 @@ def analyze_case(
                                         available_roots,
                                         residual_size,
                                     ):
-                                        if hankel_annihilates(
+                                        candidate_locator = cached_locator(
+                                            candidate
+                                        )
+                                        filtered_candidate_vector = hankel_apply(
                                             filtered_sequence,
-                                            cached_locator(candidate),
+                                            candidate_locator,
                                             residual_size,
                                             p,
+                                        )
+                                        product_locator = multiply_polynomials_mod(
+                                            anchor_locator,
+                                            candidate_locator,
+                                            p,
+                                        )
+                                        divisible_candidate_vector = hankel_apply(
+                                            syn,
+                                            product_locator,
+                                            residual_size,
+                                            p,
+                                        )
+                                        if (
+                                            filtered_candidate_vector
+                                            != divisible_candidate_vector
                                         ):
+                                            raise AssertionError(
+                                                {
+                                                    "kind": (
+                                                        "productive-"
+                                                        if productive
+                                                        else ""
+                                                    )
+                                                    + "marked-core-deficit-"
+                                                    "anchor-divisible-kernel-"
+                                                    "failed",
+                                                    "p": p,
+                                                    "k": k,
+                                                    "syndrome": list(syn),
+                                                    "fixed_roots": list(
+                                                        fixed_roots
+                                                    ),
+                                                    "unmarked_core": list(
+                                                        unmarked_core
+                                                    ),
+                                                    "marked_count": marked_count,
+                                                    "core_deficit": core_deficit,
+                                                    "anchor": list(anchor),
+                                                    "candidate": list(candidate),
+                                                    "filtered_vector": list(
+                                                        filtered_candidate_vector
+                                                    ),
+                                                    "divisible_vector": list(
+                                                        divisible_candidate_vector
+                                                    ),
+                                                    "anchor_locator": list(
+                                                        anchor_locator
+                                                    ),
+                                                    "candidate_locator": list(
+                                                        candidate_locator
+                                                    ),
+                                                    "product_locator": list(
+                                                        product_locator
+                                                    ),
+                                                }
+                                            )
+                                        if not any(filtered_candidate_vector):
                                             residual_candidates.append(
                                                 candidate
                                             )

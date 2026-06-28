@@ -4548,6 +4548,17 @@ hyperplanes.  The verifier enumerates these residual fibers: in the largest
 \(F_7^*\) audit it checks \(51840\) fibers carrying \(51840\) labels, maximum
 fiber size \(1\), maximum direction dimension \(0\), with the same productive
 counts.
+The filtered residual kernel is also exactly a divisible short Hankel kernel:
+if \(E=\ell_W\), \(h^W_i=\sum_a E_a s_{i+a}\), and \(\deg Q\le q\), then
+\[
+  H_{q,q}(h^W)Q=H_{q,q+d}(s)(EQ).
+\]
+Hence a positive-dimensional residual-kernel direction is a nonzero
+lower-degree \(Q\) whose product \(EQ\) is killed by the same \(q\) Hankel
+rows.  The verifier checks this identity for every squarefree residual
+candidate in the enumeration, so the high-dimensional residual-anchor
+obstruction is a fixed-divisor short-kernel ledger rather than an
+unstructured completion multiplicity.
 This gives the all-frontier closure criterion.  Let
 \(\mathcal C_m(s)\) be all split-support certificates of mode size \(m\), and
 define

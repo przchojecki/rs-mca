@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 residual kernels are divisible short kernels
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_hankel_t2_one_exchange_lift.md`,
+  `experimental/scripts/verify_m1_hankel_t2_triangle_packets.py`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / STRUCTURAL / EXACT FINITE AUDIT.
+- **What is being added:** Proves the convolution identity
+  `H_{q,q}(h^W)Q = H_{q,q+d}(s)(ell_W Q)`, identifying filtered residual
+  kernels with short Hankel kernels divisible by the anchor locator.
+- **How it is useful:** Converts positive-dimensional residual-kernel fibers
+  into fixed-divisor short-kernel directions, so any remaining high-rank
+  deficit-anchor obstruction can be charged to fixed-root, quotient-periodic,
+  or aperiodic ledgers rather than treated as new multiplicity.
+- **What to do next:** Classify or bound the fixed-divisor short-kernel
+  directions that survive the existing root-slice and quotient charges.
+
 ### 2026-06-28 - M1 residual kernel dimension bounds anchors
 
 - **Agent/model:** AllenGrahamHart / Codex audit.

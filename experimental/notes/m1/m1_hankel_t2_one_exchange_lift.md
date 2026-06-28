@@ -2473,6 +2473,47 @@ checks `51840` residual fibers carrying `51840` labels, with maximum fiber
 size `1` and maximum direction dimension `0`; the productive subaudit has the
 same counts.
 
+## Filtered Residual Kernels Are Divisible Short Kernels
+
+The high-dimensional case in (DKB) is not a new packet object.  It is exactly
+a fixed-divisor short Hankel-kernel object in the prefiltered sequence.
+
+Let `E=ell_W` and keep `q=tau+|U|`.  For any polynomial
+`Q(X)=sum_{b=0}^q Q_b X^b` of degree at most `q`,
+
+```text
+(H_{q,q}(h^W)Q)_i
+ = sum_{b=0}^q Q_b h^W_{i+b}
+ = sum_{a=0}^d sum_{b=0}^q E_a Q_b s_{i+a+b}
+ = (H_{q,q+d}(s)(E Q))_i,        0<=i<q.        (DKI)
+```
+
+Consequently the direction space of the affine monic residual kernel is
+
+```text
+Dir K(U,W)
+ = { Q in F[X]_{<q} : H_{q,q+d}(s)(E Q)=0 }.
+```
+
+Thus `b(U,W)>0` is equivalent to the existence of nonzero lower-degree
+directions `Q` for which the product `ell_W Q` is killed by the same `q`
+Hankel rows.  In other words, the only way a deficit anchor can have a
+positive-dimensional residual-kernel fiber is through a short Hankel-kernel
+direction with the fixed divisor `ell_W`.
+
+For squarefree residual supports, (DKI) says that a candidate residual locator
+`ell_R` is in the filtered kernel if and only if the combined locator
+`ell_W ell_R` lies in this divisible short-kernel slice.  This identifies the
+remaining high-dimensional residual-anchor obstruction with a fixed-root /
+quotient-periodic / aperiodic denominator ledger, rather than with an
+unstructured completion multiplicity.
+
+The verifier now checks (DKI) for every squarefree residual candidate tested
+in the residual-fiber enumeration.  In the largest `F_7^*` audit, this covers
+the same `51840` residual labels as the bounded-dimension audit, with maximum
+residual-kernel direction dimension `0`; the productive subaudit has the same
+counts.
+
 ## Deficit-Weighted Core Closure Criterion
 
 The preceding local packing theorem removes the artificial cutoff
