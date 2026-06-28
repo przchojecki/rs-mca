@@ -9717,6 +9717,100 @@ in `n` at fixed positive rate.  The previous lower bound then makes the
 support-packing ledger exponential whenever the agreement threshold remains a
 fixed positive distance below `n`.
 
+## Corollary 40.79: Scalar Rational-Supercode Strata Inject Into Supercode Lists
+
+Let `C=RS[F,D,k]`, let `f,g:D->F`, and fix an agreement threshold `a`.  Suppose
+`Q` has degree `e`, is root-free on `D`, and put
+
+```text
+d=max(n-s,k+e).
+```
+
+Assume `d<=n`.  For a word `Y:D->F`, write
+
+```text
+List_d(Y,a)
+ = { R in F[X]_<d : |{x in D : R(x)=Y(x)}|>=a }.
+```
+
+Since `d<=n`, this is the ordinary Reed-Solomon list for the supercode
+`RS[F,D,d]`.
+
+Then the scalar rational-supercode strata satisfy:
+
+1. if `Qg in RS[F,D,n-s]`, then the support-wise noncontained finite slopes in
+   this stratum inject into `List_d(Qf,a)`;
+2. if `Qf in RS[F,D,n-s]`, then the nonzero support-wise noncontained finite
+   slopes in this stratum inject into `List_d(Qg,a)`.  Consequently the full
+   finite scalar stratum has size at most `1+|List_d(Qg,a)|`, with the extra
+   `1` accounting only for the possible zero slope.
+
+At the scalar half-window cutoff, where `s=t+r_hw`, any root-free
+`Q in ker A_u(m)` or `Q in ker A_v(m)` with
+
+```text
+d=max(n-(t+r_hw), k+deg Q) <= n
+```
+
+therefore turns the one-sided scalar obstruction into an ordinary list problem
+for the multiplied opposite endpoint, in the RS supercode of dimension `d`.
+Thus the remaining scalar branch can be charged by a genuine list theorem for
+these multiplied endpoint words, rather than by support packing alone.
+
+### Proof
+
+First suppose `Qg in RS[F,D,n-s]`, represented by `P_g` with `deg P_g<n-s`.
+For each noncontained slope `z`, choose an explaining codeword `c_z` on a
+support `S_z` with `|S_z|>=a`, and let `C_z` be its degree-`<k`
+representative.  Define
+
+```text
+R_z = Q C_z - z P_g.
+```
+
+Then `deg R_z<d`.  On `S_z`,
+
+```text
+R_z = Q(c_z-zg)=Qf,
+```
+
+so `R_z in List_d(Qf,a)`.
+
+The assignment is injective on noncontained slopes, after the arbitrary choice
+of one witness per slope.  Indeed, if `z_1!=z_2` and `R_{z_1}=R_{z_2}`, then
+
+```text
+Q(C_{z_1}-C_{z_2}) = (z_1-z_2)P_g.
+```
+
+Dividing on `D` by the root-free `Q` shows that `g` agrees on all of `D` with
+the degree-`<k` polynomial `(C_{z_1}-C_{z_2})/(z_1-z_2)`.  Hence `g` is a
+global codeword.  For any explained slope in the stratum, the identity
+`f+zg=c_z` on its support then expresses `f` there as a codeword as well.
+Thus every such slope is support-wise contained, contradicting the choice of
+`z_1,z_2` as noncontained slopes.
+
+Now suppose `Qf in RS[F,D,n-s]`, represented by `P_f`.  For each nonzero
+noncontained slope `z`, choose an explaining codeword `C_z` on `S_z` and set
+
+```text
+R_z = (Q C_z-P_f)/z.
+```
+
+Again `deg R_z<d`, and on `S_z` this polynomial agrees with `Qg`, so
+`R_z in List_d(Qg,a)`.  If two distinct nonzero slopes give the same `R_z`,
+then
+
+```text
+Q(z_2 C_{z_1}-z_1 C_{z_2}) = (z_2-z_1)P_f.
+```
+
+Dividing on `D` by `Q` shows that `f` is a global codeword.  Then every
+nonzero explained slope is support-wise contained by solving
+`g=(c_z-f)/z` on its explaining support.  Thus the nonzero noncontained slopes
+inject into `List_d(Qg,a)`.  The zero slope has no such division by `z`, so it
+is recorded as the single possible extra element.
+
 ## Corollary 41: The Global Common-Image Ledger Is Endpoint-Only
 
 Let `GCI` be the set of monic degree-`c` split core locators `L` for which
@@ -12569,6 +12663,9 @@ ledger is small enough for the final M1 reserve or handle the `d>a` range.
 Corollary 40.78 shows this limitation is structural in the fixed-rate reserve
 window: since scalar strata have `d>=k`, pure support packing is exponential
 unless additional M1 structure reduces or removes the scalar branch.
+Corollary 40.79 gives one such reduction target: scalar rational-supercode
+strata inject into ordinary lists for the multiplied opposite endpoint in the
+dimension-`d` RS supercode, up to the zero-slope exception in the `Qf` case.
 Corollary 41 packages the common-image branch into endpoint-type ledgers; it
 does not prove the endpoint rank hypotheses needed for the displayed
 `(q+2)binom(n,b)` bound. Corollary 42 packages the globally full core ledger

@@ -2460,6 +2460,26 @@ Consequently pure support packing cannot close the scalar rational-supercode
 branch in the corrected-reserve fixed-rate window; the branch still needs
 active M1 structure, quotient/aperiodic collapse, paired/global endpoint
 collapse, or exclusion of the root-free scalar cutoff kernels.
+There is nevertheless a structural list reduction for the scalar branch.  If
+\(d=\max(n-s,k+\deg Q)\le n\), define
+\[
+  \operatorname{List}_d(Y,a)
+  =\{R\in F[X]_{<d}: |\{x\in D:R(x)=Y(x)\}|\ge a\}.
+\]
+When \(Qg\in\RS[F,D,n-s]\), every noncontained scalar slope \(z\) gives
+\[
+  R_z=QC_z-zP_g\in \operatorname{List}_d(Qf,a),
+\]
+and two distinct noncontained slopes cannot give the same \(R_z\), since that
+would force \(g\) to be a global codeword and make the slopes contained.
+Similarly, when \(Qf\in\RS[F,D,n-s]\), the nonzero noncontained slopes inject
+into \(\operatorname{List}_d(Qg,a)\) by
+\[
+  R_z=(QC_z-P_f)/z,
+\]
+with only the zero slope left as a possible extra element.  Thus scalar
+cutoff-kernel failures can be attacked by ordinary RS list bounds for the
+multiplied opposite endpoint in the dimension-\(d\) supercode.
 The common-core and two-denominator formulas persist verbatim after this
 root-free replacement.  With \(C=\gcd(D:D\in M_{\min})\), \(\gamma=\deg C\),
 and \(E_D=D/C\),

@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 scalar rational-supercode list injection
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_boundary_off_external_anchor_normal_form.md`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / PROOF-PROGRAM.
+- **What is being added:** A scalar rational-supercode stratum with
+  `d=max(n-s,k+deg Q)<=n` injects its noncontained slopes into an ordinary
+  `RS[F,D,d]` list for the multiplied opposite endpoint; in the `Qf` case the
+  zero slope is the only possible extra element.
+- **How it is useful:** This gives a structural route for scalar cutoff-kernel
+  failures after the support-packing guardrail: prove or import a list bound
+  for the multiplied endpoint in the larger RS supercode.
+- **What to do next:** Compare the induced dimension `d` and agreement `a`
+  with available or conjectural L1/list bounds, and isolate whether the
+  multiplied endpoint has additional quotient/aperiodic restrictions.
+
 ### 2026-06-28 - M1 scalar support-packing reserve guardrail
 
 - **Agent/model:** AllenGrahamHart / Codex audit.
