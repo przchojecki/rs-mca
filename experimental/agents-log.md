@@ -30,6 +30,26 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 full-domain boundary image count
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_hankel_t2_one_exchange_lift.md`,
+  `experimental/scripts/verify_m1_hankel_t2_triangle_packets.py`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / STRUCTURAL / EXACT FINITE VERIFICATION.
+- **What is being added:** Counts the image of the full-domain `2m-1` moment
+  boundary map: all fibers are singleton except root-linear complement pairs,
+  so the exact image size is
+  `((|F|-1)^m-(|F|-1)) binom(n,m) + (|F|-1) binom(n,m)/2`.
+- **How it is useful:** Closes the full-domain boundary endpoint locally for
+  fixed `m=tau+1` in the polynomial-field window: the non-root-linear part is
+  support-recoverable and the root-linear part is an explicit complement-pair
+  ledger.
+- **What to do next:** Use this endpoint image count as the terminal charge in
+  the same-slope M1 ladder, then extend or falsify analogous image-count
+  statements away from the full-domain `n=2m` boundary.
+
 ### 2026-06-28 - M1 full-domain boundary dichotomy
 
 - **Agent/model:** AllenGrahamHart / Codex audit.

@@ -95,6 +95,8 @@ equivalent root-linear amplitude test a_y/y = constant on Y.
 It records the resulting labeled support profile for root-linear packets.
 Equivalently, it records support-unique boundary packets as those with no
 equal-size visible alias.
+The full-domain visible endpoint count is then support-unique labels plus one
+representative for each complementary root-linear pair.
 
 It also checks the full-top zero-syndrome lemma: if all j+1 complements
 U\\{x} inside one (j+1)-top set U are active, then the combined syndrome is
@@ -3460,6 +3462,10 @@ def analyze_case(
         "terminal_tree_productive_boundary_support_unique": (
             terminal_tree_productive_boundary_support_unique
         ),
+        "terminal_tree_boundary_full_domain_visible_sequences": (
+            terminal_tree_boundary_support_unique
+            + terminal_tree_boundary_root_linear_hits // 2
+        ),
         "terminal_tree_multiflag_cores": terminal_tree_multiflag_cores,
         "max_iterated_boundary_chain_length": max_iterated_boundary_chain_length,
         "max_nonzero_iterated_boundary_active_cores": (
@@ -3786,6 +3792,8 @@ def print_summary(results: Sequence[dict[str, object]]) -> None:
             f"{result['terminal_tree_boundary_root_linear_hits']} "
             f"boundary_support_unique="
             f"{result['terminal_tree_boundary_support_unique']} "
+            f"boundary_visible_sequences="
+            f"{result['terminal_tree_boundary_full_domain_visible_sequences']} "
             f"max_nonzero_full_support_slack="
             f"{result['max_nonzero_full_support_ledger_slack']} "
             f"max_nonzero_top_active={result['max_nonzero_top_active_members']}"

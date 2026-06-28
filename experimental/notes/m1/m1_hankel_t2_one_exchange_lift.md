@@ -1333,6 +1333,35 @@ to one scalar.  Thus, for fixed slack `m=tau+1`, the actual ambiguous
 full-domain endpoint is already a polynomial ledger in the polynomial-field
 window.
 
+Equivalently, the full-domain boundary moment map has an exact fiber count.
+Let
+
+```text
+Psi(Y,(a_y)) = (sum_{y in Y} a_y y^i)_{0<=i<=2m-2},
+```
+
+with `Y subset H`, `|Y|=m`, and all `a_y in F^*`.  Then every fiber of `Psi`
+has size one except the root-linear complement pairs
+
+```text
+(Y, (nu y)_{y in Y})  <-->  (H\Y, (-nu z)_{z in H\Y}).
+```
+
+Therefore
+
+```text
+|im Psi|
+ =
+ ((|F|-1)^m - (|F|-1)) binom(n,m)
+ + ((|F|-1) binom(n,m))/2.                    (BI)
+```
+
+In particular, for fixed `m` and `|F|=poly(n)`, the whole full-domain
+boundary endpoint is polynomial-sized, not merely its aliased sublocus.  This
+is the exact local closure available at the `2m-1` moment boundary: the
+non-root-linear part is support-recoverable, and the root-linear part is a
+half-sized complement-pair ledger.
+
 For the `t=2` terminal audit this says exactly what the data show:
 mode-size-`2` packets are locator-recoverable, while mode-size-`3` packets are
 maximal-window boundary packets.  Therefore a proof of M1 cannot use rank
@@ -1351,7 +1380,9 @@ full-domain boundary case with `n=6=2m`, the root-linear test (RL) has the
 same histogram: the `120` aliased packets are precisely the root-linear
 amplitude packets.  The remaining `4200` boundary packets are support-unique.
 The root-linear packets occupy all `binom(6,3)=20` supports with `6=|F|-1`
-scalar multiples per support, exactly as (AL) predicts.
+scalar multiples per support, exactly as (AL) predicts.  Thus the visible
+full-domain endpoint has `4200+120/2=4260` distinct boundary moment sequences,
+matching (BI).
 
 ## Root-Marked Slice Is One Row
 
