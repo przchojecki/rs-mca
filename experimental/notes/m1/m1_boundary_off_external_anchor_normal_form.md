@@ -6625,6 +6625,66 @@ active denominator.  All other active denominators would then be dominated by
 `D`, contradicting the definition of the distinct divisibility-minimal
 antichain `M_min`.  Therefore `e_min>=1` when `s>=2`.
 
+## Corollary 40.41: Residual Tail Dimension Is The Polynomial-Window Target
+
+Keep the notation of Corollary 40.40, and put
+
+```text
+r_tail = max(0, h-gamma-e_min).
+```
+
+If `r_tail<=L`, then
+
+```text
+ArrBudget_hw <= s Phi(L) <= 4 Phi(L),              (ResidualTailBound)
+```
+
+and the direct raw-tail mixed-ladder ledger is bounded by
+
+```text
+4 Phi(L) + 2h.                                     (ResidualTailMixedLedger)
+```
+
+Equivalently, the half-window raw-tail part is polynomial-field controlled as
+soon as the common core plus the smallest nontrivial quotient degree consumes
+all but `L` denominator degrees:
+
+```text
+gamma + e_min >= h-L.                              (ResidualTailCriterion)
+```
+
+In particular, if `q<=n^a`, `h<=n`, and `L>=1` is fixed, then
+
+```text
+4 Phi(L) + 2h <= 4L n^{a(L-1)} + 2n.
+```
+
+Thus, in the polynomial-field window, the remaining raw half-window tail task
+has been reduced to proving a lower bound on `gamma+e_min` up to a fixed
+residual dimension `L`.
+
+### Proof
+
+Corollary 40.40 gives
+
+```text
+ArrBudget_hw <= s Phi(r_tail).
+```
+
+The function `Phi(m)` is nondecreasing for `m>=0`, and `s<=4` because there
+are only four cutoff residual families.  Hence `r_tail<=L` gives
+(ResidualTailBound), and Corollary 40.36 gives (ResidualTailMixedLedger).
+The displayed criterion is just the inequality `r_tail<=L` rewritten.
+
+For the polynomial-field consequence, when `L>=1`,
+
+```text
+Phi(L)=1+q+...+q^{L-1} <= L q^{L-1} <= L n^{a(L-1)}.
+```
+
+Also `h<=n` by hypothesis.  Substituting these two estimates gives the
+displayed bound.
+
 ## Corollary 41: The Global Common-Image Ledger Is Endpoint-Only
 
 Let `GCI` be the set of monic degree-`c` split core locators `L` for which
@@ -9364,6 +9424,9 @@ thresholds.
 Corollary 40.40 gives a minimum-quotient-degree saving after the common core
 is factored; it does not prove that quotient degree is large enough in the M1
 instances.
+Corollary 40.41 identifies the residual dimension condition that would give a
+polynomial-field raw-tail ledger; it does not prove the required lower bound
+`gamma+e_min>=h-L`.
 Corollary 41 packages the common-image branch into endpoint-type ledgers; it
 does not prove the endpoint rank hypotheses needed for the displayed
 `(q+2)binom(n,b)` bound. Corollary 42 packages the globally full core ledger
