@@ -2379,6 +2379,51 @@ pairwise-overlap packing condition.  In the largest `F_7^*` audit, it checks
 `51840` deficit-anchor labels, with at most `6` labels in any one fiber; the
 productive subaudit has the same counts.
 
+## Deficit Anchors Are Residual Hankel Kernels
+
+The reconstruction can be stated as a concrete Hankel-kernel target.  Given a
+deficit anchor `(U,W)` as above, put
+
+```text
+q=r-d=tau+|U|.
+```
+
+Let
+
+```text
+h^{W}_i = (H_{2q,d}(s)ell_W)_i
+        = sum_{a=0}^d (ell_W)_a s_{i+a},
+        0<=i<2q.
+```
+
+Then the residual marked set `R=M(S)\W`, `|R|=q`, has locator `ell_R`
+satisfying
+
+```text
+H_{q,q}(h^W)ell_R=0.                            (DAK)
+```
+
+Moreover the first `2q` entries of `h^W` recover `ell_R` uniquely.  Thus a
+deficit anchor does not leave an arbitrary residual search; it leaves a
+squarefree degree-`q` locator in the ordinary Hankel kernel of the filtered
+sequence `h^W`.
+
+Proof: the formula for `ell_W G_U` in the previous section is exactly the
+sequence `h^W`.  Its support is `R`, all amplitudes are nonzero, and it has
+`2q` visible moments.  Applying the locator `ell_R` annihilates it for `q`
+consecutive rows, giving (DAK).  Conversely, the Prony/Vandermonde recovery
+from these `2q` moments gives the unique monic annihilator `ell_R`.
+
+This is the algebraic form of the remaining short-core problem: count pairs
+`(U,W)` for which the filtered sequence `h^W` has an admissible squarefree
+degree-`tau+|U|` kernel locator disjoint from `U union W`, together with the
+unmarked-core conditions on `U`.
+
+The verifier audits this residual-kernel form for every produced deficit
+anchor.  In the largest `F_7^*` audit, it checks `51840` filtered kernel
+recoveries, with maximum residual size `2`; the productive subaudit has the
+same counts.
+
 ## Deficit-Weighted Core Closure Criterion
 
 The preceding local packing theorem removes the artificial cutoff

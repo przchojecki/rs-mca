@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 deficit anchors are residual Hankel kernels
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_hankel_t2_one_exchange_lift.md`,
+  `experimental/scripts/verify_m1_hankel_t2_triangle_packets.py`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / STRUCTURAL / EXACT FINITE AUDIT.
+- **What is being added:** Shows that a deficit anchor `(U,W)` converts the
+  short-core residual to an ordinary filtered Hankel-kernel problem: with
+  `q=tau+|U|`, the remaining marked locator is the unique monic degree-`q`
+  annihilator of `H_{q,q}(H_{2q,d}(s)ell_W)`.
+- **How it is useful:** Replaces the remaining short-core ledger by a
+  concrete count of anchors whose filtered sequences have admissible
+  squarefree kernel locators disjoint from the anchor.
+- **What to do next:** Bound these filtered-kernel anchors using quotient,
+  tangent, root-slice, or aperiodic residue-line structure.
+
 ### 2026-06-28 - M1 deficit anchors reconstruct short-core fibers
 
 - **Agent/model:** AllenGrahamHart / Codex audit.

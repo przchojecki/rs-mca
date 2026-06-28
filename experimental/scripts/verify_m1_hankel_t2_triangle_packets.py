@@ -149,6 +149,9 @@ cannot share d marked roots, hence each fiber obeys the elementary d-subset
 packing bound.
 Equivalently, it audits the deficit-anchor injection: a fixed unmarked core
 and any d marked roots determine the whole marked frontier.
+For each such anchor, it also checks that filtering the syndrome by the
+anchor locator gives a squarefree residual Hankel kernel whose monic
+annihilator is exactly the remaining marked locator.
 For each fixed collapsed anchor base, it audits the sparse-representation
 fiber: below the boundary the mode support is unique, while at the boundary
 distinct supports are disjoint and obey the matching bound.
@@ -586,6 +589,10 @@ def analyze_case(
     terminal_tree_productive_deficit_anchor_label_checks = 0
     terminal_tree_deficit_anchor_max_labels_per_fiber = 0
     terminal_tree_productive_deficit_anchor_max_labels_per_fiber = 0
+    terminal_tree_deficit_anchor_kernel_checks = 0
+    terminal_tree_productive_deficit_anchor_kernel_checks = 0
+    terminal_tree_deficit_anchor_max_residual_size = 0
+    terminal_tree_productive_deficit_anchor_max_residual_size = 0
     terminal_tree_core_packet_checks = 0
     terminal_tree_productive_core_packet_checks = 0
     terminal_tree_core_simple_pole_lift_checks = 0
@@ -855,6 +862,10 @@ def analyze_case(
             nonlocal terminal_tree_productive_deficit_anchor_label_checks
             nonlocal terminal_tree_deficit_anchor_max_labels_per_fiber
             nonlocal terminal_tree_productive_deficit_anchor_max_labels_per_fiber
+            nonlocal terminal_tree_deficit_anchor_kernel_checks
+            nonlocal terminal_tree_productive_deficit_anchor_kernel_checks
+            nonlocal terminal_tree_deficit_anchor_max_residual_size
+            nonlocal terminal_tree_productive_deficit_anchor_max_residual_size
             nonlocal terminal_tree_core_packet_checks
             nonlocal terminal_tree_productive_core_packet_checks
             nonlocal terminal_tree_core_simple_pole_lift_checks
@@ -3228,6 +3239,8 @@ def analyze_case(
                 int,
                 int,
                 int,
+                int,
+                int,
             ]:
                 fibers: dict[
                     tuple[int, tuple[int, ...]],
@@ -3269,6 +3282,8 @@ def analyze_case(
                 deficit_packing_max_size = 0
                 deficit_anchor_label_checks = 0
                 deficit_anchor_max_labels = 0
+                deficit_anchor_kernel_checks = 0
+                deficit_anchor_max_residual_size = 0
                 for (marked_count, unmarked_core), supports_in_fiber in (
                     fibers.items()
                 ):
@@ -3410,6 +3425,153 @@ def analyze_case(
                                         }
                                     )
                                 anchor_to_support[anchor] = support
+                                residual_support = tuple(
+                                    root
+                                    for root in support
+                                    if root not in anchor
+                                )
+                                residual_size = len(residual_support)
+                                if residual_size != (
+                                    marked_count - core_deficit
+                                ):
+                                    raise AssertionError(
+                                        {
+                                            "kind": (
+                                                "productive-"
+                                                if productive
+                                                else ""
+                                            )
+                                            + "marked-core-deficit-anchor-"
+                                            "residual-size-failed",
+                                            "p": p,
+                                            "k": k,
+                                            "syndrome": list(syn),
+                                            "fixed_roots": list(
+                                                fixed_roots
+                                            ),
+                                            "unmarked_core": list(
+                                                unmarked_core
+                                            ),
+                                            "marked_count": marked_count,
+                                            "core_deficit": core_deficit,
+                                            "anchor": list(anchor),
+                                            "residual_support": list(
+                                                residual_support
+                                            ),
+                                        }
+                                    )
+                                filtered_sequence = hankel_apply(
+                                    syn,
+                                    cached_locator(anchor),
+                                    2 * residual_size,
+                                    p,
+                                )
+                                deficit_anchor_kernel_checks += 1
+                                deficit_anchor_max_residual_size = max(
+                                    deficit_anchor_max_residual_size,
+                                    residual_size,
+                                )
+                                if residual_size:
+                                    residual_locator = cached_locator(
+                                        residual_support
+                                    )
+                                    if not hankel_annihilates(
+                                        filtered_sequence,
+                                        residual_locator,
+                                        residual_size,
+                                        p,
+                                    ):
+                                        raise AssertionError(
+                                            {
+                                                "kind": (
+                                                    "productive-"
+                                                    if productive
+                                                    else ""
+                                                )
+                                                + "marked-core-deficit-"
+                                                "anchor-kernel-failed",
+                                                "p": p,
+                                                "k": k,
+                                                "syndrome": list(syn),
+                                                "fixed_roots": list(
+                                                    fixed_roots
+                                                ),
+                                                "unmarked_core": list(
+                                                    unmarked_core
+                                                ),
+                                                "marked_count": marked_count,
+                                                "core_deficit": core_deficit,
+                                                "anchor": list(anchor),
+                                                "residual_support": list(
+                                                    residual_support
+                                                ),
+                                                "filtered_sequence": list(
+                                                    filtered_sequence
+                                                ),
+                                                "residual_locator": list(
+                                                    residual_locator
+                                                ),
+                                            }
+                                        )
+                                    moment_matrix = tuple(
+                                        tuple(
+                                            filtered_sequence[row + column]
+                                            for column in range(
+                                                residual_size
+                                            )
+                                        )
+                                        for row in range(residual_size)
+                                    )
+                                    rhs = tuple(
+                                        (
+                                            -filtered_sequence[
+                                                row + residual_size
+                                            ]
+                                        )
+                                        % p
+                                        for row in range(residual_size)
+                                    )
+                                    recovered_locator = (
+                                        solve_square_mod(
+                                            moment_matrix,
+                                            rhs,
+                                            p,
+                                        )
+                                        + (1,)
+                                    )
+                                    if recovered_locator != residual_locator:
+                                        raise AssertionError(
+                                            {
+                                                "kind": (
+                                                    "productive-"
+                                                    if productive
+                                                    else ""
+                                                )
+                                                + "marked-core-deficit-"
+                                                "anchor-recovery-failed",
+                                                "p": p,
+                                                "k": k,
+                                                "syndrome": list(syn),
+                                                "fixed_roots": list(
+                                                    fixed_roots
+                                                ),
+                                                "unmarked_core": list(
+                                                    unmarked_core
+                                                ),
+                                                "marked_count": marked_count,
+                                                "core_deficit": core_deficit,
+                                                "anchor": list(anchor),
+                                                "residual_support": list(
+                                                    residual_support
+                                                ),
+                                                "recovered_locator": list(
+                                                    recovered_locator
+                                                ),
+                                                "residual_locator": list(
+                                                    residual_locator
+                                                ),
+                                            }
+                                        )
                         if len(anchor_to_support) != packed_subsets:
                             raise AssertionError(
                                 {
@@ -3673,6 +3835,8 @@ def analyze_case(
                     deficit_packing_max_size,
                     deficit_anchor_label_checks,
                     deficit_anchor_max_labels,
+                    deficit_anchor_kernel_checks,
+                    deficit_anchor_max_residual_size,
                 )
 
             (
@@ -3694,6 +3858,8 @@ def analyze_case(
                 deficit_packing_core_max_fiber_size,
                 deficit_anchor_label_checks,
                 deficit_anchor_max_labels_per_fiber,
+                deficit_anchor_kernel_checks,
+                deficit_anchor_max_residual_size,
             ) = audit_marked_core_fibers(
                 total_split_supports,
                 productive=False,
@@ -3717,6 +3883,8 @@ def analyze_case(
                 productive_deficit_packing_core_max_fiber_size,
                 productive_deficit_anchor_label_checks,
                 productive_deficit_anchor_max_labels_per_fiber,
+                productive_deficit_anchor_kernel_checks,
+                productive_deficit_anchor_max_residual_size,
             ) = audit_marked_core_fibers(
                 productive_total_split_supports,
                 productive=True,
@@ -3842,6 +4010,20 @@ def analyze_case(
             terminal_tree_productive_deficit_anchor_max_labels_per_fiber = max(
                 terminal_tree_productive_deficit_anchor_max_labels_per_fiber,
                 productive_deficit_anchor_max_labels_per_fiber,
+            )
+            terminal_tree_deficit_anchor_kernel_checks += (
+                deficit_anchor_kernel_checks
+            )
+            terminal_tree_productive_deficit_anchor_kernel_checks += (
+                productive_deficit_anchor_kernel_checks
+            )
+            terminal_tree_deficit_anchor_max_residual_size = max(
+                terminal_tree_deficit_anchor_max_residual_size,
+                deficit_anchor_max_residual_size,
+            )
+            terminal_tree_productive_deficit_anchor_max_residual_size = max(
+                terminal_tree_productive_deficit_anchor_max_residual_size,
+                productive_deficit_anchor_max_residual_size,
             )
 
             def audit_core_simple_pole_lifts(
@@ -6442,6 +6624,18 @@ def analyze_case(
         "terminal_tree_productive_deficit_anchor_max_labels_per_fiber": (
             terminal_tree_productive_deficit_anchor_max_labels_per_fiber
         ),
+        "terminal_tree_deficit_anchor_kernel_checks": (
+            terminal_tree_deficit_anchor_kernel_checks
+        ),
+        "terminal_tree_productive_deficit_anchor_kernel_checks": (
+            terminal_tree_productive_deficit_anchor_kernel_checks
+        ),
+        "terminal_tree_deficit_anchor_max_residual_size": (
+            terminal_tree_deficit_anchor_max_residual_size
+        ),
+        "terminal_tree_productive_deficit_anchor_max_residual_size": (
+            terminal_tree_productive_deficit_anchor_max_residual_size
+        ),
         "terminal_tree_core_packet_checks": (
             terminal_tree_core_packet_checks
         ),
@@ -6990,6 +7184,10 @@ def print_summary(results: Sequence[dict[str, object]]) -> None:
             f"{result['terminal_tree_deficit_anchor_label_checks']} "
             f"deficit_anchor_max="
             f"{result['terminal_tree_deficit_anchor_max_labels_per_fiber']} "
+            f"deficit_anchor_kernels="
+            f"{result['terminal_tree_deficit_anchor_kernel_checks']} "
+            f"deficit_anchor_residual_max="
+            f"{result['terminal_tree_deficit_anchor_max_residual_size']} "
             f"core_packets={result['terminal_tree_core_packet_checks']} "
             f"core_simple_pole_lifts="
             f"{result['terminal_tree_core_simple_pole_lift_checks']} "

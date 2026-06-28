@@ -4523,6 +4523,18 @@ Thus \((U,W)\) determines the whole marked frontier; the map
 The verifier now audits this deficit-anchor injection directly: in the largest
 \(F_7^*\) audit it checks \(51840\) deficit-anchor labels, with at most \(6\)
 labels in one fiber; the productive subaudit has the same counts.
+Equivalently, a deficit anchor is a filtered residual Hankel-kernel problem.
+With \(q=r-d=\tau+|U|\) and
+\[
+  h^W_i=(H_{2q,d}(s)\ell_W)_i,
+  \qquad 0\le i<2q,
+\]
+the residual marked locator \(\ell_{M(S)\setminus W}\) is the unique monic
+degree-\(q\) annihilator in \(H_{q,q}(h^W)\).  Thus the short-core ledger can
+be attacked by counting anchors \((U,W)\) whose filtered sequence has an
+admissible squarefree degree-\(\tau+|U|\) kernel locator.  The largest
+\(F_7^*\) audit checks \(51840\) such filtered kernel recoveries, maximum
+residual size \(2\), with the same productive counts.
 This gives the all-frontier closure criterion.  Let
 \(\mathcal C_m(s)\) be all split-support certificates of mode size \(m\), and
 define
