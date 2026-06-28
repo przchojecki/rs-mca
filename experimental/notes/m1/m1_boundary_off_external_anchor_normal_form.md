@@ -15702,6 +15702,107 @@ Since `Q_1` and `Q_2` are root-free on `D`, the coordinate-wise formula
 same target vector on `D`, and forgetting `w` is injective on the full alias
 fiber.  The cited direction-alias bounds then transfer immediately.
 
+## Corollary 40.157: Cutoff Primitive Alias Fibers Have Two Defect Budgets
+
+Assume `F=F_q`.  Fix a positive-degree primitive residue-line datum
+`(Q,B,w)` of denominator degree
+
+```text
+e=deg Q>0.
+```
+
+For an integer `E>=0`, let `Alias_{<=E}^*(Q,B,w)` be the set of projective
+primitive residue-line data `(Q',B',w')` not projectively equal to
+`(Q,B,w)`, with
+
+```text
+deg Q'<=E,
+```
+
+and with the same divided direction and target on `D`.
+
+For `m in Z`, put
+
+```text
+Pi_q(m)=0                         if m<=0,
+Pi_q(m)=(q^m-1)/(q-1)             if m>0.
+```
+
+Define
+
+```text
+D_-(e,E)=e+min(E,e-1)-n.
+```
+
+Then
+
+```text
+|Alias_{<=E}^*(Q,B,w)|
+ <= Pi_q(D_-(e,E)) + U_q(e,E),                     (CutoffAliasBound)
+```
+
+where
+
+```text
+U_q(e,E)=0                         if E<e or e+E<=n,
+U_q(e,E)=Pi_q(2E-n+1)              otherwise.
+```
+
+Consequently the full cutoff evaluation fiber, including the original datum
+when it lies below the cutoff, has size at most
+
+```text
+1 + Pi_q(D_-(e,E)) + U_q(e,E).
+```
+
+Thus finite-domain primitive aliases below any fixed denominator cutoff split
+into two explicit budgets: downward aliases controlled by the defect space
+`F[X]_<D_-(e,E)`, and same-or-upward aliases controlled by the
+defect-quotient space of dimension `2E-n+1`.
+
+### Proof
+
+Partition the nontrivial aliases by denominator degree `e'`.
+
+First consider lower aliases `e'<e`.  For each such alias, the lower chart of
+Corollary 40.154 gives a unique projective defect
+
+```text
+[R] in P(F[X]_<e+e'-n).
+```
+
+Since `e'<=min(E,e-1)`, this defect lies in `P(F[X]_<D_-(e,E))`, with the
+retained admissibility conditions from Corollary 40.154.  If
+`D_-(e,E)<=0`, there is no such projective defect.  The lower chart determines
+`Q'` and `B'` from the defect, and Corollary 40.156 determines `w'`; hence the
+lower aliases inject into this projective defect space and contribute at most
+`Pi_q(D_-(e,E))`.
+
+Now consider aliases with `e<=e'<=E`.  If `E<e`, there are none.  If
+`e+E<=n`, then Corollary 40.151 rules out every nontrivial alias in this
+range.  Otherwise Corollary 40.154 represents every such alias by a nonzero
+defect
+
+```text
+R in F[X]_<e+E-n
+```
+
+and a quotient
+
+```text
+H in F[X]_{<=E-e}.
+```
+
+The ambient parameter space has dimension
+
+```text
+(e+E-n)+(E-e+1)=2E-n+1,
+```
+
+and admissible aliases form a subset of its projectivization.  This gives the
+`U_q(e,E)` term.  Finally, Corollary 40.156 lifts the direction count to full
+primitive triples without adding target multiplicity.
+
 ## Corollary 41: The Global Common-Image Ledger Is Endpoint-Only
 
 Let `GCI` be the set of monic degree-`c` split core locators `L` for which
@@ -18806,6 +18907,9 @@ defect space of dimension `2e_1-n-1`.
 Corollary 40.156 lifts the direction-alias controls to full primitive
 residue-line triples: once `(Q_2,B_2)` is fixed, divided target agreement
 uniquely determines `w_2` on `D`.
+Corollary 40.157 packages the full-data alias controls into a cutoff fiber
+bound with two projective defect budgets: lower aliases and same-or-upward
+aliases below degree `E`.
 Corollary 41 packages the common-image branch into endpoint-type ledgers; it
 does not prove the endpoint rank hypotheses needed for the displayed
 `(q+2)binom(n,b)` bound. Corollary 42 packages the globally full core ledger

@@ -30,6 +30,23 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 cutoff primitive alias fibers have two defect budgets
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_boundary_off_external_anchor_normal_form.md`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / PROOF-PROGRAM.
+- **What is being added:** Packages the primitive alias chart into a cutoff
+  fiber bound: for a fixed positive-degree primitive datum, aliases of degree
+  at most `E` split into a lower-defect budget `Pi_q(e+min(E,e-1)-n)` and a
+  same-or-upward defect-quotient budget `Pi_q(2E-n+1)` when applicable.
+- **How it is useful:** Gives the active primitive-class ledger an explicit
+  finite-field multiplicity bound for evaluation fibers below a denominator
+  cutoff, with no extra target-vector multiplicity.
+- **What to do next:** Combine this cutoff fiber bound with active incidence
+  constraints to turn divided-evaluation counts into primitive-class counts.
+
 ### 2026-06-28 - M1 direction-alias admissibility audit
 
 - **Agent/model:** AllenGrahamHart / Codex audit.

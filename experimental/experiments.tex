@@ -3400,6 +3400,23 @@ residue-line data: once a primitive direction alias \((Q_2,B_2)\) of
 \((Q_1,B_1)\) is fixed, equality \(w_2/Q_2=w_1/Q_1\) on \(D\) uniquely
 forces \(w_2(\alpha)=Q_2(\alpha)w_1(\alpha)/Q_1(\alpha)\).  Hence target
 vectors add no extra multiplicity inside a primitive evaluation fiber.
+Consequently cutoff fibers have two explicit defect budgets.  For a fixed
+positive-degree primitive datum of degree \(e\), let
+\(\operatorname{Alias}_{\le E}^*\) be the nontrivial full primitive aliases of
+degree at most \(E\), and put
+\(\Pi_q(m)=0\) for \(m\le0\), \(\Pi_q(m)=(q^m-1)/(q-1)\) for \(m>0\).  With
+\[
+  D_-(e,E)=e+\min(E,e-1)-n,
+\]
+one has
+\[
+  |\operatorname{Alias}_{\le E}^*|
+  \le \Pi_q(D_-(e,E)) + U_q(e,E),
+\]
+where \(U_q(e,E)=0\) if \(E<e\) or \(e+E\le n\), and otherwise
+\[
+  U_q(e,E)=\Pi_q(2E-n+1).
+\]
 The common-core and two-denominator formulas persist verbatim after this
 root-free replacement.  With \(C=\gcd(D:D\in M_{\min})\), \(\gamma=\deg C\),
 and \(E_D=D/C\),
