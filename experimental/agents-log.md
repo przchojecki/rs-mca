@@ -30,6 +30,23 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 exceptional one-row cores split into residue-line fibers
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_boundary_off_external_anchor_normal_form.md`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / PROOF-PROGRAM.
+- **What is being added:** The exceptional one-exchange core ledger is the
+  disjoint union over projective primitive low-degree multipliers `[M]` of
+  split-locator fibers `L_I in F B_prim M^{-1} mod Q_prim`.
+- **How it is useful:** This identifies the exact remaining one-row
+  exceptional object as ordinary residue-line packing, with no hidden
+  multiplier multiplicity once the core is fixed.
+- **What to do next:** Bound the fiber sizes `Core_[M]` using the all-line
+  aperiodic residue-packing strategy, after separating quotient-periodic
+  fibers.
+
 ### 2026-06-28 - M1 one-exchange multipliers are primitive modulo Q
 
 - **Agent/model:** AllenGrahamHart / Codex audit.

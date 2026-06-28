@@ -11421,6 +11421,85 @@ Since `c!=0` and `gcd(B_prim,Q_prim)=1`, this forces `H=1`.  Therefore
 `M` is invertible modulo `Q_prim`, and multiplying (E) by `M^{-1}` gives
 (InvertibleCoreLanding).
 
+## Corollary 40.99: Exceptional Cores Decompose Into Disjoint Residue-Line Fibers
+
+Keep the notation and hypotheses of Corollary 40.98.  Let
+
+```text
+P_ell^x(Q_prim)
+ = { [M] in P(F[X]_{<=ell+1}) : gcd(M,Q_prim)=1 }.
+```
+
+For `[M] in P_ell^x(Q_prim)`, define the residue line
+
+```text
+R_[M] = F (B_prim M^{-1})        in (F[X]/(Q_prim)) / F^*,
+```
+
+where `M^{-1}` is taken modulo `Q_prim`, and define the split-locator fiber
+
+```text
+Core_[M]
+ = { I subset D : |I|=a-1,        L_I mod Q_prim lies in R_[M] }.
+```
+
+Then the exceptional core ledger from Corollary 40.97 is the disjoint union
+
+```text
+Exc_ell(Q_prim,B_prim)
+ = disjoint_union_{[M] in P_ell^x(Q_prim)} Core_[M].            (ExcResidueSplit)
+```
+
+Consequently
+
+```text
+|Exc_ell(Q_prim,B_prim)|
+ = sum_{[M] in P_ell^x(Q_prim)} |Core_[M]|.
+```
+
+Thus the only remaining one-exchange exceptional ledger is a sum of ordinary
+split-locator residue-line fibers modulo the primitive denominator, indexed by
+primitive low-degree multiplier classes.  There is no extra multiplicity from
+choosing the multiplier once the core is fixed.
+
+### Proof
+
+If `I in Exc_ell`, then by Corollary 40.98 its nonzero multiplier `M` is
+coprime to `Q_prim`, and
+
+```text
+L_I in F B_prim M^{-1}        mod Q_prim.
+```
+
+Thus `I in Core_[M]`.  Scaling `M` does not change the residue line `R_[M]`,
+so this gives membership in a well-defined projective multiplier fiber.
+
+Conversely, if `I in Core_[M]`, then for some scalar `c`,
+
+```text
+L_I == c B_prim M^{-1}        mod Q_prim.
+```
+
+Multiplying by `M` gives `L_I M in F B_prim mod Q_prim`, so
+`M in V_I^{ell}` and `I in Exc_ell`.
+
+It remains to prove disjointness.  Suppose `I in Core_[M] cap Core_[N]`.
+Then there are nonzero scalars `c,d` such that
+
+```text
+L_I M == c B_prim,        L_I N == d B_prim        mod Q_prim.
+```
+
+Subtracting gives
+
+```text
+L_I(dM-cN) == 0        mod Q_prim.
+```
+
+Since `gcd(L_I,Q_prim)=1`, this implies `dM-cN==0 mod Q_prim`.  But
+`deg(dM-cN)<=ell+1<deg Q_prim`, so `dM-cN=0` as a polynomial.  Hence
+`[M]=[N]`, proving the union is disjoint.
+
 ## Corollary 41: The Global Common-Image Ledger Is Endpoint-Only
 
 Let `GCI` be the set of monic degree-`c` split core locators `L` for which
@@ -14339,6 +14418,9 @@ supporting a nonzero projective multiplier certificate.
 Corollary 40.98 shows that those exceptional multipliers are automatically
 coprime to `Q_prim`; equivalently the exceptional cores land in residue lines
 `F B_prim M^{-1}` modulo `Q_prim` for invertible low-degree multipliers.
+Corollary 40.99 decomposes the exceptional core ledger as a disjoint sum of
+ordinary split-locator residue-line fibers indexed by those projective
+low-degree multiplier classes.
 Corollary 41 packages the common-image branch into endpoint-type ledgers; it
 does not prove the endpoint rank hypotheses needed for the displayed
 `(q+2)binom(n,b)` bound. Corollary 42 packages the globally full core ledger
