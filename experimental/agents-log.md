@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 isolated one-row residual has second boundary
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_hankel_t2_one_exchange_lift.md`,
+  `experimental/scripts/verify_m1_hankel_t2_triangle_packets.py`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / STRUCTURAL / EXACT FINITE VERIFICATION.
+- **What is being added:** Gives the isolated-vertex criterion for the
+  one-row root-marked residual: after non-isolated residual edges descend,
+  isolated residual cores are exactly those whose lower
+  `H_{tau+1,j-2}(Delta_x s)` deletion-boundaries are all nonzero.
+- **How it is useful:** Repeats the original same-slope support split one
+  level down: residual branching descends additively, while isolated residual
+  mass becomes a second marked-boundary ledger.
+- **What to do next:** Bound or structurally classify the second marked
+  boundary object, especially in the aperiodic quotient-normal setting.
+
 ### 2026-06-28 - M1 root-marked residual edges descend
 
 - **Agent/model:** AllenGrahamHart / Codex audit.

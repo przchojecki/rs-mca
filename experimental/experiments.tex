@@ -3825,6 +3825,14 @@ gives
 \]
 Thus non-isolated root-marked residual mass is charged to one-row-deeper
 root-difference lower cores, with the same local factor \(n-j+1\).
+The isolated residual vertices have the parallel marked-boundary criterion:
+for \(2\le j\le n-2\), a core \(C\in B^x\) is isolated in the residual graph
+iff every deletion \(C\setminus\{y\}\) has nonzero
+\[
+  H_{\tau+1,j-2}(\Delta_xs)\ell_{C\setminus\{y\}}.
+\]
+Consequently isolated residual mass contributes to a second marked-boundary
+ledger with weight \(j-1\).
 This local statement globalizes across connected components.  In the active
 one-exchange graph for fixed \(w_\lambda\), if a nontrivial component has no
 lower-core corner, then every two-edge corner is a star corner.  Choosing one
@@ -3885,7 +3893,10 @@ nonzero counts as the fixed-root active slices.  The single-row slice
 description of the root-marked residual is also checked with zero defect.
 Residual one-exchange edges descend as above; the exact scans have maximum
 nonzero residual lower-core counts \(5\) for \(F_7^*,j=3\), \(1\) for
-\(F_7^*,j=2\), and \(0\) in the listed \(j=1\) audits.
+\(F_7^*,j=2\), and \(0\) in the listed \(j=1\) audits.  The isolated residual
+criterion and second-boundary ledger are checked too; the maximum nonzero
+isolated residual counts are \(6\) for \(F_7^*,j=3\), \(2\) for \(F_7^*,j=2\),
+and \(1\) in the listed \(j=1\) audits.
 The common-core and two-denominator formulas persist verbatim after this
 root-free replacement.  With \(C=\gcd(D:D\in M_{\min})\), \(\gamma=\deg C\),
 and \(E_D=D/C\),

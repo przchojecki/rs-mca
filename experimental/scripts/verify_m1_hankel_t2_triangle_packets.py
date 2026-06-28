@@ -59,6 +59,8 @@ Inside that kernel, the root-marked residual is checked to be exactly the
 single-row nonzero slice H_{1,j-1}(s) ell_C != 0.
 One-exchange edges inside each root-marked slice are checked to descend to
 H_{tau+1,j-2}(Delta_x s) on their common lower core.
+The remaining isolated vertices in those slices are checked by the analogous
+nonzero lower-boundary criterion and ledger.
 
 It also checks the full-top zero-syndrome lemma: if all j+1 complements
 U\\{x} inside one (j+1)-top set U are active, then the combined syndrome is
@@ -285,6 +287,8 @@ def analyze_case(
     fixed_root_difference_defect_histogram: Counter[int] = Counter()
     root_marked_single_row_defect_histogram: Counter[int] = Counter()
     root_marked_edge_core_slack_histogram: Counter[int] = Counter()
+    root_marked_isolated_histogram: Counter[int] = Counter()
+    residual_boundary_slack_histogram: Counter[int] = Counter()
     max_active = 0
     max_edges = 0
     max_triangles = 0
@@ -309,6 +313,9 @@ def analyze_case(
     max_nonzero_root_marked_slice_edges = 0
     max_nonzero_root_marked_edge_core_count = 0
     max_nonzero_root_marked_edge_core_slack = 0
+    max_nonzero_root_marked_isolated_count = 0
+    max_nonzero_residual_boundary_count = 0
+    max_nonzero_residual_boundary_slack = 0
     one_exchange_edges = 0
     star_triangles = 0
     top_triangles = 0
@@ -741,6 +748,8 @@ def analyze_case(
         case_root_marked_slice_edges = 0
         case_root_marked_edge_cores: set[tuple[int, tuple[int, ...]]] = set()
         case_root_marked_nonisolated: set[tuple[int, tuple[int, ...]]] = set()
+        case_root_marked_isolated_count = 0
+        case_residual_boundaries: set[tuple[int, tuple[int, ...], int]] = set()
         for root_index in range(n):
             diff_syn = root_difference_syndrome(syn, domain[root_index], p)
             difference_kernel_cores = {
@@ -823,6 +832,7 @@ def analyze_case(
                 case_max_root_marked_single_row_count,
                 len(single_row_nonzero_cores),
             )
+            local_root_marked_nonisolated: set[tuple[int, ...]] = set()
             if j >= 2:
                 for left, right in itertools.combinations(
                     sorted(single_row_nonzero_cores),
@@ -832,6 +842,8 @@ def analyze_case(
                     if len(common) != j - 2:
                         continue
                     case_root_marked_slice_edges += 1
+                    local_root_marked_nonisolated.add(left)
+                    local_root_marked_nonisolated.add(right)
                     case_root_marked_nonisolated.add((root_index, left))
                     case_root_marked_nonisolated.add((root_index, right))
                     case_root_marked_edge_cores.add((root_index, common))
@@ -854,6 +866,73 @@ def analyze_case(
                                 "lower_core": list(common),
                             }
                         )
+            local_root_marked_isolated = (
+                single_row_nonzero_cores - local_root_marked_nonisolated
+            )
+            case_root_marked_isolated_count += len(local_root_marked_isolated)
+            for core in single_row_nonzero_cores:
+                zero_lower_boundary_count = 0
+                for deleted_root_index in core:
+                    lower_core = tuple(
+                        entry for entry in core if entry != deleted_root_index
+                    )
+                    lower_boundary = hankel_apply(
+                        diff_syn,
+                        cached_locator(lower_core),
+                        t + 1,
+                        p,
+                    )
+                    deleted_root = domain[deleted_root_index]
+                    for row in range(t):
+                        if (
+                            lower_boundary[row + 1]
+                            != deleted_root * lower_boundary[row] % p
+                        ):
+                            raise AssertionError(
+                                {
+                                    "kind": (
+                                        "root-marked-lower-boundary-"
+                                        "veronese-failed"
+                                    ),
+                                    "p": p,
+                                    "k": k,
+                                    "syndrome": list(syn),
+                                    "root_index": root_index,
+                                    "fixed_root": domain[root_index],
+                                    "core": list(core),
+                                    "deleted_root": deleted_root_index,
+                                    "deleted_root_value": deleted_root,
+                                    "lower_boundary": list(lower_boundary),
+                                }
+                            )
+                    if not any(lower_boundary):
+                        zero_lower_boundary_count += 1
+                    else:
+                        case_residual_boundaries.add(
+                            (root_index, lower_core, deleted_root_index)
+                        )
+                criterion_isolated = zero_lower_boundary_count == 0
+                if (n - j >= 2 or j <= 1) and (
+                    (core in local_root_marked_isolated) != criterion_isolated
+                ):
+                    raise AssertionError(
+                        {
+                            "kind": "root-marked-isolated-criterion-failed",
+                            "p": p,
+                            "k": k,
+                            "syndrome": list(syn),
+                            "root_index": root_index,
+                            "root_value": domain[root_index],
+                            "core": list(core),
+                            "actual_isolated": core
+                            in local_root_marked_isolated,
+                            "zero_lower_boundary_count": (
+                                zero_lower_boundary_count
+                            ),
+                            "j": j,
+                            "n": n,
+                        }
+                    )
         root_marked_single_row_defect_histogram[
             case_max_root_marked_single_row_defect
         ] += 1
@@ -874,6 +953,23 @@ def analyze_case(
                 }
             )
         root_marked_edge_core_slack_histogram[root_marked_edge_slack] += 1
+        residual_boundary_slack = len(case_residual_boundaries) - (
+            (j - 1) * case_root_marked_isolated_count
+        )
+        if residual_boundary_slack < 0:
+            raise AssertionError(
+                {
+                    "kind": "root-marked-isolated-boundary-ledger-failed",
+                    "p": p,
+                    "k": k,
+                    "syndrome": list(syn),
+                    "root_marked_isolated": case_root_marked_isolated_count,
+                    "residual_boundaries": len(case_residual_boundaries),
+                    "j": j,
+                }
+            )
+        root_marked_isolated_histogram[case_root_marked_isolated_count] += 1
+        residual_boundary_slack_histogram[residual_boundary_slack] += 1
         isolated_marked_boundary_slack = (
             len(case_root_marked_boundaries) - j * case_isolated_vertices
         )
@@ -931,6 +1027,18 @@ def analyze_case(
             max_nonzero_root_marked_edge_core_slack = max(
                 max_nonzero_root_marked_edge_core_slack,
                 root_marked_edge_slack,
+            )
+            max_nonzero_root_marked_isolated_count = max(
+                max_nonzero_root_marked_isolated_count,
+                case_root_marked_isolated_count,
+            )
+            max_nonzero_residual_boundary_count = max(
+                max_nonzero_residual_boundary_count,
+                len(case_residual_boundaries),
+            )
+            max_nonzero_residual_boundary_slack = max(
+                max_nonzero_residual_boundary_slack,
+                residual_boundary_slack,
             )
             max_nonzero_isolated_marked_boundary_slack = max(
                 max_nonzero_isolated_marked_boundary_slack,
@@ -1430,6 +1538,15 @@ def analyze_case(
         "max_nonzero_root_marked_edge_core_slack": (
             max_nonzero_root_marked_edge_core_slack
         ),
+        "max_nonzero_root_marked_isolated_count": (
+            max_nonzero_root_marked_isolated_count
+        ),
+        "max_nonzero_residual_boundary_count": (
+            max_nonzero_residual_boundary_count
+        ),
+        "max_nonzero_residual_boundary_slack": (
+            max_nonzero_residual_boundary_slack
+        ),
         "max_nonzero_isolated_marked_boundary_slack": (
             max_nonzero_isolated_marked_boundary_slack
         ),
@@ -1497,6 +1614,12 @@ def analyze_case(
         "root_marked_edge_core_slack_histogram": dict(
             sorted(root_marked_edge_core_slack_histogram.items())
         ),
+        "root_marked_isolated_histogram": dict(
+            sorted(root_marked_isolated_histogram.items())
+        ),
+        "residual_boundary_slack_histogram": dict(
+            sorted(residual_boundary_slack_histogram.items())
+        ),
         "nonzero_top_active_size_histogram": dict(
             sorted(nonzero_top_active_size_histogram.items())
         ),
@@ -1548,6 +1671,8 @@ def print_summary(results: Sequence[dict[str, object]]) -> None:
             f"{result['max_nonzero_root_marked_single_row_count']} "
             f"max_nonzero_root_marked_edge_cores="
             f"{result['max_nonzero_root_marked_edge_core_count']} "
+            f"max_nonzero_root_marked_isolated="
+            f"{result['max_nonzero_root_marked_isolated_count']} "
             f"max_nonzero_isolated={result['max_nonzero_isolated_vertices']} "
             f"max_nonzero_marked_boundary="
             f"{result['max_nonzero_root_marked_boundary_count']} "

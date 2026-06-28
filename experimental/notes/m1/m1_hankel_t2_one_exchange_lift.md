@@ -690,6 +690,68 @@ primitive source: it descends one row in the root-difference Hankel ladder.
 Only isolated vertices of the one-row residual remain after these lower-core
 charges.
 
+## Isolated Vertices of the One-Row Residual
+
+The isolated vertices left after (RME) again have an exact marked-boundary
+criterion.  Assume `2<=j<=n-2`.  Let `C in B^x_{tau+1,j-1}(s)` and, for
+`y in C`, put `R=C\{y}` and `d=Delta_x s`.  Write
+
+```text
+a_i = sum_h (ell_R)_h d_{i+h}.
+```
+
+Since `C=R union {y}` lies in the fixed-root difference kernel,
+
+```text
+a_{i+1}=y a_i,        0<=i<tau.
+```
+
+Then `C` is isolated in the one-exchange graph on `B^x_{tau+1,j-1}(s)` if and
+only if, for every `y in C`,
+
+```text
+H_{tau+1,j-2}(Delta_x s)ell_{C\{y}} != 0.        (RI)
+```
+
+Proof: if the lower boundary vector above is nonzero, the equations
+`a_{i+1}=z a_i` force any active extension through `R` to have `z=y`, so no
+one-exchange neighbor of `C` occurs through `R`.  If the lower boundary vector
+is zero, then every extension `R union {z}` lies in the root-difference kernel.
+Inside this kernel the residual condition is the nonvanishing of the linear
+row
+
+```text
+H_{1,j-1}(s)ell_{R union {z}}.
+```
+
+This row is not identically zero on available `z`, because it is nonzero at
+`z=y`.  Since `j<=n-2`, there is an alternate available extension with this
+row still nonzero.  Hence `C` has a residual neighbor through `R`.  This proves
+(RI).
+
+Define the second marked-boundary residual
+
+```text
+B^{x,2}_{tau+1,j-2}(s)
+ = { (R,y) : R subset H\{x,y}, |R|=j-2,
+     H_{tau+1,j-2}(Delta_x s)ell_R
+       = a(1,y,...,y^tau), a!=0,
+     R union {y} in B^x_{tau+1,j-1}(s) }.
+```
+
+If `Iso(B^x)` is the set of isolated vertices in the one-row residual graph,
+then
+
+```text
+(j-1) |Iso(B^x)| <= |B^{x,2}_{tau+1,j-2}(s)|.
+```
+
+Indeed, every isolated residual core contributes its `j-1` nonzero deletion
+boundaries, and the map `(C,y) -> (C\{y},y)` is injective.  Thus the residual
+one-row slice has the same local split as the original same-slope support:
+non-isolated mass descends to lower root-difference cores, while isolated mass
+is a second marked-boundary object.
+
 ## Same-Slope Component Dichotomy
 
 Let `G_s` be the graph on active `j`-complements for a fixed combined syndrome
@@ -891,12 +953,12 @@ The first-boundary incidence identity (FI) is checked in the same scan.  In
 particular, the zero first-boundary cores coincide exactly with the active
 edge cores:
 
-| field/domain | max nonzero zero-boundary cores | max nonzero fixed-root active | residual lower cores | incidence defect | rootwise defect | root-difference defect | single-row defect |
-| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
-| `F_5`, `H=F_5^*`, `n=4,k=1,a=3,j=1` | 0 | 1 | 0 | 0 | 0 | 0 | 0 |
-| `F_7`, `H=F_7^*`, `n=6,k=1,a=3,j=3` | 5 | 10 | 5 | 0 | 0 | 0 | 0 |
-| `F_7`, `H=F_7^*`, `n=6,k=2,a=4,j=2` | 1 | 5 | 1 | 0 | 0 | 0 | 0 |
-| `F_7`, `H=F_7^*`, `n=6,k=3,a=5,j=1` | 0 | 1 | 0 | 0 | 0 | 0 | 0 |
+| field/domain | max nonzero zero-boundary cores | max nonzero fixed-root active | residual lower cores | isolated residual | second boundaries | incidence defect | rootwise defect | root-difference defect | single-row defect |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| `F_5`, `H=F_5^*`, `n=4,k=1,a=3,j=1` | 0 | 1 | 0 | 1 | 0 | 0 | 0 | 0 | 0 |
+| `F_7`, `H=F_7^*`, `n=6,k=1,a=3,j=3` | 5 | 10 | 5 | 6 | 12 | 0 | 0 | 0 | 0 |
+| `F_7`, `H=F_7^*`, `n=6,k=2,a=4,j=2` | 1 | 5 | 1 | 2 | 2 | 0 | 0 | 0 | 0 |
+| `F_7`, `H=F_7^*`, `n=6,k=3,a=5,j=1` | 0 | 1 | 0 | 1 | 0 | 0 | 0 | 0 | 0 |
 
 The `F_7,k=2,j=2` scan is the first exact top-packet check in this file.  It
 finds twenty top triangles, all on the zero combined syndrome.  This is not an
