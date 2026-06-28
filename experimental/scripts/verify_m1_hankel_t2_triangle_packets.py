@@ -200,6 +200,8 @@ to a quotient kernel whose width is the complement size.
 For the common-base branch it also checks that base roots of any residual
 candidate are roots of the origin locator, so the whole affine pencil descends
 after that base divisor and the remaining support is the quotient locator.
+For the near-fiber branch it checks the analogous support quotient after
+removing the dominant projective-fiber slice.
 Equivalently, it checks the global root-shadow-height bound: if the largest
 base locus or projective fiber has height h, every residual support has the
 good-pair lower bound forced by h.
@@ -7535,6 +7537,60 @@ def analyze_case(
                                                         dominant_width,
                                                         key=dominant_key,
                                                     )
+                                                    dominant_locator = (
+                                                        cached_locator(
+                                                            dominant_roots
+                                                        )
+                                                    )
+                                                    quotient_support = tuple(
+                                                        root
+                                                        for root in candidate
+                                                        if root
+                                                        not in dominant_roots
+                                                    )
+                                                    candidate_fiber_quotient = (
+                                                        divide_by_polynomial_exact_mod(
+                                                            candidate_locator,
+                                                            dominant_locator,
+                                                            p,
+                                                        )
+                                                    )
+                                                    expected_fiber_quotient = (
+                                                        cached_locator(
+                                                            quotient_support
+                                                        )
+                                                    )
+                                                    if (
+                                                        candidate_fiber_quotient
+                                                        != expected_fiber_quotient
+                                                    ):
+                                                        raise AssertionError(
+                                                            projective_local_error(
+                                                                "dominant-"
+                                                                "fiber-"
+                                                                "support-"
+                                                                "quotient-"
+                                                                "failed",
+                                                                candidate=list(
+                                                                    candidate
+                                                                ),
+                                                                key=list(
+                                                                    dominant_key
+                                                                ),
+                                                                dominant_roots=list(
+                                                                    dominant_roots
+                                                                ),
+                                                                quotient_support=list(
+                                                                    quotient_support
+                                                                ),
+                                                                quotient=list(
+                                                                    candidate_fiber_quotient
+                                                                ),
+                                                                expected=list(
+                                                                    expected_fiber_quotient
+                                                                ),
+                                                            )
+                                                        )
                                                 if candidate_good_pairs == 0:
                                                     zero_good_candidate_count += 1
                                                     support_base_roots = tuple(

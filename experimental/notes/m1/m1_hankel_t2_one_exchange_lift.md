@@ -4238,6 +4238,78 @@ after dividing by their locator, the residual support quotient is the expected
 complement locator and each direction basis vector remains in the corresponding
 fixed-divisor Hankel kernel.
 
+## Near-Fiber Ledger Descends to Quotient Lines
+
+The second exceptional term in (PF2-cutoff-ledger) has the same fixed-subset
+form, but now the descended object is one-dimensional.  Assume
+`1<=c<=q-A_0` and put
+
+```text
+h=q-A_0-c+1.
+```
+
+For `R in N_A`, choose a projective fiber `lambda` of maximal occupancy.  By
+definition of `N_A`,
+
+```text
+|R cap ev_A^{-1}(lambda)| >= h.
+```
+
+Thus every near-fiber support contains an `h`-subset `C` inside a single
+non-base projective fiber.  For a projective fiber `lambda=[a:b]`, let
+`Q_lambda=bP-aQ`, so `Q_lambda` vanishes on the fiber.  For
+`C subset ev_A^{-1}(lambda)`, `|C|=h`, define
+
+```text
+F_{lambda,C}(A)={
+  R' subset D'\C :
+  |R'|=q-h and ell_C ell_{R'} in K(A)
+}.
+```
+
+Multiplication by `ell_C` identifies `F_{lambda,C}(A)` with the residual
+supports containing `C`.  If this fiber is nonempty, choose one locator
+`L_C in K(A)` divisible by `ell_C`.  Since evaluation of `span(P,Q)` on a
+non-base projective fiber has rank one, the directions vanishing on `C` form
+the line `span(Q_lambda)`.  Hence all locators in `K(A)` divisible by `ell_C`
+are exactly
+
+```text
+L_C + span(Q_lambda),
+```
+
+and after division by `ell_C` the quotient supports lie in the affine quotient
+line
+
+```text
+L_C/ell_C + span(Q_lambda/ell_C)
+```
+
+of width
+
+```text
+q-h=A_0+c-1.                                    (PF2-near-line-width)
+```
+
+Consequently
+
+```text
+|N_A| <=
+sum_lambda sum_{C subset ev_A^{-1}(lambda), |C|=h}
+  |F_{lambda,C}(A)|.                            (PF2-near-ledger)
+```
+
+This reduces the near-fiber exceptional term to bounded-width quotient-line
+fibers.  Together with (PF2-base-ledger), the only pieces left by
+(PF2-cutoff-ledger) are the generic split determinant-gate count and explicit
+lower-width quotient ledgers.
+
+The verifier audits the support-local quotient descent for the dominant
+projective-fiber slice of every residual candidate: it divides the support
+locator by the dominant slice locator, checks that the quotient locator is the
+complement support, and checks that the projective-fiber direction descends to
+the corresponding fixed-divisor Hankel kernel.
+
 ## Bad Root Slices Are Absorbed-Anchor Rank Defects
 
 The preceding bad-root condition has an equivalent absorbed-anchor form.  Fix

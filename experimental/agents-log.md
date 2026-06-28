@@ -30,6 +30,26 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 b=2 near-fiber ledger descends to quotient lines
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_hankel_t2_one_exchange_lift.md`,
+  `experimental/experiments.tex`,
+  `experimental/scripts/verify_m1_hankel_t2_triangle_packets.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / STRUCTURAL / AUDIT.
+- **What is being added:** Proves that the near-projective-fiber exceptional
+  term in the `b=2` cutoff ledger is an incidence sum over fixed projective
+  fiber subsets, and each nonempty fixed-subset fiber descends to a
+  one-dimensional quotient line of width `A_0+c-1`.
+- **How it is useful:** Completes the structural descent of both exceptional
+  terms in the cutoff ledger: base-heavy supports become fixed-divisor
+  quotient fibers, and near-fiber supports become bounded-width quotient-line
+  fibers.
+- **What to do next:** Bound the generic determinant-gate count and these
+  quotient ledgers uniformly in the all-line M1 residue-packing setting.
+
 ### 2026-06-28 - M1 b=2 common-base ledger descends by incidence
 
 - **Agent/model:** AllenGrahamHart / Codex audit.

@@ -5136,6 +5136,30 @@ containing \(C\).  Hence, for \(d=A_0+1\),
 \]
 Thus the base-heavy exceptional term is an incidence sum of lower-width
 fixed-divisor quotient fibers.
+The near-fiber term has the analogous projective-fiber incidence form.  Assume
+\(1\le c\le q-A_0\) and set \(h=q-A_0-c+1\).  For a projective fiber
+\(\lambda=[a:b]\), let \(Q_\lambda=bP-aQ\).  Every
+\(R\in\mathcal N_A\) contains an \(h\)-subset \(C\) in one non-base
+projective fiber.  For such \(C\subset ev_A^{-1}(\lambda)\), put
+\[
+  F_{\lambda,C}(A)=
+  \{R'\subset D'\setminus C:\ |R'|=q-h,
+        \ell_C\ell_{R'}\in K(A)\}.
+\]
+If this fiber is nonempty and \(L_C\in K(A)\) is divisible by \(\ell_C\),
+then the locators in \(K(A)\) divisible by \(\ell_C\) form
+\[
+  L_C+\langle Q_\lambda\rangle,
+\]
+because the direction space has rank one on a non-base projective fiber.  Thus
+after division by \(\ell_C\), the near-fiber term is a quotient-line ledger of
+width \(q-h=A_0+c-1\), and
+\[
+  |\mathcal N_A|\le
+  \sum_\lambda
+  \sum_{\substack{C\subset ev_A^{-1}(\lambda)\\ |C|=h}}
+    |F_{\lambda,C}(A)|.
+\]
 Equivalently, for each available root \(x\) the bad-slice test is the failure
 of full column rank for the absorbed-anchor matrix
 \[
