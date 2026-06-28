@@ -522,6 +522,42 @@ distinct roots satisfy (AE), forcing the boundary vector to vanish; hence
 shows that same-slope active support is exactly split between zero
 first-boundary edge cores and nonzero root-marked first-boundary incidences.
 
+## Fixed-Root Boundary Decomposition
+
+The identity (FI) also holds root by root.  For `x in H`, define
+
+```text
+A^x_{tau,j}(s) = { T in A_{tau,j}(s) : x in T },
+
+Z^x_{tau+1,j-1}(s)
+ = { C in Z_{tau+1,j-1}(s) : x notin C },
+
+B^x_{tau+1,j-1}(s)
+ = { C : (C,x) in B^rm_{tau+1,j-1}(s) }.
+```
+
+Then, for every `x in H`,
+
+```text
+|A^x_{tau,j}(s)|
+ = |Z^x_{tau+1,j-1}(s)| + |B^x_{tau+1,j-1}(s)|.      (FR)
+```
+
+Proof: send `T in A^x_{tau,j}(s)` to its deletion core `C=T\{x}`.  The
+first-boundary classification over `C` has only three cases.  If the boundary
+is zero, then `C in Z^x`.  If the boundary is nonzero, activity of the
+extension by `x` forces the nonzero root-marked form with mark `x`, so
+`C in B^x`.  These two cases are disjoint and exhaust the active fixed-root
+slice.  Conversely, each `C in Z^x` gives the active extension `C union {x}`,
+and each `C in B^x` gives exactly the same active extension.  This proves
+(FR).
+
+Thus the nonzero root-marked chart is not a separate same-slope branching
+object.  It is the fixed-root active slice after the zero first-boundary star
+cores have been removed.  Consequently, any global M1 argument that charges
+fixed-root/root-slice active slices and zero-boundary edge cores also charges
+the root-marked first-boundary residual.
+
 ## Same-Slope Component Dichotomy
 
 Let `G_s` be the graph on active `j`-complements for a fixed combined syndrome
@@ -723,12 +759,12 @@ The first-boundary incidence identity (FI) is checked in the same scan.  In
 particular, the zero first-boundary cores coincide exactly with the active
 edge cores:
 
-| field/domain | max nonzero zero-boundary cores | incidence defect |
-| --- | ---: | ---: |
-| `F_5`, `H=F_5^*`, `n=4,k=1,a=3,j=1` | 0 | 0 |
-| `F_7`, `H=F_7^*`, `n=6,k=1,a=3,j=3` | 5 | 0 |
-| `F_7`, `H=F_7^*`, `n=6,k=2,a=4,j=2` | 1 | 0 |
-| `F_7`, `H=F_7^*`, `n=6,k=3,a=5,j=1` | 0 | 0 |
+| field/domain | max nonzero zero-boundary cores | max nonzero fixed-root active | incidence defect | rootwise defect |
+| --- | ---: | ---: | ---: | ---: |
+| `F_5`, `H=F_5^*`, `n=4,k=1,a=3,j=1` | 0 | 1 | 0 | 0 |
+| `F_7`, `H=F_7^*`, `n=6,k=1,a=3,j=3` | 5 | 10 | 0 | 0 |
+| `F_7`, `H=F_7^*`, `n=6,k=2,a=4,j=2` | 1 | 5 | 0 | 0 |
+| `F_7`, `H=F_7^*`, `n=6,k=3,a=5,j=1` | 0 | 1 | 0 | 0 |
 
 The `F_7,k=2,j=2` scan is the first exact top-packet check in this file.  It
 finds twenty top triangles, all on the zero combined syndrome.  This is not an

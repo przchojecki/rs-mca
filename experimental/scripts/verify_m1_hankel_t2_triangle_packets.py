@@ -47,6 +47,13 @@ It also checks the sharper first-boundary incidence identity
 
     j*|A| = (n-j+1)*|E| + |B_rm|.
 
+Root by root, it checks the fixed-root decomposition
+
+    |A_x| = |Z_x| + |B_x|,
+
+where A_x is the active fixed-root slice, Z_x is the zero-boundary core slice
+available to x, and B_x is the root-marked boundary slice marked by x.
+
 It also checks the full-top zero-syndrome lemma: if all j+1 complements
 U\\{x} inside one (j+1)-top set U are active, then the combined syndrome is
 zero.  Thus full top packets belong to the global-codeword/tangent ledger.
@@ -257,6 +264,7 @@ def analyze_case(
     full_support_ledger_slack_histogram: Counter[int] = Counter()
     first_boundary_zero_core_histogram: Counter[int] = Counter()
     first_boundary_incidence_defect_histogram: Counter[int] = Counter()
+    fixed_root_decomposition_defect_histogram: Counter[int] = Counter()
     max_active = 0
     max_edges = 0
     max_triangles = 0
@@ -274,6 +282,8 @@ def analyze_case(
     max_nonzero_isolated_marked_boundary_slack = 0
     max_nonzero_full_support_ledger_slack = 0
     max_nonzero_first_boundary_zero_core_count = 0
+    max_nonzero_fixed_root_active_count = 0
+    max_nonzero_root_marked_per_root = 0
     one_exchange_edges = 0
     star_triangles = 0
     top_triangles = 0
@@ -562,6 +572,47 @@ def analyze_case(
         first_boundary_incidence_defect_histogram[
             first_boundary_incidence_defect
         ] += 1
+        fixed_root_active_counts: Counter[int] = Counter()
+        for index in active:
+            fixed_root_active_counts.update(complements[index])
+        fixed_root_zero_core_counts: Counter[int] = Counter()
+        for core in case_first_boundary_zero_cores:
+            core_set = set(core)
+            for root_index in range(n):
+                if root_index not in core_set:
+                    fixed_root_zero_core_counts[root_index] += 1
+        root_marked_counts: Counter[int] = Counter(
+            root_index for _, root_index in case_root_marked_boundaries
+        )
+        case_max_fixed_root_defect = 0
+        for root_index in range(n):
+            fixed_root_defect = (
+                fixed_root_active_counts[root_index]
+                - fixed_root_zero_core_counts[root_index]
+                - root_marked_counts[root_index]
+            )
+            case_max_fixed_root_defect = max(
+                case_max_fixed_root_defect,
+                abs(fixed_root_defect),
+            )
+            if fixed_root_defect != 0:
+                raise AssertionError(
+                    {
+                        "kind": "fixed-root-boundary-decomposition-failed",
+                        "p": p,
+                        "k": k,
+                        "syndrome": list(syn),
+                        "root_index": root_index,
+                        "root_value": domain[root_index],
+                        "fixed_root_active": fixed_root_active_counts[root_index],
+                        "zero_boundary_available": fixed_root_zero_core_counts[
+                            root_index
+                        ],
+                        "root_marked": root_marked_counts[root_index],
+                        "defect": fixed_root_defect,
+                    }
+                )
+        fixed_root_decomposition_defect_histogram[case_max_fixed_root_defect] += 1
         isolated_marked_boundary_slack = (
             len(case_root_marked_boundaries) - j * case_isolated_vertices
         )
@@ -591,6 +642,14 @@ def analyze_case(
             max_nonzero_first_boundary_zero_core_count = max(
                 max_nonzero_first_boundary_zero_core_count,
                 len(case_first_boundary_zero_cores),
+            )
+            max_nonzero_fixed_root_active_count = max(
+                max_nonzero_fixed_root_active_count,
+                max(fixed_root_active_counts.values(), default=0),
+            )
+            max_nonzero_root_marked_per_root = max(
+                max_nonzero_root_marked_per_root,
+                max(root_marked_counts.values(), default=0),
             )
             max_nonzero_isolated_marked_boundary_slack = max(
                 max_nonzero_isolated_marked_boundary_slack,
@@ -1071,6 +1130,10 @@ def analyze_case(
         "max_nonzero_first_boundary_zero_core_count": (
             max_nonzero_first_boundary_zero_core_count
         ),
+        "max_nonzero_fixed_root_active_count": (
+            max_nonzero_fixed_root_active_count
+        ),
+        "max_nonzero_root_marked_per_root": max_nonzero_root_marked_per_root,
         "max_nonzero_isolated_marked_boundary_slack": (
             max_nonzero_isolated_marked_boundary_slack
         ),
@@ -1126,6 +1189,9 @@ def analyze_case(
         "first_boundary_incidence_defect_histogram": dict(
             sorted(first_boundary_incidence_defect_histogram.items())
         ),
+        "fixed_root_decomposition_defect_histogram": dict(
+            sorted(fixed_root_decomposition_defect_histogram.items())
+        ),
         "nonzero_top_active_size_histogram": dict(
             sorted(nonzero_top_active_size_histogram.items())
         ),
@@ -1167,6 +1233,10 @@ def print_summary(results: Sequence[dict[str, object]]) -> None:
             f"max_nonzero_edge_cores={result['max_nonzero_edge_core_count']} "
             f"max_nonzero_boundary_zero_cores="
             f"{result['max_nonzero_first_boundary_zero_core_count']} "
+            f"max_nonzero_fixed_root_active="
+            f"{result['max_nonzero_fixed_root_active_count']} "
+            f"max_nonzero_root_marked_per_root="
+            f"{result['max_nonzero_root_marked_per_root']} "
             f"max_nonzero_isolated={result['max_nonzero_isolated_vertices']} "
             f"max_nonzero_marked_boundary="
             f"{result['max_nonzero_root_marked_boundary_count']} "

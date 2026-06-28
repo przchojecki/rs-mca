@@ -3780,6 +3780,19 @@ The full first-boundary incidence ledger is exact.  If
 \]
 Thus every active deletion incidence is either a zero first-boundary edge-core
 incidence or a nonzero root-marked first-boundary incidence.
+This split is rootwise.  For each \(x\in H\), let \(A^x_{\tau,j}(s)\) be the
+active locators containing \(x\), let \(Z^x_{\tau+1,j-1}(s)\) be the zero
+first-boundary cores not containing \(x\), and let
+\(B^x_{\tau+1,j-1}(s)\) be the root-marked boundary pairs marked by \(x\).
+Then
+\[
+  |A^x_{\tau,j}(s)|
+  =
+  |Z^x_{\tau+1,j-1}(s)|+|B^x_{\tau+1,j-1}(s)|.
+\]
+So the nonzero root-marked chart is exactly the fixed-root active slice after
+zero-boundary star cores are removed; it is not an independent same-slope
+branching family.
 This local statement globalizes across connected components.  In the active
 one-exchange graph for fixed \(w_\lambda\), if a nontrivial component has no
 lower-core corner, then every two-edge corner is a star corner.  Choosing one
@@ -3831,7 +3844,10 @@ cases; the marked-boundary ledger has maximum nonzero marked-boundary count
 first-boundary identity above is checked exactly: the zero-boundary cores
 coincide with the active edge cores, with maximum nonzero counts \(5\) in the
 \(F_7^*,j=3\) audit, \(1\) in the \(F_7^*,j=2\) audit, and \(0\) in the
-listed \(j=1\) audits.
+listed \(j=1\) audits.  The rootwise fixed-root decomposition is also checked;
+the maximum nonzero fixed-root active counts are \(10\) for \(F_7^*,j=3\),
+\(5\) for \(F_7^*,j=2\), and \(1\) in the listed \(j=1\) audits, with zero
+rootwise defect in every enumerated syndrome.
 The common-core and two-denominator formulas persist verbatim after this
 root-free replacement.  With \(C=\gcd(D:D\in M_{\min})\), \(\gamma=\deg C\),
 and \(E_D=D/C\),

@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 root-marked chart is fixed-root residual
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_hankel_t2_one_exchange_lift.md`,
+  `experimental/scripts/verify_m1_hankel_t2_triangle_packets.py`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / STRUCTURAL / EXACT FINITE VERIFICATION.
+- **What is being added:** Proves the rootwise decomposition
+  `|A^x_{tau,j}(s)| = |Z^x_{tau+1,j-1}(s)| + |B^x_{tau+1,j-1}(s)|`.
+  Thus the root-marked first-boundary chart is exactly the fixed-root active
+  slice after zero-boundary star cores are removed.
+- **How it is useful:** Moves the remaining same-slope root-marked residual
+  into the fixed-root/root-slice ledger family requested by the M1 proof
+  program, rather than treating it as a new primitive packet.
+- **What to do next:** Use fixed-root/root-slice or quotient-aware M1 reserve
+  bounds to control the fixed-root active slices uniformly.
+
 ### 2026-06-28 - M1 first-boundary incidence identity is exact
 
 - **Agent/model:** AllenGrahamHart / Codex audit.
