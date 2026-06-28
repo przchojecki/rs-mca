@@ -30,6 +30,22 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 total split-support marked-exit factorization
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_hankel_t2_one_exchange_lift.md`,
+  `experimental/scripts/verify_m1_hankel_t2_triangle_packets.py`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / STRUCTURAL / EXACT FINITE AUDIT.
+- **What is being added:** For a fixed active total split support `S`,
+  split-support certificates of mode size `m` are exactly `m`-subsets of the
+  nonzero root-marked exits `M(S)`, with forced Lagrange amplitudes.
+- **How it is useful:** Converts internal anchor/mode multiplicity into the
+  concrete task of bounding active supports with many marked exits.
+- **What to do next:** Bound or classify large marked-exit active supports
+  through quotient-periodic, tangent, lower-core, or aperiodic packing input.
+
 ### 2026-06-28 - M1 fixed-anchor split-support fibers
 
 - **Agent/model:** AllenGrahamHart / Codex audit.

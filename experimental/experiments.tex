@@ -4299,6 +4299,23 @@ then
 So the split-support certificate is equivalent to the sparse anchor-base
 packet.  The verifier checks \(34560\) such roundtrips in the largest
 \(F_7^*\) audit, with \(32400\) productive roundtrips.
+For a fixed active total support \(S\), define \(b_x(S)\) by
+\[
+  H_{\tau+1,|S|-1}(s)\ell_{S\setminus\{x\}}
+  = b_x(S)(1,x,\ldots,x^\tau).
+\]
+Let \(M(S)=\{x\in S:b_x(S)\ne0\}\).  Then certificates with total support
+\(S\) and mode size \(m\) are exactly the
+choices \(Y\subseteq M(S)\), \(|Y|=m\), with amplitudes
+\[
+  a_y={b_y(S)\over \prod_{z\in Y,\ z\ne y}(y-z)}.
+\]
+Thus the fixed-\(S\) certificate capacity is \(\binom{|M(S)|}{m}\).  The
+verifier audits this factorization in the largest \(F_7^*\) case:
+\(25920\) total-support fibers carry \(34560\) labels, maximum fiber size
+\(3\), and \(60480\) marked-subset factorizations are checked; the productive
+subaudit has \(23760\) fibers, \(32400\) labels, maximum fiber size \(3\),
+and \(58320\) factorizations.
 For fixed \(A\) and \(m\), this also gives a fixed-anchor fiber bound.  If
 \(m\le\tau\), the first \(2m\) moments recover the mode locator and
 amplitudes uniquely.  At the boundary \(m=\tau+1\), two supports in one

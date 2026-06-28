@@ -114,6 +114,10 @@ base A and packet modes Y, the total support A union Y is active and every
 one-mode deletion has the expected nonzero root-marked boundary vector.
 Conversely, it checks that those root-marked split-boundary scalars reconstruct
 the anchor-base sparse packet.
+For a fixed active total split support, it audits the exact factorization of
+certificates by nonzero root-marked exits: every marked subset reconstructs
+the corresponding anchor packet, and every produced certificate uses such a
+marked subset.
 For each fixed collapsed anchor base, it audits the sparse-representation
 fiber: below the boundary the mode support is unique, while at the boundary
 distinct supports are disjoint and obey the matching bound.
@@ -497,6 +501,16 @@ def analyze_case(
     terminal_tree_productive_anchor_split_proper_absorption_checks = 0
     terminal_tree_anchor_split_ordered_mode_flags = 0
     terminal_tree_productive_anchor_split_ordered_mode_flags = 0
+    terminal_tree_total_split_support_fiber_checks = 0
+    terminal_tree_productive_total_split_support_fiber_checks = 0
+    terminal_tree_total_split_support_fiber_labels = 0
+    terminal_tree_productive_total_split_support_fiber_labels = 0
+    terminal_tree_total_split_support_fiber_max_size = 0
+    terminal_tree_productive_total_split_support_fiber_max_size = 0
+    terminal_tree_total_split_support_factorization_checks = 0
+    terminal_tree_productive_total_split_support_factorization_checks = 0
+    terminal_tree_total_split_support_max_marked_roots = 0
+    terminal_tree_productive_total_split_support_max_marked_roots = 0
     terminal_tree_anchor_fiber_checks = 0
     terminal_tree_productive_anchor_fiber_checks = 0
     terminal_tree_anchor_fiber_labels = 0
@@ -690,6 +704,16 @@ def analyze_case(
             nonlocal terminal_tree_productive_anchor_split_proper_absorption_checks
             nonlocal terminal_tree_anchor_split_ordered_mode_flags
             nonlocal terminal_tree_productive_anchor_split_ordered_mode_flags
+            nonlocal terminal_tree_total_split_support_fiber_checks
+            nonlocal terminal_tree_productive_total_split_support_fiber_checks
+            nonlocal terminal_tree_total_split_support_fiber_labels
+            nonlocal terminal_tree_productive_total_split_support_fiber_labels
+            nonlocal terminal_tree_total_split_support_fiber_max_size
+            nonlocal terminal_tree_productive_total_split_support_fiber_max_size
+            nonlocal terminal_tree_total_split_support_factorization_checks
+            nonlocal terminal_tree_productive_total_split_support_factorization_checks
+            nonlocal terminal_tree_total_split_support_max_marked_roots
+            nonlocal terminal_tree_productive_total_split_support_max_marked_roots
             nonlocal terminal_tree_anchor_fiber_checks
             nonlocal terminal_tree_productive_anchor_fiber_checks
             nonlocal terminal_tree_anchor_fiber_labels
@@ -758,6 +782,68 @@ def analyze_case(
                 tuple[int, tuple[int, ...]],
                 list[tuple[int, ...]],
             ] = {}
+            total_split_support_fibers: dict[
+                tuple[int, tuple[int, ...]],
+                list[tuple[int, ...]],
+            ] = {}
+            productive_total_split_support_fibers: dict[
+                tuple[int, tuple[int, ...]],
+                list[tuple[int, ...]],
+            ] = {}
+            marked_split_supports: dict[
+                tuple[int, ...],
+                dict[int, int],
+            ] = {}
+
+            def marked_roots_for_split_support(
+                total_support: tuple[int, ...],
+            ) -> dict[int, int]:
+                cached = marked_split_supports.get(total_support)
+                if cached is not None:
+                    return cached
+                marked_scalars: dict[int, int] = {}
+                for root_index in total_support:
+                    root = domain[root_index]
+                    boundary_support = tuple(
+                        index
+                        for index in total_support
+                        if index != root_index
+                    )
+                    boundary_vector = hankel_apply(
+                        syn,
+                        cached_locator(boundary_support),
+                        t + 1,
+                        p,
+                    )
+                    expected_boundary = tuple(
+                        boundary_vector[0] * pow(root, row, p) % p
+                        for row in range(t + 1)
+                    )
+                    if boundary_vector != expected_boundary:
+                        raise AssertionError(
+                            {
+                                "kind": (
+                                    "terminal-split-support-marked-"
+                                    "boundary-line-failed"
+                                ),
+                                "p": p,
+                                "k": k,
+                                "syndrome": list(syn),
+                                "fixed_roots": list(fixed_roots),
+                                "total_split_support": list(total_support),
+                                "exit_root": root_index,
+                                "boundary_vector": list(boundary_vector),
+                                "expected_boundary": list(
+                                    expected_boundary
+                                ),
+                            }
+                        )
+                    scalar = boundary_vector[0] % p
+                    if scalar:
+                        marked_scalars[root_index] = scalar
+                marked_split_supports[total_support] = marked_scalars
+                return marked_scalars
+
             audit_terminal_paths = 0
             for core in active_cores:
                 if not core:
@@ -1309,6 +1395,32 @@ def analyze_case(
                         terminal_tree_productive_anchor_split_support_checks += (
                             1
                         )
+                    marked_roots = marked_roots_for_split_support(
+                        total_split_support
+                    )
+                    missing_marked_modes = sorted(
+                        child_root_indices - set(marked_roots)
+                    )
+                    if missing_marked_modes:
+                        raise AssertionError(
+                            {
+                                "kind": (
+                                    "terminal-split-support-mode-not-"
+                                    "marked"
+                                ),
+                                "p": p,
+                                "k": k,
+                                "syndrome": list(syn),
+                                "fixed_roots": list(fixed_roots),
+                                "anchor_base": list(anchor_base),
+                                "exit_roots": sorted(child_root_indices),
+                                "total_split_support": list(
+                                    total_split_support
+                                ),
+                                "missing_marked_modes": missing_marked_modes,
+                                "marked_roots": sorted(marked_roots),
+                            }
+                        )
                     for (
                         root_index,
                         root,
@@ -1408,6 +1520,19 @@ def analyze_case(
                     if productive_children >= 2:
                         productive_anchor_split_fibers.setdefault(
                             anchor_fiber_key,
+                            [],
+                        ).append(anchor_fiber_support)
+                    total_split_support_fiber_key = (
+                        mode_count,
+                        total_split_support,
+                    )
+                    total_split_support_fibers.setdefault(
+                        total_split_support_fiber_key,
+                        [],
+                    ).append(anchor_fiber_support)
+                    if productive_children >= 2:
+                        productive_total_split_support_fibers.setdefault(
+                            total_split_support_fiber_key,
                             [],
                         ).append(anchor_fiber_support)
                     ordered_mode_flags = math.factorial(mode_count)
@@ -2519,6 +2644,211 @@ def analyze_case(
             terminal_tree_anchor_base_kernel_checks += anchor_base_kernel_checks
             terminal_tree_productive_anchor_base_kernel_checks += (
                 productive_anchor_base_kernel_checks
+            )
+
+            def audit_total_split_support_fibers(
+                fibers: dict[
+                    tuple[int, tuple[int, ...]],
+                    list[tuple[int, ...]],
+                ],
+                productive: bool,
+            ) -> tuple[int, int, int, int, int]:
+                fiber_checks = 0
+                fiber_labels = 0
+                max_fiber_size = 0
+                factorization_checks = 0
+                max_marked_roots = 0
+                for (mode_count, total_support), mode_supports in fibers.items():
+                    marked_roots = marked_roots_for_split_support(
+                        total_support
+                    )
+                    marked_root_indices = sorted(marked_roots)
+                    marked_root_set = set(marked_root_indices)
+                    max_marked_roots = max(
+                        max_marked_roots,
+                        len(marked_root_indices),
+                    )
+                    unique_supports = sorted(set(mode_supports))
+                    fiber_size = len(unique_supports)
+                    capacity = math.comb(
+                        len(marked_root_indices),
+                        mode_count,
+                    )
+                    fiber_checks += 1
+                    fiber_labels += fiber_size
+                    max_fiber_size = max(max_fiber_size, fiber_size)
+                    if fiber_size > capacity:
+                        raise AssertionError(
+                            {
+                                "kind": (
+                                    "productive-"
+                                    if productive
+                                    else ""
+                                )
+                                + "total-split-support-fiber-"
+                                "capacity-failed",
+                                "p": p,
+                                "k": k,
+                                "syndrome": list(syn),
+                                "fixed_roots": list(fixed_roots),
+                                "total_split_support": list(total_support),
+                                "mode_count": mode_count,
+                                "fiber_size": fiber_size,
+                                "marked_roots": marked_root_indices,
+                                "capacity": capacity,
+                            }
+                        )
+                    for support in unique_supports:
+                        if not set(support) <= marked_root_set:
+                            raise AssertionError(
+                                {
+                                    "kind": (
+                                        "productive-"
+                                        if productive
+                                        else ""
+                                    )
+                                    + "total-split-support-fiber-"
+                                    "unmarked-mode",
+                                    "p": p,
+                                    "k": k,
+                                    "syndrome": list(syn),
+                                    "fixed_roots": list(fixed_roots),
+                                    "total_split_support": list(
+                                        total_support
+                                    ),
+                                    "mode_count": mode_count,
+                                    "support": list(support),
+                                    "marked_roots": marked_root_indices,
+                                }
+                            )
+                    for candidate_modes in itertools.combinations(
+                        marked_root_indices,
+                        mode_count,
+                    ):
+                        candidate_mode_set = set(candidate_modes)
+                        candidate_anchor = tuple(
+                            index
+                            for index in total_support
+                            if index not in candidate_mode_set
+                        )
+                        expected = []
+                        for row in range(t + mode_count):
+                            total = 0
+                            for root_index in candidate_modes:
+                                root = domain[root_index]
+                                denominator = 1
+                                for other_root_index in candidate_modes:
+                                    if other_root_index == root_index:
+                                        continue
+                                    denominator = (
+                                        denominator
+                                        * (
+                                            root
+                                            - domain[other_root_index]
+                                        )
+                                    ) % p
+                                amplitude = (
+                                    marked_roots[root_index]
+                                    * pow(denominator, -1, p)
+                                ) % p
+                                total += amplitude * pow(root, row, p)
+                            expected.append(total % p)
+                        anchor_vector = hankel_apply(
+                            syn,
+                            cached_locator(candidate_anchor),
+                            t + mode_count,
+                            p,
+                        )
+                        if anchor_vector != tuple(expected):
+                            raise AssertionError(
+                                {
+                                    "kind": (
+                                        "productive-"
+                                        if productive
+                                        else ""
+                                    )
+                                    + "total-split-support-factorization-"
+                                    "failed",
+                                    "p": p,
+                                    "k": k,
+                                    "syndrome": list(syn),
+                                    "fixed_roots": list(fixed_roots),
+                                    "total_split_support": list(
+                                        total_support
+                                    ),
+                                    "mode_count": mode_count,
+                                    "candidate_modes": list(
+                                        candidate_modes
+                                    ),
+                                    "candidate_anchor": list(
+                                        candidate_anchor
+                                    ),
+                                    "anchor_vector": list(anchor_vector),
+                                    "expected": expected,
+                                }
+                            )
+                        factorization_checks += 1
+                return (
+                    fiber_checks,
+                    fiber_labels,
+                    max_fiber_size,
+                    factorization_checks,
+                    max_marked_roots,
+                )
+
+            (
+                total_split_support_fiber_checks,
+                total_split_support_fiber_labels,
+                total_split_support_fiber_max_size,
+                total_split_support_factorization_checks,
+                total_split_support_max_marked_roots,
+            ) = audit_total_split_support_fibers(
+                total_split_support_fibers,
+                productive=False,
+            )
+            (
+                productive_total_split_support_fiber_checks,
+                productive_total_split_support_fiber_labels,
+                productive_total_split_support_fiber_max_size,
+                productive_total_split_support_factorization_checks,
+                productive_total_split_support_max_marked_roots,
+            ) = audit_total_split_support_fibers(
+                productive_total_split_support_fibers,
+                productive=True,
+            )
+            terminal_tree_total_split_support_fiber_checks += (
+                total_split_support_fiber_checks
+            )
+            terminal_tree_productive_total_split_support_fiber_checks += (
+                productive_total_split_support_fiber_checks
+            )
+            terminal_tree_total_split_support_fiber_labels += (
+                total_split_support_fiber_labels
+            )
+            terminal_tree_productive_total_split_support_fiber_labels += (
+                productive_total_split_support_fiber_labels
+            )
+            terminal_tree_total_split_support_fiber_max_size = max(
+                terminal_tree_total_split_support_fiber_max_size,
+                total_split_support_fiber_max_size,
+            )
+            terminal_tree_productive_total_split_support_fiber_max_size = max(
+                terminal_tree_productive_total_split_support_fiber_max_size,
+                productive_total_split_support_fiber_max_size,
+            )
+            terminal_tree_total_split_support_factorization_checks += (
+                total_split_support_factorization_checks
+            )
+            terminal_tree_productive_total_split_support_factorization_checks += (
+                productive_total_split_support_factorization_checks
+            )
+            terminal_tree_total_split_support_max_marked_roots = max(
+                terminal_tree_total_split_support_max_marked_roots,
+                total_split_support_max_marked_roots,
+            )
+            terminal_tree_productive_total_split_support_max_marked_roots = max(
+                terminal_tree_productive_total_split_support_max_marked_roots,
+                productive_total_split_support_max_marked_roots,
             )
 
             def audit_anchor_split_fibers(
@@ -4405,6 +4735,36 @@ def analyze_case(
         "terminal_tree_productive_anchor_split_ordered_mode_flags": (
             terminal_tree_productive_anchor_split_ordered_mode_flags
         ),
+        "terminal_tree_total_split_support_fiber_checks": (
+            terminal_tree_total_split_support_fiber_checks
+        ),
+        "terminal_tree_productive_total_split_support_fiber_checks": (
+            terminal_tree_productive_total_split_support_fiber_checks
+        ),
+        "terminal_tree_total_split_support_fiber_labels": (
+            terminal_tree_total_split_support_fiber_labels
+        ),
+        "terminal_tree_productive_total_split_support_fiber_labels": (
+            terminal_tree_productive_total_split_support_fiber_labels
+        ),
+        "terminal_tree_total_split_support_fiber_max_size": (
+            terminal_tree_total_split_support_fiber_max_size
+        ),
+        "terminal_tree_productive_total_split_support_fiber_max_size": (
+            terminal_tree_productive_total_split_support_fiber_max_size
+        ),
+        "terminal_tree_total_split_support_factorization_checks": (
+            terminal_tree_total_split_support_factorization_checks
+        ),
+        "terminal_tree_productive_total_split_support_factorization_checks": (
+            terminal_tree_productive_total_split_support_factorization_checks
+        ),
+        "terminal_tree_total_split_support_max_marked_roots": (
+            terminal_tree_total_split_support_max_marked_roots
+        ),
+        "terminal_tree_productive_total_split_support_max_marked_roots": (
+            terminal_tree_productive_total_split_support_max_marked_roots
+        ),
         "terminal_tree_anchor_fiber_checks": (
             terminal_tree_anchor_fiber_checks
         ),
@@ -4853,6 +5213,10 @@ def print_summary(results: Sequence[dict[str, object]]) -> None:
             f"{result['terminal_tree_anchor_split_absorption_checks']} "
             f"anchor_split_ordered_flags="
             f"{result['terminal_tree_anchor_split_ordered_mode_flags']} "
+            f"total_split_fiber_checks="
+            f"{result['terminal_tree_total_split_support_fiber_checks']} "
+            f"total_split_factorizations="
+            f"{result['terminal_tree_total_split_support_factorization_checks']} "
             f"anchor_fiber_checks="
             f"{result['terminal_tree_anchor_fiber_checks']} "
             f"anchor_fiber_max="

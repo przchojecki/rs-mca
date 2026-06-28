@@ -1723,6 +1723,70 @@ The verifier checks this roundtrip for every produced packet.  In the largest
 `F_7^*` audit, this gives `34560` packet-reconstruction roundtrips, with
 `32400` productive roundtrips.
 
+## Total Split Supports Factor Through Marked Exits
+
+The split-support equivalence has a useful fixed-total-support form.  Fix an
+active total support `S`; that is,
+
+```text
+H_{tau,|S|}(s)ell_S=0.
+```
+
+For each `x in S`, write
+
+```text
+H_{tau+1,|S|-1}(s)ell_{S\{x}}
+  = b_x(S)(1,x,...,x^tau).
+```
+
+This scalar is well-defined because `(X-x)ell_{S\{x}}=ell_S`, so the boundary
+vector obeys the geometric recurrence with ratio `x`.  Let
+
+```text
+M(S)={x in S : b_x(S) != 0}
+```
+
+be the marked exits of `S`.
+
+Then the split-support certificates with total support `S` and mode size `m`
+are exactly the choices of an `m`-subset `Y subset M(S)`.  For such a choice,
+put `A=S\Y` and
+
+```text
+d_Y(y)=prod_{z in Y,z!=y}(y-z),        a_y=b_y(S)/d_Y(y).
+```
+
+The Lagrange reconstruction gives
+
+```text
+H_{tau+m,|A|}(s)ell_A
+ = (sum_{y in Y} a_y y^i)_{0<=i<=tau+m-1}.
+```
+
+Conversely, every split-support certificate over total support `S=A union Y`
+uses only marked exits `Y subset M(S)`, and the amplitudes are forced by the
+same formula.  Hence, for fixed `S`, the mode-size `m` certificate fiber has
+capacity
+
+```text
+binom(|M(S)|,m).                              (MS)
+```
+
+This separates two different multiplicities.  Anchor choices inside one
+active split support are not arbitrary: they are just choices of marked exits.
+The remaining global M1 problem is therefore to bound or classify active
+supports with many marked exits, and then to count how many such supports can
+occur after quotient-periodic, tangent, and lower-core charges.
+
+The verifier audits this factorization for produced split-support packets and
+also reconstructs every marked subset of every produced total support.  In the
+largest `F_7^*` audit, `25920` total-support fibers carry `34560` labels, the
+maximum fiber size is `3`, and it checks `60480` marked-subset
+factorizations.  The productive subaudit has `23760` fibers carrying `32400`
+labels, maximum fiber size `3`, and `58320` marked-subset factorizations.  In
+both audits the maximum number of marked exits on a produced total support is
+`3`.
+
 ## Fixed Anchors Have Matching-Bounded Fibers
 
 Fix the collapsed anchor base `A` and the mode size `m`.  Then
