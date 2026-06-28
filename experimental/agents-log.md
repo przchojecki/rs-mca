@@ -30,6 +30,27 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 t=2 triangle packet lifts
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_hankel_t2_one_exchange_lift.md`,
+  `experimental/scripts/verify_m1_hankel_t2_triangle_packets.py`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / EXACT FINITE VERIFICATION.
+- **What is being added:** Extends the `t=2` Hankel packet extraction from
+  one-exchange edges to pairwise one-exchange triangles.  Star triangles lift
+  to the `H_{3,j-1}` core recurrence, while top triangles lie in the common
+  lifted `H_{1,j+1}` kernel of their `(j+1)`-top set.
+- **How it is useful:** Handles the next collision shape in the M1
+  same-slope packet route.  The exact syndrome verifier checks the first
+  genuine top-packet case `F_7^*`, `(n,k,a,j)=(6,2,4,2)`, where all nonzero
+  same-slope triangles are star/root-slice events and top triangles occur only
+  on the zero combined syndrome.
+- **What to do next:** Move from triangle packets to variable-line/top-packet
+  components in larger `j`, using the lifted `t=1` and `t=3` kernels as the
+  charged ledgers.
+
 ### 2026-06-28 - M1 t=2 one-exchange Hankel core lift
 
 - **Agent/model:** AllenGrahamHart / Codex audit.

@@ -118,6 +118,40 @@ direction vector is zero, the collision has moved into the contained/tangent
 side on the core.  In both cases, a same-slope one-exchange collision is not a
 free primitive packet: it is visible in the next-slack/core ledger.
 
+## Triangle Packets
+
+The next local shape is a pairwise one-exchange triangle in one fixed-slope
+fiber.  In the Johnson graph on `j`-complements, every such triangle is one of
+two types:
+
+1. a star triangle with common `(j-1)`-core `R`;
+2. a top triangle contained in a common `(j+1)`-set `U`.
+
+Indeed, if `T_1` and `T_2` share a `(j-1)`-core `R`, then a third complement
+one-exchange adjacent to both either contains `R` (the star case) or replaces
+one element of `R` by the two outside elements of `T_1 union T_2` (the top
+case).
+
+Let again `w_lambda=Y-lambda phi`, and suppose every complement in the
+triangle has slope `lambda`.  In the star case, the one-exchange core lift
+already gives
+
+```text
+H_{3,j-1}(Syn(w_lambda)) ell_R = 0.
+```
+
+In the top case, write `T=U\{x}` for any one member of the triangle.  Since
+`ell_U=(X-x)ell_T` and `H_{2,j}(Syn(w_lambda))ell_T=0`,
+
+```text
+H_{1,j+1}(Syn(w_lambda)) ell_U = 0.
+```
+
+Thus a top triangle lies in the common lifted `t=1` Hankel kernel of its top
+set `U`.  This is the local packet form of the statement that residual top
+packets are not independent slope growth; they have moved to a lower-row
+Hankel kernel that must be charged separately.
+
 ## Exact Verifier
 
 The script
@@ -141,6 +175,28 @@ In both scans every lifted core was still noncontained on the larger support:
 lifted_direction_zero_core_edges = 0.
 ```
 
+The triangle-packet verifier
+
+```text
+python3 experimental/scripts/verify_m1_hankel_t2_triangle_packets.py
+```
+
+enumerates the combined syndrome `Syn(w_lambda)` directly, so it can check the
+first genuine top-triangle case without a slow quotient-pair scan.
+
+| field/domain | syndromes | one-exchange edges | star triangles | top triangles | nonzero top triangles |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| `F_5`, `H=F_5^*`, `n=4,k=1,a=3,j=1` | 125 | 6 | 4 | 0 | 0 |
+| `F_7`, `H=F_7^*`, `n=6,k=2,a=4,j=2` | 2401 | 420 | 420 | 20 | 0 |
+| `F_7`, `H=F_7^*`, `n=6,k=3,a=5,j=1` | 343 | 15 | 20 | 0 | 0 |
+
+The `F_7,k=2,j=2` scan is the first exact top-packet check in this file.  It
+finds twenty top triangles, all on the zero combined syndrome.  This is not an
+asymptotic claim, but it is a useful falsification check: in the smallest
+genuine top case, nonzero same-slope triangles are already star/root-slice
+events, while top events are confined to the most degenerate lifted `t=1`
+kernel.
+
 These are small exact checks, not asymptotic evidence.  Their role is to make
-the first `t=2` collision charge reproducible before moving to larger
-`j>=2` packet scans.
+the first `t=2` collision charges reproducible before moving to larger packet
+scans and variable-line components.

@@ -3665,6 +3665,19 @@ ledger.  The verifier
 checks this determinant gate and core lift over exact \(F_5^*\) and \(F_7^*\)
 tiny scans, verifying \(3480\) and \(34650\) one-exchange core lifts
 respectively.
+The triangle-packet verifier
+\texttt{experimental/scripts/verify\_m1\_hankel\_t2\_triangle\_packets.py}
+checks the next local shape at the combined-syndrome level.  Every pairwise
+one-exchange triangle in a fixed-slope fiber is either a star, already covered
+by the \(H_{3,j-1}\) core lift, or a top packet contained in a common
+\((j+1)\)-set \(U\), in which case
+\[
+  H_{1,j+1}(\operatorname{Syn}(w_\lambda))\ell_U=0.
+\]
+In the first exact top-packet case \(F_7^*\), \((n,k,a,j)=(6,2,4,2)\), the
+verifier enumerates all \(2401\) combined syndromes and finds \(420\) star
+triangles and \(20\) top triangles; all top triangles occur on the zero
+combined syndrome.
 The common-core and two-denominator formulas persist verbatim after this
 root-free replacement.  With \(C=\gcd(D:D\in M_{\min})\), \(\gamma=\deg C\),
 and \(E_D=D/C\),
