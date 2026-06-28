@@ -5676,6 +5676,75 @@ most `h-1-deg L_Omega` gives the displayed bound.  The actual overlap
 certificate set may be smaller because the remaining truncation rows impose
 additional linear conditions.
 
+## Corollary 40.26: One-Sided Cutoff Overlaps Have A Row-Cut Dichotomy
+
+Keep the cutoff notation above, and write `ell=(ell_0,...,ell_{h-1})` for a
+degree-`<h` locator coefficient vector.  For a syndrome series `w`, let
+
+```text
+row_a(w)(ell)=sum_{i=0}^{h-1} ell_i w_{a+i}.
+```
+
+Set
+
+```text
+K_uv = ker H_s(u)  cap ker H_s(v),
+K_S  = ker H_s(Su) cap ker H_s(Sv).
+```
+
+Then the four one-sided cutoff overlap locator spaces are exactly
+
+```text
+Omega_u  = K_uv cap ker row_s(u),
+Omega_v  = K_uv cap ker row_s(v),
+Omega_uS = K_S  cap ker row_0(u),
+Omega_vS = K_S  cap ker row_0(v).                  (RowCut)
+```
+
+Consequently each one-sided overlap has the following dichotomy.  If the
+displayed row functional is nonzero on its parent kernel `K`, then, writing
+`P(Omega)` for the projectivization of the nonzero locator vectors in
+`Omega`,
+
+```text
+dim Omega = dim K - 1,
+|P(Omega)| <= (q^{dim K-1}-1)/(q-1)
+```
+
+over `F_q`; in particular the projective root-free certificate-denominator
+classes in that one-sided overlap obey the same bound.  If the row functional
+vanishes on `K`, then the parent paired cutoff kernel is endpoint-persistent:
+every parent paired certificate already satisfies the corresponding one-sided
+endpoint equation.
+
+Thus a one-sided cutoff overlap can pay the full parent paired projective
+ledger only in the explicit endpoint-persistent case; otherwise it gains one
+linear row cut.
+
+### Proof
+
+For the ordinary paired parent, `K_uv` is exactly the locator space satisfying
+
+```text
+H_s(u)ell=0,        H_s(v)ell=0.
+```
+
+Adding `row_s(u)(ell)=0` is the same as adding the missing last row of
+`H_{s+1}(u)ell=0`, so the resulting space is `Omega_u`.  Adding
+`row_s(v)(ell)=0` gives `Omega_v`.
+
+For the shifted paired parent, the rows of `H_s(Su)` are the rows
+`row_1(u),...,row_s(u)`, and similarly for `v`.  Thus adding `row_0(u)` to
+`K_S` gives exactly `H_{s+1}(u)ell=0` together with `H_s(Sv)ell=0`, which is
+`Omega_uS`; adding `row_0(v)` gives `Omega_vS`.
+
+The linear-algebra dichotomy is immediate: the kernel of a nonzero linear
+functional on a finite-dimensional vector space has codimension one, while a
+zero restriction means the whole parent space already satisfies the added
+endpoint row.  Passing from projective locator classes to root-free
+certificate-denominator classes can only remove classes, so the same
+projective count bounds the denominator classes.
+
 ## Corollary 41: The Global Common-Image Ledger Is Endpoint-Only
 
 Let `GCI` be the set of monic degree-`c` split core locators `L` for which
@@ -8371,7 +8440,9 @@ parent primitive overlap denominators or prove that the one-sided extra rows
 leave few multipliers. Corollary 40.25 shows those overlap ledgers refine lcms
 of the cutoff family primitive denominators; it does not bound those family
 primitive denominators themselves or prove the lcm degrees are large enough for
-the desired M1 reserve.
+the desired M1 reserve. Corollary 40.26 gives a one-row saving for one-sided
+cutoff overlaps unless the parent paired kernel is endpoint-persistent; it
+does not rule out that persistence alternative.
 Corollary 41 packages the common-image branch into endpoint-type ledgers; it
 does not prove the endpoint rank hypotheses needed for the displayed
 `(q+2)binom(n,b)` bound. Corollary 42 packages the globally full core ledger

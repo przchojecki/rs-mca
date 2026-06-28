@@ -323,10 +323,13 @@ Keep entries concise and link to the relevant files.
   uses `lcm(D_u,D_v,D_uv,D_S)`, and the one-sided overlaps use
   `lcm(D_u,D_uv)`, `lcm(D_v,D_uv)`, `lcm(D_u,D_S)`, and `lcm(D_v,D_S)`.
   Thus overlap costs are intersection ledgers of the four family primitives and
-  improve with the lcm degrees.  The refined mixed-ladder closure now records
-  the final consumable ledger: after pre-half residuals, cutoff overlap
-  multiplier ledgers, and cutoff family multiplier ledgers are charged, the
-  only remaining finite
+  improve with the lcm degrees.  The one-sided cutoff overlaps now also have a
+  locator-space row-cut dichotomy: the missing endpoint row either cuts the
+  parent paired kernel by one projective dimension, or the parent paired kernel
+  is endpoint-persistent in that direction.  The refined mixed-ladder closure
+  now records the final consumable ledger: after pre-half residuals, cutoff
+  overlap multiplier ledgers, and cutoff family multiplier ledgers are charged,
+  the only remaining finite
   frontier charge is the bottom set `E_{r_0,>b} union Theta_{r_0,>b}`, of size
   at most `2h`.
   The common-image three-shift ledger now has the analogous sliding-window
