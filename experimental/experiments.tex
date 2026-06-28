@@ -2626,6 +2626,19 @@ annihilator, and for \(0\notin D\) the shifted paired version follows by
 annihilating moments \(1,\ldots,s+1\).  Thus the bottom dual-gcd route must
 use special structure of the actual M1 syndromes; dimension counts and moment
 formalism alone cannot supply the needed roots.
+This obstruction is realized by local Reed-Solomon syndrome data, not only by
+formal moment sequences.  In the standard parity-check normalization the
+column at \(x\) is \(\lambda_x(1,x,\ldots,x^{r-1})\) with
+\(\lambda_x\ne0\), so choosing a supported word with
+\(\lambda_xy_x=\mu_x\) gives
+\[
+  \operatorname{Syn}(y)_m=\sum_{x\in D}\mu_xx^m
+\]
+on every coordinate lying in the syndrome window.  The same scalar absorption
+realizes arbitrary paired weights \((\mu_x,\nu_x)\).  Hence the trivial
+dual-gcd examples above can occur as local syndrome windows, although this is
+not an active noncontained M1 counterexample and does not show the actual
+bottom families are arbitrary.
 In the common two-denominator case \(M_{\min}=\{D_1,D_2\}\), writing
 \(C=\gcd(D_1,D_2)\), \(D_i=C E_i\), and \(e_i=\deg E_i\), the quotient
 denominators \(E_1,E_2\) are automatically coprime and

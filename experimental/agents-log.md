@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 dual-gcd obstruction is syndrome-realizable
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_boundary_off_external_anchor_normal_form.md`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / PROOF-PROGRAM / AUDIT.
+- **What is being added:** The formal trivial-gcd weights from the
+  dual-annihilator limitation are shown to be realizable as local
+  Reed-Solomon syndrome windows after absorbing the nonzero parity-check
+  column scalars into the supported word values.
+- **How it is useful:** This confirms that the bottom dual-gcd route needs
+  special active-M1 syndrome structure; arbitrary local syndrome windows do
+  not force the needed common roots.
+- **What to do next:** Decide whether actual active M1 bottom syndromes have
+  extra relations producing common roots, or shift effort to the half-window
+  denominator route.
+
 ### 2026-06-28 - M1 dual-gcd limitation
 
 - **Agent/model:** AllenGrahamHart / Codex audit.

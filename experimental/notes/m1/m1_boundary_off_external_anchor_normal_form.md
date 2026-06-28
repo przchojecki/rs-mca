@@ -8749,6 +8749,53 @@ there is a nonzero solution.  The shifted conditions for `P=1` use moments
 Taking `mu=nu` gives `1,X` in the shifted paired annihilator, so its common
 gcd is also `1`.
 
+## Corollary 40.68: The Trivial Dual-GCD Obstruction Is Syndrome-Realizable
+
+Keep the notation of Corollary 40.67.  In the standard Reed-Solomon
+parity-check normalization, the syndrome coordinates of a word supported on
+`D` have the form
+
+```text
+w_m=sum_{x in D} lambda_x y_x x^m,
+```
+
+where every column scalar `lambda_x` is nonzero.  Thus, after writing
+`mu_x=lambda_x y_x`, every `D`-supported weight vector `(mu_x)` occurs as an
+actual local syndrome moment sequence on any finite coordinate range contained
+in the available syndrome window.
+
+Consequently the scalar, ordinary paired, and, when `0 notin D`, shifted
+paired trivial-gcd data constructed in Corollary 40.67 can be realized by
+local Reed-Solomon syndrome windows whenever the required moments lie in the
+available syndrome range.
+
+This does not construct an active noncontained M1 bad line, and it does not
+show that the four bottom families of Corollary 40.66 can be chosen
+arbitrarily inside the active M1 geometry.  It only shows that the obstruction
+in Corollary 40.67 is not an artifact of allowing formal moment sequences:
+the dual-gcd route must use additional active-M1 structure tying together the
+bottom syndrome windows, or else pass to the half-window denominator route.
+
+### Proof
+
+The parity-check column at `x` is `lambda_x(1,x,...,x^{r-1})` with
+`lambda_x!=0`.  Given any weights `(mu_x)`, choose the supported word
+
+```text
+y_x=mu_x/lambda_x        (x in D).
+```
+
+Then its syndrome coordinates on the relevant range are
+
+```text
+Syn(y)_m=sum_{x in D} lambda_x y_x x^m
+        =sum_{x in D} mu_x x^m.
+```
+
+The same argument applied to two supported words realizes arbitrary paired
+weights `(mu_x,nu_x)`.  Applying it to the shifted weights used in
+Corollary 40.67 realizes the shifted paired obstruction when `0 notin D`.
+
 ## Corollary 41: The Global Common-Image Ledger Is Endpoint-Only
 
 Let `GCI` be the set of monic degree-`c` split core locators `L` for which
@@ -11568,6 +11615,9 @@ counts in the actual M1 instances.
 Corollary 40.67 shows those root lower bounds are extra structure by giving
 formal moment data with trivial dual gcd; it does not rule out special M1
 syndromes satisfying the needed bounds.
+Corollary 40.68 shows that this trivial-gcd obstruction is realized by local
+Reed-Solomon syndrome windows after absorbing the nonzero parity-check column
+scalars; it still does not construct an active noncontained M1 counterexample.
 Corollary 41 packages the common-image branch into endpoint-type ledgers; it
 does not prove the endpoint rank hypotheses needed for the displayed
 `(q+2)binom(n,b)` bound. Corollary 42 packages the globally full core ledger
