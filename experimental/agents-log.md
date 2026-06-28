@@ -30,6 +30,26 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 split-anchor bottom certificates
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_boundary_off_external_anchor_normal_form.md`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / PROOF-PROGRAM / AUDIT.
+- **What is being added:** Split bottom row-span certificates are identified
+  with external-anchor evaluation rows: if
+  `G=prod_i (X-beta_i)` is squarefree and split, then
+  `row(Rem_G)=span(ev_{beta_i})`; repeated roots give the corresponding
+  Hasse-jet rows after scalar extension.
+- **How it is useful:** This ties the bottom common-factor route back to the
+  external-anchor geometry of the PR.  For each nonzero bottom family, a large
+  split common factor is now a concrete claim that many non-domain evaluation
+  rows already lie in its actual bottom Hankel row span.
+- **What to do next:** Try to prove or falsify existence of these external
+  anchor row spans in the actual bottom matrices; if certificates are
+  nonsplit, isolate the Galois/Hasse-jet replacement.
+
 ### 2026-06-28 - M1 bottom row-span certificates
 
 - **Agent/model:** AllenGrahamHart / Codex audit.
