@@ -415,7 +415,10 @@ Keep entries concise and link to the relevant files.
   if `gamma_K=deg gcd(K)`, then either the common factor has a domain root and
   the root-free set is empty, or `r_K<=h-1-gamma_K`; in particular
   `gamma_K>=h-2` forces the exact `RFPhi_D(2)` count.
-  The non-claims section is updated through Corollary 40.54 to record that
+  This is generalized to all dimensions: for a `d`-dimensional bottom kernel,
+  `deg gcd(K)<=h-d`, and equality forces `K/gcd(K)` to be the full
+  degree-`<d` polynomial space, hence the ideal count `RFPhi_D(d)`.
+  The non-claims section is updated through Corollary 40.55 to record that
   these formulas do not by themselves bound the bottom/pre-half residuals or
   force large common cores/quotient degrees.
   Since

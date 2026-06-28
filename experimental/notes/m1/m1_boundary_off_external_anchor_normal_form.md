@@ -7683,6 +7683,63 @@ Substituting this bound for `r_K` in Corollary 40.53 gives
 two-dimensional space of polynomials of degree `<2`, so its reduced
 projective degree is `r_K=1`.  Corollary 40.53 gives the exact ideal count.
 
+## Corollary 40.55: A Maximal Common Factor Forces The Ideal Bottom Count
+
+Let `K` be a `d`-dimensional subspace of degree-`<h` polynomials over `F_q`,
+with `1<=d<=|D|`.  Let
+
+```text
+G_K = gcd( Q : Q in K ),        gamma_K=deg G_K.
+```
+
+If `G_K(alpha)=0` for some `alpha in D`, then `K^rf` is empty.  Otherwise
+`G_K` is root-free on `D`, and necessarily
+
+```text
+gamma_K <= h-d.                                    (CommonFactorMax)
+```
+
+If equality holds, then multiplication by `G_K` identifies `K` with the full
+space of polynomials of degree `<d`, and therefore
+
+```text
+|K^rf| = RFPhi_D(d).                               (MaxCommonFactorMDS)
+```
+
+Consequently, the bottom route of Corollary 40.43 closes with the ideal
+root-free residual charge
+
+```text
+sum_F RFPhi_D(d_F) <= 4 RFPhi_D(L)
+```
+
+whenever every bottom residual kernel `K_0(F)` has dimension `d_F<=L` and its
+common factor either has a domain root or has degree `h-d_F`.
+
+Thus the domain-MDS condition in Corollary 40.48 is automatic for bottom
+kernels whose common factor is as large as dimension permits.  Corollary 40.54
+is the case `d=2`: the threshold `gamma_K=h-2` is exactly the maximal common
+factor condition.
+
+### Proof
+
+If `G_K` has a domain root, then every element of `K` vanishes at that root,
+so `K^rf` is empty.
+
+Assume `G_K` is root-free on `D`.  Dividing by `G_K` embeds the `d`-dimensional
+space `K/G_K` into the ambient space of polynomials of degree `<h-gamma_K`,
+which has dimension `h-gamma_K`.  Hence `d<=h-gamma_K`, proving
+(CommonFactorMax).
+
+If `gamma_K=h-d`, then this ambient space also has dimension `d`.  Therefore
+`K/G_K` is the whole space of polynomials of degree `<d`.  Multiplication by
+the root-free polynomial `G_K` preserves zero sets on `D`, so root-free
+projective classes in `K` are in bijection with root-free projective classes
+of nonzero degree-`<d` polynomials.  The latter number is exactly
+`RFPhi_D(d)` by the definition in Corollary 40.45.  Summing over the four
+bottom residual families and applying Corollary 40.43 gives the displayed
+bottom-route ledger.
+
 ## Corollary 41: The Global Common-Image Ledger Is Endpoint-Only
 
 Let `GCI` be the set of monic degree-`c` split core locators `L` for which
@@ -10463,6 +10520,8 @@ Corollary 40.53 bounds two-dimensional collision defects by projective degree;
 it does not prove the bottom projective degrees are small in the M1 instances.
 Corollary 40.54 bounds that projective degree using a common factor; it does
 not prove the required large common factors occur in the M1 bottom kernels.
+Corollary 40.55 shows maximal common factors force the ideal bottom count; it
+does not prove the bottom kernels have maximal common factors.
 Corollary 41 packages the common-image branch into endpoint-type ledgers; it
 does not prove the endpoint rank hypotheses needed for the displayed
 `(q+2)binom(n,b)` bound. Corollary 42 packages the globally full core ledger
