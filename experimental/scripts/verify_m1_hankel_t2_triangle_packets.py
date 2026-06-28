@@ -129,6 +129,8 @@ descends to a deeper zero Hankel kernel.
 The marked and unmarked cubes are also audited together: deleting unmarked
 roots first shifts the row depth additively and rescales the marked sparse
 packet without loss.
+After such an unmarked deletion, it audits that the marked set is exactly
+preserved and the remaining unmarked roots stay unmarked.
 For each fixed collapsed anchor base, it audits the sparse-representation
 fiber: below the boundary the mode support is unique, while at the boundary
 distinct supports are disjoint and obey the matching bound.
@@ -548,6 +550,12 @@ def analyze_case(
     terminal_tree_productive_mixed_marked_zero_cube_face_checks = 0
     terminal_tree_mixed_marked_zero_cube_max_deleted_unmarked_roots = 0
     terminal_tree_productive_mixed_marked_zero_cube_max_deleted_unmarked_roots = 0
+    terminal_tree_unmarked_shift_marking_support_checks = 0
+    terminal_tree_productive_unmarked_shift_marking_support_checks = 0
+    terminal_tree_unmarked_shift_marking_root_checks = 0
+    terminal_tree_productive_unmarked_shift_marking_root_checks = 0
+    terminal_tree_unmarked_shift_marking_max_deleted_roots = 0
+    terminal_tree_productive_unmarked_shift_marking_max_deleted_roots = 0
     terminal_tree_anchor_fiber_checks = 0
     terminal_tree_productive_anchor_fiber_checks = 0
     terminal_tree_anchor_fiber_labels = 0
@@ -777,6 +785,12 @@ def analyze_case(
             nonlocal terminal_tree_productive_mixed_marked_zero_cube_face_checks
             nonlocal terminal_tree_mixed_marked_zero_cube_max_deleted_unmarked_roots
             nonlocal terminal_tree_productive_mixed_marked_zero_cube_max_deleted_unmarked_roots
+            nonlocal terminal_tree_unmarked_shift_marking_support_checks
+            nonlocal terminal_tree_productive_unmarked_shift_marking_support_checks
+            nonlocal terminal_tree_unmarked_shift_marking_root_checks
+            nonlocal terminal_tree_productive_unmarked_shift_marking_root_checks
+            nonlocal terminal_tree_unmarked_shift_marking_max_deleted_roots
+            nonlocal terminal_tree_productive_unmarked_shift_marking_max_deleted_roots
             nonlocal terminal_tree_anchor_fiber_checks
             nonlocal terminal_tree_productive_anchor_fiber_checks
             nonlocal terminal_tree_anchor_fiber_labels
@@ -3516,6 +3530,144 @@ def analyze_case(
                 productive_mixed_marked_zero_cube_max_deleted_unmarked_roots,
             )
 
+            def audit_unmarked_shift_marking(
+                supports: set[tuple[int, ...]],
+                productive: bool,
+            ) -> tuple[int, int, int]:
+                support_checks = 0
+                root_checks = 0
+                max_deleted_roots = 0
+                for total_support in sorted(supports):
+                    marked_roots = marked_roots_for_split_support(
+                        total_support
+                    )
+                    marked_set = set(marked_roots)
+                    unmarked_roots = tuple(
+                        index
+                        for index in total_support
+                        if index not in marked_set
+                    )
+                    for deleted_count in range(1, len(unmarked_roots) + 1):
+                        for deleted_unmarked in itertools.combinations(
+                            unmarked_roots,
+                            deleted_count,
+                        ):
+                            deleted_set = set(deleted_unmarked)
+                            shifted_support = tuple(
+                                index
+                                for index in total_support
+                                if index not in deleted_set
+                            )
+                            support_checks += 1
+                            max_deleted_roots = max(
+                                max_deleted_roots,
+                                deleted_count,
+                            )
+                            for root_index in shifted_support:
+                                root = domain[root_index]
+                                boundary_support = tuple(
+                                    index
+                                    for index in shifted_support
+                                    if index != root_index
+                                )
+                                boundary_vector = hankel_apply(
+                                    syn,
+                                    cached_locator(boundary_support),
+                                    t + deleted_count + 1,
+                                    p,
+                                )
+                                if root_index in marked_set:
+                                    denominator = 1
+                                    for deleted_index in deleted_unmarked:
+                                        denominator = (
+                                            denominator
+                                            * (
+                                                root
+                                                - domain[deleted_index]
+                                            )
+                                        ) % p
+                                    expected_scalar = (
+                                        marked_roots[root_index]
+                                        * pow(denominator, -1, p)
+                                    ) % p
+                                else:
+                                    expected_scalar = 0
+                                expected_boundary = tuple(
+                                    expected_scalar * pow(root, row, p) % p
+                                    for row in range(t + deleted_count + 1)
+                                )
+                                if boundary_vector != expected_boundary:
+                                    raise AssertionError(
+                                        {
+                                            "kind": (
+                                                "productive-"
+                                                if productive
+                                                else ""
+                                            )
+                                            + "unmarked-shift-marking-"
+                                            "failed",
+                                            "p": p,
+                                            "k": k,
+                                            "syndrome": list(syn),
+                                            "fixed_roots": list(fixed_roots),
+                                            "total_split_support": list(
+                                                total_support
+                                            ),
+                                            "deleted_unmarked": list(
+                                                deleted_unmarked
+                                            ),
+                                            "shifted_support": list(
+                                                shifted_support
+                                            ),
+                                            "root": root_index,
+                                            "boundary_vector": list(
+                                                boundary_vector
+                                            ),
+                                            "expected_boundary": list(
+                                                expected_boundary
+                                            ),
+                                        }
+                                    )
+                                root_checks += 1
+                return support_checks, root_checks, max_deleted_roots
+
+            (
+                unmarked_shift_marking_support_checks,
+                unmarked_shift_marking_root_checks,
+                unmarked_shift_marking_max_deleted_roots,
+            ) = audit_unmarked_shift_marking(
+                total_split_supports,
+                productive=False,
+            )
+            (
+                productive_unmarked_shift_marking_support_checks,
+                productive_unmarked_shift_marking_root_checks,
+                productive_unmarked_shift_marking_max_deleted_roots,
+            ) = audit_unmarked_shift_marking(
+                productive_total_split_supports,
+                productive=True,
+            )
+            terminal_tree_unmarked_shift_marking_support_checks += (
+                unmarked_shift_marking_support_checks
+            )
+            terminal_tree_productive_unmarked_shift_marking_support_checks += (
+                productive_unmarked_shift_marking_support_checks
+            )
+            terminal_tree_unmarked_shift_marking_root_checks += (
+                unmarked_shift_marking_root_checks
+            )
+            terminal_tree_productive_unmarked_shift_marking_root_checks += (
+                productive_unmarked_shift_marking_root_checks
+            )
+            terminal_tree_unmarked_shift_marking_max_deleted_roots = max(
+                terminal_tree_unmarked_shift_marking_max_deleted_roots,
+                unmarked_shift_marking_max_deleted_roots,
+            )
+            terminal_tree_productive_unmarked_shift_marking_max_deleted_roots = max(
+                terminal_tree_productive_unmarked_shift_marking_max_deleted_roots,
+                productive_unmarked_shift_marking_max_deleted_roots,
+            )
+
             def audit_anchor_split_fibers(
                 fibers: dict[
                     tuple[int, tuple[int, ...]],
@@ -5508,6 +5660,24 @@ def analyze_case(
         "terminal_tree_productive_mixed_marked_zero_cube_max_deleted_unmarked_roots": (
             terminal_tree_productive_mixed_marked_zero_cube_max_deleted_unmarked_roots
         ),
+        "terminal_tree_unmarked_shift_marking_support_checks": (
+            terminal_tree_unmarked_shift_marking_support_checks
+        ),
+        "terminal_tree_productive_unmarked_shift_marking_support_checks": (
+            terminal_tree_productive_unmarked_shift_marking_support_checks
+        ),
+        "terminal_tree_unmarked_shift_marking_root_checks": (
+            terminal_tree_unmarked_shift_marking_root_checks
+        ),
+        "terminal_tree_productive_unmarked_shift_marking_root_checks": (
+            terminal_tree_productive_unmarked_shift_marking_root_checks
+        ),
+        "terminal_tree_unmarked_shift_marking_max_deleted_roots": (
+            terminal_tree_unmarked_shift_marking_max_deleted_roots
+        ),
+        "terminal_tree_productive_unmarked_shift_marking_max_deleted_roots": (
+            terminal_tree_productive_unmarked_shift_marking_max_deleted_roots
+        ),
         "terminal_tree_anchor_fiber_checks": (
             terminal_tree_anchor_fiber_checks
         ),
@@ -5970,6 +6140,8 @@ def print_summary(results: Sequence[dict[str, object]]) -> None:
             f"{result['terminal_tree_unmarked_zero_cube_face_checks']} "
             f"mixed_cube_faces="
             f"{result['terminal_tree_mixed_marked_zero_cube_face_checks']} "
+            f"unmarked_shift_roots="
+            f"{result['terminal_tree_unmarked_shift_marking_root_checks']} "
             f"anchor_fiber_checks="
             f"{result['terminal_tree_anchor_fiber_checks']} "
             f"anchor_fiber_max="

@@ -1970,6 +1970,45 @@ unmarked subset, and every nonempty marked subset.  In the largest `F_7^*`
 audit, it checks `12960` mixed marked-unmarked faces, with maximum deleted
 unmarked count `1`.  The productive subaudit checks `6480` mixed faces.
 
+## Unmarked Deletion Preserves the Marked Frontier
+
+The two-color cube has an exact frontier-shift invariant.  Let
+`E subset U(S)` and put `S_E=S\E`.  Then `S_E` is active at row
+`tau+|E|` by (UZ).  Its marked exits are exactly the original marked exits:
+
+```text
+M_{tau+|E|}(S_E)=M(S).
+```
+
+Indeed, for `y in M(S)` the mixed-face calculation gives the new boundary
+scalar
+
+```text
+b^E_y=b_y(S)/ell_E(y) != 0.
+```
+
+For a remaining unmarked root `u in U(S)\E`, applying (UZ) to
+`E union {u}` gives
+
+```text
+H_{tau+|E|+1,|S_E|-1}(s)ell_{S_E\{u}}=0,
+```
+
+so `u` stays unmarked.  Thus deleting unmarked roots neither creates new
+marked exits nor loses old ones; it only shifts the row depth by `|E|` and
+rescales the marked boundary scalars.
+
+This is the local additivity statement needed by the M1 route.  A chain of
+unmarked deletions consumes one Hankel row per deleted root, but it does not
+restart a new packet problem at each rung.  The nonzero frontier is preserved
+exactly until one deliberately deletes marked exits, where the sparse packet
+faces above apply.
+
+The verifier audits this shifted marking identity root by root.  In the
+largest `F_7^*` audit, it checks `4320` shifted supports and `8640` shifted
+boundary roots after unmarked deletions.  The productive subaudit checks
+`2160` shifted supports and `4320` shifted boundary roots.
+
 ## Fixed Anchors Have Matching-Bounded Fibers
 
 Fix the collapsed anchor base `A` and the mode size `m`.  Then

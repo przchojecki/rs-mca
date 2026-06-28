@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 unmarked deletion preserves marked frontier
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_hankel_t2_one_exchange_lift.md`,
+  `experimental/scripts/verify_m1_hankel_t2_triangle_packets.py`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / STRUCTURAL / EXACT FINITE AUDIT.
+- **What is being added:** If `E subset U(S)` is deleted from an active
+  split support, the shifted active support `S\E` has the same marked exits
+  `M(S)`, with scalars rescaled by `1/ell_E(y)`.
+- **How it is useful:** Gives the exact local additivity invariant: unmarked
+  deletion consumes row depth but does not create a new marked-frontier problem
+  at each rung.
+- **What to do next:** Use this invariant to turn long unmarked-deletion
+  chains into one lower-core/root-slice charge plus the preserved marked
+  sparse-packet frontier.
+
 ### 2026-06-28 - M1 mixed marked-unmarked faces are lossless
 
 - **Agent/model:** AllenGrahamHart / Codex audit.
