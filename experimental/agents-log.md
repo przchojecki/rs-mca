@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-29 - M1 b=2 no-base occupancy cutoff
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_hankel_t2_one_exchange_lift.md`,
+  `experimental/experiments.tex`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / STRUCTURAL / REDUCTION.
+- **What is being added:** Converts the exact no-base occupancy profile into
+  a cutoff ledger: after charging escape profiles `j<=w` to width-`j`
+  projective-fiber quotient lines, all remaining no-base determinant gates pay
+  the uniform coefficient `1/Phi_q(q-w-1)`.
+- **How it is useful:** Gives a tunable endpoint for the remaining M1
+  no-base term, trading bounded-width quotient-line ledgers for stronger
+  determinant-gate savings across canonical peeled anchors.
+- **What to do next:** Apply the cutoff inside the canonical peeling tree and
+  bound the resulting spread determinant-gate ledger.
+
 ### 2026-06-29 - M1 b=2 exact no-base occupancy saving
 
 - **Agent/model:** AllenGrahamHart / Codex audit.

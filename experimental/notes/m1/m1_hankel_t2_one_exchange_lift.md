@@ -4490,6 +4490,50 @@ count.  One may either keep all profiles in the weighted determinant-gate
 ledger, or move the small-escape profiles into bounded-width quotient-line
 ledgers and leave only the larger-escape determinant gates.
 
+## No-Base Occupancy Cutoff Ledger
+
+The profile form gives a useful one-parameter cutoff.  Fix an integer
+
+```text
+0<=w<=q-2.
+```
+
+Put the no-base support `R` in the concentrated class if
+
+```text
+esc_A(R)<=w,
+```
+
+and in the spread class if `esc_A(R)>=w+1`.  Let `I_A^{nb,spread(w)}` be the
+good-pair labels in `I_A^{nb}` whose image support is spread.  For a spread
+support the largest projective fiber has size at most `q-w-1`; by monotonicity
+of the extremal square-sum bound (allowing a larger maximum part can only
+increase the maximum possible square sum),
+
+```text
+g_A(R)>=Phi_q(q-w-1).
+```
+
+The concentrated profiles have the quotient-line certificates from
+(PF2-nobase-cutoff) with widths `j<=w`.  Hence
+
+```text
+|F^{nb}(A)|
+ <=
+  (1/Phi_q(q-w-1)) |I_A^{nb,spread(w)}|
+  + sum_{j=1}^{w} sum_lambda
+      sum_{C subset ev_A^{-1}(lambda), |C|=q-j}
+        |F_{lambda,C}(A)|.                    (PF2-nobase-occupancy-cutoff)
+```
+
+The case `w=0` is exactly the sharp width-zero no-base coefficient
+`1/(q-1)`, since `Phi_q(q-1)=q-1` and there are no concentrated profiles.
+Increasing `w` trades bounded-width projective-fiber quotient ledgers for a
+stronger determinant-gate saving on the remaining spread supports.  This is the
+usable no-base endpoint for the canonical `b=2` peeling tree: after a chosen
+bounded-width quotient-line charge, the surviving no-base determinant gates
+come with the explicit occupancy coefficient above.
+
 ## Width-Zero b=2 Ledger
 
 The fixed-width corollary is especially sharp at `w=0`.  Put
