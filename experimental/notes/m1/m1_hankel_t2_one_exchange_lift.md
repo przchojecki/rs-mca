@@ -960,6 +960,47 @@ fixed-root support kernel: the support condition itself is just the ordinary
 bottom root-difference equation, while terminality is the nonvanishing of
 these explicit scalar cuts along the chosen order.
 
+## Terminal Deletion Tree Recursion
+
+The zero-free flag residual has an exact deletion-tree recursion.  For an
+ordered fixed-root list `X` and an active core
+`C in K^X_{tau,q}(s)`, define
+
+```text
+c_X(y;C) = H_{1,q-1}(Delta_X s)ell_{C\{y}},
+
+NZ_X(C) = { y in C : c_X(y;C) != 0 }.
+```
+
+Let `T_X(C)` be the number of terminal ordered deletion flags starting from
+`(X,C)`, with `T_X(empty)=1`.  Then
+
+```text
+T_X(C) = sum_{y in NZ_X(C)} T_{X,y}(C\{y}).       (DT)
+```
+
+Here `X,y` means that the fixed-root list is extended by appending `y`.  Proof:
+a terminal flag has a unique first deleted root `y`.  By (ZF), this first step
+is allowed exactly when `c_X(y;C)` is nonzero.  In that case the
+root-marked identity (SC) says that the child core `C\{y}` lies in
+`K^{X,y}_{tau,q-1}(s)`, and the remaining suffix of the flag is precisely a
+terminal flag for this child.  The possible first roots are disjoint, giving
+(DT).
+
+Thus terminal multiplicity is exactly branching in the nonzero-edge deletion
+tree.  If every vertex below `(X,C)` has at most one outgoing nonzero edge,
+then `T_X(C)<=1`.  Equivalently, any core carrying two or more terminal
+orderings contains a descendant `(X',C')` with
+
+```text
+#{ y in C' : H_{1,|C'|-1}(Delta_{X'}s)ell_{C'\{y}} != 0 } >= 2.   (BR)
+```
+
+This does not yet bound the terminal residual, but it localizes the remaining
+M1 obstruction: after the first-zero ledger removes zero-boundary stops,
+all residual multiplicity is concentrated on explicit branching vertices of
+first-row scalar cuts inside fixed-root kernels.
+
 ## Root-Marked Slice Is One Row
 
 The zero-boundary subkernel in the fixed-root difference form is cut out by a
@@ -1336,6 +1377,13 @@ support count `2`, and zero slack.
 The same audit checks the zero-free scalar-chain criterion (ZF); the largest
 case checks `174600` nonzero scalar steps, with maximum nonzero per-syndrome
 step count `66`.
+It also checks the deletion-tree recursion (DT) against the explicit path
+enumeration.  In the largest listed case it audits `48020` active starting
+cores with zero recursion defects; it finds `34560` branching vertices and
+`19440` multiflag starting cores in the audited local trees.  Among nonzero
+syndromes the maximum terminal-tree count is `6`, the maximum number of
+branching vertices in one such tree is `4`, and at most `2` starting cores in
+one audit have more than one terminal ordering.
 
 The `F_7,k=2,j=2` scan is the first exact top-packet check in this file.  It
 finds twenty top triangles, all on the zero combined syndrome.  This is not an

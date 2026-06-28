@@ -30,6 +30,26 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 terminal flags have deletion-tree recursion
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_hankel_t2_one_exchange_lift.md`,
+  `experimental/scripts/verify_m1_hankel_t2_triangle_packets.py`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / STRUCTURAL / EXACT FINITE VERIFICATION.
+- **What is being added:** Defines the terminal deletion tree whose outgoing
+  edges are the nonzero first-row scalar cuts, proves the exact recursion for
+  terminal flag counts, and identifies multiflag supports with explicit
+  branching vertices.
+- **How it is useful:** Replaces the apparent factorial terminal-ordering
+  residual by a concrete branching obstruction inside fixed-root kernels.  This
+  gives the next M1 target: bound or collapse those scalar-cut branching
+  vertices.
+- **What to do next:** Attack the branching vertices directly, looking for a
+  quotient-periodic charge, a conductor-uniform character-sum bound, or a
+  counterexample family showing genuine multiplicative branching.
+
 ### 2026-06-28 - M1 terminal flags are zero-free scalar chains
 
 - **Agent/model:** AllenGrahamHart / Codex audit.

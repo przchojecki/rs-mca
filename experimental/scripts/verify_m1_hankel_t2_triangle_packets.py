@@ -71,6 +71,9 @@ ordered fixed-root deletion paths.  The path audit records the resulting
 first-zero/terminal ledger and reduces terminal flags to unordered bottom
 root-difference supports up to the factorial ordering factor.  It also checks
 that terminality is exactly a zero-free chain of first-row boundary scalars.
+The terminal zero-free flags are then checked again by the exact deletion-tree
+recursion whose nonzero outgoing edges are these same scalar cuts; multiflag
+terminal supports must contain an explicit branching vertex in this tree.
 
 It also checks the full-top zero-syndrome lemma: if all j+1 complements
 U\\{x} inside one (j+1)-top set U are active, then the combined syndrome is
@@ -321,12 +324,18 @@ def analyze_case(
     filtration_nonzero_scalar_steps = 0
     terminal_bottom_support_checks = 0
     terminal_support_bound_capacity = 0
+    terminal_tree_recursion_checks = 0
+    terminal_tree_branch_vertices = 0
+    terminal_tree_multiflag_cores = 0
     iterated_boundary_defect_histogram: Counter[int] = Counter()
     fixed_root_filtration_defect_histogram: Counter[int] = Counter()
     filtration_path_defect_histogram: Counter[int] = Counter()
     filtration_path_partition_defect_histogram: Counter[int] = Counter()
     filtration_zero_stop_depth_histogram: Counter[int] = Counter()
     terminal_support_bound_slack_histogram: Counter[int] = Counter()
+    terminal_tree_recursion_defect_histogram: Counter[int] = Counter()
+    terminal_tree_branch_vertex_histogram: Counter[int] = Counter()
+    terminal_tree_multiflag_core_histogram: Counter[int] = Counter()
     max_active = 0
     max_edges = 0
     max_triangles = 0
@@ -366,6 +375,9 @@ def analyze_case(
     max_nonzero_filtration_nonzero_scalar_steps = 0
     max_nonzero_terminal_bottom_supports = 0
     max_nonzero_terminal_support_bound_slack = 0
+    max_nonzero_terminal_tree_count = 0
+    max_nonzero_terminal_tree_branch_vertices = 0
+    max_nonzero_terminal_tree_multiflag_cores = 0
     one_exchange_edges = 0
     star_triangles = 0
     top_triangles = 0
@@ -400,10 +412,17 @@ def analyze_case(
             nonlocal filtration_nonzero_scalar_steps
             nonlocal terminal_bottom_support_checks
             nonlocal terminal_support_bound_capacity
+            nonlocal terminal_tree_recursion_checks
+            nonlocal terminal_tree_branch_vertices
+            nonlocal terminal_tree_multiflag_cores
             nonlocal max_nonzero_terminal_bottom_supports
             nonlocal max_nonzero_terminal_support_bound_slack
+            nonlocal max_nonzero_terminal_tree_count
+            nonlocal max_nonzero_terminal_tree_branch_vertices
+            nonlocal max_nonzero_terminal_tree_multiflag_cores
 
             terminal_supports: set[tuple[int, ...]] = set()
+            terminal_paths_by_core: Counter[tuple[int, ...]] = Counter()
             audit_terminal_paths = 0
             for core in active_cores:
                 if not core:
@@ -555,9 +574,184 @@ def analyze_case(
                             }
                         )
                     terminal_supports.add(core)
+                    terminal_paths_by_core[core] += 1
                     audit_terminal_paths += 1
                     case_terminal_filtration_paths += 1
                     filtration_terminal_paths += 1
+
+            def terminal_deletion_tree(
+                current_fixed: tuple[int, ...],
+                current_core: tuple[int, ...],
+            ) -> tuple[int, int]:
+                if not current_core:
+                    return (1, 0)
+                current_values = [domain[index] for index in current_fixed]
+                diff_syn = iterated_root_difference_syndrome(
+                    syn,
+                    current_values,
+                    p,
+                )
+                if not hankel_annihilates(
+                    diff_syn,
+                    cached_locator(current_core),
+                    t,
+                    p,
+                ):
+                    raise AssertionError(
+                        {
+                            "kind": "terminal-tree-inactive-vertex",
+                            "p": p,
+                            "k": k,
+                            "syndrome": list(syn),
+                            "fixed_roots": list(fixed_roots),
+                            "current_fixed": list(current_fixed),
+                            "current_core": list(current_core),
+                        }
+                    )
+                nonzero_children: list[tuple[int, tuple[int, ...]]] = []
+                for deleted_root_index in current_core:
+                    boundary_core = tuple(
+                        entry
+                        for entry in current_core
+                        if entry != deleted_root_index
+                    )
+                    boundary_vector = hankel_apply(
+                        diff_syn,
+                        cached_locator(boundary_core),
+                        t + 1,
+                        p,
+                    )
+                    if not any(boundary_vector):
+                        continue
+                    deleted_root = domain[deleted_root_index]
+                    if boundary_vector[0] == 0 or any(
+                        boundary_vector[row + 1]
+                        != deleted_root * boundary_vector[row] % p
+                        for row in range(t)
+                    ):
+                        raise AssertionError(
+                            {
+                                "kind": (
+                                    "terminal-tree-nonzero-edge-"
+                                    "not-root-marked"
+                                ),
+                                "p": p,
+                                "k": k,
+                                "syndrome": list(syn),
+                                "fixed_roots": list(fixed_roots),
+                                "current_fixed": list(current_fixed),
+                                "current_core": list(current_core),
+                                "deleted_root": deleted_root_index,
+                                "deleted_root_value": deleted_root,
+                                "boundary_core": list(boundary_core),
+                                "boundary_vector": list(boundary_vector),
+                            }
+                        )
+                    child_values = [
+                        domain[index]
+                        for index in (*current_fixed, deleted_root_index)
+                    ]
+                    child_syn = iterated_root_difference_syndrome(
+                        syn,
+                        child_values,
+                        p,
+                    )
+                    if not hankel_annihilates(
+                        child_syn,
+                        cached_locator(boundary_core),
+                        t,
+                        p,
+                    ):
+                        raise AssertionError(
+                            {
+                                "kind": "terminal-tree-child-inactive",
+                                "p": p,
+                                "k": k,
+                                "syndrome": list(syn),
+                                "fixed_roots": list(fixed_roots),
+                                "current_fixed": list(current_fixed),
+                                "current_core": list(current_core),
+                                "deleted_root": deleted_root_index,
+                                "boundary_core": list(boundary_core),
+                                "child_syndrome": list(child_syn),
+                            }
+                        )
+                    nonzero_children.append((deleted_root_index, boundary_core))
+                terminal_count = 0
+                branch_count = 1 if len(nonzero_children) >= 2 else 0
+                for deleted_root_index, boundary_core in nonzero_children:
+                    child_count, child_branches = terminal_deletion_tree(
+                        (*current_fixed, deleted_root_index),
+                        boundary_core,
+                    )
+                    terminal_count += child_count
+                    branch_count += child_branches
+                return (terminal_count, branch_count)
+
+            tree_recursion_defects = 0
+            audit_branch_vertices = 0
+            audit_multiflag_cores = 0
+            for core in active_cores:
+                if not core:
+                    continue
+                tree_count, branch_count = terminal_deletion_tree(
+                    fixed_roots,
+                    core,
+                )
+                terminal_tree_recursion_checks += 1
+                terminal_tree_branch_vertices += branch_count
+                audit_branch_vertices += branch_count
+                if tree_count > 1:
+                    terminal_tree_multiflag_cores += 1
+                    audit_multiflag_cores += 1
+                if tree_count != terminal_paths_by_core[core]:
+                    tree_recursion_defects += 1
+                    case_filtration_path_defect += 1
+                    raise AssertionError(
+                        {
+                            "kind": "terminal-tree-recursion-count-failed",
+                            "p": p,
+                            "k": k,
+                            "syndrome": list(syn),
+                            "fixed_roots": list(fixed_roots),
+                            "core": list(core),
+                            "tree_count": tree_count,
+                            "enumerated_terminal_paths": (
+                                terminal_paths_by_core[core]
+                            ),
+                        }
+                    )
+                if tree_count > 1 and branch_count == 0:
+                    tree_recursion_defects += 1
+                    case_filtration_path_defect += 1
+                    raise AssertionError(
+                        {
+                            "kind": "terminal-multiflag-without-branch",
+                            "p": p,
+                            "k": k,
+                            "syndrome": list(syn),
+                            "fixed_roots": list(fixed_roots),
+                            "core": list(core),
+                            "terminal_paths": tree_count,
+                        }
+                    )
+                if any(syn):
+                    max_nonzero_terminal_tree_count = max(
+                        max_nonzero_terminal_tree_count,
+                        tree_count,
+                    )
+                    max_nonzero_terminal_tree_branch_vertices = max(
+                        max_nonzero_terminal_tree_branch_vertices,
+                        branch_count,
+                    )
+            terminal_tree_recursion_defect_histogram[tree_recursion_defects] += 1
+            terminal_tree_branch_vertex_histogram[audit_branch_vertices] += 1
+            terminal_tree_multiflag_core_histogram[audit_multiflag_cores] += 1
+            if any(syn):
+                max_nonzero_terminal_tree_multiflag_cores = max(
+                    max_nonzero_terminal_tree_multiflag_cores,
+                    audit_multiflag_cores,
+                )
             terminal_support_capacity = sum(
                 math.factorial(len(core)) for core in terminal_supports
             )
@@ -2124,6 +2318,9 @@ def analyze_case(
         "filtration_nonzero_scalar_steps": filtration_nonzero_scalar_steps,
         "terminal_bottom_support_checks": terminal_bottom_support_checks,
         "terminal_support_bound_capacity": terminal_support_bound_capacity,
+        "terminal_tree_recursion_checks": terminal_tree_recursion_checks,
+        "terminal_tree_branch_vertices": terminal_tree_branch_vertices,
+        "terminal_tree_multiflag_cores": terminal_tree_multiflag_cores,
         "max_iterated_boundary_chain_length": max_iterated_boundary_chain_length,
         "max_nonzero_iterated_boundary_active_cores": (
             max_nonzero_iterated_boundary_active_cores
@@ -2152,6 +2349,13 @@ def analyze_case(
         ),
         "max_nonzero_terminal_support_bound_slack": (
             max_nonzero_terminal_support_bound_slack
+        ),
+        "max_nonzero_terminal_tree_count": max_nonzero_terminal_tree_count,
+        "max_nonzero_terminal_tree_branch_vertices": (
+            max_nonzero_terminal_tree_branch_vertices
+        ),
+        "max_nonzero_terminal_tree_multiflag_cores": (
+            max_nonzero_terminal_tree_multiflag_cores
         ),
         "max_nonzero_isolated_marked_boundary_slack": (
             max_nonzero_isolated_marked_boundary_slack
@@ -2247,6 +2451,15 @@ def analyze_case(
         "terminal_support_bound_slack_histogram": dict(
             sorted(terminal_support_bound_slack_histogram.items())
         ),
+        "terminal_tree_recursion_defect_histogram": dict(
+            sorted(terminal_tree_recursion_defect_histogram.items())
+        ),
+        "terminal_tree_branch_vertex_histogram": dict(
+            sorted(terminal_tree_branch_vertex_histogram.items())
+        ),
+        "terminal_tree_multiflag_core_histogram": dict(
+            sorted(terminal_tree_multiflag_core_histogram.items())
+        ),
         "nonzero_top_active_size_histogram": dict(
             sorted(nonzero_top_active_size_histogram.items())
         ),
@@ -2315,6 +2528,10 @@ def print_summary(results: Sequence[dict[str, object]]) -> None:
             f"{result['max_nonzero_filtration_nonzero_scalar_steps']} "
             f"max_nonzero_terminal_supports="
             f"{result['max_nonzero_terminal_bottom_supports']} "
+            f"max_nonzero_terminal_tree_count="
+            f"{result['max_nonzero_terminal_tree_count']} "
+            f"max_nonzero_terminal_tree_branches="
+            f"{result['max_nonzero_terminal_tree_branch_vertices']} "
             f"max_nonzero_full_support_slack="
             f"{result['max_nonzero_full_support_ledger_slack']} "
             f"max_nonzero_top_active={result['max_nonzero_top_active_members']}"
