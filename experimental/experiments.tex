@@ -5221,6 +5221,23 @@ where \(L_S^{can}\) is the lower-dimensional terminal contribution, and for
 multiplicity-free tree bound: the remaining \(b=2\) task is no-base
 determinant-gate control at canonical peeled anchors, plus lower-dimensional
 terminal ledgers.
+The lower-dimensional terminal term is explicit.  Let
+\(V_S=\langle P_S,Q_S\rangle\), \(b_S=\dim V_S\), and let
+\(D_S^{can}\) be the remaining domain after removing the already peeled roots
+and the older unpeeled base roots forbidden by the canonical order.  If
+\(b_S=0\), then the leaf contains at most one support.  If \(b_S=1\), choose a
+nonzero direction \(Q_S^*\), put
+\[
+  Z_S=\{x\in D_S^{can}: Q_S^*(x)=0\},\qquad z_S=|Z_S|,
+  \qquad N_S=|D_S^{can}|.
+\]
+Distinct quotient supports can intersect only inside \(Z_S\), so
+\[
+  |F_S^{can}(A)|\le
+  \left\lfloor {N_S-z_S\over q-|S|-z_S}\right\rfloor .
+\]
+Thus canonical terminal leaves are only singleton zero-direction leaves or the
+ordinary one-dimensional root-slice packing already isolated earlier.
 Equivalently, for each available root \(x\) the bad-slice test is the failure
 of full column rank for the absorbed-anchor matrix
 \[

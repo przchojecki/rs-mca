@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-29 - M1 b=2 canonical terminal leaves
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_hankel_t2_one_exchange_lift.md`,
+  `experimental/experiments.tex`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / STRUCTURAL / REDUCTION.
+- **What is being added:** Makes the lower-dimensional leaves in the
+  canonical `b=2` base-peeling tree explicit: zero-dimensional leaves are
+  singleton tests, while one-dimensional leaves obey the existing root-slice
+  packing bound on the canonical admissible domain.
+- **How it is useful:** Removes a symbolic terminal term from the current M1
+  reduction, leaving only explicit singleton/root-slice leaves and no-base
+  determinant-gate payments at canonical `b=2` nodes.
+- **What to do next:** Bound the no-base determinant-gate terms uniformly
+  across the canonical peeled anchors.
+
 ### 2026-06-29 - M1 b=2 canonical base peeling tree
 
 - **Agent/model:** AllenGrahamHart / Codex audit.

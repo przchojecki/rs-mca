@@ -4533,6 +4533,78 @@ recurrence and identifies the remaining `b=2` work as a bound for no-base
 determinant gates across canonical peeled anchors, plus lower-dimensional
 terminal ledgers.
 
+## Canonical Terminal Leaves Are Explicit Residual Packings
+
+The lower-dimensional term in (PF2-canon-tree) is not a new primitive.  At a
+canonical node `S`, put
+
+```text
+V_S=span(P_S,Q_S),        b_S=dim V_S,        q_S=q-|S|.
+```
+
+Let the base-root order be the one used in the canonical peeling tree.  Define
+
+```text
+Old(S)={x in B_0^*(A)\S : x<max(S)}
+```
+
+with `Old(empty)=empty`, and set
+
+```text
+D_S^{can}=D'\(S union Old(S)),        N_S=|D_S^{can}|.
+```
+
+Every quotient support counted by `F_S^can(A)` lies in `D_S^{can}`: the roots
+of `S` have already been divided out, and older unpeeled base roots are
+forbidden by the canonical rule.
+
+If `b_S=0`, the quotient affine space consists of a single polynomial
+`L_{0,S}`.  Since a squarefree support locator determines its support, this
+leaf contributes at most one quotient support:
+
+```text
+|F_S^can(A)|<=1.                         (PF2-canon-b0)
+```
+
+If `b_S=1` and `q_S>0`, choose a nonzero direction `Q_S^*` spanning `V_S` and
+write
+
+```text
+Z_S={x in D_S^{can} : Q_S^*(x)=0},        z_S=|Z_S|.
+```
+
+For two distinct quotient supports `R_1,R_2 in F_S^can(A)`,
+
+```text
+ell_{R_1}-ell_{R_2}=lambda Q_S^*
+```
+
+for some nonzero scalar `lambda`.  Hence any common root of `R_1` and `R_2`
+lies in `Z_S`.  Outside `Z_S`, the quotient supports are pairwise disjoint.
+Because `deg Q_S^*<q_S`, one has `z_S<=q_S-1`, so every quotient support has at
+least `q_S-z_S` roots outside `Z_S`.  Incidence counting on
+`D_S^{can}\Z_S` gives
+
+```text
+|F_S^can(A)| <= floor((N_S-z_S)/(q_S-z_S)).       (PF2-canon-b1)
+```
+
+Moreover `Z_S` is exactly the bad one-root slice set of the descended
+fixed-divisor problem, restricted to the canonical admissible domain, by the
+same divisible-kernel identity used in (LKB).  Thus the terminal term in the
+canonical tree is explicit:
+
+```text
+LowerDim_S^can <=
+  1,                                           if b_S=0,
+  floor((N_S-z_S)/(q_S-z_S)),                  if b_S=1.
+```
+
+Consequently the `b=2` peeling tree has no hidden lower-dimensional reservoir.
+The only residual payments are singleton zero-direction leaves, ordinary
+one-dimensional root-slice packings, and the no-base determinant-gate terms at
+canonical `b=2` nodes.
+
 ## Bad Root Slices Are Absorbed-Anchor Rank Defects
 
 The preceding bad-root condition has an equivalent absorbed-anchor form.  Fix
