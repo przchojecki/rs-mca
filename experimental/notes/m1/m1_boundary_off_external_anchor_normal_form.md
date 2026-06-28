@@ -14271,6 +14271,62 @@ the displayed bijections proves (BudgetTwoAnchorPacket).  The final anchor
 description is the linear case of Corollary 40.133 together with the
 injectivity from Corollary 40.129.
 
+## Corollary 40.135: Reduced Budget-Two Residuals Are Core Or Root Slices
+
+Keep the primitive denominator `Q_0`, and let `B_star` be any residue numerator
+with
+
+```text
+gcd(B_star,Q_0)=1.
+```
+
+Fix `v<=t` with
+
+```text
+r_v=e_0-t+v=2.
+```
+
+Define the reduced budget-two residual ledger
+
+```text
+R2_red(Q_0,B_star)
+ = Comp_{v,[1]}(Q_0,B_star)
+   disjoint_union
+   union_{beta in D}
+     { C in Comp_{v,[X-beta]}(Q_0,B_star) : beta notin C }.
+                                                        (BudgetTwoReduced)
+```
+
+Then the displayed union is genuinely disjoint and
+
+```text
+|R2_red(Q_0,B_star)| <= binom(n,j+v).             (BudgetTwoReducedBound)
+```
+
+Moreover, every degree-`<2` residual multiplier fiber for `B_star` that has
+no root-free nonconstant factor left and no multiplier root in the current
+complement lies in this ledger.  Thus, after the root-free budget-two packet
+of Corollary 40.134 is charged and complement roots are descended, the only
+remaining budget-two residuals are the core packet and fixed support-root
+slices, together occupying at most one small-complement packet.
+
+### Proof
+
+The disjointness proof of Corollary 40.122 applies verbatim with `B_star` in
+place of `B_0`, since the only property used is invertibility modulo `Q_0`.
+Hence the fibers for the projective multipliers `[1]` and `[X-beta]`, as
+`beta` varies in `D`, are pairwise disjoint.  The restriction `beta notin C`
+only shrinks the corresponding fiber.  Since all displayed sets are subsets of
+the `(j+v)`-subsets of `D`, the bound follows.
+
+For the classification statement, let `[N] in P_v^x(Q_0)` with `deg N<2`.
+If `N` is constant, its fiber is the core packet `Comp_{v,[1]}`.  Otherwise
+`N` is projectively `X-beta` for a finite `beta`.  If `beta notin D`, this is
+a nonconstant root-free factor and belongs to the twist packet of Corollary
+40.134.  If `beta in C`, it is a complement root and descends by Corollary
+40.125.  The reduced case that remains has `beta in D\C`, exactly the
+fixed-root slice included in (BudgetTwoReduced).
+
 ## Corollary 41: The Global Common-Image Ledger Is Endpoint-Only
 
 Let `GCI` be the set of monic degree-`c` split core locators `L` for which
@@ -17307,6 +17363,9 @@ two, and only linear or quadratic root-free twists at budget three.
 Corollary 40.134 closes the root-free budget-two packet: after deleting the
 complement roots, all external-anchor fibers for fixed `S` and residual
 budget two are disjoint and have total size at most `binom(n,j+v)`.
+Corollary 40.135 closes the reduced budget-two residual for any fixed twisted
+base numerator: the core packet and all support-side domain-root slices are
+disjoint and together have size at most `binom(n,j+v)`.
 Corollary 41 packages the common-image branch into endpoint-type ledgers; it
 does not prove the endpoint rank hypotheses needed for the displayed
 `(q+2)binom(n,b)` bound. Corollary 42 packages the globally full core ledger

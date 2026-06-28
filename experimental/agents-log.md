@@ -30,6 +30,23 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 reduced budget-two residual is core-or-root-slice
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_boundary_off_external_anchor_normal_form.md`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / PROOF-PROGRAM.
+- **What is being added:** Proves that for any fixed twisted numerator
+  `B_star`, the reduced residual-budget-two ledger is the disjoint union of
+  the core packet and support-side domain-root slices, with total size at most
+  `binom(n,j+v)`.
+- **How it is useful:** After external anchors and complement roots are
+  charged, the budget-two residual has no remaining unweighted multiplicity;
+  it is core-or-root-slice.
+- **What to do next:** Move from the closed budget-two ledger to the
+  budget-three linear/quadratic twist branch.
+
 ### 2026-06-28 - M1 budget-two external-anchor packets are disjoint
 
 - **Agent/model:** AllenGrahamHart / Codex audit.
