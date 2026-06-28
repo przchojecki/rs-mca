@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 one-row collisions give short residue certificates
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_boundary_off_external_anchor_normal_form.md`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / PROOF-PROGRAM.
+- **What is being added:** Any collision between two coefficients in the
+  primitive one-row rational extension yields a short quotient certificate
+  `L_I M in F B_prim mod Q_prim`, with `deg M<d_prim-|I|`.
+- **How it is useful:** This turns the remaining one-row scalar residual from
+  a vague list problem into the same residue-line landing object used in the
+  M1 packing program; first-unpacked one-exchange collisions are linear
+  residue landings.
+- **What to do next:** Bound these short quotient residue certificates in the
+  primitive high-denominator range, separating quotient-periodic and aperiodic
+  intersection locators.
+
 ### 2026-06-28 - M1 one-row residual has primitive degree at least t
 
 - **Agent/model:** AllenGrahamHart / Codex audit.

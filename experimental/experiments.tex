@@ -2672,6 +2672,20 @@ branch left after the primitive packing charge has
 The constant branch has \(e_{\rm prim}=0\), so it is always in the packing
 range for \(t\ge1\).  Thus the remaining scalar one-row problem is precisely
 the primitive high-denominator range \(e_{\rm prim}\ge t\).
+The same subtraction also identifies the residual collision object.  If
+coefficients \(\mu_1\ne\mu_2\) are witnessed on supports \(S_1,S_2\), put
+\(I=S_1\cap S_2\), \(m=|I|\), and \(L_I=\prod_{\alpha\in I}(X-\alpha)\).
+Then \(m<d_{\rm prim}\), and there is a nonzero polynomial \(M\) with
+\[
+  \deg M<d_{\rm prim}-m,\qquad
+  L_I M\equiv-(\mu_1-\mu_2)B_{\rm prim}\pmod {Q_{\rm prim}} .
+\]
+Thus collisions beyond the packing range are short quotient-residue landing
+certificates for the line \(F B_{\rm prim}\bmod Q_{\rm prim}\).  At the cutoff,
+if \(m=a-u\), then \(\deg M<e_{\rm prim}+1-t+u\); in the first unpacked layer
+\(e_{\rm prim}=t\), one-exchange collisions have \(\deg M<2\).  For the
+polynomial endpoint \(Q_{\rm prim}=1\), the congruence is vacuous and the
+obstruction is the top-coefficient obstruction from the packing proof.
 The common-core and two-denominator formulas persist verbatim after this
 root-free replacement.  With \(C=\gcd(D:D\in M_{\min})\), \(\gamma=\deg C\),
 and \(E_D=D/C\),

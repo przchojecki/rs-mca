@@ -11084,6 +11084,106 @@ g >= e-(t-j-1) = 2j-r_hw-t.
 If the packing charge does not apply, then `e_prim>=t`; also
 `e_prim<=e=j-r_hw-1` and `g=e-e_prim<=j-r_hw-t-1`.
 
+## Corollary 40.94: One-Row Coefficient Collisions Produce Short Quotient Residue Certificates
+
+Keep the primitive one-row extension notation of Corollary 40.91.  Let
+`mu_1!=mu_2` be two coefficients in `Mu_h(Y,a)`, witnessed by
+`(A_i,S_i)`, and put
+
+```text
+I=S_1 cap S_2,        m=|I|,        delta=mu_1-mu_2.
+```
+
+Let
+
+```text
+L_I(X)=prod_{alpha in I}(X-alpha)
+```
+
+be the intersection locator.  Then necessarily `m<d_prim`.  Moreover there
+exists a nonzero polynomial `M` with
+
+```text
+deg M < d_prim-m
+```
+
+such that
+
+```text
+L_I M == - delta B_prim        mod Q_prim.          (OneRowResidueCert)
+```
+
+Equivalently, after scaling `M` by `delta^{-1}`, every collision gives a
+short quotient certificate
+
+```text
+L_I M' in F B_prim        mod Q_prim,        deg M'<d_prim-m.
+```
+
+Since `Q_prim` is root-free on `D`,
+
+```text
+gcd(Q_prim,L_I)=1.
+```
+
+Thus, for fixed positive-degree `Q_prim` and `B_prim`, coefficient collisions
+beyond the support-packing range are controlled by the existence of a short
+quotient multiplier `M` landing the intersection locator in the
+one-dimensional residue line `F B_prim` modulo `Q_prim`.  For the polynomial
+endpoint `Q_prim=1`, the congruence is vacuous and the obstruction is the
+top-coefficient obstruction already used in Corollary 40.91.
+
+At the scalar cutoff, with `a=k+t`, a pair of threshold supports whose
+intersection has size `m=a-u` gives a certificate multiplier of degree
+
+```text
+deg M < e_prim+1-t+u.
+```
+
+In particular, in the first unpacked layer `e_prim=t`, one-exchange support
+collisions (`u=1`) give `deg M<2`: they are exactly linear quotient-residue
+landing certificates.
+
+### Proof
+
+On `I`, subtract the two primitive-list equations:
+
+```text
+(A_1-A_2) + delta(hX^k-B_prim/Q_prim)=0.
+```
+
+After multiplication by `Q_prim`, the polynomial
+
+```text
+P=Q_prim(A_1-A_2) + delta(hX^kQ_prim-B_prim)
+```
+
+vanishes on `I`.  Also `deg P<d_prim`.  Corollary 40.91 already shows that
+`m>=d_prim` is impossible, so `m<d_prim`.  Therefore
+
+```text
+P=L_I M
+```
+
+for some polynomial `M` with `deg M<d_prim-m`.  The polynomial `P` is nonzero:
+if it were zero, reducing modulo `Q_prim` would give
+`Q_prim | B_prim`, contradicting `gcd(Q_prim,B_prim)=1` and `delta!=0`
+(with the polynomial endpoint covered by the nonzero top coefficient argument
+from Corollary 40.91).  Hence `M` is nonzero.
+
+Reducing the identity `P=L_I M` modulo `Q_prim` gives
+(OneRowResidueCert).  The gcd statement follows because all roots of `L_I`
+lie in `D`, while `Q_prim` has no root in `D`.
+
+For the cutoff specialization, `d_prim=k+e_prim+1` and `a=k+t`; if
+`m=a-u`, then
+
+```text
+d_prim-m = k+e_prim+1-(k+t-u)=e_prim+1-t+u.
+```
+
+The final one-exchange claim is the case `e_prim=t` and `u=1`.
+
 ## Corollary 41: The Global Common-Image Ledger Is Endpoint-Only
 
 Let `GCI` be the set of monic degree-`c` split core locators `L` for which
@@ -13985,6 +14085,9 @@ Corollary 40.93 gives the resulting residual split: after this charge, the
 only positive one-row scalar residual has primitive denominator degree at least
 `t`; constant and sufficiently nonprimitive positive branches are already
 covered.
+Corollary 40.94 converts any remaining one-row coefficient collision into a
+short quotient-residue certificate `L_I M in F B_prim mod Q_prim`; at the
+first unpacked layer, one-exchange collisions are linear residue landings.
 Corollary 41 packages the common-image branch into endpoint-type ledgers; it
 does not prove the endpoint rank hypotheses needed for the displayed
 `(q+2)binom(n,b)` bound. Corollary 42 packages the globally full core ledger
