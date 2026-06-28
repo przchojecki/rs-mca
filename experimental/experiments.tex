@@ -3815,6 +3815,14 @@ is just the single first-row cut
 \]
 Equivalently, \(B^x\) is the nonzero slice \(H_{1,j-1}(s)\ell_C\ne0\) inside
 the root-difference Hankel kernel.
+The fixed-root identity iterates: for distinct roots \(x_1,\ldots,x_m\),
+\[
+  H_{\tau,j}(s)((X-x_1)\cdots(X-x_m)L)
+  =
+  H_{\tau,j-m}(\Delta_{x_m}\cdots\Delta_{x_1}s)L.
+\]
+Thus every fixed-root deletion rung is an ordinary root-difference Hankel
+kernel, not a new packet family.
 This residual also has additive one-exchange descent.  If
 \(C_y=R\cup\{y\}\) and \(C_z=R\cup\{z\}\) are two root-marked cores in the
 same fixed-root slice, then both are active for
@@ -3896,7 +3904,9 @@ nonzero residual lower-core counts \(5\) for \(F_7^*,j=3\), \(1\) for
 \(F_7^*,j=2\), and \(0\) in the listed \(j=1\) audits.  The isolated residual
 criterion and second-boundary ledger are checked too; the maximum nonzero
 isolated residual counts are \(6\) for \(F_7^*,j=3\), \(2\) for \(F_7^*,j=2\),
-and \(1\) in the listed \(j=1\) audits.
+and \(1\) in the listed \(j=1\) audits.  The verifier also checks the iterated
+root-difference identity exactly, with \(2352980\) checks in the largest
+listed case and zero defects.
 The common-core and two-denominator formulas persist verbatim after this
 root-free replacement.  With \(C=\gcd(D:D\in M_{\min})\), \(\gamma=\deg C\),
 and \(E_D=D/C\),

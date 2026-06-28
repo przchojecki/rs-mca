@@ -612,6 +612,51 @@ problem with a named zero-boundary subkernel removed.  This is the form in
 which fixed-root/root-slice, quotient-periodic, or aperiodic-packing bounds
 should be applied.
 
+## Iterated Fixed-Root Difference Identity
+
+The fixed-root identity iterates without loss.  For an ordered tuple of
+distinct domain roots
+
+```text
+X_1=(x_1,...,x_m),
+```
+
+write
+
+```text
+Delta_{X_1}s = Delta_{x_m} ... Delta_{x_1}s.
+```
+
+Then, for any locator `L` with support disjoint from the `x_i`,
+
+```text
+H_{tau,j}(s)((X-x_1)...(X-x_m)L)
+ = H_{tau,j-m}(Delta_{X_1}s)L.               (IDX)
+```
+
+Equivalently, deleting a fixed root chain identifies the active locators
+containing all `x_i` with a squarefree support kernel for the iterated
+root-difference syndrome:
+
+```text
+{ T : {x_1,...,x_m} subset T,
+      H_{tau,j}(s)ell_T=0 }
+ <->
+{ C subset H\{x_1,...,x_m} : |C|=j-m,
+      H_{tau,j-m}(Delta_{X_1}s)ell_C=0 }.
+```
+
+Proof: the case `m=1` is (DX).  Applying (DX) successively to
+`Delta_{x_1}s`, then to `Delta_{x_2}Delta_{x_1}s`, and so on gives (IDX).
+The difference operators commute because they are polynomials in the shift
+operator, so the ordered notation is only for bookkeeping.
+
+This is the algebraic backbone of the residual ladder above: every time a
+fixed root is stripped from a locator, the row count is unchanged, the locator
+degree drops by one, and the syndrome is replaced by one more root-difference.
+Additive descent can therefore be iterated on root-slice kernels rather than
+creating a multiplicative tree of new packet types.
+
 ## Root-Marked Slice Is One Row
 
 The zero-boundary subkernel in the fixed-root difference form is cut out by a
@@ -959,6 +1004,10 @@ edge cores:
 | `F_7`, `H=F_7^*`, `n=6,k=1,a=3,j=3` | 5 | 10 | 5 | 6 | 12 | 0 | 0 | 0 | 0 |
 | `F_7`, `H=F_7^*`, `n=6,k=2,a=4,j=2` | 1 | 5 | 1 | 2 | 2 | 0 | 0 | 0 | 0 |
 | `F_7`, `H=F_7^*`, `n=6,k=3,a=5,j=1` | 0 | 1 | 0 | 1 | 0 | 0 | 0 | 0 | 0 |
+
+The same run checks the iterated fixed-root identity (IDX) with zero defects;
+the largest listed case, `F_7`, `k=1`, `j=3`, performs `2352980` direct
+locator-versus-iterated-difference row checks up to chain length `3`.
 
 The `F_7,k=2,j=2` scan is the first exact top-packet check in this file.  It
 finds twenty top triangles, all on the zero combined syndrome.  This is not an

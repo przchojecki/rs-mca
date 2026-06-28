@@ -30,6 +30,23 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 fixed-root deletion iterates by root differences
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_hankel_t2_one_exchange_lift.md`,
+  `experimental/scripts/verify_m1_hankel_t2_triangle_packets.py`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / STRUCTURAL / EXACT FINITE VERIFICATION.
+- **What is being added:** Proves and audits the iterated identity
+  `H_{tau,j}(s)((X-x_1)...(X-x_m)L)
+   = H_{tau,j-m}(Delta_{x_m}...Delta_{x_1}s)L`.
+- **How it is useful:** Gives the fixed-root/root-slice residual ladder a
+  precise algebraic backbone: repeated root stripping is ordinary Hankel
+  testing on iterated root-difference syndromes, not a new packet mechanism.
+- **What to do next:** Use this iterated form to state uniform bounds for the
+  residual marked-boundary ladder or to identify quotient-periodic collapse.
+
 ### 2026-06-28 - M1 isolated one-row residual has second boundary
 
 - **Agent/model:** AllenGrahamHart / Codex audit.

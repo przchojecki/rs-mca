@@ -61,6 +61,9 @@ One-exchange edges inside each root-marked slice are checked to descend to
 H_{tau+1,j-2}(Delta_x s) on their common lower core.
 The remaining isolated vertices in those slices are checked by the analogous
 nonzero lower-boundary criterion and ledger.
+Finally, it checks the iterated fixed-root identity: multiplying a locator by
+prod_i (X-x_i) is the same as applying the ordered root-difference operator
+Delta_{x_m}...Delta_{x_1} to the syndrome.
 
 It also checks the full-top zero-syndrome lemma: if all j+1 complements
 U\\{x} inside one (j+1)-top set U are active, then the combined syndrome is
@@ -114,6 +117,17 @@ def root_difference_syndrome(
         (syn[index + 1] - root * syn[index]) % p
         for index in range(len(syn) - 1)
     )
+
+
+def iterated_root_difference_syndrome(
+    syn: Sequence[int],
+    roots: Sequence[int],
+    p: int,
+) -> tuple[int, ...]:
+    current = tuple(syn)
+    for root in roots:
+        current = root_difference_syndrome(current, root, p)
+    return current
 
 
 def rank_2_by_2(rows: Sequence[tuple[int, int]], p: int) -> int:
@@ -289,6 +303,8 @@ def analyze_case(
     root_marked_edge_core_slack_histogram: Counter[int] = Counter()
     root_marked_isolated_histogram: Counter[int] = Counter()
     residual_boundary_slack_histogram: Counter[int] = Counter()
+    iterated_difference_checks = 0
+    iterated_difference_defect_histogram: Counter[int] = Counter()
     max_active = 0
     max_edges = 0
     max_triangles = 0
@@ -316,6 +332,7 @@ def analyze_case(
     max_nonzero_root_marked_isolated_count = 0
     max_nonzero_residual_boundary_count = 0
     max_nonzero_residual_boundary_slack = 0
+    max_iterated_difference_chain_length = 0
     one_exchange_edges = 0
     star_triangles = 0
     top_triangles = 0
@@ -970,6 +987,55 @@ def analyze_case(
             )
         root_marked_isolated_histogram[case_root_marked_isolated_count] += 1
         residual_boundary_slack_histogram[residual_boundary_slack] += 1
+        case_iterated_difference_defect = 0
+        for chain_length in range(1, j + 1):
+            row_count = t
+            if row_count > len(syn) - chain_length:
+                continue
+            max_iterated_difference_chain_length = max(
+                max_iterated_difference_chain_length,
+                chain_length,
+            )
+            for fixed_roots in itertools.combinations(range(n), chain_length):
+                fixed_values = [domain[index] for index in fixed_roots]
+                diff_syn = iterated_root_difference_syndrome(
+                    syn,
+                    fixed_values,
+                    p,
+                )
+                remaining_indices = [
+                    index for index in range(n) if index not in fixed_roots
+                ]
+                for core in itertools.combinations(
+                    remaining_indices,
+                    j - chain_length,
+                ):
+                    full_locator = cached_locator(tuple(sorted((*core, *fixed_roots))))
+                    core_locator = cached_locator(core)
+                    direct = hankel_apply(syn, full_locator, row_count, p)
+                    differenced = hankel_apply(
+                        diff_syn,
+                        core_locator,
+                        row_count,
+                        p,
+                    )
+                    iterated_difference_checks += 1
+                    if direct != differenced:
+                        case_iterated_difference_defect += 1
+                        raise AssertionError(
+                            {
+                                "kind": "iterated-root-difference-identity-failed",
+                                "p": p,
+                                "k": k,
+                                "syndrome": list(syn),
+                                "fixed_roots": list(fixed_roots),
+                                "fixed_values": fixed_values,
+                                "core": list(core),
+                                "direct": list(direct),
+                                "differenced": list(differenced),
+                            }
+                        )
+        iterated_difference_defect_histogram[case_iterated_difference_defect] += 1
         isolated_marked_boundary_slack = (
             len(case_root_marked_boundaries) - j * case_isolated_vertices
         )
@@ -1547,6 +1613,10 @@ def analyze_case(
         "max_nonzero_residual_boundary_slack": (
             max_nonzero_residual_boundary_slack
         ),
+        "iterated_difference_checks": iterated_difference_checks,
+        "max_iterated_difference_chain_length": (
+            max_iterated_difference_chain_length
+        ),
         "max_nonzero_isolated_marked_boundary_slack": (
             max_nonzero_isolated_marked_boundary_slack
         ),
@@ -1619,6 +1689,9 @@ def analyze_case(
         ),
         "residual_boundary_slack_histogram": dict(
             sorted(residual_boundary_slack_histogram.items())
+        ),
+        "iterated_difference_defect_histogram": dict(
+            sorted(iterated_difference_defect_histogram.items())
         ),
         "nonzero_top_active_size_histogram": dict(
             sorted(nonzero_top_active_size_histogram.items())
