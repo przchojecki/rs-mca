@@ -30,6 +30,23 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 adjacent collapse is root-anchored
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_boundary_off_external_anchor_normal_form.md`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / PROOF-PROGRAM.
+- **What is being added:** If a generator-collapse same-support obstruction
+  is adjacent to a one-exchange exceptional complement `C in Comp_[M]`, then
+  the added point `beta in C` is an actual root of the one-exchange multiplier:
+  projectively, `[M]=[(X-beta)N]`.
+- **How it is useful:** This localizes weighted-incidence excess to in-domain
+  roots of low-degree one-exchange multipliers; root-free multiplier fibers
+  contribute only the trivial `j+1` adjacent supports.
+- **What to do next:** Bound or charge the root-anchor excess ledger after the
+  unweighted small-complement residue fibers are packed.
+
 ### 2026-06-28 - M1 same-support multiplicity is generator collapse
 
 - **Agent/model:** AllenGrahamHart / Codex audit.

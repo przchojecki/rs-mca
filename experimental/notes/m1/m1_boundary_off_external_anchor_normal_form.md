@@ -11762,8 +11762,7 @@ Since `L_T=L_D/L_C` modulo `Q_prim` and all factors are invertible there,
 this is equivalent to (SameSupportComplement).
 
 Conversely, suppose (SameSupportComplement) holds and, after scaling `N`, the
-normalization above holds.  Multiplying by the invertible class `L_C B_prim`
-gives
+normalization above holds; that is,
 
 ```text
 L_T N == -B_prim        mod Q_prim.
@@ -11779,6 +11778,123 @@ The degree bound gives `deg H<k+1`, and the normalization says that the
 coefficient of `X^k` in `H` is `h`.  Hence `A=H-hX^k` has degree `<k`.
 Since `Q_prim(A+hX^k)-B_prim=L_TN`, the polynomial `A+phi_h` vanishes on
 `T`, so `T in GenColl`.
+
+## Corollary 40.103: Adjacent Collapse Is Root-Anchored By The One-Exchange Multiplier
+
+Keep the notation of Corollaries 40.99--40.102.  Let
+
+```text
+[M] in P_ell^x(Q_prim),        C in Comp_[M],        I=D\C,
+```
+
+and choose `beta in C`.  Put
+
+```text
+C_beta=C\{beta},        T=I union {beta}=D\C_beta.
+```
+
+If `T in GenColl` and `N` is a nonzero collapse multiplier satisfying
+(SameSupportComplement) for the complement `C_beta`, then
+
+```text
+[M]=[(X-beta)N]        in P(F[X]_{<=ell+1}).        (RootAnchorFactor)
+```
+
+In particular, for any representative of `[M]`,
+
+```text
+M(beta)=0.
+```
+
+Thus same-support multiplicity adjacent to a one-exchange exceptional
+complement can occur only at an in-domain root of that complement's
+one-exchange multiplier.
+
+More quantitatively, keep the chosen threshold supports `T_mu` from Corollary
+40.97 and put
+
+```text
+m_T(Y)=|{ mu in Mu_h(Y,a) : T_mu=T }|.
+```
+
+Define the unweighted complement count
+
+```text
+U_comp=sum_{[M] in P_ell^x(Q_prim)} |Comp_[M]|
+```
+
+and the root-anchor excess ledger
+
+```text
+E_root(Y,a)
+ = sum_{[M] in P_ell^x(Q_prim)}
+     sum_{C in Comp_[M]}
+       sum_{beta in C, M(beta)=0}
+         ( m_{D\(C\{beta})}(Y)-1 )_+.
+```
+
+Then the weighted complement incidence mass of Corollary 40.101 satisfies
+
+```text
+R_comp(Y,a) <= (j+1) U_comp + E_root(Y,a).          (RootAnchorLedger)
+```
+
+Consequently, once the unweighted small-complement fibers are packed, the
+only remaining weighted excess is attached to actual roots in `D` of the
+low-degree one-exchange multipliers.  In particular, root-free multiplier
+fibers contribute no same-support excess beyond the trivial `j+1` adjacent
+supports per exceptional complement.
+
+### Proof
+
+The condition `C in Comp_[M]` gives a nonzero scalar `c` such that
+
+```text
+L_C == c L_D M B_prim^{-1}        mod Q_prim.
+```
+
+The generator-collapse complement condition for `C_beta` gives a nonzero
+scalar `d` such that
+
+```text
+L_{C_beta} == d L_D N B_prim^{-1}        mod Q_prim.
+```
+
+Since `L_C=(X-beta)L_{C_beta}`, combining the two displayed congruences and
+multiplying by the invertible class `B_prim L_D^{-1}` gives
+
+```text
+d (X-beta) N == c M        mod Q_prim.
+```
+
+Both sides have degree at most `ell+1<deg Q_prim`, so the congruence is an
+identity of polynomials.  This proves (RootAnchorFactor), and hence
+`M(beta)=0`.
+
+For the ledger bound, fix `[M]` and `C in Comp_[M]`, and write `I=D\C`.
+Every chosen `a`-support containing `I` is uniquely of the form
+
+```text
+T_beta=I union {beta}=D\(C\{beta})
+```
+
+for some `beta in C`.  Therefore
+
+```text
+r_I=sum_{beta in C} m_{T_beta}(Y).
+```
+
+If `M(beta)!=0`, the first part of the corollary shows that `T_beta` is not a
+generator-collapse support.  Corollary 40.102 then gives
+`m_{T_beta}(Y)<=1`.  Hence
+
+```text
+r_I <= (j+1) + sum_{beta in C, M(beta)=0}
+                  (m_{T_beta}(Y)-1)_+.
+```
+
+Summing this inequality over all `[M]` and all `C in Comp_[M]` gives
+(RootAnchorLedger).
 
 ## Corollary 41: The Global Common-Image Ledger Is Endpoint-Only
 
@@ -14712,6 +14828,10 @@ Corollary 40.102 identifies that same-support multiplicity input: multiplicity
 occurs exactly when the one-row generator collapses to `RS_k` on the support,
 equivalently when a `j`-point complement satisfies another short
 small-complement residue certificate.
+Corollary 40.103 shows that, when such a generator-collapse support is
+adjacent to a one-exchange exceptional complement, the added point is forced
+to be an actual root of the one-exchange multiplier; hence weighted excess
+beyond the trivial `j+1` adjacent supports is root-anchored.
 Corollary 41 packages the common-image branch into endpoint-type ledgers; it
 does not prove the endpoint rank hypotheses needed for the displayed
 `(q+2)binom(n,b)` bound. Corollary 42 packages the globally full core ledger
