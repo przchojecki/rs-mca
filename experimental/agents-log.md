@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 bad residual root slices are absorbed-rank defects
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_hankel_t2_one_exchange_lift.md`,
+  `experimental/scripts/verify_m1_hankel_t2_triangle_packets.py`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / STRUCTURAL / EXACT FINITE AUDIT.
+- **What is being added:** Identifies the bad one-root residual-slice test
+  with failure of full column rank for the absorbed-anchor matrix
+  `A_x(U,W)=(h^{W,x}_{i+j})_{0<=i<q,0<=j<q-1}`.
+- **How it is useful:** Replaces the remaining bad-root condition by a
+  concrete one-extra-row filtered Hankel rank test.  If every absorbed root has
+  full column rank, same-anchor residual completions are pairwise disjoint.
+- **What to do next:** Prove uniform full-column-rank criteria after
+  quotient-periodic and fixed-root charges, or classify the absorbed-rank
+  defects as the next residual obstruction.
+
 ### 2026-06-28 - M1 residual collisions charge to root slices
 
 - **Agent/model:** AllenGrahamHart / Codex audit.

@@ -4579,6 +4579,18 @@ fiber obeys
 The verifier audits the one-root case: in the largest \(F_7^*\) audit it
 checks \(51840\) anchors and \(259200\) one-root residual slices, with no bad
 root-slice labels and the same productive counts.
+Equivalently, for each available root \(x\) the bad-slice test is the failure
+of full column rank for the absorbed-anchor matrix
+\[
+  A_x(U,W)=
+  (h^{W,x}_{i+j})_{0\le i<q,\ 0\le j<q-1},
+  \qquad h^{W,x}_i=\sum_a(\ell_W(X-x))_a s_{i+a}.
+\]
+Full column rank for all \(A_x(U,W)\) gives the disjoint residual-packing
+bound \(\lfloor |H\setminus(U\cup W)|/q\rfloor\).  The verifier checks this
+absorbed-anchor identity while computing the root-slice ranks; in the
+largest \(F_7^*\) audit all \(259200\) absorbed matrices have full column
+rank.
 This gives the all-frontier closure criterion.  Let
 \(\mathcal C_m(s)\) be all split-support certificates of mode size \(m\), and
 define

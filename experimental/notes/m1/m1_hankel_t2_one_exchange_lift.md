@@ -2581,6 +2581,46 @@ set.  In the largest `F_7^*` audit, it checks `51840` anchors and `259200`
 one-root residual slices, with `0` bad root-slice labels and maximum bad
 root-slice count `0` per anchor; the productive subaudit has the same counts.
 
+## Bad Root Slices Are Absorbed-Anchor Rank Defects
+
+The preceding bad-root condition has an equivalent absorbed-anchor form.  Fix
+`x in D'=H\(U union W)` and put
+
+```text
+E_x=ell_W (X-x),
+h^{W,x}_i=sum_{a=0}^{d+1} (E_x)_a s_{i+a}.
+```
+
+For every polynomial `Q_x` with `deg Q_x<q-1`,
+
+```text
+(H_{q,q-1}(h^{W,x})Q_x)_i
+ = (H_{q,q+d-1}(s)(ell_W (X-x)Q_x))_i,
+        0<=i<q.                                  (ART)
+```
+
+Thus `x` is a bad one-root slice for the fixed anchor `(U,W)` if and only if
+the rectangular absorbed-anchor matrix
+
+```text
+A_x(U,W)=(h^{W,x}_{i+j})_{0<=i<q, 0<=j<q-1}
+```
+
+fails to have full column rank `q-1`.
+
+Consequently, a full-column-rank statement for all absorbed roots
+`x in D'` is exactly the no-overlap input needed by the previous section.  If
+all matrices `A_x(U,W)` have rank `q-1`, then residual completions over the
+fixed anchor are pairwise disjoint and the residual fiber is bounded by
+`floor(|D'|/q)`.  If some `A_x` drops rank, the obstruction has already moved
+to a concrete one-extra-row absorbed-anchor kernel, which is a fixed-root
+short-kernel ledger.
+
+The verifier now checks (ART) directly while computing the one-root
+root-slice ranks.  In the largest `F_7^*` audit, all `259200` absorbed-anchor
+matrices tested have full column rank; the productive subaudit has the same
+counts.
+
 ## Deficit-Weighted Core Closure Criterion
 
 The preceding local packing theorem removes the artificial cutoff

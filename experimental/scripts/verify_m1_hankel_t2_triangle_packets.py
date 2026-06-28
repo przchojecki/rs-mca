@@ -160,6 +160,8 @@ locator.
 For residual collisions, it audits the one-root version of the resulting
 root-slice charge: shared residual roots must be roots of a nonzero lower
 degree direction in this divisible short kernel.
+Equivalently, the bad-root test is checked as a full-column-rank test for the
+absorbed-anchor filtered Hankel matrix.
 For each fixed collapsed anchor base, it audits the sparse-representation
 fiber: below the boundary the mode support is unique, while at the boundary
 distinct supports are disjoint and obey the matching bound.
@@ -3837,13 +3839,74 @@ def analyze_case(
                                                 )
                                                 for row in range(residual_size)
                                             )
-                                            if (
-                                                matrix_rank_mod(
-                                                    root_slice_matrix,
-                                                    p,
+                                            absorbed_sequence = hankel_apply(
+                                                syn,
+                                                root_divisor_locator,
+                                                2 * residual_size - 2,
+                                                p,
+                                            )
+                                            absorbed_root_slice_matrix = tuple(
+                                                tuple(
+                                                    absorbed_sequence[
+                                                        row + column
+                                                    ]
+                                                    for column in range(
+                                                        root_slice_width
+                                                    )
                                                 )
-                                                < root_slice_width
+                                                for row in range(residual_size)
+                                            )
+                                            if (
+                                                root_slice_matrix
+                                                != absorbed_root_slice_matrix
                                             ):
+                                                raise AssertionError(
+                                                    {
+                                                        "kind": (
+                                                            "productive-"
+                                                            if productive
+                                                            else ""
+                                                        )
+                                                        + "marked-core-"
+                                                        "deficit-anchor-"
+                                                        "absorbed-root-slice-"
+                                                        "identity-failed",
+                                                        "p": p,
+                                                        "k": k,
+                                                        "syndrome": list(syn),
+                                                        "fixed_roots": list(
+                                                            fixed_roots
+                                                        ),
+                                                        "unmarked_core": list(
+                                                            unmarked_core
+                                                        ),
+                                                        "marked_count": (
+                                                            marked_count
+                                                        ),
+                                                        "core_deficit": (
+                                                            core_deficit
+                                                        ),
+                                                        "anchor": list(anchor),
+                                                        "root": root,
+                                                        "root_slice_matrix": [
+                                                            list(row)
+                                                            for row in (
+                                                                root_slice_matrix
+                                                            )
+                                                        ],
+                                                        "absorbed_matrix": [
+                                                            list(row)
+                                                            for row in (
+                                                                absorbed_root_slice_matrix
+                                                            )
+                                                        ],
+                                                    }
+                                                )
+                                            root_slice_rank = matrix_rank_mod(
+                                                root_slice_matrix,
+                                                p,
+                                            )
+                                            if root_slice_rank < root_slice_width:
                                                 root_slice_bad_roots.add(root)
                                         deficit_anchor_root_slice_bad_labels += (
                                             len(root_slice_bad_roots)
