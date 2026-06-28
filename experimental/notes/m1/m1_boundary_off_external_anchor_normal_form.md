@@ -6738,6 +6738,50 @@ the bottom finite frontier charge `2h` from Corollary 40.36 gives
 The final two statements are immediate from the displayed formula and the
 nonnegativity convention for `Phi`.
 
+## Corollary 40.43: The Bottom Residual Route Has No Pre-Half Depth Sum
+
+Let `R` be a nonempty finite set of consecutive-frontier depths and put
+`r_0=min R`.  Work after fixed-root/root-slice short recurrence pieces have
+been charged.  If the four bottom root-free recurrence families
+
+```text
+RF_{r_0}(u),        RF_{r_0}(v),
+RF_{r_0}(u,v),      RF_{r_0}(S u,S v)
+```
+
+are charged, then every root-free residual at every depth in `R` is charged.
+Consequently the mixed frontier ladder closes after charging only the bottom
+finite parameter systems
+
+```text
+E_{r_0,>b} union Theta_{r_0,>b},
+```
+
+of total size at most `2h` on the remaining ledger.
+
+Thus the residual part of a mixed ladder has two compatible closure routes:
+
+1. bottom route: charge the four bottom root-free residual families once, even
+   if they are pre-half-window longer-Pade targets;
+2. half-window route: leave the bottom longer-Pade targets as explicit
+   obligations, and use the first half-window cutoff plus the raw-tail
+   denominator arrangement of Corollaries 40.34--40.42.
+
+The first route has no `|R_pre|` factor and no half-window denominator ledger.
+The second route is useful only when one wants to keep the bottom pre-half
+families as the named remaining obstruction and separately count the
+half-window tail.
+
+### Proof
+
+This is Corollary 40.10 applied to the whole set `R`: for each of the four
+residual families and every `r in R`, the root-free witness set at depth `r`
+is contained in the corresponding witness set at `r_0`.  Therefore charging
+the four bottom families removes every root-free residual in the ladder.
+Corollary 40.11 then gives closure from the bottom finite parameter set, with
+total size at most `2h`.  The comparison with the half-window route is exactly
+the split used in Corollaries 40.14--40.42.
+
 ## Corollary 41: The Global Common-Image Ledger Is Endpoint-Only
 
 Let `GCI` be the set of monic degree-`c` split core locators `L` for which
@@ -9483,6 +9527,9 @@ polynomial-field raw-tail ledger; it does not prove the required lower bound
 Corollary 40.42 gives an exact formula when two minimal denominators survive;
 it does not prove the raw tail always reduces to two denominators or that the
 two quotient degrees clear the reserve.
+Corollary 40.43 removes any pre-half depth sum by charging the bottom
+root-free residual families once; it does not bound those bottom residual
+families.
 Corollary 41 packages the common-image branch into endpoint-type ledgers; it
 does not prove the endpoint rank hypotheses needed for the displayed
 `(q+2)binom(n,b)` bound. Corollary 42 packages the globally full core ledger
