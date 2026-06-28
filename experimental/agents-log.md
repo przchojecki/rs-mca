@@ -30,6 +30,23 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 exact target v0 as primitive slope packing
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:** `experimental/notes/m1/m1_exact_target_v0.md`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** CONJECTURAL / FALSIFICATION-FIRST / PROOF-PROGRAM.
+- **What is being added:** Formulates a concrete M1-v0 target: split finite
+  support-wise noncontained slopes into an exact quotient-periodic support
+  budget and a stabilizer-primitive remainder, then conjecture a polynomial
+  bound on the primitive remainder in the high-slack polynomial-field window.
+- **How it is useful:** Turns M1 into a falsifiable theorem-shaped target
+  analogous to the accepted L1/L2 target notes; a counterexample must now
+  produce many quotient-normal primitive slopes rather than presentation,
+  reciprocal, gauge, alias, or quotient-periodic multiplicity.
+- **What to do next:** Build the direct scanner promised in the note and use
+  it to refine the target if primitive counterexamples appear.
+
 ### 2026-06-28 - M1 endpoint quotient denominators are Hankel kernels
 
 - **Agent/model:** AllenGrahamHart / Codex audit.

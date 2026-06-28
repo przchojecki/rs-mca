@@ -3573,6 +3573,41 @@ Equivalently, with \(w=\operatorname{Syn}(y)\),
 So after quotient-gauge normalization, denominator counting is a concrete
 endpoint Hankel-kernel problem for \(f\) and \(g\), not a separate slope
 ledger.
+This suggests the following exact M1 target.  For a cyclic domain \(H\), let
+\(\operatorname{Bad}_{\rm nc}(f,g,a)\) be the finite slopes \(\lambda\) for
+which some \(a\)-support \(S\) has
+\[
+  A+\lambda(-g)=f\quad\hbox{on }S,\qquad A\in\RS[F,H,k],
+\]
+and the restricted rank-one line is support-wise noncontained on \(S\).  Put
+\[
+  \operatorname{Per}_{\rm M1}(f,g,a)
+  =\{\lambda:\hbox{ some noncontained witness }S
+       \hbox{ has }|\operatorname{Stab}_H(S)|>1\},
+\]
+and
+\[
+  \operatorname{Prim}_{\rm M1}(f,g,a)
+  =\operatorname{Bad}_{\rm nc}(f,g,a)\setminus
+    \operatorname{Per}_{\rm M1}(f,g,a).
+\]
+The proposed M1-v0 conjecture is that, in the polynomial-field high-slack
+window
+\[
+  t\log_2 q\ge(1+\varepsilon)\log_2\binom n a,\qquad
+  t\ge C_0 n/\log n,
+\]
+there is a constant \(B\) such that
+\[
+  |\operatorname{Prim}_{\rm M1}(f,g,a)|\le n^B
+\]
+for every line.  Equivalently,
+\[
+  |\operatorname{Bad}_{\rm nc}(f,g,a)|
+  \le |\operatorname{Per}_{\rm M1}(f,g,a)|+n^B.
+\]
+Thus quotient-periodic support packets are charged explicitly, and the
+remaining conjecture is a primitive quotient-normal slope-packing statement.
 The common-core and two-denominator formulas persist verbatim after this
 root-free replacement.  With \(C=\gcd(D:D\in M_{\min})\), \(\gamma=\deg C\),
 and \(E_D=D/C\),
