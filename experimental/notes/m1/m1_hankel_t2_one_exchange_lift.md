@@ -4057,6 +4057,60 @@ The verifier already checks the exact count (PF2-weight-count) for every
 residual candidate in its `b(U,W)=2` branch.  It now also checks the
 dominant-fiber escape lower bound in (PF2-weight-escape).
 
+## Non-Generic Weighted Gates Have Dominant-Slice Quotients
+
+The exceptional parts in the preceding cutoff decomposition are not merely
+large-weight labels.  They carry explicit fixed-divisor certificates.
+
+First suppose a split support `R` is not base-heavy, so `a_A(R)<=A_0`, but is
+near one projective fiber, so `e_A(R)<c`.  Let `lambda` be a projective fiber
+with largest occupancy and put
+
+```text
+C=R cap ev_A^{-1}(lambda).
+```
+
+Then
+
+```text
+|C| = L_A(R)-e_A(R) >= q-A_0-c+1,
+q-|C| <= A_0+c-1.                               (PF2-near-width)
+```
+
+If `lambda=[a:b]`, the nonzero direction `Q_lambda=bP-aQ` vanishes on
+`ev_A^{-1}(lambda)`, hence on `C`.  Therefore
+
+```text
+Q_lambda=ell_C Q'_lambda,
+deg Q'_lambda < q-|C| <= A_0+c-1,
+H(s)(ell_W ell_C Q'_lambda)=0.                  (PF2-near-quot)
+```
+
+Thus the near-fiber exceptional weighted gates are bounded-complement quotient
+kernels once `A_0` and `c` are fixed.  They are not a new positive-dimensional
+residual family.
+
+The base-heavy exception is also a fixed-divisor charge.  If `a_A(R)>A_0`,
+then `R cap B_0` contains an `(A_0+1)`-subset `C_0`, and every direction in
+`Dir K(A)` vanishes on `C_0`.  Thus each basis direction has a quotient
+
+```text
+P=ell_{C_0}P',        Q=ell_{C_0}Q',
+H(s)(ell_W ell_{C_0}P')=
+H(s)(ell_W ell_{C_0}Q')=0.                      (PF2-base-quot)
+```
+
+For the full dominant base slice `C=R cap B_0`, the quotient width is exactly
+`q-|C|`.  Hence base-heavy gates are charged to common-base fixed-divisor
+slices, while near-fiber gates are charged to the bounded-complement
+projective-fiber quotient in (PF2-near-quot).
+
+The verifier audits the stronger support-local form: for every residual
+candidate it chooses the larger of `R cap B_0` and the largest projective-fiber
+slice, divides the relevant residual direction(s) by that locator, checks the
+quotient reconstruction, and checks that the quotient width equals the
+complement size.  The cutoff claims above are immediate consequences.
+
 ## Bad Root Slices Are Absorbed-Anchor Rank Defects
 
 The preceding bad-root condition has an equivalent absorbed-anchor form.  Fix

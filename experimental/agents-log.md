@@ -30,6 +30,27 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 b=2 non-generic determinant gates have quotient certificates
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_hankel_t2_one_exchange_lift.md`,
+  `experimental/experiments.tex`,
+  `experimental/scripts/verify_m1_hankel_t2_triangle_packets.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / STRUCTURAL / AUDIT.
+- **What is being added:** Shows that the non-generic pieces from the
+  determinant-weight escape filter carry explicit fixed-divisor certificates:
+  base-heavy supports give common-base quotient slices, while near-fiber
+  supports give bounded-complement projective-fiber quotient kernels of width
+  at most `A_0+c-1`.
+- **How it is useful:** Converts the exceptional weighted determinant-gate
+  mass into concrete quotient/fixed-divisor ledgers, leaving the remaining
+  generic mass with the reciprocal saving from the previous entry.
+- **What to do next:** Bound the resulting base-heavy and bounded-complement
+  quotient ledgers with the existing fixed-root, quotient-periodic, tangent,
+  and aperiodic M1 charges.
+
 ### 2026-06-28 - M1 b=2 determinant-gate weights force escape concentration
 
 - **Agent/model:** AllenGrahamHart / Codex audit.

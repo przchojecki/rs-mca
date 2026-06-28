@@ -194,6 +194,9 @@ It further checks the dominant-fiber escape inequality used by the weighted
 good-pair ledger: if L non-base support roots have e roots outside their
 largest projective fiber, then the support contains at least L e / 2 good
 pairs.
+It checks the corresponding quotient certificate: after removing the dominant
+base or projective-fiber slice of a support, the residual direction descends
+to a quotient kernel whose width is the complement size.
 Equivalently, it checks the global root-shadow-height bound: if the largest
 base locus or projective fiber has height h, every residual support has the
 good-pair lower bound forced by h.
@@ -6558,6 +6561,150 @@ def analyze_case(
                                                 payload.update(extra)
                                                 return payload
 
+                                            def check_dominant_slice_quotient(
+                                                roots: Sequence[int],
+                                                direction: Sequence[int],
+                                                shadow_kind: str,
+                                                expected_width: int,
+                                                key: tuple[int, ...]
+                                                | None = None,
+                                                basis_index: int | None = None,
+                                            ) -> None:
+                                                root_tuple = tuple(sorted(roots))
+                                                shadow_locator = cached_locator(
+                                                    root_tuple
+                                                )
+                                                quotient_direction = (
+                                                    divide_by_polynomial_exact_mod(
+                                                        direction,
+                                                        shadow_locator,
+                                                        p,
+                                                    )
+                                                )
+                                                quotient_width = (
+                                                    residual_size
+                                                    - len(root_tuple)
+                                                )
+                                                if (
+                                                    quotient_width
+                                                    != expected_width
+                                                    or len(quotient_direction)
+                                                    != quotient_width
+                                                ):
+                                                    raise AssertionError(
+                                                        projective_local_error(
+                                                            "dominant-slice-"
+                                                            "quotient-width-"
+                                                            "failed",
+                                                            shadow_kind=(
+                                                                shadow_kind
+                                                            ),
+                                                            key=(
+                                                                list(key)
+                                                                if key
+                                                                is not None
+                                                                else None
+                                                            ),
+                                                            basis_index=(
+                                                                basis_index
+                                                            ),
+                                                            shadow_roots=list(
+                                                                root_tuple
+                                                            ),
+                                                            quotient_width=(
+                                                                quotient_width
+                                                            ),
+                                                            expected_width=(
+                                                                expected_width
+                                                            ),
+                                                            quotient=list(
+                                                                quotient_direction
+                                                            ),
+                                                        )
+                                                    )
+                                                reconstructed_direction = (
+                                                    multiply_polynomials_mod(
+                                                        shadow_locator,
+                                                        quotient_direction,
+                                                        p,
+                                                    )
+                                                )
+                                                if reconstructed_direction != tuple(
+                                                    value % p
+                                                    for value in direction
+                                                ):
+                                                    raise AssertionError(
+                                                        projective_local_error(
+                                                            "dominant-slice-"
+                                                            "quotient-"
+                                                            "reconstruction-"
+                                                            "failed",
+                                                            shadow_kind=(
+                                                                shadow_kind
+                                                            ),
+                                                            key=(
+                                                                list(key)
+                                                                if key
+                                                                is not None
+                                                                else None
+                                                            ),
+                                                            basis_index=(
+                                                                basis_index
+                                                            ),
+                                                            shadow_roots=list(
+                                                                root_tuple
+                                                            ),
+                                                            direction=list(
+                                                                direction
+                                                            ),
+                                                            reconstructed=list(
+                                                                reconstructed_direction
+                                                            ),
+                                                        )
+                                                    )
+                                                short_product = (
+                                                    multiply_polynomials_mod(
+                                                        anchor_locator,
+                                                        direction,
+                                                        p,
+                                                    )
+                                                )
+                                                short_vector = hankel_apply(
+                                                    syn,
+                                                    short_product,
+                                                    residual_size,
+                                                    p,
+                                                )
+                                                if any(short_vector):
+                                                    raise AssertionError(
+                                                        projective_local_error(
+                                                            "dominant-slice-"
+                                                            "quotient-kernel-"
+                                                            "failed",
+                                                            shadow_kind=(
+                                                                shadow_kind
+                                                            ),
+                                                            key=(
+                                                                list(key)
+                                                                if key
+                                                                is not None
+                                                                else None
+                                                            ),
+                                                            basis_index=(
+                                                                basis_index
+                                                            ),
+                                                            shadow_roots=list(
+                                                                root_tuple
+                                                            ),
+                                                            quotient=list(
+                                                                quotient_direction
+                                                            ),
+                                                            short_vector=list(
+                                                                short_vector
+                                                            ),
+                                                        )
+                                                    )
+
                                             if (
                                                 projective_zero_good_local_bound
                                                 > projective_zero_good_incidence_bound
@@ -7066,6 +7213,116 @@ def analyze_case(
                                                                 )
                                                             },
                                                         }
+                                                    )
+                                                if (
+                                                    candidate_base_occupancy
+                                                    >= largest_candidate_fiber
+                                                ):
+                                                    dominant_base_roots = tuple(
+                                                        root
+                                                        for root in candidate
+                                                        if root
+                                                        in projective_eval_base_roots
+                                                    )
+                                                    dominant_width = (
+                                                        residual_size
+                                                        - candidate_base_occupancy
+                                                    )
+                                                    for (
+                                                        basis_index,
+                                                        vector,
+                                                    ) in enumerate(
+                                                        direction_basis
+                                                    ):
+                                                        check_dominant_slice_quotient(
+                                                            dominant_base_roots,
+                                                            vector,
+                                                            "candidate-base",
+                                                            dominant_width,
+                                                            basis_index=(
+                                                                basis_index
+                                                            ),
+                                                        )
+                                                else:
+                                                    (
+                                                        dominant_key,
+                                                        dominant_roots,
+                                                    ) = max(
+                                                        candidate_fiber_roots.items(),
+                                                        key=lambda item: (
+                                                            len(item[1]),
+                                                            item[0],
+                                                        ),
+                                                    )
+                                                    dominant_width = (
+                                                        candidate_base_occupancy
+                                                        + candidate_projective_escape
+                                                    )
+                                                    if (
+                                                        dominant_width
+                                                        != residual_size
+                                                        - len(dominant_roots)
+                                                    ):
+                                                        raise AssertionError(
+                                                            {
+                                                                "kind": (
+                                                                    "productive-"
+                                                                    if productive
+                                                                    else ""
+                                                                )
+                                                                + "marked-core-"
+                                                                "deficit-anchor-"
+                                                                "direction-mds-"
+                                                                "projective-"
+                                                                "dominant-fiber-"
+                                                                "width-"
+                                                                "identity-"
+                                                                "failed",
+                                                                "p": p,
+                                                                "k": k,
+                                                                "syndrome": list(
+                                                                    syn
+                                                                ),
+                                                                "fixed_roots": list(
+                                                                    fixed_roots
+                                                                ),
+                                                                "unmarked_core": list(
+                                                                    unmarked_core
+                                                                ),
+                                                                "marked_count": (
+                                                                    marked_count
+                                                                ),
+                                                                "core_deficit": (
+                                                                    core_deficit
+                                                                ),
+                                                                "anchor": list(
+                                                                    anchor
+                                                                ),
+                                                                "candidate": list(
+                                                                    candidate
+                                                                ),
+                                                                "dominant_roots": list(
+                                                                    dominant_roots
+                                                                ),
+                                                                "base_occupancy": (
+                                                                    candidate_base_occupancy
+                                                                ),
+                                                                "projective_escape": (
+                                                                    candidate_projective_escape
+                                                                ),
+                                                                "dominant_width": (
+                                                                    dominant_width
+                                                                ),
+                                                            }
+                                                        )
+                                                    check_dominant_slice_quotient(
+                                                        dominant_roots,
+                                                        projective_fiber_directions[
+                                                            dominant_key
+                                                        ],
+                                                        "candidate-fiber",
+                                                        dominant_width,
+                                                        key=dominant_key,
                                                     )
                                                 if candidate_good_pairs == 0:
                                                     zero_good_candidate_count += 1

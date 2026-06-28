@@ -5065,6 +5065,30 @@ The complementary supports are exactly the base-heavy supports
 weighted determinant-gate ledger splits into a generic part with an explicit
 reciprocal saving and two structural parts already shaped like
 fixed-divisor/projective-fiber residue-line charges.
+The near-fiber part is in fact a bounded-complement quotient problem.  If
+\(a_A(R)\le A_0\) and \(e_A(R)<c\), then for a largest projective fiber
+\(\lambda\)
+\[
+  |R\cap ev_A^{-1}(\lambda)|
+  =L_A(R)-e_A(R)
+  \ge q-A_0-c+1 .
+\]
+The nonzero direction \(Q_\lambda=bP-aQ\) vanishes on this slice, so
+\[
+  Q_\lambda=\ell_{R\cap ev_A^{-1}(\lambda)}\,Q'_\lambda,
+  \qquad \deg Q'_\lambda< A_0+c-1,
+\]
+and
+\[
+  H_{q,q+d-|C|}(s)(\ell_W\ell_C Q'_\lambda)=0,
+  \qquad C=R\cap ev_A^{-1}(\lambda).
+\]
+Thus every non-base-heavy support escaping the generic weight saving carries a
+short quotient certificate of width at most \(A_0+c-1\).  The base-heavy
+alternative similarly supplies fixed-divisor slices inside the common base
+locus \(B_0\), where every residual direction vanishes.  Hence the weighted
+determinant-gate obstruction has been reduced to a generic saved term plus
+explicit fixed-divisor or bounded-complement quotient ledgers.
 Equivalently, for each available root \(x\) the bad-slice test is the failure
 of full column rank for the absorbed-anchor matrix
 \[
