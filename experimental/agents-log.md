@@ -30,6 +30,27 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 exact target v0 quotient-normal scanner
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:** `experimental/scripts/scan_m1_exact_target_v0.py`,
+  `experimental/notes/m1/m1_exact_target_v0.md`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** EXPERIMENTAL / FALSIFICATION-FIRST.
+- **What is being added:** Adds a tiny-field exact scanner for the M1-v0
+  primitive slope target.  The scanner enumerates quotient-normal endpoint
+  pairs, computes exact noncontained `a`-support slope witnesses, splits slopes
+  by support stabilizer, and reports endpoint root-free denominator counts for
+  max-primitive examples.
+- **How it is useful:** Gives the M1-v0 conjecture a reproducible
+  counterexample-first harness.  The first full scans over `F_5^*` and `F_7^*`
+  find no primitive alert under the default `n^2` guard, while showing that
+  full field-sized primitive slope images can already occur in tiny normalized
+  examples.
+- **What to do next:** Extend the scanner toward the actual Hankel-pencil
+  packet object, especially low-slack `t=2` split-locator cases, so it can
+  search for growth mechanisms rather than only slope-image maxima.
+
 ### 2026-06-28 - M1 exact target v0 as primitive slope packing
 
 - **Agent/model:** AllenGrahamHart / Codex audit.

@@ -252,3 +252,41 @@ classes, not raw endpoint words.  For a small cyclic domain it should:
 The first useful alert is not a large periodic packet.  It is a large
 primitive packet whose supports all have trivial stabilizer after quotient
 normalization.
+
+## First Exact Quotient-Normal Scan
+
+The script `experimental/scripts/scan_m1_exact_target_v0.py` implements the
+scanner contract in tiny prime-field cases.  It chooses a linear complement to
+`C` in `F^H`, enumerates quotient-normal pairs `(phi,Y)`, and tests each
+`a`-support by the exact restricted-code criterion
+
+```text
+(Y-lambda phi)|_S in RS[F,S,k],
+not(phi|_S in RS[F,S,k] and Y|_S in RS[F,S,k]).
+```
+
+It also records projective root-free endpoint denominator counts by degree for
+the retained max-primitive examples, using the equivalent membership test
+`Qy in RS[F,H,k+deg Q]`.
+
+Two full enumerations were run:
+
+```text
+python3 experimental/scripts/scan_m1_exact_target_v0.py
+python3 experimental/scripts/scan_m1_exact_target_v0.py --p 7 --k 3 --a 4
+```
+
+The results were:
+
+| field/domain | quotient pairs | supports | periodic supports | max bad | max periodic | max primitive |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| `F_5`, `H=F_5^*`, `n=4,k=2,a=3` | 625 | 4 | 0 | 4 | 0 | 4 |
+| `F_7`, `H=F_7^*`, `n=6,k=3,a=4` | 117649 | 15 | 3 | 7 | 3 | 7 |
+
+With the script's default alert guard `n^2`, neither case raises a primitive
+alert.  The `F_7` max examples can have every finite slope primitive after
+quotient normalization, so these scans should not be read as asymptotic
+evidence by curve fitting.  Their value is narrower: they verify that the
+quotient gauge, contained-support deletion, stabilizer split, and endpoint
+denominator reporting are concrete and reproducible before larger
+Hankel-packet counterexample searches are attempted.

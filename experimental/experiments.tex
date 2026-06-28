@@ -3608,6 +3608,16 @@ for every line.  Equivalently,
 \]
 Thus quotient-periodic support packets are charged explicitly, and the
 remaining conjecture is a primitive quotient-normal slope-packing statement.
+The companion scanner
+\texttt{experimental/scripts/scan\_m1\_exact\_target\_v0.py} enumerates this
+quotient-normal object exactly in tiny cases.  Over \(F_5^*\) with
+\((n,k,a)=(4,2,3)\) it scans \(625\) quotient pairs and finds maximum primitive
+remainder \(4\).  Over \(F_7^*\) with \((n,k,a)=(6,3,4)\) it scans \(117649\)
+quotient pairs, with \(3\) of \(15\) supports periodic, and finds maximum
+primitive remainder \(7\) and maximum periodic budget \(3\).  These scans are
+normalization and falsification harnesses, not asymptotic evidence; in
+particular, a full field-sized primitive slope image can already occur in a
+tiny quotient-normal example.
 The common-core and two-denominator formulas persist verbatim after this
 root-free replacement.  With \(C=\gcd(D:D\in M_{\min})\), \(\gamma=\deg C\),
 and \(E_D=D/C\),
