@@ -3735,6 +3735,18 @@ Therefore every nontrivial component is either a single star packet with this
 one-row-deeper core, or it contains a distinct-root corner and hence an
 \(H_{\tau+2,j-2}\) lower-core witness.  This gives a same-slope component
 ledger at every row level: branching is paid by additive Hankel descent.
+Writing \(A^+_{\tau,j}(s)\) for non-isolated active \(j\)-locators, this also
+gives the summable bound
+\[
+  |A^+_{\tau,j}(s)|
+  \le
+  (n-j+1)\,\#\{C: |C|=j-1,\ H_{\tau+1,j-1}(s)\ell_C=0\}.
+\]
+Star components inject into these one-row cores.  Non-star components inject
+into lower cores \(R\) with \(H_{\tau+2,j-2}(s)\ell_R=0\), because such an
+active lower core makes the full two-root Johnson plane over \(R\) active and
+connected.  Thus both support mass and branching component count are paid by
+lower Hankel ledgers with explicit local factors.
 This local statement globalizes across connected components.  In the active
 one-exchange graph for fixed \(w_\lambda\), if a nontrivial component has no
 lower-core corner, then every two-edge corner is a star corner.  Choosing one
@@ -3776,7 +3788,9 @@ maximal per-syndrome counts \(60\) and \(90\), respectively.
 At the component level, the same \(F_7^*,j=3\) audit has \(540\) nonzero star
 components of size \(4\) and \(36\) nonzero lower-core components of size
 \(10\); the \(F_7^*,j=2\) audit has \(36\) nonzero star components of size
-\(5\) and no nonzero lower-core components.
+\(5\) and no nonzero lower-core components.  The component ledger is exact in
+the \(F_7^*,j=2\) nonzero audit, while the \(F_7^*,j=3\) nonzero audit uses at
+most \(5\) edge cores and \(1\) lower-core witness per syndrome.
 The common-core and two-denominator formulas persist verbatim after this
 root-free replacement.  With \(C=\gcd(D:D\in M_{\min})\), \(\gamma=\deg C\),
 and \(E_D=D/C\),

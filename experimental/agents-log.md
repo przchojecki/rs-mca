@@ -30,6 +30,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 same-slope component ledger is summable
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_hankel_t2_one_exchange_lift.md`,
+  `experimental/scripts/verify_m1_hankel_t2_triangle_packets.py`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / STRUCTURAL / EXACT FINITE VERIFICATION.
+- **What is being added:** Converts the row-level component descent into a
+  counting ledger.  Non-isolated active `j`-locators are bounded by
+  `(n-j+1)` times the number of one-row lower active edge cores, while non-star
+  components inject into two-row lower-core witnesses.
+- **How it is useful:** Makes the same-slope packet recursion summable:
+  support mass and branching component count are charged to lower Hankel
+  ledgers with explicit local polynomial factors, not to an uncontrolled
+  multiplicative component tree.
+- **What to do next:** Combine this support-mass ledger with isolated
+  locator estimates and the quotient-periodic/fixed-root reserve charges.
+
 ### 2026-06-28 - M1 same-slope components have row-level additive ledgers
 
 - **Agent/model:** AllenGrahamHart / Codex audit.

@@ -30,6 +30,9 @@ H_{4,j-2}.
 At the component level, any nontrivial component without a lower-core corner
 is contained in one star and is covered by H_{3,j-1}; every non-star component
 contains a lower-core H_{4,j-2} witness.
+The verifier also records the resulting component ledger: non-isolated active
+complements are covered by one-row edge cores, and non-star components are
+covered by lower-core witnesses.
 
 It also checks the full-top zero-syndrome lemma: if all j+1 complements
 U\\{x} inside one (j+1)-top set U are active, then the combined syndrome is
@@ -229,6 +232,8 @@ def analyze_case(
     nonzero_component_histogram: Counter[str] = Counter()
     component_size_histogram: Counter[str] = Counter()
     nonzero_component_size_histogram: Counter[str] = Counter()
+    nonisolated_ledger_slack_histogram: Counter[int] = Counter()
+    nonstar_component_ledger_slack_histogram: Counter[int] = Counter()
     max_active = 0
     max_edges = 0
     max_triangles = 0
@@ -237,6 +242,10 @@ def analyze_case(
     max_nonzero_lower_core_corners_per_syndrome = 0
     max_nonzero_star_component_size = 0
     max_nonzero_lower_core_component_size = 0
+    max_nonzero_edge_core_count = 0
+    max_nonzero_lower_core_witness_count = 0
+    max_nonzero_nonisolated_ledger_slack = 0
+    max_nonzero_nonstar_component_ledger_slack = 0
     one_exchange_edges = 0
     star_triangles = 0
     top_triangles = 0
@@ -259,11 +268,13 @@ def analyze_case(
         max_active = max(max_active, len(active))
 
         case_edges = 0
+        case_edge_cores: set[tuple[int, ...]] = set()
         for left, right in itertools.combinations(active, 2):
             if not is_one_exchange(complements[left], complements[right], j):
                 continue
             case_edges += 1
             core = tuple(sorted(set(complements[left]) & set(complements[right])))
+            case_edge_cores.add(core)
             core_locator = locator_coeffs(domain, core, p)
             if not hankel_annihilates(syn, core_locator, t + 1, p):
                 raise AssertionError(
@@ -344,6 +355,7 @@ def analyze_case(
 
         active_set = set(active)
         case_corner_histogram: Counter[str] = Counter()
+        case_lower_core_witnesses: set[tuple[int, ...]] = set()
         for center in active:
             center_set = set(complements[center])
             active_neighbors = [
@@ -390,6 +402,7 @@ def analyze_case(
                 core = tuple(
                     sorted(center_set - set(left_deleted) - set(right_deleted))
                 )
+                case_lower_core_witnesses.add(core)
                 if not hankel_annihilates(syn, cached_locator(core), t + 2, p):
                     raise AssertionError(
                         {
@@ -417,6 +430,8 @@ def analyze_case(
             )
 
         seen_components: set[int] = set()
+        case_component_histogram: Counter[str] = Counter()
+        case_nonisolated_vertices: set[int] = set()
         for start in active:
             if start in seen_components:
                 continue
@@ -434,6 +449,7 @@ def analyze_case(
 
             if len(component) <= 1:
                 continue
+            case_nonisolated_vertices.update(component)
 
             common = set(complements[component[0]])
             for index in component[1:]:
@@ -504,6 +520,7 @@ def analyze_case(
                     )
                 component_kind = "lower_core"
 
+            case_component_histogram[component_kind] += 1
             component_histogram[component_kind] += 1
             component_size_histogram[f"{component_kind}:{len(component)}"] += 1
             if any(syn):
@@ -521,6 +538,57 @@ def analyze_case(
                         max_nonzero_lower_core_component_size,
                         len(component),
                     )
+
+        edge_core_capacity = (n - j + 1) * len(case_edge_cores)
+        nonisolated_ledger_slack = edge_core_capacity - len(case_nonisolated_vertices)
+        if nonisolated_ledger_slack < 0:
+            raise AssertionError(
+                {
+                    "kind": "nonisolated-edge-core-ledger-failed",
+                    "p": p,
+                    "k": k,
+                    "syndrome": list(syn),
+                    "nonisolated_vertices": len(case_nonisolated_vertices),
+                    "edge_core_count": len(case_edge_cores),
+                    "edge_core_capacity": edge_core_capacity,
+                }
+            )
+        lower_component_count = case_component_histogram["lower_core"]
+        nonstar_component_ledger_slack = (
+            len(case_lower_core_witnesses) - lower_component_count
+        )
+        if nonstar_component_ledger_slack < 0:
+            raise AssertionError(
+                {
+                    "kind": "nonstar-component-lower-core-ledger-failed",
+                    "p": p,
+                    "k": k,
+                    "syndrome": list(syn),
+                    "lower_component_count": lower_component_count,
+                    "lower_core_witness_count": len(case_lower_core_witnesses),
+                }
+            )
+        nonisolated_ledger_slack_histogram[nonisolated_ledger_slack] += 1
+        nonstar_component_ledger_slack_histogram[
+            nonstar_component_ledger_slack
+        ] += 1
+        if any(syn):
+            max_nonzero_edge_core_count = max(
+                max_nonzero_edge_core_count,
+                len(case_edge_cores),
+            )
+            max_nonzero_lower_core_witness_count = max(
+                max_nonzero_lower_core_witness_count,
+                len(case_lower_core_witnesses),
+            )
+            max_nonzero_nonisolated_ledger_slack = max(
+                max_nonzero_nonisolated_ledger_slack,
+                nonisolated_ledger_slack,
+            )
+            max_nonzero_nonstar_component_ledger_slack = max(
+                max_nonzero_nonstar_component_ledger_slack,
+                nonstar_component_ledger_slack,
+            )
 
         for plane in core_planes:
             kind, data = classify_core_plane(syn, plane["core_locator"], p)
@@ -720,6 +788,14 @@ def analyze_case(
         "max_nonzero_lower_core_component_size": (
             max_nonzero_lower_core_component_size
         ),
+        "max_nonzero_edge_core_count": max_nonzero_edge_core_count,
+        "max_nonzero_lower_core_witness_count": max_nonzero_lower_core_witness_count,
+        "max_nonzero_nonisolated_ledger_slack": (
+            max_nonzero_nonisolated_ledger_slack
+        ),
+        "max_nonzero_nonstar_component_ledger_slack": (
+            max_nonzero_nonstar_component_ledger_slack
+        ),
         "one_exchange_edges": one_exchange_edges,
         "star_triangles": star_triangles,
         "top_triangles": top_triangles,
@@ -746,6 +822,12 @@ def analyze_case(
         "component_size_histogram": dict(sorted(component_size_histogram.items())),
         "nonzero_component_size_histogram": dict(
             sorted(nonzero_component_size_histogram.items())
+        ),
+        "nonisolated_ledger_slack_histogram": dict(
+            sorted(nonisolated_ledger_slack_histogram.items())
+        ),
+        "nonstar_component_ledger_slack_histogram": dict(
+            sorted(nonstar_component_ledger_slack_histogram.items())
         ),
         "nonzero_top_active_size_histogram": dict(
             sorted(nonzero_top_active_size_histogram.items())
@@ -785,6 +867,7 @@ def print_summary(results: Sequence[dict[str, object]]) -> None:
             f"{result['max_nonzero_lower_core_corners_per_syndrome']} "
             f"max_nonzero_lower_component="
             f"{result['max_nonzero_lower_core_component_size']} "
+            f"max_nonzero_edge_cores={result['max_nonzero_edge_core_count']} "
             f"max_nonzero_top_active={result['max_nonzero_top_active_members']}"
         )
     print("PASS")

@@ -350,6 +350,53 @@ ledger: after lower-core corner charges, the residual components are single
 star packets, with one-row deeper Hankel cores.  This is the graph-level form
 of the no multiplicative depth loss mechanism.
 
+## Same-Slope Component Counting Ledger
+
+The component descent gives an explicit summable bound.  For fixed `s`,
+write
+
+```text
+A_{tau,j}(s) = { T subset H : |T|=j, H_{tau,j}(s)ell_T=0 },
+```
+
+and let `A^+_{tau,j}(s)` be the non-isolated vertices in the one-exchange
+graph on `A_{tau,j}(s)`.  Define the lower ledgers
+
+```text
+S_{tau+1,j-1}(s)
+ = { C subset H : |C|=j-1, H_{tau+1,j-1}(s)ell_C=0 },
+
+L_{tau+2,j-2}(s)
+ = { R subset H : |R|=j-2, H_{tau+2,j-2}(s)ell_R=0 }.
+```
+
+Then
+
+```text
+|A^+_{tau,j}(s)| <= (n-j+1) |S_{tau+1,j-1}(s)|.          (NL)
+```
+
+Moreover the number of star components is at most
+`|S_{tau+1,j-1}(s)|`, and the number of non-star components is at most
+`|L_{tau+2,j-2}(s)|`.
+
+Proof: every non-isolated active `T` has an active one-exchange neighbor
+`T'`.  Their common `(j-1)`-core `C=T cap T'` lies in
+`S_{tau+1,j-1}(s)` by (ED), and `T` contains `C`.  A fixed `(j-1)`-core is
+contained in exactly `n-j+1` `j`-complements, proving (NL).
+
+A star component is contained in the full star over its common core `C`; two
+components cannot charge the same `C`, since `H_{tau+1,j-1}(s)ell_C=0` makes
+all `j`-extensions of `C` active and connected.  Similarly, a non-star
+component contains a lower-core witness `R` by (CD).  If
+`H_{tau+2,j-2}(s)ell_R=0`, then every two-root extension of `R` is active for
+`H_{tau,j}`, and those extensions form a connected Johnson graph.  Hence the
+same `R` cannot be charged by two different components.
+
+Thus same-slope support multiplicity is paid by lower Hankel ledgers with only
+the local factor `n-j+1` for non-isolated vertices, and branching component
+count is paid by the two-row lower-core ledger.
+
 ## Same-Slope Component Dichotomy
 
 Let `G_s` be the graph on active `j`-complements for a fixed combined syndrome
@@ -521,6 +568,13 @@ Finally, the verifier checks the component dichotomy:
 | --- | ---: | ---: | ---: | ---: |
 | `F_7`, `H=F_7^*`, `n=6,k=1,a=3,j=3` | 540 | 36 | 4 | 10 |
 | `F_7`, `H=F_7^*`, `n=6,k=2,a=4,j=2` | 36 | 0 | 5 | 0 |
+
+The same run checks the component ledger inequalities:
+
+| field/domain | max nonzero edge cores | max nonzero lower-core witnesses | max nonisolated slack | max non-star component slack |
+| --- | ---: | ---: | ---: | ---: |
+| `F_7`, `H=F_7^*`, `n=6,k=1,a=3,j=3` | 5 | 1 | 10 | 0 |
+| `F_7`, `H=F_7^*`, `n=6,k=2,a=4,j=2` | 1 | 0 | 0 | 0 |
 
 The `F_7,k=2,j=2` scan is the first exact top-packet check in this file.  It
 finds twenty top triangles, all on the zero combined syndrome.  This is not an
