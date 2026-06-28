@@ -7106,6 +7106,100 @@ denominators turn the lcm degree into the sum of the quotient degrees, giving
 (RFCoprimeCoreArrangement).  The two-denominator case is the special case
 where the two quotients after factoring the gcd are automatically coprime.
 
+## Corollary 40.48: Bottom Residual Kernels Close Under A Domain-MDS Test
+
+Let `K` be any linear subspace of degree-`<h` polynomials over `F_q`, and let
+
+```text
+K(-J)={ Q in K : Q(alpha)=0 for every alpha in J },        J subset D.
+```
+
+Write `d=dim K`, and let `K^rf` be the projective set of nonzero classes
+`[Q] in P(K)` with `Q(alpha)!=0` for every `alpha in D`.  Then
+
+```text
+|K^rf| =
+  sum_{J subset D} (-1)^{|J|} Phi(dim K(-J)).       (KernelRootFreeIE)
+```
+
+If `K` is in domain-MDS position, meaning
+
+```text
+dim K(-J)=max(d-|J|,0)        for every J subset D,
+```
+
+then
+
+```text
+|K^rf| = RFPhi_D(d).                               (KernelRootFreeMDS)
+```
+
+Apply this to the four bottom residual kernels
+
+```text
+K_0(u)     = ker H_{t+r_0,h-1}(u),
+K_0(v)     = ker H_{t+r_0,h-1}(v),
+K_0(u,v)   = ker H_{t+r_0-1,h-1}(u) cap ker H_{t+r_0-1,h-1}(v),
+K_0(Su,Sv) = ker H_{t+r_0-1,h-1}(S u) cap ker H_{t+r_0-1,h-1}(S v).
+```
+
+If these four kernels are in domain-MDS position and have dimensions
+`d_F<=L`, then the bottom residual route of Corollary 40.43 closes the whole
+mixed frontier ladder with residual charge
+
+```text
+sum_F RFPhi_D(d_F) <= 4 RFPhi_D(L),
+```
+
+and total direct ledger
+
+```text
+4 RFPhi_D(L) + 2h.                                 (BottomMDSMixedLedger)
+```
+
+No half-window hypothesis is used in this bottom route.  Thus the bottom
+longer-Pade obstruction can be replaced by a finite linear-algebra target:
+prove that the four bottom recurrence kernels have bounded dimension and that
+domain-root evaluation cuts them in MDS position.
+
+### Proof
+
+For each `alpha in D`, let
+
+```text
+A_alpha=P({Q in K : Q(alpha)=0}).
+```
+
+The root-free projective set is
+
+```text
+P(K) \setminus union_{alpha in D} A_alpha.
+```
+
+For any `J subset D`, the intersection of the events `A_alpha` with
+`alpha in J` is exactly `P(K(-J))`.  Inclusion-exclusion on the finite
+projective set `P(K)` gives (KernelRootFreeIE), with the convention
+`Phi(0)=0`.
+
+If `K` is in domain-MDS position, then the summand depends only on
+`j=|J|` and is zero for `j>=d`.  Therefore
+
+```text
+|K^rf| =
+  sum_{j=0}^{min(|D|,d-1)} (-1)^j binom(|D|,j) Phi(d-j)
+  = RFPhi_D(d),
+```
+
+which is (KernelRootFreeMDS).
+
+The four bottom residual families in Corollary 40.43 are precisely the
+root-free projective points in the four displayed bottom kernels.  Applying
+(KernelRootFreeMDS) to each kernel gives `sum_F RFPhi_D(d_F)`.  If all
+`d_F<=L`, monotonicity of the ambient root-free count gives
+`RFPhi_D(d_F)<=RFPhi_D(L)`, so the residual charge is at most
+`4 RFPhi_D(L)`.  Corollary 40.43 then adds only the bottom finite frontier
+charge `2h`, giving (BottomMDSMixedLedger).
+
 ## Corollary 41: The Global Common-Image Ledger Is Endpoint-Only
 
 Let `GCI` be the set of monic degree-`c` split core locators `L` for which
@@ -9867,6 +9961,9 @@ counts; it still depends on proving the structural lower bound
 Corollary 40.47 gives the root-free common-core and two-denominator formulas;
 it does not prove that a large common core exists, that only two minimal
 denominators survive, or that the quotient degrees are large enough.
+Corollary 40.48 gives a bottom-route root-free count under a domain-MDS test
+on the bottom recurrence kernels; it does not prove those kernels are in
+domain-MDS position or have bounded dimension in the M1 instances.
 Corollary 41 packages the common-image branch into endpoint-type ledgers; it
 does not prove the endpoint rank hypotheses needed for the displayed
 `(q+2)binom(n,b)` bound. Corollary 42 packages the globally full core ledger

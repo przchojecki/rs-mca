@@ -2311,6 +2311,27 @@ If two minimal denominators survive, this becomes
    -\mathrm{RFPhi}_D(h-\gamma-e_1-e_2),
 \]
 with the direct ledger again obtained by adding \(2h\).
+There is an analogous bottom-route criterion that does not use the half-window
+hypothesis.  For any bottom recurrence kernel \(K\subset F_q[X]_{<h}\), let
+\[
+  K(-J)=\{Q\in K:Q(\alpha)=0\text{ for all }\alpha\in J\}.
+\]
+The root-free projective witness count is exactly
+\[
+  \sum_{J\subseteq D}(-1)^{|J|}\Phi(\dim K(-J)).
+\]
+If \(K\) is in domain-MDS position, meaning
+\(\dim K(-J)=\max(\dim K-|J|,0)\) for every \(J\subseteq D\), this count is
+\(\mathrm{RFPhi}_D(\dim K)\).  Hence, if the four bottom residual kernels have
+domain-MDS dimensions \(d_F\le L\), the bottom route closes the mixed ladder
+with
+\[
+  \sum_F \mathrm{RFPhi}_D(d_F)+2h
+  \le 4\,\mathrm{RFPhi}_D(L)+2h.
+\]
+This turns the bottom longer-Pade obstruction into a concrete restricted-rank
+target on the four bottom kernels, independent of the half-window denominator
+arrangement.
 In the common two-denominator case \(M_{\min}=\{D_1,D_2\}\), writing
 \(C=\gcd(D_1,D_2)\), \(D_i=C E_i\), and \(e_i=\deg E_i\), the quotient
 denominators \(E_1,E_2\) are automatically coprime and

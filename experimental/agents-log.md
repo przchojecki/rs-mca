@@ -386,7 +386,13 @@ Keep entries concise and link to the relevant files.
   every `Phi(h-gamma-deg lcm(...))` term by
   `RFPhi_D(h-gamma-deg lcm(...))`; in the two-denominator case this gives
   `RFPhi_D(h-gamma-e_1)+RFPhi_D(h-gamma-e_2)-RFPhi_D(h-gamma-e_1-e_2)`.
-  The non-claims section is updated through Corollary 40.47 to record that
+  A new bottom-route criterion now counts root-free witnesses in any bottom
+  recurrence kernel `K` by inclusion-exclusion over the root slices
+  `K(-J)`.  If the four bottom residual kernels are in domain-MDS position
+  with dimensions `d_F<=L`, then the bottom longer-Pade route closes with
+  `sum_F RFPhi_D(d_F)+2h <= 4RFPhi_D(L)+2h`, without invoking the half-window
+  arrangement.
+  The non-claims section is updated through Corollary 40.48 to record that
   these formulas do not by themselves bound the bottom/pre-half residuals or
   force large common cores/quotient degrees.
   Since
