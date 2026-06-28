@@ -730,6 +730,78 @@ The nonzero one-extension case is exactly the root-marked condition in
 zero-boundary/root-marked split at every rung; it does not acquire a new
 multiplicative loss when a root chain has already been stripped.
 
+## Fixed-Root Filtration Incidence Sequence
+
+The count (RFI) comes from an exact set identity.  Keep the notation
+`d=Delta_{X_1}s`, `q=j-m`, and `H_X=H\{x_1,...,x_m}`.  Let
+
+```text
+I^{X_1}_{tau,q}(s)
+ = { (C,y) : C in K^{X_1}_{tau,q}(s), y in C },
+```
+
+and send `(C,y)` to `(D,y)` with `D=C\{y}`.  Then (IDX), applied one more
+time to the root `y`, identifies this incidence set with the next fixed-root
+layer:
+
+```text
+I^{X_1}_{tau,q}(s)
+ <->
+N^{X_1}_{tau,q-1}(s)
+ = { (D,y) : y in H_X\D,
+     D in K^{X_1 union {y}}_{tau,q-1}(s) }.
+```
+
+For each `(q-1)`-core `D`, write
+
+```text
+v_D=H_{tau+1,q-1}(d)ell_D.
+```
+
+The fiber of `N^{X_1}` above `D` is exactly:
+
+1. all `n-j+1` available roots `y` if `v_D=0`;
+2. the single root-marked root `y` if
+   `v_D=c(1,y,...,y^tau)` with `c!=0` and `y in H_X\D`;
+3. the empty set otherwise.
+
+Therefore there is a disjoint union
+
+```text
+I^{X_1}_{tau,q}(s)
+ =
+{ (D,y) : D in Z^{X_1}_{tau+1,q-1}(s), y in H_X\D }
+ disjoint_union
+B^{X_1,rm}_{tau+1,q-1}(s).                  (FIS)
+```
+
+Proof: for `C=D union {y}`, the equation
+`C in K^{X_1}_{tau,q}(s)` is
+
+```text
+H_{tau,q}(d)((X-y)ell_D)=0.
+```
+
+By the one-root difference identity (DX), this is equivalent to
+
+```text
+H_{tau,q-1}(Delta_y d)ell_D=0,
+```
+
+which is the next fixed-root condition
+`D in K^{X_1 union {y}}_{tau,q-1}(s)`.  The first-boundary vector `v_D`
+then classifies the possible `y`: if `v_D=0`, every available root gives an
+active extension; if `v_D` is nonzero, the recurrence equations force
+`y=v_{D,1}/v_{D,0}` and the remaining coordinates are precisely the
+Veronese/root-marked condition; if `v_{D,0}=0` or the Veronese equations fail,
+there is no available finite root.  This proves (FIS), and taking cardinalities
+gives (RFI).
+
+Thus the root-marked residual at a fixed rung is not a new layer of
+unstructured objects: it is the nonzero part of the next fixed-root incidence
+sequence, while zero-boundary cores give the whole star fiber.  This is the
+set-level form of the additive-loss mechanism.
+
 ## Root-Marked Slice Is One Row
 
 The zero-boundary subkernel in the fixed-root difference form is cut out by a
@@ -1085,6 +1157,10 @@ It also checks the recursive fixed-chain boundary identity (RFI) with zero
 defects; the same largest case performs `352947` rung identities up to chain
 length `2`, with maximum nonzero rung counts `10` active cores, `5` zero
 boundary cores, and `4` root-marked boundaries.
+The verifier additionally checks the set-level fixed-root filtration identity
+(FIS) behind this count; in the same largest case it checks `61740` incidence
+pairs, with maximum nonzero fixed-rung incidence fiber count `20` and zero
+defects.
 
 The `F_7,k=2,j=2` scan is the first exact top-packet check in this file.  It
 finds twenty top triangles, all on the zero combined syndrome.  This is not an

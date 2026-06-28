@@ -65,7 +65,8 @@ Finally, it checks the iterated fixed-root identity and the induced recursive
 first-boundary ledger: multiplying a locator by prod_i (X-x_i) is the same as
 applying the ordered root-difference operator Delta_{x_m}...Delta_{x_1} to the
 syndrome, and the zero-boundary/root-marked incidence identity holds on each
-difference rung.
+difference rung.  It also checks the set-level filtration partition behind
+that identity.
 
 It also checks the full-top zero-syndrome lemma: if all j+1 complements
 U\\{x} inside one (j+1)-top set U are active, then the combined syndrome is
@@ -308,7 +309,9 @@ def analyze_case(
     iterated_difference_checks = 0
     iterated_difference_defect_histogram: Counter[int] = Counter()
     iterated_boundary_identity_checks = 0
+    fixed_root_filtration_pair_checks = 0
     iterated_boundary_defect_histogram: Counter[int] = Counter()
+    fixed_root_filtration_defect_histogram: Counter[int] = Counter()
     max_active = 0
     max_edges = 0
     max_triangles = 0
@@ -341,6 +344,7 @@ def analyze_case(
     max_nonzero_iterated_boundary_active_cores = 0
     max_nonzero_iterated_boundary_zero_cores = 0
     max_nonzero_iterated_boundary_marked = 0
+    max_nonzero_fixed_root_filtration_pairs = 0
     one_exchange_edges = 0
     star_triangles = 0
     top_triangles = 0
@@ -1045,9 +1049,11 @@ def analyze_case(
                         )
         iterated_difference_defect_histogram[case_iterated_difference_defect] += 1
         case_iterated_boundary_defect = 0
+        case_fixed_root_filtration_defect = 0
         case_max_iterated_boundary_active_cores = 0
         case_max_iterated_boundary_zero_cores = 0
         case_max_iterated_boundary_marked = 0
+        case_max_fixed_root_filtration_pairs = 0
         for chain_length in range(1, j):
             quotient_degree = j - chain_length
             max_iterated_boundary_chain_length = max(
@@ -1156,6 +1162,50 @@ def analyze_case(
                     (n - j + 1) * len(zero_boundary_cores)
                     + len(root_marked_boundaries)
                 )
+                active_incidence_pairs = {
+                    (
+                        tuple(entry for entry in core if entry != root_index),
+                        root_index,
+                    )
+                    for core in active_cores
+                    for root_index in core
+                }
+                boundary_partition_pairs = set(root_marked_boundaries)
+                for boundary_core in zero_boundary_cores:
+                    boundary_core_set = set(boundary_core)
+                    for root_index in remaining_indices:
+                        if root_index not in boundary_core_set:
+                            boundary_partition_pairs.add(
+                                (boundary_core, root_index)
+                            )
+                fixed_root_filtration_pair_checks += len(active_incidence_pairs)
+                if active_incidence_pairs != boundary_partition_pairs:
+                    case_fixed_root_filtration_defect += 1
+                    raise AssertionError(
+                        {
+                            "kind": "fixed-root-filtration-identity-failed",
+                            "p": p,
+                            "k": k,
+                            "syndrome": list(syn),
+                            "fixed_roots": list(fixed_roots),
+                            "fixed_values": fixed_values,
+                            "quotient_degree": quotient_degree,
+                            "active_only": [
+                                [list(core), root]
+                                for core, root in sorted(
+                                    active_incidence_pairs
+                                    - boundary_partition_pairs
+                                )
+                            ],
+                            "boundary_only": [
+                                [list(core), root]
+                                for core, root in sorted(
+                                    boundary_partition_pairs
+                                    - active_incidence_pairs
+                                )
+                            ],
+                        }
+                    )
                 iterated_boundary_identity_checks += 1
                 if incidence_defect != 0:
                     case_iterated_boundary_defect += abs(incidence_defect)
@@ -1188,7 +1238,14 @@ def analyze_case(
                     case_max_iterated_boundary_marked,
                     len(root_marked_boundaries),
                 )
+                case_max_fixed_root_filtration_pairs = max(
+                    case_max_fixed_root_filtration_pairs,
+                    len(active_incidence_pairs),
+                )
         iterated_boundary_defect_histogram[case_iterated_boundary_defect] += 1
+        fixed_root_filtration_defect_histogram[
+            case_fixed_root_filtration_defect
+        ] += 1
         isolated_marked_boundary_slack = (
             len(case_root_marked_boundaries) - j * case_isolated_vertices
         )
@@ -1270,6 +1327,10 @@ def analyze_case(
             max_nonzero_iterated_boundary_marked = max(
                 max_nonzero_iterated_boundary_marked,
                 case_max_iterated_boundary_marked,
+            )
+            max_nonzero_fixed_root_filtration_pairs = max(
+                max_nonzero_fixed_root_filtration_pairs,
+                case_max_fixed_root_filtration_pairs,
             )
             max_nonzero_isolated_marked_boundary_slack = max(
                 max_nonzero_isolated_marked_boundary_slack,
@@ -1783,6 +1844,7 @@ def analyze_case(
             max_iterated_difference_chain_length
         ),
         "iterated_boundary_identity_checks": iterated_boundary_identity_checks,
+        "fixed_root_filtration_pair_checks": fixed_root_filtration_pair_checks,
         "max_iterated_boundary_chain_length": max_iterated_boundary_chain_length,
         "max_nonzero_iterated_boundary_active_cores": (
             max_nonzero_iterated_boundary_active_cores
@@ -1792,6 +1854,9 @@ def analyze_case(
         ),
         "max_nonzero_iterated_boundary_marked": (
             max_nonzero_iterated_boundary_marked
+        ),
+        "max_nonzero_fixed_root_filtration_pairs": (
+            max_nonzero_fixed_root_filtration_pairs
         ),
         "max_nonzero_isolated_marked_boundary_slack": (
             max_nonzero_isolated_marked_boundary_slack
@@ -1872,6 +1937,9 @@ def analyze_case(
         "iterated_boundary_defect_histogram": dict(
             sorted(iterated_boundary_defect_histogram.items())
         ),
+        "fixed_root_filtration_defect_histogram": dict(
+            sorted(fixed_root_filtration_defect_histogram.items())
+        ),
         "nonzero_top_active_size_histogram": dict(
             sorted(nonzero_top_active_size_histogram.items())
         ),
@@ -1930,6 +1998,8 @@ def print_summary(results: Sequence[dict[str, object]]) -> None:
             f"{result['max_nonzero_root_marked_boundary_count']} "
             f"max_nonzero_iterated_boundary_marked="
             f"{result['max_nonzero_iterated_boundary_marked']} "
+            f"max_nonzero_fixed_root_filtration_pairs="
+            f"{result['max_nonzero_fixed_root_filtration_pairs']} "
             f"max_nonzero_full_support_slack="
             f"{result['max_nonzero_full_support_ledger_slack']} "
             f"max_nonzero_top_active={result['max_nonzero_top_active_members']}"

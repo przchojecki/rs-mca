@@ -3836,6 +3836,13 @@ rung.  If \(X=(x_1,\ldots,x_m)\), \(q=j-m>0\), and
 The extension factor remains \(n-j+1\), since
 \(|H\setminus X|-(q-1)=n-j+1\).  Thus an already stripped fixed-root chain has
 the same zero-boundary/root-marked additive split as the original rung.
+This is set-theoretic.  The incidence pairs \((C,y)\), with
+\(C\in K^X_{\tau,q}(s)\) and \(y\in C\), map by \(C\mapsto C\setminus\{y\}\)
+to the next fixed-root layer \(K^{X\cup\{y\}}_{\tau,q-1}(s)\).  For a
+\((q-1)\)-core \(D\), this fiber is either the whole zero-boundary star over
+\(D\), the single nonzero root-marked extension, or empty.  Hence the
+root-marked residual is literally the nonzero part of the next fixed-root
+incidence sequence, not a new packet family.
 This residual also has additive one-exchange descent.  If
 \(C_y=R\cup\{y\}\) and \(C_z=R\cup\{z\}\) are two root-marked cores in the
 same fixed-root slice, then both are active for
@@ -3923,7 +3930,9 @@ listed case and zero defects.  It also audits the recursive fixed-chain
 first-boundary identity with zero defects; the largest listed case checks
 \(352947\) rung identities up to chain length \(2\), with maximum nonzero
 rung counts \(10\) active cores, \(5\) zero-boundary cores, and \(4\)
-root-marked boundaries.
+root-marked boundaries.  The set-level filtration identity behind this count
+is checked too: the largest listed case checks \(61740\) fixed-rung incidence
+pairs, with maximum nonzero incidence count \(20\) and zero defects.
 The common-core and two-denominator formulas persist verbatim after this
 root-free replacement.  With \(C=\gcd(D:D\in M_{\min})\), \(\gamma=\deg C\),
 and \(E_D=D/C\),

@@ -30,6 +30,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 fixed-root filtration incidence is exact
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_hankel_t2_one_exchange_lift.md`,
+  `experimental/scripts/verify_m1_hankel_t2_triangle_packets.py`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / STRUCTURAL / EXACT FINITE VERIFICATION.
+- **What is being added:** Refines the recursive fixed-root ledger to a
+  set-level identity: active incidences on a fixed-chain kernel equal the
+  disjoint union of zero-boundary star incidences and nonzero root-marked
+  incidences, equivalently the next fixed-root layer.
+- **How it is useful:** Shows that the marked residual at each rung is the
+  nonzero part of the next fixed-root incidence sequence, not a new packet
+  family that can compound independently.
+- **What to do next:** Use this filtration identity to seek a terminal
+  quotient-periodic or aperiodic packing bound for the bottom fixed-root
+  layers.
+
 ### 2026-06-28 - M1 fixed-root rungs keep first-boundary ledger
 
 - **Agent/model:** AllenGrahamHart / Codex audit.
