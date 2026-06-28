@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 paired rational-supercode strata charge to one slope
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_boundary_off_external_anchor_normal_form.md`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / PROOF-PROGRAM.
+- **What is being added:** A paired rational-supercode denominator `Q` with
+  `Qf,Qg in RS[F,D,n-s]` forces any explained slope above the interpolation
+  threshold `a>=max(n-s,k+deg Q)` to be a global codeword; hence a
+  noncontained line contributes at most one such slope.
+- **How it is useful:** This gives a concrete charge for ordinary and shifted
+  paired half-window cutoff-kernel failures when their denominator degree is
+  below the interpolation threshold.
+- **What to do next:** Identify whether the remaining paired cutoff failures
+  always fall below this threshold, or isolate the larger-degree cases for
+  quotient/aperiodic charging.
+
 ### 2026-06-28 - M1 cutoff kernels are rational-supercode strata
 
 - **Agent/model:** AllenGrahamHart / Codex audit.

@@ -9328,6 +9328,78 @@ Syn(XQy)_a = Syn(Qy)_{a+1},
 which is the shifted Hankel equation.  If `0 notin D`, multiplication by `X`
 does not introduce a domain zero, so `XQ` is root-free exactly when `Q` is.
 
+## Corollary 40.75: Paired Rational-Supercode Strata Have At Most One Noncontained Slope
+
+Let `C=RS[F,D,k]`, let `f,g:D->F`, and fix an agreement threshold `a`.  Suppose
+there is a polynomial `Q` of degree `e`, root-free on `D`, such that
+
+```text
+Qf in RS[F,D,n-s],        Qg in RS[F,D,n-s].
+```
+
+Assume
+
+```text
+a >= max(n-s, k+e).                                  (InterpPair)
+```
+
+Then every finite slope `z` for which `f+zg` is explained by a codeword on at
+least `a` domain points is in fact globally a codeword:
+
+```text
+f+zg in C.
+```
+
+Consequently a support-wise noncontained line has at most one such slope in
+this paired rational-supercode stratum.
+
+Applied to the ordinary paired cutoff kernel `A_uv(m)`, a root-free
+`Q in ker A_uv(m)` has `s=t+r_hw-1`, so it contributes at most one
+noncontained slope whenever (InterpPair) holds with `e=deg Q`.
+
+In the multiplicative-domain shifted paired case `0 notin D`, a root-free
+`Q in ker A_Suv(m)` gives the common denominator `R=XQ` of degree `e+1` into
+the same supercode `RS[F,D,n-(t+r_hw-1)]`.  Hence it contributes at most one
+noncontained slope whenever
+
+```text
+a >= max(n-(t+r_hw-1), k+e+1).
+```
+
+Thus paired low-degree cutoff-kernel failures are harmless once their
+denominator degree and supercode codimension put them below the interpolation
+threshold: they are either charged as fixed-root pieces, or they can create at
+most one noncontained slope.
+
+### Proof
+
+Let `z` be explained on a set `S subset D` with `|S|>=a` by a codeword
+`c_z in C`.  Choose polynomials `P_f,P_g` of degree `<n-s` representing
+`Qf` and `Qg` on `D`, and a polynomial `C_z` of degree `<k` representing
+`c_z`.  On `S`,
+
+```text
+P_f + z P_g = Q(f+zg) = Q C_z.
+```
+
+The left side has degree `<n-s`, while the right side has degree `<k+e`.
+By (InterpPair), these two polynomials agree on more points than the maximum
+of their degrees, so they are identical.  Since `Q` is root-free on `D`, this
+identity implies `f+zg=c_z` on all of `D`, i.e. `f+zg in C`.
+
+If two distinct finite slopes `z_1,z_2` are globally codewords, then
+
+```text
+g = (c_{z_2}-c_{z_1})/(z_2-z_1) in C,
+f = c_{z_1}-z_1 g in C.
+```
+
+Then the line is support-wise contained on every support, so no slope on it is
+noncontained.  Hence a noncontained line has at most one explained slope in
+the stratum.  The two cutoff applications are Corollary 40.74 with
+`s=t+r_hw-1`, using `Q` for the ordinary paired kernel and `R=XQ` for the
+shifted paired kernel.
+
 ## Corollary 41: The Global Common-Image Ledger Is Endpoint-Only
 
 Let `GCI` be the set of monic degree-`c` split core locators `L` for which
@@ -12169,6 +12241,9 @@ M1 counterexample.
 Corollary 40.74 identifies cutoff kernel failure with a low-degree
 rational-supercode representation of the endpoint words; it does not prove
 that those strata are small or quotient-periodic in the actual M1 instances.
+Corollary 40.75 shows paired rational-supercode strata contribute at most one
+noncontained slope above the displayed interpolation threshold; it does not
+settle scalar strata or paired strata above that threshold.
 Corollary 41 packages the common-image branch into endpoint-type ledgers; it
 does not prove the endpoint rank hypotheses needed for the displayed
 `(q+2)binom(n,b)` bound. Corollary 42 packages the globally full core ledger
