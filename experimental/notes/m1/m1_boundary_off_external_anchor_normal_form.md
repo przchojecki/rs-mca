@@ -6105,6 +6105,90 @@ makes the remaining tail family-disjoint.  This is a logical separation
 ledger, not a claim that the raw union has size
 `FamilyBudget_hw + HybridOverlap_hw`.
 
+## Corollary 40.32: Cutoff Overlap Union Has An Inclusion-Exclusion Rank Budget
+
+Keep the notation of Corollaries 40.27--40.28, and define the shifted
+two-row rank
+
+```text
+r_S = rank( row_0(u)|_{K_S}, row_0(v)|_{K_S} ).
+```
+
+Let `Omega_all` be the union of the five cutoff overlap locator spaces
+
+```text
+Omega_EP,        Omega_u,        Omega_v,        Omega_uS,        Omega_vS.
+```
+
+Then
+
+```text
+Omega_all = Omega_u union Omega_v union Omega_uS union Omega_vS,
+```
+
+because `Omega_EP` is contained in each of the four one-sided spaces.  Hence,
+over `F_q`, the projective locator count in the cutoff overlap union is at
+most
+
+```text
+Phi(d_uv-eps_u) + Phi(d_uv-eps_v) - Phi(d_uv-r_EP)
++ Phi(d_S-eps_uS) + Phi(d_S-eps_vS) - Phi(d_S-r_S).   (UnionRankOverlap)
+```
+
+The same expression bounds the number of projective root-free
+certificate-denominator classes in the cutoff overlap union.
+
+In the full independent-row case
+
+```text
+r_EP=2,        r_S=2,
+eps_u=eps_v=eps_uS=eps_vS=1,
+```
+
+this becomes
+
+```text
+2 Phi(d_uv-1) - Phi(d_uv-2)
++ 2 Phi(d_S-1) - Phi(d_S-2).
+```
+
+Thus the endpoint-pair residual need not be paid as a fifth independent
+rank-budget summand when the four one-sided ambient overlap systems are
+charged.
+
+### Proof
+
+If a locator lies in `Omega_EP`, then it satisfies
+
+```text
+H_{s+1}(u)ell=0,        H_{s+1}(v)ell=0.
+```
+
+It therefore satisfies `H_s(v)ell=0`, so it lies in `Omega_u`, and it satisfies
+`H_s(u)ell=0`, so it lies in `Omega_v`.  Since `H_{s+1}(u)` contains the
+shifted rows `H_s(Su)` and `H_{s+1}(v)` contains the shifted rows `H_s(Sv)`,
+it also lies in `Omega_uS` and `Omega_vS`.  This proves the displayed union
+identity.
+
+Inside `K_uv`, the projective union `P(Omega_u) union P(Omega_v)` has size
+
+```text
+Phi(d_uv-eps_u) + Phi(d_uv-eps_v) - Phi(d_uv-r_EP),
+```
+
+because `Omega_u cap Omega_v=Omega_EP` has dimension `d_uv-r_EP`.  Similarly,
+inside `K_S`, the projective union `P(Omega_uS) union P(Omega_vS)` has size
+
+```text
+Phi(d_S-eps_uS) + Phi(d_S-eps_vS) - Phi(d_S-r_S).
+```
+
+The full cutoff-overlap union is contained in the union of these two parent
+unions, so summing the two bounds gives (UnionRankOverlap).  Passing from
+projective locator classes to root-free certificate-denominator classes can
+only identify or remove classes, so the same bound applies to denominator
+classes.
+
 ## Corollary 41: The Global Common-Image Ledger Is Endpoint-Only
 
 Let `GCI` be the set of monic degree-`c` split core locators `L` for which
@@ -8813,7 +8897,9 @@ minima; it does not prove either savings mechanism is always strong enough.
 Corollary 40.30 packages these terms into a mixed-ladder upper ledger; it does
 not prove the pre-half residuals are small or that this upper ledger is sharp.
 Corollary 40.31 separates raw denominator counting from proof-separation
-accounting; it does not improve the raw `FamilyBudget_hw` count.
+accounting; it does not improve the raw `FamilyBudget_hw` count. Corollary
+40.32 gives an inclusion-exclusion rank budget for the cutoff-overlap union;
+it does not prove the required endpoint-row ranks are generically full.
 Corollary 41 packages the common-image branch into endpoint-type ledgers; it
 does not prove the endpoint rank hypotheses needed for the displayed
 `(q+2)binom(n,b)` bound. Corollary 42 packages the globally full core ledger

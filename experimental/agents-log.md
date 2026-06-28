@@ -337,7 +337,11 @@ Keep entries concise and link to the relevant files.
   multiplier ledgers gives a termwise hybrid budget: each overlap summand is
   bounded by the minimum of its family-lcm multiplier count and its endpoint-row
   rank count, so large lcm degree and genuine endpoint-row cuts are independent
-  savings mechanisms.  The refined mixed-ladder closure now records the final
+  savings mechanisms.  The rank side now has an inclusion-exclusion refinement:
+  the endpoint-pair residual is contained in each one-sided overlap space, so
+  the rank budget for the cutoff-overlap union omits it as a fifth independent
+  summand and subtracts the ordinary and shifted two-row intersections.  The
+  refined mixed-ladder closure now records the final
   consumable upper ledger: after pre-half residuals, the non-prehalf part is
   charged by `HybridOverlap_hw + FamilyBudget_hw + 2h`, where the final `2h`
   is the bottom finite frontier set `E_{r_0,>b} union Theta_{r_0,>b}`.  This is
