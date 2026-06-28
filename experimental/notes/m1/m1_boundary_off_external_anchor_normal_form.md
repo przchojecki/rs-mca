@@ -12379,6 +12379,59 @@ separate reciprocal `Qf` zero-slope exception has already been removed.  Thus
 the same count bounds the chart's noncontained finite parameters, and
 dividing by `q=|F|` gives the displayed density contribution.
 
+## Corollary 40.110: Noncontained One-Row Witnesses Truncate To Threshold Size
+
+Keep the notation of Corollary 40.109, and let `Mu_h^{nc,>=a}(Y)` be the set
+of coefficients `mu` for which there are `A_0 in F[X]_<k` and a support
+`S subset D`, `|S|>=a`, such that
+
+```text
+A_0+mu phi_h = Y        on S,
+```
+
+and the one-row line is support-wise noncontained on `S`, meaning
+
+```text
+not ( phi_h|_S in RS[F,S,k] and Y|_S in RS[F,S,k] ).
+```
+
+Then every such witness has an `a`-element sub-support `T subset S` on which
+the same coefficient is still witnessed and still support-wise noncontained.
+Consequently
+
+```text
+Mu_h^{nc,>=a}(Y) subset Mu_h^nc(Y,a),
+```
+
+and therefore
+
+```text
+|Mu_h^{nc,>=a}(Y)| <= binom(n,j).                  (ThresholdOneRowNC)
+```
+
+Thus Corollary 40.109 applies to the actual threshold predicate
+`agreement >= a`, not only to witnesses presented on exactly `a` points.
+
+### Proof
+
+Let `mu in Mu_h^{nc,>=a}(Y)` be witnessed on `S`.  If every `a`-subset
+`T subset S` were support-wise contained, then both `phi_h|_T` and `Y|_T`
+would lie in `RS[F,T,k]` for every such `T`.
+
+We claim this forces `phi_h|_S` and `Y|_S` to lie in `RS[F,S,k]`.  Indeed, if
+a word `W:S->F` is not the restriction of a degree-`<k` polynomial on `S`,
+then some `(k+1)`-subset `U subset S` is already non-Reed-Solomon: otherwise
+all `(k+1)`-point divided differences vanish, and the unique polynomial
+interpolating any fixed `k` points agrees with `W` on every point of `S`.
+Since `a>=k+1` and `|S|>=a`, extend such a bad `U` to an `a`-subset of `S`,
+contradicting the assumption that every `a`-subset is contained.
+
+Applying the claim to `W=phi_h|_S` and `W=Y|_S`, every `a`-subset contained
+would imply that the original support `S` is contained.  This contradicts the
+choice of `S`.  Hence some `a`-subset `T subset S` is noncontained.  The same
+identity `A_0+mu phi_h=Y` holds on `T`, so `mu in Mu_h^nc(Y,a)`.  Corollary
+40.108 gives the displayed bound.
+
 ## Corollary 41: The Global Common-Image Ledger Is Endpoint-Only
 
 Let `GCI` be the set of monic degree-`c` split core locators `L` for which
@@ -15335,6 +15388,9 @@ bounded by `binom(n,j)` without assuming the double-collapse locus is empty.
 Corollary 40.109 packages this as a chart-level closure: the positive
 primitive one-row one-exchange noncontained branch contributes at most
 `binom(n,j)/q` to line-MCA density.
+Corollary 40.110 checks that exact `a`-support bookkeeping loses no
+threshold witnesses: every support-wise noncontained witness on at least `a`
+points contains a noncontained `a`-subsupport.
 Corollary 41 packages the common-image branch into endpoint-type ledgers; it
 does not prove the endpoint rank hypotheses needed for the displayed
 `(q+2)binom(n,b)` bound. Corollary 42 packages the globally full core ledger

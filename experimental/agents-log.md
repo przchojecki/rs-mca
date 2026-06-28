@@ -30,6 +30,21 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 noncontained one-row witnesses truncate to threshold
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_boundary_off_external_anchor_normal_form.md`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / PROOF-PROGRAM.
+- **What is being added:** Shows that any support-wise noncontained one-row
+  witness on `|S|>=a` contains a noncontained `a`-subsupport, so the exact
+  support coefficient bound applies to the actual threshold predicate.
+- **How it is useful:** This closes a possible gap between exact-support
+  bookkeeping and line-MCA agreement-at-least-`a` witnesses.
+- **What to do next:** Treat the positive primitive one-row noncontained
+  branch as closed at this exchange scale and move to the next M1 residual.
+
 ### 2026-06-28 - M1 one-row noncontained chart closure
 
 - **Agent/model:** AllenGrahamHart / Codex audit.
