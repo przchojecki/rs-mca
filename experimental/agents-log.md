@@ -30,6 +30,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 canonical cores have simple-pole packet lifts
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_hankel_t2_one_exchange_lift.md`,
+  `experimental/scripts/verify_m1_hankel_t2_triangle_packets.py`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / STRUCTURAL / EXACT FINITE AUDIT.
+- **What is being added:** For a canonical unmarked core `U` with marked
+  exits `M`, the full marked face is one sparse packet, and every unmarked
+  root `u in U` gives the same packet with amplitudes divided by `y-u` and
+  one extra visible row.  The verifier audits these packet and simple-pole
+  lift identities.
+- **How it is useful:** Refines the `Core_r(s)` closure target: canonical
+  cores are simultaneous simple-pole packet-lift supports, which is closer to
+  the quotient-periodic/aperiodic residue-packing input needed for M1.
+- **What to do next:** Bound or classify supports admitting many compatible
+  simple-pole lifts after quotient-periodic and tangent cores are charged.
+
 ### 2026-06-28 - M1 split-support closes under canonical core counts
 
 - **Agent/model:** AllenGrahamHart / Codex audit.

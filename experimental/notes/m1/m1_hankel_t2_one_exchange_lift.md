@@ -2121,6 +2121,54 @@ obstruction must either create too many such canonical cores or produce active
 supports with more than `tau+1` marked exits; it cannot come from repeated
 internal faces of the same split-support cube.
 
+## Canonical Core Roots Give Simple-Pole Packet Lifts
+
+The canonical core ledger has more structure than the counting statement
+above records.  Let `S` be active, let
+
+```text
+M=M(S),        U=U(S),        r=|M|>=1,
+```
+
+and write
+
+```text
+d_M(y)=prod_{z in M, z!=y}(y-z),
+        a_y=b_y(S)/d_M(y).
+```
+
+The full marked face over the canonical core is
+
+```text
+H_{tau+r,|U|}(s)ell_U
+ = (sum_{y in M} a_y y^i)_{0<=i<=tau+r-1}.       (CP0)
+```
+
+Moreover every unmarked core root `u in U` gives a one-row longer
+simple-pole lift of the same packet:
+
+```text
+H_{tau+r+1,|U|-1}(s)ell_{U\{u}}
+ = (sum_{y in M} a_y y^i/(y-u))_{0<=i<=tau+r}.   (CP1)
+```
+
+Proof: (CP0) is the marked-exit cube with `Y=M`.  For (CP1), apply the mixed
+marked-unmarked face formula with `E={u}` and `Y=M`.  Since `u` is unmarked,
+the row depth increases by one, and since `u` is disjoint from `M`, the
+marked amplitudes are rescaled by the nonzero factors `(y-u)^{-1}`.
+
+Thus a canonical unmarked core is not merely a support carrying an
+`r`-sparse packet.  Every root of the core imposes a compatible simple-pole
+transform of that packet with one extra visible moment.  This gives a sharper
+M1 target for the `Core_r(s)` ledgers: after quotient-periodic and tangent
+cores are removed, prove that there are only polynomially many supports `U`
+for which all of these simultaneous simple-pole packet lifts can hold.
+
+The verifier now checks this directly for every produced total split support.
+In the largest `F_7^*` audit, it checks `21600` full canonical-core packets
+and `4320` simple-pole lifts; the productive subaudit checks `19440` packets
+and `2160` lifts.
+
 ## Fixed Anchors Have Matching-Bounded Fibers
 
 Fix the collapsed anchor base `A` and the mode size `m`.  Then

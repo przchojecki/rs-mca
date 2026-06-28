@@ -4419,6 +4419,29 @@ whole split-support branch.  Any remaining super-polynomial obstruction must
 come from too many canonical unmarked cores or from active supports with more
 than \(\tau+1\) marked exits, not from repeated internal faces of one
 split-support cube.
+The core ledger also has a simple-pole form.  If \(S\) is active,
+\(M=M(S)\), \(U=U(S)\), \(r=|M|\ge1\), and
+\[
+  a_y={b_y(S)\over\prod_{z\in M,\ z\ne y}(y-z)},
+\]
+then the full marked face over \(U\) is
+\[
+  H_{\tau+r,|U|}(s)\ell_U
+  =\left(\sum_{y\in M}a_y y^i\right)_{0\le i\le\tau+r-1}.
+\]
+For every unmarked core root \(u\in U\), the mixed-face identity gives the
+one-row longer simple-pole lift
+\[
+  H_{\tau+r+1,|U|-1}(s)\ell_{U\setminus\{u\}}
+  =\left(\sum_{y\in M}{a_y y^i\over y-u}\right)_{0\le i\le\tau+r}.
+\]
+So a canonical core is a simultaneous family of compatible simple-pole
+transforms of one marked sparse packet.  This is a sharper way to attack
+\(\mathrm{Core}_r(s)\): after quotient-periodic and tangent cores are removed,
+one must bound supports \(U\) for which all these simple-pole packet lifts can
+hold.  The largest \(F_7^*\) audit checks \(21600\) full canonical-core
+packets and \(4320\) simple-pole lifts, with \(19440\) productive packets and
+\(2160\) productive lifts.
 For fixed \(A\) and \(m\), this also gives a fixed-anchor fiber bound.  If
 \(m\le\tau\), the first \(2m\) moments recover the mode locator and
 amplitudes uniquely.  At the boundary \(m=\tau+1\), two supports in one

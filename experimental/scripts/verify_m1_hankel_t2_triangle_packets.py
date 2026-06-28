@@ -131,6 +131,9 @@ roots first shifts the row depth additively and rescales the marked sparse
 packet without loss.
 After such an unmarked deletion, it audits that the marked set is exactly
 preserved and the remaining unmarked roots stay unmarked.
+It also checks the canonical-core simple-pole lift: after deleting all marked
+exits, every unmarked core root gives the same sparse packet with amplitudes
+divided by the corresponding simple pole y-u.
 For each fixed collapsed anchor base, it audits the sparse-representation
 fiber: below the boundary the mode support is unique, while at the boundary
 distinct supports are disjoint and obey the matching bound.
@@ -538,6 +541,10 @@ def analyze_case(
     terminal_tree_productive_marked_core_fiber_labels = 0
     terminal_tree_marked_core_fiber_max_size = 0
     terminal_tree_productive_marked_core_fiber_max_size = 0
+    terminal_tree_core_packet_checks = 0
+    terminal_tree_productive_core_packet_checks = 0
+    terminal_tree_core_simple_pole_lift_checks = 0
+    terminal_tree_productive_core_simple_pole_lift_checks = 0
     terminal_tree_unmarked_zero_cube_support_checks = 0
     terminal_tree_productive_unmarked_zero_cube_support_checks = 0
     terminal_tree_unmarked_zero_cube_face_checks = 0
@@ -3268,6 +3275,158 @@ def analyze_case(
                 productive_marked_core_fiber_max_size,
             )
 
+            def audit_core_simple_pole_lifts(
+                supports: set[tuple[int, ...]],
+                productive: bool,
+            ) -> tuple[int, int]:
+                packet_checks = 0
+                lift_checks = 0
+                for total_support in sorted(supports):
+                    marked_roots = marked_roots_for_split_support(
+                        total_support
+                    )
+                    marked_support = tuple(sorted(marked_roots))
+                    if not marked_support:
+                        continue
+                    marked_set = set(marked_support)
+                    unmarked_core = tuple(
+                        index
+                        for index in total_support
+                        if index not in marked_set
+                    )
+                    marked_count = len(marked_support)
+                    amplitudes: dict[int, int] = {}
+                    for root_index in marked_support:
+                        root = domain[root_index]
+                        denominator = 1
+                        for other_root_index in marked_support:
+                            if other_root_index == root_index:
+                                continue
+                            denominator = (
+                                denominator
+                                * (root - domain[other_root_index])
+                            ) % p
+                        amplitudes[root_index] = (
+                            marked_roots[root_index]
+                            * pow(denominator, -1, p)
+                        ) % p
+                    core_vector = hankel_apply(
+                        syn,
+                        cached_locator(unmarked_core),
+                        t + marked_count,
+                        p,
+                    )
+                    expected_core = tuple(
+                        sum(
+                            amplitudes[root_index]
+                            * pow(domain[root_index], row, p)
+                            for root_index in marked_support
+                        )
+                        % p
+                        for row in range(t + marked_count)
+                    )
+                    if core_vector != expected_core:
+                        raise AssertionError(
+                            {
+                                "kind": (
+                                    "productive-"
+                                    if productive
+                                    else ""
+                                )
+                                + "canonical-core-full-packet-failed",
+                                "p": p,
+                                "k": k,
+                                "syndrome": list(syn),
+                                "fixed_roots": list(fixed_roots),
+                                "total_split_support": list(total_support),
+                                "unmarked_core": list(unmarked_core),
+                                "marked_support": list(marked_support),
+                                "core_vector": list(core_vector),
+                                "expected": list(expected_core),
+                            }
+                        )
+                    packet_checks += 1
+                    for unmarked_root_index in unmarked_core:
+                        lift_core = tuple(
+                            index
+                            for index in unmarked_core
+                            if index != unmarked_root_index
+                        )
+                        unmarked_root = domain[unmarked_root_index]
+                        lift_vector = hankel_apply(
+                            syn,
+                            cached_locator(lift_core),
+                            t + marked_count + 1,
+                            p,
+                        )
+                        expected_lift = tuple(
+                            sum(
+                                amplitudes[root_index]
+                                * pow(
+                                    domain[root_index] - unmarked_root,
+                                    -1,
+                                    p,
+                                )
+                                * pow(domain[root_index], row, p)
+                                for root_index in marked_support
+                            )
+                            % p
+                            for row in range(t + marked_count + 1)
+                        )
+                        if lift_vector != expected_lift:
+                            raise AssertionError(
+                                {
+                                    "kind": (
+                                        "productive-"
+                                        if productive
+                                        else ""
+                                    )
+                                    + "canonical-core-simple-pole-"
+                                    "lift-failed",
+                                    "p": p,
+                                    "k": k,
+                                    "syndrome": list(syn),
+                                    "fixed_roots": list(fixed_roots),
+                                    "total_split_support": list(
+                                        total_support
+                                    ),
+                                    "unmarked_core": list(unmarked_core),
+                                    "deleted_unmarked": (
+                                        unmarked_root_index
+                                    ),
+                                    "marked_support": list(marked_support),
+                                    "lift_vector": list(lift_vector),
+                                    "expected": list(expected_lift),
+                                }
+                            )
+                        lift_checks += 1
+                return packet_checks, lift_checks
+
+            (
+                core_packet_checks,
+                core_simple_pole_lift_checks,
+            ) = audit_core_simple_pole_lifts(
+                total_split_supports,
+                productive=False,
+            )
+            (
+                productive_core_packet_checks,
+                productive_core_simple_pole_lift_checks,
+            ) = audit_core_simple_pole_lifts(
+                productive_total_split_supports,
+                productive=True,
+            )
+            terminal_tree_core_packet_checks += core_packet_checks
+            terminal_tree_productive_core_packet_checks += (
+                productive_core_packet_checks
+            )
+            terminal_tree_core_simple_pole_lift_checks += (
+                core_simple_pole_lift_checks
+            )
+            terminal_tree_productive_core_simple_pole_lift_checks += (
+                productive_core_simple_pole_lift_checks
+            )
+
             def audit_unmarked_zero_cubes(
                 supports: set[tuple[int, ...]],
                 productive: bool,
@@ -5624,6 +5783,18 @@ def analyze_case(
         "terminal_tree_productive_marked_core_fiber_max_size": (
             terminal_tree_productive_marked_core_fiber_max_size
         ),
+        "terminal_tree_core_packet_checks": (
+            terminal_tree_core_packet_checks
+        ),
+        "terminal_tree_productive_core_packet_checks": (
+            terminal_tree_productive_core_packet_checks
+        ),
+        "terminal_tree_core_simple_pole_lift_checks": (
+            terminal_tree_core_simple_pole_lift_checks
+        ),
+        "terminal_tree_productive_core_simple_pole_lift_checks": (
+            terminal_tree_productive_core_simple_pole_lift_checks
+        ),
         "terminal_tree_unmarked_zero_cube_support_checks": (
             terminal_tree_unmarked_zero_cube_support_checks
         ),
@@ -6136,6 +6307,9 @@ def print_summary(results: Sequence[dict[str, object]]) -> None:
             f"{result['terminal_tree_marked_core_fiber_checks']} "
             f"marked_core_fiber_max="
             f"{result['terminal_tree_marked_core_fiber_max_size']} "
+            f"core_packets={result['terminal_tree_core_packet_checks']} "
+            f"core_simple_pole_lifts="
+            f"{result['terminal_tree_core_simple_pole_lift_checks']} "
             f"unmarked_zero_cube_faces="
             f"{result['terminal_tree_unmarked_zero_cube_face_checks']} "
             f"mixed_cube_faces="
