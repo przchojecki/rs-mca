@@ -3916,6 +3916,18 @@ Thus any support with more than one terminal ordering contains a descendant
 \((X',C')\) with at least two nonzero scalar exits.  The remaining terminal
 obstruction is therefore branching of these first-row scalar cuts, not an
 unstructured factorial ordering loss.
+Each branch pair has a lower-core two-mode normal form.  If \(y,z\in C\)
+are two nonzero exits, \(R=C\setminus\{y,z\}\), and
+\[
+  H_{\tau+2,|R|}(\Delta_Xs)\ell_R=(g_0,\ldots,g_{\tau+1}),
+\]
+then
+\[
+  g_i={c_X(y;C)y^i-c_X(z;C)z^i\over y-z},
+  \qquad 0\le i\le \tau+1.
+\]
+Thus any terminal multiflag support contains a productive branch pair carried
+by a two-mode lower-boundary packet.
 This residual also has additive one-exchange descent.  If
 \(C_y=R\cup\{y\}\) and \(C_z=R\cup\{z\}\) are two root-marked cores in the
 same fixed-root slice, then both are active for
@@ -4024,6 +4036,10 @@ branching vertices and \(19440\) multiflag starting cores.  Among nonzero
 syndromes the maximum terminal-tree count is \(6\), with at most \(4\)
 branching vertices in one tree and at most \(2\) multiflag starting cores in
 one local audit.
+The same audit checks the two-mode lower-boundary identity for \(43200\)
+branch pairs, with zero defects; \(41040\) of these are productive branch
+pairs.  Among nonzero syndromes the maximum branch-pair count in one terminal
+tree is \(6\), and all six can be productive.
 The common-core and two-denominator formulas persist verbatim after this
 root-free replacement.  With \(C=\gcd(D:D\in M_{\min})\), \(\gamma=\deg C\),
 and \(E_D=D/C\),

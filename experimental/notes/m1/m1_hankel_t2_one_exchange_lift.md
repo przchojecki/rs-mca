@@ -1001,6 +1001,54 @@ M1 obstruction: after the first-zero ledger removes zero-boundary stops,
 all residual multiplicity is concentrated on explicit branching vertices of
 first-row scalar cuts inside fixed-root kernels.
 
+## Branch Pairs Have Two-Mode Lower Boundaries
+
+The branching vertices themselves have a lower-core normal form.  Suppose
+`C in K^X_{tau,q}(s)` has two distinct nonzero exits `y,z in C`, and put
+`R=C\{y,z}`.  Let
+
+```text
+g = H_{tau+2,|R|}(Delta_X s)ell_R
+  = (g_0,...,g_{tau+1}).
+```
+
+Let `c_y=c_X(y;C)` and `c_z=c_X(z;C)` be the two nonzero exit scalars.  Then
+
+```text
+g_i = (c_y y^i - c_z z^i)/(y-z),      0<=i<=tau+1.      (TM)
+```
+
+Equivalently,
+
+```text
+H_{tau+2,|R|}(Delta_X s)ell_R
+ =
+ (c_y(1,y,...,y^{tau+1})
+  - c_z(1,z,...,z^{tau+1}))/(y-z).
+```
+
+Proof: deleting `y` leaves the boundary core `R union {z}`, so (SC) gives
+
+```text
+g_{i+1}-z g_i = c_y y^i,       0<=i<=tau.
+```
+
+Deleting `z` similarly gives
+
+```text
+g_{i+1}-y g_i = c_z z^i,       0<=i<=tau.
+```
+
+Subtracting gives (TM) for `0<=i<=tau`; substituting the case `i=tau` back
+into either boundary equation gives the final coordinate `g_{tau+1}`.
+
+A branching pair is called productive if both child deletion trees have at
+least one terminal completion.  Since two terminal flags with the same start
+first diverge at a productive branch pair, any `T_X(C)>1` forces such a pair
+somewhere below `(X,C)`.  Thus terminal multiplicity is now reduced one more
+step: it is carried by productive two-mode lower-boundary packets (TM), not by
+arbitrary branching in the deletion tree.
+
 ## Root-Marked Slice Is One Row
 
 The zero-boundary subkernel in the fixed-root difference form is cut out by a
@@ -1384,6 +1432,11 @@ cores with zero recursion defects; it finds `34560` branching vertices and
 syndromes the maximum terminal-tree count is `6`, the maximum number of
 branching vertices in one such tree is `4`, and at most `2` starting cores in
 one audit have more than one terminal ordering.
+The same audit verifies the branch-pair two-mode identity (TM).  In the
+largest case it checks `43200` branch pairs with zero defects, of which
+`41040` are productive branch pairs.  Among nonzero syndromes the maximum
+number of branch pairs in one terminal tree is `6`, and all six can be
+productive.
 
 The `F_7,k=2,j=2` scan is the first exact top-packet check in this file.  It
 finds twenty top triangles, all on the zero combined syndrome.  This is not an

@@ -30,6 +30,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 branch pairs have two-mode lower boundaries
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_hankel_t2_one_exchange_lift.md`,
+  `experimental/scripts/verify_m1_hankel_t2_triangle_packets.py`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / STRUCTURAL / EXACT FINITE VERIFICATION.
+- **What is being added:** Proves that any pair of nonzero terminal deletion
+  exits forces an explicit two-mode lower-boundary vector on the core obtained
+  by deleting both roots, and distinguishes productive branch pairs whose two
+  children both have terminal completions.
+- **How it is useful:** Pushes the terminal residual below mere branching:
+  terminal multiflag mass is carried by productive two-mode packets inside the
+  fixed-root Hankel ladder.
+- **What to do next:** Bound the productive two-mode lower-boundary packets,
+  or show that quotient-periodic/tangent components account for the persistent
+  productive branch pairs.
+
 ### 2026-06-28 - M1 terminal flags have deletion-tree recursion
 
 - **Agent/model:** AllenGrahamHart / Codex audit.

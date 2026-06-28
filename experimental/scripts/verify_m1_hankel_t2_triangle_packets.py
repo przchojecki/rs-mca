@@ -74,6 +74,8 @@ that terminality is exactly a zero-free chain of first-row boundary scalars.
 The terminal zero-free flags are then checked again by the exact deletion-tree
 recursion whose nonzero outgoing edges are these same scalar cuts; multiflag
 terminal supports must contain an explicit branching vertex in this tree.
+Every pair of nonzero outgoing edges is checked to force a two-mode lower
+boundary vector on the core obtained by deleting both roots.
 
 It also checks the full-top zero-syndrome lemma: if all j+1 complements
 U\\{x} inside one (j+1)-top set U are active, then the combined syndrome is
@@ -326,6 +328,8 @@ def analyze_case(
     terminal_support_bound_capacity = 0
     terminal_tree_recursion_checks = 0
     terminal_tree_branch_vertices = 0
+    terminal_tree_branch_pair_checks = 0
+    terminal_tree_productive_branch_pairs = 0
     terminal_tree_multiflag_cores = 0
     iterated_boundary_defect_histogram: Counter[int] = Counter()
     fixed_root_filtration_defect_histogram: Counter[int] = Counter()
@@ -335,6 +339,8 @@ def analyze_case(
     terminal_support_bound_slack_histogram: Counter[int] = Counter()
     terminal_tree_recursion_defect_histogram: Counter[int] = Counter()
     terminal_tree_branch_vertex_histogram: Counter[int] = Counter()
+    terminal_tree_branch_pair_histogram: Counter[int] = Counter()
+    terminal_tree_productive_branch_pair_histogram: Counter[int] = Counter()
     terminal_tree_multiflag_core_histogram: Counter[int] = Counter()
     max_active = 0
     max_edges = 0
@@ -377,6 +383,8 @@ def analyze_case(
     max_nonzero_terminal_support_bound_slack = 0
     max_nonzero_terminal_tree_count = 0
     max_nonzero_terminal_tree_branch_vertices = 0
+    max_nonzero_terminal_tree_branch_pairs = 0
+    max_nonzero_terminal_tree_productive_branch_pairs = 0
     max_nonzero_terminal_tree_multiflag_cores = 0
     one_exchange_edges = 0
     star_triangles = 0
@@ -414,11 +422,15 @@ def analyze_case(
             nonlocal terminal_support_bound_capacity
             nonlocal terminal_tree_recursion_checks
             nonlocal terminal_tree_branch_vertices
+            nonlocal terminal_tree_branch_pair_checks
+            nonlocal terminal_tree_productive_branch_pairs
             nonlocal terminal_tree_multiflag_cores
             nonlocal max_nonzero_terminal_bottom_supports
             nonlocal max_nonzero_terminal_support_bound_slack
             nonlocal max_nonzero_terminal_tree_count
             nonlocal max_nonzero_terminal_tree_branch_vertices
+            nonlocal max_nonzero_terminal_tree_branch_pairs
+            nonlocal max_nonzero_terminal_tree_productive_branch_pairs
             nonlocal max_nonzero_terminal_tree_multiflag_cores
 
             terminal_supports: set[tuple[int, ...]] = set()
@@ -582,9 +594,9 @@ def analyze_case(
             def terminal_deletion_tree(
                 current_fixed: tuple[int, ...],
                 current_core: tuple[int, ...],
-            ) -> tuple[int, int]:
+            ) -> tuple[int, int, int, int]:
                 if not current_core:
-                    return (1, 0)
+                    return (1, 0, 0, 0)
                 current_values = [domain[index] for index in current_fixed]
                 diff_syn = iterated_root_difference_syndrome(
                     syn,
@@ -608,7 +620,7 @@ def analyze_case(
                             "current_core": list(current_core),
                         }
                     )
-                nonzero_children: list[tuple[int, tuple[int, ...]]] = []
+                nonzero_children: list[tuple[int, tuple[int, ...], int]] = []
                 for deleted_root_index in current_core:
                     boundary_core = tuple(
                         entry
@@ -676,31 +688,133 @@ def analyze_case(
                                 "child_syndrome": list(child_syn),
                             }
                         )
-                    nonzero_children.append((deleted_root_index, boundary_core))
+                    nonzero_children.append(
+                        (
+                            deleted_root_index,
+                            boundary_core,
+                            boundary_vector[0],
+                        )
+                    )
+                child_results: list[tuple[int, int, tuple[int, ...], int]] = []
                 terminal_count = 0
                 branch_count = 1 if len(nonzero_children) >= 2 else 0
-                for deleted_root_index, boundary_core in nonzero_children:
-                    child_count, child_branches = terminal_deletion_tree(
+                branch_pair_count = 0
+                productive_branch_pair_count = 0
+                for deleted_root_index, boundary_core, scalar in nonzero_children:
+                    (
+                        child_count,
+                        child_branches,
+                        child_branch_pairs,
+                        child_productive_pairs,
+                    ) = terminal_deletion_tree(
                         (*current_fixed, deleted_root_index),
                         boundary_core,
                     )
+                    child_results.append(
+                        (
+                            deleted_root_index,
+                            child_count,
+                            boundary_core,
+                            scalar,
+                        )
+                    )
                     terminal_count += child_count
                     branch_count += child_branches
-                return (terminal_count, branch_count)
+                    branch_pair_count += child_branch_pairs
+                    productive_branch_pair_count += child_productive_pairs
+                for left, right in itertools.combinations(child_results, 2):
+                    (
+                        left_root_index,
+                        left_count,
+                        _left_boundary_core,
+                        left_scalar,
+                    ) = left
+                    (
+                        right_root_index,
+                        right_count,
+                        _right_boundary_core,
+                        right_scalar,
+                    ) = right
+                    left_root = domain[left_root_index]
+                    right_root = domain[right_root_index]
+                    lower_core = tuple(
+                        entry
+                        for entry in current_core
+                        if entry not in {left_root_index, right_root_index}
+                    )
+                    lower_vector = hankel_apply(
+                        diff_syn,
+                        cached_locator(lower_core),
+                        t + 2,
+                        p,
+                    )
+                    denominator = (left_root - right_root) % p
+                    expected = tuple(
+                        (
+                            (
+                                left_scalar * pow(left_root, row, p)
+                                - right_scalar * pow(right_root, row, p)
+                            )
+                            * pow(denominator, -1, p)
+                        )
+                        % p
+                        for row in range(t + 2)
+                    )
+                    branch_pair_count += 1
+                    if left_count and right_count:
+                        productive_branch_pair_count += 1
+                    if lower_vector != expected:
+                        raise AssertionError(
+                            {
+                                "kind": "terminal-branch-pair-two-mode-failed",
+                                "p": p,
+                                "k": k,
+                                "syndrome": list(syn),
+                                "fixed_roots": list(fixed_roots),
+                                "current_fixed": list(current_fixed),
+                                "current_core": list(current_core),
+                                "left_root": left_root_index,
+                                "right_root": right_root_index,
+                                "lower_core": list(lower_core),
+                                "left_scalar": left_scalar,
+                                "right_scalar": right_scalar,
+                                "lower_vector": list(lower_vector),
+                                "expected": list(expected),
+                            }
+                        )
+                return (
+                    terminal_count,
+                    branch_count,
+                    branch_pair_count,
+                    productive_branch_pair_count,
+                )
 
             tree_recursion_defects = 0
             audit_branch_vertices = 0
+            audit_branch_pairs = 0
+            audit_productive_branch_pairs = 0
             audit_multiflag_cores = 0
             for core in active_cores:
                 if not core:
                     continue
-                tree_count, branch_count = terminal_deletion_tree(
+                (
+                    tree_count,
+                    branch_count,
+                    branch_pair_count,
+                    productive_branch_pair_count,
+                ) = terminal_deletion_tree(
                     fixed_roots,
                     core,
                 )
                 terminal_tree_recursion_checks += 1
                 terminal_tree_branch_vertices += branch_count
+                terminal_tree_branch_pair_checks += branch_pair_count
+                terminal_tree_productive_branch_pairs += (
+                    productive_branch_pair_count
+                )
                 audit_branch_vertices += branch_count
+                audit_branch_pairs += branch_pair_count
+                audit_productive_branch_pairs += productive_branch_pair_count
                 if tree_count > 1:
                     terminal_tree_multiflag_cores += 1
                     audit_multiflag_cores += 1
@@ -721,18 +835,22 @@ def analyze_case(
                             ),
                         }
                     )
-                if tree_count > 1 and branch_count == 0:
+                if tree_count > 1 and productive_branch_pair_count == 0:
                     tree_recursion_defects += 1
                     case_filtration_path_defect += 1
                     raise AssertionError(
                         {
-                            "kind": "terminal-multiflag-without-branch",
+                            "kind": (
+                                "terminal-multiflag-without-"
+                                "productive-branch-pair"
+                            ),
                             "p": p,
                             "k": k,
                             "syndrome": list(syn),
                             "fixed_roots": list(fixed_roots),
                             "core": list(core),
                             "terminal_paths": tree_count,
+                            "branch_pairs": branch_pair_count,
                         }
                     )
                 if any(syn):
@@ -744,8 +862,20 @@ def analyze_case(
                         max_nonzero_terminal_tree_branch_vertices,
                         branch_count,
                     )
+                    max_nonzero_terminal_tree_branch_pairs = max(
+                        max_nonzero_terminal_tree_branch_pairs,
+                        branch_pair_count,
+                    )
+                    max_nonzero_terminal_tree_productive_branch_pairs = max(
+                        max_nonzero_terminal_tree_productive_branch_pairs,
+                        productive_branch_pair_count,
+                    )
             terminal_tree_recursion_defect_histogram[tree_recursion_defects] += 1
             terminal_tree_branch_vertex_histogram[audit_branch_vertices] += 1
+            terminal_tree_branch_pair_histogram[audit_branch_pairs] += 1
+            terminal_tree_productive_branch_pair_histogram[
+                audit_productive_branch_pairs
+            ] += 1
             terminal_tree_multiflag_core_histogram[audit_multiflag_cores] += 1
             if any(syn):
                 max_nonzero_terminal_tree_multiflag_cores = max(
@@ -2320,6 +2450,10 @@ def analyze_case(
         "terminal_support_bound_capacity": terminal_support_bound_capacity,
         "terminal_tree_recursion_checks": terminal_tree_recursion_checks,
         "terminal_tree_branch_vertices": terminal_tree_branch_vertices,
+        "terminal_tree_branch_pair_checks": terminal_tree_branch_pair_checks,
+        "terminal_tree_productive_branch_pairs": (
+            terminal_tree_productive_branch_pairs
+        ),
         "terminal_tree_multiflag_cores": terminal_tree_multiflag_cores,
         "max_iterated_boundary_chain_length": max_iterated_boundary_chain_length,
         "max_nonzero_iterated_boundary_active_cores": (
@@ -2353,6 +2487,12 @@ def analyze_case(
         "max_nonzero_terminal_tree_count": max_nonzero_terminal_tree_count,
         "max_nonzero_terminal_tree_branch_vertices": (
             max_nonzero_terminal_tree_branch_vertices
+        ),
+        "max_nonzero_terminal_tree_branch_pairs": (
+            max_nonzero_terminal_tree_branch_pairs
+        ),
+        "max_nonzero_terminal_tree_productive_branch_pairs": (
+            max_nonzero_terminal_tree_productive_branch_pairs
         ),
         "max_nonzero_terminal_tree_multiflag_cores": (
             max_nonzero_terminal_tree_multiflag_cores
@@ -2457,6 +2597,12 @@ def analyze_case(
         "terminal_tree_branch_vertex_histogram": dict(
             sorted(terminal_tree_branch_vertex_histogram.items())
         ),
+        "terminal_tree_branch_pair_histogram": dict(
+            sorted(terminal_tree_branch_pair_histogram.items())
+        ),
+        "terminal_tree_productive_branch_pair_histogram": dict(
+            sorted(terminal_tree_productive_branch_pair_histogram.items())
+        ),
         "terminal_tree_multiflag_core_histogram": dict(
             sorted(terminal_tree_multiflag_core_histogram.items())
         ),
@@ -2532,6 +2678,8 @@ def print_summary(results: Sequence[dict[str, object]]) -> None:
             f"{result['max_nonzero_terminal_tree_count']} "
             f"max_nonzero_terminal_tree_branches="
             f"{result['max_nonzero_terminal_tree_branch_vertices']} "
+            f"max_nonzero_terminal_tree_branch_pairs="
+            f"{result['max_nonzero_terminal_tree_branch_pairs']} "
             f"max_nonzero_full_support_slack="
             f"{result['max_nonzero_full_support_ledger_slack']} "
             f"max_nonzero_top_active={result['max_nonzero_top_active_members']}"
