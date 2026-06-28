@@ -14558,6 +14558,66 @@ complement root and is excluded by hypothesis, or equivalently descends by
 Corollary 40.125.  The remaining case has `supp(m) cap C=empty`, exactly the
 slice included in (DomainRootResidual).
 
+## Corollary 40.140: Mixed Root-Free Residual Packets Are Product-Disjoint
+
+Keep the primitive base setup of Corollary 40.122.  Fix
+
+```text
+0<=s<=u<=t,        S subset D,        |S|=s,        v=u-s.
+```
+
+Let `A` be any set of pairs of projective polynomial classes `([H],[N])` such
+that
+
+```text
+H(alpha)!=0 for every alpha in D,        [HN] in P_v^x(Q_0),
+```
+
+and such that the product classes `[HN]` are pairwise distinct as `([H],[N])`
+varies in `A`.  For each pair, put `B_H==B_0H^{-1} mod Q_0` and define
+
+```text
+F_{H,N}^S={ C in Comp_{u,[L_S HN]}(Q_0,B_0) : S subset C }.
+```
+
+Then the packets `F_{H,N}^S` are pairwise disjoint and
+
+```text
+sum_{([H],[N]) in A} |F_{H,N}^S|
+ <= binom(n,j+v).                                  (MixedProductPacket)
+```
+
+Equivalently, after a fixed complement-root set `S` is deleted, varying the
+root-free twist `H` and the residual multiplier `N` creates no extra
+unweighted multiplicity as long as the total product class `[HN]` is the
+actual index.  In particular, the residual family in which `H` is root-free on
+`D` and `N` is a pure support-side domain-root multiplier is one packet for
+each fixed `S`.
+
+### Proof
+
+Since `[HN] in P_v^x(Q_0)` and `Q_0` is root-free on `D`, also
+`[L_S HN] in P_u^x(Q_0)`.  Corollary 40.131 gives, for each pair,
+
+```text
+F_{H,N}^S
+ <-> { C_0 in Comp_{v,[N]}(Q_0,B_H) : C_0 cap S=empty }.
+```
+
+By Corollary 40.128,
+
+```text
+Comp_{v,[N]}(Q_0,B_H)=Comp_{v,[HN]}(Q_0,B_0).
+```
+
+The product classes `[HN]` are pairwise distinct, so Corollary 40.122 makes
+the displayed fixed-base fibers pairwise disjoint.  The restrictions
+`C_0 cap S=empty` only shrink them, and their union is contained in the set of
+all `(j+v)`-subsets of `D`.  This proves (MixedProductPacket).  For the final
+sentence, take `N=L_m` from the domain-root residual ledger of Corollary
+40.139; the product class `[H L_m]` is precisely the post-deletion total
+multiplier class.
+
 ## Corollary 41: The Global Common-Image Ledger Is Endpoint-Only
 
 Let `GCI` be the set of monic degree-`c` split core locators `L` for which
@@ -17609,6 +17669,9 @@ multiplier-preserving bijection to a restricted lower-depth packet.
 Corollary 40.139 shows that, after root-free factors and complement roots are
 separated, all pure support-side domain-root residuals of any residual budget
 form one disjoint small-complement packet.
+Corollary 40.140 combines root-free twisting with residual multipliers: after
+fixed root deletion, varying `H` and `N` remains one packet when the total
+product classes `[HN]` are distinct.
 Corollary 41 packages the common-image branch into endpoint-type ledgers; it
 does not prove the endpoint rank hypotheses needed for the displayed
 `(q+2)binom(n,b)` bound. Corollary 42 packages the globally full core ledger

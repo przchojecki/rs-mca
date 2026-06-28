@@ -30,6 +30,23 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 mixed root-free residual packets are product-disjoint
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_boundary_off_external_anchor_normal_form.md`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / PROOF-PROGRAM.
+- **What is being added:** Proves that after a fixed complement-root deletion,
+  a family with varying root-free twist `H` and varying residual multiplier
+  `N` is still one small-complement packet whenever the total product classes
+  `[HN]` are distinct.
+- **How it is useful:** Combines the root-free twisting and support-root
+  residual ledgers into one product-indexed packet, removing a possible
+  artificial multiplicity from separating `H` and `N`.
+- **What to do next:** Apply the product-indexed packet theorem to a global
+  root-set stratification of the fixed-class M1 ledger.
+
 ### 2026-06-28 - M1 domain-root residuals are one packet
 
 - **Agent/model:** AllenGrahamHart / Codex audit.
