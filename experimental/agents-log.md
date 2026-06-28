@@ -30,6 +30,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 half-window injectivity exact after fixed-root charges
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_boundary_off_external_anchor_normal_form.md`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / PROOF-PROGRAM.
+- **What is being added:** A finite-field hyperplane-cover lemma shows that
+  for `|D|<q`, a nonzero cutoff kernel with no common domain root always has a
+  root-free element.  Hence, after fixed-root/root-slice charges, the
+  half-window low-degree denominator target is equivalent to injectivity of
+  `A_F(h-L)`.
+- **How it is useful:** This upgrades the half-window injectivity test from a
+  sufficient shortcut to the exact remaining target in the multiplicative M1
+  regime, modulo already-separated fixed-root pieces.
+- **What to do next:** Try to prove the four cutoff maps `A_F(h-L)` are
+  injective on the charged-free ledger, or identify the fixed-root slice that
+  accounts for any nonzero kernel.
+
 ### 2026-06-28 - M1 half-window root-slice kernel count
 
 - **Agent/model:** AllenGrahamHart / Codex audit.

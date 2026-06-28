@@ -8997,6 +8997,86 @@ Finally, Corollary 40.69 says `delta_F<h-L` if and only if
 when its cardinality is zero, (HWStrippedRFIE) gives the displayed exact
 criterion.
 
+## Corollary 40.71: Over Small Domains, Low-Degree Injectivity Is Exact Modulo Fixed Roots
+
+Let `D subset F_q` satisfy `|D|<q`, and let
+
+```text
+K subset F_q[X]_{<m}
+```
+
+be any linear subspace.  Let `K^rf` be the projective set of nonzero classes
+`[Q] in P(K)` such that `Q(alpha)!=0` for every `alpha in D`.
+
+Then
+
+```text
+K^rf=emptyset
+```
+
+if and only if either `K=0`, or the common gcd of all polynomials in `K` has a
+root in `D`.  Equivalently, if `K` is nonzero and has no common domain root,
+then `K` contains a root-free polynomial.
+
+Applied to the half-window cutoff kernels `K_F(m)=ker A_F(m)` of Corollary
+40.70, this says that in the multiplicative-domain regime `0 notin D`:
+
+```text
+K_F(h-L)^rf=emptyset
+```
+
+if and only if either `K_F(h-L)=0`, or `K_F(h-L)` is wholly contained in the
+fixed-root slice for some `alpha in D`.  Therefore, after the fixed-root and
+root-slice pieces from Corollary 40.6 have been charged, the half-window
+target
+
+```text
+delta_F >= h-L
+```
+
+is equivalent to the plain injectivity condition
+
+```text
+ker A_F(h-L)=0
+```
+
+on the remaining ledger.  The injectivity target of Corollary 40.69 is thus
+not merely a sufficient shortcut in this range; it is exact modulo the
+already-separated fixed-root/root-slice charges.
+
+### Proof
+
+If `K=0`, then `P(K)` is empty.  If the common gcd of `K` has a root
+`alpha in D`, then every polynomial in `K` vanishes at `alpha`, so no
+nonzero class in `P(K)` is root-free.
+
+Conversely, assume `K` is nonzero and has no common root in `D`.  For each
+`alpha in D`, the evaluation functional
+
+```text
+ev_alpha: K -> F_q,        Q |-> Q(alpha)
+```
+
+is nonzero, so its kernel is a proper hyperplane in the `d=dim K` dimensional
+vector space `K`.  Each such hyperplane has `q^{d-1}` vectors.  Since
+`|D|<q`,
+
+```text
+| union_{alpha in D} ker ev_alpha |
+  <= |D| q^{d-1}
+  < q^d
+  = |K|.
+```
+
+Thus some `Q in K` lies outside every `ker ev_alpha`; this `Q` has no root in
+`D`, so `[Q] in K^rf`.
+
+For the half-window application, take `K=K_F(h-L)`.  A common domain root is
+exactly the fixed-root/root-slice alternative isolated by Corollary 40.6 and
+stripped in Corollary 40.70.  Once those pieces are charged, the only way for
+`K_F(h-L)^rf` to be empty is `K_F(h-L)=0`.  Corollary 40.69 identifies this
+root-free emptiness with the denominator threshold `delta_F>=h-L`.
+
 ## Corollary 41: The Global Common-Image Ledger Is Endpoint-Only
 
 Let `GCI` be the set of monic degree-`c` split core locators `L` for which
@@ -11825,6 +11905,9 @@ are absent in the actual M1 instances.
 Corollary 40.70 gives an exact root-slice inclusion-exclusion count for those
 low-degree root-free kernels; it does not evaluate the resulting stripped-rank
 identity in the actual M1 instances.
+Corollary 40.71 shows that, when `|D|<q`, low-degree root-free emptiness is
+equivalent to injectivity after common domain-root slices are charged; it does
+not prove the resulting injectivity in the actual M1 instances.
 Corollary 41 packages the common-image branch into endpoint-type ledgers; it
 does not prove the endpoint rank hypotheses needed for the displayed
 `(q+2)binom(n,b)` bound. Corollary 42 packages the globally full core ledger
