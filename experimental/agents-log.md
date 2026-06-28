@@ -30,6 +30,22 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 skeleton ledger uses tail-local weights
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_boundary_off_external_anchor_normal_form.md`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / PROOF-PROGRAM.
+- **What is being added:** Sharpens the minimal-representative skeleton
+  ledger by replacing the global cutoff weight `W_E` on alias terms with the
+  tail-local weight `W_{s,E}=max_{e_s<=e<=E} W(e)`.
+- **How it is useful:** Preserves more denominator-degree information inside
+  each divided-evaluation fiber, so later active-class counts do not overpay
+  low minimal-degree fibers by the global cutoff weight.
+- **What to do next:** Use tail-local weights together with high-minimal-degree
+  tail constraints in the next active incidence reduction.
+
 ### 2026-06-28 - M1 nontrivial cutoff fibers live on high-minimal-degree tail
 
 - **Agent/model:** AllenGrahamHart / Codex audit.

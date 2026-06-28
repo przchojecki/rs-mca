@@ -15992,7 +15992,9 @@ of minimal denominator degree inside its fiber, and let `S_min` be the set of
 chosen representatives.  Put
 
 ```text
-e_s=deg Q_s,        W_E=max_{1<=e<=E} W(e).
+e_s=deg Q_s,
+W_E=max_{1<=e<=E} W(e),
+W_{s,E}=max_{e_s<=e<=E} W(e).
 ```
 
 Then
@@ -16005,7 +16007,7 @@ and
 
 ```text
 |Lambda(A_{<=E})|
- <= sum_{s in S_min} ( W(e_s)+W_E U_q(e_s,E) ).       (MinRepLedgerBound)
+ <= sum_{s in S_min} ( W(e_s)+W_{s,E} U_q(e_s,E) ).   (MinRepLedgerBound)
 ```
 
 Here `U_q(e,E)` is the same-or-upward alias budget from Corollary 40.157.
@@ -16015,7 +16017,7 @@ Thus a divided evaluation fiber whose minimal representative has
 
 This is the degree-sensitive form of Corollary 40.158: the uniform multiplier
 `M_q(E)` is recovered by replacing each `U_q(e_s,E)` by its worst-case bound
-`Pi_q(2E-n+1)` and each `W(e_s)` by `W_E`.
+`Pi_q(2E-n+1)` and each local weight by `W_E`.
 
 ### Proof
 
@@ -16027,9 +16029,9 @@ bounds the number of other aliases in the fiber by the same-or-upward term
 
 For the coefficient ledger, Corollary 40.148 bounds the contribution of the
 chosen representative by `W(e_s)`.  Every other member of the same fiber has
-degree at most `E`, hence fixed-class weight at most `W_E`, and there are at
-most `U_q(e_s,E)` such members.  Summing these fiberwise bounds gives
-(MinRepLedgerBound).  If `e_s+E<=n`, then `U_q(e_s,E)=0` by definition.
+degree between `e_s` and `E`, hence fixed-class weight at most `W_{s,E}`, and
+there are at most `U_q(e_s,E)` such members.  Summing these fiberwise bounds
+gives (MinRepLedgerBound).  If `e_s+E<=n`, then `U_q(e_s,E)=0` by definition.
 
 ## Corollary 40.162: Nontrivial Cutoff Fibers Live On The High-Minimal-Degree Tail
 
@@ -16047,7 +16049,7 @@ Then every divided evaluation fiber indexed by `S_low` is singleton inside
 ```text
 |Lambda(A_{<=E})|
  <= sum_{s in S_low} W(e_s)
-    + sum_{s in S_tail} ( W(e_s)+W_E Pi_q(2E-n+1) ).   (TailEvalLedger)
+    + sum_{s in S_tail} ( W(e_s)+W_{s,E} Pi_q(2E-n+1) ). (TailEvalLedger)
 ```
 
 Consequently, if `S_tail` is empty, then
@@ -19199,7 +19201,8 @@ Corollary 40.160 gives the degree-slab version: each denominator slab pays
 only its own fixed-class weight and cutoff alias multiplier.
 Corollary 40.161 gives the sharper minimal-representative skeleton form:
 each divided evaluation fiber pays the actual fixed-class weight of its
-minimal-degree representative plus only its same-or-upward alias budget.
+minimal-degree representative plus only its same-or-upward alias budget with
+tail-local fixed-class weights.
 Corollary 40.162 isolates the remaining aliasing locus: nontrivial cutoff
 fibers can occur only over minimal representatives in the high-degree tail
 `e_s>n-E`.
