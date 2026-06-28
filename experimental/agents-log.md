@@ -30,6 +30,27 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 same-slope components are star or lower-core
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_hankel_t2_one_exchange_lift.md`,
+  `experimental/scripts/verify_m1_hankel_t2_triangle_packets.py`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / EXACT FINITE VERIFICATION.
+- **What is being added:** Globalizes the two-edge corner dichotomy to
+  connected components of the fixed-slope `t=2` active one-exchange graph.
+  A nontrivial component is either contained in one star with
+  `H_{3,j-1}(Syn(w_lambda))ell_C=0`, or it contains a lower-core witness
+  `H_{4,j-2}(Syn(w_lambda))ell_R=0`.
+- **How it is useful:** Converts local additive descent into a component-level
+  packet statement: after lower-core charges, same-slope components are single
+  star packets of size at most `n-j+1`, not multiplicatively branching
+  variable-line families.
+- **What to do next:** Use the component dichotomy to sum same-slope packets
+  against the star-core and lower-core ledgers, then connect lower-core events
+  to the existing fixed-root/root-slice reserve.
+
 ### 2026-06-28 - M1 two-edge same-slope corners descend additively
 
 - **Agent/model:** AllenGrahamHart / Codex audit.

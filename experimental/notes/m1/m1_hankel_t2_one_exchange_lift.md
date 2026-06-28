@@ -241,6 +241,47 @@ corner already charged at `H_{3,j-1}`, or a lower-core corner charged at
 `t=2` same-slope graph: branching either stays inside one star ledger or moves
 one rung down the Hankel core ladder.
 
+## Same-Slope Component Dichotomy
+
+Let `G_s` be the graph on active `j`-complements for a fixed combined syndrome
+`s=Syn(w_lambda)`, with edges joining one-exchange complements.  Every
+nontrivial connected component of `G_s` is of one of the following two types:
+
+1. a star component: all its vertices contain one common `(j-1)`-core `C`,
+   and
+
+```text
+H_{3,j-1}(s)ell_C=0;
+```
+
+2. a lower-core component: the component contains a two-edge corner forcing
+
+```text
+H_{4,j-2}(s)ell_R=0
+```
+
+for some `(j-2)`-core `R`.
+
+Proof: if the component contains a lower-core corner, this is exactly the
+second alternative.  Otherwise every two-edge corner in the component is a
+star corner.  Choose an edge `T_0--T_1` and put `C=T_0 cap T_1`, so
+`|C|=j-1`.  For any path
+
+```text
+T_0,T_1,...,T_m
+```
+
+we prove by induction that every `T_i` contains `C`.  Suppose `T_{i-1}` and
+`T_i` contain `C`.  The edge from `T_i` back to `T_{i-1}` deletes the unique
+root of `T_i\C`.  Since there is no lower-core corner at `T_i`, the next edge
+from `T_i` to `T_{i+1}` must delete the same root; hence `T_{i+1}` also
+contains `C`.  Thus the whole component lies in the star over `C`, and the
+one-exchange lift applied to any edge gives `H_{3,j-1}(s)ell_C=0`.
+
+Consequently same-slope one-exchange components do not branch
+multiplicatively: after lower-core corners are charged, every remaining
+component is a single star packet of size at most `n-j+1`.
+
 ## Triangle Packets
 
 The next local shape is a pairwise one-exchange triangle in one fixed-slope
@@ -364,6 +405,13 @@ It also audits the two-edge corner dichotomy:
 | --- | ---: | ---: | ---: | ---: |
 | `F_7`, `H=F_7^*`, `n=6,k=1,a=3,j=3` | 8640 | 3240 | 60 | 90 |
 | `F_7`, `H=F_7^*`, `n=6,k=2,a=4,j=2` | 1080 | 0 | 30 | 0 |
+
+Finally, the verifier checks the component dichotomy:
+
+| field/domain | nonzero star components | nonzero lower-core components | max nonzero star component | max nonzero lower-core component |
+| --- | ---: | ---: | ---: | ---: |
+| `F_7`, `H=F_7^*`, `n=6,k=1,a=3,j=3` | 540 | 36 | 4 | 10 |
+| `F_7`, `H=F_7^*`, `n=6,k=2,a=4,j=2` | 36 | 0 | 5 | 0 |
 
 The `F_7,k=2,j=2` scan is the first exact top-packet check in this file.  It
 finds twenty top triangles, all on the zero combined syndrome.  This is not an

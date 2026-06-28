@@ -27,6 +27,9 @@ fixed-root line, or the full lower-Hankel core plane H_{4,j-2}(s) ell_R=0.
 Consequently every two-edge corner in the active one-exchange graph is either
 a star corner covered by H_{3,j-1}, or a lower-core corner covered by
 H_{4,j-2}.
+At the component level, any nontrivial component without a lower-core corner
+is contained in one star and is covered by H_{3,j-1}; every non-star component
+contains a lower-core H_{4,j-2} witness.
 
 It also checks the full-top zero-syndrome lemma: if all j+1 complements
 U\\{x} inside one (j+1)-top set U are active, then the combined syndrome is
@@ -222,12 +225,18 @@ def analyze_case(
     nonzero_core_plane_active_pair_histogram: Counter[int] = Counter()
     corner_histogram: Counter[str] = Counter()
     nonzero_corner_histogram: Counter[str] = Counter()
+    component_histogram: Counter[str] = Counter()
+    nonzero_component_histogram: Counter[str] = Counter()
+    component_size_histogram: Counter[str] = Counter()
+    nonzero_component_size_histogram: Counter[str] = Counter()
     max_active = 0
     max_edges = 0
     max_triangles = 0
     max_nonzero_core_plane_active_pairs = 0
     max_nonzero_star_corners_per_syndrome = 0
     max_nonzero_lower_core_corners_per_syndrome = 0
+    max_nonzero_star_component_size = 0
+    max_nonzero_lower_core_component_size = 0
     one_exchange_edges = 0
     star_triangles = 0
     top_triangles = 0
@@ -406,6 +415,112 @@ def analyze_case(
                 max_nonzero_lower_core_corners_per_syndrome,
                 case_corner_histogram["lower_core"],
             )
+
+        seen_components: set[int] = set()
+        for start in active:
+            if start in seen_components:
+                continue
+            stack = [start]
+            seen_components.add(start)
+            component: list[int] = []
+            while stack:
+                current = stack.pop()
+                component.append(current)
+                for neighbor in one_exchange_neighbors[current]:
+                    if neighbor not in active_set or neighbor in seen_components:
+                        continue
+                    seen_components.add(neighbor)
+                    stack.append(neighbor)
+
+            if len(component) <= 1:
+                continue
+
+            common = set(complements[component[0]])
+            for index in component[1:]:
+                common &= set(complements[index])
+
+            if len(common) == j - 1:
+                core = tuple(sorted(common))
+                if not hankel_annihilates(syn, cached_locator(core), t + 1, p):
+                    raise AssertionError(
+                        {
+                            "kind": "star-component-core-lift-failed",
+                            "p": p,
+                            "k": k,
+                            "syndrome": list(syn),
+                            "component": [list(complements[index]) for index in component],
+                            "core": list(core),
+                        }
+                    )
+                component_kind = "star"
+            else:
+                lower_core: tuple[int, ...] | None = None
+                for center in component:
+                    center_set = set(complements[center])
+                    active_component_neighbors = [
+                        neighbor
+                        for neighbor in one_exchange_neighbors[center]
+                        if neighbor in component
+                    ]
+                    for left, right in itertools.combinations(
+                        active_component_neighbors,
+                        2,
+                    ):
+                        left_deleted = tuple(
+                            sorted(center_set - set(complements[left]))
+                        )
+                        right_deleted = tuple(
+                            sorted(center_set - set(complements[right]))
+                        )
+                        if left_deleted == right_deleted:
+                            continue
+                        candidate = tuple(
+                            sorted(
+                                center_set
+                                - set(left_deleted)
+                                - set(right_deleted)
+                            )
+                        )
+                        if hankel_annihilates(
+                            syn,
+                            cached_locator(candidate),
+                            t + 2,
+                            p,
+                        ):
+                            lower_core = candidate
+                            break
+                    if lower_core is not None:
+                        break
+                if lower_core is None:
+                    raise AssertionError(
+                        {
+                            "kind": "nonstar-component-without-lower-core",
+                            "p": p,
+                            "k": k,
+                            "syndrome": list(syn),
+                            "component": [list(complements[index]) for index in component],
+                            "common_intersection": sorted(common),
+                        }
+                    )
+                component_kind = "lower_core"
+
+            component_histogram[component_kind] += 1
+            component_size_histogram[f"{component_kind}:{len(component)}"] += 1
+            if any(syn):
+                nonzero_component_histogram[component_kind] += 1
+                nonzero_component_size_histogram[
+                    f"{component_kind}:{len(component)}"
+                ] += 1
+                if component_kind == "star":
+                    max_nonzero_star_component_size = max(
+                        max_nonzero_star_component_size,
+                        len(component),
+                    )
+                else:
+                    max_nonzero_lower_core_component_size = max(
+                        max_nonzero_lower_core_component_size,
+                        len(component),
+                    )
 
         for plane in core_planes:
             kind, data = classify_core_plane(syn, plane["core_locator"], p)
@@ -601,6 +716,10 @@ def analyze_case(
         "max_nonzero_lower_core_corners_per_syndrome": (
             max_nonzero_lower_core_corners_per_syndrome
         ),
+        "max_nonzero_star_component_size": max_nonzero_star_component_size,
+        "max_nonzero_lower_core_component_size": (
+            max_nonzero_lower_core_component_size
+        ),
         "one_exchange_edges": one_exchange_edges,
         "star_triangles": star_triangles,
         "top_triangles": top_triangles,
@@ -620,6 +739,14 @@ def analyze_case(
         ),
         "corner_histogram": dict(sorted(corner_histogram.items())),
         "nonzero_corner_histogram": dict(sorted(nonzero_corner_histogram.items())),
+        "component_histogram": dict(sorted(component_histogram.items())),
+        "nonzero_component_histogram": dict(
+            sorted(nonzero_component_histogram.items())
+        ),
+        "component_size_histogram": dict(sorted(component_size_histogram.items())),
+        "nonzero_component_size_histogram": dict(
+            sorted(nonzero_component_size_histogram.items())
+        ),
         "nonzero_top_active_size_histogram": dict(
             sorted(nonzero_top_active_size_histogram.items())
         ),
@@ -656,6 +783,8 @@ def print_summary(results: Sequence[dict[str, object]]) -> None:
             f"max_nonzero_core_plane={result['max_nonzero_core_plane_active_pairs']} "
             f"max_nonzero_lower_corners="
             f"{result['max_nonzero_lower_core_corners_per_syndrome']} "
+            f"max_nonzero_lower_component="
+            f"{result['max_nonzero_lower_core_component_size']} "
             f"max_nonzero_top_active={result['max_nonzero_top_active_members']}"
         )
     print("PASS")

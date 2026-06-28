@@ -3701,6 +3701,17 @@ fixed-root rank-one line; therefore the full-plane alternative holds and
 Thus same-slope graph branching either stays in one star ledger or descends one
 rung to a lower Hankel core; it does not create a separate non-fixed
 variable-line packet.
+This local statement globalizes across connected components.  In the active
+one-exchange graph for fixed \(w_\lambda\), if a nontrivial component has no
+lower-core corner, then every two-edge corner is a star corner.  Choosing one
+edge with common core \(C\), induction along paths shows that every vertex in
+the component contains \(C\), so the component is a single star packet and
+\[
+  H_{3,j-1}(\operatorname{Syn}(w_\lambda))\ell_C=0.
+\]
+Otherwise the component contains an \(H_{4,j-2}\) lower-core witness.  Thus
+same-slope components are star packets after lower-core charges, rather than
+independent branching families.
 The triangle-packet verifier
 \texttt{experimental/scripts/verify\_m1\_hankel\_t2\_triangle\_packets.py}
 checks the next local shape at the combined-syndrome level.  Every pairwise
@@ -3728,6 +3739,10 @@ fixed-root line, full lower-core plane, or empty/inconsistent, with no
 non-fixed same-slope line.  In the \(F_7^*,j=3\) case it also verifies
 \(8640\) nonzero star corners and \(3240\) nonzero lower-core corners, with
 maximal per-syndrome counts \(60\) and \(90\), respectively.
+At the component level, the same \(F_7^*,j=3\) audit has \(540\) nonzero star
+components of size \(4\) and \(36\) nonzero lower-core components of size
+\(10\); the \(F_7^*,j=2\) audit has \(36\) nonzero star components of size
+\(5\) and no nonzero lower-core components.
 The common-core and two-denominator formulas persist verbatim after this
 root-free replacement.  With \(C=\gcd(D:D\in M_{\min})\), \(\gamma=\deg C\),
 and \(E_D=D/C\),
