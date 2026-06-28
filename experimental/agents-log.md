@@ -30,6 +30,26 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 moving kernels force endpoint ranks
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_hankel_t2_one_exchange_lift.md`,
+  `experimental/experiments.tex`,
+  `experimental/scripts/verify_m1_hankel_t2_triangle_packets.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / STRUCTURAL / AUDIT.
+- **What is being added:** Expands a persistent moving-kernel certificate
+  `Q_z(X)=sum z^m R_m(X)` into a coefficient ladder and shows that its top
+  coefficient is a nonzero kernel of the endpoint map
+  `R -> H_{q,q+d-1}(s)(ell_W R)`.
+- **How it is useful:** Gives a simple rank test that rules out the persistent
+  absorbed-rank branch for any fixed deficit anchor; the verifier now records
+  this endpoint-rank audit for produced anchors.
+- **What to do next:** Classify anchors where the endpoint map is not full
+  column rank, or prove such endpoint defects are already charged by the
+  fixed-root, tangent, or quotient-periodic M1 ledgers.
+
 ### 2026-06-28 - M1 persistent absorbed defects have moving kernels
 
 - **Agent/model:** AllenGrahamHart / Codex audit.

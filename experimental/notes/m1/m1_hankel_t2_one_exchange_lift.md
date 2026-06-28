@@ -2748,6 +2748,46 @@ fixed-root/tangent, or genuinely aperiodic; a proof that no primitive
 aperiodic moving kernel survives after the known charges would close this
 residual branch.
 
+## Moving-Kernel Coefficients Force Endpoint Kernels
+
+The moving-kernel certificate has immediate endpoint consequences.  Write
+
+```text
+Q_z(X)=sum_{m=0}^D z^m R_m(X),
+```
+
+with `R_0` and `R_D` nonzero after removing any common power of `z`.  Expanding
+(MKC) in powers of `z` gives the coefficient ladder
+
+```text
+H_{q,q+d-1}(s)(ell_W X R_0)=0,
+H_{q,q+d-1}(s)(ell_W (X R_m - R_{m-1}))=0, 1<=m<=D,
+H_{q,q+d-1}(s)(ell_W R_D)=0.
+```
+
+In particular, every persistent absorbed-rank defect supplies a nonzero
+endpoint kernel `R_D` for the map
+
+```text
+R |-> H_{q,q+d-1}(s)(ell_W R),        deg R < q-1.
+```
+
+Consequently a fixed deficit anchor whose endpoint matrix
+
+```text
+E(U,W) = ( H_{q,q+d-1}(s)(ell_W X^a) )_{0<=a<q-1}
+```
+
+has full column rank cannot carry a persistent absorbed-rank defect.  The
+bottom coefficient gives the parallel shifted endpoint condition
+`H_{q,q+d-1}(s)(ell_W X R_0)=0`, so any remaining primitive moving-kernel
+obstruction must pass through both endpoints of this ladder, not merely through
+one singular absorbed value.
+
+The verifier now audits the unshifted endpoint rank for every produced deficit
+anchor with `q>=2`.  The largest `F_7^*` audit checks `51840` such endpoint
+matrices and finds no endpoint-rank defects.
+
 ## Deficit-Weighted Core Closure Criterion
 
 The preceding local packing theorem removes the artificial cutoff
