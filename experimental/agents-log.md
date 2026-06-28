@@ -30,6 +30,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 scalar standard-degree strata are residue lines
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_boundary_off_external_anchor_normal_form.md`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / PROOF-PROGRAM.
+- **What is being added:** In the range `n-s<=k+deg Q`, a scalar
+  rational-supercode stratum is exactly a degree-`deg Q` residue-line datum
+  after subtracting the global quotient part of the represented endpoint; the
+  `Qf` case uses reciprocal slope `y=1/z` for nonzero slopes and leaves the
+  original zero slope separate.
+- **How it is useful:** This folds a substantial scalar cutoff case back into
+  the existing M1 residue-line normal form, so it can be attacked by the same
+  quotient/aperiodic machinery rather than treated as a new obstruction.
+- **What to do next:** Separate the remaining non-standard range
+  `n-s>k+deg Q` and determine whether it is absent at the relevant cutoff
+  parameters or requires a longer-Pade analogue.
+
 ### 2026-06-28 - M1 scalar constrained-list parametrization is exact
 
 - **Agent/model:** AllenGrahamHart / Codex audit.
@@ -40,8 +59,8 @@ Keep entries concise and link to the relevant files.
 - **What is being added:** Unless the scalar endpoint numerator already lies
   in `QF[X]_<k`, the generator coefficient in the constrained multiplier-list
   parametrizes exactly the explained scalar slopes; if the numerator does lie
-  in `QF[X]_<k`, the scalar branch is contained and contributes no
-  noncontained slope.
+  in `QF[X]_<k`, the `Qg` branch is contained, while the `Qf` branch has no
+  nonzero noncontained slope and still leaves the zero-slope exception.
 - **How it is useful:** This turns the scalar cutoff branch into an exact
   constrained-list target, not just an injection, making future closure
   criteria precise.

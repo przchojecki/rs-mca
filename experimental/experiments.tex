@@ -2501,7 +2501,23 @@ coefficient \(z\), and \(R=Qf\) on \(a\) points is equivalent to
 \(f+zg=C\) on those points.  Dually, if \(P_f\notin QF[X]_{<k}\), the
 nonzero \(Qf\)-scalar slopes are parametrized exactly by entries
 \(R=QC+\mu P_f\) with \(\mu\ne0\), via \(z=-1/\mu\); if
-\(P_f\in QF[X]_{<k}\), the branch is contained.
+\(P_f\in QF[X]_{<k}\), there are no nonzero noncontained slopes, while the
+original zero slope remains separate.
+In the standard-degree range \(n-s\le k+\deg Q\), this is exactly an ordinary
+lower-degree residue-line datum.  Writing \(P_g=QH_g+R_g\) with
+\(\deg H_g<k\) and \(\deg R_g<\deg Q\), the \(Qg\)-scalar branch is the
+degree-\(\deg Q\) datum
+\[
+  E=Q,\qquad B=-R_g,\qquad w=Qf
+\]
+for the line \(f+z(g-H_g)\), unless \(R_g=0\), in which case \(g\) is global.
+Dually, writing \(P_f=QH_f+R_f\), the nonzero \(Qf\)-scalar slopes are the
+reciprocal parameters \(y=1/z\) of the datum
+\[
+  E=Q,\qquad B=-R_f,\qquad w=Qg
+\]
+for the line \(g+y(f-H_f)\); if \(R_f=0\), there are no nonzero
+noncontained slopes, with the original zero slope still left separate.
 The common-core and two-denominator formulas persist verbatim after this
 root-free replacement.  With \(C=\gcd(D:D\in M_{\min})\), \(\gamma=\deg C\),
 and \(E_D=D/C\),

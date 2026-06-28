@@ -9932,8 +9932,8 @@ subfamily of this constrained multiplier-list coefficient set.
 
 Similarly, suppose `Qf in RS[F,D,n-s]`, represented by `P_f`.  If
 `P_f in Q C_k`, then `f` is a global codeword and the `Qf` scalar stratum
-contributes no support-wise noncontained finite slope.  If `P_f notin Q C_k`,
-then
+contributes no nonzero support-wise noncontained finite slope; the original
+zero slope is still the separate scalar exception.  If `P_f notin Q C_k`, then
 
 ```text
 V_f(Q)=Q C_k direct-sum F P_f.
@@ -9995,8 +9995,9 @@ any explanation `f+zg=C_z` on `S` with `z!=0` gives
 g|_S=((C_z-C_f)/z)|_S,
 ```
 
-so nonzero explained slopes are contained; the zero slope is also contained
-because `f` is global.  Hence there is no noncontained scalar slope.
+so nonzero explained slopes are contained.  This proves only that there is no
+nonzero noncontained scalar slope; the zero slope remains the same exceptional
+case as in Corollaries 40.79--40.80.
 
 If `P_f notin Q C_k` and
 
@@ -10020,6 +10021,139 @@ R=(Q C_z-P_f)/z=Q(C_z/z)-(1/z)P_f,
 
 whose `P_f`-coefficient is `-1/z`.  These constructions are inverse by the
 direct-sum uniqueness.
+
+## Corollary 40.82: Standard-Degree Scalar Strata Are Residue-Line Data
+
+Keep the notation of Corollary 40.81, and assume
+
+```text
+1 <= e=deg Q <= r=n-k,        n-s <= k+e.            (StdDeg)
+```
+
+Then the scalar rational-supercode stratum is not a new object: after removing
+the global quotient part of the represented endpoint, it is exactly a
+degree-`e` residue-line datum in the sense of the Paper B normal form.
+
+First suppose `Qg in RS[F,D,n-s]`, represented by `P_g`.  Since
+`deg P_g<k+e`, divide
+
+```text
+P_g=Q H_g+R_g,        deg H_g<k,        deg R_g<e.
+```
+
+If `R_g=0`, then `g=H_g` on `D` and the scalar branch contributes no
+noncontained slope.  If `R_g!=0`, put
+
+```text
+E=Q,        B_g=-R_g,        w_g=Qf.
+```
+
+Then the finite `Qg`-scalar slopes are exactly the slopes witnessed by the
+degree-`e` residue-line datum `(E,B_g,w_g)` for the line
+
+```text
+f + z(g-H_g).
+```
+
+The support-wise noncontained slopes are the same as for the original line
+`f+zg`, because subtracting the global direction `H_g` does not change
+support-wise containment.
+
+Similarly, suppose `Qf in RS[F,D,n-s]`, represented by `P_f`, and divide
+
+```text
+P_f=Q H_f+R_f,        deg H_f<k,        deg R_f<e.
+```
+
+If `R_f=0`, then `f=H_f` on `D` and the scalar branch contributes no nonzero
+noncontained slope; the original zero slope remains separate.  If `R_f!=0`,
+put
+
+```text
+E=Q,        B_f=-R_f,        w_f=Qg.
+```
+
+Then the nonzero finite `Qf`-scalar slopes `z` are exactly the reciprocal
+parameters
+
+```text
+y=1/z
+```
+
+witnessed by the degree-`e` residue-line datum `(E,B_f,w_f)` for the line
+
+```text
+g + y(f-H_f).
+```
+
+The possible original zero slope is the only slope not represented by this
+reciprocal residue-line datum.
+
+### Proof
+
+The degree assumptions give `deg P_g,deg P_f<k+e`, so Euclidean division by
+the degree-`e` polynomial `Q` gives quotients of degree `<k` and remainders of
+degree `<e`.
+
+Consider the `Qg` case.  Since `Q` is root-free on `D`,
+
+```text
+g=H_g+R_g/Q        on D.
+```
+
+If `R_g=0`, the endpoint `g` is global and the branch is contained, as in
+Corollary 40.81.  Otherwise the residue-line datum `(Q,-R_g,Qf)` has direction
+
+```text
+-B_g/E = R_g/Q = g-H_g.
+```
+
+If the original slope `z` is explained by `C_z` on a support `S`, then
+
+```text
+C_z-zH_g = f+z(g-H_g)        on S
+```
+
+is a degree-`<k` explanation for the residue-line datum.  Its denominator
+cleared witness is
+
+```text
+Q(C_z-zH_g)+zB_g
+ = Q C_z-z(QH_g+R_g)
+ = Q C_z-zP_g,
+```
+
+which has degree `<k+e`, is congruent to `zB_g mod Q`, and equals `Qf` on
+`S`.  Conversely, any witness for `(Q,B_g,Qf)` gives a degree-`<k` polynomial
+`C` with `C=f+z(g-H_g)` on `S`; adding the global codeword `zH_g` gives an
+explanation of the original line `f+zg` on the same support.  Containment is
+unchanged by adding or subtracting the global direction `H_g`.
+
+The `Qf` case is identical after swapping endpoints and using the reciprocal
+parameter.  On `D`,
+
+```text
+f=H_f+R_f/Q.
+```
+
+For a nonzero original slope `z`, put `y=1/z`.  Then explaining
+`f+zg=C_z` is equivalent to explaining
+
+```text
+g+y(f-H_f)=C_z/z-yH_f
+```
+
+for the reciprocal line.  The denominator-cleared witness is
+
+```text
+Q(C_z/z-yH_f)+yB_f
+ = (Q C_z-P_f)/z,
+```
+
+which is the constrained-list polynomial from Corollary 40.81 and is
+congruent to `yB_f mod Q`.  The converse and containment equivalence follow
+by reversing these identities.  The original slope `z=0` has no reciprocal
+parameter, so it remains the only exception.
 
 ## Corollary 41: The Global Common-Image Ledger Is Endpoint-Only
 
@@ -12882,6 +13016,9 @@ modulo `Q`.
 Corollary 40.81 makes the reduction exact: unless the scalar endpoint is
 already global, the relevant generator coefficient parametrizes exactly the
 explained scalar slopes, with only the zero-slope exception in the `Qf` case.
+Corollary 40.82 shows that in the standard-degree range `n-s<=k+deg Q`, these
+exact constrained scalar lists are ordinary lower-degree residue-line data
+after subtracting a global quotient part of the scalar endpoint.
 Corollary 41 packages the common-image branch into endpoint-type ledgers; it
 does not prove the endpoint rank hypotheses needed for the displayed
 `(q+2)binom(n,b)` bound. Corollary 42 packages the globally full core ledger
