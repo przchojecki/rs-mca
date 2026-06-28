@@ -2515,6 +2515,21 @@ Thus simple split common factors can be found by the one-row rank test
 with Hasse-jet rows detecting repeated roots.  Domain roots detected by this
 test empty the corresponding root-free bottom family rather than contributing
 a residual obstruction.
+This gives a direct window bound from anchor counts.  If the bottom kernel is
+nonzero and its row space has rank \(\rho\) and contains \(g\) distinct
+non-domain evaluation rows, then
+\[
+  g\le \rho,\qquad
+  |K^{\mathrm{rf}}|\le \mathrm{RFPhi}_D(h-g).
+\]
+If \(g=\rho\), the row space is exactly the span of those evaluation rows and
+\[
+  K=G_BF_q[X]_{<h-g},\qquad
+  |K^{\mathrm{rf}}|=\mathrm{RFPhi}_D(h-g),
+\]
+where \(G_B=\prod_{\beta\in B}(X-\beta)\).  Thus a rank-\(h-L\) bottom Hankel
+row space spanned by \(h-L\) non-domain anchor rows gives the exact ideal
+\(\mathrm{RFPhi}_D(L)\) contribution.
 In the common two-denominator case \(M_{\min}=\{D_1,D_2\}\), writing
 \(C=\gcd(D_1,D_2)\), \(D_i=C E_i\), and \(e_i=\deg E_i\), the quotient
 denominators \(E_1,E_2\) are automatically coprime and

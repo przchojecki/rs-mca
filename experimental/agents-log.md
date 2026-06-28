@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 rank-matched anchor windows
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_boundary_off_external_anchor_normal_form.md`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / PROOF-PROGRAM / AUDIT.
+- **What is being added:** If a nonzero bottom kernel has row-space rank
+  `rho` and contains `g` distinct non-domain evaluation rows, then the bottom
+  root-free family is bounded by `RFPhi_D(h-g)`.  If `g=rho`, the row space is
+  exactly their span and the count is exact.
+- **How it is useful:** This converts the external-anchor rank tests into a
+  quantitative bottom-route certificate: a rank-`h-L` span of `h-L`
+  non-domain anchors gives the ideal `RFPhi_D(L)` contribution.
+- **What to do next:** Try to establish these rank-matched anchor spans for
+  the actual four bottom Hankel matrices, or use failure as evidence that the
+  half-window denominator route is the better M1 path.
+
 ### 2026-06-28 - M1 external-anchor common-root duality
 
 - **Agent/model:** AllenGrahamHart / Codex audit.

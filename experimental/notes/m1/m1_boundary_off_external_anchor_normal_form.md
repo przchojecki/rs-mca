@@ -8154,6 +8154,88 @@ The rank test is the row-containment criterion for a single evaluation row.
 If `beta in D` satisfies it, then every class in `P(K)` vanishes at the domain
 point `beta`, so no class is root-free on `D`.
 
+## Corollary 40.61: Rank-Matched Anchor Spans Give The Exact Bottom Count
+
+Let `A` be any of the four bottom matrices `A_0(F)`, put
+
+```text
+K=ker A subset F_q[X]_{<h},        rho=rank A,
+```
+
+and assume `K` is nonzero.  If `K=0`, then the corresponding projective
+root-free family is empty.  Let `B={beta_1,...,beta_g}` be a set of distinct
+non-domain anchors in `F_q\D` such that
+
+```text
+ev_{beta_i} in row(A)        for every i.
+```
+
+Then `g<=rho`, and with
+
+```text
+G_B(X)=prod_{i=1}^g (X-beta_i)
+```
+
+one has
+
+```text
+G_B divides gcd(K),        K subset G_B F_q[X]_{<h-g}.
+```
+
+Consequently the corresponding root-free bottom family satisfies
+
+```text
+|K^rf| <= RFPhi_D(h-g).                            (AnchorWindowBound)
+```
+
+In particular, if `g>=h-L`, this one family contributes at most
+`RFPhi_D(L)` to the bottom route.
+
+If in addition `g=rho`, then
+
+```text
+row(A)=span{ev_{beta_1},...,ev_{beta_g}},
+K=G_B F_q[X]_{<h-g},
+```
+
+and the bound is exact:
+
+```text
+|K^rf| = RFPhi_D(h-g).                             (RankMatchedAnchorExact)
+```
+
+Thus a rank-`h-L` bottom Hankel row space spanned by `h-L` non-domain
+evaluation rows gives the exact ideal residual charge `RFPhi_D(L)`.  Summed
+over the four bottom families, rank-matched external-anchor spans give the
+bottom route ledger
+
+```text
+sum_F RFPhi_D(h-g_F) + 2h,
+```
+
+with the usual convention that any family whose row span contains a domain
+evaluation row has empty root-free contribution.
+
+### Proof
+
+Since `K` is nonzero, `rho<h`.  If `g>rho`, choose any `rho+1` of the
+evaluation rows.  These `rho+1<=h` distinct rows are linearly independent by
+the Vandermonde determinant, contradicting that they all lie in the
+`rho`-dimensional row space of `A`.  Hence `g<=rho`.
+
+By Corollary 40.60, each row-containment condition says that `X-beta_i`
+divides `gcd(K)`.  The roots are distinct, so their product `G_B` divides
+`gcd(K)`, giving the inclusion `K subset G_B F_q[X]_{<h-g}`.  Since the
+anchors are outside `D`, `G_B` is root-free on `D`, and the quotient argument
+of Corollary 40.56 gives (AnchorWindowBound).
+
+If `g=rho`, the independent rows `ev_{beta_i}` form a basis of `row(A)`.
+Therefore `A` and the evaluation map at `B` have the same kernel.  That kernel
+is precisely the set of degree-`<h` polynomials divisible by `G_B`, namely
+`G_B F_q[X]_{<h-g}`.  Because `G_B` has no root in `D`, multiplication by
+`G_B` bijects root-free quotient classes of degree `<h-g` with root-free
+classes in `K`, proving the exact count.
+
 ## Corollary 41: The Global Common-Image Ledger Is Endpoint-Only
 
 Let `GCI` be the set of monic degree-`c` split core locators `L` for which
@@ -10952,6 +11034,9 @@ that enough such anchors occur or that nonsplit certificates can be ignored.
 Corollary 40.60 identifies external-anchor row membership with common roots of
 the bottom kernel; it does not count enough external anchors in the actual M1
 instances.
+Corollary 40.61 turns non-domain anchor counts into bottom residual-window
+bounds and gives an exact count in the rank-matched case; it does not prove
+that the actual bottom Hankel row spaces contain enough such anchors.
 Corollary 41 packages the common-image branch into endpoint-type ledgers; it
 does not prove the endpoint rank hypotheses needed for the displayed
 `(q+2)binom(n,b)` bound. Corollary 42 packages the globally full core ledger
