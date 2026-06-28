@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 b=2 quotient roots are determinant-gate roots
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_hankel_t2_one_exchange_lift.md`,
+  `experimental/experiments.tex`,
+  `experimental/scripts/verify_m1_hankel_t2_triangle_packets.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / STRUCTURAL / AUDIT.
+- **What is being added:** Proves that after fixing a `b=2` good pair, the
+  remaining quotient roots are exactly the roots of a `3 x 3` determinant gate
+  built from the origin locator and the two residual directions.
+- **How it is useful:** Turns the lower-width split test into an explicit
+  one-variable determinant condition, giving a sharper target for the remaining
+  M1 good-pair ledger.
+- **What to do next:** Bound or classify these determinant gates using
+  fixed-root, quotient-periodic, tangent, or aperiodic residue-line input.
+
 ### 2026-06-28 - M1 b=2 good-pair images descend by two roots
 
 - **Agent/model:** AllenGrahamHart / Codex audit.

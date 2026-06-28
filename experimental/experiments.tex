@@ -4982,6 +4982,17 @@ Then
 and \(L_{x,y}\) splits over \(D'\) iff \(M_{x,y}\) splits over
 \(D'\setminus\{x,y\}\).  Thus the endpoint split test is a two-root absorbed
 quotient-locator problem of width \(q-2\).
+Equivalently, for \(z\notin\{x,y\}\), the quotient-root condition is the
+three-row determinant gate
+\[
+  \det\begin{pmatrix}
+    L_0(x)&P(x)&Q(x)\\
+    L_0(y)&P(y)&Q(y)\\
+    L_0(z)&P(z)&Q(z)
+  \end{pmatrix}=0.
+\]
+So after a good pair is fixed, the possible remaining roots are cut out by an
+explicit one-variable determinant condition.
 Equivalently, for each available root \(x\) the bad-slice test is the failure
 of full column rank for the absorbed-anchor matrix
 \[

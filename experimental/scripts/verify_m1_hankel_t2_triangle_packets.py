@@ -6715,6 +6715,27 @@ def analyze_case(
                                                     interpolation_coeffs,
                                                     reconstructed_locator,
                                                 )
+
+                                            def affine_kernel_row(
+                                                root: int,
+                                            ) -> tuple[int, int, int]:
+                                                return (
+                                                    polynomial_eval_mod(
+                                                        residual_locator,
+                                                        domain[root],
+                                                        p,
+                                                    ),
+                                                    polynomial_eval_mod(
+                                                        direction_basis[0],
+                                                        domain[root],
+                                                        p,
+                                                    ),
+                                                    polynomial_eval_mod(
+                                                        direction_basis[1],
+                                                        domain[root],
+                                                        p,
+                                                    ),
+                                                )
                                             pair_owner: dict[
                                                 tuple[int, int],
                                                 tuple[int, ...],
@@ -7351,6 +7372,43 @@ def analyze_case(
                                                         p,
                                                     )
                                                 )
+                                                determinant_gate_roots = tuple(
+                                                    root
+                                                    for root in available_roots
+                                                    if root not in pair
+                                                    and not determinant_mod(
+                                                        (
+                                                            affine_kernel_row(
+                                                                pair[0]
+                                                            ),
+                                                            affine_kernel_row(
+                                                                pair[1]
+                                                            ),
+                                                            affine_kernel_row(
+                                                                root
+                                                            ),
+                                                        ),
+                                                        p,
+                                                    )
+                                                )
+                                                if (
+                                                    determinant_gate_roots
+                                                    != quotient_roots
+                                                ):
+                                                    raise AssertionError(
+                                                        projective_local_error(
+                                                            "good-pair-"
+                                                            "determinant-"
+                                                            "gate-failed",
+                                                            pair=list(pair),
+                                                            determinant_roots=list(
+                                                                determinant_gate_roots
+                                                            ),
+                                                            quotient_roots=list(
+                                                                quotient_roots
+                                                            ),
+                                                        )
+                                                    )
                                                 split_candidate = (
                                                     len(split_roots)
                                                     == residual_size

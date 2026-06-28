@@ -3808,6 +3808,39 @@ splitting of `L_e` is equivalent to splitting of the quotient `M_e` on the
 available roots away from `e`.  The current largest `F_7^*` scan still has no
 `b(U,W)=2` produced anchor.
 
+## Quotient Roots Are a Three-Row Determinant Gate
+
+The two-root quotient roots have an explicit one-variable gate.  For
+`z in D'\e`, the condition `M_e(z)=0` is equivalent to `L_e(z)=0`, because
+`ell_e(z) != 0`.  Writing `e={x,y}`, the coefficients of `L_e` are determined
+by the two equations `L_e(x)=L_e(y)=0`.  Hence `z` is a quotient root exactly
+when the three equations at `x,y,z` are compatible:
+
+```text
+Delta_e(z)=
+det
+[
+  L_0(x)  P(x)  Q(x)
+  L_0(y)  P(y)  Q(y)
+  L_0(z)  P(z)  Q(z)
+]
+=0.                                                (PF2-det-gate)
+```
+
+The `2 x 2` good-pair determinant in the `(P,Q)` columns is nonzero, so this
+determinant condition is equivalent to the unique interpolated locator through
+`x,y` also vanishing at `z`.
+
+Thus the remaining quotient split test can be read as follows: after choosing
+a good pair, the possible remaining roots are exactly the zeros of the
+determinant gate `Delta_e` on `D'\e`, and splitting asks whether this gate
+selects a squarefree locator of degree `q-2`.
+
+The verifier checks this determinant description for every good pair: the
+roots of `Delta_e` away from the pair must agree exactly with the roots of the
+two-root quotient locator `M_e`.  The current largest `F_7^*` scan still has
+no `b(U,W)=2` produced anchor.
+
 ## Bad Root Slices Are Absorbed-Anchor Rank Defects
 
 The preceding bad-root condition has an equivalent absorbed-anchor form.  Fix
