@@ -12515,6 +12515,105 @@ set of `a`-subsets of `D`.  Hence
 
 Dividing by `q=|F|` gives the density statement.
 
+## Corollary 40.112: High-Tail-Line Scalar Branches Are q-Free When Noncontained
+
+Keep the short scalar setup of Corollary 40.87.  Thus
+
+```text
+K=k+L,        L>0,
+tau_K:F[X]_<K -> F^L,
+```
+
+and the surviving branch is cut out by a high-tail line
+
+```text
+W_h={ A in F[X]_<K : tau_K(A) in F h }
+```
+
+with `h!=0`.  Choose any `Phi in F[X]_<K` with
+
+```text
+tau_K(Phi)=h.
+```
+
+Then
+
+```text
+W_h = F[X]_<k + F Phi.
+```
+
+In the common scalar chart equations of Corollaries 40.83 and 40.86, write
+
+```text
+Q A + lambda B = w        on S,
+tau_K(A)=-lambda h,
+```
+
+where `Q` is root-free on `D`; in the constant endpoint charts this means
+`Q=1` and `B=0`.  Put
+
+```text
+mu=-lambda,        psi=Phi-B/Q,        Y=w/Q        on D.
+```
+
+Then every support-wise noncontained scalar parameter in the short
+high-tail-line branch at threshold `a=n-j` is counted by the rank-one
+noncontained set `Mu_psi^{nc,>=a}(Y)`.  Therefore
+
+```text
+# { noncontained finite parameters in the branch } <= binom(n,j).      (HTLineNC)
+```
+
+and the branch contributes at most
+
+```text
+binom(n,j)/q
+```
+
+to line-MCA density.
+
+Thus not only the `L=1` one-row layer but every one-dimensional high-tail-line
+scalar return branch is q-free on the support-wise noncontained side.  The
+extra high-tail codimension for `L>=2` is still useful for unrestricted list
+bookkeeping, but it is not needed to bound noncontained finite parameters.
+
+### Proof
+
+Since `tau_K` is surjective with kernel `F[X]_<k`, the equality
+`W_h=F[X]_<k+F Phi` follows immediately from `tau_K(Phi)=h`.
+
+In each short scalar chart from Corollaries 40.84--40.87, the scalar parameter
+`lambda` is recorded by the return equation
+
+```text
+tau_K(A)=-lambda h.
+```
+
+With `mu=-lambda`, write
+
+```text
+A=A_0+mu Phi,        A_0 in F[X]_<k.
+```
+
+The scalar support equation has the common form `Q A+lambda B=w` on `S`.
+Substituting `lambda=-mu` and using that `Q` is root-free on `D`, this is
+equivalent on `S` to
+
+```text
+A_0+mu(Phi-B/Q)=w/Q.
+```
+
+Thus the branch is a rank-one extension of `RS[F,D,k]` with generator
+`psi=Phi-B/Q` and received word `Y=w/Q`.  Support-wise noncontainedness is
+exactly the condition that not both `psi|_S` and `Y|_S` lie in
+`RS[F,S,k]`: with the natural lift `Phi=H`, the positive `Qg` chart has
+`psi=g` and `Y=f`, while the positive `Qf` chart has `psi=f` and `Y=g`, and
+the constant charts say the same with `Q=1`.  Corollary 40.111 then gives at
+most `binom(n,j)` noncontained coefficients, hence the displayed density
+bound.  Any other choice of `Phi` only changes `psi` by an element of
+`RS[F,D,k]`, so the rank-one branch and the noncontained condition are
+unchanged.
+
 ## Corollary 41: The Global Common-Image Ledger Is Endpoint-Only
 
 Let `GCI` be the set of monic degree-`c` split core locators `L` for which
@@ -15477,6 +15576,9 @@ points contains a noncontained `a`-subsupport.
 Corollary 40.111 gives the simplified endpoint: any rank-one noncontained
 branch injects directly into `a`-supports, so a one-row chart contributes at
 most `binom(n,j)/q` without exchange bookkeeping.
+Corollary 40.112 applies the same support injection to every nonzero
+high-tail-line scalar return branch `W_h`, including all `L>=2` short scalar
+branches after Corollary 40.87.
 Corollary 41 packages the common-image branch into endpoint-type ledgers; it
 does not prove the endpoint rank hypotheses needed for the displayed
 `(q+2)binom(n,b)` bound. Corollary 42 packages the globally full core ledger

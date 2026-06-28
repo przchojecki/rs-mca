@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 high-tail-line scalar branches are q-free when noncontained
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_boundary_off_external_anchor_normal_form.md`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / PROOF-PROGRAM.
+- **What is being added:** Applies the rank-one support injection to every
+  short scalar high-tail-line branch after the chart normalization
+  `QA+lambda B=w`, proving at most `binom(n,j)` support-wise noncontained
+  finite parameters in each branch.
+- **How it is useful:** This extends the q-free noncontained closure beyond
+  the one-row `L=1` layer to all one-dimensional high-tail return branches;
+  high-tail codimension is only needed for unrestricted list bookkeeping.
+- **What to do next:** Reclassify the remaining M1 scalar residuals into
+  base-dimension residue-line data, collapsed high-tail branches, and these
+  q-free high-tail-line branches.
+
 ### 2026-06-28 - M1 rank-one noncontained branches close by support injection
 
 - **Agent/model:** AllenGrahamHart / Codex audit.
