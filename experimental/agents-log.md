@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 moment-complete cores are support-unique
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_hankel_t2_one_exchange_lift.md`,
+  `experimental/scripts/verify_m1_hankel_t2_triangle_packets.py`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / STRUCTURAL / EXACT FINITE AUDIT.
+- **What is being added:** Proves that a canonical unmarked core `U` with
+  `r` marked exits has a unique marked frontier whenever
+  `|U| >= max(0,r-tau)`.  Mixed marked/unmarked faces supply at least `2r`
+  moments, so Prony uniqueness recovers the marked locator.
+- **How it is useful:** Reduces possible same-core branching with many marked
+  exits to moment-short cores satisfying `|U| < r-tau`, isolating the
+  remaining large-frontier obstruction for M1.
+- **What to do next:** Analyze or charge the moment-short core regime after
+  quotient-periodic, tangent, and empty-core endpoint ledgers are removed.
+
 ### 2026-06-28 - M1 empty-core endpoint is the boundary moment map
 
 - **Agent/model:** AllenGrahamHart / Codex audit.

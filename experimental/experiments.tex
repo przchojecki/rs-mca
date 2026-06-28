@@ -4463,6 +4463,29 @@ matching factor over every canonical core.  The verifier now enforces this:
 in the largest \(F_7^*\) audit there are \(21540\) marked-core fibers with
 maximum fiber size \(2\), and no nonempty boundary core occurs; any future
 nonempty boundary fiber is required to be singleton.
+The same argument gives a general moment-complete uniqueness criterion.  Fix
+a canonical core \(U=U(S)\), let \(r=|M(S)|\), and suppose
+\[
+  |U|\ge \max(0,r-\tau).
+\]
+The case \(r=0\) is tautological.  Otherwise choose \(E\subseteq U\) with
+\(|E|=\max(0,r-\tau)\).  The mixed face with all marked exits gives the fixed
+vector
+\[
+  H_{\tau+|E|+r,|U|-|E|}(s)\ell_{U\setminus E}
+  =
+  \left(\sum_{y\in M(S)} {a_y y^i\over \ell_E(y)}\right)_
+    {0\le i\le\tau+|E|+r-1},
+\]
+where all amplitudes are nonzero, and the window length is at least \(2r\).
+Thus the Prony annihilator recovers the marked locator uniquely.  Therefore
+any nonunique fixed-core fiber with \(r\) marked exits must be moment-short:
+\[
+  |U|<r-\tau .
+\]
+In the largest \(F_7^*\) audit the verifier checks \(4320\)
+moment-complete core fibers, all singleton; the productive subaudit checks
+\(2160\), also all singleton.
 The empty-core exception is exactly the boundary moment map.  For
 \(r=\tau+1\), full-marked supports \(S=M(S)\), \(|S|=r\), are precisely the
 nonzero \(r\)-sparse representations of

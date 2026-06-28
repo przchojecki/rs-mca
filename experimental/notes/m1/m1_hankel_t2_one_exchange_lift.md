@@ -2216,9 +2216,63 @@ audits the largest `F_7^*` case has `21540` marked-core fibers and maximum
 fiber size `2`; no nonempty boundary core occurs there, and any future
 nonempty boundary core fiber is required to be singleton.
 
+## Moment-Complete Cores Have Unique Marked Frontiers
+
+The same argument is not confined to the boundary `r=tau+1`.  Let `S` be
+active, put
+
+```text
+M=M(S),        U=U(S),        r=|M|,
+```
+
+and fix the canonical unmarked core `U` and the marked count `r`.  If
+
+```text
+|U| >= max(0,r-tau),                              (MCU)
+```
+
+then there is at most one active support `S` with this core and this marked
+count.
+
+The case `r=0` is tautological, since then `S=U`.  Otherwise put
+`e=max(0,r-tau)` and choose any `E subset U` of size `e`.  If `r<=tau`,
+then `E=empty` and the full marked face (CP0) already gives at least `2r`
+visible moments.  If `r>tau`, apply the mixed face formula with this `E` and
+`Y=M`:
+
+```text
+H_{tau+e+r,|U|-e}(s)ell_{U\E}
+ = (sum_{y in M} a_y y^i/ell_E(y))_{0<=i<=tau+e+r-1}.
+```
+
+The left hand side is fixed by `U` and `E`.  The right hand side is an
+`r`-sparse moment packet with nonzero amplitudes, and
+`tau+e+r >= 2r` by the choice of `e`.  Hence the Prony/Vandermonde
+annihilator recovers the marked locator `prod_{y in M}(X-y)` uniquely from
+that fixed vector.
+
+Consequently any nonunique canonical-core fiber with marked count `r` must be
+moment-short:
+
+```text
+|U| < r-tau.                                      (MS)
+```
+
+Large marked frontiers therefore do not by themselves create a new
+same-core packing problem.  Branching over a fixed core can only occur when
+the marked excess `r-tau` is larger than the available unmarked zero-depth
+shift.  This isolates the remaining large-frontier obstruction to short-core
+supports rather than all supports with many marked exits.
+
+The verifier now enforces this uniqueness condition for every produced
+canonical-core fiber.  In the largest `F_7^*` audit, it checks `4320`
+moment-complete core fibers, all singleton; the productive subaudit checks
+`2160`, again all singleton.
+
 ## Empty-Core Endpoint Is The Boundary Moment Map
 
-It remains to identify the empty-core exception in the preceding theorem.
+It remains to identify the empty-core boundary exception left by the
+nonempty-core theorem.
 Put `r=tau+1` and `U=empty`.  Then an active support `S` with
 `M(S)=S` and `|S|=r` is exactly a nonzero `r`-sparse representation of the
 fixed boundary moment vector
