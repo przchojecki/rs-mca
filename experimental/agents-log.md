@@ -30,6 +30,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 one-row residual has a two-ledger closure criterion
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_boundary_off_external_anchor_normal_form.md`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / PROOF-PROGRAM.
+- **What is being added:** The double-collapse support count is decomposed on
+  `j`-complements as the disjoint intersection of the ordinary locator fiber
+  of `Y` with normalized generator-collapse residue fibers.  This gives the
+  bound
+  `|Mu_h(Y,a)| <= (binom(n,j+1)+(j+1)U_comp+a(q-1)D_int)/(n-j)`.
+- **How it is useful:** It packages the one-exchange one-row residual into
+  two explicit unweighted ledgers: `(j+1)` complement residue packing and
+  `j`-complement double-collapse intersections.
+- **What to do next:** Attack `D_int` directly, either by proving transverse
+  intersection with ordinary locator fibers or by finding a quotient-periodic
+  obstruction.
+
 ### 2026-06-28 - M1 weighted excess reduces to double-collapse supports
 
 - **Agent/model:** AllenGrahamHart / Codex audit.

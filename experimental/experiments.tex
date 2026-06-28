@@ -2858,6 +2858,32 @@ Consequently
 The weighted one-exchange ledger is therefore reduced to ordinary
 small-complement packing plus a double-collapse support count where both the
 one-row generator and the received word are base-code on the same support.
+Equivalently, on \(j\)-complements this double-collapse count is an
+intersection ledger.  Let
+\[
+  \operatorname{YLoc}_j(Y)=
+  \{C\subset D: |C|=j,\ Y|_{D\setminus C}\in \RS[F,D\setminus C,k]\}.
+\]
+For projective \([N]\) with \(\deg N\le\ell\), let
+\(G\operatorname{Drop}_{h,[N]}\) be the \(j\)-complement residue fiber
+\[
+  L_C\in F L_DN B_{\rm prim}^{-1}\pmod {Q_{\rm prim}},
+\]
+together with the same top-coefficient normalization defining the fixed
+generator \(hX^k-B_{\rm prim}/Q_{\rm prim}\).  The complement map gives a
+disjoint decomposition
+\[
+  \operatorname{DoubleColl}_h(Y,a)
+  =\bigsqcup_{[N]}
+    \bigl(\operatorname{YLoc}_j(Y)\cap G\operatorname{Drop}_{h,[N]}\bigr).
+\]
+Thus the one-exchange one-row residual has the closure criterion
+\[
+  |\operatorname{Mu}_h(Y,a)|\le
+  { \binom n {j+1}+(j+1)U_{\rm comp}
+       +a(q-1)D_{\rm int}(Y,a)\over n-j },
+\]
+where \(D_{\rm int}\) is the displayed double-collapse intersection count.
 The common-core and two-denominator formulas persist verbatim after this
 root-free replacement.  With \(C=\gcd(D:D\in M_{\min})\), \(\gamma=\deg C\),
 and \(E_D=D/C\),

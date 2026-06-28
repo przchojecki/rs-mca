@@ -12097,6 +12097,92 @@ Finally `m_T(Y)<=|Mu_T(Y)|<=q`, and positive excess can occur only on
 `DoubleColl_h(Y,a)`.  This proves (DoubleCollapseBound), and substituting the
 bound into (RootAnchorLedger) gives (WeightedToDoubleCollapse).
 
+## Corollary 40.106: The One-Exchange One-Row Residual Has A Two-Ledger Closure Criterion
+
+Keep the notation of Corollary 40.105.  Define the ordinary `j`-complement
+locator fiber of the received word `Y` by
+
+```text
+YLoc_j(Y)= { C subset D : |C|=j,        Y|_{D\C} in RS[F,D\C,k] }.
+```
+
+Let
+
+```text
+P_ell^{x,-}(Q_prim)
+ = { [N] in P(F[X]_{<=ell}) : gcd(N,Q_prim)=1 }.
+```
+
+For `[N] in P_ell^{x,-}(Q_prim)`, define the normalized generator-collapse
+fiber
+
+```text
+GDrop_{h,[N]}
+ = { C subset D : |C|=j,
+       L_C in F L_D N B_prim^{-1}        mod Q_prim,
+       after scaling N so L_{D\C}N == -B_prim mod Q_prim,
+       coeff_{X^k}((L_{D\C}N+B_prim)/Q_prim)=h }.
+```
+
+Then the complement map `T |-> D\T` gives a disjoint decomposition
+
+```text
+DoubleColl_h(Y,a)
+ = disjoint_union_{[N] in P_ell^{x,-}(Q_prim)}
+      ( YLoc_j(Y) cap GDrop_{h,[N]} ).             (DoubleCollapseSplit)
+```
+
+Consequently, if
+
+```text
+U_comp=sum_{[M] in P_ell^x(Q_prim)} |Comp_[M]|
+```
+
+and
+
+```text
+D_int(Y,a)
+ = sum_{[N] in P_ell^{x,-}(Q_prim)}
+      |YLoc_j(Y) cap GDrop_{h,[N]}|,
+```
+
+then
+
+```text
+|Mu_h(Y,a)|
+ <= ( binom(n,j+1) + (j+1)U_comp + a(q-1)D_int(Y,a) )
+      / (n-j).                                      (TwoLedgerOneRow)
+```
+
+Equivalently, the whole one-exchange scalar one-row residual is closed once
+two unweighted small-complement ledgers are bounded:
+
+1. the `(j+1)`-complement one-exchange residue-line packing ledger
+   `U_comp`;
+2. the `j`-complement double-collapse intersection ledger `D_int(Y,a)`,
+   where the ordinary locator fiber of `Y` meets the normalized
+   generator-collapse residue fibers.
+
+### Proof
+
+Corollary 40.102 gives the normalized complement characterization of
+`GenColl`, and the uniqueness argument in Corollary 40.105 makes the
+projective class `[N]` unique for each generator-collapse complement.  Thus
+the complements of supports in `GenColl` decompose disjointly into the fibers
+`GDrop_{h,[N]}`.
+
+Intersecting with `List_k(Y,a)` on the support side is exactly the same as
+intersecting with `YLoc_j(Y)` on the complement side.  This proves
+(DoubleCollapseSplit), and hence
+
+```text
+D_int(Y,a)=|DoubleColl_h(Y,a)|.
+```
+
+Substituting this identity into (WeightedToDoubleCollapse), and then
+substituting the result into the weighted complement coefficient bound
+(WeightedComplementLedger), gives (TwoLedgerOneRow).
+
 ## Corollary 41: The Global Common-Image Ledger Is Endpoint-Only
 
 Let `GCI` be the set of monic degree-`c` split core locators `L` for which
@@ -15039,6 +15125,9 @@ Corollary 40.105 identifies the endpoint of this local accounting: the
 root-anchor excess is exactly the support-star excess of double-collapse
 supports where both the one-row generator and the received word restrict to
 `RS_k`, giving a weighted-to-double-collapse ledger bound.
+Corollary 40.106 packages the result as a two-ledger closure criterion:
+bound the unweighted `(j+1)` complement residue packing ledger and the
+`j`-complement double-collapse intersection ledger.
 Corollary 41 packages the common-image branch into endpoint-type ledgers; it
 does not prove the endpoint rank hypotheses needed for the displayed
 `(q+2)binom(n,b)` bound. Corollary 42 packages the globally full core ledger
