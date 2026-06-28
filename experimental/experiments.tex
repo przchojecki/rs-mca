@@ -2385,6 +2385,23 @@ By absorbing the nonzero parity-check scalars, these moment data are local
 Reed-Solomon syndrome data.  Hence a proof of the four cutoff minors must use
 active M1 geometry or quotient/aperiodic structure; row counts and local
 syndrome normalization alone cannot supply it.
+The positive structural form of the same kernel condition is a
+rational-supercode stratum.  Let \(C^{(s)}=\RS[F,D,n-s]\), the supercode cut
+out by the first \(s\) syndrome checks.  For \(w=\operatorname{Syn}(y)\) and
+\(Q\in F[X]_{<m}\),
+\[
+  H_{s,m-1}(w)Q=0
+  \quad\Longleftrightarrow\quad
+  Qy\in C^{(s)}.
+\]
+Indeed the \(a\)-th entry is
+\(\operatorname{Syn}(Qy)_a=\sum_iq_iw_{a+i}\).  If \(Q\) is root-free on \(D\),
+this says \(y=P/Q\) on \(D\) with \(\deg P<n-s\).  Therefore, at the cutoff,
+the scalar kernels put \(Qf\) or \(Qg\) in \(C^{(t+r_{hw})}\), the ordinary
+paired kernel puts both \(Qf,Qg\) in \(C^{(t+r_{hw}-1)}\), and the shifted
+paired kernel puts \(XQf,XQg\) in the same supercode.  Thus minor failure
+after fixed-root stripping is exactly a low-degree root-free rational
+representation of one or both endpoints into a larger RS supercode.
 The common-core and two-denominator formulas persist verbatim after this
 root-free replacement.  With \(C=\gcd(D:D\in M_{\min})\), \(\gamma=\deg C\),
 and \(E_D=D/C\),

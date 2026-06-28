@@ -30,6 +30,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 cutoff kernels are rational-supercode strata
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_boundary_off_external_anchor_normal_form.md`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / PROOF-PROGRAM.
+- **What is being added:** A coding interpretation of cutoff kernel failure:
+  `H_{s,m-1}(Syn(y))Q=0` iff the pointwise product `Qy` lies in the larger RS
+  supercode `RS[F,D,n-s]`; root-free `Q` gives a rational representation
+  `y=P/Q`.
+- **How it is useful:** This identifies the remaining half-window minor
+  obstruction as a low-degree rational-supercode stratum for one or both line
+  endpoints, which is the kind of object quotient-periodic or aperiodic M1
+  structure might charge.
+- **What to do next:** Relate these rational-supercode strata to the active
+  noncontained line geometry and determine when they are quotient-periodic,
+  tangent, or genuinely aperiodic.
+
 ### 2026-06-28 - M1 cutoff-minor obstruction is syndrome-realizable
 
 - **Agent/model:** AllenGrahamHart / Codex audit.

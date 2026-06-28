@@ -9237,6 +9237,97 @@ All these entries vanish when the first `s_c` moments vanish and `u=v=w`, so
 realization by choosing supported word coefficients with
 `lambda_x y_x=mu_x`.
 
+## Corollary 40.74: Cutoff Kernel Failure Is A Rational-Supercode Stratum
+
+Let `0<=s<=r`, and write
+
+```text
+C^{(s)} = RS[F,D,n-s]
+```
+
+for the Reed-Solomon supercode cut out by the first `s` syndrome checks.  Thus
+for any word `y:D->F`,
+
+```text
+y in C^{(s)}
+iff
+Syn(y)_a=0,        0<=a<s.
+```
+
+Let `w=Syn(y)` and let `Q in F[X]_{<m}`.  Then
+
+```text
+H_{s,m-1}(w)Q=0
+```
+
+if and only if the pointwise product word
+
+```text
+(Qy)(x)=Q(x)y(x)
+```
+
+lies in `C^{(s)}`.  If `Q` is root-free on `D`, this is equivalently a
+rational-supercode representation
+
+```text
+y(x)=P(x)/Q(x)        on D,        deg P<n-s.
+```
+
+At the half-window cutoff `r_hw`, put `s_0=t+r_hw` and `s_1=t+r_hw-1`.  For a
+root-free `Q` of degree `<m`, the four cutoff kernels have the following
+coding interpretation:
+
+```text
+Q in ker A_u(m)       iff Qf in C^{(s_0)},
+Q in ker A_v(m)       iff Qg in C^{(s_0)},
+Q in ker A_uv(m)      iff Qf,Qg in C^{(s_1)},
+Q in ker A_Suv(m)     iff XQf,XQg in C^{(s_1)}.
+```
+
+In the multiplicative-domain case `0 notin D`, the shifted condition is the
+same as saying that both `f` and `g` have a common root-free denominator
+`XQ` into the supercode `C^{(s_1)}`.
+
+Thus, after fixed-root/root-slice pieces are separated, failure of the
+half-window cutoff minors from Corollary 40.72 is exactly the existence of a
+low-degree root-free rational representation of one endpoint, or of both
+endpoints with a common denominator, into a larger Reed-Solomon supercode.
+This is the structural object that must be ruled out or charged by active M1
+geometry, quotient-periodic separation, or aperiodic packing estimates.
+
+### Proof
+
+Write
+
+```text
+Q(X)=sum_i q_i X^i.
+```
+
+For `0<=a<s`,
+
+```text
+Syn(Qy)_a
+ = sum_{x in D} lambda_x Q(x)y(x)x^a
+ = sum_i q_i sum_{x in D} lambda_x y(x)x^{a+i}
+ = sum_i q_i w_{a+i}.
+```
+
+The last expression is the `a`-th row of `H_{s,m-1}(w)Q`.  Hence the Hankel
+kernel equation is equivalent to the first `s` syndrome checks of `Qy`
+vanishing, which is equivalent to `Qy in C^{(s)}` by the definition of the
+supercode.  If `Q` is root-free on `D`, divide pointwise by `Q` to obtain
+`y=P/Q` with `P` the degree-`<n-s` polynomial representing `Qy` on `D`.
+
+The four cutoff interpretations are the same identity applied to
+`y=f`, `y=g`, to both endpoint words simultaneously, and finally to
+
+```text
+Syn(XQy)_a = Syn(Qy)_{a+1},
+```
+
+which is the shifted Hankel equation.  If `0 notin D`, multiplication by `X`
+does not introduce a domain zero, so `XQ` is root-free exactly when `Q` is.
+
 ## Corollary 41: The Global Common-Image Ledger Is Endpoint-Only
 
 Let `GCI` be the set of monic degree-`c` split core locators `L` for which
@@ -12075,6 +12166,9 @@ Corollary 40.73 shows those cutoff minor targets are extra M1 structure by
 constructing syndrome-realizable local moment data where all four fail via the
 root-free constant recurrence; it does not construct an active noncontained
 M1 counterexample.
+Corollary 40.74 identifies cutoff kernel failure with a low-degree
+rational-supercode representation of the endpoint words; it does not prove
+that those strata are small or quotient-periodic in the actual M1 instances.
 Corollary 41 packages the common-image branch into endpoint-type ledgers; it
 does not prove the endpoint rank hypotheses needed for the displayed
 `(q+2)binom(n,b)` bound. Corollary 42 packages the globally full core ledger
