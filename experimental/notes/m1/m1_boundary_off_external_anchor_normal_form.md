@@ -6053,6 +6053,58 @@ consecutive common-image frontier ledgers from the bottom systems
 by `2h` on the remaining ledger.  Summing the displayed charges gives
 (HybridMixedLedger).
 
+## Corollary 40.31: Hybrid Overlaps Are A Separation Charge, Not A Raw Tail Addend
+
+Keep the notation of Corollary 40.30, and let `TailUnion_hw` be the unlabelled
+set of projective root-free certificate-denominator classes occurring anywhere
+in the half-window tail, across the four cutoff residual families
+
+```text
+u,        v,        (u,v),        (S u,S v).
+```
+
+Then, for raw denominator-class counting,
+
+```text
+|TailUnion_hw| <= FamilyBudget_hw.                  (RawTailBudget)
+```
+
+In particular, `HybridOverlap_hw` is not an additional raw denominator-count
+addend.  It is a separation charge: it gives an explicit way to remove the
+cross-family overlap systems before applying the family-disjoint closure of
+Corollary 40.22.
+
+Thus there are two compatible ledgers:
+
+1. raw half-window denominator count:
+
+```text
+FamilyBudget_hw;
+```
+
+2. proof-separation closure ledger:
+
+```text
+HybridOverlap_hw + FamilyBudget_hw,
+```
+
+where the second ledger intentionally pays the named overlap systems first so
+that every remaining uncharged denominator class has a unique family label.
+
+### Proof
+
+The family-labelled set `TailCert_all` from Corollary 40.18 maps onto the
+unlabelled union `TailUnion_hw` by forgetting the family label.  Therefore the
+unlabelled raw count is at most the labelled count, which is bounded by
+`FamilyBudget_hw`.
+
+The five cutoff overlap systems of Corollaries 40.19--40.21 are subsets of
+this same unlabelled half-window tail.  Corollary 40.29 bounds them by
+`HybridOverlap_hw`; charging them first is useful because Corollary 40.22 then
+makes the remaining tail family-disjoint.  This is a logical separation
+ledger, not a claim that the raw union has size
+`FamilyBudget_hw + HybridOverlap_hw`.
+
 ## Corollary 41: The Global Common-Image Ledger Is Endpoint-Only
 
 Let `GCI` be the set of monic degree-`c` split core locators `L` for which
@@ -8760,6 +8812,8 @@ absent or that the resulting budget is below the final M1 reserve. Corollary
 minima; it does not prove either savings mechanism is always strong enough.
 Corollary 40.30 packages these terms into a mixed-ladder upper ledger; it does
 not prove the pre-half residuals are small or that this upper ledger is sharp.
+Corollary 40.31 separates raw denominator counting from proof-separation
+accounting; it does not improve the raw `FamilyBudget_hw` count.
 Corollary 41 packages the common-image branch into endpoint-type ledgers; it
 does not prove the endpoint rank hypotheses needed for the displayed
 `(q+2)binom(n,b)` bound. Corollary 42 packages the globally full core ledger
