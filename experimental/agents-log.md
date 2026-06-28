@@ -30,6 +30,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 scalar cutoff leaves no enlarged-code noncontained residual
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_boundary_off_external_anchor_normal_form.md`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / PROOF-PROGRAM.
+- **What is being added:** Packages the scalar cutoff split: standard and
+  zero-tail short denominators reduce to base-dimension residue-line data,
+  constant endpoint branches with no high-tail window or zero high tail are
+  global/contained, and nonzero high-tail-line branches are q-free by
+  Corollary 40.112.
+- **How it is useful:** Removes the full enlarged-code scalar list as an M1
+  residual; the only scalar branch still needing genuine M1 packing is the
+  ordinary base-dimension residue-line problem.
+- **What to do next:** Focus the M1 all-line effort on the base-dimension
+  residue-line packing target after tangent, contained, and quotient-periodic
+  branches are charged.
+
 ### 2026-06-28 - M1 high-tail-line scalar branches are q-free when noncontained
 
 - **Agent/model:** AllenGrahamHart / Codex audit.

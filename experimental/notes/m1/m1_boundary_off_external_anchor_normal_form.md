@@ -12614,6 +12614,69 @@ bound.  Any other choice of `Phi` only changes `psi` by an element of
 `RS[F,D,k]`, so the rank-one branch and the noncontained condition are
 unchanged.
 
+## Corollary 40.113: The Scalar Cutoff Has No Enlarged-Code Noncontained Residual
+
+Specialize to the scalar half-window cutoff of Corollary 40.85, and keep the
+agreement threshold
+
+```text
+a=n-j,        a>=k+1.
+```
+
+After separating the reciprocal `Qf` zero-slope exception, each scalar cutoff
+branch with support-wise noncontained finite parameters falls into one of the
+following cases.
+
+1. A standard positive denominator, `e=deg Q>=j-r_hw`, is the base-dimension
+   degree-`e` residue-line datum of Corollary 40.82, unless the represented
+   endpoint is already global, in which case there is no noncontained
+   contribution.
+2. A positive short denominator, `1<=e<j-r_hw`, with zero controlling high
+   tail `h=tau_K(H)` collapses to the same base-dimension degree-`e`
+   residue-line datum by Corollary 40.84.
+3. A positive short denominator with `h!=0`, or a constant endpoint branch
+   with `h!=0`, contributes at most `binom(n,j)` noncontained finite
+   parameters, hence at most `binom(n,j)/q` to line-MCA density, by
+   Corollary 40.112.
+4. A constant endpoint branch with no high-tail window (`r_hw>=j`), or with
+   `r_hw<j` and `h=0`, is global on the relevant endpoint and contributes no
+   support-wise noncontained finite parameter, apart from the already
+   separated formal zero-slope exception in the reciprocal chart.
+
+Consequently the scalar cutoff branch leaves no full `K`-dimensional
+enlarged-code list and no separate high-tail-line noncontained packing target.
+The only scalar residual still requiring genuine M1 packing is ordinary
+base-dimension residue-line data; the nonzero high-tail-line side is q-free,
+and the collapsed/global cases are charged to the existing base or contained
+ledgers.
+
+### Proof
+
+The standard positive-denominator case is Corollary 40.82.  At the scalar
+cutoff, Corollary 40.85 says that the only positive denominators not already
+standard have
+
+```text
+1<=e<j-r_hw,
+```
+
+and produce enlarged dimension `K=k+j-r_hw-e>k`.  Corollary 40.84 rewrites
+their return slice as the high-tail equation controlled by `h=tau_K(H)`.
+If `h=0`, the enlarged witness polynomial lies in `F[X]_<k`, so the branch
+is the base-dimension residue-line datum.  If `h!=0`, Corollary 40.112
+applies to the common chart equations and gives the `binom(n,j)` parameter
+bound.
+
+For `e=0`, if `r_hw>=j`, then `n-s=k+j-r_hw<=k`, so the represented endpoint
+already lies in `RS[F,D,k]` and no noncontained finite parameter remains.  If
+`r_hw<j`, Corollary 40.86 is the constant endpoint version of the same split.
+When the endpoint high tail vanishes, the represented endpoint is a global
+degree-`<k` codeword.  When the high tail is nonzero, the constant branch is
+a high-tail-line scalar branch with `Q=1` and `B=0`, so Corollary 40.112
+again gives the q-free charge.  These cases exhaust the scalar cutoff split,
+except for the reciprocal `Qf` zero slope that was never part of the nonzero
+reciprocal parametrization.
+
 ## Corollary 41: The Global Common-Image Ledger Is Endpoint-Only
 
 Let `GCI` be the set of monic degree-`c` split core locators `L` for which
