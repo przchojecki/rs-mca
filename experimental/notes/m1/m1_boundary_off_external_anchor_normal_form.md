@@ -6685,6 +6685,59 @@ Phi(L)=1+q+...+q^{L-1} <= L q^{L-1} <= L n^{a(L-1)}.
 Also `h<=n` by hypothesis.  Substituting these two estimates gives the
 displayed bound.
 
+## Corollary 40.42: Two Surviving Denominators Have An Exact Tail Formula
+
+Keep the notation of Corollary 40.38, and suppose the distinct
+divisibility-minimal antichain has exactly two elements
+
+```text
+M_min={D_1,D_2}.
+```
+
+Let
+
+```text
+C=gcd(D_1,D_2),        gamma=deg C,
+E_i=D_i/C,             e_i=deg E_i        for i=1,2.
+```
+
+Then `gcd(E_1,E_2)=1`, and the raw half-window tail arrangement is exactly
+
+```text
+ArrBudget_hw =
+  Phi(h-gamma-e_1)
++ Phi(h-gamma-e_2)
+- Phi(h-gamma-e_1-e_2),                            (TwoDenominatorTail)
+```
+
+with the convention that `Phi(m)=0` for `m<=0` in this displayed formula.
+Consequently the direct raw-tail mixed-ladder ledger is
+
+```text
+Phi(h-gamma-e_1)
++ Phi(h-gamma-e_2)
+- Phi(h-gamma-e_1-e_2)
++ 2h.                                              (TwoDenominatorMixedLedger)
+```
+
+In particular, if both `h-gamma-e_i<=L`, then the tail term is at most
+`2 Phi(L)`, and if `gamma+min(e_1,e_2)>=h`, the half-window tail vanishes.
+
+### Proof
+
+Because `C` is the gcd of `D_1` and `D_2`, the quotient denominators
+`E_1=D_1/C` and `E_2=D_2/C` are coprime.  Corollary 40.38 therefore applies
+with two pairwise-coprime quotient denominators.  Inclusion-exclusion has only
+the two singleton terms and their intersection.  The singleton divisor
+subspaces have projective sizes `Phi(h-gamma-e_1)` and `Phi(h-gamma-e_2)`,
+while their intersection is the divisor subspace for `E_1E_2`, of projective
+size `Phi(h-gamma-e_1-e_2)`.  This proves (TwoDenominatorTail), and adding
+the bottom finite frontier charge `2h` from Corollary 40.36 gives
+(TwoDenominatorMixedLedger).
+
+The final two statements are immediate from the displayed formula and the
+nonnegativity convention for `Phi`.
+
 ## Corollary 41: The Global Common-Image Ledger Is Endpoint-Only
 
 Let `GCI` be the set of monic degree-`c` split core locators `L` for which
@@ -9427,6 +9480,9 @@ instances.
 Corollary 40.41 identifies the residual dimension condition that would give a
 polynomial-field raw-tail ledger; it does not prove the required lower bound
 `gamma+e_min>=h-L`.
+Corollary 40.42 gives an exact formula when two minimal denominators survive;
+it does not prove the raw tail always reduces to two denominators or that the
+two quotient degrees clear the reserve.
 Corollary 41 packages the common-image branch into endpoint-type ledgers; it
 does not prove the endpoint rank hypotheses needed for the displayed
 `(q+2)binom(n,b)` bound. Corollary 42 packages the globally full core ledger

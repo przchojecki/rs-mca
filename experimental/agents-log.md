@@ -362,7 +362,10 @@ Keep entries concise and link to the relevant files.
   still gives `ArrBudget_hw <= |M_min| Phi(h-gamma-e_min)`, and `e_min>=1`
   whenever at least two minimal denominators survive.  Consequently, proving
   `gamma+e_min >= h-L` reduces the direct mixed ledger to `4Phi(L)+2h`, and
-  for `q<=n^a`, `h<=n`, fixed `L>=1`, to `4L n^{a(L-1)}+2n`.  Since
+  for `q<=n^a`, `h<=n`, fixed `L>=1`, to `4L n^{a(L-1)}+2n`.  In the
+  two-denominator antichain case, the quotients after factoring the gcd are
+  automatically coprime, giving the exact tail formula
+  `Phi(h-gamma-e_1)+Phi(h-gamma-e_2)-Phi(h-gamma-e_1-e_2)`.  Since
   the named overlap systems are subsets of the same `TailUnion_hw`, the
   separation charge `OverlapSep_hw`, defined as the minimum of
   `SideHybridOverlap_hw` and `UnionRankOverlap_hw`, is now a structural
