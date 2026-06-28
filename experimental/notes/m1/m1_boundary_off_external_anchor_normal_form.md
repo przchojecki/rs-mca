@@ -14170,6 +14170,51 @@ The coprimality of `N` with `Q_0` is already part of Corollary 40.131.  If
 `d>=r_{u-s}`, no nonzero polynomial can satisfy the displayed degree bound,
 so the corresponding source fiber is empty.
 
+## Corollary 40.133: Small Residual Budgets Have Explicit Root-Free Types
+
+Keep the setup of Corollary 40.131 and put
+
+```text
+R=r_{u-s}.
+```
+
+In any nonempty source fiber of (DropTwistCommute), a nonconstant root-free
+factor `H` must satisfy
+
+```text
+1<=deg H<=R-1,
+```
+
+and the residual multiplier satisfies
+
+```text
+deg N < R-deg H.                                  (SmallBudgetResidual)
+```
+
+Consequently:
+
+1. If `R<=1`, then `H` is constant.  No external linear factor or irreducible
+   root-free factor survives the combined reduction.
+2. If `R=2`, then every nonconstant root-free factor is linear and the
+   residual multiplier `N` is constant.  After split domain roots have been
+   separated, the only moving root-free piece is one external anchor.
+3. If `R=3`, then a nonconstant root-free factor is either linear with
+   `deg N<2`, or quadratic with `N` constant.  No root-free factor of degree
+   at least three can occur.
+
+Thus the first residual budgets in the fixed-class M1 ledger are completely
+classified after complement-root deletion and twisting: root-free factors are
+absent at budget one, are single external anchors at budget two, and are only
+linear-or-quadratic root-free twists at budget three.
+
+### Proof
+
+Corollary 40.132 gives `deg N<R-deg H` for a nonzero residual multiplier.
+Hence `deg H<R` in any nonempty source fiber.  The three listed cases are the
+specializations `R<=1`, `R=2`, and `R=3`.  A nonconstant linear root-free
+factor over `F` is projectively `X-beta` with `beta notin D`; the coprimality
+condition excludes roots of `Q_0`.
+
 ## Corollary 41: The Global Common-Image Ledger Is Endpoint-Only
 
 Let `GCI` be the set of monic degree-`c` split core locators `L` for which
@@ -17200,6 +17245,9 @@ domain roots and absorbing root-free factors into `B_H` can be done in one
 step, leaving a lower-depth residual multiplier against the twisted base.
 Corollary 40.132 records the degree credit in that normal form: a root-free
 factor of degree `d` lowers the residual multiplier budget by `d`.
+Corollary 40.133 spells out the first low-budget consequences: no nonconstant
+root-free factor at residual budget one, only one external anchor at budget
+two, and only linear or quadratic root-free twists at budget three.
 Corollary 41 packages the common-image branch into endpoint-type ledgers; it
 does not prove the endpoint rank hypotheses needed for the displayed
 `(q+2)binom(n,b)` bound. Corollary 42 packages the globally full core ledger

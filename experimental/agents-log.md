@@ -30,6 +30,22 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 small residual budgets classify root-free types
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_boundary_off_external_anchor_normal_form.md`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / PROOF-PROGRAM.
+- **What is being added:** Specializes the residual degree credit to the
+  first budgets: no nonconstant root-free factors survive at budget `R<=1`,
+  only one external linear anchor can occur at `R=2`, and only linear or
+  quadratic root-free twists can occur at `R=3`.
+- **How it is useful:** Turns the combined deletion/twist normal form into a
+  concrete low-slack template classification for the fixed-class M1 ledger.
+- **What to do next:** Use the low-budget classification to close or scan the
+  first residual `N`-ledgers.
+
 ### 2026-06-28 - M1 root-free factors spend residual degree
 
 - **Agent/model:** AllenGrahamHart / Codex audit.
