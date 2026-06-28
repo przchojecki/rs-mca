@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 scalar rational-supercode support-packing bound
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_boundary_off_external_anchor_normal_form.md`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / PROOF-PROGRAM.
+- **What is being added:** Below the one-slope pairwise-intersection
+  threshold, a scalar rational-supercode stratum with
+  `d=max(n-s,k+deg Q)<=a` has at most
+  `floor(binom(n,d)/binom(a,d))` noncontained finite slopes.
+- **How it is useful:** This converts the remaining scalar cutoff-kernel
+  failures into an explicit support-packing ledger rather than a raw
+  field-size slope count.
+- **What to do next:** Compare this packing charge with the M1 reserve and
+  isolate whether the remaining hard range is `d>a` or packings too large for
+  the desired bound.
+
 ### 2026-06-28 - M1 scalar rational-supercode strata pairwise charge
 
 - **Agent/model:** AllenGrahamHart / Codex audit.

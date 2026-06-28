@@ -9519,6 +9519,116 @@ globally a codeword.  The preceding paragraph then makes every nonzero
 explained slope contained.  Thus at most one finite slope in the `Qf`
 one-sided stratum can be noncontained.
 
+## Corollary 40.77: Scalar Rational-Supercode Strata Have A Support-Packing Bound
+
+Keep the notation of Corollary 40.76, with
+
+```text
+d=max(n-s, k+e).
+```
+
+Assume
+
+```text
+1 <= d <= a.
+```
+
+Fix one of the two scalar rational-supercode strata
+
+```text
+Qf in RS[F,D,n-s]        or        Qg in RS[F,D,n-s],
+```
+
+with `Q` root-free on `D`.  Let `Bad_Q` be the set of finite slopes in this
+stratum which are explained on at least `a` points and are support-wise
+noncontained.  Then
+
+```text
+|Bad_Q| <= floor( binom(n,d) / binom(a,d) ).        (ScalarPack)
+```
+
+Equivalently, even when the global pairwise-intersection threshold
+`2a-n>=d` fails, the surviving noncontained scalar slopes form a `d`-packing
+of their agreement supports.  The one-slope charge of Corollary 40.76 is the
+special case where every two `a`-supports already intersect in at least `d`
+points.
+
+Applied to the scalar cutoff kernels at the first half-window depth, put
+`s=t+r_hw` and `e=deg Q`.  Whenever
+
+```text
+1 <= max(n-(t+r_hw), k+e) <= a,
+```
+
+the `A_u` and `A_v` scalar cutoff-kernel strata each contribute at most
+
+```text
+floor( binom(n, max(n-(t+r_hw), k+e)) /
+       binom(a, max(n-(t+r_hw), k+e)) )
+```
+
+noncontained finite slopes after fixed-root/root-slice charges have been
+separated.
+
+### Proof
+
+The proof of Corollary 40.76 is local in a pair of agreement supports.
+
+First suppose `Qg in RS[F,D,n-s]`.  If two distinct noncontained slopes
+`z_1,z_2` have explaining supports `S_1,S_2` with
+
+```text
+|S_1 cap S_2| >= d,
+```
+
+then the same subtraction argument gives the polynomial identity
+
+```text
+Q(C_2-C_1)=(z_2-z_1)P_g.
+```
+
+Thus `g` is a global codeword, and every explained slope is support-wise
+contained on its explaining support.  This contradicts the choice of the two
+slopes.  Hence any two noncontained slopes in the `Qg` stratum have agreement
+supports whose intersection has size `<d`.
+
+Now suppose `Qf in RS[F,D,n-s]`.  The same comparison of
+
+```text
+(Q C_i-P_f)/z_i
+```
+
+shows that two distinct nonzero noncontained slopes cannot have explaining
+supports intersecting in at least `d` points.  Also, since `d<=a`, the zero
+slope cannot coexist with a nonzero noncontained slope: if `z=0` is explained
+on `S_0`, then `P_f=Q C_0` on at least `a>=d` points, so `f` is a global
+codeword and every nonzero explained slope is support-wise contained.
+
+Thus, in either scalar stratum, after choosing one explaining support `S_z`
+for each slope in `Bad_Q`, the selected supports may be taken to satisfy
+
+```text
+|S_z cap S_w| < d        for z != w,
+```
+
+except for the harmless case where `Bad_Q` consists only of the zero slope.
+Choose an `a`-element subset `T_z subset S_z` for each selected support.  Then
+the `T_z` also have pairwise intersections of size `<d`, so no `d`-subset of
+`D` can lie in two of them.  Counting pairs
+
+```text
+(z,J),        z in Bad_Q,        J subset T_z,        |J|=d,
+```
+
+gives
+
+```text
+|Bad_Q| binom(a,d) <= binom(n,d).
+```
+
+The displayed bound follows.  If `Bad_Q` consists only of the zero slope, the
+same inequality is automatic because `d<=a<=n`.
+
 ## Corollary 41: The Global Common-Image Ledger Is Endpoint-Only
 
 Let `GCI` be the set of monic degree-`c` split core locators `L` for which
@@ -12365,7 +12475,9 @@ noncontained slope above the displayed interpolation threshold; it does not
 settle scalar strata or paired strata above that threshold.
 Corollary 40.76 gives an analogous one-slope charge for scalar
 rational-supercode strata under the stronger pairwise-intersection threshold;
-it does not settle scalar strata below that threshold.
+Corollary 40.77 extends the same local argument below that threshold to a
+q-free support-packing bound when `d<=a`; it does not prove that this packing
+ledger is small enough for the final M1 reserve or handle the `d>a` range.
 Corollary 41 packages the common-image branch into endpoint-type ledgers; it
 does not prove the endpoint rank hypotheses needed for the displayed
 `(q+2)binom(n,b)` bound. Corollary 42 packages the globally full core ledger

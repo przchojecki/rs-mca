@@ -2432,6 +2432,19 @@ contained.  The \(Qf\)-stratum is the same after comparing
 \(f\) global once \(a\ge d\).  Therefore each scalar rational-supercode
 stratum contributes at most one noncontained finite slope under this
 pairwise-intersection threshold.
+Below this threshold the same proof still gives a support-packing ledger.  If
+\(1\le d\le a\), then two noncontained slopes in the same scalar stratum cannot
+have explaining supports intersecting in \(d\) points: otherwise the preceding
+pairwise interpolation forces the relevant endpoint to be a global codeword.
+Choosing one \(a\)-subset of each support therefore gives a family with no
+shared \(d\)-subset, and hence
+\[
+  |\operatorname{Bad}_Q|
+  \le \left\lfloor{\binom n d\over \binom a d}\right\rfloor .
+\]
+Thus scalar cutoff-kernel failures below the one-slope range are at least
+converted into an explicit \(q\)-free support-packing charge, rather than an
+unstructured field-size slope count.
 The common-core and two-denominator formulas persist verbatim after this
 root-free replacement.  With \(C=\gcd(D:D\in M_{\min})\), \(\gamma=\deg C\),
 and \(E_D=D/C\),
