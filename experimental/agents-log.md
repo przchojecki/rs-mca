@@ -30,6 +30,23 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 fixed-class complement-root dichotomy closes
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_boundary_off_external_anchor_normal_form.md`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / PROOF-PROGRAM.
+- **What is being added:** Combines the non-core normal form and root-heavy
+  core descent into a single fixed-class complement-root dichotomy, with
+  accounted bound
+  `binom(n,j+u)(sum_{s=0}^u binom(j+u,s)+binom(j+u,u))`.
+- **How it is useful:** Gives a compact closure statement: complement roots
+  cost only explicit root choices before the residual becomes either a reduced
+  product-class packet or a depth-zero core packet.
+- **What to do next:** Move from fixed primitive classes to the all-line
+  active base-class/residue-line packing problem.
+
 ### 2026-06-28 - M1 root-heavy landings descend to core packets
 
 - **Agent/model:** AllenGrahamHart / Codex audit.

@@ -3264,6 +3264,16 @@ injects the landing into the labeled depth-zero core ledger, hence
 So both sides of the complement-root dichotomy are fixed-class packet charges:
 the non-core branch is the reduced normal form, and the root-heavy branch is a
 depth-zero core packet.
+Putting the two branches together, every fixed primitive exchange-\(u\)
+landing is accounted for by the complement-root dichotomy
+\[
+  \binom n {j+u}
+  \left(\sum_{s=0}^u\binom{j+u}{s}+\binom{j+u}{u}\right).
+\]
+This is not meant to improve the direct fixed-class disjointness bound; it is
+the explicit decomposition showing that complement roots contribute only
+root-choice charges before the residual is reduced to a product packet or a
+core-depth packet.
 The common-core and two-denominator formulas persist verbatim after this
 root-free replacement.  With \(C=\gcd(D:D\in M_{\min})\), \(\gamma=\deg C\),
 and \(E_D=D/C\),

@@ -14839,6 +14839,63 @@ target has size at most `binom(n-u,j)`.  Summing over the `binom(n,u)` choices
 of `S` proves the first bound, and the displayed binomial identity gives the
 second form.
 
+## Corollary 40.144: Fixed-Class Complement-Root Dichotomy Closes
+
+Keep the primitive base setup of Corollary 40.122, and fix `0<=u<=t`.  Let
+
+```text
+E_u(Q_0,B_0)
+ = { ([M],C) : [M] in P_u^x(Q_0),
+                C in Comp_{u,[M]}(Q_0,B_0) }.
+```
+
+Then every landing in `E_u(Q_0,B_0)` lies in exactly one of two branches:
+
+1. the non-core-descending branch `NC_u(Q_0,B_0)` of Corollary 40.142, where
+   `|R_C|<=u` and the landing has the exact normal form
+   `(S,[P],C_0)` with `P` nonvanishing on `C_0`;
+2. the root-heavy branch `HC_u(Q_0,B_0)` of Corollary 40.143, where
+   `|R_C|>u` and the landing injects into a labeled depth-zero core packet
+   after choosing `u` complement roots.
+
+Consequently the accounted complement-root decomposition satisfies
+
+```text
+|E_u(Q_0,B_0)|
+ <= binom(n,j+u)
+    ( sum_{s=0}^u binom(j+u,s) + binom(j+u,u) ).  (RootDichotomyClosure)
+```
+
+This is a structural closure statement, not a sharper substitute for the
+direct fixed-class disjointness bound of Corollary 40.122.  Its role is to
+show that complement roots create only explicit root-choice charges: after
+those choices, the residual object is either a reduced product-class packet or
+a depth-zero core packet.
+
+### Proof
+
+For a landing `([M],C)`, the complement-root set
+
+```text
+R_C={ beta in C : M(beta)=0 }
+```
+
+has either `|R_C|<=u` or `|R_C|>u`, and these alternatives are disjoint.
+Corollary 40.142 identifies and bounds the first branch by
+
+```text
+binom(n,j+u) sum_{s=0}^u binom(j+u,s).
+```
+
+Corollary 40.143 injects and bounds the second branch by
+
+```text
+binom(n,j+u) binom(j+u,u).
+```
+
+Adding the two labeled bounds proves (RootDichotomyClosure).  The final
+interpretation is exactly the content of the two cited corollaries.
+
 ## Corollary 41: The Global Common-Image Ledger Is Endpoint-Only
 
 Let `GCI` be the set of monic degree-`c` split core locators `L` for which
@@ -17902,6 +17959,9 @@ no root on the reduced complement, with root-heavy cases descending to core
 depth.
 Corollary 40.143 bounds that root-heavy case by injecting it into labeled
 depth-zero core packets after choosing `u` complement roots.
+Corollary 40.144 closes the fixed-class complement-root dichotomy: every
+exchange landing is accounted for by either the reduced normal form or the
+root-heavy core packet, with only explicit root-choice charges.
 Corollary 41 packages the common-image branch into endpoint-type ledgers; it
 does not prove the endpoint rank hypotheses needed for the displayed
 `(q+2)binom(n,b)` bound. Corollary 42 packages the globally full core ledger
