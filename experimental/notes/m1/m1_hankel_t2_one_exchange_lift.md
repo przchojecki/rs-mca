@@ -152,6 +152,37 @@ set `U`.  This is the local packet form of the statement that residual top
 packets are not independent slope growth; they have moved to a lower-row
 Hankel kernel that must be charged separately.
 
+There is a sharper statement for full top packets.  Suppose a `(j+1)`-set `U`
+has every `j`-subcomplement
+
+```text
+T_x = U\{x},        x in U,
+```
+
+active at the same slope.  The polynomials
+
+```text
+ell_{T_x} = ell_U/(X-x),        x in U,
+```
+
+form a basis of the vector space of polynomials of degree at most `j`.  Since
+the two Hankel rows vanish on each `ell_{T_x}`, they vanish on every degree
+`<=j` polynomial.  Hence all syndrome coordinates
+
+```text
+Syn_0(w_lambda), ..., Syn_{j+1}(w_lambda)
+```
+
+are zero.  But in the `t=2` row, `r=n-k=j+2`.  Therefore
+
+```text
+Syn(w_lambda)=0.
+```
+
+Equivalently, `w_lambda in C`.  Full top packets are thus global-codeword
+slopes, belonging to the contained/tangent ledger rather than to residual
+primitive top-packet growth.
+
 ## Exact Verifier
 
 The script
@@ -184,18 +215,18 @@ python3 experimental/scripts/verify_m1_hankel_t2_triangle_packets.py
 enumerates the combined syndrome `Syn(w_lambda)` directly, so it can check the
 first genuine top-triangle case without a slow quotient-pair scan.
 
-| field/domain | syndromes | one-exchange edges | star triangles | top triangles | nonzero top triangles |
-| --- | ---: | ---: | ---: | ---: | ---: |
-| `F_5`, `H=F_5^*`, `n=4,k=1,a=3,j=1` | 125 | 6 | 4 | 0 | 0 |
-| `F_7`, `H=F_7^*`, `n=6,k=2,a=4,j=2` | 2401 | 420 | 420 | 20 | 0 |
-| `F_7`, `H=F_7^*`, `n=6,k=3,a=5,j=1` | 343 | 15 | 20 | 0 | 0 |
+| field/domain | syndromes | one-exchange edges | star triangles | top triangles | full top cliques | nonzero full top cliques |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| `F_5`, `H=F_5^*`, `n=4,k=1,a=3,j=1` | 125 | 6 | 4 | 0 | 6 | 0 |
+| `F_7`, `H=F_7^*`, `n=6,k=2,a=4,j=2` | 2401 | 420 | 420 | 20 | 20 | 0 |
+| `F_7`, `H=F_7^*`, `n=6,k=3,a=5,j=1` | 343 | 15 | 20 | 0 | 15 | 0 |
 
 The `F_7,k=2,j=2` scan is the first exact top-packet check in this file.  It
 finds twenty top triangles, all on the zero combined syndrome.  This is not an
 asymptotic claim, but it is a useful falsification check: in the smallest
 genuine top case, nonzero same-slope triangles are already star/root-slice
-events, while top events are confined to the most degenerate lifted `t=1`
-kernel.
+events, while full top events are confined to the global-codeword/tangent
+ledger.
 
 These are small exact checks, not asymptotic evidence.  Their role is to make
 the first `t=2` collision charges reproducible before moving to larger packet

@@ -30,6 +30,26 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 full top packets are zero-syndrome
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_hankel_t2_one_exchange_lift.md`,
+  `experimental/scripts/verify_m1_hankel_t2_triangle_packets.py`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / EXACT FINITE VERIFICATION.
+- **What is being added:** Strengthens the `t=2` triangle packet analysis:
+  if every `j`-subcomplement of a `(j+1)`-top set is active at the same slope,
+  then the combined syndrome vanishes.  The triangle verifier now counts full
+  top cliques and asserts that none occur at nonzero combined syndrome.
+- **How it is useful:** Rules out full top packets as residual primitive
+  same-slope growth.  They are global-codeword/tangent ledger events, leaving
+  only partial top components and variable-line packets for the next M1
+  same-slope analysis.
+- **What to do next:** Attack partial top components in larger `j`, or move to
+  the non-fixed variable-line packet residual where the existing packet lemma
+  reduces growth to different-slope two-exchange energy and boundary targets.
+
 ### 2026-06-28 - M1 t=2 triangle packet lifts
 
 - **Agent/model:** AllenGrahamHart / Codex audit.

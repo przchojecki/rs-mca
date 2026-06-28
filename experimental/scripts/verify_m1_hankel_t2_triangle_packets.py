@@ -18,6 +18,10 @@ a top packet:
 
 The script enumerates all syndrome vectors in small cases, including the first
 genuine top-triangle case (F_7, k=2, t=2, j=2).
+
+It also checks the full-top zero-syndrome lemma: if all j+1 complements
+U\\{x} inside one (j+1)-top set U are active, then the combined syndrome is
+zero.  Thus full top packets belong to the global-codeword/tangent ledger.
 """
 
 from __future__ import annotations
@@ -99,8 +103,11 @@ def analyze_case(
     star_triangles = 0
     top_triangles = 0
     nonzero_top_triangles = 0
+    full_top_cliques = 0
+    nonzero_full_top_cliques = 0
     star_examples: list[dict[str, object]] = []
     top_examples: list[dict[str, object]] = []
+    full_top_examples: list[dict[str, object]] = []
 
     for syn in itertools.product(range(p), repeat=r):
         active = [
@@ -195,6 +202,48 @@ def analyze_case(
         triangle_histogram[case_triangles] += 1
         max_triangles = max(max_triangles, case_triangles)
 
+        active_set = set(active)
+        for top in itertools.combinations(range(n), j + 1):
+            top_set = set(top)
+            top_members = [
+                index
+                for index, complement in enumerate(complements)
+                if set(complement).issubset(top_set)
+            ]
+            if len(top_members) != j + 1:
+                raise AssertionError(
+                    {
+                        "kind": "unexpected-top-member-count",
+                        "p": p,
+                        "k": k,
+                        "top": list(top),
+                        "member_count": len(top_members),
+                    }
+                )
+            if not all(index in active_set for index in top_members):
+                continue
+            full_top_cliques += 1
+            if any(syn):
+                nonzero_full_top_cliques += 1
+                raise AssertionError(
+                    {
+                        "kind": "nonzero-full-top-clique",
+                        "p": p,
+                        "k": k,
+                        "syndrome": list(syn),
+                        "top": list(top),
+                        "complements": [list(complements[index]) for index in top_members],
+                    }
+                )
+            if len(full_top_examples) < max_examples:
+                full_top_examples.append(
+                    {
+                        "syndrome": list(syn),
+                        "top": list(top),
+                        "complements": [list(complements[index]) for index in top_members],
+                    }
+                )
+
     return {
         "status": "PASS",
         "params": {
@@ -216,11 +265,14 @@ def analyze_case(
         "star_triangles": star_triangles,
         "top_triangles": top_triangles,
         "nonzero_top_triangles": nonzero_top_triangles,
+        "full_top_cliques": full_top_cliques,
+        "nonzero_full_top_cliques": nonzero_full_top_cliques,
         "active_complement_histogram": dict(sorted(active_histogram.items())),
         "one_exchange_edge_histogram": dict(sorted(edge_histogram.items())),
         "triangle_histogram": dict(sorted(triangle_histogram.items())),
         "star_examples": star_examples,
         "top_examples": top_examples,
+        "full_top_examples": full_top_examples,
     }
 
 
@@ -246,7 +298,8 @@ def print_summary(results: Sequence[dict[str, object]]) -> None:
             f"edges={result['one_exchange_edges']} "
             f"star_triangles={result['star_triangles']} "
             f"top_triangles={result['top_triangles']} "
-            f"nonzero_top={result['nonzero_top_triangles']}"
+            f"nonzero_top={result['nonzero_top_triangles']} "
+            f"full_top={result['full_top_cliques']}"
         )
     print("PASS")
 

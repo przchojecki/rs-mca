@@ -3674,10 +3674,16 @@ by the \(H_{3,j-1}\) core lift, or a top packet contained in a common
 \[
   H_{1,j+1}(\operatorname{Syn}(w_\lambda))\ell_U=0.
 \]
+If a full top packet is active, meaning all \(j+1\) complements
+\(U\setminus\{x\}\) are active at the same slope, then these \(j+1\) locators
+form a basis of \(F[X]_{\le j}\).  The two \(t=2\) Hankel rows therefore
+annihilate every degree-\(\le j\) polynomial, so all \(j+2=r\) syndrome
+coordinates of \(w_\lambda\) vanish.  Thus \(w_\lambda\in C\), and full top
+packets belong to the global-codeword/tangent ledger.
 In the first exact top-packet case \(F_7^*\), \((n,k,a,j)=(6,2,4,2)\), the
 verifier enumerates all \(2401\) combined syndromes and finds \(420\) star
-triangles and \(20\) top triangles; all top triangles occur on the zero
-combined syndrome.
+triangles, \(20\) top triangles, and \(20\) full top cliques; every full top
+clique has zero combined syndrome.
 The common-core and two-denominator formulas persist verbatim after this
 root-free replacement.  With \(C=\gcd(D:D\in M_{\min})\), \(\gamma=\deg C\),
 and \(E_D=D/C\),
