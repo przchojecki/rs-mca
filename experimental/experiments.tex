@@ -2176,15 +2176,14 @@ inclusion-exclusion to
 \]
 where \(r_S\) is the rank of the two missing lower endpoint rows on the shifted
 paired parent kernel.
-In refined mixed-ladder form, after the
-pre-half-window residuals, the cutoff overlap multiplier ledgers, and the
-cutoff family multiplier ledgers are charged, the only remaining finite frontier
-charge is the bottom finite parameter set
-\(E_{r_0,>b}\cup\Theta_{r_0,>b}\), of size at most \(2h\) on the remaining
-ledger.  Equivalently, apart from the pre-half-window longer-Pade residual
-families, the current consumable upper ledger is
+In refined mixed-ladder form, after the pre-half-window residuals, the cutoff
+overlap multiplier ledgers, and the raw half-window tail divisor-arrangement
+ledger are charged, the only remaining finite frontier charge is the bottom
+finite parameter set \(E_{r_0,>b}\cup\Theta_{r_0,>b}\), of size at most \(2h\)
+on the remaining ledger.  Equivalently, apart from the pre-half-window
+longer-Pade residual families, the current consumable upper ledger is
 \[
-  \mathrm{OverlapSep}_{hw}+\mathrm{FamilyBudget}_{hw}+2h,
+  \mathrm{OverlapSep}_{hw}+\mathrm{ArrBudget}_{hw}+2h,
   \qquad
   \mathrm{OverlapSep}_{hw}
   =\min\{\mathrm{SideHybridOverlap}_{hw},\mathrm{UnionRankOverlap}_{hw}\}.
@@ -2192,10 +2191,7 @@ families, the current consumable upper ledger is
 Here \(\mathrm{SideHybridOverlap}_{hw}\) is the four one-sided hybrid overlap
 sum: the endpoint-pair residual is omitted as a separate hybrid summand because
 it is contained in the one-sided overlap union.
-This is an upper ledger rather than a sharp disjoint count: the family budget
-is paid after the overlap charges and may shrink in a finer accounting.
-For raw unlabelled denominator-class counting, however, the half-window tail is
-bounded more sharply by the divisor arrangement of the active cutoff primitive
+The tail term is the divisor arrangement of the active cutoff primitive
 denominators:
 \[
   \mathrm{ArrBudget}_{hw}
@@ -2210,8 +2206,12 @@ and
   \le \mathrm{ArrBudget}_{hw}
   \le \mathrm{FamilyBudget}_{hw}.
 \]
-The overlap-separation term is used to remove cross-family intersections before
-applying the family-disjoint closure; it is not an extra raw tail-count addend.
+This is an upper ledger rather than a sharp disjoint count:
+\(\mathrm{ArrBudget}_{hw}\) bounds the whole raw unlabelled tail union, so it
+may still include overlap classes already paid by
+\(\mathrm{OverlapSep}_{hw}\).  The overlap-separation term is used to remove
+cross-family intersections before applying the family-disjoint closure; it is
+not an extra raw tail-count addend.
 Equivalently, the full three-shift common-image branch is endpoint-only.  If
 \(\mathrm{GCI}\) denotes the monic split core locators satisfying some
 three-shift common-image line, then

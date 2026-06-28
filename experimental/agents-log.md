@@ -343,21 +343,19 @@ Keep entries concise and link to the relevant files.
   summand and subtracts the ordinary and shifted two-row intersections.  The
   refined mixed-ladder closure now records the sharper
   consumable upper ledger: after pre-half residuals, the non-prehalf part is
-  charged by `OverlapSep_hw + FamilyBudget_hw + 2h`, where
+  charged by `OverlapSep_hw + ArrBudget_hw + 2h`, where
   `OverlapSep_hw=min(SideHybridOverlap_hw,UnionRankOverlap_hw)`;
   `SideHybridOverlap_hw` is the four one-sided hybrid sum, omitting the
   endpoint-pair term because it is contained in the one-sided overlap union,
-  and the final `2h` is the bottom finite frontier set
-  `E_{r_0,>b} union Theta_{r_0,>b}`.  This is
-  an upper ledger, since the family budget is paid after overlap charges and
-  may shrink under sharper disjoint accounting.  The accounting is now split
-  from raw denominator counting: the unlabelled half-window tail is bounded by
-  the divisor-arrangement inclusion-exclusion budget
-  `ArrBudget_hw <= FamilyBudget_hw`, where intersections of the ambient family
-  multiplier subspaces are counted by lcms of the active cutoff primitive
-  denominators.  The `OverlapSep_hw` term is a separation charge used to remove
-  cross-family intersections before invoking the family-disjoint closure, not
-  an extra raw tail-count addend.
+  `ArrBudget_hw <= FamilyBudget_hw` is the divisor-arrangement
+  inclusion-exclusion budget for the raw half-window tail, and intersections
+  of the ambient family multiplier subspaces are counted by lcms of the active
+  cutoff primitive denominators.  The ledger is still an upper count because
+  `ArrBudget_hw` bounds the whole tail union and may include overlap classes
+  already paid by `OverlapSep_hw`; the final `2h` is the bottom finite
+  frontier set `E_{r_0,>b} union Theta_{r_0,>b}`.  The `OverlapSep_hw` term is
+  a separation charge used to remove cross-family intersections before
+  invoking the family-disjoint closure, not an extra raw tail-count addend.
   The common-image three-shift ledger now has the analogous sliding-window
   reduction: for an image line `[y]`, the allowed deeper residuals form a space
   `W_y` of dimension at most one, nonzero only on the `q+1` extended geometric
