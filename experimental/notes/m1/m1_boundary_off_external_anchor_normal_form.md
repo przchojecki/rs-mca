@@ -16031,6 +16031,55 @@ degree at most `E`, hence fixed-class weight at most `W_E`, and there are at
 most `U_q(e_s,E)` such members.  Summing these fiberwise bounds gives
 (MinRepLedgerBound).  If `e_s+E<=n`, then `U_q(e_s,E)=0` by definition.
 
+## Corollary 40.162: Nontrivial Cutoff Fibers Live On The High-Minimal-Degree Tail
+
+Keep the setup and notation of Corollary 40.161.  Split the minimal
+representatives into
+
+```text
+S_low ={ s in S_min : e_s+E<=n },
+S_tail={ s in S_min : e_s+E>n }.
+```
+
+Then every divided evaluation fiber indexed by `S_low` is singleton inside
+`A_{<=E}`.  Moreover
+
+```text
+|Lambda(A_{<=E})|
+ <= sum_{s in S_low} W(e_s)
+    + sum_{s in S_tail} ( W(e_s)+W_E Pi_q(2E-n+1) ).   (TailEvalLedger)
+```
+
+Consequently, if `S_tail` is empty, then
+
+```text
+|Lambda(A_{<=E})| <= sum_{s in S_min} W(e_s),
+```
+
+and if additionally all `e_s<=t-j`, then
+
+```text
+|Lambda(A_{<=E})| <= |Ev(A_{<=E})|.
+```
+
+Thus the only cutoff fibers that can carry finite-domain primitive-alias
+multiplicity are those whose minimal representative already lies in the high
+degree tail `e_s>n-E`.
+
+### Proof
+
+For `s in S_low`, the condition `e_s+E<=n` gives `U_q(e_s,E)=0`; hence
+Corollary 40.161 says the corresponding fiber is singleton and contributes at
+most `W(e_s)`.  For `s in S_tail`, use the uniform bound
+
+```text
+U_q(e_s,E) <= Pi_q(2E-n+1)
+```
+
+in Corollary 40.161.  Summing the two fiber types proves (TailEvalLedger).
+The two consequences follow immediately, using `W(e_s)<=1` in the
+one-coefficient range `e_s<=t-j`.
+
 ## Corollary 41: The Global Common-Image Ledger Is Endpoint-Only
 
 Let `GCI` be the set of monic degree-`c` split core locators `L` for which
@@ -19151,6 +19200,9 @@ only its own fixed-class weight and cutoff alias multiplier.
 Corollary 40.161 gives the sharper minimal-representative skeleton form:
 each divided evaluation fiber pays the actual fixed-class weight of its
 minimal-degree representative plus only its same-or-upward alias budget.
+Corollary 40.162 isolates the remaining aliasing locus: nontrivial cutoff
+fibers can occur only over minimal representatives in the high-degree tail
+`e_s>n-E`.
 Corollary 41 packages the common-image branch into endpoint-type ledgers; it
 does not prove the endpoint rank hypotheses needed for the displayed
 `(q+2)binom(n,b)` bound. Corollary 42 packages the globally full core ledger

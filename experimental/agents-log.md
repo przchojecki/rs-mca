@@ -30,6 +30,23 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 nontrivial cutoff fibers live on high-minimal-degree tail
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_boundary_off_external_anchor_normal_form.md`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / PROOF-PROGRAM.
+- **What is being added:** Splits minimal divided-evaluation representatives
+  into `e_s+E<=n` and `e_s+E>n`, proving that only the high-minimal-degree
+  tail can carry nontrivial primitive alias multiplicity inside a cutoff
+  family.
+- **How it is useful:** Identifies the remaining finite-domain alias
+  obstruction after skeletonization as the tail `e_s>n-E`, while low minimal
+  representatives are singleton fibers.
+- **What to do next:** Target the high-minimal-degree tail with active
+  incidence or aperiodic packing arguments.
+
 ### 2026-06-28 - M1 minimal representatives give a sharper cutoff ledger
 
 - **Agent/model:** AllenGrahamHart / Codex audit.
