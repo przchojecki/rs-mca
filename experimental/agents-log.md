@@ -30,6 +30,26 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 first-boundary incidence identity is exact
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_hankel_t2_one_exchange_lift.md`,
+  `experimental/scripts/verify_m1_hankel_t2_triangle_packets.py`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / STRUCTURAL / EXACT FINITE VERIFICATION.
+- **What is being added:** Sharpens the same-slope support ledger to the exact
+  first-boundary identity
+  `j |A_{tau,j}(s)| = (n-j+1)|E_{tau+1,j-1}(s)| + |B^rm_{tau+1,j-1}(s)|`,
+  where the active edge cores are exactly the zero first-boundary cores.
+- **How it is useful:** Removes slack from the local same-slope split:
+  root-marked boundary incidences are precisely the one-extension part of the
+  first-boundary chart, while zero-boundary cores account for every active
+  star incidence.
+- **What to do next:** Bound the nonzero root-marked chart using quotient,
+  aperiodic, or fixed-root structure; the local deletion-incidence accounting
+  itself is now exact.
+
 ### 2026-06-28 - M1 same-slope active support has one ledger
 
 - **Agent/model:** AllenGrahamHart / Codex audit.

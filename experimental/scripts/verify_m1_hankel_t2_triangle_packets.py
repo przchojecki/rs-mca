@@ -43,6 +43,9 @@ support ledger
     j*|A| <= j*(n-j+1)*|E| + |B_rm|,
 
 where E is the set of active one-exchange edge cores.
+It also checks the sharper first-boundary incidence identity
+
+    j*|A| = (n-j+1)*|E| + |B_rm|.
 
 It also checks the full-top zero-syndrome lemma: if all j+1 complements
 U\\{x} inside one (j+1)-top set U are active, then the combined syndrome is
@@ -191,7 +194,11 @@ def analyze_case(
     support_hankels = support_hankel_records(domain, support_records(n, a), p)
     complements = [tuple(record["complement_indices"]) for record in support_hankels]
     locators = [tuple(record["locator"]) for record in support_hankels]
+    complement_index = {
+        complement: index for index, complement in enumerate(complements)
+    }
     locator_cache: dict[tuple[int, ...], tuple[int, ...]] = {}
+    domain_index_by_value = {value: index for index, value in enumerate(domain)}
 
     def cached_locator(core: tuple[int, ...]) -> tuple[int, ...]:
         if core not in locator_cache:
@@ -248,6 +255,8 @@ def analyze_case(
     isolated_boundary_zero_histogram: Counter[int] = Counter()
     isolated_marked_boundary_slack_histogram: Counter[int] = Counter()
     full_support_ledger_slack_histogram: Counter[int] = Counter()
+    first_boundary_zero_core_histogram: Counter[int] = Counter()
+    first_boundary_incidence_defect_histogram: Counter[int] = Counter()
     max_active = 0
     max_edges = 0
     max_triangles = 0
@@ -264,6 +273,7 @@ def analyze_case(
     max_nonzero_root_marked_boundary_count = 0
     max_nonzero_isolated_marked_boundary_slack = 0
     max_nonzero_full_support_ledger_slack = 0
+    max_nonzero_first_boundary_zero_core_count = 0
     one_exchange_edges = 0
     star_triangles = 0
     top_triangles = 0
@@ -372,6 +382,80 @@ def analyze_case(
         max_triangles = max(max_triangles, case_triangles)
 
         active_set = set(active)
+        case_first_boundary_zero_cores: set[tuple[int, ...]] = set()
+        case_first_boundary_root_marked: set[tuple[tuple[int, ...], int]] = set()
+        for core in itertools.combinations(range(n), j - 1):
+            core_set = set(core)
+            boundary_vector = hankel_apply(syn, cached_locator(core), t + 1, p)
+            if not any(boundary_vector):
+                case_first_boundary_zero_cores.add(core)
+                for root_index in range(n):
+                    if root_index in core_set:
+                        continue
+                    extension = tuple(sorted((*core, root_index)))
+                    if complement_index[extension] not in active_set:
+                        raise AssertionError(
+                            {
+                                "kind": "zero-boundary-core-extension-inactive",
+                                "p": p,
+                                "k": k,
+                                "syndrome": list(syn),
+                                "core": list(core),
+                                "extension": list(extension),
+                            }
+                        )
+                continue
+
+            if boundary_vector[0] == 0:
+                continue
+            root = boundary_vector[1] * pow(boundary_vector[0], -1, p) % p
+            if not all(
+                boundary_vector[row + 1] == root * boundary_vector[row] % p
+                for row in range(t)
+            ):
+                continue
+            root_index = domain_index_by_value.get(root)
+            if root_index is None or root_index in core_set:
+                continue
+            case_first_boundary_root_marked.add((core, root_index))
+            extension = tuple(sorted((*core, root_index)))
+            if complement_index[extension] not in active_set:
+                raise AssertionError(
+                    {
+                        "kind": "root-marked-boundary-extension-inactive",
+                        "p": p,
+                        "k": k,
+                        "syndrome": list(syn),
+                        "core": list(core),
+                        "root_index": root_index,
+                        "root_value": root,
+                        "boundary_vector": list(boundary_vector),
+                        "extension": list(extension),
+                    }
+                )
+
+        if case_first_boundary_zero_cores != case_edge_cores:
+            raise AssertionError(
+                {
+                    "kind": "edge-core-zero-boundary-mismatch",
+                    "p": p,
+                    "k": k,
+                    "syndrome": list(syn),
+                    "zero_boundary_only": [
+                        list(core)
+                        for core in sorted(
+                            case_first_boundary_zero_cores - case_edge_cores
+                        )
+                    ],
+                    "edge_core_only": [
+                        list(core)
+                        for core in sorted(
+                            case_edge_cores - case_first_boundary_zero_cores
+                        )
+                    ],
+                }
+            )
+
         case_isolated_vertices = 0
         case_root_marked_boundaries: set[tuple[tuple[int, ...], int]] = set()
         for index in active:
@@ -433,6 +517,51 @@ def analyze_case(
                 case_isolated_vertices += 1
             isolated_boundary_zero_histogram[zero_boundary_count] += 1
 
+        if case_root_marked_boundaries != case_first_boundary_root_marked:
+            raise AssertionError(
+                {
+                    "kind": "active-root-marked-boundary-mismatch",
+                    "p": p,
+                    "k": k,
+                    "syndrome": list(syn),
+                    "active_only": [
+                        (list(core), root)
+                        for core, root in sorted(
+                            case_root_marked_boundaries
+                            - case_first_boundary_root_marked
+                        )
+                    ],
+                    "boundary_only": [
+                        (list(core), root)
+                        for core, root in sorted(
+                            case_first_boundary_root_marked
+                            - case_root_marked_boundaries
+                        )
+                    ],
+                }
+            )
+        first_boundary_incidence_defect = j * len(active) - (
+            (n - j + 1) * len(case_first_boundary_zero_cores)
+            + len(case_root_marked_boundaries)
+        )
+        if first_boundary_incidence_defect != 0:
+            raise AssertionError(
+                {
+                    "kind": "first-boundary-incidence-identity-failed",
+                    "p": p,
+                    "k": k,
+                    "syndrome": list(syn),
+                    "active_complements": len(active),
+                    "zero_boundary_cores": len(case_first_boundary_zero_cores),
+                    "root_marked_boundaries": len(case_root_marked_boundaries),
+                    "defect": first_boundary_incidence_defect,
+                    "j": j,
+                }
+            )
+        first_boundary_zero_core_histogram[len(case_first_boundary_zero_cores)] += 1
+        first_boundary_incidence_defect_histogram[
+            first_boundary_incidence_defect
+        ] += 1
         isolated_marked_boundary_slack = (
             len(case_root_marked_boundaries) - j * case_isolated_vertices
         )
@@ -458,6 +587,10 @@ def analyze_case(
             max_nonzero_root_marked_boundary_count = max(
                 max_nonzero_root_marked_boundary_count,
                 len(case_root_marked_boundaries),
+            )
+            max_nonzero_first_boundary_zero_core_count = max(
+                max_nonzero_first_boundary_zero_core_count,
+                len(case_first_boundary_zero_cores),
             )
             max_nonzero_isolated_marked_boundary_slack = max(
                 max_nonzero_isolated_marked_boundary_slack,
@@ -935,6 +1068,9 @@ def analyze_case(
         "max_nonzero_root_marked_boundary_count": (
             max_nonzero_root_marked_boundary_count
         ),
+        "max_nonzero_first_boundary_zero_core_count": (
+            max_nonzero_first_boundary_zero_core_count
+        ),
         "max_nonzero_isolated_marked_boundary_slack": (
             max_nonzero_isolated_marked_boundary_slack
         ),
@@ -984,6 +1120,12 @@ def analyze_case(
         "full_support_ledger_slack_histogram": dict(
             sorted(full_support_ledger_slack_histogram.items())
         ),
+        "first_boundary_zero_core_histogram": dict(
+            sorted(first_boundary_zero_core_histogram.items())
+        ),
+        "first_boundary_incidence_defect_histogram": dict(
+            sorted(first_boundary_incidence_defect_histogram.items())
+        ),
         "nonzero_top_active_size_histogram": dict(
             sorted(nonzero_top_active_size_histogram.items())
         ),
@@ -1023,6 +1165,8 @@ def print_summary(results: Sequence[dict[str, object]]) -> None:
             f"max_nonzero_lower_component="
             f"{result['max_nonzero_lower_core_component_size']} "
             f"max_nonzero_edge_cores={result['max_nonzero_edge_core_count']} "
+            f"max_nonzero_boundary_zero_cores="
+            f"{result['max_nonzero_first_boundary_zero_core_count']} "
             f"max_nonzero_isolated={result['max_nonzero_isolated_vertices']} "
             f"max_nonzero_marked_boundary="
             f"{result['max_nonzero_root_marked_boundary_count']} "

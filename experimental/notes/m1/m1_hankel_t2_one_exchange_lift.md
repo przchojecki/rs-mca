@@ -460,12 +460,16 @@ Indeed, every isolated `T` contributes all `j` marked pairs `(T\{x},x)`, and
 the map `(T,x) -> (T\{x},x)` is injective.  Thus isolated support mass is
 summable once the root-marked first-boundary ledger is controlled.
 
-## Full Same-Slope Active Support Ledger
+## First-Boundary Incidence Identity
 
-Combining the non-isolated and isolated charges gives a single local
-support-mass inequality.  Let
+The root-marked boundary ledger is part of an exact first-boundary
+decomposition, not only an upper-bound device.  Let
 
 ```text
+Z_{tau+1,j-1}(s)
+ = { C subset H : |C|=j-1,
+     H_{tau+1,j-1}(s)ell_C=0 },
+
 E_{tau+1,j-1}(s)
  = { C subset H : |C|=j-1,
      C union {x}, C union {y} in A_{tau,j}(s)
@@ -473,37 +477,50 @@ E_{tau+1,j-1}(s)
 ```
 
 Thus `E_{tau+1,j-1}(s)` is the set of one-row edge cores that actually occur
-in the active one-exchange graph.  By the edge descent,
-`E_{tau+1,j-1}(s) subset S_{tau+1,j-1}(s)`.  For `1<=j<n`,
+in the active one-exchange graph.  For `1<=j<n`,
+
+```text
+E_{tau+1,j-1}(s) = Z_{tau+1,j-1}(s),
+```
+
+and the active deletion incidences satisfy the exact identity
 
 ```text
 j |A_{tau,j}(s)|
- <= j (n-j+1) |E_{tau+1,j-1}(s)|
-    + |B^rm_{tau+1,j-1}(s)|.                  (FL)
+ = (n-j+1) |E_{tau+1,j-1}(s)|
+   + |B^rm_{tau+1,j-1}(s)|.                  (FI)
 ```
 
-Equivalently,
+Proof: fix a `(j-1)`-core `C`, put `L=ell_C`, and write
 
 ```text
-|A_{tau,j}(s)|
- <= (n-j+1) |E_{tau+1,j-1}(s)|
-    + |B^rm_{tau+1,j-1}(s)| / j.
+c_i = sum_h L_h s_{i+h},        0<=i<=tau.
 ```
 
-Proof: decompose `A_{tau,j}(s)` into its non-isolated vertices
-`A^+_{tau,j}(s)` and isolated vertices `Iso_{tau,j}(s)`.  Every
-non-isolated vertex contains at least one edge core in `E_{tau+1,j-1}(s)`,
-and each `(j-1)`-core lies in exactly `n-j+1` `j`-locators, so
+The extension `C union {x}` is active exactly when
 
 ```text
-|A^+_{tau,j}(s)| <= (n-j+1) |E_{tau+1,j-1}(s)|.
+c_{i+1}=x c_i,        0<=i<tau.               (AE)
 ```
 
-The isolated part satisfies (IL).  Adding these two inequalities and
-multiplying the non-isolated part by `j` proves (FL).  Thus the whole
-same-slope active support is paid either by active lower edge cores or by
-root-marked first-boundary incidences, with no remaining primitive
-same-slope support packet at this local level.
+If all `c_i` vanish, then every `x notin C` satisfies (AE), giving exactly
+`n-j+1` active extensions over `C`.  These are connected by one-exchange
+edges through the core `C`, so `C in E_{tau+1,j-1}(s)`.
+
+If the boundary vector is nonzero and `c_0=0`, then (AE) already fails in the
+first nonzero step, so no extension over `C` is active.  If `c_0!=0`, then
+there is at most one active extension: the root must be
+`x=c_1/c_0`, and the remaining equations say exactly that
+`H_{tau+1,j-1}(s)ell_C` is the nonzero root-marked vector
+`c_0(1,x,...,x^tau)`.  Thus this case contributes one active deletion
+incidence precisely for each pair in `B^rm_{tau+1,j-1}(s)`.
+
+Summing over all `(j-1)`-cores counts each active `j`-locator once for each of
+its `j` roots, proving (FI).  Conversely, if `C` is an active edge core, two
+distinct roots satisfy (AE), forcing the boundary vector to vanish; hence
+`E=Z`.  The earlier support ledger follows at once, but (FI) is sharper: it
+shows that same-slope active support is exactly split between zero
+first-boundary edge cores and nonzero root-marked first-boundary incidences.
 
 ## Same-Slope Component Dichotomy
 
@@ -702,14 +719,16 @@ The marked-boundary ledger is also checked:
 | `F_7`, `H=F_7^*`, `n=6,k=2,a=4,j=2` | 5 | 5 |
 | `F_7`, `H=F_7^*`, `n=6,k=3,a=5,j=1` | 1 | 0 |
 
-The combined active-support ledger (FL) is checked in the same scan:
+The first-boundary incidence identity (FI) is checked in the same scan.  In
+particular, the zero first-boundary cores coincide exactly with the active
+edge cores:
 
-| field/domain | max nonzero full-support slack |
-| --- | ---: |
-| `F_5`, `H=F_5^*`, `n=4,k=1,a=3,j=1` | 0 |
-| `F_7`, `H=F_7^*`, `n=6,k=1,a=3,j=3` | 40 |
-| `F_7`, `H=F_7^*`, `n=6,k=2,a=4,j=2` | 5 |
-| `F_7`, `H=F_7^*`, `n=6,k=3,a=5,j=1` | 0 |
+| field/domain | max nonzero zero-boundary cores | incidence defect |
+| --- | ---: | ---: |
+| `F_5`, `H=F_5^*`, `n=4,k=1,a=3,j=1` | 0 | 0 |
+| `F_7`, `H=F_7^*`, `n=6,k=1,a=3,j=3` | 5 | 0 |
+| `F_7`, `H=F_7^*`, `n=6,k=2,a=4,j=2` | 1 | 0 |
+| `F_7`, `H=F_7^*`, `n=6,k=3,a=5,j=1` | 0 | 0 |
 
 The `F_7,k=2,j=2` scan is the first exact top-packet check in this file.  It
 finds twenty top triangles, all on the zero combined syndrome.  This is not an
