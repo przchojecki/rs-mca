@@ -30,6 +30,22 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 residual products have canonical D-root split
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_boundary_off_external_anchor_normal_form.md`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / PROOF-PROGRAM.
+- **What is being added:** Proves that the product map `([H],m) -> [H L_m]`
+  from a root-free quotient `H` and a domain-root multiplicity vector `m` is a
+  bijection onto the residual multiplier classes `P_v^x(Q_0)`.
+- **How it is useful:** Removes artificial multiplicity from separately
+  tracking root-free factors and support-side domain roots; the total residual
+  product class is the canonical packet index.
+- **What to do next:** Use the canonical product index to formulate the
+  remaining all-line active base-class packing target.
+
 ### 2026-06-28 - M1 fixed-class complement-root dichotomy closes
 
 - **Agent/model:** AllenGrahamHart / Codex audit.

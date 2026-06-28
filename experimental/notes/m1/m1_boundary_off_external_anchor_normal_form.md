@@ -14896,6 +14896,67 @@ binom(n,j+u) binom(j+u,u).
 Adding the two labeled bounds proves (RootDichotomyClosure).  The final
 interpretation is exactly the content of the two cited corollaries.
 
+## Corollary 40.145: Residual Products Have A Canonical D-Root Split
+
+Keep the primitive denominator `Q_0`, fix `0<=v<=t`, and assume
+`r_v=e_0-t+v>0`.  For a multiplicity vector `m:D->Z_{\ge0}`, put
+
+```text
+L_m=prod_{beta in D}(X-beta)^{m_beta},        |m|=deg L_m.
+```
+
+Let `DRF_v(Q_0)` be the set of pairs `([H],m)` such that
+
+```text
+H(alpha)!=0 for every alpha in D,
+gcd(H,Q_0)=1,
+deg H+|m|<r_v.
+```
+
+Then the product map
+
+```text
+pi_v: DRF_v(Q_0) -> P_v^x(Q_0),        ([H],m) |-> [H L_m]
+```
+
+is a bijection.  Consequently, separating a residual product into a root-free
+factor and a support-side domain-root multiplicity vector introduces no
+additional labels: the product class `[P] in P_v^x(Q_0)` uniquely determines
+both its domain-root multiplicities and its root-free quotient.
+
+In particular, the mixed packet theorem of Corollary 40.140 may be read
+canonically with `N=L_m`: as `([H],m)` varies in `DRF_v(Q_0)`, the product
+classes `[H L_m]` are automatically distinct, and the packet index is just
+`[P]=pi_v([H],m)`.
+
+### Proof
+
+The map is well-defined because `Q_0` is root-free on `D`, so `L_m` is
+coprime to `Q_0`; the displayed hypotheses then give
+
+```text
+gcd(HL_m,Q_0)=1,        deg(HL_m)<r_v.
+```
+
+Thus `[HL_m] in P_v^x(Q_0)`.
+
+For surjectivity, take `[P] in P_v^x(Q_0)` and choose a nonzero
+representative `P` of degree `<r_v`.  For each `beta in D`, let
+`m_beta` be the multiplicity of the factor `X-beta` in `P`, and put
+`H=P/L_m`.  Then `H` has no roots in `D`, `gcd(H,Q_0)=1`, and
+`deg H+|m|=deg P<r_v`, so `([H],m) in DRF_v(Q_0)` and maps to `[P]`.
+
+For injectivity, suppose
+
+```text
+[H_1 L_{m_1}]=[H_2 L_{m_2}].
+```
+
+Then `H_1L_{m_1}=cH_2L_{m_2}` for some `c in F^*`.  Comparing the
+multiplicity of each factor `X-beta` with `beta in D`, and using that both
+`H_i` have no roots in `D`, gives `m_1=m_2`.  Cancelling the common `L_m`
+then gives `[H_1]=[H_2]`.  Hence the product map is injective.
+
 ## Corollary 41: The Global Common-Image Ledger Is Endpoint-Only
 
 Let `GCI` be the set of monic degree-`c` split core locators `L` for which
@@ -17962,6 +18023,9 @@ depth-zero core packets after choosing `u` complement roots.
 Corollary 40.144 closes the fixed-class complement-root dichotomy: every
 exchange landing is accounted for by either the reduced normal form or the
 root-heavy core packet, with only explicit root-choice charges.
+Corollary 40.145 gives the canonical residual product index: every product
+class has a unique split into a `D`-root-free quotient and its domain-root
+multiplicity vector.
 Corollary 41 packages the common-image branch into endpoint-type ledgers; it
 does not prove the endpoint rank hypotheses needed for the displayed
 `(q+2)binom(n,b)` bound. Corollary 42 packages the globally full core ledger
