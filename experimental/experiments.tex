@@ -4772,6 +4772,21 @@ If all non-base fibers have size at most \(M\), then
 Thus base-free injectivity gives direction-MDS, and bounded projective fibers
 give a linear bad-pair ledger outside the base locus.  The verifier checks the
 exact count and this envelope whenever \(b(U,W)=2\).
+Equivalently, the good cross-fiber pairs are the pairs
+\(\{x,y\}\subset D'\setminus B_0\) with distinct projective values.  Their
+total number is
+\[
+  G_{\rm tot}
+  =
+  \binom{N-s}{2}
+  -\sum_{\lambda\in{\bf P}^1}\binom{m_\lambda}{2}.
+\]
+No such good pair can occur in two residual supports.  Hence, if every residual
+support contains at least \(g_{\min}>0\) good cross-fiber pairs, then
+\[
+  |F(U,W)|\le \left\lfloor {G_{\rm tot}\over g_{\min}}\right\rfloor .
+\]
+The verifier checks this good-pair packing bound whenever \(b(U,W)=2\).
 Equivalently, for each available root \(x\) the bad-slice test is the failure
 of full column rank for the absorbed-anchor matrix
 \[

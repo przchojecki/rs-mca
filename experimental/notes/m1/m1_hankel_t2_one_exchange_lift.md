@@ -3142,6 +3142,54 @@ The verifier now checks (PF2-count) and (PF2-envelope) whenever
 `b(U,W)=2`.  The current largest `F_7^*` scan has no positive-dimensional
 produced residual anchor.
 
+## Cross-Fiber Good Pairs Give a b=2 Packing Bound
+
+The complement of the bad-pair ledger gives a sharper packing count.  In the
+notation of the previous section, call a pair `{x,y}` good if
+
+```text
+x,y notin B_0,        ev_x != ev_y.
+```
+
+Then the total number of good pairs in `D'` is
+
+```text
+G_tot = binom(N-s,2)-sum_lambda binom(m_lambda,2).          (PF2-good)
+```
+
+No good pair can lie in two distinct residual supports in the same fixed-anchor
+fiber: if two supports shared such a pair, the pair would be a shared
+`b=2`-subset and therefore direction-bad by (DMB), contradicting goodness.
+
+For a residual support `R`, let
+
+```text
+g(R)=|{{x,y} subset R : x,y notin B_0, ev_x != ev_y}|.
+```
+
+Then
+
+```text
+sum_{R in F(U,W)} g(R) <= G_tot.                 (PF2-good-pack)
+```
+
+In particular, if every residual support in the fixed-anchor fiber has at least
+`g_min>0` good pairs, then
+
+```text
+|F(U,W)| <= floor(G_tot/g_min).                  (PF2-good-bound)
+```
+
+This is often sharper than applying (DMB) with all bad pairs, because the count
+uses only cross-fiber pairs that cannot be reused.  It also isolates the only
+ways the `b=2` packing can fail to gain this saving: residual supports must
+place too many roots in the base locus or inside a small number of projective
+fibers.  Those are exactly fixed-root or quotient/aperiodic fiber phenomena.
+
+The verifier now checks the good-pair count, verifies that good pairs are not
+shared by two residual candidates, and asserts (PF2-good-bound) whenever
+`g_min>0`.  The current largest `F_7^*` scan has no `b(U,W)=2` produced anchor.
+
 ## Bad Root Slices Are Absorbed-Anchor Rank Defects
 
 The preceding bad-root condition has an equivalent absorbed-anchor form.  Fix

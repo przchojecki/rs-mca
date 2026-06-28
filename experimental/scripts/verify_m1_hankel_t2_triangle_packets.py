@@ -186,7 +186,8 @@ Conversely, residual direction dimension at least two forces every available
 root to be a one-root bad slice, hence forces the one-root pencil into the
 persistent branch for produced anchors in the usual field-size range.
 For two-dimensional residual direction spaces, it identifies the bad pairs as
-projective evaluation fibers.
+projective evaluation fibers and checks the resulting cross-fiber good-pair
+packing bound.
 For each fixed collapsed anchor base, it audits the sparse-representation
 fiber: below the boundary the mode support is unique, while at the boundary
 distinct supports are disjoint and obey the matching bound.
@@ -5380,6 +5381,209 @@ def analyze_case(
                                                         ),
                                                         "envelope": (
                                                             projective_pair_envelope
+                                                        ),
+                                                    }
+                                                )
+                                            projective_good_pairs: set[
+                                                tuple[int, int]
+                                            ] = set()
+                                            for left, right in (
+                                                itertools.combinations(
+                                                    available_roots,
+                                                    2,
+                                                )
+                                            ):
+                                                if (
+                                                    left
+                                                    in projective_eval_base_roots
+                                                    or right
+                                                    in projective_eval_base_roots
+                                                ):
+                                                    continue
+                                                if (
+                                                    projective_eval_values[left]
+                                                    != projective_eval_values[
+                                                        right
+                                                    ]
+                                                ):
+                                                    projective_good_pairs.add(
+                                                        (left, right)
+                                                    )
+                                            expected_good_pair_count = (
+                                                math.comb(
+                                                    (
+                                                        len(available_roots)
+                                                        - len(
+                                                            projective_eval_base_roots
+                                                        )
+                                                    ),
+                                                    2,
+                                                )
+                                                - projective_fiber_pair_count
+                                            )
+                                            if (
+                                                len(projective_good_pairs)
+                                                != expected_good_pair_count
+                                            ):
+                                                raise AssertionError(
+                                                    {
+                                                        "kind": (
+                                                            "productive-"
+                                                            if productive
+                                                            else ""
+                                                        )
+                                                        + "marked-core-"
+                                                        "deficit-anchor-"
+                                                        "direction-mds-"
+                                                        "projective-good-pair-"
+                                                        "count-failed",
+                                                        "p": p,
+                                                        "k": k,
+                                                        "syndrome": list(syn),
+                                                        "fixed_roots": list(
+                                                            fixed_roots
+                                                        ),
+                                                        "unmarked_core": list(
+                                                            unmarked_core
+                                                        ),
+                                                        "marked_count": (
+                                                            marked_count
+                                                        ),
+                                                        "core_deficit": (
+                                                            core_deficit
+                                                        ),
+                                                        "anchor": list(anchor),
+                                                        "good_pair_count": len(
+                                                            projective_good_pairs
+                                                        ),
+                                                        "expected": (
+                                                            expected_good_pair_count
+                                                        ),
+                                                    }
+                                                )
+                                            pair_owner: dict[
+                                                tuple[int, int],
+                                                tuple[int, ...],
+                                            ] = {}
+                                            candidate_good_pair_min: int | None = (
+                                                None
+                                            )
+                                            for candidate in residual_candidates:
+                                                candidate_good_pairs = 0
+                                                for pair in itertools.combinations(
+                                                    candidate,
+                                                    2,
+                                                ):
+                                                    if pair not in (
+                                                        projective_good_pairs
+                                                    ):
+                                                        continue
+                                                    candidate_good_pairs += 1
+                                                    previous = pair_owner.get(
+                                                        pair
+                                                    )
+                                                    if (
+                                                        previous is not None
+                                                        and previous != candidate
+                                                    ):
+                                                        raise AssertionError(
+                                                            {
+                                                                "kind": (
+                                                                    "productive-"
+                                                                    if productive
+                                                                    else ""
+                                                                )
+                                                                + "marked-core-"
+                                                                "deficit-"
+                                                                "anchor-"
+                                                                "direction-mds-"
+                                                                "projective-"
+                                                                "good-pair-"
+                                                                "collision-"
+                                                                "failed",
+                                                                "p": p,
+                                                                "k": k,
+                                                                "syndrome": list(
+                                                                    syn
+                                                                ),
+                                                                "fixed_roots": list(
+                                                                    fixed_roots
+                                                                ),
+                                                                "unmarked_core": list(
+                                                                    unmarked_core
+                                                                ),
+                                                                "marked_count": (
+                                                                    marked_count
+                                                                ),
+                                                                "core_deficit": (
+                                                                    core_deficit
+                                                                ),
+                                                                "anchor": list(
+                                                                    anchor
+                                                                ),
+                                                                "pair": list(
+                                                                    pair
+                                                                ),
+                                                                "left": list(
+                                                                    previous
+                                                                ),
+                                                                "right": list(
+                                                                    candidate
+                                                                ),
+                                                            }
+                                                        )
+                                                    pair_owner[pair] = candidate
+                                                candidate_good_pair_min = (
+                                                    candidate_good_pairs
+                                                    if candidate_good_pair_min
+                                                    is None
+                                                    else min(
+                                                        candidate_good_pair_min,
+                                                        candidate_good_pairs,
+                                                    )
+                                                )
+                                            if (
+                                                candidate_good_pair_min
+                                                and len(residual_candidates)
+                                                > len(projective_good_pairs)
+                                                // candidate_good_pair_min
+                                            ):
+                                                raise AssertionError(
+                                                    {
+                                                        "kind": (
+                                                            "productive-"
+                                                            if productive
+                                                            else ""
+                                                        )
+                                                        + "marked-core-"
+                                                        "deficit-anchor-"
+                                                        "direction-mds-"
+                                                        "projective-good-pair-"
+                                                        "bound-failed",
+                                                        "p": p,
+                                                        "k": k,
+                                                        "syndrome": list(syn),
+                                                        "fixed_roots": list(
+                                                            fixed_roots
+                                                        ),
+                                                        "unmarked_core": list(
+                                                            unmarked_core
+                                                        ),
+                                                        "marked_count": (
+                                                            marked_count
+                                                        ),
+                                                        "core_deficit": (
+                                                            core_deficit
+                                                        ),
+                                                        "anchor": list(anchor),
+                                                        "candidate_count": len(
+                                                            residual_candidates
+                                                        ),
+                                                        "good_pair_count": len(
+                                                            projective_good_pairs
+                                                        ),
+                                                        "candidate_good_pair_min": (
+                                                            candidate_good_pair_min
                                                         ),
                                                     }
                                                 )

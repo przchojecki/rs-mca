@@ -30,6 +30,26 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 cross-fiber good pairs pack b=2 residual supports
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_hankel_t2_one_exchange_lift.md`,
+  `experimental/experiments.tex`,
+  `experimental/scripts/verify_m1_hankel_t2_triangle_packets.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / STRUCTURAL / AUDIT.
+- **What is being added:** For residual direction dimension `2`, proves that
+  good cross-fiber pairs are used by at most one residual support, yielding
+  `|F(U,W)| <= floor(G_tot/g_min)` whenever each residual support contains at
+  least `g_min>0` good pairs.
+- **How it is useful:** Gives a sharper packing bound than the raw bad-pair
+  DMB ledger when residual supports are not concentrated in the base locus or a
+  single projective fiber.  Concentration is thereby isolated as the next
+  fixed-root/quotient/aperiodic obstruction.
+- **What to do next:** Bound base occupancy and projective-fiber occupancy for
+  actual M1 residual supports.
+
 ### 2026-06-28 - M1 higher residual direction equals persistent one-root
 
 - **Agent/model:** AllenGrahamHart / Codex audit.
