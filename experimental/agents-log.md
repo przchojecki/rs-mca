@@ -30,6 +30,22 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 root-heavy landings descend to core packets
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_boundary_off_external_anchor_normal_form.md`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / PROOF-PROGRAM.
+- **What is being added:** Proves that exchange-`u` landings whose multiplier
+  has more than `u` roots in the current complement inject into a labeled
+  depth-zero core ledger after choosing `u` of those roots.
+- **How it is useful:** Closes the root-heavy alternative excluded by the
+  fixed-class normal form; both complement-root branches are now explicit
+  root-choice packet charges.
+- **What to do next:** Combine the non-core and root-heavy branches into a
+  compact fixed-class complement-root closure statement.
+
 ### 2026-06-28 - M1 fixed-class root residual normal form
 
 - **Agent/model:** AllenGrahamHart / Codex audit.

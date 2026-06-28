@@ -14770,6 +14770,75 @@ The bound is Corollary 40.141 applied with all root sets of sizes
 `P(beta)!=0` only shrinking the ledger.  The final sentence is the
 `|R_C|>u` alternative in Corollary 40.125.
 
+## Corollary 40.143: Root-Heavy Landings Descend To Core Packets
+
+Keep the primitive base setup of Corollary 40.122, and fix `0<=u<=t`.
+Let `HC_u(Q_0,B_0)` be the set of exact exchange-`u` landings
+`([M],C)` with `[M] in P_u^x(Q_0)` and `C in Comp_{u,[M]}(Q_0,B_0)` whose
+multiplier has more than `u` roots in the current complement:
+
+```text
+R_C={ beta in C : M(beta)=0 },        |R_C|>u.
+```
+
+Fix any deterministic rule which assigns to each such landing an
+`u`-element subset `S(C) subset R_C`.  Then the map
+
+```text
+([M],C) |-> (S(C), [M/L_{S(C)}], C\S(C))
+```
+
+is an injection from `HC_u(Q_0,B_0)` into the labeled depth-zero core ledger
+
+```text
+disjoint_union_{S subset D, |S|=u}
+disjoint_union_{[P] in P_0^x(Q_0)}
+  { C_0 in Comp_{0,[P]}(Q_0,B_0) : C_0 cap S=empty }.
+                                                        (RootHeavyCoreLedger)
+```
+
+Consequently
+
+```text
+|HC_u(Q_0,B_0)|
+ <= binom(n,u) binom(n-u,j)
+  = binom(n,j+u) binom(j+u,u).                    (RootHeavyCoreBound)
+```
+
+Thus the root-heavy alternative excluded from Corollary 40.142 is also a
+root-choice charge over depth-zero core packets; it introduces no residual
+multiplier multiplicity.
+
+### Proof
+
+For `([M],C) in HC_u(Q_0,B_0)`, the chosen set `S(C)` is an `u`-element
+subset of the complement-root set `R_C`.  Corollary 40.125, in its
+`|R_C|>u` alternative, gives a unique projective factorization
+
+```text
+[M]=[L_{S(C)} P_C],
+```
+
+with `[P_C] in P_0^x(Q_0)` and
+
+```text
+C_0=C\S(C) in Comp_{0,[P_C]}(Q_0,B_0),        C_0 cap S(C)=empty.
+```
+
+This is exactly the displayed map into (RootHeavyCoreLedger).  The map is
+injective because `(S,[P],C_0)` reconstructs the original landing as
+
+```text
+([L_S P], C_0 disjoint_union S).
+```
+
+For fixed `S`, Corollary 40.122 at depth zero makes the fibers
+`Comp_{0,[P]}(Q_0,B_0)` pairwise disjoint as `[P]` varies, and the condition
+`C_0 cap S=empty` restricts to `j`-subsets of `D\S`.  Hence the fixed-`S`
+target has size at most `binom(n-u,j)`.  Summing over the `binom(n,u)` choices
+of `S` proves the first bound, and the displayed binomial identity gives the
+second form.
+
 ## Corollary 41: The Global Common-Image Ledger Is Endpoint-Only
 
 Let `GCI` be the set of monic degree-`c` split core locators `L` for which
@@ -17831,6 +17900,8 @@ Corollary 40.142 packages the fixed-class root-bearing exchange ledger into an
 exact normal form: charged complement roots plus a reduced product class with
 no root on the reduced complement, with root-heavy cases descending to core
 depth.
+Corollary 40.143 bounds that root-heavy case by injecting it into labeled
+depth-zero core packets after choosing `u` complement roots.
 Corollary 41 packages the common-image branch into endpoint-type ledgers; it
 does not prove the endpoint rank hypotheses needed for the displayed
 `(q+2)binom(n,b)` bound. Corollary 42 packages the globally full core ledger

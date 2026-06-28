@@ -3253,6 +3253,17 @@ fixed-class root residual is bounded by
 \]
 and the omitted case is exactly the core-depth descent when more than \(u\)
 multiplier roots lie in the complement.
+The root-heavy case also has only root-choice cost.  If more than \(u\)
+multiplier roots lie in \(C\), choose any \(u\) of them.  Deleting those roots
+injects the landing into the labeled depth-zero core ledger, hence
+\[
+  |\mathrm{HC}_u(Q_0,B_0)|
+  \le \binom n u\binom{n-u}j
+  = \binom n {j+u}\binom{j+u}u.
+\]
+So both sides of the complement-root dichotomy are fixed-class packet charges:
+the non-core branch is the reduced normal form, and the root-heavy branch is a
+depth-zero core packet.
 The common-core and two-denominator formulas persist verbatim after this
 root-free replacement.  With \(C=\gcd(D:D\in M_{\min})\), \(\gamma=\deg C\),
 and \(E_D=D/C\),
