@@ -353,9 +353,12 @@ Keep entries concise and link to the relevant files.
   denominator classes, and a chain of active denominators collapses to the
   single term `Phi(h-delta_min)`.  If the surviving antichain has a common
   denominator core `C` of degree `gamma`, the whole arrangement factors through
-  the quotient denominators `D/C` in the shorter window `h-gamma`; when those
-  quotient denominators are pairwise coprime, `ArrBudget_hw` is the alternating
-  degree-only sum over `h-gamma-sum deg(D/C)`.  Since
+  the quotient denominators `D/C` in the shorter window `h-gamma`, giving the
+  one-parameter bound `ArrBudget_hw <= Phi(h-gamma)` and mixed ledger
+  `Phi(h-gamma)+2h`; in particular the half-window tail vanishes when
+  `gamma>=h`.  When those quotient denominators are pairwise coprime,
+  `ArrBudget_hw` is the alternating degree-only sum over
+  `h-gamma-sum deg(D/C)`.  Since
   the named overlap systems are subsets of the same `TailUnion_hw`, the
   separation charge `OverlapSep_hw`, defined as the minimum of
   `SideHybridOverlap_hw` and `UnionRankOverlap_hw`, is now a structural

@@ -6539,6 +6539,42 @@ Corollary 40.34 in the quotient window gives (CoreArrangement).  If the
 quotient denominators are pairwise coprime, the lcm degree is the sum of their
 degrees, giving (CoprimeCoreArrangement).
 
+## Corollary 40.39: A Common Core Gives A One-Parameter Tail Bound
+
+Keep the notation of Corollary 40.38.  With `gamma=deg C`, the raw
+half-window tail satisfies
+
+```text
+ArrBudget_hw <= Phi(h-gamma)                       (CommonCoreTail)
+```
+
+with the convention that `Phi(m)=0` for `m<=0` in this displayed formula.
+Consequently the direct raw-tail mixed-ladder ledger of Corollary 40.36 is at
+most
+
+```text
+Phi(h-gamma) + 2h.                                 (CommonCoreMixedLedger)
+```
+
+In particular, if `gamma>=h`, then `ArrBudget_hw=0`: the half-window tail
+contributes no raw denominator classes after the pre-half residuals have been
+charged, and the remaining mixed-ladder finite frontier charge is at most
+`2h`.
+
+Thus a lower bound on the common denominator core degree is enough to control
+the full raw half-window tail, without needing to understand the quotient
+denominator arrangement.
+
+### Proof
+
+If `h-gamma<=0`, Corollary 40.38 already gives `ArrBudget_hw=0`.  Otherwise,
+Corollary 40.38 identifies the raw tail arrangement with a union of projective
+quotient divisor subspaces inside the full projective space of nonzero
+degree-`<h-gamma` polynomials.  That ambient projective space has
+`Phi(h-gamma)` points, so the union has at most that many points.  Substituting
+this bound into Corollary 40.36 gives (CommonCoreMixedLedger).  The case
+`gamma>=h` is the first sentence.
+
 ## Corollary 41: The Global Common-Image Ledger Is Endpoint-Only
 
 Let `GCI` be the set of monic degree-`c` split core locators `L` for which
@@ -9272,6 +9308,9 @@ the active denominators form a chain in the M1 instances.
 Corollary 40.38 factors a common denominator core out of the raw tail
 arrangement; it does not prove such a common core is large or that the quotient
 denominators are pairwise coprime in the M1 instances.
+Corollary 40.39 turns the common-core degree into a one-parameter raw-tail
+bound; it does not prove the common-core degree reaches the displayed
+thresholds.
 Corollary 41 packages the common-image branch into endpoint-type ledgers; it
 does not prove the endpoint rank hypotheses needed for the displayed
 `(q+2)binom(n,b)` bound. Corollary 42 packages the globally full core ledger
