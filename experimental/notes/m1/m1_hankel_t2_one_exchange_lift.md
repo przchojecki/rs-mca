@@ -1129,6 +1129,30 @@ inside determinant-nondegenerate sparse moment packets; any remaining bound
 can now attack these rank certificates or show they lie in quotient-periodic
 or tangent ledgers.
 
+## Sparse Packets Peel Losslessly
+
+The sparse packet also records every intermediate deletion inside the branch
+vertex.  Let `E subset Y`, and let `ell_E=prod_{e in E}(X-e)`.  Applying this
+locator to the packet (MP) gives
+
+```text
+H_{tau+m-|E|, |R|+|E|}(Delta_X s)ell_{R union E}
+ =
+ sum_{y in Y\E} a_y ell_E(y)(1,y,...,y^{tau+m-|E|-1}).       (PL)
+```
+
+Consequently, if `E` is a proper subset of `Y`, the peeled vector is nonzero:
+the remaining modes have nonzero coefficients
+`a_y ell_E(y)` and the first `|Y\E|` moment rows form an invertible
+Vandermonde system.  If `E=Y`, the right side is empty and the peeled vector is
+zero; this is exactly the active equation for the original core `C`.
+
+Thus a terminal branch packet has no hidden premature zero-boundary collapse
+along its internal mode set.  Every partial mode deletion preserves a
+deterministic smaller sparse packet, and only deleting all modes gives the
+annihilating locator.  This is the local "lossless frontier shift" promised by
+the fixed-root filtration, now visible inside the terminal packet itself.
+
 ## Root-Marked Slice Is One Row
 
 The zero-boundary subkernel in the fixed-root difference form is cut out by a
@@ -1528,6 +1552,10 @@ largest case all `34560` mode packets have enough visible moments for the
 nonzero determinant check; the rank sizes are again `30240` of size `2` and
 `4320` of size `3`, and all `32400` productive packets pass the determinant
 certificate.
+The lossless peeling identity (PL) is also checked on every nonempty subset of
+each branch mode set.  In the largest case this gives `120960` peeling checks:
+`73440` peel one mode, `43200` peel two modes, and `4320` peel all three
+modes.  The productive branch packets account for `114480` of these checks.
 
 The `F_7,k=2,j=2` scan is the first exact top-packet check in this file.  It
 finds twenty top triangles, all on the zero combined syndrome.  This is not an

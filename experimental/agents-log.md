@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 sparse packets peel losslessly
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_hankel_t2_one_exchange_lift.md`,
+  `experimental/scripts/verify_m1_hankel_t2_triangle_packets.py`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / STRUCTURAL / EXACT FINITE VERIFICATION.
+- **What is being added:** Proves that applying any subset locator inside a
+  terminal sparse mode packet removes exactly those modes; every proper peel
+  remains nonzero, while peeling all modes gives the active annihilator.
+- **How it is useful:** Rules out hidden premature zero-boundary collapse
+  inside productive terminal packets and makes the fixed-root frontier shift
+  visibly lossless at the packet level.
+- **What to do next:** Use the lossless peeled packets to bound productive
+  determinant-nondegenerate packets or charge persistent ones to quotient and
+  tangent ledgers.
+
 ### 2026-06-28 - M1 sparse packets have rank certificates
 
 - **Agent/model:** AllenGrahamHart / Codex audit.

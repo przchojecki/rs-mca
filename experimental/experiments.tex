@@ -3952,6 +3952,17 @@ If \(m\le\tau+1\), this packet has a nonzero rank certificate:
 \]
 Thus visible productive mode packets are determinant-nondegenerate sparse
 moment packets.
+They also peel losslessly.  If \(E\subseteq Y\) and
+\(\ell_E=\prod_{e\in E}(X-e)\), then applying \(\ell_E\) to the packet gives
+\[
+  H_{\tau+m-|E|,|R|+|E|}(\Delta_Xs)\ell_{R\cup E}
+  =
+  \sum_{y\in Y\setminus E}
+    a_y\ell_E(y)(1,y,\ldots,y^{\tau+m-|E|-1}).
+\]
+Every proper peel is nonzero, while \(E=Y\) gives exactly the active
+annihilator for \(C\).  Thus the terminal packet has no hidden premature
+zero-boundary collapse inside its mode set.
 This residual also has additive one-exchange descent.  If
 \(C_y=R\cup\{y\}\) and \(C_z=R\cup\{z\}\) are two root-marked cores in the
 same fixed-root slice, then both are active for
@@ -4069,6 +4080,8 @@ packets: \(30240\) have mode size \(2\), \(4320\) have mode size \(3\), and
 \(32400\) are productive.
 All \(34560\) of these packets have enough visible moments for the nonzero
 rank-certificate determinant check, again with sizes \(2\) and \(3\) as above.
+The lossless peeling identity is checked on \(120960\) nonempty mode subsets;
+\(114480\) of these are productive-packet peels.
 The common-core and two-denominator formulas persist verbatim after this
 root-free replacement.  With \(C=\gcd(D:D\in M_{\min})\), \(\gamma=\deg C\),
 and \(E_D=D/C\),
