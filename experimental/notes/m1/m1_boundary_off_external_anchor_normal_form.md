@@ -8087,6 +8087,73 @@ Hermite evaluation matrix has rank `deg G` on polynomials of degree `<h`, so
 again it has the same kernel and row space as `Rem_G` after scalar extension.
 The row-containment statement follows exactly as in the squarefree case.
 
+## Corollary 40.60: External-Anchor Membership Is Common-Root Duality
+
+Let `A` be any of the four bottom matrices `A_0(F)`, and put
+
+```text
+K=ker A subset F_q[X]_{<h}.
+```
+
+For `beta in F_q`,
+
+```text
+ev_beta in row(A)
+```
+
+if and only if every polynomial in `K` vanishes at `beta`, equivalently
+
+```text
+X-beta divides gcd(K).                              (AnchorRootDuality)
+```
+
+More generally, for `m>=1`, the Hasse-jet rows
+
+```text
+ev_{beta,j}: Q |-> Q^{[j]}(beta),        0<=j<m,
+```
+
+all lie in `row(A)` if and only if `(X-beta)^m` divides `gcd(K)`.
+
+Consequently, for split certificates, the degree contributed by simple
+external anchors is exactly the number of field elements `beta notin D` for
+which
+
+```text
+rank A = rank [ A ; ev_beta ].                      (AnchorRankTest)
+```
+
+Domain anchors satisfying the same rank test are not residual obstructions:
+they force every element of `K` to vanish on a domain point and hence empty the
+root-free bottom family.
+
+Thus the bottom common-factor search has a direct rank-test form: count the
+external points of the rational normal curve already lying in the bottom
+Hankel row span, and include Hasse jets for repeated roots.
+
+### Proof
+
+Since `K=ker A`, the row space of `A` is the annihilator `K^perp` inside
+`(F_q[X]_{<h})^*`.  Therefore
+
+```text
+ev_beta in row(A)
+iff
+ev_beta(Q)=0 for every Q in K
+iff
+Q(beta)=0 for every Q in K.
+```
+
+The last condition is exactly divisibility of the common gcd of `K` by
+`X-beta`.  The Hasse-jet statement is identical: all rows
+`ev_{beta,j}` for `0<=j<m` annihilate `K` if and only if every element of `K`
+has a root of multiplicity at least `m` at `beta`, equivalently
+`(X-beta)^m | gcd(K)`.
+
+The rank test is the row-containment criterion for a single evaluation row.
+If `beta in D` satisfies it, then every class in `P(K)` vanishes at the domain
+point `beta`, so no class is root-free on `D`.
+
 ## Corollary 41: The Global Common-Image Ledger Is Endpoint-Only
 
 Let `GCI` be the set of monic degree-`c` split core locators `L` for which
@@ -10882,6 +10949,9 @@ not prove that such divisors exist for the actual M1 bottom matrices.
 Corollary 40.59 identifies split bottom certificates with external-anchor
 evaluation rows, and repeated roots with Hasse-jet rows; it does not prove
 that enough such anchors occur or that nonsplit certificates can be ignored.
+Corollary 40.60 identifies external-anchor row membership with common roots of
+the bottom kernel; it does not count enough external anchors in the actual M1
+instances.
 Corollary 41 packages the common-image branch into endpoint-type ledgers; it
 does not prove the endpoint rank hypotheses needed for the displayed
 `(q+2)binom(n,b)` bound. Corollary 42 packages the globally full core ledger

@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 external-anchor common-root duality
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_boundary_off_external_anchor_normal_form.md`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / PROOF-PROGRAM / AUDIT.
+- **What is being added:** For any bottom matrix `A` with kernel `K`,
+  `ev_beta in row(A)` is shown equivalent to every `Q in K` vanishing at
+  `beta`, i.e. `X-beta | gcd(K)`.  Higher multiplicity is detected by
+  Hasse-jet rows.
+- **How it is useful:** This makes split common-factor certificates directly
+  searchable by one-row rank tests along the rational normal curve, while
+  separating domain roots as empty root-free families.
+- **What to do next:** Use the rank test to hunt for enough non-domain
+  external anchors in the actual four bottom matrices, or prove a structural
+  reason they must occur.
+
 ### 2026-06-28 - M1 split-anchor bottom certificates
 
 - **Agent/model:** AllenGrahamHart / Codex audit.
