@@ -12677,6 +12677,77 @@ again gives the q-free charge.  These cases exhaust the scalar cutoff split,
 except for the reciprocal `Qf` zero slope that was never part of the nonzero
 reciprocal parametrization.
 
+## Corollary 40.114: Fixed Base-Dimension Residue Lines Are q-Free When Noncontained
+
+Let `Q` be root-free on `D`, let `B,w:D->F` be the evaluations of the residue
+direction and target after denominator clearing, and let
+
+```text
+a=n-j,        a>=k+1.
+```
+
+Define `Lambda_{Q,B}^{nc,>=a}(w)` to be the set of coefficients
+`lambda in F` for which there are `A in F[X]_<k` and a support `S subset D`,
+`|S|>=a`, such that
+
+```text
+Q A + lambda B = w        on S,                    (BaseResidueLine)
+```
+
+and the divided residue line is support-wise noncontained on `S`, meaning
+
+```text
+not ( (B/Q)|_S in RS[F,S,k] and (w/Q)|_S in RS[F,S,k] ).
+```
+
+Then
+
+```text
+|Lambda_{Q,B}^{nc,>=a}(w)| <= binom(n,j).          (BaseResidueNC)
+```
+
+Consequently every fixed base-dimension residue-line datum from Corollary
+40.82, and every short scalar branch that collapses to such a datum in
+Corollary 40.84, contributes at most
+
+```text
+binom(n,j)/q
+```
+
+to line-MCA density on the support-wise noncontained side.  Combining this
+with Corollaries 40.112 and 40.113, no fixed scalar cutoff datum carries a
+field-size family of noncontained parameters.  The remaining all-line M1
+packing task is therefore the active denominator/residue-line class ledger
+after tangent, contained, and quotient-periodic branches are charged, not
+coefficient multiplicity inside any one fixed residue line.
+
+### Proof
+
+Since `Q` is root-free on `D`, divide (BaseResidueLine) coordinate-wise by
+`Q` and put
+
+```text
+phi=B/Q,        Y=w/Q.
+```
+
+The condition becomes
+
+```text
+A+lambda phi=Y        on S,
+```
+
+with the same support-wise noncontained predicate used in Corollary 40.111.
+Thus `Lambda_{Q,B}^{nc,>=a}(w)` is exactly the rank-one noncontained
+coefficient set `Mu_phi^{nc,>=a}(Y)`, and Corollary 40.111 gives the bound.
+
+For the standard scalar branches of Corollary 40.82, the divided direction is
+`g-H_g` in the `Qg` chart and `f-H_f` in the reciprocal `Qf` chart; subtracting
+the global quotient part `H_g` or `H_f` does not change support-wise
+containment.  Corollary 40.84 identifies the zero-tail short branches with the
+same base-dimension residue-line data.  The density statement follows after
+dividing by `q=|F|`, and the final sentence is the scalar-cutoff case split
+from Corollary 40.113 plus the high-tail-line charge of Corollary 40.112.
+
 ## Corollary 41: The Global Common-Image Ledger Is Endpoint-Only
 
 Let `GCI` be the set of monic degree-`c` split core locators `L` for which
@@ -15642,6 +15713,14 @@ most `binom(n,j)/q` without exchange bookkeeping.
 Corollary 40.112 applies the same support injection to every nonzero
 high-tail-line scalar return branch `W_h`, including all `L>=2` short scalar
 branches after Corollary 40.87.
+Corollary 40.113 packages the scalar cutoff split: no full enlarged-code
+noncontained scalar residual remains after standard, collapsed, global, and
+high-tail-line cases are separated.
+Corollary 40.114 applies the rank-one support injection to every fixed
+base-dimension residue-line datum `QA+lambda B=w` after division by the
+root-free denominator `Q`; thus no fixed scalar cutoff datum carries a
+field-size noncontained coefficient family, and the remaining all-line M1
+problem is the active denominator/residue-line class ledger.
 Corollary 41 packages the common-image branch into endpoint-type ledgers; it
 does not prove the endpoint rank hypotheses needed for the displayed
 `(q+2)binom(n,b)` bound. Corollary 42 packages the globally full core ledger

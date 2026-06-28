@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 fixed base residue lines are q-free when noncontained
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_boundary_off_external_anchor_normal_form.md`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / PROOF-PROGRAM.
+- **What is being added:** Divides any fixed root-free base-dimension
+  residue-line datum `QA+lambda B=w` by `Q` and applies the rank-one
+  noncontained support injection, giving at most `binom(n,j)` finite
+  noncontained coefficients in that fixed datum.
+- **How it is useful:** Sharpens the scalar M1 residual: no fixed scalar
+  cutoff datum has field-size noncontained multiplicity; the remaining
+  all-line task is to control active denominator/residue-line classes after
+  tangent, contained, and quotient-periodic branches are charged.
+- **What to do next:** Work directly on the active class ledger, especially
+  aperiodic primitive residue-line classes and quotient-periodic exclusions.
+
 ### 2026-06-28 - M1 scalar cutoff leaves no enlarged-code noncontained residual
 
 - **Agent/model:** AllenGrahamHart / Codex audit.
@@ -43,10 +61,10 @@ Keep entries concise and link to the relevant files.
   global/contained, and nonzero high-tail-line branches are q-free by
   Corollary 40.112.
 - **How it is useful:** Removes the full enlarged-code scalar list as an M1
-  residual; the only scalar branch still needing genuine M1 packing is the
-  ordinary base-dimension residue-line problem.
+  residual; before the fixed base-line closure, the remaining scalar branch
+  was the ordinary base-dimension residue-line datum.
 - **What to do next:** Focus the M1 all-line effort on the base-dimension
-  residue-line packing target after tangent, contained, and quotient-periodic
+  residue-line class ledger after tangent, contained, and quotient-periodic
   branches are charged.
 
 ### 2026-06-28 - M1 high-tail-line scalar branches are q-free when noncontained
