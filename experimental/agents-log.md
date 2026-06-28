@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 b=2 cutoff ledger reduction
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_hankel_t2_one_exchange_lift.md`,
+  `experimental/experiments.tex`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / STRUCTURAL / REDUCTION.
+- **What is being added:** Combines the global determinant-gate ledger, the
+  weight escape filter, and the dominant-slice quotient certificates into a
+  cutoff inequality for the whole `b=2` branch.
+- **How it is useful:** Reduces the branch to three explicit inputs: an
+  unweighted generic determinant-gate count, a common-base fixed-divisor
+  ledger, and a bounded-complement projective-fiber quotient ledger.
+- **What to do next:** Prove polynomial bounds for these three ledgers using
+  the all-line fixed-root, quotient-periodic, tangent, and aperiodic M1
+  charges.
+
 ### 2026-06-28 - M1 b=2 non-generic determinant gates have quotient certificates
 
 - **Agent/model:** AllenGrahamHart / Codex audit.

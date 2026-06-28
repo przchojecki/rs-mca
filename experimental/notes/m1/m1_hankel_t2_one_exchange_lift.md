@@ -4111,6 +4111,65 @@ slice, divides the relevant residual direction(s) by that locator, checks the
 quotient reconstruction, and checks that the quotient width equals the
 complement size.  The cutoff claims above are immediate consequences.
 
+## Cutoff Ledger Reduction for the b=2 Branch
+
+Combining the weighted ledger, the escape filter, and the dominant-slice
+quotient certificates gives a concrete reduction theorem for the whole `b=2`
+branch.
+
+Let `A_2` be a family of produced `b=2` anchors.  Fix cutoffs
+`A_0<q` and `c>=1`.  For each residual support `R in F(A)`, put it in exactly
+one of the following classes:
+
+```text
+G_A = { R : a_A(R)<=A_0 and e_A(R)>=c },
+B_A = { R : a_A(R)>A_0 },
+N_A = { R : a_A(R)<=A_0 and e_A(R)<c }.
+```
+
+Let
+
+```text
+I_A^G={ e in I_A : pi_A(e) in G_A }.
+```
+
+Then (PF2-global-ledger) and (PF2-generic-weight) give
+
+```text
+sum_{A in A_2} |F(A)|
+ <=
+  2/(c(q-A_0)) sum_{A in A_2} |I_A^G|
+  + sum_{A in A_2} |B_A|
+  + sum_{A in A_2} |N_A|.                       (PF2-cutoff-ledger)
+```
+
+Indeed the supports in `G_A` are counted through their good-pair preimages,
+each with weight at most `2/(c(q-A_0))`, while the two exceptional support
+classes are counted once each.
+
+The two exceptional terms are not opaque.  The `B_A` term is a common-base
+fixed-divisor ledger: every `R in B_A` contains an `(A_0+1)`-subset of
+`B_0`, and every residual direction descends after this fixed divisor.  The
+`N_A` term is a projective-fiber bounded-complement quotient ledger: every
+`R in N_A` has a dominant projective-fiber slice `C` with
+
+```text
+q-|C| <= A_0+c-1,
+```
+
+and the nonzero direction cutting that projective fiber descends to the
+quotient kernel (PF2-near-quot).
+
+Thus the local `b=2` branch is closed by any three external polynomial bounds:
+
+1. an unweighted bound for the generic split determinant gates `I_A^G`;
+2. a bound for the common-base fixed-divisor ledger `B_A`;
+3. a bound for the bounded-complement projective-fiber quotient ledger `N_A`.
+
+This is the current sharp form of the `b=2` M1 target.  It isolates exactly
+where the remaining all-line residue-packing input must enter; no further
+fixed-anchor residual enumeration is left in this branch.
+
 ## Bad Root Slices Are Absorbed-Anchor Rank Defects
 
 The preceding bad-root condition has an equivalent absorbed-anchor form.  Fix

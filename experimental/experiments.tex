@@ -5089,6 +5089,30 @@ alternative similarly supplies fixed-divisor slices inside the common base
 locus \(B_0\), where every residual direction vanishes.  Hence the weighted
 determinant-gate obstruction has been reduced to a generic saved term plus
 explicit fixed-divisor or bounded-complement quotient ledgers.
+This gives a precise cutoff reduction.  For any family \(\mathcal A_2\) of
+\(b=2\) anchors and cutoffs \(A_0<q\), \(c\ge1\), partition each residual
+support \(R\in F(A)\) into
+\[
+\begin{array}{ll}
+\mathcal G_A: & a_A(R)\le A_0,\ e_A(R)\ge c,\\
+\mathcal B_A: & a_A(R)>A_0,\\
+\mathcal N_A: & a_A(R)\le A_0,\ e_A(R)<c.
+\end{array}
+\]
+Let \(I_A^{\mathcal G}\) be the split good pairs whose image support lies in
+\(\mathcal G_A\).  Then
+\[
+  \sum_{A\in\mathcal A_2}|F(A)|
+  \le
+  {2\over c(q-A_0)}\sum_{A\in\mathcal A_2}|I_A^{\mathcal G}|
+  +\sum_{A\in\mathcal A_2}|\mathcal B_A|
+  +\sum_{A\in\mathcal A_2}|\mathcal N_A|.
+\]
+Moreover \(\mathcal B_A\) is a common-base fixed-divisor ledger, and
+\(\mathcal N_A\) is a projective-fiber quotient ledger of width at most
+\(A_0+c-1\).  Thus, once the unweighted generic determinant-gate count and
+these two explicit quotient ledgers are polynomial after the existing reserve
+charges, the \(b=2\) branch closes.
 Equivalently, for each available root \(x\) the bad-slice test is the failure
 of full column rank for the absorbed-anchor matrix
 \[
