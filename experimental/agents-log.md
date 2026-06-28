@@ -30,6 +30,22 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 base residue-line classes primitive-compress
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_boundary_off_external_anchor_normal_form.md`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / PROOF-PROGRAM.
+- **What is being added:** Shows that a fixed base residue-line datum
+  `QA+lambda B=w` has the same noncontained coefficient set after dividing
+  by `G=gcd(Q,B)`: `(Q/G)A+lambda(B/G)=w/G`.
+- **How it is useful:** Prevents nonprimitive presentations from being
+  counted as new M1 active classes; the class ledger can restrict to
+  primitive root-free residue pairs plus the polynomial endpoint.
+- **What to do next:** Bound or classify the primitive aperiodic active
+  residue-pair classes left after quotient-periodic and contained branches.
+
 ### 2026-06-28 - M1 fixed base residue lines are q-free when noncontained
 
 - **Agent/model:** AllenGrahamHart / Codex audit.

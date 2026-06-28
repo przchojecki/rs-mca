@@ -12748,6 +12748,72 @@ same base-dimension residue-line data.  The density statement follows after
 dividing by `q=|F|`, and the final sentence is the scalar-cutoff case split
 from Corollary 40.113 plus the high-tail-line charge of Corollary 40.112.
 
+## Corollary 40.115: Base Residue-Line Classes Primitive-Compress Without New Coefficients
+
+Keep the setup of Corollary 40.114, and assume `Q,B in F[X]` represent the
+denominator and reduced residue numerator of a fixed base-dimension
+residue-line datum, so `deg B<deg Q` unless `Q=1`.  Let
+
+```text
+G=gcd(Q,B),
+```
+
+with the convention `G=Q` if `B=0`, and put
+
+```text
+Q_0=Q/G,        B_0=B/G,        w_0=w/G        on D.
+```
+
+Then `Q_0` is root-free on `D` and
+
+```text
+gcd(Q_0,B_0)=1.
+```
+
+The coefficient sets are identical:
+
+```text
+Lambda_{Q,B}^{nc,>=a}(w)
+ = Lambda_{Q_0,B_0}^{nc,>=a}(w_0).                (BasePrimitiveCompress)
+```
+
+Equivalently, the divided rank-one direction is unchanged:
+
+```text
+B/Q = B_0/Q_0        on D.
+```
+
+Thus nonprimitive base residue-line presentations do not create new
+support-wise noncontained scalar parameters.  The active class ledger may be
+restricted to primitive root-free residue pairs `(Q_0,B_0 mod Q_0)`, together
+with the polynomial endpoint `Q_0=1`; repeated multiplier factors belong to
+the presentation ledger, not to the finite-parameter packing problem.
+
+### Proof
+
+Every factor of the root-free polynomial `Q` is root-free on `D`, so both `G`
+and `Q_0` are root-free on `D`.  By definition of `G`, the quotient pair is
+coprime.  If `B=0`, the convention gives the polynomial endpoint
+`Q_0=1,B_0=0`; otherwise reducedness of `B` modulo `Q` ensures that any
+remaining denominator is the primitive denominator of the divided direction.
+
+For any support `S subset D`,
+
+```text
+Q A+lambda B=w        on S
+```
+
+is equivalent, after coordinate-wise division by the invertible values of
+`G`, to
+
+```text
+Q_0 A+lambda B_0=w_0        on S.
+```
+
+The support-wise noncontained predicate is also unchanged, because
+`B/Q=B_0/Q_0` and `w/Q=w_0/Q_0` on `D`.  Hence the two `Lambda` sets are
+identical.  The final interpretation follows from Corollary 40.114.
+
 ## Corollary 41: The Global Common-Image Ledger Is Endpoint-Only
 
 Let `GCI` be the set of monic degree-`c` split core locators `L` for which
@@ -15721,6 +15787,9 @@ base-dimension residue-line datum `QA+lambda B=w` after division by the
 root-free denominator `Q`; thus no fixed scalar cutoff datum carries a
 field-size noncontained coefficient family, and the remaining all-line M1
 problem is the active denominator/residue-line class ledger.
+Corollary 40.115 primitive-compresses that ledger: dividing by `gcd(Q,B)`
+does not change the divided direction or coefficient set, so nonprimitive
+presentations create no new active noncontained classes.
 Corollary 41 packages the common-image branch into endpoint-type ledgers; it
 does not prove the endpoint rank hypotheses needed for the displayed
 `(q+2)binom(n,b)` bound. Corollary 42 packages the globally full core ledger
