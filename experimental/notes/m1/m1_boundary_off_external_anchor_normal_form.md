@@ -11500,6 +11500,85 @@ Since `gcd(L_I,Q_prim)=1`, this implies `dM-cN==0 mod Q_prim`.  But
 `deg(dM-cN)<=ell+1<deg Q_prim`, so `dM-cN=0` as a polynomial.  Hence
 `[M]=[N]`, proving the union is disjoint.
 
+## Corollary 40.100: Exceptional Fibers Are Small-Complement Residue-Line Fibers
+
+Keep the notation of Corollary 40.99.  Let
+
+```text
+L_D(X)=prod_{alpha in D}(X-alpha).
+```
+
+For `[M] in P_ell^x(Q_prim)`, define the dual residue line
+
+```text
+R_[M]^vee = F ( L_D M B_prim^{-1} )        in F[X]/(Q_prim),
+```
+
+where both inverses are taken modulo `Q_prim`, and define
+
+```text
+Comp_[M]
+ = { C subset D : |C|=j+1,        L_C mod Q_prim lies in R_[M]^vee }.
+```
+
+Then the complement map
+
+```text
+I |-> C=D\I
+```
+
+is a bijection
+
+```text
+Core_[M]  <->  Comp_[M].                            (ComplementResidueFiber)
+```
+
+Consequently
+
+```text
+|Core_[M]|=|Comp_[M]|
+```
+
+and the exceptional one-row ledger is equivalently a disjoint sum of
+`(j+1)`-point split-complement residue-line fibers modulo the primitive
+denominator `Q_prim`.
+
+### Proof
+
+Since `Q_prim` is root-free on `D`,
+
+```text
+gcd(Q_prim,L_D)=1,        gcd(Q_prim,L_C)=1
+```
+
+for every `C subset D`.  Also `gcd(B_prim,Q_prim)=1`, and Corollary 40.98
+gives `gcd(M,Q_prim)=1`.  Thus all inverses used below exist modulo
+`Q_prim`.
+
+Let `I subset D` have size `a-1`.  Since `a=n-j`, its complement
+`C=D\I` has size `j+1`, and
+
+```text
+L_D = L_I L_C.
+```
+
+The condition `I in Core_[M]` is
+
+```text
+L_I in F B_prim M^{-1}        mod Q_prim.
+```
+
+Substituting `L_I=L_D L_C^{-1}` and multiplying by the invertible class
+`L_C M B_prim^{-1}` gives the equivalent condition
+
+```text
+L_C in F L_D M B_prim^{-1}        mod Q_prim,
+```
+
+which is exactly `C in Comp_[M]`.  The complement map is a set-theoretic
+bijection between `(a-1)`-subsets and `(j+1)`-subsets of `D`, proving the
+claim.
+
 ## Corollary 41: The Global Common-Image Ledger Is Endpoint-Only
 
 Let `GCI` be the set of monic degree-`c` split core locators `L` for which
@@ -14421,6 +14500,8 @@ coprime to `Q_prim`; equivalently the exceptional cores land in residue lines
 Corollary 40.99 decomposes the exceptional core ledger as a disjoint sum of
 ordinary split-locator residue-line fibers indexed by those projective
 low-degree multiplier classes.
+Corollary 40.100 dualizes each large agreement-core fiber to an equivalent
+small `(j+1)`-complement split-locator residue-line fiber.
 Corollary 41 packages the common-image branch into endpoint-type ledgers; it
 does not prove the endpoint rank hypotheses needed for the displayed
 `(q+2)binom(n,b)` bound. Corollary 42 packages the globally full core ledger

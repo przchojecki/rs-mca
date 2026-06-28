@@ -30,6 +30,22 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 exceptional fibers dualize to small complements
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_boundary_off_external_anchor_normal_form.md`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / PROOF-PROGRAM.
+- **What is being added:** Each exceptional `(a-1)` agreement-core residue
+  fiber is equivalent, via `C=D\I`, to a `(j+1)` split-complement residue-line
+  fiber `L_C in F L_D M B_prim^{-1} mod Q_prim`.
+- **How it is useful:** This rewrites the remaining one-row exceptional
+  ledger using small complement locators, matching the M1 split-locator
+  packing language more directly.
+- **What to do next:** Apply quotient-periodic/aperiodic residue-packing
+  estimates to these `(j+1)` complement fibers.
+
 ### 2026-06-28 - M1 exceptional one-row cores split into residue-line fibers
 
 - **Agent/model:** AllenGrahamHart / Codex audit.
