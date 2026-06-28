@@ -13089,6 +13089,85 @@ listed all-domain anchor, repeated-domain-root, and external-anchor landing
 types in the original overlap certificate `L_I(X-beta) in F B_0 mod Q_0`.
 The coprimality already proved excludes roots of `Q_0`.
 
+## Corollary 40.119: Domain-Anchor Base Landings Descend To j-Complement Core Fibers
+
+Keep the first unpacked base layer and one-exchange notation from Corollary
+40.118:
+
+```text
+e_0=t+1,        u=1,        M=X-beta.
+```
+
+Define the descended `j`-complement core fiber
+
+```text
+CoreDrop(Q_0,B_0)
+ = { C_0 subset D : |C_0|=j,
+       L_{C_0} in F L_D B_0^{-1}        mod Q_0 }.       (BaseCoreDrop)
+```
+
+For each `beta in D`, the deletion map
+
+```text
+C |-> C\{beta}
+```
+
+is a bijection
+
+```text
+{ C in Comp_{1,[X-beta]}(Q_0,B_0) : beta in C }
+  <-> { C_0 in CoreDrop(Q_0,B_0) : beta notin C_0 }.     (DomainAnchorDrop)
+```
+
+Consequently the domain-anchor part of the first-unpacked one-exchange base
+collision ledger is exactly the support star over `CoreDrop(Q_0,B_0)`.
+Counting anchored pairs gives
+
+```text
+sum_{beta in D}
+  |{ C in Comp_{1,[X-beta]}(Q_0,B_0) : beta in C }|
+ = (n-j) |CoreDrop(Q_0,B_0)|.                      (DomainAnchorStar)
+```
+
+Thus in-domain anchor landings do not create an independent primitive
+small-complement family; after charging the actual anchor, they descend to
+the `j`-point core complement fiber.  The remaining first-unpacked ledgers are
+the constant core complement fiber itself, plus the repeated-domain-root and
+external-anchor linear landings from Corollary 40.118.
+
+### Proof
+
+Since `beta in D` and `Q_0` is root-free on `D`, the class of `X-beta` is
+invertible modulo `Q_0`.  If `C in Comp_{1,[X-beta]}` and `beta in C`, write
+
+```text
+C=C_0 union {beta}.
+```
+
+Then `L_C=(X-beta)L_{C_0}`, and the defining condition for
+`Comp_{1,[X-beta]}` is
+
+```text
+(X-beta)L_{C_0} in F L_D (X-beta) B_0^{-1}        mod Q_0.
+```
+
+Cancelling the invertible factor `X-beta` gives `C_0 in CoreDrop(Q_0,B_0)`,
+and clearly `beta notin C_0`.
+
+Conversely, if `C_0 in CoreDrop(Q_0,B_0)` and `beta notin C_0`, multiply the
+defining congruence by `X-beta`.  Then
+
+```text
+C=C_0 union {beta}
+```
+
+has size `j+1`, contains `beta`, and lies in
+`Comp_{1,[X-beta]}(Q_0,B_0)`.  These two operations are inverse.
+
+For (DomainAnchorStar), sum the bijection over `beta in D`.  Each fixed
+`C_0 in CoreDrop(Q_0,B_0)` is counted once for each
+`beta in D\C_0`, namely `n-j` times.
+
 ## Corollary 41: The Global Common-Image Ledger Is Endpoint-Only
 
 Let `GCI` be the set of monic degree-`c` split core locators `L` for which
@@ -16076,6 +16155,10 @@ Corollary 40.118 dualizes these certificates to small-complement residue
 fibers, proves projective multiplier disjointness for exchange depth `u<=t`,
 and separates the first unpacked one-exchange layer into core, domain-anchor,
 repeated-root, and external-anchor landing types.
+Corollary 40.119 descends the domain-anchor subcase by deleting the anchor:
+it is exactly the support star over a `j`-complement core fiber, leaving the
+constant core complement fiber plus repeated-root and external-anchor landings
+as the remaining first-unpacked ledgers.
 Corollary 41 packages the common-image branch into endpoint-type ledgers; it
 does not prove the endpoint rank hypotheses needed for the displayed
 `(q+2)binom(n,b)` bound. Corollary 42 packages the globally full core ledger

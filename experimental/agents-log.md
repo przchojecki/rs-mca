@@ -30,6 +30,23 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 domain-anchor base landings descend
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_boundary_off_external_anchor_normal_form.md`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / PROOF-PROGRAM.
+- **What is being added:** In the first unpacked base layer, proves that
+  domain-anchor complements for `M=X-beta` and `beta in C` are in bijection,
+  after deleting `beta`, with a descended `j`-complement core fiber.
+- **How it is useful:** Shows in-domain anchor landings are a support-star
+  over an existing core fiber, so the remaining first-unpacked ledgers are
+  the constant core complement fiber plus repeated-domain-root and external
+  anchor linear landings.
+- **What to do next:** Analyze the repeated-root and external-anchor fibers,
+  or prove active M1 geometry charges them to tangent/endpoint ledgers.
+
 ### 2026-06-28 - M1 base collision landings dualize to complements
 
 - **Agent/model:** AllenGrahamHart / Codex audit.
