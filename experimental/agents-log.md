@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 residual collisions charge to root slices
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_hankel_t2_one_exchange_lift.md`,
+  `experimental/scripts/verify_m1_hankel_t2_triangle_packets.py`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / STRUCTURAL / EXACT FINITE AUDIT.
+- **What is being added:** Proves that two residual completions over the same
+  deficit anchor differ by a lower-degree residual-kernel direction, and any
+  shared residual root forces a one-root divisible short-kernel slice.
+- **How it is useful:** Turns same-anchor residual overlap into explicit
+  fixed-root charges.  After bad root slices are charged, residual supports
+  satisfy an elementary packing bound rather than creating uncontrolled
+  completion multiplicity.
+- **What to do next:** Bound the bad root-slice sets uniformly, or show they
+  are already covered by the fixed-root/root-slice M1 ledger.
+
 ### 2026-06-28 - M1 residual kernels are divisible short kernels
 
 - **Agent/model:** AllenGrahamHart / Codex audit.

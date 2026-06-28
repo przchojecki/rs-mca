@@ -4559,6 +4559,26 @@ rows.  The verifier checks this identity for every squarefree residual
 candidate in the enumeration, so the high-dimensional residual-anchor
 obstruction is a fixed-divisor short-kernel ledger rather than an
 unstructured completion multiplicity.
+Residual collisions then charge to root slices.  If two same-anchor residual
+supports \(R_1,R_2\) occur, then
+\(Q=\ell_{R_1}-\ell_{R_2}\) is a nonzero element of the residual direction
+space.  Any shared root \(x\in R_1\cap R_2\) divides \(Q\), so
+\[
+  H_{q,q+d-1}(s)(\ell_W(X-x)Q_x)=0,\qquad \deg Q_x<q-1.
+\]
+Thus shared-root collisions are fixed-root short-kernel directions.  More
+generally, after charging bad \(c\)-root slices \(Z_c(U,W)\), the residual
+fiber obeys
+\[
+|F(U,W)|\binom qc
+\le
+\binom Nc-|Z_c(U,W)|
+  +|Z_c(U,W)|\binom{N-c}{q-c},
+\quad N=|H\setminus(U\cup W)|.
+\]
+The verifier audits the one-root case: in the largest \(F_7^*\) audit it
+checks \(51840\) anchors and \(259200\) one-root residual slices, with no bad
+root-slice labels and the same productive counts.
 This gives the all-frontier closure criterion.  Let
 \(\mathcal C_m(s)\) be all split-support certificates of mode size \(m\), and
 define

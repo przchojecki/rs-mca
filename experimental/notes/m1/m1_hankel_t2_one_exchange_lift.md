@@ -2514,6 +2514,73 @@ the same `51840` residual labels as the bounded-dimension audit, with maximum
 residual-kernel direction dimension `0`; the productive subaudit has the same
 counts.
 
+## Residual Collisions Charge to Root-Slice Directions
+
+The divisible-kernel identity gives a local overlap charge for residual
+collisions.  Fix a deficit anchor `(U,W)` and let `R_1,R_2` be two distinct
+squarefree residual supports in the same filtered kernel.  Since both
+locators are monic of degree `q`,
+
+```text
+Q=ell_{R_1}-ell_{R_2}
+```
+
+has degree `<q`, is nonzero, and lies in `Dir K(U,W)`.  By (DKI),
+
+```text
+H_{q,q+d}(s)(ell_W Q)=0.                         (RCD)
+```
+
+If `x in R_1 cap R_2`, then `Q(x)=0`, so `Q=(X-x)Q_x` with
+`deg Q_x<q-1`, and therefore
+
+```text
+H_{q,q+d-1}(s)(ell_W (X-x) Q_x)=0.               (RCS)
+```
+
+Thus any shared residual root in a same-anchor collision is charged to a
+one-root slice of the divisible short kernel.  More generally, if
+`C subset R_1 cap R_2`, then `ell_C` divides `Q`, and the collision is charged
+to the `C`-root slice
+
+```text
+H_{q,q+d-1}(s)(ell_W ell_C Q_C)=0,
+deg Q_C<q-|C|.
+```
+
+This gives a packing form.  For `1<=c<q`, call a `c`-subset
+`C subset D'=H\(U union W)` bad if the corresponding `C`-root slice has a
+nonzero direction.  Then every good `C` occurs in at most one residual
+support in the fixed-anchor fiber.  Consequently, if `Z_c(U,W)` is the set of
+bad `c`-subsets and `N=|D'|`, then the residual fiber satisfies
+
+```text
+|F(U,W)| binom(q,c)
+ <= binom(N,c)-|Z_c(U,W)|
+    + |Z_c(U,W)| binom(N-c,q-c).                 (RSP)
+```
+
+In particular, if the one-root bad set is empty, residual supports in the
+same anchor fiber are pairwise disjoint and `|F(U,W)|<=floor(N/q)`.
+
+This is the local root-slice bridge for the residual-anchor obstruction:
+large overlap inside a residual fiber cannot remain invisible.  It either
+produces an explicit fixed-root short-kernel direction, or the residual
+supports are packing-limited after the bad root slices are charged.
+
+The verifier audits the one-root case.  For each produced deficit anchor with
+`q>=2`, it tests every available root `x` for a nonzero direction in the
+matrix with columns
+
+```text
+H_{q,q+d-1}(s)(ell_W (X-x) X^a),   0<=a<q-1,
+```
+
+and checks that any shared root of two residual candidates lies in this bad
+set.  In the largest `F_7^*` audit, it checks `51840` anchors and `259200`
+one-root residual slices, with `0` bad root-slice labels and maximum bad
+root-slice count `0` per anchor; the productive subaudit has the same counts.
+
 ## Deficit-Weighted Core Closure Criterion
 
 The preceding local packing theorem removes the artificial cutoff

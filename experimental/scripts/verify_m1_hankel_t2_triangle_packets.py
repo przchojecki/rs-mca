@@ -157,6 +157,9 @@ anchors and checks the standard bounded-dimension arrangement bound.
 It also checks that each filtered residual-kernel equation is exactly the
 divisible short Hankel equation obtained by multiplying back the anchor
 locator.
+For residual collisions, it audits the one-root version of the resulting
+root-slice charge: shared residual roots must be roots of a nonzero lower
+degree direction in this divisible short kernel.
 For each fixed collapsed anchor base, it audits the sparse-representation
 fiber: below the boundary the mode support is unique, while at the boundary
 distinct supports are disjoint and obey the matching bound.
@@ -659,6 +662,14 @@ def analyze_case(
     terminal_tree_productive_deficit_anchor_residual_fiber_max_size = 0
     terminal_tree_deficit_anchor_residual_fiber_max_direction = 0
     terminal_tree_productive_deficit_anchor_residual_fiber_max_direction = 0
+    terminal_tree_deficit_anchor_root_slice_checks = 0
+    terminal_tree_productive_deficit_anchor_root_slice_checks = 0
+    terminal_tree_deficit_anchor_root_slice_labels = 0
+    terminal_tree_productive_deficit_anchor_root_slice_labels = 0
+    terminal_tree_deficit_anchor_root_slice_bad_labels = 0
+    terminal_tree_productive_deficit_anchor_root_slice_bad_labels = 0
+    terminal_tree_deficit_anchor_root_slice_max_bad_per_anchor = 0
+    terminal_tree_productive_deficit_anchor_root_slice_max_bad_per_anchor = 0
     terminal_tree_core_packet_checks = 0
     terminal_tree_productive_core_packet_checks = 0
     terminal_tree_core_simple_pole_lift_checks = 0
@@ -940,6 +951,14 @@ def analyze_case(
             nonlocal terminal_tree_productive_deficit_anchor_residual_fiber_max_size
             nonlocal terminal_tree_deficit_anchor_residual_fiber_max_direction
             nonlocal terminal_tree_productive_deficit_anchor_residual_fiber_max_direction
+            nonlocal terminal_tree_deficit_anchor_root_slice_checks
+            nonlocal terminal_tree_productive_deficit_anchor_root_slice_checks
+            nonlocal terminal_tree_deficit_anchor_root_slice_labels
+            nonlocal terminal_tree_productive_deficit_anchor_root_slice_labels
+            nonlocal terminal_tree_deficit_anchor_root_slice_bad_labels
+            nonlocal terminal_tree_productive_deficit_anchor_root_slice_bad_labels
+            nonlocal terminal_tree_deficit_anchor_root_slice_max_bad_per_anchor
+            nonlocal terminal_tree_productive_deficit_anchor_root_slice_max_bad_per_anchor
             nonlocal terminal_tree_core_packet_checks
             nonlocal terminal_tree_productive_core_packet_checks
             nonlocal terminal_tree_core_simple_pole_lift_checks
@@ -3319,6 +3338,10 @@ def analyze_case(
                 int,
                 int,
                 int,
+                int,
+                int,
+                int,
+                int,
             ]:
                 fibers: dict[
                     tuple[int, tuple[int, ...]],
@@ -3366,6 +3389,10 @@ def analyze_case(
                 deficit_anchor_residual_fiber_labels = 0
                 deficit_anchor_residual_fiber_max_size = 0
                 deficit_anchor_residual_fiber_max_direction = 0
+                deficit_anchor_root_slice_checks = 0
+                deficit_anchor_root_slice_labels = 0
+                deficit_anchor_root_slice_bad_labels = 0
+                deficit_anchor_root_slice_max_bad_per_anchor = 0
                 for (marked_count, unmarked_core), supports_in_fiber in (
                     fibers.items()
                 ):
@@ -3770,6 +3797,106 @@ def analyze_case(
                                                 ],
                                             }
                                         )
+                                    root_slice_bad_roots: set[int] = set()
+                                    if residual_size > 1:
+                                        root_slice_width = residual_size - 1
+                                        deficit_anchor_root_slice_checks += 1
+                                        deficit_anchor_root_slice_labels += (
+                                            len(available_roots)
+                                        )
+                                        for root in available_roots:
+                                            root_divisor_locator = (
+                                                multiply_polynomials_mod(
+                                                    anchor_locator,
+                                                    cached_locator((root,)),
+                                                    p,
+                                                )
+                                            )
+                                            root_slice_columns = tuple(
+                                                hankel_apply(
+                                                    syn,
+                                                    shift_locator(
+                                                        root_divisor_locator,
+                                                        column,
+                                                    ),
+                                                    residual_size,
+                                                    p,
+                                                )
+                                                for column in range(
+                                                    root_slice_width
+                                                )
+                                            )
+                                            root_slice_matrix = tuple(
+                                                tuple(
+                                                    root_slice_columns[column][
+                                                        row
+                                                    ]
+                                                    for column in range(
+                                                        root_slice_width
+                                                    )
+                                                )
+                                                for row in range(residual_size)
+                                            )
+                                            if (
+                                                matrix_rank_mod(
+                                                    root_slice_matrix,
+                                                    p,
+                                                )
+                                                < root_slice_width
+                                            ):
+                                                root_slice_bad_roots.add(root)
+                                        deficit_anchor_root_slice_bad_labels += (
+                                            len(root_slice_bad_roots)
+                                        )
+                                        deficit_anchor_root_slice_max_bad_per_anchor = max(
+                                            deficit_anchor_root_slice_max_bad_per_anchor,
+                                            len(root_slice_bad_roots),
+                                        )
+                                    for left, right in itertools.combinations(
+                                        residual_candidates,
+                                        2,
+                                    ):
+                                        shared_roots = set(left) & set(right)
+                                        missing_roots = sorted(
+                                            root
+                                            for root in shared_roots
+                                            if root not in root_slice_bad_roots
+                                        )
+                                        if missing_roots:
+                                            raise AssertionError(
+                                                {
+                                                    "kind": (
+                                                        "productive-"
+                                                        if productive
+                                                        else ""
+                                                    )
+                                                    + "marked-core-deficit-"
+                                                    "anchor-root-slice-"
+                                                    "collision-failed",
+                                                    "p": p,
+                                                    "k": k,
+                                                    "syndrome": list(syn),
+                                                    "fixed_roots": list(
+                                                        fixed_roots
+                                                    ),
+                                                    "unmarked_core": list(
+                                                        unmarked_core
+                                                    ),
+                                                    "marked_count": marked_count,
+                                                    "core_deficit": core_deficit,
+                                                    "anchor": list(anchor),
+                                                    "left": list(left),
+                                                    "right": list(right),
+                                                    "missing_roots": (
+                                                        missing_roots
+                                                    ),
+                                                    "root_slice_bad_roots": (
+                                                        sorted(
+                                                            root_slice_bad_roots
+                                                        )
+                                                    ),
+                                                }
+                                            )
                                     residual_direction_dim = (
                                         residual_size
                                         - matrix_rank_mod(
@@ -4102,6 +4229,10 @@ def analyze_case(
                     deficit_anchor_residual_fiber_labels,
                     deficit_anchor_residual_fiber_max_size,
                     deficit_anchor_residual_fiber_max_direction,
+                    deficit_anchor_root_slice_checks,
+                    deficit_anchor_root_slice_labels,
+                    deficit_anchor_root_slice_bad_labels,
+                    deficit_anchor_root_slice_max_bad_per_anchor,
                 )
 
             (
@@ -4129,6 +4260,10 @@ def analyze_case(
                 deficit_anchor_residual_fiber_labels,
                 deficit_anchor_residual_fiber_max_size,
                 deficit_anchor_residual_fiber_max_direction,
+                deficit_anchor_root_slice_checks,
+                deficit_anchor_root_slice_labels,
+                deficit_anchor_root_slice_bad_labels,
+                deficit_anchor_root_slice_max_bad_per_anchor,
             ) = audit_marked_core_fibers(
                 total_split_supports,
                 productive=False,
@@ -4158,6 +4293,10 @@ def analyze_case(
                 productive_deficit_anchor_residual_fiber_labels,
                 productive_deficit_anchor_residual_fiber_max_size,
                 productive_deficit_anchor_residual_fiber_max_direction,
+                productive_deficit_anchor_root_slice_checks,
+                productive_deficit_anchor_root_slice_labels,
+                productive_deficit_anchor_root_slice_bad_labels,
+                productive_deficit_anchor_root_slice_max_bad_per_anchor,
             ) = audit_marked_core_fibers(
                 productive_total_split_supports,
                 productive=True,
@@ -4325,6 +4464,32 @@ def analyze_case(
             terminal_tree_productive_deficit_anchor_residual_fiber_max_direction = max(
                 terminal_tree_productive_deficit_anchor_residual_fiber_max_direction,
                 productive_deficit_anchor_residual_fiber_max_direction,
+            )
+            terminal_tree_deficit_anchor_root_slice_checks += (
+                deficit_anchor_root_slice_checks
+            )
+            terminal_tree_productive_deficit_anchor_root_slice_checks += (
+                productive_deficit_anchor_root_slice_checks
+            )
+            terminal_tree_deficit_anchor_root_slice_labels += (
+                deficit_anchor_root_slice_labels
+            )
+            terminal_tree_productive_deficit_anchor_root_slice_labels += (
+                productive_deficit_anchor_root_slice_labels
+            )
+            terminal_tree_deficit_anchor_root_slice_bad_labels += (
+                deficit_anchor_root_slice_bad_labels
+            )
+            terminal_tree_productive_deficit_anchor_root_slice_bad_labels += (
+                productive_deficit_anchor_root_slice_bad_labels
+            )
+            terminal_tree_deficit_anchor_root_slice_max_bad_per_anchor = max(
+                terminal_tree_deficit_anchor_root_slice_max_bad_per_anchor,
+                deficit_anchor_root_slice_max_bad_per_anchor,
+            )
+            terminal_tree_productive_deficit_anchor_root_slice_max_bad_per_anchor = max(
+                terminal_tree_productive_deficit_anchor_root_slice_max_bad_per_anchor,
+                productive_deficit_anchor_root_slice_max_bad_per_anchor,
             )
 
             def audit_core_simple_pole_lifts(
@@ -6961,6 +7126,30 @@ def analyze_case(
         "terminal_tree_productive_deficit_anchor_residual_fiber_max_direction": (
             terminal_tree_productive_deficit_anchor_residual_fiber_max_direction
         ),
+        "terminal_tree_deficit_anchor_root_slice_checks": (
+            terminal_tree_deficit_anchor_root_slice_checks
+        ),
+        "terminal_tree_productive_deficit_anchor_root_slice_checks": (
+            terminal_tree_productive_deficit_anchor_root_slice_checks
+        ),
+        "terminal_tree_deficit_anchor_root_slice_labels": (
+            terminal_tree_deficit_anchor_root_slice_labels
+        ),
+        "terminal_tree_productive_deficit_anchor_root_slice_labels": (
+            terminal_tree_productive_deficit_anchor_root_slice_labels
+        ),
+        "terminal_tree_deficit_anchor_root_slice_bad_labels": (
+            terminal_tree_deficit_anchor_root_slice_bad_labels
+        ),
+        "terminal_tree_productive_deficit_anchor_root_slice_bad_labels": (
+            terminal_tree_productive_deficit_anchor_root_slice_bad_labels
+        ),
+        "terminal_tree_deficit_anchor_root_slice_max_bad_per_anchor": (
+            terminal_tree_deficit_anchor_root_slice_max_bad_per_anchor
+        ),
+        "terminal_tree_productive_deficit_anchor_root_slice_max_bad_per_anchor": (
+            terminal_tree_productive_deficit_anchor_root_slice_max_bad_per_anchor
+        ),
         "terminal_tree_core_packet_checks": (
             terminal_tree_core_packet_checks
         ),
@@ -7519,6 +7708,10 @@ def print_summary(results: Sequence[dict[str, object]]) -> None:
             f"{result['terminal_tree_deficit_anchor_residual_fiber_max_size']} "
             f"deficit_anchor_residual_dim_max="
             f"{result['terminal_tree_deficit_anchor_residual_fiber_max_direction']} "
+            f"deficit_anchor_root_slices="
+            f"{result['terminal_tree_deficit_anchor_root_slice_checks']} "
+            f"deficit_anchor_root_slice_bad="
+            f"{result['terminal_tree_deficit_anchor_root_slice_bad_labels']} "
             f"core_packets={result['terminal_tree_core_packet_checks']} "
             f"core_simple_pole_lifts="
             f"{result['terminal_tree_core_simple_pole_lift_checks']} "
