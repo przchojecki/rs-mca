@@ -4594,6 +4594,25 @@ one-dimensional residual kernel is already a root-slice packing, not a new
 unstructured multiplicity source.  The verifier now extracts this unique
 direction and asserts the bound whenever \(b(U,W)=1\); in the current largest
 \(F_7^*\) audit no produced anchor has \(b(U,W)=1\).
+More generally, let \(V(U,W)=\operatorname{Dir}K(U,W)\) have dimension
+\(b\), \(1\le b<q\).  For a \(b\)-subset \(C\subset D'\), let
+\(\operatorname{ev}_C:V(U,W)\to F^C\) be evaluation on \(C\), and call \(C\)
+bad when \(\operatorname{ev}_C\) is not injective.  If two residual supports
+share \(C\), then their locator difference is a nonzero element of
+\(V(U,W)\) vanishing on \(C\), so \(C\) is bad.  Hence, writing \(Z_b^{\rm dir}\)
+for the bad \(b\)-subsets and \(N=|D'|\),
+\[
+  |F(U,W)|\binom qb
+  \le
+  \binom Nb-|Z_b^{\rm dir}|
+  +|Z_b^{\rm dir}|\binom{N-b}{q-b}.
+\]
+In the direction-MDS case \(Z_b^{\rm dir}=\emptyset\), this gives
+\(|F(U,W)|\le\lfloor\binom Nb/\binom qb\rfloor\).  By the divisible-kernel
+identity, the bad \(b\)-subsets are exactly fixed-divisor \(b\)-root
+short-kernel slices.  The verifier now audits this rank-defect packing
+criterion whenever \(0<b<q\); the present largest \(F_7^*\) audit has no
+positive-dimensional residual anchors.
 Equivalently, for each available root \(x\) the bad-slice test is the failure
 of full column rank for the absorbed-anchor matrix
 \[

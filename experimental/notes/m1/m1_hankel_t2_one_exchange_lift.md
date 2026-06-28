@@ -2632,6 +2632,68 @@ whenever `b(U,W)=1`, checks that its domain roots match the bad one-root slices,
 and asserts (LKB).  In the current largest `F_7^*` audit no produced anchor has
 `b(U,W)=1`; all produced anchors still have `b(U,W)=0`.
 
+## Direction-MDS Residual Kernels Give b-Packings
+
+The same root-slice mechanism has a higher-dimensional form.  Let
+
+```text
+V(U,W)=Dir K(U,W),        b=dim V(U,W),        1<=b<q.
+```
+
+For a `b`-subset `C subset D'`, write
+
+```text
+ev_C : V(U,W) -> F^C,        Q |-> (Q(x))_{x in C}.
+```
+
+Call `C` direction-bad if `ev_C` is not injective, equivalently if some nonzero
+`Q in V(U,W)` is divisible by `ell_C`.  Let `Z_b^{dir}(U,W)` be the set of such
+bad `b`-subsets.
+
+If two distinct residual supports `R_1,R_2` contain the same `b`-subset `C`,
+then
+
+```text
+ell_{R_1}-ell_{R_2} in V(U,W)\{0}
+```
+
+and this difference vanishes on `C`.  Thus `C in Z_b^{dir}(U,W)`.  Therefore
+every good `b`-subset occurs in at most one residual support.  Counting
+incidences between residual supports and their `b`-subsets gives
+
+```text
+|F(U,W)| binom(q,b)
+ <= binom(N,b)-|Z_b^{dir}(U,W)|
+    + |Z_b^{dir}(U,W)| binom(N-b,q-b).             (DMB)
+```
+
+In particular, if the direction space is MDS on the available domain, meaning
+all `b`-root evaluation maps `ev_C` are injective, then
+
+```text
+|F(U,W)| <= floor( binom(N,b) / binom(q,b) ).       (DMB-MDS)
+```
+
+This is the natural higher-dimensional analogue of the `b=1` root-slice
+packing: positive residual dimension is harmless once the bad divisor
+incidences of the direction space are charged.  By the divisible-kernel
+identity (DKI), the bad `b`-subsets are exactly the `b`-root fixed-divisor
+short-kernel slices
+
+```text
+H_{q,q+d-b}(s)(ell_W ell_C Q_C)=0,        deg Q_C<q-b.
+```
+
+Thus the remaining high-dimensional residual-anchor obstruction is no longer
+an arbitrary affine kernel count.  It is a finite rank-defect ledger for the
+evaluation matroid of `V(U,W)`, plus the corresponding fixed-root slice charges.
+
+The verifier now extracts a basis for `V(U,W)` whenever `0<b<q`, enumerates
+the bad `b`-subsets by the rank of `ev_C`, checks that all shared `b`-subsets of
+two residual candidates are bad, and asserts (DMB).  In the current largest
+`F_7^*` audit no produced anchor has positive residual direction dimension, so
+this audit is installed for future cases but not triggered by the present data.
+
 ## Bad Root Slices Are Absorbed-Anchor Rank Defects
 
 The preceding bad-root condition has an equivalent absorbed-anchor form.  Fix

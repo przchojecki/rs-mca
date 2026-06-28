@@ -169,6 +169,8 @@ each produced deficit anchor, and checks that endpoint defects are contained in
 the filtered residual-kernel direction space.
 When that residual direction space is one-dimensional, it extracts the unique
 direction polynomial and checks the resulting root-slice packing bound.
+For higher positive residual direction dimension, it audits the direction-MDS
+rank-defect packing bound on bad b-subsets.
 For each fixed collapsed anchor base, it audits the sparse-representation
 fiber: below the boundary the mode support is unique, while at the boundary
 distinct supports are disjoint and obey the matching bound.
@@ -744,6 +746,14 @@ def analyze_case(
     terminal_tree_productive_deficit_anchor_line_kernel_max_direction_roots = 0
     terminal_tree_deficit_anchor_line_kernel_max_sharp_bound = 0
     terminal_tree_productive_deficit_anchor_line_kernel_max_sharp_bound = 0
+    terminal_tree_deficit_anchor_direction_mds_checks = 0
+    terminal_tree_productive_deficit_anchor_direction_mds_checks = 0
+    terminal_tree_deficit_anchor_direction_mds_bad_subsets = 0
+    terminal_tree_productive_deficit_anchor_direction_mds_bad_subsets = 0
+    terminal_tree_deficit_anchor_direction_mds_max_bad_subsets = 0
+    terminal_tree_productive_deficit_anchor_direction_mds_max_bad_subsets = 0
+    terminal_tree_deficit_anchor_direction_mds_max_bound = 0
+    terminal_tree_productive_deficit_anchor_direction_mds_max_bound = 0
     terminal_tree_deficit_anchor_root_slice_checks = 0
     terminal_tree_productive_deficit_anchor_root_slice_checks = 0
     terminal_tree_deficit_anchor_root_slice_labels = 0
@@ -1045,6 +1055,14 @@ def analyze_case(
             nonlocal terminal_tree_productive_deficit_anchor_line_kernel_max_direction_roots
             nonlocal terminal_tree_deficit_anchor_line_kernel_max_sharp_bound
             nonlocal terminal_tree_productive_deficit_anchor_line_kernel_max_sharp_bound
+            nonlocal terminal_tree_deficit_anchor_direction_mds_checks
+            nonlocal terminal_tree_productive_deficit_anchor_direction_mds_checks
+            nonlocal terminal_tree_deficit_anchor_direction_mds_bad_subsets
+            nonlocal terminal_tree_productive_deficit_anchor_direction_mds_bad_subsets
+            nonlocal terminal_tree_deficit_anchor_direction_mds_max_bad_subsets
+            nonlocal terminal_tree_productive_deficit_anchor_direction_mds_max_bad_subsets
+            nonlocal terminal_tree_deficit_anchor_direction_mds_max_bound
+            nonlocal terminal_tree_productive_deficit_anchor_direction_mds_max_bound
             nonlocal terminal_tree_deficit_anchor_root_slice_checks
             nonlocal terminal_tree_productive_deficit_anchor_root_slice_checks
             nonlocal terminal_tree_deficit_anchor_root_slice_labels
@@ -3448,6 +3466,10 @@ def analyze_case(
                 int,
                 int,
                 int,
+                int,
+                int,
+                int,
+                int,
             ]:
                 fibers: dict[
                     tuple[int, tuple[int, ...]],
@@ -3498,6 +3520,10 @@ def analyze_case(
                 deficit_anchor_line_kernel_checks = 0
                 deficit_anchor_line_kernel_max_direction_roots = 0
                 deficit_anchor_line_kernel_max_sharp_bound = 0
+                deficit_anchor_direction_mds_checks = 0
+                deficit_anchor_direction_mds_bad_subsets = 0
+                deficit_anchor_direction_mds_max_bad_subsets = 0
+                deficit_anchor_direction_mds_max_bound = 0
                 deficit_anchor_root_slice_checks = 0
                 deficit_anchor_root_slice_labels = 0
                 deficit_anchor_root_slice_bad_labels = 0
@@ -4394,6 +4420,211 @@ def analyze_case(
                                                     "bound": line_kernel_bound,
                                                 }
                                             )
+                                    if (
+                                        0
+                                        < residual_direction_dim
+                                        < residual_size
+                                    ):
+                                        direction_basis = right_kernel_basis_mod(
+                                            moment_matrix,
+                                            p,
+                                        )
+                                        if (
+                                            len(direction_basis)
+                                            != residual_direction_dim
+                                        ):
+                                            raise AssertionError(
+                                                {
+                                                    "kind": (
+                                                        "productive-"
+                                                        if productive
+                                                        else ""
+                                                    )
+                                                    + "marked-core-deficit-"
+                                                    "anchor-direction-mds-"
+                                                    "basis-failed",
+                                                    "p": p,
+                                                    "k": k,
+                                                    "syndrome": list(syn),
+                                                    "fixed_roots": list(
+                                                        fixed_roots
+                                                    ),
+                                                    "unmarked_core": list(
+                                                        unmarked_core
+                                                    ),
+                                                    "marked_count": marked_count,
+                                                    "core_deficit": core_deficit,
+                                                    "anchor": list(anchor),
+                                                    "direction_dim": (
+                                                        residual_direction_dim
+                                                    ),
+                                                    "basis": [
+                                                        list(vector)
+                                                        for vector in (
+                                                            direction_basis
+                                                        )
+                                                    ],
+                                                }
+                                            )
+                                        bad_direction_subsets: set[
+                                            tuple[int, ...]
+                                        ] = set()
+                                        for subset in itertools.combinations(
+                                            available_roots,
+                                            residual_direction_dim,
+                                        ):
+                                            evaluation_matrix = tuple(
+                                                tuple(
+                                                    polynomial_eval_mod(
+                                                        vector,
+                                                        domain[root],
+                                                        p,
+                                                    )
+                                                    for vector in (
+                                                        direction_basis
+                                                    )
+                                                )
+                                                for root in subset
+                                            )
+                                            if (
+                                                matrix_rank_mod(
+                                                    evaluation_matrix,
+                                                    p,
+                                                )
+                                                < residual_direction_dim
+                                            ):
+                                                bad_direction_subsets.add(subset)
+                                        for left, right in itertools.combinations(
+                                            residual_candidates,
+                                            2,
+                                        ):
+                                            shared_roots = sorted(
+                                                set(left) & set(right)
+                                            )
+                                            for subset in itertools.combinations(
+                                                shared_roots,
+                                                residual_direction_dim,
+                                            ):
+                                                if (
+                                                    subset
+                                                    not in bad_direction_subsets
+                                                ):
+                                                    raise AssertionError(
+                                                        {
+                                                            "kind": (
+                                                                "productive-"
+                                                                if productive
+                                                                else ""
+                                                            )
+                                                            + "marked-core-"
+                                                            "deficit-anchor-"
+                                                            "direction-mds-"
+                                                            "collision-failed",
+                                                            "p": p,
+                                                            "k": k,
+                                                            "syndrome": list(syn),
+                                                            "fixed_roots": list(
+                                                                fixed_roots
+                                                            ),
+                                                            "unmarked_core": list(
+                                                                unmarked_core
+                                                            ),
+                                                            "marked_count": (
+                                                                marked_count
+                                                            ),
+                                                            "core_deficit": (
+                                                                core_deficit
+                                                            ),
+                                                            "anchor": list(anchor),
+                                                            "direction_dim": (
+                                                                residual_direction_dim
+                                                            ),
+                                                            "left": list(left),
+                                                            "right": list(right),
+                                                            "subset": list(subset),
+                                                            "bad_subsets": [
+                                                                list(item)
+                                                                for item in sorted(
+                                                                    bad_direction_subsets
+                                                                )
+                                                            ],
+                                                        }
+                                                    )
+                                        bad_subset_count = len(
+                                            bad_direction_subsets
+                                        )
+                                        numerator = (
+                                            math.comb(
+                                                len(available_roots),
+                                                residual_direction_dim,
+                                            )
+                                            - bad_subset_count
+                                            + bad_subset_count
+                                            * math.comb(
+                                                (
+                                                    len(available_roots)
+                                                    - residual_direction_dim
+                                                ),
+                                                (
+                                                    residual_size
+                                                    - residual_direction_dim
+                                                ),
+                                            )
+                                        )
+                                        direction_mds_bound = numerator // math.comb(
+                                            residual_size,
+                                            residual_direction_dim,
+                                        )
+                                        deficit_anchor_direction_mds_checks += 1
+                                        deficit_anchor_direction_mds_bad_subsets += (
+                                            bad_subset_count
+                                        )
+                                        deficit_anchor_direction_mds_max_bad_subsets = max(
+                                            deficit_anchor_direction_mds_max_bad_subsets,
+                                            bad_subset_count,
+                                        )
+                                        deficit_anchor_direction_mds_max_bound = max(
+                                            deficit_anchor_direction_mds_max_bound,
+                                            direction_mds_bound,
+                                        )
+                                        if (
+                                            len(residual_candidates)
+                                            > direction_mds_bound
+                                        ):
+                                            raise AssertionError(
+                                                {
+                                                    "kind": (
+                                                        "productive-"
+                                                        if productive
+                                                        else ""
+                                                    )
+                                                    + "marked-core-deficit-"
+                                                    "anchor-direction-mds-bound-"
+                                                    "failed",
+                                                    "p": p,
+                                                    "k": k,
+                                                    "syndrome": list(syn),
+                                                    "fixed_roots": list(
+                                                        fixed_roots
+                                                    ),
+                                                    "unmarked_core": list(
+                                                        unmarked_core
+                                                    ),
+                                                    "marked_count": marked_count,
+                                                    "core_deficit": core_deficit,
+                                                    "anchor": list(anchor),
+                                                    "direction_dim": (
+                                                        residual_direction_dim
+                                                    ),
+                                                    "bad_subset_count": (
+                                                        bad_subset_count
+                                                    ),
+                                                    "candidate_count": len(
+                                                        residual_candidates
+                                                    ),
+                                                    "bound": direction_mds_bound,
+                                                }
+                                            )
                                     residual_bound = sum(
                                         math.comb(len(available_roots), size)
                                         for size in range(
@@ -4722,6 +4953,10 @@ def analyze_case(
                     deficit_anchor_line_kernel_checks,
                     deficit_anchor_line_kernel_max_direction_roots,
                     deficit_anchor_line_kernel_max_sharp_bound,
+                    deficit_anchor_direction_mds_checks,
+                    deficit_anchor_direction_mds_bad_subsets,
+                    deficit_anchor_direction_mds_max_bad_subsets,
+                    deficit_anchor_direction_mds_max_bound,
                     deficit_anchor_root_slice_checks,
                     deficit_anchor_root_slice_labels,
                     deficit_anchor_root_slice_bad_labels,
@@ -4759,6 +4994,10 @@ def analyze_case(
                 deficit_anchor_line_kernel_checks,
                 deficit_anchor_line_kernel_max_direction_roots,
                 deficit_anchor_line_kernel_max_sharp_bound,
+                deficit_anchor_direction_mds_checks,
+                deficit_anchor_direction_mds_bad_subsets,
+                deficit_anchor_direction_mds_max_bad_subsets,
+                deficit_anchor_direction_mds_max_bound,
                 deficit_anchor_root_slice_checks,
                 deficit_anchor_root_slice_labels,
                 deficit_anchor_root_slice_bad_labels,
@@ -4798,6 +5037,10 @@ def analyze_case(
                 productive_deficit_anchor_line_kernel_checks,
                 productive_deficit_anchor_line_kernel_max_direction_roots,
                 productive_deficit_anchor_line_kernel_max_sharp_bound,
+                productive_deficit_anchor_direction_mds_checks,
+                productive_deficit_anchor_direction_mds_bad_subsets,
+                productive_deficit_anchor_direction_mds_max_bad_subsets,
+                productive_deficit_anchor_direction_mds_max_bound,
                 productive_deficit_anchor_root_slice_checks,
                 productive_deficit_anchor_root_slice_labels,
                 productive_deficit_anchor_root_slice_bad_labels,
@@ -4994,6 +5237,34 @@ def analyze_case(
             terminal_tree_productive_deficit_anchor_line_kernel_max_sharp_bound = max(
                 terminal_tree_productive_deficit_anchor_line_kernel_max_sharp_bound,
                 productive_deficit_anchor_line_kernel_max_sharp_bound,
+            )
+            terminal_tree_deficit_anchor_direction_mds_checks += (
+                deficit_anchor_direction_mds_checks
+            )
+            terminal_tree_productive_deficit_anchor_direction_mds_checks += (
+                productive_deficit_anchor_direction_mds_checks
+            )
+            terminal_tree_deficit_anchor_direction_mds_bad_subsets += (
+                deficit_anchor_direction_mds_bad_subsets
+            )
+            terminal_tree_productive_deficit_anchor_direction_mds_bad_subsets += (
+                productive_deficit_anchor_direction_mds_bad_subsets
+            )
+            terminal_tree_deficit_anchor_direction_mds_max_bad_subsets = max(
+                terminal_tree_deficit_anchor_direction_mds_max_bad_subsets,
+                deficit_anchor_direction_mds_max_bad_subsets,
+            )
+            terminal_tree_productive_deficit_anchor_direction_mds_max_bad_subsets = max(
+                terminal_tree_productive_deficit_anchor_direction_mds_max_bad_subsets,
+                productive_deficit_anchor_direction_mds_max_bad_subsets,
+            )
+            terminal_tree_deficit_anchor_direction_mds_max_bound = max(
+                terminal_tree_deficit_anchor_direction_mds_max_bound,
+                deficit_anchor_direction_mds_max_bound,
+            )
+            terminal_tree_productive_deficit_anchor_direction_mds_max_bound = max(
+                terminal_tree_productive_deficit_anchor_direction_mds_max_bound,
+                productive_deficit_anchor_direction_mds_max_bound,
             )
             terminal_tree_deficit_anchor_root_slice_checks += (
                 deficit_anchor_root_slice_checks
@@ -7694,6 +7965,30 @@ def analyze_case(
         "terminal_tree_productive_deficit_anchor_line_kernel_max_sharp_bound": (
             terminal_tree_productive_deficit_anchor_line_kernel_max_sharp_bound
         ),
+        "terminal_tree_deficit_anchor_direction_mds_checks": (
+            terminal_tree_deficit_anchor_direction_mds_checks
+        ),
+        "terminal_tree_productive_deficit_anchor_direction_mds_checks": (
+            terminal_tree_productive_deficit_anchor_direction_mds_checks
+        ),
+        "terminal_tree_deficit_anchor_direction_mds_bad_subsets": (
+            terminal_tree_deficit_anchor_direction_mds_bad_subsets
+        ),
+        "terminal_tree_productive_deficit_anchor_direction_mds_bad_subsets": (
+            terminal_tree_productive_deficit_anchor_direction_mds_bad_subsets
+        ),
+        "terminal_tree_deficit_anchor_direction_mds_max_bad_subsets": (
+            terminal_tree_deficit_anchor_direction_mds_max_bad_subsets
+        ),
+        "terminal_tree_productive_deficit_anchor_direction_mds_max_bad_subsets": (
+            terminal_tree_productive_deficit_anchor_direction_mds_max_bad_subsets
+        ),
+        "terminal_tree_deficit_anchor_direction_mds_max_bound": (
+            terminal_tree_deficit_anchor_direction_mds_max_bound
+        ),
+        "terminal_tree_productive_deficit_anchor_direction_mds_max_bound": (
+            terminal_tree_productive_deficit_anchor_direction_mds_max_bound
+        ),
         "terminal_tree_deficit_anchor_root_slice_checks": (
             terminal_tree_deficit_anchor_root_slice_checks
         ),
@@ -8298,6 +8593,10 @@ def print_summary(results: Sequence[dict[str, object]]) -> None:
             f"{result['terminal_tree_deficit_anchor_line_kernel_checks']} "
             f"deficit_anchor_line_kernel_root_max="
             f"{result['terminal_tree_deficit_anchor_line_kernel_max_direction_roots']} "
+            f"deficit_anchor_direction_mds="
+            f"{result['terminal_tree_deficit_anchor_direction_mds_checks']} "
+            f"deficit_anchor_direction_mds_bad_max="
+            f"{result['terminal_tree_deficit_anchor_direction_mds_max_bad_subsets']} "
             f"deficit_anchor_root_slices="
             f"{result['terminal_tree_deficit_anchor_root_slice_checks']} "
             f"deficit_anchor_root_slice_bad="

@@ -30,6 +30,27 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 direction-MDS residual kernels give b-packings
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_hankel_t2_one_exchange_lift.md`,
+  `experimental/experiments.tex`,
+  `experimental/scripts/verify_m1_hankel_t2_triangle_packets.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / STRUCTURAL / AUDIT.
+- **What is being added:** For residual direction dimension `b`, identifies
+  bad `b`-subsets as evaluation-rank defects of `Dir K(U,W)` and proves the
+  packing bound
+  `|F(U,W)| binom(q,b) <= binom(N,b)-|Z_b|+|Z_b| binom(N-b,q-b)`.
+- **How it is useful:** Generalizes the line-kernel result to higher residual
+  direction spaces.  In the direction-MDS case it gives the sharper
+  `floor(binom(N,b)/binom(q,b))` bound, and otherwise it charges the obstruction
+  to explicit fixed-divisor `b`-root slices.
+- **What to do next:** Prove direction-MDS behavior, or bounded bad-subset
+  ledgers, for the fixed-divisor residual direction spaces arising in M1 after
+  quotient-periodic and tangent charges.
+
 ### 2026-06-28 - M1 line residual kernels are root-slice packings
 
 - **Agent/model:** AllenGrahamHart / Codex audit.
