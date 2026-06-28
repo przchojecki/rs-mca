@@ -3618,6 +3618,31 @@ primitive remainder \(7\) and maximum periodic budget \(3\).  These scans are
 normalization and falsification harnesses, not asymptotic evidence; in
 particular, a full field-sized primitive slope image can already occur in a
 tiny quotient-normal example.
+The quotient-normal target is exactly the Hankel-pencil target.  For
+\(H=\{x:X^n=1\}\), use the weighted syndrome
+\[
+  \operatorname{Syn}_m(w)=\sum_{x\in H}(x/n)w(x)x^m,\qquad 0\le m<n-k .
+\]
+If \(S=H\setminus T\), \(|S|=a\), \(|T|=j\), \(t=a-k\), and
+\(\ell_T(X)=\prod_{x\in T}(X-x)=\sum_{h=0}^j\ell_hX^h\), then
+\[
+  w|_S\in\RS[F,S,k]
+  \quad\Longleftrightarrow\quad
+  \sum_{h=0}^j\ell_h\operatorname{Syn}_{m+h}(w)=0
+  \quad(0\le m<t).
+\]
+Consequently a quotient-normal pair \((\phi,Y)\) contributes the slope
+\(\lambda\) on \(S=H\setminus T\) exactly when
+\[
+  (H(\operatorname{Syn}(Y))-\lambda H(\operatorname{Syn}(\phi)))\ell_T=0,\qquad
+  H(\operatorname{Syn}(\phi))\ell_T\ne0 .
+\]
+For the original line notation \(\phi=-g\), \(Y=f\), this is Przemek's
+\((H(u)+zH(v))\ell_T=0\) form up to the direction sign.  The verifier
+\texttt{experimental/scripts/verify\_m1\_exact\_target\_hankel\_equivalence.py}
+checks the direct and Hankel classifications over the same \(F_5^*\) and
+\(F_7^*\) quotient-normal scans, including all \(117649\) quotient pairs in
+the latter.
 The common-core and two-denominator formulas persist verbatim after this
 root-free replacement.  With \(C=\gcd(D:D\in M_{\min})\), \(\gamma=\deg C\),
 and \(E_D=D/C\),

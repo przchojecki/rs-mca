@@ -30,6 +30,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 exact target Hankel equivalence verifier
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/scripts/verify_m1_exact_target_hankel_equivalence.py`,
+  `experimental/notes/m1/m1_exact_target_v0.md`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / EXPERIMENTAL CHECK.
+- **What is being added:** Records the exact support-locator Hankel form of
+  the M1-v0 quotient-normal target and adds a verifier comparing the direct
+  restricted-code definition against the Hankel-pencil classification on the
+  full `F_5^*` and `F_7^*` tiny scans.
+- **How it is useful:** Bridges the concrete `Bad_nc`/`Prim_M1` conjecture to
+  Przemek's target object `(H(u)+zH(v))ell_T=0`, so future falsification can
+  search split-locator Hankel packets without changing the predicate.
+- **What to do next:** Use the verified Hankel form to build a `t=2`
+  aperiodic split-locator packet scanner, with quotient-periodic support
+  packets charged before primitive slope-image growth is tested.
+
 ### 2026-06-28 - M1 exact target v0 quotient-normal scanner
 
 - **Agent/model:** AllenGrahamHart / Codex audit.

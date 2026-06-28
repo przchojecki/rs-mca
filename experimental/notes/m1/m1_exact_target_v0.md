@@ -183,6 +183,53 @@ reciprocal charts.  It should count quotient-normal endpoint Hankel-kernel
 packets attached to primitive support witnesses, after quotient-periodic
 support packets have been charged.
 
+## Exact Support-Locator Hankel Form
+
+For multiplicative subgroups `H` of order `n`, write `H` as the root set of
+`X^n-1` and define the weighted RS-dual syndrome
+
+```text
+Syn_m(w)=sum_{x in H} (x/n) w(x) x^m,        0<=m<r=n-k.
+```
+
+Let `S=H\T`, `|S|=a`, `|T|=j=n-a`, and put `t=a-k=r-j`.  If
+
+```text
+ell_T(X)=prod_{x in T}(X-x)=sum_{h=0}^j ell_h X^h,
+```
+
+then
+
+```text
+w|_S in RS[F,S,k]
+    iff
+sum_{h=0}^j ell_h Syn_{m+h}(w)=0        for 0<=m<t.
+```
+
+The forward direction is the usual syndrome recurrence for an error supported
+on `T`; the converse follows because the first `j` weighted syndrome entries
+determine the `T`-supported error by a Vandermonde system, and the recurrence
+then determines all remaining entries.
+
+Applying this to the quotient-normal rank-one pair `(phi,Y)` gives the exact
+split-locator form of `Bad_nc`:
+
+```text
+(H(Syn(Y))-lambda H(Syn(phi))) ell_T = 0,
+H(Syn(phi)) ell_T != 0.
+```
+
+With the original line convention `phi=-g`, `Y=f`, this is precisely
+
+```text
+(H(Syn(f))+lambda H(Syn(g))) ell_T = 0,
+H(Syn(g)) ell_T != 0,
+```
+
+up to the harmless sign in the direction.  Thus the primitive quotient-normal
+slope target can be attacked as a split-locator Hankel-pencil image after the
+support stabilizer budget is charged.
+
 ## First Falsification Pass
 
 The following attacks do not prove the conjecture, but they remove several
@@ -269,11 +316,22 @@ It also records projective root-free endpoint denominator counts by degree for
 the retained max-primitive examples, using the equivalent membership test
 `Qy in RS[F,H,k+deg Q]`.
 
+The companion verifier
+`experimental/scripts/verify_m1_exact_target_hankel_equivalence.py` checks the
+support-locator Hankel form against the direct restricted-code definition.  On
+the same two cases it verifies:
+
+| field/domain | erasure-locator checks | quotient pairs | max bad | max periodic | max primitive |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| `F_5`, `H=F_5^*`, `n=4,k=2,a=3` | 2500 | 625 | 4 | 0 | 4 |
+| `F_7`, `H=F_7^*`, `n=6,k=3,a=4` | 1764735 | 117649 | 7 | 3 | 7 |
+
 Two full enumerations were run:
 
 ```text
 python3 experimental/scripts/scan_m1_exact_target_v0.py
 python3 experimental/scripts/scan_m1_exact_target_v0.py --p 7 --k 3 --a 4
+python3 experimental/scripts/verify_m1_exact_target_hankel_equivalence.py
 ```
 
 The results were:
